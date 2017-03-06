@@ -2172,10 +2172,34 @@ int thrown;
 		}
 	}
 
-	if (!hittxt &&			/*( thrown => obj exists )*/
+	if ((!hittxt || (Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) ) &&			/*( thrown => obj exists )*/
 	  (!destroyed || (thrown && m_shot.n > 1 && m_shot.o == obj->otyp))) {
 		if (thrown) hit(mshot_xname(obj), mon, exclam(tmp));
 		else if (!flags.verbose) You("hit it.");
+
+		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(20) && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) ) {
+
+			switch (rnd(15)) {
+	
+			case 1: pline("Daennaennaennaennaennaennaennaennaenn!"); break;
+			case 2: pline("Skrrrrrrrrrrr!"); break;
+			case 3: pline("Waedaewaedaewaennwaennwaenn!"); break;
+			case 4: pline("Daediedaedae daedaedaedae!"); break;
+			case 5: pline("Eeeep!"); break;
+			case 6: pline("Krrk"); break;
+			case 7: pline("Wiiiiiiel!"); break;
+			case 8: pline("Wlallalalallp!"); break;
+			case 9: pline("Wooooooooar!"); break;
+			case 10: pline("Waedawinnindiuu!"); break;
+			case 11: pline("Defff!"); break;
+			case 12: pline("Wloe!"); break;
+			case 13: pline("Dschiimdschiim!"); break;
+			case 14: pline("Baeiibaeiibaeiibaeiibaeiibaeiibaeii!"); break;
+			case 15: pline("Ditdae!"); break;
+
+			}
+
+		}
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5)) {
 
@@ -2545,7 +2569,23 @@ int thrown;
 	} else if (destroyed) {
 		if (!already_killed) {
 
-			if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5) && !thrown) {
+			if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !thrown && !rn2(20) && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) ) {
+
+				switch (rnd(8)) {
+	
+				case 1: pline("Skjuaaaaa!"); break;
+				case 2: pline("Baemmmmm!"); break;
+				case 3: pline("Aeiaeaeaeaeaeae!"); break;
+				case 4: pline("Baemmaemmaemmaemmaemmaemmaeaeaeaeae!"); break;
+				case 5: pline("Fooooooouch!"); break;
+				case 6: pline("Woepp!"); break;
+				case 7: pline("Paaaaaaaaaund!"); break;
+				case 8: pline("Baeau!"); break;
+				}
+
+			}
+
+			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5) && !thrown) {
 
 				switch (rnd(281)) {
 
@@ -4616,6 +4656,18 @@ register int roll;
 	
 	if (could_seduce(&youmonst, mdef, mattk) && rn2(5) ) {
 		You("pretend to be friendly to %s.", mon_nam(mdef));
+	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(20) && canspotmon(mdef) && flags.verbose && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) ) {
+
+		switch (rnd(6)) {
+	
+		case 1: pline("Waff!"); break;
+		case 2: pline("Haehaehaehaehaehaehaeaeae-aeaeae-aeaeae-aeaeae-aeaeae."); break;
+		case 3: pline("Laaaaaaaaansch!"); break;
+		case 4: pline("Woeoeoeing!"); break;
+		case 5: pline("Waeddaewied-di waend dae dae."); break;
+		case 6: pline("Bimmselimmelimm!"); break;
+		}
+
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
 		switch (rnd(367)) {
@@ -5898,6 +5950,7 @@ uchar aatyp;
 	    case AD_ICUR:
 		if (!rn2(3)) {
 			You_feel("as if you need some help.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			rndcurse();
 		}
 		break;
@@ -5918,7 +5971,7 @@ uchar aatyp;
 		if (!rn2(15)) {
 			pline("Nasty!");
 
-			switch (rnd(85)) {
+			switch (rnd(95)) {
 
 				case 1: RMBLoss += rnz( (tmp + 2) * rnd(100) ); break;
 				case 2: NoDropProblem += rnz( (tmp + 2) * rnd(100) ); break;
@@ -6033,6 +6086,16 @@ uchar aatyp;
 				case 83: CrapEffect += rnz( (tmp + 2) * rnd(100) ); break;
 				case 84: ProjectilesMisfire += rnz( (tmp + 2) * rnd(100) ); break;
 				case 85: WallTrapping += rnz( (tmp + 2) * rnd(100) ); break;
+				case 86: DisconnectedStairs += rnz( (tmp + 2) * rnd(100) ); break;
+				case 87: InterfaceScrewed += rnz( (tmp + 2) * rnd(100) ); break;
+				case 88: Bossfights += rnz( (tmp + 2) * rnd(100) ); break;
+				case 89: EntireLevelMode += rnz( (tmp + 2) * rnd(100) ); break;
+				case 90: BonesLevelChange += rnz( (tmp + 2) * rnd(100) ); break;
+				case 91: AutocursingEquipment += rnz( (tmp + 2) * rnd(100) ); break;
+				case 92: HighlevelStatus += rnz( (tmp + 2) * rnd(100) ); break;
+				case 93: SpellForgetting += rnz( (tmp + 2) * rnd(100) ); break;
+				case 94: SoundEffectBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 95: TimerunBug += rnz( (tmp + 2) * rnd(100) ); break;
 			}
 
 		}
@@ -6214,6 +6277,7 @@ uchar aatyp;
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -7040,6 +7104,7 @@ uchar aatyp;
 			break;
 		    case 2:
 			You("need reboot.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
 			else polyself(FALSE);
 			break;
@@ -7064,6 +7129,7 @@ uchar aatyp;
 			if (!u.ustuck && !sticks(youmonst.data)) {
 				setustuck(mon);
 				pline("%s grabs you!", Monnam(mon));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
@@ -7127,6 +7193,7 @@ uchar aatyp;
 			    } else {
 				if (Blind) You("are frozen!");
 				else You("are frozen by %s!", mon_nam(mon));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				nomul(-rnd(10), "paralyzed by a monster attack");
 				exercise(A_DEX, FALSE);
@@ -7140,6 +7207,7 @@ uchar aatyp;
 				You(Blind ? "%s and get dizzy..." :
 					 "%s and your vision blurs...",
 					    stagger(youmonst.data, "stagger"));
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 			hallutime = rn1(7, 16);
 			make_stunned(HStun + hallutime + tmp, FALSE);
 			(void) make_hallucinated(HHallucination + hallutime + tmp,TRUE,0L);
@@ -7163,6 +7231,7 @@ uchar aatyp;
 
 			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
 			break;
@@ -7232,6 +7301,7 @@ uchar aatyp;
 			    } else {
 				if (Blind) You("are frozen!");
 				else You("are frozen by %s!", mon_nam(mon));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				nomul(-rnd(10), "paralyzed by a monster attack");
 				exercise(A_DEX, FALSE);
@@ -7729,6 +7799,7 @@ struct attack *mattk;		/* null means we find one internally */
 		if (drain_item(obj) && carried(obj) &&
 		    (obj->known || obj->oclass == ARMOR_CLASS)) {
 		    Your("%s less effective.", aobjnam(obj, "seem"));
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 	    	}
 	    	break;
 	    }
@@ -7737,6 +7808,7 @@ struct attack *mattk;		/* null means we find one internally */
 		if (drain_item(obj)) { if(carried(obj) &&
 		    (obj->known || obj->oclass == ARMOR_CLASS)) {
 		    Your("%s less effective.", aobjnam(obj, "seem"));
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 	    	}
 

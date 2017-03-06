@@ -326,9 +326,12 @@ register struct edog *edog;
 		    Your("leash goes slack.");
 		else if (cansee(mtmp->mx, mtmp->my))
 		    pline("%s starves.", Monnam(mtmp));
-		else
+		else {
 		    You_feel("%s for a moment.",
 			Hallucination ? "bummed" : "sad");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Tipichnyy igrok. Vy dazhe ne sposobny kormit' vashego pitomtsa." : "Tschwieaeaeh!");
+
+		}
 		mondied(mtmp);
 		return(TRUE);
 	    }

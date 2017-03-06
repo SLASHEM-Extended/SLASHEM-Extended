@@ -576,7 +576,7 @@ boolean allow_drag;
 	u.ux0 = u.ux;
 	u.uy0 = u.uy;
 
-	if (hides_under(youmonst.data) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE))
+	if (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE))
 		u.uundetected = OBJ_AT(nux, nuy);
 	else if (youmonst.data->mlet == S_EEL)
 		u.uundetected = is_pool(nux, nuy);
@@ -1888,7 +1888,7 @@ newtry:
 
 		pline("You're pushed back!");
 		u_on_newpos(ccc.x, ccc.y);
-		doredraw();
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
 		return;
 }
 

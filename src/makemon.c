@@ -14353,29 +14353,29 @@ uncommon(mndx)
 int mndx;
 {
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
-	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.aggravation ? 10 : 20) && !Role_if(PM_TRANSSYLVANIAN) ) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.aggravation ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone()) && !Role_if(PM_TRANSSYLVANIAN) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
 
-	if (uncommon2(&mons[mndx]) && issoviet ? !rn2(3) : rn2(2) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon3(&mons[mndx]) && rn2(issoviet ? 2 : 3) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon5(&mons[mndx]) && rn2(issoviet ? 3 : 5) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon7(&mons[mndx]) && rn2(issoviet ? 4 : 7) && !Race_if(PM_RODNEYAN) ) return TRUE;
-	if (uncommon10(&mons[mndx]) && rn2(issoviet ? 5 : 10) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon2(&mons[mndx]) && (issoviet ? !rn2(3) : rn2(2)) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone()) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon3(&mons[mndx]) && rn2(issoviet ? 2 : 3) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone()) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon5(&mons[mndx]) && rn2(issoviet ? 3 : 5) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone()) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon7(&mons[mndx]) && rn2(issoviet ? 4 : 7) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone()) && !Race_if(PM_RODNEYAN) ) return TRUE;
+	if (uncommon10(&mons[mndx]) && rn2(issoviet ? 5 : 10) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone()) && !Race_if(PM_RODNEYAN) ) return TRUE;
 
-	if (monstr[mndx] >= 9 && monstr[mndx] < 14 && !rn2(10)) return TRUE;
-	if (monstr[mndx] >= 14 && monstr[mndx] < 19 && !rn2(5)) return TRUE;
-	if (monstr[mndx] >= 19 && monstr[mndx] < 24 && (rnd(10) > 3) ) return TRUE;
-	if (monstr[mndx] >= 24 && monstr[mndx] < 28 && (rnd(10) > 4) ) return TRUE;
-	if (monstr[mndx] >= 28 && monstr[mndx] < 33 && !rn2(2)) return TRUE;
-	if (monstr[mndx] >= 33 && monstr[mndx] < 37 && (rnd(10) > 6) ) return TRUE;
-	if (monstr[mndx] >= 37 && monstr[mndx] < 42 && (rnd(10) > 7) ) return TRUE;
-	if (monstr[mndx] >= 42 && monstr[mndx] < 46 && rn2(5)) return TRUE;
-	if (monstr[mndx] >= 46 && monstr[mndx] < 50 && rn2(10)) return TRUE;
-	if (monstr[mndx] >= 50 && monstr[mndx] < 60 && rn2(20)) return TRUE;
-	if (monstr[mndx] >= 60 && monstr[mndx] < 70 && rn2(50)) return TRUE;
-	if (monstr[mndx] >= 70 && rn2(100)) return TRUE;
+	if (monstr[mndx] >= 9 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) && monstr[mndx] < 14 && !rn2(10)) return TRUE;
+	if (monstr[mndx] >= 14 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) && monstr[mndx] < 19 && !rn2(5)) return TRUE;
+	if (monstr[mndx] >= 19 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) && monstr[mndx] < 24 && (rnd(10) > 3) ) return TRUE;
+	if (monstr[mndx] >= 24 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) && monstr[mndx] < 28 && (rnd(10) > 4) ) return TRUE;
+	if (monstr[mndx] >= 28 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) && monstr[mndx] < 33 && !rn2(2)) return TRUE;
+	if (monstr[mndx] >= 33 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) && monstr[mndx] < 37 && (rnd(10) > 6) ) return TRUE;
+	if (monstr[mndx] >= 37 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) && monstr[mndx] < 42 && (rnd(10) > 7) ) return TRUE;
+	if (monstr[mndx] >= 42 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) && monstr[mndx] < 46 && rn2(5)) return TRUE;
+	if (monstr[mndx] >= 46 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) && monstr[mndx] < 50 && rn2(10)) return TRUE;
+	if (monstr[mndx] >= 50 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) && monstr[mndx] < 60 && rn2(20)) return TRUE;
+	if (monstr[mndx] >= 60 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) && monstr[mndx] < 70 && rn2(50)) return TRUE;
+	if (monstr[mndx] >= 70 && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) && rn2(100)) return TRUE;
 
 	/*if (Inhell)
 		return(mons[mndx].maligntyp > A_NEUTRAL);
@@ -14864,7 +14864,7 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
-	if (!rn2(u.aggravation ? 10 : 20) || Role_if(PM_TRANSSYLVANIAN) ) mask = (G_NOGEN) & ~spc;
+	if (!rn2(u.aggravation ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone()) || Role_if(PM_TRANSSYLVANIAN) ) mask = (G_NOGEN) & ~spc;
 
 	int uncommontwo = 0;
 	int uncommonthree = 0;
@@ -14892,6 +14892,14 @@ int     spc;
 	if (u.aggravation && !rn2(4)) uncommonseven = 0;
 	if (u.aggravation && !rn2(5)) uncommonten = 0;
 
+	if (EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone()) {
+		uncommontwo = 0;
+		uncommonthree = 0;
+		uncommonfive = 0;
+		uncommonseven = 0;
+		uncommonten = 0;
+	}
+
 	int uncommonnewten = !rn2(10) ? 1 : 0;
 	int uncommonnewfifteen = !rn2(5) ? 1 : 0;
 	int uncommonnewtwenty = (rnd(10) > 3) ? 1 : 0;
@@ -14915,6 +14923,20 @@ int     spc;
 	if (u.aggravation && rn2(2)) uncommonnewfifty = 0;
 	if (u.aggravation && !rn2(3)) uncommonnewsixty = 0;
 	if (u.aggravation && !rn2(4)) uncommonnewseventy = 0;
+
+	if (HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) {
+		uncommonnewten = 0;
+		uncommonnewfifteen = 0;
+		uncommonnewtwenty = 0;
+		uncommonnewtwentyfive = 0;
+		uncommonnewthirty = 0;
+		uncommonnewthirtyfive = 0;
+		uncommonnewforty = 0;
+		uncommonnewfortyfive = 0;
+		uncommonnewfifty = 0;
+		uncommonnewsixty = 0;
+		uncommonnewseventy = 0;
+	}
 
 	int bonuslevel;
 	boolean calctype;

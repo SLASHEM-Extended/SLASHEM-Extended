@@ -3257,6 +3257,7 @@ newboss:
 		case WAN_CURSE_ITEMS:
 
 			pline("A black glow surrounds you...");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			rndcurse();
 			known = TRUE;
 
@@ -3379,6 +3380,7 @@ newboss:
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
+						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
 						nomul(-rnd(10), "paralyzed by a wand of sin");
 						exercise(A_DEX, FALSE);
@@ -3476,7 +3478,10 @@ newboss:
 				}
 				break;
 			case 6: /* envy */
-				if (flags.soundok) You_hear("a chuckling laughter.");
+				if (flags.soundok) {
+					You_hear("a chuckling laughter.");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+				}
 			      attrcurse();
 			      attrcurse();
 				break;
@@ -3514,6 +3519,7 @@ newboss:
 				break;
 			    case 2:
 				You("need reboot.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 				if (!Race_if(PM_UNGENOMOLD)) newman();
 				else polyself(FALSE);
 				break;
@@ -3558,6 +3564,7 @@ newboss:
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
 					nomul(-rnd(10), "paralyzed by a wand of sin");
 					exercise(A_DEX, FALSE);
@@ -3571,6 +3578,7 @@ newboss:
 					You(Blind ? "%s and get dizzy..." :
 						 "%s and your vision blurs...",
 						    stagger(youmonst.data, "stagger"));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 				dmg = rn1(7, 16);
 				make_stunned(HStun + dmg + monster_difficulty(), FALSE);
 				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
@@ -3594,6 +3602,7 @@ newboss:
 	
 				    if (objD && drain_item(objD)) {
 					Your("%s less effective.", aobjnam(objD, "seem"));
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				    }
 				}
 				break;
@@ -3686,6 +3695,7 @@ newboss:
 		case WAN_TIDAL_WAVE:
 
 			pline("A sudden geyser slams into you from nowhere!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
 			water_damage(invent, FALSE, FALSE);
 			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 			if (Burned) make_burned(0L, TRUE);
@@ -4027,6 +4037,7 @@ newboss:
 		case WAN_DEBUGGING:
 			known = TRUE;
 			You("need reboot.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
 			else polyself(FALSE);
 			break;
@@ -4052,6 +4063,7 @@ newboss:
 		case WAN_REMOVE_CURSE:
 			known = TRUE;
 			You_feel("like someone is helping you!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Ba, tip bloka l'da budet proklinat' svoye der'mo snova tak ili inache." : "Daedeldaedimm!");
 			register struct obj *obj;
 
 			for(obj = invent; obj ; obj = obj->nobj) {
@@ -4174,6 +4186,7 @@ newboss:
 				break;
 			case 12 : 
 				You_feel("like someone is helping you!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Ba, tip bloka l'da budet proklinat' svoye der'mo snova tak ili inache." : "Daedeldaedimm!");
 				register struct obj *obj;
 	
 				for(obj = invent; obj ; obj = obj->nobj)
@@ -5345,6 +5358,7 @@ boolean ordinary;
 			makeknown(obj->otyp);
 			if (!Free_action) {
 			    pline("You are frozen in place!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			    nomul(-rnz(20), "frozen by their own wand");
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
@@ -5354,6 +5368,7 @@ boolean ordinary;
 		case SPE_PARALYSIS:
 			if (!Free_action) {
 			    pline("You are frozen in place!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			    nomul(-rnz(20), "frozen by their own spell");
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
@@ -5443,6 +5458,7 @@ boolean ordinary;
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -6028,9 +6044,11 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 				"Some writing vanishes from %s head!";
 	static const char your[] = "your";	/* should be extern */
 
-	if (youdefend) 
+	if (youdefend) {
 	    You(!Hallucination? "are covered in sparkling lights!"
 			      : "are enveloped by psychedelic fireworks!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy ne poteryayete vse soprotivleniya i vashi detali bol'she ne zakoldovannyy ili zaryazheny, tak chto vy mozhete tochno tak zhe otkazat'sya, vy retard." : "Bimmselbimmselbimmselbimmselbimmsel!");
+	}
 
 	if (youdefend ? (!youattack && Antimagic && rn2(20) ) /* no longer complete protection --Amy */
 		      : resist(mdef, obj->oclass, 0, NOTELL))
@@ -6058,8 +6076,10 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 		find_ac();
 	    }
 	    /* Indicate to the hero that something happened */
-	    if (did_cancel && !self_cancel && youdefend)
+	    if (did_cancel && !self_cancel && youdefend) {
 		You_feel("a strange sense of loss.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Da! Odin iz vashikh detaley bol'she ne rabotayet! Sluzhit vam pryamo dlya igry, kak der'mo!" : "Due-l-ue-l-ue-l.");
+	    }
 	    if (youdefend) attrcurse(); /* remove some random intrinsic as well --Amy */
 	}
 
@@ -6369,8 +6389,10 @@ struct obj *obj;
 			    bhitm, bhito, &obj);
 	    }
 	    /* give a clue if obj_zapped */
-	    if (obj_zapped)
+	    if (obj_zapped) {
 		You_feel("shuddering vibrations.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Takim obrazom, vy dumayete, po-vidimomu, vy mozhete prosto izmenit' elementy beskonechno. No tip bloka l'da udaleny nekotoryye potomu, chto vash zloupotrebleniye ne budet dopuskat'sya. Khar." : "Huddale-hualehuaaah!");
+	    }
 
 	} else if (objects[otyp].oc_dir == NODIR) {
 	    zapnodir(obj);

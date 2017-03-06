@@ -678,6 +678,16 @@ struct you {
 	boolean nastinator83;
 	boolean nastinator84;
 	boolean nastinator85;
+	boolean nastinator86;
+	boolean nastinator87;
+	boolean nastinator88;
+	boolean nastinator89;
+	boolean nastinator90;
+	boolean nastinator91;
+	boolean nastinator92;
+	boolean nastinator93;
+	boolean nastinator94;
+	boolean nastinator95;
 
 	char	starlit1[BUFSZ];
 	char	starlit2[BUFSZ];

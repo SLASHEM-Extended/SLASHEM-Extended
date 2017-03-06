@@ -28,8 +28,10 @@ register struct monst *mon;
 		    case PM_HUMAN_WERETIGER:	howler = "tiger";   break;
 		    default:			howler = (char *)0; break;
 		    }
-		    if (howler)
+		    if (howler) {
 			You_hear("a %s howling at the moon.", howler);
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy stanete odnim iz nikh i kopirovat' vashi dospekhi v kloch'ya, potomu chto vy takoy lokh i, veroyatno, ne znayut o volshebnoy otmene." : "WOEAAAAAAAAAAAA-eaaaaaoh.");
+		    }
 		}
 	    }
 	} else if (!rn2(30) || Protection_from_shape_changers) {

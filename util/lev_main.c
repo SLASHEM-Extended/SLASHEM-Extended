@@ -370,7 +370,21 @@ static struct {
 	{ "misfire",	MISFIRE_TRAP },
 	{ "walls",	TRAP_OF_WALLS },
 
+	{ "disconnect",	DISCONNECT_TRAP },
+	{ "interface screw",	INTERFACE_SCREW_TRAP },
+	{ "dimness",	DIMNESS_TRAP },
+	{ "evil artifact",	EVIL_ARTIFACT_TRAP },
+	{ "bossfight",	BOSSFIGHT_TRAP },
+	{ "entire level",	ENTIRE_LEVEL_TRAP },
+	{ "bones",	BONES_TRAP },
+	{ "rodney",	RODNEY_TRAP },
+	{ "autocurse",	AUTOCURSE_TRAP },
+	{ "highlevel",	HIGHLEVEL_TRAP },
+	{ "spell forgetting",	SPELL_FORGETTING_TRAP },
+	{ "sound effect",	SOUND_EFFECT_TRAP },
+
 	{ "trap percents", TRAP_PERCENTS },
+	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };
 

@@ -648,6 +648,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 
 			if (!Upolyd && ((u.uhp * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
 #endif
+			if (isangbander && (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone())) pline(issoviet ? "Umeret' glupyy igrok ublyudka!" : "TSCHINGTSCHINGTSCHINGTSCHING!");
 
 		if (u.uprops[TURNLIMITATION].extrinsic || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() ) {
 			if (damu > 0) u.ascensiontimelimit -= damu;

@@ -874,7 +874,7 @@ do_look(quick)
 	    }
 	}
 
-#define is_cmap_trap(i) ((i) >= S_arrow_trap && (i) <= /*S_polymorph_trap*/S_trap_percents)
+#define is_cmap_trap(i) ((i) >= S_arrow_trap && (i) <= /*S_polymorph_trap*/S_timerun_trap)
 #define is_cmap_drawbridge(i) ((i) >= S_vodbridge && (i) <= S_hcdbridge)
 
 	/* Now check for graphics symbols */
@@ -4793,6 +4793,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear faint weeping...",
 	"Your life is sapped!",
 	"You emit a grating, annoying sound.",
+	"You can listen to Rodney's taunts inside your head...",
+	"The entrance was disconnected!",
 
 };
 

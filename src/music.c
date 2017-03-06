@@ -388,10 +388,26 @@ struct obj *instr;
 	else
 	    You("start playing %s.", the(xname(instr)));
 
+	int nochargechange = 10;
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		switch (P_SKILL(P_DEVICES)) {
+			default: break;
+			case P_BASIC: nochargechange = 9; break;
+			case P_SKILLED: nochargechange = 8; break;
+			case P_EXPERT: nochargechange = 7; break;
+			case P_MASTER: nochargechange = 6; break;
+			case P_GRAND_MASTER: nochargechange = 5; break;
+			case P_SUPREME_MASTER: nochargechange = 4; break;
+		}
+	}
+
 	switch (instr->otyp) {
 	case MAGIC_FLUTE:		/* Make monster fall asleep */
 	    if (do_spec && instr->spe > 0) {
-		consume_obj_charge(instr, TRUE);
+		if (nochargechange >= rnd(10)) consume_obj_charge(instr, TRUE);
+		use_skill(P_DEVICES,1);
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
+			use_skill(P_DEVICES,9);
 
 		You("produce soft music.");
 		put_monsters_to_sleep(u.ulevel * 5);
@@ -410,7 +426,10 @@ struct obj *instr;
 	case FIRE_HORN:			/* Idem wand of fire */
 	case TEMPEST_HORN:		/* Idem wand of lightning */
 	    if (do_spec && instr->spe > 0) {
-		if (!instr->oartifact || !rn2(2) ) consume_obj_charge(instr, TRUE);
+		if ((!instr->oartifact || !rn2(2) ) && (nochargechange >= rnd(10)) ) consume_obj_charge(instr, TRUE);
+		use_skill(P_DEVICES,1);
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
+			use_skill(P_DEVICES,9);
 
 		if (!getdir((char *)0)) {
 		    pline("%s.", Tobjnam(instr, "vibrate"));
@@ -484,7 +503,10 @@ struct obj *instr;
 	    break;
 	case MAGIC_HARP:		/* Charm monsters */
 	    if (do_spec && instr->spe > 0) {
-		consume_obj_charge(instr, TRUE);
+		if (nochargechange >= rnd(10)) consume_obj_charge(instr, TRUE);
+		use_skill(P_DEVICES,1);
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
+			use_skill(P_DEVICES,9);
 
 		pline("%s very attractive music.", Tobjnam(instr, "produce"));
 		charm_monsters((u.ulevel - 1) / 3 + 1);
@@ -500,7 +522,10 @@ struct obj *instr;
 	    break;
 	case DRUM_OF_EARTHQUAKE:	/* create several pits */
 	    if (do_spec && instr->spe > 0) {
-		consume_obj_charge(instr, TRUE);
+		if (nochargechange >= rnd(10)) consume_obj_charge(instr, TRUE);
+		use_skill(P_DEVICES,1);
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
+			use_skill(P_DEVICES,9);
 
 		You("produce a heavy, thunderous rolling!");
 		pline_The("entire dungeon is shaking around you!");

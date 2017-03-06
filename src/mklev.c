@@ -10093,6 +10093,8 @@ coord *tm;
 			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 11 )) kind = GLYPH_OF_WARDING; break;
 		    case UNINFORMATION_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3 )) kind = STATUE_TRAP; break;
+		    case TIMERUN_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) kind = MONSTER_CUBE; break;
 
 		    case INTRINSIC_LOSS_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 6 : 12 )) kind = SQKY_BOARD; break;
@@ -10210,6 +10212,25 @@ coord *tm;
 		    case TRAP_OF_WALLS:
 			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) kind = TRAP_PERCENTS; break;
 
+		    case DISCONNECT_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) kind = PIT; break;
+		    case INTERFACE_SCREW_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 80 : 160 )) kind = WEB; break;
+		    case BOSSFIGHT_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) kind = ANIMATION_TRAP; break;
+		    case ENTIRE_LEVEL_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 8 : 17 )) kind = FART_TRAP; break;
+		    case BONES_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 4 )) kind = DART_TRAP; break;
+		    case AUTOCURSE_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 49 )) kind = MAGIC_TRAP; break;
+		    case HIGHLEVEL_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 7 : 13 )) kind = ALARM; break;
+		    case SPELL_FORGETTING_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 21 : 42 )) kind = LOUDSPEAKER; break;
+		    case SOUND_EFFECT_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 4 : 7 )) kind = LOCK_TRAP; break;
+
 		    case SPACEWARS_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(15) ) kind = PIT; break;
 
@@ -10217,6 +10238,10 @@ coord *tm;
 			if (rn2(3)) kind = ROCKTRAP; break;
 		    case FALLING_NASTYSTONE_TRAP:
 			if (rn2(10)) kind = ROCKTRAP; break;
+		    case EVIL_ARTIFACT_TRAP:
+			if (rn2(10)) kind = ROCKTRAP; break;
+		    case RODNEY_TRAP:
+			if (rn2(100)) kind = ROCKTRAP; break;
 
 		    case RECURSION_TRAP:
 			if (rn2(500)) kind = ARROW_TRAP; break;

@@ -283,6 +283,7 @@ cursed_book(bp)
 	switch(rn2(lev)) {
 	case 0:
 		You_feel("a wrenching sensation.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
 		tele();		/* teleport him */
 		break;
 	case 1:
@@ -1036,6 +1037,7 @@ learn()
 			if (booktype == SPE_FORBIDDEN_KNOWLEDGE) {
 				u.ugangr += 15;
 				if (flags.soundok) You_hear("a thunderous growling and rumbling...");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Pozdravlyayu, teper' vashe bozhestvo ochen' zol. Pochemu ty ne molish'sya? Eto mozhet byt' prosto privesti svoyu zhizn' do kontsa, a zatem vy mozhete svernut' luchshe, nesovetskimi kharakter nakonets-to! SDELAY ETO SEYCHAS!" : "Grrrrrrr! Grummel! Wummmmmm!");
 			}
 
 			makeknown((int)booktype);
@@ -1266,8 +1268,23 @@ age_spells()
 	 * does not alter the loss of memory.
 	 */
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++)
-	    if (spellknow(i)) {
-		decrnknow(i);
+	    if (spellknow(i) ) {
+
+		if (!(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "guild cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "gil'dii plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "birlik plash") ) ) ) {
+			decrnknow(i);
+		}
+
+		if (SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) {
+			if (spellknow(i)) decrnknow(i);
+			if (spellknow(i)) decrnknow(i);
+			if (spellknow(i)) decrnknow(i);
+			if (spellknow(i)) decrnknow(i);
+			if (spellknow(i)) decrnknow(i);
+			if (spellknow(i)) decrnknow(i);
+			if (spellknow(i)) decrnknow(i);
+			if (spellknow(i)) decrnknow(i);
+			if (spellknow(i)) decrnknow(i);
+		}
 
 		/* In Soviet Russia, people do not use magic very often, and so they definitely don't need any of those
 		 * completely superfluous messages telling them about spell memory. They already trashed the actual spell
@@ -1275,23 +1292,23 @@ age_spells()
 		 * they prefer to suddenly discover their cure sickness spell was forgotten just as they're about to
 		 * cure that green slime effect on level 66 of Gehennom, after investing 500 hours into their character. --Amy */
 
-		if (!issoviet && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
-		if (!issoviet && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
-		if (!issoviet && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
+		if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+		if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
+		if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
 
 		if (spellknow(i) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "forgetful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zabyvchiv plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "unutuvchan plash") ) ) {
 			decrnknow(i);
-			if (!issoviet && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
-			if (!issoviet && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
-			if (!issoviet && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
+			if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+			if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
+			if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
 
 		}
 
 		if (spellknow(i) && RngeForgetting) {
 			decrnknow(i);
-			if (!issoviet && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
-			if (!issoviet && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
-			if (!issoviet && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
+			if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+			if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
+			if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
 
 		}
 
@@ -1965,7 +1982,7 @@ boolean atme;
 				pline("The spell backfires!");
 				badeffect();
 			}
-			(void) doredraw();
+			if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void) doredraw();
 		}
 		if (pseudo->otyp == SPE_WIND) {
 			pushplayer();
@@ -2068,10 +2085,12 @@ boolean atme;
 		break;
 	case SPE_AGGRAVATE_MONSTER:
 		You_feel("that monsters are aware of your presence.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
 		aggravate();
 		break;
 	case SPE_CURSE_ITEMS:
 		You_feel("as if you need some help.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 		rndcurse();
 		break;
 	case SPE_FUMBLING:
@@ -2087,6 +2106,7 @@ boolean atme;
 			You_feel("the power of the Force against you!");
 		    else
 			You_feel("like you need some help.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 
 		    register struct obj *obj, *obj2;
 		    for (obj = invent; obj; obj = obj2) {
@@ -2222,6 +2242,7 @@ boolean atme;
 			} else  {
 
 			    You_feel("a wrenching sensation.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
 			    tele();		/* teleport him */
 			}
 			break;
@@ -2546,7 +2567,7 @@ boolean atme;
 		pline(u.inertia ? "You slow down even more due to the rain." : "You slow down greatly due to the rain.");
 		u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
 
-		(void)doredraw();
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 
 		break;
 
@@ -2565,7 +2586,7 @@ boolean atme;
 		    }
 		}
 
-		(void)doredraw();
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 
 		break;
 
@@ -2618,7 +2639,7 @@ boolean atme;
 		make_burned(HBurned + rnd(200), FALSE);
 		set_itimeout(&HeavyBurned, HBurned);
 
-		(void)doredraw();
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 
 		break;
 
@@ -2686,7 +2707,7 @@ boolean atme;
 		u.tunnelized += rnd(100);
 		make_blinded(Blinded + u.tunnelized, FALSE);
 		set_itimeout(&HeavyBlind, Blinded);
-		(void)doredraw();
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 
 		break;
 
@@ -2810,7 +2831,7 @@ boolean atme;
 		}
 
 		u.powerfailure += rnd(100);
-		(void)doredraw();
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 
 		break;
 
@@ -2918,7 +2939,7 @@ boolean atme;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			if (u.uhp < 1) {
 				killer = "summoning an elemental with too little health";
-				killer_format = NO_KILLER_PREFIX;
+				killer_format = KILLED_BY;
 				done(DIED);
 			}
 			if (Upolyd) {
@@ -2953,7 +2974,7 @@ boolean atme;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			if (u.uhp < 1) {
 				killer = "summoning vortices with too little health";
-				killer_format = NO_KILLER_PREFIX;
+				killer_format = KILLED_BY;
 				done(DIED);
 			}
 			if (Upolyd) {
@@ -3257,6 +3278,16 @@ boolean atme;
 		CrapEffect = 0L;
 		ProjectilesMisfire = 0L;
 		WallTrapping = 0L;
+		DisconnectedStairs = 0L;
+		InterfaceScrewed = 0L;
+		Bossfights = 0L;
+		EntireLevelMode = 0L;
+		BonesLevelChange = 0L;
+		AutocursingEquipment = 0L;
+		HighlevelStatus = 0L;
+		SpellForgetting = 0L;
+		SoundEffectBug = 0L;
+		TimerunBug = 0L;
 
 		pline("But then the green light goes out again and the red one lights up...");
 
@@ -3276,7 +3307,7 @@ boolean atme;
 		pline("Okay, if that's really what you want... you feel corrupted.");
 		if (Hallucination) pline("At least this isn't ADOM, where having too many corruptions would instakill you!");
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: 
 			    SpeedBug |= FROMOUTSIDE; break;
@@ -3448,6 +3479,26 @@ boolean atme;
 			    ProjectilesMisfire |= FROMOUTSIDE; break;
 			case 85: 
 			    WallTrapping |= FROMOUTSIDE; break;
+			case 86: 
+			    DisconnectedStairs |= FROMOUTSIDE; break;
+			case 87: 
+			    InterfaceScrewed |= FROMOUTSIDE; break;
+			case 88: 
+			    Bossfights |= FROMOUTSIDE; break;
+			case 89: 
+			    EntireLevelMode |= FROMOUTSIDE; break;
+			case 90: 
+			    BonesLevelChange |= FROMOUTSIDE; break;
+			case 91: 
+			    AutocursingEquipment |= FROMOUTSIDE; break;
+			case 92: 
+			    HighlevelStatus |= FROMOUTSIDE; break;
+			case 93: 
+			    SpellForgetting |= FROMOUTSIDE; break;
+			case 94: 
+			    SoundEffectBug |= FROMOUTSIDE; break;
+			case 95: 
+			    TimerunBug |= FROMOUTSIDE; break;
 		}
 
 		break;
@@ -3489,7 +3540,7 @@ boolean atme;
 		    }
 
 			killer = "selfdestructing";
-			killer_format = NO_KILLER_PREFIX;
+			killer_format = KILLED_BY;
 			done(DIED);
 			/* No, being polymorphed does not save you. If it did, this spell would be rendered overpowered. --Amy */
 
@@ -3519,7 +3570,7 @@ boolean atme;
 		    }
 
 			killer = "exploding";
-			killer_format = NO_KILLER_PREFIX;
+			killer_format = KILLED_BY;
 			done(DIED);
 			/* No, being polymorphed does not save you. If it did, this spell would be rendered overpowered. --Amy */
 
@@ -3881,6 +3932,7 @@ boolean atme;
 			You_feel("the power of the Force against you!");
 		    else
 			You_feel("like you need some help.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 
 		    for (objC = invent; objC; objC = objC->nobj) {
 			long wornmask;
@@ -4313,7 +4365,7 @@ boolean atme;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			if (u.uhp < 1) {
 				killer = "playing russian roulette";
-				killer_format = NO_KILLER_PREFIX;
+				killer_format = KILLED_BY;
 				done(DIED);
 			}
 			if (Upolyd) {
@@ -4322,7 +4374,7 @@ boolean atme;
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				if (u.mh < 1) {
 					killer = "playing russian roulette";
-					killer_format = NO_KILLER_PREFIX;
+					killer_format = KILLED_BY;
 					done(DIED);
 				}
 			}
@@ -4358,6 +4410,7 @@ boolean atme;
 
 	case SPE_REBOOT:
 		You("decide to reboot.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 		if (!Race_if(PM_UNGENOMOLD)) newman();
 		else polyself(FALSE);
 
@@ -4517,7 +4570,7 @@ boolean atme;
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
 			killer = "melting down";
-			killer_format = NO_KILLER_PREFIX;
+			killer_format = KILLED_BY;
 			done(DIED);
 		}
 		if (Upolyd) {
@@ -4862,7 +4915,7 @@ boolean atme;
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				if (u.uhp < 1) {
 					killer = "an avalanche";
-					killer_format = NO_KILLER_PREFIX;
+					killer_format = KILLED_BY;
 					done(DIED);
 				}
 				if (Upolyd) {
@@ -4870,7 +4923,7 @@ boolean atme;
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
 					if (u.mh < 1) {
 						killer = "an avalanche";
-						killer_format = NO_KILLER_PREFIX;
+						killer_format = KILLED_BY;
 						done(DIED);
 					}
 				}
@@ -5051,7 +5104,7 @@ boolean atme;
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
 			killer = "invoking geolysis with too little health";
-			killer_format = NO_KILLER_PREFIX;
+			killer_format = KILLED_BY;
 			done(DIED);
 		}
 		if (Upolyd) {
@@ -5071,7 +5124,7 @@ boolean atme;
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
 			killer = "dripping the elements with too little health";
-			killer_format = NO_KILLER_PREFIX;
+			killer_format = KILLED_BY;
 			done(DIED);
 		}
 		if (Upolyd) {
@@ -5345,7 +5398,7 @@ boolean atme;
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
 			killer = "invoking world fall with too little health";
-			killer_format = NO_KILLER_PREFIX;
+			killer_format = KILLED_BY;
 			done(DIED);
 		}
 		if (Upolyd) {
@@ -5795,7 +5848,7 @@ rerollX:
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
 			killer = "the strain of casting reroll artifact";
-			killer_format = NO_KILLER_PREFIX;
+			killer_format = KILLED_BY;
 			done(DIED);
 		}
 		if (Upolyd) {
@@ -6247,6 +6300,8 @@ int spell;
 			case POURPOOR: armorpenalties = 20; break;
 		}
 
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+
 		splcaster += (urole.spelarmr * armorpenalties / 12);
 	}
 	if (uarmc && is_metallic(uarmc)) {
@@ -6264,7 +6319,28 @@ int spell;
 			case POURPOOR: armorpenalties = 20; break;
 		}
 
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+
 		splcaster += (urole.spelarmr * armorpenalties / 36);
+	}
+	if (uarmu && is_metallic(uarmu)) {
+		armorpenalties = 15;
+
+		switch (objects[(uarmu)->otyp].oc_material) {
+			default: break;
+			case METAL: armorpenalties = 16; break;
+			case COPPER: armorpenalties = 21; break;
+			case SILVER: armorpenalties = 17; break;
+			case GOLD: armorpenalties = 8; break;
+			case PLATINUM: armorpenalties = 18; break;
+			case MITHRIL: armorpenalties = 13; break;
+			case VIVA: armorpenalties = 12; break;
+			case POURPOOR: armorpenalties = 20; break;
+		}
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+
+		splcaster += (urole.spelarmr * armorpenalties / 100);
 	}
 	if (uarms) {
 		shieldpenalties = 15;
@@ -6281,6 +6357,8 @@ int spell;
 			case VIVA: shieldpenalties = 12; break;
 			case POURPOOR: shieldpenalties = 20; break;
 		}
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) shieldpenalties /= 2;
 
 		splcaster += (urole.spelshld * shieldpenalties / 12);
 	}
@@ -6300,6 +6378,8 @@ int spell;
 			case POURPOOR: armorpenalties = 20; break;
 		}
 
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+
 		splcaster += (uarmhbon * armorpenalties / 12);
 	}
 	if (uarmg && is_metallic(uarmg)) {
@@ -6317,6 +6397,8 @@ int spell;
 			case POURPOOR: armorpenalties = 20; break;
 		}
 
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
+
 		splcaster += (uarmgbon * armorpenalties / 12);
 	}
 	if (uarmf && is_metallic(uarmf)) {
@@ -6333,6 +6415,8 @@ int spell;
 			case VIVA: armorpenalties = 12; break;
 			case POURPOOR: armorpenalties = 20; break;
 		}
+
+		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
 
 		splcaster += (uarmfbon * armorpenalties / 12);
 	}
@@ -6525,6 +6609,8 @@ int spell;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
 	if (uarmf && uarmf->oartifact == ART_SUNALI_S_SUMMONING_STORM) chance += 15;
 	if (uwep && uwep->otyp == OLDEST_STAFF) chance += 10;
+	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "knowledgeable helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "znayushchikh shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bilimdon dubulg'a") ) ) chance += 10;
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "science cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nauka plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ilm-fan plash") ) ) chance += 10;
 
 	if (Race_if(PM_INKA) && spellid(spell) == SPE_NATURE_BEAM)
 		chance += 100;

@@ -2239,6 +2239,7 @@ boolean from_invent;
 			    }
 			    /* curse the lawful/neutral altar */
 			    pline_The("altar is stained with blood.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy nechisto yeretikom, pravoslavnaya tserkov' progonit vas!" : "Klatsch.");
 			    if (!Is_astralevel(&u.uz))
 				levl[x][y].altarmask = AM_CHAOTIC;
 			    angry_priest();

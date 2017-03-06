@@ -549,9 +549,11 @@ intervene()
 	    case 0:
 	    case 1:	You_feel("vaguely nervous.");
 			break;
-	    case 2:	if (!Blind)
+	    case 2:	if (!Blind) {
 			    You("notice a %s glow surrounding you.",
 				  hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 			break;
 	    case 3:	aggravate();

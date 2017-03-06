@@ -336,6 +336,7 @@ boolean dresistance;	/* level drain resistance can protect you */
 		if ((u.uexp - expdrain) > newuexp(u.ulevel - 1)) {
 			/* drain some experience, but not enough to make you lose a level */
 			You_feel("your life draining away!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy tol'ko chto poteryali odin uroven', skoro vy poteryayete vse urovni i umeret'." : "Due-l-ue-l-ue-l!");
 			u.uexp -= expdrain;
 			return;
 		}
@@ -345,6 +346,7 @@ boolean dresistance;	/* level drain resistance can protect you */
 
 	if (u.ulevel > 1) {
 		pline("%s level %d.", Goodbye(), u.ulevel--);
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy tol'ko chto poteryali odin uroven', skoro vy poteryayete vse urovni i umeret'." : "Due-l-ue-l-ue-l!");
 		/* remove intrinsic abilities */
 		adjabil(u.ulevel + 1, u.ulevel);
 		reset_rndmonst(NON_PM);	/* new monster selection */
@@ -642,7 +644,7 @@ boolean incr;	/* true iff via incremental experience growth */
 		if (isproblematic && !rn2(3)) {
 			/* no xlvl check - if you get drained repeatedly, your loss! I'm really mean :D --Amy */
 
-			switch (rnd(85)) {
+			switch (rnd(95)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -814,6 +816,26 @@ boolean incr;	/* true iff via incremental experience growth */
 				    ProjectilesMisfire |= FROMOUTSIDE; break;
 				case 85: 
 				    WallTrapping |= FROMOUTSIDE; break;
+				case 86: 
+				    DisconnectedStairs |= FROMOUTSIDE; break;
+				case 87: 
+				    InterfaceScrewed |= FROMOUTSIDE; break;
+				case 88: 
+				    Bossfights |= FROMOUTSIDE; break;
+				case 89: 
+				    EntireLevelMode |= FROMOUTSIDE; break;
+				case 90: 
+				    BonesLevelChange |= FROMOUTSIDE; break;
+				case 91: 
+				    AutocursingEquipment |= FROMOUTSIDE; break;
+				case 92: 
+				    HighlevelStatus |= FROMOUTSIDE; break;
+				case 93: 
+				    SpellForgetting |= FROMOUTSIDE; break;
+				case 94: 
+				    SoundEffectBug |= FROMOUTSIDE; break;
+				case 95: 
+				    TimerunBug |= FROMOUTSIDE; break;
 			}
 
 		}

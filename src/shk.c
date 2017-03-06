@@ -351,8 +351,10 @@ register boolean nearshop;
 
 	if(!shkp) return;
 
-	if (flags.soundok)
+	if (flags.soundok) {
 	    pline("An alarm sounds!");
+	    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Veselites' vmeste s politseyskimi. Oni budut vas arestovat', ili na samom dele, tak kak vash personazh tak pateticheski slaby, oni mogut prosto ubit' vas skhodu, a zatem vy mozhete svernut' novuyu. Da!" : "Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue!");
+	}
 
 	nokops = ((mvitals[PM_KEYSTONE_KOP].mvflags & G_GONE) &&
 		  (mvitals[PM_KOP_SERGEANT].mvflags & G_GONE) &&
@@ -3647,6 +3649,7 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != ALIGNMENT_TRAP
 				&& ttmp->ttyp != STAIRS_TRAP
 				&& ttmp->ttyp != UNINFORMATION_TRAP
+				&& ttmp->ttyp != TIMERUN_TRAP
 				&& ttmp->ttyp != INTRINSIC_LOSS_TRAP
 				&& ttmp->ttyp != BLOOD_LOSS_TRAP
 				&& ttmp->ttyp != BAD_EFFECT_TRAP
@@ -3793,6 +3796,15 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != CRAP_TRAP
 				&& ttmp->ttyp != MISFIRE_TRAP
 				&& ttmp->ttyp != TRAP_OF_WALLS
+				&& ttmp->ttyp != DISCONNECT_TRAP
+				&& ttmp->ttyp != INTERFACE_SCREW_TRAP
+				&& ttmp->ttyp != BOSSFIGHT_TRAP
+				&& ttmp->ttyp != ENTIRE_LEVEL_TRAP
+				&& ttmp->ttyp != BONES_TRAP
+				&& ttmp->ttyp != AUTOCURSE_TRAP
+				&& ttmp->ttyp != HIGHLEVEL_TRAP
+				&& ttmp->ttyp != SPELL_FORGETTING_TRAP
+				&& ttmp->ttyp != SOUND_EFFECT_TRAP
 
 				&& (ttmp->ttyp != DEATH_TRAP ||
 				    (nonliving(shkp->data) || is_demon(shkp->data) || resists_death(shkp) || shkp->data->msound == MS_NEMESIS || resists_magm(shkp)) )
@@ -5847,7 +5859,6 @@ shk_armor_works(slang, shkp)
 		}
 
 		obj->spe++;
-		adj_abon(obj, 1);
 		break;
 
 	    default:

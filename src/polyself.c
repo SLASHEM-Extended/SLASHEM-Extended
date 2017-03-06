@@ -751,7 +751,7 @@ int	mntmp;
 		skinback(FALSE);
 	break_armor();
 	drop_weapon(1);
-	if (hides_under(youmonst.data) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
+	if (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
 		u.uundetected = OBJ_AT(u.ux, u.uy);
 	else if (youmonst.data->mlet == S_EEL)
 		u.uundetected = is_pool(u.ux, u.uy);
@@ -1514,6 +1514,9 @@ dospinweb()
 		case FLOODING_TRAP:
 		case MONSTER_CUBE:
 		case CURSED_GRAVE:
+		case DIMNESS_TRAP:
+		case EVIL_ARTIFACT_TRAP:
+		case RODNEY_TRAP:
 
 			You("have triggered a trap!");
 			dotrap(ttmp, 0);
@@ -1549,6 +1552,7 @@ dospinweb()
 		case ROT_THIRTEEN_TRAP:
 		case BISHOP_TRAP:
 		case UNINFORMATION_TRAP:
+		case TIMERUN_TRAP:
 		case ALIGNMENT_TRAP:
 		case CONFUSION_TRAP:
 		case NUPESELL_TRAP:
@@ -1631,6 +1635,15 @@ dospinweb()
 		case CRAP_TRAP:
 		case MISFIRE_TRAP:
 		case TRAP_OF_WALLS:
+		case DISCONNECT_TRAP:
+		case INTERFACE_SCREW_TRAP:
+		case BOSSFIGHT_TRAP:
+		case ENTIRE_LEVEL_TRAP:
+		case BONES_TRAP:
+		case AUTOCURSE_TRAP:
+		case HIGHLEVEL_TRAP:
+		case SPELL_FORGETTING_TRAP:
+		case SOUND_EFFECT_TRAP:
 
 			dotrap(ttmp, 0);
 			return(1);

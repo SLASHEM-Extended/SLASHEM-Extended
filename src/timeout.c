@@ -276,6 +276,8 @@ nh_timeout()
 			u.oldrecursionrole = -1;
 			u.oldrecursionrace = -1;
 			pline("You appear to be a %s %s again.", urace.noun, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+			init_uasmon();
+
 		}
 	}
 
@@ -291,21 +293,25 @@ nh_timeout()
 
 	if (!rn2(1000) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
 	}
 
 	if (!rn2(1000) && u.uprops[INTRINSIC_LOSS].extrinsic && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
 	}
 
 	if (!rn2(1000) && IntrinsicLossProblem && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
 	}
 
 	if (!rn2(1000) && have_intrinsiclossstone() && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
 	}
 
@@ -2100,7 +2106,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -2215,6 +2221,16 @@ nh_timeout()
 			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 		}
 
 	}
@@ -2228,7 +2244,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -2341,6 +2357,16 @@ nh_timeout()
 			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 		}
 
 	}
@@ -2354,7 +2380,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -2467,6 +2493,16 @@ nh_timeout()
 			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 		}
 
 	}
@@ -2480,7 +2516,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -2593,6 +2629,16 @@ nh_timeout()
 			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 		}
 
 	}
@@ -2606,7 +2652,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -2719,6 +2765,16 @@ nh_timeout()
 			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 		}
 
 	}
@@ -2732,7 +2788,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -2845,6 +2901,16 @@ nh_timeout()
 			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 		}
 
 	}
@@ -2858,7 +2924,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -2971,6 +3037,16 @@ nh_timeout()
 			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 		}
 
 	}
@@ -2984,7 +3060,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -3097,6 +3173,16 @@ nh_timeout()
 			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 		}
 
 	}
@@ -3110,7 +3196,7 @@ nh_timeout()
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -3223,13 +3309,23 @@ nh_timeout()
 			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 		}
 
 	}
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantle of coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantiya pal'to") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ko'ylagi mantiya") ) && !rn2(5000) ) {
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += 200; break;
 			case 2: NoDropProblem += 200; break;
@@ -3340,6 +3436,16 @@ nh_timeout()
 			case 83: CrapEffect += 200; break;
 			case 84: ProjectilesMisfire += 200; break;
 			case 85: WallTrapping += 200; break;
+			case 86: DisconnectedStairs += 200; break;
+			case 87: InterfaceScrewed += 200; break;
+			case 88: Bossfights += 200; break;
+			case 89: EntireLevelMode += 200; break;
+			case 90: BonesLevelChange += 200; break;
+			case 91: AutocursingEquipment += 200; break;
+			case 92: HighlevelStatus += 200; break;
+			case 93: SpellForgetting += 200; break;
+			case 94: SoundEffectBug += 200; break;
+			case 95: TimerunBug += 200; break;
 		}
 
 	}
@@ -5272,6 +5378,7 @@ long timeout;
 			    }
 			} else {
 			    You("hear the hum of %s change!", an(xname(obj)));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Bystro! Zapusk i pust' eto pokonchim monstra proch' s yego svetovym mechom, prezhde chem eto slishkom pozdno!" : "Dmmmmmm-dmmmmmmmmm!");
 			}
 			break;
 		    case 0:

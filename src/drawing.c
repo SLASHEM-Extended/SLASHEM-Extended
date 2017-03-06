@@ -518,7 +518,21 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "misfire trap", C(CLR_RED)},	/* trap */
 	{'^', "trap of walls", C(CLR_ORANGE)},	/* trap */
 
+	{'^', "disconnect trap", C(CLR_CYAN)},	/* trap */
+	{'^', "interface screw trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "dimness trap", C(CLR_CYAN)},	/* trap */
+	{'^', "evil artifact trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "bossfight trap", C(CLR_RED)},	/* trap */
+	{'^', "entire level trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "bones trap", C(CLR_GRAY)},	/* trap */
+	{'^', "rodney trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "autocurse trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "highlevel trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "spell forgetting trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "sound effect trap", C(CLR_ORANGE)},	/* trap */
+
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
+	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
 	{'\\',"wall",		C(CLR_GRAY)},	/* lslant */
@@ -862,7 +876,21 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_misfire_trap),
 	g_FILLER(S_trap_of_walls),
 
+	g_FILLER(S_disconnect_trap),
+	g_FILLER(S_interface_screw_trap),
+	g_FILLER(S_dimness_trap),
+	g_FILLER(S_evil_artifact_trap),
+	g_FILLER(S_bossfight_trap),
+	g_FILLER(S_entire_level_trap),
+	g_FILLER(S_bones_trap),
+	g_FILLER(S_rodney_trap),
+	g_FILLER(S_autocurse_trap),
+	g_FILLER(S_highlevel_trap),
+	g_FILLER(S_spell_forgetting_trap),
+	g_FILLER(S_sound_effect_trap),
+
 	g_FILLER(S_trap_percents),
+	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
 	g_FILLER(S_lslant),
@@ -1197,7 +1225,21 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_misfire_trap),
 	g_FILLER(S_trap_of_walls),
 
+	g_FILLER(S_disconnect_trap),
+	g_FILLER(S_interface_screw_trap),
+	g_FILLER(S_dimness_trap),
+	g_FILLER(S_evil_artifact_trap),
+	g_FILLER(S_bossfight_trap),
+	g_FILLER(S_entire_level_trap),
+	g_FILLER(S_bones_trap),
+	g_FILLER(S_rodney_trap),
+	g_FILLER(S_autocurse_trap),
+	g_FILLER(S_highlevel_trap),
+	g_FILLER(S_spell_forgetting_trap),
+	g_FILLER(S_sound_effect_trap),
+
 	g_FILLER(S_trap_percents),
+	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
 	g_FILLER(S_lslant),
@@ -1530,7 +1572,21 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_misfire_trap),
 	g_FILLER(S_trap_of_walls),
 
+	g_FILLER(S_disconnect_trap),
+	g_FILLER(S_interface_screw_trap),
+	g_FILLER(S_dimness_trap),
+	g_FILLER(S_evil_artifact_trap),
+	g_FILLER(S_bossfight_trap),
+	g_FILLER(S_entire_level_trap),
+	g_FILLER(S_bones_trap),
+	g_FILLER(S_rodney_trap),
+	g_FILLER(S_autocurse_trap),
+	g_FILLER(S_highlevel_trap),
+	g_FILLER(S_spell_forgetting_trap),
+	g_FILLER(S_sound_effect_trap),
+
 	g_FILLER(S_trap_percents),
+	g_FILLER(S_timerun_trap),
 	g_FILLER(S_vbeam),
 	g_FILLER(S_hbeam),
 	g_FILLER(S_lslant),
@@ -2054,7 +2110,21 @@ boolean is_rlevel;
 	    showsyms[S_misfire_trap] = 0x04;
 	    showsyms[S_trap_of_walls] = 0x04;
 
+	    showsyms[S_disconnect_trap] = 0x04;
+	    showsyms[S_interface_screw_trap] = 0x04;
+	    showsyms[S_dimness_trap] = 0x04;
+	    showsyms[S_evil_artifact_trap] = 0x04;
+	    showsyms[S_bossfight_trap] = 0x04;
+	    showsyms[S_entire_level_trap] = 0x04;
+	    showsyms[S_bones_trap] = 0x04;
+	    showsyms[S_rodney_trap] = 0x04;
+	    showsyms[S_autocurse_trap] = 0x04;
+	    showsyms[S_highlevel_trap] = 0x04;
+	    showsyms[S_spell_forgetting_trap] = 0x04;
+	    showsyms[S_sound_effect_trap] = 0x04;
+
 	    showsyms[S_trap_percents] = 0x04;
+	    showsyms[S_timerun_trap] = 0x04;
 #endif
 	}
 #endif /* ASCIIGRAPH */

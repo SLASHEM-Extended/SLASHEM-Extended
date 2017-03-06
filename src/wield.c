@@ -165,6 +165,8 @@ boolean put_away;
 		uwep->hvycurse = uwep->prmcurse = uwep->evilcurse = 1;
 		pline("You realize that you've made a horrible mistake.");
 	}
+
+	if (uwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uwep);
 	
 	/* MRKR: Handle any special effects of unwielding a weapon */
 	if (olduwep && olduwep != uwep)
@@ -212,7 +214,7 @@ boolean put_away;
 
 	    You("wield the %s egg in your bare %s.",
 		mons[wep->corpsenm].mname, makeplural(body_part(HAND)));
-	    Sprintf(kbuf, "%s corpse", an(mons[wep->corpsenm].mname));
+	    Sprintf(kbuf, "%s egg", an(mons[wep->corpsenm].mname));
 	    instapetrify(kbuf);
 	} else if (uarms && bimanual(wep))
 	    You("cannot wield a two-handed %s while wearing a shield.",
@@ -408,7 +410,7 @@ dowield()
 	if (flags.pushweapon && oldwep && uwep != oldwep)
 		setuswapwep(oldwep, TRUE);
 	untwoweapon();
-	(void)doredraw();
+	if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 
 	return (result);
 }
@@ -485,7 +487,7 @@ doswapweapon()
 
 	if (u.twoweap && !can_twoweapon())
 		untwoweapon();
-	(void)doredraw();
+	if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 
 	return (result);
 }
@@ -833,7 +835,7 @@ uwepgone()
 		setworn((struct obj *)0, W_WEP);
 		unweapon = TRUE;
 		update_inventory();
-		(void)doredraw();
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 	}
 }
 
@@ -1148,7 +1150,7 @@ boolean put_away;
 	    end_burn(obj, TRUE);
     }
 
-	(void)doredraw();
+	if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 }
 
 /*wield.c*/

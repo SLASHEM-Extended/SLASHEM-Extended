@@ -2247,6 +2247,136 @@ have_wallstone()
 	return(FALSE);
 }
 
+boolean
+have_disconnectstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DISCONNECT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator86) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_interfacescrewstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SCREW_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator87) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_bossfightstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BOSSFIGHT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator88) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_entirelevelstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ENTIRE_LEVEL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator89) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_bonestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BONE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator90) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_autocursestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == AUTOCURSE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator91) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_highlevelstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == HIGHLEVEL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator92) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_spellforgettingstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SPELL_MEMORY_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator93) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_soundeffectstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SOUND_EFFECT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator94) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_timerunstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TIME_USE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator95) return TRUE;
+	return(FALSE);
+}
+
 struct obj *
 o_on(id, objchn)
 unsigned int id;
@@ -4248,6 +4378,16 @@ will_feel_cockatrice(otmp, force_touch)
 struct obj *otmp;
 boolean force_touch;
 {
+
+	if (uarmg && (otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm])) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "shitty gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "der'movyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boktan qo'lqop") ) ) {
+		pline("Eek!");
+		badeffect();
+	}
+	if (uarmg && (otmp->otyp == EGG && touch_petrifies(&mons[otmp->corpsenm])) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "shitty gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "der'movyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "boktan qo'lqop") ) ) {
+		pline("Eek!");
+		badeffect();
+	}
+
 	if ((Blind || force_touch) && (!uarmg || FingerlessGloves) && !Stone_resistance &&
 		(otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm])))
 			return TRUE;
@@ -4611,7 +4751,7 @@ long numused;
 		    TRUE);
 	}
 	delobj(otmp);
-	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
+	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 }
 
@@ -5951,6 +6091,53 @@ struct obj *obj;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "eldritch cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sverkh'yestestvennyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "aql bovar qilmaydigan plash"))))
 			pline("While wearing this cloak, mundane monsters can sometimes turn into dangerous eldritch abominations.");
 
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "musiqiy dubulg'a"))))
+			pline("While wearing this helmet, you will be very good at playing music. This means that playing an instrument will train your device skill much faster than usual.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yashirin dubulg'a"))))
+			pline("Wearing this helmet allows you to hide underneath items by moving onto them.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "inkcoat helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem pal'to chernil") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "siyoh palto dubulg'a"))))
+			pline("This helmet is covered with ink, and makes you difficult to spot so monsters may move randomly sometimes.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "knowledgeable helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "znayushchikh shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bilimdon dubulg'a"))))
+			pline("A helmet that grants you knowledge about the arcane things and improves your spellcasting success chance.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "formula one helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "formula odin shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "formula bir zarbdan"))))
+			pline("Racecar drivers usually wear this helm. It will make you a little faster, but all monsters will also be a bit faster if you wear it!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "difficult cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "trudnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qiyin plash"))))
+			pline("Wearing this cloak will make the game more difficult by spawning much higher-level monsters.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gentle cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nezhnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "muloyim plash"))))
+			pline("It's a very lovely cloak that increases your charisma by one point while worn.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "irradiation cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "oblucheniye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nurlanish plash"))))
+			pline("This cloak is radioactive and will slowly damage your maximum hit points and mana while worn.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "soft cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "myagkiy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yumshoq plash"))))
+			pline("Wearing this cloak will very slightly decrease the amount of physical damage you take.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "excrement cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ekskrementy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chiqindi plash"))))
+			pline("Don't wear this cloak unless you want to stink like a heap of shit. It causes you to aggravate monsters, and you will be unable to have stealth while you have it on!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "hungry cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "golodnymi plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chanqoq plash"))))
+			pline("This cloak will occasionally make you much more hungry while you wear it. Careful, don't starve to death!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "science cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nauka plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ilm-fan plash"))))
+			pline("Scientific modifications allow the wearer of this cloak to cast spells with an increased chance of success.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "guild cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gil'dii plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "birlik plash"))))
+			pline("Wearing this cloak puts you in the Mages Guild, so to speak - you will not forget your spells over time while you have it on.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "erotic boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "eroticheskiye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "erotik chizilmasin"))))
+			pline("You get all wet and horny when looking at this pair of high heels.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sputa boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "mokrota sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sputa chizilmasin"))))
+			pline("Think of the sweet block heels your sputa will flow down.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "radiant heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "izluchayushchiye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yorqin ko'chirish to'piqlarni"))))
+			pline("These high heels are very colorful!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qidiruvi va turbo chizilmasin"))))
+			pline("It's a pair of boots with a built-in turbo that makes you move a bit faster, but certain actions that would usually interrupt you will no longer do so.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sexy heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "seksual'nyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "belgila sexy ko'chirish to'piqlarni"))))
+			pline("These high heels are very sexy!");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "stroking boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "poglazhivaya sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "etiklar silay"))))
+			pline("You absolutely want to stroke these wonderful high heels.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "baxmal qo'lqop"))))
+			pline("Wearing this pair of gloves will halve your spellcasting penalty for wearing armor, so if you want to be able to cast in full plate mail, this is the ticket.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "poygachi qo'lqop"))))
+			pline("You will be slightly faster than usual while wearing this pair of gloves, but it prevents you from using the quicktravel command so you have to walk everywhere on foot.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "shitty gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "der'movyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "boktan qo'lqop"))))
+			pline("This pair of gloves is not very good; if you try to pick up a petrifying object with them, bad things will happen. Not necessarily petrification, mind you.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sensor gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sensornyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tayinlangan qurilmani qo'lqop"))))
+			pline("Use this pair of gloves to be warned of traps that you step on - the sensor will sound an alarm whenever you walk over one.");
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -6613,6 +6800,10 @@ struct obj *obj;
 				pline("This helmet displays random rumors. It has low AC and low magic cancellation."); break;
 			case CYPHER_HELM:
 				pline("This helmet initiates a cipher. It has very good AC and maximum magic cancellation."); break;
+			case RARE_HELMET:
+				pline("While wearing this helmet, monsters that would usually be uncommon by a certain frequency will instead be common, so they spawn more often. It has moderate AC and maximum magic cancellation."); break;
+			case SOUND_EFFECT_HELMET:
+				pline("A helmet that causes sound effects in written form. It has no AC and no magic cancellation."); break;
 			case HELM_OF_BAD_ALIGNMENT:
 				pline("This helmet causes alignment failures. It has good AC and maximum magic cancellation."); break;
 			case SOUNDPROOF_HELMET:
@@ -6745,6 +6936,8 @@ struct obj *obj;
 				pline("This pair of gloves causes techniques to fail. They provide good AC and maximum magic cancellation."); break;
 			case CHAOS_GLOVES:
 				pline("This pair of gloves causes chaos terrain. They provide low AC and medium magic cancellation."); break;
+			case LEVELING_GLOVES:
+				pline("This pair of gloves causes high-level monsters to be more common. They provide medium AC and low magic cancellation."); break;
 			case GAUNTLETS_OF_STEALING:
 				pline("This pair of gloves causes your items to get stolen more often. They provide low AC and no magic cancellation."); break;
 			case GAUNTLETS_OF_MISFIRING:
@@ -6902,6 +7095,10 @@ struct obj *obj;
 				pline("This footwear causes auto-destruct mechanisms to be initiated. They provide good AC and medium magic cancellation."); break;
 			case SPEEDBUG_BOOTS:
 				pline("This footwear causes the speed bug. They provide good AC and low magic cancellation."); break;
+			case DISCONNECTED_BOOTS:
+				pline("This footwear causes disconnected staircases. They provide low AC and medium magic cancellation."); break;
+			case BOSS_BOOTS:
+				pline("This footwear causes boss monsters to spawn more often. They provide low AC and low magic cancellation."); break;
 			case SENTIENT_HIGH_HEELED_SHOES:
 				pline("This high-heeled footwear randomly tries to hurt the wearer. They provide very good AC and maximum magic cancellation."); break;
 			case BOOTS_OF_FAINTING:
@@ -7041,6 +7238,118 @@ struct obj *obj;
 			case SYNTHETIC_SANDALS: 
 				pline("Lovely female sandals that unfortunately aren't high-heeled. But they're sweet! Stats: %d points of AC and a MC of %d.", objects[SYNTHETIC_SANDALS].a_ac, objects[SYNTHETIC_SANDALS].a_can ); break;
 
+			case DUMMY_CLOAK_A: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_A].oc_oprop), objects[DUMMY_CLOAK_A].a_ac, objects[DUMMY_CLOAK_A].a_can ); break;
+			case DUMMY_CLOAK_B: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_B].oc_oprop), objects[DUMMY_CLOAK_B].a_ac, objects[DUMMY_CLOAK_B].a_can ); break;
+			case DUMMY_CLOAK_C: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_C].oc_oprop), objects[DUMMY_CLOAK_C].a_ac, objects[DUMMY_CLOAK_C].a_can ); break;
+			case DUMMY_CLOAK_D: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_D].oc_oprop), objects[DUMMY_CLOAK_D].a_ac, objects[DUMMY_CLOAK_D].a_can ); break;
+			case DUMMY_CLOAK_E: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_E].oc_oprop), objects[DUMMY_CLOAK_E].a_ac, objects[DUMMY_CLOAK_E].a_can ); break;
+			case DUMMY_CLOAK_F: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_F].oc_oprop), objects[DUMMY_CLOAK_F].a_ac, objects[DUMMY_CLOAK_F].a_can ); break;
+			case DUMMY_CLOAK_G: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_G].oc_oprop), objects[DUMMY_CLOAK_G].a_ac, objects[DUMMY_CLOAK_G].a_can ); break;
+			case DUMMY_CLOAK_H: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_H].oc_oprop), objects[DUMMY_CLOAK_H].a_ac, objects[DUMMY_CLOAK_H].a_can ); break;
+			case DUMMY_CLOAK_I: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_I].oc_oprop), objects[DUMMY_CLOAK_I].a_ac, objects[DUMMY_CLOAK_I].a_can ); break;
+			case DUMMY_CLOAK_J: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_J].oc_oprop), objects[DUMMY_CLOAK_J].a_ac, objects[DUMMY_CLOAK_J].a_can ); break;
+			case DUMMY_CLOAK_K: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_K].oc_oprop), objects[DUMMY_CLOAK_K].a_ac, objects[DUMMY_CLOAK_K].a_can ); break;
+			case DUMMY_CLOAK_L: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_L].oc_oprop), objects[DUMMY_CLOAK_L].a_ac, objects[DUMMY_CLOAK_L].a_can ); break;
+			case DUMMY_CLOAK_M: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_M].oc_oprop), objects[DUMMY_CLOAK_M].a_ac, objects[DUMMY_CLOAK_M].a_can ); break;
+			case DUMMY_CLOAK_N: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_N].oc_oprop), objects[DUMMY_CLOAK_N].a_ac, objects[DUMMY_CLOAK_N].a_can ); break;
+			case DUMMY_CLOAK_O: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_O].oc_oprop), objects[DUMMY_CLOAK_O].a_ac, objects[DUMMY_CLOAK_O].a_can ); break;
+			case DUMMY_CLOAK_P: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_P].oc_oprop), objects[DUMMY_CLOAK_P].a_ac, objects[DUMMY_CLOAK_P].a_can ); break;
+			case DUMMY_CLOAK_Q: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_Q].oc_oprop), objects[DUMMY_CLOAK_Q].a_ac, objects[DUMMY_CLOAK_Q].a_can ); break;
+			case DUMMY_CLOAK_R: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_R].oc_oprop), objects[DUMMY_CLOAK_R].a_ac, objects[DUMMY_CLOAK_R].a_can ); break;
+			case DUMMY_CLOAK_S: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_S].oc_oprop), objects[DUMMY_CLOAK_S].a_ac, objects[DUMMY_CLOAK_S].a_can ); break;
+			case DUMMY_CLOAK_T: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_T].oc_oprop), objects[DUMMY_CLOAK_T].a_ac, objects[DUMMY_CLOAK_T].a_can ); break;
+			case DUMMY_CLOAK_U: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_U].oc_oprop), objects[DUMMY_CLOAK_U].a_ac, objects[DUMMY_CLOAK_U].a_can ); break;
+			case DUMMY_CLOAK_V: 
+				pline("This cloak is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_CLOAK_V].oc_oprop), objects[DUMMY_CLOAK_V].a_ac, objects[DUMMY_CLOAK_V].a_can ); break;
+
+			case DUMMY_HELMET_A: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_A].oc_oprop), objects[DUMMY_HELMET_A].a_ac, objects[DUMMY_HELMET_A].a_can ); break;
+			case DUMMY_HELMET_B: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_B].oc_oprop), objects[DUMMY_HELMET_B].a_ac, objects[DUMMY_HELMET_B].a_can ); break;
+			case DUMMY_HELMET_C: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_C].oc_oprop), objects[DUMMY_HELMET_C].a_ac, objects[DUMMY_HELMET_C].a_can ); break;
+			case DUMMY_HELMET_D: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_D].oc_oprop), objects[DUMMY_HELMET_D].a_ac, objects[DUMMY_HELMET_D].a_can ); break;
+			case DUMMY_HELMET_E: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_E].oc_oprop), objects[DUMMY_HELMET_E].a_ac, objects[DUMMY_HELMET_E].a_can ); break;
+			case DUMMY_HELMET_F: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_F].oc_oprop), objects[DUMMY_HELMET_F].a_ac, objects[DUMMY_HELMET_F].a_can ); break;
+			case DUMMY_HELMET_G: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_G].oc_oprop), objects[DUMMY_HELMET_G].a_ac, objects[DUMMY_HELMET_G].a_can ); break;
+			case DUMMY_HELMET_H: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_H].oc_oprop), objects[DUMMY_HELMET_H].a_ac, objects[DUMMY_HELMET_H].a_can ); break;
+			case DUMMY_HELMET_I: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_I].oc_oprop), objects[DUMMY_HELMET_I].a_ac, objects[DUMMY_HELMET_I].a_can ); break;
+			case DUMMY_HELMET_J: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_J].oc_oprop), objects[DUMMY_HELMET_J].a_ac, objects[DUMMY_HELMET_J].a_can ); break;
+			case DUMMY_HELMET_K: 
+				pline("This helmet is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_HELMET_K].oc_oprop), objects[DUMMY_HELMET_K].a_ac, objects[DUMMY_HELMET_K].a_can ); break;
+
+			case DUMMY_GLOVES_A: 
+				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_A].oc_oprop), objects[DUMMY_GLOVES_A].a_ac, objects[DUMMY_GLOVES_A].a_can ); break;
+			case DUMMY_GLOVES_B: 
+				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_B].oc_oprop), objects[DUMMY_GLOVES_B].a_ac, objects[DUMMY_GLOVES_B].a_can ); break;
+			case DUMMY_GLOVES_C: 
+				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_C].oc_oprop), objects[DUMMY_GLOVES_C].a_ac, objects[DUMMY_GLOVES_C].a_can ); break;
+			case DUMMY_GLOVES_D: 
+				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_D].oc_oprop), objects[DUMMY_GLOVES_D].a_ac, objects[DUMMY_GLOVES_D].a_can ); break;
+			case DUMMY_GLOVES_E: 
+				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_E].oc_oprop), objects[DUMMY_GLOVES_E].a_ac, objects[DUMMY_GLOVES_E].a_can ); break;
+			case DUMMY_GLOVES_F: 
+				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_F].oc_oprop), objects[DUMMY_GLOVES_F].a_ac, objects[DUMMY_GLOVES_F].a_can ); break;
+			case DUMMY_GLOVES_G: 
+				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_G].oc_oprop), objects[DUMMY_GLOVES_G].a_ac, objects[DUMMY_GLOVES_G].a_can ); break;
+			case DUMMY_GLOVES_H: 
+				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_H].oc_oprop), objects[DUMMY_GLOVES_H].a_ac, objects[DUMMY_GLOVES_H].a_can ); break;
+			case DUMMY_GLOVES_I: 
+				pline("This pair of gloves is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_GLOVES_I].oc_oprop), objects[DUMMY_GLOVES_I].a_ac, objects[DUMMY_GLOVES_I].a_can ); break;
+
+			case DUMMY_BOOTS_A: 
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_A].oc_oprop), objects[DUMMY_BOOTS_A].a_ac, objects[DUMMY_BOOTS_A].a_can ); break;
+			case DUMMY_BOOTS_B: 
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_B].oc_oprop), objects[DUMMY_BOOTS_B].a_ac, objects[DUMMY_BOOTS_B].a_can ); break;
+			case DUMMY_BOOTS_C: 
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_C].oc_oprop), objects[DUMMY_BOOTS_C].a_ac, objects[DUMMY_BOOTS_C].a_can ); break;
+			case DUMMY_BOOTS_D: 
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_D].oc_oprop), objects[DUMMY_BOOTS_D].a_ac, objects[DUMMY_BOOTS_D].a_can ); break;
+			case DUMMY_BOOTS_E: 
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_E].oc_oprop), objects[DUMMY_BOOTS_E].a_ac, objects[DUMMY_BOOTS_E].a_can ); break;
+			case DUMMY_BOOTS_F: 
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_F].oc_oprop), objects[DUMMY_BOOTS_F].a_ac, objects[DUMMY_BOOTS_F].a_can ); break;
+			case DUMMY_BOOTS_G: 
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_G].oc_oprop), objects[DUMMY_BOOTS_G].a_ac, objects[DUMMY_BOOTS_G].a_can ); break;
+			case DUMMY_BOOTS_H: 
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_H].oc_oprop), objects[DUMMY_BOOTS_H].a_ac, objects[DUMMY_BOOTS_H].a_can ); break;
+			case DUMMY_BOOTS_I: 
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_I].oc_oprop), objects[DUMMY_BOOTS_I].a_ac, objects[DUMMY_BOOTS_I].a_can ); break;
+			case DUMMY_BOOTS_J: 
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_J].oc_oprop), objects[DUMMY_BOOTS_J].a_ac, objects[DUMMY_BOOTS_J].a_can ); break;
+			case DUMMY_BOOTS_K: 
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_K].oc_oprop), objects[DUMMY_BOOTS_K].a_ac, objects[DUMMY_BOOTS_K].a_can ); break;
+			case DUMMY_BOOTS_L: 
+				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_L].oc_oprop), objects[DUMMY_BOOTS_L].a_ac, objects[DUMMY_BOOTS_L].a_can ); break;
+
 			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 
 			}
@@ -7091,6 +7400,10 @@ struct obj *obj;
 				pline("This ring causes diarrhea. It was invented by bhaak, who is also known as 'Schwebaeugler' and wants to kill Amy Bluescreenofdeath. :-)"); break;
 			case RIN_DISENGRAVING: 
 				pline("This ring causes engravings to fail."); break;
+			case RIN_AUTOCURSING: 
+				pline("If you wear this ring, everything that you put on or wield will curse itself!"); break;
+			case RIN_TIME_SPENDING: 
+				pline("While wearing this ring, everything takes time, including opening your inventory or farlooking a monster."); break;
 			case RIN_NO_SKILL: 
 				pline("This ring deactivates all of your skills."); break;
 			case RIN_LOW_STATS: 
@@ -7327,6 +7640,12 @@ struct obj *obj;
 				pline("This amulet causes items to autocurse whenever you drop them."); break;
 			case AMULET_OF_ANTI_EXPERIENCE:
 				pline("This amulet makes you lose the ability to gain experience."); break;
+			case AMULET_OF_SCREWY_INTERFACE:
+				pline("This amulet causes an incredibly nasty interface screw where you need to press Ctrl-R to see what actually happened in-game."); break;
+			case AMULET_OF_BONES:
+				pline("This amulet makes it much more likely that you find bones files, provided some exist at all. If you die while wearing it and are on an eligible level, you will always leave a bones file too."); break;
+			case AMULET_OF_SPELL_FORGETTING:
+				pline("This amulet makes your spells lose memory 10 times faster."); break;
 			case AMULET_OF_ANTI_TELEPORTATION:
 				pline("This amulet blocks all of your attempts to self-teleport."); break;
 			case AMULET_OF_ITEM_TELEPORTATION:
@@ -9460,6 +9779,26 @@ struct obj *obj;
 				pline("A stone that curses itself and causes weak sight."); break;
 			case CHATTER_STONE:
 				pline("A stone that curses itself and causes random messages to appear instead of real ones, so you shouldn't even be able to see this message."); break;
+			case DISCONNECT_STONE:
+				pline("A stone that curses itself and causes disconnected staircases."); break;
+			case SCREW_STONE:
+				pline("A stone that curses itself and causes a very nasty interface screw."); break;
+			case BOSSFIGHT_STONE:
+				pline("A stone that curses itself and causes boss monsters to spawn more often."); break;
+			case ENTIRE_LEVEL_STONE:
+				pline("A stone that curses itself and causes rare monsters to become frequent."); break;
+			case BONE_STONE:
+				pline("A stone that curses itself and causes you to find and leave more bones files."); break;
+			case AUTOCURSE_STONE:
+				pline("A stone that curses itself and causes equipment to autocurse when worn or wielded."); break;
+			case HIGHLEVEL_STONE:
+				pline("A stone that curses itself and causes high-level monsters to spawn more often."); break;
+			case SPELL_MEMORY_STONE:
+				pline("A stone that curses itself and causes rapid spell memory loss."); break;
+			case SOUND_EFFECT_STONE:
+				pline("A stone that curses itself and causes verbalized sound effects."); break;
+			case TIME_USE_STONE:
+				pline("A stone that curses itself and causes every action to take time."); break;
 
  			default: pline("Not much is known about this type of gem, but chances are you're looking at a piece of worthless glass. They are, indeed, worthless."); break;
 

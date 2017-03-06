@@ -167,6 +167,8 @@ Boots_on()
 
 	case AUTODESTRUCT_DE_VICE_BOOTS:
 	case SPEEDBUG_BOOTS:
+	case DISCONNECTED_BOOTS:
+	case BOSS_BOOTS:
 	case SENTIENT_HIGH_HEELED_SHOES:
 	case BOOTS_OF_FAINTING:
 	case DIFFICULT_BOOTS:
@@ -179,6 +181,18 @@ Boots_on()
 	case DEMENTIA_BOOTS:
 	case STAIRWELL_STOMPING_BOOTS:
 	case UNFAIR_STILETTOS:
+	case DUMMY_BOOTS_A:
+	case DUMMY_BOOTS_B:
+	case DUMMY_BOOTS_C:
+	case DUMMY_BOOTS_D:
+	case DUMMY_BOOTS_E:
+	case DUMMY_BOOTS_F:
+	case DUMMY_BOOTS_G:
+	case DUMMY_BOOTS_H:
+	case DUMMY_BOOTS_I:
+	case DUMMY_BOOTS_J:
+	case DUMMY_BOOTS_K:
+	case DUMMY_BOOTS_L:
 		if (!uarmf->cursed) curse(uarmf);
 		break;
 
@@ -677,6 +691,8 @@ Boots_on()
 		}
     }
 
+	if (uarmf && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmf);
+
     return 0;
 }
 
@@ -767,6 +783,20 @@ Boots_off()
 	case FIRE_BOOTS:
 	case AUTODESTRUCT_DE_VICE_BOOTS:
 	case SPEEDBUG_BOOTS:
+	case DUMMY_BOOTS_A:
+	case DUMMY_BOOTS_B:
+	case DUMMY_BOOTS_C:
+	case DUMMY_BOOTS_D:
+	case DUMMY_BOOTS_E:
+	case DUMMY_BOOTS_F:
+	case DUMMY_BOOTS_G:
+	case DUMMY_BOOTS_H:
+	case DUMMY_BOOTS_I:
+	case DUMMY_BOOTS_J:
+	case DUMMY_BOOTS_K:
+	case DUMMY_BOOTS_L:
+	case DISCONNECTED_BOOTS:
+	case BOSS_BOOTS:
 	case SENTIENT_HIGH_HEELED_SHOES:
 	case BOOTS_OF_FAINTING:
 	case DIFFICULT_BOOTS:
@@ -993,6 +1023,28 @@ Cloak_on()
 	case CLOAK_OF_INVENTORYLESSNESS:
 	case CLOAK_OF_RESPAWNING:
 	case NASTY_CLOAK:
+	case DUMMY_CLOAK_A:
+	case DUMMY_CLOAK_B:
+	case DUMMY_CLOAK_C:
+	case DUMMY_CLOAK_D:
+	case DUMMY_CLOAK_E:
+	case DUMMY_CLOAK_F:
+	case DUMMY_CLOAK_G:
+	case DUMMY_CLOAK_H:
+	case DUMMY_CLOAK_I:
+	case DUMMY_CLOAK_J:
+	case DUMMY_CLOAK_K:
+	case DUMMY_CLOAK_L:
+	case DUMMY_CLOAK_M:
+	case DUMMY_CLOAK_N:
+	case DUMMY_CLOAK_O:
+	case DUMMY_CLOAK_P:
+	case DUMMY_CLOAK_Q:
+	case DUMMY_CLOAK_R:
+	case DUMMY_CLOAK_S:
+	case DUMMY_CLOAK_T:
+	case DUMMY_CLOAK_U:
+	case DUMMY_CLOAK_V:
 
 		if (!uarmc->cursed) curse(uarmc);
 		break;
@@ -1033,6 +1085,7 @@ Cloak_on()
 		break;
 	case CLOAK_OF_PARALYSIS:
 		pline("You're paralyzed!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		if (Free_action) nomul(-rnd(10), "putting on a cloak of paralysis");
 		else nomul(-rnd(20), "putting on a cloak of paralysis");
 		break;
@@ -1067,6 +1120,7 @@ Cloak_on()
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 		break;
 	case CLOAK_OF_OUTRIGHT_EVILNESS:
@@ -1607,6 +1661,8 @@ Cloak_on()
 		}
 	}
 
+	if (uarmc && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmc);
+
     return 0;
 }
 
@@ -1670,6 +1726,28 @@ Cloak_off()
 	case CLOAK_OF_DRAIN_LIFE:
 	case CLOAK_OF_AWAKENING:
 	case CLOAK_OF_STABILITY:
+	case DUMMY_CLOAK_A:
+	case DUMMY_CLOAK_B:
+	case DUMMY_CLOAK_C:
+	case DUMMY_CLOAK_D:
+	case DUMMY_CLOAK_E:
+	case DUMMY_CLOAK_F:
+	case DUMMY_CLOAK_G:
+	case DUMMY_CLOAK_H:
+	case DUMMY_CLOAK_I:
+	case DUMMY_CLOAK_J:
+	case DUMMY_CLOAK_K:
+	case DUMMY_CLOAK_L:
+	case DUMMY_CLOAK_M:
+	case DUMMY_CLOAK_N:
+	case DUMMY_CLOAK_O:
+	case DUMMY_CLOAK_P:
+	case DUMMY_CLOAK_Q:
+	case DUMMY_CLOAK_R:
+	case DUMMY_CLOAK_S:
+	case DUMMY_CLOAK_T:
+	case DUMMY_CLOAK_U:
+	case DUMMY_CLOAK_V:
 	case ANTI_DISQUIET_CLOAK:
 	case HUGGING_GOWN:
 	case COCLOAK:
@@ -1876,7 +1954,7 @@ Helmet_on()
 		}
 		break;
 	case HELM_OF_BRILLIANCE:
-		adj_abon(uarmh, uarmh->spe);
+		makeknown(uarmh->otyp);
 		break;
 	case CORNUTHAUM:
 		/* people think marked wizards know what they're talking
@@ -1959,17 +2037,30 @@ Helmet_on()
 	case BIGSCRIPT_HELM:
 	case QUIZ_HELM:
 	case DIZZY_HELMET:
+	case RARE_HELMET:
 	case MUTING_HELM:
 	case ULCH_HELMET:
 	case DIMMER_HELMET:
 	case HELM_OF_STARVATION:
 	case QUAFFER_HELMET:
+	case SOUND_EFFECT_HELMET:
 	case INCORRECTLY_ADJUSTED_HELMET:
 	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
 	case OUT_OF_MEMORY_HELMET:
 	case UNWANTED_HELMET:
+	case DUMMY_HELMET_A:
+	case DUMMY_HELMET_B:
+	case DUMMY_HELMET_C:
+	case DUMMY_HELMET_D:
+	case DUMMY_HELMET_E:
+	case DUMMY_HELMET_F:
+	case DUMMY_HELMET_G:
+	case DUMMY_HELMET_H:
+	case DUMMY_HELMET_I:
+	case DUMMY_HELMET_J:
+	case DUMMY_HELMET_K:
 		if (!uarmh->cursed) curse(uarmh);
 		break;
 	default: impossible(unknown_type, c_helmet, uarmh->otyp);
@@ -2043,6 +2134,8 @@ Helmet_on()
 		if (!uarmh->cursed) curse(uarmh); /* don't tell the poor sap about their horrible fate */
     }
 
+	if (uarmh && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmh);
+
     return 0;
 }
 
@@ -2107,6 +2200,7 @@ Helmet_off()
 	case HELM_OF_STORMS:
 	case HELM_OF_DETECT_MONSTERS:
 	case HELM_OF_OBSCURED_DISPLAY:
+	case RARE_HELMET:
 	case HELM_OF_LOSE_IDENTIFICATION:
 	case HELM_OF_THIRST:
 	case HELM_OF_AMNESIA:
@@ -2124,11 +2218,23 @@ Helmet_off()
 	case DIMMER_HELMET:
 	case HELM_OF_STARVATION:
 	case QUAFFER_HELMET:
+	case SOUND_EFFECT_HELMET:
 	case INCORRECTLY_ADJUSTED_HELMET:
 	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
 	case OUT_OF_MEMORY_HELMET:
+	case DUMMY_HELMET_A:
+	case DUMMY_HELMET_B:
+	case DUMMY_HELMET_C:
+	case DUMMY_HELMET_D:
+	case DUMMY_HELMET_E:
+	case DUMMY_HELMET_F:
+	case DUMMY_HELMET_G:
+	case DUMMY_HELMET_H:
+	case DUMMY_HELMET_I:
+	case DUMMY_HELMET_J:
+	case DUMMY_HELMET_K:
 	/* KMH, balance patch -- removed */ /* but re-inserted by Amy */
 	case FIRE_HELMET:
 	case HELM_OF_SPEED:
@@ -2157,7 +2263,7 @@ Helmet_off()
 	    see_monsters();
 	    return 0;
 	case HELM_OF_BRILLIANCE:
-	    if (!cancelled_don) adj_abon(uarmh, -uarmh->spe);
+		makeknown(uarmh->otyp);
 	    break;
 	case HELM_OF_OPPOSITE_ALIGNMENT:
 	    u.ualign.type = u.ualignbase[A_CURRENT];
@@ -2234,9 +2340,19 @@ Gloves_on()
 	case BANKING_GLOVES:
 	case DIFFICULT_GLOVES:
 	case CHAOS_GLOVES:
+	case LEVELING_GLOVES:
 	case GAUNTLETS_OF_STEALING:
 	case GAUNTLETS_OF_MISFIRING:
 	case EVIL_GLOVES:
+	case DUMMY_GLOVES_A:
+	case DUMMY_GLOVES_B:
+	case DUMMY_GLOVES_C:
+	case DUMMY_GLOVES_D:
+	case DUMMY_GLOVES_E:
+	case DUMMY_GLOVES_F:
+	case DUMMY_GLOVES_G:
+	case DUMMY_GLOVES_H:
+	case DUMMY_GLOVES_I:
 		if (!uarmg->cursed) curse(uarmg);
 		break;
 
@@ -2256,12 +2372,10 @@ Gloves_on()
 			incr_itimeout(&HFumbling, rnd(20));
 		break;
 	case GAUNTLETS_OF_POWER:
-		/*makeknown(uarmg->otyp);*/
-		/*flags.botl = 1;*/ /* taken care of in attrib.c */
-		adj_abon(uarmg, uarmg->spe);
+		makeknown(uarmg->otyp);
 		break;
 	case GAUNTLETS_OF_DEXTERITY:
-		adj_abon(uarmg, uarmg->spe);
+		makeknown(uarmg->otyp);
 		break;
 	default: impossible(unknown_type, c_gloves, uarmg->otyp);
     }
@@ -2387,6 +2501,8 @@ Gloves_on()
 		uarmg->hvycurse = 1;
     }
 
+	if (uarmg && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmg);
+
     return 0;
 }
 
@@ -2417,6 +2533,7 @@ Gloves_off()
 	case BANKING_GLOVES:
 	case DIFFICULT_GLOVES:
 	case CHAOS_GLOVES:
+	case LEVELING_GLOVES:
 	case GAUNTLETS_OF_STEALING:
 	case GAUNTLETS_OF_MISFIRING:
 	case GAUNTLETS_OF_PANIC:
@@ -2425,6 +2542,15 @@ Gloves_off()
 	case GAUNTLETS_OF_PLUGSUIT:
 	case COMMANDER_GLOVES:
 	case FIELD_GLOVES:
+	case DUMMY_GLOVES_A:
+	case DUMMY_GLOVES_B:
+	case DUMMY_GLOVES_C:
+	case DUMMY_GLOVES_D:
+	case DUMMY_GLOVES_E:
+	case DUMMY_GLOVES_F:
+	case DUMMY_GLOVES_G:
+	case DUMMY_GLOVES_H:
+	case DUMMY_GLOVES_I:
 	case GAUNTLETS:
 	case ELVEN_GAUNTLETS:
 	case UNKNOWN_GAUNTLETS:
@@ -2455,12 +2581,10 @@ Gloves_off()
 		HFumbling = EFumbling = 0;
 	    break;
 	case GAUNTLETS_OF_POWER:
-	    /*makeknown(uarmg->otyp);*/
-	    /*flags.botl = 1;*/ /* taken care of in attrib.c */
-	    if (!cancelled_don) adj_abon(uarmg, -uarmg->spe);
+		makeknown(uarmg->otyp);
 	    break;
 	case GAUNTLETS_OF_DEXTERITY:
-	    if (!cancelled_don) adj_abon(uarmg, -uarmg->spe);
+		makeknown(uarmg->otyp);
 	    break;
 	default: impossible(unknown_type, c_gloves, uarmg->otyp);
     }
@@ -2650,6 +2774,8 @@ Shield_on()
 		else uarms->spe = -(rnd(7));
     }
 
+	if (uarms && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarms);
+
     return 0;
 }
 
@@ -2771,6 +2897,8 @@ Shirt_on()
 
 	}
 
+	if (uarmu && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmu);
+
     return 0;
 }
 
@@ -2854,6 +2982,8 @@ Armor_on()
 		pline("You turn into a soft girl!");
 		change_sex();
 	}
+
+	if (uarm && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarm);
 
     return 0;
 }
@@ -2941,6 +3071,9 @@ Amulet_on()
 	case AMULET_OF_ITEM_TELEPORTATION:
 	case AMULET_OF_PREMATURE_DEATH:
 	case AMULET_OF_DANGER:
+	case AMULET_OF_SCREWY_INTERFACE:
+	case AMULET_OF_BONES:
+	case AMULET_OF_SPELL_FORGETTING:
 
 		if (uamul && !uamul->cursed) curse(uamul);
 
@@ -3074,6 +3207,8 @@ Amulet_on()
     if (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) {
 		if (!uamul->cursed) curse(uamul);
     }
+
+	if (uamul && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uamul);
 
 }
 
@@ -3231,6 +3366,8 @@ register struct obj *obj;
 	case RIN_LOW_STATS:
 	case RIN_FAILED_TRAINING:
 	case RIN_FAILED_EXERCISE:
+	case RIN_AUTOCURSING:
+	case RIN_TIME_SPENDING:
 	case RIN_FAST_METABOLISM:
 	case RIN_DANGER:
 
@@ -3370,6 +3507,7 @@ register struct obj *obj;
 
 		register struct obj *crsobj;
 		pline("You hear a high-pitched sound followed by a short, slightly lower-pitched one...");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto ochen' plokho dlya vas, i ochen' smeshno dlya tipa bloka l'da. Ay privet privet privet!" : "Dueueue-due!");
 		for(crsobj = invent; crsobj ; crsobj = crsobj->nobj)
 		if (!stack_too_big(crsobj))	curse(crsobj);
     }
@@ -3387,6 +3525,7 @@ register struct obj *obj;
 		pline("Black tears drop from the ring...");
     }
 
+	if (obj && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(obj);
 
 }
 
@@ -3589,6 +3728,9 @@ register struct obj *otmp;
 	    vision_full_recalc = 1;	/* recalc vision limits */
 	    flags.botl = 1;
 	}
+
+	if (otmp && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(otmp);
+
 }
 
 void
@@ -5189,38 +5331,45 @@ register struct obj *atmp;
 		if (donning(otmp)) cancel_don();
 		Your("%s crumbles and turns to dust!",
 		     cloak_simple_name(uarmc));
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Cloak_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarm)) {
 		if (donning(otmp)) cancel_don();
 		Your("armor turns to dust and falls to the %s!",
 			surface(u.ux,u.uy));
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Armor_gone();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarmu)) {
 		if (donning(otmp)) cancel_don();
 		Your("shirt crumbles into tiny threads and falls apart!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Shirt_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarmh)) {
 		if (donning(otmp)) cancel_don();
 		Your("helmet turns to dust and is blown away!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Helmet_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarmg)) {
 		if (donning(otmp)) cancel_don();
 		Your("gloves vanish!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Gloves_off();
 		useup(otmp);
 		selftouch("You");
 	} else if (DESTROY_ARM(uarmf)) {
 		if (donning(otmp)) cancel_don();
 		Your("boots disintegrate!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Boots_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarms)) {
 		if (donning(otmp)) cancel_don();
 		Your("shield crumbles away!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Shield_off();
 		useup(otmp);
 	} else {
@@ -5232,34 +5381,8 @@ register struct obj *atmp;
 	return(1);
 }
 
-void
-adj_abon(otmp, delta)
-register struct obj *otmp;
-register schar delta;
-{
-	if (uarmg && uarmg == otmp && otmp->otyp == GAUNTLETS_OF_DEXTERITY) {
-		if (delta) {
-			makeknown(uarmg->otyp);
-			ABON(A_DEX) += (delta);
-		}
-		flags.botl = 1;
-	}
-	if (uarmg && uarmg == otmp && otmp->otyp == GAUNTLETS_OF_POWER) {
-		if (delta) {
-			makeknown(uarmg->otyp);
-			ABON(A_STR) += (delta);
-		}
-		flags.botl = 1;
-	}
-	if (uarmh && uarmh == otmp && otmp->otyp == HELM_OF_BRILLIANCE) {
-		if (delta) {
-			makeknown(uarmh->otyp);
-			ABON(A_INT) += (delta);
-			ABON(A_WIS) += (delta);
-		}
-		flags.botl = 1;
-	}
-}
+/* adj_abon was here. I removed it. All items that used it are handled in attrib.c now, which does the same thing,
+ * with the difference that it's much more elegant and we don't have to put adj_abon calls all over the source :-) --Amy */
 
 #endif /* OVLB */
 

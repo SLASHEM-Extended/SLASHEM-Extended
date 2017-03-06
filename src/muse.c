@@ -715,7 +715,8 @@ struct obj *obj;
 
 		/* Amy edit: I am a "few player" obviously. But then, what did you expect of a variant whose author is into BDSM? I'll allow monsters to wish for random musable items; this is different from certain other variants, and may be changed someday, but for now it's good enough for me. */
 
-		    if (rn2(3)) {
+		    if (rn2(3)) { /* No FIQ, the chances are NOT going to be synchronized between players and monsters,
+					 * even though that revelation may come as a shock to you. This is not FIQslex. --Amy */
 			verbalize("I am in your debt. I will grant one wish!");
 			pline("%s wishes for an object.", Monnam(mon) );
 			switch (rnd(6)) {
@@ -1000,8 +1001,10 @@ struct obj *otmp;
 		otmp->dknown = 1;
 		pline("%s drinks %s!", Monnam(mtmp), singular(otmp, doname));
 	} else
-		if (flags.soundok)
+		if (flags.soundok) {
 			You_hear("a chugging sound.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Odin men'she zel'ya, kotoryye vy mozhete ispol'zovat', i yest' bol'shaya veroyatnost' togo, chto eto bylo chto-to ochen' polezno. Potomu chto vy byli slishkom medlennymi, kha-kha!" : "Gluckgluckgluckgluck!");
+		}
 }
 
 /* Defines for various types of stuff.  The order in which monsters prefer
@@ -1596,10 +1599,14 @@ struct monst *mtmp;
 		} else impossible("No need for unicorn horn?");
 		return 2;
 	case MUSE_BUGLE:
-		if (vismon)
+		if (vismon) {
 			pline("%s plays %s!", Monnam(mtmp), doname(otmp));
-		else if (flags.soundok)
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Nakonets soldaty uzhe ne spit. Sovetskaya vser'yez dumal, chto eto byla khoroshaya ideya, chtoby ne razbudit' ikh, yesli vy vvodite svoi baraki, NO seychas vy nakhodites' v nekotoroy ser'yeznoy boli, vy ublyudok." : "TAET-TAETAEAEAE!");
+		}
+		else if (flags.soundok) {
 			You_hear("a bugle playing reveille!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Nakonets soldaty uzhe ne spit. Sovetskaya vser'yez dumal, chto eto byla khoroshaya ideya, chtoby ne razbudit' ikh, yesli vy vvodite svoi baraki, NO seychas vy nakhodites' v nekotoroy ser'yeznoy boli, vy ublyudok." : "TAET-TAETAEAEAE!");
+		}
 		awaken_soldiers();
 		return 2;
 	case MUSE_WAN_TELEPORTATION_SELF:
@@ -3714,8 +3721,9 @@ register struct obj *otmp;
 
 		if (mtmp == &youmonst) {
 
-			if (!Free_action) {
+			if (!Free_action || !rn2(5)) {
 			    pline("You are frozen in place!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			    nomul(-rnz(5), "frozen by a wand");
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
@@ -3927,6 +3935,7 @@ register struct obj *otmp;
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -4569,8 +4578,11 @@ struct monst *mtmp;
 		if (oseen) {
 			makeknown(otmp->otyp);
 			pline("%s plays a %s!", Monnam(mtmp), xname(otmp));
-		} else
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Strela boli prikhodit vash put'. I yesli vy khotite ispol'zovat' rog dlya sebya, teper' on imeyet odin men'she ostavshegosya zaryada." : "Taet-taetaeaeae!");
+		} else {
 			You_hear("a horn being played.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Strela boli prikhodit vash put'. I yesli vy khotite ispol'zovat' rog dlya sebya, teper' on imeyet odin men'she ostavshegosya zaryada." : "Taet-taetaeaeae!");
+		}
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		m_using = TRUE;
 		buzz(-30 - ((otmp->otyp==FROST_HORN) ? AD_COLD-1 : (otmp->otyp==TEMPEST_HORN) ? AD_ELEC-1 : AD_FIRE-1),
@@ -4707,7 +4719,7 @@ struct monst *mtmp;
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -4821,6 +4833,16 @@ struct monst *mtmp;
 			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 		}
@@ -5101,6 +5123,7 @@ struct monst *mtmp;
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
+						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
 						nomul(-rnd(10), "paralyzed by a scroll of sin");
 						exercise(A_DEX, FALSE);
@@ -5198,7 +5221,10 @@ struct monst *mtmp;
 				}
 				break;
 			case 6: /* envy */
-				if (flags.soundok) You_hear("a chuckling laughter.");
+				if (flags.soundok) {
+					You_hear("a chuckling laughter.");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+				}
 			      attrcurse();
 			      attrcurse();
 				break;
@@ -5236,6 +5262,7 @@ struct monst *mtmp;
 				break;
 			    case 2:
 				You("need reboot.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 				if (!Race_if(PM_UNGENOMOLD)) newman();
 				else polyself(FALSE);
 				break;
@@ -5280,6 +5307,7 @@ struct monst *mtmp;
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
 					nomul(-rnd(10), "paralyzed by a scroll of sin");
 					exercise(A_DEX, FALSE);
@@ -5293,6 +5321,7 @@ struct monst *mtmp;
 					You(Blind ? "%s and get dizzy..." :
 						 "%s and your vision blurs...",
 						    stagger(youmonst.data, "stagger"));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 				dmg = rn1(7, 16);
 				make_stunned(HStun + dmg + monster_difficulty(), FALSE);
 				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
@@ -5316,6 +5345,7 @@ struct monst *mtmp;
 	
 				    if (objD && drain_item(objD)) {
 					Your("%s less effective.", aobjnam(objD, "seem"));
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				    }
 				}
 				break;
@@ -5937,6 +5967,7 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		pline("A black glow surrounds you...");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 		rndcurse();
 
 		if (oseen) makeknown(WAN_CURSE_ITEMS);
@@ -6057,6 +6088,7 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		You_feel("very unlucky.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Perekhod perekhod monstra s palochkoy nevezeniya! Zapiski igroka neskol'ko raz, chtoby sdelat' etot plaksivyy malen'kiy ublyudok konchatsya udachi polnost'yu i umeret'!" : "Dieuuuuuuu!");
 		change_luck(-1);
 
 		if (oseen) makeknown(WAN_BAD_LUCK);
@@ -6158,6 +6190,7 @@ newboss:
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
+						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
 						nomul(-rnd(10), "paralyzed by a wand of sin");
 						exercise(A_DEX, FALSE);
@@ -6255,7 +6288,10 @@ newboss:
 				}
 				break;
 			case 6: /* envy */
-				if (flags.soundok) You_hear("a chuckling laughter.");
+				if (flags.soundok) {
+					You_hear("a chuckling laughter.");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+				}
 			      attrcurse();
 			      attrcurse();
 				break;
@@ -6293,6 +6329,7 @@ newboss:
 				break;
 			    case 2:
 				You("need reboot.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 				if (!Race_if(PM_UNGENOMOLD)) newman();
 				else polyself(FALSE);
 				break;
@@ -6337,6 +6374,7 @@ newboss:
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
 					nomul(-rnd(10), "paralyzed by a wand of sin");
 					exercise(A_DEX, FALSE);
@@ -6350,6 +6388,7 @@ newboss:
 					You(Blind ? "%s and get dizzy..." :
 						 "%s and your vision blurs...",
 						    stagger(youmonst.data, "stagger"));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 				dmg = rn1(7, 16);
 				make_stunned(HStun + dmg + monster_difficulty(), FALSE);
 				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
@@ -6373,6 +6412,7 @@ newboss:
 	
 				    if (objD && drain_item(objD)) {
 					Your("%s less effective.", aobjnam(objD, "seem"));
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				    }
 				}
 				break;
@@ -6443,6 +6483,7 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		pline("You lose  Mana");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha magicheskaya energiya udalyayetsya v nastoyashcheye vremya. Skoro on budet raven nulyu, a zatem vy dolzhny igrat' bez zaklinaniy, potomu chto vy sosat', GA GA GA!" : "Due-l-ue-l-ue-l!");
 		drain_en(rnz(monster_difficulty() + 1) );
 
 		if (oseen) makeknown(WAN_DRAIN_MANA);
@@ -6456,6 +6497,7 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		pline("A sudden geyser slams into you from nowhere!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
 		water_damage(invent, FALSE, FALSE);
 		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 		if (Burned) make_burned(0L, TRUE);

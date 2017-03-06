@@ -1103,8 +1103,10 @@ fix_petrification()
 	if (Hallucination)
 	    pline("What a pity - you just ruined a future piece of %sart!",
 		  ACURR(A_CHA) > 15 ? "fine " : "");
-	else
+	else {
 	    You_feel("limber!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy tol'ko otsrochila neizbezhnoye i v konechnom schete zakonchatsya pobivaniye kamnyami lecheniy." : "Schwueing!");
+	}
 }
 
 /*
@@ -1876,6 +1878,7 @@ register int pm;
 	    case PM_RANDOM_COCKATRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		    You_feel("clairvoyant!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy znayete raspolozheniye, no ne lovushki, a te vse ravno budut poshel na khuy vverkh." : "Wschiiiiiiie!");
 			incr_itimeout(&HClairvoyant, rnd(500));
 		break;
 	    case PM_STONING_SPHERE:

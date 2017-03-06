@@ -490,6 +490,9 @@ new_angle(lev, sv, row, col)
  *	+ After an option has changed that affects vision [parseoptions()]
  *	+ Right after the hero is swallowed. [gulpmu()]
  *	+ Just before bubbles are moved. [movebubbles()]
+ *
+ * Control flag = 5.  For interface screw trap, which requires the player
+ * to press Ctrl-R to see what has happened in the game. --Amy
  */
 void
 vision_recalc(control)
@@ -515,6 +518,9 @@ vision_recalc(control)
 
     vision_full_recalc = 0;			/* reset flag */
     if (in_mklev || !iflags.vision_inited) return;
+
+	if ((InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone()) && control != 5) return;
+	if (control == 5) control = 0;
 
 #ifdef GCC_WARN
     row = 0;

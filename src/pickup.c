@@ -1379,10 +1379,9 @@ boolean telekinesis;	/* not picking it up directly by hand */
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
 			char kbuf[BUFSZ];
+			Strcpy(kbuf, "coming into contact with a petrifying object");
 
-			Strcpy(kbuf, an(corpse_xname(obj, TRUE)));
-			pline("Touching %s is a fatal mistake.", kbuf);
-			Strcpy(kbuf, an(killer_cxname(obj, TRUE)));
+			pline("Touching a petrifying egg is a fatal mistake.", kbuf);
 			instapetrify(kbuf);
 		    return -1;
 		}
@@ -2114,6 +2113,7 @@ boolean invobj;
 		pline(
 	      "As you put %s inside, you are blasted by a magical explosion!",
 		      doname(obj));
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "VD GA GA GA vy takoy nemnogo nub, kto ne znayet, kak igrat' na vsekh! Ya ne byl by nastol'ko glup, no vy poteryali sumku provedeniya v nastoyashcheye vremya i, veroyatno, slomal vse zel'ya, kotoryye byli v nem. TY POLNYY OTSTOY!" : "Caeauwaesh! Well and?");
 		if (Has_contents(obj)) {
 		    struct obj *otmp;
 		    while((otmp = container_extract_indestructable(obj)))
@@ -2386,6 +2386,7 @@ int held;
 		if (yn("Try to open the container with another part of your body instead?") == 'y') {
 			if (rn2(3)) { 			
 				You_feel("a wrenching sensation.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				flags.soundok = 0;
 				nomul(-rnd(10), "wrenched in a container");

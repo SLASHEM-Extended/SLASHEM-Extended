@@ -524,6 +524,12 @@ giveback:
 		case RIN_FAILED_EXERCISE:
 		    pline("The water flows toward the drain but just can't seem to reach it!");
 		    break;
+		case RIN_AUTOCURSING:
+		    pline("The sink seems to be cursed!");
+		    break;
+		case RIN_TIME_SPENDING:
+		    pline("The sink seems to age rapidly!");
+		    break;
 		case RIN_FAST_METABOLISM:
 		    pline("The water vanishes down the drain incredibly quickly!");
 		    break;
@@ -3228,6 +3234,7 @@ rerollchaloc:
 		display_nhwindow(WIN_MESSAGE, FALSE);
 #endif
 		You_hear("groans and moans everywhere.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto konets vas, potomu chto net nikakogo sposoba dlya vas, chtoby vyzhit' beskonechnyye armii vysokogo urovnya nezhit'yu." : "Waeiaer-elauanar-wuuuuuoh.");
 	    } else pline("It is hot here.  You smell smoke...");
 
 #ifdef RECORD_ACHIEVE
@@ -3294,6 +3301,7 @@ rerollchaloc:
 	if (Is_knox(&u.uz) && (new || !mvitals[PM_CROESUS].died)) {
 		You("penetrated a high security area!");
 		pline("An alarm sounds!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kopy posle vas, i potomu chto eto Sovetskaya Rossiya, oni ne budut prosto arestovat' vas. Vmesto etogo oni sobirayutsya postavit' vas v kontslager'. Poveselis'." : "Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue!");
 		for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 		    if (!DEADMONSTER(mtmp) && mtmp->msleeping) mtmp->msleeping = 0;
 	}
@@ -3313,6 +3321,12 @@ rerollchaloc:
 	/* assume this will always return TRUE when changing level */
 	(void) in_out_region(u.ux, u.uy);
 	(void) pickup(1);
+
+	if (DisconnectedStairs || u.uprops[DISCONNECTED_STAIRS].extrinsic || have_disconnectstone()) {
+	      (void) safe_teleds(FALSE);
+		pline("The entrance was disconnected!");
+	}
+
 }
 
 STATIC_OVL void

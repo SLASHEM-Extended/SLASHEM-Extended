@@ -2547,6 +2547,66 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone())) {
+		Sprintf(buf, "the following problem: All actions take turns.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TimerunBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (DisconnectedStairs || u.uprops[DISCONNECTED_STAIRS].extrinsic || have_disconnectstone())) {
+		Sprintf(buf, "the following problem: Staircases are disconnected.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DisconnectedStairs);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) {
+		Sprintf(buf, "the following problem: The main game display does not update automatically.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", InterfaceScrewed);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone())) {
+		Sprintf(buf, "the following problem: Boss monsters spawn much more often.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Bossfights);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone())) {
+		Sprintf(buf, "the following problem: Monster types that used to be rare are common now.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", EntireLevelMode);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone())) {
+		Sprintf(buf, "the following problem: You always find or leave bones levels if possible.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BonesLevelChange);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		Sprintf(buf, "the following problem: Every item you put on automatically curses itself.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AutocursingEquipment);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone())) {
+		Sprintf(buf, "the following problem: Higher-level monsters are more likely to spawn.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HighlevelStatus);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone())) {
+		Sprintf(buf, "the following problem: Your spell memory decreases rapidly.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", SpellForgetting);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone())) {
+		Sprintf(buf, "the following problem: Things that happen will play 'sound effects'.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", SoundEffectBug);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (CaptchaProblem || u.uprops[CAPTCHA].extrinsic || have_captchastone())) {
 		Sprintf(buf, "the following problem: You sometimes have to solve captchas.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", CaptchaProblem);
@@ -4788,6 +4848,65 @@ int final;
 	if (UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone()) {
 		Sprintf(buf, "the following problem: The game gave insufficient amounts of information.");
 	      Sprintf(eos(buf), " (%d)", UninformationProblem);
+		dump(youhad, buf);
+	}
+	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
+		Sprintf(buf, "the following problem: All actions take turns.");
+	      Sprintf(eos(buf), " (%d)", TimerunBug);
+		dump(youhad, buf);
+	}
+
+	if (DisconnectedStairs || u.uprops[DISCONNECTED_STAIRS].extrinsic || have_disconnectstone()) {
+		Sprintf(buf, "the following problem: Staircases were disconnected.");
+	      Sprintf(eos(buf), " (%d)", DisconnectedStairs);
+		dump(youhad, buf);
+	}
+
+	if (InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone()) {
+		Sprintf(buf, "the following problem: The main game display did not update automatically.");
+	      Sprintf(eos(buf), " (%d)", InterfaceScrewed);
+		dump(youhad, buf);
+	}
+
+	if (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone()) {
+		Sprintf(buf, "the following problem: Boss monsters spawned much more often.");
+	      Sprintf(eos(buf), " (%d)", Bossfights);
+		dump(youhad, buf);
+	}
+
+	if (EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone()) {
+		Sprintf(buf, "the following problem: Monster types that used to be rare were common.");
+	      Sprintf(eos(buf), " (%d)", EntireLevelMode);
+		dump(youhad, buf);
+	}
+
+	if (BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone()) {
+		Sprintf(buf, "the following problem: You always found or left bones levels if possible.");
+	      Sprintf(eos(buf), " (%d)", BonesLevelChange);
+		dump(youhad, buf);
+	}
+
+	if (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone()) {
+		Sprintf(buf, "the following problem: Every item you put on automatically cursed itself.");
+	      Sprintf(eos(buf), " (%d)", AutocursingEquipment);
+		dump(youhad, buf);
+	}
+
+	if (HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone()) {
+		Sprintf(buf, "the following problem: Higher-level monsters were more likely to spawn.");
+	      Sprintf(eos(buf), " (%d)", HighlevelStatus);
+		dump(youhad, buf);
+	}
+
+	if (SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) {
+		Sprintf(buf, "the following problem: Your spell memory decreased rapidly.");
+	      Sprintf(eos(buf), " (%d)", SpellForgetting);
+		dump(youhad, buf);
+	}
+
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) {
+		Sprintf(buf, "the following problem: Things that happened would play 'sound effects'.");
+	      Sprintf(eos(buf), " (%d)", SoundEffectBug);
 		dump(youhad, buf);
 	}
 
@@ -8256,6 +8375,20 @@ click_to_cmd(x, y, mod)
     static char cmd[4];
     cmd[1]=0;
 
+	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
+	pline("The travel command is currently unavailable!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	cmd[0] = ' ';
+	return cmd;
+	}
+
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) {
+	pline("Your gloves prevent quicktravel!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	cmd[0] = ' ';
+	return cmd;
+	}
+
     x -= u.ux;
     y -= u.uy;
 
@@ -8514,6 +8647,12 @@ dotravel()
 
 	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The travel command is currently unavailable!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return 0;
+	}
+
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) {
+	pline("Your gloves prevent quicktravel!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}

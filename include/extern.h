@@ -317,12 +317,14 @@ E void FDECL(map_background, (XCHAR_P,XCHAR_P,int));
 E void FDECL(map_trap, (struct trap *,int));
 E void FDECL(map_object, (struct obj *,int));
 E void FDECL(map_invisible, (XCHAR_P,XCHAR_P));
+E void FDECL(map_invisibleX, (XCHAR_P,XCHAR_P));
 E void FDECL(unmap_object, (int,int));
 E void FDECL(map_location, (int,int,int));
 E int FDECL(memory_glyph, (int, int));
 E void FDECL(clear_memory_glyph, (int, int, int));
 E void FDECL(feel_location, (XCHAR_P,XCHAR_P));
 E void FDECL(newsym, (int,int));
+E void FDECL(newsymX, (int,int));
 E void FDECL(shieldeff, (XCHAR_P,XCHAR_P));
 E void FDECL(tmp_at, (int,int));
 #ifdef DISPLAY_LAYERS
@@ -332,6 +334,7 @@ E void FDECL(swallowed, (int));
 E void FDECL(under_ground, (int));
 E void FDECL(under_water, (int));
 E void NDECL(see_monsters);
+E void NDECL(see_monstersX);
 E void NDECL(set_mimic_blocking);
 E void NDECL(see_objects);
 E void NDECL(see_traps);
@@ -339,6 +342,7 @@ E void NDECL(curs_on_u);
 E int NDECL(doredraw);
 E void NDECL(docrt);
 E void FDECL(show_glyph, (int,int,int));
+E void FDECL(show_glyphX, (int,int,int));
 E void NDECL(clear_glyph_buffer);
 E void FDECL(row_refresh, (int,int,int));
 E void NDECL(cls);
@@ -465,7 +469,6 @@ E struct obj *NDECL(unchanger);
 E void NDECL(reset_remarm);
 E int NDECL(doddoremarm);
 E int FDECL(destroy_arm, (struct obj *));
-E void FDECL(adj_abon, (struct obj *,SCHAR_P));
 E int FDECL(dowear2, (const char *, const char *));
 
 /* ### dog.c ### */
@@ -1002,6 +1005,17 @@ E boolean NDECL(have_exercisestone);
 E boolean NDECL(have_limitationstone);
 E boolean NDECL(have_weaksightstone);
 E boolean NDECL(have_messagestone);
+
+E boolean NDECL(have_disconnectstone);
+E boolean NDECL(have_interfacescrewstone);
+E boolean NDECL(have_bossfightstone);
+E boolean NDECL(have_entirelevelstone);
+E boolean NDECL(have_bonestone);
+E boolean NDECL(have_autocursestone);
+E boolean NDECL(have_highlevelstone);
+E boolean NDECL(have_spellforgettingstone);
+E boolean NDECL(have_soundeffectstone);
+E boolean NDECL(have_timerunstone);
 
 E boolean NDECL(have_primecurse);
 

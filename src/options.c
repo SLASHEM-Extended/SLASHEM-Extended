@@ -3330,7 +3330,7 @@ doset()
 	    } else {
 		showsyms[S_darkroom]=showsyms[S_stone];
 	    }
- 	    (void) doredraw();
+ 	    if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void) doredraw();
 	}
 	return 0;
 }

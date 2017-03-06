@@ -476,7 +476,7 @@ long mask;	/* nonzero if resistance status should change by mask */
 	    flags.botl = 1;
 	    if (talk) pline(message, verb);
 
-	    (void) doredraw();
+	    if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void) doredraw();
 
 	}
 	return changed;
@@ -788,6 +788,7 @@ badeffect()
 		case 131:
 		case 132:
 		You_feel("that monsters are aware of your presence.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
 		aggravate();
 
 		break;
@@ -798,6 +799,7 @@ badeffect()
 		case 136:
 		case 137:
 		You_feel("as if you need some help.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 		rndcurse();
 
 		break;
@@ -977,6 +979,7 @@ badeffect()
 		case 198:
 		case 199:
 		pline("You lose  Mana");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha magicheskaya energiya udalyayetsya v nastoyashcheye vremya. Skoro on budet raven nulyu, a zatem vy dolzhny igrat' bez zaklinaniy, potomu chto vy sosat', GA GA GA!" : "Due-l-ue-l-ue-l!");
 		drain_en(rnz(monster_difficulty() + 1) );
 		break;
 
@@ -1438,7 +1441,7 @@ badeffect()
 		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
 		if (!blackngdur ) blackngdur = 500; /* fail safe */
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1551,6 +1554,16 @@ badeffect()
 			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 
@@ -1568,6 +1581,7 @@ badeffect()
 		case 288:
 		    adjalign(-rnd(20));
 		    if (flags.soundok) You_hear("a slight rumbling...");
+		    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Pomolis'! Vash bog, bezuslovno, pomozhet vam!" : "Wumm.");
 
 		break;
 
@@ -1577,6 +1591,7 @@ badeffect()
 			u.ualign.sins++;
 			u.alignlim--;
 		    if (flags.soundok) You_hear("a thunderous rumbling!");
+		    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Seychas ideal'noye vremya dlya molitvy! Vash bog super schastliv s toboy i, bezuslovno, vylechit' vse bolezni i predostavit' vam moshchnyy punkt!" : "Wummmmm! Wummmmm! Grummel!");
 
 		break;
 
@@ -1644,6 +1659,7 @@ badeffect()
 		case 318:
 		case 319:
 			pline("A laser beam hits you out of nowhere!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy poteryali linii!" : "DWUEUEUET!");
 			losehp(monster_difficulty(),"laser beam out of nowhere",KILLED_BY_AN);
 
 		break;
@@ -1673,6 +1689,7 @@ badeffect()
 
 		case 323:
 			You("need reboot.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
 			else polyself(FALSE);
 		break;
@@ -1684,6 +1701,7 @@ badeffect()
 				You(Blind ? "%s and get dizzy..." :
 					 "%s and your vision blurs...",
 					    stagger(youmonst.data, "stagger"));
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 			make_stunned(HStun + rn1(7,16) + monster_difficulty(), FALSE);
 			(void) make_hallucinated(HHallucination + rn1(7,16) + monster_difficulty(),TRUE,0L);
 
@@ -1709,6 +1727,7 @@ badeffect()
 
 			    if (objD && drain_item(objD)) {
 				Your("%s less effective.", aobjnam(objD, "seem"));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
 
@@ -1783,6 +1802,7 @@ badeffect()
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -2747,6 +2767,7 @@ peffects(otmp)
 		    else
 			Your("%s are frozen to the %s!",
 			     makeplural(body_part(FOOT)), surface(u.ux, u.uy));
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		    nomul(-(rn1(10, 25 - 12*bcsign(otmp))), "frozen by a potion");
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);
@@ -4362,6 +4383,7 @@ register struct obj *obj;
 		kn++;
 		if (!Free_action) {
 		    pline("%s seems to be holding you.", Something);
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		    nomul(-rnd(5), "frozen by breathing a potion");
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);

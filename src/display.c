@@ -119,8 +119,10 @@
 #include "region.h"
 
 STATIC_DCL void FDECL(display_monster,(XCHAR_P,XCHAR_P,struct monst *,int,XCHAR_P));
+STATIC_DCL void FDECL(display_monsterX,(XCHAR_P,XCHAR_P,struct monst *,int,XCHAR_P));
 STATIC_DCL int FDECL(swallow_to_glyph, (int, int));
 STATIC_DCL void FDECL(display_warning,(struct monst *));
+STATIC_DCL void FDECL(display_warningX,(struct monst *));
 
 STATIC_DCL int FDECL(check_pos, (int, int, int));
 #ifdef WA_VERBOSE
@@ -303,6 +305,21 @@ register xchar x, y;
 	    levl[x][y].glyph = GLYPH_INVISIBLE;
 #endif
 	show_glyph(x, y, GLYPH_INVISIBLE);
+    }
+}
+
+void
+map_invisibleX(x, y)
+register xchar x, y;
+{
+    if (x != u.ux || y != u.uy) { /* don't display I at hero's location */
+	if (level.flags.hero_memory)
+#ifdef DISPLAY_LAYERS
+	    levl[x][y].mem_invis = 1;
+#else
+	    levl[x][y].glyph = GLYPH_INVISIBLE;
+#endif
+	show_glyphX(x, y, GLYPH_INVISIBLE);
     }
 }
 
@@ -538,6 +555,98 @@ display_monster(x, y, mon, sightflags, worm_tail)
 	show_glyph(x,y,num);
     }
 }
+
+STATIC_OVL void
+display_monsterX(x, y, mon, sightflags, worm_tail)
+    register xchar x, y;	/* display position */
+    register struct monst *mon;	/* monster to display */
+    int sightflags;		/* 1 if the monster is physically seen */
+    				/* 2 if detected using Detect_monsters */
+    register xchar worm_tail;	/* mon is actually a worm tail */
+{
+    register boolean mon_mimic = (mon->m_ap_type != M_AP_NOTHING);
+    register int sensed = mon_mimic &&
+	( (Protection_from_shape_changers && !permamimic(mon->data) && !(mon->egotype_permamimic) ) || sensemon(mon));
+    /*
+     * We must do the mimic check first.  If the mimic is mimicing something,
+     * and the location is in sight, we have to change the hero's memory
+     * so that when the position is out of sight, the hero remembers what
+     * the mimic was mimicing.
+     */
+
+    if (mon_mimic && (sightflags == PHYSICALLY_SEEN)) {
+	switch (mon->m_ap_type) {
+	    default:
+		impossible("display_monster:  bad m_ap_type value [ = %d ]",
+							(int) mon->m_ap_type);
+	    case M_AP_NOTHING:
+		show_glyphX(x, y, mon_to_glyph(mon));
+		break;
+
+	    case M_AP_FURNITURE: {
+		/*
+		 * This is a poor man's version of map_background().  I can't
+		 * use map_background() because we are overriding what is in
+		 * the 'typ' field.  Maybe have map_background()'s parameters
+		 * be (x,y,glyph) instead of just (x,y).
+		 *
+		 * mappearance is currently set to an S_ index value in
+		 * makemon.c.
+		 */
+		register int glyph = cmap_to_glyph(mon->mappearance);
+#ifdef DISPLAY_LAYERS
+		levl[x][y].mem_bg = mon->mappearance;
+#else
+		levl[x][y].glyph = glyph;
+#endif
+		if (!sensed) show_glyphX(x,y, glyph);
+		break;
+	    }
+
+	    case M_AP_OBJECT: {
+		struct obj obj;	/* Make a fake object to send	*/
+				/* to map_object().		*/
+		obj.ox = x;
+		obj.oy = y;
+		obj.otyp = mon->mappearance;
+		obj.corpsenm = PM_TENGU;	/* if mimicing a corpse */
+		map_object(&obj,!sensed);
+		break;
+	    }
+
+	    case M_AP_MONSTER:
+		show_glyphX(x,y, monnum_to_glyph(what_mon((int)mon->mappearance)));
+		break;
+	}
+	
+    }
+
+    /* If the mimic is unsucessfully mimicing something, display the monster */
+    if (!mon_mimic || sensed) {
+	int num;
+
+	/* [ALI] Only use detected glyphs when monster wouldn't be
+	 * visible by any other means.
+	 */
+	if (sightflags == DETECTED) {
+	    if (worm_tail)
+		num = detected_monnum_to_glyph(what_mon(PM_LONG_WORM_TAIL));
+	    else
+		num = detected_mon_to_glyph(mon);
+	} else if (mon->mtame && !Hallucination) {
+	    if (worm_tail)
+		num = petnum_to_glyph(PM_LONG_WORM_TAIL);
+	    else
+		num = pet_to_glyph(mon);
+	} else {
+	    if (worm_tail)
+		num = monnum_to_glyph(what_mon(PM_LONG_WORM_TAIL));
+	    else
+		num = mon_to_glyph(mon);
+	}
+	show_glyphX(x,y,num);
+    }
+}
 /*
  * display_warning()
  *
@@ -569,6 +678,30 @@ display_warning(mon)
         return;
     }
     show_glyph(x, y, glyph);
+}
+
+STATIC_OVL void
+display_warningX(mon)
+    register struct monst *mon;
+{
+    int x = mon->mx, y = mon->my;
+    int wl = (int) (mon->m_lev / 6);
+    int glyph;
+
+    if (mon_warning(mon)) {
+        if (wl > WARNCOUNT - 1) wl = WARNCOUNT - 1;
+	/* 3.4.1: this really ought to be rn2(WARNCOUNT), but value "0"
+	   isn't handled correctly by the what_is routine so avoid it 
+	if (Hallucination) wl = rn1(WARNCOUNT-1,1);*/
+	if (Hallucination) wl = rn2(WARNCOUNT); /* seems the error was a 1 in pager.c where it's supposed to be a 0 --Amy */
+        glyph = warning_to_glyph(wl);
+    } else if (MATCH_WARN_OF_MON(mon)) {
+	glyph = mon_to_glyph(mon);
+    } else {
+    	impossible("display_warning did not match warning type?");
+        return;
+    }
+    show_glyphX(x, y, glyph);
 }
 
 /*
@@ -896,6 +1029,157 @@ newsym(x,y)
 	} else {
 show_mem:
 	    show_glyph(x, y, memory_glyph(x, y));
+	}
+    }
+}
+
+void
+newsymX(x,y)
+    register int x,y;
+{
+    register struct monst *mon;
+    register struct rm *lev = &(levl[x][y]);
+    register int see_it;
+    register xchar worm_tail;
+
+    if (in_mklev) return;
+	if ( (Superscroller || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_SPLINTER_ARMAMENT) || (uarm && uarm->oartifact == ART_TAPE_ARMAMENT) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uarmc && uarmc->oartifact == ART_VEIL_OF_MINISTRY) || u.uprops[SUPERSCROLLER_ACTIVE].extrinsic || have_superscrollerstone() ) && rn2(10) ) { show_glyphX(x, y, cmap_to_glyph(S_stone)); return;}
+
+    /* only permit updating the hero when swallowed */
+    if (u.uswallow) {
+	if (x == u.ux && y == u.uy) display_self();
+	return;
+    }
+    if (Underwater && !Is_waterlevel(&u.uz)) {
+	/* don't do anything unless (x,y) is an adjacent underwater position */
+	int dx, dy;
+	if (!is_pool(x,y)) return;
+	dx = x - u.ux;	if (dx < 0) dx = -dx;
+	dy = y - u.uy;	if (dy < 0) dy = -dy;
+	if (dx > 1 || dy > 1) return;
+    }
+
+    /* Can physically see the location. */
+    if (cansee(x,y)) {
+        NhRegion* reg = visible_region_at(x,y);
+	/*
+	 * Don't use templit here:  E.g.
+	 *
+	 *	lev->waslit = !!(lev->lit || templit(x,y));
+	 *
+	 * Otherwise we have the "light pool" problem, where non-permanently
+	 * lit areas just out of sight stay remembered as lit.  They should
+	 * re-darken.
+	 *
+	 * Perhaps ALL areas should revert to their "unlit" look when
+	 * out of sight.
+	 */
+	lev->waslit = (lev->lit!=0);	/* remember lit condition */
+
+	if (reg != NULL && ACCESSIBLE(lev->typ)) {
+	    show_region(reg,x,y);
+	    return;
+	}
+	if (x == u.ux && y == u.uy) {
+	    if (senseself()) {
+		_map_location(x,y,0);	/* map *under* self */
+		display_self();
+	    } else
+		/* we can see what is there */
+		_map_location(x,y,1);
+	}
+	else {
+	    mon = m_at(x,y);
+	    worm_tail = is_worm_tail(mon);
+	    see_it = mon && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING && !mon_visible(mon) ) && (worm_tail
+		? ((!mon->minvis || See_invisible) && !mon->minvisreal)
+		: (mon_visible(mon)) || tp_sensemon(mon) || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) /*|| (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) ) || (uarmh && uarmh->otyp == HELMET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) )*/ || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (Race_if(PM_CORTEX) && unsolid(mon->data) ) || (Race_if(PM_CORTEX) && nolimbs(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) || (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) || (Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) || ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) || (RngeInternetAccess && (mon)->mhp % 9 == 0) || (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) || (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) || (Sickopathy && Sick && extra_nasty(mon->data) ) || (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) || (Burnopathy && Burned && infravision(mon->data) ) || (Dimmopathy && Dimmed && mon->m_lev > u.ulevel) || (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) || (Race_if(PM_RODNEYAN) && mon_has_special(mon)) || (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) || (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) || (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) || (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) || (uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) || (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) || (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) || (isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) )  );
+	    if (mon && (see_it || (!worm_tail && Detect_monsters))) {
+		if (mon->mtrapped) {
+		    struct trap *trap = t_at(x, y);
+		    int tt = trap ? trap->ttyp : NO_TRAP;
+
+		    /* if monster is in a physical trap, you see the trap too */
+		    if (trap && (tt == BEAR_TRAP || tt == PIT ||
+			tt == SPIKED_PIT || tt == GIANT_CHASM || tt == SHIT_PIT || tt == MANA_PIT || tt == WEB) && (trap && !trap->hiddentrap)) {
+			trap->tseen = TRUE;
+		    }
+		}
+		_map_location(x,y,0);	/* map under the monster */
+		/* also gets rid of any invisibility glyph */
+		display_monsterX(x, y, mon, see_it? PHYSICALLY_SEEN : DETECTED, worm_tail);
+	    }
+	    else if (mon && mon_warning(mon) && !is_worm_tail(mon))
+	        display_warningX(mon);
+	    else if (memory_is_invisible(x,y))
+		map_invisibleX(x, y);
+	    else
+		_map_location(x,y,1);	/* map the location */
+	}
+    }
+
+    /* Can't see the location. */
+    else {
+	if (x == u.ux && y == u.uy) {
+	    feel_location(u.ux, u.uy);		/* forces an update */
+
+	    if (senseself()) display_self();
+	}
+	else if ((mon = m_at(x,y)) && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING)
+		&& ((see_it = (tp_sensemon(mon) || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) 	/*|| (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) ) || (uarmh && uarmh->otyp == HELMET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) )*/ || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (Race_if(PM_CORTEX) && unsolid(mon->data) ) || (Race_if(PM_CORTEX) && nolimbs(mon->data) ) || (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) || (Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) || ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) || (RngeInternetAccess && (mon)->mhp % 9 == 0) || (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) || (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) || (Sickopathy && Sick && extra_nasty(mon->data) ) || (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) || (Burnopathy && Burned && infravision(mon->data) ) || (Dimmopathy && Dimmed && mon->m_lev > u.ulevel) || (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) || (Race_if(PM_RODNEYAN) && mon_has_special(mon)) || (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) || (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) || (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) || (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) || (uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) || (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) || (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) || (isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) ) 	    		|| (see_with_infrared(mon) && mon_visible(mon))))
+		    || Detect_monsters)
+		&& !is_worm_tail(mon)) {
+	    /* Monsters are printed every time. */
+	    /* This also gets rid of any invisibility glyph */
+	    display_monsterX(x, y, mon, see_it ? 0 : DETECTED, 0);
+	}
+	else if ((mon = m_at(x,y)) && mon_warning(mon) &&
+		 !is_worm_tail(mon)) {
+	        display_warningX(mon);
+	}		
+
+	/*
+	 * If the location is remembered as being both dark (waslit is false)
+	 * and lit (glyph is a lit room or lit corridor) then it was either:
+	 *
+	 *	(1) A dark location that the hero could see through night
+	 *	    vision.
+	 *
+	 *	(2) Darkened while out of the hero's sight.  This can happen
+	 *	    when cursed scroll of light is read.
+	 *
+	 * In either case, we have to manually correct the hero's memory to
+	 * match waslit.  Deciding when to change waslit is non-trivial.
+	 *
+	 *  Note:  If flags.lit_corridor is set, then corridors act like room
+	 *	   squares.  That is, they light up if in night vision range.
+	 *	   If flags.lit_corridor is not set, then corridors will
+	 *	   remain dark unless lit by a light spell and may darken
+	 *	   again, as discussed above.
+	 *
+	 * These checks and changes must be here and not in back_to_glyph().
+	 * They are dependent on the position being out of sight.
+	 */
+	else if (!lev->waslit) {
+#ifdef DISPLAY_LAYERS
+	    if (lev->mem_bg == S_litcorr && lev->typ == CORR) {
+		lev->mem_bg = S_corr;
+		show_glyphX(x, y, memory_glyph(x, y));
+	    } else if (lev->mem_bg == S_room && lev->typ == ROOM) {
+		lev->mem_bg = S_darkroom;
+		show_glyphX(x, y, memory_glyph(x, y));
+	    }
+#else	/* DISPLAY_LAYERS */
+	    if (lev->glyph == cmap_to_glyph(S_litcorr) && lev->typ == CORR)
+		show_glyphX(x, y, lev->glyph = cmap_to_glyph(S_corr));
+	    else if (lev->glyph == cmap_to_glyph(S_room) && lev->typ == ROOM)
+		show_glyphX(x, y, lev->glyph = cmap_to_glyph(S_darkroom));
+#endif	/* DISPLAY_LAYERS */
+	    else
+		goto show_mem;
+	} else {
+show_mem:
+	    show_glyphX(x, y, memory_glyph(x, y));
 	}
     }
 }
@@ -1263,6 +1547,23 @@ see_monsters()
     newsym(u.ux, u.uy);
 }
 
+void
+see_monstersX()
+{
+    register struct monst *mon;
+
+    if (defer_see_monsters) return;
+
+    for (mon = fmon; mon; mon = mon->nmon) {
+	if (DEADMONSTER(mon)) continue;
+	newsymX(mon->mx,mon->my);
+	if (mon->wormno) see_wsegs(mon);
+    }
+    /* when mounted, hero's location gets caught by monster loop */
+    if (!u.usteed)
+    newsymX(u.ux, u.uy);
+}
+
 /*
  * Block/unblock light depending on what a mimic is mimicing and if it's
  * invisible or not.  Should be called only when the state of See_invisible
@@ -1295,6 +1596,7 @@ void
 see_objects()
 {
     register struct obj *obj;
+
     for(obj = fobj; obj; obj = obj->nobj)
 	if (vobj_at(obj->ox,obj->oy) == obj) newsym(obj->ox, obj->oy);
 }
@@ -1328,6 +1630,7 @@ int
 doredraw()
 {
     docrt();
+	if (InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone()) vision_recalc(5);
     return 0;
 }
 
@@ -1376,14 +1679,14 @@ docrt()
 	lev = &levl[x][0];
 	for (y = 0; y < ROWNO; y++, lev++)
 	    if ((glyph = memory_glyph(x,y)) != cmap_to_glyph(S_stone))
-		show_glyph(x,y,glyph);
+		show_glyphX(x,y,glyph);
     }
 
     /* see what is to be seen */
     vision_recalc(0);
 
     /* overlay with monsters */
-    see_monsters();
+    see_monstersX();
 
     flags.botlx = 1;	/* force a redraw of the bottom line */
 
@@ -1512,6 +1815,9 @@ show_glyph(x,y,glyph)
     /*
      * Check for bad positions and glyphs.
      */
+
+	if (InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone()) return;
+
     if (!isok(x, y)) {
 	const char *text;
 	int  offset;
@@ -1578,6 +1884,79 @@ show_glyph(x,y,glyph)
     }
 }
 
+/* show_glyph function for interface screw trap --Amy */
+void
+show_glyphX(x,y,glyph)
+    int x, y, glyph;
+{
+    /*
+     * Check for bad positions and glyphs.
+     */
+    if (!isok(x, y)) {
+	const char *text;
+	int  offset;
+
+	/* column 0 is invalid, but it's often used as a flag, so ignore it */
+	if (x == 0) return;
+
+	/*
+	 *  This assumes an ordering of the offsets.  See display.h for
+	 *  the definition.
+	 */
+
+	if (glyph >= GLYPH_WARNING_OFF) {	/* a warning */
+	    text = "warning";		offset = glyph - GLYPH_WARNING_OFF;
+	} else if (glyph >= GLYPH_SWALLOW_OFF) {	/* swallow border */
+	    text = "swallow border";	offset = glyph - GLYPH_SWALLOW_OFF;
+	} else if (glyph >= GLYPH_ZAP_OFF) {		/* zap beam */
+	    text = "zap beam";		offset = glyph - GLYPH_ZAP_OFF;
+	} else if (glyph >= GLYPH_EXPLODE_OFF) {	/* explosion */
+	    text = "explosion";		offset = glyph - GLYPH_EXPLODE_OFF;
+	} else if (glyph >= GLYPH_CMAP_OFF) {		/* cmap */
+	    text = "cmap_index";	offset = glyph - GLYPH_CMAP_OFF;
+	} else if (glyph >= GLYPH_OBJ_OFF) {		/* object */
+	    text = "object";		offset = glyph - GLYPH_OBJ_OFF;
+	} else if (glyph >= GLYPH_RIDDEN_OFF) {		/* ridden mon */
+	    text = "ridden mon";	offset = glyph - GLYPH_RIDDEN_OFF;
+	} else if (glyph >= GLYPH_BODY_OFF) {		/* a corpse */
+	    text = "corpse";		offset = glyph - GLYPH_BODY_OFF;
+	} else if (glyph >= GLYPH_DETECT_OFF) {		/* detected mon */
+	    text = "detected mon";	offset = glyph - GLYPH_DETECT_OFF;
+	} else if (glyph >= GLYPH_INVIS_OFF) {		/* invisible mon */
+	    text = "invisible mon";	offset = glyph - GLYPH_INVIS_OFF;
+	} else if (glyph >= GLYPH_PET_OFF) {		/* a pet */
+	    text = "pet";		offset = glyph - GLYPH_PET_OFF;
+	} else {					/* a monster */
+	    text = "monster";		offset = glyph;
+	}
+
+	impossible("show_glyph:  bad pos %d %d with glyph %d [%s %d].",
+						x, y, glyph, text, offset);
+	return;
+    }
+
+	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) && !(glyph >= (GLYPH_CMAP_OFF + 19) && glyph < (GLYPH_CMAP_OFF + 23) ) )
+	return;
+
+    if (glyph >= MAX_GLYPH) {
+	impossible("show_glyph:  bad glyph %d [max %d] at (%d,%d).",
+					glyph, MAX_GLYPH, x, y);
+	return;
+    }
+
+    /* [ALI] In transparent mode it is not sufficient just to consider
+     * the foreground glyph, we also need to consider the background.
+     * Rather than extend the display module to do this, for the time
+     * being we just turn off optimization and rely on the windowing port
+     * to ignore redundant calls to print_glyph().
+     */
+    if (transp || gbuf[y][x].glyph != glyph) {
+	gbuf[y][x].glyph = glyph;
+	gbuf[y][x].new   = 1;
+	if (gbuf_start[y] > x) gbuf_start[y] = x;
+	if (gbuf_stop[y]  < x) gbuf_stop[y]  = x;
+    }
+}
 
 /*
  * Reset the changed glyph borders so that none of the 3rd screen has

@@ -1380,6 +1380,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 			pline("A shaft opens up under you!");
 		else 
 			pline("There's a gaping hole under you!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dobro pozhalovat' v kakoy-to gorazdo boleye opasnyy uroven'! Udachi vam, vy, veroyatno, ne budet zdes' vyzhit' v lyubom sluchaye." : "Schlueing!");
 	    }
 	} else pline_The("%s opens up under you!", surface(u.ux,u.uy));
 
@@ -1450,6 +1451,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 			pline("A shaft opens up under you!");
 		else 
 			pline("There's a gaping hole under you!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dobro pozhalovat' v kakoy-to gorazdo boleye opasnyy uroven'! Udachi vam, vy, veroyatno, ne budet zdes' vyzhit' v lyubom sluchaye." : "Schlueing!");
 	    }
 	} else pline_The("%s opens up under you!", surface(u.ux,u.uy));
 
@@ -1620,7 +1622,7 @@ int *fail_reason;
 	}
 	/* avoid hiding under nothing */
 	if (x == u.ux && y == u.uy &&
-		Upolyd && (hides_under(youmonst.data) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) && !OBJ_AT(x, y))
+		Upolyd && (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) && !OBJ_AT(x, y))
 	    u.uundetected = 0;
 
 	if (fail_reason) *fail_reason = AS_OK;
@@ -1728,7 +1730,12 @@ unsigned trflags;
 	/* Traps are 50% more likely to fail for a pickpocket */
 	if (!In_sokoban(&u.uz) && Role_if(PM_PICKPOCKET) && rn2(2)) return;
 
-	nomul(0, 0);
+	/* Players could deduce the position of a nasty trap by running in a corridor. This would probably come into effect
+	 * rarely, but the fact that it was possible at all was unintentional, so I'm closing this loophole just to cover
+	 * my butt. Nasty traps are supposed to be really difficult to spot! --Amy */
+	if (ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != UNINFORMATION_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != LASER_TRAP &&
+		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP)
+		nomul(0, 0);
 
 	if (u.uprops[INVIS_TRAPS_EFFECT].extrinsic || InvisibleTrapsEffect || have_invisostone() ) {
 		trap->tseen = 0;
@@ -1758,8 +1765,8 @@ unsigned trflags;
 		    defsyms[trap_to_defsym(ttype)].explanation);
 		return;
 	    }
-	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != UNINFORMATION_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != LASER_TRAP &&
-		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && !forcebungle &&
+	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != UNINFORMATION_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != LASER_TRAP &&
+		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP && !forcebungle &&
 		(!rn2(5) ||
 	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT) && is_clinger(youmonst.data)))) {
 		You("escape %s %s.",
@@ -2294,6 +2301,7 @@ unsigned trflags;
 		seetrap(trap);
 		if (!Free_action) {
 		    pline("You are frozen in place!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		    nomul(-rnz(10), "frozen by a paralysis trap");
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);
@@ -2361,6 +2369,7 @@ unsigned trflags;
 	        num = d(4, 4) + rnd((monster_difficulty() / 2) + 1);
 
 	        pline("You are sprayed with acid!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vasha glupaya bronya budet korroziyey, potomu chto vy ne sledite glupyy igrok durak." : "Tsch-tschhh-hhh!");
 		if (Stoned) fix_petrification();
 	        if (Acid_resistance) {
                 shieldeff(u.ux, u.uy);
@@ -2544,6 +2553,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		seetrap(trap);
 		pline("You stepped on a trigger!");
 		pline("A laser beam hits you!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy poteryali linii!" : "DWUEUEUET!");
 		losehp(monster_difficulty(),"laser trap",KILLED_BY_AN);
 		break;
 
@@ -3305,6 +3315,7 @@ newegomon:
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
+						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
 						nomul(-rnd(10), "paralyzed by a sin trap");
 						exercise(A_DEX, FALSE);
@@ -3403,6 +3414,7 @@ newegomon:
 				break;
 			case 6: /* envy */
 				if (flags.soundok) You_hear("a chuckling laughter.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 			      attrcurse();
 			      attrcurse();
 				break;
@@ -3440,6 +3452,7 @@ newegomon:
 				break;
 			    case 2:
 				You("need reboot.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 				if (!Race_if(PM_UNGENOMOLD)) newman();
 				else polyself(FALSE);
 				break;
@@ -3484,6 +3497,7 @@ newegomon:
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
 					nomul(-rnd(10), "paralyzed by a sin trap");
 					exercise(A_DEX, FALSE);
@@ -3497,6 +3511,7 @@ newegomon:
 					You(Blind ? "%s and get dizzy..." :
 						 "%s and your vision blurs...",
 						    stagger(youmonst.data, "stagger"));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 				dmg = rn1(7, 16);
 				make_stunned(HStun + dmg + monster_difficulty(), FALSE);
 				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
@@ -3520,6 +3535,7 @@ newegomon:
 	
 				    if (objD && drain_item(objD)) {
 					Your("%s less effective.", aobjnam(objD, "seem"));
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				    }
 				}
 				break;
@@ -4118,6 +4134,7 @@ newegomon:
 		case 3:
 			if (!Free_action) {
 			pline("Suddenly you are frozen in place!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomul(-d(5, 6), "frozen by a lock trap");
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
@@ -4136,6 +4153,7 @@ newegomon:
 			    else
 				You("%s and your vision blurs...",
 				    stagger(youmonst.data, "stagger"));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 			}
 			make_stunned(HStun + rn1(7, 16) + rnd((monster_difficulty() / 2) + 1),FALSE);
 			(void) make_hallucinated(HHallucination + rn1(5, 16) + rnd((monster_difficulty() / 2) + 1),FALSE,0L);
@@ -4226,6 +4244,7 @@ newegomon:
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -4437,7 +4456,7 @@ newegomon:
 		}
 
 		pline("It seems a little more dangerous here now...");
-		doredraw();
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
 
 		}
 
@@ -5952,6 +5971,86 @@ newegomon:
 
 		 break;
 
+		 case TIMERUN_TRAP:
+
+			if (TimerunBug) break;
+
+			TimerunBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case DISCONNECT_TRAP:
+
+			if (DisconnectedStairs) break;
+
+			DisconnectedStairs = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case INTERFACE_SCREW_TRAP:
+
+			if (InterfaceScrewed) break;
+
+			InterfaceScrewed = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case BOSSFIGHT_TRAP:
+
+			if (Bossfights) break;
+
+			Bossfights = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case ENTIRE_LEVEL_TRAP:
+
+			if (EntireLevelMode) break;
+
+			EntireLevelMode = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case BONES_TRAP:
+
+			if (BonesLevelChange) break;
+
+			BonesLevelChange = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case AUTOCURSE_TRAP:
+
+			if (AutocursingEquipment) break;
+
+			AutocursingEquipment = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case HIGHLEVEL_TRAP:
+
+			if (HighlevelStatus) break;
+
+			HighlevelStatus = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case SPELL_FORGETTING_TRAP:
+
+			if (SpellForgetting) break;
+
+			SpellForgetting = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case SOUND_EFFECT_TRAP:
+
+			if (SoundEffectBug) break;
+
+			SoundEffectBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
 		 case FARLOOK_TRAP:
 
 			if (FarlookProblem) break;
@@ -5976,6 +6075,34 @@ newegomon:
 
 		 break;
 
+		 case DIMNESS_TRAP:
+
+			pline("A dim glow surrounds you...");
+			seetrap(trap);
+			make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+
+		 break;
+
+		 case EVIL_ARTIFACT_TRAP:
+
+			pline("CLICK! You have triggered a trap!");
+			bad_artifact();
+			deltrap(trap);
+
+		 break;
+
+		 case RODNEY_TRAP:
+
+			pline("CLICK! You have triggered a trap!");
+			seetrap(trap);
+			if (!u.uevent.udemigod) {
+				u.uevent.udemigod = TRUE;
+				u.udg_cnt = rn1(250, 50);
+				pline("You can listen to Rodney's taunts inside your head...");
+			} else pline("But nothing happens.");
+
+		 break;
+
 		case RECURSION_TRAP:
 			pline("CLICK! You have triggered a trap!");
 			deltrap(trap);
@@ -5994,6 +6121,7 @@ newegomon:
 
 			if (!rn2(5)) {
 				You_hear("maniacal laughter!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 				attrcurse();
 			}
 
@@ -6376,7 +6504,7 @@ newegomon:
 
 		 case NASTINESS_TRAP:
 
-			switch (rnd(85)) {
+			switch (rnd(95)) {
 
 				case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -6490,6 +6618,16 @@ newegomon:
 				case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			}
 
 			if (NastinessProblem) break;
@@ -7067,7 +7205,7 @@ newegomon:
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug ) {
 
 			RMBLoss = 0L;
 			DisplayLoss = 0L;
@@ -7100,6 +7238,7 @@ newegomon:
 			AlignmentProblem = 0L;
 			StairsProblem = 0L;
 			UninformationProblem = 0L;
+			TimerunBug = 0L;
 			IntrinsicLossProblem = 0L;
 			BloodLossProblem = 0L;
 			BadEffectProblem = 0L;
@@ -7154,6 +7293,15 @@ newegomon:
 			CrapEffect = 0L;
 			ProjectilesMisfire = 0L;
 			WallTrapping = 0L;
+			DisconnectedStairs = 0L;
+			InterfaceScrewed = 0L;
+			Bossfights = 0L;
+			EntireLevelMode = 0L;
+			BonesLevelChange = 0L;
+			AutocursingEquipment = 0L;
+			HighlevelStatus = 0L;
+			SpellForgetting = 0L;
+			SoundEffectBug = 0L;
 			deltrap(trap); /* used up if anything was cured */
 
 			}
@@ -9267,6 +9415,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case STATUS_TRAP:
 		case ALIGNMENT_TRAP:
 		case UNINFORMATION_TRAP:
+		case TIMERUN_TRAP:
 		case INTRINSIC_LOSS_TRAP:
 		case BLOOD_LOSS_TRAP:
 		case BAD_EFFECT_TRAP:
@@ -9274,6 +9423,19 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case AUTO_VULN_TRAP:
 		case TELE_ITEMS_TRAP:
 		case NASTINESS_TRAP:
+
+		case DISCONNECT_TRAP:
+		case INTERFACE_SCREW_TRAP:
+		case DIMNESS_TRAP:
+		case EVIL_ARTIFACT_TRAP:
+		case BOSSFIGHT_TRAP:
+		case ENTIRE_LEVEL_TRAP:
+		case BONES_TRAP:
+		case RODNEY_TRAP:
+		case AUTOCURSE_TRAP:
+		case HIGHLEVEL_TRAP:
+		case SPELL_FORGETTING_TRAP:
+		case SOUND_EFFECT_TRAP:
 
 		case PESTILENCE_TRAP:
 		case FAMINE_TRAP:
@@ -9540,7 +9702,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 				break; /* otherwise the effing deltrap below causes segfaults! ARGH!!! */
 			}
 		    }
-			if (!rn2(5)) deltrap(trap); /* this should tone down abuse potential --Amy */
+			if (trap && !rn2(5)) deltrap(trap); /* this should tone down abuse potential --Amy */
 		    break;
 
 		case SPEAR_TRAP:
@@ -9623,7 +9785,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		    newsym(u.ux,u.uy);
 			break; /* otherwise the second deltrap could cause segfaults */
 		}
-		if (!rn2(7)) deltrap(trap); /* making sure monsters don't get killed over and over --Amy */
+		if (trap && !rn2(7)) deltrap(trap); /* making sure monsters don't get killed over and over --Amy */
 		break;
 
 		default:
@@ -9730,6 +9892,9 @@ uunstone()
 	    else
 		pline("What a pity - you just ruined a future piece of %sart!",
 		      ACURR(A_CHA) > 15 ? "fine " : "");
+
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy tol'ko otsrochila neizbezhnoye i v konechnom schete zakonchatsya pobivaniye kamnyami lecheniy." : "Schwueing!");
+
 		/* The problem was fixed */
 		return (1);
 	}
@@ -9999,6 +10164,7 @@ struct obj *box;        /* at the moment only for floor traps */
 			if (!rn2(3)) {
 				if (!Free_action) {
 				    pline("You are frozen in place!");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				    nomul(-rnz(10), "frozen by a volt trap");
 				    nomovemsg = You_can_move_again;
 				    exercise(A_DEX, FALSE);
@@ -11020,6 +11186,8 @@ drown()
 	}
 
 	You("drown.");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Nikto ne znayet, pochemu ty byl nastol'ko glup, chtoby upast' v vodu, no eto ne imeyet nikakogo znacheniya, v lyubom sluchaye, potomu chto vy mozhete svernut' novogo personazha pryamo seychas." : "HUAAAAAAA-A-AAAAHHHHHH!");
+
 	/* [ALI] Vampires return to vampiric form on drowning.
 	 */
 	if (Upolyd && !Unchanging && Race_if(PM_VAMPIRE)) {
@@ -12228,6 +12396,7 @@ boolean disarm;
 			if (!Free_action) {                        
 			if (!Free_action) {                        
 			pline("Suddenly you are frozen in place!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomul(-d(5, 6), "frozen by a container trap");
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
@@ -12250,6 +12419,7 @@ boolean disarm;
 				You("%s and your vision blurs...",
 				    stagger(youmonst.data, "stagger"));
 			}
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 			make_stunned(HStun + rn1(7, 16),FALSE);
 			(void) make_hallucinated(HHallucination + rn1(5, 16),FALSE,0L);
 			break;
@@ -12486,6 +12656,7 @@ lava_effects()
 	killer_format = KILLED_BY;
 	killer = lava_killer;
 	You("burn to a crisp...");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Do svidaniya! Vy, navernoye, sdelal oshibku khodit' vokrug vo vremya oglusheniya ili sputannost' soznaniya, i teper' vy zaplatili samuyu vysokuyu tsenu." : "Ohoho-ho-ho!");
 	done(BURNING);
 	while (!safe_teleds(TRUE)) {
 		pline("You're still burning.");

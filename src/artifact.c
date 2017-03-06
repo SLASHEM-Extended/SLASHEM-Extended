@@ -1622,7 +1622,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* the four basic attacks: fire, cold, shock and missiles */
 	if (attacks(AD_FIRE, otmp)) {
 	    if (realizes_damage)
-		pline_The("fiery blade %s %s%c",
+		pline_The("fiery weapon %s %s%c",
 			!spec_dbon_applies ? "hits" :
 			(mdef->data == &mons[PM_WATER_ELEMENTAL]) ?
 			"vaporizes part of" : "burns",
@@ -1635,7 +1635,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 	if (attacks(AD_COLD, otmp)) {
 	    if (realizes_damage)
-		pline_The("ice-cold blade %s %s%c",
+		pline_The("ice-cold weapon %s %s%c",
 			!spec_dbon_applies ? "hits" : "freezes",
 			hittee, !spec_dbon_applies ? '.' : '!');
 	    if (!rn2(100)) (void) destroy_mitem(mdef, POTION_CLASS, AD_COLD);
@@ -1643,7 +1643,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 	if (attacks(AD_ELEC, otmp)) {
 	    if (realizes_damage)
-		pline_The("massive hammer hits%s %s%c",
+		pline_The("electrified weapon hits%s %s%c",
 			  !spec_dbon_applies ? "" : "!  Lightning strikes",
 			  hittee, !spec_dbon_applies ? '.' : '!');
 	    if (!rn2(150)) (void) destroy_mitem(mdef, RING_CLASS, AD_ELEC);
@@ -1812,6 +1812,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    else
 		pline("%s plunges the Doomblade deeply into %s!",
 			Monnam(magr), hittee);
+		if (youattack && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone())) pline(issoviet ? "Tak chto vy dumayete, vy mozhete bit' igru tol'ko potomu, chto vy nashli artefakt. Bednyy zabluzhdayutsya dusha." : "Doaaaaaai!");
 	    *dmgptr += rnd(4) * 5;
 	    return TRUE;
        }

@@ -780,6 +780,7 @@ drag_down()
 	if (forward) {
 		if(rn2(6)) {
 			pline_The("iron ball drags you downstairs!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy s udovol'stviyem yeshche peretashchiv etu duratskuyu myach vmeste?" : "Rlalalalalaaaaar!");
 			losehp(rnd(6), "dragged downstairs by an iron ball",
 				NO_KILLER_PREFIX);
 			litter();
@@ -787,12 +788,14 @@ drag_down()
 	} else {
 		if(rn2(2)) {
 			pline_The("iron ball smacks into you!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha, tip bloka l'da smeyetsya yego zadnitsu smotret' vy imeyete delo s etoy duratskoy myach." : "Tschackschwack!");
 			losehp(rnd(20), "iron ball collision", KILLED_BY_AN);
 			exercise(A_STR, FALSE);
 			dragchance -= 2;
 		}
 		if( (int) dragchance >= rnd(6)) {
 			pline_The("iron ball drags you downstairs!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy s udovol'stviyem yeshche peretashchiv etu duratskuyu myach vmeste?" : "Rlalalalalaaaaar!");
 			losehp(rnd(3), "dragged downstairs by an iron ball",
 				NO_KILLER_PREFIX);
 			exercise(A_STR, FALSE);

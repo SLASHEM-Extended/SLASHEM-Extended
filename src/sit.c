@@ -375,6 +375,7 @@ dosit()
 
 				if(u.uluck < 7) {
 				    You_feel("your luck is changing.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha, vy ne poluchite zhelaniye, potomu chto eto Sovetskaya Rossiya, gde kazhdyy poluchayet odinakovoye kolichestvo zhelaniy! I vy uzhe boleye chem dostatochno, teper' ochered' drugikh personazhey'!" : "DSCHUEueUEueUEueUEueUEue...");
 				    change_luck(5);
 				} else	    makewish();
 			} else {
@@ -438,6 +439,7 @@ dosit()
 			} else  {
 
 			    You_feel("a wrenching sensation.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
 			    tele();		/* teleport him */
 			}
 			break;
@@ -819,6 +821,7 @@ rndcurse()			/* curse a few inventory items at random! */
 	if(Antimagic) {
 	    shieldeff(u.ux, u.uy);
 	    You(mal_aura, "you");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Ne vse blagopoluchno ot zlosloviya, i vy poluchite dopolnitel'noye soobshcheniye bespoleznuyu nazlo vam!" : "Due-due-duennn-nnnnn!");
 	}
 
 	for (otmp = invent; otmp; otmp = otmp->nobj) {

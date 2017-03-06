@@ -143,6 +143,7 @@ moveloop()
 #endif
 
 	didmove = flags.move;
+	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) didmove = TRUE;
 	if(didmove) {
 
 		u.aggravation = 0;
@@ -1060,6 +1061,9 @@ moveloop()
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
 			if (uarmc && (uarmc->oartifact == ART_WINDS_OF_CHANGE) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
+			if (uarmh && !rn2(10) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula one helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula odin shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula bir zarbdan") ) ) moveamt += NORMAL_SPEED / 2;
+			if (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qidiruvi va turbo chizilmasin") ) ) moveamt += NORMAL_SPEED / 2;
+			if (uarmg && !rn2(10) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) moveamt += NORMAL_SPEED / 2;
 
 			if (PlayerInHighHeels && !rn2(10) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (P_SKILL(P_HIGH_HEELS) >= P_MASTER) ) moveamt += NORMAL_SPEED / 2;
 			if (PlayerInHighHeels && !rn2(10) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())&& (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER) ) moveamt += NORMAL_SPEED / 2;
@@ -1800,22 +1804,28 @@ moveloop()
 	}
 
 		if ( Itemcursing && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 
 		}
 
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 
 		}
 
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 		}
 
@@ -2236,36 +2246,46 @@ newbossY:
 		}
 
 		if (uarmf && uarmf->oartifact == ART_CURSING_ANOMALY && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 
 		}
 
 		if (uarmf && uarmf->oartifact == ART_AMY_LOVES_AUTOCURSING_ITEM && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 
 		}
 
 		if ( Role_if(PM_TRANSSYLVANIAN) && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 
 		}
 
 		if ( have_cursingstone() && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 
 		}
 
 		if ( have_primecurse() && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 
 		}
@@ -2331,6 +2351,7 @@ newbossY:
 				case 11:
 				case 12: /* curse items */
 					You_feel("as if you need some help.");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 					rndcurse();
 					break;
 				case 13:
@@ -2405,6 +2426,7 @@ newbossY:
 				case 4:
 				case 5: /* aggravate monster */
 					You_feel("that monsters are aware of your presence.");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
 					aggravate();
 					break;
 				case 6:
@@ -2514,6 +2536,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000)) {
@@ -2523,6 +2546,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000)) {
@@ -2532,6 +2556,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000)) {
@@ -2541,6 +2566,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000)) {
@@ -2550,6 +2576,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (u.uprops[RECURRING_DISENCHANT].extrinsic && !rn2(1000)) {
@@ -2559,6 +2586,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (have_disenchantmentstone() && !rn2(1000)) {
@@ -2568,6 +2596,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (ChaosTerrain && !rn2(5)) {
@@ -2711,36 +2740,46 @@ newboss:
 		}
 
 		if (u.uprops[ITEMCURSING].extrinsic && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 
 		}
 
 		if (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 
 		}
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 
 		}
 
 		if (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 
 		}
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000) ) {
-			if (!Blind) 
+			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
 			rndcurse();
 
 		}
@@ -3395,6 +3434,29 @@ newboss:
 				pline("You receive a static shock from your cloak!");
 				make_numbed(HNumbed + rnd(10),TRUE);
 			}
+		}
+
+		if (uarmc && !rn2(5000) && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "irradiation cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "oblucheniye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nurlanish plash") ) ) {
+			pline("You are irradiated by your cloak!");
+			u.uhpmax -= 1;
+			if (u.uhp > u.uhpmax) u.uhp--;
+			if (Upolyd) {
+				u.mhmax -= 1;
+				if (u.mh > u.mhmax) u.mh--;
+			}
+			u.uenmax -= 1;
+			if (u.uen > u.uenmax) u.uen--;
+			if (u.uhp < 1) {
+				killer = "an irradiation cloak";
+				killer_format = KILLED_BY;
+				done(DIED);
+			}
+
+		}
+
+		if (uarmc && !rn2(2000) && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hungry cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "golodnymi plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chanqoq plash") ) ) {
+			pline("Suddenly you notice the smell of food...");
+			morehungry(rnd(1000));
 		}
 
 		if (RngeVoltage) {
@@ -4484,6 +4546,10 @@ newboss:
 	}
 
 	if (RngeTrapAlert && t_at(u.ux, u.uy)) {
+		pline("Alert! You are standing on a trap!");
+	}
+
+	if (uarmg && t_at(u.ux, u.uy) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sensor gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sensornyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "tayinlangan qurilmani qo'lqop") ) ) {
 		pline("Alert! You are standing on a trap!");
 	}
 
@@ -5665,6 +5731,65 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "viva cloak")) OBJ_DESCR(objects[i]) = "vivat plashch";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "saddle")) OBJ_DESCR(objects[i]) = "yezda instrument";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "leash")) OBJ_DESCR(objects[i]) = "instrument domashneye zhivotnoye";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "living boots")) OBJ_DESCR(objects[i]) = "zhivyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "rain boots")) OBJ_DESCR(objects[i]) = "dozhd' sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "silk helmet")) OBJ_DESCR(objects[i]) = "shelk shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tar gloves")) OBJ_DESCR(objects[i]) = "bituminoznykh perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "musical helmet")) OBJ_DESCR(objects[i]) = "muzykal'nyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "poor helmet")) OBJ_DESCR(objects[i]) = "bednyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gray helmet")) OBJ_DESCR(objects[i]) = "seryy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "radiant helmet")) OBJ_DESCR(objects[i]) = "siyayushchiy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "secret helmet")) OBJ_DESCR(objects[i]) = "sekret shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "inkcoat helmet")) OBJ_DESCR(objects[i]) = "shlem pal'to chernil";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "knowledgeable helmet")) OBJ_DESCR(objects[i]) = "znayushchikh shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "organic helmet")) OBJ_DESCR(objects[i]) = "organicheskiy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "formula one helmet")) OBJ_DESCR(objects[i]) = "formula odin shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "arduous helmet")) OBJ_DESCR(objects[i]) = "trudnyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "long-hair helmet")) OBJ_DESCR(objects[i]) = "shlem s dlinnymi volosami";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meso helmet")) OBJ_DESCR(objects[i]) = "shlem mezo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "difficult cloak")) OBJ_DESCR(objects[i]) = "trudnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ugly cloak")) OBJ_DESCR(objects[i]) = "nekrasivo plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "armored cloak")) OBJ_DESCR(objects[i]) = "bronirovannyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "inky cloak")) OBJ_DESCR(objects[i]) = "chernil'nyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gentle cloak")) OBJ_DESCR(objects[i]) = "nezhnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "living cloak")) OBJ_DESCR(objects[i]) = "zhivoy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "irradiation cloak")) OBJ_DESCR(objects[i]) = "oblucheniye plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "silk cloak")) OBJ_DESCR(objects[i]) = "shelkovyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heavenly cloak")) OBJ_DESCR(objects[i]) = "nebesnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "soft cloak")) OBJ_DESCR(objects[i]) = "myagkiy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bituminous mantle")) OBJ_DESCR(objects[i]) = "bitumnaya mantii";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "stone cloak")) OBJ_DESCR(objects[i]) = "kamen' plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "secretion cloak")) OBJ_DESCR(objects[i]) = "plashch sekretsii";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "excrement cloak")) OBJ_DESCR(objects[i]) = "ekskrementy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hungry cloak")) OBJ_DESCR(objects[i]) = "golodnymi plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "science cloak")) OBJ_DESCR(objects[i]) = "nauka plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "guild cloak")) OBJ_DESCR(objects[i]) = "gil'dii plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tower cloak")) OBJ_DESCR(objects[i]) = "bashnya plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "arcane cloak")) OBJ_DESCR(objects[i]) = "arkan plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "organic cloak")) OBJ_DESCR(objects[i]) = "organicheskiy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "natural cloak")) OBJ_DESCR(objects[i]) = "yestestvennyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "compost cloak")) OBJ_DESCR(objects[i]) = "kompost plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "erotic boots")) OBJ_DESCR(objects[i]) = "eroticheskiye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sputa boots")) OBJ_DESCR(objects[i]) = "mokrota sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "arcane boots")) OBJ_DESCR(objects[i]) = "skrytyy botinki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "street boots")) OBJ_DESCR(objects[i]) = "ulichnyye botinki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heavy boots")) OBJ_DESCR(objects[i]) = "tyazhelyye botinki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gentle boots")) OBJ_DESCR(objects[i]) = "nezhnyye sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nature boots")) OBJ_DESCR(objects[i]) = "priroda sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "radiant heels")) OBJ_DESCR(objects[i]) = "izluchayushchiye kabluki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "turbo boots")) OBJ_DESCR(objects[i]) = "turbo sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "area boots")) OBJ_DESCR(objects[i]) = "oblast' sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sexy heels")) OBJ_DESCR(objects[i]) = "seksual'nyye kabluki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "stroking boots")) OBJ_DESCR(objects[i]) = "poglazhivaya sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "velvet gloves")) OBJ_DESCR(objects[i]) = "barkhatnyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nonexistant gloves")) OBJ_DESCR(objects[i]) = "nesushchestvuyushchiy perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "racer gloves")) OBJ_DESCR(objects[i]) = "gonshchik perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "inka gloves")) OBJ_DESCR(objects[i]) = "inka perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "viva gloves")) OBJ_DESCR(objects[i]) = "viva perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "poor gloves")) OBJ_DESCR(objects[i]) = "bednyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shitty gloves")) OBJ_DESCR(objects[i]) = "der'movyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "natural gloves")) OBJ_DESCR(objects[i]) = "prirodnyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sensor gloves")) OBJ_DESCR(objects[i]) = "sensornyye perchatki";
 
 	}
 	}
@@ -6416,6 +6541,65 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "saddle")) OBJ_DESCR(objects[i]) = "binicilik vositasi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "leash")) OBJ_DESCR(objects[i]) = "uyda oziqlangan vositasi";
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "living boots")) OBJ_DESCR(objects[i]) = "turmush chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "rain boots")) OBJ_DESCR(objects[i]) = "yomg'ir chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "silk helmet")) OBJ_DESCR(objects[i]) = "ipak dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tar gloves")) OBJ_DESCR(objects[i]) = "sol qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "musical helmet")) OBJ_DESCR(objects[i]) = "musiqiy dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "poor helmet")) OBJ_DESCR(objects[i]) = "kambag'al dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gray helmet")) OBJ_DESCR(objects[i]) = "kulrang dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "radiant helmet")) OBJ_DESCR(objects[i]) = "yorqin dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "secret helmet")) OBJ_DESCR(objects[i]) = "yashirin dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "inkcoat helmet")) OBJ_DESCR(objects[i]) = "siyoh palto dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "knowledgeable helmet")) OBJ_DESCR(objects[i]) = "bilimdon dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "organic helmet")) OBJ_DESCR(objects[i]) = "organik dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "formula one helmet")) OBJ_DESCR(objects[i]) = "formula bir zarbdan";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "arduous helmet")) OBJ_DESCR(objects[i]) = "qiyinchiliklar bilan to'la dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "long-hair helmet")) OBJ_DESCR(objects[i]) = "uzoq soch dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "meso helmet")) OBJ_DESCR(objects[i]) = "mezo dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "difficult cloak")) OBJ_DESCR(objects[i]) = "qiyin plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ugly cloak")) OBJ_DESCR(objects[i]) = "chirkin bir plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "armored cloak")) OBJ_DESCR(objects[i]) = "zirhli plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "inky cloak")) OBJ_DESCR(objects[i]) = "tim qora rido";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gentle cloak")) OBJ_DESCR(objects[i]) = "muloyim plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "living cloak")) OBJ_DESCR(objects[i]) = "tirik plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "irradiation cloak")) OBJ_DESCR(objects[i]) = "nurlanish plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "silk cloak")) OBJ_DESCR(objects[i]) = "ipak rido";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heavenly cloak")) OBJ_DESCR(objects[i]) = "samoviy plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "soft cloak")) OBJ_DESCR(objects[i]) = "yumshoq plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bituminous mantle")) OBJ_DESCR(objects[i]) = "suvab mantiya";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "stone cloak")) OBJ_DESCR(objects[i]) = "tashlagan tosh plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "secretion cloak")) OBJ_DESCR(objects[i]) = "yuqumli plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "excrement cloak")) OBJ_DESCR(objects[i]) = "chiqindi plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hungry cloak")) OBJ_DESCR(objects[i]) = "chanqoq plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "science cloak")) OBJ_DESCR(objects[i]) = "ilm-fan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "guild cloak")) OBJ_DESCR(objects[i]) = "birlik plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tower cloak")) OBJ_DESCR(objects[i]) = "minora plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "arcane cloak")) OBJ_DESCR(objects[i]) = "urug'dan plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "organic cloak")) OBJ_DESCR(objects[i]) = "organik plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "natural cloak")) OBJ_DESCR(objects[i]) = "tabiiy plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "compost cloak")) OBJ_DESCR(objects[i]) = "kompost plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "erotic boots")) OBJ_DESCR(objects[i]) = "erotik chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sputa boots")) OBJ_DESCR(objects[i]) = "sputa chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "arcane boots")) OBJ_DESCR(objects[i]) = "urug'dan chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "street boots")) OBJ_DESCR(objects[i]) = "ko'cha chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heavy boots")) OBJ_DESCR(objects[i]) = "og'ir etiklari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gentle boots")) OBJ_DESCR(objects[i]) = "yumshoq chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nature boots")) OBJ_DESCR(objects[i]) = "tabiat chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "radiant heels")) OBJ_DESCR(objects[i]) = "yorqin ko'chirish to'piqlarni";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "turbo boots")) OBJ_DESCR(objects[i]) = "qidiruvi va turbo chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "area boots")) OBJ_DESCR(objects[i]) = "maydoni chizilmasin";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sexy heels")) OBJ_DESCR(objects[i]) = "belgila sexy ko'chirish to'piqlarni";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "stroking boots")) OBJ_DESCR(objects[i]) = "etiklar silay";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "velvet gloves")) OBJ_DESCR(objects[i]) = "baxmal qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nonexistant gloves")) OBJ_DESCR(objects[i]) = "yo'q qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "racer gloves")) OBJ_DESCR(objects[i]) = "poygachi qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "inka gloves")) OBJ_DESCR(objects[i]) = "inka qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "viva gloves")) OBJ_DESCR(objects[i]) = "viva qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "poor gloves")) OBJ_DESCR(objects[i]) = "kambag'al qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shitty gloves")) OBJ_DESCR(objects[i]) = "boktan qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "natural gloves")) OBJ_DESCR(objects[i]) = "tabiiy qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sensor gloves")) OBJ_DESCR(objects[i]) = "tayinlangan qurilmani qo'lqop";
 	}
 	}
 
@@ -6577,6 +6761,7 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
 	u.stethocheat = moves;
+	init_uasmon();
 
 	if (!new_game && issoviet) {
 

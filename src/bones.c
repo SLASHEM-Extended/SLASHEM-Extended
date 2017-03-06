@@ -212,7 +212,7 @@ can_make_bones()
 	/* KMH -- Restored to NetHack's chances, to limit abuse and for fairness */
 	/* to both low-level and high-level characters */
 	if(depth(&u.uz) <= 0 ||		/* bulletproofing for endgame */
-	   (!rn2(1 + (depth(&u.uz)>>2))	/* fewer ghosts on low levels */
+	   (!rn2(1 + (depth(&u.uz)>>2)) && !(BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone())	/* fewer ghosts on low levels */
 #ifdef WIZARD
 		&& !wizard
 #endif
@@ -476,7 +476,7 @@ getbones()
 		return(0);
 
 	/* wizard check added by GAN 02/05/87 */
-	if(rn2(3)	/* only once in three times do we find bones */
+	if(rn2(3) && !(BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone())	/* only once in three times do we find bones */
 
 #ifdef WIZARD
 		&& !wizard

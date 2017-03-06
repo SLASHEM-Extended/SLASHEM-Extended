@@ -769,7 +769,7 @@ randenchantment()
 		case 113:
 		case 114:
 		case 115:
-			switch (rnd(87)) {
+			switch (rnd(97)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -858,6 +858,16 @@ randenchantment()
 			case 85: return WALL_TRAP_EFFECT;
 			case 86: return TURNLIMITATION;
 			case 87: return WEAKSIGHT;
+			case 88: return DISCONNECTED_STAIRS;
+			case 89: return INTERFACE_SCREW;
+			case 90: return BOSSFIGHT;
+			case 91: return ENTIRE_LEVEL;
+			case 92: return BONES_CHANGE;
+			case 93: return AUTOCURSE_EQUIP;
+			case 94: return HIGHLEVEL_STATUS;
+			case 95: return SPELL_FORGETTING;
+			case 96: return SOUND_EFFECT_BUG;
+			case 97: return TIMERUN_BUG;
 			}
 		case 116:
 			return FROZEN;
@@ -1027,7 +1037,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(87)) {
+	switch (rnd(97)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -1116,6 +1126,16 @@ randnastyenchantment()
 		case 85: return WALL_TRAP_EFFECT;
 		case 86: return TURNLIMITATION;
 		case 87: return WEAKSIGHT;
+		case 88: return DISCONNECTED_STAIRS;
+		case 89: return INTERFACE_SCREW;
+		case 90: return BOSSFIGHT;
+		case 91: return ENTIRE_LEVEL;
+		case 92: return BONES_CHANGE;
+		case 93: return AUTOCURSE_EQUIP;
+		case 94: return HIGHLEVEL_STATUS;
+		case 95: return SPELL_FORGETTING;
+		case 96: return SOUND_EFFECT_BUG;
+		case 97: return TIMERUN_BUG;
 	}
 
 }
@@ -1257,7 +1277,7 @@ randominsidetrap()
 	else if (!rn2(9)) return UNKNOWN_TRAP;
 	else if (!rn2(20)) return SPACEWARS_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(87)) {
+	else switch (rnd(97)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -1345,6 +1365,16 @@ randominsidetrap()
 		case 85: return SUPERSCROLLER_TRAP;
 		case 86: return TOTTER_TRAP;
 		case 87: return NASTINESS_TRAP;
+		case 88: return DISCONNECT_TRAP;
+		case 89: return INTERFACE_SCREW_TRAP;
+		case 90: return BOSSFIGHT_TRAP;
+		case 91: return ENTIRE_LEVEL_TRAP;
+		case 92: return BONES_TRAP;
+		case 93: return AUTOCURSE_TRAP;
+		case 94: return HIGHLEVEL_TRAP;
+		case 95: return SPELL_FORGETTING_TRAP;
+		case 96: return SOUND_EFFECT_TRAP;
+		case 97: return TIMERUN_TRAP;
 
 	}
 

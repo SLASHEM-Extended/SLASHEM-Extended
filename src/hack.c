@@ -603,6 +603,7 @@ moverock()
 			  otense(otmp, "plug"),
 			  (ttmp->ttyp == TRAPDOOR) ? "trap door" : "hole",
 			  surface(rx, ry));
+		    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Takim obrazom, vy deystvitel'no dumayete, chto vy dostatochno umny, chtoby reshit' golovolomku bloka. Ya ser'yezno somnevayus' v etom." : "Tchueb!");
 		    deltrap(ttmp);
 		    delobj(otmp);
 		    bury_objs(rx, ry);
@@ -1050,6 +1051,7 @@ int mode;
 	}
     } else if (IS_DOOR(tmpr->typ)) {
 	if (closed_door(x,y)) {
+
 	    if (Blind && mode == DO_MOVE) feel_location(x,y);
 	    /* ALI - artifact doors */
 	    if (artifact_door(x, y)) {
@@ -1088,8 +1090,11 @@ int mode;
 			        exercise(A_DEX, FALSE);
 			    }
 			} else pline("That door is closed.");
+
+		    return FALSE;
 		    }
 		} else if (mode == TEST_TRAV) goto testdiag;
+		pline("There is a door in the way!");
 		return FALSE;
 	    }
 	} else {
@@ -1103,6 +1108,7 @@ int mode;
 		/* Diagonal moves into a door are not allowed. */
 		if (Blind && mode == DO_MOVE)
 		    feel_location(x,y);
+		pline("You cannot diagonally move through a door!");
 		return FALSE;
 	    }
 	}
@@ -1151,6 +1157,7 @@ int mode;
 			     || block_entry(x, y))
 			 )) {
 	/* Can't move at a diagonal out of a doorway with door. */
+	pline("You cannot diagonally move out of a door!");
 	return FALSE;
     }
 
@@ -2167,7 +2174,7 @@ domove()
 		    nomul(0, 0);
 	}
 
-	if (hides_under(youmonst.data) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
+	if (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 	else if (youmonst.data->mlet == S_EEL)
 	    u.uundetected = is_pool(u.ux, u.uy) && !Is_waterlevel(&u.uz);
@@ -3232,6 +3239,8 @@ maybe_wail()
     } else {
 	You_hear(u.uhp == 1 ? "the wailing of the Banshee..."
 			    : "the howling of the CwnAnnwn...");
+	if (u.uhp == 1 && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone())) pline(issoviet ? "Da! Umri, pozhaluysta! Ya nenavizhu tebya! Nadeyus', vy nastol'ko glupy, chtoby pozvolit' vse, chto chudovishche privelo vas k blizkoy smerti, chtoby snova udarit' tebya, a potom eto igra zakonchena GA GA GA!" : "SKRIIIIE-IIIIE-IIIIE-IIIIE-IIIIE!");
+	else if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Nadeyus', vy prodolzhat' deystvovat' tak glupo, potomu chto togda vy budete umirat' i pridetsya svernut' novyy kharakter. Eto budet sluzhit' vam pravil'no, vy plokhoy igrok!" : "Wueueueue-oooooooh!");
     }
 }
 
@@ -3241,6 +3250,8 @@ nomul(nval, txt)
 	const char *txt;
 {
 	if (uarmc && uarmc->oartifact == ART_LIGHTSPEED_TRAVEL && nval == 0) return;
+
+	if (uarmf && nval == 0 && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qidiruvi va turbo chizilmasin") ) ) return;
 
 	if(multi < nval) return;	/* This is a bug fix by ab@unido */
 	u.uinvulnerable = FALSE;	/* Kludge to avoid ctrl-C bug -dlc */
@@ -3389,7 +3400,7 @@ int k_format; /* WAC k_format is an int */
 
 		pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
 		if (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
-
+		if (isangbander && (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone())) pline(issoviet ? "Umeret' glupyy igrok ublyudka!" : "TSCHINGTSCHINGTSCHINGTSCHING!");
 
 	}
 #endif

@@ -355,6 +355,7 @@ use_stethoscope(obj)
 	rx = u.ux + u.dx; ry = u.uy + u.dy;
 	if (!isok(rx,ry)) {
 		You_hear("a faint typing noise.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto kakoy-to durak sidit pered pryamougol'nym veshchi." : "tipptipptipptipptipp");
 		return 0;
 	}
 	if ((mtmp = m_at(rx,ry)) != 0) {
@@ -418,6 +419,11 @@ struct obj *obj;
 	register struct monst *mtmp;
 
 	You(whistle_str, obj->cursed ? "shrill" : "high");
+	if (obj->cursed) {
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vse bodrstvuyet. Otlichno srabotano." : "KRIIIIIIIIII!");
+	} else {
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Arbitr svistnul, dazhe yesli on ne imeyet svistok." : "Pfiiiiiiet!");
+	}
 	wake_nearby();
 
 	if (obj->cursed || !rn2(obj->blessed ? 200 : 50) ) { /* shrill whistling sound wakes up the entire level */
@@ -441,14 +447,17 @@ struct obj *obj;
 
 	if(obj->cursed && !rn2(2)) {
 		You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
 		wake_nearby();
 	} else if (!rn2(obj->blessed ? 200 : 50)) {
 		You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
 		wake_nearby();
 
 	} else {
 		int pet_cnt = 0;
 		You(whistle_str, Hallucination ? "normal" : "strange");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dazhe vy mozhete sdelat' chto-to pravil'no, v redkikh sluchayakh, eto kazhetsya." : "dueueueueue");
 		for(mtmp = fmon; mtmp; mtmp = nextmon) {
 		    nextmon = mtmp->nmon; /* trap might kill mon */
 		    if (DEADMONSTER(mtmp)) continue;
@@ -476,12 +485,15 @@ struct obj *obj;
 
 	if(obj->cursed && !rn2(2)) {
 		You(Hallucination ? "produce something that sounds like an elegy." : "produce a terrible whistling sound.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Odin dolzhen kamen' vy do smerti dlya etogo." : "Kwaaaaaaaa!");
 		badeffect();
 	} else if (!rn2(obj->blessed ? 200 : 50)) {
 		You(Hallucination ? "produce something that sounds like an elegy." : "produce a terrible whistling sound.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Odin dolzhen kamen' vy do smerti dlya etogo." : "Kwaaaaaaaa!");
 		badeffect();
 	} else {
 		You(whistle_str, Hallucination ? "soothing" : "terrifying");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy pomnite, chto v kommunizm, igrayet muzyka zapreshchena?" : "Traaaaaaaa!");
 		for(mtmp = fmon; mtmp; mtmp = nextmon) {
 		    nextmon = mtmp->nmon; /* trap might kill mon */
 		    if (DEADMONSTER(mtmp)) continue;
@@ -940,6 +952,7 @@ struct obj **optr;
 			 invocation_pos(u.ux, u.uy) && !On_stairs(u.ux, u.uy));
 
 	You("ring %s.", the(xname(obj)));
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Tip bloka l'da net doma pryamo seychas!" : "Bimmelimm!");
 
 	if (obj && obj->oartifact == ART_BIMMEL_BIMMEL) {
 	    int i, j, bd = 1;
@@ -996,7 +1009,20 @@ struct obj **optr;
 
 	} else {
 	    /* charged Bell of Opening */
-	    consume_obj_charge(obj, TRUE);
+	    	int nochargechange = 10;
+		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+			switch (P_SKILL(P_DEVICES)) {
+				default: break;
+				case P_BASIC: nochargechange = 9; break;
+				case P_SKILLED: nochargechange = 8; break;
+				case P_EXPERT: nochargechange = 7; break;
+				case P_MASTER: nochargechange = 6; break;
+				case P_GRAND_MASTER: nochargechange = 5; break;
+				case P_SUPREME_MASTER: nochargechange = 4; break;
+			}
+		}
+
+		if (nochargechange >= rnd(10)) consume_obj_charge(obj, TRUE);
 
 	    if (u.uswallow) {
 		if (!obj->cursed)
@@ -1994,10 +2020,12 @@ degradeagain:
 	    if (obj->spe < 1) {
 	    useup(obj);
 	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
+	    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
 		return;
 	    } else {
 		obj->spe -= 1;
 		pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		if (!rn2(3)) goto degradeagain;
 		if(obj->blessed && !rn2(10) )
 			unbless(obj);
@@ -2010,10 +2038,12 @@ degradeagain:
 	    if (obj->spe < 1) {
 	    useup(obj);
 	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
+	    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
 		return;
 	    } else {
 		obj->spe -= 1;
 		pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		if(obj->blessed && !rn2(10) )
 			unbless(obj);
 		else if (!obj->blessed && !rn2(5))
@@ -3374,11 +3404,13 @@ use_pole (obj)
 		if (obj->spe < 1) {
 			uwepgone();              /* set unweapon */
 			pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
 			useup(obj);
 			return (1);
 		} else {
 			obj->spe -= rnd(obj->spe);
 			pline(Hallucination ? "Your stick seems shorter now!" : "Your weapon seems less effective.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 	    }
 
@@ -3733,11 +3765,13 @@ wand_explode(obj, hero_broke)
     case WAN_GRAVITY_BEAM:
 	/* we want this before the explosion instead of at the very end */
 	pline("A wall of force smashes down around you!");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Sovetskaya khochet zastavit' vas vyyti iz igry!" : "Schrang!");
 	dmg = d(1 + obj->spe,6);	/* normally 2d12 */
 	affects_objects = TRUE;
 	break;
     case WAN_DISINTEGRATION:
 	pline("A wall of force smashes down around you!");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Sovetskaya khochet zastavit' vas vyyti iz igry!" : "Schrang!");
 	dmg = d(1 + obj->spe,30);
 	affects_objects = TRUE;
 	break;
@@ -4268,6 +4302,7 @@ doapply()
 				if (obj->blessed) unbless(obj);
 				else curse(obj);
 				pline("Your whistle seems less effective.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
 		}
 		break;
@@ -4293,6 +4328,7 @@ doapply()
 				if (obj->blessed) unbless(obj);
 				else curse(obj);
 				pline("Your whistle seems less effective.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
 	
 		}
@@ -4324,6 +4360,7 @@ doapply()
 				if (obj->blessed) unbless(obj);
 				else curse(obj);
 				pline("Your whistle seems less effective.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
 		}
 		break;
@@ -4586,7 +4623,20 @@ doapply()
 		    struct obj *otmp;
 		    const char *what;
 
-		    consume_obj_charge(obj, TRUE);
+			int nochargechange = 10;
+			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+				switch (P_SKILL(P_DEVICES)) {
+					default: break;
+					case P_BASIC: nochargechange = 9; break;
+					case P_SKILLED: nochargechange = 8; break;
+					case P_EXPERT: nochargechange = 7; break;
+					case P_MASTER: nochargechange = 6; break;
+					case P_GRAND_MASTER: nochargechange = 5; break;
+					case P_SUPREME_MASTER: nochargechange = 4; break;
+				}
+			}
+
+			if (nochargechange >= rnd(10)) consume_obj_charge(obj, TRUE);
 		    if (!rn2(13)) {
 			otmp = mkobj(POTION_CLASS, FALSE);
 			/* KMH, balance patch -- rewritten */
@@ -4615,6 +4665,7 @@ doapply()
 					       The(aobjnam(otmp, "slip")),
 					       (const char *)0);
 		    makeknown(HORN_OF_PLENTY);
+			use_skill(P_DEVICES,1);
 		} else
 		    pline(nothing_happens);
 		break;
@@ -4727,6 +4778,17 @@ doapply()
  	case STONE_OF_MISFIRING:
  	case STONE_OF_PERMANENCE:
 
+	case DISCONNECT_STONE:
+	case SCREW_STONE:
+	case BOSSFIGHT_STONE:
+	case ENTIRE_LEVEL_STONE:
+	case BONE_STONE:
+	case AUTOCURSE_STONE:
+	case HIGHLEVEL_STONE:
+	case SPELL_MEMORY_STONE:
+	case SOUND_EFFECT_STONE:
+	case TIME_USE_STONE:
+
 	case SALT_CHUNK:
 	case SILVER_SLINGSTONE:
 	case SMALL_PIECE_OF_UNREFINED_MITHR:
@@ -4747,6 +4809,7 @@ doapply()
 			((obj->altmode == WP_MODE_SINGLE) ? "single shot" : 
 			 ((obj->altmode == WP_MODE_BURST) ? "burst" :
 			  "full automatic")));
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto ne budet v lyubom sluchaye pomozhet vam." : "Sr!");
 		break;	
 	case AUTO_SHOTGUN:
 	case DEMON_CROSSBOW:
@@ -4755,6 +4818,7 @@ doapply()
 		else obj->altmode = WP_MODE_AUTO;
 		You("switch %s to %s mode.", yname(obj), 
 			(obj->altmode ? "semi-automatic" : "full automatic"));
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto ne budet v lyubom sluchaye pomozhet vam." : "Sr!");
 		break;
 	case FRAG_GRENADE:
 	case GAS_GRENADE:
@@ -4902,6 +4966,16 @@ doapply()
 		CrapEffect = 0L;
 		ProjectilesMisfire = 0L;
 		WallTrapping = 0L;
+		DisconnectedStairs = 0L;
+		InterfaceScrewed = 0L;
+		Bossfights = 0L;
+		EntireLevelMode = 0L;
+		BonesLevelChange = 0L;
+		AutocursingEquipment = 0L;
+		HighlevelStatus = 0L;
+		SpellForgetting = 0L;
+		SoundEffectBug = 0L;
+		TimerunBug = 0L;
 
 		break;
 	case GOD_O_METER:

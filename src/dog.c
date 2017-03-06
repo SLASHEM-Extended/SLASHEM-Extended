@@ -1092,6 +1092,7 @@ boolean guaranteed;
 	        	pline("%s is frenzied!", Monnam(mtmp));
 			mtmp->mfrenzied = 1;
 		}
+		return((struct monst *)0);
 	}
 
 	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || have_hatestone() ) {

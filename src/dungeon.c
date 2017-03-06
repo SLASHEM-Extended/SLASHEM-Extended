@@ -1753,6 +1753,10 @@ level_difficulty()
 		retvalue += u.ulevel;
 	}
 
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "difficult cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "trudnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qiyin plash") ) ) {
+		retvalue *= 2;
+	}
+
 	if (retvalue > 126) retvalue = 126; /* fail safe */
 	if (retvalue < 1) retvalue = 1;
 

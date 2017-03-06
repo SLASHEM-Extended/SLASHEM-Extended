@@ -2422,7 +2422,6 @@ register struct obj	*sobj;
 			otmp->blessed = sobj->blessed;
 		if (s) {
 			otmp->spe += s;
-			adj_abon(otmp, s);
 			known = otmp->known;
 		}
 		/* sometimes, enchanting armor pieces may give them an actual magical enchantment --Amy */
@@ -2787,11 +2786,15 @@ register struct obj	*sobj;
 			You_feel("the power of the Force against you!");
 		    else
 			You_feel("like you need some help.");
-		} else
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+		} else {
 		    if (Hallucination)
 			You_feel("in touch with the Universal Oneness.");
 		    else
 			You_feel("like someone is helping you.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Ba, tip bloka l'da budet proklinat' svoye der'mo snova tak ili inache." : "Daedeldaedimm!");
+
+		}
 
 		if (sobj->cursed) {
 		    pline_The("scroll disintegrates.");
@@ -2854,6 +2857,7 @@ register struct obj	*sobj;
 			}
 			if (!rn2(100)) {
 				You_feel("as if you need some help.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 				rndcurse();
 			}
 		}
@@ -3020,6 +3024,7 @@ register struct obj	*sobj;
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
+						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
 						nomul(-rnd(10), "paralyzed by a scroll of sin");
 						exercise(A_DEX, FALSE);
@@ -3117,7 +3122,10 @@ register struct obj	*sobj;
 				}
 				break;
 			case 6: /* envy */
-				if (flags.soundok) You_hear("a chuckling laughter.");
+				if (flags.soundok) {
+					You_hear("a chuckling laughter.");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+				}
 			      attrcurse();
 			      attrcurse();
 				break;
@@ -3155,6 +3163,7 @@ register struct obj	*sobj;
 				break;
 			    case 2:
 				You("need reboot.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 				if (!Race_if(PM_UNGENOMOLD)) newman();
 				else polyself(FALSE);
 				break;
@@ -3199,6 +3208,7 @@ register struct obj	*sobj;
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
 					nomul(-rnd(10), "paralyzed by a scroll of sin");
 					exercise(A_DEX, FALSE);
@@ -3212,6 +3222,7 @@ register struct obj	*sobj;
 					You(Blind ? "%s and get dizzy..." :
 						 "%s and your vision blurs...",
 						    stagger(youmonst.data, "stagger"));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 				dmg = rn1(7, 16);
 				make_stunned(HStun + dmg + monster_difficulty(), FALSE);
 				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
@@ -3235,6 +3246,7 @@ register struct obj	*sobj;
 	
 				    if (objD && drain_item(objD)) {
 					Your("%s less effective.", aobjnam(objD, "seem"));
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				    }
 				}
 				break;
@@ -3323,7 +3335,7 @@ register struct obj	*sobj;
 
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
-		switch (rnd(85)) {
+		switch (rnd(95)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -3437,6 +3449,16 @@ register struct obj	*sobj;
 			case 83: CrapEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 84: ProjectilesMisfire += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 85: WallTrapping += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 86: DisconnectedStairs += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 87: InterfaceScrewed += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 88: Bossfights += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 89: EntireLevelMode += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 90: BonesLevelChange += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 91: AutocursingEquipment += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 92: HighlevelStatus += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 		}
 		}
 
@@ -5727,6 +5749,7 @@ revid_end:
 		    	known = FALSE;
 		    	createdscroll = mksobj_at(SCR_CREATE_CREATE_SCROLL, u.ux, u.uy, FALSE, FALSE);
 			if (createdscroll) {
+			    	createdscroll->blessed = sobj->blessed;
 			    	createdscroll->cursed = sobj->cursed;
 			    	createdscroll->hvycurse = sobj->hvycurse;
 			    	createdscroll->prmcurse = sobj->prmcurse;
@@ -5904,6 +5927,7 @@ struct obj *obj;
 			return;
 		}
 		pline("A lit field surrounds you!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy vse yeshche ne mozhete videt' dostatochno, potomu chto Sovetskiy sdelal eto tak, chto dostatochno sredniye monstry skryvayutsya tol'ko za predelami etogo radiusa." : "Wschiiiiie!");
 	}
 
 do_it:

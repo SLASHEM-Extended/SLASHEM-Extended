@@ -908,6 +908,7 @@ adjattrib(ndx, incr, msgflg)
 
 	if ( (msgflg == 0) && (incr < 0) ) {
 		pline("You lose  %s", ndx == 0 ? "Strength" : ndx == 1 ? "Intelligence" : ndx == 2 ? "Wisdom" : ndx == 3 ? "Dexterity" : ndx == 4 ? "Constitution" : "Charisma");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Pochemu vy ne sledite luchshe dlya vashikh atributov, tak ili inache?" : "Due-l-ue-l-ue-l!");
 	}
 
 	flags.botl = 1;
@@ -1731,6 +1732,7 @@ int x;
 		if (uright && uright->oartifact == ART_CATHAN_S_SIGIL) tmp += (3 + uright->spe);
 		if (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) tmp += 5;
 
+		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
@@ -1774,6 +1776,7 @@ int x;
 		if (uarmu && uarmu->oartifact == ART_BIENVENIDO_A_MIAMI) tmp += 3;
 		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_SEXY_STROKING_UNITS) tmp += 5;
+		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "gentle cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nezhnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "muloyim plash") ) ) tmp += 1;
 
 		if (RngeCoquetry) tmp += 5;
 
@@ -1817,6 +1820,7 @@ int x;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
 
+		if (uarmh && uarmh->otyp == HELM_OF_BRILLIANCE) tmp += uarmh->spe;
 		if (uarmh && uarmh->otyp == DUNCE_CAP) return(Role_if(PM_JESTER) ? 9 : 6);
 	} else if (x == A_DEX) {
 
@@ -1834,6 +1838,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) tmp += 5;
 
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
+		if (uarmg && uarmg->otyp == GAUNTLETS_OF_DEXTERITY) tmp += uarmg->spe;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
