@@ -43,11 +43,11 @@ History file by Elijah Stone (Elronnd)
   | Slash'EM Extended |
   +-------------------+
 
-	Slash'EM Extended is possibly the most outrageous and bloated descendant of NetHack.  We will not say roguelike period, because of the existence of such games as Dwarf Fortress or Cogmind.  It is arguable whether these variants are as complicated as Slash'EM Extended.  It is certain, however, that Slash'EM Extended has the most lines of code in any NetHack variant.  At 42.3 Megabytes, it is almost twice as large as NetHack's codebase.  It's monst.c, the file containing monsters and their info is 3.4 Megabytes, in comparison with NetHack's pitiful 168 Kilobytes.  However, some people believe it to be too bloated or to be unablanced.  While we can assure you that they are entirely wrong, we would still like to share with you the story of a variant gone wrong, SlashTHEM.
+	Slash'EM Extended is possibly the most outrageous and bloated descendant of NetHack.  It has 650k lines of code, more than any other NetHack variant.  At 49 Megabytes, it is over 10 times as large as NetHack's codebase.  It's monst.c, the file containing monsters and their info is 5 Megabytes, 30 times larger NetHack's pitiful 168 Kilobytes.  Despite these clear superiorities, some believe it to be too bloated or to be unablanced.  While we can assure you that they are entirely wrong, we would still like to share with you the story of a variant gone wrong, SlashTHEM.
 
 
   +-----------+
   | SlashTHEM |
   +-----------+
 
-	SlashTHEM, short for Super Lotsa Added Stuff -- The Heavily Extended Mod, developed by an unnamed entity known in IRC as "Soviet5lo," was created to "fix" Slash'EM Extended.  It provides "bug fixes" ("Remember, it's not a bug, it's a feature"), balance "improvements" (which simply made gameplay much easier for the player), and a much milder codebase, with a monst.c less than a third of Slash'EM Extended's.
+	SlashTHEM, short for Super Lotsa Added Stuff -- The Heavily Extended Mod, developed by an unnamed entity known in IRC as "Soviet5lo," was created to "fix" Slash'EM Extended.  It provides "bug fixes" ("Remember, it's not a bug, it's a feature"), balance "improvements" (which simply made gameplay much easier for the player), and a much milder codebase, with a monst.c less than 10% the size of Slash'EM Extended's.
