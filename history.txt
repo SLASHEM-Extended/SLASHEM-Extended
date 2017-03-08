@@ -29,7 +29,7 @@ History file by Elijah Stone (Elronnd)
   | NetHack |
   +---------+
 
-	Mike stephenson took this Hack and developed it together with a bunch of people over the web.  This group consisted of -- and to this day consists of -- a mythical group of people knows as the NetHack DevTeam, or just the DevTeam.  Secretive, releasing late and infrequently, they were nonetheless revered.  But eventually this came to a head.  People had been for some time releasing patches and making variants of NetHack, but none of them ever became popular.  Until one did.  Two variants of NetHack, NetHack-- (previously named NetHack++, but later renamed to avoid confusion that it was written in C++) and NetHack Plus came together to form the a variant called SLASH, short for Super Lotsa Added Stuff Hack.  This SLASH, combined with a patch called the Wizard patch which enhanced spell-casting, came together to form Slash'EM: Super Lotsa Added Stuff Hack -- Extended Magic, a variant maintained by Warren Cheung and Tom Proudfoot.
+	Mike Stephenson took this Hack and developed it together with a bunch of people over the web.  This group consisted of -- and to this day consists of -- a mythical group of people knows as the NetHack DevTeam, or just the DevTeam.  Secretive, releasing late and infrequently, they were nonetheless revered.  But eventually this came to a head.  People had been for some time releasing patches and making variants of NetHack, but none of them ever became popular.  Until one did.  Two variants of NetHack, NetHack-- (previously named NetHack++, but later renamed to avoid confusion that it was written in C++) and NetHack Plus came together to form the a variant called SLASH, short for Super Lotsa Added Stuff Hack.  This SLASH, combined with a patch called the Wizard patch which enhanced spell-casting, came together to form Slash'EM: Super Lotsa Added Stuff Hack -- Extended Magic, a variant maintained by Warren Cheung and Tom Proudfoot.
 
 
   +----------+
@@ -43,7 +43,7 @@ History file by Elijah Stone (Elronnd)
   | Slash'EM Extended |
   +-------------------+
 
-	Slash'EM Extended is possibly the most outrageous and bloated descendant of NetHack.  It has 650k lines of code, more than any other NetHack variant.  At 49 Megabytes, it is over 10 times as large as NetHack's codebase.  It's monst.c, the file containing monsters and their info is 5 Megabytes, 30 times larger NetHack's pitiful 168 Kilobytes.  Despite these clear superiorities, some believe it to be too bloated or to be unablanced.  While we can assure you that they are entirely wrong, we would still like to share with you the story of a variant gone wrong, SlashTHEM.
+	Slash'EM Extended is possibly the most outrageous and bloated descendant of NetHack.  It has 650k lines of code, more than any other NetHack variant.  At 49 Megabytes, it is over 10 times as large as NetHack's codebase.  It's monst.c, the file containing monsters and their info is 5 Megabytes, 30 times larger NetHack's pitiful 168 Kilobytes.  Despite these clear superiorities, some believe it to be too bloated or to be unbalanced.  While we can assure you that they are entirely wrong, we would still like to share with you the story of a variant gone wrong, SlashTHEM.
 
 
   +-----------+
