@@ -719,7 +719,7 @@ register struct monst *mtmp;
 					if (!Free_action || !rn2(20)) {
 					    pline("You are frozen in place!");
 					    nomul(-rnz(10), "frozen by an eldritch blast");
-						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					    nomovemsg = You_can_move_again;
 					    exercise(A_DEX, FALSE);
 					}
@@ -1632,7 +1632,7 @@ postmov:
 			    if (flags.verbose) {
 				if (canseeit) {
 				   You("see a door unlock and open.");
-				   if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kto-to klyuch k pobede pervogo igroka. Bud'te ochen' boyatsya." : "Kloeck-wong!");
+				   if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kto-to klyuch k pobede pervogo igroka. Bud'te ochen' boyatsya." : "Kloeck-wong!");
 				}
 				else if (flags.soundok)
 				   You_hear("a door unlock and open.");
@@ -1651,7 +1651,7 @@ postmov:
 			    if (flags.verbose) {
 				if (canseeit) {
 				     You("see a door open.");
-				     if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Mirskiye veshchi, kak dveri ne mozhet derzhat' vas v bezopasnosti, nub!" : "Wong!");
+				     if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Mirskiye veshchi, kak dveri ne mozhet derzhat' vas v bezopasnosti, nub!" : "Wong!");
 				}
 				else if (flags.soundok)
 				     You_hear("a door open.");
@@ -1677,7 +1677,7 @@ postmov:
 			    if (flags.verbose) {
 				if (canseeit) {
 				    You("see a door crash open.");
-				    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Tam net bar'yera mezhdu vami i burlyashchey ordy monstrov. Vse oni budut obdavat' vas, kak bibleyskiy potop!" : "Wongwongwongwongwongwongwongbooooooooooooooom!");
+				    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net bar'yera mezhdu vami i burlyashchey ordy monstrov. Vse oni budut obdavat' vas, kak bibleyskiy potop!" : "Wongwongwongwongwongwongwongbooooooooooooooom!");
 				}
 				else if (flags.soundok)
 				    You_hear("a door crash open.");

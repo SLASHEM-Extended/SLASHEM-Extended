@@ -530,7 +530,7 @@ aligntyp resp_god;
 	    } else pline("%s seems unaffected.", Monnam(u.ustuck));
 	} else {
 	    pline("Suddenly, a bolt of lightning strikes you!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto konets ty oblazhalsya cheloveka. Bog lichno reshil, chto on ne lyubit tebya i teper' ty mertv. Mudak." : "DUEUEUEUEUEUE-DLUELUELUELUELUELUELUE!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto konets ty oblazhalsya cheloveka. Bog lichno reshil, chto on ne lyubit tebya i teper' ty mertv. Mudak." : "DUEUEUEUEUEUE-DLUELUELUELUELUELUELUE!");
 	    if (Reflecting) {
 		shieldeff(u.ux, u.uy);
 		if (Blind) pline("For some reason you're unaffected.");
@@ -553,7 +553,7 @@ aligntyp resp_god;
 		pline("%s seems unaffected.", Monnam(u.ustuck));
 	} else {
 	    pline("A wide-angle disintegration beam hits you!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' UMIRAT' NAKONETS ty glupyy der'movoy chelovek! Vy ne dolzhny sushchestvovat' bol'she, potomu chto vy dazhe ne znayete, kak igrat' slesh ikh!" : "Dwoaing-doaing...");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' UMIRAT' NAKONETS ty glupyy der'movoy chelovek! Vy ne dolzhny sushchestvovat' bol'she, potomu chto vy dazhe ne znayete, kak igrat' slesh ikh!" : "Dwoaing-doaing...");
 
 	    /* disintegrate shield and body armor before disintegrating
 	     * the impudent mortal, like black dragon breath -3.
@@ -718,7 +718,7 @@ aligntyp resp_god;
 			if (!Blind && !Antimagic)
 			    pline("%s glow surrounds you.",
 				  An(hcolor(NH_BLACK)));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			rndcurse();
 			break;
 	    case 7:
@@ -1553,7 +1553,7 @@ aligntyp alignment;
 		 "A miasma of stinking vapors coalesces around you!");
 	   break;
 	}
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy, veroyatno, blizok k smerti v lyubom sluchaye. Kak tol'ko vy natknulis' v eto novoye domashneye zhivotnoye, v to vremya kak zaputalsya, i glup, kak vy, veroyatno, vy budete delat' eto, igra zakonchitsya v vashem porazhenii." : "Chaeaeaeaet!");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy, veroyatno, blizok k smerti v lyubom sluchaye. Kak tol'ko vy natknulis' v eto novoye domashneye zhivotnoye, v to vremya kak zaputalsya, i glup, kak vy, veroyatno, vy budete delat' eto, igra zakonchitsya v vashem porazhenii." : "Chaeaeaeaet!");
 	godvoice(u.ualign.type, "My minion shall serve thee!");
 	return;
     }
@@ -1573,7 +1573,7 @@ lawful_god_gives_angel()
     mon = make_pet_minion(mnum,A_LAWFUL);
     pline("%s", Blind ? "You feel the presence of goodness." :
 	 "There is a puff of white fog!");
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy, veroyatno, blizok k smerti v lyubom sluchaye. Kak tol'ko vy natknulis' v eto novoye domashneye zhivotnoye, v to vremya kak zaputalsya, i glup, kak vy, veroyatno, vy budete delat' eto, igra zakonchitsya v vashem porazhenii." : "Chaeaeaeaet!");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy, veroyatno, blizok k smerti v lyubom sluchaye. Kak tol'ko vy natknulis' v eto novoye domashneye zhivotnoye, v to vremya kak zaputalsya, i glup, kak vy, veroyatno, vy budete delat' eto, igra zakonchitsya v vashem porazhenii." : "Chaeaeaeaet!");
     if (u.uhp > (u.uhpmax / 10)) godvoice(u.ualign.type, "My minion shall serve thee!");
     else godvoice(u.ualign.type, "My minion shall save thee!");
 }
@@ -1901,7 +1901,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
     if (otmp->otyp == FAKE_AMULET_OF_YENDOR) {
 	    if (flags.soundok)
 		You_hear("a nearby thunderclap.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Davay! Predlozheniye amulet na nevernom altar'! Vy poluchite tysyachu bonusnykh ochkov, yesli vy delayete!" : "Daaaaaaaaaau dai dai.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Davay! Predlozheniye amulet na nevernom altar'! Vy poluchite tysyachu bonusnykh ochkov, yesli vy delayete!" : "Daaaaaaaaaau dai dai.");
 	    if (!otmp->known) {
 		You("realize you have made a %s.",
 		    Hallucination ? "boo-boo" : "mistake");

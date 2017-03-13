@@ -4470,7 +4470,7 @@ register int otyp;
 		actualn = Alternate_item_name(otyp,Japanese_items);
 	if (Role_if(PM_OTAKU) && Alternate_item_name(otyp,Japanese_items))
 		actualn = Alternate_item_name(otyp,Japanese_items);
-	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ) && !issoviet && Alternate_item_name(otyp,Pirate_items))
+	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) && !issoviet && Alternate_item_name(otyp,Pirate_items))
 		actualn = Alternate_item_name(otyp,Pirate_items);
 	if ( issoviet && Alternate_item_name(otyp,Soviet_items))
 		actualn = Alternate_item_name(otyp,Soviet_items);
@@ -4636,7 +4636,7 @@ register struct obj *obj;
 		actualn = Alternate_item_name(typ,Japanese_items);
 	if (Role_if(PM_OTAKU) && Alternate_item_name(typ,Japanese_items))
 		actualn = Alternate_item_name(typ,Japanese_items);
-	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ) && !issoviet && Alternate_item_name(typ,Pirate_items))
+	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) && !issoviet && Alternate_item_name(typ,Pirate_items))
 		actualn = Alternate_item_name(typ,Pirate_items);
 	if (issoviet && Alternate_item_name(typ,Soviet_items))
 		actualn = Alternate_item_name(typ,Soviet_items);
@@ -5724,7 +5724,7 @@ register const char *verb;
 	 * special case: allow null sobj to get the singular 3rd person
 	 * present tense form so we don't duplicate this code elsewhere.
 	 */
-	if( ( Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ) && !strcmp(verb,"are")) {
+	if( ( Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) && !strcmp(verb,"are")) {
 		Strcpy(buf,"be");
 		return buf;
 	}

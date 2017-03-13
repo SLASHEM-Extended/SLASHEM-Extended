@@ -329,7 +329,7 @@ register struct edog *edog;
 		else {
 		    You_feel("%s for a moment.",
 			Hallucination ? "bummed" : "sad");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Tipichnyy igrok. Vy dazhe ne sposobny kormit' vashego pitomtsa." : "Tschwieaeaeh!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tipichnyy igrok. Vy dazhe ne sposobny kormit' vashego pitomtsa." : "Tschwieaeaeh!");
 
 		}
 		mondied(mtmp);

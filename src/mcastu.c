@@ -703,7 +703,7 @@ int spellnum;
 			}
 			else {
 			You_feel("drained...");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy odin shag blizhe k provalu v nastoyashcheye vremya. Pozdravleniya." : "Doaing!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy odin shag blizhe k provalu v nastoyashcheye vremya. Pozdravleniya." : "Doaing!");
 			u.uhpmax -= dmg/2;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(dmg,"touch of death",KILLED_BY_AN); }
@@ -822,13 +822,13 @@ int spellnum;
 	break;   
     case MGC_AGGRAVATION:
 	You_feel("that monsters are aware of your presence.");
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
 	aggravate();
 	dmg = 0;
 	break;
     case MGC_CURSE_ITEMS:
 	You_feel("as if you need some help.");
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 	rndcurse();
 	dmg = 0;
 	break;
@@ -1031,7 +1031,7 @@ int spellnum;
 	} else {
 	    if (issoviet) pline("Vy chuvstvuyete sebya slabeye! Iosif Putin reshil, chto lyudi boryutsya protiv rezhima, dolzhny byt' nakazany i sovetskiy Pyat' Lo soglasilsya s nim!");
 	    else You("suddenly feel weaker!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Pochemu vy ne sledite luchshe dlya vashikh atributov, tak ili inache?" : "Due-l-ue-l-ue-l!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Pochemu vy ne sledite luchshe dlya vashikh atributov, tak ili inache?" : "Due-l-ue-l-ue-l!");
 	    dmg = rnd(mtmp->m_lev - 5);	/* nerf by Amy - why did this always do the maximum amount??? */
 	    if (issoviet) dmg = mtmp->m_lev - rnd(5);
 	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
@@ -1269,7 +1269,7 @@ int spellnum;
 
 	/* this is physical damage, not magical damage */
 	pline("A sudden geyser slams into you from nowhere!");
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
 	dmg = d(8, 6);
 	water_damage(invent, FALSE, FALSE); /* Come on, every other source of water rusts your stuff. --Amy */
 	if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
@@ -1369,7 +1369,7 @@ int spellnum;
 
     case CLC_FIRE_PILLAR:
 	pline("A pillar of fire strikes all around you!");
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Gori detka gori!" : "Tschack-tschack-tschack-tschack-tschack");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Gori detka gori!" : "Tschack-tschack-tschack-tschack-tschack");
 	if (Fire_resistance && rn2(20)) {
 	    shieldeff(u.ux, u.uy);
 	    dmg = 0;
@@ -1409,7 +1409,7 @@ int spellnum;
     }
     case CLC_CURSE_ITEMS:
 	You_feel("as if you need some help.");
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 	rndcurse();
 	dmg = 0;
 	break;
@@ -1417,7 +1417,7 @@ int spellnum;
     case CLC_AGGRAVATION: /* aggravate monster */
 	You_feel("that monsters are aware of your presence."); /* aggravate monster */
 	aggravate();
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
 	dmg = 0;
 	break;
 
@@ -1550,7 +1550,7 @@ int spellnum;
 	default: /*failsafe*/
 		You_feel("that monsters are aware of your presence."); /* aggravate monster */
 		aggravate();
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
 		dmg = 0;
 		break;
 	}
@@ -1767,7 +1767,7 @@ int spellnum;
 	} else {
 	    if (multi >= 0)
 		You("are frozen in place!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 	    /* new calculations by Amy because otherwise this spell would be uber imba */
 	    if (!issoviet) dmg = rnd( 2 + (rn2(3) ? ((int)mtmp->m_lev / 2) : rn2(2) ? ((int)mtmp->m_lev / 4) : (int)mtmp->m_lev) ) ;
 	    else dmg = 4 + (int)mtmp->m_lev;;

@@ -491,7 +491,7 @@ boolean taken;
 	boolean ask;
 	boolean hallu=FALSE;
 
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Igra zakonchena! Ty polnyy otstoy! Vy igrali tak uzhasno plokho, chto ty umer, i teper' vy dolzhny nachat' s nulya!" : "Duedeldue-duedeldue-duedeldue-duedelduedeldueueueueue-wueck!");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Igra zakonchena! Ty polnyy otstoy! Vy igrali tak uzhasno plokho, chto ty umer, i teper' vy dolzhny nachat' s nulya!" : "Duedeldue-duedeldue-duedeldue-duedelduedeldueueueueue-wueck!");
 
 	if (invent) {
 	    if(taken)

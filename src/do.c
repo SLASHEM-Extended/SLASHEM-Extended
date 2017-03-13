@@ -3234,7 +3234,7 @@ rerollchaloc:
 		display_nhwindow(WIN_MESSAGE, FALSE);
 #endif
 		You_hear("groans and moans everywhere.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto konets vas, potomu chto net nikakogo sposoba dlya vas, chtoby vyzhit' beskonechnyye armii vysokogo urovnya nezhit'yu." : "Waeiaer-elauanar-wuuuuuoh.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto konets vas, potomu chto net nikakogo sposoba dlya vas, chtoby vyzhit' beskonechnyye armii vysokogo urovnya nezhit'yu." : "Waeiaer-elauanar-wuuuuuoh.");
 	    } else pline("It is hot here.  You smell smoke...");
 
 #ifdef RECORD_ACHIEVE
@@ -3301,7 +3301,7 @@ rerollchaloc:
 	if (Is_knox(&u.uz) && (new || !mvitals[PM_CROESUS].died)) {
 		You("penetrated a high security area!");
 		pline("An alarm sounds!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kopy posle vas, i potomu chto eto Sovetskaya Rossiya, oni ne budut prosto arestovat' vas. Vmesto etogo oni sobirayutsya postavit' vas v kontslager'. Poveselis'." : "Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kopy posle vas, i potomu chto eto Sovetskaya Rossiya, oni ne budut prosto arestovat' vas. Vmesto etogo oni sobirayutsya postavit' vas v kontslager'. Poveselis'." : "Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue!");
 		for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 		    if (!DEADMONSTER(mtmp) && mtmp->msleeping) mtmp->msleeping = 0;
 	}

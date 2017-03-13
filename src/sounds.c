@@ -720,6 +720,10 @@ register struct monst *mtmp;
 		else if (mtmp->mpeaceful) {
 			pline("%s seems to like being felt up by you.", Monnam(mtmp) );
 		}
+		else if (uarmf && uarmf->oartifact == ART_SPEAK_TO_OJ) {
+			pline("%s is charmed by your stroking units.", Monnam(mtmp) );
+			mtmp->mpeaceful = 1;
+		}
 		else {
 			pline("%s seems to be even more angry at you than before.", Monnam(mtmp) );
 		}
@@ -969,6 +973,10 @@ register struct monst *mtmp;
 		}
 		else if (mtmp->mpeaceful) {
 			pline("%s seems to like being felt up by you.", Monnam(mtmp) );
+		}
+		else if (uarmf && uarmf->oartifact == ART_SPEAK_TO_OJ) {
+			pline("%s is charmed by your stroking units.", Monnam(mtmp) );
+			mtmp->mpeaceful = 1;
 		}
 		else {
 			pline("%s seems to be even more angry at you than before.", Monnam(mtmp) );

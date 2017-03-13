@@ -589,6 +589,8 @@ struct monst *mon;
 	    armpro = objects[armor->otyp].a_can;
 	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));
 	if (u.magicshield) armpro++;
+	if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
+	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 	if (Race_if(PM_INKA)) armpro++;
 	if (armpro < 0) armpro = 0;
 
@@ -709,14 +711,14 @@ bot2str(char *newbot2)
 	}
 */
 
-	if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && u.urealedibility && u.uhunger >= 4500) 
+	if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && u.urealedibility && u.uhunger >= 4500) 
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Oversatiated" : "Ovs", newbot2);
 #else
 		Strcat(nb = eos(nb), flags.showlongstats ? " Oversatiated" : " Ovs");
 #endif
 
-	else if(!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && strcmp(hu_stat[u.uhs], "        "))
+	else if(!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && strcmp(hu_stat[u.uhs], "        "))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? hu_stat[u.uhs] : hu_abbrev_stat[u.uhs], newbot2);
 #else
@@ -1045,7 +1047,7 @@ boolean reconfig;
 #endif
     if (flags.time)
 	*rv++ = reconfig ? "time" : (Sprintf(tim, "%ld", moves), tim);
-    if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone()) *rv++ = reconfig ? "hunger" : strcmp(hu_stat[u.uhs], "        ") ?
+    if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) ) *rv++ = reconfig ? "hunger" : strcmp(hu_stat[u.uhs], "        ") ?
 	    hu_stat[u.uhs] : "";
     *rv++ = reconfig ? "encumberance" : enc_stat[near_capacity()];
     *rv++ = reconfig ? "flags" : (Sprintf(flgs, "%lX",

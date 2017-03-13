@@ -1753,6 +1753,215 @@ find_eldritch_cloak()
     return -1;	/* not 0, or caller would try again each move */
 }
 
+int
+find_erotic_boots()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "erotic boots"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "eroticheskiye sapogi"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "erotik chizilmasin"))
+	    return i;
+    }
+
+    impossible("erotic boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_secret_helmet()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "secret helmet"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sekret shlem"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "yashirin dubulg'a"))
+	    return i;
+    }
+
+    impossible("secret helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_difficult_cloak()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "difficult cloak"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "trudnyy plashch"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "qiyin plash"))
+	    return i;
+    }
+
+    impossible("difficult cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_velvet_gloves()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "velvet gloves"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "barkhatnyye perchatki"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "baxmal qo'lqop"))
+	    return i;
+    }
+
+    impossible("velvet gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_sputa_boots()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sputa boots"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mokrota sapogi"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sputa chizilmasin"))
+	    return i;
+    }
+
+    impossible("sputa boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_formula_one_helmet()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "formula one helmet"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "formula odin shlem"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "formula bir zarbdan"))
+	    return i;
+    }
+
+    impossible("formula one helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_excrement_cloak()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "excrement cloak"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ekskrementy plashch"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chiqindi plash"))
+	    return i;
+    }
+
+    impossible("excrement cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_racer_gloves()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "racer gloves"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gonshchik perchatki"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "poygachi qo'lqop"))
+	    return i;
+    }
+
+    impossible("racer gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_turbo_boots()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "turbo boots"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "turbo sapogi"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "qidiruvi va turbo chizilmasin"))
+	    return i;
+    }
+
+    impossible("turbo boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_guild_cloak()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "guild cloak"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gil'dii plashch"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "birlik plash"))
+	    return i;
+    }
+
+    impossible("guild cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_shitty_gloves()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shitty gloves"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "der'movyye perchatki"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boktan qo'lqop"))
+	    return i;
+    }
+
+    impossible("shitty gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
 void
 oinit()			/* level dependent initialization */
 {

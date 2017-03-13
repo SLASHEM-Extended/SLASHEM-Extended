@@ -4870,6 +4870,506 @@ A("Yog-Sothoth Help Me",				ORCISH_CLOAK, /* initialized to always be an eldritc
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
 
+A("Softness of Teleportation",				INKA_LEASH,
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Joy Ride",				INKA_SADDLE,
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Fissility",				UNSTABLE_STETHOSCOPE, /* 10x higher chance of breakage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Blocking Extreme",				PAPER_SHIELD, /* 10% extra chance to block */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("Ewscratch",				SECRETION_DAGGER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2,4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 140L ),
+
+A("Tarmac Champion",				BITUKNIFE, /* very fast speed when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1000L ),
+
+A("Gauge-O-Meter",				MEASURER,
+	(SPFX_RESTR), 0, 0,
+	STUN(2,2), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2500L ),
+
+A("U Are A Cheater",				COLLUSION_KNIFE,
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("Cool Chamber",				SOFT_MATTOCK,
+	(SPFX_RESTR), 0, 0,
+	COLD(4,4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Animalbane",				INKA_BLADE,
+	(SPFX_RESTR|SPFX_WARN|SPFX_DFLAG1), 0, M1_ANIMAL,
+	PHYS(5,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Always Hit For Little Damage",				PAPER_SWORD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(10,1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Grinder",				MEATSWORD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4,6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Ouchfire",				ICKY_BLADE,
+	(SPFX_RESTR), 0, 0,
+	FIRE(1,8), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Antivamp Whoosh",				GRANITE_IMPALER,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_VAMPIRE,
+	PHYS(8,10), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
+
+A("Resistomatic",				ORGANOBLADE, /* resist shock and acid */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Goodie of Use",				BIDENHANDER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Arrrrrr Matey",				INKUTLASS, /* korsair speak when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Spambait Fire",				HOE_SABLE, /* +2 increase damage */
+	(SPFX_RESTR), 0, 0,
+	FIRE(0,4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Arabstreet Sound",				YATAGAN, /* 1 in 50 monsters spawns with sounder egotype */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	FIRE(6,1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Halluduckdir",				PLATINUM_SABER,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5,5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Whackdock",				NATURAL_STICK,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2,2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Jonadab's Idea Generator",				POURED_CLUB,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Rattleclinker",				DIAMOND_SMASHER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(6,1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("See Animals",				VERMIN_SWATTER,
+	(SPFX_RESTR|SPFX_DFLAG1|SPFX_WARN), 0, M1_ANIMAL,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Wild Heavy Swings",				MILL_PAIL, /* -10 to-hit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Orangery",				RHYTHMIC_STAR, /* orange monsters are 10% spawned tame and 90% peaceful */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Melissa's Peacebringer",				FLOGGER, /* attacks twice per round without the "double attacks" disadvantage - but only if you don't dual-wield */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Manuela's Practicant Terrorizer",				RIDING_CROP, /* autocurses, aggravate monster, all monsters are spawned hostile, uberjackal effect, allows you to survive in lava */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(5,0), DFNS(AD_FIRE), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Thor's Strike",				THUNDER_HAMMER, /* if you wield it with a strength of 25, you have +5 increase damage */
+	(SPFX_RESTR), 0, 0,
+	ELEC(6,6), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 8000L ),
+
+A("Black Poison Inside",				BRIDGE_MUZZLE, /* always poisoned */
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("Luisa's Charming Beauty",				INKA_BOOT, /* autocurses, spawns a shit trap 1 in 200 turns and you trigger them even if you fly, makes you nauseated 1 in 500 turns and causes diarrhea and thirst, makes you immune to being kicked in the nuts or having your breasts ripped open */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(5,0), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
+
+A("Amy's First Girlfriend",				SOFT_LADY_SHOE, /* autocurses, bonks you 1 in 500 turns */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP), 0, 0,
+	STUN(5,2), DFNS(AD_COLD), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Patricia's Femininity",				STEEL_CAPPED_SANDAL, /* makes you thick-skinned, bloodthirsty, less likely to lose enchantment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 20000L ),
+
+A("Henrietta's Mistake",				DOGSHIT_BOOT, /* replicates shit trap effect 1 in 10 turns (but only if you moved), heavily autocurses, aggaravate monster, disables stealth */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	ACID(2,8), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2000L ),
+
+A("Teaching Stick",				IMPACT_STAFF,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4,4), DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Wetting Weather",				TROUTSTAFF,
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Mana Meter Booster",				OLDEST_STAFF, /* spells cost 10% less mana */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Grandpa",				COLOSSUS_BLADE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Road Trash",				TUBING_PLIERS,
+	(SPFX_RESTR), 0, 0,
+	ACID(2,7), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("Also Matte Mask",				CHEMISTRY_SPACE_AXE, /* poison resistance, always poisoned */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Crushing Impact",				RAIN_PIPE, /* double attacks without speed penalty if you wield it without dual-wielding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Why Do You Have Such A Little Penis",				PENIS_POLE, /* aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(4,6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("The Longest Stick",				PIKE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Healhealhealheal",				PHYSICIAN_BAR, /* heals 1 HP every time you successfully hit a monster with it, doubles healup effects, or quadruples if you're a healer */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Type Of Arms Discovery",				HELMET_BEARD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Extremely Hard Mode",				TRAFFIC_LIGHT, /* boss trap effect, uncommon monsters are no longer uncommon and high-level ones aren't either */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(10,3), DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Equalhit",				GIANT_SCYTHE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(15,1), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 750L ),
+
+A("Softspire",				SILK_SPEAR,
+	(SPFX_RESTR), 0, 0,
+	ELEC(6,6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Explosion Missile",				HOMING_TORPEDO,
+	(SPFX_RESTR), 0, 0,
+	FIRE(8,1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("And It Keeps On Moving",				COURSE_JAVELIN, /* autocurses, pushes you back every turn (but without giving a message) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("High Roller's Luck",				POKER_STICK, /* applying it has 1 in 100 chance to reduce enchantment by 1 (but not below 0), and 1 in 2000 chance to increase enchantment by 10 (but not if it's already +21 or higher) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Long Rod of Est",				BRONZE_LANCE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Minolong Elbow",				COMPOST_BOW, /* england mode when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Alchemical Prohibition",				FORBIDDEN_ARROW,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4,4), NO_DFNS, DFNS(AD_FIRE), 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Auntie Hilda",				WILDHILD_BOW,
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("Red Gas Bullet",				ODOR_SHOT,
+	(SPFX_RESTR), 0, 0,
+	PHYS(10,0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 500L ),
+
+A("Flysting",				PAPER_ARROW,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5,1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Streamshooter",				METAL_SLING, /* +1 multishot, higher chance of firing more than 3 shots per turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Luck Versus Bad",				INKA_SLING, /* 50% chance of avoiding bad effects when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2000L ),
+
+A("Eloplus Stat",				PAPER_SHOTGUN, /* 1 extra point of AC when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1,1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Immobilaser",				PROCESS_CARD, /* free action when wielded */
+	(SPFX_RESTR), 0, 0,
+	STUN(5,1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sniper Crosshair",				ZOOM_SHOT_CROSSBOW, /* +30 range for bolts */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Atomic Missing",				BALLISTA, /* autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0,20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Leather-Soft Sting",				FLEECE_BOLT,
+	(SPFX_RESTR), 0, 0,
+	PHYS(6,2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Super Effective Rock",				MINERAL_BOLT,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Anti-Intelligence",				INKA_STINGER,
+	(SPFX_RESTR|SPFX_DFLAG1), 0, (M1_HUMANOID|M1_ANIMAL),
+	PHYS(10,0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 40L ),
+
+A("Completely Off",				FLIMSY_DART, /* always misfires */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Ow Wow Wow",				SOFT_STAR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5,5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 70L ),
+
+A("Racer Projectile",				TAR_STAR, /* double thrown range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Indigenous Fun",				INKA_SHACKLE,
+	(SPFX_RESTR|SPFX_DFLAG1|SPFX_WARN), 0, M1_HUMANOID,
+	PHYS(5,10), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 5000L ),
+
+A("Vest Replacement",				BULLETPROOF_CHAINWHIP, /* +5 AC when wielded. If you also wear a shield, another +5 AC and +10% chance to block. */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Whereabout of X",				SECRET_WHIP, /* invisibility when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2,2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Prismatic Shirt",				BEAUTIFUL_SHIRT, /* resist fire, cold, sleep, poison */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 5000L ),
+
+A("Non-Bladeturner",				PARTIAL_PLATE_MAIL, /* aggravate monster */
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Armor of Isildur",				RIBBED_PLATE_MAIL, /* sets itself to a random value from +1 to +10 if worn while +0 or lower */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 5000L ),
+
+A("Essentiality Extreme",				METAL_LAMELLAR_ARMOR, /* free action when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Nonexistance",				BAR_CHAIN_MAIL, /* no specialties */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Formula One Suit",				TAR_CHAIN_MAIL, /* adds extra speed sometimes */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Incredibly Frequent Cage",				GOTHIC_PLATE_MAIL,
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Mithral Cancellation",				INKA_MITHRIL_COAT, /* +1 MC, recurring disenchantment */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 5000L ),
+
+A("Impractical Combat Wear",				SILK_MAIL, /* +5 charisma, +1 MC, reduces AC by half */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Blueform",				HEAVY_MAIL, /* 2 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("The Light of Deception",				CLOAK_OF_PEACE, /* 10% of all monsters are spawned peaceful, farlook trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("The Enemies Shall Laugh Too",				CLOAK_OF_DIMNESS, /* +10 increase accuracy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Armor Class Wall",				ICKY_SHIELD, /* +5 AC, and one more per shield skill */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("Someprotector",				HEAVY_SHIELD,
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Cutting Through",				BARRIER_SHIELD, /* 5 extra points of AC, +5% chance to block */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Antinstant Death",				TARRIER, /* resist disintegration and death rays, poison cannot instakill you */
+	(SPFX_RESTR|SPFX_DCLAS|SPFX_WARN), 0, S_ANT,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
+
+A("Blind Pilot",				RIN_DIMNESS, /* weak sight, -10 increase accuracy, +10 increase damage, random fainting */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 10000L ),
+
+A("Guantanamera",				GRASS_WHISTLE, /* applying it tries to put monsters to sleep like a magic flute, but also you, even if you are sleep resistant */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Derrsch",				CONGLOMERATE_PICK,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Steel Greater Rock",				BRONZE_PICK,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Hellbringer",				GUITAR,
+	(SPFX_RESTR), 0, 0,
+	FIRE(8,4), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Killer Piano",				PIANO, /* aggravate monster, gridbug conduct, applying it gives a permanent intrinsic nastytrap effect */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_BEHEAD), 0, 0,
+	PHYS(6,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Soundtone FM",				RADIOGLASSES, /* sound effect trap when worn */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Stable Stunt",				EYECLOSER, /* disintegration resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Crawling From The Woodwork",				BOSS_VISOR, /* bosses spawn more often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Breather Show",				DRAGON_EYEPATCH, /* displays all AT_BREA monsters when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("True Grime",				BINNING_KIT, /* +5 alignment and +1 max alignment every time you remove a corpse with it, and displays your current alignment and max alignment if you do */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Supermarket Fu",				BUDO_NO_SASU, /* +d10 damage, and another +d10 if you're a supermarket cashier */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Grease Your Butt",				LUBRICANT_CAN, /* every time you apply it while it has charges will polymorph you into a farting monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Too Precious To Eat",				DISGUSTING_BALL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(6,6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7500L ),
+
+A("Mmmmmmmmmmmm x 200",				ELASTHAN_CHAIN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(20,1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Arvogenia's High Heelses",				DISCONNECTED_BOOTS, /* count as high heels (DUH), disintegration resistance, infravision */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Now You Have Lost",				AMULET_OF_SCREWY_INTERFACE, /* +10 increase damage, ancient Morgothian curse */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Fingermash",				BOSS_BOOTS, /* kicking a monster that is wielding a weapon will curse that monster's weapon, and set its enchantment to +0 if it was positive */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Null the Living Database",				RARE_HELMET, /* cancels you 1 in 5000 turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Archeologist Song",				AMULET_OF_BONES, /* if you wear it as an archeologist, you have +2 increase damage/accuracy, +2 AC and 10% lower spellcasting failure rates */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2500L ),
+
+A("Difficult!",				LEVELING_GLOVES, /* level difficulty is doubled */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP|SPFX_HSPDAM|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 10000L ),
+
+A("Luisa's Irresistible Charm",				LOW_BOOTS, /* initialized to always be erotic boots; prevents your items from being eroded 50% of the time */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Jana's Deceptive Mask",				HELMET, /* initialized to always be secret helmet; if a monster uncovers you, 1% chance to instantly die (no joke). */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Now It Becomes Different",				ORCISH_CLOAK, /* initialized to always be difficult cloak; monster spawn frequencies behave as if you're a mystic */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Natascha's Stroking Units",				LEATHER_GLOVES, /* initialized to always be velvet gloves; monsters attacking you take 1d10 damage, unless they need a +1 or higher weapon to hit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 10000L ),
+
+A("Speak to OJ",				LOW_BOOTS, /* initialized to always be sputa boots; farting monsters are spawned 90% peaceful and 25% tame, chatting to a hostile one will make it peaceful */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Due Due-Due-Due Brmmmmmmm",				HELMET, /* initialized to always be formula one helmet; very fast speed, and +2 AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Toilet Noises",				ORCISH_CLOAK, /* initialized to always be excrement cloak; monsters walking over a tile with a toilet will do... nasty things (you don't even wanna know) :D */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Line Can Play By Yourself",				LEATHER_GLOVES, /* initialized to always be racer gloves; gridbug conduct, doubles your speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Too Fast, Too Furious",				LOW_BOOTS, /* initialized to always be turbo boots; prevents you from being interrupted */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Nourofibroma",				ORCISH_CLOAK, /* initialized to always be guild cloak; free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Madeline's Stupid Girl",				LEATHER_GLOVES, /* initialized to always be shitty gloves; 1 in 500 chance to spawn a shit trap on the level and you trigger them even if you're flying; +3 increase damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Arabella's Radar",				RIN_AUTOCURSING, /* detect monsters, dropcurses, itemcursing, heavily autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Henrietta's Magical Aid",				RIN_TIME_SPENDING, /* 50% less spellcasting failure rate, spells cost 20% less mana, teleportitis, disables teleport control, create traps effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Jonadab's Heavyload",				LOADSTONE, /* invisibility while carried */
+	(SPFX_RESTR), 0, (SPFX_ESP),
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Hanging Call",       RADIOACTIVE_DAGGER,
+    (SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+    ACID(5,2),  ACID(0,0), NO_CARY,     0, A_NEUTRAL, NON_PM, NON_PM, 400L ),
+
+A("Blue Screen of Death",				BLACKY_HELMET, /* makes everything blue (idea by bugsniper), and if Blacky spawns, the game will also spawn a bunch of blue monsters */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

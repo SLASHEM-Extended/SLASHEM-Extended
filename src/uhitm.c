@@ -247,7 +247,7 @@ boolean barehanded;
 	    && !(Confusion && !Conf_resist) && !Hallucination && !(Stunned && !Stun_resist) ) {
 		/* Intelligent chaotic weapons (Stormbringer) want blood */
 		if (!barehanded &&
-		  uwep && (uwep->oartifact == ART_STORMBRINGER || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
+		  uwep && (uwep->oartifact == ART_STORMBRINGER || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_PATRICIA_S_FEMININITY || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
 			override_confirmation = HIT_UWEP;
 			return retval;
 		}
@@ -256,7 +256,7 @@ boolean barehanded;
 			if (yn(qbuf) != 'y') {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -269,7 +269,7 @@ boolean barehanded;
 			if (strcmp (bufX, "yes")) {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				  (uswapwep->oartifact == ART_STORMBRINGER || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -551,6 +551,11 @@ register struct monst *mtmp;
 
 	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
+	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
+	if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp -= 10;
+	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
+	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 
@@ -582,7 +587,7 @@ register struct monst *mtmp;
 	/* Double and quad attacks gives extra attacks per round --Amy
 	 * This means you do all of your normal attacks two or four times. */
 	int attackamount = 0;
-	if (Double_attack) attackamount++;
+	if (Double_attack || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) attackamount++;
 	if (Quad_attack) attackamount += 3; /* they won't stack to become +7 attacks, sorry */
 
 	/* This section of code provides protection against accidentally
@@ -596,9 +601,9 @@ register struct monst *mtmp;
 	 */
 	/* Intelligent chaotic weapons (Stormbringer) want blood */
 	if (is_safepet(mtmp) && !flags.forcefight) {
-	    if ((!uwep || (uwep->oartifact != ART_STORMBRINGER && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
+	    if ((!uwep || (uwep->oartifact != ART_STORMBRINGER && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_PATRICIA_S_FEMININITY && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
 		&& (!u.twoweap || !uswapwep 
-		   || (uswapwep->oartifact != ART_STORMBRINGER && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
+		   || (uswapwep->oartifact != ART_STORMBRINGER && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_PATRICIA_S_FEMININITY && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
 		/* there are some additional considerations: this won't work
 		 * if in a shop or Punished or you miss a random roll or
 		 * if you can walk thru walls and your pet cannot (KAA) or
@@ -1182,6 +1187,8 @@ int thrown;
 
 		if (Race_if(PM_POISONER)) ispoisoned = TRUE;
 		if (obj->oartifact == ART_ASBESTOS_MATERIAL) ispoisoned = TRUE;
+		if (obj->oartifact == ART_BLACK_POISON_INSIDE) ispoisoned = TRUE;
+		if (obj->oartifact == ART_ALSO_MATTE_MASK) ispoisoned = TRUE;
 		if (obj->otyp == ASBESTOS_JAVELIN) ispoisoned = TRUE;
 
 	    noeffect = objenchant < canhitmon && !ispoisoned && (issoviet || rn2(3) );
@@ -1707,6 +1714,11 @@ int thrown;
 
 			if (obj && obj->oartifact == ART_TIN_FU) tmp += 20;
 
+			if (obj->oartifact == ART_SUPERMARKET_FU) {
+				tmp += rnd(10);
+				if (Role_if(PM_SUPERMARKET_CASHIER)) tmp += rnd(10);
+			}
+
 			if (obj && (obj->otyp == TIN_OPENER || obj->otyp == BUDO_NO_SASU) && Role_if(PM_SUPERMARKET_CASHIER)) {
 				if (obj->otyp == BUDO_NO_SASU) tmp += 5;
 				tmp += 2;
@@ -1862,7 +1874,14 @@ int thrown;
 	if (get_dmg_bonus && tmp > 0) {
 		tmp += u.udaminc;
 		if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
+		if (uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) tmp += 2;
+		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+		if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp += 10;
+		if (uright && uright->oartifact == ART_BLIND_PILOT) tmp += 10;
+		if (uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) tmp += 10;
+		if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
+		if (uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) tmp += 3;
 		tmp += (Drunken_boxing && Confusion);
 		if (RngeBloodlust) tmp += 1;
 		if (uarms && uarms->oartifact == ART_TEH_BASH_R) tmp += 2;
@@ -2177,7 +2196,7 @@ int thrown;
 		if (thrown) hit(mshot_xname(obj), mon, exclam(tmp));
 		else if (!flags.verbose) You("hit it.");
 
-		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(20) && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) ) {
+		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(20) && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) ) {
 
 			switch (rnd(15)) {
 	
@@ -2569,7 +2588,7 @@ int thrown;
 	} else if (destroyed) {
 		if (!already_killed) {
 
-			if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !thrown && !rn2(20) && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) ) {
+			if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !thrown && !rn2(20) && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) ) {
 
 				switch (rnd(8)) {
 	
@@ -4656,7 +4675,7 @@ register int roll;
 	
 	if (could_seduce(&youmonst, mdef, mattk) && rn2(5) ) {
 		You("pretend to be friendly to %s.", mon_nam(mdef));
-	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(20) && canspotmon(mdef) && flags.verbose && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) ) {
+	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(20) && canspotmon(mdef) && flags.verbose && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) ) {
 
 		switch (rnd(6)) {
 	
@@ -5242,7 +5261,7 @@ use_weapon:
 					uwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
-				if (uwep && uwep->otyp == STEEL_CAPPED_SANDAL && !rn2(30)) {
+				if (uwep && uwep->otyp == STEEL_CAPPED_SANDAL && !rn2(uwep->oartifact == ART_PATRICIA_S_FEMININITY ? 150 : 30)) {
 					uwep->spe--;
 					pline("Your steel-capped sandal degrades.");
 					if (uwep->spe < -15) {
@@ -5270,7 +5289,7 @@ use_weapon:
 					uswapwep->spe--;
 					pline("Your weapon sustains damage.");
 				}
-				if (u.twoweap && uswapwep && uswapwep->otyp == STEEL_CAPPED_SANDAL && !rn2(30)) {
+				if (u.twoweap && uswapwep && uswapwep->otyp == STEEL_CAPPED_SANDAL && !rn2(uswapwep->oartifact == ART_PATRICIA_S_FEMININITY ? 150 : 30)) {
 					uswapwep->spe--;
 					pline("Your steel-capped sandal degrades.");
 					if (uswapwep->spe < -15) {
@@ -5950,7 +5969,7 @@ uchar aatyp;
 	    case AD_ICUR:
 		if (!rn2(3)) {
 			You_feel("as if you need some help.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			rndcurse();
 		}
 		break;
@@ -6277,7 +6296,7 @@ uchar aatyp;
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -7104,7 +7123,7 @@ uchar aatyp;
 			break;
 		    case 2:
 			You("need reboot.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
 			else polyself(FALSE);
 			break;
@@ -7129,7 +7148,7 @@ uchar aatyp;
 			if (!u.ustuck && !sticks(youmonst.data)) {
 				setustuck(mon);
 				pline("%s grabs you!", Monnam(mon));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
@@ -7193,7 +7212,7 @@ uchar aatyp;
 			    } else {
 				if (Blind) You("are frozen!");
 				else You("are frozen by %s!", mon_nam(mon));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				nomul(-rnd(10), "paralyzed by a monster attack");
 				exercise(A_DEX, FALSE);
@@ -7207,7 +7226,7 @@ uchar aatyp;
 				You(Blind ? "%s and get dizzy..." :
 					 "%s and your vision blurs...",
 					    stagger(youmonst.data, "stagger"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 			hallutime = rn1(7, 16);
 			make_stunned(HStun + hallutime + tmp, FALSE);
 			(void) make_hallucinated(HHallucination + hallutime + tmp,TRUE,0L);
@@ -7231,7 +7250,7 @@ uchar aatyp;
 
 			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
 			break;
@@ -7301,7 +7320,7 @@ uchar aatyp;
 			    } else {
 				if (Blind) You("are frozen!");
 				else You("are frozen by %s!", mon_nam(mon));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				nomul(-rnd(10), "paralyzed by a monster attack");
 				exercise(A_DEX, FALSE);
@@ -7736,11 +7755,11 @@ struct attack *mattk;		/* null means we find one internally */
 
 	    if(!mon->mcan && is_flammable(obj) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY ) {
 
-			if (obj->oeroded < MAX_ERODE && !((obj->blessed && !rnl(4)))) {
+			if (obj->oeroded < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !((obj->blessed && !rnl(4)))) {
 				obj->oeroded++;
 				pline("%s weapon is damaged by fire!", carried(obj) ? "Your" : "A");
 				}
-			else if (obj->oeroded == MAX_ERODE && carried(obj) )
+			else if (obj->oeroded == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && carried(obj) )
 			{
 				pline("Your weapon burned to ashes!");
 				if (obj == uball) unpunish();
@@ -7759,11 +7778,11 @@ struct attack *mattk;		/* null means we find one internally */
 		/*erode_obj(obj, TRUE, FALSE);*/
 
 		if (rn2(2)) {
-				if (obj->oeroded < MAX_ERODE && !((obj->blessed && !rnl(4)))) 
+				if (obj->oeroded < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !((obj->blessed && !rnl(4)))) 
 				{obj->oeroded++;
 				pline("%s weapon has taken damage!", carried(obj) ? "Your" : "A");
 				}
-			else if (obj->oeroded == MAX_ERODE && carried(obj) )
+			else if (obj->oeroded == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && carried(obj) )
 			{
 	/* Unfortunately I can't seem to make it work for non-player inventory objects without crashing. --Amy */
 		    
@@ -7776,11 +7795,11 @@ struct attack *mattk;		/* null means we find one internally */
 			}
 		}
 		else {
-				if (obj->oeroded2 < MAX_ERODE && !((obj->blessed && !rnl(4))))
+				if (obj->oeroded2 < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !((obj->blessed && !rnl(4))))
 				{obj->oeroded2++;
 				pline("%s weapon has taken damage!", carried(obj) ? "Your" : "A");
 				}
-			else if (obj->oeroded2 == MAX_ERODE && carried(obj) )
+			else if (obj->oeroded2 == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && carried(obj) )
 			{
 		    
 			pline("Your weapon withered away!");
@@ -7799,7 +7818,7 @@ struct attack *mattk;		/* null means we find one internally */
 		if (drain_item(obj) && carried(obj) &&
 		    (obj->known || obj->oclass == ARMOR_CLASS)) {
 		    Your("%s less effective.", aobjnam(obj, "seem"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 	    	}
 	    	break;
 	    }
@@ -7808,18 +7827,18 @@ struct attack *mattk;		/* null means we find one internally */
 		if (drain_item(obj)) { if(carried(obj) &&
 		    (obj->known || obj->oclass == ARMOR_CLASS)) {
 		    Your("%s less effective.", aobjnam(obj, "seem"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 	    	}
 
 		else if(obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY ) {
 
 		if (rn2(2)) {
-				if (obj->oeroded < MAX_ERODE && !((obj->blessed && !rnl(4)))) 
+				if (obj->oeroded < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !((obj->blessed && !rnl(4)))) 
 				{obj->oeroded++;
 				pline("%s weapon has taken damage!", carried(obj) ? "Your" : "A");
 				}
-			else if (obj->oeroded == MAX_ERODE && carried(obj) )
+			else if (obj->oeroded == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && carried(obj) )
 			{
 	/* Unfortunately I can't seem to make it work for non-player inventory objects without crashing. --Amy */
 		    
@@ -7832,11 +7851,11 @@ struct attack *mattk;		/* null means we find one internally */
 			}
 		}
 		else {
-				if (obj->oeroded2 < MAX_ERODE && !((obj->blessed && !rnl(4))))
+				if (obj->oeroded2 < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !((obj->blessed && !rnl(4))))
 				{obj->oeroded2++;
 				pline("%s weapon has taken damage!", carried(obj) ? "Your" : "A");
 				}
-			else if (obj->oeroded2 == MAX_ERODE && carried(obj) )
+			else if (obj->oeroded2 == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && carried(obj) )
 			{
 		    
 			pline("Your weapon withered away!");
@@ -7879,7 +7898,7 @@ void
 stumble_onto_mimic(mtmp)
 struct monst *mtmp;
 {
-	const char *fmt = (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? "Arrrrr!  Suddenly %s shows its true colors!" : "Wait!  That's %s!",
+	const char *fmt = (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "Arrrrr!  Suddenly %s shows its true colors!" : "Wait!  That's %s!",
 		   *generic = "a monster",
 		   *what = 0;
 

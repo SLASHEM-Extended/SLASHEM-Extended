@@ -1256,7 +1256,7 @@ register struct monst *mtmp;
 	    if (flags.soundok && flags.verbose && !rn2(5)) {
 	    /* KMH -- Okay on arboreal levels (room walls are still stone) */
 		You_hear("crashing rock.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Stena teper' ushla navsegda." : "Derrsch!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Stena teper' ushla navsegda." : "Derrsch!");
 	    }
 	    if (*in_rooms(mtmp->mx, mtmp->my, SHOPBASE))
 		add_damage(mtmp->mx, mtmp->my, 0L);

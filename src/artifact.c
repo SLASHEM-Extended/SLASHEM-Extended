@@ -344,6 +344,17 @@ hack_artifacts()
 	artilist[ART_ARTIFICIAL_FAKE_DIFFICULTY].otyp = find_dnethack_cloak();
 	artilist[ART_JUNETHACK______WINNER].otyp = find_team_splat_cloak();
 	artilist[ART_YOG_SOTHOTH_HELP_ME].otyp = find_eldritch_cloak();
+	artilist[ART_LUISA_S_IRRESISTIBLE_CHARM].otyp = find_erotic_boots();
+	artilist[ART_JANA_S_DECEPTIVE_MASK].otyp = find_secret_helmet();
+	artilist[ART_NOW_IT_BECOMES_DIFFERENT].otyp = find_difficult_cloak();
+	artilist[ART_NATASCHA_S_STROKING_UNITS].otyp = find_velvet_gloves();
+	artilist[ART_SPEAK_TO_OJ].otyp = find_sputa_boots();
+	artilist[ART_DUE_DUE_DUE_DUE_BRMMMMMMM].otyp = find_formula_one_helmet();
+	artilist[ART_TOILET_NOISES].otyp = find_excrement_cloak();
+	artilist[ART_LINE_CAN_PLAY_BY_YOURSELF].otyp = find_racer_gloves();
+	artilist[ART_TOO_FAST__TOO_FURIOUS].otyp = find_turbo_boots();
+	artilist[ART_NOUROFIBROMA].otyp = find_guild_cloak();
+	artilist[ART_MADELINE_S_STUPID_GIRL].otyp = find_shitty_gloves();
 
 #if 0
 	/* Fix up the gifts */
@@ -1454,7 +1465,7 @@ char *hittee;			/* target's name: "you" or mon_nam(mdef) */
     verb = mb_verb[!!Hallucination][attack_indx];
     if (youattack || youdefend || vis) {
 	result = TRUE;
-	pline_The("magic-absorbing blade %s %s!",
+	pline_The("magic-absorbing weapon %s %s!",
 		  vtense((const char *)0, verb), hittee);
 	/* assume probing has some sort of noticeable feedback
 	   even if it is being done by one monster to another */
@@ -1693,7 +1704,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				update_mon_intrinsics(mdef, otmp2, FALSE, FALSE);
 			}
 			/* give the object to the character */
-			otmp2 = (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ) ? 
+			otmp2 = (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? 
 				hold_another_object(otmp2, "Ye snatched but dropped %s.",
 						   doname(otmp2), "Ye steal: ") :
 				hold_another_object(otmp2, "You snatched but dropped %s.",
@@ -1793,7 +1804,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		    *dmgptr += d(3,6) + 6;
 		    break;
 		case 10:
-			if (!rn2(20)) {
+			if (!rn2(20) && !(youdefend && uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) ) {
 		    pline_The("poison was deadly...");
 		    *dmgptr = 2 *
 			    (youdefend ? Upolyd ? u.mh : u.uhp : mdef->mhp) +
@@ -1812,7 +1823,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    else
 		pline("%s plunges the Doomblade deeply into %s!",
 			Monnam(magr), hittee);
-		if (youattack && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone())) pline(issoviet ? "Tak chto vy dumayete, vy mozhete bit' igru tol'ko potomu, chto vy nashli artefakt. Bednyy zabluzhdayutsya dusha." : "Doaaaaaai!");
+		if (youattack && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone())) pline(issoviet ? "Tak chto vy dumayete, vy mozhete bit' igru tol'ko potomu, chto vy nashli artefakt. Bednyy zabluzhdayutsya dusha." : "Doaaaaaai!");
 	    *dmgptr += rnd(4) * 5;
 	    return TRUE;
        }

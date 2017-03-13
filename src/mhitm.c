@@ -1824,7 +1824,7 @@ physical:
 		    if (flags.soundok) {
 			    if (!vis) You_hear("laughter.");
 			    else pline("%s chuckles.", Monnam(magr));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Tip bloka l'da smeyetsya tozhe." : "Hoehoehoehoe!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tip bloka l'da smeyetsya tozhe." : "Hoehoehoehoe!");
 		    }
 		}
 		break;

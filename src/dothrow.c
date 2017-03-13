@@ -80,7 +80,7 @@ int thrown;
 	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;
 	if (uwep && uwep->oartifact == ART_LASER_PALADIN) multishot += 1;
 	if (uarmg && uarmg->oartifact == ART_WHINY_MARY) multishot += rnd(5);
-	if (Double_attack) multishot *= 2;
+	if (Double_attack || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) multishot *= 2;
 	if (Quad_attack) multishot *= 4;
 	if ((long)multishot > obj->quan && (long)multishot > 1) multishot = (int)obj->quan;
 
@@ -205,6 +205,8 @@ int thrown;
 
 	    if (launcher && launcher->otyp == HYDRA_BOW) multishot += 2;
 	    if (launcher && launcher->otyp == WILDHILD_BOW) multishot += 2;
+
+	    if (launcher && launcher->oartifact == ART_STREAMSHOOTER) multishot += 1;
 
 	    if (launcher && launcher->oartifact == ART_MAXIMUM_LAUNCH_POWER) multishot += rnd(2);
 
@@ -341,7 +343,7 @@ int thrown;
 	if (multishot < 1) multishot = 1;
 
 	/* nerf multishot --Amy */
-	if ((multishot > 3) && !(objects[obj->otyp].oc_skill == -P_FIREARM) && !(objects[obj->otyp].oc_skill == P_FIREARM) && !(launcher && launcher->otyp == DEMON_CROSSBOW)) multishot = 2 + rno(multishot - 2);
+	if ((multishot > 3) && !(launcher && launcher->oartifact == ART_STREAMSHOOTER) && !(objects[obj->otyp].oc_skill == -P_FIREARM) && !(objects[obj->otyp].oc_skill == P_FIREARM) && !(launcher && launcher->otyp == DEMON_CROSSBOW)) multishot = 2 + rno(multishot - 2);
 
 	m_shot.s = ammo_and_launcher(obj,uwep) ? TRUE : FALSE;
 	/* give a message if shooting more than one, or if player
@@ -1048,8 +1050,15 @@ boolean hitsroof;
 	if (dmg > 1 && less_damage) dmg = 1;
 	if (dmg > 0) dmg += u.udaminc;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) dmg += 2;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) dmg += 2;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_YES_TO_RANGED_COMBAT) dmg += rnd(6);
+	if (dmg > 0 && uleft && uleft->oartifact == ART_BLIND_PILOT) dmg += 10;
+	if (dmg > 0 && uright && uright->oartifact == ART_BLIND_PILOT) dmg += 10;
+	if (dmg > 0 && uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) dmg += 10;
+	if (dmg > 0 && Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) dmg += 2;
+	if (dmg > 0 && uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) dmg += 3;
 	if (dmg > 0) dmg += (Drunken_boxing && Confusion);
 	if (RngeBloodlust && dmg > 0) dmg++;
 	if (dmg > 0 && uarms && uarms->oartifact == ART_TEH_BASH_R) dmg += 2;
@@ -1139,7 +1148,7 @@ int thrown;
 		obj->opoisoned = 1;
 
 	obj->was_thrown = 1;
-	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
+	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || obj->greased || (uwep && uwep->oartifact == ART_FOEOEOEOEOEOEOE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
 	    boolean slipok = TRUE;
 	    if (ammo_and_launcher(obj, launcher))
 		pline("%s!", Tobjnam(obj, "misfire"));
@@ -1253,16 +1262,15 @@ int thrown;
 			return;
 		}
 	} else {
+		/* note to self by Amy: urange is not the range of the thrown thing - range is!!! */
 		urange = (int)(ACURRSTR)/2;
-
-		if (uarmg && uarmg->oartifact == ART_BEEEEEEEANPOLE && launcher && objects[launcher->otyp].oc_skill == P_BOW) urange += 5;
 
 		/* balls are easy to throw or at least roll */
 		/* also, this insures the maximum range of a ball is greater
 		 * than 1, so the effects from throwing attached balls are
 		 * actually possible
 		 */
-		if (obj->otyp == HEAVY_IRON_BALL)
+		if (obj->oclass == BALL_CLASS)
 			range = urange - (int)(obj->owt/300); /* thanks to the ball's weight being 1200 now */
 		else
 			range = urange - (int)(obj->owt/40);
@@ -1284,6 +1292,10 @@ int thrown;
 			range /= 2;
 		}
 
+		if (uarmg && uarmg->oartifact == ART_BEEEEEEEANPOLE && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 5;
+		if (uwep && uwep->oartifact == ART_SNIPER_CROSSHAIR && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) range += 30;
+		if (obj && obj->oartifact == ART_RACER_PROJECTILE) range *= 2;
+	
 		if (Is_airlevel(&u.uz) || Levitation) {
 		    /* action, reaction... */
 		    urange -= range;
@@ -1572,6 +1584,12 @@ int thrown;
 	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
+	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
+	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
+	if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp -= 10;
+	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
+	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
+	if (uwep && uwep->oartifact == ART_ATOMIC_MISSING) tmp -= 20;
 
 	if (!rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
 
@@ -2239,7 +2257,7 @@ boolean from_invent;
 			    }
 			    /* curse the lawful/neutral altar */
 			    pline_The("altar is stained with blood.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy nechisto yeretikom, pravoslavnaya tserkov' progonit vas!" : "Klatsch.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy nechisto yeretikom, pravoslavnaya tserkov' progonit vas!" : "Klatsch.");
 			    if (!Is_astralevel(&u.uz))
 				levl[x][y].altarmask = AM_CHAOTIC;
 			    angry_priest();

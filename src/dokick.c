@@ -253,6 +253,22 @@ register boolean clumsy;
 		mon->mstun = TRUE;
 	}
 
+	if (uarmf && uarmf->oartifact == ART_FINGERMASH && MON_WEP(mon) ) {
+		register struct obj *monwepon;
+		monwepon = MON_WEP(mon);
+		if (monwepon) {
+			if (!monwepon->cursed) {
+				curse(monwepon);
+				pline("%s's weapon becomes cursed!", Monnam(mon));
+			}
+			if (monwepon->spe > 0) {
+				monwepon->spe = 0;
+				pline("%s's weapon loses all of its enchantment!", Monnam(mon));
+			}
+		}
+
+	}
+
 	if (RngeToestomping && !rn2(5) && !mon->mstun) {
 		pline("You stomp %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,TOE)) );
 		mon->mstun = TRUE;

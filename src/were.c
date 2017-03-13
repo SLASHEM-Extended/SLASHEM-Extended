@@ -30,7 +30,7 @@ register struct monst *mon;
 		    }
 		    if (howler) {
 			You_hear("a %s howling at the moon.", howler);
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy stanete odnim iz nikh i kopirovat' vashi dospekhi v kloch'ya, potomu chto vy takoy lokh i, veroyatno, ne znayut o volshebnoy otmene." : "WOEAAAAAAAAAAAA-eaaaaaoh.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy stanete odnim iz nikh i kopirovat' vashi dospekhi v kloch'ya, potomu chto vy takoy lokh i, veroyatno, ne znayut o volshebnoy otmene." : "WOEAAAAAAAAAAAA-eaaaaaoh.");
 		    }
 		}
 	    }

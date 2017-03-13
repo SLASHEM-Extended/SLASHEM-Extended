@@ -626,6 +626,204 @@ struct obj *instr;
 	You_cant("play music underwater!");
 	return(0);
     }
+
+    if (instr->oartifact == ART_KILLER_PIANO) {
+		switch (rnd(95)) {
+
+			case 1: 
+			    SpeedBug |= FROMOUTSIDE; break;
+			case 2: 
+			    MenuBug |= FROMOUTSIDE; break;
+			case 3: 
+			    RMBLoss |= FROMOUTSIDE; break;
+			case 4: 
+			    DisplayLoss |= FROMOUTSIDE; break;
+			case 5: 
+			    SpellLoss |= FROMOUTSIDE; break;
+			case 6: 
+			    YellowSpells |= FROMOUTSIDE; break;
+			case 7: 
+			    AutoDestruct |= FROMOUTSIDE; break;
+			case 8: 
+			    MemoryLoss |= FROMOUTSIDE; break;
+			case 9: 
+			    DisplayLoss |= FROMOUTSIDE; break;
+			case 10: 
+			    BlackNgWalls |= FROMOUTSIDE; break;
+			case 11: 
+			    Superscroller |= FROMOUTSIDE; break;
+			case 12: 
+			    FreeHandLoss |= FROMOUTSIDE; break;
+			case 13: 
+			    Unidentify |= FROMOUTSIDE; break;
+			case 14: 
+			    Thirst |= FROMOUTSIDE; break;
+			case 15: 
+			    LuckLoss |= FROMOUTSIDE; break;
+			case 16: 
+			    ShadesOfGrey |= FROMOUTSIDE; break;
+			case 17: 
+			    FaintActive |= FROMOUTSIDE; break;
+			case 18: 
+			    Itemcursing |= FROMOUTSIDE; break;
+			case 19: 
+			    DifficultyIncreased |= FROMOUTSIDE; break;
+			case 20: 
+			    Deafness |= FROMOUTSIDE; break;
+			case 21: 
+			    CasterProblem |= FROMOUTSIDE; break;
+			case 22: 
+			    WeaknessProblem |= FROMOUTSIDE; break;
+			case 23: 
+			    RotThirteen |= FROMOUTSIDE; break;
+			case 24: 
+			    BishopGridbug |= FROMOUTSIDE; break;
+			case 25: 
+			    ConfusionProblem |= FROMOUTSIDE; break;
+			case 26: 
+			    NoDropProblem |= FROMOUTSIDE; break;
+			case 27: 
+			    DSTWProblem |= FROMOUTSIDE; break;
+			case 28: 
+			    StatusTrapProblem |= FROMOUTSIDE; break;
+			case 29: 
+			    AlignmentProblem |= FROMOUTSIDE; break;
+			case 30: 
+			    StairsProblem |= FROMOUTSIDE; break;
+			case 31: 
+			    UninformationProblem |= FROMOUTSIDE; break;
+			case 32: 
+			    IntrinsicLossProblem |= FROMOUTSIDE; break;
+			case 33: 
+			    BloodLossProblem |= FROMOUTSIDE; break;
+			case 34: 
+			    BadEffectProblem |= FROMOUTSIDE; break;
+			case 35: 
+			    TrapCreationProblem |= FROMOUTSIDE; break;
+			case 36: 
+			    AutomaticVulnerabilitiy |= FROMOUTSIDE; break;
+			case 37: 
+			    TeleportingItems |= FROMOUTSIDE; break;
+			case 38: 
+			    NastinessProblem |= FROMOUTSIDE; break;
+			case 39: 
+			    RecurringAmnesia |= FROMOUTSIDE; break;
+			case 40: 
+			    BigscriptEffect |= FROMOUTSIDE; break;
+			case 41: 
+			    BankTrapEffect |= FROMOUTSIDE; break;
+			case 42: 
+			    MapTrapEffect |= FROMOUTSIDE; break;
+			case 43: 
+			    TechTrapEffect |= FROMOUTSIDE; break;
+			case 44: 
+			    RecurringDisenchant |= FROMOUTSIDE; break;
+			case 45: 
+			    verisiertEffect |= FROMOUTSIDE; break;
+			case 46: 
+			    ChaosTerrain |= FROMOUTSIDE; break;
+			case 47: 
+			    Muteness |= FROMOUTSIDE; break;
+			case 48: 
+			    EngravingDoesntWork |= FROMOUTSIDE; break;
+			case 49: 
+			    MagicDeviceEffect |= FROMOUTSIDE; break;
+			case 50: 
+			    BookTrapEffect |= FROMOUTSIDE; break;
+			case 51: 
+			    LevelTrapEffect |= FROMOUTSIDE; break;
+			case 52: 
+			    QuizTrapEffect |= FROMOUTSIDE; break;
+			case 53: 
+			    CaptchaProblem |= FROMOUTSIDE; break;
+			case 54: 
+			    FarlookProblem |= FROMOUTSIDE; break;
+			case 55: 
+			    RespawnProblem |= FROMOUTSIDE; break;
+			case 56: 
+			    FastMetabolismEffect |= FROMOUTSIDE; break;
+			case 57: 
+			    NoReturnEffect |= FROMOUTSIDE; break;
+			case 58: 
+			    AlwaysEgotypeMonsters |= FROMOUTSIDE; break;
+			case 59: 
+			    TimeGoesByFaster |= FROMOUTSIDE; break;
+			case 60: 
+			    FoodIsAlwaysRotten |= FROMOUTSIDE; break;
+			case 61: 
+			    AllSkillsUnskilled |= FROMOUTSIDE; break;
+			case 62: 
+			    AllStatsAreLower |= FROMOUTSIDE; break;
+			case 63: 
+			    PlayerCannotTrainSkills |= FROMOUTSIDE; break;
+			case 64: 
+			    PlayerCannotExerciseStats |= FROMOUTSIDE; break;
+			case 65: 
+			    TurnLimitation |= FROMOUTSIDE; break;
+			case 66: 
+			    WeakSight |= FROMOUTSIDE; break;
+			case 67: 
+			    RandomMessages |= FROMOUTSIDE; break;
+			case 68: 
+			    Desecration |= FROMOUTSIDE; break;
+			case 69: 
+			    StarvationEffect |= FROMOUTSIDE; break;
+			case 70: 
+			    NoDropsEffect |= FROMOUTSIDE; break;
+			case 71: 
+			    LowEffects |= FROMOUTSIDE; break;
+			case 72: 
+			    InvisibleTrapsEffect |= FROMOUTSIDE; break;
+			case 73: 
+			    GhostWorld |= FROMOUTSIDE; break;
+			case 74: 
+			    Dehydration |= FROMOUTSIDE; break;
+			case 75: 
+			    HateTrapEffect |= FROMOUTSIDE; break;
+			case 76: 
+			    TotterTrapEffect |= FROMOUTSIDE; break;
+			case 77: 
+			    Nonintrinsics |= FROMOUTSIDE; break;
+			case 78: 
+			    Dropcurses |= FROMOUTSIDE; break;
+			case 79: 
+			    Nakedness |= FROMOUTSIDE; break;
+			case 80: 
+			    Antileveling |= FROMOUTSIDE; break;
+			case 81: 
+			    ItemStealingEffect |= FROMOUTSIDE; break;
+			case 82: 
+			    Rebellions |= FROMOUTSIDE; break;
+			case 83: 
+			    CrapEffect |= FROMOUTSIDE; break;
+			case 84: 
+			    ProjectilesMisfire |= FROMOUTSIDE; break;
+			case 85: 
+			    WallTrapping |= FROMOUTSIDE; break;
+			case 86: 
+			    DisconnectedStairs |= FROMOUTSIDE; break;
+			case 87: 
+			    InterfaceScrewed |= FROMOUTSIDE; break;
+			case 88: 
+			    Bossfights |= FROMOUTSIDE; break;
+			case 89: 
+			    EntireLevelMode |= FROMOUTSIDE; break;
+			case 90: 
+			    BonesLevelChange |= FROMOUTSIDE; break;
+			case 91: 
+			    AutocursingEquipment |= FROMOUTSIDE; break;
+			case 92: 
+			    HighlevelStatus |= FROMOUTSIDE; break;
+			case 93: 
+			    SpellForgetting |= FROMOUTSIDE; break;
+			case 94: 
+			    SoundEffectBug |= FROMOUTSIDE; break;
+			case 95: 
+			    TimerunBug |= FROMOUTSIDE; break;
+		}
+
+    }
+
     if (instr->otyp != LEATHER_DRUM && instr->otyp != DRUM_OF_EARTHQUAKE) {
 	c = yn("Improvise?");
     }

@@ -165,7 +165,7 @@ boolean talk;
 	}
 	if (xtime && !old) {
 		if (talk) {
-			pline(Hallucination ? "Suddenly you fear the dungeon around you is going to collapse. Quick! Where is the nearest exit?" : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? "Ye're lily livered." : "You are stricken with fear!");
+			pline(Hallucination ? "Suddenly you fear the dungeon around you is going to collapse. Quick! Where is the nearest exit?" : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "Ye're lily livered." : "You are stricken with fear!");
 		}
 	}
 	if ((!xtime && old) || (xtime && !old)) flags.botl = TRUE;
@@ -276,7 +276,7 @@ int type;
 	    if (Sick_resistance) return;
 	    if (!old) {
 		/* newly sick */
-		You_feel(Role_if(PM_PIRATE) ? "poxy." : Role_if(PM_KORSAIR) ? "poxy." : "deathly sick.");
+		You_feel(Role_if(PM_PIRATE) ? "poxy." : Role_if(PM_KORSAIR) ? "poxy." : (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ? "poxy." : "deathly sick.");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    } else {
 		/* already sick */
@@ -564,6 +564,10 @@ badeffect()
 		pline("Thanks to your inka shirt, you averted misfortune!");
 		return;
 	}
+	if (uwep && uwep->oartifact == ART_LUCK_VERSUS_BAD && !rn2(2)) {
+		pline("Thanks to your inka sling, you averted misfortune!");
+		return;
+	}
 
 	switch (rnd(380)) {
 
@@ -788,7 +792,7 @@ badeffect()
 		case 131:
 		case 132:
 		You_feel("that monsters are aware of your presence.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
 		aggravate();
 
 		break;
@@ -799,7 +803,7 @@ badeffect()
 		case 136:
 		case 137:
 		You_feel("as if you need some help.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 		rndcurse();
 
 		break;
@@ -979,7 +983,7 @@ badeffect()
 		case 198:
 		case 199:
 		pline("You lose  Mana");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha magicheskaya energiya udalyayetsya v nastoyashcheye vremya. Skoro on budet raven nulyu, a zatem vy dolzhny igrat' bez zaklinaniy, potomu chto vy sosat', GA GA GA!" : "Due-l-ue-l-ue-l!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha magicheskaya energiya udalyayetsya v nastoyashcheye vremya. Skoro on budet raven nulyu, a zatem vy dolzhny igrat' bez zaklinaniy, potomu chto vy sosat', GA GA GA!" : "Due-l-ue-l-ue-l!");
 		drain_en(rnz(monster_difficulty() + 1) );
 		break;
 
@@ -1581,7 +1585,7 @@ badeffect()
 		case 288:
 		    adjalign(-rnd(20));
 		    if (flags.soundok) You_hear("a slight rumbling...");
-		    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Pomolis'! Vash bog, bezuslovno, pomozhet vam!" : "Wumm.");
+		    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Pomolis'! Vash bog, bezuslovno, pomozhet vam!" : "Wumm.");
 
 		break;
 
@@ -1591,7 +1595,7 @@ badeffect()
 			u.ualign.sins++;
 			u.alignlim--;
 		    if (flags.soundok) You_hear("a thunderous rumbling!");
-		    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Seychas ideal'noye vremya dlya molitvy! Vash bog super schastliv s toboy i, bezuslovno, vylechit' vse bolezni i predostavit' vam moshchnyy punkt!" : "Wummmmm! Wummmmm! Grummel!");
+		    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Seychas ideal'noye vremya dlya molitvy! Vash bog super schastliv s toboy i, bezuslovno, vylechit' vse bolezni i predostavit' vam moshchnyy punkt!" : "Wummmmm! Wummmmm! Grummel!");
 
 		break;
 
@@ -1659,7 +1663,7 @@ badeffect()
 		case 318:
 		case 319:
 			pline("A laser beam hits you out of nowhere!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy poteryali linii!" : "DWUEUEUET!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy poteryali linii!" : "DWUEUEUET!");
 			losehp(monster_difficulty(),"laser beam out of nowhere",KILLED_BY_AN);
 
 		break;
@@ -1689,7 +1693,7 @@ badeffect()
 
 		case 323:
 			You("need reboot.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
 			else polyself(FALSE);
 		break;
@@ -1701,7 +1705,7 @@ badeffect()
 				You(Blind ? "%s and get dizzy..." :
 					 "%s and your vision blurs...",
 					    stagger(youmonst.data, "stagger"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 			make_stunned(HStun + rn1(7,16) + monster_difficulty(), FALSE);
 			(void) make_hallucinated(HHallucination + rn1(7,16) + monster_difficulty(),TRUE,0L);
 
@@ -1727,7 +1731,7 @@ badeffect()
 
 			    if (objD && drain_item(objD)) {
 				Your("%s less effective.", aobjnam(objD, "seem"));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
 
@@ -1802,7 +1806,7 @@ badeffect()
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -2521,7 +2525,7 @@ peffects(otmp)
 	case POT_WINE:
 		unkn++;
 
-		if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) pline("Ye splice the mainbrace.");
+		if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) pline("Ye splice the mainbrace.");
 		else pline("Ooph!  This tastes like %s%s!",
 		      otmp->odiluted ? "watered down " : "",
 		      Hallucination ? "dandelion wine" : "liquid fire");
@@ -2535,7 +2539,7 @@ peffects(otmp)
 		newuhs(FALSE);
 		exercise(A_WIS, FALSE);
 		if(otmp->cursed) {
-			You((Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? "are loaded to the gunwhales." : "pass out.");
+			You((Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "are loaded to the gunwhales." : "pass out.");
 			multi = -rnd(15);
 			nomovemsg = "You awake with a headache.";
 		}
@@ -2767,7 +2771,7 @@ peffects(otmp)
 		    else
 			Your("%s are frozen to the %s!",
 			     makeplural(body_part(FOOT)), surface(u.ux, u.uy));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		    nomul(-(rn1(10, 25 - 12*bcsign(otmp))), "frozen by a potion");
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);
@@ -2868,7 +2872,7 @@ peffects(otmp)
 		    if (Hallucination) {
 			pline("What a trippy feeling!");
 			unkn++;
-		    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR))
+		    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) )
 			pline("Blimey! Ye're one sheet to the wind!");
 			else 
 			pline("Huh, What?  Where am I?");
@@ -3546,6 +3550,10 @@ healup(nhp, nxtra, curesick, cureblind)
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
 	}
+	if (uwep && uwep->oartifact == ART_HEALHEALHEALHEAL) {
+		nhp *= 2;
+		if (Role_if(PM_HEALER)) nhp *= 2;
+	}
 	if (RngeNursery) nhp *= 2;
 
 	if (nhp) {
@@ -3574,6 +3582,10 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nurse cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "medsestra plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hamshira plash") ) ) nhp *= 2;
 	if (uarmh && uarmh->oartifact == ART_SEXYNESS_HAS_A_NAME) {
+		nhp *= 2;
+		if (Role_if(PM_HEALER)) nhp *= 2;
+	}
+	if (uwep && uwep->oartifact == ART_HEALHEALHEALHEAL) {
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
 	}
@@ -4383,7 +4395,7 @@ register struct obj *obj;
 		kn++;
 		if (!Free_action || !rn2(20)) {
 		    pline("%s seems to be holding you.", Something);
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		    nomul(-rnd(5), "frozen by breathing a potion");
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);
@@ -5069,7 +5081,7 @@ boolean amnesia;
 		    pre_downgrade_obj(obj, &used);
 		    drain_item(obj);
 		}
-		if (!obj->oerodeproof && is_rustprone(obj) &&
+		if (!obj->oerodeproof && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && is_rustprone(obj) &&
 		    (obj->oeroded < MAX_ERODE) && !rn2(2)) {
 			pline("%s %s some%s.",
 			      Your_buf, aobjnam(obj, "rust"),

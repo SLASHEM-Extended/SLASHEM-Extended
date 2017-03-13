@@ -1085,7 +1085,7 @@ Cloak_on()
 		break;
 	case CLOAK_OF_PARALYSIS:
 		pline("You're paralyzed!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		if (Free_action) nomul(-rnd(10), "putting on a cloak of paralysis");
 		else nomul(-rnd(20), "putting on a cloak of paralysis");
 		break;
@@ -1120,7 +1120,7 @@ Cloak_on()
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 		break;
 	case CLOAK_OF_OUTRIGHT_EVILNESS:
@@ -2983,6 +2983,8 @@ Armor_on()
 		change_sex();
 	}
 
+	if (uarm && uarm->oartifact == ART_ARMOR_OF_ISILDUR && uarm->spe < 1) uarm->spe = rnd(10);
+
 	if (uarm && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarm);
 
     return 0;
@@ -3507,7 +3509,7 @@ register struct obj *obj;
 
 		register struct obj *crsobj;
 		pline("You hear a high-pitched sound followed by a short, slightly lower-pitched one...");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto ochen' plokho dlya vas, i ochen' smeshno dlya tipa bloka l'da. Ay privet privet privet!" : "Dueueue-due!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto ochen' plokho dlya vas, i ochen' smeshno dlya tipa bloka l'da. Ay privet privet privet!" : "Dueueue-due!");
 		for(crsobj = invent; crsobj ; crsobj = crsobj->nobj)
 		if (!stack_too_big(crsobj))	curse(crsobj);
     }
@@ -3523,6 +3525,11 @@ register struct obj *obj;
 		curse(obj);
 		obj->hvycurse = 1;
 		pline("Black tears drop from the ring...");
+    }
+
+    if (obj->oartifact == ART_ARABELLA_S_RADAR) {
+		curse(obj);
+		obj->hvycurse = 1;
     }
 
 	if (obj && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(obj);
@@ -4740,6 +4747,30 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ANASTASIA_S_SOFT_CLOTHES) uac -= 10;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
 	if (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) uac += 5;
+	if (uwep && uwep->oartifact == ART_ELOPLUS_STAT) uac -= 1;
+	if (uarm && uarm->oartifact == ART_BLUEFORM) uac -= 2;
+	if (uarms && uarms->oartifact == ART_CUTTING_THROUGH) uac -= 5;
+	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) uac -= 2;
+	if (uarmh && uarmh->oartifact == ART_DUE_DUE_DUE_DUE_BRMMMMMMM) uac -= 2;
+
+	if (uarms && uarms->oartifact == ART_ARMOR_CLASS_WALL) {
+		uac -= 5;
+		if (uarms && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+			switch (P_SKILL(P_SHIELD)) {
+				case P_BASIC: uac -= 1; break;
+				case P_SKILLED: uac -= 2; break;
+				case P_EXPERT: uac -= 3; break;
+				case P_MASTER: uac -= 4; break;
+				case P_GRAND_MASTER: uac -= 5; break;
+				case P_SUPREME_MASTER: uac -= 6; break;
+			}
+		}
+	}
+
+	if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) {
+		uac -= 5;
+		if (uarms) uac -= 5;
+	}
 
 	if (uarmc && objects[(uarmc)->otyp].oc_material == VIVA) {
 		uac -= (uarmc->oeroded * 2);
@@ -4826,6 +4857,14 @@ find_ac()
 	}
 
 	if (Dimmed) {
+		int difference = (-(uac - 10));
+		difference = difference / 2;
+		if (difference > 0) uac = 10 - difference;
+		else uac = 10;
+		
+	}
+
+	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) {
 		int difference = (-(uac - 10));
 		difference = difference / 2;
 		if (difference > 0) uac = 10 - difference;
@@ -5331,45 +5370,45 @@ register struct obj *atmp;
 		if (donning(otmp)) cancel_don();
 		Your("%s crumbles and turns to dust!",
 		     cloak_simple_name(uarmc));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Cloak_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarm)) {
 		if (donning(otmp)) cancel_don();
 		Your("armor turns to dust and falls to the %s!",
 			surface(u.ux,u.uy));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Armor_gone();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarmu)) {
 		if (donning(otmp)) cancel_don();
 		Your("shirt crumbles into tiny threads and falls apart!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Shirt_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarmh)) {
 		if (donning(otmp)) cancel_don();
 		Your("helmet turns to dust and is blown away!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Helmet_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarmg)) {
 		if (donning(otmp)) cancel_don();
 		Your("gloves vanish!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Gloves_off();
 		useup(otmp);
 		selftouch("You");
 	} else if (DESTROY_ARM(uarmf)) {
 		if (donning(otmp)) cancel_don();
 		Your("boots disintegrate!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Boots_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarms)) {
 		if (donning(otmp)) cancel_don();
 		Your("shield crumbles away!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Shield_off();
 		useup(otmp);
 	} else {

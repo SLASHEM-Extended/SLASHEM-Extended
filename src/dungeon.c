@@ -1764,6 +1764,8 @@ level_difficulty()
 		retvalue *= 2;
 	}
 
+	if (uarmg && uarmg->oartifact == ART_DIFFICULT_) retvalue *= 2;
+
 	if (retvalue > 126) retvalue = 126; /* fail safe */
 	if (retvalue < 1) retvalue = 1;
 

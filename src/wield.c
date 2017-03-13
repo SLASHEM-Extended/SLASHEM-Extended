@@ -120,6 +120,13 @@ boolean put_away;
 		pline("A terrible black aura surrounds your sickle...");
 	}
 
+	if (uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE && !uwep->hvycurse) {
+		curse(uwep);
+		uwep->hvycurse = 1;
+		if (!strncmpi(plname, "Henrietta", 9)) pline("Dear Henrietta, the dogs produced plenty of heaps of shit specially for you to step into! Please make sure you don't miss any of them.");
+		else pline("Apparently you want to repeat Henrietta's mistake. Oh well. Good luck avoiding all the heaps of shit now!");
+	}
+
 	if (uwep && uwep->oartifact == ART_BLADE_OF_GOTHMOG && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
@@ -135,10 +142,35 @@ boolean put_away;
 		uwep->hvycurse = uwep->prmcurse = uwep->evilcurse = 1;
 	}
 
+	if (uwep && uwep->oartifact == ART_ATOMIC_MISSING) {
+		curse(uwep);
+		pline("The ballista becomes cursed as you wield it.");
+	}
+
 	if (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
 		pline("A terrible black aura surrounds your weapon...");
+	}
+
+	if (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO && !uwep->cursed) {
+		curse(uwep);
+		pline("The riding crop welds itself to your %s and forces you to terrorize innocent practicants!", body_part(HAND));
+	}
+
+	if (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !uwep->cursed) {
+		curse(uwep);
+		pline("Luisa's beautiful high-heeled lady boot refuses to be put away. Use it wisely!");
+	}
+
+	if (uwep && uwep->oartifact == ART_AND_IT_KEEPS_ON_MOVING && !uwep->cursed) {
+		curse(uwep);
+		pline("Your weapon is cursed now, and you will keep on moving.");
+	}
+
+	if (uwep && uwep->oartifact == ART_AMY_S_FIRST_GIRLFRIEND && !uwep->cursed) {
+		curse(uwep);
+		pline("You let out a deep sigh as the beautiful, soft girl shoe welds itself to your %s.", body_part(HAND));
 	}
 
 	if (uwep && uwep->oartifact == ART_BANG_BANG && uwep->spe < 2) uwep->spe = 2;
@@ -903,6 +935,8 @@ boolean fade_scrolls;
 	if (OBJ_DESCR(objects[target->otyp]) && ( !strcmp(OBJ_DESCR(objects[target->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[target->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[target->otyp]), "yangi qo'lqop") ) && rn2(4) ) return;
 
 	if (OBJ_DESCR(objects[target->otyp]) && ( !strcmp(OBJ_DESCR(objects[target->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[target->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[target->otyp]), "shol plash") ) ) return;
+
+	if (uarmf && !rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) return;
 
 	if (target->greased && (!issoviet || !rn2(2)) ) {
 	    grease_protect(target,(char *)0,victim);

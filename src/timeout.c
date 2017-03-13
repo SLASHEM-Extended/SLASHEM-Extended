@@ -293,25 +293,25 @@ nh_timeout()
 
 	if (!rn2(1000) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
 	}
 
 	if (!rn2(1000) && u.uprops[INTRINSIC_LOSS].extrinsic && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
 	}
 
 	if (!rn2(1000) && IntrinsicLossProblem && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
 	}
 
 	if (!rn2(1000) && have_intrinsiclossstone() && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
 	}
 
@@ -690,6 +690,18 @@ nh_timeout()
 
 	}
 
+	if (!rn2(200) && uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
+
+		makerandomtrap();
+
+	}
+
+	if (!rn2(200) && uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
+
+		makerandomtrap();
+
+	}
+
 	if (!rn2(2000) && u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic) {
 
 		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
@@ -705,6 +717,20 @@ nh_timeout()
 	}
 
 	if (!rn2(2000) && have_trapcreationstone() ) {
+
+		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+
+	}
+
+	if (!rn2(2000) && uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
+
+		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
+
+	}
+
+	if (!rn2(2000) && uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
 		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
 		makerandomtrap(); makerandomtrap(); makerandomtrap(); makerandomtrap();
@@ -3752,7 +3778,7 @@ nh_timeout()
 	if(Vomiting) vomiting_dialogue();
 	if(Strangled) choke_dialogue();
 	if (Sick && (moves % 7 == 0) ) {
-		pline(Role_if(PM_PIRATE) ? "Ye still feel poxy." : Role_if(PM_KORSAIR) ? "Ye still feel poxy." : "You still feel deathly sick.");
+		pline(Role_if(PM_PIRATE) ? "Ye still feel poxy." : Role_if(PM_KORSAIR) ? "Ye still feel poxy." : (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ? "Ye still feel poxy." : "You still feel deathly sick.");
 		if (Sickopathy) pline("You have %d turns to live.", Sick);
 	}
 	if(u.mtimedone && !--u.mtimedone) {
@@ -4054,7 +4080,7 @@ nh_timeout()
 			if (unconscious() || Sleep_resistance)
 				HSleeping += rnd(1000);
 			else if (Sleeping) {
-				if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) pline("Ye take a caulk.");
+				if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) pline("Ye take a caulk.");
 				else You("fall asleep.");
 				sleeptime = rnd(20);
 				fall_asleep(-sleeptime, TRUE);
@@ -5378,7 +5404,7 @@ long timeout;
 			    }
 			} else {
 			    You("hear the hum of %s change!", an(xname(obj)));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Bystro! Zapusk i pust' eto pokonchim monstra proch' s yego svetovym mechom, prezhde chem eto slishkom pozdno!" : "Dmmmmmm-dmmmmmmmmm!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Bystro! Zapusk i pust' eto pokonchim monstra proch' s yego svetovym mechom, prezhde chem eto slishkom pozdno!" : "Dmmmmmm-dmmmmmmmmm!");
 			}
 			break;
 		    case 0:

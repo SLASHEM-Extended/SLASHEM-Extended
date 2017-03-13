@@ -13,7 +13,6 @@ STATIC_DCL void FDECL(doplasmatrap, (struct obj *));
 STATIC_DCL void FDECL(doicetrap, (struct obj *));
 STATIC_DCL void FDECL(doshocktrap, (struct obj *));
 STATIC_DCL void FDECL(dovolttrap, (struct obj *));
-STATIC_DCL void FDECL(doshittrap, (struct obj *));
 STATIC_DCL void NDECL(domagictrap);
 STATIC_DCL boolean FDECL(emergency_disrobe,(boolean *));
 STATIC_DCL int FDECL(untrap_prob, (struct trap *ttmp));
@@ -737,6 +736,8 @@ struct monst *victim;
 
 	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "shol plash") ) ) vulnerable = FALSE;
 
+	if (uarmf && rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) vulnerable = FALSE;
+
 	if (!vulnerable) {
 	    if (flags.verbose) {
 		if (victim == &youmonst)
@@ -848,6 +849,8 @@ struct monst *victim;
 	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "yangi qo'lqop") ) && rn2(4) ) vulnerable = FALSE;
 
 	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "shol plash") ) ) vulnerable = FALSE;
+
+	if (uarmf && rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) vulnerable = FALSE;
 
 	if (!print && (!vulnerable /* || erosion == MAX_ERODE*/ ))
 		return FALSE;
@@ -1380,7 +1383,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 			pline("A shaft opens up under you!");
 		else 
 			pline("There's a gaping hole under you!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dobro pozhalovat' v kakoy-to gorazdo boleye opasnyy uroven'! Udachi vam, vy, veroyatno, ne budet zdes' vyzhit' v lyubom sluchaye." : "Schlueing!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dobro pozhalovat' v kakoy-to gorazdo boleye opasnyy uroven'! Udachi vam, vy, veroyatno, ne budet zdes' vyzhit' v lyubom sluchaye." : "Schlueing!");
 	    }
 	} else pline_The("%s opens up under you!", surface(u.ux,u.uy));
 
@@ -1451,7 +1454,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 			pline("A shaft opens up under you!");
 		else 
 			pline("There's a gaping hole under you!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dobro pozhalovat' v kakoy-to gorazdo boleye opasnyy uroven'! Udachi vam, vy, veroyatno, ne budet zdes' vyzhit' v lyubom sluchaye." : "Schlueing!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dobro pozhalovat' v kakoy-to gorazdo boleye opasnyy uroven'! Udachi vam, vy, veroyatno, ne budet zdes' vyzhit' v lyubom sluchaye." : "Schlueing!");
 	    }
 	} else pline_The("%s opens up under you!", surface(u.ux,u.uy));
 
@@ -2301,7 +2304,7 @@ unsigned trflags;
 		seetrap(trap);
 		if (!Free_action || !rn2(10)) {
 		    pline("You are frozen in place!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		    nomul(-rnz(10), "frozen by a paralysis trap");
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);
@@ -2369,7 +2372,7 @@ unsigned trflags;
 	        num = d(4, 4) + rnd((monster_difficulty() / 2) + 1);
 
 	        pline("You are sprayed with acid!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vasha glupaya bronya budet korroziyey, potomu chto vy ne sledite glupyy igrok durak." : "Tsch-tschhh-hhh!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vasha glupaya bronya budet korroziyey, potomu chto vy ne sledite glupyy igrok durak." : "Tsch-tschhh-hhh!");
 		if (Stoned) fix_petrification();
 	        if (Acid_resistance) {
                 shieldeff(u.ux, u.uy);
@@ -2553,7 +2556,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 		seetrap(trap);
 		pline("You stepped on a trigger!");
 		pline("A laser beam hits you!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy poteryali linii!" : "DWUEUEUET!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy poteryali linii!" : "DWUEUEUET!");
 		losehp(monster_difficulty(),"laser trap",KILLED_BY_AN);
 		break;
 
@@ -3315,7 +3318,7 @@ newegomon:
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
-						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
 						nomul(-rnd(10), "paralyzed by a sin trap");
 						exercise(A_DEX, FALSE);
@@ -3414,7 +3417,7 @@ newegomon:
 				break;
 			case 6: /* envy */
 				if (flags.soundok) You_hear("a chuckling laughter.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 			      attrcurse();
 			      attrcurse();
 				break;
@@ -3452,7 +3455,7 @@ newegomon:
 				break;
 			    case 2:
 				You("need reboot.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 				if (!Race_if(PM_UNGENOMOLD)) newman();
 				else polyself(FALSE);
 				break;
@@ -3497,7 +3500,7 @@ newegomon:
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
 					nomul(-rnd(10), "paralyzed by a sin trap");
 					exercise(A_DEX, FALSE);
@@ -3511,7 +3514,7 @@ newegomon:
 					You(Blind ? "%s and get dizzy..." :
 						 "%s and your vision blurs...",
 						    stagger(youmonst.data, "stagger"));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 				dmg = rn1(7, 16);
 				make_stunned(HStun + dmg + monster_difficulty(), FALSE);
 				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
@@ -3535,7 +3538,7 @@ newegomon:
 	
 				    if (objD && drain_item(objD)) {
 					Your("%s less effective.", aobjnam(objD, "seem"));
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				    }
 				}
 				break;
@@ -3909,7 +3912,7 @@ newegomon:
 
 	    case SHIT_TRAP:
 
-		if ((Levitation || Flying) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") ) ) ) { /* ground-based trap, obviously */
+		if ((Levitation || Flying) && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") ) ) ) { /* ground-based trap, obviously */
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s on the ground below you.",
@@ -4134,7 +4137,7 @@ newegomon:
 		case 3:
 			if (!Free_action || !rn2(20)) {
 			pline("Suddenly you are frozen in place!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomul(-d(5, 6), "frozen by a lock trap");
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
@@ -4153,7 +4156,7 @@ newegomon:
 			    else
 				You("%s and your vision blurs...",
 				    stagger(youmonst.data, "stagger"));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 			}
 			make_stunned(HStun + rn1(7, 16) + rnd((monster_difficulty() / 2) + 1),FALSE);
 			(void) make_hallucinated(HHallucination + rn1(5, 16) + rnd((monster_difficulty() / 2) + 1),FALSE,0L);
@@ -4244,7 +4247,7 @@ newegomon:
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -4805,7 +4808,7 @@ newegomon:
 		 case SPEAR_TRAP:
 		seetrap(trap);
 		pline("A spear stabs up from a hole in the ground at you!");
-		if (thick_skinned(youmonst.data)) {
+		if (thick_skinned(youmonst.data) || (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) {
 			pline("But it breaks off against your body.");
 			deltrap(trap);
 		} else if (Levitation) {
@@ -6121,7 +6124,7 @@ newegomon:
 
 			if (!rn2(5)) {
 				You_hear("maniacal laughter!");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 				attrcurse();
 			}
 
@@ -9893,7 +9896,7 @@ uunstone()
 		pline("What a pity - you just ruined a future piece of %sart!",
 		      ACURR(A_CHA) > 15 ? "fine " : "");
 
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy tol'ko otsrochila neizbezhnoye i v konechnom schete zakonchatsya pobivaniye kamnyami lecheniy." : "Schwueing!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy tol'ko otsrochila neizbezhnoye i v konechnom schete zakonchatsya pobivaniye kamnyami lecheniy." : "Schwueing!");
 
 		/* The problem was fixed */
 		return (1);
@@ -10164,7 +10167,7 @@ struct obj *box;        /* at the moment only for floor traps */
 			if (!rn2(3)) {
 				if (!Free_action || !rn2(5)) {
 				    pline("You are frozen in place!");
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				    nomul(-rnz(10), "frozen by a volt trap");
 				    nomovemsg = You_can_move_again;
 				    exercise(A_DEX, FALSE);
@@ -10174,7 +10177,7 @@ struct obj *box;        /* at the moment only for floor traps */
 
 }
 
-STATIC_OVL void
+void
 doshittrap(box)
 struct obj *box;        /* at the moment only for floor traps */
 {
@@ -10617,7 +10620,7 @@ register boolean force, here;
 	/* The invocation artifacts and the Amulet of Yendor must be immune.
 	 * Alignment keys, too, even though the game is still winnable without them. */
 
-			if ( (!rn2(50) || force ) && (!obj->blessed || !rn2(4) ) && !stack_too_big(obj) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY   ) { /* 2% chance for each item to be affected, blessed ones are only affected with 0.5% chance --Amy */
+			if ( (!rn2(50) || force ) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && (!obj->blessed || !rn2(4) ) && !stack_too_big(obj) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY   ) { /* 2% chance for each item to be affected, blessed ones are only affected with 0.5% chance --Amy */
 
 				if (rn2(2)) {
 
@@ -10832,11 +10835,11 @@ register boolean force, here;
 			/* Drop through for rusting effects... */
 			/* Weapons, armor, tools and other things may rust... */
 		    default:
-			if (is_rustprone(obj) && obj->oeroded < MAX_ERODE &&
+			if (is_rustprone(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded < MAX_ERODE &&
 					!(obj->oerodeproof || 
 					 (obj->blessed && !rnl(4))))
 				obj->oeroded++;
-			else if (is_rustprone(obj) && obj->oeroded == MAX_ERODE &&
+			else if (is_rustprone(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded == MAX_ERODE &&
 					!(obj->oerodeproof ))
 			{
 			    
@@ -10884,9 +10887,9 @@ register boolean force, here;
 
 		if (rn2(2)) {
 
-			if (obj->oeroded < MAX_ERODE && !( (obj->blessed && !rnl(4))))
+			if (obj->oeroded < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !( (obj->blessed && !rnl(4))))
 				obj->oeroded++;
-			else if (obj->oeroded == MAX_ERODE)
+			else if (obj->oeroded == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
 				pline("One of your objects withered away!");
@@ -10896,9 +10899,9 @@ register boolean force, here;
 			}
 		} else {
 
-			if (obj->oeroded2 < MAX_ERODE && !( (obj->blessed && !rnl(4))))
+			if (obj->oeroded2 < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !( (obj->blessed && !rnl(4))))
 				obj->oeroded2++;
-			else if (obj->oeroded2 == MAX_ERODE)
+			else if (obj->oeroded2 == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
 				pline("One of your objects withered away!");
@@ -10937,9 +10940,9 @@ register boolean force, here;
 
 		if (rn2(2)) {
 
-			if (obj->oeroded < MAX_ERODE && !( (obj->blessed && !rnl(4))))
+			if (obj->oeroded < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !( (obj->blessed && !rnl(4))))
 				obj->oeroded++;
-			else if (obj->oeroded == MAX_ERODE)
+			else if (obj->oeroded == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
 				pline("One of your objects withered away!");
@@ -10949,9 +10952,9 @@ register boolean force, here;
 			}
 		} else {
 
-			if (obj->oeroded2 < MAX_ERODE && !( (obj->blessed && !rnl(4))))
+			if (obj->oeroded2 < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !( (obj->blessed && !rnl(4))))
 				obj->oeroded2++;
-			else if (obj->oeroded2 == MAX_ERODE)
+			else if (obj->oeroded2 == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
 				pline("One of your objects withered away!");
@@ -11186,7 +11189,7 @@ drown()
 	}
 
 	You("drown.");
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Nikto ne znayet, pochemu ty byl nastol'ko glup, chtoby upast' v vodu, no eto ne imeyet nikakogo znacheniya, v lyubom sluchaye, potomu chto vy mozhete svernut' novogo personazha pryamo seychas." : "HUAAAAAAA-A-AAAAHHHHHH!");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Nikto ne znayet, pochemu ty byl nastol'ko glup, chtoby upast' v vodu, no eto ne imeyet nikakogo znacheniya, v lyubom sluchaye, potomu chto vy mozhete svernut' novogo personazha pryamo seychas." : "HUAAAAAAA-A-AAAAHHHHHH!");
 
 	/* [ALI] Vampires return to vampiric form on drowning.
 	 */
@@ -12395,7 +12398,7 @@ boolean disarm;
 		case 3:
 			if (!Free_action || !rn2(20)) {                        
 			pline("Suddenly you are frozen in place!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomul(-d(5, 6), "frozen by a container trap");
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
@@ -12417,7 +12420,7 @@ boolean disarm;
 				You("%s and your vision blurs...",
 				    stagger(youmonst.data, "stagger"));
 			}
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 			make_stunned(HStun + rn1(7, 16),FALSE);
 			(void) make_hallucinated(HHallucination + rn1(5, 16),FALSE,0L);
 			break;
@@ -12604,6 +12607,7 @@ lava_effects()
     if (uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) return FALSE;
     if (uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) return FALSE;
     if (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) return FALSE;
+    if (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) return FALSE;
     if (uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) return FALSE;
     if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) return FALSE;
 
@@ -12654,7 +12658,7 @@ lava_effects()
 	killer_format = KILLED_BY;
 	killer = lava_killer;
 	You("burn to a crisp...");
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Do svidaniya! Vy, navernoye, sdelal oshibku khodit' vokrug vo vremya oglusheniya ili sputannost' soznaniya, i teper' vy zaplatili samuyu vysokuyu tsenu." : "Ohoho-ho-ho!");
+	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Do svidaniya! Vy, navernoye, sdelal oshibku khodit' vokrug vo vremya oglusheniya ili sputannost' soznaniya, i teper' vy zaplatili samuyu vysokuyu tsenu." : "Ohoho-ho-ho!");
 	done(BURNING);
 	while (!safe_teleds(TRUE)) {
 		pline("You're still burning.");

@@ -191,7 +191,7 @@ pline VA_DECL(const char *, line)
 /* right : Ye read "Here lies ..."
    wrong : You read "Here lies ..."
    wrong : Ye read "'er lies ..." */
-        if( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ) &&(*line!='"')&&(strlen(line)<(BUFSZ-5))
+        if( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) &&(*line!='"')&&(strlen(line)<(BUFSZ-5))
              &&(!program_state.in_impossible)
              &&(strlen(line)>9)){
                 /* >9: "You die ..." but not "It hits." */
@@ -207,7 +207,7 @@ pline VA_DECL(const char *, line)
 		line = replace(line," is "," be ");
 		line = replace(line," is."," be.");
 		line = replace(line," is,"," be,");
-		if (Role_if(PM_KORSAIR)) { /* words beginning with a c will begin with a k for korsairs --Amy */
+		if (Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) { /* words beginning with a c will begin with a k for korsairs --Amy */
 		line = replace(line,"C","K");
 		line = replace(line," c"," k");
 		line = replace(line,"(c","(k");
@@ -1095,7 +1095,7 @@ ustatusline()
 void
 self_invis_message()
 {
-	if(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) ){
+	if(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ){
 	pline("%s %s.",
 	    Hallucination ? "Arr, Matey!  Ye" : "Avast!  All of a sudden, ye",
 	    See_invisible ? "can see right through yerself" :

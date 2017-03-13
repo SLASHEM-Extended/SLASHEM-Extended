@@ -189,6 +189,9 @@ const char *name;	/* if null, then format `obj' */
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
+		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
+		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
+		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
 
 		if (u.holyshield) shieldblockrate += (3 + spell_damage_bonus(SPE_HOLY_SHIELD));
 

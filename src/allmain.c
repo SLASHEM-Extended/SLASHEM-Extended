@@ -1058,9 +1058,12 @@ moveloop()
 				moveamt *= 2;
 			}
 
+			if (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) moveamt *= 2;
+
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
 			if (uarmc && (uarmc->oartifact == ART_WINDS_OF_CHANGE) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
+			if (uarm && (uarm->oartifact == ART_FORMULA_ONE_SUIT) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
 			if (uarmh && !rn2(10) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula one helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula odin shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula bir zarbdan") ) ) moveamt += NORMAL_SPEED / 2;
 			if (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qidiruvi va turbo chizilmasin") ) ) moveamt += NORMAL_SPEED / 2;
 			if (uarmg && !rn2(10) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) moveamt += NORMAL_SPEED / 2;
@@ -1172,6 +1175,26 @@ moveloop()
 		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone()) stop_occupation();
  
 		if (FaintActive && !rn2(100) && multi >= 0) {
+
+			pline("You faint from exertion.");
+			flags.soundok = 0;
+			nomul(-(rnz(5) ), "fainted from exertion");
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
+		if ((uleft && uleft->oartifact == ART_BLIND_PILOT) && !rn2(100) && multi >= 0) {
+
+			pline("You faint from exertion.");
+			flags.soundok = 0;
+			nomul(-(rnz(5) ), "fainted from exertion");
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
+		if ((uright && uright->oartifact == ART_BLIND_PILOT) && !rn2(100) && multi >= 0) {
 
 			pline("You faint from exertion.");
 			flags.soundok = 0;
@@ -1806,7 +1829,7 @@ moveloop()
 		if ( Itemcursing && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -1815,7 +1838,7 @@ moveloop()
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -1824,7 +1847,7 @@ moveloop()
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 		}
@@ -1848,10 +1871,29 @@ moveloop()
 			pline("Your weapon spontaneously disintegrates!");
 		}
 
+		if (u.umoved && uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE && !rn2(10)) {
+
+			doshittrap((struct obj *)0);
+
+		}
+
+		if (u.umoved && u.twoweap && uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE && !rn2(10)) {
+
+			doshittrap((struct obj *)0);
+
+		}
+
+		if (uwep && uwep->oartifact == ART_AND_IT_KEEPS_ON_MOVING) pushplayersilently();
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_AND_IT_KEEPS_ON_MOVING) pushplayersilently();
+
 		if (uarmh && uarmh->oartifact == ART_ALLURATION && !rn2(1000) ) {
 			curse(uarmh);
 			if (!rn2(3)) pline("A black glow surrounds your helmet.");
 			if (!rn2(20)) NastinessProblem |= FROMOUTSIDE;
+		}
+
+		if (uarmh && uarmh->oartifact == ART_NULL_THE_LIVING_DATABASE && !rn2(5000) ) {
+		      (void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
 		}
 
 		if (!rn2(Aggravate_monster ? 4 : 20)) reset_rndmonst(NON_PM);
@@ -2248,7 +2290,7 @@ newbossY:
 		if (uarmf && uarmf->oartifact == ART_CURSING_ANOMALY && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2257,7 +2299,7 @@ newbossY:
 		if (uarmf && uarmf->oartifact == ART_AMY_LOVES_AUTOCURSING_ITEM && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2266,7 +2308,7 @@ newbossY:
 		if ( Role_if(PM_TRANSSYLVANIAN) && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2275,7 +2317,25 @@ newbossY:
 		if ( have_cursingstone() && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
+			rndcurse();
+
+		}
+
+		if ( uleft && uleft->oartifact == ART_ARABELLA_S_RADAR && !rn2(1000) ) {
+			if (!Blind) {
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
+			rndcurse();
+
+		}
+
+		if ( uright && uright->oartifact == ART_ARABELLA_S_RADAR && !rn2(1000) ) {
+			if (!Blind) {
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2284,7 +2344,7 @@ newbossY:
 		if ( have_primecurse() && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2316,7 +2376,76 @@ newbossY:
 			}
 		}
 
-		if ( (have_morgothiancurse() || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GUN_CONTROL_LAWS) ) && !rn2(500) ) { /* was 1 in 50 in ToME */
+		if (uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL && !rn2(500) ) {
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, SHIT_TRAP, 0);
+					break;
+					}
+			}
+		}
+
+		if (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) {
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, SHIT_TRAP, 0);
+					break;
+					}
+			}
+		}
+
+		if (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(500) ) {
+			pline("Wielding such a beautiful, erotic lady boot for so long makes your %s turn.", body_part(STOMACH));
+		      make_vomiting(Vomiting+20, TRUE);
+			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10);
+
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(500) ) {
+			pline("Wielding such a beautiful, erotic lady boot for so long makes your %s turn.", body_part(STOMACH));
+		      make_vomiting(Vomiting+20, TRUE);
+			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10);
+
+		}
+
+		if (uwep && uwep->oartifact == ART_AMY_S_FIRST_GIRLFRIEND && !rn2(500) ) {
+			pline("The incredibly soft girl shoe suddenly bonks you, and your optical nerve is damaged...");
+			make_blinded(Blinded + rnd(30),FALSE);
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_AMY_S_FIRST_GIRLFRIEND && !rn2(500) ) {
+			pline("The incredibly soft girl shoe suddenly bonks you, and your optical nerve is damaged...");
+			make_blinded(Blinded + rnd(30),FALSE);
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) {
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, SHIT_TRAP, 0);
+					break;
+					}
+			}
+		}
+
+		if ( (have_morgothiancurse() || (uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GUN_CONTROL_LAWS) ) && !rn2(500) ) { /* was 1 in 50 in ToME */
 			switch (rnd(30)) {
 
 				case 1:
@@ -2351,7 +2480,7 @@ newbossY:
 				case 11:
 				case 12: /* curse items */
 					You_feel("as if you need some help.");
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 					rndcurse();
 					break;
 				case 13:
@@ -2426,7 +2555,7 @@ newbossY:
 				case 4:
 				case 5: /* aggravate monster */
 					You_feel("that monsters are aware of your presence.");
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
+					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
 					aggravate();
 					break;
 				case 6:
@@ -2536,7 +2665,17 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		}
+
+		if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION && !rn2(1000)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
+			}
+			pline("Your equipment seems less effective.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000)) {
@@ -2546,7 +2685,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000)) {
@@ -2556,7 +2695,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000)) {
@@ -2566,7 +2705,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000)) {
@@ -2576,7 +2715,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (u.uprops[RECURRING_DISENCHANT].extrinsic && !rn2(1000)) {
@@ -2586,7 +2725,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (have_disenchantmentstone() && !rn2(1000)) {
@@ -2596,7 +2735,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (ChaosTerrain && !rn2(5)) {
@@ -2742,7 +2881,7 @@ newboss:
 		if (u.uprops[ITEMCURSING].extrinsic && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2751,7 +2890,7 @@ newboss:
 		if (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2760,7 +2899,7 @@ newboss:
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2769,7 +2908,7 @@ newboss:
 		if (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2778,7 +2917,7 @@ newboss:
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2919,7 +3058,25 @@ newboss:
 
 			BlackNgWalls = (blackngdur - (monster_difficulty() * 3));
 			(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
-			pline("Blackness..."); /* otherwise players would just have no chance --Amy */
+			pline((uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? "Blue Screen of Death!" : "Blackness..."); /* otherwise players would just have no chance --Amy */
+
+			if (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) {
+
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
+				for (i = 0; i < 8; i++) {
+
+					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+					(void) makemon(colormon(CLR_BRIGHT_BLUE), 0, 0, NO_MM_FLAGS);
+				}
+
+				u.aggravation = 0;
+
+			}
+
 			break;
 		}
 
@@ -3576,7 +3733,7 @@ newboss:
 
 		}
 
-		if ((u.uprops[CRAP_EFFECT].extrinsic || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) || CrapEffect || have_shitstone() ) && (u.uhs == 0) && !rn2(100) ) {
+		if ((u.uprops[CRAP_EFFECT].extrinsic || (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) || CrapEffect || have_shitstone() ) && (u.uhs == 0) && !rn2(100) ) {
 			pline("You suddenly have to take a shit!");
 			int crapduration = 5;
 			if (uarm && objects[uarm->otyp].oc_delay) {
@@ -4749,6 +4906,8 @@ stop_occupation()
 {
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "quicktravel cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bystryy plashch puteshestviya") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tez safar plash") ) ) return;
+
+	if (uarmf && uarmf->oartifact == ART_TOO_FAST__TOO_FURIOUS) return;
 
 	if (RngePermanentOccupation) return;
 

@@ -978,6 +978,18 @@ register struct monst *mtmp;
 
     }
 
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && uarmc && uarmc->oartifact == ART_TOILET_NOISES && multi >= 0 && flags.soundok && mtmp->mcanmove && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) && ((mtmp->data->msound != MS_FART_QUIET) && (mtmp->data->msound != MS_FART_NORMAL) && (mtmp->data->msound != MS_FART_LOUD) ) ) {
+	if (cansee(mtmp->mx,mtmp->my)) {
+		pline("%s produces crapping noises with %s %s butt.", Monnam(mtmp), mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+	} else {
+		You_hear("crapping noises.");
+	}
+
+	pline("Because you are stupid, you stop to listen.");
+	nomul(-rnz(3 + mtmp->crapbonus), "listening to crapping noises");
+      nomovemsg = "At last, you get yourself together, ready to move on.";
+    }
+
     /* Gremlin multiplying won't go on forever since the hit points
      * keep going down, and when it gets to 1 hit point the clone
      * function will fail.
@@ -1312,7 +1324,7 @@ meatmetal(mtmp)
 				distant_name(otmp,doname));
 		    else if (flags.soundok && flags.verbose) {
 			You_hear("a crunching sound.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Ochen' tsennyy element metalla tol'ko chto poyel i vy budete pinat' sebya, yesli ya skazhu vam, chto eto bylo." : "Gruum!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Ochen' tsennyy element metalla tol'ko chto poyel i vy budete pinat' sebya, yesli ya skazhu vam, chto eto bylo." : "Gruum!");
 			}
 		    mtmp->meating = otmp->owt/2 + 1;
 		    if (mtmp->meating > 10) mtmp->meating = 10; /* arbitrary --Amy */
@@ -1398,7 +1410,7 @@ meatlithic(mtmp)
 				distant_name(otmp,doname));
 		    else if (flags.soundok && flags.verbose) {
 			You_hear("a grating sound.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Luchshe nadeyat'sya, chto etot punkt kamennyy ne bylo chem-to vazhnym, potomu chto teper' poteryana navsegda." : "Wuoeing!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Luchshe nadeyat'sya, chto etot punkt kamennyy ne bylo chem-to vazhnym, potomu chto teper' poteryana navsegda." : "Wuoeing!");
 			}
 		    mtmp->meating = otmp->owt/2 + 1;
 		    if (mtmp->meating > 10) mtmp->meating = 10; /* arbitrary --Amy */
@@ -1469,7 +1481,7 @@ meatcorpse(mtmp)
 				distant_name(otmp,doname));
 		    else if (flags.soundok && flags.verbose) {
 			You(Hallucination ? "hear an alien's noises!" : "hear an awful gobbling noise!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy boites' ne meneye, vy malen'kiy rebenok? Postaraytes', chtoby ne ispachkat' sebya, kha-kha!" : "Kwololololo lololololo!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy boites' ne meneye, vy malen'kiy rebenok? Postaraytes', chtoby ne ispachkat' sebya, kha-kha!" : "Kwololololo lololololo!");
 			}
 		    mtmp->meating = 2;
 		    delobj(otmp);
@@ -1533,7 +1545,7 @@ meatobj(mtmp)		/* for gelatinous cubes */
 			    distant_name(otmp, doname));
 		else if (flags.soundok && flags.verbose) {
 		    You_hear("a slurping sound.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Skoreye vsego, eto bylo chto-to, chto vy, vozmozhno, khoteli ispol'zovat', ili, mozhet byt', dazhe vash taynik! Razve eto ne veselo?" : "Chllp!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Skoreye vsego, eto bylo chto-to, chto vy, vozmozhno, khoteli ispol'zovat', ili, mozhet byt', dazhe vash taynik! Razve eto ne veselo?" : "Chllp!");
 		}
 		/* Heal up to the object's weight in hp */
 		if (mtmp->mhp < mtmp->mhpmax) {
@@ -1594,7 +1606,7 @@ meatobj(mtmp)		/* for gelatinous cubes */
 	    	You_hear("%s slurping sound%s.",
 			ecount == 1 ? "a" : "several",
 			ecount == 1 ? "" : "s");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Skoreye vsego, eto bylo chto-to, chto vy, vozmozhno, khoteli ispol'zovat', ili, mozhet byt', dazhe vash taynik! Razve eto ne veselo?" : "Chllp!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Skoreye vsego, eto bylo chto-to, chto vy, vozmozhno, khoteli ispol'zovat', ili, mozhet byt', dazhe vash taynik! Razve eto ne veselo?" : "Chllp!");
 		}
 	}
 	return ((count > 0) || (ecount > 0)) ? 1 : 0;
@@ -2922,7 +2934,7 @@ boolean was_swallowed;			/* digestion */
 	if (mdat == &mons[PM_VLAD_THE_IMPALER] || mdat->mlet == S_LICH) {
 	    if (cansee(mon->mx, mon->my) && !was_swallowed)
 		pline("%s body crumbles into dust.", s_suffix(Monnam(mon)));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Vy ne poluchite trup. Ya udivlen, chto vy dazhe udalos' pobedit' takogo monstra, dolzhno byt', udacha, potomu chto ty na samom dele ochen' plokhoy igrok..." : "Dueouaaaaaaaaaah.");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy ne poluchite trup. Ya udivlen, chto vy dazhe udalos' pobedit' takogo monstra, dolzhno byt', udacha, potomu chto ty na samom dele ochen' plokhoy igrok..." : "Dueouaaaaaaaaaah.");
 	    /* KMH -- make_corpse() handles Vecna */
 	    return (mdat == &mons[PM_VECNA]);
 	}
@@ -3193,8 +3205,8 @@ int how;
 	    mondied(mdef);
 
 	if (be_sad && mdef->mhp <= 0) {
-	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
-	    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Da! Vash pitomets umer! Tip bloka l'da ochen' pozabavilo!" : "Daeaeae-aeaeaeaeae!");
+	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
+	    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Da! Vash pitomets umer! Tip bloka l'da ochen' pozabavilo!" : "Daeaeae-aeaeaeaeae!");
 	}
 
 }
@@ -3225,8 +3237,8 @@ mon_xkilled(mdef, fltxt, how)
 		xkilled(mdef,0);
 
 	if (be_sad && mdef->mhp <= 0) {
-	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
-	    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Da! Vash pitomets umer! Tip bloka l'da ochen' pozabavilo!" : "Daeaeae-aeaeaeaeae!");
+	    You(Hallucination ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
+	    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Da! Vash pitomets umer! Tip bloka l'da ochen' pozabavilo!" : "Daeaeae-aeaeaeaeae!");
 	}
 }
 
@@ -3827,9 +3839,9 @@ cleanup:
 	} else if (mtmp->mtame) {
 		adjalign(-50);	/* bad!! */
 		/* your god is mighty displeased... */
-		if (!Hallucination) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR)) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
+		if (!Hallucination) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
 		else You_hear("the studio audience applaud!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Molodets, geroy - ty ubil sobstvennogo domashnego zhivotnogo, potomu chto vy byli glupy. Vy na samom dele sovetskaya Pyat' Lo? Potomu chto on ne igrayet namnogo khuzhe, chem vy." : "Wummm. Wummmmmmmm!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Molodets, geroy - ty ubil sobstvennogo domashnego zhivotnogo, potomu chto vy byli glupy. Vy na samom dele sovetskaya Pyat' Lo? Potomu chto on ne igrayet namnogo khuzhe, chem vy." : "Wummm. Wummmmmmmm!");
 
 		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") ) ) {
 			pline("You killed your pet, thereby incurring the wrath of the gods!");
@@ -4000,7 +4012,7 @@ int  typ, fatal;
 	    kprefix = KILLED_BY;
 	}
 	i = rn2(fatal + 20*thrown_weapon);
-	if(i == 0 && !Poison_resistance && typ != A_CHA && !rn2(100)) {
+	if(i == 0 && !Poison_resistance && !(uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) && typ != A_CHA && !rn2(100)) {
 		if (Invulnerable || (Stoned_chiller && Stoned))
 		   pline("You are unharmed!");
 		else {
@@ -4969,7 +4981,7 @@ register boolean silent;
 				  sct == 1 ? "an " : "", sct > 1 ? "s" : "");
 		} else if(flags.soundok)
 			You_hear("the shrill sound of a guard's whistle.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Davayte posmotrim, sposobna li ubezhat' ot chasov v obshchey slozhnosti neudachnik! Vozmozhno net!" : "Pfiiiiiiiiiie!");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Davayte posmotrim, sposobna li ubezhat' ot chasov v obshchey slozhnosti neudachnik! Vozmozhno net!" : "Pfiiiiiiiiiie!");
 	    }
 	    return(TRUE);
 	}
