@@ -280,6 +280,31 @@ static struct Bool_Opt
 	{"lostsoul", &flags.lostsoul, FALSE, DISP_IN_GAME}, 
 	{"uberlostsoul", &flags.uberlostsoul, FALSE, DISP_IN_GAME}, 
 
+	{"hybridangbander", &flags.hybridangbander, FALSE, DISP_IN_GAME}, 
+	{"hybridaquarian", &flags.hybridaquarian, FALSE, DISP_IN_GAME}, 
+	{"hybridcurser", &flags.hybridcurser, FALSE, DISP_IN_GAME}, 
+	{"hybridhaxor", &flags.hybridhaxor, FALSE, DISP_IN_GAME}, 
+	{"hybridhomicider", &flags.hybridhomicider, FALSE, DISP_IN_GAME}, 
+	{"hybridsuxxor", &flags.hybridsuxxor, FALSE, DISP_IN_GAME}, 
+	{"hybridwarper", &flags.hybridwarper, FALSE, DISP_IN_GAME}, 
+	{"hybridrandomizer", &flags.hybridrandomizer, FALSE, DISP_IN_GAME}, 
+	{"hybridnullrace", &flags.hybridnullrace, FALSE, DISP_IN_GAME}, 
+	{"hybridmazewalker", &flags.hybridmazewalker, FALSE, DISP_IN_GAME}, 
+	{"hybridsoviet", &flags.hybridsoviet, FALSE, DISP_IN_GAME}, 
+	{"hybridxrace", &flags.hybridxrace, FALSE, DISP_IN_GAME}, 
+	{"hybridheretic", &flags.hybridheretic, FALSE, DISP_IN_GAME}, 
+	{"hybridsokosolver", &flags.hybridsokosolver, FALSE, DISP_IN_GAME}, 
+	{"hybridspecialist", &flags.hybridspecialist, FALSE, DISP_IN_GAME}, 
+	{"hybridamerican", &flags.hybridamerican, FALSE, DISP_IN_GAME}, 
+	{"hybridminimalist", &flags.hybridminimalist, FALSE, DISP_IN_GAME}, 
+	{"hybridnastinator", &flags.hybridnastinator, FALSE, DISP_IN_GAME}, 
+	{"hybridrougelike", &flags.hybridrougelike, FALSE, DISP_IN_GAME}, 
+	{"hybridsegfaulter", &flags.hybridsegfaulter, FALSE, DISP_IN_GAME}, 
+	{"hybridironman", &flags.hybridironman, FALSE, DISP_IN_GAME}, 
+	{"hybridamnesiac", &flags.hybridamnesiac, FALSE, DISP_IN_GAME}, 
+	{"hybridproblematic", &flags.hybridproblematic, FALSE, DISP_IN_GAME}, 
+	{"hybridwindinhabitant", &flags.hybridwindinhabitant, FALSE, DISP_IN_GAME}, 
+
 	{(char *)0, (boolean *)0, FALSE, 0}
 };
 
@@ -1470,6 +1495,79 @@ boolean tinitial, tfrom_file;
 	}
 
 	/* variant spelling */
+
+	if (match_optname(opts, "hybridangbander", 15, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridaquarian", 14, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridcurser", 12, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridhaxor", 11, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridhomicider", 15, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridsuxxor", 11, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridwarper", 12, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridrandomizer", 16, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridnullrace", 14, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridmazewalker", 16, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridsoviet", 12, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridxrace", 11, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridheretic", 13, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridsokosolver", 16, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridspecialist", 16, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridamerican", 14, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridminimalist", 16, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridnastinator", 16, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridrougelike", 15, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridsegfaulter", 16, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridironman", 13, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridamnesiac", 14, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridproblematic", 17, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridwindinhabitant", 20, FALSE)) {
+		flags.hybridization++;
+	}
 
 	if (match_optname(opts, "colour", 5, FALSE))
 		Strcpy(opts, "color");	/* fortunately this isn't longer */
