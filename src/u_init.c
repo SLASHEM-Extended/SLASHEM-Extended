@@ -7501,7 +7501,7 @@ u_init()
 		u.hereticcgod = hereticgods[rn2(SIZE(hereticgods))];
 	}
 
-	if (!isheretic && (Role_if(PM_GUNNER) || Role_if(PM_ANACHRONIST) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_ERDRICK) )) {
+	if (!isheretic && (Role_if(PM_GUNNER) || Role_if(PM_ANACHRONIST) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_ERDRICK) || Role_if(PM_WILD_TALENT) )) {
 
 		randpantheon = rn2(SIZE(lawfulgods));
 		u.hereticlgod = lawfulgods[randpantheon];
@@ -7517,7 +7517,7 @@ u_init()
 	}
 
 	/* fail safe - this will be essential for the recursion trap that changes the player's role or race --Amy */
-	if (!isheretic && !Role_if(PM_GUNNER) && !Role_if(PM_ANACHRONIST) && !Role_if(PM_PRIEST) && !Role_if(PM_MYSTIC) && !Role_if(PM_SHAPESHIFTER) && !Role_if(PM_FAILED_EXISTENCE) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_ERDRICK)) {
+	if (!isheretic && !Role_if(PM_GUNNER) && !Role_if(PM_WILD_TALENT) && !Role_if(PM_ANACHRONIST) && !Role_if(PM_PRIEST) && !Role_if(PM_MYSTIC) && !Role_if(PM_SHAPESHIFTER) && !Role_if(PM_FAILED_EXISTENCE) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_ERDRICK)) {
 		u.hereticlgod = hereticgods[rn2(SIZE(hereticgods))];
 		u.hereticngod = hereticgods[rn2(SIZE(hereticgods))];
 		u.hereticcgod = hereticgods[rn2(SIZE(hereticgods))];
