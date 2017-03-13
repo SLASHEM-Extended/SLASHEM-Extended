@@ -326,17 +326,25 @@ boolean update;  /* do newsym() */
    int herbnum = rn2(SIZE(herb_info));
    int randomx, randomy;
    int i, j, count, randchance=0;
-	register struct monst *mtmp;
+	/*register struct monst *mtmp;*/
+
+	/* note by Amy: disabled herb growth and water currents. GDB says that the dreaded savegame error is happening
+	 * in this function, and since Paliculo had the savegame error happen in SLASH'EM 0.08, chances are it's something
+	 * that was introduced pre-SLEX. That said, the newsym() function was erroring too, and since the dgn_growths
+	 * function is being called during saving for every single level that exists, I wouldn't be at all surprised if
+	 * that's somehow related. At the very least I'm taking out the minliquid() call below, and that means we don't need
+	 * the mtmp anymore either. If it's still somehow crashing then we'll need to look into the GDB output which will
+	 * hopefully tell us where exactly in newsym() it's choking... */
 
    if (!rn2(100)) (void) seed_tree(-1,-1);
-   if (herb_info[herbnum].in_water)
+   /*if (herb_info[herbnum].in_water)
      (void) grow_water_herbs(herb_info[herbnum].herb, -1,-1);
    else
-     (void) grow_herbs(herb_info[herbnum].herb, -1,-1, showmsg, update);
+     (void) grow_herbs(herb_info[herbnum].herb, -1,-1, showmsg, update);*/
    if (!rn2(30))
      (void) drop_ripe_treefruit(-1,-1, showmsg, update);
-   (void) water_current(-1,-1, rn2(8), 
-			Is_waterlevel(&u.uz) ? 200 : 25, showmsg, update);
+   /*(void) water_current(-1,-1, rn2(8), 
+			Is_waterlevel(&u.uz) ? 200 : 25, showmsg, update);*/
 trap_of_walls:
 
 	/* evil patch idea by Amy: occasionally, corridors and room squares will "grow" back into solid rock or walls.
@@ -414,11 +422,11 @@ trap_of_walls:
 				block_point(randomx,randomy);
 				del_engr_at(randomx, randomy);
 
-				if ((mtmp = m_at(randomx, randomy)) != 0) {
+				/*if ((mtmp = m_at(randomx, randomy)) != 0) {
 					(void) minliquid(mtmp);
-				} else {
+				} else {*/
 					newsym(randomx,randomy);
-				}
+				/*}*/
 
 			}
 
