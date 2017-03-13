@@ -1277,6 +1277,7 @@ register struct trap *ttmp;
 	schedule_goto(&target_level, FALSE, FALSE, 1,
 		      "You feel dizzy for a moment, but the sensation passes.",
 		      (char *)0);
+
 }
 
 void
