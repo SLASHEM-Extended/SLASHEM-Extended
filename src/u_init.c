@@ -22926,7 +22926,7 @@ register struct trobj *trop;
 	int otyp, i;
 
 	while (trop->trclass) {
-		if (trop->trotyp != UNDEF_TYP && !Race_if(PM_UNDEFINED_CREATURE) ) {
+		if (trop->trotyp != UNDEF_TYP && ((trop->trotyp == SCR_PHASE_DOOR || trop->trotyp == SCR_HEALING || trop->trotyp == SCR_MANA || trop->trotyp == SCR_STANDARD_ID || trop->trotyp == SCR_CURE || (trop->trotyp == SCR_IDENTIFY && flags.lostsoul) || (trop->trotyp == TORCH && flags.lostsoul) || (trop->trotyp == FOOD_RATION && flags.lostsoul) || (trop->trotyp == SCR_IDENTIFY && flags.uberlostsoul) || (trop->trotyp == TORCH && flags.uberlostsoul) || (trop->trotyp == FOOD_RATION && flags.uberlostsoul) || (trop->trotyp == POT_FRUIT_JUICE && flags.uberlostsoul) || (trop->trotyp == TALLOW_CANDLE && flags.uberlostsoul) ) || !Race_if(PM_UNDEFINED_CREATURE) ) ) {
 			otyp = (int)trop->trotyp;
 			if (urace.malenum != PM_HUMAN) {
 			    /* substitute specific items for generic ones */
