@@ -3376,7 +3376,7 @@ newboss:
 					break;
 				    case 2: /* paralyse */
 					if (multi >= 0) {
-					    if (Free_action) {
+					    if (Free_action && rn2(20)) {
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
@@ -3560,7 +3560,7 @@ newboss:
 				break;
 			    case 13:
 				if (multi >= 0) {
-				    if (Free_action) {
+				    if (Free_action && rn2(20)) {
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
@@ -5320,7 +5320,7 @@ boolean ordinary;
 					pline("Boing!");
 				}
 			} else {
-				if (!Free_action) {
+				if (!Free_action || !rn2(5)) {
 				    pline("You are frozen in place!");
 				    nomul(-rnz(20), "frozen by their own spell");
 				    nomovemsg = You_can_move_again;
@@ -5356,7 +5356,7 @@ boolean ordinary;
 
 		case WAN_PARALYSIS:
 			makeknown(obj->otyp);
-			if (!Free_action) {
+			if (!Free_action || !rn2(5)) {
 			    pline("You are frozen in place!");
 				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			    nomul(-rnz(20), "frozen by their own wand");
@@ -5366,7 +5366,7 @@ boolean ordinary;
 
 		    break;
 		case SPE_PARALYSIS:
-			if (!Free_action) {
+			if (!Free_action || !rn2(5)) {
 			    pline("You are frozen in place!");
 				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			    nomul(-rnz(20), "frozen by their own spell");

@@ -3020,7 +3020,7 @@ register struct obj	*sobj;
 					break;
 				    case 2: /* paralyse */
 					if (multi >= 0) {
-					    if (Free_action) {
+					    if (Free_action && rn2(20)) {
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
@@ -3204,7 +3204,7 @@ register struct obj	*sobj;
 				break;
 			    case 13:
 				if (multi >= 0) {
-				    if (Free_action) {
+				    if (Free_action && rn2(20)) {
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");

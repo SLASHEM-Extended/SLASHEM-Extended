@@ -716,7 +716,7 @@ register struct monst *mtmp;
 				}
 				if (!rn2(100)) {
 					(void) make_hallucinated(HHallucination + rnd(10) + rnd(monster_difficulty() + 1), TRUE, 0L);
-					if (!Free_action) {
+					if (!Free_action || !rn2(20)) {
 					    pline("You are frozen in place!");
 					    nomul(-rnz(10), "frozen by an eldritch blast");
 						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");

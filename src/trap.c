@@ -2299,7 +2299,7 @@ unsigned trflags;
 	    case PARALYSIS_TRAP:
 	      pline("You stepped on a trigger!");
 		seetrap(trap);
-		if (!Free_action) {
+		if (!Free_action || !rn2(10)) {
 		    pline("You are frozen in place!");
 			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		    nomul(-rnz(10), "frozen by a paralysis trap");
@@ -3311,7 +3311,7 @@ newegomon:
 					break;
 				    case 2: /* paralyse */
 					if (multi >= 0) {
-					    if (Free_action) {
+					    if (Free_action && rn2(20)) {
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
@@ -3493,7 +3493,7 @@ newegomon:
 				break;
 			    case 13:
 				if (multi >= 0) {
-				    if (Free_action) {
+				    if (Free_action && rn2(20)) {
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
@@ -4132,7 +4132,7 @@ newegomon:
 		case 5:
 		case 4:
 		case 3:
-			if (!Free_action) {
+			if (!Free_action || !rn2(20)) {
 			pline("Suddenly you are frozen in place!");
 			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomul(-d(5, 6), "frozen by a lock trap");
@@ -10162,7 +10162,7 @@ struct obj *box;        /* at the moment only for floor traps */
 		    if (!rn2(issoviet ? 2 : 10)) destroy_item(WAND_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 2 : 10)) destroy_item(RING_CLASS, AD_ELEC);
 			if (!rn2(3)) {
-				if (!Free_action) {
+				if (!Free_action || !rn2(5)) {
 				    pline("You are frozen in place!");
 					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				    nomul(-rnz(10), "frozen by a volt trap");
@@ -12393,15 +12393,13 @@ boolean disarm;
 		case 5:
 		case 4:
 		case 3:
-			if (!Free_action) {                        
-			if (!Free_action) {                        
+			if (!Free_action || !rn2(20)) {                        
 			pline("Suddenly you are frozen in place!");
 			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomul(-d(5, 6), "frozen by a container trap");
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
 			} else You("momentarily stiffen.");
-			} else You("momentarily stiffen.");                        
 			break;
 		case 2:
 		case 1:

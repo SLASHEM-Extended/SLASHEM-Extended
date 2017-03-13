@@ -812,7 +812,7 @@ struct obj *obj;
 	if(!u.dx && !u.dy && !u.dz) {
 		if(vis && !Invisible) {
 		    if (u.umonnum == PM_FLOATING_EYE) {
-			if (!Free_action) {
+			if (!Free_action || !rn2(20)) {
 			pline(Hallucination ?
 			      "Yow!  The mirror stares back!" :
 			      "Yikes!  You've frozen yourself!");

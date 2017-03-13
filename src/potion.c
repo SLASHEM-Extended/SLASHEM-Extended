@@ -2757,7 +2757,7 @@ peffects(otmp)
 		break;
 
 	case POT_PARALYSIS:
-		if (Free_action)
+		if (Free_action && rn2(20))
 		    You("stiffen momentarily.");
 		else {
 		    if (Levitation || Is_airlevel(&u.uz)||Is_waterlevel(&u.uz))
@@ -2774,7 +2774,7 @@ peffects(otmp)
 		}
 		break;
 	case POT_SLEEPING:
-		if(Sleep_resistance || Free_action)
+		if((Sleep_resistance || Free_action) && rn2(20))
 		    You("yawn.");
 		else {
 		    You("suddenly fall asleep!");
@@ -4381,7 +4381,7 @@ register struct obj *obj;
 		break;
 	case POT_PARALYSIS:
 		kn++;
-		if (!Free_action) {
+		if (!Free_action || !rn2(20)) {
 		    pline("%s seems to be holding you.", Something);
 			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		    nomul(-rnd(5), "frozen by breathing a potion");
@@ -4391,7 +4391,7 @@ register struct obj *obj;
 		break;
 	case POT_SLEEPING:
 		kn++;
-		if (!Free_action && !Sleep_resistance) {
+		if ((!Free_action && !Sleep_resistance) || !rn2(20)) {
 		    You_feel("rather tired.");
 		    nomul(-rnd(5), "sleeping off a magical draught");
 		    nomovemsg = You_can_move_again;

@@ -7188,7 +7188,7 @@ uchar aatyp;
 
 		    case 13:
 			if (multi >= 0) {
-			    if (Free_action) {
+			    if (Free_action && rn2(20)) {
 				You("momentarily stiffen.");            
 			    } else {
 				if (Blind) You("are frozen!");
@@ -7296,7 +7296,7 @@ uchar aatyp;
 			break;
 		    case 2: /* paralyse */
 			if (multi >= 0) {
-			    if (Free_action) {
+			    if (Free_action && rn2(20)) {
 				You("momentarily stiffen.");            
 			    } else {
 				if (Blind) You("are frozen!");
@@ -7422,7 +7422,7 @@ uchar aatyp;
 			if (ureflects("%s gaze is reflected by your %s.",
 				    s_suffix(Monnam(mon))))
 			    ;
-			else if (Free_action)
+			else if (Free_action && rn2(20))
 			    You("momentarily stiffen under %s gaze!",
 				    s_suffix(mon_nam(mon)));
 			else {
@@ -7435,7 +7435,7 @@ uchar aatyp;
 				Adjmonnam(mon,"blind"));
 			if(!rn2(500)) change_luck(-1);
 		    }
-		} else if (Free_action) {
+		} else if (Free_action && rn2(20)) {
 		    You("momentarily stiffen.");
 		} else { /* gelatinous cube */
 		    You("are frozen by %s!", mon_nam(mon));

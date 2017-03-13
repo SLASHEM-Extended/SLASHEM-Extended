@@ -4912,7 +4912,7 @@ dopois:
 	    case AD_PLYS:
 		hitmsg(mtmp, mattk);
 		if (uncancelled && multi >= 0 && !rn2(3)) {
-		    if (Free_action) {
+		    if (Free_action && rn2(20)) {
 			You("momentarily stiffen.");            
 		    } else {
 			if (Blind) You("are frozen!");
@@ -4927,7 +4927,7 @@ dopois:
 	    case AD_TCKL:
 		hitmsg(mtmp, mattk);
 		if (uncancelled && multi >= 0 && !rn2(3)) {
-		    if (Free_action)
+		    if (Free_action && rn2(20))
 			You_feel("horrible tentacles probing your flesh!");
 		    else {
 			if (Blind) You("are mercilessly tickled!");
@@ -5156,7 +5156,7 @@ dopois:
 			break;
 		    case 13:
 			if (multi >= 0) {
-			    if (Free_action) {
+			    if (Free_action && rn2(20)) {
 				You("momentarily stiffen.");            
 			    } else {
 				if (Blind) You("are frozen!");
@@ -6454,7 +6454,7 @@ dopois:
 			break;
 		    case 2: /* paralyse */
 			if (multi >= 0) {
-			    if (Free_action) {
+			    if (Free_action && rn2(20)) {
 				You("momentarily stiffen.");            
 			    } else {
 				if (Blind) You("are frozen!");
@@ -7585,7 +7585,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	      case AD_PLYS:
 			pline("It whacks you!");
 			if (multi >= 0 && !rn2(3)) {
-			    if (Free_action) {
+			    if (Free_action && rn2(20)) {
 				You("cramp for a moment.");            
 			    } else {
 				You("can't move!");
@@ -7681,7 +7681,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 		    case 13:
 			if (multi >= 0) {
-			    if (Free_action) {
+			    if (Free_action && rn2(20)) {
 				You("momentarily stiffen.");            
 			    } else {
 				if (Blind) You("are frozen!");
@@ -7777,7 +7777,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 		    case 2: /* paralyse */
 			if (multi >= 0) {
-			    if (Free_action) {
+			    if (Free_action && rn2(20)) {
 				You("momentarily stiffen.");            
 			    } else {
 				if (Blind) You("are frozen!");
@@ -8519,7 +8519,7 @@ do_stone2:
 	    case AD_TCKL:
 		pline("A bunch of feelers suddenly reaches out for you!");
 		if (multi >= 0 && !rn2(3)) {
-		    if (Free_action)
+		    if (Free_action && rn2(20))
 			pline("They don't seem to do all that much, though...");
 		    else {
 			pline("Wahahahaha! Arrgh! It tickles!");
@@ -9436,7 +9436,7 @@ common:
 			break;
 		    case 13:
 			if (multi >= 0) {
-			    if (Free_action) {
+			    if (Free_action && rn2(20)) {
 				You("momentarily stiffen.");            
 			    } else {
 				if (Blind) You("are frozen!");
@@ -10089,7 +10089,7 @@ common:
 	    case AD_PLYS: /* for jonadab's paralyzing sphere */
 	    case AD_TCKL:
 
-		    if (Free_action) {
+		    if (Free_action && rn2(20)) {
 			You("momentarily stiffen.");            
 		    } else {
 			You("suddenly recognize an inability to move!");
@@ -10329,7 +10329,7 @@ common:
 			break;
 		    case 2: /* paralyse */
 			if (multi >= 0) {
-			    if (Free_action) {
+			    if (Free_action && rn2(20)) {
 				You("momentarily stiffen.");            
 			    } else {
 				pline("You can't move!");
@@ -11538,7 +11538,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			break;
 		    case 13:
 			if (multi >= 0) {
-			    if (Free_action) {
+			    if (Free_action && rn2(20)) {
 				You("momentarily stiffen.");            
 			    } else {
 				if (Blind) You("are frozen!");
@@ -11643,7 +11643,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			break;
 		    case 2: /* paralyse */
 			if (multi >= 0) {
-			    if (Free_action) {
+			    if (Free_action && rn2(20)) {
 				You("momentarily stiffen.");            
 			    } else {
 				if (Blind) You("are frozen!");
@@ -13378,7 +13378,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_PLYS:
 	        if(!mtmp->mcan && multi >= 0 && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 	                pline("%s stares at you!", Monnam(mtmp));
-	                if (Free_action) You("stiffen momentarily.");
+	                if (Free_action && rn2(20)) You("stiffen momentarily.");
 	                else {
 	                        You("are frozen by %s!", mon_nam(mtmp));
 					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
