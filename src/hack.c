@@ -336,6 +336,8 @@ boolean update;  /* do newsym() */
 	 * the mtmp anymore either. If it's still somehow crashing then we'll need to look into the GDB output which will
 	 * hopefully tell us where exactly in newsym() it's choking... */
 
+	/* update: *sigh* apparently the newsym() is really the culprit and I could just have used the update variable! */
+
    if (!rn2(100)) (void) seed_tree(-1,-1);
    /*if (herb_info[herbnum].in_water)
      (void) grow_water_herbs(herb_info[herbnum].herb, -1,-1);
@@ -425,7 +427,8 @@ trap_of_walls:
 				/*if ((mtmp = m_at(randomx, randomy)) != 0) {
 					(void) minliquid(mtmp);
 				} else {*/
-					newsym(randomx,randomy);
+					if (update) newsym(randomx,randomy);
+	/* this line, without the update variable check, is probably the monument of stupidity that caused savegame errors */
 				/*}*/
 
 			}
