@@ -1054,8 +1054,8 @@ int mode;
 		    pline_The("Sokoban walls resist your ability.");
 
 		if (!(Is_stronghold(&u.uz) && is_db_wall(x,y)) && !(Passes_walls && !may_passwall(x,y) && In_sokoban(&u.uz))) {
-			if (tmpr->typ == TREE) pline("There is a tree in the way!");
-			else pline("There is a wall in the way!");
+			if (tmpr->typ == TREE && mode == DO_MOVE) pline("There is a tree in the way!");
+			else if (mode == DO_MOVE) pline("There is a wall in the way!");
 		}
 	    }
 	    return FALSE;
@@ -1105,7 +1105,7 @@ int mode;
 		    return FALSE;
 		    }
 		} else if (mode == TEST_TRAV) goto testdiag;
-		pline("There is a door in the way!");
+		if (mode == DO_MOVE) pline("There is a door in the way!");
 		return FALSE;
 	    }
 	} else {
@@ -1119,7 +1119,7 @@ int mode;
 		/* Diagonal moves into a door are not allowed. */
 		if (Blind && mode == DO_MOVE)
 		    feel_location(x,y);
-		pline("You cannot diagonally move through a door!");
+		if (mode == DO_MOVE) pline("You cannot diagonally move through a door!");
 		return FALSE;
 	    }
 	}
@@ -1168,7 +1168,7 @@ int mode;
 			     || block_entry(x, y))
 			 )) {
 	/* Can't move at a diagonal out of a doorway with door. */
-	pline("You cannot diagonally move out of a door!");
+	if (mode == DO_MOVE) pline("You cannot diagonally move out of a door!");
 	return FALSE;
     }
 
