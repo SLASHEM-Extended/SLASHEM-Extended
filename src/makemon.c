@@ -973,7 +973,9 @@ register struct monst *mtmp;
 		    if (w2) (void)mongets(mtmp, w2);
 		} else if (is_elf(ptr)) {
 
-		    if (mm == PM_DROW) {
+		    if (mm == PM_ALBAE) { /* don't hand elven bows to them! --Amy */
+			(void) mongets(mtmp, ELVEN_CLOAK);
+		    } else if (mm == PM_DROW) {
 			(void) mongets(mtmp, DARK_ELVEN_MITHRIL_COAT);
 			(void) mongets(mtmp, DARK_ELVEN_SHORT_SWORD);
 			(void) mongets(mtmp, DARK_ELVEN_BOW);
@@ -989,35 +991,34 @@ register struct monst *mtmp;
 			(void) mongets(mtmp, DROVEN_BOW);
 			m_initthrow(mtmp, DROVEN_ARROW, 25);
 		    } else {
-		    if (rn2(2))
-			(void) mongets(mtmp,
-				   !rn2(4) ? ELVEN_MITHRIL_COAT : ELVEN_CLOAK);
-		      if (!rn2(3)) (void)mongets(mtmp, ELVEN_LEATHER_HELM);
-		    else if (!rn2(4)) (void)mongets(mtmp, ELVEN_BOOTS);
-		      if (!rn2(3)) (void)mongets(mtmp, ELVEN_DAGGER);
-		    switch (rn2(3)) {
-			case 0:
-			    if (!rn2(4)) (void)mongets(mtmp, ELVEN_SHIELD);
-			    if (rn2(3)) (void)mongets(mtmp, ELVEN_SHORT_SWORD);
-			    (void)mongets(mtmp, ELVEN_BOW);
-			    m_initthrow(mtmp, ELVEN_ARROW, 25);
-			    break;
-			case 1:
-			    (void)mongets(mtmp, ELVEN_BROADSWORD);
-			    if (rn2(2)) (void)mongets(mtmp, ELVEN_SHIELD);
-			    break;
-			case 2:
-			    if (rn2(2)) {
-				(void)mongets(mtmp, ELVEN_SPEAR);
-				(void)mongets(mtmp, ELVEN_SHIELD);
-			    }
-			    break;
-		    }
-		    if (mm == PM_ELVENKING) {
-			if (rn2(3) || (in_mklev && Is_earthlevel(&u.uz)))
-			    (void)mongets(mtmp, PICK_AXE);
-			if (!rn2(50)) (void)mongets(mtmp, CRYSTAL_BALL);
-		    }
+				if (rn2(2))
+					(void) mongets(mtmp, !rn2(4) ? ELVEN_MITHRIL_COAT : ELVEN_CLOAK);
+				if (!rn2(3)) (void)mongets(mtmp, ELVEN_LEATHER_HELM);
+				else if (!rn2(4)) (void)mongets(mtmp, ELVEN_BOOTS);
+				if (!rn2(3)) (void)mongets(mtmp, ELVEN_DAGGER);
+				switch (rn2(3)) {
+					case 0:
+						if (!rn2(4)) (void)mongets(mtmp, ELVEN_SHIELD);
+						if (rn2(3)) (void)mongets(mtmp, ELVEN_SHORT_SWORD);
+						(void)mongets(mtmp, ELVEN_BOW);
+						m_initthrow(mtmp, ELVEN_ARROW, 25);
+						break;
+					case 1:
+						(void)mongets(mtmp, ELVEN_BROADSWORD);
+						if (rn2(2)) (void)mongets(mtmp, ELVEN_SHIELD);
+						break;
+					case 2:
+						if (rn2(2)) {
+							(void)mongets(mtmp, ELVEN_SPEAR);
+							(void)mongets(mtmp, ELVEN_SHIELD);
+						}
+						break;
+				}
+				if (mm == PM_ELVENKING) {
+					if (rn2(3) || (in_mklev && Is_earthlevel(&u.uz)))
+						(void)mongets(mtmp, PICK_AXE);
+					if (!rn2(50)) (void)mongets(mtmp, CRYSTAL_BALL);
+				}
 		    } /* normal elves */                
 		} else /* enemy characters! */ /* They will always get stuff now. --Amy */
 		 if ((mm >= PM_ARCHEOLOGIST && mm <= PM_WIZARD /*&& rn2(4)*/) || (mm >= PM_UNDEAD_ARCHEOLOGIST && mm <= PM_UNDEAD_WIZARD) ) { 
