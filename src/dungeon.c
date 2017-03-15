@@ -1743,10 +1743,10 @@ level_difficulty()
 	if (moves > 1000000 && retvalue < 125) retvalue = 125;
 
 	/* some variation - it's annoying if you always get max difficulty monsters --Amy */
-	if ((retvalue > 1) && !rn2(issoviet ? 3 : 2)) retvalue /= 2;
-	if ((retvalue > 1) && !rn2(issoviet ? 15 : 5)) retvalue /= 3;
-	if ((retvalue > 1) && !rn2(issoviet ? 200 : 50)) retvalue /= 5;
-	if ((retvalue > 1) && !rn2(issoviet ? 1250 : 250)) retvalue /= 10;
+	if ((retvalue > 1) && !u.aggravation && !rn2(issoviet ? 3 : 2)) retvalue /= 2;
+	if ((retvalue > 1) && !u.aggravation && !rn2(issoviet ? 15 : 5)) retvalue /= 3;
+	if ((retvalue > 1) && !u.aggravation && !rn2(issoviet ? 200 : 50)) retvalue /= 5;
+	if ((retvalue > 1) && !u.aggravation && !rn2(issoviet ? 1250 : 250)) retvalue /= 10;
 
 	if (retvalue < 1) retvalue = 1;
 
