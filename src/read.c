@@ -2572,6 +2572,7 @@ register struct obj	*sobj;
 			}
 
 			otmp->oerodeproof = 1;
+			if (!Blind) otmp->rknown = TRUE;
 			p_glow2(otmp, NH_PURPLE);
 		}
 		break;
