@@ -108,6 +108,9 @@ FILE *dump_fp = (FILE *)0;  /* file pointer for dumps */
 void
 dump_init ()
 {
+#ifdef PUBLIC_SERVER
+  mode_t dumpmode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
+#endif
   if (dump_fn[0]) {
     char *actual_fn = dump_fn;
     char *p = (char *) strstr(dump_fn, "%n");
@@ -145,6 +148,9 @@ dump_init ()
       actual_fn = new_dump_fn;
     }
     dump_fp = fopen (actual_fn, "w");
+#ifdef PUBLIC_SERVER
+    chmod(actual_fn, dumpmode);
+#endif
     if (actual_fn != dump_fn) free(actual_fn);
 
     if (!dump_fp) {
@@ -157,14 +163,8 @@ dump_init ()
 void
 dump_exit ()
 {
-#ifdef PUBLIC_SERVER
-  mode_t dumpmode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
-#endif
   if (dump_fp) {
     fclose (dump_fp);
-#ifdef PUBLIC_SERVER
-    chmod(dump_fp, dumpmode);
-#endif
   }
 }
 
