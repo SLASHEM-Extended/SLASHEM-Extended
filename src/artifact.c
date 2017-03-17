@@ -2543,6 +2543,11 @@ void
 arti_speak(obj)
     struct obj *obj;
 {
+	if (!obj) {
+		impossible("arti_speak called with no valid object");
+		return;
+	}
+
 	register const struct artifact *oart = get_artifact(obj);
 	const char *line;
 	char buf[BUFSZ];
