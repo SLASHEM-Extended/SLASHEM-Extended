@@ -158,6 +158,43 @@ randommaterials()
 		/*if (wizard) pline("Modifying material of object %d", objtomodify);*/ /* debug message */
 
 	}
+
+	if (!rn2(5)) {
+
+		while (rn2(20)) {
+			objtomodify = -1;
+			while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
+
+			objects[objtomodify].oc_material = rn2(COMPOST + 1); /* allow every material, including 0 (mysterious) */
+
+		}
+
+	}
+
+	if (!rn2(20)) {
+
+		while (rn2(50)) {
+			objtomodify = -1;
+			while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
+
+			objects[objtomodify].oc_material = rn2(COMPOST + 1); /* allow every material, including 0 (mysterious) */
+
+		}
+
+	}
+
+	if (!rn2(100)) {
+
+		while (rn2(200)) {
+			objtomodify = -1;
+			while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
+
+			objects[objtomodify].oc_material = rn2(COMPOST + 1); /* allow every material, including 0 (mysterious) */
+
+		}
+
+	}
+
 }
 
 void
