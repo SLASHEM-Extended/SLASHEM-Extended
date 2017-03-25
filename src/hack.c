@@ -438,7 +438,16 @@ trap_of_walls:
 
    }
 
-   if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(100)) goto trap_of_walls;
+	/* yet another update by Amy: I give up. No fucking idea why the line below is causing the savegame error,
+	 * but it is. Apparently, calling this function during saving fucks up the "uwep" or "uswapwep" structures,
+	 * even though the safety checks should make sure that it works right. Oh well, have to make the function get called
+	 * only during regular play then, even though that is really stupid. */
+   if (update) {
+
+	   if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(100)) goto trap_of_walls;
+
+   }
+
 }
 
 /* catch up with growths when returning to a previously visited level */
