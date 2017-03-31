@@ -196,8 +196,8 @@ struct monst *mtmp;
 	 * more powerful things less so */
 	/* also nerfed scare monster scrolls a bit */
 
-	resist_percentage = (int)(mtmp->m_lev * 1.5);
-	scresist_percentage = (int)(mtmp->m_lev * 0.5);
+	resist_percentage = (int)(mtmp->m_lev * 3 / 2);
+	scresist_percentage = (int)(mtmp->m_lev / 2);
 
 	mresists = rn2(100) < resist_percentage;
 	scmresists = rn2(100) < resist_percentage;
