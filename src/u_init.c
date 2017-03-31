@@ -23112,16 +23112,17 @@ register struct trobj *trop;
 			Role_if here */
 
 			/* Don't start with +0 or negative rings */
-			if (objects[otyp].oc_charged && obj->spe </*=*/ 0)
-				obj->spe = rne(2);
+			/* Amy edit: why not? Randomness ftw! */
+			/*if (objects[otyp].oc_charged && obj->spe <= 0)
+				obj->spe = rne(2);*/
 
-			if ((obj->oclass == WEAPON_CLASS || obj->oclass == ARMOR_CLASS) && !rn2(3))
-				obj->spe = rne(2);
+			/*if ((obj->oclass == WEAPON_CLASS || obj->oclass == ARMOR_CLASS) && !rn2(3))
+				obj->spe = rne(2);*/
 
-			if (Race_if(PM_HAXOR)) {
+			/*if (Race_if(PM_HAXOR)) {
 			if ((objX->oclass == WEAPON_CLASS || objX->oclass == ARMOR_CLASS) && !rn2(3))
 				objX->spe = rne(2);
-			}
+			}*/
 
 			/* Heavily relies on the fact that 1) we create wands
 			 * before rings, 2) that we create rings before
