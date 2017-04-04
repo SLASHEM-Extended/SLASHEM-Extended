@@ -490,6 +490,7 @@ impossible VA_DECL(const char *, s)
 	}
 	vpline(s,VA_ARGS);
 	pline("Program in disorder. Please inform Amy (Bluescreenofdeath at nethackwiki) about this bug.");
+	pline("The admins can also be contacted on the #em.slashem.me IRC channel (Freenode).");
 	program_state.in_impossible = 0;
 	VA_END();
 }

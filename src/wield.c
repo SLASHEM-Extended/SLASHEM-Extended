@@ -420,7 +420,7 @@ dowield()
 	/* Handle no object, or object in other slot */
 	if (wep == &zeroobj)
 		wep = (struct obj *) 0;
-	else if (wep == uswapwep && !Race_if(PM_HUMAN_WRAITH) )
+	else if (wep == uswapwep && !Race_if(PM_HUMAN_WRAITH) && !cantwield(youmonst.data) )
 		return (doswapweapon());
 	else if (wep == uswapwep && Race_if(PM_HUMAN_WRAITH) ) {
 

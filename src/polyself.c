@@ -379,10 +379,10 @@ boolean forcecontrol;
 			else if ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(12) > 3) ) {
+			else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(18) > 7) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
+			else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(18) > (P_SKILL(P_POLYMORPHING) + 10) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 
@@ -875,8 +875,50 @@ break_armor()
 
 	}
 
+	int controllingchance = 0;
+	boolean armorkeep = 0;
+	boolean cloakkeep = 0;
+	boolean shirtkeep = 0;
+
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		switch (P_SKILL(P_POLYMORPHING)) {
+
+	      	case P_BASIC:	controllingchance = 1; break;
+	      	case P_SKILLED:	controllingchance = 2; break;
+	      	case P_EXPERT:	controllingchance = 3; break;
+      		case P_MASTER:	controllingchance = 4; break;
+      		case P_GRAND_MASTER:	controllingchance = 5; break;
+      		case P_SUPREME_MASTER:	controllingchance = 6; break;
+      		default: controllingchance = 0; break;
+		}
+
+		if (hugemonst(youmonst.data)) controllingchance *= 5;
+		else if (verysmall(youmonst.data) || (youmonst.data->msize >= MZ_HUGE)) {
+			controllingchance *= 15;
+			controllingchance /= 2;
+		}
+		else controllingchance *= 10;
+
+	}
+
+	if (uarm && (rnd(100) < controllingchance)) {
+		if (yn("Keep your torso armor on?") == 'y') {
+			armorkeep = 1;
+		}
+	}
+	if (uarmc && (rnd(100) < controllingchance)) {
+		if (yn("Keep your cloak on?") == 'y') {
+			cloakkeep = 1;
+		}
+	}
+	if (uarmu && (rnd(100) < controllingchance)) {
+		if (yn("Keep your shirt on?") == 'y') {
+			shirtkeep = 1;
+		}
+	}
+
     if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
-	if ((otmp = uarm) != 0) {
+	if (((otmp = uarm) != 0) && !armorkeep) {
 	    if(otmp->oartifact) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls off!");
@@ -901,7 +943,7 @@ break_armor()
 		useup(otmp);
 	}
 	}
-	if (!Race_if(PM_TRANSFORMER) && (otmp = uarmc) != 0) {
+	if (!cloakkeep && (otmp = uarmc) != 0) {
 	    if(otmp->oartifact) {
 		Your("%s falls off!", cloak_simple_name(otmp));
 		(void) Cloak_off();
@@ -923,7 +965,7 @@ break_armor()
 		useup(otmp);
 	    }
 	}
-	if (!Race_if(PM_TRANSFORMER) && (otmp = uarmu) != 0) {
+	if (!shirtkeep && (otmp = uarmu) != 0) {
 
 	    if(otmp->oartifact) {
 		Your("shirt falls off!");
@@ -945,20 +987,20 @@ break_armor()
 	    }
 	}
     } else if (sliparm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
-	if (((otmp = uarm) != 0) && (racial_exception(&youmonst, otmp) < 1)) {
+	if (((otmp = uarm) != 0) && !armorkeep && (racial_exception(&youmonst, otmp) < 1)) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls around you!");
 		(void) Armor_gone();
 		dropx(otmp);
 	}
-	if ((otmp = uarmc) != 0) {
+	if (((otmp = uarmc) != 0) && !cloakkeep) {
 		if (is_whirly(youmonst.data))
 			Your("%s falls, unsupported!", cloak_simple_name(otmp));
 		else You("shrink out of your %s!", cloak_simple_name(otmp));
 		(void) Cloak_off();
 		dropx(otmp);
 	}
-	if ((otmp = uarmu) != 0) {
+	if (((otmp = uarmu) != 0) && !shirtkeep) {
 		if (is_whirly(youmonst.data))
 			You("seep right through your shirt!");
 		else You("become much too small for your shirt!");
@@ -993,6 +1035,13 @@ break_armor()
 	    }
     }
     if (!Race_if(PM_TRANSFORMER) && (nohands(youmonst.data) || verysmall(youmonst.data))) {
+
+	if (uarmg && (rnd(100) < controllingchance)) {
+		if (yn("Keep your gloves on?") == 'y') {
+			goto glovesdone;
+		}
+	}
+
 	if ((otmp = uarmg) != 0) {
 	    if (donning(otmp)) cancel_don();
 	    /* Drop weapon along with gloves */
@@ -1001,11 +1050,27 @@ break_armor()
 	    (void) Gloves_off();
 	    dropx(otmp);
 	}
+glovesdone:
+
+	if (uarms && (rnd(100) < controllingchance)) {
+		if (yn("Keep your shield on?") == 'y') {
+			goto shielddone;
+		}
+	}
+
 	if ((otmp = uarms) != 0) {
 	    You("can no longer hold your shield!");
 	    (void) Shield_off();
 	    dropx(otmp);
 	}
+shielddone:
+
+	if (uarmh && (rnd(100) < controllingchance)) {
+		if (yn("Keep your helmet on?") == 'y') {
+			goto helmetdone;
+		}
+	}
+
 	if ((otmp = uarmh) != 0) {
 	    if (donning(otmp)) cancel_don();
 	    Your("helmet falls to the %s!", surface(u.ux, u.uy));
@@ -1013,8 +1078,16 @@ break_armor()
 	    dropx(otmp);
 	}
     }
+helmetdone:
     if (!Race_if(PM_TRANSFORMER) && (nohands(youmonst.data) || verysmall(youmonst.data) ||
 		slithy(youmonst.data) || youmonst.data->mlet == S_CENTAUR)) {
+
+	if (uarmf && (rnd(100) < controllingchance)) {
+		if (yn("Keep your boots on?") == 'y') {
+			goto bootsdone;
+		}
+	}
+
 	if ((otmp = uarmf) != 0) {
 	    if (donning(otmp)) cancel_don();
 	    if (is_whirly(youmonst.data))
@@ -1024,6 +1097,8 @@ break_armor()
 	    (void) Boots_off();
 	    dropx(otmp);
 	}
+bootsdone:
+	;
     }
 }
 
@@ -1033,6 +1108,29 @@ int alone;
 {
     struct obj *otmp;
     struct obj *otmp2;
+
+	int controllingchance = 0;
+
+	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		switch (P_SKILL(P_POLYMORPHING)) {
+
+	      	case P_BASIC:	controllingchance = 1; break;
+	      	case P_SKILLED:	controllingchance = 2; break;
+	      	case P_EXPERT:	controllingchance = 3; break;
+      		case P_MASTER:	controllingchance = 4; break;
+      		case P_GRAND_MASTER:	controllingchance = 5; break;
+      		case P_SUPREME_MASTER:	controllingchance = 6; break;
+      		default: controllingchance = 0; break;
+		}
+
+		if (hugemonst(youmonst.data)) controllingchance *= 5;
+		else if (verysmall(youmonst.data) || (youmonst.data->msize >= MZ_HUGE)) {
+			controllingchance *= 15;
+			controllingchance /= 2;
+		}
+		else controllingchance *= 10;
+
+	}
 
     if ((otmp = uwep) != 0) {
 	/* !alone check below is currently superfluous but in the
@@ -1045,9 +1143,19 @@ int alone;
 	    if (alone) You("find you must drop your weapon%s!",
 			   	u.twoweap ? "s" : "");
 	    otmp2 = u.twoweap ? uswapwep : 0;
+
+		if (uwep && (rnd(100) < controllingchance)) {
+			if (yn("Keep wielding your weapon?") == 'y') {
+				goto weapondone;
+			}
+		}
 	    uwepgone();
+
 	    if (!wep->cursed || (wep->otyp != LOADSTONE && wep->otyp != LUCKSTONE && wep->otyp != HEALTHSTONE && wep->otyp != MANASTONE && wep->otyp != SLEEPSTONE && wep->otyp != LOADBOULDER && wep->otyp != STARLIGHTSTONE && wep->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(wep) ) )
 		dropx(otmp);
+
+weapondone:
+
 	    if (otmp2 != 0) {
 		uswapwepgone();
 		if (!otmp2->cursed || (otmp2->otyp != LOADSTONE && otmp2->otyp != LUCKSTONE && otmp2->otyp != HEALTHSTONE && otmp2->otyp != MANASTONE && otmp2->otyp != SLEEPSTONE && otmp2->otyp != LOADBOULDER && otmp2->otyp != STARLIGHTSTONE && otmp2->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp2) ) )

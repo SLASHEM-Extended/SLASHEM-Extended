@@ -1609,18 +1609,11 @@ doloot()	/* loot a container on the floor or loot saddle from mon. */
 	/* "Can't do that while carrying so much stuff." */
 	return 0;
     }
-    if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
-	You("have no hands!");	/* not `body_part(HAND)' */
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
-		if (yn("Try to loot it with another part of your body instead?") == 'y') {
-			if (rn2(3)) { 			make_blinded(Blinded + rnd(50),TRUE);
-			pline("Off - you just blinded yourself!");
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		    return 1;}
-		}
-		else {return(0);}
-    }
+	/* It used to check for hands here, but I removed that because actually looting a container already checks if your
+	 * form has hands. It was really annoying that you could have twice the failure chance when looting off the ground
+	 * as opposed to applying a container in your inventory, so I changed that. --Amy */
+
     cc.x = u.ux; cc.y = u.uy;
 
 lootcont:

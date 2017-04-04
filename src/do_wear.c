@@ -4148,7 +4148,7 @@ boolean noisy;
 		if (yn("Try to put it on anyway?") == 'y') {
 			if (rn2(2)) { 	u.ublesscnt += rnz(5);
 			pline("Feeling uncomfortable, you decide to stop trying.");
-		    return 0;}
+		    return 1;}
 			}
 
 		else {return(0);}
@@ -4252,7 +4252,7 @@ boolean noisy;
 	if (uarmg) {
 	    if (noisy) already_wearing(c_gloves);
 	    err++;
-	} else if (welded(uwep)) {
+	} else if (welded(uwep) && issoviet) {
 	    if (noisy) You("cannot wear gloves over your %s.",
 			   is_sword(uwep) ? c_sword : c_weapon);
 	    err++;
@@ -4262,11 +4262,12 @@ boolean noisy;
 	if (uarm || uarmc || uarmu) {
 	    if (uarmu) {
 		if (noisy) already_wearing(an(c_shirt));
-	    } else {
+		err++;
+	    } else if (issoviet) {
 		if (noisy) You_cant("wear that over your %s.",
 			           (uarm && !uarmc) ? c_armor : cloak_simple_name(uarmc));
-	    }
-	    err++;
+		err++;
+	    } else *mask = W_ARMU;
 	} else
 	    *mask = W_ARMU;
     } else if (is_cloak(otmp)) {
@@ -4276,7 +4277,7 @@ boolean noisy;
 	} else
 	    *mask = W_ARMC;
     } else if (is_suit(otmp)) {
-	if (uarmc) {
+	if (uarmc && issoviet) {
 	    if (noisy) You("cannot wear armor over a %s.", cloak_simple_name(uarmc));
 	    err++;
 	} else if (uarm) {
@@ -4431,7 +4432,14 @@ doputon()
 	if(otmp->oclass == RING_CLASS || otmp->otyp == MEAT_RING) {
 		if(nolimbs(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 			You("cannot make the ring stick to your body.");
-			return(0);
+
+			if (yn("Try to put it on anyway?") == 'y') {
+				if (rn2(3)) {
+					make_dimmed(HDimmed + rnd(40),FALSE);
+					pline("The only thing that happens is that you got dimmed...");
+					return(1);
+				}
+			} else return(0);
 		}
 		if(uleft && uright){
 			There("are no more %s%s to fill.",
@@ -4461,17 +4469,17 @@ doputon()
 				break;
 			}
 		} while(!mask);
-		if (uarmg && !FingerlessGloves && uarmg->cursed) {
+		if (uarmg && !FingerlessGloves && uarmg->cursed && issoviet) {
 			uarmg->bknown = TRUE;
 		    You("cannot remove your gloves to put on the ring.");
 			return(0);
 		}
-		if (welded(uwep) && bimanual(uwep)) {
+		if (welded(uwep) && bimanual(uwep) && issoviet) {
 			/* welded will set bknown */
 	    You("cannot free your weapon hands to put on the ring.");
 			return(0);
 		}
-		if (welded(uwep) && mask==RIGHT_RING) {
+		if (welded(uwep) && mask==RIGHT_RING && issoviet) {
 			/* welded will set bknown */
 	    You("cannot free your weapon hand to put on the ring.");
 			return(0);

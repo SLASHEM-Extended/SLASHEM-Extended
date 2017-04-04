@@ -403,6 +403,8 @@ panic VA_DECL(const char *, str)
 
 	    raw_print("\r\nReport this error to Amy (Bluescreenofdeath at Nethackwiki) so it can be fixed.");
 
+	    raw_print("\r\nYou can also contact the admins on the #em.slashem.me IRC channel (Freenode)");
+
 #if defined(WIZARD) && !defined(MICRO)
 # if defined(NOTIFY_NETHACK_BUGS)
 	if (!wizard)
