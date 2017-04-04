@@ -1233,16 +1233,13 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 }
 
 boolean
-doorlockX(x,y)
+doorlockX(x,y,update)
 int x, y;
+boolean update;
 
 {
 	register struct rm *door = &levl[x][y];
 	boolean res = TRUE;
-	int loudness = 0;
-	const char *msg = (const char *)0;
-	const char *dustcloud = "A cloud of dust";
-	const char *quickly_dissipates = "quickly dissipates";
 	int key = artifact_door(x, y);		/* ALI - Artifact doors */
 
 	if (levl[x][y].typ != SDOOR && levl[x][y].typ != DOOR) return FALSE;
@@ -1260,16 +1257,9 @@ int x, y;
 		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
 	    else
 	    door->doormask = D_LOCKED | (door->doormask & D_TRAPPED);
-	    newsym(x,y);
+	    if (update) newsym(x,y);
 
-	if (msg && cansee(x,y)) pline(msg);
-	if (loudness > 0) {
-	    /* door was destroyed */
-	    wake_nearto(x, y, loudness);
-	    if (*in_rooms(x, y, SHOPBASE)) add_damage(x, y, 0L);
-	}
-
-	if (res && picking_at(x, y)) {
+	if (update && res && picking_at(x, y)) {
 	    /* maybe unseen monster zaps door you're unlocking */
 	    stop_occupation();
 	    reset_pick();

@@ -291,7 +291,7 @@ genericptr_t poolcnt;
 		randomy = rn2(ROWNO);
 		if (isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
 
-			if (rn2(3)) doorlockX(randomx, randomy);
+			if (rn2(3)) doorlockX(randomx, randomy, TRUE);
 			else {
 				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
 				else levl[randomx][randomy].typ = CROSSWALL;
@@ -308,7 +308,7 @@ genericptr_t poolcnt;
 			}
 		}
 	}
-	if (rn2(3)) doorlockX(x, y);
+	if (rn2(3)) doorlockX(x, y, TRUE);
 
 	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].wall_info & W_NONDIGGABLE) != 0 || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM && (levl[x][y].typ != DOOR || levl[x][y].doormask != D_NODOOR) ))

@@ -412,9 +412,11 @@ trap_of_walls:
 
 		if (!rn2(randchance) && (!In_sokoban(&u.uz) || !sobj_at(BOULDER, randomx, randomy) ) ) {
 
-
 			if (rn2(3)) {
-				doorlockX(randomx, randomy);
+				/* Sigh again. I had already given up (see below), and now of course this line was also causing
+				 * the savegame error again. One day I will fucking eradicate newsym() entirely. BULLSHIT! */
+
+				doorlockX(randomx, randomy, update); /* let's hope this "update" will FINALLY fix things ARGH */
 				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
 			}
 			else {
