@@ -4919,7 +4919,7 @@ stop_occupation()
 /* fainting stops your occupation, there's no reason to sync.
 		sync_hunger();
 */
-		nomul(0, 0);
+		forcenomul(0, 0);
 		pushch(0);
 	}
 }
