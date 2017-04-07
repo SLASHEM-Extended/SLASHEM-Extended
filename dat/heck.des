@@ -9002,7 +9002,6 @@ ENDMAP
 STAIR: (42,06), down
 STAIR: (07,15), up
 
-NON_DIGGABLE:(00,00,75,20)
 REGION:(21,00,75,12),  lit,"ordinary"
 
 DOOR:closed,(33,05)
