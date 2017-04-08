@@ -11964,8 +11964,10 @@ register int	mmflags;
 		/* can be killed in a single hit --Amy */
 	    mtmp->mhpmax = mtmp->mhp = 1;
 	} else if (is_rider(ptr) || is_deadlysin(ptr) ) {
+
 	    /* We want low HP, but a high mlevel so they can attack well */
 		mtmp->mhpmax = mtmp->mhp = d(10,8) + 20 + ptr->mlevel;
+
 	} /*else if (ptr->mlevel > 49) {*/	/* from now on we'll just let their hp be calculated normally --Amy */
 	    /* "special" fixed hp monster
 	     * the hit points are encoded in the mlevel in a somewhat strange
@@ -12007,7 +12009,7 @@ register int	mmflags;
 
 	}
 
-	if (ptr->geno & G_UNIQ) {
+	if ((ptr->geno & G_UNIQ) ) {
 		if (rn2(5)) mtmp->mhpmax += rnd(mtmp->mhpmax);
 		else if (rn2(5)) mtmp->mhpmax += rnd(mtmp->mhpmax * 2);
 		else if (rn2(5)) mtmp->mhpmax += rnd(mtmp->mhpmax * 3);
@@ -12031,7 +12033,7 @@ register int	mmflags;
 		mtmp->mhp = mtmp->mhpmax;
 	}
 
-	if (ptr == &mons[PM_DARK_GOKU] || ptr == &mons[PM_FRIEZA]) { /* credits go to Bug Sniper for this idea --Amy */
+	if ((ptr == &mons[PM_DARK_GOKU] || ptr == &mons[PM_FRIEZA]) ) { /* credits go to Bug Sniper for this idea --Amy */
 		mtmp->mhpmax += 9000;
 		mtmp->mhp += 9000;
 	}

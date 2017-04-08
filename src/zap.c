@@ -1364,10 +1364,15 @@ coord *cc;
 		if (!mtmp) return mtmp;
 
 		/* heal the monster */
-		if (mtmp->mhpmax > mtmp2->mhpmax && is_rider(mtmp2->data))
+		/*if (mtmp->mhpmax > mtmp2->mhpmax && is_rider(mtmp2->data))
 			mtmp2->mhpmax = mtmp->mhpmax;
 		if (mtmp->mhpmax > mtmp2->mhpmax && is_deadlysin(mtmp2->data))
-			mtmp2->mhpmax = mtmp->mhpmax;
+			mtmp2->mhpmax = mtmp->mhpmax;*/
+		/* this interacted incorrectly with the makemon.c HP boost code... let's try something different: */
+		if (is_rider(mtmp2->data) || is_deadlysin(mtmp2->data)) {
+			if (mtmp2->mhpmax < 60) mtmp2->mhpmax = 60;
+		}
+
 		mtmp2->mhp = mtmp2->mhpmax;
 		/* Get these ones from mtmp */
 		mtmp2->minvent = mtmp->minvent; /*redundant*/
