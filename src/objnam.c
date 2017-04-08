@@ -419,6 +419,7 @@ STATIC_OVL struct Jitem Japanese_items[] = {
 	{ GUISARME, "kamayari" },
 	{ HALBERD, "bisento" },
 	{ HELMET, "kabuto" },
+	{ ICE_BOX, "bento box" },
 	{ INSECT_SQUASHER, "konchu furattona" },
 	{ KNIFE, "shito" },
 	{ LANCE, "uma-yari" },
