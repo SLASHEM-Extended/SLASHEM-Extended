@@ -1822,6 +1822,10 @@ int thrown;
 				if (obj->oartifact == ART_DEADLY_GAMBLING) tmp += rnd(30);
 			}
 
+			if (obj && obj->oclass == SPBOOK_CLASS && Role_if(PM_LIBRARIAN)) {
+				if (obj->spe > 0) tmp += obj->spe;
+			}
+
 			if (obj && obj->oclass == WAND_CLASS && obj->oartifact && obj->spe > 0) {
 				tmp += obj->spe;
 			}
