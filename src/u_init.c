@@ -12833,6 +12833,9 @@ u_init()
 	temp = 30 + rolebounus + racebounus + alignbounus + genderbounus; /* new algorithm --Amy */
 	if (issoviet) temp = 75;
 
+	if (Race_if(PM_AUREAL) && !flags.female) temp -= 10;
+	if (Race_if(PM_MAZKE) && !flags.female) temp -= 10;
+
 	temp -= (flags.hybridization * 3);
 
 	if (temp > maxbounus) temp = maxbounus; /* prevent value from randomly becoming too high */
