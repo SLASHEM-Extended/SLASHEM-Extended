@@ -1028,6 +1028,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	cen_tech[] = { {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   7, T_SHIELD_BASH, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
@@ -1052,6 +1053,7 @@ static const struct innate_tech
 	dry_tech[] = { {   1, T_IRON_SKIN, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PHASE_DOOR, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 
