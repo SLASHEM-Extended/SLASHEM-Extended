@@ -315,9 +315,7 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 		badeffect();
 	}
 
-	
-
-	if (!rn2(findpriest(temple_occupied(u.urooms)) ? 500 : 100) && !issoviet && (!Is_astralevel(&u.uz)) ) {
+	if (!rn2(findpriest(temple_occupied(u.urooms)) ? 500 : 100) && !obj->bknown && !(obj && obj->otyp == POT_WATER) && !issoviet && (!Is_astralevel(&u.uz)) ) {
 		levl[u.ux][u.uy].typ = ROOM;
 		pline_The("altar suddenly vanishes!"); /* Yes, we're preventing altar abuse here, or trying to, at least. --Amy */
 		newsym(u.ux,u.uy);
@@ -329,6 +327,9 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 		return;
 	}
 
+	/* Amy edit: But if the item dropped on the altar is a potion of water, the player is probably trying to do a water
+	 * prayer. In this case, don't remove the altar. Also, it was stupid that if you knew the BUC of the object, there
+	 * still was a chance of the altar disappearing. So I fixed those things at last. */
 
 	if (Blind)
 		return;

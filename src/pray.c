@@ -1434,16 +1434,6 @@ water_prayer(bless_water)
 			badeffect();
 		}
 
-		if (!rn2(findpriest(temple_occupied(u.urooms)) ? 500 : 100) && !issoviet && (!Is_astralevel(&u.uz)) ) {
-			levl[u.ux][u.uy].typ = ROOM;
-			pline_The("altar suddenly vanishes!"); /* hopefully this will teach those altar-campers! --Amy */
-			newsym(u.ux,u.uy);
-		} else if (!rn2(10) && (!Is_astralevel(&u.uz)) && (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) ) {
-			levl[u.ux][u.uy].typ = ROOM;
-			pline_The("altar suddenly vanishes!");
-			newsym(u.ux,u.uy);
-		}
-
     return((boolean)(changed > 0L));
 }
 
