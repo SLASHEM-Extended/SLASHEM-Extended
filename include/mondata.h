@@ -109,6 +109,7 @@
 #define carnivorous(ptr)	(((ptr)->mflags1 & M1_CARNIVORE) != 0L)
 #define herbivorous(ptr)	(((ptr)->mflags1 & M1_HERBIVORE) != 0L)
 #define metallivorous(ptr)	(((ptr)->mflags1 & M1_METALLIVORE) != 0L)
+#define organivorous(ptr)	(((ptr)->mflags4 & M4_ORGANIVORE) != 0L)
 #define monpolyok(ptr)		(((ptr)->mflags2 & M2_NOPOLY) == 0L) /* monsters may poly into this */
 #define polyok(ptr)		(((ptr)->mflags2 & M2_NOPOLY) == 0L && ((ptr)->mflags3 & M3_NOPLRPOLY) == 0L && (ptr)->mlevel < 30 ) /* players may poly into this */
 #define is_undead(ptr)		(((ptr)->mflags2 & M2_UNDEAD) != 0L)
@@ -121,7 +122,7 @@
 #define is_human(ptr)		(((ptr)->mflags2 & M2_HUMAN) != 0L)
 #define is_hobbit(ptr)		(((ptr)->mflags2 & M2_HOBBIT) != 0L)
 #define your_race(ptr)		(((ptr)->mflags2 & urace.selfmask) != 0L)
-#define is_bat(ptr)		((ptr) == &mons[PM_BAT] || (ptr) == &mons[PM_BATMAN] || (ptr) == &mons[PM_GIANT_BAT] || (ptr) == &mons[PM_FAT_BAT] || (ptr) == &mons[PM_FRUIT_BAT] || (ptr) == &mons[PM_HIDDEN_BAT] || (ptr) == &mons[PM_HOUSEBAT] || (ptr) == &mons[PM_ANCESTRAL_BAT] || (ptr) == &mons[PM_GIANT_TAN_BAT] || (ptr) == &mons[PM_LARGE_BAT] || (ptr) == &mons[PM_GIANT_FORCE_BAT] || (ptr) == &mons[PM_ZUBAT] || (ptr) == &mons[PM_GOLBAT] || (ptr) == &mons[PM_CROBAT] || (ptr) == &mons[PM_HUGE_BAT] || (ptr) == &mons[PM_UNDEAD_BAT] || (ptr) == &mons[PM_ATHOL] || (ptr) == &mons[PM_UNDEAD_SWARM_BAT] || (ptr) == &mons[PM_RHUMBAT] || (ptr) == &mons[PM_MINX] || (ptr) == &mons[PM_TATTERED_LURKER] || (ptr) == &mons[PM_PETTY_RHUMBAT] || (ptr) == &mons[PM_RAVENOUS_BAT] || (ptr) == &mons[PM_HELLBAT] || (ptr) == &mons[PM_DESERT_WING] || (ptr) == &mons[PM_DRIVER_BAT] || (ptr) == &mons[PM_MONGBAT] || (ptr) == &mons[PM_DANGEROUS_VAMPIRE_BAT] || (ptr) == &mons[PM_MOBAT] || (ptr) == &mons[PM_MOHAT] || (ptr) == &mons[PM_BLINK] || (ptr) == &mons[PM_HARPY] || (ptr) == &mons[PM_GIANT_BROWN_BAT] || (ptr) == &mons[PM_SONICBAT] || (ptr) == &mons[PM_BYAKHEE] || (ptr) == &mons[PM_MEGABAT] || (ptr) == &mons[PM_GLOOMBAT] || (ptr) == &mons[PM_GHOST_BAT] || (ptr) == &mons[PM_PLAGUE_BAT] || (ptr) == &mons[PM_FELWING] || (ptr) == &mons[PM_NIGHTGAUNT] || (ptr) == &mons[PM_BLACK_BAT] || (ptr) == &mons[PM_BAT_SWARM] || (ptr) == &mons[PM_JUBJUB_BAT] || (ptr) == &mons[PM_VAMPIRE_BAT] || (ptr) == &mons[PM_BLUE_DRAGON_BAT] || (ptr) == &mons[PM_FIRE_WING] || (ptr) == &mons[PM_RED_DRAGON_BAT] || (ptr) == &mons[PM_SOLID_BAT] || (ptr) == &mons[PM_DISENCHANTER_BAT] || (ptr) == &mons[PM_DOOMBAT])
+#define is_bat(ptr)		(((ptr)->mflags4 & M4_BAT) != 0L)
 #define is_bird(ptr)		((ptr)->mlet == S_BAT && !is_bat(ptr))
 #define is_giant(ptr)		(((ptr)->mflags2 & M2_GIANT) != 0L)
 #define is_golem(ptr)		((ptr)->mlet == S_GOLEM)
@@ -134,6 +135,7 @@
 #define is_wanderer(ptr)	(((ptr)->mflags2 & M2_WANDER) != 0L)
 #define always_hostile(ptr)	(((ptr)->mflags2 & M2_HOSTILE) != 0L)
 #define always_peaceful(ptr)	(((ptr)->mflags2 & M2_PEACEFUL) != 0L)
+#define always_tame(ptr)	(((ptr)->mflags4 & M4_TAME) != 0L)
 #define race_hostile(ptr)	(((ptr)->mflags2 & urace.hatemask) != 0L)
 #define race_peaceful(ptr)	(((ptr)->mflags2 & urace.lovemask) != 0L)
 #define extra_nasty(ptr)	(((ptr)->mflags2 & M2_NASTY) != 0L)
@@ -163,14 +165,14 @@
 				 ((ptr) == &mons[PM_LONG_WORM]) || \
 				 ((ptr) == &mons[PM_LONG_WORM_TAIL]))
 #define is_covetous(ptr)	((ptr)->mflags3 & M3_COVETOUS)
-#define infravision(ptr)	((ptr->mflags3 & M3_INFRAVISION))
-#define infravisible(ptr)	((ptr->mflags3 & M3_INFRAVISIBLE))
-#define can_betray(ptr)		((ptr->mflags3 & M3_TRAITOR))
-#define cannot_be_tamed(ptr)	((ptr->mflags3 & M3_NOTAME))
-#define avoid_player(ptr)	((ptr->mflags3 & M3_AVOIDER))
-#define lithivorous(ptr)	((ptr->mflags3 & M3_LITHIVORE))
-#define is_petty(ptr)	((ptr->mflags3 & M3_PETTY))
-#define is_pokemon(ptr)	((ptr->mflags3 & M3_POKEMON))
+#define infravision(ptr)	((ptr)->mflags3 & M3_INFRAVISION)
+#define infravisible(ptr)	((ptr)->mflags3 & M3_INFRAVISIBLE)
+#define can_betray(ptr)		((ptr)->mflags3 & M3_TRAITOR)
+#define cannot_be_tamed(ptr)	((ptr)->mflags3 & M3_NOTAME)
+#define avoid_player(ptr)	((ptr)->mflags3 & M3_AVOIDER)
+#define lithivorous(ptr)	((ptr)->mflags3 & M3_LITHIVORE)
+#define is_petty(ptr)	((ptr)->mflags3 & M3_PETTY)
+#define is_pokemon(ptr)	((ptr)->mflags3 & M3_POKEMON)
 #define is_mplayer(ptr)		(((ptr) >= &mons[PM_ARCHEOLOGIST]) && \
 				 ((ptr) <= &mons[PM_WIZARD]))
 #define is_umplayer(ptr)		(((ptr) >= &mons[PM_UNDEAD_ARCHEOLOGIST]) && \
@@ -206,11 +208,23 @@
 				 (ptr) == &mons[PM_GIANT] || \
 				 (ptr) == &mons[PM_ELF] || \
 				 (ptr) == &mons[PM_HUMAN])
-#define stationary(ptr)	((ptr->mflags3 & M3_NONMOVING))
+#define stationary(ptr)	((ptr)->mflags3 & M3_NONMOVING)
 
 #define is_nonmoving(ptr) ( (ptr)->mmove < 1 || (ptr)->mlet == S_TURRET || ((ptr)->mflags3 & M3_NONMOVING) )
 
 #define is_eel(ptr)	((ptr)->mlet == S_EEL)
+
+#define is_multihued(ptr)	((ptr)->mflags4 & M4_MULTIHUED)
+
+#define is_angbandmonster(ptr)	((ptr)->mflags5 & M5_ANGBAND)
+#define is_cowmonster(ptr)	((ptr)->mflags5 & M5_SPACEWARS)
+#define is_vanillamonster(ptr)	((ptr)->mflags5 & M5_VANILLA)
+#define is_animemonster(ptr)	((ptr)->mflags5 & M5_ANIMEBAND)
+#define is_steammonster(ptr)	((ptr)->mflags5 & M5_STEAMBAND)
+#define is_dlordsmonster(ptr)	((ptr)->mflags5 & M5_DLORDS)
+#define is_dnethackmonster(ptr)	((ptr)->mflags5 & M5_DNETHACK)
+#define is_jokemonster(ptr)	((ptr)->mflags5 & M5_JOKE)
+#define is_diablomonster(ptr)	((ptr)->mflags5 & M5_DIABLO)
 
 #define nocorpsedecay(ptr)		((ptr)->mflags3 & M3_NO_DECAY)
 
@@ -229,7 +243,7 @@
 
 /* return TRUE if the monster tends to revive */
 #define is_reviver(ptr)		(is_rider(ptr) || is_deadlysin(ptr) || ((ptr)->mlet == S_FUNGUS && !nocorpsedecay(ptr) ) || \
-				 (ptr)->mlet == S_TROLL || (ptr) == &mons[PM_ROT_WALKER] || (ptr) == &mons[PM_ROT_CONVERTER] || (ptr) == &mons[PM_RED_DEATH] || (ptr) == &mons[PM_LITCH_DEMON] || (ptr) == &mons[PM_UNDEAD_BALROG] || (ptr) == &mons[PM_BONE_DEMON] || (ptr) == &mons[PM_RUST_CONVERTER] || (ptr) == &mons[PM_GRETA_S_HUGGING_BOOT] || (ptr) == &mons[PM_HUMAN_WERETROLL] || (ptr) == &mons[PM_VANESSA_S_THICK_LADY_SHOE] || (ptr) == &mons[PM_SARAH_S_HUGGING_BOOT] || (ptr) == &mons[PM_SARAH_S_SOFT_SNEAKER] || (ptr) == &mons[PM_SARAH_S_MOCASSIN] || (ptr) == &mons[PM_CONNY_S_COMBAT_BOOT] || (ptr) == &mons[PM_SUE_LYN_S_THICK_WINTER_BOOT] || (ptr) == &mons[PM_SUE_LYN_S_SNEAKER] || (ptr) == &mons[PM_HENRIETTA_S_THICK_BLOCK_HEELED_BOOT] || (ptr) == &mons[PM_VERENA_S_WORN_OUT_COMBAT_BOOT] || (ptr) == &mons[PM_VERENA_S_STILETTO_SANDAL] || (ptr) == &mons[PM_REANIMATED_HORDE] || (ptr) == &mons[PM_PROWLING_DEAD_POTATO] || (ptr) == &mons[PM_UNHOLY_CORPSE] || (ptr) == &mons[PM_VAMPIRE_TROLL] || (ptr) == &mons[PM_LOU_S_SNEAKER] || (ptr) == &mons[PM_DEFILED_WARRIOR]  )
+				 (ptr)->mlet == S_TROLL || ((ptr)->mflags4 & M4_REVIVE) )
 
 /* this returns the light's range, or 0 if none; if we add more light emitting
    monsters, we'll likely have to add a new light range field to mons[] */
@@ -272,8 +286,8 @@
 				 likes_lava(ptr))
 
 
-# define is_rat(ptr)		((ptr) == &mons[PM_SEWER_RAT] || (ptr) == &mons[PM_EVASIVE_SEWER_RAT] || (ptr) == &mons[PM_VISOR_SEWER_RAT] || (ptr) == &mons[PM_GIANT_RAT] || (ptr) == &mons[PM_GIANT_GARBAGE_RAT] || (ptr) == &mons[PM_PACK_RAT] || (ptr) == &mons[PM_PACKER_RAT] || (ptr) == &mons[PM_RABBIT] || (ptr) == &mons[PM_PACK_RABBIT] || (ptr) == &mons[PM_RABID_RABBIT] || (ptr) == &mons[PM_RABID_RAT] || (ptr) == &mons[PM_HELLRAT] || (ptr) == &mons[PM_DOUR_RAT] || (ptr) == &mons[PM_BLACK_RAT] || (ptr) == &mons[PM_DISEASED_RAT] || (ptr) == &mons[PM_VAPOR_RAT] || (ptr) == &mons[PM_GARGANTUAN_RAT] || (ptr) == &mons[PM_CHAOS_RAT] || (ptr) == &mons[PM_RATTATA] || (ptr) == &mons[PM_RATICATE] || (ptr) == &mons[PM_PIKACHU] || (ptr) == &mons[PM_RAICHU] || (ptr) == &mons[PM_ENORMOUS_RAT] || (ptr) == &mons[PM_EEVEE] || /* actually a hare... */\
-				 (ptr) == &mons[PM_RODENT_OF_UNUSUAL_SIZE] || (ptr) == &mons[PM_SAND_RAT] || (ptr) == &mons[PM_WILD_RABBIT] || (ptr) == &mons[PM_QUILL_RAT] || (ptr) == &mons[PM_PRICK_RAT] || (ptr) == &mons[PM_BUS_DRIVER] || (ptr) == &mons[PM_RAVENOUS_RAT] || (ptr) == &mons[PM_SNOW_RABBIT] || (ptr) == &mons[PM_PETIT_PSEUDO_RAT] || (ptr) == &mons[PM_SPIKE_FIEND] || (ptr) == &mons[PM_QUILL_BEAR] || (ptr) == &mons[PM_PRICK_BEAR] || (ptr) == &mons[PM_PSEUDO_RAT] || (ptr) == &mons[PM_ELECTRIC_RAT] || (ptr) == &mons[PM_NORMAL_PSEUDO_RAT] || (ptr) == &mons[PM_THORN_BEAST] || (ptr) == &mons[PM_SPIKE_GIANT] || (ptr) == &mons[PM_SPIKE_URCHIN] || (ptr) == &mons[PM_FERAL_RAT] || (ptr) == &mons[PM_GIANT_WHITE_RAT] || (ptr) == &mons[PM_MOON_RABBIT] || (ptr) == &mons[PM_FIRE_RAT] || (ptr) == &mons[PM_LARGE_PSEUDO_RAT] || (ptr) == &mons[PM_RAZOR_SPINE] || (ptr) == &mons[PM_BLADE_BACK] || (ptr) == &mons[PM_THORN_BRUTE] || (ptr) == &mons[PM_GREAT_GIANT_RAT] || (ptr) == &mons[PM_EASTERN_RABBIT] || (ptr) == &mons[PM_EASTERN_MOON_RABBIT] || (ptr) == &mons[PM_RAT_THING] || (ptr) == &mons[PM_UNDEAD_RAT] || (ptr) == &mons[PM_RAZOR_BEAST] || (ptr) == &mons[PM_BLADE_URCHIN] || (ptr) == &mons[PM_DESERT_PRICK] || (ptr) == &mons[PM_GIANT_GREY_RAT] || (ptr) == &mons[PM_RAT_SWARM] || (ptr) == &mons[PM_JUNGLE_URCHIN] || (ptr) == &mons[PM_SHRUB_THORN] || (ptr) == &mons[PM_GIANT_URCHIN] || (ptr) == &mons[PM_THORN_RAT] || (ptr) == &mons[PM_SNIPER_FIEND] || (ptr) == &mons[PM_PRICK_MONSTER] || (ptr) == &mons[PM_BIMMELING_RAT] || (ptr) == &mons[PM_AMERICAN_BLACK_RAT])
+#define is_rat(ptr)		((ptr)->mflags4 & M4_RAT)
+#define is_reflector(ptr)	((ptr)->mflags4 & M4_REFLECT)
 
 #define nonliving(ptr)		(is_golem(ptr) || is_undead(ptr) || \
 				 (ptr)->mlet == S_VORTEX || \
@@ -289,8 +303,9 @@
 				 (ptr) == &mons[PM_STONE_STATUE] || \
 				 (ptr) == &mons[PM_STATUE_GARGOYLE])
 #define hates_silver(ptr)	(is_were(ptr) || is_vampire(ptr) || \
-				 is_demon(ptr) || (ptr) == &mons[PM_SHADE] || \
+				 is_demon(ptr) || ((ptr)->mflags4 & M4_SHADE) || \
 				 ((ptr)->mlet==S_IMP && (ptr) != &mons[PM_TENGU]))
+#define is_shade(ptr)	((ptr)->mflags4 & M4_SHADE)
 #define hates_viva(ptr)		(is_golem(ptr))
 #define hates_inka(ptr)		(is_animal(ptr))
 #define hates_odor(ptr)		(is_animal(ptr) || humanoid(ptr))
@@ -323,16 +338,11 @@
 				   (!is_undead(ptr) || is_vampire(ptr)))
 
 #define befriend_with_obj(ptr, obj) ((obj)->oclass == FOOD_CLASS && ( \
-		is_domestic(ptr) || (is_animal(ptr) && Race_if(PM_HUMANOID_CENTAUR) && !(ptr->geno & G_UNIQ)) || (is_rat(ptr) && Role_if(PM_CONVICT)) || \
+		is_domestic(ptr) || (is_animal(ptr) && Race_if(PM_HUMANOID_CENTAUR) && !((ptr)->geno & G_UNIQ)) || (is_rat(ptr) && Role_if(PM_CONVICT)) || \
 		/* [Tom] Dorothy wants more pets... */ \
-		(obj)->otyp == CHEESE && ((ptr) == &mons[PM_GIANT_RAT] || \
-		    (ptr) == &mons[PM_SEWER_RAT] || \
-		    (ptr) == &mons[PM_BLACK_RAT] || \
-		    (ptr) == &mons[PM_PACK_RAT]) || \
-		(obj)->otyp == CARROT && ((ptr) == &mons[PM_RABBIT] || (ptr) == &mons[PM_PACK_RABBIT] || \
-		    (ptr) == &mons[PM_RABID_RABBIT]) || \
+		(obj)->otyp == CHEESE && is_rat(ptr) || \
 		( (ptr)->mlet == S_DRAGON && Race_if(PM_HUMANLIKE_DRAGON)) || \
-		(obj)->otyp == KELP_FROND && (ptr->mflags3 & M3_PETTY) || \
+		(obj)->otyp == KELP_FROND && ((ptr)->mflags3 & M3_PETTY) || \
 		(obj)->otyp == BANANA && (ptr)->mlet == S_YETI))
 
 #endif /* MONDATA_H */

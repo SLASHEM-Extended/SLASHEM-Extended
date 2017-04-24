@@ -302,6 +302,7 @@ makedog()
 	if (pettype == PM_DARK_NIGHTMARE) petname = "Opel Manta";
 
 	if (pettype == PM_VENOM_FUNGUS) petname = "This Is A BioHazard";
+	if (pettype == PM_MARTTI_IHRASAARI) petname = "Martti Ihrasaari";
 
 	if (pettype == PM_KICKBOXING_GIRL) petname = "Marija";
 
@@ -1026,25 +1027,7 @@ register struct obj *obj;
 		objects[obj->otyp].oc_material == INKA)
 		return(TABU);
 		/* KMH -- Taz likes organics, too! */
-	    if ((mon->data == &mons[PM_GELATINOUS_CUBE] ||
-		mon->data == &mons[PM_FLYING_GELATINOUS_CUBE] ||
-		mon->data == &mons[PM_FANTASTIC_GELATINOUS_CUBE] ||
-		mon->data == &mons[PM_STOUT_GELATINOUS_CUBE] ||
-		mon->data == &mons[PM_AMUSING_TYPE] ||
-		mon->data == &mons[PM_SHOGGOTH] ||
-		mon->data == &mons[PM_ROOMBA] ||
-		mon->data == &mons[PM_GIANT_SHOGGOTH] ||
-		mon->data == &mons[PM_TASMANIAN_ZOMBIE] ||
-		mon->data == &mons[PM_MINOCUBE] ||
-		mon->data == &mons[PM_THEME_TERMITE] ||
-		mon->data == &mons[PM_GELATINOUS_DICE] ||
-		mon->data == &mons[PM_KING_GORGE__LORD_OF_THE_GLUTTONS] ||
-		mon->data == &mons[PM_WEAPON_CUBE] ||
-		mon->data == &mons[PM_GELATINOUS_GLOB] ||
-		mon->data == &mons[PM_FAT_BULLY] ||
-		mon->data == &mons[PM_OOZE_ELEMENTAL] ||
-		mon->data == &mons[PM_GELATINOUS_THIEF] ||
-	    	mon->data == &mons[PM_TASMANIAN_DEVIL] || mon->egotype_organivore) && is_organic(obj))
+	    if ((organivorous(mon->data) || mon->egotype_organivore) && is_organic(obj))
 		return(ACCFOOD);
 	    if ( (metallivorous(mon->data) || mon->egotype_metallivore) && is_metallic(obj) && (is_rustprone(obj) || mon->data != &mons[PM_RUST_MONSTER])) {
 		/* Non-rustproofed ferrous based metals are preferred. */

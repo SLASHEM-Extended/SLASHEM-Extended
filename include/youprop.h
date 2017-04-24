@@ -554,7 +554,7 @@
 /* according to Yasdorian, I love aggravate monster. Indeed, many of my artifacts have it. --Amy */
 #define HAggravate_monster	u.uprops[AGGRAVATE_MONSTER].intrinsic
 #define EAggravate_monster	u.uprops[AGGRAVATE_MONSTER].extrinsic
-#define Aggravate_monster	(HAggravate_monster || EAggravate_monster || Race_if(PM_OGRO) || Race_if(PM_ROHIRRIM) || Race_if(PM_THUNDERLORD) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") )) || (uwep && uwep->oartifact == ART_ASIAN_WINTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ASIAN_WINTER) || RngePunishment || (uwep && uwep->oartifact == ART_FN_M____PARA) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FN_M____PARA) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || (uwep && uwep->oartifact == ART_PICK_OF_THE_GRAVE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PICK_OF_THE_GRAVE) || (uwep && uwep->oartifact == ART_CRUEL_PUNISHER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CRUEL_PUNISHER) || (uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) || (uarmu && uarmu->oartifact == ART_HELEN_S_DISCARDED_SHIRT) || (uarm && uarm->oartifact == ART_HO_OH_S_FEATHERS) || (uarm && uarm->oartifact == ART_QUEEN_ARTICUNO_S_HULL) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (uarm && uarm->oartifact == ART_DON_SUICUNE_USED_SELFDESTR) || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (uwep && uwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) || (uwep && uwep->oartifact == ART_WHY_DO_YOU_HAVE_SUCH_A_LIT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WHY_DO_YOU_HAVE_SUCH_A_LIT) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) || (uarm && uarm->oartifact == ART_NON_BLADETURNER) || (uarmc && uarmc->oartifact == ART_UBERJACKAL_EFFECT) || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) || (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) || (uarmh && uarmh->oartifact == ART_SEVERE_AGGRAVATION) || (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "excrement cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ekskrementy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chiqindi plash") ) ) || (uarms && uarms->oartifact == ART_NO_FUTURE_BUT_AGONY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) || (uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uwep && uwep->oartifact == ART_RATTATTATTATTATT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_RATTATTATTATTATT) || (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT) || (uarmf && uarmf->oartifact == ART_MANUELA_S_TORTURE_HEELS) || (uarmf && uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf && uarmf->oartifact == ART_ALLYNONE) || (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) || (uarmf && uarmf->oartifact == ART_HADES_THE_MEANIE) || (uarmf && uarmf->oartifact == ART_FUN_ALL_IN_ONE) || (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) || (uleft && uleft->oartifact == ART_RING_OF_WOE) || (uright && uright->oartifact == ART_RING_OF_WOE) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uright && uright->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uamul && uamul->oartifact == ART_SNOREFEST) || (uwep && uwep->oartifact == ART_ARMORWREAKER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARMORWREAKER) || (uwep && uwep->oartifact == ART_HARKENSTONE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HARKENSTONE) || (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI) || (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI) || (Role_if(PM_PICKPOCKET) && u.ualign.record < 0) )
+#define Aggravate_monster	(HAggravate_monster || EAggravate_monster || Race_if(PM_OGRO) || Race_if(PM_ROHIRRIM) || Race_if(PM_THUNDERLORD) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") )) || (uwep && uwep->oartifact == ART_ASIAN_WINTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ASIAN_WINTER) || RngePunishment || (uwep && uwep->oartifact == ART_FN_M____PARA) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FN_M____PARA) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || (uwep && uwep->oartifact == ART_PICK_OF_THE_GRAVE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_PICK_OF_THE_GRAVE) || (uwep && uwep->oartifact == ART_CRUEL_PUNISHER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CRUEL_PUNISHER) || (uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) || (uarmu && uarmu->oartifact == ART_HELEN_S_DISCARDED_SHIRT) || (uarm && uarm->oartifact == ART_HO_OH_S_FEATHERS) || (uarm && uarm->oartifact == ART_QUEEN_ARTICUNO_S_HULL) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (uarm && uarm->oartifact == ART_DON_SUICUNE_USED_SELFDESTR) || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (uwep && uwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) || (uwep && uwep->oartifact == ART_WHY_DO_YOU_HAVE_SUCH_A_LIT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_WHY_DO_YOU_HAVE_SUCH_A_LIT) || (Role_if(PM_PSION) && u.ulevel >= 7) || (Race_if(PM_SYLPH) && u.ulevel >= 18) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) || (uarm && uarm->oartifact == ART_NON_BLADETURNER) || (uarmc && uarmc->oartifact == ART_UBERJACKAL_EFFECT) || (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) || (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) || (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) || (uarmh && uarmh->oartifact == ART_SEVERE_AGGRAVATION) || (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "excrement cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ekskrementy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chiqindi plash") ) ) || (uarms && uarms->oartifact == ART_NO_FUTURE_BUT_AGONY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) || (uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE) || (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) || (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uwep && uwep->oartifact == ART_RATTATTATTATTATT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_RATTATTATTATTATT) || (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT) || (uarmf && uarmf->oartifact == ART_MANUELA_S_TORTURE_HEELS) || (uarmf && uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf && uarmf->oartifact == ART_ALLYNONE) || (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) || (uarmf && uarmf->oartifact == ART_HADES_THE_MEANIE) || (uarmf && uarmf->oartifact == ART_FUN_ALL_IN_ONE) || (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) || (uleft && uleft->oartifact == ART_RING_OF_WOE) || (uright && uright->oartifact == ART_RING_OF_WOE) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_RAGE) || (uright && uright->oartifact == ART_GOLDENIVY_S_RAGE) || (uleft && uleft->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uright && uright->oartifact == ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uamul && uamul->oartifact == ART_SNOREFEST) || (uwep && uwep->oartifact == ART_ARMORWREAKER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARMORWREAKER) || (uwep && uwep->oartifact == ART_HARKENSTONE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_HARKENSTONE) || (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI) || (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI) || (Role_if(PM_PICKPOCKET) && u.ualign.record < 0) )
 
 #define HConflict		u.uprops[CONFLICT].intrinsic
 #define EConflict		u.uprops[CONFLICT].extrinsic
@@ -694,139 +694,8 @@
 
 #define HReflecting		u.uprops[REFLECTING].intrinsic
 #define EReflecting		u.uprops[REFLECTING].extrinsic
-#define Reflecting		((EReflecting || (HReflecting && !(u.nonintrinsicproperty == REFLECTING)) || (moves % 2 == 0 && (uarm && OBJ_DESCR(objects[uarm->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarm->otyp]), "octarine robe") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "vos'moy tsvet khalata") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "sakkizinchi rang to'n") )) ) || (uarmu && uarmu->oartifact == ART_LEGENDARY_SHIRT) || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (ublindf && ublindf->otyp == DRAGON_EYEPATCH) || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || (uarmc && uarmc->oartifact == ART_ALL_IN_ONE_ASCENSION_KIT) || (uarmc && uarmc->oartifact == ART_RNG_S_GAMBLE) || (uarmh && uarmh->oartifact == ART_YOU_ARE_ALREADY_DEAD) || (uarmg && uarmg->oartifact == ART_PLUG_AND_PRAY) || (uarmg && uarmg->oartifact == ART_IRIS_S_PRECIOUS_METAL) || (uarmg && uarmg->oartifact == ART_SEALED_KNOWLEDGE) || (uarmg && uarmg->oartifact == ART_UNOBTAINABLE_BEAUTIES) || \
-				 ((youmonst.data == &mons[PM_SILVER_DRAGON] ||\
-				  youmonst.data == &mons[PM_CRYSTAL_GOLEM] ||\
-				  youmonst.data == &mons[PM_SAPPHIRE_GOLEM] ||\
-				  youmonst.data == &mons[PM_SHAMBLING_MOUND] ||\
-				  youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] ||\
-				  youmonst.data == &mons[PM_SILVER_WOLF] ||\
-				  youmonst.data == &mons[PM_DORA_S_TENDER_STILETTO_SANDAL] ||\
-				  youmonst.data == &mons[PM_GRETA_S_HUGGING_BOOT] ||\
-				  youmonst.data == &mons[PM_MAEGLIN__THE_TRAITOR_OF_GONDOLIN] ||\
-				  youmonst.data == &mons[PM_DAOLOTH__THE_RENDER_OF_THE_VEILS] ||\
-				  youmonst.data == &mons[PM_IT] ||\
-				  youmonst.data == &mons[PM_MADELEINE_S_CALF_LEATHER_SANDAL] ||\
-				  youmonst.data == &mons[PM_REFLECTION] ||\
-				  youmonst.data == &mons[PM_NICE_GIRL_IN_VELCRO_SHOES] ||\
-				  youmonst.data == &mons[PM_GREEN_LIZARD] ||\
-				  youmonst.data == &mons[PM_GREEN_GATEKEEPER] ||\
-				  youmonst.data == &mons[PM_POISON_CREEPER] ||\
-				  youmonst.data == &mons[PM_PLAGUE_POPPY] ||\
-				  youmonst.data == &mons[PM_CARRION_VINE] ||\
-				  youmonst.data == &mons[PM_CYCLE_OF_LIFE] ||\
-				  youmonst.data == &mons[PM_SOLAR_CREEPER] ||\
-				  youmonst.data == &mons[PM_VINES] ||\
-				  youmonst.data == &mons[PM_IRIS_S_SILVER_PUMP] ||\
-				  youmonst.data == &mons[PM_DESIREE_S_COMBAT_BOOT] ||\
-				  youmonst.data == &mons[PM_HANH_S_TRANSLUCENT_SANDAL] ||\
-				  youmonst.data == &mons[PM_MUNCHKIN] ||\
-				  youmonst.data == &mons[PM_MIRROR_VORTEX] ||\
-				  youmonst.data == &mons[PM_MIRROR_GOLEM] ||\
-				  youmonst.data == &mons[PM_MIRROR_MONSTER] ||\
-				  youmonst.data == &mons[PM_VENOM_ATRONACH] ||\
-				  youmonst.data == &mons[PM_DIVISION_THIEF] ||\
-				  youmonst.data == &mons[PM_DIVISION_JEDI] ||\
-				  youmonst.data == &mons[PM_MIRROR_MOLD] ||\
-				  youmonst.data == &mons[PM_MIRROR_GROWTH] ||\
-				  youmonst.data == &mons[PM_MIRROR_FUNGUS] ||\
-				  youmonst.data == &mons[PM_MIRROR_PATCH] ||\
-				  youmonst.data == &mons[PM_MIRROR_SPORE] ||\
-				  youmonst.data == &mons[PM_MIRROR_MUSHROOM] ||\
-				  youmonst.data == &mons[PM_MIRROR_STALK] ||\
-				  youmonst.data == &mons[PM_MIRROR_COLONY] ||\
-				  youmonst.data == &mons[PM_MIRROR_FORCE_FUNGUS] ||\
-				  youmonst.data == &mons[PM_MIRROR_FORCE_PATCH] ||\
-				  youmonst.data == &mons[PM_MIRROR_WARP_FUNGUS] ||\
-				  youmonst.data == &mons[PM_MIRROR_WARP_PATCH] ||\
-				  youmonst.data == &mons[PM_ECM_NERVE_HEAD] ||\
-				  youmonst.data == &mons[PM_ECM_ARCHER] ||\
-				  youmonst.data == &mons[PM_ILLUSION_WEAVER] ||\
-				  youmonst.data == &mons[PM_SEDUCER_SAINT] ||\
-				  youmonst.data == &mons[PM_OLD_SILVER_DRAGON] ||\
-				  youmonst.data == &mons[PM_SILVER_OGRE] ||\
-				  youmonst.data == &mons[PM_VERY_OLD_SILVER_DRAGON] ||\
-				  youmonst.data == &mons[PM_SILVER_DRACONIAN] ||\
-				  youmonst.data == &mons[PM_AUREAL] ||\
-				  youmonst.data == &mons[PM_ARIANE] ||\
-				  youmonst.data == &mons[PM_MEDIATOR] ||\
-				  youmonst.data == &mons[PM_GROTESQUE_GREMLIN] ||\
-				  youmonst.data == &mons[PM_CLOUD_OF_GLORY] ||\
-				  youmonst.data == &mons[PM_VICTORIA_S_HIGH_HEELED_SANDAL] ||\
-				  youmonst.data == &mons[PM_RUEA_S_STILETTO_BOOT] ||\
-				  youmonst.data == &mons[PM_NATALIYA_S_WEDGE_SANDAL] ||\
-				  youmonst.data == &mons[PM_ELENA_S_COMBAT_BOOT] ||\
-				  youmonst.data == &mons[PM_KATHARINA_S_LOVELY_GIRL_BOOT] ||\
-				  youmonst.data == &mons[PM_RHEA_S_LADY_PUMP] ||\
-				  youmonst.data == &mons[PM_KSENIA] ||\
-				  youmonst.data == &mons[PM_ANCIENT_SILVER_DRAGON] ||\
-				  youmonst.data == &mons[PM_DIAMOND_GOLEM]) && !(u.nonintrinsicproperty == REFLECTING)) ) && !NoReflecting && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angband cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch sredizem'ye krepost'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'rta yer qal'a plash") )) && !Race_if(PM_ANGBANDER) && !RngeAngband )
-#define NoReflecting	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_REFLECTING].intrinsic || RngeAids || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR && (moves % 4 == 0) ) || (u.nonextrinsicproperty == REFLECTING && !HReflecting && !(youmonst.data == &mons[PM_SILVER_DRAGON] ||\
-				  youmonst.data == &mons[PM_CRYSTAL_GOLEM] ||\
-				  youmonst.data == &mons[PM_SAPPHIRE_GOLEM] ||\
-				  youmonst.data == &mons[PM_SHAMBLING_MOUND] ||\
-				  youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] ||\
-				  youmonst.data == &mons[PM_SILVER_WOLF] ||\
-				  youmonst.data == &mons[PM_DORA_S_TENDER_STILETTO_SANDAL] ||\
-				  youmonst.data == &mons[PM_GRETA_S_HUGGING_BOOT] ||\
-				  youmonst.data == &mons[PM_MAEGLIN__THE_TRAITOR_OF_GONDOLIN] ||\
-				  youmonst.data == &mons[PM_DAOLOTH__THE_RENDER_OF_THE_VEILS] ||\
-				  youmonst.data == &mons[PM_IT] ||\
-				  youmonst.data == &mons[PM_MADELEINE_S_CALF_LEATHER_SANDAL] ||\
-				  youmonst.data == &mons[PM_REFLECTION] ||\
-				  youmonst.data == &mons[PM_NICE_GIRL_IN_VELCRO_SHOES] ||\
-				  youmonst.data == &mons[PM_GREEN_LIZARD] ||\
-				  youmonst.data == &mons[PM_GREEN_GATEKEEPER] ||\
-				  youmonst.data == &mons[PM_POISON_CREEPER] ||\
-				  youmonst.data == &mons[PM_PLAGUE_POPPY] ||\
-				  youmonst.data == &mons[PM_CARRION_VINE] ||\
-				  youmonst.data == &mons[PM_CYCLE_OF_LIFE] ||\
-				  youmonst.data == &mons[PM_SOLAR_CREEPER] ||\
-				  youmonst.data == &mons[PM_VINES] ||\
-				  youmonst.data == &mons[PM_IRIS_S_SILVER_PUMP] ||\
-				  youmonst.data == &mons[PM_DESIREE_S_COMBAT_BOOT] ||\
-				  youmonst.data == &mons[PM_HANH_S_TRANSLUCENT_SANDAL] ||\
-				  youmonst.data == &mons[PM_MUNCHKIN] ||\
-				  youmonst.data == &mons[PM_MIRROR_VORTEX] ||\
-				  youmonst.data == &mons[PM_MIRROR_GOLEM] ||\
-				  youmonst.data == &mons[PM_MIRROR_MONSTER] ||\
-				  youmonst.data == &mons[PM_VENOM_ATRONACH] ||\
-				  youmonst.data == &mons[PM_DIVISION_THIEF] ||\
-				  youmonst.data == &mons[PM_DIVISION_JEDI] ||\
-				  youmonst.data == &mons[PM_MIRROR_MOLD] ||\
-				  youmonst.data == &mons[PM_MIRROR_GROWTH] ||\
-				  youmonst.data == &mons[PM_MIRROR_FUNGUS] ||\
-				  youmonst.data == &mons[PM_MIRROR_PATCH] ||\
-				  youmonst.data == &mons[PM_MIRROR_SPORE] ||\
-				  youmonst.data == &mons[PM_MIRROR_MUSHROOM] ||\
-				  youmonst.data == &mons[PM_MIRROR_STALK] ||\
-				  youmonst.data == &mons[PM_MIRROR_COLONY] ||\
-				  youmonst.data == &mons[PM_MIRROR_FORCE_FUNGUS] ||\
-				  youmonst.data == &mons[PM_MIRROR_FORCE_PATCH] ||\
-				  youmonst.data == &mons[PM_MIRROR_WARP_FUNGUS] ||\
-				  youmonst.data == &mons[PM_MIRROR_WARP_PATCH] ||\
-				  youmonst.data == &mons[PM_ECM_NERVE_HEAD] ||\
-				  youmonst.data == &mons[PM_ECM_ARCHER] ||\
-				  youmonst.data == &mons[PM_ILLUSION_WEAVER] ||\
-				  youmonst.data == &mons[PM_SEDUCER_SAINT] ||\
-				  youmonst.data == &mons[PM_OLD_SILVER_DRAGON] ||\
-				  youmonst.data == &mons[PM_SILVER_OGRE] ||\
-				  youmonst.data == &mons[PM_VERY_OLD_SILVER_DRAGON] ||\
-				  youmonst.data == &mons[PM_SILVER_DRACONIAN] ||\
-				  youmonst.data == &mons[PM_AUREAL] ||\
-				  youmonst.data == &mons[PM_ARIANE] ||\
-				  youmonst.data == &mons[PM_MEDIATOR] ||\
-				  youmonst.data == &mons[PM_GROTESQUE_GREMLIN] ||\
-				  youmonst.data == &mons[PM_CLOUD_OF_GLORY] ||\
-				  youmonst.data == &mons[PM_VICTORIA_S_HIGH_HEELED_SANDAL] ||\
-				  youmonst.data == &mons[PM_RUEA_S_STILETTO_BOOT] ||\
-				  youmonst.data == &mons[PM_NATALIYA_S_WEDGE_SANDAL] ||\
-				  youmonst.data == &mons[PM_ELENA_S_COMBAT_BOOT] ||\
-				  youmonst.data == &mons[PM_KATHARINA_S_LOVELY_GIRL_BOOT] ||\
-				  youmonst.data == &mons[PM_RHEA_S_LADY_PUMP] ||\
-				  youmonst.data == &mons[PM_KSENIA] ||\
-				  youmonst.data == &mons[PM_ANCIENT_SILVER_DRAGON] ||\
-				  youmonst.data == &mons[PM_DIAMOND_GOLEM]) ) || (u.impossibleproperty == REFLECTING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define Reflecting		((EReflecting || (HReflecting && !(u.nonintrinsicproperty == REFLECTING)) || (moves % 2 == 0 && (uarm && OBJ_DESCR(objects[uarm->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarm->otyp]), "octarine robe") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "vos'moy tsvet khalata") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "sakkizinchi rang to'n") )) ) || (uarmu && uarmu->oartifact == ART_LEGENDARY_SHIRT) || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (ublindf && ublindf->otyp == DRAGON_EYEPATCH) || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || (uarmc && uarmc->oartifact == ART_ALL_IN_ONE_ASCENSION_KIT) || (uarmc && uarmc->oartifact == ART_RNG_S_GAMBLE) || (uarmh && uarmh->oartifact == ART_YOU_ARE_ALREADY_DEAD) || (uarmg && uarmg->oartifact == ART_PLUG_AND_PRAY) || (uarmg && uarmg->oartifact == ART_IRIS_S_PRECIOUS_METAL) || (uarmg && uarmg->oartifact == ART_SEALED_KNOWLEDGE) || (uarmg && uarmg->oartifact == ART_UNOBTAINABLE_BEAUTIES) || (is_reflector(youmonst.data) && !(u.nonintrinsicproperty == REFLECTING)) ) && !NoReflecting && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "angband cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch sredizem'ye krepost'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "o'rta yer qal'a plash") )) && !Race_if(PM_ANGBANDER) && !RngeAngband )
+#define NoReflecting	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_REFLECTING].intrinsic || RngeAids || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR && (moves % 4 == 0) ) || (u.nonextrinsicproperty == REFLECTING && !HReflecting && !(youmonst.data == &mons[PM_SILVER_DRAGON] || is_reflector(youmonst.data) ) ) || (u.impossibleproperty == REFLECTING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define HFree_action	u.uprops[FREE_ACTION].intrinsic
 #define EFree_action	u.uprops[FREE_ACTION].extrinsic

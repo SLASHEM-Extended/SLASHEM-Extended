@@ -860,8 +860,8 @@ const struct Role roles[] = {
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 10, 10, 30, 20, 10 },
 	/* Init   Lower  Higher */
-	{  0, 0,  0, 2,  8, 0 },	/* Hit points */
-	{  0, 0,  0, 2,  0, 8 },15,	/* Energy */
+	{  5, 0,  0, 2,  8, 0 },	/* Hit points */
+	{  1, 0,  0, 2,  0, 8 },15,	/* Energy */
 	-20, 8, 0, 6,  14, A_INT, SPE_ACID_STREAM, -4
 },
 

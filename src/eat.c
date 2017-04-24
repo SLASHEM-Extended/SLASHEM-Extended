@@ -247,8 +247,7 @@ register struct obj *obj;
 		return TRUE;
 
 	/* KMH -- Taz likes organics, too! */
-	if (( (!Upolyd && Race_if(PM_JELLY) ) || (!Upolyd && Race_if(PM_WEAPON_CUBE) ) || u.umonnum == PM_GELATINOUS_CUBE || u.umonnum == PM_FLYING_GELATINOUS_CUBE || u.umonnum == PM_STOUT_GELATINOUS_CUBE || u.umonnum == PM_FANTASTIC_GELATINOUS_CUBE || u.umonnum == PM_GELATINOUS_GLOB || u.umonnum == PM_FAT_BULLY || u.umonnum == PM_OOZE_ELEMENTAL || u.umonnum == PM_AMUSING_TYPE || u.umonnum == PM_MINOCUBE || u.umonnum == PM_THEME_TERMITE || u.umonnum == PM_ROOMBA || u.umonnum == PM_GELATINOUS_DICE || u.umonnum == PM_WEAPON_CUBE || u.umonnum == PM_KING_GORGE__LORD_OF_THE_GLUTTONS || u.umonnum == PM_GELATINOUS_THIEF || u.umonnum == PM_TASMANIAN_ZOMBIE ||
-			u.umonnum == PM_TASMANIAN_DEVIL) && is_organic(obj) &&
+	if (( (!Upolyd && Race_if(PM_JELLY) ) || (!Upolyd && Race_if(PM_WEAPON_CUBE) ) || organivorous(youmonst.data)) && is_organic(obj) &&
 		/* [g.cubes can eat containers and retain all contents
 		    as engulfed items, but poly'd player can't do that] */
 	    !Has_contents(obj))
@@ -2947,6 +2946,138 @@ register int pm;
 		    pline("Suddenly you have a nightmare!");
 		    nomul(-5, "scared by a nightmare");
 		    nomovemsg = 0;
+		}
+
+		if (dmgtype(ptr, AD_EDGE) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
+			int edgeeffect;
+			if (touch_petrifies(ptr)) {
+				edgeeffect = rnd(10); /* petrifying corpses are dangerous - only give positive effects --Amy */
+			} else {
+				edgeeffect = rnd(18); /* others are safe - give either positive or negative effects --Amy */
+			}
+			switch (rnd(edgeeffect)) {
+
+			case 1:
+				if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
+					if (!rn2(10)) {
+						You_feel("more %s!", flags.female ? "pretty" : "attractive");
+						(void) adjattrib(A_CHA, 1, FALSE);
+						break;
+					}
+				}
+			break;
+			case 2:
+				if (ABASE(A_CON) < ATTRMAX(A_CON)) {
+					You_feel("tougher!");
+					(void) adjattrib(A_CON, 1, FALSE);
+					}
+			break;
+			case 3:
+				if (issoviet && rn2(3)) {
+					pline("Sovetskaya ne khochet, chtoby vy, chtoby poluchit' magicheskuyu silu! Vasha zhizn' otstoy!");
+					break;
+				}
+
+				if (rn2(3)/* || 3 * u.uen <= 2 * u.uenmax*/) {
+				    int old_uen = u.uen; /* Some slight changes to this code. --Amy */
+				    u.uen += rnd(3);
+					if (!rn2(3)) u.uenmax++;
+				    if (old_uen != u.uen) {
+					    You_feel("a mild buzz.");
+					    flags.botl = 1;
+				    }
+				}
+			break;
+			case 4:
+				if (Upolyd) {
+					u.mh++;
+					u.mhmax++;
+				} else {
+					u.uhp++;
+					u.uhpmax++;
+				}
+				You_feel("vitalized.");
+				flags.botl = 1;
+			break;
+			case 5:
+				You_feel("clairvoyant!");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy znayete raspolozheniye, no ne lovushki, a te vse ravno budut poshel na khuy vverkh." : "Wschiiiiiiie!");
+				incr_itimeout(&HClairvoyant, rnd(500));
+			break;
+			case 6:
+			      You_feel("that was a smart thing to do.");
+				pluslvl(FALSE);
+			break;
+			case 7:
+				if (Upolyd) u.mh = u.mhmax;
+				else u.uhp = u.uhpmax;
+				flags.botl = 1;
+			break;
+			case 8:
+				if (!(HInvis & INTRINSIC)) You_feel("hidden!");
+				HInvis |= FROMOUTSIDE;
+				HSee_invisible |= FROMOUTSIDE;
+			break;
+			case 9:
+				gainstr((struct obj *)0, 0);
+				pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!");
+				break;
+			break;
+			case 10:
+				if (ABASE(A_INT) < ATTRMAX(A_INT)) {
+					if (!rn2(2)) {
+						pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
+						(void) adjattrib(A_INT, 1, FALSE);
+						break;
+					}
+				}
+				else {
+					pline(Hallucination ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
+				}
+			break;
+
+			case 11:
+				pushplayer();
+			break;
+			case 12:
+				You_feel("that was a bad idea.");
+				losexp("eating an edgy corpse", FALSE, TRUE);
+			break;
+			case 13:
+				Your("velocity suddenly seems very uncertain!");
+				if (HFast & INTRINSIC) {
+					HFast &= ~INTRINSIC;
+					You("seem slower.");
+				} else {
+					HFast |= FROMOUTSIDE;
+					You("seem faster.");
+				}
+			break;
+			case 14:
+				make_stunned(HStun + 30,FALSE);
+			break;
+			case 15:
+				if(!(HPolymorph & FROMOUTSIDE)) {
+				You_feel(Hallucination ? "able to take on different shapes! Yeah! Let's transform into something fun!" : "unstable.");
+					HPolymorph  |= FROMOUTSIDE;
+				}
+			break;
+			case 16:
+				if (!Unchanging) {
+				    You_feel("a change coming over you.");
+				    polyself(FALSE);
+				}
+			break;
+			case 17:
+				pline("Ulch - the edge was tainted!");
+			      make_sick(rn1(25,25), "a tainted stone edge", TRUE, SICK_VOMITABLE);
+			break;
+			case 18:
+				pline ("Oh wow!  Great stuff!");
+				make_hallucinated(HHallucination + rnz(200),FALSE,0L);
+			break;
+
+			}
 		}
 
 	/* If you really think maprot monsters are good to eat... --Amy */

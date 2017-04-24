@@ -1043,8 +1043,7 @@ boolean hitsroof;
 	    dmg = (int) obj->owt / 100;
 	    if (dmg < 1) dmg = 1;
 	    else if (dmg > 6) dmg = 6;
-	    if (youmonst.data == &mons[PM_SHADE] &&
-		    objects[obj->otyp].oc_material != SILVER)
+	    if (is_shade(youmonst.data) && objects[obj->otyp].oc_material != SILVER && objects[obj->otyp].oc_material != ARCANIUM)
 		dmg = 0;
 	}
 	if (dmg > 1 && less_damage) dmg = 1;

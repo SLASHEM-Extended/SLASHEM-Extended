@@ -2175,7 +2175,7 @@ mon_tele:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(298);
+			monstercolor = rnd(330);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
@@ -4868,7 +4868,7 @@ struct monst *mtmp;
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
-				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) || MON_AT(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();
@@ -5926,7 +5926,7 @@ newboss:
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
-				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) || MON_AT(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();
@@ -8209,7 +8209,7 @@ newboss:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(298);
+			monstercolor = rnd(330);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
@@ -8889,17 +8889,17 @@ const char *str;
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "RNG-endowed mirror on a stick");
 	    return TRUE;
-	} else if (mon->data == &mons[PM_SHAMBLING_MOUND] || mon->data == &mons[PM_GREAT_WYRM_OF_POWER] || mon->data == &mons[PM_SILVER_WOLF] || mon->data == &mons[PM_ARIANE] || mon->data == &mons[PM_HANH_S_TRANSLUCENT_SANDAL] || mon->data == &mons[PM_MEDIATOR] || mon->data == &mons[PM_REFLECTION] || mon->data == &mons[PM_NICE_GIRL_IN_VELCRO_SHOES] || mon->data == &mons[PM_GREEN_LIZARD] || mon->data == &mons[PM_GREEN_GATEKEEPER] || mon->data == &mons[PM_POISON_CREEPER] || mon->data == &mons[PM_PLAGUE_POPPY] || mon->data == &mons[PM_CARRION_VINE] || mon->data == &mons[PM_CYCLE_OF_LIFE] || mon->data == &mons[PM_SOLAR_CREEPER] || mon->data == &mons[PM_VINES] || mon->data == &mons[PM_IRIS_S_SILVER_PUMP]|| mon->data == &mons[PM_DESIREE_S_COMBAT_BOOT] || mon->data == &mons[PM_GROTESQUE_GREMLIN] || mon->data == &mons[PM_CLOUD_OF_GLORY] || mon->data == &mons[PM_MADELEINE_S_CALF_LEATHER_SANDAL] || mon->data == &mons[PM_VICTORIA_S_HIGH_HEELED_SANDAL] || mon->data == &mons[PM_DORA_S_TENDER_STILETTO_SANDAL] || mon->data == &mons[PM_RUEA_S_STILETTO_BOOT] || mon->data == &mons[PM_GRETA_S_HUGGING_BOOT] || mon->data == &mons[PM_NATALIYA_S_WEDGE_SANDAL] || mon->data == &mons[PM_ELENA_S_COMBAT_BOOT] || mon->data == &mons[PM_KATHARINA_S_LOVELY_GIRL_BOOT] || mon->data == &mons[PM_RHEA_S_LADY_PUMP] || mon->data == &mons[PM_MUNCHKIN] || mon->data == &mons[PM_MAEGLIN__THE_TRAITOR_OF_GONDOLIN] || mon->data == &mons[PM_DAOLOTH__THE_RENDER_OF_THE_VEILS] || mon->data == &mons[PM_IT] || mon->data == &mons[PM_KSENIA] || mon->data == &mons[PM_MIRROR_GOLEM] || mon->data == &mons[PM_MIRROR_MONSTER] || mon->data == &mons[PM_MIRROR_VORTEX] || mon->data == &mons[PM_VENOM_ATRONACH] || mon->data == &mons[PM_DIVISION_THIEF] || mon->data == &mons[PM_SILVER_OGRE] || mon->data == &mons[PM_DIVISION_JEDI] || mon->data == &mons[PM_ECM_NERVE_HEAD] || mon->data == &mons[PM_ECM_ARCHER] || mon->data == &mons[PM_ILLUSION_WEAVER] || mon->data == &mons[PM_SEDUCER_SAINT] || mon->data == &mons[PM_MIRROR_MOLD] || mon->data == &mons[PM_MIRROR_GROWTH] || mon->data == &mons[PM_MIRROR_FUNGUS] || mon->data == &mons[PM_MIRROR_PATCH] || mon->data == &mons[PM_MIRROR_SPORE] || mon->data == &mons[PM_MIRROR_MUSHROOM] || mon->data == &mons[PM_MIRROR_STALK] || mon->data == &mons[PM_MIRROR_COLONY] || mon->data == &mons[PM_MIRROR_FORCE_FUNGUS] || mon->data == &mons[PM_MIRROR_FORCE_PATCH] || mon->data == &mons[PM_MIRROR_WARP_FUNGUS] || mon->data == &mons[PM_MIRROR_WARP_PATCH] || (mon->egotype_reflecting) || (mon->egotype_breather) ) {
-		/* in ADOM this thing would absorb bolts instead */
-	    if (str)
-		pline(str, s_suffix(mon_nam(mon)), "absorbing shell");
-	    return TRUE;
 	} else if (mon->data == &mons[PM_DIAMOND_GOLEM]
 	         || mon->data == &mons[PM_SAPPHIRE_GOLEM]
 	         || mon->data == &mons[PM_CRYSTAL_GOLEM]) {
 	    /* Some of the higher golems have intrinsic reflection */
 	    if (str)
 		pline(str, s_suffix(mon_nam(mon)), "body");
+	    return TRUE;
+	} else if (is_reflector(mon->data) || (mon->egotype_reflecting) || (mon->egotype_breather) ) {
+		/* in ADOM the silver wolf would absorb bolts instead, apparently? */
+	    if (str)
+		pline(str, s_suffix(mon_nam(mon)), "absorbing shell");
 	    return TRUE;
  	} else if (attackdamagetype(mon->data, AT_BREA, AD_RBRE) ) {
 	    if (str)
@@ -8966,16 +8966,16 @@ const char *fmt, *str;
 	    if (fmt && str)
 	    	pline(fmt, str, "scales");
 	    return TRUE;
-	} else if (youmonst.data == &mons[PM_SHAMBLING_MOUND] || youmonst.data == &mons[PM_GREAT_WYRM_OF_POWER] || youmonst.data == &mons[PM_SILVER_OGRE] || youmonst.data == &mons[PM_SILVER_WOLF] || youmonst.data == &mons[PM_GRETA_S_HUGGING_BOOT] || youmonst.data == &mons[PM_MAEGLIN__THE_TRAITOR_OF_GONDOLIN] || youmonst.data == &mons[PM_ARIANE] || youmonst.data == &mons[PM_MEDIATOR] || youmonst.data == &mons[PM_REFLECTION] || youmonst.data == &mons[PM_NICE_GIRL_IN_VELCRO_SHOES] || youmonst.data == &mons[PM_GREEN_LIZARD] || youmonst.data == &mons[PM_GREEN_GATEKEEPER] || youmonst.data == &mons[PM_POISON_CREEPER] || youmonst.data == &mons[PM_PLAGUE_POPPY] || youmonst.data == &mons[PM_CARRION_VINE] || youmonst.data == &mons[PM_CYCLE_OF_LIFE] || youmonst.data == &mons[PM_SOLAR_CREEPER] || youmonst.data == &mons[PM_VINES] || youmonst.data == &mons[PM_IRIS_S_SILVER_PUMP] || youmonst.data == &mons[PM_DESIREE_S_COMBAT_BOOT] || youmonst.data == &mons[PM_HANH_S_TRANSLUCENT_SANDAL] || youmonst.data == &mons[PM_GROTESQUE_GREMLIN] || youmonst.data == &mons[PM_CLOUD_OF_GLORY] || youmonst.data == &mons[PM_MADELEINE_S_CALF_LEATHER_SANDAL] || youmonst.data == &mons[PM_VICTORIA_S_HIGH_HEELED_SANDAL] || youmonst.data == &mons[PM_RUEA_S_STILETTO_BOOT] || youmonst.data == &mons[PM_NATALIYA_S_WEDGE_SANDAL] || youmonst.data == &mons[PM_ELENA_S_COMBAT_BOOT] || youmonst.data == &mons[PM_KATHARINA_S_LOVELY_GIRL_BOOT] || youmonst.data == &mons[PM_RHEA_S_LADY_PUMP] || youmonst.data == &mons[PM_MUNCHKIN] || youmonst.data == &mons[PM_DORA_S_TENDER_STILETTO_SANDAL] || youmonst.data == &mons[PM_DAOLOTH__THE_RENDER_OF_THE_VEILS] || youmonst.data == &mons[PM_KSENIA] || youmonst.data == &mons[PM_MIRROR_GOLEM] || youmonst.data == &mons[PM_MIRROR_MONSTER] || youmonst.data == &mons[PM_MIRROR_VORTEX] || youmonst.data == &mons[PM_VENOM_ATRONACH] || youmonst.data == &mons[PM_DIVISION_THIEF] || youmonst.data == &mons[PM_DIVISION_JEDI] || youmonst.data == &mons[PM_ECM_NERVE_HEAD] || youmonst.data == &mons[PM_ECM_ARCHER] || youmonst.data == &mons[PM_ILLUSION_WEAVER] || youmonst.data == &mons[PM_MIRROR_MOLD] || youmonst.data == &mons[PM_MIRROR_GROWTH] || youmonst.data == &mons[PM_MIRROR_FUNGUS] || youmonst.data == &mons[PM_MIRROR_PATCH] || youmonst.data == &mons[PM_MIRROR_SPORE] || youmonst.data == &mons[PM_MIRROR_MUSHROOM] || youmonst.data == &mons[PM_MIRROR_STALK] || youmonst.data == &mons[PM_MIRROR_COLONY] || youmonst.data == &mons[PM_MIRROR_FORCE_FUNGUS] || youmonst.data == &mons[PM_MIRROR_FORCE_PATCH] || youmonst.data == &mons[PM_MIRROR_WARP_FUNGUS] || youmonst.data == &mons[PM_MIRROR_WARP_PATCH] ) {
-	    if (fmt && str)
-	    	pline(fmt, str, "surface");
-	    return TRUE;
 	} else if (youmonst.data == &mons[PM_DIAMOND_GOLEM]
 	         || youmonst.data == &mons[PM_SAPPHIRE_GOLEM]
 	         || youmonst.data == &mons[PM_IT]
 	         || youmonst.data == &mons[PM_CRYSTAL_GOLEM]) {
 	    if (fmt && str)
 	    	pline(fmt, str, "body");
+	    return TRUE;
+	} else if (is_reflector(youmonst.data) ) {
+	    if (fmt && str)
+	    	pline(fmt, str, "surface");
 	    return TRUE;
 	}
 	return FALSE;

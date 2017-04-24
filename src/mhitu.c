@@ -1625,6 +1625,7 @@ mattacku(mtmp)
 	if (mtmp->data->msound == MS_FART_LOUD && !mtmp->butthurt) tmp += 5;
 	if (mtmp->data->msound == MS_FART_NORMAL && !mtmp->butthurt) tmp += 10;
 	if (mtmp->data->msound == MS_FART_QUIET && !mtmp->butthurt) tmp += 15;
+	if (mtmp->data->msound == MS_SHOE) tmp += rnd(20);
 	if (mtmp->egotype_farter) tmp += 15;
 	if (mtmp->fartbonus) tmp += mtmp->fartbonus;
 	if (mtmp->crapbonus) tmp += mtmp->crapbonus;
@@ -3546,20 +3547,6 @@ struct permonst *mdat;
 	}
 }
 
-STATIC_OVL boolean
-digeasemu(mtmp)
-struct permonst *mtmp;
-{
-	if (Sick_resistance || !rn2(10) ) {
-		You_feel("a slight illness.");
-		return FALSE;
-	} else {
-		make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON), 40),
-			mtmp->mname, TRUE, SICK_NONVOMITABLE);
-		return TRUE;
-	}
-}
-
 /* check whether slippery clothing protects from hug or wrap attack */
 STATIC_OVL boolean
 u_slip_free(mtmp, mattk)
@@ -3689,7 +3676,7 @@ hitmu(mtmp, mattk)
 	int hallutime;
 
 	/*int randattack = 0;*/
-	uchar atttyp;
+	int atttyp;
 
 	if (!canspotmon(mtmp))
 	    map_invisible(mtmp->mx, mtmp->my);
@@ -3754,9 +3741,21 @@ hitmu(mtmp, mattk)
 	if (mattk->aatyp == AT_SPIT && atttyp == AD_TCKL) atttyp = AD_PHYS; /* manticore fix */
 
 	if (atttyp == AD_RBRE) {
-		while (atttyp == AD_ENDS ||atttyp == AD_RBRE || atttyp == AD_SPC2 || atttyp == AD_WERE) {
+		while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE) {
 			atttyp = randattack(); }
 		/*randattack = 1;*/
+	}
+
+	if (atttyp == AD_RNG) {
+		while (atttyp == AD_ENDS || atttyp == AD_RNG || atttyp == AD_WERE) {
+			atttyp = rn2(AD_ENDS); }
+	}
+
+	if (atttyp == AD_MIDI) {
+		atttyp = mtmp->m_id;
+		if (atttyp < 0) atttyp *= -1;
+		while (atttyp >= AD_ENDS) atttyp -= AD_ENDS;
+		if (!(atttyp >= AD_PHYS && atttyp < AD_ENDS)) atttyp = AD_PHYS; /* fail safe --Amy */
 	}
 
 	if (RngeDonors && atttyp == AD_PHYS) atttyp = AD_THIR;
@@ -3816,7 +3815,7 @@ hitmu(mtmp, mattk)
 				/* WAC -- or using a pole at short range... */
 				(is_pole(otmp))) {
 			    /* then do only 1-2 points of damage */
-			    if (u.umonnum == PM_SHADE && otmp->otyp != SILVER_ARROW)
+			    if (is_shade(youmonst.data) && objects[otmp->otyp].oc_material != SILVER && objects[otmp->otyp].oc_material != ARCANIUM && rn2(3))
 				dmg = 0;
 			    else
 				dmg += rnd(2); /* don't lose the base damage from monst.txt --Amy */
@@ -3828,7 +3827,7 @@ hitmu(mtmp, mattk)
 				useup(otmp);
 				otmp = (struct obj *) 0;
 				possibly_unwield(mtmp);
-				if (u.umonnum != PM_SHADE)
+				if (!is_shade(youmonst.data) || !rn2(3) )
 				    dmg++;
 			    }
 #endif
@@ -3954,6 +3953,18 @@ hitmu(mtmp, mattk)
 		if (rn2(3)) break;
                 if (!diseasemu(mdat) || Invulnerable || (Stoned_chiller && Stoned)) dmg = 0;
 		break;
+
+	    case AD_VOMT:
+		hitmsg(mtmp, mattk);
+		if (!rn2(10) || !Sick_resistance) {
+			if (!Vomiting) {
+				make_vomiting(Vomiting+d(10,4), TRUE);
+				pline("You feel nauseated.");
+				if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10);
+			} else if (!rn2(2)) diseasemu(mdat);
+		}
+		break;
+
 	    case AD_NGRA:
 		hitmsg(mtmp, mattk);
 
@@ -4026,6 +4037,22 @@ hitmu(mtmp, mattk)
  		}
 	    break;
 
+	    case AD_ICEB:
+		hitmsg(mtmp, mattk);
+		pline("You are hit by ice blocks!");
+		if(!mtmp->mcan && !rn2(3)) {
+		    make_frozen(HFrozen + dmg, TRUE);
+		    dmg /= 2;
+		}
+		if (!mtmp->mcan && !rn2(issoviet ? 2 : 10)) {
+			destroy_item(POTION_CLASS, AD_COLD);
+		}
+		if (Cold_resistance && rn2(20)) {
+			pline("The cold doesn't seem to affect you.");
+			dmg = 0;
+		}
+	    break;
+
 	    case AD_MALK:
 		hitmsg(mtmp, mattk);
 		if (uncancelled) {
@@ -4044,6 +4071,8 @@ hitmu(mtmp, mattk)
 			destroy_item(WAND_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 2 : 10))
 			destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 10 : 50))
+			destroy_item(AMULET_CLASS, AD_ELEC);
 		}
 		break;
 
@@ -4156,6 +4185,8 @@ hitmu(mtmp, mattk)
 		    /*if((int) mtmp->m_lev > rn2(20))*/
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */
+			destroy_item(AMULET_CLASS, AD_ELEC);
 		} /*else dmg = 0;*/
 		break;
 	    case AD_SLEE:
@@ -4814,7 +4845,8 @@ dopois:
 			else You("are frozen by %s!", mon_nam(mtmp));
 			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomovemsg = 0;	/* default: "you can move again" */
-			nomul(-rnd(10), "paralyzed by a monster attack");
+			if (!rn2(3)) nomul(-rnd(10), "paralyzed by a monster attack");
+			else nomul(-(dmg), "paralyzed by a monster attack");
 			exercise(A_DEX, FALSE);
 		    }
 		}
@@ -4828,7 +4860,8 @@ dopois:
 			if (Blind) You("are mercilessly tickled!");
 			else You("are mercilessly tickled by %s!", mon_nam(mtmp));
 			nomovemsg = 0;	/* default: "you can move again" */
-			nomul(-rnd(10), "tickled by a monster");
+			if (!rn2(3)) nomul(-rnd(10), "tickled by a monster");
+			else nomul(-(dmg), "tickled by a monster");
 			exercise(A_DEX, FALSE);
 			exercise(A_CON, FALSE);
 		    }
@@ -4891,6 +4924,8 @@ dopois:
 			destroy_item(WAND_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */
+			destroy_item(AMULET_CLASS, AD_ELEC);
 		}
 
 		if (uncancelled && !rn2(3) && (!Drain_resistance || !rn2(4) )  ) {
@@ -4932,6 +4967,14 @@ dopois:
 		}
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
 		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
+		break;
+
+	    case AD_TRAP: 
+		hitmsg(mtmp, mattk);
+
+		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
+		else makerandomtrap();
+
 		break;
 
 	    case AD_STTP:
@@ -5237,6 +5280,51 @@ dopois:
 		    }
 		}
 		break;
+
+	    case AD_EDGE:
+		hitmsg(mtmp, mattk);
+		if (!Stone_resistance || !rn2(20)) {
+			if (Upolyd) {u.mhmax--; if (u.mh > u.mhmax) u.mh = u.mhmax;}
+			else {u.uhpmax--; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
+		}
+		if(!rn2(3)) {
+		    if (mtmp->mcan) {
+			if (flags.soundok)
+			    You_hear("a cough from %s!", mon_nam(mtmp));
+		    } else {
+			if (flags.soundok) {
+			    You_hear("%s hissing!", s_suffix(mon_nam(mtmp)));
+			    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
+			}
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qotib plash") ) && rn2(4)) break;
+	
+			if(!rn2(10) ||
+			    (flags.moonphase == NEW_MOON && !have_lizard())) {
+			    if (!Stoned && !Stone_resistance
+				    && !(poly_when_stoned(youmonst.data) &&
+					polymon(PM_STONE_GOLEM))) {
+				Stoned = 7;
+				delayed_killer = mtmp->data->mname;
+				if (mtmp->data->geno & G_UNIQ) {
+				    if (!type_is_pname(mtmp->data)) {
+					static char kbuf[BUFSZ];
+
+					/* "the" buffer may be reallocated */
+					Strcpy(kbuf, the(delayed_killer));
+					delayed_killer = kbuf;
+				    }
+				    killer_format = KILLED_BY;
+				} else killer_format = KILLED_BY_AN;
+				return(1);
+				/* You("turn to stone..."); */
+				/* done_in_by(mtmp); */
+			    }
+			}
+		    }
+		}
+		break;
+
 	    case AD_STCK:
 		hitmsg(mtmp, mattk);
 		if (uncancelled && !u.ustuck && !sticks(youmonst.data)) {
@@ -5635,6 +5723,24 @@ dopois:
 
 		break;
 
+	    case AD_NTHR:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		pline("%s sucks your %s!", Monnam(mtmp), body_part(BLOOD) );
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "A u vas yest' dostatochno sil'nyye oruzhiye dlya preodoleniya zazhivleniyu monstra?" : "Fffffffff!");
+		mtmp->mhp += dmg;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+
+		if ((!Drain_resistance || !rn2(5)) && u.uexp > 100) {
+			u.uexp -= (u.uexp / 100);
+			You_feel("your life slipping away!");
+			if (u.uexp < newuexp(u.ulevel - 1)) {
+			      losexp("nether forces", TRUE, FALSE);
+			}
+		}
+
+		break;
+
 	    case AD_SUCK:
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) dmg = 0;
 			else{
@@ -5836,6 +5942,14 @@ dopois:
 		make_stunned(HStun + dmg, TRUE);
 		break;
 
+	    case AD_WGHT:
+		hitmsg(mtmp, mattk);
+		if (mtmp->mcan) break;
+		pline("Your load feels heavier!");
+		IncreasedGravity += (1 + (dmg *= rnd(20)));
+
+		break;
+
 	    case AD_INER:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
@@ -5993,6 +6107,41 @@ dopois:
 
 	}
 	      break;
+
+	    case AD_VAPO:
+		hitmsg(mtmp, mattk);
+
+		if (!rn2(10))  {
+		if (Disint_resistance && rn2(100)) {
+		    You("are not disintegrated.");
+		    break;
+            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+                pline("You are unharmed!");
+                break;
+		} else if (uarms) {
+		    /* destroy shield; other possessions are safe */
+		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+		    break;
+		} else if (uarmc) {
+		    /* destroy cloak; other possessions are safe */
+		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+		    break;
+		} else if (uarm) {
+		    /* destroy suit */
+		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+		    break;
+		} else if (uarmu) {
+		    /* destroy shirt */
+		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+		    break;
+		}
+	    done(DIED);
+	    return 1; /* lifesaved */
+
+	}
+		if (!Disint_resistance) dmg *= 3;
+	      break;
+
 	    case AD_DCAY:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
@@ -6186,6 +6335,17 @@ dopois:
 		if(!mtmp->mcan && !rn2(3)) {
 		    make_feared(HFeared + dmg, TRUE);
 		    dmg /= 2;
+		}
+		break;
+
+	    case AD_INSA:
+		hitmsg(mtmp, mattk);
+		if(!mtmp->mcan) {
+		    make_feared(HFeared + dmg, TRUE);
+		    make_stunned(HStun + dmg, TRUE);
+		    if(Confusion) You("are getting even more confused.");
+		    else You("are getting confused.");
+		    make_confused(HConfusion + dmg, FALSE);
 		}
 		break;
 
@@ -6400,6 +6560,42 @@ dopois:
 		if (uncancelled)
 		    docalm();
 		break;
+	    case AD_FREN:
+		hitmsg(mtmp, mattk);
+		if (uncancelled) {
+			pline("You are frenzied!");
+			if (u.berserktime) {
+			    switch (rn2(11)) {
+			    case 0: diseasemu(mdat);
+				    break;
+			    case 1: make_blinded(Blinded + dmg, TRUE);
+				    break;
+			    case 2: if (!Confusion)
+					You("suddenly feel %s.",
+					    Hallucination ? "trippy" : "confused");
+				    make_confused(HConfusion + dmg, TRUE);
+				    break;
+			    case 3: make_stunned(HStun + dmg, TRUE);
+				    break;
+			    case 4: make_numbed(HNumbed + dmg, TRUE);
+				    break;
+			    case 5: make_frozen(HFrozen + dmg, TRUE);
+				    break;
+			    case 6: make_burned(HBurned + dmg, TRUE);
+				    break;
+			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+				    break;
+			    case 8: (void) make_hallucinated(HHallucination + dmg, TRUE, 0L);
+				    break;
+			    case 9: make_feared(HFeared + dmg, TRUE);
+				    break;
+			    case 10: make_dimmed(HDimmed + dmg, TRUE);
+				    break;
+			    }
+
+			} else u.berserktime = dmg;
+		}
+		break;
 	    case AD_POLY:
 		hitmsg(mtmp, mattk);
 		if (uncancelled && !Unchanging && !Antimagic) {
@@ -6407,6 +6603,42 @@ dopois:
 			You("undergo a freakish metamorphosis!");
 		    polyself(FALSE);
 		}
+		break;
+	    case AD_CHAO:
+		hitmsg(mtmp, mattk);
+		if (uncancelled && !Unchanging && !Antimagic) {
+		    if (flags.verbose)
+			You("undergo a freakish metamorphosis!");
+		    polyself(FALSE);
+		}
+		    switch (rn2(11)) {
+		    case 0: diseasemu(mdat);
+			    break;
+		    case 1: make_blinded(Blinded + dmg, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.",
+				    Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + dmg, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + dmg, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + dmg, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + dmg, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + dmg, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + dmg, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + dmg, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + dmg, TRUE);
+			    break;
+		    }
+
 		break;
 	    case AD_MAGM:
 		hitmsg(mtmp, mattk);
@@ -6438,6 +6670,33 @@ dopois:
 		} else
 		    pline("Yuck!");
 		break;
+	    case AD_LITT:
+		hitmsg(mtmp, mattk);
+		if (!uncancelled) break;
+		if (flaming(youmonst.data)) {
+		    pline_The("slime burns away!");
+		    dmg = 0;
+		} else if (Unchanging || slime_on_touch(youmonst.data)) {
+		    You("are unaffected.");
+		    dmg = 0;
+		} else if (!Slimed) {
+		    You("don't feel very well.");
+		    Slimed = 20L;
+		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = mtmp->data->mname;
+		} else
+		    pline("Yuck!");
+
+		{
+		    register struct obj *littX, *littX2;
+		    for (littX = invent; littX; littX = littX2) {
+		      littX2 = littX->nobj;
+			if (!rn2(Acid_resistance ? 100 : 10)) rust_dmg(littX, xname(littX), 3, TRUE, &youmonst);
+		    }
+		}
+
+		break;
 	    case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
 		hitmsg(mtmp, mattk);
 		/* uncancelled is sufficient enough; please
@@ -6446,6 +6705,19 @@ dopois:
 		    struct obj *obj = some_armor(&youmonst);
 
 		    if (obj && drain_item(obj)) {
+			Your("%s less effective.", aobjnam(obj, "seem"));
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		    }
+		}
+		break;
+	    case AD_NGEN:
+		hitmsg(mtmp, mattk);
+		/* uncancelled is sufficient enough; please
+		   don't make this attack less frequent */
+		if (uncancelled) {
+		    struct obj *obj = some_armor(&youmonst);
+
+		    if (obj && drain_item_severely(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
 			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
@@ -6687,7 +6959,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	register struct obj *otmp2;
 	int	i;
 	/*int randattackA = 0;*/
-	uchar atttypA;
+	int atttypA;
 	int hallutime;
 	struct obj *optr;
 
@@ -6759,9 +7031,21 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	atttypA = mattk->adtyp;
 
 	if (atttypA == AD_RBRE) {
-		while (atttypA == AD_ENDS ||atttypA == AD_RBRE || atttypA == AD_SPC2 || atttypA == AD_WERE) {
+		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE) {
 			atttypA = randattack(); }
 		/*randattack = 1;*/
+	}
+
+	if (atttypA == AD_RNG) {
+		while (atttypA == AD_ENDS || atttypA == AD_RNG || atttypA == AD_WERE) {
+			atttypA = rn2(AD_ENDS); }
+	}
+
+	if (atttypA == AD_MIDI) {
+		atttypA = mtmp->m_id;
+		if (atttypA < 0) atttypA *= -1;
+		while (atttypA >= AD_ENDS) atttypA -= AD_ENDS;
+		if (!(atttypA >= AD_PHYS && atttypA < AD_ENDS)) atttypA = AD_PHYS; /* fail safe --Amy */
 	}
 
 	switch(atttypA) {
@@ -7436,6 +7720,21 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 			break;
 
+	      case AD_NTHR:
+			pline("It sucks your %s!", body_part(BLOOD) );
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "A u vas yest' dostatochno sil'nyye oruzhiye dlya preodoleniya zazhivleniyu monstra?" : "Fffffffff!");
+			mtmp->mhp += tmp;
+			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+
+			if ((!Drain_resistance || !rn2(5)) && u.uexp > 100) {
+				u.uexp -= (u.uexp / 100);
+				You_feel("your life slipping away!");
+				if (u.uexp < newuexp(u.ulevel - 1)) {
+				      losexp("nether forces", TRUE, FALSE);
+				}
+			}
+			break;
+
 	      case AD_STUN:
 			{
 				You("seem less steady!");
@@ -7472,6 +7771,15 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    make_feared(HFeared + tmp, TRUE);
 			}
 			break;
+		case AD_INSA:
+				You_feel("insane!");
+			make_feared(HFeared + tmp, TRUE);
+			make_stunned(HStun + tmp, TRUE);
+			if(Confusion) You("are getting even more confused.");
+			else You("are getting confused.");
+			make_confused(HConfusion + tmp, FALSE);
+			break;
+
 	      case AD_SLOW:
 				You_feel("a force field!");
 			if (HFast && !defends(AD_SLOW, uwep) && !rn2(4))
@@ -7486,7 +7794,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				You("can't move!");
 				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
-				nomul(-rnd(10), "paralyzed by an engulfing monster");
+				if (!rn2(3)) nomul(-rnd(10), "paralyzed by an engulfing monster");
+				else nomul(-(tmp), "paralyzed by an engulfing monster");
 				exercise(A_DEX, FALSE);
 			    }
 			}
@@ -7513,6 +7822,12 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			(void) maketrap(u.ux, u.uy, WEB, 0);
 			/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
 			if (!rn2(8)) makerandomtrap();
+			break;
+
+	      case AD_TRAP:
+			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
+			else makerandomtrap();
+
 			break;
 
 	    case AD_DEPR:
@@ -7813,6 +8128,43 @@ do_stone2:
 			}
 		}
 		break;
+	    case AD_EDGE:
+	    pline("It strikes and slits you!");
+		if (!Stone_resistance || !rn2(20)) {
+			if (Upolyd) {u.mhmax--; if (u.mh > u.mhmax) u.mh = u.mhmax;}
+			else {u.uhpmax--; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
+		}
+		if(!rn2(3)) {
+			if (flags.soundok) {
+			    You_hear("a hissing noise!");
+			    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
+			}
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qotib plash") ) && rn2(4)) break;
+
+			if(!rn2(10) ||
+			    (flags.moonphase == NEW_MOON && !have_lizard())) {
+			    if (!Stoned && !Stone_resistance
+				    && !(poly_when_stoned(youmonst.data) &&
+					polymon(PM_STONE_GOLEM))) {
+				Stoned = 7;
+				delayed_killer = mtmp->data->mname;
+				if (mtmp->data->geno & G_UNIQ) {
+				    if (!type_is_pname(mtmp->data)) {
+					static char kbuf[BUFSZ];
+
+					/* "the" buffer may be reallocated */
+					Strcpy(kbuf, the(delayed_killer));
+					delayed_killer = kbuf;
+				    }
+				    killer_format = KILLED_BY;
+				} else killer_format = KILLED_BY_AN;
+				return(1);
+				/* You("turn to stone..."); */
+				/* done_in_by(mtmp); */
+			    }
+			}
+		}
+		break;
 	    case AD_STCK:
 	    pline("You are covered with some sticky substance!");
 		if (!u.ustuck && !sticks(youmonst.data)) {
@@ -8032,6 +8384,12 @@ do_stone2:
 		make_stunned(HStun + tmp, TRUE);
 		break;
 
+	    case AD_WGHT:
+		if (mtmp->mcan) break;
+		pline("Your pack feels much heavier!");
+		IncreasedGravity += (1 + (tmp *= rnd(20)));
+
+		break;
 	    case AD_INER:
 		if (mtmp->mcan) break;
 	      u_slow_down();
@@ -8375,9 +8733,70 @@ do_stone2:
 		} else
 		    pline("Yuck!");
 		break;
+	    case AD_LITT:
+		pline("A huge amount of run-off litter pours all over you!");
+		if (rn2(3)) break;
+		if (flaming(youmonst.data)) {
+		    pline_The("slime burns away!");
+		    tmp = 0;
+		} else if (Unchanging || slime_on_touch(youmonst.data) ) {
+		    You("are unaffected.");
+		    tmp = 0;
+		} else if (!Slimed) {
+		    You("don't feel very well.");
+		    Slimed = 20L;
+		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = mtmp->data->mname;
+		} else
+		    pline("Yuck!");
+
+		{
+		    register struct obj *littX, *littX2;
+		    for (littX = invent; littX; littX = littX2) {
+		      littX2 = littX->nobj;
+			if (!rn2(Acid_resistance ? 100 : 10)) rust_dmg(littX, xname(littX), 3, TRUE, &youmonst);
+		    }
+		}
+
+		break;
 	    case AD_CALM:	/* KMH -- koala attack */
 		You_feel("something sapping your energy!");
 		    docalm();
+		break;
+	    case AD_FREN:
+		pline("You suddenly feel angry!");
+			if (u.berserktime) {
+			    switch (rn2(11)) {
+			    case 0: diseasemu(mtmp->data);
+				    break;
+			    case 1: make_blinded(Blinded + tmp, TRUE);
+				    break;
+			    case 2: if (!Confusion)
+					You("suddenly feel %s.",
+					    Hallucination ? "trippy" : "confused");
+				    make_confused(HConfusion + tmp, TRUE);
+				    break;
+			    case 3: make_stunned(HStun + tmp, TRUE);
+				    break;
+			    case 4: make_numbed(HNumbed + tmp, TRUE);
+				    break;
+			    case 5: make_frozen(HFrozen + tmp, TRUE);
+				    break;
+			    case 6: make_burned(HBurned + tmp, TRUE);
+				    break;
+			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+				    break;
+			    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
+				    break;
+			    case 9: make_feared(HFeared + tmp, TRUE);
+				    break;
+			    case 10: make_dimmed(HDimmed + tmp, TRUE);
+				    break;
+			    }
+
+			} else u.berserktime = tmp;
+
 		break;
 	    case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
 		pline("Mysterious waves pulsate through your body!");
@@ -8386,6 +8805,17 @@ do_stone2:
 
 		    if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		    }
+		break;
+
+	    case AD_NGEN:
+		pline("You hear the devils laugh!");
+		if (rn2(3)) break;
+		    struct obj *objDV = some_armor(&youmonst);
+
+		    if (objDV && drain_item_severely(objDV)) {
+			Your("%s less effective.", aobjnam(objDV, "seem"));
 			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		break;
@@ -8410,6 +8840,42 @@ do_stone2:
 			You("undergo a freakish metamorphosis!");
 		    polyself(FALSE);
 		}
+		break;
+	    case AD_CHAO:
+		pline("A chaotic light pierces you!");
+		if (!Unchanging && !Antimagic) {
+		    if (flags.verbose)
+			You("undergo a freakish metamorphosis!");
+		    polyself(FALSE);
+		}
+		if (rn2(4)) break;
+		    switch (rn2(11)) {
+		    case 0: diseasemu(mtmp->data);
+			    break;
+		    case 1: make_blinded(Blinded + tmp, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.",
+				    Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + tmp, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + tmp, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + tmp, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + tmp, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + tmp, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + tmp, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + tmp, TRUE);
+			    break;
+		    }
 		break;
 	    case AD_TCKL:
 		pline("A bunch of feelers suddenly reaches out for you!");
@@ -8571,6 +9037,23 @@ do_stone2:
 
 		    break;
 
+		case AD_ICEB:
+		    if(!mtmp->mcan && rn2(2)) {
+
+			pline("You are pummeled with blocks of ice!");
+			if (Cold_resistance && rn2(20)) {
+				pline("The ice doesn't seem to affect you.");
+				tmp = 0;
+			}
+		    } else tmp = 0;
+
+		    make_frozen(HFrozen + tmp, TRUE);
+		    if (!rn2(issoviet ? 2 : 10)) {
+			destroy_item(POTION_CLASS, AD_COLD);
+		    }
+
+		break;
+
 		case AD_AXUS:
 		    pline("Snap! Crackle! Pop!");
 
@@ -8676,6 +9159,17 @@ do_stone2:
 		case AD_PEST:
 		    if (!diseasemu(mtmp->data)) tmp = 0;
 		    break;
+
+		case AD_VOMT:
+			if (!rn2(10) || !Sick_resistance) {
+				if (!Vomiting) {
+					make_vomiting(Vomiting+d(10,4), TRUE);
+					pline("You feel nauseated.");
+					if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10);
+				} else if (!rn2(2)) diseasemu(mtmp->data);
+			}
+			break;
+
 		case AD_MAGM:
 		    if(Antimagic && rn2(5)) {
 			tmp = 0;
@@ -8717,6 +9211,45 @@ do_stone2:
 
 	}
 		    break;
+
+		case AD_VAPO:
+		    You_feel("like you are being vaporized!");
+
+		if (!Disint_resistance) tmp *= 3;
+
+		if (!rn2(10))  {
+		if (Disint_resistance && rn2(100)) {
+		    You("are not disintegrated.");
+		    break;
+            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+                pline("You are unharmed!");
+                break;
+		}
+
+		 else if (uarms) {
+		    /* destroy shield; other possessions are safe */
+		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+		    break;
+		} else if (uarmc) {
+		    /* destroy cloak; other possessions are safe */
+		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+		    break;
+		} else if (uarm) {
+		    /* destroy suit */
+		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+		    break;
+		} else if (uarmu) {
+		    /* destroy shirt */
+		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+		    break;
+		}
+
+	    done(DIED);
+	    return 1; /* lifesaved */
+
+	}
+		break;
+
 		default:
 		    /*tmp = 0;*/
 			pline(rn2(2) ? "It hits you!" : "It hits!");
@@ -8775,14 +9308,26 @@ boolean ufound;
 
 	hitmsg(mtmp, mattk);
 
-	uchar atttypC;
+	int atttypC;
 	/* Monsters with AD_RBRE can use any random explosion. --Amy */
 
 	atttypC = mattk->adtyp;
 
 	if (atttypC == AD_RBRE) {
-		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_SPC2 || atttypC == AD_WERE) {
+		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE) {
 			atttypC = randattack(); }
+	}
+
+	if (atttypC == AD_RNG) {
+		while (atttypC == AD_ENDS || atttypC == AD_RNG || atttypC == AD_WERE) {
+			atttypC = rn2(AD_ENDS); }
+	}
+
+	if (atttypC == AD_MIDI) {
+		atttypC = mtmp->m_id;
+		if (atttypC < 0) atttypC *= -1;
+		while (atttypC >= AD_ENDS) atttypC -= AD_ENDS;
+		if (!(atttypC >= AD_PHYS && atttypC < AD_ENDS)) atttypC = AD_PHYS; /* fail safe --Amy */
 	}
 
 	switch (atttypC) {
@@ -8840,7 +9385,17 @@ boolean ufound;
 			destroy_item(WAND_CLASS, AD_ELEC);
 		if (!rn2(issoviet ? 6 : 33))
 			destroy_item(RING_CLASS, AD_ELEC);
+		if (!rn2(issoviet ? 30 : 165))
+			destroy_item(AMULET_CLASS, AD_ELEC);
 		not_affected |= Shock_resistance;
+		goto common;
+
+	    case AD_ICEB:
+		not_affected |= Cold_resistance;
+		make_frozen(HFrozen + tmp, TRUE);
+		if (!rn2(issoviet ? 2 : 10)) {
+			destroy_item(POTION_CLASS, AD_COLD);
+		}
 		goto common;
 
 	    case AD_AXUS:
@@ -8859,6 +9414,17 @@ boolean ufound;
 	    case AD_SAMU:
 	    case AD_THIR:
 
+		goto common;
+
+	    case AD_NTHR:
+
+		if ((!Drain_resistance || !rn2(5)) && u.uexp > 100) {
+			u.uexp -= (u.uexp / 100);
+			You_feel("your life slipping away!");
+			if (u.uexp < newuexp(u.ulevel - 1)) {
+			      losexp("nether forces", TRUE, FALSE);
+			}
+		}
 		goto common;
 
 	    case AD_ELEC:
@@ -8916,11 +9482,30 @@ common:
 
 		break;
 
+	    case AD_TRAP:
+		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
+		else makerandomtrap();
+
+		mdamageu(mtmp, tmp);
+
+		break;
+
 	    case AD_ENCH:
 		{
 			struct obj *obj = some_armor(&youmonst);
 
 			if (obj && drain_item(obj)) {
+				Your("%s less effective.", aobjnam(obj, "seem"));
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			}
+		}
+		break;
+
+	    case AD_NGEN:
+		{
+			struct obj *obj = some_armor(&youmonst);
+
+			if (obj && drain_item_severely(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
 				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
@@ -9242,6 +9827,40 @@ common:
 		    case 10: make_dimmed(HDimmed + tmp, TRUE);
 			    break;
 		}
+
+		break;
+
+	    case AD_FREN:
+			if (u.berserktime) {
+			    switch (rn2(11)) {
+			    case 0: diseasemu(mtmp->data);
+				    break;
+			    case 1: make_blinded(Blinded + tmp, TRUE);
+				    break;
+			    case 2: if (!Confusion)
+					You("suddenly feel %s.",
+					    Hallucination ? "trippy" : "confused");
+				    make_confused(HConfusion + tmp, TRUE);
+				    break;
+			    case 3: make_stunned(HStun + tmp, TRUE);
+				    break;
+			    case 4: make_numbed(HNumbed + tmp, TRUE);
+				    break;
+			    case 5: make_frozen(HFrozen + tmp, TRUE);
+				    break;
+			    case 6: make_burned(HBurned + tmp, TRUE);
+				    break;
+			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+				    break;
+			    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
+				    break;
+			    case 9: make_feared(HFeared + tmp, TRUE);
+				    break;
+			    case 10: make_dimmed(HDimmed + tmp, TRUE);
+				    break;
+			    }
+
+			} else u.berserktime = tmp;
 
 		break;
 
@@ -9961,7 +10580,68 @@ common:
 
 		break;
 
+	    case AD_VAPO:
+
+	      if (!Disint_resistance) mdamageu(mtmp, (tmp * 3));
+		else mdamageu(mtmp, tmp);
+
+		if (Disint_resistance && rn2(100)) {
+		    You("are not disintegrated.");
+		    break;
+            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+                pline("You are unharmed!");
+                break;
+		}
+
+		 else if (uarms) {
+		    /* destroy shield; other possessions are safe */
+		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+		    break;
+		} else if (uarmc) {
+		    /* destroy cloak; other possessions are safe */
+		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+		    break;
+		} else if (uarm) {
+		    /* destroy suit */
+		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+		    break;
+		} else if (uarmu) {
+		    /* destroy shirt */
+		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+		    break;
+		}
+
+	      done(DIED);
+
+		break;
+
 	    case AD_STON: /* mainly for jonadab's stoning sphere */
+
+			if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) 
+			{
+				Stoned = 7;
+				delayed_killer = mtmp->data->mname;
+				if (mtmp->data->geno & G_UNIQ) {
+				    if (!type_is_pname(mtmp->data)) {
+					static char kbuf[BUFSZ];
+
+					/* "the" buffer may be reallocated */
+					Strcpy(kbuf, the(delayed_killer));
+					delayed_killer = kbuf;
+				    }
+				    killer_format = KILLED_BY;
+				} else killer_format = KILLED_BY_AN;
+			}
+
+		break;
+
+	    case AD_EDGE:
+
+		if (!Stone_resistance || !rn2(20)) {
+			pline("The edgy splinters severely hurt you!");
+			if (Upolyd) {u.mhmax--; if (u.mh > u.mhmax) u.mh = u.mhmax;}
+			else {u.uhpmax--; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
+		}
 
 			if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) 
 			{
@@ -10107,6 +10787,12 @@ common:
 	      mdamageu(mtmp, tmp);
 		break;
 
+	    case AD_WGHT:
+		pline("Your load feels heavier!");
+		IncreasedGravity += (1 + (tmp *= rnd(20)));
+
+		break;
+
 	    case AD_INER:
 	      u_slow_down();
 		u.uprops[DEAC_FAST].intrinsic += ((tmp + 2) * 10);
@@ -10189,6 +10875,16 @@ common:
 
 	    case AD_DISE:
 		diseasemu(mdat);
+		break;
+
+	    case AD_VOMT:
+		if (!rn2(10) || !Sick_resistance) {
+			if (!Vomiting) {
+				make_vomiting(Vomiting+d(10,4), TRUE);
+				pline("You feel nauseated.");
+				if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10);
+			} else diseasemu(mdat);
+		}
 		break;
 
 	    case AD_PEST:
@@ -10301,6 +10997,42 @@ common:
 			You("undergo a freakish metamorphosis!");
 			polyself(FALSE);
 		}
+		break;
+
+	    case AD_CHAO:
+		if (!Unchanging && !Antimagic) {
+			You("undergo a freakish metamorphosis!");
+			polyself(FALSE);
+		}
+
+	      switch (rn2(11)) {
+		    case 0: diseasemu(mdat);
+			    break;
+		    case 1: make_blinded(Blinded + tmp, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.",
+				    Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + tmp, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + tmp, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + tmp, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + tmp, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + tmp, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + tmp, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + tmp, TRUE);
+			    break;
+		}
+
 		break;
 
 	    case AD_CALM:
@@ -10528,6 +11260,31 @@ common:
 
 		break;
 
+	    case AD_LITT:
+
+		if (flaming(youmonst.data)) {
+		    pline_The("slime burns away!");
+		} else if (Unchanging || slime_on_touch(youmonst.data)) {
+		    You("are unaffected.");
+		} else if (!Slimed) {
+		    You("don't feel very well.");
+		    Slimed = 20L;
+		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = "slimy explosion";
+		} else
+		    pline("Yuck!");
+
+		{
+		    register struct obj *littX, *littX2;
+		    for (littX = invent; littX; littX = littX2) {
+		      littX2 = littX->nobj;
+			if (!rn2(Acid_resistance ? 100 : 10)) rust_dmg(littX, xname(littX), 3, TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
 	    case AD_STUN:
 		not_affected = (Blind && rn2(2));
 		if (!not_affected) {
@@ -10642,6 +11399,18 @@ common:
 		}
 		break;
 
+	    case AD_INSA:
+		not_affected = (Blind && !rn2(10));
+		if (!not_affected) {
+			You("are hit by an eldritch explosion and are getting insane!");
+			make_feared(HFeared + tmp, TRUE);
+			make_stunned(HStun + tmp, TRUE);
+			if(Confusion) You("are getting even more confused.");
+			else You("are getting confused.");
+			make_confused(HConfusion + tmp, FALSE);
+		}
+		break;
+
 	    case AD_HALU:
 		not_affected |= (Blind && rn2(2)) ||
 			(u.umonnum == PM_BLACK_LIGHT ||
@@ -10686,16 +11455,28 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	int hallutime;
 
 	/*int randattackB = 0;*/
-	uchar atttypB;
+	int atttypB;
 
 	/* Monsters with AD_RBRE can use any random gaze. --Amy */
 
 	atttypB = mattk->adtyp;
 
 	if (atttypB == AD_RBRE) {
-		while (atttypB == AD_ENDS ||atttypB == AD_RBRE || atttypB == AD_SPC2 || atttypB == AD_WERE) {
+		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE) {
 			atttypB = randattack(); }
 		/*randattack = 1;*/
+	}
+
+	if (atttypB == AD_RNG) {
+		while (atttypB == AD_ENDS || atttypB == AD_RNG || atttypB == AD_WERE) {
+			atttypB = rn2(AD_ENDS); }
+	}
+
+	if (atttypB == AD_MIDI) {
+		atttypB = mtmp->m_id;
+		if (atttypB < 0) atttypB *= -1;
+		while (atttypB >= AD_ENDS) atttypB -= AD_ENDS;
+		if (!(atttypB >= AD_PHYS && atttypB < AD_ENDS)) atttypB = AD_PHYS; /* fail safe --Amy */
 	}
 
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "mirrored gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "zerkal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "akslantirish qo'lqop") ) && !rn2(3) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
@@ -10759,6 +11540,60 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    done(STONING);*/
 		    You("start turning to stone...");
 			if (!Stoned) Stoned = 7; delayed_killer = "petrifying gaze";
+		}
+		break;
+	    case AD_EDGE:
+		if (mtmp->mcan || !mtmp->mcansee) {
+		    if (!canseemon(mtmp)) break;	/* silently */
+		    pline("%s %s.", Monnam(mtmp),
+			  (mtmp->data == &mons[PM_MEDUSA] && mtmp->mcan) ?
+				"doesn't look all that ugly" :
+				"gazes ineffectually");
+		    break;
+		}
+		if (Reflecting && couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->data == &mons[PM_MEDUSA]) {
+		    /* hero has line of sight to Medusa and she's not blind */
+		    boolean useeit = canseemon(mtmp);
+
+		    if (useeit)
+			(void) ureflects("%s gaze is reflected by your %s.",
+					 s_suffix(Monnam(mtmp)));
+		    if (mon_reflects(mtmp, !useeit ? (char *)0 :
+				     "The gaze is reflected away by %s %s!"))
+			break;
+		    if (!m_canseeu(mtmp)) { /* probably you're invisible */
+			if (useeit)
+			    pline(
+		      "%s doesn't seem to notice that %s gaze was reflected.",
+				  Monnam(mtmp), mhis(mtmp));
+			break;
+		    }
+		    if (useeit)
+			pline("%s is turned to stone!", Monnam(mtmp));
+		    stoned = TRUE;
+		    killed(mtmp);
+
+		    if (mtmp->mhp > 0) break;
+		    return 2;
+		}
+		if (canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) &&
+		    !Stone_resistance && !rn2(15) ) {
+		    You("meet %s gaze.", s_suffix(mon_nam(mtmp)));
+		    stop_occupation();
+		    if(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
+			break;
+		    /*You("turn to stone...");
+		    killer_format = KILLED_BY;
+		    killer = mtmp->data->mname;
+		    done(STONING);*/
+		    You("start turning to stone...");
+			if (!Stoned) Stoned = 7; delayed_killer = "petrifying gaze";
+		}
+		if (canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) && !rn2(15) && (!Stone_resistance || !rn2(20)) ) {
+			pline("Sharp-edged stones slit you!");
+			if (Upolyd) {u.mhmax--; if (u.mh > u.mhmax) u.mh = u.mhmax;}
+			else {u.uhpmax--; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
 		}
 		break;
 	    case AD_CURS:
@@ -11056,6 +11891,51 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		}
 	      break;
+
+	    case AD_VAPO:
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(4)) )
+ 		{
+		if (!rn2(20))  {
+		pline("%s's gaze seems to vaporize you!", Monnam(mtmp));
+		    stop_occupation();
+
+		    int dmg = d(2,6);
+		    if (!rn2(2)) dmg += dmgplus;
+			if (!Disint_resistance) dmg *= 3;
+		    if (dmg) mdamageu(mtmp, dmg);
+
+		if (Disint_resistance && rn2(100)) {
+		    You("are not disintegrated.");
+		    break;
+            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+                pline("You are unharmed!");
+                break;
+
+		} else if (uarms) {
+		    /* destroy shield; other possessions are safe */
+		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+		    break;
+		} else if (uarmc) {
+		    /* destroy cloak; other possessions are safe */
+		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+		    break;
+		} else if (uarm) {
+		    /* destroy suit */
+		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+		    break;
+		} else if (uarmu) {
+		    /* destroy shirt */
+		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+		    break;
+		}
+
+	    done(DIED);
+	    return 1; /* lifesaved */
+
+		}
+		}
+	      break;
+
 	    case AD_ACID:
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
  		{
@@ -11131,6 +12011,16 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		/* Amy addition: sometimes, also make a random trap somewhere on the level :D */
 		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
 
+		}
+		break;
+
+	    case AD_TRAP:
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(3)) )
+ 		{
+			pline("%s cackles fiendishly.", Monnam(mtmp));
+			stop_occupation();
+			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
+			else makerandomtrap();
 		}
 		break;
 
@@ -11274,6 +12164,36 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    pline("Yuck!");
 		}
 		break;
+	    case AD_LITT:
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(15) ) )
+ 		{
+
+		pline("%s hurls a chemical bomb at you!", Monnam(mtmp));
+		    stop_occupation();
+
+		if (flaming(youmonst.data)) {
+		    pline_The("slime burns away!");
+		} else if (Unchanging || slime_on_touch(youmonst.data) ) {
+		    You("are unaffected.");
+		} else if (!Slimed) {
+		    You("don't feel very well.");
+		    Slimed = 20L;
+		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = mtmp->data->mname;
+		} else
+		    pline("Yuck!");
+		}
+
+		{
+		    register struct obj *littX, *littX2;
+		    for (littX = invent; littX; littX = littX2) {
+		      littX2 = littX->nobj;
+			if (!rn2(Acid_resistance ? 100 : 10)) rust_dmg(littX, xname(littX), 3, TRUE, &youmonst);
+		    }
+		}
+
+		break;
 	    case AD_CALM:	/* KMH -- koala attack */
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
  		{
@@ -11292,6 +12212,22 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    struct obj *obj = some_armor(&youmonst);
 
 		    if (obj && drain_item(obj)) {
+			Your("%s less effective.", aobjnam(obj, "seem"));
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		    }
+		}
+		break;
+
+	    case AD_NGEN:
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(25)) )
+ 		{
+		pline("%s curses the existence of your belongings!", Monnam(mtmp));
+		    stop_occupation();
+		/* uncancelled is sufficient enough; please
+		   don't make this attack less frequent */
+		    struct obj *obj = some_armor(&youmonst);
+
+		    if (obj && drain_item_severely(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
 			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
@@ -11325,6 +12261,48 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    polyself(FALSE);
 			}
 		}
+		break;
+
+	    case AD_CHAO:
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(20)) )
+ 		{
+
+			pline("%s invokes a raw chaos!", Monnam(mtmp));
+
+		if (!Unchanging && !Antimagic) {
+		    if (flags.verbose)
+		    stop_occupation();
+		    polyself(FALSE);
+			}
+		}
+		    switch (rn2(11)) {
+		    case 0: diseasemu(mtmp->data);
+			    break;
+		    case 1: make_blinded(Blinded + dmgplus, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.",
+				    Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + dmgplus, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + dmgplus, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + dmgplus, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + dmgplus, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + dmgplus, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + dmgplus, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + dmgplus, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + dmgplus, TRUE);
+			    break;
+		    }
+
 		break;
 
 	    case AD_FAKE:
@@ -11990,6 +12968,21 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 
+	    case AD_INSA:
+		if(!mtmp->mcan && canseemon(mtmp) &&
+		   couldsee(mtmp->mx, mtmp->my) &&
+		   mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
+		    int insanity = d(2,6);
+		    if (!rn2(3)) insanity += dmgplus;
+		    pline("%s gazes at you with a facial expression of insanity!", Monnam(mtmp));
+		    make_feared(HFeared + insanity, TRUE);
+		    make_stunned(HStun + insanity, TRUE);
+		    if(Confusion) You("are getting even more confused.");
+		    else You("are getting confused.");
+		    make_confused(HConfusion + insanity, FALSE);
+		}
+		break;
+
 	    case AD_BLND:
 		if (!mtmp->mcan && canseemon(mtmp) && !resists_blnd(&youmonst)
 			&& distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM && (issoviet || !rn2(6)) ) {
@@ -12117,6 +13110,17 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		make_stunned(HStun + dmgplus, TRUE);
 	      if (dmgplus) mdamageu(mtmp, dmgplus);
 		}
+		break;
+
+	    case AD_WGHT:
+		if (!mtmp->mcan && canseemon(mtmp) &&
+			couldsee(mtmp->mx, mtmp->my) &&
+			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
+		    pline("%s throws a metal object into your trouser pocket and hits!", Monnam(mtmp) );
+		    stop_occupation();
+		    IncreasedGravity += (1 + (dmgplus *= rnd(20)));
+		}
+
 		break;
 
 	    case AD_INER:
@@ -12311,6 +13315,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			destroy_item(WAND_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */
+			destroy_item(AMULET_CLASS, AD_ELEC);
 
 		    if (dmg) mdamageu(mtmp, dmg);
 
@@ -12360,6 +13366,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    /*if((int) mtmp->m_lev > rn2(20))*/
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */
+			destroy_item(AMULET_CLASS, AD_ELEC);
 		    if (dmg) mdamageu(mtmp, dmg);
 		}
 		break;
@@ -12386,9 +13394,33 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			destroy_item(WAND_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 2 : 10))
 			destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 10 : 50))
+			destroy_item(AMULET_CLASS, AD_ELEC);
 		    if (dmg) mdamageu(mtmp, dmg);
 		}
 		break;
+
+	    case AD_ICEB:
+		if (!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
+		    pline("%s hurls an ice block at you and hits!", Monnam(mtmp));
+		    stop_occupation();
+
+		    int dmg = d(3,6);
+		    if (!rn2(10)) dmg += dmgplus;
+
+		    if(!rn2(3)) {
+			    make_frozen(HFrozen + dmg, TRUE);
+		    }
+		    if (!rn2(issoviet ? 2 : 10)) {
+			destroy_item(POTION_CLASS, AD_COLD);
+		    }
+		    if (Cold_resistance && rn2(20)) {
+			pline("The attack doesn't seem to damage you.");
+		    dmg = 0;
+		    }
+		    if (dmg) mdamageu(mtmp, dmg);
+		}
+	    break;
 
 	    case AD_UVUU:{
 
@@ -12587,6 +13619,25 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			mtmp->mhp += (1 + dmgplus) ;
 			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
                   mdamageu(mtmp, d(3,8) + dmgplus);
+		  }
+
+		break;
+
+	    case AD_NTHR:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
+                pline("%s invokes a nether storm!", Monnam(mtmp));
+		    stop_occupation();
+			mtmp->mhp += (1 + dmgplus) ;
+			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+                  mdamageu(mtmp, d(3,8) + dmgplus);
+
+			if ((!Drain_resistance || !rn2(5)) && u.uexp > 100) {
+				u.uexp -= (u.uexp / 100);
+				You_feel("your life slipping away!");
+				if (u.uexp < newuexp(u.ulevel - 1)) {
+				      losexp("nether forces", TRUE, FALSE);
+				}
+			}
 		  }
 
 		break;
@@ -13220,7 +14271,23 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(12))) {
 	                pline("%s leers down on you!", Monnam(mtmp));
 		    stop_occupation();
-			(void) digeasemu(mtmp); /* plus the normal damage */
+			(void) diseasemu(mtmp->data); /* plus the normal damage */
+	        }
+	        break;
+
+          case AD_VOMT:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(12))) {
+	                pline("%s throws a sickening gaze at you!", Monnam(mtmp));
+		    stop_occupation();
+
+			if (!rn2(10) || !Sick_resistance) {
+				if (!Vomiting) {
+					make_vomiting(Vomiting+d(10,4), TRUE);
+					pline("You feel nauseated.");
+					if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10);
+				} else if (!rn2(2)) diseasemu(mtmp->data);
+			}
+
 	        }
 	        break;
 
@@ -13260,6 +14327,44 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		}
 		break;
 
+	    case AD_FREN:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(6))) {
+	                pline("%s shouts 'You motherfucker with your %s penis!'", Monnam(mtmp), flags.female ? "nonexistant" : "little");
+		    stop_occupation();
+
+			if (u.berserktime) {
+			    switch (rn2(11)) {
+			    case 0: diseasemu(mtmp->data);
+				    break;
+			    case 1: make_blinded(Blinded + dmgplus, TRUE);
+				    break;
+			    case 2: if (!Confusion)
+					You("suddenly feel %s.",
+					    Hallucination ? "trippy" : "confused");
+				    make_confused(HConfusion + dmgplus, TRUE);
+				    break;
+			    case 3: make_stunned(HStun + dmgplus, TRUE);
+				    break;
+			    case 4: make_numbed(HNumbed + dmgplus, TRUE);
+				    break;
+			    case 5: make_frozen(HFrozen + dmgplus, TRUE);
+				    break;
+			    case 6: make_burned(HBurned + dmgplus, TRUE);
+				    break;
+			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+				    break;
+			    case 8: (void) make_hallucinated(HHallucination + dmgplus, TRUE, 0L);
+				    break;
+			    case 9: make_feared(HFeared + dmgplus, TRUE);
+				    break;
+			    case 10: make_dimmed(HDimmed + dmgplus, TRUE);
+				    break;
+			    }
+			} else u.berserktime = dmgplus;
+
+		}
+		break;
+
 	    case AD_HALU:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(5))) 		{
 		    boolean chg;
@@ -13278,8 +14383,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                        You("are frozen by %s!", mon_nam(mtmp));
 					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;
-	                        nomul(-rnd(4), "paralyzed by a monster's gaze");
-	                        exercise(A_DEX, FALSE);
+					if (!rn2(3)) nomul(-rnd(4), "paralyzed by a monster's gaze");
+					else nomul(-(dmgplus), "paralyzed by a monster's gaze");
+					exercise(A_DEX, FALSE);
 	                }
 	        }
 	        break;
@@ -14427,6 +15533,7 @@ register struct attack *mattk;
 		if (!rn2(6)) erode_obj(MON_WEP(mtmp), TRUE, TRUE);
 		goto assess_dmg;
 	    case AD_STON: /* cockatrice */
+	    case AD_EDGE:
 	    {
 		long protector = attk_protection((int)mattk->aatyp),
 		     wornitems = mtmp->misc_worn_check;
@@ -14564,6 +15671,7 @@ register struct attack *mattk;
 		break;
 
 	    case AD_SLOW:
+	    case AD_WGHT:
 	    case AD_INER:
 		if(mtmp->mspeed != MSLOW) {
 		    unsigned int oldspeed = mtmp->mspeed;
@@ -14609,6 +15717,7 @@ register struct attack *mattk;
 		break;
 
 	    case AD_THIR:
+	    case AD_NTHR:
 		healup(tmp, 0, FALSE, FALSE);
 		You_feel("healthier!");
 		break;
@@ -14616,6 +15725,12 @@ register struct attack *mattk;
 		if (!resists_cold(mtmp) && resists_fire(mtmp)) {
 			tmp *= 2;
 			pline("%s is suddenly ice-cold!", Monnam(mtmp));
+		}
+		break;
+	    case AD_ICEB:
+		if (!resists_cold(mtmp)) {
+			tmp *= 2;
+			pline("%s is suddenly shockfrosted!", Monnam(mtmp));
 		}
 		break;
 	    case AD_MALK:
@@ -14689,6 +15804,11 @@ register struct attack *mattk;
 		(void) maketrap(mtmp->mx, mtmp->my, WEB, 0);
 		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
 		break;
+	    case AD_TRAP:
+		if (t_at(mtmp->mx, mtmp->my) == 0) (void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 0);
+		else makerandomtrap();
+
+		break;
 	    case AD_CNCL:
 		if (rnd(100) > mtmp->data->mr) {
 			mtmp->mcan = 1;
@@ -14705,6 +15825,22 @@ register struct attack *mattk;
 		if (rnd(100) > mtmp->data->mr) {
 		     monflee(mtmp, rnd(1 + tmp), FALSE, TRUE);
 			pline("%s is suddenly very afraid!",Monnam(mtmp));
+		}
+		break;
+	    case AD_INSA:
+		if (rnd(100) > mtmp->data->mr) {
+		     monflee(mtmp, rnd(1 + tmp), FALSE, TRUE);
+			pline("%s is suddenly very afraid!",Monnam(mtmp));
+		}
+		if (!mtmp->mconf) {
+		    pline("%s is suddenly very confused!", Monnam(mtmp));
+		    mtmp->mconf = 1;
+		    mtmp->mstrategy &= ~STRAT_WAITFORU;
+		}
+		if (!mtmp->mstun) {
+		    mtmp->mstun = 1;
+		    pline("%s %s.", Monnam(mtmp),
+			  makeplural(stagger(mtmp->data, "stagger")));
 		}
 		break;
 	    case AD_DREA:

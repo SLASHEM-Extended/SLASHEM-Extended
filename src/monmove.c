@@ -828,7 +828,7 @@ toofar:
 		    struct attack *a;
 
 		    for (a = &mdat->mattk[0]; a < &mdat->mattk[NATTK]; a++) {
-			if (a->aatyp == AT_MAGC && (a->adtyp == AD_SPEL || a->adtyp == AD_CLRC)) {
+			if (a->aatyp == AT_MAGC && (a->adtyp == AD_SPEL || a->adtyp == AD_CLRC || a->adtyp == AD_CAST)) {
 			    if (castmu(mtmp, a, FALSE, FALSE)) {
 				tmp = 3;
 				break;
@@ -1749,8 +1749,7 @@ postmov:
 
 		/* Maybe a cube ate just about anything */
 		/* KMH -- Taz likes organics, too! */
-		if (ptr == &mons[PM_GELATINOUS_CUBE] || ptr == &mons[PM_FLYING_GELATINOUS_CUBE] || ptr == &mons[PM_FANTASTIC_GELATINOUS_CUBE] || ptr == &mons[PM_STOUT_GELATINOUS_CUBE] || ptr == &mons[PM_GELATINOUS_GLOB] || ptr == &mons[PM_FAT_BULLY] || ptr == &mons[PM_OOZE_ELEMENTAL] || ptr == &mons[PM_AMUSING_TYPE] || ptr == &mons[PM_MINOCUBE] || ptr == &mons[PM_ROOMBA] || ptr == &mons[PM_THEME_TERMITE] || ptr == &mons[PM_GELATINOUS_DICE] || ptr == &mons[PM_KING_GORGE__LORD_OF_THE_GLUTTONS] || ptr == &mons[PM_WEAPON_CUBE] || ptr == &mons[PM_TASMANIAN_ZOMBIE]
-		|| ptr == &mons[PM_GELATINOUS_THIEF] ||	ptr == &mons[PM_TASMANIAN_DEVIL] || mtmp->egotype_organivore) {
+		if (organivorous(ptr) || mtmp->egotype_organivore) {
 		    if (meatobj(mtmp) == 2) return 2;	/* it died */
 		}
 		if (ptr == &mons[PM_GHOUL] || ptr == &mons[PM_GHAST] || ptr == &mons[PM_GASTLY] || ptr == &mons[PM_PHANTOM_GHOST]

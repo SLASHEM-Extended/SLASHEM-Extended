@@ -6567,6 +6567,7 @@ u_init()
 	u.freqspeciesbonus = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus += rne(2);
+	u.freqspeciesbonus *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus *= 2;
 	if (!rn2(7)) u.freqspeciesbonus *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus *= (1 + rne(8));
@@ -6585,6 +6586,7 @@ u_init()
 	u.freqspeciesbonus2 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus2 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus2 += rne(2);
+	u.freqspeciesbonus2 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus2 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus2 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus2 *= (1 + rne(8));
@@ -6603,6 +6605,7 @@ u_init()
 	u.freqspeciesbonus3 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus3 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus3 += rne(2);
+	u.freqspeciesbonus3 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus3 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus3 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus3 *= (1 + rne(8));
@@ -6621,6 +6624,7 @@ u_init()
 	u.freqspeciesbonus4 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus4 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus4 += rne(2);
+	u.freqspeciesbonus4 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus4 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus4 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus4 *= (1 + rne(8));
@@ -6639,6 +6643,7 @@ u_init()
 	u.freqspeciesbonus5 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus5 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus5 += rne(2);
+	u.freqspeciesbonus5 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus5 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus5 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus5 *= (1 + rne(8));
@@ -6657,6 +6662,7 @@ u_init()
 	u.freqspeciesbonus6 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus6 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus6 += rne(2);
+	u.freqspeciesbonus6 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus6 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus6 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus6 *= (1 + rne(8));
@@ -6675,6 +6681,7 @@ u_init()
 	u.freqspeciesbonus7 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus7 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus7 += rne(2);
+	u.freqspeciesbonus7 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus7 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus7 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus7 *= (1 + rne(8));
@@ -6693,6 +6700,7 @@ u_init()
 	u.freqspeciesbonus8 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus8 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus8 += rne(2);
+	u.freqspeciesbonus8 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus8 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus8 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus8 *= (1 + rne(8));
@@ -6711,6 +6719,7 @@ u_init()
 	u.freqspeciesbonus9 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus9 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus9 += rne(2);
+	u.freqspeciesbonus9 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus9 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus9 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus9 *= (1 + rne(8));
@@ -6729,6 +6738,7 @@ u_init()
 	u.freqspeciesbonus10 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus10 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus10 += rne(2);
+	u.freqspeciesbonus10 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus10 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus10 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus10 *= (1 + rne(8));
@@ -6747,6 +6757,7 @@ u_init()
 	u.freqspeciesbonus11 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus11 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus11 += rne(2);
+	u.freqspeciesbonus11 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus11 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus11 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus11 *= (1 + rne(8));
@@ -6765,6 +6776,7 @@ u_init()
 	u.freqspeciesbonus12 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus12 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus12 += rne(2);
+	u.freqspeciesbonus12 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus12 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus12 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus12 *= (1 + rne(8));
@@ -6783,6 +6795,7 @@ u_init()
 	u.freqspeciesbonus13 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus13 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus13 += rne(2);
+	u.freqspeciesbonus13 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus13 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus13 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus13 *= (1 + rne(8));
@@ -6801,6 +6814,7 @@ u_init()
 	u.freqspeciesbonus14 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus14 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus14 += rne(2);
+	u.freqspeciesbonus14 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus14 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus14 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus14 *= (1 + rne(8));
@@ -6819,6 +6833,7 @@ u_init()
 	u.freqspeciesbonus15 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus15 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus15 += rne(2);
+	u.freqspeciesbonus15 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus15 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus15 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus15 *= (1 + rne(8));
@@ -6837,6 +6852,7 @@ u_init()
 	u.freqspeciesbonus16 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus16 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus16 += rne(2);
+	u.freqspeciesbonus16 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus16 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus16 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus16 *= (1 + rne(8));
@@ -6855,6 +6871,7 @@ u_init()
 	u.freqspeciesbonus17 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus17 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus17 += rne(2);
+	u.freqspeciesbonus17 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus17 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus17 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus17 *= (1 + rne(8));
@@ -6873,6 +6890,7 @@ u_init()
 	u.freqspeciesbonus18 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus18 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus18 += rne(2);
+	u.freqspeciesbonus18 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus18 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus18 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus18 *= (1 + rne(8));
@@ -6891,6 +6909,7 @@ u_init()
 	u.freqspeciesbonus19 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus19 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus19 += rne(2);
+	u.freqspeciesbonus19 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus19 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus19 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus19 *= (1 + rne(8));
@@ -6909,6 +6928,7 @@ u_init()
 	u.freqspeciesbonus20 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus20 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus20 += rne(2);
+	u.freqspeciesbonus20 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus20 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus20 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus20 *= (1 + rne(8));
@@ -23922,6 +23942,7 @@ alter_reality()
 	u.freqspeciesbonus = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus += rne(2);
+	u.freqspeciesbonus *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus *= 2;
 	if (!rn2(7)) u.freqspeciesbonus *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus *= (1 + rne(8));
@@ -23940,6 +23961,7 @@ alter_reality()
 	u.freqspeciesbonus2 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus2 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus2 += rne(2);
+	u.freqspeciesbonus2 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus2 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus2 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus2 *= (1 + rne(8));
@@ -23958,6 +23980,7 @@ alter_reality()
 	u.freqspeciesbonus3 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus3 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus3 += rne(2);
+	u.freqspeciesbonus3 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus3 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus3 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus3 *= (1 + rne(8));
@@ -23976,6 +23999,7 @@ alter_reality()
 	u.freqspeciesbonus4 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus4 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus4 += rne(2);
+	u.freqspeciesbonus4 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus4 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus4 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus4 *= (1 + rne(8));
@@ -23994,6 +24018,7 @@ alter_reality()
 	u.freqspeciesbonus5 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus5 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus5 += rne(2);
+	u.freqspeciesbonus5 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus5 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus5 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus5 *= (1 + rne(8));
@@ -24012,6 +24037,7 @@ alter_reality()
 	u.freqspeciesbonus6 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus6 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus6 += rne(2);
+	u.freqspeciesbonus6 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus6 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus6 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus6 *= (1 + rne(8));
@@ -24030,6 +24056,7 @@ alter_reality()
 	u.freqspeciesbonus7 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus7 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus7 += rne(2);
+	u.freqspeciesbonus7 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus7 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus7 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus7 *= (1 + rne(8));
@@ -24048,6 +24075,7 @@ alter_reality()
 	u.freqspeciesbonus8 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus8 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus8 += rne(2);
+	u.freqspeciesbonus8 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus8 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus8 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus8 *= (1 + rne(8));
@@ -24066,6 +24094,7 @@ alter_reality()
 	u.freqspeciesbonus9 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus9 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus9 += rne(2);
+	u.freqspeciesbonus9 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus9 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus9 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus9 *= (1 + rne(8));
@@ -24084,6 +24113,7 @@ alter_reality()
 	u.freqspeciesbonus10 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus10 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus10 += rne(2);
+	u.freqspeciesbonus10 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus10 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus10 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus10 *= (1 + rne(8));
@@ -24102,6 +24132,7 @@ alter_reality()
 	u.freqspeciesbonus11 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus11 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus11 += rne(2);
+	u.freqspeciesbonus11 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus11 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus11 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus11 *= (1 + rne(8));
@@ -24120,6 +24151,7 @@ alter_reality()
 	u.freqspeciesbonus12 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus12 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus12 += rne(2);
+	u.freqspeciesbonus12 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus12 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus12 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus12 *= (1 + rne(8));
@@ -24138,6 +24170,7 @@ alter_reality()
 	u.freqspeciesbonus13 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus13 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus13 += rne(2);
+	u.freqspeciesbonus13 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus13 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus13 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus13 *= (1 + rne(8));
@@ -24156,6 +24189,7 @@ alter_reality()
 	u.freqspeciesbonus14 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus14 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus14 += rne(2);
+	u.freqspeciesbonus14 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus14 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus14 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus14 *= (1 + rne(8));
@@ -24174,6 +24208,7 @@ alter_reality()
 	u.freqspeciesbonus15 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus15 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus15 += rne(2);
+	u.freqspeciesbonus15 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus15 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus15 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus15 *= (1 + rne(8));
@@ -24192,6 +24227,7 @@ alter_reality()
 	u.freqspeciesbonus16 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus16 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus16 += rne(2);
+	u.freqspeciesbonus16 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus16 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus16 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus16 *= (1 + rne(8));
@@ -24210,6 +24246,7 @@ alter_reality()
 	u.freqspeciesbonus17 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus17 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus17 += rne(2);
+	u.freqspeciesbonus17 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus17 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus17 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus17 *= (1 + rne(8));
@@ -24228,6 +24265,7 @@ alter_reality()
 	u.freqspeciesbonus18 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus18 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus18 += rne(2);
+	u.freqspeciesbonus18 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus18 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus18 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus18 *= (1 + rne(8));
@@ -24246,6 +24284,7 @@ alter_reality()
 	u.freqspeciesbonus19 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus19 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus19 += rne(2);
+	u.freqspeciesbonus19 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus19 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus19 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus19 *= (1 + rne(8));
@@ -24264,6 +24303,7 @@ alter_reality()
 	u.freqspeciesbonus20 = rn2(2) ? rne(2) : (1+rne(2));
 	u.freqspeciesbonus20 += u.freqmonsterbonus;
 	if (!rn2(5)) u.freqspeciesbonus20 += rne(2);
+	u.freqspeciesbonus20 *= rnd(3);
 	if (!rn2(3)) u.freqspeciesbonus20 *= 2;
 	if (!rn2(7)) u.freqspeciesbonus20 *= (1 + rne(10));
 	if (!rn2(15)) u.freqspeciesbonus20 *= (1 + rne(8));

@@ -1145,7 +1145,7 @@ struct obj *otmp;
 
 	case WAN_DESLEXIFICATION:
 
-		if ( ((mons[mtmp->mnum].geno & G_UNIQ) && (mons[mtmp->mnum].geno & G_FREQ) ) || ((mons[mtmp->mnum].geno & G_FREQ) == 1) ) {
+		if (!is_vanillamonster(mtmp->data) ) {
 			if (canseemon(mtmp))
 					pline("%s is deslexified!", Monnam(mtmp));
 			if (!rn2(3)) {
@@ -1898,6 +1898,97 @@ register struct obj *obj;
 
 	/* Drain the object and any implied effects */
 	obj->spe--;
+	u_ring = (obj == uleft) || (obj == uright);
+	switch(obj->otyp) {
+	case RIN_GAIN_STRENGTH:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	ABON(A_STR)--;
+	    	flags.botl = 1;
+	    }
+	    break;
+	case RIN_GAIN_CONSTITUTION:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	ABON(A_CON)--;
+	    	flags.botl = 1;
+	    }
+	    break;
+	case RIN_ADORNMENT:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	ABON(A_CHA)--;
+	    	flags.botl = 1;
+	    }
+	    break;
+	case RIN_INCREASE_ACCURACY:
+	    if ((obj->owornmask & W_RING) && u_ring)
+	    	u.uhitinc--;
+	    break;
+	case RIN_INCREASE_DAMAGE:
+	    if ((obj->owornmask & W_RING) && u_ring)
+	    	u.udaminc--;
+	    break;
+	case RIN_HEAVY_ATTACK:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	u.udaminc--;
+	    	u.uhitinc--;
+	    }
+	    break;
+	case HELM_OF_BRILLIANCE:
+	    if ((obj->owornmask & W_ARMH) && (obj == uarmh)) {
+	    	ABON(A_INT)--;
+	    	ABON(A_WIS)--;
+	    	flags.botl = 1;
+	    }
+	    break;
+	case GAUNTLETS_OF_DEXTERITY:
+	    if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
+	    	ABON(A_DEX)--;
+	    	flags.botl = 1;
+	    }
+	    break;
+	case GAUNTLETS_OF_POWER:
+	    if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
+	    	ABON(A_STR)--;
+	    	flags.botl = 1;
+	    }
+	    break;
+	case RIN_PROTECTION:
+	    flags.botl = 1;
+	    break;
+	}
+	if (carried(obj)) update_inventory();
+	return (TRUE);
+}
+
+/* AD_NGEN function: drain an item up to -20, and curse it if it gets negative --Amy */
+boolean
+drain_item_severely(obj)
+register struct obj *obj;
+{
+	boolean u_ring;
+
+	/* Is this a charged/enchanted object? */
+	if (!obj || (!objects[obj->otyp].oc_charged &&
+			obj->oclass != WEAPON_CLASS &&
+			obj->oclass != BALL_CLASS &&
+			obj->oclass != CHAIN_CLASS &&
+			obj->oclass != GEM_CLASS &&
+			obj->oclass != ARMOR_CLASS && !is_weptool(obj)) ||
+			obj->spe <= -20)
+	    return (FALSE);
+	if (obj_resists(obj, 10, 90))
+	    return (FALSE);
+
+	if (uarmf && (uarmf->oartifact == ART_ANTI_DISENCHANTER) && rn2(4) )
+	    return (FALSE);
+
+	if (stack_too_big(obj)) return (FALSE);
+
+	/* Charge for the cost of the object */
+	costly_cancel(obj);	/* The term "cancel" is okay for now */
+
+	/* Drain the object and any implied effects */
+	obj->spe--;
+	if (obj->spe < 0) curse(obj);
 	u_ring = (obj == uleft) || (obj == uright);
 	switch(obj->otyp) {
 	case RIN_GAIN_STRENGTH:
@@ -3190,7 +3281,7 @@ register struct obj *obj;
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
-				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) || MON_AT(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();
@@ -4953,6 +5044,7 @@ boolean ordinary;
 		    }
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
@@ -4974,6 +5066,7 @@ boolean ordinary;
 		    }
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
@@ -5072,6 +5165,7 @@ boolean ordinary;
 		    }
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
@@ -5127,6 +5221,7 @@ boolean ordinary;
 		    }
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
@@ -7452,6 +7547,7 @@ xchar sx, sy;
 	    }
 	    if (!rn2(issoviet ? 20 : 100)) destroy_item(WAND_CLASS, AD_ELEC);
 	    if (!rn2(issoviet ? 20 : 100)) destroy_item(RING_CLASS, AD_ELEC);
+	    if (!rn2(issoviet ? 100 : 500)) destroy_item(AMULET_CLASS, AD_ELEC);
 	    break;
 	case ZT_POISON_GAS:
 	    poisoned("blast", A_DEX, "poisoned blast", 15);
@@ -8480,6 +8576,7 @@ const char * const destroy_strings[] = {	/* also used in trap.c */
 	"catches fire and burns", "catch fire and burn", "burning book",
 	"turns to dust and vanishes", "turn to dust and vanish", "",
 	"breaks apart and explodes", "break apart and explode", "exploding wand"
+	"disintegrates", "disintegrate", ""
 };
 
 void
@@ -8596,6 +8693,10 @@ register int osym, dmgtyp;
 #endif
 			    dindx = 5;
 			    dmg = rnd(10);
+			    break;
+			case AMULET_CLASS:
+			    dindx = 6;
+			    dmg = 0;
 			    break;
 			default:
 			    skip++;

@@ -348,7 +348,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	 * attacking casts spells only a small portion of the time that an
 	 * attacking monster does.
 	 */
-	if ((mattk->adtyp == AD_SPEL || mattk->adtyp == AD_CLRC) && ml) {
+	if ((mattk->adtyp == AD_SPEL || mattk->adtyp == AD_CLRC || mattk->adtyp == AD_CAST) && ml) {
 	    int cnt = 40;
 
 	    do {
@@ -362,8 +362,12 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		}
 		if (mattk->adtyp == AD_SPEL)
 		    spellnum = choose_magic_spell(spellnum);
-		else
+		else if (mattk->adtyp == AD_CLRC)
 		    spellnum = choose_clerical_spell(spellnum);
+		else { /* AD_CAST - often reroll when psybolt or open wounds is chosen --Amy */
+		    spellnum = rn2(2) ? choose_clerical_spell(spellnum) : choose_magic_spell(spellnum);
+			while (rn2(7) && !spellnum) spellnum = rn2(2) ? choose_clerical_spell(spellnum) : choose_magic_spell(spellnum);
+		}
 		/* not trying to attack?  don't allow directed spells */
 		if (!thinks_it_foundyou) {
 		    if ( (!is_undirected_spell(mattk->adtyp, spellnum) && rn2(250) ) || is_melee_spell(mattk->adtyp, spellnum) || spell_would_be_useless(mtmp, mattk->adtyp, spellnum)) {
@@ -392,7 +396,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	    return(0);
 	}
 
-	if (mattk->adtyp == AD_SPEL || mattk->adtyp == AD_CLRC) {
+	if (mattk->adtyp == AD_SPEL || mattk->adtyp == AD_CLRC || mattk->adtyp == AD_CAST) {
 	    /*
 	     * Spell use (especially MGC) is more common in Slash'EM.
 	     * Still using mspec_used, just so monsters don't go bonkers.
@@ -483,7 +487,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
  */
 	if (!foundyou) {
 	    /*dmg = 0;*/
-	    if (mattk->adtyp != AD_SPEL && mattk->adtyp != AD_CLRC) {
+	    if (mattk->adtyp != AD_SPEL && mattk->adtyp != AD_CLRC && mattk->adtyp != AD_CAST) {
 		impossible(
 	      "%s casting non-hand-to-hand version of hand-to-hand spell %d?",
 			   Monnam(mtmp), mattk->adtyp);
@@ -638,6 +642,15 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	    case AD_CLRC:       /* clerical spell */
 	    {
 		if (mattk->adtyp == AD_SPEL)
+		    cast_wizard_spell(mtmp, dmg, spellnum);
+		else
+		    cast_cleric_spell(mtmp, dmg, spellnum);
+		dmg = 0; /* done by the spell casting functions */
+		break;
+	    }
+	    case AD_CAST:       /* clerical spell */
+	    {
+		if (!rn2(2))
 		    cast_wizard_spell(mtmp, dmg, spellnum);
 		else
 		    cast_cleric_spell(mtmp, dmg, spellnum);
@@ -1405,6 +1418,7 @@ int spellnum;
 	if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 15 : 75)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 	break;
     }
     case CLC_CURSE_ITEMS:
@@ -1481,7 +1495,7 @@ int spellnum;
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
-				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) || MON_AT(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();

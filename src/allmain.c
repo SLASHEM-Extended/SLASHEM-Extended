@@ -114,6 +114,14 @@ moveloop()
     if (flags.groundhogday)
 	pline("Happy Groundhog Day!");
 
+	if (getmonth() == 5) {
+#ifdef PUBLIC_SERVER
+		pline("Junethack is running! Please refer to junethack.net for more information. Give it your best shot, and try to score as many trophies as you can! Good luck!");
+#else
+		pline("It is June! Why are you not participating in the Junethack tournament which traditionally runs this month? Quick, go to junethack.net in your web browser where you can play SLASH'EM Extended and other NetHack variants online and compare your scores with other players! And what's more, certain achievements will net you trophies!");
+#endif
+	}
+
     initrack();
 
 
@@ -793,7 +801,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(298);
+				monstercolor = rnd(330);
 
 				if (wizard || !rn2(10)) pline(Hallucination ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
 
@@ -856,7 +864,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(298);
+				monstercolor = rnd(330);
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
@@ -1262,6 +1270,10 @@ moveloop()
 		    killer = "genocidal existence failure";
 		    done(GENOCIDED);
 
+		}
+
+		if (issoviet && !rn2(1000)) { /* mocking messages :-P --Amy */
+			pline(soviettaunt());
 		}
 
 		if (RngeLoudspeakers && !rn2(100)) {
@@ -1911,6 +1923,7 @@ moveloop()
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
+			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
 		if (RngeBossEncounters && !rn2(10000) ) {

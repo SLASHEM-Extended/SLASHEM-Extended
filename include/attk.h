@@ -97,48 +97,48 @@ extern char *attk_dname(Attk);
  *	Note that 1-10 correspond to the types of attack used in buzz().
  *	Please don't disturb the order unless you rewrite the buzz() code.
  */
-#define AD_PHYS		0		/* ordinary physical */
-#define AD_MAGM		1		/* magic missiles */
-#define AD_FIRE		2		/* fire damage */
-#define AD_COLD		3		/* frost damage */
-#define AD_SLEE		4		/* sleep ray */
-#define AD_DISN		5		/* disintegration (death ray) */
-#define AD_ELEC		6		/* shock damage */
-#define AD_DRST		7		/* drains str (poison) */
-#define AD_ACID		8		/* acid damage */
-#define AD_LITE		9		/* light ray */
-#define AD_SPC2		10		/* for extension of buzz() */
-#define AD_BLND		11		/* blinds (glowing eye) */
-#define AD_STUN		12		/* stuns */
-#define AD_SLOW		13		/* slows */
-#define AD_PLYS		14		/* paralyses */
-#define AD_DRLI		15		/* drains life levels (Vampire) */
-#define AD_DREN		16		/* drains magic energy */
-#define AD_LEGS		17		/* damages legs (xan) */
-#define AD_STON		18		/* petrifies (Medusa, Cockatrice) */
-#define AD_STCK		19		/* sticks to you (Mimic) */
-#define AD_SGLD		20		/* steals gold (Leppie) */
-#define AD_SITM		21		/* steals item (Nymphs) */
-#define AD_SEDU		22		/* seduces & steals multiple items */
-#define AD_TLPT		23		/* teleports you (Quantum Mech.) */
-#define AD_RUST		24		/* rusts armour (Rust Monster)*/
-#define AD_CONF		25		/* confuses (Umber Hulk) */
-#define AD_DGST		26		/* digests opponent (trapper, etc.) */
-#define AD_HEAL		27		/* heals opponent's wounds (nurse) */
-#define AD_WRAP		28		/* special "stick" for eels */
-#define AD_WERE		29		/* confers lycanthropy */
-#define AD_DRDX		30		/* drains dexterity (Quasit) */
-#define AD_DRCO		31		/* drains constitution */
-#define AD_DRIN		32		/* drains intelligence (mind flayer) */
-#define AD_DISE		33		/* confers diseases */
-#define AD_DCAY		34		/* decays organics (Brown pudding) */
-#define AD_SSEX		35		/* Succubus seduction (extended) */
+#define AD_PHYS		0	/* ordinary physical */
+#define AD_MAGM		1	/* magic missiles */
+#define AD_FIRE		2	/* fire damage */
+#define AD_COLD		3	/* frost damage */
+#define AD_SLEE		4	/* sleep ray */
+#define AD_DISN		5	/* disintegration (death ray) */
+#define AD_ELEC		6	/* shock damage */
+#define AD_DRST		7	/* drains str (poison) */
+#define AD_ACID		8	/* acid damage */
+#define AD_LITE		9	/* light ray */
+#define AD_SPC2		10	/* for extension of buzz() */
+#define AD_BLND		11	/* blinds (glowing eye) */
+#define AD_STUN		12	/* stuns */
+#define AD_SLOW		13	/* slows */
+#define AD_PLYS		14	/* paralyses */
+#define AD_DRLI		15	/* drains life levels (Vampire) */
+#define AD_DREN		16	/* drains magic energy */
+#define AD_LEGS		17	/* damages legs (xan) */
+#define AD_STON		18	/* petrifies (Medusa, Cockatrice) */
+#define AD_STCK		19	/* sticks to you (Mimic) */
+#define AD_SGLD		20	/* steals gold (Leppie) */
+#define AD_SITM		21	/* steals item (Nymphs) */
+#define AD_SEDU		22	/* seduces & steals multiple items */
+#define AD_TLPT		23	/* teleports you (Quantum Mech.) */
+#define AD_RUST		24	/* rusts armour (Rust Monster)*/
+#define AD_CONF		25	/* confuses (Umber Hulk) */
+#define AD_DGST		26	/* digests opponent (trapper, etc.) */
+#define AD_HEAL		27	/* heals opponent's wounds (nurse) */
+#define AD_WRAP		28	/* special "stick" for eels */
+#define AD_WERE		29	/* confers lycanthropy */
+#define AD_DRDX		30	/* drains dexterity (Quasit) */
+#define AD_DRCO		31	/* drains constitution */
+#define AD_DRIN		32	/* drains intelligence (mind flayer) */
+#define AD_DISE		33	/* confers diseases */
+#define AD_DCAY		34	/* decays organics (Brown pudding) */
+#define AD_SSEX		35	/* Succubus seduction (extended) */
 					/* If no SEDUCE then same as AD_SEDU */
-#define AD_HALU		36		/* causes hallucination */
-#define AD_DETH		37		/* for Death only */
-#define AD_PEST		38		/* for Pestilence only */
-#define AD_FAMN		39		/* for Famine only */
-#define AD_SLIM		40		/* turns you into green slime */
+#define AD_HALU		36	/* causes hallucination */
+#define AD_DETH		37	/* for Death only */
+#define AD_PEST		38	/* for Pestilence only */
+#define AD_FAMN		39	/* for Famine only */
+#define AD_SLIM		40	/* turns you into green slime */
 #define AD_CALM		41	/* KMH -- calms its enemies (koala) */
 #define AD_ENCH		42	/* KMH -- remove enchantment */
 #define AD_POLY		43	/* RJ -- polymorphs (genetic engineer) */
@@ -214,14 +214,31 @@ extern char *attk_dname(Attk);
 #define AD_DIMN		100	/* dimness */
 #define AD_AMNE		101	/* map amnesia (inspired by deepy), re-obscures random amount of tiles on current level */
 
-#define AD_ENDS		102	/* placeholder */
+#define AD_ICEB		102	/* ice block - cold damage, can break potions and inflict freeze status */
+#define AD_VAPO		103	/* vaporization - disintegrates target, and if player doesn't resist, 3x damage */
+#define AD_EDGE		104	/* stone edge - petrification, and reduces maximum health of player as well */
+#define AD_VOMT		105	/* vomiting, or if player is already nauseated, make them deathly sick */
+#define AD_LITT		106	/* litter - sliming, but faster than AD_SLIM, can corrode player's inventory */
+#define AD_FREN		107	/* frenzy - can frenzy monsters, or make player go berserk; bad effect if already berserk */
+#define AD_NGEN		108	/* negative enchantment - like disenchanter, but can go to -20 and curse the item */
+#define AD_CHAO		109	/* chaos - combines the effects of AD_POLY and AD_CHRN */
+#define AD_INSA		110	/* insanity - afflicts target with fear, confusion and stun at the same time */
+#define AD_TRAP		111	/* trapping - creates a trap underneath the target, or on a random square if one exists */
+#define AD_WGHT		112	/* weight - temporarily increases player's carry weight to encumber you */
+#define AD_NTHR		113	/* nether - drains a bit of experience from the target and heals attacker */
 
-#define AD_CLRC		240		/* random clerical spell */
-#define AD_SPEL		241		/* random magic spell */
-#define AD_RBRE		242		/* random breath weapon */
+#define AD_ENDS		114	/* placeholder */
 
-#define AD_SAMU		252		/* hits, may steal Amulet (Wizard) */
-#define AD_CURS		253		/* random curse (ex. gremlin) */
+#define AD_CAST		237	/* spellcasting, can select either AD_CLRC or AD_SPEL monster spell at random */
+#define AD_RNG		238	/* RNG intervention - like AD_RBRE, but all damage types have the same chance */
+#define AD_MIDI		239	/* identity-specific attack - pick an attack type based on the monster's m_id */
+
+#define AD_CLRC		240	/* random clerical spell */
+#define AD_SPEL		241	/* random magic spell */
+#define AD_RBRE		242	/* random breath weapon */
+
+#define AD_SAMU		252	/* hits, may steal Amulet (Wizard) */
+#define AD_CURS		253	/* random curse (ex. gremlin) */
 
 
 /*

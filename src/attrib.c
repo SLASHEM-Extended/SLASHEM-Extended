@@ -356,6 +356,7 @@ const struct innate {
 		     {   1, &(HClairvoyant), "","" },
 		     {   3, &(HSee_invisible), "your vision sharpen", "your vision blur" },
 		     {   5, &(ETelepat), "aware", "unaware" },
+		     {   7, &(HAggravate_monster), "noisy", "quiet" },
 		     {  10, &(HDetect_monsters), "connected","detached" },
 		     {  15, &(HFlying), "weightless", "grounded" },
 		     {  20, &(HPasses_walls), "ethereal","mundane" },
@@ -626,6 +627,7 @@ const struct innate {
 		    { 4,  &(HStealth), "stealthy", "obvious"},
 		    { 6,  &(HInfravision), "perceptive", "half blind"},
 		    {18, &(HDetect_monsters), "perceptive", "dull"},
+		    {18, &(HAggravate_monster), "noisy", "quiet" },
 		    {0, 0, 0, 0} },
 
 	gno_abil[] = { {   5, &(HStealth), "stealthy", "noisy" },

@@ -4148,7 +4148,8 @@ boolean noisy;
 		if (yn("Try to put it on anyway?") == 'y') {
 			if (rn2(2)) { 	u.ublesscnt += rnz(5);
 			pline("Feeling uncomfortable, you decide to stop trying.");
-		    return 1;}
+			TimerunBug += 1; /* ugh, ugly hack. But nomul() doesn't want to work... --Amy */
+		    return 0;}
 			}
 
 		else {return(0);}

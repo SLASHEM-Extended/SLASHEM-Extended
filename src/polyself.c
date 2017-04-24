@@ -376,13 +376,13 @@ boolean forcecontrol;
 			}
 			/* uncommon forms are difficult to polymorph into, because the usual reason why they're uncommon is
 			 * that they are very powerful, so we need to reduce the player's chance of becoming one --Amy */
-			else if ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) {
+			else if (!forcecontrol && ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(18) > 7) ) {
+			else if (!forcecontrol && ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(18) > 7) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(18) > (P_SKILL(P_POLYMORPHING) + 10) ) ) {
+			else if (!forcecontrol && (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(18) > (P_SKILL(P_POLYMORPHING) + 10) ) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 
@@ -902,17 +902,17 @@ break_armor()
 	}
 
 	if (uarm && (rnd(100) < controllingchance)) {
-		if (yn("Keep your torso armor on?") == 'y') {
+		if (yn("Keep your torso armor on?") != 'n') {
 			armorkeep = 1;
 		}
 	}
 	if (uarmc && (rnd(100) < controllingchance)) {
-		if (yn("Keep your cloak on?") == 'y') {
+		if (yn("Keep your cloak on?") != 'n') {
 			cloakkeep = 1;
 		}
 	}
 	if (uarmu && (rnd(100) < controllingchance)) {
-		if (yn("Keep your shirt on?") == 'y') {
+		if (yn("Keep your shirt on?") != 'n') {
 			shirtkeep = 1;
 		}
 	}
@@ -1037,23 +1037,23 @@ break_armor()
     if (!Race_if(PM_TRANSFORMER) && (nohands(youmonst.data) || verysmall(youmonst.data))) {
 
 	if (uarmg && (rnd(100) < controllingchance)) {
-		if (yn("Keep your gloves on?") == 'y') {
+		if (yn("Keep your gloves on?") != 'n') {
 			goto glovesdone;
 		}
 	}
 
+	/* It was really retarded that you would also drop the weapon, because drop_weapon() is already called
+	   someplace else and this was interfering with the "chance to keep stuff on" code. --Amy */
 	if ((otmp = uarmg) != 0) {
 	    if (donning(otmp)) cancel_don();
-	    /* Drop weapon along with gloves */
-	    You("drop your gloves%s!", uwep ? " and weapon" : "");
-	    drop_weapon(0);
+	    You("drop your gloves!");
 	    (void) Gloves_off();
 	    dropx(otmp);
 	}
 glovesdone:
 
 	if (uarms && (rnd(100) < controllingchance)) {
-		if (yn("Keep your shield on?") == 'y') {
+		if (yn("Keep your shield on?") != 'n') {
 			goto shielddone;
 		}
 	}
@@ -1066,7 +1066,7 @@ glovesdone:
 shielddone:
 
 	if (uarmh && (rnd(100) < controllingchance)) {
-		if (yn("Keep your helmet on?") == 'y') {
+		if (yn("Keep your helmet on?") != 'n') {
 			goto helmetdone;
 		}
 	}
@@ -1083,7 +1083,7 @@ helmetdone:
 		slithy(youmonst.data) || youmonst.data->mlet == S_CENTAUR)) {
 
 	if (uarmf && (rnd(100) < controllingchance)) {
-		if (yn("Keep your boots on?") == 'y') {
+		if (yn("Keep your boots on?") != 'n') {
 			goto bootsdone;
 		}
 	}
@@ -1145,7 +1145,7 @@ int alone;
 	    otmp2 = u.twoweap ? uswapwep : 0;
 
 		if (uwep && (rnd(100) < controllingchance)) {
-			if (yn("Keep wielding your weapon?") == 'y') {
+			if (yn("Keep wielding your weapon?") != 'n') {
 				goto weapondone;
 			}
 		}

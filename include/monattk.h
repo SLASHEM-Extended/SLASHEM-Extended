@@ -158,7 +158,24 @@
 #define AD_DIMN		100	/* dimness */
 #define AD_AMNE		101	/* map amnesia (inspired by deepy), re-obscures random amount of tiles on current level */
 
-#define AD_ENDS		102	/* placeholder */
+#define AD_ICEB		102	/* ice block - cold damage, can break potions and inflict freeze status */
+#define AD_VAPO		103	/* vaporization - disintegrates target, and if player doesn't resist, 3x damage */
+#define AD_EDGE		104	/* stone edge - petrification, and reduces maximum health of player as well */
+#define AD_VOMT		105	/* vomiting, or if player is already nauseated, make them deathly sick */
+#define AD_LITT		106	/* litter - sliming, but faster than AD_SLIM, can corrode player's inventory */
+#define AD_FREN		107	/* frenzy - can frenzy monsters, or make player go berserk; bad effect if already berserk */
+#define AD_NGEN		108	/* negative enchantment - like disenchanter, but can go to -20 and curse the item */
+#define AD_CHAO		109	/* chaos - combines the effects of AD_POLY and AD_CHRN */
+#define AD_INSA		110	/* insanity - afflicts target with fear, confusion and stun at the same time */
+#define AD_TRAP		111	/* trapping - creates a trap underneath the target, or on a random square if one exists */
+#define AD_WGHT		112	/* weight - temporarily increases player's carry weight to encumber you */
+#define AD_NTHR		113	/* nether - drains a bit of experience from the target and heals attacker */
+
+#define AD_ENDS		114	/* placeholder */
+
+#define AD_CAST		237	/* spellcasting, can select either AD_CLRC or AD_SPEL monster spell at random */
+#define AD_RNG		238	/* RNG intervention - like AD_RBRE, but all damage types have the same chance */
+#define AD_MIDI		239	/* identity-specific attack - pick an attack type based on the monster's m_id */
 
 #define AD_CLRC		240	/* random clerical spell */
 #define AD_SPEL		241	/* random magic spell */

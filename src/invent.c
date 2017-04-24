@@ -9306,7 +9306,7 @@ struct obj *obj;
 			case WAN_WISHING:
 				pline("Probably the most powerful wand in existence, this one allows you to wish for an object every time you zap it. However, it can be recharged at most once."); break;
 			case WAN_DESLEXIFICATION:
-				pline("Certain monsters will be deslexified if you zap them with this wand. It can only be generated if you're playing SLASHTHEM Extended."); break;
+				pline("Certain monsters (read: all those that don't exist in Vanilla NetHack or regular SLASH'EM) will be deslexified if you zap them with this wand. It can only be generated if you're playing SLASHTHEM Extended."); break;
 			case WAN_ACQUIREMENT:
 #ifdef PHANTOM_CRASH_BUG
 				pline("Can only be recharged once, and allows you to wish for an object class."); break;

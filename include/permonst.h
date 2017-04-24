@@ -59,6 +59,14 @@ struct permonst {
 			mflags2;		/* more boolean bitflags */
 	unsigned long		mflags3;		/* yet more boolean bitflags */
  /* who the heck set this to short, and why does the game crash if it's long? --Amy */
+	unsigned long		mflags4;		/* yet more boolean bitflags */
+	unsigned long		mflags5;		/* yet more boolean bitflags */
+	unsigned long		mflags6;		/* yet more boolean bitflags */
+	unsigned long		mflags7;		/* yet more boolean bitflags */
+	unsigned long		mflags8;		/* yet more boolean bitflags */
+	unsigned long		mflags9;		/* yet more boolean bitflags */
+	unsigned long		mflags10;		/* yet more boolean bitflags */
+	/* let's just make tons of bitflags; we don't need all of them right away, but one day we may */
 # ifdef TEXTCOLOR
 	uchar		mcolor;			/* color to use */
 # endif

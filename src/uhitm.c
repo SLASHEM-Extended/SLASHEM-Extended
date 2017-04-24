@@ -1054,13 +1054,13 @@ int thrown;
 		objenchant = u.ulevel/4;
 	    noeffect = objenchant < canhitmon && (issoviet || rn2(3)) ;
 	    if (martial_bonus()) {
-		if (mdat == &mons[PM_SHADE]) {
+		if (is_shade(mdat)) {
 		    tmp = rn2(3);
 		} else {
 		    tmp = martial_dmg();
 		}
 	    } else {
-	    if (mdat == &mons[PM_SHADE])
+	    if (is_shade(mdat))
 		tmp = 0;
 		else tmp = rnd(2);
 	    }
@@ -1219,7 +1219,7 @@ int thrown;
 		    (thrown == 2 && is_ammo(obj) && 
 		    	!ammo_and_launcher(obj, launcher))) {
 		    /* then do only 1-2 points of damage */
-		    if (mdat == &mons[PM_SHADE] && obj->otyp != SILVER_ARROW)
+		    if (is_shade(mdat) && objects[obj->otyp].oc_material != SILVER && objects[obj->otyp].oc_material != ARCANIUM)
 			tmp = 0;
 		    else
 			tmp = rnd(2);
@@ -1262,7 +1262,7 @@ int thrown;
 			useup(obj);
 			if (!more_than_1) obj = (struct obj *) 0;
 			hittxt = TRUE;
-			if (mdat != &mons[PM_SHADE])
+			if (!is_shade(mdat))
 			    tmp++;
 		   }
 
@@ -1284,7 +1284,7 @@ int thrown;
 		    } else if (mon->mflee && (Role_if(PM_ROGUE) || Role_if(PM_MURDERER) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
-			tmp += issoviet ? u.ulevel : rnd((rnd(u.ulevel))); /* nerf by Amy */
+			tmp += issoviet ? u.ulevel : rno(u.ulevel); /* nerf by Amy */
 			hittxt = TRUE;
 		    } else if (dieroll == 2 && obj == uwep &&
 			  !u.twoweap &&
@@ -1483,10 +1483,10 @@ int thrown;
 		hittxt = TRUE;
 		/* in case potion effect causes transformation */
 		mdat = mon->data;
-		tmp = (mdat == &mons[PM_SHADE]) ? 0 : 1;
+		tmp = (is_shade(mdat)) ? 0 : 1;
 	    } else {
 		if (flags.bash_reminder && !rn2(10)) pline("A helpful reminder: you attack with a non-weapon!");
-		if (mdat == &mons[PM_SHADE] && !shade_aware(obj)) {
+		if (is_shade(mdat) && !shade_aware(obj)) {
 		    tmp = 0;
 		    Strcpy(unconventional, cxname(obj));
 		} else {
@@ -2009,7 +2009,7 @@ int thrown;
 	    /* make sure that negative damage adjustment can't result
 	       in inadvertently boosting the victim's hit points */
 	    tmp = 0;
-	    if (mdat == &mons[PM_SHADE]) {
+	    if (is_shade(mdat)) {
 		if (!hittxt) {
 		    const char *what = unconventional[0] ? unconventional : "attack";
 		    Your("%s %s harmlessly through %s.",
@@ -3215,7 +3215,7 @@ register struct attack *mattk;
 		    if(uwep) tmp = 0;
 		} else if(mattk->aatyp == AT_KICK) {
 		    if(thick_skinned(mdef->data) && tmp) tmp = 1;
-		    if(mdef->data == &mons[PM_SHADE]) {
+		    if(is_shade(mdef->data) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) ) {
 			if (!(uarmf && uarmf->blessed)) {
 			    impossible("bad shade attack function flow?");
 			    tmp = 0;
@@ -3304,6 +3304,7 @@ register struct attack *mattk;
 		if (resists_acid(mdef)) tmp = 0;
 		break;
 	    case AD_STON:
+	    case AD_EDGE:
 		if (!munstone(mdef, TRUE) && !rn2(4)) {
 		    minstapetrify(mdef, TRUE);
 		tmp = 0;
@@ -3500,6 +3501,7 @@ register struct attack *mattk;
 		pline("You generate a sinister darkness!");
 		break;
 	    case AD_THIR:
+	    case AD_NTHR:
 		healup(tmp + (u.ulevel / 2), 0, FALSE, FALSE);
 		pline("You suck %s's %s!", mon_nam(mdef), mbodypart(mdef, BLOOD) );
 		if (Race_if(PM_BURNINATOR)) {
@@ -3512,6 +3514,14 @@ register struct attack *mattk;
 		if (!resists_cold(mdef) && resists_fire(mdef)) {
 			tmp *= 2;
 			pline("%s is freezing!", Monnam(mdef));
+		}
+
+		break;
+
+	    case AD_ICEB:
+		if (!resists_cold(mdef)) {
+			tmp *= 2;
+			pline("%s feels ice-cold!", Monnam(mdef));
 		}
 
 		break;
@@ -3607,6 +3617,12 @@ register struct attack *mattk;
 
 		break;
 
+	    case AD_TRAP:
+		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0);
+		else makerandomtrap();
+
+		break;
+
 	    case AD_CNCL:
 		if (rnd(100) > mdef->data->mr) {
 			mdef->mcan = 1;
@@ -3620,6 +3636,23 @@ register struct attack *mattk;
 		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
 			pline("%s screams in fear!",Monnam(mdef));
 		}
+
+		break;
+
+	    case AD_INSA:
+		if (rnd(100) > mdef->data->mr) {
+		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
+			pline("%s screams in fear!",Monnam(mdef));
+		}
+		if (!mdef->mconf && !rn2(3)) {
+		    if (canseemon(mdef))
+			pline("%s looks confused.", Monnam(mdef));
+		    mdef->mconf = 1;
+		}
+		if(!Blind && !rn2(3))
+		    pline("%s %s for a moment.", Monnam(mdef),
+			  makeplural(stagger(mdef->data, "stagger")));
+		mdef->mstun = 1;
 
 		break;
 
@@ -3767,6 +3800,7 @@ register struct attack *mattk;
 		    tmp = 0;
 		break;
 	    case AD_SLIM: /* no easy sliming Death or Famine --Amy */
+	    case AD_LITT:
 		if (negated || (rn2(100) < mdef->data->mr) ) break;	/* physical damage only */
 		if (!rn2(400) && !flaming(mdef->data) && !slime_on_touch(mdef->data) ) {
 		    You("turn %s into slime.", mon_nam(mdef));
@@ -3779,6 +3813,7 @@ register struct attack *mattk;
 	     /* if (negated) break; */
 		break;
 	    case AD_SLOW:
+	    case AD_WGHT:
 	    case AD_INER:
 		if (!negated && mdef->mspeed != MSLOW) {
 		    unsigned int oldspeed = mdef->mspeed;
@@ -3849,6 +3884,28 @@ register struct attack *mattk;
 			tmp = 0;
 		}
 		break;
+
+	    case AD_CHAO:
+		if (tmp < mdef->mhp && !rn2(20)) {
+		    if (resists_magm(mdef) || (rn2(100) < mdef->data->mr) ) { /* no easy taming Death or Famine! --Amy */
+			/* magic resistance protects from polymorph traps,
+			 * so make it guard against involuntary polymorph
+			 * attacks too... */
+			shieldeff(mdef->mx, mdef->my);
+		    } else if (!mon_poly(mdef, TRUE,
+			    "%s undergoes a freakish metamorphosis!"))
+			/* prevent killing the monster again - 
+			 * could be killed in mon_poly */
+			tmp = 0;
+		}
+
+		if ((tmp > 0) && (mdef && mdef->mhpmax > 1)) {
+			mdef->mhpmax--;
+			pline("%s feels bad!", Monnam(mdef));
+		}
+
+		break;
+
 		/* WAC -- for death gazes - but all messages should be generic */
 	    case AD_DETH:
 		if (rn2(16)) {
@@ -3909,6 +3966,14 @@ register struct attack *mattk;
 		    tmp = 0;
 		}
 		break;
+
+	    case AD_FREN:
+		    if (!mdef->mfrenzied) pline("You frenzied %s!", mon_nam(mdef));
+		    mdef->mfrenzied = 1;
+		    mdef->mtame = mdef->mpeaceful = 0;
+
+		break;
+
 	    case AD_SPEL:
 		/* obvious rule patch because the rodneyan race is way too overpowered otherwise --Amy */
 		if (Race_if(PM_RODNEYAN) && !Upolyd && (rnd(u.ulevel + 100) < 100)) tmp = 0;
@@ -4031,6 +4096,21 @@ register struct attack *mattk;
 		    } else mon_poly(mdef, TRUE, "%s undergoes a freakish metamorphosis!");
 		}
 		break;
+	    case AD_CHAO:
+		if (!rn2(4)) {
+		    if (resists_magm(mdef) || (rn2(100) < mdef->data->mr) ) { /* no easy taming Death or Famine! --Amy */
+			/* magic resistance protects from polymorph traps,
+			 * so make it guard against involuntary polymorph
+			 * attacks too... */
+			shieldeff(mdef->mx, mdef->my);
+		    } else mon_poly(mdef, TRUE, "%s undergoes a freakish metamorphosis!");
+		}
+		if (mdef && mdef->mhpmax > 1) {
+			mdef->mhpmax--;
+			pline("%s feels bad!", Monnam(mdef));
+		}
+
+		break;
 	    case AD_DETH:
 		if (rn2(16)) {
 		    /* Just damage */
@@ -4072,7 +4152,16 @@ register struct attack *mattk;
 		    mdef->mtame = 0;
 		}
 		break;
+
+	    case AD_FREN:
+		    if (!mdef->mfrenzied) pline("You frenzied %s!", mon_nam(mdef));
+		    mdef->mfrenzied = 1;
+		    mdef->mtame = mdef->mpeaceful = 0;
+
+		break;
+
 	    case AD_STON:
+	    case AD_EDGE:
 		if (!munstone(mdef, TRUE) && !rn2(4)) {
 		    minstapetrify(mdef, TRUE);
 		}
@@ -4175,6 +4264,7 @@ register struct attack *mattk;
 		pline("You generate a sinister darkness!");
 		break;
 	    case AD_THIR:
+	    case AD_NTHR:
 		healup(tmp + (u.ulevel / 2), 0, FALSE, FALSE);
 		pline("You suck %s's %s!", mon_nam(mdef), mbodypart(mdef, BLOOD) );
 		if (Race_if(PM_BURNINATOR)) {
@@ -4210,6 +4300,7 @@ register struct attack *mattk;
 	    case AD_CHRN:
 	    case AD_BURN:
 	    case AD_FRZE:
+	    case AD_ICEB:
 		if (mdef->mhpmax > 1) {
 			mdef->mhpmax--;
 			pline("%s feels bad!", Monnam(mdef));
@@ -4259,6 +4350,13 @@ register struct attack *mattk;
 		(void) maketrap(mdef->mx, mdef->my, WEB, 0);
 		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
 		goto common;
+
+	    case AD_TRAP:
+		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0);
+		else makerandomtrap();
+		goto common;
+		break;
+
 	    case AD_CNCL:
 		if (rnd(100) > mdef->data->mr) {
 			mdef->mcan = 1;
@@ -4271,6 +4369,23 @@ register struct attack *mattk;
 			pline("%s screams in fear!",Monnam(mdef));
 		}
 		break;
+	    case AD_INSA:
+
+		if (rnd(100) > mdef->data->mr) {
+		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
+			pline("%s screams in fear!",Monnam(mdef));
+		}
+		if (!mdef->mconf && !rn2(3)) {
+		    if (canseemon(mdef))
+			pline("%s looks confused.", Monnam(mdef));
+		    mdef->mconf = 1;
+		}
+		if(!Blind && !rn2(3))
+		    pline("%s %s for a moment.", Monnam(mdef),
+			  makeplural(stagger(mdef->data, "stagger")));
+		mdef->mstun = 1;
+		break;
+
 	    case AD_DREA:
 		if (!mdef->mcanmove) {
 			tmp *= 4;
@@ -4351,6 +4466,7 @@ register struct attack *mattk;
 		}
 		break;
 	    case AD_SLIM: /* no easy sliming Death or Famine --Amy */
+	    case AD_LITT:
 		if ((rn2(100) < mdef->data->mr) ) goto common;	/* physical damage only */
 		if (!rn2(400) && !flaming(mdef->data) && !slime_on_touch(mdef->data) ) {
 		    You("turn %s into slime.", mon_nam(mdef));
@@ -4360,6 +4476,7 @@ register struct attack *mattk;
 		}
 		goto common;
 	    case AD_SLOW:
+	    case AD_WGHT:
 		if (mdef->mspeed != MSLOW) {
 		    unsigned int oldspeed = mdef->mspeed;
 
@@ -4608,6 +4725,7 @@ register struct attack *mattk;
 			} else dam = 0;
 			break;
 		    case AD_STON: /* for cortex race */
+		    case AD_EDGE:
 			if (!munstone(mdef, TRUE) && !rn2(4)) {
 			    minstapetrify(mdef, TRUE);
 			    return(2);
@@ -5168,9 +5286,12 @@ use_weapon:
 			/* WAC if attacking cockatrice/etc, player is smart
 			   if wielding a weapon.  So don't let him
 			   touch the monster */
+
+			/* Amy edit: but if you're immune to petrification, it's okay */
+
 			if ((uwep || u.twoweap && uswapwep) &&
 				(mhit == HIT_UWEP && !uwep ||
-				 mhit == HIT_USWAPWEP && !uswapwep) &&
+				 mhit == HIT_USWAPWEP && !uswapwep) && !Stone_resistance &&
 				(touch_petrifies(mon->data) ||
 				 mon->data == &mons[PM_MEDUSA]))
 			    break;
@@ -5349,7 +5470,7 @@ use_weapon:
 		case AT_TENT:
 		case AT_MAGC:
 			/*if (i==0 && uwep && (youmonst.data->mlet==S_LICH)) goto use_weapon;*/
-			if ((uwep || u.twoweap && uswapwep) &&
+			if ((uwep || u.twoweap && uswapwep) && !Stone_resistance &&
 				(touch_petrifies(mon->data) ||
 				 mon->data == &mons[PM_MEDUSA]))
 			    break;
@@ -5370,7 +5491,7 @@ use_weapon:
 			    }
 			    wakeup(mon);
 			    /* maybe this check should be in damageum()? */
-			    if (mon->data == &mons[PM_SHADE] &&
+			    if (is_shade(mon->data) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) &&
 					!(mattk->aatyp == AT_KICK &&
 					    uarmf && uarmf->blessed)) {
 				Your("attack passes harmlessly through %s.",
@@ -5413,7 +5534,7 @@ use_weapon:
 			 */
 			dhit = 1;
 			wakeup(mon);
-			if (mon->data == &mons[PM_SHADE])
+			if (is_shade(mon->data))
 			    Your("hug passes harmlessly through %s.",
 				mon_nam(mon));
 			else if (!sticks(mon->data) && !u.uswallow) {
@@ -5441,7 +5562,7 @@ use_weapon:
 		case AT_ENGL:
 			if((dhit = (tmp > (dieroll = rnd(20+i))))) {
 				wakeup(mon);
-				if (mon->data == &mons[PM_SHADE])
+				if (is_shade(mon->data))
 				    Your("attempt to surround %s is harmless.",
 					mon_nam(mon));
 				else {
@@ -5568,7 +5689,7 @@ uchar aatyp;
       struct attack *attspc;
 
 	/*int randattackC = 0;*/
-	uchar atttypC;
+	int atttypC;
 
 	if (RngeIronMaiden) {
 		pline("Ouch - you hurt yourself!");
@@ -5600,9 +5721,22 @@ uchar aatyp;
 	atttypC = ptr->mattk[i].adtyp;
 
 	if (atttypC == AD_RBRE) {
-		while (atttypC == AD_ENDS ||atttypC == AD_RBRE || atttypC == AD_SPC2 || atttypC == AD_WERE) {
+		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE) {
 			atttypC = randattack(); }
 		/*randattack = 1;*/
+	}
+
+	if (atttypC == AD_RNG) {
+		while (atttypC == AD_ENDS || atttypC == AD_RNG || atttypC == AD_WERE) {
+			atttypC = rn2(AD_ENDS); }
+		/*randattack = 1;*/
+	}
+
+	if (atttypC == AD_MIDI) {
+		atttypC = mon->m_id;
+		if (atttypC < 0) atttypC *= -1;
+		while (atttypC >= AD_ENDS) atttypC -= AD_ENDS;
+		if (!(atttypC >= AD_PHYS && atttypC < AD_ENDS)) atttypC = AD_PHYS; /* fail safe --Amy */
 	}
 
 /*	These affect you even if they just died */
@@ -6224,6 +6358,22 @@ uchar aatyp;
 		}
 		break;
 
+	  case AD_NTHR:
+		if(malive && mhit && rn2(3)) {
+			pline("Your %s is sucked!", body_part(BLOOD) );
+			mon->mhp += tmp;
+			if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
+			mdamageu(mon, tmp);
+		}
+		if ((!Drain_resistance || !rn2(5)) && u.uexp > 100) {
+			u.uexp -= (u.uexp / 100);
+			You_feel("your life slipping away!");
+			if (u.uexp < newuexp(u.ulevel - 1)) {
+			      losexp("nether forces", TRUE, FALSE);
+			}
+		}
+		break;
+
 	    case AD_NEXU:
 		if (level.flags.noteleport || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) tmp *= (1 + rnd(2));
 		mdamageu(mon, tmp);
@@ -6282,6 +6432,12 @@ uchar aatyp;
 		u.uprops[DEAC_FAST].intrinsic += (tmp + 2);
 		make_stunned(HStun + tmp, TRUE);
 		mdamageu(mon, tmp);
+		break;
+
+	    case AD_WGHT:
+		pline("Suddenly your load gets heavier!");
+		IncreasedGravity += (1 + (tmp *= rnd(20)));
+
 		break;
 
 	    case AD_INER:
@@ -6637,6 +6793,44 @@ uchar aatyp;
 	      }
 	    }
 	    break;
+
+	  case AD_EDGE:
+	    if (mhit) {		/* successful attack */
+
+		if (!Stone_resistance || !rn2(20)) {
+			pline("The sharp-edged stone slits your entire body!");
+			if (Upolyd) {u.mhmax--; if (u.mh > u.mhmax) u.mh = u.mhmax;}
+			else {u.uhpmax--; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
+		}
+
+		long protector = attk_protection((int)aatyp);
+		boolean barehanded = mhit & HIT_BODY ||
+			mhit & HIT_UWEP && !uwep ||
+			mhit & HIT_USWAPWEP && !uswapwep;
+
+		/* hero using monsters' AT_MAGC attack is hitting hand to
+		   hand rather than casting a spell */
+		if (aatyp == AT_MAGC) protector = W_ARMG;
+
+		if (protector == 0L ||		/* no protection */
+			(protector == W_ARMG && (!uarmg || FingerlessGloves) && barehanded) ||
+			(protector == W_ARMF && !uarmf) ||
+			(protector == W_ARMH && !uarmh) ||
+			(protector == (W_ARMC|W_ARMG) && (!uarmc || !uarmg))) {
+		if (!Stone_resistance &&
+			    !(poly_when_stoned(youmonst.data) &&
+				polymon(PM_STONE_GOLEM))) {
+			/* You("turn to stone...");
+			done_in_by(mon);
+			return 2; */
+			if (!Stoned) Stoned = 7;
+			delayed_killer = "bashing a petrifying monster";
+
+		}
+	      }
+	    }
+	    break;
+
 	  case AD_RUST:
 	    if(mhit && !mon->mcan) {
 		if (aatyp == AT_KICK) {
@@ -6781,6 +6975,12 @@ uchar aatyp;
 		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
 		break;
 
+	  case AD_TRAP:
+		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
+		else makerandomtrap();
+
+	  break;
+
 	  case AD_DREN:
 			if (!rn2(4)) drain_en(tmp);
 			break;
@@ -6856,15 +7056,110 @@ uchar aatyp;
 		}
 
 		break;
+	  case AD_LITT:
+		if (!flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
+
+		 if (!Slimed) {
+		    You("don't feel very well.");
+		    Slimed = 20L;
+		    flags.botl = 1;
+		    killer_format = KILLED_BY_AN;
+		    delayed_killer = mon->data->mname;
+		} else
+		    pline("Yuck!");
+		}
+
+		{
+		    register struct obj *littX, *littX2;
+		    for (littX = invent; littX; littX = littX2) {
+		      littX2 = littX->nobj;
+			if (!rn2(Acid_resistance ? 100 : 10)) rust_dmg(littX, xname(littX), 3, TRUE, &youmonst);
+		    }
+		}
+
+		break;
 	  case AD_CALM:	/* KMH -- koala attack */
 		    docalm();
 		break;
+
+	    case AD_FREN:
+		pline("You feel angry at yourself for making the stupid mistake of attacking such a monster!");
+			if (u.berserktime) {
+			    switch (rn2(11)) {
+			    case 0: difeasemu(mon->data);
+				    break;
+			    case 1: make_blinded(Blinded + tmp, TRUE);
+				    break;
+			    case 2: if (!Confusion)
+					You("suddenly feel %s.",
+					    Hallucination ? "trippy" : "confused");
+				    make_confused(HConfusion + tmp, TRUE);
+				    break;
+			    case 3: make_stunned(HStun + tmp, TRUE);
+				    break;
+			    case 4: make_numbed(HNumbed + tmp, TRUE);
+				    break;
+			    case 5: make_frozen(HFrozen + tmp, TRUE);
+				    break;
+			    case 6: make_burned(HBurned + tmp, TRUE);
+				    break;
+			    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+				    break;
+			    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
+				    break;
+			    case 9: make_feared(HFeared + tmp, TRUE);
+				    break;
+			    case 10: make_dimmed(HDimmed + tmp, TRUE);
+				    break;
+			    }
+
+			} else u.berserktime = tmp;
+
+		break;
+
 	  case AD_POLY:
 		if (!Unchanging && !Antimagic) {
 		    if (flags.verbose)
 			You("suddenly feel very unstable!");
 		    polyself(FALSE);
 		}
+		break;
+	  case AD_CHAO:
+		You("are hit by chaotic forces!");
+		if (!Unchanging && !Antimagic) {
+		    if (flags.verbose)
+			You("suddenly feel very unstable!");
+		    polyself(FALSE);
+		}
+
+		    switch (rn2(11)) {
+		    case 0: difeasemu(mon->data);
+			    break;
+		    case 1: make_blinded(Blinded + tmp, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.",
+				    Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + tmp, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + tmp, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + tmp, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + tmp, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + tmp, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + tmp, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + tmp, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + tmp, TRUE);
+			    break;
+		    }
+
 		break;
 	  case AD_MAGM:
 	    /* wrath of gods for attacking Oracle */
@@ -6882,6 +7177,19 @@ uchar aatyp;
 		  pline("You got hit by botox spores!");
 		  (void) difeasemu(mon->data); /* plus the normal damage */
 	        break;
+
+        case AD_VOMT:
+
+		if (!rn2(10) || !Sick_resistance) {
+			if (!Vomiting) {
+				make_vomiting(Vomiting+d(10,4), TRUE);
+				pline("You feel nauseated.");
+				if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10);
+			} else if (!rn2(2)) difeasemu(mon->data);
+		}
+
+	  	break;
+
 	  default:
 	    break;
 	}
@@ -7436,6 +7744,43 @@ uchar aatyp;
 
 		}
 	      break;
+
+	    case AD_VAPO:
+
+			pline("Attention, %s - if you continue attacking this monster you will be vaporized.", plname);
+			if (!Disint_resistance) tmp *= 3;
+		    mdamageu(mon, tmp);
+
+		if (!rn2(10))  {
+		if (Disint_resistance && rn2(100)) {
+		    You("are mildly shaked.");
+		    break;
+            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
+                pline("You are unharmed!");
+                break;
+		} else if (uarms) {
+		    /* destroy shield; other possessions are safe */
+		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+		    break;
+		} else if (uarmc) {
+		    /* destroy cloak; other possessions are safe */
+		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+		    break;
+		} else if (uarm) {
+		    /* destroy suit */
+		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+		    break;
+		} else if (uarmu) {
+		    /* destroy shirt */
+		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+		    break;
+		}
+	    done(DIED);
+	    return (malive | mhit); /* lifesaved */
+
+		}
+	      break;
+
 	      case AD_PLYS:
 		if(ptr == &mons[PM_FLOATING_EYE]) {
 		    if (!canseemon(mon)) {
@@ -7490,26 +7835,39 @@ uchar aatyp;
 	      case AD_STUN:		/* specifically yellow mold */
 		    make_stunned(HStun + (long)tmp, TRUE);
 		break;
-	      case AD_NUMB:		
+	      case AD_NUMB:
 		    make_numbed(HNumbed + (long)tmp, TRUE);
 		break;
-	      case AD_FRZE:		
+	      case AD_FRZE:
 		    make_frozen(HFrozen + (long)tmp, TRUE);
 		break;
-	      case AD_FEAR:		
+	      case AD_ICEB:
+			You("are hit by a barrage of ice blocks!");
+		    make_frozen(HFrozen + (long)tmp, TRUE);
+			if (!rn2(issoviet ? 2 : 10)) {
+				destroy_item(POTION_CLASS, AD_COLD);
+			}
+			if (!rn2(20) || !Cold_resistance) mdamageu(mon, tmp);
+		break;
+	      case AD_FEAR:
 		    make_feared(HFeared + (long)tmp, TRUE);
 		break;
-	      case AD_BURN:		
+	      case AD_INSA:
+		    make_feared(HFeared + (long)tmp, TRUE);
+		    make_stunned(HStun + (long)tmp, TRUE);
+		    make_confused(HConfusion + (long)tmp, TRUE);
+		break;
+	      case AD_BURN:
 		    make_burned(HBurned + (long)tmp, TRUE);
 		break;
-	      case AD_DIMN:		
+	      case AD_DIMN:
 		    make_dimmed(HDimmed + (long)tmp, TRUE);
 		break;
-	      case AD_CONF:		
+	      case AD_CONF:
 			 You_feel("confused!");
 		    make_confused(HConfusion + (long)tmp, TRUE);
 		break;
-	      case AD_HALU:		
+	      case AD_HALU:
 			 You("sniff some psychoactive substances!");
 		    make_hallucinated(HHallucination + (long)tmp, TRUE, 0L);
 		break;
@@ -7652,6 +8010,7 @@ uchar aatyp;
 	    break;
 
 	      case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
+		case AD_NGEN:
 		if (mhit) {
 		    struct obj *obj = target;
 
@@ -7718,7 +8077,7 @@ struct attack *mattk;		/* null means we find one internally */
 	/* if caller hasn't specified an object, use uwep, uswapwep or uarmg */
 	if (!obj) {
 	    obj = (u.twoweap && uswapwep && !rn2(2)) ? uswapwep : uwep;
-	    if (!obj && (mattk->adtyp == AD_ENCH || mattk->adtyp == AD_SHRD) )
+	    if (!obj && (mattk->adtyp == AD_ENCH || mattk->adtyp == AD_NGEN || mattk->adtyp == AD_SHRD) )
 		obj = uarmg;		/* no weapon? then must be gloves */
 	    if (!obj) return;		/* no object to affect */
 	}
@@ -7820,6 +8179,15 @@ struct attack *mattk;		/* null means we find one internally */
 	case AD_ENCH:
 	    if (!mon->mcan) {
 		if (drain_item(obj) && carried(obj) &&
+		    (obj->known || obj->oclass == ARMOR_CLASS)) {
+		    Your("%s less effective.", aobjnam(obj, "seem"));
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+	    	}
+	    	break;
+	    }
+	case AD_NGEN:
+	    if (!mon->mcan) {
+		if (drain_item_severely(obj) && carried(obj) &&
 		    (obj->known || obj->oclass == ARMOR_CLASS)) {
 		    Your("%s less effective.", aobjnam(obj, "seem"));
 			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");

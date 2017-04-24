@@ -973,7 +973,7 @@ register struct monst *mtmp;
 		    if (w2) (void)mongets(mtmp, w2);
 		} else if (is_elf(ptr)) {
 
-		    if (mm == PM_ALBAE) { /* don't hand elven bows to them! --Amy */
+		    if (mm == PM_ALBAE || mm == PM_DROW_NOVICE) { /* don't hand elven bows to them! --Amy */
 			(void) mongets(mtmp, ELVEN_CLOAK);
 		    } else if (mm == PM_DROW) {
 			(void) mongets(mtmp, DARK_ELVEN_MITHRIL_COAT);
@@ -12131,7 +12131,7 @@ register int	mmflags;
 
 	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
 
-	if (!rn2( ( (uarmg && uarmg->oartifact == ART_EXPERTENGAME_THE_ENTIRE_LE) ? 10 : (uarmg && uarmg->oartifact == ART_DIFFICULTY__) ? 10 : Race_if(PM_DEVELOPER) ? 25 : Race_if(PM_DROW) ? 100 : 500) ) && allow_special && x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y))  ) {
+	if (!rn2( ( (uarmg && uarmg->oartifact == ART_EXPERTENGAME_THE_ENTIRE_LE) ? 10 : (uarmg && uarmg->oartifact == ART_DIFFICULTY__) ? 10 : Race_if(PM_DEVELOPER) ? 25 : Race_if(PM_DROW) ? 100 : 500) ) && allow_special && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y))  ) {
 		int rtrap;
 
 		rtrap = randomtrap();
@@ -14004,6 +14004,10 @@ register int	mmflags;
 
 		mtmp = christen_monst(mtmp, mtmp->female ? rndplrmonnamefemale() : rndplrmonname() );
 
+	} else if (mndx == PM__S_RAT_MAN || mndx == PM__S_SECRET_CAR || mndx == PM__S_UFO || mndx == PM__S_____NIX) {
+		/* segfault things - somehow only cause crashes if playing on unix?! --Amy */
+		mtmp = christen_monst(mtmp, mtmp->female ? rndplrmonnamefemale() : rndplrmonname() );
+
 	} else if (mndx == PM_NIGHTMARE) {
 		struct obj *otmp;
 
@@ -14271,6 +14275,11 @@ register int	mmflags;
 	}
 
 	if (mndx == PM_SIZZLE || mndx == PM_KATNISS) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
+	if (always_tame(mtmp->data) && peace_minded(mtmp->data) ) {
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		return((struct monst *)0);
 	}
@@ -14678,17 +14687,25 @@ rndmonst()
 	    if (!rn2(1000)) maxmlev *= 4;
 	    if (!rn2(10000)) maxmlev = 127;
 		if (maxmlev > 127) maxmlev = 127; /* maxmlev is an int, but better safe than sorry. --Amy */
+
+		/* In Soviet Russia, things can never be difficult enough. Don't bother the player with weak stuff like newts,
+		 * when we could spawn all kinds of barbazus, chthonians and great wyrms of the elements in Gehennom. --Amy */
 	    if (issoviet && maxmlev > 2) minmlev = (maxmlev / 2);
 
 		if (u.aggravation && rn2(2)) {
 			minmlev += u.ulevel;
-			if (minmlev > 126) minmlev = 126;
-			if (minmlev >= maxmlev) maxmlev = minmlev + 1;
-			if (maxmlev > 127) maxmlev = 127;
 		}
 
-		/* In Soviet Russia, things can never be difficult enough. Don't bother the player with weak stuff like newts,
-		 * when we could spawn all kinds of barbazus, chthonians and great wyrms of the elements in Gehennom. --Amy */
+		if (Role_if(PM_PSION) && u.ulevel >= 7) {
+			minmlev += maxmlev / 5;
+		}
+
+		/* fail safes */
+		if (minmlev > 126) minmlev = 126;
+		if (minmlev >= maxmlev) maxmlev = minmlev + 1;
+		if (maxmlev > 127) maxmlev = 127;
+		if (minmlev < 0) minmlev = 0;
+
 #ifdef REINCARNATION
 	    upper = Is_rogue_level(&u.uz);
 #endif
@@ -14728,6 +14745,228 @@ loopback:
 
 		if (ct > 0 && (ptr->mcolor == u.frequentcolor)) ct += u.freqcolorbonus;
 
+		if (ct > 0 && (In_gehennom(&u.uz) && is_demon(ptr))) ct += 10;
+		if (ct > 0 && (In_gehennom(&u.uz) && dmgtype(ptr, AD_FIRE) )) ct += 1;
+		if (ct > 0 && (In_gehennom(&u.uz) && dmgtype(ptr, AD_BURN) )) ct += 1;
+		if (ct > 0 && (In_gehennom(&u.uz) && dmgtype(ptr, AD_LAVA) )) ct += 1;
+		if (ct > 0 && (In_gehennom(&u.uz) && is_fire_resistant(ptr) )) ct += 1;
+		if (ct > 0 && (In_mines(&u.uz) && (ptr->mlet == S_GNOME) )) ct += 5;
+		if (ct > 0 && (In_mines(&u.uz) && (ptr->mlet == S_HUMANOID) )) ct += 5;
+		if (ct > 0 && (In_mines(&u.uz) && tunnels(ptr) )) ct += 2;
+		if (ct > 0 && (In_sheol(&u.uz) && is_cold_resistant(ptr) )) ct += 5;
+		if (ct > 0 && (In_sheol(&u.uz) && dmgtype(ptr, AD_COLD) )) ct += 5;
+		if (ct > 0 && (In_sheol(&u.uz) && dmgtype(ptr, AD_FRZE) )) ct += 5;
+		if (ct > 0 && (In_sheol(&u.uz) && dmgtype(ptr, AD_ICEB) )) ct += 2;
+		if (ct > 0 && (In_towndungeon(&u.uz) && is_angbandmonster(ptr) )) ct += 5;
+		if (ct > 0 && (In_towndungeon(&u.uz) && is_steammonster(ptr) )) ct += 1;
+		if (ct > 0 && (In_towndungeon(&u.uz) && is_animemonster(ptr) )) ct += 1;
+		if (ct > 0 && (In_spiders(&u.uz) && webmaker(ptr) )) ct += 10;
+		if (ct > 0 && (Is_lawful_quest(&u.uz) && dmgtype(ptr, AD_SPC2) )) ct += 1;
+		if (ct > 0 && (Is_lawful_quest(&u.uz) && is_covetous(ptr) )) ct += 2;
+		if (ct > 0 && (Is_lawful_quest(&u.uz) && cannot_be_tamed(ptr) )) ct += 1;
+		if (ct > 0 && (Is_lawful_quest(&u.uz) && is_shade(ptr) )) ct += 2;
+		if (ct > 0 && (Is_lawful_quest(&u.uz) && dmgtype(ptr, AD_RBRE) )) ct += 2;
+		if (ct > 0 && (Is_neutral_quest(&u.uz) && (ptr->mlet == S_EYE) )) ct += 5;
+		if (ct > 0 && (Is_chaotic_quest(&u.uz) && (ptr->mlet == S_LICH) )) ct += 2;
+		if (ct > 0 && (Is_chaotic_quest(&u.uz) && (ptr->mlet == S_VAMPIRE) )) ct += 2;
+		if (ct > 0 && (Is_chaotic_quest(&u.uz) && (ptr->mlet == S_WRAITH) )) ct += 2;
+		if (ct > 0 && (Is_chaotic_quest(&u.uz) && (ptr->mlet == S_ZOMBIE) )) ct += 2;
+		if (ct > 0 && (In_grund(&u.uz) && (ptr->mlet == S_ORC) )) ct += 5;
+		if (ct > 0 && (In_wyrm(&u.uz) && (ptr->mlet == S_DRAGON) )) ct += 5;
+		if (ct > 0 && (In_wyrm(&u.uz) && attacktype(ptr, AT_BREA) )) ct += 5;
+		if (ct > 0 && (In_wyrm(&u.uz) && dmgtype(ptr, AD_DISE) )) ct += 3;
+		if (ct > 0 && (In_tomb(&u.uz) && is_undead(ptr) )) ct += 10;
+		if (ct > 0 && (In_slsea(&u.uz) && (ptr->mlet == S_EEL) )) ct += 20;
+		if (ct > 0 && (In_slsea(&u.uz) && dmgtype(ptr, AD_WRAP) )) ct += 5;
+		if (ct > 0 && (In_mtemple(&u.uz) && dmgtype(ptr, AD_CLRC) )) ct += 7;
+		if (ct > 0 && (In_gcavern(&u.uz) && (ptr->mlet == S_GIANT) )) ct += 5;
+		if (ct > 0 && (In_gcavern(&u.uz) && throws_rocks(ptr) )) ct += 5;
+		if (ct > 0 && (In_gcavern(&u.uz) && hugemonst(ptr) )) ct += 3;
+		if (ct > 0 && (In_frnkn(&u.uz) && dmgtype(ptr, AD_POLY) )) ct += 2;
+		if (ct > 0 && (In_frnkn(&u.uz) && (ptr->mlet == S_GOLEM) )) ct += 2;
+
+		if (ct > 0 && (Role_if(PM_ACTIVISTOR) && always_hostile(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_ALTMER) && is_reflector(ptr))) ct += 3;
+		if (ct > 0 && (Role_if(PM_AMAZON) && is_diablomonster(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_AMAZON) && attacktype(ptr, AT_CLAW) )) ct += 1;
+		if (ct > 0 && (Role_if(PM_ANACHRONIST) && is_dnethackmonster(ptr))) ct += 10;
+		if (ct > 0 && (Role_if(PM_ARCHEOLOGIST) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_ARTIST) && attacktype(ptr, AT_GAZE))) ct += 2;
+		if (ct > 0 && (Role_if(PM_ASSASSIN) && is_diablomonster(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_BARBARIAN) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_BARBARIAN) && is_diablomonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_BINDER) && is_dnethackmonster(ptr))) ct += 10;
+		if (ct > 0 && (Role_if(PM_BINDER) && extra_nasty(ptr))) ct += 2;
+		if (ct > 0 && (Role_if(PM_BINDER) && is_undead(ptr))) ct += 2;
+		if (ct > 0 && (Role_if(PM_BLEEDER) && (ptr->msound == MS_SHOE))) ct += 10;
+		if (ct > 0 && (Role_if(PM_BLOODSEEKER) && has_blood(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_CAMPERSTRIKER) && is_cowmonster(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_CAMPERSTRIKER) && is_jokemonster(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_CAVEMAN) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_CHEVALIER) && dmgtype(ptr, AD_ICUR))) ct += 1;
+		if (ct > 0 && (Role_if(PM_CONVICT) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_CONVICT) && (ptr->msound == MS_ARREST))) ct += 2;
+		if (ct > 0 && (Role_if(PM_COURIER) && is_animal(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_CRUEL_ABUSER) && cannot_be_tamed(ptr))) ct += 3;
+		if (ct > 0 && (Role_if(PM_DOLL_MISTRESS) && is_animemonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_DOOM_MARINE) && attacktype(ptr, AT_BEAM))) ct += 5;
+		if (ct > 0 && (Role_if(PM_DQ_SLIME) && verysmall(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_DRUID) && is_diablomonster(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_ERDRICK) && is_multihued(ptr))) ct += 10;
+		if (ct > 0 && (Role_if(PM_FAILED_EXISTENCE) && (ptr->msound == MS_SHOE))) ct += 5;
+		if (ct > 0 && (Role_if(PM_FIREFIGHTER) && is_fire_resistant(ptr))) ct += 2;
+		if (ct > 0 && (Role_if(PM_FLAME_MAGE) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_GLADIATOR) && is_animal(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_GLADIATOR) && humanoid(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_GOFF) && (ptr->msound == MS_CUSS))) ct += 2;
+		if (ct > 0 && (Role_if(PM_HEALER) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_ICE_MAGE) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_JEDI) && is_cowmonster(ptr))) ct += 2;
+		if (ct > 0 && (Role_if(PM_JEDI) && is_jokemonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_KNIGHT) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_KNIGHT) && (ptr->msound == MS_NEIGH))) ct += 2;
+		if (ct > 0 && (Role_if(PM_LADIESMAN) && (ptr->msound == MS_FART_NORMAL))) ct += 10;
+		if (ct > 0 && (Role_if(PM_LADIESMAN) && (ptr->msound == MS_FART_QUIET))) ct += 10;
+		if (ct > 0 && (Role_if(PM_LADIESMAN) && (ptr->msound == MS_FART_LOUD))) ct += 10;
+		if (ct > 0 && (Role_if(PM_LADIESMAN) && (ptr->msound == MS_WHORE))) ct += 25;
+		if (ct > 0 && (Role_if(PM_MAHOU_SHOUJO) && is_animemonster(ptr))) ct += 10;
+		if (ct > 0 && (Role_if(PM_MEDIUM) && dmgtype(ptr, AD_SPC2))) ct += 2;
+		if (ct > 0 && (Role_if(PM_MEDIUM) && is_mind_flayer(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_MONK) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_MURDERER) && (ptr->msound == MS_ARREST))) ct += 5;
+		if (ct > 0 && (Role_if(PM_NECROMANCER) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_NECROMANCER) && is_diablomonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_NECROMANCER) && is_undead(ptr))) ct += 2;
+		if (ct > 0 && (Role_if(PM_NOBLEMAN) && is_dnethackmonster(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_OCCULT_MASTER) && is_dlordsmonster(ptr))) ct += 3;
+		if (ct > 0 && (Role_if(PM_OFFICER) && always_hostile(ptr))) ct += 2;
+		if (ct > 0 && (Role_if(PM_OTAKU) && is_animemonster(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_PALADIN) && is_diablomonster(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_PIRATE) && is_dnethackmonster(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_POKEMON) && is_pokemon(ptr))) ct += 10;
+		if (ct > 0 && (Role_if(PM_PRIEST) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_PSION) && extra_nasty(ptr))) ct += 2;
+		if (ct > 0 && (Role_if(PM_PSION) && is_covetous(ptr))) ct += 10;
+		if (ct > 0 && (Role_if(PM_PSION) && is_reviver(ptr))) ct += 3;
+		if (ct > 0 && (Role_if(PM_PSION) && is_reflector(ptr))) ct += 3;
+		if (ct > 0 && (Role_if(PM_PSION) && attacktype(ptr, AT_MAGC))) ct += 5;
+		if (ct > 0 && (Role_if(PM_PSION) && passes_walls(ptr))) ct += 3;	
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_SPC2))) ct += 3;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_SSEX))) ct += 5;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_DETH))) ct += 1;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_FAMN))) ct += 1;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_PEST))) ct += 1;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_SLIM))) ct += 3;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_WTHR))) ct += 5;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_NPRO))) ct += 1;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_LETH))) ct += 2;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_CNCL))) ct += 3;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_BANI))) ct += 5;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_SUCK))) ct += 2;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_UVUU))) ct += 7;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_STTP))) ct += 5;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_WRAT))) ct += 2;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_DFOO))) ct += 2;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_NAST))) ct += 5;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_AMNE))) ct += 3;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_CURS))) ct += 20;
+		if (ct > 0 && (Role_if(PM_RANGER) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_ROCKER) && is_ston_resistant(ptr))) ct += 2;
+		if (ct > 0 && (Role_if(PM_ROGUE) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_ROGUE) && has_head(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_SAGE) && is_undead(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_SAIYAN) && is_animemonster(ptr))) ct += 2;
+		if (ct > 0 && (Role_if(PM_SAMURAI) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_SHAPESHIFTER) && extra_nasty(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_SHAPESHIFTER) && is_covetous(ptr))) ct += 3;
+		if (ct > 0 && (Role_if(PM_SHAPESHIFTER) && dmgtype(ptr, AD_SLIM))) ct += 2;
+		if (ct > 0 && (Role_if(PM_SHAPESHIFTER) && dmgtype(ptr, AD_CNCL))) ct += 1;
+		if (ct > 0 && (Role_if(PM_SHAPESHIFTER) && dmgtype(ptr, AD_STTP))) ct += 2;
+		if (ct > 0 && (Role_if(PM_SHAPESHIFTER) && dmgtype(ptr, AD_NAST))) ct += 20;
+		if (ct > 0 && (Role_if(PM_SLAVE_MASTER) && is_domestic(ptr))) ct += 2;
+		if (ct > 0 && (Role_if(PM_SPACEWARS_FIGHTER) && is_cowmonster(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_SPACEWARS_FIGHTER) && is_jokemonster(ptr))) ct += 3;
+		if (ct > 0 && (Role_if(PM_SUPERMARKET_CASHIER) && likes_gold(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_TOPMODEL) && (ptr->msound == MS_SHOE))) ct += 5;
+		if (ct > 0 && (Role_if(PM_TOURIST) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_TOURIST) && haseyes(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_TRANSSYLVANIAN) && (ptr->msound == MS_SHOE))) ct += 5;
+		if (ct > 0 && (Role_if(PM_TRANSSYLVANIAN) && dmgtype(ptr, AD_NAST))) ct += 5;
+		if (ct > 0 && (Role_if(PM_TRANSVESTITE) && (ptr->msound == MS_SHOE))) ct += 5;
+		if (ct > 0 && (Role_if(PM_UNBELIEVER) && is_angbandmonster(ptr))) ct += 10;
+		if (ct > 0 && (Role_if(PM_UNBELIEVER) && is_steammonster(ptr))) ct += 2;
+		if (ct > 0 && (Role_if(PM_UNDEAD_SLAYER) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_UNDEAD_SLAYER) && is_undead(ptr))) ct += 10;
+		if (ct > 0 && (Role_if(PM_UNDERTAKER) && is_undead(ptr))) ct += 20;
+		if (ct > 0 && (Role_if(PM_STAND_USER) && amorphous(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_VALKYRIE) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_WANDKEEPER) && is_poison_resistant(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_WARRIOR) && is_dlordsmonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_WILD_TALENT) && is_angbandmonster(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_WILD_TALENT) && is_steammonster(ptr))) ct += 5;
+		if (ct > 0 && (Role_if(PM_WILD_TALENT) && is_animemonster(ptr))) ct += 3;
+		if (ct > 0 && (Role_if(PM_WIZARD) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_YEOMAN) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Role_if(PM_YEOMAN) && is_domestic(ptr))) ct += 2;
+		if (ct > 0 && (Role_if(PM_ZOOKEEPER) && is_domestic(ptr))) ct += 20;
+		if (ct > 0 && (Race_if(PM_AK_THIEF_IS_DEAD_) && is_cowmonster(ptr))) ct += 10;
+		if (ct > 0 && (Race_if(PM_AK_THIEF_IS_DEAD_) && is_jokemonster(ptr))) ct += 10;
+		if (ct > 0 && (Race_if(PM_ALCHEMIST) && is_covetous(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_ALCHEMIST) && extra_nasty(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_ANGBANDER) && is_angbandmonster(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_ANGBANDER) && is_steammonster(ptr))) ct += 3;
+		if (ct > 0 && (Race_if(PM_ANGBANDER) && is_animemonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_HUMANOID_ANGEL) && is_demon(ptr))) ct += 10;
+		if (ct > 0 && (Race_if(PM_HUMANOID_ANGEL) && always_hostile(ptr))) ct += 4;
+		if (ct > 0 && (Race_if(PM_HUMANOID_ANGEL) && extra_nasty(ptr))) ct += 1;
+		if (ct > 0 && (isaquarian && is_swimmer(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_BATMAN) && is_neuter(ptr))) ct += 20;
+		if (ct > 0 && (Race_if(PM_BATMAN) && is_animal(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_CHIROPTERAN) && is_dnethackmonster(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_CLOCKWORK_AUTOMATON) && is_dnethackmonster(ptr))) ct += 3;
+		if (ct > 0 && (Race_if(PM_CLOCKWORK_AUTOMATON) && always_peaceful(ptr))) ct += 2;
+		if (ct > 0 && (Race_if(PM_CORTEX) && unsolid(ptr))) ct += 2;
+		if (ct > 0 && (Race_if(PM_CORTEX) && nolimbs(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_DEATHMOLD) && is_angbandmonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_DEATHMOLD) && is_steammonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_DEATHMOLD) && is_animemonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_DOPPELGANGER) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_DROW) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_DWARF) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_ELF) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_GNOME) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_PLAYER_GREMLIN) && dmgtype(ptr, AD_DARK))) ct += 3;
+		if (ct > 0 && (Race_if(PM_HERBALIST) && is_covetous(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_HERBALIST) && extra_nasty(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_HOBBIT) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_HUMAN) && is_vanillamonster(ptr))) ct += 2;
+		if (ct > 0 && (Race_if(PM_IMMUNIZER) && dmgtype(ptr, AD_CURS))) ct += 7;
+		if (ct > 0 && (Race_if(PM_INCANTIFIER) && is_dnethackmonster(ptr))) ct += 3;
+		if (ct > 0 && (Race_if(PM_INKA) && is_elf(ptr))) ct += 3;
+		if (ct > 0 && (Race_if(PM_INSECTOID) && (ptr->msound == MS_BUZZ))) ct += 4;
+		if (ct > 0 && (Race_if(PM_KOP) && always_tame(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_HUMAN_WEREWOLF) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_MISSINGNO) && is_pokemon(ptr))) ct += 3;
+		if (ct > 0 && (Race_if(PM_NAVI) && (ptr->msound == MS_SHOE))) ct += 2;
+		if (ct > 0 && (Race_if(PM_ORC) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_PEACEMAKER) && always_hostile(ptr))) ct += 3;
+		if (ct > 0 && (Race_if(PM_PEACEMAKER) && cannot_be_tamed(ptr))) ct += 2;
+		if (ct > 0 && (isrougelike && is_vanillamonster(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_SINNER) && dmgtype(ptr, AD_SSEX))) ct += 2;
+		if (ct > 0 && (Race_if(PM_SKILLOR) && dmgtype(ptr, AD_SKIL))) ct += 5;
+		if (ct > 0 && (issoviet && is_vanillamonster(ptr))) ct += 20;
+		if (ct > 0 && (Race_if(PM_SPIRIT) && passes_walls(ptr))) ct += 2;
+		if (ct > 0 && (Race_if(PM_WEAPON_TRAPPER) && dmgtype(ptr, AD_WEBS))) ct += 2;
+		if (ct > 0 && (Race_if(PM_UNALIGNMENT_THING) && is_dnethackmonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_VAMPIRE) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_VENTURE_CAPITALIST) && likes_gold(ptr))) ct += 4;
+		if (ct > 0 && (Race_if(PM_VORTEX) && unsolid(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_VORTEX) && nolimbs(ptr))) ct += 12;
+		if (ct > 0 && (iswindinhabitant && is_cowmonster(ptr))) ct += 5;
+		if (ct > 0 && (iswindinhabitant && is_jokemonster(ptr))) ct += 2;
+		if (ct > 0 && (Race_if(PM_WORM_THAT_WALKS) && is_dnethackmonster(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_YUKI_PLAYA) && is_dnethackmonster(ptr))) ct += 5;
+
 		if (ct > 0 && (mndx == u.frequentspecies)) ct += u.freqspeciesbonus;
 		if (ct > 0 && (mndx == u.frequentspecies2)) ct += u.freqspeciesbonus2;
 		if (ct > 0 && (mndx == u.frequentspecies3)) ct += u.freqspeciesbonus3;
@@ -14738,16 +14977,16 @@ loopback:
 		if (ct > 0 && (mndx == u.frequentspecies8)) ct += u.freqspeciesbonus8;
 		if (ct > 0 && (mndx == u.frequentspecies9)) ct += u.freqspeciesbonus9;
 		if (ct > 0 && (mndx == u.frequentspecies10)) ct += u.freqspeciesbonus10;
-		if (ct > 0 && (mndx == u.frequentspecies11)) ct += u.freqspeciesbonus;
-		if (ct > 0 && (mndx == u.frequentspecies12)) ct += u.freqspeciesbonus2;
-		if (ct > 0 && (mndx == u.frequentspecies13)) ct += u.freqspeciesbonus3;
-		if (ct > 0 && (mndx == u.frequentspecies14)) ct += u.freqspeciesbonus4;
-		if (ct > 0 && (mndx == u.frequentspecies15)) ct += u.freqspeciesbonus5;
-		if (ct > 0 && (mndx == u.frequentspecies16)) ct += u.freqspeciesbonus6;
-		if (ct > 0 && (mndx == u.frequentspecies17)) ct += u.freqspeciesbonus7;
-		if (ct > 0 && (mndx == u.frequentspecies18)) ct += u.freqspeciesbonus8;
-		if (ct > 0 && (mndx == u.frequentspecies19)) ct += u.freqspeciesbonus9;
-		if (ct > 0 && (mndx == u.frequentspecies20)) ct += u.freqspeciesbonus10;
+		if (ct > 0 && (mndx == u.frequentspecies11)) ct += u.freqspeciesbonus11;
+		if (ct > 0 && (mndx == u.frequentspecies12)) ct += u.freqspeciesbonus12;
+		if (ct > 0 && (mndx == u.frequentspecies13)) ct += u.freqspeciesbonus13;
+		if (ct > 0 && (mndx == u.frequentspecies14)) ct += u.freqspeciesbonus14;
+		if (ct > 0 && (mndx == u.frequentspecies15)) ct += u.freqspeciesbonus15;
+		if (ct > 0 && (mndx == u.frequentspecies16)) ct += u.freqspeciesbonus16;
+		if (ct > 0 && (mndx == u.frequentspecies17)) ct += u.freqspeciesbonus17;
+		if (ct > 0 && (mndx == u.frequentspecies18)) ct += u.freqspeciesbonus18;
+		if (ct > 0 && (mndx == u.frequentspecies19)) ct += u.freqspeciesbonus19;
+		if (ct > 0 && (mndx == u.frequentspecies20)) ct += u.freqspeciesbonus20;
 
 		if (ct > 0 && (mndx == urole.nemesnum)) ct += 100;
 
@@ -14889,6 +15128,7 @@ int     spc;
 	int uncommonfive = 0;
 	int uncommonseven = 0;
 	int uncommonten = 0;
+	int minmlev = 0;
 
 	if (!issoviet) {
 		uncommontwo = rn2(2) ? 1 : 0;
@@ -14959,6 +15199,19 @@ int     spc;
 	int bonuslevel;
 	boolean calctype;
 
+	bonuslevel = 0;
+	if (!rn2(5)) bonuslevel += rnd(5);
+	if (!rn2(20)) bonuslevel += rnd(7);
+	if (!rn2(100)) bonuslevel += rnd(10);
+	if (!rn2(500)) bonuslevel += rnd(15);
+	if (!rn2(2500)) bonuslevel += rnd(20);
+	if (!rn2(20000)) bonuslevel += rnd(30);
+	if (!rn2(50000)) bonuslevel += rnd(50);
+	if (!rn2(100000)) bonuslevel += rnd(100);
+
+	if (rn2(5)) calctype = 1;
+	else calctype = 0;
+
 	/*maxmlev = level_difficulty() >> 1;*/ /* what the heck? does that divide the actual result by 2?! --Amy */
 	  maxmlev = monster_difficulty();
 	    if (!rn2(100)) maxmlev *= 2;
@@ -14973,17 +15226,32 @@ int     spc;
 	    return(-1);
 	}
 
+	minmlev = 0;
+
+	if (issoviet && maxmlev > 2) minmlev = (maxmlev / 2);
+
+	if (u.aggravation && rn2(2)) {
+		minmlev += u.ulevel;
+	}
+
+	if (Role_if(PM_PSION) && u.ulevel >= 7) {
+		minmlev += maxmlev / 5;
+	}
+
+	/* fail safes */
+	if (minmlev > 126) minmlev = 126;
+	if (minmlev >= maxmlev) maxmlev = minmlev + 1;
+	if (maxmlev > 127) maxmlev = 127;
+	if (minmlev < 0) minmlev = 0;
+
 	/*pline("max spawn level %d",maxmlev);*/
 
 /*	Assumption #1:	monsters of a given class are contiguous in the
  *			mons[] array.
  */
 	for (first = LOW_PM; first < SPECIAL_PM; first++)
-	    if (mons[first].mlet == class) break;
+	    if (mons[first].mlet == class && !tooweak(first, minmlev) ) break;
 	if (first == SPECIAL_PM) return (-1);
-
-	if (rn2(5)) calctype = 1;
-	else calctype = 0;
 
 	for (last = first;
 		last < SPECIAL_PM && mons[last].mlet == class; last++)
@@ -15004,6 +15272,8 @@ int     spc;
 					&& !(uncommonnewfortyfive && monstr[last] >= 45 && monstr[last] < 50 )
 					&& !(uncommonnewfifty && monstr[last] >= 50 && monstr[last] < 60 )
 					&& !(uncommonnewsixty && monstr[last] >= 60 && monstr[last] < 70 )
+					&& !(calctype && toostrong(last, (maxmlev + bonuslevel) ) ) 
+					&& !(!calctype && (mons[last].mlevel > (maxmlev + bonuslevel)) ) 
 					&& !(uncommonnewseventy && monstr[last] >= 70 )
 					&& (last != u.nospawnspecies) && (last != u.nospawnspecies2) && (last != u.nospawnspecies3) && (last != u.nospawnspecies4) && (last != u.nospawnspecies5) && (last != u.nospawnspecies6) && (last != u.nospawnspecies7) && (last != u.nospawnspecies8) && (last != u.nospawnspecies9) && (last != u.nospawnspecies10)
 
@@ -15011,18 +15281,9 @@ int     spc;
 		/* consider it */
 		/*if(spc & MKC_ULIMIT && toostrong(last, 4 * maxmlev)) break;*/
 
-		bonuslevel = 0;
-		if (!rn2(5)) bonuslevel += rnd(5);
-		if (!rn2(20)) bonuslevel += rnd(7);
-		if (!rn2(100)) bonuslevel += rnd(10);
-		if (!rn2(500)) bonuslevel += rnd(15);
-		if (!rn2(2500)) bonuslevel += rnd(20);
-		if (!rn2(20000)) bonuslevel += rnd(30);
-		if (!rn2(50000)) bonuslevel += rnd(50);
-		if (!rn2(100000)) bonuslevel += rnd(100);
-
-		if(num && (calctype ? toostrong(last, (maxmlev + bonuslevel) ) : mons[last].mlevel > (maxmlev + bonuslevel) ) &&
-		   monstr[last] != monstr[last-1]) break;
+		/* too strong calculation shifted to above, so we can finally stop caring about the order in monst.c --Amy */
+/*		if(num && (calctype ? toostrong(last, (maxmlev + bonuslevel) ) : mons[last].mlevel > (maxmlev + bonuslevel) ) &&
+		   monstr[last] != monstr[last-1]) break; */
 
 		num += mons[last].geno & G_FREQ;
 		if (last == u.frequentspecies) num += u.freqspeciesbonus;
@@ -15035,17 +15296,227 @@ int     spc;
 		if (last == u.frequentspecies8) num += u.freqspeciesbonus8;
 		if (last == u.frequentspecies9) num += u.freqspeciesbonus9;
 		if (last == u.frequentspecies10) num += u.freqspeciesbonus10;
-		if (last == u.frequentspecies11) num += u.freqspeciesbonus;
-		if (last == u.frequentspecies12) num += u.freqspeciesbonus2;
-		if (last == u.frequentspecies13) num += u.freqspeciesbonus3;
-		if (last == u.frequentspecies14) num += u.freqspeciesbonus4;
-		if (last == u.frequentspecies15) num += u.freqspeciesbonus5;
-		if (last == u.frequentspecies16) num += u.freqspeciesbonus6;
-		if (last == u.frequentspecies17) num += u.freqspeciesbonus7;
-		if (last == u.frequentspecies18) num += u.freqspeciesbonus8;
-		if (last == u.frequentspecies19) num += u.freqspeciesbonus9;
-		if (last == u.frequentspecies20) num += u.freqspeciesbonus10;
+		if (last == u.frequentspecies11) num += u.freqspeciesbonus11;
+		if (last == u.frequentspecies12) num += u.freqspeciesbonus12;
+		if (last == u.frequentspecies13) num += u.freqspeciesbonus13;
+		if (last == u.frequentspecies14) num += u.freqspeciesbonus14;
+		if (last == u.frequentspecies15) num += u.freqspeciesbonus15;
+		if (last == u.frequentspecies16) num += u.freqspeciesbonus16;
+		if (last == u.frequentspecies17) num += u.freqspeciesbonus17;
+		if (last == u.frequentspecies18) num += u.freqspeciesbonus18;
+		if (last == u.frequentspecies19) num += u.freqspeciesbonus19;
+		if (last == u.frequentspecies20) num += u.freqspeciesbonus20;
 		if (mons[last].mcolor == u.frequentcolor) num += u.freqcolorbonus;
+
+		if ((In_gehennom(&u.uz) && is_demon(&mons[last]))) num += 10;
+		if ((In_gehennom(&u.uz) && dmgtype(&mons[last], AD_FIRE) )) num += 1;
+		if ((In_gehennom(&u.uz) && dmgtype(&mons[last], AD_BURN) )) num += 1;
+		if ((In_gehennom(&u.uz) && dmgtype(&mons[last], AD_LAVA) )) num += 1;
+		if ((In_gehennom(&u.uz) && is_fire_resistant(&mons[last]) )) num += 1;
+		if ((In_mines(&u.uz) && tunnels(&mons[last]) )) num += 2;
+		if ((In_sheol(&u.uz) && is_cold_resistant(&mons[last]) )) num += 5;
+		if ((In_sheol(&u.uz) && dmgtype(&mons[last], AD_COLD) )) num += 5;
+		if ((In_sheol(&u.uz) && dmgtype(&mons[last], AD_FRZE) )) num += 5;
+		if ((In_sheol(&u.uz) && dmgtype(&mons[last], AD_ICEB) )) num += 2;
+		if ((In_towndungeon(&u.uz) && is_angbandmonster(&mons[last]) )) num += 5;
+		if ((In_towndungeon(&u.uz) && is_steammonster(&mons[last]) )) num += 1;
+		if ((In_towndungeon(&u.uz) && is_animemonster(&mons[last]) )) num += 1;
+		if ((In_spiders(&u.uz) && webmaker(&mons[last]) )) num += 10;
+		if ((Is_lawful_quest(&u.uz) && dmgtype(&mons[last], AD_SPC2) )) num += 1;
+		if ((Is_lawful_quest(&u.uz) && is_covetous(&mons[last]) )) num += 2;
+		if ((Is_lawful_quest(&u.uz) && cannot_be_tamed(&mons[last]) )) num += 1;
+		if ((Is_lawful_quest(&u.uz) && is_shade(&mons[last]) )) num += 2;
+		if ((Is_lawful_quest(&u.uz) && dmgtype(&mons[last], AD_RBRE) )) num += 2;
+		if ((In_wyrm(&u.uz) && attacktype(&mons[last], AT_BREA) )) num += 5;
+		if ((In_wyrm(&u.uz) && dmgtype(&mons[last], AD_DISE) )) num += 3;
+		if ((In_tomb(&u.uz) && is_undead(&mons[last]) )) num += 10;
+		if ((In_slsea(&u.uz) && dmgtype(&mons[last], AD_WRAP) )) num += 5;
+		if ((In_mtemple(&u.uz) && dmgtype(&mons[last], AD_CLRC) )) num += 7;
+		if ((In_gcavern(&u.uz) && throws_rocks(&mons[last]) )) num += 5;
+		if ((In_gcavern(&u.uz) && hugemonst(&mons[last]) )) num += 3;
+		if ((In_frnkn(&u.uz) && dmgtype(&mons[last], AD_POLY) )) num += 2;
+
+		if ((Role_if(PM_ACTIVISTOR) && always_hostile(&mons[last]))) num += 5;
+		if ((Role_if(PM_ALTMER) && is_reflector(&mons[last]))) num += 3;
+		if ((Role_if(PM_AMAZON) && is_diablomonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_AMAZON) && attacktype(&mons[last], AT_CLAW) )) num += 1;
+		if ((Role_if(PM_ANACHRONIST) && is_dnethackmonster(&mons[last]))) num += 10;
+		if ((Role_if(PM_ARCHEOLOGIST) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_ARTIST) && attacktype(&mons[last], AT_GAZE))) num += 2;
+		if ((Role_if(PM_ASSASSIN) && is_diablomonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_BARBARIAN) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_BARBARIAN) && is_diablomonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_BINDER) && is_dnethackmonster(&mons[last]))) num += 10;
+		if ((Role_if(PM_BINDER) && extra_nasty(&mons[last]))) num += 2;
+		if ((Role_if(PM_BINDER) && is_undead(&mons[last]))) num += 2;
+		if ((Role_if(PM_BLEEDER) && (mons[last].msound == MS_SHOE))) num += 10;
+		if ((Role_if(PM_BLOODSEEKER) && has_blood(&mons[last]))) num += 1;
+		if ((Role_if(PM_CAMPERSTRIKER) && is_cowmonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_CAMPERSTRIKER) && is_jokemonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_CAVEMAN) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_CHEVALIER) && dmgtype(&mons[last], AD_ICUR))) num += 1;
+		if ((Role_if(PM_CONVICT) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_CONVICT) && (mons[last].msound == MS_ARREST))) num += 2;
+		if ((Role_if(PM_COURIER) && is_animal(&mons[last]))) num += 1;
+		if ((Role_if(PM_CRUEL_ABUSER) && cannot_be_tamed(&mons[last]))) num += 3;
+		if ((Role_if(PM_DOLL_MISTRESS) && is_animemonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_DOOM_MARINE) && attacktype(&mons[last], AT_BEAM))) num += 5;
+		if ((Role_if(PM_DQ_SLIME) && verysmall(&mons[last]))) num += 5;
+		if ((Role_if(PM_DRUID) && is_diablomonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_ERDRICK) && is_multihued(&mons[last]))) num += 10;
+		if ((Role_if(PM_FAILED_EXISTENCE) && (mons[last].msound == MS_SHOE))) num += 5;
+		if ((Role_if(PM_FIREFIGHTER) && is_fire_resistant(&mons[last]))) num += 2;
+		if ((Role_if(PM_FLAME_MAGE) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_GLADIATOR) && is_animal(&mons[last]))) num += 1;
+		if ((Role_if(PM_GLADIATOR) && humanoid(&mons[last]))) num += 1;
+		if ((Role_if(PM_GOFF) && (mons[last].msound == MS_CUSS))) num += 2;
+		if ((Role_if(PM_HEALER) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_ICE_MAGE) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_JEDI) && is_cowmonster(&mons[last]))) num += 2;
+		if ((Role_if(PM_JEDI) && is_jokemonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_KNIGHT) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_KNIGHT) && (mons[last].msound == MS_NEIGH))) num += 2;
+		if ((Role_if(PM_LADIESMAN) && (mons[last].msound == MS_FART_NORMAL))) num += 10;
+		if ((Role_if(PM_LADIESMAN) && (mons[last].msound == MS_FART_QUIET))) num += 10;
+		if ((Role_if(PM_LADIESMAN) && (mons[last].msound == MS_FART_LOUD))) num += 10;
+		if ((Role_if(PM_LADIESMAN) && (mons[last].msound == MS_WHORE))) num += 25;
+		if ((Role_if(PM_MAHOU_SHOUJO) && is_animemonster(&mons[last]))) num += 10;
+		if ((Role_if(PM_MEDIUM) && dmgtype(&mons[last], AD_SPC2))) num += 2;
+		if ((Role_if(PM_MEDIUM) && is_mind_flayer(&mons[last]))) num += 1;
+		if ((Role_if(PM_MONK) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_MURDERER) && (mons[last].msound == MS_ARREST))) num += 5;
+		if ((Role_if(PM_NECROMANCER) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_NECROMANCER) && is_diablomonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_NECROMANCER) && is_undead(&mons[last]))) num += 2;
+		if ((Role_if(PM_NOBLEMAN) && is_dnethackmonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_OCCULT_MASTER) && is_dlordsmonster(&mons[last]))) num += 3;
+		if ((Role_if(PM_OFFICER) && always_hostile(&mons[last]))) num += 2;
+		if ((Role_if(PM_OTAKU) && is_animemonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_PALADIN) && is_diablomonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_PIRATE) && is_dnethackmonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_POKEMON) && is_pokemon(&mons[last]))) num += 10;
+		if ((Role_if(PM_PRIEST) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_PSION) && extra_nasty(&mons[last]))) num += 2;
+		if ((Role_if(PM_PSION) && is_covetous(&mons[last]))) num += 10;
+		if ((Role_if(PM_PSION) && is_reviver(&mons[last]))) num += 3;
+		if ((Role_if(PM_PSION) && is_reflector(&mons[last]))) num += 3;
+		if ((Role_if(PM_PSION) && attacktype(&mons[last], AT_MAGC))) num += 5;
+		if ((Role_if(PM_PSION) && passes_walls(&mons[last]))) num += 3;	
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_SPC2))) num += 3;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_SSEX))) num += 5;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_DETH))) num += 1;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_FAMN))) num += 1;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_PEST))) num += 1;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_SLIM))) num += 3;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_WTHR))) num += 5;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_NPRO))) num += 1;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_LETH))) num += 2;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_CNCL))) num += 3;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_BANI))) num += 5;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_SUCK))) num += 2;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_UVUU))) num += 7;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_STTP))) num += 5;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_WRAT))) num += 2;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_DFOO))) num += 2;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_NAST))) num += 5;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_AMNE))) num += 3;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_CURS))) num += 20;
+		if ((Role_if(PM_RANGER) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_ROCKER) && is_ston_resistant(&mons[last]))) num += 2;
+		if ((Role_if(PM_ROGUE) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_ROGUE) && has_head(&mons[last]))) num += 1;
+		if ((Role_if(PM_SAGE) && is_undead(&mons[last]))) num += 1;
+		if ((Role_if(PM_SAIYAN) && is_animemonster(&mons[last]))) num += 2;
+		if ((Role_if(PM_SAMURAI) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_SHAPESHIFTER) && extra_nasty(&mons[last]))) num += 1;
+		if ((Role_if(PM_SHAPESHIFTER) && is_covetous(&mons[last]))) num += 3;
+		if ((Role_if(PM_SHAPESHIFTER) && dmgtype(&mons[last], AD_SLIM))) num += 2;
+		if ((Role_if(PM_SHAPESHIFTER) && dmgtype(&mons[last], AD_CNCL))) num += 1;
+		if ((Role_if(PM_SHAPESHIFTER) && dmgtype(&mons[last], AD_STTP))) num += 2;
+		if ((Role_if(PM_SHAPESHIFTER) && dmgtype(&mons[last], AD_NAST))) num += 20;
+		if ((Role_if(PM_SLAVE_MASTER) && is_domestic(&mons[last]))) num += 2;
+		if ((Role_if(PM_SPACEWARS_FIGHTER) && is_cowmonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_SPACEWARS_FIGHTER) && is_jokemonster(&mons[last]))) num += 3;
+		if ((Role_if(PM_SUPERMARKET_CASHIER) && likes_gold(&mons[last]))) num += 5;
+		if ((Role_if(PM_TOPMODEL) && (mons[last].msound == MS_SHOE))) num += 5;
+		if ((Role_if(PM_TOURIST) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_TOURIST) && haseyes(&mons[last]))) num += 5;
+		if ((Role_if(PM_TRANSSYLVANIAN) && (mons[last].msound == MS_SHOE))) num += 5;
+		if ((Role_if(PM_TRANSSYLVANIAN) && dmgtype(&mons[last], AD_NAST))) num += 5;
+		if ((Role_if(PM_TRANSVESTITE) && (mons[last].msound == MS_SHOE))) num += 5;
+		if ((Role_if(PM_UNBELIEVER) && is_angbandmonster(&mons[last]))) num += 10;
+		if ((Role_if(PM_UNBELIEVER) && is_steammonster(&mons[last]))) num += 2;
+		if ((Role_if(PM_UNDEAD_SLAYER) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_UNDEAD_SLAYER) && is_undead(&mons[last]))) num += 10;
+		if ((Role_if(PM_UNDERTAKER) && is_undead(&mons[last]))) num += 20;
+		if ((Role_if(PM_STAND_USER) && amorphous(&mons[last]))) num += 5;
+		if ((Role_if(PM_VALKYRIE) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_WANDKEEPER) && is_poison_resistant(&mons[last]))) num += 1;
+		if ((Role_if(PM_WARRIOR) && is_dlordsmonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_WILD_TALENT) && is_angbandmonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_WILD_TALENT) && is_steammonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_WILD_TALENT) && is_animemonster(&mons[last]))) num += 3;
+		if ((Role_if(PM_WIZARD) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_YEOMAN) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Role_if(PM_YEOMAN) && is_domestic(&mons[last]))) num += 2;
+		if ((Role_if(PM_ZOOKEEPER) && is_domestic(&mons[last]))) num += 20;
+		if ((Race_if(PM_AK_THIEF_IS_DEAD_) && is_cowmonster(&mons[last]))) num += 10;
+		if ((Race_if(PM_AK_THIEF_IS_DEAD_) && is_jokemonster(&mons[last]))) num += 10;
+		if ((Race_if(PM_ALCHEMIST) && is_covetous(&mons[last]))) num += 5;
+		if ((Race_if(PM_ALCHEMIST) && extra_nasty(&mons[last]))) num += 5;
+		if ((Race_if(PM_ANGBANDER) && is_angbandmonster(&mons[last]))) num += 5;
+		if ((Race_if(PM_ANGBANDER) && is_steammonster(&mons[last]))) num += 3;
+		if ((Race_if(PM_ANGBANDER) && is_animemonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_HUMANOID_ANGEL) && is_demon(&mons[last]))) num += 10;
+		if ((Race_if(PM_HUMANOID_ANGEL) && always_hostile(&mons[last]))) num += 4;
+		if ((Race_if(PM_HUMANOID_ANGEL) && extra_nasty(&mons[last]))) num += 1;
+		if ((isaquarian && is_swimmer(&mons[last]))) num += 5;
+		if ((Race_if(PM_BATMAN) && is_neuter(&mons[last]))) num += 20;
+		if ((Race_if(PM_BATMAN) && is_animal(&mons[last]))) num += 5;
+		if ((Race_if(PM_CHIROPTERAN) && is_dnethackmonster(&mons[last]))) num += 5;
+		if ((Race_if(PM_CLOCKWORK_AUTOMATON) && is_dnethackmonster(&mons[last]))) num += 3;
+		if ((Race_if(PM_CLOCKWORK_AUTOMATON) && always_peaceful(&mons[last]))) num += 2;
+		if ((Race_if(PM_CORTEX) && unsolid(&mons[last]))) num += 2;
+		if ((Race_if(PM_CORTEX) && nolimbs(&mons[last]))) num += 5;
+		if ((Race_if(PM_DEATHMOLD) && is_angbandmonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_DEATHMOLD) && is_steammonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_DEATHMOLD) && is_animemonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_DOPPELGANGER) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_DROW) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_DWARF) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_ELF) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_GNOME) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_PLAYER_GREMLIN) && dmgtype(&mons[last], AD_DARK))) num += 3;
+		if ((Race_if(PM_HERBALIST) && is_covetous(&mons[last]))) num += 5;
+		if ((Race_if(PM_HERBALIST) && extra_nasty(&mons[last]))) num += 5;
+		if ((Race_if(PM_HOBBIT) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_HUMAN) && is_vanillamonster(&mons[last]))) num += 2;
+		if ((Race_if(PM_IMMUNIZER) && dmgtype(&mons[last], AD_CURS))) num += 7;
+		if ((Race_if(PM_INCANTIFIER) && is_dnethackmonster(&mons[last]))) num += 3;
+		if ((Race_if(PM_INKA) && is_elf(&mons[last]))) num += 3;
+		if ((Race_if(PM_INSECTOID) && (mons[last].msound == MS_BUZZ))) num += 4;
+		if ((Race_if(PM_KOP) && always_tame(&mons[last]))) num += 5;
+		if ((Race_if(PM_HUMAN_WEREWOLF) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_MISSINGNO) && is_pokemon(&mons[last]))) num += 3;
+		if ((Race_if(PM_NAVI) && (mons[last].msound == MS_SHOE))) num += 2;
+		if ((Race_if(PM_ORC) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_PEACEMAKER) && always_hostile(&mons[last]))) num += 3;
+		if ((Race_if(PM_PEACEMAKER) && cannot_be_tamed(&mons[last]))) num += 2;
+		if ((isrougelike && is_vanillamonster(&mons[last]))) num += 5;
+		if ((Race_if(PM_SINNER) && dmgtype(&mons[last], AD_SSEX))) num += 2;
+		if ((Race_if(PM_SKILLOR) && dmgtype(&mons[last], AD_SKIL))) num += 5;
+		if ((issoviet && is_vanillamonster(&mons[last]))) num += 20;
+		if ((Race_if(PM_SPIRIT) && passes_walls(&mons[last]))) num += 2;
+		if ((Race_if(PM_WEAPON_TRAPPER) && dmgtype(&mons[last], AD_WEBS))) num += 2;
+		if ((Race_if(PM_UNALIGNMENT_THING) && is_dnethackmonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_VAMPIRE) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_VENTURE_CAPITALIST) && likes_gold(&mons[last]))) num += 4;
+		if ((Race_if(PM_VORTEX) && unsolid(&mons[last]))) num += 5;
+		if ((Race_if(PM_VORTEX) && nolimbs(&mons[last]))) num += 12;
+		if ((iswindinhabitant && is_cowmonster(&mons[last]))) num += 5;
+		if ((iswindinhabitant && is_jokemonster(&mons[last]))) num += 2;
+		if ((Race_if(PM_WORM_THAT_WALKS) && is_dnethackmonster(&mons[last]))) num += 5;
+		if ((Race_if(PM_YUKI_PLAYA) && is_dnethackmonster(&mons[last]))) num += 5;
 
 		if (last == urole.nemesnum) num += 100;
 
@@ -15077,10 +15548,11 @@ int     spc;
 					&& !(uncommonnewfortyfive && monstr[first] >= 45 && monstr[first] < 50 )
 					&& !(uncommonnewfifty && monstr[first] >= 50 && monstr[first] < 60 )
 					&& !(uncommonnewsixty && monstr[first] >= 60 && monstr[first] < 70 )
+					&& !(calctype && toostrong(first, (maxmlev + bonuslevel) ) ) 
+					&& !(!calctype && (mons[first].mlevel > (maxmlev + bonuslevel)) ) 
 					&& !(uncommonnewseventy && monstr[first] >= 70 )
 					&& (first != u.nospawnspecies) && (first != u.nospawnspecies2) && (first != u.nospawnspecies3) && (first != u.nospawnspecies4) && (first != u.nospawnspecies5) && (first != u.nospawnspecies6) && (first != u.nospawnspecies7) && (first != u.nospawnspecies8) && (first != u.nospawnspecies9) && (first != u.nospawnspecies10)
 				) {
-		/* skew towards lower value monsters at lower exp. levels */
 		num -= mons[first].geno & G_FREQ;
 		if (first == u.frequentspecies) num -= u.freqspeciesbonus;
 		if (first == u.frequentspecies2) num -= u.freqspeciesbonus2;
@@ -15092,23 +15564,234 @@ int     spc;
 		if (first == u.frequentspecies8) num -= u.freqspeciesbonus8;
 		if (first == u.frequentspecies9) num -= u.freqspeciesbonus9;
 		if (first == u.frequentspecies10) num -= u.freqspeciesbonus10;
-		if (first == u.frequentspecies11) num -= u.freqspeciesbonus;
-		if (first == u.frequentspecies12) num -= u.freqspeciesbonus2;
-		if (first == u.frequentspecies13) num -= u.freqspeciesbonus3;
-		if (first == u.frequentspecies14) num -= u.freqspeciesbonus4;
-		if (first == u.frequentspecies15) num -= u.freqspeciesbonus5;
-		if (first == u.frequentspecies16) num -= u.freqspeciesbonus6;
-		if (first == u.frequentspecies17) num -= u.freqspeciesbonus7;
-		if (first == u.frequentspecies18) num -= u.freqspeciesbonus8;
-		if (first == u.frequentspecies19) num -= u.freqspeciesbonus9;
-		if (first == u.frequentspecies20) num -= u.freqspeciesbonus10;
+		if (first == u.frequentspecies11) num -= u.freqspeciesbonus11;
+		if (first == u.frequentspecies12) num -= u.freqspeciesbonus12;
+		if (first == u.frequentspecies13) num -= u.freqspeciesbonus13;
+		if (first == u.frequentspecies14) num -= u.freqspeciesbonus14;
+		if (first == u.frequentspecies15) num -= u.freqspeciesbonus15;
+		if (first == u.frequentspecies16) num -= u.freqspeciesbonus16;
+		if (first == u.frequentspecies17) num -= u.freqspeciesbonus17;
+		if (first == u.frequentspecies18) num -= u.freqspeciesbonus18;
+		if (first == u.frequentspecies19) num -= u.freqspeciesbonus19;
+		if (first == u.frequentspecies20) num -= u.freqspeciesbonus20;
 		if (mons[first].mcolor == u.frequentcolor) num -= u.freqcolorbonus;
+
+		if ((In_gehennom(&u.uz) && is_demon(&mons[first]))) num -= 10;
+		if ((In_gehennom(&u.uz) && dmgtype(&mons[first], AD_FIRE) )) num -= 1;
+		if ((In_gehennom(&u.uz) && dmgtype(&mons[first], AD_BURN) )) num -= 1;
+		if ((In_gehennom(&u.uz) && dmgtype(&mons[first], AD_LAVA) )) num -= 1;
+		if ((In_gehennom(&u.uz) && is_fire_resistant(&mons[first]) )) num -= 1;
+		if ((In_mines(&u.uz) && tunnels(&mons[first]) )) num -= 2;
+		if ((In_sheol(&u.uz) && is_cold_resistant(&mons[first]) )) num -= 5;
+		if ((In_sheol(&u.uz) && dmgtype(&mons[first], AD_COLD) )) num -= 5;
+		if ((In_sheol(&u.uz) && dmgtype(&mons[first], AD_FRZE) )) num -= 5;
+		if ((In_sheol(&u.uz) && dmgtype(&mons[first], AD_ICEB) )) num -= 2;
+		if ((In_towndungeon(&u.uz) && is_angbandmonster(&mons[first]) )) num -= 5;
+		if ((In_towndungeon(&u.uz) && is_steammonster(&mons[first]) )) num -= 1;
+		if ((In_towndungeon(&u.uz) && is_animemonster(&mons[first]) )) num -= 1;
+		if ((In_spiders(&u.uz) && webmaker(&mons[first]) )) num -= 10;
+		if ((Is_lawful_quest(&u.uz) && dmgtype(&mons[first], AD_SPC2) )) num -= 1;
+		if ((Is_lawful_quest(&u.uz) && is_covetous(&mons[first]) )) num -= 2;
+		if ((Is_lawful_quest(&u.uz) && cannot_be_tamed(&mons[first]) )) num -= 1;
+		if ((Is_lawful_quest(&u.uz) && is_shade(&mons[first]) )) num -= 2;
+		if ((Is_lawful_quest(&u.uz) && dmgtype(&mons[first], AD_RBRE) )) num -= 2;
+		if ((In_wyrm(&u.uz) && attacktype(&mons[first], AT_BREA) )) num -= 5;
+		if ((In_wyrm(&u.uz) && dmgtype(&mons[first], AD_DISE) )) num -= 3;
+		if ((In_tomb(&u.uz) && is_undead(&mons[first]) )) num -= 10;
+		if ((In_slsea(&u.uz) && dmgtype(&mons[first], AD_WRAP) )) num -= 5;
+		if ((In_mtemple(&u.uz) && dmgtype(&mons[first], AD_CLRC) )) num -= 7;
+		if ((In_gcavern(&u.uz) && throws_rocks(&mons[first]) )) num -= 5;
+		if ((In_gcavern(&u.uz) && hugemonst(&mons[first]) )) num -= 3;
+		if ((In_frnkn(&u.uz) && dmgtype(&mons[first], AD_POLY) )) num -= 2;
+
+		if ((Role_if(PM_ACTIVISTOR) && always_hostile(&mons[first]))) num -= 5;
+		if ((Role_if(PM_ALTMER) && is_reflector(&mons[first]))) num -= 3;
+		if ((Role_if(PM_AMAZON) && is_diablomonster(&mons[first]))) num -= 5;
+		if ((Role_if(PM_AMAZON) && attacktype(&mons[first], AT_CLAW) )) num -= 1;
+		if ((Role_if(PM_ANACHRONIST) && is_dnethackmonster(&mons[first]))) num -= 10;
+		if ((Role_if(PM_ARCHEOLOGIST) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_ARTIST) && attacktype(&mons[first], AT_GAZE))) num -= 2;
+		if ((Role_if(PM_ASSASSIN) && is_diablomonster(&mons[first]))) num -= 5;
+		if ((Role_if(PM_BARBARIAN) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_BARBARIAN) && is_diablomonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_BINDER) && is_dnethackmonster(&mons[first]))) num -= 10;
+		if ((Role_if(PM_BINDER) && extra_nasty(&mons[first]))) num -= 2;
+		if ((Role_if(PM_BINDER) && is_undead(&mons[first]))) num -= 2;
+		if ((Role_if(PM_BLEEDER) && (mons[first].msound == MS_SHOE))) num -= 10;
+		if ((Role_if(PM_BLOODSEEKER) && has_blood(&mons[first]))) num -= 1;
+		if ((Role_if(PM_CAMPERSTRIKER) && is_cowmonster(&mons[first]))) num -= 5;
+		if ((Role_if(PM_CAMPERSTRIKER) && is_jokemonster(&mons[first]))) num -= 5;
+		if ((Role_if(PM_CAVEMAN) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_CHEVALIER) && dmgtype(&mons[first], AD_ICUR))) num -= 1;
+		if ((Role_if(PM_CONVICT) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_CONVICT) && (mons[first].msound == MS_ARREST))) num -= 2;
+		if ((Role_if(PM_COURIER) && is_animal(&mons[first]))) num -= 1;
+		if ((Role_if(PM_CRUEL_ABUSER) && cannot_be_tamed(&mons[first]))) num -= 3;
+		if ((Role_if(PM_DOLL_MISTRESS) && is_animemonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_DOOM_MARINE) && attacktype(&mons[first], AT_BEAM))) num -= 5;
+		if ((Role_if(PM_DQ_SLIME) && verysmall(&mons[first]))) num -= 5;
+		if ((Role_if(PM_DRUID) && is_diablomonster(&mons[first]))) num -= 5;
+		if ((Role_if(PM_ERDRICK) && is_multihued(&mons[first]))) num -= 10;
+		if ((Role_if(PM_FAILED_EXISTENCE) && (mons[first].msound == MS_SHOE))) num -= 5;
+		if ((Role_if(PM_FIREFIGHTER) && is_fire_resistant(&mons[first]))) num -= 2;
+		if ((Role_if(PM_FLAME_MAGE) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_GLADIATOR) && is_animal(&mons[first]))) num -= 1;
+		if ((Role_if(PM_GLADIATOR) && humanoid(&mons[first]))) num -= 1;
+		if ((Role_if(PM_GOFF) && (mons[first].msound == MS_CUSS))) num -= 2;
+		if ((Role_if(PM_HEALER) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_ICE_MAGE) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_JEDI) && is_cowmonster(&mons[first]))) num -= 2;
+		if ((Role_if(PM_JEDI) && is_jokemonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_KNIGHT) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_KNIGHT) && (mons[first].msound == MS_NEIGH))) num -= 2;
+		if ((Role_if(PM_LADIESMAN) && (mons[first].msound == MS_FART_NORMAL))) num -= 10;
+		if ((Role_if(PM_LADIESMAN) && (mons[first].msound == MS_FART_QUIET))) num -= 10;
+		if ((Role_if(PM_LADIESMAN) && (mons[first].msound == MS_FART_LOUD))) num -= 10;
+		if ((Role_if(PM_LADIESMAN) && (mons[first].msound == MS_WHORE))) num -= 25;
+		if ((Role_if(PM_MAHOU_SHOUJO) && is_animemonster(&mons[first]))) num -= 10;
+		if ((Role_if(PM_MEDIUM) && dmgtype(&mons[first], AD_SPC2))) num -= 2;
+		if ((Role_if(PM_MEDIUM) && is_mind_flayer(&mons[first]))) num -= 1;
+		if ((Role_if(PM_MONK) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_MURDERER) && (mons[first].msound == MS_ARREST))) num -= 5;
+		if ((Role_if(PM_NECROMANCER) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_NECROMANCER) && is_diablomonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_NECROMANCER) && is_undead(&mons[first]))) num -= 2;
+		if ((Role_if(PM_NOBLEMAN) && is_dnethackmonster(&mons[first]))) num -= 5;
+		if ((Role_if(PM_OCCULT_MASTER) && is_dlordsmonster(&mons[first]))) num -= 3;
+		if ((Role_if(PM_OFFICER) && always_hostile(&mons[first]))) num -= 2;
+		if ((Role_if(PM_OTAKU) && is_animemonster(&mons[first]))) num -= 5;
+		if ((Role_if(PM_PALADIN) && is_diablomonster(&mons[first]))) num -= 5;
+		if ((Role_if(PM_PIRATE) && is_dnethackmonster(&mons[first]))) num -= 5;
+		if ((Role_if(PM_POKEMON) && is_pokemon(&mons[first]))) num -= 10;
+		if ((Role_if(PM_PRIEST) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_PSION) && extra_nasty(&mons[first]))) num -= 2;
+		if ((Role_if(PM_PSION) && is_covetous(&mons[first]))) num -= 10;
+		if ((Role_if(PM_PSION) && is_reviver(&mons[first]))) num -= 3;
+		if ((Role_if(PM_PSION) && is_reflector(&mons[first]))) num -= 3;
+		if ((Role_if(PM_PSION) && attacktype(&mons[first], AT_MAGC))) num -= 5;
+		if ((Role_if(PM_PSION) && passes_walls(&mons[first]))) num -= 3;	
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_SPC2))) num -= 3;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_SSEX))) num -= 5;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_DETH))) num -= 1;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_FAMN))) num -= 1;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_PEST))) num -= 1;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_SLIM))) num -= 3;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_WTHR))) num -= 5;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_NPRO))) num -= 1;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_LETH))) num -= 2;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_CNCL))) num -= 3;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_BANI))) num -= 5;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_SUCK))) num -= 2;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_UVUU))) num -= 7;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_STTP))) num -= 5;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_WRAT))) num -= 2;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_DFOO))) num -= 2;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_NAST))) num -= 5;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_AMNE))) num -= 3;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_CURS))) num -= 20;
+		if ((Role_if(PM_RANGER) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_ROCKER) && is_ston_resistant(&mons[first]))) num -= 2;
+		if ((Role_if(PM_ROGUE) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_ROGUE) && has_head(&mons[first]))) num -= 1;
+		if ((Role_if(PM_SAGE) && is_undead(&mons[first]))) num -= 1;
+		if ((Role_if(PM_SAIYAN) && is_animemonster(&mons[first]))) num -= 2;
+		if ((Role_if(PM_SAMURAI) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_SHAPESHIFTER) && extra_nasty(&mons[first]))) num -= 1;
+		if ((Role_if(PM_SHAPESHIFTER) && is_covetous(&mons[first]))) num -= 3;
+		if ((Role_if(PM_SHAPESHIFTER) && dmgtype(&mons[first], AD_SLIM))) num -= 2;
+		if ((Role_if(PM_SHAPESHIFTER) && dmgtype(&mons[first], AD_CNCL))) num -= 1;
+		if ((Role_if(PM_SHAPESHIFTER) && dmgtype(&mons[first], AD_STTP))) num -= 2;
+		if ((Role_if(PM_SHAPESHIFTER) && dmgtype(&mons[first], AD_NAST))) num -= 20;
+		if ((Role_if(PM_SLAVE_MASTER) && is_domestic(&mons[first]))) num -= 2;
+		if ((Role_if(PM_SPACEWARS_FIGHTER) && is_cowmonster(&mons[first]))) num -= 5;
+		if ((Role_if(PM_SPACEWARS_FIGHTER) && is_jokemonster(&mons[first]))) num -= 3;
+		if ((Role_if(PM_SUPERMARKET_CASHIER) && likes_gold(&mons[first]))) num -= 5;
+		if ((Role_if(PM_TOPMODEL) && (mons[first].msound == MS_SHOE))) num -= 5;
+		if ((Role_if(PM_TOURIST) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_TOURIST) && haseyes(&mons[first]))) num -= 5;
+		if ((Role_if(PM_TRANSSYLVANIAN) && (mons[first].msound == MS_SHOE))) num -= 5;
+		if ((Role_if(PM_TRANSSYLVANIAN) && dmgtype(&mons[first], AD_NAST))) num -= 5;
+		if ((Role_if(PM_TRANSVESTITE) && (mons[first].msound == MS_SHOE))) num -= 5;
+		if ((Role_if(PM_UNBELIEVER) && is_angbandmonster(&mons[first]))) num -= 10;
+		if ((Role_if(PM_UNBELIEVER) && is_steammonster(&mons[first]))) num -= 2;
+		if ((Role_if(PM_UNDEAD_SLAYER) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_UNDEAD_SLAYER) && is_undead(&mons[first]))) num -= 10;
+		if ((Role_if(PM_UNDERTAKER) && is_undead(&mons[first]))) num -= 20;
+		if ((Role_if(PM_STAND_USER) && amorphous(&mons[first]))) num -= 5;
+		if ((Role_if(PM_VALKYRIE) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_WANDKEEPER) && is_poison_resistant(&mons[first]))) num -= 1;
+		if ((Role_if(PM_WARRIOR) && is_dlordsmonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_WILD_TALENT) && is_angbandmonster(&mons[first]))) num -= 5;
+		if ((Role_if(PM_WILD_TALENT) && is_steammonster(&mons[first]))) num -= 5;
+		if ((Role_if(PM_WILD_TALENT) && is_animemonster(&mons[first]))) num -= 3;
+		if ((Role_if(PM_WIZARD) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_YEOMAN) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Role_if(PM_YEOMAN) && is_domestic(&mons[first]))) num -= 2;
+		if ((Role_if(PM_ZOOKEEPER) && is_domestic(&mons[first]))) num -= 20;
+		if ((Race_if(PM_AK_THIEF_IS_DEAD_) && is_cowmonster(&mons[first]))) num -= 10;
+		if ((Race_if(PM_AK_THIEF_IS_DEAD_) && is_jokemonster(&mons[first]))) num -= 10;
+		if ((Race_if(PM_ALCHEMIST) && is_covetous(&mons[first]))) num -= 5;
+		if ((Race_if(PM_ALCHEMIST) && extra_nasty(&mons[first]))) num -= 5;
+		if ((Race_if(PM_ANGBANDER) && is_angbandmonster(&mons[first]))) num -= 5;
+		if ((Race_if(PM_ANGBANDER) && is_steammonster(&mons[first]))) num -= 3;
+		if ((Race_if(PM_ANGBANDER) && is_animemonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_HUMANOID_ANGEL) && is_demon(&mons[first]))) num -= 10;
+		if ((Race_if(PM_HUMANOID_ANGEL) && always_hostile(&mons[first]))) num -= 4;
+		if ((Race_if(PM_HUMANOID_ANGEL) && extra_nasty(&mons[first]))) num -= 1;
+		if ((isaquarian && is_swimmer(&mons[first]))) num -= 5;
+		if ((Race_if(PM_BATMAN) && is_neuter(&mons[first]))) num -= 20;
+		if ((Race_if(PM_BATMAN) && is_animal(&mons[first]))) num -= 5;
+		if ((Race_if(PM_CHIROPTERAN) && is_dnethackmonster(&mons[first]))) num -= 5;
+		if ((Race_if(PM_CLOCKWORK_AUTOMATON) && is_dnethackmonster(&mons[first]))) num -= 3;
+		if ((Race_if(PM_CLOCKWORK_AUTOMATON) && always_peaceful(&mons[first]))) num -= 2;
+		if ((Race_if(PM_CORTEX) && unsolid(&mons[first]))) num -= 2;
+		if ((Race_if(PM_CORTEX) && nolimbs(&mons[first]))) num -= 5;
+		if ((Race_if(PM_DEATHMOLD) && is_angbandmonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_DEATHMOLD) && is_steammonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_DEATHMOLD) && is_animemonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_DOPPELGANGER) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_DROW) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_DWARF) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_ELF) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_GNOME) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_PLAYER_GREMLIN) && dmgtype(&mons[first], AD_DARK))) num -= 3;
+		if ((Race_if(PM_HERBALIST) && is_covetous(&mons[first]))) num -= 5;
+		if ((Race_if(PM_HERBALIST) && extra_nasty(&mons[first]))) num -= 5;
+		if ((Race_if(PM_HOBBIT) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_HUMAN) && is_vanillamonster(&mons[first]))) num -= 2;
+		if ((Race_if(PM_IMMUNIZER) && dmgtype(&mons[first], AD_CURS))) num -= 7;
+		if ((Race_if(PM_INCANTIFIER) && is_dnethackmonster(&mons[first]))) num -= 3;
+		if ((Race_if(PM_INKA) && is_elf(&mons[first]))) num -= 3;
+		if ((Race_if(PM_INSECTOID) && (mons[first].msound == MS_BUZZ))) num -= 4;
+		if ((Race_if(PM_KOP) && always_tame(&mons[first]))) num -= 5;
+		if ((Race_if(PM_HUMAN_WEREWOLF) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_MISSINGNO) && is_pokemon(&mons[first]))) num -= 3;
+		if ((Race_if(PM_NAVI) && (mons[first].msound == MS_SHOE))) num -= 2;
+		if ((Race_if(PM_ORC) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_PEACEMAKER) && always_hostile(&mons[first]))) num -= 3;
+		if ((Race_if(PM_PEACEMAKER) && cannot_be_tamed(&mons[first]))) num -= 2;
+		if ((isrougelike && is_vanillamonster(&mons[first]))) num -= 5;
+		if ((Race_if(PM_SINNER) && dmgtype(&mons[first], AD_SSEX))) num -= 2;
+		if ((Race_if(PM_SKILLOR) && dmgtype(&mons[first], AD_SKIL))) num -= 5;
+		if ((issoviet && is_vanillamonster(&mons[first]))) num -= 20;
+		if ((Race_if(PM_SPIRIT) && passes_walls(&mons[first]))) num -= 2;
+		if ((Race_if(PM_WEAPON_TRAPPER) && dmgtype(&mons[first], AD_WEBS))) num -= 2;
+		if ((Race_if(PM_UNALIGNMENT_THING) && is_dnethackmonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_VAMPIRE) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_VENTURE_CAPITALIST) && likes_gold(&mons[first]))) num -= 4;
+		if ((Race_if(PM_VORTEX) && unsolid(&mons[first]))) num -= 5;
+		if ((Race_if(PM_VORTEX) && nolimbs(&mons[first]))) num -= 12;
+		if ((iswindinhabitant && is_cowmonster(&mons[first]))) num -= 5;
+		if ((iswindinhabitant && is_jokemonster(&mons[first]))) num -= 2;
+		if ((Race_if(PM_WORM_THAT_WALKS) && is_dnethackmonster(&mons[first]))) num -= 5;
+		if ((Race_if(PM_YUKI_PLAYA) && is_dnethackmonster(&mons[first]))) num -= 5;
 		
 		if (first == urole.nemesnum) num -= 100;
 
 		if ((urole.enemy1num != NON_PM) && (first == urole.enemy1num)) num -= 125;
 		if ((urole.enemy2num != NON_PM) && (first == urole.enemy2num)) num -= 25;
 
+		/* skew towards lower value monsters at lower exp. levels */
 		/* or not, because seriously... what the heck??? --Amy */
 		/* if (num && adj_lev(&mons[first]) > (u.ulevel*2)) { */
 		    /* but not when multiple monsters are same level */
@@ -15686,6 +16369,8 @@ register struct permonst *ptr;
 	if (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS) return FALSE;
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "politician cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "politik plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "siyosatchi plash") ) ) return FALSE;
+
+	if (always_tame(ptr) && (!always_hostile(ptr) || !rn2(3))) return TRUE;
 
 	aligntyp mal = ptr->maligntyp, ual = u.ualign.type;
 

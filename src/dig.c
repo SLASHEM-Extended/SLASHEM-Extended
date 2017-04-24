@@ -1080,9 +1080,10 @@ struct obj *obj;
 				vibrate ? " The axe-handle vibrates violently!" : "");
 			    if (vibrate) losehp(2, "axing a hard object", KILLED_BY);
 			}
-			else
-			    You("swing your %s through thin air.",
-				aobjnam(obj, (char *)0));
+			else {
+			    You("swing your %s through thin air.", aobjnam(obj, (char *)0));
+				if (Hallucination) pline("It creates erotic air current noises.");
+			}
 		} else {
 			static const char * const d_action[7][2] = {
 			    {"swinging","slicing the air"},
@@ -1125,6 +1126,7 @@ struct obj *obj;
 	} else if (Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)) {
 		/* it must be air -- water checked above */
 		You("swing your %s through thin air.", aobjnam(obj, (char *)0));
+		if (Hallucination) pline("It creates erotic air current noises.");
 	} else if (!can_reach_floor()) {
 		You_cant("reach the %s.", surface(u.ux,u.uy));
 	} else if (is_pool(u.ux, u.uy) || is_lava(u.ux, u.uy)) {

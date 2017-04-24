@@ -59,7 +59,7 @@
 #define MS_VICE	50	/* seven deadly sins patch */
 #define MS_BOSS	51	/* boss monster with taunts */
 #define MS_SOUND 52	/* soundwave "attack" */
-
+#define MS_SHOE 53	/* they have been silent for too long, now they talk :D */
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */
@@ -233,6 +233,25 @@
 
 #define M3_MIND_FLAYER	0x00480000L			/* generates "faint wave of psychic energy" message, telepathic */
 
+#define M4_BAT	0x00000001L		/* monster is a bat - speeds up in Gehennom */
+#define M4_REVIVE	0x00000002L		/* monster that is not a troll or fungus but revives anyway */
+#define M4_RAT	0x00000004L		/* monster is a rat and can be tamed with cheese */
+#define M4_SHADE	0x00000008L		/* attacks pass harmlessly through the monster unless it's a silver weapon */
+#define M4_REFLECT	0x00000010L		/* monster has intrinsic reflection */
+#define M4_MULTIHUED	0x00000020L		/* monster is fleecy-colored <3 */
+#define M4_TAME	0x00000040L		/* spawns tame; if also M2_HOSTILE, only tame with a 1 in 3 chance */
+#define M4_ORGANIVORE	0x00000080L		/* eats leather and other organic material (e.g. gelatinous cube) */
+
+
+#define M5_SPACEWARS	0x00000001L		/* Castle of the Winds monster */
+#define M5_JOKE	0x00000002L		/* joke monster */
+#define M5_ANGBAND	0x00000004L		/* Angband monster */
+#define M5_STEAMBAND	0x00000008L		/* Steamband monster */
+#define M5_ANIMEBAND	0x00000010L		/* Animeband monster */
+#define M5_DIABLO	0x00000020L		/* Diablo monster */
+#define M5_DLORDS	0x00000040L		/* Dungeon Lords monster */
+#define M5_VANILLA	0x00000080L		/* vanilla Nethack or SLASH'EM monster (yes, SLASH'EM is officially "vanilla") */
+#define M5_DNETHACK	0x00000100L		/* dnethack monster */
 
 #define MZ_TINY		0		/* < 2' */
 #define MZ_SMALL	1		/* 2-4' */

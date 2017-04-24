@@ -84,6 +84,13 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar	d_mines_dnum, d_quest_dnum;
     xchar	d_sheol_dnum;
     xchar   d_spiders_dnum;
+    xchar   d_grund_dnum;
+    xchar   d_wyrm_dnum;
+    xchar   d_frnkn_dnum;
+    xchar   d_gcavern_dnum;
+    xchar   d_mtemple_dnum;
+    xchar   d_slsea_dnum;
+    xchar   d_tomb_dnum;
     xchar   d_dod_dnum;
     xchar   d_town_dnum;
     xchar   d_gehennom_dnum;
@@ -145,6 +152,13 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define nemesis_level		(dungeon_topology.d_nemesis_level)
 #define knox_level		(dungeon_topology.d_knox_level)
 #define spiders_dnum		(dungeon_topology.d_spiders_dnum)
+#define grund_dnum		(dungeon_topology.d_grund_dnum)
+#define wyrm_dnum		(dungeon_topology.d_wyrm_dnum)
+#define frnkn_dnum		(dungeon_topology.d_frnkn_dnum)
+#define gcavern_dnum		(dungeon_topology.d_gcavern_dnum)
+#define mtemple_dnum		(dungeon_topology.d_mtemple_dnum)
+#define slsea_dnum		(dungeon_topology.d_slsea_dnum)
+#define tomb_dnum		(dungeon_topology.d_tomb_dnum)
 #define lawful_quest_level	(dungeon_topology.d_lawful_quest_level)
 #define neutral_quest_level	(dungeon_topology.d_neutral_quest_level)
 #define chaotic_quest_level	(dungeon_topology.d_chaotic_quest_level)

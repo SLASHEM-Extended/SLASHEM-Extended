@@ -3608,6 +3608,7 @@ newegomon:
 			if(Shock_resistance) dmg = 0;
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
 			break;
 			case 3: /* ice */
@@ -3667,6 +3668,7 @@ newegomon:
 			if(Shock_resistance) dmg = 0;
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
 			break;
 			case 3: /* ice */
@@ -3708,6 +3710,7 @@ newegomon:
 			if(Shock_resistance) dmg = 0;
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
 			break;
 			case 3: /* ice */
@@ -3773,6 +3776,7 @@ newegomon:
 			if(Shock_resistance) dmg = 0;
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
 			break;
 			case 3: /* ice */
@@ -3818,6 +3822,7 @@ newegomon:
 			if(Shock_resistance) dmg = 0;
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
 			break;
 			case 3: /* ice */
@@ -3880,6 +3885,7 @@ newegomon:
 			if(Shock_resistance) dmg = 0;
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 			if (dmg) {pline("You are hit by lightning!"); losehp(dmg, "lightning", KILLED_BY); }
 			break;
 			case 3: /* ice */
@@ -4130,6 +4136,7 @@ newegomon:
 			    losehp(d(4, 4) + rnd((monster_difficulty() / 2) + 1), "electric shock", KILLED_BY_AN);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 			break;
 		      }
 		case 5:
@@ -6161,7 +6168,7 @@ newegomon:
 	
 			      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 					if (!isok(u.ux + i, u.uy + j)) continue;
-					if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) || MON_AT(u.ux + i, u.uy + j)) continue;
+					if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 					if (t_at(u.ux + i, u.uy + j)) continue;
 	
 				      rtrap = randomtrap();
@@ -7542,7 +7549,7 @@ newegomon:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(298);
+			monstercolor = rnd(330);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -7802,7 +7809,7 @@ newegomon:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(298);
+			monstercolor = rnd(330);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -10138,6 +10145,7 @@ struct obj *box;        /* at the moment only for floor traps */
 			if (!rn2(3)) make_numbed(HNumbed + (num * 5), TRUE); /* PLAYER NUMBED CAN'T DO --Amy */
 		    if (!rn2(issoviet ? 6 : 33)) destroy_item(WAND_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 }
 
 STATIC_OVL void
@@ -10164,6 +10172,7 @@ struct obj *box;        /* at the moment only for floor traps */
 		    make_numbed(HNumbed + (num * 5), TRUE); /* PLAYER NUMBED CAN'T DO --Amy */
 		    if (!rn2(issoviet ? 2 : 10)) destroy_item(WAND_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 2 : 10)) destroy_item(RING_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 10 : 50)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 			if (!rn2(3)) {
 				if (!Free_action || !rn2(5)) {
 				    pline("You are frozen in place!");
@@ -12390,6 +12399,7 @@ boolean disarm;
 			    dmg = d(4, 4);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
 		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 			if (dmg) losehp(dmg, "electric shock", KILLED_BY_AN);
 			break;
 		      }

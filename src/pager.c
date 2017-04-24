@@ -1275,10 +1275,12 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	adjective_counter = append(adjectives, (herbivorous(ptr)), "herbivorous", adjective_counter);
 	adjective_counter = append(adjectives, (metallivorous(ptr)), "metallivorous", adjective_counter);
 	adjective_counter = append(adjectives, (lithivorous(ptr)), "lithivorous", adjective_counter);
+	adjective_counter = append(adjectives, (organivorous(ptr)), "organivorous", adjective_counter);
 	adjective_counter = append(adjectives, (poisonous(ptr)), "poisonous", adjective_counter);
 	adjective_counter = append(adjectives, (regenerates(ptr)), "regenerating", adjective_counter);
 	adjective_counter = append(adjectives, (can_teleport(ptr)), "teleporting", adjective_counter);
 	adjective_counter = append(adjectives, (is_reviver(ptr)), "reviving", adjective_counter);
+	adjective_counter = append(adjectives, (is_reflector(ptr) || (attackdamagetype(ptr, AT_BREA, AD_RBRE) ) ), "reflecting", adjective_counter);
 	adjective_counter = append(adjectives, (pm_invisible(ptr)), "invisible", adjective_counter);
 	adjective_counter = append(adjectives, (thick_skinned(ptr)), "thick-skinned", adjective_counter);
 	adjective_counter = append(adjectives, (hides_under(ptr)), "concealing", adjective_counter);
@@ -1391,6 +1393,9 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	if (hates_silver(ptr)) {
 		strcat(description, " Silver weapons do extra damage to it.");
 	}
+	if (is_shade(ptr)) {
+		strcat(description, " Non-silver weapons cannot harm it.");
+	}
 	if (vegan(ptr)) {
 		strcat(description, " May be eaten by vegans.");
 	} else if (vegetarian(ptr)) {
@@ -1431,6 +1436,12 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	if (is_petty(ptr)) {
 		strcat(description, " Can be tamed by throwing kelp frond or a poke ball.");
 	}
+	if (is_rat(ptr)) {
+		strcat(description, " Can be tamed by throwing cheese.");
+	}
+	if (ptr->mlet == S_YETI) {
+		strcat(description, " Can be tamed by throwing a banana.");
+	}
 	if (is_pokemon(ptr)) {
 		strcat(description, " Is a pokemon (more likely to be caught in a poke ball).");
 	}
@@ -1439,6 +1450,33 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	}
 	if (is_umplayer(ptr)) {
 		strcat(description, " Is an undead player character. Be very careful.");
+	}
+	if (ptr->mflags5 & M5_SPACEWARS) {
+		strcat(description, " Origin: Castle of the Winds.");
+	}
+	if (ptr->mflags5 & M5_JOKE) {
+		strcat(description, " Origin: Joke monster.");
+	}
+	if (ptr->mflags5 & M5_ANGBAND) {
+		strcat(description, " Origin: Angband.");
+	}
+	if (ptr->mflags5 & M5_STEAMBAND) {
+		strcat(description, " Origin: Steamband.");
+	}
+	if (ptr->mflags5 & M5_ANIMEBAND) {
+		strcat(description, " Origin: Animeband.");
+	}
+	if (ptr->mflags5 & M5_DIABLO) {
+		strcat(description, " Origin: Diablo.");
+	}
+	if (ptr->mflags5 & M5_DLORDS) {
+		strcat(description, " Origin: Dungeon Lords.");
+	}
+	if (ptr->mflags5 & M5_VANILLA) {
+		strcat(description, " Origin: Vanilla NetHack or SLASH'EM.");
+	}
+	if (ptr->mflags5 & M5_DNETHACK) {
+		strcat(description, " Origin: DNetHack.");
 	}
 
 	
@@ -1627,6 +1665,22 @@ get_description_of_damage_type(uchar id)
 		case AD_ICUR: return "item cursing";
 		case AD_VULN: return "vulnerability";
 		case AD_FUMB: return "fumbling";
+
+		case AD_ICEB: return "ice blocks";
+		case AD_VAPO: return "vaporization";
+		case AD_EDGE: return "stone edge";
+		case AD_VOMT: return "vomiting";
+		case AD_LITT: return "litter";
+		case AD_FREN: return "frenzy";
+		case AD_NGEN: return "negative enchantment";
+		case AD_CHAO: return "chaos";
+		case AD_INSA: return "insanity";
+		case AD_TRAP: return "trapping";
+		case AD_WGHT: return "weight increase";
+		case AD_NTHR: return "nether";
+		case AD_RNG: return "RNG intervention";
+		case AD_MIDI: return "identity-specific attack";
+		case AD_CAST: return "evil spellcasting";
 
 		case AD_ENDS: return "placeholder attack";
 		default:
@@ -1982,6 +2036,129 @@ dohistory()
 	display_file_area(NH_HISTORY_AREA, NH_HISTORY, TRUE);
 	return 0;
 }
+
+static NEARDATA const char * const soviettaunts[] = {
+"Vy lamer, vy boites' detskikh lichey na rannikh urovnyakh podzemel'ya ili kak? Vernites' k igre vanili!",
+"Tip ledyanogo bloka nadeyetsya, chto vas ub'yut po-nastoyashchemu nespravedlivo. Khar Khar Khar.",
+"Znayete li vy, chto igrayete glupyy variant, kotoryy povtorno vstavlyayet oshibku povtornoy initsializatsii taymera ikru monstra, potomu chto sovetskaya Pyat' Lo ochen' glupa?",
+"Sozdatel' slesh ikh ne znayet, kak zastavit' stetoskop rabotat'!",
+"Komu-to eto ne nravitsya, yesli rozhki yedinorogov lomayutsya. No ya sdelal eto tak, chtoby oni vmesto etogo vyzyvali plokhiye posledstviya. KHA KHA KHA KHA KHA KHA KHA! Podpis': tip ledyanogo bloka.",
+"Sovet vsegda imel khudshuyu otsenku v khimii i poetomu sdelal tak, chtoby nabor khimii ne rabotal. Ty seychas schastliv?",
+"Yesli vy zabirayete artefakt, poka vash uroven' slishkom nizok, on delayet BUM i vy umirayete. Khvalite sovetskuyu pyaterku!",
+"Vy, lamer, vy tol'ko igrayete v etom rezhime, potomu chto boites' nepriyatnykh vysechek! Glupyy nub, malen'koye ditya!",
+"Yesli vy povyshayete svoy navyk verkhovoy yezdy, vashe vosstanovleniye zdorov'ya budet umen'shat'sya, potomu chto Sovetskiy chelovek nastroil igru sovershenno zabavno.",
+"Chto, vy khotite dopolnitel'nuyu regeneratsiyu many? Pochemu togda vy igrayete v rezhime, kogda on otklyuchen? Vy dolzhny byt' umstvenno otstalymi!",
+"Zameshatel'stvo i oglusheniye budut trakhat' vas tak zhe, kak vanil', potomu chto eto slesh ikh rasshiren i vedet sebya kak vanil'. Potomu chto sovetskiy tip Ledyanoy Blok ne lyubit variantov. Vmesto etogo on delayet udalennuyu i otmenennuyu versiyu i nazyvayet eto 'variantom'.",
+"V igre yest' opredelennaya palochka, kotoraya mozhet udalit' monstrov, kotorykh net v vanili. Pozhaluysta, derzhites' za neye, potomu chto vy tozhe ne dolzhny sushchestvovat'.",
+"Tip ledyanogo bloka ne nravitsya raznoobraziyu i poetomu sdelan tak, chto vy pochti vsegda poluchayete svoy skuchnyy spetsificheskiy artefakt. Radost'.",
+"Poshel ty na khuy, yesli dumal, chto legko srovnyayesh' zheleznyye reshetki! Teper', dazhe yesli vy ispol'zuyete oruzhiye, kotoroye dolzhno byt' v sostoyanii sdelat' eto, ono pochti vsegda provalivayetsya. I svetovoy mech ne byl vypolnen, potomu chto sovet lenivyy.",
+"Vam nravyatsya labirinty? YA dumayu, vam osobenno ponravitsya to mesto, gde tip ledyanogo bloka sdelal eto tak, chto vy vsegda mozhete vykapyvat' tol'ko odnu plitku s pomoshch'yu svoyey zhezla kopaniya. Ne trat'te vpustuyu svoi raskhody, KHAR KHAR!",
+"Da, 'kto-to' khochet imet' vozmozhnost' delat' beskonechnyye altari. Udaleniye elementov na nikh ne privedet k ikh ischeznoveniyu. No KHA KHA KHA eto mozhet vyzvat' plokhiye posledstviya KHA KHA KHA!",
+"Kak chast' filosofii dizayna VOZVRASHCHAT'SYA VOZVRASHCHAT'SYA VOZVRASHCHAT'SYA, kol'tsa snova pochti vsegda proglatyvayutsya, yesli vy uronite ikh v rakovinu.",
+"Tip ledyanogo bloka deystvitel'no nenavidit vashi kishki, i, sledovatel'no, povtorno realizovana funktsiya, kotoruyu v bukval'nom smysle nikto ne lyubit: sobiraniye predmetov snova poydet povorot. Potomu chto Sovetskaya Pyataya Lo nenavidit vse zhivoye.",
+"Raznoobraziye - der'mo, i poetomu zaplesnevelyye trupy vsegda prevrashchayutsya v gribok, a ne v sharik, zhele ili puding. Poluchayte udovol'stviye, pozvolyaya vashim chuvstvam prituplyat'sya!",
+"Vy ne mozhete gallyutsinirovat' lordom-demonom! Kreml' i Yozef Putin zapreshchayut eto, i poetomu gallyutsinatsiya tol'ko pokazhet tipy monstrov, kotoryye ne unikal'ny, dazhe yesli eto glupo.",
+"V Sovetskoy Rossii net ekzoticheskikh domashnikh zhivotnykh. Tol'ko sobaki i koshki sushchestvuyut, i vse te, kto khochet drugogo pitomtsa, mogut prosto trakhat'sya.",
+"Yesli vy dostatochno glupy, chtoby ostavit' svoyu sobaku pozadi, ona ochen' bystro zabudet, chto vy kogda-libo sushchestvovali. Da, dostatochno neskol'kikh soten oborotov, kak v vanili, i eto, blyat', ne tak uzh vazhno, naskol'ko on byl syt. Potomu chto sovetskaya Pyat' Lo ne yavlyayetsya poklonnikom khoroshego igrovogo dizayna.",
+"Vashe domashneye zhivotnoye tol'ko usugubit vas, s''yev trupy trupov, a takzhe trupy drugikh byvshikh pitomtsev. Potomu chto razrezat' ikh - eto govno! Smiris' s etim!",
+"Vy ne mozhete priruchit' veshchi, kotoryye ne dolzhny byt' prirucheny! V otlichiye ot seksual'nogo plyushcha u vas ne budet absolyutno nikakogo shansa poluchit' total'nogo rytsarya-ranenogo, i vy umrete ot goloda, yesli poprobuyete!",
+"Yeda v etom rezhime ochen' medlennaya. No vy, navernoye, ozhidali etogo. Ne ozhidayte, chto smozhete s''yest' trup drakona vo vremya bega vozneseniya - ili, yesli na to poshlo, s''yest' trup drakona do togo, kak on stanet slishkom starym, chtoby yest'. Yesli vas prervali, a zatem vozobnovili yest', vy poluchite smertel'no bol'noye. I Sovetskaya Pyaterka Lo odobryayet etu chush'.",
+"Vash pitomets mozhet zabrat' konteynery, kotoryye ne pustyye, potomu chto Sovet sposoben soprotivlyat'sya snu, vypolnyaya klonirovaniye kreditov. Etot merzkiy ekspluatator.",
+"Verkhovaya yezda pri konflikte dolzhna byt' nevozmozhnoy, po krayney mere, v etom rezhime, kotoryy byl sdelan tipom ledyanogo bloka! Vy budete postoyanno padat'. I togda sovetskiy budet smeyat'sya 'KHAR KHAR KHAR' vse vremya.",
+"Vam pridotsya zashchishchat' lavochnikov i svyashchennikov ot domashnikh zhivotnykh. Potomu chto kto-to reshil, chto igra dolzhna byt' ochen' glupoy. I vam deystvitel'no ponravitsya, yesli vash yedinstvennyy postroyennyy khram prevratitsya v khram s privideniyami - na samom dele, on zastavit vas postroit' nastoyashchiy khram, osvyashchennyy v Sovetskoy Pyaterke!",
+"Monstry, kotorym nuzhno nalozhit' zacharovannoye oruzhiye, sovershenno nevozmozhno pobedit', yesli u vas net takogo oruzhiya. Raduysya, chto ya poka ne delal razocharovaniy s etim dostoyaniyem! Ili, vozmozhno, ya sdelal ikh k nastoyashchemu vremeni. Potomu chto ya pochti takoy zhe zloy, kak tip ledyanogo bloka. Vypusk yazyka Kolon.",
+"V etoy strane kazhdoye derevo prinosit plody. No ni u odnogo iz nikh net ekzoticheskikh sortov fruktov. V Sovetskoy Rossii slishkom kholodno dlya limonnogo dereva! Pochemu by tebe ne pereyekhat' v drugoye mesto? Vy umstvenno otstalyye ili chto-to v etom rode?",
+"Vy mozhete legko sozdat' svoyu udachu s pomoshch'yu dragotsennykh kamney i yedinorogov, i vy, veroyatno, sdelayete eto, vy, sosunok. Pochemu by vam ne igrat' v ne sovetskom rezhime, a gde vse luchshe?",
+"Vse spetsial'nyye urovni budut sushchestvovat' v nikh, vklyuchaya zlyye, kotoryye ya sozdal, potomu chto kharkharkhar khar!",
+"V sovetskom rezhime, v kotorom vy igrayete, uroven' slozhnosti ne umen'shayetsya sluchaynym obrazom. Potomu chto boleye pozdniye chasti igry dolzhny byt' neigrabel'nymi.",
+"Kto-to schital, chto izryadnaya portsiya gniloy pishchi 'slishkom zloy', khotya eto pochti nikogda ne sluchalos', i u vas yest' sposoby vylechit' yego. Takim obrazom, yego udalili, kak i vse ostal'noye, potomu chto vy igrayete yedva rasshirennyy, no ochen' udalennyy mod.",
+"Vy poluchite vse vnutrennosti ot s''yedaniya trupov, potomu chto sovetskaya Pyat' Lo zabyla, chto yest' monstry boleye vysokogo urovnya, u kotorykh uzhe yest' boleye vysokiye shansy chto-to dat'.",
+"Kha-kha-kha, yest' trupy tritonov, ne dast vam mnogo many. Prichina? Sovetskiy chelovek glupyy i ne umeyet programmirovat' igry! Vy nikogda ne zadumyvalis', pochemu on otkazalsya ot svoyey der'movoy igry i ostavil yeye tam, chtoby sgnit'?",
+"Gnilyye ili v protivnom sluchaye plokhiye banki ne sdelayut vas boleye golodnymi tol'ko potomu, chto vy ikh yedite. Eto yeshche raz demonstratsiya togo, chto ikh dizaynery ne lyubyat raznoobraziye. V samom dele, raznoobraziye soset i igry budet luchshe bez nego. Ili, po krayney mere, imenno etogo tipa ledyanoy blok khochet, chtoby vy verili.",
+"'Sovetskaya pyaterka' LYUBIMAYA NENAVIST' NENAVIDETS NENAVIDIT NEL'ZYA, chtoby vy nikogda ne mogli po-nastoyashchemu spastis' ot gniloy pishchi. Yesli vy potratite svyatuyu vodu, chtoby blagoslovit' yeye, vy vse ravno riskuyete byt' vybitym i ubitym. Moya top-model' Bettina khotela by pogovorit' s nim paru slov i toptat' yego sharami s yeye botinkami na vysokikh kablukakh.",
+"Izmeneniya v pitanii, kogda vy golodny ili syty, ne sushchestvuyut, potomu chto eto Glupyy Rezhim (TM) Chistyy vzlom. Yesli vy teryayete soznaniye, vy budete golodat' do smerti vo vremya yedy, potomu chto vy poteryayete bol'she pishchi za khod, chem smozhete vernut'sya, a yesli nemnogo pereyest', vy zadokhnetes' do smerti. I tip ledyanogo bloka ser'yezno dumayet, chto eto khoroshiy igrovoy dizayn.",
+"Pochti nevozmozhno umeret' v samyy pervyy khod, no komu-to ne nravitsya davat' soobshcheniye, kogda vy umirayete na vtoroy khod. Po krayney mere, vy poluchite drugoye soobshcheniye, kotoroye izdevayetsya nad sozdatelem slesh ikh, potomu chto on, chert voz'mi, zasluzhivayet togo, chtoby nasmekhat'sya nad yego glupymi tvoreniyami.",
+"Svitok otpugivayushchego monstra budet besporyadochno goret' namnogo rezhe, no eto vse yeshche mozhet sluchit'sya, kha-kha!",
+"Vash pervyy uroven' budet dlit'sya vechno bez vsyakoy vidimoy prichiny. Sovetskiy tip ledyanogo bloka, vidimo, vynul stranitsu iz knigi etogo belogo parnya ili kak by tam ni bylo yego imya, i na samom dele veril svoim yereticheskim myslyam, potomu chto on (sovetskiy) ne ispol'zuyet svoy mozg. Neveroyatno.",
+"Utechka zhizni vsegda budet zabirat' u vas uroven', potomu chto trakhnite vas, glupyy igrok. U vas ne dolzhno byt' shansa.",
+"Dazhe yesli vy povyshayete uroven', vy ne poluchite polnykh liniy, potomu chto eto ne ochen' khorosho sproyektirovannaya igra.",
+"Vam vsegda nravilsya tot fakt, chto unichtozheniye predmetov proiskhodit tak chasto? Shag na odnoy lovushke ognya, BUM, poproshchaysya so vsemi svoimi zel'yami. Po krayney mere, slesh ne vklyuchal patch dlya unichtozheniya palochki. Vse zhe.",
+"Vy ne dolzhny poluchat' zhelaniya ot glubokovodnykh demonov! Tol'ko melkiye budut rabotat', i dazhe yesli eto prosto glupo, sozdatel' slesh ikh reshil sdelat' imenno tak. Vmesto etogo vy dolzhny ispol'zovat' rasshirennuyu kosuyu chertu.",
+"Algoritm vosstanovleniya podzemel'ya namnogo medlenneye iz-za kommunizma; Rabochim platyat za kolichestvo chasov, kotoryye oni pritvoryayutsya rabotayushchimi. Po krayney mere, eto oznachayet, chto oshibka sokhraneniya igry budet proiskhodit' rezhe...",
+"Yesli vy voydete v spetsial'nuyu komnatu, monstry ne prosnutsya. Potomu chto avtor etogo glupogo varianta khochet sdelat' vse legko, tak chto vy mozhete kolot' monstrov, poka oni spyat.",
+"Vam nravyatsya plokhiye interfeysy? Konechno, vy delayete! Dazhe yesli vam povezet i u vas yest' effekt polnoy inventarizatsii, on ne popadayet v konteynery, potomu chto tip ledyanogo bloka slishkom leniv, chtoby programmirovat' igru, kotoraya na samom dele khorosha.",
+"Shtabery predmetov nikogda ne budut soprotivlyat'sya manipulirovaniyu, potomu chto eto slesh, i vy dolzhny zhdat', poka u vas ne ostanetsya dyuzhiny svitkov broska charov, prezhde chem ikh blagoslovit'. Zatem my vernem moshennichestvo, gde eti svitki ne mogut byt' natseleny igrokom.",
+"Vy mozhete ispol'zovat' artefaktnyye klyuchi na obychnykh dveryakh, v sootvetstvii s sovetom 'potomu chto inache net nikakikh osnovaniy dlya polucheniya klyuchey artefakta, i eto ne imeyet smysla'. ZDRAVSTVUYTE??? Kto-to zabyl, chto glupyye veshchi sushchestvuyut tol'ko iz-za dverey v bashne?",
+"Nikogda monstry s dal'noboynym oruzhiyem ne poluchat dopolnitel'nyye boyepripasy. Potomu chto eto bylo by izmeneniyem ot vanili, i Emi byla by toy, kto sdelal eto, poetomu eto dolzhno byt' glupo i, vozmozhno, ne tak.",
+"Yesli igra prevrashchayet monstra, kotoryy mozhet spryatat'sya pod predmetami, on ne poluchit predmet, kotoryy mozhno skryt'. Dazhe zolotoy kusok. Potomu chto eto ne bylo sdelano v vanile, i po opredeleniyu varianty nikogda ne smogut izmenit' veshchi iz vanili.",
+"Sovetskaya Pyaterka pytalas' ubrat' egoizma. No on poterpel neudachu, potomu chto yego variant - fuflo, i poetomu tol'ko displey dlya takikh monstrov isporchen. Bwar Khar Khar Khar on on on kha kha kha govorit tip ledyanogo bloka!",
+"Neobychnyye monstry v Sovetskoy Rossii ne veshch'. Oni khoteli by polnost'yu otmenit' neobychnyye flagi, no, yesli ne poluchilos', razrabotchiki Glupyy variant (TM) sdelali tak, chto eti monstry vse yeshche otnositel'no rasprostraneny. Yesli vas ub'yut chto-to zloye, vasha vina!",
+"Pri boleye vysokikh trudnostyakh s monstrami vy bol'she ne uvidite monstrov nizkogo urovnya. Eto osobenno zabavno na bege voskhozhdeniya, potomu chto togda igra budet postoyanno poyavlyat'sya, provalivayas' iz der'ma i pinat' vash zhalkiy zad. KHAR KHAR.",
+"Vy igrayete v rezhime, v kotorom monstry vsegda porozhdayut vrazhdebnost', za ochen' nemnogimi isklyucheniyami. Potomu chto nikto ne lyubit rubit' ikh, i poetomu monstry takzhe ne lyubyat igrokov, kotoryye igrayut v nego.",
+"V vanili net soobshcheniya, yesli nevidimyy monstr dyshit, plyuyet ili strelyayet v vas, i poetomu varianty tozhe mogut etogo ne delat'! Ili, po krayney mere, Sovet skazal by vam ob etom, khotya eto polnyy i polnyy bred.",
+"Vy poluchite vyzov busheval, o da, vy budete. V dal'neyshem lichi budut nanosit' vsevozmozhnyye nepriyatnyye zaklinaniya, potomu chto eto ikh slesh, kotoryy (v otlichiye ot yeye varianta v Emi) ne pytayetsya sokhranit' veshchi normal'nymi.",
+"Yesli vam ne povezlo nastol'ko, chto monstr budet slabeye, vasha sila rezko upadet do ochen' nizkogo znacheniya, i vy takzhe mozhete sdat'sya. No, po krayney mere, eto vyzhivaniye, v otlichiye ot zaklinaniya kantselyarskikh paralichey, kotoroye ozaglavleno 'Ty teper' mertv'.",
+"Monstry, atakuyushchiye veb-sayty, generiruyut mnozhestvo sluchaynykh lovushek, potomu chto tip ledyanykh blokov lyubit nakruchivat' vas na kha-kha-kha!",
+"K sozhaleniyu, sovetskaya Pyat' Lo ne lyubit spetsial'nykh atak, kogda monstry mogut udarit' vas v orekhi ili podobnyye veshchi, i, takim obrazom, oni sluchayutsya gorazdo rezhe. Veroyatno, eto myagkoye yaytso, kotoroye mozhno zalatat' dazhe za paru temno-sinikh krossov 'Ivonne', etot slabak!",
+"Yest' odna veshch', kotoruyu sdelal ledyanoy blok, kotoryy vam mozhet dazhe ponravit'sya: on sdelal eto tak, chtoby vashe oborudovaniye ne stanovilos' skuchnym. Teper' postroyte yemu zolotoy tron.",
+"Osteregaytes' pogloshchayushchikh monstrov, potomu chto oni vsegda budut vas bit'! Tip ledyanogo bloka nenavidit sluchaynost' s ognennoy strast'yu i, sledovatel'no, otklyuchayet vse vyzovy Amn's rn2 bez prichiny, krome kak byt' ogromnym chlenom.",
+"Pomnite amneziyu ot chistki vanili? Togda vy budete LYUBIT' fakt, chto on stirayet stol'ko zhe, skol'ko i zdes', potomu chto eto slesh, i lyuboye izmeneniye, sdelannoye Emi, dolzhno byt' der'mom, dazhe yesli ono ponravitsya kazhdomu zdravomyslyashchemu igroku. Vernis'! Vernis'! Vernis'!",
+"Dumayu, ty lyubish' russkikh zhenshchin, potomu chto oni - polnyye soblazniteli i zastavyat tebya snyat' vse svoye snaryazheniye i peredat' yego im. Net, spasitel'nyye broski bol'she ne sushchestvuyut, potomu chto Sovet udalil ikh vmeste so vsem ostal'nym. I ya nakleivayu tebe yazyk, potomu chto ty prodolzhayesh' igrat' v etu glupuyu versiyu.",
+"Chto, vy khotite umen'shit' uron? Togda vam nuzhno poluchit' klass broni vyshe minus dvadtsati, i vam eto ne udastsya. Potomu chto eto rezhim ledyanogo bloka, i u vas ne dolzhno byt' shansa. Daye-na-da-na!",
+"Vy ne mozhete izbezhat' napadeniy monstrov. V vanili oni vsegda srabatyvayut, i poetomu oni zdes'. Dazhe yesli oni chto-to deystvitel'no zlyye. Luchshe poigrayte v dzen-povedeniye, potomu chto v protivnom sluchaye vy poluchite udar. Nu chto zh, eto vse ravno proizoydet, tak chto ne bespokoytes'. Pochemu by tebe prosto ne sprygnut' s mosta?",
+"Eto slesh, gde vy vsegda budete poluchat' polnyy uron. Poluchayete skidku, potomu chto u vas vysokiy uroven'? Net, konechno, net. Potomu chto gde by my byli, yesli by vyravnivaniye deystvitel'no sdelalo vashego personazha boleye sposobnym delat' veshchi? V Sovetskoy Rossii etogo ne mozhet byt'.",
+"KTO-TO udalil graficheskuyu stroku dialoga iz soblazneniya sukkub. Potomu chto etot chelovek - neveroyatno khrabryy chelovek, i yemu nuzhno zapretit' trakhat'sya s chistym iskhodnym kodom.",
+"Beremennost' ne sushchestvuyet. Po krayney mere zdes' eto ne tak. Ili, mozhet byt', vy prosto yadovity, i lyuboy rebenok srazu zhe rasplavitsya v vashem zheludke. Vo vsyakom sluchaye, yeshche odin primer sovetskoy kontseptsii 'YA TRUDNO NENAVISTI VSE VSE, CHTO YEST' NOVAYA I INNOVATSIONNAYA'.",
+"Nekotoryye kommunisticheskiye neudachi ne sposobny ispol'zovat' fazovuyu dver' posle nayezda na imitatsiyu, kotoraya pritvoryayetsya dver'yu, poetomu oni nachnut poyavlyat'sya pozzhe. Potomu chto sovetskaya Pyat' Lo - ochen' plokhoy igrok. Poluchite eto, on dazhe udalil lovushki, poyavlyayushchiyesya v koridorakh, potomu chto on super glupyy i prodolzhayet vytesnyat' svoikh pitomtsev v nikh! Kakoy polnyy nub!",
+"Tip ledyanogo bloka nevospriimchiv k skuke i poetomu sdelan tak, chto v Geennome sushchestvuyut tol'ko labirinty. Vy, s drugoy storony, navechno proklinayete otstalogo razrabotchika, kotoryy otkazalsya ot ochen' zhelannogo 'Gehennom', takzhe mogut imet' izmeneniya v komnatakh i koridorakh.",
+"Nekotoryye kommunisticheskiye pediki ne v sostoyanii sdelat' razumnuyu veshch', kogda stolknulis' s troll'-kholla na vtorom urovne, i poetomu sdelali tak, chtoby oni nachali poyavlyat'sya pozzhe. Vy igrayete v eti pediki, ikh variant, tak chto vam tozhe legko, lamer! Poluchite udovol'stviye i nachnite igrat' slesh!",
+"Spetsial'nyye urovni ne mogut imet' predmetov, skrytykh v stenakh, potomu chto OGO MOY BOG, KTO-TO OTKAZALSYA IZMENIT' VESHCHI IZ VANILI. I kto-to byl Emi, to yest' bukval'noye opredeleniye zla, poetomu on dolzhen nemedlenno poluchit' topor. Da, eto to, chto razrezayet ikh.",
+"Tip ledyanogo bloka umen'shal veroyatnost' poyavleniya nepriyatnykh lovushek, potomu chto on takoy plokhoy igrok, chto ne mozhet spravit'sya s nimi. Yesli vy vyigrali igru, eto nichego ne znachit, potomu chto vy igrayete v rezhime s men'shey slozhnost'yu!",
+"Tot, kto polnost'yu nichego ne ponimayet v chem-libo, sdelal eto tak, chto sluchaynyye zhertvenniki ne mogut byt' neprisoyedineny. Yesli vy sprosite menya, to sushchestvovaniye sovetskoy Pyat' Lo tozhe ne imeyet smysla !!!",
+"Eto rezhim ledyanogo bloka, gde elementy, kotoryye mogut generirovat' v stekakh, nikogda ne budut poluchat' proizvol'nuyu dopolnitel'nuyu dobavlennuyu summu. Potomu chto v kommunizme vse normiruyetsya, i tenevoye pravitel'stvo garantiruyet, chto vy nikogda ne poluchite bol'she, chem drugiye.",
+"Pechal'no izvestnyy modeder po imeni sovetskiy ne ponimal, pochemu ya sdelal vozmozhnym ocharovyvat' kamni i zheleznyye shariki. Poetomu on vernul yeye, tochno tak zhe, kak on otmenil vse ostal'noye. Prostoye sushchestvovaniye yego varianta pokhodit na bol'shoy znak 'yebat' tebya' dlya vsekh ser'yeznykh igrokov-khakerov.",
+"Vy nikogda ne naydete pustykh ili otmenennykh palochek, potomu chto Sovetskaya pyaterka Lo ne khochet, chtoby podzemel'ye chuvstvovalo sebya 'zhivym', to yest' kak budto drugiye avantyuristy uzhe proshli. Ili mozhet byt', eto potomu, chto yemu ne nravitsya sluchaynost', i poetomu on dolzhen igrat' chto-to vrode pervoy partii Mario, gde vse predopredeleno, kak tol'ko vy nachinayete igru.",
+"Khar khar khar, monstry v spetsial'nykh komnatakh nachinayut bodrstvovat'! U tebya net shansa! Ty glupyy kon'-okhuitel'nyy futbolist, ty!",
+"Poskol'ku tip ledyanogo bloka absolyutno nesposoben poluchit' chto-to pravil'noye, on sdelal eto tak, chto morskiye monstry snova uzhasno slaby na zemle. Eto delayet ikh slishkom legko pobedit', i, takim obrazom, pobeda v etom rezhime vryad li yavlyayetsya dostizheniyem.",
+"Sovetskaya pyaterka snova vvela staryy zhuk, v kotorom ubiystvo monstra, pogloshchayushchego vas, ne pozvolyayet yemu udalyat' predmety. I v to vremya kak on byl na etom, on takzhe sdelal eto tak, chtoby monstry v stenakh ne mogli ponizit' punkty takzhe, tol'ko nazlo igroka.",
+"V etom duratskom sposobe otstalosti, monstry dolzhny byt' v sostoyanii ostavlyat' trupy i imet' ruki, inache oni ne smogut ostavit' kaplyu smerti. I kopy ne mogut ostavit' ni odnogo. Zachem? Ponyatiya ne imeyu! Etot mod ne imeyet smysla!",
+"Tip ledyanogo bloka vnov' predstavil vse glupyye ogranicheniya monstrov, ispol'zuyushchikh predmety. V tom chisle te, gde na samom dele imeyet smysl ispol'zovat' monstry.",
+"Ne pytaytes' zhelat' artefakta. V sluchaye neudachi, i, veroyatno, vy poluchite nichego, v otlichiye ot slesh em rasshirennyy. No, pover', slesh - eto prosto plokho, i tvorets dolzhen chuvstvovat' sebya plokho.",
+"Znayete li vy, chto Sovet nenavidit vse, chto vy delayete? Delo v tom, chto on nastaivayet na tom, chto polimorfizatsiya v bol'shoy monstr vsegda narushayet vashi dospekhi, plashch i vse ostal'noye. Dazhe yesli monstr byl prosto kroshechnym nemnogo bol'shim. Razve ty ne lyubish' yego seychas?",
+"Yesli vy poluchite bozhestvennuyu koronatsiyu ili kul'minatsiyu, vy vsegda poluchite tot zhe dar. Potomu chto v kommunizme vse odno i to zhe skuchnoye zanyatiye, mozhet i ne byt' raznoobraziya voobshche. Etot variant plokhoy, i sozdatel' dolzhen chuvstvovat' sebya plokho!",
+"Da, konechno, vy mozhete predlagat' trupy tak, kak vy khotite! Sovetskiy tvoy drug, i sdelal tak, chtoby altar' nikogda ne ischeznet! Otdavayte zhertvu i prodolzhayte delat' eto, poka ne umrete ot starosti. No kazhdyy raz, kogda vy predlagayete trup, mozhet sluchit'sya chto-to plokhoye. KHAR KHAR KHAR.",
+"V Sovetskoy Rossii yest' raketka zashchity, naryadu s vymogatel'stvom vykupa i raskhishcheniyem. Nu, vy znayete, kogo vy dolzhny obvinyat', yesli vash tselitel' i tselitel' i zver'ki budut zverski ubity mestnym naseleniyem gnomicheskikh min. YA ne vinovat, chto opredelennyy razrabotchik khochet plokho skonstruirovannuyu igru ...",
+"K sozhaleniyu, amneziya budet povtorno randomizirovat' opisaniya predmetov gorazdo rezhe v etom rezhime. No po krayney mere on vse yeshche mozhet sdelat' eto, i vy budete ochen' rady, yesli eto proizoydet! Zakrytaya liniya s zamknutym konturom!",
+"Slesh em delayet eto tak, chto neudachnoye chteniye knigi zaklinaniy vsegda paralizuyet vas dlya nechestivogo dolgogo vremeni. YA ispravil eto, no, konechno zhe, on dolzhen byl byt' izmenen obratno dlya glupogo rezhima gluposti, kotoryy nazyvayetsya slesh ikh.",
+"Khoroshiye interfeysy dlya NENAVIST' NEDVIZHIMOSTI. On sdelal eto tak, chto moye prekrasnoye otobrazheniye ostavsheysya pamyati zaklinaniy prosto PROSHLO. I dobavil ochen' neubeditel'nyy, somnitel'nyy, neubeditel'nyy povod dlya etogo. Nado otpolirovat' svoye urodlivoye litso sapogom na vysokikh kablukakh v otmestku.",
+"Tip ledyanogo bloka ne ochen' chasto nakladyvayet zaklinaniya, ili, mozhet byt', yedinstvennyye zaklinaniya, kotoryye on ispol'zuyet, iskhodyat iz yego priklada. Vo vsyakom sluchaye, on dumayet, chto Emi sdelat' zaklinaniya legche brosit' eto plokho, tak zhe, kak on dumayet, chto vse, chto ona delayet, plokho, i poetomu otmenil yego tak zhe, kak on otmenil chto-nibud' yeshche!",
+"Ne nadeysya, yesli nachnesh' s neskol'kikh knig zaklinaniy s boltom sily. U vashey dovol'no volshebnoy devushki ne budet dopolnitel'noy pamyati zaklinaniy, i poetomu ona tak zhe ne mozhet primenyat' yeye, kak v protivnom sluchaye. Perestan'te igrat' v der'movyy sovetskiy rezhim, i eta problema ischeznet!",
+"Vy ne mozhete sedlat' i katat'sya na chem ugodno. Sovetskiy, velikolepnyy sozdatel' samogo bol'shogo varianta razrusheniya seti, vernul vse glupyye ogranicheniya na yerundu i budet smeyat'sya nad toboy navsegda, poka ty ne smozhesh' katat'sya s sushchestvom, kotoroye inache sdelalo by chertovski khoroshuyu goru.",
+"Vsplesk energii byl ochen' neuravnoveshennoy tekhnikoy v regulyarnom razreze. Ugaday, kto snova yego odolel? Aga. Po krayney mere, my ne realizovali vozmozhnost' ispol'zovat' yego v sochetanii s tsepnym blits, potomu chto eto bylo by deystvitel'no neuravnoveshennym.",
+"On, on, on kha-kha-kha, vodnyye plitki schitayutsya bezopasnymi mestami dlya teleportatsii, potomu chto tak govorila 'Sovetskaya pyaterka'. Nu, po krayney mere, yesli vy umeyete plavat'. Vo vsyakom sluchaye, kto-to zabotitsya ob oborudovanii, stanovyashchemsya rzhavym.",
+"Chto, vy khotite zashchitit' vashi veshchi ot erozii, ispol'zuya zhir? Ni za chto! Sozdatel' varianta fignya etogo ne pozvolyayet. I vy deystvitel'no glupy, potomu chto vy ne igrayete v svoy variant Emi, dazhe nesmotrya na to, chto eto namnogo luchshe v kazhdom otdel'nom sluchaye.",
+"Glupost' v generatsii statuetok zdes' drugaya. Tip ledyanogo bloka pochemu-to ne nravitsya, chto ikh skryvayut pod monstrami, prosto iz strakha poluchit' statsionarnuyu plesen', kotoraya nemnogo glubina. Pozvol'te mne dogadat'sya: on dostatochno glup, chtoby atakovat' vse, chto dvizhetsya ili vyglyadit tak, kak budto on mozhet dvigat'sya, i, takim obrazom, yego vse vremya ubivayut.",
+"Neispravnyye portaly v Sovetskoy Rossii terpet' ne mogut, i poetomu vy mozhete delat' portal'nyye tantsy vechno, chto prosto tak glupo. YA ne mogu poverit', chto sovetskaya Pyat' Lo deystvitel'no schitala eto deystvennoy taktikoy. No togda ya smotryu na ostal'nuyu chast' yego der'movoy vilki i, khorosho.",
+"Tip ledyanogo bloka razdrazhalsya tem, chto on ne mog nayti lovushki na sundukakh s garantirovannym shansom na uspekh, poetomu on sdelal vernut'sya nazad vernut' veshch' i sdelal eto vozmozhnym snova. Pochemu on prosto ne dast vam amulet i ne pozvolit vam nachat' na vysokom altare vashey bogini na astral'nom plane, yesli on ne khochet rabotat' na yego pobedu?",
+"Vy mozhete vzyat' vashe sladkoye vremya vsplytiya i, veroyatno, nemnogo pokhudet', potomu chto sovetskaya Pyat' Lo dayet vam po men'shey mere sto tysyach oborotov. Na samom dele, u vas mnogo vremeni, chtoby popolnit' svoi orekhi i pomassirovat' miluyu russkuyu zhenshchinu.",
+"Ne igray v pogrom v sovetskom rezhime! Vy ne poluchite lishnikh trupov, chtoby nachat', no yest' lyudey po-prezhnemu kannibalizm. Yesli vam nuzhno, vyberite vmesto etogo fantom, khotya vy *budete* umirat' na Astral'nom plane, yesli Golod sluchayetsya byt' korystolyubivym. Byl tam, sdelal eto.",
+"Poskol'ku u cheloveka, u kotorogo net kletok mozga, razvivayetsya etot rezhim, yady ne izvestny s samogo nachala igry. Prochitayte kommentariy v U INIT tochka gr, yesli khotite znat', pochemu eto takaya glupaya veshch', ili sprosite menya (Emi) v chate IRC.",
+"Sluchaynost' ne dopuskayetsya pri kommunizme. Poetomu kazhdyy personazh, kotorogo vy nachinayete v sovetskom rezhime, nachinayetsya s odinakovogo kolichestva stat-ochkov. Duyet vas, yesli vy nachinayete podsmatrivat' za volshebnikom, potomu chto sleduyushcheye, chto my delayem, - eto takzhe ispravit' ikh inventar'.",
+"Turisty, kotoryye priyezzhayut v Sovetskuyu Rossiyu, mogut prosto snyat' futbolki, khotya rubashka dolzhna byt' odnim iz punktov podpisi turista. No sovetskaya Pyat' Lo prinimayet glupyye dizaynerskiye resheniya. Nuzhno polnost'yu prizvat' yego za svoy variant der'ma.",
+"Chto, vy khotite poluchit' boleye vysokiy reyting, potomu chto vy povyshayete uroven'? Zabud' eto! Tip ledyanogo bloka reshil, chto, poskol'ku imenno Emi sovershila eto izmeneniye, a Emi - yego smertel'nyy vrag, on dolzhen poluchit' toporom. I da, on ne dumayet, poka ne udalit vse.",
+"Poskol'ku prostoye obrashcheniye k bonusu-khitu slishkom prosto, rezhim ledyanogo bloka izmenyayet zheleznyye tsepi i tyazhelyye zheleznyye shary, tak chto oni deystvitel'no vryad li udaryatsya. Udachi vyzhit' v nachale igry, kak katorzhnik.",
+"Tip ledyanogo bloka, ogranichennogo dvoynym oruzhiyem. Vy nikogda ne stolknetes' s shirokoy storonoy ambara.",
+"Khorosho, ty khochesh' uslyshat' otlichnyye novosti? Tot, kotoryy polnost'yu vzorvet vash razum? Zatem poluchite sleduyushcheye: Sovetskaya pyaterka tipa Ledyanogo bloka, otvetstvennaya za slesh-variant, povtorno vstavila oshibku brachnogo iskusstva. Teper' vash monakh snova sdelayet tol'ko odno ochko urona s veroyatnost'yu odin na chetyre. Bez shutok.",
+"V Sovetskoy Rossii dlya etogo kursa podkhodit ryukzak. Pri ispol'zovanii Moshenniki vsegda poluchayet maksimal'nyy bonusnyy uron. Net, shturmovyye udary ne vyzyvayut neuravnoveshennosti.",
+"Vy ser'yezno ozhidali bonusov za vysokuyu silu i lovkost', ne tak li? Nu, otstoyno byt' toboy, no ty igrayesh' glupyy variant, kogda te delyatsya napolovinu. I gore tebe, yesli tvoya sila na samom dele nizka, potomu chto togda ty ne mozhesh' nichego ubit'.",
+"YA sdelal eto tak, chto vy mozhete razvernut' svoye oruzhiye bez ispol'zovaniya povorota. Ugadayte, kto byl bolvanom, kotoryy otmenil eto izmeneniye. Da, eto bylo sovetskoye.",
+"Vse to, chto zastavlyayet igru stoit' igrat', bylo otmeneno v kosuyu chertu, v tom chisle i v tom sluchaye, kogda volshebnyye markery ne budut polnost'yu opustosheny, yesli vy popytayetes' chto-to napisat', imeya slishkom maloye kolichestvo chernil.",
+"Kto-to reshil potroshit' palochku otozhdestvleniya s zabveniyem. I yedinstvennaya prichina, po kotoroy on eto sdelal, - dokazat' uzhe izvestnyy fakt, chto on idiot. Yego zovut 'Sovetskaya pyaterka', khotya ya predpochitayu nazyvat' yego tipom ledyanogo bloka.",
+"Emi delala blagoslovlennyye predmety boleye stoykimi k otmene, i tip ledyanogo bloka reshil, chto eto glupo, bessmyslenno ili chto-to v etom rode. Chego ty ozhidal? Prinimaya logicheskiye resheniya? KHA KHA KHA KHA KHA KHA KHA. On izvesten uzhasno plokhim dizaynom igry, i on khochet zashchitit' svoyu plokhuyu reputatsiyu!",
+"V sovetskom rezhime zaklinaniye 'Volshebnaya raketa' snova ul'tra moshchno. Potomu chto igrovoy balans nikogda ne byl bol'shoy chast'yu filosofii dizayna v Sovetskom Soyuze.",
+"Kto-to schitayet, chto eto sovershenno zdorovo, yesli vashi luchi smerti prodolzhayut propuskat' volshebnika yada. Lovkost' bonus shans popast'? Ili luchshe udarit', yesli vash uroven' vyshe? Net, eto nikomu ne nuzhno! Slesh ikh takoy dryannoy variant, ya chestno udivlen, chto kto-to igrayet yego voobshche.",
+"V svoyem stremlenii vernut' vse obratno k urovnyam vanili sovetskiy tip ledyanogo bloka sdelal eto tak, chto molniya snova oslepit vas kazhdyy raz, a prodolzhitel'nost' slepoty slishkom velika.",
+};
 
 static NEARDATA const char * const bosstaunts[] = {
 "cackles evilly.",
@@ -4815,6 +4992,12 @@ const char *
 bosstaunt()
 {
 	return (bosstaunts[rn2(SIZE(bosstaunts))]);
+}
+
+const char *
+soviettaunt()
+{
+	return (soviettaunts[rn2(SIZE(soviettaunts))]);
 }
 
 /*pager.c*/

@@ -575,6 +575,13 @@ E boolean FDECL(In_dod, (d_level *));
 E boolean FDECL(In_gehennom, (d_level *));
 E boolean FDECL(In_towndungeon, (d_level *));
 E boolean FDECL(In_spiders, (d_level *));
+E boolean FDECL(In_grund, (d_level *));
+E boolean FDECL(In_wyrm, (d_level *));
+E boolean FDECL(In_tomb, (d_level *));
+E boolean FDECL(In_slsea, (d_level *));
+E boolean FDECL(In_gcavern, (d_level *));
+E boolean FDECL(In_frnkn, (d_level *));
+E boolean FDECL(In_mtemple, (d_level *));
 E branch *FDECL(dungeon_branch, (const char *));
 E boolean FDECL(at_dgn_entrance, (const char *));
 E boolean FDECL(In_hell, (d_level *));
@@ -1782,6 +1789,7 @@ E int NDECL(dohistory);
 
 E const char *NDECL(fauxmessage);
 E const char *NDECL(bosstaunt);
+E const char *NDECL(soviettaunt);
 
 /* ### pcmain.c ### */
 
@@ -2898,6 +2906,7 @@ E struct monst *FDECL(revive, (struct obj *));
 E int FDECL(unturn_dead, (struct monst *));
 E void FDECL(cancel_item, (struct obj *));
 E boolean FDECL(drain_item, (struct obj *));	/* KMH */
+E boolean FDECL(drain_item_severely, (struct obj *));	/* KMH */
 E boolean FDECL(drain_item_negative, (struct obj *));	/* KMH */
 E boolean FDECL(obj_resists, (struct obj *,int,int));
 E boolean FDECL(obj_shudders, (struct obj *));

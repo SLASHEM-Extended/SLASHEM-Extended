@@ -946,7 +946,7 @@ badeffect()
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
-				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) || MON_AT(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();
@@ -1769,6 +1769,7 @@ badeffect()
 			pline("Suddenly a lightning flash hits you!");
 		    destroy_item(RING_CLASS, AD_ELEC);
 		    destroy_item(WAND_CLASS, AD_ELEC);
+		    destroy_item(AMULET_CLASS, AD_ELEC);
 
 		break;
 

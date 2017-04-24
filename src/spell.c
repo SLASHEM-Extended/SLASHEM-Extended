@@ -4517,7 +4517,7 @@ boolean atme;
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
-				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) || MON_AT(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
 			      rtrap = randomtrap();
@@ -4724,7 +4724,9 @@ boolean atme;
 
 	/* note by Amy: I can't, for the life of me, remember that converting a permonst to number is done via monsndx.
 	 * Therefore I'm leaving a note here that I can grep for the next 200 times I forget that permonst monster number
-	 * is done via monsndx! */
+	 * is done via monsndx! And since I STILL keep forgetting it and NOT find it, I'll leave some more breadcrumbs:
+	 * monster index to number is done via the monsndx function
+	 * monster number is done via that monsndx function */
 				int monnumber = monsndx(ptrZ);
 
 				bomber = make_helper(monnumber, u.ux, u.uy);

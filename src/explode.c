@@ -595,6 +595,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SPBOOK_CLASS, (int) adtyp);
 		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(POTION_CLASS, (int) adtyp);
 		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(RING_CLASS, (int) adtyp);
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 15 : 75)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, (int) adtyp);
 		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(WAND_CLASS, (int) adtyp);
 
 		ugolemeffects((int) adtyp, damu);

@@ -3403,8 +3403,10 @@ use_pole (obj)
 		    break;
 		case 5:
 		    /* Catch your dinner */
-		    if (fishing && (otmp = mksobj(CRAM_RATION, TRUE, FALSE)) !=
+		    if (fishing && flags.cram_count < 50 && (otmp = mksobj(CRAM_RATION, TRUE, FALSE)) !=
 			    (struct obj *)0) {
+			flags.cram_count++; /* I swear I implemented that once already, but apparently the change got eaten,
+							just like that annoying polearms code... --Amy */
 			You("catch tonight's dinner!");
 			if (pickup_object(otmp, 1, FALSE) <= 0) {
 			    obj_extract_self(otmp);

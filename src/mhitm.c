@@ -1155,7 +1155,7 @@ physical:
 			    /* WAC -- or using a pole at short range... */
 			    (is_pole(otmp))) {
 			    /* then do only 1-2 points of damage */
-			    if (pd == &mons[PM_SHADE] && otmp->otyp != SILVER_ARROW)
+			    if (is_shade(pd) && objects[otmp->otyp].oc_material != SILVER && objects[otmp->otyp].oc_material != ARCANIUM)
 				tmp = 0;
 			    else
 				tmp = rnd(2);
@@ -1167,7 +1167,7 @@ physical:
 				useup(otmp);
 				otmp = (struct obj *) 0;
 				possibly_unwield(mtmp);
-				if (pd != &mons[PM_SHADE])
+				if (!is_shade(pd))
 				    tmp++;
 		    	    }
 #endif			
@@ -1418,6 +1418,7 @@ physical:
 		if (pd == &mons[PM_WOOD_GOLEM] || pd == &mons[PM_LEATHER_GOLEM]) tmp = 0;
 		break;
 	    case AD_STON:
+	    case AD_EDGE:
 		if (magr->mcan) break;
 		if (mattk->aatyp == AT_GAZE && mon_reflects(mdef, (char *)0)) {
 		    tmp = 0;
@@ -1451,7 +1452,7 @@ physical:
 			    You(brief_feeling, "peculiarly sad");
 			return (MM_DEF_DIED | (grow_up(magr,mdef) ?
 							0 : MM_AGR_DIED));
-			tmp = (mattk->adtyp == AD_STON ? 0 : 1);
+			tmp = (mattk->adtyp == AD_STON ? 0 : mattk->adtyp == AD_EDGE ? 0 : 1);
 		}
 		break;
 	    case AD_TLPT:
@@ -1554,6 +1555,7 @@ physical:
   		}
 		break;
 	    case AD_SLOW:
+	    case AD_WGHT:
 	    case AD_INER:
 		if (nohit) break;
 		if(!cancelled && vis && mdef->mspeed != MSLOW) {
@@ -1603,6 +1605,7 @@ physical:
 		break;
 
 	    case AD_THIR:
+	    case AD_NTHR:
 		if (magr->mhp > 0) {
 		magr->mhp += tmp;
 		if (magr->mhp > magr->mhpmax) magr->mhp = magr->mhpmax;
@@ -1616,6 +1619,13 @@ physical:
 			if (vis) pline("%s is freezing!", Monnam(mdef));
 		}
 		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
+
+		break;
+	    case AD_ICEB:
+		if (!resists_cold(mdef)) {
+			tmp *= 2;
+			if (vis) pline("%s is hit with ice blocks!", Monnam(mdef));
+		}
 
 		break;
 
@@ -1713,6 +1723,12 @@ physical:
 
 		break;
 
+	    case AD_TRAP:
+		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0);
+		else makerandomtrap();
+
+		break;
+
 	    case AD_CNCL:
 		if (rnd(100) > mdef->data->mr) {
 			mdef->mcan = 1;
@@ -1726,6 +1742,24 @@ physical:
 		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
 			if (vis) pline("%s screams in fear!",Monnam(mdef));
 		}
+		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
+
+		break;
+
+	    case AD_INSA:
+		if (rnd(100) > mdef->data->mr) {
+		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
+			if (vis) pline("%s screams in fear!",Monnam(mdef));
+		}
+		if (!magr->mcan && !mdef->mconf && !magr->mspec_used) {
+		    if (vis) pline("%s looks confused.", Monnam(mdef));
+		    mdef->mconf = 1;
+		    mdef->mstrategy &= ~STRAT_WAITFORU;
+		}
+		if (!magr->mcan && canseemon(mdef))
+		    pline("%s %s for a moment.", Monnam(mdef), makeplural(stagger(mdef->data, "stagger")));
+		mdef->mstun = 1;
+
 		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 
 		break;
@@ -2012,6 +2046,7 @@ physical:
 			          s_suffix(Monnam(mdef)));
 		break;
 	    case AD_SLIM: /* no easy sliming Death or Famine --Amy */
+	    case AD_LITT:
 		if (cancelled || (rn2(100) < mdef->data->mr) ) break;   /* physical damage only */
 		if (!rn2(400) && !flaming(mdef->data) &&
 				!slime_on_touch(mdef->data) ) {
@@ -2054,6 +2089,26 @@ physical:
 			    "%s undergoes a freakish metamorphosis!");
 		}
 		break;
+
+	    case AD_CHAO:
+		if (!magr->mcan && tmp < mdef->mhp) {
+		    if (resists_magm(mdef) || (rn2(100) < mdef->data->mr) ) { /* no easy taming Death or Famine! --Amy */
+			/* magic resistance protects from polymorph traps, so
+			 * make it guard against involuntary polymorph attacks
+			 * too... */
+			if (vis) shieldeff(mdef->mx, mdef->my);
+			break;
+		    }
+		    (void) mon_poly(mdef, FALSE,
+			    "%s undergoes a freakish metamorphosis!");
+		}
+		if ((tmp > 0) && (mdef && mdef->mhpmax > 1)) {
+			mdef->mhpmax--;
+			if (vis) pline("%s feels bad!", Monnam(mdef));
+		}
+
+		break;
+
 	    case AD_CALM:	/* KMH -- koala attack */
 		/* Certain monsters aren't even made peaceful. */
 		if (!mdef->iswiz && mdef->data != &mons[PM_MEDUSA] &&
@@ -2066,6 +2121,14 @@ physical:
 		    mdef->mpeaceful = 1;
 		    mdef->mtame = 0;
 		    tmp = 0;
+		}
+		break;
+	    case AD_FREN:
+
+		if (!mdef->mfrenzied && (!mdef->mtame || (mdef->mtame <= rnd(21)) ) ) {
+			mdef->mpeaceful = mdef->mtame = 0;
+			mdef->mfrenzied = 1;
+		    if (vis) pline("%s enters a state of frenzy!", Monnam(mdef));
 		}
 		break;
 	    default:	/*tmp = 0;*/ 
@@ -2284,6 +2347,7 @@ int mdead;
 	    }
 	    break;
 	    case AD_ENCH:	/* KMH -- remove enchantment (disenchanter) */
+	    case AD_NGEN:
 		if (mhit && !mdef->mcan && otmp) {
 				drain_item(otmp);
 		    /* No message */
@@ -2399,6 +2463,7 @@ int mdead;
 		break;
 
 	    case AD_SLOW:
+	    case AD_WGHT:
 	    case AD_INER:
 		if(magr->mspeed != MSLOW) {
 		    unsigned int oldspeed = magr->mspeed;
@@ -2446,6 +2511,7 @@ int mdead;
 		break;
 
 	    case AD_THIR:
+	    case AD_NTHR:
 		if (mdef->mhp > 0) {
 		mdef->mhp += tmp;
 		if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
@@ -2457,6 +2523,12 @@ int mdead;
 		if (!resists_cold(magr) && resists_fire(magr)) {
 			tmp *= 2;
 			if (canseemon(magr)) pline("%s is suddenly ice-cold!", Monnam(magr));
+		}
+		break;
+	    case AD_ICEB:
+		if (!resists_cold(magr)) {
+			tmp *= 2;
+			if (canseemon(magr)) pline("%s is suddenly shockfrosted!", Monnam(magr));
 		}
 		break;
 	    case AD_MALK:
@@ -2530,6 +2602,12 @@ int mdead;
 		(void) maketrap(magr->mx, magr->my, WEB, 0);
 		if (!rn2(issoviet ? 2 : 8)) makerandomtrap();
 		break;
+	    case AD_TRAP:
+		if (t_at(magr->mx, magr->my) == 0) (void) maketrap(magr->mx, magr->my, randomtrap(), 0);
+		else makerandomtrap();
+
+		break;
+
 	    case AD_CNCL:
 		if (rnd(100) > magr->data->mr) {
 			magr->mcan = 1;
@@ -2546,6 +2624,23 @@ int mdead;
 		if (rnd(100) > magr->data->mr) {
 		     monflee(magr, rnd(1 + tmp), FALSE, TRUE);
 			if (canseemon(magr)) pline("%s is suddenly very afraid!",Monnam(magr));
+		}
+		break;
+	    case AD_INSA:
+		if (rnd(100) > magr->data->mr) {
+		     monflee(magr, rnd(1 + tmp), FALSE, TRUE);
+			if (canseemon(magr)) pline("%s is suddenly very afraid!",Monnam(magr));
+		}
+		if (!magr->mstun) {
+		    magr->mstun = 1;
+		    if (canseemon(magr))
+			pline("%s %s...", Monnam(magr),
+			      makeplural(stagger(magr->data, "stagger")));
+		}
+		if (!magr->mconf) {
+		    if (canseemon(magr)) pline("%s is suddenly very confused!", Monnam(magr));
+		    magr->mconf = 1;
+		    magr->mstrategy &= ~STRAT_WAITFORU;
 		}
 		break;
 	    case AD_DREA:

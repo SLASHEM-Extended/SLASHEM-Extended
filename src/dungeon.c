@@ -928,6 +928,13 @@ init_dungeons()
 	mines_dnum = dname_to_dnum("The Gnomish Mines");
 	sheol_dnum = dname_to_dnum("Sheol");
 	spiders_dnum = dname_to_dnum("The Spider Caves");        
+	grund_dnum = dname_to_dnum("Grund's Stronghold");        
+	wyrm_dnum = dname_to_dnum("The Wyrm Caves");        
+	frnkn_dnum = dname_to_dnum("Frankenstein's Lab");        
+	gcavern_dnum = dname_to_dnum("The Giant Caverns");        
+	mtemple_dnum = dname_to_dnum("The Temple of Moloch");        
+	slsea_dnum = dname_to_dnum("The Sunless Sea");        
+	tomb_dnum = dname_to_dnum("The Lost Tomb");        
 	tower_dnum = dname_to_dnum("Vlad's Tower");
 	dod_dnum = dname_to_dnum("The Dungeons of Doom");
 	town_dnum = dname_to_dnum("Town");
@@ -1507,6 +1514,55 @@ d_level *lev;
 	return((boolean)(lev->dnum == spiders_dnum));
 }
 
+boolean
+In_grund(lev) /* are you in grund's stronghold? */
+d_level *lev;
+{
+	return((boolean)(lev->dnum == grund_dnum));
+}
+
+boolean
+In_wyrm(lev) /* are you in the wyrm caves? */
+d_level *lev;
+{
+	return((boolean)(lev->dnum == wyrm_dnum));
+}
+
+boolean
+In_frnkn(lev) /* are you in Frankenstein's lab? */
+d_level *lev;
+{
+	return((boolean)(lev->dnum == frnkn_dnum));
+}
+
+boolean
+In_gcavern(lev) /* are you in the giant caverns? */
+d_level *lev;
+{
+	return((boolean)(lev->dnum == gcavern_dnum));
+}
+
+boolean
+In_mtemple(lev) /* are you in the temple of moloch? */
+d_level *lev;
+{
+	return((boolean)(lev->dnum == mtemple_dnum));
+}
+
+boolean
+In_slsea(lev) /* are you in the sunless sea? */
+d_level *lev;
+{
+	return((boolean)(lev->dnum == slsea_dnum));
+}
+
+boolean
+In_tomb(lev) /* are you in the lost tomb? */
+d_level *lev;
+{
+	return((boolean)(lev->dnum == tomb_dnum));
+}
+
 /*
  * Return the branch for the given dungeon.
  *
@@ -1749,6 +1805,9 @@ level_difficulty()
 	if ((retvalue > 1) && !u.aggravation && !rn2(issoviet ? 1250 : 250)) retvalue /= 10;
 
 	if (retvalue < 1) retvalue = 1;
+
+	/* Psions are so overpowered if they have all their intrinsics, that I decided to make them harder. --Amy */
+	if (Role_if(PM_PSION) && u.ulevel >= 7) retvalue += rnd(retvalue);
 
 	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) retvalue += 10;
 	if (Race_if(PM_PHANTOM_GHOST)) retvalue++;
