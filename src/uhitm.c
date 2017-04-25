@@ -7849,6 +7849,7 @@ uchar aatyp;
 		break;
 	      case AD_ICEB:
 			You("are hit by a barrage of ice blocks!");
+			if (issoviet) pline("BWAR KHAR (gryaznyy smekh) on on on kha kha kha!");
 		    make_frozen(HFrozen + (long)tmp, TRUE);
 			if (!rn2(issoviet ? 2 : 10)) {
 				destroy_item(POTION_CLASS, AD_COLD);

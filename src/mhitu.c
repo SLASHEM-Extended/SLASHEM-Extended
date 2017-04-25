@@ -4040,6 +4040,7 @@ hitmu(mtmp, mattk)
 	    case AD_ICEB:
 		hitmsg(mtmp, mattk);
 		pline("You are hit by ice blocks!");
+		if (issoviet) pline("KHA KHA KHA!");
 		if(!mtmp->mcan && !rn2(3)) {
 		    make_frozen(HFrozen + dmg, TRUE);
 		    dmg /= 2;
@@ -9041,6 +9042,7 @@ do_stone2:
 		    if(!mtmp->mcan && rn2(2)) {
 
 			pline("You are pummeled with blocks of ice!");
+			if (issoviet) pline("KHAR KHAR KHAR!");
 			if (Cold_resistance && rn2(20)) {
 				pline("The ice doesn't seem to affect you.");
 				tmp = 0;
@@ -9391,6 +9393,7 @@ boolean ufound;
 		goto common;
 
 	    case AD_ICEB:
+		if (issoviet) pline("KHA KHA KHA KHA KHA KHA KHA.");
 		not_affected |= Cold_resistance;
 		make_frozen(HFrozen + tmp, TRUE);
 		if (!rn2(issoviet ? 2 : 10)) {
@@ -12274,7 +12277,6 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 		    polyself(FALSE);
 			}
-		}
 		    switch (rn2(11)) {
 		    case 0: diseasemu(mtmp->data);
 			    break;
@@ -12302,6 +12304,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    case 10: make_dimmed(HDimmed + dmgplus, TRUE);
 			    break;
 		    }
+		}
 
 		break;
 
@@ -13403,6 +13406,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_ICEB:
 		if (!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    pline("%s hurls an ice block at you and hits!", Monnam(mtmp));
+			if (issoviet) pline("ON ON ON!");
 		    stop_occupation();
 
 		    int dmg = d(3,6);
