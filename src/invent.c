@@ -314,6 +314,21 @@ struct obj *obj;
 		if (u.uhave.amulet) impossible("already have amulet?");
 		u.uhave.amulet = 1;
 #ifdef RECORD_ACHIEVE
+
+		if (!achieve.get_amulet) {
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
                 achieve.get_amulet = 1;
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
@@ -329,6 +344,21 @@ struct obj *obj;
 			if (Upolyd) u.mhmax += rnd(50);
 		}
 #ifdef RECORD_ACHIEVE
+
+		if (!achieve.get_candelabrum) {
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
                 achieve.get_candelabrum = 1;
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
@@ -344,6 +374,21 @@ struct obj *obj;
 			if (Upolyd) u.mhmax += rnd(50);
 		}
 #ifdef RECORD_ACHIEVE
+
+		if (!achieve.get_bell) {
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
                 achieve.get_bell = 1;
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
@@ -359,6 +404,21 @@ struct obj *obj;
 			if (Upolyd) u.mhmax += rnd(50);
 		}
 #ifdef RECORD_ACHIEVE
+
+		if (!achieve.get_book) {
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
                 achieve.get_book = 1;
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
@@ -399,6 +459,21 @@ struct obj *obj;
 
 #ifdef RECORD_ACHIEVE
         if(obj->otyp == LUCKSTONE && obj->record_achieve_special) {
+
+		if (!achieve.get_luckstone) {
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
                 achieve.get_luckstone = 1;
                 obj->record_achieve_special = 0;
 		    if (!u.luckstoneget) {
@@ -413,6 +488,21 @@ struct obj *obj;
         } else if((obj->otyp == AMULET_OF_REFLECTION || obj->otyp == GAUNTLETS_OF_REFLECTION || obj->otyp == RIN_POLYMORPH_CONTROL || obj->otyp == RIN_TELEPORT_CONTROL || obj->otyp == SHIELD_OF_MOBILITY || obj->otyp == HELM_OF_DRAIN_RESISTANCE || obj->otyp == CYAN_DRAGON_SCALE_MAIL || obj->otyp == FLYING_BOOTS ||
                    obj->otyp == BAG_OF_HOLDING) &&
                   obj->record_achieve_special) {
+
+		if (!achieve.finish_sokoban) {
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
                 achieve.finish_sokoban = 1;
                 obj->record_achieve_special = 0;
 		    if (!u.sokobanfinished) {
