@@ -14966,6 +14966,12 @@ loopback:
 		if (ct > 0 && (iswindinhabitant && is_jokemonster(ptr))) ct += 2;
 		if (ct > 0 && (Race_if(PM_WORM_THAT_WALKS) && is_dnethackmonster(ptr))) ct += 5;
 		if (ct > 0 && (Race_if(PM_YUKI_PLAYA) && is_dnethackmonster(ptr))) ct += 5;
+		if (ct > 0 && (Is_oracle_level(&u.uz) && (ptr->mlet == S_SNAKE))) ct += 3;
+		if (ct > 0 && (Is_oracle_level(&u.uz) && (ptr->mlet == S_ELEMENTAL))) ct += 3;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_VAPO))) ct += 2;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_EDGE))) ct += 2;
+		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_NGEN))) ct += 3;
+		if (ct > 0 && (Race_if(PM_WEAPON_TRAPPER) && dmgtype(ptr, AD_TRAP))) ct += 1;
 
 		if (ct > 0 && (mndx == u.frequentspecies)) ct += u.freqspeciesbonus;
 		if (ct > 0 && (mndx == u.frequentspecies2)) ct += u.freqspeciesbonus2;
@@ -15517,6 +15523,10 @@ int     spc;
 		if ((iswindinhabitant && is_jokemonster(&mons[last]))) num += 2;
 		if ((Race_if(PM_WORM_THAT_WALKS) && is_dnethackmonster(&mons[last]))) num += 5;
 		if ((Race_if(PM_YUKI_PLAYA) && is_dnethackmonster(&mons[last]))) num += 5;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_VAPO))) num += 2;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_EDGE))) num += 2;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_NGEN))) num += 3;
+		if ((Race_if(PM_WEAPON_TRAPPER) && dmgtype(&mons[last], AD_TRAP))) num += 1;
 
 		if (last == urole.nemesnum) num += 100;
 
@@ -15785,7 +15795,11 @@ int     spc;
 		if ((iswindinhabitant && is_jokemonster(&mons[first]))) num -= 2;
 		if ((Race_if(PM_WORM_THAT_WALKS) && is_dnethackmonster(&mons[first]))) num -= 5;
 		if ((Race_if(PM_YUKI_PLAYA) && is_dnethackmonster(&mons[first]))) num -= 5;
-		
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_VAPO))) num -= 2;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_EDGE))) num -= 2;
+		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_NGEN))) num -= 3;
+		if ((Race_if(PM_WEAPON_TRAPPER) && dmgtype(&mons[first], AD_TRAP))) num -= 1;
+
 		if (first == urole.nemesnum) num -= 100;
 
 		if ((urole.enemy1num != NON_PM) && (first == urole.enemy1num)) num -= 125;
