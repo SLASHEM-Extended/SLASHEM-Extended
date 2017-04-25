@@ -5,6 +5,7 @@
 #include <ctype.h>
 
 #include "hack.h"
+#include "date.h"
 #include "func_tab.h"
 /* #define DEBUG */	/* uncomment for debugging */
 
@@ -6126,6 +6127,11 @@ int final;
 
 	    Sprintf(buf, "Your deity was %s", u_gname());
 	    dump("  ", buf);
+
+	if (VERSION_ID) {
+		Sprintf(buf, "The version you were playing was: %s", VERSION_ID);
+		dump("  ", buf);
+	}
 
 	if (u.ugangr) {
 	    Sprintf(buf, " %sangry with you",
