@@ -2536,6 +2536,10 @@ register int pm;
 		}
 		break;
 	    case PM_QUANTUM_MECHANIC:
+	    case PM_ATOMIC_QUANTUM_MECHANIC:
+	    case PM_FORCE_QUANTUM_MECHANIC:
+	    case PM_METAL_MECHANIC:
+	    case PM_AUTO_MECHANIC:
 	    case PM_GORGON_BEETLE:
 	    case PM_SPEED_TROVE:
 	    case PM_MINI_CHICKATRICE:
@@ -2670,6 +2674,7 @@ register int pm;
 		break;
 	    case PM_GENETIC_ENGINEER: /* Robin Johnson -- special msg */
 	    case PM_ARMED_COCKATRICE:
+	    case PM_PORTER_GENETIC_ENGINEER:
 	    case PM_PETROLICH:
 		if (!Unchanging) {
 		    You("undergo a freakish metamorphosis!");
