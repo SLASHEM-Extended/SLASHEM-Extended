@@ -6544,7 +6544,7 @@ int spell;
 
 	if ( (CasterProblem || u.uprops[CASTER_PROBLEM].extrinsic || have_antimagicstone() || (uarm && uarm->oartifact == ART_ROBE_OF_THE_ARCHMAGI) || (uarmc && uarmc->oartifact == ART_HERETICAL_FIGURE) || (uarm && uarm->oartifact == ART_SHIVANHUNTER_S_UNUSED_PRIZ) ) && chance > 0) {
 
-		chance = (chance / u.uhpmax * u.uhp);
+		chance = (chance * u.uhp / u.uhpmax);
 
 	}
 
