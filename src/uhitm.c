@@ -568,6 +568,12 @@ register struct monst *mtmp;
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
 
+	/* early-game bonuses to make starting characters not suck too badly --Amy */
+	if (u.ulevel < 6) tmp += 1;
+	if (u.ulevel < 2) tmp += 1;
+	if (u.ulevel < 5 && rn2(2)) tmp += 1;
+	if (u.ulevel < 3 && rn2(2)) tmp += 1;
+
 	if (tmp < -127) tmp = -127; /* fail safe, and to ensure that the end result is a schar */
 	if (tmp > 127) tmp = 127; /* however, why is it a schar anyway??? --Amy */
 

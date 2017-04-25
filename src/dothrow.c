@@ -1580,6 +1580,13 @@ int thrown;
 	tmp = -1 + Luck + find_mac(mon) + u.uhitinc +
 			maybe_polyd(youmonst.data->mlevel, u.ulevel);
 
+	/* early-game bonuses to make starting characters not suck too badly --Amy */
+	if (u.ulevel < 6) tmp += 1;
+	if (u.ulevel < 4) tmp += 1; /* because abon() somehow doesn't get factored in */
+	if (u.ulevel < 2) tmp += 1;
+	if (u.ulevel < 5 && rn2(2)) tmp += 1;
+	if (u.ulevel < 3 && rn2(2)) tmp += 1;
+
 	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
@@ -1589,6 +1596,13 @@ int thrown;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
 	if (uwep && uwep->oartifact == ART_ATOMIC_MISSING) tmp -= 20;
+
+	if (ACURR(A_DEX) < 4) tmp -= 3;
+	else if (ACURR(A_DEX) < 6) tmp -= 2;
+	else if (ACURR(A_DEX) < 8) tmp -= 1;
+	else if (ACURR(A_DEX) >= 14) tmp += (ACURR(A_DEX) - 14);
+
+	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) tmp += 5;
 
 	if (!rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
 
@@ -1741,13 +1755,6 @@ int thrown;
 			pline("%s's shield deflects your projectile!", Monnam(mon));
 		}
 	}
-
-	if (ACURR(A_DEX) < 4) tmp -= 3;
-	else if (ACURR(A_DEX) < 6) tmp -= 2;
-	else if (ACURR(A_DEX) < 8) tmp -= 1;
-	else if (ACURR(A_DEX) >= 14) tmp += (ACURR(A_DEX) - 14);
-
-	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) tmp += 5;
 
 	/* Modify to-hit depending on distance; but keep it sane.
 	 * Polearms get a distance penalty even when wielded; it's
