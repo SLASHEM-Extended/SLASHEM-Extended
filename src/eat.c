@@ -2294,6 +2294,7 @@ register int pm;
 	    case PM_BOOBED_MIMIC:
 	    case PM_SUXXOR_MIMIC:
 	    case PM_MINUSCULE_MIMIC:
+	    case PM_CREPUSCULE_MIMIC:
 	    case PM_WITHERING_MIMIC:
 	    case PM_ACID_MIMIC:
 	    case PM_DECAYING_MIMIC:
@@ -2302,6 +2303,7 @@ register int pm;
 	    case PM_SUCKING_MIMIC:
 	    case PM_VAMP_MIMIC:
 	    case PM_KILLER_MIMIC:
+	    case PM_DEADLY_MIMIC:
 	    case PM_FOUL_MIMIC:
 	    case PM_PORTER_MIMIC:
 	    case PM_STEALER_MIMIC:
@@ -2348,6 +2350,7 @@ register int pm;
 	    case PM_BOOBED_PERMAMIMIC:
 	    case PM_SUXXOR_PERMAMIMIC:
 	    case PM_MINUSCULE_PERMAMIMIC:
+	    case PM_CREPUSCULE_PERMAMIMIC:
 	    case PM_WITHERING_PERMAMIMIC:
 	    case PM_ACID_PERMAMIMIC:
 	    case PM_DECAYING_PERMAMIMIC:
@@ -2356,6 +2359,7 @@ register int pm;
 	    case PM_SUCKING_PERMAMIMIC:
 	    case PM_VAMP_PERMAMIMIC:
 	    case PM_KILLER_PERMAMIMIC:
+	    case PM_DEADLY_PERMAMIMIC:
 	    case PM_FOUL_PERMAMIMIC:
 	    case PM_PORTER_PERMAMIMIC:
 	    case PM_STEALER_PERMAMIMIC:
