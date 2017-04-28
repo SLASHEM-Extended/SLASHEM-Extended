@@ -366,7 +366,7 @@ makedog()
 	if (pettype == PM_REDGUARD_GIRL) petname = "Jasajeen"; /* taken from a fanfic */
 	if (pettype == PM_THIEVING_GIRL) petname = "Esruth"; /* taken from a fanfic */
 
-	if (pettype == PM_SEXY_WOMAN) petname = "Natalje";
+	if (pettype == PM_SEXY_GIRL) petname = "Natalje";
 
 	if (pettype == PM_ACTIVISTOR) petname = "Helen"; /* yet another common first name */
 

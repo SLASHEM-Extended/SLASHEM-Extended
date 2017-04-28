@@ -3343,7 +3343,7 @@ const struct Role roles[] = {
 	{"Sexy King",	"Sexy Queen"} },
 	"Yoroshiku", "Ma Shin", "Sexy Sai", /* Chinese */
 	"Sex", "Mistranslated Entrance", "Japanese Quest Goal Area",
-	PM_SEXYMATE, NON_PM, PM_UNDEAD_SEXYMATE, NON_PM, PM_SEXY_WOMAN,
+	PM_SEXYMATE, NON_PM, PM_UNDEAD_SEXYMATE, NON_PM, PM_SEXY_GIRL,
 	PM_JUDO_CAPTAIN, PM_STUDENT, PM_GIGOCK, PM_GIGOLO,
 	PM_SILLY_NYMPH, PM_HIGE_MESO, S_TROLL, S_MIMIC,
 	ART_CHARMPOINT,
