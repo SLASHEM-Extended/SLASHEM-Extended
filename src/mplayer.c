@@ -106,6 +106,12 @@ short typ;
 		 * chances of having plusses is the same as usual....
 		 */
 		obj->spe = rn2(10) ? (rn2(3) ? rn2(5) : rn1(4,4)) : -rnd(3);
+		if (obj->spe > 0 && !rn2(5)) obj->spe += rne(2);
+		else if (obj->spe < 0 && !rn2(3)) obj->spe -= rne(2);
+
+		/* Come on, this isn't vanilla. Artifact armors are a thing. --Amy */
+		if (rn2(2)) obj = mk_artifact(obj, A_NONE);
+
 		(void) mpickobj(mon, obj, TRUE);
 	}
 }
@@ -129,7 +135,9 @@ register boolean special;
 
 	if ((mtmp = makemon(ptr, x, y, NO_MM_FLAGS)) != 0) {
 	    short weapon = rn2(2) ? LONG_SWORD : rnd_class(SPEAR, BULLWHIP);
-	    short armor = rnd_class(GRAY_DRAGON_SCALE_MAIL, YELLOW_DRAGON_SCALE_MAIL);
+
+	/* Not every ascension kit includes dragon scale mail... I've ascended a monk with crystal plate mail :P --Amy */
+	    short armor = rn2(5) ? rnd_class(GRAY_DRAGON_SCALE_MAIL, YELLOW_DRAGON_SCALE_MAIL) : rnd_class(PLATE_MAIL, YELLOW_DRAGON_SCALES);
 	    short cloak = !rn2(8) ? STRANGE_OBJECT :
 	    		rnd_class(OILSKIN_CLOAK, CLOAK_OF_DISPLACEMENT);
 	    short helm = !rn2(8) ? STRANGE_OBJECT :
@@ -557,6 +565,11 @@ register boolean special;
 					       GAUNTLETS_OF_DEXTERITY));
 		if (rn2(8))
 		    mk_mplayer_armor(mtmp, rnd_class(LOW_BOOTS, LEVITATION_BOOTS));
+
+		/* These are supposed to be ascension kits. Why were the shirts missing??? --Amy */
+		if (rn2(15))
+		    mk_mplayer_armor(mtmp, rnd_class(HAWAIIAN_SHIRT,
+					       VICTORIAN_UNDERWEAR));
 		m_dowear(mtmp, TRUE);
 
 		quan = rn2(3) ? rn2(3) : rn2(16);
