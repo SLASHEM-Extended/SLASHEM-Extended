@@ -1874,6 +1874,12 @@ doengrave()
 	    ptext = FALSE;
 	}
 
+	/* Wand of tele level can crash of course. Don't allow it to engrave, then. --Amy */
+	if (otmp && otmp->otyp == WAN_TELE_LEVEL) {
+		ptext = FALSE;
+		pline("Somehow, this wand refuses to engrave anything.");
+	}
+
 	if (!ptext) {		/* Early exit for some implements. */
 	    if (otmp->oclass == WAND_CLASS && !can_reach_floor())
 		You_cant("reach the %s!", surface(u.ux,u.uy));
@@ -3775,6 +3781,7 @@ static const char *epitaphs[] = {
 "Here lies a victim of the guillotine.",
 "Died of neurofibroma.",
 "Starved to death. Next time I'm playing a race that does not have intrinsic regeneration.",
+"Here lies a poor explorer, all because he attacked an exploder.",
 
 };
 
