@@ -70,6 +70,7 @@ unsigned *ospecial;
 #endif
 	uchar ch;
 	unsigned special = 0;
+	register struct trap *ttmp;
 
 	register struct rm *colorroom;
 	colorroom = &levl[x][y];
@@ -81,6 +82,7 @@ unsigned *ospecial;
      *		  offsets.  The order is set in display.h.
      */
     if ((offset = (glyph - GLYPH_WARNING_OFF)) >= 0) {	/* a warning flash */
+	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
     	ch = warnsyms[offset];
 # ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -110,6 +112,7 @@ unsigned *ospecial;
 	ch = showsyms[(offset % MAXEXPCHARS) + S_explode1];
 	explode_color(offset / MAXEXPCHARS);
     } else if ((offset = (glyph - GLYPH_CMAP_OFF)) >= 0) {	/* cmap */
+	if (On_stairs(x,y) && (ttmp = t_at(x,y)) && (ttmp && ttmp->tseen) && levl[x][y].seenv) special |= MG_STAIRS;
 	ch = showsyms[offset];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {
@@ -989,6 +992,7 @@ unsigned *ospecial;
 		  special |= MG_OBJPILE;
 
     } else if ((offset = (glyph - GLYPH_DETECT_OFF)) >= 0) {	/* mon detect */
+	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
 	ch = monsyms[(int)mons[offset].mlet];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1000,6 +1004,7 @@ unsigned *ospecial;
 	/* is_reverse = TRUE; */
 	    special |= MG_DETECT;
     } else if ((offset = (glyph - GLYPH_INVIS_OFF)) >= 0) {	/* invisible */
+	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
 	ch = DEF_INVISIBLE;
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1009,6 +1014,7 @@ unsigned *ospecial;
 	    invis_color(offset);
 	    special |= MG_INVIS;
     } else if ((offset = (glyph - GLYPH_PET_OFF)) >= 0) {	/* a pet */
+	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
 	ch = monsyms[(int)mons[offset].mlet];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1018,6 +1024,7 @@ unsigned *ospecial;
 	    pet_color(offset);
 	    special |= MG_PET;
     } else {							/* a monster */
+	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
 
 	struct monst *mtmp;
 
@@ -1026,7 +1033,7 @@ unsigned *ospecial;
 		mtmp = m_at(x, y);
 		if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) special |= MG_EGOTYPE;
 
-		if (mtmp && mtmp->mpeaceful && Peacevision && !Hallucination) special |= MG_STAIRS;
+		if (mtmp && mtmp->mpeaceful && Peacevision && !Hallucination) special |= MG_PEACEFUL;
 
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {

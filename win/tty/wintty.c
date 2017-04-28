@@ -3287,6 +3287,9 @@ tty_print_glyph(window, x, y, glyph)
     if (!reverse_on && (special & (MG_EGOTYPE)))
 		    term_start_bgcolor(CLR_YELLOW); /* Amy edit - I want the color to be bright and easily recognizable. */
 
+    if (!reverse_on && (special & (MG_PEACEFUL)))
+		    term_start_bgcolor(CLR_BRIGHT_GREEN);
+
 #if defined(USE_TILES) && defined(MSDOS)
     if (iflags.grmode && iflags.tile_view)
       xputg(glyph,ch,special);
@@ -3313,6 +3316,11 @@ tty_print_glyph(window, x, y, glyph)
 #endif 
 
     if (!reverse_on && (special & (MG_EGOTYPE))) { 
+	    term_end_bgcolor(); 
+	    term_end_color(); 
+    } 
+
+    if (!reverse_on && (special & (MG_PEACEFUL))) { 
 	    term_end_bgcolor(); 
 	    term_end_color(); 
     } 
