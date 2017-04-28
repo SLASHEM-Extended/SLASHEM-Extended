@@ -340,6 +340,682 @@ doprev_message()
     return nh_doprev_message();
 }
 
+char *
+montraitname(traitno)
+int traitno;
+{
+
+	const char *output;
+	switch (traitno) {
+		case 1:
+			return "silent monsters";
+		case 2:
+			return "monsters that bark";
+		case 3:
+			return "monsters that mew";
+		case 4:
+			return "monsters that roar";
+		case 5:
+			return "monsters that growl";
+		case 6:
+			return "monsters that squeek";
+		case 7:
+			return "monsters that squawk";
+		case 8:
+			return "monsters that hiss";
+		case 9:
+			return "monsters that buzz";
+		case 10:
+			return "monsters that grunt";
+		case 11:
+			return "monsters that neigh";
+		case 12:
+			return "monsters that wail";
+		case 13:
+			return "monsters that gurgle";
+		case 14:
+			return "monsters that burble";
+		case 15:
+			return "monsters that shriek";
+		case 16:
+			return "monsters that rattle with their bones";
+		case 17:
+			return "monsters that laugh";
+		case 18:
+			return "monsters that mumble";
+		case 19:
+			return "monsters that imitate";
+		case 20:
+			return "monsters that make orc sounds";
+		case 21:
+			return "monsters that have humanoid speech";
+		case 22:
+			return "monsters that want to arrest the player";
+		case 23:
+			return "monsters with soldier dialogue";
+		case 24:
+			return "monsters with djinni dialogue";
+		case 25:
+			return "monsters with nurse dialogue";
+		case 26:
+			return "monsters with seduction dialogue";
+		case 27:
+			return "monsters with vampire dialogue";
+		case 28:
+			return "monsters that cuss";
+		case 29:
+			return "monsters that use nemesis dialogue";
+		case 30:
+			return "monsters that mutter cantrips";
+		case 31:
+			return "monsters that howl at the moon";
+		case 32:
+			return "monsters that boast";
+		case 33:
+			return "monsters that make sheep sounds";
+		case 34:
+			return "monsters that make chicken sounds";
+		case 35:
+			return "monsters that make cow sounds";
+		case 36:
+			return "monsters that make parrot sounds";
+		case 37:
+			return "monsters that talk like whores";
+		case 38:
+			return "monsters that produce tender farting noises";
+		case 39:
+			return "monsters that produce squeaky farting noises";
+		case 40:
+			return "monsters that produce loud farting noises";
+		case 41:
+			return "monsters that make boss taunts";
+		case 42:
+			return "monsters that make loud noise";
+		case 43:
+			return "monsters with fire resistance";
+		case 44:
+			return "monsters with cold resistance";
+		case 45:
+			return "monsters with sleep resistance";
+		case 46:
+			return "monsters with disintegration resistance";
+		case 47:
+			return "monsters with shock resistance";
+		case 48:
+			return "monsters with poison resistance";
+		case 49:
+			return "monsters with acid resistance";
+		case 50:
+			return "monsters with petrification resistance";
+		case 51:
+			return "monsters with death resistance";
+		case 52:
+			return "monsters with drain resistance";
+		case 53:
+			return "monsters that require +1 weapons to hit";
+		case 54:
+			return "monsters that require +2 weapons to hit";
+		case 55:
+			return "monsters that require +3 weapons to hit";
+		case 56:
+			return "monsters that require +4 weapons to hit";
+		case 57:
+			return "monsters that hit as a +1 weapon";
+		case 58:
+			return "monsters that hit as a +2 weapon";
+		case 59:
+			return "monsters that hit as a +3 weapon";
+		case 60:
+			return "monsters that hit as a +4 weapon";
+		case 61:
+			return "monsters that can fly";
+		case 62:
+			return "monsters that can swim";
+		case 63:
+			return "monsters that are amorphous";
+		case 64:
+			return "monsters that walk through walls";
+		case 65:
+			return "monsters that cling to the ceiling";
+		case 66:
+			return "monsters that can tunnel";
+		case 67:
+			return "monsters that need a pick-axe for tunneling";
+		case 68:
+			return "monsters that conceal under items";
+		case 69:
+			return "monsters that can hide";
+		case 70:
+			return "monsters that are amphibious";
+		case 71:
+			return "monsters that are breathless";
+		case 72:
+			return "monsters that cannot pick up items";
+		case 73:
+			return "monsters that have no eyes";
+		case 74:
+			return "monsters that have no hands";
+		case 75:
+			return "monsters that have no limbs";
+		case 76:
+			return "monsters that have no head";
+		case 77:
+			return "monsters that are mindless";
+		case 78:
+			return "monsters that are humanoid";
+		case 79:
+			return "monsters that count as animals";
+		case 80:
+			return "monsters that are slithy";
+		case 81:
+			return "monsters that are unsolid";
+		case 82:
+			return "monsters with a thick skin";
+		case 83:
+			return "monsters that can lay eggs";
+		case 84:
+			return "monsters that regenerate health";
+		case 85:
+			return "monsters that can see invisible";
+		case 86:
+			return "monsters that can teleport";
+		case 87:
+			return "monsters that can control teleport";
+		case 88:
+			return "monsters that are acidic when eaten";
+		case 89:
+			return "monsters that are poisonous when eaten";
+		case 90:
+			return "monsters that eat meat";
+		case 91:
+			return "monsters that eat veggies";
+		case 92:
+			return "monsters that eat both meat and veggies";
+		case 93:
+			return "monsters that eat metal";
+		case 94:
+			return "monsters that are not a valid polymorph form";
+		case 95:
+			return "monsters that count as undead";
+		case 96:
+			return "monsters that count as mercenaries";
+		case 97:
+			return "monsters that count as human";
+		case 98:
+			return "monsters that count as elf";
+		case 99:
+			return "monsters that count as dwarf";
+		case 100:
+			return "monsters that count as gnome";
+		case 101:
+			return "monsters that count as orc";
+		case 102:
+			return "monsters that count as hobbit";
+		case 103:
+			return "monsters that count as werecreatures";
+		case 104:
+			return "monsters that count as vampire";
+		case 105:
+			return "monsters that count as lord";
+		case 106:
+			return "monsters that count as prince";
+		case 107:
+			return "monsters that count as minion";
+		case 108:
+			return "monsters that count as giant";
+		case 109:
+			return "monsters that count as major demon";
+		case 110:
+			return "monsters that are always male";
+		case 111:
+			return "monsters that are always female";
+		case 112:
+			return "monsters that are neuter";
+		case 113:
+			return "monsters that have a proper name";
+		case 114:
+			return "monsters that are always spawned hostile";
+		case 115:
+			return "monsters that are always spawned peaceful";
+		case 116:
+			return "monsters that can be tamed with food";
+		case 117:
+			return "monsters that wander randomly";
+		case 118:
+			return "monsters that follow you up and down staircases";
+		case 119:
+			return "monsters that are extra nasty";
+		case 120:
+			return "monsters that are strong";
+		case 121:
+			return "monsters that can throw boulders";
+		case 122:
+			return "monsters that love to collect gold";
+		case 123:
+			return "monsters that love to collect gems";
+		case 124:
+			return "monsters that collect items";
+		case 125:
+			return "monsters that pick up magic items";
+		case 126:
+			return "monsters that want the Amulet of Yendor";
+		case 127:
+			return "monsters that want the Bell of Opening";
+		case 128:
+			return "monsters that want the Book of the Dead";
+		case 129:
+			return "monsters that want the Candelabrum of Invocation";
+		case 130:
+			return "monsters that want quest artifacts";
+		case 131:
+			return "monsters that wait for you to come";
+		case 132:
+			return "monsters that won't react unless you get up close";
+		case 133:
+			return "monsters that have infravision";
+		case 134:
+			return "monsters that can be seen with infravision";
+		case 135:
+			return "monsters that can spontaneously betray you";
+		case 136:
+			return "monsters that cannot be tamed";
+		case 137:
+			return "monsters that avoid being in a line with you";
+		case 138:
+			return "monsters that eat stone";
+		case 139:
+			return "monsters that are classified as petty";
+		case 140:
+			return "monsters that count as pokemon";
+		case 141:
+			return "monsters that are no valid polymorph forms for the player";
+		case 142:
+			return "monsters that never move";
+		case 143:
+			return "monsters that always generate with egotypes";
+		case 144:
+			return "monsters that are telepathic";
+		case 145:
+			return "monsters that can freely walk over spider webs";
+		case 146:
+			return "monsters which petrify others on touch";
+		case 147:
+			return "monsters that count as mind flayers";
+		case 148:
+			return "monsters whose corpses don't decay";
+		case 149:
+			return "monsters that like to mimic objects";
+		case 150:
+			return "monsters that permanently mimic objects";
+		case 151:
+			return "monsters that can turn you to slime when eaten";
+		case 152:
+			return "monsters that are uncommon by a factor 2";
+		case 153:
+			return "monsters that are uncommon by a factor 3";
+		case 154:
+			return "monsters that are uncommon by a factor 5";
+		case 155:
+			return "monsters that are uncommon by a factor 7";
+		case 156:
+			return "monsters that are uncommon by a factor 10";
+		case 157:
+			return "monsters that have mind flayer capabilities";
+		case 158:
+			return "monsters of tiny size";
+		case 159:
+			return "monsters of small size";
+		case 160:
+			return "monsters of medium size";
+		case 161:
+			return "monsters of large size";
+		case 162:
+			return "monsters of huge size";
+		case 163:
+			return "monsters of gigantic size";
+		case 164:
+			return "monsters that spawn in very large groups";
+		case 165:
+			return "unique monsters";
+		case 166:
+			return "monsters that spawn in small groups";
+		case 167:
+			return "monsters that spawn in large groups";
+		case 168:
+			return "monsters that can be genocided";
+		case 169:
+			return "monsters that never leave a corpse";
+		case 170:
+			return "monsters that have passive attacks";
+		case 171:
+			return "monsters that have claw attacks";
+		case 172:
+			return "monsters that have bite attacks";
+		case 173:
+			return "monsters that have kick attacks";
+		case 174:
+			return "monsters that have butt attacks";
+		case 175:
+			return "monsters that have touch attacks";
+		case 176:
+			return "monsters that have sting attacks";
+		case 177:
+			return "monsters that have hug attacks";
+		case 178:
+			return "monsters that have scratch attacks";
+		case 179:
+			return "monsters that have lash attacks";
+		case 180:
+			return "monsters that have spit attacks";
+		case 181:
+			return "monsters that have engulfing attacks";
+		case 182:
+			return "monsters that have breath attacks";
+		case 183:
+			return "monsters that have explosion attacks";
+		case 184:
+			return "monsters that explode when killed";
+		case 185:
+			return "monsters that have gaze attacks";
+		case 186:
+			return "monsters that have tentacle attacks";
+		case 187:
+			return "monsters that have trample attacks";
+		case 188:
+			return "monsters that have beam attacks";
+		case 189:
+			return "monsters that can multiply";
+		case 190:
+			return "monsters that have weapon attacks";
+		case 191:
+			return "monsters that can cast spells";
+		case 192:
+			return "monsters whose attacks do physical damage";
+		case 193:
+			return "monsters whose attacks can shoot magic missiles";
+		case 194:
+			return "monsters whose attacks do fire damage";
+		case 195:
+			return "monsters whose attacks do cold damage";
+		case 196:
+			return "monsters whose attacks can put you to sleep";
+		case 197:
+			return "monsters whose attacks can disintegrate you";
+		case 198:
+			return "monsters whose attacks do shock damage";
+		case 199:
+			return "monsters whose attacks poison you and drain strength";
+		case 200:
+			return "monsters whose attacks do acid damage";
+		case 201:
+			return "monsters whose attacks shoot light rays";
+		case 202:
+			return "monsters whose attacks blind you";
+		case 203:
+			return "monsters whose attacks stun you";
+		case 204:
+			return "monsters whose attacks slow you";
+		case 205:
+			return "monsters whose attacks paralyze you";
+		case 206:
+			return "monsters whose attacks can drain experience levels";
+		case 207:
+			return "monsters whose attacks drain magical energy";
+		case 208:
+			return "monsters whose attacks wound your legs";
+		case 209:
+			return "monsters whose attacks turn you to stone";
+		case 210:
+			return "monsters whose attacks cause it to stick to you";
+		case 211:
+			return "monsters whose attacks allow it to steal gold";
+		case 212:
+			return "monsters whose attacks allow it to steal items";
+		case 213:
+			return "monsters whose attacks allow it to seduce you and steal several items";
+		case 214:
+			return "monsters whose attacks teleport you";
+		case 215:
+			return "monsters whose attacks rust your equipment";
+		case 216:
+			return "monsters whose attacks confuse you";
+		case 217:
+			return "monsters whose attacks digest you";
+		case 218:
+			return "monsters whose attacks heal you";
+		case 219:
+			return "monsters whose attacks wrap around and drown you";
+		case 220:
+			return "monsters whose attacks infect you with lycanthropy";
+		case 221:
+			return "monsters whose attacks poison you and drain dexterity";
+		case 222:
+			return "monsters whose attacks poison you and drain constitution";
+		case 223:
+			return "monsters whose attacks drain your intelligence";
+		case 224:
+			return "monsters whose attacks make you deathly sick";
+		case 225:
+			return "monsters whose attacks rot your equipment";
+		case 226:
+			return "monsters whose attacks start sexual encounters";
+		case 227:
+			return "monsters whose attacks cause you to hallucinate";
+		case 228:
+			return "monsters who attack with the touch of death";
+		case 229:
+			return "monsters who attack to cause fever and chills";
+		case 230:
+			return "monsters whose attacks make you more hungry";
+		case 231:
+			return "monsters whose attacks turn you into a green slime";
+		case 232:
+			return "monsters whose attacks calm you";
+		case 233:
+			return "monsters whose attacks disenchant your equipment";
+		case 234:
+			return "monsters whose attacks polymorph you";
+		case 235:
+			return "monsters whose attacks corrode your equipment";
+		case 236:
+			return "monsters whose attacks tickle you";
+		case 237:
+			return "monsters whose attacks remove Elbereth engravings underneath you";
+		case 238:
+			return "monsters whose attacks cause slippery fingers";
+		case 239:
+			return "monsters whose attacks cause darkness";
+		case 240:
+			return "monsters whose attacks wither your equipment";
+		case 241:
+			return "monsters whose attacks drain your luck";
+		case 242:
+			return "monsters whose attacks numb you";
+		case 243:
+			return "monsters whose attacks freeze you solid";
+		case 244:
+			return "monsters whose attacks push you back";
+		case 245:
+			return "monsters whose attacks burn you";
+		case 246:
+			return "monsters whose attacks cause fear";
+		case 247:
+			return "monsters whose attacks reduce your divine protection";
+		case 248:
+			return "monsters whose attacks poison you and drain a random stat";
+		case 249:
+			return "monsters whose attacks allow the monster to heal its damaged hit points";
+		case 250:
+			return "monsters whose attacks burn your equipment with lava";
+		case 251:
+			return "monsters whose attacks cause fake messages to appear";
+		case 252:
+			return "monsters whose attacks cause Lethe waters to wash over you";
+		case 253:
+			return "monsters whose attacks cancel you";
+		case 254:
+			return "monsters whose attacks banish you";
+		case 255:
+			return "monsters whose attacks poison you and drain wisdom";
+		case 256:
+			return "monsters whose attacks shred your equipment";
+		case 257:
+			return "monsters whose attacks make your equipment wet";
+		case 258:
+			return "monsters whose attacks suck off your gear";
+		case 259:
+			return "monsters whose attacks shock you with high voltage";
+		case 260:
+			return "monsters who attack with big fat head spikes";
+		case 261:
+			return "monsters whose attacks abduct you";
+		case 262:
+			return "monsters whose attacks cause fire, cold, shock and drain life damage";
+		case 263:
+			return "monsters whose attacks become stronger the more often they hit";
+		case 264:
+			return "monsters whose attacks mirror yours";
+		case 265:
+			return "monsters whose attacks act like cursed unicorn horns";
+		case 266:
+			return "monsters whose attacks levelport you, or drain your levels if you can't levelport";
+		case 267:
+			return "monsters whose attacks suck your blood";
+		case 268:
+			return "monsters whose attacks shoot webs";
+		case 269:
+			return "monsters whose attacks teleport your gear away";
+		case 270:
+			return "monsters whose attacks cause depression";
+		case 271:
+			return "monsters whose attacks de-energize you";
+		case 272:
+			return "monsters whose attacks make you lazy";
+		case 273:
+			return "monsters whose attacks poison you and drain charisma";
+		case 274:
+			return "monsters whose attacks take you down a peg or two";
+		case 275:
+			return "monsters whose attacks are empowered with nexus";
+		case 276:
+			return "monsters whose attacks cause loud sound";
+		case 277:
+			return "monsters whose attacks cause gravity to warp around you";
+		case 278:
+			return "monsters whose attacks cause inertia";
+		case 279:
+			return "monsters whose attacks time you";
+		case 280:
+			return "monsters who attack with mana, which is completely irresistible";
+		case 281:
+			return "monsters who attack with plasma clouds";
+		case 282:
+			return "monsters whose attacks can drain your skills";
+		case 283:
+			return "monsters who can cast clerical spells";
+		case 284:
+			return "monsters who can cast arcane spells";
+		case 285:
+			return "monsters whose attacks do random things";
+		case 286:
+			return "monsters whose attacks steal the amulet";
+		case 287:
+			return "monsters whose attacks steal your intrinsics";
+		case 288:
+			return "monsters who attack with psionic blasts";
+		case 289:
+			return "monsters whose attacks badly poison you";
+		case 290:
+			return "monsters whose attacks eat your dreams";
+		case 291:
+			return "monsters whose attacks cause nasty stuff to happen";
+		case 292:
+			return "monsters whose attacks cause bad effects";
+		case 293:
+			return "monsters whose attacks corrode your entire inventory";
+		case 294:
+			return "monsters whose attacks curse your items";
+		case 295:
+			return "monsters whose attacks deactivate your intrinsics";
+		case 296:
+			return "monsters whose attacks cause you to fumble";
+		case 297:
+			return "monsters whose attacks dim you";
+		case 298:
+			return "monsters whose attacks cause map amnesia";
+		case 299:
+			return "monsters whose attacks freeze you with ice blocks";
+		case 300:
+			return "monsters whose attacks vaporize you";
+		case 301:
+			return "monsters who attack with razor-sharp stone edges";
+		case 302:
+			return "monsters whose attacks make you vomit";
+		case 303:
+			return "monsters who attack with highly corrosive chemical waste";
+		case 304:
+			return "monsters whose attacks frenzy you";
+		case 305:
+			return "monsters whose attacks disenchant your gear into the negatives";
+		case 306:
+			return "monsters whose attacks expose you to chaotic forces";
+		case 307:
+			return "monsters whose attacks make you insane";
+		case 308:
+			return "monsters whose attacks create traps";
+		case 309:
+			return "monsters whose attacks increase your carried weight";
+		case 310:
+			return "monsters whose attacks hit you with nether forces";
+		case 311:
+			return "monsters whose attacks are specific to their internal ID";
+		case 312:
+			return "monsters whose attacks are randomized with a very evil RNG";
+		case 313:
+			return "monsters who can cast any random monster spell";
+		case 314:
+			return "monsters that count as bats";
+		case 315:
+			return "monsters that revive after death";
+		case 316:
+			return "monsters that count as rats";
+		case 317:
+			return "monsters that are immune to non-silver weapons";
+		case 318:
+			return "monsters that have intrinsic reflection";
+		case 319:
+			return "monsters that are fleecy-colored <3";
+		case 320:
+			return "monsters that usually spawn tame";
+		case 321:
+			return "monsters that eat leather and other organics";
+		case 322:
+			return "monsters that originate from Castle of the Winds";
+		case 323:
+			return "joke monsters";
+		case 324:
+			return "monsters that originate from Angband";
+		case 325:
+			return "monsters that originate from Steamband";
+		case 326:
+			return "monsters that originate from Animeband";
+		case 327:
+			return "monsters that originate from the Diablo game series";
+		case 328:
+			return "monsters that originate from Dungeon Lords";
+		case 329:
+			return "monsters that originate from Vanilla NetHack or SLASH'EM";
+		case 330:
+			return "monsters that originate from dnethack";
+		case 331:
+			return "monsters whose stats are randomized per playthrough";
+
+		default:
+			return "unknown";
+
+	}
+
+}
 
 /* Count down by decrementing multi */
 STATIC_PTR int
@@ -1884,6 +2560,56 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		ptr = &mons[u.frequentspecies20];
 		Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus20);
 		enl_msg("The monster species that ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait1), u.freqtraitbonus1);
+		enl_msg("The monster trait that ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && u.frequenttrait2 && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait2), u.freqtraitbonus2);
+		enl_msg("The monster trait that ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && u.frequenttrait3 && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait3), u.freqtraitbonus3);
+		enl_msg("The monster trait that ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && u.frequenttrait4 && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait4), u.freqtraitbonus4);
+		enl_msg("The monster trait that ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && u.frequenttrait5 && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait5), u.freqtraitbonus5);
+		enl_msg("The monster trait that ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && u.frequenttrait6 && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait6), u.freqtraitbonus6);
+		enl_msg("The monster trait that ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && u.frequenttrait7 && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait7), u.freqtraitbonus7);
+		enl_msg("The monster trait that ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && u.frequenttrait8 && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait8), u.freqtraitbonus8);
+		enl_msg("The monster trait that ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && u.frequenttrait9 && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait9), u.freqtraitbonus9);
+		enl_msg("The monster trait that ", "is ", "was ", buf );
+	}
+
+	if ((guaranteed || !rn2(10)) && u.frequenttrait10 && (wizard || (!rn2(10)) || final >= 1 )) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait10), u.freqtraitbonus10);
+		enl_msg("The monster trait that ", "is ", "was ", buf );
 	}
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
@@ -4314,6 +5040,54 @@ int final;
 	ptr = &mons[u.frequentspecies20];
 	Sprintf(buf, "spawned more often: %s (freq bonus %d)", ptr->mname, u.freqspeciesbonus20);
 	dump("  The monster species that ", buf );
+
+	Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait1), u.freqtraitbonus1);
+	dump("  The monster trait that was ", buf );
+
+	if (u.frequenttrait2) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait2), u.freqtraitbonus2);
+		dump("  The monster trait that was ", buf );
+	}
+
+	if (u.frequenttrait3) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait3), u.freqtraitbonus3);
+		dump("  The monster trait that was ", buf );
+	}
+
+	if (u.frequenttrait4) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait4), u.freqtraitbonus4);
+		dump("  The monster trait that was ", buf );
+	}
+
+	if (u.frequenttrait5) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait5), u.freqtraitbonus5);
+		dump("  The monster trait that was ", buf );
+	}
+
+	if (u.frequenttrait6) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait6), u.freqtraitbonus6);
+		dump("  The monster trait that was ", buf );
+	}
+
+	if (u.frequenttrait7) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait7), u.freqtraitbonus7);
+		dump("  The monster trait that was ", buf );
+	}
+
+	if (u.frequenttrait8) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait8), u.freqtraitbonus8);
+		dump("  The monster trait that was ", buf );
+	}
+
+	if (u.frequenttrait9) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait9), u.freqtraitbonus9);
+		dump("  The monster trait that was ", buf );
+	}
+
+	if (u.frequenttrait10) {
+		Sprintf(buf, "more common: %s (freq bonus %d)", montraitname(u.frequenttrait10), u.freqtraitbonus10);
+		dump("  The monster trait that was ", buf );
+	}
 
 	ptr = &mons[u.nospawnspecies];
 	Sprintf(buf, "never randomly spawned: %s", ptr->mname);

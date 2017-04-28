@@ -191,6 +191,7 @@ E int NDECL(wiz_level_tele);
 E int NDECL(wiz_map);
 E int NDECL(wiz_where);
 E int NDECL(wiz_wish);
+E char *FDECL(montraitname, (int));
 # endif /* WIZARD */
 #endif /* USE_TRAMPOLI */
 E void NDECL(reset_occupations);
@@ -1192,6 +1193,7 @@ E void FDECL(readmail, (struct obj *));
 /* ### makemon.c ### */
 
 E boolean FDECL(is_home_elemental, (struct permonst *));
+E boolean FDECL(monster_with_trait, (struct permonst *, int));
 E struct monst *FDECL(clone_mon, (struct monst *,XCHAR_P,XCHAR_P));
 E struct monst *FDECL(makemon, (struct permonst *,int,int,int));
 E boolean FDECL(create_critters, (int,struct permonst *));

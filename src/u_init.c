@@ -6538,6 +6538,243 @@ u_init()
 	if (u.freqcolorbonus > 100) u.freqcolorbonus = 100; /* fail safe */
 	}
 
+	register int traitamount = rnd(10); /* pick an # of monster traits that are more common --Amy */
+
+	u.frequenttrait1 = rnd(331); /* same as monstercolor function */
+	u.freqtraitbonus1 = rne(4);
+	if (!rn2(5)) u.freqtraitbonus1 += rne(3);
+	if (!rn2(3)) u.freqtraitbonus1 *= 2;
+	if (!rn2(5)) u.freqtraitbonus1 *= 2;
+	if (!rn2(8)) u.freqtraitbonus1 += rne(4);
+	if (!rn2(12)) u.freqtraitbonus1 *= (1 + rne(15));
+	if (!rn2(20)) u.freqtraitbonus1 *= 3;
+	if (!rn2(60)) u.freqtraitbonus1 *= (1 + rne(12));
+	if (!rn2(200)) u.freqtraitbonus1 *= 4;
+	if (!rn2(360)) u.freqtraitbonus1 *= (1 + rne(10));
+	if (!rn2(1360)) u.freqtraitbonus1 *= (1 + rne(8));
+	if (!rn2(5000)) u.freqtraitbonus1 *= 5;
+	if (!rn2(6360)) u.freqtraitbonus1 *= (1 + rne(7));
+	if (!rn2(25000)) u.freqtraitbonus1 *= 6;
+	if (!rn2(36360)) u.freqtraitbonus1 *= (1 + rne(5));
+	if (u.freqtraitbonus1 > 100) u.freqtraitbonus1 = 100; /* fail safe */
+
+	u.frequenttrait2 = 0;
+	u.frequenttrait3 = 0;
+	u.frequenttrait4 = 0;
+	u.frequenttrait5 = 0;
+	u.frequenttrait6 = 0;
+	u.frequenttrait7 = 0;
+	u.frequenttrait8 = 0;
+	u.frequenttrait9 = 0;
+	u.frequenttrait10 = 0;
+	u.freqtraitbonus2 = 0;
+	u.freqtraitbonus3 = 0;
+	u.freqtraitbonus4 = 0;
+	u.freqtraitbonus5 = 0;
+	u.freqtraitbonus6 = 0;
+	u.freqtraitbonus7 = 0;
+	u.freqtraitbonus8 = 0;
+	u.freqtraitbonus9 = 0;
+	u.freqtraitbonus10 = 0;
+
+	if (traitamount >= 2) {
+
+		u.frequenttrait2 = rnd(331);
+		u.freqtraitbonus2 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus2 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus2 *= 2;
+		if (!rn2(5)) u.freqtraitbonus2 *= 2;
+		if (!rn2(8)) u.freqtraitbonus2 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus2 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus2 *= 3;
+		if (!rn2(60)) u.freqtraitbonus2 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus2 *= 4;
+		if (!rn2(360)) u.freqtraitbonus2 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus2 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus2 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus2 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus2 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus2 *= (1 + rne(5));
+		if (u.freqtraitbonus2 > 100) u.freqtraitbonus2 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 3) {
+
+		u.frequenttrait3 = rnd(331);
+		u.freqtraitbonus3 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus3 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus3 *= 2;
+		if (!rn2(5)) u.freqtraitbonus3 *= 2;
+		if (!rn2(8)) u.freqtraitbonus3 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus3 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus3 *= 3;
+		if (!rn2(60)) u.freqtraitbonus3 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus3 *= 4;
+		if (!rn2(360)) u.freqtraitbonus3 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus3 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus3 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus3 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus3 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus3 *= (1 + rne(5));
+		if (u.freqtraitbonus3 > 100) u.freqtraitbonus3 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 4) {
+
+		u.frequenttrait4 = rnd(331);
+		u.freqtraitbonus4 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus4 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus4 *= 2;
+		if (!rn2(5)) u.freqtraitbonus4 *= 2;
+		if (!rn2(8)) u.freqtraitbonus4 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus4 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus4 *= 3;
+		if (!rn2(60)) u.freqtraitbonus4 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus4 *= 4;
+		if (!rn2(360)) u.freqtraitbonus4 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus4 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus4 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus4 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus4 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus4 *= (1 + rne(5));
+		if (u.freqtraitbonus4 > 100) u.freqtraitbonus4 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 5) {
+
+		u.frequenttrait5 = rnd(331);
+		u.freqtraitbonus5 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus5 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus5 *= 2;
+		if (!rn2(5)) u.freqtraitbonus5 *= 2;
+		if (!rn2(8)) u.freqtraitbonus5 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus5 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus5 *= 3;
+		if (!rn2(60)) u.freqtraitbonus5 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus5 *= 4;
+		if (!rn2(360)) u.freqtraitbonus5 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus5 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus5 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus5 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus5 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus5 *= (1 + rne(5));
+		if (u.freqtraitbonus5 > 100) u.freqtraitbonus5 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 6) {
+
+		u.frequenttrait6 = rnd(331);
+		u.freqtraitbonus6 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus6 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus6 *= 2;
+		if (!rn2(5)) u.freqtraitbonus6 *= 2;
+		if (!rn2(8)) u.freqtraitbonus6 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus6 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus6 *= 3;
+		if (!rn2(60)) u.freqtraitbonus6 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus6 *= 4;
+		if (!rn2(360)) u.freqtraitbonus6 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus6 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus6 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus6 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus6 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus6 *= (1 + rne(5));
+		if (u.freqtraitbonus6 > 100) u.freqtraitbonus6 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 7) {
+
+		u.frequenttrait7 = rnd(331);
+		u.freqtraitbonus7 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus7 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus7 *= 2;
+		if (!rn2(5)) u.freqtraitbonus7 *= 2;
+		if (!rn2(8)) u.freqtraitbonus7 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus7 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus7 *= 3;
+		if (!rn2(60)) u.freqtraitbonus7 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus7 *= 4;
+		if (!rn2(360)) u.freqtraitbonus7 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus7 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus7 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus7 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus7 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus7 *= (1 + rne(5));
+		if (u.freqtraitbonus7 > 100) u.freqtraitbonus7 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 8) {
+
+		u.frequenttrait8 = rnd(331);
+		u.freqtraitbonus8 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus8 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus8 *= 2;
+		if (!rn2(5)) u.freqtraitbonus8 *= 2;
+		if (!rn2(8)) u.freqtraitbonus8 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus8 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus8 *= 3;
+		if (!rn2(60)) u.freqtraitbonus8 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus8 *= 4;
+		if (!rn2(360)) u.freqtraitbonus8 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus8 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus8 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus8 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus8 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus8 *= (1 + rne(5));
+		if (u.freqtraitbonus8 > 100) u.freqtraitbonus8 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 9) {
+
+		u.frequenttrait9 = rnd(331);
+		u.freqtraitbonus9 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus9 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus9 *= 2;
+		if (!rn2(5)) u.freqtraitbonus9 *= 2;
+		if (!rn2(8)) u.freqtraitbonus9 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus9 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus9 *= 3;
+		if (!rn2(60)) u.freqtraitbonus9 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus9 *= 4;
+		if (!rn2(360)) u.freqtraitbonus9 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus9 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus9 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus9 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus9 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus9 *= (1 + rne(5));
+		if (u.freqtraitbonus9 > 100) u.freqtraitbonus9 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 10) {
+
+		u.frequenttrait10 = rnd(331);
+		u.freqtraitbonus10 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus10 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus10 *= 2;
+		if (!rn2(5)) u.freqtraitbonus10 *= 2;
+		if (!rn2(8)) u.freqtraitbonus10 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus10 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus10 *= 3;
+		if (!rn2(60)) u.freqtraitbonus10 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus10 *= 4;
+		if (!rn2(360)) u.freqtraitbonus10 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus10 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus10 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus10 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus10 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus10 *= (1 + rne(5));
+		if (u.freqtraitbonus10 > 100) u.freqtraitbonus10 = 100; /* fail safe */
+
+	}
+
 	u.frequentspecies = -1;  
 	u.frequentspecies2 = -1;  
 	u.frequentspecies3 = -1;  
@@ -23911,6 +24148,243 @@ alter_reality()
 	if (!rn2(25000)) u.freqcolorbonus *= 6;
 	if (!rn2(36360)) u.freqcolorbonus *= (1 + rne(5));
 	if (u.freqcolorbonus > 100) u.freqcolorbonus = 100; /* fail safe */
+	}
+
+	register int traitamount = rnd(10); /* pick an # of monster traits that are more common --Amy */
+
+	u.frequenttrait1 = rnd(331); /* same as monstercolor function */
+	u.freqtraitbonus1 = rne(4);
+	if (!rn2(5)) u.freqtraitbonus1 += rne(3);
+	if (!rn2(3)) u.freqtraitbonus1 *= 2;
+	if (!rn2(5)) u.freqtraitbonus1 *= 2;
+	if (!rn2(8)) u.freqtraitbonus1 += rne(4);
+	if (!rn2(12)) u.freqtraitbonus1 *= (1 + rne(15));
+	if (!rn2(20)) u.freqtraitbonus1 *= 3;
+	if (!rn2(60)) u.freqtraitbonus1 *= (1 + rne(12));
+	if (!rn2(200)) u.freqtraitbonus1 *= 4;
+	if (!rn2(360)) u.freqtraitbonus1 *= (1 + rne(10));
+	if (!rn2(1360)) u.freqtraitbonus1 *= (1 + rne(8));
+	if (!rn2(5000)) u.freqtraitbonus1 *= 5;
+	if (!rn2(6360)) u.freqtraitbonus1 *= (1 + rne(7));
+	if (!rn2(25000)) u.freqtraitbonus1 *= 6;
+	if (!rn2(36360)) u.freqtraitbonus1 *= (1 + rne(5));
+	if (u.freqtraitbonus1 > 100) u.freqtraitbonus1 = 100; /* fail safe */
+
+	u.frequenttrait2 = 0;
+	u.frequenttrait3 = 0;
+	u.frequenttrait4 = 0;
+	u.frequenttrait5 = 0;
+	u.frequenttrait6 = 0;
+	u.frequenttrait7 = 0;
+	u.frequenttrait8 = 0;
+	u.frequenttrait9 = 0;
+	u.frequenttrait10 = 0;
+	u.freqtraitbonus2 = 0;
+	u.freqtraitbonus3 = 0;
+	u.freqtraitbonus4 = 0;
+	u.freqtraitbonus5 = 0;
+	u.freqtraitbonus6 = 0;
+	u.freqtraitbonus7 = 0;
+	u.freqtraitbonus8 = 0;
+	u.freqtraitbonus9 = 0;
+	u.freqtraitbonus10 = 0;
+
+	if (traitamount >= 2) {
+
+		u.frequenttrait2 = rnd(331);
+		u.freqtraitbonus2 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus2 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus2 *= 2;
+		if (!rn2(5)) u.freqtraitbonus2 *= 2;
+		if (!rn2(8)) u.freqtraitbonus2 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus2 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus2 *= 3;
+		if (!rn2(60)) u.freqtraitbonus2 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus2 *= 4;
+		if (!rn2(360)) u.freqtraitbonus2 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus2 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus2 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus2 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus2 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus2 *= (1 + rne(5));
+		if (u.freqtraitbonus2 > 100) u.freqtraitbonus2 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 3) {
+
+		u.frequenttrait3 = rnd(331);
+		u.freqtraitbonus3 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus3 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus3 *= 2;
+		if (!rn2(5)) u.freqtraitbonus3 *= 2;
+		if (!rn2(8)) u.freqtraitbonus3 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus3 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus3 *= 3;
+		if (!rn2(60)) u.freqtraitbonus3 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus3 *= 4;
+		if (!rn2(360)) u.freqtraitbonus3 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus3 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus3 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus3 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus3 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus3 *= (1 + rne(5));
+		if (u.freqtraitbonus3 > 100) u.freqtraitbonus3 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 4) {
+
+		u.frequenttrait4 = rnd(331);
+		u.freqtraitbonus4 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus4 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus4 *= 2;
+		if (!rn2(5)) u.freqtraitbonus4 *= 2;
+		if (!rn2(8)) u.freqtraitbonus4 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus4 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus4 *= 3;
+		if (!rn2(60)) u.freqtraitbonus4 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus4 *= 4;
+		if (!rn2(360)) u.freqtraitbonus4 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus4 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus4 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus4 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus4 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus4 *= (1 + rne(5));
+		if (u.freqtraitbonus4 > 100) u.freqtraitbonus4 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 5) {
+
+		u.frequenttrait5 = rnd(331);
+		u.freqtraitbonus5 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus5 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus5 *= 2;
+		if (!rn2(5)) u.freqtraitbonus5 *= 2;
+		if (!rn2(8)) u.freqtraitbonus5 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus5 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus5 *= 3;
+		if (!rn2(60)) u.freqtraitbonus5 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus5 *= 4;
+		if (!rn2(360)) u.freqtraitbonus5 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus5 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus5 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus5 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus5 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus5 *= (1 + rne(5));
+		if (u.freqtraitbonus5 > 100) u.freqtraitbonus5 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 6) {
+
+		u.frequenttrait6 = rnd(331);
+		u.freqtraitbonus6 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus6 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus6 *= 2;
+		if (!rn2(5)) u.freqtraitbonus6 *= 2;
+		if (!rn2(8)) u.freqtraitbonus6 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus6 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus6 *= 3;
+		if (!rn2(60)) u.freqtraitbonus6 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus6 *= 4;
+		if (!rn2(360)) u.freqtraitbonus6 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus6 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus6 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus6 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus6 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus6 *= (1 + rne(5));
+		if (u.freqtraitbonus6 > 100) u.freqtraitbonus6 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 7) {
+
+		u.frequenttrait7 = rnd(331);
+		u.freqtraitbonus7 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus7 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus7 *= 2;
+		if (!rn2(5)) u.freqtraitbonus7 *= 2;
+		if (!rn2(8)) u.freqtraitbonus7 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus7 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus7 *= 3;
+		if (!rn2(60)) u.freqtraitbonus7 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus7 *= 4;
+		if (!rn2(360)) u.freqtraitbonus7 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus7 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus7 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus7 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus7 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus7 *= (1 + rne(5));
+		if (u.freqtraitbonus7 > 100) u.freqtraitbonus7 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 8) {
+
+		u.frequenttrait8 = rnd(331);
+		u.freqtraitbonus8 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus8 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus8 *= 2;
+		if (!rn2(5)) u.freqtraitbonus8 *= 2;
+		if (!rn2(8)) u.freqtraitbonus8 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus8 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus8 *= 3;
+		if (!rn2(60)) u.freqtraitbonus8 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus8 *= 4;
+		if (!rn2(360)) u.freqtraitbonus8 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus8 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus8 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus8 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus8 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus8 *= (1 + rne(5));
+		if (u.freqtraitbonus8 > 100) u.freqtraitbonus8 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 9) {
+
+		u.frequenttrait9 = rnd(331);
+		u.freqtraitbonus9 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus9 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus9 *= 2;
+		if (!rn2(5)) u.freqtraitbonus9 *= 2;
+		if (!rn2(8)) u.freqtraitbonus9 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus9 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus9 *= 3;
+		if (!rn2(60)) u.freqtraitbonus9 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus9 *= 4;
+		if (!rn2(360)) u.freqtraitbonus9 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus9 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus9 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus9 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus9 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus9 *= (1 + rne(5));
+		if (u.freqtraitbonus9 > 100) u.freqtraitbonus9 = 100; /* fail safe */
+
+	}
+
+	if (traitamount >= 10) {
+
+		u.frequenttrait10 = rnd(331);
+		u.freqtraitbonus10 = rne(4);
+		if (!rn2(5)) u.freqtraitbonus10 += rne(3);
+		if (!rn2(3)) u.freqtraitbonus10 *= 2;
+		if (!rn2(5)) u.freqtraitbonus10 *= 2;
+		if (!rn2(8)) u.freqtraitbonus10 += rne(4);
+		if (!rn2(12)) u.freqtraitbonus10 *= (1 + rne(15));
+		if (!rn2(20)) u.freqtraitbonus10 *= 3;
+		if (!rn2(60)) u.freqtraitbonus10 *= (1 + rne(12));
+		if (!rn2(200)) u.freqtraitbonus10 *= 4;
+		if (!rn2(360)) u.freqtraitbonus10 *= (1 + rne(10));
+		if (!rn2(1360)) u.freqtraitbonus10 *= (1 + rne(8));
+		if (!rn2(5000)) u.freqtraitbonus10 *= 5;
+		if (!rn2(6360)) u.freqtraitbonus10 *= (1 + rne(7));
+		if (!rn2(25000)) u.freqtraitbonus10 *= 6;
+		if (!rn2(36360)) u.freqtraitbonus10 *= (1 + rne(5));
+		if (u.freqtraitbonus10 > 100) u.freqtraitbonus10 = 100; /* fail safe */
+
 	}
 
 	u.frequentspecies = -1;  

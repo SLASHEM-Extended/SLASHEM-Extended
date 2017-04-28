@@ -460,6 +460,27 @@ struct you {
 	int frequentspecies20;	
 	int freqspeciesbonus20;	
 
+	int frequenttrait1;	/* monsters with this trait spawn more often --Amy */
+	int freqtraitbonus1;
+	int frequenttrait2;
+	int freqtraitbonus2;
+	int frequenttrait3;
+	int freqtraitbonus3;
+	int frequenttrait4;
+	int freqtraitbonus4;
+	int frequenttrait5;
+	int freqtraitbonus5;
+	int frequenttrait6;
+	int freqtraitbonus6;
+	int frequenttrait7;
+	int freqtraitbonus7;
+	int frequenttrait8;
+	int freqtraitbonus8;
+	int frequenttrait9;
+	int freqtraitbonus9;
+	int frequenttrait10;
+	int freqtraitbonus10;
+
 	int speedymonster;	/* monster species that is generated with speed */
 	int musemonster;		/* monster species that has a higher chance of generating with musable stuff */
 
