@@ -751,7 +751,14 @@ doread()
 	    else useupf(scroll, 1L);
 	    scroll = &otemp;
 	}
+
 	if(!seffects(scroll))  {
+
+		if (!scroll) { /* scroll of copying "phantom crash bug"... --Amy */
+			impossible("trying to finish used scroll that doesn't exist anymore?");
+			return(1);
+		}
+
 		if(!objects[scroll->otyp].oc_name_known) {
 		    if(known) {
 			makeknown(scroll->otyp);
