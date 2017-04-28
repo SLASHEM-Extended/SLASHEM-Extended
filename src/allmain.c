@@ -4711,6 +4711,7 @@ newboss:
 			clear_memory_glyph(zx, zy, S_stone);
 		}
 
+		if (!rn2(20)) docrt();
 		vision_recalc(0);
 
 	}
