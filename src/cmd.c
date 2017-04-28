@@ -3072,320 +3072,320 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_have(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoFire_resistance) {
+	if ((guaranteed || !rn2(10)) && NoFire_resistance && (final || u.uprops[DEAC_FIRE_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having fire resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FIRE_RES].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoCold_resistance) {
+	if ((guaranteed || !rn2(10)) && NoCold_resistance && (final || u.uprops[DEAC_COLD_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having cold resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_COLD_RES].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoSleep_resistance) {
+	if ((guaranteed || !rn2(10)) && NoSleep_resistance && (final || u.uprops[DEAC_SLEEP_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having sleep resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SLEEP_RES].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoDisint_resistance) {
+	if ((guaranteed || !rn2(10)) && NoDisint_resistance && (final || u.uprops[DEAC_DISINT_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having disintegration resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DISINT_RES].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoShock_resistance) {
+	if ((guaranteed || !rn2(10)) && NoShock_resistance && (final || u.uprops[DEAC_SHOCK_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having shock resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SHOCK_RES].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoPoison_resistance) {
+	if ((guaranteed || !rn2(10)) && NoPoison_resistance && (final || u.uprops[DEAC_POISON_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having poison resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_POISON_RES].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoDrain_resistance) {
+	if ((guaranteed || !rn2(10)) && NoDrain_resistance && (final || u.uprops[DEAC_DRAIN_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having drain resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DRAIN_RES].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoSick_resistance) {
+	if ((guaranteed || !rn2(10)) && NoSick_resistance && (final || u.uprops[DEAC_SICK_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having sickness resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SICK_RES].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoAntimagic_resistance) {
+	if ((guaranteed || !rn2(10)) && NoAntimagic_resistance && (final || u.uprops[DEAC_ANTIMAGIC].intrinsic) ) {
 		Sprintf(buf, "prevented from having magic resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_ANTIMAGIC].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoAcid_resistance) {
+	if ((guaranteed || !rn2(10)) && NoAcid_resistance && (final || u.uprops[DEAC_ACID_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having acid resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_ACID_RES].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoStone_resistance) {
+	if ((guaranteed || !rn2(10)) && NoStone_resistance && (final || u.uprops[DEAC_STONE_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having petrification resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STONE_RES].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoFear_resistance) {
+	if ((guaranteed || !rn2(10)) && NoFear_resistance && (final || u.uprops[DEAC_FEAR_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having fear resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FEAR_RES].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoSee_invisible) {
+	if ((guaranteed || !rn2(10)) && NoSee_invisible && (final || u.uprops[DEAC_SEE_INVIS].intrinsic) ) {
 		Sprintf(buf, "prevented from having see invisible");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SEE_INVIS].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoManaleech) {
+	if ((guaranteed || !rn2(10)) && NoManaleech && (final || u.uprops[DEAC_MANALEECH].intrinsic) ) {
 		Sprintf(buf, "prevented from having manaleech");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_MANALEECH].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoPeacevision) {
+	if ((guaranteed || !rn2(10)) && NoPeacevision && (final || u.uprops[DEAC_PEACEVISION].intrinsic) ) {
 		Sprintf(buf, "prevented from having peacevision");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_PEACEVISION].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoTelepat) {
+	if ((guaranteed || !rn2(10)) && NoTelepat && (final || u.uprops[DEAC_TELEPAT].intrinsic) ) {
 		Sprintf(buf, "prevented from having telepathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_TELEPAT].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoWarning) {
+	if ((guaranteed || !rn2(10)) && NoWarning && (final || u.uprops[DEAC_WARNING].intrinsic) ) {
 		Sprintf(buf, "prevented from having warning");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_WARNING].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoSearching) {
+	if ((guaranteed || !rn2(10)) && NoSearching && (final || u.uprops[DEAC_SEARCHING].intrinsic) ) {
 		Sprintf(buf, "prevented from having automatic searching");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SEARCHING].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoClairvoyant) {
+	if ((guaranteed || !rn2(10)) && NoClairvoyant && (final || u.uprops[DEAC_CLAIRVOYANT].intrinsic) ) {
 		Sprintf(buf, "prevented from having clairvoyance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_CLAIRVOYANT].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoInfravision) {
+	if ((guaranteed || !rn2(10)) && NoInfravision && (final || u.uprops[DEAC_INFRAVISION].intrinsic) ) {
 		Sprintf(buf, "prevented from having infravision");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_INFRAVISION].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoDetect_monsters) {
+	if ((guaranteed || !rn2(10)) && NoDetect_monsters && (final || u.uprops[DEAC_DETECT_MONSTERS].intrinsic) ) {
 		Sprintf(buf, "prevented from having detect monsters");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DETECT_MONSTERS].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoInvisible) {
+	if ((guaranteed || !rn2(10)) && NoInvisible && (final || u.uprops[DEAC_INVIS].intrinsic) ) {
 		Sprintf(buf, "prevented from having invisibility");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_INVIS].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoDisplaced) {
+	if ((guaranteed || !rn2(10)) && NoDisplaced && (final || u.uprops[DEAC_DISPLACED].intrinsic) ) {
 		Sprintf(buf, "prevented from having displacement");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DISPLACED].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoStealth) {
+	if ((guaranteed || !rn2(10)) && NoStealth && (final || u.uprops[DEAC_STEALTH].intrinsic) ) {
 		Sprintf(buf, "prevented from having stealth");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STEALTH].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoJumping) {
+	if ((guaranteed || !rn2(10)) && NoJumping && (final || u.uprops[DEAC_JUMPING].intrinsic) ) {
 		Sprintf(buf, "prevented from having jumping");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_JUMPING].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoTeleport_control) {
+	if ((guaranteed || !rn2(10)) && NoTeleport_control && (final || u.uprops[DEAC_TELEPORT_CONTROL].intrinsic) ) {
 		Sprintf(buf, "prevented from having teleport control");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_TELEPORT_CONTROL].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoFlying) {
+	if ((guaranteed || !rn2(10)) && NoFlying && (final || u.uprops[DEAC_FLYING].intrinsic) ) {
 		Sprintf(buf, "prevented from having flying");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FLYING].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoBreathless) {
+	if ((guaranteed || !rn2(10)) && NoBreathless && (final || u.uprops[DEAC_MAGICAL_BREATHING].intrinsic) ) {
 		Sprintf(buf, "prevented from having magical breathing");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_MAGICAL_BREATHING].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoPasses_walls) {
+	if ((guaranteed || !rn2(10)) && NoPasses_walls && (final || u.uprops[DEAC_PASSES_WALLS].intrinsic) ) {
 		Sprintf(buf, "prevented from having phasing");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_PASSES_WALLS].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoSlow_digestion) {
+	if ((guaranteed || !rn2(10)) && NoSlow_digestion && (final || u.uprops[DEAC_SLOW_DIGESTION].intrinsic) ) {
 		Sprintf(buf, "prevented from having slow digestion");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SLOW_DIGESTION].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoHalf_spell_damage) {
+	if ((guaranteed || !rn2(10)) && NoHalf_spell_damage && (final || u.uprops[DEAC_HALF_SPDAM].intrinsic) ) {
 		Sprintf(buf, "prevented from having half spell damage");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_HALF_SPDAM].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoHalf_physical_damage) {
+	if ((guaranteed || !rn2(10)) && NoHalf_physical_damage && (final || u.uprops[DEAC_HALF_PHDAM].intrinsic) ) {
 		Sprintf(buf, "prevented from having half physical damage");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_HALF_PHDAM].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoRegeneration) {
+	if ((guaranteed || !rn2(10)) && NoRegeneration && (final || u.uprops[DEAC_REGENERATION].intrinsic) ) {
 		Sprintf(buf, "prevented from having regeneration");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_REGENERATION].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoEnergy_regeneration) {
+	if ((guaranteed || !rn2(10)) && NoEnergy_regeneration && (final || u.uprops[DEAC_ENERGY_REGENERATION].intrinsic) ) {
 		Sprintf(buf, "prevented from having mana regeneration");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_ENERGY_REGENERATION].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoPolymorph_control) {
+	if ((guaranteed || !rn2(10)) && NoPolymorph_control && (final || u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic) ) {
 		Sprintf(buf, "prevented from having polymorph control");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoFast) {
+	if ((guaranteed || !rn2(10)) && NoFast && (final || u.uprops[DEAC_FAST].intrinsic) ) {
 		Sprintf(buf, "prevented from having speed");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FAST].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoReflecting) {
+	if ((guaranteed || !rn2(10)) && NoReflecting && (final || u.uprops[DEAC_REFLECTING].intrinsic) ) {
 		Sprintf(buf, "prevented from having reflection");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_REFLECTING].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoKeen_memory) {
+	if ((guaranteed || !rn2(10)) && NoKeen_memory && (final || u.uprops[DEAC_KEEN_MEMORY].intrinsic) ) {
 		Sprintf(buf, "prevented from having keen memory");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_KEEN_MEMORY].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoSight_bonus) {
+	if ((guaranteed || !rn2(10)) && NoSight_bonus && (final || u.uprops[DEAC_SIGHT_BONUS].intrinsic) ) {
 		Sprintf(buf, "prevented from having a sight bonus");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SIGHT_BONUS].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoVersus_curses) {
+	if ((guaranteed || !rn2(10)) && NoVersus_curses && (final || u.uprops[DEAC_VERSUS_CURSES].intrinsic) ) {
 		Sprintf(buf, "prevented from having curse resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_VERSUS_CURSES].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoStun_resist) {
+	if ((guaranteed || !rn2(10)) && NoStun_resist && (final || u.uprops[DEAC_STUN_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having stun resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STUN_RES].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoConf_resist) {
+	if ((guaranteed || !rn2(10)) && NoConf_resist && (final || u.uprops[DEAC_CONF_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having confusion resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_CONF_RES].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoPsi_resist) {
+	if ((guaranteed || !rn2(10)) && NoPsi_resist && (final || u.uprops[DEAC_PSI_RES].intrinsic) ) {
 		Sprintf(buf, "prevented from having psi resistance");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_PSI_RES].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoDouble_attack) {
+	if ((guaranteed || !rn2(10)) && NoDouble_attack && (final || u.uprops[DEAC_DOUBLE_ATTACK].intrinsic) ) {
 		Sprintf(buf, "prevented from having double attacks");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DOUBLE_ATTACK].intrinsic);
 		you_are(buf);
 	}
-	if ((guaranteed || !rn2(10)) && NoQuad_attack) {
+	if ((guaranteed || !rn2(10)) && NoQuad_attack && (final || u.uprops[DEAC_QUAD_ATTACK].intrinsic) ) {
 		Sprintf(buf, "prevented from having quad attacks");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_QUAD_ATTACK].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoFree_action) {
+	if ((guaranteed || !rn2(10)) && NoFree_action && (final || u.uprops[DEAC_FREE_ACTION].intrinsic) ) {
 		Sprintf(buf, "prevented from having free action");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FREE_ACTION].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoHallu_party) {
+	if ((guaranteed || !rn2(10)) && NoHallu_party && (final || u.uprops[DEAC_HALLU_PARTY].intrinsic) ) {
 		Sprintf(buf, "prevented from hallu partying");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_HALLU_PARTY].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoDrunken_boxing) {
+	if ((guaranteed || !rn2(10)) && NoDrunken_boxing && (final || u.uprops[DEAC_DRUNKEN_BOXING].intrinsic) ) {
 		Sprintf(buf, "prevented from drunken boxing");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DRUNKEN_BOXING].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoStunnopathy) {
+	if ((guaranteed || !rn2(10)) && NoStunnopathy && (final || u.uprops[DEAC_STUNNOPATHY].intrinsic) ) {
 		Sprintf(buf, "prevented from having stunnopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STUNNOPATHY].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoNumbopathy) {
+	if ((guaranteed || !rn2(10)) && NoNumbopathy && (final || u.uprops[DEAC_NUMBOPATHY].intrinsic) ) {
 		Sprintf(buf, "prevented from having numbopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_NUMBOPATHY].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoDimmopathy) {
+	if ((guaranteed || !rn2(10)) && NoDimmopathy && (final || u.uprops[DEAC_DIMMOPATHY].intrinsic) ) {
 		Sprintf(buf, "prevented from having dimmopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_DIMMOPATHY].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoFreezopathy) {
+	if ((guaranteed || !rn2(10)) && NoFreezopathy && (final || u.uprops[DEAC_FREEZOPATHY].intrinsic) ) {
 		Sprintf(buf, "prevented from having freezopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FREEZOPATHY].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoStoned_chiller) {
+	if ((guaranteed || !rn2(10)) && NoStoned_chiller && (final || u.uprops[DEAC_STONED_CHILLER].intrinsic) ) {
 		Sprintf(buf, "prevented from being a stoned chiller");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_STONED_CHILLER].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoCorrosivity) {
+	if ((guaranteed || !rn2(10)) && NoCorrosivity && (final || u.uprops[DEAC_CORROSIVITY].intrinsic) ) {
 		Sprintf(buf, "prevented from having corrosivity");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_CORROSIVITY].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoFear_factor) {
+	if ((guaranteed || !rn2(10)) && NoFear_factor && (final || u.uprops[DEAC_FEAR_FACTOR].intrinsic) ) {
 		Sprintf(buf, "prevented from having an increased fear factor");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_FEAR_FACTOR].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoBurnopathy) {
+	if ((guaranteed || !rn2(10)) && NoBurnopathy && (final || u.uprops[DEAC_BURNOPATHY].intrinsic) ) {
 		Sprintf(buf, "prevented from having burnopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_BURNOPATHY].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoSickopathy) {
+	if ((guaranteed || !rn2(10)) && NoSickopathy && (final || u.uprops[DEAC_SICKOPATHY].intrinsic) ) {
 		Sprintf(buf, "prevented from having sickopathy");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_SICKOPATHY].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoWonderlegs) {
+	if ((guaranteed || !rn2(10)) && NoWonderlegs && (final || u.uprops[DEAC_WONDERLEGS].intrinsic) ) {
 		Sprintf(buf, "prevented from having wonderlegs");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_WONDERLEGS].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoGlib_combat) {
+	if ((guaranteed || !rn2(10)) && NoGlib_combat && (final || u.uprops[DEAC_GLIB_COMBAT].intrinsic) ) {
 		Sprintf(buf, "prevented from having glib combat");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_GLIB_COMBAT].intrinsic);
 		you_are(buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && NoUseTheForce) {
+	if ((guaranteed || !rn2(10)) && NoUseTheForce && (final || u.uprops[DEAC_THE_FORCE].intrinsic) ) {
 		Sprintf(buf, "prevented from using the force like a real jedi");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", u.uprops[DEAC_THE_FORCE].intrinsic);
 		you_are(buf);
