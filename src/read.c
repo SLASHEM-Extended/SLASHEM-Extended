@@ -1000,9 +1000,9 @@ int curse_bless;
 	    switch(obj->otyp) {
 	    case BELL_OF_OPENING:
 		if (is_cursed) stripspe(obj);
-		else if (is_blessed) obj->spe += rnd(3);
-		else obj->spe += 1;
-		if (obj->spe > 5) obj->spe = 5;
+		else if (is_blessed) obj->spe += rnd(30);
+		else obj->spe += 10;
+		if (obj->spe > 100) obj->spe = 100;
 		break;
 	    case MAGIC_MARKER:
 	    case FELT_TIP_MARKER:

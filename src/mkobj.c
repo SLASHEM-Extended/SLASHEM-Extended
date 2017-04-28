@@ -1881,7 +1881,7 @@ boolean artif;
 					break;
 				}
 		case BELL_OF_OPENING:
-			otmp->spe = (ishaxor ? 6 : 3);
+			otmp->spe = (ishaxor ? 60 : 30);
 					break;
 		case MAGIC_FLUTE:
 		case MAGIC_HARP:
