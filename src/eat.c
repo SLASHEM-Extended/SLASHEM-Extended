@@ -1952,6 +1952,7 @@ register int pm;
 		flags.botl = 1;
 		break;
 	    case PM_CREEPING___:
+	    case PM_LEVEL___:
 	    case PM_PETRO_CENTIPEDE:
 	    case PM_PSEUDO_MEDUSA:
 	    case PM____TROVE:

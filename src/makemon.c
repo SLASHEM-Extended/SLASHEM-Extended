@@ -3773,6 +3773,12 @@ register struct monst *mtmp;
 		} else if (mm == PM_LITTLE_BOY){
 			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
 
+		} else if (mm == PM_LESBIAN_GIRL){
+			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+
+		} else if (mm == PM_GAY_BOY){
+			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
+
 		} else if (mm == PM_FARTING_GIRL){
 			(void)mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
 
@@ -3888,6 +3894,22 @@ register struct monst *mtmp;
 		} else if (mm == PM_ADULT_GENTLEMAN){
 			(void)mongets(mtmp, SPIKED_BATTLE_BOOT);
 			(void)mongets(mtmp, COMBAT_STILETTOS);
+
+		} else if (mm == PM_LESBIAN_WOMAN){
+			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
+			(void)mongets(mtmp, FEMININE_PUMPS);
+
+		} else if (mm == PM_GAY_MAN){
+			(void)mongets(mtmp, SPIKED_BATTLE_BOOT);
+			(void)mongets(mtmp, COMBAT_STILETTOS);
+
+		} else if (mm == PM_LESBIAN_BEAUTY){
+			(void)mongets(mtmp, HIGH_HEELED_SANDAL);
+			(void)mongets(mtmp, FEMININE_PUMPS);
+
+		} else if (mm == PM_GAY_MATE){
+			(void)mongets(mtmp, STEEL_CAPPED_SANDAL);
+			(void)mongets(mtmp, LEATHER_PEEP_TOES);
 
 		} else if (mm == PM_OLD_GRANNY){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
@@ -13084,6 +13106,11 @@ register int	mmflags;
 			if (mndx == PM_NETHERWORLD_TROLL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
+
+		case S_JELLY:
+			if (mndx == PM_EVIL_JELLY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			break;
+
 		case S_GREMLIN:
 			if (mndx == PM_DEFORMED_GALLTRIT) set_mimic_sym(mtmp);
 
@@ -13219,6 +13246,7 @@ register int	mmflags;
 		case S_XORN:
 			if (mtmp->data == &mons[PM_XEROC]) set_mimic_sym(mtmp);
 			if (mtmp->data == &mons[PM_PORTER_XORN_PERMAMIMIC]) set_mimic_sym(mtmp);
+			if (mndx == PM_BOGUXORN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			break;
 		case S_BAD_COINS:
 			if (mtmp->data == &mons[PM_FATA_MORGANA]) set_mimic_sym(mtmp);
@@ -13663,6 +13691,7 @@ register int	mmflags;
 			if (mndx == PM_KURAST_BOO) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_STALKER_GIRL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_THE_INVISIBLE_MAN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_LAG_MONSTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
 		case S_EYE:
@@ -14931,6 +14960,7 @@ loopback:
 		if (ct > 0 && (Race_if(PM_DEATHMOLD) && is_steammonster(ptr))) ct += 1;
 		if (ct > 0 && (Race_if(PM_DEATHMOLD) && is_animemonster(ptr))) ct += 1;
 		if (ct > 0 && (Race_if(PM_DOPPELGANGER) && is_vanillamonster(ptr))) ct += 1;
+		if (ct > 0 && (Race_if(PM_BORG) && is_jokemonster(ptr))) ct += 4;
 		if (ct > 0 && (Race_if(PM_DROW) && is_vanillamonster(ptr))) ct += 1;
 		if (ct > 0 && (Race_if(PM_DWARF) && is_vanillamonster(ptr))) ct += 1;
 		if (ct > 0 && (Race_if(PM_ELF) && is_vanillamonster(ptr))) ct += 1;
@@ -14938,6 +14968,7 @@ loopback:
 		if (ct > 0 && (Race_if(PM_PLAYER_GREMLIN) && dmgtype(ptr, AD_DARK))) ct += 3;
 		if (ct > 0 && (Race_if(PM_HERBALIST) && is_covetous(ptr))) ct += 5;
 		if (ct > 0 && (Race_if(PM_HERBALIST) && extra_nasty(ptr))) ct += 5;
+		if (ct > 0 && (Race_if(PM_BORG) && extra_nasty(ptr))) ct += 3;
 		if (ct > 0 && (Race_if(PM_HOBBIT) && is_vanillamonster(ptr))) ct += 1;
 		if (ct > 0 && (Race_if(PM_HUMAN) && is_vanillamonster(ptr))) ct += 2;
 		if (ct > 0 && (Race_if(PM_IMMUNIZER) && dmgtype(ptr, AD_CURS))) ct += 7;
@@ -15488,6 +15519,7 @@ int     spc;
 		if ((Race_if(PM_DEATHMOLD) && is_steammonster(&mons[last]))) num += 1;
 		if ((Race_if(PM_DEATHMOLD) && is_animemonster(&mons[last]))) num += 1;
 		if ((Race_if(PM_DOPPELGANGER) && is_vanillamonster(&mons[last]))) num += 1;
+		if ((Race_if(PM_BORG) && is_jokemonster(&mons[last]))) num += 4;
 		if ((Race_if(PM_DROW) && is_vanillamonster(&mons[last]))) num += 1;
 		if ((Race_if(PM_DWARF) && is_vanillamonster(&mons[last]))) num += 1;
 		if ((Race_if(PM_ELF) && is_vanillamonster(&mons[last]))) num += 1;
@@ -15495,6 +15527,7 @@ int     spc;
 		if ((Race_if(PM_PLAYER_GREMLIN) && dmgtype(&mons[last], AD_DARK))) num += 3;
 		if ((Race_if(PM_HERBALIST) && is_covetous(&mons[last]))) num += 5;
 		if ((Race_if(PM_HERBALIST) && extra_nasty(&mons[last]))) num += 5;
+		if ((Race_if(PM_BORG) && extra_nasty(&mons[last]))) num += 3;
 		if ((Race_if(PM_HOBBIT) && is_vanillamonster(&mons[last]))) num += 1;
 		if ((Race_if(PM_HUMAN) && is_vanillamonster(&mons[last]))) num += 2;
 		if ((Race_if(PM_IMMUNIZER) && dmgtype(&mons[last], AD_CURS))) num += 7;
@@ -15760,6 +15793,7 @@ int     spc;
 		if ((Race_if(PM_DEATHMOLD) && is_steammonster(&mons[first]))) num -= 1;
 		if ((Race_if(PM_DEATHMOLD) && is_animemonster(&mons[first]))) num -= 1;
 		if ((Race_if(PM_DOPPELGANGER) && is_vanillamonster(&mons[first]))) num -= 1;
+		if ((Race_if(PM_BORG) && is_jokemonster(&mons[first]))) num -= 4;
 		if ((Race_if(PM_DROW) && is_vanillamonster(&mons[first]))) num -= 1;
 		if ((Race_if(PM_DWARF) && is_vanillamonster(&mons[first]))) num -= 1;
 		if ((Race_if(PM_ELF) && is_vanillamonster(&mons[first]))) num -= 1;
@@ -15767,6 +15801,7 @@ int     spc;
 		if ((Race_if(PM_PLAYER_GREMLIN) && dmgtype(&mons[first], AD_DARK))) num -= 3;
 		if ((Race_if(PM_HERBALIST) && is_covetous(&mons[first]))) num -= 5;
 		if ((Race_if(PM_HERBALIST) && extra_nasty(&mons[first]))) num -= 5;
+		if ((Race_if(PM_BORG) && extra_nasty(&mons[first]))) num -= 3;
 		if ((Race_if(PM_HOBBIT) && is_vanillamonster(&mons[first]))) num -= 1;
 		if ((Race_if(PM_HUMAN) && is_vanillamonster(&mons[first]))) num -= 2;
 		if ((Race_if(PM_IMMUNIZER) && dmgtype(&mons[first], AD_CURS))) num -= 7;

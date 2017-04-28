@@ -1020,7 +1020,7 @@ register struct monst *mtmp;
 	 * protect their stuff. Fire resistant monsters can only protect
 	 * themselves  --ALI
 	 */
-	if (!is_clinger(mtmp->data) && !likes_lava(mtmp->data)) {
+	if (!is_clinger(mtmp->data) && !(mtmp->data == &mons[PM_UNMAGIC_FISH]) && !(mtmp->data == &mons[PM_ROXY_GRETA_S_SNEAKER]) && !likes_lava(mtmp->data)) {
 	    if (!resists_fire(mtmp)) {
 		if (cansee(mtmp->mx,mtmp->my))
 		    pline("%s %s.", Monnam(mtmp),

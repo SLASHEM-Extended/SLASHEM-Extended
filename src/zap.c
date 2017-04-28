@@ -8574,9 +8574,11 @@ const char * const destroy_strings[] = {	/* also used in trap.c */
 	"boils and explodes", "boil and explode", "boiling potion",
 	"catches fire and burns", "catch fire and burn", "burning scroll",
 	"catches fire and burns", "catch fire and burn", "burning book",
-	"turns to dust and vanishes", "turn to dust and vanish", "",
-	"breaks apart and explodes", "break apart and explode", "exploding wand"
-	"disintegrates", "disintegrate", ""
+	"turns to dust and vanishes", "turn to dust and vanish", "vaporized ring",
+	"breaks apart and explodes", "break apart and explode", "exploding wand",
+	"disintegrates", "disintegrate", "disintegrated amulet",
+	"is poisoned and turns useless", "are poisoned and turn useless", "poisoned potion",
+	"is poisoned and dissolves", "are poisoned and dissolve", "poisoned food",
 };
 
 void
@@ -8642,6 +8644,18 @@ register int osym, dmgtyp;
 			quan = obj->quan;
 			dindx = 0;
 			dmg = rnd(4);
+		    } else skip++;
+		    break;
+		case AD_VENO:
+
+		    if(osym == POTION_CLASS) {
+			quan = obj->quan;
+			dindx = 7;
+			dmg = 0;
+		    } else if(osym == FOOD_CLASS) {
+			quan = obj->quan;
+			dindx = 8;
+			dmg = 0;
 		    } else skip++;
 		    break;
 		case AD_FIRE:
@@ -8718,7 +8732,7 @@ register int osym, dmgtyp;
 		pline("%s %s %s!", mult, xname(obj),
 			(cnt > 1L) ? destroy_strings[dindx*3 + 1]
 				  : destroy_strings[dindx*3]);
-		if(osym == POTION_CLASS && dmgtyp != AD_COLD) {
+		if(osym == POTION_CLASS && dmgtyp != AD_COLD && dmgtyp != AD_VENO) {
 		    if (!breathless(youmonst.data) || haseyes(youmonst.data))
 		    	potionbreathe(obj);
 		}

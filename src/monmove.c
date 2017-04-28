@@ -546,6 +546,14 @@ register struct monst *mtmp;
 		}
       }
 
+	if (mdat == &mons[PM_LAG_MONSTER]) { /* laaaaaaaaaag! :D --Amy */
+		int lagamount = rno(10);
+		while (lagamount > 0) {
+			delay_output();
+			lagamount--;
+		}
+	}
+
 	/* not frozen or sleeping: wipe out texts written in the dust */
 	wipe_engr_at(mtmp->mx, mtmp->my, 1);
 
@@ -1293,6 +1301,7 @@ not_special:
 	if (appr == 1 && !rn2(3) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pink cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bakh-rozovyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "portlash-pushti plash") ) )) appr = 0;
 
 	if (ptr == &mons[PM_ANCIENT_BIBLICAL_DRAGON]) appr = -1;
+	if (ptr == &mons[PM_BOGUXORN]) appr = -1;
 
 	if ((!mtmp->mpeaceful || !rn2(10))
 #ifdef REINCARNATION

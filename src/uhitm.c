@@ -5743,6 +5743,7 @@ uchar aatyp;
 		if (atttypC < 0) atttypC *= -1;
 		while (atttypC >= AD_ENDS) atttypC -= AD_ENDS;
 		if (!(atttypC >= AD_PHYS && atttypC < AD_ENDS)) atttypC = AD_PHYS; /* fail safe --Amy */
+		if (atttypC == AD_WERE) atttypC = AD_PHYS;
 	}
 
 /*	These affect you even if they just died */
@@ -7127,6 +7128,7 @@ uchar aatyp;
 		if (!Unchanging && !Antimagic) {
 		    if (flags.verbose)
 			You("suddenly feel very unstable!");
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 		    polyself(FALSE);
 		}
 		break;
@@ -7135,6 +7137,7 @@ uchar aatyp;
 		if (!Unchanging && !Antimagic) {
 		    if (flags.verbose)
 			You("suddenly feel very unstable!");
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 		    polyself(FALSE);
 		}
 
@@ -7312,6 +7315,8 @@ uchar aatyp;
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
 		 poisoned("gas", rn2(A_MAX), "superpoisonous gas", 30);
+		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
+		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
 		}
 
 		break;
@@ -7436,6 +7441,7 @@ uchar aatyp;
 		    case 1:
 			if (!Unchanging && !Antimagic) {
 				You("undergo a freakish metamorphosis!");
+				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 			      polyself(FALSE);
 			}
 			break;

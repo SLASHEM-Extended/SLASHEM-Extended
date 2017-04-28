@@ -3756,6 +3756,7 @@ hitmu(mtmp, mattk)
 		if (atttyp < 0) atttyp *= -1;
 		while (atttyp >= AD_ENDS) atttyp -= AD_ENDS;
 		if (!(atttyp >= AD_PHYS && atttyp < AD_ENDS)) atttyp = AD_PHYS; /* fail safe --Amy */
+		if (atttyp == AD_WERE) atttyp = AD_PHYS;
 	}
 
 	if (RngeDonors && atttyp == AD_PHYS) atttyp = AD_THIR;
@@ -4719,6 +4720,10 @@ hitmu(mtmp, mattk)
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
 		ptmp = rn2(A_MAX);
+
+		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
+		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
+
 		goto dopois;
 
 	    case AD_POIS:
@@ -5042,6 +5047,7 @@ dopois:
 		    case 1:
 			if (!Unchanging && !Antimagic) {
 				You("undergo a freakish metamorphosis!");
+				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 			      polyself(FALSE);
 			}
 			break;
@@ -6602,6 +6608,7 @@ dopois:
 		if (uncancelled && !Unchanging && !Antimagic) {
 		    if (flags.verbose)
 			You("undergo a freakish metamorphosis!");
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 		    polyself(FALSE);
 		}
 		break;
@@ -6610,6 +6617,7 @@ dopois:
 		if (uncancelled && !Unchanging && !Antimagic) {
 		    if (flags.verbose)
 			You("undergo a freakish metamorphosis!");
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 		    polyself(FALSE);
 		}
 		    switch (rn2(11)) {
@@ -7047,6 +7055,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if (atttypA < 0) atttypA *= -1;
 		while (atttypA >= AD_ENDS) atttypA -= AD_ENDS;
 		if (!(atttypA >= AD_PHYS && atttypA < AD_ENDS)) atttypA = AD_PHYS; /* fail safe --Amy */
+		if (atttypA == AD_WERE) atttypA = AD_PHYS;
 	}
 
 	switch(atttypA) {
@@ -7696,6 +7705,10 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if (!rn2(2)) {
 			    poisoned("The attack", rn2(A_MAX), "extremely poisonous interior", 30);
 			}
+
+			if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
+			if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
+
 			break;
 
 		case AD_POIS:
@@ -7839,6 +7852,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		    case 1:
 			if (!Unchanging && !Antimagic) {
 				You("undergo a freakish metamorphosis!");
+				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 			      polyself(FALSE);
 			}
 			break;
@@ -8839,6 +8853,7 @@ do_stone2:
 		if (!Unchanging && !Antimagic) {
 		    if (flags.verbose)
 			You("undergo a freakish metamorphosis!");
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 		    polyself(FALSE);
 		}
 		break;
@@ -8847,6 +8862,7 @@ do_stone2:
 		if (!Unchanging && !Antimagic) {
 		    if (flags.verbose)
 			You("undergo a freakish metamorphosis!");
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 		    polyself(FALSE);
 		}
 		if (rn2(4)) break;
@@ -9330,6 +9346,7 @@ boolean ufound;
 		if (atttypC < 0) atttypC *= -1;
 		while (atttypC >= AD_ENDS) atttypC -= AD_ENDS;
 		if (!(atttypC >= AD_PHYS && atttypC < AD_ENDS)) atttypC = AD_PHYS; /* fail safe --Amy */
+		if (atttypC == AD_WERE) atttypC = AD_PHYS;
 	}
 
 	switch (atttypC) {
@@ -9905,6 +9922,7 @@ common:
 		    case 1:
 			if (!Unchanging && !Antimagic) {
 				You("undergo a freakish metamorphosis!");
+				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 			      polyself(FALSE);
 			}
 			break;
@@ -10998,6 +11016,7 @@ common:
 	    case AD_POLY:
 		if (!Unchanging && !Antimagic) {
 			You("undergo a freakish metamorphosis!");
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 			polyself(FALSE);
 		}
 		break;
@@ -11005,6 +11024,7 @@ common:
 	    case AD_CHAO:
 		if (!Unchanging && !Antimagic) {
 			You("undergo a freakish metamorphosis!");
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 			polyself(FALSE);
 		}
 
@@ -11094,6 +11114,10 @@ common:
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+
+		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
+		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
+
 	      mdamageu(mtmp, tmp); /* still does damage even if you resist the poison --Amy */
 		break;
 
@@ -11480,6 +11504,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (atttypB < 0) atttypB *= -1;
 		while (atttypB >= AD_ENDS) atttypB -= AD_ENDS;
 		if (!(atttypB >= AD_PHYS && atttypB < AD_ENDS)) atttypB = AD_PHYS; /* fail safe --Amy */
+		if (atttypB == AD_WERE) atttypB = AD_PHYS;
 	}
 
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "mirrored gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "zerkal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "akslantirish qo'lqop") ) && !rn2(3) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
@@ -12261,6 +12286,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    if (flags.verbose)
 			pline("%s throws a changing gaze at you!", Monnam(mtmp));
 		    stop_occupation();
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 		    polyself(FALSE);
 			}
 		}
@@ -12275,6 +12301,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!Unchanging && !Antimagic) {
 		    if (flags.verbose)
 		    stop_occupation();
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 		    polyself(FALSE);
 			}
 		    switch (rn2(11)) {
@@ -12361,6 +12388,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    case 1:
 			if (!Unchanging && !Antimagic) {
 				You("undergo a freakish metamorphosis!");
+				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += 1;
 			      polyself(FALSE);
 			}
 			break;
@@ -14257,6 +14285,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
 			if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
 	                poisoned("The gaze", rn2(A_MAX), mtmp->data->mname, 30);
+			if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
+			if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
 		}
 		break; 
 
