@@ -341,7 +341,7 @@ doprev_message()
 }
 
 char *
-montraitname(traitno)
+montraitname(traitno) /* monstercolor function */
 int traitno;
 {
 
@@ -1009,6 +1009,8 @@ int traitno;
 			return "monsters that originate from dnethack";
 		case 331:
 			return "monsters whose stats are randomized per playthrough";
+		case 332:
+			return "monster shoes (AmyBSOD loves those!)";
 
 		default:
 			return "unknown";

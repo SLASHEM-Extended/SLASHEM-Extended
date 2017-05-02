@@ -3654,7 +3654,7 @@ register struct obj	*sobj;
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(331);
+			monstercolor = rnd(332);
 		}
 
 		while(cnt--) {
