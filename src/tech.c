@@ -108,6 +108,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"blood ritual",
 	"ent's potion",
 	"lucky gamble",
+	"panic digging",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -608,9 +609,6 @@ static const struct innate_tech
 		       {   20, T_IRON_SKIN, 1},
 		       {   0, 0, 0} },
 	lun_tech[] = { {   1, T_EVISCERATE, 1},
-		       {   1, T_APPRAISAL, 1},
-		       {   1, T_INVOKE_DEITY, 1},
-		       {   1, T_PHASE_DOOR, 1},
 		       {  10, T_BERSERK, 1},
 		       {   0, 0, 0} },
 	yeo_tech[] = {
@@ -628,6 +626,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },		       
 	/* Races */
 	arg_tech[] = { {   1, T_HEAL_HANDS, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_APPRAISAL, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
@@ -635,18 +634,21 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	coc_tech[] = { {   1, T_EGG_BOMB, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	dop_tech[] = { {   1, T_LIQUID_LEAP, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	dwa_tech[] = { {   1, T_RAGE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -654,36 +656,42 @@ static const struct innate_tech
 	cur_tech[] = { /* Put Tech here */
 		       {   1, T_BLESSING, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	elf_tech[] = { /* Put Tech here */
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	gno_tech[] = { {   1, T_VANISH, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   7, T_TINKER, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	anc_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 			 {   11, T_CONCENTRATING, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	dee_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 			 {   10, T_BLOOD_RITUAL, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	dvp_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 			 {   5, T_RESEARCH, 1},
@@ -692,6 +700,7 @@ static const struct innate_tech
 			 {   20, T_WORLD_FALL, 1},
 		       {   0, 0, 0} },
 	bur_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 			 {   10, T_WARD_FIRE, 1},
@@ -699,24 +708,28 @@ static const struct innate_tech
 			 {   20, T_SPIRIT_BOMB, 1},
 		       {   0, 0, 0} },
 	gre_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_DAZZLE, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	sti_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_RECHARGE, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	thu_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_WARD_ELEC, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	wis_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_DOUBLE_THROWNAGE, 1},
@@ -725,6 +738,7 @@ static const struct innate_tech
 		       {   22, T_POLYFORM, 1},
 		       {   0, 0, 0} },
 	roh_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_BLINK, 1},
@@ -732,6 +746,7 @@ static const struct innate_tech
 		       {   20, T_IRON_SKIN, 1},
 		       {   0, 0, 0} },
 	din_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_BERSERK, 1},
@@ -739,6 +754,7 @@ static const struct innate_tech
 		       {   16, T_EDDY_WIND, 1},
 		       {   0, 0, 0} },
 	faw_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   5, T_REINFORCE, 1},
@@ -748,6 +764,7 @@ static const struct innate_tech
 		       {   27, T_LIQUID_LEAP, 1},
 		       {   0, 0, 0} },
 	sat_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_REINFORCE, 1},
@@ -764,6 +781,7 @@ static const struct innate_tech
 	clk_tech[] = { {   1, T_FLURRY, 1},
 		       {   1, T_VANISH, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_BOOZE, 1},
@@ -786,6 +804,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	ogr_tech[] = { {   1, T_FLURRY, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_BERSERK, 1},
@@ -796,6 +815,7 @@ static const struct innate_tech
 	alc_tech[] = { {   1, T_RESEARCH, 1},
 		       {   1, T_TINKER, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_SURGERY, 1},
@@ -807,6 +827,7 @@ static const struct innate_tech
 
 	ung_tech[] = { {   1, T_WORLD_FALL, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_POKE_BALL, 1},
@@ -824,12 +845,14 @@ static const struct innate_tech
 		       {   24, T_POLYFORM, 1},
 		       {   0, 0, 0} },
 	mou_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_POLYFORM, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	oct_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_LIQUID_LEAP, 1},
@@ -838,6 +861,7 @@ static const struct innate_tech
 		       {   20, T_ENT_S_POTION, 1},
 		       {   0, 0, 0} },
 	ink_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   5, T_ENT_S_POTION, 1},
@@ -849,6 +873,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	hob_tech[] = { {   1, T_BLINK, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_LUCKY_GAMBLE, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
@@ -857,6 +882,7 @@ static const struct innate_tech
 
 	fen_tech[] = { {   1, T_EVISCERATE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_DISARM, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
@@ -867,6 +893,7 @@ static const struct innate_tech
 
 	ent_tech[] = { {   1, T_ENT_S_POTION, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -875,6 +902,7 @@ static const struct innate_tech
 	alb_tech[] = { {   1, T_DAZZLE, 1},
 		       {   1, T_PRACTICE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_BLOOD_RITUAL, 1},
@@ -888,6 +916,7 @@ static const struct innate_tech
 
 	nor_tech[] = { {   1, T_BERSERK, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   8, T_CONCENTRATING, 1},
@@ -897,6 +926,7 @@ static const struct innate_tech
 
 	lic_tech[] = { {   1, T_BLOOD_RITUAL, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -904,12 +934,14 @@ static const struct innate_tech
 
 	ins_tech[] = { {   1, T_SUMMON_TEAM_ANT, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   12, T_DOUBLE_THROWNAGE, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	kob_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   3, T_DOUBLE_THROWNAGE, 1},
@@ -918,24 +950,28 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	kha_tech[] = { {   1, T_EVISCERATE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	gel_tech[] = { {   1, T_LIQUID_LEAP, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	hmo_tech[] = { {   1, T_BERSERK, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	lyc_tech[] = { {   1, T_EVISCERATE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {  10, T_BERSERK, 1},
@@ -943,6 +979,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	vam_tech[] = { {   1, T_DAZZLE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_DRAW_BLOOD, 1},
@@ -952,6 +989,7 @@ static const struct innate_tech
 		       {   1, T_VANISH, 1},
 		       {   1, T_TELEKINESIS, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   4, T_SPIRITUALITY_CHECK, 1},
@@ -969,6 +1007,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	ang_tech[] = { {   1, T_DAZZLE, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_INVOKE_DEITY, 1},
@@ -976,6 +1015,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	hrb_tech[] = { {   1, T_SURGERY, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -983,11 +1023,13 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	mum_tech[] = { {   1, T_RAISE_ZOMBIES, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	vor_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_VANISH, 1},
@@ -999,6 +1041,7 @@ static const struct innate_tech
 		       {   25, T_RECHARGE, 1},
 		       {   0, 0, 0} },
 	cor_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_VANISH, 1},
@@ -1016,9 +1059,11 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   0, 0, 0,} },
 
 	bat_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_PRACTICE, 1},
@@ -1028,11 +1073,13 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	cen_tech[] = { {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   7, T_SHIELD_BASH, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	rod_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_DOUBLE_TROUBLE, 1},
@@ -1044,6 +1091,7 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_SPIRITUALITY_CHECK, 1},
 		       {   12, T_RECHARGE, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -1053,12 +1101,14 @@ static const struct innate_tech
 	dry_tech[] = { {   1, T_IRON_SKIN, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 
 	tur_tech[] = { {   1, T_PUMMEL, 1},
 			 {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_DASH, 1},
@@ -1079,6 +1129,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	gri_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_RECHARGE, 1},
@@ -1086,6 +1137,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	inc_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -1093,6 +1145,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	mim_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_POLYFORM, 1},
@@ -1100,6 +1153,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	mis_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_RECHARGE, 1},
@@ -1107,6 +1161,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	nav_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -1114,6 +1169,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	spi_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -1121,6 +1177,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	ven_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_LUCKY_GAMBLE, 1},
@@ -1128,6 +1185,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	spr_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   6, T_IRON_SKIN, 1},
@@ -1135,6 +1193,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	trf_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   5, T_POLYFORM, 1},
@@ -1142,6 +1201,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	trp_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   11, T_RECHARGE, 1},
@@ -1150,6 +1210,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	una_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   3, T_SHIELD_BASH, 1},
@@ -1165,6 +1226,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	uni_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_LUCKY_GAMBLE, 1},
@@ -1173,6 +1235,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	unm_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_RECHARGE, 1},
@@ -1180,6 +1243,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	vee_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_SPIRITUALITY_CHECK, 1},
@@ -1187,6 +1251,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	wrp_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_POLYFORM, 1},
@@ -1194,6 +1259,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	def_tech[] = { {   1, T_APPRAISAL, 1}, /* everyone is supposed to get this --Amy */
+		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -1254,6 +1320,25 @@ tech_known(tech)
 		     return TRUE;
 	}
 	return FALSE;
+}
+
+STATIC_PTR void
+undo_lockfloodP(x, y, roomcnt)
+int x, y;
+genericptr_t roomcnt;
+{
+	if (levl[x][y].typ < STONE || levl[x][y].typ > DBWALL)
+		return;
+	if ((levl[x][y].wall_info & W_NONDIGGABLE) != 0)
+		return;
+
+	(*(int *)roomcnt)++;
+
+	/* Get rid of stone at x, y */
+	levl[x][y].typ = CORR;
+	unblock_point(x,y);
+	if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
+	newsym(x,y);
 }
 
 /* Called to prematurely stop a technique */
@@ -1678,6 +1763,10 @@ dotech()
 
 		case T_APPRAISAL:
 			pline("This technique allows you to determine the enchantment value of your currently wielded weapon. If you use it while wielding a non-weapon (e.g. a wand), the timeout of this technique will be much longer.");
+			break;
+
+		case T_PANIC_DIGGING:
+			pline("In situations where there is no other way forward, you can use this technique to transform walls on the eight squares surrounding you into open floor. Of course it only works if those squares are diggable, and it also paralyzes you for up to 20 turns, so be careful about using it when monsters are around!");
 			break;
 
 		case T_SECURE_IDENTIFY:
@@ -2156,6 +2245,19 @@ int tech_no;
             case T_PHASE_DOOR:
 			phase_door(0);
                 if (!Role_if(PM_CAMPERSTRIKER) || !rn2(4)) t_timeout = rnz(1000);
+		break;
+
+            case T_PANIC_DIGGING:
+			pline("You perform the panic digging ritual and are paralyzed for a while.");
+			int maderoom = 0;
+
+			do_clear_areaX(u.ux, u.uy, 1, undo_lockfloodP, (genericptr_t)&maderoom);
+
+			if (maderoom) pline("Some solid rock is pulverized!");
+			else pline("There was nothing to dig out...");
+
+    			nomul(-rn1(10, 10), "panic digging");
+                t_timeout = rnz(5000);
 		break;
 
             case T_SECURE_IDENTIFY:

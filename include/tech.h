@@ -120,10 +120,12 @@ struct blitz_tab {
 #define T_ENT_S_POTION	64
 #define T_LUCKY_GAMBLE	65
 
-#define T_JEDI_JUMP	66
-#define T_CHARGE_SABER	67
-#define T_TELEKINESIS	68
+#define T_PANIC_DIGGING	66
+
+#define T_JEDI_JUMP	67
+#define T_CHARGE_SABER	68
+#define T_TELEKINESIS	69
  
-#define MAXTECH 69
+#define MAXTECH 70
 
 #endif /* TECH_H */
