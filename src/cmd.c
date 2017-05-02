@@ -2330,8 +2330,8 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.antimusablebias)) {
-		Sprintf(buf, " %d%%", u.antimusablebias);
-		enl_msg("Musable item generation frequency ", "is reduced by", "was reduced by", buf);
+		Sprintf(buf, " %d%%", 100 - u.antimusablebias);
+		enl_msg("Musable item generation frequency ", "is reduced to", "was reduced to", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.concealitemchance)) {
@@ -4849,8 +4849,8 @@ int final;
 	}
 
 	if (u.antimusablebias) {
-		Sprintf(buf, " %d%%", u.antimusablebias);
-		dump("  Musable item generation frequency was reduced by", buf);
+		Sprintf(buf, " %d%%", 100 - u.antimusablebias);
+		dump("  Musable item generation frequency was reduced to", buf);
 	}
 
 	if (u.ringspawnchance) {
