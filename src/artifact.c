@@ -1285,12 +1285,14 @@ int tmp;
 	else
 	    spec_dbon_applies = spec_applies(weap, mon);
 
+	/* Amy edit: the fact that they always did max damage was fucked up, IMHO. */
+
 	if (spec_dbon_applies)
-	    return weap->attk.damd ? (int)weap->attk.damd :
+	    return weap->attk.damd ? rnd((int)weap->attk.damd) :
 		    /* [ALI] Unlike melee weapons, damd == 0 means no
 		     * bonus for launchers.
 		     */
-		    is_launcher(otmp) ? 0 : max(tmp,1);
+		    is_launcher(otmp) ? 0 : rnd(max(tmp,1)); /* double damage was too strong --Amy */
 	return 0;
 }
 

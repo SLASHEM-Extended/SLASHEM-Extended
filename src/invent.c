@@ -11312,7 +11312,7 @@ struct obj *obj;
 				case ART_PLAGUE:
 					pline("Artifact specs: +5 to-hit and +4 damage, poison resistance when wielded, automatically poisons arrows, chaotic."); break;
 				case ART_MUMAKBANE:
-					pline("Artifact specs: +5 to-hit and +30 fire damage to mumaks, neutral."); break;
+					pline("Artifact specs: +5 to-hit and +30 fire damage to quadrupeds (because actual mumaks are too rare to make a specific MUMAK-slaying effect useful), neutral."); break;
 				case ART_WORMBITER:
 					pline("Artifact specs: +5 to-hit and double damage to worms, neutral."); break;
 				case ART_SHOCKER:
@@ -12923,6 +12923,14 @@ struct obj *obj;
 					pline("Artifact specs: +5 to-hit and +2 damage to acid-susceptible monsters, acid resistance when wielded, neutral. This is a 'temporary' artifact created by Soviet5lo, also known as the type of ice block whose variant is constantly being mocked in this one because Slash'EM Extended is just far better in every single way."); break;
 				case ART_BLUE_SCREEN_OF_DEATH:
 					pline("Artifact specs: shock resistance when worn, makes everything blue and occasionally spawns blue monsters."); break;
+				case ART_SADDLE_OF_REFLECTION:
+					pline("Artifact specs: Grants reflection to a monster, but both applying it and riding the creature that is wearing it will decrease your wisdom."); break;
+				case ART____SHADES_OF_GRAYSWANDIR:
+					pline("Artifact specs: +5 to-hit and double damage, hallucination resistance and shades of grey effect when wielded, lawful."); break;
+				case ART_PUDDINGBANE:
+					pline("Artifact specs: +5 to-hit and double damage to puddings."); break;
+				case ART_FADED_USELESSNESS:
+					pline("Artifact specs: +2 damage to imps, autocurses when wielded and causes slippery fingers and hallucination."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

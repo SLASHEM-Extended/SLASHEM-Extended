@@ -169,6 +169,10 @@ use_saddle(otmp)
 	/* Make the attempt */
 	if (rn2(100) < chance) {
 	    You("put the saddle on %s.", mon_nam(mtmp));
+	    if (otmp && otmp->oartifact == ART_SADDLE_OF_REFLECTION) {
+		You("reflect upon your life choices when applying the saddle.");
+		adjattrib(A_WIS, -1, FALSE);
+	    }
 	    if (otmp->owornmask) remove_worn_item(otmp, FALSE);
 	    freeinv(otmp);
 	    /* mpickobj may free otmp it if merges, but we have already
@@ -378,6 +382,12 @@ mount_steed(mtmp, force)
 	    	/* Must have Lev_at_will at this point */
 	    	pline("%s magically floats up!", Monnam(mtmp));
 	    You("mount %s.", mon_nam(mtmp));
+
+	    if (otmp && otmp->oartifact == ART_SADDLE_OF_REFLECTION) {
+		You("reflect upon your life choices when climbing the saddle.");
+		adjattrib(A_WIS, -1, FALSE);
+	    }
+
 	}
 	/* setuwep handles polearms differently when you're mounted */
 	if (uwep && is_pole(uwep)) unweapon = FALSE;

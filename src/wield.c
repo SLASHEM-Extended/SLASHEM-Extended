@@ -147,6 +147,11 @@ boolean put_away;
 		pline("The ballista becomes cursed as you wield it.");
 	}
 
+	if (uwep && uwep->oartifact == ART_FADED_USELESSNESS) {
+		curse(uwep);
+		pline("In order to prevent it from falling off, your knife curses itself.");
+	}
+
 	if (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
