@@ -300,6 +300,12 @@ boolean forcecontrol;
 	boolean isvamp = (is_vampire(youmonst.data) && !Race_if(PM_VAMGOYLE) );
 	boolean was_floating = (Levitation || Flying);
 
+	if (Race_if(PM_PLAYER_SLIME)) { /* cannot polymorph at all - punishment for being slimed --Amy */
+		newman();
+		return;
+	}
+	/* and you should be grateful, because in vanilla the game would just have ended... */
+
 	/* [Tom] I made the chance of dying from Con check only possible for
 		 really weak people (it was out of 20) */
 

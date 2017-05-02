@@ -1149,6 +1149,16 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT].mname = tname;
 
+	tname = mons[PM_LOLI].mname;
+	mread(fd, (genericptr_t) &mons[PM_LOLI], sizeof(struct permonst));
+	mons[PM_LOLI].mname = tname;
+	tname = mons[PM_DESTABILIZER].mname;
+	mread(fd, (genericptr_t) &mons[PM_DESTABILIZER], sizeof(struct permonst));
+	mons[PM_DESTABILIZER].mname = tname;
+	tname = mons[PM_POLYINITOR].mname;
+	mread(fd, (genericptr_t) &mons[PM_POLYINITOR], sizeof(struct permonst));
+	mons[PM_POLYINITOR].mname = tname;
+
 	if(u.uhp <= 0 && (!Upolyd || u.mh <= 0)) {
 	    u.ux = u.uy = 0;	/* affects pline() [hence You()] */
 	    You("were not healthy enough to survive restoration.");

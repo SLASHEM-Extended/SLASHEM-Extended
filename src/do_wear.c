@@ -255,13 +255,7 @@ Boots_on()
 
     if (uarmf && !Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) {
 		if (!(u.monstertimefinish % 20)) { /* 1 in 20 games */
-			u.temprecursion = 0;
-			u.temprecursiontime = 0;
-			u.oldrecursionrole = -1;
-			u.oldrecursionrace = -1;
-			flags.initrole = 11;
-			urole = roles[11];
-
+			bindertransformation();
 			pline("You turn into a Binder!");
 		} else {
 			curse(uarmf);

@@ -6151,6 +6151,8 @@ u_init()
 	struct permonst* coldlord = &mons[PM_ASMODEUS];
 	struct permonst* multigrue = &mons[PM_MULTICOLOR_GRUE];
 
+	struct permonst* lolirace = &mons[PM_LOLI];
+
 	struct permonst* riderone = &mons[PM_DEATH];
 	struct permonst* ridertwo = &mons[PM_FAMINE];
 	struct permonst* riderthree = &mons[PM_PESTILENCE];
@@ -6279,6 +6281,9 @@ u_init()
 
 	struct permonst* starlitu = &mons[PM_TRUE_MISSINGNO];
 	struct permonst* starlitv = &mons[PM_ETHEREAL_MISSINGNO];
+
+	struct permonst* polyinitor = &mons[PM_POLYINITOR];
+	struct permonst* destabilizer = &mons[PM_DESTABILIZER];
 
 	struct permonst* randbossa = &mons[PM_EXTRA_FLEECY_BUNDLE];
 	struct permonst* randbossb = &mons[PM_EMMELIE];
@@ -6430,6 +6435,7 @@ u_init()
 	u.ulevel = 0;	/* set up some of the initial attributes */
 	u.uhp = u.uhpmax = u.uhplast = newhp();
 	u.uenmax = urole.enadv.infix + urace.enadv.infix;
+	if (Role_if(PM_DQ_SLIME) && Race_if(PM_PLAYER_SLIME)) u.uenmax += 20;
 	if (urole.enadv.inrnd > 0)
 	    u.uenmax += rnd(urole.enadv.inrnd);
 	if (urace.enadv.inrnd > 0)
@@ -7743,6 +7749,7 @@ u_init()
 	u.urmaxlvlF = 1; /* will go up if a wild talent role player levels up */
 	u.urmaxlvlG = 1; /* will go up if a wild talent role player levels up */
 	u.urmaxlvlH = 1; /* will go up if a mystic role player levels up */
+	u.urmaxlvlI = 1; /* will go up if a DQ Slime with green slime race levels up */
 	u.urmaxlvlUP = 1; /* will go up whenever any player levels up */
 	u.xtralevelmult = 1; /* will go up if you level up from EXP points while already XL30 */
 
@@ -17799,6 +17806,8 @@ u_init()
 	attkptr->damd = 6;
 	}
 
+	lolirace->msound = !rn2(3) ? MS_FART_NORMAL : !rn2(2) ? MS_FART_QUIET : MS_FART_LOUD;
+
 	if (!rn2(10)) {
 	attkptr = &coldlord->mattk[1]; /* evil patch idea by irinya: because nobody actually knows how much damage Asmodeus's cold attack does, it's been bumped up to 60d6 */
 	attkptr->damn = 60;
@@ -19397,6 +19406,82 @@ u_init()
 
 	starlitu->mflags3 |= 0x40000000L;
 	starlitu->mflags3 |= 0x80000000L;
+
+	starlitattempts = 0;
+
+	ptr = rndmonst();
+polyinitredo:
+	do {
+		ptr = rndmonst();
+		starlitattempts++;
+	} while (!ptr && starlitattempts < 50000);
+
+	if (ptr) {
+		starlitmonster = monsndx(ptr);
+
+		if ( (notake(&mons[starlitmonster]) && rn2(4) ) || ((mons[starlitmonster].mlet == S_BAT) && rn2(2)) || ((mons[starlitmonster].mlet == S_EYE) && rn2(2) ) || ((mons[starlitmonster].mmove == 1) && rn2(4) ) || ((mons[starlitmonster].mmove == 2) && rn2(3) ) || ((mons[starlitmonster].mmove == 3) && rn2(2) ) || ((mons[starlitmonster].mmove == 4) && !rn2(3) ) || ( (mons[starlitmonster].mlevel < 10) && ((mons[starlitmonster].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[starlitmonster]) && rn2(2) ) || ( is_nonmoving(&mons[starlitmonster]) && rn2(5) ) || ( is_eel(&mons[starlitmonster]) && rn2(5) ) || ( is_nonmoving(&mons[starlitmonster]) && rn2(20) ) || ( uncommon2(&mons[starlitmonster]) && !rn2(4) ) || ( uncommon3(&mons[starlitmonster]) && !rn2(3) ) || ( uncommon5(&mons[starlitmonster]) && !rn2(2) ) || ( uncommon7(&mons[starlitmonster]) && rn2(3) ) || ( uncommon10(&mons[starlitmonster]) && rn2(5) ) || ( is_eel(&mons[starlitmonster]) && rn2(20) ) ) goto polyinitredo;
+
+		polyinitor->mmove = mons[starlitmonster].mmove;
+		polyinitor->ac = mons[starlitmonster].ac;
+		polyinitor->mr = mons[starlitmonster].mr;
+		polyinitor->maligntyp = mons[starlitmonster].maligntyp;
+		polyinitor->mattk[0] = mons[starlitmonster].mattk[0];
+		polyinitor->mattk[1] = mons[starlitmonster].mattk[1];
+		polyinitor->mattk[2] = mons[starlitmonster].mattk[2];
+		polyinitor->mattk[3] = mons[starlitmonster].mattk[3];
+		polyinitor->mattk[4] = mons[starlitmonster].mattk[4];
+		polyinitor->mattk[5] = mons[starlitmonster].mattk[5];
+		polyinitor->cwt = mons[starlitmonster].cwt;
+		polyinitor->cnutrit = mons[starlitmonster].cnutrit;
+		polyinitor->msound = mons[starlitmonster].msound;
+		polyinitor->msize = mons[starlitmonster].msize;
+		polyinitor->mresists = mons[starlitmonster].mresists;
+		polyinitor->mflags1 = mons[starlitmonster].mflags1;
+		polyinitor->mflags2 = mons[starlitmonster].mflags2;
+		polyinitor->mflags3 = mons[starlitmonster].mflags3;
+
+		polyinitor->mflags2 &= ~M2_NOPOLY;
+		polyinitor->mflags2 &= ~M2_MERC;
+		polyinitor->mflags2 &= ~M2_WERE;
+		polyinitor->mflags2 &= ~M2_PNAME;
+		polyinitor->mflags2 &= ~M2_PEACEFUL;
+
+		polyinitor->mflags3 |= 0x40000000L;
+		polyinitor->mflags3 |= 0x80000000L;
+	}
+
+	starlitmonster = rn2(NUMMONS);
+	do {
+		starlitmonster = rn2(NUMMONS);
+	} while ( (notake(&mons[starlitmonster]) && rn2(4) ) || ((mons[starlitmonster].mlet == S_BAT) && rn2(2)) || ((mons[starlitmonster].mlet == S_EYE) && rn2(2) ) || ((mons[starlitmonster].mmove == 1) && rn2(4) ) || ((mons[starlitmonster].mmove == 2) && rn2(3) ) || ((mons[starlitmonster].mmove == 3) && rn2(2) ) || ((mons[starlitmonster].mmove == 4) && !rn2(3) ) || ( (mons[starlitmonster].mlevel < 10) && ((mons[starlitmonster].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[starlitmonster]) && rn2(2) ) || ( is_nonmoving(&mons[starlitmonster]) && rn2(5) ) || ( is_eel(&mons[starlitmonster]) && rn2(5) ) || ( is_nonmoving(&mons[starlitmonster]) && rn2(20) ) || ( uncommon2(&mons[starlitmonster]) && !rn2(4) ) || ( uncommon3(&mons[starlitmonster]) && !rn2(3) ) || ( uncommon5(&mons[starlitmonster]) && !rn2(2) ) || ( uncommon7(&mons[starlitmonster]) && rn2(3) ) || ( uncommon10(&mons[starlitmonster]) && rn2(5) ) || ( is_eel(&mons[starlitmonster]) && rn2(20) ) );
+
+	destabilizer->mmove = mons[starlitmonster].mmove;
+	destabilizer->ac = mons[starlitmonster].ac;
+	destabilizer->mr = mons[starlitmonster].mr;
+	destabilizer->maligntyp = mons[starlitmonster].maligntyp;
+	destabilizer->mattk[0] = mons[starlitmonster].mattk[0];
+	destabilizer->mattk[1] = mons[starlitmonster].mattk[1];
+	destabilizer->mattk[2] = mons[starlitmonster].mattk[2];
+	destabilizer->mattk[3] = mons[starlitmonster].mattk[3];
+	destabilizer->mattk[4] = mons[starlitmonster].mattk[4];
+	destabilizer->mattk[5] = mons[starlitmonster].mattk[5];
+	destabilizer->cwt = mons[starlitmonster].cwt;
+	destabilizer->cnutrit = mons[starlitmonster].cnutrit;
+	destabilizer->msound = mons[starlitmonster].msound;
+	destabilizer->msize = mons[starlitmonster].msize;
+	destabilizer->mresists = mons[starlitmonster].mresists;
+	destabilizer->mflags1 = mons[starlitmonster].mflags1;
+	destabilizer->mflags2 = mons[starlitmonster].mflags2;
+	destabilizer->mflags3 = mons[starlitmonster].mflags3;
+
+	destabilizer->mflags2 &= ~M2_NOPOLY;
+	destabilizer->mflags2 &= ~M2_MERC;
+	destabilizer->mflags2 &= ~M2_WERE;
+	destabilizer->mflags2 &= ~M2_PNAME;
+	destabilizer->mflags2 &= ~M2_PEACEFUL;
+
+	destabilizer->mflags3 |= 0x40000000L;
+	destabilizer->mflags3 |= 0x80000000L;
 
 	/* idea by BarclayII: on-the-fly generation of a missingno */
 
@@ -23868,6 +23953,8 @@ alter_reality()
 	struct permonst* coldlord = &mons[PM_ASMODEUS];
 	struct permonst* multigrue = &mons[PM_MULTICOLOR_GRUE];
 
+	struct permonst* lolirace = &mons[PM_LOLI];
+
 	struct permonst* riderone = &mons[PM_DEATH];
 	struct permonst* ridertwo = &mons[PM_FAMINE];
 	struct permonst* riderthree = &mons[PM_PESTILENCE];
@@ -23995,6 +24082,9 @@ alter_reality()
 
 	struct permonst* starlitu = &mons[PM_TRUE_MISSINGNO];
 	struct permonst* starlitv = &mons[PM_ETHEREAL_MISSINGNO];
+
+	struct permonst* polyinitor = &mons[PM_POLYINITOR];
+	struct permonst* destabilizer = &mons[PM_DESTABILIZER];
 
 	struct permonst* randbossa = &mons[PM_EXTRA_FLEECY_BUNDLE];
 	struct permonst* randbossb = &mons[PM_EMMELIE];
@@ -30341,6 +30431,8 @@ alter_reality()
 	attkptr->damd = 6;
 	}
 
+	lolirace->msound = !rn2(3) ? MS_FART_NORMAL : !rn2(2) ? MS_FART_QUIET : MS_FART_LOUD;
+
 	if (!rn2(10)) {
 	attkptr = &coldlord->mattk[1]; /* evil patch idea by irinya: because nobody actually knows how much damage Asmodeus's cold attack does, it's been bumped up to 60d6 */
 	attkptr->damn = 60;
@@ -31939,6 +32031,82 @@ alter_reality()
 
 	starlitu->mflags3 |= 0x40000000L;
 	starlitu->mflags3 |= 0x80000000L;
+
+	starlitattempts = 0;
+
+	ptr = rndmonst();
+polyinitredoX:
+	do {
+		ptr = rndmonst();
+		starlitattempts++;
+	} while (!ptr && starlitattempts < 50000);
+
+	if (ptr) {
+		starlitmonster = monsndx(ptr);
+
+		if ( (notake(&mons[starlitmonster]) && rn2(4) ) || ((mons[starlitmonster].mlet == S_BAT) && rn2(2)) || ((mons[starlitmonster].mlet == S_EYE) && rn2(2) ) || ((mons[starlitmonster].mmove == 1) && rn2(4) ) || ((mons[starlitmonster].mmove == 2) && rn2(3) ) || ((mons[starlitmonster].mmove == 3) && rn2(2) ) || ((mons[starlitmonster].mmove == 4) && !rn2(3) ) || ( (mons[starlitmonster].mlevel < 10) && ((mons[starlitmonster].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[starlitmonster]) && rn2(2) ) || ( is_nonmoving(&mons[starlitmonster]) && rn2(5) ) || ( is_eel(&mons[starlitmonster]) && rn2(5) ) || ( is_nonmoving(&mons[starlitmonster]) && rn2(20) ) || ( uncommon2(&mons[starlitmonster]) && !rn2(4) ) || ( uncommon3(&mons[starlitmonster]) && !rn2(3) ) || ( uncommon5(&mons[starlitmonster]) && !rn2(2) ) || ( uncommon7(&mons[starlitmonster]) && rn2(3) ) || ( uncommon10(&mons[starlitmonster]) && rn2(5) ) || ( is_eel(&mons[starlitmonster]) && rn2(20) ) ) goto polyinitredoX;
+
+		polyinitor->mmove = mons[starlitmonster].mmove;
+		polyinitor->ac = mons[starlitmonster].ac;
+		polyinitor->mr = mons[starlitmonster].mr;
+		polyinitor->maligntyp = mons[starlitmonster].maligntyp;
+		polyinitor->mattk[0] = mons[starlitmonster].mattk[0];
+		polyinitor->mattk[1] = mons[starlitmonster].mattk[1];
+		polyinitor->mattk[2] = mons[starlitmonster].mattk[2];
+		polyinitor->mattk[3] = mons[starlitmonster].mattk[3];
+		polyinitor->mattk[4] = mons[starlitmonster].mattk[4];
+		polyinitor->mattk[5] = mons[starlitmonster].mattk[5];
+		polyinitor->cwt = mons[starlitmonster].cwt;
+		polyinitor->cnutrit = mons[starlitmonster].cnutrit;
+		polyinitor->msound = mons[starlitmonster].msound;
+		polyinitor->msize = mons[starlitmonster].msize;
+		polyinitor->mresists = mons[starlitmonster].mresists;
+		polyinitor->mflags1 = mons[starlitmonster].mflags1;
+		polyinitor->mflags2 = mons[starlitmonster].mflags2;
+		polyinitor->mflags3 = mons[starlitmonster].mflags3;
+
+		polyinitor->mflags2 &= ~M2_NOPOLY;
+		polyinitor->mflags2 &= ~M2_MERC;
+		polyinitor->mflags2 &= ~M2_WERE;
+		polyinitor->mflags2 &= ~M2_PNAME;
+		polyinitor->mflags2 &= ~M2_PEACEFUL;
+
+		polyinitor->mflags3 |= 0x40000000L;
+		polyinitor->mflags3 |= 0x80000000L;
+	}
+
+	starlitmonster = rn2(NUMMONS);
+	do {
+		starlitmonster = rn2(NUMMONS);
+	} while ( (notake(&mons[starlitmonster]) && rn2(4) ) || ((mons[starlitmonster].mlet == S_BAT) && rn2(2)) || ((mons[starlitmonster].mlet == S_EYE) && rn2(2) ) || ((mons[starlitmonster].mmove == 1) && rn2(4) ) || ((mons[starlitmonster].mmove == 2) && rn2(3) ) || ((mons[starlitmonster].mmove == 3) && rn2(2) ) || ((mons[starlitmonster].mmove == 4) && !rn2(3) ) || ( (mons[starlitmonster].mlevel < 10) && ((mons[starlitmonster].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[starlitmonster]) && rn2(2) ) || ( is_nonmoving(&mons[starlitmonster]) && rn2(5) ) || ( is_eel(&mons[starlitmonster]) && rn2(5) ) || ( is_nonmoving(&mons[starlitmonster]) && rn2(20) ) || ( uncommon2(&mons[starlitmonster]) && !rn2(4) ) || ( uncommon3(&mons[starlitmonster]) && !rn2(3) ) || ( uncommon5(&mons[starlitmonster]) && !rn2(2) ) || ( uncommon7(&mons[starlitmonster]) && rn2(3) ) || ( uncommon10(&mons[starlitmonster]) && rn2(5) ) || ( is_eel(&mons[starlitmonster]) && rn2(20) ) );
+
+	destabilizer->mmove = mons[starlitmonster].mmove;
+	destabilizer->ac = mons[starlitmonster].ac;
+	destabilizer->mr = mons[starlitmonster].mr;
+	destabilizer->maligntyp = mons[starlitmonster].maligntyp;
+	destabilizer->mattk[0] = mons[starlitmonster].mattk[0];
+	destabilizer->mattk[1] = mons[starlitmonster].mattk[1];
+	destabilizer->mattk[2] = mons[starlitmonster].mattk[2];
+	destabilizer->mattk[3] = mons[starlitmonster].mattk[3];
+	destabilizer->mattk[4] = mons[starlitmonster].mattk[4];
+	destabilizer->mattk[5] = mons[starlitmonster].mattk[5];
+	destabilizer->cwt = mons[starlitmonster].cwt;
+	destabilizer->cnutrit = mons[starlitmonster].cnutrit;
+	destabilizer->msound = mons[starlitmonster].msound;
+	destabilizer->msize = mons[starlitmonster].msize;
+	destabilizer->mresists = mons[starlitmonster].mresists;
+	destabilizer->mflags1 = mons[starlitmonster].mflags1;
+	destabilizer->mflags2 = mons[starlitmonster].mflags2;
+	destabilizer->mflags3 = mons[starlitmonster].mflags3;
+
+	destabilizer->mflags2 &= ~M2_NOPOLY;
+	destabilizer->mflags2 &= ~M2_MERC;
+	destabilizer->mflags2 &= ~M2_WERE;
+	destabilizer->mflags2 &= ~M2_PNAME;
+	destabilizer->mflags2 &= ~M2_PEACEFUL;
+
+	destabilizer->mflags3 |= 0x40000000L;
+	destabilizer->mflags3 |= 0x80000000L;
 
 	/* idea by BarclayII: on-the-fly generation of a missingno */
 
@@ -35591,6 +35759,94 @@ alter_reality()
 	pline(Hallucination ? "Somehow, that did all of jack diddly." : "The world changes!");
 
 	return;
+
+}
+
+/* Called from allmain.c: re-initialize polyinitor and destabilizer playable races --Amy */
+void
+polyinitors()
+{
+	register struct permonst *ptr;
+	register int starlitattempts, starlitmonster;
+
+	struct permonst* polyinitor = &mons[PM_POLYINITOR];
+	struct permonst* destabilizer = &mons[PM_DESTABILIZER];
+
+	starlitattempts = 0;
+
+	ptr = rndmonst();
+polyinitredoY:
+	do {
+		ptr = rndmonst();
+		starlitattempts++;
+	} while (!ptr && starlitattempts < 50000);
+
+	if (ptr) {
+		starlitmonster = monsndx(ptr);
+
+		if ( (notake(&mons[starlitmonster]) && rn2(4) ) || ((mons[starlitmonster].mlet == S_BAT) && rn2(2)) || ((mons[starlitmonster].mlet == S_EYE) && rn2(2) ) || ((mons[starlitmonster].mmove == 1) && rn2(4) ) || ((mons[starlitmonster].mmove == 2) && rn2(3) ) || ((mons[starlitmonster].mmove == 3) && rn2(2) ) || ((mons[starlitmonster].mmove == 4) && !rn2(3) ) || ( (mons[starlitmonster].mlevel < 10) && ((mons[starlitmonster].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[starlitmonster]) && rn2(2) ) || ( is_nonmoving(&mons[starlitmonster]) && rn2(5) ) || ( is_eel(&mons[starlitmonster]) && rn2(5) ) || ( is_nonmoving(&mons[starlitmonster]) && rn2(20) ) || ( uncommon2(&mons[starlitmonster]) && !rn2(4) ) || ( uncommon3(&mons[starlitmonster]) && !rn2(3) ) || ( uncommon5(&mons[starlitmonster]) && !rn2(2) ) || ( uncommon7(&mons[starlitmonster]) && rn2(3) ) || ( uncommon10(&mons[starlitmonster]) && rn2(5) ) || ( is_eel(&mons[starlitmonster]) && rn2(20) ) ) goto polyinitredoY;
+
+		polyinitor->mmove = mons[starlitmonster].mmove;
+		polyinitor->ac = mons[starlitmonster].ac;
+		polyinitor->mr = mons[starlitmonster].mr;
+		polyinitor->maligntyp = mons[starlitmonster].maligntyp;
+		polyinitor->mattk[0] = mons[starlitmonster].mattk[0];
+		polyinitor->mattk[1] = mons[starlitmonster].mattk[1];
+		polyinitor->mattk[2] = mons[starlitmonster].mattk[2];
+		polyinitor->mattk[3] = mons[starlitmonster].mattk[3];
+		polyinitor->mattk[4] = mons[starlitmonster].mattk[4];
+		polyinitor->mattk[5] = mons[starlitmonster].mattk[5];
+		polyinitor->cwt = mons[starlitmonster].cwt;
+		polyinitor->cnutrit = mons[starlitmonster].cnutrit;
+		polyinitor->msound = mons[starlitmonster].msound;
+		polyinitor->msize = mons[starlitmonster].msize;
+		polyinitor->mresists = mons[starlitmonster].mresists;
+		polyinitor->mflags1 = mons[starlitmonster].mflags1;
+		polyinitor->mflags2 = mons[starlitmonster].mflags2;
+		polyinitor->mflags3 = mons[starlitmonster].mflags3;
+
+		polyinitor->mflags2 &= ~M2_NOPOLY;
+		polyinitor->mflags2 &= ~M2_MERC;
+		polyinitor->mflags2 &= ~M2_WERE;
+		polyinitor->mflags2 &= ~M2_PNAME;
+		polyinitor->mflags2 &= ~M2_PEACEFUL;
+
+		polyinitor->mflags3 |= 0x40000000L;
+		polyinitor->mflags3 |= 0x80000000L;
+	}
+
+	starlitmonster = rn2(NUMMONS);
+	do {
+		starlitmonster = rn2(NUMMONS);
+	} while ( (notake(&mons[starlitmonster]) && rn2(4) ) || ((mons[starlitmonster].mlet == S_BAT) && rn2(2)) || ((mons[starlitmonster].mlet == S_EYE) && rn2(2) ) || ((mons[starlitmonster].mmove == 1) && rn2(4) ) || ((mons[starlitmonster].mmove == 2) && rn2(3) ) || ((mons[starlitmonster].mmove == 3) && rn2(2) ) || ((mons[starlitmonster].mmove == 4) && !rn2(3) ) || ( (mons[starlitmonster].mlevel < 10) && ((mons[starlitmonster].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[starlitmonster]) && rn2(2) ) || ( is_nonmoving(&mons[starlitmonster]) && rn2(5) ) || ( is_eel(&mons[starlitmonster]) && rn2(5) ) || ( is_nonmoving(&mons[starlitmonster]) && rn2(20) ) || ( uncommon2(&mons[starlitmonster]) && !rn2(4) ) || ( uncommon3(&mons[starlitmonster]) && !rn2(3) ) || ( uncommon5(&mons[starlitmonster]) && !rn2(2) ) || ( uncommon7(&mons[starlitmonster]) && rn2(3) ) || ( uncommon10(&mons[starlitmonster]) && rn2(5) ) || ( is_eel(&mons[starlitmonster]) && rn2(20) ) );
+
+	destabilizer->mmove = mons[starlitmonster].mmove;
+	destabilizer->ac = mons[starlitmonster].ac;
+	destabilizer->mr = mons[starlitmonster].mr;
+	destabilizer->maligntyp = mons[starlitmonster].maligntyp;
+	destabilizer->mattk[0] = mons[starlitmonster].mattk[0];
+	destabilizer->mattk[1] = mons[starlitmonster].mattk[1];
+	destabilizer->mattk[2] = mons[starlitmonster].mattk[2];
+	destabilizer->mattk[3] = mons[starlitmonster].mattk[3];
+	destabilizer->mattk[4] = mons[starlitmonster].mattk[4];
+	destabilizer->mattk[5] = mons[starlitmonster].mattk[5];
+	destabilizer->cwt = mons[starlitmonster].cwt;
+	destabilizer->cnutrit = mons[starlitmonster].cnutrit;
+	destabilizer->msound = mons[starlitmonster].msound;
+	destabilizer->msize = mons[starlitmonster].msize;
+	destabilizer->mresists = mons[starlitmonster].mresists;
+	destabilizer->mflags1 = mons[starlitmonster].mflags1;
+	destabilizer->mflags2 = mons[starlitmonster].mflags2;
+	destabilizer->mflags3 = mons[starlitmonster].mflags3;
+
+	destabilizer->mflags2 &= ~M2_NOPOLY;
+	destabilizer->mflags2 &= ~M2_MERC;
+	destabilizer->mflags2 &= ~M2_WERE;
+	destabilizer->mflags2 &= ~M2_PNAME;
+	destabilizer->mflags2 &= ~M2_PEACEFUL;
+
+	destabilizer->mflags3 |= 0x40000000L;
+	destabilizer->mflags3 |= 0x80000000L;
 
 }
 

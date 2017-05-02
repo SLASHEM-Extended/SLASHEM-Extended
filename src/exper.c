@@ -3120,6 +3120,15 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		}
 
+		if (Race_if(PM_PLAYER_SLIME) && Role_if(PM_DQ_SLIME) && (u.ulevel > u.urmaxlvlI) ) {
+
+		u.urmaxlvlI = u.ulevel;
+
+		u.uhpmax += rnd(10);
+		u.uenmax += rnd(10);
+
+		}
+
 		if (isamerican && Role_if(PM_GLADIATOR) && (u.ulevel > u.urmaxlvlE) ) {
 
 		u.urmaxlvlE = u.ulevel;

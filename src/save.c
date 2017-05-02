@@ -656,6 +656,10 @@ register int fd, mode;
 	bwrite(fd, (genericptr_t) &mons[PM_FANNY_S_BUCKLED_SANDAL], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT], sizeof(struct permonst));
 
+	bwrite(fd, (genericptr_t) &mons[PM_LOLI], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_DESTABILIZER], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_POLYINITOR], sizeof(struct permonst));
+
 	/* must come before migrating_objs and migrating_mons are freed */
 	save_timers(fd, mode, RANGE_GLOBAL);
 	save_light_sources(fd, mode, RANGE_GLOBAL);

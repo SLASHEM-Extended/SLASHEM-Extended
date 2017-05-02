@@ -1362,7 +1362,7 @@ domonability()
 	    if(u.uburied)
 		pline("Unfortunately sound does not carry well through rock.");
 	    else aggravate();
-	} else if (youmonst.data->msound == MS_FART_QUIET && yn("Do you want to fart?")=='y' ) {
+	} else if ((youmonst.data->msound == MS_FART_QUIET || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_QUIET)) && yn("Do you want to fart?")=='y' ) {
 		if (u.uhunger <= 10) {
 			pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
 			return 0;
@@ -1376,7 +1376,7 @@ domonability()
 			badeffect();
 			return 1;
 		}
-	} else if (youmonst.data->msound == MS_FART_NORMAL && yn("Do you want to fart?")=='y' ) {
+	} else if ((youmonst.data->msound == MS_FART_NORMAL || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_NORMAL)) && yn("Do you want to fart?")=='y' ) {
 		if (u.uhunger <= 10) {
 			pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
 			return 0;
@@ -1390,7 +1390,7 @@ domonability()
 			badeffect();
 			return 1;
 		}
-	} else if (youmonst.data->msound == MS_FART_LOUD && yn("Do you want to fart?")=='y' ) {
+	} else if ((youmonst.data->msound == MS_FART_LOUD || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_LOUD)) && yn("Do you want to fart?")=='y' ) {
 		if (u.uhunger <= 10) {
 			pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
 			return 0;

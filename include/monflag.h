@@ -251,7 +251,7 @@
 #define M5_DLORDS	0x00000040L		/* Dungeon Lords monster */
 #define M5_VANILLA	0x00000080L		/* vanilla Nethack or SLASH'EM monster (yes, SLASH'EM is officially "vanilla") */
 #define M5_DNETHACK	0x00000100L		/* dnethack monster */
-#define M5_RANDOMIZED	0x00000100L		/* shambling horrors and similar monsters that are initialized in u_init.c */
+#define M5_RANDOMIZED	0x00000200L		/* shambling horrors and similar monsters that are initialized in u_init.c */
 
 #define MZ_TINY		0		/* < 2' */
 #define MZ_SMALL	1		/* 2-4' */

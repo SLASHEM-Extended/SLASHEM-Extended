@@ -2179,6 +2179,8 @@ E const char *NDECL(Goodbye);
 E char *FDECL(build_plselection_prompt, (char *, int, int, int, int, int));
 E char *FDECL(root_plselection_prompt, (char *, int, int, int, int, int));
 E void NDECL(recursioneffect);
+E void NDECL(greenslimetransformation);
+E void NDECL(bindertransformation);
 
 /* ### rumors.c ### */
 
@@ -2564,6 +2566,7 @@ E int NDECL(uunstone);
 
 E void NDECL(u_init);
 E void NDECL(alter_reality);
+E void NDECL(polyinitors);
 
 /* ### uhitm.c ### */
 

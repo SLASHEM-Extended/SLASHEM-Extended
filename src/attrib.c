@@ -532,6 +532,13 @@ const struct innate {
 			{  10, &(HFire_resistance), "cool", "warmer" },
 			{   0, 0, 0, 0 } },
 
+	slm_abil[] = { { 1, &(HCold_resistance), "", "" },
+		     {	 1, &(HStone_resistance), "", "" },
+		     {	 1, &(HShock_resistance), "", "" },
+		     {	 1, &(HPoison_resistance), "", "" },
+		     {	 1, &(HAcid_resistance), "", "" },
+			{   0, 0, 0, 0 } },
+
 	elf_abil[] = { {	4, &(HSleep_resistance), "awake", "tired" },
 		     {	 0, 0, 0, 0 } },
 
@@ -1500,6 +1507,7 @@ int oldlevel, newlevel;
 	switch (Race_switch) {
 	case PM_DOPPELGANGER:	rabil = dop_abil;	break;
 	case PM_DWARF:		rabil = dwa_abil;	break;
+	case PM_PLAYER_SLIME:		rabil = slm_abil;	break;
 	case PM_DROW:
 	case PM_ELF:            rabil = elf_abil;	break;
 	case PM_INCANTIFIER:            rabil = inc_abil;	break;
@@ -1644,6 +1652,8 @@ newhp()
 	    hp = urole.hpadv.infix + urace.hpadv.infix;
 	    if (urole.hpadv.inrnd > 0) hp += rnd(urole.hpadv.inrnd);
 	    if (urace.hpadv.inrnd > 0) hp += rnd(urace.hpadv.inrnd);
+
+		if (Role_if(PM_DQ_SLIME) && Race_if(PM_PLAYER_SLIME)) hp += 20;
 
 	    /* Initialize alignment stuff */
 	    u.ualign.type = aligns[flags.initalign].value;

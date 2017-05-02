@@ -3261,6 +3261,15 @@ newboss:
 			else pline("Alright. Please move on.");
 		}
 
+		if (!rn2(2000)) {
+			polyinitors();
+			if (Race_if(PM_DESTABILIZER) || Race_if(PM_POLYINITOR)) {
+				init_uasmon();
+				pline("You mutate, and your body changes...");
+				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			}
+		}
+
 		if (!rn2(100) && QuizTrapEffect) {
 			boolean rumoristrue = rn2(2);
 

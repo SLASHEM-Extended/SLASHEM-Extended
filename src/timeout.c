@@ -3825,6 +3825,13 @@ nh_timeout()
 			done(STONING);
 			break;
 		case SLIMED:
+			if (Polymorph_control) {
+				greenslimetransformation();
+				pline("You permanently became a green slime.");
+				if (Upolyd) rehumanize();
+				break;
+			}
+
 			if (delayed_killer && !killer) {
 				killer = delayed_killer;
 				delayed_killer = 0;

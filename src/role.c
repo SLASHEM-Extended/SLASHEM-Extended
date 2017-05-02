@@ -3823,6 +3823,18 @@ const struct Race races[] = {
 	{  1, 0,  0, 1,  0, 0 },	/* Hit points */
 	{  7, 0,  3, 0,  3, 0 }		/* Energy */
 },
+{	"destabilizer", "destabilizer", "destabilization", "Des",
+	{0, 0},
+	PM_DESTABILIZER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
+	{  4, 0,  4, 0,  4, 0 }		/* Energy */
+},
 {	"developer", "developer", "DevTeam", "Dvp",
 	{0, 0},
 	PM_DEVELOPER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4112,6 +4124,18 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
+{	"green slime", "slimy", "slimehood", "Sli",
+	{0, 0},
+	PM_PLAYER_SLIME, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
+	{  5, 0,  4, 0,  3, 0 }		/* Energy */
 },
 {	"gremlin", "gremlin", "grem county", "Gre",
 	{0, 0},
@@ -4459,6 +4483,19 @@ const struct Race races[] = {
 	{  1, 0,  0, 2,  3, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  2, 0 }		/* Energy */
 },
+{	"loli", "loli", "loli culture", "Lol",
+	{0, 0},
+	PM_LOLI, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"lycanthrope", "lycanthropic", "lycanthropehood", "Lyc",
 	{0, 0},
 	PM_HUMAN_WEREWOLF, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4751,6 +4788,18 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
+{	"polyinitor", "polyinitor", "polymorph initialization", "Pol",
+	{0, 0},
+	PM_POLYINITOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_ELF|MH_GNOME|MH_HOBBIT|MH_DWARF|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
+	{  4, 0,  4, 0,  4, 0 }		/* Energy */
 },
 {	"problematic", "problematic", "problems", "Pro",
 	{0, 0},
@@ -6228,6 +6277,36 @@ recursioneffect()
 	pline("You're a %s now!", urace.noun);
 
 	}
+
+	init_uasmon();
+
+}
+
+void
+greenslimetransformation()
+{
+	u.temprecursion = 0;
+	u.temprecursiontime = 0;
+	u.oldrecursionrole = -1;
+	u.oldrecursionrace = -1;
+	
+	flags.initrace = str2race("Sli");
+	urace = races[flags.initrace];
+
+	init_uasmon();
+
+}
+
+void
+bindertransformation()
+{
+	u.temprecursion = 0;
+	u.temprecursiontime = 0;
+	u.oldrecursionrole = -1;
+	u.oldrecursionrace = -1;
+	
+	flags.initrole = str2role("Bin");
+	urole = roles[flags.initrole];
 
 	init_uasmon();
 
