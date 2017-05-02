@@ -6443,7 +6443,7 @@ uchar aatyp;
 
 	    case AD_WGHT:
 		pline("Suddenly your load gets heavier!");
-		IncreasedGravity += (1 + (tmp *= rnd(20)));
+		IncreasedGravity += (1 + (tmp * rnd(20)));
 
 		break;
 

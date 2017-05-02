@@ -5531,6 +5531,8 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_GNOME_ROGUE_LEADER]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 		if (mtmp->data == &mons[PM_NAUTILUS_STEERSMAN]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 		if (mtmp->data == &mons[PM_NAUTILUS_NEER_DO_WELL]) (void) mongets(mtmp, SCR_TRAP_CREATION);
+		if (mtmp->data == &mons[PM_ARMOR_GNOME]) (void) mongets(mtmp, PLATE_MAIL);
+		if (mtmp->data == &mons[PM_UNDERPANTS_GNOME]) (void) mongets(mtmp, VICTORIAN_UNDERWEAR);
 
 		if (mtmp->data == &mons[PM_GNOMISH_GUNMAN]) {
 		  	(void) mongets(mtmp, FLINTLOCK);
@@ -5708,6 +5710,39 @@ register struct	monst	*mtmp;
 
 	    case S_KOP:
 
+		if (ptr == &mons[PM_OFFICER_JENNY]) {
+			 (void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+		}
+
+		if (ptr == &mons[PM_OFFICER_ALINA]) {
+			 (void) mongets(mtmp, SOFT_GIRL_SNEAKER);
+			 (void) mongets(mtmp, SOFT_SNEAKERS);
+		}
+
+		if (ptr == &mons[PM_OFFICER_HANNA]) {
+			 (void) mongets(mtmp, HUGGING_BOOT);
+		}
+
+		if (ptr == &mons[PM_OFFICER_JULIA]) {
+			 (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+			 (void) mongets(mtmp, COMBAT_STILETTOS);
+		}
+
+		if (ptr == &mons[PM_OFFICER_KATHARINA]) {
+			 (void) mongets(mtmp, SWEET_MOCASSINS);
+			 (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		}
+
+		if (ptr == &mons[PM_OFFICER_NATALIA]) {
+			 (void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
+			 (void) mongets(mtmp, WEDGE_SANDALS);
+		}
+
+		if (ptr == &mons[PM_OFFICER_VICTORIA]) {
+			 (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+			 (void) mongets(mtmp, FEMININE_PUMPS);
+		}
+
 		if (ptr == &mons[PM_NAZI_ROCKETEER]) {
 			 (void) mongets(mtmp, ROCKET_LAUNCHER);
 			 m_initthrow(mtmp, ROCKET, 25);
@@ -5829,6 +5864,7 @@ register struct	monst	*mtmp;
 	    case S_UMBER:
 
 		if (mtmp->data == &mons[PM_GLUTTONOUS_HULK]) (void) mongets(mtmp, WAN_STARVATION);
+		if (mtmp->data == &mons[PM_DENRYU]) (void) mongets(mtmp, KATANA);
 
 		if (ptr == &mons[PM_CUTTING_HORROR] || ptr == &mons[PM_CUTTING_TERROR]) {
 			(void) mongets(mtmp, CUTTING_LASER);
@@ -6437,6 +6473,48 @@ register struct	monst	*mtmp;
 				otmp->owt = weight(otmp);
 				(void) mpickobj(mtmp, otmp, TRUE);
 			}
+		}
+
+		if (monsndx(ptr) == PM_INKA_FIGHTER) {
+			(void) mongets(mtmp, INKA_BLADE);
+			if (!rn2(10)) (void) mongets(mtmp, INKA_MITHRIL_COAT);
+		}
+		if (monsndx(ptr) == PM_NEO_INKA) {
+			(void) mongets(mtmp, NATURAL_STICK);
+		}
+		if (monsndx(ptr) == PM_INKA_GIRL) {
+			(void) mongets(mtmp, INKA_BOOT);
+		}
+		if (monsndx(ptr) == PM_INKA_WOMAN) {
+			(void) mongets(mtmp, INKA_BOOT);
+			(void) mongets(mtmp, HIPPIE_HEELS);
+		}
+		if (monsndx(ptr) == PM_INKA_LADY) {
+			(void) mongets(mtmp, INKA_BOOT);
+			(void) mongets(mtmp, FEMININE_PUMPS);
+		}
+		if (monsndx(ptr) == PM_INKA_MILITIA) {
+			(void) mongets(mtmp, INKUTLASS);
+			if (!rn2(10)) (void) mongets(mtmp, INKA_MITHRIL_COAT);
+		}
+		if (monsndx(ptr) == PM_INKA_TORTUREMASTER) {
+			(void) mongets(mtmp, INKA_SHACKLE);
+			if (!rn2(4)) (void) mongets(mtmp, INKA_MITHRIL_COAT);
+		}
+		if (monsndx(ptr) == PM_INKA_EXTERMINATOR) {
+			(void) mongets(mtmp, VERMIN_SWATTER);
+			if (!rn2(7)) (void) mongets(mtmp, INKA_MITHRIL_COAT);
+		}
+		if (monsndx(ptr) == PM_INKA_HUNTER) {
+			(void) mongets(mtmp, INKA_SPEAR);
+			(void) mongets(mtmp, INKA_SLING);
+			if (!rn2(10)) (void) mongets(mtmp, BEAUTIFUL_SHIRT);
+			if (!rn2(4)) (void) mongets(mtmp, INKA_MITHRIL_COAT);
+			m_initthrow(mtmp, ROCK, 25);
+		}
+		if (monsndx(ptr) == PM_INKA_BARTENDER) {
+			m_initthrow(mtmp, INKA_STINGER, 40);
+			if (!rn2(2)) (void) mongets(mtmp, BEAUTIFUL_SHIRT);
 		}
 
 		if (monsndx(ptr) == PM_INCINERATOR) m_initthrow(mtmp, FRAG_GRENADE, 12);
@@ -13800,6 +13878,8 @@ register int	mmflags;
 
 			if (mndx == PM_KURAST_BOO) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_STALKER_GIRL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_HUMAN_WEREBLACKLIGHT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_HUMAN_WERESTALKER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_THE_INVISIBLE_MAN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_LAG_MONSTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
@@ -13829,7 +13909,7 @@ register int	mmflags;
 			break;
 		case S_LIGHT:
 		case S_ELEMENTAL:
-			if (mndx == PM_STALKER || mndx == PM_FORCE_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_CAMOUFLAGED_WATCHER || mndx == PM_UNSEEN_SERVANT || mndx == PM_HIDDEN_TRACKER || mndx == PM_SILENT_KILLER || mndx == PM_ILLUSION_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_BLACK_LIGHT || mndx == PM_CHEATING_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_POLTERGEIST) {
+			if (mndx == PM_STALKER || mndx == PM_FORCE_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_CAMOUFLAGED_WATCHER || mndx == PM_UNSEEN_SERVANT || mndx == PM_HIDDEN_TRACKER || mndx == PM_SILENT_KILLER || mndx == PM_ILLUSION_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_BLACK_LIGHT || mndx == PM_WEREBLACKLIGHT || mndx == PM_CHEATING_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_POLTERGEIST || mndx == PM_WERESTALKER) {
 			    mtmp->perminvis = TRUE;
 			    mtmp->minvis = TRUE;
 			}

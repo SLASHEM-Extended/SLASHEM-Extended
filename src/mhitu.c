@@ -5581,6 +5581,45 @@ dopois:
 			if (u.ulycn == PM_HUMAN_WERELICH) u.ulycn = PM_WERELICH;
 			if (u.ulycn == PM_HUMAN_WEREJABBERWOCK) u.ulycn = PM_WEREJABBERWOCK;
 			if (u.ulycn == PM_HUMAN_WEREGRIDBUG) u.ulycn = PM_WEREGRIDBUG;
+			if (u.ulycn == PM_HUMAN_WEREACIDBLOB) u.ulycn = PM_WEREACIDBLOB;
+			if (u.ulycn == PM_HUMAN_WEREFOX) u.ulycn = PM_WEREFOX;
+			if (u.ulycn == PM_HUMAN_WEREMONKEY) u.ulycn = PM_WEREMONKEY;
+			if (u.ulycn == PM_HUMAN_WEREFLOATINGEYE) u.ulycn = PM_WEREFLOATINGEYE;
+			if (u.ulycn == PM_HUMAN_WEREGIANTANT) u.ulycn = PM_WEREGIANTANT;
+			if (u.ulycn == PM_HUMAN_WEREKOBOLD) u.ulycn = PM_WEREKOBOLD;
+			if (u.ulycn == PM_HUMAN_WERELEPRECHAUN) u.ulycn = PM_WERELEPRECHAUN;
+			if (u.ulycn == PM_HUMAN_WEREHORSE) u.ulycn = PM_WEREHORSE;
+			if (u.ulycn == PM_HUMAN_WERERUSTMONSTER) u.ulycn = PM_WERERUSTMONSTER;
+			if (u.ulycn == PM_HUMAN_WEREBLACKLIGHT) u.ulycn = PM_WEREBLACKLIGHT;
+			if (u.ulycn == PM_HUMAN_WEREAUTON) u.ulycn = PM_WEREAUTON;
+			if (u.ulycn == PM_HUMAN_WEREGREMLIN) u.ulycn = PM_WEREGREMLIN;
+			if (u.ulycn == PM_HUMAN_WEREGREENSLIME) u.ulycn = PM_WEREGREENSLIME;
+			if (u.ulycn == PM_HUMAN_WEREJELLY) u.ulycn = PM_WEREJELLY;
+			if (u.ulycn == PM_HUMAN_WEREXAN) u.ulycn = PM_WEREXAN;
+			if (u.ulycn == PM_HUMAN_WEREMUMAK) u.ulycn = PM_WEREMUMAK;
+			if (u.ulycn == PM_HUMAN_WERECENTAUR) u.ulycn = PM_WERECENTAUR;
+			if (u.ulycn == PM_HUMAN_WERECOUATL) u.ulycn = PM_WERECOUATL;
+			if (u.ulycn == PM_HUMAN_WEREGELATINOUSCUBE) u.ulycn = PM_WEREGELATINOUSCUBE;
+			if (u.ulycn == PM_HUMAN_WEREAIRELEMENTAL) u.ulycn = PM_WEREAIRELEMENTAL;
+			if (u.ulycn == PM_HUMAN_WEREEARTHELEMENTAL) u.ulycn = PM_WEREEARTHELEMENTAL;
+			if (u.ulycn == PM_HUMAN_WEREFIREELEMENTAL) u.ulycn = PM_WEREFIREELEMENTAL;
+			if (u.ulycn == PM_HUMAN_WEREWATERELEMENTAL) u.ulycn = PM_WEREWATERELEMENTAL;
+			if (u.ulycn == PM_HUMAN_WEREASTRALELEMENTAL) u.ulycn = PM_WEREASTRALELEMENTAL;
+			if (u.ulycn == PM_HUMAN_WEREXORN) u.ulycn = PM_WEREXORN;
+			if (u.ulycn == PM_HUMAN_WERESTALKER) u.ulycn = PM_WERESTALKER;
+			if (u.ulycn == PM_HUMAN_WEREDRACONIAN) u.ulycn = PM_WEREDRACONIAN;
+			if (u.ulycn == PM_HUMAN_WEREUMBERHULK) u.ulycn = PM_WEREUMBERHULK;
+			if (u.ulycn == PM_HUMAN_WEREVAMPIRE) u.ulycn = PM_WEREVAMPIRE;
+			if (u.ulycn == PM_HUMAN_WEREKILLERBEE) u.ulycn = PM_WEREKILLERBEE;
+			if (u.ulycn == PM_HUMAN_WEREKANGAROO) u.ulycn = PM_WEREKANGAROO;
+			if (u.ulycn == PM_HUMAN_WEREGRUE) u.ulycn = PM_WEREGRUE;
+			if (u.ulycn == PM_HUMAN_WERECOINS) u.ulycn = PM_WERECOINS;
+			if (u.ulycn == PM_HUMAN_WERETRAPPER) u.ulycn = PM_WERETRAPPER;
+			if (u.ulycn == PM_HUMAN_WERESHADE) u.ulycn = PM_WERESHADE;
+			if (u.ulycn == PM_HUMAN_WEREDISENCHANTER) u.ulycn = PM_WEREDISENCHANTER;
+			if (u.ulycn == PM_HUMAN_WERENAGA) u.ulycn = PM_WERENAGA;
+			if (u.ulycn == PM_HUMAN_WEREWORM) u.ulycn = PM_WEREWORM;
+			if (u.ulycn == PM_HUMAN_WEREDRAGON) u.ulycn = PM_WEREDRAGON;
 		    upermonst.mflags2 |= (M2_WERE);
 		}
 		break;
@@ -6052,7 +6091,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
 		pline("Your load feels heavier!");
-		IncreasedGravity += (1 + (dmg *= rnd(20)));
+		IncreasedGravity += (1 + (dmg * rnd(20)));
 
 		break;
 
@@ -8501,7 +8540,7 @@ do_stone2:
 	    case AD_WGHT:
 		if (mtmp->mcan) break;
 		pline("Your pack feels much heavier!");
-		IncreasedGravity += (1 + (tmp *= rnd(20)));
+		IncreasedGravity += (1 + (tmp * rnd(20)));
 
 		break;
 	    case AD_INER:
@@ -10909,7 +10948,7 @@ common:
 
 	    case AD_WGHT:
 		pline("Your load feels heavier!");
-		IncreasedGravity += (1 + (tmp *= rnd(20)));
+		IncreasedGravity += (1 + (tmp * rnd(20)));
 
 		break;
 
@@ -13248,7 +13287,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
 		    pline("%s throws a metal object into your trouser pocket and hits!", Monnam(mtmp) );
 		    stop_occupation();
-		    IncreasedGravity += (1 + (dmgplus *= rnd(20)));
+		    IncreasedGravity += (1 + (dmgplus * rnd(20)));
 		}
 
 		break;

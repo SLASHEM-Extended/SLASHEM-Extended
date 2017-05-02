@@ -2725,6 +2725,84 @@ register struct monst *mtmp;
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREJABBERWOCK], -1);
 	else if (mtmp->data == &mons[PM_WEREGRIDBUG])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREGRIDBUG], -1);
+	else if (mtmp->data == &mons[PM_WEREACIDBLOB])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREACIDBLOB], -1);
+	else if (mtmp->data == &mons[PM_WEREFOX])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREFOX], -1);
+	else if (mtmp->data == &mons[PM_WEREMONKEY])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREMONKEY], -1);
+	else if (mtmp->data == &mons[PM_WEREFLOATINGEYE])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREFLOATINGEYE], -1);
+	else if (mtmp->data == &mons[PM_WEREGIANTANT])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREGIANTANT], -1);
+	else if (mtmp->data == &mons[PM_WEREKOBOLD])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREKOBOLD], -1);
+	else if (mtmp->data == &mons[PM_WERELEPRECHAUN])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERELEPRECHAUN], -1);
+	else if (mtmp->data == &mons[PM_WEREHORSE])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREHORSE], -1);
+	else if (mtmp->data == &mons[PM_WERERUSTMONSTER])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERERUSTMONSTER], -1);
+	else if (mtmp->data == &mons[PM_WEREBLACKLIGHT])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBLACKLIGHT], -1);
+	else if (mtmp->data == &mons[PM_WEREAUTON])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREAUTON], -1);
+	else if (mtmp->data == &mons[PM_WEREGREMLIN])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREGREMLIN], -1);
+	else if (mtmp->data == &mons[PM_WEREGREENSLIME])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREGREENSLIME], -1);
+	else if (mtmp->data == &mons[PM_WEREJELLY])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREJELLY], -1);
+	else if (mtmp->data == &mons[PM_WEREXAN])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREXAN], -1);
+	else if (mtmp->data == &mons[PM_WEREMUMAK])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREMUMAK], -1);
+	else if (mtmp->data == &mons[PM_WERECENTAUR])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERECENTAUR], -1);
+	else if (mtmp->data == &mons[PM_WERECOUATL])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERECOUATL], -1);
+	else if (mtmp->data == &mons[PM_WEREGELATINOUSCUBE])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREGELATINOUSCUBE], -1);
+	else if (mtmp->data == &mons[PM_WEREAIRELEMENTAL])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREAIRELEMENTAL], -1);
+	else if (mtmp->data == &mons[PM_WEREEARTHELEMENTAL])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREEARTHELEMENTAL], -1);
+	else if (mtmp->data == &mons[PM_WEREFIREELEMENTAL])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREFIREELEMENTAL], -1);
+	else if (mtmp->data == &mons[PM_WEREWATERELEMENTAL])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREWATERELEMENTAL], -1);
+	else if (mtmp->data == &mons[PM_WEREASTRALELEMENTAL])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREASTRALELEMENTAL], -1);
+	else if (mtmp->data == &mons[PM_WEREXORN])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREXORN], -1);
+	else if (mtmp->data == &mons[PM_WERESTALKER])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERESTALKER], -1);
+	else if (mtmp->data == &mons[PM_WEREDRACONIAN])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREDRACONIAN], -1);
+	else if (mtmp->data == &mons[PM_WEREUMBERHULK])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREUMBERHULK], -1);
+	else if (mtmp->data == &mons[PM_WEREVAMPIRE])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREVAMPIRE], -1);
+	else if (mtmp->data == &mons[PM_WEREKILLERBEE])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREKILLERBEE], -1);
+	else if (mtmp->data == &mons[PM_WEREKANGAROO])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREKANGAROO], -1);
+	else if (mtmp->data == &mons[PM_WEREGRUE])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREGRUE], -1);
+	else if (mtmp->data == &mons[PM_WERECOINS])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERECOINS], -1);
+	else if (mtmp->data == &mons[PM_WERETRAPPER])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERETRAPPER], -1);
+	else if (mtmp->data == &mons[PM_WERESHADE])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERESHADE], -1);
+	else if (mtmp->data == &mons[PM_WEREDISENCHANTER])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREDISENCHANTER], -1);
+	else if (mtmp->data == &mons[PM_WERENAGA])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERENAGA], -1);
+	else if (mtmp->data == &mons[PM_WEREWORM])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREWORM], -1);
+	else if (mtmp->data == &mons[PM_WEREDRAGON])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREDRAGON], -1);
 
 	/* if MAXMONNO monsters of a given type have died, and it
 	 * can be done, extinguish that monster.
