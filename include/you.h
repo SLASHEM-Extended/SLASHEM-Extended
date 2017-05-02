@@ -386,6 +386,8 @@ struct you {
 	int urmaxlvlD;		/* for bard role */
 	int urmaxlvlE;		/* for american race */
 	int urmaxlvlF;		/* for wild talent role */
+	int urmaxlvlG;		/* for wild talent role */
+	int urmaxlvlH;		/* for mystic role */
 	int urmaxlvlUP;		/* for determining whether levelups refill your HP and Pw */
 	int xtralevelmult;	/* multiplier that determines how much EXP you need to advance again if at XL30 */
 	int uhereticgodinit;
