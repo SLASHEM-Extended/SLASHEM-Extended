@@ -6206,6 +6206,11 @@ write_timer(fd, timer)
 	    else {
 		/* replace object pointer with id */
 		arg_save = timer->arg;
+		if (!((struct obj *)timer->arg)) {
+			impossible("ERROR! timer object does not exist");
+			break;
+		}
+
 		timer->arg = (genericptr_t)((struct obj *)timer->arg)->o_id;
 		timer->needs_fixup = 1;
 		bwrite(fd, (genericptr_t)timer, sizeof(timer_element));
@@ -6275,6 +6280,11 @@ boolean
 obj_is_local(obj)
     struct obj *obj;
 {
+	if (!obj) {
+		impossible("obj_is_local: object does not exist");
+		return FALSE;
+	}
+
     switch (obj->where) {
 	case OBJ_INVENT:
 	case OBJ_MIGRATING:	return FALSE;
