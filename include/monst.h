@@ -267,6 +267,12 @@ struct monst {
 	Bitfield(egotype_sludgepuddle,1); /* AD_SLUD */
 	Bitfield(egotype_vulnerator,1); /* AD_VULN */
 	Bitfield(egotype_marysue,1); /* AD_FUMB */
+	Bitfield(egotype_shader,1); /* only silver and arcanium can hurt it */
+	Bitfield(egotype_amnesiac,1); /* AD_AMNE */
+	Bitfield(egotype_trapmaster,1); /* AD_TRAP */
+	Bitfield(egotype_midiplayer,1); /* AD_MIDI */
+	Bitfield(egotype_rngabuser,1); /* AD_RNG */
+	Bitfield(egotype_mastercaster,1); /* AD_CAST */
 
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */

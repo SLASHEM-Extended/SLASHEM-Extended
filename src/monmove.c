@@ -857,6 +857,13 @@ toofar:
 				tmp = 3;
 			    }
 		    }
+		    if (mtmp->egotype_mastercaster) {
+			mdat2 = &mons[PM_CAST_DUMMY];
+			a = &mdat2->mattk[2];
+			if (castmu(mtmp, a, FALSE, FALSE)) {
+				tmp = 3;
+			    }
+		    }
 		}
 
 		tmp = m_move(mtmp, 0);

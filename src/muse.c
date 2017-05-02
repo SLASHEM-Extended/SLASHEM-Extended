@@ -7547,7 +7547,7 @@ skipmsg:
 		mquaffmsg(mtmp, otmp);
 
 		mtmp->isegotype = 1;
-		switch (rnd(144)) {
+		switch (rnd(160)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7692,6 +7692,22 @@ skipmsg:
 			case 142: mtmp->egotype_sludgepuddle = 1; break;
 			case 143: mtmp->egotype_vulnerator = 1; break;
 			case 144: mtmp->egotype_marysue = 1; break;
+			case 145: mtmp->egotype_wallwalk = 1; break;
+			case 146: mtmp->egotype_reflecting = 1; break;
+			case 147: mtmp->egotype_mimic = 1; break;
+			case 148: mtmp->egotype_permamimic = 1; break;
+			case 149: mtmp->egotype_metallivore = 1; break;
+			case 150: mtmp->egotype_lithivore = 1; break;
+			case 151: mtmp->egotype_organivore = 1; break;
+			case 152: mtmp->egotype_armorer = 1; break;
+			case 153: mtmp->egotype_speedster = 1; break;
+			case 154: mtmp->egotype_hitter = 1; break;
+			case 155: mtmp->egotype_shader = 1; break;
+			case 156: mtmp->egotype_amnesiac = 1; break;
+			case 157: mtmp->egotype_trapmaster = 1; break;
+			case 158: mtmp->egotype_midiplayer = 1; break;
+			case 159: mtmp->egotype_rngabuser = 1; break;
+			case 160: mtmp->egotype_mastercaster = 1; break;
 		}
 
 		if (oseen) makeknown(POT_MUTATION);
@@ -7703,7 +7719,7 @@ skipmsg:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		mtmp->isegotype = 1;
-		switch (rnd(144)) {
+		switch (rnd(160)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7848,6 +7864,22 @@ skipmsg:
 			case 142: mtmp->egotype_sludgepuddle = 1; break;
 			case 143: mtmp->egotype_vulnerator = 1; break;
 			case 144: mtmp->egotype_marysue = 1; break;
+			case 145: mtmp->egotype_wallwalk = 1; break;
+			case 146: mtmp->egotype_reflecting = 1; break;
+			case 147: mtmp->egotype_mimic = 1; break;
+			case 148: mtmp->egotype_permamimic = 1; break;
+			case 149: mtmp->egotype_metallivore = 1; break;
+			case 150: mtmp->egotype_lithivore = 1; break;
+			case 151: mtmp->egotype_organivore = 1; break;
+			case 152: mtmp->egotype_armorer = 1; break;
+			case 153: mtmp->egotype_speedster = 1; break;
+			case 154: mtmp->egotype_hitter = 1; break;
+			case 155: mtmp->egotype_shader = 1; break;
+			case 156: mtmp->egotype_amnesiac = 1; break;
+			case 157: mtmp->egotype_trapmaster = 1; break;
+			case 158: mtmp->egotype_midiplayer = 1; break;
+			case 159: mtmp->egotype_rngabuser = 1; break;
+			case 160: mtmp->egotype_mastercaster = 1; break;
 		}
 
 		if (oseen) makeknown(WAN_MUTATION);

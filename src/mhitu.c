@@ -2190,6 +2190,21 @@ swingweapon:
 
 	}
 
+	if (mtmp->egotype_mastercaster && !rn2(iswarper ? 2 : 4) && !range2) {
+
+	    if (foundyou) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		castmu(mtmp, a, TRUE, TRUE);
+		}
+	    else {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		castmu(mtmp, a, TRUE, FALSE);
+		}
+
+	}
+
 	if (mtmp->egotype_thief ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -2995,6 +3010,27 @@ swingweapon:
 
 	}
 
+	if (mtmp->egotype_amnesiac ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_AMNE;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_seducer ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -3058,6 +3094,27 @@ swingweapon:
 
 	}
 
+	if (mtmp->egotype_trapmaster ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_TRAP;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_itemporter ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -3085,6 +3142,48 @@ swingweapon:
 		a = &mdat2->mattk[2];
 		a->aatyp = AT_TUCH;
 		a->adtyp = AD_DEPR;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_midiplayer ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_MIDI;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_rngabuser ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[2];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_RNG;
 		a->damn = 2;
 		a->damd = (1 + (mtmp->m_lev));
 

@@ -623,7 +623,7 @@ struct obj *otmp;
 	case WAN_MUTATION:
 	case SPE_MUTATION:
 		mtmp->isegotype = 1;
-		switch (rnd(144)) {
+		switch (rnd(160)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -768,6 +768,22 @@ struct obj *otmp;
 			case 142: mtmp->egotype_sludgepuddle = 1; break;
 			case 143: mtmp->egotype_vulnerator = 1; break;
 			case 144: mtmp->egotype_marysue = 1; break;
+			case 145: mtmp->egotype_wallwalk = 1; break;
+			case 146: mtmp->egotype_reflecting = 1; break;
+			case 147: mtmp->egotype_mimic = 1; break;
+			case 148: mtmp->egotype_permamimic = 1; break;
+			case 149: mtmp->egotype_metallivore = 1; break;
+			case 150: mtmp->egotype_lithivore = 1; break;
+			case 151: mtmp->egotype_organivore = 1; break;
+			case 152: mtmp->egotype_armorer = 1; break;
+			case 153: mtmp->egotype_speedster = 1; break;
+			case 154: mtmp->egotype_hitter = 1; break;
+			case 155: mtmp->egotype_shader = 1; break;
+			case 156: mtmp->egotype_amnesiac = 1; break;
+			case 157: mtmp->egotype_trapmaster = 1; break;
+			case 158: mtmp->egotype_midiplayer = 1; break;
+			case 159: mtmp->egotype_rngabuser = 1; break;
+			case 160: mtmp->egotype_mastercaster = 1; break;
 		}
 
 		break;
@@ -6213,7 +6229,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	    mdef->mcan = TRUE;
 
 		/* successfully cancelling a monster removes all egotypes --Amy */
-		mdef->isegotype = mdef->egotype_thief = mdef->egotype_wallwalk = mdef->egotype_disenchant = mdef->egotype_rust = mdef->egotype_corrosion = mdef->egotype_decay = mdef->egotype_wither = mdef->egotype_grab = mdef->egotype_flying = mdef->egotype_hide = mdef->egotype_regeneration = mdef->egotype_undead = mdef->egotype_domestic = mdef->egotype_covetous = mdef->egotype_avoider = mdef->egotype_petty = mdef->egotype_pokemon = mdef->egotype_slows = mdef->egotype_vampire = mdef->egotype_teleportself = mdef->egotype_teleportyou = mdef->egotype_wrap = mdef->egotype_disease = mdef->egotype_slime = mdef->egotype_engrave = mdef->egotype_dark = mdef->egotype_luck = mdef->egotype_push = mdef->egotype_arcane = mdef->egotype_clerical = mdef->egotype_armorer = mdef->egotype_tank = mdef->egotype_speedster = mdef->egotype_racer = mdef->egotype_randomizer = mdef->egotype_blaster = mdef->egotype_multiplicator = mdef->egotype_gator = mdef->egotype_reflecting = mdef->egotype_hugger = mdef->egotype_mimic = mdef->egotype_permamimic = mdef->egotype_poisoner = mdef->egotype_elementalist = mdef->egotype_resistor = mdef->egotype_acidspiller = mdef->egotype_watcher = mdef->egotype_metallivore = mdef->egotype_lithivore = mdef->egotype_organivore = mdef->egotype_breather = mdef->egotype_beamer = mdef->egotype_troll = mdef->egotype_faker = mdef->egotype_farter = mdef->egotype_timer = mdef->egotype_thirster = mdef->egotype_watersplasher = mdef->egotype_cancellator = mdef->egotype_banisher = mdef->egotype_shredder = mdef->egotype_abductor = mdef->egotype_incrementor = mdef->egotype_mirrorimage = mdef->egotype_curser = mdef->egotype_horner = mdef->egotype_lasher = mdef->egotype_cullen = mdef->egotype_webber = mdef->egotype_itemporter = mdef->egotype_schizo = mdef->egotype_nexus = mdef->egotype_sounder = mdef->egotype_gravitator = mdef->egotype_inert = mdef->egotype_antimage = mdef->egotype_plasmon = mdef->egotype_weaponizer = mdef->egotype_engulfer = mdef->egotype_bomber = mdef->egotype_exploder = mdef->egotype_unskillor = mdef->egotype_blinker = mdef->egotype_psychic = mdef->egotype_abomination = mdef->egotype_gazer = mdef->egotype_seducer = mdef->egotype_flickerer = mdef->egotype_hitter = mdef->egotype_piercer = mdef->egotype_petshielder = mdef->egotype_displacer = mdef->egotype_lifesaver = mdef->egotype_venomizer = mdef->egotype_nastinator = mdef->egotype_baddie = mdef->egotype_dreameater = mdef->egotype_sludgepuddle = mdef->egotype_vulnerator = mdef->egotype_marysue = 0;
+		mdef->isegotype = mdef->egotype_thief = mdef->egotype_wallwalk = mdef->egotype_disenchant = mdef->egotype_rust = mdef->egotype_corrosion = mdef->egotype_decay = mdef->egotype_wither = mdef->egotype_grab = mdef->egotype_flying = mdef->egotype_hide = mdef->egotype_regeneration = mdef->egotype_undead = mdef->egotype_domestic = mdef->egotype_covetous = mdef->egotype_avoider = mdef->egotype_petty = mdef->egotype_pokemon = mdef->egotype_slows = mdef->egotype_vampire = mdef->egotype_teleportself = mdef->egotype_teleportyou = mdef->egotype_wrap = mdef->egotype_disease = mdef->egotype_slime = mdef->egotype_engrave = mdef->egotype_dark = mdef->egotype_luck = mdef->egotype_push = mdef->egotype_arcane = mdef->egotype_clerical = mdef->egotype_armorer = mdef->egotype_tank = mdef->egotype_speedster = mdef->egotype_racer = mdef->egotype_randomizer = mdef->egotype_blaster = mdef->egotype_multiplicator = mdef->egotype_gator = mdef->egotype_reflecting = mdef->egotype_hugger = mdef->egotype_mimic = mdef->egotype_permamimic = mdef->egotype_poisoner = mdef->egotype_elementalist = mdef->egotype_resistor = mdef->egotype_acidspiller = mdef->egotype_watcher = mdef->egotype_metallivore = mdef->egotype_lithivore = mdef->egotype_organivore = mdef->egotype_breather = mdef->egotype_beamer = mdef->egotype_troll = mdef->egotype_faker = mdef->egotype_farter = mdef->egotype_timer = mdef->egotype_thirster = mdef->egotype_watersplasher = mdef->egotype_cancellator = mdef->egotype_banisher = mdef->egotype_shredder = mdef->egotype_abductor = mdef->egotype_incrementor = mdef->egotype_mirrorimage = mdef->egotype_curser = mdef->egotype_horner = mdef->egotype_lasher = mdef->egotype_cullen = mdef->egotype_webber = mdef->egotype_itemporter = mdef->egotype_schizo = mdef->egotype_nexus = mdef->egotype_sounder = mdef->egotype_gravitator = mdef->egotype_inert = mdef->egotype_antimage = mdef->egotype_plasmon = mdef->egotype_weaponizer = mdef->egotype_engulfer = mdef->egotype_bomber = mdef->egotype_exploder = mdef->egotype_unskillor = mdef->egotype_blinker = mdef->egotype_psychic = mdef->egotype_abomination = mdef->egotype_gazer = mdef->egotype_seducer = mdef->egotype_flickerer = mdef->egotype_hitter = mdef->egotype_piercer = mdef->egotype_petshielder = mdef->egotype_displacer = mdef->egotype_lifesaver = mdef->egotype_venomizer = mdef->egotype_nastinator = mdef->egotype_baddie = mdef->egotype_dreameater = mdef->egotype_sludgepuddle = mdef->egotype_vulnerator = mdef->egotype_marysue = mdef->egotype_shader = mdef->egotype_amnesiac = mdef->egotype_trapmaster = mdef->egotype_midiplayer = mdef->egotype_rngabuser = mdef->egotype_mastercaster = 0;
 
 	    if (is_were(mdef->data) && mdef->data->mlet != S_HUMAN)
 		were_change(mdef);

@@ -12205,7 +12205,7 @@ register int	mmflags;
 	if (((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) || always_egotype(mtmp->data) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(144)) {
+		switch (rnd(160)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12350,11 +12350,27 @@ register int	mmflags;
 			case 142: mtmp->egotype_sludgepuddle = 1; break;
 			case 143: mtmp->egotype_vulnerator = 1; break;
 			case 144: mtmp->egotype_marysue = 1; break;
+			case 145: mtmp->egotype_wallwalk = 1; break;
+			case 146: mtmp->egotype_reflecting = 1; break;
+			case 147: mtmp->egotype_mimic = 1; break;
+			case 148: mtmp->egotype_permamimic = 1; break;
+			case 149: mtmp->egotype_metallivore = 1; break;
+			case 150: mtmp->egotype_lithivore = 1; break;
+			case 151: mtmp->egotype_organivore = 1; break;
+			case 152: mtmp->egotype_armorer = 1; break;
+			case 153: mtmp->egotype_speedster = 1; break;
+			case 154: mtmp->egotype_hitter = 1; break;
+			case 155: mtmp->egotype_shader = 1; break;
+			case 156: mtmp->egotype_amnesiac = 1; break;
+			case 157: mtmp->egotype_trapmaster = 1; break;
+			case 158: mtmp->egotype_midiplayer = 1; break;
+			case 159: mtmp->egotype_rngabuser = 1; break;
+			case 160: mtmp->egotype_mastercaster = 1; break;
 
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(144)) {
+		switch (rnd(160)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12499,6 +12515,22 @@ register int	mmflags;
 			case 142: mtmp->egotype_sludgepuddle = 1; break;
 			case 143: mtmp->egotype_vulnerator = 1; break;
 			case 144: mtmp->egotype_marysue = 1; break;
+			case 145: mtmp->egotype_wallwalk = 1; break;
+			case 146: mtmp->egotype_reflecting = 1; break;
+			case 147: mtmp->egotype_mimic = 1; break;
+			case 148: mtmp->egotype_permamimic = 1; break;
+			case 149: mtmp->egotype_metallivore = 1; break;
+			case 150: mtmp->egotype_lithivore = 1; break;
+			case 151: mtmp->egotype_organivore = 1; break;
+			case 152: mtmp->egotype_armorer = 1; break;
+			case 153: mtmp->egotype_speedster = 1; break;
+			case 154: mtmp->egotype_hitter = 1; break;
+			case 155: mtmp->egotype_shader = 1; break;
+			case 156: mtmp->egotype_amnesiac = 1; break;
+			case 157: mtmp->egotype_trapmaster = 1; break;
+			case 158: mtmp->egotype_midiplayer = 1; break;
+			case 159: mtmp->egotype_rngabuser = 1; break;
+			case 160: mtmp->egotype_mastercaster = 1; break;
 		}
 		}
 
@@ -12507,7 +12539,7 @@ register int	mmflags;
 	if (ptr->mlet == S_FUNGUS && ( (!rn2(isxrace ? 20 : 66) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 6 : 24) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 3 : 10) ) ) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(144)) {
+		switch (rnd(160)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12652,10 +12684,26 @@ register int	mmflags;
 			case 142: mtmp->egotype_sludgepuddle = 1; break;
 			case 143: mtmp->egotype_vulnerator = 1; break;
 			case 144: mtmp->egotype_marysue = 1; break;
+			case 145: mtmp->egotype_wallwalk = 1; break;
+			case 146: mtmp->egotype_reflecting = 1; break;
+			case 147: mtmp->egotype_mimic = 1; break;
+			case 148: mtmp->egotype_permamimic = 1; break;
+			case 149: mtmp->egotype_metallivore = 1; break;
+			case 150: mtmp->egotype_lithivore = 1; break;
+			case 151: mtmp->egotype_organivore = 1; break;
+			case 152: mtmp->egotype_armorer = 1; break;
+			case 153: mtmp->egotype_speedster = 1; break;
+			case 154: mtmp->egotype_hitter = 1; break;
+			case 155: mtmp->egotype_shader = 1; break;
+			case 156: mtmp->egotype_amnesiac = 1; break;
+			case 157: mtmp->egotype_trapmaster = 1; break;
+			case 158: mtmp->egotype_midiplayer = 1; break;
+			case 159: mtmp->egotype_rngabuser = 1; break;
+			case 160: mtmp->egotype_mastercaster = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(144)) {
+		switch (rnd(160)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12800,6 +12848,22 @@ register int	mmflags;
 			case 142: mtmp->egotype_sludgepuddle = 1; break;
 			case 143: mtmp->egotype_vulnerator = 1; break;
 			case 144: mtmp->egotype_marysue = 1; break;
+			case 145: mtmp->egotype_wallwalk = 1; break;
+			case 146: mtmp->egotype_reflecting = 1; break;
+			case 147: mtmp->egotype_mimic = 1; break;
+			case 148: mtmp->egotype_permamimic = 1; break;
+			case 149: mtmp->egotype_metallivore = 1; break;
+			case 150: mtmp->egotype_lithivore = 1; break;
+			case 151: mtmp->egotype_organivore = 1; break;
+			case 152: mtmp->egotype_armorer = 1; break;
+			case 153: mtmp->egotype_speedster = 1; break;
+			case 154: mtmp->egotype_hitter = 1; break;
+			case 155: mtmp->egotype_shader = 1; break;
+			case 156: mtmp->egotype_amnesiac = 1; break;
+			case 157: mtmp->egotype_trapmaster = 1; break;
+			case 158: mtmp->egotype_midiplayer = 1; break;
+			case 159: mtmp->egotype_rngabuser = 1; break;
+			case 160: mtmp->egotype_mastercaster = 1; break;
 		}
 		}
 
@@ -12808,7 +12872,7 @@ register int	mmflags;
 	if (AlwaysEgotypeMonsters || u.uprops[ALWAYS_EGOTYPES].extrinsic || have_egostone()) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(144)) {
+		switch (rnd(160)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -12953,10 +13017,26 @@ register int	mmflags;
 			case 142: mtmp->egotype_sludgepuddle = 1; break;
 			case 143: mtmp->egotype_vulnerator = 1; break;
 			case 144: mtmp->egotype_marysue = 1; break;
+			case 145: mtmp->egotype_wallwalk = 1; break;
+			case 146: mtmp->egotype_reflecting = 1; break;
+			case 147: mtmp->egotype_mimic = 1; break;
+			case 148: mtmp->egotype_permamimic = 1; break;
+			case 149: mtmp->egotype_metallivore = 1; break;
+			case 150: mtmp->egotype_lithivore = 1; break;
+			case 151: mtmp->egotype_organivore = 1; break;
+			case 152: mtmp->egotype_armorer = 1; break;
+			case 153: mtmp->egotype_speedster = 1; break;
+			case 154: mtmp->egotype_hitter = 1; break;
+			case 155: mtmp->egotype_shader = 1; break;
+			case 156: mtmp->egotype_amnesiac = 1; break;
+			case 157: mtmp->egotype_trapmaster = 1; break;
+			case 158: mtmp->egotype_midiplayer = 1; break;
+			case 159: mtmp->egotype_rngabuser = 1; break;
+			case 160: mtmp->egotype_mastercaster = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(144)) {
+		switch (rnd(160)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -13101,6 +13181,22 @@ register int	mmflags;
 			case 142: mtmp->egotype_sludgepuddle = 1; break;
 			case 143: mtmp->egotype_vulnerator = 1; break;
 			case 144: mtmp->egotype_marysue = 1; break;
+			case 145: mtmp->egotype_wallwalk = 1; break;
+			case 146: mtmp->egotype_reflecting = 1; break;
+			case 147: mtmp->egotype_mimic = 1; break;
+			case 148: mtmp->egotype_permamimic = 1; break;
+			case 149: mtmp->egotype_metallivore = 1; break;
+			case 150: mtmp->egotype_lithivore = 1; break;
+			case 151: mtmp->egotype_organivore = 1; break;
+			case 152: mtmp->egotype_armorer = 1; break;
+			case 153: mtmp->egotype_speedster = 1; break;
+			case 154: mtmp->egotype_hitter = 1; break;
+			case 155: mtmp->egotype_shader = 1; break;
+			case 156: mtmp->egotype_amnesiac = 1; break;
+			case 157: mtmp->egotype_trapmaster = 1; break;
+			case 158: mtmp->egotype_midiplayer = 1; break;
+			case 159: mtmp->egotype_rngabuser = 1; break;
+			case 160: mtmp->egotype_mastercaster = 1; break;
 		}
 		}
 

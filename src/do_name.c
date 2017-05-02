@@ -872,6 +872,12 @@ boolean called;
 	    if (mtmp->egotype_sludgepuddle) Sprintf(eos(buf), " Sludgepuddle");
 	    if (mtmp->egotype_vulnerator) Sprintf(eos(buf), " Vulnerator");
 	    if (mtmp->egotype_marysue) Sprintf(eos(buf), " Mary-Sue");
+	    if (mtmp->egotype_shader) Sprintf(eos(buf), " Shader");
+	    if (mtmp->egotype_amnesiac) Sprintf(eos(buf), " Amnesiac");
+	    if (mtmp->egotype_trapmaster) Sprintf(eos(buf), " Trapmaster");
+	    if (mtmp->egotype_midiplayer) Sprintf(eos(buf), " Midi-Player");
+	    if (mtmp->egotype_rngabuser) Sprintf(eos(buf), " RNG-abuser");
+	    if (mtmp->egotype_mastercaster) Sprintf(eos(buf), " Mastercaster");
 
 	}
 

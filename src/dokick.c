@@ -178,14 +178,14 @@ register boolean clumsy;
 	if (thick_skinned(mon->data) && dmg) dmg = 1;
 
 	/* attacking a shade is useless */
-	if (is_shade(mon->data) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) )
+	if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) )
 	    dmg = 0;
 
 	if ((is_undead(mon->data) || is_demon(mon->data)) && uarmf &&
 		uarmf->blessed)
 	    blessed_foot_damage = 1;
 
-	if (is_shade(mon->data) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) && !blessed_foot_damage) {
+	if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) && !blessed_foot_damage) {
 	    pline_The("%s.", kick_passes_thru);
 	    /* doesn't exercise skill or abuse alignment or frighten pet,
 	       and shades have no passive counterattack */
@@ -407,7 +407,7 @@ register xchar x, y;
 		/* we only care about kicking attacks here */
 		if (uattk->aatyp != AT_KICK) continue;
 
-		if (is_shade(mon->data) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) && (!uarmf || !uarmf->blessed)) {
+		if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) && (!uarmf || !uarmf->blessed)) {
 		    /* doesn't matter whether it would have hit or missed,
 		       and shades have no passive counterattack */
 		    Your("%s %s.", kick_passes_thru, mon_nam(mon));

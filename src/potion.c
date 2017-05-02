@@ -3870,7 +3870,7 @@ boolean your_fault;
 	case POT_MUTATION:
 
 		mon->isegotype = 1;
-		switch (rnd(144)) {
+		switch (rnd(160)) {
 			case 1:
 			case 2:
 			case 3: mon->egotype_thief = 1; break;
@@ -4015,6 +4015,22 @@ boolean your_fault;
 			case 142: mon->egotype_sludgepuddle = 1; break;
 			case 143: mon->egotype_vulnerator = 1; break;
 			case 144: mon->egotype_marysue = 1; break;
+			case 145: mon->egotype_wallwalk = 1; break;
+			case 146: mon->egotype_reflecting = 1; break;
+			case 147: mon->egotype_mimic = 1; break;
+			case 148: mon->egotype_permamimic = 1; break;
+			case 149: mon->egotype_metallivore = 1; break;
+			case 150: mon->egotype_lithivore = 1; break;
+			case 151: mon->egotype_organivore = 1; break;
+			case 152: mon->egotype_armorer = 1; break;
+			case 153: mon->egotype_speedster = 1; break;
+			case 154: mon->egotype_hitter = 1; break;
+			case 155: mon->egotype_shader = 1; break;
+			case 156: mon->egotype_amnesiac = 1; break;
+			case 157: mon->egotype_trapmaster = 1; break;
+			case 158: mon->egotype_midiplayer = 1; break;
+			case 159: mon->egotype_rngabuser = 1; break;
+			case 160: mon->egotype_mastercaster = 1; break;
 		}
 
   		break;

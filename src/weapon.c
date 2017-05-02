@@ -524,7 +524,7 @@ struct monst *mon;
 	if ((objects[otyp].oc_material <= LEATHER || (objects[otyp].oc_material == INKA && !hates_inka(ptr)) || (objects[otyp].oc_material == SILK) || (objects[otyp].oc_material == COMPOST) ) && thick_skinned(ptr) && tmp > 0)
 		/* thick skinned/scaled creatures don't feel it */
 		tmp = 1;
-	if (is_shade(ptr) && objects[otyp].oc_material != SILVER && objects[otyp].oc_material != ARCANIUM)
+	if ((is_shade(ptr) || mon->egotype_shader) && objects[otyp].oc_material != SILVER && objects[otyp].oc_material != ARCANIUM)
 		tmp = 0;
 
 	/* "very heavy iron ball"; weight increase is in increments of 300 */
@@ -867,7 +867,7 @@ struct monst *mon;
 	if ((objects[otyp].oc_material <= LEATHER || (objects[otyp].oc_material == INKA && !hates_inka(ptr)) || (objects[otyp].oc_material == SILK) || (objects[otyp].oc_material == COMPOST) ) && thick_skinned(ptr) && tmp > 0)
 		/* thick skinned/scaled creatures don't feel it */
 		tmp = 1;
-	if (is_shade(ptr) && objects[otyp].oc_material != SILVER && objects[otyp].oc_material != ARCANIUM)
+	if ((is_shade(ptr) || mon->egotype_shader) && objects[otyp].oc_material != SILVER && objects[otyp].oc_material != ARCANIUM)
 		tmp = 0;
 
 	/* "very heavy iron ball"; weight increase is in increments of 300 */

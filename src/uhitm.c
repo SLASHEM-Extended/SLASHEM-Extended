@@ -1060,13 +1060,13 @@ int thrown;
 		objenchant = u.ulevel/4;
 	    noeffect = objenchant < canhitmon && (issoviet || rn2(3)) ;
 	    if (martial_bonus()) {
-		if (is_shade(mdat)) {
+		if (is_shade(mdat) || mon->egotype_shader) {
 		    tmp = rn2(3);
 		} else {
 		    tmp = martial_dmg();
 		}
 	    } else {
-	    if (is_shade(mdat))
+	    if (is_shade(mdat) || mon->egotype_shader)
 		tmp = 0;
 		else tmp = rnd(2);
 	    }
@@ -1225,7 +1225,7 @@ int thrown;
 		    (thrown == 2 && is_ammo(obj) && 
 		    	!ammo_and_launcher(obj, launcher))) {
 		    /* then do only 1-2 points of damage */
-		    if (is_shade(mdat) && objects[obj->otyp].oc_material != SILVER && objects[obj->otyp].oc_material != ARCANIUM)
+		    if ((is_shade(mdat) || mon->egotype_shader) && objects[obj->otyp].oc_material != SILVER && objects[obj->otyp].oc_material != ARCANIUM)
 			tmp = 0;
 		    else
 			tmp = rnd(2);
@@ -1268,7 +1268,7 @@ int thrown;
 			useup(obj);
 			if (!more_than_1) obj = (struct obj *) 0;
 			hittxt = TRUE;
-			if (!is_shade(mdat))
+			if (!is_shade(mdat) && !(mon->egotype_shader))
 			    tmp++;
 		   }
 
@@ -1489,10 +1489,10 @@ int thrown;
 		hittxt = TRUE;
 		/* in case potion effect causes transformation */
 		mdat = mon->data;
-		tmp = (is_shade(mdat)) ? 0 : 1;
+		tmp = (is_shade(mdat) || mon->egotype_shader) ? 0 : 1;
 	    } else {
 		if (flags.bash_reminder && !rn2(10)) pline("A helpful reminder: you attack with a non-weapon!");
-		if (is_shade(mdat) && !shade_aware(obj)) {
+		if ((is_shade(mdat) || mon->egotype_shader) && !shade_aware(obj)) {
 		    tmp = 0;
 		    Strcpy(unconventional, cxname(obj));
 		} else {
@@ -2015,7 +2015,7 @@ int thrown;
 	    /* make sure that negative damage adjustment can't result
 	       in inadvertently boosting the victim's hit points */
 	    tmp = 0;
-	    if (is_shade(mdat)) {
+	    if (is_shade(mdat) || mon->egotype_shader) {
 		if (!hittxt) {
 		    const char *what = unconventional[0] ? unconventional : "attack";
 		    Your("%s %s harmlessly through %s.",
@@ -3221,7 +3221,7 @@ register struct attack *mattk;
 		    if(uwep) tmp = 0;
 		} else if(mattk->aatyp == AT_KICK) {
 		    if(thick_skinned(mdef->data) && tmp) tmp = 1;
-		    if(is_shade(mdef->data) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) ) {
+		    if((is_shade(mdef->data) || mdef->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) ) {
 			if (!(uarmf && uarmf->blessed)) {
 			    impossible("bad shade attack function flow?");
 			    tmp = 0;
@@ -5497,7 +5497,7 @@ use_weapon:
 			    }
 			    wakeup(mon);
 			    /* maybe this check should be in damageum()? */
-			    if (is_shade(mon->data) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) &&
+			    if ((is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) &&
 					!(mattk->aatyp == AT_KICK &&
 					    uarmf && uarmf->blessed)) {
 				Your("attack passes harmlessly through %s.",
@@ -5540,7 +5540,7 @@ use_weapon:
 			 */
 			dhit = 1;
 			wakeup(mon);
-			if (is_shade(mon->data))
+			if (is_shade(mon->data) || mon->egotype_shader)
 			    Your("hug passes harmlessly through %s.",
 				mon_nam(mon));
 			else if (!sticks(mon->data) && !u.uswallow) {
@@ -5568,7 +5568,7 @@ use_weapon:
 		case AT_ENGL:
 			if((dhit = (tmp > (dieroll = rnd(20+i))))) {
 				wakeup(mon);
-				if (is_shade(mon->data))
+				if (is_shade(mon->data) || mon->egotype_shader)
 				    Your("attempt to surround %s is harmless.",
 					mon_nam(mon));
 				else {
