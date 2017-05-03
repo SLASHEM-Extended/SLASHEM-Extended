@@ -660,6 +660,33 @@ register int fd, mode;
 	bwrite(fd, (genericptr_t) &mons[PM_DESTABILIZER], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_POLYINITOR], sizeof(struct permonst));
 
+	bwrite(fd, (genericptr_t) &mons[PM_RANDO_ANT], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNGENERAL], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_VICIOUS_WOLF], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_MYRION], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_UNEXPECTED_TIGER], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_CUBED_JELLY], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_KOBOLD_DICEROLLER], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_GYM_LEADER], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RAINBOW_SENTAI], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_UNFAIR_ARCHON], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_CHAOS_RULECHANGER], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNGED_MONSTER], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNG_KOP], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNG_SERGEANT], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNG_LIEUTENANT], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNG_KAPTAIN], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNG_KOMMISSIONER], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNG_KCHIEF], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNG_KATCHER], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNG_KRIMINOLOGIST], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_GENERATOR_LICH], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_WHIMLICH], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RAINBOW_OGRE], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RANDO], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RNGHOST], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_RANDOMIZER_DRACONIAN], sizeof(struct permonst));
+
 	/* must come before migrating_objs and migrating_mons are freed */
 	save_timers(fd, mode, RANGE_GLOBAL);
 	save_light_sources(fd, mode, RANGE_GLOBAL);

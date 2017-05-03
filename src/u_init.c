@@ -6370,6 +6370,33 @@ u_init()
 	struct permonst* randfweaf = &mons[PM_FANNY_S_BUCKLED_SANDAL];
 	struct permonst* randfweag = &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT];
 
+	struct permonst* randxya = &mons[PM_RANDO_ANT];
+	struct permonst* randxyb = &mons[PM_RNGENERAL];
+	struct permonst* randxyc = &mons[PM_VICIOUS_WOLF];
+	struct permonst* randxyd = &mons[PM_MYRION];
+	struct permonst* randxye = &mons[PM_UNEXPECTED_TIGER];
+	struct permonst* randxyf = &mons[PM_CUBED_JELLY];
+	struct permonst* randxyg = &mons[PM_KOBOLD_DICEROLLER];
+	struct permonst* randxyh = &mons[PM_GYM_LEADER];
+	struct permonst* randxyi = &mons[PM_RAINBOW_SENTAI];
+	struct permonst* randxyj = &mons[PM_UNFAIR_ARCHON];
+	struct permonst* randxyk = &mons[PM_CHAOS_RULECHANGER];
+	struct permonst* randxyl = &mons[PM_RNGED_MONSTER];
+	struct permonst* randxym = &mons[PM_RNG_KOP];
+	struct permonst* randxyn = &mons[PM_RNG_SERGEANT];
+	struct permonst* randxyo = &mons[PM_RNG_LIEUTENANT];
+	struct permonst* randxyp = &mons[PM_RNG_KAPTAIN];
+	struct permonst* randxyq = &mons[PM_RNG_KOMMISSIONER];
+	struct permonst* randxyr = &mons[PM_RNG_KCHIEF];
+	struct permonst* randxys = &mons[PM_RNG_KATCHER];
+	struct permonst* randxyt = &mons[PM_RNG_KRIMINOLOGIST];
+	struct permonst* randxyu = &mons[PM_GENERATOR_LICH];
+	struct permonst* randxyv = &mons[PM_WHIMLICH];
+	struct permonst* randxyw = &mons[PM_RAINBOW_OGRE];
+	struct permonst* randxyx = &mons[PM_RANDO];
+	struct permonst* randxyy = &mons[PM_RNGHOST];
+	struct permonst* randxyz = &mons[PM_RANDOMIZER_DRACONIAN];
+
 	static char buf[BUFSZ];
 
 	struct attack* attkptr;
@@ -18465,6 +18492,270 @@ u_init()
 
 	}
 
+	for (i = 1; i < 2; i++) {
+		attkptr = &randxya->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randxyb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyc->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randxyd->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 2; i < 3; i++) {
+		attkptr = &randxye->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyf->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+		attkptr = &randxyf->mattk[1];
+		attkptr->adtyp = randxyf->mattk[0].adtyp;
+
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyg->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randxyh->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randxyi->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randxyj->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randxyk->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyl->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxym->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyn->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyo->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyp->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyq->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyr->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxys->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyt->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyu->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyv->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randxyw->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 3; i < 4; i++) {
+		attkptr = &randxyx->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyy->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 2; i < 3; i++) {
+		attkptr = &randxyz->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
 	for (i = 0; i < 1; i++) {
 		attkptr = &randomsphere->mattk[i];
 
@@ -24170,6 +24461,33 @@ alter_reality()
 	struct permonst* randfweae = &mons[PM_FANNY_S_BRAND_NEW_SNEAKER];
 	struct permonst* randfweaf = &mons[PM_FANNY_S_BUCKLED_SANDAL];
 	struct permonst* randfweag = &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT];
+
+	struct permonst* randxya = &mons[PM_RANDO_ANT];
+	struct permonst* randxyb = &mons[PM_RNGENERAL];
+	struct permonst* randxyc = &mons[PM_VICIOUS_WOLF];
+	struct permonst* randxyd = &mons[PM_MYRION];
+	struct permonst* randxye = &mons[PM_UNEXPECTED_TIGER];
+	struct permonst* randxyf = &mons[PM_CUBED_JELLY];
+	struct permonst* randxyg = &mons[PM_KOBOLD_DICEROLLER];
+	struct permonst* randxyh = &mons[PM_GYM_LEADER];
+	struct permonst* randxyi = &mons[PM_RAINBOW_SENTAI];
+	struct permonst* randxyj = &mons[PM_UNFAIR_ARCHON];
+	struct permonst* randxyk = &mons[PM_CHAOS_RULECHANGER];
+	struct permonst* randxyl = &mons[PM_RNGED_MONSTER];
+	struct permonst* randxym = &mons[PM_RNG_KOP];
+	struct permonst* randxyn = &mons[PM_RNG_SERGEANT];
+	struct permonst* randxyo = &mons[PM_RNG_LIEUTENANT];
+	struct permonst* randxyp = &mons[PM_RNG_KAPTAIN];
+	struct permonst* randxyq = &mons[PM_RNG_KOMMISSIONER];
+	struct permonst* randxyr = &mons[PM_RNG_KCHIEF];
+	struct permonst* randxys = &mons[PM_RNG_KATCHER];
+	struct permonst* randxyt = &mons[PM_RNG_KRIMINOLOGIST];
+	struct permonst* randxyu = &mons[PM_GENERATOR_LICH];
+	struct permonst* randxyv = &mons[PM_WHIMLICH];
+	struct permonst* randxyw = &mons[PM_RAINBOW_OGRE];
+	struct permonst* randxyx = &mons[PM_RANDO];
+	struct permonst* randxyy = &mons[PM_RNGHOST];
+	struct permonst* randxyz = &mons[PM_RANDOMIZER_DRACONIAN];
 
 	static char buf[BUFSZ];
 
@@ -31082,6 +31400,270 @@ alter_reality()
 
 	for (i = 0; i < 1; i++) {
 		attkptr = &randomdragon->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randxya->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randxyb->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyc->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randxyd->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 2; i < 3; i++) {
+		attkptr = &randxye->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyf->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+		attkptr = &randxyf->mattk[1];
+		attkptr->adtyp = randxyf->mattk[0].adtyp;
+
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyg->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randxyh->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randxyi->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randxyj->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randxyk->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyl->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxym->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyn->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyo->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyp->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyq->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyr->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxys->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyt->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyu->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyv->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randxyw->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 3; i < 4; i++) {
+		attkptr = &randxyx->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxyy->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 2; i < 3; i++) {
+		attkptr = &randxyz->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
