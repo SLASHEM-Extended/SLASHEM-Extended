@@ -5375,7 +5375,7 @@ A("Saddle of Reflection",			LEATHER_SADDLE, /* idea by Lorskel, applying it redu
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0, A_NONE, NON_PM, NON_PM, 1000L), 
 
-A("50-Shades-Of-Grayswandir",		SILVER_SABER, /* shades of grey effect (DUH) */
+A("50-Shades-Of-Grayswandir",		SILVER_SABER, /* shades of grey effect (DUH), idea by K2 */
 	(SPFX_RESTR|SPFX_HALRES|SPFX_EVIL), 0, 0,
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, NON_PM, 8000L ),
 
