@@ -159,7 +159,7 @@ stealarm()
 			    subfrombill(otmp, shop_keeper(*u.ushops));
 			freeinv(otmp);
 			pline("%s steals %s!", Monnam(mtmp), doname(otmp));
-	if (rn2(1000) && !( (metallivorous(mtmp->data) || mtmp->egotype_metallivore) && is_metallic(otmp) && !rn2(10) ) && !( (lithivorous(mtmp->data) || mtmp->egotype_lithivore) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
+			(void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
 			/* Implies seduction, "you gladly hand over ..."
 			   so we don't set mavenge bit here. */
 			monflee(mtmp, rnd(10), FALSE, FALSE);
@@ -470,8 +470,7 @@ gotobj:
 
 	could_petrify = (otmp->otyp == CORPSE &&
 			 touch_petrifies(&mons[otmp->corpsenm]));
-	if (rn2(1000) && !( (metallivorous(mtmp->data) || mtmp->egotype_metallivore) && is_metallic(otmp) && !rn2(10) ) && !( (lithivorous(mtmp->data) || mtmp->egotype_lithivore) && is_lithic(otmp) && !rn2(10) ) ) (void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
-	else delobj(otmp); /* also frees otmp */
+	(void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
 	if (could_petrify && !(mtmp->misc_worn_check & W_ARMG) && !rn2(4)) {
 	    minstapetrify(mtmp, TRUE);
 	    return -1;
