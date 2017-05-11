@@ -675,6 +675,41 @@ register struct monst *mtmp;
         }
     }
 
+	if (mdat->msound == MS_STENCH && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
+		switch (rnd(9)) {
+
+			case 1:
+				pline("Urgh! You inhale the vile stench that emanates from %s!", mon_nam(mtmp));
+				break;
+			case 2:
+				pline("%s's perfume is beguiling, and you have trouble concentrating!", Monnam(mtmp));
+				break;
+			case 3:
+				pline("You deeply inhale %s's feminine scent.", mon_nam(mtmp));
+				break;
+			case 4:
+				pline("%s's odor cloud made of concentrated perfume infiltrates your %s!", Monnam(mtmp), body_part(NOSE));
+				break;
+			case 5:
+				pline("Your %s are having trouble dealing with the asphyxiating stench that comes from %s!", makeplural(body_part(LUNG)), mon_nam(mtmp));
+				break;
+			case 6:
+				pline("%s attacks you with a fragrance cloud!", Monnam(mtmp));
+				break;
+			case 7:
+				pline("%s is close enough that you can smell %s perfume... but it's way too concentrated, and inhaling the aroma makes you dizzy!", Monnam(mtmp), mhis(mtmp));
+				break;
+			case 8:
+				pline("The lovely scent of femininity floods your nostrils... until you realize that it's getting ever stronger, and you are having trouble when breathing!");
+				break;
+			case 9:
+				pline("%s's perfume is so scentful that %s reminds you of what your aunt smells like when she comes for a visit on Christmas! Ugh!", Monnam(mtmp), mhe(mtmp));
+				break;
+
+		}
+		badeffect();
+	}
+
 	/* the watch will look around and see if you are up to no good :-) */
 	if (mdat == &mons[PM_WATCHMAN] || mdat == &mons[PM_WATCH_CAPTAIN] || mdat == &mons[PM_WATCH_LEADER] || mdat == &mons[PM_WATCH_LIEUTENANT])
 		watch_on_duty(mtmp);

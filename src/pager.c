@@ -5102,6 +5102,13 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Sabrina'. It reads: 'Oh, what are you doing here? Maybe you want to buy something? How about a golden amulet for only 1000 zorkmids? Or if you don't have much money, I can also offer you a whetstone for only 20 zorkmids!'",
 	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'Gimme your money. This a raid.'",
 	"Incoming message for Player 1. The message is from 'Yvonne'. It reads: 'My boyfriend is not here today, so I want to have sex with you instead. Come on, I need my daily orgasm.'",
+	"Christina Aguilera's perfume is beguiling, and you have trouble concentrating!",
+	"You deeply inhale Elena's feminine scent.",
+	"Anita's odor cloud made of concentrated perfume infiltrates your nose!",
+	"Vanessa attacks you with a fragrance cloud!",
+	"Sonja is close enough that you can smell her perfume... but it's way too concentrated, and inhaling the aroma makes you dizzy!",
+	"The lovely scent of femininity floods your nostrils... until you realize that it's getting ever stronger, and you are having trouble when breathing!",
+	"Hilda's perfume is so scentful that she reminds you of what your aunt smells like when she comes for a visit on Christmas! Ugh! (Bonus points if you actually have an aunt named Hilda.)",
 
 };
 

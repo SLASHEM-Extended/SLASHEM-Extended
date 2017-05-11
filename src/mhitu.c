@@ -1620,12 +1620,14 @@ mattacku(mtmp)
 	if(tmp <= 0) tmp = 1;
 	if (mtmp->data == &mons[PM_IVORY_COAST_STAR]) tmp += 30; /* this monster is aiming abnormally well */
 	if (mtmp->data == &mons[PM_HAND_OF_GOD]) tmp += 100; /* God personally is guiding this one's blows */
+	if (mtmp->data == &mons[PM_JOURHEA]) tmp -= 40;	/* has terribly bad aim */
 
 	/* farting monsters are simply more likely to hit you, except if you bash their sexy butts --Amy */
 	if (mtmp->data->msound == MS_FART_LOUD && !mtmp->butthurt) tmp += 5;
 	if (mtmp->data->msound == MS_FART_NORMAL && !mtmp->butthurt) tmp += 10;
 	if (mtmp->data->msound == MS_FART_QUIET && !mtmp->butthurt) tmp += 15;
 	if (mtmp->data->msound == MS_SHOE) tmp += rnd(20);
+	if (mtmp->data->msound == MS_STENCH) tmp += rnd(20);
 	if (mtmp->egotype_farter) tmp += 15;
 	if (mtmp->fartbonus) tmp += mtmp->fartbonus;
 	if (mtmp->crapbonus) tmp += mtmp->crapbonus;

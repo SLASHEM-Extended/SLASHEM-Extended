@@ -1011,6 +1011,8 @@ int traitno;
 			return "monsters whose stats are randomized per playthrough";
 		case 332:
 			return "monster shoes (AmyBSOD loves those!)";
+		case 333:
+			return "monsters that use an evil scentful perfume";
 
 		default:
 			return "unknown";

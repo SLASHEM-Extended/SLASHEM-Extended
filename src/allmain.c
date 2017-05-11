@@ -801,7 +801,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(332);
+				monstercolor = rnd(333);
 
 				if (wizard || !rn2(10)) pline(Hallucination ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
 
@@ -864,7 +864,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(332);
+				monstercolor = rnd(333);
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 

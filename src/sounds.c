@@ -1040,6 +1040,11 @@ register struct monst *mtmp;
 			verbl_msg = "You don't need to fight. Just stand there and we'll cause soothing pain to you.";
 	    }
 	    break;
+	case MS_STENCH:
+		pline("Inhaling %s's scentful perfume is not the brightest idea.", mon_nam(mtmp));
+		badeffect();
+	    break;
+
 	case MS_BOAST:	/* giants */
 	    if (!mtmp->mpeaceful) {
 		switch (rn2(4)) {
