@@ -3749,6 +3749,13 @@ xkilled(mtmp, dest)
 			otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE);
 		}
 
+		if (mdat == &mons[PM_UNIHORN_TROVE]) otmp = mksobj_at(UNICORN_HORN, x, y, TRUE, FALSE);
+
+		if (mdat == &mons[PM_MEGA_UNIHORN_TROVE]) {
+			otmp = mksobj_at(UNICORN_HORN, x, y, TRUE, FALSE);
+			otmp = mksobj_at(UNICORN_HORN, x, y, TRUE, FALSE);
+		}
+
 		if (mdat == &mons[PM_POTION_TROVE]) otmp = mkobj_at(POTION_CLASS, x, y, TRUE);
 		if (mdat == &mons[PM_WEAPON_TROVE]) otmp = mkobj_at(WEAPON_CLASS, x, y, TRUE);
 		if (mdat == &mons[PM_ARMOR_TROVE]) otmp = mkobj_at(ARMOR_CLASS, x, y, TRUE);

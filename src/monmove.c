@@ -1344,6 +1344,7 @@ not_special:
 
 	if (ptr == &mons[PM_ANCIENT_BIBLICAL_DRAGON]) appr = -1;
 	if (ptr == &mons[PM_BOGUXORN]) appr = -1;
+	if (ptr == &mons[PM_POOL_EDGE_SWIMMER]) appr = -1;
 
 	if ((!mtmp->mpeaceful || !rn2(10))
 #ifdef REINCARNATION
