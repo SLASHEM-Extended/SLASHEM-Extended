@@ -5983,7 +5983,17 @@ run_timers()
 	curr = timer_base;
 	timer_base = curr->next;
 
-	if (curr->kind == TIMER_OBJECT) ((struct obj *)(curr->arg))->timed--;
+	if (curr->kind == TIMER_OBJECT) {
+
+		if (!((struct obj *)curr->arg)) {
+			impossible("ERROR! run_timers - object does not exist");
+			free((genericptr_t) curr);
+			return;
+		}
+
+		((struct obj *)(curr->arg))->timed--;
+	}
+
 	(*timeout_funcs[curr->func_index].f)(curr->arg, curr->timeout);
 	free((genericptr_t) curr);
     }
@@ -6207,7 +6217,7 @@ write_timer(fd, timer)
 		/* replace object pointer with id */
 		arg_save = timer->arg;
 		if (!((struct obj *)timer->arg)) {
-			impossible("ERROR! timer object does not exist");
+			impossible("ERROR! write_timer - object does not exist");
 			break;
 		}
 
