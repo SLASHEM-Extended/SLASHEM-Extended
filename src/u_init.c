@@ -6369,6 +6369,13 @@ u_init()
 	struct permonst* randfweae = &mons[PM_FANNY_S_BRAND_NEW_SNEAKER];
 	struct permonst* randfweaf = &mons[PM_FANNY_S_BUCKLED_SANDAL];
 	struct permonst* randfweag = &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT];
+	struct permonst* randfweah = &mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER];
+	struct permonst* randfweai = &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT];
+	struct permonst* randfweaj = &mons[PM_ALIDA_S_HUGGING_BOOT];
+	struct permonst* randfweak = &mons[PM_BITCHY_LARA_S_HUGGING_BOOT];
+	struct permonst* randfweal = &mons[PM_EMMA_S_SEXY_WEDGE_SANDAL];
+	struct permonst* randfweam = &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL];
+	struct permonst* randfwean = &mons[PM_FANNY_S_LOVELY_WINTER_BOOT];
 
 	struct permonst* randxya = &mons[PM_RANDO_ANT];
 	struct permonst* randxyb = &mons[PM_RNGENERAL];
@@ -23421,6 +23428,373 @@ polyinitredo:
 	randfweag->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
 	randfweag->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 
+	randfweah->mmove = 14 + rn2(4);				/* slow to very fast */
+	randfweah->ac = 10 - rn2(11);				/* any AC */
+	randfweah->mr = rn2(81);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfweah->geno |= G_SGROUP;
+	else if (!rn2(200)) randfweah->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfweah->geno |= G_VLGROUP;
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randfweah->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(9)+1;				/* either too high or too low */
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randfweah->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(9)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 3; i++) {
+		randfweah->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfweah->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfweah->mflags2 |= (1 << rn2(31));
+	}
+	randfweah->mflags2 &= ~M2_MERC;				/* no guards */
+	randfweah->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randfweah->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+
+	for (i = 0; i < 1; i++) {
+		randfweah->mflags3 |= (1 << (12 + rn2(17)) );
+	}
+
+	randfweah->mflags3 &= ~M3_NONMOVING;				/* can always move around */
+
+	randfweai->mmove = 15 + rn2(6);				/* slow to very fast */
+	randfweai->ac = 10 - rn2(13);				/* any AC */
+	randfweai->mr = rn2(81);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfweai->geno |= G_SGROUP;
+	else if (!rn2(200)) randfweai->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfweai->geno |= G_VLGROUP;
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randfweai->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(14)+1;				/* either too high or too low */
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randfweai->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(14)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfweai->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfweai->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfweai->mflags2 |= (1 << rn2(31));
+	}
+	randfweai->mflags2 &= ~M2_MERC;				/* no guards */
+	randfweai->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randfweai->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+
+	randfweaj->mmove = 13 + rn2(4);				/* slow to very fast */
+	randfweaj->ac = 10 - rn2(13);				/* any AC */
+	randfweaj->mr = rn2(61);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfweaj->geno |= G_SGROUP;
+	else if (!rn2(200)) randfweaj->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfweaj->geno |= G_VLGROUP;
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randfweaj->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(8)+1;				/* either too high or too low */
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randfweaj->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(8)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 4; i++) {
+		randfweaj->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfweaj->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfweaj->mflags3 |= (1 << (12 + rn2(17)) );
+	}
+
+	randfweaj->mflags3 &= ~M3_NONMOVING;				/* can always move around */
+
+	randfweak->mmove = 14 + rn2(7);				/* slow to very fast */
+	randfweak->ac = 10 - rn2(14);				/* any AC */
+	randfweak->mr = rn2(81);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfweak->geno |= G_SGROUP;
+	else if (!rn2(200)) randfweak->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfweak->geno |= G_VLGROUP;
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randfweak->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(15)+1;				/* either too high or too low */
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randfweak->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(15)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfweak->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfweak->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfweak->mflags2 |= (1 << rn2(31));
+	}
+	randfweak->mflags2 &= ~M2_MERC;				/* no guards */
+	randfweak->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randfweak->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+
+	for (i = 0; i < 2; i++) {
+		randfweak->mflags3 |= (1 << (12 + rn2(17)) );
+	}
+
+	randfweak->mflags3 &= ~M3_NONMOVING;				/* can always move around */
+
+	randfweal->mmove = 13 + rn2(9);				/* slow to very fast */
+	randfweal->ac = 10 - rn2(7);				/* any AC */
+	randfweal->mr = rn2(41);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfweal->geno |= G_SGROUP;
+	else if (!rn2(200)) randfweal->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfweal->geno |= G_VLGROUP;
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randfweal->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(10)+1;				/* either too high or too low */
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randfweal->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(10)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfweal->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	randfweam->mmove = 13 + rn2(9);				/* slow to very fast */
+	randfweam->ac = 10 - rn2(7);				/* any AC */
+	randfweam->mr = rn2(41);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfweam->geno |= G_SGROUP;
+	else if (!rn2(200)) randfweam->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfweam->geno |= G_VLGROUP;
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randfweam->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(10)+1;				/* either too high or too low */
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randfweam->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(10)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfweam->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	randfwean->mmove = 14 + rn2(3);				/* slow to very fast */
+	randfwean->ac = 10 - rn2(16);				/* any AC */
+	randfwean->mr = rn2(61);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfwean->geno |= G_SGROUP;
+	else if (!rn2(200)) randfwean->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfwean->geno |= G_VLGROUP;
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randfwean->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+1;				/* either too high or too low */
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randfwean->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 3; i++) {
+		randfwean->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfwean->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfwean->mflags2 |= (1 << rn2(31));
+	}
+	randfwean->mflags2 &= ~M2_MERC;				/* no guards */
+	randfwean->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randfwean->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+
 	return;
 }
 
@@ -24461,6 +24835,13 @@ alter_reality()
 	struct permonst* randfweae = &mons[PM_FANNY_S_BRAND_NEW_SNEAKER];
 	struct permonst* randfweaf = &mons[PM_FANNY_S_BUCKLED_SANDAL];
 	struct permonst* randfweag = &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT];
+	struct permonst* randfweah = &mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER];
+	struct permonst* randfweai = &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT];
+	struct permonst* randfweaj = &mons[PM_ALIDA_S_HUGGING_BOOT];
+	struct permonst* randfweak = &mons[PM_BITCHY_LARA_S_HUGGING_BOOT];
+	struct permonst* randfweal = &mons[PM_EMMA_S_SEXY_WEDGE_SANDAL];
+	struct permonst* randfweam = &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL];
+	struct permonst* randfwean = &mons[PM_FANNY_S_LOVELY_WINTER_BOOT];
 
 	struct permonst* randxya = &mons[PM_RANDO_ANT];
 	struct permonst* randxyb = &mons[PM_RNGENERAL];
@@ -36336,6 +36717,373 @@ polyinitredoX:
 	randfweag->mflags2 &= ~M2_MERC;				/* no guards */
 	randfweag->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
 	randfweag->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+
+	randfweah->mmove = 14 + rn2(4);				/* slow to very fast */
+	randfweah->ac = 10 - rn2(11);				/* any AC */
+	randfweah->mr = rn2(81);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfweah->geno |= G_SGROUP;
+	else if (!rn2(200)) randfweah->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfweah->geno |= G_VLGROUP;
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randfweah->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(9)+1;				/* either too high or too low */
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randfweah->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(9)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 3; i++) {
+		randfweah->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfweah->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfweah->mflags2 |= (1 << rn2(31));
+	}
+	randfweah->mflags2 &= ~M2_MERC;				/* no guards */
+	randfweah->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randfweah->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+
+	for (i = 0; i < 1; i++) {
+		randfweah->mflags3 |= (1 << (12 + rn2(17)) );
+	}
+
+	randfweah->mflags3 &= ~M3_NONMOVING;				/* can always move around */
+
+	randfweai->mmove = 15 + rn2(6);				/* slow to very fast */
+	randfweai->ac = 10 - rn2(13);				/* any AC */
+	randfweai->mr = rn2(81);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfweai->geno |= G_SGROUP;
+	else if (!rn2(200)) randfweai->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfweai->geno |= G_VLGROUP;
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randfweai->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(14)+1;				/* either too high or too low */
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randfweai->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(14)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfweai->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfweai->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfweai->mflags2 |= (1 << rn2(31));
+	}
+	randfweai->mflags2 &= ~M2_MERC;				/* no guards */
+	randfweai->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randfweai->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+
+	randfweaj->mmove = 13 + rn2(4);				/* slow to very fast */
+	randfweaj->ac = 10 - rn2(13);				/* any AC */
+	randfweaj->mr = rn2(61);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfweaj->geno |= G_SGROUP;
+	else if (!rn2(200)) randfweaj->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfweaj->geno |= G_VLGROUP;
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randfweaj->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(8)+1;				/* either too high or too low */
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randfweaj->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(8)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 4; i++) {
+		randfweaj->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfweaj->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfweaj->mflags3 |= (1 << (12 + rn2(17)) );
+	}
+
+	randfweaj->mflags3 &= ~M3_NONMOVING;				/* can always move around */
+
+	randfweak->mmove = 14 + rn2(7);				/* slow to very fast */
+	randfweak->ac = 10 - rn2(14);				/* any AC */
+	randfweak->mr = rn2(81);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfweak->geno |= G_SGROUP;
+	else if (!rn2(200)) randfweak->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfweak->geno |= G_VLGROUP;
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randfweak->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(15)+1;				/* either too high or too low */
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randfweak->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(15)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfweak->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfweak->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfweak->mflags2 |= (1 << rn2(31));
+	}
+	randfweak->mflags2 &= ~M2_MERC;				/* no guards */
+	randfweak->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randfweak->mflags2 &= ~M2_WERE;				/* no lycanthropes */
+
+	for (i = 0; i < 2; i++) {
+		randfweak->mflags3 |= (1 << (12 + rn2(17)) );
+	}
+
+	randfweak->mflags3 &= ~M3_NONMOVING;				/* can always move around */
+
+	randfweal->mmove = 13 + rn2(9);				/* slow to very fast */
+	randfweal->ac = 10 - rn2(7);				/* any AC */
+	randfweal->mr = rn2(41);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfweal->geno |= G_SGROUP;
+	else if (!rn2(200)) randfweal->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfweal->geno |= G_VLGROUP;
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randfweal->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(10)+1;				/* either too high or too low */
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randfweal->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(10)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfweal->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	randfweam->mmove = 13 + rn2(9);				/* slow to very fast */
+	randfweam->ac = 10 - rn2(7);				/* any AC */
+	randfweam->mr = rn2(41);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfweam->geno |= G_SGROUP;
+	else if (!rn2(200)) randfweam->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfweam->geno |= G_VLGROUP;
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randfweam->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(10)+1;				/* either too high or too low */
+	}
+
+	for (i = 2; i < 4; i++) {
+		attkptr = &randfweam->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(10)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfweam->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	randfwean->mmove = 14 + rn2(3);				/* slow to very fast */
+	randfwean->ac = 10 - rn2(16);				/* any AC */
+	randfwean->mr = rn2(61);				/* varying amounts of MR */
+
+	if (!rn2(20)) randfwean->geno |= G_SGROUP;
+	else if (!rn2(200)) randfwean->geno |= G_LGROUP;
+	else if (!rn2(5000)) randfwean->geno |= G_VLGROUP;
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randfwean->mattk[i];
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+1;				/* either too high or too low */
+	}
+
+	for (i = 1; i < 2; i++) {
+		attkptr = &randfwean->mattk[i];
+		/* restrict it to certain types of attacks */
+		attkptr->aatyp = AT_MULTIPLY;
+		while (attkptr->aatyp == AT_MULTIPLY) {
+			attkptr->aatyp = rn2(AT_MULTIPLY);
+		}
+		if (attkptr->aatyp == AT_BOOM) {
+			attkptr->aatyp = AT_MAGC;
+		}
+		if (attkptr->aatyp == AT_EXPL) {
+			attkptr->aatyp = AT_WEAP;
+		}
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+		attkptr->damn = 2;				/* we're almost sure to get this wrong first time */
+		attkptr->damd = rnd(7)+1;				/* either too high or too low */
+	}
+
+	for (i = 0; i < 3; i++) {
+		randfwean->mresists |= (1 << rn2(8));		/* physical resistances... */
+	}
+
+	for (i = 0; i < 2; i++) {
+		randfwean->mflags1 |= (1 << rn2(33));		/* trainwreck this way :D */
+	}
+
+	for (i = 0; i < 1; i++) {
+		randfwean->mflags2 |= (1 << rn2(31));
+	}
+	randfwean->mflags2 &= ~M2_MERC;				/* no guards */
+	randfwean->mflags2 &= ~M2_PEACEFUL;			/* no peacefuls */
+	randfwean->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 
 	pline(Hallucination ? "You invoke the power of Eru Iluvator... err, Sauron. Whatever it's called." : "The power of Eru Iluvator flows through you!");
 	pline(Hallucination ? "Somehow, that did all of jack diddly." : "The world changes!");

@@ -687,6 +687,14 @@ register int fd, mode;
 	bwrite(fd, (genericptr_t) &mons[PM_RNGHOST], sizeof(struct permonst));
 	bwrite(fd, (genericptr_t) &mons[PM_RANDOMIZER_DRACONIAN], sizeof(struct permonst));
 
+	bwrite(fd, (genericptr_t) &mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_ALIDA_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_BITCHY_LARA_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_EMMA_S_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
+	bwrite(fd, (genericptr_t) &mons[PM_FANNY_S_LOVELY_WINTER_BOOT], sizeof(struct permonst));
+
 	/* must come before migrating_objs and migrating_mons are freed */
 	save_timers(fd, mode, RANGE_GLOBAL);
 	save_light_sources(fd, mode, RANGE_GLOBAL);

@@ -1238,6 +1238,28 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (genericptr_t) &mons[PM_RANDOMIZER_DRACONIAN], sizeof(struct permonst));
 	mons[PM_RANDOMIZER_DRACONIAN].mname = tname;
 
+	tname = mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER].mname;
+	mread(fd, (genericptr_t) &mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER], sizeof(struct permonst));
+	mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER].mname = tname;
+	tname = mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT].mname;
+	mread(fd, (genericptr_t) &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT], sizeof(struct permonst));
+	mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT].mname = tname;
+	tname = mons[PM_ALIDA_S_HUGGING_BOOT].mname;
+	mread(fd, (genericptr_t) &mons[PM_ALIDA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mons[PM_ALIDA_S_HUGGING_BOOT].mname = tname;
+	tname = mons[PM_BITCHY_LARA_S_HUGGING_BOOT].mname;
+	mread(fd, (genericptr_t) &mons[PM_BITCHY_LARA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mons[PM_BITCHY_LARA_S_HUGGING_BOOT].mname = tname;
+	tname = mons[PM_EMMA_S_SEXY_WEDGE_SANDAL].mname;
+	mread(fd, (genericptr_t) &mons[PM_EMMA_S_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
+	mons[PM_EMMA_S_SEXY_WEDGE_SANDAL].mname = tname;
+	tname = mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL].mname;
+	mread(fd, (genericptr_t) &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
+	mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL].mname = tname;
+	tname = mons[PM_FANNY_S_LOVELY_WINTER_BOOT].mname;
+	mread(fd, (genericptr_t) &mons[PM_FANNY_S_LOVELY_WINTER_BOOT], sizeof(struct permonst));
+	mons[PM_FANNY_S_LOVELY_WINTER_BOOT].mname = tname;
+
 	if(u.uhp <= 0 && (!Upolyd || u.mh <= 0)) {
 	    u.ux = u.uy = 0;	/* affects pline() [hence You()] */
 	    You("were not healthy enough to survive restoration.");
