@@ -5749,6 +5749,18 @@ dodip()
 			    (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {
+
+			if (rn2(2) && !obj->oerodeproof && is_rustprone(obj) && obj->oeroded == MAX_ERODE) {
+
+				remove_worn_item(obj, FALSE);
+				if (obj == uball) unpunish();
+				useupall(obj);
+				update_inventory();
+				pline("The item rusted away completely!");
+
+				return 1;
+			}
+
 			(void) get_wet(obj, level.flags.lethe);
 			if (obj->otyp == POT_ACID) useup(obj);
 		    }
