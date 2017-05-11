@@ -5627,8 +5627,12 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 
 		u.uhunger--;
 
-		extrahungerpoints = FastMetabolismEffect / 5000;
-		if (extrahungerpoints) u.uhunger -= extrahungerpoints;
+		extrahungerpoints = FastMetabolismEffect;
+		if (extrahungerpoints >= 67108864) extrahungerpoints -= 67108864;
+		if (extrahungerpoints >= 33554432) extrahungerpoints -= 33554432;
+		if (extrahungerpoints >= 16777216) extrahungerpoints -= 16777216;
+		extrahungerpoints /= 5000;
+		if (extrahungerpoints > 0) u.uhunger -= extrahungerpoints;
 	}
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") )) u.uhunger -= 2;
 
