@@ -1334,6 +1334,12 @@ boolean telekinesis;	/* not picking it up directly by hand */
 		costly_gold(obj->ox, obj->oy, gold_capacity);
 	    } else {
 		u.ugold += count;
+		/* fix SC343-20 by using the nh360 code --Amy */
+		if (count == obj->quan)
+		    delobj(obj);
+		else
+		    obj->quan -= count;
+		/* although hangup is generally cheating, and there are probably gazillions of other ways to exploit it :( */
 		if ((nearload = near_capacity()) != 0)
 		    pline("%s %ld gold piece%s.",
 			  nearload < MOD_ENCUMBER ?
@@ -1342,10 +1348,6 @@ boolean telekinesis;	/* not picking it up directly by hand */
 		else
 		    prinv((char *) 0, obj, count);
 		costly_gold(obj->ox, obj->oy, count);
-		if (count == obj->quan)
-		    delobj(obj);
-		else
-		    obj->quan -= count;
 	    }
 	    flags.botl = 1;
 	    if (flags.run) nomul(0, 0);
