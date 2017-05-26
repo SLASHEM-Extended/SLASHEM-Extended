@@ -770,6 +770,8 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 		if (yn_function(qbuf, ynchars, 'n') == 'y' ) {
 
 		if (drop_fmt) pline(drop_fmt, drop_arg);
+		/* undo any merge which took place */
+		if (obj->quan > oquan) obj = splitobj(obj, oquan);
 
 		dropx(obj); /* just drop the crap on the ground. Nobody needs tons of chain mails from just attacking orcs. */
 		return obj;
