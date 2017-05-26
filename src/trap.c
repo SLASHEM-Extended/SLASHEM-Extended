@@ -3639,6 +3639,7 @@ newegomon:
 		seetrap(trap);
 
 		forget_map(ALL_MAP);
+		docrt();
 
 		pline("Suddenly, you realize that you forgot to think about Maud.");
 		if (Hallucination) pline("You also forgot that you were suffering from amnesia.");
