@@ -7762,7 +7762,7 @@ struct obj *obj;
 			case AMULET_OF_RMB_LOSS:
 				pline("This amulet causes your right mouse button to stop working."); break;
 			case AMULET_OF_PEACE:
-				pline("While wearing this amulet, peaceful monsters have an orange background so you can instantly see that they're not hostile."); break;
+				pline("While wearing this amulet, peaceful monsters have a green background so you can instantly see that they're not hostile."); break;
 			case AMULET_OF_EXPLOSION:
 				pline("This amulet causes devices to explode."); break;
 			case AMULET_OF_WRONG_SEEING:
