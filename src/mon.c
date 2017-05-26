@@ -145,7 +145,7 @@ int mndx;
 	case PM_TROLL_MUMMY:    mndx = PM_TROLL;  break;
 	case PM_MIMIC_MUMMY:    mndx = PM_GIANT_MIMIC;  break;
 	case PM_TASMANIAN_ZOMBIE:    mndx = PM_TASMANIAN_DEVIL;  break;
-	case PM_ZOMBIE_PROSTITUTE:    mndx = PM_PROSTITUTE;  break;
+	case PM_ZOMBIE_PROSTITUTE:    mndx = PM_NORMAL_PROSTITUTE;  break;
 	default:  break;
 	}
 	return mndx;
@@ -576,6 +576,8 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_KNIGHT:
 	    case PM_UNDEAD_WARRIOR:
 	    case PM_UNDEAD_MONK:
+	    case PM_UNDEAD_PROSTITUTE:
+	    case PM_UNDEAD_KURWA:
 	    case PM_UNDEAD_PSION:
 	    case PM_UNDEAD_NECROMANCER:
 	    case PM_UNDEAD_NOBLEMAN:

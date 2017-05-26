@@ -4893,6 +4893,27 @@ static const char * const bogusmons[] = {
 	"555 Survivor",
 	"One Who Killed The Serpent",
 
+	"Cheap Sex Slave",
+	"Kidnapped Beauty",
+	"Sex Market Commodity",
+	"Spread Legs",
+	"STD Lover",
+	"Many-Times-Fucked",
+	"Orgasm Bomber",
+	"Men's Wet Dream",
+	"Highest-Selling Wench",
+	"Ewa", "Lorskel", "Kaczynski", /* Polish names */
+	"Light Girl",
+	"Attractive Hooker",
+	"Sexy Butt Cheeks",
+	"Money Body",
+	"Noble Prostitute",
+	"Beautiful Harlot",
+	"Sexbomb",
+	"Top-Class Working Girl",
+	"King's Secret Love",
+	"Mercedes", "Misty", "Kendl", /* Grand Theft Auto */
+
 };
 
 /* Return a random monster name, for hallucination.

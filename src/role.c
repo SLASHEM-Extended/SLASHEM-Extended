@@ -1737,6 +1737,34 @@ const struct Role roles[] = {
 	10, 8, 0, 2,  9, A_INT, SPE_CAUSE_FEAR,    -4
 },
 
+{	{"Kurwa", 0}, {
+	{"Cheap Sex Slave",    0},
+	{"Kidnapped Beauty",    0},
+	{"Sex Market Commodity",    0},
+	{"Spread Legs",    0},
+	{"STD Lover",    0},
+	{"Many-Times-Fucked",    0},
+	{"Orgasm Bomber",    0},
+	{"Men's Wet Dream",    0},
+	{"Highest-Selling Wench",      0} },
+	"_Ewa", "Lorskel", "Kaczynski", /* Polish names */
+	"Kur", "Hardcore-O-Mania Brothel", "Shadow Government realm",
+	PM_KURWA, NON_PM, PM_UNDEAD_KURWA, NON_PM, PM_JENNIFER,
+	PM_BIG_D, PM_ATTENDANT, PM_CASH_GREEDY_FINANCE_MINISTER, PM_TAX_A_DRIVER,
+	PM_GIANT_MUMAK, PM_INVISIBLE_CC, S_BAT, S_QUADRUPED,
+	ART_LORSKEL_S_INTEGRITY,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 15, 5, 15, 20, 25 },
+	/* Init   Lower  Higher */
+	{ 15, 0,  0, 3,  2, 0 },	/* Hit points */
+	{  7, 0,  0, 2,  0, 2 },12,	/* Energy */
+	10, 5, -3, 2, 4, A_INT, SPE_MAKE_VISIBLE,   -4
+},
+
 {	{"Ladiesman", 0}, {
 	{"Wiseguy",    0},
 	{"Mirror Looker",    0},
@@ -2458,6 +2486,35 @@ const struct Role roles[] = {
 	{ 17, 3,  0, 2,  0, 2 },10,	/* Energy */
 	0, 3,-2, 2, 10, A_WIS, SPE_REMOVE_CURSE,    -4
 },
+
+{	{"Prostitute", 0}, {
+	{"Light Girl",    0},
+	{"Attractive Hooker",    0},
+	{"Sexy Butt Cheeks",    0},
+	{"Money Body",    0},
+	{"Noble Prostitute",    0},
+	{"Beautiful Harlot",    0},
+	{"Sexbomb",    0},
+	{"Top-Class Working Girl",    0},
+	{"King's Secret Love",      0} },
+	"_Mercedes", "_Misty", "_Kendl", /* Grand Theft Auto */
+	"Pro", "Luigi's Sex Club", "Center of Human Hate",
+	PM_PROSTITUTE, NON_PM, PM_UNDEAD_PROSTITUTE, NON_PM, PM_ELIF,
+	PM_LUIGI, PM_ATTENDANT, PM_FOAMING_WHITE_KNIGHT, PM_SOCIAL_JUSTICE_IDIOT,
+	PM_MUMAK, PM_CARRION_BIRD, S_BAT, S_QUADRUPED,
+	ART_HIGHEST_FEELING,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20, 15, 5, 15, 20, 25 },
+	/* Init   Lower  Higher */
+	{ 15, 0,  0, 3,  2, 0 },	/* Hit points */
+	{  7, 0,  0, 2,  0, 2 },12,	/* Energy */
+	10, 5, -3, 2, 4, A_INT, SPE_TAKE_SELFIE,   -4
+},
+
 {	{"Psion", 0}, {
 	{"Cantripper",         0},
 	{"Spoonbender",            0},

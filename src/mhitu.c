@@ -73,6 +73,13 @@ on the first floor, especially when you're playing as something with drain resis
 		case AT_CLAW:
 			pline("%s claws you!", Monnam(mtmp));
 
+			if (Role_if(PM_PROSTITUTE) || Role_if(PM_KURWA)) {
+
+				You_cant("move!");
+				nomul(-2, "being clawed");
+
+			}
+
 			if ((flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5)) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") )) ) { 
 				pline("%s rips into your breast with maniacal fervor!", Monnam(mtmp));
 
@@ -155,7 +162,7 @@ on the first floor, especially when you're playing as something with drain resis
 				losehp(rno(u.legscratching + 1), "being scratched by Jeanetta's little boots", KILLED_BY);
 			}
 
-			if (!flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) { 
+			if (!flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) { 
 				pline("%s's kick painfully slams into your nuts!", Monnam(mtmp));
 
 			monsterlev = ((mtmp->m_lev) + 1);
@@ -6149,7 +6156,7 @@ dopois:
 		if (flags.female && uarm && uarm->oartifact == ART_PRECIOUS_VIRGINITY) break;
 
 		if(could_seduceX(mtmp, &youmonst, mattk) == 1
-			&& !mtmp->mcan && (issoviet || rn2(2) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bosh ketish etigi") )) ) ) /* 50% chance --Amy */
+			&& !mtmp->mcan && (issoviet || rn2(2) || (uarmf && uarmf->oartifact == ART_LORSKEL_S_INTEGRITY) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bosh ketish etigi") )) ) ) /* 50% chance --Amy */
 		    if (doseduce(mtmp))
 			return 3;
 		break;
@@ -15757,7 +15764,10 @@ register struct monst *mon;
 		}
 	}
 
-	if (mon->mtame) /* don't charge */ ;
+	if (Role_if(PM_PROSTITUTE) || Role_if(PM_KURWA)) {
+		verbalize(rn2(2) ? "You're great! Here, this money is for you." : "Oh my god... Here, take this money, it's all I have!");
+		u.ugold += rnz(100);
+	} else if (mon->mtame) /* don't charge */ ;
 	else if (rn2(120) < ACURR(A_CHA)) {
 		pline("%s demands that you pay %s, but you refuse...",
 			noit_Monnam(mon),

@@ -571,6 +571,8 @@ static const struct innate_tech
 	tra_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   17, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
+	kur_tech[] = { {   1, T_ATTIRE_CHARM, 1},
+		       {   0, 0, 0} },
 	trs_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   17, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
@@ -3956,6 +3958,8 @@ role_tech()
 		case PM_FLAME_MAGE:	return (fla_tech);
 		case PM_ACID_MAGE:	return (aci_tech);
 		case PM_TRANSVESTITE:	return (tra_tech);
+		case PM_PROSTITUTE:	return (kur_tech);
+		case PM_KURWA:	return (kur_tech);
 		case PM_TRANSSYLVANIAN:	return (trs_tech);
 		case PM_TOPMODEL:	return (top_tech);
 		case PM_FAILED_EXISTENCE:	return (fai_tech);

@@ -2527,7 +2527,7 @@ makelevel()
 	    case 92:
 	    case 93:
 
-		switch (rnd(580)) {
+		switch (rnd(590)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -3109,6 +3109,16 @@ makelevel()
 			case 578: makemaz("Occ-3"); return;
 			case 579: makemaz("Occ-4"); return;
 			case 580: makemaz("Occ-5"); return;
+			case 581: makemaz("Pro-1"); return;
+			case 582: makemaz("Pro-2"); return;
+			case 583: makemaz("Pro-3"); return;
+			case 584: makemaz("Pro-4"); return;
+			case 585: makemaz("Pro-5"); return;
+			case 586: makemaz("Kur-1"); return;
+			case 587: makemaz("Kur-2"); return;
+			case 588: makemaz("Kur-3"); return;
+			case 589: makemaz("Kur-4"); return;
+			case 590: makemaz("Kur-5"); return;
 
 		}
 		break;
@@ -4062,7 +4072,7 @@ makelevel()
 	    case 92:
 	    case 93:
 
-		switch (rnd(580)) {
+		switch (rnd(590)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -4644,6 +4654,16 @@ makelevel()
 			case 578: makemaz("Occ-8"); return;
 			case 579: makemaz("Occ-9"); return;
 			case 580: makemaz("Occ-0"); return;
+			case 581: makemaz("Pro-6"); return;
+			case 582: makemaz("Pro-7"); return;
+			case 583: makemaz("Pro-8"); return;
+			case 584: makemaz("Pro-9"); return;
+			case 585: makemaz("Pro-0"); return;
+			case 586: makemaz("Kur-6"); return;
+			case 587: makemaz("Kur-7"); return;
+			case 588: makemaz("Kur-8"); return;
+			case 589: makemaz("Kur-9"); return;
+			case 590: makemaz("Kur-0"); return;
 		}
 		break;
 
@@ -6012,7 +6032,7 @@ makelevel()
 	    case 92:
 	    case 93:
 
-		switch (rnd(580)) {
+		switch (rnd(590)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -6594,6 +6614,16 @@ makelevel()
 			case 578: makemaz("Occ-3"); return;
 			case 579: makemaz("Occ-4"); return;
 			case 580: makemaz("Occ-5"); return;
+			case 581: makemaz("Pro-1"); return;
+			case 582: makemaz("Pro-2"); return;
+			case 583: makemaz("Pro-3"); return;
+			case 584: makemaz("Pro-4"); return;
+			case 585: makemaz("Pro-5"); return;
+			case 586: makemaz("Kur-1"); return;
+			case 587: makemaz("Kur-2"); return;
+			case 588: makemaz("Kur-3"); return;
+			case 589: makemaz("Kur-4"); return;
+			case 590: makemaz("Kur-5"); return;
 		}
 		break;
 
@@ -7543,7 +7573,7 @@ makelevel()
 	    case 92:
 	    case 93:
 
-		switch (rnd(580)) {
+		switch (rnd(590)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -8125,6 +8155,16 @@ makelevel()
 			case 578: makemaz("Occ-8"); return;
 			case 579: makemaz("Occ-9"); return;
 			case 580: makemaz("Occ-0"); return;
+			case 581: makemaz("Pro-6"); return;
+			case 582: makemaz("Pro-7"); return;
+			case 583: makemaz("Pro-8"); return;
+			case 584: makemaz("Pro-9"); return;
+			case 585: makemaz("Pro-0"); return;
+			case 586: makemaz("Kur-6"); return;
+			case 587: makemaz("Kur-7"); return;
+			case 588: makemaz("Kur-8"); return;
+			case 589: makemaz("Kur-9"); return;
+			case 590: makemaz("Kur-0"); return;
 		}
 		break;
 

@@ -14081,6 +14081,10 @@ struct obj *obj;
 					pline("Artifact specs: fire, cold and shock resistance when worn, increases the average range of all beams, neutral, elementalist quest artifact."); break;
 				case ART_ELLI_S_PSEUDOBAND_OF_POS:
 					pline("Artifact specs: reflection when wielded, +8 to-hit and +8 drain life damage, chaotic, wild talent quest artifact."); break;
+				case ART_HIGHEST_FEELING:
+					pline("Artifact specs: teleport control, half physical damage and fire resistance when worn, 50%% chance of extra speed, neutral, prostitute quest artifact."); break;
+				case ART_LORSKEL_S_INTEGRITY:
+					pline("Artifact specs: reflection and magic resistance when worn, spawns fart traps every once in a while, chaotic, kurwa quest artifact. It also retains the lolita boots effect of monsters wanting to have sex with you, even if the base item type is changed to something else."); break;
 
 				case ART_SOFTNESS_OF_TELEPORTATION:
 					pline("Artifact specs: no specialties."); break;

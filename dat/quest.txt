@@ -5868,6 +5868,456 @@ hasn't been defeated yet! You must kill her for me!"
 %E
 
 #
+#       Prostitute
+#
+%Cc Pro 00001
+You are back at %H, and %l needs your aid.
+%d herself must have sensed some danger! Better hurry up!
+%E
+%Cp Pro 00002
+Once again, you are back at %H.
+%E
+%Cp Pro 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Pro 00005
+"Banged any cocks lately?"
+%E
+%Cp Pro 00006
+"Our profession is honorable! Never forget that!"
+%E
+%Cp Pro 00007
+"We gotta make money in any way possible."
+%E
+%Cp Pro 00008
+"Don't forget to treat any slexually transmitted diseases you might contract."
+%E
+%Cp Pro 00009
+"If your customer doesn't pay, call %l!"
+%E
+%Cp Pro 00010
+"Thanks for getting rid of that %n asshole!"
+%E
+%Cp Pro 00011
+"%n can suck cocks in hell now."
+%E
+%Cp Pro 00012
+"I'm sure your income will be at least doubled now!"
+%E
+%Cp Pro 00013
+"We won't let anyone call us criminals!"
+%E
+%Cp Pro 00014
+"Keep using your body as a precious commodity!"
+%E
+%Cc Pro 00015
+"%p! Quick, some blasted %n figure showed up and
+is threatening to report us to the police! You will go to %i
+and kill him for us!
+
+I'll check whether you are ready!"
+%E
+%Cp Pro 00016
+"%p, you gotta hurry! %n will tell the police
+about us any moment now!
+
+I'll check again whether you are ready!"
+%E
+%Cp Pro 00017
+"Come on %p, you know I can't send in a pimp because they're
+all otherwise preoccupied! You need to go and defeat %n!
+
+I'll check a last time whether you are ready!"
+%E
+%Cc Pro 00018
+"Ah shit, it seems we have nobody who can stand up to %n now.
+We might as well shut down our business now."
+%E
+%Cc Pro 00019
+"%p, you're too insecure and lacking combat skill!
+Go train your abilities, quickly, and then come back to me at once!"
+%E
+%Cc Pro 00020
+"Your mind has been shrouded by %n's propaganda, %p.
+Go away and meditate for a while or whatever it is you need to do,
+but then I expect you to come back and help us!"
+%E
+%Cc Pro 00021
+"Alright %p, you are ready to face %n.
+Travel to %i and be aware of hostile guards that might have been
+set up to obstruct your progress. If you manage to kill %n,
+you will not only save our profession but also receive a beautiful
+pair of high heels! It's gonna make you irresistible and many more
+suitors will come to pay for your services!
+
+Good luck!"
+%E
+%Cp Pro 00025
+"%n is dangerous, but you have to kill him!"
+%E
+%Cp Pro 00026
+"Do not listen to anything %n has to say - he's evil!"
+%E
+%Cp Pro 00027
+"%n thinks we're criminals! He has to die for that offense!"
+%E
+%Cp Pro 00028
+"%n is old and wrinkled and doesn't know about the joys of having sex!"
+%E
+%Cp Pro 00029
+"Remember, you're sexy and you know it!"
+%E
+%Cp Pro 00030
+"Good luck, and think about all the money you'll earn!"
+%E
+%Cp Pro 00031
+"If you are successful, you will receive %o as a prize!"
+%E
+%Cp Pro 00032
+"Need a refresher? %i is the location where %n is hiding!"
+%E
+%Cp Pro 00033
+"Get on your way to %i!"
+%E
+%Cp Pro 00034
+"Why are you wasting time? %n is planning evil things!"
+%E
+%Cc Pro 00035
+%i seems to be not too far away from here.
+
+Better approach quickly.
+%E
+%Cp Pro 00036
+Once again, you see %i in the distance.
+%E
+%Cc Pro 00040
+You have arrived at %i, where %n is hiding.
+Quick, find and kill him, and %l will be very happy!
+%E
+%Cp Pro 00041
+Once again you enter %i, looking for %n. Where is that little coward?
+%E
+%Cc Pro 00050
+"Criminal alert! Whoever you are, you're working for that gangster boss
+%l! I will get you arrested, and his entire squad of goons as well as
+himself."
+%E
+%Cc Pro 00051
+"Your great %l has not been paying his taxes, and I will make sure
+that he will pay an even bigger price!"
+%E
+%Cp Pro 00052
+"You're the first one I'm gonna silence!"
+%E
+%Cp Pro 00053
+"And you've just committed another crime! This theft will increase
+your sentence by at least five years."
+%E
+%Cp Pro 00060
+"Admit it, you're a lowly whore."
+%E
+%Cp Pro 00061
+"I will purge the streets of scum like you."
+%E
+%Cp Pro 00062
+"Your profession is a crime, and I will fight you!"
+%E
+%Cp Pro 00063
+"%l will pay! Oh yes, he will pay!"
+%E
+%Cp Pro 00064
+"My employer does not tolerate failures! I will make him
+proud by getting you jailed!"
+%E
+%Cp Pro 00065
+"You are a danger for the public, but I will eliminate you!"
+%E
+%Cp Pro 00066
+"Look at you, selling your vagina for money. You should be ashamed
+of yourself."
+%E
+%Cp Pro 00067
+"All the suitors that have visited you will be locked up as well!"
+%E
+%Cp Pro 00068
+"%H will be shut down once I'm done dealing with %l!"
+%E
+%Cp Pro 00069
+"%H will cease to exist! No scummy whorehouse is allowed
+to exist in MY town!"
+%E
+%Cc Pro 00070
+You got %o! And they're yours now!
+%E
+%Cp Pro 00080
+At last, %n is defeated. %l will be very happy now.
+%E
+%Cc Pro 00081
+%l speaks:
+
+"Great work, %p! We are safe from any petty lawsuits, thanks
+to you. We will never have to deal with %n again.
+
+As a sign of my gratitude, I allow you to violate %n's corpse!
+Hahaha! Just kidding!"
+%E
+%Cc Pro 00082
+"You look really pretty with %o, %p."
+%E
+%Cc Pro 00090
+"Welcome back, %p! Ever since you killed %n, things have been
+looking great!"
+%E
+%Cc Pro 00091
+"You're the best, %p! Thanks to your help, we will be able
+to make customers happy until the end of time!"
+%E
+%Cc Pro 00095
+"I see that you have defected to %n's side.
+Why don't you go join him in hell? Get out of my sight!"
+%E
+
+%Cp Pro 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Pro 00101
+You again sense %l pleading for help.
+%E
+%Cp Pro 00102
+"%p, I see you've had some success, but the evil %n
+is still alive and remains a threat! Go back and kill him now!"
+%E
+
+#
+#       Kurwa
+#
+%Cc Kur 00001
+You are back at %H, and %l needs your aid.
+%d herself must have sensed some danger! Better hurry up!
+%E
+%Cp Kur 00002
+Once again, you are back at %H.
+%E
+%Cp Kur 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Kur 00005
+"Banged any cocks lately?"
+%E
+%Cp Kur 00006
+"Our profession is honorable! Never forget that!"
+%E
+%Cp Kur 00007
+"We gotta make money in any way possible."
+%E
+%Cp Kur 00008
+"Don't forget to treat any slexually transmitted diseases you might contract."
+%E
+%Cp Kur 00009
+"If your customer doesn't pay, call %l!"
+%E
+%Cp Kur 00010
+"Thanks for getting rid of that %n asshole!"
+%E
+%Cp Kur 00011
+"%n can suck cocks in hell now."
+%E
+%Cp Kur 00012
+"I'm sure your income will be at least doubled now!"
+%E
+%Cp Kur 00013
+"We won't let anyone call us criminals!"
+%E
+%Cp Kur 00014
+"Keep using your body as a precious commodity!"
+%E
+%Cc Kur 00015
+"%p! Quick, some blasted %n figure showed up and
+is threatening to report us to the police! You will go to %i
+and kill him for us!
+
+I'll check whether you are ready!"
+%E
+%Cp Kur 00016
+"%p, you gotta hurry! %n will tell the police
+about us any moment now!
+
+I'll check again whether you are ready!"
+%E
+%Cp Kur 00017
+"Come on %p, you know I can't send in a pimp because they're
+all otherwise preoccupied! You need to go and defeat %n!
+
+I'll check a last time whether you are ready!"
+%E
+%Cc Kur 00018
+"Ah shit, it seems we have nobody who can stand up to %n now.
+We might as well shut down our business now."
+%E
+%Cc Kur 00019
+"%p, you're too insecure and lacking combat skill!
+Go train your abilities, quickly, and then come back to me at once!"
+%E
+%Cc Kur 00020
+"Your mind has been shrouded by %n's propaganda, %p.
+Go away and meditate for a while or whatever it is you need to do,
+but then I expect you to come back and help us!"
+%E
+%Cc Kur 00021
+"Alright %p, you are ready to face %n.
+Travel to %i and be aware of hostile guards that might have been
+set up to obstruct your progress. If you manage to kill %n,
+you will not only save our profession but also receive a beautiful
+pair of high heels! It's gonna make you irresistible and many more
+suitors will come to pay for your services!
+
+Good luck!"
+%E
+%Cp Kur 00025
+"%n is dangerous, but you have to kill him!"
+%E
+%Cp Kur 00026
+"Do not listen to anything %n has to say - he's evil!"
+%E
+%Cp Kur 00027
+"%n thinks we're criminals! He has to die for that offense!"
+%E
+%Cp Kur 00028
+"%n is old and wrinkled and doesn't know about the joys of having sex!"
+%E
+%Cp Kur 00029
+"Remember, you're sexy and you know it!"
+%E
+%Cp Kur 00030
+"Good luck, and think about all the money you'll earn!"
+%E
+%Cp Kur 00031
+"If you are successful, you will receive %o as a prize!"
+%E
+%Cp Kur 00032
+"Need a refresher? %i is the location where %n is hiding!"
+%E
+%Cp Kur 00033
+"Get on your way to %i!"
+%E
+%Cp Kur 00034
+"Why are you wasting time? %n is planning evil things!"
+%E
+%Cc Kur 00035
+%i seems to be not too far away from here.
+
+Better approach quickly.
+%E
+%Cp Kur 00036
+Once again, you see %i in the distance.
+%E
+%Cc Kur 00040
+You have arrived at %i, where %n is hiding.
+Quick, find and kill him, and %l will be very happy!
+%E
+%Cp Kur 00041
+Once again you enter %i, looking for %n. Where is that little coward?
+%E
+%Cc Kur 00050
+"Criminal alert! Whoever you are, you're working for that gangster boss
+%l! I will get you arrested, and his entire squad of goons as well as
+himself."
+%E
+%Cc Kur 00051
+"Your great %l has not been paying his taxes, and I will make sure
+that he will pay an even bigger price!"
+%E
+%Cp Kur 00052
+"You're the first one I'm gonna silence!"
+%E
+%Cp Kur 00053
+"And you've just committed another crime! This theft will increase
+your sentence by at least five years."
+%E
+%Cp Kur 00060
+"Admit it, you're a lowly whore."
+%E
+%Cp Kur 00061
+"I will purge the streets of scum like you."
+%E
+%Cp Kur 00062
+"Your profession is a crime, and I will fight you!"
+%E
+%Cp Kur 00063
+"%l will pay! Oh yes, he will pay!"
+%E
+%Cp Kur 00064
+"My employer does not tolerate failures! I will make him
+proud by getting you jailed!"
+%E
+%Cp Kur 00065
+"You are a danger for the public, but I will eliminate you!"
+%E
+%Cp Kur 00066
+"Look at you, selling your vagina for money. You should be ashamed
+of yourself."
+%E
+%Cp Kur 00067
+"All the suitors that have visited you will be locked up as well!"
+%E
+%Cp Kur 00068
+"%H will be shut down once I'm done dealing with %l!"
+%E
+%Cp Kur 00069
+"%H will cease to exist! No scummy whorehouse is allowed
+to exist in MY town!"
+%E
+%Cc Kur 00070
+You got %o! And they're yours now!
+%E
+%Cp Kur 00080
+At last, %n is defeated. %l will be very happy now.
+%E
+%Cc Kur 00081
+%l speaks:
+
+"Great work, %p! We are safe from any petty lawsuits, thanks
+to you. We will never have to deal with %n again.
+
+As a sign of my gratitude, I allow you to violate %n's corpse!
+Hahaha! Just kidding!"
+%E
+%Cc Kur 00082
+"You look really pretty with %o, %p."
+%E
+%Cc Kur 00090
+"Welcome back, %p! Ever since you killed %n, things have been
+looking great!"
+%E
+%Cc Kur 00091
+"You're the best, %p! Thanks to your help, we will be able
+to make customers happy until the end of time!"
+%E
+%Cc Kur 00095
+"I see that you have defected to %n's side.
+Why don't you go join him in hell? Get out of my sight!"
+%E
+
+%Cp Kur 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Kur 00101
+You again sense %l pleading for help.
+%E
+%Cp Kur 00102
+"%p, I see you've had some success, but the evil %n
+is still alive and remains a threat! Go back and kill him now!"
+%E
+
+#
 #       Transsylvanian
 #
 %Cc Trs 00001

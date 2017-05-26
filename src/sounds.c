@@ -1750,6 +1750,15 @@ dochat()
 
 	}
 
+	if ((Role_if(PM_PROSTITUTE) || Role_if(PM_KURWA)) && humanoid(mtmp->data) ) {
+
+		if (!(mtmp->mtame)) {
+			(void) doseduce(mtmp);
+			return 1;
+		}
+
+	}
+
     if (Role_if(PM_LADIESMAN) && !flags.female && (mtmp->data->mlet == S_NYMPH || mtmp->data->msound == MS_NURSE || mtmp->data->msound == MS_SEDUCE || mtmp->data->msound == MS_WHORE) && !mtmp->mtame && !mtmp->mpeaceful && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
 
 		if (yn("Seduce this pretty lady?") == 'y') {

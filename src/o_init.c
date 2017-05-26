@@ -2351,6 +2351,25 @@ find_lolita_boots()
 }
 
 int
+find_fetish_heels()
+{
+    register int i;
+    register const char *s;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fetish heels"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "idol kabluki"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "but poshnalar"))
+	    return i;
+    }
+
+    impossible("fetish heels not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_weapon_light_boots()
 {
     register int i;

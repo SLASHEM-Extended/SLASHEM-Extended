@@ -99,6 +99,8 @@ E boolean FDECL(artifact_has_invprop, (struct obj *,int));
 E long FDECL(arti_cost, (struct obj *));
 E void FDECL(arti_poly_contents, (struct obj *));
 E int NDECL(find_wildtalentartifact);
+E int NDECL(find_prostituteartifact);
+E int NDECL(find_kurwaartifact);
 
 /* ### attrib.c ### */
 
@@ -1794,6 +1796,7 @@ E int NDECL(find_velcro_sandals);
 E int NDECL(find_buffalo_boots);
 E int NDECL(find_heroine_mocassins);
 E int NDECL(find_lolita_boots);
+E int NDECL(find_fetish_heels);
 E int NDECL(find_weapon_light_boots);
 E int NDECL(find_rubynus_helmet);
 E void NDECL(oinit);

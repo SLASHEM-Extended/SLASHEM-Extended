@@ -1100,6 +1100,7 @@ moveloop()
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
 			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += NORMAL_SPEED / 2;
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
+			if (uarmf && (uarmf->oartifact == ART_HIGHEST_FEELING) && !rn2(2)) moveamt += NORMAL_SPEED / 2;
 			if (uarmc && (uarmc->oartifact == ART_WINDS_OF_CHANGE) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
 			if (uarm && (uarm->oartifact == ART_FORMULA_ONE_SUIT) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
 			if (uarmh && !rn2(10) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula one helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula odin shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "formula bir zarbdan") ) ) moveamt += NORMAL_SPEED / 2;
@@ -3848,11 +3849,15 @@ newbossA:
 			do_mappingX();
 		}
 
+		if (Role_if(PM_KURWA) && !rn2(2000)) { /* re-randomize object appearances */
+			init_objects();
+		}
+
 		if (uarmf && uarmf->oartifact == ART_GRENEUVENIA_S_HUG) {
 			randomcuss();
 		}
 
-		if (MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || have_mommystone()) {
+		if ((MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || have_mommystone()) && !rn2(100)) {
 			randomcuss();
 		}
 
@@ -4344,6 +4349,23 @@ newbossB:
 		}
 
 		if (FemaleTrapFemmy && !rn2(200)) {
+
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0);
+					break;
+					}
+			}
+
+		}
+
+		if (uarmf && uarmf->oartifact == ART_LORSKEL_S_INTEGRITY && !rn2(500)) {
 
 			int tryct = 0;
 			int x, y;

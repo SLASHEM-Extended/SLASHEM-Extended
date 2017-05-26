@@ -133,6 +133,15 @@ const struct innate {
 			{	30, &(InventoryLoss), "", "" },
 		     {	 0, 0, 0, 0 } },
 
+	kur_abil[] = { {   4, &(NotSeenBug), "", "" },
+			{	8, &(GrayoutBug), "", "" },
+			{	12, &(DifficultyIncreased), "", "" },
+			{	16, &(UnfairAttackBug), "", "" },
+			{	20, &(EnmityBug), "", "" },
+			{	25, &(ElongationBug), "", "" },
+			{	30, &(Antileveling), "", "" },
+		     {	 0, 0, 0, 0 } },
+
 	mah_abil[] = { {   1, &(HAggravate_monster), "", "" },
 			{	1, &(HAntimagic), "", "" },
 			{   7, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
@@ -1439,6 +1448,7 @@ int oldlevel, newlevel;
 	case PM_MURDERER:        abil = mur_abil;	break;
 	case PM_FAILED_EXISTENCE:        abil = fai_abil;	break;
 	case PM_TRANSSYLVANIAN:        abil = trs_abil;	break;
+	case PM_KURWA:        abil = kur_abil;	break;
 	case PM_FLAME_MAGE:	abil = fla_abil;	break;
 	case PM_COOK:	abil = coo_abil;	break;
 	case PM_FIREFIGHTER:	abil = fir_abil;	break;

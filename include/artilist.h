@@ -6340,6 +6340,14 @@ A("The King's Stolen Crown", HELM_OF_OPPOSITE_ALIGNMENT,
 	NO_ATTK,        NO_DFNS,        CARY(AD_MAGM),
 	LEV_TELE,  A_LAWFUL, PM_JESTER, NON_PM, 5000L ),
 
+A("Highest Feeling",    LOW_BOOTS, /* initialized to always be fetish heels; 50% chance of extra speed */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_TCTRL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK,        DFNS(AD_FIRE),        NO_CARY,    0, A_NEUTRAL, PM_PROSTITUTE, NON_PM, 10000L ),
+
+A("Lorskel's Integrity",    LOW_BOOTS, /* initialized to always be lolita boots, spawns fart traps every once in a while, has the lolita boots effect even if the base item type changes (because kurwa) */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT), 0, 0,
+	NO_ATTK,        DFNS(AD_MAGM),        NO_CARY,    0, A_CHAOTIC, PM_KURWA, NON_PM, 5000L ),
+
 A("The Slime Crown", HELM_OF_STORMS,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_HSPDAM|SPFX_HPHDAM), 0,
 	NO_ATTK,        NO_DFNS,        CARY(AD_MAGM),

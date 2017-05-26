@@ -301,6 +301,8 @@ hack_artifacts()
 	artilist[ART_TAILCUTTER].otyp = randartmeleeweaponX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
+	artilist[ART_HIGHEST_FEELING].otyp = find_fetish_heels();
+	artilist[ART_LORSKEL_S_INTEGRITY].otyp = find_lolita_boots();
 
 	artilist[ART_PHANTOM_OF_THE_OPERA].otyp = find_opera_cloak();
 	artilist[ART_HIGH_DESIRE_OF_FATALITY].otyp = find_explosive_boots();
@@ -2670,6 +2672,20 @@ int
 find_wildtalentartifact()
 {
 	int artifactnumber = artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp;
+	return artifactnumber;
+}
+
+int
+find_prostituteartifact()
+{
+	int artifactnumber = artilist[ART_HIGHEST_FEELING].otyp;
+	return artifactnumber;
+}
+
+int
+find_kurwaartifact()
+{
+	int artifactnumber = artilist[ART_LORSKEL_S_INTEGRITY].otyp;
 	return artifactnumber;
 }
 

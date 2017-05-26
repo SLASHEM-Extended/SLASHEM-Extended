@@ -1969,6 +1969,27 @@ register struct monst *mtmp;
 
 		   break;
 
+		   case PM_PROSTITUTE:
+		   case PM_UNDEAD_PROSTITUTE:
+		   case PM_KURWA:
+		   case PM_UNDEAD_KURWA:
+
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     (void)mongets(mtmp, INKA_SHACKLE);
+		     (void)mongets(mtmp, PISTOL);
+		     (void)mongets(mtmp, KNIFE);
+			 m_initthrow(mtmp, BULLET, 50);
+			(void) mongets(mtmp, rnd_class(WEDGE_SANDALS,COMBAT_STILETTOS));
+
+		   break;
+
 		   case PM_TRANSVESTITE:
 		   case PM_UNDEAD_TRANSVESTITE:
 		   case PM_TRANSSYLVANIAN:
@@ -3684,7 +3705,7 @@ register struct monst *mtmp;
 		} else if (mm == PM_EROTICITY_QUEEN){
 			(void)mongets(mtmp, SWEET_MOCASSINS);
 
-		} else if (mm == PM_PROSTITUTE){
+		} else if (mm == PM_NORMAL_PROSTITUTE){
 			(void)mongets(mtmp, BULLWHIP);
 			(void)mongets(mtmp, HIPPIE_HEELS);
 
@@ -4893,7 +4914,7 @@ register struct	monst	*mtmp;
 			otmpC->quan = 1;
 			while (!rn2(25)) otmpC->quan += 1;
 			otmpC->owt = weight(otmpC);
-			attach_egg_hatch_timeout(otmpC);
+			if (otmpC->corpsenm > NON_PM) attach_egg_hatch_timeout(otmpC);
 			mpickobj(mtmp,otmpC, TRUE);
 		}
 	}
@@ -7214,6 +7235,38 @@ register struct	monst	*mtmp;
 
 	}
 	
+	if (ptr == &mons[PM_FOAMING_WHITE_KNIGHT]) {
+
+		int artilistentry = find_prostituteartifact(); /*&artilist[ART_HIGHEST_FEELING];*/
+
+		otmp = mksobj(artilistentry, FALSE, FALSE);
+
+		if (otmp) {
+
+			otmp = oname(otmp, artiname(ART_HIGHEST_FEELING));
+
+		}
+
+		if (otmp) (void) mpickobj(mtmp, otmp, TRUE);
+
+	}
+
+	if (ptr == &mons[PM_CASH_GREEDY_FINANCE_MINISTER]) {
+
+		int artilistentry = find_kurwaartifact(); /*&artilist[ART_LORSKEL_S_INTEGRITY];*/
+
+		otmp = mksobj(artilistentry, FALSE, FALSE);
+
+		if (otmp) {
+
+			otmp = oname(otmp, artiname(ART_LORSKEL_S_INTEGRITY));
+
+		}
+
+		if (otmp) (void) mpickobj(mtmp, otmp, TRUE);
+
+	}
+
 	if (ptr == &mons[PM_CRISTI]) {
 		(void) mongets(mtmp, QUARTERSTAFF);
 		(void) mongets(mtmp, WAN_GAIN_LEVEL);
@@ -15288,6 +15341,10 @@ loopback:
 		if (ct > 0 && (Role_if(PM_TRANSSYLVANIAN) && (ptr->msound == MS_SHOE))) ct += 5;
 		if (ct > 0 && (Role_if(PM_TRANSSYLVANIAN) && dmgtype(ptr, AD_NAST))) ct += 5;
 		if (ct > 0 && (Role_if(PM_TRANSVESTITE) && (ptr->msound == MS_SHOE))) ct += 5;
+		if (ct > 0 && (Role_if(PM_PROSTITUTE) && (ptr->msound == MS_SHOE))) ct += 5;
+		if (ct > 0 && (Role_if(PM_KURWA) && (ptr->msound == MS_SHOE))) ct += 5;
+		if (ct > 0 && (Role_if(PM_PROSTITUTE) && dmgtype(ptr, AD_SSEX))) ct += 20;
+		if (ct > 0 && (Role_if(PM_KURWA) && dmgtype(ptr, AD_SSEX))) ct += 20;
 		if (ct > 0 && (Role_if(PM_UNBELIEVER) && is_angbandmonster(ptr))) ct += 10;
 		if (ct > 0 && (Role_if(PM_UNBELIEVER) && is_steammonster(ptr))) ct += 2;
 		if (ct > 0 && (Role_if(PM_UNDEAD_SLAYER) && is_vanillamonster(ptr))) ct += 1;
@@ -15898,6 +15955,10 @@ int     spc;
 		if ((Role_if(PM_TRANSSYLVANIAN) && (mons[last].msound == MS_SHOE))) num += 5;
 		if ((Role_if(PM_TRANSSYLVANIAN) && dmgtype(&mons[last], AD_NAST))) num += 5;
 		if ((Role_if(PM_TRANSVESTITE) && (mons[last].msound == MS_SHOE))) num += 5;
+		if ((Role_if(PM_PROSTITUTE) && (mons[last].msound == MS_SHOE))) num += 5;
+		if ((Role_if(PM_KURWA) && (mons[last].msound == MS_SHOE))) num += 5;
+		if ((Role_if(PM_PROSTITUTE) && dmgtype(&mons[last], AD_SSEX))) num += 20;
+		if ((Role_if(PM_KURWA) && dmgtype(&mons[last], AD_SSEX))) num += 20;
 		if ((Role_if(PM_UNBELIEVER) && is_angbandmonster(&mons[last]))) num += 10;
 		if ((Role_if(PM_UNBELIEVER) && is_steammonster(&mons[last]))) num += 2;
 		if ((Role_if(PM_UNDEAD_SLAYER) && is_vanillamonster(&mons[last]))) num += 1;
@@ -16221,6 +16282,10 @@ int     spc;
 		if ((Role_if(PM_TRANSSYLVANIAN) && (mons[first].msound == MS_SHOE))) num -= 5;
 		if ((Role_if(PM_TRANSSYLVANIAN) && dmgtype(&mons[first], AD_NAST))) num -= 5;
 		if ((Role_if(PM_TRANSVESTITE) && (mons[first].msound == MS_SHOE))) num -= 5;
+		if ((Role_if(PM_PROSTITUTE) && (mons[first].msound == MS_SHOE))) num -= 5;
+		if ((Role_if(PM_KURWA) && (mons[first].msound == MS_SHOE))) num -= 5;
+		if ((Role_if(PM_PROSTITUTE) && dmgtype(&mons[first], AD_SSEX))) num -= 20;
+		if ((Role_if(PM_KURWA) && dmgtype(&mons[first], AD_SSEX))) num -= 20;
 		if ((Role_if(PM_UNBELIEVER) && is_angbandmonster(&mons[first]))) num -= 10;
 		if ((Role_if(PM_UNBELIEVER) && is_steammonster(&mons[first]))) num -= 2;
 		if ((Role_if(PM_UNDEAD_SLAYER) && is_vanillamonster(&mons[first]))) num -= 1;

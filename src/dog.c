@@ -303,6 +303,8 @@ makedog()
 
 	if (pettype == PM_VENOM_FUNGUS) petname = "This Is A BioHazard";
 	if (pettype == PM_MARTTI_IHRASAARI) petname = "Martti Ihrasaari";
+	if (pettype == PM_ELIF) petname = "Elif";
+	if (pettype == PM_JENNIFER) petname = "Jennifer";
 
 	if (pettype == PM_KICKBOXING_GIRL) petname = "Marija";
 
