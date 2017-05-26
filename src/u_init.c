@@ -12546,28 +12546,31 @@ u_init()
 	    }
 	    break;
 	case PM_VAMGOYLE:
-	    adjalign(-5); 
+	    adjalign(-5);
 	    u.ualign.sins += 5;
 	    u.alignlim -= 5;
 	    change_luck(-1);
+	    break;
 
 	case PM_SINNER:
-	    adjalign(-100); 
+	    adjalign(-100);
 	    u.ualign.sins += 100;
 	    u.alignlim -= 100;
 	    change_luck(-1);
+	    break;
 
 	case PM_SUCKING_FIEND:
-	    adjalign(-5); 
+	    adjalign(-5);
 	    u.ualign.sins += 5;
 	    u.alignlim -= 5;
 	    change_luck(-1);
 
 	    break;
 	case PM_ALIEN: /* this is the harder than hard race, combine it with convict role for maximum torture */
-	    adjalign(-20); 
+	    adjalign(-20);
 	    change_luck(-2);
-          ini_inv(AlienItem); break; /* yeah its a lodestone, good luck getting rid of it! */
+          ini_inv(AlienItem); /* yeah its a lodestone, good luck getting rid of it! */
+	    break;
 
 	case PM_ANCIENT: /* random technique --Amy */
 
@@ -12824,15 +12827,17 @@ u_init()
 	    break;
 
 	case PM_KOP:
-          ini_inv(KopItemA); ini_inv(KopItemB); break;
+          ini_inv(KopItemA);
+	    ini_inv(KopItemB);
+	    break;
 
 	case PM_CURSER: /* starts out with cursed stuff --Amy */
 		{register struct obj *obj;
 
 		for(obj = invent; obj ; obj = obj->nobj)
 			if (rn2(5))	curse(obj);
-		break;
 		}
+		break;
 	case PM_KOBOLT:
           ini_inv(KoboltItem);		
           ini_inv(KoboltItemB);		
