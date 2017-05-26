@@ -471,7 +471,7 @@ doread()
 "How To Keep An Idiot In Suspense - See Other Side",
 "I <3 Dungeon of Doom",
 "I <3 Maud",
-"I Am Not a Pack Rat – I Am a Collector",
+"I Am Not a Pack Rat - I Am a Collector",
 "I Support Single Succubi",
 "I am a Demigod, oh yes...",
 "I am a Valkyrie. If you see me running, try to keep up.",
