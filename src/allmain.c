@@ -1215,7 +1215,7 @@ moveloop()
  
 		if (FaintActive && !rn2(100) && multi >= 0) {
 
-			pline("You faint from exertion.");
+			You("faint from exertion.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from exertion");
 			nomovemsg = "You regain consciousness.";
@@ -1225,7 +1225,7 @@ moveloop()
 
 		if ((uarmh && uarmh->oartifact == ART_UBB_RUPTURE) && !rn2(100) && multi >= 0) {
 
-			pline("You faint from the terrible sounds.");
+			You("faint from the terrible sounds.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from terrible sounds");
 			nomovemsg = "You regain consciousness.";
@@ -1235,7 +1235,7 @@ moveloop()
 
 		if ((uleft && uleft->oartifact == ART_BLIND_PILOT) && !rn2(100) && multi >= 0) {
 
-			pline("You faint from exertion.");
+			You("faint from exertion.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from exertion");
 			nomovemsg = "You regain consciousness.";
@@ -1245,7 +1245,7 @@ moveloop()
 
 		if ((uright && uright->oartifact == ART_BLIND_PILOT) && !rn2(100) && multi >= 0) {
 
-			pline("You faint from exertion.");
+			You("faint from exertion.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from exertion");
 			nomovemsg = "You regain consciousness.";
@@ -1258,7 +1258,7 @@ moveloop()
 			if (!strncmpi(plname, "Ina", 3)) {
 			/* There is of course no corresponding real-life Ina. --Amy */
 
-			pline("Your terrible eating disorder causes you to faint.");
+			Your("terrible eating disorder causes you to faint.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from anorexia");
 			nomovemsg = "Dear Ina, you need to eat!!! If you don't, you'll die!";
@@ -1266,7 +1266,7 @@ moveloop()
 
 			} else {
 
-			pline("You faint from anorexia.");
+			You("faint from anorexia.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from anorexia");
 			nomovemsg = "If you don't want to end like Ina did, eat!!!";
@@ -1281,7 +1281,7 @@ moveloop()
 			if (!strncmpi(plname, "Ina", 3)) {
 			/* There is of course no corresponding real-life Ina. --Amy */
 
-			pline("Your terrible eating disorder causes you to faint.");
+			Your("terrible eating disorder causes you to faint.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from anorexia");
 			nomovemsg = "Dear Ina, you need to eat!!! If you don't, you'll die!";
@@ -1289,7 +1289,7 @@ moveloop()
 
 			} else {
 
-			pline("You faint from anorexia.");
+			You("faint from anorexia.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from anorexia");
 			nomovemsg = "If you don't want to end like Ina did, eat!!!";
@@ -1345,7 +1345,7 @@ moveloop()
 					 pline("A cloud of spores surrounds you!");
 
 				 } else if (!Strangled && !Breathless) {
-					 pline("You inhale a cloud of spores!");
+					 You("inhale a cloud of spores!");
 					 poisoned("spores", A_STR, "fumarole spores", 30);
 			       } else {
 					 pline("A cloud of spores surrounds you!");
@@ -1425,7 +1425,7 @@ moveloop()
 
 		if (have_faintingstone() && !rn2(100) && multi >= 0) {
 
-			pline("You faint from exertion.");
+			You("faint from exertion.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from exertion");
 			nomovemsg = "You regain consciousness.";
@@ -1454,7 +1454,7 @@ moveloop()
 				crapduration += objects[uarm->otyp].oc_delay;
 			}
 			if (uarmc && objects[uarmc->otyp].oc_delay) {
-				pline("You need to remove your cloak...");
+				You("need to remove your cloak...");
 				crapduration += objects[uarmc->otyp].oc_delay;
 			}
 			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
@@ -1544,7 +1544,7 @@ moveloop()
 				if (!strncmpi(plname, "Natalje", 7)) {
 					pline("Keep dancing, Natalje...");
 				} else {
-					pline("You gotta keep dancing...");
+					You("gotta keep dancing...");
 				}
 			}
 
@@ -1552,7 +1552,7 @@ moveloop()
 				if (!strncmpi(plname, "Natalje", 7)) {
 					pline("Careful, Natalje! You gotta dance or you'll get hurt!");
 				} else {
-					pline("You missed the beat! Continue dancing or suffer!");
+					You("missed the beat! Continue dancing or suffer!");
 				}
 			}
 
@@ -1560,7 +1560,7 @@ moveloop()
 
 		if (RngeCoquetry && !rn2(1000) && multi >= 0) {
 
-			pline("You faint from exertion.");
+			You("faint from exertion.");
 			flags.soundok = 0;
 			nomul(-(rnd(10) ), "fainted from exertion");
 			nomovemsg = "You regain consciousness.";
@@ -1570,7 +1570,7 @@ moveloop()
 
 		if (uarmf && uarmf->oartifact == ART_JOSEFINE_S_EVILNESS && !rn2(100) && multi >= 0) {
 
-			pline("You faint from exertion.");
+			You("faint from exertion.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from exertion");
 			nomovemsg = "You regain consciousness.";
@@ -1580,7 +1580,7 @@ moveloop()
 
 		if (u.uprops[FAINT_ACTIVE].extrinsic && !rn2(100) && multi >= 0) {
 
-			pline("You faint from exertion.");
+			You("faint from exertion.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted from exertion");
 			nomovemsg = "You regain consciousness.";
@@ -1590,7 +1590,7 @@ moveloop()
 
 		if (uarmg && uarmg->oartifact == ART_CLAWS_OF_THE_REVENANCER && !rn2(100) && multi >= 0) {
 
-			pline("You are clawed by your gauntlets and faint.");
+			You("are clawed by your gauntlets and faint.");
 			flags.soundok = 0;
 			nomul(-(rnz(5) ), "fainted due to the revenancer");
 			nomovemsg = "You regain consciousness.";
@@ -1640,7 +1640,7 @@ moveloop()
 
 		if (Prem_death && !rn2(10000)) { /* evil patch idea by jonadab */
 
-			pline("You suddenly die.");
+			You("suddenly die.");
 			killer_format = KILLED_BY;
 			killer = "premature death";
 			done(DIED);
@@ -2389,21 +2389,21 @@ moveloop()
 
 		if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !rn2(20000) ) {
 			useupall(uwep);
-			pline("Your weapon spontaneously disintegrates!");
+			Your("weapon spontaneously disintegrates!");
 		}
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR && !rn2(20000) ) {
 			useupall(uswapwep);
-			pline("Your weapon spontaneously disintegrates!");
+			Your("weapon spontaneously disintegrates!");
 		}
 
 		if (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN && !rn2(20000) ) {
 			useupall(uwep);
-			pline("Your weapon spontaneously disintegrates!");
+			Your("weapon spontaneously disintegrates!");
 		}
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN && !rn2(20000) ) {
 			useupall(uswapwep);
-			pline("Your weapon spontaneously disintegrates!");
+			Your("weapon spontaneously disintegrates!");
 		}
 
 		if (u.umoved && uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE && !rn2(10)) {
@@ -2559,7 +2559,7 @@ newbossA:
 
 			u.uhpmax++;
 			if (Upolyd) u.mhmax++;
-			pline("Your health increases, at the cost of nasty side effects.");
+			Your("health increases, at the cost of nasty side effects.");
 			NastinessProblem += rnd(1000);
 
 		}
@@ -3863,7 +3863,7 @@ newbossA:
 
 		if (uarmg && uarmg->oartifact == ART_WHINY_MARY && uwep && !(uwep->cursed)) {
 			curse(uwep);
-			pline("Your weapon welds itself to your %s!", makeplural(body_part(HAND)));
+			Your("weapon welds itself to your %s!", makeplural(body_part(HAND)));
 		}
 
 		if (uarmh && uarmh->oartifact == ART_GIRLFUL_FARTING_NOISES && !rn2(1000) ) {
@@ -3906,7 +3906,7 @@ newbossX:
 		}
 
 		if (uarmf && uarmf->oartifact == ART_SUCH_A_WONDERFUL_ROOMMATE && (multi < 0) && (u.uhs >= HUNGRY)) {
-			pline("Your stomach fills.");
+			Your("stomach fills.");
 			u.uhunger += 100;
 		}
 
@@ -4077,7 +4077,7 @@ newbossB:
 
 		if (uwep && uwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) ) {
 
-		pline("Your morning star takes you back in time...");
+		Your("morning star takes you back in time...");
 
 		{
 		int dmg;
@@ -4154,7 +4154,7 @@ newbossB:
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) ) {
 
-		pline("Your morning star takes you back in time...");
+		Your("morning star takes you back in time...");
 
 		{
 		int dmg;
@@ -4567,7 +4567,7 @@ newbossB:
 				case 26:
 				case 27: /* evaporate weapon */
 					if (uwep) {
-						pline("Your weapon seems useless now and disintegrates!");
+						Your("weapon seems useless now and disintegrates!");
 						useupall(uwep);
 					}
 					break;
@@ -4588,7 +4588,7 @@ newbossB:
 
 					u.aggravation = 0;
 
-					pline("You suddenly have company.");
+					You("suddenly have company.");
 					break;
 				case 29:
 				case 30: /* drain all stats by one */
@@ -4746,14 +4746,14 @@ newboss:
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
-			pline("Your equipment seems less effective.");
+			Your("equipment seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (FemaleTrapSolvejg && !rn2(200)) {
 
 			aggravate();
-			pline("Your loud voice aggravates the denizens of the dungeon.");
+			Your("loud voice aggravates the denizens of the dungeon.");
 
 		}
 
@@ -4763,7 +4763,7 @@ newboss:
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
-			pline("Your equipment seems less effective.");
+			Your("equipment seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -4773,7 +4773,7 @@ newboss:
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
-			pline("Your equipment seems less effective.");
+			Your("equipment seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -4783,7 +4783,7 @@ newboss:
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
-			pline("Your equipment seems less effective.");
+			Your("equipment seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -4793,7 +4793,7 @@ newboss:
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
-			pline("Your equipment seems less effective.");
+			Your("equipment seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -4803,7 +4803,7 @@ newboss:
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
-			pline("Your equipment seems less effective.");
+			Your("equipment seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -4813,7 +4813,7 @@ newboss:
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
-			pline("Your equipment seems less effective.");
+			Your("equipment seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -4823,7 +4823,7 @@ newboss:
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
 				if (otmpE && !rn2(10)) (void) drain_item_severely(otmpE);
 			}
-			pline("Your equipment seems less effective.");
+			Your("equipment seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -4833,7 +4833,7 @@ newboss:
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
-			pline("Your equipment seems less effective.");
+			Your("equipment seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -4843,7 +4843,7 @@ newboss:
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
-			pline("Your equipment seems less effective.");
+			Your("equipment seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
@@ -4979,27 +4979,27 @@ newboss:
 		}
 
 		if ((uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) && has_head(youmonst.data) && !Role_if(PM_COURIER) && !rn2(200)) {
-			pline("Your evil female battle boot drills into your mind with its spikes!");
+			Your("evil female battle boot drills into your mind with its spikes!");
 			forget(1 + rn2(5));
 		}
 
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) && has_head(youmonst.data) && !Role_if(PM_COURIER) && !rn2(200)) {
-			pline("Your evil female battle boot drills into your mind with its spikes!");
+			Your("evil female battle boot drills into your mind with its spikes!");
 			forget(1 + rn2(5));
 		}
 
 		if ((uwep && uwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) && has_head(youmonst.data) && !Role_if(PM_COURIER) && !rn2(200)) {
-			pline("Your mind clears unexpectedly!");
+			Your("mind clears unexpectedly!");
 			forget(1 + rn2(5));
 		}
 
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) && has_head(youmonst.data) && !Role_if(PM_COURIER) && !rn2(200)) {
-			pline("Your mind clears unexpectedly!");
+			Your("mind clears unexpectedly!");
 			forget(1 + rn2(5));
 		}
 
 		if (uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION && !rn2(1000)) {
-			pline("You suddenly forget what you were doing. Maybe your thoughts ended up in the realms of Oblivion, who knows?");
+			You("suddenly forget what you were doing. Maybe your thoughts ended up in the realms of Oblivion, who knows?");
 			forget(1 + rn2(5));
 		}
 
@@ -5157,7 +5157,7 @@ newboss:
 		}
 
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "vampiric gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "vampiry perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sindirishi qo'lqop") ) && (u.uexp > 100) && !rn2(1000) ) {
-			pline("Your vampiric gloves drain your experience!");
+			Your("vampiric gloves drain your experience!");
 			u.uexp -= (u.uexp / 100);
 			if (u.uexp < newuexp(u.ulevel - 1)) {
 			      losexp("vampiric experience drain", TRUE, FALSE);
@@ -5165,7 +5165,7 @@ newboss:
 		}
 
 		if (RngeVampiricDrain && (u.uexp > 100) && !rn2(1000) ) {
-			pline("Your experience is drained!");
+			Your("experience is drained!");
 			u.uexp -= (u.uexp / 100);
 			if (u.uexp < newuexp(u.ulevel - 1)) {
 			      losexp("vampiric experience drain", TRUE, FALSE);
@@ -5377,7 +5377,7 @@ newboss:
 			polyinitors();
 			if (Race_if(PM_DESTABILIZER) || Race_if(PM_POLYINITOR)) {
 				init_uasmon();
-				pline("You mutate, and your body changes...");
+				You("mutate, and your body changes...");
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 		}
@@ -5411,7 +5411,7 @@ newboss:
 
 				} else {
 
-					pline("You really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
+					You("really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
 					badeffect();
 
 				}
@@ -5449,7 +5449,7 @@ newboss:
 
 				} else {
 
-					pline("You really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
+					You("really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
 					badeffect();
 
 				}
@@ -5487,7 +5487,7 @@ newboss:
 
 				} else {
 
-					pline("You really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
+					You("really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
 					badeffect();
 
 				}
@@ -5525,7 +5525,7 @@ newboss:
 
 				} else {
 
-					pline("You really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
+					You("really believe everything you read, huh? Well, sucks to be you. This rumor was obviously not true! Everyone except you would've noticed that! Enjoy the punishment.");
 					badeffect();
 
 				}
@@ -5644,8 +5644,8 @@ newboss:
 
 		if (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() ) {
 			if (u.dehydrationtime < 1) u.dehydrationtime = moves + 1001;
-			if ((u.dehydrationtime - moves) == 100) pline("You are beginning to feel thirsty.");
-			if ((u.dehydrationtime - moves) == 0) pline("You are dehydrated, your vision begins to blur...");
+			if ((u.dehydrationtime - moves) == 100) You("are beginning to feel thirsty.");
+			if ((u.dehydrationtime - moves) == 0) You("are dehydrated, your vision begins to blur...");
 		} else {
 			u.dehydrationtime = 0;
 		}
@@ -5718,17 +5718,17 @@ newboss:
 
 		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash") ) ) {
 			if (!rn2(500)) {
-				pline("You receive an electric shock from your cloak!");
+				You("receive an electric shock from your cloak!");
 				make_confused(HConfusion + rnd(10),TRUE);
 			}
 			if (!rn2(500)) {
-				pline("You receive a static shock from your cloak!");
+				You("receive a static shock from your cloak!");
 				make_numbed(HNumbed + rnd(10),TRUE);
 			}
 		}
 
 		if (uarmc && !rn2(5000) && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "irradiation cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "oblucheniye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nurlanish plash") ) ) {
-			pline("You are irradiated by your cloak!");
+			You("are irradiated by your cloak!");
 			u.uhpmax -= 1;
 			if (u.uhp > u.uhpmax) u.uhp--;
 			if (Upolyd) {
@@ -5752,11 +5752,11 @@ newboss:
 
 		if (RngeVoltage) {
 			if (!rn2(500)) {
-				pline("You receive an electric shock out of nowhere!");
+				You("receive an electric shock out of nowhere!");
 				make_confused(HConfusion + rnd(10),TRUE);
 			}
 			if (!rn2(500)) {
-				pline("You receive a static shock out of nowhere!");
+				You("receive a static shock out of nowhere!");
 				make_numbed(HNumbed + rnd(10),TRUE);
 			}
 		}
@@ -5796,7 +5796,7 @@ newboss:
 			if (u.drippingtread < 0) u.drippingtread = 0;
 			if (!u.drippingtread) {
 				u.drippingtreadtype = 0;
-				pline("You stop dripping elements.");
+				You("stop dripping elements.");
 			}
 
 		}
@@ -5806,7 +5806,7 @@ newboss:
 			u.geolysis--;
 			if (u.geolysis < 0) u.geolysis = 0;
 			if (!u.geolysis) {
-				pline("You can no longer eat through rock.");
+				You("can no longer eat through rock.");
 			}
 
 		}
@@ -5832,7 +5832,7 @@ newboss:
 			u.halresdeactivated--;
 			if (u.halresdeactivated < 0) u.halresdeactivated = 0;
 			if (!u.halresdeactivated) {
-				pline("You are no longer prevented from having hallucination resistance.");
+				You("are no longer prevented from having hallucination resistance.");
 			}
 
 		}
@@ -5842,7 +5842,7 @@ newboss:
 			u.sterilized--;
 			if (u.sterilized < 0) u.sterilized = 0;
 			if (!u.sterilized) {
-				pline("You no longer feel an anti-sexual aura.");
+				You("no longer feel an anti-sexual aura.");
 			}
 
 		}
@@ -5852,7 +5852,7 @@ newboss:
 			u.disruptionshield--;
 			if (u.disruptionshield < 0) u.disruptionshield = 0;
 			if (!u.disruptionshield) {
-				pline("Your disruption shield dissipates.");
+				Your("disruption shield dissipates.");
 			}
 
 		}
@@ -5862,20 +5862,20 @@ newboss:
 			u.holyshield--;
 			if (u.holyshield < 0) u.holyshield = 0;
 			if (!u.holyshield) {
-				pline("Your holy shield dissipates.");
+				Your("holy shield dissipates.");
 			}
 
 		}
 
 		if ((u.uprops[CRAP_EFFECT].extrinsic || (uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) || CrapEffect || have_shitstone() ) && (u.uhs == 0) && !rn2(100) ) {
-			pline("You suddenly have to take a shit!");
+			You("suddenly have to take a shit!");
 			int crapduration = 5;
 			if (uarm && objects[uarm->otyp].oc_delay) {
 				pline("Taking off your armor is going to take a while...");
 				crapduration += objects[uarm->otyp].oc_delay;
 			}
 			if (uarmc && objects[uarmc->otyp].oc_delay) {
-				pline("You need to remove your cloak...");
+				You("need to remove your cloak...");
 				crapduration += objects[uarmc->otyp].oc_delay;
 			}
 			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
@@ -5885,7 +5885,7 @@ newboss:
 			nomul(-crapduration, "while taking a shit");
 
 			if (!rn2(5)) {
-				pline("You did not watch out, and stepped into your own shit.");
+				You("did not watch out, and stepped into your own shit.");
 			    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
 			    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
 			    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
@@ -6623,13 +6623,13 @@ newboss:
 
 				if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
-					pline("You can hear Arabella giggling.");
+					You("can hear Arabella giggling.");
 					break;
 				}
 
 				if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
 					NastinessProblem += rnd(1000);
-					pline("You can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
+					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
 					break;
 				}
 
@@ -6642,7 +6642,7 @@ newboss:
 				d_level newlevel;
 				get_level(&newlevel, newlev);
 				goto_level(&newlevel, TRUE, FALSE, FALSE);
-				pline("You were banished!");
+				You("were banished!");
 
 			}
 
@@ -6650,13 +6650,13 @@ newboss:
 
 				if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
-					pline("You can hear Arabella giggling.");
+					You("can hear Arabella giggling.");
 					break;
 				}
 
 				if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
 					NastinessProblem += rnd(1000);
-					pline("You can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
+					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
 					break;
 				}
 
@@ -6669,7 +6669,7 @@ newboss:
 				d_level newlevel;
 				get_level(&newlevel, newlev);
 				goto_level(&newlevel, TRUE, FALSE, FALSE);
-				pline("You were banished!");
+				You("were banished!");
 
 			}
 
@@ -6677,13 +6677,13 @@ newboss:
 
 				if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
 					NastinessProblem += rnd(1000);
-					pline("You can hear Arabella giggling.");
+					You("can hear Arabella giggling.");
 					break;
 				}
 
 				if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
 					NastinessProblem += rnd(1000);
-					pline("You can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
+					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
 					break;
 				}
 
@@ -6696,7 +6696,7 @@ newboss:
 				d_level newlevel;
 				get_level(&newlevel, newlev);
 				goto_level(&newlevel, TRUE, FALSE, FALSE);
-				pline("You were banished!");
+				You("were banished!");
 
 			}
 
@@ -6914,14 +6914,14 @@ newboss:
 	if (u.burrowed) {
 		if (!u.utrap || !u.utraptype || (u.utraptype != TT_INFLOOR)) {
 			u.burrowed = 0;
-			pline("You are no longer burrowed.");
+			You("are no longer burrowed.");
 		}
 	}
 
 	if (u.enchantspell) {
 		if (!uwep) {
 			u.enchantspell = 0;
-			pline("You are no longer wielding a weapon, and therefore the enchantment fades.");
+			You("are no longer wielding a weapon, and therefore the enchantment fades.");
 		}
 	}
 
@@ -6931,7 +6931,7 @@ newboss:
 
 		u.bankcashamount += u.ugold;
 		u.ugold = 0;
-		pline("Your money was stored, thanks.");
+		Your("money was stored, thanks.");
 		if (u.bankcashamount > u.bankcashlimit) {
 			(void) makemon(&mons[PM_ARABELLA_THE_MONEY_THIEF], 0, 0, NO_MM_FLAGS);
 		}
@@ -7076,7 +7076,7 @@ newboss:
 
 		/* failsafes in case the player somehow manages to quickly snatch the amulet or something... */
 		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) {
-			pline("You shudder for a moment."); (void) safe_teleds(FALSE); u.banishmentbeam = 0; break;
+			You("shudder for a moment."); (void) safe_teleds(FALSE); u.banishmentbeam = 0; break;
 		}
 
 		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 

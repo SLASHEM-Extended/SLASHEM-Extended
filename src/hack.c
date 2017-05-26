@@ -2952,6 +2952,9 @@ register boolean newlev;
 	      case TRAPROOM:
                 if (wizard) You("enter a trapped room!");
                 break;
+	      case EMPTYNEST:
+                if (wizard) You("enter an empty nest!");
+                break;
 	      case POOLROOM:
                 if (wizard) You("enter a pool room!");
                 break;
