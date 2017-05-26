@@ -1725,7 +1725,7 @@ dosacrifice()
 		    change_luck(altaralign == A_NONE ? -2 : 2);
 		    demonless_msg = "blood coagulates";
 		}
-		if ((pm = dlord(altaralign)) != NON_PM &&
+		if ((pm = (!rn2(20) ? dprince(altaralign) : dlord(altaralign) ) ) != NON_PM &&
 		    (dmon = makemon(&mons[pm], u.ux, u.uy, NO_MM_FLAGS))) {
 		    /* here to be seen */
 		    dmon->minvis = FALSE;
@@ -1733,7 +1733,8 @@ dosacrifice()
 		    You("have summoned %s!", a_monnam(dmon));
 		    if (sgn(u.ualign.type) == sgn(dmon->data->maligntyp)) {
 			dmon->mpeaceful = (rn2(2) ? TRUE : FALSE); /* making things a bit more dangerous for chaotics --Amy */
-			} else if (is_dprince(dmon->data)) {
+			if (dmon && dmon->mpeaceful && !rn2(500) ) dmon = tamedog(dmon, (struct obj *) 0, TRUE);
+			} else {
 			switch (rn2(12)) {
 			  case 0:
 			  case 5:
@@ -1761,6 +1762,7 @@ dosacrifice()
 			       You("are terrified, and unable to move.");
 			       nomul(-3, "being terrified of a demon");
 			       nomovemsg = 0;
+				 if (dmon && !rn2(500) ) dmon = tamedog(dmon, (struct obj *) 0, TRUE);
 			       break;                
 			  case 11:
 			       dmon->mpeaceful = FALSE;
@@ -1772,6 +1774,7 @@ dosacrifice()
 			       pline("Amused, he grants you a boon!");
 				 if (!rn2(4)) makewish();
 				 else othergreateffect();
+				 if (dmon && !rn2(200) ) dmon = tamedog(dmon, (struct obj *) 0, TRUE);
 			  break;
 		       }
 		    }
