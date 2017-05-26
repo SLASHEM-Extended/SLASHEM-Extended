@@ -4502,6 +4502,18 @@ boolean system_shock;
 boolean your_fault;
 {
 	int i;
+	int wasrider = 0;
+
+	/* Due to changes in muse.c, riders can now polyself via items. This would allow players to get rid of them easily,
+	 * by throwing a cockatrice egg at the polymorphed monster. Or get a tame rider by taming the polymorph result,
+	 * although the newly added M3_TRAITOR and M3_NOTAME flags should make that less useful. Anyway, in order to prevent
+	 * abuse, we'll now spawn clones of the riders if they polymorph. Yes, this will also happen if you didn't actually
+	 * try to get rid of the riders permanently; after all, this is the Astral Plane, and you should not linger around
+	 * anyway but work towards your goal, which is called ascension! --Amy */
+	if (mtmp->data == &mons[PM_DEATH]) wasrider = 1;
+	if (mtmp->data == &mons[PM_PESTILENCE]) wasrider = 2;
+	if (mtmp->data == &mons[PM_FAMINE]) wasrider = 3;
+	if (mtmp->data == &mons[PM_FRUSTRATION]) wasrider = 4;
 
 	i = newcham(mtmp, type, polyspot, transform_msg);
 	if (system_shock && (!i || !rn2(25))) {
@@ -4516,6 +4528,12 @@ boolean your_fault;
 	    }
 	}
 	if (i > 0) {
+
+		if (wasrider == 1) makemon(&mons[PM_DEATH], 0, 0, NO_MM_FLAGS);
+		if (wasrider == 2) makemon(&mons[PM_PESTILENCE], 0, 0, NO_MM_FLAGS);
+		if (wasrider == 3) makemon(&mons[PM_FAMINE], 0, 0, NO_MM_FLAGS);
+		if (wasrider == 4) makemon(&mons[PM_FRUSTRATION], 0, 0, NO_MM_FLAGS);
+
 	    /* Stop any old timers.   */
 	    (void) stop_timer(UNPOLY_MON, (genericptr_t) mtmp);
 	    /* Lengthen unpolytime - was 500,500  for player */
