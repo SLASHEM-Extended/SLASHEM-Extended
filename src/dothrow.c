@@ -1638,7 +1638,7 @@ int thrown;
 		pline("%s shrugs off the projectile!", Monnam(mon));
 	}
 
-	if (blocker = which_armor(mon, W_ARMS)) {
+	if (blocker = (which_armor(mon, W_ARMS))) {
 
 		switch (blocker->otyp) {
 

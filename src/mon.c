@@ -1977,7 +1977,7 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 	/* with evil patch idea by jonadab that allows human-or-larger-sized monsters with legs to break them more easily */
 
 		if (artifact_door(nx, ny) ?
-		    levl[nx][ny].doormask & D_CLOSED && !(flag & OPENDOOR)
+		    (levl[nx][ny].doormask & D_CLOSED) && !(flag & OPENDOOR)
 		      || levl[nx][ny].doormask & D_LOCKED :
 		    !amorphous(mdat) &&
 	       ((levl[nx][ny].doormask & D_CLOSED && !(flag & OPENDOOR)) ||
@@ -2641,7 +2641,7 @@ register struct monst *mtmp, *mtmp2;
 	del_light_source(LS_MONSTER, (genericptr_t)mtmp);
     }
     /* If poly'ed,  move polytimer along */
-    if (unpolytime = stop_timer(UNPOLY_MON, (genericptr_t) mtmp)) {
+    if (unpolytime = (stop_timer(UNPOLY_MON, (genericptr_t) mtmp))) {
         (void) start_timer(unpolytime, TIMER_MONSTER, UNPOLY_MON,
                         (genericptr_t) mtmp2);
     }

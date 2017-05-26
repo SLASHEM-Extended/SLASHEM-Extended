@@ -6066,7 +6066,7 @@ madnesseffect:
 			pline("You are barely missed by a scything blade!");
 		} else {
 			pline("You are hit by a scything blade!");
-			losehp(rnd(9)+ rnd( (monster_difficulty() / 2) + 1 + (has_head(youmonst.data) && !Role_if(PM_COURIER)) ? 10 : 0),"scything blade",KILLED_BY_AN);
+			losehp(rnd(9)+ rnd( (monster_difficulty() / 2) + 1 + ((has_head(youmonst.data) && !Role_if(PM_COURIER)) ? 10 : 0)),"scything blade",KILLED_BY_AN);
 		}
 		break;
 
@@ -6745,7 +6745,7 @@ madnesseffect:
 			losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "guillotine trap",KILLED_BY_AN);
 		} else {
 			pline("You are hit by a guillotine!");
-			losehp(rnd(20)+ rnd( (monster_difficulty() * 2) + 1 + (has_head(youmonst.data) && !Role_if(PM_COURIER)) ? 40 : 0),"guillotine trap",KILLED_BY_AN);
+			losehp(rnd(20)+ rnd( (monster_difficulty() * 2) + 1 + ((has_head(youmonst.data) && !Role_if(PM_COURIER)) ? 40 : 0)),"guillotine trap",KILLED_BY_AN);
 		}
 		break;
 
@@ -10651,7 +10651,7 @@ int zx,zy;
 			if (rx == u.ux && ry == u.uy) { 
 				somehit = TRUE; 
 				dmg += rn2(2) + (otmp->otyp == BOULDER ? d(2,4) : 0);
-			} else if (mtmp = m_at(rx,ry)) {
+			} else if (mtmp = (m_at(rx,ry))) {
 				/* spare the player a barrage of messages for each time
 				 * a monster is hit by a rock; just show the killed message */
 				mhat = which_armor(mtmp, W_ARMH);
@@ -12651,7 +12651,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 					pline("A scything blade passes right through %s!",mon_nam(mtmp));
 				}
 			} else {
-				if (thitm(0, mtmp, (struct obj *)0, rnd(9 + has_head(mtmp->data) ? 3 : 0), FALSE)) {
+				if (thitm(0, mtmp, (struct obj *)0, rnd(9 + (has_head(mtmp->data) ? 3 : 0)), FALSE)) {
 					if (in_sight) pline("%s is fatally hit by a scything blade!",Monnam(mtmp));
 					trapkilled = TRUE;
 					}
