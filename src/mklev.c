@@ -362,13 +362,14 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
         if (canbeshaped && (hix - lowx > 3) && (hiy - lowy > 3) && ( !((moves + u.monstertimefinish) % 327 ) || (rnd(u.shaperoomchance) < 5 ) || (isnullrace && (rnd(u.shaperoomchance) < 5 ) ) ) )  {  
             int xcmax = 0, ycmax = 0, xcut = 0, ycut = 0;  
             boolean dotl = FALSE, dotr = FALSE, dobl = FALSE, dobr = FALSE, docenter = FALSE;  
-            switch (rnd(9)) {  
-            case 1:  
-            case 2:  
-            case 3:  
+            switch (rnd(9)) {
+            case 1:
+            case 2:
+            case 3:
                 /* L-shaped */  
                 xcmax = (hix - lowx) * 2 / 3;
                 ycmax = (hiy - lowy) * 2 / 3;
+
                 switch(rn2(4)) {  
                 case 1:  
                     dotr = TRUE;  
@@ -384,11 +385,12 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
                     break;  
                 }  
                 break;  
-            case 4:  
-            case 5:  
+            case 4:
+            case 5:
                 /* T-shaped */  
-                xcmax = (hix - lowx) * 2 / 5;
-                ycmax = (hiy - lowy) * 2 / 5;
+                xcmax = (hix - lowx) / 2;
+                ycmax = (hiy - lowy) / 2;
+
                 switch(rn2(4)) {  
                 case 1:  
                     dotr = TRUE;  
@@ -404,10 +406,11 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
                     dobl = TRUE;  
                 }  
                 break;  
-            case 6:  
+            case 6:
                 /* S/Z shaped ("Tetris Piece") */  
-                xcmax = (hix - lowx) * 2 / 3;
-                ycmax = (hiy - lowy) * 2 / 3;
+                xcmax = (hix - lowx) / 2;
+                ycmax = (hiy - lowy) / 2;
+
                 switch(rn2(2)) {  
                 case 1:  
                     dotr = TRUE;  
@@ -417,30 +420,69 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
                     dobr = TRUE;  
                 }  
                 break;  
-            case 7:  
+            case 7:
                 /* Plus Shaped */  
-                xcmax = (hix - lowx) * 2 / 5;
-                ycmax = (hiy - lowy) * 2 / 5;
+                xcmax = (hix - lowx) * 3 / 7;
+                ycmax = (hiy - lowy) * 3 / 7;
+
                 dotr = TRUE;  
                 dotl = TRUE;  
                 dobr = TRUE;  
                 dobl = TRUE;  
+
+			if (!rn2(5)) {
+				switch (rnd(4)) {
+					case 1:
+						dotr = FALSE;
+						break;
+					case 2:
+						dotl = FALSE;
+						break;
+					case 3:
+						dobr = FALSE;
+						break;
+					case 4:
+						dobl = FALSE;
+						break;
+				}
+			}
+
                 break;  
-            case 8:  
+            case 8:
                 /* square-O shaped (pillar cut out of middle) */  
                 xcmax = (hix - lowx) / 2;  
                 ycmax = (hiy - lowy) / 2;  
+
                 docenter = TRUE;  
                 break;  
-            case 9:  
+            case 9:
                 /* X-shaped */  
-                xcmax = (hix - lowx) / 3;  
-                ycmax = (hiy - lowy) / 3;  
+                xcmax = (hix - lowx) * 3 / 7;  
+                ycmax = (hiy - lowy) * 3 / 7;  
+
                 dotr = TRUE;  
                 dotl = TRUE;  
                 dobr = TRUE;  
                 dobl = TRUE;  
                 docenter = TRUE;  
+
+			if (!rn2(5)) {
+				switch (rnd(4)) {
+					case 1:
+						dotr = FALSE;
+						break;
+					case 2:
+						dotl = FALSE;
+						break;
+					case 3:
+						dobr = FALSE;
+						break;
+					case 4:
+						dobl = FALSE;
+						break;
+				}
+			}
+
                 break;  
                 /* TODO: oval */  
             default:  
@@ -457,6 +499,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
                     xcut = xcmax;  
                 if ((ycut < (ycmax / 2)) && !rn2(3))  
                     ycut = ycmax;  
+
             }  
             /* Now do the actual cuts. */  
             if (dotr) {  
