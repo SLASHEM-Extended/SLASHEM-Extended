@@ -163,8 +163,10 @@ const char *text;
 char *newbot2;
 {
 	register char *nb;
+
 	int flickercolor = rn2(CLR_MAX);
 	while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+
 
 	if (*text == '\0') return;
 
@@ -174,9 +176,12 @@ char *newbot2;
 
 	Strcat(nb = eos(nb), text);
 	curs(WIN_STATUS, 1, 1);
-	start_color_option(flickercolor);
-	putstr(WIN_STATUS, 0, newbot2);
-	end_color_option(flickercolor);
+	{
+		struct color_option color_option = {flickercolor, 0};
+		start_color_option(color_option);
+		putstr(WIN_STATUS, 0, newbot2);
+		end_color_option(color_option);
+	}
 }
 
 void
@@ -195,9 +200,12 @@ char *newbot1;
 
 	Strcat(nb = eos(nb), text);
 	curs(WIN_STATUS, 1, 0);
-	start_color_option(flickercolor);
-	putstr(WIN_STATUS, 0, newbot1);
-	end_color_option(flickercolor);
+	{
+		struct color_option color_option = {flickercolor, 0};
+		start_color_option(color_option);
+		putstr(WIN_STATUS, 0, newbot1);
+		end_color_option(color_option);
+	}
 }
 
 #endif
