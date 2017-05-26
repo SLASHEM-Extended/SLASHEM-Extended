@@ -982,6 +982,12 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
+
+			if (uarmh && uarmh->oartifact == ART_ELONA_S_SNAIL_TRAIL && !Race_if(PM_SNAIL) && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
+
 			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") )) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
@@ -1046,19 +1052,19 @@ moveloop()
 				moveamt /= 2; /* punishment for attempting hangup cheat --Amy */
 			}
 
-			if ( (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) && moveamt > 1) { /* speed bug messes up the player's speed --Amy */
+			if ( (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) && moveamt > 1) { /* speed bug messes up the player's speed --Amy */
 				if (rn2(5)) moveamt *= rnd(5);
 				moveamt /= rnd(6);
 				if (!rn2(5)) moveamt /= 2;
 			}
 
 			/* speed bug reverses speed effects --Amy */
-			if (Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) && rn2(4) && rn2(4) && moveamt > 1 ) {	/* speed boots or potion */
+			if (Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) && rn2(4) && rn2(4) && moveamt > 1 ) {	/* speed boots or potion */
 			    /* average movement is 0.5625 times normal */
 
 				moveamt /= 2;
 
-			} else if (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) && !rn2(4) && moveamt > 1 ) {
+			} else if (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) && !rn2(4) && moveamt > 1 ) {
 			    /* average movement is 0.75 times normal */
 
 				moveamt /= 2;
@@ -1066,11 +1072,11 @@ moveloop()
 
 			if (moveamt < 0) moveamt = 0;
 
-			if (Very_fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !have_speedbugstone()) {	/* speed boots or potion */
+			if (Very_fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone()) {	/* speed boots or potion */
 			    /* average movement is 1.67 times normal */
 			    moveamt += NORMAL_SPEED / 2;
 			    if (rn2(3) == 0) moveamt += NORMAL_SPEED / 2;
-			} else if (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !have_speedbugstone()) {
+			} else if (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone()) {
 			    /* average movement is 1.33 times normal */
 			    if (rn2(3) != 0) moveamt += NORMAL_SPEED / 2;
 			}
@@ -1092,6 +1098,7 @@ moveloop()
 			if (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) moveamt *= 2;
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
+			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += NORMAL_SPEED / 2;
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
 			if (uarmc && (uarmc->oartifact == ART_WINDS_OF_CHANGE) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
 			if (uarm && (uarm->oartifact == ART_FORMULA_ONE_SUIT) && !rn2(10)) moveamt += NORMAL_SPEED / 2;
@@ -1215,6 +1222,16 @@ moveloop()
 
 		}
 
+		if ((uarmh && uarmh->oartifact == ART_UBB_RUPTURE) && !rn2(100) && multi >= 0) {
+
+			pline("You faint from the terrible sounds.");
+			flags.soundok = 0;
+			nomul(-(rnz(5) ), "fainted from terrible sounds");
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
 		if ((uleft && uleft->oartifact == ART_BLIND_PILOT) && !rn2(100) && multi >= 0) {
 
 			pline("You faint from exertion.");
@@ -1293,6 +1310,11 @@ moveloop()
 		    killer = "genocidal existence failure";
 		    done(GENOCIDED);
 
+		}
+
+		/* safety check in case the hero becomes an ungenomold by recursion --Amy */
+		if (Upolyd && Race_if(PM_UNGENOMOLD) && !(mvitals[PM_UNGENOMOLD].mvflags & G_GENOD) ) {
+			mvitals[PM_UNGENOMOLD].mvflags |= (G_GENOD|G_NOCORPSE);
 		}
 
 		if (issoviet && !rn2(1000)) { /* mocking messages :-P --Amy */
@@ -3878,6 +3900,11 @@ newbossX:
 			flags.botl = 1;
 		}
 
+		if (uarmf && uarmf->oartifact == ART_SUCH_A_WONDERFUL_ROOMMATE && (multi < 0) && (u.uhs >= HUNGRY)) {
+			pline("Your stomach fills.");
+			u.uhunger += 100;
+		}
+
 		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pink sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rozovyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pushti shippak") )) && !rn2(1000)) {
 			pline("The beguiling stench emanating from your pink sneakers fills the area...");
 			badeffect();
@@ -4286,6 +4313,36 @@ newbossB:
 			}
 		}
 
+		if (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE && !rn2(500) ) {
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, SHIT_TRAP, 0);
+					break;
+					}
+			}
+		}
+
+		if (uarmf && uarmf->oartifact == ART_BLUEDE && !rn2(1000) ) {
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, NATALJE_TRAP, 0);
+					break;
+					}
+			}
+		}
+
 		if (FemaleTrapFemmy && !rn2(200)) {
 
 			int tryct = 0;
@@ -4523,7 +4580,7 @@ newbossB:
 			}
 		}
 
-		if ( (have_topiylinencurse() || (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) ) && !rn2(1000) ) { /* was 1 in 100 in ToME */
+		if ( (have_topiylinencurse() || (uamul && uamul->oartifact == ART_SURTERSTAFF && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) || (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) ) && !rn2(1000) ) { /* was 1 in 100 in ToME */
 			switch (rnd(27)) {
 				case 1:
 				case 2:
@@ -4623,7 +4680,7 @@ newboss:
 			}
 		}
 
-		if ( have_blackbreathcurse() && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
+		if ( (have_blackbreathcurse() || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
 			/* was 1 in 20 in ToME, or 1 in 50 if you were a hobbit */
 			if (!rn2(5)) { /* level drain */
 				if(!Drain_resistance || !rn2(4) )
@@ -4729,6 +4786,26 @@ newboss:
 		}
 
 		if (u.uprops[RECURRING_DISENCHANT].extrinsic && !rn2(1000)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
+			}
+			pline("Your equipment seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		}
+
+		if (uarmg && uarmg->oartifact == ART_DISENCHANTING_BLACKNESS && !rn2(1000)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(10)) (void) drain_item_severely(otmpE);
+			}
+			pline("Your equipment seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		}
+
+		if (uarmh && uarmh->oartifact == ART_DRELITT && !rn2(1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -4870,6 +4947,11 @@ newboss:
 		}
 
 		if (u.uprops[RECURRING_AMNESIA].extrinsic && !rn2(1000)) {
+			You_feel("dizzy!");
+			forget(1 + rn2(5));
+		}
+
+		if (uarmh && uarmh->oartifact == ART_DRELITT && !rn2(1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
 		}
@@ -5072,7 +5154,7 @@ newboss:
 			badeffect();
 		}
 
-		if ( (have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uarmc && uarmc->oartifact == ART_VEIL_OF_MINISTRY) ) && !BlackNgWalls && !rn2(100) ) {
+		if ( (have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uarmg && uarmg->oartifact == ART_BLACKY_S_BACK_WITHOUT_L) || (uarmc && uarmc->oartifact == ART_VEIL_OF_MINISTRY) ) && !BlackNgWalls && !rn2(100) ) {
 
 			blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
 			if (!blackngdur ) blackngdur = 500; /* fail safe */
@@ -6767,7 +6849,11 @@ newboss:
 	}
 
 	if (SpellColorRed && !rn2(10)) {
-			pline(fauxmessage());
+		pline(generate_garbage_string());
+	}
+
+	if (uarmh && uarmh->oartifact == ART_UBB_RUPTURE && !rn2(10)) {
+		pline(generate_garbage_string());
 	}
 
 	if (EvencoreEffect || u.uprops[EVC_EFFECT].extrinsic || have_evcstone()) {

@@ -1043,7 +1043,7 @@ do_look(quick)
 	}
 
 	/* Finally, print out our explanation. */
-	if (found && !RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !have_rmbstone()) {
+	if (found && !RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !have_rmbstone()) {
 
 	    pline("%s", out_str);
 	/*winid datawin = create_nhwindow(NHW_MENU);
@@ -1062,7 +1062,7 @@ do_look(quick)
 		checkfile(temp_buf, pm, FALSE, (boolean)(ans == LOOK_VERBOSE));
 	    }
 	} else {
-	    if (!RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !have_rmbstone()) pline("I've never heard of such things.");
+	    if (!RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !have_rmbstone()) pline("I've never heard of such things.");
 	}
 
     } while (from_screen && !quick && ans != LOOK_ONCE);

@@ -356,6 +356,28 @@ hack_artifacts()
 	artilist[ART_NOUROFIBROMA].otyp = find_guild_cloak();
 	artilist[ART_MADELINE_S_STUPID_GIRL].otyp = find_shitty_gloves();
 
+	artilist[ART_JANA_S_ROULETTE_OF_LIFE].otyp = find_foundry_cloak();
+	artilist[ART_MAGIC_JUGGULATE].otyp = find_spellsucking_cloak();
+	artilist[ART_HIGH_KING_OF_SKIRIM].otyp = find_storm_coat();
+	artilist[ART_ALLCOLOR_PRISM].otyp = find_fleeceling_cloak();
+	artilist[ART_MARY_INSCRIPTION].otyp = find_princess_gloves();
+	artilist[ART_FATHIEN_ELDER_S_SECRET_POW].otyp = find_uncanny_gloves();
+	artilist[ART_SI_OH_WEE].otyp = find_slaying_gloves();
+	artilist[ART_JOHANETTA_S_ROUGH_GENTLENE].otyp = find_blue_sneakers();
+	artilist[ART_JANA_S_VAGINAL_FUN].otyp = find_blue_sneakers();
+	artilist[ART_VERY_NICE_PERSON].otyp = find_femmy_boots();
+	artilist[ART_JULIA_S_REAL_LOVE].otyp = find_red_sneakers();
+	artilist[ART_ELIANE_S_COMBAT_SNEAKERS].otyp = find_yellow_sneakers();
+	artilist[ART_MAILIE_S_CHALLENGE].otyp = find_pink_sneakers();
+	artilist[ART_MERLOT_FUTURE].otyp = find_skates4();
+	artilist[ART_MADELEINE_S_GIRL_FOOTSTEPS].otyp = find_calf_leather_sandals();
+	artilist[ART_RUTH_S_MORTAL_ENEMY].otyp = find_velcro_sandals();
+	artilist[ART_LARISSA_S_ANGER].otyp = find_buffalo_boots();
+	artilist[ART_PRETTY_ROOMMAID].otyp = find_heroine_mocassins();
+	artilist[ART_ALISEH_S_RED_COLOR].otyp = find_lolita_boots();
+	artilist[ART_KATIE_MELUA_S_FLEECINESS].otyp = find_weapon_light_boots();
+	artilist[ART_ELONA_S_SNAIL_TRAIL].otyp = find_rubynus_helmet();
+
 #if 0
 	/* Fix up the gifts */
 	if (urole.gift1arti) {

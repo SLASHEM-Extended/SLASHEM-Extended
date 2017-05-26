@@ -145,6 +145,7 @@ static const char *warnings[] = {
 static void FDECL(wand_explode, (struct obj *));
 #endif
 static void NDECL(do_class_genocide);
+static void NDECL(do_total_genocide);
 static void NDECL(do_class_erasure);
 static void FDECL(stripspe,(struct obj *));
 static void FDECL(p_glow1,(struct obj *));
@@ -4855,7 +4856,9 @@ retry:
 	case SCR_GENOCIDE:
 		You("have found a scroll of genocide!");
 		known = TRUE;
-		if (sobj->blessed) {	/* improvement by Amy */
+
+		if (sobj->oartifact == ART_TOTAL_GENOCIDE) do_total_genocide();
+		else if (sobj->blessed) {	/* improvement by Amy */
 			do_genocide(1);
 			do_class_genocide();
 			}
@@ -6431,6 +6434,40 @@ do_class_genocide()
 		}
 		return;
 	}
+}
+
+static void
+do_total_genocide()
+{
+	int i, j;
+	boolean gameover = FALSE;	/* true iff killed self */
+
+	for (i = LOW_PM; i < NUMMONS; i++) {
+
+		if ( !(Your_Own_Role(i) || Your_Own_Race(i)) &&
+			((mons[i].geno & G_GENO) && !(mvitals[i].mvflags & G_GENOD)) ) {
+
+		    mvitals[i].mvflags |= (G_GENOD|G_NOCORPSE);
+		    reset_rndmonst(i);
+		    kill_genocided_monsters();
+		    update_inventory();		/* eggs & tins */
+		    if (Upolyd && i == u.umonnum) {
+			u.mh = -1;
+			if (Unchanging) {
+			    You("die.");
+			    gameover = TRUE;
+			} else
+		    	    if (!Race_if(PM_UNGENOMOLD)) rehumanize();
+			    else polyself(FALSE);
+		    }
+		}
+	}
+	if (gameover || u.uhp == -1) {
+	    killer_format = KILLED_BY_AN;
+	    killer = "scroll of total genocide";
+	    if (gameover) done(GENOCIDED);
+	}
+	return;
 }
 
 static void

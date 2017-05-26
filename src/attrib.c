@@ -1744,6 +1744,7 @@ int x;
 		if (uright && uright->oartifact == ART_CATHAN_S_SIGIL) tmp += (3 + uright->spe);
 		if (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) tmp += 5;
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) tmp += 1;
+		if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) tmp += 5;
 
 		if (FemaleTrapThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
@@ -1795,6 +1796,12 @@ int x;
 		if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") )) tmp += 5;
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) tmp += 1;
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "princess gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki printsessy") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "malika qo'lqop") )) tmp += 2;
+		if (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) tmp += 10;
+		if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) tmp += 5;
+		if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_JULIA_S_REAL_LOVE) tmp += 3;
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) tmp += 20;
+		if (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) tmp += 10;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemaleTrapSolvejg) tmp += 5;
@@ -1875,6 +1882,7 @@ int x;
 		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "rubynus helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "rubinovyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yoqut asosiy dubulg'a") )) tmp += 2;
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) tmp += 1;
+		if (uarmh && uarmh->oartifact == ART_ELONA_S_SNAIL_TRAIL && Race_if(PM_SNAIL)) tmp += 10;
 
 		if (FemaleTrapJessica) tmp -= 5;
 

@@ -518,7 +518,7 @@ struct mkroom *sroom;
                else mon = ((struct monst *)0);
 /* some rooms can spawn new monster variants now --Amy */
 		if(mon) {
-			if ((sleepchance > 1) && !issoviet && rn2(sleepchance)) mon->msleeping = 1; /*random chance of them not being asleep --Amy*/
+			if ((sleepchance > 1) && !issoviet && !(uarmf && uarmf->oartifact == ART_VERY_NICE_PERSON) && rn2(sleepchance)) mon->msleeping = 1; /*random chance of them not being asleep --Amy*/
 		/* In Soviet Russia, monsters are always awake harharharharhar harharhar harhar! --Amy */
 			if (/*type==COURT && */mon->mpeaceful) { /*enemies in these rooms will always be hostile now --Amy*/
 				mon->mpeaceful = 0;

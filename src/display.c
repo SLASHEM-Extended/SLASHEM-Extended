@@ -584,7 +584,7 @@ display_monster(x, y, mon, sightflags, worm_tail)
     if (!mon_mimic || sensed) {
 	int num;
 
-	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone()) {
+	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
 		show_glyph(x,y,cmap_to_glyph(S_grayglyph));
 		return;
 	}
@@ -681,7 +681,7 @@ display_monsterX(x, y, mon, sightflags, worm_tail)
     if (!mon_mimic || sensed) {
 	int num;
 
-	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone()) {
+	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) ) {
 		show_glyph(x,y,cmap_to_glyph(S_grayglyph));
 		return;
 	}
@@ -1971,7 +1971,7 @@ show_glyph(x,y,glyph)
 	return;
     }
 
-	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) && !(glyph >= (GLYPH_CMAP_OFF + 19) && glyph < (GLYPH_CMAP_OFF + 23) ) )
+	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) && !(glyph >= (GLYPH_CMAP_OFF + 19) && glyph < (GLYPH_CMAP_OFF + 23) ) )
 	return;
 
 	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) || (glyph == (GLYPH_CMAP_OFF + 42) ) ) )
@@ -2048,7 +2048,7 @@ show_glyphX(x,y,glyph)
 	return;
     }
 
-	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) && !(glyph >= (GLYPH_CMAP_OFF + 19) && glyph < (GLYPH_CMAP_OFF + 23) ) )
+	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) && !(glyph >= (GLYPH_CMAP_OFF + 19) && glyph < (GLYPH_CMAP_OFF + 23) ) )
 	return;
 
 	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) || (glyph == (GLYPH_CMAP_OFF + 42) ) ) )

@@ -1065,6 +1065,9 @@ boolean hitsroof;
 	if (dmg > 0) dmg += (Drunken_boxing && Confusion);
 	if (RngeBloodlust && dmg > 0) dmg++;
 	if (dmg > 0 && uarms && uarms->oartifact == ART_TEH_BASH_R) dmg += 2;
+	if (dmg > 0 && uarmc && uarmc->oartifact == ART_DUFFDUFFDUFF) dmg += 3;
+	if (dmg > 0 && uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) dmg += 5;
+	if (dmg > 0 && uarmg && uarmg->oartifact == ART_SI_OH_WEE) dmg += 2;
 
 	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (u.ulevel / 3) );
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
@@ -1605,6 +1608,7 @@ int thrown;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
 	if (uwep && uwep->oartifact == ART_ATOMIC_MISSING) tmp -= 20;
+	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
 
 	if (ACURR(A_DEX) < 4) tmp -= 3;
 	else if (ACURR(A_DEX) < 6) tmp -= 2;

@@ -1186,6 +1186,9 @@ STATIC_PTR int
 doremoveimarkers()
 {
 	int x, y;
+
+	if (uarmc && uarmc->oartifact == ART_TURN_LOSS_EXTREME) return 0;
+
 	for(x=0; x<COLNO; x++) for(y=0; y<ROWNO; y++) {
 		if (isok(x, y)) {
 			if (memory_is_invisible(x, y)) {
@@ -1375,6 +1378,13 @@ domonability()
 				pline("The farting gas destroys your footwear instantly.");
 			      useup(uarmf);
 			}
+			if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+				pline("Eek! You can't stand farting gas!");
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+			}
 			badeffect();
 			return 1;
 		}
@@ -1389,6 +1399,13 @@ domonability()
 				pline("The farting gas destroys your footwear instantly.");
 			      useup(uarmf);
 			}
+			if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+				pline("Eek! You can't stand farting gas!");
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+			}
 			badeffect();
 			return 1;
 		}
@@ -1402,6 +1419,13 @@ domonability()
 			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 				pline("The farting gas destroys your footwear instantly.");
 			      useup(uarmf);
+			}
+			if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+				pline("Eek! You can't stand farting gas!");
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
 			}
 			badeffect();
 			return 1;
@@ -5094,10 +5118,10 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	    you_are(buf);
 	}
 	if ((guaranteed || !rn2(10)) && Unchanging) you_can("not change from your current form");
-	if ((guaranteed || !rn2(10)) && (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !have_speedbugstone())) you_are(Very_fast ? "very fast" : "fast");
-	if ((guaranteed || !rn2(10)) && (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) )) you_are(Very_fast ? "very slow" : "slow");
-	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !have_speedbugstone())) you_are("very fast");
-	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) )) you_are("very slow");
+	if ((guaranteed || !rn2(10)) && (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone())) you_are(Very_fast ? "very fast" : "fast");
+	if ((guaranteed || !rn2(10)) && (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) )) you_are(Very_fast ? "very slow" : "slow");
+	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone())) you_are("very fast");
+	if ((guaranteed || !rn2(10)) && (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) )) you_are("very slow");
 	if ((guaranteed || !rn2(10)) && Reflecting) you_have("reflection");
 	if ((guaranteed || !rn2(10)) && Free_action) you_have("free action");
 	if ((guaranteed || !rn2(10)) && (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) )) you_have("fixed abilities");
@@ -7960,10 +7984,10 @@ int final;
 	}
 	if (Unchanging)
 	  dump(youcould, "not change from your current form");
-	if (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !have_speedbugstone()) dump(youwere, Very_fast ? "very fast" : "fast");
-	if (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) ) dump(youwere, Very_fast ? "very slow" : "slow");
-	if (!Fast && Very_fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !have_speedbugstone()) dump(youwere, "very fast");
-	if (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || have_speedbugstone()) ) dump(youwere, "very slow");
+	if (Fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone()) dump(youwere, Very_fast ? "very fast" : "fast");
+	if (Fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) ) dump(youwere, Very_fast ? "very slow" : "slow");
+	if (!Fast && Very_fast && !SpeedBug && !u.uprops[SPEED_BUG].extrinsic && !(uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) && !(uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) && !have_speedbugstone()) dump(youwere, "very fast");
+	if (!Fast && Very_fast && (SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || have_speedbugstone()) ) dump(youwere, "very slow");
 	if (Reflecting) dump(youhad, "reflection");
 	if (Free_action) dump(youhad, "free action");
 	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) dump(youhad, "fixed abilities");

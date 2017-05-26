@@ -8076,6 +8076,24 @@ register int dx,dy;
 				dy = 0;
 			    }
 
+			} else if (uarmc && uarmc->oartifact == ART_ALLCOLOR_PRISM) {
+
+			    if (dx && dy) {
+
+				if (rn2(2)) {
+					dx = -dx;
+				} else {
+					dy = -dy;
+				}
+
+			    } else if (dx) {
+				dx = 0;
+				dy = rn2(2) ? -1 : 1;
+			    } else {
+				dx = rn2(2) ? -1 : 1;
+				dy = 0;
+			    }
+
 			} else if (uarm && uarm->oartifact == ART_TERRY_PRATCHETT_S_INGENUIT) {
 
 			    if (dx && dy) {
@@ -8655,6 +8673,9 @@ register int osym, dmgtyp;
 			}
 
 		    if (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) {skip++; break;
+			}
+
+		    if (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) {skip++; break;
 			}
 
 		    if(osym == POTION_CLASS && obj->otyp != POT_OIL) {

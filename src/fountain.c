@@ -289,7 +289,11 @@ drinkfountain()
 			break;
 
 		case 23: /* Water demon */
-			dowaterdemon();
+			if (uarmc && uarmc->oartifact == ART_JANA_S_ROULETTE_OF_LIFE && !rn2(10)) {
+				pline("Booyah, luck is smiling on you!");
+				if (!rn2(4)) makewish();
+				else othergreateffect();
+			} else dowaterdemon();
 			break;
 
 		case 24: /* Curse an item */ {
@@ -385,6 +389,13 @@ drinkfountain()
 		You_feel("the lethe waters running down your throat...");
 		You_feel("dizzy!");
 		forget(1 + rn2(5));
+	}
+
+	if (uarmc && uarmc->oartifact == ART_JANA_S_ROULETTE_OF_LIFE && !rn2(100)) {
+		pline("Bad luck! You die.");
+		killer_format = KILLED_BY;
+		killer = "Jana's roulette";
+		done(DIED);
 	}
 
 	dryup(u.ux, u.uy, TRUE);

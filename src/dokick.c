@@ -36,6 +36,8 @@ register boolean clumsy;
 	int blessed_foot_damage = 0;
 	boolean trapkilled = FALSE;
 
+	if (uarmf && uarmf->oartifact == ART_LARISSA_S_ANGER) dmg += 5;
+
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)
 	    dmg += 5;
 	if (uarmf && uarmf->otyp == STOMPING_BOOTS)
@@ -171,6 +173,8 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) dmg += 10;
 	if (uarmc && uarmc->oartifact == ART_CONNY_S_COMBAT_COAT) dmg += 5;
 
+	if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS && !rn2(20)) dmg += 10000; /* instant death */
+
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) dmg += rnd(10);
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "weapon light boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "legkiye botinki dlya oruzhiya") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qurol engil etigi") )) {
@@ -180,9 +184,13 @@ register boolean clumsy;
 		pline("Using such a dangerous pair of boots without permission is very sinful.");
 	}
 
+	if (uarmf && uarmf->oartifact == ART_MADELEINE_S_GIRL_FOOTSTEPS) adjalign(1);
+
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") )) dmg *= 2;
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) clumsy = FALSE;
+
+	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
 
 	/* excessive wt affects dex, so it affects dmg */
 	if (clumsy) dmg /= 2;
@@ -503,7 +511,7 @@ register xchar x, y;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) i += 6000;
 
-	if((i < (j*3)/10) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) ) {
+	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) ) {
 		if(!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) {
 			if(martial() && !rn2(2)) goto doit;
 			Your("clumsy kick does no damage.");
@@ -520,6 +528,8 @@ register xchar x, y;
 		clumsy = TRUE;
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "combat boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "boyevyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jangovar chizilmasin") ) ) clumsy = FALSE;
+
+	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) clumsy = FALSE;
 

@@ -15157,6 +15157,7 @@ loopback:
 		if (ct > 0 && (In_spiders(&u.uz) && webmaker(ptr) )) ct += 10;
 		if (ct > 0 && (Is_lawful_quest(&u.uz) && dmgtype(ptr, AD_SPC2) )) ct += 1;
 		if (ct > 0 && (Is_lawful_quest(&u.uz) && is_covetous(ptr) )) ct += 2;
+		if (ct > 0 && (uarmf && uarmf->oartifact == ART_POWERWARP && is_covetous(ptr))) ct += 5;
 		if (ct > 0 && (Is_lawful_quest(&u.uz) && cannot_be_tamed(ptr) )) ct += 1;
 		if (ct > 0 && (Is_lawful_quest(&u.uz) && is_shade(ptr) )) ct += 2;
 		if (ct > 0 && (Is_lawful_quest(&u.uz) && dmgtype(ptr, AD_RBRE) )) ct += 2;
@@ -15776,6 +15777,7 @@ int     spc;
 		if ((In_spiders(&u.uz) && webmaker(&mons[last]) )) num += 10;
 		if ((Is_lawful_quest(&u.uz) && dmgtype(&mons[last], AD_SPC2) )) num += 1;
 		if ((Is_lawful_quest(&u.uz) && is_covetous(&mons[last]) )) num += 2;
+		if ((uarmf && uarmf->oartifact == ART_POWERWARP && is_covetous(&mons[last]) )) num += 5;
 		if ((Is_lawful_quest(&u.uz) && cannot_be_tamed(&mons[last]) )) num += 1;
 		if ((Is_lawful_quest(&u.uz) && is_shade(&mons[last]) )) num += 2;
 		if ((Is_lawful_quest(&u.uz) && dmgtype(&mons[last], AD_RBRE) )) num += 2;
@@ -16098,6 +16100,7 @@ int     spc;
 		if ((In_spiders(&u.uz) && webmaker(&mons[first]) )) num -= 10;
 		if ((Is_lawful_quest(&u.uz) && dmgtype(&mons[first], AD_SPC2) )) num -= 1;
 		if ((Is_lawful_quest(&u.uz) && is_covetous(&mons[first]) )) num -= 2;
+		if ((uarmf && uarmf->oartifact == ART_POWERWARP && is_covetous(&mons[first]) )) num -= 5;
 		if ((Is_lawful_quest(&u.uz) && cannot_be_tamed(&mons[first]) )) num -= 1;
 		if ((Is_lawful_quest(&u.uz) && is_shade(&mons[first]) )) num -= 2;
 		if ((Is_lawful_quest(&u.uz) && dmgtype(&mons[first], AD_RBRE) )) num -= 2;
@@ -16930,6 +16933,7 @@ register struct permonst *ptr;
 	if (Aggravate_monster && !rn2(10)) return FALSE;
 	if (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) return FALSE;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) return FALSE;
+	if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) return FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_LOVELY_GIRL_PLATEAUS) return FALSE;
 
@@ -16941,6 +16945,8 @@ register struct permonst *ptr;
 
 	if (always_peaceful(ptr)) return TRUE;
 
+	if (uarmf && uarmf->oartifact == ART_VERY_NICE_PERSON && !rn2(5)) return TRUE;
+
 	if (!rn2(Aggravate_monster ? 500 : 100)) return TRUE; /* low chance of getting random peaceful monsters --Amy */
 
 	/* chaotic alignment is too easy and lawful is too hard. Make it easier for neutral and especially lawful by having monsters generate peaceful more often. --Amy */
@@ -16948,6 +16954,8 @@ register struct permonst *ptr;
 	if ( (sgn(u.ualign.type) == sgn(ptr->maligntyp) ) && !rn2(50) && !Role_if(PM_CONVICT) && u.ualign.type == A_NEUTRAL) return TRUE;
 
 	if (is_pokemon(ptr) && rn2(5) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") ) ) return TRUE;
+
+	if (ptr->mlet == S_LICH && uarmg && uarmg->oartifact == ART_BLACKY_S_BACK_WITHOUT_L) return TRUE;
 
 	if (ptr->mlet == S_KOP && Race_if(PM_KOP) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_ANGEL && Race_if(PM_HUMANOID_ANGEL) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;

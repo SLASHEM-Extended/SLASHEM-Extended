@@ -446,7 +446,7 @@ trap_of_walls:
 	 * only during regular play then, even though that is really stupid. */
    if (update) {
 
-	   if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(100)) goto trap_of_walls;
+	   if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || (uwep && uwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_CUDGEL_OF_CUTHBERT) || (uwep && uwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(100)) goto trap_of_walls;
 
    }
 
@@ -1069,7 +1069,7 @@ int mode;
 	    ;	/* do nothing */
 	} else if (Race_if(PM_HUMANOID_DRYAD) && tmpr->typ == TREE) {
 	    ;	/* dryad can walk thru trees --Amy */
-	} else if ( ( (tunnels(youmonst.data) && !needspick(youmonst.data)) || (Race_if(PM_SCURRIER) && !Upolyd) || u.geolysis) ) {
+	} else if ( ( (tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd) || u.geolysis) ) {
 	    /* Eat the rock. */
 	    if (mode == DO_MOVE && still_chewing(x,y)) return FALSE;
 	} else if (flags.autodig && !flags.run && !flags.nopick &&
@@ -1131,7 +1131,7 @@ int mode;
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but the gap is too small.");
-		    else if ((tunnels(youmonst.data) && !needspick(youmonst.data)) || (Race_if(PM_SCURRIER) && !Upolyd))
+		    else if ((tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd))
 			You("hurt your teeth on the re-enforced door.");
 		    else if (x == u.ux || y == u.uy) {
 			if (Blind || Stunned || Numbed || ACURR(A_DEX) < 10 || Fumbling) {                            pline("Ouch!  You bump into a heavy door.");
@@ -1145,7 +1145,7 @@ int mode;
 		;	/* do nothing */
 	    else if (can_ooze(&youmonst)) {
 		if (mode == DO_MOVE) You("ooze under the door.");
-	    } else if ((tunnels(youmonst.data) && !needspick(youmonst.data)) || (Race_if(PM_SCURRIER) && !Upolyd)) {
+	    } else if ((tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd)) {
 		/* Eat the door. */
 		if (mode == DO_MOVE && still_chewing(x,y)) return FALSE;
 	    } else {
@@ -1254,7 +1254,7 @@ int mode;
 	    return FALSE;
 	if (mode == DO_MOVE) {
 	    /* tunneling monsters will chew before pushing */
-	    if ( ( (tunnels(youmonst.data) && !needspick(youmonst.data)) || (Race_if(PM_SCURRIER) && !Upolyd) || u.geolysis) &&
+	    if ( ( (tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd) || u.geolysis) &&
 		!In_sokoban(&u.uz)) {
 		if (still_chewing(x,y)) return FALSE;
 	    } else
@@ -1267,6 +1267,7 @@ int mode;
 		if (!Passes_walls &&
 		    !(tunnels(youmonst.data) && !needspick(youmonst.data)) &&
 		    !(Race_if(PM_SCURRIER) && !Upolyd) &&
+		    !(uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) &&
 		    !carrying(PICK_AXE) && !carrying(CONGLOMERATE_PICK) &&
 		    !carrying(BRONZE_PICK) && !carrying(DWARVISH_MATTOCK) &&
 		    !((obj = carrying(WAN_DIGGING)) &&
@@ -1601,6 +1602,12 @@ domove()
 		/* check slippery ice */
 		on_ice = !Levitation && is_ice(u.ux, u.uy);
 		if (on_ice) {
+
+			if (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE && !(HFast)) {
+				incr_itimeout(&HFast, rnd(500));
+				pline("Vrooooom, your ski heels speed up thanks to walking on snow!");
+			}
+
 		    static int skates = 0;
 		    if (!skates) skates = find_skates();
 		    static int skates2 = 0;
@@ -1613,6 +1620,8 @@ domove()
 			    || (uarmf && uarmf->otyp == skates2)
 			    || (uarmf && uarmf->otyp == skates3)
 			    || (uarmf && uarmf->otyp == skates4)
+			    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+			    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)
 			    || resists_cold(&youmonst) || Flying
 			    || is_floater(youmonst.data) || is_clinger(youmonst.data)
 			    || is_whirly(youmonst.data))
@@ -2171,7 +2180,7 @@ domove()
 	}
 
 	/* exercising high heel skill takes a while... */
-	if (PlayerInHighHeels && (u.uhighheelturns++ >= 100)) {
+	if (PlayerInHighHeels && (u.uhighheelturns++ >= 50)) {
 	    u.uhighheelturns = 0;
 	    use_skill(P_HIGH_HEELS, 1);
 	}

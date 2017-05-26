@@ -6280,6 +6280,8 @@ recursioneffect()
 
 	init_uasmon();
 
+	if (Race_if(PM_UNGENOMOLD) && !Upolyd) polyself(FALSE);
+
 }
 
 void
@@ -6353,6 +6355,8 @@ temprecursioneffect()
 	}
 
 	init_uasmon();
+
+	if (Race_if(PM_UNGENOMOLD) && !Upolyd) polyself(FALSE);
 
 }
 

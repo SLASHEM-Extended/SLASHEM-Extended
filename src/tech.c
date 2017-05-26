@@ -3395,6 +3395,10 @@ int tech_no;
 			uammo->quan = techlev(tech_no);
 			/* gunner really specializes in ranged weapons, so needs a big bonus --Amy */
 			if (Role_if(PM_GUNNER)) uammo->quan *= 1 + rnd(2);
+			if (uarmf && uarmf->oartifact == ART_ZERDROY_GUNNING) {
+				uammo->quan *= 3;
+				if (uarmf) curse(uarmf);
+			}
 			if (ammotype == 5) uammo->quan *= 4;
 			if (ammotype == 4) uammo->quan /= 10;
 			if (uammo->quan < 0) uammo->quan = 1; /* fail safe */

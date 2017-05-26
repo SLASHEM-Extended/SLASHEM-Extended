@@ -2006,7 +2006,7 @@ struct WinDesc *cw;
 		    }  
 #endif
 #ifdef MENU_COLOR
-		   if (FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone()) {
+		   if (FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone() || (uarmh && uarmh->oartifact == ART_TELEVISION_WONDER) ) {
 			int fleececolor = rn2(CLR_MAX);
 			while (fleececolor == NO_COLOR) fleececolor = rn2(CLR_MAX);
 			term_start_color(fleececolor);
@@ -2027,7 +2027,7 @@ struct WinDesc *cw;
 #endif
 			  (void) putchar(*cp);
 #ifdef MENU_COLOR
-		   if (FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone()) {
+		   if (FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone() || (uarmh && uarmh->oartifact == ART_TELEVISION_WONDER) ) {
 			term_end_color();
 		   } else if (iflags.use_menu_color && menucolr) {
 		      if (color != NO_COLOR) term_end_color();

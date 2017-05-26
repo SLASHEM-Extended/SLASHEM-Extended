@@ -5388,6 +5388,264 @@ A("Faded Uselessness",			KNIFE, /* evil patch idea by jonadab - autocurses, slip
 	PHYS(0,4),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 500L ),
 
 
+A("Most Charismatic President",				TRUMP_COAT, /* +10 charisma, wall trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 10000L ),
+
+A("Magicaint",				CLOAK_OF_BAD_TRAPPING,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Secant Wherelocation",				GRAYOUT_CLOAK, /* teleportitis */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("DuffDuffDuff",				PSEUDO_TELEPORTER_CLOAK, /* +3 increase damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Insane Mind Screw",				CLOCKLOAK, /* psi resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 7000L ),
+
+A("Resistant Punching Bag",				GIMP_CLOAK, /* +1 MC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Honored Fairness",				SNARENET_CLOAK,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP|SPFX_STLTH), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1000L ),
+
+A("Fast Speed Bump",				PINK_SPELL_CLOAK, /* very fast speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Turn Loss Extreme",				UNDERLAYER_CLOAK, /* ctrl-U does not work */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SEARCH|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Can't Touch This",				ELONGATION_CLOAK, /* 10 extra points of AC */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("Changed Random Numbers",				UNFAIR_ATTACK_CLOAK, /* fiddles with the RNG, similar to x-race */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("UBB Rupture",				CARTRIDGE_OF_HAVING_A_HORROR, /* random fainting, displays garbage strings 1 in 10 turns, deactivates disintegration and confusion resistance but grants stun resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("No RMB Vacation",				BORDERLESS_HELMET, /* right mouse button loss */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Sincere Mania",				HELM_OF_COUNTER_ROTATION,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HALRES), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Television Wonder",				FLICKER_VISOR, /* fleecescript */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Video Decoder",				SCRIPTED_HELMET, /* flicker strips */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Unimportant Elements",				EMPTY_LINE_HELMET, /* resist acid, petrification, sleep */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Marlena's Song",				GREEN_SPELL_HELMET, /* invisibility, displacement */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Drelitt",				MORE_HELMET, /* recurring amnesia and disenchantment */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Russian Ice Blocks",				SCALER_MITTENS,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Blacky's Back Without L",				BLACK_SPELL_GAUNTLETS, /* black ng walls, all L are always spawned peaceful */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Disenchanting Blackness",				GAUNTLETS_OF_REVERSE_ENCHANTME, /* recurring disenchantment that can push items down to -20 */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HSPDAM|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Raaaaaaaarrrrrrgh",				FUCKUP_MELEE_GAUNTLETS, /* +5 damage and AC, but all monsters look like grayouts */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Uneven Engine",				COMPETITION_BOOTS, /* very fast speed, speed bug */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Indian Smoke Symbol",				QUASIMODULAR_BOOTS, /* negative AC gives more damage reduction */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Powerwarp",				COVETED_BOOTS, /* all covetous monsters have +5 spawning frequency */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Equipped for Trouble",				KILLER_HEELS, /* flying */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Stonewall Checkerboard Disease",				CHECKER_BOOTS, /* petrification resistance, allows you to chew through rock */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Bluede",				ELVIS_SHOES, /* spawns a natalje trap 1 in 1000 turns, resist psi, fire, cold, shock, poison, sleep */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Shortfall",				AIRSTEP_BOOTS, /* magical breathing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Bridge Shitte",				HIGH_HEELED_SKIERS, /* spawns a shit trap 1 in 500 turns and you trigger them even if you fly, can walk on snow */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Such A Wonderful Roommate",				HIGH_SCORING_HEELS, /* if you are paralyzed while hungry or worse, 100 nutrition points are restored per turn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Vrrrrrrrrrrrr",				TRON_BOOTS, /* very fast speed, adds extra speed sometimes */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Nastist",				RED_SPELL_HEELS, /* nastiness, resist fire, cold, petrification, sleep */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 10000L ),
+
+A("Zerdroy Gunning",				DESTRUCTIVE_HEELS, /* teaches you the ammo creation technique if you didn't have it, and it creates 3x as many bullets but will try to curse the boots again, even if they are already cursed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Hypocritical Fun",				RIN_FORM_SHIFTING, /* polymorph control */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1000L ),
+
+A("Like A Real Server",				RIN_LAGGING, /* disconnected stairs */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Evil Detector",				RIN_BLESSCURSING, /* if it curses an item, you will know that item's BUC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Wouuu",				AMULET_OF_TRASH, /* +5 AC, clairvoyance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Gagarin's Translator",				CYAN_SPELL_CLOAK, /* renames all items to soviet, infravision, spells cost 10% less mana */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_WARN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Surterstaff",				AMULET_OF_STARLIGHT, /* detect monsters if you wield a quarterstaff-class weapon, carries a Topi Ylinen curse if you do and fills you with the black breath otherwise */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Heliokopis's Wizarding Aid",				GREAT_DAGGER, /* petrification resistance when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2400L ),
+
+A("Total Genocide",				SCR_GENOCIDE, /* genocides everything that can be genocided */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Jana's Roulette of Life",				ORCISH_CLOAK, /* initialized to always be foundry cloak; 10x higher chance of getting a wish from fountain quaffing, but 1 in 100 chance to die outright no matter what the fountain's effect was. */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Magic Juggulate",				ORCISH_CLOAK, /* initialized to always be spellsucking cloak */
+	(SPFX_RESTR|SPFX_EREGEN|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("High King of Skirim",				ORCISH_CLOAK, /* initialized to always be storm coat, +5 AC, STR and CHA */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Allcolor Prism",				ORCISH_CLOAK, /* initialized to always be fleeceling cloak; prism reflection */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Mary Inscription",				LEATHER_GLOVES, /* initialized to always be princess gloves; all monsters always spawn hostile, +10 CHA, +5 AC */
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 10000L ),
+
+A("Fathien Elder's Secret Power",				LEATHER_GLOVES, /* initialized to always be uncanny gloves; occult spells don't cause backlash */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
+
+A("Si-Oh-Wee",				LEATHER_GLOVES, /* initialized to always be slaying gloves; +2 damage and accuracy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Johanetta's Rough Gentleness",				LOW_BOOTS, /* initialized to always be blue sneakers; resist cold and shock */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 8000L ),
+
+A("Jana's Vaginal Fun",				LOW_BOOTS, /* initialized to always be blue sneakers; prevents your inventory from getting wet and provides unbreathing, but if you get wet, 1 in 100 chance to die instantly. */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Very Nice Person",				LOW_BOOTS, /* initialized to always be femmy boots; aggravate monster, monsters in special rooms always spawn awake, but monsters generally have 20% chance of spawning peaceful otherwise */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Julia's Real Love",				LOW_BOOTS, /* initialized to always be red sneakers; +3 CHA */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Eliane's Combat Sneakers",				LOW_BOOTS, /* initialized to always be yellow sneakers; +20 CHA, kicking has 5% chance of instakilling the monster, but if something farts, you get 4 extra bad effects */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Mailie's Challenge",				LOW_BOOTS, /* initialized to always be pink sneakers; aggravate monster, your kick can never be clumsy, resist poison, psi and drain */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("Merlot Future",				LOW_BOOTS, /* initialized to always be ski heels; can walk on "snow" and give rnd(500) turns of very fast speed if you didn't have temporary speed yet */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 0L ),
+
+A("Madeleine's Girl Footsteps",				LOW_BOOTS, /* initialized to always be calf-leather sandals; kicking a monster gives +1 alignment, resist disintegration and death rays */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Ruth's Mortal Enemy",				LOW_BOOTS, /* initialized to always be velcro sandals; flying */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Larissa's Anger",				LOW_BOOTS, /* initialized to always be buffalo boots; aggravate monster, +5 kick damage, resist cold/shock/disintegration */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Pretty Roommaid",				LOW_BOOTS, /* initialized to always be heroine mocassins; resist shock and petrification */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Aliseh's Red Color",				LOW_BOOTS, /* initialized to always be lolita boots; stealer trap effect, +10 CHA, having sex will cause you to have children more often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Katie Melua's Fleeciness",				LOW_BOOTS, /* initialized to always be weapon light boots; your potions cannot be destroyed by cold, treachery and hate trap effects, doubles healup effects or quadruples if you're a healer */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Elona's Snail Trail",				HELMET, /* initialized to always be rubynus helmet; half speed unless you're a snail, +10 CON and very fast speed if you are one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

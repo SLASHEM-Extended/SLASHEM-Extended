@@ -322,6 +322,15 @@ Boots_on()
 		}
     }
 
+    if (uarmf && uarmf->oartifact == ART_ZERDROY_GUNNING) {
+
+		if (!tech_known(T_CREATE_AMMO)) {
+		    	learntech(T_CREATE_AMMO, FROMOUTSIDE, 1);
+		    	pline("Suddenly, you know how to use the create ammo technique!");
+		}
+
+    }
+
     if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_UNEXPECTED_ABI) {
 		int extraabilities = 0;
 		if (!uarmf->cursed) curse(uarmf);
@@ -4974,6 +4983,11 @@ find_ac()
 	if (uarms && uarms->oartifact == ART_CUTTING_THROUGH) uac -= 5;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) uac -= 2;
 	if (uarmh && uarmh->oartifact == ART_DUE_DUE_DUE_DUE_BRMMMMMMM) uac -= 2;
+	if (uarmc && uarmc->oartifact == ART_CAN_T_TOUCH_THIS) uac -= 10;
+	if (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) uac -= 5;
+	if (uamul && uamul->oartifact == ART_WOUUU) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) uac -= 5;
+	if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) uac -= 5;
 
 	if (uarms && uarms->oartifact == ART_ARMOR_CLASS_WALL) {
 		uac -= 5;

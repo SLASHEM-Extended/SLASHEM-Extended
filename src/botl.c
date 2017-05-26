@@ -415,7 +415,7 @@ bot1()
 	register char *nb;
 	register int i,j;
 
-	if (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone()) {
+	if (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) ) {
 
 		Strcpy(newbot1, " ");
 	     	add_flicker_textA(generate_garbage_string(), newbot1);
@@ -650,6 +650,7 @@ struct monst *mon;
 	if (u.magicshield) armpro++;
 	if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
+	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
 	if (Race_if(PM_INKA)) armpro++;
 	if (armpro < 0) armpro = 0;
 
@@ -678,7 +679,7 @@ bot2str(char *newbot2)
 	hp = Upolyd ? u.mh : u.uhp;
 	hpmax = Upolyd ? u.mhmax : u.uhpmax;
 
-	if (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone()) {
+	if (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) ) {
 		nb = newbot2;
 		Strcpy(newbot2, " ");
 	     	add_flicker_text(generate_garbage_string(), newbot2);

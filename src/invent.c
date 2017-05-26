@@ -595,6 +595,7 @@ added:
 
 	if (obj && (BlesscurseEffect || u.uprops[BLESSCURSE_EFFECT].extrinsic || have_blesscursestone()) && obj->blessed) {
 		curse(obj);
+		if ((uleft && uleft->oartifact == ART_EVIL_DETECTOR) || (uright && uright->oartifact == ART_EVIL_DETECTOR)) obj->bknown = TRUE;
 	}
 
 	return(obj);
@@ -909,6 +910,7 @@ struct obj *obj;
 
 	if (obj && (BlesscurseEffect || u.uprops[BLESSCURSE_EFFECT].extrinsic || have_blesscursestone()) && obj->blessed) {
 		curse(obj);
+		if ((uleft && uleft->oartifact == ART_EVIL_DETECTOR) || (uright && uright->oartifact == ART_EVIL_DETECTOR)) obj->bknown = TRUE;
 	}
 
 }
@@ -14338,6 +14340,135 @@ struct obj *obj;
 					pline("Artifact specs: +5 to-hit and double damage to puddings."); break;
 				case ART_FADED_USELESSNESS:
 					pline("Artifact specs: +4 damage to imps, autocurses when wielded and causes slippery fingers and hallucination."); break;
+
+				case ART_MOST_CHARISMATIC_PRESIDENT:
+					pline("Artifact specs: +10 charisma and wall trap effect when worn, chaotic. Do you agree that Donald Trump is the best president that the United States ever had? :D"); break;
+				case ART_MAGICAINT:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_SECANT_WHERELOCATION:
+					pline("Artifact specs: teleportitis and teleport control when worn."); break;
+				case ART_DUFFDUFFDUFF:
+					pline("Artifact specs: +3 increase damage when worn."); break;
+				case ART_INSANE_MIND_SCREW:
+					pline("Artifact specs: reflection, magic and psi resistance when worn, chaotic."); break;
+				case ART_RESISTANT_PUNCHING_BAG:
+					pline("Artifact specs: drain resistance and +1 magic cancellation when worn."); break;
+				case ART_HONORED_FAIRNESS:
+					pline("Artifact specs: stealth, ESP and shock resistance when worn, lawful."); break;
+				case ART_FAST_SPEED_BUMP:
+					pline("Artifact specs: very fast speed when worn."); break;
+				case ART_TURN_LOSS_EXTREME:
+					pline("Artifact specs: searching and ESP when worn, but you cannot remove unseen monster markers."); break;
+				case ART_CAN_T_TOUCH_THIS:
+					pline("Artifact specs: reflection and improves your AC by 10 points when worn, neutral."); break;
+ 				case ART_CHANGED_RANDOM_NUMBERS:
+					pline("Artifact specs: fiddles with the RNG when worn, causing the random numbers to behave slightly different. But chances are you'll never notice any effect from this."); break;
+				case ART_UBB_RUPTURE:
+					pline("Artifact specs: ESP, random fainting and stun resistance when worn, displays garbage strings from time to time and deactivates your resistances to confusion and disintegration."); break;
+				case ART_NO_RMB_VACATION:
+					pline("Artifact specs: right mouse button loss when worn."); break;
+				case ART_SINCERE_MANIA:
+					pline("Artifact specs: hallucination resistance when worn."); break;
+				case ART_TELEVISION_WONDER:
+					pline("Artifact specs: fleecescript when worn."); break;
+				case ART_VIDEO_DECODER:
+					pline("Artifact specs: flicker strips when worn."); break;
+				case ART_UNIMPORTANT_ELEMENTS:
+					pline("Artifact specs: resist acid, petrification and sleep when worn."); break;
+				case ART_MARLENA_S_SONG:
+					pline("Artifact specs: invisibility and displacement when worn."); break;
+				case ART_DRELITT:
+					pline("Artifact specs: recurring amnesia and recurring disenchantment when worn."); break;
+				case ART_RUSSIAN_ICE_BLOCKS:
+					pline("Artifact specs: cold resistance when worn."); break;
+				case ART_BLACKY_S_BACK_WITHOUT_L:
+					pline("Artifact specs: black NG walls when worn, and all liches are spawned peaceful."); break;
+				case ART_DISENCHANTING_BLACKNESS:
+					pline("Artifact specs: half spell damage and half physical damage when worn, recurring severe disenchantment."); break;
+				case ART_RAAAAAAAARRRRRRGH:
+					pline("Artifact specs: improves your damage output and AC by 5 points, but you can't tell monsters apart while wearing them."); break;
+				case ART_UNEVEN_ENGINE:
+					pline("Artifact specs: makes you very fast when worn but also causes the speed bug."); break;
+				case ART_INDIAN_SMOKE_SYMBOL:
+					pline("Artifact specs: If you wear them while having negative armor class, the damage reduction you get from your AC is better."); break;
+				case ART_POWERWARP:
+					pline("Artifact specs: teleport control when worn, increases the spawn chance for covetous monsters."); break;
+				case ART_EQUIPPED_FOR_TROUBLE:
+					pline("Artifact specs: flying when worn."); break;
+				case ART_STONEWALL_CHECKERBOARD_DIS:
+					pline("Artifact specs: petrification resistance when worn, allows you to chew through solid rock."); break;
+				case ART_BLUEDE:
+					pline("Artifact specs: reflection when worn and resistance to psi, fire, cold, shock, poison and sleep, but the game will occasionally spawn natalje traps. Don't let her step on them!"); break;
+				case ART_SHORTFALL:
+					pline("Artifact specs: fire resistance and magical breathing when worn."); break;
+				case ART_BRIDGE_SHITTE:
+					pline("Artifact specs: can walk on snow, but shit traps will spawn constantly and you trigger them even if you fly."); break;
+				case ART_SUCH_A_WONDERFUL_ROOMMATE:
+					pline("Artifact specs: The Amy her wonderful roommate will fill your stomach if you get paralyzed while hungry or worse."); break;
+				case ART_VRRRRRRRRRRRR:
+					pline("Artifact specs: makes you very fast and sometimes adds extra speed, so you'll become very fast indeed!"); break;
+				case ART_NASTIST:
+					pline("Artifact specs: fire, cold, petrification and sleep resistance when worn but also causes nastiness. Chaotic."); break;
+				case ART_ZERDROY_GUNNING:
+					pline("Artifact specs: If you put them on while not knowing the create ammo technique, you will learn it. Using the technique while wearing this artifact creates 3 times as many bullets but will also curse the boots again. Chaotic."); break;
+				case ART_HYPOCRITICAL_FUN:
+					pline("Artifact specs: polymorph control when worn, lawful."); break;
+				case ART_LIKE_A_REAL_SERVER:
+					pline("Artifact specs: disconnected stairs when worn. Be glad that I'm not evil enough to make this thing randomly disconnect you from the game! :-P"); break;
+				case ART_EVIL_DETECTOR:
+					pline("Artifact specs: if the blesscursing effect causes an item to be cursed, you will then know that the item in question is cursed."); break;
+				case ART_WOUUU:
+					pline("Artifact specs: 5 extra point of AC and clairvoyance when worn."); break;
+				case ART_GAGARIN_S_TRANSLATOR:
+					pline("Artifact specs: shock resistance, warning and infravision when worn, spells cost less mana to cast, all items are renamed to Russian."); break;
+				case ART_SURTERSTAFF:
+					pline("Artifact specs: If your wielded weapon uses the quarterstaff skill, it grants detect monsters but also carries a Topi Ylinen curse. But if you wield any other weapon, it fills you with the Black Breath instead."); break;
+				case ART_HELIOKOPIS_S_WIZARDING_AID:
+					pline("Artifact specs: +10 damage, petrification resistance when wielded, neutral. Tailor-made for Heliokopis who always plays a neutral male gnomish Wizard."); break;
+				case ART_TOTAL_GENOCIDE:
+					pline("Artifact specs: Genocides everything that can be genocided. The idea is by Lorskel. Don't worry, your own role and race are exempt, so this will not instakill you. However, it means that only monsters that cannot be genocided will be spawned, and those are rather more dangerous than the ones who can."); break;
+				case ART_JANA_S_ROULETTE_OF_LIFE:
+					pline("Artifact specs: It multiplies your chances of getting a wish from fountain quaffing by a factor 10! You're not sure why it's called 'roulette', because fountain quaffing has always been that..."); break;
+				case ART_MAGIC_JUGGULATE:
+					pline("Artifact specs: energy regeneration when worn."); break;
+				case ART_HIGH_KING_OF_SKIRIM:
+					pline("Artifact specs: cold resistance when worn and +5 AC, strength and charisma."); break;
+				case ART_ALLCOLOR_PRISM:
+					pline("Artifact specs: prism reflection when worn."); break;
+				case ART_MARY_INSCRIPTION:
+					pline("Artifact specs: reflection when worn and +10 charisma as well as +5 AC, but all monsters always spawn hostile because they hate Mary Sues with a fiery passion. Lawful."); break;
+				case ART_FATHIEN_ELDER_S_SECRET_POW:
+					pline("Artifact specs: prevents your occult spells from causing backlash, neutral."); break;
+				case ART_SI_OH_WEE:
+					pline("Artifact specs: Improves your damage and accuracy by 2 points each."); break;
+				case ART_JOHANETTA_S_ROUGH_GENTLENE:
+					pline("Artifact specs: cold and shock resistance when worn, neutral."); break;
+				case ART_JANA_S_VAGINAL_FUN:
+					pline("Artifact specs: They prevent your inventory from getting wet! What else can go wrong now? You're certain that this is the only thing it does, apart from having a stupid name."); break;
+				case ART_VERY_NICE_PERSON:
+					pline("Artifact specs: aggravate monster when worn, and monsters in special rooms always spawn awake because they want to tell you what a nice person you are. However, other monsters have a certain chance of spawning peaceful."); break;
+				case ART_JULIA_S_REAL_LOVE:
+					pline("Artifact specs: regeneration, fire resistance and +3 charisma when worn."); break;
+				case ART_ELIANE_S_COMBAT_SNEAKERS:
+					pline("Artifact specs: +20 charisma when worn, and kicking a monster has a small chance of instakilling it. However, you become highly vulnerable to farting attacks."); break;
+				case ART_MAILIE_S_CHALLENGE:
+					pline("Artifact specs: poison, psi and drain resistance as well as aggravate monster when worn, prevents your kick from being clumsy."); break;
+				case ART_MERLOT_FUTURE:
+					pline("Artifact specs: They can walk on 'snow' and speed up when they do."); break;
+				case ART_MADELEINE_S_GIRL_FOOTSTEPS:
+					pline("Artifact specs: resist disintegration and death rays when worn, kicking a monster with them gives +1 alignment because it's such a nice thing to do."); break;
+				case ART_RUTH_S_MORTAL_ENEMY:
+					pline("Artifact specs: flying and teleport control when worn. They are called that because Ruth engaged them in a duel once and lost."); break;
+				case ART_LARISSA_S_ANGER:
+					pline("Artifact specs: aggravate monster, cold, shock and disintegration resistance when worn, and your kick does 5 extra points of damage."); break;
+				case ART_PRETTY_ROOMMAID:
+					pline("Artifact specs: The Amy her roommaid is such a wonderful woman! <3 Shock and petrification resistance when worn."); break;
+				case ART_ALISEH_S_RED_COLOR:
+					pline("Artifact specs: fire resistance and +10 charisma when worn, but increases the chance of monsters stealing your items, and if you have sex, the chance of having children is higher."); break;
+				case ART_KATIE_MELUA_S_FLEECINESS:
+					pline("Artifact specs: prevents your potions from being destroyed by cold and also gives cold resistance, increases the effect of healing potions and spells, but you cannot tame new pets and existing ones can spontaneously rebel. Lawful."); break;
+				case ART_ELONA_S_SNAIL_TRAIL:
+					pline("Artifact specs: Wearing it as a snail will give +10 constitution and make you very fast, but if you're not a snail, it slows you down to half speed instead."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

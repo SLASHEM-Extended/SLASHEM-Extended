@@ -115,7 +115,7 @@ pline VA_DECL(const char *, line)
 && !program_state.exiting
 #endif
 
-) line = fauxmessage();
+) line = generate_garbage_string();
 
 	if ( (MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_LLLLLLLLLLLLLM) || have_memorylossstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
 

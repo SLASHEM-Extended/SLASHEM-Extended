@@ -4057,6 +4057,7 @@ struct monst *mon;
 	if (u.magicshield) armpro += 1;
 	if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
+	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
 	if (Race_if(PM_INKA)) armpro++;
 	if (armpro < 0) armpro = 0;
 
@@ -6052,7 +6053,7 @@ dopois:
 			hitmsg(mtmp, mattk);
 			if (mtmp->mcan) break;
 			/* Continue below */
-		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() ) && (dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI)
+		} else if (rn2(5) && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && (dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
@@ -6081,7 +6082,7 @@ dopois:
 		    break;
 		}
 
-		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() ) ) {
+		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
 			You_feel("a tug on your knapsack"); break;
 		}
 
@@ -6100,7 +6101,7 @@ dopois:
 
 		buf[0] = '\0';
 
-		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() ) {
+		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 			switch (steal(mtmp, buf)) {
 		  case -1:
 			return 2;
@@ -7444,6 +7445,8 @@ dopois:
 		if (tempval > 20) tempval = 20; /* max limit increased --Amy */
 
 		if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "heroine mocassins") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "mokasiny dlya geroini") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qahramoni mokasen") )) tempval *= 2;
+
+		if (uarmf && uarmf->oartifact == ART_INDIAN_SMOKE_SYMBOL) tempval *= 2;
 
 		dmg -= tempval;
 		if (dmg < 1) dmg = 1;
@@ -8845,13 +8848,13 @@ do_stone2:
 	    case AD_STTP:
 		pline( (atttypA == AD_STTP) ? "You are surrounded by a purple glow!" : "It thrusts you!");
 
-		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() ) ) {
+		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
 			You_feel("a tug on your knapsack"); break;
 		}
 
 			buf[0] = '\0';
 
-		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() ) {
+		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 			switch (steal(mtmp, buf)) {
 		  case -1:
 			return 2;
@@ -13399,9 +13402,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
 	    case AD_SSEX:
-		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() ) && canseemon(mtmp) && mtmp->mcansee ) break; /* no message, we don't want too much spam --Amy */
+		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) && canseemon(mtmp) && mtmp->mcansee ) break; /* no message, we don't want too much spam --Amy */
 
-		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() ) {
+		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
 		    stop_occupation();
 		buf[0] = '\0';
@@ -15533,6 +15536,7 @@ register struct monst *mon;
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "birthcloth") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "rozhdeniye tkan'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tug'ilgan mato") )) birthing = 1;
 	else if (RngeChildbirth) birthing = 1;
+	else if (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) birthing = 1;
 	else birthing = 0;
 
 	if (mon->mcan || mon->mspec_used) {

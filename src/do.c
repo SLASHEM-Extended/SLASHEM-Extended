@@ -3356,7 +3356,7 @@ rerollchaloc:
 	(void) in_out_region(u.ux, u.uy);
 	(void) pickup(1);
 
-	if (DisconnectedStairs || u.uprops[DISCONNECTED_STAIRS].extrinsic || have_disconnectstone()) {
+	if (DisconnectedStairs || u.uprops[DISCONNECTED_STAIRS].extrinsic || (uleft && uleft->oartifact == ART_LIKE_A_REAL_SERVER) || (uright && uright->oartifact == ART_LIKE_A_REAL_SERVER) || have_disconnectstone()) {
 	      (void) safe_teleds(FALSE);
 		pline("The entrance was disconnected!");
 	}

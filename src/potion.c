@@ -3638,6 +3638,10 @@ healup(nhp, nxtra, curesick, cureblind)
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
 	}
+	if (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) {
+		nhp *= 2;
+		if (Role_if(PM_HEALER)) nhp *= 2;
+	}
 	if (RngeNursery) nhp *= 2;
 
 	if (nhp) {
@@ -3670,6 +3674,10 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 		if (Role_if(PM_HEALER)) nhp *= 2;
 	}
 	if (uwep && uwep->oartifact == ART_HEALHEALHEALHEAL) {
+		nhp *= 2;
+		if (Role_if(PM_HEALER)) nhp *= 2;
+	}
+	if (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) {
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
 	}

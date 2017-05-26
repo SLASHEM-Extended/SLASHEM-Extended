@@ -1686,6 +1686,11 @@ boolean atme;
 		energy /= 10;
 	}
 
+	if (uarmc && uarmc->oartifact == ART_GAGARIN_S_TRANSLATOR) {
+		energy *= 9;
+		energy /= 10;
+	}
+
 	if (uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID) {
 		energy *= 4;
 		energy /= 5;
@@ -6326,7 +6331,7 @@ rerollX:
 
 	}
 
-	if (spell_skilltype(spellid(spell)) == P_OCCULT_SPELL) { /* dangerous realm... */
+	if ((spell_skilltype(spellid(spell)) == P_OCCULT_SPELL) && !(uarmg && uarmg->oartifact == ART_FATHIEN_ELDER_S_SECRET_POW) ) { /* dangerous realm... */
 		if (PlayerCannotUseSkills) {
 			if (!rn2(5)) badeffect();
 		} else switch (role_skill) {

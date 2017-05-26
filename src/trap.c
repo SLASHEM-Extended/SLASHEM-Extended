@@ -2183,6 +2183,14 @@ unsigned trflags;
 		      useup(uarmf);
 		}
 
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+			pline("Eek! You can't stand farting gas!");
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+		}
+
 		badeffect();
 
 		break;
@@ -5025,7 +5033,7 @@ rerollX:
 
 	    case SHIT_TRAP:
 
-		if ((Levitation || Flying || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ) ) ) && !FemaleTrapAnastasia && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chang'i poshnalar") )) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qo'tos botlarni") ) ) ) { /* ground-based trap, obviously */
+		if ((Levitation || Flying || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ) ) ) && !FemaleTrapAnastasia && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chang'i poshnalar") )) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qo'tos botlarni") ) ) ) { /* ground-based trap, obviously */
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s on the ground below you.",
@@ -13570,6 +13578,13 @@ register boolean force, here;
 	losehp(rnd(10), "endangering their yellow sneakers", KILLED_BY);
 	}
 
+	if (uarmf && uarmf->oartifact == ART_JANA_S_VAGINAL_FUN && !rn2(100)) {
+		pline("Jana suddenly appears and pees on you, and you melt instantly.");
+		killer_format = KILLED_BY;
+		killer = "Jana's vaginal fun";
+		done(DIED);
+	}
+
 	/* Scrolls, spellbooks, potions, weapons and
 	   pieces of armor may get affected by the water */
 	for (; obj; obj = otmp) {
@@ -13585,6 +13600,7 @@ register boolean force, here;
 
 		if ((obj->where != OBJ_FLOOR) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "scuba helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "podvodnoye shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tueplue zarbdan") ) ) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JANA_S_VAGINAL_FUN) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmu && uarmu->oartifact == ART_THERMAL_BATH) continue;
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_SEA_ELF)) continue;
 

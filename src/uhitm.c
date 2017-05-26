@@ -584,6 +584,7 @@ register struct monst *mtmp;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
+	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
 
 	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
 
@@ -1927,6 +1928,10 @@ int thrown;
 		tmp += (Drunken_boxing && Confusion);
 		if (RngeBloodlust) tmp += 1;
 		if (uarms && uarms->oartifact == ART_TEH_BASH_R) tmp += 2;
+		if (uarmc && uarmc->oartifact == ART_DUFFDUFFDUFF) tmp += 3;
+		if (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) tmp += 5;
+		if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
+
 		if (Race_if(PM_RODNEYAN)) tmp += (1 + (u.ulevel / 3) );
 		/* If you throw using a propellor, you don't get a strength
 		 * bonus but you do get an increase-damage bonus.
@@ -7456,7 +7461,7 @@ uchar aatyp;
 	      case AD_SSEX:
 			if (!malive) break;
 
-			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() ) {
+			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 				You_feel("a tug on your backpack!");
 				buf[0] = '\0';
 				switch (steal(mon, buf)) {

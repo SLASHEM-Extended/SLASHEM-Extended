@@ -173,6 +173,13 @@ register int x;
 
 	}
 
+	if (youmonst.data && uarmc && uarmc->oartifact == ART_CHANGED_RANDOM_NUMBERS) {
+
+		while (tmp < utmp && !rn2(x) && !rn2(2) )
+			tmp++;
+
+	}
+
 	return tmp;
 
 	/* was:

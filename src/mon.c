@@ -4628,6 +4628,13 @@ register struct monst *mtmp;
 		if (mtmp->butthurt) mtmp->butthurt--;
 		if (mtmp->butthurt) mtmp->butthurt--;
 		if (mtmp->butthurt) mtmp->butthurt--;
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+			pline("Eek! You can't stand farting gas!");
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+		}
 		badeffect();
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL) {
@@ -4638,6 +4645,13 @@ register struct monst *mtmp;
 		}
 		if (mtmp->butthurt) mtmp->butthurt--;
 		if (mtmp->butthurt) mtmp->butthurt--;
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+			pline("Eek! You can't stand farting gas!");
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+		}
 		badeffect();
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD) {
@@ -4647,6 +4661,13 @@ register struct monst *mtmp;
 		      useup(uarmf);
 		}
 		if (mtmp->butthurt) mtmp->butthurt--;
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+			pline("Eek! You can't stand farting gas!");
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+		}
 		badeffect();
     }
     if (mtmp->egotype_farter) {
@@ -4654,6 +4675,13 @@ register struct monst *mtmp;
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The farting gas destroys your footwear instantly.");
 		      useup(uarmf);
+		}
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+			pline("Eek! You can't stand farting gas!");
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
 		}
 		badeffect();
     }
