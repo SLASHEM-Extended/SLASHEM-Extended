@@ -15,6 +15,8 @@ equipname(otmp)
 register struct obj *otmp;
 {
 	return (
+		(otmp == uwep) ? "weapon" :
+		(otmp == uswapwep) ? "secondary weapon" :
 		(otmp == uarmu) ? "shirt" :
 		(otmp == uarmf) ? "boots" :
 		(otmp == uarms) ? "shield" :
