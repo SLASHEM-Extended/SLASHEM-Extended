@@ -208,7 +208,7 @@ dig_check(madeby, verbose, x, y)
 	} else if ((IS_ROCK(levl[x][y].typ) && levl[x][y].typ != SDOOR &&
 		      (levl[x][y].wall_info & W_NONDIGGABLE) != 0)
 		|| (ttmp &&
-		      (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == FART_TRAP || !Can_dig_down(&u.uz)))) {
+		      (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == ARABELLA_SPEAKER || ttmp->ttyp == FART_TRAP || !Can_dig_down(&u.uz)))) {
 	    if(verbose) pline_The("%s here is too hard to %s.",
 				  surface(x,y), verb);
 	    return(FALSE);
@@ -320,7 +320,7 @@ dig()
 		if (digging.effort <= 50 ||
 		    is_lightsaber(uwep) ||
 		    ((ttmp = t_at(dpx,dpy)) != 0 &&
-			(ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == SHAFT_TRAP ||
+			(ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == CURRENT_SHAFT ||
 			 ttmp->ttyp == TRAPDOOR || ttmp->ttyp == HOLE)))
 		    return(1);
 
@@ -722,7 +722,7 @@ boolean pit_only;
 	schar typ;
 	boolean nohole = !Can_dig_down(&u.uz);
 
-	if ((ttmp && (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == FART_TRAP || nohole)) ||
+	if ((ttmp && (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == ARABELLA_SPEAKER || ttmp->ttyp == FART_TRAP || nohole)) ||
 	   /* ALI - artifact doors */
 	   IS_DOOR(levl[u.ux][u.uy].typ) && artifact_door(u.ux, u.uy) ||
 	   (IS_ROCK(lev->typ) && lev->typ != SDOOR &&
@@ -755,7 +755,7 @@ boolean pit_only;
 		}
 
 	} else if ((boulder_here = sobj_at(BOULDER, u.ux, u.uy)) != 0) {
-		if (ttmp && (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT) &&
+		if (ttmp && (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT) &&
 		    rn2(2)) {
 			pline_The("boulder settles into the pit.");
 			ttmp->ttyp = PIT;	 /* crush spikes */

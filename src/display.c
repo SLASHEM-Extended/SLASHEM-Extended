@@ -950,7 +950,7 @@ newsym(x,y)
 
 		    /* if monster is in a physical trap, you see the trap too */
 		    if (trap && (tt == BEAR_TRAP || tt == PIT ||
-			tt == SPIKED_PIT || tt == GIANT_CHASM || tt == SHIT_PIT || tt == MANA_PIT || tt == WEB) && (trap && !trap->hiddentrap)) {
+			tt == SPIKED_PIT || tt == GIANT_CHASM || tt == SHIT_PIT || tt == MANA_PIT || tt == ANOXIC_PIT || tt == WEB) && (trap && !trap->hiddentrap)) {
 			trap->tseen = TRUE;
 		    }
 		}
@@ -1101,7 +1101,7 @@ newsymX(x,y)
 
 		    /* if monster is in a physical trap, you see the trap too */
 		    if (trap && (tt == BEAR_TRAP || tt == PIT ||
-			tt == SPIKED_PIT || tt == GIANT_CHASM || tt == SHIT_PIT || tt == MANA_PIT || tt == WEB) && (trap && !trap->hiddentrap)) {
+			tt == SPIKED_PIT || tt == GIANT_CHASM || tt == SHIT_PIT || tt == MANA_PIT || tt == ANOXIC_PIT || tt == WEB) && (trap && !trap->hiddentrap)) {
 			trap->tseen = TRUE;
 		    }
 		}

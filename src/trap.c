@@ -67,6 +67,117 @@ STATIC_VAR const char * const blindgas[6] =
 
 #endif /* OVLB */
 
+/* categories whose names don't come from OBJ_NAME(objects[type]) */
+#define PN_POLEARMS		(-1)
+#define PN_SABER		(-2)
+#define PN_HAMMER		(-3)
+#define PN_WHIP			(-4)
+#define PN_PADDLE		(-5)
+#define PN_FIREARMS		(-6)
+#define PN_ATTACK_SPELL		(-7)
+#define PN_HEALING_SPELL	(-8)
+#define PN_DIVINATION_SPELL	(-9)
+#define PN_ENCHANTMENT_SPELL	(-10)
+#define PN_PROTECTION_SPELL	(-11)
+#define PN_BODY_SPELL		(-12)
+#define PN_OCCULT_SPELL		(-13)
+#define PN_ELEMENTAL_SPELL		(-14)
+#define PN_CHAOS_SPELL		(-15)
+#define PN_MATTER_SPELL		(-16)
+#define PN_BARE_HANDED		(-17)
+#define PN_HIGH_HEELS		(-18)
+#define PN_GENERAL_COMBAT		(-19)
+#define PN_SHIELD		(-20)
+#define PN_BODY_ARMOR		(-21)
+#define PN_TWO_HANDED_WEAPON		(-22)
+#define PN_POLYMORPHING		(-23)
+#define PN_DEVICES		(-24)
+#define PN_SEARCHING		(-25)
+#define PN_SPIRITUALITY		(-26)
+#define PN_PETKEEPING		(-27)
+#define PN_MARTIAL_ARTS		(-28)
+#define PN_RIDING		(-29)
+#define PN_TWO_WEAPONS		(-30)
+#define PN_LIGHTSABER		(-31)
+
+static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+
+#ifndef OVLB
+
+STATIC_DCL NEARDATA const short skill_names_indices[];
+STATIC_DCL NEARDATA const char *odd_skill_names[];
+
+#else	/* OVLB */
+
+/* KMH, balance patch -- updated */
+STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
+	0,                DAGGER,         KNIFE,        AXE,
+	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
+	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
+	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
+	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
+	JAVELIN,          TRIDENT,        LANCE,        BOW,
+	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
+	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
+	PN_LIGHTSABER,
+	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
+	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
+	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
+	PN_OCCULT_SPELL,
+	PN_ELEMENTAL_SPELL,
+	PN_CHAOS_SPELL,
+	PN_MATTER_SPELL,
+	PN_BARE_HANDED,	PN_HIGH_HEELS,
+	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
+	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
+	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
+	PN_MARTIAL_ARTS, 
+	PN_TWO_WEAPONS,
+	PN_RIDING,
+};
+
+
+STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
+    "no skill",
+    "polearms",
+    "saber",
+    "hammer",
+    "whip",
+    "paddle",
+    "firearms",
+    "attack spells",
+    "healing spells",
+    "divination spells",
+    "enchantment spells",
+    "protection spells",
+    "body spells",
+    "occult spells",
+    "elemental spells",
+    "chaos spells",
+    "matter spells",
+    "bare-handed combat",
+    "high heels",
+    "general combat",
+    "shield",
+    "body armor",
+    "two-handed weapons",
+    "polymorphing",
+    "devices",
+    "searching",
+    "spirituality",
+    "petkeeping",
+    "martial arts",
+    "riding",
+    "two-weapon combat",
+    "lightsaber"
+};
+
+#endif	/* OVLB */
+
+#define P_NAME(type) (skill_names_indices[type] > 0 ? \
+		      OBJ_NAME(objects[skill_names_indices[type]]) : \
+			odd_skill_names[-skill_names_indices[type]])
+
 static const char * const farttrapnames[] = {
 /* always 5 names per line, because we'll need the index numbers later --Amy */
 
@@ -983,9 +1094,15 @@ register int x, y, typ, replacechance;
 		typ = u.frequenttrap;
 		if (typ == MAGIC_PORTAL) typ = ROCKTRAP;
 		if (typ == WISHING_TRAP) typ = BLINDNESS_TRAP;
+		if (typ == ARTIFACT_JACKPOT_TRAP) typ = MAGIC_TRAP;
+		if (typ == GOOD_ARTIFACT_TRAP) typ = WEB;
+		if (typ == BOON_TRAP) typ = MAGIC_BEAM_TRAP;
 		if (typ == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
+		if (typ == LEVEL_BEAMER && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
+		if (typ == NEXUS_TRAP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
 		if (typ == TELEP_TRAP && level.flags.noteleport) typ = SQKY_BOARD;
-		if ((typ == TRAPDOOR || typ == HOLE || typ == SHAFT_TRAP) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) typ = ROCKTRAP;
+		if (typ == BEAMER_TRAP && level.flags.noteleport) typ = SQKY_BOARD;
+		if ((typ == TRAPDOOR || typ == HOLE || typ == SHAFT_TRAP || typ == CURRENT_SHAFT) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) typ = ROCKTRAP;
 		if (typ == ACTIVE_SUPERSCROLLER_TRAP) typ = SUPERSCROLLER_TRAP;
 		
 	}
@@ -994,9 +1111,9 @@ register int x, y, typ, replacechance;
 	    if (ttmp->ttyp == MAGIC_PORTAL) return (struct trap *)0;
 	    oldplace = TRUE;
 	    if (u.utrap && (x == u.ux) && (y == u.uy) &&
-	      ((u.utraptype == TT_BEARTRAP && typ != BEAR_TRAP) ||
+	      ((u.utraptype == TT_BEARTRAP && typ != BEAR_TRAP && typ != LEG_TRAP) ||
 	      (u.utraptype == TT_WEB && typ != WEB) ||
-	      (u.utraptype == TT_PIT && typ != PIT && typ != SPIKED_PIT && typ != GIANT_CHASM && typ != SHIT_PIT && typ != MANA_PIT)))
+	      (u.utraptype == TT_PIT && typ != PIT && typ != SPIKED_PIT && typ != GIANT_CHASM && typ != SHIT_PIT && typ != MANA_PIT && typ != ANOXIC_PIT)))
 		    u.utrap = 0;
 	} else {
 	    oldplace = FALSE;
@@ -1081,6 +1198,7 @@ register int x, y, typ, replacechance;
 	      }
 
 	    case MAGIC_BEAM_TRAP:
+	    case PIERCING_BEAM_TRAP:
 		{
 		    int d,startdir = rn2(8);
 		    int dist;
@@ -1310,11 +1428,13 @@ register int x, y, typ, replacechance;
 	    case GIANT_CHASM:
 	    case SHIT_PIT:
 	    case MANA_PIT:
+	    case ANOXIC_PIT:
 	    case SHAFT_TRAP:
+	    case CURRENT_SHAFT:
 	    case TRAPDOOR:
 		lev = &levl[x][y];
 		if (*in_rooms(x, y, SHOPBASE) &&
-			((typ == HOLE || typ == TRAPDOOR || typ == SHAFT_TRAP) ||
+			((typ == HOLE || typ == TRAPDOOR || typ == SHAFT_TRAP || typ == CURRENT_SHAFT) ||
 			 IS_DOOR(lev->typ) || IS_WALL(lev->typ)))
 		    add_damage(x, y,		/* schedule repair */
 			       ((IS_DOOR(lev->typ) || IS_WALL(lev->typ))
@@ -1344,6 +1464,8 @@ register int x, y, typ, replacechance;
 	if (ttmp->ttyp == INVISIBLE_TRAP) ttmp->hiddentrap = 1;
 
 	if (ttmp->ttyp == HOLE && !In_sokoban(&u.uz) && !ttmp->hiddentrap ) ttmp->tseen = 1;  /* You can't hide a hole */
+	if (ttmp->ttyp == SUPERTHING_TRAP && !ttmp->hiddentrap ) ttmp->tseen = 1;
+	if (ttmp->ttyp == ARABELLA_SPEAKER && !ttmp->hiddentrap ) ttmp->tseen = 1;
 	else ttmp->tseen = 0;
 	ttmp->once = 0;
 	ttmp->tdetected = 0;
@@ -1381,6 +1503,8 @@ boolean td;	/* td == TRUE : trap door or hole */
 			pline("A trap door opens up under you!");
 		else if (t->ttyp == SHAFT_TRAP)
 			pline("A shaft opens up under you!");
+		else if (t->ttyp == CURRENT_SHAFT)
+			pline("Air currents pull you into a shaft!");
 		else 
 			pline("There's a gaping hole under you!");
 		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dobro pozhalovat' v kakoy-to gorazdo boleye opasnyy uroven'! Udachi vam, vy, veroyatno, ne budet zdes' vyzhit' v lyubom sluchaye." : "Schlueing!");
@@ -1452,6 +1576,8 @@ boolean td;	/* td == TRUE : trap door or hole */
 			pline("A trap door opens up under you!");
 		else if (t->ttyp == SHAFT_TRAP)
 			pline("A shaft opens up under you!");
+		else if (t->ttyp == CURRENT_SHAFT)
+			pline("Air currents pull you into a shaft!");
 		else 
 			pline("There's a gaping hole under you!");
 		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dobro pozhalovat' v kakoy-to gorazdo boleye opasnyy uroven'! Udachi vam, vy, veroyatno, ne budet zdes' vyzhit' v lyubom sluchaye." : "Schlueing!");
@@ -1465,6 +1591,75 @@ boolean td;	/* td == TRUE : trap door or hole */
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)
 	   || (Inhell && !u.uevent.invoked &&
 					newlevel == dunlevs_in_dungeon(&u.uz))
+		) {
+		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)            
+		pline("But thanks to your trusty whip ...");
+	    dont_fall = "don't fall in.";
+	} else if (youmonst.data->msize >= MZ_HUGE) {
+	    dont_fall = "don't fit through.";
+	} else if (!next_to_u()) {
+	    dont_fall = "are jerked back by your pet!";
+	}
+	if (dont_fall) {
+	    You(dont_fall);
+	    /* hero didn't fall through, but any objects here might */
+	    impact_drop((struct obj *)0, u.ux, u.uy, 0);
+	    if (!td) {
+		display_nhwindow(WIN_MESSAGE, FALSE);
+		pline_The("opening under you closes up.");
+	    }
+	    return;
+	}
+
+	if(*u.ushops) shopdig(1);
+	if (Is_stronghold(&u.uz)) {
+	    find_hell(&dtmp);
+	} else {
+	    dtmp.dnum = u.uz.dnum;
+	    dtmp.dlevel = newlevel;
+	}
+	if (!td)
+	    Sprintf(msgbuf, "The hole in the %s above you closes up.",
+		    ceiling(u.ux,u.uy));
+	schedule_goto(&dtmp, FALSE, TRUE, 0,
+		      (char *)0, !td ? msgbuf : (char *)0);
+}
+
+/* current shaft - like an ordinary shaft, but levitation or flying don't help --Amy */
+void
+fall_throughY(td)
+boolean td;	/* td == TRUE : trap door or hole */
+{
+	d_level dtmp;
+	char msgbuf[BUFSZ];
+	const char *dont_fall = 0;
+	register int newlevel = dunlev(&u.uz);
+
+	do {
+	    newlevel++;
+	} while(rn2(4) && newlevel < dunlevs_in_dungeon(&u.uz));
+
+	if(td) {
+	    struct trap *t=t_at(u.ux,u.uy);
+	    seetrap(t);
+	    if (!In_sokoban(&u.uz)) {
+		if (t->ttyp == TRAPDOOR)
+			pline("A trap door opens up under you!");
+		else if (t->ttyp == SHAFT_TRAP)
+			pline("A shaft opens up under you!");
+		else if (t->ttyp == CURRENT_SHAFT)
+			pline("Air currents pull you into a shaft!");
+		else 
+			pline("There's a gaping hole under you!");
+		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dobro pozhalovat' v kakoy-to gorazdo boleye opasnyy uroven'! Udachi vam, vy, veroyatno, ne budet zdes' vyzhit' v lyubom sluchaye." : "Schlueing!");
+	    }
+	} else pline_The("%s opens up under you!", surface(u.ux,u.uy));
+
+	if (In_sokoban(&u.uz) && Can_fall_thru(&u.uz))
+	    ;	/* KMH -- You can't escape the Sokoban level traps */
+	else if(u.ustuck || !Can_fall_thru(&u.uz)
+	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)
+	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz))
 		) {
 		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)            
 		pline("But thanks to your trusty whip ...");
@@ -1710,13 +1905,14 @@ unsigned trflags;
 	int monstcnt; /* for animation trap */
 	int ptmp;	/* for poison gas trap */
 	int nastytrapdur;	/* for nasty traps */
+	int femmytrapdur;	/* for femininity traps */
 	int blackngdur;	/* timeout for black ng wall trap after which you die */
 
-	int randsp;
-	int randmnst;
+	register int randsp;
+	register int randmnst;
 	struct permonst *randmonstforspawn;
-	int monstercolor;
-	int randmnsx;
+	register int monstercolor;
+	register int randmnsx;
 	int i;
 
 	int randomamount = 0;
@@ -1726,6 +1922,12 @@ unsigned trflags;
 
 	nastytrapdur = (Role_if(PM_GRADUATE) ? 12 : Role_if(PM_GEEK) ? 25 : 50);
 	if (!nastytrapdur) nastytrapdur = 50; /* fail safe */
+
+	femmytrapdur = (Role_if(PM_LADIESMAN) ? 5 : Role_if(PM_SEXYMATE) ? 10 : 20);
+	if (!rn2(2)) femmytrapdur /= 2;
+	if (!rn2(5)) femmytrapdur /= 3;
+	if (!rn2(20)) femmytrapdur /= 5;
+	if (!femmytrapdur) femmytrapdur = 1; /* fail safe */
 
 	blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
 	if (!blackngdur ) blackngdur = 500; /* fail safe */
@@ -1738,7 +1940,7 @@ unsigned trflags;
 	/* Players could deduce the position of a nasty trap by running in a corridor. This would probably come into effect
 	 * rarely, but the fact that it was possible at all was unintentional, so I'm closing this loophole just to cover
 	 * my butt. Nasty traps are supposed to be really difficult to spot! --Amy */
-	if (ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != UNINFORMATION_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != LASER_TRAP &&
+	if (ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != UNINFORMATION_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != LASER_TRAP &&
 		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP)
 		nomul(0, 0);
 
@@ -1749,7 +1951,7 @@ unsigned trflags;
 
 	/* KMH -- You can't escape the Sokoban level traps */
 	if (In_sokoban(&u.uz) &&
-			(ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == SHAFT_TRAP || ttype == HOLE ||
+			(ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == ANOXIC_PIT || ttype == SHAFT_TRAP || ttype == HOLE || ttype == CURRENT_SHAFT ||
 			ttype == TRAPDOOR)) {
 	    /* The "air currents" message is still appropriate -- even when
 	     * the hero isn't flying or levitating -- because it conveys the
@@ -1770,10 +1972,10 @@ unsigned trflags;
 		    defsyms[trap_to_defsym(ttype)].explanation);
 		return;
 	    }
-	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != UNINFORMATION_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != LASER_TRAP &&
+	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != UNINFORMATION_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != LASER_TRAP &&
 		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP && !forcebungle &&
 		(!rn2(5) ||
-	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT) && is_clinger(youmonst.data)))) {
+	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == ANOXIC_PIT) && is_clinger(youmonst.data)))) {
 		You("escape %s %s.",
 		    (ttype == ARROW_TRAP && !trap->madeby_u) ? "an" :
 			a_your[trap->madeby_u],
@@ -1988,6 +2190,22 @@ unsigned trflags;
 	    case MAGIC_BEAM_TRAP:
 		You_hear("a soft click.");
 		seetrap(trap);
+		if (isok(trap->launch.x,trap->launch.y) && IS_STWALL(levl[trap->launch.x][trap->launch.y].typ)) {
+		    buzz(trap->launch_otyp, 7 + rnd((monster_difficulty() / 10) + 1) ,
+			 trap->launch.x,trap->launch.y,
+			 sgn(trap->tx - trap->launch.x),sgn(trap->ty - trap->launch.y));
+		    trap->once = 1;
+		} else {
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+			break; /* reduce risk of segfaulting */
+		}
+		if (!rn2(20)) deltrap(trap);
+		break;
+	    case PIERCING_BEAM_TRAP:
+		You_hear("a soft click.");
+		seetrap(trap);
+		u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 		if (isok(trap->launch.x,trap->launch.y) && IS_STWALL(levl[trap->launch.x][trap->launch.y].typ)) {
 		    buzz(trap->launch_otyp, 7 + rnd((monster_difficulty() / 10) + 1) ,
 			 trap->launch.x,trap->launch.y,
@@ -2277,6 +2495,38 @@ unsigned trflags;
 			You("howl in anger!");
 		}
 		exercise(A_DEX, FALSE);
+		break;
+
+	    case LEVITATION_TRAP:
+
+		if (Levitation) break;
+		seetrap(trap);
+
+		pline("Uh-oh, should have watched your step...");
+		pline(Hallucination ? "Wow... you're suddenly walking on air!" : "You float up!");
+
+		HLevitation &= ~I_SPECIAL;
+		incr_itimeout(&HLevitation, rnz(50));
+
+		break;
+
+	    case LEG_TRAP:
+		seetrap(trap);
+		u.utrap = rn1(4, 4);
+		u.utraptype = TT_BEARTRAP;
+		if (u.usteed) {
+		    pline("%s leg trap closes on %s %s!",
+			A_Your[trap->madeby_u], s_suffix(mon_nam(u.usteed)),
+			mbodypart(u.usteed, FOOT));
+		} else
+		{
+		    pline("%s leg trap closes on your %s!",
+			    A_Your[trap->madeby_u], body_part(FOOT));
+		    if(u.umonnum == PM_OWLBEAR || u.umonnum == PM_BUGBEAR)
+			You("howl in anger!");
+		}
+		exercise(A_DEX, FALSE);
+		set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnz(50));
 		break;
 
 	    case SLP_GAS_TRAP:
@@ -2842,6 +3092,699 @@ newegomon:
 		makewish();
 		break;
 
+	    case BOON_TRAP:
+
+		deltrap(trap); /* only triggers once, and before giving the wish to make sure you can't hangup cheat :P */
+		pline("You stepped on a boon trap!");
+
+		if (!rn2(4)) makewish();
+		else othergreateffect();
+
+		break;
+
+	    case FOUNTAIN_TRAP:
+		seetrap(trap);
+		pline("You trip over a strange fountain!");
+
+		switch (rnd(30)) {
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+				pline_The("cool draught refreshes you.");
+				u.uhunger += rnd(10); /* don't choke on water */
+				newuhs(FALSE);
+				break;
+			case 10:
+				You_feel("self-knowledgeable...");
+				display_nhwindow(WIN_MESSAGE, FALSE);
+				enlightenment(0, 1);
+				exercise(A_WIS, TRUE);
+				pline_The("feeling subsides.");
+				break;
+			case 11:
+				pline_The("water is foul!  You gag and vomit.");
+				morehungry(rn1(20, 11));
+				vomit();
+				break;
+			case 12:
+				pline_The("water is contaminated!");
+				if (Poison_resistance) {
+				   pline("Perhaps it is runoff from the nearby %s farm.", fruitname(FALSE));
+				   losehp(rnd(4),"unrefrigerated sip of juice", KILLED_BY_AN);
+				   break;
+				}
+				losestr(rn1(4,3));
+				losehp(rnd(10),"contaminated water", KILLED_BY);
+				exercise(A_CON, FALSE);
+				break;
+			case 13:
+				pline("An endless stream of snakes pours forth!");
+				makemon(&mons[PM_RIVER_MOCCASIN], u.ux, u.uy, NO_MM_FLAGS);
+				makemon(&mons[PM_RIVER_MOCCASIN], u.ux, u.uy, NO_MM_FLAGS);
+				makemon(&mons[PM_RIVER_MOCCASIN], u.ux, u.uy, NO_MM_FLAGS);
+				makemon(&mons[PM_RIVER_MOCCASIN], u.ux, u.uy, NO_MM_FLAGS);
+				makemon(&mons[PM_RIVER_MOCCASIN], u.ux, u.uy, NO_MM_FLAGS);
+				break;
+			case 14:
+				pline("You sense the presence of evil.");
+				makemon(&mons[PM_WATER_DEMON], u.ux, u.uy, NO_MM_FLAGS);
+				break;
+			case 15: {
+				register struct obj *crsobj;
+
+				pline("This water's no good!");
+				morehungry(rn1(20, 11));
+				exercise(A_CON, FALSE);
+				for(crsobj = invent; crsobj ; crsobj = crsobj->nobj)
+					if (!rn2(5) && !stack_too_big(crsobj))	curse(crsobj);
+				}
+
+				break;
+			case 16:
+				if (Blind) {
+				    if (Invisible) {
+					You_feel("transparent.");
+				    } else {
+				    	You_feel("very self-conscious.");
+				    	pline("Then it passes.");
+				    }
+				} else {
+				   You("see an image of someone stalking you.");
+				   pline("But it disappears.");
+				}
+				HSee_invisible |= FROMOUTSIDE;
+				newsym(u.ux,u.uy);
+				exercise(A_WIS, TRUE);
+
+				break;
+			case 17:
+				(void) monster_detect((struct obj *)0, 0);
+				exercise(A_WIS, TRUE);
+
+				break;
+			case 18:
+				You_feel("a gem here!");
+				(void) mksobj_at(rnd_class(DILITHIUM_CRYSTAL, LUCKSTONE-1), u.ux, u.uy, TRUE, FALSE);
+				break;
+			case 19:
+				pline("A water nymph is summoned!");
+				makemon(&mons[PM_WATER_NYMPH], u.ux, u.uy, NO_MM_FLAGS);
+				break;
+			case 20: {
+				register struct monst *brmtmp;
+
+				pline("This water gives you bad breath!");
+				for(brmtmp = fmon; brmtmp; brmtmp = brmtmp->nmon)
+				    if(!DEADMONSTER(brmtmp))
+					monflee(brmtmp, rnd(10), FALSE, FALSE);
+				}
+
+				break;
+			case 21: {
+				int madepoolX = 0;
+				do_clear_areaX(u.ux, u.uy, 5, do_floode, (genericptr_t)&madepoolX);
+				pline("Water sprays all over the area.");
+				}
+				break;
+			case 22:
+				pline("A strange tingling runs up your %s.", body_part(ARM));
+				break;
+			case 23:
+				You_feel("a sudden chill.");
+				break;
+			case 24:
+				pline("An urge to take a bath overwhelms you.");
+				break;
+			case 25:
+				pluslvl(FALSE);
+				break;
+			case 26:
+			case 27:
+			case 28:
+			case 29:
+			case 30:
+				pline("This tepid water is tasteless.");
+				break;
+
+		}
+		if (trap && !rn2(6)) {
+			deltrap(trap);
+			pline("The fountain dries up!");
+		}
+
+		break;
+
+	    case THRONE_TRAP:
+		seetrap(trap);
+		pline("You trip over a strange throne!");
+
+		if (rn2(2)) {
+			if (is_prince(youmonst.data))
+			    You_feel("very comfortable here.");
+			else
+			    You_feel("somehow out of place...");
+
+		} else if (uarmg && uarmg->oartifact == ART_FUMBLEFINGERS_QUEST) {
+
+			{register int cnt = rnd(10);
+			int randmonstforspawn = rnd(68);
+			if (randmonstforspawn == 35) randmonstforspawn = 53;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			while(cnt--)
+			    (void) makemon(mkclass(randmonstforspawn,0), u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
+			pline("A voice echoes:");
+			verbalize("Oh, please help me! A horrible %s stole my sword! I'm nothing without it.", monexplain[randmonstforspawn]);
+			}
+
+		} else if (uarmg && uarmg->oartifact == ART_PRINCESS_BITCH) {
+
+			{register int cnt = rnd(10);
+			struct permonst *randmonstforspawn = rndmonst();
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			while(cnt--)
+			    (void) makemon(randmonstforspawn, u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
+			pline("A voice echoes:");
+			verbalize("Leave me alone, stupid %s", randmonstforspawn->mname);
+			}
+
+		} else switch (rnd(20)) {
+
+		    case 1:
+			(void) adjattrib(rn2(A_MAX), -rn1(4,3), FALSE);
+			losehp(rnd(10), "cursed throne", KILLED_BY_AN);
+			break;
+		    case 2:
+			(void) adjattrib(rn2(A_MAX), 1, FALSE);
+			break;
+		    case 3:
+			pline("A%s electric shock shoots through your body!",
+			      (Shock_resistance) ? "n" : " massive");
+			losehp(Shock_resistance ? rnd(6) : rnd(30),
+			       "electric chair", KILLED_BY_AN);
+			exercise(A_CON, FALSE);
+			break;
+		    case 4:
+			You_feel("much, much better!");
+			if (Upolyd) {
+			    if (u.mh >= (u.mhmax - 5))  u.mhmax += 4;
+			    u.mh = u.mhmax;
+			}
+			if(u.uhp >= (u.uhpmax - 5))  u.uhpmax += 4;
+			u.uhp = u.uhpmax;
+			make_blinded(0L,TRUE);
+			make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+			heal_legs();
+			flags.botl = 1;
+			break;
+		    case 5:
+			take_gold();
+			break;
+		    case 6:
+
+			You_feel("your luck is changing.");
+			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha, vy ne poluchite zhelaniye, potomu chto eto Sovetskaya Rossiya, gde kazhdyy poluchayet odinakovoye kolichestvo zhelaniy! I vy uzhe boleye chem dostatochno, teper' ochered' drugikh personazhey'!" : "DSCHUEueUEueUEueUEueUEue...");
+			change_luck(5);
+
+			break;
+		    case 7:
+			{
+			register int cnt = rnd(10);
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			pline("A voice echoes:");
+			verbalize("Thy audience hath been summoned, %s!",
+				  flags.female ? "Dame" : "Sire");
+			while(cnt--)
+			    (void) makemon(courtmon(), u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
+			break;
+			}
+		    case 8:
+			pline("A voice echoes:");
+			verbalize("By thy Imperious order, %s...",
+				  flags.female ? "Dame" : "Sire");
+			do_genocide(5);	/* REALLY|ONTHRONE, see do_genocide() */
+			break;
+		    case 9:
+			pline("A voice echoes:");
+			verbalize("A curse upon thee for sitting upon this most holy throne!");
+			if (Luck > 0)  {
+			    make_blinded(Blinded + rn1(100,250),TRUE);
+			} else	    rndcurse();
+			break;
+		    case 10:
+			if (Luck < 0 || (HSee_invisible & INTRINSIC))  {
+				if (level.flags.nommap) {
+					pline(
+					"A terrible drone fills your head!");
+					make_confused(HConfusion + rnd(30),
+									FALSE);
+				} else {
+					pline("An image forms in your mind.");
+					do_mapping();
+				}
+			} else  {
+				Your("vision becomes clear.");
+				HSee_invisible |= FROMOUTSIDE;
+				newsym(u.ux, u.uy);
+			}
+			break;
+		    case 11:
+			if (Luck < 0)  {
+			    You_feel("threatened.");
+			    aggravate();
+			} else  {
+
+			    You_feel("a wrenching sensation.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
+			    tele();		/* teleport him */
+			}
+			break;
+		    case 12:
+			You("are granted an insight!");
+			if (invent) {
+			    /* rn2(5) agrees w/seffects() */
+			    identify_pack(rn2(5), 0);
+			}
+			break;
+		    case 13:
+			Your("mind turns into a pretzel!");
+			make_confused(HConfusion + rn1(7,16),FALSE);
+			break;
+		    case 14:
+			You("are granted some new skills!"); /* new effect that unrestricts skills --Amy */
+
+			int acquiredskill;
+			acquiredskill = 0;
+
+			pline("Pick a skill to unrestrict. The prompt will loop until you actually make a choice.");
+
+			while (acquiredskill == 0) { /* ask the player what they want --Amy */
+
+			if (P_RESTRICTED(P_DAGGER) && yn("Do you want to learn the dagger skill?")=='y') {
+				    unrestrict_weapon_skill(P_DAGGER);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_KNIFE) && yn("Do you want to learn the knife skill?")=='y') {
+				    unrestrict_weapon_skill(P_KNIFE);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_AXE) && yn("Do you want to learn the axe skill?")=='y') {
+				    unrestrict_weapon_skill(P_AXE);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_PICK_AXE) && yn("Do you want to learn the pick-axe skill?")=='y') {
+				    unrestrict_weapon_skill(P_PICK_AXE);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SHORT_SWORD) && yn("Do you want to learn the short sword skill?")=='y') {
+				    unrestrict_weapon_skill(P_SHORT_SWORD);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_BROAD_SWORD) && yn("Do you want to learn the broad sword skill?")=='y') {
+				    unrestrict_weapon_skill(P_BROAD_SWORD);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_LONG_SWORD) && yn("Do you want to learn the long sword skill?")=='y') {
+				    unrestrict_weapon_skill(P_LONG_SWORD);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_TWO_HANDED_SWORD) && yn("Do you want to learn the two-handed sword skill?")=='y') {
+				    unrestrict_weapon_skill(P_TWO_HANDED_SWORD);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SCIMITAR) && yn("Do you want to learn the scimitar skill?")=='y') {
+				    unrestrict_weapon_skill(P_SCIMITAR);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SABER) && yn("Do you want to learn the saber skill?")=='y') {
+				    unrestrict_weapon_skill(P_SABER);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_CLUB) && yn("Do you want to learn the club skill?")=='y') {
+				    unrestrict_weapon_skill(P_CLUB);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_PADDLE) && yn("Do you want to learn the paddle skill?")=='y') {
+				    unrestrict_weapon_skill(P_PADDLE);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_MACE) && yn("Do you want to learn the mace skill?")=='y') {
+				    unrestrict_weapon_skill(P_MACE);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_MORNING_STAR) && yn("Do you want to learn the morning star skill?")=='y') {
+				    unrestrict_weapon_skill(P_MORNING_STAR);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_FLAIL) && yn("Do you want to learn the flail skill?")=='y') {
+				    unrestrict_weapon_skill(P_FLAIL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_HAMMER) && yn("Do you want to learn the hammer skill?")=='y') {
+				    unrestrict_weapon_skill(P_HAMMER);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_QUARTERSTAFF) && yn("Do you want to learn the quarterstaff skill?")=='y') {
+				    unrestrict_weapon_skill(P_QUARTERSTAFF);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_POLEARMS) && yn("Do you want to learn the polearms skill?")=='y') {
+				    unrestrict_weapon_skill(P_POLEARMS);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SPEAR) && yn("Do you want to learn the spear skill?")=='y') {
+				    unrestrict_weapon_skill(P_SPEAR);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_JAVELIN) && yn("Do you want to learn the javelin skill?")=='y') {
+				    unrestrict_weapon_skill(P_JAVELIN);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_TRIDENT) && yn("Do you want to learn the trident skill?")=='y') {
+				    unrestrict_weapon_skill(P_TRIDENT);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_LANCE) && yn("Do you want to learn the lance skill?")=='y') {
+				    unrestrict_weapon_skill(P_LANCE);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_BOW) && yn("Do you want to learn the bow skill?")=='y') {
+				    unrestrict_weapon_skill(P_BOW);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SLING) && yn("Do you want to learn the sling skill?")=='y') {
+				    unrestrict_weapon_skill(P_SLING);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_FIREARM) && yn("Do you want to learn the firearms skill?")=='y') {
+				    unrestrict_weapon_skill(P_FIREARM);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_CROSSBOW) && yn("Do you want to learn the crossbow skill?")=='y') {
+				    unrestrict_weapon_skill(P_CROSSBOW);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_DART) && yn("Do you want to learn the dart skill?")=='y') {
+				    unrestrict_weapon_skill(P_DART);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SHURIKEN) && yn("Do you want to learn the shuriken skill?")=='y') {
+				    unrestrict_weapon_skill(P_SHURIKEN);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_BOOMERANG) && yn("Do you want to learn the boomerang skill?")=='y') {
+				    unrestrict_weapon_skill(P_BOOMERANG);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_WHIP) && yn("Do you want to learn the whip skill?")=='y') {
+				    unrestrict_weapon_skill(P_WHIP);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_UNICORN_HORN) && yn("Do you want to learn the unicorn horn skill?")=='y') {
+				    unrestrict_weapon_skill(P_UNICORN_HORN);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_LIGHTSABER) && yn("Do you want to learn the lightsaber skill?")=='y') {
+				    unrestrict_weapon_skill(P_LIGHTSABER);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_ATTACK_SPELL) && yn("Do you want to learn the attack spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_ATTACK_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_HEALING_SPELL) && yn("Do you want to learn the healing spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_HEALING_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_DIVINATION_SPELL) && yn("Do you want to learn the divination spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_DIVINATION_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_ENCHANTMENT_SPELL) && yn("Do you want to learn the enchantment spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_ENCHANTMENT_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_PROTECTION_SPELL) && yn("Do you want to learn the protection spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_PROTECTION_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_BODY_SPELL) && yn("Do you want to learn the body spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_BODY_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_OCCULT_SPELL) && yn("Do you want to learn the occult spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_OCCULT_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_ELEMENTAL_SPELL) && yn("Do you want to learn the elemental spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_ELEMENTAL_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_CHAOS_SPELL) && yn("Do you want to learn the chaos spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_CHAOS_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_MATTER_SPELL) && yn("Do you want to learn the matter spell skill?")=='y') {
+				    unrestrict_weapon_skill(P_MATTER_SPELL);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_RIDING) && yn("Do you want to learn the riding skill?")=='y') {
+				    unrestrict_weapon_skill(P_RIDING);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_HIGH_HEELS) && yn("Do you want to learn the high heels skill?")=='y') {
+				    unrestrict_weapon_skill(P_HIGH_HEELS);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_GENERAL_COMBAT) && yn("Do you want to learn the general combat skill?")=='y') {
+				    unrestrict_weapon_skill(P_GENERAL_COMBAT);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SHIELD) && yn("Do you want to learn the shield skill?")=='y') {
+				    unrestrict_weapon_skill(P_SHIELD);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_BODY_ARMOR) && yn("Do you want to learn the body armor skill?")=='y') {
+				    unrestrict_weapon_skill(P_BODY_ARMOR);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_TWO_HANDED_WEAPON) && yn("Do you want to learn the two-handed weapon skill?")=='y') {
+				    unrestrict_weapon_skill(P_TWO_HANDED_WEAPON);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_TWO_WEAPON_COMBAT) && yn("Do you want to learn the two-weapon combat skill?")=='y') {
+				    unrestrict_weapon_skill(P_TWO_WEAPON_COMBAT);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_POLYMORPHING) && yn("Do you want to learn the polymorphing skill?")=='y') {
+				    unrestrict_weapon_skill(P_POLYMORPHING);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_DEVICES) && yn("Do you want to learn the devices skill?")=='y') {
+				    unrestrict_weapon_skill(P_DEVICES);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SEARCHING) && yn("Do you want to learn the searching skill?")=='y') {
+				    unrestrict_weapon_skill(P_SEARCHING);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SPIRITUALITY) && yn("Do you want to learn the spirituality skill?")=='y') {
+				    unrestrict_weapon_skill(P_SPIRITUALITY);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_PETKEEPING) && yn("Do you want to learn the petkeeping skill?")=='y') {
+				    unrestrict_weapon_skill(P_PETKEEPING);	acquiredskill = 1; }
+			else if (yn("Do you want to learn no new skill at all?")=='y') {
+				    acquiredskill = 1; }
+			}
+			pline("Check out what you got!");
+
+			break;
+		    case 15:
+			pline("A voice echoes:");
+			verbalize("Thou be cursed!");
+			attrcurse();
+			break;
+		    case 16:
+			pline("A voice echoes:");
+			verbalize("Thou shall be punished!");
+			punishx();
+			break;
+		    case 17:
+			You_feel("like someone has touched your forehead...");
+
+			int skillimprove = rnd(P_NUM_SKILLS);
+
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				pline("You can now learn the %s skill.", P_NAME(skillimprove));
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+			} else pluslvl(FALSE);
+
+			pluslvl(FALSE);
+
+			break;
+		    case 18:
+			{register int cnt = rnd(10);
+			struct permonst *randmonstforspawn = rndmonst();
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			while(cnt--)
+			    (void) makemon(randmonstforspawn, u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
+			pline("A voice echoes:");
+			verbalize("Leave me alone, stupid %s", randmonstforspawn->mname);
+			break;
+			}
+		    case 19:
+			{register int cnt = rnd(10);
+			int randmonstforspawn = rnd(68);
+			if (randmonstforspawn == 35) randmonstforspawn = 53;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			while(cnt--)
+			    (void) makemon(mkclass(randmonstforspawn,0), u.ux, u.uy, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
+			pline("A voice echoes:");
+			verbalize("Oh, please help me! A horrible %s stole my sword! I'm nothing without it.", monexplain[randmonstforspawn]);
+			break;
+			}
+		    case 20:
+			{
+			register struct obj *identotmp;
+			pline("You may fully identify an object!");
+
+			identotmp = getobj(all_count, "secure identify");
+
+			if (!identotmp) {
+				pline("A feeling of loss comes over you.");
+				break;
+			}
+			if (identotmp) {
+				makeknown(identotmp->otyp);
+				if (identotmp->oartifact) discover_artifact((int)identotmp->oartifact);
+				identotmp->known = identotmp->dknown = identotmp->bknown = identotmp->rknown = 1;
+				if (identotmp->otyp == EGG && identotmp->corpsenm != NON_PM)
+				learn_egg_type(identotmp->corpsenm);
+				prinv((char *)0, identotmp, 0L);
+			}
+			}
+			break;
+
+		}
+
+		if (trap && !rn2(6)) {
+			deltrap(trap);
+			pline("The throne vanishes in a puff of logic.");
+		}
+
+		break;
+
+	    case MAP_AMNESIA_TRAP:
+
+		pline("You stepped on a trigger!");
+		seetrap(trap);
+
+		forget_map(ALL_MAP);
+
+		pline("Suddenly, you realize that you forgot to think about Maud.");
+		if (Hallucination) pline("You also forgot that you were suffering from amnesia.");
+
+		break;
+
+	    case ARTIFACT_JACKPOT_TRAP:
+
+		deltrap(trap); /* only triggers once, and before giving the artifact to make sure you can't hangup cheat :P */
+		pline("It's your lucky day - you triggered an artifact jackpot trap!");
+
+		{
+
+		register struct obj *acqo;
+
+		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		if (acqo) {
+
+		switch (acqo->oclass) {
+			case WEAPON_CLASS:
+
+				{
+
+					int wpntype; /* 1 = launcher, 2 = ammo, 3 = melee */
+					if (is_launcher(acqo)) wpntype = 1;
+					else if (is_ammo(acqo) || is_missile(acqo)) wpntype = 2;
+					else wpntype = 3;
+reroll:
+					acqo->otyp = rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1);
+					if (wpntype == 1 && !is_launcher(acqo)) goto reroll;
+					if (wpntype == 2 && !is_ammo(acqo) && !is_missile(acqo)) goto reroll;
+					if (wpntype == 3 && (is_launcher(acqo) || is_ammo(acqo) || is_missile(acqo))) goto reroll;
+				}
+
+				break;
+			case ARMOR_CLASS:
+
+				{
+
+					int armortype;
+					/* 1 = shield, 2 = helmet, 3 = boots, 4 = gloves, 5 = cloak, 6 = shirt, 7 = suit */
+					if (is_shield(acqo)) armortype = 1;
+					else if (is_helmet(acqo)) armortype = 2;
+					else if (is_boots(acqo)) armortype = 3;
+					else if (is_gloves(acqo)) armortype = 4;
+					else if (is_cloak(acqo)) armortype = 5;
+					else if (is_shirt(acqo)) armortype = 6;
+					else armortype = 7;
+rerollX:
+					acqo->otyp = rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS);
+					if (armortype == 1 && !is_shield(acqo)) goto rerollX;
+					if (armortype == 2 && !is_helmet(acqo)) goto rerollX;
+					if (armortype == 3 && !is_boots(acqo)) goto rerollX;
+					if (armortype == 4 && !is_gloves(acqo)) goto rerollX;
+					if (armortype == 5 && !is_cloak(acqo)) goto rerollX;
+					if (armortype == 6 && !is_shirt(acqo)) goto rerollX;
+					if (armortype == 7 && !is_suit(acqo)) goto rerollX;
+
+				}
+				break;
+			case RING_CLASS:
+				acqo->otyp = rnd_class(RIN_ADORNMENT,RIN_TELEPORT_CONTROL);
+				break;
+			case AMULET_CLASS:
+				acqo->otyp = rnd_class(AMULET_OF_CHANGE,AMULET_OF_VULNERABILITY);
+				break;
+		}
+
+		    dropy(acqo);
+
+			if (P_MAX_SKILL(get_obj_skill(acqo)) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(get_obj_skill(acqo));
+			} else if (P_MAX_SKILL(get_obj_skill(acqo)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(acqo));
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_SUPREME_MASTER;
+			}
+
+		    discover_artifact(acqo->oartifact);
+
+			/* triggering several of these will enable unaligned artifacts, which has to be done by incrementing the
+			 * u.ugifts var; since we don't actually want this trap to mess with your chances of getting divine
+			 * sacrifice gifts, it won't increase the variable if it's already nonzero. --Amy */
+			if (!u.ugifts) u.ugifts = 1;
+			pline("An artifact appeared beneath you!");
+		}
+		else pline("Opportunity knocked, but nobody was home.  Bummer.");
+
+		}
+
+		break;
+
+	    case GOOD_ARTIFACT_TRAP:
+
+		deltrap(trap); /* only triggers once, and before giving the artifact to make sure you can't hangup cheat :P */
+		pline("You feel very lucky, because you triggered a good artifact trap!");
+
+		{
+
+		register struct obj *acqo;
+
+		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		if (acqo) {
+
+		    dropy(acqo);
+
+			if (P_MAX_SKILL(get_obj_skill(acqo)) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(get_obj_skill(acqo));
+			} else if (P_MAX_SKILL(get_obj_skill(acqo)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(acqo));
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_SUPREME_MASTER;
+			}
+
+		    discover_artifact(acqo->oartifact);
+
+			/* triggering several of these will enable unaligned artifacts, which has to be done by incrementing the
+			 * u.ugifts var; since we don't actually want this trap to mess with your chances of getting divine
+			 * sacrifice gifts, it won't increase the variable if it's already nonzero. --Amy */
+			if (!u.ugifts) u.ugifts = 1;
+			pline("An artifact appeared beneath you!");
+		}
+		else pline("Opportunity knocked, but nobody was home.  Bummer.");
+
+		}
+
+		break;
+
 	    case GROWING_TRAP:
 
 		pline("Uh-oh, should have watched your step...");
@@ -3157,6 +4100,167 @@ newegomon:
 			obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
 
 		    }
+
+		break;
+
+	    case GENDER_TRAP:
+
+		deltrap(trap);
+		pline("CLICK! You have triggered a trap!");
+		change_sex();
+		You("don't feel like yourself.");
+
+		break;
+
+	    case WRENCHING_TRAP:
+
+		seetrap(trap);
+		pline("Uh-oh, should have watched your step...");
+
+		switch (rnd(8)) {
+
+			case 1:
+				You_feel("a wrenching sensation.");
+				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
+				tele();		/* teleport him */
+
+				break;
+			case 2:
+				You_feel("threatened.");
+				aggravate();
+				break;
+			case 3:
+				make_blinded(Blinded + rnz(75),TRUE);
+				break;
+			case 4:
+				take_gold();
+				break;
+			case 5:
+				pline("Pondering why you are running around in a dungeon looking for an amulet was just too much to comprehend.");
+				make_confused(HConfusion + rnz(75),FALSE);
+				break;
+			case 6:
+
+				pline("Poison washes over you!");
+				if (uarmg) {
+				    if (uarmg->oerodeproof || !is_corrodeable(uarmg)) {
+					Your("gloves seem unaffected.");
+				    } else if (uarmg->oeroded2 < MAX_ERODE) {
+					if (uarmg->greased) {
+					    grease_protect(uarmg, "gloves", &youmonst);
+					} else if (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) {
+					    Your("gloves corrode%s!",
+						 uarmg->oeroded2+1 == MAX_ERODE ?
+						 " completely" : uarmg->oeroded2 ?
+						 " further" : "");
+					    uarmg->oeroded2++;
+					}
+				    } else
+					Your("gloves %s completely corroded.",
+					     Blind ? "feel" : "look");
+				}
+				losestr(Poison_resistance ? rn1(2,1) : rn1(4,3));
+				losehp(rnd(Poison_resistance ? 6 : 10), "wrenching poison", KILLED_BY_AN);
+
+				break;
+			case 7:
+				pline("Something explodes in your %s!", body_part(FACE));
+				losehp(2*rnd(10)+5, "exploding rune", KILLED_BY_AN);
+
+				break;
+			case 8:
+				rndcurse();
+				break;
+
+		}
+
+		break;
+
+	    case NURSE_TRAP:
+		deltrap(trap);
+		pline("A feeling of benevolence washes over you, and your health increases!");
+
+		if (Upolyd) {
+			u.mhmax += u.ulevel;
+			u.mh = u.mhmax;
+		} else {
+			if (u.uhpmax < (u.ulevel * 10)) u.uhpmax += u.ulevel;
+			else u.uhpmax++;
+			u.uhp = u.uhpmax;
+		}
+
+		break;
+
+	    case TRACKER_TRAP:
+
+		deltrap(trap);
+		pline("You stepped on a trigger!");
+
+		{
+			register struct monst *nexusmon;
+			boolean teleportdone = FALSE;
+
+			if (level.flags.noteleport && !Race_if(PM_RODNEYAN) ) {
+				pline("A mysterious force prevents you from teleporting!");
+				break;
+			}
+
+			if ( (u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+				You_feel("disoriented for a moment.");
+				break;
+			}
+
+			for(nexusmon = fmon; nexusmon; nexusmon->nmon) {
+				if (nexusmon) break;
+			}
+
+			if (!nexusmon) {
+				pline("But nothing happens...");
+				break;
+			}
+
+			int ii, ij, bd = 1;
+
+			for(ii = -bd; ii <= bd; ii++) for(ij = -bd; ij <= bd; ij++) {
+				if (!isok(nexusmon->mx + ii, nexusmon->my + ij)) continue;
+
+				if (teleok(nexusmon->mx + ii, nexusmon->my + ij, FALSE)) {
+					teleportdone = TRUE;
+					teleds(nexusmon->mx + ii, nexusmon->my + ij, FALSE);
+					Norep("Suddenly your surroundings change.");
+					break;
+				}
+			}
+			if (!teleportdone) pline("But nothing happens...");
+
+		}
+
+		break;
+
+	    case SINCOUNT_TRAP:
+
+		seetrap(trap);
+		pline("CLICK! You have triggered a trap!");
+
+		u.ualign.sins++;
+		u.alignlim--;
+		adjalign(-5);
+
+		You_feel("sinful...");
+		if (Hallucination) pline("But why would you care?");
+
+		break;
+
+	    case TRAP_OF_OPPOSITE_ALIGNMENT:
+
+		deltrap(trap);
+		pline("CLICK! You have triggered a trap!");
+
+		if (u.ualign.type == A_NEUTRAL)
+			u.ualign.type = rn2(2) ? A_CHAOTIC : A_LAWFUL;
+		else u.ualign.type = -(u.ualign.type);
+		u.ublessed = 0; /* lose your god's protection */
+		Your("mind oscillates briefly.");
 
 		break;
 
@@ -3920,7 +5024,7 @@ newegomon:
 
 	    case SHIT_TRAP:
 
-		if ((Levitation || Flying) && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") ) ) ) { /* ground-based trap, obviously */
+		if ((Levitation || Flying) && !FemaleTrapAnastasia && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") ) ) ) { /* ground-based trap, obviously */
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s on the ground below you.",
@@ -3939,6 +5043,7 @@ newegomon:
 	    case GIANT_CHASM:
 	    case SHIT_PIT:
 	    case MANA_PIT:
+	    case ANOXIC_PIT:
 		/* KMH -- You can't escape the Sokoban level traps */
 		if (!In_sokoban(&u.uz) && (Levitation || Flying)) break;
 		seetrap(trap);
@@ -4032,19 +5137,26 @@ newegomon:
 	    case HOLE:
 	    case TRAPDOOR:
 	    case SHAFT_TRAP:
+	    case CURRENT_SHAFT:
 		if (!Can_fall_thru(&u.uz)) {
 		    seetrap(trap);	/* normally done in fall_through */
 		    impossible("dotrap: %ss cannot exist on this level.",
 			       defsyms[trap_to_defsym(ttype)].explanation);
 		    break;		/* don't activate it after all */
 		}
-		if (ttype != SHAFT_TRAP) fall_through(TRUE);
-		else fall_throughX(TRUE);
+		if (ttype != SHAFT_TRAP && ttype != CURRENT_SHAFT) fall_through(TRUE);
+		else if (ttype != CURRENT_SHAFT) fall_throughX(TRUE);
+		else fall_throughY(TRUE);
 		break;
 
 	    case TELEP_TRAP:
 		seetrap(trap);
 		tele_trap(trap);
+		break;
+
+	    case BEAMER_TRAP:
+		seetrap(trap);
+		tele_trapX(trap);
 		break;
 
 	    case RELOCATION_TRAP:
@@ -4076,9 +5188,49 @@ newegomon:
 
 		break;
 
+	    case BACK_TO_START_TRAP:
+		deltrap(trap);
+
+		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+
+		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
+			pline("For some reason you resist the banishment!"); break;}
+
+		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+		(void) safe_teleds(FALSE);
+		goto_level(&medusa_level, TRUE, FALSE, FALSE);
+
+		register int newlevX = 1;
+		d_level newlevelX;
+		get_level(&newlevelX, newlevX);
+		goto_level(&newlevelX, TRUE, FALSE, FALSE);
+		pline("It's back to square one for you!");
+
+		break;
+
 	    case LEVEL_TELEP:
 		seetrap(trap);
 		level_tele_trap(trap);
+		break;
+
+	    case NEMESIS_TRAP:
+		deltrap(trap);
+		pline("CLICK! You have triggered a trap!");
+
+		{
+		register int nemesenum = urole.nemesnum;
+
+		(void) makemon(&mons[nemesenum], u.ux, u.uy, MM_ANGRY);
+		verbalize("Ha ha ha ha! Wa ha ha ha! You are so doomed!");
+
+		}
+
+		break;
+
+	    case LEVEL_BEAMER:
+		seetrap(trap);
+		level_tele_trapX(trap);
 		break;
 
 	    case MAGIC_CANCELLATION_TRAP:
@@ -4201,6 +5353,26 @@ newegomon:
 		pline("A multicolored glow surrounds you...");
 		seetrap(trap);
 		(void) make_hallucinated(HHallucination + rnd(10) + rnd(monster_difficulty() + 1), TRUE, 0L);
+		break;
+
+	    case TOXIC_VENOM_TRAP:
+		pline("CLICK! You have triggered a trap!");
+		seetrap(trap);
+
+		if (!Poison_resistance) pline("You're badly poisoned!");
+		else pline("You're poisoned!");
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+
+		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
+		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
+
+		poisoned("The air", rn2(A_MAX), "toxic venom trap", 30);
+
 		break;
 
 	    case NUMBNESS_TRAP:
@@ -4357,6 +5529,45 @@ newegomon:
 		}
 		break;
 
+	    case MADNESS_TRAP:
+		pline("You stepped on a trigger!");
+		seetrap(trap);
+
+madnesseffect:
+		switch (rnd(9)) {
+			case 1:
+				make_blinded(Blinded + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+			case 2:
+				make_feared(HFeared + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+			case 3:
+				make_burned(HBurned + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+			case 4:
+				make_frozen(HFrozen + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+			case 5:
+				make_numbed(HNumbed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+			case 6:
+				(void) make_hallucinated(HHallucination + rnd(10) + rnd(monster_difficulty() + 1), TRUE, 0L);
+				break;
+			case 7:
+				make_stunned(HStun + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+			case 8:
+				make_confused(HConfusion + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				pline("You're confused!");
+				break;
+			case 9:
+				make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+				break;
+		}
+		if (rn2(6)) goto madnesseffect;
+
+		break;
+
 	    case PETRIFICATION_TRAP:
 		pline("CLICK! You have triggered a trap!");
 		seetrap(trap);
@@ -4409,6 +5620,18 @@ newegomon:
 		deltrap(trap);
 		pline_The("entire dungeon is shaking around you!");
 		do_earthquake((u.ulevel - 1) / 3 + 1);
+		break;
+
+	    case ADJACENT_TRAP:
+	    case SPREADING_TRAP:
+	    case SUPERTHING_TRAP: /* these three don't do anything if you trigger them */
+
+		break;
+
+	    case PET_TRAP: /* does not affect player, and does not become visible; however, can affect your steed */
+
+		(void) steedintrap(trap, (struct obj *)0);
+
 		break;
 
 	    case UNLIGHT_TRAP:
@@ -5248,6 +6471,112 @@ newegomon:
 
 		break;
 
+	    case OUTTA_DEPTH_TRAP:
+		deltrap(trap);
+		pline("CLICK! You have triggered a trap!");
+		u.outtadepthtrap = 1;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+		}
+
+		reset_rndmonst(NON_PM);
+		int aggroamount = rnd(6);
+
+		while (aggroamount) {
+			makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+			aggroamount--;
+			if (aggroamount < 0) aggroamount = 0;
+		}
+
+		pline("Several monsters come out of a portal.");
+
+		u.outtadepthtrap = 0;
+		u.aggravation = 0;
+
+		break;
+
+	    case PUNISHMENT_TRAP:
+
+		deltrap(trap);
+		pline("CLICK! You have triggered a trap!");
+		punishx();
+		break;
+
+	    case STREW_TRAP:
+
+		pline("CLICK! You have triggered a trap!");
+		pline("You are greatly startled by a sudden sound.");
+		seetrap(trap);
+
+		{
+			register struct obj *otmp, *otmp2;
+
+			for(otmp2 = otmp =invent; otmp2 ; otmp = otmp2) {
+				otmp2 = otmp->nobj;
+				if (!rn2(5) ) {
+
+					if (otmp->owornmask & W_ARMOR) {
+					    if (otmp == uskin) {
+						skinback(TRUE);		/* uarm = uskin; uskin = 0; */
+					    }
+					    if (otmp == uarm) (void) Armor_off();
+					    else if (otmp == uarmc) (void) Cloak_off();
+					    else if (otmp == uarmf) (void) Boots_off();
+					    else if (otmp == uarmg) (void) Gloves_off();
+					    else if (otmp == uarmh) (void) Helmet_off();
+					    else if (otmp == uarms) (void) Shield_off();
+					    else if (otmp == uarmu) (void) Shirt_off();
+					    /* catchall -- should never happen */
+					    else setworn((struct obj *)0, otmp ->owornmask & W_ARMOR);
+					} else if (otmp ->owornmask & W_AMUL) {
+					    Amulet_off();
+					} else if (otmp ->owornmask & W_RING) {
+					    Ring_gone(otmp);
+					} else if (otmp ->owornmask & W_TOOL) {
+					    Blindf_off(otmp);
+					} else if (otmp ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+					    if (otmp == uwep)
+						uwepgone();
+					    if (otmp == uswapwep)
+						uswapwepgone();
+					    if (otmp == uquiver)
+						uqwepgone();
+					}
+	
+					if (otmp->owornmask & (W_BALL|W_CHAIN)) {
+					    unpunish();
+					} else if (otmp->owornmask) {
+					/* catchall */
+					    setnotworn(otmp);
+					}
+
+				dropx(otmp);
+
+				}
+			}
+		}
+
+		scatter(u.ux,u.uy,4,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,(struct obj*)0);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
+
+		u.aggravation = 0;
+
+		break;
+
 	    case SLINGSHOT_TRAP:
 
 		if (trap->once && !rn2(15)) {
@@ -5304,6 +6633,96 @@ newegomon:
 				losehp(rnd(6)+ rnd( (monster_difficulty() / 3) + 1),"sprinkled acid venom",KILLED_BY_AN);
 				if(!rn2(3)) erode_armor(&youmonst, TRUE);
 			}
+		}
+
+		break;
+
+	    case BOWEL_CRAMPS_TRAP:
+
+		seetrap(trap);
+
+		pline("You stepped on a trigger!");
+
+		if (!Vomiting) {
+			make_vomiting(Vomiting+d(10,4), TRUE);
+			pline("You feel nauseated.");
+			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10);
+		} else {
+			pline("Suddenly your tummy aches terribly!");
+			nomul(-rnd(5), "having bowel cramps");
+		}
+
+		break;
+
+	    case UNEQUIPPING_TRAP:
+
+		pline("CLICK! You have triggered a trap!");
+		deltrap(trap); /* only triggers once, because otherwise you could easily get rid of cursed stuff --Amy */
+
+		pline("You are completely startled by a sudden sound.");
+
+		if (uwep) setnotworn(uwep);
+		if (uswapwep) uswapwepgone();
+		if (ublindf) remove_worn_item(ublindf, TRUE);
+		if (uright) remove_worn_item(uright, TRUE);
+		if (uleft) remove_worn_item(uleft, TRUE);
+		if (uamul) remove_worn_item(uamul, TRUE);
+		if (uarmf) remove_worn_item(uarmf, TRUE);
+		if (uarmg) remove_worn_item(uarmg, TRUE);
+		if (uarmh) remove_worn_item(uarmh, TRUE);
+		if (uarmc) remove_worn_item(uarmc, TRUE);
+		if (uarms) remove_worn_item(uarms, TRUE);
+		if (uarmu) remove_worn_item(uarmu, TRUE);
+		if (uskin) skinback(FALSE);
+		if (uarm) remove_worn_item(uarm, TRUE);
+
+		break;
+
+	    case NEXUS_TRAP:
+
+		pline("Uh-oh, should have watched your step...");
+
+		seetrap(trap);
+		if (!rn2(15)) deltrap(trap);
+
+		switch (rnd(7)) {
+
+			case 1:
+			case 2:
+			case 3:
+				pline("You are teleported by nexus forces!");
+				teleX();
+				break;
+			case 4:
+			case 5:
+				pline("You are pushed around by nexus forces!");
+				phase_door(0);
+				break;
+			case 6:
+
+				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
+					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+					if (!u.levelporting) {
+						u.levelporting = 1;
+						nomul(-2, "being levelported"); /* because it's not called until you get another turn... */
+					}
+				}
+				break;
+			case 7:
+				{
+					int firststat = rn2(A_MAX);
+					int secondstat = rn2(A_MAX);
+					int firstswapstat = ABASE(firststat);
+					int secondswapstat = ABASE(secondstat);
+					int difference = (firstswapstat - secondswapstat);
+					ABASE(secondstat) += difference;
+					ABASE(firststat) -= difference;
+					AMAX(secondstat) = ABASE(secondstat);
+					AMAX(firststat) = ABASE(firststat);
+					pline("Your stats got scrambled!");
+				}
+				break;
 		}
 
 		break;
@@ -5376,6 +6795,13 @@ newegomon:
 		 break;
 
 		 case LOUDSPEAKER: /* fake message */
+			{
+				pline(fauxmessage());
+				if (!rn2(3)) pline(fauxmessage());
+			}
+		 break;
+
+		 case ARABELLA_SPEAKER: /* fake message */
 			{
 				pline(fauxmessage());
 				if (!rn2(3)) pline(fauxmessage());
@@ -6084,6 +7510,247 @@ newegomon:
 			if (CaptchaProblem) break;
 
 			CaptchaProblem = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		 break;
+
+		 case FEMMY_TRAP:
+
+			if (FemaleTrapFemmy) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Femmy.");
+			pline("Now, the dungeon will be more feminine for a while!");
+
+			FemaleTrapFemmy = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapFemmy += 100;
+			if (!rn2(3)) FemaleTrapFemmy += rnz(500);
+
+		 break;
+
+		 case MADELEINE_TRAP:
+
+			if (FemaleTrapMadeleine) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Madeleine.");
+			pline("Your shins can expect to get kicked repeatedly by all the girls and women now!");
+
+			FemaleTrapMadeleine = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapMadeleine += 100;
+			if (!rn2(3)) FemaleTrapMadeleine += rnz(500);
+
+		 break;
+
+		 case MARLENA_TRAP:
+
+			if (FemaleTrapMarlena) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Marlena.");
+			pline("Green is the new favorite color, it seems!");
+
+			FemaleTrapMarlena = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapMarlena += 100;
+			if (!rn2(3)) FemaleTrapMarlena += rnz(500);
+
+		 break;
+
+		 case ANASTASIA_TRAP:
+
+			if (FemaleTrapAnastasia) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Anastasia.");
+			pline("Suddenly, you feel that you're going to step into a heap of shit.");
+
+			FemaleTrapAnastasia = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapAnastasia += 100;
+			if (!rn2(3)) FemaleTrapAnastasia += rnz(500);
+
+		 break;
+
+		 case JESSICA_TRAP:
+
+			if (FemaleTrapJessica) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Jessica.");
+			pline("Your butt cheeks suddenly feel very tender, and in fact, a similar thing is happening to your entire body!");
+
+			FemaleTrapJessica = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapJessica += 100;
+			if (!rn2(3)) FemaleTrapJessica += rnz(500);
+
+		 break;
+
+		 case SOLVEJG_TRAP:
+
+			if (FemaleTrapSolvejg) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Solvejg.");
+			pline("You suddenly have a very grating, aggravating voice, and you start to emit a beguiling odor! In fact, you're super sexy and sweet now!");
+
+			FemaleTrapSolvejg = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapSolvejg += 100;
+			if (!rn2(3)) FemaleTrapSolvejg += rnz(500);
+
+		 break;
+
+		 case WENDY_TRAP:
+
+			if (FemaleTrapWendy) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Wendy.");
+			pline("All the female denizens of the dungeon will show you their true power, and it will happen very soon!");
+
+			FemaleTrapWendy = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapWendy += 100;
+			if (!rn2(3)) FemaleTrapWendy += rnz(500);
+
+		 break;
+
+		 case KATHARINA_TRAP:
+
+			if (FemaleTrapKatharina) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Katharina.");
+			pline("You feel that the girls and women are getting ready to use their sexy butts as weapons.");
+
+			FemaleTrapKatharina = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapKatharina += 100;
+			if (!rn2(3)) FemaleTrapKatharina += rnz(500);
+
+		 break;
+
+		 case ELENA_TRAP:
+
+			if (FemaleTrapElena) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Elena.");
+			pline("You long for beautiful sexy women with tender butt cheeks and lovely high heels.");
+
+			FemaleTrapElena = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapElena += 100;
+			if (!rn2(3)) FemaleTrapElena += rnz(500);
+
+		 break;
+
+		 case THAI_TRAP:
+
+			if (FemaleTrapThai) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Thai.");
+			pline("You feel that you'll want to use the toilet more often. Also, somehow your physique seems weaker now...");
+
+			FemaleTrapThai = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapThai += 100;
+			if (!rn2(3)) FemaleTrapThai += rnz(500);
+
+		 break;
+
+		 case ELIF_TRAP:
+
+			if (FemaleTrapElif) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Elif.");
+			pline("A ghostly girl (named Elif) starts following you around, and apparently she wants to play with you!");
+
+			FemaleTrapElif = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapElif += 100;
+			if (!rn2(3)) FemaleTrapElif += rnz(500);
+
+		 break;
+
+		 case NADJA_TRAP:
+
+			if (FemaleTrapNadja) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Nadja.");
+			pline("You feel that you angered the womanhood. If you now hit a woman, you will be hit with retribution!");
+
+			FemaleTrapNadja = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapNadja += 100;
+			if (!rn2(3)) FemaleTrapNadja += rnz(500);
+
+		 break;
+
+		 case SANDRA_TRAP:
+
+			if (FemaleTrapSandra) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Sandra.");
+			pline("You just know that your legs are going to be ripped open by very sharp-edged combat boot heels.");
+
+			FemaleTrapSandra = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapSandra += 100;
+			if (!rn2(3)) FemaleTrapSandra += rnz(500);
+
+		 break;
+
+		 case NATALJE_TRAP:
+
+			if (FemaleTrapNatalje) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Natalje.");
+			pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful skin, so make sure you keep moving!");
+
+			FemaleTrapNatalje = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapNatalje += 100;
+			if (!rn2(3)) FemaleTrapNatalje += rnz(500);
+			u.nataljetrapturns = moves;
+			u.nataljetrapx = u.ux;
+			u.nataljetrapy = u.uy;
+
+		 break;
+
+		 case JEANETTA_TRAP:
+
+			if (FemaleTrapJeanetta) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Jeanetta.");
+			pline("Lots of shreds of skin will be scraped off your shins, and the girls will enjoy it.");
+
+			FemaleTrapJeanetta = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapJeanetta += 100;
+			if (!rn2(3)) FemaleTrapJeanetta += rnz(500);
+
+		 break;
+
+		 case YVONNE_TRAP:
+
+			if (FemaleTrapYvonne) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Yvonne.");
+			pline("You feel that people are building toilets for you to use.");
+
+			FemaleTrapYvonne = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapYvonne += 100;
+			if (!rn2(3)) FemaleTrapYvonne += rnz(500);
+
+		 break;
+
+		 case MAURAH_TRAP:
+
+			if (FemaleTrapMaurah) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Maurah.");
+			pline("Your sexy butt signals that it wants to produce beautiful farting noises!");
+
+			FemaleTrapMaurah = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapMaurah += 100;
+			if (!rn2(3)) FemaleTrapMaurah += rnz(500);
 
 		 break;
 
@@ -7828,6 +9495,272 @@ newegomon:
 
 		 break;
 
+		 case FILLER_TRAP:
+
+			deltrap(trap); /* triggers only once */
+		 	pline("You stepped on a trigger!");
+
+			{
+
+				register int fillertraptype = randomtrap();
+				register int filleramount = 4 + rnd(21);
+				if (!rn2(5)) filleramount += rnd(25);
+				if (!rn2(25)) filleramount += rnz(100);
+				if (!rn2(2)) filleramount *= 2;
+				int filx, fily;
+
+				while (filleramount > 0) {
+					filleramount--;
+
+					filx = rn1(COLNO-3,2);
+					fily = rn2(ROWNO);
+
+					if (filx && fily && isok(filx, fily) && (levl[filx][fily].typ > DBWALL) && !(t_at(filx, fily)) ) {
+						(void) maketrap(filx, fily, fillertraptype, 0);
+					}
+				}
+
+			}
+
+			pline("The floor around you vibrates in a strange way.");
+
+			break;
+
+		 case INSANITY_TRAP:
+
+			deltrap(trap); /* triggers only once */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord ee;
+			int ex,ey;
+
+		      ex = rn2(COLNO);
+		      ey = rn2(ROWNO);
+
+			if (!rn2(4)) {
+
+			randsp = 1680;
+			randmnst = (rn2(187) + 1);
+			randmnsx = (rn2(100) + 1);
+
+			pline("CLICK! High tension! Fight for your life!!!");
+
+
+			for (i = 0; i < randsp; i++) {
+			/* This function will fill the map with a random amount of monsters of one class. --Amy */
+
+				if (!enexto(&ee, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				if (!rn2(20)) reset_rndmonst(NON_PM);
+
+			if (randmnst < 6)
+		 	    (void) makemon(mkclass(S_ANT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 9)
+		 	    (void) makemon(mkclass(S_BLOB,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 11)
+		 	    (void) makemon(mkclass(S_COCKATRICE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 15)
+		 	    (void) makemon(mkclass(S_DOG,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 18)
+		 	    (void) makemon(mkclass(S_EYE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 22)
+		 	    (void) makemon(mkclass(S_FELINE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 24)
+		 	    (void) makemon(mkclass(S_GREMLIN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 29)
+		 	    (void) makemon(mkclass(S_HUMANOID,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 33)
+		 	    (void) makemon(mkclass(S_IMP,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 36)
+		 	    (void) makemon(mkclass(S_JELLY,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 41)
+		 	    (void) makemon(mkclass(S_KOBOLD,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 44)
+		 	    (void) makemon(mkclass(S_LEPRECHAUN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 47)
+		 	    (void) makemon(mkclass(S_MIMIC,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 50)
+		 	    (void) makemon(mkclass(S_NYMPH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 54)
+		 	    (void) makemon(mkclass(S_ORC,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 55)
+		 	    (void) makemon(mkclass(S_PIERCER,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 58)
+		 	    (void) makemon(mkclass(S_QUADRUPED,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 62)
+		 	    (void) makemon(mkclass(S_RODENT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 65)
+		 	    (void) makemon(mkclass(S_SPIDER,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 66)
+		 	    (void) makemon(mkclass(S_TRAPPER,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 69)
+		 	    (void) makemon(mkclass(S_UNICORN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 71)
+		 	    (void) makemon(mkclass(S_VORTEX,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 73)
+		 	    (void) makemon(mkclass(S_WORM,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 75)
+		 	    (void) makemon(mkclass(S_XAN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 76)
+		 	    (void) makemon(mkclass(S_LIGHT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 77)
+		 	    (void) makemon(mkclass(S_ZOUTHERN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 78)
+		 	    (void) makemon(mkclass(S_ANGEL,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 81)
+		 	    (void) makemon(mkclass(S_BAT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 83)
+		 	    (void) makemon(mkclass(S_CENTAUR,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 86)
+		 	    (void) makemon(mkclass(S_DRAGON,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 89)
+		 	    (void) makemon(mkclass(S_ELEMENTAL,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 94)
+		 	    (void) makemon(mkclass(S_FUNGUS,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 99)
+		 	    (void) makemon(mkclass(S_GNOME,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 102)
+		 	    (void) makemon(mkclass(S_GIANT,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 103)
+		 	    (void) makemon(mkclass(S_JABBERWOCK,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 104)
+		 	    (void) makemon(mkclass(S_KOP,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 105)
+		 	    (void) makemon(mkclass(S_LICH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 108)
+		 	    (void) makemon(mkclass(S_MUMMY,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 110)
+		 	    (void) makemon(mkclass(S_NAGA,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 113)
+		 	    (void) makemon(mkclass(S_OGRE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 115)
+		 	    (void) makemon(mkclass(S_PUDDING,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 116)
+		 	    (void) makemon(mkclass(S_QUANTMECH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 118)
+		 	    (void) makemon(mkclass(S_RUSTMONST,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 121)
+		 	    (void) makemon(mkclass(S_SNAKE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 123)
+		 	    (void) makemon(mkclass(S_TROLL,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 124)
+		 	    (void) makemon(mkclass(S_UMBER,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 125)
+		 	    (void) makemon(mkclass(S_VAMPIRE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 127)
+		 	    (void) makemon(mkclass(S_WRAITH,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 128)
+		 	    (void) makemon(mkclass(S_XORN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 130)
+		 	    (void) makemon(mkclass(S_YETI,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 135)
+		 	    (void) makemon(mkclass(S_ZOMBIE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 145)
+		 	    (void) makemon(mkclass(S_HUMAN,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 147)
+		 	    (void) makemon(mkclass(S_GHOST,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 149)
+		 	    (void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 152)
+		 	    (void) makemon(mkclass(S_DEMON,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 155)
+		 	    (void) makemon(mkclass(S_EEL,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 160)
+		 	    (void) makemon(mkclass(S_LIZARD,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 162)
+		 	    (void) makemon(mkclass(S_BAD_FOOD,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 165)
+		 	    (void) makemon(mkclass(S_BAD_COINS,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 166) {
+				if (randmnsx < 96)
+		 	    (void) makemon(mkclass(S_HUMAN,0), 0, 0, NO_MM_FLAGS);
+				else
+		 	    (void) makemon(mkclass(S_NEMESE,0), 0, 0, NO_MM_FLAGS);
+				}
+			else if (randmnst < 171)
+		 	    (void) makemon(mkclass(S_GRUE,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 176)
+		 	    (void) makemon(mkclass(S_WALLMONST,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 180)
+		 	    (void) makemon(mkclass(S_RUBMONST,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 181) {
+				if (randmnsx < 99)
+		 	    (void) makemon(mkclass(S_HUMAN,0), 0, 0, NO_MM_FLAGS);
+				else
+		 	    (void) makemon(mkclass(S_ARCHFIEND,0), 0, 0, NO_MM_FLAGS);
+				}
+			else if (randmnst < 186)
+		 	    (void) makemon(mkclass(S_TURRET,0), 0, 0, NO_MM_FLAGS);
+			else if (randmnst < 187)
+		 	    (void) makemon(mkclass(S_FLYFISH,0), 0, 0, NO_MM_FLAGS);
+			else
+		 	    (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+
+			}
+
+			}
+
+			else if (!rn2(3)) {
+
+			randsp = 1680;
+			randmonstforspawn = rndmonst();
+
+			pline("CLICK! Monsters! So many monsters! Good luck surviving the seething horde!");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&ee, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(randmonstforspawn, 0, 0, NO_MM_FLAGS);
+			}
+
+			}
+
+			else if (!rn2(2)) {
+
+			randsp = 1680;
+			monstercolor = rnd(15);
+			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
+
+			pline("CLICK! All you can make out is a strong predominant color... and an endless amount of monsters.");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&ee, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				if (!rn2(20)) reset_rndmonst(NON_PM);
+
+				(void) makemon(colormon(monstercolor), 0, 0, NO_MM_FLAGS);
+			}
+
+			}
+
+			else {
+
+			randsp = 1680;
+			monstercolor = rnd(333);
+
+			pline("CLICK! The entire area is filled with monsters! And they have one thing in common: they want to make your life miserable!");
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&ee, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				if (!rn2(20)) reset_rndmonst(NON_PM);
+
+				(void) makemon(specialtensmon(monstercolor), 0, 0, NO_MM_FLAGS);
+			}
+
+			}
+
+			u.aggravation = 0;
+
+		 break;
+
 		 case DISPLAY_TRAP:
 
 			if (DisplayLoss) break;
@@ -7987,6 +9920,12 @@ struct obj *otmp;
 
 	in_sight = !Blind;
 	switch (tt) {
+		case PET_TRAP:
+			pline("%s triggers a trap and dies!", Monnam(mtmp));
+			mondead(mtmp);
+			steedhit = TRUE;
+			trapkilled = TRUE;
+			break;
 		case ARROW_TRAP:
 			if(!otmp) {
 				impossible("steed hit by non-existant arrow?");
@@ -8111,6 +10050,7 @@ struct obj *otmp;
 		case GIANT_CHASM:
 		case SHIT_PIT:
 		case MANA_PIT:
+		case ANOXIC_PIT:
 			if (mtmp->mhp <= 0 ||
 				thitm(0, mtmp, (struct obj *)0,
 				      rnd((tt == PIT) ? 6 : (tt == GIANT_CHASM) ? 15 : 10), FALSE))
@@ -8323,13 +10263,17 @@ int style;
 			    }
 			    break;		
 			case LEVEL_TELEP:
+			case LEVEL_BEAMER:
 			case TELEP_TRAP:
+			case BEAMER_TRAP:
 			    if (cansee(bhitpos.x, bhitpos.y))
 			    	pline("Suddenly the rolling boulder disappears!");
 			    else
 			    	You_hear("a rumbling stop abruptly.");
 			    singleobj->otrapped = 0;
 			    if (t->ttyp == TELEP_TRAP)
+				rloco(singleobj);
+			    else if (t->ttyp == BEAMER_TRAP)
 				rloco(singleobj);
 			    else {
 				int newlev = random_teleport_level();
@@ -8351,7 +10295,9 @@ int style;
 			case GIANT_CHASM:
 			case SHIT_PIT:
 			case MANA_PIT:
+			case ANOXIC_PIT:
 			case SHAFT_TRAP:
+			case CURRENT_SHAFT:
 			case HOLE:
 			case TRAPDOOR:
 			    /* the boulder won't be used up if there is a
@@ -8552,7 +10498,7 @@ register struct monst *mtmp;
 	} else if (mtmp->mtrapped) {	/* is currently in the trap */
 	    if (!trap->tseen && !trap->hiddentrap && 
 		cansee(mtmp->mx, mtmp->my) && canseemon(mtmp) &&
-		(trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == BEAR_TRAP ||
+		(trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == BEAR_TRAP ||
 		 trap->ttyp == HOLE || trap->ttyp == PIT ||
 		 trap->ttyp == WEB)) {
 		/* If you come upon an obviously trapped monster, then
@@ -8563,7 +10509,7 @@ register struct monst *mtmp;
 		
 	    if (!rn2(40)) {
 		if (sobj_at(BOULDER, mtmp->mx, mtmp->my) &&
-			(trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT)) {
+			(trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT)) {
 		    if (!rn2(2)) {
 			mtmp->mtrapped = 0;
 			if (canseemon(mtmp))
@@ -9239,6 +11185,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case GIANT_CHASM:
 		case SHIT_PIT:
 		case MANA_PIT:
+		case ANOXIC_PIT:
 			fallverb = "falls";
 			if (is_flyer(mptr) || mtmp->egotype_flying || is_floater(mptr) ||
 				(mtmp->wormno && count_wsegs(mtmp) > 5) ||
@@ -9267,6 +11214,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case HOLE:
 		case TRAPDOOR:
 		case SHAFT_TRAP:
+		case CURRENT_SHAFT:
 			if (!Can_fall_thru(&u.uz)) {
 			 impossible("mintrap: %ss cannot exist on this level.",
 				    defsyms[trap_to_defsym(tt)].explanation);
@@ -9297,12 +11245,25 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			}
 			break;
 
+		case LEVEL_BEAMER:
+			{
+			    int mlev_res;
+			    mlev_res = mlevel_tele_trap(mtmp, trap,
+							inescapable, in_sight);
+			    if (mlev_res) return(mlev_res);
+			}
+			break;
+
 		case MAGIC_PORTAL: /* no longer allows players to simply get rid of them --Amy */
 		case RELOCATION_TRAP:
 			rloc(mtmp, FALSE);
 			break;
 
 		case TELEP_TRAP:
+			mtele_trap(mtmp, trap, in_sight);
+			break;
+
+		case BEAMER_TRAP:
 			mtele_trap(mtmp, trap, in_sight);
 			break;
 
@@ -9435,6 +11396,53 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case AUTO_VULN_TRAP:
 		case TELE_ITEMS_TRAP:
 		case NASTINESS_TRAP:
+
+		case NEXUS_TRAP:
+		case LEG_TRAP:
+		case ARTIFACT_JACKPOT_TRAP:
+		case MAP_AMNESIA_TRAP:
+		case SPREADING_TRAP:
+		case ADJACENT_TRAP:
+		case SUPERTHING_TRAP:
+		case LEVITATION_TRAP:
+		case BOWEL_CRAMPS_TRAP:
+		case UNEQUIPPING_TRAP:
+		case GOOD_ARTIFACT_TRAP:
+		case GENDER_TRAP:
+		case TRAP_OF_OPPOSITE_ALIGNMENT:
+		case SINCOUNT_TRAP:
+		case WRENCHING_TRAP:
+		case TRACKER_TRAP:
+		case NURSE_TRAP:
+		case BACK_TO_START_TRAP:
+		case NEMESIS_TRAP:
+		case STREW_TRAP:
+		case OUTTA_DEPTH_TRAP:
+		case PUNISHMENT_TRAP:
+		case BOON_TRAP:
+		case FOUNTAIN_TRAP:
+		case THRONE_TRAP:
+		case FEMMY_TRAP:
+		case MADELEINE_TRAP:
+		case MARLENA_TRAP:
+		case ANASTASIA_TRAP:
+		case FILLER_TRAP:
+		case TOXIC_VENOM_TRAP:
+		case INSANITY_TRAP:
+		case MADNESS_TRAP:
+		case JESSICA_TRAP:
+		case SOLVEJG_TRAP:
+		case WENDY_TRAP:
+		case KATHARINA_TRAP:
+		case ELENA_TRAP:
+		case THAI_TRAP:
+		case ELIF_TRAP:
+		case NADJA_TRAP:
+		case SANDRA_TRAP:
+		case NATALJE_TRAP:
+		case JEANETTA_TRAP:
+		case YVONNE_TRAP:
+		case MAURAH_TRAP:
 
 		case DISCONNECT_TRAP:
 		case INTERFACE_SCREW_TRAP:
@@ -9595,7 +11603,25 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
 			break;
 
+		case PET_TRAP:
+
+			if (mtmp->mtame) {
+				if (in_sight) pline("%s triggers a trap and dies.", Monnam(mtmp));
+				if (in_sight) seetrap(trap);
+				if (!in_sight) You("sense the death of a companion.");
+				mondead(mtmp);
+				trapkilled = TRUE;
+			}
+
+			break;
+
 		case LOUDSPEAKER:
+			{
+				pline(fauxmessage());
+				if (!rn2(3)) pline(fauxmessage());
+			}
+			break;
+		case ARABELLA_SPEAKER:
 			{
 				pline(fauxmessage());
 				if (!rn2(3)) pline(fauxmessage());
@@ -9782,6 +11808,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			/* commented out due to bugginess --Amy */
 			 break;
 	    case MAGIC_BEAM_TRAP:
+	    case PIERCING_BEAM_TRAP:
 		if (distu(trap->tx, trap->ty) < 4) You_hear("a faint click.");
 		if (in_sight) {
 		    seetrap(trap);
@@ -9969,7 +11996,7 @@ int x, y;
 	struct trap *t;
 
 	if ((t = t_at(x, y)) &&
-	    ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT)) &&
+	    ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT)) &&
 	    (otmp = sobj_at(BOULDER, x, y))) {
 		obj_extract_self(otmp);
 		(void) flooreffects(otmp, x, y, "settle");
@@ -9996,7 +12023,7 @@ long hmask, emask;     /* might cancel timeout */
 	if (Punished && !carried(uball) &&
 	    (is_pool(uball->ox, uball->oy) ||
 	     ((trap = t_at(uball->ox, uball->oy)) &&
-	      ((trap->ttyp == PIT) || (trap->ttyp == SPIKED_PIT) || (trap->ttyp == GIANT_CHASM) || (trap->ttyp == SHIT_PIT) || (trap->ttyp == MANA_PIT) || (trap->ttyp == SHAFT_TRAP) ||
+	      ((trap->ttyp == PIT) || (trap->ttyp == SPIKED_PIT) || (trap->ttyp == GIANT_CHASM) || (trap->ttyp == SHIT_PIT) || (trap->ttyp == MANA_PIT) || (trap->ttyp == ANOXIC_PIT) || (trap->ttyp == SHAFT_TRAP) || (trap->ttyp == CURRENT_SHAFT) ||
 	       (trap->ttyp == TRAPDOOR) || (trap->ttyp == HOLE))))) {
 			u.ux0 = u.ux;
 			u.uy0 = u.uy;
@@ -10082,6 +12109,7 @@ long hmask, emask;     /* might cancel timeout */
 		case HOLE:
 		case TRAPDOOR:
 		case SHAFT_TRAP:
+		case CURRENT_SHAFT:
 			if(!Can_fall_thru(&u.uz) || u.ustuck)
 				break;
 			/* fall into next case */
@@ -12040,7 +14068,7 @@ boolean force;
 		deal_with_floor_trap = TRUE;
 		Strcpy(the_trap, the(defsyms[trap_to_defsym(ttmp->ttyp)].explanation));
 		if (box_here) {
-			if (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT) {
+			if (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT) {
 			    You_cant("do much about %s%s.",
 					the_trap, u.utrap ?
 					" that you're stuck in" :
@@ -12133,6 +14161,7 @@ boolean force;
 			case GIANT_CHASM:
 			case SHIT_PIT:
 			case MANA_PIT:
+			case ANOXIC_PIT:
 				if (!u.dx && !u.dy) {
 				    You("are already on the edge of the pit.");
 				    return 0;
@@ -12495,10 +14524,14 @@ register struct trap *ttmp;
 		     (ttmp->ttyp == HOLE) ||
 		     (ttmp->ttyp == TRAPDOOR) ||
 		     (ttmp->ttyp == SHAFT_TRAP) ||
+		     (ttmp->ttyp == CURRENT_SHAFT) ||
 		     (ttmp->ttyp == SHIT_PIT) ||
 		     (ttmp->ttyp == MANA_PIT) ||
+		     (ttmp->ttyp == ANOXIC_PIT) ||
 		     (ttmp->ttyp == TELEP_TRAP) ||
+		     (ttmp->ttyp == BEAMER_TRAP) ||
 		     (ttmp->ttyp == LEVEL_TELEP) ||
+		     (ttmp->ttyp == LEVEL_BEAMER) ||
 		     (ttmp->ttyp == WEB) ||
 		     (ttmp->ttyp == MAGIC_TRAP) ||
 		     (ttmp->ttyp == ANTI_MAGIC))) {

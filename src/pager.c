@@ -195,7 +195,7 @@ lookat(x, y, buf, monbuf)
 		int tt = t ? t->ttyp : NO_TRAP;
 
 		/* newsym lets you know of the trap, so mention it here */
-		if (tt == BEAR_TRAP || tt == PIT || tt == SHIT_PIT || tt == MANA_PIT ||
+		if (tt == BEAR_TRAP || tt == PIT || tt == SHIT_PIT || tt == MANA_PIT || tt == ANOXIC_PIT ||
 			tt == SPIKED_PIT || tt == GIANT_CHASM || tt == WEB)
 		    Sprintf(eos(buf), ", trapped in %s",
 			    an(defsyms[trap_to_defsym(tt)].explanation));
@@ -507,6 +507,19 @@ lookat(x, y, buf, monbuf)
 	    Strcat(buf, " in molten lava");	/* [can this ever happen?] */
     } else if (glyph_is_trap(glyph)) {
 	int tnum = what_trap(glyph_to_trap(glyph));
+
+	if (tnum == SUPERTHING_TRAP) {
+		pline("Rien ne va plus!");
+		TimerunBug += 1; /* ugh, ugly hack. But nomul() doesn't want to work... --Amy */
+		u.riennevaplus = rnd(20);
+	}
+
+	if (tnum == ARABELLA_SPEAKER) {
+		pline("NETHACK.EXE caused a General Protection Fault at address 000D:001D.");
+		TimerunBug += 1;
+		u.riennevaplus = rnd(30);
+	}
+
 	Strcpy(buf, defsyms[trap_to_defsym(tnum)].explanation);
     } else if(!glyph_is_cmap(glyph)) {
 	Strcpy(buf,"unexplored area");
@@ -880,7 +893,7 @@ do_look(quick)
 	    }
 	}
 
-#define is_cmap_trap(i) ((i) >= S_arrow_trap && (i) <= /*S_polymorph_trap*/S_timerun_trap)
+#define is_cmap_trap(i) ((i) >= S_arrow_trap && (i) <= S_timerun_trap)
 #define is_cmap_drawbridge(i) ((i) >= S_vodbridge && (i) <= S_hcdbridge)
 
 	/* Now check for graphics symbols */
@@ -905,8 +918,11 @@ do_look(quick)
 		    }
 		    firstmatch = x_str;
 		    found++;
-		} else if (!u.uswallow && !(hit_trap && is_cmap_trap(i)) &&
+		} else if (!u.uswallow && !(/*hit_trap && */is_cmap_trap(i)) &&
 			   !(found >= 3 && is_cmap_drawbridge(i))) {
+
+		/* traps should be able to be something other than ^ while not cluttering up the explanations! --Amy */
+
 		    if (level.flags.lethe && !strcmp(x_str, "water"))
 			found += append_str(out_str, "sparkling water");
 		    else
@@ -1817,7 +1833,7 @@ doidtrap()
 		if (!trap->tseen) break;
 		tt = trap->ttyp;
 		if (u.dz) {
-		    if (u.dz < 0 ? (tt == TRAPDOOR || tt == HOLE || tt == SHAFT_TRAP) :
+		    if (u.dz < 0 ? (tt == TRAPDOOR || tt == HOLE || tt == SHAFT_TRAP || tt == CURRENT_SHAFT) :
 			    tt == ROCKTRAP) break;
 		}
 		tt = what_trap(tt);

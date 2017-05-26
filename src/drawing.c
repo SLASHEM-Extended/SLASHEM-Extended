@@ -417,7 +417,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "cancellation trap", C(CLR_MAGENTA)},	/* trap */
 	{'^', "hostility trap", C(CLR_BLACK)},	/* trap */
 	{'^', "boss trap", C(CLR_MAGENTA)},	/* trap */
-	{'^', "wishing trap", C(CLR_MAGENTA)},	/* trap */
+	{'$', "wishing trap", C(CLR_MAGENTA)},	/* trap */
 	{'^', "amnesia trap", C(CLR_MAGENTA)},	/* trap */
 	{'^', "bigscript trap", C(CLR_WHITE)},	/* trap */
 	{'^', "bank trap", C(CLR_BROWN)},	/* trap */
@@ -532,6 +532,61 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "sound effect trap", C(CLR_ORANGE)},	/* trap */
 
 	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
+
+	{'^', "nexus trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "leg trap", C(CLR_BROWN)},	/* trap */
+	{'$', "artifact jackpot trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "map amnesia trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "spreading trap", C(CLR_CYAN)},	/* trap */
+	{'^', "adjacent trap", C(CLR_BLACK)},	/* trap */
+	{'#', "superthing from level 55", C(CLR_GRAY)},	/* trap */
+	{'^', "current shaft", C(CLR_BROWN)},	/* trap */
+	{'^', "levitation trap", C(CLR_CYAN)},	/* trap */
+	{'^', "bowel cramps trap", C(CLR_RED)},	/* trap */
+	{'^', "unequipping trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'$', "good artifact trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "gender trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "trap of opposite alignment", C(CLR_CYAN)},	/* trap */
+	{'^', "sincount trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "beamer", C(CLR_MAGENTA)},	/* trap */
+	{'^', "level beamer", C(CLR_MAGENTA)},	/* trap */
+	{'^', "pet trap", C(CLR_BLACK)},	/* trap */
+	{'^', "piercing beam trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "wrenching trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "tracker trap", C(CLR_MAGENTA)},	/* trap */
+	{'$', "nurse trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "back to start trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "nemesis trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "strew trap", C(CLR_WHITE)},	/* trap */
+	{'^', "outta depth trap", C(CLR_BLACK)},	/* trap */
+	{'^', "punishment trap", C(CLR_CYAN)},	/* trap */
+	{'$', "boon trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "fountain trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "throne trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "anoxic pit", C(CLR_BLACK)},	/* trap */
+	{'#', "arabella speaker", C(CLR_BLACK)},	/* trap */
+	{'^', "femmy trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "madeleine trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "marlena trap", C(CLR_GREEN)},	/* trap */
+	{'^', "anastasia trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "filler trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "toxic venom trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "insanity trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "madness trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "jessica trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "solvejg trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "wendy trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "katharina trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "elena trap", C(CLR_BLACK)},	/* trap */
+	{'^', "thai trap", C(CLR_BLACK)},	/* trap */
+	{'^', "elif trap", C(CLR_WHITE)},	/* trap */
+	{'^', "nadja trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "sandra trap", C(CLR_BROWN)},	/* trap */
+	{'^', "natalje trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "jeanetta trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "yvonne trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "maurah trap", C(CLR_YELLOW)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -890,6 +945,61 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_sound_effect_trap),
 
 	g_FILLER(S_trap_percents),
+
+	g_FILLER(S_nexus_trap),
+	g_FILLER(S_leg_trap),
+	g_FILLER(S_artifact_jackpot_trap),
+	g_FILLER(S_map_amnesia_trap),
+	g_FILLER(S_spreading_trap),
+	g_FILLER(S_adjacent_trap),
+	g_FILLER(S_superthing_trap),
+	g_FILLER(S_current_shaft),
+	g_FILLER(S_levitation_trap),
+	g_FILLER(S_bowel_cramps_trap),
+	g_FILLER(S_unequipping_trap),
+	g_FILLER(S_good_artifact_trap),
+	g_FILLER(S_gender_trap),
+	g_FILLER(S_trap_of_oa),
+	g_FILLER(S_sincount_trap),
+	g_FILLER(S_beamer_trap),
+	g_FILLER(S_level_beamer),
+	g_FILLER(S_pet_trap),
+	g_FILLER(S_piercing_beam_trap),
+	g_FILLER(S_wrenching_trap),
+	g_FILLER(S_tracker_trap),
+	g_FILLER(S_nurse_trap),
+	g_FILLER(S_back_to_start_trap),
+	g_FILLER(S_nemesis_trap),
+	g_FILLER(S_strew_trap),
+	g_FILLER(S_outta_depth_trap),
+	g_FILLER(S_punishment_trap),
+	g_FILLER(S_boon_trap),
+	g_FILLER(S_fountain_trap),
+	g_FILLER(S_throne_trap),
+	g_FILLER(S_anoxic_pit),
+	g_FILLER(S_arabella_speaker),
+	g_FILLER(S_femmy_trap),
+	g_FILLER(S_madeleine_trap),
+	g_FILLER(S_marlena_trap),
+	g_FILLER(S_anastasia_trap),
+	g_FILLER(S_filler_trap),
+	g_FILLER(S_toxic_venom_trap),
+	g_FILLER(S_insanity_trap),
+	g_FILLER(S_madness_trap),
+	g_FILLER(S_jessica_trap),
+	g_FILLER(S_solvejg_trap),
+	g_FILLER(S_wendy_trap),
+	g_FILLER(S_katharina_trap),
+	g_FILLER(S_elena_trap),
+	g_FILLER(S_thai_trap),
+	g_FILLER(S_elif_trap),
+	g_FILLER(S_nadja_trap),
+	g_FILLER(S_sandra_trap),
+	g_FILLER(S_natalje_trap),
+	g_FILLER(S_jeanetta_trap),
+	g_FILLER(S_yvonne_trap),
+	g_FILLER(S_maurah_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -1239,6 +1349,61 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_sound_effect_trap),
 
 	g_FILLER(S_trap_percents),
+
+	g_FILLER(S_nexus_trap),
+	g_FILLER(S_leg_trap),
+	g_FILLER(S_artifact_jackpot_trap),
+	g_FILLER(S_map_amnesia_trap),
+	g_FILLER(S_spreading_trap),
+	g_FILLER(S_adjacent_trap),
+	g_FILLER(S_superthing_trap),
+	g_FILLER(S_current_shaft),
+	g_FILLER(S_levitation_trap),
+	g_FILLER(S_bowel_cramps_trap),
+	g_FILLER(S_unequipping_trap),
+	g_FILLER(S_good_artifact_trap),
+	g_FILLER(S_gender_trap),
+	g_FILLER(S_trap_of_oa),
+	g_FILLER(S_sincount_trap),
+	g_FILLER(S_beamer_trap),
+	g_FILLER(S_level_beamer),
+	g_FILLER(S_pet_trap),
+	g_FILLER(S_piercing_beam_trap),
+	g_FILLER(S_wrenching_trap),
+	g_FILLER(S_tracker_trap),
+	g_FILLER(S_nurse_trap),
+	g_FILLER(S_back_to_start_trap),
+	g_FILLER(S_nemesis_trap),
+	g_FILLER(S_strew_trap),
+	g_FILLER(S_outta_depth_trap),
+	g_FILLER(S_punishment_trap),
+	g_FILLER(S_boon_trap),
+	g_FILLER(S_fountain_trap),
+	g_FILLER(S_throne_trap),
+	g_FILLER(S_anoxic_pit),
+	g_FILLER(S_arabella_speaker),
+	g_FILLER(S_femmy_trap),
+	g_FILLER(S_madeleine_trap),
+	g_FILLER(S_marlena_trap),
+	g_FILLER(S_anastasia_trap),
+	g_FILLER(S_filler_trap),
+	g_FILLER(S_toxic_venom_trap),
+	g_FILLER(S_insanity_trap),
+	g_FILLER(S_madness_trap),
+	g_FILLER(S_jessica_trap),
+	g_FILLER(S_solvejg_trap),
+	g_FILLER(S_wendy_trap),
+	g_FILLER(S_katharina_trap),
+	g_FILLER(S_elena_trap),
+	g_FILLER(S_thai_trap),
+	g_FILLER(S_elif_trap),
+	g_FILLER(S_nadja_trap),
+	g_FILLER(S_sandra_trap),
+	g_FILLER(S_natalje_trap),
+	g_FILLER(S_jeanetta_trap),
+	g_FILLER(S_yvonne_trap),
+	g_FILLER(S_maurah_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -1586,6 +1751,61 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_sound_effect_trap),
 
 	g_FILLER(S_trap_percents),
+
+	g_FILLER(S_nexus_trap),
+	g_FILLER(S_leg_trap),
+	g_FILLER(S_artifact_jackpot_trap),
+	g_FILLER(S_map_amnesia_trap),
+	g_FILLER(S_spreading_trap),
+	g_FILLER(S_adjacent_trap),
+	g_FILLER(S_superthing_trap),
+	g_FILLER(S_current_shaft),
+	g_FILLER(S_levitation_trap),
+	g_FILLER(S_bowel_cramps_trap),
+	g_FILLER(S_unequipping_trap),
+	g_FILLER(S_good_artifact_trap),
+	g_FILLER(S_gender_trap),
+	g_FILLER(S_trap_of_oa),
+	g_FILLER(S_sincount_trap),
+	g_FILLER(S_beamer_trap),
+	g_FILLER(S_level_beamer),
+	g_FILLER(S_pet_trap),
+	g_FILLER(S_piercing_beam_trap),
+	g_FILLER(S_wrenching_trap),
+	g_FILLER(S_tracker_trap),
+	g_FILLER(S_nurse_trap),
+	g_FILLER(S_back_to_start_trap),
+	g_FILLER(S_nemesis_trap),
+	g_FILLER(S_strew_trap),
+	g_FILLER(S_outta_depth_trap),
+	g_FILLER(S_punishment_trap),
+	g_FILLER(S_boon_trap),
+	g_FILLER(S_fountain_trap),
+	g_FILLER(S_throne_trap),
+	g_FILLER(S_anoxic_pit),
+	g_FILLER(S_arabella_speaker),
+	g_FILLER(S_femmy_trap),
+	g_FILLER(S_madeleine_trap),
+	g_FILLER(S_marlena_trap),
+	g_FILLER(S_anastasia_trap),
+	g_FILLER(S_filler_trap),
+	g_FILLER(S_toxic_venom_trap),
+	g_FILLER(S_insanity_trap),
+	g_FILLER(S_madness_trap),
+	g_FILLER(S_jessica_trap),
+	g_FILLER(S_solvejg_trap),
+	g_FILLER(S_wendy_trap),
+	g_FILLER(S_katharina_trap),
+	g_FILLER(S_elena_trap),
+	g_FILLER(S_thai_trap),
+	g_FILLER(S_elif_trap),
+	g_FILLER(S_nadja_trap),
+	g_FILLER(S_sandra_trap),
+	g_FILLER(S_natalje_trap),
+	g_FILLER(S_jeanetta_trap),
+	g_FILLER(S_yvonne_trap),
+	g_FILLER(S_maurah_trap),
+
 	g_FILLER(S_timerun_trap),
 	g_FILLER(S_vbeam),
 	g_FILLER(S_hbeam),
@@ -2124,6 +2344,61 @@ boolean is_rlevel;
 	    showsyms[S_sound_effect_trap] = 0x04;
 
 	    showsyms[S_trap_percents] = 0x04;
+
+	    showsyms[S_nexus_trap] = 0x04;
+	    showsyms[S_leg_trap] = 0x04;
+	    showsyms[S_artifact_jackpot_trap] = 0x04;
+	    showsyms[S_map_amnesia_trap] = 0x04;
+	    showsyms[S_spreading_trap] = 0x04;
+	    showsyms[S_adjacent_trap] = 0x04;
+	    showsyms[S_superthing_trap] = 0x04;
+	    showsyms[S_current_shaft] = 0x04;
+	    showsyms[S_levitation_trap] = 0x04;
+	    showsyms[S_bowel_cramps_trap] = 0x04;
+	    showsyms[S_unequipping_trap] = 0x04;
+	    showsyms[S_good_artifact_trap] = 0x04;
+	    showsyms[S_gender_trap] = 0x04;
+	    showsyms[S_trap_of_oa] = 0x04;
+	    showsyms[S_sincount_trap] = 0x04;
+	    showsyms[S_beamer_trap] = 0x04;
+	    showsyms[S_level_beamer] = 0x04;
+	    showsyms[S_pet_trap] = 0x04;
+	    showsyms[S_piercing_beam_trap] = 0x04;
+	    showsyms[S_wrenching_trap] = 0x04;
+	    showsyms[S_tracker_trap] = 0x04;
+	    showsyms[S_nurse_trap] = 0x04;
+	    showsyms[S_back_to_start_trap] = 0x04;
+	    showsyms[S_nemesis_trap] = 0x04;
+	    showsyms[S_strew_trap] = 0x04;
+	    showsyms[S_outta_depth_trap] = 0x04;
+	    showsyms[S_punishment_trap] = 0x04;
+	    showsyms[S_boon_trap] = 0x04;
+	    showsyms[S_fountain_trap] = 0x04;
+	    showsyms[S_throne_trap] = 0x04;
+	    showsyms[S_anoxic_pit] = 0x04;
+	    showsyms[S_arabella_speaker] = 0x04;
+	    showsyms[S_femmy_trap] = 0x04;
+	    showsyms[S_madeleine_trap] = 0x04;
+	    showsyms[S_marlena_trap] = 0x04;
+	    showsyms[S_anastasia_trap] = 0x04;
+	    showsyms[S_filler_trap] = 0x04;
+	    showsyms[S_toxic_venom_trap] = 0x04;
+	    showsyms[S_insanity_trap] = 0x04;
+	    showsyms[S_madness_trap] = 0x04;
+	    showsyms[S_jessica_trap] = 0x04;
+	    showsyms[S_solvejg_trap] = 0x04;
+	    showsyms[S_wendy_trap] = 0x04;
+	    showsyms[S_katharina_trap] = 0x04;
+	    showsyms[S_elena_trap] = 0x04;
+	    showsyms[S_thai_trap] = 0x04;
+	    showsyms[S_elif_trap] = 0x04;
+	    showsyms[S_nadja_trap] = 0x04;
+	    showsyms[S_sandra_trap] = 0x04;
+	    showsyms[S_natalje_trap] = 0x04;
+	    showsyms[S_jeanetta_trap] = 0x04;
+	    showsyms[S_yvonne_trap] = 0x04;
+	    showsyms[S_maurah_trap] = 0x04;
+
 	    showsyms[S_timerun_trap] = 0x04;
 #endif
 	}

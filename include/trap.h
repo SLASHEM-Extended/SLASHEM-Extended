@@ -17,7 +17,7 @@ struct trap {
 	xchar tx,ty;
 	d_level dst;	/* destination for portals */
 	coord launch;
-	Bitfield(ttyp,8); /* are you kidding me? You only make room for 32 traps? That's not nearly enough for me! --Amy */
+	int ttyp; /* are you kidding me? You only make room for 32 traps? That's not nearly enough for me! --Amy */
 	Bitfield(tseen,1);
 	Bitfield(hiddentrap,1); /* invisible, and I mean really invisible, even if you have see invis --Amy */
 	Bitfield(once,1);
@@ -319,8 +319,62 @@ extern struct trap *ftrap;
 
 #define TRAP_PERCENTS	254
 
-#define TIMERUN_TRAP	255
+#define NEXUS_TRAP	255
+#define LEG_TRAP	256
+#define ARTIFACT_JACKPOT_TRAP	257
+#define MAP_AMNESIA_TRAP	258
+#define SPREADING_TRAP	259
+#define ADJACENT_TRAP	260
+#define SUPERTHING_TRAP	261
+#define CURRENT_SHAFT	262
+#define LEVITATION_TRAP	263
+#define BOWEL_CRAMPS_TRAP	264
+#define UNEQUIPPING_TRAP	265
+#define GOOD_ARTIFACT_TRAP	266
+#define GENDER_TRAP	267
+#define TRAP_OF_OPPOSITE_ALIGNMENT	268
+#define SINCOUNT_TRAP	269
+#define BEAMER_TRAP	270
+#define LEVEL_BEAMER	271
+#define PET_TRAP	272
+#define PIERCING_BEAM_TRAP	273
+#define WRENCHING_TRAP	274
+#define TRACKER_TRAP	275
+#define NURSE_TRAP	276
+#define BACK_TO_START_TRAP	277
+#define NEMESIS_TRAP	278
+#define STREW_TRAP	279
+#define OUTTA_DEPTH_TRAP	280
+#define PUNISHMENT_TRAP	281
+#define BOON_TRAP	282
+#define FOUNTAIN_TRAP	283
+#define THRONE_TRAP	284
+#define ANOXIC_PIT	285
+#define ARABELLA_SPEAKER	286
+#define FEMMY_TRAP	287
+#define MADELEINE_TRAP	288
+#define MARLENA_TRAP	289
+#define ANASTASIA_TRAP	290
+#define FILLER_TRAP	291
+#define TOXIC_VENOM_TRAP	292
+#define INSANITY_TRAP	293
+#define MADNESS_TRAP	294
+#define JESSICA_TRAP	295
+#define SOLVEJG_TRAP	296
+#define WENDY_TRAP	297
+#define KATHARINA_TRAP	298
+#define ELENA_TRAP	299
+#define THAI_TRAP	300
+#define ELIF_TRAP	301
+#define NADJA_TRAP	302
+#define SANDRA_TRAP	303
+#define NATALJE_TRAP	304
+#define JEANETTA_TRAP	305
+#define YVONNE_TRAP	306
+#define MAURAH_TRAP	307
 
-#define TRAPNUM 256
+#define TIMERUN_TRAP	308
+
+#define TRAPNUM 309
 
 #endif /* TRAP_H */

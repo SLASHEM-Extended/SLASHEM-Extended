@@ -784,7 +784,7 @@ hurtle_step(arg, x, y)
     		return FALSE;
 	} else if (ttmp->ttyp == FIRE_TRAP) {
     		dotrap(ttmp,0);
-	} else if ((ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == SHAFT_TRAP ||
+	} else if ((ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == CURRENT_SHAFT ||
 		    ttmp->ttyp == HOLE || ttmp->ttyp == TRAPDOOR) &&
 		   In_sokoban(&u.uz)) {
 		/* Air currents overcome the recoil */

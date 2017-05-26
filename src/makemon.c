@@ -12240,6 +12240,8 @@ register int	mmflags;
 		d((int)mtmp->m_lev, 8) + (mtmp->m_lev*rnd(2));
 	}
 
+	if (humanoid(ptr) && is_female(ptr) && FemaleTrapWendy && (mtmp->mhpmax < 2000) ) mtmp->mhpmax += rnd(mtmp->mhpmax);
+
 	if (ptr->mlevel > 49) { /* so they still get extra HP --Amy */
 
 		mtmp->mhpmax += ( (ptr->mlevel - 49) * 5);
@@ -14735,7 +14737,7 @@ uncommon(mndx)
 int mndx;
 {
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
-	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.aggravation ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Role_if(PM_TRANSSYLVANIAN) ) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : u.aggravation ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Role_if(PM_TRANSSYLVANIAN) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
@@ -15049,6 +15051,10 @@ rndmonst()
 
 		if (u.aggravation && rn2(2)) {
 			minmlev += u.ulevel;
+		}
+
+		if (u.outtadepthtrap && rn2(4)) {
+			if (minmlev < (maxmlev / 2)) minmlev = maxmlev / 2;
 		}
 
 		if (Role_if(PM_PSION) && u.ulevel >= 7) {

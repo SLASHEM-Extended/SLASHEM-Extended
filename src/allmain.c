@@ -28,6 +28,15 @@ static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 static void FDECL(p_glow2,(struct obj *,const char *));
 
+/* hunger texts used on bottom line (each 8 chars long) */
+#define SATIATED	0
+#define NOT_HUNGRY	1
+#define HUNGRY		2
+#define WEAK		3
+#define FAINTING	4
+#define FAINTED		5
+#define STARVED		6
+
 #ifdef OVL0
 
 STATIC_PTR
@@ -159,6 +168,8 @@ moveloop()
 		 * have aggravate monster. The variable is used in several other places to ensure that summoned monsters are
 		 * more dangerous, but we do not want aggravate monster to become a crippling status effect, and therefore
 		 * randomly spawned monsters aren't supposed to be higher level only because you aggravate. */
+
+		u.outtadepthtrap = 0;
 
 	    /* actual time passed */
 	    youmonst.movement -= NORMAL_SPEED;
@@ -1286,6 +1297,10 @@ moveloop()
 				pline(fauxmessage());
 				if (!rn2(3)) pline(fauxmessage());
 			}
+			if (ttmp && ttmp->ttyp == ARABELLA_SPEAKER && !rn2(50) ) {
+				pline(fauxmessage());
+				if (!rn2(3)) pline(fauxmessage());
+			}
 
 			if (ttmp && ttmp->ttyp == FUMAROLE && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
 
@@ -1319,6 +1334,18 @@ moveloop()
 				u.aggravation = 0;
 				if (!rn2(20)) pline("Chaeaet!");
 				if (!rn2(50)) ttmp->ttyp = ANIMATION_TRAP;
+			}
+
+			if (ttmp && ttmp->ttyp == SPREADING_TRAP && !rn2(100)) {
+				makerandomtrap();
+			}
+
+			if (ttmp && ttmp->ttyp == ADJACENT_TRAP && !(t_at(u.ux, u.uy)) && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
+				maketrap(u.ux, u.uy, randomtrap(), 100 );
+			}
+
+			if (ttmp && ttmp->ttyp == SUPERTHING_TRAP && (multi >= 0) && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
+				nomul(-rnd(5), "standing next to a superthing");
 			}
 
 			if (ttmp && ttmp->ttyp == CURSED_GRAVE && !rn2(50)) {
@@ -1368,6 +1395,131 @@ moveloop()
 			nomul(-(rnz(5) ), "fainted from exertion");
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
+
+		}
+
+		if (FemaleTrapThai && IS_TOILET(levl[u.ux][u.uy].typ) && u.uhs < HUNGRY ) {
+			pline("For some reason, you have to take a shit right now.");
+
+			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
+			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
+			morehungry(rn2(400)+200);
+
+			pline("But in your haste, you forgot to open the lid!");
+			adjalign(-20);
+
+		}
+
+		if (FemaleTrapYvonne && (multi >= 0) && IS_TOILET(levl[u.ux][u.uy].typ) && u.uhs < HUNGRY ) {
+			pline("A toilet! You feel that you have to take a shit, and so you do.");
+
+			int crapduration = 5;
+			if (uarm && objects[uarm->otyp].oc_delay) {
+				pline("Taking off your armor is going to take a while...");
+				crapduration += objects[uarm->otyp].oc_delay;
+			}
+			if (uarmc && objects[uarmc->otyp].oc_delay) {
+				pline("You need to remove your cloak...");
+				crapduration += objects[uarmc->otyp].oc_delay;
+			}
+			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
+			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
+			morehungry(rn2(400)+200);
+			nomovemsg = "You are done shitting.";
+			nomul(-crapduration, "while taking a shit");
+
+		}
+
+		if (FemaleTrapMaurah && !rn2(100)) {
+
+			pline("Suddenly, you produce beautiful farting noises with your sexy butt.");
+			badeffect();
+
+		}
+
+		if (FemaleTrapElif && !rn2(100)) {
+
+			switch (rnd(4)) {
+
+				case 1:
+					pline("Elif suddenly kicks your %s with her very soft, female sneakers, and draws %s!", body_part(HAND), body_part(BLOOD));
+					incr_itimeout(&Glib, 2); /* just enough to make you drop your weapon */
+					losehp(rnd(u.ulevel), "Elif's soft female sneakers", KILLED_BY);
+					break;
+				case 2:
+					pline("Elif suddenly produces %s farting noises with her sexy butt.", rn2(2) ? "tender" : "soft");
+					badeffect();
+					break;
+				case 3:
+					pline("Elif suddenly uses her very sharp-edged female fingernails and cuts your unprotected skin!");
+					if (Upolyd && u.mhmax > 1) {
+						u.mhmax--;
+						if (u.mh > u.mhmax) u.mh = u.mhmax;
+					} else if (!Upolyd && u.uhpmax > 1) {
+						u.uhpmax--;
+						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					}
+					break;
+				case 4:
+					pline("Elif suddenly strokes you gently with her very soft, fleecy hands!");
+					if (Upolyd) u.mhmax++;
+					else u.uhpmax++;
+					break;
+
+			}
+
+		}
+
+		if (FemaleTrapNatalje) {
+			if ((u.ux != u.nataljetrapx) || (u.uy != u.nataljetrapy)) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
+			if (moves > (u.nataljetrapturns + 6)) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+				pline("Oh no! You were standing still for too long, and are horribly scarred by a bunch of female painted asian toenails. Your sexy high heels are also damaged.");
+
+				if (ABASE(A_CHA) > 3) (void) adjattrib(A_CHA, -1, TRUE);
+				else {
+				    if (Upolyd) {
+					u.mh -= 5;
+					u.mhmax -= 5;
+				    } else {
+					u.uhp -= 5;
+					u.uhpmax -= 5;
+					if (u.uhp < 1) {
+						pline("The nails cut you fatally and you die.");
+						killer_format = KILLED_BY;
+						killer = "painted asian toenails";
+						done(DIED);
+
+					}
+				    }
+
+				}
+
+				antimatter_damage(invent, FALSE, FALSE);
+			}
+
+			if (moves > (u.nataljetrapturns + 3)) {
+				if (!strncmpi(plname, "Natalje", 7)) {
+					pline("Keep dancing, Natalje...");
+				} else {
+					pline("You gotta keep dancing...");
+				}
+			}
+
+			if (moves > (u.nataljetrapturns + 5)) {
+				if (!strncmpi(plname, "Natalje", 7)) {
+					pline("Careful, Natalje! You gotta dance or you'll get hurt!");
+				} else {
+					pline("You missed the beat! Continue dancing or suffer!");
+				}
+			}
 
 		}
 
@@ -2069,6 +2221,38 @@ newbossX:
 
 		}
 
+		if (FemaleTrapFemmy && !rn2(500) ) {
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossZ:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossZ;
+			}
+			if (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET) && rn2(50) ) {
+				attempts = 0;
+				goto newbossZ;
+			}
+
+			if (pm) (void) makemon(pm, 0, 0, NO_MM_FLAGS);
+
+			u.aggravation = 0;
+
+		}
+
 		if (uarmc && uarmc->oartifact == ART_GREEB && !rn2(2000) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
@@ -2389,7 +2573,56 @@ newbossY:
 			}
 		}
 
+		if (FemaleTrapFemmy && !rn2(200)) {
+
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0);
+					break;
+					}
+			}
+
+		}
+
+		if (FemaleTrapFemmy && !rn2(200)) {
+
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, HEEL_TRAP, 0);
+					break;
+					}
+			}
+
+		}
+
 		if (uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL && !rn2(500) ) {
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, SHIT_TRAP, 0);
+					break;
+					}
+			}
+		}
+
+		if (FemaleTrapAnastasia && !rn2(250) ) {
 			int tryct = 0;
 			int x, y;
 
@@ -2681,6 +2914,13 @@ newboss:
 			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
+		if (FemaleTrapSolvejg && !rn2(200)) {
+
+			aggravate();
+			pline("Your loud voice aggravates the denizens of the dungeon.");
+
+		}
+
 		if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION && !rn2(1000)) {
 
 			struct obj *otmpE;
@@ -2762,6 +3002,17 @@ newboss:
 				block_point(chaosx,chaosy);
 				del_engr_at(chaosx,chaosy);
 				newsym(chaosx,chaosy);
+			}
+
+		}
+
+		if (FemaleTrapYvonne && !rn2(250)) {
+
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
+				levl[chaosx][chaosy].typ = TOILET;
 			}
 
 		}
@@ -3789,6 +4040,17 @@ newboss:
 		    !In_endgame(&u.uz) && !BClairvoyant &&
 		    !(moves % 15) && !rn2(2))
 			do_vicinity_map();
+
+		if (u.utrap && (ttmp = t_at(u.ux, u.uy)) && ttmp && ttmp->ttyp == ANOXIC_PIT && !Breathless) {
+			pline("The air in the anoxic pit does not contain oxygen! You can't breathe!");
+			losehp(u.ulevel * 3, "being stuck in an anoxic pit", KILLED_BY);
+		}
+		/* jonadab invented the anoxic pit, and later changed the name to hypoxic pit for whatever reason, which
+		 * sounds much less badass than anoxic pit. I (Amy) learned Ancient Greek in school, so I know what those names
+		 * mean. Anoxic means "does not contain oxygen AT ALL", and will therefore suffocate you very quickly, while
+		 * hypoxic only means "contains a little less oxygen than regular air". While that will still suffocate you
+		 * after a while (I seem to recall humans need about 15% oxygen content in air to breathe), it certainly
+		 * makes the trap sound less powerful and dangerous than it really is, so I'll call it anoxic pit. */
 	
 		if(u.utrap && u.utraptype == TT_LAVA) {
 		    if(!is_lava(u.ux,u.uy))
@@ -4884,6 +5146,13 @@ newboss:
 	else if (flags.etimed_autosave && (moves > 1) && (moves % 97 == 0) ) save_currentstate();
 #endif
 
+	if (u.riennevaplus) { /* delayed paralysis --Amy */
+
+		nomul(-rnd(u.riennevaplus), "nothing went anymore");
+		u.riennevaplus = 0;
+
+	}
+
 	if (u.banishmentbeam) { /* uh-oh... something zapped you with a wand of banishment */
 		/* this replaces the code in muse.c that always caused segfaults --Amy */
 
@@ -5134,6 +5403,7 @@ boolean new_game;	/* false => restoring an old game */
 		ustartrole = urole;
 		flags.startingrole = flags.initrole;
 		flags.startingrace = flags.initrace;
+
 	}
 
 	if (isrougelike) assign_rogue_graphics(TRUE);

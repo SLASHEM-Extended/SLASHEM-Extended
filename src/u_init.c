@@ -7567,7 +7567,7 @@ u_init()
 	u.invisotrap = rnd(TRAPNUM-1);
 
 	u.frequenttrap = rnd(TRAPNUM-1);
-	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
+	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
 	u.freqtrapbonus = rnz(3) * rne(3);
 
 	if (Race_if(PM_WARPER)) u.youpolyamount = 5;
@@ -7773,7 +7773,14 @@ u_init()
 	u.boomshined = 0;
 	u.kyliemode = 0;
 
+
+	u.nataljetrapturns = 0;
+	u.nataljetrapx = 0;
+	u.nataljetrapy = 0;
+	u.riennevaplus = 0;
+
 	u.aggravation = 0;
+	u.outtadepthtrap = 0;
 
 	u.urmaxlvl = 1; /* will go up if an asgardian race player levels up */
 	u.urmaxlvlB = 1; /* will go up if a cyborg role player levels up */
@@ -25942,7 +25949,7 @@ alter_reality()
 	u.invisotrap = rnd(TRAPNUM-1);
 
 	u.frequenttrap = rnd(TRAPNUM-1);
-	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
+	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
 	u.freqtrapbonus = rnz(3) * rne(3);
 
 	u.impossibleproperty = randomdisableproperty();

@@ -242,6 +242,10 @@ drinkfountain()
 	} else {
 	    switch (fate) {
 
+		case 18: /* Experience (idea by Amy) */
+			pluslvl(FALSE);
+			break;
+
 		case 19: /* Self-knowledge */
 
 			You_feel("self-knowledgeable...");

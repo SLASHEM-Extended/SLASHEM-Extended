@@ -1303,6 +1303,8 @@ randominsidetrap()
 	if (!rn2(7)) return TRAP_PERCENTS;
 	else if (!rn2(9)) return UNKNOWN_TRAP;
 	else if (!rn2(20)) return SPACEWARS_TRAP;
+	else if (!rn2(50)) return ARABELLA_SPEAKER;
+	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
 	else switch (rnd(97)) {
 		case 1: return RMB_LOSS_TRAP;

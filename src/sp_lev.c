@@ -350,9 +350,20 @@ selecttrap:
 	     case SHAFT_TRAP:
 	     case TRAPDOOR:	if (!Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap;
 			break;
+
+	     case CURRENT_SHAFT:
+			if (!Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap;
+			if (rn2(3)) goto selecttrap;
+			break;
+
 	     case LEVEL_TELEP:	if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
 			break;
+	     case LEVEL_BEAMER:	if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
+			break;
+	     case NEXUS_TRAP:	if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
+			break;
 	     case TELEP_TRAP:	if (level.flags.noteleport) goto selecttrap;
+	     case BEAMER_TRAP:	if (level.flags.noteleport) goto selecttrap;
 			break;
 	     case ROLLING_BOULDER_TRAP:
 	     case ROCKTRAP:	if (In_endgame(&u.uz)) goto selecttrap;
@@ -727,6 +738,115 @@ selecttrap:
 			if (rn2(2)) goto selecttrap;
 			break;
 
+		    case ARTIFACT_JACKPOT_TRAP:
+			if (rn2(200)) goto selecttrap;
+			break;
+		    case SPREADING_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case SUPERTHING_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case LEVITATION_TRAP:
+			if (rn2(3)) goto selecttrap;
+			break;
+		    case GOOD_ARTIFACT_TRAP:
+			if (rn2(200)) goto selecttrap;
+			break;
+		    case GENDER_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case TRAP_OF_OPPOSITE_ALIGNMENT:
+			if (rn2(20)) goto selecttrap;
+			break;
+		    case PET_TRAP:
+			if (rn2(25)) goto selecttrap;
+			break;
+		    case PIERCING_BEAM_TRAP:
+			if (rn2(3)) goto selecttrap;
+			break;
+		    case BACK_TO_START_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case NEMESIS_TRAP:
+			if (rn2(50)) goto selecttrap;
+			break;
+		    case STREW_TRAP:
+			if (rn2(30)) goto selecttrap;
+			break;
+		    case OUTTA_DEPTH_TRAP:
+			if (rn2(50)) goto selecttrap;
+			break;
+		    case BOON_TRAP:
+			if (rn2(200)) goto selecttrap;
+			break;
+		    case ANOXIC_PIT:
+			if (rn2(3)) goto selecttrap;
+			break;
+		    case ARABELLA_SPEAKER:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case FEMMY_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case MADELEINE_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case MARLENA_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case ANASTASIA_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case TOXIC_VENOM_TRAP:
+			if (rn2(7)) goto selecttrap;
+			break;
+		    case INSANITY_TRAP:
+			if (rn2(100)) goto selecttrap;
+			break;
+		    case MADNESS_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case JESSICA_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case SOLVEJG_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case WENDY_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case KATHARINA_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case ELENA_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case THAI_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case ELIF_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case NADJA_TRAP:
+			if (rn2(20)) goto selecttrap;
+			break;
+		    case SANDRA_TRAP:
+			if (rn2(15)) goto selecttrap;
+			break;
+		    case NATALJE_TRAP:
+			if (rn2(50)) goto selecttrap;
+			break;
+		    case JEANETTA_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case YVONNE_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case MAURAH_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+
 	    case SIN_TRAP:
 		if (rn2(50)) goto selecttrap;
 			break;
@@ -806,8 +926,12 @@ selecttrap:
 		if (rtrap == MAGIC_PORTAL) goto selecttrap;
 		if (rtrap == TRAPDOOR && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap;
 		if (rtrap == SHAFT_TRAP && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap;
+		if (rtrap == CURRENT_SHAFT && !Can_dig_down(&u.uz) && !Is_stronghold(&u.uz) ) goto selecttrap;
 		if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap;
+		if (rtrap == LEVEL_BEAMER && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap;
+		if (rtrap == NEXUS_TRAP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) goto selecttrap;
 		if (rtrap == TELEP_TRAP && level.flags.noteleport) goto selecttrap;
+		if (rtrap == BEAMER_TRAP && level.flags.noteleport) goto selecttrap;
 		if (rtrap == ROLLING_BOULDER_TRAP) goto selecttrap;
 		if (rtrap == NO_TRAP) goto selecttrap;
 		if (rtrap == RMB_LOSS_TRAP && !Role_if(PM_CAMPERSTRIKER) && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) goto selecttrap;
@@ -943,6 +1067,44 @@ selecttrap:
 
 	      if (rtrap == PESTILENCE_TRAP && rn2(20)) goto selecttrap;
 	      if (rtrap == FAMINE_TRAP && rn2(2)) goto selecttrap;
+
+	      if (rtrap == ARTIFACT_JACKPOT_TRAP && rn2(200)) goto selecttrap;
+	      if (rtrap == SPREADING_TRAP && rn2(5)) goto selecttrap;
+	      if (rtrap == SUPERTHING_TRAP && rn2(10)) goto selecttrap;
+	      if (rtrap == CURRENT_SHAFT && rn2(3)) goto selecttrap;
+	      if (rtrap == LEVITATION_TRAP && rn2(3)) goto selecttrap;
+	      if (rtrap == GOOD_ARTIFACT_TRAP && rn2(200)) goto selecttrap;
+	      if (rtrap == GENDER_TRAP && rn2(5)) goto selecttrap;
+	      if (rtrap == TRAP_OF_OPPOSITE_ALIGNMENT && rn2(20)) goto selecttrap;
+	      if (rtrap == PET_TRAP && rn2(25)) goto selecttrap;
+	      if (rtrap == PIERCING_BEAM_TRAP && rn2(3)) goto selecttrap;
+	      if (rtrap == BACK_TO_START_TRAP && rn2(5)) goto selecttrap;
+	      if (rtrap == NEMESIS_TRAP && rn2(50)) goto selecttrap;
+	      if (rtrap == STREW_TRAP && rn2(30)) goto selecttrap;
+	      if (rtrap == OUTTA_DEPTH_TRAP && rn2(50)) goto selecttrap;
+	      if (rtrap == BOON_TRAP && rn2(200)) goto selecttrap;
+	      if (rtrap == ANOXIC_PIT && rn2(3)) goto selecttrap;
+	      if (rtrap == ARABELLA_SPEAKER && rn2(10)) goto selecttrap;
+	      if (rtrap == FEMMY_TRAP && rn2(5)) goto selecttrap;
+	      if (rtrap == MADELEINE_TRAP && rn2(5)) goto selecttrap;
+	      if (rtrap == MARLENA_TRAP && rn2(5)) goto selecttrap;
+	      if (rtrap == ANASTASIA_TRAP && rn2(5)) goto selecttrap;
+	      if (rtrap == TOXIC_VENOM_TRAP && rn2(7)) goto selecttrap;
+	      if (rtrap == INSANITY_TRAP && rn2(100)) goto selecttrap;
+	      if (rtrap == MADNESS_TRAP && rn2(5)) goto selecttrap;
+	      if (rtrap == JESSICA_TRAP && rn2(10)) goto selecttrap;
+	      if (rtrap == SOLVEJG_TRAP && rn2(10)) goto selecttrap;
+	      if (rtrap == WENDY_TRAP && rn2(5)) goto selecttrap;
+	      if (rtrap == KATHARINA_TRAP && rn2(10)) goto selecttrap;
+	      if (rtrap == ELENA_TRAP && rn2(10)) goto selecttrap;
+	      if (rtrap == THAI_TRAP && rn2(10)) goto selecttrap;
+	      if (rtrap == ELIF_TRAP && rn2(10)) goto selecttrap;
+	      if (rtrap == NADJA_TRAP && rn2(20)) goto selecttrap;
+	      if (rtrap == SANDRA_TRAP && rn2(15)) goto selecttrap;
+	      if (rtrap == NATALJE_TRAP && rn2(50)) goto selecttrap;
+	      if (rtrap == JEANETTA_TRAP && rn2(5)) goto selecttrap;
+	      if (rtrap == YVONNE_TRAP && rn2(5)) goto selecttrap;
+	      if (rtrap == MAURAH_TRAP && rn2(10)) goto selecttrap;
 
 	      if (rtrap == SIN_TRAP && rn2(50)) goto selecttrap;
 	      if (rtrap == DESTROY_ARMOR_TRAP && rn2(15)) goto selecttrap;
@@ -2678,7 +2840,7 @@ boolean prefilled;
 	register int sx,sy,i,eelct=0;
 	int rtrap;
 	int randomnes = 0;
-	schar typ, typ2;
+	int typ, typ2;
 	struct monst *mtmp;
 
 	register int tryct = 0;
@@ -4826,7 +4988,7 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    trytrap = rndtrap();
 		    if (sobj_at(BOULDER, mm.x, mm.y))
-			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT ||trytrap == SHAFT_TRAP ||
+			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
 				trytrap == TRAPDOOR || trytrap == HOLE)
 			    trytrap = rndtrap();
 		    (void) maketrap(mm.x, mm.y, trytrap, 100);
@@ -4869,7 +5031,7 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    trytrap = rndtrap();
 		    if (sobj_at(BOULDER, mm.x, mm.y))
-			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT ||trytrap == SHAFT_TRAP ||
+			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
 				trytrap == TRAPDOOR || trytrap == HOLE)
 			    trytrap = rndtrap();
 		    (void) maketrap(mm.x, mm.y, trytrap, 100);

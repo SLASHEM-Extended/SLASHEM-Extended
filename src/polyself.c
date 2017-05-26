@@ -1478,6 +1478,7 @@ dospinweb()
 		case PIT:
 		case SHIT_PIT:
 		case MANA_PIT:
+		case ANOXIC_PIT:
 		case SPIKED_PIT: You("spin a web, covering up the pit.");
 			deltrap(ttmp);
 			bury_objs(u.ux, u.uy);
@@ -1488,7 +1489,10 @@ dospinweb()
 			newsym(u.ux, u.uy);
 			return(1);
 		case TELEP_TRAP:
+		case BEAMER_TRAP:
 		case LEVEL_TELEP:
+		case LEVEL_BEAMER:
+		case NEXUS_TRAP:
 		case MAGIC_PORTAL:
 			Your("webbing vanishes!");
 			return(0);
@@ -1497,6 +1501,7 @@ dospinweb()
 		case HOLE:
 		case TRAPDOOR:
 		case SHAFT_TRAP:
+		case CURRENT_SHAFT:
 			You("web over the %s.",
 			    (ttmp->ttyp == TRAPDOOR) ? "trap door" : "hole");
 			deltrap(ttmp);
@@ -1620,6 +1625,55 @@ dospinweb()
 		case CANNON_TRAP:
 		case VENOM_SPRINKLER:
 		case FUMAROLE:
+
+		case LEG_TRAP:
+		case ARTIFACT_JACKPOT_TRAP:
+		case MAP_AMNESIA_TRAP:
+		case SPREADING_TRAP:
+		case ADJACENT_TRAP:
+		case SUPERTHING_TRAP:
+		case LEVITATION_TRAP:
+		case BOWEL_CRAMPS_TRAP:
+		case UNEQUIPPING_TRAP:
+		case GOOD_ARTIFACT_TRAP:
+		case GENDER_TRAP:
+		case TRAP_OF_OPPOSITE_ALIGNMENT:
+		case SINCOUNT_TRAP:
+		case PET_TRAP:
+		case PIERCING_BEAM_TRAP:
+		case WRENCHING_TRAP:
+		case TRACKER_TRAP:
+		case NURSE_TRAP:
+		case BACK_TO_START_TRAP:
+		case NEMESIS_TRAP:
+		case STREW_TRAP:
+		case OUTTA_DEPTH_TRAP:
+		case PUNISHMENT_TRAP:
+		case BOON_TRAP:
+		case FOUNTAIN_TRAP:
+		case THRONE_TRAP:
+		case ARABELLA_SPEAKER:
+		case FEMMY_TRAP:
+		case MADELEINE_TRAP:
+		case MARLENA_TRAP:
+		case ANASTASIA_TRAP:
+		case FILLER_TRAP:
+		case TOXIC_VENOM_TRAP:
+		case INSANITY_TRAP:
+		case MADNESS_TRAP:
+		case JESSICA_TRAP:
+		case SOLVEJG_TRAP:
+		case WENDY_TRAP:
+		case KATHARINA_TRAP:
+		case ELENA_TRAP:
+		case THAI_TRAP:
+		case ELIF_TRAP:
+		case NADJA_TRAP:
+		case SANDRA_TRAP:
+		case NATALJE_TRAP:
+		case JEANETTA_TRAP:
+		case YVONNE_TRAP:
+		case MAURAH_TRAP:
 
 		case ELEMENTAL_PORTAL:
 		case GIRLINESS_TRAP:

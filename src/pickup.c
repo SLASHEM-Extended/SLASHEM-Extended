@@ -425,7 +425,7 @@ int what;		/* should be a long */
 		     * like you, but not pits, because there is an elevation
 		     * discrepancy with stuff in pits.
 		     */
-		    if ((ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT) &&
+		    if ((ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT|| ttmp->ttyp == ANOXIC_PIT) &&
 			(!u.utrap || (u.utrap && u.utraptype != TT_PIT)) && !Passes_walls && !Flying) {
 			sense_engr_at(u.ux, u.uy, FALSE);
 			return(0);

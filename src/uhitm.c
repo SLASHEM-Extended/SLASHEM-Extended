@@ -350,6 +350,21 @@ struct monst *mtmp;
 
 	}
 
+	if (FemaleTrapNadja && mtmp->female && humanoid(mtmp->data)) {
+
+		pline("%s is really angry about the fact that you tried to hit her, and uses a pair of buckled shoes to scratch up and down your %s, ripping a lot of skin to shreds.", Monnam(mtmp), body_part(LEG));
+		u.legscratching++;
+		losehp(rnd(u.legscratching), "the wrath of Nadja's buckled lady shoes", KILLED_BY);
+		if (u.legscratching > 20) {
+			pline("She notices that you're bleeding, which seems to make her even more angry as she continues slitting your %s full length with the metal buckle!", body_part(LEG));
+			losehp(rnd(u.legscratching), "the wrath of Nadja's buckled lady shoes", KILLED_BY);
+		}
+		if (u.legscratching > 40) {
+			pline("You are severely hurt, but %s just doesn't want to stop punishing you with her very female buckled shoes. She continues destroying your unprotected skin and announces that if you hit her one more time, she will kill you.", mon_nam(mtmp));
+			losehp(rnd(u.legscratching), "the wrath of Nadja's buckled lady shoes", KILLED_BY);
+		}
+	}
+
 }
 
 schar
@@ -564,6 +579,8 @@ register struct monst *mtmp;
 	if (Race_if(PM_PLAYER_SKELETON)) tmp -= u.ulevel; /* sorry */
 
 	if (Race_if(PM_DEVELOPER)) tmp += 3;
+
+	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapWendy) tmp -= rnd(20);
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;

@@ -965,7 +965,7 @@ register struct monst *mtmp;
 	if (mtmp == u.usteed && (Flying || Levitation))
 		return (0);
 
-    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && flags.soundok && mtmp->mcanmove && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) ) ) {
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemaleTrapKatharina) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) || FemaleTrapThai ) ) {
 	if (cansee(mtmp->mx,mtmp->my)) {
 		pline("%s produces %s crapping noises with %s %s butt.", Monnam(mtmp), mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 	} else {
@@ -981,7 +981,7 @@ register struct monst *mtmp;
 
     }
 
-    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && uarmc && uarmc->oartifact == ART_TOILET_NOISES && multi >= 0 && flags.soundok && mtmp->mcanmove && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) && ((mtmp->data->msound != MS_FART_QUIET) && (mtmp->data->msound != MS_FART_NORMAL) && (mtmp->data->msound != MS_FART_LOUD) ) ) {
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && uarmc && uarmc->oartifact == ART_TOILET_NOISES && multi >= 0 && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemaleTrapKatharina) && ((mtmp->data->msound != MS_FART_QUIET) && (mtmp->data->msound != MS_FART_NORMAL) && (mtmp->data->msound != MS_FART_LOUD) ) ) {
 	if (cansee(mtmp->mx,mtmp->my)) {
 		pline("%s produces crapping noises with %s %s butt.", Monnam(mtmp), mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 	} else {
@@ -2182,6 +2182,54 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != VENOM_SPRINKLER
 				&& ttmp->ttyp != FUMAROLE
 
+				&& ttmp->ttyp != NEXUS_TRAP
+				&& ttmp->ttyp != LEG_TRAP
+				&& ttmp->ttyp != ARTIFACT_JACKPOT_TRAP
+				&& ttmp->ttyp != MAP_AMNESIA_TRAP
+				&& ttmp->ttyp != SPREADING_TRAP
+				&& ttmp->ttyp != ADJACENT_TRAP
+				&& ttmp->ttyp != SUPERTHING_TRAP
+				&& ttmp->ttyp != LEVITATION_TRAP
+				&& ttmp->ttyp != BOWEL_CRAMPS_TRAP
+				&& ttmp->ttyp != UNEQUIPPING_TRAP
+				&& ttmp->ttyp != GOOD_ARTIFACT_TRAP
+				&& ttmp->ttyp != GENDER_TRAP
+				&& ttmp->ttyp != TRAP_OF_OPPOSITE_ALIGNMENT
+				&& ttmp->ttyp != SINCOUNT_TRAP
+				&& ttmp->ttyp != WRENCHING_TRAP
+				&& ttmp->ttyp != TRACKER_TRAP
+				&& ttmp->ttyp != NURSE_TRAP
+				&& ttmp->ttyp != BACK_TO_START_TRAP
+				&& ttmp->ttyp != NEMESIS_TRAP
+				&& ttmp->ttyp != STREW_TRAP
+				&& ttmp->ttyp != OUTTA_DEPTH_TRAP
+				&& ttmp->ttyp != PUNISHMENT_TRAP
+				&& ttmp->ttyp != BOON_TRAP
+				&& ttmp->ttyp != FOUNTAIN_TRAP
+				&& ttmp->ttyp != THRONE_TRAP
+				&& ttmp->ttyp != ARABELLA_SPEAKER
+				&& ttmp->ttyp != FEMMY_TRAP
+				&& ttmp->ttyp != MADELEINE_TRAP
+				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != ANASTASIA_TRAP
+				&& ttmp->ttyp != FILLER_TRAP
+				&& ttmp->ttyp != TOXIC_VENOM_TRAP
+				&& ttmp->ttyp != INSANITY_TRAP
+				&& ttmp->ttyp != MADNESS_TRAP
+				&& ttmp->ttyp != JESSICA_TRAP
+				&& ttmp->ttyp != SOLVEJG_TRAP
+				&& ttmp->ttyp != WENDY_TRAP
+				&& ttmp->ttyp != KATHARINA_TRAP
+				&& ttmp->ttyp != ELENA_TRAP
+				&& ttmp->ttyp != THAI_TRAP
+				&& ttmp->ttyp != ELIF_TRAP
+				&& ttmp->ttyp != NADJA_TRAP
+				&& ttmp->ttyp != SANDRA_TRAP
+				&& ttmp->ttyp != NATALJE_TRAP
+				&& ttmp->ttyp != JEANETTA_TRAP
+				&& ttmp->ttyp != YVONNE_TRAP
+				&& ttmp->ttyp != MAURAH_TRAP
+
 				&& ttmp->ttyp != ELEMENTAL_PORTAL
 				&& ttmp->ttyp != GIRLINESS_TRAP
 				&& ttmp->ttyp != FUMBLING_TRAP
@@ -2220,6 +2268,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				    && ttmp->ttyp != GIANT_CHASM
 				    && ttmp->ttyp != SHIT_PIT
 				    && ttmp->ttyp != MANA_PIT
+				    && ttmp->ttyp != ANOXIC_PIT
 				    && ttmp->ttyp != SHAFT_TRAP
 				    && ttmp->ttyp != TRAPDOOR
 				    && ttmp->ttyp != HOLE)
@@ -2851,9 +2900,15 @@ register struct monst *mtmp;
 					rtrap = rnd(TRAPNUM-1);
 					if (rtrap == MAGIC_PORTAL) rtrap = ROCKTRAP;
 					if (rtrap == WISHING_TRAP) rtrap = BLINDNESS_TRAP;
+					if (rtrap == ARTIFACT_JACKPOT_TRAP) rtrap = MAGIC_TRAP;
+					if (rtrap == GOOD_ARTIFACT_TRAP) rtrap = WEB;
+					if (rtrap == BOON_TRAP) rtrap = MAGIC_BEAM_TRAP;
 					if (rtrap == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
+					if (rtrap == LEVEL_BEAMER && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
+					if (rtrap == NEXUS_TRAP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
 					if (rtrap == TELEP_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
-					if ((rtrap == TRAPDOOR || rtrap == HOLE || rtrap == SHAFT_TRAP) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) rtrap = ROCKTRAP;
+					if (rtrap == BEAMER_TRAP && level.flags.noteleport) rtrap = SQKY_BOARD;
+					if ((rtrap == TRAPDOOR || rtrap == HOLE || rtrap == SHAFT_TRAP || rtrap == CURRENT_SHAFT) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) rtrap = ROCKTRAP;
 					if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = SUPERSCROLLER_TRAP;
 					if (rtrap == AUTOMATIC_SWITCHER) rtrap = UNKNOWN_TRAP;
 
@@ -3643,7 +3698,7 @@ xkilled(mtmp, dest)
 	}
 
 	if (mtmp->mtrapped && (t = t_at(x, y)) != 0 &&
-		(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT) &&
+		(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT) &&
 		sobj_at(BOULDER, x, y))
 	    dest |= 2;     /*
 			    * Prevent corpses/treasure being created "on top"

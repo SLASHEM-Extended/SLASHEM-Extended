@@ -289,7 +289,7 @@ nh_timeout()
 	}
 	if (u.antimagicshell < 0) u.antimagicshell = 0; /* fail safe */
 
-	if (u.legscratching > 1 && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
+	if (u.legscratching > 1 && !FemaleTrapJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && moves % 1000 == 0) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
 	if (!rn2(1000) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
@@ -3848,6 +3848,109 @@ nh_timeout()
 		case MC_REDUCTION:
 			pline("Your magic cancellation seems to work correctly again.");
 			break;
+
+		 case FEMTRAP_FEMMY:
+
+			pline("The dungeon no longer seems feminine.");
+
+		 break;
+
+		 case FEMTRAP_MADELEINE:
+
+			pline("Your shins are no longer super sensitive to being kicked by women.");
+
+		 break;
+
+		 case FEMTRAP_MARLENA:
+
+			pline("The dungeon is less green now.");
+
+		 break;
+
+		 case FEMTRAP_ANASTASIA:
+
+			pline("You come back to your senses and realize that stepping into a heap of shit is, well, shit.");
+
+		 break;
+
+		 case FEMTRAP_JESSICA:
+
+			pline("You no longer have super tender butt cheeks, or a super tender body for that matter.");
+
+		 break;
+
+		 case FEMTRAP_SOLVEJG:
+
+			pline("At last, your voice is normal again, although you're also considerably less sexy than you used to be.");
+
+		 break;
+
+		 case FEMTRAP_WENDY:
+
+			pline("You survived the wrath of the women, and feel safe from them now.");
+
+		 break;
+
+		 case FEMTRAP_KATHARINA:
+
+			pline("The female dungeon inhabitants decide to make their butts Geneva-compliant again.");
+
+		 break;
+
+		 case FEMTRAP_ELENA:
+
+			pline("Your lust for pretty women fades. Aww...");
+
+		 break;
+
+		 case FEMTRAP_THAI:
+
+			pline("You no longer need to constantly go to the toilet, and also your physique seems normal now.");
+
+		 break;
+
+		 case FEMTRAP_ELIF:
+
+			pline("The lovely ghostly girl named Elif disappears, telling you that she enjoyed the time she spent with you.");
+
+		 break;
+
+		 case FEMTRAP_NADJA:
+
+			pline("The women are no longer angry at you, and you may hit them again. Don't get it wrong though - I didn't say that you *should*, just that you're no longer hit with retribution if you do - they will still fight back!");
+
+		 break;
+
+		 case FEMTRAP_SANDRA:
+
+			pline("Somehow, you're still alive. Your legs are now safe from any imaginary winter stilettos.");
+
+		 break;
+
+		 case FEMTRAP_NATALJE:
+
+			pline("After dancing for a long time, you are exhausted. And thus, at last you may rest again. But your sexiness and all the other benefits fade.");
+
+		 break;
+
+		 case FEMTRAP_JEANETTA:
+
+			pline("Jeanetta is done collecting your skin shreds. Better don't visit her trophy hall unless you got a strong stomach.");
+
+		 break;
+
+		 case FEMTRAP_YVONNE:
+
+			pline("There are no more toilets being built specifically for you.");
+
+		 break;
+
+		 case FEMTRAP_MAURAH:
+
+			pline("Your butt is no longer as sexy as before, and will no longer fart unless you tell it to do so.");
+
+		 break;
+
 		case SICK:
 
 			if (Role_if(PM_COOK) && rn2(2)) {

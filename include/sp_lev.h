@@ -60,7 +60,8 @@ typedef struct {
 } room_door;
 
 typedef struct {
-	xchar x, y, chance, type;
+	xchar x, y, chance;
+	short type;
 } trap;
 
 typedef struct {

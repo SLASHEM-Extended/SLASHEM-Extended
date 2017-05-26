@@ -1744,6 +1744,7 @@ int x;
 		if (uright && uright->oartifact == ART_CATHAN_S_SIGIL) tmp += (3 + uright->spe);
 		if (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) tmp += 5;
 
+		if (FemaleTrapThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (AllStatsAreLower) tmp -= 10;
@@ -1792,6 +1793,8 @@ int x;
 		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "gentle cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nezhnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "muloyim plash") ) ) tmp += 1;
 
 		if (RngeCoquetry) tmp += 5;
+		if (FemaleTrapSolvejg) tmp += 5;
+		if (FemaleTrapNatalje) tmp += 10;
 
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
@@ -1850,6 +1853,7 @@ int x;
 		if (uright && uright->oartifact == ART_GUARANTEED_HIT_POWER) tmp += uright->spe;
 		if (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) tmp += 5;
 
+		if (FemaleTrapThai) tmp -= 2;
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_DEXTERITY) tmp += uarmg->spe;
 		if (AllStatsAreLower) tmp -= 10;
@@ -1862,6 +1866,8 @@ int x;
 		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp -= 5;
 		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMINIST_GIRL_S_PURPLE_WEA) tmp -= 5;
 		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
+
+		if (FemaleTrapJessica) tmp -= 5;
 
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;

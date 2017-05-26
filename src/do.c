@@ -186,8 +186,9 @@ const char *verb;
 	if (obj->otyp == BOULDER && boulder_hits_pool(obj, x, y, FALSE))
 		return TRUE;
 	else if (obj->otyp == BOULDER && (t = t_at(x,y)) != 0 &&
-		 (t->ttyp==PIT || t->ttyp==SPIKED_PIT || t->ttyp==GIANT_CHASM || t->ttyp==SHIT_PIT || t->ttyp==MANA_PIT || t->ttyp==SHAFT_TRAP
-			|| t->ttyp==TRAPDOOR || t->ttyp==HOLE)) {
+		 (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || 
+			t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT || t->ttyp == SHAFT_TRAP || t->ttyp == CURRENT_SHAFT
+			|| t->ttyp == TRAPDOOR || t->ttyp == HOLE)) {
 		if (((mtmp = m_at(x, y)) && mtmp->mtrapped) ||
 			(u.utrap && u.ux == x && u.uy == y)) {
 		    if (*verb)
@@ -220,6 +221,7 @@ const char *verb;
 				    t->tseen ? "" : "triggers and ",
 				    t->ttyp == TRAPDOOR ? "plugs a trap door" :
 				    t->ttyp == SHAFT_TRAP ? "plugs a shaft" :
+				    t->ttyp == CURRENT_SHAFT ? "plugs a shaft" :
 				    t->ttyp == HOLE ? "plugs a hole" :
 				    "fills a pit");
 			}
@@ -251,7 +253,8 @@ const char *verb;
 	} else if (u.ux == x && u.uy == y &&
 		(!u.utrap || u.utraptype != TT_PIT) &&
 		(t = t_at(x,y)) != 0 && t->tseen &&
-			(t->ttyp==PIT || t->ttyp==SPIKED_PIT || t->ttyp==GIANT_CHASM || t->ttyp==SHIT_PIT || t->ttyp==MANA_PIT)) {
+			(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM
+			|| t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT)) {
 		/* you escaped a pit and are standing on the precipice */
 		if (Blind && flags.soundok)
 			You_hear("%s %s downwards.",
@@ -1089,7 +1092,7 @@ dodown()
 	}
 	if (!stairs_down && !ladder_down) {
 		if (!(trap = t_at(u.ux,u.uy)) ||
-			(trap->ttyp != TRAPDOOR && trap->ttyp != SHAFT_TRAP && trap->ttyp != HOLE)
+			(trap->ttyp != TRAPDOOR && trap->ttyp != SHAFT_TRAP && trap->ttyp != CURRENT_SHAFT && trap->ttyp != HOLE)
 			|| !Can_fall_thru(&u.uz) || !trap->tseen) {
 
 			if (flags.autodig && !flags.nopick &&

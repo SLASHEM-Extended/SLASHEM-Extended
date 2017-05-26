@@ -1259,7 +1259,7 @@ struct monst *mtmp;
 		if ((verysmall(mtmp->data) || throws_rocks(mtmp->data) ||
 		     passes_walls(mtmp->data) || (mtmp->egotype_wallwalk) ) || !sobj_at(BOULDER, xx, yy))
 		if (!onscary(xx,yy,mtmp)) {
-			if ((t->ttyp == TRAPDOOR || t->ttyp == HOLE || t->ttyp == SHAFT_TRAP)
+			if ((t->ttyp == TRAPDOOR || t->ttyp == HOLE || t->ttyp == SHAFT_TRAP || t->ttyp == CURRENT_SHAFT)
 				&& !is_floater(mtmp->data)
 				&& !mtmp->isshk && !mtmp->isgd
 				&& !mtmp->ispriest
@@ -1269,6 +1269,10 @@ struct monst *mtmp;
 				trapy = yy;
 				m.has_defense = MUSE_TRAPDOOR;
 			} else if (t->ttyp == TELEP_TRAP && m.has_defense != MUSE_TRAPDOOR) {
+				trapx = xx;
+				trapy = yy;
+				m.has_defense = MUSE_TELEPORT_TRAP;
+			} else if (t->ttyp == BEAMER_TRAP && m.has_defense != MUSE_TRAPDOOR) {
 				trapx = xx;
 				trapy = yy;
 				m.has_defense = MUSE_TELEPORT_TRAP;
@@ -1303,7 +1307,7 @@ struct monst *mtmp;
 
 	/* kludge to cut down on trap destruction (particularly portals) */
 	t = t_at(x,y);
-	if (t && (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT ||
+	if (t && (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT ||
 		  t->ttyp == WEB || t->ttyp == BEAR_TRAP))
 		t = 0;		/* ok for monster to dig here */
 
@@ -2462,7 +2466,7 @@ newboss:
 			t = t_at(trapx,trapy);
 			pline("%s %s into a %s!", Monnam(mtmp),
 			makeplural(locomotion(mtmp->data, "jump")),
-			t->ttyp == TRAPDOOR ? "trap door" : t->ttyp == SHAFT_TRAP ? "shaft" : "hole");
+			t->ttyp == TRAPDOOR ? "trap door" : t->ttyp == SHAFT_TRAP ? "shaft" : t->ttyp == CURRENT_SHAFT ? "shaft" : "hole");
 			if (levl[trapx][trapy].typ == SCORR) {
 			    levl[trapx][trapy].typ = CORR;
 			    unblock_point(trapx, trapy);
@@ -4901,7 +4905,7 @@ struct monst *mtmp;
 
 		{
 		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap(), 100 );
-		if (ttmp2 && (ttmp2->ttyp != HOLE) && (ttmp2->ttyp != TRAPDOOR) && (ttmp2->ttyp != LEVEL_TELEP) && (ttmp2->ttyp != MAGIC_PORTAL) && (ttmp2->ttyp != UNKNOWN_TRAP) && (ttmp2->ttyp != WARP_ZONE) && (ttmp2->ttyp != SHAFT_TRAP) ) dotrap(ttmp2, 0);
+		if (ttmp2 && (ttmp2->ttyp != HOLE) && (ttmp2->ttyp != TRAPDOOR) && (ttmp2->ttyp != LEVEL_TELEP) && (ttmp2->ttyp != LEVEL_BEAMER) && (ttmp2->ttyp != NEXUS_TRAP) && (ttmp2->ttyp != MAGIC_PORTAL) && (ttmp2->ttyp != UNKNOWN_TRAP) && (ttmp2->ttyp != WARP_ZONE) && (ttmp2->ttyp != SHAFT_TRAP) && (ttmp2->ttyp != CURRENT_SHAFT) ) dotrap(ttmp2, 0);
 		}
 
 		return 2;

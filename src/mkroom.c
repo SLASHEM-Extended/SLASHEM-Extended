@@ -1554,7 +1554,7 @@ void
 mkinsideroom()
 {
     struct mkroom *sroom;
-    schar typ, typ2;
+    int typ, typ2;
 	register int sx,sy = 0;
 
 	register int tryct = 0;

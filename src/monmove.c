@@ -488,6 +488,10 @@ register struct monst *mtmp;
 
 	mdat = mtmp->data;
 
+	int fartdistance = 1;
+	if (FemaleTrapKatharina) fartdistance = 15;
+	if (FemaleTrapKatharina && mtmp->crapbonus) fartdistance = 100;
+
 	if (TimeStopped) return 0;	/* time stop completely prevents monsters from doing anything --Amy */
 	if (u.stasistime) return 0;	/* stasis does the same --Amy */
 
@@ -574,12 +578,27 @@ register struct monst *mtmp;
 	}
 	if (mdat->msound == MS_SHRIEK && !um_dist(mtmp->mx, mtmp->my, 1))
 	    m_respond(mtmp);
-	if (mdat->msound == MS_FART_QUIET && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	if (mdat->msound == MS_FART_QUIET && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
-	if (mdat->msound == MS_FART_NORMAL && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+		while (FemaleTrapElena && !rn2(3)) {
+			pline("You long for more!");
+			m_respond(mtmp);
+		}
+	}
+	if (mdat->msound == MS_FART_NORMAL && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
-	if (mdat->msound == MS_FART_LOUD && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+		while (FemaleTrapElena && !rn2(3)) {
+			pline("You long for more!");
+			m_respond(mtmp);
+		}
+	}
+	if (mdat->msound == MS_FART_LOUD && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
+		while (FemaleTrapElena && !rn2(3)) {
+			pline("You long for more!");
+			m_respond(mtmp);
+		}
+	}
 
 	if (mdat->msound == MS_FART_QUIET && mtmp->crapbonus && (rn2(2000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	{
@@ -603,8 +622,13 @@ register struct monst *mtmp;
 
 	}
 
-	if (!(mdat->msound == MS_FART_LOUD || mdat->msound == MS_FART_NORMAL || mdat->msound == MS_FART_QUIET) && mtmp->egotype_farter && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	if (!(mdat->msound == MS_FART_LOUD || mdat->msound == MS_FART_NORMAL || mdat->msound == MS_FART_QUIET) && mtmp->egotype_farter && !rn2(10 + mtmp->butthurt) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
+		while (FemaleTrapElena && !rn2(3)) {
+			pline("You long for more!");
+			m_respond(mtmp);
+		}
+	}
 	if ( (mdat->msound == MS_SOUND || mtmp->egotype_sounder) && !rn2(20) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
 	if (mdat == &mons[PM_MEDUSA] && couldsee(mtmp->mx, mtmp->my))

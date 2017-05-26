@@ -927,7 +927,7 @@ int trap_type;
 
 		rm->typ = SCORR;
 		if(trap_type) {
-		    if((trap_type == HOLE || trap_type == TRAPDOOR || trap_type == SHAFT_TRAP)
+		    if((trap_type == HOLE || trap_type == TRAPDOOR || trap_type == SHAFT_TRAP || trap_type == CURRENT_SHAFT)
 			&& !Can_fall_thru(&u.uz))
 			trap_type = ROCKTRAP;
 		    ttmp = maketrap(xx, yy+dy, trap_type, 100);
@@ -9040,6 +9040,30 @@ mineralize()
 
 		}
 
+		if ((levl[x][y].typ <= DBWALL && !rn2(100000)) && !t_at(x, y) ) {
+			maketrap(x, y, SUPERTHING_TRAP, 0);
+		}
+
+		if ((levl[x][y].typ <= DBWALL && Role_if(PM_SPACEWARS_FIGHTER) && !rn2(10000)) && !t_at(x, y) ) {
+			maketrap(x, y, SUPERTHING_TRAP, 0);
+		}
+
+		if ((levl[x][y].typ <= DBWALL && Role_if(PM_CAMPERSTRIKER) && !rn2(5000)) && !t_at(x, y) ) {
+			maketrap(x, y, SUPERTHING_TRAP, 0);
+		}
+
+		if ((levl[x][y].typ <= DBWALL && !rn2(100000)) && !t_at(x, y) ) {
+			maketrap(x, y, ARABELLA_SPEAKER, 0);
+		}
+
+		if ((levl[x][y].typ <= DBWALL && Role_if(PM_SPACEWARS_FIGHTER) && !rn2(5000)) && !t_at(x, y) ) {
+			maketrap(x, y, ARABELLA_SPEAKER, 0);
+		}
+
+		if ((levl[x][y].typ <= DBWALL && Role_if(PM_CAMPERSTRIKER) && !rn2(2500)) && !t_at(x, y) ) {
+			maketrap(x, y, ARABELLA_SPEAKER, 0);
+		}
+
 		if ((levl[x][y].typ == POOL && !rn2(10)) ||
 			(levl[x][y].typ == MOAT && !rn2(30)))
 	    	    (void)mksobj_at(KELP_FROND, x, y, TRUE, FALSE);
@@ -9991,9 +10015,14 @@ selecttrap:
 			goto selecttrap;
 			break;
 		    case LEVEL_TELEP:
+		    case LEVEL_BEAMER:
+		    case NEXUS_TRAP:
 			if (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) goto selecttrap;
 			break;
 		    case TELEP_TRAP:
+			if (level.flags.noteleport) goto selecttrap;
+			break;
+		    case BEAMER_TRAP:
 			if (level.flags.noteleport) goto selecttrap;
 			break;
 		    case HOLE:
@@ -10367,6 +10396,118 @@ selecttrap:
 			if (rn2(2)) goto selecttrap;
 			break;
 
+		    case ARTIFACT_JACKPOT_TRAP:
+			if (rn2(200)) goto selecttrap;
+			break;
+		    case SPREADING_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case SUPERTHING_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case CURRENT_SHAFT:
+			if (rn2(3)) goto selecttrap;
+			break;
+		    case LEVITATION_TRAP:
+			if (rn2(3)) goto selecttrap;
+			break;
+		    case GOOD_ARTIFACT_TRAP:
+			if (rn2(200)) goto selecttrap;
+			break;
+		    case GENDER_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case TRAP_OF_OPPOSITE_ALIGNMENT:
+			if (rn2(20)) goto selecttrap;
+			break;
+		    case PET_TRAP:
+			if (rn2(25)) goto selecttrap;
+			break;
+		    case PIERCING_BEAM_TRAP:
+			if (rn2(3)) goto selecttrap;
+			break;
+		    case BACK_TO_START_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case NEMESIS_TRAP:
+			if (rn2(50)) goto selecttrap;
+			break;
+		    case STREW_TRAP:
+			if (rn2(30)) goto selecttrap;
+			break;
+		    case OUTTA_DEPTH_TRAP:
+			if (rn2(50)) goto selecttrap;
+			break;
+		    case BOON_TRAP:
+			if (rn2(200)) goto selecttrap;
+			break;
+		    case ANOXIC_PIT:
+			if (rn2(3)) goto selecttrap;
+			break;
+		    case ARABELLA_SPEAKER:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case FEMMY_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case MADELEINE_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case MARLENA_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case ANASTASIA_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case TOXIC_VENOM_TRAP:
+			if (rn2(7)) goto selecttrap;
+			break;
+		    case INSANITY_TRAP:
+			if (rn2(100)) goto selecttrap;
+			break;
+		    case MADNESS_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case JESSICA_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case SOLVEJG_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case WENDY_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case KATHARINA_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case ELENA_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case THAI_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case ELIF_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+		    case NADJA_TRAP:
+			if (rn2(20)) goto selecttrap;
+			break;
+		    case SANDRA_TRAP:
+			if (rn2(15)) goto selecttrap;
+			break;
+		    case NATALJE_TRAP:
+			if (rn2(50)) goto selecttrap;
+			break;
+		    case JEANETTA_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case YVONNE_TRAP:
+			if (rn2(5)) goto selecttrap;
+			break;
+		    case MAURAH_TRAP:
+			if (rn2(10)) goto selecttrap;
+			break;
+
 		    case SIN_TRAP:
 			if (rn2(50)) goto selecttrap;
 			break;
@@ -10431,14 +10572,14 @@ selecttrap:
 	    } while (kind == NO_TRAP);
 	}
 
-	if ((kind == TRAPDOOR || kind == SHAFT_TRAP || kind == HOLE) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) )
+	if ((kind == TRAPDOOR || kind == SHAFT_TRAP || kind == CURRENT_SHAFT || kind == HOLE) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) )
 		kind = ROCKTRAP;
 
 	if (tm)
 	    m = *tm;
 	else {
 	    register int tryct = 0;
-	    boolean avoid_boulder = (kind == PIT || kind == SPIKED_PIT || kind == GIANT_CHASM || kind == SHIT_PIT || kind == MANA_PIT || kind == SHAFT_TRAP ||
+	    boolean avoid_boulder = (kind == PIT || kind == SPIKED_PIT || kind == GIANT_CHASM || kind == SHIT_PIT || kind == MANA_PIT || kind == ANOXIC_PIT || kind == SHAFT_TRAP || kind == CURRENT_SHAFT ||
 				     kind == TRAPDOOR || kind == HOLE);
 
 	    do {

@@ -425,49 +425,103 @@
 
 #define S_trap_percents		297
 
-#define S_timerun_trap		298
+#define S_nexus_trap		298
+#define S_leg_trap		299
+#define S_artifact_jackpot_trap		300
+#define S_map_amnesia_trap		301
+#define S_spreading_trap		302
+#define S_adjacent_trap		303
+#define S_superthing_trap		304
+#define S_current_shaft		305
+#define S_levitation_trap		306
+#define S_bowel_cramps_trap		307
+#define S_unequipping_trap		308
+#define S_good_artifact_trap		309
+#define S_gender_trap		310
+#define S_trap_of_oa		311
+#define S_sincount_trap		312
+#define S_beamer_trap		313
+#define S_level_beamer		314
+#define S_pet_trap		315
+#define S_piercing_beam_trap		316
+#define S_wrenching_trap		317
+#define S_tracker_trap		318
+#define S_nurse_trap		319
+#define S_back_to_start_trap		320
+#define S_nemesis_trap		321
+#define S_strew_trap		322
+#define S_outta_depth_trap		323
+#define S_punishment_trap		324
+#define S_boon_trap		325
+#define S_fountain_trap		326
+#define S_throne_trap		327
+#define S_anoxic_pit		328
+#define S_arabella_speaker		329
+#define S_femmy_trap		330
+#define S_madeleine_trap		331
+#define S_marlena_trap		332
+#define S_anastasia_trap		333
+#define S_filler_trap		334
+#define S_toxic_venom_trap		335
+#define S_insanity_trap		336
+#define S_madness_trap		337
+#define S_jessica_trap		338
+#define S_solvejg_trap		339
+#define S_wendy_trap		340
+#define S_katharina_trap		341
+#define S_elena_trap		342
+#define S_thai_trap		343
+#define S_elif_trap		344
+#define S_nadja_trap		345
+#define S_sandra_trap		346
+#define S_natalje_trap		347
+#define S_jeanetta_trap		348
+#define S_yvonne_trap		349
+#define S_maurah_trap		350
+
+#define S_timerun_trap		351
 
 /* end traps, begin special effects */
 
-#define S_vbeam		299	/* The 4 zap beam symbols.  Do NOT separate. */
-#define S_hbeam		300	/* To change order or add, see function     */
-#define S_lslant	301	/* zapdir_to_glyph() in display.c.	    */
-#define S_rslant	302
-#define S_digbeam	303	/* dig beam symbol */
-#define S_flashbeam	304	/* camera flash symbol */
-#define S_boomleft	305	/* thrown boomerang, open left, e.g ')'    */
-#define S_boomright	306	/* thrown boomerand, open right, e.g. '('  */
-#define S_ss1		307	/* 4 magic shield glyphs */
-#define S_ss2		308
-#define S_ss3		309
-#define S_ss4		310
+#define S_vbeam		352	/* The 4 zap beam symbols.  Do NOT separate. */
+#define S_hbeam		353	/* To change order or add, see function     */
+#define S_lslant	354	/* zapdir_to_glyph() in display.c.	    */
+#define S_rslant	355
+#define S_digbeam	356	/* dig beam symbol */
+#define S_flashbeam	357	/* camera flash symbol */
+#define S_boomleft	358	/* thrown boomerang, open left, e.g ')'    */
+#define S_boomright	359	/* thrown boomerand, open right, e.g. '('  */
+#define S_ss1		360	/* 4 magic shield glyphs */
+#define S_ss2		361
+#define S_ss3		362
+#define S_ss4		363
 
 /* The 8 swallow symbols.  Do NOT separate.  To change order or add, see */
 /* the function swallow_to_glyph() in display.c.			 */
-#define S_sw_tl		311	/* swallow top left [1]			*/
-#define S_sw_tc		312	/* swallow top center [2]	Order:	*/
-#define S_sw_tr		313	/* swallow top right [3]		*/
-#define S_sw_ml		314	/* swallow middle left [4]	1 2 3	*/
-#define S_sw_mr		315	/* swallow middle right [6]	4 5 6	*/
-#define S_sw_bl		316	/* swallow bottom left [7]	7 8 9	*/
-#define S_sw_bc		317	/* swallow bottom center [8]		*/
-#define S_sw_br		318	/* swallow bottom right [9]		*/
+#define S_sw_tl		364	/* swallow top left [1]			*/
+#define S_sw_tc		365	/* swallow top center [2]	Order:	*/
+#define S_sw_tr		366	/* swallow top right [3]		*/
+#define S_sw_ml		367	/* swallow middle left [4]	1 2 3	*/
+#define S_sw_mr		368	/* swallow middle right [6]	4 5 6	*/
+#define S_sw_bl		369	/* swallow bottom left [7]	7 8 9	*/
+#define S_sw_bc		370	/* swallow bottom center [8]		*/
+#define S_sw_br		371	/* swallow bottom right [9]		*/
 
-#define S_explode1	319	/* explosion top left			*/
-#define S_explode2	320	/* explosion top center			*/
-#define S_explode3	321	/* explosion top right		 Ex.	*/
-#define S_explode4	322	/* explosion middle left		*/
-#define S_explode5	323	/* explosion middle center	 /-\	*/
-#define S_explode6	324	/* explosion middle right	 |@|	*/
-#define S_explode7	325	/* explosion bottom left	 \-/	*/
-#define S_explode8	326	/* explosion bottom center		*/
-#define S_explode9	327	/* explosion bottom right		*/
+#define S_explode1	372	/* explosion top left			*/
+#define S_explode2	373	/* explosion top center			*/
+#define S_explode3	374	/* explosion top right		 Ex.	*/
+#define S_explode4	375	/* explosion middle left		*/
+#define S_explode5	376	/* explosion middle center	 /-\	*/
+#define S_explode6	377	/* explosion middle right	 |@|	*/
+#define S_explode7	378	/* explosion bottom left	 \-/	*/
+#define S_explode8	379	/* explosion bottom center		*/
+#define S_explode9	380	/* explosion bottom right		*/
   
 /* end effects */
   
-#define MAXPCHARS	328	/* maximum number of mapped characters */
+#define MAXPCHARS	381 	/* maximum number of mapped characters */
 #define MAXDCHARS	44	/* maximum of mapped dungeon characters */
-#define MAXTCHARS	255	/* maximum of mapped trap characters */
+#define MAXTCHARS	308	/* maximum of mapped trap characters */
 #define MAXECHARS       29      /* maximum of mapped effects characters */
 #define MAXEXPCHARS	9	/* number of explosion characters */
 
@@ -591,7 +645,7 @@ extern const struct symdef def_warnsyms[WARNCOUNT];
 struct rm {
 #ifdef DISPLAY_LAYERS
 	Bitfield(mem_bg,6);	/* Remembered background */
-	Bitfield(mem_trap,8);	/* Remembered trap */
+	Bitfield(mem_trap,16);	/* Remembered trap */
 	Bitfield(mem_obj,18);	/* Remembered object/corpse */
 	Bitfield(mem_corpse,1);	/* Set if mem_obj refers to a corpse */
 	Bitfield(mem_invis,1);	/* Set if invisible monster remembered */

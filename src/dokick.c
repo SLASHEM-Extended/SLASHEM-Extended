@@ -323,6 +323,14 @@ register boolean clumsy;
 
 	}
 
+	if (FemaleTrapNatalje) {
+		pline("Your sexy high heels stomp %s's %s.", mon_nam(mon), makeplural(mbodypart(mon, TOE)) );
+		mon->mcanmove = 0;
+		mon->mfrozen += 1;
+		mon->mstrategy &= ~STRAT_WAITFORU;
+
+	}
+
 	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 
 		pline("You smash %s's shins with a powerful kick.", mon_nam(mon) );
@@ -724,7 +732,7 @@ xchar x, y;
 		return(0);
 
 	if ((trap = t_at(x,y)) != 0 &&
-			(((trap->ttyp == PIT || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT ||
+			(((trap->ttyp == PIT || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT ||
 			   trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM) && !Passes_walls) ||
 			 trap->ttyp == WEB)) {
 		if (!trap->tseen && !trap->hiddentrap) find_trap(trap);
@@ -1695,7 +1703,7 @@ boolean shop_floor_obj;
 	   other things down before plugging the hole */
 	if (otmp->otyp == BOULDER &&
 		((t = t_at(x, y)) != 0) &&
-		(t->ttyp == TRAPDOOR || t->ttyp == SHAFT_TRAP || t->ttyp == HOLE)) {
+		(t->ttyp == TRAPDOOR || t->ttyp == SHAFT_TRAP || t->ttyp == CURRENT_SHAFT || t->ttyp == HOLE)) {
 	    if (impact) impact_drop(otmp, x, y, 0);
 	    return FALSE;		/* let caller finish the drop */
 	}
@@ -1868,10 +1876,10 @@ xchar x, y;
 	}
 
 	if (((ttmp = t_at(x, y)) != 0 && ttmp->tseen) &&
-		(ttmp->ttyp == TRAPDOOR || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == HOLE)) {
+		(ttmp->ttyp == TRAPDOOR || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == CURRENT_SHAFT || ttmp->ttyp == HOLE)) {
 	    gate_str = (ttmp->ttyp == TRAPDOOR) ?
-		    "through the trap door" : (ttmp->ttyp == SHAFT_TRAP) ?
-		    "through the shaft" : "through the hole";
+		    "through the trap door" : (ttmp->ttyp == CURRENT_SHAFT) ? "through the shaft" :
+			(ttmp->ttyp == SHAFT_TRAP) ? "through the shaft" : "through the hole";
 	    return MIGR_RANDOM;
 	}
 	return MIGR_NOWHERE;

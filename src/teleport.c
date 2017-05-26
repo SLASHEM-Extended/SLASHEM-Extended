@@ -1307,6 +1307,32 @@ struct trap *trap;
 		}
 }
 
+/* beamer trap - ignores magic resistance --Amy */
+void
+tele_trapX(trap)
+struct trap *trap;
+{
+	if (In_endgame(&u.uz)) {
+		You_feel("a wrenching sensation.");
+	} else if (!next_to_u()) {
+		You(shudder_for_moment);
+	} else if (trap->once) {
+		You("%s onto a vault teleporter!",
+		      Levitation ? (const char *)"float" :
+				  locomotion(youmonst.data, "step"));
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		deltrap(trap);
+		newsym(u.ux,u.uy);	/* get rid of trap symbol */
+		vault_tele();
+	} else {
+		You("%s onto a teleport trap!",
+		      Levitation ? (const char *)"float" :
+				  locomotion(youmonst.data, "step"));
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		tele();
+		}
+}
+
 void
 level_tele_trap(trap)
 struct trap *trap;
@@ -1318,6 +1344,28 @@ struct trap *trap;
 	    shieldeff(u.ux, u.uy);
 	}
 	if (Antimagic || In_endgame(&u.uz)) {
+	    You_feel("a wrenching sensation.");
+	    return;
+	}
+	if (!Blind)
+	    You("are momentarily blinded by a flash of light.");
+	else
+	    You("are momentarily disoriented.");
+	deltrap(trap);
+	newsym(u.ux,u.uy);	/* get rid of trap symbol */
+      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
+	else pline("The trap doesn't seem to have any effect on you.");
+}
+
+/* level beamer: ignores magic resistance --Amy */
+void
+level_tele_trapX(trap)
+struct trap *trap;
+{
+	You("%s onto a level teleport trap!",
+		      Levitation ? (const char *)"float" :
+				  locomotion(youmonst.data, "step"));
+	if (In_endgame(&u.uz)) {
 	    You_feel("a wrenching sensation.");
 	    return;
 	}
@@ -1555,7 +1603,7 @@ int in_sight;
 	    d_level tolevel;
 	    int migrate_typ = MIGR_RANDOM;
 
-	    if ((tt == HOLE || tt == TRAPDOOR || tt == SHAFT_TRAP)) {
+	    if ((tt == HOLE || tt == TRAPDOOR || tt == SHAFT_TRAP || tt == CURRENT_SHAFT)) {
 		if (Is_stronghold(&u.uz)) {
 		    assign_level(&tolevel, &valley_level);
 		} else if (Is_botlevel(&u.uz)) {
