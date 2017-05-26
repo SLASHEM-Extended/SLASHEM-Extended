@@ -1445,7 +1445,7 @@ badeffect()
 		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
 		if (!blackngdur ) blackngdur = 500; /* fail safe */
 
-		switch (rnd(95)) {
+		switch (rnd(169)) {
 
 			case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -1568,6 +1568,80 @@ badeffect()
 			case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 			case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 96: LootcutBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 97: MonsterSpeedBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 98: ScalingBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 99: EnmityBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 100: WhiteSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 101: CompleteGraySpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 102: QuasarVision += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 103: MommaBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 104: HorrorBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 105: ArtificerBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 106: WereformBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 107: NonprayerBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 108: EvilPatchEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 109: HardModeEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 110: SecretAttackBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 111: EaterBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 112: CovetousnessBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 113: NotSeenBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 114: DarkModeBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 115: AntisearchEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 116: HomicideEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 117: NastynationBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 118: WakeupCallBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 119: GrayoutBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 120: GrayCenterBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 121: CheckerboardBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 122: ClockwiseSpinBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 123: CounterclockwiseSpin += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 124: LagBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 125: BlesscurseEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 126: DeLightBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 127: DischargeBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 128: TrashingBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 129: FilteringBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 130: DeformattingBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 131: FlickerStripBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 132: UndressingEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 133: Hyperbluewalls += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 134: NoliteBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 135: ParanoiaBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 136: FleecescriptBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 137: InterruptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 138: DustbinBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 139: ManaBatteryBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 140: Monsterfingers += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 141: MiscastBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 142: MessageSuppression += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 143: StuckAnnouncement += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 144: BloodthirstyEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 145: MaximumDamageBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 146: LatencyBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 147: StarlitBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 148: KnowledgeBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 149: HighscoreBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 150: PinkSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 151: GreenSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 152: EvencoreEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 153: UnderlayerBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 154: DamageMeterBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 155: ArbitraryWeightBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 156: FuckedInfoBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 157: BlackSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 158: CyanSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 159: HeapEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 160: BlueSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 161: TronEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 162: RedSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 163: TooHeavyEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 164: ElongationBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 165: WrapoverEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 166: DestructionEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 167: MeleePrefixBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 168: AutomoreBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+			case 169: UnfairAttackBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 
 		}
 

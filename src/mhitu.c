@@ -331,7 +331,7 @@ elena5:
 						break;
 				}
 
-				switch (rnd(95)) {
+				switch (rnd(169)) {
 
 					case 1: RMBLoss += monsterlev; break;
 					case 2: NoDropProblem += monsterlev; break;
@@ -453,6 +453,81 @@ elena5:
 					case 93: SpellForgetting += monsterlev; break;
 					case 94: SoundEffectBug += monsterlev; break;
 					case 95: TimerunBug += monsterlev; break;
+					case 96: LootcutBug += monsterlev; break;
+					case 97: MonsterSpeedBug += monsterlev; break;
+					case 98: ScalingBug += monsterlev; break;
+					case 99: EnmityBug += monsterlev; break;
+					case 100: WhiteSpells += monsterlev; break;
+					case 101: CompleteGraySpells += monsterlev; break;
+					case 102: QuasarVision += monsterlev; break;
+					case 103: MommaBugEffect += monsterlev; break;
+					case 104: HorrorBugEffect += monsterlev; break;
+					case 105: ArtificerBug += monsterlev; break;
+					case 106: WereformBug += monsterlev; break;
+					case 107: NonprayerBug += monsterlev; break;
+					case 108: EvilPatchEffect += monsterlev; break;
+					case 109: HardModeEffect += monsterlev; break;
+					case 110: SecretAttackBug += monsterlev; break;
+					case 111: EaterBugEffect += monsterlev; break;
+					case 112: CovetousnessBug += monsterlev; break;
+					case 113: NotSeenBug += monsterlev; break;
+					case 114: DarkModeBug += monsterlev; break;
+					case 115: AntisearchEffect += monsterlev; break;
+					case 116: HomicideEffect += monsterlev; break;
+					case 117: NastynationBug += monsterlev; break;
+					case 118: WakeupCallBug += monsterlev; break;
+					case 119: GrayoutBug += monsterlev; break;
+					case 120: GrayCenterBug += monsterlev; break;
+					case 121: CheckerboardBug += monsterlev; break;
+					case 122: ClockwiseSpinBug += monsterlev; break;
+					case 123: CounterclockwiseSpin += monsterlev; break;
+					case 124: LagBugEffect += monsterlev; break;
+					case 125: BlesscurseEffect += monsterlev; break;
+					case 126: DeLightBug += monsterlev; break;
+					case 127: DischargeBug += monsterlev; break;
+					case 128: TrashingBugEffect += monsterlev; break;
+					case 129: FilteringBug += monsterlev; break;
+					case 130: DeformattingBug += monsterlev; break;
+					case 131: FlickerStripBug += monsterlev; break;
+					case 132: UndressingEffect += monsterlev; break;
+					case 133: Hyperbluewalls += monsterlev; break;
+					case 134: NoliteBug += monsterlev; break;
+					case 135: ParanoiaBugEffect += monsterlev; break;
+					case 136: FleecescriptBug += monsterlev; break;
+					case 137: InterruptEffect += monsterlev; break;
+					case 138: DustbinBug += monsterlev; break;
+					case 139: ManaBatteryBug += monsterlev; break;
+					case 140: Monsterfingers += monsterlev; break;
+					case 141: MiscastBug += monsterlev; break;
+					case 142: MessageSuppression += monsterlev; break;
+					case 143: StuckAnnouncement += monsterlev; break;
+					case 144: BloodthirstyEffect += monsterlev; break;
+					case 145: MaximumDamageBug += monsterlev; break;
+					case 146: LatencyBugEffect += monsterlev; break;
+					case 147: StarlitBug += monsterlev; break;
+					case 148: KnowledgeBug += monsterlev; break;
+					case 149: HighscoreBug += monsterlev; break;
+					case 150: PinkSpells += monsterlev; break;
+					case 151: GreenSpells += monsterlev; break;
+					case 152: EvencoreEffect += monsterlev; break;
+					case 153: UnderlayerBug += monsterlev; break;
+					case 154: DamageMeterBug += monsterlev; break;
+					case 155: ArbitraryWeightBug += monsterlev; break;
+					case 156: FuckedInfoBug += monsterlev; break;
+					case 157: BlackSpells += monsterlev; break;
+					case 158: CyanSpells += monsterlev; break;
+					case 159: HeapEffectBug += monsterlev; break;
+					case 160: BlueSpells += monsterlev; break;
+					case 161: TronEffect += monsterlev; break;
+					case 162: RedSpells += monsterlev; break;
+					case 163: TooHeavyEffect += monsterlev; break;
+					case 164: ElongationBug += monsterlev; break;
+					case 165: WrapoverEffect += monsterlev; break;
+					case 166: DestructionEffect += monsterlev; break;
+					case 167: MeleePrefixBug += monsterlev; break;
+					case 168: AutomoreBug += monsterlev; break;
+					case 169: UnfairAttackBug += monsterlev; break;
+
 				}
 
 				if (FemaleTrapElena && !rn2(3)) {
@@ -4879,7 +4954,7 @@ hitmu(mtmp, mattk)
 		if (!rn2(10)) {
 			pline("Nasty!");
 
-			switch (rnd(95)) {
+			switch (rnd(169)) {
 
 				case 1: RMBLoss += rnz( (dmg + 2) * rnd(100) ); break;
 				case 2: NoDropProblem += rnz( (dmg + 2) * rnd(100) ); break;
@@ -5004,6 +5079,80 @@ hitmu(mtmp, mattk)
 				case 93: SpellForgetting += rnz( (dmg + 2) * rnd(100) ); break;
 				case 94: SoundEffectBug += rnz( (dmg + 2) * rnd(100) ); break;
 				case 95: TimerunBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 96: LootcutBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 97: MonsterSpeedBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 98: ScalingBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 99: EnmityBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 100: WhiteSpells += rnz( (dmg + 2) * rnd(100) ); break;
+				case 101: CompleteGraySpells += rnz( (dmg + 2) * rnd(100) ); break;
+				case 102: QuasarVision += rnz( (dmg + 2) * rnd(100) ); break;
+				case 103: MommaBugEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 104: HorrorBugEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 105: ArtificerBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 106: WereformBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 107: NonprayerBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 108: EvilPatchEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 109: HardModeEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 110: SecretAttackBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 111: EaterBugEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 112: CovetousnessBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 113: NotSeenBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 114: DarkModeBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 115: AntisearchEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 116: HomicideEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 117: NastynationBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 118: WakeupCallBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 119: GrayoutBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 120: GrayCenterBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 121: CheckerboardBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 122: ClockwiseSpinBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 123: CounterclockwiseSpin += rnz( (dmg + 2) * rnd(100) ); break;
+				case 124: LagBugEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 125: BlesscurseEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 126: DeLightBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 127: DischargeBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 128: TrashingBugEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 129: FilteringBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 130: DeformattingBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 131: FlickerStripBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 132: UndressingEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 133: Hyperbluewalls += rnz( (dmg + 2) * rnd(100) ); break;
+				case 134: NoliteBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 135: ParanoiaBugEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 136: FleecescriptBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 137: InterruptEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 138: DustbinBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 139: ManaBatteryBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 140: Monsterfingers += rnz( (dmg + 2) * rnd(100) ); break;
+				case 141: MiscastBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 142: MessageSuppression += rnz( (dmg + 2) * rnd(100) ); break;
+				case 143: StuckAnnouncement += rnz( (dmg + 2) * rnd(100) ); break;
+				case 144: BloodthirstyEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 145: MaximumDamageBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 146: LatencyBugEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 147: StarlitBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 148: KnowledgeBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 149: HighscoreBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 150: PinkSpells += rnz( (dmg + 2) * rnd(100) ); break;
+				case 151: GreenSpells += rnz( (dmg + 2) * rnd(100) ); break;
+				case 152: EvencoreEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 153: UnderlayerBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 154: DamageMeterBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 155: ArbitraryWeightBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 156: FuckedInfoBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 157: BlackSpells += rnz( (dmg + 2) * rnd(100) ); break;
+				case 158: CyanSpells += rnz( (dmg + 2) * rnd(100) ); break;
+				case 159: HeapEffectBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 160: BlueSpells += rnz( (dmg + 2) * rnd(100) ); break;
+				case 161: TronEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 162: RedSpells += rnz( (dmg + 2) * rnd(100) ); break;
+				case 163: TooHeavyEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 164: ElongationBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 165: WrapoverEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 166: DestructionEffect += rnz( (dmg + 2) * rnd(100) ); break;
+				case 167: MeleePrefixBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 168: AutomoreBug += rnz( (dmg + 2) * rnd(100) ); break;
+				case 169: UnfairAttackBug += rnz( (dmg + 2) * rnd(100) ); break;
 			}
 
 		}
@@ -7900,7 +8049,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if (!rn2(10)) {
 			pline("It latches on to your body!");
 
-			switch (rnd(95)) {
+			switch (rnd(169)) {
 
 				case 1: RMBLoss += rnz( (tmp + 2) * rnd(100) ); break;
 				case 2: NoDropProblem += rnz( (tmp + 2) * rnd(100) ); break;
@@ -8025,6 +8174,80 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				case 93: SpellForgetting += rnz( (tmp + 2) * rnd(100) ); break;
 				case 94: SoundEffectBug += rnz( (tmp + 2) * rnd(100) ); break;
 				case 95: TimerunBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 96: LootcutBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 97: MonsterSpeedBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 98: ScalingBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 99: EnmityBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 100: WhiteSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 101: CompleteGraySpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 102: QuasarVision += rnz( (tmp + 2) * rnd(100) ); break;
+				case 103: MommaBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 104: HorrorBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 105: ArtificerBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 106: WereformBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 107: NonprayerBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 108: EvilPatchEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 109: HardModeEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 110: SecretAttackBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 111: EaterBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 112: CovetousnessBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 113: NotSeenBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 114: DarkModeBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 115: AntisearchEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 116: HomicideEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 117: NastynationBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 118: WakeupCallBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 119: GrayoutBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 120: GrayCenterBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 121: CheckerboardBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 122: ClockwiseSpinBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 123: CounterclockwiseSpin += rnz( (tmp + 2) * rnd(100) ); break;
+				case 124: LagBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 125: BlesscurseEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 126: DeLightBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 127: DischargeBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 128: TrashingBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 129: FilteringBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 130: DeformattingBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 131: FlickerStripBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 132: UndressingEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 133: Hyperbluewalls += rnz( (tmp + 2) * rnd(100) ); break;
+				case 134: NoliteBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 135: ParanoiaBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 136: FleecescriptBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 137: InterruptEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 138: DustbinBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 139: ManaBatteryBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 140: Monsterfingers += rnz( (tmp + 2) * rnd(100) ); break;
+				case 141: MiscastBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 142: MessageSuppression += rnz( (tmp + 2) * rnd(100) ); break;
+				case 143: StuckAnnouncement += rnz( (tmp + 2) * rnd(100) ); break;
+				case 144: BloodthirstyEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 145: MaximumDamageBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 146: LatencyBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 147: StarlitBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 148: KnowledgeBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 149: HighscoreBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 150: PinkSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 151: GreenSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 152: EvencoreEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 153: UnderlayerBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 154: DamageMeterBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 155: ArbitraryWeightBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 156: FuckedInfoBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 157: BlackSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 158: CyanSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 159: HeapEffectBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 160: BlueSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 161: TronEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 162: RedSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 163: TooHeavyEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 164: ElongationBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 165: WrapoverEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 166: DestructionEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 167: MeleePrefixBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 168: AutomoreBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(100) ); break;
 			}
 
 		}
@@ -10389,7 +10612,7 @@ common:
 
 		pline("Nasty!");
 
-			switch (rnd(95)) {
+			switch (rnd(169)) {
 
 				case 1: RMBLoss += rnz( (tmp + 2) * rnd(100) ); break;
 				case 2: NoDropProblem += rnz( (tmp + 2) * rnd(100) ); break;
@@ -10514,6 +10737,80 @@ common:
 				case 93: SpellForgetting += rnz( (tmp + 2) * rnd(100) ); break;
 				case 94: SoundEffectBug += rnz( (tmp + 2) * rnd(100) ); break;
 				case 95: TimerunBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 96: LootcutBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 97: MonsterSpeedBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 98: ScalingBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 99: EnmityBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 100: WhiteSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 101: CompleteGraySpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 102: QuasarVision += rnz( (tmp + 2) * rnd(100) ); break;
+				case 103: MommaBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 104: HorrorBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 105: ArtificerBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 106: WereformBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 107: NonprayerBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 108: EvilPatchEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 109: HardModeEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 110: SecretAttackBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 111: EaterBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 112: CovetousnessBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 113: NotSeenBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 114: DarkModeBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 115: AntisearchEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 116: HomicideEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 117: NastynationBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 118: WakeupCallBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 119: GrayoutBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 120: GrayCenterBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 121: CheckerboardBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 122: ClockwiseSpinBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 123: CounterclockwiseSpin += rnz( (tmp + 2) * rnd(100) ); break;
+				case 124: LagBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 125: BlesscurseEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 126: DeLightBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 127: DischargeBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 128: TrashingBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 129: FilteringBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 130: DeformattingBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 131: FlickerStripBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 132: UndressingEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 133: Hyperbluewalls += rnz( (tmp + 2) * rnd(100) ); break;
+				case 134: NoliteBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 135: ParanoiaBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 136: FleecescriptBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 137: InterruptEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 138: DustbinBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 139: ManaBatteryBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 140: Monsterfingers += rnz( (tmp + 2) * rnd(100) ); break;
+				case 141: MiscastBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 142: MessageSuppression += rnz( (tmp + 2) * rnd(100) ); break;
+				case 143: StuckAnnouncement += rnz( (tmp + 2) * rnd(100) ); break;
+				case 144: BloodthirstyEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 145: MaximumDamageBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 146: LatencyBugEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 147: StarlitBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 148: KnowledgeBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 149: HighscoreBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 150: PinkSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 151: GreenSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 152: EvencoreEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 153: UnderlayerBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 154: DamageMeterBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 155: ArbitraryWeightBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 156: FuckedInfoBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 157: BlackSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 158: CyanSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 159: HeapEffectBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 160: BlueSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 161: TronEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 162: RedSpells += rnz( (tmp + 2) * rnd(100) ); break;
+				case 163: TooHeavyEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 164: ElongationBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 165: WrapoverEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 166: DestructionEffect += rnz( (tmp + 2) * rnd(100) ); break;
+				case 167: MeleePrefixBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 168: AutomoreBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(100) ); break;
 			}
 
 		break;
@@ -14445,7 +14742,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!rn2(10)) {
 			pline("The ancient foul curse takes possession of you...");
 
-			switch (rnd(95)) {
+			switch (rnd(169)) {
 
 				case 1: RMBLoss += rnz( (dmgplus + 2) * rnd(100) ); break;
 				case 2: NoDropProblem += rnz( (dmgplus + 2) * rnd(100) ); break;
@@ -14570,6 +14867,80 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				case 93: SpellForgetting += rnz( (dmgplus + 2) * rnd(100) ); break;
 				case 94: SoundEffectBug += rnz( (dmgplus + 2) * rnd(100) ); break;
 				case 95: TimerunBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 96: LootcutBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 97: MonsterSpeedBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 98: ScalingBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 99: EnmityBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 100: WhiteSpells += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 101: CompleteGraySpells += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 102: QuasarVision += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 103: MommaBugEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 104: HorrorBugEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 105: ArtificerBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 106: WereformBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 107: NonprayerBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 108: EvilPatchEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 109: HardModeEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 110: SecretAttackBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 111: EaterBugEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 112: CovetousnessBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 113: NotSeenBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 114: DarkModeBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 115: AntisearchEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 116: HomicideEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 117: NastynationBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 118: WakeupCallBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 119: GrayoutBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 120: GrayCenterBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 121: CheckerboardBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 122: ClockwiseSpinBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 123: CounterclockwiseSpin += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 124: LagBugEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 125: BlesscurseEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 126: DeLightBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 127: DischargeBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 128: TrashingBugEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 129: FilteringBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 130: DeformattingBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 131: FlickerStripBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 132: UndressingEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 133: Hyperbluewalls += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 134: NoliteBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 135: ParanoiaBugEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 136: FleecescriptBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 137: InterruptEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 138: DustbinBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 139: ManaBatteryBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 140: Monsterfingers += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 141: MiscastBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 142: MessageSuppression += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 143: StuckAnnouncement += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 144: BloodthirstyEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 145: MaximumDamageBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 146: LatencyBugEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 147: StarlitBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 148: KnowledgeBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 149: HighscoreBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 150: PinkSpells += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 151: GreenSpells += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 152: EvencoreEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 153: UnderlayerBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 154: DamageMeterBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 155: ArbitraryWeightBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 156: FuckedInfoBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 157: BlackSpells += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 158: CyanSpells += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 159: HeapEffectBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 160: BlueSpells += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 161: TronEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 162: RedSpells += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 163: TooHeavyEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 164: ElongationBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 165: WrapoverEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 166: DestructionEffect += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 167: MeleePrefixBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 168: AutomoreBug += rnz( (dmgplus + 2) * rnd(100) ); break;
+				case 169: UnfairAttackBug += rnz( (dmgplus + 2) * rnd(100) ); break;
 			}
 
 		}
@@ -15538,8 +15909,38 @@ register struct monst *mon;
 	}
 
 	if (!rn2(RngeSlexuality ? 5000 : 25000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
-		pline("Ulch - you contracted Tourette's syndrome from having unprotected intercourse with your lover!");
+		pline("Ulch - you contracted orientation loss from having unprotected intercourse with your lover!");
 	      u.uprops[TOTTER_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 5000 : 25000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted forced atheism from having unprotected intercourse with your lover!");
+	      u.uprops[NON_PRAYER_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted gangrene from having unprotected intercourse with your lover!");
+	      u.uprops[HARD_MODE_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 4000 : 20000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted light sensitivity from having unprotected intercourse with your lover!");
+	      u.uprops[DARK_MODE_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 3000 : 15000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted imperception from having unprotected intercourse with your lover!");
+	      u.uprops[ANTISEARCH_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 50000 : 250000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted ether corruption from having unprotected intercourse with your lover!");
+	      u.uprops[EVIL_PATCH_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 5000 : 25000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted shapechanging anomaly from having unprotected intercourse with your lover!");
+	      u.uprops[WEREFORM_BUG].intrinsic |= FROMOUTSIDE;
 	}
 
 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
@@ -15555,6 +15956,11 @@ register struct monst *mon;
 	if (!rn2(RngeSlexuality ? 200 : 1000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
 		pline("Ulch - you contracted Rodney's Black Cancer from having unprotected intercourse with your lover!");
 	      u.uprops[ITEMCURSING].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 5000 : 25000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted Tourette's syndrome from having unprotected intercourse with your lover!");
+	      u.uprops[MOMMA_BUG].intrinsic |= FROMOUTSIDE;
 	}
 
 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
@@ -15597,9 +16003,104 @@ register struct monst *mon;
 	      u.uprops[UNINFORMATION].intrinsic |= FROMOUTSIDE;
 	}
 
+	if (!rn2(RngeSlexuality ? 6000 : 30000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted arrhythmia from having unprotected intercourse with your lover!");
+	      u.uprops[MONSTER_SPEED_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 8000 : 40000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted optical nervitis from having unprotected intercourse with your lover!");
+	      u.uprops[GRAYOUT_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted retina destruction from having unprotected intercourse with your lover!");
+	      u.uprops[GRAY_CENTER_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted checkerboard disease from having unprotected intercourse with your lover!");
+	      u.uprops[CHECKERBOARD_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted severe rotating worm from having unprotected intercourse with your lover!");
+	      u.uprops[CLOCKWISE_SPIN_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 5000 : 25000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted rotating worm from having unprotected intercourse with your lover!");
+	      u.uprops[COUNTERCLOCKWISE_SPIN_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted mind lag from having unprotected intercourse with your lover!");
+	      u.uprops[LAG_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 4000 : 20000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted cursed hands from having unprotected intercourse with your lover!");
+	      u.uprops[BLESSCURSE_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted antechamber flickering from having unprotected intercourse with your lover!");
+	      u.uprops[FLICKER_STRIP_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 5000 : 25000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted exhibitionism from having unprotected intercourse with your lover!");
+	      u.uprops[UNDRESSING_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 8000 : 40000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted paranoia from having unprotected intercourse with your lover!");
+	      u.uprops[PARANOIA_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 1000 : 2000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted polychromia from having unprotected intercourse with your lover! (But that is actually a fun disease which some might consider a boon. :-))");
+	      u.uprops[FLEECESCRIPT_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 3000 : 15000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted mana battery disease from having unprotected intercourse with your lover!");
+	      u.uprops[MANA_BATTERY_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 3000 : 15000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted poison hands disease from having unprotected intercourse with your lover!");
+	      u.uprops[MONSTERFINGERS_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 6000 : 30000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted monster schizophreny from having unprotected intercourse with your lover!");
+	      u.uprops[EVC_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 3000 : 6000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted identity loss from having unprotected intercourse with your lover!");
+	      u.uprops[FUCKED_INFO_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 5000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted... you contracted... you contracted... you contracted... you contracted...");
+	      u.uprops[HEAP_EFFECT].intrinsic |= FROMOUTSIDE;
+	}
+
 	if (!rn2(RngeSlexuality ? 4000 : 20000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
 		pline("Ulch - you contracted mongoloism (trisomia-13) from having unprotected intercourse with your lover!");
 	      u.uprops[ANTILEVELING].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted quasar vision from having unprotected intercourse with your lover!");
+	      u.uprops[QUASAR_BUG].intrinsic |= FROMOUTSIDE;
+	}
+
+	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+		pline("Ulch - you contracted ulcerous skin anomaly from having unprotected intercourse with your lover!");
+	      u.uprops[ENMITY_BUG].intrinsic |= FROMOUTSIDE;
 	}
 
 	if (!rn2(RngeSlexuality ? 4000 : 20000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {

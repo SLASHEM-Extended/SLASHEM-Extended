@@ -587,6 +587,81 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "yvonne trap", C(CLR_BRIGHT_BLUE)},	/* trap */
 	{'^', "maurah trap", C(CLR_YELLOW)},	/* trap */
 
+	{'^', "lootcut trap", C(CLR_BROWN)},	/* trap */
+	{'^', "monster speed trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "scaling trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "enmity trap", C(CLR_BLACK)},	/* trap */
+	{'^', "white spell trap", C(CLR_WHITE)},	/* trap */
+	{'^', "complete gray spell trap", C(CLR_GRAY)},	/* trap */
+	{'^', "quasar trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "momma trap", C(CLR_CYAN)},	/* trap */
+	{'^', "horror trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "artificer trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "wereform trap", C(CLR_BROWN)},	/* trap */
+	{'^', "non-prayer trap", C(CLR_BLACK)},	/* trap */
+	{'^', "evil patch trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "hard mode trap", C(CLR_RED)},	/* trap */
+	{'^', "secret attack trap", C(CLR_GREEN)},	/* trap */
+	{'^', "eater trap", C(CLR_GREEN)},	/* trap */
+	{'^', "covetousness trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "not seen trap", C(CLR_BLACK)},	/* trap */
+	{'^', "dark mode trap", C(CLR_BLACK)},	/* trap */
+	{'^', "antisearch trap", C(CLR_CYAN)},	/* trap */
+	{'^', "homicide trap", C(CLR_BLACK)},	/* trap */
+	{'^', "nasty nation trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "wakeup call trap", C(CLR_WHITE)},	/* trap */
+	{'^', "grayout trap", C(CLR_GRAY)},	/* trap */
+	{'^', "gray center trap", C(CLR_GRAY)},	/* trap */
+	{'^', "checkerboard trap", C(CLR_GRAY)},	/* trap */
+	{'^', "clockwise spin trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "counterclockwise spin trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "lag trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "blesscurse trap", C(CLR_RED)},	/* trap */
+	{'^', "de-light trap", C(CLR_CYAN)},	/* trap */
+	{'^', "discharge trap", C(CLR_CYAN)},	/* trap */
+	{'^', "trashing trap", C(CLR_BROWN)},	/* trap */
+	{'^', "filtering trap", C(CLR_BROWN)},	/* trap */
+	{'^', "deformatting trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "flicker strip trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "undressing trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "hyperbluewall trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "nolite trap", C(CLR_WHITE)},	/* trap */
+	{'^', "paranoia trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "fleecescript trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "interrupt trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "dustbin trap", C(CLR_BROWN)},	/* trap */
+	{'^', "mana battery trap", C(CLR_CYAN)},	/* trap */
+	{'^', "monsterfingers trap", C(CLR_GREEN)},	/* trap */
+	{'^', "miscast trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "message suppression trap", C(CLR_WHITE)},	/* trap */
+	{'^', "stuck announcement trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "bloodthirsty trap", C(CLR_RED)},	/* trap */
+	{'^', "maximum damage trap", C(CLR_RED)},	/* trap */
+	{'^', "latency trap", C(CLR_WHITE)},	/* trap */
+	{'^', "starlit trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "knowledge trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "highscore trap", C(CLR_GRAY)},	/* trap */
+	{'^', "pink spell trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "green spell trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "EVC trap", C(CLR_GRAY)},	/* trap */
+	{'^', "underlayer trap", C(CLR_BLACK)},	/* trap */
+	{'^', "damage meter trap", C(CLR_RED)},	/* trap */
+	{'^', "arbitrary weight trap", C(CLR_GRAY)},	/* trap */
+	{'^', "fucked info trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "black spell trap", C(CLR_BLACK)},	/* trap */
+	{'^', "cyan spell trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "heap trap", C(CLR_BROWN)},	/* trap */
+	{'^', "blue spell trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "tron trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "red spell trap", C(CLR_RED)},	/* trap */
+	{'^', "too heavy trap", C(CLR_BROWN)},	/* trap */
+	{'^', "elongation trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "wrapover trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "destruction trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "melee prefix trap", C(CLR_CYAN)},	/* trap */
+	{'^', "automore trap", C(CLR_BLACK)},	/* trap */
+	{'^', "unfair attack trap", C(CLR_MAGENTA)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1000,6 +1075,81 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_yvonne_trap),
 	g_FILLER(S_maurah_trap),
 
+	g_FILLER(S_lootcut_trap),
+	g_FILLER(S_monster_speed_trap),
+	g_FILLER(S_scaling_trap),
+	g_FILLER(S_enmity_trap),
+	g_FILLER(S_white_spell_trap),
+	g_FILLER(S_gray_spell_trap),
+	g_FILLER(S_quasar_trap),
+	g_FILLER(S_momma_trap),
+	g_FILLER(S_horror_trap),
+	g_FILLER(S_artificer_trap),
+	g_FILLER(S_wereform_trap),
+	g_FILLER(S_nonprayer_trap),
+	g_FILLER(S_evil_patch_trap),
+	g_FILLER(S_hard_mode_trap),
+	g_FILLER(S_secret_attack_trap),
+	g_FILLER(S_eater_trap),
+	g_FILLER(S_covetous_trap),
+	g_FILLER(S_not_seen_trap),
+	g_FILLER(S_dark_mode_trap),
+	g_FILLER(S_antisearch_trap),
+	g_FILLER(S_homicide_trap),
+	g_FILLER(S_nasty_nation_trap),
+	g_FILLER(S_wakeup_call_trap),
+	g_FILLER(S_grayout_trap),
+	g_FILLER(S_gray_center_trap),
+	g_FILLER(S_checkerboard_trap),
+	g_FILLER(S_clockwise_spin_trap),
+	g_FILLER(S_counterclockwise_trap),
+	g_FILLER(S_lag_trap),
+	g_FILLER(S_blesscurse_trap),
+	g_FILLER(S_delight_trap),
+	g_FILLER(S_discharge_trap),
+	g_FILLER(S_trashing_trap),
+	g_FILLER(S_filtering_trap),
+	g_FILLER(S_deformatting_trap),
+	g_FILLER(S_flicker_strip_trap),
+	g_FILLER(S_undressing_trap),
+	g_FILLER(S_hyperbluewall_trap),
+	g_FILLER(S_nolite_trap),
+	g_FILLER(S_paranoia_trap),
+	g_FILLER(S_fleecescript_trap),
+	g_FILLER(S_interrupt_trap),
+	g_FILLER(S_dustbin_trap),
+	g_FILLER(S_mana_battery_trap),
+	g_FILLER(S_monsterfingers_trap),
+	g_FILLER(S_miscast_trap),
+	g_FILLER(S_message_suppression_trap),
+	g_FILLER(S_stuck_announcement_trap),
+	g_FILLER(S_bloodthirsty_trap),
+	g_FILLER(S_maximum_damage_trap),
+	g_FILLER(S_latency_trap),
+	g_FILLER(S_starlit_trap),
+	g_FILLER(S_knowledge_trap),
+	g_FILLER(S_highscore_trap),
+	g_FILLER(S_pink_spell_trap),
+	g_FILLER(S_green_spell_trap),
+	g_FILLER(S_evc_trap),
+	g_FILLER(S_underlayer_trap),
+	g_FILLER(S_damage_meter_trap),
+	g_FILLER(S_arbitrary_weight_trap),
+	g_FILLER(S_fucked_info_trap),
+	g_FILLER(S_black_spell_trap),
+	g_FILLER(S_cyan_spell_trap),
+	g_FILLER(S_heap_trap),
+	g_FILLER(S_blue_spell_trap),
+	g_FILLER(S_tron_trap),
+	g_FILLER(S_red_spell_trap),
+	g_FILLER(S_too_heavy_trap),
+	g_FILLER(S_elongation_trap),
+	g_FILLER(S_wrapover_trap),
+	g_FILLER(S_destruction_trap),
+	g_FILLER(S_melee_prefix_trap),
+	g_FILLER(S_automore_trap),
+	g_FILLER(S_unfair_attack_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -1404,6 +1554,81 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_yvonne_trap),
 	g_FILLER(S_maurah_trap),
 
+	g_FILLER(S_lootcut_trap),
+	g_FILLER(S_monster_speed_trap),
+	g_FILLER(S_scaling_trap),
+	g_FILLER(S_enmity_trap),
+	g_FILLER(S_white_spell_trap),
+	g_FILLER(S_gray_spell_trap),
+	g_FILLER(S_quasar_trap),
+	g_FILLER(S_momma_trap),
+	g_FILLER(S_horror_trap),
+	g_FILLER(S_artificer_trap),
+	g_FILLER(S_wereform_trap),
+	g_FILLER(S_nonprayer_trap),
+	g_FILLER(S_evil_patch_trap),
+	g_FILLER(S_hard_mode_trap),
+	g_FILLER(S_secret_attack_trap),
+	g_FILLER(S_eater_trap),
+	g_FILLER(S_covetous_trap),
+	g_FILLER(S_not_seen_trap),
+	g_FILLER(S_dark_mode_trap),
+	g_FILLER(S_antisearch_trap),
+	g_FILLER(S_homicide_trap),
+	g_FILLER(S_nasty_nation_trap),
+	g_FILLER(S_wakeup_call_trap),
+	g_FILLER(S_grayout_trap),
+	g_FILLER(S_gray_center_trap),
+	g_FILLER(S_checkerboard_trap),
+	g_FILLER(S_clockwise_spin_trap),
+	g_FILLER(S_counterclockwise_trap),
+	g_FILLER(S_lag_trap),
+	g_FILLER(S_blesscurse_trap),
+	g_FILLER(S_delight_trap),
+	g_FILLER(S_discharge_trap),
+	g_FILLER(S_trashing_trap),
+	g_FILLER(S_filtering_trap),
+	g_FILLER(S_deformatting_trap),
+	g_FILLER(S_flicker_strip_trap),
+	g_FILLER(S_undressing_trap),
+	g_FILLER(S_hyperbluewall_trap),
+	g_FILLER(S_nolite_trap),
+	g_FILLER(S_paranoia_trap),
+	g_FILLER(S_fleecescript_trap),
+	g_FILLER(S_interrupt_trap),
+	g_FILLER(S_dustbin_trap),
+	g_FILLER(S_mana_battery_trap),
+	g_FILLER(S_monsterfingers_trap),
+	g_FILLER(S_miscast_trap),
+	g_FILLER(S_message_suppression_trap),
+	g_FILLER(S_stuck_announcement_trap),
+	g_FILLER(S_bloodthirsty_trap),
+	g_FILLER(S_maximum_damage_trap),
+	g_FILLER(S_latency_trap),
+	g_FILLER(S_starlit_trap),
+	g_FILLER(S_knowledge_trap),
+	g_FILLER(S_highscore_trap),
+	g_FILLER(S_pink_spell_trap),
+	g_FILLER(S_green_spell_trap),
+	g_FILLER(S_evc_trap),
+	g_FILLER(S_underlayer_trap),
+	g_FILLER(S_damage_meter_trap),
+	g_FILLER(S_arbitrary_weight_trap),
+	g_FILLER(S_fucked_info_trap),
+	g_FILLER(S_black_spell_trap),
+	g_FILLER(S_cyan_spell_trap),
+	g_FILLER(S_heap_trap),
+	g_FILLER(S_blue_spell_trap),
+	g_FILLER(S_tron_trap),
+	g_FILLER(S_red_spell_trap),
+	g_FILLER(S_too_heavy_trap),
+	g_FILLER(S_elongation_trap),
+	g_FILLER(S_wrapover_trap),
+	g_FILLER(S_destruction_trap),
+	g_FILLER(S_melee_prefix_trap),
+	g_FILLER(S_automore_trap),
+	g_FILLER(S_unfair_attack_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -1805,6 +2030,81 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_jeanetta_trap),
 	g_FILLER(S_yvonne_trap),
 	g_FILLER(S_maurah_trap),
+
+	g_FILLER(S_lootcut_trap),
+	g_FILLER(S_monster_speed_trap),
+	g_FILLER(S_scaling_trap),
+	g_FILLER(S_enmity_trap),
+	g_FILLER(S_white_spell_trap),
+	g_FILLER(S_gray_spell_trap),
+	g_FILLER(S_quasar_trap),
+	g_FILLER(S_momma_trap),
+	g_FILLER(S_horror_trap),
+	g_FILLER(S_artificer_trap),
+	g_FILLER(S_wereform_trap),
+	g_FILLER(S_nonprayer_trap),
+	g_FILLER(S_evil_patch_trap),
+	g_FILLER(S_hard_mode_trap),
+	g_FILLER(S_secret_attack_trap),
+	g_FILLER(S_eater_trap),
+	g_FILLER(S_covetous_trap),
+	g_FILLER(S_not_seen_trap),
+	g_FILLER(S_dark_mode_trap),
+	g_FILLER(S_antisearch_trap),
+	g_FILLER(S_homicide_trap),
+	g_FILLER(S_nasty_nation_trap),
+	g_FILLER(S_wakeup_call_trap),
+	g_FILLER(S_grayout_trap),
+	g_FILLER(S_gray_center_trap),
+	g_FILLER(S_checkerboard_trap),
+	g_FILLER(S_clockwise_spin_trap),
+	g_FILLER(S_counterclockwise_trap),
+	g_FILLER(S_lag_trap),
+	g_FILLER(S_blesscurse_trap),
+	g_FILLER(S_delight_trap),
+	g_FILLER(S_discharge_trap),
+	g_FILLER(S_trashing_trap),
+	g_FILLER(S_filtering_trap),
+	g_FILLER(S_deformatting_trap),
+	g_FILLER(S_flicker_strip_trap),
+	g_FILLER(S_undressing_trap),
+	g_FILLER(S_hyperbluewall_trap),
+	g_FILLER(S_nolite_trap),
+	g_FILLER(S_paranoia_trap),
+	g_FILLER(S_fleecescript_trap),
+	g_FILLER(S_interrupt_trap),
+	g_FILLER(S_dustbin_trap),
+	g_FILLER(S_mana_battery_trap),
+	g_FILLER(S_monsterfingers_trap),
+	g_FILLER(S_miscast_trap),
+	g_FILLER(S_message_suppression_trap),
+	g_FILLER(S_stuck_announcement_trap),
+	g_FILLER(S_bloodthirsty_trap),
+	g_FILLER(S_maximum_damage_trap),
+	g_FILLER(S_latency_trap),
+	g_FILLER(S_starlit_trap),
+	g_FILLER(S_knowledge_trap),
+	g_FILLER(S_highscore_trap),
+	g_FILLER(S_pink_spell_trap),
+	g_FILLER(S_green_spell_trap),
+	g_FILLER(S_evc_trap),
+	g_FILLER(S_underlayer_trap),
+	g_FILLER(S_damage_meter_trap),
+	g_FILLER(S_arbitrary_weight_trap),
+	g_FILLER(S_fucked_info_trap),
+	g_FILLER(S_black_spell_trap),
+	g_FILLER(S_cyan_spell_trap),
+	g_FILLER(S_heap_trap),
+	g_FILLER(S_blue_spell_trap),
+	g_FILLER(S_tron_trap),
+	g_FILLER(S_red_spell_trap),
+	g_FILLER(S_too_heavy_trap),
+	g_FILLER(S_elongation_trap),
+	g_FILLER(S_wrapover_trap),
+	g_FILLER(S_destruction_trap),
+	g_FILLER(S_melee_prefix_trap),
+	g_FILLER(S_automore_trap),
+	g_FILLER(S_unfair_attack_trap),
 
 	g_FILLER(S_timerun_trap),
 	g_FILLER(S_vbeam),
@@ -2398,6 +2698,81 @@ boolean is_rlevel;
 	    showsyms[S_jeanetta_trap] = 0x04;
 	    showsyms[S_yvonne_trap] = 0x04;
 	    showsyms[S_maurah_trap] = 0x04;
+
+	    showsyms[S_lootcut_trap] = 0x04;
+	    showsyms[S_monster_speed_trap] = 0x04;
+	    showsyms[S_scaling_trap] = 0x04;
+	    showsyms[S_enmity_trap] = 0x04;
+	    showsyms[S_white_spell_trap] = 0x04;
+	    showsyms[S_gray_spell_trap] = 0x04;
+	    showsyms[S_quasar_trap] = 0x04;
+	    showsyms[S_momma_trap] = 0x04;
+	    showsyms[S_horror_trap] = 0x04;
+	    showsyms[S_artificer_trap] = 0x04;
+	    showsyms[S_wereform_trap] = 0x04;
+	    showsyms[S_nonprayer_trap] = 0x04;
+	    showsyms[S_evil_patch_trap] = 0x04;
+	    showsyms[S_hard_mode_trap] = 0x04;
+	    showsyms[S_secret_attack_trap] = 0x04;
+	    showsyms[S_eater_trap] = 0x04;
+	    showsyms[S_covetous_trap] = 0x04;
+	    showsyms[S_not_seen_trap] = 0x04;
+	    showsyms[S_dark_mode_trap] = 0x04;
+	    showsyms[S_antisearch_trap] = 0x04;
+	    showsyms[S_homicide_trap] = 0x04;
+	    showsyms[S_nasty_nation_trap] = 0x04;
+	    showsyms[S_wakeup_call_trap] = 0x04;
+	    showsyms[S_grayout_trap] = 0x04;
+	    showsyms[S_gray_center_trap] = 0x04;
+	    showsyms[S_checkerboard_trap] = 0x04;
+	    showsyms[S_clockwise_spin_trap] = 0x04;
+	    showsyms[S_counterclockwise_trap] = 0x04;
+	    showsyms[S_lag_trap] = 0x04;
+	    showsyms[S_blesscurse_trap] = 0x04;
+	    showsyms[S_delight_trap] = 0x04;
+	    showsyms[S_discharge_trap] = 0x04;
+	    showsyms[S_trashing_trap] = 0x04;
+	    showsyms[S_filtering_trap] = 0x04;
+	    showsyms[S_deformatting_trap] = 0x04;
+	    showsyms[S_flicker_strip_trap] = 0x04;
+	    showsyms[S_undressing_trap] = 0x04;
+	    showsyms[S_hyperbluewall_trap] = 0x04;
+	    showsyms[S_nolite_trap] = 0x04;
+	    showsyms[S_paranoia_trap] = 0x04;
+	    showsyms[S_fleecescript_trap] = 0x04;
+	    showsyms[S_interrupt_trap] = 0x04;
+	    showsyms[S_dustbin_trap] = 0x04;
+	    showsyms[S_mana_battery_trap] = 0x04;
+	    showsyms[S_monsterfingers_trap] = 0x04;
+	    showsyms[S_miscast_trap] = 0x04;
+	    showsyms[S_message_suppression_trap] = 0x04;
+	    showsyms[S_stuck_announcement_trap] = 0x04;
+	    showsyms[S_bloodthirsty_trap] = 0x04;
+	    showsyms[S_maximum_damage_trap] = 0x04;
+	    showsyms[S_latency_trap] = 0x04;
+	    showsyms[S_starlit_trap] = 0x04;
+	    showsyms[S_knowledge_trap] = 0x04;
+	    showsyms[S_highscore_trap] = 0x04;
+	    showsyms[S_pink_spell_trap] = 0x04;
+	    showsyms[S_green_spell_trap] = 0x04;
+	    showsyms[S_evc_trap] = 0x04;
+	    showsyms[S_underlayer_trap] = 0x04;
+	    showsyms[S_damage_meter_trap] = 0x04;
+	    showsyms[S_arbitrary_weight_trap] = 0x04;
+	    showsyms[S_fucked_info_trap] = 0x04;
+	    showsyms[S_black_spell_trap] = 0x04;
+	    showsyms[S_cyan_spell_trap] = 0x04;
+	    showsyms[S_heap_trap] = 0x04;
+	    showsyms[S_blue_spell_trap] = 0x04;
+	    showsyms[S_tron_trap] = 0x04;
+	    showsyms[S_red_spell_trap] = 0x04;
+	    showsyms[S_too_heavy_trap] = 0x04;
+	    showsyms[S_elongation_trap] = 0x04;
+	    showsyms[S_wrapover_trap] = 0x04;
+	    showsyms[S_destruction_trap] = 0x04;
+	    showsyms[S_melee_prefix_trap] = 0x04;
+	    showsyms[S_automore_trap] = 0x04;
+	    showsyms[S_unfair_attack_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif

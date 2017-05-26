@@ -3258,6 +3258,81 @@ boolean atme;
 		LevelTrapEffect = 0L;
 		QuizTrapEffect = 0L;
 
+		LootcutBug = 0L;
+		MonsterSpeedBug = 0L;
+		ScalingBug = 0L;
+		EnmityBug = 0L;
+		WhiteSpells = 0L;
+		CompleteGraySpells = 0L;
+		QuasarVision = 0L;
+		MommaBugEffect = 0L;
+		HorrorBugEffect = 0L;
+		ArtificerBug = 0L;
+		WereformBug = 0L;
+		NonprayerBug = 0L;
+		EvilPatchEffect = 0L;
+		HardModeEffect = 0L;
+		SecretAttackBug = 0L;
+		EaterBugEffect = 0L;
+		CovetousnessBug = 0L;
+		NotSeenBug = 0L;
+		DarkModeBug = 0L;
+		AntisearchEffect = 0L;
+		HomicideEffect = 0L;
+		NastynationBug = 0L;
+		WakeupCallBug = 0L;
+		GrayoutBug = 0L;
+		GrayCenterBug = 0L;
+		CheckerboardBug = 0L;
+		ClockwiseSpinBug = 0L;
+		CounterclockwiseSpin = 0L;
+		LagBugEffect = 0L;
+		BlesscurseEffect = 0L;
+		DeLightBug = 0L;
+		DischargeBug = 0L;
+		TrashingBugEffect = 0L;
+		FilteringBug = 0L;
+		DeformattingBug = 0L;
+		FlickerStripBug = 0L;
+		UndressingEffect = 0L;
+		Hyperbluewalls = 0L;
+		NoliteBug = 0L;
+		ParanoiaBugEffect = 0L;
+		FleecescriptBug = 0L;
+		InterruptEffect = 0L;
+		DustbinBug = 0L;
+		ManaBatteryBug = 0L;
+		Monsterfingers = 0L;
+		MiscastBug = 0L;
+		MessageSuppression = 0L;
+		StuckAnnouncement = 0L;
+		BloodthirstyEffect = 0L;
+		MaximumDamageBug = 0L;
+		LatencyBugEffect = 0L;
+		StarlitBug = 0L;
+		KnowledgeBug = 0L;
+		HighscoreBug = 0L;
+		PinkSpells = 0L;
+		GreenSpells = 0L;
+		EvencoreEffect = 0L;
+		UnderlayerBug = 0L;
+		DamageMeterBug = 0L;
+		ArbitraryWeightBug = 0L;
+		FuckedInfoBug = 0L;
+		BlackSpells = 0L;
+		CyanSpells = 0L;
+		HeapEffectBug = 0L;
+		BlueSpells = 0L;
+		TronEffect = 0L;
+		RedSpells = 0L;
+		TooHeavyEffect = 0L;
+		ElongationBug = 0L;
+		WrapoverEffect = 0L;
+		DestructionEffect = 0L;
+		MeleePrefixBug = 0L;
+		AutomoreBug = 0L;
+		UnfairAttackBug = 0L;
+
 		FastMetabolismEffect = 0L;
 		NoReturnEffect = 0L;
 		AlwaysEgotypeMonsters = 0L;
@@ -3319,7 +3394,7 @@ boolean atme;
 		pline("Okay, if that's really what you want... you feel corrupted.");
 		if (Hallucination) pline("At least this isn't ADOM, where having too many corruptions would instakill you!");
 
-		switch (rnd(95)) {
+		switch (rnd(169)) {
 
 			case 1: 
 			    SpeedBug |= FROMOUTSIDE; break;
@@ -3511,6 +3586,154 @@ boolean atme;
 			    SoundEffectBug |= FROMOUTSIDE; break;
 			case 95: 
 			    TimerunBug |= FROMOUTSIDE; break;
+				case 96:
+				    LootcutBug |= FROMOUTSIDE; break;
+				case 97:
+				    MonsterSpeedBug |= FROMOUTSIDE; break;
+				case 98:
+				    ScalingBug |= FROMOUTSIDE; break;
+				case 99:
+				    EnmityBug |= FROMOUTSIDE; break;
+				case 100:
+				    WhiteSpells |= FROMOUTSIDE; break;
+				case 101:
+				    CompleteGraySpells |= FROMOUTSIDE; break;
+				case 102:
+				    QuasarVision |= FROMOUTSIDE; break;
+				case 103:
+				    MommaBugEffect |= FROMOUTSIDE; break;
+				case 104:
+				    HorrorBugEffect |= FROMOUTSIDE; break;
+				case 105:
+				    ArtificerBug |= FROMOUTSIDE; break;
+				case 106:
+				    WereformBug |= FROMOUTSIDE; break;
+				case 107:
+				    NonprayerBug |= FROMOUTSIDE; break;
+				case 108:
+				    EvilPatchEffect |= FROMOUTSIDE; break;
+				case 109:
+				    HardModeEffect |= FROMOUTSIDE; break;
+				case 110:
+				    SecretAttackBug |= FROMOUTSIDE; break;
+				case 111:
+				    EaterBugEffect |= FROMOUTSIDE; break;
+				case 112:
+				    CovetousnessBug |= FROMOUTSIDE; break;
+				case 113:
+				    NotSeenBug |= FROMOUTSIDE; break;
+				case 114:
+				    DarkModeBug |= FROMOUTSIDE; break;
+				case 115:
+				    AntisearchEffect |= FROMOUTSIDE; break;
+				case 116:
+				    HomicideEffect |= FROMOUTSIDE; break;
+				case 117:
+				    NastynationBug |= FROMOUTSIDE; break;
+				case 118:
+				    WakeupCallBug |= FROMOUTSIDE; break;
+				case 119:
+				    GrayoutBug |= FROMOUTSIDE; break;
+				case 120:
+				    GrayCenterBug |= FROMOUTSIDE; break;
+				case 121:
+				    CheckerboardBug |= FROMOUTSIDE; break;
+				case 122:
+				    ClockwiseSpinBug |= FROMOUTSIDE; break;
+				case 123:
+				    CounterclockwiseSpin |= FROMOUTSIDE; break;
+				case 124:
+				    LagBugEffect |= FROMOUTSIDE; break;
+				case 125:
+				    BlesscurseEffect |= FROMOUTSIDE; break;
+				case 126:
+				    DeLightBug |= FROMOUTSIDE; break;
+				case 127:
+				    DischargeBug |= FROMOUTSIDE; break;
+				case 128:
+				    TrashingBugEffect |= FROMOUTSIDE; break;
+				case 129:
+				    FilteringBug |= FROMOUTSIDE; break;
+				case 130:
+				    DeformattingBug |= FROMOUTSIDE; break;
+				case 131:
+				    FlickerStripBug |= FROMOUTSIDE; break;
+				case 132:
+				    UndressingEffect |= FROMOUTSIDE; break;
+				case 133:
+				    Hyperbluewalls |= FROMOUTSIDE; break;
+				case 134:
+				    NoliteBug |= FROMOUTSIDE; break;
+				case 135:
+				    ParanoiaBugEffect |= FROMOUTSIDE; break;
+				case 136:
+				    FleecescriptBug |= FROMOUTSIDE; break;
+				case 137:
+				    InterruptEffect |= FROMOUTSIDE; break;
+				case 138:
+				    DustbinBug |= FROMOUTSIDE; break;
+				case 139:
+				    ManaBatteryBug |= FROMOUTSIDE; break;
+				case 140:
+				    Monsterfingers |= FROMOUTSIDE; break;
+				case 141:
+				    MiscastBug |= FROMOUTSIDE; break;
+				case 142:
+				    MessageSuppression |= FROMOUTSIDE; break;
+				case 143:
+				    StuckAnnouncement |= FROMOUTSIDE; break;
+				case 144:
+				    BloodthirstyEffect |= FROMOUTSIDE; break;
+				case 145:
+				    MaximumDamageBug |= FROMOUTSIDE; break;
+				case 146:
+				    LatencyBugEffect |= FROMOUTSIDE; break;
+				case 147:
+				    StarlitBug |= FROMOUTSIDE; break;
+				case 148:
+				    KnowledgeBug |= FROMOUTSIDE; break;
+				case 149:
+				    HighscoreBug |= FROMOUTSIDE; break;
+				case 150:
+				    PinkSpells |= FROMOUTSIDE; break;
+				case 151:
+				    GreenSpells |= FROMOUTSIDE; break;
+				case 152:
+				    EvencoreEffect |= FROMOUTSIDE; break;
+				case 153:
+				    UnderlayerBug |= FROMOUTSIDE; break;
+				case 154:
+				    DamageMeterBug |= FROMOUTSIDE; break;
+				case 155:
+				    ArbitraryWeightBug |= FROMOUTSIDE; break;
+				case 156:
+				    FuckedInfoBug |= FROMOUTSIDE; break;
+				case 157:
+				    BlackSpells |= FROMOUTSIDE; break;
+				case 158:
+				    CyanSpells |= FROMOUTSIDE; break;
+				case 159:
+				    HeapEffectBug |= FROMOUTSIDE; break;
+				case 160:
+				    BlueSpells |= FROMOUTSIDE; break;
+				case 161:
+				    TronEffect |= FROMOUTSIDE; break;
+				case 162:
+				    RedSpells |= FROMOUTSIDE; break;
+				case 163:
+				    TooHeavyEffect |= FROMOUTSIDE; break;
+				case 164:
+				    ElongationBug |= FROMOUTSIDE; break;
+				case 165:
+				    WrapoverEffect |= FROMOUTSIDE; break;
+				case 166:
+				    DestructionEffect |= FROMOUTSIDE; break;
+				case 167:
+				    MeleePrefixBug |= FROMOUTSIDE; break;
+				case 168:
+				    AutomoreBug |= FROMOUTSIDE; break;
+				case 169:
+				    UnfairAttackBug |= FROMOUTSIDE; break;
 		}
 
 		break;

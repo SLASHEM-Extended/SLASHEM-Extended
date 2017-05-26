@@ -1940,7 +1940,7 @@ unsigned trflags;
 	/* Players could deduce the position of a nasty trap by running in a corridor. This would probably come into effect
 	 * rarely, but the fact that it was possible at all was unintentional, so I'm closing this loophole just to cover
 	 * my butt. Nasty traps are supposed to be really difficult to spot! --Amy */
-	if (ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != UNINFORMATION_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != LASER_TRAP &&
+	if (ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != LOOTCUT_TRAP && ttype != MONSTER_SPEED_TRAP && ttype != SCALING_TRAP && ttype != ENMITY_TRAP && ttype != WHITE_SPELL_TRAP && ttype != COMPLETE_GRAY_SPELL_TRAP && ttype != QUASAR_TRAP && ttype != MOMMA_TRAP && ttype != HORROR_TRAP && ttype != ARTIFICER_TRAP && ttype != WEREFORM_TRAP && ttype != NON_PRAYER_TRAP && ttype != EVIL_PATCH_TRAP && ttype != HARD_MODE_TRAP && ttype != SECRET_ATTACK_TRAP && ttype != EATER_TRAP && ttype != COVETOUSNESS_TRAP && ttype != NOT_SEEN_TRAP && ttype != DARK_MODE_TRAP && ttype != ANTISEARCH_TRAP && ttype != HOMICIDE_TRAP && ttype !=  NASTY_NATION_TRAP && ttype != WAKEUP_CALL_TRAP && ttype != GRAYOUT_TRAP && ttype != GRAY_CENTER_TRAP && ttype != CHECKERBOARD_TRAP && ttype != CLOCKWISE_SPIN_TRAP && ttype != COUNTERCLOCKWISE_SPIN_TRAP && ttype != LAG_TRAP && ttype != BLESSCURSE_TRAP && ttype != DE_LIGHT_TRAP && ttype != DISCHARGE_TRAP && ttype != TRASHING_TRAP && ttype != FILTERING_TRAP && ttype != DEFORMATTING_TRAP && ttype != FLICKER_STRIP_TRAP && ttype != UNDRESSING_TRAP && ttype != HYPERBLUEWALL_TRAP && ttype != NOLITE_TRAP && ttype != PARANOIA_TRAP && ttype != FLEECESCRIPT_TRAP && ttype != INTERRUPT_TRAP && ttype != DUSTBIN_TRAP && ttype != MANA_BATTERY_TRAP && ttype != MONSTERFINGERS_TRAP && ttype != MISCAST_TRAP && ttype != MESSAGE_SUPPRESSION_TRAP && ttype != STUCK_ANNOUNCEMENT_TRAP && ttype != BLOODTHIRSTY_TRAP && ttype != MAXIMUM_DAMAGE_TRAP && ttype != LATENCY_TRAP && ttype != STARLIT_TRAP && ttype != KNOWLEDGE_TRAP && ttype != HIGHSCORE_TRAP && ttype != PINK_SPELL_TRAP && ttype != GREEN_SPELL_TRAP && ttype != EVC_TRAP && ttype != UNDERLAYER_TRAP && ttype != DAMAGE_METER_TRAP && ttype != ARBITRARY_WEIGHT_TRAP && ttype != FUCKED_INFO_TRAP && ttype != BLACK_SPELL_TRAP && ttype != CYAN_SPELL_TRAP && ttype != HEAP_TRAP && ttype != BLUE_SPELL_TRAP && ttype != TRON_TRAP && ttype != RED_SPELL_TRAP && ttype != TOO_HEAVY_TRAP && ttype != ELONGATION_TRAP && ttype != WRAPOVER_TRAP && ttype != DESTRUCTION_TRAP && ttype != MELEE_PREFIX_TRAP && ttype != AUTOMORE_TRAP && ttype != UNFAIR_ATTACK_TRAP && ttype != UNINFORMATION_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != LASER_TRAP &&
 		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP)
 		nomul(0, 0);
 
@@ -1972,7 +1972,7 @@ unsigned trflags;
 		    defsyms[trap_to_defsym(ttype)].explanation);
 		return;
 	    }
-	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != UNINFORMATION_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != LASER_TRAP &&
+	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != LOOTCUT_TRAP && ttype != MONSTER_SPEED_TRAP && ttype != SCALING_TRAP && ttype != ENMITY_TRAP && ttype != WHITE_SPELL_TRAP && ttype != COMPLETE_GRAY_SPELL_TRAP && ttype != QUASAR_TRAP && ttype != MOMMA_TRAP && ttype != HORROR_TRAP && ttype != ARTIFICER_TRAP && ttype != WEREFORM_TRAP && ttype != NON_PRAYER_TRAP && ttype != EVIL_PATCH_TRAP && ttype != HARD_MODE_TRAP && ttype != SECRET_ATTACK_TRAP && ttype != EATER_TRAP && ttype != COVETOUSNESS_TRAP && ttype != NOT_SEEN_TRAP && ttype != DARK_MODE_TRAP && ttype != ANTISEARCH_TRAP && ttype != HOMICIDE_TRAP && ttype !=  NASTY_NATION_TRAP && ttype != WAKEUP_CALL_TRAP && ttype != GRAYOUT_TRAP && ttype != GRAY_CENTER_TRAP && ttype != CHECKERBOARD_TRAP && ttype != CLOCKWISE_SPIN_TRAP && ttype != COUNTERCLOCKWISE_SPIN_TRAP && ttype != LAG_TRAP && ttype != BLESSCURSE_TRAP && ttype != DE_LIGHT_TRAP && ttype != DISCHARGE_TRAP && ttype != TRASHING_TRAP && ttype != FILTERING_TRAP && ttype != DEFORMATTING_TRAP && ttype != FLICKER_STRIP_TRAP && ttype != UNDRESSING_TRAP && ttype != HYPERBLUEWALL_TRAP && ttype != NOLITE_TRAP && ttype != PARANOIA_TRAP && ttype != FLEECESCRIPT_TRAP && ttype != INTERRUPT_TRAP && ttype != DUSTBIN_TRAP && ttype != MANA_BATTERY_TRAP && ttype != MONSTERFINGERS_TRAP && ttype != MISCAST_TRAP && ttype != MESSAGE_SUPPRESSION_TRAP && ttype != STUCK_ANNOUNCEMENT_TRAP && ttype != BLOODTHIRSTY_TRAP && ttype != MAXIMUM_DAMAGE_TRAP && ttype != LATENCY_TRAP && ttype != STARLIT_TRAP && ttype != KNOWLEDGE_TRAP && ttype != HIGHSCORE_TRAP && ttype != PINK_SPELL_TRAP && ttype != GREEN_SPELL_TRAP && ttype != EVC_TRAP && ttype != UNDERLAYER_TRAP && ttype != DAMAGE_METER_TRAP && ttype != ARBITRARY_WEIGHT_TRAP && ttype != FUCKED_INFO_TRAP && ttype != BLACK_SPELL_TRAP && ttype != CYAN_SPELL_TRAP && ttype != HEAP_TRAP && ttype != BLUE_SPELL_TRAP && ttype != TRON_TRAP && ttype != RED_SPELL_TRAP && ttype != TOO_HEAVY_TRAP && ttype != ELONGATION_TRAP && ttype != WRAPOVER_TRAP && ttype != DESTRUCTION_TRAP && ttype != MELEE_PREFIX_TRAP && ttype != AUTOMORE_TRAP && ttype != UNFAIR_ATTACK_TRAP && ttype != UNINFORMATION_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != LASER_TRAP &&
 		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP && !forcebungle &&
 		(!rn2(5) ||
 	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == ANOXIC_PIT) && is_clinger(youmonst.data)))) {
@@ -7409,6 +7409,598 @@ madnesseffect:
 
 		 break;
 
+		case LOOTCUT_TRAP:
+
+			if (LootcutBug) break;
+
+			LootcutBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case MONSTER_SPEED_TRAP:
+
+			if (MonsterSpeedBug) break;
+
+			MonsterSpeedBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case SCALING_TRAP:
+
+			if (ScalingBug) break;
+
+			ScalingBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case ENMITY_TRAP:
+
+			if (EnmityBug) break;
+
+			EnmityBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case WHITE_SPELL_TRAP:
+
+			if (WhiteSpells) break;
+
+			WhiteSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case COMPLETE_GRAY_SPELL_TRAP:
+
+			if (CompleteGraySpells) break;
+
+			CompleteGraySpells = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case QUASAR_TRAP:
+
+			if (QuasarVision) break;
+
+			QuasarVision = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case MOMMA_TRAP:
+
+			if (MommaBugEffect) break;
+
+			MommaBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case HORROR_TRAP:
+
+			if (HorrorBugEffect) break;
+
+			HorrorBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case ARTIFICER_TRAP:
+
+			if (ArtificerBug) break;
+
+			ArtificerBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case WEREFORM_TRAP:
+
+			if (WereformBug) break;
+
+			WereformBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case NON_PRAYER_TRAP:
+
+			if (NonprayerBug) break;
+
+			NonprayerBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case EVIL_PATCH_TRAP:
+
+			if (EvilPatchEffect) break;
+
+			EvilPatchEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case HARD_MODE_TRAP:
+
+			if (HardModeEffect) break;
+
+			HardModeEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case SECRET_ATTACK_TRAP:
+
+			if (SecretAttackBug) break;
+
+			SecretAttackBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case EATER_TRAP:
+
+			if (EaterBugEffect) break;
+
+			EaterBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case COVETOUSNESS_TRAP:
+
+			if (CovetousnessBug) break;
+
+			CovetousnessBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case NOT_SEEN_TRAP:
+
+			if (NotSeenBug) break;
+
+			NotSeenBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case DARK_MODE_TRAP:
+
+			if (DarkModeBug) break;
+
+			DarkModeBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case ANTISEARCH_TRAP:
+
+			if (AntisearchEffect) break;
+
+			AntisearchEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case HOMICIDE_TRAP:
+
+			if (HomicideEffect) break;
+
+			HomicideEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case NASTY_NATION_TRAP:
+
+			if (NastynationBug) break;
+
+			NastynationBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case WAKEUP_CALL_TRAP:
+
+			if (WakeupCallBug) break;
+
+			WakeupCallBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case GRAYOUT_TRAP:
+
+			if (GrayoutBug) break;
+
+			GrayoutBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case GRAY_CENTER_TRAP:
+
+			if (GrayCenterBug) break;
+
+			GrayCenterBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case CHECKERBOARD_TRAP:
+
+			if (CheckerboardBug) break;
+
+			CheckerboardBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case CLOCKWISE_SPIN_TRAP:
+
+			if (ClockwiseSpinBug) break;
+
+			ClockwiseSpinBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case COUNTERCLOCKWISE_SPIN_TRAP:
+
+			if (CounterclockwiseSpin) break;
+
+			CounterclockwiseSpin = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case LAG_TRAP:
+
+			if (LagBugEffect) break;
+
+			LagBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case BLESSCURSE_TRAP:
+
+			if (BlesscurseEffect) break;
+
+			BlesscurseEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case DE_LIGHT_TRAP:
+
+			if (DeLightBug) break;
+
+			DeLightBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case DISCHARGE_TRAP:
+
+			if (DischargeBug) break;
+
+			DischargeBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case TRASHING_TRAP:
+
+			if (TrashingBugEffect) break;
+
+			TrashingBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case FILTERING_TRAP:
+
+			if (FilteringBug) break;
+
+			FilteringBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case DEFORMATTING_TRAP:
+
+			if (DeformattingBug) break;
+
+			DeformattingBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case FLICKER_STRIP_TRAP:
+
+			if (FlickerStripBug) break;
+
+			FlickerStripBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case UNDRESSING_TRAP:
+
+			if (UndressingEffect) break;
+
+			UndressingEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case HYPERBLUEWALL_TRAP:
+
+			if (Hyperbluewalls) break;
+
+			Hyperbluewalls = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case NOLITE_TRAP:
+
+			if (NoliteBug) break;
+
+			NoliteBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case PARANOIA_TRAP:
+
+			if (ParanoiaBugEffect) break;
+
+			ParanoiaBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case FLEECESCRIPT_TRAP:
+
+			if (FleecescriptBug) break;
+
+			FleecescriptBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case INTERRUPT_TRAP:
+
+			if (InterruptEffect) break;
+
+			InterruptEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case DUSTBIN_TRAP:
+
+			if (DustbinBug) break;
+
+			DustbinBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case MANA_BATTERY_TRAP:
+
+			if (ManaBatteryBug) break;
+
+			ManaBatteryBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case MONSTERFINGERS_TRAP:
+
+			if (Monsterfingers) break;
+
+			Monsterfingers = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case MISCAST_TRAP:
+
+			if (MiscastBug) break;
+
+			MiscastBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case MESSAGE_SUPPRESSION_TRAP:
+
+			if (MessageSuppression) break;
+
+			MessageSuppression = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case STUCK_ANNOUNCEMENT_TRAP:
+
+			if (StuckAnnouncement) break;
+
+			StuckAnnouncement = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case BLOODTHIRSTY_TRAP:
+
+			if (BloodthirstyEffect) break;
+
+			BloodthirstyEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case MAXIMUM_DAMAGE_TRAP:
+
+			if (MaximumDamageBug) break;
+
+			MaximumDamageBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case LATENCY_TRAP:
+
+			if (LatencyBugEffect) break;
+
+			LatencyBugEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case STARLIT_TRAP:
+
+			if (StarlitBug) break;
+
+			StarlitBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case KNOWLEDGE_TRAP:
+
+			if (KnowledgeBug) break;
+
+			KnowledgeBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case HIGHSCORE_TRAP:
+
+			if (HighscoreBug) break;
+
+			HighscoreBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case PINK_SPELL_TRAP:
+
+			if (PinkSpells) break;
+
+			PinkSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case GREEN_SPELL_TRAP:
+
+			if (GreenSpells) break;
+
+			GreenSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case EVC_TRAP:
+
+			if (EvencoreEffect) break;
+
+			EvencoreEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case UNDERLAYER_TRAP:
+
+			if (UnderlayerBug) break;
+
+			UnderlayerBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case DAMAGE_METER_TRAP:
+
+			if (DamageMeterBug) break;
+
+			DamageMeterBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case ARBITRARY_WEIGHT_TRAP:
+
+			if (ArbitraryWeightBug) break;
+
+			ArbitraryWeightBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case FUCKED_INFO_TRAP:
+
+			if (FuckedInfoBug) break;
+
+			FuckedInfoBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case BLACK_SPELL_TRAP:
+
+			if (BlackSpells) break;
+
+			BlackSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case CYAN_SPELL_TRAP:
+
+			if (CyanSpells) break;
+
+			CyanSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case HEAP_TRAP:
+
+			if (HeapEffectBug) break;
+
+			HeapEffectBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case BLUE_SPELL_TRAP:
+
+			if (BlueSpells) break;
+
+			BlueSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case TRON_TRAP:
+
+			if (TronEffect) break;
+
+			TronEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case RED_SPELL_TRAP:
+
+			if (RedSpells) break;
+
+			RedSpells = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case TOO_HEAVY_TRAP:
+
+			if (TooHeavyEffect) break;
+
+			TooHeavyEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case ELONGATION_TRAP:
+
+			if (ElongationBug) break;
+
+			ElongationBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case WRAPOVER_TRAP:
+
+			if (WrapoverEffect) break;
+
+			WrapoverEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case DESTRUCTION_TRAP:
+
+			if (DestructionEffect) break;
+
+			DestructionEffect = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case MELEE_PREFIX_TRAP:
+
+			if (MeleePrefixBug) break;
+
+			MeleePrefixBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case AUTOMORE_TRAP:
+
+			if (AutomoreBug) break;
+
+			AutomoreBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
+		case UNFAIR_ATTACK_TRAP:
+
+			if (UnfairAttackBug) break;
+
+			UnfairAttackBug = rnz(nastytrapdur * (monster_difficulty() + 1));
+
+		break;
+
 		 case TIMERUN_TRAP:
 
 			if (TimerunBug) break;
@@ -8183,7 +8775,7 @@ madnesseffect:
 
 		 case NASTINESS_TRAP:
 
-			switch (rnd(95)) {
+			switch (rnd(169)) {
 
 				case 1: RMBLoss += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 2: NoDropProblem += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
@@ -8307,6 +8899,81 @@ madnesseffect:
 				case 93: SpellForgetting += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 94: SoundEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
 				case 95: TimerunBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 96: LootcutBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 97: MonsterSpeedBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 98: ScalingBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 99: EnmityBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 100: WhiteSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 101: CompleteGraySpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 102: QuasarVision += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 103: MommaBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 104: HorrorBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 105: ArtificerBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 106: WereformBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 107: NonprayerBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 108: EvilPatchEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 109: HardModeEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 110: SecretAttackBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 111: EaterBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 112: CovetousnessBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 113: NotSeenBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 114: DarkModeBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 115: AntisearchEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 116: HomicideEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 117: NastynationBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 118: WakeupCallBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 119: GrayoutBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 120: GrayCenterBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 121: CheckerboardBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 122: ClockwiseSpinBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 123: CounterclockwiseSpin += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 124: LagBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 125: BlesscurseEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 126: DeLightBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 127: DischargeBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 128: TrashingBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 129: FilteringBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 130: DeformattingBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 131: FlickerStripBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 132: UndressingEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 133: Hyperbluewalls += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 134: NoliteBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 135: ParanoiaBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 136: FleecescriptBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 137: InterruptEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 138: DustbinBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 139: ManaBatteryBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 140: Monsterfingers += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 141: MiscastBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 142: MessageSuppression += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 143: StuckAnnouncement += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 144: BloodthirstyEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 145: MaximumDamageBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 146: LatencyBugEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 147: StarlitBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 148: KnowledgeBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 149: HighscoreBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 150: PinkSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 151: GreenSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 152: EvencoreEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 153: UnderlayerBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 154: DamageMeterBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 155: ArbitraryWeightBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 156: FuckedInfoBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 157: BlackSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 158: CyanSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 159: HeapEffectBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 160: BlueSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 161: TronEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 162: RedSpells += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 163: TooHeavyEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 164: ElongationBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 165: WrapoverEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 166: DestructionEffect += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 167: MeleePrefixBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 168: AutomoreBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+				case 169: UnfairAttackBug += rnz(nastytrapdur * (monster_difficulty() + 1)); break;
+
 			}
 
 			if (NastinessProblem) break;
@@ -8884,7 +9551,7 @@ madnesseffect:
 
 		 case AUTOMATIC_SWITCHER:
 
-			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug ) {
+			if (RMBLoss || Superscroller || DisplayLoss || SpellLoss || YellowSpells || AutoDestruct || MemoryLoss || InventoryLoss || BlackNgWalls || MenuBug || SpeedBug || FreeHandLoss || Unidentify || Thirst || LuckLoss || ShadesOfGrey || FaintActive || Itemcursing || DifficultyIncreased || Deafness || CasterProblem || WeaknessProblem || NoDropProblem || RotThirteen || BishopGridbug || ConfusionProblem || DSTWProblem || StatusTrapProblem || AlignmentProblem || StairsProblem || UninformationProblem || TimerunBug || IntrinsicLossProblem || BloodLossProblem || BadEffectProblem || TrapCreationProblem ||AutomaticVulnerabilitiy || TeleportingItems || NastinessProblem || CaptchaProblem || RespawnProblem || FarlookProblem || RecurringAmnesia || BigscriptEffect || BankTrapEffect || MapTrapEffect || TechTrapEffect || RecurringDisenchant || verisiertEffect || ChaosTerrain || Muteness || EngravingDoesntWork || MagicDeviceEffect || BookTrapEffect || LevelTrapEffect || QuizTrapEffect || FastMetabolismEffect || NoReturnEffect || AlwaysEgotypeMonsters || TimeGoesByFaster ||  FoodIsAlwaysRotten || AllSkillsUnskilled || AllStatsAreLower || PlayerCannotTrainSkills || PlayerCannotExerciseStats || TurnLimitation || WeakSight || RandomMessages || Desecration || StarvationEffect || NoDropsEffect || LowEffects || InvisibleTrapsEffect || GhostWorld || Dehydration || HateTrapEffect || TotterTrapEffect || Nonintrinsics || Dropcurses || Nakedness || Antileveling || ItemStealingEffect || Rebellions || CrapEffect || ProjectilesMisfire || WallTrapping || DisconnectedStairs || InterfaceScrewed || Bossfights || EntireLevelMode || BonesLevelChange || AutocursingEquipment || HighlevelStatus || SpellForgetting || SoundEffectBug || LootcutBug || MonsterSpeedBug || ScalingBug || EnmityBug || WhiteSpells || CompleteGraySpells || QuasarVision || MommaBugEffect || HorrorBugEffect || ArtificerBug || WereformBug || NonprayerBug || EvilPatchEffect || HardModeEffect || SecretAttackBug || EaterBugEffect || CovetousnessBug || NotSeenBug || DarkModeBug || AntisearchEffect || HomicideEffect || NastynationBug || WakeupCallBug || GrayoutBug || GrayCenterBug || CheckerboardBug || ClockwiseSpinBug || CounterclockwiseSpin || LagBugEffect || BlesscurseEffect || DeLightBug || DischargeBug || TrashingBugEffect || FilteringBug || DeformattingBug || FlickerStripBug || UndressingEffect || Hyperbluewalls || NoliteBug || ParanoiaBugEffect || FleecescriptBug || InterruptEffect || DustbinBug || ManaBatteryBug || Monsterfingers || MiscastBug || MessageSuppression || StuckAnnouncement || BloodthirstyEffect || MaximumDamageBug || LatencyBugEffect || StarlitBug || KnowledgeBug || HighscoreBug || PinkSpells || GreenSpells || EvencoreEffect || UnderlayerBug || DamageMeterBug || ArbitraryWeightBug || FuckedInfoBug || BlackSpells || CyanSpells || HeapEffectBug || BlueSpells || TronEffect || RedSpells || TooHeavyEffect || ElongationBug || WrapoverEffect || DestructionEffect || MeleePrefixBug || AutomoreBug || UnfairAttackBug ) {
 
 			RMBLoss = 0L;
 			DisplayLoss = 0L;
@@ -8981,6 +9648,80 @@ madnesseffect:
 			HighlevelStatus = 0L;
 			SpellForgetting = 0L;
 			SoundEffectBug = 0L;
+		LootcutBug = 0L;
+		MonsterSpeedBug = 0L;
+		ScalingBug = 0L;
+		EnmityBug = 0L;
+		WhiteSpells = 0L;
+		CompleteGraySpells = 0L;
+		QuasarVision = 0L;
+		MommaBugEffect = 0L;
+		HorrorBugEffect = 0L;
+		ArtificerBug = 0L;
+		WereformBug = 0L;
+		NonprayerBug = 0L;
+		EvilPatchEffect = 0L;
+		HardModeEffect = 0L;
+		SecretAttackBug = 0L;
+		EaterBugEffect = 0L;
+		CovetousnessBug = 0L;
+		NotSeenBug = 0L;
+		DarkModeBug = 0L;
+		AntisearchEffect = 0L;
+		HomicideEffect = 0L;
+		NastynationBug = 0L;
+		WakeupCallBug = 0L;
+		GrayoutBug = 0L;
+		GrayCenterBug = 0L;
+		CheckerboardBug = 0L;
+		ClockwiseSpinBug = 0L;
+		CounterclockwiseSpin = 0L;
+		LagBugEffect = 0L;
+		BlesscurseEffect = 0L;
+		DeLightBug = 0L;
+		DischargeBug = 0L;
+		TrashingBugEffect = 0L;
+		FilteringBug = 0L;
+		DeformattingBug = 0L;
+		FlickerStripBug = 0L;
+		UndressingEffect = 0L;
+		Hyperbluewalls = 0L;
+		NoliteBug = 0L;
+		ParanoiaBugEffect = 0L;
+		FleecescriptBug = 0L;
+		InterruptEffect = 0L;
+		DustbinBug = 0L;
+		ManaBatteryBug = 0L;
+		Monsterfingers = 0L;
+		MiscastBug = 0L;
+		MessageSuppression = 0L;
+		StuckAnnouncement = 0L;
+		BloodthirstyEffect = 0L;
+		MaximumDamageBug = 0L;
+		LatencyBugEffect = 0L;
+		StarlitBug = 0L;
+		KnowledgeBug = 0L;
+		HighscoreBug = 0L;
+		PinkSpells = 0L;
+		GreenSpells = 0L;
+		EvencoreEffect = 0L;
+		UnderlayerBug = 0L;
+		DamageMeterBug = 0L;
+		ArbitraryWeightBug = 0L;
+		FuckedInfoBug = 0L;
+		BlackSpells = 0L;
+		CyanSpells = 0L;
+		HeapEffectBug = 0L;
+		BlueSpells = 0L;
+		TronEffect = 0L;
+		RedSpells = 0L;
+		TooHeavyEffect = 0L;
+		ElongationBug = 0L;
+		WrapoverEffect = 0L;
+		DestructionEffect = 0L;
+		MeleePrefixBug = 0L;
+		AutomoreBug = 0L;
+		UnfairAttackBug = 0L;
 			deltrap(trap); /* used up if anything was cured */
 
 			}
@@ -11436,6 +12177,80 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case AUTO_VULN_TRAP:
 		case TELE_ITEMS_TRAP:
 		case NASTINESS_TRAP:
+		case LOOTCUT_TRAP:
+		case MONSTER_SPEED_TRAP:
+		case SCALING_TRAP:
+		case ENMITY_TRAP:
+		case WHITE_SPELL_TRAP:
+		case COMPLETE_GRAY_SPELL_TRAP:
+		case QUASAR_TRAP:
+		case MOMMA_TRAP:
+		case HORROR_TRAP:
+		case ARTIFICER_TRAP:
+		case WEREFORM_TRAP:
+		case NON_PRAYER_TRAP:
+		case EVIL_PATCH_TRAP:
+		case HARD_MODE_TRAP:
+		case SECRET_ATTACK_TRAP:
+		case EATER_TRAP:
+		case COVETOUSNESS_TRAP:
+		case NOT_SEEN_TRAP:
+		case DARK_MODE_TRAP:
+		case ANTISEARCH_TRAP:
+		case HOMICIDE_TRAP:
+		case NASTY_NATION_TRAP:
+		case WAKEUP_CALL_TRAP:
+		case GRAYOUT_TRAP:
+		case GRAY_CENTER_TRAP:
+		case CHECKERBOARD_TRAP:
+		case CLOCKWISE_SPIN_TRAP:
+		case COUNTERCLOCKWISE_SPIN_TRAP:
+		case LAG_TRAP:
+		case BLESSCURSE_TRAP:
+		case DE_LIGHT_TRAP:
+		case DISCHARGE_TRAP:
+		case TRASHING_TRAP:
+		case FILTERING_TRAP:
+		case DEFORMATTING_TRAP:
+		case FLICKER_STRIP_TRAP:
+		case UNDRESSING_TRAP:
+		case HYPERBLUEWALL_TRAP:
+		case NOLITE_TRAP:
+		case PARANOIA_TRAP:
+		case FLEECESCRIPT_TRAP:
+		case INTERRUPT_TRAP:
+		case DUSTBIN_TRAP:
+		case MANA_BATTERY_TRAP:
+		case MONSTERFINGERS_TRAP:
+		case MISCAST_TRAP:
+		case MESSAGE_SUPPRESSION_TRAP:
+		case STUCK_ANNOUNCEMENT_TRAP:
+		case BLOODTHIRSTY_TRAP:
+		case MAXIMUM_DAMAGE_TRAP:
+		case LATENCY_TRAP:
+		case STARLIT_TRAP:
+		case KNOWLEDGE_TRAP:
+		case HIGHSCORE_TRAP:
+		case PINK_SPELL_TRAP:
+		case GREEN_SPELL_TRAP:
+		case EVC_TRAP:
+		case UNDERLAYER_TRAP:
+		case DAMAGE_METER_TRAP:
+		case ARBITRARY_WEIGHT_TRAP:
+		case FUCKED_INFO_TRAP:
+		case BLACK_SPELL_TRAP:
+		case CYAN_SPELL_TRAP:
+		case HEAP_TRAP:
+		case BLUE_SPELL_TRAP:
+		case TRON_TRAP:
+		case RED_SPELL_TRAP:
+		case TOO_HEAVY_TRAP:
+		case ELONGATION_TRAP:
+		case WRAPOVER_TRAP:
+		case DESTRUCTION_TRAP:
+		case MELEE_PREFIX_TRAP:
+		case AUTOMORE_TRAP:
+		case UNFAIR_ATTACK_TRAP:
 
 		case NEXUS_TRAP:
 		case LEG_TRAP:

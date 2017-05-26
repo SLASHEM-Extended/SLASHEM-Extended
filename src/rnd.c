@@ -793,7 +793,7 @@ randenchantment()
 		case 113:
 		case 114:
 		case 115:
-			switch (rnd(97)) {
+			switch (rnd(171)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -892,6 +892,82 @@ randenchantment()
 			case 95: return SPELL_FORGETTING;
 			case 96: return SOUND_EFFECT_BUG;
 			case 97: return TIMERUN_BUG;
+
+			case 98: return LOOTCUT_BUG;
+			case 99: return MONSTER_SPEED_BUG;
+			case 100: return SCALING_BUG;
+			case 101: return ENMITY_BUG;
+			case 102: return WHITE_SPELLS;
+			case 103: return COMPLETE_GRAY_SPELLS;
+			case 104: return QUASAR_BUG;
+			case 105: return MOMMA_BUG;
+			case 106: return HORROR_BUG;
+			case 107: return ARTIFICER_BUG;
+			case 108: return WEREFORM_BUG;
+			case 109: return NON_PRAYER_BUG;
+			case 110: return EVIL_PATCH_EFFECT;
+			case 111: return HARD_MODE_EFFECT;
+			case 112: return SECRET_ATTACK_BUG;
+			case 113: return EATER_BUG;
+			case 114: return COVETOUSNESS_BUG;
+			case 115: return NOT_SEEN_BUG;
+			case 116: return DARK_MODE_BUG;
+			case 117: return ANTISEARCH_EFFECT;
+			case 118: return HOMICIDE_EFFECT;
+			case 119: return NASTY_NATION_BUG;
+			case 120: return WAKEUP_CALL_BUG;
+			case 121: return GRAYOUT_BUG;
+			case 122: return GRAY_CENTER_BUG;
+			case 123: return CHECKERBOARD_BUG;
+			case 124: return CLOCKWISE_SPIN_BUG;
+			case 125: return COUNTERCLOCKWISE_SPIN_BUG;
+			case 126: return LAG_BUG;
+			case 127: return BLESSCURSE_EFFECT;
+			case 128: return DE_LIGHT_BUG;
+			case 129: return DISCHARGE_BUG;
+			case 130: return TRASHING_EFFECT;
+			case 131: return FILTERING_BUG;
+			case 132: return DEFORMATTING_BUG;
+			case 133: return FLICKER_STRIP_BUG;
+			case 134: return UNDRESSING_EFFECT;
+			case 135: return HYPERBLUEWALL_BUG;
+			case 136: return NOLITE_BUG;
+			case 137: return PARANOIA_BUG;
+			case 138: return FLEECESCRIPT_BUG;
+			case 139: return INTERRUPT_EFFECT;
+			case 140: return DUSTBIN_BUG;
+			case 141: return MANA_BATTERY_BUG;
+			case 142: return MONSTERFINGERS_EFFECT;
+			case 143: return MISCAST_BUG;
+			case 144: return MESSAGE_SUPPRESSION_BUG;
+			case 145: return STUCK_ANNOUNCEMENT_BUG;
+			case 146: return BLOODTHIRSTY_EFFECT;
+			case 147: return MAXIMUM_DAMAGE_BUG;
+			case 148: return LATENCY_BUG;
+			case 149: return STARLIT_BUG;
+			case 150: return KNOWLEDGE_BUG;
+			case 151: return HIGHSCORE_BUG;
+			case 152: return PINK_SPELLS;
+			case 153: return GREEN_SPELLS;
+			case 154: return EVC_EFFECT;
+			case 155: return UNDERLAYER_BUG;
+			case 156: return DAMAGE_METER_BUG;
+			case 157: return ARBITRARY_WEIGHT_BUG;
+			case 158: return FUCKED_INFO_BUG;
+			case 159: return BLACK_SPELLS;
+			case 160: return CYAN_SPELLS;
+			case 161: return HEAP_EFFECT;
+			case 162: return BLUE_SPELLS;
+			case 163: return TRON_EFFECT;
+			case 164: return RED_SPELLS;
+			case 165: return TOO_HEAVY_EFFECT;
+			case 166: return ELONGATION_BUG;
+			case 167: return WRAPOVER_EFFECT;
+			case 168: return DESTRUCTION_EFFECT;
+			case 169: return MELEE_PREFIX_BUG;
+			case 170: return AUTOMORE_BUG;
+			case 171: return UNFAIR_ATTACK_BUG;
+
 			}
 		case 116:
 			return FROZEN;
@@ -1064,7 +1140,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(97)) {
+	switch (rnd(171)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -1163,6 +1239,80 @@ randnastyenchantment()
 		case 95: return SPELL_FORGETTING;
 		case 96: return SOUND_EFFECT_BUG;
 		case 97: return TIMERUN_BUG;
+			case 98: return LOOTCUT_BUG;
+			case 99: return MONSTER_SPEED_BUG;
+			case 100: return SCALING_BUG;
+			case 101: return ENMITY_BUG;
+			case 102: return WHITE_SPELLS;
+			case 103: return COMPLETE_GRAY_SPELLS;
+			case 104: return QUASAR_BUG;
+			case 105: return MOMMA_BUG;
+			case 106: return HORROR_BUG;
+			case 107: return ARTIFICER_BUG;
+			case 108: return WEREFORM_BUG;
+			case 109: return NON_PRAYER_BUG;
+			case 110: return EVIL_PATCH_EFFECT;
+			case 111: return HARD_MODE_EFFECT;
+			case 112: return SECRET_ATTACK_BUG;
+			case 113: return EATER_BUG;
+			case 114: return COVETOUSNESS_BUG;
+			case 115: return NOT_SEEN_BUG;
+			case 116: return DARK_MODE_BUG;
+			case 117: return ANTISEARCH_EFFECT;
+			case 118: return HOMICIDE_EFFECT;
+			case 119: return NASTY_NATION_BUG;
+			case 120: return WAKEUP_CALL_BUG;
+			case 121: return GRAYOUT_BUG;
+			case 122: return GRAY_CENTER_BUG;
+			case 123: return CHECKERBOARD_BUG;
+			case 124: return CLOCKWISE_SPIN_BUG;
+			case 125: return COUNTERCLOCKWISE_SPIN_BUG;
+			case 126: return LAG_BUG;
+			case 127: return BLESSCURSE_EFFECT;
+			case 128: return DE_LIGHT_BUG;
+			case 129: return DISCHARGE_BUG;
+			case 130: return TRASHING_EFFECT;
+			case 131: return FILTERING_BUG;
+			case 132: return DEFORMATTING_BUG;
+			case 133: return FLICKER_STRIP_BUG;
+			case 134: return UNDRESSING_EFFECT;
+			case 135: return HYPERBLUEWALL_BUG;
+			case 136: return NOLITE_BUG;
+			case 137: return PARANOIA_BUG;
+			case 138: return FLEECESCRIPT_BUG;
+			case 139: return INTERRUPT_EFFECT;
+			case 140: return DUSTBIN_BUG;
+			case 141: return MANA_BATTERY_BUG;
+			case 142: return MONSTERFINGERS_EFFECT;
+			case 143: return MISCAST_BUG;
+			case 144: return MESSAGE_SUPPRESSION_BUG;
+			case 145: return STUCK_ANNOUNCEMENT_BUG;
+			case 146: return BLOODTHIRSTY_EFFECT;
+			case 147: return MAXIMUM_DAMAGE_BUG;
+			case 148: return LATENCY_BUG;
+			case 149: return STARLIT_BUG;
+			case 150: return KNOWLEDGE_BUG;
+			case 151: return HIGHSCORE_BUG;
+			case 152: return PINK_SPELLS;
+			case 153: return GREEN_SPELLS;
+			case 154: return EVC_EFFECT;
+			case 155: return UNDERLAYER_BUG;
+			case 156: return DAMAGE_METER_BUG;
+			case 157: return ARBITRARY_WEIGHT_BUG;
+			case 158: return FUCKED_INFO_BUG;
+			case 159: return BLACK_SPELLS;
+			case 160: return CYAN_SPELLS;
+			case 161: return HEAP_EFFECT;
+			case 162: return BLUE_SPELLS;
+			case 163: return TRON_EFFECT;
+			case 164: return RED_SPELLS;
+			case 165: return TOO_HEAVY_EFFECT;
+			case 166: return ELONGATION_BUG;
+			case 167: return WRAPOVER_EFFECT;
+			case 168: return DESTRUCTION_EFFECT;
+			case 169: return MELEE_PREFIX_BUG;
+			case 170: return AUTOMORE_BUG;
+			case 171: return UNFAIR_ATTACK_BUG;
 	}
 
 }
@@ -1306,7 +1456,7 @@ randominsidetrap()
 	else if (!rn2(50)) return ARABELLA_SPEAKER;
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(97)) {
+	else switch (rnd(171)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -1404,6 +1554,81 @@ randominsidetrap()
 		case 95: return SPELL_FORGETTING_TRAP;
 		case 96: return SOUND_EFFECT_TRAP;
 		case 97: return TIMERUN_TRAP;
+
+		case 98: return LOOTCUT_TRAP;
+		case 99: return MONSTER_SPEED_TRAP;
+		case 100: return SCALING_TRAP;
+		case 101: return ENMITY_TRAP;
+		case 102: return WHITE_SPELL_TRAP;
+		case 103: return COMPLETE_GRAY_SPELL_TRAP;
+		case 104: return QUASAR_TRAP;
+		case 105: return MOMMA_TRAP;
+		case 106: return HORROR_TRAP;
+		case 107: return ARTIFICER_TRAP;
+		case 108: return WEREFORM_TRAP;
+		case 109: return NON_PRAYER_TRAP;
+		case 110: return EVIL_PATCH_TRAP;
+		case 111: return HARD_MODE_TRAP;
+		case 112: return SECRET_ATTACK_TRAP;
+		case 113: return EATER_TRAP;
+		case 114: return COVETOUSNESS_TRAP;
+		case 115: return NOT_SEEN_TRAP;
+		case 116: return DARK_MODE_TRAP;
+		case 117: return ANTISEARCH_TRAP;
+		case 118: return HOMICIDE_TRAP;
+		case 119: return NASTY_NATION_TRAP;
+		case 120: return WAKEUP_CALL_TRAP;
+		case 121: return GRAYOUT_TRAP;
+		case 122: return GRAY_CENTER_TRAP;
+		case 123: return CHECKERBOARD_TRAP;
+		case 124: return CLOCKWISE_SPIN_TRAP;
+		case 125: return COUNTERCLOCKWISE_SPIN_TRAP;
+		case 126: return LAG_TRAP;
+		case 127: return BLESSCURSE_TRAP;
+		case 128: return DE_LIGHT_TRAP;
+		case 129: return DISCHARGE_TRAP;
+		case 130: return TRASHING_TRAP;
+		case 131: return FILTERING_TRAP;
+		case 132: return DEFORMATTING_TRAP;
+		case 133: return FLICKER_STRIP_TRAP;
+		case 134: return UNDRESSING_TRAP;
+		case 135: return HYPERBLUEWALL_TRAP;
+		case 136: return NOLITE_TRAP;
+		case 137: return PARANOIA_TRAP;
+		case 138: return FLEECESCRIPT_TRAP;
+		case 139: return INTERRUPT_TRAP;
+		case 140: return DUSTBIN_TRAP;
+		case 141: return MANA_BATTERY_TRAP;
+		case 142: return MONSTERFINGERS_TRAP;
+		case 143: return MISCAST_TRAP;
+		case 144: return MESSAGE_SUPPRESSION_TRAP;
+		case 145: return STUCK_ANNOUNCEMENT_TRAP;
+		case 146: return BLOODTHIRSTY_TRAP;
+		case 147: return MAXIMUM_DAMAGE_TRAP;
+		case 148: return LATENCY_TRAP;
+		case 149: return STARLIT_TRAP;
+		case 150: return KNOWLEDGE_TRAP;
+		case 151: return HIGHSCORE_TRAP;
+		case 152: return PINK_SPELL_TRAP;
+		case 153: return GREEN_SPELL_TRAP;
+		case 154: return EVC_TRAP;
+		case 155: return UNDERLAYER_TRAP;
+		case 156: return DAMAGE_METER_TRAP;
+		case 157: return ARBITRARY_WEIGHT_TRAP;
+		case 158: return FUCKED_INFO_TRAP;
+		case 159: return BLACK_SPELL_TRAP;
+		case 160: return CYAN_SPELL_TRAP;
+		case 161: return HEAP_TRAP;
+		case 162: return BLUE_SPELL_TRAP;
+		case 163: return TRON_TRAP;
+		case 164: return RED_SPELL_TRAP;
+		case 165: return TOO_HEAVY_TRAP;
+		case 166: return ELONGATION_TRAP;
+		case 167: return WRAPOVER_TRAP;
+		case 168: return DESTRUCTION_TRAP;
+		case 169: return MELEE_PREFIX_TRAP;
+		case 170: return AUTOMORE_TRAP;
+		case 171: return UNFAIR_ATTACK_TRAP;
 
 	}
 

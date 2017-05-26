@@ -4848,6 +4848,81 @@ doapply()
 	case SOUND_EFFECT_STONE:
 	case TIME_USE_STONE:
 
+	case LOOTCUT_STONE:
+	case MONSTER_SPEED_STONE:
+	case SCALING_STONE:
+	case INIMICAL_STONE:
+	case WHITE_SPELL_STONE:
+	case GREYOUT_STONE:
+	case QUASAR_STONE:
+	case MOMMY_STONE:
+	case HORROR_STONE:
+	case ARTIFICIAL_STONE:
+	case WEREFORM_STONE:
+	case ANTIPRAYER_STONE:
+	case EVIL_PATCH_STONE:
+	case HARD_MODE_STONE:
+	case SECRET_ATTACK_STONE:
+	case EATER_STONE:
+	case COVETOUS_STONE:
+	case NON_SEEING_STONE:
+	case DARKMODE_STONE:
+	case UNFINDABLE_STONE:
+	case HOMICIDE_STONE:
+	case MULTITRAPPING_STONE:
+	case WAKEUP_CALL_STONE:
+	case GRAYOUT_STONE:
+	case GRAY_CENTER_STONE:
+	case CHECKERBOARD_STONE:
+	case CLOCKWISE_STONE:
+	case COUNTERCLOCKWISE_STONE:
+	case LAG_STONE:
+	case BLESSCURSE_STONE:
+	case DELIGHT_STONE:
+	case DISCHARGE_STONE:
+	case TRASH_STONE:
+	case FILTERING_STONE:
+	case DEFORMATTING_STONE:
+	case FLICKER_STRIP_STONE:
+	case UNDRESSING_STONE:
+	case HYPER_BLUE_STONE:
+	case NO_LIGHT_STONE:
+	case PARANOIA_STONE:
+	case FLEECE_STONE:
+	case INTERRUPTION_STONE:
+	case DUSTBIN_STONE:
+	case BATTERY_STONE:
+	case BUTTERFINGER_STONE:
+	case MISCASTING_STONE:
+	case MESSAGE_SUPPRESSION_STONE:
+	case STUCK_ANNOUNCEMENT_STONE:
+	case STORM_STONE:
+	case MAXIMUM_DAMAGE_STONE:
+	case LATENCY_STONE:
+	case STARLIT_SKY_STONE:
+	case TRAP_KNOWLEDGE_STONE:
+	case HIGHSCORE_STONE:
+	case PINK_SPELL_STONE:
+	case GREEN_SPELL_STONE:
+	case EVC_STONE:
+	case UNDERLAID_STONE:
+	case DAMAGE_METER_STONE:
+	case WEIGHT_STONE:
+	case INFOFUCK_STONE:
+	case BLACK_SPELL_STONE:
+	case CYAN_SPELL_STONE:
+	case HEAP_STONE:
+	case BLUE_SPELL_STONE:
+	case TRON_STONE:
+	case RED_SPELL_STONE:
+	case TOO_HEAVY_STONE:
+	case ELONGATED_STONE:
+	case WRAPOVER_STONE:
+	case DESTRUCTION_STONE:
+	case MELEE_PREFIX_STONE:
+	case AUTOMORE_STONE:
+	case UNFAIR_ATTACK_STONE:
+
 	case SALT_CHUNK:
 	case SILVER_SLINGSTONE:
 	case SMALL_PIECE_OF_UNREFINED_MITHR:
@@ -5002,6 +5077,81 @@ doapply()
 		AllStatsAreLower = 0L;
 		PlayerCannotTrainSkills = 0L;
 		PlayerCannotExerciseStats = 0L;
+
+		LootcutBug = 0L;
+		MonsterSpeedBug = 0L;
+		ScalingBug = 0L;
+		EnmityBug = 0L;
+		WhiteSpells = 0L;
+		CompleteGraySpells = 0L;
+		QuasarVision = 0L;
+		MommaBugEffect = 0L;
+		HorrorBugEffect = 0L;
+		ArtificerBug = 0L;
+		WereformBug = 0L;
+		NonprayerBug = 0L;
+		EvilPatchEffect = 0L;
+		HardModeEffect = 0L;
+		SecretAttackBug = 0L;
+		EaterBugEffect = 0L;
+		CovetousnessBug = 0L;
+		NotSeenBug = 0L;
+		DarkModeBug = 0L;
+		AntisearchEffect = 0L;
+		HomicideEffect = 0L;
+		NastynationBug = 0L;
+		WakeupCallBug = 0L;
+		GrayoutBug = 0L;
+		GrayCenterBug = 0L;
+		CheckerboardBug = 0L;
+		ClockwiseSpinBug = 0L;
+		CounterclockwiseSpin = 0L;
+		LagBugEffect = 0L;
+		BlesscurseEffect = 0L;
+		DeLightBug = 0L;
+		DischargeBug = 0L;
+		TrashingBugEffect = 0L;
+		FilteringBug = 0L;
+		DeformattingBug = 0L;
+		FlickerStripBug = 0L;
+		UndressingEffect = 0L;
+		Hyperbluewalls = 0L;
+		NoliteBug = 0L;
+		ParanoiaBugEffect = 0L;
+		FleecescriptBug = 0L;
+		InterruptEffect = 0L;
+		DustbinBug = 0L;
+		ManaBatteryBug = 0L;
+		Monsterfingers = 0L;
+		MiscastBug = 0L;
+		MessageSuppression = 0L;
+		StuckAnnouncement = 0L;
+		BloodthirstyEffect = 0L;
+		MaximumDamageBug = 0L;
+		LatencyBugEffect = 0L;
+		StarlitBug = 0L;
+		KnowledgeBug = 0L;
+		HighscoreBug = 0L;
+		PinkSpells = 0L;
+		GreenSpells = 0L;
+		EvencoreEffect = 0L;
+		UnderlayerBug = 0L;
+		DamageMeterBug = 0L;
+		ArbitraryWeightBug = 0L;
+		FuckedInfoBug = 0L;
+		BlackSpells = 0L;
+		CyanSpells = 0L;
+		HeapEffectBug = 0L;
+		BlueSpells = 0L;
+		TronEffect = 0L;
+		RedSpells = 0L;
+		TooHeavyEffect = 0L;
+		ElongationBug = 0L;
+		WrapoverEffect = 0L;
+		DestructionEffect = 0L;
+		MeleePrefixBug = 0L;
+		AutomoreBug = 0L;
+		UnfairAttackBug = 0L;
 
 		TurnLimitation = 0L;
 		WeakSight = 0L;

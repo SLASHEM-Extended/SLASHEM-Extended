@@ -479,49 +479,124 @@
 #define S_yvonne_trap		349
 #define S_maurah_trap		350
 
-#define S_timerun_trap		351
+#define S_lootcut_trap	351
+#define S_monster_speed_trap	352
+#define S_scaling_trap	353
+#define S_enmity_trap	354
+#define S_white_spell_trap	355
+#define S_gray_spell_trap	356
+#define S_quasar_trap	357
+#define S_momma_trap	358
+#define S_horror_trap	359
+#define S_artificer_trap	360
+#define S_wereform_trap	361
+#define S_nonprayer_trap	362
+#define S_evil_patch_trap	363
+#define S_hard_mode_trap	364
+#define S_secret_attack_trap	365
+#define S_eater_trap	366
+#define S_covetous_trap	367
+#define S_not_seen_trap	368
+#define S_dark_mode_trap	369
+#define S_antisearch_trap	370
+#define S_homicide_trap	371
+#define S_nasty_nation_trap	372
+#define S_wakeup_call_trap	373
+#define S_grayout_trap	374
+#define S_gray_center_trap	375
+#define S_checkerboard_trap	376
+#define S_clockwise_spin_trap	377
+#define S_counterclockwise_trap	378
+#define S_lag_trap	379
+#define S_blesscurse_trap	380
+#define S_delight_trap	381
+#define S_discharge_trap	382
+#define S_trashing_trap	383
+#define S_filtering_trap	384
+#define S_deformatting_trap	385
+#define S_flicker_strip_trap	386
+#define S_undressing_trap	387
+#define S_hyperbluewall_trap	388
+#define S_nolite_trap	389
+#define S_paranoia_trap	390
+#define S_fleecescript_trap	391
+#define S_interrupt_trap	392
+#define S_dustbin_trap	393
+#define S_mana_battery_trap	394
+#define S_monsterfingers_trap	395
+#define S_miscast_trap	396
+#define S_message_suppression_trap	397
+#define S_stuck_announcement_trap	398
+#define S_bloodthirsty_trap	399
+#define S_maximum_damage_trap	400
+#define S_latency_trap	401
+#define S_starlit_trap	402
+#define S_knowledge_trap	403
+#define S_highscore_trap	404
+#define S_pink_spell_trap	405
+#define S_green_spell_trap	406
+#define S_evc_trap	407
+#define S_underlayer_trap	408
+#define S_damage_meter_trap	409
+#define S_arbitrary_weight_trap	410
+#define S_fucked_info_trap	411
+#define S_black_spell_trap	412
+#define S_cyan_spell_trap	413
+#define S_heap_trap	414
+#define S_blue_spell_trap	415
+#define S_tron_trap	416
+#define S_red_spell_trap	417
+#define S_too_heavy_trap	418
+#define S_elongation_trap	419
+#define S_wrapover_trap	420
+#define S_destruction_trap	421
+#define S_melee_prefix_trap	422
+#define S_automore_trap	423
+#define S_unfair_attack_trap	424
+
+#define S_timerun_trap		425
 
 /* end traps, begin special effects */
 
-#define S_vbeam		352	/* The 4 zap beam symbols.  Do NOT separate. */
-#define S_hbeam		353	/* To change order or add, see function     */
-#define S_lslant	354	/* zapdir_to_glyph() in display.c.	    */
-#define S_rslant	355
-#define S_digbeam	356	/* dig beam symbol */
-#define S_flashbeam	357	/* camera flash symbol */
-#define S_boomleft	358	/* thrown boomerang, open left, e.g ')'    */
-#define S_boomright	359	/* thrown boomerand, open right, e.g. '('  */
-#define S_ss1		360	/* 4 magic shield glyphs */
-#define S_ss2		361
-#define S_ss3		362
-#define S_ss4		363
+#define S_vbeam		426	/* The 4 zap beam symbols.  Do NOT separate. */
+#define S_hbeam		427	/* To change order or add, see function     */
+#define S_lslant	428	/* zapdir_to_glyph() in display.c.	    */
+#define S_rslant	429
+#define S_digbeam	430	/* dig beam symbol */
+#define S_flashbeam	431	/* camera flash symbol */
+#define S_boomleft	432	/* thrown boomerang, open left, e.g ')'    */
+#define S_boomright	433	/* thrown boomerand, open right, e.g. '('  */
+#define S_ss1		434	/* 4 magic shield glyphs */
+#define S_ss2		435
+#define S_ss3		436
+#define S_ss4		437
 
 /* The 8 swallow symbols.  Do NOT separate.  To change order or add, see */
 /* the function swallow_to_glyph() in display.c.			 */
-#define S_sw_tl		364	/* swallow top left [1]			*/
-#define S_sw_tc		365	/* swallow top center [2]	Order:	*/
-#define S_sw_tr		366	/* swallow top right [3]		*/
-#define S_sw_ml		367	/* swallow middle left [4]	1 2 3	*/
-#define S_sw_mr		368	/* swallow middle right [6]	4 5 6	*/
-#define S_sw_bl		369	/* swallow bottom left [7]	7 8 9	*/
-#define S_sw_bc		370	/* swallow bottom center [8]		*/
-#define S_sw_br		371	/* swallow bottom right [9]		*/
+#define S_sw_tl		438	/* swallow top left [1]			*/
+#define S_sw_tc		439	/* swallow top center [2]	Order:	*/
+#define S_sw_tr		440	/* swallow top right [3]		*/
+#define S_sw_ml		441	/* swallow middle left [4]	1 2 3	*/
+#define S_sw_mr		442	/* swallow middle right [6]	4 5 6	*/
+#define S_sw_bl		443	/* swallow bottom left [7]	7 8 9	*/
+#define S_sw_bc		444	/* swallow bottom center [8]		*/
+#define S_sw_br		445	/* swallow bottom right [9]		*/
 
-#define S_explode1	372	/* explosion top left			*/
-#define S_explode2	373	/* explosion top center			*/
-#define S_explode3	374	/* explosion top right		 Ex.	*/
-#define S_explode4	375	/* explosion middle left		*/
-#define S_explode5	376	/* explosion middle center	 /-\	*/
-#define S_explode6	377	/* explosion middle right	 |@|	*/
-#define S_explode7	378	/* explosion bottom left	 \-/	*/
-#define S_explode8	379	/* explosion bottom center		*/
-#define S_explode9	380	/* explosion bottom right		*/
+#define S_explode1	446	/* explosion top left			*/
+#define S_explode2	447	/* explosion top center			*/
+#define S_explode3	448	/* explosion top right		 Ex.	*/
+#define S_explode4	449	/* explosion middle left		*/
+#define S_explode5	450	/* explosion middle center	 /-\	*/
+#define S_explode6	451	/* explosion middle right	 |@|	*/
+#define S_explode7	452	/* explosion bottom left	 \-/	*/
+#define S_explode8	453	/* explosion bottom center		*/
+#define S_explode9	454	/* explosion bottom right		*/
   
 /* end effects */
   
-#define MAXPCHARS	381 	/* maximum number of mapped characters */
+#define MAXPCHARS	455 	/* maximum number of mapped characters */
 #define MAXDCHARS	44	/* maximum of mapped dungeon characters */
-#define MAXTCHARS	308	/* maximum of mapped trap characters */
+#define MAXTCHARS	382	/* maximum of mapped trap characters */
 #define MAXECHARS       29      /* maximum of mapped effects characters */
 #define MAXEXPCHARS	9	/* number of explosion characters */
 

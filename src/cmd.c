@@ -3284,6 +3284,450 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone())) {
+		Sprintf(buf, "the following problem: Monsters delete their musable items when killed.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", LootcutBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || have_monsterspeedstone())) {
+		Sprintf(buf, "the following problem: Monsters are moving faster.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MonsterSpeedBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone())) {
+		Sprintf(buf, "the following problem: Minimum monster level depends on your current depth.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ScalingBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || have_inimicalstone())) {
+		Sprintf(buf, "the following problem: Monsters always spawn hostile.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", EnmityBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (WhiteSpells || u.uprops[WHITE_SPELLS].extrinsic || have_whitespellstone())) {
+		Sprintf(buf, "the following problem: Your spells became white.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", WhiteSpells);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (CompleteGraySpells || u.uprops[COMPLETE_GRAY_SPELLS].extrinsic || have_greyoutstone())) {
+		Sprintf(buf, "the following problem: Your spells became completely gray.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", CompleteGraySpells);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone())) {
+		Sprintf(buf, "the following problem: You can barely see the quasars.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", QuasarVision);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || have_mommystone())) {
+		Sprintf(buf, "the following problem: Your momma will repeatedly be insulted.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MommaBugEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (HorrorBugEffect || u.uprops[HORROR_BUG].extrinsic || have_horrorstone())) {
+		Sprintf(buf, "the following problem: You will repeatedly get hit with status effects.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HorrorBugEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (ArtificerBug || u.uprops[ARTIFICER_BUG].extrinsic || have_artificialstone())) {
+		Sprintf(buf, "the following problem: You will be forced to equip evil artifacts.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ArtificerBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (WereformBug || u.uprops[WEREFORM_BUG].extrinsic || have_wereformstone())) {
+		Sprintf(buf, "the following problem: You randomly polymorph into werecreatures.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", WereformBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (NonprayerBug || u.uprops[NON_PRAYER_BUG].extrinsic || have_antiprayerstone())) {
+		Sprintf(buf, "the following problem: Your prayer timeout goes up instead of down.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", NonprayerBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (EvilPatchEffect || u.uprops[EVIL_PATCH_EFFECT].extrinsic || have_evilpatchstone())) {
+		Sprintf(buf, "the following problem: You will get nasty trap effects intrinsically over time.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", EvilPatchEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone())) {
+		Sprintf(buf, "the following problem: All damage you take is doubled.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HardModeEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone())) {
+		Sprintf(buf, "the following problem: Monsters occasionally use their secret attacks.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", SecretAttackBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (EaterBugEffect || u.uprops[EATER_BUG].extrinsic || have_eaterstone())) {
+		Sprintf(buf, "the following problem: Monsters can eat all items they encounter.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", EaterBugEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (CovetousnessBug || u.uprops[COVETOUSNESS_BUG].extrinsic || have_covetousstone())) {
+		Sprintf(buf, "the following problem: Covetous monster AI fires each turn.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", CovetousnessBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone())) {
+		Sprintf(buf, "the following problem: The walls became invisible.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", NotSeenBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (DarkModeBug || u.uprops[DARK_MODE_BUG].extrinsic || have_darkmodestone())) {
+		Sprintf(buf, "the following problem: Lit tiles aren't visible unless you would also see them if they were unlit.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DarkModeBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (AntisearchEffect || u.uprops[ANTISEARCH_EFFECT].extrinsic || have_unfindablestone())) {
+		Sprintf(buf, "the following problem: The search command never finds anything.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AntisearchEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (HomicideEffect || u.uprops[HOMICIDE_EFFECT].extrinsic || have_homicidestone())) {
+		Sprintf(buf, "the following problem: Monsters build new traps for you to blunder into.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HomicideEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (NastynationBug || u.uprops[NASTY_NATION_BUG].extrinsic || have_multitrappingstone())) {
+		Sprintf(buf, "the following problem: All trap types except beneficial ones are equally likely to generate.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", NastynationBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone())) {
+		Sprintf(buf, "the following problem: Peaceful monsters may spontaneously turn hostile.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", WakeupCallBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone())) {
+		Sprintf(buf, "the following problem: The display intermittently becomes all gray.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", GrayoutBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone())) {
+		Sprintf(buf, "the following problem: Your immediate surroundings are obscured by a gray shroud.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", GrayCenterBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone())) {
+		Sprintf(buf, "the following problem: Only one color of checkerboard tiles is ever visible at any given time.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", CheckerboardBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone())) {
+		Sprintf(buf, "the following problem: Your directional keys are shifted 45 degrees clockwise.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ClockwiseSpinBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone())) {
+		Sprintf(buf, "the following problem: Your directional keys are shifted 90 degrees counterclockwise.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", CounterclockwiseSpin);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (LagBugEffect || u.uprops[LAG_BUG].extrinsic || have_lagstone())) {
+		Sprintf(buf, "the following problem: The game lags.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", LagBugEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (BlesscurseEffect || u.uprops[BLESSCURSE_EFFECT].extrinsic || have_blesscursestone())) {
+		Sprintf(buf, "the following problem: Picking up a blessed item instantly curses it.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BlesscurseEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone())) {
+		Sprintf(buf, "the following problem: Tiles that you're walking on automatically become unlit.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DeLightBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (DischargeBug || u.uprops[DISCHARGE_BUG].extrinsic || have_dischargestone())) {
+		Sprintf(buf, "the following problem: If you use wands or tools that have charges, more charges are used up than normal.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DischargeBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) {
+		Sprintf(buf, "the following problem: If you equip enchanted weapons, armor or rings, their enchantment value decreases.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TrashingBugEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (FilteringBug || u.uprops[FILTERING_BUG].extrinsic || have_filteringstone())) {
+		Sprintf(buf, "the following problem: Certain messages may be replaced with generic ones.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FilteringBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (DeformattingBug || u.uprops[DEFORMATTING_BUG].extrinsic || have_deformattingstone())) {
+		Sprintf(buf, "the following problem: Your pokedex doesn't work.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DeformattingBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone())) {
+		Sprintf(buf, "the following problem: The bottom status line only displays garbage strings.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FlickerStripBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (UndressingEffect || u.uprops[UNDRESSING_EFFECT].extrinsic || have_undressingstone())) {
+		Sprintf(buf, "the following problem: You spontaneously take off equipment.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", UndressingEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone())) {
+		Sprintf(buf, "the following problem: Walls are blue, and walking into them hurts you.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Hyperbluewalls);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone())) {
+		Sprintf(buf, "the following problem: Staircases and object piles are no longer highlighted.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", NoliteBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone())) {
+		Sprintf(buf, "the following problem: There is no confirmation if you walk into traps, water or lava.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ParanoiaBugEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone())) {
+		Sprintf(buf, "the following problem: Inventory item descriptions appear in fleecy colors, which is actually not all that problematic. :-)");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FleecescriptBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone())) {
+		Sprintf(buf, "the following problem: The read, quaff, zap and apply commands now take several turns to use and can be interrupted.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", InterruptEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (DustbinBug || u.uprops[DUSTBIN_BUG].extrinsic || have_dustbinstone())) {
+		Sprintf(buf, "the following problem: If you pick up a scroll, it may disintegrate.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DustbinBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (ManaBatteryBug || u.uprops[MANA_BATTERY_BUG].extrinsic || have_batterystone())) {
+		Sprintf(buf, "a living mana battery.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ManaBatteryBug);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (Monsterfingers || u.uprops[MONSTERFINGERS_EFFECT].extrinsic || have_butterfingerstone())) {
+		Sprintf(buf, "the following problem: Picking up potions may break them and subject you to their vapors.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", Monsterfingers);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (MiscastBug || u.uprops[MISCAST_BUG].extrinsic || have_miscastingstone())) {
+		Sprintf(buf, "the following problem: Casting a spell always causes backlash, regardless of whether the spell worked.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MiscastBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone())) {
+		Sprintf(buf, "the following problem: The top status line doesn't display anything.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MessageSuppression);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (StuckAnnouncement || u.uprops[STUCK_ANNOUNCEMENT_BUG].extrinsic || have_stuckannouncementstone())) {
+		Sprintf(buf, "the following problem: The bottom status line only updates if you explicitly tell it to do so.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", StuckAnnouncement);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone())) {
+		Sprintf(buf, "the following problem: There is no confirmation if you walk into a peaceful monster.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BloodthirstyEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone())) {
+		Sprintf(buf, "the following problem: Monster attacks always deal maximum damage to you.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MaximumDamageBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (LatencyBugEffect || u.uprops[LATENCY_BUG].extrinsic || have_latencystone())) {
+		Sprintf(buf, "the following problem: There is background latency.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", LatencyBugEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone())) {
+		Sprintf(buf, "the following problem: All monsters look the same and you can't tell them apart.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", StarlitBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone())) {
+		Sprintf(buf, "the following problem: All traps look the same and you can't tell them apart.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", KnowledgeBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (HighscoreBug || u.uprops[HIGHSCORE_BUG].extrinsic || have_highscorestone())) {
+		Sprintf(buf, "the following problem: The game continuously spawns spacewars monsters and nasty traps.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HighscoreBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (PinkSpells || u.uprops[PINK_SPELLS].extrinsic || have_pinkspellstone())) {
+		Sprintf(buf, "the following problem: Your spells became pink.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", PinkSpells);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (GreenSpells || u.uprops[GREEN_SPELLS].extrinsic || have_greenspellstone())) {
+		Sprintf(buf, "the following problem: Your spells became green.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", GreenSpells);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (EvencoreEffect || u.uprops[EVC_EFFECT].extrinsic || have_evcstone())) {
+		Sprintf(buf, "the following problem: The game will spawn fake invisible monster markers.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", EvencoreEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (UnderlayerBug || u.uprops[UNDERLAYER_BUG].extrinsic || have_underlaidstone())) {
+		Sprintf(buf, "the following problem: Invisible monster markers are not visible, but bumping into them uses up a turn.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", UnderlayerBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone())) {
+		Sprintf(buf, "the following problem: The game won't tell you exactly how much damage an attack does.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DamageMeterBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone())) {
+		Sprintf(buf, "the following problem: You can't see your carry capacity or the weight of items.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ArbitraryWeightBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) {
+		Sprintf(buf, "the following problem: You can't see what character you are playing.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", FuckedInfoBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (BlackSpells || u.uprops[BLACK_SPELLS].extrinsic || have_blackspellstone())) {
+		Sprintf(buf, "the following problem: Your spells became black.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BlackSpells);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (CyanSpells || u.uprops[CYAN_SPELLS].extrinsic || have_cyanspellstone())) {
+		Sprintf(buf, "the following problem: Your spells became cyan.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", CyanSpells);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (HeapEffectBug || u.uprops[HEAP_EFFECT].extrinsic || have_heapstone())) {
+		Sprintf(buf, "the following problem: Messages are repeated randomly.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", HeapEffectBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (BlueSpells || u.uprops[BLUE_SPELLS].extrinsic || have_bluespellstone())) {
+		Sprintf(buf, "the following problem: Your spells became blue.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", BlueSpells);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone())) {
+		Sprintf(buf, "the following problem: You can't walk in the same direction twice in a row.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TronEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (RedSpells || u.uprops[RED_SPELLS].extrinsic || have_redspellstone())) {
+		Sprintf(buf, "the following problem: Your spells became red.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", RedSpells);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (TooHeavyEffect || u.uprops[TOO_HEAVY_EFFECT].extrinsic || have_tooheavystone())) {
+		Sprintf(buf, "the following problem: Picking up an item increases your carried weight by more than what the item weighs.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", TooHeavyEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) {
+		Sprintf(buf, "the following problem: Monsters' hug attacks, ranged weapons and breaths can hit you from very far away.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", ElongationBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (WrapoverEffect || u.uprops[WRAPOVER_EFFECT].extrinsic || have_wrapoverstone())) {
+		Sprintf(buf, "the following problem: Your positively enchanted items may randomly turn into negatively enchanted ones.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", WrapoverEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (DestructionEffect || u.uprops[DESTRUCTION_EFFECT].extrinsic || have_destructionstone())) {
+		Sprintf(buf, "the following problem: Item destruction may happen randomly.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DestructionEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (MeleePrefixBug || u.uprops[MELEE_PREFIX_BUG].extrinsic || have_meleeprefixstone())) {
+		Sprintf(buf, "the following problem: If you simply walk into monsters to attack, you lose a turn.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", MeleePrefixBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (AutomoreBug || u.uprops[AUTOMORE_BUG].extrinsic || have_automorestone())) {
+		Sprintf(buf, "the following problem: There are no --More-- prompts.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", AutomoreBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone())) {
+		Sprintf(buf, "the following problem: Monsters will occasionally use very unfair attacks on you.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", UnfairAttackBug);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (DisconnectedStairs || u.uprops[DISCONNECTED_STAIRS].extrinsic || have_disconnectstone())) {
 		Sprintf(buf, "the following problem: Staircases are disconnected.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) Sprintf(eos(buf), " (%d)", DisconnectedStairs);
@@ -5747,6 +6191,450 @@ int final;
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
 		Sprintf(buf, "the following problem: All actions take turns.");
 	      Sprintf(eos(buf), " (%d)", TimerunBug);
+		dump(youhad, buf);
+	}
+
+	if (LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone()) {
+		Sprintf(buf, "the following problem: Monsters delete their musable items when killed.");
+	      Sprintf(eos(buf), " (%d)", LootcutBug);
+		dump(youhad, buf);
+	}
+
+	if (MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || have_monsterspeedstone()) {
+		Sprintf(buf, "the following problem: Monsters are moving faster.");
+	      Sprintf(eos(buf), " (%d)", MonsterSpeedBug);
+		dump(youhad, buf);
+	}
+
+	if (ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone()) {
+		Sprintf(buf, "the following problem: Minimum monster level depends on your current depth.");
+	      Sprintf(eos(buf), " (%d)", ScalingBug);
+		dump(youhad, buf);
+	}
+
+	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || have_inimicalstone()) {
+		Sprintf(buf, "the following problem: Monsters always spawn hostile.");
+	      Sprintf(eos(buf), " (%d)", EnmityBug);
+		dump(youhad, buf);
+	}
+
+	if (WhiteSpells || u.uprops[WHITE_SPELLS].extrinsic || have_whitespellstone()) {
+		Sprintf(buf, "the following problem: Your spells became white.");
+	      Sprintf(eos(buf), " (%d)", WhiteSpells);
+		dump(youhad, buf);
+	}
+
+	if (CompleteGraySpells || u.uprops[COMPLETE_GRAY_SPELLS].extrinsic || have_greyoutstone()) {
+		Sprintf(buf, "the following problem: Your spells became completely gray.");
+	      Sprintf(eos(buf), " (%d)", CompleteGraySpells);
+		dump(youhad, buf);
+	}
+
+	if (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone()) {
+		Sprintf(buf, "the following problem: You can barely see the quasars.");
+	      Sprintf(eos(buf), " (%d)", QuasarVision);
+		dump(youhad, buf);
+	}
+
+	if (MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || have_mommystone()) {
+		Sprintf(buf, "the following problem: Your momma will repeatedly be insulted.");
+	      Sprintf(eos(buf), " (%d)", MommaBugEffect);
+		dump(youhad, buf);
+	}
+
+	if (HorrorBugEffect || u.uprops[HORROR_BUG].extrinsic || have_horrorstone()) {
+		Sprintf(buf, "the following problem: You will repeatedly get hit with status effects.");
+	      Sprintf(eos(buf), " (%d)", HorrorBugEffect);
+		dump(youhad, buf);
+	}
+
+	if (ArtificerBug || u.uprops[ARTIFICER_BUG].extrinsic || have_artificialstone()) {
+		Sprintf(buf, "the following problem: You will be forced to equip evil artifacts.");
+	      Sprintf(eos(buf), " (%d)", ArtificerBug);
+		dump(youhad, buf);
+	}
+
+	if (WereformBug || u.uprops[WEREFORM_BUG].extrinsic || have_wereformstone()) {
+		Sprintf(buf, "the following problem: You randomly polymorph into werecreatures.");
+	      Sprintf(eos(buf), " (%d)", WereformBug);
+		dump(youhad, buf);
+	}
+
+	if (NonprayerBug || u.uprops[NON_PRAYER_BUG].extrinsic || have_antiprayerstone()) {
+		Sprintf(buf, "the following problem: Your prayer timeout goes up instead of down.");
+	      Sprintf(eos(buf), " (%d)", NonprayerBug);
+		dump(youhad, buf);
+	}
+
+	if (EvilPatchEffect || u.uprops[EVIL_PATCH_EFFECT].extrinsic || have_evilpatchstone()) {
+		Sprintf(buf, "the following problem: You will get nasty trap effects intrinsically over time.");
+	      Sprintf(eos(buf), " (%d)", EvilPatchEffect);
+		dump(youhad, buf);
+	}
+
+	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone()) {
+		Sprintf(buf, "the following problem: All damage you take is doubled.");
+	      Sprintf(eos(buf), " (%d)", HardModeEffect);
+		dump(youhad, buf);
+	}
+
+	if (SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) {
+		Sprintf(buf, "the following problem: Monsters occasionally use their secret attacks.");
+	      Sprintf(eos(buf), " (%d)", SecretAttackBug);
+		dump(youhad, buf);
+	}
+
+	if (EaterBugEffect || u.uprops[EATER_BUG].extrinsic || have_eaterstone()) {
+		Sprintf(buf, "the following problem: Monsters can eat all items they encounter.");
+	      Sprintf(eos(buf), " (%d)", EaterBugEffect);
+		dump(youhad, buf);
+	}
+
+	if (CovetousnessBug || u.uprops[COVETOUSNESS_BUG].extrinsic || have_covetousstone()) {
+		Sprintf(buf, "the following problem: Covetous monster AI fires each turn.");
+	      Sprintf(eos(buf), " (%d)", CovetousnessBug);
+		dump(youhad, buf);
+	}
+
+	if (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) {
+		Sprintf(buf, "the following problem: The walls became invisible.");
+	      Sprintf(eos(buf), " (%d)", NotSeenBug);
+		dump(youhad, buf);
+	}
+
+	if (DarkModeBug || u.uprops[DARK_MODE_BUG].extrinsic || have_darkmodestone()) {
+		Sprintf(buf, "the following problem: Lit tiles aren't visible unless you would also see them if they were unlit.");
+	      Sprintf(eos(buf), " (%d)", DarkModeBug);
+		dump(youhad, buf);
+	}
+
+	if (AntisearchEffect || u.uprops[ANTISEARCH_EFFECT].extrinsic || have_unfindablestone()) {
+		Sprintf(buf, "the following problem: The search command never finds anything.");
+	      Sprintf(eos(buf), " (%d)", AntisearchEffect);
+		dump(youhad, buf);
+	}
+
+	if (HomicideEffect || u.uprops[HOMICIDE_EFFECT].extrinsic || have_homicidestone()) {
+		Sprintf(buf, "the following problem: Monsters build new traps for you to blunder into.");
+	      Sprintf(eos(buf), " (%d)", HomicideEffect);
+		dump(youhad, buf);
+	}
+
+	if (NastynationBug || u.uprops[NASTY_NATION_BUG].extrinsic || have_multitrappingstone()) {
+		Sprintf(buf, "the following problem: All trap types except beneficial ones are equally likely to generate.");
+	      Sprintf(eos(buf), " (%d)", NastynationBug);
+		dump(youhad, buf);
+	}
+
+	if (WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone()) {
+		Sprintf(buf, "the following problem: Peaceful monsters may spontaneously turn hostile.");
+	      Sprintf(eos(buf), " (%d)", WakeupCallBug);
+		dump(youhad, buf);
+	}
+
+	if (GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) {
+		Sprintf(buf, "the following problem: The display intermittently becomes all gray.");
+	      Sprintf(eos(buf), " (%d)", GrayoutBug);
+		dump(youhad, buf);
+	}
+
+	if (GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone()) {
+		Sprintf(buf, "the following problem: Your immediate surroundings are obscured by a gray shroud.");
+	      Sprintf(eos(buf), " (%d)", GrayCenterBug);
+		dump(youhad, buf);
+	}
+
+	if (CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone()) {
+		Sprintf(buf, "the following problem: Only one color of checkerboard tiles is ever visible at any given time.");
+	      Sprintf(eos(buf), " (%d)", CheckerboardBug);
+		dump(youhad, buf);
+	}
+
+	if (ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone()) {
+		Sprintf(buf, "the following problem: Your directional keys are shifted 45 degrees clockwise.");
+	      Sprintf(eos(buf), " (%d)", ClockwiseSpinBug);
+		dump(youhad, buf);
+	}
+
+	if (CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone()) {
+		Sprintf(buf, "the following problem: Your directional keys are shifted 90 degrees counterclockwise.");
+	      Sprintf(eos(buf), " (%d)", CounterclockwiseSpin);
+		dump(youhad, buf);
+	}
+
+	if (LagBugEffect || u.uprops[LAG_BUG].extrinsic || have_lagstone()) {
+		Sprintf(buf, "the following problem: The game lags.");
+	      Sprintf(eos(buf), " (%d)", LagBugEffect);
+		dump(youhad, buf);
+	}
+
+	if (BlesscurseEffect || u.uprops[BLESSCURSE_EFFECT].extrinsic || have_blesscursestone()) {
+		Sprintf(buf, "the following problem: Picking up a blessed item instantly curses it.");
+	      Sprintf(eos(buf), " (%d)", BlesscurseEffect);
+		dump(youhad, buf);
+	}
+
+	if (DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone()) {
+		Sprintf(buf, "the following problem: Tiles that you're walking on automatically become unlit.");
+	      Sprintf(eos(buf), " (%d)", DeLightBug);
+		dump(youhad, buf);
+	}
+
+	if (DischargeBug || u.uprops[DISCHARGE_BUG].extrinsic || have_dischargestone()) {
+		Sprintf(buf, "the following problem: If you use wands or tools that have charges, more charges are used up than normal.");
+	      Sprintf(eos(buf), " (%d)", DischargeBug);
+		dump(youhad, buf);
+	}
+
+	if (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone()) {
+		Sprintf(buf, "the following problem: If you equip enchanted weapons, armor or rings, their enchantment value decreases.");
+	      Sprintf(eos(buf), " (%d)", TrashingBugEffect);
+		dump(youhad, buf);
+	}
+
+	if (FilteringBug || u.uprops[FILTERING_BUG].extrinsic || have_filteringstone()) {
+		Sprintf(buf, "the following problem: Certain messages may be replaced with generic ones.");
+	      Sprintf(eos(buf), " (%d)", FilteringBug);
+		dump(youhad, buf);
+	}
+
+	if (DeformattingBug || u.uprops[DEFORMATTING_BUG].extrinsic || have_deformattingstone()) {
+		Sprintf(buf, "the following problem: Your pokedex doesn't work.");
+	      Sprintf(eos(buf), " (%d)", DeformattingBug);
+		dump(youhad, buf);
+	}
+
+	if (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone()) {
+		Sprintf(buf, "the following problem: The bottom status line only displays garbage strings.");
+	      Sprintf(eos(buf), " (%d)", FlickerStripBug);
+		dump(youhad, buf);
+	}
+
+	if (UndressingEffect || u.uprops[UNDRESSING_EFFECT].extrinsic || have_undressingstone()) {
+		Sprintf(buf, "the following problem: You spontaneously take off equipment.");
+	      Sprintf(eos(buf), " (%d)", UndressingEffect);
+		dump(youhad, buf);
+	}
+
+	if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+		Sprintf(buf, "the following problem: Walls are blue, and walking into them hurts you.");
+	      Sprintf(eos(buf), " (%d)", Hyperbluewalls);
+		dump(youhad, buf);
+	}
+
+	if (NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) {
+		Sprintf(buf, "the following problem: Staircases and object piles are no longer highlighted.");
+	      Sprintf(eos(buf), " (%d)", NoliteBug);
+		dump(youhad, buf);
+	}
+
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) {
+		Sprintf(buf, "the following problem: There is no confirmation if you walk into traps, water or lava.");
+	      Sprintf(eos(buf), " (%d)", ParanoiaBugEffect);
+		dump(youhad, buf);
+	}
+
+	if (FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone()) {
+		Sprintf(buf, "the following problem: Inventory item descriptions appear in fleecy colors, which is actually not all that problematic. :-)");
+	      Sprintf(eos(buf), " (%d)", FleecescriptBug);
+		dump(youhad, buf);
+	}
+
+	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
+		Sprintf(buf, "the following problem: The read, quaff, zap and apply commands now take several turns to use and can be interrupted.");
+	      Sprintf(eos(buf), " (%d)", InterruptEffect);
+		dump(youhad, buf);
+	}
+
+	if (DustbinBug || u.uprops[DUSTBIN_BUG].extrinsic || have_dustbinstone()) {
+		Sprintf(buf, "the following problem: If you pick up a scroll, it may disintegrate.");
+	      Sprintf(eos(buf), " (%d)", DustbinBug);
+		dump(youhad, buf);
+	}
+
+	if (ManaBatteryBug || u.uprops[MANA_BATTERY_BUG].extrinsic || have_batterystone()) {
+		Sprintf(buf, "a living mana battery.");
+	      Sprintf(eos(buf), " (%d)", ManaBatteryBug);
+		dump(youwere, buf);
+	}
+
+	if (Monsterfingers || u.uprops[MONSTERFINGERS_EFFECT].extrinsic || have_butterfingerstone()) {
+		Sprintf(buf, "the following problem: Picking up potions may break them and subject you to their vapors.");
+	      Sprintf(eos(buf), " (%d)", Monsterfingers);
+		dump(youhad, buf);
+	}
+
+	if (MiscastBug || u.uprops[MISCAST_BUG].extrinsic || have_miscastingstone()) {
+		Sprintf(buf, "the following problem: Casting a spell always causes backlash, regardless of whether the spell worked.");
+	      Sprintf(eos(buf), " (%d)", MiscastBug);
+		dump(youhad, buf);
+	}
+
+	if (MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone()) {
+		Sprintf(buf, "the following problem: The top status line doesn't display anything.");
+	      Sprintf(eos(buf), " (%d)", MessageSuppression);
+		dump(youhad, buf);
+	}
+
+	if (StuckAnnouncement || u.uprops[STUCK_ANNOUNCEMENT_BUG].extrinsic || have_stuckannouncementstone()) {
+		Sprintf(buf, "the following problem: The bottom status line only updates if you explicitly tell it to do so.");
+	      Sprintf(eos(buf), " (%d)", StuckAnnouncement);
+		dump(youhad, buf);
+	}
+
+	if (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) {
+		Sprintf(buf, "the following problem: There is no confirmation if you walk into a peaceful monster.");
+	      Sprintf(eos(buf), " (%d)", BloodthirstyEffect);
+		dump(youhad, buf);
+	}
+
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) {
+		Sprintf(buf, "the following problem: Monster attacks always deal maximum damage to you.");
+	      Sprintf(eos(buf), " (%d)", MaximumDamageBug);
+		dump(youhad, buf);
+	}
+
+	if (LatencyBugEffect || u.uprops[LATENCY_BUG].extrinsic || have_latencystone()) {
+		Sprintf(buf, "the following problem: There is background latency.");
+	      Sprintf(eos(buf), " (%d)", LatencyBugEffect);
+		dump(youhad, buf);
+	}
+
+	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone()) {
+		Sprintf(buf, "the following problem: All monsters look the same and you can't tell them apart.");
+	      Sprintf(eos(buf), " (%d)", StarlitBug);
+		dump(youhad, buf);
+	}
+
+	if (KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone()) {
+		Sprintf(buf, "the following problem: All traps look the same and you can't tell them apart.");
+	      Sprintf(eos(buf), " (%d)", KnowledgeBug);
+		dump(youhad, buf);
+	}
+
+	if (HighscoreBug || u.uprops[HIGHSCORE_BUG].extrinsic || have_highscorestone()) {
+		Sprintf(buf, "the following problem: The game continuously spawns spacewars monsters and nasty traps.");
+	      Sprintf(eos(buf), " (%d)", HighscoreBug);
+		dump(youhad, buf);
+	}
+
+	if (PinkSpells || u.uprops[PINK_SPELLS].extrinsic || have_pinkspellstone()) {
+		Sprintf(buf, "the following problem: Your spells became pink.");
+	      Sprintf(eos(buf), " (%d)", PinkSpells);
+		dump(youhad, buf);
+	}
+
+	if (GreenSpells || u.uprops[GREEN_SPELLS].extrinsic || have_greenspellstone()) {
+		Sprintf(buf, "the following problem: Your spells became green.");
+	      Sprintf(eos(buf), " (%d)", GreenSpells);
+		dump(youhad, buf);
+	}
+
+	if (EvencoreEffect || u.uprops[EVC_EFFECT].extrinsic || have_evcstone()) {
+		Sprintf(buf, "the following problem: The game will spawn fake invisible monster markers.");
+	      Sprintf(eos(buf), " (%d)", EvencoreEffect);
+		dump(youhad, buf);
+	}
+
+	if (UnderlayerBug || u.uprops[UNDERLAYER_BUG].extrinsic || have_underlaidstone()) {
+		Sprintf(buf, "the following problem: Invisible monster markers are not visible, but bumping into them uses up a turn.");
+	      Sprintf(eos(buf), " (%d)", UnderlayerBug);
+		dump(youhad, buf);
+	}
+
+	if (DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) {
+		Sprintf(buf, "the following problem: The game won't tell you exactly how much damage an attack does.");
+	      Sprintf(eos(buf), " (%d)", DamageMeterBug);
+		dump(youhad, buf);
+	}
+
+	if (ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone()) {
+		Sprintf(buf, "the following problem: You can't see your carry capacity or the weight of items.");
+	      Sprintf(eos(buf), " (%d)", ArbitraryWeightBug);
+		dump(youhad, buf);
+	}
+
+	if (FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) {
+		Sprintf(buf, "the following problem: You can't see what character you are playing.");
+	      Sprintf(eos(buf), " (%d)", FuckedInfoBug);
+		dump(youhad, buf);
+	}
+
+	if (BlackSpells || u.uprops[BLACK_SPELLS].extrinsic || have_blackspellstone()) {
+		Sprintf(buf, "the following problem: Your spells became black.");
+	      Sprintf(eos(buf), " (%d)", BlackSpells);
+		dump(youhad, buf);
+	}
+
+	if (CyanSpells || u.uprops[CYAN_SPELLS].extrinsic || have_cyanspellstone()) {
+		Sprintf(buf, "the following problem: Your spells became cyan.");
+	      Sprintf(eos(buf), " (%d)", CyanSpells);
+		dump(youhad, buf);
+	}
+
+	if (HeapEffectBug || u.uprops[HEAP_EFFECT].extrinsic || have_heapstone()) {
+		Sprintf(buf, "the following problem: Messages are repeated randomly.");
+	      Sprintf(eos(buf), " (%d)", HeapEffectBug);
+		dump(youhad, buf);
+	}
+
+	if (BlueSpells || u.uprops[BLUE_SPELLS].extrinsic || have_bluespellstone()) {
+		Sprintf(buf, "the following problem: Your spells became blue.");
+	      Sprintf(eos(buf), " (%d)", BlueSpells);
+		dump(youhad, buf);
+	}
+
+	if (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone()) {
+		Sprintf(buf, "the following problem: You can't walk in the same direction twice in a row.");
+	      Sprintf(eos(buf), " (%d)", TronEffect);
+		dump(youhad, buf);
+	}
+
+	if (RedSpells || u.uprops[RED_SPELLS].extrinsic || have_redspellstone()) {
+		Sprintf(buf, "the following problem: Your spells became red.");
+	      Sprintf(eos(buf), " (%d)", RedSpells);
+		dump(youhad, buf);
+	}
+
+	if (TooHeavyEffect || u.uprops[TOO_HEAVY_EFFECT].extrinsic || have_tooheavystone()) {
+		Sprintf(buf, "the following problem: Picking up an item increases your carried weight by more than what the item weighs.");
+	      Sprintf(eos(buf), " (%d)", TooHeavyEffect);
+		dump(youhad, buf);
+	}
+
+	if (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) {
+		Sprintf(buf, "the following problem: Monsters' hug attacks, ranged weapons and breaths can hit you from very far away.");
+	      Sprintf(eos(buf), " (%d)", ElongationBug);
+		dump(youhad, buf);
+	}
+
+	if (WrapoverEffect || u.uprops[WRAPOVER_EFFECT].extrinsic || have_wrapoverstone()) {
+		Sprintf(buf, "the following problem: Your positively enchanted items may randomly turn into negatively enchanted ones.");
+	      Sprintf(eos(buf), " (%d)", WrapoverEffect);
+		dump(youhad, buf);
+	}
+
+	if (DestructionEffect || u.uprops[DESTRUCTION_EFFECT].extrinsic || have_destructionstone()) {
+		Sprintf(buf, "the following problem: Item destruction may happen randomly.");
+	      Sprintf(eos(buf), " (%d)", DestructionEffect);
+		dump(youhad, buf);
+	}
+
+	if (MeleePrefixBug || u.uprops[MELEE_PREFIX_BUG].extrinsic || have_meleeprefixstone()) {
+		Sprintf(buf, "the following problem: If you simply walk into monsters to attack, you lose a turn.");
+	      Sprintf(eos(buf), " (%d)", MeleePrefixBug);
+		dump(youhad, buf);
+	}
+
+	if (AutomoreBug || u.uprops[AUTOMORE_BUG].extrinsic || have_automorestone()) {
+		Sprintf(buf, "the following problem: There are no --More-- prompts.");
+	      Sprintf(eos(buf), " (%d)", AutomoreBug);
+		dump(youhad, buf);
+	}
+
+	if (UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) {
+		Sprintf(buf, "the following problem: Monsters will occasionally use very unfair attacks on you.");
+	      Sprintf(eos(buf), " (%d)", UnfairAttackBug);
 		dump(youhad, buf);
 	}
 

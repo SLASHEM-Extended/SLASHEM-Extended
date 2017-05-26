@@ -486,6 +486,21 @@ giveback:
 		case RIN_RESTRATION:
 		    pline_The("drain stops vibrating for a moment.");
 		    break;
+		case RIN_LOOTCUT:
+		    pline("No water is dropping down the sink anymore.");
+		    break;
+		case RIN_FORM_SHIFTING:
+		    pline("The sink is rapidly changing shape.");
+		    break;
+		case RIN_LAGGING:
+		    pline("The water flow seems to be delayed!");
+		    break;
+		case RIN_BLESSCURSING:
+		    pline("The sink first flashes %s, then %s.", NH_SILVER, NH_BLACK);
+		    break;
+		case RIN_ILLITERACY:
+		    pline("The sink seems to be breaking apart at the seams.");
+		    break;
 	      case RIN_SICKNESS_RESISTANCE:
 		    pline("The sink looks clean and neat for a moment.");
 		    break;
