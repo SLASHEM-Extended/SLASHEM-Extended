@@ -1446,6 +1446,8 @@ ask_about_trap(int x, int y)
 
 	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
 
+	if (KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone()) return FALSE;
+
 	if (/* is_pool(x, y) || is_lava(x, y) || */ (traphere && traphere->tseen) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && !Hallucination)  {
 
 		/* who the heck included this? Maybe the player doesn't really want to use the portal at all! --Amy */
