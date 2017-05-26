@@ -394,6 +394,7 @@ STATIC_OVL struct Jitem Ancient_items[];
 #else /* OVLB */
 
 STATIC_OVL struct Jitem Japanese_items[] = {
+	{ APPLE, "ringo" },
 	{ AXE, "ono" },
 	{ BANDAGE, "hotai" },
 	{ BASEBALL_BAT, "jo" },	/* Close enough, club is a bokken for now */
@@ -405,6 +406,7 @@ STATIC_OVL struct Jitem Japanese_items[] = {
 	{ BRONZE_PLATE_MAIL, "tanko" },
 	{ BULLET, "dangan" },
 	{ BULLWHIP, "muchi" },
+	{ CANDY_BAR, "kittokatto" },
 	{ CHEST, "kinko" },
 	{ CLOVE_OF_GARLIC, "nin'niku" },
 	{ CLUB, "bokken" },
@@ -415,6 +417,7 @@ STATIC_OVL struct Jitem Japanese_items[] = {
 	{ DART, "bo-shuriken" },
 	{ DENTED_POT, "kubonda nabe" },
 	{ DWARVISH_MATTOCK, "dwarvish zaghnal" },
+	{ EGG, "tamago" },
 	{ FLAIL, "nunchaku" },
 	{ FLY_SWATTER, "tataki tobu" },
 	{ FOOD_RATION, "gunyoki" },
@@ -427,15 +430,18 @@ STATIC_OVL struct Jitem Japanese_items[] = {
 	{ HELMET, "kabuto" },
 	{ ICE_BOX, "bento box" },
 	{ INSECT_SQUASHER, "konchu furattona" },
+	{ KELP_FROND, "nori" },
 	{ KNIFE, "shito" },
 	{ LANCE, "uma-yari" },
 	{ LARGE_BOX, "okina hako" },
 	{ LEATHER_GLOVES, "yugake" },
 	{ LOCK_PICK, "osaku" },
 	{ LONG_SWORD, "chokuto" },
+	{ LOW_BOOTS, "kutsu" },
 	{ LUCERN_HAMMER, "rutsu-erunhanma" },
 	{ MORNING_STAR, "akenomyosei" },
 	{ PANCAKE, "okonomiyaki" },
+	{ PEAR, "uma" },
 	{ PHIAL, "yakubin" },
 	{ PICK_AXE, "tsuruhashi" },
 	{ PLATE_MAIL, "o-yoroi" },
