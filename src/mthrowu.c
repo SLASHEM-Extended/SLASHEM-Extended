@@ -65,6 +65,7 @@ const char *name;	/* if null, then format `obj' */
 			shieldblockrate = 10;
 			break;
 		case PAPER_SHIELD:
+		case DIFFICULT_SHIELD:
 			shieldblockrate = 40;
 			break;
 		case ICKY_SHIELD:
@@ -77,6 +78,8 @@ const char *name;	/* if null, then format `obj' */
 			shieldblockrate = 30;
 			break;
 		case TROLL_SHIELD:
+		case MAGICAL_SHIELD:
+		case SPECIAL_SHIELD:
 			shieldblockrate = 20;
 			break;
 		case TARRIER:
@@ -165,9 +168,15 @@ const char *name;	/* if null, then format `obj' */
 		case PLAIN_DRAGON_SCALE_SHIELD:
 		case SKY_DRAGON_SCALE_SHIELD:
 		case WATER_DRAGON_SCALE_SHIELD:
+		case MAGIC_DRAGON_SCALE_SHIELD:
 		case YELLOW_DRAGON_SCALE_SHIELD:
 
 			shieldblockrate = 23;
+			break;
+
+		case EVIL_DRAGON_SCALE_SHIELD:
+
+			shieldblockrate = 33;
 			break;
 
 		default: impossible("Unknown type of shield (%d)", uarms->otyp);

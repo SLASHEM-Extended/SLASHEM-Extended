@@ -1523,7 +1523,7 @@ int
 randartamulet()
 {
 	int result;
-	result = rnd_class(AMULET_OF_CHANGE,AMULET_OF_DEPRESSION);
+	result = rnd_class(AMULET_OF_CHANGE,AMULET_OF_VULNERABILITY);
 	return result;
 }
 
@@ -1657,7 +1657,7 @@ int
 randartamuletX()
 {
 	int result;
-	result = AMULET_OF_CHANGE + rn2((AMULET_OF_DEPRESSION + 1) - AMULET_OF_CHANGE);
+	result = AMULET_OF_CHANGE + rn2((AMULET_OF_VULNERABILITY + 1) - AMULET_OF_CHANGE);
 	return result;
 }
 

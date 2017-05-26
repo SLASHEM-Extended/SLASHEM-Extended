@@ -4131,6 +4131,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 			shieldblockrate = 10;
 			break;
 		case PAPER_SHIELD:
+		case DIFFICULT_SHIELD:
 			shieldblockrate = 40;
 			break;
 		case ICKY_SHIELD:
@@ -4143,6 +4144,8 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 			shieldblockrate = 30;
 			break;
 		case TROLL_SHIELD:
+		case MAGICAL_SHIELD:
+		case SPECIAL_SHIELD:
 			shieldblockrate = 20;
 			break;
 		case TARRIER:
@@ -4233,9 +4236,15 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 		case PLAIN_DRAGON_SCALE_SHIELD:
 		case SKY_DRAGON_SCALE_SHIELD:
 		case WATER_DRAGON_SCALE_SHIELD:
+		case MAGIC_DRAGON_SCALE_SHIELD:
 		case YELLOW_DRAGON_SCALE_SHIELD:
 
 			shieldblockrate = 23;
+			break;
+
+		case EVIL_DRAGON_SCALE_SHIELD:
+
+			shieldblockrate = 33;
 			break;
 
 		default: impossible("Unknown type of shield (%d)", uarms->otyp);
@@ -4299,6 +4308,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	if ((guaranteed || !rn2(10)) && have_sleepstone()) enl_msg("You ", "are", "were", " very tired");
 	if ((guaranteed || !rn2(10)) && have_cursedmagicresstone()) enl_msg("You ", "take", "took", " double damage");
+	if ((guaranteed || !rn2(10)) && uamul && uamul->otyp == AMULET_OF_VULNERABILITY) enl_msg("You ", "take", "took", " extra damage");
 
 	/*** Vision and senses ***/
 	if ((guaranteed || !rn2(10)) && See_invisible) enl_msg(You_, "see", "saw", " invisible");
@@ -6479,6 +6489,7 @@ int final;
 			shieldblockrate = 10;
 			break;
 		case PAPER_SHIELD:
+		case DIFFICULT_SHIELD:
 			shieldblockrate = 40;
 			break;
 		case ICKY_SHIELD:
@@ -6491,6 +6502,8 @@ int final;
 			shieldblockrate = 30;
 			break;
 		case TROLL_SHIELD:
+		case MAGICAL_SHIELD:
+		case SPECIAL_SHIELD:
 			shieldblockrate = 20;
 			break;
 		case TARRIER:
@@ -6581,9 +6594,15 @@ int final;
 		case PLAIN_DRAGON_SCALE_SHIELD:
 		case SKY_DRAGON_SCALE_SHIELD:
 		case WATER_DRAGON_SCALE_SHIELD:
+		case MAGIC_DRAGON_SCALE_SHIELD:
 		case YELLOW_DRAGON_SCALE_SHIELD:
 
 			shieldblockrate = 23;
+			break;
+
+		case EVIL_DRAGON_SCALE_SHIELD:
+
+			shieldblockrate = 33;
 			break;
 
 		default: shieldblockrate = 0; /* we don't want to call impossible from here --Amy */
@@ -6646,6 +6665,7 @@ int final;
 
 	if (have_sleepstone())  dump("  ", "You were very tired");
 	if (have_cursedmagicresstone()) dump("  ", "You took double damage");
+	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) dump("  ", "You took extra damage");
 
 	/*** Vision and senses ***/
 	if (See_invisible) dump("  ", "You saw invisible");

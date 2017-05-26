@@ -285,6 +285,8 @@ register struct monst *mtmp;
 	    case PM_PLAIN_DRAGON:
 	    case PM_SKY_DRAGON:
 	    case PM_WATER_DRAGON:
+	    case PM_EVIL_DRAGON:
+	    case PM_MAGIC_DRAGON:
 	    case PM_YELLOW_DRAGON:
 		/* Make dragon scales.  This assumes that the order of the */
 		/* dragons is the same as the order of the scales.	   */

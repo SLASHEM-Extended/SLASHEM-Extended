@@ -1637,6 +1637,7 @@ int thrown;
 				shieldblockrate = 20;
 				break;
 			case PAPER_SHIELD:
+			case DIFFICULT_SHIELD:
 				shieldblockrate = 50;
 				break;
 			case ICKY_SHIELD:
@@ -1649,6 +1650,8 @@ int thrown;
 				shieldblockrate = 40;
 				break;
 			case TROLL_SHIELD:
+			case MAGICAL_SHIELD:
+			case SPECIAL_SHIELD:
 				shieldblockrate = 30;
 				break;
 			case TARRIER:
@@ -1738,9 +1741,15 @@ int thrown;
 			case PLAIN_DRAGON_SCALE_SHIELD:
 			case SKY_DRAGON_SCALE_SHIELD:
 			case WATER_DRAGON_SCALE_SHIELD:
+			case MAGIC_DRAGON_SCALE_SHIELD:
 			case YELLOW_DRAGON_SCALE_SHIELD:
 
 				shieldblockrate = 33;
+				break;
+
+			case EVIL_DRAGON_SCALE_SHIELD:
+
+				shieldblockrate = 43;
 				break;
 
 			default: impossible("Unknown type of shield (%d)", blocker->otyp);

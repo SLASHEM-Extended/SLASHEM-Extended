@@ -3381,6 +3381,7 @@ int k_format; /* WAC k_format is an int */
 	if (n && Race_if(PM_YUKI_PLAYA)) n += rnd(5);
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
 	if (have_cursedmagicresstone()) n = n * 2;
+	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
 
 	/* [max] Invulnerable no dmg */

@@ -245,7 +245,7 @@ doread()
 	    else useupf(scroll, 1L);
 	    return(1);
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
-	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == KYRT_SHIRT
+	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == BAD_SHIRT || scroll->otyp == CHANTER_SHIRT || scroll->otyp == KYRT_SHIRT
 	|| scroll->otyp == BEAUTIFUL_SHIRT || scroll->otyp == PETA_COMPLIANT_SHIRT || scroll->otyp == RADIOACTIVE_UNDERGARMENT
 	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == BATH_TOWEL
 	|| scroll->otyp == PLUGSUIT || scroll->otyp == SWIMSUIT || scroll->otyp == MEN_S_UNDERWEAR
@@ -5507,6 +5507,131 @@ pline("Don't you date cheat me again! -- Your fault!");
 			}
 		}
 revid_end:
+		break;
+
+	case SCR_ARTIFACT_JACKPOT:
+
+		/* like artifact creation, but if it's a weapon, armor, ring or amulet, the base type is rerolled --Amy */
+
+		known = TRUE;
+
+		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		if (acqo) {
+
+		switch (acqo->oclass) {
+			case WEAPON_CLASS:
+
+				{
+
+					int wpntype; /* 1 = launcher, 2 = ammo, 3 = melee */
+					if (is_launcher(acqo)) wpntype = 1;
+					else if (is_ammo(acqo) || is_missile(acqo)) wpntype = 2;
+					else wpntype = 3;
+reroll:
+					acqo->otyp = rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1);
+					if (wpntype == 1 && !is_launcher(acqo)) goto reroll;
+					if (wpntype == 2 && !is_ammo(acqo) && !is_missile(acqo)) goto reroll;
+					if (wpntype == 3 && (is_launcher(acqo) || is_ammo(acqo) || is_missile(acqo))) goto reroll;
+				}
+
+				break;
+			case ARMOR_CLASS:
+
+				{
+
+					int armortype;
+					/* 1 = shield, 2 = helmet, 3 = boots, 4 = gloves, 5 = cloak, 6 = shirt, 7 = suit */
+					if (is_shield(acqo)) armortype = 1;
+					else if (is_helmet(acqo)) armortype = 2;
+					else if (is_boots(acqo)) armortype = 3;
+					else if (is_gloves(acqo)) armortype = 4;
+					else if (is_cloak(acqo)) armortype = 5;
+					else if (is_shirt(acqo)) armortype = 6;
+					else armortype = 7;
+rerollX:
+					acqo->otyp = rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS);
+					if (armortype == 1 && !is_shield(acqo)) goto rerollX;
+					if (armortype == 2 && !is_helmet(acqo)) goto rerollX;
+					if (armortype == 3 && !is_boots(acqo)) goto rerollX;
+					if (armortype == 4 && !is_gloves(acqo)) goto rerollX;
+					if (armortype == 5 && !is_cloak(acqo)) goto rerollX;
+					if (armortype == 6 && !is_shirt(acqo)) goto rerollX;
+					if (armortype == 7 && !is_suit(acqo)) goto rerollX;
+
+				}
+				break;
+			case RING_CLASS:
+				acqo->otyp = rnd_class(RIN_ADORNMENT,RIN_TELEPORT_CONTROL);
+				break;
+			case AMULET_CLASS:
+				acqo->otyp = rnd_class(AMULET_OF_CHANGE,AMULET_OF_VULNERABILITY);
+				break;
+		}
+
+		    dropy(acqo);
+
+			if (P_MAX_SKILL(get_obj_skill(acqo)) == P_ISRESTRICTED) {
+			    unrestrict_weapon_skill(get_obj_skill(acqo));
+			} else if (P_MAX_SKILL(get_obj_skill(acqo)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(acqo));
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(acqo)) = P_SUPREME_MASTER;
+			}
+
+		    discover_artifact(acqo->oartifact);
+
+			/* reading several of these will enable unaligned artifacts, which has to be done by incrementing the
+			 * u.ugifts var; since we don't actually want this scroll to mess with your chances of getting divine
+			 * sacrifice gifts, it won't increase the variable if it's already nonzero. --Amy */
+			if (!u.ugifts) u.ugifts = 1;
+			pline("An artifact appeared beneath you!");
+		}
+		else pline("Opportunity knocked, but nobody was home.  Bummer.");
+
+		break;
+
+	case SCR_BOSS_COMPANION:
+		known = TRUE;
+
+		reset_rndmonst(NON_PM);
+
+		{
+			int attempts = 0;
+			register struct permonst *ptrZ;
+			register struct monst *bossmon;
+newbossC:
+			do {
+
+				ptrZ = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
+
+			if (ptrZ && ptrZ->geno & G_UNIQ) {
+				if (wizard) pline("monster generation: %s", ptrZ->mname);
+				bossmon = makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+			}
+			else if (rn2(50)) {
+				attempts = 0;
+				goto newbossC;
+			}
+
+			if (bossmon) {
+				tamedog(bossmon, (struct obj *) 0, TRUE);
+			}
+
+		}
+
 		break;
 
 	case SCR_WISHING:

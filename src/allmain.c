@@ -5972,6 +5972,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shitty gloves")) OBJ_DESCR(objects[i]) = "der'movyye perchatki";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "natural gloves")) OBJ_DESCR(objects[i]) = "prirodnyye perchatki";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sensor gloves")) OBJ_DESCR(objects[i]) = "sensornyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "evil dragonhide shield")) OBJ_DESCR(objects[i]) = "zloy shchit iz shkury drakona";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "magic dragonhide shield")) OBJ_DESCR(objects[i]) = "magicheskiy drakon skryt' shchit";
 
 	}
 	}
@@ -6782,6 +6784,9 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shitty gloves")) OBJ_DESCR(objects[i]) = "boktan qo'lqop";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "natural gloves")) OBJ_DESCR(objects[i]) = "tabiiy qo'lqop";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sensor gloves")) OBJ_DESCR(objects[i]) = "tayinlangan qurilmani qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "evil dragonhide shield")) OBJ_DESCR(objects[i]) = "yomon ajdaho yashir qalqon";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "magic dragonhide shield")) OBJ_DESCR(objects[i]) = "sehr ajdaho yashir qalqon";
+
 	}
 	}
 

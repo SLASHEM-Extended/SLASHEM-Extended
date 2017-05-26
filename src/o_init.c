@@ -508,6 +508,15 @@ register char oclass;
 	objects[EVIL_GLOVES].oc_oprop = randnastyenchantment();
 	objects[UNFAIR_STILETTOS].oc_oprop = randnastyenchantment();
 
+	objects[MAGICAL_SHIELD].oc_oprop = randenchantment();
+	objects[EVIL_DRAGON_SCALE_MAIL].oc_oprop = randnastyenchantment();
+	objects[EVIL_DRAGON_SCALES].oc_oprop = randnastyenchantment();
+	objects[EVIL_DRAGON_SCALE_SHIELD].oc_oprop = randnastyenchantment();
+	objects[DIFFICULT_SHIELD].oc_oprop = randnastyenchantment();
+	objects[BAD_SHIRT].oc_oprop = randnastyenchantment();
+	objects[EVIL_PLATE_MAIL].oc_oprop = randnastyenchantment();
+	objects[EVIL_LEATHER_ARMOR].oc_oprop = randnastyenchantment();
+
 	objects[DUMMY_CLOAK_A].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_CLOAK_B].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_CLOAK_C].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();

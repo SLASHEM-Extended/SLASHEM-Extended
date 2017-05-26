@@ -2640,6 +2640,9 @@ Shield_on()
 	case BARRIER_SHIELD:
 	case TROLL_SHIELD:
 	case TARRIER:
+	case DIFFICULT_SHIELD:
+	case SPECIAL_SHIELD:
+	case MAGICAL_SHIELD:
 	case SHIELD_OF_PEACE:
 	case ICE_SHIELD:
 	case LIGHTNING_SHIELD:
@@ -2675,11 +2678,16 @@ Shield_on()
 	case PLAIN_DRAGON_SCALE_SHIELD:
 	case SKY_DRAGON_SCALE_SHIELD:
 	case WATER_DRAGON_SCALE_SHIELD:
+	case MAGIC_DRAGON_SCALE_SHIELD:
+	case EVIL_DRAGON_SCALE_SHIELD:
 	case YELLOW_DRAGON_SCALE_SHIELD:
 		break;
 	default: impossible(unknown_type, c_shield, uarms->otyp);
     }
 */
+
+	if (uarms && uarms->otyp == EVIL_DRAGON_SCALE_SHIELD) curse(uarms);
+	if (uarms && uarms->otyp == DIFFICULT_SHIELD) curse(uarms);
 
     if (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) {
 		if (!uarms->cursed) {
@@ -2800,6 +2808,9 @@ Shield_off()
 	case BARRIER_SHIELD:
 	case TROLL_SHIELD:
 	case TARRIER:
+	case DIFFICULT_SHIELD:
+	case SPECIAL_SHIELD:
+	case MAGICAL_SHIELD:
 	case SHIELD_OF_PEACE:
 	case ICE_SHIELD:
 	case LIGHTNING_SHIELD:
@@ -2835,6 +2846,8 @@ Shield_off()
 	case PLAIN_DRAGON_SCALE_SHIELD:
 	case SKY_DRAGON_SCALE_SHIELD:
 	case WATER_DRAGON_SCALE_SHIELD:
+	case MAGIC_DRAGON_SCALE_SHIELD:
+	case EVIL_DRAGON_SCALE_SHIELD:
 	case YELLOW_DRAGON_SCALE_SHIELD:
 		break;
 	default: impossible(unknown_type, c_shield, uarms->otyp);
@@ -2878,6 +2891,8 @@ Shirt_on()
 		}
 
 	}
+
+	if(uarmu->otyp == BAD_SHIRT) curse(uarmu);
 
 	if (uarmu->oartifact == ART_TIE_DYE_SHIRT_OF_SHAMBHALA) {
 
@@ -2928,6 +2943,18 @@ Armor_on()
 			break;
 	}
 	if (uarm && uarm->otyp == ROBE_OF_NASTINESS) {
+		if (!uarm->cursed) curse(uarm);
+	}
+	if (uarm && uarm->otyp == EVIL_DRAGON_SCALE_MAIL) {
+		if (!uarm->cursed) curse(uarm);
+	}
+	if (uarm && uarm->otyp == EVIL_DRAGON_SCALES) {
+		if (!uarm->cursed) curse(uarm);
+	}
+	if (uarm && uarm->otyp == EVIL_PLATE_MAIL) {
+		if (!uarm->cursed) curse(uarm);
+	}
+	if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR) {
 		if (!uarm->cursed) curse(uarm);
 	}
 
@@ -3070,6 +3097,7 @@ Amulet_on()
 	case AMULET_OF_SCREWY_INTERFACE:
 	case AMULET_OF_BONES:
 	case AMULET_OF_SPELL_FORGETTING:
+	case AMULET_OF_VULNERABILITY:
 
 		if (uamul && !uamul->cursed) curse(uamul);
 

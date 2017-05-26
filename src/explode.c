@@ -583,6 +583,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (damu && Race_if(PM_YUKI_PLAYA)) damu += rnd(5);
 		if (Role_if(PM_BLEEDER)) damu = damu * 2; /* bleeders are harder than hard mode */
 		if (have_cursedmagicresstone()) damu = damu * 2;
+		if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) damu *= rnd(4);
 		if (RngeFrailness) damu = damu * 2;
 
 		if (Invulnerable || (Stoned_chiller && Stoned)) {

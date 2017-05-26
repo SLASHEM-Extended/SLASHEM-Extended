@@ -2846,6 +2846,8 @@ register const char *let,*word;
 			|| otmp->otyp == MEN_S_UNDERWEAR
 			|| otmp->otyp == HAWAIIAN_SHIRT
 			|| otmp->otyp == BLACK_DRESS
+			|| otmp->otyp == CHANTER_SHIRT
+			|| otmp->otyp == BAD_SHIRT
 			|| otmp->otyp == BODYGLOVE
 			|| otmp->otyp == BEAUTIFUL_SHIRT
 			|| otmp->otyp == PETA_COMPLIANT_SHIRT
@@ -7452,6 +7454,37 @@ struct obj *obj;
 			case DUMMY_BOOTS_L: 
 				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_L].oc_oprop), objects[DUMMY_BOOTS_L].a_ac, objects[DUMMY_BOOTS_L].a_can ); break;
 
+			case EVIL_DRAGON_SCALE_MAIL:
+				pline("An extremely sturdy armor that can deflect a heck of a lot of attacks. It also does something very nasty when worn, though..."); break;
+			case EVIL_DRAGON_SCALES:
+				pline("These provide lots of protection, but also do something nasty when worn..."); break;
+			case EVIL_DRAGON_SCALE_SHIELD:
+				pline("It's a shield that gives a ton of armor class and also a high blocking rate, but it does something nasty while you wear it..."); break;
+			case MAGIC_DRAGON_SCALE_MAIL:
+				pline("A suit of armor that offers great protection and also usually spawns with a random enchantment."); break;
+			case MAGIC_DRAGON_SCALES:
+				pline("A suit of armor that offers good protection and also usually spawns with a random enchantment."); break;
+			case MAGIC_DRAGON_SCALE_SHIELD:
+				pline("This shield offers good protection and also usually spawns with a random enchantment."); break;
+			case CHANTER_SHIRT:
+				pline("A shirt that usually has a random enchantment. It can be read."); break;
+			case BAD_SHIRT:
+				pline("This shirt provides good armor class and medium magic cancellation but also does something evil when worn."); break;
+			case DIFFICULT_SHIELD:
+				pline("A shield that provides lots and lots of armor class! Too bad that wearing it has some evil side effect."); break;
+			case MAGICAL_SHIELD:
+				pline("This shield offers protection, but its more important effect is that it provides %s.", enchname(objects[MAGICAL_SHIELD].oc_oprop)); break;
+			case SPECIAL_SHIELD:
+				pline("A shield that offers some protection and also usually spawns with a random enchantment."); break;
+			case EVIL_PLATE_MAIL:
+				pline("This suit of armor gives more than double the protection of full plate mail. But that comes at a high price..."); break;
+			case EVIL_LEATHER_ARMOR:
+				pline("Lightweight, doesn't hinder spellcasting, provides the same amount of armor class as a plate mail, but very evil indeed."); break;
+			case SPECIAL_LEATHER_ARMOR:
+				pline("It's a rather weak suit of armor, but it always spawns with an enchantment."); break;
+			case MAGE_PLATE_MAIL:
+				pline("A very useful suit of armor that can be used by spellcasters without penalties, plus it often spawns with an enchantment."); break;
+
 			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 
 			}
@@ -7762,6 +7795,8 @@ struct obj *obj;
 				pline("As long as you wear this amulet, monsters may sometimes attack each other. It greatly increases your food consumption rate."); break;
 			case AMULET_OF_FUMBLING:
 				pline("Wearing this amulet causes you to fumble. It is usually generated cursed."); break;
+			case AMULET_OF_VULNERABILITY:
+				pline("Don't wear this amulet unless you want to take much more damage by everything. It will autocurse when worn."); break;
 			case AMULET_OF_SECOND_CHANCE:
 				pline("A weaker version of the amulet of life saving that allows you to survive a deadly hit without restoring you to full hit points."); break;
 			case AMULET_OF_DATA_STORAGE:
@@ -8583,6 +8618,10 @@ struct obj *obj;
 				pline("You will face a bunch of egotype monsters when reading this."); break;
 			case SCR_RUMOR: 
 				pline("A scroll that has a rumor written on it."); break;
+			case SCR_ARTIFACT_JACKPOT:
+				pline("This very rare scroll grants you an artifact and then randomizes the base item type of that artifact, so you might end up with something really awesome."); break;
+			case SCR_BOSS_COMPANION:
+				pline("Reading this scroll summons a boss monster. A tame one. Yes, you read that right. You'll get your personal boss monster that fights alongside you."); break;
 			case SCR_MESSAGE: 
 				pline("A scroll that can trigger messages if you read it."); break;
 			case SCR_SIN: 

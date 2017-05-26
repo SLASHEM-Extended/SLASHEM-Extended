@@ -2469,6 +2469,25 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ RIN_TIME_SPENDING, "provodit' vremya" },
 	{ TIME_USE_STONE, "vremya ispol'zovaniya kamnya" },
 
+	{ EVIL_DRAGON_SCALE_MAIL, "zloy drakon masshtaba elektronnoy pochty" },
+	{ EVIL_DRAGON_SCALES, "zlyye drakon'i cheshui" },
+	{ MAGIC_DRAGON_SCALE_MAIL, "magiya drakona masshtab pochty" },
+	{ MAGIC_DRAGON_SCALES, "magicheskiye drakon'yeskiye vesy" },
+	{ CHANTER_SHIRT, "khoreografiya" },
+	{ BAD_SHIRT, "plokhaya rubashka" },
+	{ DIFFICULT_SHIELD, "slozhnyy shchit" },
+	{ MAGICAL_SHIELD, "magicheskiy shchit" },
+	{ SPECIAL_SHIELD, "spetsial'nyy shchit" },
+	{ EVIL_PLATE_MAIL, "zlaya plastina pochty" },
+	{ EVIL_LEATHER_ARMOR, "zlaya kozhanaya bronya" },
+	{ SPECIAL_LEATHER_ARMOR, "spetsial'naya kozhanaya bronya" },
+	{ MAGE_PLATE_MAIL, "magicheskaya pochta" },
+	{ EVIL_DRAGON_SCALE_SHIELD, "zloy shchit drakona" },
+	{ MAGIC_DRAGON_SCALE_SHIELD, "magicheskiy shchit drakona" },
+	{ AMULET_OF_VULNERABILITY, "amulet of uyazvimost'" },
+	{ SCR_ARTIFACT_JACKPOT, "artefaktnyy dzhekpot" },
+	{ SCR_BOSS_COMPANION, "boze-kompan'on" },
+
 	{0, "" }
 };
 
@@ -4420,6 +4439,25 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SOUND_EFFECT_STONE, "tovush effekti tosh" },
 	{ RIN_TIME_SPENDING, "vaqt sarf" },
 	{ TIME_USE_STONE, "vaqt foydalanish tosh" },
+
+	{ EVIL_DRAGON_SCALE_MAIL, "yomon ajdaho ko'lamli pochta" },
+	{ EVIL_DRAGON_SCALES, "yomon ajdaho tarozilari" },
+	{ MAGIC_DRAGON_SCALE_MAIL, "sehr ajdaho ko'lamli pochta" },
+	{ MAGIC_DRAGON_SCALES, "sehr ajdaho tarozilari" },
+	{ CHANTER_SHIRT, "qo'shiq ko'ylak" },
+	{ BAD_SHIRT, "yomon ko'ylak" },
+	{ DIFFICULT_SHIELD, "qiyin qalqon" },
+	{ MAGICAL_SHIELD, "sehrli qalqon" },
+	{ SPECIAL_SHIELD, "maxsus qalqon" },
+	{ EVIL_PLATE_MAIL, "yomon plitasi pochta" },
+	{ EVIL_LEATHER_ARMOR, "yomon charm zirh" },
+	{ SPECIAL_LEATHER_ARMOR, "maxsus charm zirh" },
+	{ MAGE_PLATE_MAIL, "kapsuellerin plitasi pochta" },
+	{ EVIL_DRAGON_SCALE_SHIELD, "yomon ajdaho ko'lamli qalqon" },
+	{ MAGIC_DRAGON_SCALE_SHIELD, "sehr ajdaho ko'lamli qalqon" },
+	{ AMULET_OF_VULNERABILITY, "amulet of zaifliklarni" },
+	{ SCR_ARTIFACT_JACKPOT, "qo'lyozmasi bir ikramiye" },
+	{ SCR_BOSS_COMPANION, "bose hamroh" },
 
 	{0, "" }
 };
@@ -7276,7 +7314,7 @@ typfnd:
 	    typ = OIL_LAMP;
 
 	/* obviously don't allow wishing for scrolls of wishing --Amy */
-	if ((typ == SCR_WISHING || typ == SCR_ARTIFACT_CREATION || typ == SCR_RESURRECTION || typ == SCR_ACQUIREMENT || typ == SCR_ENTHRONIZATION || typ == SCR_FOUNTAIN_BUILDING)
+	if ((typ == SCR_WISHING || typ == SCR_ARTIFACT_CREATION || typ == SCR_ARTIFACT_JACKPOT || typ == SCR_RESURRECTION || typ == SCR_ACQUIREMENT || typ == SCR_ENTHRONIZATION || typ == SCR_FOUNTAIN_BUILDING)
 #ifdef WIZARD
 				&& !wizard
 #endif

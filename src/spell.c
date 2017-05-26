@@ -5851,7 +5851,7 @@ rerollX:
 				otmp->otyp = rnd_class(RIN_ADORNMENT,RIN_TELEPORT_CONTROL);
 				break;
 			case AMULET_CLASS:
-				otmp->otyp = rnd_class(AMULET_OF_CHANGE,AMULET_OF_DEPRESSION);
+				otmp->otyp = rnd_class(AMULET_OF_CHANGE,AMULET_OF_VULNERABILITY);
 				break;
 		}
 		pline("Your artifact was rerolled to another base item!");
