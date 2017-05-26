@@ -6774,6 +6774,15 @@ register struct	monst	*mtmp;
 		 (void) mongets(mtmp, SCR_DEMONOLOGY);
 		}
 
+		/* Major demon lords and princes always start with a scroll of root password detection as a means to escape
+		 * from the player character if they feel they're losing. THIS IS DONE ON PURPOSE. Soviet the Type Of Ice Block
+		 * would remove this and give a weird comment, but I won't, even in soviet mode.
+		 * That continuous "REMOVE! REMOVE! REMOVE!" policy of Soviet5lo is really terrible. I wonder why he didn't
+		 * decide to take up DCSS, because that game has an official design philosophy of putting stuff in just to
+		 * make the player think "oh this is fun! I'm happy with this new feature!" and then in the next version they
+		 * remove it again, often for absolutely petty reasons.
+		 * Anyway, this is SLEX, where I and I alone decide what is put in and that nothing is removed. --Amy */
+
 		if (mtmp->data == &mons[PM_BAEL]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_ZUGGTMOY]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_BAPHOMET]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
@@ -6801,6 +6810,32 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_ASMODEUS]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_DEMOGORGON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_CTHULHU]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_JUEBLEX]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_JUBELEX]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_FIERNA]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_ALDINACH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_PUSTULENCE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_SHAMI_AMOURAE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_THE_DREAMER]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_ALRUNES]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_KOSTCHTCHIE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_PAZUZU]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_LEVISTUS]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_MOLEK]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_DAEMON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_SHAKTARI]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_AVATAR_OF_LOLTH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_DISLEXIAPATER]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_DIABLO]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_ROFLTH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_KOSCHEI]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_DAGON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_OBOX_OB]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_LAMASHTU]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_LILITH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_SAMMAEL]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_RENDORN]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_ANDOR_DRAKON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 
 	if (ishaxor) {
 		if (mtmp->data == &mons[PM_BAEL]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
@@ -6830,6 +6865,32 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_ASMODEUS]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_DEMOGORGON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_CTHULHU]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_JUEBLEX]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_JUBELEX]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_FIERNA]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_ALDINACH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_PUSTULENCE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_SHAMI_AMOURAE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_THE_DREAMER]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_ALRUNES]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_KOSTCHTCHIE]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_PAZUZU]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_LEVISTUS]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_MOLEK]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_DAEMON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_SHAKTARI]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_AVATAR_OF_LOLTH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_DISLEXIAPATER]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_DIABLO]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_ROFLTH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_KOSCHEI]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_DAGON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_OBOX_OB]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_LAMASHTU]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_LILITH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_SAMMAEL]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_RENDORN]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_ANDOR_DRAKON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 	}
 
 		break;
