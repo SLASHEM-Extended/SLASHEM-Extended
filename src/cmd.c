@@ -9403,6 +9403,15 @@ click_to_cmd(x, y, mod)
 	return cmd;
 	}
 
+	if (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_NATURAL_BUG || u.umonnum == PM_WEAPON_BUG || u.umonnum == PM_MELEE_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd)) {
+
+	pline("Due to your movement restriction, you cannot quicktravel!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	cmd[0] = ' ';
+	return cmd;
+
+	}
+
     x -= u.ux;
     y -= u.uy;
 
@@ -9663,6 +9672,20 @@ dotravel()
 	pline("The travel command is currently unavailable!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
+	}
+
+	if (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_NATURAL_BUG || u.umonnum == PM_WEAPON_BUG || u.umonnum == PM_MELEE_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd)) {
+
+	/* CURSE that satanic travelto function. I pulled the nethack 3.6.0 fix that disallows quicktravelling to an
+	 * adjacent diagonal square in one turn, but it does not prevent moving through diagonal openings in the
+	 * quicktravel path! And I don't know where in the function it does that. So until I find out how to really fix this,
+	 * I'll just disable quicktravel for grid bugs altogether. If you are annoyed by this: don't waste your time
+	 * complaining, but provide the piece of code that fixes it! Then I will fix and re-enable it. --Amy */
+
+	pline("Due to your movement restriction, you cannot quicktravel!");
+	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return 0;
+
 	}
 
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) {

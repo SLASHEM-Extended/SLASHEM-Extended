@@ -1232,7 +1232,7 @@ findtravelpath(guess)
 boolean guess;
 {
     /* if travel to adjacent, reachable location, use normal movement rules */
-    if (!guess && iflags.travel1 && distmin(u.ux, u.uy, u.tx, u.ty) == 1) {
+    if (!guess && iflags.travel1 && distmin(u.ux, u.uy, u.tx, u.ty) == 1 && !(u.ux != u.tx && u.uy != u.ty && (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_NATURAL_BUG || u.umonnum == PM_WEAPON_BUG || u.umonnum == PM_MELEE_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd)) ) ) {
 	flags.run = 0;
 	if (test_move(u.ux, u.uy, u.tx-u.ux, u.ty-u.uy, TEST_MOVE)) {
 	    u.dx = u.tx-u.ux;
