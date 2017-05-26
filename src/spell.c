@@ -1672,6 +1672,20 @@ boolean atme;
 		energy *= 4;
 		energy /= 5;
 	}
+
+	if (Upolyd && dmgtype(youmonst.data, AD_SPEL) ) {
+		energy *= 19;
+		energy /= 20;
+	}
+	if (Upolyd && dmgtype(youmonst.data, AD_CLRC) ) {
+		energy *= 19;
+		energy /= 20;
+	}
+	if (Upolyd && dmgtype(youmonst.data, AD_CAST) ) {
+		energy *= 9;
+		energy /= 10;
+	}
+
 	if (uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID) {
 		energy *= 4;
 		energy /= 5;
@@ -6973,6 +6987,17 @@ int spell;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) chance += 10;
 	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "knowledgeable helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "znayushchikh shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bilimdon dubulg'a") ) ) chance += 10;
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "science cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "nauka plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ilm-fan plash") ) ) chance += 10;
+
+	if (Upolyd && dmgtype(youmonst.data, AD_SPEL) ) {
+		chance += 5;
+	}
+	if (Upolyd && dmgtype(youmonst.data, AD_CLRC) ) {
+		chance += 5;
+	}
+	if (Upolyd && dmgtype(youmonst.data, AD_CAST) ) {
+		chance += 10;
+	}
+
 
 	if (Race_if(PM_INKA) && spellid(spell) == SPE_NATURE_BEAM)
 		chance += 100;
