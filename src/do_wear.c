@@ -5251,6 +5251,9 @@ register struct obj *otmp;
 	if (!otmp) return 0;
 	*buf = '\0';			/* lint suppresion */
 
+	boolean updowninversion = 0;
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "up-down cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch s verkhnim plashchem") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "up-pastga plash") )) updowninversion = 1;
+
 	/* special ring checks */
 	if (otmp == uright || otmp == uleft) {
 	    if (nolimbs(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
@@ -5305,10 +5308,10 @@ register struct obj *otmp;
 			|| otmp == uarmu
 		) {
 	    why = 0;	/* the item which prevents disrobing */
-	    if (uarmc && uarmc->cursed) {
+	    if (uarmc && uarmc->cursed && (!updowninversion || otmp == uarmu) ) {
 		Sprintf(buf, "remove your %s", cloak_simple_name(uarmc));
 		why = uarmc;
-	    } else if (otmp == uarmu && uarm && uarm->cursed) {
+	    } else if (otmp == uarmu && uarm && uarm->cursed ) {
 		Sprintf(buf, "remove your %s", c_suit);
 		why = uarm;
 	    } else if (welded(uwep) && bimanual(uwep)) {
@@ -5323,6 +5326,12 @@ register struct obj *otmp;
 		return 0;
 	    }
 	}
+	if (updowninversion && (otmp == uarmc) && uarm && uarm->cursed) {
+		You("cannot remove your suit to take off that up-down cloak.");
+		if (uarm) uarm->bknown = TRUE;
+		return 0;
+	}
+
 	/* basic curse check */
 	if (otmp == uquiver || (otmp == uswapwep && !u.twoweap)) {
 	    ;	/* some items can be removed even when cursed */
