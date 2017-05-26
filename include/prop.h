@@ -388,7 +388,11 @@
 #define SOUND_EFFECT_BUG 349
 #define TIMERUN_BUG 350
 
-#define SECOND_CHANCE		351
+#define RNGE_EXTINCTION 351
+#define RNGE_DEFUSING 352
+#define RNGE_DENASTIFICATION 353
+
+#define SECOND_CHANCE		354
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

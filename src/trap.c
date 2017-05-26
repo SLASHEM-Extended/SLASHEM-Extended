@@ -1730,6 +1730,8 @@ unsigned trflags;
 	blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
 	if (!blackngdur ) blackngdur = 500; /* fail safe */
 
+	if (trap && RngeDenastification) pline("A %s has been sprung.", defsyms[trap_to_defsym(ttype)].explanation);
+
 	/* Traps are 50% more likely to fail for a pickpocket */
 	if (!In_sokoban(&u.uz) && Role_if(PM_PICKPOCKET) && rn2(2)) return;
 
@@ -11414,7 +11416,7 @@ boolean force_failure;
 
 	/* Will our hero succeed? */
 	if (force_failure || untrap_prob(ttmp)) {
-		if (rnl(5)) {
+		if (rnl(5) && !(RngeDefusing && rn2(3) ) ) {
 		    pline("Whoops...");
 		    if (mtmp) {		/* must be a trap that holds monsters */
 			if (ttype == BEAR_TRAP) {

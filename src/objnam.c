@@ -346,6 +346,12 @@ int prop;
 			return "AIDS";
 		case RNGE_TRAP_ALERT:
 			return "trap alert";
+		case RNGE_EXTINCTION:
+			return "extinction";
+		case RNGE_DEFUSING:
+			return "defusing";
+		case RNGE_DENASTIFICATION:
+			return "denastification";
 
 		default:
 			return "Team Nastytrap";

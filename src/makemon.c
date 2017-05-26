@@ -15305,6 +15305,8 @@ loopback:
 		if (ct > 0 && (Race_if(PM_RODNEYAN) && dmgtype(ptr, AD_CAST))) ct += 10;
 		if (ct > 0 && (Race_if(PM_RODNEYAN) && dmgtype(ptr, AD_RNG))) ct += 4;
 
+		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
+
 		if (ct > 0 && monster_with_trait(ptr, u.frequenttrait1)) ct += u.freqtraitbonus1;
 		if (ct > 0 && u.frequenttrait2 && monster_with_trait(ptr, u.frequenttrait2)) ct += u.freqtraitbonus2;
 		if (ct > 0 && u.frequenttrait3 && monster_with_trait(ptr, u.frequenttrait3)) ct += u.freqtraitbonus3;
@@ -15919,6 +15921,8 @@ int     spc;
 		if (u.frequenttrait9 && monster_with_trait(&mons[last], u.frequenttrait9)) num += u.freqtraitbonus9;
 		if (u.frequenttrait10 && monster_with_trait(&mons[last], u.frequenttrait10)) num += u.freqtraitbonus10;
 
+		if (RngeExtinction && mvitals[last].born) num += mvitals[last].born;
+
 		if (last == urole.nemesnum) num += 100;
 
 		if ((urole.enemy1num != NON_PM) && (last == urole.enemy1num)) num += 125;
@@ -16239,6 +16243,8 @@ int     spc;
 		if (u.frequenttrait8 && monster_with_trait(&mons[first], u.frequenttrait8)) num -= u.freqtraitbonus8;
 		if (u.frequenttrait9 && monster_with_trait(&mons[first], u.frequenttrait9)) num -= u.freqtraitbonus9;
 		if (u.frequenttrait10 && monster_with_trait(&mons[first], u.frequenttrait10)) num -= u.freqtraitbonus10;
+
+		if (RngeExtinction && mvitals[first].born) num -= mvitals[first].born;
 
 		if (first == urole.nemesnum) num -= 100;
 
