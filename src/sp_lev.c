@@ -3120,6 +3120,10 @@ boolean prefilled;
 			else if (!rn2(100)) { /* evil patch idea by jonadab - cursed vaults filled with L */
 
 				level.flags.vault_is_cursed = TRUE;
+
+				u.aggravation = 1; /* make them high-level for good measure --Amy */
+				reset_rndmonst(NON_PM);
+
 				mtmp = makemon(mkclass(S_LICH,0),croom->lx,croom->ly,NO_MM_FLAGS);
 				if (mtmp) mtmp->msleeping = 1;
 				mtmp = makemon(mkclass(S_LICH,0),croom->hx,croom->hy,NO_MM_FLAGS);
@@ -3130,6 +3134,8 @@ boolean prefilled;
 				if (rn2(2)) {mtmp = makemon(mkclass(S_LICH,0),croom->lx,croom->hy,NO_MM_FLAGS);
 				if (mtmp) mtmp->msleeping = 1;
 				}
+
+				u.aggravation = 0;
 
 			}
 
