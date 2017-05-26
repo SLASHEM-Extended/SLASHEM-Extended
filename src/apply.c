@@ -1044,7 +1044,7 @@ struct obj **optr;
 		if (nochargechange >= rnd(10)) consume_obj_charge(obj, TRUE);
 
 	    if (u.uswallow) {
-		if (!obj->cursed)
+		if (!obj->cursed && !rn2(10))
 		    (void) openit();
 		else
 		    pline(nothing_happens);
@@ -1073,11 +1073,13 @@ struct obj **optr;
 #ifdef	AMIGA
 		amii_speaker( obj, "ahahahDhEhCw", AMII_SOFT_VOLUME );
 #endif
-		if (uchain) {
+		if (uchain && !rn2(10)) {
 		    unpunish();
 		    res = 1;
 		}
-		res += openit();
+		/* the bell now has many more charges... but I didn't do that so you can endlessly detect traps! --Amy
+		 * it's *only* meant to make sure you won't run out as easily during the ritual! */
+		if (!rn2(10)) res += openit();
 		switch (res) {
 		  case 0:  pline(nothing_happens); break;
 		  case 1:  pline("%s opens...", Something);
@@ -1090,8 +1092,10 @@ struct obj **optr;
 #ifdef	AMIGA
 		amii_speaker( obj, "AeFeaeFeAefegw", AMII_OKAY_VOLUME );
 #endif
-		if (findit() != 0) learno = TRUE;
-		else pline(nothing_happens);
+		if (!rn2(10)) {
+			if (findit() != 0) learno = TRUE;
+			else pline(nothing_happens);
+		} else pline(nothing_happens);
 	    }
 
 	}	/* charged BofO */
