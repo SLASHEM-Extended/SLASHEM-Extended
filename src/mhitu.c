@@ -4876,7 +4876,7 @@ hitmu(mtmp, mattk)
 	    case AD_NAST:
 		hitmsg(mtmp, mattk);
 
-		if (!rn2(50)) {
+		if (!rn2(10)) {
 			pline("Nasty!");
 
 			switch (rnd(95)) {
@@ -6402,7 +6402,7 @@ dopois:
 	    case AD_SKIL:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
-		if (!rn2(1000)) skillcaploss();
+		if (!rn2(100)) skillcaploss();
 		break;
 
 	    case AD_HALU:
@@ -7897,7 +7897,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	    case AD_NAST:
 				pline("A big fat gob of nastiness splashes over you!");
 
-		if (!rn2(50)) {
+		if (!rn2(10)) {
 			pline("It latches on to your body!");
 
 			switch (rnd(95)) {
@@ -8845,7 +8845,7 @@ do_stone2:
 
 	    case AD_SKIL:
 		if (mtmp->mcan) break;
-		if (!rn2(1000)) skillcaploss();
+		if (!rn2(100)) skillcaploss();
 		break;
 
 	    case AD_WTHR:
@@ -10022,7 +10022,7 @@ common:
 		mdamageu(mtmp, tmp);
 		break;
 	    case AD_SKIL:
-		if (!rn2(50)) skillcaploss();
+		if (!rn2(10)) skillcaploss();
 		mdamageu(mtmp, tmp);
 		break;
 
@@ -13617,7 +13617,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_SKIL:
 		if (!mtmp->mcan && canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) &&
-		  mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(1000))) {
+		  mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(100))) {
 		    pline("%s tries to drain your skills with its gaze!", Monnam(mtmp));
 		    stop_occupation();
 		    skillcaploss();
@@ -14439,10 +14439,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_NAST:
-	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(15))) {
 	                pline("%s uses a Topi Ylinen curse on you!", Monnam(mtmp));
 
-		if (!rn2(50)) {
+		if (!rn2(10)) {
 			pline("The ancient foul curse takes possession of you...");
 
 			switch (rnd(95)) {

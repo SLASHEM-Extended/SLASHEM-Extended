@@ -6149,7 +6149,7 @@ uchar aatyp;
 
 	    case AD_NAST:
 
-		if (!rn2(15)) {
+		if (!rn2(5)) {
 			pline("Nasty!");
 
 			switch (rnd(95)) {
@@ -6562,7 +6562,7 @@ uchar aatyp;
 		break;
 
 	    case AD_SKIL:
-		if (!rn2(1000)) skillcaploss();
+		if (!rn2(100)) skillcaploss();
 		break;
 
 	  case AD_NGRA:

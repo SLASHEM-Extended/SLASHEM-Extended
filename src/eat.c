@@ -3062,7 +3062,7 @@ register int pm;
 		}
 
 	/* skill cap reducing monsters very rarely grant something good too --Amy */
-		if (dmgtype(ptr, AD_SKIL) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 1050 : 350) && rn2(2) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
+		if (dmgtype(ptr, AD_SKIL) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 210 : 70) && rn2(2) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 
 			You_feel("the RNG's touch...");
 
@@ -3090,7 +3090,9 @@ register int pm;
 			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
 				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
-			} else You_feel("no different than before.");
+			} else pluslvl(FALSE);
+
+			pluslvl(FALSE);
 
 		}
 
