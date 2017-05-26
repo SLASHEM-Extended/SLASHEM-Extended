@@ -179,7 +179,7 @@ int thrown;
 		!( (Confusion && !Conf_resist) || (Stunned && !Stun_resist) )) {
 	    /* Bonus if the player is proficient in this weapon... */
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 
 	    switch (P_SKILL(weapon_type(obj))) {
 	    default:	break; /* No bonus */
@@ -238,7 +238,7 @@ int thrown;
 	    case PM_ROCKER:
 		if (skill == P_SLING) {multishot++;
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 
 		if (P_SKILL(weapon_type(obj)) >= P_SKILLED) multishot++;
 		if (P_SKILL(weapon_type(obj)) >= P_EXPERT) multishot++;
@@ -1049,6 +1049,10 @@ boolean hitsroof;
 	if (dmg > 1 && less_damage) dmg = 1;
 	if (dmg > 0) dmg += u.udaminc;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) dmg += 2;
+
+	if (dmg > 0 && (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") ))) dmg += 1;
+	if (dmg > 0 && (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'ldirish qo'lqop") ))) dmg += 1;
+
 	if (dmg > 0 && uwep && uwep->oartifact == ART_SPAMBAIT_FIRE) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
@@ -1203,7 +1207,7 @@ int thrown;
 	    }
 	    if (u.dz < 0 && Role_if(PM_JEDI) &&
 		    is_lightsaber(obj) && obj->lamplit && !impaired &&
-			!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&
+			!(PlayerCannotUseSkills) &&
 		    P_SKILL(weapon_type(obj)) >= P_SKILLED) {
 		pline("%s the %s and returns to your hand!",
 		      Tobjnam(obj, "hit"), ceiling(u.ux,u.uy));
@@ -1293,6 +1297,7 @@ int thrown;
 
 		if (uarmg && uarmg->oartifact == ART_BEEEEEEEANPOLE && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 5;
 		if (uwep && uwep->oartifact == ART_SNIPER_CROSSHAIR && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) range += 30;
+		if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "cyanism cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch s tsianom") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ko'k zaharlanish plash") )) && launcher && objects[launcher->otyp].oc_skill == P_SLING) range += 3;
 		if (obj && obj->oartifact == ART_RACER_PROJECTILE) range *= 2;
 	
 		if (Is_airlevel(&u.uz) || Levitation) {
@@ -1376,7 +1381,7 @@ int thrown;
 		if ((obj->oartifact == ART_MJOLLNIR &&
 			Role_if(PM_VALKYRIE) && rn2(100)) ||
 		    (is_lightsaber(obj) && obj->lamplit && Role_if(PM_JEDI) &&
-			!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&
+			!(PlayerCannotUseSkills) &&
 		     P_SKILL(weapon_type(obj)) >= P_SKILLED)){
 		    /* we must be wearing Gauntlets of Power to get here */
 		    /* or a Jedi with a lightsaber */
@@ -1588,6 +1593,10 @@ int thrown;
 	if (u.ulevel < 3 && rn2(2)) tmp += 1;
 
 	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
+
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) tmp += 1;
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'ldirish qo'lqop") )) tmp += 1;
+
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
@@ -2272,7 +2281,7 @@ boolean from_invent;
 			    }
 			    /* curse the lawful/neutral altar */
 			    pline_The("altar is stained with blood.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy nechisto yeretikom, pravoslavnaya tserkov' progonit vas!" : "Klatsch.");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vy nechisto yeretikom, pravoslavnaya tserkov' progonit vas!" : "Klatsch.");
 			    if (!Is_astralevel(&u.uz))
 				levl[x][y].altarmask = AM_CHAOTIC;
 			    angry_priest();

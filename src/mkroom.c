@@ -701,17 +701,47 @@ struct mkroom *sroom;
 		  if (chest) {
 			  chest->spe = 2; /* so it can be found later */
 		  }
+
+		  if (!rn2(20)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  }
+
 		  level.flags.has_court = 1;
 		  break;
 		}
+	      case ARMORY:
+
+		  if (!rn2(10)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  }
+
+		  break;
+
 	      case BARRACKS:
+
+		  if (!rn2(50)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  }
+
 		  level.flags.has_barracks = 1;
 		  break;
-	      case REALZOO:              
 	      case ZOO:
+		  if (!rn2(50)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  }
+	      case REALZOO:              
 		  level.flags.has_zoo = 1;
 		  break;
 	      case MORGUE:
+		  if (!rn2(50)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  }
+
 		  level.flags.has_morgue = 1;
 		  break;
 	      case SWAMP:
@@ -739,18 +769,45 @@ struct mkroom *sroom;
               level.flags.has_terrorhall = 1;
               break;
             case INSIDEROOM:
+
+		  if (!rn2(10)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+
+			while (!rn2(2)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+			}
+		  }
+
               level.flags.has_insideroom = 1;
               break;
             case RIVERROOM:
+		  if (!rn2(30)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  }
               level.flags.has_riverroom = 1;
               break;
             case TENSHALL:
+		  if (!rn2(50)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  }
               level.flags.has_tenshall = 1;
               break;
             case ELEMHALL:
+		  if (!rn2(50)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  }
               level.flags.has_elemhall = 1;
               break;
             case ANGELHALL:
+		  if (!rn2(20)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  }
               level.flags.has_angelhall = 1;
               break;
             case MIMICHALL:
@@ -763,12 +820,20 @@ struct mkroom *sroom;
               level.flags.has_spiderhall = 1;
               break;
             case TROLLHALL:
+		  if (!rn2(50)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  }
               level.flags.has_trollhall = 1;
               break;
             case COINHALL:
               level.flags.has_coinhall = 1;
               break;
             case HUMANHALL:
+		  if (!rn2(30)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  }
               level.flags.has_humanhall = 1;
               break;
             case GOLEMHALL:
@@ -1556,6 +1621,7 @@ mkinsideroom()
     struct mkroom *sroom;
     int typ, typ2;
 	register int sx,sy = 0;
+	coord mm;
 
 	register int tryct = 0;
 	register struct obj *otmp;
@@ -1568,6 +1634,16 @@ mkinsideroom()
 
 		if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
 		if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
+
+		  if (!rn2(10)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+
+			while (!rn2(2)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+			}
+		  }
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
@@ -1618,6 +1694,7 @@ mkriverroom()
     struct mkroom *sroom;
     schar typ;
 	register int sx,sy = 0;
+	coord mm;
 
     if (!(sroom = pick_room(FALSE))) return;
 
@@ -1627,6 +1704,11 @@ mkriverroom()
 
 		if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
 		if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
+
+		  if (!rn2(30)) {
+			  (void) somexy(sroom, &mm);
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		  }
 
 		for(sx = sroom->lx; sx <= sroom->hx; sx++)
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)

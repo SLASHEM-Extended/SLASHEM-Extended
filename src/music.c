@@ -389,7 +389,7 @@ struct obj *instr;
 	    You("start playing %s.", the(xname(instr)));
 
 	int nochargechange = 10;
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
 			default: break;
 			case P_BASIC: nochargechange = 9; break;

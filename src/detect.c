@@ -869,7 +869,7 @@ register struct obj *sobj;
 	else found = TRUE;
     }
     for (obj = fobj; obj; obj = obj->nobj) {
-	if ((obj->otyp==LARGE_BOX || obj->otyp==CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped) {
+	if ((obj->otyp==LARGE_BOX || obj->otyp==TREASURE_CHEST || obj->otyp==CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped) {
 	    if (obj->ox != u.ux || obj->oy != u.uy)
 		goto outtrapmap;
 	    else found = TRUE;
@@ -902,7 +902,7 @@ outtrapmap:
 	if (rn2(2)) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
 
     for (obj = fobj; obj; obj = obj->nobj)
-	if ((obj->otyp==LARGE_BOX || obj->otyp==CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
+	if ((obj->otyp==LARGE_BOX || obj->otyp==TREASURE_CHEST || obj->otyp==CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
 	if (rn2(2)) sense_trap((struct trap *)0, obj->ox, obj->oy, sobj && sobj->cursed);
 
     for (door = 0; door < doorindex; door++) {
@@ -940,7 +940,7 @@ register struct obj *sobj;
 	else found = TRUE;
     }
     for (obj = fobj; obj; obj = obj->nobj) {
-	if ((obj->otyp==LARGE_BOX || obj->otyp==CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped) {
+	if ((obj->otyp==LARGE_BOX || obj->otyp==CHEST || obj->otyp==TREASURE_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped) {
 	    if (obj->ox != u.ux || obj->oy != u.uy)
 		goto outtrapmap;
 	    else found = TRUE;
@@ -973,7 +973,7 @@ outtrapmap:
 	if (!rn2(4)) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
 
     for (obj = fobj; obj; obj = obj->nobj)
-	if ((obj->otyp==LARGE_BOX || obj->otyp==CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
+	if ((obj->otyp==LARGE_BOX || obj->otyp==CHEST || obj->otyp==TREASURE_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
 	if (!rn2(4)) sense_trap((struct trap *)0, obj->ox, obj->oy, sobj && sobj->cursed);
 
     for (door = 0; door < doorindex; door++) {
@@ -1600,8 +1600,10 @@ register int aflag;
 	register struct trap *trap;
 	register struct monst *mtmp;
 
+	if (AntisearchEffect || u.uprops[ANTISEARCH_EFFECT].extrinsic || have_unfindablestone()) return(1);
+
 	int fundxtrachange = 10;
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_SEARCHING)) {
 			default: break;
 			case P_BASIC: fundxtrachange = 9; break;

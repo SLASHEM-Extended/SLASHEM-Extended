@@ -24,14 +24,14 @@ int explcolors[] = {
 #endif
 
 #ifdef TEXTCOLOR
-#define zap_color(n)  color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : zapcolors[n]) : NO_COLOR
-#define cmap_color(n) color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : defsyms[n].color) : NO_COLOR
-#define obj_color(n)  color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) ? ( (objects[n].oc_color == CLR_RED) ? CLR_BLACK : (objects[n].oc_color == CLR_BROWN) ? CLR_BLACK : (objects[n].oc_color == CLR_BLUE) ? CLR_BLACK : (objects[n].oc_color == CLR_GREEN) ? CLR_GRAY : (objects[n].oc_color == CLR_MAGENTA) ? CLR_GRAY : (objects[n].oc_color == CLR_CYAN) ? CLR_GRAY : (objects[n].oc_color == CLR_BRIGHT_BLUE) ? CLR_GRAY : (objects[n].oc_color == CLR_YELLOW) ? CLR_WHITE : (objects[n].oc_color == CLR_ORANGE) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_GREEN) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_CYAN) ? CLR_WHITE : objects[n].oc_color) : objects[n].oc_color) : NO_COLOR
-#define mon_color(n)  color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : ( (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) && Infravision) ? ( (mons[n].mcolor == CLR_RED) ? CLR_BLACK : (mons[n].mcolor == CLR_BROWN) ? CLR_BLACK : (mons[n].mcolor == CLR_BLUE) ? CLR_BLACK : (mons[n].mcolor == CLR_GREEN) ? CLR_GRAY : (mons[n].mcolor == CLR_MAGENTA) ? CLR_GRAY : (mons[n].mcolor == CLR_CYAN) ? CLR_GRAY : (mons[n].mcolor == CLR_BRIGHT_BLUE) ? CLR_GRAY : (mons[n].mcolor == CLR_YELLOW) ? CLR_WHITE : (mons[n].mcolor == CLR_ORANGE) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_GREEN) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_CYAN) ? CLR_WHITE : mons[n].mcolor) : (mons[n].mflags4 & M4_MULTIHUED) ? rnd(15) : mons[n].mcolor) : NO_COLOR
+#define zap_color(n)  color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fleeceling cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pushistyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "serjunrangli plash") )) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : zapcolors[n]) : NO_COLOR
+#define cmap_color(n) color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fleeceling cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pushistyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "serjunrangli plash") )) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : defsyms[n].color) : NO_COLOR
+#define obj_color(n)  color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fleeceling cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pushistyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "serjunrangli plash") )) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) ? ( (objects[n].oc_color == CLR_RED) ? CLR_BLACK : (objects[n].oc_color == CLR_BROWN) ? CLR_BLACK : (objects[n].oc_color == CLR_BLUE) ? CLR_BLACK : (objects[n].oc_color == CLR_GREEN) ? CLR_GRAY : (objects[n].oc_color == CLR_MAGENTA) ? CLR_GRAY : (objects[n].oc_color == CLR_CYAN) ? CLR_GRAY : (objects[n].oc_color == CLR_BRIGHT_BLUE) ? CLR_GRAY : (objects[n].oc_color == CLR_YELLOW) ? CLR_WHITE : (objects[n].oc_color == CLR_ORANGE) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_GREEN) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (objects[n].oc_color == CLR_BRIGHT_CYAN) ? CLR_WHITE : objects[n].oc_color) : objects[n].oc_color) : NO_COLOR
+#define mon_color(n)  color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fleeceling cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pushistyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "serjunrangli plash") )) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "colorfade cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch tsveta") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ranglash plash") ) ) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : ( (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) && Infravision) ? ( (mons[n].mcolor == CLR_RED) ? CLR_BLACK : (mons[n].mcolor == CLR_BROWN) ? CLR_BLACK : (mons[n].mcolor == CLR_BLUE) ? CLR_BLACK : (mons[n].mcolor == CLR_GREEN) ? CLR_GRAY : (mons[n].mcolor == CLR_MAGENTA) ? CLR_GRAY : (mons[n].mcolor == CLR_CYAN) ? CLR_GRAY : (mons[n].mcolor == CLR_BRIGHT_BLUE) ? CLR_GRAY : (mons[n].mcolor == CLR_YELLOW) ? CLR_WHITE : (mons[n].mcolor == CLR_ORANGE) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_GREEN) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_CYAN) ? CLR_WHITE : mons[n].mcolor) : (mons[n].mflags4 & M4_MULTIHUED) ? rnd(15) : mons[n].mcolor) : NO_COLOR
 #define invis_color(n) color = NO_COLOR
-#define pet_color(n)  color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : ( (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) && Infravision) ? ( (mons[n].mcolor == CLR_RED) ? CLR_BLACK : (mons[n].mcolor == CLR_BROWN) ? CLR_BLACK : (mons[n].mcolor == CLR_BLUE) ? CLR_BLACK : (mons[n].mcolor == CLR_GREEN) ? CLR_GRAY : (mons[n].mcolor == CLR_MAGENTA) ? CLR_GRAY : (mons[n].mcolor == CLR_CYAN) ? CLR_GRAY : (mons[n].mcolor == CLR_BRIGHT_BLUE) ? CLR_GRAY : (mons[n].mcolor == CLR_YELLOW) ? CLR_WHITE : (mons[n].mcolor == CLR_ORANGE) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_GREEN) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_CYAN) ? CLR_WHITE : mons[n].mcolor) : (mons[n].mflags4 & M4_MULTIHUED) ? rnd(15) : mons[n].mcolor) : NO_COLOR
-#define warn_color(n) color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : def_warnsyms[n].color) : NO_COLOR
-#define explode_color(n) color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : explcolors[n]) : NO_COLOR
+#define pet_color(n)  color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fleeceling cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pushistyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "serjunrangli plash") )) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : ( (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) && Infravision) ? ( (mons[n].mcolor == CLR_RED) ? CLR_BLACK : (mons[n].mcolor == CLR_BROWN) ? CLR_BLACK : (mons[n].mcolor == CLR_BLUE) ? CLR_BLACK : (mons[n].mcolor == CLR_GREEN) ? CLR_GRAY : (mons[n].mcolor == CLR_MAGENTA) ? CLR_GRAY : (mons[n].mcolor == CLR_CYAN) ? CLR_GRAY : (mons[n].mcolor == CLR_BRIGHT_BLUE) ? CLR_GRAY : (mons[n].mcolor == CLR_YELLOW) ? CLR_WHITE : (mons[n].mcolor == CLR_ORANGE) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_GREEN) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_MAGENTA) ? CLR_WHITE : (mons[n].mcolor == CLR_BRIGHT_CYAN) ? CLR_WHITE : mons[n].mcolor) : (mons[n].mflags4 & M4_MULTIHUED) ? rnd(15) : mons[n].mcolor) : NO_COLOR
+#define warn_color(n) color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fleeceling cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pushistyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "serjunrangli plash") )) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : def_warnsyms[n].color) : NO_COLOR
+#define explode_color(n) color = iflags.use_color ? ((uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) ? rnd(15) : (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) ? rnd(15) : Hallucination ? rnd(15) : ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fleeceling cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pushistyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "serjunrangli plash") )) && !rn2(5) ) ? rnd(15) : (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) ? CLR_BRIGHT_BLUE : (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) ? CLR_BLACK : (FemaleTrapMarlena && !rn2(10) ) ? (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN) : (uamul && uamul->oartifact == ART_FLEECY_GREEN) ? CLR_GREEN : (SpellColorGreen) ? CLR_GREEN : explcolors[n]) : NO_COLOR
 # if defined(REINCARNATION) && defined(ASCIIGRAPH)
 #  define ROGUE_COLOR
 # endif
@@ -82,7 +82,7 @@ unsigned *ospecial;
      *		  offsets.  The order is set in display.h.
      */
     if ((offset = (glyph - GLYPH_WARNING_OFF)) >= 0) {	/* a warning flash */
-	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (On_stairs(x,y) && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_STAIRS;
     	ch = warnsyms[offset];
 # ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -112,7 +112,7 @@ unsigned *ospecial;
 	ch = showsyms[(offset % MAXEXPCHARS) + S_explode1];
 	explode_color(offset / MAXEXPCHARS);
     } else if ((offset = (glyph - GLYPH_CMAP_OFF)) >= 0) {	/* cmap */
-	if (On_stairs(x,y) && (ttmp = t_at(x,y)) && (ttmp && ttmp->tseen) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (On_stairs(x,y) && (ttmp = t_at(x,y)) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && (ttmp && ttmp->tseen) && levl[x][y].seenv) special |= MG_STAIRS;
 	ch = showsyms[offset];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {
@@ -899,6 +899,7 @@ unsigned *ospecial;
 		else if (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) color = CLR_BLACK;
 		else if (FemaleTrapMarlena && !rn2(10) ) color = (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN);
 		else if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
+		else if (SpellColorGreen) color = CLR_GREEN;
 		else if (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || (uwep && uwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (u.twoweap && uswapwep && uswapwep->oartifact == ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone() ) {
 			switch (color) {
 				case CLR_RED:
@@ -921,13 +922,17 @@ unsigned *ospecial;
 					break;
 			}
 		}
+		if ((Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) && (offset >= S_vwall && offset <= S_hcdoor)) color = CLR_BRIGHT_BLUE;
+		if ((Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) && (offset == S_dungwall)) color = CLR_BRIGHT_BLUE;
+		if ((KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone()) && (offset == S_grayglyph)) color = rnd(15);
 		if (Hallucination) color = rnd(15);
+		if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fleeceling cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pushistyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "serjunrangli plash") )) && !rn2(5) ) color = rnd(15);
 		if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR) color = rnd(15);
 		if (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN) color = rnd(15);
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR) color = rnd(15);
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) color = rnd(15);
     } else if ((offset = (glyph - GLYPH_OBJ_OFF)) >= 0) {	/* object */
-	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
 	if (offset == BOULDER && iflags.bouldersym) ch = iflags.bouldersym;
 	else ch = oc_syms[(int)objects[offset].oc_class];
 #ifdef ROGUE_COLOR
@@ -952,7 +957,7 @@ unsigned *ospecial;
 	        if (hilitecnt >= 2) break;
 	    }
 
-	    if (offset != BOULDER && hilitecnt >= 2) 
+	    if (offset != BOULDER && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && hilitecnt >= 2) 
 		  special |= MG_OBJPILE;
 
     } else if ((offset = (glyph - GLYPH_RIDDEN_OFF)) >= 0) {	/* mon ridden */
@@ -968,7 +973,7 @@ unsigned *ospecial;
 	    mon_color(offset);
 	    special |= MG_RIDDEN;
     } else if ((offset = (glyph - GLYPH_BODY_OFF)) >= 0) {	/* a corpse */
-	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
 	ch = oc_syms[(int)objects[CORPSE].oc_class];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color)
@@ -989,11 +994,11 @@ unsigned *ospecial;
 	        if (hilitecnt >= 2) break;
 	    }
 
-	    if (offset != BOULDER && hilitecnt >= 2) 
+	    if (offset != BOULDER && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && hilitecnt >= 2) 
 		  special |= MG_OBJPILE;
 
     } else if ((offset = (glyph - GLYPH_DETECT_OFF)) >= 0) {	/* mon detect */
-	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
 	ch = monsyms[(int)mons[offset].mlet];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1005,7 +1010,7 @@ unsigned *ospecial;
 	/* is_reverse = TRUE; */
 	    special |= MG_DETECT;
     } else if ((offset = (glyph - GLYPH_INVIS_OFF)) >= 0) {	/* invisible */
-	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
 	ch = DEF_INVISIBLE;
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1015,7 +1020,7 @@ unsigned *ospecial;
 	    invis_color(offset);
 	    special |= MG_INVIS;
     } else if ((offset = (glyph - GLYPH_PET_OFF)) >= 0) {	/* a pet */
-	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
 	ch = monsyms[(int)mons[offset].mlet];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1023,18 +1028,18 @@ unsigned *ospecial;
 	else
 #endif
 	    pet_color(offset);
-	    special |= MG_PET;
+	    if (!(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone())) special |= MG_PET;
     } else {							/* a monster */
-	if (On_stairs(x,y) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
 
 	struct monst *mtmp;
 
 	ch = monsyms[(int)mons[glyph].mlet];
 
 		mtmp = m_at(x, y);
-		if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) special |= MG_EGOTYPE;
+		if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) special |= MG_EGOTYPE;
 
-		if (mtmp && mtmp->mpeaceful && Peacevision && !Hallucination) special |= MG_PEACEFUL;
+		if (mtmp && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && mtmp->mpeaceful && Peacevision && !Hallucination) special |= MG_PEACEFUL;
 
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {

@@ -5714,7 +5714,7 @@ ring:
 	  if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && */
 && (obj->otyp != LUCKSTONE) && (obj->otyp != HEALTHSTONE) && (obj->otyp != LOADSTONE) && (obj->otyp != TOUCHSTONE)
 && (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
-	      /*(obj->otyp != ICE_BOX) */ && (!Hallucination && flags.invweight))
+	      /*(obj->otyp != ICE_BOX) */ && (!Hallucination && flags.invweight && !(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone()) ))
 		        Sprintf (eos(bp), " {%d}", obj->owt);
 /* show the freaking weight of all items! --Amy */
 #endif
@@ -7606,7 +7606,7 @@ typfnd:
 
 	/* convert magic lamps to regular lamps before lighting them or setting
 	   the charges */
-	if (typ == MAGIC_LAMP
+	if ((typ == MAGIC_LAMP || typ == TREASURE_CHEST)
 #ifdef WIZARD
 				&& !wizard
 #endif

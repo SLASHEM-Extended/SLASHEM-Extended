@@ -523,6 +523,8 @@ lookat(x, y, buf, monbuf)
 	Strcpy(buf, defsyms[trap_to_defsym(tnum)].explanation);
     } else if(!glyph_is_cmap(glyph)) {
 	Strcpy(buf,"unexplored area");
+    } else if( glyph == (GLYPH_CMAP_OFF + 44)) {
+	Strcpy(buf,"grayout");
     } else switch(glyph_to_cmap(glyph)) {
     case S_altar:
 	if(!In_endgame(&u.uz))
@@ -1755,6 +1757,12 @@ get_description_of_monster_type(struct permonst * ptr, char * description)
 	temp_buf[0]='\0';
 	sprintf(temp_buf, "Accessing Pokedex entry for %s... ", (!missingnoprotect || !Upolyd || ((int)ptr < NUMMONS) ) ? ptr->mname : "this weird creature");
 	strcat(description, temp_buf);
+
+	if (DeformattingBug || u.uprops[DEFORMATTING_BUG].extrinsic || have_deformattingstone()) {
+		strcat(description, "Pokedex communication failure. Damn.");
+		return description;
+	}
+
 	append_newline_to_pline_string(description);
 	strcat(description, " ");
 	append_newline_to_pline_string(description);
@@ -1832,6 +1840,12 @@ doidtrap()
 	    if (trap->tx == x && trap->ty == y) {
 		if (!trap->tseen) break;
 		tt = trap->ttyp;
+
+		if (KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone()) {
+			pline("That is a trap.");
+			return 0;
+		}
+
 		if (u.dz) {
 		    if (u.dz < 0 ? (tt == TRAPDOOR || tt == HOLE || tt == SHAFT_TRAP || tt == CURRENT_SHAFT) :
 			    tt == ROCKTRAP) break;

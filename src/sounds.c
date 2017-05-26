@@ -1568,7 +1568,7 @@ dotalk()
 
 				int untamingchance = 10;
 
-				if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+				if (!(PlayerCannotUseSkills)) {
 					switch (P_SKILL(P_PETKEEPING)) {
 						default: untamingchance = 10; break;
 						case P_BASIC: untamingchance = 9; break;
@@ -1735,6 +1735,19 @@ dochat()
 
 	        return 1;
 		}
+	}
+
+	if (((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") ))) && (mtmp->data->mlet == S_NYMPH || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD)) {
+
+		if (yn("Pacify this monster?") == 'y') {
+	      	pline("You attempt to pacify %s.",mon_nam(mtmp) );
+
+			if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && rn2(3) ) {
+		            mtmp->mpeaceful = 1;
+				return 1;
+			}
+		}
+
 	}
 
     if (Role_if(PM_LADIESMAN) && !flags.female && (mtmp->data->mlet == S_NYMPH || mtmp->data->msound == MS_NURSE || mtmp->data->msound == MS_SEDUCE || mtmp->data->msound == MS_WHORE) && !mtmp->mtame && !mtmp->mpeaceful && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {

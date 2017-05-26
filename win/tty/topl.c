@@ -240,6 +240,14 @@ more()
     if(ttyDisplay->inmore++)
 	return;
 
+	if (youmonst.data && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+
+#if defined(WIN32)
+&& !program_state.exiting
+#endif
+
+	&& (AutomoreBug || u.uprops[AUTOMORE_BUG].extrinsic || have_automorestone()) ) return;
+
     if(ttyDisplay->toplin) {
 	tty_curs(BASE_WINDOW, cw->curx+1, cw->cury);
 	if(cw->curx >= CO - 8) topl_putsym('\n');

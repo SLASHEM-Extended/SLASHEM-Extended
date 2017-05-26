@@ -283,7 +283,7 @@ cursed_book(bp)
 	switch(rn2(lev)) {
 	case 0:
 		You_feel("a wrenching sensation.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
 		tele();		/* teleport him */
 		break;
 	case 1:
@@ -1037,7 +1037,7 @@ learn()
 			if (booktype == SPE_FORBIDDEN_KNOWLEDGE) {
 				u.ugangr += 15;
 				if (flags.soundok) You_hear("a thunderous growling and rumbling...");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Pozdravlyayu, teper' vashe bozhestvo ochen' zol. Pochemu ty ne molish'sya? Eto mozhet byt' prosto privesti svoyu zhizn' do kontsa, a zatem vy mozhete svernut' luchshe, nesovetskimi kharakter nakonets-to! SDELAY ETO SEYCHAS!" : "Grrrrrrr! Grummel! Wummmmmm!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Pozdravlyayu, teper' vashe bozhestvo ochen' zol. Pochemu ty ne molish'sya? Eto mozhet byt' prosto privesti svoyu zhizn' do kontsa, a zatem vy mozhete svernut' luchshe, nesovetskimi kharakter nakonets-to! SDELAY ETO SEYCHAS!" : "Grrrrrrr! Grummel! Wummmmmm!");
 			}
 
 			makeknown((int)booktype);
@@ -1292,23 +1292,23 @@ age_spells()
 		 * they prefer to suddenly discover their cure sickness spell was forgotten just as they're about to
 		 * cure that green slime effect on level 66 of Gehennom, after investing 500 hours into their character. --Amy */
 
-		if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
-		if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
-		if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
+		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
+		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
 
 		if (spellknow(i) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "forgetful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zabyvchiv plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "unutuvchan plash") ) ) {
 			decrnknow(i);
-			if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
-			if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
-			if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
+			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
+			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
 
 		}
 
 		if (spellknow(i) && RngeForgetting) {
 			decrnknow(i);
-			if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
-			if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
-			if (!issoviet && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
+			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
+			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
 
 		}
 
@@ -1363,7 +1363,7 @@ getspell(spell_no)
 		    You("don't know that spell.");
 	    }
 	}
-	return dospellmenu( (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || (uamul && uamul->oartifact == ART_DIKKIN_S_DRAGON_TEETH && !(Role_if(PM_BARD) && Race_if(PM_KOBOLT) ) ) || (uwep && uwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (uwep && uwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || have_yellowspellstone()) ? "Your spells are yellow." : "Choose which spell to cast",
+	return dospellmenu( (SpellColorPink) ? "Your spells are pink." : (SpellColorRed) ? "Your spells are red." : (SpellColorGreen) ? "Your spells are green." : (SpellColorCyan) ? "Your spells are cyan." : (SpellColorBlue) ? "Your spells are blue." : (SpellColorWhite) ? "Your spells are white." : (SpellColorBlack) ? "Your spells are black." : (SpellColorGray) ? "Your spells are completely gray." : (SpellColorYellow) ? "Your spells are yellow." : "Choose which spell to cast",
 			   SPELLMENU_CAST, spell_no);
 }
 
@@ -1511,7 +1511,7 @@ cast_protection()
 	    }
 	    u.uspellprot += gain;
 	    u.uspmtime =
-		(!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(spell_skilltype(SPE_PROTECTION)) >= P_EXPERT) ? 20 : 10;
+		(!(PlayerCannotUseSkills) && P_SKILL(spell_skilltype(SPE_PROTECTION)) >= P_EXPERT) ? 20 : 10;
 	    if (!u.usptime)
 		u.usptime = u.uspmtime;
 	    find_ac();
@@ -1599,7 +1599,7 @@ boolean atme;
 	 */
 	skill = spell_skilltype(spellid(spell));
 	role_skill = P_SKILL(skill);
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) role_skill = P_ISRESTRICTED;
+	if (PlayerCannotUseSkills) role_skill = P_ISRESTRICTED;
 
 	/*
 	 * Spell casting no longer affects knowledge of the spell. A
@@ -1619,7 +1619,8 @@ boolean atme;
 	    Your("knowledge of this spell is growing faint.");
 	}
 	energy = (spellev(spell) * 5);    /* 5 <= energy <= 35 */
-	if (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || have_yellowspellstone()) energy *= 2;
+	if (SpellColorYellow) energy *= 2;
+	if (SpellColorWhite) energy *= 4;
 	if (u.spellbinder) energy *= 2;
 
 	/* only being easier to cast is not good enough for the "special spell", since you can't have a failure rate
@@ -1662,6 +1663,11 @@ boolean atme;
 		energy /= 10;
 	}
 
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) {
+		energy *= 11;
+		energy /= 10;
+	}
+
 	if (uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID) {
 		energy *= 4;
 		energy /= 5;
@@ -1671,6 +1677,11 @@ boolean atme;
 		energy /= 5;
 	}
 	if (Role_if(PM_ELEMENTALIST) && skill == P_ELEMENTAL_SPELL) {energy *= 3; energy /= 4;}
+
+	if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "occultism gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki okkul'tizma") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "folbinlik qo'lqop") )) && skill == P_OCCULT_SPELL) {
+		energy *= 4;
+		energy /= 5;
+	}
 
 	if (Race_if(PM_MANSTER) && energy > 1) {
 		energy *= 2;
@@ -1798,9 +1809,74 @@ boolean atme;
 
 	}
 
+	if (SpellColorBlue) hungr += 100;
+
 	if (hungr < 0) hungr = 0; /* fail safe */
 
 	morehungry(hungr);
+
+	if (SpellColorGray) {
+
+		You("chant the magical formula...");
+		nomul(-2, "casting a completely gray spell");
+
+	}
+
+	if (MiscastBug || u.uprops[MISCAST_BUG].extrinsic || have_miscastingstone()) {
+		badeffect();
+	}
+
+	if (SpellColorRed && !rn2(3)) {
+
+		int lcount = rnd(monster_difficulty() ) + 1;
+
+		switch (rn2(11)) {
+		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
+				"red spell sickness", TRUE, SICK_NONVOMITABLE);
+			    break;
+		    case 1: make_blinded(Blinded + lcount, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.", Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + lcount, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + lcount, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + lcount, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + lcount, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + lcount, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + lcount, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + lcount, TRUE);
+			    break;
+		}
+
+	}
+
+	if (SpellColorPink) {
+		pline(fauxmessage());
+	}
+
+	if (SpellColorGreen) {
+		register int zx, zy;
+		for(zx = 0; zx < COLNO; zx++) for(zy = 0; zy < ROWNO; zy++) {
+			/* Zonk all memory of this location. */
+			levl[zx][zy].seenv = 0;
+			levl[zx][zy].waslit = 0;
+			clear_memory_glyph(zx, zy, S_stone);
+		}
+
+		docrt();
+		vision_recalc(0);
+
+	}
 
 	chance = percent_success(spell);
 	if (confused) pline("You try to cast a spell in confusion.");
@@ -2097,12 +2173,12 @@ boolean atme;
 		break;
 	case SPE_AGGRAVATE_MONSTER:
 		You_feel("that monsters are aware of your presence.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
 		aggravate();
 		break;
 	case SPE_CURSE_ITEMS:
 		You_feel("as if you need some help.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 		rndcurse();
 		break;
 	case SPE_FUMBLING:
@@ -2118,7 +2194,7 @@ boolean atme;
 			You_feel("the power of the Force against you!");
 		    else
 			You_feel("like you need some help.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 
 		    register struct obj *obj, *obj2;
 		    for (obj = invent; obj; obj = obj2) {
@@ -2254,7 +2330,7 @@ boolean atme;
 			} else  {
 
 			    You_feel("a wrenching sensation.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
 			    tele();		/* teleport him */
 			}
 			break;
@@ -4167,7 +4243,7 @@ boolean atme;
 			You_feel("the power of the Force against you!");
 		    else
 			You_feel("like you need some help.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 
 		    for (objC = invent; objC; objC = objC->nobj) {
 			long wornmask;
@@ -4416,7 +4492,7 @@ boolean atme;
 		/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
 
 		if (acqo->otyp == GOLD_PIECE) acqo->quan = rnd(1000);
-		if (acqo->otyp == MAGIC_LAMP) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
+		if (acqo->otyp == MAGIC_LAMP || acqo->otyp == TREASURE_CHEST) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
 		if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
 	    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
 		acqo->otyp = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
@@ -4645,7 +4721,7 @@ boolean atme;
 
 	case SPE_REBOOT:
 		You("decide to reboot.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 		if (!Race_if(PM_UNGENOMOLD)) newman();
 		else polyself(FALSE);
 
@@ -5225,7 +5301,7 @@ boolean atme;
 
 					u.inertiacontrol = 20;
 
-					if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(P_OCCULT_SPELL) >= P_BASIC) {
+					if (!(PlayerCannotUseSkills) && P_SKILL(P_OCCULT_SPELL) >= P_BASIC) {
 
 						switch (P_SKILL(P_OCCULT_SPELL)) {
 							case P_BASIC: u.inertiacontrol = 23; break;
@@ -5255,7 +5331,7 @@ boolean atme;
 		{
 			register int spellbindings = 2;
 
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(P_OCCULT_SPELL) >= P_SKILLED) {
+			if (!(PlayerCannotUseSkills) && P_SKILL(P_OCCULT_SPELL) >= P_SKILLED) {
 
 				switch (P_SKILL(P_OCCULT_SPELL)) {
 					case P_SKILLED: spellbindings = 3; break;
@@ -5371,7 +5447,7 @@ boolean atme;
 		u.drippingtreadtype = rnd(4);
 		/* 1 = water, 2 = lava, 3 = ice, 4 = clouds */
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(P_ELEMENTAL_SPELL) >= P_SKILLED) {
+		if (!(PlayerCannotUseSkills) && P_SKILL(P_ELEMENTAL_SPELL) >= P_SKILLED) {
 			pline("Choose a terrain type to generate. You can create water, lava, ice or clouds.");
 			if (yn("Generate water?") == 'y') {
 				u.drippingtreadtype = 1;
@@ -6182,14 +6258,24 @@ rerollX:
 	if (!rn2(50)) use_skill(skill, (spellev(spell) * 10) ); /* jackpot! */
 
 	/* WAC successful casting increases solidity of knowledge */
-	boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
-	if ((rnd(spellev(spell) + 5)) > 5) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST)); /* higher-level spells boost more --Amy */
-	if (!rn2(52 - (spellev(spell) * 2) ) && !Race_if(PM_DUNADAN) ) { /* jackpot! */
-		boostknow(spell, (CAST_BOOST * 5) );
-		boostknow(spell, (CAST_BOOST * spellev(spell) ) );
+
+	if (!SpellColorCyan) {
+
+		boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
+		if ((rnd(spellev(spell) + 5)) > 5) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST)); /* higher-level spells boost more --Amy */
+		if (!rn2(52 - (spellev(spell) * 2) ) && !Race_if(PM_DUNADAN) ) { /* jackpot! */
+			boostknow(spell, (CAST_BOOST * 5) );
+			boostknow(spell, (CAST_BOOST * spellev(spell) ) );
+		}
+
+		if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
+
 	}
 
-	if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
+	if (SpellColorCyan) {
+		boostknow(spell, -500);
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+	}
 
 	if (pseudo && ( (pseudo->otyp == SPE_ALTER_REALITY) || ((pseudo->otyp == SPE_REBOOT) && !rn2(10)) || (pseudo->otyp == SPE_CLONE_MONSTER) ) ) {
 
@@ -6227,7 +6313,7 @@ rerollX:
 	}
 
 	if (spell_skilltype(spellid(spell)) == P_OCCULT_SPELL) { /* dangerous realm... */
-		if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) {
+		if (PlayerCannotUseSkills) {
 			if (!rn2(5)) badeffect();
 		} else switch (role_skill) {
 			default:
@@ -6322,7 +6408,7 @@ dovspell()
 	if (spellid(0) == NO_SPELL)
 	    You("don't know any spells right now.");
 	else {
-	    while (dospellmenu( (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || have_yellowspellstone() ) ? "Your spells are yellow." : "Currently known spells",
+	    while (dospellmenu( (SpellColorPink) ? "Your spells are pink." : (SpellColorRed) ? "Your spells are red." : (SpellColorGreen) ? "Your spells are green." : (SpellColorCyan) ? "Your spells are cyan." : (SpellColorBlue) ? "Your spells are blue." : (SpellColorWhite) ? "Your spells are white." : (SpellColorBlack) ? "Your spells are black." : (SpellColorGray) ? "Your spells are completely gray." : (SpellColorYellow ) ? "Your spells are yellow." : "Currently known spells",
 			       SPELLMENU_VIEW, &splnum)) {
 		Sprintf(qbuf, "Reordering spells; swap '%s' with",
 			(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) ? "spell" : spellname(splnum));
@@ -6373,13 +6459,13 @@ int *spell_no;
 			"%s\t%-d%s\t%s\t%-d%%" : "%-20s  %2d%s   %-10s %3d%%"
 			"   %3d%%",
 			spellname(i), spellev(i),
-			(spellknow(i) > 1000) ? " " : (spellknow(i) ? "!" : "*"),
+			((spellknow(i) > 1000) || SpellColorCyan) ? " " : (spellknow(i) ? "!" : "*"),
 			spelltypemnemonic(spell_skilltype(spellid(i))),
-			100 - percent_success(i),
+			SpellColorBlack ? 0 : (100 - percent_success(i)),
 
 	/* "Spell memory percentage no longer shows up in menu - Very little reason to have this considering the timeout is so long to begin with, and spellbooks are much more common." In Soviet Russia, people aren't a fan of games with good interfaces, and rather like it if there's as little information conveyed to the player as possible. The next things they'll remove are those obsolete things displayed on the bottom status line, like HP, AC and experience level; there's very little reason to display them either. Ah wait, they might just borrow the spell loss trap and display loss trap code from Slash'EM Extended and make their effect permanent - that gets rid of all the useless information displays at once, and players will be forever grateful! --Amy */
 
-			issoviet ? 0 : (spellknow(i) * 100 + (KEEN-1)) / KEEN);
+			SpellColorCyan ? 100 : issoviet ? 0 : (spellknow(i) * 100 + (KEEN-1)) / KEEN);
 		if (flags.menu_style == MENU_TRADITIONAL)
 			Sprintf(eos(buf), iflags.menu_tab_sep ?
 				"\t%c" : "%4c ", spellet(i) ? spellet(i) : ' ');
@@ -6446,9 +6532,10 @@ dump_spells()
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
 		Sprintf(buf, "%c - %-20s  %2d%s   %-10s %3d%%  %3d%%",
 			spellet(i), spellname(i), spellev(i),
-			spellknow(i) ? " " : "*",
+			((spellknow(i) > 1000) || SpellColorCyan) ? " " : (spellknow(i) ? "!" : "*"),
 			spelltypemnemonic(spell_skilltype(spellid(i))),
-			100 - percent_success(i), issoviet ? 0 : (spellknow(i) * 100 + (KEEN-1)) / KEEN);
+			SpellColorBlack ? 0 : (100 - percent_success(i)),
+			SpellColorCyan ? 100 : issoviet ? 0 : (spellknow(i) * 100 + (KEEN-1)) / KEEN);
 			/* In Soviet Russia, people don't want to know how much spell memory they have left. --Amy */
 		dump("  ", buf);
 	}
@@ -6486,7 +6573,7 @@ int spell;
 	int armorpenalties = 15;
 	int shieldpenalties = 15;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_BODY_ARMOR)) {
 			case P_BASIC: armorpenalties = 13; break;
 			case P_SKILLED: armorpenalties = 11; break;
@@ -6498,7 +6585,7 @@ int spell;
 		}
 	}
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_SHIELD)) {
 			case P_BASIC: shieldpenalties = 13; break;
 			case P_SKILLED: shieldpenalties = 11; break;
@@ -6688,7 +6775,7 @@ int spell;
 	 * in that spell type.
 	 */
 	skill = P_SKILL(spell_skilltype(spellid(spell)));
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) skill = P_ISRESTRICTED;
+	if (PlayerCannotUseSkills) skill = P_ISRESTRICTED;
 
 	/* come on, you should be able to cast better if your skill is higher! --Amy */
 	if ( skill == P_BASIC) splcaster -= 3;
@@ -6794,6 +6881,39 @@ int spell;
 
 	}
 
+	if (SpellColorBlack) {
+
+		switch (spellev(spell)) {
+
+			case 1:
+				chance -= 10;
+				break;
+			case 2:
+				chance -= 25;
+				break;
+			case 3:
+				chance -= 50;
+				break;
+			case 4:
+				chance -= 100;
+				break;
+			case 5:
+				chance -= 150;
+				break;
+			case 6:
+				chance -= 200;
+				break;
+			case 7:
+				chance -= 250;
+				break;
+			case 8:
+				chance -= 300;
+				break;
+
+		}
+
+	}
+
 	if (issoviet) chance -= 30;
 
 	if (Race_if(PM_PLAYER_SKELETON)) chance -= 50;
@@ -6838,6 +6958,8 @@ int spell;
 		}
 
 	}
+
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) chance -= 10;
 
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) chance -= 20;
 	if (uarm && uarm->oartifact == ART_ROFLCOPTER_WEB) chance += 10;
@@ -6950,7 +7072,7 @@ spell_dash()
 {
 	register int dashrange = 2;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(P_ELEMENTAL_SPELL) >= P_SKILLED) {
+	if (!(PlayerCannotUseSkills) && P_SKILL(P_ELEMENTAL_SPELL) >= P_SKILLED) {
 		switch (P_SKILL(P_ELEMENTAL_SPELL)) {
 			default: break;
 			case P_SKILLED: dashrange = 3; break;

@@ -619,9 +619,10 @@ end_query:
 
 	/* Picking up stuff no longer consumes turns. --Amy */
 	/* See comment in do.c about soviet mode */
+	/* message is only given if you actually tried to pick something up */
 
 	if (issoviet) {
-		if (!rn2(10)) pline("Eto zanimayet ochered' potomu, chto sovetskiy khochet, chtoby igra byla der'mo.");
+		if (!rn2(10) && n_tried) pline("Eto zanimayet ochered' potomu, chto sovetskiy khochet, chtoby igra byla der'mo.");
 		return (n_tried > 0);
 		/* I considered making it "return 1" just to spite the player, but decided to be lenient. */
 	}
@@ -1410,6 +1411,29 @@ boolean telekinesis;	/* not picking it up directly by hand */
 		pline("If ever I should forget, May God make me more wretched Than ever I have been yet!");
 		return 1;	/* tried to pick something up and failed, but
 				   don't want to terminate pickup loop yet   */
+	} else if (obj && obj->oclass == SCROLL_CLASS && !rn2(2) && (DustbinBug || u.uprops[DUSTBIN_BUG].extrinsic || have_dustbinstone())) {
+		useupf(obj, obj->quan);
+		pline("Your clumsy %s accidentally rip the paper to pieces.", makeplural(body_part(HAND)));
+		return 1;	/* tried to pick something up and failed, but
+				   don't want to terminate pickup loop yet   */
+
+	}
+
+	if (obj && obj->oclass == WAND_CLASS && (ManaBatteryBug || u.uprops[MANA_BATTERY_BUG].extrinsic || have_batterystone()) && obj->spe >= 0) {
+
+		if (obj->spe == 0) obj->spe = -1;
+		else {
+			obj->spe -= rnd(obj->spe);
+			if (!rn2(3)) obj->spe = 0;
+		}
+	}
+
+	if (obj && obj->oclass == POTION_CLASS && !rn2(3) && (Monsterfingers || u.uprops[MONSTERFINGERS_EFFECT].extrinsic || have_butterfingerstone()) ) {
+		pline("Whoops, the bottle breaks unexpectedly!");
+		potionbreathe(obj);
+		useupf(obj, obj->quan);
+		return 1;	/* tried to pick something up and failed, but
+				   don't want to terminate pickup loop yet   */
 	}
 
 	if (obj && obj->oartifact == ART_HAAAAAAAAAAAAA_LELUJA) {
@@ -1426,6 +1450,10 @@ boolean telekinesis;	/* not picking it up directly by hand */
 #endif
 	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) )
 	    obj = splitobj(obj, count);
+
+	if (TooHeavyEffect || u.uprops[TOO_HEAVY_EFFECT].extrinsic || have_tooheavystone()) {
+		IncreasedGravity += 50;
+	}
 
 	obj = pick_obj(obj);
 
@@ -1545,7 +1573,7 @@ able_to_loot(x, y)
 int x, y;
 {
 	if (!can_reach_floor()) {
-		if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 			rider_cant_reach(); /* not skilled enough to reach */
 		else
 			You("cannot reach the %s.", surface(x, y));
@@ -2108,7 +2136,7 @@ boolean invobj;
 		pline(
 	      "As you put %s inside, you are blasted by a magical explosion!",
 		      doname(obj));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "VD GA GA GA vy takoy nemnogo nub, kto ne znayet, kak igrat' na vsekh! Ya ne byl by nastol'ko glup, no vy poteryali sumku provedeniya v nastoyashcheye vremya i, veroyatno, slomal vse zel'ya, kotoryye byli v nem. TY POLNYY OTSTOY!" : "Caeauwaesh! Well and?");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "VD GA GA GA vy takoy nemnogo nub, kto ne znayet, kak igrat' na vsekh! Ya ne byl by nastol'ko glup, no vy poteryali sumku provedeniya v nastoyashcheye vremya i, veroyatno, slomal vse zel'ya, kotoryye byli v nem. TY POLNYY OTSTOY!" : "Caeauwaesh! Well and?");
 		if (Has_contents(obj)) {
 		    struct obj *otmp;
 		    while((otmp = container_extract_indestructable(obj)))
@@ -2381,7 +2409,7 @@ int held;
 		if (yn("Try to open the container with another part of your body instead?") == 'y') {
 			if (rn2(3)) { 			
 				You_feel("a wrenching sensation.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				flags.soundok = 0;
 				nomul(-rnd(10), "wrenched in a container");

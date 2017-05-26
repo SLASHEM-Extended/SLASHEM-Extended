@@ -1318,7 +1318,7 @@ CLOAK("stormy cloak", "storm coat",
 		0, 1, BLOODTHIRSTY_EFFECT,  1, 0, 4, 50,  8, 3, CLOTH, CLR_CYAN),
 CLOAK("gimp cloak", "pitch cloak",
 		0, 1, MAXIMUM_DAMAGE_BUG,  1, 0, 4, 50,  10, 9, TAR, CLR_BRIGHT_CYAN),
-CLOAK("snarenet cloak", "fleecy-colored cloak",
+CLOAK("snarenet cloak", "fleeceling cloak",
 		0, 1, KNOWLEDGE_BUG,  1, 0, 4, 50,  2, 7, ARCANIUM, CLR_BRIGHT_GREEN),
 CLOAK("pink spell cloak", "glaring cloak",
 		0, 1, PINK_SPELLS,  1, 0, 4, 50,  0, 8, ARCANIUM, CLR_YELLOW),
@@ -2737,7 +2737,7 @@ OBJECT(OBJ("Amulet of Yendor",	/* note: description == name */
 		BITS(kn,0,1,chg,mgc,1,0,0,bi,0,typ,sub,mat), \
 		0, TOOL_CLASS, prob, 0, \
 		wt, cost, sdam, ldam, hitbon, 0, wt, clr )
-/* Containers */
+/* Containers - large box must be first, see obj.h */
 CONTAINER("large box", "wooden box",    0, 0, 0, 1, 348,500,   8, WOOD, HI_WOOD),
 CONTAINER("large box of digestion", "wooden box", 0, 0, 0, 1, 2,500,   8, WOOD, HI_WOOD),
 CONTAINER("chest", "wooden container",  0, 0, 0, 1, 348,750,  16, WOOD, HI_WOOD),
@@ -2752,6 +2752,7 @@ CONTAINER("oilskin sack", "bag",        0, 0, 0, 0, 200, 5, 100, CLOTH, HI_CLOTH
 CONTAINER("bag of holding", "bag",      0, 1, 0, 0, 200, 5, 100, CLOTH, HI_CLOTH),
 CONTAINER("bag of digestion","bag",     0, 1, 0, 0,  50, 5, 100, CLOTH, HI_CLOTH),
 CONTAINER("bag of tricks", "bag",       0, 1, 1, 0, 195, 5, 100, CLOTH, HI_CLOTH),
+/* bag of tricks must be last */
 
 /* Unlocking tools */
 TOOL("skeleton key", "key",     0, 0, 0, 0, 700,  0,  10, IRON, HI_METAL),

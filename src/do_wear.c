@@ -706,6 +706,8 @@ Boots_on()
 
 	if (uarmf && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmf);
 
+	if (uarmf && uarmf->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarmf->spe--;
+
     return 0;
 }
 
@@ -1140,7 +1142,7 @@ Cloak_on()
 		break;
 	case CLOAK_OF_PARALYSIS:
 		pline("You're paralyzed!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 		if (Free_action) nomul(-rnd(10), "putting on a cloak of paralysis");
 		else nomul(-rnd(20), "putting on a cloak of paralysis");
 		break;
@@ -1175,7 +1177,7 @@ Cloak_on()
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 		break;
 	case CLOAK_OF_OUTRIGHT_EVILNESS:
@@ -1718,6 +1720,8 @@ Cloak_on()
 
 	if (uarmc && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmc);
 
+	if (uarmc && uarmc->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarmc->spe--;
+
     return 0;
 }
 
@@ -2220,6 +2224,10 @@ Helmet_on()
 		else uarmh->spe = -(rnd(5));
     }
 
+	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "less helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "men'she shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "kam dubulg'a") )) {
+		if (uarmh->spe > 0) uarmh->spe--;
+	}
+
     if (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) {
 		if (!uarmh->cursed) curse(uarmh); /* don't tell the poor sap about their horrible fate */
     }
@@ -2229,6 +2237,8 @@ Helmet_on()
     }
 
 	if (uarmh && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmh);
+
+	if (uarmh && uarmh->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarmh->spe--;
 
     return 0;
 }
@@ -2510,6 +2520,16 @@ Gloves_on()
 
     }
 
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "inverse gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "obratnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "teskari qo'lqop") )) {
+
+		if (uarmg->spe) uarmg->spe = -uarmg->spe;
+		if (uarmg->spe < 0) {
+			curse(uarmg);
+			uarmg->hvycurse = 1;
+		}
+
+	}
+
     if (uarmg && uarmg->oartifact == ART_AFK_MEANS_ASS_FUCKER) {
 	      if (!uarmg->cursed) {
 			curse(uarmg);
@@ -2624,6 +2644,8 @@ Gloves_on()
     }
 
 	if (uarmg && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmg);
+
+	if (uarmg && uarmg->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarmg->spe--;
 
     return 0;
 }
@@ -2918,6 +2940,8 @@ Shield_on()
 
 	if (uarms && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarms);
 
+	if (uarms && uarms->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarms->spe--;
+
     return 0;
 }
 
@@ -3048,6 +3072,8 @@ Shirt_on()
 
 	if (uarmu && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmu);
 
+	if (uarmu && uarmu->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarmu->spe--;
+
     return 0;
 }
 
@@ -3147,6 +3173,8 @@ Armor_on()
 	if (uarm && uarm->oartifact == ART_ARMOR_OF_ISILDUR && uarm->spe < 1) uarm->spe = rnd(10);
 
 	if (uarm && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarm);
+
+	if (uarm && uarm->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarm->spe--;
 
     return 0;
 }
@@ -3685,7 +3713,7 @@ register struct obj *obj;
 
 		register struct obj *crsobj;
 		pline("You hear a high-pitched sound followed by a short, slightly lower-pitched one...");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto ochen' plokho dlya vas, i ochen' smeshno dlya tipa bloka l'da. Ay privet privet privet!" : "Dueueue-due!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Eto ochen' plokho dlya vas, i ochen' smeshno dlya tipa bloka l'da. Ay privet privet privet!" : "Dueueue-due!");
 		for(crsobj = invent; crsobj ; crsobj = crsobj->nobj)
 		if (!stack_too_big(crsobj))	curse(crsobj);
     }
@@ -3709,6 +3737,8 @@ register struct obj *obj;
     }
 
 	if (obj && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(obj);
+
+	if (obj && obj->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) obj->spe--;
 
 }
 
@@ -3914,6 +3944,8 @@ register struct obj *otmp;
 
 	if (otmp && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(otmp);
 
+	if (otmp && otmp->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) otmp->spe--;
+
 }
 
 void
@@ -4025,6 +4057,9 @@ dotakeoff()
 	register struct obj *otmp = (struct obj *)0;
 	int armorpieces = 0;
 
+	boolean updowninversion = 0;
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "up-down cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch s verkhnim plashchem") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "up-pastga plash") )) updowninversion = 1;
+
 #define MOREARM(x) if (x) { armorpieces++; otmp = x; }
 	MOREARM(uarmh);
 	MOREARM(uarms);
@@ -4061,7 +4096,7 @@ dotakeoff()
 	}
 	/* note: the `uskin' case shouldn't be able to happen here; dragons
 	   can't wear any armor so will end up with `armorpieces == 0' above */
-	if (otmp == uskin || ((otmp == uarm) && uarmc)
+	if (otmp == uskin || ((otmp == uarm) && uarmc && !updowninversion) || ((otmp == uarmc) && uarm && updowninversion) 
 			  || ((otmp == uarmu) && (uarmc || uarm))
 		) {
 	    You_cant("take that off.");
@@ -4838,10 +4873,12 @@ find_ac()
 
 	if ((Race_if(PM_GNOME) || Role_if(PM_GOLDMINER)) && uarmf && uarmf->otyp == GNOMISH_BOOTS) uac -= 2;
 
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "slowing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zamedlennoye plat'ye") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sekinlashuvi libos") )) uac -= 3;
+
 	if (u.artifactprotection) uac -= 2;
 	if (have_mothrelay() ) uac -= 2;
 
-	if (PlayerInHighHeels && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) { /* extra AC --Amy */
+	if (PlayerInHighHeels && !(PlayerCannotUseSkills)) { /* extra AC --Amy */
 
 		switch (P_SKILL(P_HIGH_HEELS)) {
 			case P_BASIC: uac -= 1; break;
@@ -4855,7 +4892,7 @@ find_ac()
 
 	}
 
-	if (uarms && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (uarms && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_SHIELD)) {
 			case P_BASIC: uac -= 1; break;
 			case P_SKILLED: uac -= 2; break;
@@ -4868,7 +4905,7 @@ find_ac()
 
 	}
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		int armoramount = 0;
 		if (uarms) armoramount++;
 		if (uarm) armoramount++;
@@ -4940,7 +4977,7 @@ find_ac()
 
 	if (uarms && uarms->oartifact == ART_ARMOR_CLASS_WALL) {
 		uac -= 5;
-		if (uarms && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (uarms && !(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_SHIELD)) {
 				case P_BASIC: uac -= 1; break;
 				case P_SKILLED: uac -= 2; break;
@@ -5016,7 +5053,7 @@ find_ac()
 
 	if (u.burrowed) {
 		uac -= 20;
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_ELEMENTAL_SPELL)) {
 				case P_BASIC: uac -= 2; break;
 				case P_SKILLED: uac -= 4; break;
@@ -5555,45 +5592,45 @@ register struct obj *atmp;
 		if (donning(otmp)) cancel_don();
 		Your("%s crumbles and turns to dust!",
 		     cloak_simple_name(uarmc));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Cloak_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarm)) {
 		if (donning(otmp)) cancel_don();
 		Your("armor turns to dust and falls to the %s!",
 			surface(u.ux,u.uy));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Armor_gone();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarmu)) {
 		if (donning(otmp)) cancel_don();
 		Your("shirt crumbles into tiny threads and falls apart!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Shirt_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarmh)) {
 		if (donning(otmp)) cancel_don();
 		Your("helmet turns to dust and is blown away!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Helmet_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarmg)) {
 		if (donning(otmp)) cancel_don();
 		Your("gloves vanish!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Gloves_off();
 		useup(otmp);
 		selftouch("You");
 	} else if (DESTROY_ARM(uarmf)) {
 		if (donning(otmp)) cancel_don();
 		Your("boots disintegrate!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Boots_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarms)) {
 		if (donning(otmp)) cancel_don();
 		Your("shield crumbles away!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha bronya ne yavlyayetsya bezopasnym. Luchshe pokhoronit' svoi plany voskhozhdeniya srazu." : "KRRRRRRRRRTSCH!");
 		(void) Shield_off();
 		useup(otmp);
 	} else {

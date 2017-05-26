@@ -205,6 +205,8 @@ boolean put_away;
 
 	if (uwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uwep);
 	
+	if (uwep && uwep->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uwep->spe--;
+
 	/* MRKR: Handle any special effects of unwielding a weapon */
 	if (olduwep && olduwep != uwep)
 	    unwield(olduwep, put_away);

@@ -1700,6 +1700,16 @@ dmore(cw, s)
     const char *prompt = cw->morestr ? cw->morestr : defmorestr;
     int offset = (cw->type == NHW_TEXT) ? 1 : 2;
 
+	if (youmonst.data && !(cw->morestr) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+
+#if defined(WIN32)
+&& !program_state.exiting
+#endif
+
+	&& (AutomoreBug || u.uprops[AUTOMORE_BUG].extrinsic || have_automorestone()) ) {
+		return;
+	}
+
     tty_curs(BASE_WINDOW,
 	     (int)ttyDisplay->curx + offset, (int)ttyDisplay->cury);
     if(flags.standout)
@@ -1839,6 +1849,32 @@ int *color, *attr;
 }
 #endif /* MENU_COLOR */
 
+STATIC_OVL boolean
+get_fleece_coloring(str, color, attr)
+char *str;
+int *color, *attr;
+{
+   struct menucoloring *tmpmc;
+   if (iflags.use_menu_color)
+     for (tmpmc = menu_colorings; tmpmc; tmpmc = tmpmc->next)
+#ifdef USE_REGEX_MATCH
+# ifdef GNU_REGEX
+       if (re_search(&tmpmc->match, str, strlen(str), 0, 9999, 0) >= 0) {
+# else
+#  ifdef POSIX_REGEX
+       if (regexec(&tmpmc->match, str, 0, NULL, 0) == 0) {
+#  endif
+# endif
+#else
+       if (pmatch(tmpmc->match, str)) {
+#endif
+	  *color = tmpmc->color;
+	  *attr = tmpmc->attr;
+	 return TRUE;
+       }
+   return FALSE;
+}
+
 STATIC_OVL void
 process_menu_window(window, cw)
 winid window;
@@ -1970,7 +2006,11 @@ struct WinDesc *cw;
 		    }  
 #endif
 #ifdef MENU_COLOR
-		   if (iflags.use_menu_color &&
+		   if (FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone()) {
+			int fleececolor = rn2(CLR_MAX);
+			while (fleececolor == NO_COLOR) fleececolor = rn2(CLR_MAX);
+			term_start_color(fleececolor);
+		   } else if (iflags.use_menu_color &&
 		       (menucolr = get_menu_coloring(curr->str, &color,&attr))) {
 		      term_start_attr(attr);
 		      if (color != NO_COLOR) term_start_color(color);
@@ -1987,7 +2027,9 @@ struct WinDesc *cw;
 #endif
 			  (void) putchar(*cp);
 #ifdef MENU_COLOR
-		   if (iflags.use_menu_color && menucolr) {
+		   if (FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone()) {
+			term_end_color();
+		   } else if (iflags.use_menu_color && menucolr) {
 		      if (color != NO_COLOR) term_end_color();
 		      term_end_attr(attr);
 		   } else
@@ -3066,6 +3108,15 @@ tty_wait_synch()
     } else {
 	tty_display_nhwindow(WIN_MAP, FALSE);
 	if(ttyDisplay->inmore) {
+
+	if (youmonst.data && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+
+#if defined(WIN32)
+&& !program_state.exiting
+#endif
+
+	&& (AutomoreBug || u.uprops[AUTOMORE_BUG].extrinsic || have_automorestone()) ) return;
+
 	    addtopl("--More--");
 	    (void) fflush(stdout);
 	} else if(ttyDisplay->inread > program_state.gameover) {

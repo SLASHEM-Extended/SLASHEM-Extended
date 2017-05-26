@@ -720,7 +720,7 @@ long nmv;		/* number of moves */
 
 	/* good riding skill gives extra regeneration to ridden monster --Amy */
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 
 	if (P_SKILL(P_RIDING) == P_SKILLED && u.usteed && (mtmp == u.usteed) && !rn2(10) ) {
 		if (mtmp->mhp + 1 >= mtmp->mhpmax)

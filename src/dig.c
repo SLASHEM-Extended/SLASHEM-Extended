@@ -301,6 +301,7 @@ dig()
 	bonus = 10 + rn2(5) + abon() + uwep->spe - greatest_erosionX(uwep) + u.udaminc + RngeBloodlust + (Drunken_boxing && Confusion);
 	if (uarms && uarms->oartifact == ART_TEH_BASH_R) bonus += 2;
 	if (uarmh && uarmh->oartifact == ART_HELMET_OF_DIGGING) bonus += 5;
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "digger gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "kopatel'skiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "kazici qo'lqop") )) bonus += 5;
 	if (Race_if(PM_DWARF) || Role_if(PM_MIDGET) )
 	    bonus *= 2;
 	if (is_lightsaber(uwep))
@@ -1258,7 +1259,7 @@ register struct monst *mtmp;
 	    if (flags.soundok && flags.verbose && !rn2(5)) {
 	    /* KMH -- Okay on arboreal levels (room walls are still stone) */
 		You_hear("crashing rock.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Stena teper' ushla navsegda." : "Derrsch!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Stena teper' ushla navsegda." : "Derrsch!");
 	    }
 	    if (*in_rooms(mtmp->mx, mtmp->my, SHOPBASE))
 		add_damage(mtmp->mx, mtmp->my, 0L);

@@ -1857,10 +1857,18 @@ bound_digging()
  */
 {
 	register int x,y;
+	register int quasarchance;
 	register unsigned typ;
 	register struct rm *lev;
 	boolean found, nonwall;
 	int xmin,xmax,ymin,ymax;
+
+	quasarchance = 3 + rn2(5);
+
+	for (x = 0; x < COLNO; x++)
+	  for (y = 0; y < ROWNO; y++) {
+		if (!rn2(quasarchance)) levl[x][y].wall_info |= W_QUASAROK;
+	}
 
 	if(Is_earthlevel(&u.uz)) return; /* everything diggable here */
 

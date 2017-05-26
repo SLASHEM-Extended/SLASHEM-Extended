@@ -1825,7 +1825,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    else
 		pline("%s plunges the Doomblade deeply into %s!",
 			Monnam(magr), hittee);
-		if (youattack && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone())) pline(issoviet ? "Tak chto vy dumayete, vy mozhete bit' igru tol'ko potomu, chto vy nashli artefakt. Bednyy zabluzhdayutsya dusha." : "Doaaaaaai!");
+		if (youattack && (PlayerHearsSoundEffects)) pline(issoviet ? "Tak chto vy dumayete, vy mozhete bit' igru tol'ko potomu, chto vy nashli artefakt. Bednyy zabluzhdayutsya dusha." : "Doaaaaaai!");
 	    *dmgptr += rnd(4) * 5;
 	    return TRUE;
        }

@@ -127,7 +127,7 @@ use_saddle(otmp)
 
 	if (otmp && otmp->otyp == INKA_SADDLE) chance += 100;
 
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) chance -= 20;
+	if (PlayerCannotUseSkills) chance -= 20;
 	else {
 
 	switch (P_SKILL(P_RIDING)) {

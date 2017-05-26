@@ -927,6 +927,10 @@ struct you {
 
 	int halresdeactivated;
 
+	int pinkspelldirection;
+	int trontrapdirection;
+	int trontrapturn;
+
 	boolean polyformed;
 
 	boolean boomshined;

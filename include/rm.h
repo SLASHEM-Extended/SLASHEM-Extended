@@ -152,450 +152,451 @@
 #define S_cloud		41
 #define S_dungwall		42
 #define S_water		43
+#define S_grayglyph		44
 
 
 /* end dungeon characters, begin traps */
 
-#define S_arrow_trap		44
-#define S_dart_trap		45
-#define S_falling_rock_trap	46
-#define S_squeaky_board		47
-#define S_bear_trap		48
-#define S_land_mine		49
-#define S_rolling_boulder_trap	50
-#define S_sleeping_gas_trap	51
-#define S_rust_trap		52
-#define S_fire_trap		53
-#define S_pit			54
-#define S_spiked_pit		55
-#define S_hole			56
-#define S_trap_door		57
-#define S_teleportation_trap	58
-#define S_level_teleporter	59
-#define S_magic_portal		60
-#define S_web			61
-#define S_statue_trap		62
-#define S_magic_trap		63
-#define S_anti_magic_trap	64
-#define S_polymorph_trap	65
-#define S_ice_trap		66
-#define S_spear_trap		67
-#define S_falling_rocks_trap		68
-#define S_magic_beam_trap		69
-#define S_pile_of_shit		70
-#define S_animation_trap		71
-#define S_glyph_of_warding		72
-#define S_scything_blade		73
-#define S_bolt_trap		74
-#define S_acid_pool		75
-#define S_water_pool		76
-#define S_poison_gas_trap		77
-#define S_slow_gas_trap		78
-#define S_shock_trap		79
-#define S_rmb_loss_trap		80
-#define S_display_trap		81
-#define S_spell_loss_trap		82
-#define S_yellow_spell_trap		83
-#define S_auto_destruct_trap		84
-#define S_memory_trap		85
-#define S_inventory_trap		86
-#define S_black_ng_wall_trap		87
-#define S_menu_trap		88
-#define S_speed_trap		89
-#define S_superscroller_trap		90
-#define S_active_superscroller_trap		91
-#define S_swarm_trap		92
-#define S_automatic_switcher		93
-#define S_unknown_trap		94
-#define S_heel_trap		95
-#define S_vuln_trap		96
+#define S_arrow_trap		45
+#define S_dart_trap		46
+#define S_falling_rock_trap	47
+#define S_squeaky_board		48
+#define S_bear_trap		49
+#define S_land_mine		50
+#define S_rolling_boulder_trap	51
+#define S_sleeping_gas_trap	52
+#define S_rust_trap		53
+#define S_fire_trap		54
+#define S_pit			55
+#define S_spiked_pit		56
+#define S_hole			57
+#define S_trap_door		58
+#define S_teleportation_trap	59
+#define S_level_teleporter	60
+#define S_magic_portal		61
+#define S_web			62
+#define S_statue_trap		63
+#define S_magic_trap		64
+#define S_anti_magic_trap	65
+#define S_polymorph_trap	66
+#define S_ice_trap		67
+#define S_spear_trap		68
+#define S_falling_rocks_trap		69
+#define S_magic_beam_trap		70
+#define S_pile_of_shit		71
+#define S_animation_trap		72
+#define S_glyph_of_warding		73
+#define S_scything_blade		74
+#define S_bolt_trap		75
+#define S_acid_pool		76
+#define S_water_pool		77
+#define S_poison_gas_trap		78
+#define S_slow_gas_trap		79
+#define S_shock_trap		80
+#define S_rmb_loss_trap		81
+#define S_display_trap		82
+#define S_spell_loss_trap		83
+#define S_yellow_spell_trap		84
+#define S_auto_destruct_trap		85
+#define S_memory_trap		86
+#define S_inventory_trap		87
+#define S_black_ng_wall_trap		88
+#define S_menu_trap		89
+#define S_speed_trap		90
+#define S_superscroller_trap		91
+#define S_active_superscroller_trap		92
+#define S_swarm_trap		93
+#define S_automatic_switcher		94
+#define S_unknown_trap		95
+#define S_heel_trap		96
+#define S_vuln_trap		97
 
-#define S_lava_trap		97
-#define S_flood_trap		98
-#define S_drain_trap		99
-#define S_free_hand_trap		100
-#define S_disintegration_trap		101
-#define S_unidentify_trap		102
-#define S_thirst_trap		103
-#define S_luck_trap		104
-#define S_shades_of_grey_trap		105
-#define S_item_telep_trap		106
-#define S_gravity_trap		107
-#define S_death_trap		108
-#define S_stone_to_flesh_trap		109
-#define S_quicksand_trap		110
-#define S_faint_trap		111
-#define S_curse_trap		112
-#define S_difficulty_trap		113
-#define S_sound_trap		114
-#define S_caster_trap		115
-#define S_weakness_trap		116
-#define S_rot_thirteen_trap		117
-#define S_bishop_trap		118
-#define S_confusion_trap		119
-#define S_nupesell_trap		120
-#define S_drop_trap		121
-#define S_dstw_trap		122
-#define S_status_trap		123
-#define S_alignment_trap		124
-#define S_stairs_trap		125
+#define S_lava_trap		98
+#define S_flood_trap		99
+#define S_drain_trap		100
+#define S_free_hand_trap		101
+#define S_disintegration_trap		102
+#define S_unidentify_trap		103
+#define S_thirst_trap		104
+#define S_luck_trap		105
+#define S_shades_of_grey_trap		106
+#define S_item_telep_trap		107
+#define S_gravity_trap		108
+#define S_death_trap		109
+#define S_stone_to_flesh_trap		110
+#define S_quicksand_trap		111
+#define S_faint_trap		112
+#define S_curse_trap		113
+#define S_difficulty_trap		114
+#define S_sound_trap		115
+#define S_caster_trap		116
+#define S_weakness_trap		117
+#define S_rot_thirteen_trap		118
+#define S_bishop_trap		119
+#define S_confusion_trap		120
+#define S_nupesell_trap		121
+#define S_drop_trap		122
+#define S_dstw_trap		123
+#define S_status_trap		124
+#define S_alignment_trap		125
+#define S_stairs_trap		126
 
-#define S_pestilence_trap		126
-#define S_famine_trap		127
+#define S_pestilence_trap		127
+#define S_famine_trap		128
 
-#define S_relocation_trap		128
+#define S_relocation_trap		129
 
-#define S_uninformation_trap		129
+#define S_uninformation_trap		130
 
-#define S_intrinsic_loss_trap	130
-#define S_blood_loss_trap	131
-#define S_bad_effect_trap	132
-#define S_multiplying_trap	133
-#define S_auto_vuln_trap	134
-#define S_tele_items_trap	135
-#define S_nastiness_trap	136
+#define S_intrinsic_loss_trap	131
+#define S_blood_loss_trap	132
+#define S_bad_effect_trap	133
+#define S_multiplying_trap	134
+#define S_auto_vuln_trap	135
+#define S_tele_items_trap	136
+#define S_nastiness_trap	137
 
-#define S_recursion_trap	137
-#define S_respawn_trap	138
-#define S_warp_zone	139
-#define S_captcha_trap	140
-#define S_mind_wipe_trap	141
-#define S_shuriken_trap	142
-#define S_shit_pit	143
-#define S_shaft_trap	144
-#define S_lock_trap	145
-#define S_mc_trap	146
-#define S_farlook_trap	147
-#define S_gateway_trap	148
-#define S_growing_trap	149
-#define S_cooling_trap	150
-#define S_bar_trap	151
-#define S_locking_trap	152
-#define S_air_trap	153
-#define S_terrain_trap	154
+#define S_recursion_trap	138
+#define S_respawn_trap	139
+#define S_warp_zone	140
+#define S_captcha_trap	141
+#define S_mind_wipe_trap	142
+#define S_shuriken_trap	143
+#define S_shit_pit	144
+#define S_shaft_trap	145
+#define S_lock_trap	146
+#define S_mc_trap	147
+#define S_farlook_trap	148
+#define S_gateway_trap	149
+#define S_growing_trap	150
+#define S_cooling_trap	151
+#define S_bar_trap	152
+#define S_locking_trap	153
+#define S_air_trap	154
+#define S_terrain_trap	155
 
-#define S_loudspeaker	155
-#define S_nest_trap	156
-#define S_bullet_trap	157
-#define S_paralysis_trap	158
-#define S_cyanide_trap	159
-#define S_laser_trap	160
-#define S_giant_chasm	161
-#define S_fart_trap	162
-#define S_confuse_trap	163
-#define S_stun_trap	164
-#define S_hallucination_trap	165
-#define S_petrification_trap	166
-#define S_numbness_trap	167
-#define S_freezing_trap	168
-#define S_burning_trap	169
-#define S_fear_trap	170
-#define S_blindness_trap	171
-#define S_glib_trap	172
-#define S_slime_trap	173
-#define S_inertia_trap	174
-#define S_time_trap	175
-#define S_lycanthropy_trap	176
-#define S_unlight_trap	177
-#define S_elemental_trap	178
-#define S_escalating_trap	179
-#define S_negative_trap	180
-#define S_mana_trap	181
-#define S_sin_trap	182
-#define S_destroy_armor_trap	183
-#define S_divine_anger_trap	184
-#define S_genetic_trap	185
-#define S_missingno_trap	186
-#define S_cancellation_trap	187
-#define S_hostility_trap	188
-#define S_boss_trap	189
-#define S_wishing_trap	190
-#define S_recurring_amn_trap	191
-#define S_bigscript_trap	192
-#define S_bank_trap	193
-#define S_only_trap	194
-#define S_map_trap	195
-#define S_tech_trap	196
-#define S_disenchant_trap	197
-#define S_verisiert	198
-#define S_chaos_trap	199
-#define S_muteness_trap	200
-#define S_ntll_trap	201
-#define S_engraving_trap	202
-#define S_magic_device_trap	203
-#define S_book_trap	204
-#define S_level_trap	205
-#define S_quiz_trap	206
+#define S_loudspeaker	156
+#define S_nest_trap	157
+#define S_bullet_trap	158
+#define S_paralysis_trap	159
+#define S_cyanide_trap	160
+#define S_laser_trap	161
+#define S_giant_chasm	162
+#define S_fart_trap	163
+#define S_confuse_trap	164
+#define S_stun_trap	165
+#define S_hallucination_trap	166
+#define S_petrification_trap	167
+#define S_numbness_trap	168
+#define S_freezing_trap	169
+#define S_burning_trap	170
+#define S_fear_trap	171
+#define S_blindness_trap	172
+#define S_glib_trap	173
+#define S_slime_trap	174
+#define S_inertia_trap	175
+#define S_time_trap	176
+#define S_lycanthropy_trap	177
+#define S_unlight_trap	178
+#define S_elemental_trap	179
+#define S_escalating_trap	180
+#define S_negative_trap	181
+#define S_mana_trap	182
+#define S_sin_trap	183
+#define S_destroy_armor_trap	184
+#define S_divine_anger_trap	185
+#define S_genetic_trap	186
+#define S_missingno_trap	187
+#define S_cancellation_trap	188
+#define S_hostility_trap	189
+#define S_boss_trap	190
+#define S_wishing_trap	191
+#define S_recurring_amn_trap	192
+#define S_bigscript_trap	193
+#define S_bank_trap	194
+#define S_only_trap	195
+#define S_map_trap	196
+#define S_tech_trap	197
+#define S_disenchant_trap	198
+#define S_verisiert	199
+#define S_chaos_trap	200
+#define S_muteness_trap	201
+#define S_ntll_trap	202
+#define S_engraving_trap	203
+#define S_magic_device_trap	204
+#define S_book_trap	205
+#define S_level_trap	206
+#define S_quiz_trap	207
 
-#define S_falling_boulder_trap	207
-#define S_glass_arrow_trap	208
-#define S_glass_bolt_trap	209
-#define S_out_of_magic_trap	210
-#define S_plasma_trap	211
-#define S_bomb_trap	212
-#define S_earthquake_trap	213
-#define S_noise_trap	214
-#define S_glue_trap	215
-#define S_guillotine_trap	216
-#define S_bisection_trap	217
-#define S_volt_trap	218
-#define S_horde_trap	219
-#define S_immobility_trap	220
-#define S_green_glyph_trap	221
-#define S_blue_glyph_trap	222
-#define S_yellow_glyph_trap	223
-#define S_orange_glyph_trap	224
-#define S_black_glyph_trap	225
-#define S_purple_glyph_trap	226
+#define S_falling_boulder_trap	208
+#define S_glass_arrow_trap	209
+#define S_glass_bolt_trap	210
+#define S_out_of_magic_trap	211
+#define S_plasma_trap	212
+#define S_bomb_trap	213
+#define S_earthquake_trap	214
+#define S_noise_trap	215
+#define S_glue_trap	216
+#define S_guillotine_trap	217
+#define S_bisection_trap	218
+#define S_volt_trap	219
+#define S_horde_trap	220
+#define S_immobility_trap	221
+#define S_green_glyph_trap	222
+#define S_blue_glyph_trap	223
+#define S_yellow_glyph_trap	224
+#define S_orange_glyph_trap	225
+#define S_black_glyph_trap	226
+#define S_purple_glyph_trap	227
 
-#define S_metabolic_trap	227
-#define S_no_return_trap	228
-#define S_ego_trap	229
-#define S_fast_forward_trap	230
-#define S_rotten_trap	231
-#define S_unskilled_trap	232
-#define S_low_stats_trap	233
-#define S_training_trap	234
-#define S_exercise_trap	235
-#define S_falling_loadstone_trap	236
-#define S_summon_undead_trap	237
-#define S_falling_nastystone_trap	238
+#define S_metabolic_trap	228
+#define S_no_return_trap	229
+#define S_ego_trap	230
+#define S_fast_forward_trap	231
+#define S_rotten_trap	232
+#define S_unskilled_trap	233
+#define S_low_stats_trap	234
+#define S_training_trap	235
+#define S_exercise_trap	236
+#define S_falling_loadstone_trap	237
+#define S_summon_undead_trap	238
+#define S_falling_nastystone_trap	239
 
-#define S_spined_ball_trap	239
-#define S_pendulum_trap	240
-#define S_turn_table	241
-#define S_scent_trap	242
-#define S_banana_trap	243
-#define S_falling_tub_trap	244
-#define S_alarm	245
-#define S_caltrops_trap	246
-#define S_blade_wire	247
-#define S_magnet_trap	248
-#define S_slingshot_trap	249
-#define S_cannon_trap	250
-#define S_venom_sprinkler	251
-#define S_fumarole	252
+#define S_spined_ball_trap	240
+#define S_pendulum_trap	241
+#define S_turn_table	242
+#define S_scent_trap	243
+#define S_banana_trap	244
+#define S_falling_tub_trap	245
+#define S_alarm	246
+#define S_caltrops_trap	247
+#define S_blade_wire	248
+#define S_magnet_trap	249
+#define S_slingshot_trap	250
+#define S_cannon_trap	251
+#define S_venom_sprinkler	252
+#define S_fumarole	253
 
-#define S_mana_pit	253
-#define S_elemental_portal	254
-#define S_girliness_trap	255
-#define S_fumbling_trap	256
-#define S_egomonster_trap	257
-#define S_flooding_trap	258
-#define S_monster_cube	259
-#define S_cursed_grave	260
-#define S_limitation_trap	261
-#define S_weak_sight_trap	262
-#define S_random_message_trap	263
+#define S_mana_pit	254
+#define S_elemental_portal	255
+#define S_girliness_trap	256
+#define S_fumbling_trap	257
+#define S_egomonster_trap	258
+#define S_flooding_trap	259
+#define S_monster_cube	260
+#define S_cursed_grave	261
+#define S_limitation_trap	262
+#define S_weak_sight_trap	263
+#define S_random_message_trap	264
 
-#define S_desecration_trap 264
-#define S_starvation_trap 265
-#define S_dropless_trap 266
-#define S_low_effect_trap 267
-#define S_invisible_trap 268
-#define S_ghost_world_trap 269
-#define S_dehydration_trap 270
-#define S_hate_trap 271
-#define S_spacewars_trap 272
-#define S_temporary_recursion_trap 273
-#define S_totter_trap 274
-#define S_nonintrinsical_trap 275
-#define S_dropcurse_trap 276
-#define S_nakedness_trap 277
-#define S_antilevel_trap 278
-#define S_ventilator 279
-#define S_stealer_trap 280
-#define S_rebellion_trap 281
-#define S_crap_trap 282
-#define S_misfire_trap 283
-#define S_trap_of_walls 284
+#define S_desecration_trap 265
+#define S_starvation_trap 266
+#define S_dropless_trap 267
+#define S_low_effect_trap 268
+#define S_invisible_trap 269
+#define S_ghost_world_trap 270
+#define S_dehydration_trap 271
+#define S_hate_trap 272
+#define S_spacewars_trap 273
+#define S_temporary_recursion_trap 274
+#define S_totter_trap 275
+#define S_nonintrinsical_trap 276
+#define S_dropcurse_trap 277
+#define S_nakedness_trap 278
+#define S_antilevel_trap 279
+#define S_ventilator 280
+#define S_stealer_trap 281
+#define S_rebellion_trap 282
+#define S_crap_trap 283
+#define S_misfire_trap 284
+#define S_trap_of_walls 285
 
-#define S_disconnect_trap 285
-#define S_interface_screw_trap 286
-#define S_dimness_trap 287
-#define S_evil_artifact_trap 288
-#define S_bossfight_trap 289
-#define S_entire_level_trap 290
-#define S_bones_trap 291
-#define S_rodney_trap 292
-#define S_autocurse_trap 293
-#define S_highlevel_trap 294
-#define S_spell_forgetting_trap 295
-#define S_sound_effect_trap 296
+#define S_disconnect_trap 286
+#define S_interface_screw_trap 287
+#define S_dimness_trap 288
+#define S_evil_artifact_trap 289
+#define S_bossfight_trap 290
+#define S_entire_level_trap 291
+#define S_bones_trap 292
+#define S_rodney_trap 293
+#define S_autocurse_trap 294
+#define S_highlevel_trap 295
+#define S_spell_forgetting_trap 296
+#define S_sound_effect_trap 297
 
-#define S_trap_percents		297
+#define S_trap_percents		298
 
-#define S_nexus_trap		298
-#define S_leg_trap		299
-#define S_artifact_jackpot_trap		300
-#define S_map_amnesia_trap		301
-#define S_spreading_trap		302
-#define S_adjacent_trap		303
-#define S_superthing_trap		304
-#define S_current_shaft		305
-#define S_levitation_trap		306
-#define S_bowel_cramps_trap		307
-#define S_unequipping_trap		308
-#define S_good_artifact_trap		309
-#define S_gender_trap		310
-#define S_trap_of_oa		311
-#define S_sincount_trap		312
-#define S_beamer_trap		313
-#define S_level_beamer		314
-#define S_pet_trap		315
-#define S_piercing_beam_trap		316
-#define S_wrenching_trap		317
-#define S_tracker_trap		318
-#define S_nurse_trap		319
-#define S_back_to_start_trap		320
-#define S_nemesis_trap		321
-#define S_strew_trap		322
-#define S_outta_depth_trap		323
-#define S_punishment_trap		324
-#define S_boon_trap		325
-#define S_fountain_trap		326
-#define S_throne_trap		327
-#define S_anoxic_pit		328
-#define S_arabella_speaker		329
-#define S_femmy_trap		330
-#define S_madeleine_trap		331
-#define S_marlena_trap		332
-#define S_anastasia_trap		333
-#define S_filler_trap		334
-#define S_toxic_venom_trap		335
-#define S_insanity_trap		336
-#define S_madness_trap		337
-#define S_jessica_trap		338
-#define S_solvejg_trap		339
-#define S_wendy_trap		340
-#define S_katharina_trap		341
-#define S_elena_trap		342
-#define S_thai_trap		343
-#define S_elif_trap		344
-#define S_nadja_trap		345
-#define S_sandra_trap		346
-#define S_natalje_trap		347
-#define S_jeanetta_trap		348
-#define S_yvonne_trap		349
-#define S_maurah_trap		350
+#define S_nexus_trap		299
+#define S_leg_trap		300
+#define S_artifact_jackpot_trap		301
+#define S_map_amnesia_trap		302
+#define S_spreading_trap		303
+#define S_adjacent_trap		304
+#define S_superthing_trap		305
+#define S_current_shaft		306
+#define S_levitation_trap		307
+#define S_bowel_cramps_trap		308
+#define S_unequipping_trap		309
+#define S_good_artifact_trap		310
+#define S_gender_trap		311
+#define S_trap_of_oa		312
+#define S_sincount_trap		313
+#define S_beamer_trap		314
+#define S_level_beamer		315
+#define S_pet_trap		316
+#define S_piercing_beam_trap		317
+#define S_wrenching_trap		318
+#define S_tracker_trap		319
+#define S_nurse_trap		320
+#define S_back_to_start_trap		321
+#define S_nemesis_trap		322
+#define S_strew_trap		323
+#define S_outta_depth_trap		324
+#define S_punishment_trap		325
+#define S_boon_trap		326
+#define S_fountain_trap		327
+#define S_throne_trap		328
+#define S_anoxic_pit		329
+#define S_arabella_speaker		330
+#define S_femmy_trap		331
+#define S_madeleine_trap		332
+#define S_marlena_trap		333
+#define S_anastasia_trap		334
+#define S_filler_trap		335
+#define S_toxic_venom_trap		336
+#define S_insanity_trap		337
+#define S_madness_trap		338
+#define S_jessica_trap		339
+#define S_solvejg_trap		340
+#define S_wendy_trap		341
+#define S_katharina_trap		342
+#define S_elena_trap		343
+#define S_thai_trap		344
+#define S_elif_trap		345
+#define S_nadja_trap		346
+#define S_sandra_trap		347
+#define S_natalje_trap		348
+#define S_jeanetta_trap		349
+#define S_yvonne_trap		350
+#define S_maurah_trap		351
 
-#define S_lootcut_trap	351
-#define S_monster_speed_trap	352
-#define S_scaling_trap	353
-#define S_enmity_trap	354
-#define S_white_spell_trap	355
-#define S_gray_spell_trap	356
-#define S_quasar_trap	357
-#define S_momma_trap	358
-#define S_horror_trap	359
-#define S_artificer_trap	360
-#define S_wereform_trap	361
-#define S_nonprayer_trap	362
-#define S_evil_patch_trap	363
-#define S_hard_mode_trap	364
-#define S_secret_attack_trap	365
-#define S_eater_trap	366
-#define S_covetous_trap	367
-#define S_not_seen_trap	368
-#define S_dark_mode_trap	369
-#define S_antisearch_trap	370
-#define S_homicide_trap	371
-#define S_nasty_nation_trap	372
-#define S_wakeup_call_trap	373
-#define S_grayout_trap	374
-#define S_gray_center_trap	375
-#define S_checkerboard_trap	376
-#define S_clockwise_spin_trap	377
-#define S_counterclockwise_trap	378
-#define S_lag_trap	379
-#define S_blesscurse_trap	380
-#define S_delight_trap	381
-#define S_discharge_trap	382
-#define S_trashing_trap	383
-#define S_filtering_trap	384
-#define S_deformatting_trap	385
-#define S_flicker_strip_trap	386
-#define S_undressing_trap	387
-#define S_hyperbluewall_trap	388
-#define S_nolite_trap	389
-#define S_paranoia_trap	390
-#define S_fleecescript_trap	391
-#define S_interrupt_trap	392
-#define S_dustbin_trap	393
-#define S_mana_battery_trap	394
-#define S_monsterfingers_trap	395
-#define S_miscast_trap	396
-#define S_message_suppression_trap	397
-#define S_stuck_announcement_trap	398
-#define S_bloodthirsty_trap	399
-#define S_maximum_damage_trap	400
-#define S_latency_trap	401
-#define S_starlit_trap	402
-#define S_knowledge_trap	403
-#define S_highscore_trap	404
-#define S_pink_spell_trap	405
-#define S_green_spell_trap	406
-#define S_evc_trap	407
-#define S_underlayer_trap	408
-#define S_damage_meter_trap	409
-#define S_arbitrary_weight_trap	410
-#define S_fucked_info_trap	411
-#define S_black_spell_trap	412
-#define S_cyan_spell_trap	413
-#define S_heap_trap	414
-#define S_blue_spell_trap	415
-#define S_tron_trap	416
-#define S_red_spell_trap	417
-#define S_too_heavy_trap	418
-#define S_elongation_trap	419
-#define S_wrapover_trap	420
-#define S_destruction_trap	421
-#define S_melee_prefix_trap	422
-#define S_automore_trap	423
-#define S_unfair_attack_trap	424
+#define S_lootcut_trap	352
+#define S_monster_speed_trap	353
+#define S_scaling_trap	354
+#define S_enmity_trap	355
+#define S_white_spell_trap	356
+#define S_gray_spell_trap	357
+#define S_quasar_trap	358
+#define S_momma_trap	359
+#define S_horror_trap	360
+#define S_artificer_trap	361
+#define S_wereform_trap	362
+#define S_nonprayer_trap	363
+#define S_evil_patch_trap	364
+#define S_hard_mode_trap	365
+#define S_secret_attack_trap	366
+#define S_eater_trap	367
+#define S_covetous_trap	368
+#define S_not_seen_trap	369
+#define S_dark_mode_trap	370
+#define S_antisearch_trap	371
+#define S_homicide_trap	372
+#define S_nasty_nation_trap	373
+#define S_wakeup_call_trap	374
+#define S_grayout_trap	375
+#define S_gray_center_trap	376
+#define S_checkerboard_trap	377
+#define S_clockwise_spin_trap	378
+#define S_counterclockwise_trap	379
+#define S_lag_trap	380
+#define S_blesscurse_trap	381
+#define S_delight_trap	382
+#define S_discharge_trap	383
+#define S_trashing_trap	384
+#define S_filtering_trap	385
+#define S_deformatting_trap	386
+#define S_flicker_strip_trap	387
+#define S_undressing_trap	388
+#define S_hyperbluewall_trap	389
+#define S_nolite_trap	390
+#define S_paranoia_trap	391
+#define S_fleecescript_trap	392
+#define S_interrupt_trap	393
+#define S_dustbin_trap	394
+#define S_mana_battery_trap	395
+#define S_monsterfingers_trap	396
+#define S_miscast_trap	397
+#define S_message_suppression_trap	398
+#define S_stuck_announcement_trap	399
+#define S_bloodthirsty_trap	400
+#define S_maximum_damage_trap	401
+#define S_latency_trap	402
+#define S_starlit_trap	403
+#define S_knowledge_trap	404
+#define S_highscore_trap	405
+#define S_pink_spell_trap	406
+#define S_green_spell_trap	407
+#define S_evc_trap	408
+#define S_underlayer_trap	409
+#define S_damage_meter_trap	410
+#define S_arbitrary_weight_trap	411
+#define S_fucked_info_trap	412
+#define S_black_spell_trap	413
+#define S_cyan_spell_trap	414
+#define S_heap_trap	415
+#define S_blue_spell_trap	416
+#define S_tron_trap	417
+#define S_red_spell_trap	418
+#define S_too_heavy_trap	419
+#define S_elongation_trap	420
+#define S_wrapover_trap	421
+#define S_destruction_trap	422
+#define S_melee_prefix_trap	423
+#define S_automore_trap	424
+#define S_unfair_attack_trap	425
 
-#define S_timerun_trap		425
+#define S_timerun_trap		426
 
 /* end traps, begin special effects */
 
-#define S_vbeam		426	/* The 4 zap beam symbols.  Do NOT separate. */
-#define S_hbeam		427	/* To change order or add, see function     */
-#define S_lslant	428	/* zapdir_to_glyph() in display.c.	    */
-#define S_rslant	429
-#define S_digbeam	430	/* dig beam symbol */
-#define S_flashbeam	431	/* camera flash symbol */
-#define S_boomleft	432	/* thrown boomerang, open left, e.g ')'    */
-#define S_boomright	433	/* thrown boomerand, open right, e.g. '('  */
-#define S_ss1		434	/* 4 magic shield glyphs */
-#define S_ss2		435
-#define S_ss3		436
-#define S_ss4		437
+#define S_vbeam		427	/* The 4 zap beam symbols.  Do NOT separate. */
+#define S_hbeam		428	/* To change order or add, see function     */
+#define S_lslant	429	/* zapdir_to_glyph() in display.c.	    */
+#define S_rslant	430
+#define S_digbeam	431	/* dig beam symbol */
+#define S_flashbeam	432	/* camera flash symbol */
+#define S_boomleft	433	/* thrown boomerang, open left, e.g ')'    */
+#define S_boomright	434	/* thrown boomerand, open right, e.g. '('  */
+#define S_ss1		435	/* 4 magic shield glyphs */
+#define S_ss2		436
+#define S_ss3		437
+#define S_ss4		438
 
 /* The 8 swallow symbols.  Do NOT separate.  To change order or add, see */
 /* the function swallow_to_glyph() in display.c.			 */
-#define S_sw_tl		438	/* swallow top left [1]			*/
-#define S_sw_tc		439	/* swallow top center [2]	Order:	*/
-#define S_sw_tr		440	/* swallow top right [3]		*/
-#define S_sw_ml		441	/* swallow middle left [4]	1 2 3	*/
-#define S_sw_mr		442	/* swallow middle right [6]	4 5 6	*/
-#define S_sw_bl		443	/* swallow bottom left [7]	7 8 9	*/
-#define S_sw_bc		444	/* swallow bottom center [8]		*/
-#define S_sw_br		445	/* swallow bottom right [9]		*/
+#define S_sw_tl		439	/* swallow top left [1]			*/
+#define S_sw_tc		440	/* swallow top center [2]	Order:	*/
+#define S_sw_tr		441	/* swallow top right [3]		*/
+#define S_sw_ml		442	/* swallow middle left [4]	1 2 3	*/
+#define S_sw_mr		443	/* swallow middle right [6]	4 5 6	*/
+#define S_sw_bl		444	/* swallow bottom left [7]	7 8 9	*/
+#define S_sw_bc		445	/* swallow bottom center [8]		*/
+#define S_sw_br		446	/* swallow bottom right [9]		*/
 
-#define S_explode1	446	/* explosion top left			*/
-#define S_explode2	447	/* explosion top center			*/
-#define S_explode3	448	/* explosion top right		 Ex.	*/
-#define S_explode4	449	/* explosion middle left		*/
-#define S_explode5	450	/* explosion middle center	 /-\	*/
-#define S_explode6	451	/* explosion middle right	 |@|	*/
-#define S_explode7	452	/* explosion bottom left	 \-/	*/
-#define S_explode8	453	/* explosion bottom center		*/
-#define S_explode9	454	/* explosion bottom right		*/
+#define S_explode1	447	/* explosion top left			*/
+#define S_explode2	448	/* explosion top center			*/
+#define S_explode3	449	/* explosion top right		 Ex.	*/
+#define S_explode4	450	/* explosion middle left		*/
+#define S_explode5	451	/* explosion middle center	 /-\	*/
+#define S_explode6	452	/* explosion middle right	 |@|	*/
+#define S_explode7	453	/* explosion bottom left	 \-/	*/
+#define S_explode8	454	/* explosion bottom center		*/
+#define S_explode9	455	/* explosion bottom right		*/
   
 /* end effects */
   
-#define MAXPCHARS	455 	/* maximum number of mapped characters */
-#define MAXDCHARS	44	/* maximum of mapped dungeon characters */
+#define MAXPCHARS	456 	/* maximum number of mapped characters */
+#define MAXDCHARS	45	/* maximum of mapped dungeon characters */
 #define MAXTCHARS	382	/* maximum of mapped trap characters */
 #define MAXECHARS       29      /* maximum of mapped effects characters */
 #define MAXEXPCHARS	9	/* number of explosion characters */
@@ -699,6 +700,7 @@ extern const struct symdef def_warnsyms[WARNCOUNT];
 #define W_NONPASSWALL	0x10
 #define W_EASYGROWTH	0x20 /* set this if a wall without W_HARDGROWTH is dug out */
 #define W_HARDGROWTH	0x40 /* set this if a tile without W_EASYGROWTH is made into a new wall */
+#define W_QUASAROK	0x80 /* tile will be visible while quasar effect is active */
 
 /*
  * Ladders (in Vlad's tower) may be up or down.
@@ -731,7 +733,7 @@ struct rm {
 	schar typ;		/* what is really there */
 	uchar seenv;		/* seen vector */
 	Bitfield(flags,5);	/* extra information for typ */
-	Bitfield(flagsX,7);	/* extra information for typ */
+	Bitfield(flagsX,8);	/* extra information for typ */
 	Bitfield(horizontal,1); /* wall/door/etc is horiz. (more typ info) */
 	Bitfield(lit,1);	/* speed hack for lit rooms */
 	Bitfield(waslit,1);	/* remember if a location was lit */

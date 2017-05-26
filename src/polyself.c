@@ -385,10 +385,10 @@ boolean forcecontrol;
 			else if (!forcecontrol && ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if (!forcecontrol && ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(18) > 7) ) ) {
+			else if (!forcecontrol && ((PlayerCannotUseSkills) && (rnd(18) > 7) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if (!forcecontrol && (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(18) > (P_SKILL(P_POLYMORPHING) + 10) ) ) ) {
+			else if (!forcecontrol && (!(PlayerCannotUseSkills) && (rnd(18) > (P_SKILL(P_POLYMORPHING) + 10) ) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 
@@ -429,10 +429,10 @@ boolean forcecontrol;
 				else if ( ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5)) ) {
 					mntmp = LOW_PM - 1; break; /* polymorph failed */
 				}
-				else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(12) > 3) ) {
+				else if ((PlayerCannotUseSkills) && (rnd(12) > 3) ) {
 					mntmp = LOW_PM - 1; break; /* polymorph failed */
 				}
-				else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
+				else if (!(PlayerCannotUseSkills) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
 					mntmp = LOW_PM - 1; break; /* polymorph failed */
 				}
 
@@ -446,10 +446,10 @@ boolean forcecontrol;
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 
-			else if ((AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(12) > 3) ) {
+			else if ((PlayerCannotUseSkills) && (rnd(12) > 3) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
-			else if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
+			else if (!(PlayerCannotUseSkills) && (rnd(12) > (P_SKILL(P_POLYMORPHING) + 4) ) ) {
 				mntmp = LOW_PM - 1; break; /* polymorph failed */
 			}
 
@@ -637,7 +637,7 @@ int	mntmp;
 		delayed_killer = 0;
 	}
 
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) u.mtimedone = rnz(400);
+	if (PlayerCannotUseSkills) u.mtimedone = rnz(400);
 	else switch (P_SKILL(P_POLYMORPHING)) {
 
       	case P_BASIC:	u.mtimedone = rnz(500); break;
@@ -873,10 +873,13 @@ int	mntmp;
 STATIC_OVL void
 break_armor()
 {
+
+	char buf[BUFSZ];
+
     register struct obj *otmp;
     boolean controlled_change = (Race_if(PM_DOPPELGANGER) || RngeArmorPreservation || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_) || (Race_if(PM_HUMAN_WEREWOLF) && u.umonnum == PM_WEREWOLF));
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		if (rnd(10) < P_SKILL(P_POLYMORPHING)) controlled_change = TRUE;
 
 	}
@@ -886,7 +889,7 @@ break_armor()
 	boolean cloakkeep = 0;
 	boolean shirtkeep = 0;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_POLYMORPHING)) {
 
 	      	case P_BASIC:	controllingchance = 1; break;
@@ -908,19 +911,23 @@ break_armor()
 	}
 
 	if (uarm && (rnd(100) < controllingchance)) {
-		if (yn("Keep your torso armor on?") != 'n') {
-			armorkeep = 1;
-		}
+
+		getlin ("Keep your torso armor on? [yes/no]",buf);
+		(void) lcase (buf);
+		if (!(strcmp (buf, "yes"))) armorkeep = 1;
+
 	}
 	if (uarmc && (rnd(100) < controllingchance)) {
-		if (yn("Keep your cloak on?") != 'n') {
-			cloakkeep = 1;
-		}
+		getlin ("Keep your cloak on? [yes/no]",buf);
+		(void) lcase (buf);
+		if (!(strcmp (buf, "yes"))) cloakkeep = 1;
+
 	}
 	if (uarmu && (rnd(100) < controllingchance)) {
-		if (yn("Keep your shirt on?") != 'n') {
-			shirtkeep = 1;
-		}
+		getlin ("Keep your shirt on? [yes/no]",buf);
+		(void) lcase (buf);
+		if (!(strcmp (buf, "yes"))) shirtkeep = 1;
+
 	}
 
     if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
@@ -1043,9 +1050,11 @@ break_armor()
     if (!Race_if(PM_TRANSFORMER) && (nohands(youmonst.data) || verysmall(youmonst.data))) {
 
 	if (uarmg && (rnd(100) < controllingchance)) {
-		if (yn("Keep your gloves on?") != 'n') {
-			goto glovesdone;
-		}
+
+		getlin ("Keep your gloves on? [yes/no]",buf);
+		(void) lcase (buf);
+		if (!(strcmp (buf, "yes"))) goto glovesdone;
+
 	}
 
 	/* It was really retarded that you would also drop the weapon, because drop_weapon() is already called
@@ -1059,9 +1068,11 @@ break_armor()
 glovesdone:
 
 	if (uarms && (rnd(100) < controllingchance)) {
-		if (yn("Keep your shield on?") != 'n') {
-			goto shielddone;
-		}
+
+		getlin ("Keep your shield on? [yes/no]",buf);
+		(void) lcase (buf);
+		if (!(strcmp (buf, "yes"))) goto shielddone;
+
 	}
 
 	if ((otmp = uarms) != 0) {
@@ -1072,9 +1083,11 @@ glovesdone:
 shielddone:
 
 	if (uarmh && (rnd(100) < controllingchance)) {
-		if (yn("Keep your helmet on?") != 'n') {
-			goto helmetdone;
-		}
+
+		getlin ("Keep your helmet on? [yes/no]",buf);
+		(void) lcase (buf);
+		if (!(strcmp (buf, "yes"))) goto helmetdone;
+
 	}
 
 	if ((otmp = uarmh) != 0) {
@@ -1089,9 +1102,11 @@ helmetdone:
 		slithy(youmonst.data) || youmonst.data->mlet == S_CENTAUR)) {
 
 	if (uarmf && (rnd(100) < controllingchance)) {
-		if (yn("Keep your boots on?") != 'n') {
-			goto bootsdone;
-		}
+
+		getlin ("Keep your boots on? [yes/no]",buf);
+		(void) lcase (buf);
+		if (!(strcmp (buf, "yes"))) goto bootsdone;
+
 	}
 
 	if ((otmp = uarmf) != 0) {
@@ -1115,9 +1130,11 @@ int alone;
     struct obj *otmp;
     struct obj *otmp2;
 
+	char buf[BUFSZ];
+
 	int controllingchance = 0;
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_POLYMORPHING)) {
 
 	      	case P_BASIC:	controllingchance = 1; break;
@@ -1151,9 +1168,11 @@ int alone;
 	    otmp2 = u.twoweap ? uswapwep : 0;
 
 		if (uwep && (rnd(100) < controllingchance)) {
-			if (yn("Keep wielding your weapon?") != 'n') {
-				goto weapondone;
-			}
+
+			getlin ("Keep wielding your weapon? [yes/no]",buf);
+			(void) lcase (buf);
+			if (!(strcmp (buf, "yes"))) goto weapondone;
+
 		}
 	    uwepgone();
 

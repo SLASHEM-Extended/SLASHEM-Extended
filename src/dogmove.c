@@ -144,7 +144,7 @@ struct obj *obj;
 	}
 	use_skill(P_PETKEEPING,1);
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_PETKEEPING)) {
 			default: break;
 			case P_BASIC: nutrit = (nutrit * 11 / 10); break;
@@ -329,7 +329,7 @@ register struct edog *edog;
 		else {
 		    You_feel("%s for a moment.",
 			Hallucination ? "bummed" : "sad");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tipichnyy igrok. Vy dazhe ne sposobny kormit' vashego pitomtsa." : "Tschwieaeaeh!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Tipichnyy igrok. Vy dazhe ne sposobny kormit' vashego pitomtsa." : "Tschwieaeaeh!");
 
 		}
 		mondied(mtmp);
@@ -749,7 +749,7 @@ register int after;	/* this is extra fast monster movement */
 	/* If you abused your pet, it will _very_ slowly time out. --Amy */
 	if (!rn2(10000) && has_edog && edog->abuse) {
 		edog->abuse--;
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 			if (!rn2(10) && edog->abuse && P_SKILL(P_PETKEEPING) >= P_BASIC) edog->abuse--;
 			if (!rn2(10) && edog->abuse && P_SKILL(P_PETKEEPING) >= P_SKILLED) edog->abuse--;
 			if (!rn2(10) && edog->abuse && P_SKILL(P_PETKEEPING) >= P_EXPERT) edog->abuse--;

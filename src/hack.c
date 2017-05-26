@@ -627,7 +627,7 @@ moverock()
 			  otense(otmp, "plug"),
 			  (ttmp->ttyp == TRAPDOOR) ? "trap door" : "hole",
 			  surface(rx, ry));
-		    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Takim obrazom, vy deystvitel'no dumayete, chto vy dostatochno umny, chtoby reshit' golovolomku bloka. Ya ser'yezno somnevayus' v etom." : "Tchueb!");
+		    if (PlayerHearsSoundEffects) pline(issoviet ? "Takim obrazom, vy deystvitel'no dumayete, chto vy dostatochno umny, chtoby reshit' golovolomku bloka. Ya ser'yezno somnevayus' v etom." : "Tchueb!");
 		    deltrap(ttmp);
 		    delobj(otmp);
 		    bury_objs(rx, ry);
@@ -716,7 +716,7 @@ moverock()
 		 if (Blind) feel_location(sx,sy);
 	cannot_push:
 	    if (throws_rocks(youmonst.data)) {
-		if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
+		if (u.usteed && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 		    You("aren't skilled enough to %s %s from %s.",
 			(flags.pickup && !In_sokoban(&u.uz))
 			    ? "pick up" : "push aside",
@@ -1042,7 +1042,22 @@ int mode;
 	if (Blind && mode == DO_MOVE) feel_location(x,y);
 	if (tmpr->typ == IRONBARS) {
 	    if (!(Passes_walls || passes_bars(youmonst.data) )) {
-		if (mode == DO_MOVE) pline("There is a set of iron bars in the way!");
+		if (mode == DO_MOVE) {
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+				You("crash into a set of iron bars! Ouch!");
+
+				losehp(rnd(10), "walking into iron bars", KILLED_BY);
+				if (!rn2(10)) {
+					if (rn2(50)) {
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+					} else {
+						You_feel("dizzy!");
+						forget(1 + rn2(5));
+					}
+				}
+
+			} else pline("There is a set of iron bars in the way!");
+		}
 		return FALSE;
 		}
 	    else if (In_sokoban(&u.uz)) {
@@ -1071,8 +1086,38 @@ int mode;
 		    pline_The("Sokoban walls resist your ability.");
 
 		if (!(Is_stronghold(&u.uz) && is_db_wall(x,y)) && !(Passes_walls && !may_passwall(x,y) && In_sokoban(&u.uz))) {
-			if (tmpr->typ == TREE && mode == DO_MOVE) pline("There is a tree in the way!");
-			else if (mode == DO_MOVE) pline("There is a wall in the way!");
+			if (tmpr->typ == TREE && mode == DO_MOVE) {
+
+				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+					You("crash into a tree! Ouch!");
+
+					losehp(rnd(10), "walking into a tree", KILLED_BY);
+					if (!rn2(10)) {
+						if (rn2(50)) {
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+						} else {
+							You_feel("dizzy!");
+							forget(1 + rn2(5));
+						}
+					}
+				} else pline("There is a tree in the way!");
+
+			} else if (mode == DO_MOVE) {
+
+				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+					You("crash into a wall! Ouch!");
+
+					losehp(rnd(10), "walking into a wall", KILLED_BY);
+					if (!rn2(10)) {
+						if (rn2(50)) {
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+						} else {
+							You_feel("dizzy!");
+							forget(1 + rn2(5));
+						}
+					}
+				} else pline("There is a wall in the way!");
+			}
 		}
 	    }
 	    return FALSE;
@@ -1122,7 +1167,22 @@ int mode;
 		    return FALSE;
 		    }
 		} else if (mode == TEST_TRAV) goto testdiag;
-		if (mode == DO_MOVE) pline("There is a door in the way!");
+		if (mode == DO_MOVE) {
+
+				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+					You("crash into a door! Ouch!");
+
+					losehp(rnd(10), "walking into a door", KILLED_BY);
+					if (!rn2(10)) {
+						if (rn2(50)) {
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+						} else {
+							You_feel("dizzy!");
+							forget(1 + rn2(5));
+						}
+					}
+				} else pline("There is a door in the way!");
+		}
 		return FALSE;
 	    }
 	} else {
@@ -1382,6 +1442,9 @@ ask_about_trap(int x, int y)
 {
 
 	struct trap *traphere = t_at(x, y);
+
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
 	if (/* is_pool(x, y) || is_lava(x, y) || */ (traphere && traphere->tseen) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && !Hallucination)  {
 
 		/* who the heck included this? Maybe the player doesn't really want to use the portal at all! --Amy */
@@ -1446,6 +1509,8 @@ ask_about_trap(int x, int y)
 boolean
 ask_about_water(int x, int y)
 {
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
 	if (is_pool(u.ux, u.uy)) return FALSE;
 
 	if (is_pool(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
@@ -1459,6 +1524,8 @@ ask_about_water(int x, int y)
 boolean
 ask_about_lava(int x, int y)
 {
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
 	if (is_lava(u.ux, u.uy)) return FALSE;
 
 	if (is_lava(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
@@ -1540,9 +1607,12 @@ domove()
 		    if (!skates2) skates2 = find_skates2();
 		    static int skates3 = 0;
 		    if (!skates3) skates3 = find_skates3();
+		    static int skates4 = 0;
+		    if (!skates4) skates4 = find_skates4();
 		    if ((uarmf && uarmf->otyp == skates)
 			    || (uarmf && uarmf->otyp == skates2)
 			    || (uarmf && uarmf->otyp == skates3)
+			    || (uarmf && uarmf->otyp == skates4)
 			    || resists_cold(&youmonst) || Flying
 			    || is_floater(youmonst.data) || is_clinger(youmonst.data)
 			    || is_whirly(youmonst.data))
@@ -1568,7 +1638,7 @@ domove()
 	/* In Soviet Russia, stunning is a crippling status effect that will fuck you up. You're not supposed to stand
 	 * any chance while stunned, because seriously, players having a chance? That's a no-go! --Amy */
 
-		if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8))
+		if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8) || ((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) && !rn2(8) ) )
 			/* toned down so it's less crippling --Amy */
 			|| (u.usteed && u.usteed->mconf)
 		   ) {
@@ -2077,6 +2147,22 @@ domove()
 	mtmp = m_at(x, y);
 	u.ux += u.dx;
 	u.uy += u.dy;
+
+	if (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone()) {
+		if (u.dx == 1 && !u.dy) u.trontrapdirection = 1;
+		else if (u.dx == 1 && u.dy == 1) u.trontrapdirection = 2;
+		else if (!u.dx && u.dy == -1) u.trontrapdirection = 3;
+		else if (u.dx == -1 && u.dy == -1) u.trontrapdirection = 4;
+		else if (u.dx == -1 && !u.dy) u.trontrapdirection = 5;
+		else if (u.dx == -1 && u.dy == 1) u.trontrapdirection = 6;
+		else if (!u.dx && u.dy == 1) u.trontrapdirection = 7;
+		else if (u.dx == 1 && u.dy == -1) u.trontrapdirection = 8;
+		else u.trontrapdirection = -1;
+
+		u.trontrapturn = moves;
+
+	}
+
 	/* Move your steed, too */
 	if (u.usteed) {
 		u.usteed->mx = u.ux;
@@ -2403,6 +2489,8 @@ boolean pick;
 		/* KMH, balance patch -- new intrinsic */
 		else if (Flying)
 			You("fly out of the water.");
+		else if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "flier cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch letchika") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "uchuvchi plash") ))
+			You("fly out of the water.");
 		else if (Wwalking)
 			You("slowly rise above the surface.");
 /*              else if (Swimming)
@@ -2417,7 +2505,7 @@ boolean pick;
 		}
 	}
 stillinwater:;
-	if (!Levitation && !u.ustuck && !Flying) {
+	if (!Levitation && !u.ustuck && !Flying && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "flier cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch letchika") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "uchuvchi plash") )) ) {
 	    /* limit recursive calls through teleds() */
 	    if (is_pool(u.ux, u.uy) || is_lava(u.ux, u.uy)) {
 		if (u.usteed && !is_flyer(u.usteed->data) && (!u.usteed->egotype_flying) &&
@@ -3060,7 +3148,7 @@ dopickup()
 		return(0);
 	}
 	if (!can_reach_floor()) {
-		if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 		    You("aren't skilled enough to reach from %s.",
 			y_monnam(u.usteed));
 		else
@@ -3270,8 +3358,8 @@ maybe_wail()
     } else {
 	You_hear(u.uhp == 1 ? "the wailing of the Banshee..."
 			    : "the howling of the CwnAnnwn...");
-	if (u.uhp == 1 && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone())) pline(issoviet ? "Da! Umri, pozhaluysta! Ya nenavizhu tebya! Nadeyus', vy nastol'ko glupy, chtoby pozvolit' vse, chto chudovishche privelo vas k blizkoy smerti, chtoby snova udarit' tebya, a potom eto igra zakonchena GA GA GA!" : "SKRIIIIE-IIIIE-IIIIE-IIIIE-IIIIE!");
-	else if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Nadeyus', vy prodolzhat' deystvovat' tak glupo, potomu chto togda vy budete umirat' i pridetsya svernut' novyy kharakter. Eto budet sluzhit' vam pravil'no, vy plokhoy igrok!" : "Wueueueue-oooooooh!");
+	if (u.uhp == 1 && (PlayerHearsSoundEffects)) pline(issoviet ? "Da! Umri, pozhaluysta! Ya nenavizhu tebya! Nadeyus', vy nastol'ko glupy, chtoby pozvolit' vse, chto chudovishche privelo vas k blizkoy smerti, chtoby snova udarit' tebya, a potom eto igra zakonchena GA GA GA!" : "SKRIIIIE-IIIIE-IIIIE-IIIIE-IIIIE!");
+	else if (PlayerHearsSoundEffects) pline(issoviet ? "Nadeyus', vy prodolzhat' deystvovat' tak glupo, potomu chto togda vy budete umirat' i pridetsya svernut' novyy kharakter. Eto budet sluzhit' vam pravil'no, vy plokhoy igrok!" : "Wueueueue-oooooooh!");
     }
 }
 
@@ -3340,6 +3428,7 @@ showdmg(n)
 {
 	int lev;
 
+	if (DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) return;
 
 	if (flags.showdmg && n > 1) {
 		switch (Role_switch) {
@@ -3390,6 +3479,7 @@ int k_format; /* WAC k_format is an int */
 	if (n && Race_if(PM_YUKI_PLAYA)) n += rnd(5);
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
 	if (have_cursedmagicresstone()) n = n * 2;
+	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone()) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
 
@@ -3420,7 +3510,7 @@ int k_format; /* WAC k_format is an int */
 		    maybe_wail();
 
 #ifdef SHOW_DMG                
-		if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) && n > 0) { 
+		if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) && n > 0) { 
 			pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
 		}
 #endif
@@ -3444,11 +3534,11 @@ int k_format; /* WAC k_format is an int */
 	}
 
 #ifdef SHOW_DMG                
-	if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) && n > 0) { 
+	if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) && n > 0) { 
 
 		pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
 		if (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
-		if (isangbander && (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone())) pline(issoviet ? "Umeret' glupyy igrok ublyudka!" : "TSCHINGTSCHINGTSCHINGTSCHING!");
+		if (isangbander && (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) && (PlayerHearsSoundEffects)) pline(issoviet ? "Umeret' glupyy igrok ublyudka!" : "TSCHINGTSCHINGTSCHINGTSCHING!");
 
 	}
 #endif

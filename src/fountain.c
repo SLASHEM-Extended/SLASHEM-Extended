@@ -209,6 +209,11 @@ drinkfountain()
 		return;
 	}
 
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "foundry cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "liteynyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "quyish plash") )) {
+		u.uhunger += 100;
+		pline("The water is very nutritious!");
+	}
+
 	if (mgkftn && u.uluck >= 0 && fate >= 10) {
 		int i, ii, littleluck = (u.uluck < 4);
 
@@ -228,7 +233,7 @@ drinkfountain()
 		}
 		display_nhwindow(WIN_MESSAGE, FALSE);
 		pline("A wisp of vapor escapes the fountain...");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vezet vam. No poprobovat' yeshche raz, i vy mgnovenno umirayut ot utopleniya." : "Dae-die-dae-dae-dae...");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vezet vam. No poprobovat' yeshche raz, i vy mgnovenno umirayut ot utopleniya." : "Dae-die-dae-dae-dae...");
 		exercise(A_WIS, TRUE);
 		levl[u.ux][u.uy].blessedftn = 0;
 		return;
@@ -354,7 +359,7 @@ drinkfountain()
 			if (!Amphibious && !Swimming && !Breathless && !rn2(20) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) ) {
 
 				pline("You drown...");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Pochemu ty slishkom glup, chtoby zhit' tak ili inache? Do svidaniya!" : "HUAAAAAAA-A-AAAAHHHHHH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu ty slishkom glup, chtoby zhit' tak ili inache? Do svidaniya!" : "HUAAAAAAA-A-AAAAHHHHHH!");
 				    killer_format = KILLED_BY_AN;
 				    killer = "overflowing fountain";
 				    done(DROWNING);

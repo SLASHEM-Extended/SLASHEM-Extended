@@ -353,7 +353,7 @@ register boolean nearshop;
 
 	if (flags.soundok) {
 	    pline("An alarm sounds!");
-	    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Veselites' vmeste s politseyskimi. Oni budut vas arestovat', ili na samom dele, tak kak vash personazh tak pateticheski slaby, oni mogut prosto ubit' vas skhodu, a zatem vy mozhete svernut' novuyu. Da!" : "Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue!");
+	    if (PlayerHearsSoundEffects) pline(issoviet ? "Veselites' vmeste s politseyskimi. Oni budut vas arestovat', ili na samom dele, tak kak vash personazh tak pateticheski slaby, oni mogut prosto ubit' vas skhodu, a zatem vy mozhete svernut' novuyu. Da!" : "Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue!");
 	}
 
 	nokops = ((mvitals[PM_KEYSTONE_KOP].mvflags & G_GONE) &&

@@ -183,7 +183,7 @@ const char *name;	/* if null, then format `obj' */
 
 		}
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_SHIELD)) {
 				case P_BASIC: shieldblockrate += 2; break;
 				case P_SKILLED: shieldblockrate += 4; break;
@@ -282,14 +282,14 @@ const char *name;	/* if null, then format `obj' */
 
 	} else if (Role_if(PM_JEDI) && uwep && is_lightsaber(uwep) &&
 		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
-		!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&
+		!(PlayerCannotUseSkills) &&
 		rn2(5)){ /* dodge four of five missiles, even when blind
 			 see "A new hope" for blindness reference */
 		You("dodge %s with %s.", onm, yname(uwep));
 		return(0);
 	} else if (Race_if(PM_BORG) && uwep && is_lightsaber(uwep) &&
 		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
-		!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) &&
+		!(PlayerCannotUseSkills) &&
 		rn2(2)){ /* dodge half of all missiles, even when blind
 			 see "A new hope" for blindness reference */
 		You("dodge %s with %s.", onm, yname(uwep));
@@ -1004,14 +1004,14 @@ struct monst *mtmp;
 	skill = objects[otmp->otyp].oc_skill;
 	mwep = MON_WEP(mtmp);		/* wielded weapon */
 
-	if (ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range &&
+	if (!(ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range &&
 		dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) >
 		objects[mwep->otyp].oc_range * objects[mwep->otyp].oc_range) 
 		return; /* Out of range */
 
 	/* monsters were throwing darts way across the map, that is, distances of 70+ squares.
 	 * This was obviously not intended; they should just be able to fire sniper rifles at their actual range. --Amy */
-	else if ( !(ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > ((BOLT_LIM + strongmonst(mtmp->data) ) * (BOLT_LIM + strongmonst(mtmp->data) )) ) return;
+	else if (!(ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && !(ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > ((BOLT_LIM + strongmonst(mtmp->data) ) * (BOLT_LIM + strongmonst(mtmp->data) )) ) return;
 
 	/* Multishot calculations */
 	multishot = 1;
@@ -1323,7 +1323,7 @@ register xchar ax, ay, bx, by;
 	if (!tbx && !tby) return FALSE;
 
 	if((!tbx || !tby || abs(tbx) == abs(tby)) /* straight line or diagonal */
-	   && distmin(tbx, tby, 0, 0) < (EnglandMode ? 10 : BOLT_LIM)) {
+	   && distmin(tbx, tby, 0, 0) < ((ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ? 100 : EnglandMode ? 10 : BOLT_LIM)) {
 	    if(ax == u.ux && ay == u.uy) return((boolean)(couldsee(bx,by)));
 	    else if(clear_path(ax,ay,bx,by)) return TRUE;
 	}

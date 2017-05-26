@@ -978,6 +978,18 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* dinosaur wearing non-high-heeled boots moves at half speed --Amy */
 			}
+			if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "slowing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zamedlennoye plat'ye") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sekinlashuvi libos") ) ) && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
+			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") )) && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
+			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
 			if (u.inertia && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* inert characters move at half speed --Amy */
@@ -1087,9 +1099,9 @@ moveloop()
 			if (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qidiruvi va turbo chizilmasin") ) ) moveamt += NORMAL_SPEED / 2;
 			if (uarmg && !rn2(10) && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) moveamt += NORMAL_SPEED / 2;
 
-			if (PlayerInHighHeels && !rn2(10) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (P_SKILL(P_HIGH_HEELS) >= P_MASTER) ) moveamt += NORMAL_SPEED / 2;
-			if (PlayerInHighHeels && !rn2(10) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())&& (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER) ) moveamt += NORMAL_SPEED / 2;
-			if (PlayerInHighHeels && !rn2(10) && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && (P_SKILL(P_HIGH_HEELS) >= P_SUPREME_MASTER) ) moveamt += NORMAL_SPEED / 2;
+			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_MASTER) ) moveamt += NORMAL_SPEED / 2;
+			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER) ) moveamt += NORMAL_SPEED / 2;
+			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_SUPREME_MASTER) ) moveamt += NORMAL_SPEED / 2;
 
 			if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "greek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grecheskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yunon plash") ) ) moveamt += NORMAL_SPEED / 2;
 
@@ -2329,7 +2341,7 @@ moveloop()
 		if ( Itemcursing && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2338,7 +2350,7 @@ moveloop()
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2347,7 +2359,7 @@ moveloop()
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 		}
@@ -2390,6 +2402,19 @@ moveloop()
 			curse(uarmh);
 			if (!rn2(3)) pline("A black glow surrounds your helmet.");
 			if (!rn2(20)) NastinessProblem |= FROMOUTSIDE;
+		}
+
+		if ((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "netradiation helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "obluchonnyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sof radiatsiya dubulg'a") )) && !rn2(5000)) {
+
+			pline("The helmet's radiation damages your health!");
+			if (Upolyd && u.mhmax > 1) {
+				u.mhmax--;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			} else if (!Upolyd && u.uhpmax > 1) {
+				u.uhpmax--;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			}
+	
 		}
 
 		if (uarmh && uarmh->oartifact == ART_NULL_THE_LIVING_DATABASE && !rn2(5000) ) {
@@ -2516,7 +2541,1296 @@ newbossA:
 
 		}
 
+		if (!rn2(2000) && ArtificerBug) {
+			bad_artifact();
+		}
+
+		if (!rn2(2000) && EvilPatchEffect) {
+			
+			switch (rnd(169)) {
+
+				case 1: 
+				    SpeedBug |= FROMOUTSIDE; break;
+				case 2: 
+				    MenuBug |= FROMOUTSIDE; break;
+				case 3: 
+				    RMBLoss |= FROMOUTSIDE; break;
+				case 4: 
+				    DisplayLoss |= FROMOUTSIDE; break;
+				case 5: 
+				    SpellLoss |= FROMOUTSIDE; break;
+				case 6: 
+				    YellowSpells |= FROMOUTSIDE; break;
+				case 7: 
+				    AutoDestruct |= FROMOUTSIDE; break;
+				case 8: 
+				    MemoryLoss |= FROMOUTSIDE; break;
+				case 9: 
+				    DisplayLoss |= FROMOUTSIDE; break;
+				case 10: 
+				    BlackNgWalls |= FROMOUTSIDE; break;
+				case 11: 
+				    Superscroller |= FROMOUTSIDE; break;
+				case 12: 
+				    FreeHandLoss |= FROMOUTSIDE; break;
+				case 13: 
+				    Unidentify |= FROMOUTSIDE; break;
+				case 14: 
+				    Thirst |= FROMOUTSIDE; break;
+				case 15: 
+				    LuckLoss |= FROMOUTSIDE; break;
+				case 16: 
+				    ShadesOfGrey |= FROMOUTSIDE; break;
+				case 17: 
+				    FaintActive |= FROMOUTSIDE; break;
+				case 18: 
+				    Itemcursing |= FROMOUTSIDE; break;
+				case 19: 
+				    DifficultyIncreased |= FROMOUTSIDE; break;
+				case 20: 
+				    Deafness |= FROMOUTSIDE; break;
+				case 21: 
+				    CasterProblem |= FROMOUTSIDE; break;
+				case 22: 
+				    WeaknessProblem |= FROMOUTSIDE; break;
+				case 23: 
+				    RotThirteen |= FROMOUTSIDE; break;
+				case 24: 
+				    BishopGridbug |= FROMOUTSIDE; break;
+				case 25: 
+				    ConfusionProblem |= FROMOUTSIDE; break;
+				case 26: 
+				    NoDropProblem |= FROMOUTSIDE; break;
+				case 27: 
+				    DSTWProblem |= FROMOUTSIDE; break;
+				case 28: 
+				    StatusTrapProblem |= FROMOUTSIDE; break;
+				case 29: 
+				    AlignmentProblem |= FROMOUTSIDE; break;
+				case 30: 
+				    StairsProblem |= FROMOUTSIDE; break;
+				case 31: 
+				    UninformationProblem |= FROMOUTSIDE; break;
+				case 32: 
+				    IntrinsicLossProblem |= FROMOUTSIDE; break;
+				case 33: 
+				    BloodLossProblem |= FROMOUTSIDE; break;
+				case 34: 
+				    BadEffectProblem |= FROMOUTSIDE; break;
+				case 35: 
+				    TrapCreationProblem |= FROMOUTSIDE; break;
+				case 36: 
+				    AutomaticVulnerabilitiy |= FROMOUTSIDE; break;
+				case 37: 
+				    TeleportingItems |= FROMOUTSIDE; break;
+				case 38: 
+				    NastinessProblem |= FROMOUTSIDE; break;
+				case 39: 
+				    RecurringAmnesia |= FROMOUTSIDE; break;
+				case 40: 
+				    BigscriptEffect |= FROMOUTSIDE; break;
+				case 41: 
+				    BankTrapEffect |= FROMOUTSIDE; break;
+				case 42: 
+				    MapTrapEffect |= FROMOUTSIDE; break;
+				case 43: 
+				    TechTrapEffect |= FROMOUTSIDE; break;
+				case 44: 
+				    RecurringDisenchant |= FROMOUTSIDE; break;
+				case 45: 
+				    verisiertEffect |= FROMOUTSIDE; break;
+				case 46: 
+				    ChaosTerrain |= FROMOUTSIDE; break;
+				case 47: 
+				    Muteness |= FROMOUTSIDE; break;
+				case 48: 
+				    EngravingDoesntWork |= FROMOUTSIDE; break;
+				case 49: 
+				    MagicDeviceEffect |= FROMOUTSIDE; break;
+				case 50: 
+				    BookTrapEffect |= FROMOUTSIDE; break;
+				case 51: 
+				    LevelTrapEffect |= FROMOUTSIDE; break;
+				case 52: 
+				    QuizTrapEffect |= FROMOUTSIDE; break;
+				case 53: 
+				    CaptchaProblem |= FROMOUTSIDE; break;
+				case 54: 
+				    FarlookProblem |= FROMOUTSIDE; break;
+				case 55: 
+				    RespawnProblem |= FROMOUTSIDE; break;
+				case 56: 
+				    FastMetabolismEffect |= FROMOUTSIDE; break;
+				case 57: 
+				    NoReturnEffect |= FROMOUTSIDE; break;
+				case 58: 
+				    AlwaysEgotypeMonsters |= FROMOUTSIDE; break;
+				case 59: 
+				    TimeGoesByFaster |= FROMOUTSIDE; break;
+				case 60: 
+				    FoodIsAlwaysRotten |= FROMOUTSIDE; break;
+				case 61: 
+				    AllSkillsUnskilled |= FROMOUTSIDE; break;
+				case 62: 
+				    AllStatsAreLower |= FROMOUTSIDE; break;
+				case 63: 
+				    PlayerCannotTrainSkills |= FROMOUTSIDE; break;
+				case 64: 
+				    PlayerCannotExerciseStats |= FROMOUTSIDE; break;
+				case 65: 
+				    TurnLimitation |= FROMOUTSIDE; break;
+				case 66: 
+				    WeakSight |= FROMOUTSIDE; break;
+				case 67: 
+				    RandomMessages |= FROMOUTSIDE; break;
+				case 68: 
+				    Desecration |= FROMOUTSIDE; break;
+				case 69: 
+				    StarvationEffect |= FROMOUTSIDE; break;
+				case 70: 
+				    NoDropsEffect |= FROMOUTSIDE; break;
+				case 71: 
+				    LowEffects |= FROMOUTSIDE; break;
+				case 72: 
+				    InvisibleTrapsEffect |= FROMOUTSIDE; break;
+				case 73: 
+				    GhostWorld |= FROMOUTSIDE; break;
+				case 74: 
+				    Dehydration |= FROMOUTSIDE; break;
+				case 75: 
+				    HateTrapEffect |= FROMOUTSIDE; break;
+				case 76: 
+				    TotterTrapEffect |= FROMOUTSIDE; break;
+				case 77: 
+				    Nonintrinsics |= FROMOUTSIDE; break;
+				case 78: 
+				    Dropcurses |= FROMOUTSIDE; break;
+				case 79: 
+				    Nakedness |= FROMOUTSIDE; break;
+				case 80: 
+				    Antileveling |= FROMOUTSIDE; break;
+				case 81: 
+				    ItemStealingEffect |= FROMOUTSIDE; break;
+				case 82: 
+				    Rebellions |= FROMOUTSIDE; break;
+				case 83: 
+				    CrapEffect |= FROMOUTSIDE; break;
+				case 84: 
+				    ProjectilesMisfire |= FROMOUTSIDE; break;
+				case 85: 
+				    WallTrapping |= FROMOUTSIDE; break;
+				case 86: 
+				    DisconnectedStairs |= FROMOUTSIDE; break;
+				case 87: 
+				    InterfaceScrewed |= FROMOUTSIDE; break;
+				case 88: 
+				    Bossfights |= FROMOUTSIDE; break;
+				case 89: 
+				    EntireLevelMode |= FROMOUTSIDE; break;
+				case 90: 
+				    BonesLevelChange |= FROMOUTSIDE; break;
+				case 91: 
+				    AutocursingEquipment |= FROMOUTSIDE; break;
+				case 92: 
+				    HighlevelStatus |= FROMOUTSIDE; break;
+				case 93: 
+				    SpellForgetting |= FROMOUTSIDE; break;
+				case 94: 
+				    SoundEffectBug |= FROMOUTSIDE; break;
+				case 95: 
+				    TimerunBug |= FROMOUTSIDE; break;
+				case 96:
+				    LootcutBug |= FROMOUTSIDE; break;
+				case 97:
+				    MonsterSpeedBug |= FROMOUTSIDE; break;
+				case 98:
+				    ScalingBug |= FROMOUTSIDE; break;
+				case 99:
+				    EnmityBug |= FROMOUTSIDE; break;
+				case 100:
+				    WhiteSpells |= FROMOUTSIDE; break;
+				case 101:
+				    CompleteGraySpells |= FROMOUTSIDE; break;
+				case 102:
+				    QuasarVision |= FROMOUTSIDE; break;
+				case 103:
+				    MommaBugEffect |= FROMOUTSIDE; break;
+				case 104:
+				    HorrorBugEffect |= FROMOUTSIDE; break;
+				case 105:
+				    ArtificerBug |= FROMOUTSIDE; break;
+				case 106:
+				    WereformBug |= FROMOUTSIDE; break;
+				case 107:
+				    NonprayerBug |= FROMOUTSIDE; break;
+				case 108:
+				    EvilPatchEffect |= FROMOUTSIDE; break;
+				case 109:
+				    HardModeEffect |= FROMOUTSIDE; break;
+				case 110:
+				    SecretAttackBug |= FROMOUTSIDE; break;
+				case 111:
+				    EaterBugEffect |= FROMOUTSIDE; break;
+				case 112:
+				    CovetousnessBug |= FROMOUTSIDE; break;
+				case 113:
+				    NotSeenBug |= FROMOUTSIDE; break;
+				case 114:
+				    DarkModeBug |= FROMOUTSIDE; break;
+				case 115:
+				    AntisearchEffect |= FROMOUTSIDE; break;
+				case 116:
+				    HomicideEffect |= FROMOUTSIDE; break;
+				case 117:
+				    NastynationBug |= FROMOUTSIDE; break;
+				case 118:
+				    WakeupCallBug |= FROMOUTSIDE; break;
+				case 119:
+				    GrayoutBug |= FROMOUTSIDE; break;
+				case 120:
+				    GrayCenterBug |= FROMOUTSIDE; break;
+				case 121:
+				    CheckerboardBug |= FROMOUTSIDE; break;
+				case 122:
+				    ClockwiseSpinBug |= FROMOUTSIDE; break;
+				case 123:
+				    CounterclockwiseSpin |= FROMOUTSIDE; break;
+				case 124:
+				    LagBugEffect |= FROMOUTSIDE; break;
+				case 125:
+				    BlesscurseEffect |= FROMOUTSIDE; break;
+				case 126:
+				    DeLightBug |= FROMOUTSIDE; break;
+				case 127:
+				    DischargeBug |= FROMOUTSIDE; break;
+				case 128:
+				    TrashingBugEffect |= FROMOUTSIDE; break;
+				case 129:
+				    FilteringBug |= FROMOUTSIDE; break;
+				case 130:
+				    DeformattingBug |= FROMOUTSIDE; break;
+				case 131:
+				    FlickerStripBug |= FROMOUTSIDE; break;
+				case 132:
+				    UndressingEffect |= FROMOUTSIDE; break;
+				case 133:
+				    Hyperbluewalls |= FROMOUTSIDE; break;
+				case 134:
+				    NoliteBug |= FROMOUTSIDE; break;
+				case 135:
+				    ParanoiaBugEffect |= FROMOUTSIDE; break;
+				case 136:
+				    FleecescriptBug |= FROMOUTSIDE; break;
+				case 137:
+				    InterruptEffect |= FROMOUTSIDE; break;
+				case 138:
+				    DustbinBug |= FROMOUTSIDE; break;
+				case 139:
+				    ManaBatteryBug |= FROMOUTSIDE; break;
+				case 140:
+				    Monsterfingers |= FROMOUTSIDE; break;
+				case 141:
+				    MiscastBug |= FROMOUTSIDE; break;
+				case 142:
+				    MessageSuppression |= FROMOUTSIDE; break;
+				case 143:
+				    StuckAnnouncement |= FROMOUTSIDE; break;
+				case 144:
+				    BloodthirstyEffect |= FROMOUTSIDE; break;
+				case 145:
+				    MaximumDamageBug |= FROMOUTSIDE; break;
+				case 146:
+				    LatencyBugEffect |= FROMOUTSIDE; break;
+				case 147:
+				    StarlitBug |= FROMOUTSIDE; break;
+				case 148:
+				    KnowledgeBug |= FROMOUTSIDE; break;
+				case 149:
+				    HighscoreBug |= FROMOUTSIDE; break;
+				case 150:
+				    PinkSpells |= FROMOUTSIDE; break;
+				case 151:
+				    GreenSpells |= FROMOUTSIDE; break;
+				case 152:
+				    EvencoreEffect |= FROMOUTSIDE; break;
+				case 153:
+				    UnderlayerBug |= FROMOUTSIDE; break;
+				case 154:
+				    DamageMeterBug |= FROMOUTSIDE; break;
+				case 155:
+				    ArbitraryWeightBug |= FROMOUTSIDE; break;
+				case 156:
+				    FuckedInfoBug |= FROMOUTSIDE; break;
+				case 157:
+				    BlackSpells |= FROMOUTSIDE; break;
+				case 158:
+				    CyanSpells |= FROMOUTSIDE; break;
+				case 159:
+				    HeapEffectBug |= FROMOUTSIDE; break;
+				case 160:
+				    BlueSpells |= FROMOUTSIDE; break;
+				case 161:
+				    TronEffect |= FROMOUTSIDE; break;
+				case 162:
+				    RedSpells |= FROMOUTSIDE; break;
+				case 163:
+				    TooHeavyEffect |= FROMOUTSIDE; break;
+				case 164:
+				    ElongationBug |= FROMOUTSIDE; break;
+				case 165:
+				    WrapoverEffect |= FROMOUTSIDE; break;
+				case 166:
+				    DestructionEffect |= FROMOUTSIDE; break;
+				case 167:
+				    MeleePrefixBug |= FROMOUTSIDE; break;
+				case 168:
+				    AutomoreBug |= FROMOUTSIDE; break;
+				case 169:
+				    UnfairAttackBug |= FROMOUTSIDE; break;
+			}
+
+		}
+
+		if (!rn2(2000) && u.uprops[EVIL_PATCH_EFFECT].extrinsic) {
+			
+			switch (rnd(169)) {
+
+				case 1: 
+				    SpeedBug |= FROMOUTSIDE; break;
+				case 2: 
+				    MenuBug |= FROMOUTSIDE; break;
+				case 3: 
+				    RMBLoss |= FROMOUTSIDE; break;
+				case 4: 
+				    DisplayLoss |= FROMOUTSIDE; break;
+				case 5: 
+				    SpellLoss |= FROMOUTSIDE; break;
+				case 6: 
+				    YellowSpells |= FROMOUTSIDE; break;
+				case 7: 
+				    AutoDestruct |= FROMOUTSIDE; break;
+				case 8: 
+				    MemoryLoss |= FROMOUTSIDE; break;
+				case 9: 
+				    DisplayLoss |= FROMOUTSIDE; break;
+				case 10: 
+				    BlackNgWalls |= FROMOUTSIDE; break;
+				case 11: 
+				    Superscroller |= FROMOUTSIDE; break;
+				case 12: 
+				    FreeHandLoss |= FROMOUTSIDE; break;
+				case 13: 
+				    Unidentify |= FROMOUTSIDE; break;
+				case 14: 
+				    Thirst |= FROMOUTSIDE; break;
+				case 15: 
+				    LuckLoss |= FROMOUTSIDE; break;
+				case 16: 
+				    ShadesOfGrey |= FROMOUTSIDE; break;
+				case 17: 
+				    FaintActive |= FROMOUTSIDE; break;
+				case 18: 
+				    Itemcursing |= FROMOUTSIDE; break;
+				case 19: 
+				    DifficultyIncreased |= FROMOUTSIDE; break;
+				case 20: 
+				    Deafness |= FROMOUTSIDE; break;
+				case 21: 
+				    CasterProblem |= FROMOUTSIDE; break;
+				case 22: 
+				    WeaknessProblem |= FROMOUTSIDE; break;
+				case 23: 
+				    RotThirteen |= FROMOUTSIDE; break;
+				case 24: 
+				    BishopGridbug |= FROMOUTSIDE; break;
+				case 25: 
+				    ConfusionProblem |= FROMOUTSIDE; break;
+				case 26: 
+				    NoDropProblem |= FROMOUTSIDE; break;
+				case 27: 
+				    DSTWProblem |= FROMOUTSIDE; break;
+				case 28: 
+				    StatusTrapProblem |= FROMOUTSIDE; break;
+				case 29: 
+				    AlignmentProblem |= FROMOUTSIDE; break;
+				case 30: 
+				    StairsProblem |= FROMOUTSIDE; break;
+				case 31: 
+				    UninformationProblem |= FROMOUTSIDE; break;
+				case 32: 
+				    IntrinsicLossProblem |= FROMOUTSIDE; break;
+				case 33: 
+				    BloodLossProblem |= FROMOUTSIDE; break;
+				case 34: 
+				    BadEffectProblem |= FROMOUTSIDE; break;
+				case 35: 
+				    TrapCreationProblem |= FROMOUTSIDE; break;
+				case 36: 
+				    AutomaticVulnerabilitiy |= FROMOUTSIDE; break;
+				case 37: 
+				    TeleportingItems |= FROMOUTSIDE; break;
+				case 38: 
+				    NastinessProblem |= FROMOUTSIDE; break;
+				case 39: 
+				    RecurringAmnesia |= FROMOUTSIDE; break;
+				case 40: 
+				    BigscriptEffect |= FROMOUTSIDE; break;
+				case 41: 
+				    BankTrapEffect |= FROMOUTSIDE; break;
+				case 42: 
+				    MapTrapEffect |= FROMOUTSIDE; break;
+				case 43: 
+				    TechTrapEffect |= FROMOUTSIDE; break;
+				case 44: 
+				    RecurringDisenchant |= FROMOUTSIDE; break;
+				case 45: 
+				    verisiertEffect |= FROMOUTSIDE; break;
+				case 46: 
+				    ChaosTerrain |= FROMOUTSIDE; break;
+				case 47: 
+				    Muteness |= FROMOUTSIDE; break;
+				case 48: 
+				    EngravingDoesntWork |= FROMOUTSIDE; break;
+				case 49: 
+				    MagicDeviceEffect |= FROMOUTSIDE; break;
+				case 50: 
+				    BookTrapEffect |= FROMOUTSIDE; break;
+				case 51: 
+				    LevelTrapEffect |= FROMOUTSIDE; break;
+				case 52: 
+				    QuizTrapEffect |= FROMOUTSIDE; break;
+				case 53: 
+				    CaptchaProblem |= FROMOUTSIDE; break;
+				case 54: 
+				    FarlookProblem |= FROMOUTSIDE; break;
+				case 55: 
+				    RespawnProblem |= FROMOUTSIDE; break;
+				case 56: 
+				    FastMetabolismEffect |= FROMOUTSIDE; break;
+				case 57: 
+				    NoReturnEffect |= FROMOUTSIDE; break;
+				case 58: 
+				    AlwaysEgotypeMonsters |= FROMOUTSIDE; break;
+				case 59: 
+				    TimeGoesByFaster |= FROMOUTSIDE; break;
+				case 60: 
+				    FoodIsAlwaysRotten |= FROMOUTSIDE; break;
+				case 61: 
+				    AllSkillsUnskilled |= FROMOUTSIDE; break;
+				case 62: 
+				    AllStatsAreLower |= FROMOUTSIDE; break;
+				case 63: 
+				    PlayerCannotTrainSkills |= FROMOUTSIDE; break;
+				case 64: 
+				    PlayerCannotExerciseStats |= FROMOUTSIDE; break;
+				case 65: 
+				    TurnLimitation |= FROMOUTSIDE; break;
+				case 66: 
+				    WeakSight |= FROMOUTSIDE; break;
+				case 67: 
+				    RandomMessages |= FROMOUTSIDE; break;
+				case 68: 
+				    Desecration |= FROMOUTSIDE; break;
+				case 69: 
+				    StarvationEffect |= FROMOUTSIDE; break;
+				case 70: 
+				    NoDropsEffect |= FROMOUTSIDE; break;
+				case 71: 
+				    LowEffects |= FROMOUTSIDE; break;
+				case 72: 
+				    InvisibleTrapsEffect |= FROMOUTSIDE; break;
+				case 73: 
+				    GhostWorld |= FROMOUTSIDE; break;
+				case 74: 
+				    Dehydration |= FROMOUTSIDE; break;
+				case 75: 
+				    HateTrapEffect |= FROMOUTSIDE; break;
+				case 76: 
+				    TotterTrapEffect |= FROMOUTSIDE; break;
+				case 77: 
+				    Nonintrinsics |= FROMOUTSIDE; break;
+				case 78: 
+				    Dropcurses |= FROMOUTSIDE; break;
+				case 79: 
+				    Nakedness |= FROMOUTSIDE; break;
+				case 80: 
+				    Antileveling |= FROMOUTSIDE; break;
+				case 81: 
+				    ItemStealingEffect |= FROMOUTSIDE; break;
+				case 82: 
+				    Rebellions |= FROMOUTSIDE; break;
+				case 83: 
+				    CrapEffect |= FROMOUTSIDE; break;
+				case 84: 
+				    ProjectilesMisfire |= FROMOUTSIDE; break;
+				case 85: 
+				    WallTrapping |= FROMOUTSIDE; break;
+				case 86: 
+				    DisconnectedStairs |= FROMOUTSIDE; break;
+				case 87: 
+				    InterfaceScrewed |= FROMOUTSIDE; break;
+				case 88: 
+				    Bossfights |= FROMOUTSIDE; break;
+				case 89: 
+				    EntireLevelMode |= FROMOUTSIDE; break;
+				case 90: 
+				    BonesLevelChange |= FROMOUTSIDE; break;
+				case 91: 
+				    AutocursingEquipment |= FROMOUTSIDE; break;
+				case 92: 
+				    HighlevelStatus |= FROMOUTSIDE; break;
+				case 93: 
+				    SpellForgetting |= FROMOUTSIDE; break;
+				case 94: 
+				    SoundEffectBug |= FROMOUTSIDE; break;
+				case 95: 
+				    TimerunBug |= FROMOUTSIDE; break;
+				case 96:
+				    LootcutBug |= FROMOUTSIDE; break;
+				case 97:
+				    MonsterSpeedBug |= FROMOUTSIDE; break;
+				case 98:
+				    ScalingBug |= FROMOUTSIDE; break;
+				case 99:
+				    EnmityBug |= FROMOUTSIDE; break;
+				case 100:
+				    WhiteSpells |= FROMOUTSIDE; break;
+				case 101:
+				    CompleteGraySpells |= FROMOUTSIDE; break;
+				case 102:
+				    QuasarVision |= FROMOUTSIDE; break;
+				case 103:
+				    MommaBugEffect |= FROMOUTSIDE; break;
+				case 104:
+				    HorrorBugEffect |= FROMOUTSIDE; break;
+				case 105:
+				    ArtificerBug |= FROMOUTSIDE; break;
+				case 106:
+				    WereformBug |= FROMOUTSIDE; break;
+				case 107:
+				    NonprayerBug |= FROMOUTSIDE; break;
+				case 108:
+				    EvilPatchEffect |= FROMOUTSIDE; break;
+				case 109:
+				    HardModeEffect |= FROMOUTSIDE; break;
+				case 110:
+				    SecretAttackBug |= FROMOUTSIDE; break;
+				case 111:
+				    EaterBugEffect |= FROMOUTSIDE; break;
+				case 112:
+				    CovetousnessBug |= FROMOUTSIDE; break;
+				case 113:
+				    NotSeenBug |= FROMOUTSIDE; break;
+				case 114:
+				    DarkModeBug |= FROMOUTSIDE; break;
+				case 115:
+				    AntisearchEffect |= FROMOUTSIDE; break;
+				case 116:
+				    HomicideEffect |= FROMOUTSIDE; break;
+				case 117:
+				    NastynationBug |= FROMOUTSIDE; break;
+				case 118:
+				    WakeupCallBug |= FROMOUTSIDE; break;
+				case 119:
+				    GrayoutBug |= FROMOUTSIDE; break;
+				case 120:
+				    GrayCenterBug |= FROMOUTSIDE; break;
+				case 121:
+				    CheckerboardBug |= FROMOUTSIDE; break;
+				case 122:
+				    ClockwiseSpinBug |= FROMOUTSIDE; break;
+				case 123:
+				    CounterclockwiseSpin |= FROMOUTSIDE; break;
+				case 124:
+				    LagBugEffect |= FROMOUTSIDE; break;
+				case 125:
+				    BlesscurseEffect |= FROMOUTSIDE; break;
+				case 126:
+				    DeLightBug |= FROMOUTSIDE; break;
+				case 127:
+				    DischargeBug |= FROMOUTSIDE; break;
+				case 128:
+				    TrashingBugEffect |= FROMOUTSIDE; break;
+				case 129:
+				    FilteringBug |= FROMOUTSIDE; break;
+				case 130:
+				    DeformattingBug |= FROMOUTSIDE; break;
+				case 131:
+				    FlickerStripBug |= FROMOUTSIDE; break;
+				case 132:
+				    UndressingEffect |= FROMOUTSIDE; break;
+				case 133:
+				    Hyperbluewalls |= FROMOUTSIDE; break;
+				case 134:
+				    NoliteBug |= FROMOUTSIDE; break;
+				case 135:
+				    ParanoiaBugEffect |= FROMOUTSIDE; break;
+				case 136:
+				    FleecescriptBug |= FROMOUTSIDE; break;
+				case 137:
+				    InterruptEffect |= FROMOUTSIDE; break;
+				case 138:
+				    DustbinBug |= FROMOUTSIDE; break;
+				case 139:
+				    ManaBatteryBug |= FROMOUTSIDE; break;
+				case 140:
+				    Monsterfingers |= FROMOUTSIDE; break;
+				case 141:
+				    MiscastBug |= FROMOUTSIDE; break;
+				case 142:
+				    MessageSuppression |= FROMOUTSIDE; break;
+				case 143:
+				    StuckAnnouncement |= FROMOUTSIDE; break;
+				case 144:
+				    BloodthirstyEffect |= FROMOUTSIDE; break;
+				case 145:
+				    MaximumDamageBug |= FROMOUTSIDE; break;
+				case 146:
+				    LatencyBugEffect |= FROMOUTSIDE; break;
+				case 147:
+				    StarlitBug |= FROMOUTSIDE; break;
+				case 148:
+				    KnowledgeBug |= FROMOUTSIDE; break;
+				case 149:
+				    HighscoreBug |= FROMOUTSIDE; break;
+				case 150:
+				    PinkSpells |= FROMOUTSIDE; break;
+				case 151:
+				    GreenSpells |= FROMOUTSIDE; break;
+				case 152:
+				    EvencoreEffect |= FROMOUTSIDE; break;
+				case 153:
+				    UnderlayerBug |= FROMOUTSIDE; break;
+				case 154:
+				    DamageMeterBug |= FROMOUTSIDE; break;
+				case 155:
+				    ArbitraryWeightBug |= FROMOUTSIDE; break;
+				case 156:
+				    FuckedInfoBug |= FROMOUTSIDE; break;
+				case 157:
+				    BlackSpells |= FROMOUTSIDE; break;
+				case 158:
+				    CyanSpells |= FROMOUTSIDE; break;
+				case 159:
+				    HeapEffectBug |= FROMOUTSIDE; break;
+				case 160:
+				    BlueSpells |= FROMOUTSIDE; break;
+				case 161:
+				    TronEffect |= FROMOUTSIDE; break;
+				case 162:
+				    RedSpells |= FROMOUTSIDE; break;
+				case 163:
+				    TooHeavyEffect |= FROMOUTSIDE; break;
+				case 164:
+				    ElongationBug |= FROMOUTSIDE; break;
+				case 165:
+				    WrapoverEffect |= FROMOUTSIDE; break;
+				case 166:
+				    DestructionEffect |= FROMOUTSIDE; break;
+				case 167:
+				    MeleePrefixBug |= FROMOUTSIDE; break;
+				case 168:
+				    AutomoreBug |= FROMOUTSIDE; break;
+				case 169:
+				    UnfairAttackBug |= FROMOUTSIDE; break;
+			}
+
+		}
+
+		if (!rn2(2000) && have_evilpatchstone()) {
+			
+			switch (rnd(169)) {
+
+				case 1: 
+				    SpeedBug |= FROMOUTSIDE; break;
+				case 2: 
+				    MenuBug |= FROMOUTSIDE; break;
+				case 3: 
+				    RMBLoss |= FROMOUTSIDE; break;
+				case 4: 
+				    DisplayLoss |= FROMOUTSIDE; break;
+				case 5: 
+				    SpellLoss |= FROMOUTSIDE; break;
+				case 6: 
+				    YellowSpells |= FROMOUTSIDE; break;
+				case 7: 
+				    AutoDestruct |= FROMOUTSIDE; break;
+				case 8: 
+				    MemoryLoss |= FROMOUTSIDE; break;
+				case 9: 
+				    DisplayLoss |= FROMOUTSIDE; break;
+				case 10: 
+				    BlackNgWalls |= FROMOUTSIDE; break;
+				case 11: 
+				    Superscroller |= FROMOUTSIDE; break;
+				case 12: 
+				    FreeHandLoss |= FROMOUTSIDE; break;
+				case 13: 
+				    Unidentify |= FROMOUTSIDE; break;
+				case 14: 
+				    Thirst |= FROMOUTSIDE; break;
+				case 15: 
+				    LuckLoss |= FROMOUTSIDE; break;
+				case 16: 
+				    ShadesOfGrey |= FROMOUTSIDE; break;
+				case 17: 
+				    FaintActive |= FROMOUTSIDE; break;
+				case 18: 
+				    Itemcursing |= FROMOUTSIDE; break;
+				case 19: 
+				    DifficultyIncreased |= FROMOUTSIDE; break;
+				case 20: 
+				    Deafness |= FROMOUTSIDE; break;
+				case 21: 
+				    CasterProblem |= FROMOUTSIDE; break;
+				case 22: 
+				    WeaknessProblem |= FROMOUTSIDE; break;
+				case 23: 
+				    RotThirteen |= FROMOUTSIDE; break;
+				case 24: 
+				    BishopGridbug |= FROMOUTSIDE; break;
+				case 25: 
+				    ConfusionProblem |= FROMOUTSIDE; break;
+				case 26: 
+				    NoDropProblem |= FROMOUTSIDE; break;
+				case 27: 
+				    DSTWProblem |= FROMOUTSIDE; break;
+				case 28: 
+				    StatusTrapProblem |= FROMOUTSIDE; break;
+				case 29: 
+				    AlignmentProblem |= FROMOUTSIDE; break;
+				case 30: 
+				    StairsProblem |= FROMOUTSIDE; break;
+				case 31: 
+				    UninformationProblem |= FROMOUTSIDE; break;
+				case 32: 
+				    IntrinsicLossProblem |= FROMOUTSIDE; break;
+				case 33: 
+				    BloodLossProblem |= FROMOUTSIDE; break;
+				case 34: 
+				    BadEffectProblem |= FROMOUTSIDE; break;
+				case 35: 
+				    TrapCreationProblem |= FROMOUTSIDE; break;
+				case 36: 
+				    AutomaticVulnerabilitiy |= FROMOUTSIDE; break;
+				case 37: 
+				    TeleportingItems |= FROMOUTSIDE; break;
+				case 38: 
+				    NastinessProblem |= FROMOUTSIDE; break;
+				case 39: 
+				    RecurringAmnesia |= FROMOUTSIDE; break;
+				case 40: 
+				    BigscriptEffect |= FROMOUTSIDE; break;
+				case 41: 
+				    BankTrapEffect |= FROMOUTSIDE; break;
+				case 42: 
+				    MapTrapEffect |= FROMOUTSIDE; break;
+				case 43: 
+				    TechTrapEffect |= FROMOUTSIDE; break;
+				case 44: 
+				    RecurringDisenchant |= FROMOUTSIDE; break;
+				case 45: 
+				    verisiertEffect |= FROMOUTSIDE; break;
+				case 46: 
+				    ChaosTerrain |= FROMOUTSIDE; break;
+				case 47: 
+				    Muteness |= FROMOUTSIDE; break;
+				case 48: 
+				    EngravingDoesntWork |= FROMOUTSIDE; break;
+				case 49: 
+				    MagicDeviceEffect |= FROMOUTSIDE; break;
+				case 50: 
+				    BookTrapEffect |= FROMOUTSIDE; break;
+				case 51: 
+				    LevelTrapEffect |= FROMOUTSIDE; break;
+				case 52: 
+				    QuizTrapEffect |= FROMOUTSIDE; break;
+				case 53: 
+				    CaptchaProblem |= FROMOUTSIDE; break;
+				case 54: 
+				    FarlookProblem |= FROMOUTSIDE; break;
+				case 55: 
+				    RespawnProblem |= FROMOUTSIDE; break;
+				case 56: 
+				    FastMetabolismEffect |= FROMOUTSIDE; break;
+				case 57: 
+				    NoReturnEffect |= FROMOUTSIDE; break;
+				case 58: 
+				    AlwaysEgotypeMonsters |= FROMOUTSIDE; break;
+				case 59: 
+				    TimeGoesByFaster |= FROMOUTSIDE; break;
+				case 60: 
+				    FoodIsAlwaysRotten |= FROMOUTSIDE; break;
+				case 61: 
+				    AllSkillsUnskilled |= FROMOUTSIDE; break;
+				case 62: 
+				    AllStatsAreLower |= FROMOUTSIDE; break;
+				case 63: 
+				    PlayerCannotTrainSkills |= FROMOUTSIDE; break;
+				case 64: 
+				    PlayerCannotExerciseStats |= FROMOUTSIDE; break;
+				case 65: 
+				    TurnLimitation |= FROMOUTSIDE; break;
+				case 66: 
+				    WeakSight |= FROMOUTSIDE; break;
+				case 67: 
+				    RandomMessages |= FROMOUTSIDE; break;
+				case 68: 
+				    Desecration |= FROMOUTSIDE; break;
+				case 69: 
+				    StarvationEffect |= FROMOUTSIDE; break;
+				case 70: 
+				    NoDropsEffect |= FROMOUTSIDE; break;
+				case 71: 
+				    LowEffects |= FROMOUTSIDE; break;
+				case 72: 
+				    InvisibleTrapsEffect |= FROMOUTSIDE; break;
+				case 73: 
+				    GhostWorld |= FROMOUTSIDE; break;
+				case 74: 
+				    Dehydration |= FROMOUTSIDE; break;
+				case 75: 
+				    HateTrapEffect |= FROMOUTSIDE; break;
+				case 76: 
+				    TotterTrapEffect |= FROMOUTSIDE; break;
+				case 77: 
+				    Nonintrinsics |= FROMOUTSIDE; break;
+				case 78: 
+				    Dropcurses |= FROMOUTSIDE; break;
+				case 79: 
+				    Nakedness |= FROMOUTSIDE; break;
+				case 80: 
+				    Antileveling |= FROMOUTSIDE; break;
+				case 81: 
+				    ItemStealingEffect |= FROMOUTSIDE; break;
+				case 82: 
+				    Rebellions |= FROMOUTSIDE; break;
+				case 83: 
+				    CrapEffect |= FROMOUTSIDE; break;
+				case 84: 
+				    ProjectilesMisfire |= FROMOUTSIDE; break;
+				case 85: 
+				    WallTrapping |= FROMOUTSIDE; break;
+				case 86: 
+				    DisconnectedStairs |= FROMOUTSIDE; break;
+				case 87: 
+				    InterfaceScrewed |= FROMOUTSIDE; break;
+				case 88: 
+				    Bossfights |= FROMOUTSIDE; break;
+				case 89: 
+				    EntireLevelMode |= FROMOUTSIDE; break;
+				case 90: 
+				    BonesLevelChange |= FROMOUTSIDE; break;
+				case 91: 
+				    AutocursingEquipment |= FROMOUTSIDE; break;
+				case 92: 
+				    HighlevelStatus |= FROMOUTSIDE; break;
+				case 93: 
+				    SpellForgetting |= FROMOUTSIDE; break;
+				case 94: 
+				    SoundEffectBug |= FROMOUTSIDE; break;
+				case 95: 
+				    TimerunBug |= FROMOUTSIDE; break;
+				case 96:
+				    LootcutBug |= FROMOUTSIDE; break;
+				case 97:
+				    MonsterSpeedBug |= FROMOUTSIDE; break;
+				case 98:
+				    ScalingBug |= FROMOUTSIDE; break;
+				case 99:
+				    EnmityBug |= FROMOUTSIDE; break;
+				case 100:
+				    WhiteSpells |= FROMOUTSIDE; break;
+				case 101:
+				    CompleteGraySpells |= FROMOUTSIDE; break;
+				case 102:
+				    QuasarVision |= FROMOUTSIDE; break;
+				case 103:
+				    MommaBugEffect |= FROMOUTSIDE; break;
+				case 104:
+				    HorrorBugEffect |= FROMOUTSIDE; break;
+				case 105:
+				    ArtificerBug |= FROMOUTSIDE; break;
+				case 106:
+				    WereformBug |= FROMOUTSIDE; break;
+				case 107:
+				    NonprayerBug |= FROMOUTSIDE; break;
+				case 108:
+				    EvilPatchEffect |= FROMOUTSIDE; break;
+				case 109:
+				    HardModeEffect |= FROMOUTSIDE; break;
+				case 110:
+				    SecretAttackBug |= FROMOUTSIDE; break;
+				case 111:
+				    EaterBugEffect |= FROMOUTSIDE; break;
+				case 112:
+				    CovetousnessBug |= FROMOUTSIDE; break;
+				case 113:
+				    NotSeenBug |= FROMOUTSIDE; break;
+				case 114:
+				    DarkModeBug |= FROMOUTSIDE; break;
+				case 115:
+				    AntisearchEffect |= FROMOUTSIDE; break;
+				case 116:
+				    HomicideEffect |= FROMOUTSIDE; break;
+				case 117:
+				    NastynationBug |= FROMOUTSIDE; break;
+				case 118:
+				    WakeupCallBug |= FROMOUTSIDE; break;
+				case 119:
+				    GrayoutBug |= FROMOUTSIDE; break;
+				case 120:
+				    GrayCenterBug |= FROMOUTSIDE; break;
+				case 121:
+				    CheckerboardBug |= FROMOUTSIDE; break;
+				case 122:
+				    ClockwiseSpinBug |= FROMOUTSIDE; break;
+				case 123:
+				    CounterclockwiseSpin |= FROMOUTSIDE; break;
+				case 124:
+				    LagBugEffect |= FROMOUTSIDE; break;
+				case 125:
+				    BlesscurseEffect |= FROMOUTSIDE; break;
+				case 126:
+				    DeLightBug |= FROMOUTSIDE; break;
+				case 127:
+				    DischargeBug |= FROMOUTSIDE; break;
+				case 128:
+				    TrashingBugEffect |= FROMOUTSIDE; break;
+				case 129:
+				    FilteringBug |= FROMOUTSIDE; break;
+				case 130:
+				    DeformattingBug |= FROMOUTSIDE; break;
+				case 131:
+				    FlickerStripBug |= FROMOUTSIDE; break;
+				case 132:
+				    UndressingEffect |= FROMOUTSIDE; break;
+				case 133:
+				    Hyperbluewalls |= FROMOUTSIDE; break;
+				case 134:
+				    NoliteBug |= FROMOUTSIDE; break;
+				case 135:
+				    ParanoiaBugEffect |= FROMOUTSIDE; break;
+				case 136:
+				    FleecescriptBug |= FROMOUTSIDE; break;
+				case 137:
+				    InterruptEffect |= FROMOUTSIDE; break;
+				case 138:
+				    DustbinBug |= FROMOUTSIDE; break;
+				case 139:
+				    ManaBatteryBug |= FROMOUTSIDE; break;
+				case 140:
+				    Monsterfingers |= FROMOUTSIDE; break;
+				case 141:
+				    MiscastBug |= FROMOUTSIDE; break;
+				case 142:
+				    MessageSuppression |= FROMOUTSIDE; break;
+				case 143:
+				    StuckAnnouncement |= FROMOUTSIDE; break;
+				case 144:
+				    BloodthirstyEffect |= FROMOUTSIDE; break;
+				case 145:
+				    MaximumDamageBug |= FROMOUTSIDE; break;
+				case 146:
+				    LatencyBugEffect |= FROMOUTSIDE; break;
+				case 147:
+				    StarlitBug |= FROMOUTSIDE; break;
+				case 148:
+				    KnowledgeBug |= FROMOUTSIDE; break;
+				case 149:
+				    HighscoreBug |= FROMOUTSIDE; break;
+				case 150:
+				    PinkSpells |= FROMOUTSIDE; break;
+				case 151:
+				    GreenSpells |= FROMOUTSIDE; break;
+				case 152:
+				    EvencoreEffect |= FROMOUTSIDE; break;
+				case 153:
+				    UnderlayerBug |= FROMOUTSIDE; break;
+				case 154:
+				    DamageMeterBug |= FROMOUTSIDE; break;
+				case 155:
+				    ArbitraryWeightBug |= FROMOUTSIDE; break;
+				case 156:
+				    FuckedInfoBug |= FROMOUTSIDE; break;
+				case 157:
+				    BlackSpells |= FROMOUTSIDE; break;
+				case 158:
+				    CyanSpells |= FROMOUTSIDE; break;
+				case 159:
+				    HeapEffectBug |= FROMOUTSIDE; break;
+				case 160:
+				    BlueSpells |= FROMOUTSIDE; break;
+				case 161:
+				    TronEffect |= FROMOUTSIDE; break;
+				case 162:
+				    RedSpells |= FROMOUTSIDE; break;
+				case 163:
+				    TooHeavyEffect |= FROMOUTSIDE; break;
+				case 164:
+				    ElongationBug |= FROMOUTSIDE; break;
+				case 165:
+				    WrapoverEffect |= FROMOUTSIDE; break;
+				case 166:
+				    DestructionEffect |= FROMOUTSIDE; break;
+				case 167:
+				    MeleePrefixBug |= FROMOUTSIDE; break;
+				case 168:
+				    AutomoreBug |= FROMOUTSIDE; break;
+				case 169:
+				    UnfairAttackBug |= FROMOUTSIDE; break;
+			}
+
+		}
+
+		if (!rn2(2000) && u.uprops[ARTIFICER_BUG].extrinsic) {
+			bad_artifact();
+		}
+
+		if (!rn2(2000) && have_artificialstone()) {
+			bad_artifact();
+		}
+
+		if (!rn2(200) && HorrorBugEffect) {
+
+			int lcount = rnd(monster_difficulty() ) + 1;
+
+		    switch (rn2(11)) {
+		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
+				"horrible sickness", TRUE, SICK_NONVOMITABLE);
+			    break;
+		    case 1: make_blinded(Blinded + lcount, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.", Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + lcount, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + lcount, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + lcount, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + lcount, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + lcount, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + lcount, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + lcount, TRUE);
+			    break;
+		    }
+
+		}
+
+		if (!rn2(200) && u.uprops[HORROR_BUG].extrinsic) {
+
+			int lcount = rnd(monster_difficulty() ) + 1;
+
+		    switch (rn2(11)) {
+		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
+				"horrible sickness", TRUE, SICK_NONVOMITABLE);
+			    break;
+		    case 1: make_blinded(Blinded + lcount, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.", Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + lcount, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + lcount, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + lcount, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + lcount, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + lcount, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + lcount, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + lcount, TRUE);
+			    break;
+		    }
+
+		}
+
+		if (!rn2(200) && have_horrorstone()) {
+
+			int lcount = rnd(monster_difficulty() ) + 1;
+
+		    switch (rn2(11)) {
+		    case 0: make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20),
+				"horrible sickness", TRUE, SICK_NONVOMITABLE);
+			    break;
+		    case 1: make_blinded(Blinded + lcount, TRUE);
+			    break;
+		    case 2: if (!Confusion)
+				You("suddenly feel %s.", Hallucination ? "trippy" : "confused");
+			    make_confused(HConfusion + lcount, TRUE);
+			    break;
+		    case 3: make_stunned(HStun + lcount, TRUE);
+			    break;
+		    case 4: make_numbed(HNumbed + lcount, TRUE);
+			    break;
+		    case 5: make_frozen(HFrozen + lcount, TRUE);
+			    break;
+		    case 6: make_burned(HBurned + lcount, TRUE);
+			    break;
+		    case 7: (void) adjattrib(rn2(A_MAX), -1, FALSE);
+			    break;
+		    case 8: (void) make_hallucinated(HHallucination + lcount, TRUE, 0L);
+			    break;
+		    case 9: make_feared(HFeared + lcount, TRUE);
+			    break;
+		    case 10: make_dimmed(HDimmed + lcount, TRUE);
+			    break;
+		    }
+
+		}
+
+		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone()) && isok(u.ux, u.uy)) {
+			levl[u.ux][u.uy].lit = FALSE;
+		}
+
+		if (UndressingEffect || u.uprops[UNDRESSING_EFFECT].extrinsic || have_undressingstone()) {
+
+			if (!rn2(10000) && uwep && !(uwep->cursed)) {
+				setnotworn(uwep);
+				uswapwepgone();
+			}
+			if (!rn2(10000) && ublindf && !(ublindf->cursed)) {
+				remove_worn_item(ublindf, TRUE);
+			}
+			if (!rn2(10000) && uright && !(uright->cursed)) {
+				remove_worn_item(uright, TRUE);
+			}
+			if (!rn2(10000) && uleft && !(uleft->cursed)) {
+				remove_worn_item(uleft, TRUE);
+			}
+			if (!rn2(10000) && uamul && !(uamul->cursed)) {
+				remove_worn_item(uamul, TRUE);
+			}
+			if (!rn2(10000) && uarmf && !(uarmf->cursed)) {
+				remove_worn_item(uarmf, TRUE);
+			}
+			if (!rn2(10000) && uarmg && !(uarmg->cursed)) {
+				remove_worn_item(uarmg, TRUE);
+			}
+			if (!rn2(10000) && uarmh && !(uarmh->cursed)) {
+				remove_worn_item(uarmh, TRUE);
+			}
+			if (!rn2(10000) && uarms && !(uarms->cursed)) {
+				remove_worn_item(uarms, TRUE);
+			}
+			if (!rn2(10000) && uarmc && !(uarmc->cursed)) {
+				remove_worn_item(uarmc, TRUE);
+			}
+			if (!rn2(10000) && uarmu && !(uarmu->cursed)) {
+				remove_worn_item(uarmu, TRUE);
+			}
+			if (!rn2(10000) && uarm && !(uarm->cursed)) {
+				remove_worn_item(uarm, TRUE);
+			}
+
+		}
+
+		if ((HighscoreBug || u.uprops[HIGHSCORE_BUG].extrinsic || have_highscorestone()) && !rn2(300) ) {
+			if (!rn2(2)) makespacewarstrap();
+			else (void) makemon(insidemon(), 0, 0, NO_MM_FLAGS);
+		}
+
+		if (SpellColorPink) {
+			u.pinkspelldirection = rnd(8);
+		}
+
+		if (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone()) {
+			if (u.trontrapdirection > 0 && (u.trontrapturn + 1) < moves) u.trontrapdirection = -1;
+		}
+
+		if (DestructionEffect && !rn2(100)) {
+			switch (rnd(4)) {
+				case 1:
+					(void) burnarmor(&youmonst);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					break;
+				case 2:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case 3:
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+				case 4:
+					(void) destroy_item(POTION_CLASS, AD_VENO);
+					(void) destroy_item(FOOD_CLASS, AD_VENO);
+					break;
+			}
+		}
+
+		if (u.uprops[DESTRUCTION_EFFECT].extrinsic && !rn2(100)) {
+			switch (rnd(4)) {
+				case 1:
+					(void) burnarmor(&youmonst);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					break;
+				case 2:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case 3:
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+				case 4:
+					(void) destroy_item(POTION_CLASS, AD_VENO);
+					(void) destroy_item(FOOD_CLASS, AD_VENO);
+					break;
+			}
+		}
+
+		if (have_destructionstone() && !rn2(100)) {
+			switch (rnd(4)) {
+				case 1:
+					(void) burnarmor(&youmonst);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					break;
+				case 2:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case 3:
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+				case 4:
+					(void) destroy_item(POTION_CLASS, AD_VENO);
+					(void) destroy_item(FOOD_CLASS, AD_VENO);
+					break;
+			}
+		}
+
+		if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "roadmap cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch dorozhnoy karty") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yo'l xaritasi plash") )) && !rn2(10000)) {
+			if (!HConfusion) HConfusion = 1;
+			do_mappingX();
+		}
+
 		if (uarmf && uarmf->oartifact == ART_GRENEUVENIA_S_HUG) {
+			randomcuss();
+		}
+
+		if (MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || have_mommystone()) {
 			randomcuss();
 		}
 
@@ -2555,6 +3869,33 @@ newbossX:
 
 			u.aggravation = 0;
 
+		}
+
+		if ((multi < 0) && (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "dream helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem mechty") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "dubulg'a orzu") ))) {
+			if (!Upolyd && u.uhp < u.uhpmax) u.uhp++;
+			if (Upolyd && u.mh < u.mhmax) u.mh++;
+			if (u.uen < u.uenmax) u.uen++;
+			flags.botl = 1;
+		}
+
+		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pink sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rozovyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pushti shippak") )) && !rn2(1000)) {
+			pline("The beguiling stench emanating from your pink sneakers fills the area...");
+			badeffect();
+			turn_allmonsters();
+		}
+
+		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "spellsucking cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch zaklinaniy") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "so'rib imlo plash") )) {
+			if (rn2(2)) {
+				u.uen += rnd(5);
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
+			} else {
+				u.uen -= rnd(5);
+				if (u.uen < 0) {
+					u.uenmax -= rnd(5);
+					if (u.uenmax < 0) u.uenmax = 0;
+					u.uen = 0;
+				}
+			}
 		}
 
 		if (FemaleTrapFemmy && !rn2(500) ) {
@@ -2618,6 +3959,42 @@ newbossY:
 			if (pm) (void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
 
 			if (rn2(3)) goto newbossY;
+
+			u.aggravation = 0;
+
+		}
+
+		if ((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bluy helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "siniy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bluy dubulg'a") )) && !rn2(2000) ) {
+			struct permonst *pm = 0;
+			int attempts = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossB:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->mcolor == CLR_BRIGHT_BLUE ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossB;
+			}
+			if (pm && !(pm->mcolor == CLR_BRIGHT_BLUE) && rn2(50) ) {
+				attempts = 0;
+				goto newbossB;
+			}
+
+			if (enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) {
+				if (pm) (void) makemon(pm, 0, 0, NO_MM_FLAGS);
+			}
+
+			if (rn2(3)) goto newbossB;
 
 			u.aggravation = 0;
 
@@ -2823,7 +4200,7 @@ newbossY:
 		if (uarmf && uarmf->oartifact == ART_CURSING_ANOMALY && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2832,7 +4209,7 @@ newbossY:
 		if (uarmf && uarmf->oartifact == ART_AMY_LOVES_AUTOCURSING_ITEM && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2841,7 +4218,7 @@ newbossY:
 		if ( Role_if(PM_TRANSSYLVANIAN) && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2850,7 +4227,7 @@ newbossY:
 		if ( have_cursingstone() && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2859,7 +4236,7 @@ newbossY:
 		if ( uleft && uleft->oartifact == ART_ARABELLA_S_RADAR && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2868,7 +4245,7 @@ newbossY:
 		if ( uright && uright->oartifact == ART_ARABELLA_S_RADAR && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2877,7 +4254,7 @@ newbossY:
 		if ( have_primecurse() && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -2910,6 +4287,23 @@ newbossY:
 		}
 
 		if (FemaleTrapFemmy && !rn2(200)) {
+
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0);
+					break;
+					}
+			}
+
+		}
+
+		if ( (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "femmy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zhenskiye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nazokat etigi") )) && !rn2(1000) ) {
 
 			int tryct = 0;
 			int x, y;
@@ -3062,7 +4456,7 @@ newbossY:
 				case 11:
 				case 12: /* curse items */
 					You_feel("as if you need some help.");
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+					if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 					rndcurse();
 					break;
 				case 13:
@@ -3137,7 +4531,7 @@ newbossY:
 				case 4:
 				case 5: /* aggravate monster */
 					You_feel("that monsters are aware of your presence.");
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
+					if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
 					aggravate();
 					break;
 				case 6:
@@ -3240,6 +4634,33 @@ newboss:
 			}
 		}
 
+		if (WrapoverEffect && !rn2(200)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(200)) (void) drain_item_reverse(otmpE);
+			}
+
+		}
+
+		if (u.uprops[WRAPOVER_EFFECT].extrinsic && !rn2(200)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(200)) (void) drain_item_reverse(otmpE);
+			}
+
+		}
+
+		if (have_wrapoverstone() && !rn2(200)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(200)) (void) drain_item_reverse(otmpE);
+			}
+
+		}
+
 		if (RecurringDisenchant && !rn2(1000)) {
 
 			struct obj *otmpE;
@@ -3247,7 +4668,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (FemaleTrapSolvejg && !rn2(200)) {
@@ -3264,7 +4685,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000)) {
@@ -3274,7 +4695,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000)) {
@@ -3284,7 +4705,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000)) {
@@ -3294,7 +4715,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000)) {
@@ -3304,7 +4725,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (u.uprops[RECURRING_DISENCHANT].extrinsic && !rn2(1000)) {
@@ -3314,7 +4735,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (have_disenchantmentstone() && !rn2(1000)) {
@@ -3324,7 +4745,7 @@ newboss:
 				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
 			}
 			pline("Your equipment seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (ChaosTerrain && !rn2(5)) {
@@ -3481,7 +4902,7 @@ newboss:
 		if (u.uprops[ITEMCURSING].extrinsic && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -3490,7 +4911,7 @@ newboss:
 		if (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -3499,7 +4920,7 @@ newboss:
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -3508,7 +4929,7 @@ newboss:
 		if (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -3517,7 +4938,7 @@ newboss:
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 
@@ -4425,14 +5846,17 @@ newboss:
 		    dgn_growths(TRUE, TRUE);
 #endif
 
-		    if (u.ublesscnt)  u.ublesscnt--;
+		    if (u.ublesscnt) {
+				if (NonprayerBug || u.uprops[NON_PRAYER_BUG].extrinsic || have_antiprayerstone()) u.ublesscnt++;
+				else u.ublesscnt--;
+			}
 		    if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
 
 		if (uarmg && u.ublesscnt && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "comfortable gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "udobnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qulay qo'lqop") ) ) u.ublesscnt--;
 
 		if (u.ublesscnt && RngePrayer) u.ublesscnt--;
 
-		if (u.ublesscnt && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (u.ublesscnt && !(PlayerCannotUseSkills)) {
 
 			if ((P_SKILL(P_SPIRITUALITY) >= P_BASIC) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
 			if ((P_SKILL(P_SPIRITUALITY) >= P_SKILLED) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
@@ -4510,7 +5934,7 @@ newboss:
  			int efflev = rnd(u.ulevel) + (u.uhealbonus);
  			int effcon = rnd(ACURR(A_CON)) + (u.uhealbonus);
 
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+			if (!(PlayerCannotUseSkills)) {
 
 			if (!issoviet) {
 				if (P_SKILL(P_RIDING) == P_SKILLED) efflev += 2;
@@ -4703,7 +6127,7 @@ newboss:
 			/* Having a spell school at skilled will improve mana regeneration.
 			 * Having a spell school at expert will improve it by even more. --Amy */
 
-			if (!(issoviet || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+			if (!(issoviet || PlayerCannotUseSkills)) {
 
 			if (!Burned && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_SKILLED && !rn2(200))
 			u.uen += 1;
@@ -5236,6 +6660,25 @@ newboss:
 
 			}
 
+			if ((WereformBug || u.uprops[WEREFORM_BUG].extrinsic || have_wereformstone()) && !rn2(1200 - (200 * night()))) {
+
+				int wereformattempts = 0;
+
+				int monstZ;
+				do {
+
+					monstZ = rn2(NUMMONS);
+					wereformattempts++;
+
+				} while (!(is_were(&mons[monstZ])) || (mons[monstZ].mlet == S_HUMAN) && wereformattempts < 50000);
+
+				if (is_were(&mons[monstZ]) && !(mons[monstZ].mlet == S_HUMAN) ) {
+					u.wormpolymorph = monstZ;
+					polyself(FALSE);
+				}
+
+			}
+
 			/* delayed change may not be valid anymore */
 			if ((change == 1 && !Polymorph) ||
 			    (change == 2 && u.ulycn == NON_PM))
@@ -5308,6 +6751,35 @@ newboss:
 	/****************************************/
 	/* once-per-player-input things go here */
 	/****************************************/
+
+	if (LatencyBugEffect || u.uprops[LATENCY_BUG].extrinsic || have_latencystone()) {
+
+		int lagamount = rno(10);
+		if (!rn2(10)) lagamount += rnd(10);
+		if (!rn2(100)) lagamount += rnz(15);
+		if (!rn2(3)) {
+			lagamount = rn2(9) ? 0 : 1;
+		}
+		while (lagamount > 0) {
+			delay_output();
+			lagamount--;
+		}
+	}
+
+	if (SpellColorRed && !rn2(10)) {
+			pline(fauxmessage());
+	}
+
+	if (EvencoreEffect || u.uprops[EVC_EFFECT].extrinsic || have_evcstone()) {
+
+		int x, y;
+
+		x = rn1(COLNO-3,2);
+		y = rn2(ROWNO);
+
+		if (isok(x, y)) map_invisible(x, y);
+
+	}
 
 	if (isamnesiac || Map_amnesia) {
 		register int zx, zy;
@@ -5701,6 +7173,12 @@ boolean new_game;	/* false => restoring an old game */
      * restores it's only shown if different from its original value.
      */
     *buf = '\0';
+
+	if (FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) {
+		pline("You've forgotten who you are, but you are back.");
+		return;
+	}
+
     if (new_game || u.ualignbase[A_ORIGINAL] != u.ualignbase[A_CURRENT])
 	Sprintf(eos(buf), " %s", align_str(u.ualignbase[A_ORIGINAL]));
     if (!urole.name.f &&
@@ -6621,7 +8099,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "storm coat")) OBJ_DESCR(objects[i]) = "shtorm";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pitch cloak")) OBJ_DESCR(objects[i]) = "smolyanoy plashch";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "buffalo boots")) OBJ_DESCR(objects[i]) = "buyvolovyye sapogi";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleecy-colored cloak")) OBJ_DESCR(objects[i]) = "pushistyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleeceling cloak")) OBJ_DESCR(objects[i]) = "pushistyy plashch";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heroine mocassins")) OBJ_DESCR(objects[i]) = "mokasiny dlya geroini";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glaring cloak")) OBJ_DESCR(objects[i]) = "yarkiy plashch";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "greenery helmet")) OBJ_DESCR(objects[i]) = "zelonyy shlem";
@@ -7496,7 +8974,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "storm coat")) OBJ_DESCR(objects[i]) = "bo'ron palto";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pitch cloak")) OBJ_DESCR(objects[i]) = "hotva plash";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "buffalo boots")) OBJ_DESCR(objects[i]) = "qo'tos botlarni";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleecy-colored cloak")) OBJ_DESCR(objects[i]) = "serjun-rangli plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fleeceling cloak")) OBJ_DESCR(objects[i]) = "serjunrangli plash";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "heroine mocassins")) OBJ_DESCR(objects[i]) = "qahramoni mokasen";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "glaring cloak")) OBJ_DESCR(objects[i]) = "qo'pol plash";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "greenery helmet")) OBJ_DESCR(objects[i]) = "o'simliklar dubulg'a";

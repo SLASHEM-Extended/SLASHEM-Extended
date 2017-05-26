@@ -3114,7 +3114,7 @@ rerollchaloc:
 			at_ladder ? "ladder" : "stairs");
 		else if (u.dz &&
 		    (near_capacity() > UNENCUMBERED || (Punished &&
-		    ((uwep != uball) || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()  || ((P_SKILL(P_FLAIL) < P_BASIC))
+		    ((uwep != uball) || PlayerCannotUseSkills || ((P_SKILL(P_FLAIL) < P_BASIC))
             || !Role_if(PM_CONVICT)))
 		     || Fumbling)) {
 		    You("fall down the %s.", at_ladder ? "ladder" : "stairs");
@@ -3253,7 +3253,7 @@ rerollchaloc:
 		display_nhwindow(WIN_MESSAGE, FALSE);
 #endif
 		You_hear("groans and moans everywhere.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto konets vas, potomu chto net nikakogo sposoba dlya vas, chtoby vyzhit' beskonechnyye armii vysokogo urovnya nezhit'yu." : "Waeiaer-elauanar-wuuuuuoh.");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Eto konets vas, potomu chto net nikakogo sposoba dlya vas, chtoby vyzhit' beskonechnyye armii vysokogo urovnya nezhit'yu." : "Waeiaer-elauanar-wuuuuuoh.");
 	    } else pline("It is hot here.  You smell smoke...");
 
 #ifdef RECORD_ACHIEVE
@@ -3335,7 +3335,7 @@ rerollchaloc:
 	if (Is_knox(&u.uz) && (new || !mvitals[PM_CROESUS].died)) {
 		You("penetrated a high security area!");
 		pline("An alarm sounds!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kopy posle vas, i potomu chto eto Sovetskaya Rossiya, oni ne budut prosto arestovat' vas. Vmesto etogo oni sobirayutsya postavit' vas v kontslager'. Poveselis'." : "Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Kopy posle vas, i potomu chto eto Sovetskaya Rossiya, oni ne budut prosto arestovat' vas. Vmesto etogo oni sobirayutsya postavit' vas v kontslager'. Poveselis'." : "Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue!");
 		for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 		    if (!DEADMONSTER(mtmp) && mtmp->msleeping) mtmp->msleeping = 0;
 	}

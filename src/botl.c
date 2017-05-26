@@ -157,6 +157,49 @@ char *newbot2;
 	end_color_option(color_option);
 }
 
+void
+add_flicker_text(text, newbot2)
+const char *text;
+char *newbot2;
+{
+	register char *nb;
+	int flickercolor = rn2(CLR_MAX);
+	while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+
+	if (*text == '\0') return;
+
+	Strcat(nb = eos(newbot2), " ");
+	curs(WIN_STATUS, 1, 1);
+	putstr(WIN_STATUS, 0, newbot2);
+
+	Strcat(nb = eos(nb), text);
+	curs(WIN_STATUS, 1, 1);
+	start_color_option(flickercolor);
+	putstr(WIN_STATUS, 0, newbot2);
+	end_color_option(flickercolor);
+}
+
+void
+add_flicker_textA(text, newbot1)
+const char *text;
+char *newbot1;
+{
+	register char *nb;
+	int flickercolor = rn2(CLR_MAX);
+
+	if (*text == '\0') return;
+
+	Strcat(nb = eos(newbot1), " ");
+	curs(WIN_STATUS, 1, 0);
+	putstr(WIN_STATUS, 0, newbot1);
+
+	Strcat(nb = eos(nb), text);
+	curs(WIN_STATUS, 1, 0);
+	start_color_option(flickercolor);
+	putstr(WIN_STATUS, 0, newbot1);
+	end_color_option(flickercolor);
+}
+
 #endif
 
 #ifndef OVLB
@@ -372,7 +415,19 @@ bot1()
 	register char *nb;
 	register int i,j;
 
+	if (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone()) {
+
+		Strcpy(newbot1, " ");
+	     	add_flicker_textA(generate_garbage_string(), newbot1);
+	     	add_flicker_textA(generate_garbage_string(), newbot1);
+	     	add_flicker_textA(generate_garbage_string(), newbot1);
+	     	if (!rn2(2)) add_flicker_textA(generate_garbage_string(), newbot1);
+
+		goto flicker1;
+	}
+
 	Strcpy(newbot1, botl_player());
+
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
         if (flags.hitpointbar) {
             int bar_length = strlen(newbot1)-1;
@@ -406,14 +461,14 @@ bot1()
 	Sprintf(nb = eos(nb),
 		"Dx%-1d Co%-1d In%-1d Wi%-1d Ch%-1d ",
 		ACURR(A_DEX), ACURR(A_CON), ACURR(A_INT), ACURR(A_WIS), ACURR(A_CHA));
-	Sprintf(nb = eos(nb), urole.filecode); /* fully disclosing what character you're playing */
-	Sprintf(nb = eos(nb), urace.filecode); /* abbreviated so the line doesn't roll over --Amy */
-	Sprintf(nb = eos(nb), flags.female ? "Fem" : "Mal"); /* allowing you to always know what you are */
-	Sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "Cha" :
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) Sprintf(nb = eos(nb), urole.filecode); /* fully disclosing what character you're playing */
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) Sprintf(nb = eos(nb), urace.filecode); /* abbreviated so the line doesn't roll over --Amy */
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) Sprintf(nb = eos(nb), flags.female ? "Fem" : "Mal"); /* allowing you to always know what you are */
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) Sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "Cha" :
 			(u.ualign.type == A_NEUTRAL) ? "Neu" : "Law");
 
 	/* abbreviate hybridizations since we don't have infinite space on the status line --Amy */
-	if (flags.hybridization) {Sprintf(nb = eos(nb), "+");
+	if (flags.hybridization && !(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) ) {Sprintf(nb = eos(nb), "+");
 		if (flags.hybridcurser) Sprintf(nb = eos(nb), "C");
 		if (flags.hybridhaxor) Sprintf(nb = eos(nb), "H");
 		if (flags.hybridangbander) Sprintf(nb = eos(nb), "A");
@@ -443,6 +498,10 @@ bot1()
 
 	if (flags.showscore)
 	    Sprintf(nb = eos(nb), " S%ld", botl_score());
+
+flicker1:
+	;
+
 #ifdef DUMP_LOG
 }
 STATIC_OVL void
@@ -619,6 +678,24 @@ bot2str(char *newbot2)
 	hp = Upolyd ? u.mh : u.uhp;
 	hpmax = Upolyd ? u.mhmax : u.uhpmax;
 
+	if (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone()) {
+		nb = newbot2;
+		Strcpy(newbot2, " ");
+	     	add_flicker_text(generate_garbage_string(), newbot2);
+		if (rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
+		Sprintf(nb = eos(nb), "%d(%d)", hp, hpmax);
+            add_flicker_text(generate_garbage_string(), newbot2);
+		if (rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
+		Sprintf(nb = eos(nb), "%d(%d)", u.uen, u.uenmax);
+            add_flicker_text(generate_garbage_string(), newbot2);
+		if (rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
+            if (!rn2(2)) add_flicker_text(generate_garbage_string(), newbot2);
+		if (!rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
+
+
+		goto flicker2;
+	}
+
 	/*if(hp < 0) hp = 0;*/ /* show by how much you have been overkilled --Amy */
 	if (bot2_abbrev < 4)
 		(void) describe_level(newbot2, FALSE);
@@ -674,7 +751,7 @@ bot2str(char *newbot2)
 		Sprintf(nb = eos(nb), " Exp%u", u.ulevel);
 
 #ifdef SHOW_WEIGHT
-	if (flags.showweight && bot2_abbrev < 3)
+	if (flags.showweight && !(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone()) && bot2_abbrev < 3)
 		Sprintf(nb = eos(nb), " Wt%ld/%ld", (long)(inv_weight()+weight_cap()),
 				(long)weight_cap());
 #endif
@@ -916,6 +993,10 @@ bot2str(char *newbot2)
 #else
 		Sprintf(nb = eos(nb), " %s", enc_stat[cap]);
 #endif
+
+flicker2:
+	;
+
 }
 
 STATIC_OVL void
@@ -1038,7 +1119,7 @@ boolean reconfig;
     if (flags.showexp)
 	*rv++ = reconfig ? "experience" : (Sprintf(expr, "%ld", u.uexp), expr);
 #ifdef SHOW_WEIGHT
-    if (flags.showweight) {
+    if (flags.showweight && !(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone())) {
 	*rv++ = reconfig ? "weight" : (Sprintf(iweight,
 		"%ld", (long)(inv_weight() + weight_cap())), iweight);
 	*rv++ = reconfig ? "capacity" : (Sprintf(capacity,
@@ -1084,6 +1165,31 @@ void (*handler)();
 
 void
 bot()
+{
+
+	/*
+	 * ALI: Cope with the fact that u_init may not have been
+	 * called yet. This happens if the player selection menus
+	 * are long enough to overwite the status line. In this
+	 * case we will be called when the menu is removed while
+	 * youmonst.data is still NULL.
+	 */
+	if (!youmonst.data)
+		return;
+
+	if (raw_handler)
+		bot_raw(FALSE);
+	else {
+	if (StuckAnnouncement || u.uprops[STUCK_ANNOUNCEMENT_BUG].extrinsic || have_stuckannouncementstone()) return;
+
+	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0) ) ) bot1();
+	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0) ) ) bot2();
+	}
+	flags.botl = flags.botlx = 0;
+}
+
+void
+botreal()
 {
 
 	/*

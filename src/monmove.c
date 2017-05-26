@@ -234,7 +234,7 @@ boolean digest_meal;
 
 	/* good riding skill gives extra regeneration to ridden monster --Amy */
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 
 		if (P_SKILL(P_RIDING) == P_SKILLED && u.usteed && (mon == u.usteed) && !rn2(10) ) {
 			if (mon->mhp + 1 >= mon->mhpmax)
@@ -558,6 +558,10 @@ register struct monst *mtmp;
 		}
 	}
 
+	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone()) && mtmp->mpeaceful && !mtmp->mtame && !rn2(10000)) {
+		wakeup(mtmp);
+	}
+
 	/* not frozen or sleeping: wipe out texts written in the dust */
 	wipe_engr_at(mtmp->mx, mtmp->my, 1);
 
@@ -647,7 +651,7 @@ register struct monst *mtmp;
 
 	/* Monsters that want to acquire things */
 	/* may teleport, so do it before inrange is set */
-	if( (is_covetous(mdat) || mtmp->egotype_covetous) && !rn2(10)) (void) tactics(mtmp);
+	if( (is_covetous(mdat) || mtmp->egotype_covetous) && (!rn2(10) || (CovetousnessBug || u.uprops[COVETOUSNESS_BUG].extrinsic || have_covetousstone() ) ) ) (void) tactics(mtmp);
 
 	/* check distance and scariness of attacks */
 	distfleeck(mtmp,&inrange,&nearby,&scared);
@@ -786,7 +790,7 @@ register struct monst *mtmp;
 					if (!Free_action || !rn2(20)) {
 					    pline("You are frozen in place!");
 					    nomul(-rnz(10), "frozen by an eldritch blast");
-						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					    nomovemsg = You_can_move_again;
 					    exercise(A_DEX, FALSE);
 					}
@@ -1708,7 +1712,7 @@ postmov:
 			    if (flags.verbose) {
 				if (canseeit) {
 				   You("see a door unlock and open.");
-				   if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kto-to klyuch k pobede pervogo igroka. Bud'te ochen' boyatsya." : "Kloeck-wong!");
+				   if (PlayerHearsSoundEffects) pline(issoviet ? "Kto-to klyuch k pobede pervogo igroka. Bud'te ochen' boyatsya." : "Kloeck-wong!");
 				}
 				else if (flags.soundok)
 				   You_hear("a door unlock and open.");
@@ -1727,7 +1731,7 @@ postmov:
 			    if (flags.verbose) {
 				if (canseeit) {
 				     You("see a door open.");
-				     if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Mirskiye veshchi, kak dveri ne mozhet derzhat' vas v bezopasnosti, nub!" : "Wong!");
+				     if (PlayerHearsSoundEffects) pline(issoviet ? "Mirskiye veshchi, kak dveri ne mozhet derzhat' vas v bezopasnosti, nub!" : "Wong!");
 				}
 				else if (flags.soundok)
 				     You_hear("a door open.");
@@ -1753,7 +1757,7 @@ postmov:
 			    if (flags.verbose) {
 				if (canseeit) {
 				    You("see a door crash open.");
-				    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net bar'yera mezhdu vami i burlyashchey ordy monstrov. Vse oni budut obdavat' vas, kak bibleyskiy potop!" : "Wongwongwongwongwongwongwongbooooooooooooooom!");
+				    if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net bar'yera mezhdu vami i burlyashchey ordy monstrov. Vse oni budut obdavat' vas, kak bibleyskiy potop!" : "Wongwongwongwongwongwongwongbooooooooooooooom!");
 				}
 				else if (flags.soundok)
 				    You_hear("a door crash open.");
@@ -1809,6 +1813,10 @@ postmov:
 		    likerock = (throws_rocks(ptr) && pctload < 50 &&
 				!In_sokoban(&u.uz));
 		    conceals = hides_under(ptr);
+		}
+
+		if ((EaterBugEffect || u.uprops[EATER_BUG].extrinsic || have_eaterstone())) {
+		    if (meatanything(mtmp) == 2) return 2;	/* it died */
 		}
 
 		/* Maybe a rock mole just ate some metal object */

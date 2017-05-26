@@ -689,7 +689,8 @@ boolean called;
 	    Strcat(buf, " the ");
 	    if (do_invis)
 		Strcat(buf, "invisible ");
-	    Strcat(buf, mdat->mname);
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone()) Strcat(buf, "monster");
+	    else Strcat(buf, mdat->mname);
 	    return buf;
 	}
 
@@ -713,6 +714,11 @@ boolean called;
 	    name_at_start = FALSE;
 	} else if (mtmp->mnamelth) {
 	    char *name = NAME(mtmp);
+
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone()) {
+		Strcat(buf, "monster");
+		name_at_start = TRUE;
+	    } else {
 
 	    if (mdat == &mons[PM_GHOST]) {
 		Sprintf(eos(buf), "%s ghost", s_suffix(name));
@@ -743,15 +749,19 @@ boolean called;
 		Strcat(buf, name);
 		name_at_start = TRUE;
 	    }
+	  }
+
 	} else if (is_mplayer(mdat) /*&& !In_endgame(&u.uz)*/) {
 	    char pbuf[BUFSZ];
-	    Strcpy(pbuf, rank_of((int)mtmp->m_lev,
-				 monsndx(mdat),
-				 (boolean)mtmp->female));
-	    Strcat(buf, lcase(pbuf));
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone()) Strcat(buf, "monster");
+	    else {
+		    Strcpy(pbuf, rank_of((int)mtmp->m_lev, monsndx(mdat), (boolean)mtmp->female));
+		    Strcat(buf, lcase(pbuf));
+	    }
 	    name_at_start = FALSE;
 	} else {
-	    Strcat(buf, mdat->mname);
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone()) Strcat(buf, "monster");
+	    else Strcat(buf, mdat->mname);
 	    name_at_start = (boolean)type_is_pname(mdat);
 	}
 

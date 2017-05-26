@@ -40,16 +40,16 @@ static const char * const fauxartinames[] = {
 /* KMH, balance patch -- changed again */
 const struct icp mkobjprobs[] = {
 {130, WEAPON_CLASS},
-{ 80, ARMOR_CLASS},
+{ 90, ARMOR_CLASS},
 {160, FOOD_CLASS},
 { 70, TOOL_CLASS},
 { 30, GEM_CLASS},
-{160, POTION_CLASS},
-{160, SCROLL_CLASS},
-{ 35, SPBOOK_CLASS},
-{ 60, WAND_CLASS},
+{145, POTION_CLASS},
+{145, SCROLL_CLASS},
+{ 40, SPBOOK_CLASS},
+{ 70, WAND_CLASS},
 { 40, RING_CLASS},
-{ 10, AMULET_CLASS},
+{ 15, AMULET_CLASS},
 { 52, COIN_CLASS},
 {  1, VENOM_CLASS},
 { 10, ROCK_CLASS},
@@ -61,13 +61,13 @@ const struct icp mkobjprobs[] = {
 };
 
 const struct icp boxiprobs[] = {
-{ 80, WEAPON_CLASS},
-{ 50, ARMOR_CLASS},
+{100, WEAPON_CLASS},
+{ 70, ARMOR_CLASS},
 { 20, GEM_CLASS},
 { 55, TOOL_CLASS},
 {160, FOOD_CLASS},
-{160, POTION_CLASS},
-{160, SCROLL_CLASS},
+{140, POTION_CLASS},
+{140, SCROLL_CLASS},
 { 60, SPBOOK_CLASS},
 { 97, COIN_CLASS},
 { 65, WAND_CLASS},
@@ -79,13 +79,32 @@ const struct icp boxiprobs[] = {
 {  1, CHAIN_CLASS}
 };
 
+const struct icp tchestprobs[] = {
+{160, WEAPON_CLASS},
+{150, ARMOR_CLASS},
+{ 75, GEM_CLASS},
+{ 70, TOOL_CLASS},
+{ 90, FOOD_CLASS},
+{ 90, POTION_CLASS},
+{ 90, SCROLL_CLASS},
+{ 60, SPBOOK_CLASS},
+{ 57, COIN_CLASS},
+{ 45, WAND_CLASS},
+{ 55, RING_CLASS},
+{ 45, AMULET_CLASS},
+{  1, VENOM_CLASS},
+{ 10, ROCK_CLASS},
+{  1, BALL_CLASS},
+{  1, CHAIN_CLASS}
+};
+
 #ifdef REINCARNATION
 const struct icp rogueprobs[] = {
-{120, WEAPON_CLASS},
-{120, ARMOR_CLASS},
+{150, WEAPON_CLASS},
+{130, ARMOR_CLASS},
 {220, FOOD_CLASS},
-{220, POTION_CLASS},
-{220, SCROLL_CLASS},
+{200, POTION_CLASS},
+{200, SCROLL_CLASS},
 { 50, WAND_CLASS},
 { 50, RING_CLASS}
 };
@@ -93,17 +112,17 @@ const struct icp rogueprobs[] = {
 
 const struct icp hellprobs[] = {
 {130, WEAPON_CLASS},
-{ 70, ARMOR_CLASS},
+{ 80, ARMOR_CLASS},
 {150, FOOD_CLASS},
 { 70, TOOL_CLASS},
-{ 40, GEM_CLASS},
-{100, POTION_CLASS},
-{100, SCROLL_CLASS},
+{ 60, GEM_CLASS},
+{ 90, POTION_CLASS},
+{ 90, SCROLL_CLASS},
 { 90, WAND_CLASS},
 { 50, RING_CLASS},
 { 40, AMULET_CLASS},
 { 45, SPBOOK_CLASS},
-{102, COIN_CLASS},
+{ 92, COIN_CLASS},
 {  1, VENOM_CLASS},
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
@@ -327,6 +346,7 @@ struct obj *box;
 				/* Initial inventory, no empty medical kits */
 				if (moves <= 1 && !in_mklev) minn = 1;
 				break;
+	case TREASURE_CHEST:	n = (ishaxor ? rno(100) : rno(50)); break;
 	case ICE_BOX_OF_HOLDING:
 	case ICE_BOX_OF_WATERPROOFING:
 	case ICE_BOX:		n = (ishaxor ? 40 : 20); break;
@@ -363,6 +383,36 @@ struct obj *box;
 		    (void) stop_timer(ROT_CORPSE, (genericptr_t)otmp);
 		    (void) stop_timer(MOLDY_CORPSE, (genericptr_t)otmp);
 		    (void) stop_timer(REVIVE_MON, (genericptr_t)otmp);
+		}
+	    } else if (box->otyp == TREASURE_CHEST) {
+		register int tprob;
+		const struct icp *iprobs = tchestprobs;
+
+		for (tprob = rnd(1000); (tprob -= iprobs->iprob) > 0; iprobs++)
+		    ;
+		if (!(otmp = mkobj(iprobs->iclass, TRUE))) continue;
+
+		/* handle a couple of special cases */
+		if (otmp->oclass == COIN_CLASS) {
+		    /* 2.5 x level's usual amount; weight adjusted below */
+		    otmp->quan = (long)(rnd(level_difficulty()+5) * rnd(10));
+
+			if (Race_if(PM_VENTURE_CAPITALIST)) {	/* they get extra money, idea by deepy */
+
+				if (rn2(2)) otmp->quan *= 2;
+				if (!rn2(5)) otmp->quan *= 3;
+				if (!rn2(20)) otmp->quan *= 5;
+				if (!rn2(200)) otmp->quan *= 10;
+				if (!rn2(1000)) otmp->quan *= 20;
+				if (!rn2(5000)) otmp->quan *= 50;
+				if (!rn2(25000)) otmp->quan *= 100;
+
+			}
+
+			if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) otmp->quan *= 2;
+			if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) otmp->quan *= 3;
+
+		    otmp->owt = weight(otmp);
 		}
 	    } else {
 		register int tprob;
@@ -1801,6 +1851,13 @@ boolean artif;
 			} else	blessorcurse_on_creation(otmp, 10);
 
 		break;
+		case TREASURE_CHEST:
+			otmp->olocked = TRUE;
+			otmp->otrapped = rn2(5);
+			mkbox_cnts(otmp);
+			blessorcurse_on_creation(otmp, 8);
+		break;
+
 		case CHEST:
 		case CHEST_OF_HOLDING:
 		case LARGE_BOX:

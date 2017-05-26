@@ -12412,6 +12412,16 @@ register int	mmflags;
 
 	}
 
+	if (isok(x, y) && !(t_at(x, y)) && allow_special && (levl[x][y].typ > DBWALL) && (HomicideEffect || u.uprops[HOMICIDE_EFFECT].extrinsic || have_homicidestone()) ) {
+
+		int rtrap;
+
+		rtrap = randomtrap();
+
+		(void) maketrap(x, y, rtrap, 100);
+
+	}
+
 	if (!rn2(100) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eldritch cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sverkh'yestestvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "aql bovar qilmaydigan plash") ))) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_abomination = 1;
@@ -14676,6 +14686,8 @@ register int	mmflags;
 		if (rnd(10) < senserchance ) pline("You sense the arrival of %s.",noit_mon_nam(mtmp) );
 	}
 
+	if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "hearing cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch dlya slukha") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eshitish plash") ) ) && !rn2(50)) pline("You sense the arrival of %s.",noit_mon_nam(mtmp) );
+
 	/* immunizer needs a disadvantage; I'm randomly reducing their alignment --Amy */
 	if (Race_if(PM_IMMUNIZER) && !rn2(3) ) adjalign(-1);
 
@@ -15068,6 +15080,7 @@ rndmonst()
 		/* In Soviet Russia, things can never be difficult enough. Don't bother the player with weak stuff like newts,
 		 * when we could spawn all kinds of barbazus, chthonians and great wyrms of the elements in Gehennom. --Amy */
 	    if (issoviet && maxmlev > 2) minmlev = (maxmlev / 2);
+		if ((ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone()) && maxmlev > 2) minmlev += (maxmlev / 2);
 
 		if (u.aggravation && rn2(2)) {
 			minmlev += u.ulevel;
@@ -15667,6 +15680,7 @@ int     spc;
 	minmlev = 0;
 
 	if (issoviet && maxmlev > 2) minmlev = (maxmlev / 2);
+	if ((ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone()) && maxmlev > 2) minmlev += (maxmlev / 2);
 
 	if (u.aggravation && rn2(2)) {
 		minmlev += u.ulevel;
@@ -16902,6 +16916,8 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_RODNEYAN) && monsndx(ptr) == PM_RODNEY_S_SISTER) return TRUE;
 
+	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || have_inimicalstone()) return FALSE;
+
 	if (Race_if(PM_ALBAE) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */
 	if (uarmf && uarmf->oartifact == ART_HERMES__UNFAIRNESS) return FALSE;
@@ -16984,6 +17000,9 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_NYMPH && uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && rn2(10)) return TRUE;
 	if (uwep && uwep->oartifact == ART_ORANGERY && rn2(10) && (ptr->mcolor == CLR_ORANGE) ) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_LIGHT_OF_DECEPTION && !rn2(10)) return TRUE;
+
+	if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "princess gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki printsessy") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "malika qo'lqop") )) && (is_lord(ptr) && !rn2(5)) ) return TRUE;
+	if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "princess gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki printsessy") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "malika qo'lqop") )) && (is_prince(ptr) && !rn2(2)) ) return TRUE;
 
 	if (always_hostile(ptr)) return FALSE;
 	if (ptr->msound == MS_LEADER || ptr->msound == MS_GUARDIAN)

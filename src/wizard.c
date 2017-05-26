@@ -552,7 +552,7 @@ intervene()
 	    case 2:	if (!Blind) {
 			    You("notice a %s glow surrounding you.",
 				  hcolor(NH_BLACK));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			}
 			rndcurse();
 			break;
@@ -1551,7 +1551,7 @@ register struct monst	*mtmp;
 
 		armpro = magic_negation(&youmonst);
 		armprolimit = 75;
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 
 			switch (P_SKILL(P_SPIRITUALITY)) {
 				default: armprolimit = 75; break;
@@ -1588,7 +1588,7 @@ register struct monst	*mtmp;
 
 		armpro = magic_negation(&youmonst);
 		armprolimit = 75;
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 
 			switch (P_SKILL(P_SPIRITUALITY)) {
 				default: armprolimit = 75; break;
@@ -1613,7 +1613,7 @@ register struct monst	*mtmp;
 		if (!rn2(5)) {
 			armpro = magic_negation(&youmonst);
 			armprolimit = 75;
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+			if (!(PlayerCannotUseSkills)) {
 
 				switch (P_SKILL(P_SPIRITUALITY)) {
 					default: armprolimit = 75; break;
@@ -1638,7 +1638,7 @@ register struct monst	*mtmp;
 
 		armpro = magic_negation(&youmonst);
 		armprolimit = 75;
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 
 			switch (P_SKILL(P_SPIRITUALITY)) {
 				default: armprolimit = 75; break;
@@ -1662,7 +1662,7 @@ register struct monst	*mtmp;
 		if (!rn2(5)) {
 			armpro = magic_negation(&youmonst);
 			armprolimit = 75;
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+			if (!(PlayerCannotUseSkills)) {
 
 				switch (P_SKILL(P_SPIRITUALITY)) {
 					default: armprolimit = 75; break;

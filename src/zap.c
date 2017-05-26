@@ -1804,25 +1804,6 @@ register struct obj *obj;
 				u.uhitinc -= obj->spe;
 			}
 			break;
-		case HELM_OF_BRILLIANCE:
-			if ((obj->owornmask & W_ARMH) && (obj == uarmh)) {
-				ABON(A_INT) -= obj->spe;
-				ABON(A_WIS) -= obj->spe;
-				flags.botl = 1;
-			}
-			break;
-		case GAUNTLETS_OF_DEXTERITY:
-			if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
-				ABON(A_DEX) -= obj->spe;
-				flags.botl = 1;
-			}
-			break;
-		case GAUNTLETS_OF_POWER:
-			if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
-				ABON(A_STR) -= obj->spe;
-				flags.botl = 1;
-			}
-			break;
 		/* case RIN_PROTECTION:  not needed */
 	}
 	if (objects[obj->otyp].oc_magic
@@ -1948,23 +1929,73 @@ register struct obj *obj;
 	    	u.uhitinc--;
 	    }
 	    break;
-	case HELM_OF_BRILLIANCE:
-	    if ((obj->owornmask & W_ARMH) && (obj == uarmh)) {
-	    	ABON(A_INT)--;
-	    	ABON(A_WIS)--;
+	case RIN_PROTECTION:
+	    flags.botl = 1;
+	    break;
+	}
+	if (carried(obj)) update_inventory();
+	return (TRUE);
+}
+
+boolean
+drain_item_reverse(obj)
+register struct obj *obj;
+{
+	boolean u_ring;
+	int save_spe;
+
+	/* Is this a charged/enchanted object? */
+	if (!obj || (!objects[obj->otyp].oc_charged &&
+			obj->oclass != WEAPON_CLASS &&
+			obj->oclass != BALL_CLASS &&
+			obj->oclass != CHAIN_CLASS &&
+			obj->oclass != GEM_CLASS &&
+			obj->oclass != ARMOR_CLASS && !is_weptool(obj)) ||
+			obj->spe <= 0)
+	    return (FALSE);
+	if (obj_resists(obj, 10, 90))
+	    return (FALSE);
+
+	if (stack_too_big(obj)) return (FALSE);
+
+	/* Charge for the cost of the object */
+	costly_cancel(obj);	/* The term "cancel" is okay for now */
+
+	/* Drain the object and any implied effects */
+	save_spe = obj->spe;
+	obj->spe = -(obj->spe);
+	u_ring = (obj == uleft) || (obj == uright);
+	switch(obj->otyp) {
+	case RIN_GAIN_STRENGTH:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	ABON(A_STR) -= (save_spe * 2);
 	    	flags.botl = 1;
 	    }
 	    break;
-	case GAUNTLETS_OF_DEXTERITY:
-	    if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
-	    	ABON(A_DEX)--;
+	case RIN_GAIN_CONSTITUTION:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	ABON(A_CON) -= (save_spe * 2);
 	    	flags.botl = 1;
 	    }
 	    break;
-	case GAUNTLETS_OF_POWER:
-	    if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
-	    	ABON(A_STR)--;
+	case RIN_ADORNMENT:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	ABON(A_CHA) -= (save_spe * 2);
 	    	flags.botl = 1;
+	    }
+	    break;
+	case RIN_INCREASE_ACCURACY:
+	    if ((obj->owornmask & W_RING) && u_ring)
+	    	u.uhitinc -= (save_spe * 2);
+	    break;
+	case RIN_INCREASE_DAMAGE:
+	    if ((obj->owornmask & W_RING) && u_ring)
+	    	u.udaminc -= (save_spe * 2);
+	    break;
+	case RIN_HEAVY_ATTACK:
+	    if ((obj->owornmask & W_RING) && u_ring) {
+	    	u.udaminc -= (save_spe * 2);
+	    	u.uhitinc -= (save_spe * 2);
 	    }
 	    break;
 	case RIN_PROTECTION:
@@ -2039,25 +2070,6 @@ register struct obj *obj;
 	    	u.uhitinc--;
 	    }
 	    break;
-	case HELM_OF_BRILLIANCE:
-	    if ((obj->owornmask & W_ARMH) && (obj == uarmh)) {
-	    	ABON(A_INT)--;
-	    	ABON(A_WIS)--;
-	    	flags.botl = 1;
-	    }
-	    break;
-	case GAUNTLETS_OF_DEXTERITY:
-	    if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
-	    	ABON(A_DEX)--;
-	    	flags.botl = 1;
-	    }
-	    break;
-	case GAUNTLETS_OF_POWER:
-	    if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
-	    	ABON(A_STR)--;
-	    	flags.botl = 1;
-	    }
-	    break;
 	case RIN_PROTECTION:
 	    flags.botl = 1;
 	    break;
@@ -2120,25 +2132,6 @@ register struct obj *obj;
 	    if ((obj->owornmask & W_RING) && u_ring) {
 	    	u.udaminc++;
 	    	u.uhitinc++;
-	    }
-	    break;
-	case HELM_OF_BRILLIANCE:
-	    if ((obj->owornmask & W_ARMH) && (obj == uarmh)) {
-	    	ABON(A_INT)++;
-	    	ABON(A_WIS)++;
-	    	flags.botl = 1;
-	    }
-	    break;
-	case GAUNTLETS_OF_DEXTERITY:
-	    if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
-	    	ABON(A_DEX)++;
-	    	flags.botl = 1;
-	    }
-	    break;
-	case GAUNTLETS_OF_POWER:
-	    if ((obj->owornmask & W_ARMG) && (obj == uarmg)) {
-	    	ABON(A_STR)++;
-	    	flags.botl = 1;
 	    }
 	    break;
 	case RIN_PROTECTION:
@@ -3247,7 +3240,7 @@ zappable(wand)
 register struct obj *wand;
 {
 	int nochargechange = 10;
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
 			default: break;
 			case P_BASIC: nochargechange = 9; break;
@@ -3264,6 +3257,9 @@ register struct obj *wand;
 	if(wand->spe == 0)
 		You("wrest one last charge from the worn-out wand.");
 	if ((!rn2(2) || !wand->oartifact) && (!rn2(2) || !(objects[(wand)->otyp].oc_material == VIVA) ) && (nochargechange >= rnd(10) ) ) wand->spe--;
+
+	if (DischargeBug || u.uprops[DISCHARGE_BUG].extrinsic || have_dischargestone()) wand->spe--;
+
 	use_skill(P_DEVICES,1);
 	if (objects[(wand)->otyp].oc_material == INKA) use_skill(P_DEVICES,1);
 
@@ -3369,7 +3365,7 @@ newboss:
 		case WAN_CURSE_ITEMS:
 
 			pline("A black glow surrounds you...");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			rndcurse();
 			known = TRUE;
 
@@ -3492,7 +3488,7 @@ newboss:
 						You("momentarily stiffen.");            
 					    } else {
 						You("are frozen!");
-						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
 						nomul(-rnd(10), "paralyzed by a wand of sin");
 						exercise(A_DEX, FALSE);
@@ -3592,7 +3588,7 @@ newboss:
 			case 6: /* envy */
 				if (flags.soundok) {
 					You_hear("a chuckling laughter.");
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+					if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 				}
 			      attrcurse();
 			      attrcurse();
@@ -3631,7 +3627,7 @@ newboss:
 				break;
 			    case 2:
 				You("need reboot.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 				if (!Race_if(PM_UNGENOMOLD)) newman();
 				else polyself(FALSE);
 				break;
@@ -3676,7 +3672,7 @@ newboss:
 					You("momentarily stiffen.");            
 				    } else {
 					You("are frozen!");
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
 					nomul(-rnd(10), "paralyzed by a wand of sin");
 					exercise(A_DEX, FALSE);
@@ -3690,7 +3686,7 @@ newboss:
 					You(Blind ? "%s and get dizzy..." :
 						 "%s and your vision blurs...",
 						    stagger(youmonst.data, "stagger"));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 				dmg = rn1(7, 16);
 				make_stunned(HStun + dmg + monster_difficulty(), FALSE);
 				(void) make_hallucinated(HHallucination + dmg + monster_difficulty(),TRUE,0L);
@@ -3714,7 +3710,7 @@ newboss:
 	
 				    if (objD && drain_item(objD)) {
 					Your("%s less effective.", aobjnam(objD, "seem"));
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+					if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				    }
 				}
 				break;
@@ -3807,7 +3803,7 @@ newboss:
 		case WAN_TIDAL_WAVE:
 
 			pline("A sudden geyser slams into you from nowhere!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
 			water_damage(invent, FALSE, FALSE);
 			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 			if (Burned) make_burned(0L, TRUE);
@@ -3982,7 +3978,7 @@ newboss:
 			/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
 	
 			if (acqo->otyp == GOLD_PIECE) acqo->quan = rnd(1000);
-			if (acqo->otyp == MAGIC_LAMP) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
+			if (acqo->otyp == MAGIC_LAMP || acqo->otyp == TREASURE_CHEST) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
 			if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
 		    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
 			acqo->otyp = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
@@ -4149,7 +4145,7 @@ newboss:
 		case WAN_DEBUGGING:
 			known = TRUE;
 			You("need reboot.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
 			else polyself(FALSE);
 			break;
@@ -4175,7 +4171,7 @@ newboss:
 		case WAN_REMOVE_CURSE:
 			known = TRUE;
 			You_feel("like someone is helping you!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Ba, tip bloka l'da budet proklinat' svoye der'mo snova tak ili inache." : "Daedeldaedimm!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Ba, tip bloka l'da budet proklinat' svoye der'mo snova tak ili inache." : "Daedeldaedimm!");
 			register struct obj *obj;
 
 			for(obj = invent; obj ; obj = obj->nobj) {
@@ -4298,7 +4294,7 @@ newboss:
 				break;
 			case 12 : 
 				You_feel("like someone is helping you!");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Ba, tip bloka l'da budet proklinat' svoye der'mo snova tak ili inache." : "Daedeldaedimm!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Ba, tip bloka l'da budet proklinat' svoye der'mo snova tak ili inache." : "Daedeldaedimm!");
 				register struct obj *obj;
 	
 				for(obj = invent; obj ; obj = obj->nobj)
@@ -4357,6 +4353,7 @@ static NEARDATA const char zap_syms[] = { WAND_CLASS, 0 };
 int
 dozap()
 {
+
 	register struct obj *obj;
 	int	damage;
 
@@ -4369,6 +4366,10 @@ dozap()
 	if(check_capacity((char *)0)) return(0);
 	obj = getobj(zap_syms, "zap");
 	if(!obj) return(0);
+
+	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
+		nomul(-(rnd(5)), "zapping a wand");
+	}
 
 	check_unpaid(obj);
 
@@ -5474,7 +5475,7 @@ boolean ordinary;
 			makeknown(obj->otyp);
 			if (!Free_action || !rn2(5)) {
 			    pline("You are frozen in place!");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			    nomul(-rnz(20), "frozen by their own wand");
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
@@ -5484,7 +5485,7 @@ boolean ordinary;
 		case SPE_PARALYSIS:
 			if (!Free_action || !rn2(5)) {
 			    pline("You are frozen in place!");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			    nomul(-rnz(20), "frozen by their own spell");
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
@@ -5574,7 +5575,7 @@ boolean ordinary;
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -6163,7 +6164,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	if (youdefend) {
 	    You(!Hallucination? "are covered in sparkling lights!"
 			      : "are enveloped by psychedelic fireworks!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy ne poteryayete vse soprotivleniya i vashi detali bol'she ne zakoldovannyy ili zaryazheny, tak chto vy mozhete tochno tak zhe otkazat'sya, vy retard." : "Bimmselbimmselbimmselbimmselbimmsel!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vy ne poteryayete vse soprotivleniya i vashi detali bol'she ne zakoldovannyy ili zaryazheny, tak chto vy mozhete tochno tak zhe otkazat'sya, vy retard." : "Bimmselbimmselbimmselbimmselbimmsel!");
 	}
 
 	if (youdefend ? (!youattack && Antimagic && rn2(20) ) /* no longer complete protection --Amy */
@@ -6194,7 +6195,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	    /* Indicate to the hero that something happened */
 	    if (did_cancel && !self_cancel && youdefend) {
 		You_feel("a strange sense of loss.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Da! Odin iz vashikh detaley bol'she ne rabotayet! Sluzhit vam pryamo dlya igry, kak der'mo!" : "Due-l-ue-l-ue-l.");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Da! Odin iz vashikh detaley bol'she ne rabotayet! Sluzhit vam pryamo dlya igry, kak der'mo!" : "Due-l-ue-l-ue-l.");
 	    }
 	    if (youdefend) attrcurse(); /* remove some random intrinsic as well --Amy */
 	}
@@ -6507,7 +6508,7 @@ struct obj *obj;
 	    /* give a clue if obj_zapped */
 	    if (obj_zapped) {
 		You_feel("shuddering vibrations.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Takim obrazom, vy dumayete, po-vidimomu, vy mozhete prosto izmenit' elementy beskonechno. No tip bloka l'da udaleny nekotoryye potomu, chto vash zloupotrebleniye ne budet dopuskat'sya. Khar." : "Huddale-hualehuaaah!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Takim obrazom, vy dumayete, po-vidimomu, vy mozhete prosto izmenit' elementy beskonechno. No tip bloka l'da udaleny nekotoryye potomu, chto vash zloupotrebleniye ne budet dopuskat'sya. Khar." : "Huddale-hualehuaaah!");
 	    }
 
 	} else if (objects[otyp].oc_dir == NODIR) {
@@ -6740,7 +6741,7 @@ register int booktype;
 	else if (intell <= 18) tmp = 2;            
 	else tmp = 3;                   /* Hero may have helm of brilliance on */
 
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) tmp -= 1;
+	if (PlayerCannotUseSkills) tmp -= 1;
 	else switch (P_SKILL(spell_skilltype(booktype))) {
 		case P_ISRESTRICTED:
 		case P_UNSKILLED:   tmp -= 1; break;
@@ -6767,7 +6768,7 @@ int skill;
     int hit_bon = 0;
     int dex = ACURR(A_DEX);
 
-	if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) hit_bon = -4;
+	if (PlayerCannotUseSkills) hit_bon = -4;
     else switch (P_SKILL(spell_skilltype(skill))) {
 	case P_ISRESTRICTED:
 	case P_UNSKILLED:   hit_bon = -4; break;
@@ -9129,7 +9130,7 @@ othergreateffect()
 		/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
 
 		if (acqo->otyp == GOLD_PIECE) acqo->quan = rnd(1000);
-		if (acqo->otyp == MAGIC_LAMP) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
+		if (acqo->otyp == MAGIC_LAMP || acqo->otyp == TREASURE_CHEST) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
 		if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
 	    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
 		acqo->otyp = rnd_class(WAN_LIGHT, WAN_PSYBEAM);

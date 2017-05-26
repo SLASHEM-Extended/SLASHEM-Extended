@@ -159,6 +159,7 @@ E const char *FDECL(rank_of, (int,SHORT_P,BOOLEAN_P));
 E void FDECL(bot_set_handler, (void (*)()));
 E void NDECL(bot_reconfig);
 E void NDECL(bot);
+E void NDECL(botreal);
 #ifdef DUMP_LOG
 E void FDECL(bot1str, (char *));
 E void FDECL(bot2str, (char *));
@@ -1474,6 +1475,7 @@ E int FDECL(pm_to_cham, (int));
 E int FDECL(minliquid, (struct monst *));
 E int NDECL(movemon);
 E int FDECL(meatmetal, (struct monst *));
+E int FDECL(meatanything, (struct monst *));
 E void FDECL(meatcorpse, (struct monst *));
 E int FDECL(meatobj, (struct monst *));
 E void FDECL(mpickgold, (struct monst *));
@@ -1723,6 +1725,7 @@ E void NDECL(randommaterials);
 E int NDECL(find_skates);
 E int NDECL(find_skates2);
 E int NDECL(find_skates3);
+E int NDECL(find_skates4);
 E int NDECL(find_opera_cloak);
 E int NDECL(find_explosive_boots);
 E int NDECL(find_irregular_boots);
@@ -2988,6 +2991,7 @@ E struct monst *FDECL(revive, (struct obj *));
 E int FDECL(unturn_dead, (struct monst *));
 E void FDECL(cancel_item, (struct obj *));
 E boolean FDECL(drain_item, (struct obj *));	/* KMH */
+E boolean FDECL(drain_item_reverse, (struct obj *));	/* KMH */
 E boolean FDECL(drain_item_severely, (struct obj *));	/* KMH */
 E boolean FDECL(drain_item_negative, (struct obj *));	/* KMH */
 E boolean FDECL(obj_resists, (struct obj *,int,int));

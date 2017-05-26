@@ -2332,8 +2332,8 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	}
 
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.antimusablebias)) {
-		Sprintf(buf, " %d%%", 100 - u.antimusablebias);
-		enl_msg("Musable item generation frequency ", "is reduced to", "was reduced to", buf);
+		Sprintf(buf, " %d%%", u.antimusablebias);
+		enl_msg("Musable item generation frequency ", "has a negative bias of", "had a negative bias of", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.concealitemchance)) {
@@ -4797,7 +4797,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 		}
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_SHIELD)) {
 				case P_BASIC: shieldblockrate += 2; break;
 				case P_SKILLED: shieldblockrate += 4; break;
@@ -5407,8 +5407,8 @@ int final;
 	}
 
 	if (u.antimusablebias) {
-		Sprintf(buf, " %d%%", 100 - u.antimusablebias);
-		dump("  Musable item generation frequency was reduced to", buf);
+		Sprintf(buf, " %d%%", u.antimusablebias);
+		dump("  Musable item generation frequency had a negative bias of", buf);
 	}
 
 	if (u.ringspawnchance) {
@@ -7701,7 +7701,7 @@ int final;
 
 		}
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_SHIELD)) {
 				case P_BASIC: shieldblockrate += 2; break;
 				case P_SKILLED: shieldblockrate += 4; break;
@@ -8082,6 +8082,11 @@ minimal_enlightenment()
 	char statline[BUFSZ];
 
 	*statline = '\0';
+
+	if (FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) {
+		pline("Somehow the information is fucked up and won't display.");
+		return 0;
+	}
 
 	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) ) {
 		/* Yes I know, this is far from optimized. But it's a crutch for terminals with
@@ -9861,6 +9866,12 @@ register char *cmd;
 		cmd = parse();
 	}
 
+	if (*cmd && (LagBugEffect || u.uprops[LAG_BUG].extrinsic || have_lagstone()) && !rn2(3) ) {
+		flags.move = FALSE;
+		return;
+
+	}
+
     if (*cmd && !u.hangupcheat) {
         u.hangupcheat = 1;
     }
@@ -10087,6 +10098,64 @@ char sym;
 
 	}
 
+	if (ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() ) {
+
+		if        (u.dx == 1 && !u.dy) {
+			u.dy = 1;
+		} else if (u.dx == 1 && u.dy == 1) {
+			u.dx = 0;
+		} else if (!u.dx && u.dy == -1) {
+			u.dx = 1;
+		} else if (u.dx == -1 && u.dy == -1) {
+			u.dx = 0;
+		} else if (u.dx == -1 && !u.dy) {
+			u.dy = -1;
+		} else if (u.dx == -1 && u.dy == 1) {
+			u.dy = 0;
+		} else if (!u.dx && u.dy == 1) {
+			u.dx = -1;
+		} else if (u.dx == 1 && u.dy == -1) {
+			u.dy = 0;
+		}
+
+	}
+
+	if (CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() ) {
+
+		if        (u.dx == 1 && !u.dy) {
+			u.dx = 0; u.dy = -1;
+		} else if (u.dx == 1 && u.dy == 1) {
+			u.dy = -1;
+		} else if (!u.dx && u.dy == -1) {
+			u.dx = -1; u.dy = 0;
+		} else if (u.dx == -1 && u.dy == -1) {
+			u.dy = 1;
+		} else if (u.dx == -1 && !u.dy) {
+			u.dx = 0; u.dy = 1;
+		} else if (u.dx == -1 && u.dy == 1) {
+			u.dx = 1;
+		} else if (!u.dx && u.dy == 1) {
+			u.dx = 1; u.dy = 0;
+		} else if (u.dx == 1 && u.dy == -1) {
+			u.dx = -1;
+		}
+
+	}
+
+	if (SpellColorPink && ((u.pinkspelldirection == 1 && u.dx == 1 && !u.dy) || (u.pinkspelldirection == 2 && u.dx == 1 && u.dy == 1) || (u.pinkspelldirection == 3 && !u.dx && u.dy == -1) || (u.pinkspelldirection == 4 && u.dx == -1 && u.dy == -1) || (u.pinkspelldirection == 5 && u.dx == -1 && !u.dy) || (u.pinkspelldirection == 6 && u.dx == -1 && u.dy == 1) || (u.pinkspelldirection == 7 && !u.dx && u.dy == 1) || (u.pinkspelldirection == 8 && u.dx == 1 && u.dy == -1) ) ) {
+		u.dx = u.dy = 0;
+		Norep("You can't use that direction!");
+		return 0;
+
+	}
+
+	if ((TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone()) && ((u.trontrapdirection == 1 && u.dx == 1 && !u.dy) || (u.trontrapdirection == 2 && u.dx == 1 && u.dy == 1) || (u.trontrapdirection == 3 && !u.dx && u.dy == -1) || (u.trontrapdirection == 4 && u.dx == -1 && u.dy == -1) || (u.trontrapdirection == 5 && u.dx == -1 && !u.dy) || (u.trontrapdirection == 6 && u.dx == -1 && u.dy == 1) || (u.trontrapdirection == 7 && !u.dx && u.dy == 1) || (u.trontrapdirection == 8 && u.dx == 1 && u.dy == -1) ) ) {
+		u.dx = u.dy = 0;
+		Norep("You can't use the same direction twice in a row!");
+		return 0;
+
+	}
+
 	if (u.dx && u.dy && (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_NATURAL_BUG || u.umonnum == PM_MELEE_BUG || u.umonnum == PM_VORPAL_GRID_BUG || u.umonnum == PM_WEAPON_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd) ) ) {
 		u.dx = u.dy = 0;
 		return 0;
@@ -10289,6 +10358,15 @@ click_to_cmd(x, y, mod)
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	cmd[0] = ' ';
 	return cmd;
+	}
+
+	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
+		pline("A sinister force prevents you from quicktraveling!");
+		if (Hallucination) pline("Could this be the work of Arabella?");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		cmd[0] = ' ';
+		return cmd;
+
 	}
 
 	if (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_NATURAL_BUG || u.umonnum == PM_WEAPON_BUG || u.umonnum == PM_MELEE_BUG || u.umonnum == PM_VORPAL_GRID_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd)) {
@@ -10573,6 +10651,14 @@ dotravel()
 	pline("Due to your movement restriction, you cannot quicktravel!");
 	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
+
+	}
+
+	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
+		pline("A sinister force prevents you from quicktraveling!");
+		if (Hallucination) pline("Could this be the work of Arabella?");
+		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
 
 	}
 

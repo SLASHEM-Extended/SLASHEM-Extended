@@ -2872,7 +2872,7 @@ int tech_no;
 	    		You("aren't wielding a proper weapon!");
 	    		return(0);
 	    	}
-	    	if ((P_SKILL(weapon_type(uwep)) < P_SKILLED) || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || (Blind)) {
+	    	if ((P_SKILL(weapon_type(uwep)) < P_SKILLED) || PlayerCannotUseSkills || (Blind)) {
 	    		You("aren't capable of doing this!");
 	    		return(0);
 	    	}
@@ -2926,7 +2926,7 @@ int tech_no;
 		    roll = rn2(num + 1);
 		    if (roll > 3) roll = 3;
 
-		    if (obj && obj->mstartinventB && !(obj->oartifact) && (!rn2(4) || (rn2(100) < u.musableremovechance) || !timebasedlowerchance() ) && !stack_too_big(obj) ) {
+		    if (obj && obj->mstartinventB && !(obj->oartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(obj) ) {
 				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 				delobj(obj);
 	          		t_timeout = rnz(50);

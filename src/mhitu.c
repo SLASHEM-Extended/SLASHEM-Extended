@@ -73,13 +73,24 @@ on the first floor, especially when you're playing as something with drain resis
 		case AT_CLAW:
 			pline("%s claws you!", Monnam(mtmp));
 
-			if (flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) { 
+			if ((flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5)) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "but poshnalar") )) ) { 
 				pline("%s rips into your breast with maniacal fervor!", Monnam(mtmp));
 
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 
 				losehp(d(2,monsterlev), "cowardly attack on her breasts", KILLED_BY_AN);
+
+			}
+
+			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && !rn2(3)) {
+
+				pline("%s claws sensitive parts of your body!", Monnam(mtmp));
+
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+
+				losehp(d(2,monsterlev), "sensitive clawing attack", KILLED_BY_AN);
 
 			}
 
@@ -111,7 +122,7 @@ on the first floor, especially when you're playing as something with drain resis
 			pline("%s bites you!", Monnam(mtmp));
 			armproX = magic_negation(&youmonst);
 
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+			if (!(PlayerCannotUseSkills)) {
 
 				switch (P_SKILL(P_SPIRITUALITY)) {
 					default: armprolimitX = 75; break;
@@ -129,7 +140,7 @@ on the first floor, especially when you're playing as something with drain resis
 			if (!rn2(player_shades_of_grey() ? 50 : (u.ualign.type == A_LAWFUL) ? 100 : (u.ualign.type == A_NEUTRAL) ? 150 : 250) && (!issoviet || !rn2(5)) && ((rn2(3) >= armproX) || ((rnd(100) > armprolimitX) && ((armproX < 4) || (rnd(armproX) < 4) ) ) ) ) {
 			if (!Drain_resistance || !rn2(4)) {
 			pline("%s sinks %s teeth deep into your skin and drinks your %s!", Monnam(mtmp), mhis(mtmp), body_part(BLOOD));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha kha kha, eto ne byl otklyuchen, i teper' vy osushilos'. Sovetskaya Pyat' Lo ne khochet, chtoby eta igra byla vyigrana v lyubom sluchaye." : "SCHHUEUEOEUEOEUEOEUEOE");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha kha kha, eto ne byl otklyuchen, i teper' vy osushilos'. Sovetskaya Pyat' Lo ne khochet, chtoby eta igra byla vyigrana v lyubom sluchaye." : "SCHHUEUEOEUEOEUEOEUEOE");
 		      losexp("life drainage", FALSE, TRUE);
 			}
 			}
@@ -1177,7 +1188,7 @@ elena23:
 			pline("%s stings you!", Monnam(mtmp));
 			if ((!rn2(player_shades_of_grey() ? 200 : (u.ualign.type == A_LAWFUL) ? 300 : (u.ualign.type == A_NEUTRAL) ? 250 : 300)) && (!issoviet || !rn2(5)) ) {
 			pline("You are bleeding out from your stinging injury!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Ne prosto poteryayet odnu maksimal'nuyu khitpoint. Poteryat' ikh vsekh, i nadeyus', chto yeshche odnu glupuyu smert' vse ravno nichego ne poluchite vy." : "Ffffffffschhhhhhhhhh!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Ne prosto poteryayet odnu maksimal'nuyu khitpoint. Poteryat' ikh vsekh, i nadeyus', chto yeshche odnu glupuyu smert' vse ravno nichego ne poluchite vy." : "Ffffffffschhhhhhhhhh!");
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
 
@@ -1186,6 +1197,18 @@ elena23:
 
 
 			}
+
+			if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "princess gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki printsessy") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "malika qo'lqop") )) && !rn2(25)) {
+
+				pline("%s deeply stings you for being such a spoiled princess.", Monnam(mtmp));
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+
+				if (Upolyd) {u.mhmax -= rnd(monsterlev); if (u.mh > u.mhmax) u.mh = u.mhmax;}
+				else {u.uhpmax -= rnd(monsterlev); if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
+
+			}
+
 			break;
 		case AT_BUTT:
 			pline("%s butts you!", Monnam(mtmp));
@@ -1195,7 +1218,7 @@ elena23:
 				You_feel("a slight shaking.");            
 			    } else {
 				You("flinch!");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				monsterlev = ((mtmp->m_lev) + 1);
 				monsterlev /= 3;
@@ -1221,10 +1244,24 @@ elena23:
 			else {u.uhpmax -= monsterlev/2; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
 
 			}
+
+			if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "princess gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki printsessy") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "malika qo'lqop") )) && !rn2(15)) {
+
+				pline("%s angrily cuts up your unprotected princess skin.", Monnam(mtmp));
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				monsterlev = rnd(monsterlev);
+				losehp((monsterlev), "scratching attack", KILLED_BY_AN);
+
+				if (Upolyd) {u.mhmax -= monsterlev/2; if (u.mh > u.mhmax) u.mh = u.mhmax;}
+				else {u.uhpmax -= monsterlev/2; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
+
+			}
+
 			break;
 		case AT_LASH:
 			pline("%s lashes you!", Monnam(mtmp));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tvoya zadnitsa sobirayetsya poluchit' vzbityye, suka!" : "Rhaeaeaeaei!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Tvoya zadnitsa sobirayetsya poluchit' vzbityye, suka!" : "Rhaeaeaeaei!");
 			if (FemaleTrapJessica && !rn2(3)) {
 				pline("Oh no! %s bashed your tender, vulnerable butt cheeks!", Monnam(mtmp));
 				monsterlev = ((mtmp->m_lev) + 1);
@@ -1242,7 +1279,7 @@ elena23:
 			break;
 		case AT_TRAM:
 			pline("%s tramples over you!", Monnam(mtmp));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Monstry budut toptat' vas, potomu chto vy ochen' plokhoy igrok." : "Klatsch klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Monstry budut toptat' vas, potomu chto vy ochen' plokhoy igrok." : "Klatsch klatsch!");
 			if (!rn2(player_shades_of_grey() ? 3 : 5) && (!issoviet || !rn2(5)) ) {
 			monsterlev = ((mtmp->m_lev) + 1);
 				if (monsterlev <= 0) monsterlev = 1;
@@ -1271,7 +1308,7 @@ elena23:
 		case AT_TENT:
 			pline("%s tentacles suck you!",
 				        s_suffix(Monnam(mtmp)));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' my budem yest' vash mozg, i vy budete umirat' ot gluposti." : "TschuecktschueckTschuecktschueckTschuecktschueck!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' my budem yest' vash mozg, i vy budete umirat' ot gluposti." : "TschuecktschueckTschuecktschueckTschuecktschueck!");
 			if (!issoviet || !rn2(5)) {
 			monsterlev = ((mtmp->m_lev) + 1);
 			monsterlev /= player_shades_of_grey() ? 2 : 5;
@@ -1381,7 +1418,7 @@ register struct attack *mattk;
 
 		int savechance = 0;
 
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_BODY_ARMOR)) {
 
 			    case P_BASIC:		savechance = 1; break;
@@ -1461,7 +1498,7 @@ u_slow_down()
 	if (!Fast) You("slow down.");
 	   /* speed boots */
 	else Your("quickness feels less natural.");
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha, vy tol'ko chto poteryali skorost'. Udachi vam poluchit' yego obratno. I kogda vy eto sdelayete, igra budet ubedit'sya, chto vy mgnovenno poteryat' yego snova i tip bloka l'da budet ochen' pozabavilo." : "Wschlschlschlschlsch!");
+	if (PlayerHearsSoundEffects) pline(issoviet ? "Kha, vy tol'ko chto poteryali skorost'. Udachi vam poluchit' yego obratno. I kogda vy eto sdelayete, igra budet ubedit'sya, chto vy mgnovenno poteryat' yego snova i tip bloka l'da budet ochen' pozabavilo." : "Wschlschlschlschlsch!");
 	exercise(A_DEX, FALSE);
 }
 
@@ -1839,6 +1876,8 @@ mattacku(mtmp)
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && FemaleTrapMadeleine) tmp += 100;
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapWendy) tmp += rnd(20);
 
+	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && attacktype(mtmp->data, AT_CLAW)) tmp += 100;
+
 	if (!rn2(2) && (tmp > 1)) tmp /= 2; /* don't make high-level monsters automatically hit you --Amy */
 
 	/* make eels visible the moment they hit/miss us */
@@ -1870,7 +1909,7 @@ mattacku(mtmp)
 	    if(!mtmp->mcan && !rn2(23))	{
 			msummon(mtmp);
 			pline("%s opens a gate!",Monnam(mtmp) );
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Sovetskaya nadeyetsya, chto demony zapolnyayut ves' uroven' i ubit' vas." : "Pitschaeff!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya nadeyetsya, chto demony zapolnyayut ves' uroven' i ubit' vas." : "Pitschaeff!");
 		}
 
 
@@ -1880,7 +1919,7 @@ mattacku(mtmp)
 
 		wake_nearby();
 		pline("%s blows a whistle!",Monnam(mtmp) ); 
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Arbitr svistnul, dazhe yesli on ne imeyet svistok." : "Pfiiiiiiet!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Arbitr svistnul, dazhe yesli on ne imeyet svistok." : "Pfiiiiiiet!");
 		/* even if the player stole it; arbitrators can somehow whistle anyway */
 	}
 
@@ -1966,7 +2005,7 @@ mattacku(mtmp)
 		case AT_BUTT:
 		case AT_TENT:
 			if((!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
-					!touch_petrifies(youmonst.data))) || (mtmp->egotype_hugger && !rn2(20) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM) ) ) {
+					!touch_petrifies(youmonst.data))) || (mtmp->egotype_hugger && !rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
 			    if (foundyou) {
 				if ((tmp > (j = rnd(20+i))) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "janubiy koreyaning kavushlari") ) && !rn2(3) ) ) {
 				    if (mattk->aatyp != AT_KICK ||
@@ -1977,7 +2016,7 @@ mattacku(mtmp)
 			    } else wildmiss(mtmp, mattk);
 			}
 
-			if(lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM && !rn2(5) && mtmp->egotype_beamer && (tmp > (rnd(20+i))) ){  
+			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) && !rn2(5) && mtmp->egotype_beamer && (tmp > (rnd(20+i))) ){  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
 			}  
@@ -2016,13 +2055,13 @@ mattacku(mtmp)
 		case AT_HUGS:	/* automatic if prev two attacks succeed */
 			/* Note: if displaced, prev attacks never succeeded */
 		/* Note by Amy: come on, allow it to hit sometimes even if there are no previous attacks (shambling horror)! */
-		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(20) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM) ) ) {
+		                if((!range2 && i>=2 && sum[i-1] && sum[i-2]) || mtmp == u.ustuck || (!rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) ) ) {
 				if ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) sum[i]= hitmu(mtmp, mattk);
 				}
 		/* This has the side effect of AT_HUGS hitting from far away. I decided to declare this "bug" a feature. */
 			break;
 		case AT_BEAM:  /* ranged non-contact attack by Chris - only go off 40% of the time for balance reasons --Amy */
-			if(lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM && (tmp > (rnd(20+i))) && (rnd(5) > 3) ) {  
+			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && (rnd(5) > 3) ) {  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
 			}  
@@ -2065,7 +2104,7 @@ mattacku(mtmp)
 		case AT_BREA:
 			if (/*range2 &&*/ !blue_on_blue(mtmp) && rn2(25) && (mattk->adtyp == AD_RBRE || (mattk->adtyp >= AD_MAGM && mattk->adtyp <= AD_SPC2) ) )
 			    sum[i] = breamu(mtmp, mattk);
-			else if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM)
+			else if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) )
 			{  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
@@ -2078,7 +2117,7 @@ mattacku(mtmp)
 			    sum[i] = spitmu(mtmp, mattk);
 			/* Note: spitmu takes care of displacement */
 
-			else if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM)
+			else if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) )
 			{  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
@@ -2121,10 +2160,10 @@ mattacku(mtmp)
 			break;
 		case AT_WEAP:
 
-			if (mtmp->egotype_hugger && !rn2(20) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM) && (tmp > (rnd(20+i))) )
+			if (mtmp->egotype_hugger && !rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) && (tmp > (rnd(20+i))) )
 			hitmu(mtmp, mattk);
 
-			if(lined_up(mtmp) && dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM && !rn2(5) && mtmp->egotype_beamer && (tmp > (rnd(20+i))) ){  
+			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())) && !rn2(5) && mtmp->egotype_beamer && (tmp > (rnd(20+i))) ){  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
 			}  
@@ -2260,7 +2299,7 @@ elena29:
 elena30:
 					if (Role_if(PM_COURIER)) pline("The lacquered dancing shoe harmlessly scratches you.");
 					else {pline("The lacquered dancing shoe scratches your %s!", body_part(HEAD));
-						if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Budem nadeyat'sya, chto mat' Selin zastavit vas istekat' krov'yu do smerti neodnokratno tsarapat' vas kablukami." : "KRRRRRRIEZ!");
+						if (PlayerHearsSoundEffects) pline(issoviet ? "Budem nadeyat'sya, chto mat' Selin zastavit vas istekat' krov'yu do smerti neodnokratno tsarapat' vas kablukami." : "KRRRRRRIEZ!");
 
 						if (!uarmh || uarmh->otyp != DUNCE_CAP) {
 
@@ -4037,6 +4076,7 @@ hitmu(mtmp, mattk)
 {
 	register struct permonst *mdat = mtmp->data;
 	register int tmp = d((int)mattk->damn, (int)mattk->damd*10);
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) tmp = (int)mattk->damn * (int)mattk->damd * 10;
 	register boolean not_affected = defends((int)mattk->adtyp, uwep);
 	register int uncancelled, ptmp;
 	register struct engr *ep = engr_at(u.ux,u.uy);
@@ -4084,6 +4124,13 @@ hitmu(mtmp, mattk)
 	dmg = d((int)mattk->damn, (int)mattk->damd);
 	if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
 		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
+
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) {
+		dmg = (int)mattk->damn * (int)mattk->damd;
+		if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
+			dmg *= 2;
+	}
+
 	if (mtmp->mfrenzied) dmg *= 2;
 /*	Next a cancellation factor	*/
 
@@ -4092,7 +4139,7 @@ hitmu(mtmp, mattk)
  */
 	armpro = magic_negation(&youmonst);
 
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 
 		switch (P_SKILL(P_SPIRITUALITY)) {
 			default: armprolimit = 75; break;
@@ -4115,6 +4162,18 @@ hitmu(mtmp, mattk)
 	atttyp = mattk->adtyp;
 
 	if (mattk->aatyp == AT_SPIT && atttyp == AD_TCKL) atttyp = AD_PHYS; /* manticore fix */
+
+	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttyp == AD_PHYS && !rn2(100)) {
+		while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE) {
+			atttyp = randattack(); }
+
+	}
+
+	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttyp == AD_PHYS && !rn2(100)) {
+		while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE) {
+			atttyp = rn2(AD_ENDS); }
+
+	}
 
 	if (atttyp == AD_RBRE) {
 		while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE) {
@@ -4146,7 +4205,7 @@ hitmu(mtmp, mattk)
 			} else {
 			    setustuck(mtmp);
 			    pline("%s grabs you!", Monnam(mtmp));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 			}
 		    } else if(u.ustuck == mtmp) {
 			exercise(A_STR, FALSE);
@@ -4366,7 +4425,7 @@ hitmu(mtmp, mattk)
 
 		/* create darkness around the player --Amy */
 		pline("That felt evil and sinister!");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Konechno, Sovetskiy sdelal eto tak, chto vy ne mozhete uvidet' bol'shinstvo monstrov pryamo seychas. Kha-kha-kha ..." : "Diedaedodiedaerr!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Konechno, Sovetskiy sdelal eto tak, chto vy ne mozhete uvidet' bol'shinstvo monstrov pryamo seychas. Kha-kha-kha ..." : "Diedaedodiedaerr!");
 			litroomlite(FALSE);
 		break;
 
@@ -4437,7 +4496,7 @@ hitmu(mtmp, mattk)
 
 		    setustuck(mtmp);
 		    pline("%s grabs you!", Monnam(mtmp));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 		    display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		    You("get zapped!");
@@ -4929,7 +4988,7 @@ hitmu(mtmp, mattk)
 
 		if (!rn2(5)) {
 			You_feel("as if you need some help.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			rndcurse();
 		}
 
@@ -5235,7 +5294,7 @@ dopois:
 		}
 		if (u_slip_free(mtmp,mattk)) break;
 
-		if (uarmh && rn2(8)) {
+		if (uarmh && !(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "strip bandana") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "polosa bandanu") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bir ip yengil bosh kiyim") )) && rn2(8)) {
 		    /* not body_part(HEAD) */
 		    Your("helmet blocks the attack to your head.");
 		    break;
@@ -5299,7 +5358,7 @@ dopois:
 		    } else {
 			if (Blind) You("are frozen!");
 			else You("are frozen by %s!", mon_nam(mtmp));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomovemsg = 0;	/* default: "you can move again" */
 			if (!rn2(3)) nomul(-rnd(10), "paralyzed by a monster attack");
 			else nomul(-(dmg), "paralyzed by a monster attack");
@@ -5503,7 +5562,7 @@ dopois:
 			break;
 		    case 2:
 			You("need reboot.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
 			else polyself(FALSE);
 			break;
@@ -5528,7 +5587,7 @@ dopois:
 			if (!u.ustuck && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s grabs you!", Monnam(mtmp));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
@@ -5556,7 +5615,7 @@ dopois:
 			    } else {
 				if (Blind) You("are frozen!");
 				else You("are frozen by %s!", mon_nam(mtmp));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				nomul(-rnd(10), "paralyzed by a monster attack");
 				exercise(A_DEX, FALSE);
@@ -5570,7 +5629,7 @@ dopois:
 				You(Blind ? "%s and get dizzy..." :
 					 "%s and your vision blurs...",
 					    stagger(youmonst.data, "stagger"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 			hallutime = rn1(7, 16);
 			make_stunned(HStun + hallutime + dmg, FALSE);
 			(void) make_hallucinated(HHallucination + hallutime + dmg,TRUE,0L);
@@ -5594,7 +5653,7 @@ dopois:
 
 			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
 			break;
@@ -5706,7 +5765,7 @@ dopois:
 		    } else {
 			if (flags.soundok) {
 			    You_hear("%s hissing!", s_suffix(mon_nam(mtmp)));
-			    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
+			    if (PlayerHearsSoundEffects) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
 			}
 
 			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qotib plash") ) && rn2(4)) break;
@@ -5751,7 +5810,7 @@ dopois:
 		    } else {
 			if (flags.soundok) {
 			    You_hear("%s hissing!", s_suffix(mon_nam(mtmp)));
-			    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
+			    if (PlayerHearsSoundEffects) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
 			}
 
 			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qotib plash") ) && rn2(4)) break;
@@ -5787,7 +5846,7 @@ dopois:
 		if (uncancelled && !u.ustuck && !sticks(youmonst.data)) {
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 		break;
@@ -5810,7 +5869,7 @@ dopois:
 		 * Even if you're unbreathing, swimming or whatever. Your stuff isn't immune just because you are.  --Amy	*/
 
 			    pline("%s pulls you into the water!", Monnam(mtmp));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Ves' vash inventar' promokli. Pochemu vy ne ispol'zuyete svoy pobeg detal' vy neudachnoye opravdaniye igroka?" : "Platsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Ves' vash inventar' promokli. Pochemu vy ne ispol'zuyete svoy pobeg detal' vy neudachnoye opravdaniye igroka?" : "Platsch!");
 				water_damage(invent, FALSE, FALSE);
 				if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 				if (Burned) make_burned(0L, TRUE);
@@ -5844,7 +5903,7 @@ dopois:
 
 				if (!Fire_resistance) {
 					You("burn to ashes...");
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha! Ne ozhidal, chto budet mgnovennaya smert'? Nu, vashi poteri. Spasibo prikhodi yeshche." : "brrtzlbrrtzlbrrtzlbrrtzlbrrtzl");
+					if (PlayerHearsSoundEffects) pline(issoviet ? "Kha! Ne ozhidal, chto budet mgnovennaya smert'? Nu, vashi poteri. Spasibo prikhodi yeshche." : "brrtzlbrrtzlbrrtzlbrrtzlbrrtzl");
 					killer_format = KILLED_BY_AN;
 					    Sprintf(buf, "pool of lava by %s", an(mtmp->data->mname));
 					    killer = buf;
@@ -5870,7 +5929,7 @@ dopois:
 				!Is_waterlevel(&u.uz);
 
 			    pline("%s drowns you...", Monnam(mtmp));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy znali, chto sluchilos' by, ne tak li? I do sikh por vy ne ispol'zovali element, kotoryy by spas vas, potomu chto vy glupost' v dvizhenii! Geniy!" : "HUAAAAAAA-A-AAAAHHHHHH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vy znali, chto sluchilos' by, ne tak li? I do sikh por vy ne ispol'zovali element, kotoryy by spas vas, potomu chto vy glupost' v dvizhenii! Geniy!" : "HUAAAAAAA-A-AAAAHHHHHH!");
 			    killer_format = KILLED_BY_AN;
 			    Sprintf(buf, "%s by %s",
 				    moat ? "moat" : "pool of water",
@@ -6089,7 +6148,7 @@ dopois:
 		if (flags.female && uarm && uarm->oartifact == ART_PRECIOUS_VIRGINITY) break;
 
 		if(could_seduceX(mtmp, &youmonst, mattk) == 1
-			&& !mtmp->mcan && (issoviet || rn2(2) ) ) /* 50% chance --Amy */
+			&& !mtmp->mcan && (issoviet || rn2(2) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bosh ketish etigi") )) ) ) /* 50% chance --Amy */
 		    if (doseduce(mtmp))
 			return 3;
 		break;
@@ -6187,7 +6246,7 @@ dopois:
 
 		if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		} else if (obj && rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
 		
 		break;
@@ -6213,7 +6272,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
 		pline("%s sucks your %s!", Monnam(mtmp), body_part(BLOOD) );
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "A u vas yest' dostatochno sil'nyye oruzhiye dlya preodoleniya zazhivleniyu monstra?" : "Fffffffff!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "A u vas yest' dostatochno sil'nyye oruzhiye dlya preodoleniya zazhivleniyu monstra?" : "Fffffffff!");
 		mtmp->mhp += dmg;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 
@@ -6223,7 +6282,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (mtmp->mcan) break;
 		pline("%s sucks your %s!", Monnam(mtmp), body_part(BLOOD) );
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "A u vas yest' dostatochno sil'nyye oruzhiye dlya preodoleniya zazhivleniyu monstra?" : "Fffffffff!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "A u vas yest' dostatochno sil'nyye oruzhiye dlya preodoleniya zazhivleniyu monstra?" : "Fffffffff!");
 		mtmp->mhp += dmg;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 
@@ -6358,7 +6417,7 @@ dopois:
 		if (mtmp->mcan) break;
 		if (!rn2(3)) {change_luck(-1);
 			You_feel("unlucky.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Prosto stoyat' i poteryat' stol'ko udachi, kak vy mozhete! Eto sdelayet igru boleye legkoy dlya Vas! V samom dele! Potomu chto togda vy budete umirat' bystreye i sdelat' s ney, tak chto vy mozhete sosredotochit'sya na tom, kakoy na samom dele produktivnoy veshchi vmesto togo, chtoby, kak delat' posudu!" : "Dieuuuuuuu!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Prosto stoyat' i poteryat' stol'ko udachi, kak vy mozhete! Eto sdelayet igru boleye legkoy dlya Vas! V samom dele! Potomu chto togda vy budete umirat' bystreye i sdelat' s ney, tak chto vy mozhete sosredotochit'sya na tom, kakoy na samom dele produktivnoy veshchi vmesto togo, chtoby, kak delat' posudu!" : "Dieuuuuuuu!");
 		}
 		break;
 
@@ -6466,7 +6525,7 @@ dopois:
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -6720,7 +6779,7 @@ dopois:
 		    if (flags.soundok) {
 			if (Blind) You_hear("laughter.");
 			else       pline("%s chuckles.", Monnam(mtmp));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 		    }
 		    if (u.umonnum == PM_CLAY_GOLEM) {
 			pline("Some writing vanishes from your head!");
@@ -6919,7 +6978,7 @@ dopois:
 		break;
 	    case AD_DETH:
 		pline("%s reaches out with its deadly touch.", Monnam(mtmp));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy odin shag blizhe k provalu v nastoyashcheye vremya. Pozdravleniya." : "Doaing!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vy odin shag blizhe k provalu v nastoyashcheye vremya. Pozdravleniya." : "Doaing!");
 		if (is_undead(youmonst.data)) {
 		    /* Still does normal damage */
 		    pline("Was that the touch of death?");
@@ -6948,7 +7007,7 @@ dopois:
 	    case AD_PEST:
 		pline("%s reaches out, and you feel fever and chills.",
 			Monnam(mtmp));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Bolezn' ub'yet vas, potomu chto vash rog ne rabotayet pravil'no, kha-kha. Eto rabota vsekh sovetskikh, potomu chto on nenavidit kazhdogo igroka, i on OSOBENNO nenavidit VAS." : "Aeaeaeaeaeiiiiiiiiiiii!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Bolezn' ub'yet vas, potomu chto vash rog ne rabotayet pravil'no, kha-kha. Eto rabota vsekh sovetskikh, potomu chto on nenavidit kazhdogo igroka, i on OSOBENNO nenavidit VAS." : "Aeaeaeaeaeiiiiiiiiiiii!");
 		(void) diseasemu(mdat); /* plus the normal damage */
 		/* No damage if invulnerable; setting dmg zero prevents
 		 * "You are unharmed!" after a sickness inducing attack */
@@ -6957,7 +7016,7 @@ dopois:
 	    case AD_FAMN:
 		pline("%s reaches out, and your body shrivels.",
 			Monnam(mtmp));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy budete prosto golodat'. Nikto ne mozhet pobedit' golod v etom rezhime, potomu chto yest' pishchu prinimayet navsegda, i on sdelayet vas golodnym bystreye, chem vy mozhete s''yest'." : "Klatschklatschklatschklatschklatsch!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy budete prosto golodat'. Nikto ne mozhet pobedit' golod v etom rezhime, potomu chto yest' pishchu prinimayet navsegda, i on sdelayet vas golodnym bystreye, chem vy mozhete s''yest'." : "Klatschklatschklatschklatschklatsch!");
 		exercise(A_CON, FALSE);
 		if (!is_fainted() && rn2(10) ) morehungry(rnz(40));
 		if (!is_fainted() && rn2(10) ) morehungry(rnz(40));
@@ -7010,7 +7069,7 @@ dopois:
 			    } else {
 				if (Blind) You("are frozen!");
 				else You("are frozen by %s!", mon_nam(mtmp));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				nomul(-rnd(10), "paralyzed by a monster attack");
 				exercise(A_DEX, FALSE);
@@ -7146,7 +7205,7 @@ dopois:
 			pline("A hail of magic missiles narrowly misses you!");
 		    } else {
 			You("are hit by magic missiles appearing from thin air!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "To, chto vy ne magiya ustoychivy yeshche? Togda vasha smert' yavlyayetsya lish' voprosom vremeni. Pochemu by vam ne postavit' nekotoryye usiliya v nego i nachat' igrat' luchshe srazu?" : "Schiaeaeaeaeau!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "To, chto vy ne magiya ustoychivy yeshche? Togda vasha smert' yavlyayetsya lish' voprosom vremeni. Pochemu by vam ne postavit' nekotoryye usiliya v nego i nachat' igrat' luchshe srazu?" : "Schiaeaeaeaeau!");
 	    }
 	    break;
 		break;
@@ -7204,7 +7263,7 @@ dopois:
 
 		    if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		}
 		break;
@@ -7217,7 +7276,7 @@ dopois:
 
 		    if (obj && drain_item_severely(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		}
 		break;
@@ -7383,6 +7442,9 @@ dopois:
 		tempval = rnd(-(issoviet ? (u.uac - 20) : u.uac)/5+1);
 		if (tempval < 1)  tempval = 1;
 		if (tempval > 20) tempval = 20; /* max limit increased --Amy */
+
+		if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "heroine mocassins") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "mokasiny dlya geroini") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qahramoni mokasen") )) tempval *= 2;
+
 		dmg -= tempval;
 		if (dmg < 1) dmg = 1;
 	}
@@ -7453,6 +7515,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	char	 buf[BUFSZ];
 	struct trap *t = t_at(u.ux, u.uy);
 	int	tmp = d((int)mattk->damn, (int)mattk->damd);
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) tmp = (int)mattk->damn * (int)mattk->damd;
 	int	tim_tmp;
 	register struct obj *otmp2;
 	int	i;
@@ -7528,6 +7591,18 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	atttypA = mattk->adtyp;
 
+	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypA == AD_PHYS && !rn2(100)) {
+		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE) {
+			atttypA = randattack(); }
+
+	}
+
+	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypA == AD_PHYS && !rn2(100)) {
+		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE) {
+			atttypA = rn2(AD_ENDS); }
+
+	}
+
 	if (atttypA == AD_RBRE) {
 		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE) {
 			atttypA = randattack(); }
@@ -7583,7 +7658,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    }
 				if (flags.soundok) {
 					You_hear("a chuckling laughter.");
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+					if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 				}
 			    attrcurse();
 			}
@@ -8024,7 +8099,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 			if (!rn2(5)) {
 				You_feel("as if you need some help.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 				rndcurse();
 			}
 
@@ -8291,7 +8366,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	      case AD_THIR:
 			pline("It sucks your %s!", body_part(BLOOD) );
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "A u vas yest' dostatochno sil'nyye oruzhiye dlya preodoleniya zazhivleniyu monstra?" : "Fffffffff!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "A u vas yest' dostatochno sil'nyye oruzhiye dlya preodoleniya zazhivleniyu monstra?" : "Fffffffff!");
 			mtmp->mhp += tmp;
 			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 
@@ -8299,7 +8374,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	      case AD_NTHR:
 			pline("It sucks your %s!", body_part(BLOOD) );
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "A u vas yest' dostatochno sil'nyye oruzhiye dlya preodoleniya zazhivleniyu monstra?" : "Fffffffff!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "A u vas yest' dostatochno sil'nyye oruzhiye dlya preodoleniya zazhivleniyu monstra?" : "Fffffffff!");
 			mtmp->mhp += tmp;
 			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 
@@ -8369,7 +8444,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				You("cramp for a moment.");            
 			    } else {
 				You("can't move!");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				if (!rn2(3)) nomul(-rnd(10), "paralyzed by an engulfing monster");
 				else nomul(-(tmp), "paralyzed by an engulfing monster");
@@ -8421,7 +8496,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 		    case 2:
 			You("need reboot.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
 			else polyself(FALSE);
 			break;
@@ -8446,7 +8521,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if (!u.ustuck && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s grabs you!", Monnam(mtmp));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
@@ -8474,7 +8549,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    } else {
 				if (Blind) You("are frozen!");
 				else You("are frozen by %s!", mon_nam(mtmp));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				nomul(-rnd(10), "paralyzed by an engulfing monster");
 				exercise(A_DEX, FALSE);
@@ -8488,7 +8563,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				You(Blind ? "%s and get dizzy..." :
 					 "%s and your vision blurs...",
 					    stagger(youmonst.data, "stagger"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 			hallutime = rn1(7, 16);
 			make_stunned(HStun + hallutime + tmp, FALSE);
 			(void) make_hallucinated(HHallucination + hallutime + tmp,TRUE,0L);
@@ -8512,7 +8587,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
 			break;
@@ -8570,7 +8645,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    } else {
 				if (Blind) You("are frozen!");
 				else You("are frozen by %s!", mon_nam(mtmp));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				nomul(-rnd(10), "paralyzed by an engulfing monster");
 				exercise(A_DEX, FALSE);
@@ -8677,7 +8752,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if(!rn2(3)) {
 			if (flags.soundok) {
 			    You_hear("a hissing noise!");
-			    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
+			    if (PlayerHearsSoundEffects) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
 			}
 			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qotib plash") ) && rn2(4)) break;
 
@@ -8715,7 +8790,7 @@ do_stone2:
 		if(!rn2(3)) {
 			if (flags.soundok) {
 			    You_hear("a hissing noise!");
-			    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
+			    if (PlayerHearsSoundEffects) pline(issoviet ? "Eto menyayet status pamyatnika. I vy, veroyatno, ne imeyut dostatochnogo kolichestva predmetov otverzhdeniya, potomu chto vy vpustuyu ikh vse uzhe KHAR ty glupyy nub." : "Schhhhhhhhhhhhh!");
 			}
 			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "petrified cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "okamenela plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qotib plash") ) && rn2(4)) break;
 
@@ -8748,7 +8823,7 @@ do_stone2:
 		if (!u.ustuck && !sticks(youmonst.data)) {
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 		break;
@@ -8986,7 +9061,7 @@ do_stone2:
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -9383,7 +9458,7 @@ do_stone2:
 
 		    if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		break;
 
@@ -9394,7 +9469,7 @@ do_stone2:
 
 		    if (objDV && drain_item_severely(objDV)) {
 			Your("%s less effective.", aobjnam(objDV, "seem"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		break;
 
@@ -9406,7 +9481,7 @@ do_stone2:
 
 		if (objX && drain_item(objX)) {
 			Your("%s less effective.", aobjnam(objX, "seem"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		} else if (objX && rn2(3)) wither_dmg(objX, xname(objX), rn2(4), FALSE, &youmonst);
 
 		break;
@@ -9612,7 +9687,7 @@ do_stone2:
 
 		    setustuck(mtmp);
 		    pline("%s grabs you!", Monnam(mtmp));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 		    display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		    break;
@@ -9885,6 +9960,7 @@ boolean ufound;
 	}
     else {
 	register int tmp = d((int)mattk->damn, (int)mattk->damd);
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) tmp = (int)mattk->damn * (int)mattk->damd;
 	register boolean not_affected = defends((int)mattk->adtyp, uwep);
 
 	hitmsg(mtmp, mattk);
@@ -9893,6 +9969,18 @@ boolean ufound;
 	/* Monsters with AD_RBRE can use any random explosion. --Amy */
 
 	atttypC = mattk->adtyp;
+
+	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypC == AD_PHYS && !rn2(100)) {
+		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE) {
+			atttypC = randattack(); }
+
+	}
+
+	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypC == AD_PHYS && !rn2(100)) {
+		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE) {
+			atttypC = rn2(AD_ENDS); }
+
+	}
 
 	if (atttypC == AD_RBRE) {
 		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE) {
@@ -9961,7 +10049,7 @@ boolean ufound;
 	    case AD_MALK:
 		setustuck(mtmp);
 		pline("%s grabs you!", Monnam(mtmp));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		if (!rn2(issoviet ? 6 : 33))
 			destroy_item(WAND_CLASS, AD_ELEC);
@@ -10079,7 +10167,7 @@ common:
 
 			if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
 		}
 		break;
@@ -10090,7 +10178,7 @@ common:
 
 			if (obj && drain_item_severely(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
 		}
 		break;
@@ -10152,7 +10240,7 @@ common:
 	    case AD_ICUR:
 
 		You_feel("as if you need some help.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 		rndcurse();
 		mdamageu(mtmp, tmp);
 
@@ -10458,7 +10546,7 @@ common:
 
 			if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			} else if (obj) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
 		}
 		mdamageu(mtmp, tmp);
@@ -10491,7 +10579,7 @@ common:
 			break;
 		    case 2:
 			You("need reboot.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
 			else polyself(FALSE);
 			break;
@@ -10539,7 +10627,7 @@ common:
 			    } else {
 				if (Blind) You("are frozen!");
 				else You("are frozen by %s!", mon_nam(mtmp));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				nomul(-rnd(10), "paralyzed by a monster explosion");
 				exercise(A_DEX, FALSE);
@@ -10553,7 +10641,7 @@ common:
 				You(Blind ? "%s and get dizzy..." :
 					 "%s and your vision blurs...",
 					    stagger(youmonst.data, "stagger"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 			hallutime = rn1(7, 16);
 			make_stunned(HStun + hallutime + tmp, FALSE);
 			(void) make_hallucinated(HHallucination + hallutime + tmp,TRUE,0L);
@@ -10577,7 +10665,7 @@ common:
 
 			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
 			break;
@@ -11148,7 +11236,7 @@ common:
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -11326,7 +11414,7 @@ common:
 			You("momentarily stiffen.");            
 		    } else {
 			You("suddenly recognize an inability to move!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 			nomovemsg = 0;	/* default: "you can move again" */
 			nomul(-tmp, "paralyzed by an explosion");
 			exercise(A_DEX, FALSE);
@@ -11369,7 +11457,7 @@ common:
 	    case AD_LUCK:
 		change_luck(-1);
 		You_feel("unlucky.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Prosto stoyat' i poteryat' stol'ko udachi, kak vy mozhete! Eto sdelayet igru boleye legkoy dlya Vas! V samom dele! Potomu chto togda vy budete umirat' bystreye i sdelat' s ney, tak chto vy mozhete sosredotochit'sya na tom, kakoy na samom dele produktivnoy veshchi vmesto togo, chtoby, kak delat' posudu!" : "Dieuuuuuuu!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Prosto stoyat' i poteryat' stol'ko udachi, kak vy mozhete! Eto sdelayet igru boleye legkoy dlya Vas! V samom dele! Potomu chto togda vy budete umirat' bystreye i sdelat' s ney, tak chto vy mozhete sosredotochit'sya na tom, kakoy na samom dele produktivnoy veshchi vmesto togo, chtoby, kak delat' posudu!" : "Dieuuuuuuu!");
 		break;
 
 	    case AD_FAKE:
@@ -11582,7 +11670,7 @@ common:
 				You("momentarily stiffen.");            
 			    } else {
 				pline("You can't move!");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				nomul(-rnd(10), "paralyzed by an explosion");
 				exercise(A_DEX, FALSE);
@@ -11793,7 +11881,7 @@ common:
 		    break;
 		}
 
-		if (uarmh && rn2(3)) {
+		if (uarmh && !(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "strip bandana") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "polosa bandanu") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bir ip yengil bosh kiyim") )) && rn2(3)) {
 		    /* not body_part(HEAD) */
 		    Your("helmet blocks the attack to your head.");
 		    break;
@@ -12125,6 +12213,18 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	atttypB = mattk->adtyp;
 
+	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypB == AD_PHYS && !rn2(100)) {
+		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE) {
+			atttypB = randattack(); }
+
+	}
+
+	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypB == AD_PHYS && !rn2(100)) {
+		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE) {
+			atttypB = rn2(AD_ENDS); }
+
+	}
+
 	if (atttypB == AD_RBRE) {
 		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE) {
 			atttypB = randattack(); }
@@ -12144,9 +12244,14 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (atttypB == AD_WERE) atttypB = AD_PHYS;
 	}
 
-	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "mirrored gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "zerkal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "akslantirish qo'lqop") ) && !rn2(3) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
+	if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "mirrored gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "zerkal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "akslantirish qo'lqop") ) ) && !rn2(3) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
 		/* cut down on message spam - only display it 1 out of 10 times --Amy */
 		if (!rn2(10)) pline("%s gazes at you, but your mirrored gloves protect you from the effects!", Monnam(mtmp));
+		return 0;
+	}
+
+	if ((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "netradiation helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "obluchonnyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sof radiatsiya dubulg'a") ) ) && !rn2(2) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
+		if (!rn2(10)) pline("%s gazes at you, but your netradiation helmet protects you from the effects!", Monnam(mtmp));
 		return 0;
 	}
 
@@ -12156,6 +12261,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	}
 
 	dmgplus = d((int)mattk->damn, (int)mattk->damd);	/* why the heck did gaze attacks have fixed damage??? --Amy */
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) dmgplus = (int)mattk->damn * (int)mattk->damd;
 
 	switch(atttypB) {
 	    case AD_STON:
@@ -12280,7 +12386,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				break;
 			    }
 				pline("%s laughs fiendishly!", Monnam(mtmp));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Kho-khe-khe-khe-khe! Tip bloka l'da katitsya po polu ot smekha, v to vremya kak vy tol'ko chto poteryali drugoy vnutrenney i, veroyatno, poteryayet gorazdo bol'she, potomu chto smotrel monstr prodolzhayet atakovat' izdaleka." : "Haehaehaehaehaehaehae-ae-ae-ae-ae!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Kho-khe-khe-khe-khe! Tip bloka l'da katitsya po polu ot smekha, v to vremya kak vy tol'ko chto poteryali drugoy vnutrenney i, veroyatno, poteryayet gorazdo bol'she, potomu chto smotrel monstr prodolzhayet atakovat' izdaleka." : "Haehaehaehaehaehaehae-ae-ae-ae-ae!");
 			    attrcurse();
 			}
 		}
@@ -12513,7 +12619,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			pline("A hail of magic missiles narrowly misses you!");
 		    } else {
 			You("are hit by magic missiles appearing from thin air!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "To, chto vy ne magiya ustoychivy yeshche? Togda vasha smert' yavlyayetsya lish' voprosom vremeni. Pochemu by vam ne postavit' nekotoryye usiliya v nego i nachat' igrat' luchshe srazu?" : "Schiaeaeaeaeau!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "To, chto vy ne magiya ustoychivy yeshche? Togda vasha smert' yavlyayetsya lish' voprosom vremeni. Pochemu by vam ne postavit' nekotoryye usiliya v nego i nachat' igrat' luchshe srazu?" : "Schiaeaeaeaeau!");
  	            if (rn2(4)) mdamageu(mtmp, d(4,6));
 			else mdamageu(mtmp, (d(4,6) + dmgplus));
 		    }
@@ -12788,7 +12894,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		/* create darkness around the player --Amy */
 		pline("%s's sinister gaze fills your mind with dreadful, evil thoughts!", Monnam(mtmp));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Konechno, Sovetskiy sdelal eto tak, chto vy ne mozhete uvidet' bol'shinstvo monstrov pryamo seychas. Kha-kha-kha ..." : "Diedaedodiedaerr!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Konechno, Sovetskiy sdelal eto tak, chto vy ne mozhete uvidet' bol'shinstvo monstrov pryamo seychas. Kha-kha-kha ..." : "Diedaedodiedaerr!");
 		    stop_occupation();
 		litroomlite(FALSE);
 		}
@@ -12878,7 +12984,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		}
 		break;
@@ -12894,7 +13000,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    if (obj && drain_item_severely(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		    }
 		}
 		break;
@@ -12908,7 +13014,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		if (obj && drain_item(obj)) {
 			Your("%s less effective.", aobjnam(obj, "seem"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		} else if (obj && rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
 		}
 
@@ -13031,7 +13137,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			break;
 		    case 2:
 			You("need reboot.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
 			else polyself(FALSE);
 			break;
@@ -13056,7 +13162,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!u.ustuck && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s grabs you!", Monnam(mtmp));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
@@ -13084,7 +13190,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			    } else {
 				if (Blind) You("are frozen!");
 				else You("are frozen by %s!", mon_nam(mtmp));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				nomul(-rnd(10), "paralyzed by a monster attack");
 				exercise(A_DEX, FALSE);
@@ -13098,7 +13204,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				You(Blind ? "%s and get dizzy..." :
 					 "%s and your vision blurs...",
 					    stagger(youmonst.data, "stagger"));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Imet' delo s effektami statusa ili sdat'sya!" : "Wrueue-ue-e-ue-e-ue-e...");
 			hallutime = rn1(7, 16);
 			make_stunned(HStun + hallutime + dmgplus, FALSE);
 			(void) make_hallucinated(HHallucination + hallutime + dmgplus,TRUE,0L);
@@ -13122,7 +13228,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			    if (obj && drain_item(obj)) {
 				Your("%s less effective.", aobjnam(obj, "seem"));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			    }
 			}
 			break;
@@ -13189,7 +13295,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			    } else {
 				if (Blind) You("are frozen!");
 				else You("are frozen by %s!", mon_nam(mtmp));
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				nomovemsg = 0;	/* default: "you can move again" */
 				nomul(-rnd(10), "paralyzed by a monster attack");
 				exercise(A_DEX, FALSE);
@@ -13655,6 +13761,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!mtmp->mcan && canseemon(mtmp) && !resists_blnd(&youmonst)
 			&& distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM && (issoviet || !rn2(6)) ) {
 		    int blnd = d((int)mattk->damn, (int)mattk->damd);
+		    if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) blnd = (int)mattk->damn * (int)mattk->damd;
 
 		    You("are blinded by %s radiance!",
 			              s_suffix(mon_nam(mtmp)));
@@ -13819,7 +13926,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			case 4:
 			case 5:
 				You_feel("life has clocked back.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
 			      losexp("time", FALSE, FALSE); /* resistance is futile :D */
 				break;
 			case 6:
@@ -14051,7 +14158,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    setustuck(mtmp);
 		    pline("%s grabs you!", Monnam(mtmp));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 		    display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		    if (Shock_resistance && rn2(20)) {
@@ -14276,7 +14383,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                if (!Blind) pline("%s gazes directly at you!",Monnam(mtmp));
 		    stop_occupation();
 	                pline("You are wracked with pains!");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Da, segodnya my dadim vam, sosatel'nyy pleyer, kakoy-to staromodnyy khoroshaya BOL'." : "Tschackschwack!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Da, segodnya my dadim vam, sosatel'nyy pleyer, kakoy-to staromodnyy khoroshaya BOL'." : "Tschackschwack!");
 	                mdamageu(mtmp, d(3,8) + dmgplus);
 	        }
 	        break;
@@ -14314,7 +14421,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_CHKH:
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
                   pline("%s gazes at you and screams the word 'DIE!'", Monnam(mtmp));
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Sdelay eto seychas! Sprygnut' s mosta!" : "SCHRANG!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Sdelay eto seychas! Sprygnut' s mosta!" : "SCHRANG!");
 		    stop_occupation();
 			dmgplus += u.chokhmahdamage;
 			dmgplus += rnd(u.ualign.sins + 1);
@@ -14713,7 +14820,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			if (!rn2(5)) {
 				You_feel("as if you need some help.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 				rndcurse();
 			}
 		}
@@ -15126,7 +15233,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	                if (Free_action && rn2(20)) You("stiffen momentarily.");
 	                else {
 	                        You("are frozen by %s!", mon_nam(mtmp));
-					if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
+					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 				nomovemsg = 0;
 					if (!rn2(3)) nomul(-rnd(4), "paralyzed by a monster's gaze");
 					else nomul(-(dmgplus), "paralyzed by a monster's gaze");
@@ -15202,6 +15309,7 @@ register int n;
 	if (n && Race_if(PM_YUKI_PLAYA)) n += rnd(5);
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
 	if (have_cursedmagicresstone()) n = n * 2;
+	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone()) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
 
@@ -15248,11 +15356,11 @@ register int n;
 	}
 
 #ifdef SHOW_DMG
-	if (flags.showdmg && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) ) {
+	if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) ) {
 
 		pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
 		if (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
-		if (isangbander && (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) && (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone())) pline(issoviet ? "Umeret' glupyy igrok ublyudka!" : "TSCHINGTSCHINGTSCHINGTSCHING!");
+		if (isangbander && (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) && (PlayerHearsSoundEffects)) pline(issoviet ? "Umeret' glupyy igrok ublyudka!" : "TSCHINGTSCHINGTSCHINGTSCHING!");
 
 	}
 #endif

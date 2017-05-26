@@ -231,7 +231,7 @@ struct obj *obj;		/* aatyp == AT_WEAP, AT_SPIT */
 	    for ( ; o; o = o->nobj)
 		if ((o->owornmask & W_ARMH) &&
 		    (s = OBJ_DESCR(objects[o->otyp])) != (char *)0 &&
-		    (!strcmp(s, "visored helmet") || !strcmp(s, "zabralom shlema") || !strcmp(s, "soyabon zarbdan") || !strcmp(s, "orange visored helmet") || !strcmp(s, "oranzhevyy shlem zabralom") || !strcmp(s, "apelsin soyabon zarbdan") ) )
+		    (!strcmp(s, "visored helmet") || !strcmp(s, "zabralom shlema") || !strcmp(s, "soyabon zarbdan") || !strcmp(s, "orange visored helmet") || !strcmp(s, "oranzhevyy shlem zabralom") || !strcmp(s, "apelsin soyabon zarbdan") || !strcmp(s, "twisted visor helmet") || !strcmp(s, "shlem vitoy shlema") || !strcmp(s, "buekuemlue soyabon dubulg'a") ) )
 		    return FALSE;
 	}
 

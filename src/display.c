@@ -252,7 +252,14 @@ map_trap(trap, show)
 #else
 	levl[x][y].glyph = cmap_to_glyph(cmap);
 #endif
-    if (show || transp) show_glyph(x, y, cmap_to_glyph(cmap));
+
+
+    if (show || transp) {
+
+	    if (KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone()) show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	    else show_glyph(x, y, cmap_to_glyph(cmap));
+
+    }
 }
 
 /*
@@ -304,7 +311,7 @@ register xchar x, y;
 #else
 	    levl[x][y].glyph = GLYPH_INVISIBLE;
 #endif
-	show_glyph(x, y, GLYPH_INVISIBLE);
+	if (!(UnderlayerBug || u.uprops[UNDERLAYER_BUG].extrinsic || have_underlaidstone())) show_glyph(x, y, GLYPH_INVISIBLE);
     }
 }
 
@@ -319,7 +326,7 @@ register xchar x, y;
 #else
 	    levl[x][y].glyph = GLYPH_INVISIBLE;
 #endif
-	show_glyphX(x, y, GLYPH_INVISIBLE);
+	if (!(UnderlayerBug || u.uprops[UNDERLAYER_BUG].extrinsic || have_underlaidstone())) show_glyphX(x, y, GLYPH_INVISIBLE);
     }
 }
 
@@ -379,6 +386,27 @@ unmap_object(x, y)
     register struct obj   *obj;						\
     register struct trap  *trap;					\
 									\
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0))  ) {	\
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
+	return;								\
+	}								\
+	if ((GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone()) && distu(x, y) < 4) {		\
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
+	return;								\
+	}								\
+	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone()) && ( ((x + y) % 2) != (moves % 2) ) ) {		\
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
+	return;								\
+	}								\
+	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) {	\
+	show_glyph(x, y, cmap_to_glyph(S_stone));			\
+	return;								\
+	}								\
+	if (SpellColorBlue && !rn2(10)) { 	\
+	show_glyph(x, y, cmap_to_glyph(S_room));			\
+	return;								\
+	}								\
+									\
     if (level.flags.hero_memory) {					\
 	if ((obj = vobj_at(x, y)) && !covers_objects(x, y))		\
 	    map_object(obj, FALSE);					\
@@ -423,15 +451,38 @@ int memory_glyph(x, y)
     int x, y;
 {
 #ifdef DISPLAY_LAYERS
-    if (levl[x][y].mem_invis)
+
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
+	return cmap_to_glyph(S_grayglyph);
+	}
+
+	if ((GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone()) && distu(x, y) < 4) {
+	return cmap_to_glyph(S_grayglyph);
+	}
+
+	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone()) && ( ((x + y) % 2) != (moves % 2) ) ) {
+	return cmap_to_glyph(S_grayglyph);
+	}
+
+	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) { return cmap_to_glyph(S_stone); }
+
+	if (SpellColorBlue && !rn2(10)) {
+	return cmap_to_glyph(S_room);
+	}
+
+    if (levl[x][y].mem_invis && !(UnderlayerBug || u.uprops[UNDERLAYER_BUG].extrinsic || have_underlaidstone()) )
 	return GLYPH_INVISIBLE;
     else if (levl[x][y].mem_obj)
 	if (levl[x][y].mem_corpse)
 	    return body_to_glyph(levl[x][y].mem_obj - 1);
 	else
 	    return objnum_to_glyph(levl[x][y].mem_obj - 1);
-    else if (levl[x][y].mem_trap)
-	return cmap_to_glyph(levl[x][y].mem_trap - 1 + MAXDCHARS);
+    else if (levl[x][y].mem_trap) {
+
+	if (KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone()) {
+		return cmap_to_glyph(S_grayglyph);
+	} else return cmap_to_glyph(levl[x][y].mem_trap - 1 + MAXDCHARS);
+	}
     else
 	return cmap_to_glyph(levl[x][y].mem_bg);
 #else
@@ -533,6 +584,11 @@ display_monster(x, y, mon, sightflags, worm_tail)
     if (!mon_mimic || sensed) {
 	int num;
 
+	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone()) {
+		show_glyph(x,y,cmap_to_glyph(S_grayglyph));
+		return;
+	}
+
 	/* [ALI] Only use detected glyphs when monster wouldn't be
 	 * visible by any other means.
 	 */
@@ -624,6 +680,11 @@ display_monsterX(x, y, mon, sightflags, worm_tail)
     /* If the mimic is unsucessfully mimicing something, display the monster */
     if (!mon_mimic || sensed) {
 	int num;
+
+	if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone()) {
+		show_glyph(x,y,cmap_to_glyph(S_grayglyph));
+		return;
+	}
 
 	/* [ALI] Only use detected glyphs when monster wouldn't be
 	 * visible by any other means.
@@ -892,6 +953,29 @@ newsym(x,y)
     register xchar worm_tail;
 
     if (in_mklev) return;
+
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
+	if ((GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone()) && distu(x, y) < 4) {
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
+	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone()) && ( ((x + y) % 2) != (moves % 2) ) ) {
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
+	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) { show_glyph(x, y, cmap_to_glyph(S_stone)); return;}
+
+	if (SpellColorBlue && !rn2(10)) {
+	show_glyph(x, y, cmap_to_glyph(S_room));
+	return;
+	}
+
 	if ( (Superscroller || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_SPLINTER_ARMAMENT) || (uarm && uarm->oartifact == ART_TAPE_ARMAMENT) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uarmc && uarmc->oartifact == ART_VEIL_OF_MINISTRY) || u.uprops[SUPERSCROLLER_ACTIVE].extrinsic || have_superscrollerstone() ) && rn2(10) ) { show_glyph(x, y, cmap_to_glyph(S_stone)); return;}
 
     /* only permit updating the hero when swallowed */
@@ -1043,6 +1127,29 @@ newsymX(x,y)
     register xchar worm_tail;
 
     if (in_mklev) return;
+
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
+	if ((GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone()) && distu(x, y) < 4) {
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
+	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone()) && ( ((x + y) % 2) != (moves % 2) ) ) {
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
+	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) { show_glyph(x, y, cmap_to_glyph(S_stone)); return;}
+
+	if (SpellColorBlue && !rn2(10)) {
+	show_glyph(x, y, cmap_to_glyph(S_room));
+	return;
+	}
+
 	if ( (Superscroller || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_SPLINTER_ARMAMENT) || (uarm && uarm->oartifact == ART_TAPE_ARMAMENT) || (uarmc && uarmc->oartifact == ART_VEIL_OF_LATONA) || (uarmc && uarmc->oartifact == ART_VEIL_OF_MINISTRY) || u.uprops[SUPERSCROLLER_ACTIVE].extrinsic || have_superscrollerstone() ) && rn2(10) ) { show_glyphX(x, y, cmap_to_glyph(S_stone)); return;}
 
     /* only permit updating the hero when swallowed */
@@ -1631,6 +1738,9 @@ doredraw()
 {
     docrt();
 	if (InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone()) vision_recalc(5);
+
+	if (StuckAnnouncement || u.uprops[STUCK_ANNOUNCEMENT_BUG].extrinsic || have_stuckannouncementstone()) botreal();
+
     return 0;
 }
 
@@ -1864,6 +1974,9 @@ show_glyph(x,y,glyph)
 	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) && !(glyph >= (GLYPH_CMAP_OFF + 19) && glyph < (GLYPH_CMAP_OFF + 23) ) )
 	return;
 
+	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) || (glyph == (GLYPH_CMAP_OFF + 42) ) ) )
+	return;
+
     if (glyph >= MAX_GLYPH) {
 	impossible("show_glyph:  bad glyph %d [max %d] at (%d,%d).",
 					glyph, MAX_GLYPH, x, y);
@@ -1938,6 +2051,9 @@ show_glyphX(x,y,glyph)
 	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) && !(glyph >= (GLYPH_CMAP_OFF + 19) && glyph < (GLYPH_CMAP_OFF + 23) ) )
 	return;
 
+	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) || (glyph == (GLYPH_CMAP_OFF + 42) ) ) )
+	return;
+
     if (glyph >= MAX_GLYPH) {
 	impossible("show_glyph:  bad glyph %d [max %d] at (%d,%d).",
 					glyph, MAX_GLYPH, x, y);
@@ -2010,7 +2126,7 @@ void
 cls()
 {
 
-	if (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || (uamul && uamul->oartifact == ART_DIKKIN_S_DRAGON_TEETH && !(Role_if(PM_BARD) && Race_if(PM_KOBOLT) ) ) || (uwep && uwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (uwep && uwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || have_yellowspellstone()) return;
+	if (SpellColorYellow) return;
 
     display_nhwindow(WIN_MESSAGE, FALSE); /* flush messages */
     flags.botlx = 1;		/* force update of botl window */

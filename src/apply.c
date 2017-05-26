@@ -77,7 +77,7 @@ use_camera(obj)
 	}
 
 	int nochargechange = 10;
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
 			default: break;
 			case P_BASIC: nochargechange = 9; break;
@@ -355,7 +355,7 @@ use_stethoscope(obj)
 	rx = u.ux + u.dx; ry = u.uy + u.dy;
 	if (!isok(rx,ry)) {
 		You_hear("a faint typing noise.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto kakoy-to durak sidit pered pryamougol'nym veshchi." : "tipptipptipptipptipp");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Eto kakoy-to durak sidit pered pryamougol'nym veshchi." : "tipptipptipptipptipp");
 		return 0;
 	}
 	if ((mtmp = m_at(rx,ry)) != 0) {
@@ -420,9 +420,9 @@ struct obj *obj;
 
 	You(whistle_str, obj->cursed ? "shrill" : "high");
 	if (obj->cursed) {
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Teper' vse bodrstvuyet. Otlichno srabotano." : "KRIIIIIIIIII!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse bodrstvuyet. Otlichno srabotano." : "KRIIIIIIIIII!");
 	} else {
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Arbitr svistnul, dazhe yesli on ne imeyet svistok." : "Pfiiiiiiet!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Arbitr svistnul, dazhe yesli on ne imeyet svistok." : "Pfiiiiiiet!");
 	}
 	wake_nearby();
 
@@ -466,17 +466,17 @@ struct obj *obj;
 
 	if(obj->cursed && !rn2(2)) {
 		You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
 		wake_nearby();
 	} else if (!rn2(obj->blessed ? 200 : 50)) {
 		You(Hallucination ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
 		wake_nearby();
 
 	} else {
 		int pet_cnt = 0;
 		You(whistle_str, Hallucination ? "normal" : "strange");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Dazhe vy mozhete sdelat' chto-to pravil'no, v redkikh sluchayakh, eto kazhetsya." : "dueueueueue");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe vy mozhete sdelat' chto-to pravil'no, v redkikh sluchayakh, eto kazhetsya." : "dueueueueue");
 		for(mtmp = fmon; mtmp; mtmp = nextmon) {
 		    nextmon = mtmp->nmon; /* trap might kill mon */
 		    if (DEADMONSTER(mtmp)) continue;
@@ -504,15 +504,15 @@ struct obj *obj;
 
 	if(obj->cursed && !rn2(2)) {
 		You(Hallucination ? "produce something that sounds like an elegy." : "produce a terrible whistling sound.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Odin dolzhen kamen' vy do smerti dlya etogo." : "Kwaaaaaaaa!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Odin dolzhen kamen' vy do smerti dlya etogo." : "Kwaaaaaaaa!");
 		badeffect();
 	} else if (!rn2(obj->blessed ? 200 : 50)) {
 		You(Hallucination ? "produce something that sounds like an elegy." : "produce a terrible whistling sound.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Odin dolzhen kamen' vy do smerti dlya etogo." : "Kwaaaaaaaa!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Odin dolzhen kamen' vy do smerti dlya etogo." : "Kwaaaaaaaa!");
 		badeffect();
 	} else {
 		You(whistle_str, Hallucination ? "soothing" : "terrifying");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vy pomnite, chto v kommunizm, igrayet muzyka zapreshchena?" : "Traaaaaaaa!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vy pomnite, chto v kommunizm, igrayet muzyka zapreshchena?" : "Traaaaaaaa!");
 		for(mtmp = fmon; mtmp; mtmp = nextmon) {
 		    nextmon = mtmp->nmon; /* trap might kill mon */
 		    if (DEADMONSTER(mtmp)) continue;
@@ -971,7 +971,7 @@ struct obj **optr;
 			 invocation_pos(u.ux, u.uy) && !On_stairs(u.ux, u.uy));
 
 	You("ring %s.", the(xname(obj)));
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Tip bloka l'da net doma pryamo seychas!" : "Bimmelimm!");
+	if (PlayerHearsSoundEffects) pline(issoviet ? "Tip bloka l'da net doma pryamo seychas!" : "Bimmelimm!");
 
 	if (obj && obj->oartifact == ART_BIMMEL_BIMMEL) {
 	    int i, j, bd = 1;
@@ -1029,7 +1029,7 @@ struct obj **optr;
 	} else {
 	    /* charged Bell of Opening */
 	    	int nochargechange = 10;
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_DEVICES)) {
 				default: break;
 				case P_BASIC: nochargechange = 9; break;
@@ -1839,7 +1839,7 @@ register struct obj *obj;
 	}
 
 	int nochargechange = 10;
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
 			default: break;
 			case P_BASIC: nochargechange = 9; break;
@@ -1961,7 +1961,7 @@ register struct obj *obj;
 	}
 
 	int nochargechange = 10;
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
 			default: break;
 			case P_BASIC: nochargechange = 9; break;
@@ -2045,12 +2045,12 @@ degradeagain:
 	    if (obj->spe < 1) {
 	    useup(obj);
 	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
-	    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
+	    if (PlayerHearsSoundEffects) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
 		return;
 	    } else {
 		obj->spe -= 1;
 		pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		if (!rn2(3)) goto degradeagain;
 		if(obj->blessed && !rn2(10) )
 			unbless(obj);
@@ -2063,12 +2063,12 @@ degradeagain:
 	    if (obj->spe < 1) {
 	    useup(obj);
 	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
-	    if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
+	    if (PlayerHearsSoundEffects) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
 		return;
 	    } else {
 		obj->spe -= 1;
 		pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		if(obj->blessed && !rn2(10) )
 			unbless(obj);
 		else if (!obj->blessed && !rn2(5))
@@ -2489,7 +2489,7 @@ struct obj *obj;
 			return;
 		}
 		int nochargechange = 10;
-		if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_DEVICES)) {
 				default: break;
 				case P_BASIC: nochargechange = 9; break;
@@ -2950,7 +2950,7 @@ struct obj *otmp;
 	    trapinfo.time_needed += (tmp > 12) ? 1 : (tmp > 7) ? 2 : 4;
 	/*[fumbling and/or confusion and/or cursed object check(s)
 	   should be incorporated here instead of in set_trap]*/
-	if (u.usteed && (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(P_RIDING) < P_BASIC) ) {
+	if (u.usteed && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 	    boolean chance;
 
 	    if (Fumbling || otmp->cursed) chance = (rnl(10) > 3);
@@ -3313,7 +3313,7 @@ use_pole (obj)
 #ifdef WEAPON_SKILLS
 	/* Calculate range */
 	typ = weapon_type(obj);
-	if (typ == P_NONE || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(typ) <= P_BASIC) max_range = 4;
+	if (typ == P_NONE || PlayerCannotUseSkills || P_SKILL(typ) <= P_BASIC) max_range = 4;
 	else if (P_SKILL(typ) <= P_SKILLED) max_range = 5;
 	else max_range = 8;
 #else
@@ -3431,13 +3431,13 @@ use_pole (obj)
 		if (obj->spe < 1) {
 			uwepgone();              /* set unweapon */
 			pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
 			useup(obj);
 			return (1);
 		} else {
 			obj->spe -= rnd(obj->spe);
 			pline(Hallucination ? "Your stick seems shorter now!" : "Your weapon seems less effective.");
-			if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 	    }
 
@@ -3546,7 +3546,7 @@ use_grapple (obj)
 
 	/* Calculate range */
 	typ = uwep_skill_type();
-	if (typ == P_NONE || AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(typ) <= P_BASIC) max_range = 4;
+	if (typ == P_NONE || PlayerCannotUseSkills || P_SKILL(typ) <= P_BASIC) max_range = 4;
 	else if (P_SKILL(typ) == P_SKILLED) max_range = 5;
 	else max_range = 8;
 	if (distu(cc.x, cc.y) > max_range) {
@@ -3559,7 +3559,7 @@ use_grapple (obj)
 
 	/* What do you want to hit? */
 	tohit = rn2(5);
-	if (typ != P_NONE && !(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone()) && P_SKILL(typ) >= P_SKILLED) {
+	if (typ != P_NONE && !(PlayerCannotUseSkills) && P_SKILL(typ) >= P_SKILLED) {
 	    winid tmpwin = create_nhwindow(NHW_MENU);
 	    anything any;
 	    char buf[BUFSZ];
@@ -3629,7 +3629,7 @@ use_grapple (obj)
 	    }
 	    return (1);
 	default:	/* Yourself (oops!) */
-	    if (AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone() || P_SKILL(typ) <= P_BASIC) {
+	    if (PlayerCannotUseSkills || P_SKILL(typ) <= P_BASIC) {
 		You("hook yourself!");
 		losehp(rn1(10,10), "a grappling hook", KILLED_BY);
 		return (1);
@@ -3806,13 +3806,13 @@ wand_explode(obj, hero_broke)
     case WAN_GRAVITY_BEAM:
 	/* we want this before the explosion instead of at the very end */
 	pline("A wall of force smashes down around you!");
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Sovetskaya khochet zastavit' vas vyyti iz igry!" : "Schrang!");
+	if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya khochet zastavit' vas vyyti iz igry!" : "Schrang!");
 	dmg = d(1 + obj->spe,6);	/* normally 2d12 */
 	affects_objects = TRUE;
 	break;
     case WAN_DISINTEGRATION:
 	pline("A wall of force smashes down around you!");
-	if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Sovetskaya khochet zastavit' vas vyyti iz igry!" : "Schrang!");
+	if (PlayerHearsSoundEffects) pline(issoviet ? "Sovetskaya khochet zastavit' vas vyyti iz igry!" : "Schrang!");
 	dmg = d(1 + obj->spe,30);
 	affects_objects = TRUE;
 	break;
@@ -4137,7 +4137,7 @@ use_chemistry_set(struct obj *chemset)
 	cost = potion_charge_cost(new_obj);
 
 	int nochargechange = 10;
-	if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
 			default: break;
 			case P_BASIC: nochargechange = 9; break;
@@ -4201,6 +4201,10 @@ doapply()
 	obj = getobj(class_list, "use or apply");
 	if(!obj) return 0;
 
+	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
+		nomul(-(rnd(5)), "applying a tool");
+	}
+
 	if (obj->oartifact && !touch_artifact(obj, &youmonst))
 	    return 1;	/* evading your grasp costs a turn; just be
 			   grateful that you don't drop it as well */
@@ -4255,6 +4259,7 @@ doapply()
 			wield_tool(obj, "cast"); }
 		break;
 	case LARGE_BOX:
+	case TREASURE_CHEST:
 	case LARGE_BOX_OF_DIGESTION:
 	case CHEST:
 	case CHEST_OF_HOLDING:
@@ -4345,7 +4350,7 @@ doapply()
 
 			int cursingchance = 10;
 
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+			if (!(PlayerCannotUseSkills)) {
 				switch (P_SKILL(P_PETKEEPING)) {
 					default: cursingchance = 10; break;
 					case P_BASIC: cursingchance = 9; break;
@@ -4361,7 +4366,7 @@ doapply()
 				if (obj->blessed) unbless(obj);
 				else curse(obj);
 				pline("Your whistle seems less effective.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
 		}
 		break;
@@ -4371,7 +4376,7 @@ doapply()
 
 			int cursingchance = 10;
 
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+			if (!(PlayerCannotUseSkills)) {
 				switch (P_SKILL(P_PETKEEPING)) {
 					default: cursingchance = 10; break;
 					case P_BASIC: cursingchance = 9; break;
@@ -4387,7 +4392,7 @@ doapply()
 				if (obj->blessed) unbless(obj);
 				else curse(obj);
 				pline("Your whistle seems less effective.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
 	
 		}
@@ -4403,7 +4408,7 @@ doapply()
 		if (!rn2(50)) {
 			int cursingchance = 10;
 
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+			if (!(PlayerCannotUseSkills)) {
 				switch (P_SKILL(P_PETKEEPING)) {
 					default: cursingchance = 10; break;
 					case P_BASIC: cursingchance = 9; break;
@@ -4419,7 +4424,7 @@ doapply()
 				if (obj->blessed) unbless(obj);
 				else curse(obj);
 				pline("Your whistle seems less effective.");
-				if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 			}
 		}
 		break;
@@ -4683,7 +4688,7 @@ doapply()
 		    const char *what;
 
 			int nochargechange = 10;
-			if (!(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())) {
+			if (!(PlayerCannotUseSkills)) {
 				switch (P_SKILL(P_DEVICES)) {
 					default: break;
 					case P_BASIC: nochargechange = 9; break;
@@ -4943,7 +4948,7 @@ doapply()
 			((obj->altmode == WP_MODE_SINGLE) ? "single shot" : 
 			 ((obj->altmode == WP_MODE_BURST) ? "burst" :
 			  "full automatic")));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto ne budet v lyubom sluchaye pomozhet vam." : "Sr!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Eto ne budet v lyubom sluchaye pomozhet vam." : "Sr!");
 		break;	
 	case AUTO_SHOTGUN:
 	case DEMON_CROSSBOW:
@@ -4952,7 +4957,7 @@ doapply()
 		else obj->altmode = WP_MODE_AUTO;
 		You("switch %s to %s mode.", yname(obj), 
 			(obj->altmode ? "semi-automatic" : "full automatic"));
-		if (SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone()) pline(issoviet ? "Eto ne budet v lyubom sluchaye pomozhet vam." : "Sr!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Eto ne budet v lyubom sluchaye pomozhet vam." : "Sr!");
 		break;
 	case FRAG_GRENADE:
 	case GAS_GRENADE:

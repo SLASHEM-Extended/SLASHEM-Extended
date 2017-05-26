@@ -1037,6 +1037,25 @@ find_skates3()
     return -1;	/* not 0, or caller would try again each move */
 }
 
+int
+find_skates4()
+{
+    register int i;
+    register const char *s;
+
+    for (i = SPEED_BOOTS; i <= LEVITATION_BOOTS; i++) {
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ski heels"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "lyzhnyye kabluki"))
+	    return i;
+	if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chang'i poshnalar"))
+	    return i;
+    }
+
+    impossible("ski heels not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
 /* tons of more such cases for randarts, the ones that depend on randomized appearances --Amy */
 
 int
