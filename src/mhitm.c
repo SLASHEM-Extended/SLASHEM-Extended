@@ -256,7 +256,7 @@ mattackm(magr, mdef)
     pa = magr->data;  pd = mdef->data;
 
     /* Grid bugs cannot attack at an angle. */
-    if ((pa == &mons[PM_GRID_BUG] || pa == &mons[PM_WEREGRIDBUG] || pa == &mons[PM_GRID_XORN] || pa == &mons[PM_STONE_BUG] || pa == &mons[PM_NATURAL_BUG] || pa == &mons[PM_WEAPON_BUG] || pa == &mons[PM_MELEE_BUG] || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) ) && magr->mx != mdef->mx
+    if ((pa == &mons[PM_GRID_BUG] || pa == &mons[PM_WEREGRIDBUG] || pa == &mons[PM_GRID_XORN] || pa == &mons[PM_STONE_BUG] || pa == &mons[PM_NATURAL_BUG] || pa == &mons[PM_WEAPON_BUG] || pa == &mons[PM_MELEE_BUG] || pa == &mons[PM_VORPAL_GRID_BUG] || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) ) && magr->mx != mdef->mx
 						&& magr->my != mdef->my)
 	return(MM_MISS);
 

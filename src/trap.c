@@ -9555,6 +9555,16 @@ madnesseffect:
 
 				if (!enexto(&ee, u.ux, u.uy, (struct permonst *)0) ) continue;
 
+				if (i == 100) pline("This may take a while. Please be patient while the game selects monsters...");
+				if (i == 200) pline("Stand by while the monsters get generated...");
+				if (i == 400) pline("Spawning monsters...");
+				if (i == 600) pline("Please have some patience while monsters are selected...");
+				if (i == 800) pline("Halfway done...");
+				if (i == 1000) pline("Don't worry, the game does not hang. Give it a little more time...");
+				if (i == 1200) pline("Soon you can start fighting the hordes...");
+				if (i == 1400) pline("Almost finished...");
+				if (i == 1680) pline("Done! The entire level is filled with monsters now! :-)");
+
 				if (!rn2(20)) reset_rndmonst(NON_PM);
 
 			if (randmnst < 6)
@@ -9715,6 +9725,16 @@ madnesseffect:
 
 				if (!enexto(&ee, u.ux, u.uy, (struct permonst *)0) ) continue;
 
+				if (i == 100) pline("This may take a while. Please be patient while the game selects monsters...");
+				if (i == 200) pline("Stand by while the monsters get generated...");
+				if (i == 400) pline("Spawning monsters...");
+				if (i == 600) pline("Please have some patience while monsters are selected...");
+				if (i == 800) pline("Halfway done...");
+				if (i == 1000) pline("Don't worry, the game does not hang. Give it a little more time...");
+				if (i == 1200) pline("Soon you can start fighting the hordes...");
+				if (i == 1400) pline("Almost finished...");
+				if (i == 1680) pline("Done! The entire level is filled with monsters now! :-)");
+
 				(void) makemon(randmonstforspawn, 0, 0, NO_MM_FLAGS);
 			}
 
@@ -9731,6 +9751,16 @@ madnesseffect:
 			for (i = 0; i < randsp; i++) {
 
 				if (!enexto(&ee, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				if (i == 100) pline("This may take a while. Please be patient while the game selects monsters...");
+				if (i == 200) pline("Stand by while the monsters get generated...");
+				if (i == 400) pline("Spawning monsters...");
+				if (i == 600) pline("Please have some patience while monsters are selected...");
+				if (i == 800) pline("Halfway done...");
+				if (i == 1000) pline("Don't worry, the game does not hang. Give it a little more time...");
+				if (i == 1200) pline("Soon you can start fighting the hordes...");
+				if (i == 1400) pline("Almost finished...");
+				if (i == 1680) pline("Done! The entire level is filled with monsters now! :-)");
 
 				if (!rn2(20)) reset_rndmonst(NON_PM);
 
@@ -9749,6 +9779,16 @@ madnesseffect:
 			for (i = 0; i < randsp; i++) {
 
 				if (!enexto(&ee, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				if (i == 100) pline("This may take a while. Please be patient while the game selects monsters...");
+				if (i == 200) pline("Stand by while the monsters get generated...");
+				if (i == 400) pline("Spawning monsters...");
+				if (i == 600) pline("Please have some patience while monsters are selected...");
+				if (i == 800) pline("Halfway done...");
+				if (i == 1000) pline("Don't worry, the game does not hang. Give it a little more time...");
+				if (i == 1200) pline("Soon you can start fighting the hordes...");
+				if (i == 1400) pline("Almost finished...");
+				if (i == 1680) pline("Done! The entire level is filled with monsters now! :-)");
 
 				if (!rn2(20)) reset_rndmonst(NON_PM);
 

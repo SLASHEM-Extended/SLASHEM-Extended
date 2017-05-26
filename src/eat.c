@@ -882,6 +882,7 @@ register int pm;
 	    case PM_HOUSECAT:
 	    case PM_LARGE_CAT:
 	    case PM_DOMESTIC_COCKATRICE:
+	    case PM_CHAIN_SMOKER_ASSHOLE:
 		if (!CANNIBAL_ALLOWED()) {
 		    You_feel("that %s the %s%s was a bad idea.",
 		      victual.eating ? "eating" : "biting",
@@ -896,6 +897,7 @@ register int pm;
 	    case PM_NIGHT_LIZARD:
 	    case PM_LIZARD_MAN:
 	    case PM_LIZARD_KING:
+	    case PM_LIZARD_OF_YENDOR:
 	    case PM_CAVE_LIZARD:
 	    case PM_PREHISTORIC_CAVE_LIZARD:
 	    case PM_CHAOS_LIZARD:
@@ -1031,6 +1033,7 @@ struct monst *mon;
 	case PM_NIGHT_LIZARD:
 	case PM_LIZARD_MAN:
 	case PM_LIZARD_KING:
+	case PM_LIZARD_OF_YENDOR:
 	case PM_CAVE_LIZARD:
 	case PM_PREHISTORIC_CAVE_LIZARD:
 	case PM_CHAOS_LIZARD:
@@ -2728,6 +2731,7 @@ register int pm;
 		}
 		break;
 	    case PM_PREHISTORIC_CAVE_LIZARD:
+	    case PM_LIZARD_OF_YENDOR:
 			lesshungry(500); /* fall thru */
 	    case PM_GIANT_LIZARD:
 			lesshungry(300); /* fall thru */

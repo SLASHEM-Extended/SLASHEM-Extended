@@ -5151,12 +5151,25 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_ROBO_KY]) { (void) mongets(mtmp, ROCKET_LAUNCHER); m_initthrow(mtmp, ROCKET, 10); }
 		if (mtmp->data == &mons[PM_TGWTG]) { (void) mongets(mtmp, SUBMACHINE_GUN); m_initthrow(mtmp, BULLET, 50); m_initthrow(mtmp, BULLET, 50); }
 
+		if(mtmp->data == &mons[PM_GRAY_STONE_GOLEM]) {
+			(void) mongets(mtmp, SLING);
+			(void) mongets(mtmp, rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE));
+			(void) mongets(mtmp, rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE));
+		}
+
 		break;
 
 	    case S_FELINE:
 		if (mtmp->data == &mons[PM_CUTCAT]) {
 			 (void) mongets(mtmp, CUTTING_LASER);
 			 m_initthrow(mtmp, LASER_BEAM, 50);
+		}
+
+		break;
+
+	    case S_ZOMBIE:
+		if (mtmp->data == &mons[PM_ROBOT_TERMINATOR_ZOMBIE]) {
+			 (void) mongets(mtmp, RED_LIGHTSABER);
 		}
 
 		break;
@@ -5198,6 +5211,12 @@ register struct	monst	*mtmp;
 		break;
 
 	    case S_BAT:
+
+		if (mtmp->data == &mons[PM_POLE_DUCK]) {
+			(void) mongets(mtmp, RUBBER_HOSE);
+			m_initthrow(mtmp, CREAM_PIE, 2);
+
+		}
 
 		if (mtmp->data == &mons[PM_ARCEUS]) (void) mongets(mtmp, WAN_CHROMATIC_BEAM);
 		if (mtmp->data == &mons[PM_EXTRA_DONALD]) (void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
@@ -7080,6 +7099,7 @@ register struct	monst	*mtmp;
 		    mtmp->mgold += (long)rn1(20, 200);
 		}
 		if (ptr == &mons[PM_PIG_SOCCER_FAN]) (void) mongets(mtmp, POT_CONFUSION);
+		if (ptr == &mons[PM_UNFORTUNATE_FOREST]) (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 
 		if (ptr == &mons[PM_DANGEROUS_GOOD_LOOKING_CRIMINAL]) (void) mongets(mtmp, GENTLEMAN_S_SUIT);
 		if (ptr == &mons[PM_DETENTION_PHYSICS_TEACHER]) (void) mongets(mtmp, SCR_LOCKOUT);
@@ -16771,6 +16791,7 @@ int type;
 		case PM_ANIMATED_HUGGING_BOOT: return 160;
 		case PM_SNOW_GOLEM: return 160;
 		case PM_STONE_GOLEM: return 180;
+		case PM_GRAY_STONE_GOLEM: return 180;
 		case PM_STONE_STATUE: return 180;
 		case PM_GLASS_GOLEM: return 140;
 		case PM_SERVANT_OF_THE_UNKNOWN_GOD: return 140;
