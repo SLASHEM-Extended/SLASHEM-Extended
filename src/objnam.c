@@ -23,7 +23,6 @@ char *
 enchname(prop)
 int prop;
 {
-	const char *output;
 	switch (prop) {
 		case FIRE_RES:
 			return "fire resistance";
@@ -355,9 +354,7 @@ int prop;
 
 		default:
 			return "Team Nastytrap";
-
 	}
-
 }
 
 
