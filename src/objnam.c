@@ -354,7 +354,9 @@ int prop;
 
 		default:
 			return "Team Nastytrap";
+
 	}
+
 }
 
 
@@ -449,6 +451,7 @@ STATIC_OVL struct Jitem Japanese_items[] = {
 	{ RUNESWORD, "run no ken" },
 	{ SACK, "fukuro" },
 	{ SCALPEL, "geka-yo mesu" },
+	{ SEDGE_HAT, "sugegasa" },
 	{ SHORT_SWORD, "wakizashi" },
 	{ SHOTGUN, "sandan ju" },
 	{ SHURIKEN, "hira-shuriken" },
@@ -467,6 +470,7 @@ STATIC_OVL struct Jitem Japanese_items[] = {
 	{ TWO_HANDED_SWORD, "no-dachi" },
 	{ UNICORN_HORN, "yunikon no tsuno" },
 	{ WAR_HAMMER, "dai tsuchi" },
+	{ WAR_HAT, "jingasa" }, 
 	{ WAX_CANDLE, "kyandoru" },
 	{ WATER_WALKING_BOOTS, "mizugumo" },
 	{ WEDGE_SANDALS, "jika-tabi" }, /* 5lo: I know they're not the same, close enough though */
@@ -5386,11 +5390,11 @@ char *prefix;
 	if (obj->rknown && obj->oerodeproof)
 		Strcat(prefix,
 		       iscrys ? "fixed " :
-			(objects[(obj)->otyp].oc_material == VIVA) ? "fissionproof" :
-			(objects[(obj)->otyp].oc_material == INKA) ? "beautified" :
-			(objects[(obj)->otyp].oc_material == SECREE) ? "coagulated" :
-			(objects[(obj)->otyp].oc_material == ARCANIUM) ? "erosionproof" :
-			(objects[(obj)->otyp].oc_material == COMPOST) ? "preserved" :
+			(objects[(obj)->otyp].oc_material == VIVA) ? "fissionproof " :
+			(objects[(obj)->otyp].oc_material == INKA) ? "beautified " :
+			(objects[(obj)->otyp].oc_material == SECREE) ? "coagulated " :
+			(objects[(obj)->otyp].oc_material == ARCANIUM) ? "erosionproof " :
+			(objects[(obj)->otyp].oc_material == COMPOST) ? "preserved " :
 		       is_rustprone(obj) ? "rustproof " :
 		       is_corrodeable(obj) ? "corrodeproof " :	/* "stainless"? */
 		       is_flammable(obj) ? "fireproof " : "stainless "); /* Amy edit: let's use that :-) */
