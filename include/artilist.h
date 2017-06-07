@@ -1626,7 +1626,7 @@ A("Sandman Volume 8",			SPE_DRAIN_LIFE, /* all the artifact spellbooks should ha
 	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("And Your Mortal World Shall Perish In Flames",			SPE_CURE_BURN,
-	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK), 0, 0,
 	FIRE(5,10), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Source Codes of Work Avoidance",			SPE_AMNESIA, /* free action and flying when wielded */
@@ -1718,7 +1718,7 @@ A("Faeaeaeaeaeau",			WAN_FIRE,
 	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Digger Gem",			EMERALD,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	ACID(5,16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
 A("Khor's Curse",			LUCKSTONE, /* autocurses and sets itself to -5 */
@@ -2656,7 +2656,7 @@ A("Jesus Must Die",				WOODEN_STAKE,
 	PHYS(4,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("The Randomisator",				GREAT_DAGGER, /* bad effects while wielded */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	STUN(4,8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Mini People Eater",				WORM_TOOTH, /* warns of humanoids */
@@ -2732,7 +2732,7 @@ A("Strombringer",				RUNED_ROD, /* bloodthirsty */
 	DRLI(5,2),	DRLI(0,0),	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
 
 A("Blazerunner",				FIRE_HOOK,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	FIRE(8,8), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Civil War",				PITCHFORK, /* conflict while wielded */
@@ -2748,7 +2748,7 @@ A("Rightlash Left",				GUISARME, /* every time you successfully apply it at a mo
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Alassea Telemnar",				ELVEN_SICKLE, /* heavily curses itself, bloodthirsty, 1 in 20000 chance per turn that it disintegrates, all glyphs are fleecy-colored */
-	(SPFX_RESTR|SPFX_DRLI|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_DRLI|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	DRLI(5,0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 10000L ),
 
 A("Gilraen Seregon",				ELVEN_SPEAR, /* petrification resistance */
@@ -2776,7 +2776,7 @@ A("Move In The Shadows",				COURSE_LANCE, /* invisibility */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
 
 A("Anachrononononaut Package",				FORCE_PIKE, /* unbreathing if you're an anachronist */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	ELEC(8,8), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1400L ),
 
 A("Glasspoint",				DROVEN_LANCE,
@@ -2784,7 +2784,7 @@ A("Glasspoint",				DROVEN_LANCE,
 	PHYS(8,4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
 
 A("Eamane Luinwe",				ELVEN_LANCE, /* confusion and speed while wielded */
-	(SPFX_RESTR|SPFX_STLTH|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_STLTH|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	FIRE(10,12), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
 
 A("Gun Control Laws",				FLINTLOCK, /* ancient Morgothian curse, autocurses when wielded */
@@ -2792,7 +2792,7 @@ A("Gun Control Laws",				FLINTLOCK, /* ancient Morgothian curse, autocurses when
 	PHYS(5,40), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 10L ),
 
 A("Overheater",				RAYGUN, /* autocurses, 1 in 1000 chance per turn to spawn a fire trap underneath the player */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	FIRE(5,16), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Maximum Launch Power",				GRENADE_LAUNCHER, /* +rnd(2) multishot */
@@ -2808,7 +2808,7 @@ A("Pschiiiiiiiii",				HEAVY_BLASTER_BOLT,
 	PHYS(5,40), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 150L ),
 
 A("Electrocution",				LASER_BEAM,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	ELEC(10,20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
 A("Power Pellet",				SHOTGUN_SHELL,
@@ -2816,7 +2816,7 @@ A("Power Pellet",				SHOTGUN_SHELL,
 	PHYS(1,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
 
 A("Fire In The Hole",				FRAG_GRENADE,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	FIRE(5,40), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
 A("Powered Arbalest",				PILE_BUNKER,
@@ -2844,11 +2844,11 @@ A("Punishment For You",				CHAINWHIP, /* +3 damage per flail skill */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2000L ),
 
 A("Shocklash",				MITHRIL_WHIP,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	ELEC(8,12), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
 A("Everything Must Burn",				FLAME_WHIP, /* 1 in 100 chance to be burned for d10 turns, allows player to survive in lava */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	FIRE(2,16), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Female Beauty",				BLACK_DRESS, /* +5 CHA if you're female, -5 to all stats otherwise */
@@ -3452,7 +3452,7 @@ A("Magic Resistance Get",				BOULDER,
 	NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Shocking Therapy",				REALLY_HEAVY_IRON_BALL, /* disables shock resistance */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	ELEC(5,14), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2000L ),
 
 A("Enigmatic Riddle",				HEAVY_CONUNDRUM_BALL,
@@ -3468,11 +3468,11 @@ A("Gangbanging Like A Boss",				GOLD_CHAIN,
 	PHYS(0,20), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
 
 A("Freezemetal",				ELYSIUM_SCOURGE,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	COLD(7,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
 
 A("Kings Ransom For You",				MINERAL_HOSTAGE_CHAIN, /* curses itself with TY curse when wielded, half speed */
-	(SPFX_RESTR|SPFX_REFLECT|SPFX_PROTEC|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_PROTEC|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	STUN(5,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
 A("Do Not Throw Me",				SEGFAULT_VENOM, /* causes segfault panic if you're stupid enough to throw it! */
@@ -3588,11 +3588,11 @@ A("Marine Threat Neutered",				FLINT,
 	PHYS(0,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
 A("Bang Bang",				SAWED_OFF_SHOTGUN, /* deafness when wielded, and sets itself to +2 if it's lower */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	STUN(5,20), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1000L ),
 
 A("Tuna Cannon",				POWER_CROSSBOW, /* +1 multishot */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	COLD(0, 20), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2000L ),
 
 A("Pfiiiiiiiiet",				TIN_WHISTLE, /* no specialty - just to unlock petkeeping skill */
@@ -3720,7 +3720,7 @@ A("Jonadab's Evil Patch Artifact",			AKLYS,
 	PHYS(0,2), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 20L ),
 
 A("What It Says On The Tin",				SPE_GENOCIDE,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	FIRE(2,20), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Deadly Gambling",				SPE_RUSSIAN_ROULETTE, /* +d30 damage; every time you wield it there's a 1% chance to die instantly */
@@ -3844,7 +3844,7 @@ A("Rattattattattatt",			BOW, /* aggravate monster */
 	PHYS(0,16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Flam0r",			BOW,
-	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK), 0, 0,
 	FIRE(10,2), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Sureshot",			BOW,
@@ -4136,11 +4136,11 @@ A("Prick Pass",                    LONG_SWORD,
 	PHYS(5,16),     NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 300L ),
 
 A("Thranduil Lossehelin",				LONG_SWORD, /* heavily curses itself, bloodthirsty, 1 in 20000 chance per turn that it disintegrates, all glyphs are fleecy-colored */
-	(SPFX_RESTR|SPFX_DRLI|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_DRLI|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	DRLI(5,0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 10000L ),
 
 A("Feanaro Singollo",				LONG_SWORD, /* confusion and speed while wielded */
-	(SPFX_RESTR|SPFX_STLTH|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_STLTH|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	FIRE(10,12), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
 
 A("Winsett's Big Daddy",				BOW, /* +rnd(2) multishot */
@@ -4208,7 +4208,7 @@ A("Arabella's Precious Gadget",				AMULET_OF_STRANGULATION, /* banking effect, s
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Arabella's Warding Hoe",				LONG_SWORD, /* silently curses itself with TY curse when wielded, half speed */
-	(SPFX_RESTR|SPFX_REFLECT|SPFX_PROTEC|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_PROTEC|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	STUN(5,10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
 A("Shapetake Number Five",				ORCISH_CLOAK, /* polymorphs never time out, but also disables poly control and gives polymorphitis */
@@ -4895,7 +4895,7 @@ A("Tarmac Champion",				BITUKNIFE, /* very fast speed when wielded */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1000L ),
 
 A("Gauge-O-Meter",				MEASURER,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	STUN(2,4), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2500L ),
 
 A("U Are A Cheater",				COLLUSION_KNIFE,
@@ -4903,7 +4903,7 @@ A("U Are A Cheater",				COLLUSION_KNIFE,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
 
 A("Cool Chamber",				SOFT_MATTOCK,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	COLD(4,8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
 A("Animalbane",				INKA_BLADE, /* warns of animals */
@@ -4919,7 +4919,7 @@ A("Grinder",				MEATSWORD,
 	PHYS(4,12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Ouchfire",				ICKY_BLADE,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	FIRE(1,16), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
 
 A("Antivamp Whoosh",				GRANITE_IMPALER,
@@ -4939,11 +4939,11 @@ A("Arrrrrr Matey",				INKUTLASS, /* korsair speak when wielded */
 	PHYS(0,4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Spambait Fire",				HOE_SABLE, /* +2 increase damage */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	FIRE(0,8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
 A("Arabstreet Sound",				YATAGAN, /* 1 in 50 monsters spawns with sounder egotype */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	FIRE(6,2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
 A("Halluduckdir",				PLATINUM_SABER,
@@ -4983,7 +4983,7 @@ A("Manuela's Practicant Terrorizer",				RIDING_CROP, /* autocurses, aggravate mo
 	PHYS(5,0), DFNS(AD_FIRE), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
 
 A("Thor's Strike",				THUNDER_HAMMER, /* if you wield it with a strength of 25, you have +5 increase damage */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	ELEC(6,12), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 8000L ),
 
 A("Black Poison Inside",				BRIDGE_MUZZLE, /* always poisoned */
@@ -4995,7 +4995,7 @@ A("Luisa's Charming Beauty",				INKA_BOOT, /* autocurses, spawns a shit trap 1 i
 	PHYS(5,0), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
 
 A("Amy's First Girlfriend",				SOFT_LADY_SHOE, /* autocurses, bonks you 1 in 500 turns */
-	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP|SPFX_ATTK), 0, 0,
 	STUN(5,4), DFNS(AD_COLD), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
 
 A("Patricia's Femininity",				STEEL_CAPPED_SANDAL, /* makes you thick-skinned, bloodthirsty, less likely to lose enchantment */
@@ -5003,7 +5003,7 @@ A("Patricia's Femininity",				STEEL_CAPPED_SANDAL, /* makes you thick-skinned, b
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 20000L ),
 
 A("Henrietta's Mistake",				DOGSHIT_BOOT, /* replicates shit trap effect 1 in 10 turns (but only if you moved), heavily autocurses, aggaravate monster, disables stealth */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	ACID(2,16), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2000L ),
 
 A("Teaching Stick",				IMPACT_STAFF,
@@ -5023,7 +5023,7 @@ A("The Grandpa",				COLOSSUS_BLADE,
 	PHYS(5,0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
 A("Road Trash",				TUBING_PLIERS,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	ACID(2,14), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
 
 A("Also Matte Mask",				CHEMISTRY_SPACE_AXE, /* poison resistance, always poisoned */
@@ -5059,11 +5059,11 @@ A("Equalhit",				GIANT_SCYTHE,
 	PHYS(15,2), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 750L ),
 
 A("Softspire",				SILK_SPEAR,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	ELEC(6,12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Explosion Missile",				HOMING_TORPEDO,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	FIRE(8,2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("And It Keeps On Moving",				COURSE_JAVELIN, /* autocurses, pushes you back every turn (but without giving a message) */
@@ -5111,7 +5111,7 @@ A("Eloplus Stat",				PAPER_SHOTGUN, /* 1 extra point of AC when wielded */
 	PHYS(1,2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Immobilaser",				PROCESS_CARD, /* free action when wielded */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	STUN(5,2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Sniper Crosshair",				ZOOM_SHOT_CROSSBOW, /* +30 range for bolts */
@@ -5239,7 +5239,7 @@ A("Steel Greater Rock",				BRONZE_PICK,
 	PHYS(0,12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Hellbringer",				GUITAR,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	FIRE(8,8), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Killer Piano",				PIANO, /* aggravate monster, gridbug conduct, applying it gives a permanent intrinsic nastytrap effect */
@@ -5692,7 +5692,7 @@ A("Wormbiter",			CRYSKNIFE,
 	0,		A_NEUTRAL,	NON_PM, NON_PM, 2000L ),
 
 A("Shocker",			ELECTRIC_SWORD,
-	SPFX_RESTR, 0, 0,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
 	ELEC(3,0),	NO_DFNS,	NO_CARY,
 	0,		A_NEUTRAL,	NON_PM, NON_PM, 1000L ),
 
@@ -5849,7 +5849,7 @@ A("Slow Blade",                ORCISH_SHORT_SWORD,
 	PHYS(2,2),      NO_DFNS,        NO_CARY,        HEALING, A_LAWFUL, PM_ACID_MAGE, NON_PM, 1000L ),
 
 A("Fire-Brigade Reel",                RUBBER_HOSE,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_HSPDAM|SPFX_HPHDAM ), 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_ATTK), (SPFX_HSPDAM|SPFX_HPHDAM), 0,
 	COLD(4,8),      NO_DFNS,        NO_CARY,        SUMMON_WATER_ELEMENTAL, A_LAWFUL, PM_FIREFIGHTER, NON_PM, 2000L ),
 
 A("The Candle of Eternal Flame",        MAGIC_CANDLE,
@@ -5906,7 +5906,7 @@ A("Whistle of Protection",          DARK_MAGIC_WHISTLE,
 	ENERGY_BOOST,         A_CHAOTIC, PM_OCCULT_MASTER, NON_PM, 2000L ),
 
 A("Blade of Gothmog",          GRANITE_IMPALER, /* heavily autocurses */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_ATTK), 0, 0,
 	FIRE(13,14),        DFNS(AD_FIRE),        NO_CARY,
 	SUMMON_FIRE_ELEMENTAL,         A_CHAOTIC, PM_CHAOS_SORCEROR, NON_PM, 10000L ),
 
@@ -6207,7 +6207,7 @@ A("Heffer's Bow", BOW,
 	CREATE_AMMO, A_LAWFUL, PM_DRUID, NON_PM, 8000L ),
 
 A("Gunbow", BOW,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HPHDAM), SPFX_EREGEN, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HPHDAM|SPFX_ATTK), SPFX_EREGEN, 0,
 	ELEC(7,0),	DRLI(0,0),	NO_CARY,
 	CREATE_AMMO, A_NEUTRAL, PM_AMAZON, NON_PM, 4000L ),
 
@@ -6238,7 +6238,7 @@ A("Summoned Sword",                ELVEN_BROADSWORD,
 	PHYS(4,8),      NO_DFNS,        NO_CARY,        DRAGON_BREATH, A_CHAOTIC, PM_THALMOR, NON_PM, 3000L ),
 
 A("Bow of Vines", ELVEN_BOW,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_LUCK), SPFX_ESP, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_LUCK|SPFX_ATTK), SPFX_ESP, 0,
 	STUN(7,10),	NO_DFNS,	NO_CARY,
 	ENERGY_BOOST, A_NEUTRAL, PM_BOSMER, NON_PM, 4000L ),
 
