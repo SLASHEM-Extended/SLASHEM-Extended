@@ -930,7 +930,6 @@ curses_init_options()
 
     /* Add those that are */
     set_option_mod_status("classic_status", SET_IN_GAME);
-    set_option_mod_status("menu_glyphs", SET_IN_GAME);
 
     /* Make sure that DECgraphics is not set to true via the config
        file, as this will cause display issues.  We can't disable it in
