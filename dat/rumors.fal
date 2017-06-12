@@ -1100,7 +1100,7 @@ A hidden, dead monster can revive hidden under its own corpse.
 Dropping Heart of Ahriman may give odd message sequence.
 Applying an unpaid stack of potions of oil forces hero to buy all of them.
 Price of unpack shop items may change when hero is forced to buy.
-Monsters can attack with polearms they were unable to wield.
+Monster can attack with a polearm it was unable to wield.
 "You trip over it" may appear even after you know what "it" is.
 Drowning on the Plane of Water lists cause of death as "drowned in a moat."
 Small monsters dropping items due to weight use the wrong weights.
