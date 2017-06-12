@@ -203,7 +203,7 @@ lintdefs:
 
 # we defer this makedefs call to the src Makefile, since it knows all about
 # the main src and include files date.h is a timestamp for
-../include/date.h::
+../include/date.h:
 	@( cd ../src ; $(MAKE) ../include/date.h )
 
 # support code used by several of the utility programs (but not makedefs)
