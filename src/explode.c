@@ -894,7 +894,7 @@ int n, p;
 	delquan = (obj)->quan; \
 	no_fiery += (obj)->quan * 2; \
 	no_dig += (obj)->quan; \
-    } else if (is_bullet(obj) && !stack_too_big(obj) && (!obj->blessed || !rn2(3)) ) /* have some chance to resist --Amy */\ 
+    } else if (is_bullet(obj) && !stack_too_big(obj) && (!obj->blessed || !rn2(3)) ) /* have some chance to resist --Amy */ \
 	delquan = dp((obj)->quan, 2); \
     else \
 	delquan = 0
