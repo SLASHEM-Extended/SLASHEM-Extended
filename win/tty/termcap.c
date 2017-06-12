@@ -1337,6 +1337,13 @@ int color;
 	/* hilites[] not used */
 	return iflags.use_color;
 #endif
+#ifdef CURSES_GRAPHICS
+    /* XXX has_color() should be added to windowprocs */
+    /* iflags.wc_color is set to false and the option disabled if the
+     terminal cannot display color */
+    if (windowprocs.name != NULL &&
+     !strcmpi(windowprocs.name, "curses")) return iflags.wc_color;
+#endif
 	return hilites[color] != (char *)0;
 }
 

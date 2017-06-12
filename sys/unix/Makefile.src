@@ -61,7 +61,7 @@ SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o unixres.o recover.o
 #	if you get setcgtty() warnings during execution, you are feeding gcc
 #		a non-ANSI <sys/ioctl.h> -- either run fixincludes on it or use
 #		-traditional in CFLAGS
-# CC = gcc
+CC = gcc
 #
 #	For Bull DPX/2 systems at B.O.S. 2.0 or higher use the following:
 #
@@ -148,6 +148,17 @@ CFLAGS = -g -O2
 CFLAGS += -I../include
 LFLAGS = -g
 
+# Compile with PDCurses installed in a separate directory that doesn't
+# conflict with the system curses/ncurses library
+#CFLAGS = -O -I../include -I/usr/local/include/pdcurses
+# Same as above, but for Mac OS X
+#CFLAGS = -O2 -I../include
+# Same as above, but for XCurses
+#CFLAGS = -O -DXCURSES -I../include -I/usr/local/include/pdcurses
+# Compile against system curses library, such as ncurses
+CFLAGS = -O -I../include
+
+
 # Only used for the Gnome interface.
 # When including the Gnome interface, you need to include gnome specific
 # directories.  The ones given below is the usual spot for linux systems.
@@ -198,6 +209,14 @@ WINGTKCFLAGS=`$(WINGTKCONFIG) --cflags`
 WINTTYSRC = ../win/tty/getline.c ../win/tty/termcap.c ../win/tty/topl.c \
 	../win/tty/wintty.c 
 WINTTYOBJ = getline.o termcap.o topl.o wintty.o 
+#
+# Files for curses interface
+WINCURSESSRC = ../win/curses/cursmain.c ../win/curses/curswins.c \
+	../win/curses/cursmisc.c ../win/curses/cursdial.c \
+	../win/curses/cursstat.c ../win/curses/cursinit.c \
+	../win/curses/cursmesg.c ../win/curses/cursinvt.c
+WINCURSESOBJ = cursmain.o curswins.o cursmisc.o cursdial.o cursstat.o \
+	cursinit.o cursmesg.o cursinvt.o
 #
 # files for an X11 port
 # (tile.c is included in the defn. for WINCSRC, below)
@@ -292,8 +311,8 @@ WINGLOBJ = gl_conf.o gl_emul.o gl_font.o gl_hardw.o \
 SDLGL_CFLAGS = `sdl-config --cflags`
 
 # Use these declarations if you only want to support the TTY windowing system
-WINSRC = $(WINTTYSRC)
-WINOBJ = $(WINTTYOBJ)
+WINSRC = $(WINTTYSRC) $(WINCURSESSRC)
+WINOBJ = $(WINTTYOBJ) $(WINCURSESOBJ)
 # Use these declarations if you want to support the X11 windowing system
 # WINSRC = $(WINTTYSRC) $(WINX11SRC)
 # WINOBJ = $(WINTTYOBJ) $(WINX11OBJ)
@@ -339,6 +358,16 @@ WINOBJ = $(WINTTYOBJ)
 # WINTTYLIB = -lcurses16
 WINTTYLIB = -lncurses
 # WINTTYLIB = -ltermlib
+
+
+# libraries for curses port
+# link with ncurses
+WINCURSESLIB = -lncurses
+# link with pdcurses for SDL, installed in a separate directory
+#WINCURSESLIB = -L/usr/local/lib -lpdcurses $(shell sdl-config --libs)
+# same as above, for XCurses
+#WINCURSESLIB = -L/usr/local/lib -lXCurses -lXaw -lXmu -lXext -lXt -lX11 
+
 #
 # libraries for X11
 # If USE_XPM is defined in config.h, you will also need -lXpm here.
@@ -373,7 +402,7 @@ WINGLLIB = -lGL
 WINPROXYLIB = -lpthread
 
 # Use this declaration if you only want to support the TTY windowing system
-WINLIB = $(WINTTYLIB)
+WINLIB = $(WINTTYLIB) $(WINCURSESLIB)
 # Use this declaration if you want to support the X11 windowing system
 # WINLIB = $(WINTTYLIB) $(WINX11LIB)
 # Use this declaration if you want to support the Qt windowing system
@@ -757,6 +786,29 @@ wintty.o: ../win/tty/wintty.c $(HACK_H) ../include/dlb.h \
 	$(CC) $(CFLAGS) -c ../win/tty/wintty.c
 recover.o: recover.c $(CONFIG_H) ../include/date.h
 	$(CC) $(CFLAGS) -c recover.c
+cursmain.o: ../win/curses/cursmain.c $(HACK_H) ../include/wincurs.h
+	$(CC) $(CFLAGS) -c ../win/curses/cursmain.c
+curswins.o: ../win/curses/curswins.c $(HACK_H) ../include/func_tab.h \
+		../include/wincurs.h ../win/curses/curswins.h
+	$(CC) $(CFLAGS) -c ../win/curses/curswins.c
+cursmisc.o: ../win/curses/cursmisc.c $(HACK_H) ../include/wincurs.h \
+		../win/curses/cursmisc.h
+	$(CC) $(CFLAGS) -c ../win/curses/cursmisc.c
+cursdial.o: ../win/curses/cursdial.c $(HACK_H) ../include/func_tab.h \
+		../include/wincurs.h ../win/curses/cursdial.h
+	$(CC) $(CFLAGS) -c ../win/curses/cursdial.c
+cursstat.o: ../win/curses/cursstat.c $(HACK_H) ../include/wincurs.h \
+		../win/curses/cursstat.h
+	$(CC) $(CFLAGS) -c ../win/curses/cursstat.c
+cursinit.o: ../win/curses/cursinit.c $(HACK_H) ../include/wincurs.h \
+		../win/curses/cursinit.h
+	$(CC) $(CFLAGS) -c ../win/curses/cursinit.c
+cursmesg.o: ../win/curses/cursmesg.c $(HACK_H) ../include/wincurs.h \
+		../win/curses/cursmesg.h
+	$(CC) $(CFLAGS) -c ../win/curses/cursmesg.c
+cursinvt.o: ../win/curses/cursinvt.c $(HACK_H) ../include/wincurs.h \
+		../win/curses/cursinvt.h
+	$(CC) $(CFLAGS) -c ../win/curses/cursmesg.c
 Window.o: ../win/X11/Window.c ../include/xwindowp.h ../include/xwindow.h \
 		$(CONFIG_H)
 	$(CC) $(CFLAGS) -c ../win/X11/Window.c

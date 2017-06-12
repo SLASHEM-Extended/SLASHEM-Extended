@@ -51,6 +51,7 @@
  * Some combinations make no sense.  See the installation document.
  */
 #define TTY_GRAPHICS		/* good old tty based graphics */
+#define CURSES_GRAPHICS		/* awful curses interface */
 /* #define X11_GRAPHICS */	/* X11 interface */
 /* #define QT_GRAPHICS */	/* Qt Interface */
 /* #define KDE */		/* KDE Interface */
@@ -185,6 +186,12 @@
 # endif
 # ifndef DEFAULT_WINDOW_SYS
 #  define DEFAULT_WINDOW_SYS "X11"
+# endif
+#endif
+
+#ifdef CURSES_GRAPHICS
+# ifndef DEFAULT_WINDOW_SYS
+#  define DEFAULT_WINDOW_SYS "curses"
 # endif
 #endif
 

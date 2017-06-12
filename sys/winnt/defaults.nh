@@ -50,7 +50,16 @@ MENUCOLOR="*unholy water*"=orange
 
 # Use the IBM character set rather than just plain ascii characters
 # for tty window-port.
+#
+# This also works for the curses interface compiled with the PDCurses-SDL
+# library.
+#
 OPTIONS=IBMGraphics
+#
+# cursesgraphics may be set for the curses interface if the IBMGraphics
+# option above doesn't work with your curses implementation.
+#
+#OPTIONS=cursesgraphics
 
 # Keyboard handling
 # Different keyboard handlers can be loaded.
@@ -60,6 +69,53 @@ OPTIONS=IBMGraphics
 #
 # NetHack 3.4.0 keyboard handling
 # OPTIONS=altkeyhandler:nh340key.dll
+
+# *** Curses Options ***
+#
+# Use this if the binary was compiled with multiple window interfaces,
+# and curses is not the default
+OPTIONS=windowtype:curses
+#
+# Optionally specify the alignment of the message and status windows
+# relative to the map window.  If not specified, the code will default
+# to the locations used in the tty interface: message window on top,
+# and status window on bottom.  Placing either of these on the right or
+# left really only works well for winder terminal windows.
+OPTIONS=align_message:bottom,align_status:right
+#
+# Use a small popup "window" for short prompts, e.g. "Really save?".
+# If this is not set, the message window will be used for these as is
+# done for the tty interface.
+OPTIONS=popup_dialog
+#
+# Specify the initial window size for NetHack in units of characters.
+# This is supported on PDCurses for SDL as well as PDCurses for
+# Windows.
+OPTIONS=term_cols:110,term_rows:32
+#
+# Controls the usage of window borders for the main NetHack windows
+# (message, map, and status windows).  A value of 1 forces the borders
+# to be drawn, a value of 2 forces them to be off, and a value of 3
+# allows the code to decide if they should be drawn based on the size
+# of the terminal window.
+OPTIONS=windowborders:3
+#
+# Whether or not to display a fancy ascii-graphics splash screen on
+# startup.
+OPTIONS=splash_screen
+#
+# This controls what text attributes are used to highlight any pets.
+# Any combination of single letters representing each text attribute
+# may be used.  Not all attributes work on all terminals.
+#
+# Attributes may be one or more of: Bold, Inverse, Underline, blinK,
+# iTalic, Rightline, or Leftline.  The default is underline.
+OPTIONS=petattr:u
+#
+# Controls whether color and attributes are used for menu headers,
+# window borders, message text, etc.  This is separate from the color
+# option, which only controls the color of the map itself.
+OPTIONS=guicolor
 
 # *** Personal Preferences ***
 # Some options to set personal preferences.  Uncomment and change these to
@@ -230,4 +286,3 @@ OPTIONS=hilite_pet,!toptenwin
 #          048 035 064 042                         \
 #          047 045 092 058 058 092 045 047         \
 #          047 045 092 058 032 058 092 045 047
-

@@ -527,6 +527,9 @@ to support:
   |  fullscreen        | WC2_FULLSCREEN     | wc2_fullscreen     |boolean |
   |  softkeyboard      | WC2_SOFTKEYBOARD   | wc2_softkeyboard   |boolean |
   |  wraptext          | WC2_WRAPTEXT       | wc2_wraptext       |boolean |
+  |  term_cols         | WC2_TERM_COLS      | wc2_term_cols      |int     |
+  |  term_rows         | WC2_TERM_ROWS      | wc2_term_rows      |int     |
+  |  windowborders     | WC2_WINDOWBORDERS  | wc2_windowborders  |int     |
   +--------------------+--------------------+--------------------+--------+
 
 align_message	-- where to place message window (top, bottom, left, right)
@@ -557,6 +560,8 @@ scroll_margin	-- port should scroll the display when the hero or cursor
 		   is this number of cells away from the edge of the window.
 softkeyboard    -- handhelds should display an on-screen keyboard if possible.
 splash_screen   -- port should/should not display an opening splashscreen.
+term_cols       -- Terminal should size itself to specified width, if possible.
+term_rows       -- Terminal should size itself to specified height, if possible.
 tiled_map	-- port should display a tiled map if it can.
 tile_width	-- port should display tiles with this width or round to closest
 		   if it can.
@@ -567,6 +572,8 @@ tile_file	-- open this alternative tile file. The file name is likely to be
 use_inverse	-- port should display inverse when NetHack asks for it.
 vary_msgcount	-- port should display this number of messages at a time in
 		   the message window.
+windowborders   -- port should display borders around main NetHack windows.
+                Can be set to (1) on, (2) off, or (3) auto.
 windowcolors
 		-- port should use these colors for window foreground/background
 		   colors.  Syntax:
