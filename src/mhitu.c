@@ -13427,7 +13427,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			return 3;
 			};
 
-		} else if (issoviet || ( (rnd(100) > ACURR(A_CHA)) &&  !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && /*!rn2(25)*/ 
+		} else if ( (issoviet && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee) || ( (rnd(100) > ACURR(A_CHA)) &&  !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && /*!rn2(25)*/ 
 		( ((mtmp->female) && !flags.female && !rn2(5) ) || ((!mtmp->female) && flags.female && !rn2(15) ) || 
 			((mtmp->female) && flags.female && !rn2(25) ) || ((!mtmp->female) && !flags.female && !rn2(25) ) ) )
 
