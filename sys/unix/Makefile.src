@@ -808,7 +808,7 @@ cursmesg.o: ../win/curses/cursmesg.c $(HACK_H) ../include/wincurs.h \
 	$(CC) $(CFLAGS) -c ../win/curses/cursmesg.c
 cursinvt.o: ../win/curses/cursinvt.c $(HACK_H) ../include/wincurs.h \
 		../win/curses/cursinvt.h
-	$(CC) $(CFLAGS) -c ../win/curses/cursmesg.c
+	$(CC) $(CFLAGS) -c ../win/curses/cursinvt.c
 Window.o: ../win/X11/Window.c ../include/xwindowp.h ../include/xwindow.h \
 		$(CONFIG_H)
 	$(CC) $(CFLAGS) -c ../win/X11/Window.c
