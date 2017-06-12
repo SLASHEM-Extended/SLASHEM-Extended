@@ -61,7 +61,7 @@ SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o unixres.o recover.o
 #	if you get setcgtty() warnings during execution, you are feeding gcc
 #		a non-ANSI <sys/ioctl.h> -- either run fixincludes on it or use
 #		-traditional in CFLAGS
-CC = gcc
+# CC = gcc
 #
 #	For Bull DPX/2 systems at B.O.S. 2.0 or higher use the following:
 #
