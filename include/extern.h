@@ -652,7 +652,7 @@ E void VDECL(panic, (const char *,...)) PRINTF_F(1,2);
 E void FDECL(done, (int));
 E void FDECL(container_contents, (struct obj *,BOOLEAN_P,BOOLEAN_P));
 #ifdef DUMP_LOG
-E void FDECL(dump, (char *, char *));
+E void FDECL(dump, (const char * const pre, const char * const str));
 E void FDECL(do_containerconts, (struct obj *,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P));
 #endif
 E void FDECL(terminate, (int));
@@ -1477,6 +1477,7 @@ E int FDECL(pm_to_cham, (int));
 E int FDECL(minliquid, (struct monst *));
 E int NDECL(movemon);
 E int FDECL(meatmetal, (struct monst *));
+E int FDECL(meatlithic, (register struct monst *));
 E int FDECL(meatanything, (struct monst *));
 E void FDECL(meatcorpse, (struct monst *));
 E int FDECL(meatobj, (struct monst *));

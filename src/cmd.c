@@ -5,6 +5,7 @@
 #include <ctype.h>
 
 #include "hack.h"
+#include "extern.h"
 #include "date.h"
 #include "func_tab.h"
 /* #define DEBUG */	/* uncomment for debugging */

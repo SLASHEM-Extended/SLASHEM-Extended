@@ -3,6 +3,7 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
+#include "extern.h"
 #include "artifact.h"
 #include "edog.h"
 

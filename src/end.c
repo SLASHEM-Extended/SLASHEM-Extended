@@ -169,7 +169,8 @@ dump_exit ()
 }
 
 void dump (pre, str)
-     char *pre, *str;
+     const char * const pre;
+     const char * const str;
 {
   if (dump_fp)
     fprintf (dump_fp, "%s%s\n", pre, str);

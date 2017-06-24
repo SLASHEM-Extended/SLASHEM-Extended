@@ -484,7 +484,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (!mtmp) continue;
 		if (DEADMONSTER(mtmp)) continue;
 		if (u.uswallow && mtmp == u.ustuck) {
-			if (is_animal(u.ustuck->data))
+			if (is_animal(u.ustuck->data)) {
 				if (!silent) pline("%s gets %s!",
 				      Monnam(u.ustuck),
 				      (adtyp == AD_FIRE) ? "heartburn" :
@@ -495,7 +495,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 				      (adtyp == AD_DRST) ? "poisoned" :
 				      (adtyp == AD_ACID) ? "an upset stomach" :
 				       "fried");
-			else
+			} else {
 				if (!silent) pline("%s gets slightly %s!",
 				      Monnam(u.ustuck),
 				      (adtyp == AD_FIRE) ? "toasted" :
@@ -506,6 +506,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 				      (adtyp == AD_DRST) ? "intoxicated" :
 				      (adtyp == AD_ACID) ? "burned" :
 				       "fried");
+			}
 		} else if (!silent && cansee(xi, yi)) {
 		    if(mtmp->m_ap_type) seemimic(mtmp);
 		    pline("%s is caught in the %s!", Monnam(mtmp), str);
@@ -981,17 +982,19 @@ boolean isyou;
     mon = m_at(x, y);
     if (!mon && x == u.ux && y == u.uy)
 	mon = u.usteed;
-    if (mon && !DEADMONSTER(mon))
-	if (resists_fire(mon))
+    if (mon && !DEADMONSTER(mon)) {
+	if (resists_fire(mon)) {
 	    shielded = TRUE;
-	else
+	} else {
 	    for(obj = mon->minvent; obj; obj = obj2) {
 		obj2 = obj->nobj;
 		GRENADE_TRIGGER(obj);
 		for(i = 0; i < delquan; i++)
 		    m_useup(mon, obj);
 	    }
-    if (x == u.ux && y == u.uy)
+        }
+    }
+    if (x == u.ux && y == u.uy) {
 	if (Fire_resistance)
 	    shielded = TRUE;
 	else
@@ -1001,6 +1004,7 @@ boolean isyou;
 		for(i = 0; i < delquan; i++)
 		    useup(obj);
 	    }
+    }
     if (!shielded)
 	for(obj = level.objects[x][y]; obj; obj = obj2) {
 	    obj2 = obj->nexthere;

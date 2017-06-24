@@ -17089,8 +17089,8 @@ register struct permonst *ptr;
 		/* Light and dark elves are always hostile to each other.
 		 * Suggested by Dr. Eva R. Myers.
 		 */
-		 if (ual > A_NEUTRAL && mal < A_NEUTRAL ||
-		   ual < A_NEUTRAL && mal > A_NEUTRAL)
+		 if ((ual > A_NEUTRAL && mal < A_NEUTRAL) ||
+		   (ual < A_NEUTRAL && mal > A_NEUTRAL))
 			return FALSE;
 	}
 
