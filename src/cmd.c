@@ -1219,7 +1219,7 @@ doborgtoggle()
 }
 #endif
 
-#if defined(TTY_GRAPHICS) || defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
+#if defined(TTY_GRAPHICS) || defined(CURSES_GRAPHICS) || defined(GL_GRAPHICS) || defined(SDL_GRAPHICS)
 #define MAX_EXT_CMD 200		/* Change if we ever have > 40 ext cmds */  /* So we can only rebind keys up to 200 times?  Although unlikely to ever be encountered, I would call this a bug --Elronnd */
 /*
  * This is currently used only by the tty port and is

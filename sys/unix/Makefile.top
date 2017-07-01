@@ -16,11 +16,11 @@ export VCS_DESCRIPTION := $(shell git describe --always)
 # MAKE = make
 
 # make NetHack
-PREFIX   = /usr
+PREFIX   = /home/elronnd/slexstall
 GAME     = slex
 # GAME     = slashem.prg
-GAMEUID  = games
-GAMEGRP  = bin
+GAMEUID  = elronnd
+GAMEGRP  = elronnd
 
 # Permissions - some places use setgid instead of setuid, for instance
 # See also the option "SECURE" in include/config.h

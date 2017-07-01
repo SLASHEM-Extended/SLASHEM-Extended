@@ -233,7 +233,7 @@
  * A stat system call is done on the mailbox every MAILCKFREQ moves.
  */
 
-#define MAIL			/* Deliver mail during the game */
+#define MAIL 			/* Deliver mail during the game */
 
 #ifdef PUBLIC_SERVER		/* No reason to have mail except on a server. */
 #define SIMPLE_MAIL		/* dgamelaunch simple mail */

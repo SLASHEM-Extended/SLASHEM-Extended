@@ -81,7 +81,7 @@ typedef long	off_t;
 # if !defined(__SC__) && !defined(__CYGWIN__) && !defined(LINUX)
 E  long NDECL(random);
 # endif
-# if (!defined(SUNOS4) && !defined(bsdi) && !defined(__FreeBSD__)) || defined(RANDOM)
+# if (!defined(SUNOS4) && !defined(bsdi) && !defined(__NetBSD__) && !defined(__FreeBSD__) && !defined(__DragonFly__) && !defined(__APPLE__)) || defined(RANDOM)
 E void FDECL(srandom, (unsigned int));
 # else
 #  if !defined(bsdi) && !defined(LINUX) && !defined(__CYGWIN__) && !defined(__FreeBSD__)

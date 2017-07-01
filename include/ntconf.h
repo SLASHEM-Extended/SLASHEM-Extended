@@ -145,13 +145,15 @@ extern void NDECL(load_keyboard_handler);
 #endif
 
 #include <fcntl.h>
-#if !defined(__BORLANDC__) && !defined(__CYGWIN__)
-# include <io.h>
-# include <direct.h>
-# include <conio.h>
-#elif defined(__CYGWIN__)
-# include <io.h>
-#else
+
+#ifndef CURSES_GRAPHICS
+# if !defined(__BORLANDC__) && !defined(__CYGWIN__)
+#  include <io.h>
+#  include <direct.h>
+#  include <conio.h>
+# elif defined(__CYGWIN__)
+#  include <io.h>
+# else
 int  _RTLENTRY _EXPFUNC access  (const char _FAR *__path, int __amode);
 int  _RTLENTRY _EXPFUNC _chdrive(int __drive);
 int  _RTLENTRYF _EXPFUNC32   chdir( const char _FAR *__path );
@@ -163,8 +165,10 @@ int  _RTLENTRY _EXPFUNC _close  (int __handle);
 int  _RTLENTRY _EXPFUNC open  (const char _FAR *__path, int __access,... /*unsigned mode*/);
 long _RTLENTRY _EXPFUNC lseek  (int __handle, long __offset, int __fromwhere);
 int  _RTLENTRY _EXPFUNC read  (int __handle, void _FAR *__buf, unsigned __len);
-# include <conio.h>
-#endif
+#  include <conio.h>
+# endif
+#endif /* CURSES_GRAPIHCS */
+
 #undef kbhit		/* Use our special NT kbhit */
 #define kbhit (*nt_kbhit)
 

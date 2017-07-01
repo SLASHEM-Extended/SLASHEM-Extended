@@ -102,11 +102,11 @@ OBJDIR = ../src
 
 # yacc/lex programs to use to generate *_comp.h, *_lex.c, and *_yacc.c.
 # if, instead of yacc/lex you have bison/flex, comment/uncomment the following.
-YACC     = yacc
-LEX      = lex
-# YACC     = bison -y
+#YACC     = yacc
+#LEX      = lex
+YACC     = bison -y
 # YACC     = byacc
-# LEX      = flex
+LEX      = flex
  
 # these are the names of the output files from YACC/LEX. Under MS-DOS
 # and similar systems, they may differ
@@ -203,7 +203,7 @@ lintdefs:
 
 # we defer this makedefs call to the src Makefile, since it knows all about
 # the main src and include files date.h is a timestamp for
-../include/date.h::
+../include/date.h:
 	@( cd ../src ; $(MAKE) ../include/date.h )
 
 # support code used by several of the utility programs (but not makedefs)
