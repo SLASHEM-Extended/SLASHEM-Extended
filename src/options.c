@@ -212,7 +212,7 @@ static struct Bool_Opt
 #else
 	{"page_wait", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
-	{"perm_invent", &flags.perm_invent, FALSE, SET_IN_GAME},
+	{"perm_invent", &flags.perm_invent, TRUE, SET_IN_GAME},
 	{"pickup_thrown", &flags.pickup_thrown, TRUE, SET_IN_GAME},
 	{"pickup_cursed", &flags.pickup_cursed, FALSE, SET_IN_GAME},
 
