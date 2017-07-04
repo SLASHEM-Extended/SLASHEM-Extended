@@ -164,7 +164,7 @@ const char *goal;
 			  !force ? "aborted" :
 			  iflags.num_pad ? "use 2468 or ." : "use hjkl or .");
 		    msg_given = TRUE;
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		} /* k => matching */
 	    } /* !quitchars */
 	    if (force) goto nxtc;

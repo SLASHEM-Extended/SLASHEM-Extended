@@ -48,6 +48,7 @@ src/Sysunix
 src/config.h-t
 src/hack.h-t
 src/monstr.c
+src/nhdat
 src/slex
 src/vis_tab.c
 util/dgn_comp
@@ -126,3 +127,5 @@ sys/unixserver/Makefile.src
 sys/unixserver/Makefile.top
 sys/unixserver/Makefile.utl
 sys/unixserver/setup.sh
+src/cursmake.gcc
+src/graphicschk

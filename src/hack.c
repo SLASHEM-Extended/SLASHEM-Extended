@@ -2369,7 +2369,7 @@ invocation_message()
 	    nomul(0, 0);		/* stop running or travelling */
 	    if (Hallucination) {
 		pline("You're picking up good vibrations!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    } else {
 	    if (u.usteed) Sprintf(buf, "beneath %s", y_monnam(u.usteed));
 	    else
@@ -2377,7 +2377,7 @@ invocation_message()
 	    else Sprintf(buf, "under your %s", makeplural(body_part(FOOT)));
 
 	    You_feel("a strange vibration %s.", buf);
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    }
 	    if (otmp && otmp->spe == 7 && otmp->lamplit)
 		pline("%s %s!", The(xname(otmp)),
@@ -3695,7 +3695,7 @@ const char *str;
 	else
 	    You_cant("do that while carrying so much stuff.");
 
-	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 	return 1;
     }

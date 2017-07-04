@@ -287,7 +287,7 @@ curses_display_nhwindow(winid wid, BOOLEAN_P block)
 
     if ((wid == MESSAGE_WIN) && block) {
         if (u.uhp != -1 && program_state.gameover != 1)
-            (void) curses_block(TRUE);
+            (void) curses_block(flags.tabcursesconfirm ? TRUE : FALSE);
         /* don't bug player with TAB prompt on "Saving..." or endgame */
         else
             (void) curses_more();
@@ -479,6 +479,12 @@ curses_select_menu(winid wid, int how, MENU_ITEM_P ** selected)
 void
 curses_update_inventory(void)
 {
+
+    if (youmonst.data && (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone()) && !program_state.gameover) {
+
+	return;
+    }
+
     /* Don't do anything if perm_invent is off unless we
        changed the option. */
     if (!flags.perm_invent) {

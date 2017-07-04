@@ -196,6 +196,9 @@ static struct Bool_Opt
 #else
 	{"mon_polycontrol", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
+
+	{"moreforced", &flags.moreforced, TRUE, SET_IN_GAME},
+
 #ifdef CURSES_GRAPHICS
 	{"mouse_support", &iflags.wc_mouse_support, FALSE, DISP_IN_GAME},	/*WC*/
 #else
@@ -269,6 +272,8 @@ static struct Bool_Opt
 	{"sparkle", &flags.sparkle, TRUE, SET_IN_GAME},
 	{"standout", &flags.standout, FALSE, SET_IN_GAME},
 	{"splash_screen",     &iflags.wc_splash_screen, TRUE, DISP_IN_GAME},	/*WC*/
+
+	{"tabcursesconfirm", &flags.tabcursesconfirm, FALSE, SET_IN_GAME},
 
 	{"tech_description", &flags.tech_description, TRUE, SET_IN_GAME},
 
@@ -2807,8 +2812,8 @@ goodfruit:
 	if (match_optname(opts, fullname, sizeof("petattr")-1, TRUE)) {
 		op = string_for_opt(opts, negated);
 		if (op && !negated) {
-		    iflags.wc2_petattr = curses_read_attrs(op);
-		    if (!curses_read_attrs(op))
+		    iflags.wc2_petattr = atoi(op);
+		    if (!atoi(op))
 		    	badoption(opts);
 		} else if (negated) bad_negation(fullname, TRUE);
 		return;

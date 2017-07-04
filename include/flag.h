@@ -74,6 +74,7 @@ struct flag {
 	boolean  pokedex;		/* show pokedex (not on public servers) */
 	boolean  tech_description;	/* show descriptions when choosing techniques */
 	boolean  mon_moving;	/* monsters' turn to move */
+	boolean  moreforced;	/* Amy's predefined --More-- prompts */
 	boolean  move;
 	boolean  mv;
 	boolean  bypasses;	/* bypass flag is set on at least one fobj */
@@ -108,6 +109,9 @@ struct flag {
 	boolean  soundok;	/* ok to tell about sounds heard */
 	boolean  sparkle;	/* show "resisting" special FX (Scott Bigham) */
 	boolean  standout;	/* use standout for --More-- */
+
+	boolean  tabcursesconfirm;	/* certain prompts in the curses interface require Tab to advance */
+
 	boolean  time;		/* display elapsed 'time' */
 	boolean  tombstone;	/* print tombstone */
 	boolean  toptenwin;	/* ending list in window instead of stdout */

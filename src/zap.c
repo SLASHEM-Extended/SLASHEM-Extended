@@ -4359,7 +4359,7 @@ dozap()
 
 	if (u.powerfailure) {
 		pline("Your power's down, and therefore you cannot zap anything.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 
@@ -4376,7 +4376,7 @@ dozap()
 	if (Race_if(PM_STICKER)) {
 		if (!(uwep && uwep == obj)) {
 			pline("You must wield this item first if you want to zap it!"); 
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			wield_tool(obj, "hold");
 			return 1;
 		}
@@ -4385,7 +4385,7 @@ dozap()
 
 	/* zappable addition done by GAN 11/03/86 */
 	if(!zappable(obj)) {pline(nothing_happens);
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
 
 	else if(obj->otyp == WAN_MISFIRE) {
@@ -5784,14 +5784,14 @@ boolean ordinary;
 		    if(Sleep_resistance) {
 			if (!rn2(20)) {
 			You_feel("a little drowsy.");
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			fall_asleep(-rnd(5), TRUE);}
 			else {
 			shieldeff(u.ux, u.uy);
 			You("don't feel sleepy!");}
 		    } else {
 			pline_The("sleep ray hits you!");
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			fall_asleep(-rnd(10), TRUE);
 		    }
 		    break;
@@ -5802,14 +5802,14 @@ boolean ordinary;
 		    if(Sleep_resistance) {
 			if (!rn2(20)) {
 			You_feel("drowsy.");
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			fall_asleep(-rnd(15), TRUE);}
 			else {
 			shieldeff(u.ux, u.uy);
 			You("don't feel sleepy!");}
 		    } else {
 			pline_The("chloroform ray hits you!");
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			fall_asleep(-rnd(30), TRUE);
 		    }
 			losehp(d(1, 12), "self-chloroformation", KILLED_BY);
@@ -6538,7 +6538,7 @@ struct obj *obj;
 					/*WAC - use sigil of discharge */
 		            && (tech_inuse(T_SIGIL_DISCHARGE))) {
 				You("yell \"%s\"",yell_types[otyp - SPE_MAGIC_MISSILE]);
-				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				buzz(ZT_MEGA(otyp - SPE_MAGIC_MISSILE),
 						u.ulevel/2 + 1 + skilldmg,
 						u.ux, u.uy, u.dx, u.dy);
@@ -7494,7 +7494,7 @@ xchar sx, sy;
 		shieldeff(u.ux, u.uy);
 		You("don't feel sleepy.");
 	    } else {
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		fall_asleep(-rnd(5+nd), TRUE); /* sleep ray */
 	    }
 	    break;

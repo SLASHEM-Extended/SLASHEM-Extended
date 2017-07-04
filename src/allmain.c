@@ -2459,7 +2459,7 @@ moveloop()
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
 		if (RngeBossEncounters && !rn2(10000) ) {
@@ -5378,7 +5378,7 @@ newboss:
 			if (Race_if(PM_DESTABILIZER) || Race_if(PM_POLYINITOR)) {
 				init_uasmon();
 				You("mutate, and your body changes...");
-				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 		}
 
@@ -5925,7 +5925,7 @@ newboss:
 			    done(DISSOLVED);
 			} else if(didmove && !u.umoved) {
 			    /*Norep*/pline(Hallucination ? "Your body is dissolving... maybe the Grim Reaper is waiting for you?" : "You sink deeper into the lava.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    u.utrap += rnd(4);
 			}
 		    }
@@ -6488,6 +6488,7 @@ newboss:
 			/* Spooky faux error messages on the Spacewars Fighter goal level --Amy */
 			if ((Role_if(PM_SPACEWARS_FIGHTER) && !rn2(200) && Is_nemesis(&u.uz) ) || (Role_if(PM_CAMPERSTRIKER) && !rn2(200) && In_quest(&u.uz)) ) {
 			pline("Warning: Low Local Memory. Freeing description strings.");
+			/* These --More-- messages are forced by design, no matter what flags.forcemore is set to! --Amy */
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			pline(" ");
 				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -6587,7 +6588,7 @@ newboss:
 			    xchar old_ux = u.ux, old_uy = u.uy;
 				You(Hallucination ? "open a warp gate!" : "suddenly get teleported!");
 			    tele();
-				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    if (u.ux != old_ux || u.uy != old_uy) {
 				if (!next_to_u()) {
 				    check_leash(old_ux, old_uy);

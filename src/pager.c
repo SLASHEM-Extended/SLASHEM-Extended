@@ -787,7 +787,7 @@ do_look(quick)
 		pline("Please move the cursor to %s.",
 		       what_is_an_unknown_object);
 	    else {
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		pline("Pick an object."); }
 
 	    ans = getpos(&cc, quick, what_is_an_unknown_object);

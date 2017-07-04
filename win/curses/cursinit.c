@@ -302,7 +302,7 @@ curses_create_main_windows()
                             status_orientation, &map_x, &map_y, &map_width, &map_height,
                             border_space, statusheight, 26);
 
-    if (flags.perm_invent) {
+    if (flags.perm_invent && !(youmonst.data && (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone()) && !program_state.gameover)) {
         /* Take up all width unless msgbar is also vertical. */
         int width = -25;
         if (msg_vertical)
@@ -350,7 +350,7 @@ curses_create_main_windows()
     curses_add_nhwin(MESSAGE_WIN, message_height, message_width, message_y,
                      message_x, message_orientation, borders);
 
-    if (flags.perm_invent)
+    if (flags.perm_invent && !(youmonst.data && (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone()) && !program_state.gameover))
         curses_add_nhwin(INV_WIN, inv_height, inv_width, inv_y, inv_x,
                          ALIGN_RIGHT, borders);
 
@@ -362,7 +362,7 @@ curses_create_main_windows()
 
     if (iflags.window_inited) {
         curses_update_stats();
-        if (flags.perm_invent)
+        if (flags.perm_invent && !(youmonst.data && (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone()) && !program_state.gameover))
             curses_update_inventory();
     } else {
         iflags.window_inited = TRUE;

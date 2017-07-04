@@ -175,6 +175,13 @@ curses_refresh_nethack_windows()
     }
 }
 
+#ifndef UNIX
+void
+get_scr_size()
+{
+/* dummy function to satisfy sys/share/pcsys.c */
+}
+#endif
 
 /* Return curses window pointer for given NetHack winid */
 

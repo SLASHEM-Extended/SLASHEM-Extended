@@ -334,7 +334,7 @@ doprev_message()
 
 	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The previous message command is currently unavailable!");
-	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}
 
@@ -1466,7 +1466,7 @@ playersteal()
 
 	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The borrow command is currently unavailable!");
-	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}
 
@@ -1484,7 +1484,7 @@ playersteal()
 	}
 	if (no_steal) {
 		/* discard direction typeahead, if any */
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 
@@ -1496,7 +1496,7 @@ playersteal()
 	
 	if(u.uswallow) {
 		pline("You search around but don't find anything.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(1);
 	}
 
@@ -10373,14 +10373,14 @@ click_to_cmd(x, y, mod)
 
 	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The travel command is currently unavailable!");
-	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	cmd[0] = ' ';
 	return cmd;
 	}
 
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) {
 	pline("Your gloves prevent quicktravel!");
-	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	cmd[0] = ' ';
 	return cmd;
 	}
@@ -10388,7 +10388,7 @@ click_to_cmd(x, y, mod)
 	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
 		pline("A sinister force prevents you from quicktraveling!");
 		if (Hallucination) pline("Could this be the work of Arabella?");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		cmd[0] = ' ';
 		return cmd;
 
@@ -10397,7 +10397,7 @@ click_to_cmd(x, y, mod)
 	if (BishopGridbug || u.uprops[BISHOP_GRIDBUG].extrinsic || have_bishopstone() || (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) || (uwep && uwep->oartifact == ART_KILLER_PIANO) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_KILLER_PIANO) || u.umonnum == PM_GRID_BUG || u.umonnum == PM_WEREGRIDBUG || u.umonnum == PM_GRID_XORN || u.umonnum == PM_STONE_BUG || u.umonnum == PM_NATURAL_BUG || u.umonnum == PM_WEAPON_BUG || u.umonnum == PM_MELEE_BUG || u.umonnum == PM_VORPAL_GRID_BUG || (Race_if(PM_WEAPON_BUG) && !Upolyd)) {
 
 	pline("Due to your movement restriction, you cannot quicktravel!");
-	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	cmd[0] = ' ';
 	return cmd;
 
@@ -10661,7 +10661,7 @@ dotravel()
 
 	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The travel command is currently unavailable!");
-	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}
 
@@ -10674,7 +10674,7 @@ dotravel()
 	 * complaining, but provide the piece of code that fixes it! Then I will fix and re-enable it. --Amy */
 
 	pline("Due to your movement restriction, you cannot quicktravel!");
-	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 
 	}
@@ -10682,14 +10682,14 @@ dotravel()
 	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
 		pline("A sinister force prevents you from quicktraveling!");
 		if (Hallucination) pline("Could this be the work of Arabella?");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 
 	}
 
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "poygachi qo'lqop") ) ) {
 	pline("Your gloves prevent quicktravel!");
-	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}
 

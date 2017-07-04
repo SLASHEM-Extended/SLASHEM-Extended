@@ -5174,7 +5174,7 @@ rerollX:
 	    case RELOCATION_TRAP:
 		seetrap(trap);
 		You_feel("yourself yanked in a direction you didn't know existed!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	      (void) safe_teleds(FALSE);
 		deltrap(trap);
 		break;
@@ -14176,17 +14176,17 @@ dountrap()	/* disarm a trap */
 	}
 	if ((nohands(youmonst.data) && !webmaker(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || !youmonst.data->mmove) {
 	    pline("And just how do you expect to do that?");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return 0;
 	} else if (u.ustuck && sticks(youmonst.data)) {
 	    pline("You'll have to let go of %s first.", mon_nam(u.ustuck));
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return 0;
 	}
 	if (u.ustuck || (welded(uwep) && bimanual(uwep))) {
 	    Your("%s seem to be too busy for that.",
 		 makeplural(body_part(HAND)));
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return 0;
 	}
 	return untrap(FALSE);

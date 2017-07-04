@@ -32,6 +32,7 @@ static int decrement_highlight(nhstat *, boolean);
 
 #ifdef STATUS_COLORS
 static attr_t hpen_color_attr(boolean, int, int);
+static attr_t flickercolorattr(int);
 extern struct color_option text_color_of(const char *text,
                                          const struct text_color_option *color_options);
 struct color_option percentage_color_of(int value, int max,
@@ -74,23 +75,39 @@ struct statcolor {
 };
 
 static const struct statcolor default_colors[] = {
+    {"Oversatiated", CLR_YELLOW},
     {"Satiated", CLR_YELLOW},
     {"Hungry", CLR_YELLOW},
     {"Weak", CLR_ORANGE},
     {"Fainted", CLR_BRIGHT_MAGENTA},
     {"Fainting", CLR_BRIGHT_MAGENTA},
+    {"Starved", CLR_BRIGHT_MAGENTA},
     {"Burdened", CLR_RED},
     {"Stressed", CLR_RED},
     {"Strained", CLR_ORANGE},
     {"Overtaxed", CLR_ORANGE},
     {"Overloaded", CLR_BRIGHT_MAGENTA},
+    {"Burn", CLR_ORANGE},
+    {"Glib", CLR_ORANGE},
+    {"Legs", CLR_ORANGE},
+    {"Choke", CLR_ORANGE},
+    {"Lev", CLR_CYAN},
+    {"Vomit", CLR_CYAN},
+    {"Held", CLR_BRIGHT_CYAN},
+    {"Elbereth", CLR_BRIGHT_GREEN},
     {"Conf", CLR_BRIGHT_BLUE},
+    {"Numb", CLR_BRIGHT_BLUE},
+    {"Freeze", CLR_BRIGHT_BLUE},
     {"Blind", CLR_BRIGHT_BLUE},
     {"Stun", CLR_BRIGHT_BLUE},
     {"Hallu", CLR_BRIGHT_BLUE},
     {"Ill", CLR_BRIGHT_MAGENTA},
     {"FoodPois", CLR_BRIGHT_MAGENTA},
     {"Slime", CLR_BRIGHT_MAGENTA},
+    {"Stoned", CLR_BRIGHT_MAGENTA},
+    {"Fear", CLR_BRIGHT_MAGENTA},
+    {"Triggered", CLR_BRIGHT_MAGENTA},
+    {"Dim", CLR_BRIGHT_MAGENTA},
     {NULL, NO_COLOR},
 };
 
@@ -326,6 +343,15 @@ hpen_color_attr(boolean is_hp, int cur, int max)
 
     return attr;
 }
+
+static attr_t
+flickercolorattr(int color)
+{
+	attr_t attr = 0;
+      attr |= curses_color_attr(color, 0);
+      return attr;
+
+}
 #endif
 
 /* Return color for the HP bar.
@@ -496,6 +522,9 @@ curses_update_stats(void)
 static void
 draw_horizontal(int x, int y, int hp, int hpmax)
 {
+
+	if (youmonst.data && (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0)) ) ) return;
+
     if (!iflags.classic_status) {
         /* Draw new-style statusbar */
         draw_horizontal_new(x, y, hp, hpmax);
@@ -507,6 +536,17 @@ draw_horizontal(int x, int y, int hp, int hpmax)
 
     /* Line 1 */
     wmove(win, y, x);
+
+	if (youmonst.data && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )) {
+		attr_t flickertextA;
+		int flickercolor = rn2(CLR_MAX);
+		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+		flickertextA = flickercolorattr(flickercolor);
+		wprintw(win, generate_garbage_string());
+		wattron(win, flickertextA);
+
+		goto linetwo;
+	}
 
     get_playerrank(rank);
     sprintf(buf, "%s the %s", plname, rank);
@@ -522,8 +562,10 @@ draw_horizontal(int x, int y, int hp, int hpmax)
     print_statdiff(" Wi:", &prevwis, ACURR(A_WIS), STAT_OTHER);
     print_statdiff(" Ch:", &prevcha, ACURR(A_CHA), STAT_OTHER);
 
-    wprintw(win, (u.ualign.type == A_CHAOTIC ? " Chaotic" :
-                  u.ualign.type == A_NEUTRAL ? " Neutral" : " Lawful"));
+    if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) {
+	wprintw(win, (u.ualign.type == A_CHAOTIC ? " Chaotic" :
+      u.ualign.type == A_NEUTRAL ? " Neutral" : " Lawful"));
+    }
 
 #ifdef SCORE_ON_BOTL
     if (flags.showscore)
@@ -532,10 +574,30 @@ draw_horizontal(int x, int y, int hp, int hpmax)
 
     wclrtoeol(win);
 
-
+linetwo:
     /* Line 2 */
     y++;
     wmove(win, y, x);
+
+	if (youmonst.data && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )) {
+		attr_t flickertextB;
+		int flickercolor = rn2(CLR_MAX);
+		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+		flickertextB = flickercolorattr(flickercolor);
+		wprintw(win, generate_garbage_string());
+		wattron(win, flickertextB);
+		flickercolor = rn2(CLR_MAX);
+		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+		flickertextB = flickercolorattr(flickercolor);
+		wprintw(win, "%d/%d", (hp < 0) ? 0 : hp, hpmax);
+		wattron(win, flickertextB);
+		flickercolor = rn2(CLR_MAX);
+		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+		flickertextB = flickercolorattr(flickercolor);
+		wprintw(win, "%d/%d", u.uen, u.uenmax);
+		wattron(win, flickertextB);
+		return;
+	}
 
     describe_level(buf, FALSE);
 
@@ -599,24 +661,60 @@ draw_horizontal_new(int x, int y, int hp, int hpmax)
     char rank[BUFSZ];
     WINDOW *win = curses_get_nhwin(STATUS_WIN);
 
+	if (youmonst.data && (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0)) ) ) return;
+
     /* Line 1 */
     wmove(win, y, x);
+
+	if (youmonst.data && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )) {
+		attr_t flickertextA;
+		int flickercolor = rn2(CLR_MAX);
+		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+		flickertextA = flickercolorattr(flickercolor);
+		wprintw(win, generate_garbage_string());
+		wattron(win, flickertextA);
+
+		goto linetwonew;
+	}
 
     get_playerrank(rank);
     char race[BUFSZ];
     Strcpy(race, urace.adj);
     race[0] = highc(race[0]);
     wprintw(win, "%s the %s %s%s%s", plname,
-            (u.ualign.type == A_CHAOTIC ? "Chaotic" :
-             u.ualign.type == A_NEUTRAL ? "Neutral" : "Lawful"),
-            Upolyd ? "" : race, Upolyd ? "" : " ",
+            ((FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) ? "" :
+		 u.ualign.type == A_CHAOTIC ? "Chaotic" : u.ualign.type == A_NEUTRAL ? "Neutral" : "Lawful"),
+            (Upolyd || (FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) ? "" : race, Upolyd ? "" : " ",
             rank);
 
     wclrtoeol(win);
 
+linetwonew:
+
     /* Line 2 */
     y++;
     wmove(win, y, x);
+
+	if (youmonst.data && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )) {
+		attr_t flickertextB;
+		int flickercolor = rn2(CLR_MAX);
+		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+		flickertextB = flickercolorattr(flickercolor);
+		wprintw(win, generate_garbage_string());
+		wattron(win, flickertextB);
+		flickercolor = rn2(CLR_MAX);
+		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+		flickertextB = flickercolorattr(flickercolor);
+		wprintw(win, "%d/%d", (hp < 0) ? 0 : hp, hpmax);
+		wattron(win, flickertextB);
+		flickercolor = rn2(CLR_MAX);
+		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+		flickertextB = flickercolorattr(flickercolor);
+		wprintw(win, "%d/%d", u.uen, u.uenmax);
+		wattron(win, flickertextB);
+		return;
+	}
+
     wprintw(win, "HP:");
     draw_bar(TRUE, hp, hpmax, NULL);
     print_statdiff(" AC:", &prevac, u.uac, STAT_AC);
@@ -726,6 +824,8 @@ draw_horizontal_new(int x, int y, int hp, int hpmax)
 static void
 draw_vertical(int x, int y, int hp, int hpmax)
 {
+	if (youmonst.data && (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0)) ) ) return;
+
     char buf[BUFSZ];
     char rank[BUFSZ];
     WINDOW *win = curses_get_nhwin(STATUS_WIN);
@@ -735,6 +835,18 @@ draw_vertical(int x, int y, int hp, int hpmax)
 
     /* Print title and dungeon branch */
     wmove(win, y++, x);
+
+	if (youmonst.data && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )) {
+		attr_t flickertextA;
+		int flickercolor = rn2(CLR_MAX);
+		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+		flickertextA = flickercolorattr(flickercolor);
+		wprintw(win, generate_garbage_string());
+		wattron(win, flickertextA);
+
+		goto linetwovert;
+	}
+
 
     get_playerrank(rank);
     int ranklen = strlen(rank);
@@ -760,8 +872,30 @@ draw_vertical(int x, int y, int hp, int hpmax)
     wmove(win, y++, x);
     wprintw(win, "%s", dungeons[u.uz.dnum].dname);
 
+linetwovert:
+
     y++; /* Blank line inbetween */
     wmove(win, y++, x);
+
+	if (youmonst.data && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )) {
+		attr_t flickertextB;
+		int flickercolor = rn2(CLR_MAX);
+		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+		flickertextB = flickercolorattr(flickercolor);
+		wprintw(win, generate_garbage_string());
+		wattron(win, flickertextB);
+		flickercolor = rn2(CLR_MAX);
+		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+		flickertextB = flickercolorattr(flickercolor);
+		wprintw(win, "%d/%d", (hp < 0) ? 0 : hp, hpmax);
+		wattron(win, flickertextB);
+		flickercolor = rn2(CLR_MAX);
+		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
+		flickertextB = flickercolorattr(flickercolor);
+		wprintw(win, "%d/%d", u.uen, u.uenmax);
+		wattron(win, flickertextB);
+		return;
+	}
 
     /* Attributes. Old  vertical order is preserved */
     print_statdiff("Strength:      ", &prevstr, ACURR(A_STR), STAT_STR);
@@ -883,6 +1017,20 @@ curses_add_statuses(WINDOW *win, boolean align_right,
     statprob("Ill",      (u.usick_type & SICK_NONVOMITABLE));
     statprob("FoodPois", (u.usick_type & SICK_VOMITABLE));
     statprob("Slime",    Slimed);
+    statprob("Lev",    Levitation);
+    statprob("Glib",    IsGlib);
+    statprob("Legs",    Wounded_legs);
+    statprob("Choke",    Strangled);
+    statprob("Vomit",    Vomiting);
+    statprob("Elbereth",    sengr_at("Elbereth", u.ux, u.uy));
+    statprob("Fear",    Feared && !Race_if(PM_TUMBLRER));
+    statprob("Triggered",    Feared && Race_if(PM_TUMBLRER));
+    statprob("Numb",    Numbed);
+    statprob("Freeze",    Frozen);
+    statprob("Burn",    Burned);
+    statprob("Dim",    Dimmed);
+    statprob("Stone",    Stoned);
+    statprob("Held",    u.ustuck && !u.uswallow && !sticks(youmonst.data));
 
     /* Encumbrance */
     int enc = near_capacity();

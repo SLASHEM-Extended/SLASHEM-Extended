@@ -182,11 +182,11 @@ WINPINC =
 WINPLIBS = ../lib/libpdcurses.a ../lib/libSDL.a -lwinmm
 endif
 
-TILEUTIL16  = $(UTIL)/tile2bmp.exe
-TILEBMP16   = $(SRC)/tiles.bmp
+TILEUTIL16  =
+TILEBMP16   =
 
-TILEUTIL32  = $(UTIL)/til2bm32.exe
-TILEBMP32   = $(SRC)/tiles32.bmp
+TILEUTIL32  =
+TILEBMP32   =
 
 SOUND = $(OBJ)/ntsound.o
 
@@ -391,7 +391,8 @@ VOBJ23 = $(O)teleport.o $(O)timeout.o  $(O)topten.o   $(O)track.o
 VOBJ24 = $(O)trap.o     $(O)u_init.o   $(O)uhitm.o    $(O)vault.o
 VOBJ25 = $(O)vis_tab.o  $(O)vision.o   $(O)weapon.o   $(O)were.o
 VOBJ26 = $(O)wield.o    $(O)windows.o  $(O)wizard.o   $(O)worm.o
-VOBJ27 = $(O)worn.o     $(O)write.o    $(O)zap.o
+VOBJ27 = $(O)worn.o     $(O)write.o    $(O)zap.o	$(O)tech.o
+VOBJ28 = $(O)gypsy.o	$(O)livelog.o
 
 DLBOBJ = $(O)dlb.o
 
@@ -407,7 +408,7 @@ OBJS   = $(VOBJ01) $(VOBJ02) $(VOBJ03) $(VOBJ04) $(VOBJ05) \
 	$(VOBJ11) $(VOBJ12) $(VOBJ13) $(VOBJ14) $(VOBJ15) \
 	$(VOBJ16) $(VOBJ17) $(VOBJ18) $(VOBJ19) $(VOBJ20) \
 	$(VOBJ21) $(VOBJ22) $(VOBJ23) $(VOBJ24) $(VOBJ25) \
-	$(VOBJ26) $(VOBJ27)
+	$(VOBJ26) $(VOBJ27) $(VOBJ28)
 
 WINPOBJ = $(WINPORT)
 
@@ -450,7 +451,7 @@ LEV_H       = $(INCL)/lev.h
 DGN_FILE_H  = $(INCL)/dgn_file.h
 LEV_COMP_H  = $(INCL)/lev_comp.h
 SP_LEV_H    = $(INCL)/sp_lev.h
-TILE_H      = ../win/share/tile.h
+TILE_H      =
 
 #==========================================
 # Miscellaneous
@@ -498,6 +499,8 @@ install: graphicschk $(GAME) $(O)install.tag
 
 
 $(O)install.tag:  $(DAT)/data    $(DAT)/rumors    $(DAT)/dungeon \
+		    $(DAT)/dungeon2    $(DAT)/dungeon3    $(DAT)/dungeon4    $(DAT)/dungeon5 \
+		    $(DAT)/dungeon6    $(DAT)/dungeon7    $(DAT)/dungeon8 \
 	       $(DAT)/oracles $(DAT)/quest.dat $(O)sp_lev.tag $(DLB)
 ifeq  "$(USE_DLB)" "Y"
 	$(subst /,\,copy nhdat                $(GAMEDIR))
@@ -523,38 +526,223 @@ recover: $(U)recover.exe
 	$(subst /,\,if exist $(U)recover.exe copy $(U)recover.exe  $(GAMEDIR))
 	$(subst /,\,if exist $(DOC)/recover.txt copy $(DOC)/recover.txt $(GAMEDIR)/recover.txt)
 
-$(O)sp_lev.tag: $(O)utility.tag $(DAT)/bigroom.des  $(DAT)/castle.des \
-	 $(DAT)/endgame.des $(DAT)/gehennom.des $(DAT)/knox.des   \
-	 $(DAT)/medusa.des  $(DAT)/oracle.des   $(DAT)/tower.des  \
-	 $(DAT)/yendor.des  $(DAT)/arch.des     $(DAT)/barb.des   \
-	 $(DAT)/caveman.des $(DAT)/healer.des   $(DAT)/knight.des \
-	 $(DAT)/monk.des    $(DAT)/priest.des   $(DAT)/ranger.des \
-	 $(DAT)/rogue.des   $(DAT)/samurai.des  $(DAT)/sokoban.des \
-	 $(DAT)/tourist.des $(DAT)/valkyrie.des $(DAT)/wizard.des
+$(O)sp_lev.tag: $(O)utility.tag $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\bigroom.des $(DAT)\ghbigrm.des \
+		$(DAT)\blkmar.des   $(DAT)\castle.des   $(DAT)\bleeder.des   $(DAT)\grund.des \
+		$(DAT)\dragons.des  $(DAT)\endgame.des  $(DAT)\exmall.des  $(DAT)\gehennom.des \
+		$(DAT)\giants.des   $(DAT)\guild.des    $(DAT)\intpla.des    $(DAT)\knox.des \
+		$(DAT)\kobold-1.des $(DAT)\kobold-2.des $(DAT)\unheck.des $(DAT)\lich.des \
+		$(DAT)\mall-1.des   $(DAT)\mall-2.des   $(DAT)\mall-3.des $(DAT)\geek.des   $(DAT)\scient.des   $(DAT)\medusa.des \
+		$(DAT)\sokoban.des  $(DAT)\heck.des    $(DAT)\mines.des    $(DAT)\mtemple.des \
+		$(DAT)\newmall.des  $(DAT)\nymph.des    $(DAT)\hellma.des    $(DAT)\oracle.des \
+		$(DAT)\rats.des     $(DAT)\rndmaze.des  $(DAT)\rndmazea.des     $(DAT)\sea.des      $(DAT)\spiders.des \
+		$(DAT)\stor-1.des   $(DAT)\stor-2.des   $(DAT)\act.des   $(DAT)\stor-3.des \
+		$(DAT)\tomb.des     $(DAT)\tower.des    $(DAT)\warrior.des    $(DAT)\yendor.des \
+		$(DAT)\arch.des     $(DAT)\barb.des 	$(DAT)\binder.des 	$(DAT)\caveman.des \
+		$(DAT)\flame.des    $(DAT)\healer.des   $(DAT)\jedi.des   $(DAT)\ice.des \
+		$(DAT)\elfreal.des  $(DAT)\knight.des   $(DAT)\monk.des     $(DAT)\psion.des     $(DAT)\necro.des \
+		$(DAT)\acid.des   $(DAT)\spacew.des   $(DAT)\top.des   $(DAT)\unbel.des   $(DAT)\rocker.des \
+		$(DAT)\priest.des   $(DAT)\rogue.des    $(DAT)\town.des   $(DAT)\samurai.des \
+		$(DAT)\tourist.des  $(DAT)\slayer.des   $(DAT)\noble.des 	$(DAT)\valkyrie.des \
+		$(DAT)\electric.des  $(DAT)\poison.des  $(DAT)\courier.des   $(DAT)\cheval.des 	$(DAT)\trans.des \
+		$(DAT)\elf.des  $(DAT)\cyborg.des   $(DAT)\gangster.des   $(DAT)\deatheat.des   $(DAT)\transs.des \
+		$(DAT)\wizard.des   $(DAT)\sheol.des   $(DAT)\yeoman.des   $(DAT)\frnknstn.des \
+		$(DAT)\forge.des    $(DAT)\hitch.des   $(DAT)\compu.des    $(DAT)\key.des \
+		$(DAT)\occult.des    $(DAT)\element.des   $(DAT)\chaos.des    $(DAT)\wildtal.des \
+		$(DAT)\kurwa.des    $(DAT)\prost.des \
+		$(DAT)\korsair.des    $(DAT)\diver.des   $(DAT)\lunatic.des   $(DAT)\gladia.des \
+		$(DAT)\nightmar.des $(DAT)\ranger.des 	$(DAT)\pirate.des 	$(DAT)\convict.des \
+		$(DAT)\murderer.des   $(DAT)\failed.des 	$(DAT)\camper.des $(DAT)\anachr.des \
+		$(DAT)\altmer.des $(DAT)\bosmer.des 	$(DAT)\dunmer.des 	$(DAT)\ordinat.des 	$(DAT)\thalmor.des \
+		$(DAT)\dopp.des $(DAT)\dwarf.des 	$(DAT)\darkelf.des 	$(DAT)\hobbit.des 	$(DAT)\gnome.des \
+		$(DAT)\drunk.des    $(DAT)\firef.des   $(DAT)\locks.des   $(DAT)\music.des \
+		$(DAT)\ninja.des $(DAT)\offic.des 	$(DAT)\under.des 	$(DAT)\zooke.des \
+		$(DAT)\abuser.des $(DAT)\saiyan.des 	$(DAT)\polit.des 	$(DAT)\cook.des \
+		$(DAT)\augurer.des $(DAT)\sage.des 	$(DAT)\libra.des 	$(DAT)\gunner.des \
+		$(DAT)\otaku.des $(DAT)\artist.des 	$(DAT)\gamer.des 	$(DAT)\doll.des \
+		$(DAT)\stunt.des $(DAT)\foxhound.des 	$(DAT)\scribe.des 	$(DAT)\paladin.des \
+		$(DAT)\wandkeep.des $(DAT)\assassin.des 	$(DAT)\bully.des 	$(DAT)\supermar.des \
+		$(DAT)\slavemas.des $(DAT)\mystic.des 	$(DAT)\bloodsee.des 	$(DAT)\ladies.des \
+		$(DAT)\jester.des $(DAT)\pickpock.des 	$(DAT)\mahou.des 	$(DAT)\gehenX.des \
+		$(DAT)\bard.des $(DAT)\amazon.des $(DAT)\goff.des $(DAT)\kwests.des $(DAT)\mazes.des \
+		$(DAT)\justice.des $(DAT)\fighter.des $(DAT)\fencer.des $(DAT)\sexy.des $(DAT)\suser.des \
+		$(DAT)\levgn.des	$(DAT)\levgx.des	$(DAT)\emptbgr.des \
+		$(DAT)\slime.des $(DAT)\erdrick.des $(DAT)\druid.des  $(DAT)\marine.des  $(DAT)\medium.des
+
+	$(subst /,\,$(U)lev_comp $(DAT)/abuser.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/saiyan.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/polit.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/cook.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/augurer.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/dopp.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/dwarf.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/darkelf.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/hobbit.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/gnome.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/sage.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/libra.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/gunner.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/marine.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/otaku.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/artist.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/gamer.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/doll.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/stunt.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/foxhound.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/scribe.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/paladin.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/wandkeep.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/assassin.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/bully.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/supermar.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/slavemas.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/mystic.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/bloodsee.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/ladies.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/suser.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/sexy.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/medium.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/justice.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/fighter.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/fencer.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/jester.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/pickpock.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/mahou.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/kwests.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/mazes.des)
+
+	$(subst /,\,$(U)lev_comp $(DAT)/bard.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/amazon.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/druid.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/altmer.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/bosmer.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/dunmer.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/ordinat.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/thalmor.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/goff.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/drunk.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/firef.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/locks.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/music.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/ninja.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/offic.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/under.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/zooke.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/gradu.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/beholder.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/bigroom.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/levgn.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/levgx.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/ghbigrm.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/emptbgr.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/blkmar.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/bleeder.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/castle.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/compu.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/convict.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/murderer.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/failed.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/lunatic.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/spacew.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/camper.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/grund.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/dragons.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/endgame.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/exmall.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/forge.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/gehennom.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/gehenX.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/giants.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/guild.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/heck.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/unheck.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/hellma.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/hitch.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/intpla.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/key.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/knox.des)
-	$(subst /,\,$(U)lev_comp $(DAT)/mines.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/kobold-1.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/kobold-2.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/lich.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/mall-1.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/mall-2.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/mall-3.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/medusa.des)
-	$(subst /,\,$(U)lev_comp $(DAT)/oracle.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/sokoban.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/mines.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/mtemple.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/newmall.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/nymph.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/noble.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/electric.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/poison.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/occult.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/element.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/chaos.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/wildtal.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/kurwa.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/prost.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/acid.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/rocker.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/cheval.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/slime.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/erdrick.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/trans.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/unbel.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/transs.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/top.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/act.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/courier.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/cyborg.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/oracle.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/pirate.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/korsair.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/anachr.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/diver.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/gladia.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/rats.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/town.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/rndmaze.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/rndmazea.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/sea.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/sheol.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/spiders.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/stor-1.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/stor-2.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/stor-3.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/tomb.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/tower.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/yendor.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/arch.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/barb.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/binder.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/caveman.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/flame.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/geek.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/scient.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/healer.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/ice.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/jedi.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/knight.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/monk.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/psion.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/necro.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/priest.des)
-	$(subst /,\,$(U)lev_comp $(DAT)/ranger.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/rogue.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/samurai.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/tourist.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/slayer.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/valkyrie.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/warrior.des)
 	$(subst /,\,$(U)lev_comp $(DAT)/wizard.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/yeoman.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/elf.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/elfreal.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/gangster.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/deatheat.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/frnknstn.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/nightmar.des)
+	$(subst /,\,$(U)lev_comp $(DAT)/ranger.des)
+
 	$(subst /,\,copy *.lev $(DAT))
 	$(subst /,\,del *.lev)
 	$(subst /,\,echo sp_levs done > $(O)sp_lev.tag)
@@ -879,7 +1067,7 @@ $(DAT)/porthelp: $(NTSYS)/porthelp
 
 nhdat:  $(U)dlb_main.exe $(DAT)/data $(DAT)/oracles $(OPTIONS_FILE) \
 	 $(DAT)/quest.dat $(DAT)/rumors $(DAT)/help $(DAT)/hh $(DAT)/cmdhelp \
-	 $(DAT)/history $(DAT)/opthelp $(DAT)/wizhelp $(DAT)/dungeon \
+	 $(DAT)/history $(DAT)/opthelp $(DAT)/wizhelp $(DAT)/dungeon $(DAT)/dungeon2 $(DAT)/dungeon3 $(DAT)/dungeon4 $(DAT)/dungeon5 $(DAT)/dungeon6 $(DAT)/dungeon7 $(DAT)/dungeon8 \
 	 $(DAT)/porthelp $(DAT)/license $(O)sp_lev.tag
 	$(subst /,\,echo data >$(DAT)/dlb.lst)
 	$(subst /,\,echo oracles >>$(DAT)/dlb.lst)
@@ -896,6 +1084,13 @@ nhdat:  $(U)dlb_main.exe $(DAT)/data $(DAT)/oracles $(OPTIONS_FILE) \
 	$(subst /,\,echo opthelp >>$(DAT)/dlb.lst)
 	$(subst /,\,echo wizhelp >>$(DAT)/dlb.lst)
 	$(subst /,\,echo dungeon >>$(DAT)/dlb.lst)
+	$(subst /,\,echo dungeon2 >>$(DAT)/dlb.lst)
+	$(subst /,\,echo dungeon3 >>$(DAT)/dlb.lst)
+	$(subst /,\,echo dungeon4 >>$(DAT)/dlb.lst)
+	$(subst /,\,echo dungeon5 >>$(DAT)/dlb.lst)
+	$(subst /,\,echo dungeon6 >>$(DAT)/dlb.lst)
+	$(subst /,\,echo dungeon7 >>$(DAT)/dlb.lst)
+	$(subst /,\,echo dungeon8 >>$(DAT)/dlb.lst)
 	$(subst /,\,echo license >>$(DAT)/dlb.lst)
 	dir /l /b /-p $(subst /,\,$(DAT)/*.lev >>$(DAT)/dlb.lst)
 	$(subst /,\,$(U)dlb_main CcIf $(DAT) dlb.lst $(SRC)/nhdat)
@@ -1018,6 +1213,20 @@ spotless: clean
 	$(subst /,\,if exist $(DAT)/data    del $(DAT)/data)
 	$(subst /,\,if exist $(DAT)/dungeon      del $(DAT)/dungeon)
 	$(subst /,\,if exist $(DAT)/dungeon.pdf  del $(DAT)/dungeon.pdf)
+	$(subst /,\,if exist $(DAT)/dungeon2      del $(DAT)/dungeon2)
+	$(subst /,\,if exist $(DAT)/dungeon2.pdf  del $(DAT)/dungeon2.pdf)
+	$(subst /,\,if exist $(DAT)/dungeon3      del $(DAT)/dungeon3)
+	$(subst /,\,if exist $(DAT)/dungeon3.pdf  del $(DAT)/dungeon3.pdf)
+	$(subst /,\,if exist $(DAT)/dungeon4      del $(DAT)/dungeon4)
+	$(subst /,\,if exist $(DAT)/dungeon4.pdf  del $(DAT)/dungeon4.pdf)
+	$(subst /,\,if exist $(DAT)/dungeon5      del $(DAT)/dungeon5)
+	$(subst /,\,if exist $(DAT)/dungeon5.pdf  del $(DAT)/dungeon5.pdf)
+	$(subst /,\,if exist $(DAT)/dungeon6      del $(DAT)/dungeon6)
+	$(subst /,\,if exist $(DAT)/dungeon6.pdf  del $(DAT)/dungeon6.pdf)
+	$(subst /,\,if exist $(DAT)/dungeon7      del $(DAT)/dungeon7)
+	$(subst /,\,if exist $(DAT)/dungeon7.pdf  del $(DAT)/dungeon7.pdf)
+	$(subst /,\,if exist $(DAT)/dungeon8      del $(DAT)/dungeon8)
+	$(subst /,\,if exist $(DAT)/dungeon8.pdf  del $(DAT)/dungeon8.pdf)
 	$(subst /,\,if exist $(DAT)/earth.lev    del $(DAT)/earth.lev)
 	$(subst /,\,if exist $(DAT)/fakewiz?.lev      del $(DAT)/fakewiz?.lev)
 	$(subst /,\,if exist $(DAT)/fire.lev     del $(DAT)/fire.lev)
@@ -1086,6 +1295,83 @@ $(DAT)/oracles: $(O)utility.tag    $(DAT)/oracles.txt
 $(DAT)/dungeon: $(O)utility.tag  $(DAT)/dungeon.def
 	$(subst /,\,$(U)makedefs -e)
 	$(subst /,\,$(U)dgn_comp $(DAT)/dungeon.pdf)
+
+$(DAT)/dungeon2: $(O)utility.tag  $(DAT)/dungeon2.def
+	$(subst /,\,$(U)makedefs -e)
+	$(subst /,\,$(U)dgn_comp $(DAT)/dungeon2.pdf)
+
+$(DAT)/dungeon3: $(O)utility.tag  $(DAT)/dungeon3.def
+	$(subst /,\,$(U)makedefs -e)
+	$(subst /,\,$(U)dgn_comp $(DAT)/dungeon3.pdf)
+
+$(DAT)/dungeon4: $(O)utility.tag  $(DAT)/dungeon4.def
+	$(subst /,\,$(U)makedefs -e)
+	$(subst /,\,$(U)dgn_comp $(DAT)/dungeon4.pdf)
+
+$(DAT)/dungeon5: $(O)utility.tag  $(DAT)/dungeon5.def
+	$(subst /,\,$(U)makedefs -e)
+	$(subst /,\,$(U)dgn_comp $(DAT)/dungeon5.pdf)
+
+$(DAT)/dungeon6: $(O)utility.tag  $(DAT)/dungeon6.def
+	$(subst /,\,$(U)makedefs -e)
+	$(subst /,\,$(U)dgn_comp $(DAT)/dungeon6.pdf)
+
+$(DAT)/dungeon7: $(O)utility.tag  $(DAT)/dungeon7.def
+	$(subst /,\,$(U)makedefs -e)
+	$(subst /,\,$(U)dgn_comp $(DAT)/dungeon7.pdf)
+
+$(DAT)/dungeon8: $(O)utility.tag  $(DAT)/dungeon8.def
+	$(subst /,\,$(U)makedefs -e)
+	$(subst /,\,$(U)dgn_comp $(DAT)/dungeon8.pdf)
+
+#
+# DLB stuff
+#
+$(DAT)\nhshare:	dlb_main.exe $(DAT)\data $(DAT)\rumors \
+		$(DAT)\dungeon $(DAT)\dungeon2 $(DAT)\dungeon3 $(DAT)\dungeon4 \
+		$(DAT)\dungeon5 $(DAT)\dungeon6 $(DAT)\dungeon7 $(DAT)\dungeon8 \
+		$(DAT)\oracles $(DAT)\quest.dat sp_lev.tag
+	$(ECHO) data >$(DAT)\dlb.lst
+	$(ECHO) oracles >>$(DAT)\dlb.lst
+ifeq ($(USE_GUI),Y)
+	$(ECHO) guioptions >>$(DAT)\dlb.lst
+else
+	$(ECHO) ttyoptions >>$(DAT)\dlb.lst
+endif
+	$(ECHO) rumors >>$(DAT)\dlb.lst
+	$(ECHO) help >>$(DAT)\dlb.lst
+	$(ECHO) hh >>$(DAT)\dlb.lst
+	$(ECHO) cmdhelp >>$(DAT)\dlb.lst
+	$(ECHO) history >>$(DAT)\dlb.lst
+	$(ECHO) opthelp >>$(DAT)\dlb.lst
+	$(ECHO) wizhelp >>$(DAT)\dlb.lst
+	$(ECHO) gypsy.txt >>$(DAT)\dlb.lst
+	$(ECHO) license >>$(DAT)\dlb.lst
+	dlb_main cvCIf $(DAT) dlb.lst nhshare
+
+$(DAT)\nhushare:	dlb_main.exe $(DAT)\dungeon $(DAT)\dungeon2 $(DAT)\dungeon3 $(DAT)\dungeon4 \
+	$(DAT)\dungeon5 $(DAT)\dungeon6 $(DAT)\dungeon7 $(DAT)\dungeon8 $(DAT)\quest.dat sp_lev.tag
+	$(ECHO) dungeon > $(DAT)\dlb2.lst
+	$(ECHO) dungeon2 >>$(DAT)\dlb2.lst
+	$(ECHO) dungeon3 >>$(DAT)\dlb2.lst
+	$(ECHO) dungeon4 >>$(DAT)\dlb2.lst
+	$(ECHO) dungeon5 >>$(DAT)\dlb2.lst
+	$(ECHO) dungeon6 >>$(DAT)\dlb2.lst
+	$(ECHO) dungeon7 >>$(DAT)\dlb2.lst
+	$(ECHO) dungeon8 >>$(DAT)\dlb2.lst
+	$(ECHO) quest.dat >>$(DAT)\dlb2.lst
+	$(LS) $(DAT)\*.lev >>$(DAT)\dlb2.lst
+	dlb_main cvCIf $(DAT) dlb2.lst nhushare
+
+
+dlb_main.exe: $(DLBOBJS)
+	$(LINK) $(LFLAGS) -mconsole -odlb_main.exe $(DLBOBJS)
+	$(COPY) $@ $(DAT)\dlb_main.exe
+
+
+dlb_main.o: $(UTIL)\dlb_main.c $(INCL)\config.h $(DLB_H)
+	$(COPY) $(UTIL)\dlb_main.c .
+	$(CCOMPILE) $(CFLAGS) -odlb_main.o dlb_main.c
 
 #
 # NT dependencies
@@ -1346,3 +1632,19 @@ $(O)u_init.o: u_init.c $(HACK_H)
 $(O)uhitm.o: uhitm.c $(HACK_H)
 $(O)vault.o: vault.c $(HACK_H) $(INCL)/vault.h
 $(O)version.o: version.c $(HACK_H) $(INCL)/date.h $(INCL)/patchlevel.h
+$(O)vision.o: vision.c $(HACK_H) $(INCL)/vis_tab.h
+$(O)weapon.o: weapon.c $(HACK_H)
+$(O)were.o: were.c $(HACK_H)
+$(O)wield.o: wield.c $(HACK_H)
+$(O)windows.o: windows.c $(HACK_H) $(INCL)/wingem.h $(INCL)/winGnome.h \
+		$(INCL)/winGL.h $(INCL)/winproxy.h
+$(O)wizard.o: wizard.c $(HACK_H) $(INCL)/qtext.h $(INCL)/epri.h
+$(O)worm.o: worm.c $(HACK_H) $(INCL)/lev.h
+$(O)worn.o: worn.c $(HACK_H)
+$(O)write.o: write.c $(HACK_H)
+$(O)zap.o: zap.c $(HACK_H)
+$(O)livelog.o: livelog.c $(HACK_H)
+$(O)gypsy.o: gypsy.c $(HACK_H) $(INCL)/egyp.h $(INCL)/qtext.h
+$(O)tech.o: tech.c $(HACK_H)
+
+# end of file

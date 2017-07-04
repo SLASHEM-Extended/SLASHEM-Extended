@@ -389,7 +389,7 @@ dowield()
 	}
 
 	if (Race_if(PM_HUMAN_WRAITH) && (u.uhpmax < 2 || u.uhp < 2) ) {pline("You don't have enough health to wield weapons!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 
@@ -476,7 +476,7 @@ doswapweapon()
 	}
 
 	if (Race_if(PM_HUMAN_WRAITH) && (u.uhpmax < 2 || u.uhp < 2) ) {pline("You don't have enough health to wield weapons!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 
@@ -624,7 +624,7 @@ const char *verb;	/* "rub",&c */
 	You_cant("%s %s %s while wearing %s.",
 		 verb, shk_your(yourbuf, obj), what,
 		 more_than_1 ? "them" : "it");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
     if (welded(uwep)) {
@@ -639,37 +639,37 @@ const char *verb;	/* "rub",&c */
 	} else {
 	    You_cant("do that.");
 	}
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
     if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	You_cant("hold %s strongly enough.", more_than_1 ? "them" : "it");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
     /* check shield */
 
 	if (bimanual(obj) && Race_if(PM_LICH_WARRIOR) && !Upolyd ) {
 	    pline("As a lich, you cannot wield a two-handed weapon.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	}
 
 	if (!is_launcher(obj) && Race_if(PM_ELONA_SNAIL) && !Upolyd ) {
 	    pline("As a snail, you can only wield launchers.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	}
 
     if (uarms && bimanual(obj)) {
 	You("cannot %s a two-handed %s while wearing a shield.",
 	    verb, (obj->oclass == WEAPON_CLASS) ? "weapon" : "tool");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
 
 	if (Race_if(PM_HUMAN_WRAITH) && (u.uhpmax < 2 || u.uhp < 2) ) {pline("You don't have enough health to wield tools!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	}
 

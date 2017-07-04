@@ -1275,7 +1275,7 @@ die:
 	      killer_format = 0;
 	      vision_reset();
 	      return;
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		(void)doredraw();
 	    }
 	}

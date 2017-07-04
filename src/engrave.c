@@ -1132,31 +1132,31 @@ doengrave()
 	if(u.uswallow) {
 		if (is_animal(u.ustuck->data)) {
 			pline("What would you write?  \"Jonah was here\"?");
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return(0);
 		} else if (is_whirly(u.ustuck->data)) {
 			You_cant("reach the %s.", surface(u.ux,u.uy));
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return(0);
 		} else
 			jello = TRUE;
 	} else if (is_lava(u.ux, u.uy)) {
 		You_cant("write on the lava!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	} else if (is_pool(u.ux,u.uy) || IS_FOUNTAIN(levl[u.ux][u.uy].typ)) {
 		You_cant("write on the water!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 	if(Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)/* in bubble */) {
 		You_cant("write in thin air!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 	if(IS_AIR(levl[u.ux][u.uy].typ)) {
 		You_cant("write on an unsolid surface!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 	if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
@@ -1189,24 +1189,24 @@ doengrave()
 	 */
 	if (!freehand() && otmp != uwep && !otmp->owornmask) {
 		You("have no free %s to write with!", body_part(HAND));
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 
 	if (jello) {
 		You("tickle %s with your %s.", mon_nam(u.ustuck), writer);
 		Your("message dissolves...");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 	if (otmp->oclass != WAND_CLASS && !can_reach_floor()) {
 		You_cant("reach the %s!", surface(u.ux,u.uy));
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 	if (IS_ALTAR(levl[u.ux][u.uy].typ)) {
 		You("make a motion towards the altar with your %s.", writer);
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		altar_wrath(u.ux, u.uy);
 		return(0);
 	}
@@ -1214,11 +1214,11 @@ doengrave()
 	    if (otmp == &zeroobj) { /* using only finger */
 		You("would only make a small smudge on the %s.",
 			surface(u.ux, u.uy));
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	    } else if (!levl[u.ux][u.uy].disturbed) {
 		You("disturb the undead!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		levl[u.ux][u.uy].disturbed = 1;
 		(void) makemon(&mons[PM_GHOUL], u.ux, u.uy, NO_MM_FLAGS);
 		exercise(A_WIS, FALSE);

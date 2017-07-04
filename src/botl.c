@@ -96,24 +96,28 @@ void
 start_color_option(color_option)
 struct color_option color_option;
 {
+#if defined(UNIX) || !defined(CURSES_GRAPHICS)
 	int i;
 	if (color_option.color != NO_COLOR)
 		term_start_color(color_option.color);
 	for (i = 0; (1 << i) <= color_option.attr_bits; ++i)
 		if (i != ATR_NONE && color_option.attr_bits & (1 << i))
 			term_start_attr(i);
+#endif
 }
 
 void
 end_color_option(color_option)
 struct color_option color_option;
 {
+#if defined(UNIX) || !defined(CURSES_GRAPHICS)
 	int i;
 	if (color_option.color != NO_COLOR)
 		term_end_color(color_option.color);
 	for (i = 0; (1 << i) <= color_option.attr_bits; ++i)
 		if (i != ATR_NONE && color_option.attr_bits & (1 << i))
 			term_end_attr(i);
+#endif
 }
 
 /*static*/
@@ -449,11 +453,13 @@ bot1()
             p++;
 
             /* draw hp bar */
+#if defined(UNIX) || !defined(CURSES_GRAPHICS)
             if (iflags.use_inverse) term_start_attr(ATR_INVERSE);
             p[filledbar] = '\0';
             apply_color_option(percentage_color_of(uhp(), uhpmax(), hp_colors), tmp, 1);
             term_end_color();
             if (iflags.use_inverse) term_end_attr(ATR_INVERSE);
+#endif
 
             Strcat(newbot1, "]");
     }

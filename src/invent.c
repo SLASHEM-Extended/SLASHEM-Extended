@@ -3867,7 +3867,7 @@ register const char *let,*word;
 	   !allowfloor && !allowthisplace) {
 		You("don't have anything %sto %s.",
 			foox ? "else " : "", word);
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return((struct obj *)0);
 	}
 	
@@ -4107,7 +4107,7 @@ struct obj *otmp;
 	    pline("Use the '%s' command to %s %s%s.", s1, s2, what, s3);
 	} else {
 	    pline(silly_thing_to, word);
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
 }
 
@@ -4809,7 +4809,7 @@ long* out_cnt;
 	    win = WIN_INVEN;
 
 	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone()) && !program_state.gameover) {pline("Not enough memory to create inventory window");
- 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+ 		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}	
 
@@ -4969,7 +4969,7 @@ register const char *lets;
 boolean want_reply;
 {
 	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone()) && !program_state.gameover) {pline("Not enough memory to create inventory window");
- 		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 

@@ -1,0 +1,1 @@
+This is supposed to be the curses bugs file but somehow it's not there. And without it the game doesn't want to compile under Windows, so I'm putting this dummy file here. --Amy

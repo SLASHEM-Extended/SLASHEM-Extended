@@ -1055,7 +1055,7 @@ dokick()
 
 	if (no_kick) {
 		/* ignore direction typed before player notices kick failed */
-		display_nhwindow(WIN_MESSAGE, TRUE);	/* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);	/* --More-- */
 		return 0;
 	}
 

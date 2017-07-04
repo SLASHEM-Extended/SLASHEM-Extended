@@ -4547,7 +4547,7 @@ dowear()
 	}
 
 	if (Race_if(PM_HUMAN_WRAITH) && (u.uhpmax < 2 || u.uhp < 2) ) {pline("You don't have enough health to wear armor!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 
@@ -4754,7 +4754,7 @@ doputon()
 		    return 1;
 		if (uarmh && (uarmh->otyp == PLASTEEL_HELM || uarmh->otyp == HELM_OF_STORMS || uarmh->otyp == HELM_OF_DETECT_MONSTERS) ){
 			pline("The %s covers your whole face. You need to remove it first.", xname(uarmh));
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 		}
 		Blindf_on(otmp);

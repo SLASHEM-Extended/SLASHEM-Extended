@@ -154,7 +154,7 @@ dosit()
 
 	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The sit command is currently unavailable!");
-	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}
 

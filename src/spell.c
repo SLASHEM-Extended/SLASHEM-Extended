@@ -1376,7 +1376,7 @@ docast()
 	if (u.antimagicshell || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 
@@ -1711,23 +1711,23 @@ boolean atme;
 
 	if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD && spellid(spell) != SPE_SATISFY_HUNGER) {
 		You("are too hungry to cast that spell.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	} else if (ACURR(A_STR) < 4)  {
 		You("lack the strength to cast spells.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	} else if(check_capacity(
 		"Your concentration falters while carrying so much stuff.")) {
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return (1);
 	} else if (!freehand()) {
 		Your("arms are not free to cast!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
 	} else if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) {
 		pline("You're muted!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
 	}
 
@@ -1781,7 +1781,7 @@ boolean atme;
 	if (energy > u.uen)  {
 		if (role_skill >= P_SKILLED) You("don't have enough energy to cast that spell.");
 		else You("don't have enough energy to cast that spell. The required amount was %d.",energy);
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		/* WAC/ALI Experts can override with HP/hunger loss */
 		if ((role_skill >= P_SKILLED) && (u.uhpmax > (energy / 5)) && (yn("Continue? Doing so may damage your maximum health.") == 'y')) {
 			energy -= u.uen;
@@ -1903,7 +1903,7 @@ boolean atme;
 	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && spellid(spell) != SPE_CURE_RANDOM_STATUS && rn2(10) ) || (rnd(100) > chance)) {
 		if (!issoviet) pline("You fail to cast the spell correctly.");
 		else pline("HA HA HA HA HA, tip bloka l'da sdelal vy ne zaklinaniye!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		if (!rn2(100)) { /* evil patch idea by Amy: failure effect */
 			pline("In fact, you cast the spell incorrectly in a way that causes bad stuff to happen...");
 			badeffect();
@@ -1932,7 +1932,7 @@ boolean atme;
 	/* And if the amulet drained it below zero, set it to zero and just make the spell fail now. */
 	if (u.uhave.amulet && u.uen < 0) {
 		pline("You are exhausted, and fail to cast the spell due to the amulet draining all your energy away.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		u.uen = 0;
 		return(1);
 	}
@@ -1952,7 +1952,7 @@ boolean atme;
 	pseudo = mksobj(spellid(spell), FALSE, FALSE);
 	if (!pseudo) {
 		pline("The spell failed spontaneously!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(1);
 	}
 	if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = spellid(spell); /* minimalist fix */

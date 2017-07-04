@@ -133,16 +133,23 @@ curses_message_win_puts(const char *message, boolean recursed)
     wrefresh(win);
 }
 
-
 int
 curses_block(boolean require_tab)
 {
     int height, width, ret;
     WINDOW *win = curses_get_nhwin(MESSAGE_WIN);
 
+	if (youmonst.data && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+#if defined(WIN32)
+&& !program_state.exiting
+#endif
+	&& (AutomoreBug || u.uprops[AUTOMORE_BUG].extrinsic || have_automorestone()) ) return 0;
+
     curses_get_window_size(MESSAGE_WIN, &height, &width);
     curses_toggle_color_attr(win, MORECOLOR, NONE, ON);
-    mvwprintw(win, my, mx, require_tab ? "<TAB!>" : ">>");
+    mvwprintw(win, my, mx, require_tab ? "<TAB!>" : "--More--");
+	/* Sorry FIQ, but I do like my --More-- prompts. --Amy */
+	/* configurable with tabcursesconfirm option now, see also cursmain.c */
     curses_toggle_color_attr(win, MORECOLOR, NONE, OFF);
     if (require_tab)
         curses_alert_main_borders(TRUE);
@@ -167,6 +174,12 @@ curses_block(boolean require_tab)
 int
 curses_more()
 {
+	if (youmonst.data && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+#if defined(WIN32)
+&& !program_state.exiting
+#endif
+	&& (AutomoreBug || u.uprops[AUTOMORE_BUG].extrinsic || have_automorestone()) ) return 0;
+
     return curses_block(FALSE);
 }
 

@@ -176,7 +176,7 @@ boolean barehanded;
 		} else
 		pline("Wait!  There's %s there you can't see!",
 			something);
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		map_invisible(u.ux+u.dx, u.uy+u.dy);
 		/* if it was an invisible mimic, treat it as if we stumbled
 		 * onto a visible mimic
@@ -7446,7 +7446,7 @@ uchar aatyp;
 			if (malive && !u.ustuck && !sticks(youmonst.data)) {
 				setustuck(mon);
 				pline("%s sticks to you!", Monnam(mon));
-				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
 	      case AD_SGLD:
@@ -7593,7 +7593,7 @@ uchar aatyp;
 				setustuck(mon);
 				pline("%s grabs you!", Monnam(mon));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
 		    case 7:
@@ -8083,7 +8083,7 @@ uchar aatyp;
 		if (malive) {
 			setustuck(mon);
 			pline("%s sticks to you!", Monnam(mon));
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
 		if(Shock_resistance && rn2(10)) {

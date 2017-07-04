@@ -265,17 +265,17 @@ use_stethoscope(obj)
 	if (!rn2((obj->oartifact == ART_FISSILITY) ? 10 : 100)) {
 	    useup(obj);
 	    pline("Your stethoscope breaks!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 		}
 
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {	/* should also check for no ears and/or deaf */
 		You("have no hands!");	/* not `body_part(HAND)' */
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (!freehand()) {
 		You("have no free %s.", body_part(HAND));
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 	if (!getdir((char *)0)) return 0;
@@ -364,7 +364,7 @@ use_stethoscope(obj)
 	    useup(obj);
 	    pline("Your stethoscope breaks, and you scream in terror!");
 		wake_nearby();
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 		}
 
@@ -1531,7 +1531,7 @@ dorub()
 {
 	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The rub command is currently unavailable!");
-	display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}
 
@@ -1543,7 +1543,7 @@ dorub()
 		return 1;
 	    } else {
 		pline(Hallucination ? "You rub it over your hand... better stop before you hurt yourself." : "Sorry, I don't know how to use that.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	    }
 	}
@@ -1589,52 +1589,52 @@ int magic; /* 0=Physical, otherwise skill level */
 		/* normally (nolimbs || slithy) implies !Jumping,
 		   but that isn't necessarily the case for knights */
 		You_cant("jump; you have no legs!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (!magic && !Jumping) {
 		You_cant("jump very far.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (!magic && u.uen < 10) { /* No longer completely free. --Amy */
 		You("don't have enough energy to jump! You need at least 10 points of mana!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (u.uswallow) {
 		if (magic) {
 			You("bounce around a little.");
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 		} else {
 		pline(Hallucination ? "It's all wobbly here, like a ship on a stormy sea!" : "You've got to be kidding!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 		}
 		return 0;
 	} else if (u.uinwater) {
 		if (magic) {
 			You("swish around a little.");
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 		} else {
 		pline(Hallucination ? "You try to jump but that weird liquid stuff around you resists your attempts." : "This calls for swimming, not jumping!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 		}
 		return 0;
 	} else if (u.ustuck) {
 		if (u.ustuck->mtame && !Conflict && !u.ustuck->mconf) {
 		    You("pull free from %s.", mon_nam(u.ustuck));
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		    setustuck(0);
 		    return 1;
 		}
 		if (magic) {
 			You("writhe a little in the grasp of %s!", mon_nam(u.ustuck));
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 		} else {
 		You("cannot escape from %s!", mon_nam(u.ustuck));
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 		}
 
@@ -1642,20 +1642,20 @@ int magic; /* 0=Physical, otherwise skill level */
 	} else if (Levitation || Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)) {
 		if (magic) {
 			You("flail around a little.");
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 		} else {
 		You("don't have enough traction to jump.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 		}
 	} else if (!magic && near_capacity() > UNENCUMBERED) {
 		You("are carrying too much to jump!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (!magic && (u.uhunger <= 100 || ACURR(A_STR) < 6)) {
 		You("lack the strength to jump!");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (Wounded_legs) {
  		long wl = (EWounded_legs & BOTH_SIDES);
@@ -1669,12 +1669,12 @@ int magic; /* 0=Physical, otherwise skill level */
 		     (wl == LEFT_SIDE) ? "left " :
 			(wl == RIGHT_SIDE) ? "right " : "",
 		     bp, (wl == BOTH_SIDES) ? "are" : "is");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 	else if (u.usteed && u.utrap) {
 		pline("%s is stuck in a trap.", Monnam(u.usteed));
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
 	}
 
@@ -4189,7 +4189,7 @@ doapply()
 
 	if (u.powerfailure) {
 		pline("Your power's down, and therefore you cannot apply anything.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 
@@ -4216,7 +4216,7 @@ doapply()
 	if (FreeHandLoss || u.uprops[FREE_HAND_LOST].extrinsic || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SEXY_GIRL_BUTT) || have_freehandbugstone() ) {
 		if (!(uwep && uwep == obj)) {
 			pline("You must wield this item first if you want to apply it!"); 
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			wield_tool(obj, "swing");
 			return 1;
 		}
@@ -4253,13 +4253,13 @@ doapply()
 	case BULLWHIP:
 		if (uwep && uwep == obj) res = use_whip(obj);
 		else {pline("You must wield this item first if you want to apply it!"); 
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			wield_tool(obj, "lash"); }
 		break;
 	case GRAPPLING_HOOK:
 		if (uwep && uwep == obj) res = use_grapple(obj);
 		else {pline("You must wield this item first if you want to apply it!"); 
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			wield_tool(obj, "cast"); }
 		break;
 	case LARGE_BOX:
@@ -4323,13 +4323,13 @@ doapply()
 	case DWARVISH_MATTOCK: /* KMH, balance patch -- the mattock is a pick, too */
 		if (uwep && uwep == obj) res = use_pick_axe(obj);
 		else {pline("You must wield this item first if you want to apply it!"); 
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			wield_tool(obj, "swing"); }
 		break;
 	case FISHING_POLE:
 		if (uwep && uwep == obj) res = use_pole(obj);
 		else {pline("You must wield this item first if you want to apply it!"); 
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			wield_tool(obj, "swing"); }
 		break;
 	case TINNING_KIT:
@@ -5203,7 +5203,7 @@ doapply()
 		    pline("Your god-o-meter explodes!");
 			if (!ishaxor) u.ublesscnt += rn2(20);
 			else u.ublesscnt += rn2(10);
-			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 0;
 			}
 
@@ -5235,18 +5235,18 @@ doapply()
 		if (is_pole(obj)) {
 			if (uwep && uwep == obj) res = use_pole(obj);
 			else {pline("You must wield this item first if you want to apply it!"); 
-				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				wield_tool(obj, "swing"); }
 			break;
 		} else if (is_pick(obj) || is_axe(obj) || is_antibar(obj) ) {
 			if (uwep && uwep == obj) res = use_pick_axe(obj);
 			else {pline("You must wield this item first if you want to apply it!"); 
-				display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				wield_tool(obj, "swing"); }
 			break;
 		}
 		pline("Sorry, I don't know how to use that.");
-		display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	xit:
 		nomul(0, 0);
 		return 0;
