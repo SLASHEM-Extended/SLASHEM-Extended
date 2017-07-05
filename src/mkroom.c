@@ -427,7 +427,7 @@ struct mkroom *sroom;
 			u.colormonsterB = 0;
 			u.specialtensionmonster = 0;
 			u.specialtensionmonsterB = 0;
-			if (!rn2(10)) {u.colormonster = rnd(15);
+			if (!rn2(8)) {u.colormonster = rnd(15);
 				if (!rn2(4)) u.colormonsterB = rnd(15);
 
 				if (u.colormonster == CLR_BLUE) { u.colormonster = 0; u.colormonsterB = 0;}
@@ -438,7 +438,7 @@ struct mkroom *sroom;
 			if (!rn2(10)) {u.tensionmonsterspec = rndmonst();
 				if (!rn2(4)) u.tensionmonsterspecB = rndmonst();
 			}
-			if (!rn2(20)) {u.specialtensionmonster = rnd(333);
+			if (!rn2(10)) {u.specialtensionmonster = rnd(333);
 				if (!rn2(4)) u.specialtensionmonsterB = rnd(333);
 			}
 			break;
