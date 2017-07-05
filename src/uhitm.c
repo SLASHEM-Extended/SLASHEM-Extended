@@ -1602,7 +1602,16 @@ int thrown;
 			/*NOTREACHED*/
 			break;
 		    case CORPSE:		/* fixed by polder@cs.vu.nl */
-			if (touch_petrifies(&mons[obj->corpsenm])) {
+
+			if (!rn2(100)) {
+			/* kludge, mainly for cursed lizards but also because of general c corpse overpoweredness --Amy */
+
+				if (thrown) obfree(obj, (struct obj *)0);
+				else useup(obj);
+				pline("The corpse rotted away completely.");
+				return(TRUE);
+
+			} else if (touch_petrifies(&mons[obj->corpsenm])) {
 			    static const char withwhat[] = "corpse";
 			    tmp = 1;
 			    hittxt = TRUE;
