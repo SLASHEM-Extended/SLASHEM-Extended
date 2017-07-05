@@ -9037,6 +9037,12 @@ retry:
 			u.uluck = -7;
 			if (rn2(3)) pline("You seem to have used up all your good luck for that wish...");
 	    }
+		/* another evil patch idea by jonadab: getting a wish causes amnesia as a side effect. */
+	    if (!rn2(100)) {
+		pline("Whoops... you wish you hadn't forgotten to think about Maud from all the thinking about what to wish for.");		
+		if (Hallucination) pline("You also wish you were able to remember that you suffer from amnesia.");
+		forget(1 + rn2(5));
+	    }
 	}
 }
 
