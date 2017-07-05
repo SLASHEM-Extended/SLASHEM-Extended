@@ -5405,7 +5405,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear a joshu pronouncing the formula on a scroll of genocide! Wiped out all samurai. Do you want your possessions identified? DYWYPI?",
 	"FIQ should just accept the fact that letting monsters use all items in the game is a stupid idea! He should cut his losses and make a sane variant instead, where they don't randomly read genocide and wipe you out!",
 	"In FIQhack you can name your character 'Erotic Thai Bitch', but certain other satanhack-based variants don't allow it because the 'genius' developers implemented sloppy fixes just to taunt the players. FIQhack confirmed better than Nethack4.",
-
+	"The RNG decides to send in reinforcements to punish people who kill innocent monsters.",
 
 };
 

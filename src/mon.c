@@ -4365,6 +4365,38 @@ cleanup:
 	more_experienced(tmp, 0);
 	newexplevel();		/* will decide if you go up */
 
+	if (!rn2(19150)) { /* evil patch idea by jonadab: summon a boss */
+		pline("The RNG decides to send in reinforcements to punish people who kill innocent monsters.");
+
+		int attempts = 0;
+		register struct permonst *ptrZ;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+newbossA:
+		do {
+			ptrZ = rndmonst();
+			attempts++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
+
+		if (ptrZ && ptrZ->geno & G_UNIQ) {
+			if (wizard) pline("monster generation: %s", ptrZ->mname);
+			(void) makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+		}
+		else if (rn2(50)) {
+			attempts = 0;
+			goto newbossA;
+		}
+
+		u.aggravation = 0;
+
+	}
+
 	/* adjust alignment points */
 	if (mtmp->m_id == quest_status.leader_m_id) {		/* REAL BAD! */
 	    adjalign(-(u.ualign.record+u.alignlim/2));
