@@ -3719,6 +3719,7 @@ register struct obj *otmp;
 	case SPE_CANCELLATION:
 		if (zap_oseen) makeknown(WAN_CANCELLATION);
 		(void) cancel_monst(mtmp, otmp, FALSE, TRUE, FALSE);
+		stop_occupation(); /* thanks FIQ - no idea why this wasn't interrupting you */
 		break;
 	case WAN_PARALYSIS:
 		if (zap_oseen) makeknown(WAN_PARALYSIS);
