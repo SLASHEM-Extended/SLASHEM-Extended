@@ -1274,7 +1274,15 @@ int thrown;
 
 			if (obj && obj->spe > 0) tmp += obj->spe;
 			valid_weapon_attack = (tmp > 0);
-			if (flags.bash_reminder && !rn2(20)) pline("A helpful reminder: your weapon could be used more effectively.");
+			if (flags.bash_reminder && !rn2(20)) {
+				switch (rnd(4)) {
+
+					case 1: pline("A helpful reminder: your weapon could be used more effectively."); break;
+					case 2: pline("A helpful reminder: bashing with that weapon is not the most effective way of using it."); break;
+					case 3: pline("A helpful reminder: there is a different way of using your current weapon..."); break;
+					case 4: pline("A helpful reminder: did you try applying your weapon or firing projectiles from it yet?"); break;
+				}
+			}
 
 		}
 
