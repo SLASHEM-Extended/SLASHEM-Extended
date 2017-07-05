@@ -2895,11 +2895,6 @@ register struct obj	*sobj;
 	case SPE_CREATE_MONSTER:
 		if (confused) break;
 
-		if (Aggravate_monster) {
-			u.aggravation = 1;
-			reset_rndmonst(NON_PM);
-		}
-
 		(void) makemon((struct permonst *)0, u.ux, u.uy, MM_NOSPECIALS);
 		if (!rn2(4)) makerandomtrap();
 
@@ -3575,7 +3570,7 @@ register struct obj	*sobj;
                 struct monst *mtmp;
 		multi = 0;
   
-		if (Aggravate_monster) {
+		if (Aggravate_monster && (sobj && sobj->otyp == SCR_SUMMON_UNDEAD)) {
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 		}
