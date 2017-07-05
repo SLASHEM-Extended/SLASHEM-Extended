@@ -2325,56 +2325,10 @@ register int pm;
 	    case PM_HUMAN_WEREMIMIC:
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREMIMIC;
-		tmp += 30;
-		if (youmonst.data->mlet != S_MIMIC && !Unchanging) {
-		    char buf[BUFSZ];
-		    You_cant("resist the temptation to mimic %s.",
-			Hallucination ? "an orange" : "a pile of gold");
-                    /* A pile of gold can't ride. */
-		    if (u.usteed) dismount_steed(DISMOUNT_FELL);
-		    nomul(-tmp, "pretending to be a pile of gold");
-		    Sprintf(buf, Hallucination ?
-			"You suddenly dread being peeled and mimic %s again!" :
-			"You now prefer mimicking %s again.",
-			an( (Upolyd && !missingnoprotect) ? youmonst.data->mname : urace.noun));
-		    eatmbuf = strcpy((char *) alloc(strlen(buf) + 1), buf);
-		    nomovemsg = eatmbuf;
-		    afternmv = eatmdone;
-		    /* ??? what if this was set before? */
-		    youmonst.m_ap_type = M_AP_OBJECT;
-		    youmonst.mappearance = Hallucination ? ORANGE : GOLD_PIECE;
-		    newsym(u.ux,u.uy);
-		    curs_on_u();
-		    /* make gold symbol show up now */
-		    display_nhwindow(WIN_MAP, TRUE);
-		}
 		break;
 	    case PM_HUMAN_WEREPERMAMIMIC:
 		catch_lycanthropy = TRUE;
 		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) u.ulycn = PM_WEREMIMIC;
-		tmp += 30;
-		if (youmonst.data->mlet != S_MIMIC && !Unchanging) {
-		    char buf[BUFSZ];
-		    You_cant("resist the temptation to mimic %s.",
-			Hallucination ? "an orange" : "a pile of gold");
-                    /* A pile of gold can't ride. */
-		    if (u.usteed) dismount_steed(DISMOUNT_FELL);
-		    nomul(-tmp, "pretending to be a pile of gold");
-		    Sprintf(buf, Hallucination ?
-			"You suddenly dread being peeled and mimic %s again!" :
-			"You now prefer mimicking %s again.",
-			an( (Upolyd && !missingnoprotect) ? youmonst.data->mname : urace.noun));
-		    eatmbuf = strcpy((char *) alloc(strlen(buf) + 1), buf);
-		    nomovemsg = eatmbuf;
-		    afternmv = eatmdone;
-		    /* ??? what if this was set before? */
-		    youmonst.m_ap_type = M_AP_OBJECT;
-		    youmonst.mappearance = Hallucination ? ORANGE : GOLD_PIECE;
-		    newsym(u.ux,u.uy);
-		    curs_on_u();
-		    /* make gold symbol show up now */
-		    display_nhwindow(WIN_MAP, TRUE);
-		}
 		break;
 	    case PM_NOVICE_NURSE:
 	    case PM_CONTROL_NURSE:
@@ -2435,282 +2389,6 @@ register int pm;
 		/* fall into next case */
 	    case PM_BAT:
 		make_stunned(HStun + 30,FALSE);
-		break;
-	    case PM_BURNING_MIMIC:
-	    case PM_SCROLL_MIMIC:
-	    case PM_WAND_MIMIC:
-	    case PM_WAND_PERMAMIMIC:
-	    case PM_RING_MIMIC:
-	    case PM_STAIRWAY_TO_HELL:
-	    case PM_POTION_MIMIC:
-	    case PM_TOME_OF_DESTRUCTION:
-	    case PM_TOME_OF_DIVINE_WRATH:
-	    case PM_LESSER_MIMIC:
-	    case PM_ULTIMATE_MIMIC:
-	    case PM_EMPEROR_MIMIC:
-	    case PM_DOOR_MIMIC:
-	    case PM_DEMONIC_DOOR:
-	    case PM_SATANIC_DOOR:
-	    case PM_CLOAKER:
-	    case PM_CHEST_MIMIC:
-	    case PM_UNKNOWN_MIMIC:
-	    case PM_UNKNOWN_MIMIC_X:
-	    case PM_UNKNOWN_PERMAMIMIC_X:
-	    case PM_BULLY_MIMIC:
-	    case PM_UNDEAD_MIMIC:
-	    case PM_ICE_MIMIC:
-	    case PM_TAP_MIMIC:
-	    case PM_FREEZER_MIMIC:
-	    case PM_STATIC_MIMIC:
-	    case PM_DARK_MIMIC:
-	    case PM_CONTROLLER_MIMIC:
-	    case PM_BOOBED_MIMIC:
-	    case PM_SUXXOR_MIMIC:
-	    case PM_MINUSCULE_MIMIC:
-	    case PM_CREPUSCULE_MIMIC:
-	    case PM_WITHERING_MIMIC:
-	    case PM_ACID_MIMIC:
-	    case PM_DECAYING_MIMIC:
-	    case PM_RUSTY_MIMIC:
-	    case PM_PETTY_BOOBED_MIMIC:
-	    case PM_SUCKING_MIMIC:
-	    case PM_VAMP_MIMIC:
-	    case PM_KILLER_MIMIC:
-	    case PM_DEADLY_MIMIC:
-	    case PM_FOUL_MIMIC:
-	    case PM_PORTER_MIMIC:
-	    case PM_STEALER_MIMIC:
-	    case PM_BURNING_PERMAMIMIC:
-	    case PM_SCROLL_PERMAMIMIC:
-	    case PM_STAFF_PERMAMIMIC:
-	    case PM_STAFF_MIMIC:
-	    case PM_ROD_PERMAMIMIC:
-	    case PM_ROD_MIMIC:
-	    case PM_MAGIC_BOOK_PERMAMIMIC:
-	    case PM_MAGIC_BOOK_MIMIC:
-	    case PM_PRAYER_BOOK_PERMAMIMIC:
-	    case PM_PRAYER_BOOK_MIMIC:
-	    case PM_SONG_BOOK_PERMAMIMIC:
-	    case PM_SONG_BOOK_MIMIC:
-	    case PM_RING_PERMAMIMIC:
-	    case PM_MAP_PERMAMIMIC:
-	    case PM_MAP_MIMIC:
-	    case PM_RUNESTONE_PERMAMIMIC:
-	    case PM_RUNESTONE_MIMIC:
-	    case PM_CLOAK_PERMAMIMIC:
-	    case PM_CLOAK_MIMIC:
-	    case PM_STAIRWAY_TO_HEAVEN:
-	    case PM_POTION_PERMAMIMIC:
-	    case PM_TOME_OF_ANNIHILATION:
-	    case PM_TOME_OF_NETHER_WRATH:
-	    case PM_LESSER_PERMAMIMIC:
-	    case PM_ULTIMATE_PERMAMIMIC:
-	    case PM_EMPEROR_PERMAMIMIC:
-	    case PM_DOOR_PERMAMIMIC:
-	    case PM_SMALL_DOOR_PERMAMIMIC:
-	    case PM_SMALL_DOOR_MIMIC:
-	    case PM_PERMACLOAKER:
-	    case PM_CHEST_PERMAMIMIC:
-	    case PM_UNKNOWN_PERMAMIMIC:
-	    case PM_BULLY_PERMAMIMIC:
-	    case PM_UNDEAD_PERMAMIMIC:
-	    case PM_ICE_PERMAMIMIC:
-	    case PM_TAP_PERMAMIMIC:
-	    case PM_FREEZER_PERMAMIMIC:
-	    case PM_STATIC_PERMAMIMIC:
-	    case PM_DARK_PERMAMIMIC:
-	    case PM_CONTROLLER_PERMAMIMIC:
-	    case PM_BOOBED_PERMAMIMIC:
-	    case PM_SUXXOR_PERMAMIMIC:
-	    case PM_MINUSCULE_PERMAMIMIC:
-	    case PM_CREPUSCULE_PERMAMIMIC:
-	    case PM_WITHERING_PERMAMIMIC:
-	    case PM_ACID_PERMAMIMIC:
-	    case PM_DECAYING_PERMAMIMIC:
-	    case PM_RUSTY_PERMAMIMIC:
-	    case PM_PETTY_BOOBED_PERMAMIMIC:
-	    case PM_SUCKING_PERMAMIMIC:
-	    case PM_VAMP_PERMAMIMIC:
-	    case PM_KILLER_PERMAMIMIC:
-	    case PM_DEADLY_PERMAMIMIC:
-	    case PM_FOUL_PERMAMIMIC:
-	    case PM_PORTER_PERMAMIMIC:
-	    case PM_STEALER_PERMAMIMIC:
-	    case PM_MIMIC_MUMMY:
-	    case PM_MIMIC_NYMPH:
-	    case PM_MIMIC_ANT:
-	    case PM_CLOAKED_XORN:
-	    case PM_EVERCLOAKED_XORN:
-	    case PM_MIMICRY_RUBBER:
-	    case PM_UNKNOWN_ESCALATION_RUBBER:
-	    case PM_CAMO_FISH:
-	    case PM_MINOTAUR_MIMIC:
-	    case PM_FLYING_CAMO_FISH:
-	    case PM_DEFORMED_FISH:
-	    case PM_KEYSTONE_INSPECTOR:
-	    case PM_INSPECTOR_SERGEANT:
-	    case PM_INSPECTOR_LIEUTENANT:
-	    case PM_INSPECTOR_KAPTAIN:
-	    case PM_INSPECTOR_KOMMISSIONER:
-	    case PM_INSPECTOR_KCHIEF:
-	    case PM_INSPECTOR_KATCHER:
-	    case PM_INSPECTOR_KRIMINOLOGIST:
-	    case PM_FATA_MORGANA:
-	    case PM_UNIDENTIFIED_KOBOLD_SHAMAN:
-	    case PM_CURSED_SPIRIT:
-	    case PM_HIDDEN_RUTTERKIN:
-	    case PM_DEVILISH_SPIRIT:
-	    case PM_OSCILLATOR:
-	    case PM_ALIENATED_UFO_PART:
-	    case PM_VAMPIRE_SHADOWCLOAK:
-	    case PM_MULTI_HUED_NAGA:
-	    case PM_MIMIC_VORTEX:
-	    case PM_VOLTORB:
-	    case PM_GIANT_EGO_MIMIC:
-	    case PM_GIANT_EGO_PERMAMIMIC:
-	    case PM_KEYSTONE_WARDER:
-	    case PM_WARDER_SERGEANT:
-	    case PM_WARDER_LIEUTENANT:
-	    case PM_WARDER_KAPTAIN:
-	    case PM_WARDER_KOMMISSIONER:
-	    case PM_WARDER_KCHIEF:
-	    case PM_WARDER_KATCHER:
-	    case PM_WARDER_KRIMINOLOGIST:
-	    case PM_HEHEHE_HE_GUY:
-	    case PM_ELECTRODE:
-	    case PM_DEFORMED_CAT:
-	    case PM_DEFORMED_GALLTRIT:
-	    case PM_DISGUISED_SOLDIER_ANT:
-	    case PM_NETZAH_SEPHIRAH:
-	    case PM_AMORPHOUS_FISH:
-	    case PM_GREATER_MIMIC:
-	    case PM_GREATER_PERMAMIMIC:
-	    case PM_DECEPTIVE_ORC:
-	    case PM_MASTER_MIMIC:
-	    case PM_UNDEAD_SWARM_MIMIC:
-	    case PM_FLOATING_MIMIC:
-	    case PM_MASTER_PERMAMIMIC:
-	    case PM_UNDEAD_SWARM_PERMAMIMIC:
-	    case PM_FLOATING_PERMAMIMIC:
-	    case PM_OLOG_HAI_MIMIC:
-	    case PM_OLOG_HAI_PERMAMIMIC:
-	    case PM_DWARF_KING_PERMAMIMIC:
-	    case PM_PLAYER_MIMIC:
-	    case PM_PLAYER_PERMAMIMIC:
-	    case PM_VESTY:
-	    case PM_CAMO_DWARF:
-	    case PM_COCOON_IMP:
-	    case PM_HALLUCINATION_IMAGE:
-	    case PM_CAMO_RUBBER:
-	    case PM_WIPER_RUBBER:
-	    case PM_BLENDING_TITANOTHERE:
-	    case PM_DRONING_UFO_PART:
-	    case PM_GNOSIS_SEPHIRAH:
-	    case PM_HIDDEN_MOLD:
-	    case PM_SECLUDED_MOLD:
-	    case PM_HIDDEN_FUNGUS:
-	    case PM_SECLUDED_FUNGUS:
-	    case PM_HIDDEN_PATCH:
-	    case PM_SECLUDED_PATCH:
-	    case PM_HIDDEN_FORCE_FUNGUS:
-	    case PM_SECLUDED_FORCE_FUNGUS:
-	    case PM_HIDDEN_FORCE_PATCH:
-	    case PM_SECLUDED_FORCE_PATCH:
-	    case PM_HIDDEN_WARP_FUNGUS:
-	    case PM_SECLUDED_WARP_FUNGUS:
-	    case PM_HIDDEN_WARP_PATCH:
-	    case PM_SECLUDED_WARP_PATCH:
-	    case PM_HIDDEN_STALK:
-	    case PM_SECLUDED_STALK:
-	    case PM_HIDDEN_SPORE:
-	    case PM_SECLUDED_SPORE:
-	    case PM_HIDDEN_MUSHROOM:
-	    case PM_SECLUDED_MUSHROOM:
-	    case PM_HIDDEN_GROWTH:
-	    case PM_SECLUDED_GROWTH:
-	    case PM_HIDDEN_COLONY:
-	    case PM_SECLUDED_COLONY:
-	    case PM_MARSUPILAMI:
-	    case PM_DISGUISED_UNDEAD_UNICORN:
-	    case PM_UPGRADED_SECRET_CAR:
-	    case PM_EXPENSIVE_SECRET_CAR:
-	    case PM_MAELSTROM:
-	    case PM_TROLL_PERMAMIMIC_MUMMY:
-	    case PM_CHEATING_BLACK_LIGHT:
-	    case PM_MIMIC_HIVEMIND:
-	    case PM_PERMAMIMIC_HIVEMIND:
-	    case PM_UNIDENTIFIED_RAVEN:
-	    case PM_ARTILLERY_DRAGON:
-	    case PM_EVIL_PATCH_MINOTAUR:
-	    case PM_MIMIC_LICH:
-	    case PM_CAMO_RUST_MONSTER:
-	    case PM_DEMILICH_PERMAMIMIC:
-	    case PM_RUNNING_COBRA:
-	    case PM_UMBER_MIMIC:
-	    case PM_PORTER_XORN_PERMAMIMIC:
-	    case PM_ROTTEN_FOOD_RATION:
-	    case PM_DSCHIIM_RUBBER:
-
-	    case PM_LESSER_INTRINSIC_EATING_MIMIC:
-	    case PM_INTRINSIC_EATING_MIMIC:
-	    case PM_MASTER_INTRINSIC_EATING_MIMIC:
-	    case PM_LESSER_INTRINSIC_EATING_PERMAMIMIC:
-	    case PM_INTRINSIC_EATING_PERMAMIMIC:
-	    case PM_MASTER_INTRINSIC_EATING_PERMAMIMIC:
-		tmp += 10;
-	    case PM_GIANT_MIMIC:
-	    case PM_DEPRESSION_MIMIC:
-	    case PM_DEPRESSION_PERMAMIMIC:
-	    case PM_AMNESIA_MIMIC:
-	    case PM_AMNESIA_PERMAMIMIC:
-	    case PM_GIANT_GROUP_MIMIC:
-	    case PM_GIANT_SPAWN_MIMIC:
-	    case PM_GIANT_PERMAMIMIC:
-	    case PM_GIANT_GROUP_PERMAMIMIC:
-	    case PM_GIANT_SPAWN_PERMAMIMIC:
-		tmp += 10;
-		/* fall into next case */
-	    case PM_LARGE_MIMIC:
-	    case PM_LARGE_PHASING_MIMIC:
-	    case PM_LARGE_SPAWN_MIMIC:
-	    case PM_LARGE_PERMAMIMIC:
-	    case PM_LARGE_PHASING_PERMAMIMIC:
-	    case PM_LARGE_SPAWN_PERMAMIMIC:
-		tmp += 10;
-		/* fall into next case */
-	    case PM_MIMIC:
-	    case PM_PETIT_MIMIC:
-	    case PM_SMALL_MIMIC:
-	    case PM_SMALL_HEALING_MIMIC:
-	    case PM_SMALL_FLYING_MIMIC:
-	    case PM_PERMAMIMIC:
-	    case PM_PETIT_PERMAMIMIC:
-	    case PM_SMALL_PERMAMIMIC:
-	    case PM_SMALL_HEALING_PERMAMIMIC:
-	    case PM_SMALL_FLYING_PERMAMIMIC:
-		tmp += 10;
-		if (youmonst.data->mlet != S_MIMIC && !Unchanging) {
-		    char buf[BUFSZ];
-		    You_cant("resist the temptation to mimic %s.",
-			Hallucination ? "an orange" : "a pile of gold");
-                    /* A pile of gold can't ride. */
-		    if (u.usteed) dismount_steed(DISMOUNT_FELL);
-		    nomul(-tmp, "pretending to be a pile of gold");
-		    Sprintf(buf, Hallucination ?
-			"You suddenly dread being peeled and mimic %s again!" :
-			"You now prefer mimicking %s again.",
-			an( (Upolyd && !missingnoprotect) ? youmonst.data->mname : urace.noun));
-		    eatmbuf = strcpy((char *) alloc(strlen(buf) + 1), buf);
-		    nomovemsg = eatmbuf;
-		    afternmv = eatmdone;
-		    /* ??? what if this was set before? */
-		    youmonst.m_ap_type = M_AP_OBJECT;
-		    youmonst.mappearance = Hallucination ? ORANGE : GOLD_PIECE;
-		    newsym(u.ux,u.uy);
-		    curs_on_u();
-		    /* make gold symbol show up now */
-		    display_nhwindow(WIN_MAP, TRUE);
-		}
 		break;
 	    case PM_QUANTUM_MECHANIC:
 	    case PM_ATOMIC_QUANTUM_MECHANIC:
@@ -2788,29 +2466,6 @@ register int pm;
 		if (HStun > 2)  make_stunned(2L,FALSE);
 		if (HConfusion > 2)  make_confused(2L,FALSE);
 
-		tmp += 10;
-		if (youmonst.data->mlet != S_MIMIC && !Unchanging) {
-		    char buf[BUFSZ];
-		    You_cant("resist the temptation to mimic %s.",
-			Hallucination ? "an orange" : "a pile of gold");
-                    /* A pile of gold can't ride. */
-		    if (u.usteed) dismount_steed(DISMOUNT_FELL);
-		    nomul(-tmp, "pretending to be a pile of gold");
-		    Sprintf(buf, Hallucination ?
-			"You suddenly dread being peeled and mimic %s again!" :
-			"You now prefer mimicking %s again.",
-			an( (Upolyd && !missingnoprotect) ? youmonst.data->mname : urace.noun));
-		    eatmbuf = strcpy((char *) alloc(strlen(buf) + 1), buf);
-		    nomovemsg = eatmbuf;
-		    afternmv = eatmdone;
-		    /* ??? what if this was set before? */
-		    youmonst.m_ap_type = M_AP_OBJECT;
-		    youmonst.mappearance = Hallucination ? ORANGE : GOLD_PIECE;
-		    newsym(u.ux,u.uy);
-		    curs_on_u();
-		    /* make gold symbol show up now */
-		    display_nhwindow(WIN_MAP, TRUE);
-		}
 		break;
 
 	    case PM_CHAMELEON:
@@ -3286,6 +2941,33 @@ register int pm;
 	/* Eating bad effect monsters causes another bad effect --Amy */
 		if (dmgtype(ptr, AD_BADE) ) {
 			badeffect();
+		}
+
+	/* Mimics will always cause you to mimic something --Amy */
+
+		if (standardmimic(ptr) || permamimic(ptr) || (ptr->mlet == S_MIMIC)) {
+			if (youmonst.data->mlet != S_MIMIC && !Unchanging) {
+			    char buf[BUFSZ];
+			    You_cant("resist the temptation to mimic %s.",
+				Hallucination ? "an orange" : "a pile of gold");
+	                    /* A pile of gold can't ride. */
+			    if (u.usteed) dismount_steed(DISMOUNT_FELL);
+			    nomul(-(rnd(60)), "pretending to be a pile of gold");
+			    Sprintf(buf, Hallucination ?
+				"You suddenly dread being peeled and mimic %s again!" :
+				"You now prefer mimicking %s again.",
+				an( (Upolyd && !missingnoprotect) ? youmonst.data->mname : urace.noun));
+			    eatmbuf = strcpy((char *) alloc(strlen(buf) + 1), buf);
+			    nomovemsg = eatmbuf;
+			    afternmv = eatmdone;
+			    /* ??? what if this was set before? */
+			    youmonst.m_ap_type = M_AP_OBJECT;
+			    youmonst.mappearance = Hallucination ? ORANGE : GOLD_PIECE;
+			    newsym(u.ux,u.uy);
+			    curs_on_u();
+			    /* make gold symbol show up now */
+			    display_nhwindow(WIN_MAP, TRUE);
+			}
 		}
 
 		 count = 0;	/* number of possible intrinsics */
