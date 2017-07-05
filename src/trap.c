@@ -13641,7 +13641,8 @@ register boolean force, here;
 		} else {
 		    /* The Lethe strips blessed and cursed status... */
 		    if (level.flags.lethe) {
-			uncurse(obj);
+			/* Amy edit: you cannot easily uncurse everything, sorry */
+			if (obj->otyp == POT_WATER) uncurse(obj);
 			unbless(obj);
 		    }
 
@@ -13994,8 +13995,7 @@ drown()
 
 	if (level.flags.lethe) {
 	    /* Bad idea */
-	    You_feel("the sparkling waters of the Lethe sweep away your "
-			    "cares!");
+	    You_feel("the sparkling waters of the Lethe sweep away your cares!");
 	    forget(5); /* used to be 25 --Amy */
 	}
 

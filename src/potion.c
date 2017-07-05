@@ -5221,7 +5221,8 @@ boolean amnesia;
 		Your("%s for a moment.", aobjnam(obj, "sparkle"));
 		used = TRUE;
 	    }
-	    uncurse(obj);
+		/* Amy edit: you cannot easily uncurse everything, sorry */
+	    if (obj->otyp == POT_WATER) uncurse(obj);
 	    unbless(obj);
 	}
 
