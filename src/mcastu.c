@@ -365,8 +365,8 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		else if (mattk->adtyp == AD_CLRC)
 		    spellnum = choose_clerical_spell(spellnum);
 		else { /* AD_CAST - often reroll when psybolt or open wounds is chosen --Amy */
-		    spellnum = rn2(2) ? choose_clerical_spell(spellnum) : choose_magic_spell(spellnum);
-			while (rn2(7) && !spellnum) spellnum = rn2(2) ? choose_clerical_spell(spellnum) : choose_magic_spell(spellnum);
+		    spellnum = ((moves % 4 == 0) || ((moves + 1) % 4 == 0)) ? choose_clerical_spell(spellnum) : choose_magic_spell(spellnum);
+			while (rn2(7) && !spellnum) spellnum = ((moves % 4 == 0) || ((moves + 1) % 4 == 0)) ? choose_clerical_spell(spellnum) : choose_magic_spell(spellnum);
 		}
 		/* not trying to attack?  don't allow directed spells */
 		if (!thinks_it_foundyou) {
@@ -650,10 +650,10 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	    }
 	    case AD_CAST:       /* clerical spell */
 	    {
-		if (!rn2(2))
-		    cast_wizard_spell(mtmp, dmg, spellnum);
-		else
+		if ((moves % 4 == 0) || ((moves + 1) % 4 == 0))
 		    cast_cleric_spell(mtmp, dmg, spellnum);
+		else
+		    cast_wizard_spell(mtmp, dmg, spellnum);
 		dmg = 0; /* done by the spell casting functions */
 		break;
 	    }
