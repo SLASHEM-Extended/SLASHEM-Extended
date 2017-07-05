@@ -3648,7 +3648,7 @@ struct obj *otmp;
 		      otyp != CREAM_PIE && otyp != EUCALYPTUS_LEAF) ||
 		     (otmp->oclass == GEM_CLASS && !is_graystone(otmp))))
 		|| (!strcmp(word, "invoke") &&
-		    (!otmp->oartifact && !objects[otyp].oc_unique &&
+		    (!otmp->oartifact && !otmp->fakeartifact && !objects[otyp].oc_unique &&
 		     (otyp != FAKE_AMULET_OF_YENDOR || otmp->known) &&
 		     otyp != CRYSTAL_BALL &&	/* #invoke synonym for apply */
 		   /* note: presenting the possibility of invoking non-artifact
