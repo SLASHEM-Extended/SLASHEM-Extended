@@ -1876,6 +1876,7 @@ mattacku(mtmp)
 	if (mtmp->data->msound == MS_FART_LOUD && !mtmp->butthurt) tmp += 5;
 	if (mtmp->data->msound == MS_FART_NORMAL && !mtmp->butthurt) tmp += 10;
 	if (mtmp->data->msound == MS_FART_QUIET && !mtmp->butthurt) tmp += 15;
+	if (mtmp->data->msound == MS_WHORE && !mtmp->butthurt) tmp += rnd(20);
 	if (mtmp->data->msound == MS_SHOE) tmp += rnd(20);
 	if (mtmp->data->msound == MS_STENCH) tmp += rnd(20);
 	if (mtmp->egotype_farter) tmp += 15;
