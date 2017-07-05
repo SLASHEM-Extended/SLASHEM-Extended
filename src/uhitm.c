@@ -4854,7 +4854,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || ishaxor || Hallucination) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(367)) {
+		switch (rnd(438)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -5223,8 +5223,79 @@ register int roll;
 		case 365: pline("You could not hit the broadside of a barn with that pathetic attempt."); break;
 		case 366: pline("You perform a decent attack but was perfectly parried by %s!", mon_nam(mdef)); break;
 		case 367: pline("Your fumbled attack completely missed %s!", mon_nam(mdef)); break;
+		case 368: pline("You did not hit because you are such a loser!"); break;
+		case 369: pline("You feel as if the screwy dnethack to-hit calculations have been enabled, since you unexpectedly miss %s.", mon_nam(mdef)); break;
+		case 370: pline("It appears that someone has turned the game into Nethack Fourk, because you missed %s despite your to-hit actually being rather good.", mon_nam(mdef)); break;
+		case 371: pline("Are you sure you're not playing FIQhack by mistake? Here in Slash'EM Extended, you should hit %s... but you didn't!", mon_nam(mdef)); break;
+		case 372: pline("Apparently you're playing SLASHTHEM, because your to-hit bonus doesn't seem to work and therefore you miss."); break;
+		case 373: pline("Your penis-shaped sword doesn't hit of course!"); break;
+		case 374: pline("Are you scared of %s or are you really incapable of hitting the broad side of a barn?", mon_nam(mdef)); break;
+		case 375: pline("What, you keep attacking monsters in melee even though you have the Fear status effect? No wonder you never hit!"); break;
+		case 376: pline("You miss like always, because you're simply very bad at this game."); break;
+		case 377: pline("Why do you keep trying to hit with such a wimpy weapon?"); break;
+		case 378: pline("You hit yourself because your dexterity is way too low!"); break;
+		case 379: pline("%s laughs all the time while your strikes only hit the air!", Monnam(mdef)); break;
+		case 380: pline("Rattle/clink! You accidentally smashed your weapon into the wall!"); break;
+		case 381: pline("Hooooooooo he he he he he!"); break;
+		case 382: pline("%s says: 'Harharharharharharharrrrr!'", Monnam(mdef)); break;
+		case 383: pline("Wow, you really are the greatest. The greatest failure of the world!"); break;
+		case 384: pline("You fire your assault rifle 24 times and miss 25 times!"); break;
+		case 385: pline("That's typical. Always brag about your deeds but unable to even hit the wimpy %s!", mon_nam(mdef)); break;
+		case 386: pline("Your stick isn't long enough!"); break;
+		case 387: pline("You try to bludgeon %s with your penis but the attempt fails.", mon_nam(mdef)); break;
+		case 388: pline("%s constructed a nasty trap that causes you to miss!", Monnam(mdef)); break;
+		case 389: pline("%s was really just a displaced image of a monster standing on an adjacent tile!", Monnam(mdef)); break;
+		case 390: pline("%s tickles you, and you're unable to get an attack off!", Monnam(mdef)); break;
+		case 391: pline("You probably forgot that you're infected with the SLASHTHEM disease, which causes you to automiss.", mon_nam(mdef)); break;
+		case 392: pline("Some evil float eyeler reprogrammed the game, and it is now Unnethack where your weapon automatically misses 1 out of 4 times. This means that your current attack, which would otherwise have hit, does not."); break;
+		case 393: pline("%s turned on the Sporkhack switch, causing it (and also all other monsters) to gain massive amounts of AC and of course your wimpy little-girl attack is too weak to penetrate that.", Monnam(mdef)); break;
+		case 394: pline("The Unnethackplus error-bug mode has been activated, and as a result the top status line doesn't tell you whether your attack hit or not."); break;
+		case 395: pline("Because of the server lag, your attack misses."); break;
+		case 396: pline("You are playing in real-time mode, and you took too long to press that button. Therefore, %s was able to parry your attack.", mon_nam(mdef)); break;
+		case 397: pline("%s says: 'Sorry %s, but I don't have a photo for you today.'", Monnam(mdef), plname); break;
+		case 398: pline("You fire your pistol at %s but the bullet just barely misses!", mon_nam(mdef)); break;
+		case 399: pline("%s produces erotic air current noises, and you forget that you actually wanted to attack it.", Monnam(mdef)); break;
+		case 400: pline("%s steals all your Junethack trophies because you didn't watch out.", Monnam(mdef)); break;
+		case 401: pline("You pushed the wrong button and therefore wasted a turn instead of attacking."); break;
+		case 402: pline("If you keep missing like this, you will end up abusing your dexterity and then you'll miss even more!"); break;
+		case 403: pline("You should really realize that melee combat is not what your current character is good at. Why don't you try to cast some spells instead?"); break;
+		case 404: pline("You fucked it up again, and %s is laughing all the time.", mon_nam(mdef)); break;
+		case 405: pline("If you think you're missing a lot now, wait until %s installs Nethack Fourk on your PC where you'll REALLY miss almost every time!", mon_nam(mdef)); break;
+		case 406: pline("%s is really an ancient red dragon from Nethack Fourk, which has so much AC that it's almost impossible to hit!", mon_nam(mdef)); break;
+		case 407: pline("You expected your melee attacks to hit without using buff spells first? Ha!"); break;
+		case 408: pline("You're putting %s to shame.", urace.coll); break;
+		case 409: pline("You're just a wimpy %s! You can't do anything right!", urace.noun); break;
+		case 410: pline("Useless %s scum like you can't even hope to stand a chance against %s.", urace.adj, mon_nam(mdef)); break;
+		case 411: pline("%s will call the Kops to punish you if you keep missing.", align_gname(A_LAWFUL)); break;
+		case 412: pline("%s watches your futile attempts with disdain.", align_gname(A_NEUTRAL)); break;
+		case 413: pline("Do you want to anger %s? Then by all means continue.", align_gname(A_CHAOTIC)); break;
+		case 414: pline("Your ancestors are cursing the name '%s' from their grave as they see you actually manage to miss %s!", plname, mon_nam(mdef)); break;
+		case 415: pline("%s, you are such a loser!", plname); break;
+		case 416: pline("%s escapes from you by using a pogo stick!", Monnam(mdef)); break;
+		case 417: pline("%s chloroforms you just as your weapon is about to strike.", Monnam(mdef)); break;
+		case 418: pline("%s is actually a monster from Grunthack, also known as the Evil Variant(TM), and instakills you. Do you want your possessions identified? DYWYPI? (ynq) (y) _", Monnam(mdef)); break;
+		case 419: pline("Suddenly the variant you're playing turns into GameOverHack. Do you want your possessions identified? DYWYPI? (ynq) (y) _"); break;
+		case 420: pline("Suddenly the variant you're playing turns into ScrewHack. You miss %s! Oh no, it uses a passive touch of death! Do you want your possessions identified? DYWYPI? (ynq) (y) _", mon_nam(mdef)); break;
+		case 421: pline("%s summons 5 titanotheres and 10 large cats. The titanothere bites! The large cat hits! The large cat hits! The titanothere bites! The large cat hits! You die...", Monnam(mdef)); break;
+		case 422: pline("You obtain a master's degree in missing. Well done, now you can miss even the easiest monsters in existence (%s for example).", mon_nam(mdef)); break;
+		case 423: pline("%s hangs %s long bundle into your %s, and the soothing feeling prevents you from attacking.", Monnam(mdef), mhis(mdef), body_part(FACE)); break;
+		case 424: pline("You are dispirited and therefore unable to attack %s.", mon_nam(mdef)); break;
+		case 425: pline("You are confused! You accidentally hurt yourself in your confusion!"); break;
+		case 426: pline("You're fully paralyzed and can't attack!"); break;
+		case 427: pline("Your attack goes way off!"); break;
+		case 428: pline("%s slips in between your %s.", Monnam(mdef), makeplural(body_part(LEG))); break;
+		case 429: pline("The audience cheers for %s, who keeps hitting you while you keep missing!", mon_nam(mdef)); break;
+		case 430: pline("Ah, the incapable %s whiffing at %s again, although even a little child could hit such a weak monster!", plname, mon_nam(mdef)); break;
+		case 431: pline("%s yawns: 'Why don't you just surrender... I've got better things to do today than fighting with a punching bag like you.'", Monnam(mdef)); break;
+		case 432: pline("You accidentally drop your weapon just as you try to strike %s.", mon_nam(mdef)); break;
+		case 433: pline("%s snatches your weapon!", mon_nam(mdef)); break;
+		case 434: pline("%s mumbles an incantation, and your weapon becomes cursed.", mon_nam(mdef)); break;
+		case 435: pline("%s mumbles an incantation, and your weapon seems less effective.", mon_nam(mdef)); break;
+		case 436: pline("In order to keep things fair, the RNG decides that you miss because otherwise the poor %s would have no chance at all.", mon_nam(mdef)); break;
+		case 437: pline("%s laughs: 'Neener-neener, catch me if you caa-an!'", Monnam(mdef)); break;
+		case 438: pline("%s suddenly decides that the game you're playing is not Slash'EM Extended but SatanHack instead, and opens a gate to summon a couple major demons including Demogorgon.", Monnam(mdef)); break;
 
-		default: pline("You missed %s!", mon_nam(mdef), mon_nam(mdef)); break;
+		default: pline("You missed %s!", mon_nam(mdef)); break;
 
 		}
 

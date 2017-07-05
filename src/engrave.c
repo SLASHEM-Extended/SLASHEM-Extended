@@ -621,7 +621,7 @@ static const char *random_mesg[] = {
 	"1002: He is Not that Which He Says He Is.", /*Good Omens*/
 		"3001: Behinde the Eagle's Neste a grate Ash hath fellen.",
 	"VI. You Shall Not Subject Your God To Market Forces!",	/*Discworld*/
-		"Nae quin! Nae laird! Nae master! We willna be fooled again!"
+		"Nae quin! Nae laird! Nae master! We willna be fooled again!",
 		"Morituri Nolumus Mori",
 		"End-of-the-World Switch. PLEASE DO NOT TOUCH",
 		"Give a man a fire and he's warm for a day, but set fire to him and he's warm for the rest of his life.",
@@ -653,6 +653,9 @@ static const char *random_mesg[] = {
 	"http://nethackwiki.com/wiki/Slash%27EM_Extended I will not cease to poison by carbon monoxide",
 	"after opportunity to kill Cthulhu Geenome lightsaber, playing for the Khajiit-transsexual talk about that in other games is the freedom to choose make me laugh only",
 	"Yes, we'll see a list of races and added roles such trash",
+	"This area is property of Team Dislexiapater.",
+	"Anna's Hussy Club - Main Entrance",
+	"Marking left by Arabella to denote space for nasty traps",
 };
 
 const char *
@@ -3782,6 +3785,64 @@ static const char *epitaphs[] = {
 "Died of neurofibroma.",
 "Starved to death. Next time I'm playing a race that does not have intrinsic regeneration.",
 "Here lies a poor explorer, all because he attacked an exploder.",
+"C is for Clair who wasted away.",
+"D is for Desmond thrown out of the sleigh.",
+"E is for Ernest who choked on a peach.",
+"F is for Fanny, sucked dry by a leech.",
+"G is for George, smothered under a rug.",
+"H is for Hector, done in by a thug.",
+"I is for Ida who drowned in the lake.",
+"J is for James who took lye, by mistake.",
+"K is for Kate who was struck with an axe.",
+"L is for Leo who swallowed some tacks.",
+"M is for Maud who was swept out to sea.",
+"N is for Nevil who died of ennui.",
+"O is for Olive, run through with an awl.",
+"P is for Prue, trampled flat in a brawl.",
+"Q is for Quinton who sank in a mire.",
+"R is for Rhoda, consumed by a fire.",
+"S is for Susan who perished of fits.",
+"T is for Titas who blew into bits.",
+"U is for Una who slipped down a drain.",
+"V is for Victor, squashed under a train.",
+"W is for Winie, embedded in ice.",
+"X is for Xerxes, devoured by mice.",
+"Y is for Yoric whose head was bashed in.",
+"Z is for Zilla who drank too much gin.",
+"I played FIQhack and got to the quest but then some asshole read a scroll of genocide and wiped me out.",
+"I played Nethack Fourk but a deep ettin summoned an island nymph who stole my shield of reflection and jumped into a hole, and then a lieutenant with a wand of death appeared.",
+"Tried to punch out Cthulhu in Dynahack. He sucked my brain 200 times and then I died.",
+"The elder priest in dnethack killed me, that cheater!",
+"Tried to eat a tainted giant corpse in Grunthack. And then the game crashed while trying to make a bones file. Joy.",
+"The wand destruction patch (which is bullshit) killed my Nethack Fourk character! Whose bright idea was it to make lightning bypass my reflection and vaporize my ring of levitation while I'm over open water?",
+"The wand destruction patch (which is bullshit) killed my Nethack Fourk character! Whose bright idea was it to make wands of teleportation not work at all on the castle where you have no hopes of fighting an ancient dragon head-on?",
+"This unfortunate fellow engaged the elder priest in dnethack and had all his stuff corroded, then lost his cloak of magic resistance to the asshole tentacles, and while trying to slip on the ring of levitation to get past the 200 pits the priest created, made the mistake of taking off free action and was chain-paralyzed to death.",
+"A person who inhaled too much of Katharina's fart gas.",
+"Tried to play Dynahack and got a repeatable crash upon trying to kill Rodney, so I decided to commit sudoku.",
+"Unnethack's Aphrodite (who certainly isn't overpowered at all) and her bitches stole all of my belongings and then a tiger spawned to assault my naked self. Yes, I could have engraved Elbereth, but it wasn't really worth it anymore.",
+"I made the mistake of playing SLASHTHEM. Got bored to tears after five minutes, and resorted to repeatedly throw my sword upward after ten minutes.",
+"Someone told me that there was a cure for acute depression waiting for me at the train station in 10 minutes, so I went ahead and started walking on the railroad tracks.",
+"I played SLASHTHEM and died to some bullshit. Be glad you're playing a much better variant instead!",
+"I played SLASHTHEM with my favorite role from SLASH'EM Extended and realized that someone had nuked the most defining features of that role. Not wanting to put up with that bullshit, I shot my rifle in . direction repeatedly.",
+"I played FIQhack. The last thing I saw was a kobold shaman and a few dozen instances of 'The sleep ray hits you!' on my message log culminating in 'You die--More--'.",
+"I played Sporkhack and started in the lower right corner surrounded by rock. My pick-axe only produced the message 'This wall is too hard to dig into', so I applied it to my own skull instead.",
+"The orange dragon technically instakilled me from full health because I stupidly thought that 54%% sleep resistance is enough. God I hate Sporkhack!",
+"This dude fought zombies in Grunthack and eventually became one himself.",
+"What, why did that succubus kill me? There was no message about her attacking or anything! What the hell, Nethack Fourk? I just died out of the blue!",
+"No corpse can be found in this grave, because this grave is of a player who tried to take on an ancient black dragon in Nethack Fourk thinking that disintegration resistance would protect the inventory. He learned the hard way that it does not.",
+"A scurrier tourist would have been buried here, but Nethack Fourk crashed and warped the body to the segfaultitis realm.",
+"This samurai tried to fight an enemy samurai that had a wand of lightning, not knowing that Dynahack changed shock resistance to only offer 50%% protection.",
+"Killed by bumping into an invisible shopkeeper.",
+"Killed by foolishly trying to melee a superjedi at experience level 2.",
+"Killed by foolishly trying to melee a giant eel at experience and dungeon level 2.",
+"Wait, why did the priest get hostile? I got a strange feeling of peace when entering the te-- oh shit, I forgot that altars can disappear when dropping stuff on them...",
+"Huh. Didn't think the darts of disintegration thrown by that kobold would actually disintegrate me. Oh well, at least my tombstone reads 'killed by a died', which sounds really cool.",
+"Killed by a sexy leather pump.",
+"Killed by bleedout from leg-scratches.",
+"Instead of a corpse, we buried a statue here - it was created because some intelligent monster threw a cockatrice egg at the alive body.",
+"Tried to eat a dreamer cockatrice, and forgot that the paralysis only happens after eating it is complete.",
+"A poor soul who tried to eat an eight-footed snake, not knowing that they cause petrification.",
+"Wait, so if I eat an undead mimic and become deathly sick, I end up becoming a gold piece for more turns than it takes for the sickness to kill me???",
 
 };
 
@@ -3808,6 +3869,7 @@ const char *str;
 
 	/* Engrave the headstone */
 	if (!str) str = epitaphs[rn2(SIZE(epitaphs))];
+
 	del_engr_at(x, y);
 	make_engr_at(x, y, str, 0L, HEADSTONE);
 	return;

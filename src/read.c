@@ -655,6 +655,23 @@ doread()
 "This shirt is unique! Well, until you go to a shop that prints shirts, and order them to print this exact message on it.",
 "XOR ME HSALS!",
 "XUS MODA!",
+"ais is literally satan and dnethack and nethack4 and fiqhack are absolute shit and all the opposing team are autists", /* inspired by Elronnd; of course when I (Amy) say similar-sounding things (Elronnd was obviously exaggerating) they should be taken with a grain of salt :-) */
+"I got a trophy in every variant in last year's Junethack!",
+"Play slex! *bundlebundlebundle*",
+"Geht nicht. Es ist verflucht.",
+"My sexy butt cheeks can produce beautiful farting noises!",
+"I'm totally hot in bed!",
+"Want to spend a romantic night with me? Just 20 zorkmids! Don't worry, I'm working for women too!",
+"I'm a bitch - deal with it!",
+"This shirt really is as fleecy as it looks!",
+"I'm in love with AmyBSOD!",
+"Member of Anna's Hussy Club",
+"Supreme Chairwoman of Anna's Hussy Club",
+"Bang Gang - Don't mess with us!",
+"Teacher Darts Competitor",
+"Why are you looking at my shirt? My high heels are what should be catching your eyesight!",
+"I got 113 trophies in Junethack without resorting to botting or similarly lame strategies!",
+"I ascended Nethack 343, 360, Unnethack, Dynahack and Nethack4 - now I'll ascend SLEX!",
 
 	    };
 	    char buf[BUFSZ];
