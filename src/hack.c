@@ -1155,6 +1155,19 @@ int mode;
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
+                    else if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+			You("crash into a door! Ouch!");
+
+			losehp(rnd(10), "walking into a door", KILLED_BY);
+			if (!rn2(10)) {
+  			    if (rn2(50)) {
+				adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+			    } else {
+				You_feel("dizzy!");
+				forget(1 + rn2(5));
+			    }
+			}
+		    }
 #ifdef AUTO_OPEN
                     else if (iflags.autoopen
 				&& !Confusion && !Stunned && !Fumbling) {
@@ -1173,26 +1186,9 @@ int mode;
 			    }
 			} else pline("That door is closed.");
 
-		    return FALSE;
 		    }
+		    return FALSE;
 		} else if (mode == TEST_TRAV) goto testdiag;
-		if (mode == DO_MOVE) {
-
-				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
-					You("crash into a door! Ouch!");
-
-					losehp(rnd(10), "walking into a door", KILLED_BY);
-					if (!rn2(10)) {
-						if (rn2(50)) {
-							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
-						} else {
-							You_feel("dizzy!");
-							forget(1 + rn2(5));
-						}
-					}
-				} else pline("There is a door in the way!");
-		}
-		return FALSE;
 	    }
 	} else {
 	testdiag:
