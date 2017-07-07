@@ -599,6 +599,8 @@ E struct _plinemsg *pline_msg;
 #define MSGTYP_NOSHOW	2
 #define MSGTYP_STOP	3
 
+E boolean curses_stupid_hack;
+
 #undef E
 
 #endif /* DECL_H */

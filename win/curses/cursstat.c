@@ -449,13 +449,13 @@ curses_update_stats(void)
 {
     WINDOW *win = curses_get_nhwin(STATUS_WIN);
     int orient = curses_get_window_orientation(STATUS_WIN);
-
     boolean horiz = FALSE;
     if ((orient != ALIGN_RIGHT) && (orient != ALIGN_LEFT))
         horiz = TRUE;
 
     boolean border = curses_window_has_border(STATUS_WIN);
 
+    werase(win);
     /* Figure out if we have proper window dimensions for horizontal statusbar. */
     if (horiz) {
         /* correct y */
@@ -572,8 +572,6 @@ draw_horizontal(int x, int y, int hp, int hpmax)
         print_statdiff(" S:", &prevscore, botl_score(), STAT_OTHER);
 #endif /* SCORE_ON_BOTL */
 
-    wclrtoeol(win);
-
 linetwo:
     /* Line 2 */
     y++;
@@ -687,8 +685,6 @@ draw_horizontal_new(int x, int y, int hp, int hpmax)
             (Upolyd || (FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) ? "" : race, Upolyd ? "" : " ",
             rank);
 
-    wclrtoeol(win);
-
 linetwonew:
 
     /* Line 2 */
@@ -718,7 +714,7 @@ linetwonew:
     wprintw(win, "HP:");
     draw_bar(TRUE, hp, hpmax, NULL);
     print_statdiff(" AC:", &prevac, u.uac, STAT_AC);
-    if (Upolyd) {
+    if (Upolyd)
         print_statdiff(" HD:", &prevlevel, mons[u.umonnum].mlevel, STAT_OTHER);
 #ifdef EXP_ON_BOTL
     else if (flags.showexp) {
@@ -746,15 +742,15 @@ linetwonew:
         }
         print_statdiff("", &prevexp, xp_left, STAT_AC);
         waddch(win, ')');
+    }
 #endif
-    } else
+    else
         print_statdiff(" Exp:", &prevlevel, u.ulevel, STAT_OTHER);
 
     waddch(win, ' ');
     describe_level(buf, FALSE);
 
     wprintw(win, "%s", buf);
-    wclrtoeol(win);
 
 
     /* Line 3 */
@@ -777,7 +773,6 @@ linetwonew:
     if (flags.time)
         print_statdiff(" T:", &prevtime, moves, STAT_TIME);
 
-    wclrtoeol(win);
     curses_add_statuses(win, TRUE, FALSE, &x, &y);
 
     /* Right-aligned attributes */
@@ -958,7 +953,7 @@ linetwovert:
     print_statdiff("Armor Class:   ", &prevac, u.uac, STAT_AC);
     wmove(win, y++, x);
 
-    if (Upolyd) {
+    if (Upolyd)
         print_statdiff("Hit Dice:      ", &prevlevel, mons[u.umonnum].mlevel, STAT_OTHER);
 #ifdef EXP_ON_BOTL
     else if (flags.showexp) {
@@ -966,8 +961,9 @@ linetwovert:
         /* use waddch, we don't want to highlight the '/' */
         waddch(win, '/');
         print_statdiff("", &prevexp, u.uexp, STAT_OTHER);
+    }
 #endif
-    } else
+    else
         print_statdiff("Level:         ", &prevlevel, u.ulevel, STAT_OTHER);
     wmove(win, y++, x);
 

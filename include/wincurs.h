@@ -92,7 +92,11 @@ extern void curses_curs(winid wid, int x, int y);
 
 extern void curses_putstr(winid wid, int attr, const char *text);
 
+#ifdef FILE_AREAS
+extern void curses_display_file(const char *filearea,const char *filename,BOOLEAN_P must_exist);
+#else
 extern void curses_display_file(const char *filename,BOOLEAN_P must_exist);
+#endif
 
 extern void curses_start_menu(winid wid);
 
@@ -224,7 +228,11 @@ extern void curses_prehousekeeping(void);
 
 extern void curses_posthousekeeping(void);
 
+#ifdef FILE_AREAS
+extern void curses_view_file(const char *filearea, const char *filename, boolean must_exist);
+#else
 extern void curses_view_file(const char *filename, boolean must_exist);
+#endif
 
 extern void curses_rtrim(char *str);
 

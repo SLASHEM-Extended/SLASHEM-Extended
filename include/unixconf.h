@@ -143,14 +143,17 @@
  */
 
 #ifdef PUBLIC_SERVER
-#define FILE_AREA_VAR		"/games/slex/slexdir/"
-#define FILE_AREA_SAVE		"/games/slex/slexdir/save/"
-#define FILE_AREA_SHARE		"/games/slex/slexdir/"
-#define FILE_AREA_UNSHARE	"/games/slex/slexdir/"
-#define FILE_AREA_DOC		"/games/slex/slexdir/"
+#ifndef HACKDIR
+#define HACKDIR                 "/games/slex/slexdir"
+#endif
+#define FILE_AREA_VAR		HACKDIR "/"
+#define FILE_AREA_SAVE		HACKDIR "/save/"
+#define FILE_AREA_SHARE		HACKDIR "/"
+#define FILE_AREA_UNSHARE	HACKDIR "/"
+#define FILE_AREA_DOC		HACKDIR "/"
 
-#define FILE_AREA_BONES		"/games/slex/slexdir/bones/"
-#define FILE_AREA_LEVL		"/games/slex/slexdir/level/"
+#define FILE_AREA_BONES		HACKDIR "/bones/"
+#define FILE_AREA_LEVL		HACKDIR "/level/"
 
 #else /* PUBLIC_SERVER */
 

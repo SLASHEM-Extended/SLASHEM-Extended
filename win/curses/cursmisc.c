@@ -537,14 +537,23 @@ curses_posthousekeeping()
 }
 
 
+#ifdef FILE_AREAS
+void
+curses_view_file(const char* filearea, const char *filename, boolean must_exist)
+#else
 void
 curses_view_file(const char *filename, boolean must_exist)
+#endif
 {
     winid wid;
     anything *identifier;
     char buf[BUFSZ];
     menu_item *selected = NULL;
+#ifdef FILE_AREAS
+    dlb *fp = dlb_fopen_area(filearea, filename, "r");
+#else
     dlb *fp = dlb_fopen(filename, "r");
+#endif
 
     if ((fp == NULL) && (must_exist)) {
         pline("Cannot open %s for reading!", filename);

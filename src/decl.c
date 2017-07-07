@@ -354,6 +354,14 @@ struct realtime_data realtime_data = { 0, 0, 0 };
 
 struct _plinemsg *pline_msg = NULL;
 
+/* FIXME: The curses windowport requires this stupid hack, in the
+   case where a game is in progress and the user is asked if he
+   wants to destroy old game.
+   Without this, curses tries to show the yn() question with pline()
+   ...but the message window isn't up yet.
+ */
+boolean curses_stupid_hack = 1;
+
 /* dummy routine used to force linkage */
 void
 decl_init()

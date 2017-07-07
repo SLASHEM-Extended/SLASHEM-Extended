@@ -411,7 +411,7 @@ curses_init_nhcolors()
             /* Work around the crazy definitions above for more background colors... */
             for (i = 0; i < (COLORS >= 16 ? 16 : 8); i++) {
                 init_pair((hicolor ? 49 : 9) + i, clr_remap[i], COLOR_GREEN);
-                init_pair((hicolor ? 33 : 33) + i, clr_remap[i], COLOR_YELLOW);
+                init_pair((hicolor ? 65 : 33) + i, clr_remap[i], COLOR_YELLOW);
                 init_pair((hicolor ? 81 : 41) + i, clr_remap[i], COLOR_MAGENTA);
                 init_pair((hicolor ? 97 : 49) + i, clr_remap[i], COLOR_CYAN);
                 init_pair((hicolor ? 113 : 57) + i, clr_remap[i], COLOR_WHITE);
