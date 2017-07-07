@@ -16,6 +16,9 @@ STATIC_DCL boolean FDECL(monstinroom, (struct permonst *,int));
 STATIC_DCL void FDECL(move_update, (BOOLEAN_P));
 STATIC_PTR void FDECL(set_litX, (int,int,genericptr_t));
 
+static boolean door_opened;	/* set to true if door was opened during test_move */
+
+
 #define IS_SHOP(x)	(rooms[x].rtype >= SHOPBASE)
 
 #ifdef OVL2
@@ -1152,6 +1155,25 @@ int mode;
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
+                    else if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+			You("crash into a door! Ouch!");
+
+			losehp(rnd(10), "walking into a door", KILLED_BY);
+			if (!rn2(10)) {
+  			    if (rn2(50)) {
+				adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+			    } else {
+				You_feel("dizzy!");
+				forget(1 + rn2(5));
+			    }
+			}
+		    }
+#ifdef AUTO_OPEN
+                    else if (iflags.autoopen
+				&& !Confusion && !Stunned && !Fumbling) {
+			    door_opened = flags.move = doopen_indir(x, y);
+		    }
+#endif
 		    else if (x == ux || y == uy) {
 			if (Blind || Stunned || Numbed || ACURR(A_DEX) < 10 || Fumbling) {
 			    if (u.usteed) {
@@ -1164,26 +1186,9 @@ int mode;
 			    }
 			} else pline("That door is closed.");
 
-		    return FALSE;
 		    }
+		    return FALSE;
 		} else if (mode == TEST_TRAV) goto testdiag;
-		if (mode == DO_MOVE) {
-
-				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
-					You("crash into a door! Ouch!");
-
-					losehp(rnd(10), "walking into a door", KILLED_BY);
-					if (!rn2(10)) {
-						if (rn2(50)) {
-							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
-						} else {
-							You_feel("dizzy!");
-							forget(1 + rn2(5));
-						}
-					}
-				} else pline("There is a door in the way!");
-		}
-		return FALSE;
 	    }
 	} else {
 	testdiag:
@@ -2052,8 +2057,12 @@ domove()
 	}
 
 	if (!test_move(u.ux, u.uy, x-u.ux, y-u.uy, DO_MOVE)) {
-	    flags.move = 0;
-	    forcenomul(0, 0);
+            if (!door_opened) {
+	        flags.move = 0;
+	        forcenomul(0, 0);
+            } else {
+                door_opened = 0;
+            }
 	    return;
 	}
 

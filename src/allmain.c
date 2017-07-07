@@ -7139,6 +7139,7 @@ stop_occupation()
 void
 display_gamewindows()
 {
+    curses_stupid_hack = 0;
     WIN_MESSAGE = create_nhwindow(NHW_MESSAGE);
     WIN_STATUS = create_nhwindow(NHW_STATUS);
     WIN_MAP = create_nhwindow(NHW_MAP);

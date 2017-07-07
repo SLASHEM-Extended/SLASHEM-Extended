@@ -518,8 +518,9 @@ typedef unsigned char	uchar;
 #define AUTOPICKUP_EXCEPTIONS /* exceptions to autopickup */
 #define EPITAPH		/* 'write your own epitaph' patch */
 
-#define DUMP_LOG /* Dumplog support */
+#define AUTO_OPEN	/* open doors by walking into them - Stefano Busti */
 
+#define DUMP_LOG /* Dumplog support */
 #ifdef PUBLIC_SERVER
 #define DUMP_FN "/dgldir/userdata/%n/slex/dumplog/%d.txt"
 #else

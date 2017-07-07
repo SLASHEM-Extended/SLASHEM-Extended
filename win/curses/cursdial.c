@@ -72,8 +72,6 @@ static nhmenu *nhmenus = NULL;  /* NetHack menu array */
 
 /* Get a line of text from the player, such as asking for a character name or a wish */
 
-static boolean curses_stupid_hack = 0;
-
 void
 curses_line_input_dialog(const char *prompt, char *answer, int buffer)
 {

@@ -2321,6 +2321,9 @@
             Automatically dig if you are wielding a digging tool and moving
             into a place that can be dug (default false).
 
+          autoopen
+            Walking into a door attempts to open it (default true).
+
           autopickup
             Automatically pick up things onto which you move (default  on).
             See pickup_types to refine the behavior.
@@ -2364,9 +2367,6 @@
             new players if it detects some  anticipated  mistakes  (default
             on).
 
-          confirm
-            Have  user  confirm  attacks  on  pets,  shopkeepers, and other
-            peaceable creatures (default on).
 
 
 
@@ -2379,6 +2379,10 @@
           SLASH'EM Guidebook                                             37
 
 
+
+          confirm
+            Have  user  confirm  attacks  on  pets,  shopkeepers, and other
+            peaceable creatures (default on).
 
           DECgraphics
             Use a predefined selection  of  characters  from  the  DEC  VT-
@@ -2430,10 +2434,6 @@
           dungeon
             Set the graphics symbols for displaying  the  dungeon  (default
             `` |--------||.-|++##.##<><>_|\\##{}.}..## #}'').   The dungeon
-            option should be followed by a string of 1-42 characters to  be
-            used  instead  of the default map-drawing characters.  The dun-
-            geon map will use the characters you specify instead of the de-
-            fault  symbols, and default symbols for any you do not specify.
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2446,6 +2446,10 @@
 
 
 
+            option should be followed by a string of 1-42 characters to  be
+            used  instead  of the default map-drawing characters.  The dun-
+            geon map will use the characters you specify instead of the de-
+            fault  symbols, and default symbols for any you do not specify.
             Remember that you may need to escape some of  these  characters
             on a command line if they are special to your shell.
 
@@ -2496,10 +2500,6 @@
             Note that in the next release, new symbols may be added, or the
             present ones rearranged.
 
-            Cannot be set with the `O' command.
-
-          extmenu
-            Changes  the  extended  commands  interface to pop-up a menu of
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2512,6 +2512,10 @@
 
 
 
+            Cannot be set with the `O' command.
+
+          extmenu
+            Changes  the  extended  commands  interface to pop-up a menu of
             available commands.  It is keystroke compatible with the tradi-
             tional  interface  except that it does not require that you hit
             Enter. It is implemented only by the tty  port  (default  off),
@@ -2562,10 +2566,6 @@
             Use  a predefined selection of IBM extended ASCII characters to
             display the dungeon/effects/traps instead of having to define a
             full  graphics  set  yourself  (default off).  This option also
-            sets up proper handling of graphics characters for such  termi-
-            nals,  so  you  should  specify it when appropriate even if you
-            override the selections with your own graphics strings.
-
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2577,6 +2577,10 @@
           SLASH'EM Guidebook                                             40
 
 
+
+            sets up proper handling of graphics characters for such  termi-
+            nals,  so  you  should  specify it when appropriate even if you
+            override the selections with your own graphics strings.
 
           ignintr
             Ignore interrupt signals, including breaks (default off).
@@ -2628,10 +2632,6 @@
 
           menu_deselect_all
             Menu  character  accelerator  to  deselect all items in a menu.
-            Implemented by the Amiga, Gem, X11, GTK and tty ports.  Default
-            '-'.
-
-
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2643,6 +2643,9 @@
           SLASH'EM Guidebook                                             41
 
 
+
+            Implemented by the Amiga, Gem, X11, GTK and tty ports.  Default
+            '-'.
 
           menu_deselect_page
             Menu  character  accelerator to deselect all items on this page
@@ -2695,9 +2698,6 @@
 
           menu_select_page
             Menu  character accelerator to select all items on this page of
-            a menu.  Implemented by the Amiga, Gem and tty ports.   Default
-            ','.
-
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2709,6 +2709,9 @@
           SLASH'EM Guidebook                                             42
 
 
+
+            a menu.  Implemented by the Amiga, Gem and tty ports.   Default
+            ','.
 
           monsters
             Set  the  characters  used  to display monster classes (default
@@ -2762,9 +2765,6 @@
           null
             Send padding nulls to the terminal (default off).
 
-          number_pad
-            Use the number keys to move instead of [yuhjklbn] (default 0 or
-
 
           SLASH'EM 0.0.7                                  December 10, 2003
 
@@ -2776,6 +2776,8 @@
 
 
 
+          number_pad
+            Use the number keys to move instead of [yuhjklbn] (default 0 or
             off).   (number_pad:2  invokes  the  old DOS behavior where `5'
             means `g', meta-`5' means `G',  and meta-`0' means `I'.)
 
@@ -2827,9 +2829,7 @@
           prayconfirm
             Prompt for confirmation before praying (default on).
 
-          pushweapon
-            Using the `w' (wield) command when already  wielding  something
-            pushes  the  old  item into your alternate weapon slot (default
+
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2842,6 +2842,9 @@
 
 
 
+          pushweapon
+            Using the `w' (wield) command when already  wielding  something
+            pushes  the  old  item into your alternate weapon slot (default
             off).
 
           quiver_fired
@@ -2893,9 +2896,6 @@
             Only  the  first  letter of each category (`t', `a', or `o') is
             necessary.
 
-          showexp
-            Show your accumulated experience points on bottom line (default
-            off).
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -2907,6 +2907,10 @@
           SLASH'EM Guidebook                                             45
 
 
+
+          showexp
+            Show your accumulated experience points on bottom line (default
+            off).
 
           showrace
             Display  yourself  as  the glyph for your race, rather than the
@@ -2959,10 +2963,6 @@
             must also be defined. See the section on tile sets for more in-
             formation on that.
 
-          time
-            Show  the  elapsed  game  time in turns on bottom line (default
-            off).
-
 
           SLASH'EM 0.0.7                                  December 10, 2003
 
@@ -2973,6 +2973,10 @@
           SLASH'EM Guidebook                                             46
 
 
+
+          time
+            Show  the  elapsed  game  time in turns on bottom line (default
+            off).
 
           timed_delay
             When pausing momentarily for display effect, such as  with  ex-
@@ -3024,10 +3028,6 @@
             Name  your  starting  wolf (ex. ``wolfname:Beast'').  Cannot be
             set with the `O' command.
 
-          9.5.  Tile sets
-
-               For those windowing ports which support tiles  (multicolored
-          pictures instead of the traditional characters), tile sets can be
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3040,6 +3040,10 @@
 
 
 
+          9.5.  Tile sets
+
+               For those windowing ports which support tiles  (multicolored
+          pictures instead of the traditional characters), tile sets can be
           defined using a  line  in  the  configuration  file  that  begins
           ``TILESET=''.  There  should  be one tile set definition line for
           each available tile set. Once defined, tile sets can be  selected
@@ -3089,11 +3093,7 @@
           will silently ignore it.  You can find out if an option  is  sup-
           ported  by the window port that you are currently using by check-
           ing to see if it shows up in the Options list.  Some options  are
-          dynamic  and  can  be specified during the game with the `O' com-
-          mand.
-
-          align_message
-            Where to align or place the message window (top, bottom,  left,
+          dynamic  and  can  be  specified  during  the  game  with the `O'
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3106,6 +3106,10 @@
 
 
 
+          command.
+
+          align_message
+            Where to align or place the message window (top, bottom,  left,
             or right)
 
           align_status
@@ -3157,10 +3161,6 @@
           font_size_text
             SLASH'EM should use this size font for text windows.
 
-          fullscreen
-            SLASH'EM should try and display on  the  entire  screen  rather
-            than in a window.
-
 
           SLASH'EM 0.0.7                                  December 10, 2003
 
@@ -3171,6 +3171,10 @@
           SLASH'EM Guidebook                                             49
 
 
+
+          fullscreen
+            SLASH'EM should try and display on  the  entire  screen  rather
+            than in a window.
 
           hilite_pet
             Visually  distinguish  pets from similar animals (default off).
@@ -3221,10 +3225,6 @@
           tiled_map
             SLASH'EM should display a tiled map if it can.
 
-          tile_file
-            Specify the name of an alternative tile file  to  override  the
-            default.
-
 
 
 
@@ -3237,6 +3237,10 @@
           SLASH'EM Guidebook                                             50
 
 
+
+          tile_file
+            Specify the name of an alternative tile file  to  override  the
+            default.
 
           tile_height
             Specify  the  preferred  height  of each tile in a tile capable
@@ -3289,10 +3293,6 @@
           page_wait
             (default on, Mac SLASH'EM only).
 
-          rawio
-            Force raw (non-cbreak) mode for faster output and more  bullet-
-            proof  input  (MS-DOS sometimes treats `^P' as a printer toggle
-
 
           SLASH'EM 0.0.7                                  December 10, 2003
 
@@ -3304,6 +3304,9 @@
 
 
 
+          rawio
+            Force raw (non-cbreak) mode for faster output and more  bullet-
+            proof  input  (MS-DOS sometimes treats `^P' as a printer toggle
             without it) (default off, OS/2,  PC,  and  ST  SLASH'EM  only).
             Note:   DEC  Rainbows hang if this is turned on.  Cannot be set
             with the `O' command.
@@ -3355,9 +3358,6 @@
           autopickup  option  beyond  what  is  available through the pick-
           up_types option.
 
-               By placing autopickup_exception lines in your  configuration
-          file,  you  can  define  patterns  to be checked when the game is
-          about to autopickup something.
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3369,6 +3369,10 @@
           SLASH'EM Guidebook                                             52
 
 
+
+               By placing autopickup_exception lines in your  configuration
+          file,  you  can  define  patterns  to be checked when the game is
+          about to autopickup something.
 
           autopickup_exception
             Sets an exception to the pickup_types  option.   The  autopick-
@@ -3420,10 +3424,6 @@
             pattern.  Each SOUND entry is broken down  into  the  following
             parts:
 
-                 MESG       - message window mapping (the only one supported in 3.4).
-                 pattern    - the pattern to match.
-                 sound file - the sound file to play.
-                 volume     - the volume to be set while playing the sound file.
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3435,6 +3435,11 @@
           SLASH'EM Guidebook                                             53
 
 
+
+                 MESG       - message window mapping (the only one supported in 3.4).
+                 pattern    - the pattern to match.
+                 sound file - the sound file to play.
+                 volume     - the volume to be set while playing the sound file.
 
                The  exact  format  for  the  pattern depends on whether the
           platform is built to use ``regular  expressions''  or  SLASH'EM's
@@ -3485,11 +3490,6 @@
           defaults.nh file to accomplish this, novices may find  this  task
           somewhat  daunting.   Included  in  all official distributions of
           SLASH'EM is a file  called  NHAccess.nh.   Replacing  defaults.nh
-          with  this file will cause the game to run in a manner accessible
-          to the blind. After you have gained some experience with the game
-          and  with editing files, you may want to alter settings to better
-          suit your preferences. Instructions on how to do this are includ-
-          ed  in  the NHAccess.nh file itself. The most crucial settings to
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3502,6 +3502,11 @@
 
 
 
+          with  this file will cause the game to run in a manner accessible
+          to the blind. After you have gained some experience with the game
+          and  with editing files, you may want to alter settings to better
+          suit your preferences. Instructions on how to do this are includ-
+          ed  in  the NHAccess.nh file itself. The most crucial settings to
           make the game accessible are:
 
           IBMgraphics
@@ -3551,11 +3556,6 @@
 
                SLASH'EM is an intricate and difficult game.  Novices  might
           falter in fear, aware of their ignorance of the means to survive.
-          Well, fear not.  Your dungeon may come  equipped  with  an  ``ex-
-          plore''  or  ``discovery'' mode that enables you to keep old save
-          files and cheat death, at the paltry cost of not getting  on  the
-          high score list.
-
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3567,6 +3567,11 @@
           SLASH'EM Guidebook                                             55
 
 
+
+          Well, fear not.  Your dungeon may come  equipped  with  an  ``ex-
+          plore''  or  ``discovery'' mode that enables you to keep old save
+          files and cheat death, at the paltry cost of not getting  on  the
+          high score list.
 
                There  are  two  ways  of  enabling explore mode.  One is to
           start the game with the -X switch.  The other is to issue the `X'
@@ -3617,11 +3622,6 @@
           of them and Kevin Darcy later joined the main development team to
           produce subsequent revisions of 3.0.
 
-               Olaf Seibert ported NetHack 2.3 and 3.0 to the Amiga.   Norm
-          Meluch,  Stephen  Spackman  and Pierre Martineau designed overlay
-          code for PC NetHack 3.0.  Johnny Lee ported NetHack  3.0  to  the
-          Macintosh.   Along with various other Dungeoneers, they continued
-          to enhance the PC, Macintosh, and Amiga ports through  the  later
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3634,6 +3634,11 @@
 
 
 
+               Olaf Seibert ported NetHack 2.3 and 3.0 to the Amiga.   Norm
+          Meluch,  Stephen  Spackman  and Pierre Martineau designed overlay
+          code for PC NetHack 3.0.  Johnny Lee ported NetHack  3.0  to  the
+          Macintosh.   Along with various other Dungeoneers, they continued
+          to enhance the PC, Macintosh, and Amiga ports through  the  later
           revisions of 3.0.
 
                A  scant  one month before the next major version release of
@@ -3683,11 +3688,6 @@
           knownst  to  the  world at large,  Tom Proudfoot took this source
           and combined it with his Nethack--.  Stephen White went on to add
           weapon  skills,   which  were eventually integrated into the next
-          version of Nethack,  and other features.
-
-               In February 1996,  Tom Proudfoot released SLASH V1.  Includ-
-          ing  part  of Stephen White's Nethack Plus and his own Nethack--,
-          leaving unmentioned his own slew of further modifications,   this
 
 
           SLASH'EM 0.0.7                                  December 10, 2003
@@ -3700,6 +3700,11 @@
 
 
 
+          version of Nethack,  and other features.
+
+               In February 1996,  Tom Proudfoot released SLASH V1.  Includ-
+          ing  part  of Stephen White's Nethack Plus and his own Nethack--,
+          leaving unmentioned his own slew of further modifications,   this
           is perhaps the best known of the Nethack modifications.  Six ver-
           sions of this,  ending with SLASH V6,  are known to exist.
 
@@ -3748,11 +3753,6 @@
           new  spells  and  other  additions  led  eventually  to  SLASH'EM
           0.0.5E7F1. Steven Uy generously made additional modifications.
 
-               Dirk Schoenberger continued updating the SLASH/SLASH'EM mon-
-          ster tiles.  He also ported SLASH'EM to Linux.
-
-               Lief Clennon ported SLASH'EM to OS/2 EMX.
-
 
 
 
@@ -3765,6 +3765,11 @@
           SLASH'EM Guidebook                                             58
 
 
+
+               Dirk Schoenberger continued updating the SLASH/SLASH'EM mon-
+          ster tiles.  He also ported SLASH'EM to Linux.
+
+               Lief Clennon ported SLASH'EM to OS/2 EMX.
 
                Kevin Hugo ported SLASH'EM to Macintosh,  and also  contrib-
           uted additional changes and improvements.
@@ -3816,11 +3821,6 @@
           as a whole as well as supporting ports on the different platforms
           that NetHack runs on:
 
-               Pat Rankin maintained 3.4 for VMS.
-
-               Michael Allison maintained NetHack 3.4 for the MS-DOS  plat-
-          form.  Paul Winner and Yitzhak Sapir provided encouragement.
-
 
           SLASH'EM 0.0.7                                  December 10, 2003
 
@@ -3831,6 +3831,11 @@
           SLASH'EM Guidebook                                             59
 
 
+
+               Pat Rankin maintained 3.4 for VMS.
+
+               Michael Allison maintained NetHack 3.4 for the MS-DOS  plat-
+          form.  Paul Winner and Yitzhak Sapir provided encouragement.
 
                Dean  Luick, Mark Modrall, and Kevin Hugo maintained and en-
           hanced the Macintosh port of 3.4.
@@ -3870,11 +3875,6 @@
           with the game.  The Gods of the Dungeon sometimes  make  note  of
           the  names  of the worst of these miscreants in this, the list of
           Dungeoneers:
-
-
-
-
-
 
 
 

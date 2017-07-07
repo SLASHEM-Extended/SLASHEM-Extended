@@ -389,6 +389,9 @@ struct instance_flags {
 #ifdef REALTIME_ON_BOTL
   boolean  showrealtime; /* show actual elapsed time */
 #endif
+#ifdef AUTO_OPEN
+	boolean  autoopen;	/* open doors by walking into them */
+#endif
 };
 
 /*

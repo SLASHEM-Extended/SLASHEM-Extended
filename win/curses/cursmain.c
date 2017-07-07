@@ -356,11 +356,19 @@ curses_putstr(winid wid, int attr, const char *text)
 /* Display the file named str.  Complain about missing files
                    iff complain is TRUE.
 */
+#ifdef FILE_AREAS
 void
-curses_display_file(const char *filename, BOOLEAN_P must_exist)
+curses_display_file(const char *filearea,const char *filename,BOOLEAN_P must_exist)
+{
+    curses_view_file(filearea, filename, must_exist);
+}
+#else
+void
+curses_display_file(const char *filename,BOOLEAN_P must_exist)
 {
     curses_view_file(filename, must_exist);
 }
+#endif
 
 /* Start using window as a menu.  You must call start_menu()
    before add_menu().  After calling start_menu() you may not
