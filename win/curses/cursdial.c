@@ -235,7 +235,7 @@ curses_character_input_dialog(const char *prompt, const char *choices,
         prompt_width = map_width - 2;
     }
 
-    if (iflags.wc_popup_dialog || curses_stupid_hack) {
+    if (iflags.wc_popup_dialog) {
         askwin = curses_create_window(prompt_width, prompt_height, UP);
         for (count = 0; count < prompt_height; count++) {
             linestr = curses_break_str(askstr, maxwidth, count + 1);
@@ -246,12 +246,17 @@ curses_character_input_dialog(const char *prompt, const char *choices,
         wrefresh(askwin);
     } else {
         linestr = curses_copy_of(askstr);
-        pline("%s", linestr);
+        if (curses_stupid_hack)
+            curses_message_win_puts(linestr,FALSE);
+        else
+            pline("%s",linestr);
         free(linestr);
         curs_set(1);
+        WINDOW *win = curses_get_nhwin(MESSAGE_WIN);
+        if (win) wrefresh(win);
     }
 
-    curses_stupid_hack = 0;
+//    curses_stupid_hack = 0;
 
     while (1) {
         answer = getch();
