@@ -210,7 +210,11 @@ getlock()
 		    (void) printf("\e[J"); /* clear from cursor down */
 		}
 		if (c == 'r' || c == 'R') {
+#ifdef FILE_AREAS
+		    if (restore_savefile(lock, FILE_AREA_LEVL) == 0) {
+#else
 		    if (restore_savefile(lock, fqn_prefix[SAVEPREFIX]) == 0) {
+#endif
 			const char *msg = "Automatical recovery of save file successful! "
 			    "Press any key to continue ...\n";
 			fflush(stdout);

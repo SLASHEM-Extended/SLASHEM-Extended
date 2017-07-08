@@ -75,6 +75,10 @@ char *argv[];
 
 	if (!dir) dir = getenv("NETHACKDIR");
 	if (!dir) dir = getenv("HACKDIR");
+#ifdef FILE_AREAS
+        if (!dir) dir = FILE_AREA_LEVL;
+#endif
+
 #if defined(EXEPATH)
 	if (!dir) dir = exepath(argv[0]);
 #endif
@@ -280,7 +284,11 @@ const char *directory;
 	 *	(non-level-based) game state
 	 *	other levels
 	 */
+#ifdef FILE_AREAS
+	sfd = create_savefile(FILE_AREA_SAVE);
+#else
 	sfd = create_savefile(directory);
+#endif
 	if (sfd < 0) {
 	    Fprintf(stderr, "Cannot create savefile %s.\n", savename);
 	    Close(gfd);
