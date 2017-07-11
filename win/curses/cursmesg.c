@@ -392,6 +392,37 @@ curses_message_win_getline(const char *prompt, char *answer, int buffer)
 
     tmpbuf = (char *)malloc(strlen(prompt) + buffer + 2);
     maxlines = buffer / width * 2;
+
+	if ( (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FILTHY_PRESS) ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
+
+#if defined(WIN32)
+&& !program_state.exiting
+#endif
+
+	) prompt = fauxmessage();
+
+	if (SpellColorRed && !rn2(10) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+
+#if defined(WIN32)
+&& !program_state.exiting
+#endif
+
+	) prompt = generate_garbage_string();
+
+	if (youmonst.data && (MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_LLLLLLLLLLLLLM) || have_memorylossstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+
+#if defined(WIN32)
+&& !program_state.exiting
+#endif
+
+	) prompt = "Warning: Low Local Memory. Freeing description strings.";
+
+	if ( (MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+#if defined(WIN32)
+&& !program_state.exiting
+#endif
+	) prompt = " ";
+
     strcpy(tmpbuf, prompt);
     strcat(tmpbuf, " ");
     nlines = curses_num_lines(tmpbuf,width);
