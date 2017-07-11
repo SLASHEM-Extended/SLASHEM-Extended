@@ -2518,6 +2518,20 @@ register struct obj	*sobj;
 	case SCR_DESTROY_ARMOR:
 	    {
 		otmp = some_armor(&youmonst);
+
+		if (sobj && sobj->otyp == SCR_DESTROY_ARMOR && sobj->blessed) { /* idea by bhaak */
+			pline("You may enchant a worn piece of armor.");
+			otmp = getobj(all_count, "magically enchant");
+
+			if (otmp && !(otmp->owornmask & W_ARMOR)) {
+				strange_feeling(sobj,"Your skin itches.");
+				exercise(A_STR, FALSE);
+				exercise(A_CON, FALSE);
+				break;
+			}
+
+		}
+
 		if(confused) {
 			if(!otmp) {
 				strange_feeling(sobj,"Your bones itch.");
