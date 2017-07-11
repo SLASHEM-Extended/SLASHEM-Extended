@@ -4109,6 +4109,8 @@ newboss:
 		case WAN_INERTIA_CONTROL:
 			known = TRUE;
 
+			pline("Inertia control allows you to automatically cast a spell every turn for a while. You can choose which spell you want to control.");
+
 			if (spellid(0) == NO_SPELL)  {
 				You("don't know any spells, and therefore inertia control fails.");
 				break;
