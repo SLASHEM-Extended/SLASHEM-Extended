@@ -767,12 +767,40 @@ boolean pets_only;	/* true for ascension or final escape */
 	int num_segs;
 	boolean stay_behind;
 	extern d_level new_dlevel;	/* in do.c */
+	int extraradius = 0;
+  	char qbuf[QBUFSZ];
+	boolean qbufdefined = 0; /* fail safe */
+
+	if (!(PlayerCannotUseSkills)) {
+		switch (P_SKILL(P_PETKEEPING)) {
+			default: break;
+			case P_BASIC: extraradius = 4; break;
+			case P_SKILLED: extraradius = 8; break;
+			case P_EXPERT: extraradius = 12; break;
+			case P_MASTER: extraradius = 16; break;
+			case P_GRAND_MASTER: extraradius = 20; break;
+			case P_SUPREME_MASTER: extraradius = 25; break;
+		}
+	}
 
 	for (mtmp = fmon; mtmp; mtmp = mtmp2) {
 	    mtmp2 = mtmp->nmon;
 	    if (DEADMONSTER(mtmp)) continue;
 	    if (pets_only && !mtmp->mtame) continue;
-	    if (((monnear(mtmp, u.ux, u.uy) && levl_follower(mtmp)) ||
+
+	    if (mtmp && !program_state.gameover && isok(u.ux, u.uy) && extraradius && mtmp->mtame && levl_follower(mtmp) && (distu(mtmp->mx, mtmp->my) < (4 + extraradius))) {
+		Sprintf(qbuf, "You can take %s with you. Do it?", noit_mon_nam(mtmp));
+		qbufdefined = 1;
+	    }
+
+	    if (((monnear(mtmp, u.ux, u.uy) && levl_follower(mtmp))
+
+#ifdef RECORD_ACHIEVE
+			/* come on, if you ascend then all tame monsters should ascend with you. --Amy */
+			|| (mtmp->mtame && (achieve.ascended))
+#endif
+
+			|| (mtmp && !(program_state.gameover) && qbufdefined && isok(u.ux, u.uy) && extraradius && mtmp->mtame && levl_follower(mtmp) && (distu(mtmp->mx, mtmp->my) < (4 + extraradius)) && (yn(qbuf) == 'y') ) ||
 			(mtmp == u.usteed) ||
 		/* the wiz will level t-port from anywhere to chase
 		   the amulet; if you don't have it, will chase you
