@@ -682,6 +682,10 @@ drinksink()
 					obfree(otmp, (struct obj *)0);
 					otmp = (struct obj *) 0;
 				}
+				if (otmp && otmp->otyp == GOLD_PIECE) {
+					obfree(otmp, (struct obj *)0);
+					otmp = (struct obj *) 0;
+				}
 			} while(!otmp);
 			otmp->cursed = otmp->blessed = 0;
 			pline("Some %s liquid flows from the faucet.",
