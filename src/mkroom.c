@@ -452,6 +452,12 @@ struct mkroom *sroom;
 	if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
 	if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
 
+	/* evil patch idea by Amy: 2% chance that special rooms are populated with much higher-leveled monsters */
+	if (!rn2(50)) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
 	for(sx = sroom->lx; sx <= sroom->hx; sx++)
 	    for(sy = sroom->ly; sy <= sroom->hy; sy++) {
 		if(sroom->irregular) {
@@ -852,6 +858,9 @@ struct mkroom *sroom;
               level.flags.has_statueroom = 1;
               break;
 	}
+
+	u.aggravation = 0;
+
 }
 
 /* make a swarm of undead around mm */
