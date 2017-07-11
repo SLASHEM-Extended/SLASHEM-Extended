@@ -822,6 +822,14 @@ bot2str(char *newbot2)
                 Sprintf(nb,"%c%d Score%ld", oc_syms[COIN_CLASS],
                    u.ugold, botl_score());
 */
+
+	if (multi < 0)
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	     	add_colored_text(flags.showlongstats ? "Paralyzed" : "Par", newbot2);
+#else
+		Strcat(nb = eos(nb), flags.showlongstats ? " Paralyzed" : " Par");
+#endif
+
 	/* KMH -- changed to Lev */
 	if (Levitation)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)

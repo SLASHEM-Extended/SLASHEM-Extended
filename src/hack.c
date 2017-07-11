@@ -3414,6 +3414,7 @@ nomul(nval, txt)
 	u.uinvulnerable = FALSE;	/* Kludge to avoid ctrl-C bug -dlc */
 	u.usleep = 0;
 	multi = nval;
+	if (multi < 0) flags.botl = 1;
 	if (txt && txt[0])
 	  (void) strncpy(multi_txt, txt, BUFSZ);
 	else
@@ -3430,6 +3431,7 @@ forcenomul(nval, txt)
 	u.uinvulnerable = FALSE;	/* Kludge to avoid ctrl-C bug -dlc */
 	u.usleep = 0;
 	multi = nval;
+	if (multi < 0) flags.botl = 1;
 	if (txt && txt[0])
 	  (void) strncpy(multi_txt, txt, BUFSZ);
 	else
@@ -3451,6 +3453,7 @@ const char *msg_override;
 	u.usleep = 0;
 	if (afternmv) (*afternmv)();
 	afternmv = 0;
+	flags.botl = 1;
 }
 
 #endif /* OVL2 */

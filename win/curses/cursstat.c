@@ -97,6 +97,7 @@ static const struct statcolor default_colors[] = {
     {"Elbereth", CLR_BRIGHT_GREEN},
     {"Conf", CLR_BRIGHT_BLUE},
     {"Numb", CLR_BRIGHT_BLUE},
+    {"Paralyzed", CLR_ORANGE},
     {"Freeze", CLR_BRIGHT_BLUE},
     {"Blind", CLR_BRIGHT_BLUE},
     {"Stun", CLR_BRIGHT_BLUE},
@@ -449,6 +450,7 @@ curses_update_stats(void)
 {
     WINDOW *win = curses_get_nhwin(STATUS_WIN);
     int orient = curses_get_window_orientation(STATUS_WIN);
+
     boolean horiz = FALSE;
     if ((orient != ALIGN_RIGHT) && (orient != ALIGN_LEFT))
         horiz = TRUE;
@@ -456,6 +458,7 @@ curses_update_stats(void)
     boolean border = curses_window_has_border(STATUS_WIN);
 
     werase(win);
+
     /* Figure out if we have proper window dimensions for horizontal statusbar. */
     if (horiz) {
         /* correct y */
@@ -714,7 +717,7 @@ linetwonew:
     wprintw(win, "HP:");
     draw_bar(TRUE, hp, hpmax, NULL);
     print_statdiff(" AC:", &prevac, u.uac, STAT_AC);
-    if (Upolyd)
+    if (Upolyd) {
         print_statdiff(" HD:", &prevlevel, mons[u.umonnum].mlevel, STAT_OTHER);
 #ifdef EXP_ON_BOTL
     else if (flags.showexp) {
@@ -742,9 +745,8 @@ linetwonew:
         }
         print_statdiff("", &prevexp, xp_left, STAT_AC);
         waddch(win, ')');
-    }
 #endif
-    else
+    } else
         print_statdiff(" Exp:", &prevlevel, u.ulevel, STAT_OTHER);
 
     waddch(win, ' ');
@@ -953,7 +955,7 @@ linetwovert:
     print_statdiff("Armor Class:   ", &prevac, u.uac, STAT_AC);
     wmove(win, y++, x);
 
-    if (Upolyd)
+    if (Upolyd) {
         print_statdiff("Hit Dice:      ", &prevlevel, mons[u.umonnum].mlevel, STAT_OTHER);
 #ifdef EXP_ON_BOTL
     else if (flags.showexp) {
@@ -961,9 +963,8 @@ linetwovert:
         /* use waddch, we don't want to highlight the '/' */
         waddch(win, '/');
         print_statdiff("", &prevexp, u.uexp, STAT_OTHER);
-    }
 #endif
-    else
+    } else
         print_statdiff("Level:         ", &prevlevel, u.ulevel, STAT_OTHER);
     wmove(win, y++, x);
 
@@ -1022,6 +1023,7 @@ curses_add_statuses(WINDOW *win, boolean align_right,
     statprob("Fear",    Feared && !Race_if(PM_TUMBLRER));
     statprob("Triggered",    Feared && Race_if(PM_TUMBLRER));
     statprob("Numb",    Numbed);
+    statprob("Paralyzed",    multi < 0);
     statprob("Freeze",    Frozen);
     statprob("Burn",    Burned);
     statprob("Dim",    Dimmed);
