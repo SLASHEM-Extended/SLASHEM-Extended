@@ -3657,6 +3657,7 @@ healup(nhp, nxtra, curesick, cureblind)
 	}
 	if(cureblind)	make_blinded(0L,TRUE);
 	if(curesick)	make_sick(0L, (char *) 0, TRUE, SICK_ALL);
+	exercise(A_CON, TRUE); /* addition by Amy */
 	flags.botl = 1;
 	return;
 }

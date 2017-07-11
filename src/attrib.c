@@ -1151,6 +1151,8 @@ boolean	inc_or_dec;
 STATIC_OVL void
 exerper()
 {
+	/* changes by Amy to make these happen less often, because they shouldn't dominate attribute training/abuse */
+
 	if(!(moves % 10)) {
 		/* Hunger Checks */
 
@@ -1163,15 +1165,21 @@ exerper()
 		pline("exerper: Hunger checks");
 #endif
 		switch (hs) {
-		    case SATIATED:	exercise(A_DEX, FALSE);
+		    case SATIATED:
+
+					if ((u.uhunger > 4500) || (u.uhunger > 4000 && rn2(4)) || (u.uhunger <= 4000 && u.uhunger > 3500 && rn2(2)) || (u.uhunger <= 3500 && u.uhunger > 3000 && !rn2(5)) || (u.uhunger <= 3000 && !rn2(20)) ) {
+
+					exercise(A_DEX, FALSE);
 					if (Role_if(PM_MONK))
 					    exercise(A_WIS, FALSE);
+
+					}
 					if (Role_if(PM_TOPMODEL) || RngeAnorexia || Role_if(PM_FAILED_EXISTENCE) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) { /* They strongly dislike being full --Amy */
 					    exercise(A_WIS, FALSE); exercise(A_STR, FALSE); exercise(A_CON, FALSE); exercise(A_DEX, FALSE); }
 					break;
 		    case NOT_HUNGRY:	exercise(A_CON, TRUE); break;
 		    case HUNGRY:	if (Role_if(PM_TOPMODEL) || RngeAnorexia || Role_if(PM_FAILED_EXISTENCE) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) exercise(A_WIS, TRUE); break;
-		    case WEAK:		if (!Role_if(PM_TOPMODEL) && !RngeAnorexia && !Role_if(PM_FAILED_EXISTENCE) && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) exercise(A_STR, FALSE);
+		    case WEAK:		if (!Role_if(PM_TOPMODEL) && !rn2(10) && !RngeAnorexia && !Role_if(PM_FAILED_EXISTENCE) && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) exercise(A_STR, FALSE);
 					if (Role_if(PM_MONK))	/* fasting */
 					    exercise(A_WIS, TRUE);
 					if (Role_if(PM_TOPMODEL) || RngeAnorexia || Role_if(PM_FAILED_EXISTENCE) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) {
@@ -1179,7 +1187,7 @@ exerper()
 }					break;
 		    case FAINTING:
 		    case FAINTED:	 if (Role_if(PM_TOPMODEL) || RngeAnorexia || Role_if(PM_FAILED_EXISTENCE) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) { exercise(A_WIS, TRUE); exercise(A_STR, TRUE); exercise(A_DEX, TRUE);		}					
-					if (!Role_if(PM_TOPMODEL) && !RngeAnorexia && !Role_if(PM_FAILED_EXISTENCE) && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) exercise(A_CON, FALSE); break;
+					if (!Role_if(PM_TOPMODEL) && !rn2(10) && !RngeAnorexia && !Role_if(PM_FAILED_EXISTENCE) && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) exercise(A_CON, FALSE); break;
 		}
 
 		/* Encumberance Checks */
@@ -1197,7 +1205,7 @@ exerper()
 	}
 
 	/* status checks */
-	if(!(moves % 5)) {
+	if(!(moves % 50)) {
 #ifdef DEBUG
 		pline("exerper: Status checks");
 #endif
@@ -1207,7 +1215,7 @@ exerper()
 		if (HRegeneration)			exercise(A_STR, TRUE);
 
 		if(Sick || Vomiting)     exercise(A_CON, FALSE);
-		if( (Confusion && !Conf_resist) || Hallucination || Dimmed || (Feared && !rn2(3)) )		exercise(A_WIS, FALSE);
+		if( (Confusion && !Conf_resist) || Hallucination || (Dimmed && !rn2(3)) || (Feared && !rn2(5)) )		exercise(A_WIS, FALSE);
 		if( (Numbed && !rn2(3)) || Frozen || (Burned && !rn2(2)) )		exercise(A_CON, FALSE);
 		if((Wounded_legs 
 		    && !u.usteed
