@@ -4847,7 +4847,7 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
-		if (ChaosTerrain && !rn2(5)) {
+		if (ChaosTerrain && !rn2(5) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -4873,7 +4873,7 @@ newboss:
 
 		}
 
-		if (u.uprops[CHAOS_TERRAIN].extrinsic && !rn2(5)) {
+		if (u.uprops[CHAOS_TERRAIN].extrinsic && !rn2(5) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -4888,7 +4888,7 @@ newboss:
 
 		}
 
-		if (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR && !rn2(5)) {
+		if (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR && !rn2(5) && (!In_sokoban(&u.uz) || !rn2(5) )) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -4903,7 +4903,7 @@ newboss:
 
 		}
 
-		if (have_chaosterrainstone() && !rn2(5)) {
+		if (have_chaosterrainstone() && !rn2(5) && (!In_sokoban(&u.uz) || !rn2(5) )) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -4918,7 +4918,7 @@ newboss:
 
 		}
 
-		if (uwep && uwep->oartifact == ART_PROZACELF_S_POOPDECK && !rn2(5)) {
+		if (uwep && uwep->oartifact == ART_PROZACELF_S_POOPDECK && !rn2(5) && (!In_sokoban(&u.uz) || !rn2(5) )) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -4933,7 +4933,7 @@ newboss:
 
 		}
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_PROZACELF_S_POOPDECK && !rn2(5)) {
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_PROZACELF_S_POOPDECK && !rn2(5) && (!In_sokoban(&u.uz) || !rn2(5) )) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -7139,7 +7139,6 @@ stop_occupation()
 void
 display_gamewindows()
 {
-    curses_stupid_hack = 0;
     WIN_MESSAGE = create_nhwindow(NHW_MESSAGE);
     WIN_STATUS = create_nhwindow(NHW_STATUS);
     WIN_MAP = create_nhwindow(NHW_MAP);

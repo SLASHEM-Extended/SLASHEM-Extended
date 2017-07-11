@@ -1583,6 +1583,8 @@ genericptr_t poolcnt;
 		if (!rn2(3125)) randomamount += rnz(50);
 	}
 
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
 	while (randomamount) {
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
@@ -1663,6 +1665,8 @@ genericptr_t poolcnt;
 		if (!rn2(3125)) randomamount += rnz(50);
 	}
 
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
 	while (randomamount) {
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
@@ -1725,6 +1729,8 @@ genericptr_t poolcnt;
 		if (!rn2(625)) randomamount += rnz(20);
 		if (!rn2(3125)) randomamount += rnz(50);
 	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
 
 	if (Aggravate_monster) {
 		u.aggravation = 1;
@@ -1830,6 +1836,8 @@ genericptr_t poolcnt;
 		if (!rn2(3125)) randomamount += rnz(50);
 	}
 
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
 	while (randomamount) {
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
@@ -1920,6 +1928,8 @@ genericptr_t poolcnt;
 		if (!rn2(625)) randomamount += rnz(20);
 		if (!rn2(3125)) randomamount += rnz(50);
 	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
 
 	while (randomamount) {
 		randomamount--;
@@ -2160,6 +2170,8 @@ genericptr_t poolcnt;
 		if (!rn2(3125)) randomamount += rnz(50);
 	}
 
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
 	while (randomamount) {
 		randomamount--;
 		randomx = rn1(COLNO-3,2);
@@ -2224,6 +2236,8 @@ genericptr_t poolcnt;
 		if (!rn2(625)) randomamount += rnz(20);
 		if (!rn2(3125)) randomamount += rnz(50);
 	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
 
 	while (randomamount) {
 		randomamount--;
