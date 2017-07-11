@@ -351,6 +351,13 @@ found:
 	/* useup old scroll / spellbook */
 	useup(paper);
 	use_skill(P_DEVICES,10);
+	if (Race_if(PM_FAWN)) {
+		use_skill(P_DEVICES,10);
+	}
+	if (Race_if(PM_SATRE)) {
+		use_skill(P_DEVICES,10);
+		use_skill(P_DEVICES,10);
+	}
 
 	/* success */
 	if (new_obj->oclass == SPBOOK_CLASS) {

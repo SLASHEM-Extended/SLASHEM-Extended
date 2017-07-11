@@ -110,6 +110,13 @@ use_camera(obj)
 	}
 	if (obj->oartifact == ART_LIGHTS__CAMERA__ACTION) pline("Your flash scares nearby monsters!");
 	use_skill(P_DEVICES,1);
+	if (Race_if(PM_FAWN)) {
+		use_skill(P_DEVICES,1);
+	}
+	if (Race_if(PM_SATRE)) {
+		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,1);
+	}
 
 	return 1;
 }
@@ -1907,6 +1914,13 @@ register struct obj *obj;
 	    can = hold_another_object(can, "You make, but cannot pick up, %s.",
 				      doname(can), (const char *)0);
 		use_skill(P_DEVICES,1);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,1);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,1);
+		}
 	} else impossible("Tinning failed.");
 }
 
@@ -2015,6 +2029,13 @@ register struct obj *obj;
 	    can = hold_another_object(can, "You make, but cannot pick up, %s.",
 				      doname(can), (const char *)0);
 		use_skill(P_DEVICES,1);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,1);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,1);
+		}
 	    if (obj && obj->oartifact == ART_TRUE_GRIME) {
 		adjalign(5);
 		u.alignlim += 1;
@@ -2525,6 +2546,13 @@ struct obj *obj;
 				makeplural(body_part(HAND)));
 			}
 			use_skill(P_DEVICES,1);
+			if (Race_if(PM_FAWN)) {
+				use_skill(P_DEVICES,1);
+			}
+			if (Race_if(PM_SATRE)) {
+				use_skill(P_DEVICES,1);
+				use_skill(P_DEVICES,1);
+			}
 		} else {
 			Glib += rnd(15);
 			You("coat your %s with grease.",
@@ -4175,6 +4203,13 @@ blast_him:
 	hold_another_object(new_obj,"Oops! Where did you put that potion?",(const char *) 0,(const char *) 0);
 	You("have done it!");
 	use_skill(P_DEVICES,1);
+	if (Race_if(PM_FAWN)) {
+		use_skill(P_DEVICES,1);
+	}
+	if (Race_if(PM_SATRE)) {
+		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,1);
+	}
 }
 
 
@@ -4734,6 +4769,13 @@ doapply()
 					       (const char *)0);
 		    makeknown(HORN_OF_PLENTY);
 			use_skill(P_DEVICES,1);
+			if (Race_if(PM_FAWN)) {
+				use_skill(P_DEVICES,1);
+			}
+			if (Race_if(PM_SATRE)) {
+				use_skill(P_DEVICES,1);
+				use_skill(P_DEVICES,1);
+			}
 		} else
 		    pline(nothing_happens);
 		break;

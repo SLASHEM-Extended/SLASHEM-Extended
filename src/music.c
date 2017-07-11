@@ -406,6 +406,13 @@ struct obj *instr;
 	    if (do_spec && instr->spe > 0) {
 		if (nochargechange >= rnd(10)) consume_obj_charge(instr, TRUE);
 		use_skill(P_DEVICES,1);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,1);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,1);
+		}
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
 			use_skill(P_DEVICES,9);
 
@@ -428,6 +435,13 @@ struct obj *instr;
 	    if (do_spec && instr->spe > 0) {
 		if ((!instr->oartifact || !rn2(2) ) && (nochargechange >= rnd(10)) ) consume_obj_charge(instr, TRUE);
 		use_skill(P_DEVICES,1);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,1);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,1);
+		}
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
 			use_skill(P_DEVICES,9);
 
@@ -505,6 +519,13 @@ struct obj *instr;
 	    if (do_spec && instr->spe > 0) {
 		if (nochargechange >= rnd(10)) consume_obj_charge(instr, TRUE);
 		use_skill(P_DEVICES,1);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,1);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,1);
+		}
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
 			use_skill(P_DEVICES,9);
 
@@ -524,6 +545,13 @@ struct obj *instr;
 	    if (do_spec && instr->spe > 0) {
 		if (nochargechange >= rnd(10)) consume_obj_charge(instr, TRUE);
 		use_skill(P_DEVICES,1);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,1);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,1);
+		}
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
 			use_skill(P_DEVICES,9);
 

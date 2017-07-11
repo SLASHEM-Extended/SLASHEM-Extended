@@ -3261,6 +3261,19 @@ register struct obj *wand;
 	if (DischargeBug || u.uprops[DISCHARGE_BUG].extrinsic || have_dischargestone()) wand->spe--;
 
 	use_skill(P_DEVICES,1);
+	if (Race_if(PM_STICKER)) {
+		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,1);
+	}
+	if (Race_if(PM_FAWN)) {
+		use_skill(P_DEVICES,1);
+	}
+	if (Race_if(PM_SATRE)) {
+		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,1);
+	}
 	if (objects[(wand)->otyp].oc_material == INKA) use_skill(P_DEVICES,1);
 
 	if (Race_if(PM_INKA)) {
