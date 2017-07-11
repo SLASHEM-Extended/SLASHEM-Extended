@@ -37,6 +37,12 @@ static const char * const shkliquors[] = {
     /* Schweiz */
     "Leuk", "Brig", "Brienz", "Thun", "Sarnen", "Burglen", "Elm",
     "Flims", "Vals", "Schuls", "Zum Loch",
+
+	"Schwiederloch", "Shol", "Pfahlhirsch", "Spendthrift",
+	"Heartfont", "Chansina", "Delilah", "Marihuana", "Boeing",
+	"Kovvelkov", "Jeler", "Hesser", "Rutte", "Meir", "Suchanek",
+	"Jannter", "Erdinger", "Warsteiner", "Grolsch", "Jack Daniels",
+	"Champagner", "Surilie", "Tamika",
     0
 };
 
@@ -48,6 +54,10 @@ static const char * const shkbooks[] = {
     "Cahersiveen", "Glenbeigh", "Kilmihil", "Kiltamagh",
     "Droichead Atha", "Inniscrone", "Clonegal", "Lisnaskea",
     "Culdaff", "Dunfanaghy", "Inishbofin", "Kesh",
+
+	"Benderaz", "Nagano", "Newbig", "Hayabusa", "Eckart",
+	"Usanna", "Tresh", "Also Matte", "SIR", "Schroeder", "Shmeil",
+	"Wellstruct", "Seasoon",
     0
 };
 
@@ -59,6 +69,10 @@ static const char * const shkarmors[] = {
     "Bayburt", "Ayancik", "Zonguldak", "Balya", "Tefenni",
     "Artvin", "Kars", "Makharadze", "Malazgirt", "Midyat",
     "Birecik", "Kirikkale", "Alaca", "Polatli", "Nallihan",
+
+	"Luna", "Nagi", "Nguyen", "Pecker", "Marid", "Warrington",
+	"Koopa", "Pietra", "Runner", "Iris flax", "Muxfield", "Petry",
+	"Erdogan", "Cunaj", "Istanbul", "Bosporus", "Hamzic",
     0
 };
 
@@ -73,6 +87,10 @@ static const char * const shkwands[] = {
     "Kerloch", "Beinn a Ghlo", "Drumnadrochit", "Morven",
     "Uist", "Storr", "Sgurr na Ciche", "Cannich", "Gairloch",
     "Kyleakin", "Dunvegan",
+
+	"Walter", "Hall", "Hagen", "Rehe", "Pale", "Head", "Left",
+	"Haxxor", "Bolgra", "Baeran", "Telpan", "Klaf", "Trump", "Rary",
+	"Gallardo", "Peng", "Knat", "Glatz",
     0
 };
 
@@ -86,6 +104,9 @@ static const char * const shkrings[] = {
     "Rastegaisa", "Varjag Njarga", "Kautekeino", "Abisko",
     "Enontekis", "Rovaniemi", "Avasaksa", "Haparanda",
     "Lulea", "Gellivare", "Oeloe", "Kajaani", "Fauske",
+
+	"Sechs", "Saasch", "Schmitt", "Eigenlob", "Gynn", "Merilis",
+	"Agnethasson", "Grahw", "Buffy", "Madrugada", "Ata", "Gaab",
     0
 };
 
@@ -98,6 +119,11 @@ static const char * const shkfoods[] = {
     "Trenggalek", "Karangkobar", "Njalindoeng", "Pasawahan",
     "Pameunpeuk", "Patjitan", "Kediri", "Pemboeang", "Tringanoe",
     "Makin", "Tipor", "Semai", "Berhala", "Tegal", "Samoe",
+
+	"Bort", "Plejan", "Raj", "Bruch", "Himal", "Manger", "Kelk",
+	"Kraj", "Wurie", "Putin", "Dessert", "Suesska", "Vada",
+	"Cranice", "Ice Bird", "Doener Kebap", "Shawarma", "McDonalds",
+	"Burger King", "Kentucky Fried Chicken", "Mandy", "Le Crobag",
     0
 };
 
@@ -109,10 +135,16 @@ static const char * const shkweapons[] = {
     "Cazelon", "Eypau", "Carignan", "Monbazillac", "Jonzac",
     "Pons", "Jumilhac", "Fenouilledes", "Laguiolet", "Saujon",
     "Eymoutiers", "Eygurande", "Eauze", "Labouheyre",
+
+	"Legel", "Deathstrike", "Arschegast", "Mashevka", "Valus",
+	"Arm Chest Contractor", "Falcon", "Al Capone", "Schrack", "Mach",
+	"March",
     0
 };
 
 static const char * const shktools[] = {
+	/* Amy edit: allow all names, regardless of which operating system you're using, because randomness FTW */
+
     /* Spmi */
     "Ymla", "Eed-morra", "Cubask", "Nieb", "Bnowr Falr", "Telloc Cyaj",
     "Sperc", "Noskcirdneh", "Yawolloh", "Hyeghu", "Niskal", "Trahnil",
@@ -120,26 +152,28 @@ static const char * const shktools[] = {
     "Yelpur", "Nosnehpets", "Stewe", "Renrut", "_Zlaw", "Nosalnef",
     "Rewuorb", "Rellenk", "Yad", "Cire Htims", "Y-crad", "Nenilukah",
     "Corsh", "Aned",
-#ifdef OVERLAY
     "Erreip", "Nehpets", "Mron", "Snivek", "Lapu", "Kahztiy",
-#endif
-#ifdef WIN32
     "Lechaim", "Lexa", "Niod",
-#endif
-#ifdef MAC
     "Nhoj-lee", "Evad\'kh", "Ettaw-noj", "Tsew-mot", "Ydna-s",
     "Yao-hang", "Tonbar", "Nivek", "Kivenhoug",
-#endif
-#ifdef AMIGA
     "Falo", "Nosid-da\'r", "Ekim-p", "Rebrol-nek", "Noslo", "Yl-rednow",
     "Mured-oog", "Ivrajimsal",
-#endif
-#ifdef TOS
     "Nivram",
-#endif
-#ifdef VMS
     "Lez-tneg", "Ytnu-haled", "Niknar",
-#endif
+
+	"Karma", "Sound Impacts", "Wheel Corner", "Montoya", "Lebenich",
+	"Strip-Mine", "be silent kert", "Being Moose", "Internet",
+	"Ancient Regime", "Work Houses", "Pipe Cutting Equipment", "Parvus",
+	"Gaellaei", "Tschulini", "Current Mountain", "Cuddle-Bundle",
+	"Coffin Nail",
+
+	"Kaahb", "Badanoj", "Natas", "Sirhc", "Ntgnut", "Tnurgs",
+	"Remirol", "Noeda", "QIF", "Livednam", "Maerdixul", "Yvi Nedlog",
+	"Neercseulb", "Yton", "Ramysp", "Fle Cazorp", "Duam", "Selgnat",
+	"Nairodsay", "Repinsgub", "Sipokoileh", "Retnuh Navihs", "Rohk",
+	"Oirek", "Onnets", "Ypeed", "Lleremad", "Sia", "Dnnorle",
+	"Lidnnerae", "Htereblle", "Redocdnilb", "Ryklebli", "Thgink Yerg",
+	"Dexap", "Nogardlwarc", "Nacylg", "Nidrajsed Nouq",
     0
 };
 
@@ -152,6 +186,9 @@ static const char * const shklight[] = {
     "Silistra", "Tulovo", "Panagyuritshte", "Smolyan", "Kirklareli",
     "Pernik", "Lom", "Haskovo", "Dobrinishte", "Varvara", "Oryahovo",
     "Troyan", "Lovech", "Sliven",
+
+	"Habich", "Trong-Oul", "Dumont", "Dumas", "Vittel", "Hattrick",
+	"Pekriah", "Innocentia", "Diagna", "Castor", "Ronaldo",
     0
 };
 
@@ -170,6 +207,9 @@ static const char * const shkgeneral[] = {
     /* Iceland */
     "Akureyri", "Kopasker", "Budereyri", "Akranes", "Bordeyri",
     "Holmavik",
+
+	"Miller", "Merkel", "Stone", "Bitchiya", "Pedas", "Garbage Houses",
+	"Kun-Kwei", "Persh", "Levart", "Gunnhild",
     0
 };
 
@@ -193,6 +233,9 @@ static const char *shkpet[] = {
     "Silistra", "Tulovo", "Panagyuritshte", "Smolyan", "Kirklareli",
     "Pernik", "Lom", "Haskovo", "Dobrinishte", "Varvara", "Oryahovo",
     "Troyan", "Lovech", "Sliven",
+
+	"War Mountain", "Oro", "Pure", "King", "Funo", "Cuntrina",
+	"Tato", "Santana", "Dickmouth", "Mul", "White Logel",
     0
 };
 
@@ -383,7 +426,7 @@ const char * const *nlp;
 	       and restore support which would be necessary for randomization;
 	       try not to make too many assumptions about time_t's internals;
 	       use ledger_no rather than depth to keep mine town distinct. */
-	    int nseed = (int)((long)u.ubirthday / 257L);
+	    int nseed = /*(int)((long)u.ubirthday / 257L);*/rnd(257);
 
 	    name_wanted = ledger_no(&u.uz) + (nseed % 13) - (nseed % 5);
 	    if (name_wanted < 0) name_wanted += (13 + 5);
