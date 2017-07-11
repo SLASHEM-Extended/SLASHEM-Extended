@@ -885,7 +885,7 @@ toofar:
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
 #endif
-	   (is_wanderer(mdat) && !rn2(4)) || (Conflict && !mtmp->iswiz
+	   (is_wanderer(mdat) && !rn2(4)) || (Conflict && mtmp->mcansee && haseyes(mtmp->data) && !resist(mtmp, RING_CLASS, 0, 0) && !mtmp->iswiz
 	   && !Is_blackmarket(&u.uz)
 	   ) ||
 	   (!mtmp->mcansee && !rn2(iswarper ? 2 : 4)) || mtmp->mpeaceful) {
