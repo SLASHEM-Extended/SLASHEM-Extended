@@ -10316,7 +10316,7 @@ struct obj *obj;
 			case SPE_DISRUPTION_SHIELD:
 				pline("A spell that allows you to use your mana as health for a while: for the duration of the effect, any damage you take will be subtracted from your mana instead - as long as you have enough mana, that is."); break;
 			case SPE_SPELLBINDER:
-				pline("Casting this spell allows you to cast several spells in the same turn, but at double the usual cost. Every spell that you have can only be cast once per turn, and of course you cannot use those extra castings for another spellbinder, because things need to be sane. :-)"); break;
+				pline("Casting this spell allows you to cast several spells in the same turn. Every spell that you have can only be cast once per turn, and of course you cannot use those extra castings for another spellbinder, because things need to be sane. :-)"); break;
 			case SPE_TRACKER:
 				pline("Teleports you to the last monster that entered the current dungeon level, provided that nothing prevents you from teleporting and there is an empty space next to the monster in question. It will occasionally backfire."); break;
 			case SPE_INERTIA_CONTROL:
@@ -10730,7 +10730,7 @@ struct obj *obj;
 			case WAN_LEVITATION:
 				pline("If anyone zaps this wand, you will levitate, but not at will."); break;
 			case WAN_SPELLBINDER:
-				pline("A wand that allows you to cast up to five spells at once every time you zap it, but those spells will cost twice the usual amount of mana."); break;
+				pline("A wand that allows you to cast up to five spells at once every time you zap it."); break;
 			case WAN_INERTIA_CONTROL:
 				pline("Zapping this wand allows you to control the flow of one of your spells (you can select which one), which will automatically be cast once per turn without taking time."); break;
 			case WAN_STERILIZE:

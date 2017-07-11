@@ -1621,7 +1621,6 @@ boolean atme;
 	energy = (spellev(spell) * 5);    /* 5 <= energy <= 35 */
 	if (SpellColorYellow) energy *= 2;
 	if (SpellColorWhite) energy *= 4;
-	if (u.spellbinder) energy *= 2;
 
 	/* only being easier to cast is not good enough for the "special spell", since you can't have a failure rate
 	 * lower than 0%. Reduce cost of casting the special spell to 80%! --Amy */
@@ -2770,10 +2769,10 @@ boolean atme;
 			}
 		}
 
-		if (!rn2(5)) {
+		if (!rn2(10)) {
 			register int statloss = rn2(A_MAX);
 
-			ABASE(statloss) -= 2;
+			ABASE(statloss) -= rnd(2);
 			if (ABASE(statloss) < ATTRMIN(statloss)) ABASE(statloss) = ATTRMIN(statloss);
 			AMAX(statloss) = ABASE(statloss);
 			pline("You are hit by nexus forces!");
@@ -2804,14 +2803,15 @@ boolean atme;
 						xkilled(nexusmon, 0);
 						pline("%s is killed!", Monnam(nexusmon));
 					}
-					adjalign(-25);
+					adjalign(-10);
 				}
 			}
 		}
 
 		pline("You feel bad for tunneling, and are also blinded by heaps of earth flying around.");
-		adjalign(-10);
-		u.tunnelized += rnd(100);
+		adjalign(-2);
+		if (rn2(5)) u.tunnelized += rnd(20);
+		else u.tunnelized += rnd(100);
 		make_blinded(Blinded + u.tunnelized, FALSE);
 		set_itimeout(&HeavyBlind, Blinded);
 		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
@@ -5002,7 +5002,7 @@ boolean atme;
 		int madepoolQ = 0;
 		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_treefloodg, (genericptr_t)&madepoolQ);
 		if (madepoolQ) pline("Trees start to grow rapidly!");
-		u.uenmax -= rnd(30);
+		u.uenmax -= rnd(25);
 		if (u.uenmax < 0) u.uenmax = 0;
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 		pline("Casting this spell is straining for your maximum mana supply.");
@@ -5445,7 +5445,7 @@ boolean atme;
 		}
 
 		/* re-casting it will restart the countdown rather than add to the duration --Amy */
-		u.geolysis = 5 + (spell_damage_bonus(spellid(spell)) * 2);
+		u.geolysis = 15 + (spell_damage_bonus(spellid(spell)) * 5);
 
 		break;
 
