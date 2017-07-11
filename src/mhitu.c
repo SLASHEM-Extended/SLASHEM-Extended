@@ -4174,13 +4174,13 @@ hitmu(mtmp, mattk)
 	if (mattk->aatyp == AT_SPIT && atttyp == AD_TCKL) atttyp = AD_PHYS; /* manticore fix */
 
 	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttyp == AD_PHYS && !rn2(100)) {
-		while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE) {
+		while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE || atttyp == AD_PHYS) {
 			atttyp = randattack(); }
 
 	}
 
 	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttyp == AD_PHYS && !rn2(100)) {
-		while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE) {
+		while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE || atttyp == AD_PHYS) {
 			atttyp = rn2(AD_ENDS); }
 
 	}
@@ -7604,13 +7604,13 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	atttypA = mattk->adtyp;
 
 	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypA == AD_PHYS && !rn2(100)) {
-		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE) {
+		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE || atttypA == AD_PHYS) {
 			atttypA = randattack(); }
 
 	}
 
 	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypA == AD_PHYS && !rn2(100)) {
-		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE) {
+		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE || atttypA == AD_PHYS) {
 			atttypA = rn2(AD_ENDS); }
 
 	}
@@ -9983,13 +9983,13 @@ boolean ufound;
 	atttypC = mattk->adtyp;
 
 	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypC == AD_PHYS && !rn2(100)) {
-		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE) {
+		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE || atttypC == AD_PHYS) {
 			atttypC = randattack(); }
 
 	}
 
 	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypC == AD_PHYS && !rn2(100)) {
-		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE) {
+		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE || atttypC == AD_PHYS) {
 			atttypC = rn2(AD_ENDS); }
 
 	}
@@ -12226,13 +12226,13 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	atttypB = mattk->adtyp;
 
 	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypB == AD_PHYS && !rn2(100)) {
-		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE) {
+		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE || atttypB == AD_PHYS) {
 			atttypB = randattack(); }
 
 	}
 
 	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypB == AD_PHYS && !rn2(100)) {
-		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE) {
+		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE || atttypB == AD_PHYS) {
 			atttypB = rn2(AD_ENDS); }
 
 	}
