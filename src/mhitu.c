@@ -16370,14 +16370,18 @@ register struct obj *obj;
 const char *str;
 {
 	char qbuf[QBUFSZ];
+	char buf[BUFSZ];
 
 	if (!obj || !obj->owornmask) return;
 
 	if ((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) { /*much lower chance for the player to resist --Amy*/
-		Sprintf(qbuf,"\"Shall I remove your %s, %s?\"",
-			str,
-			(!rn2(2) ? "lover" : !rn2(2) ? "dear" : "sweetheart"));
-		if (yn(qbuf) == 'n') return;
+
+		Sprintf(qbuf,"\"Shall I remove your %s, %s?\" [yes/no]",
+			str, (!rn2(2) ? "lover" : !rn2(2) ? "dear" : "sweetheart"));
+		getlin(qbuf,buf);
+		(void) lcase (buf);
+		if (strcmp (buf, "yes")) return;
+
 	} else {
 		char hairbuf[BUFSZ];
 
