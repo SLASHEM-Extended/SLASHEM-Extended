@@ -28,6 +28,7 @@ STATIC_DCL struct permonst * NDECL(tenshallmon);
 STATIC_DCL struct permonst * NDECL(tenshallmonB);
 STATIC_DCL struct permonst * NDECL(squadmon);
 STATIC_DCL struct permonst * NDECL(fungus);
+STATIC_DCL struct permonst * NDECL(beehivemon);
 
 /*STATIC_DCL struct permonst * FDECL(colormon, (int));*/
 
@@ -483,7 +484,7 @@ struct mkroom *sroom;
 		    (type == INSIDEROOM) ? (/*!*/rn2(Role_if(PM_CAMPERSTRIKER) ? 20 : 40) ? insidemon() : (struct permonst *) 0 ) :
 
 		    (type == BARRACKS) ? squadmon() :
-			(type == CLINIC) ? &mons[PM_NURSE] :
+			(type == CLINIC) ? specialtensmon(218) /* AD_HEAL */ :
 			(type == TERRORHALL) ? mkclass(S_UMBER,0) :
 			(type == TENSHALL) ? (u.specialtensionmonsterB ? (rn2(2) ? specialtensmon(u.specialtensionmonsterB) : specialtensmon(u.specialtensionmonster) ) : u.specialtensionmonster ? specialtensmon(u.specialtensionmonster) : u.tensionmonsterspecB ? (rn2(2) ? u.tensionmonsterspecB : u.tensionmonsterspec ) : u.tensionmonsterspec ? u.tensionmonsterspec : u.colormonsterB ? (rn2(2) ? colormon(u.colormonsterB) : colormon(u.colormonster) ) : u.colormonster ? colormon(u.colormonster) : u.tensionmonsterB ? (rn2(2) ? tenshallmon() : tenshallmonB() ) : tenshallmon()) :
 			(type == ELEMHALL) ? mkclass(S_ELEMENTAL,0) :
@@ -499,23 +500,19 @@ struct mkroom *sroom;
 		    (type == MORGUE) ? morguemon() :
 		    (type == FUNGUSFARM) ? (rn2(2) ? fungus() : mkclass(S_FUNGUS,0)) :
 		    (type == BEEHIVE) ?
-			(sx == tx && sy == ty ? &mons[PM_QUEEN_BEE] :
-			 &mons[PM_KILLER_BEE]) :
+			(sx == tx && sy == ty ? &mons[PM_QUEEN_BEE] : beehivemon()) :
 		    (type == DOUGROOM) ? douglas_adams_mon() : 
-		    (type == LEPREHALL) ? /*&mons[PM_LEPRECHAUN]*/mkclass(S_LEPRECHAUN,0) :
-		    (type == COCKNEST) ? 
-		    	/*(rn2(4) ? &mons[PM_COCKATRICE] :
-		    	 &mons[PM_CHICKATRICE])*/mkclass(S_COCKATRICE,0) :
-                   (type == ARMORY) ? (rn2(10) ? mkclass(S_RUSTMONST,0) :
-			mkclass(S_PUDDING,0) ) :
-		    (type == ANTHOLE) ? /*antholemon()*/mkclass(S_ANT,0) :
+		    (type == LEPREHALL) ? mkclass(S_LEPRECHAUN,0) :
+		    (type == COCKNEST) ? mkclass(S_COCKATRICE,0) :
+                (type == ARMORY) ? (rn2(10) ? mkclass(S_RUSTMONST,0) : mkclass(S_PUDDING,0) ) :
+		    (type == ANTHOLE) ? mkclass(S_ANT,0) :
 		    (type == DRAGONLAIR) ? mkclass(S_DRAGON,0) :
 		    (type == LEMUREPIT)? 
-		    	(!rn2(20)? &mons[PM_HORNED_DEVIL] : !rn2(20) ? mkclass(S_DEMON,0) : rn2(2) ? mkclass(S_IMP,0) :
+		    	(!rn2(20) ? &mons[PM_HORNED_DEVIL] : !rn2(20) ? mkclass(S_DEMON,0) : rn2(2) ? mkclass(S_IMP,0) :
 			           &mons[PM_LEMURE]) :
-		    (type == MIGOHIVE)?
-		      (sx == tx && sy == ty? &mons[PM_MIGO_QUEEN] :
-	              (rn2(2)? &mons[PM_MIGO_DRONE] : &mons[PM_MIGO_WARRIOR])) :
+		    (type == MIGOHIVE) ?
+		      (sx == tx && sy == ty ? &mons[PM_MIGO_QUEEN] :
+	              (rn2(2) ? &mons[PM_MIGO_DRONE] : &mons[PM_MIGO_WARRIOR])) :
 		    (type == BADFOODSHOP) ? mkclass(S_BAD_FOOD,0) :
 		    (type == REALZOO) ? (rn2(5) ? realzoomon() : rn2(3) ? mkclass(S_QUADRUPED,0) : rn2(3) ? mkclass(S_FELINE,0) : rn2(3) ? mkclass(S_YETI,0) : mkclass(S_SNAKE,0) ) :
 		    (type == GIANTCOURT) ? mkclass(S_GIANT,0) :
@@ -1490,6 +1487,29 @@ douglas_adams_mon()
 	else if (i > 19)        return(&mons[PM_VOGON_LORD]);
 	else if (i > 2)        return(&mons[PM_BABELFISH]);
 	else                    return(&mons[PM_ALGOLIAN_SUNTIGER]);
+}
+
+struct permonst *
+beehivemon()
+{
+	int     i = rn2(78);
+
+	if (i > 76) return((level_difficulty() > 15) ? &mons[PM_VORACIOUS_FORCE_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 74) return((level_difficulty() > 15) ? &mons[PM_VORACIOUS_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 73) return((level_difficulty() > 6) ? &mons[PM_ZOMBEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 72) return((level_difficulty() > 6) ? &mons[PM_FUMBLEBEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 64) return((level_difficulty() > 6) ? &mons[PM_WING_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 56) return((level_difficulty() > 6) ? &mons[PM_TWIN_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 55) return((level_difficulty() > 6) ? &mons[PM_WEREKILLERBEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 54) return((level_difficulty() > 5) ? &mons[PM_GIANT_JELLY_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 44) return((level_difficulty() > 5) ? &mons[PM_GIANT_KILLER_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 34) return(&mons[PM_HUNTER_BEE]);
+	else if (i > 33) return(&mons[PM_WEREBEE]);
+	else if (i > 32) return(&mons[PM_HONEY_BEE]);
+	else if (i > 31) return(&mons[PM_WAX_BEE]);
+	else if (i > 30) return(&mons[PM_JELLY_BEE]);
+	else return(&mons[PM_KILLER_BEE]);
+
 }
 
 struct permonst *
