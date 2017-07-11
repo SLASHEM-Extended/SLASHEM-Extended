@@ -98,6 +98,7 @@ static const struct statcolor default_colors[] = {
     {"Conf", CLR_BRIGHT_BLUE},
     {"Numb", CLR_BRIGHT_BLUE},
     {"Paralyzed", CLR_ORANGE},
+    {"Vibration", CLR_ORANGE},
     {"Freeze", CLR_BRIGHT_BLUE},
     {"Blind", CLR_BRIGHT_BLUE},
     {"Stun", CLR_BRIGHT_BLUE},
@@ -1024,6 +1025,7 @@ curses_add_statuses(WINDOW *win, boolean align_right,
     statprob("Triggered",    Feared && Race_if(PM_TUMBLRER));
     statprob("Numb",    Numbed);
     statprob("Paralyzed",    multi < 0);
+    statprob("Vibration",    (isok(u.ux, u.uy) && invocation_pos(u.ux, u.uy)));
     statprob("Freeze",    Frozen);
     statprob("Burn",    Burned);
     statprob("Dim",    Dimmed);

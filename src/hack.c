@@ -2406,6 +2406,8 @@ invocation_message()
 	    if (otmp && otmp->spe == 7 && otmp->lamplit)
 		pline("%s %s!", The(xname(otmp)),
 		    Blind ? "throbs palpably" : "glows with a strange light");
+
+	    litroomlite(TRUE);
 	}
 }
 

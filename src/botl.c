@@ -823,6 +823,13 @@ bot2str(char *newbot2)
                    u.ugold, botl_score());
 */
 
+	if (isok(u.ux, u.uy) && invocation_pos(u.ux, u.uy))
+#if defined(STATUS_COLORS) && defined(TEXTCOLOR)
+	     	add_colored_text(flags.showlongstats ? "Vibration" : "Vib", newbot2);
+#else
+		Strcat(nb = eos(nb), flags.showlongstats ? " Vibration" : " Vib");
+#endif
+
 	if (multi < 0)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Paralyzed" : "Par", newbot2);
