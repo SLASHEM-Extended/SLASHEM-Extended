@@ -1037,6 +1037,7 @@ int mode;
     int y = uy+dy;
     register struct rm *tmpr = &levl[x][y];
     register struct rm *ust;
+    boolean opentry = 0;
 
     /*
      *  Check for physical obstacles.  First, the place we are going.
@@ -1155,25 +1156,10 @@ int mode;
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
-                    else if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
-			You("crash into a door! Ouch!");
-
-			losehp(rnd(10), "walking into a door", KILLED_BY);
-			if (!rn2(10)) {
-  			    if (rn2(50)) {
-				adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
-			    } else {
-				You_feel("dizzy!");
-				forget(1 + rn2(5));
-			    }
-			}
-		    }
-#ifdef AUTO_OPEN
-                    else if (iflags.autoopen
-				&& !Confusion && !Stunned && !Fumbling) {
+		    else if (!Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone() || u.totter || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() ) ) {
 			    door_opened = flags.move = doopen_indir(x, y);
+			    opentry = 1;
 		    }
-#endif
 		    else if (x == ux || y == uy) {
 			if (Blind || Stunned || Numbed || ACURR(A_DEX) < 10 || Fumbling) {
 			    if (u.usteed) {
@@ -1186,9 +1172,38 @@ int mode;
 			    }
 			} else pline("That door is closed.");
 
-		    }
 		    return FALSE;
+		    }
 		} else if (mode == TEST_TRAV) goto testdiag;
+		if (mode == DO_MOVE) {
+
+				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+					You("crash into a door! Ouch!");
+
+					losehp(rnd(10), "walking into a door", KILLED_BY);
+					if (!rn2(10)) {
+						if (rn2(50)) {
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+						} else {
+							You_feel("dizzy!");
+							forget(1 + rn2(5));
+						}
+					}
+				}
+
+				/* only print "there is a door in the way" if autoopen didn't try to open it --Amy */
+
+				else if (dx && dy && !opentry && !Passes_walls && ((tmpr->doormask & ~D_BROKEN)
+#ifdef REINCARNATION
+		    || Is_rogue_level(&u.uz)
+#endif
+		    || block_door(x,y))) {
+
+					pline("There is a door in the way!");
+				}
+
+		}
+		return FALSE;
 	    }
 	} else {
 	testdiag:
@@ -2063,7 +2078,7 @@ domove()
             } else {
                 door_opened = 0;
             }
-	    return;
+		return;
 	}
 
 	if (t_at(x,y)) {
