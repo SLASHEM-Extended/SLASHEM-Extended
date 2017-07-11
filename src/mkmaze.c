@@ -19,6 +19,8 @@ STATIC_DCL boolean FDECL(okay,(int,int,int));
 STATIC_DCL void FDECL(maze0xy,(coord *));
 STATIC_DCL boolean FDECL(put_lregion_here,(XCHAR_P,XCHAR_P,XCHAR_P,
 	XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,BOOLEAN_P,d_level *));
+STATIC_DCL boolean FDECL(really_put_lregion_here,(XCHAR_P,XCHAR_P,XCHAR_P,
+	XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,BOOLEAN_P,d_level *));
 STATIC_DCL void NDECL(fixup_special);
 STATIC_DCL void FDECL(move, (int *,int *,int));
 STATIC_DCL void NDECL(setup_waterlevel);
@@ -326,6 +328,14 @@ bad_location(x, y, lx, ly, hx, hy)
 	       levl[x][y].typ == ROOM || levl[x][y].typ == AIR || levl[x][y].typ == CLOUD || levl[x][y].typ == ICE)));
 }
 
+boolean
+really_bad_location(x, y, lx, ly, hx, hy)
+    xchar x, y;
+    xchar lx, ly, hx, hy;
+{
+    return((boolean) within_bounded_area(x,y, lx,ly, hx,hy) );
+}
+
 /* pick a location in area (lx, ly, hx, hy) but not in (nlx, nly, nhx, nhy) */
 /* and place something (based on rtype) in that region */
 void
@@ -371,7 +381,20 @@ place_lregion(lx, ly, hx, hy, nlx, nly, nhx, nhy, rtype, lev)
 	    if (put_lregion_here(x,y,nlx,nly,nhx,nhy,rtype,oneshot,lev))
 		return;
 
-    /*impossible*/pline("Couldn't place lregion type %d!", rtype);
+    /* and finally, brute force the shit out of it because we're making a motherfucking BRANCH and the game might be
+     * rendered unwinnable if it cannot be placed! --Amy */
+
+    if (wizard) {
+	pline("Trying to force a location for lregion type %d", rtype);
+    }
+
+    oneshot = TRUE;
+    for (x = lx; x <= hx; x++)
+	for (y = ly; y <= hy; y++)
+	    if (really_put_lregion_here(x,y,nlx,nly,nhx,nhy,rtype,oneshot,lev))
+		return;
+
+    impossible("Couldn't place lregion type %d!", rtype);
 }
 
 STATIC_OVL boolean
@@ -393,6 +416,53 @@ d_level *lev;
 
 	    if (t && t->ttyp != MAGIC_PORTAL) deltrap(t);
 	    if (bad_location(x, y, nlx, nly, nhx, nhy)) return FALSE;
+	}
+    }
+    switch (rtype) {
+    case LR_TELE:
+    case LR_UPTELE:
+    case LR_DOWNTELE:
+	/* "something" means the player in this case */
+	if(MON_AT(x, y)) {
+	    /* move the monster if no choice, or just try again */
+	    if(oneshot) (void) rloc(m_at(x,y), FALSE);
+	    else return(FALSE);
+	}
+	u_on_newpos(x, y);
+	break;
+    case LR_PORTAL:
+	mkportal(x, y, lev->dnum, lev->dlevel);
+	break;
+    case LR_DOWNSTAIR:
+    case LR_UPSTAIR:
+	mkstairs(x, y, (char)rtype, (struct mkroom *)0);
+	break;
+    case LR_BRANCH:
+	place_branch(Is_branchlev(&u.uz), x, y);
+	break;
+    }
+    return(TRUE);
+}
+
+STATIC_OVL boolean
+really_put_lregion_here(x,y,nlx,nly,nhx,nhy,rtype,oneshot,lev)
+xchar x, y;
+xchar nlx, nly, nhx, nhy;
+xchar rtype;
+boolean oneshot;
+d_level *lev;
+{
+    if (really_bad_location(x, y, nlx, nly, nhx, nhy)) {
+	if (!oneshot) {
+	    return FALSE;		/* caller should try again */
+	} else {
+	    /* Must make do with the only location possible;
+	       avoid failure due to a misplaced trap.
+	       It may not fail, no matter what happens. Missing ladder + lost soul mode == unwinnable game! --Amy */
+	    struct trap *t = t_at(x,y);
+
+	    if (t && t->ttyp != MAGIC_PORTAL) deltrap(t);
+	    if (really_bad_location(x, y, nlx, nly, nhx, nhy)) return FALSE;
 	}
     }
     switch (rtype) {
