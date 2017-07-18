@@ -12286,10 +12286,14 @@ register int	mmflags;
 	} else if (mndx == PM_CRITICALLY_INJURED_THIEF || mndx == PM_CRITICALLY_INJURED_JEDI) { 
 		/* can be killed in a single hit --Amy */
 	    mtmp->mhpmax = mtmp->mhp = 1;
-	} else if (is_rider(ptr) || is_deadlysin(ptr) ) {
+	} else if (is_rider(ptr)) {
 
 	    /* We want low HP, but a high mlevel so they can attack well */
 		mtmp->mhpmax = mtmp->mhp = d(10,8) + 20 + ptr->mlevel;
+
+	} else if (is_deadlysin(ptr)) {
+
+		mtmp->mhpmax = mtmp->mhp = d(10,9) + rnd(ptr->mlevel);
 
 	} /*else if (ptr->mlevel > 49) {*/	/* from now on we'll just let their hp be calculated normally --Amy */
 	    /* "special" fixed hp monster
