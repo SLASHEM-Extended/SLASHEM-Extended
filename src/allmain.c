@@ -4468,6 +4468,12 @@ newbossB:
 
 		}
 
+		if (Conflict && !rn2(500)) { /* bullshit downside --Amy :P */
+
+			makerandomtrap();
+
+		}
+
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(500) ) {
 			pline("Wielding such a beautiful, erotic lady boot for so long makes your %s turn.", body_part(STOMACH));
 		      make_vomiting(Vomiting+20, TRUE);

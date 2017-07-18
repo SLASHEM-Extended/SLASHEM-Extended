@@ -34,6 +34,7 @@ STATIC_DCL boolean FDECL(zap_steed, (struct obj *));
 
 #ifdef OVLB
 STATIC_DCL int FDECL(zap_hit, (int,int));
+STATIC_DCL int FDECL(zap_hit_player, (int,int));
 #endif
 #ifdef OVL0
 STATIC_DCL void FDECL(backfire, (struct obj *));
@@ -7770,6 +7771,25 @@ int type;
 
     return (3 - chance) < ac+spell_bonus;
 }
+
+STATIC_OVL int
+zap_hit_player(ac, type)
+int ac;
+int type;
+{
+    int chance = rn2(40);
+    if (!rn2(5)) chance += rn2(100);
+    int spell_bonus = type ? spell_hit_bonus(type) : 0;
+
+    /* small chance for naked target to avoid being hit */
+    if (!chance) return rnd(10) < ac+spell_bonus;
+
+    /* very high armor protection does not achieve invulnerability */
+    ac = AC_VALUE(ac);
+
+    return (3 - chance) < ac+spell_bonus;
+}
+
 /* #endif */
 /* type ==   0 to   9 : you shooting a wand */
 /* type ==  10 to  19 : you casting a spell */
@@ -8043,7 +8063,7 @@ register int dx,dy;
 		    mon = u.usteed;
 		    goto buzzmonst;
 	    } else
-	    if (zap_hit((int) u.uac, 0)) {
+	    if ((zap_hit_player((int) u.uac, 0)) || (Conflict && (zap_hit_player((int) u.uac, 0)) ) ) {
 		range -= 2;
 		pline("%s hits you!", The(fltxt));
 		if (Reflecting && rn2(20) && abs(type) != ZT_SPELL(ZT_FIRE)) {

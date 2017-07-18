@@ -213,6 +213,11 @@ const char *name;	/* if null, then format `obj' */
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
 
+		if (Conflict && shieldblockrate > 0) {
+			shieldblockrate *= 2;
+			shieldblockrate /= 3;
+		}
+
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
 		/* If you're berserk, you cannot block at all. We will still show your actual chance to block in enlightenment,
@@ -248,11 +253,11 @@ const char *name;	/* if null, then format `obj' */
 	else if (is_thrown_weapon) extrachance = 3;
 	else extrachance = 2;
 
-	if((u.uac + tlev <= rnd(20)) && !rn2(3)) {
+	if((u.uac + tlev <= rnd(20)) && (!rn2(Conflict ? 4 : 3))) {
 		if(Blind || !flags.verbose) pline("It misses.");
 		else You("are almost hit by %s.", onm);
 		return(0);
-	} else if ( (u.uac < 0) && rn2(2) && !rn2(extrachance) && (rnd(50) < (-(u.uac))) )    {
+	} else if ( (u.uac < 0) && (!rn2(Conflict ? 3 : 2)) && !rn2(extrachance) && (rnd(50) < (-(u.uac))) )    {
 		/* more negative AC means a higher chance to deflect projectiles with armor --Amy */
 		if(Blind || !flags.verbose) pline("Your armor deflects a projectile.");
 		else You("deflect %s with your armor.", onm);

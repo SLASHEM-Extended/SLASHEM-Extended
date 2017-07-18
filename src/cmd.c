@@ -4852,6 +4852,11 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
 
+		if (Conflict && shieldblockrate > 0) {
+			shieldblockrate *= 2;
+			shieldblockrate /= 3;
+		}
+
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
 		Sprintf(buf, "%d%%", shieldblockrate);
@@ -7755,6 +7760,11 @@ int final;
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+
+		if (Conflict && shieldblockrate > 0) {
+			shieldblockrate *= 2;
+			shieldblockrate /= 3;
+		}
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
