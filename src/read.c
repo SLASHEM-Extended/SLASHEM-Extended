@@ -2885,7 +2885,8 @@ register struct obj	*sobj;
 				}
 			    }
 			}
-			if ((sobj->blessed || wornmask ||
+			/* Amy nerf: blessed ones were way too powerful, allowing you to more or less ignore curses */
+			if (( (sobj->blessed && !rn2(5)) || wornmask ||
 			     obj->otyp == LOADSTONE ||
 			     obj->otyp == LOADBOULDER ||
 			     obj->otyp == STARLIGHTSTONE ||

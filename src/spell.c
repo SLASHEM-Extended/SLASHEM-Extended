@@ -3169,8 +3169,11 @@ boolean atme;
 	case SPE_WHISPERS_FROM_BEYOND:
 
 		identify_pack(0, 0);
+		identify_pack(0, 0);
+		if (rn2(2)) identify_pack(0, 0);
+		if (!rn2(5)) identify_pack(0, 0);
 
-		ABASE(A_INT) -= 5;
+		ABASE(A_INT) -= rnd(2);
 		if (ABASE(A_INT) < ATTRMIN(A_INT)) {
 			Your("last thought fades away.");
 			killer = "brainlessness";
@@ -3191,7 +3194,7 @@ boolean atme;
 		}
 		AMAX(A_INT) = ABASE(A_INT);
 
-		ABASE(A_WIS) -= 5;
+		ABASE(A_WIS) -= rnd(2);
 		if (ABASE(A_WIS) < ATTRMIN(A_WIS)) {
 
 			You("turn into an unthinkable vegetable and die.");
@@ -4374,36 +4377,36 @@ boolean atme;
 			break;
 		}
 
-		u.uhpmax -= 500;
+		u.uhpmax -= rnd(500);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (Upolyd) {
-			u.mhmax -= 500;
+			u.mhmax -= rnd(500);
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
 		}
-		u.uenmax -= 500;
+		u.uenmax -= rnd(500);
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 
-		ABASE(A_STR) -= 5;
+		ABASE(A_STR) -= rnd(5);
 		if (ABASE(A_STR) < ATTRMIN(A_STR)) ABASE(A_STR) = ATTRMIN(A_STR);
 		AMAX(A_STR) = ABASE(A_STR);
 
-		ABASE(A_DEX) -= 5;
+		ABASE(A_DEX) -= rnd(5);
 		if (ABASE(A_DEX) < ATTRMIN(A_DEX)) ABASE(A_DEX) = ATTRMIN(A_DEX);
 		AMAX(A_DEX) = ABASE(A_DEX);
 
-		ABASE(A_INT) -= 5;
+		ABASE(A_INT) -= rnd(5);
 		if (ABASE(A_INT) < ATTRMIN(A_INT)) ABASE(A_INT) = ATTRMIN(A_INT);
 		AMAX(A_INT) = ABASE(A_INT);
 
-		ABASE(A_WIS) -= 5;
+		ABASE(A_WIS) -= rnd(5);
 		if (ABASE(A_WIS) < ATTRMIN(A_WIS)) ABASE(A_WIS) = ATTRMIN(A_WIS);
 		AMAX(A_WIS) = ABASE(A_WIS);
 
-		ABASE(A_CON) -= 5;
+		ABASE(A_CON) -= rnd(5);
 		if (ABASE(A_CON) < ATTRMIN(A_CON)) ABASE(A_CON) = ATTRMIN(A_CON);
 		AMAX(A_CON) = ABASE(A_CON);
 
-		ABASE(A_CHA) -= 5;
+		ABASE(A_CHA) -= rnd(5);
 		if (ABASE(A_CHA) < ATTRMIN(A_CHA)) ABASE(A_CHA) = ATTRMIN(A_CHA);
 		AMAX(A_CHA) = ABASE(A_CHA);
 
@@ -4426,38 +4429,56 @@ boolean atme;
 			break;
 		}
 
-		u.uhpmax -= rnd(100);
+		u.uhpmax -= rnd(33);
+		if (rn2(2)) u.uhpmax -= rnd(33);
+		if (!rn2(4)) u.uhpmax -= rnd(33);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (Upolyd) {
-			u.mhmax -= rnd(100);
+			u.mhmax -= rnd(33);
+			if (rn2(2)) u.mhmax -= rnd(33);
+			if (!rn2(4)) u.mhmax -= rnd(33);
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
 		}
-		u.uenmax -= rnd(100);
+		u.uenmax -= rnd(33);
+		if (rn2(2)) u.uenmax -= rnd(33);
+		if (!rn2(4)) u.uenmax -= rnd(33);
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 
+		if (!rn2(2)) {
 		ABASE(A_STR) -= 1;
 		if (ABASE(A_STR) < ATTRMIN(A_STR)) ABASE(A_STR) = ATTRMIN(A_STR);
 		AMAX(A_STR) = ABASE(A_STR);
+		}
 
+		if (!rn2(2)) {
 		ABASE(A_DEX) -= 1;
 		if (ABASE(A_DEX) < ATTRMIN(A_DEX)) ABASE(A_DEX) = ATTRMIN(A_DEX);
 		AMAX(A_DEX) = ABASE(A_DEX);
+		}
 
+		if (!rn2(2)) {
 		ABASE(A_INT) -= 1;
 		if (ABASE(A_INT) < ATTRMIN(A_INT)) ABASE(A_INT) = ATTRMIN(A_INT);
 		AMAX(A_INT) = ABASE(A_INT);
+		}
 
+		if (!rn2(2)) {
 		ABASE(A_WIS) -= 1;
 		if (ABASE(A_WIS) < ATTRMIN(A_WIS)) ABASE(A_WIS) = ATTRMIN(A_WIS);
 		AMAX(A_WIS) = ABASE(A_WIS);
+		}
 
+		if (!rn2(2)) {
 		ABASE(A_CON) -= 1;
 		if (ABASE(A_CON) < ATTRMIN(A_CON)) ABASE(A_CON) = ATTRMIN(A_CON);
 		AMAX(A_CON) = ABASE(A_CON);
+		}
 
+		if (!rn2(2)) {
 		ABASE(A_CHA) -= 1;
 		if (ABASE(A_CHA) < ATTRMIN(A_CHA)) ABASE(A_CHA) = ATTRMIN(A_CHA);
 		AMAX(A_CHA) = ABASE(A_CHA);
+		}
 
 		register struct obj *acqo;
 		int acquireditem;

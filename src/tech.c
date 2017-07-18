@@ -1996,7 +1996,7 @@ dotech()
 			break;
 
 		case T_BLOOD_RITUAL:
-			pline("Requires an athame in your open inventory. If you use this technique, you sacrifice 200 max HP and Pw, and all of your stats are reduced by 2, but you will be granted a wish, an acquirement, a random artifact or a random powerful item.");
+			pline("Requires an athame in your open inventory. If you use this technique, you sacrifice up to 200 max HP and Pw, and all of your stats are reduced by up to 2, but you will be granted a wish, an acquirement, a random artifact or a random powerful item.");
 			break;
 
 		case T_ENT_S_POTION:
@@ -3573,36 +3573,36 @@ int tech_no;
 		}
 		pline("Using your athame, you mutilate your own body. Don't ask me, I know nothing about those heretical rituals, apart from the fact they exist...");
 
-		u.uhpmax -= 200;
+		u.uhpmax -= rno(200);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (Upolyd) {
-			u.mhmax -= 200;
+			u.mhmax -= rno(200);
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
 		}
-		u.uenmax -= 200;
+		u.uenmax -= rno(200);
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 
-		ABASE(A_STR) -= 2;
+		ABASE(A_STR) -= rno(2);
 		if (ABASE(A_STR) < ATTRMIN(A_STR)) ABASE(A_STR) = ATTRMIN(A_STR);
 		AMAX(A_STR) = ABASE(A_STR);
 
-		ABASE(A_DEX) -= 2;
+		ABASE(A_DEX) -= rno(2);
 		if (ABASE(A_DEX) < ATTRMIN(A_DEX)) ABASE(A_DEX) = ATTRMIN(A_DEX);
 		AMAX(A_DEX) = ABASE(A_DEX);
 
-		ABASE(A_INT) -= 2;
+		ABASE(A_INT) -= rno(2);
 		if (ABASE(A_INT) < ATTRMIN(A_INT)) ABASE(A_INT) = ATTRMIN(A_INT);
 		AMAX(A_INT) = ABASE(A_INT);
 
-		ABASE(A_WIS) -= 2;
+		ABASE(A_WIS) -= rno(2);
 		if (ABASE(A_WIS) < ATTRMIN(A_WIS)) ABASE(A_WIS) = ATTRMIN(A_WIS);
 		AMAX(A_WIS) = ABASE(A_WIS);
 
-		ABASE(A_CON) -= 2;
+		ABASE(A_CON) -= rno(2);
 		if (ABASE(A_CON) < ATTRMIN(A_CON)) ABASE(A_CON) = ATTRMIN(A_CON);
 		AMAX(A_CON) = ABASE(A_CON);
 
-		ABASE(A_CHA) -= 2;
+		ABASE(A_CHA) -= rno(2);
 		if (ABASE(A_CHA) < ATTRMIN(A_CHA)) ABASE(A_CHA) = ATTRMIN(A_CHA);
 		AMAX(A_CHA) = ABASE(A_CHA);
 

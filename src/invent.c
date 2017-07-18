@@ -4501,12 +4501,12 @@ struct obj *otmp;
 	else if (otmp->oclass == SPBOOK_CLASS && rnd(u.idspellbookpenalty) > 2) pline("The spellbook resisted your identification attempt!");
 	else if (otmp->oclass == GEM_CLASS && rnd(u.idgempenalty) > 100) pline("The gem resisted your identification attempt!");
 	else if (otmp->oclass == TOOL_CLASS && rnd(u.idtoolpenalty) > 5) pline("The tool resisted your identification attempt!");
-      else if (rn2(3)) makeknown(otmp->otyp);
+      else if (!rn2(3)) makeknown(otmp->otyp);
     if (otmp->oartifact) discover_artifact((int)otmp->oartifact);
-    if (rn2(3)) otmp->known = 1;
-    if (rn2(3)) otmp->dknown = 1;
-    if (rn2(3)) otmp->bknown = 1;
-    if (rn2(3)) otmp->rknown = 1;
+    if (!rn2(3)) otmp->known = 1;
+    if (!rn2(3)) otmp->dknown = 1;
+    if (!rn2(3)) otmp->bknown = 1;
+    if (!rn2(3)) otmp->rknown = 1;
     if (otmp->otyp == EGG && otmp->corpsenm != NON_PM)
 	learn_egg_type(otmp->corpsenm);
 }
@@ -10266,9 +10266,9 @@ struct obj *obj;
 			case SPE_VANISHING:
 				pline("A spell that will, with equal chance, teleport the target away, make it invisible or cancel it. Rarely, this spell will backfire."); break;
 			case SPE_WISHING:
-				pline("The ultimate spell, only the best spellcasters will be able to use it, and it will drain 500 max HP and Pw and permanently reduce all of your stats by 5. Decide for yourself if getting a free wish is worth it."); break;
+				pline("The ultimate spell, only the best spellcasters will be able to use it, and it will drain up to 500 max HP and Pw and permanently reduce all of your stats by up to 5. Decide for yourself if getting a free wish is worth it."); break;
 			case SPE_ACQUIREMENT:
-				pline("A powerful spell that allows you to acquire an item; you can choose the class, but not the exact item. It will drain up to 100 max HP and Pw and permanently reduce all of your stats by 1 though."); break;
+				pline("A powerful spell that allows you to acquire an item; you can choose the class, but not the exact item. It will drain up to 100 max HP and Pw and permanently reduce some of your stats by 1 though."); break;
 			case SPE_CHAOS_BOLT:
 				pline("Offensive spell that deals damage and has a chance of polymorphing the monster. However, you may be afflicted with hallucination after you cast it."); break;
 			case SPE_HELLISH_BOLT:
@@ -10443,7 +10443,7 @@ struct obj *obj;
 			case SPE_NATURE_BEAM:
 				pline("This spell fires powerful rays of fire, cold, lightning or poison (randomly chosen)."); break;
 			case SPE_WHISPERS_FROM_BEYOND:
-				pline("Tries to identify your entire inventory, because unlike ToME, there is no *Identify* effect in this game. There is no 'sanity' stat either, so it permanently reduces your INT and WIS by a large amount instead, and if any of those go below 3, you die instantly!"); break;
+				pline("Tries to identify your entire inventory, because unlike ToME, there is no *Identify* effect in this game. There is no 'sanity' stat either, so it permanently reduces your INT and WIS by one or two instead, and if any of those go below 3, you die instantly!"); break;
 			case SPE_STASIS:
 				pline("Both you and all monsters will be frozen in time until the spell effect ends. Protip: cast it to wait out annoying status effects or regenerate your health without being interrupted."); break;
 			case SPE_CRYOGENICS:
