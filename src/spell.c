@@ -4879,6 +4879,10 @@ boolean atme;
 			You_hear("air current noises.");
 
 		pushplayer();
+		if (In_sokoban(&u.uz)) {
+			change_luck(-1);
+			pline("You cheater!");
+		}
 
 		break;
 
