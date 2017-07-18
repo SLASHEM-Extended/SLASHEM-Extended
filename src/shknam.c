@@ -54,6 +54,7 @@ static const char * const shkbooks[] = {
     "Cahersiveen", "Glenbeigh", "Kilmihil", "Kiltamagh",
     "Droichead Atha", "Inniscrone", "Clonegal", "Lisnaskea",
     "Culdaff", "Dunfanaghy", "Inishbofin", "Kesh",
+    "Loughrea", "Croagh", "Maumakeogh", "Ballyjamesduff",
 
 	"Benderaz", "Nagano", "Newbig", "Hayabusa", "Eckart",
 	"Usanna", "Tresh", "Also Matte", "SIR", "Schroeder", "Shmeil",
@@ -174,6 +175,8 @@ static const char * const shktools[] = {
 	"Oirek", "Onnets", "Ypeed", "Lleremad", "Sia", "Dnnorle",
 	"Lidnnerae", "Htereblle", "Redocdnilb", "Ryklebli", "Thgink Yerg",
 	"Dexap", "Nogardlwarc", "Nacylg", "Nidrajsed Nouq",
+	"Omed", "Xniragag", "Evitcepsortni",
+
     0
 };
 
@@ -209,7 +212,7 @@ static const char * const shkgeneral[] = {
     "Holmavik",
 
 	"Miller", "Merkel", "Stone", "Bitchiya", "Pedas", "Garbage Houses",
-	"Kun-Kwei", "Persh", "Levart", "Gunnhild",
+	"Kun-Kwei", "Persh", "Levart", "Gunnhild", "Gardener", "Boker",
     0
 };
 
