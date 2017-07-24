@@ -2396,8 +2396,20 @@ register struct obj	*sobj;
 
 		/* KMH -- catch underflow */
 		s = sobj->cursed ? -otmp->spe : otmp->spe;
-		
+
 		if (s > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3) && rn2(s) && !rn2(3) )  {
+
+			if (otmp->oartifact) {
+				otmp->spe = 0;
+				Your("%s violently %s%s%s for a while, then %s.", xname(otmp),
+				otense(otmp, Blind ? "vibrate" : "glow"),
+			     (!Blind && !same_color) ? " " : nul,
+			     (Blind || same_color) ? nul : hcolor(sobj->cursed ? NH_BLACK : NH_SILVER),
+				otense(otmp, "fade"));
+
+				break;
+			}
+
 		Your("%s violently %s%s%s for a while, then %s.",
 		     xname(otmp),
 		     otense(otmp, Blind ? "vibrate" : "glow"),

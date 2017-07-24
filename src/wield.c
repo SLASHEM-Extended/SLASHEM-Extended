@@ -1091,8 +1091,15 @@ register int amount;
 	    return(1);
 	}
 	/* there is a (soft) upper and lower limit to uwep->spe */
-	if(((uwep->spe > (is_droven_weapon(uwep) ? 10 : is_elven_weapon(uwep) ? 8 : 5) && amount >= 0) || (uwep->spe < -5 && amount < 0))
-								&& rn2(3) && !rn2(3) ) {
+	if(((uwep->spe > (is_droven_weapon(uwep) ? 10 : is_elven_weapon(uwep) ? 8 : 5) && amount >= 0) || (uwep->spe < -5 && amount < 0)) && rn2(3) && !rn2(3) ) {
+
+		if (uwep->oartifact) {
+			uwep->spe = 0;
+		    Your("%s %s for a while and then %s.",
+			 aobjnam(uwep, "violently glow"), color,
+			 otense(uwep, "fade"));
+			return(1);
+		}
 	    if (!Blind)
 	    Your("%s %s for a while and then %s.",
 		 aobjnam(uwep, "violently glow"), color,
