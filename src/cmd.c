@@ -10340,6 +10340,8 @@ const char *msg;
 	putstr(win, 0, "          .  direct at yourself");
 	putstr(win, 0, "");
 	putstr(win, 0, "(Suppress this message with !cmdassist in config file.)");
+	putstr(win, 0, "Hint: Shift-O opens the options. To change between");
+	putstr(win, 0, "vi-like keys and the number pad, use the number_pad option.");
 	display_nhwindow(win, FALSE);
 	destroy_nhwindow(win);
 	return TRUE;
