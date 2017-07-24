@@ -5240,7 +5240,7 @@ doapply()
 		break;
 	case GOD_O_METER:
 
-		if (!rn2(20)) {
+		if (!rn2(100)) {
 		    useup(obj);
 		    pline("Your god-o-meter explodes!");
 			if (!ishaxor) u.ublesscnt += rn2(20);
@@ -5251,13 +5251,13 @@ doapply()
 
 		if (Blind) {
 			pline("Being blind, you cannot see it.");
-		} else if (!obj->blessed && !(obj->oartifact == ART_HOYO_HOYO_WOLOLO) ) {
+		} else if (!obj->blessed && (rn2(2) || obj->cursed) && !(obj->oartifact == ART_HOYO_HOYO_WOLOLO) ) {
 			You_feel("uncomfortable.");
 			if (!ishaxor) u.ublesscnt += rn2((obj->cursed) ? 200 : 100);
 			else u.ublesscnt += rn2((obj->cursed) ? 100 : 50);
 		} else {
 			You("see a%s flash from the device.",(u.ublesscnt>0) ? " black" : "n amber");
-			if (wizard || (!rn2(10)) ) {
+			if (wizard || (!rn2(obj->blessed ? 3 : 10)) ) {
 				Your("prayer timeout is %i.",u.ublesscnt);
 			}
 		}
