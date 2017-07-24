@@ -607,6 +607,7 @@ E schar FDECL(print_dungeon, (BOOLEAN_P,schar *,xchar *));
 E int NDECL(donamelevel);
 E int NDECL(dooverview);
 E void FDECL(forget_mapseen, (int));
+E void FDECL(init_mapseen, (d_level *));
 
 /* ### eat.c ### */
 
