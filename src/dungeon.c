@@ -63,6 +63,13 @@ STATIC_DCL const char *FDECL(br_string, (int));
 STATIC_DCL void FDECL(print_branch, (winid, int, int, int, BOOLEAN_P, struct lchoice *));
 #endif
 
+mapseen *mapseenchn = (struct mapseen *)0;
+STATIC_DCL mapseen *FDECL(load_mapseen, (int));
+STATIC_DCL void FDECL(save_mapseen, (int, mapseen *));
+STATIC_DCL mapseen *FDECL(find_mapseen, (d_level *));
+STATIC_DCL void FDECL(print_mapseen, (winid,mapseen *,boolean));
+STATIC_DCL boolean FDECL(interest_mapseen, (mapseen *));
+
 #if defined(DEBUG) || defined(DEBUG_420942)
 #define DD	dungeons[i]
 STATIC_DCL void NDECL(dumpit);
@@ -124,6 +131,7 @@ save_dungeon(fd, perform_write, free_data)
     boolean perform_write, free_data;
 {
     branch *curr, *next;
+    mapseen *curr_ms, *next_ms;
     int    count;
 
     if (perform_write) {
@@ -144,6 +152,14 @@ save_dungeon(fd, perform_write, free_data)
 	bwrite(fd, (genericptr_t) level_info,
 			(unsigned)count * sizeof (struct linfo));
 	bwrite(fd, (genericptr_t) &inv_pos, sizeof inv_pos);
+
+    for (count = 0, curr_ms = mapseenchn; curr_ms; curr_ms = curr_ms->next)
+        count++;
+    bwrite(fd, (genericptr_t) &count, sizeof(count));
+
+    for (curr_ms = mapseenchn; curr_ms; curr_ms = curr_ms->next)
+        save_mapseen(fd, curr_ms);
+
     }
 
     if (free_data) {
@@ -152,6 +168,13 @@ save_dungeon(fd, perform_write, free_data)
 	    free((genericptr_t) curr);
 	}
 	branches = 0;
+    for (curr_ms = mapseenchn; curr_ms; curr_ms = next_ms) {
+        next_ms = curr_ms->next;
+        if (curr_ms->custom)
+            free((genericptr_t)curr_ms->custom);
+        free((genericptr_t) curr_ms);
+    }
+    mapseenchn = 0;
     }
 }
 
@@ -161,6 +184,7 @@ restore_dungeon(fd)
     int fd;
 {
     branch *curr, *last;
+    mapseen *curr_ms, *last_ms;
     int    count, i;
 
     mread(fd, (genericptr_t) &n_dgns, sizeof(n_dgns));
@@ -187,6 +211,18 @@ restore_dungeon(fd)
 	panic("level information count larger (%d) than allocated size", count);
     mread(fd, (genericptr_t) level_info, (unsigned)count*sizeof(struct linfo));
     mread(fd, (genericptr_t) &inv_pos, sizeof inv_pos);
+
+    mread(fd, (genericptr_t) &count, sizeof(count));
+    last_ms = (mapseen *) 0;
+    for (i = 0; i < count; i++) {
+        curr_ms = load_mapseen(fd);
+        curr_ms->next = (mapseen *) 0;
+        if (last_ms)
+            last_ms->next = curr_ms;
+        else
+            mapseenchn = curr_ms;
+        last_ms = curr_ms;
+    }
 }
 
 static void
@@ -2138,5 +2174,272 @@ xchar *rdgn;
 #endif /* WIZARD */
 
 #endif /* OVL1 */
+
+/* add a custom name to the current level */
+int
+donamelevel()
+{
+	mapseen *mptr;
+	char qbuf[QBUFSZ];	/* Buffer for query text */
+	char nbuf[BUFSZ];	/* Buffer for response */
+	int len;
+
+	if (!(mptr = find_mapseen(&u.uz))) return 0;
+
+	Sprintf(qbuf,"What do you want to call this dungeon level? ");
+	getlin(qbuf, nbuf);
+
+	if (index(nbuf, '\033')) return 0;
+
+	len = strlen(nbuf) + 1;
+	if (mptr->custom) {
+		free((genericptr_t)mptr->custom);
+		mptr->custom = (char *)0;
+		mptr->custom_lth = 0;
+	}
+	
+	if (*nbuf) {
+		mptr->custom = (char *) alloc(sizeof(char) * len);
+		mptr->custom_lth = len;
+		strcpy(mptr->custom, nbuf);
+	}
+   
+	return 0;
+}
+
+/* find the particular mapseen object in the chain */
+/* may return 0 */
+STATIC_OVL mapseen *
+find_mapseen(lev)
+d_level *lev;
+{
+	mapseen *mptr;
+
+	for (mptr = mapseenchn; mptr; mptr = mptr->next)
+		if (on_level(&(mptr->lev), lev)) break;
+
+	return mptr;
+}
+
+void
+forget_mapseen(ledger_no)
+int ledger_no;
+{
+	mapseen *mptr;
+
+	for (mptr = mapseenchn; mptr; mptr = mptr->next)
+		if (dungeons[mptr->lev.dnum].ledger_start + 
+			mptr->lev.dlevel == ledger_no) break;
+
+	/* if not found, then nothing to forget */
+	if (mptr) {
+
+		/* custom names are erased, not forgotten until revisted */
+		if (mptr->custom) {
+			mptr->custom_lth = 0;
+			free((genericptr_t)mptr->custom);
+			mptr->custom = (char *)0;
+		}
+
+	}
+}
+
+STATIC_OVL void
+save_mapseen(fd, mptr)
+int fd;
+mapseen *mptr;
+{
+	branch *curr;
+	int count;
+
+	count = 0;
+	for (curr = branches; curr; curr = curr->next) {
+		if (curr == mptr->br) break;
+		count++;
+	}
+
+	bwrite(fd, (genericptr_t) &count, sizeof(int));
+	bwrite(fd, (genericptr_t) &mptr->lev, sizeof(d_level));
+	bwrite(fd, (genericptr_t) &mptr->custom_lth, sizeof(unsigned));
+	if (mptr->custom_lth)
+		bwrite(fd, (genericptr_t) mptr->custom, 
+		sizeof(char) * mptr->custom_lth);
+}
+
+STATIC_OVL mapseen *
+load_mapseen(fd)
+int fd;
+{
+	int branchnum, count;
+	mapseen *load;
+	branch *curr;
+
+	load = (mapseen *) alloc(sizeof(mapseen));
+	mread(fd, (genericptr_t) &branchnum, sizeof(int));
+
+	count = 0;
+	for (curr = branches; curr; curr = curr->next) {
+		if (count == branchnum) break;
+		count++;
+	}
+	load->br = curr;
+
+	mread(fd, (genericptr_t) &load->lev, sizeof(d_level));
+	mread(fd, (genericptr_t) &load->custom_lth, sizeof(unsigned));
+	if (load->custom_lth > 0) {
+		load->custom = (char *) alloc(sizeof(char) * load->custom_lth);
+		mread(fd, (genericptr_t) load->custom, 
+			sizeof(char) * load->custom_lth);
+	} else load->custom = (char *) 0;
+
+	return load;
+}
+
+int
+dooverview()
+{
+	winid win;
+	mapseen *mptr;
+	boolean first;
+	boolean printdun;
+	int lastdun;
+
+	first = TRUE;
+
+	win = create_nhwindow(NHW_MENU);
+
+	for (mptr = mapseenchn; mptr; mptr = mptr->next) {
+
+		/* only print out info for a level or a dungeon if interest */
+		if (interest_mapseen(mptr)) {
+			printdun = (first || lastdun != mptr->lev.dnum);
+			/* if (!first) putstr(win, 0, ""); */
+			print_mapseen(win, mptr, printdun);
+
+			if (printdun) {
+				first = FALSE;
+				lastdun = mptr->lev.dnum;
+			}
+		}
+	}
+
+	display_nhwindow(win, TRUE);
+	destroy_nhwindow(win);
+
+	return 0;
+}
+
+STATIC_OVL void
+print_mapseen(win, mptr, printdun)
+winid win;
+mapseen *mptr;
+boolean printdun;
+{
+	char buf[BUFSZ];
+	int i, depthstart;
+
+	/* Damnable special cases */
+	/* The quest and knox should appear to be level 1 to match
+	 * other text.
+	 */
+	if (mptr->lev.dnum == quest_dnum || mptr->lev.dnum == knox_level.dnum)
+		depthstart = 1;
+	else
+		depthstart = dungeons[mptr->lev.dnum].depth_start;  
+
+	if (printdun) {
+		/* Sokoban lies about dunlev_ureached and we should
+		 * suppress the negative numbers in the endgame.
+		 */
+		if (dungeons[mptr->lev.dnum].dunlev_ureached == 1 ||
+			mptr->lev.dnum == sokoban_dnum || In_endgame(&mptr->lev))
+			Sprintf(buf, "%s:", dungeons[mptr->lev.dnum].dname);
+		else
+			Sprintf(buf, "%s: levels %d to %d", 
+				dungeons[mptr->lev.dnum].dname,
+				depthstart, depthstart + 
+				dungeons[mptr->lev.dnum].dunlev_ureached - 1);
+		putstr(win, ATR_INVERSE, buf);
+	}
+
+	/* calculate level number */
+	i = depthstart + mptr->lev.dlevel - 1;
+	if (Is_astralevel(&mptr->lev))
+		Sprintf(buf, "Astral Plane:");
+	else if (In_endgame(&mptr->lev))
+		/* Negative numbers are mildly confusing, since they are never
+		 * shown to the player, except in wizard mode.  We could show
+		 * "Level -1" for the earth plane, for example.  Instead,
+		 * show "Plane 1" for the earth plane to differentiate from
+		 * level 1.  There's not much to show, but maybe the player
+		 * wants to #annotate them for some bizarre reason.
+		 */
+		Sprintf(buf, "Plane %i:", -i);
+	else
+		Sprintf(buf, "Level %d:", i);
+	
+#ifdef WIZARD
+	/* wizmode prints out proto dungeon names for clarity */
+	if (wizard) {
+		s_level *slev;
+		if (slev = Is_special(&mptr->lev))
+			Sprintf(eos(buf), " [%s]", slev->proto);
+	}
+#endif
+
+	if (mptr->custom)
+		Sprintf(eos(buf), " (%s)", mptr->custom);
+
+	/* print out glyph or something more interesting? */
+	Sprintf(eos(buf), "%s", on_level(&u.uz, &mptr->lev) ? 
+		" <- You are here" : "");
+	putstr(win, ATR_BOLD, buf);
+
+}
+
+/* returns true if this level has something interesting to print out */
+STATIC_OVL boolean
+interest_mapseen(mptr)
+mapseen *mptr;
+{
+	return (on_level(&u.uz, &mptr->lev) || (mptr->custom));
+}
+
+void
+init_mapseen(lev)
+d_level *lev;
+{
+	/* Create a level and insert in "sorted" order.  This is an insertion
+	 * sort first by dungeon (in order of discovery) and then by level number.
+	 */
+	mapseen *mptr;
+	mapseen *init;
+	mapseen *old;
+	
+	init = (mapseen *) alloc(sizeof(mapseen));
+	(void) memset((genericptr_t)init, 0, sizeof(mapseen));
+	init->lev.dnum = lev->dnum;
+	init->lev.dlevel = lev->dlevel;
+
+	if (!mapseenchn) {
+		mapseenchn = init;
+		return;
+	}
+
+	/* walk until we get to the place where we should
+	 * insert init between mptr and mptr->next
+	 */
+	for (mptr = mapseenchn; mptr->next; mptr = mptr->next) {
+		if (mptr->next->lev.dnum == init->lev.dnum) break;
+	}
+	for (; mptr->next; mptr = mptr->next) {
+		if ((mptr->next->lev.dnum != init->lev.dnum) ||
+			(mptr->next->lev.dlevel > init->lev.dlevel)) break;
+	}
+
+	old = mptr->next;
+	mptr->next = init;
+	init->next = old;
+}
 
 /*dungeon.c*/

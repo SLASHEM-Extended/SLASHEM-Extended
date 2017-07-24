@@ -237,6 +237,7 @@ STATIC_PTR int NDECL(doextcmd);
 STATIC_PTR int NDECL(doborgtoggle);
 #endif
 STATIC_PTR int NDECL(domonability);
+STATIC_PTR int NDECL(dooverview_or_wiz_where);
 STATIC_PTR int NDECL(dotravel);
 STATIC_PTR int NDECL(playersteal);
 #if 0
@@ -1341,6 +1342,17 @@ extcmd_via_menu()	/* here after # - now show pick-list of possible commands */
     return ret;
 }
 #endif
+
+STATIC_PTR int
+dooverview_or_wiz_where()
+{
+#ifdef WIZARD
+	if (wizard) return wiz_where();
+	else
+#endif
+	dooverview();
+	return 0;
+}
 
 /* #monster command - use special monster ability while polymorphed */
 /* edit by Amy - some polymorph forms have several abilities, so I'll try to make the player able to choose. */
@@ -8848,6 +8860,7 @@ static struct binding_list_tab *bindinglist = NULL;
 struct ext_func_tab extcmdlist[] = {
 	{"2weapon", "toggle two-weapon combat", dotwoweapon, !IFBURIED, AUTOCOMPLETE},
 	{"adjust", "adjust inventory letters", doorganize, IFBURIED, AUTOCOMPLETE},
+	{"annotate", "name current level", donamelevel, TRUE, AUTOCOMPLETE},
 	{"borrow", "steal from monsters", playersteal, IFBURIED, AUTOCOMPLETE},  /* jla */        
 	{"chat", "talk to someone", dotalk, IFBURIED, AUTOCOMPLETE},    /* converse? */
 	{"conduct", "list which challenges you have adhered to", doconduct, IFBURIED, AUTOCOMPLETE},
@@ -8869,6 +8882,7 @@ struct ext_func_tab extcmdlist[] = {
 	{"monster", "use a monster's special ability", domonability, IFBURIED, AUTOCOMPLETE},
 	{"name", "name an item or type of object", ddocall, IFBURIED},
 	{"offer", "offer a sacrifice to the gods", dosacrifice, !IFBURIED, AUTOCOMPLETE},
+	{"overview", "show an overview of the dungeon", dooverview, TRUE, AUTOCOMPLETE},
 	{"pray", "pray to the gods for help", dopray, IFBURIED, AUTOCOMPLETE},
 	{"quit", "exit without saving current game", done2, IFBURIED, AUTOCOMPLETE},
 

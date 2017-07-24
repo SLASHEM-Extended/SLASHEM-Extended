@@ -190,4 +190,16 @@ struct linfo {
 #endif /* MFLOPPY */
 };
 
+typedef struct mapseen  {
+	struct mapseen *next; /* next map in the chain */
+	branch *br; /* knows about branch via taking it in goto_level */
+	d_level lev; /* corresponding dungeon level */
+
+	/* custom naming */
+	char *custom;
+	unsigned custom_lth;
+
+} mapseen;
+
+
 #endif /* DUNGEON_H */

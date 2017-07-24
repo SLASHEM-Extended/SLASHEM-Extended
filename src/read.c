@@ -1482,6 +1482,7 @@ forget_levels(percent)
 	if (count > 1) count /= 2; /* another nerf by Amy */
 	for (i = 0; i < count; i++) {
 	    level_info[indices[i]].flags |= FORGOTTEN;
+	    forget_mapseen(indices[i]);
 	}
 }
 

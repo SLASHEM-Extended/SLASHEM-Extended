@@ -9993,6 +9993,8 @@ mklev()
 {
 	struct mkroom *croom;
 
+	init_mapseen(&u.uz);
+
 	if(getbones()) {
 
 		u.gottenbones = 1;

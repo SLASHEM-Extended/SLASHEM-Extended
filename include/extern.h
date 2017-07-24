@@ -604,6 +604,9 @@ E schar FDECL(lev_by_name, (const char *));
 #ifdef WIZARD
 E schar FDECL(print_dungeon, (BOOLEAN_P,schar *,xchar *));
 #endif
+E int NDECL(donamelevel);
+E int NDECL(dooverview);
+E void FDECL(forget_mapseen, (int));
 
 /* ### eat.c ### */
 
