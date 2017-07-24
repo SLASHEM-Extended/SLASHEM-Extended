@@ -22,6 +22,9 @@ register struct obj *otmp;
 		(otmp == uarms) ? "shield" :
 		(otmp == uarmg) ? "gloves" :
 		(otmp == uarmc) ? cloak_simple_name(otmp) :
+		(otmp == uleft) ? "left ring" :
+		(otmp == uright) ? "right ring" :
+		(otmp == uamul) ? "amulet" :
 		(otmp == uarmh) ? "helmet" : "armor");
 }
 
@@ -239,6 +242,8 @@ char *objnambuf;
 	boolean monkey_business; /* true iff an animal is doing the thievery */
 	int do_charm = is_neuter(mtmp->data) || flags.female == mtmp->female;
 
+	char buf[BUFSZ];
+
 	if (objnambuf) *objnambuf = '\0';
 	/* the following is true if successful on first of two attacks. */
 	/*if(!monnear(mtmp, u.ux, u.uy)) return(0);*/
@@ -320,8 +325,10 @@ gotobj:
 		if (otmp->cursed) {
 			otmp->bknown = 1;
 			pline("%s tries to take off your %s, which appears to be cursed.", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp)); 
-			if (yn("Allow it to be taken?") != 'y')
-			return(0);
+
+			getlin ("Allow it to be taken? [yes/no]",buf);
+			(void) lcase (buf);
+			if (strcmp (buf, "yes")) return(0);
 		} else {
 		pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
 		return(0);
