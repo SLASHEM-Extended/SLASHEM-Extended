@@ -42,7 +42,8 @@ static const char * const shkliquors[] = {
 	"Heartfont", "Chansina", "Delilah", "Marihuana", "Boeing",
 	"Kovvelkov", "Jeler", "Hesser", "Rutte", "Meir", "Suchanek",
 	"Jannter", "Erdinger", "Warsteiner", "Grolsch", "Jack Daniels",
-	"Champagner", "Surilie", "Tamika",
+	"Champagner", "Surilie", "Tamika", "Ga'er", "Tsedong",
+	"Moonjava", "Wollfahrt",
     0
 };
 
@@ -58,7 +59,8 @@ static const char * const shkbooks[] = {
 
 	"Benderaz", "Nagano", "Newbig", "Hayabusa", "Eckart",
 	"Usanna", "Tresh", "Also Matte", "SIR", "Schroeder", "Shmeil",
-	"Wellstruct", "Seasoon",
+	"Wellstruct", "Seasoon", "Zhangmu", "Drepung", "Petal",
+	"Rokasel",
     0
 };
 
@@ -73,7 +75,8 @@ static const char * const shkarmors[] = {
 
 	"Luna", "Nagi", "Nguyen", "Pecker", "Marid", "Warrington",
 	"Koopa", "Pietra", "Runner", "Iris flax", "Muxfield", "Petry",
-	"Erdogan", "Cunaj", "Istanbul", "Bosporus", "Hamzic",
+	"Erdogan", "Cunaj", "Istanbul", "Bosporus", "Hamzic", "Rikaze",
+	"Azura", "Rhiannon", "Ceyra",
     0
 };
 
@@ -91,7 +94,8 @@ static const char * const shkwands[] = {
 
 	"Walter", "Hall", "Hagen", "Rehe", "Pale", "Head", "Left",
 	"Haxxor", "Bolgra", "Baeran", "Telpan", "Klaf", "Trump", "Rary",
-	"Gallardo", "Peng", "Knat", "Glatz",
+	"Gallardo", "Peng", "Knat", "Glatz", "Jiangji", "Blaze",
+	"Starla", "Baendre",
     0
 };
 
@@ -108,6 +112,7 @@ static const char * const shkrings[] = {
 
 	"Sechs", "Saasch", "Schmitt", "Eigenlob", "Gynn", "Merilis",
 	"Agnethasson", "Grahw", "Buffy", "Madrugada", "Ata", "Gaab",
+	"Changdu", "Breanna", "Tranquilla", "Boerd",
     0
 };
 
@@ -125,6 +130,7 @@ static const char * const shkfoods[] = {
 	"Kraj", "Wurie", "Putin", "Dessert", "Suesska", "Vada",
 	"Cranice", "Ice Bird", "Doener Kebap", "Shawarma", "McDonalds",
 	"Burger King", "Kentucky Fried Chicken", "Mandy", "Le Crobag",
+	"Linzhi", "Breezy", "Windsong", "Epart",
     0
 };
 
@@ -139,7 +145,7 @@ static const char * const shkweapons[] = {
 
 	"Legel", "Deathstrike", "Arschegast", "Mashevka", "Valus",
 	"Arm Chest Contractor", "Falcon", "Al Capone", "Schrack", "Mach",
-	"March",
+	"March", "Shigatse", "Dharma", "Zennia", "Boast",
     0
 };
 
@@ -159,14 +165,14 @@ static const char * const shktools[] = {
     "Yao-hang", "Tonbar", "Nivek", "Kivenhoug",
     "Falo", "Nosid-da\'r", "Ekim-p", "Rebrol-nek", "Noslo", "Yl-rednow",
     "Mured-oog", "Ivrajimsal",
-    "Nivram",
-    "Lez-tneg", "Ytnu-haled", "Niknar",
+    "Nivram", "Llardom", "Nedraawi-nav",
+    "Lez-tneg", "Ytnu-haled", "Niknar", "AlliWar Wickson", "Oguhmk",
 
 	"Karma", "Sound Impacts", "Wheel Corner", "Montoya", "Lebenich",
 	"Strip-Mine", "be silent kert", "Being Moose", "Internet",
 	"Ancient Regime", "Work Houses", "Pipe Cutting Equipment", "Parvus",
 	"Gaellaei", "Tschulini", "Current Mountain", "Cuddle-Bundle",
-	"Coffin Nail",
+	"Coffin Nail", "Gyantse", "Feather", "Zoe", "El Sartre",
 
 	"Kaahb", "Badanoj", "Natas", "Sirhc", "Ntgnut", "Tnurgs",
 	"Remirol", "Noeda", "QIF", "Livednam", "Maerdixul", "Yvi Nedlog",
@@ -191,7 +197,8 @@ static const char * const shklight[] = {
     "Troyan", "Lovech", "Sliven",
 
 	"Habich", "Trong-Oul", "Dumont", "Dumas", "Vittel", "Hattrick",
-	"Pekriah", "Innocentia", "Diagna", "Castor", "Ronaldo",
+	"Pekriah", "Innocentia", "Diagna", "Castor", "Ronaldo", "Ganden",
+	"Jasmine", "Zora", "Burner",
     0
 };
 
@@ -213,6 +220,7 @@ static const char * const shkgeneral[] = {
 
 	"Miller", "Merkel", "Stone", "Bitchiya", "Pedas", "Garbage Houses",
 	"Kun-Kwei", "Persh", "Levart", "Gunnhild", "Gardener", "Boker",
+	"Tsurphu", "Luna", "Endurance", "Schiesskanista",
     0
 };
 
@@ -238,7 +246,8 @@ static const char *shkpet[] = {
     "Troyan", "Lovech", "Sliven",
 
 	"War Mountain", "Oro", "Pure", "King", "Funo", "Cuntrina",
-	"Tato", "Santana", "Dickmouth", "Mul", "White Logel",
+	"Tato", "Santana", "Dickmouth", "Mul", "White Logel", "Lhasa",
+	"Melody", "Moonbeam", "Whoopee",
     0
 };
 
