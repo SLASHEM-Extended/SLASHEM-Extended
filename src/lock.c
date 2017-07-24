@@ -744,6 +744,13 @@ doforce()		/* try to force a chest with your weapon */
 	    	set_occupation(forcelock, "forcing the lock", 0);
 	    	return(1);
 	    }
+	    if (u.dz > 0) {
+		if (picktyp != 2) You("cannot find any sort of lock down there.");
+		else {
+		    	return use_pick_axe2(uwep);
+		}
+	    }
+
 	} else {		/* break down/open door */
 	    struct monst *mtmp;
 
