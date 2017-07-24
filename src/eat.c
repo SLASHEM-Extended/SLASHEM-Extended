@@ -2398,6 +2398,7 @@ register int pm;
 	    case PM_GORGON_BEETLE:
 	    case PM_SPEED_TROVE:
 	    case PM_MINI_CHICKATRICE:
+	    case PM_SPEEDOTRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		Your("velocity suddenly seems very uncertain!");
 		if (HFast & INTRINSIC) {

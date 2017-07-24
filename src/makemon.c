@@ -6876,6 +6876,18 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_SAMMAEL]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_RENDORN]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_ANDOR_DRAKON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_STAHNGNIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_VENONIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_FIRINGNIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_FRONGNIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_BLAHONIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_ELECTRONIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_AZIDONIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_STATONIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_RANDONIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_MIDINIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_NASTINIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_SLEIPNIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 
 	if (ishaxor) {
 		if (mtmp->data == &mons[PM_BAEL]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
@@ -6931,6 +6943,18 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_SAMMAEL]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_RENDORN]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		if (mtmp->data == &mons[PM_ANDOR_DRAKON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_STAHNGNIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_VENONIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_FIRINGNIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_FRONGNIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_BLAHONIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_ELECTRONIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_AZIDONIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_STATONIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_RANDONIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_MIDINIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_NASTINIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_SLEIPNIR]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 	}
 
 		break;
@@ -14189,9 +14213,12 @@ register int	mmflags;
 			if (is_pool(x, y) || is_lava(x, y) )
 			    mtmp->mundetected = TRUE;
 			if (mtmp->data == &mons[PM_FLYING_CAMO_FISH]) set_mimic_sym(mtmp);
+			if (ptr == &mons[PM_STALKISH]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (ptr == &mons[PM_UBER_STALKISH]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
 		case S_PUDDING:
 			if (ptr == &mons[PM_PHANTOM]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (ptr == &mons[PM_PHASE_SHIFTER]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
 		case S_ZOUTHERN:
 			if (mndx == PM_MARSUPILAMI) set_mimic_sym(mtmp);
@@ -16747,6 +16774,8 @@ int type;
 		case PM_VENOM_ATRONACH: return 200;
 
 		case PM_CURSED_SWORD: return 100;
+		case PM_LURKER_GOLEM: return 100;
+		case PM_WAITER_GOLEM: return 100;
 		case PM_ANIMATED_DAGGER: return 100;
 		case PM_SWORD_FAMILIAR: return 150;
 		case PM_ROPE_GOLEM: return 60;
