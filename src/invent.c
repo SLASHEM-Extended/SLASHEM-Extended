@@ -5396,6 +5396,12 @@ boolean picked_some;
 			 IS_TOILET(levl[u.ux][u.uy].typ)
 			))
 		    Strcat(fbuf, "  Use \"q.\" to drink from it.");
+
+		if (flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7) && IS_THRONE(levl[u.ux][u.uy].typ))
+		    Strcat(fbuf, "  Use #sit to interact with it.");
+		if (flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7) && IS_ALTAR(levl[u.ux][u.uy].typ))
+		    Strcat(fbuf, "  Use #offer to make a sacrifice.");
+
 	}
 
 	if (!otmp || is_lava(u.ux,u.uy) || (is_pool(u.ux,u.uy) && !Underwater)) {
