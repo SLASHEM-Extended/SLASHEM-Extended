@@ -909,9 +909,62 @@ moveloop()
 		    if (u.usteed && u.umoved) {
 			/* your speed doesn't augment steed's speed */
 			moveamt = mcalcmove(u.usteed);
+			register int steedmultiplier = 5;
+			register int speedreduction;
+
+			/* Riding a really fast (speed higher than 24) steed does not necessarily allow you to ride it at
+			 * full speed, but depends on your riding skill. The actual speed will never be lower than 24, but
+			 * now you need grand master riding skill to ride the steed at its actual speed. --Amy */
+
+			if (!(PlayerCannotUseSkills)) {
+
+				if (P_SKILL(P_RIDING) == P_BASIC) steedmultiplier = 7;
+				if (P_SKILL(P_RIDING) == P_SKILLED) steedmultiplier = 9;
+				if (P_SKILL(P_RIDING) == P_EXPERT) steedmultiplier = 11;
+				if (P_SKILL(P_RIDING) == P_MASTER) steedmultiplier = 13;
+				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) steedmultiplier = 15;
+				if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) steedmultiplier = 15;
+
+			}
+
+			if (moveamt > 24) {
+				speedreduction = (moveamt - 24);
+				speedreduction *= steedmultiplier;
+				speedreduction /= 15;
+				moveamt = 24 + speedreduction;
+			}
+
 		    } else
 		    {
 			moveamt = youmonst.data->mmove;
+
+			register int polymultiplier = 5;
+			register int speedreduction;
+
+			/* Polymorphing into a really fast (speed higher than 24) monster does not necessarily allow you to
+			 * move at full speed, but depends on your polymorphing skill. The actual speed will never be lower
+			 * than 24, but now you need grand master polymorphing skill to move at the actual speed of whatever
+			 * monster you polymorphed into. --Amy */
+
+			if (!(PlayerCannotUseSkills)) {
+
+				if (P_SKILL(P_POLYMORPHING) == P_BASIC) polymultiplier = 7;
+				if (P_SKILL(P_POLYMORPHING) == P_SKILLED) polymultiplier = 9;
+				if (P_SKILL(P_POLYMORPHING) == P_EXPERT) polymultiplier = 11;
+				if (P_SKILL(P_POLYMORPHING) == P_MASTER) polymultiplier = 13;
+				if (P_SKILL(P_POLYMORPHING) == P_GRAND_MASTER) polymultiplier = 15;
+				if (P_SKILL(P_POLYMORPHING) == P_SUPREME_MASTER) polymultiplier = 15;
+
+			}
+
+			if (Upolyd && (moveamt > 24)) {
+				speedreduction = (moveamt - 24);
+				speedreduction *= polymultiplier;
+				speedreduction /= 15;
+				moveamt = 24 + speedreduction;
+			}
+
+
 			if (youmonst.data->mmove == 0 && !rn2(2)) moveamt += 1; /* be lenient if an ungenomold player is unlucky 		 * enough to poly into a red mold or something like that. Otherwise they would simply die with no chance.
 		 * see hack.c code that still prevents movement if polymorphed into something sessile.
 		 * Also, you're still slower than a lichen (speed 1), so this should be ok. */
