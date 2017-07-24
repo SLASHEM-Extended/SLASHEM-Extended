@@ -476,6 +476,9 @@ register struct monst *mtmp;
 {
 	register struct permonst *mdat, *mdat2;
 	register int tmp=0;
+
+	int armpro, armprolimit;
+
 	int inrange, nearby, scared;
 #ifdef GOLDOBJ
         struct obj *ygold = 0, *lepgold = 0;
@@ -1070,6 +1073,26 @@ toofar:
 		};
 
 		verbalize(whore_msgs[rn2(SIZE(whore_msgs))]);
+
+		armpro = magic_negation(&youmonst);
+		armprolimit = 75;
+		if (!(PlayerCannotUseSkills)) {
+
+			switch (P_SKILL(P_SPIRITUALITY)) {
+				default: armprolimit = 75; break;
+				case P_BASIC: armprolimit = 78; break;
+				case P_SKILLED: armprolimit = 81; break;
+				case P_EXPERT: armprolimit = 84; break;
+				case P_MASTER: armprolimit = 87; break;
+				case P_GRAND_MASTER: armprolimit = 90; break;
+				case P_SUPREME_MASTER: armprolimit = 93; break;
+			}
+		}
+
+		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
+			make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		}
+
 		}
 
 	    if(inrange && mtmp->data->msound == MS_SUPERMAN && !mtmp->mpeaceful && !rn2(5))

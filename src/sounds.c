@@ -1391,6 +1391,13 @@ register struct monst *mtmp;
 
 	case MS_WHORE:
 
+		if (!flags.female) verbalize("Hey, baby, want to have some fun?");
+		else verbalize("I don't have many female customers, but do you want to have fun with me?");
+		if (yn("Accept the offer?") == 'y') {
+			(void) doseduce(mtmp);
+			break;
+		}
+
 		{
 		static const char *whore_msgs[] = { /* These are obviously inspired by the GTA series --Amy */
 			"Come to Momma.",
