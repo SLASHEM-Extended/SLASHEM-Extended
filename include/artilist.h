@@ -5359,7 +5359,7 @@ A("Henrietta's Magical Aid",				RIN_TIME_SPENDING, /* 50% less spellcasting fail
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
 A("Jonadab's Heavyload",				LOADSTONE, /* invisibility while carried */
-	(SPFX_RESTR), 0, (SPFX_ESP),
+	(SPFX_RESTR|SPFX_EVIL), 0, (SPFX_ESP),
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Hanging Call",       RADIOACTIVE_DAGGER,
