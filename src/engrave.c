@@ -3843,6 +3843,10 @@ static const char *epitaphs[] = {
 "Tried to eat a dreamer cockatrice, and forgot that the paralysis only happens after eating it is complete.",
 "A poor soul who tried to eat an eight-footed snake, not knowing that they cause petrification.",
 "Wait, so if I eat an undead mimic and become deathly sick, I end up becoming a gold piece for more turns than it takes for the sickness to kill me???",
+"AmyBSOD: Enduring dnethack, until the inevitable death to the MOTHER FUCKER THAT WAS INSERTED BY A DEVELOPER WHO HATES EVERY LIVING BEING.",
+"The elder priest in dnethack: No one has ever killed him, no one will ever kill him and those who try are dead. Like me.",
+"'the elder priest of Moloch is a contender for the title of second most dangerous monster in dnethack' my ass, he's the SINGLE MOST DANGEROUS MONSTER THAT HAS EVER GRACED A PC SCREEN",
+"Killed in dnethack by a beautiful pair of high-heeled stilettos. If you see Chris, please tell him that I want to hug him for adding the wonderful high heels!",
 
 };
 

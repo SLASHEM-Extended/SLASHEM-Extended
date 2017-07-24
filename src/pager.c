@@ -5406,6 +5406,13 @@ static NEARDATA const char * const fake_plines[] = {
 	"FIQ should just accept the fact that letting monsters use all items in the game is a stupid idea! He should cut his losses and make a sane variant instead, where they don't randomly read genocide and wipe you out!",
 	"In FIQhack you can name your character 'Erotic Thai Bitch', but certain other satanhack-based variants don't allow it because the 'genius' developers implemented sloppy fixes just to taunt the players. FIQhack confirmed better than Nethack4.",
 	"The RNG decides to send in reinforcements to punish people who kill innocent monsters.",
+	"Did you know that the elder priest in dnethack is an absolute MOTHER FUCKER? No single monster should be that strong, not even close, especially if it's a mandatory fight.",
+	"Did you know that the elder priest in dnethack is an absolute MOTHER FUCKER? Chris must really hate all living beings because holy HELL is that thing's attack unbalanced or what. And there is zero defense against it.",
+	"Did you know that the elder priest in dnethack is an absolute MOTHER FUCKER? As if the asshole tentacle attack isn't bad enough, he gave it a flag that gives it ZERO SPELLCASTING COOLDOWN TIME IN A VARIANT WHERE MONSTER SPELLCASTING IS ALREADY OVERPOWERED AS HECK.",
+	"Did you know that the elder priest in dnethack is an absolute MOTHER FUCKER? Whoever invented that asshole tentacle attack should have its own real-life tentacle removed in a most painful way.",
+	"Do not play dnethack. You will make it to the sanctum and basically step on everything along the way, except for Dagon (who is really unbalanced), but the real showstopper comes when you try to claim the amulet and find out the monster holding it has a 'fook you player, game over, all your equipment, stats and everything are suddenly meaningless, you die thank you come again' attack.",
+	"Did you know that dnethack is the best variant if you don't consider slex? It has high heels!!!",
+	"Did you know that there are high heels in dnethack too? Shame Chris didn't add a possibility to use the stiletto heels to sever the asshole elder priest's asshole tentacles and stomp them to a bloody pulp.",
 
 };
 
