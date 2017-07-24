@@ -613,7 +613,7 @@ struct level_map {
 	{ "astral",	&astral_level },
 	{ "baalz",	&baalzebub_level },
 	{ "bigrm",	&bigroom_level },
-	{ "castle",	&stronghold_level },
+	{ "castl",	&stronghold_level },
 	{ "earth",	&earth_level },
 	{ "fakewiz1",	&portal_level },
 	{ "fire",	&fire_level },

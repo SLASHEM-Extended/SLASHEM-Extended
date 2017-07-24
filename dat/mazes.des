@@ -2057,3 +2057,228 @@ STAIR: (00,00, 75,20), (0,0, 0,0),down
 MAZEWALK:(37,09),east
 
 
+# "LabyrNth" - the final maze level before the Castle, version 1
+MAZE:"mazes-47",'-'
+FLAGS:nommap
+GEOMETRY:center,bottom
+# The "wasted" row and column of walls at x=0 and y=0 are necessary due to
+# MAZEWALK's implementation details (junction coordinates must be even).
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|---------------------------------------------------------------------------
+|| . | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+|-.-----------.---------------------------------------------------------.---
+|| | | | | | | | | | | | . | | | | | | | | . | | | | | | | | | | | | | | | |
+|-----------------.---------------------------------------.-----------------
+|| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+|-----------.-----------------------.---------.-----------------------------
+|| | | | | | | | | | | | | | | | | |.| | | | | | | | | | | | | | | | . . | |
+|---------------------.-------------.------------------------...---|.....|--
+|| | | |...| | | | | | | | | | | ....... | | | | | | | | | | . . | | ... | |
+|---------------------.-------------.------------------------...---|.....|--
+|| | | | | | | | | | | | | | | | | |.| | | | | | | | | | | | | | | | . . | |
+|-----------.-----------------------.---------.-----------------------------
+|| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+|-----------------.---------------------------------------.-----------------
+|| | | | | | | | | | | | . | | | | | | | | . | | | | | | | | | | | | | | | |
+|-.-----------.---------------------------------------------------------.---
+|| . | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+----------------------------------------------------------------------------
+ENDMAP
+#RANDOM_PLACES
+NON_DIGGABLE:(31,07,41,13)
+FOUNTAIN:random
+FOUNTAIN:random
+REGION:(01,01,75,19),lit,"ordinary"
+MAZEWALK:(10,10),east
+#WALLIFY
+STAIR:(08,10),up
+STAIR:(70,10),down
+CONTAINER:'`',"statue",(36,10),uncursed,"human",3,"Theseus"
+OBJECT:')',"mace",contained,random,7
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+#sorry Chris, but this level can appear as early as dlvl2 in slex, which means no minotaur
+MONSTER:'H',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# "LabyrNth" - the final maze level before the Castle, version 2
+MAZE:"mazes-48",'-'
+FLAGS:nommap
+GEOMETRY:center,bottom
+# The "wasted" row and column of walls at x=0 and y=0 are necessary due to
+# MAZEWALK's implementation details (junction coordinates must be even).
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|---------------------------------------------------------------------------
+|| | . | | | | | | | | | | | | | | | | | | | | | | | | | | | | . . | | | | |
+|-----------------------------.-------------.----------------|.....|--------
+|| | | | | | | | . | | | | | | | | | | | | . . | | | | | | | | ... | | | | |
+|-------------------------.-----------------.----------------|.....|--------
+|| | | | | | | | | . | | | | | | | | | | | | | | | | | | | | | . . | | | | |
+|-----------.-----------------------.---------------------------------------
+|| | | | | | | | | | | | | | | | | |.| | | | | | | | | | | | | | | | | | | |
+|-.-------------------.-------------.---------------...---------------------
+|| | | |...| | | | | | | | | | | ....... | | | | | | | | | | | | | | | | | |
+|-.-------------------.-------------.---------------------------------------
+|| | | | | | | | | | | | | | | | | |.| | | | | | | | | | | | | | | | | | | |
+|-----------.-----------------------.---------------------------------------
+|| | | | | | | | | . | | | | | | | | | | | | | | | | | | | . | | | | | | | |
+|-------------------------.-----------------.------------|...|--------------
+|| | | | | | | | . | | | | | | | | | | | | . . | | | | | | . | | | | | | | |
+|-----------------------------.-------------.----------|.....|------------.-
+|| | . | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | . |
+----------------------------------------------------------------------------
+ENDMAP
+#RANDOM_PLACES
+NON_DIGGABLE:(31,07,41,13)
+FOUNTAIN:random
+FOUNTAIN:random
+REGION:(01,01,75,19),lit,"ordinary"
+MAZEWALK:(10,10),east
+#WALLIFY
+STAIR:(08,10),up
+STAIR:(64,04),down
+CONTAINER:'`',"statue",(36,10),uncursed,"human",3,"Theseus"
+OBJECT:')',"mace",contained,random,7
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+#sorry Chris, but this level can appear as early as dlvl2 in slex, which means no minotaur
+MONSTER:'H',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+
+# "LabyrNth" - the final maze level before the Castle, version 3
+MAZE:"mazes-49",'-'
+FLAGS:nommap
+GEOMETRY:center,bottom
+# The "wasted" row and column of walls at x=0 and y=0 are necessary due to
+# MAZEWALK's implementation details (junction coordinates must be even).
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+----------------------------------------------------------------------------
+|---------------------------------------------------------------------------
+|| | . | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | . |
+|-----------------------------.-------------.----------|.....|------------.-
+|| | | | | | | | . | | | | | | | | | | | | . . | | | | | | . | | | | | | | |
+|-------------------------.-----------------.------------|...|--------------
+|| | | | | | | | | . | | | | | | | | | | | | | | | | | | | . | | | | | | | |
+|-----------.-----------------------.---------------------------------------
+|| | | | | | | | | | | | | | | | | |.| | | | | | | | | | | | | | | | | | | |
+|-.-------------------.-------------.---------------------------------------
+|| | | |...| | | | | | | | | | | ....... | | | | | | | | | | | | | | | | | |
+|-.-------------------.-------------.---------------...---------------------
+|| | | | | | | | | | | | | | | | | |.| | | | | | | | | | | | | | | | | | | |
+|-----------.-----------------------.---------------------------------------
+|| | | | | | | | | . | | | | | | | | | | | | | | | | | | | | | . . | | | | |
+|-------------------------.-----------------.----------------|.....|--------
+|| | | | | | | | . | | | | | | | | | | | | . . | | | | | | | | ... | | | | |
+|-----------------------------.-------------.----------------|.....|--------
+|| | . | | | | | | | | | | | | | | | | | | | | | | | | | | | | . . | | | | |
+----------------------------------------------------------------------------
+ENDMAP
+#RANDOM_PLACES
+NON_DIGGABLE:(31,07,41,13)
+FOUNTAIN:random
+FOUNTAIN:random
+REGION:(01,01,75,19),lit,"ordinary"
+MAZEWALK:(10,10),east
+#WALLIFY
+STAIR:(08,10),up
+STAIR:(64,16),down
+CONTAINER:'`',"statue",(36,10),uncursed,"human",3,"Theseus"
+OBJECT:')',"mace",contained,random,7
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+#sorry Chris, but this level can appear as early as dlvl2 in slex, which means no minotaur
+MONSTER:'H',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random

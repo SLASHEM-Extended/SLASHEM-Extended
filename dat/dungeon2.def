@@ -77,7 +77,7 @@ BRANCH: 	"The Wyrm Caves" @ (20, 20)
 
 #   And the levels...
 RNDLEVEL:		"nymph" "N" @ (23, 17) 25 5
-RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 50
+RNDLEVEL:	"bigrm" "B" @ (20, 20) 75 60
 RNDLEVEL:	"exmall" "Y" @ (25, 15) 75 9
 LEVALIGN:		chaotic
 LEVELDESC:	town
@@ -106,7 +106,7 @@ LEVEL:		"key" "L" @ (5, 35) 10
 RNDLEVEL:		"levgn" "V" @ (2, 38) 80 95
 RNDLEVEL:		"levgn" "V" @ (2, 38) 80 95
 RNDLEVEL:		"levgn" "V" @ (2, 38) 10 95
-RNDLEVEL:		"emptb" "E" @ (2, 38) 20 50
+RNDLEVEL:		"emptb" "E" @ (2, 38) 20 60
 RNDLEVEL:		"mazes" "M" @ (2, 38) 33 46
 RNDLEVEL:		"mazes" "M" @ (2, 38) 33 46
 RNDLEVEL:		"mazes" "M" @ (2, 38) 33 46
@@ -117,8 +117,8 @@ BRANCH:			"Fort Ludios" @ (23, 4) portal
 
 # Medusa and the castle.  There should be nothing in between.
 LEVALIGN:		chaotic
-RNDLEVEL:			"castle" "none" @ (40, 0) 9
-CHAINBRANCH:	"Gehennom" "castle" + (0, 0) no_down
+RNDLEVEL:			"castl" "none" @ (40, 0) 15
+CHAINBRANCH:	"Gehennom" "castl" + (0, 0) no_down
 
 
 # Branch to the endgame...
@@ -162,15 +162,15 @@ CHAINLEVEL:     "wizard3" "Y" "wizard1" + (2, 0)
 LEVEL:          "fakewiz1" "F" @ (20, 8)
 LEVEL:          "fakewiz2" "G" @ (20, 8)
 # The demon levels
-RNDLEVEL:          "juibl" "J" @ (2, 29) 95 2
-RNDLEVEL:          "yeeno" "E" @ (2, 29) 95 6
+RNDLEVEL:          "juibl" "J" @ (2, 29) 95 4
+RNDLEVEL:          "yeeno" "E" @ (2, 29) 95 12
 RNDLEVEL:          "orcus" "O" @ (2, 29) 95 6
-RNDLEVEL:          "demog" "D" @ (2, 29) 95 4
+RNDLEVEL:          "demog" "D" @ (2, 29) 95 7
 # The devil levels
-RNDLEVEL:          "baalz" "B" @ (2, 29) 95 10
-RNDLEVEL:          "geryo" "R" @ (2, 29) 95 3
-RNDLEVEL:          "dispa" "S" @ (2, 29) 95 5
-RNDLEVEL:          "asmod" "A" @ (2, 29) 95 4
+RNDLEVEL:          "baalz" "B" @ (2, 29) 95 12
+RNDLEVEL:          "geryo" "R" @ (2, 29) 95 8
+RNDLEVEL:          "dispa" "S" @ (2, 29) 95 10
+RNDLEVEL:          "asmod" "A" @ (2, 29) 95 6
 RNDLEVEL:	"hllma" "H" @ (2, 29) 75 10
 BRANCH:         "Sheol" @ (3, 27) down
 
@@ -190,9 +190,9 @@ RNDLEVEL:          "heck" "Q" @ (2, 29) 90 96
 RNDLEVEL:          "heck" "Q" @ (2, 29) 90 96
 RNDLEVEL:		"school" "C" @ (2, 29) 20 5
 
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 50
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 50
-RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 50
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 60
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 60
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 60
 
 LEVEL:	"rndmazeb" "K" @ (2, 29) 60
 RNDLEVEL:	"intplx" "L" @ (2, 29) 50 5
@@ -257,7 +257,7 @@ DUNGEON:	"Town" "A" (5, 0)
 LEVALIGN:       lawful
 RNDLEVEL:       "town" "T" @ (1, 0) 98 4
 RNDLEVEL:          "unhck" "X" @ (2, 0) 5 96
-RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 50
+RNDLEVEL:	"bigrm" "B" @ (3, 0) 5 60
 RNDLEVEL:	"intpla" "J" @ (4, 0) 5 5
 LEVEL:		"schoolX" "C" @ (5, 0) 5
 LEVELDESC:      town
@@ -274,7 +274,7 @@ RNDLEVEL:       "grund" "Z" @ (1, 0) 40 3
 DUNGEON:        "Fort Ludios" "K" (1, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      unaligned
-LEVEL:          "knox" "K" @ (-1, 0) 50
+RNDLEVEL:          "knox" "K" @ (-1, 0) 50 3
 
 ### The Wyrm Caves ###
 DUNGEON:        "The Wyrm Caves" "W" (1, 0)

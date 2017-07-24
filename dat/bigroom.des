@@ -4404,3 +4404,1089 @@ MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
 MONSTER:random,random,random
+
+# Tea Party
+MAZE:"bigrm-51",' '
+GEOMETRY:center,center
+MAP
+------------------------------------ ------------------------------------
+|..................................| |..................................|
+|--..............................-------..............................--|
+|.........--..--....................|....................--..--.........|
+|-....---..|S-|..---..............-----..............---..|-S|..---....-|
+|.......|--|..|--|........--..--.........--..--........|--|..|--|.......|
+----..---..|--|..---...--..|--|..--...--..|--|..--...---..|--|..---..----
+ |........--..--........|--|  |--|.....|--|  |--|........--..--........| 
+ --....................--..|--|..--...--..|--|..--....................-- 
+  |.......................--..--.........--..--.......................|  
+  |...................................................................|  
+  |.......................--..--.........--..--.......................|  
+ --....................--..|--|..--...--..|--|..--....................-- 
+ |........--..--........|--|  |--|.....|--|  |--|........--..--........| 
+----..---..|--|..---...--..|--|..--...--..|--|..--...---..|--|..---..----
+|.......|--|..|--|........--..--.........--..--........|--|..|--|.......|
+|-....---..|S-|..---..............-----..............---..|-S|..---....-|
+|.........--..--....................|....................--..--.........|
+|--..............................-------..............................--|
+|..................................| |..................................|
+------------------------------------ ------------------------------------
+ENDMAP
+# Dungeon Description
+REGION:(01,01,72,20),lit,"ordinary"
+# Stairs
+STAIR:random,up
+STAIR:random,down
+DOOR:locked,(12,04)
+DOOR:locked,(12,16)
+DOOR:locked,(60,04)
+DOOR:locked,(60,16)
+# Non diggable walls
+NON_DIGGABLE:(00,00,72,20)
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:'`',"statue",(03,10),"pony",5,"Blinkie Pinkie"
+OBJECT:'`',"statue",(36,10),"frost giant",3,"Mister Frosty"
+OBJECT:'`',"statue",(69,10),"human",5,"Miss Betsy"
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,(01,01)
+MONSTER:random,random,(01,03)
+MONSTER:random,random,(02,07)
+MONSTER:random,random,(02,13)
+MONSTER:random,random,(01,17)
+MONSTER:random,random,(01,19)
+MONSTER:random,random,(34,01)
+MONSTER:random,random,(35,03)
+MONSTER:random,random,(37,03)
+MONSTER:random,random,(38,01)
+MONSTER:random,random,(34,19)
+MONSTER:random,random,(35,17)
+MONSTER:random,random,(37,17)
+MONSTER:random,random,(38,19)
+MONSTER:random,random,(71,01)
+MONSTER:random,random,(71,03)
+MONSTER:random,random,(70,07)
+MONSTER:random,random,(70,13)
+MONSTER:random,random,(71,17)
+MONSTER:random,random,(71,19)
+MONSTER:random,random,(23,07)
+MONSTER:random,random,(23,13)
+MONSTER:random,random,(34,07)
+MONSTER:random,random,(34,13)
+MONSTER:random,random,(38,07)
+MONSTER:random,random,(38,13)
+MONSTER:random,random,(49,07)
+MONSTER:random,random,(49,13)
+MONSTER:random,random,(15,04)
+MONSTER:random,random,(57,04)
+MONSTER:random,random,(15,16)
+MONSTER:random,random,(57,16)
+
+#
+# The Ruins of the Dwarrowdelf
+# by Guest41
+#
+
+#Shrine to the Ruins of the Endless Stair
+
+MAZE: "bigrm-52",' '
+FLAGS:hardfloor,noteleport
+GEOMETRY: center, center
+MAP
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+...........................................................................
+............------FFF-----FFF-----FFF-----FFF-----FFF-----FFF-----FFF------
+............|.............................................................|
+............|.............................................................|
+............F.............................................................|
+............|.............................................................|
+............|.............................................................|
+............|.............................................................|
+............S.............................................................|
+............---------------------------------------------------------------
+ENDMAP
+REGION:(01,01,73,18),lit,"ordinary"
+TELEPORT_REGION:(15,12,70,18),(0,0,0,0)
+STAIR:(71,02), up
+STAIR:random,down
+#
+
+ENGRAVING:(12,18),burn,"Herein lie the lower remnants of the Endless Stair."
+
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+#The Bridge of Khazad-dûm
+#(Why lava? Because holes look ugly.)
+
+MAZE: "bigrm-53",' '
+FLAGS:noteleport
+GEOMETRY: center, center
+MAP
+---------------------------------------------------------------------------
+|..........LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+|..........LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL.|
+|..........LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL..|
+|..........LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL...|
+|..........LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL..---
+------.....LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL..---
+    -----..LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL..---
+ ------.....LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL...------
+ |..+..................................................................+..|
+ ------.....LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL...------
+  ------...LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL..---
+----.......LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL..---
+|..........LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL..---
+|..........LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL..|
+|..........LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL.|
+|..........LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+|..........LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL|
+---------------------------------------------------------------------------
+ENDMAP
+REGION:(01,01,73,18),lit,"ordinary"
+TELEPORT_REGION:(01,01,10,17),(0,0,0,0)
+NON_DIGGABLE:(00,00,74,17)
+STAIR:(73,09), up
+STAIR:(02,09), down
+#
+
+DOOR:open,(04,09)
+DOOR:open,(71,09)
+
+TRAP:"hole", (35,09)
+TRAP:"hole", (36,09)
+
+OBJECT:'%',"corpse",(37,09)
+OBJECT:')',"quarterstaff",(37,09)
+OBJECT:'[',"robe",(37,09)
+
+MONSTER: '&',random,(66,09),hostile, awake
+
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+#The Halls of Moria
+
+MAZE: "bigrm-54",' '
+FLAGS:hardfloor
+GEOMETRY: center, center
+MAP
+---------------------------------------------------------------------------
+|.........................................................................|
+|.........................................................................|
+|........---......---......---......---......---......---......---........|
+|........| |......| |......| |......| |......| |......| |......| |........|
+|........---......---......---......---......---......---......---........|
+|.........................................................................|
+|.........................................................................|
+|........---......---......---......---......---......---......---........|
+|........| |......| |......| |......| |......| |......| |......| |........|
+|........---......---......---......---......---......---......---........|
+|.........................................................................|
+|.........................................................................|
+|........---......---......---......---......---......---......---........|
+|........| |......| |......| |......| |......| |......| |......| |........|
+|........---......---......---......---......---......---......---........|
+|.........................................................................|
+|.........................................................................|
+---------------------------------------------------------------------------
+ENDMAP
+REGION:(01,01,73,18),random,"ordinary"
+NON_DIGGABLE:(00,00,74,17)
+STAIR:random, up
+STAIR:random, down
+#
+
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+
+MAZE: "bigrm-55",' '
+FLAGS:hardfloor
+GEOMETRY: center, center
+MAP
+---------------------------------------------------------------------------
+|.........................................................................|
+|.........................................................................|
+|........---...............---...............---...............---........|
+|........| |...............| |...............| |...............| |........|
+|........---...............---...............---...............---........|
+|.........................................................................|
+|.........................................................................|
+|.................---...............---...............---.................|
+|.................| |...............| |...............| |.................|
+|.................---...............---...............---.................|
+|.........................................................................|
+|.........................................................................|
+|........---...............---...............---...............---........|
+|........| |...............| |...............| |...............| |........|
+|........---...............---...............---...............---........|
+|.........................................................................|
+|.........................................................................|
+---------------------------------------------------------------------------
+ENDMAP
+REGION:(01,01,73,18),random,"ordinary"
+NON_DIGGABLE:(00,00,74,17)
+STAIR:random, up
+STAIR:random, down
+#
+
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+
+MAZE: "bigrm-56",' '
+FLAGS:hardfloor
+GEOMETRY: center, center
+MAP
+---------------------------------------------------------------------------
+|.........................................................................|
+|.........................................................................|
+|....------------.......----.......-...-.......----.......------------....|
+|...|            |.....|    |.....| |.| |.....|    |.....|            |...|
+|....------------......|    |.....| |.| |.....|    |......------------....|
+|......................|    |.....| |.| |.....|    |......................|
+|.......................----......| |.| |......----.......................|
+|....------------..................-...-..................------------....|
+|...|            |.......................................|            |.. |
+|....------------..................-...-..................------------....|
+|.......................----......| |.| |......----.......................|
+|......................|    |.....| |.| |.....|    |......................|
+|....------------......|    |.....| |.| |.....|    |......------------....|
+|...|            |.....|    |.....| |.| |.....|    |.....|            |...|
+|....------------.......----.......-...-.......----.......------------....|
+|.........................................................................|
+|.........................................................................|
+---------------------------------------------------------------------------
+ENDMAP
+REGION:(01,01,73,18),random,"ordinary"
+NON_DIGGABLE:(00,00,74,17)
+STAIR:random, up
+STAIR:random, down
+#
+
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+
+MAZE: "bigrm-57",' '
+FLAGS:hardfloor
+GEOMETRY: center, center
+MAP
+---------------------------------------------------------------------------
+|...|.|.....|.|.....|.|.....|.|.....|.|.....|.|.....|.|.....|.|.....|.|...|
+|...-+-.....-+-.....-+-.....-+-.....-+-.....-+-.....-+-.....-+-.....-+-...|
+|.........................................................................|
+|...-------------------------------------------------------------------...|
+|...|                                                                 |...|
+|...-------------------------------------------------------------------...|
+|.........................................................................|
+|.........................................................................|
+|................K...................K...................K................|
+|.........................................................................|
+|.........................................................................|
+|...-------------------------------------------------------------------...|
+|...|                                                                 |...|
+|...-------------------------------------------------------------------...|
+|.........................................................................|
+|...-+-.....-+-.....-+-.....-+-.....-+-.....-+-.....-+-.....-+-.....-+-...|
+|...|.|.....|.|.....|.|.....|.|.....|.|.....|.|.....|.|.....|.|.....|.|...|
+---------------------------------------------------------------------------
+ENDMAP
+REGION:(01,01,73,18),random,"ordinary"
+NON_DIGGABLE:(00,00,74,17)
+#
+
+STAIR:random, up
+STAIR:random, down
+
+DOOR:locked,(05,02)
+DOOR:locked,(13,02)
+DOOR:locked,(21,02)
+DOOR:locked,(29,02)
+DOOR:locked,(37,02)
+DOOR:locked,(45,02)
+DOOR:locked,(53,02)
+DOOR:locked,(61,02)
+DOOR:locked,(69,02)
+DOOR:locked,(05,16)
+DOOR:locked,(13,16)
+DOOR:locked,(21,16)
+DOOR:locked,(29,16)
+DOOR:locked,(37,16)
+DOOR:locked,(45,16)
+DOOR:locked,(53,16)
+DOOR:locked,(61,16)
+DOOR:locked,(69,16)
+
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+
+#The Forest of BlastHardcheese
+
+MAZE: "bigrm-58",' '
+FLAGS:hardfloor
+GEOMETRY: center, center
+MAP
+    |....................................................................|..
+    |................................................................{{..|..
+    |....................................................................|..
+    |..................................................................---F-
+   --..................................................................|....
+   |...................................................................|....
+   |...................................................................|....
+-----..............................................................------S--
+|...|..............................................................|........
+|...S..............................................................S........
+|...|..............................................................|........
+-----..............................................................------S--
+   |...................................................................|....
+   |...................................................................|....
+   --..................................................................|....
+    |..................................................................---F-
+    |....................................................................|..
+    |................................................................{{..|..
+    |....................................................................|..
+ENDMAP
+REGION:(01,01,74,17),lit,"ordinary"
+NON_DIGGABLE:(00,00,75,18)
+STAIR:(02,09), down
+STAIR:(72,09), up
+
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+
+#The Doors of Durin, abandoned, w/altar
+#Strictly speaking, this is the West-gate, but
+#since it can flip anyway it doesn't really matter.
+
+MAZE: "bigrm-59",' '
+FLAGS:hardfloor
+GEOMETRY: center, center
+MAP
+-----FFF--------------------------------------...........}}}}}}}}}}}}}      
+|...........|.|.|.|.|...............|........|..........}}}}}}}}}}}}}}}}}}  
+|-..........|.......|...............|-......-|.....T....}}}}}}}}}}}}}}}}}}}}
+|...........+.......|...............|........|...........}}}}}}}}}}}}}}}}}}}
+|-..........+.......S...............|-......-|...T........}}}}}}}}}}}}}}}}}}
+|...........|.......|...............|........|............}}}}}}}}}}}}}}}}} 
+|-..........|.......|...............|----+---|.......T...}}}}}}}}}}}}}}}}}} 
+|..|.|.|.|..|.|.|.|.|...............S........|...........}}}}}}}}}}}}}}}}}} 
+|--------------------------+------------------...........}}}}}}}}}}}}}}}}}}}
+|..........................................|............}}}}}}}}}}}}}}}}}}}}
+|..........................................S............}}}}}}}}}}}}}}}}}}} 
+|.....{....................................|............}}}}}}}}}}}}}}}}}}} 
+|...........---------------+------------------...........}}}}}}}}}}}}}}}}}}}
+|...........|....|...........................|...........}}}}}}}}}}}}}}}}}}}
+|...........|....|...........................|.......T...}}}}}}}}}}}}}}}}}}}
+|--FF---FF--|....|...........................|............}}}}}}}}}}}}}}}}} 
+|...........|....|...........................|...T........}}}}}}}}}}}}}}}}} 
+|...........S....S...........................|...........}}}}}}}}}}}}}}}}}} 
+|...........|....|...........................|.....T....}}}}}}}}}}}}}}}}}}  
+----------------------------------------------.........}}}}}}}}}}}}}}}}}}   
+ENDMAP
+REGION:(01,01,75,19),lit,"ordinary"
+TELEPORT_REGION:(01,16,11,18),(0,0,0,0)
+NON_DIGGABLE:(00,00,75,19)
+STAIR:random,up
+STAIR:(04,17), down
+#
+
+#Welcoming committee
+REGION:(13,13,16,18),unlit,"morgue"
+
+#Specific doors
+DOOR:closed,(12,03)
+DOOR:closed,(12,04)
+DOOR:locked,(20,04)
+DOOR:closed,(27,08)
+DOOR:closed,(27,12)
+DOOR:closed,(41,06)
+
+#Twenty-first Hall
+OBJECT:'*',"rock",(30,04)
+OBJECT:'*',"flint",(30,04)
+OBJECT:'%',"lembas wafer",(30,04)
+
+#Abandoned altar
+ALTAR:(41,03),noalign,altar
+
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+
+#The Doors of Durin, destroyed, w/o altar
+
+MAZE: "bigrm-60",' '
+FLAGS:hardfloor
+GEOMETRY: center, center
+MAP
+-----FFF--------------------------------------...........}}}}}}}}}}}}}      
+|...........|.|.|.|.|...............|........|..........}}}}}}}}}}}}}}}}}}  
+|-..........|.......|...............|-......-|.....T....}}}}}}}}}}}}}}}}}}}}
+|...........+.......|...............|........|...........}}}}}}}}}}}}}}}}}}}
+|-..........+.......+...............|-......-|...T........}}}}}}}}}}}}}}}}}}
+|...........|.......|...............|........|............}}}}}}}}}}}}}}}}} 
+|-..........|.......|...............|----+---|.......T...}}}}}}}}}}}}}}}}}} 
+|..|.|.|.|..|.|.|.|.|...............S........|...........}}}}}}}}}}}}}}}}}} 
+|--------------------------+------------------........}}}}}}}}}}}}}}}}}}}}}}
+|..........................................|}.}....}}}}}}}}}}}}}}}}}}}}}}}}}
+|............................................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}} 
+|.....{....................................|}.}....}}}}}}}}}}}}}}}}}}}}}}}} 
+|...........---------------+------------------........}}}}}}}}}}}}}}}}}}}}}}
+|...........|....|...........................|...........}}}}}}}}}}}}}}}}}}}
+|...........|....|...........................|.......T...}}}}}}}}}}}}}}}}}}}
+|--FF---FF--|....|...........................|............}}}}}}}}}}}}}}}}} 
+|...........|....|...........................|...T........}}}}}}}}}}}}}}}}} 
+|...........S....S...........................|...........}}}}}}}}}}}}}}}}}} 
+|...........|....|...........................|.....T....}}}}}}}}}}}}}}}}}}  
+----------------------------------------------.........}}}}}}}}}}}}}}}}}}   
+ENDMAP
+REGION:(01,01,75,19),lit,"ordinary"
+TELEPORT_REGION:(01,16,11,18),(0,0,0,0)
+NON_DIGGABLE:(00,00,75,19)
+STAIR:random,up
+STAIR:(04,17), down
+#
+
+#Welcoming committee
+REGION:(13,13,16,18),unlit,"morgue"
+
+#Specific doors (and their status)
+DOOR:random,(12,03)
+DOOR:random,(12,04)
+DOOR:random,(20,04)
+DOOR:random,(27,08)
+DOOR:random,(27,12)
+DOOR:random,(41,06)
+OBJECT:'`',"boulder",(12,03)
+OBJECT:'`',"boulder",(27,08)
+OBJECT:'`',"boulder",(43,10)
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'*',"rock",random
+OBJECT:'*',"rock",random
+OBJECT:'*',"rock",random
+OBJECT:'*',"rock",random
+OBJECT:'*',"rock",random
+OBJECT:'*',"rock",random
+OBJECT:'*',"rock",random
+OBJECT:'*',"rock",random
+OBJECT:'*',"rock",random
+OBJECT:'*',"rock",random
+
+OBJECT:'`',"boulder",(41,03)
+
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+MONSTER:'T',random,random
+
