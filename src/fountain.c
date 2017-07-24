@@ -602,6 +602,13 @@ register struct obj *obj;
 	    obj->orotten = TRUE;
 	}
 	if (flags.verbose)  pline("Yuck!");
+
+	if (!rn2(25)) {
+		pline("The toilet breaks!");
+		level.flags.nsinks--;
+		levl[u.ux][u.uy].typ = ROOM;
+		newsym(u.ux,u.uy);
+	}
 }
 
 
