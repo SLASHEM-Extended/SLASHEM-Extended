@@ -3108,7 +3108,7 @@ newegomon:
 		deltrap(trap); /* only triggers once, and before giving the wish to make sure you can't hangup cheat :P */
 		pline("You stepped on a trap of wishing!");
 		if ((Luck+rn2(5) < 0) && !RngeWishImprovement && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
-			pline("Unfortunately, nothing happens.");
+			makenonworkingwish();
 			break;
 		}
 		makewish();

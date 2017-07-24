@@ -5771,7 +5771,7 @@ newbossC:
 		known = TRUE;
 		pline("You have found a scroll of wishing!");
 		if ((sobj->cursed || (!sobj->blessed && Luck+rn2(5) < 0)) && !RngeWishImprovement && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
-			pline("Unfortunately, nothing happens.");
+			makenonworkingwish();
 			break;
 		}
 		makewish();

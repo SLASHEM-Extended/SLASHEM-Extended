@@ -3927,7 +3927,7 @@ newboss:
 		case WAN_WISHING:
 			known = TRUE;
 			if ((Luck + rn2(5) < 0) && !RngeWishImprovement && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "wishful cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zhelayemoye za deystvitel'noye plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "istalgan plash") )) ) {
-				pline("Unfortunately, nothing happens.");
+				makenonworkingwish();
 				break;
 			}
 			makewish();
@@ -9078,6 +9078,30 @@ retry:
 		if (Hallucination) pline("You also wish you were able to remember that you suffer from amnesia.");
 		forget(1 + rn2(5));
 	    }
+	}
+}
+
+/* Evil Patch idea by Amy: If your wish fails, e.g. because your luck is too low, you may get an evil artifact instead,
+ * possibly after the game gave you an apparently working wish prompt, except that it doesn't matter at all what you enter.
+ * It can, however, still happen that you simply get the "nothing happens" message instead. */
+void
+makenonworkingwish()
+{
+	char buf[BUFSZ];
+
+	/* No matter which result we pick, this does not break wishless conduct --Amy */
+
+	if (!rn2(3)) {
+		pline("Unfortunately, nothing happens.");
+	}
+	else if (rn2(2)) {
+		if (flags.verbose) { (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? pline("Shiver me timbers! Ye may wish for an object!") : You("may wish for an object."); }
+retry:
+		getlin("For what do you wish?", buf);
+		bad_artifact();
+	}
+	else {
+		bad_artifact();
 	}
 }
 
