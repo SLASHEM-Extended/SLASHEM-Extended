@@ -406,6 +406,7 @@ STATIC_OVL struct Jitem Japanese_items[] = {
 	{ BULLET, "dangan" },
 	{ BULLWHIP, "muchi" },
 	{ CANDY_BAR, "kittokatto" },
+	{ CHAIN_MAIL, "kusari-katabira" },
 	{ CHEST, "kinko" },
 	{ CLOVE_OF_GARLIC, "nin'niku" },
 	{ CLUB, "bokken" },
