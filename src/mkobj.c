@@ -2678,7 +2678,7 @@ register struct obj *obj;
 		return (int)((obj->quan + 50L) / /*100*/10000L); /* gold weight fix --Amy */
 	else if (obj->otyp == HEAVY_IRON_BALL && obj->owt != 0)
 		return((int)(obj->owt));	/* kludge for "very" heavy iron ball */
-	return(wt ? wt*(int)obj->quan : ((int)obj->quan + 1)>>1);
+	return(wt ? wt*(int)obj->quan : ((int)obj->quan + 1)>>5);
 }
 
 static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF};
