@@ -483,7 +483,7 @@ int x,y;
 
 	} else create = 1;
 
-	if (obj->mstartinventB && !(obj->oartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) create = 0;
+	if (obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) create = 0;
 
 	/* Detonate rockets */
 	if (is_grenade(obj)) {

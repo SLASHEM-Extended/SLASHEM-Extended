@@ -1640,7 +1640,7 @@ boolean artif;
 			otmp->opoisoned = 1;
 		if (artif && !rn2(20))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
-		else if (artif && !rn2(50)) {
+		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 50)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
 			u.fakeartifacts++;
@@ -1739,7 +1739,7 @@ boolean artif;
 
 			if (artif && !rn2(50))
 			    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
-			else if (artif && !rn2(150)) {
+			else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
 			    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 				otmp->fakeartifact = 1;
 				u.fakeartifacts++;
@@ -1768,7 +1768,7 @@ boolean artif;
 
 		if (artif && !rn2(50))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
-		else if (artif && !rn2(150)) {
+		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
 			u.fakeartifacts++;
@@ -1970,7 +1970,7 @@ boolean artif;
 
 		if (artif && !rn2(40))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
-		else if (artif && !rn2(100)) {
+		else if ((artif && !rn2(100)) || (otmp->spe && is_weptool(otmp) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 20)) ) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
 			u.fakeartifacts++;
@@ -2024,7 +2024,7 @@ boolean artif;
 
 		if (artif && !rn2(50))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
-		else if (artif && !rn2(150)) {
+		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
 			u.fakeartifacts++;
@@ -2107,7 +2107,7 @@ boolean artif;
 		} else	blessorcurse_on_creation(otmp, 10);
 		if (artif && !rn2(40))                
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
-		else if (artif && !rn2(100)) {
+		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 100)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
 			u.fakeartifacts++;

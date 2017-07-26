@@ -2928,7 +2928,7 @@ int tech_no;
 		    roll = rn2(num + 1);
 		    if (roll > 3) roll = 3;
 
-		    if (obj && obj->mstartinventB && !(obj->oartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(obj) ) {
+		    if (obj && obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(obj) ) {
 				You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
 				delobj(obj);
 	          		t_timeout = rnz(50);

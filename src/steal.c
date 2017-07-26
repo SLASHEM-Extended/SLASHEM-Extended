@@ -677,8 +677,8 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 
 		/* reduce amount of musable items the player can use --Amy */
 		/* item stealers usually won't delete stuff, since their stuff might actually be your original stuff! */
-		if (is_musable(otmp) && otmp->mstartinvent && !(otmp->oartifact) && (!rn2(3) || (rn2(100) < u.musableremovechance) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() ) && !stack_too_big(otmp) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) delobj(otmp);
-		else if (otmp->mstartinventB && !(otmp->oartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(otmp) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) delobj(otmp);
+		if (is_musable(otmp) && otmp->mstartinvent && !(otmp->oartifact) && !(otmp->fakeartifact) && (!rn2(3) || (rn2(100) < u.musableremovechance) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() ) && !stack_too_big(otmp) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) delobj(otmp);
+		else if (otmp->mstartinventB && !(otmp->oartifact) && !(otmp->fakeartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(otmp) && !(mtmp->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mtmp->data == &mons[PM_BAD_ITEM_MASTER]) && !is_pet ) delobj(otmp);
 		else mdrop_obj(mtmp, otmp, is_pet && flags.verbose);
 	}
 
