@@ -498,7 +498,7 @@ struct mkroom *sroom;
 			(type == COINHALL) ? mkclass(S_BAD_COINS,0) :
 			(type == GRUEROOM) ? mkclass(S_GRUE,0) :
 		    (type == MORGUE) ? morguemon() :
-		    (type == FUNGUSFARM) ? (rn2(2) ? fungus() : mkclass(S_FUNGUS,0)) :
+		    (type == FUNGUSFARM) ? (!rn2(4) ? mkclass(S_BLOB,0) : !rn2(3) ? mkclass(S_PUDDING,0) : !rn2(2) ? mkclass(S_JELLY,0) : mkclass(S_FUNGUS,0)) :
 		    (type == BEEHIVE) ?
 			(sx == tx && sy == ty ? &mons[PM_QUEEN_BEE] : beehivemon()) :
 		    (type == DOUGROOM) ? douglas_adams_mon() : 
@@ -508,7 +508,7 @@ struct mkroom *sroom;
 		    (type == ANTHOLE) ? mkclass(S_ANT,0) :
 		    (type == DRAGONLAIR) ? mkclass(S_DRAGON,0) :
 		    (type == LEMUREPIT)? 
-		    	(!rn2(20) ? &mons[PM_HORNED_DEVIL] : !rn2(20) ? mkclass(S_DEMON,0) : rn2(2) ? mkclass(S_IMP,0) :
+		    	(!rn2(20) ? &mons[PM_HORNED_DEVIL] : !rn2(20) ? mkclass(S_DEMON,0) : !rn2(50) ? &mons[ndemon(A_NONE)] : rn2(2) ? mkclass(S_IMP,0) :
 			           &mons[PM_LEMURE]) :
 		    (type == MIGOHIVE) ?
 		      (sx == tx && sy == ty ? &mons[PM_MIGO_QUEEN] :
@@ -960,8 +960,7 @@ morguemon()
 	register int i = rn2(100), hd = rn2(level_difficulty());
 
 	if(hd > 10 && i < 10)
-		return((Inhell || In_endgame(&u.uz)) ? mkclass(S_DEMON,0) :
-						       &mons[ndemon(A_NONE)]);
+		return(&mons[ndemon(A_NONE)]);
 	if(hd > 8 && i > 90)
 		return(mkclass(S_VAMPIRE,0));
 
