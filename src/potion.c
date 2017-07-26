@@ -2188,6 +2188,15 @@ dodrink()
 		return 1;
 	    }
 	    pline(Hallucination ? "This water seems especially clean. In fact, it's the cleanest water you've ever seen." : "Do you know what lives in this water!");
+
+		if (level.flags.lethe) {
+
+			pline("In any case, you apparently forgot that it causes amnesia.");
+			if (Hallucination) pline("You also forgot about Maud.");
+			forget(rnd(10));
+
+		}
+
 		if (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone() ) {
 			u.dehydrationtime = moves + 1001;
 		}
