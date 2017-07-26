@@ -1065,7 +1065,7 @@ const struct Role roles[] = {
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 10, 10, 30, 20, 10 },
 	/* Init   Lower  Higher */
-	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  7, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  2, 0,  0, 2,  0, 1 },16,	/* Energy */
 	0, 8, 0, 3,  11, A_INT, SPE_LIGHTNING, -4
 },
