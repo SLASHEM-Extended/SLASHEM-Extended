@@ -600,6 +600,34 @@ int how;
 	    goto showwin;
 	}
 
+	/* "Forget Quitters" patch - Elronnd suggested that if the game went on for long enough, it should count --Amy */
+	if (how == QUIT && (moves && moves < 100)) {
+	    char pbuf[]="Since you quit, the score list will not be checked.";
+	    topten_print("");
+	    topten_print(pbuf);
+#ifdef DUMP_LOG
+	    if (dump_fn[0]) {
+		dump("", pbuf);
+		dump("", "");
+	    }
+#endif
+	    goto showwin;
+	}
+
+	/* some startscummers will escape instead, but probably very early --Amy */
+	if (how == ESCAPED && (moves && moves < 10)) {
+	    char pbuf[]="Since you escaped early, the score list will not be checked.";
+	    topten_print("");
+	    topten_print(pbuf);
+#ifdef DUMP_LOG
+	    if (dump_fn[0]) {
+		dump("", pbuf);
+		dump("", "");
+	    }
+#endif
+	    goto showwin;
+	}
+
 #ifdef FILE_AREAS
 	if (!lock_file_area(NH_RECORD_AREA, NH_RECORD, 60))
 #else
