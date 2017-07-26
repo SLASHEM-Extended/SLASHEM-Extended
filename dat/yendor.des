@@ -30,6 +30,8 @@ TELEPORT_REGION:levregion(01,00,79,20),(0,0,27,12)
 # Make it a morgue for rm id in mkmaze.c
 # for the purpose of random sdoor placement
 REGION:(12,01,20,09),unlit,"morgue",unfilled
+REGION:(04,07,10,11),unlit,"randomroom"
+REGION:(12,01,12,01),unlit,"randomroom",filled,true
 MAZEWALK:(28,05),east
 LADDER:(06,05),down
 # Non diggable walls
@@ -112,7 +114,7 @@ STAIR:levregion(01,00,79,20),(0,0,28,12),up
 STAIR:levregion(01,00,79,20),(0,0,28,12),down
 BRANCH:levregion(01,00,79,20),(0,0,28,12)
 TELEPORT_REGION:levregion(01,00,79,20),(0,0,27,12)
-REGION:(09,03,17,09),unlit,"zoo"
+REGION:(09,03,17,09),unlit,"randomroom"
 DOOR:closed,(15,02)
 DOOR:closed,(11,10)
 MAZEWALK:(28,05),east
@@ -168,6 +170,8 @@ PORTAL:(25,11,25,11),(0,0,0,0),"fakewiz1"
 MAZEWALK:(28,09),east
 REGION:(07,03,15,11),unlit,"morgue",unfilled
 REGION:(17,06,18,11),unlit,"beehive"
+REGION:(01,01,01,01),unlit,"randomroom",filled,true
+REGION:(07,03,07,03),unlit,"randomroom",filled,true
 # make the entry chamber a real room; it affects monster arrival;
 # `unfilled' is a kludge to force an ordinary room to remain a room
 REGION:(20,06,26,11),unlit,"ordinary",unfilled
@@ -229,6 +233,7 @@ MAP
 .}--.--}.
 .}}---}}.
 .}}}}}}}.
+.........
 ENDMAP
 STAIR:levregion(01,00,79,20),(0,0,8,7),up
 STAIR:levregion(01,00,79,20),(0,0,8,7),down
@@ -236,7 +241,9 @@ BRANCH:levregion(01,00,79,20),(0,0,8,7)
 TELEPORT_REGION:levregion(01,00,79,20),(2,2,6,6)
 PORTAL:(4,4,4,4),(0,0,0,0),"wizard3"
 MAZEWALK:(08,05),east
+MAZEWALK:(00,05),west
 REGION:(04,03,06,06),unlit,"ordinary",unfilled,true
+REGION:(00,00,00,00),unlit,"randomroom",filled,true
 MONSTER:'L',random,(04,04)
 MONSTER:'V',"vampire lord",(03,04)
 MONSTER:';',"kraken",(06,06)
@@ -258,13 +265,16 @@ MAP
 .}--.--}.
 .}}---}}.
 .}}}}}}}.
+.........
 ENDMAP
 STAIR:levregion(01,00,79,20),(0,0,8,7),up
 STAIR:levregion(01,00,79,20),(0,0,8,7),down
 BRANCH:levregion(01,00,79,20),(0,0,8,7)
 TELEPORT_REGION:levregion(01,00,79,20),(2,2,6,6)
 MAZEWALK:(08,05),east
+MAZEWALK:(00,05),west
 REGION:(04,03,06,06),unlit,"ordinary",unfilled,true
+REGION:(00,00,00,00),unlit,"randomroom",filled,true
 MONSTER:'L',random,(04,04)
 MONSTER:'V',"vampire lord",(03,04)
 MONSTER:';',"kraken",(06,06)
