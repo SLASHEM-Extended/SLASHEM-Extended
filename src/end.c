@@ -105,6 +105,68 @@ static NEARDATA const char *ends[] = {		/* "when you..." */
 FILE *dump_fp = (FILE *)0;  /* file pointer for dumps */
 /* functions dump_init, dump_exit and dump are from the dump patch */
 
+static
+char*
+get_dump_filename()
+{
+	static char buf[BUFSIZ+1+5];
+	char *f, *p, *end;
+	int ispercent = 0;
+
+	buf[0] = '\0';
+
+	if (!dump_fn[0]) return NULL;
+
+	f = dump_fn;
+	p = buf;
+	end = buf + sizeof(buf) - 10;
+
+	while (*f) {
+		if (ispercent) {
+			switch (*f) {
+				case 't': case 'd': /* starttime */
+					snprintf (p, end + 1 - p, "%ld", u.ubirthday);
+					while (*p != '\0') {
+						p++;
+					}
+					break;
+				case 'N': /* first character of player name */
+					*p = plname[0];
+					p++;
+					*p = '\0';
+					break;
+				case 'n': /* player name */
+				case 's': /* for backwards compatibility */
+					snprintf(p, end + 1 - p, "%s", plname);
+					while (*p != '\0') {
+						p++;
+					}
+					break;
+				default:
+					*p = *f;
+					if (p < end) {
+						p++;
+					}
+			}
+			ispercent = 0;
+		} else {
+			if (*f == '%') {
+				ispercent = 1;
+			} else {
+				*p = *f;
+				if (p < end) {
+					p++;
+				}
+			}
+		}
+		f++;
+	}
+	*p = '\0'; 
+
+	return buf;
+}
+
+
 void
 dump_init ()
 {
@@ -112,46 +174,12 @@ dump_init ()
   mode_t dumpmode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
 #endif
   if (dump_fn[0]) {
-    char *actual_fn = dump_fn;
-    char *p = (char *) strstr(dump_fn, "%n");
-    if (p) {
-      int new_dump_fn_len = strlen(dump_fn)+strlen(plname)-2; /* %n */
-      char *new_dump_fn = (char *) alloc((unsigned)(new_dump_fn_len+1));
-      char *q = new_dump_fn;
-      strncpy(q, dump_fn, p-dump_fn);
-      q += p-dump_fn;
-      strncpy(q, plname, strlen(plname) + 1);
-      regularize(q);
-      q[strlen(plname)] = '\0';
-      q += strlen(q);
-      p += 2;	/* skip "%n" */
-      strncpy(q, p, strlen(p));
-      new_dump_fn[new_dump_fn_len] = '\0';
-      actual_fn = new_dump_fn;
-    }
-    p = (char*) strstr(actual_fn, "%d");
-    if (p) {
-      int new_len = strlen(actual_fn) + 13; /* date length - "%d" + 1 */
-      char *new_dump_fn = (char *) alloc((unsigned)(new_len));
-      char *q = new_dump_fn;
-      struct tm *lt = getlt();
-      long t = (long)lt->tm_hour * 10000L + (long)lt->tm_min * 100L
-	+ (long)lt->tm_sec;
-      strncpy(q, actual_fn, p - actual_fn);
-      q += p - actual_fn;
-      sprintf(q, "%ld%06ld", yyyymmdd(0), t);
-      q += 14;
-      p += 2; /* skip "%d" */
-      strncpy(q, p, strlen(p));
-      q[strlen(p)]='\0';
-      if (actual_fn != dump_fn) free(actual_fn);
-      actual_fn = new_dump_fn;
-    }
+    char *actual_fn = get_dump_filename();
+
     dump_fp = fopen (actual_fn, "w");
 #ifdef PUBLIC_SERVER
     chmod(actual_fn, dumpmode);
 #endif
-    if (actual_fn != dump_fn) free(actual_fn);
 
     if (!dump_fp) {
       pline("Can't open %s for output.", dump_fn);
