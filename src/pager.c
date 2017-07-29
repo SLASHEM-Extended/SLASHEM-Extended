@@ -5414,7 +5414,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Did you know that dnethack is the best variant if you don't consider slex? It has high heels!!!",
 	"Did you know that there are high heels in dnethack too? Shame Chris didn't add a possibility to use the stiletto heels to sever the asshole elder priest's asshole tentacles and stomp them to a bloody pulp.",
 	"Wanna know what it means when the elder priest tentacles to tentacle you? It means that you just pushed AmyBSOD's berserk button. RAAAAAAAAAAAH! RAGE!",
-
+	"Cannot find thread.vbx.",
 };
 
 const char *
