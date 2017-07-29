@@ -5,9 +5,7 @@
 #include "config.h"
 #include "tile.h"
 
-#ifndef MONITOR_HEAP
-extern long *FDECL(alloc, (unsigned int));
-#endif
+extern genericptr_t FDECL(alloc, (size_t));
 
 FILE *ppm_file;
 

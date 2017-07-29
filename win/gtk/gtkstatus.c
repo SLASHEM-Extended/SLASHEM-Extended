@@ -213,14 +213,6 @@ bar_expose_event(GtkWidget *widget, GdkEventExpose *event)
     return TRUE;
 }
 
-#if defined(MONITOR_HEAP) && defined(INTERNAL_MALLOC)
-static int
-stat_mem()
-{
-    return monitor_heap_getmem();
-}
-#endif
-
 #define STAT_COLUMN(n)		(n)
 #define STAT_BAR(n)		(STAT_COLS + (n))
 #define STAT_FRAME		(STAT_COLS + STAT_BARS + 1)
@@ -260,9 +252,6 @@ struct nh_stat_tab {
     {STAT_COLUMN(2),	"INT",		"intelligence",	NULL},
     {STAT_COLUMN(2),	"WIS",		"wisdom",	NULL},
     {STAT_COLUMN(2),	"CHA",		"charisma",	NULL},
-#if defined(MONITOR_HEAP) && defined(INTERNAL_MALLOC)
-    {STAT_COLUMN(2),	"MEM",		NULL,		NULL},
-#endif
 };
 
 static int in_trouble = FALSE;

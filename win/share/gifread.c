@@ -16,9 +16,7 @@
 #include "config.h"
 #include "tile.h"
 
-#ifndef MONITOR_HEAP
-extern long *FDECL(alloc, (unsigned int));
-#endif
+extern genericptr_t FDECL(alloc, (size_t));
 
 #define PPM_ASSIGN(p,red,grn,blu) do { (p).r = (red); (p).g = (grn); (p).b = (blu); } while ( 0 )
 

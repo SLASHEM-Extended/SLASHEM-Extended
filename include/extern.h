@@ -12,7 +12,7 @@
 /* ### alloc.c ### */
 
 #if 0
-E long *FDECL(alloc, (unsigned int));
+E genericptr_t FDECL(alloc, (size_t));
 #endif
 E char *FDECL(fmt_ptr, (const genericptr,char *));
 

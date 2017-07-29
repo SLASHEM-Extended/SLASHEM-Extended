@@ -10,10 +10,6 @@
 
 /*#define DEBUG*/
 /*#define DDEBUG*/
-/*#define MONITOR_HEAP*/
-#if defined(MONITOR_HEAP) && (defined(UNIX) || defined(WIN32))
-#define INTERNAL_MALLOC		/* Use internal malloc implementation */
-#endif
 
 /*
  * Section 1:	Operating and window systems selection.

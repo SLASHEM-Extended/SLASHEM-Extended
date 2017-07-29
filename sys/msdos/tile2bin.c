@@ -9,6 +9,7 @@
  *	ifndef MONITOR_HEAP for heaputil.c	P.Winner	94/03/12
  *      added Borland C _stklen variable	Y.Sapir		94/05/01
  *	fixed to use text tiles from win/share	M.Allison	95/01/31
+ *	Removed MONITOR_HEAP.  Holy SHIT this file is old.  I feel like I'm trespassing on sacred ground.  I wonder if this port even works.	E.stone (Elronnd) 2017-07-28
  *
  */
 
@@ -19,9 +20,7 @@
 #include "pctiles.h"
 
 #include <dos.h>
-#ifndef MONITOR_HEAP
 #include <stdlib.h>
-#endif
 #include <time.h>
 
 #ifdef __GO32__

@@ -431,37 +431,6 @@ extern GdkImage *xshm_map_image;
 extern GdkPixmap *xshm_map_pixmap;
 extern GdkPixbuf *xshm_map_pixbuf;
 
-#if defined(MONITOR_HEAP) && defined(INTERNAL_MALLOC)
-#define XCreatePixmap(dpy, root, width, height, depth) \
-	(monitor_heap_push(__FILE__, __LINE__), \
-	monitor_heap_pop(__FILE__, __LINE__, \
-	  (XCreatePixmap)(dpy, root, width, height, depth)))
-#define gdk_pixmap_new(w, width, height, depth) \
-	(GdkPixmap *)(monitor_heap_push(__FILE__, __LINE__), \
-	monitor_heap_pop(__FILE__, __LINE__, \
-	  (unsigned long)(gdk_pixmap_new)(w, width, height, depth)))
-#define gdk_image_new(type, visual, width, height) \
-	(GdkImage *)(monitor_heap_push(__FILE__, __LINE__), \
-	monitor_heap_pop(__FILE__, __LINE__, \
-	  (unsigned long)(gdk_image_new)(type, visual, width, height)))
-#define gtk_window_new(type) \
-	(GtkWidget *)(monitor_heap_push(__FILE__, __LINE__), \
-	monitor_heap_pop(__FILE__, __LINE__, \
-	  (unsigned long)(gtk_window_new)(type)))
-#define gtk_hbox_new(homogeneous, spacing) \
-	(GtkWidget *)(monitor_heap_push(__FILE__, __LINE__), \
-	monitor_heap_pop(__FILE__, __LINE__, \
-	  (unsigned long)(gtk_hbox_new)(homogeneous, spacing)))
-#define gtk_vbox_new(homogeneous, spacing) \
-	(GtkWidget *)(monitor_heap_push(__FILE__, __LINE__), \
-	monitor_heap_pop(__FILE__, __LINE__, \
-	  (unsigned long)(gtk_vbox_new)(homogeneous, spacing)))
-#define gtk_clist_new(columns) \
-	(GtkWidget *)(monitor_heap_push(__FILE__, __LINE__), \
-	monitor_heap_pop(__FILE__, __LINE__, \
-	  (unsigned long)(gtk_clist_new)(columns)))
-#endif
-
 #ifndef GTKHACK
 #define nh_strncmpi	strncmpi
 #endif
