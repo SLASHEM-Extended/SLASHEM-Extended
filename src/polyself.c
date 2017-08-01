@@ -932,7 +932,7 @@ break_armor()
 
     if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	if (((otmp = uarm) != 0) && !armorkeep) {
-	    if(otmp->oartifact) {
+	    if(otmp->oartifact || (otmp->fakeartifact && rn2(2)) ) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls off!");
 		(void) Armor_gone();
@@ -957,7 +957,7 @@ break_armor()
 	}
 	}
 	if (!cloakkeep && (otmp = uarmc) != 0) {
-	    if(otmp->oartifact) {
+	    if(otmp->oartifact || (otmp->fakeartifact && rn2(2)) ) {
 		Your("%s falls off!", cloak_simple_name(otmp));
 		(void) Cloak_off();
 		dropx(otmp);
@@ -980,7 +980,7 @@ break_armor()
 	}
 	if (!shirtkeep && (otmp = uarmu) != 0) {
 
-	    if(otmp->oartifact) {
+	    if(otmp->oartifact || (otmp->fakeartifact && rn2(2)) ) {
 		Your("shirt falls off!");
 		setworn((struct obj *)0, otmp->owornmask & W_ARMU);
 		dropx(otmp);

@@ -311,7 +311,7 @@ gotobj:
 	}
 
 	/* artifacts resist stealing because I'm nice --Amy */
-	if (rn2(10) && otmp->oartifact && !issoviet) {
+	if (rn2(10) && (otmp->oartifact || (otmp->fakeartifact && !rn2(3))) && !issoviet) {
 
 		pline("%s tries to steal your %s, but you quickly protect it!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), doname(otmp));
 		return (0);
