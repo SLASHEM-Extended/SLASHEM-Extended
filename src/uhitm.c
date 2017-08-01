@@ -5263,7 +5263,7 @@ register int roll;
 		case 388: pline("%s constructed a nasty trap that causes you to miss!", Monnam(mdef)); break;
 		case 389: pline("%s was really just a displaced image of a monster standing on an adjacent tile!", Monnam(mdef)); break;
 		case 390: pline("%s tickles you, and you're unable to get an attack off!", Monnam(mdef)); break;
-		case 391: pline("You probably forgot that you're infected with the SLASHTHEM disease, which causes you to automiss.", mon_nam(mdef)); break;
+		case 391: pline("You probably forgot that you're infected with the SLASHTHEM disease, which causes you to automiss."); break;
 		case 392: pline("Some evil float eyeler reprogrammed the game, and it is now Unnethack where your weapon automatically misses 1 out of 4 times. This means that your current attack, which would otherwise have hit, does not."); break;
 		case 393: pline("%s turned on the Sporkhack switch, causing it (and also all other monsters) to gain massive amounts of AC and of course your wimpy little-girl attack is too weak to penetrate that.", Monnam(mdef)); break;
 		case 394: pline("The Unnethackplus error-bug mode has been activated, and as a result the top status line doesn't tell you whether your attack hit or not."); break;
