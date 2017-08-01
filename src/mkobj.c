@@ -1558,7 +1558,11 @@ boolean artif;
 	}
 
 	if (u.minimalism && rn2(u.minimalism)) {
-		if (otyp != GOLD_PIECE && otyp != STRANGE_OBJECT && otyp != AMULET_OF_YENDOR && otyp != CANDELABRUM_OF_INVOCATION && otyp != BELL_OF_OPENING && otyp != SPE_BOOK_OF_THE_DEAD)
+		if (otyp != GOLD_PIECE && otyp != STRANGE_OBJECT && otyp != AMULET_OF_YENDOR && otyp != CANDELABRUM_OF_INVOCATION
+#ifdef MAIL
+	&& otyp != SCR_MAIL
+#endif
+ && otyp != BELL_OF_OPENING && otyp != SPE_BOOK_OF_THE_DEAD)
 		otyp = GOLD_PIECE;
 	}
 
