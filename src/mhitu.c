@@ -6788,7 +6788,7 @@ dopois:
 		I mean come on, early game is hell but late game is cake? Now you can lose your intrinsics at any time!
 		If you lose poison resistance, try eating some corpses to get it back.
 		If you lose sickness resistance, well, tough luck - it's not coming back. Ever. --Amy*/
-		if((!mtmp->mcan && !rn2(10)) || (night() && !rn2(3)) ) {
+		if((!mtmp->mcan && !rn2(10)) || (!mtmp->mcan && night() && !rn2(3)) ) {
 		    if (flags.soundok) {
 			if (Blind) You_hear("laughter.");
 			else       pline("%s chuckles.", Monnam(mtmp));
