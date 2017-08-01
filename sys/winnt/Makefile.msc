@@ -1309,7 +1309,7 @@ $(O)attrib.o: attrib.c $(HACK_H)
 $(O)ball.o: ball.c $(HACK_H)
 $(O)bones.o: bones.c $(HACK_H) $(INCL)\lev.h
 $(O)botl.o: botl.c $(HACK_H)
-$(O)cmd.o: cmd.c $(HACK_H) $(INCL)\func_tab.h
+$(O)cmd.o: cmd.c $(HACK_H) $(INCL)\func_tab.h $(INCL)\date.h
 $(O)dbridge.o: dbridge.c $(HACK_H)
 $(O)decl.o: decl.c $(HACK_H)
 $(O)detect.o: detect.c $(HACK_H) $(INCL)\artifact.h
