@@ -46,6 +46,19 @@ DOOR:locked,(14,07),"Nocturnal Key"
 OBJECT:'*',"stone of magic resistance",(15,03)
 OBJECT:'+',"passwall",(15,07)
 
+# Amy addition: candles, because the game shouldn't become close to unwinnable
+# make one of each type, in case one or more are marked as "cannot generate"
+OBJECT:'(',"tallow candle",random
+OBJECT:'(',"wax candle",random
+OBJECT:'(',"Japan-wax candle",random
+OBJECT:'(',"oil candle",random
+OBJECT:'(',"general candle",random
+OBJECT:'(',"natural candle",random
+OBJECT:'(',"unspecified candle",random
+OBJECT:'(',"unaffected candle",random
+OBJECT:'(',"specific candle",random
+OBJECT:'(',"0 candle",random
+
 # treasures
 OBJECT:'(',"chest",(07,05)
 OBJECT:'(',"chest",(03,09)
