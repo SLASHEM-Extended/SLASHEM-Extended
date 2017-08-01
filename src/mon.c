@@ -3674,8 +3674,8 @@ register struct monst *mdef;
 		    oldminvent = obj->nobj;
 
 		/* reduce amount of musable items the player can use --Amy */
-		if (is_musable(obj) && obj->mstartinvent && !(obj->oartifact) && !(obj->fakeartifact) && !stack_too_big(obj) && (!rn2(3) || (rn2(100) < u.musableremovechance) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
-		else if (obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact) && !stack_too_big(obj) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
+		if (is_musable(obj) && obj->mstartinvent && !(obj->oartifact) && !(obj->enchantment) && !(obj->fakeartifact) && !stack_too_big(obj) && (!rn2(3) || (rn2(100) < u.musableremovechance) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
+		else if (obj->mstartinventB && !(obj->oartifact) && !(obj->enchantment) && !(obj->fakeartifact) && !stack_too_big(obj) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		    else (void) add_to_container(otmp, obj);
 		}
 #ifndef GOLDOBJ

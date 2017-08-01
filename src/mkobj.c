@@ -1585,6 +1585,7 @@ boolean artif;
 	otmp->olocked = FALSE; /* ->recharged */
 	otmp->altmode = WP_MODE_AUTO;
 	otmp->fakeartifact = 0;
+	otmp->enchantment = 0;
 	if ((otmp->otyp >= ELVEN_SHIELD && otmp->otyp <= ORCISH_SHIELD) ||
 			otmp->otyp == SHIELD_OF_REFLECTION)
 		otmp->dknown = 0;
