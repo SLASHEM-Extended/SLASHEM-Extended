@@ -229,7 +229,7 @@ static struct Bool_Opt
 
 	{"pokedex", &flags.pokedex, TRUE, SET_IN_GAME},
 
-	{"popup_dialog",  &iflags.wc_popup_dialog, FALSE, SET_IN_GAME},	/*WC*/
+	{"popup_dialog",  &iflags.wc_popup_dialog, TRUE, SET_IN_GAME},	/*WC*/
 	{"prayconfirm", &flags.prayconfirm, TRUE, SET_IN_GAME},
 	{"preload_tiles", &iflags.wc_preload_tiles, TRUE, DISP_IN_GAME},	/*WC*/
 	{"pushweapon", &flags.pushweapon, FALSE, SET_IN_GAME},
