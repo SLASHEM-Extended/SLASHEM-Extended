@@ -98,11 +98,7 @@ static struct Bool_Opt
 	{"confirm",&flags.confirm, TRUE, SET_IN_GAME},
 #ifdef CURSES_GRAPHICS
 	{"classic_status", &iflags.classic_status, TRUE, SET_IN_GAME},
-#ifdef TTY_GRAPHICS
-	{"cursesgraphics", &iflags.cursesgraphics, FALSE, SET_IN_GAME},
-#else
 	{"cursesgraphics", &iflags.cursesgraphics, TRUE, SET_IN_GAME},
-#endif
 #else
 	{"classic_status", (boolean *)0, TRUE, SET_IN_FILE},
 	{"cursesgraphics", (boolean *)0, FALSE, SET_IN_FILE},
