@@ -185,12 +185,6 @@
 # endif
 #endif
 
-#ifdef CURSES_GRAPHICS
-# ifndef DEFAULT_WINDOW_SYS
-#  define DEFAULT_WINDOW_SYS "curses"
-# endif
-#endif
-
 #ifndef DEFAULT_WINDOW_SYS
 # define DEFAULT_WINDOW_SYS "tty"
 #endif
