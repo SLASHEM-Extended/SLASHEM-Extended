@@ -133,7 +133,7 @@ destroy_status_window(wp)
 	    if (!wp->keep_window)
 		XtDestroyWidget(wp->popup),  wp->popup = (Widget)0;
 	}
-	free((genericptr_t)wp->status_information);
+	free((void *)wp->status_information);
 	wp->status_information = 0;
     } else {
 	destroy_fancy_status(wp);
@@ -1019,7 +1019,7 @@ struct xwindow *wp;
 
     for (i = 0, sv = shown_stats; i < NUM_STATS; i++, sv++)
 	if (sv->type == SV_LABEL) {
-	    free((genericptr_t)sv->name);
+	    free((void *)sv->name);
 	    sv->name = 0;
 	}
 }

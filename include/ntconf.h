@@ -60,7 +60,7 @@
 /* Stuff to help the user with some common, yet significant errors */
 #define INTERJECT_PANIC		0
 #define INTERJECTION_TYPES	(INTERJECT_PANIC + 1)
-extern void interject_assistance(int,int,genericptr_t,genericptr_t);
+extern void interject_assistance(int,int,void *,void *);
 extern void interject(int);
 
 /* The following is needed for prototypes of certain functions */

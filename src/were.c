@@ -230,9 +230,9 @@ register struct monst *mon;
 	newsym(mon->mx,mon->my);
 	mon_break_armor(mon, FALSE);
 	possibly_unwield(mon, FALSE);
-	(void) stop_timer(UNPOLY_MON, (genericptr_t) mon);
+	(void) stop_timer(UNPOLY_MON, (void *) mon);
 	(void) start_timer(rn1(1000,1000), TIMER_MONSTER,
-		UNPOLY_MON, (genericptr_t) mon);
+		UNPOLY_MON, (void *) mon);
 }
 
 int

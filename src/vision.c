@@ -98,7 +98,7 @@ static char right_ptrs[ROWNO][COLNO];
 STATIC_DCL void fill_point(int,int);
 STATIC_DCL void dig_point(int,int);
 STATIC_DCL void view_init(void);
-STATIC_DCL void view_from(int,int,char **,char *,char *,int, void (*)(int,int,genericptr_t),genericptr_t);
+STATIC_DCL void view_from(int,int,char **,char *,char *,int, void (*)(int,int,void *),void *);
 STATIC_DCL void get_unused_cs(char ***,char **,char **);
 #ifdef REINCARNATION
 STATIC_DCL void rogue_vision(char **,char *,char *);
@@ -134,7 +134,7 @@ vision_init()
     viz_rmax  = cs_rmax0;
 
     vision_full_recalc = 0;
-    (void) memset((genericptr_t) could_see, 0, sizeof(could_see));
+    (void) memset((void *) could_see, 0, sizeof(could_see));
 
     /* Initialize the vision algorithm (currently C or D). */
     view_init();
@@ -203,10 +203,10 @@ vision_reset()
     viz_rmin  = cs_rmin0;
     viz_rmax  = cs_rmax0;
 
-    (void) memset((genericptr_t) could_see, 0, sizeof(could_see));
+    (void) memset((void *) could_see, 0, sizeof(could_see));
 
     /* Reset the pointers and clear so that we have a "full" dungeon. */
-    (void) memset((genericptr_t) viz_clear,        0, sizeof(viz_clear));
+    (void) memset((void *) viz_clear,        0, sizeof(viz_clear));
 
     /* Dig the level */
     for (y = 0; y < ROWNO; y++) {
@@ -275,7 +275,7 @@ get_unused_cs(rows, rmin, rmax)
     nrmin = *rmin;
     nrmax = *rmax;
 
-    (void) memset((genericptr_t)**rows, 0, ROWNO*COLNO);  /* we see nothing */
+    (void) memset((void *)**rows, 0, ROWNO*COLNO);  /* we see nothing */
     for (row = 0; row < ROWNO; row++) {		/* set row min & max */
 	*nrmin++ = COLNO-1;
 	*nrmax++ = 0;
@@ -549,7 +549,7 @@ vision_recalc(control)
 	 *	+ Monsters can see you even when you're in a pit.
 	 */
 	view_from(u.uy, u.ux, next_array, next_rmin, next_rmax,
-		0, (void (*)(int,int,genericptr_t))0, (genericptr_t)0);
+		0, (void (*)(int,int,void *))0, (void *)0);
 
 	/*
 	 * Our own version of the update loop below.  We know we can't see
@@ -613,7 +613,7 @@ vision_recalc(control)
 	    }
 	} else
 	    view_from(u.uy, u.ux, next_array, next_rmin, next_rmax,
-                                        0,(void(*)(int, int, genericptr_t))0, (genericptr_t)0);
+                                        0,(void(*)(int, int, void *))0, (void *)0);
 
 	/*
 	 * Set the IN_SIGHT bit for xray and night vision.
@@ -1082,8 +1082,8 @@ static char **cs_rows;
 static char *cs_left;
 static char *cs_right;
 
-static void (*vis_func)(int,int,genericptr_t);
-static genericptr_t varg;
+static void (*vis_func)(int,int,void *);
+static void * varg;
 
 /*
  * Both Algorithms C and D use the following macros.
@@ -2102,8 +2102,8 @@ view_from(srow,scol,loc_cs_rows,left_most,right_most, range, func, arg)
     char **loc_cs_rows;			/* could_see array (row pointers) */
     char *left_most, *right_most;	/* limits of what could be seen */
     int range;		/* 0 if unlimited */
-    void (*func)(int,int,genericptr_t);
-    genericptr_t arg;
+    void (*func)(int,int,void *);
+    void * arg;
 {
     register int i;
     char	 *rowp;
@@ -2511,8 +2511,8 @@ view_from(srow, scol, loc_cs_rows, left_most, right_most, range, func, arg)
     char *left_most;	/* min mark on each row */
     char *right_most;	/* max mark on each row */
     int range;		/* 0 if unlimited */
-    void (*func)(int,int,genericptr_t);
-    genericptr_t arg;
+    void (*func)(int,int,void *);
+    void * arg;
 {
     register int i;		/* loop counter */
     char         *rowp;		/* optimization for setting could_see */
@@ -2602,8 +2602,8 @@ view_from(srow, scol, loc_cs_rows, left_most, right_most, range, func, arg)
 void
 do_clear_area(scol,srow,range,func,arg)
     int scol, srow, range;
-    void (*func)(int,int,genericptr_t);
-    genericptr_t arg;
+    void (*func)(int,int,void *);
+    void * arg;
 {
 	/* If not centered on hero, do the hard work of figuring the area */
 	if (scol != u.ux || srow != u.uy)
@@ -2635,8 +2635,8 @@ do_clear_area(scol,srow,range,func,arg)
 void
 do_clear_areaX(scol,srow,range,func,arg) /* cloned function that does not use sight */
     int scol, srow, range;
-    void (*func)(int,int,genericptr_t);
-    genericptr_t arg;
+    void (*func)(int,int,void *);
+    void * arg;
 {
 	/* If not centered on hero, do the hard work of figuring the area */
 	if (scol != u.ux || srow != u.uy)

@@ -22,7 +22,7 @@ STATIC_DCL long itimeout(long);
 STATIC_DCL long itimeout_incr(long,int);
 STATIC_DCL void ghost_from_bottle(void);
 STATIC_DCL short mixtype(struct obj *,struct obj *);
-STATIC_PTR void set_litI(int,int,genericptr_t);
+STATIC_PTR void set_litI(int,int,void *);
 
 STATIC_DCL void healup_mon(struct monst *, int,int,BOOLEAN_P,BOOLEAN_P);
 	/* For healing monsters - analogous to healup for players */
@@ -929,7 +929,7 @@ badeffect()
 		case 171:
 		pline("It gets dark!");
 	    do_clear_areaX(u.ux,u.uy,		/* darkness around player's position */
-		15, set_litI, (genericptr_t)((char *)0));
+		15, set_litI, (void *)((char *)0));
 
 		break;
 
@@ -6029,7 +6029,7 @@ dodip()
 	    return(1);
 	} else if (potion->otyp == POT_RESTORE_ABILITY && is_hazy(obj)) {
 		/* KMH -- Restore ability will stop unpolymorphing */
-		if (!stack_too_big(obj)) {stop_timer(UNPOLY_OBJ, (genericptr_t) obj);
+		if (!stack_too_big(obj)) {stop_timer(UNPOLY_OBJ, (void *) obj);
 		obj->oldtyp = STRANGE_OBJECT;
 		if (!Blind)
 			pline("%s seems less hazy.", Yname2(obj));
@@ -6497,7 +6497,7 @@ struct monst *mon,	/* monster being split */
 STATIC_PTR void
 set_litI(x,y,val)
 int x, y;
-genericptr_t val;
+void * val;
 {
 	if (val)
 	    levl[x][y].lit = 1;

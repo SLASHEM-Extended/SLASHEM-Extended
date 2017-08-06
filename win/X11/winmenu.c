@@ -1077,13 +1077,13 @@ free_menu(mp)
 	mp->last = mp->base;
 	mp->base = mp->base->next;
 
-	free((genericptr_t)mp->last->str);
-	free((genericptr_t)mp->last);
+	free((void *)mp->last->str);
+	free((void *)mp->last);
     }
-    if (mp->query) free((genericptr_t) mp->query);
-    if (mp->gacc) free((genericptr_t) mp->gacc);
-    if (mp->list_pointer) free((genericptr_t) mp->list_pointer);
-    if (mp->sensitive) free((genericptr_t) mp->sensitive);
+    if (mp->query) free((void *) mp->query);
+    if (mp->gacc) free((void *) mp->gacc);
+    if (mp->list_pointer) free((void *) mp->list_pointer);
+    if (mp->sensitive) free((void *) mp->sensitive);
     reset_menu_to_default(mp);
 }
 
@@ -1125,7 +1125,7 @@ create_menu_window(wp)
     wp->type = NHW_MENU;
     wp->menu_information =
 		(struct menu_info_t *) alloc(sizeof(struct menu_info_t));
-    (void) memset((genericptr_t) wp->menu_information, '\0',
+    (void) memset((void *) wp->menu_information, '\0',
 						sizeof(struct menu_info_t));
     reset_menu_to_default(&wp->menu_information->curr_menu);
     reset_menu_to_default(&wp->menu_information->new_menu);
@@ -1138,7 +1138,7 @@ destroy_menu_window(wp)
     struct xwindow *wp;
 {
     clear_old_menu(wp);		/* this will also destroy the widgets */
-    free((genericptr_t) wp->menu_information);
+    free((void *) wp->menu_information);
     wp->menu_information = (struct menu_info_t *) 0;
     wp->type = NHW_NONE;	/* allow re-use */
 }

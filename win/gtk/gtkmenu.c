@@ -429,12 +429,12 @@ GTK_ext_add_menu(winid id, int glyph, int identifier,
 
     if (menu->n_menuitem >= menu->alloc_menuitem) {
 	NHMenuItem *new;
-	new = (NHMenuItem *) realloc((genericptr_t)menu->nhMenuItem,
+	new = (NHMenuItem *) realloc((void *)menu->nhMenuItem,
 	  (unsigned)(sizeof(NHMenuItem) * 2 * menu->alloc_menuitem));
 	if (new)
 	    menu->alloc_menuitem *= 2;
 	else
-	    new = (NHMenuItem *) realloc((genericptr_t)menu->nhMenuItem,
+	    new = (NHMenuItem *) realloc((void *)menu->nhMenuItem,
 	      (unsigned)(sizeof(NHMenuItem) * ++menu->alloc_menuitem));
 	if (!new)
 	    panic("GTK_add_menu: Memory allocation failure; cannot get %u bytes",
@@ -479,14 +479,14 @@ GTK_end_menu(winid id, const char *prompt)
     menu = &w->menu_information->new_menu;
 
     if (menu->n_menuitem) {
-	new = (NHMenuItem *) realloc((genericptr_t)menu->nhMenuItem,
+	new = (NHMenuItem *) realloc((void *)menu->nhMenuItem,
 	  (unsigned)(sizeof(NHMenuItem) * menu->n_menuitem));
 	if (new) {
 	    menu->alloc_menuitem = menu->n_menuitem;
 	    menu->nhMenuItem = new;
 	}
     } else {
-	free((genericptr_t)menu->nhMenuItem);
+	free((void *)menu->nhMenuItem);
 	menu->nhMenuItem = NULL;
 	menu->alloc_menuitem = 0;
     }
@@ -716,11 +716,11 @@ free_menu(struct menu *m)
 	gtk_widget_unref(GTK_WIDGET(m->clist));
 	m->clist = (GtkCList *)0;
     }
-    free((genericptr_t) m->nhMenuItem);
+    free((void *) m->nhMenuItem);
     m->nhMenuItem = (NHMenuItem *)0;
     m->alloc_menuitem = 0;
     m->n_menuitem = 0;
-    free((genericptr_t) m->prompt);
+    free((void *) m->prompt);
 }
 
 void
@@ -728,7 +728,7 @@ GTK_create_menu_window(NHWindow *w)
 {
     w->menu_information =
       (struct menu_info_t *) alloc(sizeof(struct menu_info_t));
-    (void) memset((genericptr_t) w->menu_information, '\0',
+    (void) memset((void *) w->menu_information, '\0',
       sizeof(struct menu_info_t));
 }
 
@@ -738,7 +738,7 @@ GTK_destroy_menu_window(NHWindow *w)
     GTK_destroy_menu_widgets(w);
     free_menu(&w->menu_information->curr_menu);
     free_menu(&w->menu_information->new_menu);
-    free((genericptr_t) w->menu_information);
+    free((void *) w->menu_information);
     w->menu_information = (struct menu_info_t *) 0;
 }
 

@@ -51,7 +51,7 @@ int fd;
 		int lockedpid;	/* should be the same size as hackpid */
 		unsigned long status, dummy, code = JPI$_PID;
 
-		if (read(fd, (genericptr_t)&lockedpid, sizeof(lockedpid)) !=
+		if (read(fd, (void *)&lockedpid, sizeof(lockedpid)) !=
 				sizeof(lockedpid))	/* strange ... */
 			return 0;
 		status = lib$getjpi(&code, &lockedpid, 0, &dummy);
@@ -264,7 +264,7 @@ char *verify_term()
 	unsigned long devtype = 0L, termtab = 0L;
 
 	(void)lib$getdvi(&dvicode, (unsigned short *)0, &tt, &devtype,
-			 (genericptr_t)0, (unsigned short *)0);
+			 (void *)0, (unsigned short *)0);
 
 	if (devtype &&
 	    vms_ok(smg$init_term_table_by_type(&devtype, &termtab, &smgdsc))) {
@@ -324,7 +324,7 @@ privoff()
 	unsigned short code = JPI$_PROCPRIV;
 
 	(void) sys$setprv(0, prv, 0, oprv);
-	(void) lib$getjpi(&code, &pid, (genericptr_t)0, prv);
+	(void) lib$getjpi(&code, &pid, (void *)0, prv);
 	(void) sys$setprv(1, prv, 0, (unsigned long *)0);
 }
 

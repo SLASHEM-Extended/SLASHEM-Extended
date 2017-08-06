@@ -9,7 +9,7 @@ typedef int winid;              /* a window identifier */
 
 /* generic parameter - must not be any larger than a pointer */
 typedef union any {
-    genericptr_t a_void;
+    void * a_void;
     struct obj *a_obj;
     int  a_int;
     char a_char;

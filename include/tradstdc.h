@@ -107,18 +107,7 @@
 
 #if defined(NHSTDC) || defined(MSDOS) || defined(MAC) || defined(ULTRIX_PROTO) || defined(__BEOS__)
 
-/* generic pointer, always a macro; genericptr_t is usually a typedef */
-# define genericptr	void *
-
-# if (defined(ULTRIX_PROTO) && !defined(__GNUC__)) || defined(OS2_CSET2)
-/* Cover for Ultrix on a DECstation with 2.0 compiler, which coredumps on
- *   typedef void * genericptr_t;
- *   extern void a(void(*)(int, genericptr_t));
- * Using the #define is OK for other compiler versions too.
- */
-/* And IBM CSet/2.  The redeclaration of free hoses the compile. */
-#  define genericptr_t	genericptr
-# else
+# if !((defined(ULTRIX_PROTO) && !defined(__GNUC__)) || defined(OS2_CSET2))
 #  if !defined(NHSTDC) && !defined(MAC)
 #   define const
 #   define signed
@@ -141,13 +130,6 @@
 
 #else /* NHSTDC */	/* a "traditional" C  compiler */
 
-# if defined(AMIGA) || defined(HPUX) || defined(POSIX_TYPES) || defined(__DECC) || defined(__BORLANDC__)
-#  define genericptr	void *
-# endif
-# ifndef genericptr
-#  define genericptr	char *
-# endif
-
 /*
  * Traditional C compilers don't have "signed", "const", or "volatile".
  */
@@ -157,10 +139,6 @@
 
 #endif /* NHSTDC */
 
-
-#ifndef genericptr_t
-typedef genericptr genericptr_t;	/* (void *) or (char *) */
-#endif
 
 
 /*

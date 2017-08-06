@@ -414,8 +414,8 @@ winid window;
 		for (i = 0; i < MenuCount[window]; ++i) {
 			if (MenuPtr[window][i]) {
 				if (MenuPtr[window][i]->str)
-				    free((genericptr_t)MenuPtr[window][i]->str);
-				free((genericptr_t)MenuPtr[window][i]);
+				    free((void *)MenuPtr[window][i]->str);
+				free((void *)MenuPtr[window][i]);
 				MenuPtr[window][i] = (struct win32_menuitem *)0;
 			}
 		}	
@@ -500,7 +500,7 @@ const char *str;
 		strcpy(toplines, str); 		/* for Norep() */
 		strcpy(tmp, str);
 		if (MessageCount >= MAX_MESSAGE_COUNT) {
-			free((genericptr_t)MessagePtr[0]);
+			free((void *)MessagePtr[0]);
 			for (i = 0; i < (MessageCount - 1); ++i) {
 				MessagePtr[i] = MessagePtr[i + 1];
 			}
@@ -948,8 +948,8 @@ LBS_NOTIFY | WS_BORDER | WS_VISIBLE | LBS_WANTKEYBOARDINPUT | LBS_USETABSTOPS,
 		for (i = 0; i < MenuCount[window]; ++i) {
 			if (MenuPtr[window][i]) {
 				if (MenuPtr[window][i]->str)
-				    free((genericptr_t)MenuPtr[window][i]->str);
-				free((genericptr_t)MenuPtr[window][i]);
+				    free((void *)MenuPtr[window][i]->str);
+				free((void *)MenuPtr[window][i]);
 				MenuPtr[window][i] = (struct win32_menuitem *)0;
 			}
 		}	

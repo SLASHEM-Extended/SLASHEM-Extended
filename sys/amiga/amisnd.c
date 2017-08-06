@@ -174,17 +174,17 @@ makesound ( char *actualn , char * melody, int vol )
 	if( device != 0 )
 		goto killaudio;
 
-	if( dlb_fread( (genericptr_t)&iffhead, sizeof( iffhead ), 1, stream ) != 1 )
+	if( dlb_fread( (void *)&iffhead, sizeof( iffhead ), 1, stream ) != 1 )
 		goto killaudio;
 
 	/* This is an even number of bytes long */
 	if( dlb_fread( name, (iffhead.namelen+1) & ~1, 1, stream ) != 1 )
 		goto killaudio;
 
-	if( dlb_fread( (genericptr_t)&samples, 4, 1, stream ) != 1 )
+	if( dlb_fread( (void *)&samples, 4, 1, stream ) != 1 )
 		goto killaudio;
 
-	if( dlb_fread( (genericptr_t)&samples, 4, 1, stream ) != 1 )
+	if( dlb_fread( (void *)&samples, 4, 1, stream ) != 1 )
 		goto killaudio;
 
 	waveptr = AllocMem( samples, MEMF_CHIP|MEMF_PUBLIC );

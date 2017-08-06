@@ -201,7 +201,7 @@ static const char * const farttrapnames[] = {
 STATIC_PTR void
 do_lockfloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -276,7 +276,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_treefloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -343,7 +343,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_megafloodingd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -431,7 +431,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_icefloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -492,7 +492,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_cloudfloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -555,7 +555,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_terrainfloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -622,7 +622,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_barfloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -746,7 +746,7 @@ struct monst *victim;
 STATIC_PTR void
 do_lavafloode(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -781,7 +781,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_floode(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -3092,7 +3092,7 @@ newegomon:
 		{
 			int madepoolQ = 0;
 
-			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_megafloodingd, (genericptr_t)&madepoolQ);
+			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_megafloodingd, (void *)&madepoolQ);
 			if (madepoolQ)
 				pline("The dungeon is flooded!");
 			else pline("The trap doesn't seem to have any effect.");
@@ -3228,7 +3228,7 @@ newegomon:
 				break;
 			case 21: {
 				int madepoolX = 0;
-				do_clear_areaX(u.ux, u.uy, 5, do_floode, (genericptr_t)&madepoolX);
+				do_clear_areaX(u.ux, u.uy, 5, do_floode, (void *)&madepoolX);
 				pline("Water sprays all over the area.");
 				}
 				break;
@@ -3812,7 +3812,7 @@ rerollX:
 		{
 			int madepoolQ = 0;
 
-			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_treefloodd, (genericptr_t)&madepoolQ);
+			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_treefloodd, (void *)&madepoolQ);
 			if (madepoolQ)
 				pline("Suddenly, greenery grows around you!");
 			else pline("The trap doesn't seem to have any effect.");
@@ -3828,7 +3828,7 @@ rerollX:
 		{
 			int madepoolQ = 0;
 
-			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_icefloodd, (genericptr_t)&madepoolQ);
+			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_icefloodd, (void *)&madepoolQ);
 			if (madepoolQ)
 				pline("Suddenly, the area around you gets very icy!");
 			else pline("The trap doesn't seem to have any effect.");
@@ -3844,7 +3844,7 @@ rerollX:
 		{
 			int madepoolQ = 0;
 
-			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_barfloodd, (genericptr_t)&madepoolQ);
+			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_barfloodd, (void *)&madepoolQ);
 			if (madepoolQ)
 				pline("Suddenly, iron bars shoot out of the ground all around you!");
 			else pline("The trap doesn't seem to have any effect.");
@@ -3860,7 +3860,7 @@ rerollX:
 		{
 			int madepoolQ = 0;
 
-			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lockfloodd, (genericptr_t)&madepoolQ);
+			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lockfloodd, (void *)&madepoolQ);
 			if (madepoolQ)
 				pline("Suddenly, you hear grating noises and the locking of doors!");
 			else pline("The trap doesn't seem to have any effect.");
@@ -3876,7 +3876,7 @@ rerollX:
 		{
 			int madepoolQ = 0;
 
-			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_cloudfloodd, (genericptr_t)&madepoolQ);
+			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_cloudfloodd, (void *)&madepoolQ);
 			if (madepoolQ)
 				pline("Suddenly, clouds are obscuring your vision!");
 			else pline("The trap doesn't seem to have any effect.");
@@ -3892,7 +3892,7 @@ rerollX:
 		{
 			int madepoolQ = 0;
 
-			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_terrainfloodd, (genericptr_t)&madepoolQ);
+			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_terrainfloodd, (void *)&madepoolQ);
 			if (madepoolQ)
 				pline("Suddenly, the entire dungeon around you seems to slightly change its structure!");
 			else pline("The trap doesn't seem to have any effect.");
@@ -3959,7 +3959,7 @@ rerollX:
 
 		int madepool = 0;
 
-		do_clear_areaX(u.ux, u.uy, 5, do_lavafloode, (genericptr_t)&madepool);
+		do_clear_areaX(u.ux, u.uy, 5, do_lavafloode, (void *)&madepool);
 
 		if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR || levl[u.ux][u.uy].typ == ICE)
 			levl[u.ux][u.uy].typ = LAVAPOOL; /* don't fall in, that would be too evil. --Amy */
@@ -3975,7 +3975,7 @@ rerollX:
 
 		int madepoolX = 0;
 
-		do_clear_areaX(u.ux, u.uy, 5, do_floode, (genericptr_t)&madepoolX);
+		do_clear_areaX(u.ux, u.uy, 5, do_floode, (void *)&madepoolX);
 
 		if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR || levl[u.ux][u.uy].typ == ICE) {
 			levl[u.ux][u.uy].typ = POOL;
@@ -10967,7 +10967,7 @@ int style;
 	   next dig attempt never thinks you're resuming previous effort */
 	if ((otyp == BOULDER || otyp == STATUE) &&
 	    singleobj->ox == digging.pos.x && singleobj->oy == digging.pos.y)
-	    (void) memset((genericptr_t)&digging, 0, sizeof digging);
+	    (void) memset((void *)&digging, 0, sizeof digging);
 
 	dist = distmin(x1,y1,x2,y2);
 	bhitpos.x = x1;

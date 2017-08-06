@@ -2041,10 +2041,10 @@ put_qt_hdrs()
 #ifdef DEBUG
 	Fprintf(stderr, "%ld: header info.\n", ftell(ofp));
 #endif
-	(void) fwrite((genericptr_t)&(qt_hdr.n_hdr), sizeof(int), 1, ofp);
-	(void) fwrite((genericptr_t)&(qt_hdr.id[0][0]), sizeof(char)*LEN_HDR,
+	(void) fwrite((void *)&(qt_hdr.n_hdr), sizeof(int), 1, ofp);
+	(void) fwrite((void *)&(qt_hdr.id[0][0]), sizeof(char)*LEN_HDR,
 							qt_hdr.n_hdr, ofp);
-	(void) fwrite((genericptr_t)&(qt_hdr.offset[0]), sizeof(long),
+	(void) fwrite((void *)&(qt_hdr.offset[0]), sizeof(long),
 							qt_hdr.n_hdr, ofp);
 #ifdef DEBUG
 	for(i = 0; i < qt_hdr.n_hdr; i++)
@@ -2062,9 +2062,9 @@ put_qt_hdrs()
 	    Fprintf(stderr, "%ld: %c header info.\n", ftell(ofp),
 		    qt_hdr.id[i]);
 #endif
-	    (void) fwrite((genericptr_t)&(msg_hdr[i].n_msg), sizeof(int),
+	    (void) fwrite((void *)&(msg_hdr[i].n_msg), sizeof(int),
 							1, ofp);
-	    (void) fwrite((genericptr_t)&(msg_hdr[i].qt_msg[0]),
+	    (void) fwrite((void *)&(msg_hdr[i].qt_msg[0]),
 			    sizeof(struct qtmsg), msg_hdr[i].n_msg, ofp);
 #ifdef DEBUG
 	    { int j;

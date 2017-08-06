@@ -434,7 +434,7 @@ NhExtXdr *request, *reply;
     vs.no_genders = ROLE_GENDERS;
     vs.n_masks = (vs.no_roles * vs.no_races * ROLE_ALIGNS + pack - 1) / pack;
     vs.masks = (unsigned long *)alloc(vs.n_masks * sizeof(unsigned long));
-    memset((genericptr_t)vs.masks, 0, vs.n_masks * sizeof(unsigned long));
+    memset((void *)vs.masks, 0, vs.n_masks * sizeof(unsigned long));
     for(role = 0, i = 0, k = 0; role < vs.no_roles; role++)
 	if (!validrole(role))
 	    SKIP(vs.no_races * ROLE_ALIGNS);

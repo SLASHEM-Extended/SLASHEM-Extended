@@ -352,7 +352,7 @@ void prompt_for_player_selection(void)
 	    
 	    if (pick4u != 'y' && pick4u != 'n') {
 give_up:	/* Quit */
-		if (selected) free((genericptr_t) selected);
+		if (selected) free((void *) selected);
 		bail((char *)0);
 		/*NOTREACHED*/
 		return;
@@ -426,7 +426,7 @@ give_up:	/* Quit */
 		    goto give_up;		/* Selected quit */
 
 		flags.initrole = selected[0].item.a_int - 1;
-		free((genericptr_t) selected),	selected = 0;
+		free((void *) selected),	selected = 0;
 	    }
 	    (void)  root_plselection_prompt(plbuf, QBUFSZ - 1,
 			flags.initrole, flags.initrace, flags.initgend, flags.initalign);
@@ -495,7 +495,7 @@ give_up:	/* Quit */
 			goto give_up;		/* Selected quit */
 
 		    k = selected[0].item.a_int - 1;
-		    free((genericptr_t) selected),	selected = 0;
+		    free((void *) selected),	selected = 0;
 		}
 		flags.initrace = k;
 	    }
@@ -567,7 +567,7 @@ give_up:	/* Quit */
 			goto give_up;		/* Selected quit */
 
 		    k = selected[0].item.a_int - 1;
-		    free((genericptr_t) selected),	selected = 0;
+		    free((void *) selected),	selected = 0;
 		}
 		flags.initgend = k;
 	    }
@@ -638,7 +638,7 @@ give_up:	/* Quit */
 			goto give_up;		/* Selected quit */
 
 		    k = selected[0].item.a_int - 1;
-		    free((genericptr_t) selected),	selected = 0;
+		    free((void *) selected),	selected = 0;
 		}
 		flags.initalign = k;
 	    }

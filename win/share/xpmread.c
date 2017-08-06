@@ -4,7 +4,7 @@
 #include "hack.h"
 #include "tile.h"
 
-extern genericptr_t alloc(size_t);
+extern void * alloc(size_t);
 
 extern const char *tilename(int, int);
 

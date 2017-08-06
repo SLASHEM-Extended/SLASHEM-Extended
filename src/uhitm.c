@@ -23,7 +23,7 @@ STATIC_DCL boolean shade_aware(struct obj *);
 
 static int martial_dmg(void);
 
-STATIC_PTR void set_lit(int,int,genericptr_t);
+STATIC_PTR void set_lit(int,int,void *);
 
 extern boolean notonhead;	/* for long worms */
 /* The below might become a parameter instead if we use it a lot */
@@ -3557,7 +3557,7 @@ register struct attack *mattk;
 		}
 		break;
 	    case AD_DARK:
-		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (genericptr_t)((char *)0));
+		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (void *)((char *)0));
 		pline("You generate a sinister darkness!");
 		break;
 	    case AD_THIR:
@@ -4320,7 +4320,7 @@ register struct attack *mattk;
 		}
 		goto common;
 	    case AD_DARK:
-		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (genericptr_t)((char *)0));
+		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (void *)((char *)0));
 		pline("You generate a sinister darkness!");
 		break;
 	    case AD_THIR:
@@ -8610,7 +8610,7 @@ struct obj *otmp;	/* source of flash */
 STATIC_PTR void
 set_lit(x,y,val)
 int x, y;
-genericptr_t val;
+void * val;
 {
 	if (val)
 	    levl[x][y].lit = 1;

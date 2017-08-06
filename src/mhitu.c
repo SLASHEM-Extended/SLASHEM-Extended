@@ -15851,7 +15851,7 @@ register struct monst *mon;
 			else uegg->corpsenm = urole.malenum;
 			uegg->known = uegg->dknown = 1;
 			attach_egg_hatch_timeout(uegg);
-			(void) start_timer(1, TIMER_OBJECT, HATCH_EGG, (genericptr_t)uegg);
+			(void) start_timer(1, TIMER_OBJECT, HATCH_EGG, (void *)uegg);
 			pickup_object(uegg, 1, FALSE);
 		}
 

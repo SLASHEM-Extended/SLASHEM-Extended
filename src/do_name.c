@@ -128,7 +128,7 @@ const char *goal;
 	    if (!index(quitchars, c)) {
 		char matching[MAXPCHARS];
 		int pass, lo_x, lo_y, hi_x, hi_y, k = 0;
-		(void)memset((genericptr_t)matching, 0, sizeof matching);
+		(void)memset((void *)matching, 0, sizeof matching);
 		for (sidx = 1; sidx < MAXPCHARS; sidx++)
 		    if (c == defsyms[sidx].sym || c == (int)showsyms[sidx])
 			matching[sidx] = (char) ++k;
@@ -214,8 +214,8 @@ const char *name;
 	}
 	mtmp2 = newmonst(mtmp->mxlth + lth);
 	*mtmp2 = *mtmp;
-	(void) memcpy((genericptr_t)mtmp2->mextra,
-		      (genericptr_t)mtmp->mextra, mtmp->mxlth);
+	(void) memcpy((void *)mtmp2->mextra,
+		      (void *)mtmp->mextra, mtmp->mxlth);
 	mtmp2->mnamelth = lth;
 	if (lth) strcpy(NAME(mtmp2), name);
 	replmon(mtmp,mtmp2);
@@ -345,7 +345,7 @@ struct obj *
 realloc_obj(obj, oextra_size, oextra_src, oname_size, name)
 struct obj *obj;
 int oextra_size;		/* storage to allocate for oextra            */
-genericptr_t oextra_src;
+void * oextra_src;
 int oname_size;			/* size of name string + 1 (null terminator) */
 const char *name;
 {
@@ -355,7 +355,7 @@ const char *name;
 	*otmp = *obj;	/* the cobj pointer is copied to otmp */
 	if (oextra_size) {
 	    if (oextra_src)
-		(void) memcpy((genericptr_t)otmp->oextra, oextra_src,
+		(void) memcpy((void *)otmp->oextra, oextra_src,
 							oextra_size);
 	} else {
 	    otmp->oattached = OATTACHED_NOTHING;
@@ -437,7 +437,7 @@ const char *name;
 		if (lth) strcpy(ONAME(obj), name);
 	} else {
 		obj = realloc_obj(obj, obj->oxlth,
-			      (genericptr_t)obj->oextra, lth, name);
+			      (void *)obj->oextra, lth, name);
 	}
 	if (lth) artifact_exists(obj, name, TRUE);
 	if (obj->oartifact) {
@@ -515,7 +515,7 @@ register struct obj *obj;
 
 	/* clear old name */
 	str1 = &(objects[obj->otyp].oc_uname);
-	if(*str1) free((genericptr_t)*str1);
+	if(*str1) free((void *)*str1);
 
 	/* strip leading and trailing spaces; uncalls item if all spaces */
 	(void)mungspaces(buf);

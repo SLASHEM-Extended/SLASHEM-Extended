@@ -318,7 +318,7 @@ X11_player_selection()
 
 	nh_XtPopdown(popup);
 	XtDestroyWidget(popup);
-	free((genericptr_t)choices), choices = 0;
+	free((void *)choices), choices = 0;
 
 	if (ps_selected == PS_QUIT) {
 	    clearlocks();
@@ -364,7 +364,7 @@ X11_player_selection()
 
 	if (availcount == 1) {
 	    flags.initrace = availindex;
-	    free((genericptr_t)choices), choices = 0;
+	    free((void *)choices), choices = 0;
 	} else {
 	    sprintf(qbuf, "Pick your %s race", s_suffix(plbuf));
 	    popup = make_menu("race_selection", qbuf,
@@ -383,7 +383,7 @@ X11_player_selection()
 
 	    nh_XtPopdown(popup);
 	    XtDestroyWidget(popup);
-	    free((genericptr_t)choices), choices = 0;
+	    free((void *)choices), choices = 0;
 
 	    if (ps_selected == PS_QUIT) {
 		clearlocks();
@@ -429,7 +429,7 @@ X11_player_selection()
 
 	if (availcount == 1) {
 	    flags.initgend = availindex;
-	    free((genericptr_t)choices), choices = 0;
+	    free((void *)choices), choices = 0;
 	} else {
 	    sprintf(qbuf, "Your %s gender?", s_suffix(plbuf));
 	    popup = make_menu("gender_selection", qbuf,
@@ -448,7 +448,7 @@ X11_player_selection()
 
 	    nh_XtPopdown(popup);
 	    XtDestroyWidget(popup);
-	    free((genericptr_t)choices), choices = 0;
+	    free((void *)choices), choices = 0;
 
 	    if (ps_selected == PS_QUIT) {
 		clearlocks();
@@ -493,7 +493,7 @@ X11_player_selection()
 
 	if (availcount == 1) {
 	    flags.initalign = availindex;
-	    free((genericptr_t)choices), choices = 0;
+	    free((void *)choices), choices = 0;
 	} else {
 	    sprintf(qbuf, "Your %s alignment?", s_suffix(plbuf));
 	    popup = make_menu("alignment_selection", qbuf,
@@ -512,7 +512,7 @@ X11_player_selection()
 
 	    nh_XtPopdown(popup);
 	    XtDestroyWidget(popup);
-	    free((genericptr_t)choices), choices = 0;
+	    free((void *)choices), choices = 0;
 
 	    if (ps_selected == PS_QUIT) {
 		clearlocks();

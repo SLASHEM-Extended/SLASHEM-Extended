@@ -358,7 +358,7 @@ char *argv[];
 		raw_print("Cannot create lock file");
 	} else {
 		hackpid = 1;
-		write(fd, (genericptr_t) &hackpid, sizeof(hackpid));
+		write(fd, (void *) &hackpid, sizeof(hackpid));
 		close(fd);
 	}
 #ifdef MFLOPPY

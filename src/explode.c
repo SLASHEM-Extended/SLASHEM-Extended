@@ -46,9 +46,9 @@ xchar x, y;
 	reg->alocations = reg->alocations ? 2 * reg->alocations : 32;
 	new = (ExplodeLocation *)
 		alloc(reg->alocations * sizeof(ExplodeLocation));
-	(void) memcpy((genericptr_t)new, (genericptr_t)reg->locations,
+	(void) memcpy((void *)new, (void *)reg->locations,
 		reg->nlocations * sizeof(ExplodeLocation));
-	free((genericptr_t)reg->locations);
+	free((void *)reg->locations);
 	reg->locations = new;
     }
     reg->locations[reg->nlocations].x = x;
@@ -115,8 +115,8 @@ STATIC_DCL void
 free_explode_region(reg)
 ExplodeRegion *reg;
 {
-    free((genericptr_t)reg->locations);
-    free((genericptr_t)reg);
+    free((void *)reg->locations);
+    free((void *)reg);
 }
 
 /* This is the "do-it-all" explosion command */
@@ -298,7 +298,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 /*WAC add light source for fire*/
 #ifdef LIGHT_SRC_SPELL
         if ((!remote) && ((adtyp == AD_FIRE) || (adtyp == AD_ELEC))) {
-                new_light_source(x, y, 2, LS_TEMP, (genericptr_t) 1);
+                new_light_source(x, y, 2, LS_TEMP, (void *) 1);
                 vision_recalc(0);
         }
 #endif
@@ -555,7 +555,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 #ifdef LIGHT_SRC_SPELL
         /*WAC kill the light source*/
         if ((!remote) && ((adtyp == AD_FIRE) || (adtyp == AD_ELEC))) {
-            del_light_source(LS_TEMP, (genericptr_t) 1);
+            del_light_source(LS_TEMP, (void *) 1);
 	}
 #endif
 
@@ -845,7 +845,7 @@ struct obj *obj;			/* only scatter this obj        */
 			place_object(stmp->obj, x, y);
 			stackobj(stmp->obj);
 		}
-		free((genericptr_t)stmp);
+		free((void *)stmp);
 		newsym(x,y);
 	}
 
@@ -909,7 +909,7 @@ STATIC_DCL void grenade_effects(struct obj *,XCHAR_P,XCHAR_P,
 
 STATIC_DCL int
 grenade_fiery_callback(data, x, y)
-genericptr_t data;
+void * data;
 int x, y;
 {
     int is_accessible = ZAP_POS(levl[x][y].typ);
@@ -924,7 +924,7 @@ int x, y;
 
 STATIC_DCL int
 grenade_gas_callback(data, x, y)
-genericptr_t data;
+void * data;
 int x, y;
 {
     int is_accessible = ZAP_POS(levl[x][y].typ);
@@ -936,7 +936,7 @@ int x, y;
 
 STATIC_DCL int
 grenade_dig_callback(data, x, y)
-genericptr_t data;
+void * data;
 int x, y;
 {
     struct grenade_callback *gc = (struct grenade_callback *)data;
@@ -1028,7 +1028,7 @@ boolean isyou;
 	    r++;
 	    no_gas /= 2;
 	}
-	xpathto(r, x, y, grenade_gas_callback, (genericptr_t)&gc);
+	xpathto(r, x, y, grenade_gas_callback, (void *)&gc);
     }
     if (no_fiery) {
 	/* r = floor(log2(n))+1 */
@@ -1037,7 +1037,7 @@ boolean isyou;
 	    r++;
 	    no_fiery /= 2;
 	}
-	xpathto(r, x, y, grenade_fiery_callback, (genericptr_t)&gc);
+	xpathto(r, x, y, grenade_fiery_callback, (void *)&gc);
     }
     if (no_dig) {
 	/* r = floor(log2(n))+1 */
@@ -1046,7 +1046,7 @@ boolean isyou;
 	    r++;
 	    no_dig /= 2;
 	}
-	xpathto(r, x, y, grenade_dig_callback, (genericptr_t)&gc);
+	xpathto(r, x, y, grenade_dig_callback, (void *)&gc);
     }
 }
 

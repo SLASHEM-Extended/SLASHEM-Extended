@@ -170,15 +170,15 @@ const char *d1, *d2;
 	f1.fab$b_acmodes = PSL$C_EXEC << FAB$V_LNM_MODE;
 	f1.fab$b_fns = strlen( f1.fab$l_fna = (char *)d1 );
 	f2.fab$b_fns = strlen( f2.fab$l_fna = (char *)d2 );
-	f1.fab$l_nam = (genericptr_t)&n1;	/* link nam to fab */
-	f2.fab$l_nam = (genericptr_t)&n2;
+	f1.fab$l_nam = (void *)&n1;	/* link nam to fab */
+	f2.fab$l_nam = (void *)&n2;
 	n1.nam$b_nop = n2.nam$b_nop = NAM$M_NOCONCEAL; /* want true device name */
 
 	return (vms_success(sys$parse(&f1)) && vms_success(sys$parse(&f2))
 	     && n1.nam$t_dvi[0] == n2.nam$t_dvi[0]
 	     && !strncmp(&n1.nam$t_dvi[1], &n2.nam$t_dvi[1], n1.nam$t_dvi[0])
-	     && !memcmp((genericptr_t)n1.nam$w_did,
-			(genericptr_t)n2.nam$w_did,
+	     && !memcmp((void *)n1.nam$w_did,
+			(void *)n2.nam$w_did,
 			sizeof n1.nam$w_did));	/*{ short nam$w_did[3]; }*/
     }
 }

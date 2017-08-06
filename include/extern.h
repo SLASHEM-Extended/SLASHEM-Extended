@@ -12,9 +12,9 @@
 /* ### alloc.c ### */
 
 #if 0
-E genericptr_t alloc(size_t);
+E void * alloc(size_t);
 #endif
-E char *fmt_ptr(const genericptr,char *);
+E char *fmt_ptr(const void *,char *);
 
 /* This next pre-processor directive covers almost the entire file,
  * interrupted only occasionally to pick up specific functions as needed. */
@@ -54,7 +54,7 @@ E boolean catch_lit(struct obj *);
 E void use_unicorn_horn(struct obj *);
 E boolean tinnable(struct obj *);
 E void reset_trapset(void);
-E void fig_transform(genericptr_t, long);
+E void fig_transform(void *, long);
 E int unfixable_trouble_count(BOOLEAN_P);
 E int wand_explode(struct obj *,BOOLEAN_P);
 
@@ -270,8 +270,8 @@ E void do_vicinity_map(void);
 E void do_vicinity_mapX(void);
 E void cvt_sdoor_to_door(struct rm *);
 #ifdef USE_TRAMPOLI
-E void findone(int,int,genericptr_t);
-E void openone(int,int,genericptr_t);
+E void findone(int,int,void *);
+E void openone(int,int,void *);
 #endif
 E int findit(void);
 E int finditX(void);
@@ -301,8 +301,8 @@ E void zap_dig(BOOLEAN_P);
 E struct obj *bury_an_obj(struct obj *);
 E void bury_objs(int,int);
 E void unearth_objs(int,int);
-E void rot_organic(genericptr_t, long);
-E void rot_corpse(genericptr_t, long);
+E void rot_organic(void *, long);
+E void rot_corpse(void *, long);
 #if 0
 E void bury_monst(struct monst *);
 E void bury_you(void);
@@ -381,8 +381,8 @@ E void goto_level(d_level *,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P);
 E void schedule_goto(d_level *,BOOLEAN_P,BOOLEAN_P,int, const char *,const char *);
 E void deferred_goto(void);
 E boolean revive_corpse(struct obj *, BOOLEAN_P);
-E void revive_mon(genericptr_t, long);
-E void moldy_corpse(genericptr_t, long);
+E void revive_mon(void *, long);
+E void moldy_corpse(void *, long);
 E int donull(void);
 E int dowipe(void);
 E void set_wounded_legs(long,int);
@@ -417,7 +417,7 @@ E const char *rndcolor(void);
 #ifdef REINCARNATION
 E const char *roguename(void);
 #endif
-E struct obj *realloc_obj(struct obj *, int, genericptr_t, int, const char *);
+E struct obj *realloc_obj(struct obj *, int, void *, int, const char *);
 E char *coyotename(struct monst *,char *);
 
 
@@ -496,7 +496,7 @@ E int dog_eat(struct monst *,struct obj *,int,int,BOOLEAN_P);
 E int dog_move(struct monst *,int);
 E boolean betrayed(struct monst *);
 #ifdef USE_TRAMPOLI
-E void wantdoor(int,int,genericptr_t);
+E void wantdoor(int,int,void *);
 #endif
 
 /* ### dokick.c ### */
@@ -523,8 +523,8 @@ E int thitmonst(struct monst *,struct obj *, int);
 E int hero_breaks(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P);
 E int breaks(struct obj *,XCHAR_P,XCHAR_P);
 E boolean breaktest(struct obj *);
-E boolean walk_path(coord *, coord *, boolean (*)(genericptr_t,int,int), genericptr_t);
-E boolean hurtle_step(genericptr_t, int, int);
+E boolean walk_path(coord *, coord *, boolean (*)(void *,int,int), void *);
+E boolean hurtle_step(void *, int, int);
 
 /* ### drawing.c ### */
 #endif /* !MAKEDEFS_C && !LEV_LEX_C */
@@ -779,7 +779,7 @@ E void really_close(void);
 E void floating_above(const char *);
 E void dogushforth(int);
 # ifdef USE_TRAMPOLI
-E void gush(int,int,genericptr_t);
+E void gush(int,int,void *);
 # endif
 E void dryup(XCHAR_P,XCHAR_P, BOOLEAN_P);
 E void drinkfountain(void);
@@ -1177,8 +1177,8 @@ E int dosuspend(void);
 
 /* ### light.c ### */
 
-E void new_light_source(XCHAR_P, XCHAR_P, int, int, genericptr_t);
-E void del_light_source(int, genericptr_t);
+E void new_light_source(XCHAR_P, XCHAR_P, int, int, void *);
+E void del_light_source(int, void *);
 E void do_light_sources(char **);
 E struct monst *find_mid(unsigned, unsigned);
 E void save_light_sources(int, int, int);
@@ -1343,7 +1343,7 @@ E int ntrminion(void);
 /* ### mklev.c ### */
 
 #ifdef USE_TRAMPOLI
-E int do_comp(genericptr_t,genericptr_t);
+E int do_comp(void *,void *);
 #endif
 E void sort_rooms(void);
 E void add_room(int,int,int,int,BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P);
@@ -2136,7 +2136,7 @@ E void forget_map(int);
 E void maprot(void);
 E int seffects(struct obj *);
 #ifdef USE_TRAMPOLI
-E void set_lit(int,int,genericptr_t);
+E void set_lit(int,int,void *);
 #endif
 E void litroom(BOOLEAN_P,struct obj *);
 E void litroomlite(boolean);
@@ -2181,9 +2181,9 @@ E void getlev(int,int,XCHAR_P,BOOLEAN_P);
 E void minit(void);
 E boolean lookup_id_mapping(unsigned, unsigned *);
 #ifdef ZEROCOMP
-E int mread(int,genericptr_t,unsigned int);
+E int mread(int,void *,unsigned int);
 #else
-E void mread(int,genericptr_t,unsigned int);
+E void mread(int,void *,unsigned int);
 #endif
 
 /* ### rip.c ### */
@@ -2297,7 +2297,7 @@ E void savelev(int,XCHAR_P,int);
 E void bufon(int);
 E void bufoff(int);
 E void bflush(int);
-E void bwrite(int,genericptr_t,unsigned int);
+E void bwrite(int,void *,unsigned int);
 E void bclose(int);
 E void savefruitchn(int,int);
 /* ### school.c ### */
@@ -2505,7 +2505,7 @@ E boolean goodpos(int,int,struct monst *,unsigned);
 E boolean enexto(coord *,XCHAR_P,XCHAR_P,struct permonst *);
 E boolean enexto_core(coord *,XCHAR_P,XCHAR_P,struct permonst *,unsigned);
 E int epathto(coord *,int,XCHAR_P,XCHAR_P,struct permonst *);
-E void xpathto(int,XCHAR_P,XCHAR_P,int (*)(genericptr_t,int,int),void *);
+E void xpathto(int,XCHAR_P,XCHAR_P,int (*)(void *,int,int),void *);
 E void teleds(int,int,BOOLEAN_P);
 E boolean safe_teleds(BOOLEAN_P);
 E boolean safe_teledsPD(BOOLEAN_P);
@@ -2545,25 +2545,25 @@ E void burn_away_slime(void);
 E void nh_timeout(void);
 E void fall_asleep(int, BOOLEAN_P);
 E void set_obj_poly(struct obj *, struct obj *);
-E void unpoly_obj(genericptr_t, long);
+E void unpoly_obj(void *, long);
 E int mon_poly(struct monst *, BOOLEAN_P, const char *);
 E int mon_spec_poly(struct monst *, struct permonst *, long, BOOLEAN_P, BOOLEAN_P, BOOLEAN_P, BOOLEAN_P);
 E int mon_spec_polyX(struct monst *, struct permonst *, long, BOOLEAN_P, BOOLEAN_P, BOOLEAN_P, BOOLEAN_P);
-E void unpoly_mon(genericptr_t, long);
+E void unpoly_mon(void *, long);
 E void attach_bomb_blow_timeout(struct obj *, int, BOOLEAN_P);
 E void attach_egg_hatch_timeout(struct obj *);
 E void attach_fig_transform_timeout(struct obj *);
 E void kill_egg(struct obj *);
-E void hatch_egg(genericptr_t, long);
+E void hatch_egg(void *, long);
 E void learn_egg_type(int);
-E void burn_object(genericptr_t, long);
+E void burn_object(void *, long);
 E void begin_burn(struct obj *, BOOLEAN_P);
 E void end_burn(struct obj *, BOOLEAN_P);
 E void burn_faster(struct obj *, long);
 E void lightsaber_deactivate(struct obj *, BOOLEAN_P);
 E void do_storms(void);
-E boolean start_timer(long, SHORT_P, SHORT_P, genericptr_t);
-E long stop_timer(SHORT_P, genericptr_t);
+E boolean start_timer(long, SHORT_P, SHORT_P, void *);
+E long stop_timer(SHORT_P, void *);
 E void run_timers(void);
 E void obj_move_timers(struct obj *, struct obj *);
 E void obj_split_timers(struct obj *, struct obj *);
@@ -2781,8 +2781,8 @@ E void vision_recalc(int);
 E void block_point(int,int);
 E void unblock_point(int,int);
 E boolean clear_path(int,int,int,int);
-E void do_clear_area(int,int,int, void (*)(int,int,genericptr_t),genericptr_t);
-E void do_clear_areaX(int,int,int, void (*)(int,int,genericptr_t),genericptr_t);
+E void do_clear_area(int,int,int, void (*)(int,int,void *),void *);
+E void do_clear_areaX(int,int,int, void (*)(int,int,void *),void *);
 
 #ifdef VMS
 

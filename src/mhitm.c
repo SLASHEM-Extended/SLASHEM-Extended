@@ -35,7 +35,7 @@ STATIC_DCL void noises(struct monst *,struct attack *);
 STATIC_DCL void missmm(struct monst *,struct monst *, int, int, struct attack *);
 STATIC_DCL int passivemm(struct monst *, struct monst *, BOOLEAN_P, int);
 
-STATIC_PTR void set_lit(int,int,genericptr_t);
+STATIC_PTR void set_lit(int,int,void *);
 
 /* Needed for the special case of monsters wielding vorpal blades (rare).
  * If we use this a lot it should probably be a parameter to mdamagem()
@@ -1600,7 +1600,7 @@ physical:
 		if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1;
 		break;
 	    case AD_DARK:
-		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (genericptr_t)((char *)0));
+		do_clear_area(mdef->mx,mdef->my, 7, set_lit, (void *)((char *)0));
 		if (vis) pline("A sinister darkness fills the area!");
 		break;
 
@@ -2052,7 +2052,7 @@ physical:
 				!slime_on_touch(mdef->data) ) {
 		    if (newcham(mdef, &mons[PM_GREEN_SLIME], FALSE, vis)) {
 			mdef->oldmonnm = PM_GREEN_SLIME;
-			(void) stop_timer(UNPOLY_MON, (genericptr_t) mdef);
+			(void) stop_timer(UNPOLY_MON, (void *) mdef);
 		    }
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		    tmp = 0;
@@ -2506,7 +2506,7 @@ int mdead;
 		break;
 
 	    case AD_DARK:
-		do_clear_area(magr->mx,magr->my, 7, set_lit, (genericptr_t)((char *)0));
+		do_clear_area(magr->mx,magr->my, 7, set_lit, (void *)((char *)0));
 		if (canseemon(magr)) pline("A sinister darkness fills the area!");
 		break;
 
@@ -2773,7 +2773,7 @@ int aatyp;
 STATIC_PTR void
 set_lit(x,y,val)
 int x, y;
-genericptr_t val;
+void * val;
 {
 	if (val)
 	    levl[x][y].lit = 1;

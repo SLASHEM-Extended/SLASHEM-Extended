@@ -5,7 +5,7 @@
 #include "config.h"
 #include "tile.h"
 
-extern genericptr_t alloc(size_t);
+extern void * alloc(size_t);
 
 FILE *ppm_file;
 
@@ -133,9 +133,9 @@ fclose_ppm_file()
 	}
 
 	for (i = 0; i < tile_y; i++) {
-		free((genericptr_t)image[i]);
+		free((void *)image[i]);
 	}
-	free((genericptr_t)image);
+	free((void *)image);
 
 	PpmScreen.Height = tiles_down * tile_y;
 	rewind(ppm_file);

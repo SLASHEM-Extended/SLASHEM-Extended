@@ -114,7 +114,7 @@ E void exit(int);
    the former is naturally what flex tests for. */
 # if defined(__STDC__) || !defined(FLEX_SCANNER)
 #  ifndef OS2_CSET2
-E void free(genericptr_t);
+E void free(void *);
 #  endif
 # endif
 #if !defined(__SASC_60) && !defined(_DCC) && !defined(__SC__)
@@ -129,13 +129,13 @@ E void perror(const char *);
 #endif
 #ifndef NeXT
 #ifdef POSIX_TYPES
-E void qsort(genericptr_t,size_t,size_t, int(*)(const genericptr,const genericptr));
+E void qsort(void *,size_t,size_t, int(*)(const void *,const void *));
 #else
 # if (defined(BSD) || defined(ULTRIX)) && (!defined(LINUX) && !defined(__CYGWIN__))
 E  int qsort();
 # else
 #  if !defined(LATTICE) && !defined(AZTEC_50)
-E   void qsort(genericptr_t,size_t,size_t, int(*)(const genericptr,const genericptr));
+E   void qsort(void *,size_t,size_t, int(*)(const void *,const void *));
 #  endif
 # endif
 #endif
@@ -164,7 +164,7 @@ E int write(int, const void *,unsigned);
 #   endif
 #  else
 #   ifndef __MWERKS__	/* metrowerks defines write via universal headers */
-E int write(int,genericptr_t,unsigned);
+E int write(int,void *,unsigned);
 #   endif
 #  endif
 # endif /* ULTRIX */
@@ -197,7 +197,7 @@ E int open(const char *,int);
 #if defined(MICRO)
 E int close(int);
 #ifndef __EMX__
-E int read(int,genericptr_t,unsigned int);
+E int read(int,void *,unsigned int);
 #endif
 E int open(const char *,int,...);
 E int dup2(int, int);
@@ -225,10 +225,10 @@ E int chdir(const char *);
 E int chmod(const char *,int);
 E mode_t umask(int);
 # endif
-E int read(int,genericptr_t,unsigned);
+E int read(int,void *,unsigned);
 /* these aren't quite right, but this saves including lots of system files */
-E int stty(int,genericptr_t);
-E int gtty(int,genericptr_t);
+E int stty(int,void *);
+E int gtty(int,void *);
 E int ioctl(int, int, char*);
 E int isatty(int);	/* 1==yes, 0==no, -1==error */
 #include <sys/file.h>
@@ -262,10 +262,10 @@ E int fstat( /*_ int, stat_t * _*/ );
 E int isatty(int);	/* 1==yes, 0==no, -1==error */
 E long lseek(int,long,int);
 E int open(const char *,int,unsigned,...);
-E int read(int,genericptr_t,unsigned);
+E int read(int,void *,unsigned);
 E int rename(const char *,const char *);
 E int stat( /*_ const char *,stat_t * _*/ );
-E int write(int,const genericptr,unsigned);
+E int write(int,const void *,unsigned);
 #endif
 
 #endif	/* __SASC_60 */
@@ -508,7 +508,7 @@ E char *tgoto(const char *,int,int);
 #endif
 
 #ifdef ALLOC_C
-E genericptr_t malloc(size_t);
+E void * malloc(size_t);
 #endif
 
 /* time functions */

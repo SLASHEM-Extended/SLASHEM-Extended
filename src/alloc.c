@@ -48,13 +48,13 @@
  */
 
 #ifdef WIZARD
-char *fmt_ptr(const genericptr,char *);
+char *fmt_ptr(const void *,char *);
 #endif
 
 extern void panic(const char *,...) PRINTF_F(1,2);
 
-genericptr_t alloc(size_t lth) {
-	genericptr_t ptr;
+void * alloc(size_t lth) {
+	void * ptr;
 
 	ptr = calloc(1, lth);
 
@@ -79,7 +79,7 @@ genericptr_t alloc(size_t lth) {
 
 # ifdef MONITOR_PTR_FMT
 #  define PTR_FMT "%p"
-#  define PTR_TYP genericptr_t
+#  define PTR_TYP void *
 # else
 #  define PTR_FMT "%06lx"
 #  define PTR_TYP unsigned long
@@ -88,7 +88,7 @@ genericptr_t alloc(size_t lth) {
 /* format a pointer for display purposes; caller supplies the result buffer */
 char *
 fmt_ptr(ptr, buf)
-const genericptr ptr;
+const void * ptr;
 char *buf;
 {
 	sprintf(buf, PTR_FMT, (PTR_TYP)ptr);

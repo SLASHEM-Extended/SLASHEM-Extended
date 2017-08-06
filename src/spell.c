@@ -260,7 +260,7 @@ char ilet;
 STATIC_PTR void
 undo_barfloodC(x, y, roomcnt)
 int x, y;
-genericptr_t roomcnt;
+void * roomcnt;
 {
 	if (levl[x][y].typ != IRONBARS)
 		return;
@@ -374,7 +374,7 @@ struct obj *spellbook;
 STATIC_PTR void
 do_lockfloodg(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -448,7 +448,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_treefloodg(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -514,7 +514,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_icefloodg(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -576,7 +576,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_cloudfloodg(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -640,7 +640,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_terrainfloodg(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -706,7 +706,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_barfloodg(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -770,7 +770,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_lavafloodg(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -803,7 +803,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_floodg(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -2609,11 +2609,11 @@ boolean atme;
 			for (redeemobj = fobj; redeemobj; redeemobj = redeemobj->nobj) {
 				if (redeemobj->otyp == CORPSE) {
 					if (redeemobj->timed) {
-					    (void) stop_timer(MOLDY_CORPSE, (genericptr_t)redeemobj);
-					    (void) stop_timer(REVIVE_MON, (genericptr_t)redeemobj);
+					    (void) stop_timer(MOLDY_CORPSE, (void *)redeemobj);
+					    (void) stop_timer(REVIVE_MON, (void *)redeemobj);
 					}
 					if (!(redeemobj->timed)) {
-						(void) start_timer(250, TIMER_OBJECT, ROT_CORPSE, (genericptr_t)redeemobj);
+						(void) start_timer(250, TIMER_OBJECT, ROT_CORPSE, (void *)redeemobj);
 						pline("A corpse has been redeemed!");
 					}
 				}
@@ -4937,7 +4937,7 @@ boolean atme;
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 
 		int maderoom = 0;
-		do_clear_areaX(u.ux, u.uy, 1, undo_barfloodC, (genericptr_t)&maderoom);
+		do_clear_areaX(u.ux, u.uy, 1, undo_barfloodC, (void *)&maderoom);
 		if (maderoom) {
 			You("have a sense of freedom.");
 		}
@@ -4947,7 +4947,7 @@ boolean atme;
 	case SPE_FLOOD:
 		{
 		int madepoolX = 0;
-		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_floodg, (genericptr_t)&madepoolX);
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_floodg, (void *)&madepoolX);
 		if (madepoolX) pline("Watery pits appear in the dungeon!");
 		u.uenmax -= rnd(10);
 		if (u.uenmax < 0) u.uenmax = 0;
@@ -4960,7 +4960,7 @@ boolean atme;
 	case SPE_LAVA:
 		{
 		int madepool = 0;
-		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lavafloodg, (genericptr_t)&madepool);
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lavafloodg, (void *)&madepool);
 		if (madepool) pline("Lava pools are created!");
 		u.uenmax -= rnd(10);
 		if (u.uenmax < 0) u.uenmax = 0;
@@ -4973,7 +4973,7 @@ boolean atme;
 	case SPE_IRON_PRISON:
 		{
 		int madepoolQ = 0;
-		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_barfloodg, (genericptr_t)&madepoolQ);
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_barfloodg, (void *)&madepoolQ);
 		if (madepoolQ) pline("Iron bars appear from thin air!");
 		u.uenmax -= rnd(24);
 		if (u.uenmax < 0) u.uenmax = 0;
@@ -4986,7 +4986,7 @@ boolean atme;
 	case SPE_CLOUDS:
 		{
 		int madepoolQ = 0;
-		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_cloudfloodg, (genericptr_t)&madepoolQ);
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_cloudfloodg, (void *)&madepoolQ);
 		if (madepoolQ) pline("Clouds everywhere!");
 		u.uenmax -= rnd(4);
 		if (u.uenmax < 0) u.uenmax = 0;
@@ -4999,7 +4999,7 @@ boolean atme;
 	case SPE_ICE:
 		{
 		int madepoolQ = 0;
-		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_icefloodg, (genericptr_t)&madepoolQ);
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_icefloodg, (void *)&madepoolQ);
 		if (madepoolQ) pline("The landscape is winterized!");
 		u.uenmax -= rnd(7);
 		if (u.uenmax < 0) u.uenmax = 0;
@@ -5012,7 +5012,7 @@ boolean atme;
 	case SPE_LOCKOUT:
 		{
 		int madepoolQ = 0;
-		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lockfloodg, (genericptr_t)&madepoolQ);
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lockfloodg, (void *)&madepoolQ);
 		if (madepoolQ) pline("The area is walled off!");
 		u.uenmax -= rnd(30);
 		if (u.uenmax < 0) u.uenmax = 0;
@@ -5025,7 +5025,7 @@ boolean atme;
 	case SPE_GROW_TREES:
 		{
 		int madepoolQ = 0;
-		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_treefloodg, (genericptr_t)&madepoolQ);
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_treefloodg, (void *)&madepoolQ);
 		if (madepoolQ) pline("Trees start to grow rapidly!");
 		u.uenmax -= rnd(25);
 		if (u.uenmax < 0) u.uenmax = 0;
@@ -5039,7 +5039,7 @@ boolean atme;
 
 		{
 		int madepoolQ = 0;
-		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_terrainfloodg, (genericptr_t)&madepoolQ);
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_terrainfloodg, (void *)&madepoolQ);
 		if (madepoolQ) pline("Chaotic terrain is generated!");
 		u.uenmax -= rnd(20);
 		if (u.uenmax < 0) u.uenmax = 0;
@@ -6543,7 +6543,7 @@ int *spell_no;
 		   de-select any preselected entry */
 		if (n > 1 && *spell_no == splaction)
 		    *spell_no = selected[1].item.a_int - 1;
-		free((genericptr_t)selected);
+		free((void *)selected);
 		/* default selection of preselected spell means that
 		   user chose not to swap it with anything */
 		if (*spell_no == splaction) return FALSE;

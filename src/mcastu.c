@@ -59,7 +59,7 @@ STATIC_DCL void cast_cleric_spell(struct monst *, int,int);
 STATIC_DCL boolean is_undirected_spell(unsigned int,int);
 STATIC_DCL boolean is_melee_spell(unsigned int,int);
 STATIC_DCL boolean spell_would_be_useless(struct monst *,unsigned int,int);
-STATIC_PTR void set_litZ(int,int,genericptr_t);
+STATIC_PTR void set_litZ(int,int,void *);
 
 #ifdef OVL0
 
@@ -1480,7 +1480,7 @@ int spellnum;
 		if (rangeX < 1) rangeX = 1; if (rangeX > 15) rangeX = 15; 
 
 	    do_clear_areaX(u.ux,u.uy,		/* darkness around player's position */
-		/*15*/rangeX, set_litZ, (genericptr_t)((char *)0));
+		/*15*/rangeX, set_litZ, (void *)((char *)0));
 		    wake_nearby();
 		dmg = 0;
                 break;
@@ -2464,7 +2464,7 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 STATIC_PTR void
 set_litZ(x,y,val)
 int x, y;
-genericptr_t val;
+void * val;
 {
 	if (val)
 	    levl[x][y].lit = 1;

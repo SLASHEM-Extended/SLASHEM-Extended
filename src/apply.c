@@ -1756,7 +1756,7 @@ int magic; /* 0=Physical, otherwise skill level */
 	    if (temp < 0) temp = -temp;
 	    if (range < temp)
 		range = temp;
-	    (void) walk_path(&uc, &cc, hurtle_step, (genericptr_t)&range);
+	    (void) walk_path(&uc, &cc, hurtle_step, (void *)&range);
 
 	    /* A little Sokoban guilt... */
 	    if (In_sokoban(&u.uz))
@@ -2314,7 +2314,7 @@ degradeagain:
  */
 void
 fig_transform(arg, timeout)
-genericptr_t arg;
+void * arg;
 long timeout;
 {
 	struct obj *figurine = (struct obj *)arg;
@@ -2340,7 +2340,7 @@ long timeout;
 	    !figurine_location_checks(figurine,&cc, TRUE)) {
 		/* reset the timer to try again later */
 		(void) start_timer((long)rnd(5000), TIMER_OBJECT,
-				FIG_TRANSFORM, (genericptr_t)figurine);
+				FIG_TRANSFORM, (void *)figurine);
 		return;
 	}
 
@@ -2466,7 +2466,7 @@ struct obj **optr;
 		"toss the figurine into the air" :
 		"set the figurine on the ground"));
 	(void) make_familiar(obj, cc.x, cc.y, FALSE);
-	(void) stop_timer(FIG_TRANSFORM, (genericptr_t)obj);
+	(void) stop_timer(FIG_TRANSFORM, (void *)obj);
 	useup(obj);
 	*optr = 0;
 }
@@ -3615,7 +3615,7 @@ use_grapple (obj)
 	    if (select_menu(tmpwin, PICK_ONE, &selected) > 0 &&
 			rn2(P_SKILL(typ) > P_SKILLED ? 20 : 2))
 		tohit = selected[0].item.a_int - 1;
-	    free((genericptr_t)selected);
+	    free((void *)selected);
 	    destroy_nhwindow(tmpwin);
 	}
 

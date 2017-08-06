@@ -17,8 +17,8 @@ static void byebye(void);
 # else
 #  define vms_handler_type unsigned int
 # endif
-extern void VAXC$ESTABLISH(vms_handler_type (*)(genericptr_t,genericptr_t));
-static vms_handler_type vms_handler(genericptr_t,genericptr_t);
+extern void VAXC$ESTABLISH(vms_handler_type (*)(void *,void *));
+static vms_handler_type vms_handler(void *,void *);
 #include <ssdef.h>	/* system service status codes */
 #endif
 
@@ -405,7 +405,7 @@ byebye()
     int (*hup)();
 #ifdef SHELL
     extern unsigned long dosh_pid, mail_pid;
-    extern unsigned long sys$delprc(unsigned long *,const genericptr_t);
+    extern unsigned long sys$delprc(unsigned long *,const void *);
 
     /* clean up any subprocess we've spawned that may still be hanging around */
     if (dosh_pid) (void) sys$delprc(&dosh_pid, 0), dosh_pid = 0;
@@ -429,7 +429,7 @@ byebye()
 /*ARGSUSED*/
 static vms_handler_type		/* should be `unsigned long', but the -*/
 vms_handler(sigargs, mechargs)	/*+ prototype in <signal.h> is screwed */
-genericptr_t sigargs, mechargs;	/* [0] is argc, [1..argc] are the real args */
+void * sigargs, mechargs;	/* [0] is argc, [1..argc] are the real args */
 {
     unsigned long condition = ((unsigned long *)sigargs)[1];
 

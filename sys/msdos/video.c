@@ -908,7 +908,7 @@ int assign_videocolors(char *colorvals)
 		}
 	}
 	colorflag = 1;
-	free((genericptr_t)tmpcolor);
+	free((void *)tmpcolor);
 	return 1;
 }
 

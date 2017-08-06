@@ -53,8 +53,6 @@ void init_branch(void);
 void init_level(void);
 void output_dgn(void);
 
-#define Free(ptr)		free((genericptr_t)ptr)
-
 #ifdef AMIGA
 # undef	printf
 #ifndef	LATTICE
@@ -796,7 +794,7 @@ case 9:
 			tmpdungeon[n_dgns].lev.base = couple.base;
 			tmpdungeon[n_dgns].lev.rand = couple.rand;
 			tmpdungeon[n_dgns].chance = yyvsp[0].i;
-			Free(yyvsp[-3].str);
+			free(yyvsp[-3].str);
 		  }
 break;
 case 10:
@@ -836,7 +834,7 @@ case 19:
 			if (strlen(yyvsp[0].str)+1 > sizeof(tmpdungeon[n_dgns].protoname))
 			    yyerror("Proto name is too long");
 			strcpy(tmpdungeon[n_dgns].protoname, yyvsp[0].str);
-			Free(yyvsp[0].str);
+			free(yyvsp[0].str);
 		  }
 break;
 case 25:
@@ -849,7 +847,7 @@ case 25:
 			tmplevel[n_levs].lev.base = couple.base;
 			tmplevel[n_levs].lev.rand = couple.rand;
 			tmpdungeon[n_dgns].levels++;
-			Free(yyvsp[-3].str);
+			free(yyvsp[-3].str);
 		  }
 break;
 case 26:
@@ -863,7 +861,7 @@ case 26:
 			tmplevel[n_levs].lev.rand = couple.rand;
 			tmplevel[n_levs].rndlevs = yyvsp[0].i;
 			tmpdungeon[n_dgns].levels++;
-			Free(yyvsp[-4].str);
+			free(yyvsp[-4].str);
 		  }
 break;
 case 27:
@@ -877,7 +875,7 @@ case 27:
 			tmplevel[n_levs].lev.rand = couple.rand;
 			tmplevel[n_levs].chance = yyvsp[0].i;
 			tmpdungeon[n_dgns].levels++;
-			Free(yyvsp[-4].str);
+			free(yyvsp[-4].str);
 		  }
 break;
 case 28:
@@ -892,7 +890,7 @@ case 28:
 			tmplevel[n_levs].chance = yyvsp[-1].i;
 			tmplevel[n_levs].rndlevs = yyvsp[0].i;
 			tmpdungeon[n_dgns].levels++;
-			Free(yyvsp[-5].str);
+			free(yyvsp[-5].str);
 		  }
 break;
 case 29:
@@ -923,8 +921,8 @@ case 31:
 			tmplevel[n_levs].lev.rand = couple.rand;
 			if(!check_level()) n_levs--;
 			else tmpdungeon[n_dgns].levels++;
-			Free(yyvsp[-4].str);
-			Free(yyvsp[-2].str);
+			free(yyvsp[-4].str);
+			free(yyvsp[-2].str);
 		  }
 break;
 case 32:
@@ -940,8 +938,8 @@ case 32:
 			tmplevel[n_levs].rndlevs = yyvsp[0].i;
 			if(!check_level()) n_levs--;
 			else tmpdungeon[n_dgns].levels++;
-			Free(yyvsp[-5].str);
-			Free(yyvsp[-3].str);
+			free(yyvsp[-5].str);
+			free(yyvsp[-3].str);
 		  }
 break;
 case 33:
@@ -957,8 +955,8 @@ case 33:
 			tmplevel[n_levs].chance = yyvsp[0].i;
 			if(!check_level()) n_levs--;
 			else tmpdungeon[n_dgns].levels++;
-			Free(yyvsp[-5].str);
-			Free(yyvsp[-3].str);
+			free(yyvsp[-5].str);
+			free(yyvsp[-3].str);
 		  }
 break;
 case 34:
@@ -975,8 +973,8 @@ case 34:
 			tmplevel[n_levs].rndlevs = yyvsp[0].i;
 			if(!check_level()) n_levs--;
 			else tmpdungeon[n_dgns].levels++;
-			Free(yyvsp[-6].str);
-			Free(yyvsp[-4].str);
+			free(yyvsp[-6].str);
+			free(yyvsp[-4].str);
 		  }
 break;
 case 37:
@@ -992,7 +990,7 @@ case 37:
                         tmpbranch[n_brs].entry_lev = yyvsp[0].i;
 			if(!check_branch()) n_brs--;
 			else tmpdungeon[n_dgns].branches++;
-			Free(yyvsp[-5].str);
+			free(yyvsp[-5].str);
 		  }
 break;
 case 38:
@@ -1009,8 +1007,8 @@ case 38:
 			tmpbranch[n_brs].entry_lev = yyvsp[0].i;
 			if(!check_branch()) n_brs--;
 			else tmpdungeon[n_dgns].branches++;
-			Free(yyvsp[-6].str);
-			Free(yyvsp[-5].str);
+			free(yyvsp[-6].str);
+			free(yyvsp[-5].str);
 		  }
 break;
 case 39:
@@ -1057,7 +1055,7 @@ case 46:
 			    *p = '\0';
 			}
 			yyval.i = *p;
-			Free(p);
+			free(p);
 		  }
 break;
 case 47:

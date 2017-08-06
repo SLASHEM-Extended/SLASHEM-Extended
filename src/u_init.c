@@ -6477,7 +6477,7 @@ u_init()
 	/* Initialize the "u" structure.
 	 * Note that some values may have been incorrectly set by a failed restore.
 	 */
-	(void) memset((genericptr_t)&u, 0, sizeof(u));
+	(void) memset((void *)&u, 0, sizeof(u));
 	setustuck((struct monst *)0);
 #if 0	/* documentation of more zero values as desirable */
 	u.usick_cause[0] = 0;

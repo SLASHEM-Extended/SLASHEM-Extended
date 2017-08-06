@@ -254,14 +254,14 @@ const char *directory;
 	    Fprintf(stderr, "Cannot open level 0 for %s.\n", basename);
 	    return(-1);
 	}
-	if (read(gfd, (genericptr_t) &hpid, sizeof hpid) != sizeof hpid) {
+	if (read(gfd, (void *) &hpid, sizeof hpid) != sizeof hpid) {
 	    Fprintf(stderr, "%s\n%s%s%s\n",
 	     "Checkpoint data incompletely written or subsequently clobbered;",
 		    "recovery for \"", basename, "\" impossible.");
 	    Close(gfd);
 	    return(-1);
 	}
-	if (read(gfd, (genericptr_t) &savelev, sizeof(savelev))
+	if (read(gfd, (void *) &savelev, sizeof(savelev))
 							!= sizeof(savelev)) {
 	    Fprintf(stderr,
 	    "Checkpointing was not in effect for %s -- recovery impossible.\n",
@@ -269,9 +269,9 @@ const char *directory;
 	    Close(gfd);
 	    return(-1);
 	}
-	if ((read(gfd, (genericptr_t) savename, sizeof savename)
+	if ((read(gfd, (void *) savename, sizeof savename)
 		!= sizeof savename) ||
-	    (read(gfd, (genericptr_t) &version_data, sizeof version_data)
+	    (read(gfd, (void *) &version_data, sizeof version_data)
 		!= sizeof version_data)) {
 	    Fprintf(stderr, "Error reading %s -- can't recover.\n", lock);
 	    Close(gfd);
@@ -303,7 +303,7 @@ const char *directory;
 	    return(-1);
 	}
 
-	if (write(sfd, (genericptr_t) &version_data, sizeof version_data)
+	if (write(sfd, (void *) &version_data, sizeof version_data)
 		!= sizeof version_data) {
 	    Fprintf(stderr, "Error writing %s; recovery failed.\n", savename);
 	    Close(gfd);
@@ -329,7 +329,7 @@ const char *directory;
 			if (lfd >= 0) {
 				/* any or all of these may not exist */
 				levc = (xchar) lev;
-				write(sfd, (genericptr_t) &levc, sizeof(levc));
+				write(sfd, (void *) &levc, sizeof(levc));
 				copy_bytes(lfd, sfd);
 				Close(lfd);
 				(void) unlink(lock);

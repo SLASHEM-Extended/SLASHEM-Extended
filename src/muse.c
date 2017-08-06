@@ -58,7 +58,7 @@ static boolean zap_oseen;
 STATIC_PTR void
 do_floodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -123,7 +123,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_lavafloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -186,7 +186,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_megafloodingd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -273,7 +273,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_lockfloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -348,7 +348,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_treefloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -415,7 +415,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_icefloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -476,7 +476,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_cloudfloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -539,7 +539,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_barfloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -604,7 +604,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_terrainfloodd(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -5029,7 +5029,7 @@ struct monst *mtmp;
 			if (!rn2(10)) radius += rnd(6);
 			if (!rn2(25)) radius += rnd(8);
 			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
-			do_clear_areaX(u.ux, u.uy, radius, do_floodd, (genericptr_t)&madepool);
+			do_clear_areaX(u.ux, u.uy, radius, do_floodd, (void *)&madepool);
 
 			/* check if there are safe tiles around the player */
 			for (x = u.ux-1; x <= u.ux+1; x++) {
@@ -5043,7 +5043,7 @@ struct monst *mtmp;
 
 			/* "scroll of bullshit" (term created by Khor) - let's be nice, and reduce the chance of screwing up the player --Amy */
 			if ((safe_pos > 0) && !rn2(20 + Luck) )
-				do_floodd(u.ux, u.uy, (genericptr_t)&stilldry);
+				do_floodd(u.ux, u.uy, (void *)&stilldry);
 			if (madepool)
 				pline(Hallucination ?
 						"A totally gnarly wave comes in!" :
@@ -5639,7 +5639,7 @@ struct monst *mtmp;
 			if (!rn2(10)) radiusB += rnd(6);
 			if (!rn2(25)) radiusB += rnd(8);
 			if (radiusB > MAX_RADIUS) radiusB = MAX_RADIUS;
-			do_clear_areaX(u.ux, u.uy, radiusB, do_lavafloodd, (genericptr_t)&madepoolB);
+			do_clear_areaX(u.ux, u.uy, radiusB, do_lavafloodd, (void *)&madepoolB);
 
 			/* check if there are safe tiles around the player */
 			for (xB = u.ux-1; xB <= u.ux+1; xB++) {
@@ -5672,7 +5672,7 @@ struct monst *mtmp;
 			if (!rn2(10)) radiusL += rnd(6);
 			if (!rn2(25)) radiusL += rnd(8);
 			if (radiusL > MAX_RADIUS) radiusL = MAX_RADIUS;
-			do_clear_areaX(u.ux, u.uy, radiusL, do_megafloodingd, (genericptr_t)&madepoolL);
+			do_clear_areaX(u.ux, u.uy, radiusL, do_megafloodingd, (void *)&madepoolL);
 
 			/* check if there are safe tiles around the player */
 			for (xL = u.ux-1; xL <= u.ux+1; xL++) {
@@ -5739,7 +5739,7 @@ struct monst *mtmp;
 			if (!rn2(10)) radiusC += rnd(6);
 			if (!rn2(25)) radiusC += rnd(8);
 			if (radiusC > MAX_RADIUS) radiusC = MAX_RADIUS;
-			do_clear_areaX(u.ux, u.uy, radiusC, do_lockfloodd, (genericptr_t)&madepoolQ);
+			do_clear_areaX(u.ux, u.uy, radiusC, do_lockfloodd, (void *)&madepoolQ);
 
 			/* check if there are safe tiles around the player */
 			for (xQ = u.ux-1; xQ <= u.ux+1; xQ++) {
@@ -5775,7 +5775,7 @@ struct monst *mtmp;
 			if (!rn2(10)) radiusD += rnd(6);
 			if (!rn2(25)) radiusD += rnd(8);
 			if (radiusD > MAX_RADIUS) radiusD = MAX_RADIUS;
-			do_clear_areaX(u.ux, u.uy, radiusD, do_treefloodd, (genericptr_t)&madepoolC);
+			do_clear_areaX(u.ux, u.uy, radiusD, do_treefloodd, (void *)&madepoolC);
 
 			/* check if there are safe tiles around the player */
 			for (xC = u.ux-1; xC <= u.ux+1; xC++) {
@@ -5825,7 +5825,7 @@ struct monst *mtmp;
 			if (!rn2(10)) radiusE += rnd(6);
 			if (!rn2(25)) radiusE += rnd(8);
 			if (radiusE > MAX_RADIUS) radiusE = MAX_RADIUS;
-			do_clear_areaX(u.ux, u.uy, radiusE, do_icefloodd, (genericptr_t)&madepoolD);
+			do_clear_areaX(u.ux, u.uy, radiusE, do_icefloodd, (void *)&madepoolD);
 
 			/* check if there are safe tiles around the player */
 			for (xD = u.ux-1; xD <= u.ux+1; xD++) {
@@ -5870,7 +5870,7 @@ struct monst *mtmp;
 			if (!rn2(10)) radiusF += rnd(6);
 			if (!rn2(25)) radiusF += rnd(8);
 			if (radiusF > MAX_RADIUS) radiusF = MAX_RADIUS;
-			do_clear_areaX(u.ux, u.uy, radiusF, do_cloudfloodd, (genericptr_t)&madepoolE);
+			do_clear_areaX(u.ux, u.uy, radiusF, do_cloudfloodd, (void *)&madepoolE);
 
 			/* check if there are safe tiles around the player */
 			for (xE = u.ux-1; xE <= u.ux+1; xE++) {
@@ -5903,7 +5903,7 @@ struct monst *mtmp;
 			if (!rn2(10)) radiusG += rnd(6);
 			if (!rn2(25)) radiusG += rnd(8);
 			if (radiusG > MAX_RADIUS) radiusG = MAX_RADIUS;
-			do_clear_areaX(u.ux, u.uy, radiusG, do_barfloodd, (genericptr_t)&madepoolF);
+			do_clear_areaX(u.ux, u.uy, radiusG, do_barfloodd, (void *)&madepoolF);
 
 			/* check if there are safe tiles around the player */
 			for (xF = u.ux-1; xF <= u.ux+1; xF++) {
@@ -5936,7 +5936,7 @@ struct monst *mtmp;
 			if (!rn2(10)) radiusR += rnd(6);
 			if (!rn2(25)) radiusR += rnd(8);
 			if (radiusR > MAX_RADIUS) radiusR = MAX_RADIUS;
-			do_clear_areaX(u.ux, u.uy, radiusR, do_terrainfloodd, (genericptr_t)&madepoolR);
+			do_clear_areaX(u.ux, u.uy, radiusR, do_terrainfloodd, (void *)&madepoolR);
 
 			/* check if there are safe tiles around the player */
 			for (xR = u.ux-1; xR <= u.ux+1; xR++) {

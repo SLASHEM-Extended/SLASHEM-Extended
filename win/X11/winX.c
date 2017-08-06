@@ -223,7 +223,7 @@ XtConvertArgRec const nhcolorConvertArgs[] = {
 	    else {						\
 		static type static_val;				\
 		static_val = (value);				\
-		toVal->addr = (genericptr_t)&static_val;	\
+		toVal->addr = (void *)&static_val;	\
 	    }							\
 	    toVal->size = sizeof(type);				\
 	    return True;					\
@@ -716,7 +716,7 @@ X11_display_nhwindow(window, blocking)
 	    n = X11_select_menu(window, PICK_NONE, &selected);
 	    if (n) {
 		impossible("perminvent: %d selected??", n);
-		free((genericptr_t)selected);
+		free((void *)selected);
 	    }
 	    break;
 	}
@@ -996,11 +996,11 @@ char** argv;
 	    if (!strcmp(appResources.icon, ip->name)) {
 		icon_pixmap = XCreateBitmapFromData(XtDisplay(toplevel),
 				XtWindow(toplevel),
-				(genericptr_t)ip->bits, ip->width, ip->height);
+				(void *)ip->bits, ip->width, ip->height);
 		if (icon_pixmap != None) {
 		    XWMHints hints;
 
-		    (void) memset((genericptr_t)&hints, 0, sizeof(XWMHints));
+		    (void) memset((void *)&hints, 0, sizeof(XWMHints));
 		    hints.flags = IconPixmapHint;
 		    hints.icon_pixmap = icon_pixmap;
 		    XSetWMHints(XtDisplay(toplevel),

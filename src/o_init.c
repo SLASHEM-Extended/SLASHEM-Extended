@@ -2421,9 +2421,9 @@ int fd, mode;
 	unsigned int len;
 
 	if (perform_bwrite(mode)) {
-	    bwrite(fd, (genericptr_t)bases, sizeof bases);
-	    bwrite(fd, (genericptr_t)disco, sizeof disco);
-	    bwrite(fd, (genericptr_t)objects,
+	    bwrite(fd, (void *)bases, sizeof bases);
+	    bwrite(fd, (void *)disco, sizeof disco);
+	    bwrite(fd, (void *)objects,
 		   sizeof(struct objclass) * NUM_OBJECTS);
 	}
 	/* as long as we use only one version of Hack we
@@ -2433,11 +2433,11 @@ int fd, mode;
 	    if (objects[i].oc_uname) {
 		if (perform_bwrite(mode)) {
 		    len = strlen(objects[i].oc_uname)+1;
-		    bwrite(fd, (genericptr_t)&len, sizeof len);
-		    bwrite(fd, (genericptr_t)objects[i].oc_uname, len);
+		    bwrite(fd, (void *)&len, sizeof len);
+		    bwrite(fd, (void *)objects[i].oc_uname, len);
 		}
 		if (release_data(mode)) {
-		    free((genericptr_t)objects[i].oc_uname);
+		    free((void *)objects[i].oc_uname);
 		    objects[i].oc_uname = 0;
 		}
 	    }
@@ -2450,14 +2450,14 @@ register int fd;
 	register int i;
 	unsigned int len;
 
-	mread(fd, (genericptr_t) bases, sizeof bases);
-	mread(fd, (genericptr_t) disco, sizeof disco);
-	mread(fd, (genericptr_t) objects, sizeof(struct objclass) * NUM_OBJECTS);
+	mread(fd, (void *) bases, sizeof bases);
+	mread(fd, (void *) disco, sizeof disco);
+	mread(fd, (void *) objects, sizeof(struct objclass) * NUM_OBJECTS);
 	for (i = 0; i < NUM_OBJECTS; i++)
 	    if (objects[i].oc_uname) {
-		mread(fd, (genericptr_t) &len, sizeof len);
+		mread(fd, (void *) &len, sizeof len);
 		objects[i].oc_uname = (char *) alloc(len);
-		mread(fd, (genericptr_t)objects[i].oc_uname, len);
+		mread(fd, (void *)objects[i].oc_uname, len);
 	    }
 #ifdef USE_TILES
 	shuffle_tiles();

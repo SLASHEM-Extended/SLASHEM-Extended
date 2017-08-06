@@ -153,10 +153,10 @@ boolean filestyle;
 	fclose(filestyle ? tilefile_O : tilefile);
 #ifdef TILES_IN_RAM
 	if (!filestyle && tiles_in_ram) {
-		if (ramtiles) free((genericptr_t) ramtiles);
+		if (ramtiles) free((void *) ramtiles);
 		tiles_in_ram = FALSE;
 	} else if (filestyle && otiles_in_ram) {
-		if (oramtiles) free((genericptr_t) oramtiles);
+		if (oramtiles) free((void *) oramtiles);
 		otiles_in_ram = FALSE;
 	}
 #endif

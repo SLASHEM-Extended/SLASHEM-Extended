@@ -20,7 +20,7 @@ struct container {
 	struct container *next;
 	xchar x, y;
 	short what;
-	genericptr_t list;
+	void * list;
 };
 
 #define CONS_OBJ   0
@@ -43,7 +43,7 @@ typedef struct ls_t {
     short range;	/* source's current range */
     short flags;
     short type;		/* type of light source */
-    genericptr_t id;	/* source's identifier */
+    void * id;	/* source's identifier */
 } light_source;
 
 #endif /* LEV_H */

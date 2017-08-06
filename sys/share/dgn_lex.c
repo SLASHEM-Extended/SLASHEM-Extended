@@ -541,8 +541,8 @@ int yyoutput(int);
 
 #ifdef FLEX_SCANNER
 #define YY_MALLOC_DECL \
-	       genericptr_t malloc(size_t); \
-	       genericptr_t realloc(genericptr_t,size_t);
+	       void * malloc(size_t); \
+	       void * realloc(void *,size_t);
 #endif
 
 

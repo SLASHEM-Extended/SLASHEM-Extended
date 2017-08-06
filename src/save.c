@@ -108,7 +108,7 @@ dosave()
 			raw_print("Cannot create lock file");
 		} else {
 			hackpid = 1;
-			write(fd, (genericptr_t) &hackpid, sizeof(hackpid));
+			write(fd, (void *) &hackpid, sizeof(hackpid));
 			close(fd);
 		}
 #ifdef MFLOPPY
@@ -286,7 +286,7 @@ dosave0()
 
 	store_version(fd);
 #ifdef STORE_PLNAME_IN_FILE
-	bwrite(fd, (genericptr_t) plname, PL_NSIZ);
+	bwrite(fd, (void *) plname, PL_NSIZ);
 #endif
 	ustuck_id = (u.ustuck ? u.ustuck->m_id : 0);
 	usteed_id = (u.usteed ? u.usteed->m_id : 0);
@@ -339,7 +339,7 @@ dosave0()
 		minit();	/* ZEROCOMP */
 		getlev(ofd, hackpid, ltmp, FALSE);
 		(void) close(ofd);
-		bwrite(fd, (genericptr_t) &ltmp, sizeof ltmp); /* level number*/
+		bwrite(fd, (void *) &ltmp, sizeof ltmp); /* level number*/
 		savelev(fd, ltmp, WRITE_SAVE | FREE_SAVE);     /* actual level*/
 		delete_levelfile(ltmp);
 	}
@@ -368,332 +368,332 @@ register int fd, mode;
 	count_only = (mode & COUNT_SAVE);
 #endif
 	uid = getuid();
-	bwrite(fd, (genericptr_t) &uid, sizeof uid);
-	bwrite(fd, (genericptr_t) &flags, sizeof(struct flag));
-	bwrite(fd, (genericptr_t) &u, sizeof(struct you));
+	bwrite(fd, (void *) &uid, sizeof uid);
+	bwrite(fd, (void *) &flags, sizeof(struct flag));
+	bwrite(fd, (void *) &u, sizeof(struct you));
 
 	/* save random monsters*/
 
-	bwrite(fd, (genericptr_t) &mons[PM_NITROHACK_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SPEEDHACK_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_DNETHACK_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NETHACKBRASS_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_INTERHACK_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NHTNG_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_UNNETHACK_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_UNNETHACKPLUS_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ANGBAND_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ADOM_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_PETTY_ANGBAND_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_PETTY_ADOM_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SPORKHACK_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MAIDENHACK_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_YASD_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NETHACKFOUR_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_DEVTEAM_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SLASHEM_HORROR], sizeof(struct permonst));	
-	bwrite(fd, (genericptr_t) &mons[PM_NETHACK_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ROGUE_HORROR], sizeof(struct permonst));	
-	bwrite(fd, (genericptr_t) &mons[PM_GRUNTHACK_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ACEHACK_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_PETTY_GRUNTHACK_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_PETROGRAPHY_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_STONE_COLD_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NITROHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SPEEDHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_DNETHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NETHACKBRASS_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_INTERHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NHTNG_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_UNNETHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_UNNETHACKPLUS_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ANGBAND_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADOM_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_PETTY_ANGBAND_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_PETTY_ADOM_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SPORKHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MAIDENHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_YASD_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NETHACKFOUR_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_DEVTEAM_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SLASHEM_HORROR], sizeof(struct permonst));	
+	bwrite(fd, (void *) &mons[PM_NETHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ROGUE_HORROR], sizeof(struct permonst));	
+	bwrite(fd, (void *) &mons[PM_GRUNTHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ACEHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_PETTY_GRUNTHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_PETROGRAPHY_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_STONE_COLD_HORROR], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_SUIKUN_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_HOUOU_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_INTERHACK_HORROR_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NHTNG_HORROR_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_PETROGRAPHY_HORROR_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_STONE_COLD_HORROR_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SUIKUN_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_HOUOU_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_INTERHACK_HORROR_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NHTNG_HORROR_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_PETROGRAPHY_HORROR_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_STONE_COLD_HORROR_X], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_STARLIT_SKY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_DARK_STARLIT_SKY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BLACK_STARLIT_SKY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RED_STARLIT_SKY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BROWN_STARLIT_SKY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_GREEN_STARLIT_SKY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_PURPLE_STARLIT_SKY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_YELLOW_STARLIT_SKY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ORANGE_STARLIT_SKY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_CYAN_STARLIT_SKY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_VIOLET_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_DARK_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BLACK_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RED_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BROWN_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_GREEN_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_PURPLE_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_YELLOW_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ORANGE_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_CYAN_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_VIOLET_STARLIT_SKY], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_MISNAMED_STARLIT_SKY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_WRONG_NAMED_STARLIT_SKY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ERRONEOUS_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MISNAMED_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_WRONG_NAMED_STARLIT_SKY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ERRONEOUS_STARLIT_SKY], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_TRUE_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ETHEREAL_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_TRUE_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ETHEREAL_MISSINGNO], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_AK_THIEF_IS_DEAD_], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_UN_IN_PROTECT_MODE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_AK_THIEF_IS_DEAD_], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_UN_IN_PROTECT_MODE], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_BROWN_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RED_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BLACK_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_CYAN_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_GRAY_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_WHITE_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_GREEN_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MAGENTA_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_YELLOW_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ORANGE_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BRIGHT_CYAN_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BRIGHT_MAGENTA_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BRIGHT_BLUE_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BRIGHT_GREEN_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BROWN_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RED_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BLACK_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_CYAN_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_GRAY_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_WHITE_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_GREEN_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MAGENTA_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_YELLOW_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ORANGE_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BRIGHT_CYAN_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BRIGHT_MAGENTA_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BRIGHT_BLUE_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BRIGHT_GREEN_MISSINGNO], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_BEIGE_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SHADY_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_DARK_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SCARLET_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_VIRIDIAN_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_UMBRA_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_PURPLE_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_STEEL_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_VIVID_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_POISONOUS_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_TOPAZ_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ULTRAMARINE_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_PINK_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_AZURE_MISSINGNO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MULTICOLORED_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BEIGE_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SHADY_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_DARK_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SCARLET_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_VIRIDIAN_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_UMBRA_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_PURPLE_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_STEEL_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_VIVID_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_POISONOUS_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_TOPAZ_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ULTRAMARINE_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_PINK_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_AZURE_MISSINGNO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MULTICOLORED_MISSINGNO], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_PETTY_ACEHACK_HORROR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_YEENOGHU], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ASMODEUS], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_DEATH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_FAMINE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_PESTILENCE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MULTICOLOR_GRUE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_PETTY_ACEHACK_HORROR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_YEENOGHU], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ASMODEUS], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_DEATH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_FAMINE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_PESTILENCE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MULTICOLOR_GRUE], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_MYSTIC_EYE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_UNKNOWN_MIMIC], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_UNKNOWN_PERMAMIMIC], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_UNKNOWN_MIMIC_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_UNKNOWN_PERMAMIMIC_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SHINING_PIERCER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SHINING_PENETRATOR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SHINING_SMASHER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SIZZLING_VORTEX], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_MOLD], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_FUNGUS], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_PATCH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_FORCE_FUNGUS], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_FORCE_PATCH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_WARP_FUNGUS], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_WARP_PATCH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_STALK], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_SPORE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_MUSHROOM], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_GROWTH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_COLONY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_MOLD_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_FUNGUS_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_PATCH_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_FORCE_FUNGUS_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_FORCE_PATCH_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_WARP_FUNGUS_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_WARP_PATCH_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_STALK_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_SPORE_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_MUSHROOM_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_GROWTH_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_COLORLESS_COLONY_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONDESCRIPT_MOLD], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONDESCRIPT_FUNGUS], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONDESCRIPT_PATCH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONDESCRIPT_FORCE_FUNGUS], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONDESCRIPT_FORCE_PATCH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONDESCRIPT_WARP_FUNGUS], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONDESCRIPT_WARP_PATCH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONDESCRIPT_STALK], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONDESCRIPT_SPORE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONDESCRIPT_MUSHROOM], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONDESCRIPT_GROWTH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONDESCRIPT_COLONY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ONG_SEPHIRAH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_KRONG_SEPHIRAH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_KRONG_SEPHIRAH_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ZAKRONG_SEPHIRAH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SPECIAL_TROLL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_TEETHFISH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RAZORFIN_FISH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_UNKNOWN_TURRET], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RAINBOW_MODE_DRAGON], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MYSTIC_EYE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_UNKNOWN_MIMIC], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_UNKNOWN_PERMAMIMIC], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_UNKNOWN_MIMIC_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_UNKNOWN_PERMAMIMIC_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SHINING_PIERCER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SHINING_PENETRATOR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SHINING_SMASHER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SIZZLING_VORTEX], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_MOLD], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_FUNGUS], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_PATCH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_FORCE_FUNGUS], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_FORCE_PATCH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_WARP_FUNGUS], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_WARP_PATCH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_STALK], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_SPORE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_MUSHROOM], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_GROWTH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_COLONY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_MOLD_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_FUNGUS_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_PATCH_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_FORCE_FUNGUS_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_FORCE_PATCH_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_WARP_FUNGUS_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_WARP_PATCH_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_STALK_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_SPORE_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_MUSHROOM_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_GROWTH_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_COLORLESS_COLONY_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONDESCRIPT_MOLD], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONDESCRIPT_FUNGUS], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONDESCRIPT_PATCH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONDESCRIPT_FORCE_FUNGUS], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONDESCRIPT_FORCE_PATCH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONDESCRIPT_WARP_FUNGUS], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONDESCRIPT_WARP_PATCH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONDESCRIPT_STALK], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONDESCRIPT_SPORE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONDESCRIPT_MUSHROOM], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONDESCRIPT_GROWTH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONDESCRIPT_COLONY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ONG_SEPHIRAH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_KRONG_SEPHIRAH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_KRONG_SEPHIRAH_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ZAKRONG_SEPHIRAH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SPECIAL_TROLL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_TEETHFISH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RAZORFIN_FISH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_UNKNOWN_TURRET], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RAINBOW_MODE_DRAGON], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_RNG_SPHERE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNG_LIGHT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNG_LASER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_SPHERE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_LIGHT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_LASER], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_SHADOW_WARRIOR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ROBOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SHADOW_WARRIOR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ROBOT], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_ADULT_TATZELWORM], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ADULT_AMPHITERE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ADULT_DRAKEN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ADULT_LINDWORM], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ADULT_SARKANY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ADULT_SIRRUSH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ADULT_LEVIATHAN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ADULT_WYVERN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ADULT_GLOWING_DRAGON], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ADULT_GUIVRE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BABY_TATZELWORM], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BABY_AMPHITERE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BABY_DRAKEN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BABY_LINDWORM], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BABY_SARKANY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BABY_SIRRUSH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BABY_LEVIATHAN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BABY_WYVERN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BABY_GLOWING_DRAGON], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BABY_GUIVRE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADULT_TATZELWORM], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADULT_AMPHITERE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADULT_DRAKEN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADULT_LINDWORM], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADULT_SARKANY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADULT_SIRRUSH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADULT_LEVIATHAN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADULT_WYVERN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADULT_GLOWING_DRAGON], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADULT_GUIVRE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BABY_TATZELWORM], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BABY_AMPHITERE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BABY_DRAKEN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BABY_LINDWORM], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BABY_SARKANY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BABY_SIRRUSH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BABY_LEVIATHAN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BABY_WYVERN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BABY_GLOWING_DRAGON], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BABY_GUIVRE], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_ADULT_TATZELWORM_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ADULT_AMPHITERE_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BABY_TATZELWORM_X], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BABY_AMPHITERE_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADULT_TATZELWORM_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ADULT_AMPHITERE_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BABY_TATZELWORM_X], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BABY_AMPHITERE_X], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_PUPURIN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SAPUSAUR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_TSUBOTSUBO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ODDOSHISHI], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_OKUTAN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RATICLAW], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_PSYBUR], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_HARISEN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SUIKUN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_HOUOU], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_LOCUSTOD], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_FORETOSU], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_CHARCOLT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MILLENUM], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_PUPURIN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SAPUSAUR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_TSUBOTSUBO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ODDOSHISHI], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_OKUTAN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RATICLAW], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_PSYBUR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_HARISEN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SUIKUN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_HOUOU], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_LOCUSTOD], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_FORETOSU], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_CHARCOLT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MILLENUM], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_EXTRA_FLEECY_BUNDLE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_EMMELIE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_LUISA], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SHY_LAURA], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ANNA], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_LEXI], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SOFT_SARAH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MAREIKE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_REBECCA], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ROUGH_TERESA], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_JANINE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BITCHY_LARA], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MARLEEN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONEROTIC_IRINA], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BUNDLY_ANN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_LISELOTTE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_LILLY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MIRIAM_THE_SPIRIT_GIRL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_THE_SWEET_HIGH_HEEL_LOVING_ASIAN_GIRL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_EMMA], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ALIDA], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_JOSEFINE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_VILEA], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_VILEA_S_SISTER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_HANNAH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_AMELJE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NON_PRETTY_MELANIE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_THE_SWEET_REDGUARD_GIRL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_THE_HEELED_TOPMODEL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_THE_HUGGING_TOPMODEL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MARIE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_THE_FAIRY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_FANNY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_THE_BASTARD_BROTHER_OF_SHY_LAURA], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_APE_HEAD], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BEANPOLE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_CHEESEHEAD_SIMON], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MALADJUSTED_LEON], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MAX_THE_BADASS], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ANTON], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_JONAS_THE_SCHIZO_AUTIST], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_LARS_THE_SCHIZOPHRENIC], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MELVIN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_THE_BASTARD_BROTHER_OF_LILLY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_THE_DISGUSTING_FRIEND_OF_LILLY_S_BROTHER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SCHALOTTE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MAY_BRITT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ROXY_GRETA], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BUNDLE_NADJA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_EXTRA_FLEECY_BUNDLE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_EMMELIE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_LUISA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SHY_LAURA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ANNA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_LEXI], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SOFT_SARAH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MAREIKE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_REBECCA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ROUGH_TERESA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_JANINE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BITCHY_LARA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MARLEEN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONEROTIC_IRINA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BUNDLY_ANN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_LISELOTTE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_LILLY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MIRIAM_THE_SPIRIT_GIRL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_SWEET_HIGH_HEEL_LOVING_ASIAN_GIRL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_EMMA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ALIDA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_JOSEFINE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_VILEA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_VILEA_S_SISTER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_HANNAH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_AMELJE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NON_PRETTY_MELANIE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_SWEET_REDGUARD_GIRL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_HEELED_TOPMODEL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_HUGGING_TOPMODEL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MARIE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_FAIRY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_FANNY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_BASTARD_BROTHER_OF_SHY_LAURA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_APE_HEAD], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BEANPOLE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_CHEESEHEAD_SIMON], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MALADJUSTED_LEON], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MAX_THE_BADASS], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ANTON], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_JONAS_THE_SCHIZO_AUTIST], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_LARS_THE_SCHIZOPHRENIC], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MELVIN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_BASTARD_BROTHER_OF_LILLY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_DISGUSTING_FRIEND_OF_LILLY_S_BROTHER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SCHALOTTE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MAY_BRITT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ROXY_GRETA], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BUNDLE_NADJA], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_EMMELIE_S_SNEAKER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_LUISA_S_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_LEXI_S_WONDERFULLY_SOFT_SNEAKER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_REBECCA_S_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ROUGH_TERESA_S_SNEAKER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_JANINE_S_SNEAKER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BITCHY_LARA_S_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MARLEEN_S_SNEAKER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MARLEEN_S_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_NONEROTIC_IRINA_S_WEDGE_SANDAL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BUNDLY_ANN_S_SOFT_SANDAL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_LISELOTTE_S_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_LISELOTTE_S_SOFT_SNEAKER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MAY_BRITT_S_FLUFFY_SANDAL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ROXY_GRETA_S_SNEAKER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_HEELS], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_EMMA_S_ANKLE_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ALIDA_S_COLORFUL_SNEAKER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_JOSEFINE_S_SUPER_SWEET_VELCRO_SNEAKER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_VILEA_S_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_HANNAH_S_COMBAT_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_AMELJE_S_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_AMELJE_S_SANDAL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MELANIE_S_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MARIE_S_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_FANNY_S_VELCRO_SNEAKER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_FANNY_S_BRAND_NEW_SNEAKER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_FANNY_S_BUCKLED_SANDAL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_EMMELIE_S_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_LUISA_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_LEXI_S_WONDERFULLY_SOFT_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_REBECCA_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ROUGH_TERESA_S_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_JANINE_S_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BITCHY_LARA_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MARLEEN_S_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MARLEEN_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_NONEROTIC_IRINA_S_WEDGE_SANDAL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BUNDLY_ANN_S_SOFT_SANDAL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_LISELOTTE_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_LISELOTTE_S_SOFT_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MAY_BRITT_S_FLUFFY_SANDAL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ROXY_GRETA_S_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_HEELS], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_EMMA_S_ANKLE_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ALIDA_S_COLORFUL_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_JOSEFINE_S_SUPER_SWEET_VELCRO_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_VILEA_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_HANNAH_S_COMBAT_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_AMELJE_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_AMELJE_S_SANDAL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MELANIE_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MARIE_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_FANNY_S_VELCRO_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_FANNY_S_BRAND_NEW_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_FANNY_S_BUCKLED_SANDAL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_LOLI], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_DESTABILIZER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_POLYINITOR], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_LOLI], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_DESTABILIZER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_POLYINITOR], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_RANDO_ANT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNGENERAL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_VICIOUS_WOLF], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MYRION], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_UNEXPECTED_TIGER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_CUBED_JELLY], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_KOBOLD_DICEROLLER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_GYM_LEADER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RAINBOW_SENTAI], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_UNFAIR_ARCHON], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_CHAOS_RULECHANGER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNGED_MONSTER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNG_KOP], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNG_SERGEANT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNG_LIEUTENANT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNG_KAPTAIN], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNG_KOMMISSIONER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNG_KCHIEF], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNG_KATCHER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNG_KRIMINOLOGIST], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_GENERATOR_LICH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_WHIMLICH], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RAINBOW_OGRE], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RANDO], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RNGHOST], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_RANDOMIZER_DRACONIAN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RANDO_ANT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNGENERAL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_VICIOUS_WOLF], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MYRION], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_UNEXPECTED_TIGER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_CUBED_JELLY], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_KOBOLD_DICEROLLER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_GYM_LEADER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RAINBOW_SENTAI], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_UNFAIR_ARCHON], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_CHAOS_RULECHANGER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNGED_MONSTER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_KOP], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_SERGEANT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_LIEUTENANT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_KAPTAIN], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_KOMMISSIONER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_KCHIEF], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_KATCHER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_KRIMINOLOGIST], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_GENERATOR_LICH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_WHIMLICH], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RAINBOW_OGRE], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RANDO], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNGHOST], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RANDOMIZER_DRACONIAN], sizeof(struct permonst));
 
-	bwrite(fd, (genericptr_t) &mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_ALIDA_S_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_BITCHY_LARA_S_HUGGING_BOOT], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_EMMA_S_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
-	bwrite(fd, (genericptr_t) &mons[PM_FANNY_S_LOVELY_WINTER_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_ALIDA_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_BITCHY_LARA_S_HUGGING_BOOT], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_EMMA_S_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_FANNY_S_LOVELY_WINTER_BOOT], sizeof(struct permonst));
 
 	/* must come before migrating_objs and migrating_mons are freed */
 	save_timers(fd, mode, RANGE_GLOBAL);
@@ -707,36 +707,36 @@ register int fd, mode;
 	    migrating_objs = 0;
 	    migrating_mons = 0;
 	}
-	bwrite(fd, (genericptr_t) mvitals, sizeof(mvitals));
+	bwrite(fd, (void *) mvitals, sizeof(mvitals));
 
 	save_dungeon(fd, (boolean)!!perform_bwrite(mode),
 			 (boolean)!!release_data(mode));
 	savelevchn(fd, mode);
-	bwrite(fd, (genericptr_t) &moves, sizeof moves);
-	bwrite(fd, (genericptr_t) &monstermoves, sizeof monstermoves);
-	bwrite(fd, (genericptr_t) &quest_status, sizeof(struct q_score));
-	bwrite(fd, (genericptr_t) spl_book,
+	bwrite(fd, (void *) &moves, sizeof moves);
+	bwrite(fd, (void *) &monstermoves, sizeof monstermoves);
+	bwrite(fd, (void *) &quest_status, sizeof(struct q_score));
+	bwrite(fd, (void *) spl_book,
 				sizeof(struct spell) * (MAXSPELL + 1));
-	bwrite(fd, (genericptr_t) tech_list,
+	bwrite(fd, (void *) tech_list,
 			sizeof(struct tech) * (MAXTECH + 1));
 	save_oracles(fd, mode);
 	if(ustuck_id)
-	    bwrite(fd, (genericptr_t) &ustuck_id, sizeof ustuck_id);
+	    bwrite(fd, (void *) &ustuck_id, sizeof ustuck_id);
 	if(usteed_id)
-	    bwrite(fd, (genericptr_t) &usteed_id, sizeof usteed_id);
-	bwrite(fd, (genericptr_t) pl_character, sizeof pl_character);
-	bwrite(fd, (genericptr_t) pl_fruit, sizeof pl_fruit);
-	bwrite(fd, (genericptr_t) &current_fruit, sizeof current_fruit);
+	    bwrite(fd, (void *) &usteed_id, sizeof usteed_id);
+	bwrite(fd, (void *) pl_character, sizeof pl_character);
+	bwrite(fd, (void *) pl_fruit, sizeof pl_fruit);
+	bwrite(fd, (void *) &current_fruit, sizeof current_fruit);
 	savefruitchn(fd, mode);
 	savenames(fd, mode);
 	save_artifacts(fd);
 	save_waterlevel(fd, mode);
 #ifdef RECORD_ACHIEVE
-        bwrite(fd, (genericptr_t) &achieve, sizeof achieve);
+        bwrite(fd, (void *) &achieve, sizeof achieve);
 #endif
 #if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)
         realtime = get_realtime();
-        bwrite(fd, (genericptr_t) &realtime, sizeof realtime);
+        bwrite(fd, (void *) &realtime, sizeof realtime);
 #endif
 
 	bflush(fd);
@@ -777,7 +777,7 @@ savestateinlock()
 		    return;
 		}
 
-		(void) read(fd, (genericptr_t) &hpid, sizeof(hpid));
+		(void) read(fd, (void *) &hpid, sizeof(hpid));
 		if (hackpid != hpid) {
 		    sprintf(whynot,
 			    "Level #0 pid (%d) doesn't match ours (%d)!",
@@ -795,15 +795,15 @@ savestateinlock()
 		    done(TRICKED);*/
 		    return;
 		}
-		(void) write(fd, (genericptr_t) &hackpid, sizeof(hackpid));
+		(void) write(fd, (void *) &hackpid, sizeof(hackpid));
 		if (flags.ins_chkpt) {
 		    int currlev = ledger_no(&u.uz);
 
-		    (void) write(fd, (genericptr_t) &currlev, sizeof(currlev));
+		    (void) write(fd, (void *) &currlev, sizeof(currlev));
 		    save_savefile_name(fd);
 		    store_version(fd);
 #ifdef STORE_PLNAME_IN_FILE
-		    bwrite(fd, (genericptr_t) plname, PL_NSIZ);
+		    bwrite(fd, (void *) plname, PL_NSIZ);
 #endif
 		    ustuck_id = (u.ustuck ? u.ustuck->m_id : 0);
 		    usteed_id = (u.usteed ? u.usteed->m_id : 0);
@@ -878,12 +878,12 @@ int mode;
 #endif
 	if (lev >= 0 && lev <= maxledgerno())
 	    level_info[lev].flags |= VISITED;
-	bwrite(fd,(genericptr_t) &hackpid,sizeof(hackpid));
+	bwrite(fd,(void *) &hackpid,sizeof(hackpid));
 #ifdef TOS
 	tlev=lev; tlev &= 0x00ff;
-	bwrite(fd,(genericptr_t) &tlev,sizeof(tlev));
+	bwrite(fd,(void *) &tlev,sizeof(tlev));
 #else
-	bwrite(fd,(genericptr_t) &lev,sizeof(lev));
+	bwrite(fd,(void *) &lev,sizeof(lev));
 #endif
 #ifdef RLECOMP
 	{
@@ -924,8 +924,8 @@ int mode;
 			/* the run has been broken,
 			 * write out run-length encoding */
 		    writeout:
-			bwrite(fd, (genericptr_t)&match, sizeof(uchar));
-			bwrite(fd, (genericptr_t)rgrm, sizeof(struct rm));
+			bwrite(fd, (void *)&match, sizeof(uchar));
+			bwrite(fd, (void *)rgrm, sizeof(struct rm));
 			/* start encoding again. we have at least 1 rm
 			 * in the next run, viz. this one. */
 			match = 1;
@@ -934,24 +934,24 @@ int mode;
 		}
 	    }
 	    if (match > 0) {
-		bwrite(fd, (genericptr_t)&match, sizeof(uchar));
-		bwrite(fd, (genericptr_t)rgrm, sizeof(struct rm));
+		bwrite(fd, (void *)&match, sizeof(uchar));
+		bwrite(fd, (void *)rgrm, sizeof(struct rm));
 	    }
 	}
 #else
-	bwrite(fd,(genericptr_t) levl,sizeof(levl));
+	bwrite(fd,(void *) levl,sizeof(levl));
 #endif /* RLECOMP */
 
-	bwrite(fd,(genericptr_t) &monstermoves,sizeof(monstermoves));
-	bwrite(fd,(genericptr_t) &upstair,sizeof(stairway));
-	bwrite(fd,(genericptr_t) &dnstair,sizeof(stairway));
-	bwrite(fd,(genericptr_t) &upladder,sizeof(stairway));
-	bwrite(fd,(genericptr_t) &dnladder,sizeof(stairway));
-	bwrite(fd,(genericptr_t) &sstairs,sizeof(stairway));
-	bwrite(fd,(genericptr_t) &updest,sizeof(dest_area));
-	bwrite(fd,(genericptr_t) &dndest,sizeof(dest_area));
-	bwrite(fd,(genericptr_t) &level.flags,sizeof(level.flags));
-	bwrite(fd, (genericptr_t) doors, sizeof(doors));
+	bwrite(fd,(void *) &monstermoves,sizeof(monstermoves));
+	bwrite(fd,(void *) &upstair,sizeof(stairway));
+	bwrite(fd,(void *) &dnstair,sizeof(stairway));
+	bwrite(fd,(void *) &upladder,sizeof(stairway));
+	bwrite(fd,(void *) &dnladder,sizeof(stairway));
+	bwrite(fd,(void *) &sstairs,sizeof(stairway));
+	bwrite(fd,(void *) &updest,sizeof(dest_area));
+	bwrite(fd,(void *) &dndest,sizeof(dest_area));
+	bwrite(fd,(void *) &level.flags,sizeof(level.flags));
+	bwrite(fd, (void *) doors, sizeof(doors));
 	save_rooms(fd);	/* no dynamic memory to reclaim */
 
 	/* from here on out, saving also involves allocated memory cleanup */
@@ -1072,7 +1072,7 @@ register int fd;
 void
 bwrite(fd, loc, num)
 int fd;
-genericptr_t loc;
+void * loc;
 register unsigned num;
 {
     register unsigned char *bp = (unsigned char *)loc;
@@ -1160,7 +1160,7 @@ bflush(fd)
 void
 bwrite(fd,loc,num)
 register int fd;
-register genericptr_t loc;
+register void * loc;
 register unsigned num;
 {
 	boolean failed;
@@ -1223,14 +1223,14 @@ register int fd, mode;
 
 	for (tmplev = sp_levchn; tmplev; tmplev = tmplev->next) cnt++;
 	if (perform_bwrite(mode))
-	    bwrite(fd, (genericptr_t) &cnt, sizeof(int));
+	    bwrite(fd, (void *) &cnt, sizeof(int));
 
 	for (tmplev = sp_levchn; tmplev; tmplev = tmplev2) {
 	    tmplev2 = tmplev->next;
 	    if (perform_bwrite(mode))
-		bwrite(fd, (genericptr_t) tmplev, sizeof(s_level));
+		bwrite(fd, (void *) tmplev, sizeof(s_level));
 	    if (release_data(mode))
-		free((genericptr_t) tmplev);
+		free((void *) tmplev);
 	}
 	if (release_data(mode))
 	    sp_levchn = 0;
@@ -1247,15 +1247,15 @@ register int fd, mode;
 	for (tmp_dam = damageptr; tmp_dam; tmp_dam = tmp_dam->next)
 	    xl++;
 	if (perform_bwrite(mode))
-	    bwrite(fd, (genericptr_t) &xl, sizeof(xl));
+	    bwrite(fd, (void *) &xl, sizeof(xl));
 
 	while (xl--) {
 	    if (perform_bwrite(mode))
-		bwrite(fd, (genericptr_t) damageptr, sizeof(*damageptr));
+		bwrite(fd, (void *) damageptr, sizeof(*damageptr));
 	    tmp_dam = damageptr;
 	    damageptr = damageptr->next;
 	    if (release_data(mode))
-		free((genericptr_t)tmp_dam);
+		free((void *)tmp_dam);
 	}
 	if (release_data(mode))
 	    level.damagelist = 0;
@@ -1274,8 +1274,8 @@ register struct obj *otmp;
 	    otmp2 = otmp->nobj;
 	    if (perform_bwrite(mode)) {
 		xl = otmp->oxlth + otmp->onamelth;
-		bwrite(fd, (genericptr_t) &xl, sizeof(int));
-		bwrite(fd, (genericptr_t) otmp, xl + sizeof(struct obj));
+		bwrite(fd, (void *) &xl, sizeof(int));
+		bwrite(fd, (void *) otmp, xl + sizeof(struct obj));
 	    }
 	    if (Has_contents(otmp))
 		saveobjchn(fd,otmp->cobj,mode);
@@ -1290,7 +1290,7 @@ register struct obj *otmp;
 	    otmp = otmp2;
 	}
 	if (perform_bwrite(mode))
-	    bwrite(fd, (genericptr_t) &minusone, sizeof(int));
+	    bwrite(fd, (void *) &minusone, sizeof(int));
 }
 
 STATIC_OVL void
@@ -1304,15 +1304,15 @@ register struct monst *mtmp;
 	struct permonst *monbegin = &mons[0];
 
 	if (perform_bwrite(mode))
-	    bwrite(fd, (genericptr_t) &monbegin, sizeof(monbegin));
+	    bwrite(fd, (void *) &monbegin, sizeof(monbegin));
 
 	while (mtmp) {
 	    mtmp2 = mtmp->nmon;
 
 	    if (perform_bwrite(mode)) {
 		xl = mtmp->mxlth + mtmp->mnamelth;
-		bwrite(fd, (genericptr_t) &xl, sizeof(int));
-		bwrite(fd, (genericptr_t) mtmp, xl + sizeof(struct monst));
+		bwrite(fd, (void *) &xl, sizeof(int));
+		bwrite(fd, (void *) mtmp, xl + sizeof(struct monst));
 	    }
 	    if (mtmp->minvent)
 		saveobjchn(fd,mtmp->minvent,mode);
@@ -1321,7 +1321,7 @@ register struct monst *mtmp;
 	    mtmp = mtmp2;
 	}
 	if (perform_bwrite(mode))
-	    bwrite(fd, (genericptr_t) &minusone, sizeof(int));
+	    bwrite(fd, (void *) &minusone, sizeof(int));
 }
 
 STATIC_OVL void
@@ -1334,13 +1334,13 @@ register struct trap *trap;
 	while (trap) {
 	    trap2 = trap->ntrap;
 	    if (perform_bwrite(mode))
-		bwrite(fd, (genericptr_t) trap, sizeof(struct trap));
+		bwrite(fd, (void *) trap, sizeof(struct trap));
 	    if (release_data(mode))
 		dealloc_trap(trap);
 	    trap = trap2;
 	}
 	if (perform_bwrite(mode))
-	    bwrite(fd, (genericptr_t)nulls, sizeof(struct trap));
+	    bwrite(fd, (void *)nulls, sizeof(struct trap));
 }
 
 /* save all the fruit names and ID's; this is used only in saving whole games
@@ -1358,13 +1358,13 @@ register int fd, mode;
 	while (f1) {
 	    f2 = f1->nextf;
 	    if (f1->fid >= 0 && perform_bwrite(mode))
-		bwrite(fd, (genericptr_t) f1, sizeof(struct fruit));
+		bwrite(fd, (void *) f1, sizeof(struct fruit));
 	    if (release_data(mode))
 		dealloc_fruit(f1);
 	    f1 = f2;
 	}
 	if (perform_bwrite(mode))
-	    bwrite(fd, (genericptr_t)nulls, sizeof(struct fruit));
+	    bwrite(fd, (void *)nulls, sizeof(struct fruit));
 	if (release_data(mode))
 	    ffruit = 0;
 }

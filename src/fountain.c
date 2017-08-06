@@ -9,7 +9,7 @@
 STATIC_DCL void dowatersnakes(void);
 STATIC_DCL void dowaterdemon(void);
 STATIC_DCL void dowaternymph(void);
-STATIC_PTR void gush(int,int,genericptr_t);
+STATIC_PTR void gush(int,int,void *);
 STATIC_DCL void dofindgem(void);
 
 void
@@ -98,7 +98,7 @@ int drinking;
 {
 	int madepool = 0;
 
-	do_clear_area(u.ux, u.uy, 7, gush, (genericptr_t)&madepool);
+	do_clear_area(u.ux, u.uy, 7, gush, (void *)&madepool);
 	if (!madepool) {
 	    if (drinking)
 		Your("thirst is quenched.");
@@ -110,7 +110,7 @@ int drinking;
 STATIC_PTR void
 gush(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;

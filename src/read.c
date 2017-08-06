@@ -155,7 +155,7 @@ static void forget_single_object(int);
 static void maybe_tame(struct monst *,struct obj *);
 static void undo_genocide(void);
 
-STATIC_PTR void set_lit(int,int,genericptr_t);
+STATIC_PTR void set_lit(int,int,void *);
 
 int
 doread()
@@ -1295,7 +1295,7 @@ forget_single_object(obj_id)
 	objects[obj_id].oc_name_known = 0;
 	objects[obj_id].oc_pre_discovered = 0;	/* a discovery when relearned */
 	if (objects[obj_id].oc_uname) {
-	    free((genericptr_t)objects[obj_id].oc_uname);
+	    free((void *)objects[obj_id].oc_uname);
 	    objects[obj_id].oc_uname = 0;
 	}
 	undiscover_object(obj_id);	/* after clearing oc_name_known */
@@ -1549,7 +1549,7 @@ struct obj *sobj;
 STATIC_PTR void
 undo_flood(x, y, roomcnt)
 int x, y;
-genericptr_t roomcnt;
+void * roomcnt;
 {
 	if ((levl[x][y].typ != POOL) &&
 	    (levl[x][y].typ != MOAT) &&
@@ -1567,7 +1567,7 @@ genericptr_t roomcnt;
 STATIC_PTR void
 do_flood(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -1634,7 +1634,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 undo_lavaflood(x, y, roomcnt)
 int x, y;
-genericptr_t roomcnt;
+void * roomcnt;
 {
 	if (levl[x][y].typ != LAVAPOOL)
 		return;
@@ -1649,7 +1649,7 @@ genericptr_t roomcnt;
 STATIC_PTR void
 do_lavaflood(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -1714,7 +1714,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_megaflooding(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -1801,7 +1801,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 undo_lockflood(x, y, roomcnt)
 int x, y;
-genericptr_t roomcnt;
+void * roomcnt;
 {
 	if (levl[x][y].typ != STONE)
 		return;
@@ -1820,7 +1820,7 @@ genericptr_t roomcnt;
 STATIC_PTR void
 do_lockflood(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -1896,7 +1896,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 undo_treeflood(x, y, roomcnt)
 int x, y;
-genericptr_t roomcnt;
+void * roomcnt;
 {
 	if (levl[x][y].typ != TREE)
 		return;
@@ -1913,7 +1913,7 @@ genericptr_t roomcnt;
 STATIC_PTR void
 do_treeflood(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -1981,7 +1981,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 undo_iceflood(x, y, roomcnt)
 int x, y;
-genericptr_t roomcnt;
+void * roomcnt;
 {
 	if (levl[x][y].typ != ICE)
 		return;
@@ -1996,7 +1996,7 @@ genericptr_t roomcnt;
 STATIC_PTR void
 do_iceflood(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -2058,7 +2058,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 undo_cloudflood(x, y, roomcnt)
 int x, y;
-genericptr_t roomcnt;
+void * roomcnt;
 {
 	if (levl[x][y].typ != CLOUD)
 		return;
@@ -2074,7 +2074,7 @@ genericptr_t roomcnt;
 STATIC_PTR void
 do_cloudflood(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -2138,7 +2138,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 undo_barflood(x, y, roomcnt)
 int x, y;
-genericptr_t roomcnt;
+void * roomcnt;
 {
 	if (levl[x][y].typ != IRONBARS)
 		return;
@@ -2154,7 +2154,7 @@ genericptr_t roomcnt;
 STATIC_PTR void
 do_barflood(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -2221,7 +2221,7 @@ genericptr_t poolcnt;
 STATIC_PTR void
 do_terrainflood(x, y, poolcnt)
 int x, y;
-genericptr_t poolcnt;
+void * poolcnt;
 {
 	register struct monst *mtmp;
 	register struct trap *ttmp;
@@ -4292,7 +4292,7 @@ newboss:
 			/* remove walls from vicinity of player */
 			int maderoom = 0;
 			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
-					undo_lockflood, (genericptr_t)&maderoom);
+					undo_lockflood, (void *)&maderoom);
 			if (maderoom) {
 				known = TRUE;
 				You_feel("free once again.");
@@ -4307,7 +4307,7 @@ newboss:
 			if (!rn2(25)) radius += rnd(8);
 			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
 				do_clear_areaX(u.ux, u.uy, radius, do_lockflood,
-						(genericptr_t)&madepool);
+						(void *)&madepool);
 
 			/* check if there are safe tiles around the player */
 			for (x = u.ux-1; x <= u.ux+1; x++) {
@@ -4343,7 +4343,7 @@ newboss:
 			/* remove lava from vicinity of player */
 			int maderoom = 0;
 			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
-					undo_lavaflood, (genericptr_t)&maderoom);
+					undo_lavaflood, (void *)&maderoom);
 			if (maderoom) {
 				known = TRUE;
 				You("don't feel hot anymore.");
@@ -4358,7 +4358,7 @@ newboss:
 			if (!rn2(25)) radius += rnd(8);
 			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
 				do_clear_areaX(u.ux, u.uy, radius, do_lavaflood,
-						(genericptr_t)&madepool);
+						(void *)&madepool);
 
 			/* check if there are safe tiles around the player */
 			for (x = u.ux-1; x <= u.ux+1; x++) {
@@ -4396,7 +4396,7 @@ newboss:
 			if (!rn2(25)) radius += rnd(8);
 			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
 				do_clear_areaX(u.ux, u.uy, radius, do_megaflooding,
-						(genericptr_t)&madepool);
+						(void *)&madepool);
 
 			/* check if there are safe tiles around the player */
 			for (x = u.ux-1; x <= u.ux+1; x++) {
@@ -4446,7 +4446,7 @@ newboss:
 			/* remove lava from vicinity of player */
 			int maderoom = 0;
 			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
-					undo_treeflood, (genericptr_t)&maderoom);
+					undo_treeflood, (void *)&maderoom);
 			if (maderoom) {
 				known = TRUE;
 				You_feel("a lack of greenery.");
@@ -4461,7 +4461,7 @@ newboss:
 			if (!rn2(25)) radius += rnd(8);
 			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
 				do_clear_areaX(u.ux, u.uy, radius, do_treeflood,
-						(genericptr_t)&madepool);
+						(void *)&madepool);
 
 			/* check if there are safe tiles around the player */
 			for (x = u.ux-1; x <= u.ux+1; x++) {
@@ -4492,7 +4492,7 @@ newboss:
 			/* remove lava from vicinity of player */
 			int maderoom = 0;
 			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
-					undo_iceflood, (genericptr_t)&maderoom);
+					undo_iceflood, (void *)&maderoom);
 			if (maderoom) {
 				known = TRUE;
 				You("stop feeling cold.");
@@ -4507,7 +4507,7 @@ newboss:
 			if (!rn2(25)) radius += rnd(8);
 			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
 				do_clear_areaX(u.ux, u.uy, radius, do_iceflood,
-						(genericptr_t)&madepool);
+						(void *)&madepool);
 
 			/* check if there are safe tiles around the player */
 			for (x = u.ux-1; x <= u.ux+1; x++) {
@@ -4560,7 +4560,7 @@ newboss:
 			/* remove lava from vicinity of player */
 			int maderoom = 0;
 			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
-					undo_cloudflood, (genericptr_t)&maderoom);
+					undo_cloudflood, (void *)&maderoom);
 			if (maderoom) {
 				known = TRUE;
 				You_feel("the fog disappearing.");
@@ -4575,7 +4575,7 @@ newboss:
 			if (!rn2(25)) radius += rnd(8);
 			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
 				do_clear_areaX(u.ux, u.uy, radius, do_cloudflood,
-						(genericptr_t)&madepool);
+						(void *)&madepool);
 
 			/* check if there are safe tiles around the player */
 			for (x = u.ux-1; x <= u.ux+1; x++) {
@@ -4606,7 +4606,7 @@ newboss:
 			/* remove lava from vicinity of player */
 			int maderoom = 0;
 			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
-					undo_barflood, (genericptr_t)&maderoom);
+					undo_barflood, (void *)&maderoom);
 			if (maderoom) {
 				known = TRUE;
 				You("have a sense of freedom.");
@@ -4621,7 +4621,7 @@ newboss:
 			if (!rn2(25)) radius += rnd(8);
 			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
 				do_clear_areaX(u.ux, u.uy, radius, do_barflood,
-						(genericptr_t)&madepool);
+						(void *)&madepool);
 
 			/* check if there are safe tiles around the player */
 			for (x = u.ux-1; x <= u.ux+1; x++) {
@@ -4661,7 +4661,7 @@ newboss:
 			if (!rn2(25)) radius += rnd(8);
 			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
 				do_clear_areaX(u.ux, u.uy, radius, do_terrainflood,
-						(genericptr_t)&madepool);
+						(void *)&madepool);
 
 			/* check if there are safe tiles around the player */
 			for (x = u.ux-1; x <= u.ux+1; x++) {
@@ -4809,7 +4809,7 @@ newboss:
 			/* remove water from vicinity of player */
 			int maderoom = 0;
 			do_clear_areaX(u.ux, u.uy, 4+2*bcsign(sobj),
-					undo_flood, (genericptr_t)&maderoom);
+					undo_flood, (void *)&maderoom);
 			if (maderoom) {
 				known = TRUE;
 				You("are suddenly very dry!");
@@ -4825,7 +4825,7 @@ newboss:
 			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
 			if (!sobj->cursed)
 				do_clear_areaX(u.ux, u.uy, radius, do_flood,
-						(genericptr_t)&madepool);
+						(void *)&madepool);
 
 			/* check if there are safe tiles around the player */
 			for (x = u.ux-1; x <= u.ux+1; x++) {
@@ -4840,7 +4840,7 @@ newboss:
 			/* cursed and uncursed might put a water tile on
 			 * player's position */
 			if (!sobj->blessed && safe_pos > 0)
-				do_flood(u.ux, u.uy, (genericptr_t)&stilldry);
+				do_flood(u.ux, u.uy, (void *)&stilldry);
 			if (!madepool && stilldry)
 				break;
 			if (madepool)
@@ -6139,7 +6139,7 @@ register struct obj *obj;
 STATIC_PTR void
 set_lit(x,y,val)
 int x, y;
-genericptr_t val;
+void * val;
 {
 	if (val)
 	    levl[x][y].lit = 1;
@@ -6218,7 +6218,7 @@ do_it:
 		for(rx = rooms[rnum].lx-1; rx <= rooms[rnum].hx+1; rx++)
 		    for(ry = rooms[rnum].ly-1; ry <= rooms[rnum].hy+1; ry++)
 			set_lit(rx, ry,
-				(genericptr_t)(on ? &is_lit : (char *)0));
+				(void *)(on ? &is_lit : (char *)0));
 		rooms[rnum].rlit = on;
 	    }
 	    /* hallways remain dark on the rogue level */
@@ -6230,7 +6230,7 @@ do_it:
 	    do_clear_area(u.ux,u.uy,
 		obj->oartifact ? 12 :
 		(obj && obj->oclass==SCROLL_CLASS && obj->blessed) ? 9 : (obj && obj->oclass==SPBOOK_CLASS) ? 3 : 5,
-		set_lit, (genericptr_t)(on ? &is_lit : (char *)0));
+		set_lit, (void *)(on ? &is_lit : (char *)0));
 
 		}
 		else {
@@ -6238,7 +6238,7 @@ do_it:
 	    do_clear_areaX(u.ux,u.uy,
 		obj->oartifact ? 12 :
 		(obj && obj->oclass==SCROLL_CLASS && obj->blessed) ? 9 : 5,
-		set_lit, (genericptr_t)(on ? &is_lit : (char *)0));
+		set_lit, (void *)(on ? &is_lit : (char *)0));
 
 		}
 
@@ -6269,12 +6269,12 @@ register boolean on;
 		if (rn2(10)) {
 
 	    do_clear_area(u.ux,u.uy, 7,
-		set_lit, (genericptr_t)(on ? &is_lit : (char *)0));
+		set_lit, (void *)(on ? &is_lit : (char *)0));
 		}
 		else {
 
 	    do_clear_areaX(u.ux,u.uy, 7,
-		set_lit, (genericptr_t)(on ? &is_lit : (char *)0));
+		set_lit, (void *)(on ? &is_lit : (char *)0));
 		}
 
 

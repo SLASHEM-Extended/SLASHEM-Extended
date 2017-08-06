@@ -210,7 +210,7 @@ destroy_message_window(wp)
     }
     if (wp->mesg_information) {
 	set_circle_buf(wp->mesg_information, 0);	/* free buffer list */
-	free((genericptr_t)wp->mesg_information),  wp->mesg_information = 0;
+	free((void *)wp->mesg_information),  wp->mesg_information = 0;
     }
     if (wp->keep_window)
 	XtRemoveCallback(wp->w, XtNexposeCallback, mesg_exposed, (XtPointer)0);
@@ -299,8 +299,8 @@ set_circle_buf(mesg_info, count)
 	for (i = mesg_info->num_lines - count; i > 0; i--) {
 	    curr = mesg_info->head;
 	    mesg_info->head = curr->next;
-	    if (curr->line) free((genericptr_t)curr->line);
-	    free((genericptr_t)curr);
+	    if (curr->line) free((void *)curr->line);
+	    free((void *)curr);
 	}
 	if (count == 0) {
 	    /* make sure we don't have a dangling pointer */

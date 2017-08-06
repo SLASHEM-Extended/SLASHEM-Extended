@@ -242,7 +242,7 @@ struct permonst *mdat;
     struct monst fakemon;	/* dummy monster */
     fakemon.data = mdat;	/* set up for badpos */
     map = (unsigned char *)alloc(COLNO * (ROWNO + 2));
-    (void) memset((genericptr_t)map, EPATHTO_INACCESSIBLE, COLNO * (ROWNO + 2));
+    (void) memset((void *)map, EPATHTO_INACCESSIBLE, COLNO * (ROWNO + 2));
     for(i = 1; i < COLNO; i++)
 	for(j = 0; j < ROWNO; j++)
 	    map[EPATHTO_XY(i, j)] = EPATHTO_UNSEEN;
@@ -332,7 +332,7 @@ struct permonst *mdat;
     }
 #endif
 
-    free((genericptr_t)map);
+    free((void *)map);
     return nd;
 }
 
@@ -345,8 +345,8 @@ void
 xpathto(r, xx, yy, func, data)
 int r;
 register xchar xx, yy;
-int (*func)(genericptr_t, int, int);
-genericptr_t data;
+int (*func)(void *, int, int);
+void * data;
 {
     int i, j, dir, xy, x, y;
     int path_len, postype;
@@ -357,7 +357,7 @@ genericptr_t data;
       /* N, S, E, W, NW, NE, SE, SW */
       { -COLNO, COLNO, 1, -1, -COLNO-1, -COLNO+1, COLNO+1, COLNO-1};
     map = (unsigned char *)alloc(COLNO * (ROWNO + 2));
-    (void) memset((genericptr_t)map, EPATHTO_INACCESSIBLE, COLNO * (ROWNO + 2));
+    (void) memset((void *)map, EPATHTO_INACCESSIBLE, COLNO * (ROWNO + 2));
     for(i = 1; i < COLNO; i++)
 	for(j = 0; j < ROWNO; j++)
 	    map[EPATHTO_XY(i, j)] = EPATHTO_UNSEEN;
@@ -392,7 +392,7 @@ genericptr_t data;
 	else
 	    nd = n;
     }
-    free((genericptr_t)map);
+    free((void *)map);
 }
 
 #ifdef DEBUG

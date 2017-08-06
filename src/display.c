@@ -1390,11 +1390,11 @@ tmp_at(x, y)
 		cont = tglyph->cont;
 		while (cont) {
 		    tmp = cont->cont;
-		    if (cont != &tgfirst) free((genericptr_t)cont);
+		    if (cont != &tgfirst) free((void *)cont);
 		    cont = tmp;
 		}
 		tmp = tglyph->prev;
-		if (tglyph != &tgfirst) free((genericptr_t)tglyph);
+		if (tglyph != &tgfirst) free((void *)tglyph);
 		tglyph = tmp;
 	    }
 	    return;
@@ -1422,7 +1422,7 @@ tmp_at(x, y)
 		    for (i = 0; i < cont->sidx; i++)
 			newsym(cont->saved[i].x, cont->saved[i].y);
 		    tmp = cont->cont;
-		    if (cont != &tgfirst) free((genericptr_t)cont);
+		    if (cont != &tgfirst) free((void *)cont);
 		    cont = tmp;
 		}
 	     /* tglyph->cont = (struct tmp_glyph *)0; */
@@ -1432,7 +1432,7 @@ tmp_at(x, y)
 	    }
 	 /* tglyph->sidx = 0; -- about to be freed, so not necessary */
 	    tmp = tglyph->prev;
-	    if (tglyph != &tgfirst) free((genericptr_t)tglyph);
+	    if (tglyph != &tgfirst) free((void *)tglyph);
 	    tglyph = tmp;
 	    break;
 

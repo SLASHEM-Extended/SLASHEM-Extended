@@ -268,7 +268,7 @@ void getlock(void)
 	if(fd == -1) {
 		error("cannot creat lock file.");
 	} else {
-		if(write(fd, (genericptr_t) &hackpid, sizeof(hackpid))
+		if(write(fd, (void *) &hackpid, sizeof(hackpid))
 		    != sizeof(hackpid)){
 			error("cannot write lock");
 		}

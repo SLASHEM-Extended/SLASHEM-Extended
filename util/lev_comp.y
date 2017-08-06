@@ -35,9 +35,8 @@
 #define MAX_OF_TYPE	128
 
 #define New(type)		\
-	(type *) memset((genericptr_t)alloc(sizeof(type)), 0, sizeof(type))
+	(type *) memset((void *)alloc(sizeof(type)), 0, sizeof(type))
 #define NewTab(type, size)	(type **) alloc(sizeof(type *) * size)
-#define Free(ptr)		free((genericptr_t)ptr)
 
 extern void yyerror(const char *);
 extern void yywarning(const char *);
@@ -193,8 +192,8 @@ maze_level	: maze_def flags lev_init messages regions
 					fname, fatal_error);
 			} else {
 				maze.flags = $2;
-				(void) memcpy((genericptr_t)&(maze.init_lev),
-						(genericptr_t)&(init_lev),
+				(void) memcpy((void *)&(maze.init_lev),
+						(void *)&(init_lev),
 						sizeof(lev_init));
 				maze.numpart = npart;
 				maze.parts = NewTab(mazepart, npart);
@@ -206,7 +205,7 @@ maze_level	: maze_def flags lev_init messages regions
 				}
 				npart = 0;
 			}
-			Free($1);
+			free($1);
 		  }
 		;
 
@@ -221,8 +220,8 @@ room_level	: level_def flags lev_init messages rreg_init rooms corridors_def
 			} else {
 				special_lev.flags = (long) $2;
 				(void) memcpy(
-					(genericptr_t)&(special_lev.init_lev),
-					(genericptr_t)&(init_lev),
+					(void *)&(special_lev.init_lev),
+					(void *)&(init_lev),
 					sizeof(lev_init));
 				special_lev.nroom = nrooms;
 				special_lev.rooms = NewTab(room, nrooms);
@@ -243,7 +242,7 @@ room_level	: level_def flags lev_init messages rreg_init rooms corridors_def
 				nrooms = 0;
 				ncorridor = 0;
 			}
-			Free($1);
+			free($1);
 		  }
 		;
 
@@ -263,7 +262,7 @@ lev_init	: /* nothing */
 		  {
 			/* in case we're processing multiple files,
 			   explicitly clear any stale settings */
-			(void) memset((genericptr_t) &init_lev, 0,
+			memset((void *) &init_lev, 0,
 					sizeof init_lev);
 			init_lev.init_present = FALSE;
 			$$ = 0;
@@ -330,7 +329,7 @@ message		: MESSAGE_ID ':' STRING
 			    (void) strncpy(tmpmessage+j, $3, i - 1);
 			    tmpmessage[j + i - 1] = 0;
 			}
-			Free($3);
+			free($3);
 		  }
 		;
 
@@ -345,8 +344,8 @@ init_rreg	: RANDOM_OBJECTS_ID ':' object_list
 			} else {
 			    special_lev.nrobjects = n_olist;
 			    special_lev.robjects = (char *) alloc(n_olist);
-			    (void) memcpy((genericptr_t)special_lev.robjects,
-					  (genericptr_t)olist, n_olist);
+			    memcpy((void *)special_lev.robjects,
+					  (void *)olist, n_olist);
 			}
 		  }
 		| RANDOM_MONSTERS_ID ':' monster_list
@@ -356,8 +355,8 @@ init_rreg	: RANDOM_OBJECTS_ID ':' object_list
 			} else {
 			    special_lev.nrmonst = n_mlist;
 			    special_lev.rmonst = (char *) alloc(n_mlist);
-			    (void) memcpy((genericptr_t)special_lev.rmonst,
-					  (genericptr_t)mlist, n_mlist);
+			    (void) memcpy((void *)special_lev.rmonst,
+					  (void *)mlist, n_mlist);
 			  }
 		  }
 		;
@@ -707,7 +706,7 @@ map_definition	: NOMAP_ID
 			tmppart[npart]->nloc = 0;
 			tmppart[npart]->nrmonst = 0;
 			scan_map($2);
-			Free($2);
+			free($2);
 		  }
 		;
 
@@ -734,9 +733,9 @@ init_reg	: RANDOM_OBJECTS_ID ':' object_list
 			if (tmppart[npart]->nrobjects) {
 			    yyerror("Object registers already initialized!");
 			} else {
-			    tmppart[npart]->robjects = (char *)alloc(n_olist);
-			    (void) memcpy((genericptr_t)tmppart[npart]->robjects,
-					  (genericptr_t)olist, n_olist);
+			    tmppart[npart]->robjects = alloc(n_olist);
+			    memcpy((void *)tmppart[npart]->robjects,
+					  (void *)olist, n_olist);
 			    tmppart[npart]->nrobjects = n_olist;
 			}
 		  }
@@ -762,8 +761,8 @@ init_reg	: RANDOM_OBJECTS_ID ':' object_list
 			    yyerror("Monster registers already initialized!");
 			} else {
 			    tmppart[npart]->rmonst = (char *) alloc(n_mlist);
-			    (void) memcpy((genericptr_t)tmppart[npart]->rmonst,
-					  (genericptr_t)mlist, n_mlist);
+			    memcpy((void *)tmppart[npart]->rmonst,
+					  (void *)mlist, n_mlist);
 			    tmppart[npart]->nrmonst = n_mlist;
 			}
 		  }
@@ -873,7 +872,7 @@ monster_detail	: MONSTER_ID chance ':' monster_c ',' m_name ',' coordinate
 			      "Invalid monster name!  Making random monster.");
 			    else
 				tmpmonst[nmons]->id = token;
-			    Free($6);
+			    free($6);
 			}
 		  }
 		 monster_infos
@@ -941,7 +940,7 @@ object_desc	: chance ':' object_c ',' o_name
 				"Illegal object name!  Making random object.");
 			     else
 				tmpobj[nobj]->id = token;
-			    Free($5);
+			    free($5);
 			}
 		  }
 		 ',' object_where object_infos
@@ -1024,7 +1023,7 @@ monster_id	: STRING
 			    tmpobj[nobj]->corpsenm = NON_PM - 1;
 			else
 			    tmpobj[nobj]->corpsenm = token;
-			Free($1);
+			free($1);
 		  }
 		;
 
@@ -1599,7 +1598,7 @@ trap_name	: string
 			if (token == ERR)
 				yyerror("Unknown trap type!");
 			$<i>$ = token;
-			Free($1);
+			free($1);
 		  }
 		| RANDOM_TYPE
 		;
@@ -1612,7 +1611,7 @@ room_type	: string
 				$<i>$ = OROOM;
 			} else
 				$<i>$ = token;
-			Free($1);
+			free($1);
 		  }
 		| RANDOM_TYPE
 		;

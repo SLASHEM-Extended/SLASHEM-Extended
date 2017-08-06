@@ -3149,7 +3149,7 @@ int enhance_skill(boolean want_dump)
 	    destroy_nhwindow(win);
 	    if (n > 0) {
 		n = selected[0].item.a_int - 1;	/* get item selected */
-		free((genericptr_t)selected);
+		free((void *)selected);
 		skill_advance(n);
 		/* check for more skills able to advance, if so then .. */
 		for (n = i = 0; i < P_NUM_SKILLS; i++) {

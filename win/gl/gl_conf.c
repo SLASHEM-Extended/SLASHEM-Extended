@@ -643,7 +643,7 @@ static int handle_option_main_menu(void)
   assert(selected);
 
   n = selected[0].item.a_int;
-  free((genericptr_t)selected);
+  free((void *)selected);
 
   return n;
 }

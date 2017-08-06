@@ -132,11 +132,11 @@ register int fd;
 	s_level	*tmplev, *x;
 
 	sp_levchn = (s_level *) 0;
-	mread(fd, (genericptr_t) &cnt, sizeof(int));
+	mread(fd, (void *) &cnt, sizeof(int));
 	for(; cnt > 0; cnt--) {
 
 	    tmplev = (s_level *)alloc(sizeof(s_level));
-	    mread(fd, (genericptr_t) tmplev, sizeof(s_level));
+	    mread(fd, (void *) tmplev, sizeof(s_level));
 	    if(!sp_levchn) sp_levchn = tmplev;
 	    else {
 
@@ -155,14 +155,14 @@ boolean ghostly;
 	int counter;
 	struct damage *tmp_dam;
 
-	mread(fd, (genericptr_t) &counter, sizeof(counter));
+	mread(fd, (void *) &counter, sizeof(counter));
 	if (!counter)
 	    return;
 	tmp_dam = (struct damage *)alloc(sizeof(struct damage));
 	while (--counter >= 0) {
 	    char damaged_shops[5], *shp = (char *)0;
 
-	    mread(fd, (genericptr_t) tmp_dam, sizeof(*tmp_dam));
+	    mread(fd, (void *) tmp_dam, sizeof(*tmp_dam));
 	    if (ghostly)
 		tmp_dam->when += (monstermoves - omoves);
 	    strcpy(damaged_shops,
@@ -187,7 +187,7 @@ boolean ghostly;
 		tmp_dam = (struct damage *)alloc(sizeof(*tmp_dam));
 	    }
 	}
-	free((genericptr_t)tmp_dam);
+	free((void *)tmp_dam);
 }
 
 STATIC_OVL struct obj *
@@ -200,12 +200,12 @@ boolean ghostly, frozen;
 	int xl;
 
 	while(1) {
-		mread(fd, (genericptr_t) &xl, sizeof(xl));
+		mread(fd, (void *) &xl, sizeof(xl));
 		if(xl == -1) break;
 		otmp = newobj(xl);
 		if(!first) first = otmp;
 		else otmp2->nobj = otmp;
-		mread(fd, (genericptr_t) otmp,
+		mread(fd, (void *) otmp,
 					(unsigned) xl + sizeof(struct obj));
 		if (ghostly) {
 		    unsigned nid = flags.ident++;
@@ -252,16 +252,16 @@ boolean ghostly;
 	boolean moved;
 
 	/* get the original base address */
-	mread(fd, (genericptr_t)&monbegin, sizeof(monbegin));
+	mread(fd, (void *)&monbegin, sizeof(monbegin));
 	moved = (monbegin != mons);
 
 	while(1) {
-		mread(fd, (genericptr_t) &xl, sizeof(xl));
+		mread(fd, (void *) &xl, sizeof(xl));
 		if(xl == -1) break;
 		mtmp = newmonst(xl);
 		if(!first) first = mtmp;
 		else mtmp2->nmon = mtmp;
-		mread(fd, (genericptr_t) mtmp, (unsigned) xl + sizeof(struct monst));
+		mread(fd, (void *) mtmp, (unsigned) xl + sizeof(struct monst));
 		if (ghostly) {
 			unsigned nid = flags.ident++;
 			add_id_mapping(mtmp->m_id, nid);
@@ -319,7 +319,7 @@ int fd;
 
 	flist = 0;
 	while (fnext = newfruit(),
-	       mread(fd, (genericptr_t)fnext, sizeof *fnext),
+	       mread(fd, (void *)fnext, sizeof *fnext),
 	       fnext->fid != 0) {
 		fnext->nextf = flist;
 		flist = fnext;
@@ -365,7 +365,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	struct obj *otmp;
 	int uid;
 
-	mread(fd, (genericptr_t) &uid, sizeof uid);
+	mread(fd, (void *) &uid, sizeof uid);
 	if (uid != getuid()) {		/* strange ... */
 	    /* for wizard mode, issue a reminder; for others, treat it
 	       as an attempt to cheat and refuse to restore this file */
@@ -376,7 +376,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 		return FALSE;
 	}
 
-	mread(fd, (genericptr_t) &flags, sizeof(struct flag));
+	mread(fd, (void *) &flags, sizeof(struct flag));
 	flags.bypasses = 0;	/* never use the saved value of bypasses */
 	if (remember_discover) discover = remember_discover;
 
@@ -385,7 +385,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 #ifdef AMII_GRAPHICS
 	amii_setpens(amii_numcolors);	/* use colors from save file */
 #endif
-	mread(fd, (genericptr_t) &u, sizeof(struct you));
+	mread(fd, (void *) &u, sizeof(struct you));
 	init_uasmon();
 #ifdef CLIPPING
 	cliparound(u.ux, u.uy);
@@ -394,870 +394,870 @@ unsigned int *stuckid, *steedid;	/* STEED */
 
 	const char *tname; /* bugfix by Chris_ANG */
 	tname = mons[PM_NITROHACK_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_NITROHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NITROHACK_HORROR], sizeof(struct permonst));
 	mons[PM_NITROHACK_HORROR].mname = tname;
 	tname = mons[PM_SPEEDHACK_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_SPEEDHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SPEEDHACK_HORROR], sizeof(struct permonst));
 	mons[PM_SPEEDHACK_HORROR].mname = tname;
 	tname = mons[PM_DNETHACK_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_DNETHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_DNETHACK_HORROR], sizeof(struct permonst));
 	mons[PM_DNETHACK_HORROR].mname = tname;
 	tname = mons[PM_NETHACKBRASS_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_NETHACKBRASS_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NETHACKBRASS_HORROR], sizeof(struct permonst));
 	mons[PM_NETHACKBRASS_HORROR].mname = tname;
 	tname = mons[PM_INTERHACK_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_INTERHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_INTERHACK_HORROR], sizeof(struct permonst));
 	mons[PM_INTERHACK_HORROR].mname = tname;
 	tname = mons[PM_NHTNG_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_NHTNG_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NHTNG_HORROR], sizeof(struct permonst));
 	mons[PM_NHTNG_HORROR].mname = tname;
 	tname = mons[PM_UNNETHACK_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_UNNETHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_UNNETHACK_HORROR], sizeof(struct permonst));
 	mons[PM_UNNETHACK_HORROR].mname = tname;
 	tname = mons[PM_UNNETHACKPLUS_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_UNNETHACKPLUS_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_UNNETHACKPLUS_HORROR], sizeof(struct permonst));
 	mons[PM_UNNETHACKPLUS_HORROR].mname = tname;
 	tname = mons[PM_ANGBAND_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_ANGBAND_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ANGBAND_HORROR], sizeof(struct permonst));
 	mons[PM_ANGBAND_HORROR].mname = tname;
 	tname = mons[PM_ADOM_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_ADOM_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADOM_HORROR], sizeof(struct permonst));
 	mons[PM_ADOM_HORROR].mname = tname;
 	tname = mons[PM_PETTY_ANGBAND_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_PETTY_ANGBAND_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_PETTY_ANGBAND_HORROR], sizeof(struct permonst));
 	mons[PM_PETTY_ANGBAND_HORROR].mname = tname;
 	tname = mons[PM_PETTY_ADOM_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_PETTY_ADOM_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_PETTY_ADOM_HORROR], sizeof(struct permonst));
 	mons[PM_PETTY_ADOM_HORROR].mname = tname;
 	tname = mons[PM_SPORKHACK_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_SPORKHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SPORKHACK_HORROR], sizeof(struct permonst));
 	mons[PM_SPORKHACK_HORROR].mname = tname;
 	tname = mons[PM_MAIDENHACK_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_MAIDENHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MAIDENHACK_HORROR], sizeof(struct permonst));
 	mons[PM_MAIDENHACK_HORROR].mname = tname;
 	tname = mons[PM_YASD_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_YASD_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_YASD_HORROR], sizeof(struct permonst));
 	mons[PM_YASD_HORROR].mname = tname;
 	tname = mons[PM_NETHACKFOUR_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_NETHACKFOUR_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NETHACKFOUR_HORROR], sizeof(struct permonst));
 	mons[PM_NETHACKFOUR_HORROR].mname = tname;
 	tname = mons[PM_DEVTEAM_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_DEVTEAM_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_DEVTEAM_HORROR], sizeof(struct permonst));
 	mons[PM_DEVTEAM_HORROR].mname = tname;
 	tname = mons[PM_SLASHEM_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_SLASHEM_HORROR], sizeof(struct permonst));	
+	mread(fd, (void *) &mons[PM_SLASHEM_HORROR], sizeof(struct permonst));	
 	mons[PM_SLASHEM_HORROR].mname = tname;
 	tname = mons[PM_NETHACK_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_NETHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NETHACK_HORROR], sizeof(struct permonst));
 	mons[PM_NETHACK_HORROR].mname = tname;
 	tname = mons[PM_ROGUE_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_ROGUE_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ROGUE_HORROR], sizeof(struct permonst));
 	mons[PM_ROGUE_HORROR].mname = tname;
 	tname = mons[PM_GRUNTHACK_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_GRUNTHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_GRUNTHACK_HORROR], sizeof(struct permonst));
 	mons[PM_GRUNTHACK_HORROR].mname = tname;
 	tname = mons[PM_ACEHACK_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_ACEHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ACEHACK_HORROR], sizeof(struct permonst));
 	mons[PM_ACEHACK_HORROR].mname = tname;
 	tname = mons[PM_PETTY_GRUNTHACK_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_PETTY_GRUNTHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_PETTY_GRUNTHACK_HORROR], sizeof(struct permonst));
 	mons[PM_PETTY_GRUNTHACK_HORROR].mname = tname;
 	tname = mons[PM_PETROGRAPHY_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_PETROGRAPHY_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_PETROGRAPHY_HORROR], sizeof(struct permonst));
 	mons[PM_PETROGRAPHY_HORROR].mname = tname;
 	tname = mons[PM_STONE_COLD_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_STONE_COLD_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_STONE_COLD_HORROR], sizeof(struct permonst));
 	mons[PM_STONE_COLD_HORROR].mname = tname;
 
-	mread(fd, (genericptr_t) &mons[PM_SUIKUN_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_HOUOU_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_INTERHACK_HORROR_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_NHTNG_HORROR_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_PETROGRAPHY_HORROR_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_STONE_COLD_HORROR_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SUIKUN_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_HOUOU_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_INTERHACK_HORROR_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NHTNG_HORROR_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_PETROGRAPHY_HORROR_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_STONE_COLD_HORROR_X], sizeof(struct permonst));
 
 	tname = mons[PM_STARLIT_SKY].mname;
-	mread(fd, (genericptr_t) &mons[PM_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_STARLIT_SKY], sizeof(struct permonst));
 	mons[PM_STARLIT_SKY].mname = tname;
 	tname = mons[PM_DARK_STARLIT_SKY].mname;
-	mread(fd, (genericptr_t) &mons[PM_DARK_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_DARK_STARLIT_SKY], sizeof(struct permonst));
 	mons[PM_DARK_STARLIT_SKY].mname = tname;
 	tname = mons[PM_BLACK_STARLIT_SKY].mname;
-	mread(fd, (genericptr_t) &mons[PM_BLACK_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BLACK_STARLIT_SKY], sizeof(struct permonst));
 	mons[PM_BLACK_STARLIT_SKY].mname = tname;
 	tname = mons[PM_RED_STARLIT_SKY].mname;
-	mread(fd, (genericptr_t) &mons[PM_RED_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RED_STARLIT_SKY], sizeof(struct permonst));
 	mons[PM_RED_STARLIT_SKY].mname = tname;
 	tname = mons[PM_BROWN_STARLIT_SKY].mname;
-	mread(fd, (genericptr_t) &mons[PM_BROWN_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BROWN_STARLIT_SKY], sizeof(struct permonst));
 	mons[PM_BROWN_STARLIT_SKY].mname = tname;
 	tname = mons[PM_GREEN_STARLIT_SKY].mname;
-	mread(fd, (genericptr_t) &mons[PM_GREEN_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_GREEN_STARLIT_SKY], sizeof(struct permonst));
 	mons[PM_GREEN_STARLIT_SKY].mname = tname;
 	tname = mons[PM_PURPLE_STARLIT_SKY].mname;
-	mread(fd, (genericptr_t) &mons[PM_PURPLE_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_PURPLE_STARLIT_SKY], sizeof(struct permonst));
 	mons[PM_PURPLE_STARLIT_SKY].mname = tname;
 	tname = mons[PM_YELLOW_STARLIT_SKY].mname;
-	mread(fd, (genericptr_t) &mons[PM_YELLOW_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_YELLOW_STARLIT_SKY], sizeof(struct permonst));
 	mons[PM_YELLOW_STARLIT_SKY].mname = tname;
 	tname = mons[PM_ORANGE_STARLIT_SKY].mname;
-	mread(fd, (genericptr_t) &mons[PM_ORANGE_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ORANGE_STARLIT_SKY], sizeof(struct permonst));
 	mons[PM_ORANGE_STARLIT_SKY].mname = tname;
 	tname = mons[PM_CYAN_STARLIT_SKY].mname;
-	mread(fd, (genericptr_t) &mons[PM_CYAN_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_CYAN_STARLIT_SKY], sizeof(struct permonst));
 	mons[PM_CYAN_STARLIT_SKY].mname = tname;
 	tname = mons[PM_VIOLET_STARLIT_SKY].mname;
-	mread(fd, (genericptr_t) &mons[PM_VIOLET_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_VIOLET_STARLIT_SKY], sizeof(struct permonst));
 	mons[PM_VIOLET_STARLIT_SKY].mname = tname;
 
-	mread(fd, (genericptr_t) &mons[PM_MISNAMED_STARLIT_SKY], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_WRONG_NAMED_STARLIT_SKY], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_ERRONEOUS_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MISNAMED_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_WRONG_NAMED_STARLIT_SKY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ERRONEOUS_STARLIT_SKY], sizeof(struct permonst));
 
 	tname = mons[PM_TRUE_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_TRUE_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_TRUE_MISSINGNO], sizeof(struct permonst));
 	mons[PM_TRUE_MISSINGNO].mname = tname;
 	tname = mons[PM_ETHEREAL_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_ETHEREAL_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ETHEREAL_MISSINGNO], sizeof(struct permonst));
 	mons[PM_ETHEREAL_MISSINGNO].mname = tname;
 
 	tname = mons[PM_AK_THIEF_IS_DEAD_].mname;
-	mread(fd, (genericptr_t) &mons[PM_AK_THIEF_IS_DEAD_], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_AK_THIEF_IS_DEAD_], sizeof(struct permonst));
 	mons[PM_AK_THIEF_IS_DEAD_].mname = tname;
 	tname = mons[PM_UN_IN_PROTECT_MODE].mname;
-	mread(fd, (genericptr_t) &mons[PM_UN_IN_PROTECT_MODE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_UN_IN_PROTECT_MODE], sizeof(struct permonst));
 	mons[PM_UN_IN_PROTECT_MODE].mname = tname;
 
 	tname = mons[PM_BROWN_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_BROWN_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BROWN_MISSINGNO], sizeof(struct permonst));
 	mons[PM_BROWN_MISSINGNO].mname = tname;
 	tname = mons[PM_RED_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_RED_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RED_MISSINGNO], sizeof(struct permonst));
 	mons[PM_RED_MISSINGNO].mname = tname;
 	tname = mons[PM_BLACK_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_BLACK_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BLACK_MISSINGNO], sizeof(struct permonst));
 	mons[PM_BLACK_MISSINGNO].mname = tname;
 	tname = mons[PM_CYAN_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_CYAN_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_CYAN_MISSINGNO], sizeof(struct permonst));
 	mons[PM_CYAN_MISSINGNO].mname = tname;
 	tname = mons[PM_GRAY_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_GRAY_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_GRAY_MISSINGNO], sizeof(struct permonst));
 	mons[PM_GRAY_MISSINGNO].mname = tname;
 	tname = mons[PM_WHITE_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_WHITE_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_WHITE_MISSINGNO], sizeof(struct permonst));
 	mons[PM_WHITE_MISSINGNO].mname = tname;
 	tname = mons[PM_GREEN_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_GREEN_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_GREEN_MISSINGNO], sizeof(struct permonst));
 	mons[PM_GREEN_MISSINGNO].mname = tname;
 	tname = mons[PM_MAGENTA_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_MAGENTA_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MAGENTA_MISSINGNO], sizeof(struct permonst));
 	mons[PM_MAGENTA_MISSINGNO].mname = tname;
 	tname = mons[PM_YELLOW_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_YELLOW_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_YELLOW_MISSINGNO], sizeof(struct permonst));
 	mons[PM_YELLOW_MISSINGNO].mname = tname;
 	tname = mons[PM_ORANGE_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_ORANGE_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ORANGE_MISSINGNO], sizeof(struct permonst));
 	mons[PM_ORANGE_MISSINGNO].mname = tname;
 	tname = mons[PM_BRIGHT_CYAN_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_BRIGHT_CYAN_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BRIGHT_CYAN_MISSINGNO], sizeof(struct permonst));
 	mons[PM_BRIGHT_CYAN_MISSINGNO].mname = tname;
 	tname = mons[PM_BRIGHT_MAGENTA_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_BRIGHT_MAGENTA_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BRIGHT_MAGENTA_MISSINGNO], sizeof(struct permonst));
 	mons[PM_BRIGHT_MAGENTA_MISSINGNO].mname = tname;
 	tname = mons[PM_BRIGHT_BLUE_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_BRIGHT_BLUE_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BRIGHT_BLUE_MISSINGNO], sizeof(struct permonst));
 	mons[PM_BRIGHT_BLUE_MISSINGNO].mname = tname;
 	tname = mons[PM_BRIGHT_GREEN_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_BRIGHT_GREEN_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BRIGHT_GREEN_MISSINGNO], sizeof(struct permonst));
 	mons[PM_BRIGHT_GREEN_MISSINGNO].mname = tname;
 
 	tname = mons[PM_BEIGE_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_BEIGE_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BEIGE_MISSINGNO], sizeof(struct permonst));
 	mons[PM_BEIGE_MISSINGNO].mname = tname;
 	tname = mons[PM_SHADY_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_SHADY_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SHADY_MISSINGNO], sizeof(struct permonst));
 	mons[PM_SHADY_MISSINGNO].mname = tname;
 	tname = mons[PM_DARK_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_DARK_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_DARK_MISSINGNO], sizeof(struct permonst));
 	mons[PM_DARK_MISSINGNO].mname = tname;
 	tname = mons[PM_SCARLET_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_SCARLET_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SCARLET_MISSINGNO], sizeof(struct permonst));
 	mons[PM_SCARLET_MISSINGNO].mname = tname;
 	tname = mons[PM_VIRIDIAN_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_VIRIDIAN_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_VIRIDIAN_MISSINGNO], sizeof(struct permonst));
 	mons[PM_VIRIDIAN_MISSINGNO].mname = tname;
 	tname = mons[PM_UMBRA_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_UMBRA_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_UMBRA_MISSINGNO], sizeof(struct permonst));
 	mons[PM_UMBRA_MISSINGNO].mname = tname;
 	tname = mons[PM_PURPLE_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_PURPLE_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_PURPLE_MISSINGNO], sizeof(struct permonst));
 	mons[PM_PURPLE_MISSINGNO].mname = tname;
 	tname = mons[PM_STEEL_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_STEEL_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_STEEL_MISSINGNO], sizeof(struct permonst));
 	mons[PM_STEEL_MISSINGNO].mname = tname;
 	tname = mons[PM_VIVID_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_VIVID_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_VIVID_MISSINGNO], sizeof(struct permonst));
 	mons[PM_VIVID_MISSINGNO].mname = tname;
 	tname = mons[PM_POISONOUS_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_POISONOUS_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_POISONOUS_MISSINGNO], sizeof(struct permonst));
 	mons[PM_POISONOUS_MISSINGNO].mname = tname;
 	tname = mons[PM_TOPAZ_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_TOPAZ_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_TOPAZ_MISSINGNO], sizeof(struct permonst));
 	mons[PM_TOPAZ_MISSINGNO].mname = tname;
 	tname = mons[PM_ULTRAMARINE_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_ULTRAMARINE_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ULTRAMARINE_MISSINGNO], sizeof(struct permonst));
 	mons[PM_ULTRAMARINE_MISSINGNO].mname = tname;
 	tname = mons[PM_PINK_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_PINK_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_PINK_MISSINGNO], sizeof(struct permonst));
 	mons[PM_PINK_MISSINGNO].mname = tname;
 	tname = mons[PM_AZURE_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_AZURE_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_AZURE_MISSINGNO], sizeof(struct permonst));
 	mons[PM_AZURE_MISSINGNO].mname = tname;
 	tname = mons[PM_MULTICOLORED_MISSINGNO].mname;
-	mread(fd, (genericptr_t) &mons[PM_MULTICOLORED_MISSINGNO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MULTICOLORED_MISSINGNO], sizeof(struct permonst));
 	mons[PM_MULTICOLORED_MISSINGNO].mname = tname;
 
 	tname = mons[PM_PETTY_ACEHACK_HORROR].mname;
-	mread(fd, (genericptr_t) &mons[PM_PETTY_ACEHACK_HORROR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_PETTY_ACEHACK_HORROR], sizeof(struct permonst));
 	mons[PM_PETTY_ACEHACK_HORROR].mname = tname;
 	tname = mons[PM_YEENOGHU].mname;
-	mread(fd, (genericptr_t) &mons[PM_YEENOGHU], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_YEENOGHU], sizeof(struct permonst));
 	mons[PM_YEENOGHU].mname = tname;
 	tname = mons[PM_ASMODEUS].mname;
-	mread(fd, (genericptr_t) &mons[PM_ASMODEUS], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ASMODEUS], sizeof(struct permonst));
 	mons[PM_ASMODEUS].mname = tname;
 	tname = mons[PM_DEATH].mname;
-	mread(fd, (genericptr_t) &mons[PM_DEATH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_DEATH], sizeof(struct permonst));
 	mons[PM_DEATH].mname = tname;
 	tname = mons[PM_FAMINE].mname;
-	mread(fd, (genericptr_t) &mons[PM_FAMINE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_FAMINE], sizeof(struct permonst));
 	mons[PM_FAMINE].mname = tname;
 	tname = mons[PM_PESTILENCE].mname;
-	mread(fd, (genericptr_t) &mons[PM_PESTILENCE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_PESTILENCE], sizeof(struct permonst));
 	mons[PM_PESTILENCE].mname = tname;
 	tname = mons[PM_MULTICOLOR_GRUE].mname;
-	mread(fd, (genericptr_t) &mons[PM_MULTICOLOR_GRUE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MULTICOLOR_GRUE], sizeof(struct permonst));
 	mons[PM_MULTICOLOR_GRUE].mname = tname;
 
 	tname = mons[PM_MYSTIC_EYE].mname;
-	mread(fd, (genericptr_t) &mons[PM_MYSTIC_EYE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MYSTIC_EYE], sizeof(struct permonst));
 	mons[PM_MYSTIC_EYE].mname = tname;
 	tname = mons[PM_UNKNOWN_MIMIC].mname;
-	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_MIMIC], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_UNKNOWN_MIMIC], sizeof(struct permonst));
 	mons[PM_UNKNOWN_MIMIC].mname = tname;
 	tname = mons[PM_UNKNOWN_PERMAMIMIC].mname;
-	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_PERMAMIMIC], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_UNKNOWN_PERMAMIMIC], sizeof(struct permonst));
 	mons[PM_UNKNOWN_PERMAMIMIC].mname = tname;
-	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_MIMIC_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_PERMAMIMIC_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_UNKNOWN_MIMIC_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_UNKNOWN_PERMAMIMIC_X], sizeof(struct permonst));
 	tname = mons[PM_SHINING_PIERCER].mname;
-	mread(fd, (genericptr_t) &mons[PM_SHINING_PIERCER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SHINING_PIERCER], sizeof(struct permonst));
 	mons[PM_SHINING_PIERCER].mname = tname;
 	tname = mons[PM_SHINING_PENETRATOR].mname;
-	mread(fd, (genericptr_t) &mons[PM_SHINING_PENETRATOR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SHINING_PENETRATOR], sizeof(struct permonst));
 	mons[PM_SHINING_PENETRATOR].mname = tname;
 	tname = mons[PM_SHINING_SMASHER].mname;
-	mread(fd, (genericptr_t) &mons[PM_SHINING_SMASHER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SHINING_SMASHER], sizeof(struct permonst));
 	mons[PM_SHINING_SMASHER].mname = tname;
 	tname = mons[PM_SIZZLING_VORTEX].mname;
-	mread(fd, (genericptr_t) &mons[PM_SIZZLING_VORTEX], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SIZZLING_VORTEX], sizeof(struct permonst));
 	mons[PM_SIZZLING_VORTEX].mname = tname;
 	tname = mons[PM_COLORLESS_MOLD].mname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_MOLD], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_MOLD], sizeof(struct permonst));
 	mons[PM_COLORLESS_MOLD].mname = tname;
 	tname = mons[PM_COLORLESS_FUNGUS].mname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FUNGUS], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_FUNGUS], sizeof(struct permonst));
 	mons[PM_COLORLESS_FUNGUS].mname = tname;
 	tname = mons[PM_COLORLESS_PATCH].mname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_PATCH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_PATCH], sizeof(struct permonst));
 	mons[PM_COLORLESS_PATCH].mname = tname;
 	tname = mons[PM_COLORLESS_FORCE_FUNGUS].mname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FORCE_FUNGUS], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_FORCE_FUNGUS], sizeof(struct permonst));
 	mons[PM_COLORLESS_FORCE_FUNGUS].mname = tname;
 	tname = mons[PM_COLORLESS_FORCE_PATCH].mname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FORCE_PATCH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_FORCE_PATCH], sizeof(struct permonst));
 	mons[PM_COLORLESS_FORCE_PATCH].mname = tname;
 	tname = mons[PM_COLORLESS_WARP_FUNGUS].mname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_WARP_FUNGUS], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_WARP_FUNGUS], sizeof(struct permonst));
 	mons[PM_COLORLESS_WARP_FUNGUS].mname = tname;
 	tname = mons[PM_COLORLESS_WARP_PATCH].mname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_WARP_PATCH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_WARP_PATCH], sizeof(struct permonst));
 	mons[PM_COLORLESS_WARP_PATCH].mname = tname;
 	tname = mons[PM_COLORLESS_STALK].mname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_STALK], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_STALK], sizeof(struct permonst));
 	mons[PM_COLORLESS_STALK].mname = tname;
 	tname = mons[PM_COLORLESS_SPORE].mname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_SPORE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_SPORE], sizeof(struct permonst));
 	mons[PM_COLORLESS_SPORE].mname = tname;
 	tname = mons[PM_COLORLESS_MUSHROOM].mname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_MUSHROOM], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_MUSHROOM], sizeof(struct permonst));
 	mons[PM_COLORLESS_MUSHROOM].mname = tname;
 	tname = mons[PM_COLORLESS_GROWTH].mname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_GROWTH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_GROWTH], sizeof(struct permonst));
 	mons[PM_COLORLESS_GROWTH].mname = tname;
 	tname = mons[PM_COLORLESS_COLONY].mname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_COLONY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_COLONY], sizeof(struct permonst));
 	mons[PM_COLORLESS_COLONY].mname = tname;
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_MOLD_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FUNGUS_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_PATCH_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FORCE_FUNGUS_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_FORCE_PATCH_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_WARP_FUNGUS_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_WARP_PATCH_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_STALK_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_SPORE_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_MUSHROOM_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_GROWTH_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_COLORLESS_COLONY_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_MOLD_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_FUNGUS_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_PATCH_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_FORCE_FUNGUS_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_FORCE_PATCH_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_WARP_FUNGUS_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_WARP_PATCH_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_STALK_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_SPORE_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_MUSHROOM_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_GROWTH_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_COLORLESS_COLONY_X], sizeof(struct permonst));
 	tname = mons[PM_NONDESCRIPT_MOLD].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_MOLD], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_MOLD], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_MOLD].mname = tname;
 	tname = mons[PM_NONDESCRIPT_FUNGUS].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_FUNGUS], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_FUNGUS], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_FUNGUS].mname = tname;
 	tname = mons[PM_NONDESCRIPT_PATCH].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_PATCH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_PATCH], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_PATCH].mname = tname;
 	tname = mons[PM_NONDESCRIPT_FORCE_FUNGUS].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_FORCE_FUNGUS], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_FORCE_FUNGUS], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_FORCE_FUNGUS].mname = tname;
 	tname = mons[PM_NONDESCRIPT_FORCE_PATCH].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_FORCE_PATCH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_FORCE_PATCH], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_FORCE_PATCH].mname = tname;
 	tname = mons[PM_NONDESCRIPT_WARP_FUNGUS].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_WARP_FUNGUS], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_WARP_FUNGUS], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_WARP_FUNGUS].mname = tname;
 	tname = mons[PM_NONDESCRIPT_WARP_PATCH].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_WARP_PATCH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_WARP_PATCH], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_WARP_PATCH].mname = tname;
 	tname = mons[PM_NONDESCRIPT_STALK].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_STALK], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_STALK], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_STALK].mname = tname;
 	tname = mons[PM_NONDESCRIPT_SPORE].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_SPORE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_SPORE], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_SPORE].mname = tname;
 	tname = mons[PM_NONDESCRIPT_MUSHROOM].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_MUSHROOM], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_MUSHROOM], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_MUSHROOM].mname = tname;
 	tname = mons[PM_NONDESCRIPT_GROWTH].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_GROWTH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_GROWTH], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_GROWTH].mname = tname;
 	tname = mons[PM_NONDESCRIPT_COLONY].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONDESCRIPT_COLONY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONDESCRIPT_COLONY], sizeof(struct permonst));
 	mons[PM_NONDESCRIPT_COLONY].mname = tname;
 	tname = mons[PM_ONG_SEPHIRAH].mname;
-	mread(fd, (genericptr_t) &mons[PM_ONG_SEPHIRAH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ONG_SEPHIRAH], sizeof(struct permonst));
 	mons[PM_ONG_SEPHIRAH].mname = tname;
 	tname = mons[PM_KRONG_SEPHIRAH].mname;
-	mread(fd, (genericptr_t) &mons[PM_KRONG_SEPHIRAH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_KRONG_SEPHIRAH], sizeof(struct permonst));
 	mons[PM_KRONG_SEPHIRAH].mname = tname;
-	mread(fd, (genericptr_t) &mons[PM_KRONG_SEPHIRAH_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_KRONG_SEPHIRAH_X], sizeof(struct permonst));
 	tname = mons[PM_ZAKRONG_SEPHIRAH].mname;
-	mread(fd, (genericptr_t) &mons[PM_ZAKRONG_SEPHIRAH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ZAKRONG_SEPHIRAH], sizeof(struct permonst));
 	mons[PM_ZAKRONG_SEPHIRAH].mname = tname;
 	tname = mons[PM_SPECIAL_TROLL].mname;
-	mread(fd, (genericptr_t) &mons[PM_SPECIAL_TROLL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SPECIAL_TROLL], sizeof(struct permonst));
 	mons[PM_SPECIAL_TROLL].mname = tname;
 	tname = mons[PM_TEETHFISH].mname;
-	mread(fd, (genericptr_t) &mons[PM_TEETHFISH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_TEETHFISH], sizeof(struct permonst));
 	mons[PM_TEETHFISH].mname = tname;
 	tname = mons[PM_RAZORFIN_FISH].mname;
-	mread(fd, (genericptr_t) &mons[PM_RAZORFIN_FISH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RAZORFIN_FISH], sizeof(struct permonst));
 	mons[PM_RAZORFIN_FISH].mname = tname;
 	tname = mons[PM_UNKNOWN_TURRET].mname;
-	mread(fd, (genericptr_t) &mons[PM_UNKNOWN_TURRET], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_UNKNOWN_TURRET], sizeof(struct permonst));
 	mons[PM_UNKNOWN_TURRET].mname = tname;
 	tname = mons[PM_RAINBOW_MODE_DRAGON].mname;
-	mread(fd, (genericptr_t) &mons[PM_RAINBOW_MODE_DRAGON], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RAINBOW_MODE_DRAGON], sizeof(struct permonst));
 	mons[PM_RAINBOW_MODE_DRAGON].mname = tname;
 
 	tname = mons[PM_RNG_SPHERE].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNG_SPHERE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNG_SPHERE], sizeof(struct permonst));
 	mons[PM_RNG_SPHERE].mname = tname;
 	tname = mons[PM_RNG_LIGHT].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNG_LIGHT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNG_LIGHT], sizeof(struct permonst));
 	mons[PM_RNG_LIGHT].mname = tname;
 	tname = mons[PM_RNG_LASER].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNG_LASER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNG_LASER], sizeof(struct permonst));
 	mons[PM_RNG_LASER].mname = tname;
 
 	tname = mons[PM_SHADOW_WARRIOR].mname;
-	mread(fd, (genericptr_t) &mons[PM_SHADOW_WARRIOR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SHADOW_WARRIOR], sizeof(struct permonst));
 	mons[PM_SHADOW_WARRIOR].mname = tname;
 	tname = mons[PM_ROBOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_ROBOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ROBOT], sizeof(struct permonst));
 	mons[PM_ROBOT].mname = tname;
 
 	tname = mons[PM_ADULT_TATZELWORM].mname;
-	mread(fd, (genericptr_t) &mons[PM_ADULT_TATZELWORM], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADULT_TATZELWORM], sizeof(struct permonst));
 	mons[PM_ADULT_TATZELWORM].mname = tname;
 	tname = mons[PM_ADULT_AMPHITERE].mname;
-	mread(fd, (genericptr_t) &mons[PM_ADULT_AMPHITERE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADULT_AMPHITERE], sizeof(struct permonst));
 	mons[PM_ADULT_AMPHITERE].mname = tname;
 	tname = mons[PM_ADULT_DRAKEN].mname;
-	mread(fd, (genericptr_t) &mons[PM_ADULT_DRAKEN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADULT_DRAKEN], sizeof(struct permonst));
 	mons[PM_ADULT_DRAKEN].mname = tname;
 	tname = mons[PM_ADULT_LINDWORM].mname;
-	mread(fd, (genericptr_t) &mons[PM_ADULT_LINDWORM], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADULT_LINDWORM], sizeof(struct permonst));
 	mons[PM_ADULT_LINDWORM].mname = tname;
 	tname = mons[PM_ADULT_SARKANY].mname;
-	mread(fd, (genericptr_t) &mons[PM_ADULT_SARKANY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADULT_SARKANY], sizeof(struct permonst));
 	mons[PM_ADULT_SARKANY].mname = tname;
 	tname = mons[PM_ADULT_SIRRUSH].mname;
-	mread(fd, (genericptr_t) &mons[PM_ADULT_SIRRUSH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADULT_SIRRUSH], sizeof(struct permonst));
 	mons[PM_ADULT_SIRRUSH].mname = tname;
 	tname = mons[PM_ADULT_LEVIATHAN].mname;
-	mread(fd, (genericptr_t) &mons[PM_ADULT_LEVIATHAN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADULT_LEVIATHAN], sizeof(struct permonst));
 	mons[PM_ADULT_LEVIATHAN].mname = tname;
 	tname = mons[PM_ADULT_WYVERN].mname;
-	mread(fd, (genericptr_t) &mons[PM_ADULT_WYVERN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADULT_WYVERN], sizeof(struct permonst));
 	mons[PM_ADULT_WYVERN].mname = tname;
 	tname = mons[PM_ADULT_GLOWING_DRAGON].mname;
-	mread(fd, (genericptr_t) &mons[PM_ADULT_GLOWING_DRAGON], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADULT_GLOWING_DRAGON], sizeof(struct permonst));
 	mons[PM_ADULT_GLOWING_DRAGON].mname = tname;
 	tname = mons[PM_ADULT_GUIVRE].mname;
-	mread(fd, (genericptr_t) &mons[PM_ADULT_GUIVRE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADULT_GUIVRE], sizeof(struct permonst));
 	mons[PM_ADULT_GUIVRE].mname = tname;
 	tname = mons[PM_BABY_TATZELWORM].mname;
-	mread(fd, (genericptr_t) &mons[PM_BABY_TATZELWORM], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BABY_TATZELWORM], sizeof(struct permonst));
 	mons[PM_BABY_TATZELWORM].mname = tname;
 	tname = mons[PM_BABY_AMPHITERE].mname;
-	mread(fd, (genericptr_t) &mons[PM_BABY_AMPHITERE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BABY_AMPHITERE], sizeof(struct permonst));
 	mons[PM_BABY_AMPHITERE].mname = tname;
 	tname = mons[PM_BABY_DRAKEN].mname;
-	mread(fd, (genericptr_t) &mons[PM_BABY_DRAKEN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BABY_DRAKEN], sizeof(struct permonst));
 	mons[PM_BABY_DRAKEN].mname = tname;
 	tname = mons[PM_BABY_LINDWORM].mname;
-	mread(fd, (genericptr_t) &mons[PM_BABY_LINDWORM], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BABY_LINDWORM], sizeof(struct permonst));
 	mons[PM_BABY_LINDWORM].mname = tname;
 	tname = mons[PM_BABY_SARKANY].mname;
-	mread(fd, (genericptr_t) &mons[PM_BABY_SARKANY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BABY_SARKANY], sizeof(struct permonst));
 	mons[PM_BABY_SARKANY].mname = tname;
 	tname = mons[PM_BABY_SIRRUSH].mname;
-	mread(fd, (genericptr_t) &mons[PM_BABY_SIRRUSH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BABY_SIRRUSH], sizeof(struct permonst));
 	mons[PM_BABY_SIRRUSH].mname = tname;
 	tname = mons[PM_BABY_LEVIATHAN].mname;
-	mread(fd, (genericptr_t) &mons[PM_BABY_LEVIATHAN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BABY_LEVIATHAN], sizeof(struct permonst));
 	mons[PM_BABY_LEVIATHAN].mname = tname;
 	tname = mons[PM_BABY_WYVERN].mname;
-	mread(fd, (genericptr_t) &mons[PM_BABY_WYVERN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BABY_WYVERN], sizeof(struct permonst));
 	mons[PM_BABY_WYVERN].mname = tname;
 	tname = mons[PM_BABY_GLOWING_DRAGON].mname;
-	mread(fd, (genericptr_t) &mons[PM_BABY_GLOWING_DRAGON], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BABY_GLOWING_DRAGON], sizeof(struct permonst));
 	mons[PM_BABY_GLOWING_DRAGON].mname = tname;
 	tname = mons[PM_BABY_GUIVRE].mname;
-	mread(fd, (genericptr_t) &mons[PM_BABY_GUIVRE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BABY_GUIVRE], sizeof(struct permonst));
 	mons[PM_BABY_GUIVRE].mname = tname;
 
-	mread(fd, (genericptr_t) &mons[PM_ADULT_TATZELWORM_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_ADULT_AMPHITERE_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_BABY_TATZELWORM_X], sizeof(struct permonst));
-	mread(fd, (genericptr_t) &mons[PM_BABY_AMPHITERE_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADULT_TATZELWORM_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ADULT_AMPHITERE_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BABY_TATZELWORM_X], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BABY_AMPHITERE_X], sizeof(struct permonst));
 
 	tname = mons[PM_PUPURIN].mname;
-	mread(fd, (genericptr_t) &mons[PM_PUPURIN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_PUPURIN], sizeof(struct permonst));
 	mons[PM_PUPURIN].mname = tname;
 	tname = mons[PM_SAPUSAUR].mname;
-	mread(fd, (genericptr_t) &mons[PM_SAPUSAUR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SAPUSAUR], sizeof(struct permonst));
 	mons[PM_SAPUSAUR].mname = tname;
 	tname = mons[PM_TSUBOTSUBO].mname;
-	mread(fd, (genericptr_t) &mons[PM_TSUBOTSUBO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_TSUBOTSUBO], sizeof(struct permonst));
 	mons[PM_TSUBOTSUBO].mname = tname;
 	tname = mons[PM_ODDOSHISHI].mname;
-	mread(fd, (genericptr_t) &mons[PM_ODDOSHISHI], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ODDOSHISHI], sizeof(struct permonst));
 	mons[PM_ODDOSHISHI].mname = tname;
 	tname = mons[PM_OKUTAN].mname;
-	mread(fd, (genericptr_t) &mons[PM_OKUTAN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_OKUTAN], sizeof(struct permonst));
 	mons[PM_OKUTAN].mname = tname;
 	tname = mons[PM_RATICLAW].mname;
-	mread(fd, (genericptr_t) &mons[PM_RATICLAW], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RATICLAW], sizeof(struct permonst));
 	mons[PM_RATICLAW].mname = tname;
 	tname = mons[PM_PSYBUR].mname;
-	mread(fd, (genericptr_t) &mons[PM_PSYBUR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_PSYBUR], sizeof(struct permonst));
 	mons[PM_PSYBUR].mname = tname;
 	tname = mons[PM_HARISEN].mname;
-	mread(fd, (genericptr_t) &mons[PM_HARISEN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_HARISEN], sizeof(struct permonst));
 	mons[PM_HARISEN].mname = tname;
 	tname = mons[PM_SUIKUN].mname;
-	mread(fd, (genericptr_t) &mons[PM_SUIKUN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SUIKUN], sizeof(struct permonst));
 	mons[PM_SUIKUN].mname = tname;
 	tname = mons[PM_HOUOU].mname;
-	mread(fd, (genericptr_t) &mons[PM_HOUOU], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_HOUOU], sizeof(struct permonst));
 	mons[PM_HOUOU].mname = tname;
 	tname = mons[PM_LOCUSTOD].mname;
-	mread(fd, (genericptr_t) &mons[PM_LOCUSTOD], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_LOCUSTOD], sizeof(struct permonst));
 	mons[PM_LOCUSTOD].mname = tname;
 	tname = mons[PM_FORETOSU].mname;
-	mread(fd, (genericptr_t) &mons[PM_FORETOSU], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_FORETOSU], sizeof(struct permonst));
 	mons[PM_FORETOSU].mname = tname;
 	tname = mons[PM_CHARCOLT].mname;
-	mread(fd, (genericptr_t) &mons[PM_CHARCOLT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_CHARCOLT], sizeof(struct permonst));
 	mons[PM_CHARCOLT].mname = tname;
 	tname = mons[PM_MILLENUM].mname;
-	mread(fd, (genericptr_t) &mons[PM_MILLENUM], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MILLENUM], sizeof(struct permonst));
 	mons[PM_MILLENUM].mname = tname;
 
 	tname = mons[PM_EXTRA_FLEECY_BUNDLE].mname;
-	mread(fd, (genericptr_t) &mons[PM_EXTRA_FLEECY_BUNDLE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_EXTRA_FLEECY_BUNDLE], sizeof(struct permonst));
 	mons[PM_EXTRA_FLEECY_BUNDLE].mname = tname;
 	tname = mons[PM_EMMELIE].mname;
-	mread(fd, (genericptr_t) &mons[PM_EMMELIE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_EMMELIE], sizeof(struct permonst));
 	mons[PM_EMMELIE].mname = tname;
 	tname = mons[PM_LUISA].mname;
-	mread(fd, (genericptr_t) &mons[PM_LUISA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_LUISA], sizeof(struct permonst));
 	mons[PM_LUISA].mname = tname;
 	tname = mons[PM_SHY_LAURA].mname;
-	mread(fd, (genericptr_t) &mons[PM_SHY_LAURA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SHY_LAURA], sizeof(struct permonst));
 	mons[PM_SHY_LAURA].mname = tname;
 	tname = mons[PM_ANNA].mname;
-	mread(fd, (genericptr_t) &mons[PM_ANNA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ANNA], sizeof(struct permonst));
 	mons[PM_ANNA].mname = tname;
 	tname = mons[PM_LEXI].mname;
-	mread(fd, (genericptr_t) &mons[PM_LEXI], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_LEXI], sizeof(struct permonst));
 	mons[PM_LEXI].mname = tname;
 	tname = mons[PM_SOFT_SARAH].mname;
-	mread(fd, (genericptr_t) &mons[PM_SOFT_SARAH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SOFT_SARAH], sizeof(struct permonst));
 	mons[PM_SOFT_SARAH].mname = tname;
 	tname = mons[PM_MAREIKE].mname;
-	mread(fd, (genericptr_t) &mons[PM_MAREIKE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MAREIKE], sizeof(struct permonst));
 	mons[PM_MAREIKE].mname = tname;
 	tname = mons[PM_REBECCA].mname;
-	mread(fd, (genericptr_t) &mons[PM_REBECCA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_REBECCA], sizeof(struct permonst));
 	mons[PM_REBECCA].mname = tname;
 	tname = mons[PM_ROUGH_TERESA].mname;
-	mread(fd, (genericptr_t) &mons[PM_ROUGH_TERESA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ROUGH_TERESA], sizeof(struct permonst));
 	mons[PM_ROUGH_TERESA].mname = tname;
 	tname = mons[PM_JANINE].mname;
-	mread(fd, (genericptr_t) &mons[PM_JANINE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_JANINE], sizeof(struct permonst));
 	mons[PM_JANINE].mname = tname;
 	tname = mons[PM_BITCHY_LARA].mname;
-	mread(fd, (genericptr_t) &mons[PM_BITCHY_LARA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BITCHY_LARA], sizeof(struct permonst));
 	mons[PM_BITCHY_LARA].mname = tname;
 	tname = mons[PM_MARLEEN].mname;
-	mread(fd, (genericptr_t) &mons[PM_MARLEEN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MARLEEN], sizeof(struct permonst));
 	mons[PM_MARLEEN].mname = tname;
 	tname = mons[PM_NONEROTIC_IRINA].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONEROTIC_IRINA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONEROTIC_IRINA], sizeof(struct permonst));
 	mons[PM_NONEROTIC_IRINA].mname = tname;
 	tname = mons[PM_BUNDLY_ANN].mname;
-	mread(fd, (genericptr_t) &mons[PM_BUNDLY_ANN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BUNDLY_ANN], sizeof(struct permonst));
 	mons[PM_BUNDLY_ANN].mname = tname;
 	tname = mons[PM_LISELOTTE].mname;
-	mread(fd, (genericptr_t) &mons[PM_LISELOTTE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_LISELOTTE], sizeof(struct permonst));
 	mons[PM_LISELOTTE].mname = tname;
 	tname = mons[PM_LILLY].mname;
-	mread(fd, (genericptr_t) &mons[PM_LILLY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_LILLY], sizeof(struct permonst));
 	mons[PM_LILLY].mname = tname;
 	tname = mons[PM_MIRIAM_THE_SPIRIT_GIRL].mname;
-	mread(fd, (genericptr_t) &mons[PM_MIRIAM_THE_SPIRIT_GIRL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MIRIAM_THE_SPIRIT_GIRL], sizeof(struct permonst));
 	mons[PM_MIRIAM_THE_SPIRIT_GIRL].mname = tname;
 	tname = mons[PM_THE_SWEET_HIGH_HEEL_LOVING_ASIAN_GIRL].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_SWEET_HIGH_HEEL_LOVING_ASIAN_GIRL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_SWEET_HIGH_HEEL_LOVING_ASIAN_GIRL], sizeof(struct permonst));
 	mons[PM_THE_SWEET_HIGH_HEEL_LOVING_ASIAN_GIRL].mname = tname;
 	tname = mons[PM_EMMA].mname;
-	mread(fd, (genericptr_t) &mons[PM_EMMA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_EMMA], sizeof(struct permonst));
 	mons[PM_EMMA].mname = tname;
 	tname = mons[PM_ALIDA].mname;
-	mread(fd, (genericptr_t) &mons[PM_ALIDA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ALIDA], sizeof(struct permonst));
 	mons[PM_ALIDA].mname = tname;
 	tname = mons[PM_JOSEFINE].mname;
-	mread(fd, (genericptr_t) &mons[PM_JOSEFINE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_JOSEFINE], sizeof(struct permonst));
 	mons[PM_JOSEFINE].mname = tname;
 	tname = mons[PM_VILEA].mname;
-	mread(fd, (genericptr_t) &mons[PM_VILEA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_VILEA], sizeof(struct permonst));
 	mons[PM_VILEA].mname = tname;
 	tname = mons[PM_VILEA_S_SISTER].mname;
-	mread(fd, (genericptr_t) &mons[PM_VILEA_S_SISTER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_VILEA_S_SISTER], sizeof(struct permonst));
 	mons[PM_VILEA_S_SISTER].mname = tname;
 	tname = mons[PM_HANNAH].mname;
-	mread(fd, (genericptr_t) &mons[PM_HANNAH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_HANNAH], sizeof(struct permonst));
 	mons[PM_HANNAH].mname = tname;
 	tname = mons[PM_AMELJE].mname;
-	mread(fd, (genericptr_t) &mons[PM_AMELJE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_AMELJE], sizeof(struct permonst));
 	mons[PM_AMELJE].mname = tname;
 	tname = mons[PM_NON_PRETTY_MELANIE].mname;
-	mread(fd, (genericptr_t) &mons[PM_NON_PRETTY_MELANIE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NON_PRETTY_MELANIE], sizeof(struct permonst));
 	mons[PM_NON_PRETTY_MELANIE].mname = tname;
 	tname = mons[PM_THE_SWEET_REDGUARD_GIRL].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_SWEET_REDGUARD_GIRL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_SWEET_REDGUARD_GIRL], sizeof(struct permonst));
 	mons[PM_THE_SWEET_REDGUARD_GIRL].mname = tname;
 	tname = mons[PM_THE_HEELED_TOPMODEL].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_HEELED_TOPMODEL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_HEELED_TOPMODEL], sizeof(struct permonst));
 	mons[PM_THE_HEELED_TOPMODEL].mname = tname;
 	tname = mons[PM_THE_HUGGING_TOPMODEL].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_HUGGING_TOPMODEL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_HUGGING_TOPMODEL], sizeof(struct permonst));
 	mons[PM_THE_HUGGING_TOPMODEL].mname = tname;
 	tname = mons[PM_MARIE].mname;
-	mread(fd, (genericptr_t) &mons[PM_MARIE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MARIE], sizeof(struct permonst));
 	mons[PM_MARIE].mname = tname;
 	tname = mons[PM_THE_FAIRY].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_FAIRY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_FAIRY], sizeof(struct permonst));
 	mons[PM_THE_FAIRY].mname = tname;
 	tname = mons[PM_FANNY].mname;
-	mread(fd, (genericptr_t) &mons[PM_FANNY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_FANNY], sizeof(struct permonst));
 	mons[PM_FANNY].mname = tname;
 	tname = mons[PM_THE_BASTARD_BROTHER_OF_SHY_LAURA].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_BASTARD_BROTHER_OF_SHY_LAURA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_BASTARD_BROTHER_OF_SHY_LAURA], sizeof(struct permonst));
 	mons[PM_THE_BASTARD_BROTHER_OF_SHY_LAURA].mname = tname;
 	tname = mons[PM_APE_HEAD].mname;
-	mread(fd, (genericptr_t) &mons[PM_APE_HEAD], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_APE_HEAD], sizeof(struct permonst));
 	mons[PM_APE_HEAD].mname = tname;
 	tname = mons[PM_BEANPOLE].mname;
-	mread(fd, (genericptr_t) &mons[PM_BEANPOLE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BEANPOLE], sizeof(struct permonst));
 	mons[PM_BEANPOLE].mname = tname;
 	tname = mons[PM_CHEESEHEAD_SIMON].mname;
-	mread(fd, (genericptr_t) &mons[PM_CHEESEHEAD_SIMON], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_CHEESEHEAD_SIMON], sizeof(struct permonst));
 	mons[PM_CHEESEHEAD_SIMON].mname = tname;
 	tname = mons[PM_MALADJUSTED_LEON].mname;
-	mread(fd, (genericptr_t) &mons[PM_MALADJUSTED_LEON], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MALADJUSTED_LEON], sizeof(struct permonst));
 	mons[PM_MALADJUSTED_LEON].mname = tname;
 	tname = mons[PM_MAX_THE_BADASS].mname;
-	mread(fd, (genericptr_t) &mons[PM_MAX_THE_BADASS], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MAX_THE_BADASS], sizeof(struct permonst));
 	mons[PM_MAX_THE_BADASS].mname = tname;
 	tname = mons[PM_ANTON].mname;
-	mread(fd, (genericptr_t) &mons[PM_ANTON], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ANTON], sizeof(struct permonst));
 	mons[PM_ANTON].mname = tname;
 	tname = mons[PM_JONAS_THE_SCHIZO_AUTIST].mname;
-	mread(fd, (genericptr_t) &mons[PM_JONAS_THE_SCHIZO_AUTIST], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_JONAS_THE_SCHIZO_AUTIST], sizeof(struct permonst));
 	mons[PM_JONAS_THE_SCHIZO_AUTIST].mname = tname;
 	tname = mons[PM_LARS_THE_SCHIZOPHRENIC].mname;
-	mread(fd, (genericptr_t) &mons[PM_LARS_THE_SCHIZOPHRENIC], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_LARS_THE_SCHIZOPHRENIC], sizeof(struct permonst));
 	mons[PM_LARS_THE_SCHIZOPHRENIC].mname = tname;
 	tname = mons[PM_MELVIN].mname;
-	mread(fd, (genericptr_t) &mons[PM_MELVIN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MELVIN], sizeof(struct permonst));
 	mons[PM_MELVIN].mname = tname;
 	tname = mons[PM_THE_BASTARD_BROTHER_OF_LILLY].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_BASTARD_BROTHER_OF_LILLY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_BASTARD_BROTHER_OF_LILLY], sizeof(struct permonst));
 	mons[PM_THE_BASTARD_BROTHER_OF_LILLY].mname = tname;
 	tname = mons[PM_THE_DISGUSTING_FRIEND_OF_LILLY_S_BROTHER].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_DISGUSTING_FRIEND_OF_LILLY_S_BROTHER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_DISGUSTING_FRIEND_OF_LILLY_S_BROTHER], sizeof(struct permonst));
 	mons[PM_THE_DISGUSTING_FRIEND_OF_LILLY_S_BROTHER].mname = tname;
 	tname = mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE], sizeof(struct permonst));
 	mons[PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE].mname = tname;
 	tname = mons[PM_SCHALOTTE].mname;
-	mread(fd, (genericptr_t) &mons[PM_SCHALOTTE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SCHALOTTE], sizeof(struct permonst));
 	mons[PM_SCHALOTTE].mname = tname;
 	tname = mons[PM_MAY_BRITT].mname;
-	mread(fd, (genericptr_t) &mons[PM_MAY_BRITT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MAY_BRITT], sizeof(struct permonst));
 	mons[PM_MAY_BRITT].mname = tname;
 	tname = mons[PM_ROXY_GRETA].mname;
-	mread(fd, (genericptr_t) &mons[PM_ROXY_GRETA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ROXY_GRETA], sizeof(struct permonst));
 	mons[PM_ROXY_GRETA].mname = tname;
 	tname = mons[PM_BUNDLE_NADJA].mname;
-	mread(fd, (genericptr_t) &mons[PM_BUNDLE_NADJA], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BUNDLE_NADJA], sizeof(struct permonst));
 	mons[PM_BUNDLE_NADJA].mname = tname;
 
 	tname = mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_THE_EXTRA_FLEECY_BUNDLE_HER_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_EMMELIE_S_SNEAKER].mname;
-	mread(fd, (genericptr_t) &mons[PM_EMMELIE_S_SNEAKER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_EMMELIE_S_SNEAKER], sizeof(struct permonst));
 	mons[PM_EMMELIE_S_SNEAKER].mname = tname;
 	tname = mons[PM_LUISA_S_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_LUISA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_LUISA_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_LUISA_S_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT], sizeof(struct permonst));
 	mons[PM_SHY_LAURA_S_LOVELY_COMBAT_BOOT].mname = tname;
 	tname = mons[PM_LEXI_S_WONDERFULLY_SOFT_SNEAKER].mname;
-	mread(fd, (genericptr_t) &mons[PM_LEXI_S_WONDERFULLY_SOFT_SNEAKER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_LEXI_S_WONDERFULLY_SOFT_SNEAKER], sizeof(struct permonst));
 	mons[PM_LEXI_S_WONDERFULLY_SOFT_SNEAKER].mname = tname;
 	tname = mons[PM_REBECCA_S_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_REBECCA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_REBECCA_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_REBECCA_S_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_ROUGH_TERESA_S_SNEAKER].mname;
-	mread(fd, (genericptr_t) &mons[PM_ROUGH_TERESA_S_SNEAKER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ROUGH_TERESA_S_SNEAKER], sizeof(struct permonst));
 	mons[PM_ROUGH_TERESA_S_SNEAKER].mname = tname;
 	tname = mons[PM_JANINE_S_SNEAKER].mname;
-	mread(fd, (genericptr_t) &mons[PM_JANINE_S_SNEAKER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_JANINE_S_SNEAKER], sizeof(struct permonst));
 	mons[PM_JANINE_S_SNEAKER].mname = tname;
 	tname = mons[PM_BITCHY_LARA_S_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_BITCHY_LARA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BITCHY_LARA_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_BITCHY_LARA_S_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_MARLEEN_S_SNEAKER].mname;
-	mread(fd, (genericptr_t) &mons[PM_MARLEEN_S_SNEAKER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MARLEEN_S_SNEAKER], sizeof(struct permonst));
 	mons[PM_MARLEEN_S_SNEAKER].mname = tname;
 	tname = mons[PM_MARLEEN_S_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_MARLEEN_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MARLEEN_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_MARLEEN_S_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_NONEROTIC_IRINA_S_WEDGE_SANDAL].mname;
-	mread(fd, (genericptr_t) &mons[PM_NONEROTIC_IRINA_S_WEDGE_SANDAL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_NONEROTIC_IRINA_S_WEDGE_SANDAL], sizeof(struct permonst));
 	mons[PM_NONEROTIC_IRINA_S_WEDGE_SANDAL].mname = tname;
 	tname = mons[PM_BUNDLY_ANN_S_SOFT_SANDAL].mname;
-	mread(fd, (genericptr_t) &mons[PM_BUNDLY_ANN_S_SOFT_SANDAL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BUNDLY_ANN_S_SOFT_SANDAL], sizeof(struct permonst));
 	mons[PM_BUNDLY_ANN_S_SOFT_SANDAL].mname = tname;
 	tname = mons[PM_LISELOTTE_S_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_LISELOTTE_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_LISELOTTE_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_LISELOTTE_S_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_LISELOTTE_S_SOFT_SNEAKER].mname;
-	mread(fd, (genericptr_t) &mons[PM_LISELOTTE_S_SOFT_SNEAKER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_LISELOTTE_S_SOFT_SNEAKER], sizeof(struct permonst));
 	mons[PM_LISELOTTE_S_SOFT_SNEAKER].mname = tname;
 	tname = mons[PM_LILLY_S_FLEECY_COMBAT_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_LILLY_S_FLEECY_COMBAT_BOOT], sizeof(struct permonst));
 	mons[PM_LILLY_S_FLEECY_COMBAT_BOOT].mname = tname;
 	tname = mons[PM_MAY_BRITT_S_FLUFFY_SANDAL].mname;
-	mread(fd, (genericptr_t) &mons[PM_MAY_BRITT_S_FLUFFY_SANDAL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MAY_BRITT_S_FLUFFY_SANDAL], sizeof(struct permonst));
 	mons[PM_MAY_BRITT_S_FLUFFY_SANDAL].mname = tname;
 	tname = mons[PM_ROXY_GRETA_S_SNEAKER].mname;
-	mread(fd, (genericptr_t) &mons[PM_ROXY_GRETA_S_SNEAKER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ROXY_GRETA_S_SNEAKER], sizeof(struct permonst));
 	mons[PM_ROXY_GRETA_S_SNEAKER].mname = tname;
 	tname = mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_HEELS].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_HEELS], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_HEELS], sizeof(struct permonst));
 	mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_HEELS].mname = tname;
 	tname = mons[PM_EMMA_S_ANKLE_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_EMMA_S_ANKLE_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_EMMA_S_ANKLE_BOOT], sizeof(struct permonst));
 	mons[PM_EMMA_S_ANKLE_BOOT].mname = tname;
 	tname = mons[PM_ALIDA_S_COLORFUL_SNEAKER].mname;
-	mread(fd, (genericptr_t) &mons[PM_ALIDA_S_COLORFUL_SNEAKER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ALIDA_S_COLORFUL_SNEAKER], sizeof(struct permonst));
 	mons[PM_ALIDA_S_COLORFUL_SNEAKER].mname = tname;
 	tname = mons[PM_JOSEFINE_S_SUPER_SWEET_VELCRO_SNEAKER].mname;
-	mread(fd, (genericptr_t) &mons[PM_JOSEFINE_S_SUPER_SWEET_VELCRO_SNEAKER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_JOSEFINE_S_SUPER_SWEET_VELCRO_SNEAKER], sizeof(struct permonst));
 	mons[PM_JOSEFINE_S_SUPER_SWEET_VELCRO_SNEAKER].mname = tname;
 	tname = mons[PM_VILEA_S_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_VILEA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_VILEA_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_VILEA_S_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_HANNAH_S_COMBAT_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_HANNAH_S_COMBAT_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_HANNAH_S_COMBAT_BOOT], sizeof(struct permonst));
 	mons[PM_HANNAH_S_COMBAT_BOOT].mname = tname;
 	tname = mons[PM_AMELJE_S_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_AMELJE_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_AMELJE_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_AMELJE_S_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_AMELJE_S_SANDAL].mname;
-	mread(fd, (genericptr_t) &mons[PM_AMELJE_S_SANDAL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_AMELJE_S_SANDAL], sizeof(struct permonst));
 	mons[PM_AMELJE_S_SANDAL].mname = tname;
 	tname = mons[PM_MELANIE_S_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_MELANIE_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MELANIE_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_MELANIE_S_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_THE_HUGGING_TOPMODEL_HER_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_MARIE_S_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_MARIE_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MARIE_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_MARIE_S_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_FANNY_S_VELCRO_SNEAKER].mname;
-	mread(fd, (genericptr_t) &mons[PM_FANNY_S_VELCRO_SNEAKER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_FANNY_S_VELCRO_SNEAKER], sizeof(struct permonst));
 	mons[PM_FANNY_S_VELCRO_SNEAKER].mname = tname;
 	tname = mons[PM_FANNY_S_BRAND_NEW_SNEAKER].mname;
-	mread(fd, (genericptr_t) &mons[PM_FANNY_S_BRAND_NEW_SNEAKER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_FANNY_S_BRAND_NEW_SNEAKER], sizeof(struct permonst));
 	mons[PM_FANNY_S_BRAND_NEW_SNEAKER].mname = tname;
 	tname = mons[PM_FANNY_S_BUCKLED_SANDAL].mname;
-	mread(fd, (genericptr_t) &mons[PM_FANNY_S_BUCKLED_SANDAL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_FANNY_S_BUCKLED_SANDAL], sizeof(struct permonst));
 	mons[PM_FANNY_S_BUCKLED_SANDAL].mname = tname;
 	tname = mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_BUNDLE_NADJA_S_HUGGING_BOOT].mname = tname;
 
 	tname = mons[PM_LOLI].mname;
-	mread(fd, (genericptr_t) &mons[PM_LOLI], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_LOLI], sizeof(struct permonst));
 	mons[PM_LOLI].mname = tname;
 	tname = mons[PM_DESTABILIZER].mname;
-	mread(fd, (genericptr_t) &mons[PM_DESTABILIZER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_DESTABILIZER], sizeof(struct permonst));
 	mons[PM_DESTABILIZER].mname = tname;
 	tname = mons[PM_POLYINITOR].mname;
-	mread(fd, (genericptr_t) &mons[PM_POLYINITOR], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_POLYINITOR], sizeof(struct permonst));
 	mons[PM_POLYINITOR].mname = tname;
 
 	tname = mons[PM_RANDO_ANT].mname;
-	mread(fd, (genericptr_t) &mons[PM_RANDO_ANT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RANDO_ANT], sizeof(struct permonst));
 	mons[PM_RANDO_ANT].mname = tname;
 	tname = mons[PM_RNGENERAL].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNGENERAL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNGENERAL], sizeof(struct permonst));
 	mons[PM_RNGENERAL].mname = tname;
 	tname = mons[PM_VICIOUS_WOLF].mname;
-	mread(fd, (genericptr_t) &mons[PM_VICIOUS_WOLF], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_VICIOUS_WOLF], sizeof(struct permonst));
 	mons[PM_VICIOUS_WOLF].mname = tname;
 	tname = mons[PM_MYRION].mname;
-	mread(fd, (genericptr_t) &mons[PM_MYRION], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MYRION], sizeof(struct permonst));
 	mons[PM_MYRION].mname = tname;
 	tname = mons[PM_UNEXPECTED_TIGER].mname;
-	mread(fd, (genericptr_t) &mons[PM_UNEXPECTED_TIGER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_UNEXPECTED_TIGER], sizeof(struct permonst));
 	mons[PM_UNEXPECTED_TIGER].mname = tname;
 	tname = mons[PM_CUBED_JELLY].mname;
-	mread(fd, (genericptr_t) &mons[PM_CUBED_JELLY], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_CUBED_JELLY], sizeof(struct permonst));
 	mons[PM_CUBED_JELLY].mname = tname;
 	tname = mons[PM_KOBOLD_DICEROLLER].mname;
-	mread(fd, (genericptr_t) &mons[PM_KOBOLD_DICEROLLER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_KOBOLD_DICEROLLER], sizeof(struct permonst));
 	mons[PM_KOBOLD_DICEROLLER].mname = tname;
 	tname = mons[PM_GYM_LEADER].mname;
-	mread(fd, (genericptr_t) &mons[PM_GYM_LEADER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_GYM_LEADER], sizeof(struct permonst));
 	mons[PM_GYM_LEADER].mname = tname;
 	tname = mons[PM_RAINBOW_SENTAI].mname;
-	mread(fd, (genericptr_t) &mons[PM_RAINBOW_SENTAI], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RAINBOW_SENTAI], sizeof(struct permonst));
 	mons[PM_RAINBOW_SENTAI].mname = tname;
 	tname = mons[PM_UNFAIR_ARCHON].mname;
-	mread(fd, (genericptr_t) &mons[PM_UNFAIR_ARCHON], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_UNFAIR_ARCHON], sizeof(struct permonst));
 	mons[PM_UNFAIR_ARCHON].mname = tname;
 	tname = mons[PM_CHAOS_RULECHANGER].mname;
-	mread(fd, (genericptr_t) &mons[PM_CHAOS_RULECHANGER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_CHAOS_RULECHANGER], sizeof(struct permonst));
 	mons[PM_CHAOS_RULECHANGER].mname = tname;
 	tname = mons[PM_RNGED_MONSTER].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNGED_MONSTER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNGED_MONSTER], sizeof(struct permonst));
 	mons[PM_RNGED_MONSTER].mname = tname;
 	tname = mons[PM_RNG_KOP].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNG_KOP], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNG_KOP], sizeof(struct permonst));
 	mons[PM_RNG_KOP].mname = tname;
 	tname = mons[PM_RNG_SERGEANT].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNG_SERGEANT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNG_SERGEANT], sizeof(struct permonst));
 	mons[PM_RNG_SERGEANT].mname = tname;
 	tname = mons[PM_RNG_LIEUTENANT].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNG_LIEUTENANT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNG_LIEUTENANT], sizeof(struct permonst));
 	mons[PM_RNG_LIEUTENANT].mname = tname;
 	tname = mons[PM_RNG_KAPTAIN].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNG_KAPTAIN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNG_KAPTAIN], sizeof(struct permonst));
 	mons[PM_RNG_KAPTAIN].mname = tname;
 	tname = mons[PM_RNG_KOMMISSIONER].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNG_KOMMISSIONER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNG_KOMMISSIONER], sizeof(struct permonst));
 	mons[PM_RNG_KOMMISSIONER].mname = tname;
 	tname = mons[PM_RNG_KCHIEF].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNG_KCHIEF], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNG_KCHIEF], sizeof(struct permonst));
 	mons[PM_RNG_KCHIEF].mname = tname;
 	tname = mons[PM_RNG_KATCHER].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNG_KATCHER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNG_KATCHER], sizeof(struct permonst));
 	mons[PM_RNG_KATCHER].mname = tname;
 	tname = mons[PM_RNG_KRIMINOLOGIST].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNG_KRIMINOLOGIST], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNG_KRIMINOLOGIST], sizeof(struct permonst));
 	mons[PM_RNG_KRIMINOLOGIST].mname = tname;
 	tname = mons[PM_GENERATOR_LICH].mname;
-	mread(fd, (genericptr_t) &mons[PM_GENERATOR_LICH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_GENERATOR_LICH], sizeof(struct permonst));
 	mons[PM_GENERATOR_LICH].mname = tname;
 	tname = mons[PM_WHIMLICH].mname;
-	mread(fd, (genericptr_t) &mons[PM_WHIMLICH], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_WHIMLICH], sizeof(struct permonst));
 	mons[PM_WHIMLICH].mname = tname;
 	tname = mons[PM_RAINBOW_OGRE].mname;
-	mread(fd, (genericptr_t) &mons[PM_RAINBOW_OGRE], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RAINBOW_OGRE], sizeof(struct permonst));
 	mons[PM_RAINBOW_OGRE].mname = tname;
 	tname = mons[PM_RANDO].mname;
-	mread(fd, (genericptr_t) &mons[PM_RANDO], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RANDO], sizeof(struct permonst));
 	mons[PM_RANDO].mname = tname;
 	tname = mons[PM_RNGHOST].mname;
-	mread(fd, (genericptr_t) &mons[PM_RNGHOST], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RNGHOST], sizeof(struct permonst));
 	mons[PM_RNGHOST].mname = tname;
 	tname = mons[PM_RANDOMIZER_DRACONIAN].mname;
-	mread(fd, (genericptr_t) &mons[PM_RANDOMIZER_DRACONIAN], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_RANDOMIZER_DRACONIAN], sizeof(struct permonst));
 	mons[PM_RANDOMIZER_DRACONIAN].mname = tname;
 
 	tname = mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER].mname;
-	mread(fd, (genericptr_t) &mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER], sizeof(struct permonst));
 	mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER].mname = tname;
 	tname = mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT], sizeof(struct permonst));
 	mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT].mname = tname;
 	tname = mons[PM_ALIDA_S_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_ALIDA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_ALIDA_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_ALIDA_S_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_BITCHY_LARA_S_HUGGING_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_BITCHY_LARA_S_HUGGING_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_BITCHY_LARA_S_HUGGING_BOOT], sizeof(struct permonst));
 	mons[PM_BITCHY_LARA_S_HUGGING_BOOT].mname = tname;
 	tname = mons[PM_EMMA_S_SEXY_WEDGE_SANDAL].mname;
-	mread(fd, (genericptr_t) &mons[PM_EMMA_S_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_EMMA_S_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
 	mons[PM_EMMA_S_SEXY_WEDGE_SANDAL].mname = tname;
 	tname = mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL].mname;
-	mread(fd, (genericptr_t) &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL], sizeof(struct permonst));
 	mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL].mname = tname;
 	tname = mons[PM_FANNY_S_LOVELY_WINTER_BOOT].mname;
-	mread(fd, (genericptr_t) &mons[PM_FANNY_S_LOVELY_WINTER_BOOT], sizeof(struct permonst));
+	mread(fd, (void *) &mons[PM_FANNY_S_LOVELY_WINTER_BOOT], sizeof(struct permonst));
 	mons[PM_FANNY_S_LOVELY_WINTER_BOOT].mname = tname;
 
 	if(u.uhp <= 0 && (!Upolyd || u.mh <= 0)) {
@@ -1278,7 +1278,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	invent = restobjchn(fd, FALSE, FALSE);
 	migrating_objs = restobjchn(fd, FALSE, FALSE);
 	migrating_mons = restmonchn(fd, FALSE);
-	mread(fd, (genericptr_t) mvitals, sizeof(mvitals));
+	mread(fd, (void *) mvitals, sizeof(mvitals));
 
 	/*
 	 * There are some things after this that can have unintended display
@@ -1313,22 +1313,22 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	restore_dungeon(fd);
 
 	restlevchn(fd);
-	mread(fd, (genericptr_t) &moves, sizeof moves);
-	mread(fd, (genericptr_t) &monstermoves, sizeof monstermoves);
-	mread(fd, (genericptr_t) &quest_status, sizeof(struct q_score));
-	mread(fd, (genericptr_t) spl_book,
+	mread(fd, (void *) &moves, sizeof moves);
+	mread(fd, (void *) &monstermoves, sizeof monstermoves);
+	mread(fd, (void *) &quest_status, sizeof(struct q_score));
+	mread(fd, (void *) spl_book,
 				sizeof(struct spell) * (MAXSPELL + 1));
-	mread(fd, (genericptr_t) tech_list,
+	mread(fd, (void *) tech_list,
 			sizeof(struct tech) * (MAXTECH + 1));
 	restore_oracles(fd);
 	if (u.ustuck)
-		mread(fd, (genericptr_t) stuckid, sizeof (*stuckid));
+		mread(fd, (void *) stuckid, sizeof (*stuckid));
 	if (u.usteed)
-		mread(fd, (genericptr_t) steedid, sizeof (*steedid));
-	mread(fd, (genericptr_t) pl_character, sizeof (pl_character));
+		mread(fd, (void *) steedid, sizeof (*steedid));
+	mread(fd, (void *) pl_character, sizeof (pl_character));
 
-	mread(fd, (genericptr_t) pl_fruit, sizeof pl_fruit);
-	mread(fd, (genericptr_t) &current_fruit, sizeof current_fruit);
+	mread(fd, (void *) pl_fruit, sizeof pl_fruit);
+	mread(fd, (void *) &current_fruit, sizeof current_fruit);
 	freefruitchn(ffruit);	/* clean up fruit(s) made by initoptions() */
 	ffruit = loadfruitchn(fd);
 
@@ -1337,10 +1337,10 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	restore_waterlevel(fd);
 
 #ifdef RECORD_ACHIEVE
-        mread(fd, (genericptr_t) &achieve, sizeof achieve);
+        mread(fd, (void *) &achieve, sizeof achieve);
 #endif
 #if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)
-        mread(fd, (genericptr_t) &realtime_data.realtime, 
+        mread(fd, (void *) &realtime_data.realtime, 
                   sizeof realtime_data.realtime);
 #endif
   
@@ -1451,7 +1451,7 @@ register int fd;
 	struct obj *otmp;
 
 #ifdef STORE_PLNAME_IN_FILE
-	mread(fd, (genericptr_t) plname, PL_NSIZ);
+	mread(fd, (void *) plname, PL_NSIZ);
 #endif
 
 	restoring = TRUE;
@@ -1506,9 +1506,9 @@ register int fd;
 #endif
 	while(1) {
 #ifdef ZEROCOMP
-		if(mread(fd, (genericptr_t) &ltmp, sizeof ltmp) < 0)
+		if(mread(fd, (void *) &ltmp, sizeof ltmp) < 0)
 #else
-		if(read(fd, (genericptr_t) &ltmp, sizeof ltmp) != sizeof ltmp)
+		if(read(fd, (void *) &ltmp, sizeof ltmp) != sizeof ltmp)
 #endif
 			break;
 		getlev(fd, 0, ltmp, FALSE);
@@ -1535,7 +1535,7 @@ register int fd;
 #endif
 	(void) uptodate(fd, (char *)0);		/* skip version info */
 #ifdef STORE_PLNAME_IN_FILE
-	mread(fd, (genericptr_t) plname, PL_NSIZ);
+	mread(fd, (void *) plname, PL_NSIZ);
 #endif
 	getlev(fd, 0, (xchar)0, FALSE);
 	(void) close(fd);
@@ -1652,13 +1652,13 @@ boolean ghostly;
 	if (ghostly) oldfruit = loadfruitchn(fd);
 
 	/* First some sanity checks */
-	mread(fd, (genericptr_t) &hpid, sizeof(hpid));
+	mread(fd, (void *) &hpid, sizeof(hpid));
 /* CHECK:  This may prevent restoration */
 #ifdef TOS
-	mread(fd, (genericptr_t) &tlev, sizeof(tlev));
+	mread(fd, (void *) &tlev, sizeof(tlev));
 	dlvl=tlev&0x00ff;
 #else
-	mread(fd, (genericptr_t) &dlvl, sizeof(dlvl));
+	mread(fd, (void *) &dlvl, sizeof(dlvl));
 #endif
 	if ((pid && pid != hpid) || (lev && dlvl != lev)) {
 	    char trickbuf[BUFSZ];
@@ -1682,7 +1682,7 @@ boolean ghostly;
 		
 #if defined(MAC)
 		/* Suppress warning about used before set */
-		(void) memset((genericptr_t) &r, 0, sizeof(r));
+		(void) memset((void *) &r, 0, sizeof(r));
 #endif
 		i = 0; j = 0; len = 0;
 		while(i < ROWNO) {
@@ -1692,8 +1692,8 @@ boolean ghostly;
 			    len -= 1;
 			    j += 1;
 			} else {
-			    mread(fd, (genericptr_t)&len, sizeof(uchar));
-			    mread(fd, (genericptr_t)&r, sizeof(struct rm));
+			    mread(fd, (void *)&len, sizeof(uchar));
+			    mread(fd, (void *)&r, sizeof(struct rm));
 			}
 		    }
 		    j = 0;
@@ -1701,19 +1701,19 @@ boolean ghostly;
 		}
 	}
 #else
-	mread(fd, (genericptr_t) levl, sizeof(levl));
+	mread(fd, (void *) levl, sizeof(levl));
 #endif	/* RLECOMP */
 
-	mread(fd, (genericptr_t)&omoves, sizeof(omoves));
-	mread(fd, (genericptr_t)&upstair, sizeof(stairway));
-	mread(fd, (genericptr_t)&dnstair, sizeof(stairway));
-	mread(fd, (genericptr_t)&upladder, sizeof(stairway));
-	mread(fd, (genericptr_t)&dnladder, sizeof(stairway));
-	mread(fd, (genericptr_t)&sstairs, sizeof(stairway));
-	mread(fd, (genericptr_t)&updest, sizeof(dest_area));
-	mread(fd, (genericptr_t)&dndest, sizeof(dest_area));
-	mread(fd, (genericptr_t)&level.flags, sizeof(level.flags));
-	mread(fd, (genericptr_t)doors, sizeof(doors));
+	mread(fd, (void *)&omoves, sizeof(omoves));
+	mread(fd, (void *)&upstair, sizeof(stairway));
+	mread(fd, (void *)&dnstair, sizeof(stairway));
+	mread(fd, (void *)&upladder, sizeof(stairway));
+	mread(fd, (void *)&dnladder, sizeof(stairway));
+	mread(fd, (void *)&sstairs, sizeof(stairway));
+	mread(fd, (void *)&updest, sizeof(dest_area));
+	mread(fd, (void *)&dndest, sizeof(dest_area));
+	mread(fd, (void *)&level.flags, sizeof(level.flags));
+	mread(fd, (void *)doors, sizeof(doors));
 	rest_rooms(fd);		/* No joke :-) */
 	/* ALI - regenerate doorindex */
 	if (nroom)
@@ -1754,7 +1754,7 @@ boolean ghostly;
 	rest_worm(fd);	/* restore worm information */
 	ftrap = 0;
 	while (trap = newtrap(),
-	       mread(fd, (genericptr_t)trap, sizeof(struct trap)),
+	       mread(fd, (void *)trap, sizeof(struct trap)),
 	       trap->tx != 0) {	/* need "!= 0" to work around DICE 3.0 bug */
 		trap->ntrap = ftrap;
 		ftrap = trap;
@@ -1852,7 +1852,7 @@ clear_id_mapping()
 
     while ((curr = id_map) != 0) {
 	id_map = curr->next;
-	free((genericptr_t) curr);
+	free((void *) curr);
     }
     n_ids_mapped = 0;
 }
@@ -1923,10 +1923,10 @@ boolean ghostly;
 	    mtmp->mpeaceful = mtmp->mtame = 0;	/* pet's owner died! */
 	}
 	if (ghostly && otmp->oattached == OATTACHED_M_ID) {
-	    (void) memcpy((genericptr_t)&oldid, (genericptr_t)otmp->oextra,
+	    (void) memcpy((void *)&oldid, (void *)otmp->oextra,
 								sizeof(oldid));
 	    if (lookup_id_mapping(oldid, &nid))
-		(void) memcpy((genericptr_t)otmp->oextra, (genericptr_t)&nid,
+		(void) memcpy((void *)otmp->oextra, (void *)&nid,
 								sizeof(nid));
 	    else
 		otmp->oattached = OATTACHED_NOTHING;
@@ -1951,7 +1951,7 @@ static int
 mgetc()
 {
     if (inbufp >= inbufsz) {
-	inbufsz = read(mreadfd, (genericptr_t)inbuf, sizeof inbuf);
+	inbufsz = read(mreadfd, (void *)inbuf, sizeof inbuf);
 	if (!inbufsz) {
 	    if (inbufp > sizeof inbuf)
 		error("EOF on file #%d.\n", mreadfd);
@@ -1974,7 +1974,7 @@ minit()
 int
 mread(fd, buf, len)
 int fd;
-genericptr_t buf;
+void * buf;
 register unsigned len;
 {
     /*register int readlen = 0;*/
@@ -2007,7 +2007,7 @@ minit()
 void
 mread(fd, buf, len)
 register int fd;
-register genericptr_t buf;
+register void * buf;
 register unsigned int len;
 {
 	register int rlen;

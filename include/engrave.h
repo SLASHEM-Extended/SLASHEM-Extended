@@ -22,6 +22,6 @@ struct engr {
 };
 
 #define newengr(lth) (struct engr *)alloc((unsigned)(lth) + sizeof(struct engr))
-#define dealloc_engr(engr) free((genericptr_t) (engr))
+#define dealloc_engr(engr) free((void *) (engr))
 
 #endif /* ENGRAVE_H */

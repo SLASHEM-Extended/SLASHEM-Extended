@@ -441,7 +441,7 @@ main(argc, argv)
 	}
 
 	for (i = 0; i < nfiles; i++)
-	    free((genericptr_t) ld[i].fname),  ld[i].fname = 0;
+	    free((void *) ld[i].fname),  ld[i].fname = 0;
 
 	(void) close(out);
 	xexit(EXIT_SUCCESS);

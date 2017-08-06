@@ -14,7 +14,7 @@ STATIC_DCL boolean findtravelpath(BOOLEAN_P);
 STATIC_DCL boolean monstinroom(struct permonst *,int);
 
 STATIC_DCL void move_update(BOOLEAN_P);
-STATIC_PTR void set_litX(int,int,genericptr_t);
+STATIC_PTR void set_litX(int,int,void *);
 
 static boolean door_opened;	/* set to true if door was opened during test_move */
 
@@ -782,7 +782,7 @@ still_chewing(x,y)
     const char *digtxt = (char *)0, *dmgtxt = (char *)0;
 
     if (digging.down)		/* not continuing previous dig (w/ pick-axe) */
-	(void) memset((genericptr_t)&digging, 0, sizeof digging);
+	(void) memset((void *)&digging, 0, sizeof digging);
 
     if (!boulder && IS_ROCK(lev->typ) && !may_dig(x,y)) {
 	You("hurt your teeth on the %s.",
@@ -836,7 +836,7 @@ still_chewing(x,y)
 	if (IS_ROCK(lev->typ) || closed_door(x,y) || sobj_at(BOULDER,x,y)) {
 	    block_point(x,y);	/* delobj will unblock the point */
 	    /* reset dig state */
-	    (void) memset((genericptr_t)&digging, 0, sizeof digging);
+	    (void) memset((void *)&digging, 0, sizeof digging);
 	    return 1;
 	}
 
@@ -899,7 +899,7 @@ still_chewing(x,y)
     newsym(x, y);
     if (digtxt) You(digtxt);	/* after newsym */
     if (dmgtxt) pay_for_damage(dmgtxt, FALSE);
-    (void) memset((genericptr_t)&digging, 0, sizeof digging);
+    (void) memset((void *)&digging, 0, sizeof digging);
     return 0;
 }
 
@@ -1345,7 +1345,7 @@ boolean guess;
 	}
 
     noguess:
-	(void) memset((genericptr_t)travel, 0, sizeof(travel));
+	(void) memset((void *)travel, 0, sizeof(travel));
 	travelstepx[0][0] = tx;
 	travelstepy[0][0] = ty;
 
@@ -3001,7 +3001,7 @@ register boolean newlev;
                 pline(Hallucination ? "It is radiant bright. You are likely to be eaten by the sun." : "It is pitch black. You are likely to be eaten by a grue.");
 
 	    do_clear_areaX(u.ux,u.uy,		/* extra darkness --Amy */
-		15, set_litX, (genericptr_t)((char *)0));
+		15, set_litX, (void *)((char *)0));
 		/* IMHO grue rooms may remove light every time you enter them. --Amy */
 		    if (!issoviet) wake_nearby();
                 break;
@@ -3771,7 +3771,7 @@ struct obj *otmp;
 STATIC_PTR void
 set_litX(x,y,val)
 int x, y;
-genericptr_t val;
+void * val;
 {
 	if (val)
 	    levl[x][y].lit = 1;

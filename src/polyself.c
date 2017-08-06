@@ -526,11 +526,11 @@ boolean forcecontrol;
 	new_light = Upolyd ? emits_light(youmonst.data) : 0;
 	if (old_light != new_light) {
 	    if (old_light)
-		del_light_source(LS_MONSTER, (genericptr_t)&youmonst);
+		del_light_source(LS_MONSTER, (void *)&youmonst);
 	    if (new_light == 1) ++new_light;  /* otherwise it's undetectable */
 	    if (new_light)
 		new_light_source(u.ux, u.uy, new_light,
-				 LS_MONSTER, (genericptr_t)&youmonst);
+				 LS_MONSTER, (void *)&youmonst);
 	}
 	if (is_pool(u.ux,u.uy) && was_floating && !(Levitation || Flying) &&
 		!breathless(youmonst.data) && !amphibious(youmonst.data) &&
@@ -1207,7 +1207,7 @@ rehumanize()
 	}
 
 	if (emits_light(youmonst.data))
-	    del_light_source(LS_MONSTER, (genericptr_t)&youmonst);
+	    del_light_source(LS_MONSTER, (void *)&youmonst);
 	polyman("return to %s form!", urace.adj);
 	u.polyformed = 0;
 
@@ -2759,11 +2759,11 @@ special_poly()
 		new_light = (u.umonnum >= LOW_PM) ? emits_light(youmonst.data) : 0;
 		if (old_light != new_light) {
 		    if (old_light)
-			del_light_source(LS_MONSTER, (genericptr_t)&youmonst);
+			del_light_source(LS_MONSTER, (void *)&youmonst);
 		    if (new_light == 1) ++new_light;  /* otherwise it's undetectable */
 		    if (new_light)
 			new_light_source(u.ux, u.uy, new_light,
-					 LS_MONSTER, (genericptr_t)&youmonst);
+					 LS_MONSTER, (void *)&youmonst);
 		}
 	}
 	return;

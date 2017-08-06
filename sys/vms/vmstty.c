@@ -464,7 +464,7 @@ unsigned mseconds;	/* milliseconds */
 	/* qtime{0:63} = msec{0:31} * mseconds_to_delta{0:31} + zero{0:31} */
 	vms_ok(lib$emul(&msec, &mseconds_to_delta, &zero, qtime))) {
 	/* schedule a wake-up call, then go to sleep */
-	if (vms_ok(sys$schdwk(&pid, (genericptr_t)0, qtime, (long *)0)))
+	if (vms_ok(sys$schdwk(&pid, (void *)0, qtime, (long *)0)))
 	    (void)sys$hiber();
     }
 }

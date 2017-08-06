@@ -1327,7 +1327,7 @@ tech_known(tech)
 STATIC_PTR void
 undo_lockfloodP(x, y, roomcnt)
 int x, y;
-genericptr_t roomcnt;
+void * roomcnt;
 {
 	if (levl[x][y].typ < STONE || levl[x][y].typ > DBWALL)
 		return;
@@ -1621,7 +1621,7 @@ dotechmenu(how, tech_no)
 	destroy_nhwindow(tmpwin);
 	if (n > 0) {
 	    *tech_no = selected[0].item.a_int - 1;
-	    free((genericptr_t)selected);
+	    free((void *)selected);
 	    return TRUE;
 	}
 	return FALSE;
@@ -2253,7 +2253,7 @@ int tech_no;
 			pline("You perform the panic digging ritual and are paralyzed for a while.");
 			int maderoom = 0;
 
-			do_clear_areaX(u.ux, u.uy, 1, undo_lockfloodP, (genericptr_t)&maderoom);
+			do_clear_areaX(u.ux, u.uy, 1, undo_lockfloodP, (void *)&maderoom);
 
 			if (maderoom) pline("Some solid rock is pulverized!");
 			else pline("There was nothing to dig out...");

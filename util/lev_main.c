@@ -66,8 +66,7 @@
 #define ERR		(-1)
 
 #define NewTab(type, size)	(type **) alloc(sizeof(type *) * size)
-#define Free(ptr)		if(ptr) free((genericptr_t) (ptr))
-#define Write(fd, item, size)	if (write(fd, (genericptr_t)(item), size) != size) return FALSE;
+#define Write(fd, item, size)	if (write(fd, (void *)(item), size) != size) return FALSE;
 
 #if defined(__BORLANDC__) && !defined(_WIN32)
 extern unsigned _stklen = STKSIZ;
@@ -1413,16 +1412,16 @@ monster ***monsters_p;
 	    Write(fd, m, sizeof *m);
 	    if (name) {
 		Write(fd, name, m->name.len);
-		Free(name);
+		free(name);
 	    }
 	    if (appr) {
 		Write(fd, appr, m->appear_as.len);
-		Free(appr);
+		free(appr);
 	    }
-	    Free(m);
+	    free(m);
 	}
 	if (*monsters_p) {
-	    Free(*monsters_p);
+	    free(*monsters_p);
 	    *monsters_p = 0;
 	}
 	*nmonster_p = 0;
@@ -1451,12 +1450,12 @@ object ***objects_p;
 	    Write(fd, o, sizeof *o);
 	    if (name) {
 		Write(fd, name, o->name.len);
-		Free(name);
+		free(name);
 	    }
-	    Free(o);
+	    free(o);
 	}
 	if (*objects_p) {
-	    Free(*objects_p);
+	    free(*objects_p);
 	    *objects_p = 0;
 	}
 	*nobject_p = 0;
@@ -1484,11 +1483,11 @@ engraving ***engravings_p;
 	    e->engr.len = strlen(engr);
 	    Write(fd, e, sizeof *e);
 	    Write(fd, engr, e->engr.len);
-	    Free(engr);
-	    Free(e);
+	    free(engr);
+	    free(e);
 	}
 	if (*engravings_p) {
-	    Free(*engravings_p);
+	    free(*engravings_p);
 	    *engravings_p = 0;
 	}
 	*nengraving_p = 0;
@@ -1569,13 +1568,13 @@ specialmaze *maze;
 			 * warning '!=' : signed/unsigned mismatch
 			 */
 			unsigned reslt, sz = pt->xsize * sizeof *pt->map[j];
-			reslt = write(fd, (genericptr_t)(pt->map[j]), sz);
+			reslt = write(fd, (void *)(pt->map[j]), sz);
 			if (reslt != sz) return FALSE;
 #endif
 		}
-		Free(pt->map[j]);
+		free(pt->map[j]);
 	    }
-	    Free(pt->map);
+	    free(pt->map);
 
 	    /* level region stuff */
 	    Write(fd, &pt->nlreg, sizeof pt->nlreg);
@@ -1587,12 +1586,12 @@ specialmaze *maze;
 		Write(fd, l, sizeof *l);
 		if (rname) {
 		    Write(fd, rname, l->rname.len);
-		    Free(rname);
+		    free(rname);
 		}
-		Free(l);
+		free(l);
 	    }
 	    if (pt->nlreg > 0)
-		Free(pt->lregions);
+		free(pt->lregions);
 
 	    /* random level regions registers */
 	    Write(fd, &pt->nrndlreg, sizeof pt->nrndlreg);
@@ -1604,18 +1603,18 @@ specialmaze *maze;
 		Write(fd, l, sizeof *l);
 		if (rname) {
 		    Write(fd, rname, l->rname.len);
-		    Free(rname);
+		    free(rname);
 		}
-		Free(l);
+		free(l);
 	    }
 	    if (pt->nrndlreg > 0)
-		Free(pt->rndlregions);
+		free(pt->rndlregions);
 
 	    /* The random registers */
 	    Write(fd, &(pt->nrobjects), sizeof(pt->nrobjects));
 	    if(pt->nrobjects) {
 		    Write(fd, pt->robjects, pt->nrobjects);
-		    Free(pt->robjects);
+		    free(pt->robjects);
 	    }
 	    Write(fd, &(pt->nlocset), sizeof(pt->nlocset));
 	    if (pt->nlocset) {
@@ -1623,117 +1622,117 @@ specialmaze *maze;
 		for (j = 0; j < pt->nlocset; j++) {
 		    Write(fd, pt->rloc_x[j], pt->nloc[j]);
 		    Write(fd, pt->rloc_y[j], pt->nloc[j]);
-		    Free(pt->rloc_x[j]);
-		    Free(pt->rloc_y[j]);
+		    free(pt->rloc_x[j]);
+		    free(pt->rloc_y[j]);
 		}
-		Free(pt->nloc);
-		Free(pt->rloc_x);
-		Free(pt->rloc_y);
+		free(pt->nloc);
+		free(pt->rloc_x);
+		free(pt->rloc_y);
 	    }
 	    Write(fd, &(pt->nrmonst), sizeof(pt->nrmonst));
 	    if(pt->nrmonst) {
 		    Write(fd, pt->rmonst, pt->nrmonst);
-		    Free(pt->rmonst);
+		    free(pt->rmonst);
 	    }
 
 	    /* subrooms */
 	    Write(fd, &(pt->nreg), sizeof(pt->nreg));
 	    for(j=0;j<pt->nreg;j++) {
 		    Write(fd, pt->regions[j], sizeof(region));
-		    Free(pt->regions[j]);
+		    free(pt->regions[j]);
 	    }
 	    if(pt->nreg > 0)
-		    Free(pt->regions);
+		    free(pt->regions);
 
 	    /* the doors */
 	    Write(fd, &(pt->ndoor), sizeof(pt->ndoor));
 	    for(j=0;j<pt->ndoor;j++) {
 		    Write(fd, pt->doors[j], sizeof(door));
-		    Free(pt->doors[j]);
+		    free(pt->doors[j]);
 	    }
 	    if (pt->ndoor > 0)
-		    Free(pt->doors);
+		    free(pt->doors);
 
 	    /* The drawbridges */
 	    Write(fd, &(pt->ndrawbridge), sizeof(pt->ndrawbridge));
 	    for(j=0;j<pt->ndrawbridge;j++) {
 		    Write(fd, pt->drawbridges[j], sizeof(drawbridge));
-		    Free(pt->drawbridges[j]);
+		    free(pt->drawbridges[j]);
 	    }
 	    if(pt->ndrawbridge > 0)
-		    Free(pt->drawbridges);
+		    free(pt->drawbridges);
 
 	    /* The mazewalk directives */
 	    Write(fd, &(pt->nwalk), sizeof(pt->nwalk));
 	    for(j=0; j<pt->nwalk; j++) {
 		    Write(fd, pt->walks[j], sizeof(walk));
-		    Free(pt->walks[j]);
+		    free(pt->walks[j]);
 	    }
 	    if (pt->nwalk > 0)
-		    Free(pt->walks);
+		    free(pt->walks);
 
 	    /* The non_diggable directives */
 	    Write(fd, &(pt->ndig), sizeof(pt->ndig));
 	    for(j=0;j<pt->ndig;j++) {
 		    Write(fd, pt->digs[j], sizeof(digpos));
-		    Free(pt->digs[j]);
+		    free(pt->digs[j]);
 	    }
 	    if (pt->ndig > 0)
-		    Free(pt->digs);
+		    free(pt->digs);
 
 	    /* The non_passwall directives */
 	    Write(fd, &(pt->npass), sizeof(pt->npass));
 	    for(j=0;j<pt->npass;j++) {
 		    Write(fd, pt->passs[j], sizeof(digpos));
-		    Free(pt->passs[j]);
+		    free(pt->passs[j]);
 	    }
 	    if (pt->npass > 0)
-		    Free(pt->passs);
+		    free(pt->passs);
 
 	    /* The ladders */
 	    Write(fd, &(pt->nlad), sizeof(pt->nlad));
 	    for(j=0;j<pt->nlad;j++) {
 		    Write(fd, pt->lads[j], sizeof(lad));
-		    Free(pt->lads[j]);
+		    free(pt->lads[j]);
 	    }
 	    if (pt->nlad > 0)
-		    Free(pt->lads);
+		    free(pt->lads);
 
 	    /* The stairs */
 	    Write(fd, &(pt->nstair), sizeof(pt->nstair));
 	    for(j=0;j<pt->nstair;j++) {
 		    Write(fd, pt->stairs[j], sizeof(stair));
-		    Free(pt->stairs[j]);
+		    free(pt->stairs[j]);
 	    }
 	    if (pt->nstair > 0)
-		    Free(pt->stairs);
+		    free(pt->stairs);
 
 	    /* The altars */
 	    Write(fd, &(pt->naltar), sizeof(pt->naltar));
 	    for(j=0;j<pt->naltar;j++) {
 		    Write(fd, pt->altars[j], sizeof(altar));
-		    Free(pt->altars[j]);
+		    free(pt->altars[j]);
 	    }
 	    if (pt->naltar > 0)
-		    Free(pt->altars);
+		    free(pt->altars);
 
 	    /* The fountains */
 	    Write(fd, &(pt->nfountain), sizeof(pt->nfountain));
 	    for(j=0;j<pt->nfountain;j++) {
 		Write(fd, pt->fountains[j], sizeof(fountain));
-		Free(pt->fountains[j]);
+		free(pt->fountains[j]);
 	    }
 	    if (pt->nfountain > 0)
-		    Free(pt->fountains);
+		    free(pt->fountains);
 
 	    /* The traps */
 	    Write(fd, &(pt->ntrap), sizeof(pt->ntrap));
 	    for(j=0;j<pt->ntrap;j++) {
 		    Write(fd, pt->traps[j], sizeof(trap));
-		    Free(pt->traps[j]);
+		    free(pt->traps[j]);
 	    }
 	    if (pt->ntrap)
-		    Free(pt->traps);
+		    free(pt->traps);
 
 	    /* The monsters */
 	    if (!write_monsters(fd, &pt->nmonster, &pt->monsters))
@@ -1747,19 +1746,19 @@ specialmaze *maze;
 	    Write(fd, &(pt->ngold), sizeof(pt->ngold));
 	    for(j=0;j<pt->ngold;j++) {
 		    Write(fd, pt->golds[j], sizeof(gold));
-		    Free(pt->golds[j]);
+		    free(pt->golds[j]);
 	    }
 	    if (pt->ngold > 0)
-		    Free(pt->golds);
+		    free(pt->golds);
 
 	    /* The engravings */
 	    if (!write_engravings(fd, &pt->nengraving, &pt->engravings))
 		    return FALSE;
 
-	    Free(pt);
+	    free(pt);
 	}
 
-	Free(maze->parts);
+	free(maze->parts);
 	maze->parts = (mazepart **)0;
 	maze->numpart = 0;
 	return TRUE;
@@ -1891,67 +1890,67 @@ splev *lev;
 
 	while(n--) {
 		r = lev->rooms[n];
-		Free(r->name);
-		Free(r->parent);
+		free(r->name);
+		free(r->parent);
 		if ((j = r->ndoor) != 0) {
 			while(j--)
-				Free(r->doors[j]);
-			Free(r->doors);
+				free(r->doors[j]);
+			free(r->doors);
 		}
 		if ((j = r->nstair) != 0) {
 			while(j--)
-				Free(r->stairs[j]);
-			Free(r->stairs);
+				free(r->stairs[j]);
+			free(r->stairs);
 		}
 		if ((j = r->naltar) != 0) {
 			while (j--)
-				Free(r->altars[j]);
-			Free(r->altars);
+				free(r->altars[j]);
+			free(r->altars);
 		}
 		if ((j = r->nfountain) != 0) {
 			while(j--)
-				Free(r->fountains[j]);
-			Free(r->fountains);
+				free(r->fountains[j]);
+			free(r->fountains);
 		}
 		if ((j = r->nsink) != 0) {
 			while(j--)
-				Free(r->sinks[j]);
-			Free(r->sinks);
+				free(r->sinks[j]);
+			free(r->sinks);
 		}
 		if ((j = r->npool) != 0) {
 			while(j--)
-				Free(r->pools[j]);
-			Free(r->pools);
+				free(r->pools[j]);
+			free(r->pools);
 		}
 		if ((j = r->ntrap) != 0) {
 			while (j--)
-				Free(r->traps[j]);
-			Free(r->traps);
+				free(r->traps[j]);
+			free(r->traps);
 		}
 		if ((j = r->ngold) != 0) {
 			while(j--)
-				Free(r->golds[j]);
-			Free(r->golds);
+				free(r->golds[j]);
+			free(r->golds);
 		}
-		Free(r);
+		free(r);
 		lev->rooms[n] = (room *)0;
 	}
-	Free(lev->rooms);
+	free(lev->rooms);
 	lev->rooms = (room **)0;
 	lev->nroom = 0;
 
 	for (j = 0; j < lev->ncorr; j++) {
-		Free(lev->corrs[j]);
+		free(lev->corrs[j]);
 		lev->corrs[j] = (corridor *)0;
 	}
-	Free(lev->corrs);
+	free(lev->corrs);
 	lev->corrs = (corridor **)0;
 	lev->ncorr = 0;
 
-	Free(lev->robjects);
+	free(lev->robjects);
 	lev->robjects = (char *)0;
 	lev->nrobjects = 0;
-	Free(lev->rmonst);
+	free(lev->rmonst);
 	lev->rmonst = (char *)0;
 	lev->nrmonst = 0;
 }

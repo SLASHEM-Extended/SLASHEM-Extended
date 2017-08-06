@@ -1136,7 +1136,7 @@ Cloak_on()
 			register struct obj *polycloak;
 			if (uarmc) polycloak = poly_obj(uarmc, STRANGE_OBJECT);
 			if (polycloak && is_hazy(polycloak)) {
-				stop_timer(UNPOLY_OBJ, (genericptr_t) polycloak);
+				stop_timer(UNPOLY_OBJ, (void *) polycloak);
 				polycloak->oldtyp = STRANGE_OBJECT;
 			}
 			if (uarmc) (void) Cloak_off();
@@ -5580,7 +5580,7 @@ int retry;
 	    else
 		add_valid_menu_class(pick_list[i].item.a_int);
 	}
-	free((genericptr_t) pick_list);
+	free((void *) pick_list);
     } else if (flags.menu_style == MENU_COMBINATION) {
 	all_worn_categories = FALSE;
 	if (ggetobj("take off", select_off, 0, TRUE, (unsigned *)0) == -2)
@@ -5594,7 +5594,7 @@ int retry;
     if (n > 0) {
 	for (i = 0; i < n; i++)
 	    (void) select_off(pick_list[i].item.a_obj);
-	free((genericptr_t) pick_list);
+	free((void *) pick_list);
     } else if (n < 0 && flags.menu_style != MENU_COMBINATION) {
 	There("is nothing else you can remove or unwield.");
     }

@@ -16,10 +16,8 @@
 #include "load_img.h"
 #include "gr_rect.h"
 
-#define genericptr_t void *
 typedef signed char schar;
 #include "wintype.h"
-#undef genericptr_t
 
 #define CHAR_P char
 #define SCHAR_P schar

@@ -2012,7 +2012,7 @@ help_menu(sel)
 	destroy_nhwindow(tmpwin);
 	if (n > 0) {
 	    *sel = selected[0].item.a_int - 1;
-	    free((genericptr_t)selected);
+	    free((void *)selected);
 	    return TRUE;
 	}
 	return FALSE;

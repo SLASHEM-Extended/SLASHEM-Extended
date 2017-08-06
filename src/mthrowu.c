@@ -423,7 +423,7 @@ int x,y;
 			if (obj->otyp == SEGFAULT_VENOM) {
 				/* somehow I had to add this to actually make the segfault panics happen...
 				 * I wonder why it crashes in grunthack? */
-			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (genericptr_t) obj);
+			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (void *) obj);
 			}
 			return 1;
 

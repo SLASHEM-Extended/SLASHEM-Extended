@@ -7,7 +7,7 @@
 
 /* generic callback function */
 
-typedef boolean (*callback_proc)(genericptr_t, genericptr_t);
+typedef boolean (*callback_proc)(void *, void *);
 
 /*
  * Overload the old player_inside field with two values, coded in such
@@ -60,7 +60,7 @@ typedef struct {
 
   boolean visible;		/* Is the region visible ? */
   int glyph;			/* Which glyph to use if visible */
-  genericptr_t arg;		/* Optional user argument (Ex: strength of
+  void * arg;		/* Optional user argument (Ex: strength of
 				   force field, damage of a fire zone, ...*/
 } NhRegion;
 

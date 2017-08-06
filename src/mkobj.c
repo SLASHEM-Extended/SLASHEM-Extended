@@ -380,9 +380,9 @@ struct obj *box;
 		 */
 		otmp->age = 0L;
 		if (otmp->timed) {
-		    (void) stop_timer(ROT_CORPSE, (genericptr_t)otmp);
-		    (void) stop_timer(MOLDY_CORPSE, (genericptr_t)otmp);
-		    (void) stop_timer(REVIVE_MON, (genericptr_t)otmp);
+		    (void) stop_timer(ROT_CORPSE, (void *)otmp);
+		    (void) stop_timer(MOLDY_CORPSE, (void *)otmp);
+		    (void) stop_timer(REVIVE_MON, (void *)otmp);
 		}
 	    } else if (box->otyp == TREASURE_CHEST) {
 		register int tprob;
@@ -1373,7 +1373,7 @@ long num;
 	if (obj->where == OBJ_FLOOR)
 	    obj->nexthere = otmp;
 	if (obj->oxlth)
-	    (void)memcpy((genericptr_t)otmp->oextra, (genericptr_t)obj->oextra,
+	    (void)memcpy((void *)otmp->oextra, (void *)obj->oextra,
 			obj->oxlth);
 	if (obj->onamelth)
 	    (void)strncpy(ONAME(otmp), ONAME(obj), (int)obj->onamelth);
@@ -1484,8 +1484,8 @@ register struct obj *otmp;
 	if (!dummy->o_id) dummy->o_id = flags.ident++;	/* ident overflowed */
 	dummy->timed = 0;
 	if (otmp->oxlth)
-	    (void)memcpy((genericptr_t)dummy->oextra,
-			(genericptr_t)otmp->oextra, otmp->oxlth);
+	    (void)memcpy((void *)dummy->oextra,
+			(void *)otmp->oextra, otmp->oxlth);
 	if (otmp->onamelth)
 	    (void)strncpy(ONAME(dummy), ONAME(otmp), (int)otmp->onamelth);
 	if (Is_candle(dummy)) dummy->lamplit = 0;
@@ -2391,7 +2391,7 @@ start_corpse_timeout(body)
 	}
 	
 	if (body->norevive) body->norevive = 0;
-	(void) start_timer(when, TIMER_OBJECT, action, (genericptr_t)body);
+	(void) start_timer(when, TIMER_OBJECT, action, (void *)body);
 }
 
 void
@@ -2421,7 +2421,7 @@ register struct obj *otmp;
 	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 	if (otmp->otyp == FIGURINE && otmp->timed)
-	    (void) stop_timer(FIG_TRANSFORM, (genericptr_t) otmp);
+	    (void) stop_timer(FIG_TRANSFORM, (void *) otmp);
 	}
 	return;
 }
@@ -2438,7 +2438,7 @@ register struct obj *otmp;
 	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 	if (otmp->otyp == FIGURINE && otmp->timed)
-	    (void) stop_timer(FIG_TRANSFORM, (genericptr_t) otmp);
+	    (void) stop_timer(FIG_TRANSFORM, (void *) otmp);
 	return;
 }
 
@@ -2814,11 +2814,11 @@ unsigned mid;
     lth = sizeof(mid);
     namelth = obj->onamelth ? strlen(ONAME(obj)) + 1 : 0;
     if (namelth) 
-	otmp = realloc_obj(obj, lth, (genericptr_t) &mid, namelth, ONAME(obj));
+	otmp = realloc_obj(obj, lth, (void *) &mid, namelth, ONAME(obj));
     else {
 	otmp = obj;
 	otmp->oxlth = sizeof(mid);
-	(void) memcpy((genericptr_t)otmp->oextra, (genericptr_t)&mid,
+	(void) memcpy((void *)otmp->oextra, (void *)&mid,
 								sizeof(mid));
     }
     if (otmp && otmp->oxlth) otmp->oattached = OATTACHED_M_ID;	/* mark it */
@@ -2835,7 +2835,7 @@ struct monst *mtmp;
 
 	lth = sizeof(struct monst) + mtmp->mxlth + mtmp->mnamelth;
 	namelth = obj->onamelth ? strlen(ONAME(obj)) + 1 : 0;
-	otmp = realloc_obj(obj, lth, (genericptr_t) mtmp, namelth, ONAME(obj));
+	otmp = realloc_obj(obj, lth, (void *) mtmp, namelth, ONAME(obj));
 	if (otmp && otmp->oxlth) {
 		struct monst *mtmp2 = (struct monst *)otmp->oextra;
 		if (mtmp->data) mtmp2->mnum = monsndx(mtmp->data);
@@ -2868,8 +2868,8 @@ boolean copyof;
 		int lth = mtmp->mxlth + mtmp->mnamelth;
 		mnew = newmonst(lth);
 		lth += sizeof(struct monst);
-		(void) memcpy((genericptr_t)mnew,
-				(genericptr_t)mtmp, lth);
+		(void) memcpy((void *)mnew,
+				(void *)mtmp, lth);
 	    } else {
 	      /* Never insert this returned pointer into mon chains! */
 	    	mnew = mtmp;
@@ -3053,13 +3053,13 @@ int force;	/* 0 = no force so do checks, <0 = force off, >0 force on */
 
     /* Check for corpses just placed on or in ice */
     if (otmp->otyp == CORPSE && (on_floor || buried) && is_ice(x,y)) {
-	tleft = stop_timer(action, (genericptr_t)otmp);
+	tleft = stop_timer(action, (void *)otmp);
 	if (tleft == 0L) {
 	    action = MOLDY_CORPSE;
-	    tleft = stop_timer(action, (genericptr_t)otmp);
+	    tleft = stop_timer(action, (void *)otmp);
 	    if (tleft == 0L) {
 		action = REVIVE_MON;
-		tleft = stop_timer(action, (genericptr_t)otmp);
+		tleft = stop_timer(action, (void *)otmp);
 	} 
 	} 
 	if (tleft != 0L) {
@@ -3083,13 +3083,13 @@ int force;	/* 0 = no force so do checks, <0 = force off, >0 force on */
     else if ((force < 0) ||
 	     (otmp->otyp == CORPSE && ON_ICE(otmp) &&
 	     ((on_floor && !is_ice(x,y)) || !on_floor))) {
-	tleft = stop_timer(action, (genericptr_t)otmp);
+	tleft = stop_timer(action, (void *)otmp);
 	if (tleft == 0L) {
 	    action = MOLDY_CORPSE;
-	    tleft = stop_timer(action, (genericptr_t)otmp);
+	    tleft = stop_timer(action, (void *)otmp);
 	    if (tleft == 0L) {
 		action = REVIVE_MON;
-		tleft = stop_timer(action, (genericptr_t)otmp);
+		tleft = stop_timer(action, (void *)otmp);
 	}
 	}
 	if (tleft != 0L) {
@@ -3110,7 +3110,7 @@ int force;	/* 0 = no force so do checks, <0 = force off, >0 force on */
     }
     /* now re-start the timer with the appropriate modifications */ 
     if (restart_timer)
-	(void) start_timer(tleft, TIMER_OBJECT, action, (genericptr_t)otmp);
+	(void) start_timer(tleft, TIMER_OBJECT, action, (void *)otmp);
 }
 
 #undef ON_ICE
@@ -3392,11 +3392,11 @@ dealloc_obj(obj)
      * attached to it (and also requires lamplit to be set).
      */
     if (obj_sheds_light(obj))
-	del_light_source(LS_OBJECT, (genericptr_t) obj);
+	del_light_source(LS_OBJECT, (void *) obj);
 
     if (obj == thrownobj) thrownobj = (struct obj*)0;
 
-    free((genericptr_t) obj);
+    free((void *) obj);
 }
 
 #if defined(OBJ_SANITY) || defined(WIZARD)
@@ -3420,7 +3420,7 @@ obj_sanity_check()
     for (obj = fobj; obj; obj = obj->nobj) {
 	if (obj->where != OBJ_FLOOR) {
 	    pline("%s%s obj %s %s@(%d,%d): %s\n", msgprefix, mesg,
-		fmt_ptr((genericptr_t)obj, obj_address),
+		fmt_ptr((void *)obj, obj_address),
 		where_name(obj->where),
 		obj->ox, obj->oy, doname(obj));
 	}
@@ -3433,7 +3433,7 @@ obj_sanity_check()
 	    for (obj = level.objects[x][y]; obj; obj = obj->nexthere)
 		if (obj->where != OBJ_FLOOR) {
 		    pline("%s%s obj %s %s@(%d,%d): %s\n", msgprefix, mesg,
-			fmt_ptr((genericptr_t)obj, obj_address),
+			fmt_ptr((void *)obj, obj_address),
 			where_name(obj->where),
 			obj->ox, obj->oy, doname(obj));
 		}
@@ -3442,7 +3442,7 @@ obj_sanity_check()
     for (obj = invent; obj; obj = obj->nobj) {
 	if (obj->where != OBJ_INVENT) {
 	    pline("%s%s obj %s %s: %s\n", msgprefix, mesg,
-		fmt_ptr((genericptr_t)obj, obj_address),
+		fmt_ptr((void *)obj, obj_address),
 		where_name(obj->where), doname(obj));
 	}
 	check_contained(obj, mesg);
@@ -3452,7 +3452,7 @@ obj_sanity_check()
     for (obj = migrating_objs; obj; obj = obj->nobj) {
 	if (obj->where != OBJ_MIGRATING) {
 	    pline("%s%s obj %s %s: %s\n", msgprefix, mesg,
-		fmt_ptr((genericptr_t)obj, obj_address),
+		fmt_ptr((void *)obj, obj_address),
 		where_name(obj->where), doname(obj));
 	}
 	check_contained(obj, mesg);
@@ -3462,7 +3462,7 @@ obj_sanity_check()
     for (obj = level.buriedobjlist; obj; obj = obj->nobj) {
 	if (obj->where != OBJ_BURIED) {
 	    pline("%s%s obj %s %s: %s\n", msgprefix, mesg,
-		fmt_ptr((genericptr_t)obj, obj_address),
+		fmt_ptr((void *)obj, obj_address),
 		where_name(obj->where), doname(obj));
 	}
 	check_contained(obj, mesg);
@@ -3472,13 +3472,13 @@ obj_sanity_check()
     for (obj = billobjs; obj; obj = obj->nobj) {
 	if (obj->where != OBJ_ONBILL) {
 	    pline("%s%s obj %s %s: %s\n", msgprefix, mesg,
-		fmt_ptr((genericptr_t)obj, obj_address),
+		fmt_ptr((void *)obj, obj_address),
 		where_name(obj->where), doname(obj));
 	}
 	/* shouldn't be a full container on the bill */
 	if (obj->cobj) {
 	    pline("%s%s obj %s contains %s! %s\n", msgprefix, mesg,
-		fmt_ptr((genericptr_t)obj, obj_address),
+		fmt_ptr((void *)obj, obj_address),
 		something, doname(obj));
 	}
     }
@@ -3488,14 +3488,14 @@ obj_sanity_check()
 	for (obj = mon->minvent; obj; obj = obj->nobj) {
 	    if (obj->where != OBJ_MINVENT) {
 		pline("%s%s obj %s %s: %s\n", msgprefix, mesg,
-			fmt_ptr((genericptr_t)obj, obj_address),
+			fmt_ptr((void *)obj, obj_address),
 			where_name(obj->where), doname(obj));
 	    }
 	    if (obj->ocarry != mon) {
 		pline("%s%s obj %s (%s) not held by mon %s (%s)\n", msgprefix, mesg,
-			fmt_ptr((genericptr_t)obj, obj_address),
+			fmt_ptr((void *)obj, obj_address),
 			doname(obj),
-			fmt_ptr((genericptr_t)mon, mon_address),
+			fmt_ptr((void *)mon, mon_address),
 			mon_nam(mon));
 	    }
 	    check_contained(obj, mesg);
@@ -3527,12 +3527,12 @@ check_contained(container, mesg)
     for (obj = container->cobj; obj; obj = obj->nobj) {
 	if (obj->where != OBJ_CONTAINED)
 	    pline("%scontained %s obj %s: %s\n", msgprefix, mesg,
-		fmt_ptr((genericptr_t)obj, obj1_address),
+		fmt_ptr((void *)obj, obj1_address),
 		where_name(obj->where));
 	else if (obj->ocontainer != container)
 	    pline("%s%s obj %s not in container %s\n", msgprefix, mesg,
-		fmt_ptr((genericptr_t)obj, obj1_address),
-		fmt_ptr((genericptr_t)container, obj2_address));
+		fmt_ptr((void *)obj, obj1_address),
+		fmt_ptr((void *)container, obj2_address));
     }
 }
 #endif /* OBJ_SANITY || WIZARD */

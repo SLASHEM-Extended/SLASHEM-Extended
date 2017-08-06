@@ -150,7 +150,7 @@ int assign_videocolors(char *colorvals)
 	}
 
 	colorflag = TRUE;
-	free((genericptr_t)tmpcolor);
+	free((void *)tmpcolor);
 	return 1;
 }
 
@@ -461,7 +461,7 @@ int *wid, *hgt;
 		error("NetHack needs CL.");
 	if ((int)(tbufptr - tbuf) > (int)(sizeof tbuf))
 		error("TERMCAP entry too big...\n");
-	free((genericptr_t)tptr);
+	free((void *)tptr);
 #endif /* TERMLIB */
 }
 
@@ -1192,9 +1192,9 @@ kill_hilite()
 	for (c = 0; c < CLR_MAX / 2; c++) {
 	    if (hilites[c|BRIGHT] == hilites[c])  hilites[c|BRIGHT] = 0;
 	    if (hilites[c] && (hilites[c] != nh_HI))
-		free((genericptr_t) hilites[c]),  hilites[c] = 0;
+		free((void *) hilites[c]),  hilites[c] = 0;
 	    if (hilites[c|BRIGHT] && (hilites[c|BRIGHT] != nh_HI))
-		free((genericptr_t) hilites[c|BRIGHT]),  hilites[c|BRIGHT] = 0;
+		free((void *) hilites[c|BRIGHT]),  hilites[c|BRIGHT] = 0;
 	}
 # endif
 	return;

@@ -49,9 +49,8 @@ static int yygrowstack();
 #define MAX_OF_TYPE	128
 
 #define New(type)		\
-	(type *) memset((genericptr_t)alloc(sizeof(type)), 0, sizeof(type))
+	(type *) memset((void *)alloc(sizeof(type)), 0, sizeof(type))
 #define NewTab(type, size)	(type **) alloc(sizeof(type *) * size)
-#define Free(ptr)		free((genericptr_t)ptr)
 
 extern void yyerror(const char *);
 extern void yywarning(const char *);
@@ -1223,8 +1222,8 @@ case 7:
 					fname, fatal_error);
 			} else {
 				maze.flags = yyvsp[-3].i;
-				(void) memcpy((genericptr_t)&(maze.init_lev),
-						(genericptr_t)&(init_lev),
+				(void) memcpy((void *)&(maze.init_lev),
+						(void *)&(init_lev),
 						sizeof(lev_init));
 				maze.numpart = npart;
 				maze.parts = NewTab(mazepart, npart);
@@ -1236,7 +1235,7 @@ case 7:
 				}
 				npart = 0;
 			}
-			Free(yyvsp[-4].map);
+			free(yyvsp[-4].map);
 		  }
 break;
 case 8:
@@ -1250,8 +1249,8 @@ case 8:
 			} else {
 				special_lev.flags = (long) yyvsp[-5].i;
 				(void) memcpy(
-					(genericptr_t)&(special_lev.init_lev),
-					(genericptr_t)&(init_lev),
+					(void *)&(special_lev.init_lev),
+					(void *)&(init_lev),
 					sizeof(lev_init));
 				special_lev.nroom = nrooms;
 				special_lev.rooms = NewTab(room, nrooms);
@@ -1272,7 +1271,7 @@ case 8:
 				nrooms = 0;
 				ncorridor = 0;
 			}
-			Free(yyvsp[-6].map);
+			free(yyvsp[-6].map);
 		  }
 break;
 case 9:
@@ -1290,7 +1289,7 @@ case 10:
 {
 			/* in case we're processing multiple files,
 			   explicitly clear any stale settings */
-			(void) memset((genericptr_t) &init_lev, 0,
+			(void) memset((void *) &init_lev, 0,
 					sizeof init_lev);
 			init_lev.init_present = FALSE;
 			yyval.i = 0;
@@ -1349,7 +1348,7 @@ case 20:
 			    (void) strncpy(tmpmessage+j, yyvsp[0].map, i - 1);
 			    tmpmessage[j + i - 1] = 0;
 			}
-			Free(yyvsp[0].map);
+			free(yyvsp[0].map);
 		  }
 break;
 case 23:
@@ -1359,8 +1358,8 @@ case 23:
 			} else {
 			    special_lev.nrobjects = n_olist;
 			    special_lev.robjects = (char *) alloc(n_olist);
-			    (void) memcpy((genericptr_t)special_lev.robjects,
-					  (genericptr_t)olist, n_olist);
+			    (void) memcpy((void *)special_lev.robjects,
+					  (void *)olist, n_olist);
 			}
 		  }
 break;
@@ -1371,8 +1370,8 @@ case 24:
 			} else {
 			    special_lev.nrmonst = n_mlist;
 			    special_lev.rmonst = (char *) alloc(n_mlist);
-			    (void) memcpy((genericptr_t)special_lev.rmonst,
-					  (genericptr_t)mlist, n_mlist);
+			    (void) memcpy((void *)special_lev.rmonst,
+					  (void *)mlist, n_mlist);
 			  }
 		  }
 break;
@@ -1658,7 +1657,7 @@ case 87:
 			tmppart[npart]->nloc = 0;
 			tmppart[npart]->nrmonst = 0;
 			scan_map(yyvsp[0].map);
-			Free(yyvsp[0].map);
+			free(yyvsp[0].map);
 		  }
 break;
 case 88:
@@ -1672,8 +1671,8 @@ case 95:
 			    yyerror("Object registers already initialized!");
 			} else {
 			    tmppart[npart]->robjects = (char *)alloc(n_olist);
-			    (void) memcpy((genericptr_t)tmppart[npart]->robjects,
-					  (genericptr_t)olist, n_olist);
+			    (void) memcpy((void *)tmppart[npart]->robjects,
+					  (void *)olist, n_olist);
 			    tmppart[npart]->nrobjects = n_olist;
 			}
 		  }
@@ -1702,8 +1701,8 @@ case 98:
 			    yyerror("Monster registers already initialized!");
 			} else {
 			    tmppart[npart]->rmonst = (char *) alloc(n_mlist);
-			    (void) memcpy((genericptr_t)tmppart[npart]->rmonst,
-					  (genericptr_t)mlist, n_mlist);
+			    (void) memcpy((void *)tmppart[npart]->rmonst,
+					  (void *)mlist, n_mlist);
 			    tmppart[npart]->nrmonst = n_mlist;
 			}
 		  }
@@ -1785,7 +1784,7 @@ case 130:
 			      "Invalid monster name!  Making random monster.");
 			    else
 				tmpmonst[nmons]->id = token;
-			    Free(yyvsp[-2].map);
+			    free(yyvsp[-2].map);
 			}
 		  }
 break;
@@ -1852,7 +1851,7 @@ case 141:
 				"Illegal object name!  Making random object.");
 			     else
 				tmpobj[nobj]->id = token;
-			    Free(yyvsp[0].map);
+			    free(yyvsp[0].map);
 			}
 		  }
 break;
@@ -1936,7 +1935,7 @@ case 154:
 			    tmpobj[nobj]->corpsenm = NON_PM - 1;
 			else
 			    tmpobj[nobj]->corpsenm = token;
-			Free(yyvsp[0].map);
+			free(yyvsp[0].map);
 		  }
 break;
 case 155:
@@ -2480,7 +2479,7 @@ case 205:
 			if (token == ERR)
 				yyerror("Unknown trap type!");
 			yyval.i = token;
-			Free(yyvsp[0].map);
+			free(yyvsp[0].map);
 		  }
 break;
 case 207:
@@ -2491,7 +2490,7 @@ case 207:
 				yyval.i = OROOM;
 			} else
 				yyval.i = token;
-			Free(yyvsp[0].map);
+			free(yyvsp[0].map);
 		  }
 break;
 case 209:

@@ -62,7 +62,7 @@ void
 new_light_source(x, y, range, type, id)
     xchar x, y;
     int range, type;
-    genericptr_t id;
+    void * id;
 {
     light_source *ls;
 
@@ -95,18 +95,18 @@ new_light_source(x, y, range, type, id)
 void
 del_light_source(type, id)
     int type;
-    genericptr_t id;
+    void * id;
 {
     light_source *curr, *prev;
-    genericptr_t tmp_id;
+    void * tmp_id;
 
     /* need to be prepared for dealing a with light source which
        has only been partially restored during a level change
        (in particular: chameleon vs prot. from shape changers) */
     switch (type) {
-    case LS_OBJECT:	tmp_id = (genericptr_t)(((struct obj *)id)->o_id);
+    case LS_OBJECT:	tmp_id = (void *)(((struct obj *)id)->o_id);
 			break;
-    case LS_MONSTER:	tmp_id = (genericptr_t)(((struct monst *)id)->m_id);
+    case LS_MONSTER:	tmp_id = (void *)(((struct monst *)id)->m_id);
 			break;
     case LS_TEMP:       tmp_id = id;
     			break;
@@ -123,7 +123,7 @@ del_light_source(type, id)
 	    else
 		light_base = curr->next;
 
-	    free((genericptr_t)curr);
+	    free((void *)curr);
 	    vision_full_recalc = 1;
 	    return;
 	}
@@ -266,7 +266,7 @@ save_light_sources(fd, mode, range)
 
     if (perform_bwrite(mode)) {
 	count = maybe_write_ls(fd, range, FALSE);
-	bwrite(fd, (genericptr_t) &count, sizeof count);
+	bwrite(fd, (void *) &count, sizeof count);
 	actual = maybe_write_ls(fd, range, TRUE);
 	if (actual != count)
 	    panic("counted %d light sources, wrote %d! [range=%d]",
@@ -301,7 +301,7 @@ save_light_sources(fd, mode, range)
 	    /* if global and not doing local, or vice versa, remove it */
 	    if (is_global ^ (range == RANGE_LEVEL)) {
 		*prev = curr->next;
-		free((genericptr_t)curr);
+		free((void *)curr);
 	    } else {
 		prev = &(*prev)->next;
 	    }
@@ -321,11 +321,11 @@ restore_light_sources(fd)
     light_source *ls;
 
     /* restore elements */
-    mread(fd, (genericptr_t) &count, sizeof count);
+    mread(fd, (void *) &count, sizeof count);
 
     while (count-- > 0) {
 	ls = (light_source *) alloc(sizeof(light_source));
-	mread(fd, (genericptr_t) ls, sizeof(light_source));
+	mread(fd, (void *) ls, sizeof(light_source));
 	ls->next = light_base;
 	light_base = ls;
     }
@@ -350,10 +350,10 @@ relink_light_sources(ghostly)
 		    nid = (unsigned) ls->id;
 		if (ls->type == LS_OBJECT) {
 		    which = 'o';
-		    ls->id = (genericptr_t) find_oid(nid);
+		    ls->id = (void *) find_oid(nid);
 		} else {
 		    which = 'm';
-		    ls->id = (genericptr_t) find_mid(nid, FM_EVERYWHERE);
+		    ls->id = (void *) find_mid(nid, FM_EVERYWHERE);
 		}
 		if (!ls->id)
 		    impossible("relink_light_sources: cant find %c_id %d",
@@ -415,33 +415,33 @@ write_ls(fd, ls)
     int fd;
     light_source *ls;
 {
-    genericptr_t arg_save;
+    void * arg_save;
     struct obj *otmp;
     struct monst *mtmp;
 
     if (ls->type == LS_OBJECT || ls->type == LS_MONSTER) {
 	if (ls->flags & LSF_NEEDS_FIXUP)
-	    bwrite(fd, (genericptr_t)ls, sizeof(light_source));
+	    bwrite(fd, (void *)ls, sizeof(light_source));
 	else {
 	    /* replace object pointer with id for write, then put back */
 	    arg_save = ls->id;
 	    if (ls->type == LS_OBJECT) {
 		otmp = (struct obj *)ls->id;
-		ls->id = (genericptr_t)otmp->o_id;
+		ls->id = (void *)otmp->o_id;
 #ifdef DEBUG
 		if (find_oid((unsigned)ls->id) != otmp)
 		    panic("write_ls: can't find obj #%u!", (unsigned)ls->id);
 #endif
 	    } else { /* ls->type == LS_MONSTER */
 		mtmp = (struct monst *)ls->id;
-		ls->id = (genericptr_t)mtmp->m_id;
+		ls->id = (void *)mtmp->m_id;
 #ifdef DEBUG
 		if (find_mid((unsigned)ls->id, FM_EVERYWHERE) != mtmp)
 		    panic("write_ls: can't find mon #%u!", (unsigned)ls->id);
 #endif
 	    }
 	    ls->flags |= LSF_NEEDS_FIXUP;
-	    bwrite(fd, (genericptr_t)ls, sizeof(light_source));
+	    bwrite(fd, (void *)ls, sizeof(light_source));
 	    ls->id = arg_save;
 	    ls->flags &= ~LSF_NEEDS_FIXUP;
 	}
@@ -458,8 +458,8 @@ obj_move_light_source(src, dest)
     light_source *ls;
 
     for (ls = light_base; ls; ls = ls->next)
-	if (ls->type == LS_OBJECT && ls->id == (genericptr_t) src)
-	    ls->id = (genericptr_t) dest;
+	if (ls->type == LS_OBJECT && ls->id == (void *) src)
+	    ls->id = (void *) dest;
     src->lamplit = 0;
     dest->lamplit = 1;
 }
@@ -538,7 +538,7 @@ obj_split_light_source(src, dest)
     light_source *ls, *new_ls;
 
     for (ls = light_base; ls; ls = ls->next)
-	if (ls->type == LS_OBJECT && ls->id == (genericptr_t) src) {
+	if (ls->type == LS_OBJECT && ls->id == (void *) src) {
 	    /*
 	     * Insert the new source at beginning of list.  This will
 	     * never interfere us walking down the list - we are already
@@ -552,7 +552,7 @@ obj_split_light_source(src, dest)
 		new_ls->range = candle_light_range(dest);
 		vision_full_recalc = 1;	/* in case range changed */
 	    }
-	    new_ls->id = (genericptr_t) dest;
+	    new_ls->id = (void *) dest;
 	    new_ls->next = light_base;
 	    light_base = new_ls;
 	    dest->lamplit = 1;		/* now an active light source */
@@ -571,7 +571,7 @@ struct obj *src, *dest;
     if (src != dest) end_burn(src, TRUE);		/* extinguish candles */
 
     for (ls = light_base; ls; ls = ls->next)
-	if (ls->type == LS_OBJECT && ls->id == (genericptr_t) dest) {
+	if (ls->type == LS_OBJECT && ls->id == (void *) dest) {
 	    ls->range = candle_light_range(dest);
 	    vision_full_recalc = 1;	/* in case range changed */
 	    break;
@@ -620,7 +620,7 @@ struct obj *obj;
 }
 
 #ifdef WIZARD
-extern char *fmt_ptr(const genericptr, char *);  /* from alloc.c */
+extern char *fmt_ptr(const void *, char *);  /* from alloc.c */
 
 int
 wiz_light_sources()

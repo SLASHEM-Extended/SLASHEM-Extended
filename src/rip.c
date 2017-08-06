@@ -183,9 +183,9 @@ int how;
 	putstr(tmpwin, 0, "");
 
 	for (x = 0; rip_txt[x]; x++) {
-		free((genericptr_t)rip[x]);
+		free((void *)rip[x]);
 	}
-	free((genericptr_t)rip);
+	free((void *)rip);
 	rip = 0;
 }
 

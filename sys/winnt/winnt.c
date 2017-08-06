@@ -323,8 +323,8 @@ void
 interject_assistance(num, interjection_type, ptr1, ptr2)
 int num;
 int interjection_type;
-genericptr_t ptr1;
-genericptr_t ptr2;
+void * ptr1;
+void * ptr2;
 {
 	switch(num) {
 	    case 1: {
