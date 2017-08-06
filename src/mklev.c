@@ -102,7 +102,6 @@ STATIC_OVL int
 findrandtype()
 {
 	switch (rnd(37)) {
-
 		case 1: return COURT;
 		case 2: return SWAMP;
 		case 3: return BEEHIVE;
@@ -142,13 +141,13 @@ findrandtype()
 		case 37: return EMPTYNEST;
 	}
 
+	return EMPTYNEST;
 }
 
 int
 randomwalltype()
 {
 	switch (rnd(8)) {
-
 		case 1: return TREE;
 		case 2: return MOAT;
 		case 3: return LAVAPOOL;
@@ -159,6 +158,9 @@ randomwalltype()
 		case 8: return STONE;
 	}
 
+
+	// fall-through to appease compiler
+	return STONE;
 }
 
 STATIC_OVL void
