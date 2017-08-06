@@ -2215,6 +2215,7 @@ const char *start, *middle, *end;
 void
 enlightenment(final, guaranteed)
 int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
+boolean guaranteed;
 {
 	int ltmp;
 	char buf[BUFSZ];
