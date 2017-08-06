@@ -98,15 +98,15 @@ getmailstatus()
 		(void) memcpy(&ppasswd, getpwuid(getuid()), sizeof(struct passwd));
 		if (ppasswd.pw_dir) {
 		     mailbox = (char *) alloc((unsigned) strlen(ppasswd.pw_dir)+sizeof(AMS_MAILBOX));
-		     Strcpy(mailbox, ppasswd.pw_dir);
-		     Strcat(mailbox, AMS_MAILBOX);
+		     strcpy(mailbox, ppasswd.pw_dir);
+		     strcat(mailbox, AMS_MAILBOX);
 		} else
 		  return;
 #   else
 		const char *pw_name = getpwuid(getuid())->pw_name;
 		mailbox = (char *) alloc(sizeof(MAILPATH)+strlen(pw_name));
-		Strcpy(mailbox, MAILPATH);
-		Strcat(mailbox, pw_name);
+		strcpy(mailbox, MAILPATH);
+		strcat(mailbox, pw_name);
 #  endif /* AMS */
 #  else
 		return;
@@ -632,7 +632,7 @@ struct obj *otmp;
     cmd = (len + 1 < otmp->onamelth) ? txt + len + 1 : (char *) 0;
     if (!cmd || !*cmd) cmd = "SPAWN";
 
-    Sprintf(qbuf, "System command (%s)", cmd);
+    sprintf(qbuf, "System command (%s)", cmd);
     getlin(qbuf, buf);
     if (*buf != '\033') {
 	for (p = eos(buf); p > buf; *p = '\0')

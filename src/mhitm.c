@@ -50,12 +50,12 @@ mon_nam_too(outbuf, mon, other_mon)
 char *outbuf;
 struct monst *mon, *other_mon;
 {
-	Strcpy(outbuf, mon_nam(mon));
+	strcpy(outbuf, mon_nam(mon));
 	if (mon == other_mon)
 	    switch (pronoun_gender(mon)) {
-	    case 0:	Strcpy(outbuf, "himself");  break;
-	    case 1:	Strcpy(outbuf, "herself");  break;
-	    default:	Strcpy(outbuf, "itself"); break;
+	    case 0:	strcpy(outbuf, "himself");  break;
+	    case 1:	strcpy(outbuf, "herself");  break;
+	    default:	strcpy(outbuf, "itself"); break;
 	    }
 	return outbuf;
 }
@@ -116,7 +116,7 @@ missmm(magr, mdef, target, roll, mattk)
 		if (magr->m_ap_type) seemimic(magr);
 		if (flags.verbose && !nearmiss && blocker) {
 			fmt = "%s %s blocks";
-			Sprintf(buf,fmt, s_suffix(Monnam(mdef)), 
+			sprintf(buf,fmt, s_suffix(Monnam(mdef)), 
 				aobjnam(blocker, (char *)0));
 	                pline("%s %s.", buf, mon_nam_too(mon_name, magr, mdef));
 		} else {
@@ -124,7 +124,7 @@ missmm(magr, mdef, target, roll, mattk)
 				"%s pretends to be friendly to" : 
 				((flags.verbose && nearmiss) ? "%s just misses" : 
 				  "%s misses");
-		Sprintf(buf, fmt, Monnam(magr));
+		sprintf(buf, fmt, Monnam(magr));
 	                pline("%s %s.", buf, mon_nam_too(mon_name, mdef, magr));
 		}
 	} else  noises(magr, mattk);
@@ -327,7 +327,7 @@ mattackm(magr, mdef)
 		attk = 0;*/
 		if (canseemon(magr) && couldsee(magr->mx, magr->my)) {
 		    char buf[BUFSZ];
-		    Strcpy(buf, Monnam(magr));
+		    strcpy(buf, Monnam(magr));
 		    if (vis)
 			pline("%s points at %s, then curses.", buf,
 				mon_nam(mdef));
@@ -400,7 +400,7 @@ meleeattack:
 			    if (vis) {
 				char buf[BUFSZ];
 
-				Strcpy(buf, Monnam(mdef));
+				strcpy(buf, Monnam(mdef));
 				pline("%s divides as %s hits it!", buf, mon_nam(magr));
 			    }
 			}
@@ -722,7 +722,7 @@ struct monst *magr, *mdef;
 	if (multishot > 1) {
 	    /* "N arrows"; multishot > 1 implies obj->quan > 1, so
 	       xname()'s result will already be pluralized */
-	    Sprintf(onmbuf, "%d %s", multishot, xname(obj));
+	    sprintf(onmbuf, "%d %s", multishot, xname(obj));
 	    onm = onmbuf;
 	} else {
 	    /* "an arrow" */
@@ -770,7 +770,7 @@ hitmm(magr, mdef, mattk)
 		if(mdef->m_ap_type) seemimic(mdef);
 		if(magr->m_ap_type) seemimic(magr);
 		if((compat = could_seduce(magr,mdef,mattk)) && !magr->mcan) {
-			Sprintf(buf, "%s %s", Monnam(magr),
+			sprintf(buf, "%s %s", Monnam(magr),
 				mdef->mcansee ? "smiles at" : "talks to");
 			pline("%s %s %s.", buf, mon_nam(mdef),
 				compat == 2 ?
@@ -778,49 +778,49 @@ hitmm(magr, mdef, mattk)
 		} else {
 		    char magr_name[BUFSZ];
 
-		    Strcpy(magr_name, Monnam(magr));
+		    strcpy(magr_name, Monnam(magr));
 		    switch (mattk->aatyp) {
 			case AT_BITE:
-				Sprintf(buf,"%s bites", magr_name);
+				sprintf(buf,"%s bites", magr_name);
 				break;
 			case AT_CLAW:
-				Sprintf(buf,"%s claws", magr_name);
+				sprintf(buf,"%s claws", magr_name);
 				break;
 			case AT_STNG:
-				Sprintf(buf,"%s stings", magr_name);
+				sprintf(buf,"%s stings", magr_name);
 				break;
 			case AT_BUTT:
-				Sprintf(buf,"%s butts", magr_name);
+				sprintf(buf,"%s butts", magr_name);
 				break;
 			case AT_LASH:
-				Sprintf(buf,"%s lashes", magr_name);
+				sprintf(buf,"%s lashes", magr_name);
 				break;
 			case AT_TRAM:
-				Sprintf(buf,"%s tramples over", magr_name);
+				sprintf(buf,"%s tramples over", magr_name);
 				break;
 			case AT_SCRA:
-				Sprintf(buf,"%s scratches", magr_name);
+				sprintf(buf,"%s scratches", magr_name);
 				break;
 			case AT_TUCH:
-				Sprintf(buf,"%s touches", magr_name);
+				sprintf(buf,"%s touches", magr_name);
 				break;
 			case AT_BEAM:
-				Sprintf(buf,"%s blasts", magr_name);
+				sprintf(buf,"%s blasts", magr_name);
 				break;
 			case AT_TENT:
-				Sprintf(buf, "%s tentacles suck",
+				sprintf(buf, "%s tentacles suck",
 					s_suffix(magr_name));
 				break;
 			case AT_HUGS:
 				if (magr != u.ustuck) {
-				    Sprintf(buf,"%s squeezes", magr_name);
+				    sprintf(buf,"%s squeezes", magr_name);
 				    break;
 				}
 			case AT_MULTIPLY:
 				/* No message. */
 				break;
 			default:
-				Sprintf(buf,"%s hits", magr_name);
+				sprintf(buf,"%s hits", magr_name);
 		    }
 		    pline("%s %s.", buf, mon_nam_too(mdef_name, mdef, magr));
 		}
@@ -837,7 +837,7 @@ gazemm(magr, mdef, mattk)
 	char buf[BUFSZ];
 
 	if(vis) {
-		Sprintf(buf,"%s gazes at", Monnam(magr));
+		sprintf(buf,"%s gazes at", Monnam(magr));
 		pline("%s %s...", buf, mon_nam(mdef));
 	}
 
@@ -891,7 +891,7 @@ gulpmm(magr, mdef, mattk)
 	if (mdef->data->msize >= MZ_HUGE) return MM_MISS;
 
 	if (vis) {
-		Sprintf(buf,"%s swallows", Monnam(magr));
+		sprintf(buf,"%s swallows", Monnam(magr));
 		pline("%s %s.", buf, mon_nam(mdef));
 	}
 	for (obj = mdef->minvent; obj; obj = obj->nobj)
@@ -1230,7 +1230,7 @@ physical:
                                 if(otmp->oartifact == ART_STAKE_OF_VAN_HELSING) {
                                         if (!rn2(10)) {
                                                 if (vis) {
-                                                        Strcpy(buf, Monnam(magr));
+                                                        strcpy(buf, Monnam(magr));
                                                         pline("%s plunges the stake into the heart of %s.",
                                                                 buf, mon_nam(mdef));
                                                         pline("%s's body vaporizes!", Monnam(mdef));
@@ -1240,7 +1240,7 @@ physical:
                                                         (grow_up(magr,mdef) ? 0 : MM_AGR_DIED));                                                
                                         } else {
                                                 if (vis) {
-                                                        Strcpy(buf, Monnam(magr));
+                                                        strcpy(buf, Monnam(magr));
                                                         pline("%s drives the stake into %s.",
                                                                 buf, mon_nam(mdef));
                                                 }
@@ -1248,7 +1248,7 @@ physical:
                                         }
                                 }else if (otmp->oartifact == ART_VAMPIRE_KILLER) {
                                         if (vis) {
-                                                Strcpy(buf, Monnam(magr));
+                                                strcpy(buf, Monnam(magr));
                                                 pline("%s whips %s good!",
                                                         buf, mon_nam(mdef));
                                         }
@@ -1256,7 +1256,7 @@ physical:
                                 }
 					 else {
                                         if (vis) {
-                                                Strcpy(buf, Monnam(magr));
+                                                strcpy(buf, Monnam(magr));
                                                 pline("%s drives the stake into %s.",
                                                         buf, mon_nam(mdef));
                                         }
@@ -1463,7 +1463,7 @@ physical:
 		    char mdef_Monnam[BUFSZ];
 		    /* save the name before monster teleports, otherwise
 		       we'll get "it" in the suddenly disappears message */
-		    if (vis) Strcpy(mdef_Monnam, Monnam(mdef));
+		    if (vis) strcpy(mdef_Monnam, Monnam(mdef));
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		    (void) rloc(mdef, FALSE);
 		    if (vis && !canspotmon(mdef)
@@ -1487,7 +1487,7 @@ physical:
 		if (!cancelled && !mdef->msleeping &&
 			sleep_monst(mdef, rnd(10), -1)) {
 		    if (vis) {
-			Strcpy(buf, Monnam(mdef));
+			strcpy(buf, Monnam(mdef));
 			pline("%s is put to sleep by %s.", buf, mon_nam(magr));
 		    }
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
@@ -1535,7 +1535,7 @@ physical:
 		if (nohit) break;                
 		if(!cancelled && mdef->mcanmove) {
 		    if (vis) {
-			Strcpy(buf, Monnam(mdef));
+			strcpy(buf, Monnam(mdef));
 			pline("%s is frozen by %s.", buf, mon_nam(magr));
 		    }
 		    mdef->mcanmove = 0;
@@ -1546,7 +1546,7 @@ physical:
 	    case AD_TCKL:
 		if(!cancelled && mdef->mcanmove) {
 		    if (vis) {
-			Strcpy(buf, Monnam(magr));
+			strcpy(buf, Monnam(magr));
 			pline("%s mercilessly tickles %s.", buf, mon_nam(mdef));
 		    }
 		    mdef->mcanmove = 0;
@@ -1579,7 +1579,7 @@ physical:
 		}
 		if(!cancelled && !rn2(3) && mdef->mcanmove) {
 		    if (vis) {
-			Strcpy(buf, Monnam(mdef));
+			strcpy(buf, Monnam(mdef));
 			pline("%s is frozen by %s.", buf, mon_nam(magr));
 		    }
 		    mdef->mcanmove = 0;
@@ -1885,7 +1885,7 @@ physical:
 #endif
 		mdef->mstrategy &= ~STRAT_WAITFORU;
 		if (vis) {
-		    Strcpy(buf, Monnam(magr));
+		    strcpy(buf, Monnam(magr));
 		    pline("%s steals some gold from %s.", buf, mon_nam(mdef));
 		}
 		if (!tele_restrict(magr)) {
@@ -1932,7 +1932,7 @@ physical:
 
 			/* make a special x_monnam() call that never omits
 			   the saddle, and save it for later messages */
-			Strcpy(mdefnambuf, x_monnam(mdef, ARTICLE_THE, (char *)0, 0, FALSE));
+			strcpy(mdefnambuf, x_monnam(mdef, ARTICLE_THE, (char *)0, 0, FALSE));
 
 			otmp = obj;
 			if (u.usteed == mdef &&
@@ -1949,10 +1949,10 @@ physical:
 			}
 			/* add_to_minv() might free otmp [if it merges] */
 			if (vis)
-				Strcpy(onambuf, doname(otmp));
+				strcpy(onambuf, doname(otmp));
 			(void) add_to_minv(magr, otmp);
 			if (vis) {
-				Strcpy(buf, Monnam(magr));
+				strcpy(buf, Monnam(magr));
 				pline("%s steals %s from %s!", buf,
 				    onambuf, mdefnambuf);
 			}
@@ -2024,7 +2024,7 @@ physical:
 		}
 		if ((mdef->misc_worn_check & W_ARMH) && rn2(8)) {
 		    if (vis) {
-			Strcpy(buf, s_suffix(Monnam(mdef)));
+			strcpy(buf, s_suffix(Monnam(mdef)));
 			pline("%s helmet blocks %s attack to %s head.",
 				buf, s_suffix(mon_nam(magr)),
 				mhis(mdef));
@@ -2139,7 +2139,7 @@ physical:
 
 	/* STEPHEN WHITE'S NEW CODE */
 	if (objenchant < canhitmon && vis && nohit) {
-			Strcpy(buf, Monnam(magr));
+			strcpy(buf, Monnam(magr));
 			pline("%s doesn't seem to harm %s.", buf,
 								mon_nam(mdef));
 		return(MM_HIT);
@@ -2283,7 +2283,7 @@ register struct obj *otemp;
 {
 	char buf[BUFSZ];
 	if (!flags.verbose || Blind || !mon_visible(magr)) return;
-	Strcpy(buf, mon_nam(mdef));
+	strcpy(buf, mon_nam(mdef));
 	pline("%s %s %s %s at %s.", Monnam(magr),
 	      (objects[otemp->otyp].oc_dir & PIERCE) ? "thrusts" : "swings",
 	      mhis(magr), singular(otemp, xname), buf);
@@ -2321,7 +2321,7 @@ int mdead;
 	switch(mddat->mattk[i].adtyp) {
 	    case AD_ACID:
 		if (mhit && !rn2(2)) {
-		    Strcpy(buf, Monnam(magr));
+		    strcpy(buf, Monnam(magr));
 		    if(canseemon(magr))
 			pline("%s is splashed by %s acid!",
 			      buf, s_suffix(mon_nam(mdef)));
@@ -2366,12 +2366,12 @@ int mdead;
 		    /*if (!rn2(4)) tmp = 127;*/
 		    if (magr->mcansee && haseyes(madat) && mdef->mcansee && !mdef->minvisreal &&
 			(perceives(madat) || !mdef->minvis)) {
-			Sprintf(buf, "%s gaze is reflected by %%s %%s.",
+			sprintf(buf, "%s gaze is reflected by %%s %%s.",
 				s_suffix(mon_nam(mdef)));
 			if (mon_reflects(magr,
 					 canseemon(magr) ? buf : (char *)0))
 				return(mdead|mhit);
-			Strcpy(buf, Monnam(magr));
+			strcpy(buf, Monnam(magr));
 			if(canseemon(magr))
 			    pline("%s is frozen by %s gaze!",
 				  buf, s_suffix(mon_nam(mdef)));
@@ -2380,7 +2380,7 @@ int mdead;
 			return (mdead|mhit);
 		    }
 		} else { /* gelatinous cube */
-		    Strcpy(buf, Monnam(magr));
+		    strcpy(buf, Monnam(magr));
 		    if(canseemon(magr))
 			pline("%s is frozen by %s.", buf, mon_nam(mdef));
 		    magr->mcanmove = 0;

@@ -632,7 +632,7 @@ X11_add_menu(window, glyph, identifier, ch, gch, attr, str, preselected)
 	    impossible("Menu item too long (%d).", len);
 	    len = BUFSZ - 1;
 	}
-	Sprintf(buf, "%c - ", ch ? ch : ' ');
+	sprintf(buf, "%c - ", ch ? ch : ' ');
 	(void) strncpy(buf+4, str, len);
 	buf[4+len] = '\0';
 	item->str = copy_of(buf);

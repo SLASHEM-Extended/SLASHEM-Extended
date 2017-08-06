@@ -83,9 +83,9 @@ extern boolean HE_resets_AS;
 #ifndef TERMLIB
 STATIC_VAR char tgotobuf[20];
 # ifdef TOS
-#define tgoto(fmt, x, y)	(Sprintf(tgotobuf, fmt, y+' ', x+' '), tgotobuf)
+#define tgoto(fmt, x, y)	(sprintf(tgotobuf, fmt, y+' ', x+' '), tgotobuf)
 # else
-#define tgoto(fmt, x, y)	(Sprintf(tgotobuf, fmt, y+1, x+1), tgotobuf)
+#define tgoto(fmt, x, y)	(sprintf(tgotobuf, fmt, y+1, x+1), tgotobuf)
 # endif
 #endif /* TERMLIB */
 
@@ -299,7 +299,7 @@ int *wid, *hgt;
 		for (i = 0; i < CLR_MAX / 2; i++)
 		    if (i != CLR_BLACK) {
 			hilites[i|BRIGHT] = (char *) alloc(sizeof("\033[1;3%dm"));
-			Sprintf(hilites[i|BRIGHT], "\033[1;3%dm", i);
+			sprintf(hilites[i|BRIGHT], "\033[1;3%dm", i);
 #   ifndef VIDEOSHADES
 			if (i != CLR_GRAY)
 #    ifdef MICRO
@@ -309,7 +309,7 @@ int *wid, *hgt;
 #   endif
 			    {
 				hilites[i] = (char *) alloc(sizeof("\033[0;3%dm"));
-				Sprintf(hilites[i], "\033[0;3%dm", i);
+				sprintf(hilites[i], "\033[0;3%dm", i);
 			    }
 		    }
 #  endif
@@ -434,10 +434,10 @@ int *wid, *hgt;
 	nh_HE = (char *) alloc((unsigned)(strlen(ME)+1));
 	i = 0;
 	while (digit(SO[i])) i++;
-	Strcpy(nh_HI, &SO[i]);
+	strcpy(nh_HI, &SO[i]);
 	i = 0;
 	while (digit(ME[i])) i++;
-	Strcpy(nh_HE, &ME[i]);
+	strcpy(nh_HE, &ME[i]);
 	AS = Tgetstr("as");
 	AE = Tgetstr("ae");
 	nh_CD = Tgetstr("cd");
@@ -571,12 +571,12 @@ tty_ascgraphics_hilite_fixup()
     for (c = 0; c < CLR_MAX / 2; c++)
 	if (c != CLR_BLACK) {
 	    hilites[c|BRIGHT] = (char *) alloc(sizeof("\033[1;3%dm"));
-	    Sprintf(hilites[c|BRIGHT], "\033[1;3%dm", c);
+	    sprintf(hilites[c|BRIGHT], "\033[1;3%dm", c);
 #ifndef VIDEOSHADES
 	    if (c != CLR_GRAY) {
 #endif
 		    hilites[c] = (char *) alloc(sizeof("\033[0;3%dm"));
-		    Sprintf(hilites[c], "\033[0;3%dm", c);
+		    sprintf(hilites[c], "\033[0;3%dm", c);
 #ifndef VIDEOSHADES
 	    }
 #endif
@@ -1024,14 +1024,14 @@ init_hilite()
 	    if (c != CLR_GRAY) {
 #endif
 		hilites[c] = (char *) alloc(strlen(scratch) + 1);
-		Strcpy(hilites[c], scratch);
+		strcpy(hilites[c], scratch);
 #ifndef VIDEOSHADES
 	    }
 #endif
 	    if (c != CLR_BLACK) {
 		hilites[c|BRIGHT] = (char*) alloc(strlen(scratch)+strlen(MD)+1);
-		Strcpy(hilites[c|BRIGHT], MD);
-		Strcat(hilites[c|BRIGHT], scratch);
+		strcpy(hilites[c|BRIGHT], MD);
+		strcat(hilites[c|BRIGHT], scratch);
 	    }
 
 	}
@@ -1122,9 +1122,9 @@ init_hilite()
 		char *foo;
 		foo = (char *) alloc(sizeof("\033b0"));
 		if (tos_numcolors > 4)
-			Sprintf(foo, "\033b%c", (c&~BRIGHT)+'0');
+			sprintf(foo, "\033b%c", (c&~BRIGHT)+'0');
 		else
-			Strcpy(foo, "\033b0");
+			strcpy(foo, "\033b0");
 		hilites[c] = foo;
 	}
 
@@ -1166,12 +1166,12 @@ init_hilite()
 		    hilites[c] = (char *)0;
 		else if (c != hi_foreg || backg != hi_backg) {
 		    hilites[c] = (char *) alloc(sizeof("\033[%d;3%d;4%dm"));
-		    Sprintf(hilites[c], "\033[%d", !!(c & BRIGHT));
+		    sprintf(hilites[c], "\033[%d", !!(c & BRIGHT));
 		    if ((c | BRIGHT) != (foreg | BRIGHT))
-			Sprintf(eos(hilites[c]), ";3%d", c & ~BRIGHT);
+			sprintf(eos(hilites[c]), ";3%d", c & ~BRIGHT);
 		    if (backg != CLR_BLACK)
-			Sprintf(eos(hilites[c]), ";4%d", backg & ~BRIGHT);
-		    Strcat(hilites[c], "m");
+			sprintf(eos(hilites[c]), ";4%d", backg & ~BRIGHT);
+		    strcat(hilites[c], "m");
 		}
 	    }
 
@@ -1282,7 +1282,7 @@ int color;
 { 
 	if (allow_bgcolor) { 
 		char tmp[8]; 
-		Sprintf(tmp, "\033[%dm", ((color % 8) + 40)); 
+		sprintf(tmp, "\033[%dm", ((color % 8) + 40)); 
 		xputs(tmp); 
 	} else { 
 		xputs(e_atr2str(ATR_INVERSE)); 

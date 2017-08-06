@@ -268,38 +268,38 @@ char *pname;		/* caller-supplied output buffer */
 {
 	const char *what = Hallucination ? rndmonnam() : mon->data->mname;
 
-	Strcpy(pname, "the ");
-	if (mon->minvis) Strcat(pname, "invisible ");
+	strcpy(pname, "the ");
+	if (mon->minvis) strcat(pname, "invisible ");
 	if (mon->ispriest || mon->data == &mons[PM_ALIGNED_PRIEST] ||
 					mon->data == &mons[PM_ANGEL]) {
 		/* use epri */
 		if (mon->mtame && mon->data == &mons[PM_ANGEL])
-			Strcat(pname, "guardian ");
+			strcat(pname, "guardian ");
 		if (mon->data != &mons[PM_ALIGNED_PRIEST] &&
 				mon->data != &mons[PM_HIGH_PRIEST]) {
-			Strcat(pname, what);
-			Strcat(pname, " ");
+			strcat(pname, what);
+			strcat(pname, " ");
 		}
 		if (mon->data != &mons[PM_ANGEL]) {
 			if (!mon->ispriest && EPRI(mon)->renegade)
-				Strcat(pname, "renegade ");
+				strcat(pname, "renegade ");
 			if (mon->data == &mons[PM_HIGH_PRIEST])
-				Strcat(pname, "high ");
+				strcat(pname, "high ");
 			if (Hallucination)
-				Strcat(pname, "poohbah ");
+				strcat(pname, "poohbah ");
 			else if (mon->female)
-				Strcat(pname, "priestess ");
+				strcat(pname, "priestess ");
 			else
-				Strcat(pname, "priest ");
+				strcat(pname, "priest ");
 		}
-		Strcat(pname, "of ");
-		Strcat(pname, halu_gname((int)EPRI(mon)->shralign));
+		strcat(pname, "of ");
+		strcat(pname, halu_gname((int)EPRI(mon)->shralign));
 		return(pname);
 	}
 	/* use emin instead of epri */
-	Strcat(pname, what);
-	Strcat(pname, " of ");
-	Strcat(pname, halu_gname(EMIN(mon)->min_align));
+	strcat(pname, what);
+	strcat(pname, " of ");
+	strcat(pname, halu_gname(EMIN(mon)->min_align));
 	return(pname);
 }
 
@@ -383,7 +383,7 @@ register int roomno;
 			}
 
 		} else {
-		    Sprintf(buf, "Pilgrim, you enter a %s place!",
+		    sprintf(buf, "Pilgrim, you enter a %s place!",
 			    !shrined ? "desecrated" : "sacred");
 		    msg1 = buf;
 		}

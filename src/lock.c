@@ -394,7 +394,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    else if (!otmp->olocked) verb = "lock", it = 1;
 		    else if (picktyp != LOCK_PICK && picktyp != HAIRCLIP) verb = "unlock", it = 1;
 		    else verb = "pick";
-		    Sprintf(qbuf, "There is %s here, %s %s?",
+		    sprintf(qbuf, "There is %s here, %s %s?",
 		    	    safe_qbuf("", sizeof("There is  here, unlock its lock?"),
 			    	doname(otmp), an(simple_typename(otmp->otyp)), "a box"),
 			    verb, it ? "it" : "its lock");
@@ -526,7 +526,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    /* ALI - Artifact doors */
 		    key = artifact_door(cc.x, cc.y);
 
-		    Sprintf(qbuf,"%sock it?",
+		    sprintf(qbuf,"%sock it?",
 			(door->doormask & D_LOCKED) ? "Unl" : "L" );
 
 		    c = yn(qbuf);
@@ -714,7 +714,7 @@ doforce()		/* try to force a chest with your weapon */
 			  doname(otmp), otmp->obroken ? "broken" : "unlocked");
 		    continue;
 		}
-		Sprintf(qbuf,"There is %s here, force its lock?",
+		sprintf(qbuf,"There is %s here, force its lock?",
 			safe_qbuf("", sizeof("There is  here, force its lock?"),
 				doname(otmp), an(simple_typename(otmp->otyp)),
 				"a box"));

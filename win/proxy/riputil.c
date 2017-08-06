@@ -16,32 +16,32 @@ int how;
 	default: impossible("bad killer format?");
 	case KILLED_BY_AN:
 	    if (Instant_Death) {
-		Strcpy(buf, "instantly ");
+		strcpy(buf, "instantly ");
 		strcat(buf, killed_by_prefix[how]);
 	    }
 	    else if (Quick_Death) {
-		Strcpy(buf, "quickly ");
+		strcpy(buf, "quickly ");
 		strcat(buf, killed_by_prefix[how]);
 	    }
 	    else
-		Strcpy(buf, killed_by_prefix[how]);
-	    Strcat(buf, an(killer));
+		strcpy(buf, killed_by_prefix[how]);
+	    strcat(buf, an(killer));
 	    break;
 	case KILLED_BY:
 	    if (Instant_Death) {
-		Strcpy(buf, "instantly ");
+		strcpy(buf, "instantly ");
 		strcat(buf, killed_by_prefix[how]);
 	    }
 	    else if (Quick_Death) {
-		Strcpy(buf, "quickly ");
+		strcpy(buf, "quickly ");
 		strcat(buf, killed_by_prefix[how]);
 	    }
 	    else
-		Strcpy(buf, killed_by_prefix[how]);
-	    Strcat(buf, killer);
+		strcpy(buf, killed_by_prefix[how]);
+	    strcat(buf, killer);
 	    break;
 	case NO_KILLER_PREFIX:
-	    Strcpy(buf, killer);
+	    strcpy(buf, killer);
 	    break;
     }
     return buf;

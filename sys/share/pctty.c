@@ -82,7 +82,7 @@ error VA_DECL(const char *,s)
 	/* error() may get called before tty is initialized */
 	if (iflags.window_inited) end_screen();
 	putchar('\n');
-	Vprintf(s,VA_ARGS);
+	vprintf(s,VA_ARGS);
 	putchar('\n');
 	VA_END();
 	exit(EXIT_FAILURE);

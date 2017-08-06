@@ -3678,16 +3678,16 @@ GTK_ext_outrip(winid id, char *str)
     rip_font = gtk_style_get_font(rip->style);
 
     player = nh_status_last_displayed("player");
-    Sprintf(mstr, "%s", player ? player : "Rodney");
+    sprintf(mstr, "%s", player ? player : "Rodney");
     rip_line[NAME_LINE].len = gdk_mbstowcs(rip_line[NAME_LINE].str, mstr,
       NH_BUFSIZ);
 
     gold = nh_status_last_displayed("gold");
-    Sprintf(mstr, "%s Au", gold ? gold : "0");
+    sprintf(mstr, "%s Au", gold ? gold : "0");
     rip_line[GOLD_LINE].len = gdk_mbstowcs(rip_line[GOLD_LINE].str, mstr,
       NH_BUFSIZ);
 
-    Sprintf(mstr, "%4d", getyear());
+    sprintf(mstr, "%4d", getyear());
     rip_line[YEAR_LINE].len = gdk_mbstowcs(rip_line[YEAR_LINE].str, mstr,
       NH_BUFSIZ);
 

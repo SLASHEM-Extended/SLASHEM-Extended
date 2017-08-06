@@ -239,7 +239,7 @@ lethe		{ yylval.i=LETHE; return FLAG_TYPE; }
 [+\-]?[0-9]+	{ yylval.i=atoi(yytext); return INTEGER; }
 \"[^"]*\"	{ yytext[yyleng-1] = 0; /* Discard the trailing \" */
 		  yylval.map = (char *) alloc(strlen(yytext+1)+1);
-		  Strcpy(yylval.map, yytext+1); /* Discard the first \" */
+		  strcpy(yylval.map, yytext+1); /* Discard the first \" */
 		  return STRING; }
 \r?\n		{ line_number++; }
 [ \t]+		;

@@ -31,9 +31,9 @@ panic VA_DECL(char *,str)
 #endif
 		abort();    /* avoid loops - this should never happen*/
 
-	(void) fputs(" ERROR:  ", stderr);
-	Vfprintf(stderr, str, VA_ARGS);
-	(void) fflush(stderr);
+	fputs(" ERROR:  ", stderr);
+	vfprintf(stderr, str, VA_ARGS);
+	fflush(stderr);
 #if defined(UNIX) || defined(VMS)
 # ifdef SYSV
 		(void)

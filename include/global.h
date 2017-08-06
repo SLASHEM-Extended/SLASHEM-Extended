@@ -328,16 +328,6 @@ typedef xchar	boolean;		/* 0 or 1 */
 # endif
 #endif
 
-#define Sprintf  (void) sprintf
-#define Strcat   (void) strcat
-#define Strcpy   (void) strcpy
-#ifdef NEED_VARARGS
-#define Vprintf  (void) vprintf
-#define Vfprintf (void) vfprintf
-#define Vsprintf (void) vsprintf
-#endif
-
-
 #ifndef __FILE__
 # define __FILE__ ""
 #endif

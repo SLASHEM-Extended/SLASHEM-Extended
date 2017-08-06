@@ -989,7 +989,7 @@ struct obj *otmp;
 	    otmp->bknown = 0;
 	    if (Role_if(PM_PRIEST)) Role_switch = 0;
 	}
-	Strcpy(onambuf, singular(otmp, doname));
+	strcpy(onambuf, singular(otmp, doname));
 	Role_switch = saverole;
 	otmp->bknown = savebknown;
 
@@ -3779,7 +3779,7 @@ register struct obj *otmp;
 	
 			mtmp->perminvis = 0;
 			mtmp->minvis = 0;
-			Strcpy(nambuf, Monnam(mtmp));
+			strcpy(nambuf, Monnam(mtmp));
 			newsym(mtmp->mx, mtmp->my);		/* make it appear */
 			if (oldinvis) {
 			    pline("%s becomes visible!", nambuf);
@@ -3896,7 +3896,7 @@ register struct obj *otmp;
 				pline("You start turning to stone!");
 				stop_occupation();
 			}
-			Sprintf(killer_buf, "wand of stoning");
+			sprintf(killer_buf, "wand of stoning");
 			delayed_killer = killer_buf;
 		
 		    }
@@ -5705,7 +5705,7 @@ struct monst *mtmp;
 				pline("You start turning to stone!");
 				stop_occupation();
 			}
-			Sprintf(killer_buf, "a petrification scroll");
+			sprintf(killer_buf, "a petrification scroll");
 			delayed_killer = killer_buf;
 		
 		    }
@@ -7538,7 +7538,7 @@ skipmsg:
 		} else
 		    mquaffmsg(mtmp, otmp);
 		/* format monster's name before altering its visibility */
-		Strcpy(nambuf, See_invisible ? Monnam(mtmp) : mon_nam(mtmp));
+		strcpy(nambuf, See_invisible ? Monnam(mtmp) : mon_nam(mtmp));
 		mon_set_minvis(mtmp);
 		if (vismon && mtmp->minvis) {	/* was seen, now invisible */
 		    if (See_invisible)
@@ -8605,7 +8605,7 @@ newboss:
 		    const char *hand;
 		    char the_weapon[BUFSZ];
 
-		    Strcpy(the_weapon, the(xname(obj)));
+		    strcpy(the_weapon, the(xname(obj)));
 		    hand = body_part(HAND);
 		    if (bimanual(obj)) hand = makeplural(hand);
 

@@ -672,9 +672,9 @@ char *outbuf;
 
 	/* a random engraving may come from the "rumors" file,
 	   or from the list above */
-	if (!rn2(5)) Strcpy(outbuf, fauxmessage()); /* sometimes have faux messages --Amy */
+	if (!rn2(5)) strcpy(outbuf, fauxmessage()); /* sometimes have faux messages --Amy */
 	else if (!rn2(3) || !(rumor = getrumor(0, outbuf, TRUE)) || !*rumor) /* increased random rumor chance --Amy */
-	    Strcpy(outbuf, random_mesg[rn2(SIZE(random_mesg))]);
+	    strcpy(outbuf, random_mesg[rn2(SIZE(random_mesg))]);
 
 	if (!rn2(5)) wipeout_text(outbuf, (int)(strlen(outbuf) / (8 + rn2(5)) ), 0); /* wipe out less, idea by Soviet5lo */
 	return outbuf;
@@ -1029,7 +1029,7 @@ register xchar e_type;
 	ep->engr_x = x;
 	ep->engr_y = y;
 	ep->engr_txt = (char *)(ep + 1);
-	Strcpy(ep->engr_txt, s);
+	strcpy(ep->engr_txt, s);
 	/* engraving Elbereth shows wisdom */
 	if (!in_mklev && !strcmp(s, "Elbereth")) exercise(A_WIS, TRUE);
 	ep->engr_time = e_time;
@@ -1357,77 +1357,77 @@ doengrave()
 			 * previous engraving even if turning to dust.
 			 */
 		    case WAN_STRIKING:
-			Strcpy(post_engr_text,
+			strcpy(post_engr_text,
 			"The wand unsuccessfully fights your attempt to write!"
 			);
 			break;
 		    case WAN_DISINTEGRATION:
 		    case WAN_DISINTEGRATION_BEAM:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s cease to exist!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_GRAVITY_BEAM:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs are driven into the %s!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_STONING:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s turn into gravel!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_DREAM_EATER:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s seem unaffected.", /* because they're not asleep --Amy */
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_BUBBLEBEAM:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s are covered with bubbles!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_GOOD_NIGHT:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s look very drowsy!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_STUN_MONSTER:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s start moving in strange patterns!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_ACID:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s seem to be covered with goo!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_SLUDGE:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s seem to be covered with litter!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_DESLEXIFICATION:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s seem unaffected.",
 				   surface(u.ux, u.uy));
 		/* bugs on the floor are not a slex feature, and therefore the wand does nothing to them --Amy */
@@ -1435,42 +1435,42 @@ doengrave()
 			break;
 		    case WAN_WIND:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the floor are blown away!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_SOLAR_BEAM:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s shine brightly for a moment!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_AURORA_BEAM:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s are illuminated with rainbow colors!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_PSYBEAM:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s seem utterly confused!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_NETHER_BEAM:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s are killed!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_HYPER_BEAM:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s are vaporized!",
 				   surface(u.ux, u.uy));
 			}
@@ -1478,7 +1478,7 @@ doengrave()
 		    case WAN_SLOW_MONSTER:
 		    case WAN_INERTIA:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s slow down!",
 				   surface(u.ux, u.uy));
 			}
@@ -1486,7 +1486,7 @@ doengrave()
 		    case WAN_SPEED_MONSTER:
 		    case WAN_HASTE_MONSTER:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s speed up!",
 				   surface(u.ux, u.uy));
 			}
@@ -1496,21 +1496,21 @@ doengrave()
 		    case WAN_FULL_HEALING:
 		    case WAN_INCREASE_MAX_HITPOINTS:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s look healthier!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_FEAR:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s run away!",
 				   surface(u.ux, u.uy));
 			}
 			break;
 		    case WAN_MAKE_VISIBLE:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s are clearly visible!",
 				   surface(u.ux, u.uy));
 			}
@@ -1575,7 +1575,7 @@ doengrave()
 		    case WAN_SHARE_PAIN:
 			ptext = TRUE;
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The %s is riddled by bullet holes!",
 				   surface(u.ux, u.uy));
 			}
@@ -1587,7 +1587,7 @@ doengrave()
 		    case WAN_DEATH:
 		    case WAN_PARALYSIS:
 			if (!Blind) {
-			   Sprintf(post_engr_text,
+			   sprintf(post_engr_text,
 				   "The bugs on the %s stop moving!",
 				   surface(u.ux, u.uy));
 			}
@@ -1595,13 +1595,13 @@ doengrave()
 
 		    case WAN_COLD:
 			if (!Blind)
-			    Strcpy(post_engr_text,
+			    strcpy(post_engr_text,
 				"A few ice cubes drop from the wand.");
 			if(!oep || (oep->engr_type != BURN))
 			    break;
 		    case WAN_ICE_BEAM:
 			if (!Blind)
-			    Strcpy(post_engr_text,
+			    strcpy(post_engr_text,
 				"A steady stream of ice shoots from the wand.");
 			if(!oep || (oep->engr_type != BURN))
 			    break;
@@ -1635,14 +1635,14 @@ doengrave()
 			    doknown = TRUE;
 			}
 			if (!Blind)
-			    Strcpy(post_engr_text,
+			    strcpy(post_engr_text,
 				IS_GRAVE(levl[u.ux][u.uy].typ) ?
 				"Chips fly out from the headstone." :
 				is_ice(u.ux,u.uy) ?
 				"Ice chips fly up from the ice surface!" :
 				"Gravel flies up from the floor.");
 			else
-			    Strcpy(post_engr_text, "You hear drilling!");
+			    strcpy(post_engr_text, "You hear drilling!");
 			break;
 
 		    case WAN_POISON:	/*new wand [Sakusha]*/
@@ -1674,7 +1674,7 @@ doengrave()
 			    pline("This %s is a wand of fire!", xname(otmp));
 			    doknown = TRUE;
 			}
-			Strcpy(post_engr_text,
+			strcpy(post_engr_text,
 				Blind ? "You feel the wand heat up." :
 					"Flames fly from the wand.");
 			break;
@@ -1686,7 +1686,7 @@ doengrave()
 			    pline("This %s is a wand of inferno!", xname(otmp));
 			    doknown = TRUE;
 			}
-			Strcpy(post_engr_text,
+			strcpy(post_engr_text,
 				Blind ? "You feel the wand heat up." :
 					"Flames fly from the wand.");
 			break;
@@ -1698,7 +1698,7 @@ doengrave()
 			    pline("This %s is a wand of chromatic beam!", xname(otmp));
 			    doknown = TRUE;
 			}
-			Strcpy(post_engr_text,
+			strcpy(post_engr_text,
 				Blind ? "You feel the wand trembling while you engrave." :
 					"Multicolored beams fly from the wand.");
 			break;
@@ -1710,7 +1710,7 @@ doengrave()
 			    pline("This %s is a wand of fireballs!", xname(otmp));
 			    doknown = TRUE;
 			}
-			Strcpy(post_engr_text,
+			strcpy(post_engr_text,
 				Blind ? "You feel the wand heat up." :
 					"Flames fly from the wand.");
 			break;
@@ -1724,11 +1724,11 @@ doengrave()
 			    doknown = TRUE;
 			}
 			if (!Blind) {
-			    Strcpy(post_engr_text,
+			    strcpy(post_engr_text,
 				    "Lightning arcs from the wand.");
 			    doblind = TRUE;
 			} else
-			    Strcpy(post_engr_text, "You hear crackling!");
+			    strcpy(post_engr_text, "You hear crackling!");
 			break;
 		    case WAN_THUNDER:
 			ptext = TRUE;
@@ -1740,11 +1740,11 @@ doengrave()
 			    doknown = TRUE;
 			}
 			if (!Blind) {
-			    Strcpy(post_engr_text,
+			    strcpy(post_engr_text,
 				    "Lightning arcs from the wand.");
 			    doblind = TRUE;
 			} else
-			    Strcpy(post_engr_text, "You hear crackling!");
+			    strcpy(post_engr_text, "You hear crackling!");
 			break;
 
 		    /* type = MARK wands */
@@ -1985,7 +1985,7 @@ doengrave()
 		makeplural(body_part(FINGER)));
 
 	/* Prompt for engraving! */
-	Sprintf(qbuf,"What do you want to %s the %s here?", everb, eloc);
+	sprintf(qbuf,"What do you want to %s the %s here?", everb, eloc);
 	getlin(qbuf, ebuf);
 
 	/* Count the actual # of chars engraved not including spaces */
@@ -2121,7 +2121,7 @@ doengrave()
 	}
 
 	/* Add to existing engraving */
-	if (oep) Strcpy(buf, oep->engr_txt);
+	if (oep) strcpy(buf, oep->engr_txt);
 
 	(void) strncat(buf, ebuf, (ENGBUFSZ - (int)strlen(buf) - 1));
 

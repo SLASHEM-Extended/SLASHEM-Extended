@@ -1067,7 +1067,7 @@ char gnome_yn_function(const char *question, const char *choices,
     
     if (choices) {
 	char *cb, choicebuf[QBUFSZ];
-	Strcpy(choicebuf, choices);
+	strcpy(choicebuf, choices);
 	if ((cb = index(choicebuf, '\033')) != 0) {
 	    /* anything beyond <esc> is hidden */
 	    *cb = '\0';
@@ -1078,7 +1078,7 @@ char gnome_yn_function(const char *question, const char *choices,
 	yn_esc_map = (index(choices, 'q') ? 'q' :
 		 (index(choices, 'n') ? 'n' : def));
     } else {
-	Strcpy(message, question);
+	strcpy(message, question);
     }
     
     
@@ -1196,41 +1196,41 @@ void gnome_outrip(winid wid, int how)
     extern const char *killed_by_prefix[];
     
     /* Put name on stone */
-    Sprintf(buf, "%s\n", plname);
-    Strcat(ripString, buf);
+    sprintf(buf, "%s\n", plname);
+    strcat(ripString, buf);
     
     /* Put $ on stone */
-    Sprintf(buf, "%ld Au\n",
+    sprintf(buf, "%ld Au\n",
 #ifndef GOLDOBJ
 		u.ugold);
 #else
 		done_money);
 #endif
 
-    Strcat(ripString, buf);
+    strcat(ripString, buf);
 
     /* Put together death description */
     switch (killer_format) {
 	    default: impossible("bad killer format?");
 	    case KILLED_BY_AN:
-		    Strcpy(buf, killed_by_prefix[how]);
-		    Strcat(buf, an(killer));
+		    strcpy(buf, killed_by_prefix[how]);
+		    strcat(buf, an(killer));
 		    break;
 	    case KILLED_BY:
-		    Strcpy(buf, killed_by_prefix[how]);
-		    Strcat(buf, killer);
+		    strcpy(buf, killed_by_prefix[how]);
+		    strcat(buf, killer);
 		    break;
 	    case NO_KILLER_PREFIX:
-		    Strcpy(buf, killer);
+		    strcpy(buf, killer);
 		    break;
     }
     /* Put death type on stone */
-    Strcat(ripString, buf);
-    Strcat(ripString, "\n");
+    strcat(ripString, buf);
+    strcat(ripString, "\n");
 
     /* Put year on stone */
-    Sprintf(buf, "%4d\n", getyear());
-    Strcat(ripString, buf);
+    sprintf(buf, "%4d\n", getyear());
+    strcat(ripString, buf);
 
     ghack_text_window_rip_string( ripString);
 }

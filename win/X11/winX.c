@@ -1239,7 +1239,7 @@ getline_delete(w, event, params, num_params)
     String *params;
     Cardinal *num_params;
 {
-    Strcpy(getline_input, CANCEL_STR);
+    strcpy(getline_input, CANCEL_STR);
     nh_XtPopdown(w);
     exit_x_event = TRUE;
 }
@@ -1254,7 +1254,7 @@ abort_button(w, client_data, call_data)
 {
     Widget dialog = (Widget) client_data;
 
-    Strcpy(getline_input, CANCEL_STR);
+    strcpy(getline_input, CANCEL_STR);
     nh_XtPopdown(XtParent(dialog));
     exit_x_event = TRUE;
 }
@@ -1620,13 +1620,13 @@ X11_yn_function(ques, choices, def)
     if (choices) {
 	char *cb, choicebuf[QBUFSZ];
 
-	Strcpy(choicebuf, choices);	/* anything beyond <esc> is hidden */
+	strcpy(choicebuf, choices);	/* anything beyond <esc> is hidden */
 	if ((cb = index(choicebuf, '\033')) != 0) *cb = '\0';
 	/* ques [choices] (def) */
 	if ((int)(1 + strlen(ques) + 2 + strlen(choicebuf) + 4) >= QBUFSZ)
 	    panic("yn_function:  question too long");
-	Sprintf(buf, "%s [%s] ", ques, choicebuf);
-	if (def) Sprintf(eos(buf), "(%c) ", def);
+	sprintf(buf, "%s [%s] ", ques, choicebuf);
+	if (def) sprintf(eos(buf), "(%c) ", def);
 
 	/* escape maps to 'q' or 'n' or default, in that order */
 	yn_esc_map = (index(choices, 'q') ? 'q' :
@@ -1635,7 +1635,7 @@ X11_yn_function(ques, choices, def)
     } else {
 	if ((int)(1 + strlen(ques)) >= QBUFSZ)
 	    panic("yn_function:  question too long");
-	Strcpy(buf, ques);
+	strcpy(buf, ques);
     }
 
     if (!appResources.slow && need_to_init) {

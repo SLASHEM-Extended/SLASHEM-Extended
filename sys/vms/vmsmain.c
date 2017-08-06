@@ -127,7 +127,7 @@ char *argv[];
 
 #ifdef WIZARD
 	if (wizard)
-		Strcpy(plname, "wizard");
+		strcpy(plname, "wizard");
 	else
 #endif
 	if (!*plname || !strncmpi(plname, "games", 4) ||
@@ -146,11 +146,11 @@ char *argv[];
 		(void) signal(SIGQUIT,SIG_IGN);
 		(void) signal(SIGINT,SIG_IGN);
 		if(!locknum)
-			Sprintf(lock, "_%u%s", (unsigned)getuid(), plname);
+			sprintf(lock, "_%u%s", (unsigned)getuid(), plname);
 		getlock();
 #ifdef WIZARD
 	} else {
-		Sprintf(lock, "_%u%s", (unsigned)getuid(), plname);
+		sprintf(lock, "_%u%s", (unsigned)getuid(), plname);
 		getlock();
 	}
 #endif /* WIZARD */

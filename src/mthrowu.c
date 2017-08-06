@@ -841,8 +841,8 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			is_poisonable(singleobj)) {
 			char onmbuf[BUFSZ], knmbuf[BUFSZ];
 
-			Strcpy(onmbuf, xname(singleobj));
-			Strcpy(knmbuf, killer_xname(singleobj));
+			strcpy(onmbuf, xname(singleobj));
+			strcpy(knmbuf, killer_xname(singleobj));
 			poisoned(onmbuf, A_STR, knmbuf, -10);
 		    }
 		    if(hitu &&
@@ -1117,7 +1117,7 @@ struct monst *mtmp;
 	    if (multishot > 1) {
 		/* "N arrows"; multishot > 1 implies otmp->quan > 1, so
 		   xname()'s result will already be pluralized */
-		Sprintf(onmbuf, "%d %s", multishot, xname(otmp));
+		sprintf(onmbuf, "%d %s", multishot, xname(otmp));
 		onm = onmbuf;
 	    } else {
 		/* "an arrow" */

@@ -184,7 +184,7 @@ char *argv[];
 #endif
 #ifdef WIZARD
 	if (wizard)
-		Strcpy(plname, "wizard");
+		strcpy(plname, "wizard");
 	else
 #endif
 	if(!*plname) {
@@ -210,11 +210,11 @@ char *argv[];
 		(void) signal(SIGQUIT,SIG_IGN);
 		(void) signal(SIGINT,SIG_IGN);
 		if(!locknum)
-			Sprintf(lock, "%d%s", (int)getuid(), plname);
+			sprintf(lock, "%d%s", (int)getuid(), plname);
 		getlock();
 #ifdef WIZARD
 	} else {
-		Sprintf(lock, "%d%s", (int)getuid(), plname);
+		sprintf(lock, "%d%s", (int)getuid(), plname);
 		getlock();
 	}
 #endif /* WIZARD */
@@ -468,7 +468,7 @@ boolean wr;
 	    int len = strlen(VAR_PLAYGROUND);
 
 	    fqn_prefix[SCOREPREFIX] = (char *)alloc(len+2);
-	    Strcpy(fqn_prefix[SCOREPREFIX], VAR_PLAYGROUND);
+	    strcpy(fqn_prefix[SCOREPREFIX], VAR_PLAYGROUND);
 	    if (fqn_prefix[SCOREPREFIX][len-1] != '/') {
 		fqn_prefix[SCOREPREFIX][len] = '/';
 		fqn_prefix[SCOREPREFIX][len+1] = '\0';

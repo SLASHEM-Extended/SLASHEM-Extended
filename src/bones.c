@@ -379,7 +379,7 @@ struct obj *corpse;
 		mtmp->female = flags.female;
 		mtmp->msleeping = 1;
 #ifdef LIVELOG_BONES_KILLER 
-		Strcpy(mtmp->former_rank, rank()); 
+		strcpy(mtmp->former_rank, rank()); 
 #endif 
 	}
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
@@ -507,7 +507,7 @@ getbones()
 		if (strcmp(bonesid, oldbonesid) != 0) {
 			char errbuf[BUFSZ];
 
-			Sprintf(errbuf, "This is bones level '%s', not '%s'!",
+			sprintf(errbuf, "This is bones level '%s', not '%s'!",
 				oldbonesid, bonesid);
 #ifdef WIZARD
 			if (wizard) {

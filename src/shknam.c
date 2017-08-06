@@ -675,7 +675,7 @@ register struct mkroom *sroom;
 	    else if(inside_shop(sx-1,sy)) m++;
 	    if(inside_shop(sx,sy+1)) n--;
 	    else if(inside_shop(sx,sy-1)) n++;
-	    Sprintf(buf, "Closed for inventory");
+	    sprintf(buf, "Closed for inventory");
 	    make_engr_at(m, n, buf, 0L, DUST);
     }
 

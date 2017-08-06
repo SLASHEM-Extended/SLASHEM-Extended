@@ -133,7 +133,7 @@ pline VA_DECL(const char *, line)
 ) line = " ";
 
 	if (index(line, '%')) {
-	    Vsprintf(pbuf,line,VA_ARGS);
+	    vsprintf(pbuf,line,VA_ARGS);
 	    line = pbuf;
 	}
 
@@ -361,7 +361,7 @@ free_youbuf()
 
 /* `prefix' must be a string literal, not a pointer */
 #define YouPrefix(pointer,prefix,text) \
- Strcpy((pointer = You_buf((int)(strlen(text) + sizeof prefix))), prefix)
+ strcpy((pointer = You_buf((int)(strlen(text) + sizeof prefix))), prefix)
 
 #define YouMessage(pointer,prefix,text) \
  strcat((YouPrefix(pointer, prefix, text), pointer), text)
@@ -469,9 +469,9 @@ verbalize VA_DECL(const char *,line)
 	VA_START(line);
 	VA_INIT(line, const char *);
 	tmp = You_buf((int)strlen(line) + sizeof "\"\"");
-	Strcpy(tmp, "\"");
-	Strcat(tmp, line);
-	Strcat(tmp, "\"");
+	strcpy(tmp, "\"");
+	strcat(tmp, line);
+	strcat(tmp, "\"");
 	vpline(tmp, VA_ARGS);
 	VA_END();
 }
@@ -511,7 +511,7 @@ raw_printf VA_DECL(const char *, line)
 	    raw_print(line);
 	else {
 	    char pbuf[BUFSZ];
-	    Vsprintf(pbuf,line,VA_ARGS);
+	    vsprintf(pbuf,line,VA_ARGS);
 	    raw_print(pbuf);
 	}
 }
@@ -527,7 +527,7 @@ impossible VA_DECL(const char *, s)
 	program_state.in_impossible = 1;
 	{
 	    char pbuf[BUFSZ];
-	    Vsprintf(pbuf,s,VA_ARGS);
+	    vsprintf(pbuf,s,VA_ARGS);
 	    paniclog("impossible", pbuf);
 	}
 	vpline(s,VA_ARGS);
@@ -555,32 +555,32 @@ hybrid_str()
 {
     static char string[BUFSZ];
     *string = '\0';
-	if (flags.hybridangbander) Sprintf(eos(string), "angbander ");
-	if (flags.hybridaquarian) Sprintf(eos(string), "aquarian ");
-	if (flags.hybridcurser) Sprintf(eos(string), "curser ");
-	if (flags.hybridhaxor) Sprintf(eos(string), "haxor ");
-	if (flags.hybridhomicider) Sprintf(eos(string), "homicider ");
-	if (flags.hybridsuxxor) Sprintf(eos(string), "suxxor ");
-	if (flags.hybridwarper) Sprintf(eos(string), "warper ");
-	if (flags.hybridrandomizer) Sprintf(eos(string), "randomizer ");
-	if (flags.hybridnullrace) Sprintf(eos(string), "null ");
-	if (flags.hybridmazewalker) Sprintf(eos(string), "mazewalker ");
-	if (flags.hybridsoviet) Sprintf(eos(string), "soviet ");
-	if (flags.hybridxrace) Sprintf(eos(string), "x-race ");
-	if (flags.hybridheretic) Sprintf(eos(string), "heretic ");
-	if (flags.hybridsokosolver) Sprintf(eos(string), "sokosolver ");
-	if (flags.hybridspecialist) Sprintf(eos(string), "specialist ");
-	if (flags.hybridamerican) Sprintf(eos(string), "american ");
-	if (flags.hybridminimalist) Sprintf(eos(string), "minimalist ");
-	if (flags.hybridnastinator) Sprintf(eos(string), "nastinator ");
-	if (flags.hybridrougelike) Sprintf(eos(string), "rougelike ");
-	if (flags.hybridsegfaulter) Sprintf(eos(string), "segfaulter ");
-	if (flags.hybridironman) Sprintf(eos(string), "ironman ");
-	if (flags.hybridamnesiac) Sprintf(eos(string), "amnesiac ");
-	if (flags.hybridproblematic) Sprintf(eos(string), "problematic ");
-	if (flags.hybridwindinhabitant) Sprintf(eos(string), "windinhabitant ");
+	if (flags.hybridangbander) sprintf(eos(string), "angbander ");
+	if (flags.hybridaquarian) sprintf(eos(string), "aquarian ");
+	if (flags.hybridcurser) sprintf(eos(string), "curser ");
+	if (flags.hybridhaxor) sprintf(eos(string), "haxor ");
+	if (flags.hybridhomicider) sprintf(eos(string), "homicider ");
+	if (flags.hybridsuxxor) sprintf(eos(string), "suxxor ");
+	if (flags.hybridwarper) sprintf(eos(string), "warper ");
+	if (flags.hybridrandomizer) sprintf(eos(string), "randomizer ");
+	if (flags.hybridnullrace) sprintf(eos(string), "null ");
+	if (flags.hybridmazewalker) sprintf(eos(string), "mazewalker ");
+	if (flags.hybridsoviet) sprintf(eos(string), "soviet ");
+	if (flags.hybridxrace) sprintf(eos(string), "x-race ");
+	if (flags.hybridheretic) sprintf(eos(string), "heretic ");
+	if (flags.hybridsokosolver) sprintf(eos(string), "sokosolver ");
+	if (flags.hybridspecialist) sprintf(eos(string), "specialist ");
+	if (flags.hybridamerican) sprintf(eos(string), "american ");
+	if (flags.hybridminimalist) sprintf(eos(string), "minimalist ");
+	if (flags.hybridnastinator) sprintf(eos(string), "nastinator ");
+	if (flags.hybridrougelike) sprintf(eos(string), "rougelike ");
+	if (flags.hybridsegfaulter) sprintf(eos(string), "segfaulter ");
+	if (flags.hybridironman) sprintf(eos(string), "ironman ");
+	if (flags.hybridamnesiac) sprintf(eos(string), "amnesiac ");
+	if (flags.hybridproblematic) sprintf(eos(string), "problematic ");
+	if (flags.hybridwindinhabitant) sprintf(eos(string), "windinhabitant ");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant)) Sprintf(eos(string), "none ");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant)) sprintf(eos(string), "none ");
 
     return (string);
 }
@@ -590,32 +590,32 @@ hybrid_strcode()
 {
     static char string[BUFSZ];
     *string = '\0';
-	if (flags.hybridangbander) Sprintf(eos(string), "Agb");
-	if (flags.hybridaquarian) Sprintf(eos(string), "Aqu");
-	if (flags.hybridcurser) Sprintf(eos(string), "Cur");
-	if (flags.hybridhaxor) Sprintf(eos(string), "Hax");
-	if (flags.hybridhomicider) Sprintf(eos(string), "Hom");
-	if (flags.hybridsuxxor) Sprintf(eos(string), "Sux");
-	if (flags.hybridwarper) Sprintf(eos(string), "War");
-	if (flags.hybridrandomizer) Sprintf(eos(string), "Ran");
-	if (flags.hybridnullrace) Sprintf(eos(string), "Nul");
-	if (flags.hybridmazewalker) Sprintf(eos(string), "Maz");
-	if (flags.hybridsoviet) Sprintf(eos(string), "Sov");
-	if (flags.hybridxrace) Sprintf(eos(string), "Xra");
-	if (flags.hybridheretic) Sprintf(eos(string), "Her");
-	if (flags.hybridsokosolver) Sprintf(eos(string), "Sok");
-	if (flags.hybridspecialist) Sprintf(eos(string), "Spe");
-	if (flags.hybridamerican) Sprintf(eos(string), "Ame");
-	if (flags.hybridminimalist) Sprintf(eos(string), "Min");
-	if (flags.hybridnastinator) Sprintf(eos(string), "Nas");
-	if (flags.hybridrougelike) Sprintf(eos(string), "Rou");
-	if (flags.hybridsegfaulter) Sprintf(eos(string), "Seg");
-	if (flags.hybridironman) Sprintf(eos(string), "Iro");
-	if (flags.hybridamnesiac) Sprintf(eos(string), "Amn");
-	if (flags.hybridproblematic) Sprintf(eos(string), "Pro");
-	if (flags.hybridwindinhabitant) Sprintf(eos(string), "Win");
+	if (flags.hybridangbander) sprintf(eos(string), "Agb");
+	if (flags.hybridaquarian) sprintf(eos(string), "Aqu");
+	if (flags.hybridcurser) sprintf(eos(string), "Cur");
+	if (flags.hybridhaxor) sprintf(eos(string), "Hax");
+	if (flags.hybridhomicider) sprintf(eos(string), "Hom");
+	if (flags.hybridsuxxor) sprintf(eos(string), "Sux");
+	if (flags.hybridwarper) sprintf(eos(string), "War");
+	if (flags.hybridrandomizer) sprintf(eos(string), "Ran");
+	if (flags.hybridnullrace) sprintf(eos(string), "Nul");
+	if (flags.hybridmazewalker) sprintf(eos(string), "Maz");
+	if (flags.hybridsoviet) sprintf(eos(string), "Sov");
+	if (flags.hybridxrace) sprintf(eos(string), "Xra");
+	if (flags.hybridheretic) sprintf(eos(string), "Her");
+	if (flags.hybridsokosolver) sprintf(eos(string), "Sok");
+	if (flags.hybridspecialist) sprintf(eos(string), "Spe");
+	if (flags.hybridamerican) sprintf(eos(string), "Ame");
+	if (flags.hybridminimalist) sprintf(eos(string), "Min");
+	if (flags.hybridnastinator) sprintf(eos(string), "Nas");
+	if (flags.hybridrougelike) sprintf(eos(string), "Rou");
+	if (flags.hybridsegfaulter) sprintf(eos(string), "Seg");
+	if (flags.hybridironman) sprintf(eos(string), "Iro");
+	if (flags.hybridamnesiac) sprintf(eos(string), "Amn");
+	if (flags.hybridproblematic) sprintf(eos(string), "Pro");
+	if (flags.hybridwindinhabitant) sprintf(eos(string), "Win");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant)) Sprintf(eos(string), "none");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant)) sprintf(eos(string), "none");
 
     return (string);
 }
@@ -644,7 +644,7 @@ generate_garbage_string()
 				tmpstr[0] = ' ';
 		}
 
-		Sprintf(eos(string), tmpstr);
+		sprintf(eos(string), tmpstr);
 	}
 
 	return string;
@@ -667,60 +667,60 @@ register struct monst *mtmp;
 		A_NEUTRAL;
 
 	info[0] = 0;
-	if (mtmp->mtame) {	  Strcat(info, ", tame");
+	if (mtmp->mtame) {	  strcat(info, ", tame");
 #ifdef WIZARD
 	    if (wizard) {
-		Sprintf(eos(info), " (%d", mtmp->mtame);
+		sprintf(eos(info), " (%d", mtmp->mtame);
 		if (!mtmp->isminion)
-		    Sprintf(eos(info), "; hungry %ld; apport %d; abuse %d",
+		    sprintf(eos(info), "; hungry %ld; apport %d; abuse %d",
 			EDOG(mtmp)->hungrytime, EDOG(mtmp)->apport, EDOG(mtmp)->abuse);
-		Strcat(info, ")");
+		strcat(info, ")");
 	    }
 #endif
 	}
-	else if (mtmp->mpeaceful) Strcat(info, ", peaceful");
-	else if (mtmp->mtraitor)  Strcat(info, ", traitor");
-	if (mtmp->meating)	  Strcat(info, ", eating");
-	if (mtmp->mcan)		  Strcat(info, ", cancelled");
-	if (mtmp->mconf)	  Strcat(info, ", confused");
+	else if (mtmp->mpeaceful) strcat(info, ", peaceful");
+	else if (mtmp->mtraitor)  strcat(info, ", traitor");
+	if (mtmp->meating)	  strcat(info, ", eating");
+	if (mtmp->mcan)		  strcat(info, ", cancelled");
+	if (mtmp->mconf)	  strcat(info, ", confused");
 	if (mtmp->mblinded || !mtmp->mcansee)
-				  Strcat(info, ", blind");
-	if (mtmp->mstun)	  Strcat(info, ", stunned");
-	if (mtmp->msleeping)	  Strcat(info, ", asleep");
+				  strcat(info, ", blind");
+	if (mtmp->mstun)	  strcat(info, ", stunned");
+	if (mtmp->msleeping)	  strcat(info, ", asleep");
 #if 0	/* unfortunately mfrozen covers temporary sleep and being busy
 	   (donning armor, for instance) as well as paralysis */
-	else if (mtmp->mfrozen)	  Strcat(info, ", paralyzed");
+	else if (mtmp->mfrozen)	  strcat(info, ", paralyzed");
 #else
 	else if (mtmp->mfrozen || !mtmp->mcanmove)
-				  Strcat(info, ", can't move");
+				  strcat(info, ", can't move");
 #endif
 				  /* [arbitrary reason why it isn't moving] */
 	else if (mtmp->mstrategy & STRAT_WAITMASK)
-				  Strcat(info, ", meditating");
-	else if (mtmp->mflee) {	  Strcat(info, ", scared");
+				  strcat(info, ", meditating");
+	else if (mtmp->mflee) {	  strcat(info, ", scared");
 #ifdef WIZARD
-	    if (wizard)		  Sprintf(eos(info), " (%d)", mtmp->mfleetim);
+	    if (wizard)		  sprintf(eos(info), " (%d)", mtmp->mfleetim);
 #endif
 	}
-	if (mtmp->mtrapped)	  Strcat(info, ", trapped");
-	if (mtmp->mspeed)	  Strcat(info,
+	if (mtmp->mtrapped)	  strcat(info, ", trapped");
+	if (mtmp->mspeed)	  strcat(info,
 					mtmp->mspeed == MFAST ? ", fast" :
 					mtmp->mspeed == MSLOW ? ", slow" :
 					", ???? speed");
-	if (mtmp->mundetected)	  Strcat(info, ", concealed");
-	if (mtmp->minvis)	  Strcat(info, ", invisible");
-	if (mtmp == u.ustuck)	  Strcat(info,
+	if (mtmp->mundetected)	  strcat(info, ", concealed");
+	if (mtmp->minvis)	  strcat(info, ", invisible");
+	if (mtmp == u.ustuck)	  strcat(info,
 			(sticks(youmonst.data)) ? ", held by you" :
 				u.uswallow ? (is_animal(u.ustuck->data) ?
 				", swallowed you" :
 				", engulfed you") :
 				", holding you");
-	if (mtmp == u.usteed)	  Strcat(info, ", carrying you");
-	if (mtmp->butthurt) Sprintf(eos(info), ", butthurt (%d)", mtmp->butthurt);
+	if (mtmp == u.usteed)	  strcat(info, ", carrying you");
+	if (mtmp->butthurt) sprintf(eos(info), ", butthurt (%d)", mtmp->butthurt);
 
 	/* avoid "Status of the invisible newt ..., invisible" */
 	/* and unlike a normal mon_nam, use "saddled" even if it has a name */
-	Strcpy(monnambuf, x_monnam(mtmp, ARTICLE_THE, (char *)0,
+	strcpy(monnambuf, x_monnam(mtmp, ARTICLE_THE, (char *)0,
 	    (SUPPRESS_IT|SUPPRESS_INVISIBLE), FALSE));
 
 	pline("Status of %s (%s):  Level %d  HP %d(%d)  Pw %d(%d)  AC %d%s.",
@@ -752,53 +752,53 @@ register struct monst *mtmp;
 		A_NEUTRAL;
 
 	info[0] = 0;
-	if (mtmp->mtame) {	  Strcat(info, ", tame");
-		Sprintf(eos(info), " (%d", mtmp->mtame);
+	if (mtmp->mtame) {	  strcat(info, ", tame");
+		sprintf(eos(info), " (%d", mtmp->mtame);
 		if (!mtmp->isminion)
-		    Sprintf(eos(info), "; hungry %ld; apport %d",
+		    sprintf(eos(info), "; hungry %ld; apport %d",
 			EDOG(mtmp)->hungrytime, EDOG(mtmp)->apport);
-		Strcat(info, ")");
+		strcat(info, ")");
 	}
-	else if (mtmp->mpeaceful) Strcat(info, ", peaceful");
-	else if (mtmp->mtraitor)  Strcat(info, ", traitor");
-	if (mtmp->meating)	  Strcat(info, ", eating");
-	if (mtmp->mcan)		  Strcat(info, ", cancelled");
-	if (mtmp->mconf)	  Strcat(info, ", confused");
+	else if (mtmp->mpeaceful) strcat(info, ", peaceful");
+	else if (mtmp->mtraitor)  strcat(info, ", traitor");
+	if (mtmp->meating)	  strcat(info, ", eating");
+	if (mtmp->mcan)		  strcat(info, ", cancelled");
+	if (mtmp->mconf)	  strcat(info, ", confused");
 	if (mtmp->mblinded || !mtmp->mcansee)
-				  Strcat(info, ", blind");
-	if (mtmp->mstun)	  Strcat(info, ", stunned");
-	if (mtmp->msleeping)	  Strcat(info, ", asleep");
+				  strcat(info, ", blind");
+	if (mtmp->mstun)	  strcat(info, ", stunned");
+	if (mtmp->msleeping)	  strcat(info, ", asleep");
 #if 0	/* unfortunately mfrozen covers temporary sleep and being busy
 	   (donning armor, for instance) as well as paralysis */
-	else if (mtmp->mfrozen)	  Strcat(info, ", paralyzed");
+	else if (mtmp->mfrozen)	  strcat(info, ", paralyzed");
 #else
 	else if (mtmp->mfrozen || !mtmp->mcanmove)
-				  Strcat(info, ", can't move");
+				  strcat(info, ", can't move");
 #endif
 				  /* [arbitrary reason why it isn't moving] */
 	else if (mtmp->mstrategy & STRAT_WAITMASK)
-				  Strcat(info, ", meditating");
-	else if (mtmp->mflee) {	  Strcat(info, ", scared");
-	    Sprintf(eos(info), " (%d)", mtmp->mfleetim);
+				  strcat(info, ", meditating");
+	else if (mtmp->mflee) {	  strcat(info, ", scared");
+	    sprintf(eos(info), " (%d)", mtmp->mfleetim);
 	}
-	if (mtmp->mtrapped)	  Strcat(info, ", trapped");
-	if (mtmp->mspeed)	  Strcat(info,
+	if (mtmp->mtrapped)	  strcat(info, ", trapped");
+	if (mtmp->mspeed)	  strcat(info,
 					mtmp->mspeed == MFAST ? ", fast" :
 					mtmp->mspeed == MSLOW ? ", slow" :
 					", ???? speed");
-	if (mtmp->mundetected)	  Strcat(info, ", concealed");
-	if (mtmp->minvis)	  Strcat(info, ", invisible");
-	if (mtmp == u.ustuck)	  Strcat(info,
+	if (mtmp->mundetected)	  strcat(info, ", concealed");
+	if (mtmp->minvis)	  strcat(info, ", invisible");
+	if (mtmp == u.ustuck)	  strcat(info,
 			(sticks(youmonst.data)) ? ", held by you" :
 				u.uswallow ? (is_animal(u.ustuck->data) ?
 				", swallowed you" :
 				", engulfed you") :
 				", holding you");
-	if (mtmp == u.usteed)	  Strcat(info, ", carrying you");
+	if (mtmp == u.usteed)	  strcat(info, ", carrying you");
 
 	/* avoid "Status of the invisible newt ..., invisible" */
 	/* and unlike a normal mon_nam, use "saddled" even if it has a name */
-	Strcpy(monnambuf, x_monnam(mtmp, ARTICLE_THE, (char *)0,
+	strcpy(monnambuf, x_monnam(mtmp, ARTICLE_THE, (char *)0,
 	    (SUPPRESS_IT|SUPPRESS_INVISIBLE), FALSE));
 
 	pline("Status of %s (%s):  Level %d  HP %d(%d)  Pw %d(%d)  AC %d%s.",
@@ -820,55 +820,55 @@ ustatusline()
 
 	info[0] = '\0';
 	if (Sick) {
-		Strcat(info, ", dying from");
+		strcat(info, ", dying from");
 		if (u.usick_type & SICK_VOMITABLE)
-			Strcat(info, " food poisoning");
+			strcat(info, " food poisoning");
 		if (u.usick_type & SICK_NONVOMITABLE) {
 			if (u.usick_type & SICK_VOMITABLE)
-				Strcat(info, " and");
-			Strcat(info, " illness");
+				strcat(info, " and");
+			strcat(info, " illness");
 		}
 	}
-	if (Stoned)		Strcat(info, ", solidifying");
-	if (Slimed)		Strcat(info, ", becoming slimy");
-	if (Strangled)		Strcat(info, ", being strangled");
-	if (Vomiting)		Strcat(info, ", nauseated"); /* !"nauseous" */
-	if (Confusion)		Strcat(info, ", confused");
+	if (Stoned)		strcat(info, ", solidifying");
+	if (Slimed)		strcat(info, ", becoming slimy");
+	if (Strangled)		strcat(info, ", being strangled");
+	if (Vomiting)		strcat(info, ", nauseated"); /* !"nauseous" */
+	if (Confusion)		strcat(info, ", confused");
 	if (Blind) {
-	    Strcat(info, ", blind");
+	    strcat(info, ", blind");
 	    if (u.ucreamed) {
 		if ((long)u.ucreamed < Blinded || Blindfolded
 						|| !haseyes(youmonst.data))
-		    Strcat(info, ", cover");
-		Strcat(info, "ed by sticky goop");
+		    strcat(info, ", cover");
+		strcat(info, "ed by sticky goop");
 	    }	/* note: "goop" == "glop"; variation is intentional */
 	}
-	if (Stunned)		Strcat(info, ", stunned");
-	if (Numbed)		Strcat(info, ", numbed");
-	if (Feared)		Strcat(info, ", stricken with fear");
-	if (Frozen)		Strcat(info, ", frozen solid");
-	if (Burned)		Strcat(info, ", burned");
-	if (Dimmed)		Strcat(info, ", dimmed");
+	if (Stunned)		strcat(info, ", stunned");
+	if (Numbed)		strcat(info, ", numbed");
+	if (Feared)		strcat(info, ", stricken with fear");
+	if (Frozen)		strcat(info, ", frozen solid");
+	if (Burned)		strcat(info, ", burned");
+	if (Dimmed)		strcat(info, ", dimmed");
 	if (!u.usteed)
 	if (Wounded_legs) {
 	    const char *what = body_part(LEG);
 	    if ((Wounded_legs & BOTH_SIDES) == BOTH_SIDES)
 		what = makeplural(what);
-				Sprintf(eos(info), ", injured %s", what);
+				sprintf(eos(info), ", injured %s", what);
 	}
-	if (IsGlib)		Sprintf(eos(info), ", slippery %s",
+	if (IsGlib)		sprintf(eos(info), ", slippery %s",
 					makeplural(body_part(HAND)));
-	if (u.utrap)		Strcat(info, ", trapped");
-	if (Fast)		Strcat(info, Very_fast ?
+	if (u.utrap)		strcat(info, ", trapped");
+	if (Fast)		strcat(info, Very_fast ?
 						", very fast" : ", fast");
-	if (u.uundetected)	Strcat(info, ", concealed");
-	if (Invis)		Strcat(info, ", invisible");
+	if (u.uundetected)	strcat(info, ", concealed");
+	if (Invis)		strcat(info, ", invisible");
 	if (u.ustuck) {
 	    if (sticks(youmonst.data))
-		Strcat(info, ", holding ");
+		strcat(info, ", holding ");
 	    else
-		Strcat(info, ", held by ");
-	    Strcat(info, mon_nam(u.ustuck));
+		strcat(info, ", held by ");
+	    strcat(info, mon_nam(u.ustuck));
 	}
 
 	pline("Status of %s (%s%s):  Level %d  HP %d(%d)  Pw %d(%d)  AC %d%s.",

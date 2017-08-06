@@ -1036,23 +1036,23 @@ register const char *s;
 	struct monst *mtmp;
 
 	if(*s) {
-	    if(sp && sp->rndlevs) Sprintf(protofile, "%s-%d", s,
+	    if(sp && sp->rndlevs) sprintf(protofile, "%s-%d", s,
 						rnd((int) sp->rndlevs));
-	    else		 Strcpy(protofile, s);
+	    else		 strcpy(protofile, s);
 	} else if(*(dungeons[u.uz.dnum].proto)) {
 	    if(dunlevs_in_dungeon(&u.uz) > 1) {
 		if(sp && sp->rndlevs)
-		     Sprintf(protofile, "%s%d-%d", dungeons[u.uz.dnum].proto,
+		     sprintf(protofile, "%s%d-%d", dungeons[u.uz.dnum].proto,
 						dunlev(&u.uz),
 						rnd((int) sp->rndlevs));
-		else Sprintf(protofile, "%s%d", dungeons[u.uz.dnum].proto,
+		else sprintf(protofile, "%s%d", dungeons[u.uz.dnum].proto,
 						dunlev(&u.uz));
 	    } else if(sp && sp->rndlevs) {
-		     Sprintf(protofile, "%s-%d", dungeons[u.uz.dnum].proto,
+		     sprintf(protofile, "%s-%d", dungeons[u.uz.dnum].proto,
 						rnd((int) sp->rndlevs));
-	    } else Strcpy(protofile, dungeons[u.uz.dnum].proto);
+	    } else strcpy(protofile, dungeons[u.uz.dnum].proto);
 
-	} else Strcpy(protofile, "");
+	} else strcpy(protofile, "");
 
 #ifdef WIZARD
 	/* SPLEVTYPE format is "level-choice,level-choice"... */
@@ -1067,7 +1067,7 @@ register const char *s;
 			int pick = atoi(ep + len);
 			/* use choice only if valid */
 			if (pick > 0 && pick <= (int) sp->rndlevs)
-			    Sprintf(protofile + len, "%d", pick);
+			    sprintf(protofile + len, "%d", pick);
 			break;
 		    } else {
 			ep = index(ep, ',');
@@ -1079,7 +1079,7 @@ register const char *s;
 #endif
 
 	if(*protofile) {
-	    Strcat(protofile, LEV_EXT);
+	    strcat(protofile, LEV_EXT);
 	    if(load_special(protofile)) {
 		fixup_special();
 		/* some levels can end up with monsters

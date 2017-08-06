@@ -395,16 +395,16 @@ give_up:	/* Quit */
 			if (thisch == lastch) thisch = highc(thisch);
 			if (flags.initgend != ROLE_NONE && flags.initgend != ROLE_RANDOM) {
 				if (flags.initgend == 1  && roles[i].name.f)
-					Strcpy(rolenamebuf, roles[i].name.f);
+					strcpy(rolenamebuf, roles[i].name.f);
 				else
-					Strcpy(rolenamebuf, roles[i].name.m);
+					strcpy(rolenamebuf, roles[i].name.m);
 			} else {
 				if (roles[i].name.f) {
-					Strcpy(rolenamebuf, roles[i].name.m);
-					Strcat(rolenamebuf, "/");
-					Strcat(rolenamebuf, roles[i].name.f);
+					strcpy(rolenamebuf, roles[i].name.m);
+					strcat(rolenamebuf, "/");
+					strcat(rolenamebuf, roles[i].name.f);
 				} else 
-					Strcpy(rolenamebuf, roles[i].name.m);
+					strcpy(rolenamebuf, roles[i].name.m);
 			}	
 			add_menu(win, NO_GLYPH, &any, thisch,
 			    0, ATR_NONE, an(rolenamebuf), MENU_UNSELECTED);
@@ -420,7 +420,7 @@ give_up:	/* Quit */
 		any.a_int = i+1;	/* must be non-zero */
 		add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 				"Quit", MENU_UNSELECTED);
-		Sprintf(pbuf, "Pick a role for your %s", plbuf);
+		sprintf(pbuf, "Pick a role for your %s", plbuf);
 		end_menu(win, pbuf);
 		n = select_menu(win, PICK_ONE, &selected);
 		destroy_nhwindow(win);
@@ -491,7 +491,7 @@ give_up:	/* Quit */
 		    any.a_int = i+1;	/* must be non-zero */
 		    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 				    "Quit", MENU_UNSELECTED);
-		    Sprintf(pbuf, "Pick the race of your %s", plbuf);
+		    sprintf(pbuf, "Pick the race of your %s", plbuf);
 		    end_menu(win, pbuf);
 		    n = select_menu(win, PICK_ONE, &selected);
 		    destroy_nhwindow(win);
@@ -563,7 +563,7 @@ give_up:	/* Quit */
 		    any.a_int = i+1;	/* must be non-zero */
 		    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 				    "Quit", MENU_UNSELECTED);
-		    Sprintf(pbuf, "Pick the gender of your %s", plbuf);
+		    sprintf(pbuf, "Pick the gender of your %s", plbuf);
 		    end_menu(win, pbuf);
 		    n = select_menu(win, PICK_ONE, &selected);
 		    destroy_nhwindow(win);
@@ -634,7 +634,7 @@ give_up:	/* Quit */
 		    any.a_int = i+1;	/* must be non-zero */
 		    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 				    "Quit", MENU_UNSELECTED);
-		    Sprintf(pbuf, "Pick the alignment of your %s", plbuf);
+		    sprintf(pbuf, "Pick the alignment of your %s", plbuf);
 		    end_menu(win, pbuf);
 		    n = select_menu(win, PICK_ONE, &selected);
 		    destroy_nhwindow(win);
@@ -1412,7 +1412,7 @@ char mswin_yn_function(const char *question, const char *choices,
 
 		allow_num = (index(choices, '#') != 0);
 
-		Strcpy(choicebuf, choices);
+		strcpy(choicebuf, choices);
 		if ((cb = index(choicebuf, '\033')) != 0) {
 			/* anything beyond <esc> is hidden */
 			*cb = '\0';
@@ -1424,8 +1424,8 @@ char mswin_yn_function(const char *question, const char *choices,
 		yn_esc_map = (index(choices, 'q') ? 'q' :
 			(index(choices, 'n') ? 'n' : def));
     } else {
-		Strcpy(message, question);
-		Strcat(message, " ");
+		strcpy(message, question);
+		strcat(message, " ");
     }
 
     createcaret = 1;
@@ -1662,7 +1662,7 @@ int mswin_get_ext_cmd()
 		                    }
 	                    }
 	                    if (com_index >= 0) {
-		                    Strcpy(cmd, extcmdlist[com_index].ef_txt);
+		                    strcpy(cmd, extcmdlist[com_index].ef_txt);
 	                    }
                     }
                     mswin_putstr_ex(WIN_MESSAGE, ATR_BOLD, cmd, 1);
@@ -1759,15 +1759,15 @@ void mswin_outrip(winid wid, int how)
 	}
 
 	/* Put name on stone */
-	Sprintf(buf, "%s", plname);
+	sprintf(buf, "%s", plname);
 	buf[STONE_LINE_LEN] = 0;
 	putstr(wid, 0, buf);
 
 	/* Put $ on stone */
 #ifndef GOLDOBJ
-	Sprintf(buf, "%ld Au", u.ugold);
+	sprintf(buf, "%ld Au", u.ugold);
 #else
-	Sprintf(buf, "%ld Au", done_money);
+	sprintf(buf, "%ld Au", done_money);
 #endif
 	buf[STONE_LINE_LEN] = 0; /* It could be a *lot* of gold :-) */
 	putstr(wid, 0, buf);
@@ -1776,15 +1776,15 @@ void mswin_outrip(winid wid, int how)
 	switch (killer_format) {
 		default: impossible("bad killer format?");
 		case KILLED_BY_AN:
-			Strcpy(buf, killed_by_prefix[how]);
-			Strcat(buf, an(killer));
+			strcpy(buf, killed_by_prefix[how]);
+			strcat(buf, an(killer));
 			break;
 		case KILLED_BY:
-			Strcpy(buf, killed_by_prefix[how]);
-			Strcat(buf, killer);
+			strcpy(buf, killed_by_prefix[how]);
+			strcat(buf, killer);
 			break;
 		case NO_KILLER_PREFIX:
-			Strcpy(buf, killer);
+			strcpy(buf, killer);
 			break;
 	}
 
@@ -1792,7 +1792,7 @@ void mswin_outrip(winid wid, int how)
 	putstr(wid, 0, buf);
 
 	/* Put year on stone */
-	Sprintf(buf, "%4d", getyear());
+	sprintf(buf, "%4d", getyear());
 	putstr(wid, 0, buf);
 	mswin_finish_rip_text(wid);
 }

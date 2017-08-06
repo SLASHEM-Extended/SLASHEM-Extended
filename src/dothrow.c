@@ -156,14 +156,14 @@ int thrown;
 		    touch_petrifies(&mons[obj->corpsenm]))) {
 		You("throw the %s corpse with your bare %s.",
 		    mons[obj->corpsenm].mname, body_part(HAND));
-		Sprintf(killer_buf, "%s corpse", an(mons[obj->corpsenm].mname));
+		sprintf(killer_buf, "%s corpse", an(mons[obj->corpsenm].mname));
 		instapetrify(killer_buf);
 	}
 	if ( (!uarmg || FingerlessGloves) && !Stone_resistance && (obj->otyp == EGG &&
 		    touch_petrifies(&mons[obj->corpsenm]))) {
 		You("throw the %s egg with your bare %s.",
 		    mons[obj->corpsenm].mname, body_part(HAND));
-		Sprintf(killer_buf, "%s egg", an(mons[obj->corpsenm].mname));
+		sprintf(killer_buf, "%s egg", an(mons[obj->corpsenm].mname));
 		instapetrify(killer_buf);
 	}
 	if (welded(obj)) {
@@ -2113,7 +2113,7 @@ register struct obj *obj;
 	static NEARDATA const char noluck[] = " graciously";
 	static NEARDATA const char addluck[] = " gratefully";
 
-	Strcpy(buf,Monnam(mon));
+	strcpy(buf,Monnam(mon));
 	mon->mpeaceful = 1;
 	mon->mavenge = 0;
 
@@ -2123,49 +2123,49 @@ register struct obj *obj;
 	if(obj->dknown && objects[obj->otyp].oc_name_known) {
 		if(is_gem) {
 			if(is_buddy) {
-				Strcat(buf,addluck);
+				strcat(buf,addluck);
 				if (!rn2(issoviet ? 2 : 3)) change_luck(issoviet ? 4 : rnd(4) );
 				if (issoviet) pline("Vy, bezuslovno, povezlo, potomu chto eta igra yavlyayetsya nesbalansirovannym, kak chert!");
 			} else {
-				Strcat(buf,maybeluck);
+				strcat(buf,maybeluck);
 				if (!rn2(issoviet ? 3 : 5)) change_luck(issoviet ? 2 : rnd(2) );
 				if (issoviet) pline("Kto-to reshil, chto vy dolzhny poluchit' tonny udachi besplatno!");
 			}
 		} else {
-			Strcat(buf,nogood);
+			strcat(buf,nogood);
 			goto nopick;
 		}
 	/* making guesses */
 	} else if(obj->onamelth || objects[obj->otyp].oc_uname) {
 		if(is_gem) {
 			if(is_buddy) {
-				Strcat(buf,addluck);
+				strcat(buf,addluck);
 				if (!rn2(issoviet ? 2 : 3)) change_luck(issoviet ? 2 : rnd(2) );
 				if (issoviet) pline("Vy, bezuslovno, povezlo, potomu chto eta igra yavlyayetsya nesbalansirovannym, kak chert!");
 			} else {
-				Strcat(buf,maybeluck);
+				strcat(buf,maybeluck);
 				if (!rn2(issoviet ? 3 : 5)) change_luck(issoviet ? 2 : rnd(2) );
 				if (issoviet) pline("Kto-to reshil, chto vy dolzhny poluchit' tonny udachi besplatno!");
 			}
 		} else {
-			Strcat(buf,nogood);
+			strcat(buf,nogood);
 			goto nopick;
 		}
 	/* value completely unknown to @ */
 	} else {
 		if(is_gem) {
 			if(is_buddy) {
-				Strcat(buf,addluck);
+				strcat(buf,addluck);
 				if (!rn2(issoviet ? 2 : 3)) change_luck(1);
 			} else {
-				Strcat(buf,maybeluck);
+				strcat(buf,maybeluck);
 				if (!rn2(issoviet ? 3 : 5)) change_luck(1);
 			}
 		} else {
-			Strcat(buf,noluck);
+			strcat(buf,noluck);
 		}
 	}
-	Strcat(buf,acceptgift);
+	strcat(buf,acceptgift);
 	if(*u.ushops) check_shop_obj(obj, mon->mx, mon->my, TRUE);
 	if (!issoviet && rn2(2)) (void) mpickobj(mon, obj, FALSE);	/* may merge and free obj */
 	else 	obfree(obj, (struct obj *)0); /* definitely frees obj, nerf by Amy */

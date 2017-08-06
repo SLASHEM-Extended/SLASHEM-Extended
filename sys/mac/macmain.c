@@ -82,7 +82,7 @@ main (void)
 
 #ifdef WIZARD
 	if (wizard)
-		Strcpy(plname, "wizard");
+		strcpy(plname, "wizard");
 	else
 #endif
 	if(!*plname || !strncmp(plname, "player", 4) || !strncmp(plname, "games", 4))
@@ -91,7 +91,7 @@ main (void)
 				/* again if suffix was whole name */
 				/* accepts any suffix */
 
-	Sprintf (lock, "%d%s", getuid (), plname);
+	sprintf (lock, "%d%s", getuid (), plname);
 	getlock ();
 
 	if ((fd = restore_saved_game()) >= 0) {

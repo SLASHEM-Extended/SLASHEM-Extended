@@ -5396,7 +5396,7 @@ newboss:
 		}
 
 		if (!rn2(100) && CaptchaProblem) {
-			Strcpy(buf, rndmonnam() );
+			strcpy(buf, rndmonnam() );
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
 			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
@@ -5594,7 +5594,7 @@ newboss:
 		}
 
 		if (!rn2(100) && u.uprops[CAPTCHA].extrinsic) {
-			Strcpy(buf, rndmonnam() );
+			strcpy(buf, rndmonnam() );
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
 			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
@@ -5631,7 +5631,7 @@ newboss:
 		}
 
 		if (!rn2(100) && have_captchastone()) {
-			Strcpy(buf, rndmonnam() );
+			strcpy(buf, rndmonnam() );
 			pline("Captcha! Please type in the following word(s) to continue: %s", buf);
 			getlin("Your input:",ebuf);
 			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
@@ -7348,37 +7348,37 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
     if (new_game || u.ualignbase[A_ORIGINAL] != u.ualignbase[A_CURRENT])
-	Sprintf(eos(buf), " %s", align_str(u.ualignbase[A_ORIGINAL]));
+	sprintf(eos(buf), " %s", align_str(u.ualignbase[A_ORIGINAL]));
     if (!urole.name.f &&
 	    (new_game ? (urole.allow & ROLE_GENDMASK) == (ROLE_MALE|ROLE_FEMALE) :
 	     currentgend != flags.initgend))
-	Sprintf(eos(buf), " %s", genders[currentgend].adj);
+	sprintf(eos(buf), " %s", genders[currentgend].adj);
 
     *xtrabuf = '\0';
-	if (flags.hybridangbander) Sprintf(eos(xtrabuf), "angbander ");
-	if (flags.hybridaquarian) Sprintf(eos(xtrabuf), "aquarian ");
-	if (flags.hybridcurser) Sprintf(eos(xtrabuf), "curser ");
-	if (flags.hybridhaxor) Sprintf(eos(xtrabuf), "haxor ");
-	if (flags.hybridhomicider) Sprintf(eos(xtrabuf), "homicider ");
-	if (flags.hybridsuxxor) Sprintf(eos(xtrabuf), "suxxor ");
-	if (flags.hybridwarper) Sprintf(eos(xtrabuf), "warper ");
-	if (flags.hybridrandomizer) Sprintf(eos(xtrabuf), "randomizer ");
-	if (flags.hybridnullrace) Sprintf(eos(xtrabuf), "null ");
-	if (flags.hybridmazewalker) Sprintf(eos(xtrabuf), "mazewalker ");
-	if (flags.hybridsoviet) Sprintf(eos(xtrabuf), "soviet ");
-	if (flags.hybridxrace) Sprintf(eos(xtrabuf), "x-race ");
-	if (flags.hybridheretic) Sprintf(eos(xtrabuf), "heretic ");
-	if (flags.hybridsokosolver) Sprintf(eos(xtrabuf), "sokosolver ");
-	if (flags.hybridspecialist) Sprintf(eos(xtrabuf), "specialist ");
-	if (flags.hybridamerican) Sprintf(eos(xtrabuf), "american ");
-	if (flags.hybridminimalist) Sprintf(eos(xtrabuf), "minimalist ");
-	if (flags.hybridnastinator) Sprintf(eos(xtrabuf), "nastinator ");
-	if (flags.hybridrougelike) Sprintf(eos(xtrabuf), "rougelike ");
-	if (flags.hybridsegfaulter) Sprintf(eos(xtrabuf), "segfaulter ");
-	if (flags.hybridironman) Sprintf(eos(xtrabuf), "ironman ");
-	if (flags.hybridamnesiac) Sprintf(eos(xtrabuf), "amnesiac ");
-	if (flags.hybridproblematic) Sprintf(eos(xtrabuf), "problematic ");
-	if (flags.hybridwindinhabitant) Sprintf(eos(xtrabuf), "windinhabitant ");
+	if (flags.hybridangbander) sprintf(eos(xtrabuf), "angbander ");
+	if (flags.hybridaquarian) sprintf(eos(xtrabuf), "aquarian ");
+	if (flags.hybridcurser) sprintf(eos(xtrabuf), "curser ");
+	if (flags.hybridhaxor) sprintf(eos(xtrabuf), "haxor ");
+	if (flags.hybridhomicider) sprintf(eos(xtrabuf), "homicider ");
+	if (flags.hybridsuxxor) sprintf(eos(xtrabuf), "suxxor ");
+	if (flags.hybridwarper) sprintf(eos(xtrabuf), "warper ");
+	if (flags.hybridrandomizer) sprintf(eos(xtrabuf), "randomizer ");
+	if (flags.hybridnullrace) sprintf(eos(xtrabuf), "null ");
+	if (flags.hybridmazewalker) sprintf(eos(xtrabuf), "mazewalker ");
+	if (flags.hybridsoviet) sprintf(eos(xtrabuf), "soviet ");
+	if (flags.hybridxrace) sprintf(eos(xtrabuf), "x-race ");
+	if (flags.hybridheretic) sprintf(eos(xtrabuf), "heretic ");
+	if (flags.hybridsokosolver) sprintf(eos(xtrabuf), "sokosolver ");
+	if (flags.hybridspecialist) sprintf(eos(xtrabuf), "specialist ");
+	if (flags.hybridamerican) sprintf(eos(xtrabuf), "american ");
+	if (flags.hybridminimalist) sprintf(eos(xtrabuf), "minimalist ");
+	if (flags.hybridnastinator) sprintf(eos(xtrabuf), "nastinator ");
+	if (flags.hybridrougelike) sprintf(eos(xtrabuf), "rougelike ");
+	if (flags.hybridsegfaulter) sprintf(eos(xtrabuf), "segfaulter ");
+	if (flags.hybridironman) sprintf(eos(xtrabuf), "ironman ");
+	if (flags.hybridamnesiac) sprintf(eos(xtrabuf), "amnesiac ");
+	if (flags.hybridproblematic) sprintf(eos(xtrabuf), "problematic ");
+	if (flags.hybridwindinhabitant) sprintf(eos(xtrabuf), "windinhabitant ");
 
 	if (new_game) { /* for recursion trap */
 		ustartrace = urace;

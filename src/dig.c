@@ -585,9 +585,9 @@ int ttyp;
 	/* maketrap() might change it, also, in this situation,
 	   surface() returns an inappropriate string for a grave */
 	if (IS_GRAVE(lev->typ))
-	    Strcpy(surface_type, "grave");
+	    strcpy(surface_type, "grave");
 	else
-	    Strcpy(surface_type, surface(x,y));
+	    strcpy(surface_type, surface(x,y));
 	shopdoor = IS_DOOR(lev->typ) && *in_rooms(x, y, SHOPBASE);
 	oldobjs = level.objects[x][y];
 	ttmp = maketrap(x, y, ttyp, 0);
@@ -960,7 +960,7 @@ struct obj *obj;
 		sdp++;
 	}
 	*dsp = 0;
-	Sprintf(qbuf, "In what direction do you want to %s? [%s]", verb, dirsyms);
+	sprintf(qbuf, "In what direction do you want to %s? [%s]", verb, dirsyms);
 	if(!getdir(qbuf))
 		return(res);
 
@@ -1032,7 +1032,7 @@ struct obj *obj;
 		else if (obj->otyp == WEDGED_LITTLE_GIRL_SANDAL) pline("You hit yourself with a lovely wedge heel! Even though it looks very innocuous, you can definitely feel intense pain...");
 		else if (obj->otyp == HUGGING_BOOT) pline("You bonk yourself with a thick winter boot - seems that this boot is made from a harder material than your %s...", body_part(HEAD));
 		else You("hit yourself with %s.", yname(uwep));
-		Sprintf(buf, "%s own %s", uhis(),
+		sprintf(buf, "%s own %s", uhis(),
 				OBJ_NAME(objects[obj->otyp]));
 		losehp(dam, buf, KILLED_BY);
 		flags.botl=1;

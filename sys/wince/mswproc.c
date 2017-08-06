@@ -391,16 +391,16 @@ give_up:	/* Quit */
 			if (thisch == lastch) thisch = highc(thisch);
 			if (flags.initgend != ROLE_NONE && flags.initgend != ROLE_RANDOM) {
 				if (flags.initgend == 1  && roles[i].name.f)
-					Strcpy(rolenamebuf, roles[i].name.f);
+					strcpy(rolenamebuf, roles[i].name.f);
 				else
-					Strcpy(rolenamebuf, roles[i].name.m);
+					strcpy(rolenamebuf, roles[i].name.m);
 			} else {
 				if (roles[i].name.f) {
-					Strcpy(rolenamebuf, roles[i].name.m);
-					Strcat(rolenamebuf, "/");
-					Strcat(rolenamebuf, roles[i].name.f);
+					strcpy(rolenamebuf, roles[i].name.m);
+					strcat(rolenamebuf, "/");
+					strcat(rolenamebuf, roles[i].name.f);
 				} else 
-					Strcpy(rolenamebuf, roles[i].name.m);
+					strcpy(rolenamebuf, roles[i].name.m);
 			}	
 			add_menu(win, NO_GLYPH, &any, thisch,
 			    0, ATR_NONE, an(rolenamebuf), MENU_UNSELECTED);
@@ -416,7 +416,7 @@ give_up:	/* Quit */
 		any.a_int = i+1;	/* must be non-zero */
 		add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 				"Quit", MENU_UNSELECTED);
-		Sprintf(pbuf, "Pick a role for your %s", plbuf);
+		sprintf(pbuf, "Pick a role for your %s", plbuf);
 		end_menu(win, pbuf);
 		n = select_menu(win, PICK_ONE, &selected);
 		destroy_nhwindow(win);
@@ -487,7 +487,7 @@ give_up:	/* Quit */
 		    any.a_int = i+1;	/* must be non-zero */
 		    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 				    "Quit", MENU_UNSELECTED);
-		    Sprintf(pbuf, "Pick the race of your %s", plbuf);
+		    sprintf(pbuf, "Pick the race of your %s", plbuf);
 		    end_menu(win, pbuf);
 		    n = select_menu(win, PICK_ONE, &selected);
 		    destroy_nhwindow(win);
@@ -559,7 +559,7 @@ give_up:	/* Quit */
 		    any.a_int = i+1;	/* must be non-zero */
 		    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 				    "Quit", MENU_UNSELECTED);
-		    Sprintf(pbuf, "Pick the gender of your %s", plbuf);
+		    sprintf(pbuf, "Pick the gender of your %s", plbuf);
 		    end_menu(win, pbuf);
 		    n = select_menu(win, PICK_ONE, &selected);
 		    destroy_nhwindow(win);
@@ -630,7 +630,7 @@ give_up:	/* Quit */
 		    any.a_int = i+1;	/* must be non-zero */
 		    add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 				    "Quit", MENU_UNSELECTED);
-		    Sprintf(pbuf, "Pick the alignment of your %s", plbuf);
+		    sprintf(pbuf, "Pick the alignment of your %s", plbuf);
 		    end_menu(win, pbuf);
 		    n = select_menu(win, PICK_ONE, &selected);
 		    destroy_nhwindow(win);
@@ -1374,7 +1374,7 @@ char mswin_yn_function(const char *question, const char *choices,
 
     if (choices) {
 		char *cb, choicebuf[QBUFSZ];
-		Strcpy(choicebuf, choices);
+		strcpy(choicebuf, choices);
 		if ((cb = index(choicebuf, '\033')) != 0) {
 			/* anything beyond <esc> is hidden */
 			*cb = '\0';
@@ -1386,7 +1386,7 @@ char mswin_yn_function(const char *question, const char *choices,
 		yn_esc_map = (index(choices, 'q') ? 'q' :
 			 (index(choices, 'n') ? 'n' : def));
 	} else {
-		Strcpy(message, question);
+		strcpy(message, question);
     }
 
 #if defined(WIN_CE_SMARTPHONE)

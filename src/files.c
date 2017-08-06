@@ -327,7 +327,7 @@ int whichprefix, buffnum;
 						basename);
 		return basename;	/* XXX */
 	}
-	Strcpy(fqn_filename_buffer[buffnum], fqn_prefix[whichprefix]);
+	strcpy(fqn_filename_buffer[buffnum], fqn_prefix[whichprefix]);
 	return strcat(fqn_filename_buffer[buffnum], basename);
 #endif
 }
@@ -354,16 +354,16 @@ char *reasonbuf;
 			(void) unlink(filename);
 		} else {
 			if (reasonbuf) {
-				if (failcount) Strcat(reasonbuf,", ");
-				Strcat(reasonbuf, fqn_prefix_names[prefcnt]);
+				if (failcount) strcat(reasonbuf,", ");
+				strcat(reasonbuf, fqn_prefix_names[prefcnt]);
 			}
 			/* the paniclog entry gets the value of errno as well */
-			Sprintf(panicbuf1,"Invalid %s", fqn_prefix_names[prefcnt]);
+			sprintf(panicbuf1,"Invalid %s", fqn_prefix_names[prefcnt]);
 #if defined (NHSTDC) && !defined(NOTSTDC)
 			if (!(details = strerror(errno)))
 #endif
 			details = "";
-			Sprintf(panicbuf2,"\"%s\", (%d) %s",
+			sprintf(panicbuf2,"\"%s\", (%d) %s",
 				fqn_prefix[prefcnt], errno, details);
 			paniclog(panicbuf1, panicbuf2);
 			failcount++;
@@ -414,8 +414,8 @@ void
 set_lock_and_bones()
 {
 	if (!ramdisk) {
-		Strcpy(levels, permbones);
-		Strcpy(bones, permbones);
+		strcpy(levels, permbones);
+		strcpy(bones, permbones);
 	}
 	append_slash(permbones);
 	append_slash(levels);
@@ -423,10 +423,10 @@ set_lock_and_bones()
 	strncat(levels, bbs_id, PATHLEN);
 #endif
 	append_slash(bones);
-	Strcat(bones, "bonesnn.*");
-	Strcpy(lock, levels);
+	strcat(bones, "bonesnn.*");
+	strcpy(lock, levels);
 #ifndef AMIGA
-	Strcat(lock, alllevels);
+	strcat(lock, alllevels);
 #endif
 	return;
 }
@@ -448,9 +448,9 @@ int lev;
 
 	tf = rindex(file, '.');
 	if (!tf) tf = eos(file);
-	Sprintf(tf, ".%d", lev);
+	sprintf(tf, ".%d", lev);
 #ifdef VMS
-	Strcat(tf, ";1");
+	strcat(tf, ";1");
 #endif
 	return;
 }
@@ -502,7 +502,7 @@ char errbuf[];
 	if (fd >= 0)
 	    level_info[lev].flags |= LFILE_EXISTS;
 	else if (errbuf)        /* failure explanation */
-	    Sprintf(errbuf,
+	    sprintf(errbuf,
 		    "Cannot create file \"%s\" for level %d (errno %d).",
 		    lock, lev, errno);
 
@@ -549,7 +549,7 @@ char errbuf[];
 	   settle for `lock' instead of `fq_lock' because the latter
 	   might end up being too big for nethack's BUFSZ */
 	if (fd < 0 && errbuf) {
-	    Sprintf(errbuf,
+	    sprintf(errbuf,
 		    "Cannot open file \"%s\" for level %d (errno %d).",
 		    lock, lev, errno);
 	    pline("THIS IS A FATAL BUG. DO NOT TRY TO SAVE THE GAME, OR YOUR SAVEGAME FILE MAY BE CORRUPTED. On a public server the problem can sometimes be solved by using a staircase to return to a previously visited level. If nothing works, please contact the admins. --Amy");
@@ -681,19 +681,19 @@ d_level *lev;
 	s_level *sptr;
 	char *dptr;
 
-	Sprintf(bonesid, "%c%s", dungeons[lev->dnum].boneid,
+	sprintf(bonesid, "%c%s", dungeons[lev->dnum].boneid,
 			In_quest(lev) ? urole.filecode : "0");
 	dptr = eos(bonesid);
 	if ((sptr = Is_special(lev)) != 0)
-	    Sprintf(dptr, ".%c", sptr->boneid);
+	    sprintf(dptr, ".%c", sptr->boneid);
 	else
-	    Sprintf(dptr, ".%d", lev->dlevel);
-	Sprintf(file, "bon%s", bonesid); 
+	    sprintf(dptr, ".%d", lev->dlevel);
+	sprintf(file, "bon%s", bonesid); 
 #ifdef BONES_POOL 
-	Sprintf(eos(file), ".%d", (u.ubirthday % 10)); 
+	sprintf(eos(file), ".%d", (u.ubirthday % 10)); 
 #endif
 #ifdef VMS
-	Strcat(file, ";1");
+	strcat(file, ";1");
 #endif
 	return(bonesid);
 }
@@ -711,9 +711,9 @@ set_bonestemp_name()
 
 	tf = rindex(lock, '.');
 	if (!tf) tf = eos(lock);
-	Sprintf(tf, ".bn");
+	sprintf(tf, ".bn");
 #ifdef VMS
-	Strcat(tf, ";1");
+	strcat(tf, ";1");
 #endif
 	return lock;
 }
@@ -756,7 +756,7 @@ char errbuf[];
 # endif	/* FILE_AREAS */
 #endif
 	if (fd < 0 && errbuf) /* failure explanation */
-	    Sprintf(errbuf,
+	    sprintf(errbuf,
 		    "Cannot create bones \"%s\", id %s (errno %d).",
 		    lock, *bonesid, errno);
 
@@ -903,16 +903,16 @@ set_savefile_name()
 #endif
 #ifdef VMS
 #ifndef FILE_AREAS
-	Sprintf(SAVEF, "[.save]%d%s", getuid(), plname);
+	sprintf(SAVEF, "[.save]%d%s", getuid(), plname);
 	regularize(SAVEF+7);
 #else
-	Sprintf(SAVEF, "%d%s", getuid(), plname);
+	sprintf(SAVEF, "%d%s", getuid(), plname);
 	regularize(SAVEF);
 #endif
-	Strcat(SAVEF, ";1");
+	strcat(SAVEF, ";1");
 #else
 # if defined(MICRO)
-	Strcpy(SAVEF, SAVEP);
+	strcpy(SAVEF, SAVEP);
 #  ifdef AMIGA
 	strncat(SAVEF, bbs_id, PATHLEN);
 #  endif
@@ -926,22 +926,22 @@ set_savefile_name()
 #  endif
 		regularize(SAVEF+i);
 	}
-	Strcat(SAVEF, ".sav");
+	strcat(SAVEF, ".sav");
 # else
 #  ifndef FILE_AREAS
 #  if defined(WIN32)
 	/* Obtain the name of the logged on user and incorporate
 	 * it into the name. */
-	Sprintf(fnamebuf, "%s-%s", get_username(0), plname);
+	sprintf(fnamebuf, "%s-%s", get_username(0), plname);
 	(void)fname_encode("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-.",
 				'%', fnamebuf, encodedfnamebuf, BUFSZ);
-	Sprintf(SAVEF, "%s.NetHack-saved-game", encodedfnamebuf);
+	sprintf(SAVEF, "%s.NetHack-saved-game", encodedfnamebuf);
 #  else
-	Sprintf(SAVEF, "save/%d%s", (int)getuid(), plname);
+	sprintf(SAVEF, "save/%d%s", (int)getuid(), plname);
 	regularize(SAVEF+5);	/* avoid . or / in name */
 #  endif /* WIN32 */
 #  else
-	Sprintf(SAVEF, "%d%s", (int)getuid(), plname);
+	sprintf(SAVEF, "%d%s", (int)getuid(), plname);
 	regularize(SAVEF);      /* avoid . or / in name */
 #  endif
 # endif	/* MICRO */
@@ -968,12 +968,12 @@ set_error_savefile()
 	char *semi_colon = rindex(SAVEF, ';');
 	if (semi_colon) *semi_colon = '\0';
       }
-	Strcat(SAVEF, ".e;1");
+	strcat(SAVEF, ".e;1");
 # else
 #  ifdef MAC
-	Strcat(SAVEF, "-e");
+	strcat(SAVEF, "-e");
 #  else
-	Strcat(SAVEF, ".e");
+	strcat(SAVEF, ".e");
 #  endif
 # endif
 }
@@ -1119,7 +1119,7 @@ const char* filename;
     int fd;
     char* result = 0;
 
-    Strcpy(SAVEF,filename);
+    strcpy(SAVEF,filename);
 #ifdef COMPRESS_EXTENSION
     SAVEF[strlen(SAVEF)-strlen(COMPRESS_EXTENSION)] = '\0';
 #endif
@@ -1181,7 +1181,7 @@ get_saved_games()
 		if ( uid == myuid ) {
 		    char filename[BUFSZ];
 		    char* r;
-		    Sprintf(filename,"save/%d%s",uid,name);
+		    sprintf(filename,"save/%d%s",uid,name);
 		    r = plname_from_file(filename);
 		    if ( r )
 			result[j++] = r;
@@ -1257,9 +1257,9 @@ boolean uncomp;
 	boolean istty = !strncmpi(windowprocs.name, "tty", 3);
 # endif
 
-	Strcpy(cfn, filename);
+	strcpy(cfn, filename);
 # ifdef COMPRESS_EXTENSION
-	Strcat(cfn, COMPRESS_EXTENSION);
+	strcat(cfn, COMPRESS_EXTENSION);
 # endif
 	/* when compressing, we know the file exists */
 	if (uncomp) {
@@ -1277,7 +1277,7 @@ boolean uncomp;
 	    char *opt;
 	    boolean inword = FALSE;
 
-	    Strcpy(opts, COMPRESS_OPTIONS);
+	    strcpy(opts, COMPRESS_OPTIONS);
 	    opt = opts;
 	    while (*opt) {
 		if ((*opt == ' ') || (*opt == '\t')) {
@@ -1458,20 +1458,20 @@ char *lockname;
 #else
 # if defined(UNIX) || defined(VMS) || defined(AMIGA) || defined(WIN32) || defined(MSDOS)
 #  ifdef NO_FILE_LINKS
-	Strcpy(lockname, LOCKDIR);
-	Strcat(lockname, "/");
-	Strcat(lockname, filename);
+	strcpy(lockname, LOCKDIR);
+	strcat(lockname, "/");
+	strcat(lockname, filename);
 #  else
-	Strcpy(lockname, filename);
+	strcpy(lockname, filename);
 #  endif
 #  ifdef VMS
       {
 	char *semi_colon = rindex(lockname, ';');
 	if (semi_colon) *semi_colon = '\0';
       }
-	Strcat(lockname, ".lock;1");
+	strcat(lockname, ".lock;1");
 #  else
-	Strcat(lockname, "_lock");
+	strcat(lockname, "_lock");
 #  endif
 	return lockname;
 # else
@@ -1792,26 +1792,26 @@ const char *filename;
 
 	envp = nh_getenv("HOME");
 	if (!envp)
-		Strcpy(tmp_config, NH_CONFIG_FILE3);
+		strcpy(tmp_config, NH_CONFIG_FILE3);
 	else
-		Sprintf(tmp_config, "%s%s", envp, NH_CONFIG_FILE3);
+		sprintf(tmp_config, "%s%s", envp, NH_CONFIG_FILE3);
 	if ((fp = fopenp(tmp_config, "r")) != (FILE *)0)
 		return(fp);
 # else	/* should be only UNIX left */
 	envp = nh_getenv("HOME");
 	if (!envp)
-		Strcpy(tmp_config, configfile);
+		strcpy(tmp_config, configfile);
 	else
-		Sprintf(tmp_config, "%s/%s", envp, configfile);
+		sprintf(tmp_config, "%s/%s", envp, configfile);
 	if ((fp = fopenp(tmp_config, "r")) != (FILE *)0)
 		return(fp);
 # if defined(__APPLE__)
 	/* try an alternative */
 	if (envp) {
-		Sprintf(tmp_config, "%s/%s", envp, "Library/Preferences/NetHack Defaults");
+		sprintf(tmp_config, "%s/%s", envp, "Library/Preferences/NetHack Defaults");
 		if ((fp = fopenp(tmp_config, "r")) != (FILE *)0)
 			return(fp);
-		Sprintf(tmp_config, "%s/%s", envp, "Library/Preferences/NetHack Defaults.txt");
+		sprintf(tmp_config, "%s/%s", envp, "Library/Preferences/NetHack Defaults.txt");
 		if ((fp = fopenp(tmp_config, "r")) != (FILE *)0)
 			return(fp);
 	}
@@ -1922,7 +1922,7 @@ int prefixid;
 	if ((ptr = index(bufp, ';')) != 0) *ptr = '\0';
 	if (strlen(bufp) > 0) {
 		fqn_prefix[prefixid] = (char *)alloc(strlen(bufp)+2);
-		Strcpy(fqn_prefix[prefixid], bufp);
+		strcpy(fqn_prefix[prefixid], bufp);
 		append_slash(fqn_prefix[prefixid]);
 	}
 }
@@ -2392,17 +2392,17 @@ clnt_process:
 #if defined(MICRO) && !defined(NOCWD_ASSUMPTIONS)
 	/* should be superseded by fqn_prefix[] */
 # ifdef MFLOPPY
-	Strcpy(permbones, tmp_levels);
+	strcpy(permbones, tmp_levels);
 #  ifndef AMIGA
 	if (tmp_ramdisk[0]) {
-		Strcpy(levels, tmp_ramdisk);
+		strcpy(levels, tmp_ramdisk);
 		if (strcmp(permbones, levels))		/* if not identical */
 			ramdisk = TRUE;
 	} else
 #  endif /* AMIGA */
-		Strcpy(levels, tmp_levels);
+		strcpy(levels, tmp_levels);
 
-	Strcpy(bones, levels);
+	strcpy(bones, levels);
 # endif /* MFLOPPY */
 #endif /* MICRO */
 post_process:
@@ -2477,16 +2477,16 @@ fopen_wizkit_file()
 # ifdef VMS
 	envp = nh_getenv("HOME");
 	if (envp)
-		Sprintf(tmp_wizkit, "%s%s", envp, wizkit);
+		sprintf(tmp_wizkit, "%s%s", envp, wizkit);
 	else
-		Sprintf(tmp_wizkit, "%s%s", "sys$login:", wizkit);
+		sprintf(tmp_wizkit, "%s%s", "sys$login:", wizkit);
 	if ((fp = fopenp(tmp_wizkit, "r")) != (FILE *)0)
 		return(fp);
 # else	/* should be only UNIX left */
 	envp = nh_getenv("HOME");
 	if (envp)
-		Sprintf(tmp_wizkit, "%s/%s", envp, wizkit);
-	else 	Strcpy(tmp_wizkit, wizkit);
+		sprintf(tmp_wizkit, "%s/%s", envp, wizkit);
+	else 	strcpy(tmp_wizkit, wizkit);
 	if ((fp = fopenp(tmp_wizkit, "r")) != (FILE *)0)
 		return(fp);
 	else if (errno != ENOENT) {
@@ -2608,13 +2608,13 @@ const char *dir;
 	tmp[PATHLEN-1] = '\0';
 	if ((strlen(tmp) + 1 + strlen(NH_RECORD)) < (PATHLEN - 1)) {
 		append_slash(tmp);
-		Strcat(tmp, NH_RECORD);
+		strcat(tmp, NH_RECORD);
 	}
 #  ifndef FILE_AREAS
 	fq_record = tmp;
 #  endif
 # else
-	Strcpy(tmp, NH_RECORD);
+	strcpy(tmp, NH_RECORD);
 #  ifndef FILE_AREAS
 	fq_record = fqname(NH_RECORD, SCOREPREFIX, 0);
 #  endif

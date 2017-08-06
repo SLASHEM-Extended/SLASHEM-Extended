@@ -128,20 +128,20 @@ winid win;
 	putstr(win, 0, "");
 	putstr(win, 0, "Memory usage stats"); putstr(win, 0, "");
 	putstr(win, 0, "");
-	Sprintf (buf, "Overlay buffer memory allocation: %ld bytes.",
+	sprintf (buf, "Overlay buffer memory allocation: %ld bytes.",
 	    memAlloc * 16L); putstr(win, 0, buf);
-	Sprintf (buf, "_ovrbuffer = %u.", _ovrbuffer); putstr(win, 0, buf);
-	Sprintf (buf, "Startup memory usage: 0x%X", ProgramSize);
+	sprintf (buf, "_ovrbuffer = %u.", _ovrbuffer); putstr(win, 0, buf);
+	sprintf (buf, "Startup memory usage: 0x%X", ProgramSize);
 	putstr(win, 0, buf);
 	runAlloc = * (unsigned far *) MK_FP( _psp - 1, 0x03);
-	Sprintf (buf, "Current memory usage: 0x%X", runAlloc);
+	sprintf (buf, "Current memory usage: 0x%X", runAlloc);
 	putstr(win, 0, buf);
-	if (emsstatus) Sprintf (buf, "EMS search failed (%d).", emsstatus);
-	else Sprintf (buf, "EMS search successful.");
+	if (emsstatus) sprintf (buf, "EMS search failed (%d).", emsstatus);
+	else sprintf (buf, "EMS search successful.");
 	putstr(win, 0, buf);
 #ifdef RECOGNIZE_XMS
-	if (xmsstatus) Sprintf (buf, "XMS search failed (%d).", xmsstatus);
-	else Sprintf (buf, "XMS search successful.");
+	if (xmsstatus) sprintf (buf, "XMS search failed (%d).", xmsstatus);
+	else sprintf (buf, "XMS search successful.");
 	putstr(win, 0, buf);
 #endif
 

@@ -2573,7 +2573,7 @@ dodiscovered()				/* free after Robert Viduya */
 	    if (!dis++)
 		add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
 		  "Unique Items", MENU_UNSELECTED);
-		Sprintf(buf, "  %s", OBJ_NAME(objects[uniq_objs[i]]));
+		sprintf(buf, "  %s", OBJ_NAME(objects[uniq_objs[i]]));
 	    add_menu(tmpwin, objnum_to_glyph(uniq_objs[i]), &any,
 	      0, 0, ATR_NONE, buf, MENU_UNSELECTED);
 	    ++ct;
@@ -2585,7 +2585,7 @@ dodiscovered()				/* free after Robert Viduya */
     ct += disp_artifact_discoveries(tmpwin);
 
     /* several classes are omitted from packorder; one is of interest here */
-    Strcpy(classes, flags.inv_order);
+    strcpy(classes, flags.inv_order);
     if (!index(classes, VENOM_CLASS)) {
 	s = eos(classes);
 	*s++ = VENOM_CLASS;
@@ -2604,7 +2604,7 @@ dodiscovered()				/* free after Robert Viduya */
 		      let_to_name(oclass, FALSE, FALSE), MENU_UNSELECTED);
 		    prev_class = oclass;
 		}
-		Sprintf(buf, "%s %s",(objects[dis].oc_pre_discovered ? "*" : " "),
+		sprintf(buf, "%s %s",(objects[dis].oc_pre_discovered ? "*" : " "),
 				obj_typename(dis));
 		add_menu(tmpwin, objnum_to_glyph(dis), &any, 0, 0,
 		  ATR_NONE, buf, MENU_UNSELECTED);
@@ -2640,7 +2640,7 @@ dump_discoveries()
 	if (objects[uniq_objs[i]].oc_name_known) {
 	    if (!dis++)
 		    dump("", "  Unique Items");
-		Sprintf(buf, "  %s", OBJ_NAME(objects[uniq_objs[i]]));
+		sprintf(buf, "  %s", OBJ_NAME(objects[uniq_objs[i]]));
 		dump("  ", buf);
 	    ++ct;
 	}
@@ -2648,7 +2648,7 @@ dump_discoveries()
     dump_artifact_discoveries();
 
     /* several classes are omitted from packorder; one is of interest here */
-    Strcpy(classes, flags.inv_order);
+    strcpy(classes, flags.inv_order);
     if (!index(classes, VENOM_CLASS)) {
 	s = eos(classes);
 	*s++ = VENOM_CLASS;
@@ -2664,12 +2664,12 @@ dump_discoveries()
 		ct++;
 		if (oclass != prev_class) {
 
-		    Sprintf(buf, "  %s", let_to_name(oclass, FALSE, FALSE));
+		    sprintf(buf, "  %s", let_to_name(oclass, FALSE, FALSE));
 		    dump("", buf);
 
 		    prev_class = oclass;
 		}
-		Sprintf(buf, "%s %s",(objects[dis].oc_pre_discovered ? "*" : " "),
+		sprintf(buf, "%s %s",(objects[dis].oc_pre_discovered ? "*" : " "),
 				obj_typename(dis));
 		    dump("  ", buf);
 	    }

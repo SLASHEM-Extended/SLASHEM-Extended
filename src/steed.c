@@ -96,7 +96,7 @@ use_saddle(otmp)
 
 	    You("touch %s.", mon_nam(mtmp));
  	    if (!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
-		Sprintf(kbuf, "attempting to saddle %s", an(mtmp->data->mname));
+		sprintf(kbuf, "attempting to saddle %s", an(mtmp->data->mname));
 		instapetrify(kbuf);
  	    }
 	}
@@ -312,7 +312,7 @@ mount_steed(mtmp, force)
 	    char kbuf[BUFSZ];
 
 	    You("touch %s.", mon_nam(mtmp));
-	    Sprintf(kbuf, "attempting to ride %s", an(mtmp->data->mname));
+	    sprintf(kbuf, "attempting to ride %s", an(mtmp->data->mname));
 	    instapetrify(kbuf);
 	}
 	if (!mtmp->mtame || mtmp->isminion) {
@@ -367,7 +367,7 @@ mount_steed(mtmp, force)
 	    }
 	    You("slip while trying to get on %s.", mon_nam(mtmp));
 
-	    Sprintf(buf, "slipped while mounting a monster (%s)",
+	    sprintf(buf, "slipped while mounting a monster (%s)",
 		    /* "a saddled mumak" or "a saddled pony called Dobbin" */
 		    x_monnam(mtmp, ARTICLE_A, (char *)0,
 			SUPPRESS_IT|SUPPRESS_INVISIBLE|SUPPRESS_HALLUCINATION,
@@ -477,7 +477,7 @@ kick_steed()
 	    /* We assume a message has just been output of the form
 	     * "You kick <steed>."
 	     */
-	    Strcpy(He, mhe(u.usteed));
+	    strcpy(He, mhe(u.usteed));
 	    *He = highc(*He);
 	    if ((u.usteed->mcanmove || u.usteed->mfrozen) && !rn2(2)) {
 		if (u.usteed->mcanmove)

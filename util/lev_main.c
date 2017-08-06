@@ -907,7 +907,7 @@ char *map;
 		}
 		for(i=0; i<len; i++)
 		  if((tmpmap[max_hig][i] = what_map_char(map[i])) == INVALID_TYPE) {
-		      Sprintf(msg,
+		      sprintf(msg,
 			 "Invalid character @ (%d, %d) - replacing with stone",
 			      max_hig, i);
 		      yywarning(msg);
@@ -927,7 +927,7 @@ char *map;
 	/* Store the map into the mazepart structure */
 
 	if(max_len > MAP_X_LIM || max_hig > MAP_Y_LIM) {
-	    Sprintf(msg, "Map too large! (max %d x %d, is %d x %d)", MAP_X_LIM, MAP_Y_LIM, max_len, max_hig);
+	    sprintf(msg, "Map too large! (max %d x %d, is %d x %d)", MAP_X_LIM, MAP_Y_LIM, max_len, max_hig);
 	    yyerror(msg);
 	}
 
@@ -989,7 +989,7 @@ check_subrooms()
 			break;
 		    }
 		if (!found) {
-		    Sprintf(msg,
+		    sprintf(msg,
 			    "Subroom error : parent room '%s' not found!",
 			    tmproom[i]->parent);
 		    yyerror(msg);
@@ -1015,7 +1015,7 @@ check_subrooms()
 			n_subrooms++;
 			if(n_subrooms > MAX_SUBROOMS) {
 
-			    Sprintf(msg,
+			    sprintf(msg,
 	      "Subroom error: too many subrooms attached to parent room '%s'!",
 				    tmproom[i]->parent);
 			    yyerror(msg);
@@ -1042,7 +1042,7 @@ const char *str;
 
     if (x >= 0 && y >= 0 && x <= (int)max_x_map && y <= (int)max_y_map &&
 	(IS_ROCK(tmpmap[y][x]) || IS_DOOR(tmpmap[y][x]))) {
-	Sprintf(ebuf, "%s placed in wall at (%02d,%02d)?!", str, x, y);
+	sprintf(ebuf, "%s placed in wall at (%02d,%02d)?!", str, x, y);
 	yywarning(ebuf);
     }
 }
@@ -1341,12 +1341,12 @@ store_place_list(int npart, int nlist, int nloc, const struct coord *plist)
 	    tmppart[npart]->rloc_y = NewTab(char, MAX_REGISTERS);
 	}
 	if (nlist < tmppart[npart]->nlocset) {
-	    Sprintf(msg,
+	    sprintf(msg,
 		    "Location registers for place list %d already initialized!",
 		    nlist);
 	    yyerror(msg);
 	} else if (nlist > tmppart[npart]->nlocset) {
-	    Sprintf(msg, "Place list %d out of order!", nlist);
+	    sprintf(msg, "Place list %d out of order!", nlist);
 	    yyerror(msg);
 	} else {
 	    tmppart[npart]->nlocset++;
@@ -1510,10 +1510,10 @@ specialmaze *maze_level;
 
 	lbuf[0] = '\0';
 #ifdef PREFIX
-	Strcat(lbuf, PREFIX);
+	strcat(lbuf, PREFIX);
 #endif
-	Strcat(lbuf, filename);
-	Strcat(lbuf, LEV_EXT);
+	strcat(lbuf, filename);
+	strcat(lbuf, LEV_EXT);
 
 	fout = open(lbuf, O_WRONLY|O_CREAT|O_BINARY, OMASK);
 	if (fout < 0) return FALSE;

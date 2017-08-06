@@ -521,14 +521,14 @@ const char *in_str;
 	term = str + slen;
 
 	if ((s = strstri(str, "vortices")) != 0)
-	    Strcpy(s+4, "ex");
+	    strcpy(s+4, "ex");
 	/* be careful with "ies"; "priest", "zombies" */
 	else if (slen > 3 && !strcmpi(term-3, "ies") &&
 		    (slen < 7 || strcmpi(term-7, "zombies")))
-	    Strcpy(term-3, "y");
+	    strcpy(term-3, "y");
 	/* luckily no monster names end in fe or ve with ves plurals */
 	else if (slen > 3 && !strcmpi(term-3, "ves"))
-	    Strcpy(term-3, "f");
+	    strcpy(term-3, "f");
 
 	slen = strlen(str); /* length possibly needs recomputing */
 

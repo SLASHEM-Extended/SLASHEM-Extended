@@ -523,7 +523,7 @@ static void draw_menu_items(struct TextWindow *win, int how)
 
     if (item->identifier.a_void)
     {
-      Sprintf(buffer, "  %c ", item->accelerator ?
+      sprintf(buffer, "  %c ", item->accelerator ?
           item->accelerator : '?');
 
       /* -AJA- displaying the full count will disturb the nice
@@ -531,7 +531,7 @@ static void draw_menu_items(struct TextWindow *win, int how)
        *       the value to the user is more important.
        */
       if (item->selected && item->count > 0)
-        Sprintf(buffer+strlen(buffer), "%d ", item->count);
+        sprintf(buffer+strlen(buffer), "%d ", item->count);
       else if (item->selected)
         strcat(buffer, "+ ");
       else

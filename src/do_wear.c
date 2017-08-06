@@ -76,7 +76,7 @@ register struct obj *otmp;
 
 	    how[0] = '\0';
 	    if (otmp->otyp == TOWEL)
-		Sprintf(how, " around your %s", body_part(HEAD));
+		sprintf(how, " around your %s", body_part(HEAD));
 	    You("are now wearing %s%s.",
 		obj_is_pname(otmp) ? the(xname(otmp)) : an(xname(otmp)),
 		how);
@@ -94,7 +94,7 @@ register struct obj *otmp;
 
 	    how[0] = '\0';
 	    if (otmp->otyp == TOWEL)
-		Sprintf(how, " around your %s", body_part(HEAD));
+		sprintf(how, " around your %s", body_part(HEAD));
 	    You("are putting on %s%s.",
 		obj_is_pname(otmp) ? the(xname(otmp)) : an(xname(otmp)),
 		how);
@@ -2764,7 +2764,7 @@ Gloves_off()
 
 	You("wield the %s in your bare %s.",
 	    corpse_xname(uwep, TRUE), makeplural(body_part(HAND)));
-	Strcpy(kbuf, an(killer_cxname(uwep, TRUE)));
+	strcpy(kbuf, an(killer_cxname(uwep, TRUE)));
 	instapetrify(kbuf);
 	uwepgone();  /* life-saved still doesn't allow touching cockatrice */
     }
@@ -2777,7 +2777,7 @@ Gloves_off()
 	You("wield the %s in your bare %s.",
 	    corpse_xname(uswapwep, TRUE), body_part(HAND));
 
-	Strcpy(kbuf, an(killer_cxname(uswapwep, TRUE)));
+	strcpy(kbuf, an(killer_cxname(uswapwep, TRUE)));
 	instapetrify(kbuf);
 	uswapwepgone();	/* lifesaved still doesn't allow touching cockatrice */
     }
@@ -4674,7 +4674,7 @@ doputon()
 			char qbuf[QBUFSZ];
 			char answer;
 
-			Sprintf(qbuf, "Which %s%s, Right or Left?",
+			sprintf(qbuf, "Which %s%s, Right or Left?",
 				humanoid(youmonst.data) ? "ring-" : "",
 				body_part(FINGER));
 			if(!(answer = yn_function(qbuf, "rl", '\0')))
@@ -5280,10 +5280,10 @@ register struct obj *otmp;
 	    }
 	    why = 0;	/* the item which prevents ring removal */
 	    if (welded(uwep) && (otmp == uright || bimanual(uwep))) {
-		Sprintf(buf, "free a weapon %s", body_part(HAND));
+		sprintf(buf, "free a weapon %s", body_part(HAND));
 		why = uwep;
 	    } else if (uarmg && !FingerlessGloves && uarmg->cursed) {
-		Sprintf(buf, "take off your %s", c_gloves);
+		sprintf(buf, "take off your %s", c_gloves);
 		why = uarmg;
 	    }
 	    if (why) {
@@ -5323,13 +5323,13 @@ register struct obj *otmp;
 		) {
 	    why = 0;	/* the item which prevents disrobing */
 	    if (uarmc && uarmc->cursed && (!updowninversion || otmp == uarmu) ) {
-		Sprintf(buf, "remove your %s", cloak_simple_name(uarmc));
+		sprintf(buf, "remove your %s", cloak_simple_name(uarmc));
 		why = uarmc;
 	    } else if (otmp == uarmu && uarm && uarm->cursed ) {
-		Sprintf(buf, "remove your %s", c_suit);
+		sprintf(buf, "remove your %s", c_suit);
 		why = uarm;
 	    } else if (welded(uwep) && bimanual(uwep)) {
-		Sprintf(buf, "release your %s",
+		sprintf(buf, "release your %s",
 			is_sword(uwep) ? c_sword :
 			(uwep->otyp == BATTLE_AXE) ? c_axe : (uwep->otyp == DWARVISH_BATTLE_AXE) ? c_axe : c_weapon);
 		why = uwep;

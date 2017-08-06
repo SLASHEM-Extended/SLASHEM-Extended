@@ -1558,15 +1558,15 @@ makelevel()
 		    switch (rnd(5)) {
 
 			  case 1:
-		        Sprintf(fillname, "%s-1", urole.filecode); break;
+		        sprintf(fillname, "%s-1", urole.filecode); break;
 			  case 2:
-		        Sprintf(fillname, "%s-2", urole.filecode); break;
+		        sprintf(fillname, "%s-2", urole.filecode); break;
 			  case 3:
-		        Sprintf(fillname, "%s-3", urole.filecode); break;
+		        sprintf(fillname, "%s-3", urole.filecode); break;
 			  case 4:
-		        Sprintf(fillname, "%s-4", urole.filecode); break;
+		        sprintf(fillname, "%s-4", urole.filecode); break;
 			  case 5:
-		        Sprintf(fillname, "%s-5", urole.filecode); break;
+		        sprintf(fillname, "%s-5", urole.filecode); break;
 
 		    }
 		    makemaz(fillname);
@@ -1578,15 +1578,15 @@ makelevel()
 		    switch (rnd(5)) {
 
 			  case 1:
-		        Sprintf(fillname, "%s-6", urole.filecode); break;
+		        sprintf(fillname, "%s-6", urole.filecode); break;
 			  case 2:
-		        Sprintf(fillname, "%s-7", urole.filecode); break;
+		        sprintf(fillname, "%s-7", urole.filecode); break;
 			  case 3:
-		        Sprintf(fillname, "%s-8", urole.filecode); break;
+		        sprintf(fillname, "%s-8", urole.filecode); break;
 			  case 4:
-		        Sprintf(fillname, "%s-9", urole.filecode); break;
+		        sprintf(fillname, "%s-9", urole.filecode); break;
 			  case 5:
-		        Sprintf(fillname, "%s-0", urole.filecode); break;
+		        sprintf(fillname, "%s-0", urole.filecode); break;
 
 		    }
 		    makemaz(fillname);
@@ -1669,11 +1669,11 @@ makelevel()
 		    char        fillname[16];
 		    s_level	*loc_lev;
 
-		    Sprintf(fillname, "%s-loca", urole.filecode);
+		    sprintf(fillname, "%s-loca", urole.filecode);
 		    loc_lev = find_level(fillname);
 
-		    Sprintf(fillname, "%s-fil", urole.filecode);
-		    Strcat(fillname,
+		    sprintf(fillname, "%s-fil", urole.filecode);
+		    strcat(fillname,
 			   (u.uz.dlevel < loc_lev->dlevel.dlevel) ? "a" : "b");
 		    makemaz(fillname);
 		    return;

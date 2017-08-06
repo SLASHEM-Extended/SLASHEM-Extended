@@ -43,7 +43,7 @@ int MAIN(int argc, char **argv)
 
 #ifdef WIZARD
 	if (wizard)
-		Strcpy(plname, "wizard");
+		strcpy(plname, "wizard");
 	else
 #endif
 	if(!*plname || !strncmp(plname, "player", 4)
@@ -53,7 +53,7 @@ int MAIN(int argc, char **argv)
 						/* again if suffix was whole name */
 						/* accepts any suffix */
 
-	Sprintf(lock,"%d%s", getuid(), plname);
+	sprintf(lock,"%d%s", getuid(), plname);
 	getlock();
 
 

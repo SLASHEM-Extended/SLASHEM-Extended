@@ -100,7 +100,7 @@ dungeonline	: A_DUNGEON ':' STRING bones_tag rcouple optional_int
 			init_dungeon();
 			if (strlen($3)+1 > sizeof(tmpdungeon[n_dgns].name))
 			    yyerror("Dungeon name is too long");
-			Strcpy(tmpdungeon[n_dgns].name, $3);
+			strcpy(tmpdungeon[n_dgns].name, $3);
 			tmpdungeon[n_dgns].boneschar = (char)$4;
 			tmpdungeon[n_dgns].lev.base = couple.base;
 			tmpdungeon[n_dgns].lev.rand = couple.rand;
@@ -154,7 +154,7 @@ prototype	: PROTOFILE ':' STRING
 		  {
 			if (strlen($3)+1 > sizeof(tmpdungeon[n_dgns].protoname))
 			    yyerror("Proto name is too long");
-			Strcpy(tmpdungeon[n_dgns].protoname, $3);
+			strcpy(tmpdungeon[n_dgns].protoname, $3);
 			Free($3);
 		  }
 		;
@@ -171,7 +171,7 @@ level1		: LEVEL ':' STRING bones_tag '@' acouple
 			init_level();
 			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, $3);
+			strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].lev.base = couple.base;
 			tmplevel[n_levs].lev.rand = couple.rand;
@@ -183,7 +183,7 @@ level1		: LEVEL ':' STRING bones_tag '@' acouple
 			init_level();
 			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, $3);
+			strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].lev.base = couple.base;
 			tmplevel[n_levs].lev.rand = couple.rand;
@@ -198,7 +198,7 @@ level2		: LEVEL ':' STRING bones_tag '@' acouple INTEGER
 			init_level();
 			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, $3);
+			strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].lev.base = couple.base;
 			tmplevel[n_levs].lev.rand = couple.rand;
@@ -211,7 +211,7 @@ level2		: LEVEL ':' STRING bones_tag '@' acouple INTEGER
 			init_level();
 			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, $3);
+			strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].lev.base = couple.base;
 			tmplevel[n_levs].lev.rand = couple.rand;
@@ -243,7 +243,7 @@ chlevel1	: CHLEVEL ':' STRING bones_tag STRING '+' rcouple
 			init_level();
 			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, $3);
+			strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].chain = getchain($5);
 			tmplevel[n_levs].lev.base = couple.base;
@@ -258,7 +258,7 @@ chlevel1	: CHLEVEL ':' STRING bones_tag STRING '+' rcouple
 			init_level();
 			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, $3);
+			strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].chain = getchain($5);
 			tmplevel[n_levs].lev.base = couple.base;
@@ -276,7 +276,7 @@ chlevel2	: CHLEVEL ':' STRING bones_tag STRING '+' rcouple INTEGER
 			init_level();
 			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, $3);
+			strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].chain = getchain($5);
 			tmplevel[n_levs].lev.base = couple.base;
@@ -292,7 +292,7 @@ chlevel2	: CHLEVEL ':' STRING bones_tag STRING '+' rcouple INTEGER
 			init_level();
 			if (strlen($3)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, $3);
+			strcpy(tmplevel[n_levs].name, $3);
 			tmplevel[n_levs].boneschar = (char)$4;
 			tmplevel[n_levs].chain = getchain($5);
 			tmplevel[n_levs].lev.base = couple.base;
@@ -315,7 +315,7 @@ branch		: BRANCH ':' STRING '@' acouple branch_type direction optional_int
 			init_branch();
 			if (strlen($3)+1 > sizeof(tmpbranch[n_brs].name))
 			    yyerror("Dungeon name is too long");
-			Strcpy(tmpbranch[n_brs].name, $3);
+			strcpy(tmpbranch[n_brs].name, $3);
 			tmpbranch[n_brs].lev.base = couple.base;
 			tmpbranch[n_brs].lev.rand = couple.rand;
 			tmpbranch[n_brs].type = $6;
@@ -332,7 +332,7 @@ chbranch	: CHBRANCH ':' STRING STRING '+' rcouple branch_type direction optional
 			init_branch();
 			if (strlen($3)+1 > sizeof(tmpbranch[n_brs].name))
 			    yyerror("Dungeon name is too long");
-			Strcpy(tmpbranch[n_brs].name, $3);
+			strcpy(tmpbranch[n_brs].name, $3);
 			tmpbranch[n_brs].chain = getchain($4);
 			tmpbranch[n_brs].lev.base = couple.base;
 			tmpbranch[n_brs].lev.rand = couple.rand;
@@ -472,8 +472,8 @@ init_dungeon()
 	tmpdungeon[n_dgns].lev.base = 0;
 	tmpdungeon[n_dgns].lev.rand = 0;
 	tmpdungeon[n_dgns].chance = 100;
-	Strcpy(tmpdungeon[n_dgns].name, "");
-	Strcpy(tmpdungeon[n_dgns].protoname, "");
+	strcpy(tmpdungeon[n_dgns].name, "");
+	strcpy(tmpdungeon[n_dgns].protoname, "");
 	tmpdungeon[n_dgns].flags = 0;
 	tmpdungeon[n_dgns].levels = 0;
 	tmpdungeon[n_dgns].branches = 0;
@@ -492,7 +492,7 @@ init_level()
 	tmplevel[n_levs].chance = 100;
 	tmplevel[n_levs].rndlevs = 0;
 	tmplevel[n_levs].flags = 0;
-	Strcpy(tmplevel[n_levs].name, "");
+	strcpy(tmplevel[n_levs].name, "");
 	tmplevel[n_levs].chain = -1;
 }
 
@@ -506,7 +506,7 @@ init_branch()
 	}
 	tmpbranch[n_brs].lev.base = 0;
 	tmpbranch[n_brs].lev.rand = 0;
-	Strcpy(tmpbranch[n_brs].name, "");
+	strcpy(tmpbranch[n_brs].name, "");
 	tmpbranch[n_brs].chain = -1;
 	tmpbranch[n_brs].entry_lev = 0;
 }

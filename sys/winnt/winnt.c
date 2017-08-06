@@ -193,7 +193,7 @@ int *lan_username_size;
 	/* i gets updated with actual size */
 	status = GetUserName(username_buffer, &i);		
 	if (status) username_buffer[i] = '\0';
-	else Strcpy(username_buffer, "NetHack");
+	else strcpy(username_buffer, "NetHack");
 	if (lan_username_size) *lan_username_size = strlen(username_buffer);
 	return username_buffer;
 }
@@ -262,11 +262,11 @@ error VA_DECL(const char *,s)
 	if (!strncmpi(windowprocs.name, "tty", 3)) {
 		buf[0] = '\n';
 		(void) vsprintf(&buf[1], s, VA_ARGS);
-		Strcat(buf, "\n");
+		strcat(buf, "\n");
 		msmsg(buf);
 	} else {
 		(void) vsprintf(buf, s, VA_ARGS);
-		Strcat(buf, "\n");
+		strcat(buf, "\n");
 		raw_printf(buf);
 	}
 	VA_END();

@@ -568,19 +568,19 @@ const char *filename;
 char *lockname;
 {
 # ifdef NO_FILE_LINKS
-	Strcpy(lockname, LOCKDIR);
+	strcpy(lockname, LOCKDIR);
 	if (LOCKDIR[sizeof(LOCKDIR)-2]!='/')
-		Strcat(lockname, "/");
-	Strcat(lockname, filename);
+		strcat(lockname, "/");
+	strcat(lockname, filename);
 # else
 # ifdef FILE_AREAS
-	Strcpy(lockname, FILE_AREA_VAR);
-	Strcat(lockname, filename);
+	strcpy(lockname, FILE_AREA_VAR);
+	strcat(lockname, filename);
 # else
-	Strcpy(lockname, filename);
+	strcpy(lockname, filename);
 # endif
 # endif	/* NO_FILE_LINKS */
-	Strcat(lockname, "_lock");
+	strcat(lockname, "_lock");
 	return lockname;
 }
 

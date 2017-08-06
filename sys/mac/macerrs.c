@@ -126,7 +126,7 @@ error VA_DECL(const char *, line)
 	char pbuf[BUFSZ];
 
 	if(index(line, '%')) {
-		Vsprintf(pbuf,line,VA_ARGS);
+		vsprintf(pbuf,line,VA_ARGS);
 		line = pbuf;
 	}
 	showerror("of an internal error",line);

@@ -779,7 +779,7 @@ savestateinlock()
 
 		(void) read(fd, (genericptr_t) &hpid, sizeof(hpid));
 		if (hackpid != hpid) {
-		    Sprintf(whynot,
+		    sprintf(whynot,
 			    "Level #0 pid (%d) doesn't match ours (%d)!",
 			    hpid, hackpid);
 		    pline("%s", whynot);
@@ -1516,8 +1516,8 @@ int lev;
 {
 	char to[PATHLEN], from[PATHLEN];
 
-	Sprintf(from, "%s%s", permbones, alllevels);
-	Sprintf(to, "%s%s", levels, alllevels);
+	sprintf(from, "%s%s", permbones, alllevels);
+	sprintf(to, "%s%s", levels, alllevels);
 	set_levelfile_name(from, lev);
 	set_levelfile_name(to, lev);
 	if (iflags.checkspace) {
@@ -1553,8 +1553,8 @@ swapout_oldest() {
 		}
 	if (!oldest)
 		return FALSE;
-	Sprintf(from, "%s%s", levels, alllevels);
-	Sprintf(to, "%s%s", permbones, alllevels);
+	sprintf(from, "%s%s", levels, alllevels);
+	sprintf(to, "%s%s", permbones, alllevels);
 	set_levelfile_name(from, oldest);
 	set_levelfile_name(to, oldest);
 # ifdef WIZARD

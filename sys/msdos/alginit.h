@@ -502,7 +502,7 @@ alleg_load_cnf()
                 } else if(!strncmpi(buf, "tile_height", 11)) {
                         tile_y = string_to_int(bufp);   
                 } else if(!strncmpi(buf, "bigtile_file", 12)) {
-                        Strcpy(bigtile_file, bufp);
+                        strcpy(bigtile_file, bufp);
                 } else if(!strncmpi(buf, "interpolate", 11)) {
                         use_2xsai = string_to_int(bufp);   
                 } else if(!strncmpi(buf, "draw_3Dtiles", 12)) {

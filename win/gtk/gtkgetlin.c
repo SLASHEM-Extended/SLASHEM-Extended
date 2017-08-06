@@ -125,7 +125,7 @@ GTK_getline(const char *query, boolean cancelable)
     if (!cancelled) {
 	s = (char *)gtk_entry_get_text(GTK_ENTRY(entry));
 	ret = (char *)alloc(strlen(s) + 1);
-	Strcpy(ret, s);
+	strcpy(ret, s);
     } else {
 	ret = (char *)alloc(1);
 	*ret = '\0';

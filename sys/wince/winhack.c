@@ -187,7 +187,7 @@ getlock()
 	int choice;
 
 	/* regularize(lock); */ /* already done in pcmain */
-	Sprintf(tbuf, "%s", fqname(lock, LEVELPREFIX, 0));
+	sprintf(tbuf, "%s", fqname(lock, LEVELPREFIX, 0));
 	set_levelfile_name(lock, 0);
 	fq_lock = fqname(lock, LEVELPREFIX, 1);
 
@@ -357,6 +357,6 @@ append_port_id(buf)
 char *buf;
 {
 	char *portstr = PORT_CE_PLATFORM " " PORT_CE_CPU;
-	Sprintf(eos(buf), " %s", portstr);
+	sprintf(eos(buf), " %s", portstr);
 }
 

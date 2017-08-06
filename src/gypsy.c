@@ -98,7 +98,7 @@ gypsy_bet (mtmp, minimum)
 	}
 
 	/* Prompt for an amount */
-	Sprintf(prompt, "Bet how much (%ld to %ld)?", minimum,
+	sprintf(prompt, "Bet how much (%ld to %ld)?", minimum,
 			EGYP(mtmp)->credit + 
 #ifndef GOLDOBJ
 													u.ugold);
@@ -219,19 +219,19 @@ card_name (num, buf)
 	if (num < 0 || num >= CARD_TOTAL) {
 		/* Invalid card */
 		impossible("no such card %d", num);
-		Strcpy(buf, "a card");
+		strcpy(buf, "a card");
 	} else if (card_istrump(num)) {
 		/* Handle trump cards */
 		r = card_trump(num);
 		if (!r)
-			Sprintf(buf, "the zero of trumps (%s)", trumps[r]);
+			sprintf(buf, "the zero of trumps (%s)", trumps[r]);
 		else
-			Sprintf(buf, "the %d of trumps (%s)", r, trumps[r]);
+			sprintf(buf, "the %d of trumps (%s)", r, trumps[r]);
 	} else {
 		/* Handle suited cards */
 		r = card_rank(num);
 		s = card_suit(num);
-		Sprintf(buf, "the %s of %s", ranks[r], suits[s]);
+		sprintf(buf, "the %s of %s", ranks[r], suits[s]);
 	}
 	return;
 }

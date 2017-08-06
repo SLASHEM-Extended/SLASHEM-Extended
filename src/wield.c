@@ -244,7 +244,7 @@ boolean put_away;
 
 	    You("wield the %s corpse in your bare %s.",
 		mons[wep->corpsenm].mname, makeplural(body_part(HAND)));
-	    Sprintf(kbuf, "%s corpse", an(mons[wep->corpsenm].mname));
+	    sprintf(kbuf, "%s corpse", an(mons[wep->corpsenm].mname));
 	    instapetrify(kbuf);
 	} else if ( (!uarmg || FingerlessGloves) && !Stone_resistance && wep->otyp == EGG
 				&& touch_petrifies(&mons[wep->corpsenm])) {
@@ -253,7 +253,7 @@ boolean put_away;
 
 	    You("wield the %s egg in your bare %s.",
 		mons[wep->corpsenm].mname, makeplural(body_part(HAND)));
-	    Sprintf(kbuf, "%s egg", an(mons[wep->corpsenm].mname));
+	    sprintf(kbuf, "%s egg", an(mons[wep->corpsenm].mname));
 	    instapetrify(kbuf);
 	} else if (uarms && bimanual(wep))
 	    You("cannot wield a two-handed %s while wearing a shield.",
@@ -731,11 +731,11 @@ can_twoweapon()
 		disallowed_by_race = youmonst.data->mattk[1].aatyp != AT_WEAP;
 		*buf = '\0';
 		if (!disallowed_by_role)
-		    Strcpy(buf, disallowed_by_race ? urace.noun : urace.adj);
+		    strcpy(buf, disallowed_by_race ? urace.noun : urace.adj);
 		if (disallowed_by_role || !disallowed_by_race) {
 		    if (!disallowed_by_role)
-			Strcat(buf, " ");
-		    Strcat(buf, (flags.female && urole.name.f) ?
+			strcat(buf, " ");
+		    strcat(buf, (flags.female && urole.name.f) ?
 			    urole.name.f : urole.name.m);
 		}
 		pline("%s aren't able to use %s at once.",
@@ -781,7 +781,7 @@ can_twoweapon()
 
 	    You("wield the %s corpse with your bare %s.",
 		    mons[uswapwep->corpsenm].mname, body_part(HAND));
-	    Sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
+	    sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
 	    instapetrify(kbuf);
         } 	else if ( (!uarmg || FingerlessGloves) && !Stone_resistance && 
 		(uswapwep && uswapwep->otyp == EGG &&                   
@@ -790,7 +790,7 @@ can_twoweapon()
 
 	    You("wield the %s egg with your bare %s.",
 		    mons[uswapwep->corpsenm].mname, body_part(HAND));
-	    Sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
+	    sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
 	    instapetrify(kbuf);
         } else if (uswapwep && (IsGlib || uswapwep->cursed)) {
 	    if (!IsGlib)
@@ -810,7 +810,7 @@ drop_uswapwep()
 	struct obj *obj = uswapwep;
 
 	/* Avoid trashing makeplural's static buffer */
-	Strcpy(str, makeplural(body_part(HAND)));
+	strcpy(str, makeplural(body_part(HAND)));
 	Your("%s from your %s!",  aobjnam(obj, "slip"), str);
 	setuswapwep((struct obj *) 0, FALSE);
 	dropx(obj);
@@ -1048,7 +1048,7 @@ register int amount;
 	if(!uwep || (uwep->oclass != WEAPON_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != GEM_CLASS && uwep->oclass != CHAIN_CLASS && !is_weptool(uwep))) {
 		char buf[BUFSZ];
 
-		Sprintf(buf, "Your %s %s.", makeplural(body_part(HAND)),
+		sprintf(buf, "Your %s %s.", makeplural(body_part(HAND)),
 			(amount >= 0) ? "twitch" : "itch");
 		strange_feeling(otmp, buf);
 		exercise(A_DEX, (boolean) (amount >= 0));

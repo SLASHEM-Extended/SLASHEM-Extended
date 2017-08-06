@@ -222,7 +222,7 @@ char *argv[];
         	char rsvd[256];
         	int i;
             	
-        	Strcpy(bigtile_file, argv[2]);
+        	strcpy(bigtile_file, argv[2]);
             	bigtile_bmp = load_bitmap(bigtile_file,tmp_pal);
             	
             	if (!bigtile_bmp) {
@@ -265,23 +265,23 @@ char *argv[];
     		Fprintf(stderr, "Using 16x16 text tile files\n");
     		(void) fflush(stderr);
 		tilefiles = tilefiles16;
-		Strcpy(bigtile_file, bigtile_file16);
+		strcpy(bigtile_file, bigtile_file16);
 	    } else if (argv[1][2] == '3' && 
 		    	(argv[1][3] == 'D' || argv[1][3] == 'd')) {
     		Fprintf(stderr, "Using 48x64 text tile files\n");
     		(void) fflush(stderr);
 		tilefiles = tilefiles3d;
-		Strcpy(bigtile_file, bigtile_file3d);
+		strcpy(bigtile_file, bigtile_file3d);
 		trans_background = TRUE;
 	    } else {
 	       	/* Default mode is 32 */
     		Fprintf(stderr, "Using 32x32 text tile files\n");
     		(void) fflush(stderr);
 		tilefiles = tilefiles32;
-		Strcpy(bigtile_file, bigtile_file32);
+		strcpy(bigtile_file, bigtile_file32);
 	    }
         } else {
-        	Strcpy(bigtile_file, argv[3]);
+        	strcpy(bigtile_file, argv[3]);
         }
 
         time(&aclock);

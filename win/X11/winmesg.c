@@ -241,7 +241,7 @@ append_message(wp, str)
 
     if (!str) return;
 
-    Strcpy(buf, str);	/* we might mark it up */
+    strcpy(buf, str);	/* we might mark it up */
 
     remainder = buf;
     do {
@@ -399,7 +399,7 @@ add_line(mesg_info, s)
 	curr->line = (char *) alloc((unsigned)curr->buf_length);
     }
 
-    Strcpy(curr->line, s);			/* copy info */
+    strcpy(curr->line, s);			/* copy info */
     curr->str_length = new_line_length;		/* save string length */
 
     mesg_info->head = mesg_info->head->next;	/* move head to next line */

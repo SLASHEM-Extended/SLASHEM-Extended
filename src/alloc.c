@@ -91,7 +91,7 @@ fmt_ptr(ptr, buf)
 const genericptr ptr;
 char *buf;
 {
-	Sprintf(buf, PTR_FMT, (PTR_TYP)ptr);
+	sprintf(buf, PTR_FMT, (PTR_TYP)ptr);
 	return buf;
 }
 

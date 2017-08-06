@@ -60,8 +60,8 @@ getlin_hook_proc hook;
 	*obufp = 0;
 	for(;;) {
 		(void) fflush(stdout);
-		Sprintf(toplines, "%s ", query);
-		Strcat(toplines, obufp);
+		sprintf(toplines, "%s ", query);
+		strcat(toplines, obufp);
 		if((c = Getchar()) == EOF) {
 #ifndef NEWAUTOCOMP
 			*bufp = 0;
@@ -232,7 +232,7 @@ ext_cmd_getlin_hook(base)
 		}
 	}
 	if (com_index >= 0) {
-		Strcpy(base, extcmdlist[com_index].ef_txt);
+		strcpy(base, extcmdlist[com_index].ef_txt);
 		return TRUE;
 	}
 

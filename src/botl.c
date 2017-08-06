@@ -145,15 +145,15 @@ char *newbot2;
 	if (*text == '\0') return;
 
 	if (!iflags.use_status_colors) {
-		Sprintf(nb = eos(newbot2), " %s", text);
+		sprintf(nb = eos(newbot2), " %s", text);
                 return;
         }
 
-	Strcat(nb = eos(newbot2), " ");
+	strcat(nb = eos(newbot2), " ");
 	curs(WIN_STATUS, 1, 1);
 	putstr(WIN_STATUS, 0, newbot2);
 
-	Strcat(nb = eos(nb), text);
+	strcat(nb = eos(nb), text);
 	curs(WIN_STATUS, 1, 1);
        	color_option = text_color_of(text, text_colors);
 	start_color_option(color_option);
@@ -174,11 +174,11 @@ char *newbot2;
 
 	if (*text == '\0') return;
 
-	Strcat(nb = eos(newbot2), " ");
+	strcat(nb = eos(newbot2), " ");
 	curs(WIN_STATUS, 1, 1);
 	putstr(WIN_STATUS, 0, newbot2);
 
-	Strcat(nb = eos(nb), text);
+	strcat(nb = eos(nb), text);
 	curs(WIN_STATUS, 1, 1);
 	{
 		struct color_option color_option = {flickercolor, 0};
@@ -198,11 +198,11 @@ char *newbot1;
 
 	if (*text == '\0') return;
 
-	Strcat(nb = eos(newbot1), " ");
+	strcat(nb = eos(newbot1), " ");
 	curs(WIN_STATUS, 1, 0);
 	putstr(WIN_STATUS, 0, newbot1);
 
-	Strcat(nb = eos(nb), text);
+	strcat(nb = eos(nb), text);
 	curs(WIN_STATUS, 1, 0);
 	{
 		struct color_option color_option = {flickercolor, 0};
@@ -363,22 +363,22 @@ botl_player()
     int i=0,k=0;
     char mbot[MAXCO - 15];
 
-    Strcpy(player, "");
+    strcpy(player, "");
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
     if (flags.hitpointbar) {
         flags.botlx = 0;
         curs(WIN_STATUS, 1, 0);
         putstr(WIN_STATUS, 0, player);
-        Strcat(player, "[");
+        strcat(player, "[");
         i = 1; /* don't overwrite the string in front */
         curs(WIN_STATUS, 1, 0);
         putstr(WIN_STATUS, 0, player);
     }
 #endif
-       Strcat(player, plname);
+       strcat(player, plname);
        if('a' <= player[i] && player[i] <= 'z') player[i] += 'A'-'a';
        player[10] = '\0';
-    Sprintf(nb = eos(player)," the ");
+    sprintf(nb = eos(player)," the ");
 
 	if (Upolyd && !missingnoprotect) {
 
@@ -392,9 +392,9 @@ botl_player()
 		    k++;
 		}
 
-	Sprintf(eos(nb), mbot);
+	sprintf(eos(nb), mbot);
 	} else
-	Sprintf(eos(nb), rank());
+	sprintf(eos(nb), rank());
     return player;
 }
 
@@ -404,13 +404,13 @@ botl_strength()
     static char strength[6];
 	if (ACURR(A_STR) > 18) {
 		if (ACURR(A_STR) > STR18(100))
-	    Sprintf(strength, "%2d", ACURR(A_STR)-100);
+	    sprintf(strength, "%2d", ACURR(A_STR)-100);
 		else if (ACURR(A_STR) < STR18(100))
-	    Sprintf(strength, "18/%02d", ACURR(A_STR)-18);
+	    sprintf(strength, "18/%02d", ACURR(A_STR)-18);
 		else
-	    Sprintf(strength, "18/**");
+	    sprintf(strength, "18/**");
 	} else
-	Sprintf(strength, "%-1d", ACURR(A_STR));
+	sprintf(strength, "%-1d", ACURR(A_STR));
     return strength;
 }
 
@@ -429,7 +429,7 @@ bot1()
 
 	if (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) ) {
 
-		Strcpy(newbot1, " ");
+		strcpy(newbot1, " ");
 	     	add_flicker_textA(generate_garbage_string(), newbot1);
 	     	add_flicker_textA(generate_garbage_string(), newbot1);
 	     	add_flicker_textA(generate_garbage_string(), newbot1);
@@ -438,7 +438,7 @@ bot1()
 		goto flicker1;
 	}
 
-	Strcpy(newbot1, botl_player());
+	strcpy(newbot1, botl_player());
 
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
         if (flags.hitpointbar) {
@@ -449,7 +449,7 @@ bot1()
             int hp = (uhp() < 0) ? 0 : uhp();
             int filledbar = (uhpmax() > 0) ? (hp * bar_length / uhpmax()) : 0;
             if (filledbar >= MAXCO) { filledbar = MAXCO-1; }
-            Strcpy(tmp, newbot1);
+            strcpy(tmp, newbot1);
             p++;
 
             /* draw hp bar */
@@ -461,57 +461,57 @@ bot1()
             if (iflags.use_inverse) term_end_attr(ATR_INVERSE);
 #endif
 
-            Strcat(newbot1, "]");
+            strcat(newbot1, "]");
     }
 #endif
 
-	Sprintf(nb = eos(newbot1),"  ");
+	sprintf(nb = eos(newbot1),"  ");
 	i = mrank_sz + 15;
 	j = (nb + 2) - newbot1; /* aka strlen(newbot1) but less computation */
 	/*if((i - j) > 0)
-		Sprintf(nb = eos(nb),"%*s", i-j, " ");   pad with spaces */
+		sprintf(nb = eos(nb),"%*s", i-j, " ");   pad with spaces */
         
-	Sprintf(nb = eos(nb), "St%s ", botl_strength());
-	Sprintf(nb = eos(nb),
+	sprintf(nb = eos(nb), "St%s ", botl_strength());
+	sprintf(nb = eos(nb),
 		"Dx%-1d Co%-1d In%-1d Wi%-1d Ch%-1d ",
 		ACURR(A_DEX), ACURR(A_CON), ACURR(A_INT), ACURR(A_WIS), ACURR(A_CHA));
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) Sprintf(nb = eos(nb), urole.filecode); /* fully disclosing what character you're playing */
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) Sprintf(nb = eos(nb), urace.filecode); /* abbreviated so the line doesn't roll over --Amy */
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) Sprintf(nb = eos(nb), flags.female ? "Fem" : "Mal"); /* allowing you to always know what you are */
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) Sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "Cha" :
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), urole.filecode); /* fully disclosing what character you're playing */
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), urace.filecode); /* abbreviated so the line doesn't roll over --Amy */
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), flags.female ? "Fem" : "Mal"); /* allowing you to always know what you are */
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "Cha" :
 			(u.ualign.type == A_NEUTRAL) ? "Neu" : "Law");
 
 	/* abbreviate hybridizations since we don't have infinite space on the status line --Amy */
-	if (flags.hybridization && !(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) ) {Sprintf(nb = eos(nb), "+");
-		if (flags.hybridcurser) Sprintf(nb = eos(nb), "C");
-		if (flags.hybridhaxor) Sprintf(nb = eos(nb), "H");
-		if (flags.hybridangbander) Sprintf(nb = eos(nb), "A");
-		if (flags.hybridhomicider) Sprintf(nb = eos(nb), "O");
-		if (flags.hybridsuxxor) Sprintf(nb = eos(nb), "S");
+	if (flags.hybridization && !(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) ) {sprintf(nb = eos(nb), "+");
+		if (flags.hybridcurser) sprintf(nb = eos(nb), "C");
+		if (flags.hybridhaxor) sprintf(nb = eos(nb), "H");
+		if (flags.hybridangbander) sprintf(nb = eos(nb), "A");
+		if (flags.hybridhomicider) sprintf(nb = eos(nb), "O");
+		if (flags.hybridsuxxor) sprintf(nb = eos(nb), "S");
 		/* sorry but I just couldn't resist allowing the "CHAOS" string. :D */
-		if (flags.hybridaquarian) Sprintf(nb = eos(nb), "Q");
-		if (flags.hybridwarper) Sprintf(nb = eos(nb), "W");
-		if (flags.hybridrandomizer) Sprintf(nb = eos(nb), "R");
-		if (flags.hybridnullrace) Sprintf(nb = eos(nb), "N");
-		if (flags.hybridmazewalker) Sprintf(nb = eos(nb), "M");
-		if (flags.hybridsoviet) Sprintf(nb = eos(nb), "V");
-		if (flags.hybridxrace) Sprintf(nb = eos(nb), "X");
-		if (flags.hybridspecialist) Sprintf(nb = eos(nb), "P");
-		if (flags.hybridminimalist) Sprintf(nb = eos(nb), "L");
-		if (flags.hybridamerican) Sprintf(nb = eos(nb), "I");
-		if (flags.hybridsokosolver) Sprintf(nb = eos(nb), "K");
-		if (flags.hybridheretic) Sprintf(nb = eos(nb), "E");
-		if (flags.hybridnastinator) Sprintf(nb = eos(nb), "Y");
-		if (flags.hybridrougelike) Sprintf(nb = eos(nb), "U");
-		if (flags.hybridsegfaulter) Sprintf(nb = eos(nb), "F");
-		if (flags.hybridironman) Sprintf(nb = eos(nb), "J");
-		if (flags.hybridamnesiac) Sprintf(nb = eos(nb), "Z");
-		if (flags.hybridproblematic) Sprintf(nb = eos(nb), "B");
-		if (flags.hybridwindinhabitant) Sprintf(nb = eos(nb), "D");
+		if (flags.hybridaquarian) sprintf(nb = eos(nb), "Q");
+		if (flags.hybridwarper) sprintf(nb = eos(nb), "W");
+		if (flags.hybridrandomizer) sprintf(nb = eos(nb), "R");
+		if (flags.hybridnullrace) sprintf(nb = eos(nb), "N");
+		if (flags.hybridmazewalker) sprintf(nb = eos(nb), "M");
+		if (flags.hybridsoviet) sprintf(nb = eos(nb), "V");
+		if (flags.hybridxrace) sprintf(nb = eos(nb), "X");
+		if (flags.hybridspecialist) sprintf(nb = eos(nb), "P");
+		if (flags.hybridminimalist) sprintf(nb = eos(nb), "L");
+		if (flags.hybridamerican) sprintf(nb = eos(nb), "I");
+		if (flags.hybridsokosolver) sprintf(nb = eos(nb), "K");
+		if (flags.hybridheretic) sprintf(nb = eos(nb), "E");
+		if (flags.hybridnastinator) sprintf(nb = eos(nb), "Y");
+		if (flags.hybridrougelike) sprintf(nb = eos(nb), "U");
+		if (flags.hybridsegfaulter) sprintf(nb = eos(nb), "F");
+		if (flags.hybridironman) sprintf(nb = eos(nb), "J");
+		if (flags.hybridamnesiac) sprintf(nb = eos(nb), "Z");
+		if (flags.hybridproblematic) sprintf(nb = eos(nb), "B");
+		if (flags.hybridwindinhabitant) sprintf(nb = eos(nb), "D");
 	}
 
 	if (flags.showscore)
-	    Sprintf(nb = eos(nb), " S%ld", botl_score());
+	    sprintf(nb = eos(nb), " S%ld", botl_score());
 
 flicker1:
 	;
@@ -542,63 +542,63 @@ int verbose;
 	/* TODO:	Add in dungeon name */
 	/* done by Amy */
 	if (Is_knox(&u.uz))
-		Sprintf(buf, "%s ", dungeons[u.uz.dnum].dname);
+		sprintf(buf, "%s ", dungeons[u.uz.dnum].dname);
 	else if (In_quest(&u.uz))
-		Sprintf(buf, flags.showlongstats ? "Quest %d " : "Ques %d ", dunlev(&u.uz)); /* used to be called home --Amy */
+		sprintf(buf, flags.showlongstats ? "Quest %d " : "Ques %d ", dunlev(&u.uz)); /* used to be called home --Amy */
 	else if (Is_astralevel(&u.uz)) /* why the heck is there a "l" missing in "astra_l_level"? */
-		Sprintf(buf, flags.showlongstats ? "Astral Plane " : "Astral ");
+		sprintf(buf, flags.showlongstats ? "Astral Plane " : "Astral ");
 	else if (Is_earthlevel(&u.uz))
-		Sprintf(buf, flags.showlongstats ? "Earth Plane " : "Earth ");
+		sprintf(buf, flags.showlongstats ? "Earth Plane " : "Earth ");
 	else if (Is_firelevel(&u.uz))
-		Sprintf(buf, flags.showlongstats ? "Fire Plane " : "Fire ");
+		sprintf(buf, flags.showlongstats ? "Fire Plane " : "Fire ");
 	else if (Is_waterlevel(&u.uz))
-		Sprintf(buf, flags.showlongstats ? "Water Plane " : "Water ");
+		sprintf(buf, flags.showlongstats ? "Water Plane " : "Water ");
 	else if (Is_airlevel(&u.uz))
-		Sprintf(buf, flags.showlongstats ? "Air Plane " : "Air ");
+		sprintf(buf, flags.showlongstats ? "Air Plane " : "Air ");
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market"))
-		Sprintf(buf, flags.showlongstats ? "Blackmarket:%d " : "Blk:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Blackmarket:%d " : "Blk:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Sokoban"))
-		Sprintf(buf, flags.showlongstats ? "Sokoban:%d " : "Sok:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Sokoban:%d " : "Sok:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Gehennom"))
-		Sprintf(buf, flags.showlongstats ? "Gehennom:%d " : "Geh:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Gehennom:%d " : "Geh:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Gnomish Mines"))
-		Sprintf(buf, flags.showlongstats ? "Mines:%d " : "Min:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Mines:%d " : "Min:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Town"))
-		Sprintf(buf, flags.showlongstats ? "Town:%d " : "Tow:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Town:%d " : "Tow:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold"))
-		Sprintf(buf, flags.showlongstats ? "Stronghold:%d " : "Str:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Stronghold:%d " : "Str:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest"))
-		Sprintf(buf, flags.showlongstats ? "Nightmare:%d " : "Nig:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Nightmare:%d " : "Nig:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest"))
-		Sprintf(buf, flags.showlongstats ? "Beholder:%d " : "Beh:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Beholder:%d " : "Beh:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest"))
-		Sprintf(buf, flags.showlongstats ? "Vecna:%d " : "Vec:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Vecna:%d " : "Vec:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch"))
-		Sprintf(buf, flags.showlongstats ? "Temple:%d " : "Tem:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Temple:%d " : "Tem:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns"))
-		Sprintf(buf, flags.showlongstats ? "Giants:%d " : "Gia:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Giants:%d " : "Gia:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea"))
-		Sprintf(buf, "Sea:%d ", depth(&u.uz));
+		sprintf(buf, "Sea:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves"))
-		Sprintf(buf, flags.showlongstats ? "Spider:%d " : "Spi:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Spider:%d " : "Spi:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb"))
-		Sprintf(buf, flags.showlongstats ? "Lost Tomb:%d " : "Los:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Lost Tomb:%d " : "Los:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves"))
-		Sprintf(buf, flags.showlongstats ? "Wyrm Caves:%d " : "Wyr:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Wyrm Caves:%d " : "Wyr:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios"))
-		Sprintf(buf, flags.showlongstats ? "Ludios:%d " : "Lud:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Ludios:%d " : "Lud:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Vlad's Tower"))
-		Sprintf(buf, flags.showlongstats ? "Vlad's Tower:%d " : "Vla:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Vlad's Tower:%d " : "Vla:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab"))
-		Sprintf(buf, "Lab:%d ", depth(&u.uz));
+		sprintf(buf, "Lab:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Sheol"))
-		Sprintf(buf, flags.showlongstats ? "Sheol:%d " : "She:%d ", depth(&u.uz));
+		sprintf(buf, flags.showlongstats ? "Sheol:%d " : "She:%d ", depth(&u.uz));
 	else {
 		if (verbose)
-			Sprintf(buf, "%s, level %d ",
+			sprintf(buf, "%s, level %d ",
 				dungeons[u.uz.dnum].dname, depth(&u.uz));
 		else
-		Sprintf(buf, "Dlvl:%d ", depth(&u.uz));
+		sprintf(buf, "Dlvl:%d ", depth(&u.uz));
 		ret = 0;
 	}
 	return ret;
@@ -695,13 +695,13 @@ bot2str(char *newbot2)
 
 	if (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) ) {
 		nb = newbot2;
-		Strcpy(newbot2, " ");
+		strcpy(newbot2, " ");
 	     	add_flicker_text(generate_garbage_string(), newbot2);
 		if (rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
-		Sprintf(nb = eos(nb), "%d(%d)", hp, hpmax);
+		sprintf(nb = eos(nb), "%d(%d)", hp, hpmax);
             add_flicker_text(generate_garbage_string(), newbot2);
 		if (rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
-		Sprintf(nb = eos(nb), "%d(%d)", u.uen, u.uenmax);
+		sprintf(nb = eos(nb), "%d(%d)", u.uen, u.uenmax);
             add_flicker_text(generate_garbage_string(), newbot2);
 		if (rn2(3)) add_flicker_text(generate_garbage_string(), newbot2);
             if (!rn2(2)) add_flicker_text(generate_garbage_string(), newbot2);
@@ -717,7 +717,7 @@ bot2str(char *newbot2)
 	else
 		newbot2[0] = '\0';
 	if (bot2_abbrev < 1)
-		Sprintf(nb = eos(newbot2), "%c%d ",
+		sprintf(nb = eos(newbot2), "%c%d ",
 		  oc_syms[COIN_CLASS],
 #ifndef GOLDOBJ
 		u.ugold
@@ -729,55 +729,55 @@ bot2str(char *newbot2)
 		nb = newbot2;
 
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	Strcat(nb = eos(newbot2), "HP");
+	strcat(nb = eos(newbot2), "HP");
 	curs(WIN_STATUS, 1, 1);
 	putstr(WIN_STATUS, 0, newbot2);
 	flags.botlx = 0;
 
-	Sprintf(nb = eos(nb), "%d(%d)", hp, hpmax);
+	sprintf(nb = eos(nb), "%d(%d)", hp, hpmax);
 	apply_color_option(percentage_color_of(hp, hpmax, hp_colors), newbot2, 2);
 #else
-	Sprintf(nb = eos(nb), "HP%d(%d)", hp, hpmax);
+	sprintf(nb = eos(nb), "HP%d(%d)", hp, hpmax);
 #endif
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-	Strcat(nb = eos(nb), " Pw");
+	strcat(nb = eos(nb), " Pw");
 	curs(WIN_STATUS, 1, 1);
 	putstr(WIN_STATUS, 0, newbot2);
 
-	Sprintf(nb = eos(nb), "%d(%d)", u.uen, u.uenmax);
+	sprintf(nb = eos(nb), "%d(%d)", u.uen, u.uenmax);
 	apply_color_option(percentage_color_of(u.uen, u.uenmax, pw_colors), newbot2, 2);
 #else
-	Sprintf(nb = eos(nb), " Pw%d(%d)", u.uen, u.uenmax);
+	sprintf(nb = eos(nb), " Pw%d(%d)", u.uen, u.uenmax);
 #endif
-	Sprintf(nb = eos(nb), " AC%d", u.uac);
+	sprintf(nb = eos(nb), " AC%d", u.uac);
 
 	if (flags.showmc)
-		Sprintf(nb = eos(nb), " MC%d", magic_negationX(&youmonst));
+		sprintf(nb = eos(nb), " MC%d", magic_negationX(&youmonst));
 
 	if (flags.showmovement)
-		Sprintf(nb = eos(nb), " Mov%d", youmonst.data->mmove);
+		sprintf(nb = eos(nb), " Mov%d", youmonst.data->mmove);
 
 	if (Upolyd)
-		Sprintf(nb = eos(nb), " HD%d", ((u.ulycn == u.umonnum) ? 
+		sprintf(nb = eos(nb), " HD%d", ((u.ulycn == u.umonnum) ? 
 						u.ulevel : mons[u.umonnum].mlevel));
 	/*else*/ if(flags.showexp && bot2_abbrev < 3) /* show this when polymorphed, too --Amy */
-		Sprintf(nb = eos(nb), " Xp%u/%-1ld", u.ulevel,u.uexp);
+		sprintf(nb = eos(nb), " Xp%u/%-1ld", u.ulevel,u.uexp);
 	else
-		Sprintf(nb = eos(nb), " Exp%u", u.ulevel);
+		sprintf(nb = eos(nb), " Exp%u", u.ulevel);
 
 #ifdef SHOW_WEIGHT
 	if (flags.showweight && !(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone()) && bot2_abbrev < 3)
-		Sprintf(nb = eos(nb), " Wt%ld/%ld", (long)(inv_weight()+weight_cap()),
+		sprintf(nb = eos(nb), " Wt%ld/%ld", (long)(inv_weight()+weight_cap()),
 				(long)weight_cap());
 #endif
 
 	if(flags.time && bot2_abbrev < 3)
-	        Sprintf(nb = eos(nb), " T%ld", moves);
+	        sprintf(nb = eos(nb), " T%ld", moves);
 
 #ifdef REALTIME_ON_BOTL
   if(iflags.showrealtime) {
     time_t currenttime = get_realtime();
-    Sprintf(nb = eos(nb), " %d:%2.2d", currenttime / 3600, 
+    sprintf(nb = eos(nb), " %d:%2.2d", currenttime / 3600, 
                                        (currenttime % 3600) / 60);
   }
 #endif
@@ -785,21 +785,21 @@ bot2str(char *newbot2)
 #ifdef ALLEG_FX
         if(iflags.usealleg && botl_warn && !Hallucination)
         {
-            Sprintf(nb = eos(nb), " ");
+            sprintf(nb = eos(nb), " ");
             for(w = 0; w < botl_warn; w++)
-                Sprintf(nb = eos(nb), "!");
+                sprintf(nb = eos(nb), "!");
         }
 #endif
 	        
 /*        if (bot2_abbrev >= 2) {
 		if (hu_abbrev_stat[u.uhs][0]!='\0') {
-			Sprintf(nb = eos(nb), " ");
-			Strcat(newbot2, hu_abbrev_stat[u.uhs]);
+			sprintf(nb = eos(nb), " ");
+			strcat(newbot2, hu_abbrev_stat[u.uhs]);
 		}
 	}
 	else if(strcmp(hu_stat[u.uhs], "        ")) {
-		Sprintf(nb = eos(nb), " ");
-		Strcat(newbot2, hu_stat[u.uhs]);
+		sprintf(nb = eos(nb), " ");
+		strcat(newbot2, hu_stat[u.uhs]);
 	}
 */
 
@@ -807,19 +807,19 @@ bot2str(char *newbot2)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Oversatiated" : "Ovs", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Oversatiated" : " Ovs");
+		strcat(nb = eos(nb), flags.showlongstats ? " Oversatiated" : " Ovs");
 #endif
 
 	else if(!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && strcmp(hu_stat[u.uhs], "        "))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? hu_stat[u.uhs] : hu_abbrev_stat[u.uhs], newbot2);
 #else
-		Sprintf(nb = eos(nb), " %s", flags.showlongstats ? hu_stat[u.uhs] : hu_abbrev_stat[u.uhs]);
+		sprintf(nb = eos(nb), " %s", flags.showlongstats ? hu_stat[u.uhs] : hu_abbrev_stat[u.uhs]);
 #endif
 
 /* WAC further Up
 	if (flags.showscore)
-                Sprintf(nb,"%c%d Score%ld", oc_syms[COIN_CLASS],
+                sprintf(nb,"%c%d Score%ld", oc_syms[COIN_CLASS],
                    u.ugold, botl_score());
 */
 
@@ -827,14 +827,14 @@ bot2str(char *newbot2)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Vibration" : "Vib", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Vibration" : " Vib");
+		strcat(nb = eos(nb), flags.showlongstats ? " Vibration" : " Vib");
 #endif
 
 	if (multi < 0)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Paralyzed" : "Par", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Paralyzed" : " Par");
+		strcat(nb = eos(nb), flags.showlongstats ? " Paralyzed" : " Par");
 #endif
 
 	/* KMH -- changed to Lev */
@@ -842,56 +842,56 @@ bot2str(char *newbot2)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text("Lev", newbot2);
 #else
-		Strcat(nb = eos(nb), " Lev");
+		strcat(nb = eos(nb), " Lev");
 #endif
 	if (IsGlib)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Glib" : "Glb", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Glib" : " Glb");
+		strcat(nb = eos(nb), flags.showlongstats ? " Glib" : " Glb");
 #endif
 	if (Wounded_legs)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Legs" : "Leg", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Legs" : " Leg");
+		strcat(nb = eos(nb), flags.showlongstats ? " Legs" : " Leg");
 #endif
 	if (Strangled)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Choke" : "Chk", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Choke" : " Chk");
+		strcat(nb = eos(nb), flags.showlongstats ? " Choke" : " Chk");
 #endif
 	if (Vomiting)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Vomit" : "Vmt", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Vomit" : " Vmt");
+		strcat(nb = eos(nb), flags.showlongstats ? " Vomit" : " Vmt");
 #endif
 	if(Confusion && !HeavyConfusion)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Conf" : "Cnf", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Conf" : " Cnf");
+		strcat(nb = eos(nb), flags.showlongstats ? " Conf" : " Cnf");
 #endif
 	if(Confusion && HeavyConfusion)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "XConf" : "XCnf", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " XConf" : " XCnf");
+		strcat(nb = eos(nb), flags.showlongstats ? " XConf" : " XCnf");
 #endif
 	if(Sick) {
 		if (u.usick_type & SICK_VOMITABLE)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 			add_colored_text(flags.showlongstats ? "FoodPois" : "FPo", newbot2);
 #else
-			Strcat(nb = eos(nb), flags.showlongstats ? " FoodPois" : " FPo");
+			strcat(nb = eos(nb), flags.showlongstats ? " FoodPois" : " FPo");
 #endif
 		if (u.usick_type & SICK_NONVOMITABLE)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 			add_colored_text("Ill", newbot2);
 #else
-			Strcat(nb = eos(nb), " Ill");
+			strcat(nb = eos(nb), " Ill");
 #endif
 	}
 
@@ -899,19 +899,19 @@ bot2str(char *newbot2)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Blind" : "Bli", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Blind" : " Bli");
+		strcat(nb = eos(nb), flags.showlongstats ? " Blind" : " Bli");
 #endif
 	if(Blind && HeavyBlind)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "XBlind" : "XBli", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " XBlind" : " XBli");
+		strcat(nb = eos(nb), flags.showlongstats ? " XBlind" : " XBli");
 #endif
 	if(sengr_at("Elbereth", u.ux, u.uy))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Elbereth" : "Elb", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Elbereth" : " Elb");
+		strcat(nb = eos(nb), flags.showlongstats ? " Elbereth" : " Elb");
 #endif
 	/* Yes I know, this should have a "is the player blind?" check. But I'm lenient. --Amy */
 
@@ -919,109 +919,109 @@ bot2str(char *newbot2)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(Race_if(PM_TUMBLRER) ? (flags.showlongstats ? "Triggered" : "Trg") : (flags.showlongstats ? "Fear" : "Fea"), newbot2);
 #else
-		Strcat(nb = eos(nb), Race_if(PM_TUMBLRER) ? (flags.showlongstats ? " Triggered" : " Trg") : (flags.showlongstats ? " Fear" : " Fea") );
+		strcat(nb = eos(nb), Race_if(PM_TUMBLRER) ? (flags.showlongstats ? " Triggered" : " Trg") : (flags.showlongstats ? " Fear" : " Fea") );
 #endif
 	if(Feared && HeavyFeared)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(Race_if(PM_TUMBLRER) ? (flags.showlongstats ? "XTriggered" : "XTrg") : (flags.showlongstats ? "XFear" : "XFea"), newbot2);
 #else
-		Strcat(nb = eos(nb), Race_if(PM_TUMBLRER) ? (flags.showlongstats ? " XTriggered" : " XTrg") : (flags.showlongstats ? " XFear" : " XFea"));
+		strcat(nb = eos(nb), Race_if(PM_TUMBLRER) ? (flags.showlongstats ? " XTriggered" : " XTrg") : (flags.showlongstats ? " XFear" : " XFea"));
 #endif
 	if(Numbed && !HeavyNumbed)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Numb" : "Nmb", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Numb" : " Nmb");
+		strcat(nb = eos(nb), flags.showlongstats ? " Numb" : " Nmb");
 #endif
 	if(Numbed && HeavyNumbed)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "XNumb" : "XNmb", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " XNumb" : " XNmb");
+		strcat(nb = eos(nb), flags.showlongstats ? " XNumb" : " XNmb");
 #endif
 	if(Frozen && !HeavyFrozen)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Freeze" : "Frz", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Freeze" : " Frz");
+		strcat(nb = eos(nb), flags.showlongstats ? " Freeze" : " Frz");
 #endif
 	if(Frozen && HeavyFrozen)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "XFreeze" : "XFrz", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " XFreeze" : " XFrz");
+		strcat(nb = eos(nb), flags.showlongstats ? " XFreeze" : " XFrz");
 #endif
 	if(Burned && !HeavyBurned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Burn" : "Brn", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Burn" : " Brn");
+		strcat(nb = eos(nb), flags.showlongstats ? " Burn" : " Brn");
 #endif
 	if(Burned && HeavyBurned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "XBurn" : "XBrn", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " XBurn" : " XBrn");
+		strcat(nb = eos(nb), flags.showlongstats ? " XBurn" : " XBrn");
 #endif
 	if(Dimmed && !HeavyDimmed)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text("Dim", newbot2);
 #else
-		Strcat(nb = eos(nb), " Dim");
+		strcat(nb = eos(nb), " Dim");
 #endif
 	if(Dimmed && HeavyDimmed)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text("XDim", newbot2);
 #else
-		Strcat(nb = eos(nb), " XDim");
+		strcat(nb = eos(nb), " XDim");
 #endif
 	if(Stunned && !HeavyStunned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Stun" : "Stn", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Stun" : " Stn");
+		strcat(nb = eos(nb), flags.showlongstats ? " Stun" : " Stn");
 #endif
 	if(Stunned && HeavyStunned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "XStun" : "XStn", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " XStun" : " XStn");
+		strcat(nb = eos(nb), flags.showlongstats ? " XStun" : " XStn");
 #endif
 	if(Hallucination && !HeavyHallu)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Hallu" : "Hal", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Hallu" : " Hal");
+		strcat(nb = eos(nb), flags.showlongstats ? " Hallu" : " Hal");
 #endif
 	if(Hallucination && HeavyHallu)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "XHallu" : "XHal", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " XHallu" : " XHal");
+		strcat(nb = eos(nb), flags.showlongstats ? " XHallu" : " XHal");
 #endif
 	if(Slimed)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Slime" : "Sli", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Slime" : " Sli");
+		strcat(nb = eos(nb), flags.showlongstats ? " Slime" : " Sli");
 #endif
 	if(Stoned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Stone" : "Sto", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Stone" : " Sto");
+		strcat(nb = eos(nb), flags.showlongstats ? " Stone" : " Sto");
 #endif
 	if(u.ustuck && !u.uswallow && !sticks(youmonst.data))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Held" : "Hld", newbot2);
 #else
-		Strcat(nb = eos(nb), flags.showlongstats ? " Held" : " Hld");
+		strcat(nb = eos(nb), flags.showlongstats ? " Held" : " Hld");
 #endif
 	if(cap > UNENCUMBERED)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 		add_colored_text(flags.showlongstats ? enc_stat[cap] : enc_abbrev_stat[cap], newbot2);
 #else
-		Sprintf(nb = eos(nb), " %s", enc_stat[cap]);
+		sprintf(nb = eos(nb), " %s", enc_stat[cap]);
 #endif
 
 flicker2:
@@ -1115,53 +1115,53 @@ boolean reconfig;
     char expr[21], iweight[21], capacity[21], flgs[21], tim[21];
     *rv++ = reconfig ? "player" : botl_player();
     *rv++ = reconfig ? "strength" : botl_strength();
-    *rv++ = reconfig ? "dexterity" : (Sprintf(dex, "%d", ACURR(A_DEX)), dex);
-    *rv++ = reconfig ? "constitution" : (Sprintf(con, "%d", ACURR(A_CON)), con);
-    *rv++ = reconfig ? "intelligence" : (Sprintf(itl, "%d", ACURR(A_INT)), itl);
-    *rv++ = reconfig ? "wisdom" : (Sprintf(wis, "%d", ACURR(A_WIS)), wis);
-    *rv++ = reconfig ? "charisma" : (Sprintf(cha, "%d", ACURR(A_CHA)), cha);
+    *rv++ = reconfig ? "dexterity" : (sprintf(dex, "%d", ACURR(A_DEX)), dex);
+    *rv++ = reconfig ? "constitution" : (sprintf(con, "%d", ACURR(A_CON)), con);
+    *rv++ = reconfig ? "intelligence" : (sprintf(itl, "%d", ACURR(A_INT)), itl);
+    *rv++ = reconfig ? "wisdom" : (sprintf(wis, "%d", ACURR(A_WIS)), wis);
+    *rv++ = reconfig ? "charisma" : (sprintf(cha, "%d", ACURR(A_CHA)), cha);
     *rv++ = reconfig ? "alignment" : u.ualign.type == A_CHAOTIC ? "Chaotic" :
 	    u.ualign.type == A_NEUTRAL ? "Neutral" : "Lawful";
     if (flags.showscore)
 	*rv++ = reconfig ? "score" :
-		(Sprintf(score, "%ld", botl_score()), score);
+		(sprintf(score, "%ld", botl_score()), score);
     uhp = Upolyd ? u.mh : u.uhp;
     if (uhp < 0) uhp = 0;
     (void) describe_level(dlevel, TRUE);
     eos(dlevel)[-1] = 0;
     *rv++ = reconfig ? "dlevel" : dlevel;
-    *rv++ = reconfig ? "gold" : (Sprintf(gold, "%ld",
+    *rv++ = reconfig ? "gold" : (sprintf(gold, "%ld",
 #ifndef GOLDOBJ
     u.ugold
 #else
 	money_cnt(invent)
 #endif
     ), gold);
-    *rv++ = reconfig ? "hp" : (Sprintf(hp, "%d", uhp), hp);
+    *rv++ = reconfig ? "hp" : (sprintf(hp, "%d", uhp), hp);
     *rv++ = reconfig ? "hpmax" :
-	    (Sprintf(hpmax, "%d", Upolyd ? u.mhmax : u.uhpmax), hpmax);
-    *rv++ = reconfig ? "pw" : (Sprintf(pw, "%d", u.uen), pw);
-    *rv++ = reconfig ? "pwmax" : (Sprintf(pwmax, "%d", u.uenmax), pwmax);
-    *rv++ = reconfig ? "ac" : (Sprintf(ac, "%d", u.uac), ac);
-    Sprintf(elevel, "%u",
+	    (sprintf(hpmax, "%d", Upolyd ? u.mhmax : u.uhpmax), hpmax);
+    *rv++ = reconfig ? "pw" : (sprintf(pw, "%d", u.uen), pw);
+    *rv++ = reconfig ? "pwmax" : (sprintf(pwmax, "%d", u.uenmax), pwmax);
+    *rv++ = reconfig ? "ac" : (sprintf(ac, "%d", u.uac), ac);
+    sprintf(elevel, "%u",
 	    Upolyd && u.ulycn != u.umonnum ? mons[u.umonnum].mlevel : u.ulevel);
     *rv++ = reconfig ? (Upolyd ? "hitdice" : "elevel") : elevel;
     if (flags.showexp)
-	*rv++ = reconfig ? "experience" : (Sprintf(expr, "%ld", u.uexp), expr);
+	*rv++ = reconfig ? "experience" : (sprintf(expr, "%ld", u.uexp), expr);
 #ifdef SHOW_WEIGHT
     if (flags.showweight && !(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone())) {
-	*rv++ = reconfig ? "weight" : (Sprintf(iweight,
+	*rv++ = reconfig ? "weight" : (sprintf(iweight,
 		"%ld", (long)(inv_weight() + weight_cap())), iweight);
-	*rv++ = reconfig ? "capacity" : (Sprintf(capacity,
+	*rv++ = reconfig ? "capacity" : (sprintf(capacity,
 		"%ld", (long)weight_cap()), capacity);
     }
 #endif
     if (flags.time)
-	*rv++ = reconfig ? "time" : (Sprintf(tim, "%ld", moves), tim);
+	*rv++ = reconfig ? "time" : (sprintf(tim, "%ld", moves), tim);
     if (!Thirst && !u.uprops[THIRST].extrinsic && !have_thirststone() && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) ) *rv++ = reconfig ? "hunger" : strcmp(hu_stat[u.uhs], "        ") ?
 	    hu_stat[u.uhs] : "";
     *rv++ = reconfig ? "encumberance" : enc_stat[near_capacity()];
-    *rv++ = reconfig ? "flags" : (Sprintf(flgs, "%lX",
+    *rv++ = reconfig ? "flags" : (sprintf(flgs, "%lX",
         (Levitation ? RAW_STAT_LEVITATION : 0) |
 	(Confusion ? RAW_STAT_CONFUSION : 0) |
 	(Sick && (u.usick_type & SICK_VOMITABLE) ? RAW_STAT_FOODPOIS : 0) |

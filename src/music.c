@@ -451,7 +451,7 @@ struct obj *instr;
 		} else if (!u.dx && !u.dy && !u.dz) {
 		    if ((damage = zapyourself(instr, TRUE)) != 0) {
 			char buf[BUFSZ];
-			Sprintf(buf, "using a magical horn on %sself", uhim());
+			sprintf(buf, "using a magical horn on %sself", uhim());
 			losehp(damage, buf, KILLED_BY);
 		    }
 		} else {
@@ -1005,7 +1005,7 @@ struct obj *instr;
     }
     if (c == 'n') {
 	if (u.uevent.uheard_tune == 2 && yn("Play the passtune?") == 'y') {
-	    Strcpy(buf, tune);
+	    strcpy(buf, tune);
 	} else {
 	    getlin("What tune are you playing? [5 notes, A-G]", buf);
 	    (void)mungspaces(buf);

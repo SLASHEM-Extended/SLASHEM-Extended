@@ -88,7 +88,7 @@ boolean exclude_cookie;
 		if (true_rumor_size == 0L) {	/* if this is 1st outrumor() */
 		    init_rumors(rumors);
 		    if (true_rumor_size < 0L) {	/* init failed */
-			Sprintf(rumor_buf, "Error reading \"%.80s\".",
+			sprintf(rumor_buf, "Error reading \"%.80s\".",
 				NH_RUMORFILE);
 			return rumor_buf;
 		    }
@@ -120,7 +120,7 @@ boolean exclude_cookie;
 			(void) dlb_fgets(line, sizeof line, rumors);
 		}
 		if ((endp = index(line, '\n')) != 0) *endp = 0;
-		Strcat(rumor_buf, xcrypt(line, xbuf));
+		strcat(rumor_buf, xcrypt(line, xbuf));
 	    } while(count++ < 50 && exclude_cookie && (strstri(rumor_buf, "fortune") || strstri(rumor_buf, "pity")));
 	    (void) dlb_fclose(rumors);
 	    if (count >= 50)
@@ -311,7 +311,7 @@ register struct monst *oracl;
 		return 0;
 	}
 
-	Sprintf(qbuf,
+	sprintf(qbuf,
 		"\"Wilt thou settle for a minor consultation?\" (%d %s)",
 		minor_cost, currency((long)minor_cost));
 	switch (ynq(qbuf)) {
@@ -336,7 +336,7 @@ register struct monst *oracl;
 		if (umoney <= (long)minor_cost ||	/* don't even ask */
 #endif
 		    (oracle_cnt == 1 || oracle_flg < 0)) return 0;
-		Sprintf(qbuf,
+		sprintf(qbuf,
 			"\"Then dost thou desire a major one?\" (%d %s)",
 			major_cost, currency((long)major_cost));
 		if (yn(qbuf) != 'y') return 0;

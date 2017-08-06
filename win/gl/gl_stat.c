@@ -133,7 +133,7 @@ static void do_player(struct TextWindow *win, int *len)
     char mbot[BUFSZ];
     int k;
 
-    Strcpy(mbot, mons[u.umonnum].mname);
+    strcpy(mbot, mons[u.umonnum].mname);
     
     for (k=0; mbot[k] != 0; k++)
     {

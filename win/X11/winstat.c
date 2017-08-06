@@ -341,28 +341,28 @@ update_val(attr_rec, new_value)
 
 	if (attr_rec == &shown_stats[F_NAME]) {
 
-	    Strcpy(buf, plname);
+	    strcpy(buf, plname);
 	    if ('a' <= buf[0] && buf[0] <= 'z') buf[0] += 'A'-'a';
-	    Strcat(buf, " the ");
+	    strcat(buf, " the ");
 	    if (u.mtimedone) {
 		char mname[BUFSZ];
 		int k = 0;
 
-		Strcpy(mname, mons[u.umonnum].mname);
+		strcpy(mname, mons[u.umonnum].mname);
 		while(mname[k] != 0) {
 		    if ((k == 0 || (k > 0 && mname[k-1] == ' ')) &&
 					'a' <= mname[k] && mname[k] <= 'z')
 			    mname[k] += 'A' - 'a';
 		    k++;
 		}
-		Strcat(buf, mname);
+		strcat(buf, mname);
 	    } else
-		Strcat(buf, rank_of(u.ulevel, pl_character[0], flags.female));
+		strcat(buf, rank_of(u.ulevel, pl_character[0], flags.female));
 
 	} else if (attr_rec == &shown_stats[F_DLEVEL]) {
 	    if (!describe_level(buf, FALSE)) {
-		Strcpy(buf, dungeons[u.uz.dnum].dname);
-		Sprintf(eos(buf), ", level %d", depth(&u.uz));
+		strcpy(buf, dungeons[u.uz.dnum].dname);
+		sprintf(eos(buf), ", level %d", depth(&u.uz));
 	    }
 	} else {
 	    impossible("update_val: unknown label type \"%s\"",
@@ -373,7 +373,7 @@ update_val(attr_rec, new_value)
 	if (strcmp(buf, attr_rec->name) == 0) return;	/* same */
 
 	/* Set the label. */
-	Strcpy(attr_rec->name, buf);
+	strcpy(attr_rec->name, buf);
 	XtSetArg(args[0], XtNlabel, buf);
 	XtSetValues(attr_rec->w, args, ONE);
 
@@ -392,11 +392,11 @@ update_val(attr_rec, new_value)
 	    buf[0] = 0;
 	    if (Sick) {
 		if (u.usick_type & SICK_VOMITABLE)
-		    Strcat(buf, "FoodPois");
+		    strcat(buf, "FoodPois");
 		if (u.usick_type & SICK_NONVOMITABLE) {
 		    if (u.usick_type & SICK_VOMITABLE)
-			Strcat(buf, " ");
-		    Strcat(buf, "Ill");
+			strcat(buf, " ");
+		    strcat(buf, "Ill");
 		}
 	    }
 	    XtSetArg(args[0], XtNlabel, buf);
@@ -542,21 +542,21 @@ update_val(attr_rec, new_value)
 	if (attr_rec == &shown_stats[F_STR]) {
 	    if(new_value > 18) {
 		if (new_value > 118)
-		    Sprintf(buf,"%ld", new_value-100);
+		    sprintf(buf,"%ld", new_value-100);
 		else if(new_value < 118)
-		    Sprintf(buf, "18/%02ld", new_value-18);
+		    sprintf(buf, "18/%02ld", new_value-18);
 		else
-		    Strcpy(buf, "18/**");
+		    strcpy(buf, "18/**");
 	    } else {
-		Sprintf(buf, "%ld", new_value);
+		sprintf(buf, "%ld", new_value);
 	    }
 	} else if (attr_rec == &shown_stats[F_ALIGN]) {
 
-	    Strcpy(buf, (new_value == A_CHAOTIC) ? "Chaotic" :
+	    strcpy(buf, (new_value == A_CHAOTIC) ? "Chaotic" :
 			(new_value == A_NEUTRAL) ? "Neutral" :
 						   "Lawful"  );
 	} else {
-	    Sprintf(buf, "%ld", new_value);
+	    sprintf(buf, "%ld", new_value);
 	}
 	set_value(attr_rec->w, buf);
     }

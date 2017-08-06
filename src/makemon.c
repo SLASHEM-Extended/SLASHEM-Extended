@@ -12171,7 +12171,7 @@ xchar x, y;	/* clone's preferred location or 0 (near mon) */
 		m3 = newmonst(sizeof(struct epri) + mon->mnamelth);
 		*m3 = *m2;
 		m3->mxlth = sizeof(struct epri);
-		if (m2->mnamelth) Strcpy(NAME(m3), NAME(m2));
+		if (m2->mnamelth) strcpy(NAME(m3), NAME(m2));
 		*(EPRI(m3)) = *(EPRI(mon));
 		replmon(m2, m3);
 		m2 = m3;

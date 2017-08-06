@@ -1151,7 +1151,7 @@ touch_artifact(obj,mon)
 	if (issoviet) pline("Bum, vy tol'ko chto vzorvali dlya massivnogo povrezhdeniya. Kha-kha-kha, tip bloka l'da smeyetsya nad vami.");
 
 	/*if (wizard) pline("damage calc");*/
-	Sprintf(buf, "touching an artifact (%s)", oart->name);
+	sprintf(buf, "touching an artifact (%s)", oart->name);
 	/*if (wizard) pline("sprintf");*/
 	losehp(dmg, buf, KILLED_BY);
 	/*if (wizard) pline("losehp done");*/
@@ -1373,7 +1373,7 @@ winid tmpwin;		/* supplied by dodiscover() */
 	      "Artifacts", MENU_UNSELECTED);
 	m = artidisco[i];
 	otyp = artilist[m].otyp;
-	Sprintf(buf, "  %s [%s %s]", artiname(m),
+	sprintf(buf, "  %s [%s %s]", artiname(m),
 		align_str(artilist[m].alignment), simple_typename(otyp));
 	add_menu(tmpwin, objnum_to_glyph(otyp), &any, 0, 0, ATR_NONE,
 	  buf, MENU_UNSELECTED);
@@ -1393,7 +1393,7 @@ dump_artifact_discoveries()
 		    dump("", "  Artifacts");
 	m = artidisco[i];
 	otyp = artilist[m].otyp;
-	Sprintf(buf, "  %s [%s %s]", artiname(m),
+	sprintf(buf, "  %s [%s %s]", artiname(m),
 		align_str(artilist[m].alignment), simple_typename(otyp));
 		dump("  ", buf);
     }
@@ -1595,9 +1595,9 @@ char *hittee;			/* target's name: "you" or mon_nam(mdef) */
 	    char buf[BUFSZ];
 
 	    buf[0] = '\0';
-	    if (do_stun) Strcat(buf, "stunned");
-	    if (do_stun && do_confuse) Strcat(buf, " and ");
-	    if (do_confuse) Strcat(buf, "confused");
+	    if (do_stun) strcat(buf, "stunned");
+	    if (do_stun && do_confuse) strcat(buf, " and ");
+	    if (do_confuse) strcat(buf, "confused");
 	    pline("%s %s %s%c", hittee, vtense(hittee, "are"),
 		  buf, (do_stun && do_confuse) ? '!' : '.');
 	}
@@ -1739,7 +1739,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				touch_petrifies(&mons[otmp2->corpsenm]) && (!uarmg || FingerlessGloves)) {
 				char kbuf[BUFSZ];
 
-				Sprintf(kbuf, "stolen %s corpse", mons[otmp2->corpsenm].mname);
+				sprintf(kbuf, "stolen %s corpse", mons[otmp2->corpsenm].mname);
 				instapetrify(kbuf);
 			}
 			/* more take-away handling, after theft message */
@@ -1770,7 +1770,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 
 			/* make a special x_monnam() call that never omits
 			   the saddle, and save it for later messages */
-			Strcpy(mdefnambuf, x_monnam(mdef, ARTICLE_THE, (char *)0, 0, FALSE));
+			strcpy(mdefnambuf, x_monnam(mdef, ARTICLE_THE, (char *)0, 0, FALSE));
 			if (u.usteed == mdef &&
 					obj == which_armor(mdef, W_SADDLE))
 				/* "You can no longer ride <steed>." */
@@ -1785,10 +1785,10 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			}
 			/* add_to_minv() might free obj [if it merges] */
 			if (vis)
-				Strcpy(onambuf, doname(obj));
+				strcpy(onambuf, doname(obj));
 			(void) add_to_minv(magr, obj);
 			if (vis) {
-				Strcpy(buf, Monnam(magr));
+				strcpy(buf, Monnam(magr));
 				pline("%s steals %s from %s!", buf,
 				    onambuf, mdefnambuf);
 			}

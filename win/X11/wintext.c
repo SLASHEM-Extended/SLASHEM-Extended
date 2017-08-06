@@ -466,10 +466,10 @@ calculate_rip_text(int how)
 	int line;
 
 	/* Put name on stone */
-	Sprintf(rip_line[NAME_LINE], "%s", plname);
+	sprintf(rip_line[NAME_LINE], "%s", plname);
 
 	/* Put $ on stone */
-	Sprintf(rip_line[GOLD_LINE], "%ld Au",
+	sprintf(rip_line[GOLD_LINE], "%ld Au",
 #ifndef GOLDOBJ
 		u.ugold);
 #else
@@ -479,15 +479,15 @@ calculate_rip_text(int how)
 	switch (killer_format) {
 		default: impossible("bad killer format?");
 		case KILLED_BY_AN:
-			Strcpy(buf, killed_by_prefix[how]);
-			Strcat(buf, an(killer));
+			strcpy(buf, killed_by_prefix[how]);
+			strcat(buf, an(killer));
 			break;
 		case KILLED_BY:
-			Strcpy(buf, killed_by_prefix[how]);
-			Strcat(buf, killer);
+			strcpy(buf, killed_by_prefix[how]);
+			strcat(buf, killer);
 			break;
 		case NO_KILLER_PREFIX:
-			Strcpy(buf, killer);
+			strcpy(buf, killer);
 			break;
 	}
 
@@ -512,7 +512,7 @@ calculate_rip_text(int how)
 	}
 
 	/* Put year on stone */
-	Sprintf(rip_line[YEAR_LINE], "%4d", getyear());
+	sprintf(rip_line[YEAR_LINE], "%4d", getyear());
 }
 
 
@@ -612,7 +612,7 @@ create_ripout_widget(Widget parent)
 #endif
 	if (errorcode != XpmSuccess) {
 	    char buf[BUFSZ];
-	    Sprintf(buf, "Failed to load %s: %s", appResources.tombstone,
+	    sprintf(buf, "Failed to load %s: %s", appResources.tombstone,
 			XpmGetErrorString(errorcode));
 	    X11_raw_print(buf);
 	    return (Widget)0;

@@ -89,7 +89,7 @@ void mswin_display_splash_window (BOOL show_ver)
 	    buttop - controlrt.bottom - SPLASH_OFFSET_Y,
 	    clientrt.right - 2 * SPLASH_OFFSET_X, controlrt.bottom, TRUE);
 	/* Fill the text control */
-	Sprintf(buf, "%s\r\n%s\r\n%s\r\n\r\n", COPYRIGHT_BANNER_A, COPYRIGHT_BANNER_B,
+	sprintf(buf, "%s\r\n%s\r\n%s\r\n\r\n", COPYRIGHT_BANNER_A, COPYRIGHT_BANNER_B,
 	    COPYRIGHT_BANNER_C, COPYRIGHT_BANNER_D);
 	strsize = strlen(buf);
 	
@@ -225,7 +225,7 @@ BOOL CALLBACK NHSplashWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 		rt.right = rt.left = SPLASH_VERSION_X;
 		rt.bottom = rt.top = SPLASH_VERSION_Y;
 #if 0
-		Sprintf (VersionString, "%d.%d.%d", VERSION_MAJOR, VERSION_MINOR,
+		sprintf (VersionString, "%d.%d.%d", VERSION_MAJOR, VERSION_MINOR,
 		    PATCHLEVEL);
 #else
 		/* Slash'EM splash screen already has "vampire", so all
@@ -233,9 +233,9 @@ BOOL CALLBACK NHSplashWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 		 * available elsewhere.
 		 */
 #ifdef FIXLEVEL
-		Sprintf (VersionString, "%d.%d", EDITLEVEL - 5, FIXLEVEL);
+		sprintf (VersionString, "%d.%d", EDITLEVEL - 5, FIXLEVEL);
 #else
-		Sprintf (VersionString, "%d.0", EDITLEVEL - 5);
+		sprintf (VersionString, "%d.0", EDITLEVEL - 5);
 #endif
 #endif
 		OldFont = SelectObject(hdc, version_splash_font);

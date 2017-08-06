@@ -97,7 +97,7 @@ amii_add_menu(window,glyph, id, ch, gch, attr, str, preselected)
 
     if( id->a_void && ch != '\0')
     {
-	Sprintf( buf, "%c - %s", ch, str );
+	sprintf( buf, "%c - %s", ch, str );
 	str = buf;
 	mip->canselect = 1;
     }

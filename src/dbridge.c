@@ -337,13 +337,13 @@ const char *verb;
 {
 	static char wholebuf[80];
 
-	Strcpy(wholebuf, is_u(etmp) ? "You" : Monnam(etmp->emon));
+	strcpy(wholebuf, is_u(etmp) ? "You" : Monnam(etmp->emon));
 	if (!*verb) return(wholebuf);
-	Strcat(wholebuf, " ");
+	strcat(wholebuf, " ");
 	if (is_u(etmp))
-	    Strcat(wholebuf, verb);
+	    strcat(wholebuf, verb);
 	else
-	    Strcat(wholebuf, vtense((char *)0, verb));
+	    strcat(wholebuf, vtense((char *)0, verb));
 	return(wholebuf);
 }
 

@@ -259,7 +259,7 @@ boolean barehanded;
 			return retval;
 		}
 		if (canspotmon(mtmp)) {
-			Sprintf(qbuf, "Really attack %s?", mon_nam(mtmp));
+			sprintf(qbuf, "Really attack %s?", mon_nam(mtmp));
 			if (yn(qbuf) != 'y') {
 				/* Stormbringer is not tricked so easily */
 				if (!barehanded && u.twoweap && uswapwep &&
@@ -662,7 +662,7 @@ register struct monst *mtmp;
 		    char buf[BUFSZ];
 
 		    monflee(mtmp, rnd(6), FALSE, FALSE);
-		    Strcpy(buf, y_monnam(mtmp));
+		    strcpy(buf, y_monnam(mtmp));
 		    buf[0] = highc(buf[0]);
 		    You("stop.  %s is in the way!", buf);
 		    return(TRUE);
@@ -1228,7 +1228,7 @@ int thrown;
 
 	    noeffect = objenchant < canhitmon && !ispoisoned && (issoviet || rn2(3) );
 
-	    Strcpy(saved_oname, cxname(obj));
+	    strcpy(saved_oname, cxname(obj));
 	    if(obj->oclass == WEAPON_CLASS || is_weptool(obj) ||
 	       obj->oclass == GEM_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS) {
 
@@ -1531,7 +1531,7 @@ int thrown;
 		if (flags.bash_reminder && !rn2(10)) pline("A helpful reminder: you attack with a non-weapon!");
 		if ((is_shade(mdat) || mon->egotype_shader) && !shade_aware(obj)) {
 		    tmp = 0;
-		    Strcpy(unconventional, cxname(obj));
+		    strcpy(unconventional, cxname(obj));
 		} else {
 		switch(obj->otyp) {
 		    case BOULDER:		/* 1d20 */
@@ -2614,7 +2614,7 @@ int thrown;
 		    else if (barehand_silver_rings == 2)
 			fmt = "Your silver rings sear %s!";
 		    else if (silverobj && saved_oname[0]) {
-		    	Sprintf(silverobjbuf, "Your %s%s %s %%s!",
+		    	sprintf(silverobjbuf, "Your %s%s %s %%s!",
 		    		strstri(saved_oname, "silver") ?
 					"" : "silver ",
 				saved_oname, vtense(saved_oname, "sear"));
@@ -3190,7 +3190,7 @@ struct attack *mattk;
 		    touch_petrifies(&mons[otmp->corpsenm]) && (!uarmg || FingerlessGloves)) {
 		char kbuf[BUFSZ];
 
-		Sprintf(kbuf, "stolen %s corpse", mons[otmp->corpsenm].mname);
+		sprintf(kbuf, "stolen %s corpse", mons[otmp->corpsenm].mname);
 		instapetrify(kbuf);
 		break;		/* stop the theft even if hero survives */
 	    }
@@ -3415,7 +3415,7 @@ register struct attack *mattk;
 		    boolean u_saw_mon = canseemon(mdef) ||
 					(u.uswallow && u.ustuck == mdef);
 		    /* record the name before losing sight of monster */
-		    Strcpy(nambuf, Monnam(mdef));
+		    strcpy(nambuf, Monnam(mdef));
 		    if (u_teleport_mon(mdef, FALSE) &&
 			    u_saw_mon && !canseemon(mdef))
 			pline("%s suddenly disappears!", nambuf);
@@ -4670,7 +4670,7 @@ register struct attack *mattk;
 			if (is_rider(mdef->data) || is_deadlysin(mdef->data)) {
 			 pline("Unfortunately, digesting any of it is fatal.");
 			    end_engulf();
-			    Sprintf(msgbuf, "unwisely tried to eat a monster (%s)",
+			    sprintf(msgbuf, "unwisely tried to eat a monster (%s)",
 				    mdef->data->mname);
 			    killer = msgbuf;
 			    killer_format = NO_KILLER_PREFIX;
@@ -4706,7 +4706,7 @@ register struct attack *mattk;
 				/* nutrition only if there can be a corpse */
 				u.uhunger += (mdef->data->cnutrit+1) / 2;
 			    } else tmp = 0;
-			    Sprintf(msgbuf, "You totally digest %s.",
+			    sprintf(msgbuf, "You totally digest %s.",
 					    mon_nam(mdef));
 			    if (tmp != 0) {
 				/* setting afternmv = end_engulf is tempting,
@@ -4720,7 +4720,7 @@ register struct attack *mattk;
 				nomovemsg = msgbuf;
 			    } else pline("%s", msgbuf);
 			    if (slime_on_touch(mdef->data)) {
-				Sprintf(msgbuf, "%s isn't sitting well with you.",
+				sprintf(msgbuf, "%s isn't sitting well with you.",
 					The(mdef->data->mname));
 				if (!Unchanging) {
 					Slimed = 50L;
@@ -4819,7 +4819,7 @@ register struct attack *mattk;
 		char kbuf[BUFSZ];
 
 		You("bite into %s.", mon_nam(mdef));
-		Sprintf(kbuf, "swallowing %s whole", an(mdef->data->mname));
+		sprintf(kbuf, "swallowing %s whole", an(mdef->data->mname));
 		instapetrify(kbuf);
 	    }
 	}
@@ -6497,7 +6497,7 @@ uchar aatyp;
 				!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 
 				if (!Stoned) Stoned = 7;
-				Sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
+				sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
 				delayed_killer = killer_buf;
 		
 			    }
@@ -6506,7 +6506,7 @@ uchar aatyp;
 			tmp += dmgval(uwep, &youmonst);
 			
 			if (uwep->opoisoned){
-				Sprintf(buf, "%s mirror attack",
+				sprintf(buf, "%s mirror attack",
 					s_suffix(Monnam(mon)));
 				poisoned(buf, A_CON, mon->data->mname, 30);
 			}
@@ -7896,7 +7896,7 @@ uchar aatyp;
 	    case AD_DFOO:
 	      You_feel("physically and mentally weaker!");
 		if (!rn2(3)) {
-		    Sprintf(buf, "%s body",
+		    sprintf(buf, "%s body",
 			    s_suffix(Monnam(mon)));
 		    poisoned(buf, rn2(A_MAX), mon->data->mname, 30);
 		}
@@ -8188,7 +8188,7 @@ uchar aatyp;
 	    case AD_UVUU:{
 		int wdmg = (int)(tmp/6) + 1;
 		pline("A big spike painfully hits your %s!", body_part(HEAD));
-		Sprintf(buf, "%s spike", s_suffix(Monnam(mon)));
+		sprintf(buf, "%s spike", s_suffix(Monnam(mon)));
 		poisoned(buf, A_CON, mon->data->mname, 60);
 		if(Poison_resistance) wdmg -= ACURR(A_CON)/2;
 		if(wdmg > 0){

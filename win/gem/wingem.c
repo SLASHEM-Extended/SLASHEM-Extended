@@ -354,7 +354,7 @@ give_up:		/* Just quit */
 				any.a_int = i+1;	/* must be non-zero */
 				add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 						"Quit", MENU_UNSELECTED);
-				Sprintf(pbuf, "Pick the race of your %s",
+				sprintf(pbuf, "Pick the race of your %s",
 						roles[flags.initrole].name.m);
 				end_menu(win, pbuf);
 				n = select_menu(win, PICK_ONE, &selected);
@@ -422,7 +422,7 @@ give_up:		/* Just quit */
 				any.a_int = i+1;	/* must be non-zero */
 				add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 						"Quit", MENU_UNSELECTED);
-				Sprintf(pbuf, "Pick the gender of your %s %s",
+				sprintf(pbuf, "Pick the gender of your %s %s",
 						races[flags.initrace].adj,
 						roles[flags.initrole].name.m);
 				end_menu(win, pbuf);
@@ -490,7 +490,7 @@ give_up:		/* Just quit */
 				any.a_int = i+1;	/* must be non-zero */
 				add_menu(win, NO_GLYPH, &any , 'q', 0, ATR_NONE,
 						"Quit", MENU_UNSELECTED);
-				Sprintf(pbuf, "Pick the alignment of your %s %s %s",
+				sprintf(pbuf, "Pick the alignment of your %s %s %s",
 						genders[flags.initgend].adj,
 						races[flags.initrace].adj,
 						(flags.initgend && roles[flags.initrole].name.f) ?
@@ -784,9 +784,9 @@ Gem_add_menu(window, glyph, identifier, ch, gch, attr, str, preselected)
 		panic(winpanicstr,  window);
 
 	if (identifier->a_void)
-		Sprintf(buf, "%c - %s", ch ? ch : '?', str);
+		sprintf(buf, "%c - %s", ch ? ch : '?', str);
 	else
-		Sprintf(buf, "%s", str);
+		sprintf(buf, "%s", str);
 	newstr = buf;
 
 	G_item = (Gem_menu_item *) alloc(sizeof(Gem_menu_item));
@@ -1074,23 +1074,23 @@ int how;
 	}
 	/* Follows same algorithm as genl_outrip() */
 	/* Put name on stone */
-	Sprintf(rip_line[NAME_LINE], "%s", plname);
+	sprintf(rip_line[NAME_LINE], "%s", plname);
 	/* Put $ on stone */
-	Sprintf(rip_line[GOLD_LINE], "%ld Au",
+	sprintf(rip_line[GOLD_LINE], "%ld Au",
 		u.ugold);
 	/* Put together death description */
 	switch (killer_format) {
 	default: impossible("bad killer format?");
 	case KILLED_BY_AN:
-		Strcpy(buf, killed_by_prefix[how]);
-		Strcat(buf, an(killer));
+		strcpy(buf, killed_by_prefix[how]);
+		strcat(buf, an(killer));
 		break;
 	case KILLED_BY:
-		Strcpy(buf, killed_by_prefix[how]);
-		Strcat(buf, killer);
+		strcpy(buf, killed_by_prefix[how]);
+		strcat(buf, killer);
 		break;
 	case NO_KILLER_PREFIX:
-		Strcpy(buf, killer);
+		strcpy(buf, killer);
 		break;
 	}
 	/* Put death type on stone */
@@ -1112,7 +1112,7 @@ int how;
 		} else  dpx= &dpx[i0+1];
 	}
 	/* Put year on stone */
-	Sprintf(rip_line[YEAR_LINE], "%4d", getyear());
+	sprintf(rip_line[YEAR_LINE], "%4d", getyear());
 	mar_set_text_to_rip(w);
 	for(line=0;line<13;line++)
 		putstr(w, 0, "");

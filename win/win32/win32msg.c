@@ -420,7 +420,7 @@ BOOL WINAPI AskNameProc(HWND hDlg, UINT messg, UINT wParam, LONG lParam)
 					EM_LINELENGTH,
 					(WPARAM)0,
 					(LPARAM)0);
-			Sprintf(buf, "input_text_size = %d", input_text_size);
+			sprintf(buf, "input_text_size = %d", input_text_size);
 			/* Get the characters */
 			if (input_text_size != 0) {
 				*((LPWORD)input_text) = input_text_size;

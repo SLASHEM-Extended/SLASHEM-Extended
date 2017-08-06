@@ -105,7 +105,7 @@ char **argv;
 		mark = strrchr(infile, ':');
 		mark = mark ? mark+1 : infile;
 		basename = alloc(strlen(mark) + 1);
-		Strcpy(basename, mark);
+		strcpy(basename, mark);
 		mark = strchr(basename, '.');
 		if (mark) *mark = '\0';
 #else
@@ -122,7 +122,7 @@ char **argv;
 		if (outfile) free(outfile);
 #ifdef PREFIX
 		outfile = alloc(strlen(PREFIX) + strlen(basename) + 1);
-		Strcpy(outfile, PREFIX);
+		strcpy(outfile, PREFIX);
 #else
 		outfile = (char*)alloc(strlen(basename) + 1);
 		outfile[0] = '\0';

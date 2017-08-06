@@ -148,9 +148,9 @@ cb_dlbh_fopen(char *name, char *mode)
 		    buf[s - subname] = '\0';
 		} else {
 		    buf = (char *)alloc(strlen(subname) + 5);
-		    Strcpy(buf, subname);
+		    strcpy(buf, subname);
 		}
-		Strcat(buf, ".map");
+		strcat(buf, ".map");
 		SET_FILE(buf, FILE_AREA_SHARE);
 	    }
 	} else

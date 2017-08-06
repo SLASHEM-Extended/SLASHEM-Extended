@@ -479,35 +479,35 @@ int sdlgl_display_RIP(int how)
   sdlgl_store_str(rip_name, 0, 0, name_buf, rip_name->total_w, BLACK);
       
   /* Put $ on stone */
-  Sprintf(info_buf, "%ld Au", u.ugold);
+  sprintf(info_buf, "%ld Au", u.ugold);
   add_rip_info(info_buf, strlen(info_buf), 1 + STONE_INFO_LINES);
 
   /* Put death type on stone */
   switch (killer_format) 
   {
     case KILLED_BY_AN:
-      Strcpy(info_buf, killed_by_prefix[how]);
-      Strcat(info_buf, an(killer));
+      strcpy(info_buf, killed_by_prefix[how]);
+      strcat(info_buf, an(killer));
       break;
     
     case KILLED_BY:
-      Strcpy(info_buf, killed_by_prefix[how]);
-      Strcat(info_buf, killer);
+      strcpy(info_buf, killed_by_prefix[how]);
+      strcat(info_buf, killer);
       break;
     
     case NO_KILLER_PREFIX:
-      Strcpy(info_buf, killer);
+      strcpy(info_buf, killer);
       break;
       
     default:
-      Strcpy(info_buf, "Killed by a bad switch");
+      strcpy(info_buf, "Killed by a bad switch");
       break;
   }
 
   add_rip_killer(info_buf, 1);
 
   /* Put year on stone */
-  Sprintf(info_buf, "%4d", getyear());
+  sprintf(info_buf, "%4d", getyear());
   add_rip_info(info_buf, strlen(info_buf), 0);
 
   /* map these bits of text onto the screen, baby */

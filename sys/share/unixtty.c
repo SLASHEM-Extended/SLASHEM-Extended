@@ -447,8 +447,8 @@ error VA_DECL(const char *,s)
 	VA_INIT(s, const char *);
 	if(settty_needed)
 		settty((char *)0);
-	Vprintf(s,VA_ARGS);
-	(void) putchar('\n');
+	vprintf(s,VA_ARGS);
+	putchar('\n');
 	VA_END();
 	exit(EXIT_FAILURE);
 }

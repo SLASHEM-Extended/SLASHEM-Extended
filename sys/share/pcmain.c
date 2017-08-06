@@ -171,7 +171,7 @@ char *argv[];
 		    int prefcnt;
 
 		    fqn_prefix[0] = (char *)alloc(strlen(hackdir)+2);
-		    Strcpy(fqn_prefix[0], hackdir);
+		    strcpy(fqn_prefix[0], hackdir);
 		    append_slash(fqn_prefix[0]);
 		    for (prefcnt = 1; prefcnt < PREFIX_COUNT; prefcnt++)
 			fqn_prefix[prefcnt] = fqn_prefix[0];
@@ -213,9 +213,9 @@ char *argv[];
 #endif
 	if (!hackdir[0])
 #if !defined(LATTICE) && !defined(AMIGA)
-		Strcpy(hackdir, orgdir);
+		strcpy(hackdir, orgdir);
 #else
-		Strcpy(hackdir, HACKDIR);
+		strcpy(hackdir, HACKDIR);
 #endif
 	if(argc > 1) {
 	    if (!strncmp(argv[1], "-d", 2) && argv[1][2] != 'e') {
@@ -233,7 +233,7 @@ char *argv[];
 		}
 		if(!*dir)
 		    error("Flag -d must be followed by a directory name.");
-		Strcpy(hackdir, dir);
+		strcpy(hackdir, dir);
 	    }
 	    if (argc > 1) {
 
@@ -310,7 +310,7 @@ char *argv[];
 # else
 		if(!strcmp(plname, WIZARD))
 # endif
-			Strcpy(plname, "wizard");
+			strcpy(plname, "wizard");
 		else {
 			wizard = FALSE;
 			discover = TRUE;
@@ -332,23 +332,23 @@ char *argv[];
 # if defined(WIN32)
 	/* Obtain the name of the logged on user and incorporate
 	 * it into the name. */
-	Sprintf(lock, "%s-%s",get_username(0),plname);
+	sprintf(lock, "%s-%s",get_username(0),plname);
 # else
-	Strcpy(lock,plname);
+	strcpy(lock,plname);
 	regularize(lock);
 # endif
 	getlock();
 #else   /* PC_LOCKING */
 # ifdef AMIGA /* We'll put the bones & levels in the user specified directory -jhsa */
-	Strcat(lock,plname);
-	Strcat(lock,".99");
+	strcat(lock,plname);
+	strcat(lock,".99");
 # else
 #  ifndef MFLOPPY
 	/* I'm not sure what, if anything, is left here, but MFLOPPY has
 	 * conflicts with set_lock_and_bones() in files.c.
 	 */
-	Strcpy(lock,plname);
-	Strcat(lock,".99");
+	strcpy(lock,plname);
+	strcat(lock,".99");
 	regularize(lock);	/* is this necessary? */
 				/* not compatible with full path a la AMIGA */
 #  endif
@@ -599,29 +599,29 @@ nhusage()
 	/* -role still works for those cases which aren't already taken, but
 	 * is deprecated and will not be listed here.
 	 */
-	(void) Sprintf(buf1,
+	(void) sprintf(buf1,
 "\nUsage: %s [-d dir] -s [-r race] [-p profession] [maxrank] [name]...\n       or",
 		hname);
 	if (!iflags.window_inited)
 		raw_printf(buf1);
 	else
 		(void)	printf(buf1);
-	(void) Sprintf(buf1,
+	(void) sprintf(buf1,
 	 "\n       %s [-d dir] [-u name] [-r race] [-p profession] [-[DX]]",
 		hname);
 #ifdef NEWS
-	Strcat(buf1," [-n]");
+	strcat(buf1," [-n]");
 #endif
 #ifndef AMIGA
-	Strcat(buf1," [-I] [-i] [-d]");
+	strcat(buf1," [-I] [-i] [-d]");
 #endif
 #ifdef MFLOPPY
 # ifndef AMIGA
-	Strcat(buf1," [-R]");
+	strcat(buf1," [-R]");
 # endif
 #endif
 #ifdef AMIGA
-	Strcat(buf1," [-[lL]]");
+	strcat(buf1," [-[lL]]");
 #endif
 	if (!iflags.window_inited)
 		raw_printf("%s\n",buf1);
@@ -690,7 +690,7 @@ char *str;
 	bsize = EXEPATHBUFSZ;
 	tmp = exepathbuf;
 #ifndef WIN32
-	Strcpy (tmp, str);
+	strcpy (tmp, str);
 #else
 	#ifdef UNICODE
 	{

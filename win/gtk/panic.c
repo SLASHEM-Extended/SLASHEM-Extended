@@ -41,10 +41,10 @@ panic VA_DECL(const char *,str)
 #endif
 		abort();    /* avoid loops - this should never happen*/
 
-	(void) fputs(" ERROR:  ", stderr);
-	Vfprintf(stderr, str, VA_ARGS);
-	(void) fputc('\n', stderr);
-	(void) fflush(stderr);
+	fputs(" ERROR:  ", stderr);
+	vfprintf(stderr, str, VA_ARGS);
+	fputc('\n', stderr);
+	fflush(stderr);
 #if defined(UNIX) || defined(VMS)
 # ifdef SYSV
 		(void)
@@ -94,7 +94,7 @@ pline VA_DECL(const char *, line)
 
 	if (!line || !*line) return;
 	if (index(line, '%')) {
-	    Vsprintf(pbuf,line,VA_ARGS);
+	    vsprintf(pbuf,line,VA_ARGS);
 	    line = pbuf;
 	}
 	if (!GTK_initialized) {

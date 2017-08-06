@@ -58,7 +58,7 @@ char *lan_username()
 	char *lu;
 	lu = get_username(&lusername_size);
 	if (lu) {
-	 Strcpy(lusername, lu);
+	 strcpy(lusername, lu);
 	 return lusername;
 	} else return (char *)0;
 }

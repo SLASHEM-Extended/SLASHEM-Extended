@@ -14633,7 +14633,7 @@ u_init()
 	rshamblerz->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rshamblerz->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strshamblerz, buf, sizeof(buf) );
 	rshamblerz->mname = u.strshamblerz;
 
@@ -14697,7 +14697,7 @@ u_init()
 	rshamblerza->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rshamblerza->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strshamblerza, buf, sizeof(buf) );
 	rshamblerza->mname = u.strshamblerza;
 
@@ -15176,7 +15176,7 @@ u_init()
 	rpokshamblert->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rpokshamblert->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strpokshamblert, buf, sizeof(buf) );
 	rpokshamblert->mname = u.strpokshamblert;
 
@@ -15239,7 +15239,7 @@ u_init()
 	rpokshamblertp->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rpokshamblertp->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strpokshamblertp, buf, sizeof(buf) );
 	rpokshamblertp->mname = u.strpokshamblertp;
 
@@ -15841,7 +15841,7 @@ u_init()
 	rshamblerx->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rshamblerx->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strshamblerx, buf, sizeof(buf) );
 	rshamblerx->mname = u.strshamblerx;
 
@@ -15905,7 +15905,7 @@ u_init()
 	rshamblerxa->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rshamblerxa->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strshamblerxa, buf, sizeof(buf) );
 	rshamblerxa->mname = u.strshamblerxa;
 
@@ -18324,11 +18324,11 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandommimic, buf, sizeof(buf) );
 	rrandommimic->mname = u.strandommimic;
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandommimicb, buf, sizeof(buf) );
 	rrandommimicb->mname = u.strandommimicb;
 
@@ -18719,7 +18719,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungus, buf, sizeof(buf) );
 	rrandomfungusa->mname = u.strandomfungus;
 
@@ -18736,7 +18736,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusb, buf, sizeof(buf) );
 	rrandomfungusb->mname = u.strandomfungusb;
 
@@ -18753,7 +18753,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusc, buf, sizeof(buf) );
 	rrandomfungusc->mname = u.strandomfungusc;
 
@@ -18770,7 +18770,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusd, buf, sizeof(buf) );
 	rrandomfungusd->mname = u.strandomfungusd;
 
@@ -18787,7 +18787,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfunguse, buf, sizeof(buf) );
 	rrandomfunguse->mname = u.strandomfunguse;
 
@@ -18804,7 +18804,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusf, buf, sizeof(buf) );
 	rrandomfungusf->mname = u.strandomfungusf;
 
@@ -18821,7 +18821,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusg, buf, sizeof(buf) );
 	rrandomfungusg->mname = u.strandomfungusg;
 
@@ -18837,7 +18837,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungush, buf, sizeof(buf) );
 	rrandomfungush->mname = u.strandomfungush;
 
@@ -18854,7 +18854,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusi, buf, sizeof(buf) );
 	rrandomfungusi->mname = u.strandomfungusi;
 
@@ -18871,7 +18871,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusj, buf, sizeof(buf) );
 	rrandomfungusj->mname = u.strandomfungusj;
 
@@ -18888,7 +18888,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusk, buf, sizeof(buf) );
 	rrandomfungusk->mname = u.strandomfungusk;
 
@@ -18905,7 +18905,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusl, buf, sizeof(buf) );
 	rrandomfungusl->mname = u.strandomfungusl;
 
@@ -19403,7 +19403,7 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomdragonb, buf, sizeof(buf) );
 	rrandomdragonb->mname = u.strandomdragonb;
 
@@ -19420,18 +19420,18 @@ u_init()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomdragonc, buf, sizeof(buf) );
 	rrandomdragonc->mname = u.strandomdragonc;
 
 	rrandombdragonb->mcolor = rrandomdragonb->mcolor;
 	rrandombdragonc->mcolor = rrandomdragonc->mcolor;
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandombdragonb, buf, sizeof(buf) );
 	rrandombdragonb->mname = u.strandombdragonb;
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandombdragonc, buf, sizeof(buf) );
 	rrandombdragonc->mname = u.strandombdragonc;
 
@@ -19608,7 +19608,7 @@ u_init()
 	rrandomkopb->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rrandomkopb->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomkopb, buf, sizeof(buf) );
 	rrandomkopb->mname = u.strandomkopb;
 
@@ -20050,7 +20050,7 @@ u_init()
 	starlitl->mflags2 &= ~M2_PNAME;
 	starlitl->mflags2 &= ~M2_PEACEFUL;
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.starlit1, buf, sizeof(buf) );
 	starlitl->mname = u.starlit1;
 
@@ -20079,7 +20079,7 @@ u_init()
 	starlitm->mflags2 &= ~M2_PNAME;
 	starlitm->mflags2 &= ~M2_PEACEFUL;
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.starlit2, buf, sizeof(buf) );
 	starlitm->mname = u.starlit2;
 
@@ -20108,7 +20108,7 @@ u_init()
 	starlitn->mflags2 &= ~M2_PNAME;
 	starlitn->mflags2 &= ~M2_PEACEFUL;
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.starlit3, buf, sizeof(buf) );
 	starlitn->mname = u.starlit3;
 
@@ -28279,7 +28279,7 @@ alter_reality()
 	rshamblerz->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rshamblerz->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strshamblerz, buf, sizeof(buf) );
 	rshamblerz->mname = u.strshamblerz;
 
@@ -28343,7 +28343,7 @@ alter_reality()
 	rshamblerza->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rshamblerza->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strshamblerza, buf, sizeof(buf) );
 	rshamblerza->mname = u.strshamblerza;
 
@@ -28822,7 +28822,7 @@ alter_reality()
 	rpokshamblert->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rpokshamblert->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strpokshamblert, buf, sizeof(buf) );
 	rpokshamblert->mname = u.strpokshamblert;
 
@@ -28885,7 +28885,7 @@ alter_reality()
 	rpokshamblertp->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rpokshamblertp->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strpokshamblertp, buf, sizeof(buf) );
 	rpokshamblertp->mname = u.strpokshamblertp;
 
@@ -29487,7 +29487,7 @@ alter_reality()
 	rshamblerx->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rshamblerx->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strshamblerx, buf, sizeof(buf) );
 	rshamblerx->mname = u.strshamblerx;
 
@@ -29551,7 +29551,7 @@ alter_reality()
 	rshamblerxa->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rshamblerxa->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strshamblerxa, buf, sizeof(buf) );
 	rshamblerxa->mname = u.strshamblerxa;
 
@@ -31970,11 +31970,11 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandommimic, buf, sizeof(buf) );
 	rrandommimic->mname = u.strandommimic;
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandommimicb, buf, sizeof(buf) );
 	rrandommimicb->mname = u.strandommimicb;
 
@@ -32365,7 +32365,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungus, buf, sizeof(buf) );
 	rrandomfungusa->mname = u.strandomfungus;
 
@@ -32382,7 +32382,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusb, buf, sizeof(buf) );
 	rrandomfungusb->mname = u.strandomfungusb;
 
@@ -32399,7 +32399,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusc, buf, sizeof(buf) );
 	rrandomfungusc->mname = u.strandomfungusc;
 
@@ -32416,7 +32416,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusd, buf, sizeof(buf) );
 	rrandomfungusd->mname = u.strandomfungusd;
 
@@ -32433,7 +32433,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfunguse, buf, sizeof(buf) );
 	rrandomfunguse->mname = u.strandomfunguse;
 
@@ -32450,7 +32450,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusf, buf, sizeof(buf) );
 	rrandomfungusf->mname = u.strandomfungusf;
 
@@ -32467,7 +32467,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusg, buf, sizeof(buf) );
 	rrandomfungusg->mname = u.strandomfungusg;
 
@@ -32483,7 +32483,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungush, buf, sizeof(buf) );
 	rrandomfungush->mname = u.strandomfungush;
 
@@ -32500,7 +32500,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusi, buf, sizeof(buf) );
 	rrandomfungusi->mname = u.strandomfungusi;
 
@@ -32517,7 +32517,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusj, buf, sizeof(buf) );
 	rrandomfungusj->mname = u.strandomfungusj;
 
@@ -32534,7 +32534,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusk, buf, sizeof(buf) );
 	rrandomfungusk->mname = u.strandomfungusk;
 
@@ -32551,7 +32551,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomfungusl, buf, sizeof(buf) );
 	rrandomfungusl->mname = u.strandomfungusl;
 
@@ -33049,7 +33049,7 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomdragonb, buf, sizeof(buf) );
 	rrandomdragonb->mname = u.strandomdragonb;
 
@@ -33066,18 +33066,18 @@ alter_reality()
 
 	}
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomdragonc, buf, sizeof(buf) );
 	rrandomdragonc->mname = u.strandomdragonc;
 
 	rrandombdragonb->mcolor = rrandomdragonb->mcolor;
 	rrandombdragonc->mcolor = rrandomdragonc->mcolor;
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandombdragonb, buf, sizeof(buf) );
 	rrandombdragonb->mname = u.strandombdragonb;
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandombdragonc, buf, sizeof(buf) );
 	rrandombdragonc->mname = u.strandombdragonc;
 
@@ -33254,7 +33254,7 @@ alter_reality()
 	rrandomkopb->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	rrandomkopb->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.strandomkopb, buf, sizeof(buf) );
 	rrandomkopb->mname = u.strandomkopb;
 
@@ -33704,7 +33704,7 @@ alter_reality()
 	starlitl->mflags2 &= ~M2_PNAME;
 	starlitl->mflags2 &= ~M2_PEACEFUL;
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.starlit1, buf, sizeof(buf) );
 	starlitl->mname = u.starlit1;
 
@@ -33733,7 +33733,7 @@ alter_reality()
 	starlitm->mflags2 &= ~M2_PNAME;
 	starlitm->mflags2 &= ~M2_PEACEFUL;
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.starlit2, buf, sizeof(buf) );
 	starlitm->mname = u.starlit2;
 
@@ -33762,7 +33762,7 @@ alter_reality()
 	starlitn->mflags2 &= ~M2_PNAME;
 	starlitn->mflags2 &= ~M2_PEACEFUL;
 
-	Sprintf(buf, generate_garbage_string() );
+	sprintf(buf, generate_garbage_string() );
 	(void) strncpy(u.starlit3, buf, sizeof(buf) );
 	starlitn->mname = u.starlit3;
 

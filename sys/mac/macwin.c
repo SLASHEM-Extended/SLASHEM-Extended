@@ -2468,7 +2468,7 @@ mac_add_menu (winid win, int glyph, const anything *any, CHAR_P menuChar, CHAR_P
 			}
 		}
 		
-		Sprintf(locStr, "%c - %s", (menuChar ? menuChar : ' '), inStr);
+		sprintf(locStr, "%c - %s", (menuChar ? menuChar : ' '), inStr);
 		str = locStr;
 		HLock ((char**)aWin->menuInfo);
 		HLock ((char**)aWin->menuSelected);

@@ -186,7 +186,7 @@ int portdebug;
 #ifdef PORT_DEBUG
 	if (portdebug) {
 		char buf[BUFSZ];
-		Sprintf(buf,
+		sprintf(buf,
 	"PORTDEBUG (%s): ch=%u, sc=%u, vk=%d, pre=%d, sh=0x%X, ta=%d (ESC to end)",
 			shortdllname, ch, scan, vk, pre_ch, shiftstate, k);
 		fprintf(stdout, "\n%s", buf);

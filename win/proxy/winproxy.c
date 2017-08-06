@@ -1303,7 +1303,7 @@ proxy_init(struct proxy_auth_connection *auth)
     line.tags = (char **)alloc(line.n * sizeof(char *));
     line.values = (char **)alloc(line.n * sizeof(char *));
     line.tags[0] = "standard";
-    Sprintf(standard, "%d.%d", EXT_STANDARD_MAJOR, EXT_STANDARD_MINOR);
+    sprintf(standard, "%d.%d", EXT_STANDARD_MAJOR, EXT_STANDARD_MINOR);
     line.values[0] = standard;
     line.tags[1] = "game";
     line.values[1] = DEF_GAME_NAME;
@@ -1384,7 +1384,7 @@ failed:
 	windowprocs.name = proxy_procs.name;
     else {
 	name = (char *)alloc(strlen(lp->values[i]) + 7);
-	Sprintf(name, "proxy/%s", lp->values[i]);
+	sprintf(name, "proxy/%s", lp->values[i]);
 	windowprocs.name = name;
     }
     nhext_set_protocol(proxy_protocol);

@@ -279,7 +279,7 @@ amii_putstr(window,attr,str)
 	    /* avoid nuls, for convenience */
 	cw->data[cw->cury][VATTR] = attr+1;
 	cw->data[cw->cury][SEL_ITEM] = 0;
-	Strcpy( cw->data[cw->cury] + SOFF, str);
+	strcpy( cw->data[cw->cury] + SOFF, str);
 
 	if(n0 > cw->maxcol) cw->maxcol = n0;
 	if(++cw->cury > cw->maxrow) cw->maxrow = cw->cury;

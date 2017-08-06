@@ -142,10 +142,10 @@ const char *path, *files;
 	char *foundfile;
 
 	foundfile = foundfile_buffer();
-	Sprintf(buf, "%s%s", path, files);
+	sprintf(buf, "%s%s", path, files);
 	if (findfirst(buf))
 	    do {
-	       Sprintf(buf, "%s%s", path, foundfile);
+	       sprintf(buf, "%s%s", path, foundfile);
 		(void) unlink(buf);
 	    } while (findnext());
 	return;
@@ -174,7 +174,7 @@ int mode;
 	frompath = (mode != TOPERM) ? permbones : levels;
 	foundfile = foundfile_buffer();
 	last[0] = '\0';
-	Sprintf(from, "%s%s", frompath, allbones);
+	sprintf(from, "%s%s", frompath, allbones);
 	topath = (mode == TOPERM) ? permbones : levels;
 #  ifdef TOS
 	eraseall(topath, allbones);
@@ -182,26 +182,26 @@ int mode;
 	if (findfirst(from))
 		do {
 #  ifdef TOS
-			Sprintf(from, "%s%s", frompath, foundfile);
-			Sprintf(to, "%s%s", topath, foundfile);
+			sprintf(from, "%s%s", frompath, foundfile);
+			sprintf(to, "%s%s", topath, foundfile);
 			if (_copyfile(from, to))
 				goto error_copying;
 #  endif
-			Strcpy(last, foundfile);
+			strcpy(last, foundfile);
 		} while (findnext());
 #  ifdef TOS
 	else
 		return;
 #  else
 	if (last[0]) {
-		Sprintf(copy, "%cC copy",switchar());
+		sprintf(copy, "%cC copy",switchar());
 
 		/* Remove any bones files in `to' directory.
 		 */
 		eraseall(topath, allbones);
 
 		/* Copy `from' to `to' */
-		Sprintf(to, "%s%s", topath, allbones);
+		sprintf(to, "%s%s", topath, allbones);
 		comspec = getcomspec();
 		status =spawnl(P_WAIT, comspec, comspec, copy, from,
 			to, "> nul", (char *)0);
@@ -212,7 +212,7 @@ int mode;
 	/* See if the last file got there.  If so, remove the ramdisk bones
 	 * files.
 	 */
-	Sprintf(to, "%s%s", topath, last);
+	sprintf(to, "%s%s", topath, last);
 	if (findfirst(to)) {
 		if (mode == TOPERM)
 			eraseall(frompath, allbones);
@@ -224,7 +224,7 @@ error_copying:
 #  endif
 	/* Last file didn't get there.
 	 */
-	Sprintf(to, "%s%s", topath, allbones);
+	sprintf(to, "%s%s", topath, allbones);
 	msmsg("Can't copy \"%s\" to \"%s\" -- ", from, to);
 #  ifndef TOS
 	if (status < 0)
@@ -282,7 +282,7 @@ int start;
 		clear_nhwindow(WIN_MESSAGE);
 		pline("If save file is on a save disk, insert that disk now.");
 		mark_synch();
-		Sprintf(qbuf,"File name (default \"%s\"%s) ?", SAVEF,
+		sprintf(qbuf,"File name (default \"%s\"%s) ?", SAVEF,
 			start ? "" : ", <Esc> cancels save");
 		getlin(qbuf, buf);
 		clear_nhwindow(WIN_MESSAGE);
@@ -413,7 +413,7 @@ msmsg VA_DECL(const char *, fmt)
 	if (iflags.grmode)
 		gr_finish();
 # endif
-	Vprintf(fmt, VA_ARGS);
+	vprintf(fmt, VA_ARGS);
 	flushout();
 	VA_END();
 	return;
@@ -472,7 +472,7 @@ const char *name, *mode;
 	buf[BUFSZ-1] = '\0';
 	if ((strlen(name) + 1 + strlen(buf)) < BUFSZ - 1) {
 		append_slash(buf);
-		Strcat(buf,name);
+		strcat(buf,name);
 	} else 
 		impossible("fopenp() buffer too small for complete filename!");
 	if(fp = fopen(buf,mode))

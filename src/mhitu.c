@@ -1608,16 +1608,16 @@ boolean message;
 				if (is_whirly(mdat)) {
 					switch (mdat->mattk[i].adtyp) {
 						case AD_ELEC:
-							Strcpy(blast,
+							strcpy(blast,
 						      " in a shower of sparks");
 							break;
 						case AD_COLD:
-							Strcpy(blast,
+							strcpy(blast,
 							" in a blast of frost");
 							break;
 					}
 				} else
-					Strcpy(blast, " with a squelch");
+					strcpy(blast, " with a squelch");
                                 You("get expelled from %s%s!",mon_nam(mtmp), blast);
 			}
 		}
@@ -1849,7 +1849,7 @@ mattacku(mtmp)
 			plname);
 	    /*if (multi < 0) {*/	/* this should always be the case but is not, due to mimicry spell --Amy */
 		char buf[BUFSZ];
-		Sprintf(buf, "You appear to be %s again.",
+		sprintf(buf, "You appear to be %s again.",
 			(Upolyd && !missingnoprotect) ? (const char *) an(youmonst.data->mname) :
 			    (const char *) "yourself");
 		unmul(buf);	/* immediately stop mimicking */
@@ -1946,7 +1946,7 @@ mattacku(mtmp)
 	    	int numseen, numhelp;
 		char buf[BUFSZ], genericwere[BUFSZ];
 
-		Strcpy(genericwere, "creature");
+		strcpy(genericwere, "creature");
 		numhelp = were_summon(mdat, FALSE, &numseen, genericwere);
 		if (youseeit) {
 			pline("%s summons help!", Monnam(mtmp));
@@ -1966,10 +1966,10 @@ mattacku(mtmp)
 			    if (numseen < 1) You_feel("hemmed in.");
 			    else {
 				if (numseen == 1)
-			    		Sprintf(buf, "%s appears",
+			    		sprintf(buf, "%s appears",
 							an(genericwere));
 			    	else
-			    		Sprintf(buf, "%s appear",
+			    		sprintf(buf, "%s appear",
 							makeplural(genericwere));
 				pline("%s%s!", upstart(buf), from_nowhere);
 			    }
@@ -4445,7 +4445,7 @@ hitmu(mtmp, mattk)
 	    case AD_UVUU:{
 		int wdmg = (int)(dmg/6) + 1;
 		hitmsg(mtmp, mattk);
-		Sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+		sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		poisoned(buf, A_CON, mdat->mname, 60);
 		if(Poison_resistance) wdmg -= ACURR(A_CON)/2;
 		if(wdmg > 0){
@@ -5268,7 +5268,7 @@ hitmu(mtmp, mattk)
 dopois:
 		hitmsg(mtmp, mattk);
 		if (uncancelled && !rn2(8)) {
-		    Sprintf(buf, "%s %s",
+		    sprintf(buf, "%s %s",
 			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		    poisoned(buf, ptmp, mdat->mname, 30);
 		}
@@ -5276,7 +5276,7 @@ dopois:
 	    case AD_DFOO:
 	      pline("%s determines to take you down a peg or two...", Monnam(mtmp));
 		if (!rn2(3)) {
-		    Sprintf(buf, "%s %s",
+		    sprintf(buf, "%s %s",
 			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		    poisoned(buf, rn2(A_MAX), mdat->mname, 30);
 		}
@@ -5755,7 +5755,7 @@ dopois:
 			dmg += dmgval(uwep, &youmonst);
 			
 			if (uwep->opoisoned){
-				Sprintf(buf, "%s %s",
+				sprintf(buf, "%s %s",
 					s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 				poisoned(buf, A_CON, mdat->mname, 30);
 			}
@@ -5796,7 +5796,7 @@ dopois:
 					static char kbuf[BUFSZ];
 
 					/* "the" buffer may be reallocated */
-					Strcpy(kbuf, the(delayed_killer));
+					strcpy(kbuf, the(delayed_killer));
 					delayed_killer = kbuf;
 				    }
 				    killer_format = KILLED_BY;
@@ -5840,7 +5840,7 @@ dopois:
 					static char kbuf[BUFSZ];
 
 					/* "the" buffer may be reallocated */
-					Strcpy(kbuf, the(delayed_killer));
+					strcpy(kbuf, the(delayed_killer));
 					delayed_killer = kbuf;
 				    }
 				    killer_format = KILLED_BY;
@@ -5918,7 +5918,7 @@ dopois:
 					You("burn to ashes...");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Kha! Ne ozhidal, chto budet mgnovennaya smert'? Nu, vashi poteri. Spasibo prikhodi yeshche." : "brrtzlbrrtzlbrrtzlbrrtzlbrrtzl");
 					killer_format = KILLED_BY_AN;
-					    Sprintf(buf, "pool of lava by %s", an(mtmp->data->mname));
+					    sprintf(buf, "pool of lava by %s", an(mtmp->data->mname));
 					    killer = buf;
 					done(BURNING);
 
@@ -5944,7 +5944,7 @@ dopois:
 			    pline("%s drowns you...", Monnam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vy znali, chto sluchilos' by, ne tak li? I do sikh por vy ne ispol'zovali element, kotoryy by spas vas, potomu chto vy glupost' v dvizhenii! Geniy!" : "HUAAAAAAA-A-AAAAHHHHHH!");
 			    killer_format = KILLED_BY_AN;
-			    Sprintf(buf, "%s by %s",
+			    sprintf(buf, "%s by %s",
 				    moat ? "moat" : "pool of water",
 				    an(mtmp->data->mname));
 			    killer = buf;
@@ -7557,7 +7557,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			 * are swallowed. Pretend purple worms don't
 			 * like horses for now :-)
 			 */
-			Strcpy(buf, mon_nam(u.usteed));
+			strcpy(buf, mon_nam(u.usteed));
 			pline ("%s lunges forward and plucks you off %s!",
 				Monnam(mtmp), buf);
 			dismount_steed(DISMOUNT_ENGULFED);
@@ -8705,7 +8705,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	    case AD_DFOO:
 	      You_feel("physically and mentally weaker!");
 		if (!rn2(3)) {
-		    Sprintf(buf, "%s %s",
+		    sprintf(buf, "%s %s",
 			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		    poisoned(buf, rn2(A_MAX), mtmp->data->mname, 30);
 		}
@@ -8785,7 +8785,7 @@ do_stone2:
 					static char kbuf[BUFSZ];
 
 					/* "the" buffer may be reallocated */
-					Strcpy(kbuf, the(delayed_killer));
+					strcpy(kbuf, the(delayed_killer));
 					delayed_killer = kbuf;
 				    }
 				    killer_format = KILLED_BY;
@@ -8822,7 +8822,7 @@ do_stone2:
 					static char kbuf[BUFSZ];
 
 					/* "the" buffer may be reallocated */
-					Strcpy(kbuf, the(delayed_killer));
+					strcpy(kbuf, the(delayed_killer));
 					delayed_killer = kbuf;
 				    }
 				    killer_format = KILLED_BY;
@@ -8912,7 +8912,7 @@ do_stone2:
 		pline("A drill bores into your brain!");
 		if (rn2(10)) break;
 		int wdmg = (int)(tmp/6) + 1;
-		Sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+		sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		poisoned(buf, A_CON, mtmp->data->mname, 60);
 		if(Poison_resistance) wdmg -= ACURR(A_CON)/2;
 		if(wdmg > 0){
@@ -9600,7 +9600,7 @@ do_stone2:
 			tmp += dmgval(uwep, &youmonst);
 			
 			if (uwep->opoisoned){
-				Sprintf(buf, "%s %s",
+				sprintf(buf, "%s %s",
 					s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 				poisoned(buf, A_CON, mtmp->data->mname, 30);
 			}
@@ -11388,7 +11388,7 @@ common:
 					static char kbuf[BUFSZ];
 
 					/* "the" buffer may be reallocated */
-					Strcpy(kbuf, the(delayed_killer));
+					strcpy(kbuf, the(delayed_killer));
 					delayed_killer = kbuf;
 				    }
 				    killer_format = KILLED_BY;
@@ -11414,7 +11414,7 @@ common:
 					static char kbuf[BUFSZ];
 
 					/* "the" buffer may be reallocated */
-					Strcpy(kbuf, the(delayed_killer));
+					strcpy(kbuf, the(delayed_killer));
 					delayed_killer = kbuf;
 				    }
 				    killer_format = KILLED_BY;
@@ -11596,7 +11596,7 @@ common:
 			tmp += dmgval(uwep, &youmonst);
 			
 			if (uwep->opoisoned){
-				Sprintf(buf, "%s %s",
+				sprintf(buf, "%s %s",
 					s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 				poisoned(buf, A_CON, mdat->mname, 30);
 			}
@@ -11865,7 +11865,7 @@ common:
 	    case AD_DFOO:
 		pline("The explosion takes you down a peg or two.");
 		if (rn2(3)) {
-		    Sprintf(buf, "%s %s",
+		    sprintf(buf, "%s %s",
 			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		    poisoned(buf, rn2(A_MAX), mdat->mname, 30);
 		}
@@ -12081,7 +12081,7 @@ common:
 		{
 		int wdmg = (int)(tmp/6) + 1;
 		hitmsg(mtmp, mattk);
-		Sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+		sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		poisoned(buf, A_CON, mdat->mname, 60);
 		if(Poison_resistance) wdmg -= ACURR(A_CON)/2;
 		if(wdmg > 0){
@@ -12412,138 +12412,138 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(7)) )
  		{
 			char visageword[BUFSZ]; /* from ToME */
-			Strcpy(visageword, "bad"); /* fail safe --Amy */
+			strcpy(visageword, "bad"); /* fail safe --Amy */
 
 			if (!Hallucination) switch(rnd(20)) {
 
 				case 1:
-					Strcpy(visageword, "abominable");
+					strcpy(visageword, "abominable");
 					break;
 				case 2:
-					Strcpy(visageword, "abysmal");
+					strcpy(visageword, "abysmal");
 					break;
 				case 3:
-					Strcpy(visageword, "appalling");
+					strcpy(visageword, "appalling");
 					break;
 				case 4:
-					Strcpy(visageword, "baleful");
+					strcpy(visageword, "baleful");
 					break;
 				case 5:
-					Strcpy(visageword, "blasphemous");
+					strcpy(visageword, "blasphemous");
 					break;
 				case 6:
-					Strcpy(visageword, "disgusting");
+					strcpy(visageword, "disgusting");
 					break;
 				case 7:
-					Strcpy(visageword, "dreadful");
+					strcpy(visageword, "dreadful");
 					break;
 				case 8:
-					Strcpy(visageword, "filthy");
+					strcpy(visageword, "filthy");
 					break;
 				case 9:
-					Strcpy(visageword, "grisly");
+					strcpy(visageword, "grisly");
 					break;
 				case 10:
-					Strcpy(visageword, "hideous");
+					strcpy(visageword, "hideous");
 					break;
 				case 11:
-					Strcpy(visageword, "hellish");
+					strcpy(visageword, "hellish");
 					break;
 				case 12:
-					Strcpy(visageword, "horrible");
+					strcpy(visageword, "horrible");
 					break;
 				case 13:
-					Strcpy(visageword, "infernal");
+					strcpy(visageword, "infernal");
 					break;
 				case 14:
-					Strcpy(visageword, "loathsome");
+					strcpy(visageword, "loathsome");
 					break;
 				case 15:
-					Strcpy(visageword, "nightmarish");
+					strcpy(visageword, "nightmarish");
 					break;
 				case 16:
-					Strcpy(visageword, "repulsive");
+					strcpy(visageword, "repulsive");
 					break;
 				case 17:
-					Strcpy(visageword, "sacrilegious");
+					strcpy(visageword, "sacrilegious");
 					break;
 				case 18:
-					Strcpy(visageword, "terrible");
+					strcpy(visageword, "terrible");
 					break;
 				case 19:
-					Strcpy(visageword, "unclean");
+					strcpy(visageword, "unclean");
 					break;
 				case 20:
-					Strcpy(visageword, "unspeakable");
+					strcpy(visageword, "unspeakable");
 					break;
 
 			} else switch(rnd(22)) {
 
 				case 1:
-					Strcpy(visageword, "silly");
+					strcpy(visageword, "silly");
 					break;
 				case 2:
-					Strcpy(visageword, "hilarious");
+					strcpy(visageword, "hilarious");
 					break;
 				case 3:
-					Strcpy(visageword, "absurd");
+					strcpy(visageword, "absurd");
 					break;
 				case 4:
-					Strcpy(visageword, "insipid");
+					strcpy(visageword, "insipid");
 					break;
 				case 5:
-					Strcpy(visageword, "ridiculous");
+					strcpy(visageword, "ridiculous");
 					break;
 				case 6:
-					Strcpy(visageword, "laughable");
+					strcpy(visageword, "laughable");
 					break;
 				case 7:
-					Strcpy(visageword, "ludicrous");
+					strcpy(visageword, "ludicrous");
 					break;
 				case 8:
-					Strcpy(visageword, "far-out");
+					strcpy(visageword, "far-out");
 					break;
 				case 9:
-					Strcpy(visageword, "groovy");
+					strcpy(visageword, "groovy");
 					break;
 				case 10:
-					Strcpy(visageword, "postmodern");
+					strcpy(visageword, "postmodern");
 					break;
 				case 11:
-					Strcpy(visageword, "fantastic");
+					strcpy(visageword, "fantastic");
 					break;
 				case 12:
-					Strcpy(visageword, "dadaistic");
+					strcpy(visageword, "dadaistic");
 					break;
 				case 13:
-					Strcpy(visageword, "cubistic");
+					strcpy(visageword, "cubistic");
 					break;
 				case 14:
-					Strcpy(visageword, "cosmic");
+					strcpy(visageword, "cosmic");
 					break;
 				case 15:
-					Strcpy(visageword, "awesome");
+					strcpy(visageword, "awesome");
 					break;
 				case 16:
-					Strcpy(visageword, "incomprehensible");
+					strcpy(visageword, "incomprehensible");
 					break;
 				case 17:
-					Strcpy(visageword, "fabulous");
+					strcpy(visageword, "fabulous");
 					break;
 				case 18:
-					Strcpy(visageword, "amazing");
+					strcpy(visageword, "amazing");
 					break;
 				case 19:
-					Strcpy(visageword, "incredible");
+					strcpy(visageword, "incredible");
 					break;
 				case 20:
-					Strcpy(visageword, "chaotic");
+					strcpy(visageword, "chaotic");
 					break;
 				case 21:
-					Strcpy(visageword, "wild");
+					strcpy(visageword, "wild");
 					break;
 				case 22:
-					Strcpy(visageword, "preposterous");
+					strcpy(visageword, "preposterous");
 					break;
 
 			}
@@ -13358,7 +13358,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		pline("%s gazes at you with its glistening eyes!", Monnam(mtmp));
 		    stop_occupation();
 		if (!rn2(3)) {
-		    Sprintf(buf, "%s %s",
+		    sprintf(buf, "%s %s",
 			    s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		    poisoned(buf, rn2(A_MAX), mtmp->data->mname, 30);
 		}
@@ -14221,7 +14221,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 
 		int wdmg = (int)(dmgplus/6) + 1;
-		Sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
+		sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		poisoned(buf, A_CON, mtmp->data->mname, 60);
 		if(Poison_resistance) wdmg -= ACURR(A_CON)/2;
 		if(wdmg > 0){
@@ -14461,7 +14461,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 
 				if (!Stoned) Stoned = 7;
-				Sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
+				sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
 				delayed_killer = killer_buf;
 		
 			    }
@@ -14469,7 +14469,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			dmgplus += dmgval(uwep, &youmonst);
 			
 			if (uwep->opoisoned){
-				Sprintf(buf, "%s %s",
+				sprintf(buf, "%s %s",
 					s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 				poisoned(buf, A_CON, mtmp->data->mname, 30);
 			}
@@ -15573,7 +15573,7 @@ register struct monst *mon;
 	    if (ring->otyp != RIN_ADORNMENT) continue;
 	    if (fem) {
 		if (rn2(120) < ACURR(A_CHA)) {
-		    Sprintf(qbuf, "\"That %s looks pretty.  May I have it?\"",
+		    sprintf(qbuf, "\"That %s looks pretty.  May I have it?\"",
 			safe_qbuf("",sizeof("\"That  looks pretty.  May I have it?\""),
 			xname(ring), simple_typename(ring->otyp), "ring"));
 		    makeknown(RIN_ADORNMENT);
@@ -15595,7 +15595,7 @@ register struct monst *mon;
 			break;
 		if (ring==uleft || ring==uright) continue;
 		if (rn2(120) < ACURR(A_CHA)) {
-		    Sprintf(qbuf,"\"That %s looks pretty.  Would you wear it for me?\"",
+		    sprintf(qbuf,"\"That %s looks pretty.  Would you wear it for me?\"",
 			safe_qbuf("",
 			    sizeof("\"That  looks pretty.  Would you wear it for me?\""),
 			    xname(ring), simple_typename(ring->otyp), "ring"));
@@ -15616,13 +15616,13 @@ register struct monst *mon;
 			Blind ? "He" : Monnam(mon), the(xname(ring)), body_part(HAND));
 		    setworn(ring, LEFT_RING);
 		} else if (uright && uright->otyp != RIN_ADORNMENT) {
-		    Strcpy(buf, xname(uright));
+		    strcpy(buf, xname(uright));
 		    pline("%s replaces your %s with your %s.",
 			Blind ? "He" : Monnam(mon), buf, xname(ring));
 		    Ring_gone(uright);
 		    setworn(ring, RIGHT_RING);
 		} else if (uleft && uleft->otyp != RIN_ADORNMENT) {
-		    Strcpy(buf, xname(uleft));
+		    strcpy(buf, xname(uleft));
 		    pline("%s replaces your %s with your %s.",
 			Blind ? "He" : Monnam(mon), buf, xname(ring));
 		    Ring_gone(uleft);
@@ -16380,7 +16380,7 @@ const char *str;
 
 	if ((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) { /*much lower chance for the player to resist --Amy*/
 
-		Sprintf(qbuf,"\"Shall I remove your %s, %s?\" [yes/no]",
+		sprintf(qbuf,"\"Shall I remove your %s, %s?\" [yes/no]",
 			str, (!rn2(2) ? "lover" : !rn2(2) ? "dear" : "sweetheart"));
 		getlin(qbuf,buf);
 		(void) lcase (buf);
@@ -16389,7 +16389,7 @@ const char *str;
 	} else {
 		char hairbuf[BUFSZ];
 
-		Sprintf(hairbuf, "let me run my fingers through your %s",
+		sprintf(hairbuf, "let me run my fingers through your %s",
 			body_part(HAIR));
 		verbalize("Take off your %s; %s.", str,
 			(obj == uarm)  ? "let's get a little closer" :

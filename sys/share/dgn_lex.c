@@ -941,7 +941,7 @@ case 30:
 YY_RULE_SETUP
 { yytext[yyleng-1] = 0; /* Discard the trailing \" */
 		  yylval.str = (char *) alloc(strlen(yytext+1)+1);
-		  Strcpy(yylval.str, yytext+1); /* Discard the first \" */
+		  strcpy(yylval.str, yytext+1); /* Discard the first \" */
 		  return(STRING); }
 	YY_BREAK
 case 31:

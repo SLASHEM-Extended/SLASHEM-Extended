@@ -117,7 +117,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
     if (FAILED(GetComCtlVersion(&major, &minor)))
     {
         char buf[TBUFSZ];
-        Sprintf(buf, "Cannot load common control library.\n%s\n%s",
+        sprintf(buf, "Cannot load common control library.\n%s\n%s",
               "For further information, refer to the installation notes at",
 		INSTALL_NOTES);
         panic(buf);
@@ -126,7 +126,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
         || (major == MIN_COMCTLMAJOR && minor < MIN_COMCTLMINOR))
     {
         char buf[TBUFSZ];
-        Sprintf(buf, "Common control library is outdated.\n%s %d.%d\n%s\n%s",
+        sprintf(buf, "Common control library is outdated.\n%s %d.%d\n%s\n%s",
               "NetHack requires at least version ",
 	      MIN_COMCTLMAJOR, MIN_COMCTLMINOR,
 	      "For further information, refer to the installation notes at",

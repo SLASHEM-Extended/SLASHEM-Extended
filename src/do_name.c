@@ -21,7 +21,7 @@ const char *goal;
     boolean doing_what_is;
     winid tmpwin = create_nhwindow(NHW_MENU);
 
-    Sprintf(sbuf, "Use [%s] to move the cursor to %s.",
+    sprintf(sbuf, "Use [%s] to move the cursor to %s.",
 	    iflags.num_pad ? "2468" : "hjkl", goal);
     putstr(tmpwin, 0, sbuf);
     putstr(tmpwin, 0, "Use [HJKL] to move the cursor 8 units at a time.");
@@ -29,7 +29,7 @@ const char *goal;
     /* disgusting hack; the alternate selection characters work for any
        getpos call, but they only matter for dowhatis (and doquickwhatis) */
     doing_what_is = (goal == what_is_an_unknown_object);
-    Sprintf(sbuf, "Type a .%s when you are at the right place.",
+    sprintf(sbuf, "Type a .%s when you are at the right place.",
             doing_what_is ? " or , or ; or :" : "");
     putstr(tmpwin, 0, sbuf);
     if (!force)
@@ -209,7 +209,7 @@ const char *name;
 	}
 	if (lth == mtmp->mnamelth) {
 		/* don't need to allocate a new monst struct */
-		if (lth) Strcpy(NAME(mtmp), name);
+		if (lth) strcpy(NAME(mtmp), name);
 		return mtmp;
 	}
 	mtmp2 = newmonst(mtmp->mxlth + lth);
@@ -217,7 +217,7 @@ const char *name;
 	(void) memcpy((genericptr_t)mtmp2->mextra,
 		      (genericptr_t)mtmp->mextra, mtmp->mxlth);
 	mtmp2->mnamelth = lth;
-	if (lth) Strcpy(NAME(mtmp2), name);
+	if (lth) strcpy(NAME(mtmp2), name);
 	replmon(mtmp,mtmp2);
 	return(mtmp2);
 }
@@ -267,7 +267,7 @@ do_mname()
 	}
 	/* special case similar to the one in lookat() */
 	(void) distant_monnam(mtmp, ARTICLE_THE, buf);
-	Sprintf(qbuf, "What do you want to call %s?", buf);
+	sprintf(qbuf, "What do you want to call %s?", buf);
 	getlin(qbuf,buf);
 	if(!*buf || *buf == '\033') return(0);
 	/* strip leading and trailing spaces; unnames monster if all spaces */
@@ -302,7 +302,7 @@ register struct obj *obj;
 	const char *aname;
 	/*short*/int objtyp;
 
-	Sprintf(qbuf, "What do you want to name %s %s?",
+	sprintf(qbuf, "What do you want to name %s %s?",
 		is_plural(obj) ? "these" : "this", xname(obj));
 	getlin(qbuf, buf);
 	if(!*buf || *buf == '\033')	return;
@@ -311,7 +311,7 @@ register struct obj *obj;
 
 	/* relax restrictions over proper capitalization for artifacts */
 	if ((aname = artifact_name(buf, &objtyp)) != 0 && objtyp == obj->otyp)
-		Strcpy(buf, aname);
+		strcpy(buf, aname);
 
 	if (obj->oartifact) {
 		pline_The("artifact seems to resist the attempt.");
@@ -372,7 +372,7 @@ const char *name;
 	   gcc-2.7.2.1 finally fixed this.... */
 	if (oname_size) {
 	    if (name)
-		Strcpy(ONAME(otmp), name);
+		strcpy(ONAME(otmp), name);
 	}
 
 	if (obj->owornmask) {
@@ -434,7 +434,7 @@ const char *name;
 
 	if (lth == obj->onamelth) {
 		/* no need to replace entire object */
-		if (lth) Strcpy(ONAME(obj), name);
+		if (lth) strcpy(ONAME(obj), name);
 	} else {
 		obj = realloc_obj(obj, obj->oxlth,
 			      (genericptr_t)obj->oextra, lth, name);
@@ -505,10 +505,10 @@ register struct obj *obj;
 	otemp.oxlth = 0;
 	if (objects[otemp.otyp].oc_class == POTION_CLASS && otemp.fromsink)
 	    /* kludge, meaning it's sink water */
-	    Sprintf(qbuf,"Call a stream of %s fluid:",
+	    sprintf(qbuf,"Call a stream of %s fluid:",
 		    OBJ_DESCR(objects[otemp.otyp]));
 	else
-	    Sprintf(qbuf, "Call %s:", an(xname(&otemp)));
+	    sprintf(qbuf, "Call %s:", an(xname(&otemp)));
 	getlin(qbuf, buf);
 	if(!*buf || *buf == '\033')
 		return;
@@ -647,7 +647,7 @@ boolean called;
 
 	/* unseen monsters, etc.  Use "it" */
 	if (do_it) {
-	    Strcpy(buf, "it");
+	    strcpy(buf, "it");
 	    return buf;
 	}
 
@@ -678,30 +678,30 @@ boolean called;
 	    if (adjective && article == ARTICLE_THE) {
 		/* pathological case: "the angry Asidonhopo the blue dragon"
 		   sounds silly */
-		Strcpy(buf, "the ");
-		Strcat(strcat(buf, adjective), " ");
-		Strcat(buf, shkname(mtmp));
+		strcpy(buf, "the ");
+		strcat(strcat(buf, adjective), " ");
+		strcat(buf, shkname(mtmp));
 		return buf;
 	    }
-	    Strcat(buf, shkname(mtmp));
+	    strcat(buf, shkname(mtmp));
 	    if (mdat == &mons[PM_SHOPKEEPER] && !do_invis)
 		return buf;
-	    Strcat(buf, " the ");
+	    strcat(buf, " the ");
 	    if (do_invis)
-		Strcat(buf, "invisible ");
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) Strcat(buf, "monster");
-	    else Strcat(buf, mdat->mname);
+		strcat(buf, "invisible ");
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) strcat(buf, "monster");
+	    else strcat(buf, mdat->mname);
 	    return buf;
 	}
 
 	/* Put the adjectives in the buffer */
 	if (adjective)
-	    Strcat(strcat(buf, adjective), " ");
+	    strcat(strcat(buf, adjective), " ");
 	if (do_invis)
-	    Strcat(buf, "invisible ");
+	    strcat(buf, "invisible ");
 	if (do_saddle && (mtmp->misc_worn_check & W_SADDLE) &&
 	    !Blind && !Hallucination)
-	    Strcat(buf, "saddled ");
+	    strcat(buf, "saddled ");
 	if (buf[0] != 0)
 	    has_adjectives = TRUE;
 	else
@@ -710,58 +710,58 @@ boolean called;
 	/* Put the actual monster name or type into the buffer now */
 	/* Be sure to remember whether the buffer starts with a name */
 	if (do_hallu) {
-	    Strcat(buf, rndmonnam());
+	    strcat(buf, rndmonnam());
 	    name_at_start = FALSE;
 	} else if (mtmp->mnamelth) {
 	    char *name = NAME(mtmp);
 
 	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) {
-		Strcat(buf, "monster");
+		strcat(buf, "monster");
 		name_at_start = TRUE;
 	    } else {
 
 	    if (mdat == &mons[PM_GHOST]) {
-		Sprintf(eos(buf), "%s ghost", s_suffix(name));
+		sprintf(eos(buf), "%s ghost", s_suffix(name));
 		name_at_start = TRUE;
 	    } else if (called && !is_mplayer(mdat) ) {
-		Sprintf(eos(buf), "%s called %s", mdat->mname, name);
+		sprintf(eos(buf), "%s called %s", mdat->mname, name);
 		name_at_start = (boolean)type_is_pname(mdat);
 	    } else if (is_mplayer(mdat) && (bp = strstri(name, " the ")) != 0) {
 		/* <name> the <adjective> <invisible> <saddled> <rank> */
 		char pbuf[BUFSZ];
 
-		Strcpy(pbuf, name);
+		strcpy(pbuf, name);
 		pbuf[bp - name + 5] = '\0'; /* adjectives right after " the " */
 		if (has_adjectives)
-		    Strcat(pbuf, buf);
-		Strcat(pbuf, bp + 5);	/* append the rest of the name */
-		Strcpy(buf, pbuf);
+		    strcat(pbuf, buf);
+		strcat(pbuf, bp + 5);	/* append the rest of the name */
+		strcpy(buf, pbuf);
 		article = ARTICLE_NONE;
 		name_at_start = TRUE;
 	    } else if (is_mplayer(mdat) /*&& !In_endgame(&u.uz)*/) {	/* always include the rank, no matter what --Amy */
 	      char pbuf[BUFSZ];
-		Sprintf(eos(buf), "%s called %s", mdat->mname, name);
-	      Strcpy(pbuf, rank_of((int)mtmp->m_lev, monsndx(mdat), (boolean)mtmp->female));
-	      Strcat(buf, " the ");
-	      Strcat(buf, lcase(pbuf));
+		sprintf(eos(buf), "%s called %s", mdat->mname, name);
+	      strcpy(pbuf, rank_of((int)mtmp->m_lev, monsndx(mdat), (boolean)mtmp->female));
+	      strcat(buf, " the ");
+	      strcat(buf, lcase(pbuf));
 	      name_at_start = FALSE;
 	    } else {
-		Strcat(buf, name);
+		strcat(buf, name);
 		name_at_start = TRUE;
 	    }
 	  }
 
 	} else if (is_mplayer(mdat) /*&& !In_endgame(&u.uz)*/) {
 	    char pbuf[BUFSZ];
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) Strcat(buf, "monster");
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) strcat(buf, "monster");
 	    else {
-		    Strcpy(pbuf, rank_of((int)mtmp->m_lev, monsndx(mdat), (boolean)mtmp->female));
-		    Strcat(buf, lcase(pbuf));
+		    strcpy(pbuf, rank_of((int)mtmp->m_lev, monsndx(mdat), (boolean)mtmp->female));
+		    strcat(buf, lcase(pbuf));
 	    }
 	    name_at_start = FALSE;
 	} else {
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) Strcat(buf, "monster");
-	    else Strcat(buf, mdat->mname);
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) strcat(buf, "monster");
+	    else strcat(buf, mdat->mname);
 	    name_at_start = (boolean)type_is_pname(mdat);
 	}
 
@@ -776,118 +776,118 @@ boolean called;
 
 	if (!do_hallu && mtmp->isegotype && !mtmp->noegodesc && !mtmp->noegodisplay && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) && !have_uninformationstone() ) {
 
-	    if (mtmp->egotype_thief) Sprintf(eos(buf), " Thief");
-	    if (mtmp->egotype_wallwalk) Sprintf(eos(buf), " Phazer");
-	    if (mtmp->egotype_disenchant) Sprintf(eos(buf), " Disenchanter");
-	    if (mtmp->egotype_rust) Sprintf(eos(buf), " Ruster");
-	    if (mtmp->egotype_corrosion) Sprintf(eos(buf), " Corroder");
-	    if (mtmp->egotype_decay) Sprintf(eos(buf), " Decayer");
-	    if (mtmp->egotype_wither) Sprintf(eos(buf), " Witherer");
-	    if (mtmp->egotype_grab) Sprintf(eos(buf), " Grabber");
-	    if (mtmp->egotype_flying) Sprintf(eos(buf), " Flyer");
-	    if (mtmp->egotype_hide) Sprintf(eos(buf), " Hider");
-	    if (mtmp->egotype_regeneration) Sprintf(eos(buf), " Regenerator");
-	    if (mtmp->egotype_undead) Sprintf(eos(buf), " Undead");
-	    if (mtmp->egotype_domestic) Sprintf(eos(buf), " Pet-type");
-	    if (mtmp->egotype_covetous) Sprintf(eos(buf), " Covenant");
-	    if (mtmp->egotype_avoider) Sprintf(eos(buf), " Avoider");
-	    if (mtmp->egotype_petty) Sprintf(eos(buf), " Pettymonster");
-	    if (mtmp->egotype_pokemon) Sprintf(eos(buf), " Pokemon");
-	    if (mtmp->egotype_slows) Sprintf(eos(buf), " Slower");
-	    if (mtmp->egotype_vampire) Sprintf(eos(buf), " Vampire");
-	    if (mtmp->egotype_teleportself) Sprintf(eos(buf), " Teleporter");
-	    if (mtmp->egotype_teleportyou) Sprintf(eos(buf), " Warper");
-	    if (mtmp->egotype_wrap) Sprintf(eos(buf), " Wrapper");
-	    if (mtmp->egotype_disease) Sprintf(eos(buf), " Inficator");
-	    if (mtmp->egotype_slime) Sprintf(eos(buf), " Slimer");
-	    if (mtmp->egotype_engrave) Sprintf(eos(buf), " Rubber");
-	    if (mtmp->egotype_dark) Sprintf(eos(buf), " Endarker");
-	    if (mtmp->egotype_luck) Sprintf(eos(buf), " Luck-sucker");
-	    if (mtmp->egotype_push) Sprintf(eos(buf), " Pusher");
-	    if (mtmp->egotype_arcane) Sprintf(eos(buf), " Shaman");
-	    if (mtmp->egotype_clerical) Sprintf(eos(buf), " Cleric");
+	    if (mtmp->egotype_thief) sprintf(eos(buf), " Thief");
+	    if (mtmp->egotype_wallwalk) sprintf(eos(buf), " Phazer");
+	    if (mtmp->egotype_disenchant) sprintf(eos(buf), " Disenchanter");
+	    if (mtmp->egotype_rust) sprintf(eos(buf), " Ruster");
+	    if (mtmp->egotype_corrosion) sprintf(eos(buf), " Corroder");
+	    if (mtmp->egotype_decay) sprintf(eos(buf), " Decayer");
+	    if (mtmp->egotype_wither) sprintf(eos(buf), " Witherer");
+	    if (mtmp->egotype_grab) sprintf(eos(buf), " Grabber");
+	    if (mtmp->egotype_flying) sprintf(eos(buf), " Flyer");
+	    if (mtmp->egotype_hide) sprintf(eos(buf), " Hider");
+	    if (mtmp->egotype_regeneration) sprintf(eos(buf), " Regenerator");
+	    if (mtmp->egotype_undead) sprintf(eos(buf), " Undead");
+	    if (mtmp->egotype_domestic) sprintf(eos(buf), " Pet-type");
+	    if (mtmp->egotype_covetous) sprintf(eos(buf), " Covenant");
+	    if (mtmp->egotype_avoider) sprintf(eos(buf), " Avoider");
+	    if (mtmp->egotype_petty) sprintf(eos(buf), " Pettymonster");
+	    if (mtmp->egotype_pokemon) sprintf(eos(buf), " Pokemon");
+	    if (mtmp->egotype_slows) sprintf(eos(buf), " Slower");
+	    if (mtmp->egotype_vampire) sprintf(eos(buf), " Vampire");
+	    if (mtmp->egotype_teleportself) sprintf(eos(buf), " Teleporter");
+	    if (mtmp->egotype_teleportyou) sprintf(eos(buf), " Warper");
+	    if (mtmp->egotype_wrap) sprintf(eos(buf), " Wrapper");
+	    if (mtmp->egotype_disease) sprintf(eos(buf), " Inficator");
+	    if (mtmp->egotype_slime) sprintf(eos(buf), " Slimer");
+	    if (mtmp->egotype_engrave) sprintf(eos(buf), " Rubber");
+	    if (mtmp->egotype_dark) sprintf(eos(buf), " Endarker");
+	    if (mtmp->egotype_luck) sprintf(eos(buf), " Luck-sucker");
+	    if (mtmp->egotype_push) sprintf(eos(buf), " Pusher");
+	    if (mtmp->egotype_arcane) sprintf(eos(buf), " Shaman");
+	    if (mtmp->egotype_clerical) sprintf(eos(buf), " Cleric");
 
-	    if (mtmp->egotype_armorer) Sprintf(eos(buf), " Armorer");
-	    if (mtmp->egotype_tank) Sprintf(eos(buf), " Tank");
-	    if (mtmp->egotype_speedster) Sprintf(eos(buf), " Speedster");
-	    if (mtmp->egotype_racer) Sprintf(eos(buf), " Racer");
+	    if (mtmp->egotype_armorer) sprintf(eos(buf), " Armorer");
+	    if (mtmp->egotype_tank) sprintf(eos(buf), " Tank");
+	    if (mtmp->egotype_speedster) sprintf(eos(buf), " Speedster");
+	    if (mtmp->egotype_racer) sprintf(eos(buf), " Racer");
 
-	    if (mtmp->egotype_randomizer) Sprintf(eos(buf), " Randomizer");
-	    if (mtmp->egotype_blaster) Sprintf(eos(buf), " Blaster");
-	    if (mtmp->egotype_multiplicator) Sprintf(eos(buf), " Multiplicator");
+	    if (mtmp->egotype_randomizer) sprintf(eos(buf), " Randomizer");
+	    if (mtmp->egotype_blaster) sprintf(eos(buf), " Blaster");
+	    if (mtmp->egotype_multiplicator) sprintf(eos(buf), " Multiplicator");
 
-	    if (mtmp->egotype_gator) Sprintf(eos(buf), " Gator");
+	    if (mtmp->egotype_gator) sprintf(eos(buf), " Gator");
 
-	    if (mtmp->egotype_reflecting) Sprintf(eos(buf), " Reflector");
-	    if (mtmp->egotype_hugger) Sprintf(eos(buf), " Hugger");
-	    if (mtmp->egotype_mimic) Sprintf(eos(buf), " Mimic");
-	    if (mtmp->egotype_permamimic) Sprintf(eos(buf), " Permamimic");
+	    if (mtmp->egotype_reflecting) sprintf(eos(buf), " Reflector");
+	    if (mtmp->egotype_hugger) sprintf(eos(buf), " Hugger");
+	    if (mtmp->egotype_mimic) sprintf(eos(buf), " Mimic");
+	    if (mtmp->egotype_permamimic) sprintf(eos(buf), " Permamimic");
 
-	    if (mtmp->egotype_poisoner) Sprintf(eos(buf), " Poisoner");
-	    if (mtmp->egotype_elementalist) Sprintf(eos(buf), " Elementalist");
-	    if (mtmp->egotype_resistor) Sprintf(eos(buf), " Resistor");
-	    if (mtmp->egotype_acidspiller) Sprintf(eos(buf), " Acidspiller");
-	    if (mtmp->egotype_watcher) Sprintf(eos(buf), " Watcher");
-	    if (mtmp->egotype_metallivore) Sprintf(eos(buf), " Metallivore");
-	    if (mtmp->egotype_lithivore) Sprintf(eos(buf), " Lithivore");
-	    if (mtmp->egotype_organivore) Sprintf(eos(buf), " Organivore");
-	    if (mtmp->egotype_breather) Sprintf(eos(buf), " Breather");
-	    if (mtmp->egotype_beamer) Sprintf(eos(buf), " Beamer");
-	    if (mtmp->egotype_troll) Sprintf(eos(buf), " Resurrector");
+	    if (mtmp->egotype_poisoner) sprintf(eos(buf), " Poisoner");
+	    if (mtmp->egotype_elementalist) sprintf(eos(buf), " Elementalist");
+	    if (mtmp->egotype_resistor) sprintf(eos(buf), " Resistor");
+	    if (mtmp->egotype_acidspiller) sprintf(eos(buf), " Acidspiller");
+	    if (mtmp->egotype_watcher) sprintf(eos(buf), " Watcher");
+	    if (mtmp->egotype_metallivore) sprintf(eos(buf), " Metallivore");
+	    if (mtmp->egotype_lithivore) sprintf(eos(buf), " Lithivore");
+	    if (mtmp->egotype_organivore) sprintf(eos(buf), " Organivore");
+	    if (mtmp->egotype_breather) sprintf(eos(buf), " Breather");
+	    if (mtmp->egotype_beamer) sprintf(eos(buf), " Beamer");
+	    if (mtmp->egotype_troll) sprintf(eos(buf), " Resurrector");
 
-	    if (mtmp->egotype_faker) Sprintf(eos(buf), " Faker");
-	    if (mtmp->egotype_farter) Sprintf(eos(buf), " Farter");
-	    if (mtmp->egotype_timer) Sprintf(eos(buf), " Timer");
-	    if (mtmp->egotype_thirster) Sprintf(eos(buf), " Thirster");
-	    if (mtmp->egotype_watersplasher) Sprintf(eos(buf), " Watersplasher");
-	    if (mtmp->egotype_cancellator) Sprintf(eos(buf), " Cancellator");
-	    if (mtmp->egotype_banisher) Sprintf(eos(buf), " Banisher");
-	    if (mtmp->egotype_shredder) Sprintf(eos(buf), " Shredder");
-	    if (mtmp->egotype_abductor) Sprintf(eos(buf), " Abductor");
-	    if (mtmp->egotype_incrementor) Sprintf(eos(buf), " Incrementor");
-	    if (mtmp->egotype_mirrorimage) Sprintf(eos(buf), " Mirror-image");
-	    if (mtmp->egotype_curser) Sprintf(eos(buf), " Curser");
-	    if (mtmp->egotype_horner) Sprintf(eos(buf), " Horner");
-	    if (mtmp->egotype_lasher) Sprintf(eos(buf), " Lasher");
-	    if (mtmp->egotype_cullen) Sprintf(eos(buf), " Cullen");
-	    if (mtmp->egotype_webber) Sprintf(eos(buf), " Webber");
-	    if (mtmp->egotype_itemporter) Sprintf(eos(buf), " Itemporter");
-	    if (mtmp->egotype_schizo) Sprintf(eos(buf), " Schizo");
-	    if (mtmp->egotype_nexus) Sprintf(eos(buf), " Nexus");
-	    if (mtmp->egotype_sounder) Sprintf(eos(buf), " Sounder");
-	    if (mtmp->egotype_gravitator) Sprintf(eos(buf), " Gravitator");
-	    if (mtmp->egotype_inert) Sprintf(eos(buf), " Inert");
-	    if (mtmp->egotype_antimage) Sprintf(eos(buf), " Antimage");
-	    if (mtmp->egotype_plasmon) Sprintf(eos(buf), " Plasmon");
-	    if (mtmp->egotype_weaponizer) Sprintf(eos(buf), " Weaponizer");
-	    if (mtmp->egotype_engulfer) Sprintf(eos(buf), " Engulfer");
-	    if (mtmp->egotype_bomber) Sprintf(eos(buf), " Bomber");
-	    if (mtmp->egotype_exploder) Sprintf(eos(buf), " Exploder");
-	    if (mtmp->egotype_unskillor) Sprintf(eos(buf), " Unskillor");
-	    if (mtmp->egotype_blinker) Sprintf(eos(buf), " Blinker");
-	    if (mtmp->egotype_psychic) Sprintf(eos(buf), " Psychic");
-	    if (mtmp->egotype_abomination) Sprintf(eos(buf), " Abomination");
-	    if (mtmp->egotype_gazer) Sprintf(eos(buf), " Gazer");
-	    if (mtmp->egotype_seducer) Sprintf(eos(buf), " Seducer");
-	    if (mtmp->egotype_flickerer) Sprintf(eos(buf), " Flickerer");
-	    if (mtmp->egotype_hitter) Sprintf(eos(buf), " Hitter");
-	    if (mtmp->egotype_piercer) Sprintf(eos(buf), " Piercer");
-	    if (mtmp->egotype_petshielder) Sprintf(eos(buf), " Petshielder");
-	    if (mtmp->egotype_displacer) Sprintf(eos(buf), " Displacer");
-	    if (mtmp->egotype_lifesaver) Sprintf(eos(buf), " Lifesaver");
-	    if (mtmp->egotype_venomizer) Sprintf(eos(buf), " Venomizer");
-	    if (mtmp->egotype_dreameater) Sprintf(eos(buf), " Dream-eater");
-	    if (mtmp->egotype_nastinator) Sprintf(eos(buf), " Nastinator");
-	    if (mtmp->egotype_baddie) Sprintf(eos(buf), " Baddie");
-	    if (mtmp->egotype_sludgepuddle) Sprintf(eos(buf), " Sludgepuddle");
-	    if (mtmp->egotype_vulnerator) Sprintf(eos(buf), " Vulnerator");
-	    if (mtmp->egotype_marysue) Sprintf(eos(buf), " Mary-Sue");
-	    if (mtmp->egotype_shader) Sprintf(eos(buf), " Shader");
-	    if (mtmp->egotype_amnesiac) Sprintf(eos(buf), " Amnesiac");
-	    if (mtmp->egotype_trapmaster) Sprintf(eos(buf), " Trapmaster");
-	    if (mtmp->egotype_midiplayer) Sprintf(eos(buf), " Midi-Player");
-	    if (mtmp->egotype_rngabuser) Sprintf(eos(buf), " RNG-abuser");
-	    if (mtmp->egotype_mastercaster) Sprintf(eos(buf), " Mastercaster");
+	    if (mtmp->egotype_faker) sprintf(eos(buf), " Faker");
+	    if (mtmp->egotype_farter) sprintf(eos(buf), " Farter");
+	    if (mtmp->egotype_timer) sprintf(eos(buf), " Timer");
+	    if (mtmp->egotype_thirster) sprintf(eos(buf), " Thirster");
+	    if (mtmp->egotype_watersplasher) sprintf(eos(buf), " Watersplasher");
+	    if (mtmp->egotype_cancellator) sprintf(eos(buf), " Cancellator");
+	    if (mtmp->egotype_banisher) sprintf(eos(buf), " Banisher");
+	    if (mtmp->egotype_shredder) sprintf(eos(buf), " Shredder");
+	    if (mtmp->egotype_abductor) sprintf(eos(buf), " Abductor");
+	    if (mtmp->egotype_incrementor) sprintf(eos(buf), " Incrementor");
+	    if (mtmp->egotype_mirrorimage) sprintf(eos(buf), " Mirror-image");
+	    if (mtmp->egotype_curser) sprintf(eos(buf), " Curser");
+	    if (mtmp->egotype_horner) sprintf(eos(buf), " Horner");
+	    if (mtmp->egotype_lasher) sprintf(eos(buf), " Lasher");
+	    if (mtmp->egotype_cullen) sprintf(eos(buf), " Cullen");
+	    if (mtmp->egotype_webber) sprintf(eos(buf), " Webber");
+	    if (mtmp->egotype_itemporter) sprintf(eos(buf), " Itemporter");
+	    if (mtmp->egotype_schizo) sprintf(eos(buf), " Schizo");
+	    if (mtmp->egotype_nexus) sprintf(eos(buf), " Nexus");
+	    if (mtmp->egotype_sounder) sprintf(eos(buf), " Sounder");
+	    if (mtmp->egotype_gravitator) sprintf(eos(buf), " Gravitator");
+	    if (mtmp->egotype_inert) sprintf(eos(buf), " Inert");
+	    if (mtmp->egotype_antimage) sprintf(eos(buf), " Antimage");
+	    if (mtmp->egotype_plasmon) sprintf(eos(buf), " Plasmon");
+	    if (mtmp->egotype_weaponizer) sprintf(eos(buf), " Weaponizer");
+	    if (mtmp->egotype_engulfer) sprintf(eos(buf), " Engulfer");
+	    if (mtmp->egotype_bomber) sprintf(eos(buf), " Bomber");
+	    if (mtmp->egotype_exploder) sprintf(eos(buf), " Exploder");
+	    if (mtmp->egotype_unskillor) sprintf(eos(buf), " Unskillor");
+	    if (mtmp->egotype_blinker) sprintf(eos(buf), " Blinker");
+	    if (mtmp->egotype_psychic) sprintf(eos(buf), " Psychic");
+	    if (mtmp->egotype_abomination) sprintf(eos(buf), " Abomination");
+	    if (mtmp->egotype_gazer) sprintf(eos(buf), " Gazer");
+	    if (mtmp->egotype_seducer) sprintf(eos(buf), " Seducer");
+	    if (mtmp->egotype_flickerer) sprintf(eos(buf), " Flickerer");
+	    if (mtmp->egotype_hitter) sprintf(eos(buf), " Hitter");
+	    if (mtmp->egotype_piercer) sprintf(eos(buf), " Piercer");
+	    if (mtmp->egotype_petshielder) sprintf(eos(buf), " Petshielder");
+	    if (mtmp->egotype_displacer) sprintf(eos(buf), " Displacer");
+	    if (mtmp->egotype_lifesaver) sprintf(eos(buf), " Lifesaver");
+	    if (mtmp->egotype_venomizer) sprintf(eos(buf), " Venomizer");
+	    if (mtmp->egotype_dreameater) sprintf(eos(buf), " Dream-eater");
+	    if (mtmp->egotype_nastinator) sprintf(eos(buf), " Nastinator");
+	    if (mtmp->egotype_baddie) sprintf(eos(buf), " Baddie");
+	    if (mtmp->egotype_sludgepuddle) sprintf(eos(buf), " Sludgepuddle");
+	    if (mtmp->egotype_vulnerator) sprintf(eos(buf), " Vulnerator");
+	    if (mtmp->egotype_marysue) sprintf(eos(buf), " Mary-Sue");
+	    if (mtmp->egotype_shader) sprintf(eos(buf), " Shader");
+	    if (mtmp->egotype_amnesiac) sprintf(eos(buf), " Amnesiac");
+	    if (mtmp->egotype_trapmaster) sprintf(eos(buf), " Trapmaster");
+	    if (mtmp->egotype_midiplayer) sprintf(eos(buf), " Midi-Player");
+	    if (mtmp->egotype_rngabuser) sprintf(eos(buf), " RNG-abuser");
+	    if (mtmp->egotype_mastercaster) sprintf(eos(buf), " Mastercaster");
 
 	}
 
@@ -896,14 +896,14 @@ boolean called;
 
 	    switch(article) {
 		case ARTICLE_YOUR:
-		    Strcpy(buf2, "your ");
-		    Strcat(buf2, buf);
-		    Strcpy(buf, buf2);
+		    strcpy(buf2, "your ");
+		    strcat(buf2, buf);
+		    strcpy(buf, buf2);
 		    return buf;
 		case ARTICLE_THE:
-		    Strcpy(buf2, "the ");
-		    Strcat(buf2, buf);
-		    Strcpy(buf, buf2);
+		    strcpy(buf2, "the ");
+		    strcat(buf2, buf);
+		    strcpy(buf, buf2);
 		    return buf;
 		case ARTICLE_A:
 		    return(an(buf));
@@ -1039,10 +1039,10 @@ char *outbuf;
        its own obfuscation) */
     if (mon->data == &mons[PM_HIGH_PRIEST] && !Hallucination &&
 	    Is_astralevel(&u.uz) && distu(mon->mx, mon->my) > 2) {
-	Strcpy(outbuf, article == ARTICLE_THE ? "the " : "");
-	Strcat(outbuf, mon->female ? "high priestess" : "high priest");
+	strcpy(outbuf, article == ARTICLE_THE ? "the " : "");
+	strcat(outbuf, mon->female ? "high priestess" : "high priest");
     } else {
-	Strcpy(outbuf, x_monnam(mon, article, (char *)0, 0, TRUE));
+	strcpy(outbuf, x_monnam(mon, article, (char *)0, 0, TRUE));
     }
     return outbuf;
 }
@@ -5022,7 +5022,7 @@ struct monst *mtmp;
 char *buf;
 {
     if (mtmp && buf) {
-	Sprintf(buf, "%s - %s",
+	sprintf(buf, "%s - %s",
 	    x_monnam(mtmp, ARTICLE_NONE, (char *)0, 0, TRUE),
 	    mtmp->mcan ? coynames[SIZE(coynames)-1] : coynames[rn2(SIZE(coynames)-1)]);
     }

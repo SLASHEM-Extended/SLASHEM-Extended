@@ -339,7 +339,7 @@ main(argc, argv)
 		    break;
 		}
 		ld[nfiles].fname = (char *) alloc(strlen(argv[ap]) + 1);
-		Strcpy(ld[nfiles].fname, argv[ap]);
+		strcpy(ld[nfiles].fname, argv[ap]);
 	    }
 	}
 
@@ -360,7 +360,7 @@ main(argc, argv)
 		}
 		*(eos(buf)-1) = '\0';	/* strip newline */
 		ld[nfiles].fname = (char *) alloc(strlen(buf) + 1);
-		Strcpy(ld[nfiles].fname, buf);
+		strcpy(ld[nfiles].fname, buf);
 	    }
 	    fclose(list);
 	}

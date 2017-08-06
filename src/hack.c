@@ -1842,7 +1842,7 @@ domove()
 	    (memory_is_invisible(x, y) && !flags.nopick)) {
 		boolean expl = (Upolyd && attacktype(youmonst.data, AT_EXPL));
 	    	char buf[BUFSZ];
-		Sprintf(buf,"a vacant spot on the %s", surface(x,y));
+		sprintf(buf,"a vacant spot on the %s", surface(x,y));
 		You("%s %s.",
 		    expl ? "explode at" : "attack",
 		    !Underwater ? "thin air" :
@@ -2096,7 +2096,7 @@ domove()
 	if (ask_about_trap(x, y)) {
 		char qbuf[BUFSZ];
 		trap = t_at(x, y);
-		Sprintf(qbuf,"Do you really want to %s into that %s?", 
+		sprintf(qbuf,"Do you really want to %s into that %s?", 
 				locomotion(youmonst.data, "step"),
 				defsyms[trap_to_defsym(trap->ttyp)].explanation);
 		if (yn(qbuf) != 'y') {
@@ -2216,7 +2216,7 @@ domove()
 
 	    u.utrap = 0;			/* A lucky escape */
 	    /* save its current description in case of polymorph */
-	    Strcpy(pnambuf, mon_nam(mtmp));
+	    strcpy(pnambuf, mon_nam(mtmp));
 	    remove_monster(x, y);
 	    place_monster(mtmp, u.ux0, u.uy0);
 	    /* check for displacing it into pools and traps */
@@ -2279,7 +2279,7 @@ domove()
 		char pnambuf[BUFSZ];
 
 		/* save its current description in case of polymorph */
-		Strcpy(pnambuf, y_monnam(mtmp));
+		strcpy(pnambuf, y_monnam(mtmp));
 		mtmp->mtrapped = 0;
 		remove_monster(x, y);
 		place_monster(mtmp, u.ux0, u.uy0);
@@ -2395,10 +2395,10 @@ invocation_message()
 		pline("You're picking up good vibrations!");
 		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    } else {
-	    if (u.usteed) Sprintf(buf, "beneath %s", y_monnam(u.usteed));
+	    if (u.usteed) sprintf(buf, "beneath %s", y_monnam(u.usteed));
 	    else
-	    if (Levitation || Flying) Strcpy(buf, "beneath you");
-	    else Sprintf(buf, "under your %s", makeplural(body_part(FOOT)));
+	    if (Levitation || Flying) strcpy(buf, "beneath you");
+	    else sprintf(buf, "under your %s", makeplural(body_part(FOOT)));
 
 	    You_feel("a strange vibration %s.", buf);
 		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -2455,21 +2455,21 @@ struct monst *mon;
 	if (mon->mhp == mon->mhpmax || mon->mhp < 1) 
 	    return (char *)0; 
 	if (!Hallucination && mon->mhp <= mon->mhpmax / 6) { 
-	    Sprintf(buf,"almost "); 
+	    sprintf(buf,"almost "); 
 	    strcat(buf, nonliving(mon->data) ? "destroyed" : "dead"); 
 	} else { 
 	    if (Hallucination) { 
-		Sprintf(buf,hallu_adverb[rn2(SIZE(hallu_adverb))]); 
+		sprintf(buf,hallu_adverb[rn2(SIZE(hallu_adverb))]); 
 		strcat(buf," "); 
 	    } 
 	    else if (mon->mhp <= mon->mhpmax / 4) 
-	        Sprintf(buf,"horribly "); 
+	        sprintf(buf,"horribly "); 
 	    else if (mon->mhp <= mon->mhpmax / 3) 
-	        Sprintf(buf,"heavily "); 
+	        sprintf(buf,"heavily "); 
 	    else if (mon->mhp <= 3 * mon->mhpmax / 4) 
-	        Sprintf(buf,"moderately "); 
+	        sprintf(buf,"moderately "); 
 	    else 
-		Sprintf(buf,"lightly "); 
+		sprintf(buf,"lightly "); 
 	    strcat(buf, wounded || (Hallucination && rn2(2)) ? "wounded" : "damaged"); 
 	} 
 	return buf; 
@@ -2794,17 +2794,17 @@ register boolean newlev;
 {
 	char *ptr1, *ptr2, *ptr3, *ptr4;
 
-	Strcpy(u.urooms0, u.urooms);
-	Strcpy(u.ushops0, u.ushops);
+	strcpy(u.urooms0, u.urooms);
+	strcpy(u.ushops0, u.ushops);
 	if (newlev) {
 		u.urooms[0] = '\0';
 		u.uentered[0] = '\0';
 		u.ushops[0] = '\0';
 		u.ushops_entered[0] = '\0';
-		Strcpy(u.ushops_left, u.ushops0);
+		strcpy(u.ushops_left, u.ushops0);
 		return;
 	}
-	Strcpy(u.urooms, in_rooms(u.ux, u.uy, 0));
+	strcpy(u.urooms, in_rooms(u.ux, u.uy, 0));
 
 	for (ptr1 = &u.urooms[0],
 	     ptr2 = &u.uentered[0],

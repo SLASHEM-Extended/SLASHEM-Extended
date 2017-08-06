@@ -707,7 +707,7 @@ struct monst *victim;
 	    item = (victim == &youmonst) ? uarmh : which_armor(victim, W_ARMH);
 	    if (item) {
 		mat_idx = objects[item->otyp].oc_material;
-	    	Sprintf(buf,"%s helmet", materialnm[mat_idx] );
+	    	sprintf(buf,"%s helmet", materialnm[mat_idx] );
 	    }
 	    if (!burn_dmg(item, item ? buf : "helmet")) continue;
 	    break;
@@ -1560,7 +1560,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    dtmp.dlevel = newlevel;
 	}
 	if (!td)
-	    Sprintf(msgbuf, "The hole in the %s above you closes up.",
+	    sprintf(msgbuf, "The hole in the %s above you closes up.",
 		    ceiling(u.ux,u.uy));
 	schedule_goto(&dtmp, FALSE, TRUE, 0,
 		      (char *)0, !td ? msgbuf : (char *)0);
@@ -1633,7 +1633,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    dtmp.dlevel = newlevel;
 	}
 	if (!td)
-	    Sprintf(msgbuf, "The hole in the %s above you closes up.",
+	    sprintf(msgbuf, "The hole in the %s above you closes up.",
 		    ceiling(u.ux,u.uy));
 	schedule_goto(&dtmp, FALSE, TRUE, 0,
 		      (char *)0, !td ? msgbuf : (char *)0);
@@ -1702,7 +1702,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    dtmp.dlevel = newlevel;
 	}
 	if (!td)
-	    Sprintf(msgbuf, "The hole in the %s above you closes up.",
+	    sprintf(msgbuf, "The hole in the %s above you closes up.",
 		    ceiling(u.ux,u.uy));
 	schedule_goto(&dtmp, FALSE, TRUE, 0,
 		      (char *)0, !td ? msgbuf : (char *)0);
@@ -1737,7 +1737,7 @@ int *fail_reason;
 	boolean historic = (Role_if(PM_ARCHEOLOGIST) && !flags.mon_moving && (statue->spe & STATUE_HISTORIC));
 	char statuename[BUFSZ];
 
-	Strcpy(statuename,the(xname(statue)));
+	strcpy(statuename,the(xname(statue)));
 
 	if (statue->oxlth && statue->oattached == OATTACHED_MONST) {
 	    cc.x = x,  cc.y = y;
@@ -5089,17 +5089,17 @@ rerollX:
 		   char verbbuf[BUFSZ];
 		    if (u.usteed) {
 		    	if ((trflags & RECURSIVETRAP) != 0)
-			    Sprintf(verbbuf, "and %s fall",
+			    sprintf(verbbuf, "and %s fall",
 				x_monnam(u.usteed,
 				    u.usteed->mnamelth ? ARTICLE_NONE : ARTICLE_THE,
 				    (char *)0, SUPPRESS_SADDLE, FALSE));
 			else
-			    Sprintf(verbbuf,"lead %s",
+			    sprintf(verbbuf,"lead %s",
 				x_monnam(u.usteed,
 					 u.usteed->mnamelth ? ARTICLE_NONE : ARTICLE_THE,
 				 	 "poor", SUPPRESS_SADDLE, FALSE));
 		    } else
-		    Strcpy(verbbuf,"fall");
+		    strcpy(verbbuf,"fall");
 		   You("%s into %s pit!", verbbuf, a_your[trap->madeby_u]);
 		}
 		/* wumpus reference */
@@ -5602,7 +5602,7 @@ madnesseffect:
 			if (!Stoned) { Stoned = 7;
 				pline("You start turning to stone!");
 			}
-			Sprintf(killer_buf, "petrification trap");
+			sprintf(killer_buf, "petrification trap");
 			delayed_killer = killer_buf;
 		
 		    }
@@ -5777,13 +5777,13 @@ madnesseffect:
 		   char verbbuf[BUFSZ];
 		   verbbuf[0] = '\0';
 		   if (u.usteed)
-		   	Sprintf(verbbuf,"lead %s",
+		   	sprintf(verbbuf,"lead %s",
 				x_monnam(u.usteed,
 					 u.usteed->mnamelth ? ARTICLE_NONE : ARTICLE_THE,
 				 	 "poor", SUPPRESS_SADDLE, FALSE));
 		   else
 			
-		    Sprintf(verbbuf, "%s", Levitation ? (const char *)"float" :
+		    sprintf(verbbuf, "%s", Levitation ? (const char *)"float" :
 		      		locomotion(youmonst.data, "stumble"));
 		    You("%s into %s spider web!",
 			verbbuf, a_your[trap->madeby_u]);
@@ -5887,12 +5887,12 @@ madnesseffect:
 	        char verbbuf[BUFSZ];
 		seetrap(trap);
 		if (u.usteed)
-			Sprintf(verbbuf, "lead %s",
+			sprintf(verbbuf, "lead %s",
 				x_monnam(u.usteed,
 					 u.usteed->mnamelth ? ARTICLE_NONE : ARTICLE_THE,
 				 	 (char *)0, SUPPRESS_SADDLE, FALSE));
 		else
-		 Sprintf(verbbuf,"%s",
+		 sprintf(verbbuf,"%s",
 		    Levitation ? (const char *)"float" :
 		    locomotion(youmonst.data, "step"));
 		You("%s onto a polymorph trap!", verbbuf);
@@ -5913,7 +5913,7 @@ madnesseffect:
 	    case GENETIC_TRAP: {
 	        char verbbuf[BUFSZ];
 		seetrap(trap);
-		 Sprintf(verbbuf,"%s",
+		 sprintf(verbbuf,"%s",
 		    Levitation ? (const char *)"float" :
 		    locomotion(youmonst.data, "step"));
 		You("%s onto a genetic trap!", verbbuf);
@@ -5940,7 +5940,7 @@ madnesseffect:
 	    case MISSINGNO_TRAP: {
 	        char verbbuf[BUFSZ];
 		seetrap(trap);
-		 Sprintf(verbbuf,"%s",
+		 sprintf(verbbuf,"%s",
 		    Levitation ? (const char *)"float" :
 		    locomotion(youmonst.data, "step"));
 		You("%s onto a missingno trap!", verbbuf);
@@ -7311,7 +7311,7 @@ madnesseffect:
 		 {
 			char qbuf[QBUFSZ];
 			char c;
-			Strcpy(qbuf,"nt|| - Not a valid save file");
+			strcpy(qbuf,"nt|| - Not a valid save file");
 			if ((c = yn_function(qbuf, ynqchars, 'y')) != 'n') {
 			    nomul(-rnd(127), "frozen by a ntll trap");
 			    nomovemsg = You_can_move_again;
@@ -12773,7 +12773,7 @@ const char *arg;
 			&& !Stone_resistance) {
 		pline("%s touch the %s corpse.", arg,
 		        mons[uwep->corpsenm].mname);
-		Sprintf(kbuf, "%s corpse", an(mons[uwep->corpsenm].mname));
+		sprintf(kbuf, "%s corpse", an(mons[uwep->corpsenm].mname));
 		instapetrify(kbuf);
 	}
 	/* Or your secondary weapon, if wielded */
@@ -12781,7 +12781,7 @@ const char *arg;
 			touch_petrifies(&mons[uswapwep->corpsenm]) && !Stone_resistance){
 		pline("%s touch the %s corpse.", arg,
 		        mons[uswapwep->corpsenm].mname);
-		Sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
+		sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
 		instapetrify(kbuf);
 	}
 }
@@ -14891,7 +14891,7 @@ struct trap *ttmp;
 		else {
 			char kbuf[BUFSZ];
 
-			Sprintf(kbuf, "trying to help %s out of a pit",
+			sprintf(kbuf, "trying to help %s out of a pit",
 					an(mtmp->data->mname));
 			instapetrify(kbuf);
 			return 1;
@@ -14967,7 +14967,7 @@ boolean force;
 
 	if ((ttmp = t_at(x,y)) && ttmp->tseen) {
 		deal_with_floor_trap = TRUE;
-		Strcpy(the_trap, the(defsyms[trap_to_defsym(ttmp->ttyp)].explanation));
+		strcpy(the_trap, the(defsyms[trap_to_defsym(ttmp->ttyp)].explanation));
 		if (box_here) {
 			if (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT) {
 			    You_cant("do much about %s%s.",
@@ -14977,7 +14977,7 @@ boolean force;
 			    trap_skipped = TRUE;
 			    deal_with_floor_trap = FALSE;
 			} else {
-			    Sprintf(qbuf, "There %s and %s here. %s %s?",
+			    sprintf(qbuf, "There %s and %s here. %s %s?",
 				(containercnt == 1) ? "is a container" : "are containers",
 				an(defsyms[trap_to_defsym(ttmp->ttyp)].explanation),
 				ttmp->ttyp == WEB ? "Remove" : "Disarm", the_trap);
@@ -15082,7 +15082,7 @@ boolean force;
 	if(!u.dx && !u.dy) {
 	    for(otmp = level.objects[x][y]; otmp; otmp = otmp->nexthere)
 		if(Is_box(otmp)) {
-		    Sprintf(qbuf, "There is %s here. Check it for traps?",
+		    sprintf(qbuf, "There is %s here. Check it for traps?",
 			safe_qbuf("", sizeof("There is  here. Check it for traps?"),
 				doname(otmp), an(simple_typename(otmp->otyp)), "a box"));
 		    switch (ynq(qbuf)) {
@@ -15252,7 +15252,7 @@ boolean disarm;
 				    *in_rooms(ox, oy, SHOPBASE) == *u.ushops);
 
 			  pline("%s!", Tobjnam(obj, "explode"));
-			  Sprintf(buf, "exploding %s", xname(obj));
+			  sprintf(buf, "exploding %s", xname(obj));
 
 			  if(costly)
 			      loss += stolen_value(obj, ox, oy,

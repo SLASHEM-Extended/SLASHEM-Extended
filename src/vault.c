@@ -815,7 +815,7 @@ paygd()
 	    pline("%s remits your gold to the vault.", Monnam(grd));
 	    gx = rooms[EGD(grd)->vroom].lx + rn2(2);
 	    gy = rooms[EGD(grd)->vroom].ly + rn2(2);
-	    Sprintf(buf,
+	    sprintf(buf,
 		"To Croesus: here's the gold recovered from %s the %s.",
 		plname, mons[u.umonster].mname);
 	    make_grave(gx, gy, buf);

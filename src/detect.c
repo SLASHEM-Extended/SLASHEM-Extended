@@ -220,7 +220,7 @@ register struct obj *sobj;
 	if (sobj) {
 		char buf[BUFSZ];
 		if (youmonst.data == &mons[PM_GOLD_GOLEM]) {
-			Sprintf(buf, "You feel like a million %s!",
+			sprintf(buf, "You feel like a million %s!",
 				currency(2L));
 		} else if (hidden_gold() ||
 #ifndef GOLDOBJ
@@ -228,10 +228,10 @@ register struct obj *sobj;
 #else
 			        money_cnt(invent))
 #endif
-			Strcpy(buf,
+			strcpy(buf,
 				"You feel worried about your future financial situation.");
 		else
-			Strcpy(buf, "You feel materially poor.");
+			strcpy(buf, "You feel materially poor.");
 		strange_feeling(sobj, buf);
         }
 	return(1);
@@ -340,7 +340,7 @@ register struct obj	*sobj;
 	    }
 	} else if (sobj) {
 	    char buf[BUFSZ];
-	    Sprintf(buf, "Your %s twitches%s.", body_part(NOSE),
+	    sprintf(buf, "Your %s twitches%s.", body_part(NOSE),
 			(sobj->blessed && !u.urealedibility) ? " then starts to tingle" : "");
 	    if (sobj->blessed && !u.urealedibility) {
 		boolean savebeginner = flags.beginner;	/* prevent non-delivery of */
@@ -445,10 +445,10 @@ int		class;		/* an object class, 0 for all */
     	boulder = ROCK_CLASS;
 
     if (Hallucination || (Confusion && class == SCROLL_CLASS))
-	Strcpy(stuff, something);
+	strcpy(stuff, something);
     else
-    	Strcpy(stuff, class ? oclass_names[class] : "objects");
-    if (boulder && class != ROCK_CLASS) Strcat(stuff, " and/or large stones");
+    	strcpy(stuff, class ? oclass_names[class] : "objects");
+    if (boulder && class != ROCK_CLASS) strcat(stuff, " and/or large stones");
 
     if (do_dknown) for(obj = invent; obj; obj = obj->nobj) {
 	if (guaranteed || (likely && rn2(5)) || !rn2(3)) do_dknown_of(obj);
@@ -619,9 +619,9 @@ struct obj	*detector;	/* object doing the detecting */
 	}
 	
     if (Hallucination)
-		Strcpy(stuff, something);
+		strcpy(stuff, something);
     else
-    	Strcpy(stuff, "artifacts");
+    	strcpy(stuff, "artifacts");
 
     if (do_dknown) for(obj = invent; obj; obj = obj->nobj) do_dknown_of(obj);
 
@@ -886,7 +886,7 @@ register struct obj *sobj;
     }
     if (!found) {
 	char buf[42];
-	Sprintf(buf, "Your %s stop itching.", makeplural(body_part(TOE)));
+	sprintf(buf, "Your %s stop itching.", makeplural(body_part(TOE)));
 	strange_feeling(sobj,buf);
 	return(1);
     }
@@ -957,7 +957,7 @@ register struct obj *sobj;
     }
     if (!found) {
 	char buf[42];
-	Sprintf(buf, "Your %s stop itching.", makeplural(body_part(TOE)));
+	sprintf(buf, "Your %s stop itching.", makeplural(body_part(TOE)));
 	strange_feeling(sobj,buf);
 	return(1);
     }

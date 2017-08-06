@@ -192,7 +192,7 @@ Pixel colorpixel;
 	    &annotation->width, &annotation->height, &annotation->bitmap,
 	    &annotation->hotx, &annotation->hoty)) {
 	char buf[BUFSZ];
-	Sprintf(buf, "Failed to load %s", filename);
+	sprintf(buf, "Failed to load %s", filename);
 	X11_raw_print(buf);
     }
 
@@ -355,7 +355,7 @@ init_tiles(wp)
     errorcode = XpmReadFileToImage(dpy, tile_file, &tile_image, 0, &attributes);
 
     if (errorcode == XpmColorFailed) {
-	Sprintf(buf, "Insufficient colors available to load %s.",
+	sprintf(buf, "Insufficient colors available to load %s.",
 		tilesets[tile_index].file);
 	X11_raw_print(buf);
 	X11_raw_print("Try closing other colorful applications and restart.");
@@ -370,11 +370,11 @@ init_tiles(wp)
 
     if (errorcode!=XpmSuccess) {
 	if (errorcode == XpmColorFailed) {
-	    Sprintf(buf, "Insufficient colors available to load %s.",
+	    sprintf(buf, "Insufficient colors available to load %s.",
 		    tilesets[tile_index].file);
 	    X11_raw_print(buf);
 	} else {
-	    Sprintf(buf, "Failed to load %s: %s",tilesets[tile_index].file,
+	    sprintf(buf, "Failed to load %s: %s",tilesets[tile_index].file,
 		    XpmGetErrorString(errorcode));
 	    X11_raw_print(buf);
 	}
@@ -388,7 +388,7 @@ init_tiles(wp)
 	tile_image->width % tiles_per_row != 0 ||
 	tile_image->width <= tiles_per_row) {
 	char buf[BUFSIZ];
-	Sprintf(buf,
+	sprintf(buf,
 		"%s appears to have a non-integer tile size.\n"
 		"Its size (%dx%d) should be a multiple of %dx%d",
 		tilesets[tile_index].file,
@@ -430,7 +430,7 @@ init_tiles(wp)
     }
 
     if (header.version != 1 && header.version != 2) {
-	Sprintf(buf, "Wrong tile file version, expected 1 or 2, got %lu",
+	sprintf(buf, "Wrong tile file version, expected 1 or 2, got %lu",
 		header.version);
 	X11_raw_print(buf);
 	result = FALSE;
@@ -472,7 +472,7 @@ init_tiles(wp)
 	if (!XAllocColor(dpy, DefaultColormapOfScreen(screen), &colors[i]) &&
 	    !nhApproxColor(screen, DefaultColormapOfScreen(screen),
 			   (char *)0, &colors[i])) {
-	    Sprintf(buf, "%dth out of %ld color allocation failed",
+	    sprintf(buf, "%dth out of %ld color allocation failed",
 		    i, header.ncolors);
 	    X11_raw_print(buf);
 	    result = FALSE;
@@ -497,7 +497,7 @@ init_tiles(wp)
     }
 
     if (header.ntiles < total_tiles_used) {
-	Sprintf(buf, "tile file incomplete, expecting %d tiles, found %lu",
+	sprintf(buf, "tile file incomplete, expecting %d tiles, found %lu",
 		total_tiles_used, header.ntiles);
 	X11_raw_print(buf);
 	result = FALSE;
@@ -1120,7 +1120,7 @@ map_input(w, event, params, num_params)
 #endif
 	    if (in_nparams > 0 &&
 		(nbytes = strlen(params[0])) < MAX_KEY_STRING) {
-		Strcpy(keystring, params[0]);
+		strcpy(keystring, params[0]);
 		key = (XKeyEvent *) event; /* just in case */
 		goto key_events;
 	    }
@@ -1149,7 +1149,7 @@ map_input(w, event, params, num_params)
 	    key = (XKeyEvent *) event;
 	    if (in_nparams > 0 &&
 		(nbytes = strlen(params[0])) < MAX_KEY_STRING) {
-		Strcpy(keystring, params[0]);
+		strcpy(keystring, params[0]);
 	    } else {
 		/*
 		 * Assume that mod1 is really the meta key.

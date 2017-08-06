@@ -166,7 +166,7 @@ ldrname()	/* return your role leader's name */
 {
 	int i = urole.ldrnum;
 
-	Sprintf(nambuf, "%s%s",
+	sprintf(nambuf, "%s%s",
 		type_is_pname(&mons[i]) ? "" : "the ",
 		mons[i].mname);
 	return nambuf;
@@ -190,7 +190,7 @@ neminame()	/* return your role nemesis' name */
 {
 	int i = urole.neminum;
 
-	Sprintf(nambuf, "%s%s",
+	sprintf(nambuf, "%s%s",
 		type_is_pname(&mons[i]) ? "" : "the ",
 		mons[i].mname);
 	return nambuf;
@@ -282,7 +282,7 @@ char c;
 	     default:	str = "";
 			break;
 	}
-	Strcpy(cvt_buf, str);
+	strcpy(cvt_buf, str);
 }
 
 STATIC_OVL void
@@ -308,10 +308,10 @@ convert_line()
 			    switch (*(++c)) {
 
 					/* insert "a"/"an" prefix */
-				case 'A': Strcat(cc, An(cvt_buf));
+				case 'A': strcat(cc, An(cvt_buf));
 				    cc += strlen(cc);
 				    continue; /* for */
-				case 'a': Strcat(cc, an(cvt_buf));
+				case 'a': strcat(cc, an(cvt_buf));
 				    cc += strlen(cc);
 				    continue; /* for */
 
@@ -321,17 +321,17 @@ convert_line()
 
 					/* pluralize */
 				case 'P': cvt_buf[0] = highc(cvt_buf[0]);
-				case 'p': Strcpy(cvt_buf, makeplural(cvt_buf));
+				case 'p': strcpy(cvt_buf, makeplural(cvt_buf));
 				    break;
 
 					/* append possessive suffix */
 				case 'S': cvt_buf[0] = highc(cvt_buf[0]);
-				case 's': Strcpy(cvt_buf, s_suffix(cvt_buf));
+				case 's': strcpy(cvt_buf, s_suffix(cvt_buf));
 				    break;
 
 					/* strip any "the" prefix */
 				case 't': if (!strncmpi(cvt_buf, "the ", 4)) {
-					Strcat(cc, &cvt_buf[4]);
+					strcat(cc, &cvt_buf[4]);
 					cc += strlen(cc);
 					continue; /* for */
 				    }
@@ -340,7 +340,7 @@ convert_line()
 				default: --c;	/* undo switch increment */
 				    break;
 			    }
-			    Strcat(cc, cvt_buf);
+			    strcat(cc, cvt_buf);
 			    cc += strlen(cvt_buf);
 			    break;
 			}	/* else fall through */

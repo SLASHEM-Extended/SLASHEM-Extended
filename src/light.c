@@ -632,7 +632,7 @@ wiz_light_sources()
     win = create_nhwindow(NHW_MENU);	/* corner text window */
     if (win == WIN_ERR) return 0;
 
-    Sprintf(buf, "Mobile light sources: hero @ (%2d,%2d)", u.ux, u.uy);
+    sprintf(buf, "Mobile light sources: hero @ (%2d,%2d)", u.ux, u.uy);
     putstr(win, 0, buf);
     putstr(win, 0, "");
 
@@ -640,7 +640,7 @@ wiz_light_sources()
 	putstr(win, 0, "location range flags  type    id");
 	putstr(win, 0, "-------- ----- ------ ----  -------");
 	for (ls = light_base; ls; ls = ls->next) {
-	    Sprintf(buf, "  %2d,%2d   %2d   0x%04x  %s  %s",
+	    sprintf(buf, "  %2d,%2d   %2d   0x%04x  %s  %s",
 		ls->x, ls->y, ls->range, ls->flags,
 		(ls->type == LS_OBJECT ? "obj" :
 		 ls->type == LS_MONSTER ?

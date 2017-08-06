@@ -212,7 +212,7 @@ remember_topl()
 	cw->data[idx] = (char *)alloc(len);
 	cw->datlen[idx] = (short)len;
     }
-    Strcpy(cw->data[idx], toplines);
+    strcpy(cw->data[idx], toplines);
     cw->maxcol = cw->maxrow = (idx + 1) % cw->rows;
 }
 
@@ -308,8 +308,8 @@ update_topl(bp)
 	    cw->cury == 0 &&
 	    n0 + (int)strlen(toplines) + 3 < CO-8 &&  /* room for --More-- */
 	    (notdied = strncmp(bp, "You die", 7))) {
-		Strcat(toplines, "  ");
-		Strcat(toplines, bp);
+		strcat(toplines, "  ");
+		strcat(toplines, bp);
 		cw->curx += 2;
                 if(!(cw->flags & WIN_STOP))
 		    addtopl(bp);
@@ -430,12 +430,12 @@ char def;
 	    char *rb, respbuf[QBUFSZ];
 
 	    allow_num = (index(resp, '#') != 0);
-	    Strcpy(respbuf, resp);
+	    strcpy(respbuf, resp);
 	    /* any acceptable responses that follow <esc> aren't displayed */
 	    if ((rb = index(respbuf, '\033')) != 0) *rb = '\0';
 	    if (!strncmpi(query, "nt|| - Not a valid save file", 29) ) sprintf(prompt, "%s [y] ", query);
-	    else Sprintf(prompt, "%s [%s] ", query, respbuf);
-	    if (def) Sprintf(eos(prompt), "(%c) ", def);
+	    else sprintf(prompt, "%s [%s] ", query, respbuf);
+	    if (def) sprintf(eos(prompt), "(%c) ", def);
 	    pline("%s", prompt);
 	} else {
 	    pline("%s ", query);
@@ -530,7 +530,7 @@ char def;
 	} while(!q);
 
 	if (q != '#') {
-		Sprintf(rtmp, "%c", q);
+		sprintf(rtmp, "%c", q);
 		addtopl(rtmp);
 	}
     clean_up:

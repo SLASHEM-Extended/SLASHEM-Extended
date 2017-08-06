@@ -615,7 +615,7 @@ int after, udist, whappr;
 #define CHECK_ALLOW(flag,str)	if ((allowflags & (flag)) == (flag)) { \
 				    allowflags ^= (flag); \
 				    if (bp != buf) { *bp++=','; *bp++=' '; } \
-				    Strcpy(bp, str); \
+				    strcpy(bp, str); \
 				    bp += strlen(bp); \
 				} else
 

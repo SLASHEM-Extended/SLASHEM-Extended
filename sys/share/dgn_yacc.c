@@ -356,8 +356,8 @@ init_dungeon()
 	tmpdungeon[n_dgns].lev.base = 0;
 	tmpdungeon[n_dgns].lev.rand = 0;
 	tmpdungeon[n_dgns].chance = 100;
-	Strcpy(tmpdungeon[n_dgns].name, "");
-	Strcpy(tmpdungeon[n_dgns].protoname, "");
+	strcpy(tmpdungeon[n_dgns].name, "");
+	strcpy(tmpdungeon[n_dgns].protoname, "");
 	tmpdungeon[n_dgns].flags = 0;
 	tmpdungeon[n_dgns].levels = 0;
 	tmpdungeon[n_dgns].branches = 0;
@@ -376,7 +376,7 @@ init_level()
 	tmplevel[n_levs].chance = 100;
 	tmplevel[n_levs].rndlevs = 0;
 	tmplevel[n_levs].flags = 0;
-	Strcpy(tmplevel[n_levs].name, "");
+	strcpy(tmplevel[n_levs].name, "");
 	tmplevel[n_levs].chain = -1;
 }
 
@@ -390,7 +390,7 @@ init_branch()
 	}
 	tmpbranch[n_brs].lev.base = 0;
 	tmpbranch[n_brs].lev.rand = 0;
-	Strcpy(tmpbranch[n_brs].name, "");
+	strcpy(tmpbranch[n_brs].name, "");
 	tmpbranch[n_brs].chain = -1;
 	tmpbranch[n_brs].entry_lev = 0;
 }
@@ -791,7 +791,7 @@ case 9:
 			init_dungeon();
 			if (strlen(yyvsp[-3].str)+1 > sizeof(tmpdungeon[n_dgns].name))
 			    yyerror("Dungeon name is too long");
-			Strcpy(tmpdungeon[n_dgns].name, yyvsp[-3].str);
+			strcpy(tmpdungeon[n_dgns].name, yyvsp[-3].str);
 			tmpdungeon[n_dgns].boneschar = (char)yyvsp[-2].i;
 			tmpdungeon[n_dgns].lev.base = couple.base;
 			tmpdungeon[n_dgns].lev.rand = couple.rand;
@@ -835,7 +835,7 @@ case 19:
 {
 			if (strlen(yyvsp[0].str)+1 > sizeof(tmpdungeon[n_dgns].protoname))
 			    yyerror("Proto name is too long");
-			Strcpy(tmpdungeon[n_dgns].protoname, yyvsp[0].str);
+			strcpy(tmpdungeon[n_dgns].protoname, yyvsp[0].str);
 			Free(yyvsp[0].str);
 		  }
 break;
@@ -844,7 +844,7 @@ case 25:
 			init_level();
 			if (strlen(yyvsp[-3].str)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, yyvsp[-3].str);
+			strcpy(tmplevel[n_levs].name, yyvsp[-3].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-2].i;
 			tmplevel[n_levs].lev.base = couple.base;
 			tmplevel[n_levs].lev.rand = couple.rand;
@@ -857,7 +857,7 @@ case 26:
 			init_level();
 			if (strlen(yyvsp[-4].str)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, yyvsp[-4].str);
+			strcpy(tmplevel[n_levs].name, yyvsp[-4].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-3].i;
 			tmplevel[n_levs].lev.base = couple.base;
 			tmplevel[n_levs].lev.rand = couple.rand;
@@ -871,7 +871,7 @@ case 27:
 			init_level();
 			if (strlen(yyvsp[-4].str)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, yyvsp[-4].str);
+			strcpy(tmplevel[n_levs].name, yyvsp[-4].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-3].i;
 			tmplevel[n_levs].lev.base = couple.base;
 			tmplevel[n_levs].lev.rand = couple.rand;
@@ -885,7 +885,7 @@ case 28:
 			init_level();
 			if (strlen(yyvsp[-5].str)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, yyvsp[-5].str);
+			strcpy(tmplevel[n_levs].name, yyvsp[-5].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-4].i;
 			tmplevel[n_levs].lev.base = couple.base;
 			tmplevel[n_levs].lev.rand = couple.rand;
@@ -916,7 +916,7 @@ case 31:
 			init_level();
 			if (strlen(yyvsp[-4].str)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, yyvsp[-4].str);
+			strcpy(tmplevel[n_levs].name, yyvsp[-4].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-3].i;
 			tmplevel[n_levs].chain = getchain(yyvsp[-2].str);
 			tmplevel[n_levs].lev.base = couple.base;
@@ -932,7 +932,7 @@ case 32:
 			init_level();
 			if (strlen(yyvsp[-5].str)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, yyvsp[-5].str);
+			strcpy(tmplevel[n_levs].name, yyvsp[-5].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-4].i;
 			tmplevel[n_levs].chain = getchain(yyvsp[-3].str);
 			tmplevel[n_levs].lev.base = couple.base;
@@ -949,7 +949,7 @@ case 33:
 			init_level();
 			if (strlen(yyvsp[-5].str)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, yyvsp[-5].str);
+			strcpy(tmplevel[n_levs].name, yyvsp[-5].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-4].i;
 			tmplevel[n_levs].chain = getchain(yyvsp[-3].str);
 			tmplevel[n_levs].lev.base = couple.base;
@@ -966,7 +966,7 @@ case 34:
 			init_level();
 			if (strlen(yyvsp[-6].str)+1 > sizeof(tmplevel[n_levs].name))
 			    yyerror("Level name is too long");
-			Strcpy(tmplevel[n_levs].name, yyvsp[-6].str);
+			strcpy(tmplevel[n_levs].name, yyvsp[-6].str);
 			tmplevel[n_levs].boneschar = (char)yyvsp[-5].i;
 			tmplevel[n_levs].chain = getchain(yyvsp[-4].str);
 			tmplevel[n_levs].lev.base = couple.base;
@@ -984,7 +984,7 @@ case 37:
 			init_branch();
 			if (strlen(yyvsp[-5].str)+1 > sizeof(tmpbranch[n_brs].name))
 			    yyerror("Dungeon name is too long");
-			Strcpy(tmpbranch[n_brs].name, yyvsp[-5].str);
+			strcpy(tmpbranch[n_brs].name, yyvsp[-5].str);
 			tmpbranch[n_brs].lev.base = couple.base;
 			tmpbranch[n_brs].lev.rand = couple.rand;
 			tmpbranch[n_brs].type = yyvsp[-2].i;
@@ -1000,7 +1000,7 @@ case 38:
 			init_branch();
 			if (strlen(yyvsp[-6].str)+1 > sizeof(tmpbranch[n_brs].name))
 			    yyerror("Dungeon name is too long");
-			Strcpy(tmpbranch[n_brs].name, yyvsp[-6].str);
+			strcpy(tmpbranch[n_brs].name, yyvsp[-6].str);
 			tmpbranch[n_brs].chain = getchain(yyvsp[-5].str);
 			tmpbranch[n_brs].lev.base = couple.base;
 			tmpbranch[n_brs].lev.rand = couple.rand;

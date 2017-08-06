@@ -156,15 +156,15 @@ int how;
     default:
 	impossible("bad killer format?");
     case KILLED_BY_AN:
-	Strcpy(buf, killed_by_prefix[how]);
-	Strcat(buf, an(killer));
+	strcpy(buf, killed_by_prefix[how]);
+	strcat(buf, an(killer));
 	break;
     case KILLED_BY:
-	Strcpy(buf, killed_by_prefix[how]);
-	Strcat(buf, killer);
+	strcpy(buf, killed_by_prefix[how]);
+	strcat(buf, killer);
 	break;
     case NO_KILLER_PREFIX:
-	Strcpy(buf, killer);
+	strcpy(buf, killer);
 	break;
     }
 
@@ -190,12 +190,12 @@ int how;
     SetDrMd(rp,JAM1);
 
     /* Put name on stone */
-    Sprintf(buf, "%s", plname);
+    sprintf(buf, "%s", plname);
     buf[STONE_LINE_LEN] = 0;
     tomb_text(buf);
 
     /* Put $ on stone */
-    Sprintf(buf, "%ld Au",
+    sprintf(buf, "%ld Au",
 #ifndef GOLDOBJ
 		u.ugold);
 #else
@@ -209,15 +209,15 @@ int how;
     default:
 	impossible("bad killer format?");
     case KILLED_BY_AN:
-	Strcpy(buf, killed_by_prefix[how]);
-	Strcat(buf, an(killer));
+	strcpy(buf, killed_by_prefix[how]);
+	strcat(buf, an(killer));
 	break;
     case KILLED_BY:
-	Strcpy(buf, killed_by_prefix[how]);
-	Strcat(buf, killer);
+	strcpy(buf, killed_by_prefix[how]);
+	strcat(buf, killer);
 	break;
     case NO_KILLER_PREFIX:
-	Strcpy(buf, killer);
+	strcpy(buf, killer);
 	break;
     }
 
@@ -254,7 +254,7 @@ int how;
     }
 
     /* Put year on stone */
-    Sprintf(buf, "%4d", getyear());
+    sprintf(buf, "%4d", getyear());
     tomb_text(buf);
 
 #ifdef NH320_DEDICATION

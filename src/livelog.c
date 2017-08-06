@@ -161,7 +161,7 @@ doshout()
 	char buf[BUFSZ], qbuf[QBUFSZ];
 	char* p;
 	
-	Sprintf(qbuf,"Shout what?");
+	sprintf(qbuf,"Shout what?");
 	getlin(qbuf, buf);
 	
 	You("shout into the void: %s", buf);

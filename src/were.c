@@ -262,372 +262,372 @@ char *genbuf;
 		case PM_WERERAT:
 		case PM_HUMAN_WERERAT:
 			typ = rn2(3) ? PM_SEWER_RAT : rn2(3) ? PM_GIANT_RAT : PM_RABID_RAT ;
-			if (genbuf) Strcpy(genbuf, "rat");
+			if (genbuf) strcpy(genbuf, "rat");
 			break;
 		case PM_WERERABBIT:
 		case PM_HUMAN_WERERABBIT:
 			typ = rn2(5) ? PM_RABBIT : PM_RABID_RABBIT ;
-			if (genbuf) Strcpy(genbuf, "rabbit");
+			if (genbuf) strcpy(genbuf, "rabbit");
 			break;
 		case PM_WEREBOAR:
 		case PM_HUMAN_WEREBOAR:
 			typ = rn2(5) ? PM_BOAR : PM_DIRE_BOAR ;
-			if (genbuf) Strcpy(genbuf, "boar");
+			if (genbuf) strcpy(genbuf, "boar");
 			break;
 		case PM_WERELOCUST:
 		case PM_HUMAN_WERELOCUST:
 			typ = rn2(5) ? PM_SMALL_LOCUST : PM_LOCUST ;
-			if (genbuf) Strcpy(genbuf, "locust");
+			if (genbuf) strcpy(genbuf, "locust");
 			break;
 		case PM_WEREJACKAL:
 		case PM_HUMAN_WEREJACKAL:
 			typ = PM_JACKAL;
-			if (genbuf) Strcpy(genbuf, "jackal");
+			if (genbuf) strcpy(genbuf, "jackal");
 			break;
 		case PM_WEREWOLF:
 		case PM_HUMAN_WEREWOLF:
 			typ = rn2(5) ? PM_WOLF : PM_WINTER_WOLF ;
-			if (genbuf) Strcpy(genbuf, "wolf");
+			if (genbuf) strcpy(genbuf, "wolf");
 			break;
 		case PM_WEREPANTHER:
 		case PM_HUMAN_WEREPANTHER:
 			typ = rn2(5) ? PM_JAGUAR : PM_PANTHER ;
-			if (genbuf) Strcpy(genbuf, "large cat");
+			if (genbuf) strcpy(genbuf, "large cat");
 			break;
 		case PM_WERETIGER:
 		case PM_HUMAN_WERETIGER:
 			typ = rn2(5) ? PM_JAGUAR : PM_TIGER ;
-			if (genbuf) Strcpy(genbuf, "large cat");
+			if (genbuf) strcpy(genbuf, "large cat");
 			break;
 		case PM_WERESNAKE:
 		case PM_HUMAN_WERESNAKE:
 			typ = rn2(5) ? PM_STANDARD_SNAKE : PM_CHASM_VIPER ;
-			if (genbuf) Strcpy(genbuf, "snake");
+			if (genbuf) strcpy(genbuf, "snake");
 			break;
 		case PM_WERESPIDER:
 		case PM_HUMAN_WERESPIDER:
 			typ = rn2(5) ? PM_LAND_SPIDER : PM_MUD_SPIDER ;
-			if (genbuf) Strcpy(genbuf, "spider");
+			if (genbuf) strcpy(genbuf, "spider");
 			break;
 		case PM_WEREGHOST:
 		case PM_HUMAN_WEREGHOST:
 			typ = rn2(5) ? PM_GHOST : PM_BOO ;
-			if (genbuf) Strcpy(genbuf, "spiritual");
+			if (genbuf) strcpy(genbuf, "spiritual");
 			break;
 		case PM_WEREGIANT:
 		case PM_HUMAN_WEREGIANT:
 			typ = rn2(5) ? PM_GIANT : PM_HILL_GIANT ;
-			if (genbuf) Strcpy(genbuf, "giant");
+			if (genbuf) strcpy(genbuf, "giant");
 			break;
 		case PM_WERELICHEN:
 		case PM_HUMAN_WERELICHEN:
 			typ = rn2(5) ? PM_AGGRESSIVE_LICHEN : PM_POISON_LICHEN ;
-			if (genbuf) Strcpy(genbuf, "fungus");
+			if (genbuf) strcpy(genbuf, "fungus");
 			break;
 		case PM_WEREVORTEX:
 		case PM_HUMAN_WEREVORTEX:
 			typ = rn2(5) ? PM_ENERGY_VORTEX : PM_STEAM_VORTEX ;
-			if (genbuf) Strcpy(genbuf, "vortex");
+			if (genbuf) strcpy(genbuf, "vortex");
 			break;
 		case PM_WERECOW:
 		case PM_HUMAN_WERECOW:
 			typ = rn2(5) ? PM_COW : PM_BULL ;
-			if (genbuf) Strcpy(genbuf, "bovine");
+			if (genbuf) strcpy(genbuf, "bovine");
 			break;
 		case PM_WEREBEAR:
 		case PM_HUMAN_WEREBEAR:
 			typ = rn2(5) ? PM_BROWN_BEAR : PM_CAVE_BEAR ;
-			if (genbuf) Strcpy(genbuf, "ursa major");
+			if (genbuf) strcpy(genbuf, "ursa major");
 			break;
 		case PM_WEREPIERCER:
 		case PM_HUMAN_WEREPIERCER:
 			typ = rn2(5) ? PM_ROCK_PIERCER : PM_IRON_PIERCER ;
-			if (genbuf) Strcpy(genbuf, "piercer");
+			if (genbuf) strcpy(genbuf, "piercer");
 			break;
 		case PM_WEREPENETRATOR:
 		case PM_HUMAN_WEREPENETRATOR:
 			typ = rn2(5) ? PM_ROCK_PENETRATOR : PM_IRON_PENETRATOR ;
-			if (genbuf) Strcpy(genbuf, "penetrator");
+			if (genbuf) strcpy(genbuf, "penetrator");
 			break;
 		case PM_WERESMASHER:
 		case PM_HUMAN_WERESMASHER:
 			typ = rn2(5) ? PM_ROCK_SMASHER : PM_IRON_SMASHER ;
-			if (genbuf) Strcpy(genbuf, "smasher");
+			if (genbuf) strcpy(genbuf, "smasher");
 			break;
 		case PM_WERENYMPH:
 		case PM_HUMAN_WERENYMPH:
 			typ = rn2(5) ? PM_WOOD_NYMPH : PM_WATER_NYMPH ;
-			if (genbuf) Strcpy(genbuf, "nymph");
+			if (genbuf) strcpy(genbuf, "nymph");
 			break;
 		case PM_WEREBEE:
 		case PM_HUMAN_WEREBEE:
 			typ = PM_KILLER_BEE;
-			if (genbuf) Strcpy(genbuf, "bee");
+			if (genbuf) strcpy(genbuf, "bee");
 			break;
 		case PM_WEREMIMIC:
 		case PM_HUMAN_WEREMIMIC:
 			typ = rn2(5) ? PM_LARGE_MIMIC : PM_GIANT_MIMIC ;
-			if (genbuf) Strcpy(genbuf, "mimic");
+			if (genbuf) strcpy(genbuf, "mimic");
 			break;
 		case PM_WEREPERMAMIMIC:
 		case PM_HUMAN_WEREPERMAMIMIC:
 			typ = rn2(5) ? PM_LARGE_PERMAMIMIC : PM_GIANT_PERMAMIMIC ;
-			if (genbuf) Strcpy(genbuf, "mimic");
+			if (genbuf) strcpy(genbuf, "mimic");
 			break;
 		case PM_WEREMINDFLAYER:
 		case PM_HUMAN_WEREMINDFLAYER:
 			typ = rn2(5) ? PM_MIND_FLAYER : PM_MASTER_MIND_FLAYER ;
-			if (genbuf) Strcpy(genbuf, "mind flayer");
+			if (genbuf) strcpy(genbuf, "mind flayer");
 			break;
 		case PM_WERECOCKATRICE:
 		case PM_HUMAN_WERECOCKATRICE:
 			typ = rn2(5) ? PM_CHICKATRICE : PM_COCKATRICE ;
-			if (genbuf) Strcpy(genbuf, "cockatrice");
+			if (genbuf) strcpy(genbuf, "cockatrice");
 			break;
 		case PM_WERESOLDIERANT:
 		case PM_HUMAN_WERESOLDIERANT:
 			typ = rn2(5) ? PM_SOLDIER_ANT : PM_GIANT_RED_ANT ;
-			if (genbuf) Strcpy(genbuf, "ant");
+			if (genbuf) strcpy(genbuf, "ant");
 			break;
 		case PM_WERETROLL:
 		case PM_HUMAN_WERETROLL:
 			typ = rn2(5) ? PM_TROLL : PM_ICE_TROLL ;
-			if (genbuf) Strcpy(genbuf, "troll");
+			if (genbuf) strcpy(genbuf, "troll");
 			break;
 		case PM_WEREBAT:
 		case PM_HUMAN_WEREBAT:
 			typ = rn2(5) ? PM_BAT : PM_GIANT_BAT ;
-			if (genbuf) Strcpy(genbuf, "bat");
+			if (genbuf) strcpy(genbuf, "bat");
 			break;
 		case PM_WEREPIRANHA:
 		case PM_HUMAN_WEREPIRANHA:
 			typ = rn2(5) ? PM_PIRANHA : PM_BLOODTHIRSTY_PIRANHA ;
-			if (genbuf) Strcpy(genbuf, "piranha");
+			if (genbuf) strcpy(genbuf, "piranha");
 			break;
 		case PM_WEREEEL:
 		case PM_HUMAN_WEREEEL:
 			typ = rn2(5) ? PM_GIANT_EEL : PM_ELECTRIC_EEL ;
-			if (genbuf) Strcpy(genbuf, "eel");
+			if (genbuf) strcpy(genbuf, "eel");
 			break;
 		case PM_WEREFLYFISH:
 		case PM_HUMAN_WEREFLYFISH:
 			typ = rn2(5) ? PM_FLYING_RIBBON_FISH : PM_FLYING_SKELETON_FISH ;
-			if (genbuf) Strcpy(genbuf, "flying fish");
+			if (genbuf) strcpy(genbuf, "flying fish");
 			break;
 		case PM_WEREKRAKEN:
 		case PM_HUMAN_WEREKRAKEN:
 			typ = rn2(5) ? PM_KRAKEN : PM_HENTAI_OCTOPUS ;
-			if (genbuf) Strcpy(genbuf, "kraken");
+			if (genbuf) strcpy(genbuf, "kraken");
 			break;
 		case PM_WERELICH:
 		case PM_HUMAN_WERELICH:
 			typ = rn2(5) ? PM_LICH : PM_LICH_WARRIOR ;
-			if (genbuf) Strcpy(genbuf, "lich");
+			if (genbuf) strcpy(genbuf, "lich");
 			break;
 		case PM_WEREJABBERWOCK:
 		case PM_HUMAN_WEREJABBERWOCK:
 			typ = rn2(5) ? PM_JABBERWOCK : PM_VORPAL_JABBERWOCK ;
-			if (genbuf) Strcpy(genbuf, "jabberwock");
+			if (genbuf) strcpy(genbuf, "jabberwock");
 			break;
 		case PM_WEREGRIDBUG:
 		case PM_HUMAN_WEREGRIDBUG:
 			typ = rn2(5) ? PM_GRID_BUG : PM_TRON_BUG ;
-			if (genbuf) Strcpy(genbuf, "grid bug");
+			if (genbuf) strcpy(genbuf, "grid bug");
 			break;
 		case PM_WEREACIDBLOB:
 		case PM_HUMAN_WEREACIDBLOB:
 			typ = PM_ACID_BLOB;
-			if (genbuf) Strcpy(genbuf, "blob");
+			if (genbuf) strcpy(genbuf, "blob");
 			break;
 		case PM_WEREFOX:
 		case PM_HUMAN_WEREFOX:
 			typ = rn2(5) ? PM_FOX : PM_LARGE_FOX;
-			if (genbuf) Strcpy(genbuf, "fox");
+			if (genbuf) strcpy(genbuf, "fox");
 			break;
 		case PM_WEREMONKEY:
 		case PM_HUMAN_WEREMONKEY:
 			typ = rn2(5) ? PM_MONKEY : PM_INTELLIGENT_MONKEY;
-			if (genbuf) Strcpy(genbuf, "monkey");
+			if (genbuf) strcpy(genbuf, "monkey");
 			break;
 		case PM_WEREFLOATINGEYE:
 		case PM_HUMAN_WEREFLOATINGEYE:
 			typ = PM_FLOATING_EYE;
-			if (genbuf) Strcpy(genbuf, "eye");
+			if (genbuf) strcpy(genbuf, "eye");
 			break;
 		case PM_WEREGIANTANT:
 		case PM_HUMAN_WEREGIANTANT:
 			typ = PM_GIANT_ANT;
-			if (genbuf) Strcpy(genbuf, "ant");
+			if (genbuf) strcpy(genbuf, "ant");
 			break;
 		case PM_WEREKOBOLD:
 		case PM_HUMAN_WEREKOBOLD:
 			typ = rn2(5) ? PM_KOBOLD : PM_LARGE_KOBOLD;
-			if (genbuf) Strcpy(genbuf, "kobold");
+			if (genbuf) strcpy(genbuf, "kobold");
 			break;
 		case PM_WERELEPRECHAUN:
 		case PM_HUMAN_WERELEPRECHAUN:
 			typ = PM_LEPRECHAUN;
-			if (genbuf) Strcpy(genbuf, "leprechaun");
+			if (genbuf) strcpy(genbuf, "leprechaun");
 			break;
 		case PM_WEREHORSE:
 		case PM_HUMAN_WEREHORSE:
 			typ = rn2(3) ? PM_PONY : PM_HORSE;
-			if (genbuf) Strcpy(genbuf, "horse");
+			if (genbuf) strcpy(genbuf, "horse");
 			break;
 		case PM_WERERUSTMONSTER:
 		case PM_HUMAN_WERERUSTMONSTER:
 			typ = PM_RUST_MONSTER;
-			if (genbuf) Strcpy(genbuf, "rust monster");
+			if (genbuf) strcpy(genbuf, "rust monster");
 			break;
 		case PM_WEREBLACKLIGHT:
 		case PM_HUMAN_WEREBLACKLIGHT:
 			typ = PM_BLACK_LIGHT;
-			if (genbuf) Strcpy(genbuf, "light");
+			if (genbuf) strcpy(genbuf, "light");
 			break;
 		case PM_WEREAUTON:
 		case PM_HUMAN_WEREAUTON:
 			typ = rn2(3) ? PM_MONOTON : rn2(2) ? PM_DUTON : rn2(2) ? PM_TRITON : rn2(3) ? PM_QUATON : PM_QUINON;
-			if (genbuf) Strcpy(genbuf, "auton");
+			if (genbuf) strcpy(genbuf, "auton");
 			break;
 		case PM_WEREGREMLIN:
 		case PM_HUMAN_WEREGREMLIN:
 			typ = PM_HEALING_GREMLIN;
-			if (genbuf) Strcpy(genbuf, "gremlin");
+			if (genbuf) strcpy(genbuf, "gremlin");
 			break;
 		case PM_WEREGREENSLIME:
 		case PM_HUMAN_WEREGREENSLIME:
 			typ = PM_GREEN_SLIME;
-			if (genbuf) Strcpy(genbuf, "slime");
+			if (genbuf) strcpy(genbuf, "slime");
 			break;
 		case PM_WEREJELLY:
 		case PM_HUMAN_WEREJELLY:
 			typ = PM_OCHRE_JELLY;
-			if (genbuf) Strcpy(genbuf, "jelly");
+			if (genbuf) strcpy(genbuf, "jelly");
 			break;
 		case PM_WEREXAN:
 		case PM_HUMAN_WEREXAN:
 			typ = PM_XAN;
-			if (genbuf) Strcpy(genbuf, "xan");
+			if (genbuf) strcpy(genbuf, "xan");
 			break;
 		case PM_WEREMUMAK:
 		case PM_HUMAN_WEREMUMAK:
 			typ = PM_MUMAK;
-			if (genbuf) Strcpy(genbuf, "mumak");
+			if (genbuf) strcpy(genbuf, "mumak");
 			break;
 		case PM_WERECENTAUR:
 		case PM_HUMAN_WERECENTAUR:
 			typ = rn2(5) ? PM_PLAINS_CENTAUR : PM_FOREST_CENTAUR;
-			if (genbuf) Strcpy(genbuf, "centaur");
+			if (genbuf) strcpy(genbuf, "centaur");
 			break;
 		case PM_WERECOUATL:
 		case PM_HUMAN_WERECOUATL:
 			typ = PM_COUATL;
-			if (genbuf) Strcpy(genbuf, "couatl");
+			if (genbuf) strcpy(genbuf, "couatl");
 			break;
 		case PM_WEREGELATINOUSCUBE:
 		case PM_HUMAN_WEREGELATINOUSCUBE:
 			typ = PM_GELATINOUS_CUBE;
-			if (genbuf) Strcpy(genbuf, "gelatinous cube");
+			if (genbuf) strcpy(genbuf, "gelatinous cube");
 			break;
 		case PM_WEREAIRELEMENTAL:
 		case PM_HUMAN_WEREAIRELEMENTAL:
 			typ = PM_AIR_ELEMENTAL;
-			if (genbuf) Strcpy(genbuf, "air elemental");
+			if (genbuf) strcpy(genbuf, "air elemental");
 			break;
 		case PM_WEREFIREELEMENTAL:
 		case PM_HUMAN_WEREFIREELEMENTAL:
 			typ = PM_FIRE_ELEMENTAL;
-			if (genbuf) Strcpy(genbuf, "fire elemental");
+			if (genbuf) strcpy(genbuf, "fire elemental");
 			break;
 		case PM_WEREEARTHELEMENTAL:
 		case PM_HUMAN_WEREEARTHELEMENTAL:
 			typ = PM_EARTH_ELEMENTAL;
-			if (genbuf) Strcpy(genbuf, "earth elemental");
+			if (genbuf) strcpy(genbuf, "earth elemental");
 			break;
 		case PM_WEREWATERELEMENTAL:
 		case PM_HUMAN_WEREWATERELEMENTAL:
 			typ = PM_WATER_ELEMENTAL;
-			if (genbuf) Strcpy(genbuf, "water elemental");
+			if (genbuf) strcpy(genbuf, "water elemental");
 			break;
 		case PM_WEREASTRALELEMENTAL:
 		case PM_HUMAN_WEREASTRALELEMENTAL:
 			typ = PM_ASTRAL_ELEMENTAL;
-			if (genbuf) Strcpy(genbuf, "astral elemental");
+			if (genbuf) strcpy(genbuf, "astral elemental");
 			break;
 		case PM_WEREXORN:
 		case PM_HUMAN_WEREXORN:
 			typ = PM_XORN;
-			if (genbuf) Strcpy(genbuf, "xorn");
+			if (genbuf) strcpy(genbuf, "xorn");
 			break;
 		case PM_WERESTALKER:
 		case PM_HUMAN_WERESTALKER:
 			typ = PM_STALKER;
-			if (genbuf) Strcpy(genbuf, "stalker");
+			if (genbuf) strcpy(genbuf, "stalker");
 			break;
 		case PM_WEREDRACONIAN:
 		case PM_HUMAN_WEREDRACONIAN:
 			typ = PM_PLAIN_DRACONIAN;
-			if (genbuf) Strcpy(genbuf, "draconian");
+			if (genbuf) strcpy(genbuf, "draconian");
 			break;
 		case PM_WEREUMBERHULK:
 		case PM_HUMAN_WEREUMBERHULK:
 			typ = PM_UMBER_HULK;
-			if (genbuf) Strcpy(genbuf, "hulk");
+			if (genbuf) strcpy(genbuf, "hulk");
 			break;
 		case PM_WEREVAMPIRE:
 		case PM_HUMAN_WEREVAMPIRE:
 			typ = PM_VAMPIRE;
-			if (genbuf) Strcpy(genbuf, "vampire");
+			if (genbuf) strcpy(genbuf, "vampire");
 			break;
 		case PM_WEREKILLERBEE:
 		case PM_HUMAN_WEREKILLERBEE:
 			typ = PM_KILLER_BEE;
-			if (genbuf) Strcpy(genbuf, "bee");
+			if (genbuf) strcpy(genbuf, "bee");
 			break;
 		case PM_WEREKANGAROO:
 		case PM_HUMAN_WEREKANGAROO:
 			typ = PM_KANGAROO;
-			if (genbuf) Strcpy(genbuf, "kangaroo");
+			if (genbuf) strcpy(genbuf, "kangaroo");
 			break;
 		case PM_WEREGRUE:
 		case PM_HUMAN_WEREGRUE:
 			typ = PM_DARK_GRUE;
-			if (genbuf) Strcpy(genbuf, "grue");
+			if (genbuf) strcpy(genbuf, "grue");
 			break;
 		case PM_WERECOINS:
 		case PM_HUMAN_WERECOINS:
 			typ = rn2(5) ? PM_PILE_OF_KILLER_COINS : PM_LARGE_PILE_OF_KILLER_COINS;
-			if (genbuf) Strcpy(genbuf, "coin");
+			if (genbuf) strcpy(genbuf, "coin");
 			break;
 		case PM_WERETRAPPER:
 		case PM_HUMAN_WERETRAPPER:
 			typ = PM_TRAPPER;
-			if (genbuf) Strcpy(genbuf, "trapper");
+			if (genbuf) strcpy(genbuf, "trapper");
 			break;
 		case PM_WERESHADE:
 		case PM_HUMAN_WERESHADE:
 			typ = PM_SHADE;
-			if (genbuf) Strcpy(genbuf, "shade");
+			if (genbuf) strcpy(genbuf, "shade");
 			break;
 		case PM_WEREDISENCHANTER:
 		case PM_HUMAN_WEREDISENCHANTER:
 			typ = PM_DISENCHANTER;
-			if (genbuf) Strcpy(genbuf, "disenchanter");
+			if (genbuf) strcpy(genbuf, "disenchanter");
 			break;
 		case PM_WERENAGA:
 		case PM_HUMAN_WERENAGA:
 			typ = rn2(10) ? PM_WHITE_NAGA_HATCHLING : PM_WHITE_NAGA;
-			if (genbuf) Strcpy(genbuf, "naga");
+			if (genbuf) strcpy(genbuf, "naga");
 			break;
 		case PM_WEREWORM:
 		case PM_HUMAN_WEREWORM:
 			typ = rn2(10) ? PM_BABY_PURPLE_WORM : PM_PURPLE_WORM;
-			if (genbuf) Strcpy(genbuf, "worm");
+			if (genbuf) strcpy(genbuf, "worm");
 			break;
 		case PM_WEREDRAGON:
 		case PM_HUMAN_WEREDRAGON:
 			typ = rn2(2) ? PM_BABY_RED_DRAGON : PM_YOUNG_RED_DRAGON;
-			if (genbuf) Strcpy(genbuf, "dragon");
+			if (genbuf) strcpy(genbuf, "dragon");
 			break;
 		default:
 			continue;
@@ -651,7 +651,7 @@ you_were()
 	if (Unchanging || (u.umonnum == u.ulycn)) return;
 	if (Polymorph_control && rn2(5) ) {
 	    /* `+4' => skip "were" prefix to get name of beast */
-	    Sprintf(qbuf, "Do you want to change into %s? ",
+	    sprintf(qbuf, "Do you want to change into %s? ",
 		    an(mons[u.ulycn].mname+4));
 	    if(yn(qbuf) == 'n') return;
 	}

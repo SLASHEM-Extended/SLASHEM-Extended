@@ -231,10 +231,10 @@ jnet_send:
 */
 	typ = MSG_CALL;
 	nam = "Bitnet noise";		/* RSCS/NJE message received via JNET */
-	Sprintf(cmd_buf, "XYZZY %s@%s", user, node);
+	sprintf(cmd_buf, "XYZZY %s@%s", user, node);
 	cmd = cmd_buf;
 	/*{ perhaps just vanilla SEND instead of XYZZY? }*/
-	Sprintf(txt_buf, "Message from %s@%s:%s", user, node,
+	sprintf(txt_buf, "Message from %s@%s:%s", user, node,
 		&buf[1+strlen(node)+1+strlen(user)+2-1]);  /* "(node)user -" */
 	txt = txt_buf;
     /*
