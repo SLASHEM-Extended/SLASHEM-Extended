@@ -109,12 +109,6 @@
 
 # define NDECL(f)	f(void)	/* overridden later if USE_TRAMPOLI set */
 
-# if defined(MSDOS) || defined(USE_STDARG)
-#  define VDECL(f,p)	f p
-# else
-#  define VDECL(f,p)	f()
-# endif
-
 /* generic pointer, always a macro; genericptr_t is usually a typedef */
 # define genericptr	void *
 
@@ -150,7 +144,6 @@
 #else /* NHSTDC */	/* a "traditional" C  compiler */
 
 # define NDECL(f)	f()
-# define VDECL(f,p)	f()
 
 # if defined(AMIGA) || defined(HPUX) || defined(POSIX_TYPES) || defined(__DECC) || defined(__BORLANDC__)
 #  define genericptr	void *
@@ -226,9 +219,7 @@ typedef genericptr genericptr_t;	/* (void *) or (char *) */
  * prototyped and unprototyped declarations don't match.
  */
 # undef NDECL
-# undef VDECL
 # define NDECL(f)	f()
-# define VDECL(f,p)	f()
 #endif
 #endif
 

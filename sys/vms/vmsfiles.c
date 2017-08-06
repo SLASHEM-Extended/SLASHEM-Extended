@@ -29,7 +29,7 @@ char *vms_basename(const char *);
 #define C$$TRANSLATE(status) (errno = EVMSERR,  vaxc$errno = (status))
 #endif
 extern unsigned long sys$parse(), sys$search(), sys$enter(), sys$remove();
-extern int VDECL(lib$match_cond, (int,int,...));
+extern int lib$match_cond(int,int,...);
 
 #define vms_success(sts) ((sts)&1)		/* odd, */
 #define vms_failure(sts) (!vms_success(sts))	/* even */

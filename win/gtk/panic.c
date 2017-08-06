@@ -29,7 +29,7 @@ extern void NDECL(vms_abort);
 
 /*VARARGS1*/
 boolean panicking;
-void VDECL(panic, (const char *,...));
+void panic(const char *,...);
 
 void
 panic VA_DECL(const char *,str)

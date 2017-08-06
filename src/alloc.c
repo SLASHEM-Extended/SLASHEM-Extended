@@ -51,7 +51,7 @@
 char *fmt_ptr(const genericptr,char *);
 #endif
 
-extern void VDECL(panic, (const char *,...)) PRINTF_F(1,2);
+extern void panic(const char *,...) PRINTF_F(1,2);
 
 genericptr_t alloc(size_t lth) {
 	genericptr_t ptr;

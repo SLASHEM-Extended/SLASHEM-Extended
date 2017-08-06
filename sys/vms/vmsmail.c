@@ -37,7 +37,7 @@ extern int strncmpi(const char *,const char *,int);
 
 extern size_t strspn(const char *,const char *);
 #ifndef __DECC
-extern int VDECL(sscanf, (const char *,const char *,...));
+extern int sscanf(const char *,const char *,...);
 #endif
 extern unsigned long
 	smg$create_pasteboard(),

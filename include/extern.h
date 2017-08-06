@@ -647,7 +647,7 @@ E void done_intr(int);
 #endif
 E void done_in_by(struct monst *);
 #endif /* !MAKEDEFS_C && !LEV_LEX_C */
-E void VDECL(panic, (const char *,...)) PRINTF_F(1,2);
+E void panic(const char *,...) PRINTF_F(1,2);
 #if !defined(MAKEDEFS_C) && !defined(LEV_LEX_C)
 E void done(int);
 E void container_contents(struct obj *,BOOLEAN_P,BOOLEAN_P);
@@ -1245,7 +1245,7 @@ E int NDECL(SanePositions);
 /* ### mttymain.c ### */
 
 E void getreturn(const char *);
-E void VDECL(msmsg, (const char *,...));
+E void msmsg(const char *,...);
 E void NDECL(gettty);
 E void NDECL(setftty);
 E void settty(const char *);
@@ -1909,7 +1909,7 @@ E void NDECL(gameDiskPrompt);
 E void append_slash(char *);
 E void getreturn(const char *);
 # ifndef AMIGA
-E void VDECL(msmsg, (const char *,...));
+E void msmsg(const char *,...);
 # endif
 E FILE *fopenp(const char *,const char *);
 #endif /* MICRO || WIN32 */
@@ -1920,7 +1920,7 @@ E FILE *fopenp(const char *,const char *);
 E void NDECL(gettty);
 E void settty(const char *);
 E void NDECL(setftty);
-E void VDECL(error, (const char *,...));
+E void error(const char *,...);
 #if defined(TIMED_DELAY) && defined(_MSC_VER)
 E void msleep(unsigned);
 #endif
@@ -1970,19 +1970,19 @@ E boolean is_autopickup_exception(struct obj *, BOOLEAN_P);
 
 E void msgpline_add(int, char *);
 E void NDECL(msgpline_free);
-E void VDECL(pline, (const char *,...)) PRINTF_F(1,2);
-E void VDECL(Norep, (const char *,...)) PRINTF_F(1,2);
+E void pline(const char *,...) PRINTF_F(1,2);
+E void Norep(const char *,...) PRINTF_F(1,2);
 E void NDECL(free_youbuf);
-E void VDECL(You, (const char *,...)) PRINTF_F(1,2);
-E void VDECL(Your, (const char *,...)) PRINTF_F(1,2);
-E void VDECL(You_feel, (const char *,...)) PRINTF_F(1,2);
-E void VDECL(You_cant, (const char *,...)) PRINTF_F(1,2);
-E void VDECL(You_hear, (const char *,...)) PRINTF_F(1,2);
-E void VDECL(pline_The, (const char *,...)) PRINTF_F(1,2);
-E void VDECL(There, (const char *,...)) PRINTF_F(1,2);
-E void VDECL(verbalize, (const char *,...)) PRINTF_F(1,2);
-E void VDECL(raw_printf, (const char *,...)) PRINTF_F(1,2);
-E void VDECL(impossible, (const char *,...)) PRINTF_F(1,2);
+E void You(const char *,...) PRINTF_F(1,2);
+E void Your(const char *,...) PRINTF_F(1,2);
+E void You_feel(const char *,...) PRINTF_F(1,2);
+E void You_cant(const char *,...) PRINTF_F(1,2);
+E void You_hear(const char *,...) PRINTF_F(1,2);
+E void pline_The(const char *,...) PRINTF_F(1,2);
+E void There(const char *,...) PRINTF_F(1,2);
+E void verbalize(const char *,...) PRINTF_F(1,2);
+E void raw_printf(const char *,...) PRINTF_F(1,2);
+E void impossible(const char *,...) PRINTF_F(1,2);
 E const char *align_str(ALIGNTYP_P);
 E const char *NDECL(hybrid_str);
 E const char *NDECL(hybrid_strcode);
@@ -2682,7 +2682,7 @@ E void settty(const char *);
 E void NDECL(setftty);
 E void NDECL(intron);
 E void NDECL(introff);
-E void VDECL(error, (const char *,...)) PRINTF_F(1,2);
+E void error(const char *,...) PRINTF_F(1,2);
 #endif /* UNIX || __BEOS_ */
 
 /* ### unixunix.c ### */
@@ -2826,7 +2826,7 @@ E void shuttty(const char *);
 E void NDECL(setftty);
 E void NDECL(intron);
 E void NDECL(introff);
-E void VDECL(error, (const char *,...)) PRINTF_F(1,2);
+E void error(const char *,...) PRINTF_F(1,2);
 #ifdef TIMED_DELAY
 E void msleep(unsigned);
 #endif
