@@ -93,7 +93,7 @@
 #else	/* V7 */
 
 #ifdef POSIX_TYPES
-static int FDECL (speednum, (speed_t));
+static int speednum(speed_t);
 #endif
 static void NDECL (setctty);
 

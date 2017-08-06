@@ -26,17 +26,17 @@
 
 #ifdef OVLB
 
-static int FDECL(domonnoise,(struct monst *));
+static int domonnoise(struct monst *);
 static int NDECL(dochat);
-static const char *FDECL(yelp_sound,(struct monst *));
-static const char *FDECL(whimper_sound,(struct monst *));
+static const char *yelp_sound(struct monst *);
+static const char *whimper_sound(struct monst *);
 
 #endif /* OVLB */
 
 #ifdef OVL0
 
 #ifdef DUMB
-static int FDECL(mon_in_room, (struct monst *,int));
+static int mon_in_room(struct monst *,int);
 
 /* this easily could be a macro, but it might overtax dumb compilers */
 static int
@@ -1828,7 +1828,7 @@ dochat()
 
 #ifdef USER_SOUNDS
 
-extern void FDECL(play_usersound, (const char*, int));
+extern void play_usersound(const char*, int);
 
 typedef struct audio_mapping_rec {
 #ifdef USER_SOUNDS_REGEX

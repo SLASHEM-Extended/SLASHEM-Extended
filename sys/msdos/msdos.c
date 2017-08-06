@@ -45,7 +45,7 @@
 #define GETKEYFLAGS 0x02    /* Get Keyboard Flags */
 /*#define KEY_DEBUG	 */   /* print values of unexpected key codes - devel*/
 
-void FDECL(get_cursor,(int *, int *));
+void get_cursor(int *, int *);
 
 #ifdef OVL0
 
@@ -56,9 +56,9 @@ static char NDECL(BIOSgetch);
 #ifndef __GO32__
 static char * NDECL(getdta);
 #endif
-static unsigned int FDECL(dos_ioctl, (int,int,unsigned));
+static unsigned int dos_ioctl(int,int,unsigned);
 /* WAC pckeys is now a char */
-extern char FDECL(pckeys,(unsigned char, unsigned char));    /* pckeys.c */
+extern char pckeys(unsigned char, unsigned char);    /* pckeys.c */
 
 int
 tgetch()

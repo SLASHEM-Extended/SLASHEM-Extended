@@ -10,14 +10,14 @@
 #define SCHAR_LIM 127
 #define NUMOBUF 12
 
-STATIC_DCL char *FDECL(strprepend,(char *,const char *));
+STATIC_DCL char *strprepend(char *,const char *);
 #ifdef OVLB
-static boolean FDECL(wishymatch, (const char *,const char *,BOOLEAN_P));
+static boolean wishymatch(const char *,const char *,BOOLEAN_P);
 #endif
 static char *NDECL(nextobuf);
-static void FDECL(add_erosion_words, (struct obj *, char *));
+static void add_erosion_words(struct obj *, char *);
 
-STATIC_DCL char *FDECL(xname2, (struct obj *));
+STATIC_DCL char *xname2(struct obj *);
 
 char *
 enchname(prop)
@@ -4772,7 +4772,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 #endif /* OVLB */
 
-STATIC_DCL const char *FDECL(Alternate_item_name,(int i, struct Jitem * ));
+STATIC_DCL const char *Alternate_item_name(int i, struct Jitem * );
 
 #ifdef OVL1
 
@@ -4930,7 +4930,7 @@ register struct obj *obj;
 char *
 distant_name(obj, func)
 register struct obj *obj;
-char *FDECL((*func), (OBJ_P));
+char *(*func)(OBJ_P);
 {
 	char *str;
 
@@ -5865,7 +5865,7 @@ boolean ignore_oquan;	/* to force singular */
 const char *
 singular(otmp, func)
 register struct obj *otmp;
-char *FDECL((*func), (OBJ_P));
+char *(*func)(OBJ_P);
 {
 	long savequan;
 #ifdef SHOW_WEIGHT

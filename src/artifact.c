@@ -23,10 +23,10 @@ extern boolean notonhead;	/* for long worms */
 /* big thanks to Chris, I'd never have found out that the "unsigned char" part would fix the bug where
  * any artifacts after #127 were segfaulting and giving random effects instead of the desired ones... --Amy */
 
-STATIC_DCL int FDECL(spec_applies, (const struct artifact *,struct monst *));
-STATIC_DCL int FDECL(arti_invoke, (struct obj*));
-STATIC_DCL boolean FDECL(Mb_hit, (struct monst *magr,struct monst *mdef,
-				  struct obj *,int *,int,BOOLEAN_P,char *));
+STATIC_DCL int spec_applies(const struct artifact *,struct monst *);
+STATIC_DCL int arti_invoke(struct obj*);
+STATIC_DCL boolean Mb_hit(struct monst *magr,struct monst *mdef,
+			  struct obj *,int *,int,BOOLEAN_P,char *);
 
 /* The amount added to the victim's total hit points to insure that the
    victim will be killed even after damage bonus/penalty adjustments.
@@ -52,7 +52,7 @@ static boolean artiexist[1+NROFARTIFACTS+1];
 STATIC_OVL int artidisco[NROFARTIFACTS];
 
 STATIC_DCL void NDECL(hack_artifacts);
-STATIC_DCL boolean FDECL(attacks, (int,struct obj *));
+STATIC_DCL boolean attacks(int,struct obj *);
 
 
 /* handle some special cases; must be called after role_init() */

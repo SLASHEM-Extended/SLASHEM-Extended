@@ -8,24 +8,23 @@
 #include "hack.h"
 #include "dlb.h"
 
-STATIC_DCL boolean FDECL(is_swallow_sym, (int));
-STATIC_DCL int FDECL(append_str, (char *, const char *));
-STATIC_DCL struct permonst * FDECL(lookat, (int, int, char *, char *));
-STATIC_DCL void FDECL(checkfile,
-		      (char *,struct permonst *,BOOLEAN_P,BOOLEAN_P));
-STATIC_DCL int FDECL(do_look, (BOOLEAN_P));
-STATIC_DCL boolean FDECL(help_menu, (int *));
+STATIC_DCL boolean is_swallow_sym(int);
+STATIC_DCL int append_str(char *, const char *);
+STATIC_DCL struct permonst * lookat(int, int, char *, char *);
+STATIC_DCL void checkfile(char *,struct permonst *,BOOLEAN_P,BOOLEAN_P);
+STATIC_DCL int do_look(BOOLEAN_P);
+STATIC_DCL boolean help_menu(int *);
 #ifdef PORT_HELP
 extern void NDECL(port_help);
 #endif
 #ifdef EXTENDED_INFO
-STATIC_DCL char * FDECL(get_description_of_monster_type, (struct permonst *, char *));
-STATIC_DCL char * FDECL(get_generation_description_of_monster_type, (struct permonst *, char *));
-STATIC_DCL char * FDECL(get_resistance_description_of_monster_type, (struct permonst *, char *));
-STATIC_DCL char * FDECL(get_flag_description_of_monster_type, (struct permonst *, char *));
-STATIC_DCL char * FDECL(get_speed_description_of_monster_type, (struct permonst *, char *));
-STATIC_DCL int FDECL(generate_list_of_resistances, (char *, /*uchar*/unsigned long));
-STATIC_DCL void FDECL(append_newline_to_pline_string, (char * buf));
+STATIC_DCL char * get_description_of_monster_type(struct permonst *, char *);
+STATIC_DCL char * get_generation_description_of_monster_type(struct permonst *, char *);
+STATIC_DCL char * get_resistance_description_of_monster_type(struct permonst *, char *);
+STATIC_DCL char * get_flag_description_of_monster_type(struct permonst *, char *);
+STATIC_DCL char * get_speed_description_of_monster_type(struct permonst *, char *);
+STATIC_DCL int generate_list_of_resistances(char *, /*uchar*/unsigned long);
+STATIC_DCL void append_newline_to_pline_string(char * buf);
 #endif
 
 extern const int monstr[];

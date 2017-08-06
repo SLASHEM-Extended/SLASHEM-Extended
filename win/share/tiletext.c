@@ -49,16 +49,14 @@ static const char *std_text_sets[] = {
 			tile_x == 32 && tile_y == 32 ? big_text_sets[i] : \
 			std_text_sets[i] )
 
-extern const char *FDECL(tilename, (int, int));
-static void FDECL(read_text_colormap, (FILE *));
-static boolean FDECL(write_text_colormap, (FILE *));
-static boolean FDECL(peek_txttile_info, (FILE *, char *, int *, char *));
-static boolean FDECL(read_txttile_info, (FILE *, pixel(*)[MAX_TILE_X],
-	char *, int *, char *));
-static boolean FDECL(read_txttile, (FILE *, pixel(*)[MAX_TILE_X]));
-static void FDECL(write_txttile_info, (FILE *, pixel(*)[MAX_TILE_X],
-	const char *, int, const char *));
-static void FDECL(write_txttile, (FILE *, pixel(*)[MAX_TILE_X]));
+extern const char *tilename(int, int);
+static void read_text_colormap(FILE *);
+static boolean write_text_colormap(FILE *);
+static boolean peek_txttile_info(FILE *, char *, int *, char *);
+static boolean read_txttile_info(FILE *, pixel(*)[MAX_TILE_X], char *, int *, char *);
+static boolean read_txttile(FILE *, pixel(*)[MAX_TILE_X]);
+static void write_txttile_info(FILE *, pixel(*)[MAX_TILE_X], const char *, int, const char *);
+static void write_txttile(FILE *, pixel(*)[MAX_TILE_X]);
 
 #define FUZZ
 

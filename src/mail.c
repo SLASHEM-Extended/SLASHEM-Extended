@@ -33,10 +33,10 @@
  *			 random intervals.
  */
 
-STATIC_DCL boolean FDECL(md_start,(coord *));
-STATIC_DCL boolean FDECL(md_stop,(coord *, coord *));
-STATIC_DCL boolean FDECL(md_rush,(struct monst *,int,int));
-STATIC_DCL void FDECL(newmail, (struct mail_info *));
+STATIC_DCL boolean md_start(coord *);
+STATIC_DCL boolean md_stop(coord *, coord *);
+STATIC_DCL boolean md_rush(struct monst *,int,int);
+STATIC_DCL void newmail(struct mail_info *);
 
 int mailckfreq = 0;
 
@@ -60,9 +60,9 @@ int mustgetmail = -1;
 #    if !defined(LINUX)
 /* DO trust all SVR4 to typedef uid_t in <sys/types.h> (probably to a long) */
 #    if defined(POSIX_TYPES) || defined(SVR4) || defined(HPUX)
-extern struct passwd *FDECL(getpwuid,(uid_t));
+extern struct passwd *getpwuid(uid_t);
 #    else
-extern struct passwd *FDECL(getpwuid,(int));
+extern struct passwd *getpwuid(int);
 #    endif
 #   endif
 #  endif

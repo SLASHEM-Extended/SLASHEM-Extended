@@ -866,7 +866,7 @@ const struct innate {
 
 /*static long next_check = 600L;*/	/* arbitrary first setting */
 STATIC_DCL void NDECL(exerper);
-STATIC_DCL void FDECL(postadjabil, (long *));
+STATIC_DCL void postadjabil(long *);
 
 /* adjust an attribute; return TRUE if change is made, FALSE otherwise */
 boolean

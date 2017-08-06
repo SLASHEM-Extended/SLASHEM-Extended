@@ -13,7 +13,7 @@
 #include "hack.h"
 #include "tile.h"
 
-extern char *FDECL((strdup), (const char *));
+extern char *(strdup)(const char *);
 
 struct tile {
     char *name;

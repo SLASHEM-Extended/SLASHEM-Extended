@@ -145,27 +145,27 @@ Boolean small_screen = 0;
 #endif
 #define NHW_BASE 0
 
-static int FDECL(filter_scroll_key,(const int, NhWindow *));
+static int filter_scroll_key(const int, NhWindow *);
 
-static void FDECL(GeneralKey, (EventRecord *, WindowPtr));
-static void FDECL(macKeyMenu, (EventRecord *, WindowPtr));
-static void FDECL(macKeyText, (EventRecord *, WindowPtr));
+static void GeneralKey(EventRecord *, WindowPtr);
+static void macKeyMenu(EventRecord *, WindowPtr);
+static void macKeyText(EventRecord *, WindowPtr);
 
-static void FDECL(macClickMessage, (EventRecord *, WindowPtr));
-static void FDECL(macClickTerm, (EventRecord *, WindowPtr));
-static void FDECL(macClickMenu, (EventRecord *, WindowPtr));
-static void FDECL(macClickText, (EventRecord *, WindowPtr));
+static void macClickMessage(EventRecord *, WindowPtr);
+static void macClickTerm(EventRecord *, WindowPtr);
+static void macClickMenu(EventRecord *, WindowPtr);
+static void macClickText(EventRecord *, WindowPtr);
 
-static short FDECL(macDoNull, (EventRecord *, WindowPtr));
-static short FDECL(macUpdateMessage, (EventRecord *, WindowPtr));
-static short FDECL(macUpdateMenu, (EventRecord *, WindowPtr));
-static short FDECL(GeneralUpdate, (EventRecord *, WindowPtr));
+static short macDoNull(EventRecord *, WindowPtr);
+static short macUpdateMessage(EventRecord *, WindowPtr);
+static short macUpdateMenu(EventRecord *, WindowPtr);
+static short GeneralUpdate(EventRecord *, WindowPtr);
 
-static void FDECL(macCursorTerm, (EventRecord *, WindowPtr, RgnHandle));
-static void FDECL(GeneralCursor, (EventRecord *, WindowPtr, RgnHandle));
+static void macCursorTerm(EventRecord *, WindowPtr, RgnHandle);
+static void GeneralCursor(EventRecord *, WindowPtr, RgnHandle);
 
-static void FDECL(DoScrollBar,(Point, short, ControlHandle, NhWindow *));
-static pascal void FDECL(MoveScrollBar, (ControlHandle, short));
+static void DoScrollBar(Point, short, ControlHandle, NhWindow *);
+static pascal void MoveScrollBar(ControlHandle, short);
 
 typedef void (*CbFunc) (EventRecord *, WindowPtr);
 typedef short (*CbUpFunc) (EventRecord *, WindowPtr);

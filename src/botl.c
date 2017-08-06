@@ -38,7 +38,7 @@ const char *enc_abbrev_stat[] = {
 STATIC_DCL void NDECL(bot1);
 STATIC_DCL void NDECL(bot2);
 #ifdef ALLEG_FX
-STATIC_DCL void FDECL(set_botl_warn, (int));
+STATIC_DCL void set_botl_warn(int);
 #endif
 #endif /* OVL0 */
 

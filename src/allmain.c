@@ -22,7 +22,7 @@ STATIC_PTR int NDECL(unfaintX);
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
-static void FDECL(p_glow2,(struct obj *,const char *));
+static void p_glow2(struct obj *,const char *);
 
 /* hunger texts used on bottom line (each 8 chars long) */
 #define SATIATED	0

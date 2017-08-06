@@ -9,13 +9,13 @@
 
 /* #define DEBUG */		/* turn on for diagnostics */
 
-static boolean FDECL(gettech, (int *));
-static boolean FDECL(dotechmenu, (int, int *));
+static boolean gettech(int *);
+static boolean dotechmenu(int, int *);
 static void NDECL(doblitzlist);
-static int FDECL(get_tech_no,(int));
-static int FDECL(techeffects, (int));
-static void FDECL(hurtmon, (struct monst *,int));
-static int FDECL(mon_to_zombie, (int));
+static int get_tech_no(int);
+static int techeffects(int);
+static void hurtmon(struct monst *,int);
+static int mon_to_zombie(int);
 STATIC_PTR int NDECL(tinker);
 STATIC_PTR int NDECL(charge_saber);
 STATIC_PTR int NDECL(draw_energy);
@@ -29,7 +29,7 @@ static int NDECL(blitz_g_slam);
 static int NDECL(blitz_dash);
 static int NDECL(blitz_power_surge);
 static int NDECL(blitz_spirit_bomb);
-static void FDECL(maybe_tameX, (struct monst *));
+static void maybe_tameX(struct monst *);
 
 static NEARDATA schar delay;            /* moves left for tinker/energy draw */
 static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };

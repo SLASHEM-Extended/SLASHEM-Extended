@@ -37,15 +37,15 @@ extern int line_number;
 const char *fname = "(stdin)";
 int fatal_error = 0;
 
-int  FDECL (main, (int,char **));
-void FDECL (yyerror, (const char *));
-void FDECL (yywarning, (const char *));
+int  main(int,char **);
+void yyerror(const char *);
+void yywarning(const char *);
 int  NDECL (yywrap);
-void FDECL (init_yyin, (FILE *));
-void FDECL (init_yyout, (FILE *));
+void init_yyin(FILE *);
+void init_yyout(FILE *);
 
 #ifdef AZTEC_36
-FILE *FDECL (freopen, (char *,char *,FILE *));
+FILE *freopen(char *,char *,FILE *);
 #endif
 #define Fprintf (void)fprintf
 

@@ -17,14 +17,14 @@
 
 #include <ctype.h>
 
-void FDECL(display_monster,(XCHAR_P,XCHAR_P,struct monst *,int,XCHAR_P));
+void display_monster(XCHAR_P,XCHAR_P,struct monst *,int,XCHAR_P);
  
-STATIC_DCL boolean FDECL(restrap,(struct monst *));
-STATIC_DCL long FDECL(mm_aggression, (struct monst *,struct monst *));
+STATIC_DCL boolean restrap(struct monst *);
+STATIC_DCL long mm_aggression(struct monst *,struct monst *);
 #ifdef OVL2
 STATIC_DCL int NDECL(pick_animal);
-STATIC_DCL int FDECL(select_newcham_form, (struct monst *));
-STATIC_DCL void FDECL(kill_eggs, (struct obj *));
+STATIC_DCL int select_newcham_form(struct monst *);
+STATIC_DCL void kill_eggs(struct obj *);
 #endif
 
 /* make wraith luring unnecessary --Amy */
@@ -60,10 +60,10 @@ STATIC_DCL void NDECL(warn_effects);
 #ifndef OVLB
 STATIC_VAR short cham_to_pm[];
 #else
-STATIC_DCL struct obj *FDECL(make_corpse,(struct monst *));
-STATIC_DCL void FDECL(m_detach, (struct monst *, struct permonst *));
-STATIC_DCL void FDECL(lifesaved_monster, (struct monst *));
-static void FDECL(unpoly_monster, (struct monst *));
+STATIC_DCL struct obj *make_corpse(struct monst *);
+STATIC_DCL void m_detach(struct monst *, struct permonst *);
+STATIC_DCL void lifesaved_monster(struct monst *);
+static void unpoly_monster(struct monst *);
 
 /* convert the monster index of an undead to its living counterpart */
 int

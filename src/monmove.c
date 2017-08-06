@@ -11,12 +11,12 @@ extern boolean notonhead;
 
 #ifdef OVL0
 
-STATIC_DCL int FDECL(disturb,(struct monst *));
-STATIC_DCL void FDECL(distfleeck,(struct monst *,int *,int *,int *));
-STATIC_DCL int FDECL(m_arrival, (struct monst *));
-STATIC_DCL void FDECL(watch_on_duty,(struct monst *));
+STATIC_DCL int disturb(struct monst *);
+STATIC_DCL void distfleeck(struct monst *,int *,int *,int *);
+STATIC_DCL int m_arrival(struct monst *);
+STATIC_DCL void watch_on_duty(struct monst *);
 /* WAC for breath door busting */
-static int FDECL(bust_door_breath, (struct monst *));
+static int bust_door_breath(struct monst *);
 
 #endif /* OVL0 */
 #ifdef OVLB

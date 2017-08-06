@@ -17,18 +17,18 @@
 #if !defined(_BULL_SOURCE) && !defined(__sgi) && !defined(_M_UNIX)
 # if !defined(SUNOS4) && !(defined(ULTRIX) && defined(__GNUC__))
 #  if defined(POSIX_TYPES) || defined(SVR4) || defined(HPUX)
-extern struct passwd *FDECL(getpwuid,(uid_t));
+extern struct passwd *getpwuid(uid_t);
 #  else
-extern struct passwd *FDECL(getpwuid,(int));
+extern struct passwd *getpwuid(int);
 #  endif
 # endif
 #endif
-extern struct passwd *FDECL(getpwnam,(const char *));
+extern struct passwd *getpwnam(const char *);
 #ifdef CHDIR
-static void FDECL(chdirx, (const char *,BOOLEAN_P));
+static void chdirx(const char *,BOOLEAN_P);
 #endif /* CHDIR */
 static boolean NDECL(whoami);
-static void FDECL(process_options, (int, char **));
+static void process_options(int, char **);
 
 #ifdef _M_UNIX
 extern void NDECL(check_sco_console);

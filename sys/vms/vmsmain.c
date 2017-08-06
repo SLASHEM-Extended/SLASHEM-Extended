@@ -9,7 +9,7 @@
 #include <signal.h>
 
 static void NDECL(whoami);
-static void FDECL(process_options, (int, char **));
+static void process_options(int, char **);
 static void NDECL(byebye);
 #ifndef SAVE_ON_FATAL_ERROR
 # ifndef __DECC
@@ -17,8 +17,8 @@ static void NDECL(byebye);
 # else
 #  define vms_handler_type unsigned int
 # endif
-extern void FDECL(VAXC$ESTABLISH, (vms_handler_type (*)(genericptr_t,genericptr_t)));
-static vms_handler_type FDECL(vms_handler, (genericptr_t,genericptr_t));
+extern void VAXC$ESTABLISH(vms_handler_type (*)(genericptr_t,genericptr_t));
+static vms_handler_type vms_handler(genericptr_t,genericptr_t);
 #include <ssdef.h>	/* system service status codes */
 #endif
 
@@ -405,7 +405,7 @@ byebye()
     int (*hup)();
 #ifdef SHELL
     extern unsigned long dosh_pid, mail_pid;
-    extern unsigned long FDECL(sys$delprc,(unsigned long *,const genericptr_t));
+    extern unsigned long sys$delprc(unsigned long *,const genericptr_t);
 
     /* clean up any subprocess we've spawned that may still be hanging around */
     if (dosh_pid) (void) sys$delprc(&dosh_pid, 0), dosh_pid = 0;

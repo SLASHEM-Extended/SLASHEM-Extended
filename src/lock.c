@@ -20,8 +20,8 @@ STATIC_VAR NEARDATA struct xlock_s {
 #ifdef OVLB
 
 STATIC_DCL const char *NDECL(lock_action);
-STATIC_DCL boolean FDECL(obstructed,(int,int));
-STATIC_DCL void FDECL(chest_shatter_msg, (struct obj *));
+STATIC_DCL boolean obstructed(int,int);
+STATIC_DCL void chest_shatter_msg(struct obj *);
 
 boolean
 picking_lock(x, y)

@@ -8,37 +8,36 @@
 
 #include "hack.h"
 
-STATIC_DCL void FDECL(simple_look, (struct obj *,BOOLEAN_P));
+STATIC_DCL void simple_look(struct obj *,BOOLEAN_P);
 #ifndef GOLDOBJ
-STATIC_DCL boolean FDECL(query_classes, (char *,boolean *,boolean *,
-		const char *,struct obj *,BOOLEAN_P,BOOLEAN_P,int *));
+STATIC_DCL boolean query_classes(char *,boolean *,boolean *,
+		const char *,struct obj *,BOOLEAN_P,BOOLEAN_P,int *);
 #else
-STATIC_DCL boolean FDECL(query_classes, (char *,boolean *,boolean *,
-		const char *,struct obj *,BOOLEAN_P,int *));
+STATIC_DCL boolean query_classes(char *,boolean *,boolean *,
+		const char *,struct obj *,BOOLEAN_P,int *);
 #endif
-STATIC_DCL void FDECL(check_here, (BOOLEAN_P));
-STATIC_DCL boolean FDECL(n_or_more, (struct obj *));
-STATIC_DCL boolean FDECL(all_but_uchain, (struct obj *));
+STATIC_DCL void check_here(BOOLEAN_P);
+STATIC_DCL boolean n_or_more(struct obj *);
+STATIC_DCL boolean all_but_uchain(struct obj *);
 #if 0 /* not used */
-STATIC_DCL boolean FDECL(allow_cat_no_uchain, (struct obj *));
+STATIC_DCL boolean allow_cat_no_uchain(struct obj *);
 #endif
-STATIC_DCL int FDECL(autopick, (struct obj*, int, menu_item **));
-STATIC_DCL int FDECL(count_categories, (struct obj *,int));
-STATIC_DCL long FDECL(carry_count,
-		      (struct obj *,struct obj *,long,BOOLEAN_P,int *,int *));
-STATIC_DCL int FDECL(lift_object, (struct obj *,struct obj *,long *,BOOLEAN_P));
-STATIC_PTR int FDECL(in_container_,(struct obj *,BOOLEAN_P));
-STATIC_PTR int FDECL(in_container,(struct obj *));
-STATIC_PTR int FDECL(ck_bag,(struct obj *));
-STATIC_PTR int FDECL(out_container,(struct obj *));
-STATIC_DCL long FDECL(mbag_item_gone, (int,struct obj *));
-STATIC_DCL void FDECL(observe_quantum_cat, (struct obj *));
-STATIC_DCL int FDECL(menu_loot, (int, struct obj *, BOOLEAN_P));
-STATIC_DCL int FDECL(in_or_out_menu, (const char *,struct obj *, BOOLEAN_P, BOOLEAN_P));
-STATIC_DCL int FDECL(container_at, (int, int, BOOLEAN_P));
-STATIC_DCL boolean FDECL(able_to_loot, (int, int));
-STATIC_DCL boolean FDECL(mon_beside, (int, int));
-STATIC_DCL int FDECL(dump_container, (struct obj*, BOOLEAN_P));
+STATIC_DCL int autopick(struct obj*, int, menu_item **);
+STATIC_DCL int count_categories(struct obj *,int);
+STATIC_DCL long carry_count(struct obj *,struct obj *,long,BOOLEAN_P,int *,int *);
+STATIC_DCL int lift_object(struct obj *,struct obj *,long *,BOOLEAN_P);
+STATIC_PTR int in_container_(struct obj *,BOOLEAN_P);
+STATIC_PTR int in_container(struct obj *);
+STATIC_PTR int ck_bag(struct obj *);
+STATIC_PTR int out_container(struct obj *);
+STATIC_DCL long mbag_item_gone(int,struct obj *);
+STATIC_DCL void observe_quantum_cat(struct obj *);
+STATIC_DCL int menu_loot(int, struct obj *, BOOLEAN_P);
+STATIC_DCL int in_or_out_menu(const char *,struct obj *, BOOLEAN_P, BOOLEAN_P);
+STATIC_DCL int container_at(int, int, BOOLEAN_P);
+STATIC_DCL boolean able_to_loot(int, int);
+STATIC_DCL boolean mon_beside(int, int);
+STATIC_DCL int dump_container(struct obj*, BOOLEAN_P);
 
 /* define for query_objlist() and autopickup() */
 #define FOLLOW(curr, flags) \
@@ -101,7 +100,7 @@ collect_obj_classes(ilets, otmp, here, incl_gold, filter, itemcount)
 char ilets[];
 register struct obj *otmp;
 boolean here, incl_gold;
-boolean FDECL((*filter),(OBJ_P));
+boolean (*filter)(OBJ_P);
 int *itemcount;
 #else
 int
@@ -109,7 +108,7 @@ collect_obj_classes(ilets, otmp, here, filter, itemcount)
 char ilets[];
 register struct obj *otmp;
 boolean here;
-boolean FDECL((*filter),(OBJ_P));
+boolean (*filter)(OBJ_P);
 int *itemcount;
 #endif
 {
@@ -180,7 +179,7 @@ int *menu_on_demand;
 #ifndef GOLDOBJ
 				     incl_gold,
 #endif
-				     (boolean FDECL((*),(OBJ_P))) 0, &itemcount);
+				     (boolean (*)(OBJ_P)) 0, &itemcount);
 	if (iletct == 0) {
 		return FALSE;
 	} else if (iletct == 1) {
@@ -727,7 +726,7 @@ struct obj *olist;		/* the list to pick from */
 int qflags;			/* options to control the query */
 menu_item **pick_list;		/* return list of items picked */
 int how;			/* type of query */
-boolean FDECL((*allow), (OBJ_P));/* allow function */
+boolean (*allow)(OBJ_P);/* allow function */
 {
 	int n;
 	winid win;
@@ -2375,7 +2374,7 @@ struct obj *box;
 /* used by askchain() to check for magic bag explosion */
 boolean
 container_gone(fn)
-int FDECL((*fn), (OBJ_P));
+int (*fn)(OBJ_P);
 {
     /* result is only meaningful while use_container() is executing */
     return ((fn == in_container || fn == out_container) && !current_container);
@@ -2588,7 +2587,7 @@ ask_again2:
 			if (askchain((struct obj **)&current_container->cobj,
 				     (one_by_one ? (char *)0 : select),
 				     allflag, out_container,
-				     (int FDECL((*),(OBJ_P)))0,
+				     (int (*)(OBJ_P))0,
 				     0, "nodot"))
 			    used = 1;
 		    } else if (menu_on_request < 0) {

@@ -5,7 +5,7 @@
 #include "config.h"
 #include "tile.h"
 
-extern genericptr_t FDECL(alloc, (size_t));
+extern genericptr_t alloc(size_t);
 
 FILE *ppm_file;
 

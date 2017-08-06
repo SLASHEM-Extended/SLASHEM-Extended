@@ -9,56 +9,56 @@ struct window_procs {
     const char *name;
     unsigned long wincap;	/* window port capability options supported */
     unsigned long wincap2;	/* additional window port capability options supported */
-    void FDECL((*win_init_nhwindows), (int *, char **));
+    void (*win_init_nhwindows)(int *, char **);
     void NDECL((*win_player_selection));
     void NDECL((*win_askname));
     void NDECL((*win_get_nh_event)) ;
-    void FDECL((*win_exit_nhwindows), (const char *));
-    void FDECL((*win_suspend_nhwindows), (const char *));
+    void (*win_exit_nhwindows)(const char *);
+    void (*win_suspend_nhwindows)(const char *);
     void NDECL((*win_resume_nhwindows));
-    winid FDECL((*win_create_nhwindow), (int));
-    void FDECL((*win_clear_nhwindow), (winid));
-    void FDECL((*win_display_nhwindow), (winid, BOOLEAN_P));
-    void FDECL((*win_destroy_nhwindow), (winid));
-    void FDECL((*win_curs), (winid,int,int));
-    void FDECL((*win_putstr), (winid, int, const char *));
+    winid (*win_create_nhwindow)(int);
+    void (*win_clear_nhwindow)(winid);
+    void (*win_display_nhwindow)(winid, BOOLEAN_P);
+    void (*win_destroy_nhwindow)(winid);
+    void (*win_curs)(winid,int,int);
+    void (*win_putstr)(winid, int, const char *);
 #ifdef FILE_AREAS
-    void FDECL((*win_display_file), (const char *, const char *, BOOLEAN_P));
+    void (*win_display_file)(const char *, const char *, BOOLEAN_P);
 #else
-    void FDECL((*win_display_file), (const char *, BOOLEAN_P));
+    void (*win_display_file)(const char *, BOOLEAN_P);
 #endif
-    void FDECL((*win_start_menu), (winid));
-    void FDECL((*win_add_menu), (winid,int,const ANY_P *,
-		CHAR_P,CHAR_P,int,const char *, BOOLEAN_P));
-    void FDECL((*win_end_menu), (winid, const char *));
-    int FDECL((*win_select_menu), (winid, int, MENU_ITEM_P **));
-    char FDECL((*win_message_menu), (CHAR_P,int,const char *));
+    void (*win_start_menu)(winid);
+    void (*win_add_menu)(winid,int,const ANY_P *,
+		CHAR_P,CHAR_P,int,const char *, BOOLEAN_P);
+    void (*win_end_menu)(winid, const char *);
+    int (*win_select_menu)(winid, int, MENU_ITEM_P **);
+    char (*win_message_menu)(CHAR_P,int,const char *);
     void NDECL((*win_update_inventory));
     void NDECL((*win_mark_synch));
     void NDECL((*win_wait_synch));
 #ifdef CLIPPING
-    void FDECL((*win_cliparound), (int, int));
+    void (*win_cliparound)(int, int);
 #endif
 #ifdef POSITIONBAR
-    void FDECL((*win_update_positionbar), (char *));
+    void (*win_update_positionbar)(char *);
 #endif
-    void FDECL((*win_print_glyph), (winid,XCHAR_P,XCHAR_P,int));
-    void FDECL((*win_raw_print), (const char *));
-    void FDECL((*win_raw_print_bold), (const char *));
+    void (*win_print_glyph)(winid,XCHAR_P,XCHAR_P,int);
+    void (*win_raw_print)(const char *);
+    void (*win_raw_print_bold)(const char *);
     int NDECL((*win_nhgetch));
-    int FDECL((*win_nh_poskey), (int *, int *, int *));
+    int (*win_nh_poskey)(int *, int *, int *);
     void NDECL((*win_nhbell));
     int NDECL((*win_doprev_message));
-    char FDECL((*win_yn_function), (const char *, const char *, CHAR_P));
-    void FDECL((*win_getlin), (const char *,char *));
+    char (*win_yn_function)(const char *, const char *, CHAR_P);
+    void (*win_getlin)(const char *,char *);
     int NDECL((*win_get_ext_cmd));
-    void FDECL((*win_number_pad), (int));
+    void (*win_number_pad)(int);
     void NDECL((*win_delay_output));
 #ifdef CHANGE_COLOR
-    void FDECL((*win_change_color), (int,long,int));
+    void (*win_change_color)(int,long,int);
 #ifdef MAC
-    void FDECL((*win_change_background), (int));
-    short FDECL((*win_set_font_name), (winid, char *));
+    void (*win_change_background)(int);
+    short (*win_set_font_name)(winid, char *);
 #endif
     char * NDECL((*win_get_color_string));
 #endif
@@ -67,8 +67,8 @@ struct window_procs {
     void NDECL((*win_start_screen));
     void NDECL((*win_end_screen));
 
-    void FDECL((*win_outrip), (winid,int));
-    void FDECL((*win_preference_update), (const char *));
+    void (*win_outrip)(winid,int);
+    void (*win_preference_update)(const char *);
 };
 
 extern NEARDATA struct window_procs windowprocs;

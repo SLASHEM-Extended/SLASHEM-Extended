@@ -51,15 +51,15 @@
 #define CLC_FREEZE_YOU	 16
 #define CLC_STAT_DRAIN	 17
 
-STATIC_DCL void FDECL(cursetxt,(struct monst *,BOOLEAN_P));
-STATIC_DCL int FDECL(choose_magic_spell, (int));
-STATIC_DCL int FDECL(choose_clerical_spell, (int));
-STATIC_DCL void FDECL(cast_wizard_spell,(struct monst *, int,int));
-STATIC_DCL void FDECL(cast_cleric_spell,(struct monst *, int,int));
-STATIC_DCL boolean FDECL(is_undirected_spell,(unsigned int,int));
-STATIC_DCL boolean FDECL(is_melee_spell,(unsigned int,int));
-STATIC_DCL boolean FDECL(spell_would_be_useless,(struct monst *,unsigned int,int));
-STATIC_PTR void FDECL(set_litZ, (int,int,genericptr_t));
+STATIC_DCL void cursetxt(struct monst *,BOOLEAN_P);
+STATIC_DCL int choose_magic_spell(int);
+STATIC_DCL int choose_clerical_spell(int);
+STATIC_DCL void cast_wizard_spell(struct monst *, int,int);
+STATIC_DCL void cast_cleric_spell(struct monst *, int,int);
+STATIC_DCL boolean is_undirected_spell(unsigned int,int);
+STATIC_DCL boolean is_melee_spell(unsigned int,int);
+STATIC_DCL boolean spell_would_be_useless(struct monst *,unsigned int,int);
+STATIC_PTR void set_litZ(int,int,genericptr_t);
 
 #ifdef OVL0
 

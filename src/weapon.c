@@ -10,7 +10,7 @@
 #include "hack.h"
 
 #ifdef DUMP_LOG
-STATIC_DCL int FDECL(enhance_skill, (boolean));
+STATIC_DCL int enhance_skill(boolean);
 #endif
 
 /* categories whose names don't come from OBJ_NAME(objects[type]) */
@@ -46,17 +46,17 @@ STATIC_DCL int FDECL(enhance_skill, (boolean));
 #define PN_TWO_WEAPONS		(-30)
 #define PN_LIGHTSABER		(-31)
 
-static void FDECL(give_may_advance_msg, (int));
+static void give_may_advance_msg(int);
 STATIC_PTR int NDECL(practice);
-/*static int FDECL(get_obj_skill, (struct obj *));*/
+/*static int get_obj_skill(struct obj *);*/
 
-static void FDECL(mon_ignite_lightsaber, (struct obj *, struct monst *));
+static void mon_ignite_lightsaber(struct obj *, struct monst *);
 
 /*WAC practicing needs a delay counter*/
 static NEARDATA schar delay;            /* moves left for practice */
 static NEARDATA boolean speed_advance = FALSE;
 
-STATIC_DCL void FDECL(give_may_advance_msg, (int));
+STATIC_DCL void give_may_advance_msg(int);
 
 #ifndef OVLB
 
@@ -148,17 +148,17 @@ int skill;
 
 #endif	/* OVLB */
 
-STATIC_DCL boolean FDECL(can_advance, (int, BOOLEAN_P));
-STATIC_DCL boolean FDECL(could_advance, (int));
-STATIC_DCL boolean FDECL(peaked_skill, (int));
-STATIC_DCL int FDECL(slots_required, (int));
-STATIC_DCL boolean FDECL(can_practice, (int)); /* WAC for Practicing */
+STATIC_DCL boolean can_advance(int, BOOLEAN_P);
+STATIC_DCL boolean could_advance(int);
+STATIC_DCL boolean peaked_skill(int);
+STATIC_DCL int slots_required(int);
+STATIC_DCL boolean can_practice(int); /* WAC for Practicing */
 
 #ifdef OVL1
 
-STATIC_DCL char *FDECL(skill_level_name, (int,char *));
-STATIC_DCL char *FDECL(skill_level_name_max, (int,char *));
-STATIC_DCL void FDECL(skill_advance, (int));
+STATIC_DCL char *skill_level_name(int,char *);
+STATIC_DCL char *skill_level_name_max(int,char *);
+STATIC_DCL void skill_advance(int);
 
 #endif	/* OVL1 */
 
@@ -1518,7 +1518,7 @@ struct monst *mon;
 #endif /* OVLB */
 #ifdef OVL0
 
-STATIC_DCL struct obj *FDECL(oselect, (struct monst *,int));
+STATIC_DCL struct obj *oselect(struct monst *,int);
 #define Oselect(x)	if ((otmp = oselect(mtmp, x)) != 0) return(otmp);
 
 STATIC_OVL struct obj *

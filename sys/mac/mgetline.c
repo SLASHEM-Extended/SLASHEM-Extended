@@ -10,7 +10,7 @@
 
 extern int NDECL(extcmd_via_menu);	/* cmd.c */
 
-typedef Boolean FDECL ((* key_func), (unsigned char));
+typedef Boolean (* key_func)(unsigned char);
 
 int
 get_line_from_key_queue (char * bufp) {

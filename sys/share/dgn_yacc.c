@@ -40,11 +40,11 @@ static int yygrowstack();
 #include "date.h"
 #include "dgn_file.h"
 
-void FDECL(yyerror, (const char *));
-void FDECL(yywarning, (const char *));
+void yyerror(const char *);
+void yywarning(const char *);
 int NDECL(yylex);
 int NDECL(yyparse);
-int FDECL(getchain, (char *));
+int getchain(char *);
 int NDECL(check_dungeon);
 int NDECL(check_branch);
 int NDECL(check_level);

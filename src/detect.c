@@ -12,15 +12,15 @@
 
 extern boolean known;	/* from read.c */
 
-STATIC_DCL void FDECL(do_dknown_of, (struct obj *));
-STATIC_DCL boolean FDECL(check_map_spot, (int,int,CHAR_P,unsigned));
-STATIC_DCL boolean FDECL(clear_stale_map, (CHAR_P,unsigned));
-STATIC_DCL void FDECL(sense_trap, (struct trap *,XCHAR_P,XCHAR_P,int));
-STATIC_DCL void FDECL(show_map_spot, (int,int));
-STATIC_DCL void FDECL(show_map_spotX, (int,int));
-STATIC_PTR void FDECL(findone,(int,int,genericptr_t));
-STATIC_PTR void FDECL(findoneX,(int,int,genericptr_t));
-STATIC_PTR void FDECL(openone,(int,int,genericptr_t));
+STATIC_DCL void do_dknown_of(struct obj *);
+STATIC_DCL boolean check_map_spot(int,int,CHAR_P,unsigned);
+STATIC_DCL boolean clear_stale_map(CHAR_P,unsigned);
+STATIC_DCL void sense_trap(struct trap *,XCHAR_P,XCHAR_P,int);
+STATIC_DCL void show_map_spot(int,int);
+STATIC_DCL void show_map_spotX(int,int);
+STATIC_PTR void findone(int,int,genericptr_t);
+STATIC_PTR void findoneX(int,int,genericptr_t);
+STATIC_PTR void openone(int,int,genericptr_t);
 
 /* Recursively search obj for an object in class oclass and return 1st found */
 struct obj *

@@ -44,20 +44,20 @@ static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 	        (spell < 52) ? ('A' + spell - 26) : \
 		(spell < 78) ? ('0' + spell - 52) : 0 ))
 
-STATIC_DCL int FDECL(spell_let_to_idx, (CHAR_P));
-STATIC_DCL boolean FDECL(cursed_book, (struct obj *bp));
-STATIC_DCL boolean FDECL(confused_book, (struct obj *));
-STATIC_DCL void FDECL(deadbook, (struct obj *));
+STATIC_DCL int spell_let_to_idx(CHAR_P);
+STATIC_DCL boolean cursed_book(struct obj *bp);
+STATIC_DCL boolean confused_book(struct obj *);
+STATIC_DCL void deadbook(struct obj *);
 STATIC_PTR int NDECL(learn);
 STATIC_DCL void NDECL(do_reset_learn);
-STATIC_DCL boolean FDECL(getspell, (int *));
-STATIC_DCL boolean FDECL(dospellmenu, (const char *,int,int *));
-STATIC_DCL int FDECL(percent_success, (int));
+STATIC_DCL boolean getspell(int *);
+STATIC_DCL boolean dospellmenu(const char *,int,int *);
+STATIC_DCL int percent_success(int);
 STATIC_DCL void NDECL(cast_protection);
 STATIC_DCL void NDECL(cast_reflection);
-STATIC_DCL void FDECL(spell_backfire, (int));
-STATIC_DCL const char *FDECL(spelltypemnemonic, (int));
-STATIC_DCL int FDECL(isqrt, (int));
+STATIC_DCL void spell_backfire(int);
+STATIC_DCL const char *spelltypemnemonic(int);
+STATIC_DCL int isqrt(int);
 static int NDECL(spell_dash);
 
 /* categories whose names don't come from OBJ_NAME(objects[type]) */

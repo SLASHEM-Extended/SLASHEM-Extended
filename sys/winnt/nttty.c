@@ -32,10 +32,10 @@
 #define MOUSE_WHEELED 0x0004
 #endif
 
-void FDECL(cmov, (int, int));
-void FDECL(nocmov, (int, int));
-int FDECL(process_keystroke, (INPUT_RECORD *, boolean *,
-    BOOLEAN_P numberpad, int portdebug));
+void cmov(int, int);
+void nocmov(int, int);
+int process_keystroke(INPUT_RECORD *, boolean *,
+    BOOLEAN_P numberpad, int portdebug);
 
 /*
  * The following WIN32 Console API routines are used in this file.
@@ -79,7 +79,7 @@ static DWORD cmode;
  * from the command line. 
  */
 int GUILaunched;
-static BOOL FDECL(CtrlHandler, (DWORD));
+static BOOL CtrlHandler(DWORD);
 
 #ifdef PORT_DEBUG
 static boolean display_cursor_info = FALSE;

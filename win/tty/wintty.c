@@ -115,8 +115,8 @@ winid BASE_WINDOW;
 struct WinDesc *wins[MAXWIN];
 struct DisplayDesc *ttyDisplay;	/* the tty display descriptor */
 
-extern void FDECL(cmov, (int,int)); /* from termcap.c */
-extern void FDECL(nocmov, (int,int)); /* from termcap.c */
+extern void cmov(int,int); /* from termcap.c */
+extern void nocmov(int,int); /* from termcap.c */
 #if defined(UNIX) || defined(VMS)
 static char obuf[BUFSIZ];	/* BUFSIZ is defined in stdio.h */
 #endif
@@ -140,7 +140,7 @@ static int clipy = 0, clipymax = 0;
 #endif /* CLIPPING */
 
 #if defined(USE_TILES) && defined(MSDOS)
-extern void FDECL(adjust_cursor_flags, (struct WinDesc *));
+extern void adjust_cursor_flags(struct WinDesc *);
 #endif
 
 #if defined(ASCIIGRAPH) && !defined(NO_TERMS)
@@ -154,23 +154,23 @@ static const char to_continue[] = "to continue";
 #else
 STATIC_DCL void NDECL(getret);
 #endif
-STATIC_DCL void FDECL(erase_menu_or_text, (winid, struct WinDesc *, BOOLEAN_P));
-STATIC_DCL void FDECL(free_window_info, (struct WinDesc *, BOOLEAN_P));
-STATIC_DCL void FDECL(dmore,(struct WinDesc *, const char *));
-STATIC_DCL void FDECL(set_item_state, (winid, int, tty_menu_item *));
-STATIC_DCL void FDECL(set_all_on_page, (winid,tty_menu_item *,tty_menu_item *));
-STATIC_DCL void FDECL(unset_all_on_page, (winid,tty_menu_item *,tty_menu_item *));
-STATIC_DCL void FDECL(invert_all_on_page, (winid,tty_menu_item *,tty_menu_item *, CHAR_P));
-STATIC_DCL void FDECL(invert_all, (winid,tty_menu_item *,tty_menu_item *, CHAR_P));
-STATIC_DCL void FDECL(process_menu_window, (winid,struct WinDesc *));
-STATIC_DCL void FDECL(process_text_window, (winid,struct WinDesc *));
-STATIC_DCL tty_menu_item *FDECL(reverse, (tty_menu_item *));
-const char * FDECL(compress_str, (const char *));
-STATIC_DCL void FDECL(tty_putsym, (winid, int, int, CHAR_P));
-static char *FDECL(copy_of, (const char *));
-STATIC_DCL void FDECL(bail, (const char *));	/* __attribute__((noreturn)) */
-STATIC_DCL int FDECL(tty_role_select, (char *, char *));
-STATIC_DCL int FDECL(tty_race_select, (char *, char *));
+STATIC_DCL void erase_menu_or_text(winid, struct WinDesc *, BOOLEAN_P);
+STATIC_DCL void free_window_info(struct WinDesc *, BOOLEAN_P);
+STATIC_DCL void dmore(struct WinDesc *, const char *);
+STATIC_DCL void set_item_state(winid, int, tty_menu_item *);
+STATIC_DCL void set_all_on_page(winid,tty_menu_item *,tty_menu_item *);
+STATIC_DCL void unset_all_on_page(winid,tty_menu_item *,tty_menu_item *);
+STATIC_DCL void invert_all_on_page(winid,tty_menu_item *,tty_menu_item *, CHAR_P);
+STATIC_DCL void invert_all(winid,tty_menu_item *,tty_menu_item *, CHAR_P);
+STATIC_DCL void process_menu_window(winid,struct WinDesc *);
+STATIC_DCL void process_text_window(winid,struct WinDesc *);
+STATIC_DCL tty_menu_item *reverse(tty_menu_item *);
+const char * compress_str(const char *);
+STATIC_DCL void tty_putsym(winid, int, int, CHAR_P);
+static char *copy_of(const char *);
+STATIC_DCL void bail(const char *);	/* __attribute__((noreturn) */
+STATIC_DCL int tty_role_select(char *, char *);
+STATIC_DCL int tty_race_select(char *, char *);
 
 /*
  * A string containing all the default commands -- to add to a list

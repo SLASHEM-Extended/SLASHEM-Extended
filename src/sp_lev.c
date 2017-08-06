@@ -24,28 +24,26 @@
 #include "sp_lev.h"
 #include "rect.h"
 
-extern void FDECL(mkmap, (lev_init *));
+extern void mkmap(lev_init *);
 
-STATIC_DCL void FDECL(get_room_loc, (schar *, schar *, struct mkroom *));
-STATIC_DCL void FDECL(get_free_room_loc, (schar *, schar *, struct mkroom *));
-STATIC_DCL void FDECL(create_trap, (trap *, struct mkroom *));
-STATIC_DCL int FDECL(noncoalignment, (ALIGNTYP_P));
-STATIC_DCL void FDECL(create_monster, (monster *, struct mkroom *));
-STATIC_DCL void FDECL(create_object, (object *, struct mkroom *));
-STATIC_DCL void FDECL(create_engraving, (engraving *,struct mkroom *));
-STATIC_DCL void FDECL(create_stairs, (stair *, struct mkroom *));
-STATIC_DCL void FDECL(create_altar, (altar *, struct mkroom *));
-STATIC_DCL void FDECL(create_gold, (gold *, struct mkroom *));
-STATIC_DCL void FDECL(create_feature, (int,int,struct mkroom *,int));
-STATIC_DCL boolean FDECL(search_door, (struct mkroom *, xchar *, xchar *,
-					XCHAR_P, int));
+STATIC_DCL void get_room_loc(schar *, schar *, struct mkroom *);
+STATIC_DCL void get_free_room_loc(schar *, schar *, struct mkroom *);
+STATIC_DCL void create_trap(trap *, struct mkroom *);
+STATIC_DCL int noncoalignment(ALIGNTYP_P);
+STATIC_DCL void create_monster(monster *, struct mkroom *);
+STATIC_DCL void create_object(object *, struct mkroom *);
+STATIC_DCL void create_engraving(engraving *,struct mkroom *);
+STATIC_DCL void create_stairs(stair *, struct mkroom *);
+STATIC_DCL void create_altar(altar *, struct mkroom *);
+STATIC_DCL void create_gold(gold *, struct mkroom *);
+STATIC_DCL void create_feature(int,int,struct mkroom *,int);
+STATIC_DCL boolean search_door(struct mkroom *, xchar *, xchar *, XCHAR_P, int);
 STATIC_DCL void NDECL(fix_stair_rooms);
-STATIC_DCL void FDECL(create_corridor, (corridor *));
+STATIC_DCL void create_corridor(corridor *);
 
-STATIC_DCL boolean FDECL(create_subroom, (struct mkroom *, XCHAR_P, XCHAR_P,
-					XCHAR_P, XCHAR_P, XCHAR_P, XCHAR_P));
+STATIC_DCL boolean create_subroom(struct mkroom *, XCHAR_P, XCHAR_P, XCHAR_P, XCHAR_P, XCHAR_P, XCHAR_P);
 
-STATIC_DCL void FDECL(mkfeature,(int,int));
+STATIC_DCL void mkfeature(int,int);
 
 
 #define LEFT	1
@@ -78,22 +76,22 @@ static NEARDATA xchar xstart, ystart;
 static NEARDATA char xsize, ysize;
 static lev_region rarea[10];
 
-STATIC_DCL void FDECL(set_wall_property, (XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,int));
+STATIC_DCL void set_wall_property(XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,int);
 STATIC_DCL int NDECL(rnddoor);
 STATIC_DCL int NDECL(rndtrap);
-STATIC_DCL boolean FDECL(get_location, (schar *,schar *,int));
-STATIC_DCL void FDECL(sp_lev_shuffle, (char *,char *,int));
-STATIC_DCL void FDECL(light_region, (region *));
-STATIC_DCL void FDECL(load_common_data, (dlb *,int));
-STATIC_DCL void FDECL(load_one_monster, (dlb *,monster *));
-STATIC_DCL void FDECL(load_one_object, (dlb *,object *));
-STATIC_DCL void FDECL(load_one_engraving, (dlb *,engraving *));
-STATIC_DCL boolean FDECL(load_rooms, (dlb *));
-STATIC_DCL void FDECL(maze1xy, (coord *,int));
-STATIC_DCL boolean FDECL(load_maze, (dlb *));
-STATIC_DCL void FDECL(create_door, (room_door *, struct mkroom *));
-STATIC_DCL void FDECL(free_rooms,(room **, int));
-STATIC_DCL void FDECL(build_room, (room *, room*));
+STATIC_DCL boolean get_location(schar *,schar *,int);
+STATIC_DCL void sp_lev_shuffle(char *,char *,int);
+STATIC_DCL void light_region(region *);
+STATIC_DCL void load_common_data(dlb *,int);
+STATIC_DCL void load_one_monster(dlb *,monster *);
+STATIC_DCL void load_one_object(dlb *,object *);
+STATIC_DCL void load_one_engraving(dlb *,engraving *);
+STATIC_DCL boolean load_rooms(dlb *);
+STATIC_DCL void maze1xy(coord *,int);
+STATIC_DCL boolean load_maze(dlb *);
+STATIC_DCL void create_door(room_door *, struct mkroom *);
+STATIC_DCL void free_rooms(room **, int);
+STATIC_DCL void build_room(room *, room*);
 
 char *lev_message = 0;
 lev_region *lregions = 0;
@@ -1514,7 +1512,7 @@ makespacewarstrap()
 #define WET	0x2
 #define MOLTEN	0x4
 
-STATIC_DCL boolean FDECL(is_ok_location, (SCHAR_P, SCHAR_P, int));
+STATIC_DCL boolean is_ok_location(SCHAR_P, SCHAR_P, int);
 
 STATIC_OVL boolean
 get_location(x, y, humidity)

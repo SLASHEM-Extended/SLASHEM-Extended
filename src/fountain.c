@@ -9,7 +9,7 @@
 STATIC_DCL void NDECL(dowatersnakes);
 STATIC_DCL void NDECL(dowaterdemon);
 STATIC_DCL void NDECL(dowaternymph);
-STATIC_PTR void FDECL(gush, (int,int,genericptr_t));
+STATIC_PTR void gush(int,int,genericptr_t);
 STATIC_DCL void NDECL(dofindgem);
 
 void

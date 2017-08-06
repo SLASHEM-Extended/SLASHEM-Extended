@@ -20,11 +20,11 @@
 
 #include "2xsai.h"
 
-static BITMAP * FDECL(load_tile_bitmap,(char *, RGB *));
-static BITMAP * FDECL(new_bitmap,(int, int));
-static BITMAP * FDECL(load_convert_bitmap,(char *, RGB *));
+static BITMAP * load_tile_bitmap(char *, RGB *);
+static BITMAP * new_bitmap(int, int);
+static BITMAP * load_convert_bitmap(char *, RGB *);
 static void NDECL(display_nh_title);
-static void FDECL(resize_tile_bitmap, (BITMAP *, BITMAP *, int, int, int, int));
+static void resize_tile_bitmap(BITMAP *, BITMAP *, int, int, int, int);
 
 static boolean font_loaded = FALSE;
 static PALETTE loadpal;		/* For loading - using NULL pointers causes

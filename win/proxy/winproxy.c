@@ -912,8 +912,8 @@ proxy_config_file_close(FILE *fp)
 extern struct nhext_svc proxy_callbacks[];
 
 #ifdef DEBUG
-static int FDECL(debug_read, (void *, void *, unsigned int));
-static int FDECL(debug_write, (void *, void *, unsigned int));
+static int debug_read(void *, void *, unsigned int);
+static int debug_write(void *, void *, unsigned int);
 
 #define READ_F	debug_read
 #define WRITE_F	debug_write

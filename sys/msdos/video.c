@@ -119,12 +119,12 @@ typedef long clock_t;
 # endif
 
 # ifdef SCREEN_BIOS
-void FDECL(get_cursor, (int *, int *));
+void get_cursor(int *, int *);
 # endif
 
-void FDECL(adjust_cursor_flags, (struct WinDesc *));
-void FDECL(cmov, (int, int));
-void FDECL(nocmov, (int, int));
+void adjust_cursor_flags(struct WinDesc *);
+void cmov(int, int);
+void nocmov(int, int);
 STATIC_DCL void NDECL(init_ttycolor);
 
 # ifdef OVLB
@@ -819,7 +819,7 @@ init_ttycolor()
 #  endif /* OVLB */
 
 #  ifdef OVL1
-	static int FDECL(convert_uchars,(char *, uchar *, int));
+	static int convert_uchars(char *, uchar *, int);
 #   ifdef VIDEOSHADES
 int assign_videoshades(char *choiceptr)
 {

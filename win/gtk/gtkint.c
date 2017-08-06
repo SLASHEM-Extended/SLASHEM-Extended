@@ -30,11 +30,11 @@ hook()
 
 #ifdef GTK_PROXY
 
-static void FDECL(GTK_proxy_init_nhwindows, (int *, char **));
+static void GTK_proxy_init_nhwindows(int *, char **);
 static void NDECL(GTK_proxy_askname);
 static int NDECL(GTK_proxy_nhgetch);
-static void FDECL(GTK_proxy_raw_print, (const char *));
-static void FDECL(GTK_proxy_raw_print_bold, (const char *));
+static void GTK_proxy_raw_print(const char *);
+static void GTK_proxy_raw_print_bold(const char *);
 
 /* Only the GTK_proxy_... functions are expected to be called.
  * Calling any other of these before GTK_proxy_init_nhwindows()
@@ -214,24 +214,22 @@ GTK_proxy_init_nhwindows(int *argcp, char **argv)
 
 #else	/* GTK_PROXY */
 
-static void FDECL(GTK_int_init_nhwindows, (int *, char **));
+static void GTK_int_init_nhwindows(int *, char **);
 static void NDECL(GTK_int_player_selection);
 static void NDECL(GTK_int_askname);
-static void FDECL(GTK_int_clear_nhwindow, (winid));
+static void GTK_int_clear_nhwindow(winid);
 #ifdef FILE_AREAS
-static void FDECL(GTK_int_display_file, (const char *, const char *,
-		BOOLEAN_P));
+static void GTK_int_display_file(const char *, const char *, BOOLEAN_P);
 #else
-static void FDECL(GTK_int_display_file, (const char *, BOOLEAN_P));
+static void GTK_int_display_file(const char *, BOOLEAN_P);
 #endif
-static void FDECL(GTK_int_add_menu, (winid, int, const ANY_P *,
-		CHAR_P, CHAR_P, int, const char *, BOOLEAN_P));
-static int FDECL(GTK_int_select_menu, (winid, int, MENU_ITEM_P **));
-static void FDECL(GTK_int_print_glyph, (winid, XCHAR_P, XCHAR_P, int));
-static char FDECL(GTK_int_yn_function, (const char *, const char *, CHAR_P));
-static void FDECL(GTK_int_outrip, (winid, int));
-static void FDECL(GTK_int_getlin, (const char *, char *));
-static void FDECL(GTK_int_preference_update, (const char *));
+static void GTK_int_add_menu(winid, int, const ANY_P *, CHAR_P, CHAR_P, int, const char *, BOOLEAN_P);
+static int GTK_int_select_menu(winid, int, MENU_ITEM_P **);
+static void GTK_int_print_glyph(winid, XCHAR_P, XCHAR_P, int);
+static char GTK_int_yn_function(const char *, const char *, CHAR_P);
+static void GTK_int_outrip(winid, int);
+static void GTK_int_getlin(const char *, char *);
+static void GTK_int_preference_update(const char *);
 
 struct window_procs GTK_procs = {
     "gtk",

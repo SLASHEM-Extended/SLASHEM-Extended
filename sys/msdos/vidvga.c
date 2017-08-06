@@ -108,19 +108,19 @@
 # include <conio.h>
 # endif
 
-/* STATIC_DCL void FDECL(vga_NoBorder, (int));  */
-void FDECL(vga_gotoloc, (int,int));  /* This should be made a macro */
+/* STATIC_DCL void vga_NoBorder(int);  */
+void vga_gotoloc(int,int);  /* This should be made a macro */
 void NDECL(vga_backsp);
 #ifdef SCROLLMAP
-STATIC_DCL void FDECL(vga_scrollmap,(BOOLEAN_P));
+STATIC_DCL void vga_scrollmap(BOOLEAN_P);
 #endif
-STATIC_DCL void FDECL(vga_redrawmap,(BOOLEAN_P));
-void FDECL(vga_cliparound,(int, int));
-STATIC_OVL void FDECL(decal_planar,(struct planar_cell_struct *, unsigned));
+STATIC_DCL void vga_redrawmap(BOOLEAN_P);
+void vga_cliparound(int, int);
+STATIC_OVL void decal_planar(struct planar_cell_struct *, unsigned);
 
 #ifdef POSITIONBAR
 STATIC_DCL void NDECL(positionbar);
-static void FDECL(vga_special,(int, int, int));
+static void vga_special(int, int, int);
 #endif
 
 /* WAC draw a pet mark */

@@ -19,7 +19,7 @@
 # endif
 
 /* WAC is now a char */
-char FDECL(pckeys, (unsigned char, unsigned char));
+char pckeys(unsigned char, unsigned char);
 
 extern struct WinDesc *wins[MAXWIN];	/* from wintty.c */
 extern boolean inmap;			/* from video.c */
@@ -32,9 +32,9 @@ extern boolean inmap;			/* from video.c */
 STATIC_DCL boolean NDECL(mouse_detect);
 STATIC_DCL void NDECL(mouse_show);
 STATIC_DCL void NDECL(mouse_hide);
-STATIC_DCL unsigned char FDECL(mouse_button, (unsigned char));
-STATIC_DCL void FDECL(mouse_abs_pos, (int *,int *));
-STATIC_DCL int FDECL(mouse_rel_pos, (int *,int *));
+STATIC_DCL unsigned char mouse_button(unsigned char);
+STATIC_DCL void mouse_abs_pos(int *,int *);
+STATIC_DCL int mouse_rel_pos(int *,int *);
 # endif
 
 /*

@@ -64,7 +64,7 @@ extern void NDECL(win_proxy_init);
 extern struct window_procs mswin_procs;
 #endif
 
-STATIC_DCL void FDECL(def_raw_print, (const char *s));
+STATIC_DCL void def_raw_print(const char *s);
 
 NEARDATA struct window_procs windowprocs;
 

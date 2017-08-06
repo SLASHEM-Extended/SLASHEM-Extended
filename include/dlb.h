@@ -75,16 +75,16 @@ boolean NDECL(dlb_init);
 void NDECL(dlb_cleanup);
 
 #ifndef FILE_AREAS
-dlb *FDECL(dlb_fopen, (const char *,const char *));
+dlb *dlb_fopen(const char *,const char *);
 #else
-dlb *FDECL(dlb_fopen_area, (const char *,const char *,const char *));
+dlb *dlb_fopen_area(const char *,const char *,const char *);
 #endif
-int FDECL(dlb_fclose, (DLB_P));
-int FDECL(dlb_fread, (char *,int,int,DLB_P));
-int FDECL(dlb_fseek, (DLB_P,long,int));
-char *FDECL(dlb_fgets, (char *,int,DLB_P));
-int FDECL(dlb_fgetc, (DLB_P));
-long FDECL(dlb_ftell, (DLB_P));
+int dlb_fclose(DLB_P);
+int dlb_fread(char *,int,int,DLB_P);
+int dlb_fseek(DLB_P,long,int);
+char *dlb_fgets(char *,int,DLB_P);
+int dlb_fgetc(DLB_P);
+long dlb_ftell(DLB_P);
 
 
 /* Resource DLB entry points */

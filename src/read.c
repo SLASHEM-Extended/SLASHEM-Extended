@@ -142,20 +142,20 @@ static const char *warnings[] = {
 #endif
 
 #if 0
-static void FDECL(wand_explode, (struct obj *));
+static void wand_explode(struct obj *);
 #endif
 static void NDECL(do_class_genocide);
 static void NDECL(do_total_genocide);
 static void NDECL(do_class_erasure);
-static void FDECL(stripspe,(struct obj *));
-static void FDECL(p_glow1,(struct obj *));
-static void FDECL(p_glow2,(struct obj *,const char *));
-static void FDECL(randomize,(int *, int));
-static void FDECL(forget_single_object, (int));
-static void FDECL(maybe_tame, (struct monst *,struct obj *));
-static void FDECL(undo_genocide,(void));
+static void stripspe(struct obj *);
+static void p_glow1(struct obj *);
+static void p_glow2(struct obj *,const char *);
+static void randomize(int *, int);
+static void forget_single_object(int);
+static void maybe_tame(struct monst *,struct obj *);
+static void undo_genocide(void);
 
-STATIC_PTR void FDECL(set_lit, (int,int,genericptr_t));
+STATIC_PTR void set_lit(int,int,genericptr_t);
 
 int
 doread()

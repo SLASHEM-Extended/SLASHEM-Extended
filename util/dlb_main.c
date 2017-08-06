@@ -13,7 +13,7 @@
 #include <string.h>
 #endif
 
-static void FDECL(xexit, (int));
+static void xexit(int);
 
 #ifdef DLB
 #ifdef DLBLIB
@@ -22,21 +22,21 @@ static void FDECL(xexit, (int));
 #define LIBLISTFILE "dlb.lst"		/* default list file */
 
 /* library functions (from dlb.c) */
-extern boolean FDECL(open_library,(const char *,const char *,library *));
-extern void FDECL(close_library,(library *));
+extern boolean open_library(const char *,const char *,library *);
+extern void close_library(library *);
 
-char *FDECL(eos, (char *));	/* also used by dlb.c */
-FILE *FDECL(fopen_datafile, (const char *,const char *));
+char *eos(char *);	/* also used by dlb.c */
+FILE *fopen_datafile(const char *,const char *);
 
 #ifdef VMS
-extern char *FDECL(vms_basename, (const char *));
-extern int FDECL(vms_open, (const char *,int,unsigned int));
+extern char *vms_basename(const char *);
+extern int vms_open(const char *,int,unsigned int);
 #endif
 
-static void FDECL(Write, (int,char *,long));
+static void Write(int,char *,long);
 static void NDECL(usage);
 static void NDECL(verbose_help);
-static void FDECL(write_dlb_directory, (int,int,libdir *,long,long,long));
+static void write_dlb_directory(int,int,libdir *,long,long,long);
 
 static char default_progname[] = "dlb";
 static char *progname = default_progname;

@@ -255,8 +255,8 @@ typedef __mode_t mode_t;
 #define ospeed vms_ospeed
 
 /* used in several files which don't #include "extern.h" */
-extern void FDECL(vms_exit, (int));
-extern int FDECL(vms_open, (const char *,int,unsigned));
+extern void vms_exit(int);
+extern int vms_open(const char *,int,unsigned);
 
 #endif	/* VMSCONF_H */
 #endif	/* VMS */

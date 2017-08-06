@@ -595,34 +595,34 @@ static short n_menu_mapped = 0;
 
 static boolean initial, from_file;
 
-STATIC_DCL void FDECL(doset_add_menu, (winid,const char *,int));
-STATIC_DCL void FDECL(nmcpy, (char *, const char *, int));
-STATIC_DCL void FDECL(escapes, (const char *, char *));
-STATIC_DCL void FDECL(rejectoption, (const char *));
-STATIC_DCL void FDECL(badoption, (const char *));
-STATIC_OVL void FDECL(badtileoption, (const char *));
-STATIC_DCL char *FDECL(string_for_opt, (char *,BOOLEAN_P));
-STATIC_OVL char *FDECL(string_for_tile_opt, (char *, BOOLEAN_P));
-STATIC_DCL char *FDECL(string_for_env_opt, (const char *, char *,BOOLEAN_P));
-STATIC_DCL void FDECL(bad_negation, (const char *,BOOLEAN_P));
-STATIC_DCL int FDECL(change_inv_order, (char *));
-STATIC_DCL void FDECL(oc_to_str, (char *, char *));
-STATIC_DCL void FDECL(graphics_opts, (char *,const char *,int,int));
-STATIC_DCL int FDECL(feature_alert_opts, (char *, const char *));
-STATIC_DCL const char *FDECL(get_compopt_value, (const char *, char *));
-STATIC_DCL boolean FDECL(special_handling, (const char *, BOOLEAN_P, BOOLEAN_P));
-STATIC_DCL void FDECL(warning_opts, (char *,const char *));
-STATIC_DCL void FDECL(duplicate_opt_detection, (const char *, int));
+STATIC_DCL void doset_add_menu(winid,const char *,int);
+STATIC_DCL void nmcpy(char *, const char *, int);
+STATIC_DCL void escapes(const char *, char *);
+STATIC_DCL void rejectoption(const char *);
+STATIC_DCL void badoption(const char *);
+STATIC_OVL void badtileoption(const char *);
+STATIC_DCL char *string_for_opt(char *,BOOLEAN_P);
+STATIC_OVL char *string_for_tile_opt(char *, BOOLEAN_P);
+STATIC_DCL char *string_for_env_opt(const char *, char *,BOOLEAN_P);
+STATIC_DCL void bad_negation(const char *,BOOLEAN_P);
+STATIC_DCL int change_inv_order(char *);
+STATIC_DCL void oc_to_str(char *, char *);
+STATIC_DCL void graphics_opts(char *,const char *,int,int);
+STATIC_DCL int feature_alert_opts(char *, const char *);
+STATIC_DCL const char *get_compopt_value(const char *, char *);
+STATIC_DCL boolean special_handling(const char *, BOOLEAN_P, BOOLEAN_P);
+STATIC_DCL void warning_opts(char *,const char *);
+STATIC_DCL void duplicate_opt_detection(const char *, int);
 
-STATIC_OVL void FDECL(wc_set_font_name, (int, char *));
-STATIC_OVL int FDECL(wc_set_window_colors, (char *));
-STATIC_OVL boolean FDECL(is_wc_option, (const char *));
-STATIC_OVL boolean FDECL(wc_supported, (const char *));
-STATIC_OVL boolean FDECL(is_wc2_option, (const char *));
-STATIC_OVL boolean FDECL(wc2_supported, (const char *));
+STATIC_OVL void wc_set_font_name(int, char *);
+STATIC_OVL int wc_set_window_colors(char *);
+STATIC_OVL boolean is_wc_option(const char *);
+STATIC_OVL boolean wc_supported(const char *);
+STATIC_OVL boolean is_wc2_option(const char *);
+STATIC_OVL boolean wc2_supported(const char *);
 #ifdef AUTOPICKUP_EXCEPTIONS
-STATIC_DCL void FDECL(remove_autopickup_exception, (struct autopickup_exception *));
-STATIC_OVL int FDECL(count_ape_maps, (int *, int *));
+STATIC_DCL void remove_autopickup_exception(struct autopickup_exception *);
+STATIC_OVL int count_ape_maps(int *, int *);
 #endif
 
 /* check whether a user-supplied option string is a proper leading

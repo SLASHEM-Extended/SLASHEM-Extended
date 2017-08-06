@@ -26,7 +26,7 @@
 
 #define BITCOUNT 8
 
-extern char *FDECL(tilename, (int, int));
+extern char *tilename(int, int);
 
 #if BITCOUNT==4
 #define MAX_X 640		/* 2 per byte, 4 bits per pixel */
@@ -131,9 +131,9 @@ FILE *tibfile2;
 /*pixel tilepixels[TILE_Y][TILE_X];*/
 pixel tilepixels[MAX_TILE_Y][MAX_TILE_X];
 
-static void FDECL(build_bmfh,(BITMAPFILEHEADER *));
-static void FDECL(build_bmih,(BITMAPINFOHEADER *));
-static void FDECL(build_bmptile,(pixel (*)[MAX_TILE_X]));
+static void build_bmfh(BITMAPFILEHEADER *);
+static void build_bmih(BITMAPINFOHEADER *);
+static void build_bmptile(pixel (*)[MAX_TILE_X]);
 
 int tilecount;
 int max_tiles_in_row = 40;

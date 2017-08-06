@@ -48,60 +48,57 @@ struct proxy_glyph_map_info {
 
 struct window_ext_procs {
     const char *name;
-    int FDECL((*winext_init_nhwindows), (int *, char **, char ***));
-    int FDECL((*winext_player_selection), (int *, int *, int *, int *));
+    int (*winext_init_nhwindows)(int *, char **, char ***);
+    int (*winext_player_selection)(int *, int *, int *, int *);
     char *NDECL((*winext_askname));
     void NDECL((*winext_get_nh_event)) ;
-    void FDECL((*winext_exit_nhwindows), (const char *));
-    void FDECL((*winext_suspend_nhwindows), (const char *));
+    void (*winext_exit_nhwindows)(const char *);
+    void (*winext_suspend_nhwindows)(const char *);
     void NDECL((*winext_resume_nhwindows));
-    int FDECL((*winext_create_nhwindow), (int));
-    void FDECL((*winext_clear_nhwindow), (int, int, int, int));
-    void FDECL((*winext_display_nhwindow), (int, BOOLEAN_P));
-    void FDECL((*winext_destroy_nhwindow), (int));
-    void FDECL((*winext_curs), (int,int,int));
-    void FDECL((*winext_putstr), (int, int, const char *));
-    void FDECL((*winext_display_file), (int));
-    void FDECL((*winext_start_menu), (int));
-    void FDECL((*winext_add_menu), (int,int,int,
-		CHAR_P,CHAR_P,int,const char *, BOOLEAN_P));
-    void FDECL((*winext_end_menu), (int, const char *));
-    int FDECL((*winext_select_menu), (int, int, struct proxy_mi **));
-    int FDECL((*winext_message_menu), (int,int,const char *));
+    int (*winext_create_nhwindow)(int);
+    void (*winext_clear_nhwindow)(int, int, int, int);
+    void (*winext_display_nhwindow)(int, BOOLEAN_P);
+    void (*winext_destroy_nhwindow)(int);
+    void (*winext_curs)(int,int,int);
+    void (*winext_putstr)(int, int, const char *);
+    void (*winext_display_file)(int);
+    void (*winext_start_menu)(int);
+    void (*winext_add_menu)(int,int,int, CHAR_P,CHAR_P,int,const char *, BOOLEAN_P);
+    void (*winext_end_menu)(int, const char *);
+    int (*winext_select_menu)(int, int, struct proxy_mi **);
+    int (*winext_message_menu)(int,int,const char *);
     void NDECL((*winext_update_inventory));
     void NDECL((*winext_mark_synch));
     void NDECL((*winext_wait_synch));
-    void FDECL((*winext_cliparound), (int, int));
-    void FDECL((*winext_update_positionbar), (char *));
-    void FDECL((*winext_print_glyph), (int,int,int,int));
-    void FDECL((*winext_raw_print), (const char *));
-    void FDECL((*winext_raw_print_bold), (const char *));
+    void (*winext_cliparound)(int, int);
+    void (*winext_update_positionbar)(char *);
+    void (*winext_print_glyph)(int,int,int,int);
+    void (*winext_raw_print)(const char *);
+    void (*winext_raw_print_bold)(const char *);
     int NDECL((*winext_nhgetch));
-    int FDECL((*winext_nh_poskey), (int *, int *, int *));
+    int (*winext_nh_poskey)(int *, int *, int *);
     void NDECL((*winext_nhbell));
     int NDECL((*winext_doprev_message));
-    char FDECL((*winext_yn_function), (const char *, const char *,
-		CHAR_P, int *));
-    char *FDECL((*winext_getlin), (const char *));
+    char (*winext_yn_function)(const char *, const char *, CHAR_P, int *);
+    char *(*winext_getlin)(const char *);
     int NDECL((*winext_get_ext_cmd));
-    void FDECL((*winext_number_pad), (int));
+    void (*winext_number_pad)(int);
     void NDECL((*winext_delay_output));
-    void FDECL((*winext_change_color), (int, long, int));
-    void FDECL((*winext_change_background), (int));
-    int FDECL((*winext_set_font_name), (int, char *));
+    void (*winext_change_color)(int, long, int);
+    void (*winext_change_background)(int);
+    int (*winext_set_font_name)(int, char *);
     char *NDECL((*winext_get_color_string));
     void NDECL((*winext_start_screen));
     void NDECL((*winext_end_screen));
-    int FDECL((*winext_outrip), (int, char *));
-    void FDECL((*winext_preference_update), (const char *, const char *));
-    void FDECL((*winext_status), (int, int, const char **));
-    void FDECL((*winext_print_glyph_layered), (int, int,
-    		struct proxy_glyph_layer *));
-    void FDECL((*winext_send_config_file), (int));
+    int (*winext_outrip)(int, char *);
+    void (*winext_preference_update)(const char *, const char *);
+    void (*winext_status)(int, int, const char **);
+    void (*winext_print_glyph_layered)(int, int, struct proxy_glyph_layer *);
+    void (*winext_send_config_file)(int);
 };
 
-typedef void FDECL((*proxy_clnt_errhandler), (const char *));
-typedef int FDECL((*proxy_clnt_authhandler), (unsigned long));
+typedef void (*proxy_clnt_errhandler)(const char *);
+typedef int (*proxy_clnt_authhandler)(unsigned long);
 
 /* ### proxysvc.c ### */
 

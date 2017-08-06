@@ -7,18 +7,18 @@
 #include "hack.h"
 #include "edog.h"
 
-STATIC_DCL int FDECL(throw_obj, (struct obj *, int, int));
+STATIC_DCL int throw_obj(struct obj *, int, int);
 STATIC_DCL void NDECL(autoquiver);
-STATIC_DCL int FDECL(gem_accept, (struct monst *, struct obj *));
-STATIC_DCL void FDECL(tmiss, (struct obj *, struct monst *));
-STATIC_DCL int FDECL(throw_gold, (struct obj *));
-STATIC_DCL void FDECL(check_shop_obj, (struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P));
-STATIC_DCL void FDECL(breakobj, (struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P,BOOLEAN_P));
-STATIC_DCL void FDECL(breakmsg, (struct obj *,BOOLEAN_P));
-STATIC_DCL boolean FDECL(toss_up,(struct obj *, BOOLEAN_P));
-STATIC_DCL boolean FDECL(throwing_weapon, (struct obj *));
-STATIC_DCL void FDECL(sho_obj_return_to_u, (struct obj *obj));
-STATIC_DCL boolean FDECL(mhurtle_step, (genericptr_t,int,int));
+STATIC_DCL int gem_accept(struct monst *, struct obj *);
+STATIC_DCL void tmiss(struct obj *, struct monst *);
+STATIC_DCL int throw_gold(struct obj *);
+STATIC_DCL void check_shop_obj(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P);
+STATIC_DCL void breakobj(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P,BOOLEAN_P);
+STATIC_DCL void breakmsg(struct obj *,BOOLEAN_P);
+STATIC_DCL boolean toss_up(struct obj *, BOOLEAN_P);
+STATIC_DCL boolean throwing_weapon(struct obj *);
+STATIC_DCL void sho_obj_return_to_u(struct obj *obj);
+STATIC_DCL boolean mhurtle_step(genericptr_t,int,int);
 static void NDECL(autoquiver);	/* KMH -- automatically fill quiver */
 
 
@@ -606,7 +606,7 @@ boolean
 walk_path(src_cc, dest_cc, check_proc, arg)
     coord *src_cc;
     coord *dest_cc;
-    boolean FDECL((*check_proc), (genericptr_t, int, int));
+    boolean (*check_proc)(genericptr_t, int, int);
     genericptr_t arg;
 {
     int x, y, dx, dy, x_change, y_change, err, i, prev_x, prev_y;
@@ -1321,8 +1321,8 @@ int thrown;
 		if (Underwater) range = 1;
 
 		mon = bhit(u.dx,u.dy,range,THROWN_WEAPON,
-			   (int FDECL((*),(MONST_P,OBJ_P)))0,
-			   (int FDECL((*),(OBJ_P,OBJ_P)))0,
+			   (int (*)(MONST_P,OBJ_P))0,
+			   (int (*)(OBJ_P,OBJ_P))0,
 			   &obj);
 
 		/* have to do this after bhit() so u.ux & u.uy are correct */
@@ -2476,8 +2476,8 @@ struct obj *obj;
 			bhitpos.y = u.uy;
 		} else {
 			mon = bhit(u.dx, u.dy, range, THROWN_WEAPON,
-				   (int FDECL((*),(MONST_P,OBJ_P)))0,
-				   (int FDECL((*),(OBJ_P,OBJ_P)))0,
+				   (int (*)(MONST_P,OBJ_P))0,
+				   (int (*)(OBJ_P,OBJ_P))0,
 				   &obj);
 			if (!obj)
 			    return 1;

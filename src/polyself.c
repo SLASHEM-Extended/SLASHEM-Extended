@@ -13,11 +13,11 @@
 #include "hack.h"
 
 #ifdef OVLB
-STATIC_DCL void FDECL(polyman, (const char *,const char *));
+STATIC_DCL void polyman(const char *,const char *);
 STATIC_DCL void NDECL(break_armor);
-STATIC_DCL void FDECL(drop_weapon,(int));
+STATIC_DCL void drop_weapon(int);
 STATIC_DCL void NDECL(uunstick);
-STATIC_DCL int FDECL(armor_to_dragon,(int));
+STATIC_DCL int armor_to_dragon(int);
 /*STATIC_DCL void NDECL(newman);*/
 STATIC_DCL void NDECL(merge_with_armor);
 

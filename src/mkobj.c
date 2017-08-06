@@ -6,14 +6,14 @@
 #include "prop.h"
 
 
-STATIC_DCL void FDECL(mkbox_cnts,(struct obj *));
-STATIC_DCL void FDECL(obj_timer_checks,(struct obj *, XCHAR_P, XCHAR_P, int));
+STATIC_DCL void mkbox_cnts(struct obj *);
+STATIC_DCL void obj_timer_checks(struct obj *, XCHAR_P, XCHAR_P, int);
 #ifdef OVL1
-STATIC_DCL void FDECL(container_weight, (struct obj *));
-STATIC_DCL struct obj *FDECL(save_mtraits, (struct obj *, struct monst *));
+STATIC_DCL void container_weight(struct obj *);
+STATIC_DCL struct obj *save_mtraits(struct obj *, struct monst *);
 #ifdef WIZARD
-STATIC_DCL const char *FDECL(where_name, (int));
-STATIC_DCL void FDECL(check_contained, (struct obj *,const char *));
+STATIC_DCL const char *where_name(int);
+STATIC_DCL void check_contained(struct obj *,const char *);
 #endif
 #endif /* OVL1 */
 

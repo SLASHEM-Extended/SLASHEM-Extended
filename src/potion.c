@@ -18,13 +18,13 @@ boolean notonhead = FALSE;
 static NEARDATA int nothing, unkn;
 static NEARDATA const char beverages[] = { POTION_CLASS, 0 };
 
-STATIC_DCL long FDECL(itimeout, (long));
-STATIC_DCL long FDECL(itimeout_incr, (long,int));
+STATIC_DCL long itimeout(long);
+STATIC_DCL long itimeout_incr(long,int);
 STATIC_DCL void NDECL(ghost_from_bottle);
-STATIC_DCL short FDECL(mixtype, (struct obj *,struct obj *));
-STATIC_PTR void FDECL(set_litI, (int,int,genericptr_t));
+STATIC_DCL short mixtype(struct obj *,struct obj *);
+STATIC_PTR void set_litI(int,int,genericptr_t);
 
-STATIC_DCL void FDECL(healup_mon, (struct monst *, int,int,BOOLEAN_P,BOOLEAN_P));
+STATIC_DCL void healup_mon(struct monst *, int,int,BOOLEAN_P,BOOLEAN_P);
 	/* For healing monsters - analogous to healup for players */
 
 

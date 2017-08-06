@@ -325,7 +325,7 @@ typedef xchar	boolean;		/* 0 or 1 */
 # define __LINE__ 0
 #endif
 
-extern genericptr_t FDECL(alloc, (size_t));		/* alloc.c */
+extern genericptr_t alloc(size_t);		/* alloc.c */
 
 /* Used for consistency checks of various data files; declare it here so
    that utility programs which include config.h but not hack.h can see it. */

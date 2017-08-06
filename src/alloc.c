@@ -48,7 +48,7 @@
  */
 
 #ifdef WIZARD
-char *FDECL(fmt_ptr, (const genericptr,char *));
+char *fmt_ptr(const genericptr,char *);
 #endif
 
 extern void VDECL(panic, (const char *,...)) PRINTF_F(1,2);

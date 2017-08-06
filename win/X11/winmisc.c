@@ -67,17 +67,17 @@ static const char algn_select_translations[] =
     "#override\n\
      <Key>: algn_key()";
 
-static void FDECL(popup_delete, (Widget, XEvent*, String*, Cardinal*));
+static void popup_delete(Widget, XEvent*, String*, Cardinal*);
 static void NDECL(ec_dismiss);
-static Widget FDECL(make_menu, (const char *,const char *,const char *,
+static Widget make_menu(const char *,const char *,const char *,
 				const char *,XtCallbackProc,
 				const char *,XtCallbackProc,
 				int,const char **, Widget **,
-				XtCallbackProc,Widget *));
+				XtCallbackProc,Widget *);
 static void NDECL(init_extended_commands_popup);
-static void FDECL(ps_quit, (Widget,XtPointer,XtPointer));
-static void FDECL(ps_random, (Widget,XtPointer,XtPointer));
-static void FDECL(ps_select, (Widget,XtPointer,XtPointer));
+static void ps_quit(Widget,XtPointer,XtPointer);
+static void ps_random(Widget,XtPointer,XtPointer);
+static void ps_select(Widget,XtPointer,XtPointer);
 
 
 /* Player Selection -------------------------------------------------------- */

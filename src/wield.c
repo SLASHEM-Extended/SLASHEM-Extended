@@ -49,7 +49,7 @@
  * No item may be in more than one of these slots.
  */
 
-STATIC_DCL int FDECL(ready_weapon, (struct obj *, BOOLEAN_P));
+STATIC_DCL int ready_weapon(struct obj *, BOOLEAN_P);
 
 /* used by will_weld() */
 /* probably should be renamed */

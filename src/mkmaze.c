@@ -11,18 +11,18 @@ extern char *lev_message;
 extern lev_region *lregions;
 extern int num_lregions;
 
-STATIC_DCL boolean FDECL(iswall,(int,int));
-STATIC_DCL boolean FDECL(iswall_or_stone,(int,int));
-STATIC_DCL boolean FDECL(is_solid,(int,int));
-STATIC_DCL int FDECL(extend_spine, (int [3][3], int, int, int));
-STATIC_DCL boolean FDECL(okay,(int,int,int));
-STATIC_DCL void FDECL(maze0xy,(coord *));
-STATIC_DCL boolean FDECL(put_lregion_here,(XCHAR_P,XCHAR_P,XCHAR_P,
-	XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,BOOLEAN_P,d_level *));
-STATIC_DCL boolean FDECL(really_put_lregion_here,(XCHAR_P,XCHAR_P,XCHAR_P,
-	XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,BOOLEAN_P,d_level *));
+STATIC_DCL boolean iswall(int,int);
+STATIC_DCL boolean iswall_or_stone(int,int);
+STATIC_DCL boolean is_solid(int,int);
+STATIC_DCL int extend_spine(int [3][3], int, int, int);
+STATIC_DCL boolean okay(int,int,int);
+STATIC_DCL void maze0xy(coord *);
+STATIC_DCL boolean put_lregion_here(XCHAR_P,XCHAR_P,XCHAR_P,
+	XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,BOOLEAN_P,d_level *);
+STATIC_DCL boolean really_put_lregion_here(XCHAR_P,XCHAR_P,XCHAR_P,
+	XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,BOOLEAN_P,d_level *);
 STATIC_DCL void NDECL(fixup_special);
-STATIC_DCL void FDECL(move, (int *,int *,int));
+STATIC_DCL void move(int *,int *,int);
 STATIC_DCL void NDECL(setup_waterlevel);
 STATIC_DCL void NDECL(unsetup_waterlevel);
 
@@ -2055,8 +2055,8 @@ static int xmin, ymin, xmax, ymax;	/* level boundaries */
 #define bymax (ymax - 1)
 
 STATIC_DCL void NDECL(set_wportal);
-STATIC_DCL void FDECL(mk_bubble, (int,int,int));
-STATIC_DCL void FDECL(mv_bubble, (struct bubble *,int,int,BOOLEAN_P));
+STATIC_DCL void mk_bubble(int,int,int);
+STATIC_DCL void mv_bubble(struct bubble *,int,int,BOOLEAN_P);
 
 void
 movebubbles()

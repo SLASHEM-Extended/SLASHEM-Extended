@@ -62,7 +62,7 @@ panic VA_DECL(const char *,str)
  */
 
 #if defined(USE_STDARG) || defined(USE_VARARGS)
-static void FDECL(vpline, (const char *, va_list));
+static void vpline(const char *, va_list);
 
 void
 pline VA_DECL(const char *, line)

@@ -170,15 +170,15 @@ char *file_prefix="";
 #endif
 
 #ifdef MACsansMPWTOOL
-int FDECL(main, (void));
+int main(void);
 #else
-int FDECL(main, (int,char **));
+int main(int,char **);
 #endif
-void FDECL(do_makedefs, (char *));
+void do_makedefs(char *);
 void NDECL(do_objs);
 void NDECL(do_data);
 void NDECL(do_dungeon);
-void FDECL(do_date, (int));
+void do_date(int);
 void NDECL(do_options);
 void NDECL(do_monstr);
 void NDECL(do_permonst);
@@ -193,25 +193,25 @@ extern void NDECL(monst_init);		/* monst.c */
 extern void NDECL(objects_init);	/* objects.c */
 
 static void NDECL(make_version);
-static char *FDECL(version_string, (char *));
-static char *FDECL(version_id_string, (char *,const char *));
-static char *FDECL(xcrypt, (const char *));
-static int FDECL(check_control, (char *));
-static char *FDECL(without_control, (char *));
-static boolean FDECL(d_filter, (char *));
-static boolean FDECL(h_filter, (char *));
-static boolean FDECL(ranged_attk,(struct permonst*));
-static int FDECL(mstrength,(struct permonst *));
+static char *version_string(char *);
+static char *version_id_string(char *,const char *);
+static char *xcrypt(const char *);
+static int check_control(char *);
+static char *without_control(char *);
+static boolean d_filter(char *);
+static boolean h_filter(char *);
+static boolean ranged_attk(struct permonst*);
+static int mstrength(struct permonst *);
 static void NDECL(build_savebones_compat_string);
 
-static boolean FDECL(qt_comment, (char *));
-static boolean FDECL(qt_control, (char *));
-static int FDECL(get_hdr, (char *));
-static boolean FDECL(new_id, (char *));
-static boolean FDECL(known_msg, (int,int));
-static void FDECL(new_msg, (char *,int,int));
-static void FDECL(do_qt_control, (char *));
-static void FDECL(do_qt_text, (char *));
+static boolean qt_comment(char *);
+static boolean qt_control(char *);
+static int get_hdr(char *);
+static boolean new_id(char *);
+static boolean known_msg(int,int);
+static void new_msg(char *,int,int);
+static void do_qt_control(char *);
+static void do_qt_text(char *);
 static void NDECL(adjust_qt_hdrs);
 static void NDECL(put_qt_hdrs);
 
@@ -220,16 +220,16 @@ static void NDECL(H_close_gen);
 static void NDECL(H_far_gen);
 static void NDECL(C_close_gen);
 static void NDECL(C_far_gen);
-static int FDECL(clear_path, (int,int,int,int));
+static int clear_path(int,int,int,int);
 #endif
 
-static char *FDECL(tmpdup, (const char *));
-static char *FDECL(limit, (char *,int));
-static char *FDECL(eos, (char *));
+static char *tmpdup(const char *);
+static char *limit(char *,int);
+static char *eos(char *);
 
 /*Stolen from hacklib.c*/
-static char *FDECL(lcase, (char *));
-static char *FDECL(ucase, (char *));
+static char *lcase(char *);
+static char *ucase(char *);
 
 /* input, output, tmp */
 static FILE *ifp, *ofp, *tfp;

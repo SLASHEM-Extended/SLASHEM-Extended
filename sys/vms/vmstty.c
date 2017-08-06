@@ -37,7 +37,7 @@ unsigned long sys$assign(), sys$dassgn(), sys$qiow();
 unsigned long smg$create_virtual_keyboard(), smg$delete_virtual_keyboard(),
 	      smg$read_keystroke(), smg$cancel_input();
 #else
-static short FDECL(parse_function_key, (int));
+static short parse_function_key(int);
 #endif
 static void NDECL(setctty);
 static void NDECL(resettty);
@@ -445,7 +445,7 @@ introff()		/* disable kbd interrupts if required*/
 #ifdef TIMED_DELAY
 
 extern unsigned long
-	FDECL(lib$emul, (const long *,const long *,const long *,long *));
+	lib$emul(const long *,const long *,const long *,long *);
 extern unsigned long sys$schdwk(), sys$hiber();
 
 #define VMS_UNITS_PER_SECOND 10000000L	/* hundreds of nanoseconds, 1e-7 */

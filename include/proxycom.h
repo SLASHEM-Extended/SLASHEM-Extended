@@ -57,7 +57,7 @@
 #ifdef NHXDR_H
 struct nhext_svc {
     unsigned short id;
-    void FDECL((*handler), (unsigned short, NhExtXdr *, NhExtXdr *));
+    void (*handler)(unsigned short, NhExtXdr *, NhExtXdr *);
 };
 
 struct nhext_line {
@@ -66,25 +66,25 @@ struct nhext_line {
     char **tags, **values;
 };
 
-typedef void FDECL((*nhext_errhandler), (int, const char *));
+typedef void (*nhext_errhandler)(int, const char *);
 
-E int FDECL(nhext_init, (NhExtIO *, NhExtIO *, struct nhext_svc *));
-E int FDECL(nhext_set_protocol, (int));
+E int nhext_init(NhExtIO *, NhExtIO *, struct nhext_svc *);
+E int nhext_set_protocol(int);
 E int NDECL(nhext_async_mode);
 E void NDECL(nhext_end);
-E int FDECL(nhext_subprotocol0_write_line, (struct nhext_line *));
-E void FDECL(nhext_subprotocol0_free_line, (struct nhext_line *));
+E int nhext_subprotocol0_write_line(struct nhext_line *);
+E void nhext_subprotocol0_free_line(struct nhext_line *);
 E struct nhext_line *NDECL(nhext_subprotocol0_read_line);
-E char *FDECL(nhext_subprotocol0_get_failed_packet, (int *));
-E nhext_errhandler FDECL(nhext_set_errhandler, (nhext_errhandler));
+E char *nhext_subprotocol0_get_failed_packet(int *);
+E nhext_errhandler nhext_set_errhandler(nhext_errhandler);
 E int VDECL(nhext_rpc_params, (NhExtXdr *xdrs, int, ...));
 E int VDECL(nhext_rpc, (unsigned short, ...));
-E int FDECL(nhext_svc, (struct nhext_svc *));
-E void FDECL(nhext_set_async_masks, (int, unsigned long *));
-E void FDECL(nhext_set_unsupported, (int));
+E int nhext_svc(struct nhext_svc *);
+E void nhext_set_async_masks(int, unsigned long *);
+E void nhext_set_unsupported(int);
 E unsigned short NDECL(nhext_rpc_get_next_serial);
 E unsigned short NDECL(nhext_svc_get_serial);
-E void FDECL(nhext_send_error, (unsigned short, unsigned char));
+E void nhext_send_error(unsigned short, unsigned char);
 #endif	/* NHXDR_H */
 
 #define EXT_FID_INIT			0x01
@@ -185,17 +185,12 @@ struct proxy_print_glyph_layered_req {
     struct proxy_glyph_layer *layers;
 };
 
-E nhext_xdr_bool_t FDECL(proxy_xdr_init_nhwindow_req,
-		(NhExtXdr *, struct proxy_init_nhwindow_req *));
-E nhext_xdr_bool_t FDECL(proxy_xdr_init_nhwindow_res,
-		(NhExtXdr *, struct proxy_init_nhwindow_res *));
-E nhext_xdr_bool_t FDECL(proxy_xdr_proxy_mi, (NhExtXdr *, struct proxy_mi *));
-E nhext_xdr_bool_t FDECL(proxy_xdr_select_menu_res,
-		(NhExtXdr *, struct proxy_select_menu_res *));
-E nhext_xdr_bool_t FDECL(proxy_xdr_status_req,
-		(NhExtXdr *, struct proxy_status_req *));
-E nhext_xdr_bool_t FDECL(proxy_xdr_print_glyph_layered_req,
-		(NhExtXdr *, struct proxy_print_glyph_layered_req *));
+E nhext_xdr_bool_t proxy_xdr_init_nhwindow_req(NhExtXdr *, struct proxy_init_nhwindow_req *);
+E nhext_xdr_bool_t proxy_xdr_init_nhwindow_res(NhExtXdr *, struct proxy_init_nhwindow_res *);
+E nhext_xdr_bool_t proxy_xdr_proxy_mi(NhExtXdr *, struct proxy_mi *);
+E nhext_xdr_bool_t proxy_xdr_select_menu_res(NhExtXdr *, struct proxy_select_menu_res *);
+E nhext_xdr_bool_t proxy_xdr_status_req(NhExtXdr *, struct proxy_status_req *);
+E nhext_xdr_bool_t proxy_xdr_print_glyph_layered_req(NhExtXdr *, struct proxy_print_glyph_layered_req *);
 #endif	/* NHXDR_H */
 
 #define EXT_CID_DISPLAY_INVENTORY	0x01
@@ -319,39 +314,27 @@ struct proxycb_subprot2_init {
 	unsigned long *masks;
 };
 
-extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_player_choices_res_role,
-		(NhExtXdr *, struct proxycb_get_player_choices_res_role *));
-extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_player_choices_res,
-		(NhExtXdr *, struct proxycb_get_player_choices_res *));
-extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_valid_selections_res,
-		(NhExtXdr *, struct proxycb_get_valid_selections_res *));
-extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_extended_commands_res,
-		(NhExtXdr *, struct proxycb_get_extended_commands_res *));
-extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_tilesets_res_tileset,
-		(NhExtXdr *, struct proxycb_get_tilesets_res_tileset *));
-extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_tilesets_res,
-		(NhExtXdr *, struct proxycb_get_tilesets_res *));
-extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_glyph_mapping_res_symdef,
-		(NhExtXdr *, struct proxycb_get_glyph_mapping_res_symdef *));
-extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_glyph_mapping_res_submapping,
-		(NhExtXdr *, struct proxycb_get_glyph_mapping_res_submapping *));
-extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_glyph_mapping_res_mapping,
-		(NhExtXdr *, struct proxycb_get_glyph_mapping_res_mapping *));
-extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_glyph_mapping_res,
-		(NhExtXdr *, struct proxycb_get_glyph_mapping_res *));
-extern nhext_xdr_bool_t FDECL(proxycb_xdr_get_extensions_res,
-		(NhExtXdr *, struct proxycb_get_extensions_res *));
-extern nhext_xdr_bool_t FDECL(proxycb_xdr_subprot2_init,
-		(NhExtXdr *, struct proxycb_subprot2_init *));
+extern nhext_xdr_bool_t proxycb_xdr_get_player_choices_res_role(NhExtXdr *, struct proxycb_get_player_choices_res_role *);
+extern nhext_xdr_bool_t proxycb_xdr_get_player_choices_res(NhExtXdr *, struct proxycb_get_player_choices_res *);
+extern nhext_xdr_bool_t proxycb_xdr_get_valid_selections_res(NhExtXdr *, struct proxycb_get_valid_selections_res *);
+extern nhext_xdr_bool_t proxycb_xdr_get_extended_commands_res(NhExtXdr *, struct proxycb_get_extended_commands_res *);
+extern nhext_xdr_bool_t proxycb_xdr_get_tilesets_res_tileset(NhExtXdr *, struct proxycb_get_tilesets_res_tileset *);
+extern nhext_xdr_bool_t proxycb_xdr_get_tilesets_res(NhExtXdr *, struct proxycb_get_tilesets_res *);
+extern nhext_xdr_bool_t proxycb_xdr_get_glyph_mapping_res_symdef(NhExtXdr *, struct proxycb_get_glyph_mapping_res_symdef *);
+extern nhext_xdr_bool_t proxycb_xdr_get_glyph_mapping_res_submapping(NhExtXdr *, struct proxycb_get_glyph_mapping_res_submapping *);
+extern nhext_xdr_bool_t proxycb_xdr_get_glyph_mapping_res_mapping(NhExtXdr *, struct proxycb_get_glyph_mapping_res_mapping *);
+extern nhext_xdr_bool_t proxycb_xdr_get_glyph_mapping_res(NhExtXdr *, struct proxycb_get_glyph_mapping_res *);
+extern nhext_xdr_bool_t proxycb_xdr_get_extensions_res(NhExtXdr *, struct proxycb_get_extensions_res *);
+extern nhext_xdr_bool_t proxycb_xdr_subprot2_init(NhExtXdr *, struct proxycb_subprot2_init *);
 #endif  /* NHXDR_H */
 
 /* riputil.c */
-extern char * FDECL(get_killer_string, (int));
+extern char * get_killer_string(int);
 /* getopt.c */
-extern char * FDECL(get_option, (const char *));
+extern char * get_option(const char *);
 /* glyphmap.c */
 extern void NDECL(set_glyph_mapping);
 extern struct proxycb_get_glyph_mapping_res * NDECL(get_glyph_mapping);
-extern void FDECL(free_glyph_mapping, (struct proxycb_get_glyph_mapping_res *));
+extern void free_glyph_mapping(struct proxycb_get_glyph_mapping_res *);
 
 #endif /* PROXYCOM_H */

@@ -15,13 +15,13 @@ extern const int monstr[];
 
 #ifdef OVLB
 
-STATIC_DCL short FDECL(which_arti, (int));
-STATIC_DCL boolean FDECL(mon_has_arti, (struct monst *,SHORT_P));
-STATIC_DCL struct monst *FDECL(other_mon_has_arti, (struct monst *,SHORT_P));
-STATIC_DCL struct obj *FDECL(on_ground, (SHORT_P));
-STATIC_DCL boolean FDECL(you_have, (int));
-STATIC_DCL long FDECL(target_on, (int,struct monst *));
-STATIC_DCL long FDECL(strategy, (struct monst *));
+STATIC_DCL short which_arti(int);
+STATIC_DCL boolean mon_has_arti(struct monst *,SHORT_P);
+STATIC_DCL struct monst *other_mon_has_arti(struct monst *,SHORT_P);
+STATIC_DCL struct obj *on_ground(SHORT_P);
+STATIC_DCL boolean you_have(int);
+STATIC_DCL long target_on(int,struct monst *);
+STATIC_DCL long strategy(struct monst *);
 
 static NEARDATA const int nasties[] = {
 	PM_COCKATRICE, PM_ETTIN, PM_STALKER, PM_MINOTAUR, PM_RED_DRAGON,

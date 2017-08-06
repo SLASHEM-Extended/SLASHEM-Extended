@@ -17,16 +17,16 @@
 #endif
 
 #ifdef VMS
-extern int FDECL(vms_creat, (const char *,unsigned));
-extern int FDECL(vms_open, (const char *,int,unsigned));
+extern int vms_creat(const char *,unsigned);
+extern int vms_open(const char *,int,unsigned);
 #endif	/* VMS */
 
-int FDECL(recover_main, (int, char *[]));
-int FDECL(restore_savefile, (char *, const char *));
-static void FDECL(set_levelfile_name, (int));
-static int FDECL(open_levelfile, (int, const char *));
-static int FDECL(create_savefile, (const char *));
-void FDECL(copy_bytes, (int,int));
+int recover_main(int, char *[]);
+int restore_savefile(char *, const char *);
+static void set_levelfile_name(int);
+static int open_levelfile(int, const char *);
+static int create_savefile(const char *);
+void copy_bytes(int,int);
 
 #ifndef WIN_CE
 #define Fprintf	(void)fprintf
@@ -52,7 +52,7 @@ static void nhce_message(FILE*, const char*, ...);
 #endif
 
 #if defined(EXEPATH)
-char *FDECL(exepath, (char *));
+char *exepath(char *);
 #endif
 
 #if defined(__BORLANDC__) && !defined(_WIN32)

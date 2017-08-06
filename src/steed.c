@@ -13,7 +13,7 @@ S_HUMAN, S_EEL, S_LIZARD, S_BAD_FOOD, S_BAD_COINS,  '\0'
 /* added demons and some other stuff --Amy */
 };
 
-STATIC_DCL boolean FDECL(landing_spot, (coord *, int, int));
+STATIC_DCL boolean landing_spot(coord *, int, int);
 
 /* caller has decided that hero can't reach something while mounted */
 void

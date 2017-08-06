@@ -43,91 +43,54 @@ unsigned long proxy_clnt_flags = 0;
  *	proxy_svc_main_quit(void)
  */
 
-static void FDECL(proxy_svc_init, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_init_nhwindows,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_player_selection,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_askname, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_get_nh_event,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_exit_nhwindows,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_suspend_nhwindows,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_resume_nhwindows,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_create_nhwindow,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_clear_nhwindow,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_display_nhwindow,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_destroy_nhwindow,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_curs, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_putstr, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_display_file,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_start_menu,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_add_menu, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_end_menu, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_select_menu,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_message_menu,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_update_inventory,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_mark_synch,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_wait_synch,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_cliparound,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_update_positionbar,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_print_glyph,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_raw_print,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_raw_print_bold,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_nhgetch, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_nh_poskey,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_nhbell, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_doprev_message,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_yn_function,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_getlin, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_get_ext_cmd,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_number_pad,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_delay_output,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_change_color,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_change_background,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_set_font_name,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_get_color_string,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_start_screen,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_end_screen,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_outrip, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_preference_update,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_status, (unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_print_glyph_layered,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(proxy_svc_send_config_file,
-			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void proxy_svc_init(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_init_nhwindows(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_player_selection(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_askname(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_get_nh_event(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_exit_nhwindows(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_suspend_nhwindows(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_resume_nhwindows(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_create_nhwindow(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_clear_nhwindow(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_display_nhwindow(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_destroy_nhwindow(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_curs(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_putstr(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_display_file(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_start_menu(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_add_menu(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_end_menu(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_select_menu(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_message_menu(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_update_inventory(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_mark_synch(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_wait_synch(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_cliparound(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_update_positionbar(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_print_glyph(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_raw_print(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_raw_print_bold(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_nhgetch(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_nh_poskey(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_nhbell(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_doprev_message(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_yn_function(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_getlin(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_get_ext_cmd(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_number_pad(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_delay_output(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_change_color(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_change_background(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_set_font_name(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_get_color_string(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_start_screen(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_end_screen(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_outrip(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_preference_update(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_status(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_print_glyph_layered(unsigned short, NhExtXdr *, NhExtXdr *);
+static void proxy_svc_send_config_file(unsigned short, NhExtXdr *, NhExtXdr *);
 
 static unsigned long async_procedures[] = {
     1 << EXT_FID_GET_NH_EVENT - EXT_FID_INIT |

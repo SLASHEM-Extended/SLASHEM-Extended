@@ -4,17 +4,17 @@
 #include "hack.h"
 #include "tile.h"
 
-extern genericptr_t FDECL(alloc, (size_t));
+extern genericptr_t alloc(size_t);
 
-extern const char *FDECL(tilename, (int, int));
+extern const char *tilename(int, int);
 
 static int tiles_across, tiles_down, curr_tiles_across, curr_tiles_down;
 static XpmImage image;
 static XpmInfo info;
 
 /* Maybe these should be in xpm.h, but there isn't one. */
-boolean FDECL(fopen_xpm_file, (char *, char *));
-boolean FDECL(read_xpm_tile, (pixel(*)[]));
+boolean fopen_xpm_file(char *, char *);
+boolean read_xpm_tile(pixel(*)[]);
 int NDECL(fclose_xpm_file);
 
 boolean

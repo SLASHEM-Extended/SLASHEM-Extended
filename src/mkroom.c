@@ -17,11 +17,11 @@
 #include "hack.h"
 
 #ifdef OVLB
-STATIC_DCL boolean FDECL(isbig, (struct mkroom *));
-STATIC_DCL struct mkroom * FDECL(pick_room,(BOOLEAN_P));
-STATIC_DCL void NDECL(mkshop), FDECL(mkzoo,(int)), NDECL(mkswamp);
+STATIC_DCL boolean isbig(struct mkroom *);
+STATIC_DCL struct mkroom * pick_room(BOOLEAN_P);
+STATIC_DCL void NDECL(mkshop), mkzoo(int), NDECL(mkswamp);
 STATIC_DCL void NDECL(mktemple);
-STATIC_DCL coord * FDECL(shrine_pos, (int));
+STATIC_DCL coord * shrine_pos(int);
 STATIC_DCL struct permonst * NDECL(morguemon);
 STATIC_DCL struct permonst * NDECL(douglas_adams_mon);
 STATIC_DCL struct permonst * NDECL(tenshallmon);
@@ -30,15 +30,15 @@ STATIC_DCL struct permonst * NDECL(squadmon);
 STATIC_DCL struct permonst * NDECL(fungus);
 STATIC_DCL struct permonst * NDECL(beehivemon);
 
-/*STATIC_DCL struct permonst * FDECL(colormon, (int));*/
+/*STATIC_DCL struct permonst * colormon(int);*/
 
 STATIC_DCL void NDECL(mktraproom);
 STATIC_DCL void NDECL(mkpoolroom);
 STATIC_DCL void NDECL(mkstatueroom);
 STATIC_DCL void NDECL(mkinsideroom);
 STATIC_DCL void NDECL(mkriverroom);
-STATIC_DCL void FDECL(save_room, (int,struct mkroom *));
-STATIC_DCL void FDECL(rest_room, (int,struct mkroom *));
+STATIC_DCL void save_room(int,struct mkroom *);
+STATIC_DCL void rest_room(int,struct mkroom *);
 #endif /* OVLB */
 
 #define sq(x) ((x)*(x))

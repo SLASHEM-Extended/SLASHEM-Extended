@@ -19,8 +19,8 @@
 #define COLORS_IN_USE 16                       /* 16 colors */
 
 
-extern char *FDECL(tilename, (int, int));
-static void FDECL(build_ximgtile,(pixel (*)[TILE_X]));
+extern char *tilename(int, int);
+static void build_ximgtile(pixel (*)[TILE_X]);
 void get_color(unsigned int colind, struct RGB *rgb);
 void get_pixel(int x, int y, unsigned int *colind);
 

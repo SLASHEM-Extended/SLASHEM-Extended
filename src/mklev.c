@@ -18,54 +18,54 @@
 /* conversion of result to int is reasonable */
 
 
-STATIC_DCL void FDECL(mkfount,(int,struct mkroom *));
-STATIC_DCL void FDECL(mksink,(struct mkroom *));
-STATIC_DCL void FDECL(mktoilet,(struct mkroom *));
-STATIC_DCL void FDECL(mkaltar,(struct mkroom *));
-STATIC_DCL void FDECL(mkgrave,(struct mkroom *));
-STATIC_DCL void FDECL(mkthrone,(struct mkroom *));
+STATIC_DCL void mkfount(int,struct mkroom *);
+STATIC_DCL void mksink(struct mkroom *);
+STATIC_DCL void mktoilet(struct mkroom *);
+STATIC_DCL void mkaltar(struct mkroom *);
+STATIC_DCL void mkgrave(struct mkroom *);
+STATIC_DCL void mkthrone(struct mkroom *);
 STATIC_DCL void NDECL(makevtele);
 STATIC_DCL void NDECL(clear_level_structures);
 STATIC_DCL void NDECL(makelevel);
 STATIC_DCL void NDECL(mineralize);
-STATIC_DCL boolean FDECL(bydoor,(XCHAR_P,XCHAR_P));
-STATIC_DCL struct mkroom *FDECL(find_branch_room, (coord *));
-STATIC_DCL struct mkroom *FDECL(pos_to_room, (XCHAR_P, XCHAR_P));
-STATIC_DCL boolean FDECL(place_niche,(struct mkroom *,int*,int*,int*));
-STATIC_DCL void FDECL(makeniche,(int));
+STATIC_DCL boolean bydoor(XCHAR_P,XCHAR_P);
+STATIC_DCL struct mkroom *find_branch_room(coord *);
+STATIC_DCL struct mkroom *pos_to_room(XCHAR_P, XCHAR_P);
+STATIC_DCL boolean place_niche(struct mkroom *,int*,int*,int*);
+STATIC_DCL void makeniche(int);
 STATIC_DCL void NDECL(make_niches);
 STATIC_DCL struct permonst * NDECL(morguemonX);
 
-STATIC_DCL void FDECL(mkstone,(struct mkroom *));
-STATIC_DCL void FDECL(mktree,(struct mkroom *));
-STATIC_DCL void FDECL(mkpool,(struct mkroom *));
-STATIC_DCL void FDECL(mklavapool,(struct mkroom *));
-STATIC_DCL void FDECL(mkironbars,(struct mkroom *));
-STATIC_DCL void FDECL(mkdoor,(struct mkroom *));
-STATIC_DCL void FDECL(mkice,(struct mkroom *));
-STATIC_DCL void FDECL(mkcloud,(struct mkroom *));
+STATIC_DCL void mkstone(struct mkroom *);
+STATIC_DCL void mktree(struct mkroom *);
+STATIC_DCL void mkpool(struct mkroom *);
+STATIC_DCL void mklavapool(struct mkroom *);
+STATIC_DCL void mkironbars(struct mkroom *);
+STATIC_DCL void mkdoor(struct mkroom *);
+STATIC_DCL void mkice(struct mkroom *);
+STATIC_DCL void mkcloud(struct mkroom *);
 
-STATIC_DCL void FDECL(mkstoneX,(int,struct mkroom *));
-STATIC_DCL void FDECL(mktreeX,(int,struct mkroom *));
-STATIC_DCL void FDECL(mkpoolX,(int,struct mkroom *));
-STATIC_DCL void FDECL(mklavapoolX,(int,struct mkroom *));
-STATIC_DCL void FDECL(mkironbarsX,(int,struct mkroom *));
-STATIC_DCL void FDECL(mkiceX,(int,struct mkroom *));
-STATIC_DCL void FDECL(mkcloudX,(int,struct mkroom *));
+STATIC_DCL void mkstoneX(int,struct mkroom *);
+STATIC_DCL void mktreeX(int,struct mkroom *);
+STATIC_DCL void mkpoolX(int,struct mkroom *);
+STATIC_DCL void mklavapoolX(int,struct mkroom *);
+STATIC_DCL void mkironbarsX(int,struct mkroom *);
+STATIC_DCL void mkiceX(int,struct mkroom *);
+STATIC_DCL void mkcloudX(int,struct mkroom *);
 
 STATIC_DCL int NDECL(findrandtype);
 /*STATIC_DCL int NDECL(randomwalltype);*/
 
-STATIC_PTR int FDECL( CFDECLSPEC do_comp,(const genericptr,const genericptr));
+STATIC_PTR int  CFDECLSPEC do_comp(const genericptr,const genericptr);
 
-STATIC_DCL void FDECL(dosdoor,(XCHAR_P,XCHAR_P,struct mkroom *,int));
-STATIC_DCL void FDECL(join,(int,int,BOOLEAN_P));
-STATIC_DCL void FDECL(do_room_or_subroom, (struct mkroom *,int,int,int,int,
-				       BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P));
+STATIC_DCL void dosdoor(XCHAR_P,XCHAR_P,struct mkroom *,int);
+STATIC_DCL void join(int,int,BOOLEAN_P);
+STATIC_DCL void do_room_or_subroom(struct mkroom *,int,int,int,int,
+				       BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P);
 STATIC_DCL void NDECL(makerooms);
-STATIC_DCL void FDECL(finddpos,(coord *,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P));
-STATIC_DCL void FDECL(mkinvpos, (XCHAR_P,XCHAR_P,int));
-STATIC_DCL void FDECL(mk_knox_portal, (XCHAR_P,XCHAR_P));
+STATIC_DCL void finddpos(coord *,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P);
+STATIC_DCL void mkinvpos(XCHAR_P,XCHAR_P,int);
+STATIC_DCL void mk_knox_portal(XCHAR_P,XCHAR_P);
 
 #define create_vault()	create_room(-1, -1, 2, 2, -1, -1, VAULT, TRUE, FALSE, FALSE)
 #define init_vault()	vault_x = -1

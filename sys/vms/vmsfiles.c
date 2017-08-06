@@ -10,13 +10,13 @@
 #include <ctype.h>
 
 /* lint supression due to lack of extern.h */
-int FDECL(vms_link, (const char *,const char *));
-int FDECL(vms_unlink, (const char *));
-int FDECL(vms_creat, (const char *,unsigned int));
-int FDECL(vms_open, (const char *,int,unsigned int));
-boolean FDECL(same_dir, (const char *,const char *));
-int FDECL(c__translate, (int));
-char *FDECL(vms_basename, (const char *));
+int vms_link(const char *,const char *);
+int vms_unlink(const char *);
+int vms_creat(const char *,unsigned int);
+int vms_open(const char *,int,unsigned int);
+boolean same_dir(const char *,const char *);
+int c__translate(int);
+char *vms_basename(const char *);
 
 #include <rms.h>
 #if 0

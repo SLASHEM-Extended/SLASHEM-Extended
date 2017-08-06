@@ -23,17 +23,17 @@
 
 #include <allegro.h>
 
-void FDECL(alleg_gotoloc, (int,int));  /* This should be made a macro */
+void alleg_gotoloc(int,int);  /* This should be made a macro */
 void NDECL(alleg_backsp);
 #ifdef SCROLLMAP
-STATIC_DCL void FDECL(alleg_scrollmap,(BOOLEAN_P));
+STATIC_DCL void alleg_scrollmap(BOOLEAN_P);
 #endif
-STATIC_DCL void FDECL(alleg_redrawmap,(BOOLEAN_P));
-void FDECL(alleg_cliparound,(int, int));
+STATIC_DCL void alleg_redrawmap(BOOLEAN_P);
+void alleg_cliparound(int, int);
 
 #ifdef POSITIONBAR
 STATIC_DCL void NDECL(positionbar);
-static void FDECL(alleg_special,(int, int, int));
+static void alleg_special(int, int, int);
 #endif
 
 extern int clipx, clipxmax;	/* current clipping column from wintty.c */

@@ -123,36 +123,36 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
 
 STATIC_PTR int NDECL(eatmdone);
 STATIC_PTR int NDECL(eatfood);
-STATIC_PTR void FDECL(costly_tin, (const char*));
+STATIC_PTR void costly_tin(const char*);
 STATIC_PTR int NDECL(opentin);
 STATIC_PTR int NDECL(unfaint);
 
 #ifdef OVLB
-STATIC_DCL const char *FDECL(food_xname, (struct obj *,BOOLEAN_P));
-STATIC_DCL const char *FDECL(Food_xname, (struct obj *,BOOLEAN_P));
-STATIC_DCL void FDECL(choke, (struct obj *));
+STATIC_DCL const char *food_xname(struct obj *,BOOLEAN_P);
+STATIC_DCL const char *Food_xname(struct obj *,BOOLEAN_P);
+STATIC_DCL void choke(struct obj *);
 STATIC_DCL void NDECL(recalc_wt);
-STATIC_DCL struct obj *FDECL(touchfood, (struct obj *));
+STATIC_DCL struct obj *touchfood(struct obj *);
 STATIC_DCL void NDECL(do_reset_eat);
-STATIC_DCL void FDECL(done_eating, (BOOLEAN_P));
-STATIC_DCL void FDECL(cprefx, (int));
-STATIC_DCL int FDECL(intrinsic_possible, (int,struct permonst *));
-STATIC_DCL void FDECL(givit, (int,struct permonst *));
-STATIC_DCL void FDECL(cpostfx, (int));
-STATIC_DCL void FDECL(start_tin, (struct obj *));
-STATIC_DCL int FDECL(eatcorpse, (struct obj *));
-STATIC_DCL void FDECL(start_eating, (struct obj *));
-STATIC_DCL void FDECL(fprefx, (struct obj *));
-STATIC_DCL void FDECL(accessory_has_effect, (struct obj *));
-STATIC_DCL void FDECL(fpostfx, (struct obj *));
+STATIC_DCL void done_eating(BOOLEAN_P);
+STATIC_DCL void cprefx(int);
+STATIC_DCL int intrinsic_possible(int,struct permonst *);
+STATIC_DCL void givit(int,struct permonst *);
+STATIC_DCL void cpostfx(int);
+STATIC_DCL void start_tin(struct obj *);
+STATIC_DCL int eatcorpse(struct obj *);
+STATIC_DCL void start_eating(struct obj *);
+STATIC_DCL void fprefx(struct obj *);
+STATIC_DCL void accessory_has_effect(struct obj *);
+STATIC_DCL void fpostfx(struct obj *);
 STATIC_DCL int NDECL(bite);
-STATIC_DCL int FDECL(edibility_prompts, (struct obj *));
-STATIC_DCL int FDECL(rottenfood, (struct obj *));
+STATIC_DCL int edibility_prompts(struct obj *);
+STATIC_DCL int rottenfood(struct obj *);
 STATIC_DCL void NDECL(eatspecial);
-STATIC_DCL void FDECL(eataccessory, (struct obj *));
-STATIC_DCL const char *FDECL(foodword, (struct obj *));
-STATIC_DCL boolean FDECL(maybe_cannibal, (int,BOOLEAN_P));
-STATIC_DCL struct obj *FDECL(floorfood, (const char *));
+STATIC_DCL void eataccessory(struct obj *);
+STATIC_DCL const char *foodword(struct obj *);
+STATIC_DCL boolean maybe_cannibal(int,BOOLEAN_P);
+STATIC_DCL struct obj *floorfood(const char *);
 
 char msgbuf[BUFSZ];
 

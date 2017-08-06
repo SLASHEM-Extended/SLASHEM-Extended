@@ -120,8 +120,7 @@ ExplodeRegion *reg;
 }
 
 /* This is the "do-it-all" explosion command */
-STATIC_DCL void FDECL(do_explode,
-	(int,int,ExplodeRegion *,int,int,CHAR_P,int,int,BOOLEAN_P));
+STATIC_DCL void do_explode(int,int,ExplodeRegion *,int,int,CHAR_P,int,int,BOOLEAN_P);
 
 /* Note: I had to choose one of three possible kinds of "type" when writing
  * this function: a wand type (like in zap.c), an adtyp, or an object type.
@@ -905,8 +904,8 @@ struct grenade_callback {
     boolean isyou;
 };
 
-STATIC_DCL void FDECL(grenade_effects, (struct obj *,XCHAR_P,XCHAR_P,
-	ExplodeRegion *,ExplodeRegion *,ExplodeRegion *,BOOLEAN_P));
+STATIC_DCL void grenade_effects(struct obj *,XCHAR_P,XCHAR_P,
+	ExplodeRegion *,ExplodeRegion *,ExplodeRegion *,BOOLEAN_P);
 
 STATIC_DCL int
 grenade_fiery_callback(data, x, y)

@@ -13,54 +13,30 @@
 
 extern int proxy_authorized;
 
-static void FDECL(callback_display_inventory, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_dlbh_fopen, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_dlbh_fgets, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_dlbh_fread, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_dlbh_fwrite, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_dlbh_fclose, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_dlbh_fmd5sum, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_flush_screen, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_doredraw, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_interface_mode, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_parse_options, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_get_option, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_get_player_choices, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_get_valid_selections, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_quit_game, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_display_score, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_doset, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_get_extended_commands, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_map_menu_cmd, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_get_standard_winid, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_get_tilesets, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_get_glyph_mapping, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_get_extensions, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
-static void FDECL(callback_set_option_mod_status, \
-			(unsigned short, NhExtXdr *, NhExtXdr *));
+static void callback_display_inventory(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_dlbh_fopen(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_dlbh_fgets(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_dlbh_fread(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_dlbh_fwrite(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_dlbh_fclose(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_dlbh_fmd5sum(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_flush_screen(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_doredraw(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_interface_mode(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_parse_options(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_get_option(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_get_player_choices(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_get_valid_selections(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_quit_game(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_display_score(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_doset(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_get_extended_commands(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_map_menu_cmd(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_get_standard_winid(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_get_tilesets(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_get_glyph_mapping(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_get_extensions(unsigned short, NhExtXdr *, NhExtXdr *);
+static void callback_set_option_mod_status(unsigned short, NhExtXdr *, NhExtXdr *);
 
 static void
 callback_display_inventory(id, request, reply)

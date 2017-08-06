@@ -8,13 +8,13 @@
 STATIC_DCL void NDECL(maybe_wail);
 #endif*/ /*OVL1*/
 STATIC_DCL int NDECL(moverock);
-STATIC_DCL int FDECL(still_chewing,(XCHAR_P,XCHAR_P));
+STATIC_DCL int still_chewing(XCHAR_P,XCHAR_P);
 STATIC_DCL void NDECL(dosinkfall);
-STATIC_DCL boolean FDECL(findtravelpath, (BOOLEAN_P));
-STATIC_DCL boolean FDECL(monstinroom, (struct permonst *,int));
+STATIC_DCL boolean findtravelpath(BOOLEAN_P);
+STATIC_DCL boolean monstinroom(struct permonst *,int);
 
-STATIC_DCL void FDECL(move_update, (BOOLEAN_P));
-STATIC_PTR void FDECL(set_litX, (int,int,genericptr_t));
+STATIC_DCL void move_update(BOOLEAN_P);
+STATIC_PTR void set_litX(int,int,genericptr_t);
 
 static boolean door_opened;	/* set to true if door was opened during test_move */
 

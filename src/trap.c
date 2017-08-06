@@ -6,48 +6,46 @@
 
 extern const char * const destroy_strings[];	/* from zap.c */
 
-STATIC_DCL void FDECL(rocks_fall, (int, int));
+STATIC_DCL void rocks_fall(int, int);
 
-STATIC_DCL void FDECL(dofiretrap, (struct obj *));
-STATIC_DCL void FDECL(doplasmatrap, (struct obj *));
-STATIC_DCL void FDECL(doicetrap, (struct obj *));
-STATIC_DCL void FDECL(doshocktrap, (struct obj *));
-STATIC_DCL void FDECL(dovolttrap, (struct obj *));
+STATIC_DCL void dofiretrap(struct obj *);
+STATIC_DCL void doplasmatrap(struct obj *);
+STATIC_DCL void doicetrap(struct obj *);
+STATIC_DCL void doshocktrap(struct obj *);
+STATIC_DCL void dovolttrap(struct obj *);
 STATIC_DCL void NDECL(domagictrap);
-STATIC_DCL boolean FDECL(emergency_disrobe,(boolean *));
-STATIC_DCL int FDECL(untrap_prob, (struct trap *ttmp));
-STATIC_DCL void FDECL(cnv_trap_obj, (int, int, struct trap *));
-STATIC_DCL void FDECL(move_into_trap, (struct trap *));
-STATIC_DCL int FDECL(try_disarm, (struct trap *,BOOLEAN_P));
-STATIC_DCL void FDECL(reward_untrap, (struct trap *, struct monst *));
+STATIC_DCL boolean emergency_disrobe(boolean *);
+STATIC_DCL int untrap_prob(struct trap *ttmp);
+STATIC_DCL void cnv_trap_obj(int, int, struct trap *);
+STATIC_DCL void move_into_trap(struct trap *);
+STATIC_DCL int try_disarm(struct trap *,BOOLEAN_P);
+STATIC_DCL void reward_untrap(struct trap *, struct monst *);
 /*
-STATIC_DCL int FDECL(disarm_holdingtrap, (struct trap *));
-STATIC_DCL int FDECL(disarm_unknowntrap, (struct trap *));
-STATIC_DCL int FDECL(disarm_fartingtrap, (struct trap *));
-STATIC_DCL int FDECL(disarm_active_superscroller, (struct trap *));
-STATIC_DCL int FDECL(disarm_trap_percents, (struct trap *));
-STATIC_DCL int FDECL(disarm_rust_trap, (struct trap *));
-STATIC_DCL int FDECL(disarm_acid_trap, (struct trap *));
-STATIC_DCL int FDECL(disarm_water_trap, (struct trap *));
-STATIC_DCL int FDECL(disarm_heel_trap, (struct trap *));
-STATIC_DCL int FDECL(disarm_glyph_trap, (struct trap *), int);
-STATIC_DCL int FDECL(disarm_blade_trap, (struct trap *));
-STATIC_DCL int FDECL(disarm_spined_ball, (struct trap *));
-STATIC_DCL int FDECL(disarm_pendulum, (struct trap *));
-STATIC_DCL int FDECL(disarm_fire_trap, (struct trap *));
-STATIC_DCL int FDECL(disarm_landmine, (struct trap *));
-STATIC_DCL int FDECL(disarm_squeaky_board, (struct trap *));
-STATIC_DCL int FDECL(disarm_shooting_trap, (struct trap *, int));
+STATIC_DCL int disarm_holdingtrap(struct trap *);
+STATIC_DCL int disarm_unknowntrap(struct trap *);
+STATIC_DCL int disarm_fartingtrap(struct trap *);
+STATIC_DCL int disarm_active_superscroller(struct trap *);
+STATIC_DCL int disarm_trap_percents(struct trap *);
+STATIC_DCL int disarm_rust_trap(struct trap *);
+STATIC_DCL int disarm_acid_trap(struct trap *);
+STATIC_DCL int disarm_water_trap(struct trap *);
+STATIC_DCL int disarm_heel_trap(struct trap *);
+STATIC_DCL int disarm_glyph_trap(struct trap *, int);
+STATIC_DCL int disarm_blade_trap(struct trap *);
+STATIC_DCL int disarm_spined_ball(struct trap *);
+STATIC_DCL int disarm_pendulum(struct trap *);
+STATIC_DCL int disarm_fire_trap(struct trap *);
+STATIC_DCL int disarm_landmine(struct trap *);
+STATIC_DCL int disarm_squeaky_board(struct trap *);
+STATIC_DCL int disarm_shooting_trap(struct trap *, int);
 */
-STATIC_DCL int FDECL(try_lift, (struct monst *, struct trap *, int, BOOLEAN_P));
-STATIC_DCL int FDECL(help_monster_out, (struct monst *, struct trap *));
-STATIC_DCL boolean FDECL(thitm, (int,struct monst *,struct obj *,int,BOOLEAN_P));
-STATIC_DCL int FDECL(mkroll_launch,
-			(struct trap *,XCHAR_P,XCHAR_P,SHORT_P,long));
-STATIC_DCL boolean FDECL(isclearpath,(coord *, int, SCHAR_P, SCHAR_P));
-STATIC_OVL int FDECL(steedintrap, (struct trap *, struct obj *));
-STATIC_OVL boolean FDECL(keep_saddle_with_steedcorpse,
-			(unsigned, struct obj *, struct obj *));
+STATIC_DCL int try_lift(struct monst *, struct trap *, int, BOOLEAN_P);
+STATIC_DCL int help_monster_out(struct monst *, struct trap *);
+STATIC_DCL boolean thitm(int,struct monst *,struct obj *,int,BOOLEAN_P);
+STATIC_DCL int mkroll_launch(struct trap *,XCHAR_P,XCHAR_P,SHORT_P,long);
+STATIC_DCL boolean isclearpath(coord *, int, SCHAR_P, SCHAR_P);
+STATIC_OVL int steedintrap(struct trap *, struct obj *);
+STATIC_OVL boolean keep_saddle_with_steedcorpse(unsigned, struct obj *, struct obj *);
 
 #ifndef OVLB
 STATIC_VAR const char *a_your[2];
