@@ -4,11 +4,7 @@
 
 #include "hack.h"
 #include "dlb.h"
-#ifdef SHORT_FILENAMES
-#include "patchlev.h"
-#else
 #include "patchlevel.h"
-#endif
 
 #ifdef VMS
  /* We don't want to rewrite the whole file, because that entails	 */

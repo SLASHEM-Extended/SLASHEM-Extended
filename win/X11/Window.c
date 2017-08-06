@@ -11,15 +11,7 @@
 #define PRESERVE_NO_SYSV	/* X11 include files may define SYSV */
 #endif
 
-#ifdef MSDOS			/* from compiler */
-#define SHORT_FILENAMES
-#endif
-
-#ifdef SHORT_FILENAMES
-#include <X11/IntrinsP.h>
-#else
 #include <X11/IntrinsicP.h>
-#endif
 #include <X11/StringDefs.h>
 
 #ifdef PRESERVE_NO_SYSV

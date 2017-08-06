@@ -11,11 +11,7 @@
 #include <signal.h>
 #include "winGTK.h"
 #include "dlb.h"
-#ifdef SHORT_FILENAMES
-#include "patchlev.h"
-#else
 #include "patchlevel.h"
-#endif
 #include "decl.h"
 #include "proxycb.h"
 #include "prxyclnt.h"

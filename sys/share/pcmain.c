@@ -8,11 +8,7 @@
 #include "dlb.h"
 
 /* WAC for DEF_GAME_NAME */
-#ifdef SHORT_FILENAMES
-#include "patchlev.h"
-#else
 #include "patchlevel.h"
-#endif
 
 #ifndef NO_SIGNAL
 #include <signal.h>

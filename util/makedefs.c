@@ -21,11 +21,7 @@
 #include "dlb.h"
 
 /* version information */
-#ifdef SHORT_FILENAMES
-#include "patchlev.h"
-#else
 #include "patchlevel.h"
-#endif
 
 #ifdef MAC
 # ifdef MAC_MPW
@@ -1066,13 +1062,7 @@ do_data()
 #endif
 	sprintf(eos(filename), DATA_TEMPLATE, DATA_FILE);
 	sprintf(infile, DATA_IN_TEMPLATE, DATA_FILE);
-	strcat(infile,
-#ifdef SHORT_FILENAMES
-		".bas"
-#else
-		".base"
-#endif
-		);
+	strcat(infile, ".base");
 	if (!(ifp = fopen(infile, RDTMODE))) {		/* data.base */
 		perror(infile);
 		exit(EXIT_FAILURE);

@@ -5,12 +5,8 @@
 #include "hack.h"
 #include "func_tab.h"
 #include "dlb.h"
-#include <ctype.h>
-#ifdef SHORT_FILENAMES
-#include "patchlev.h"
-#else
 #include "patchlevel.h"
-#endif
+#include <ctype.h>
 
 #ifdef GEM_GRAPHICS
 #include "wingem.h"

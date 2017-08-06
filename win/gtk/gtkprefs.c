@@ -10,11 +10,7 @@
 #include <math.h>
 #include <gtk/gtk.h>
 #include "winGTK.h"
-#ifdef SHORT_FILENAMES
-#include "patchlev.h"
-#else
 #include "patchlevel.h"
-#endif
 
 #ifdef WINGTK_RADAR
 static GtkWidget *radar_button;

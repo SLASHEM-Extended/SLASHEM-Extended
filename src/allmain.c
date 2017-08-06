@@ -8,11 +8,7 @@
 #ifndef NO_SIGNAL
 #include <signal.h>
 #endif
-#ifdef SHORT_FILENAMES
-#include "patchlev.h"
-#else
 #include "patchlevel.h"
-#endif
 
 #ifdef POSITIONBAR
 STATIC_DCL void NDECL(do_positionbar);

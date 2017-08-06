@@ -21,11 +21,7 @@
 #include "wintype.h"
 #include "func_tab.h"
 #include "dlb.h"
-#ifdef SHORT_FILENAMES
-#include "patchlev.h"
-#else
 #include "patchlevel.h"
-#endif
 
 static void
 hook()

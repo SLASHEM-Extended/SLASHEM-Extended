@@ -19,11 +19,7 @@
 # include <aastr.h>
 #endif
 
-#ifdef SHORT_FILENAMES
-#include "patchlev.h"
-#else
 #include "patchlevel.h"
-#endif
 
 #include <dos.h>
 #include <ctype.h>

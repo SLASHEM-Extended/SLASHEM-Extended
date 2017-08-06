@@ -41,11 +41,7 @@
 #define NH_OPTIONAREA	FILE_AREA_SHARE
 #define NH_OPTIONS_USED	"options"	/* compile-time options, for #version */
 #define NH_OPTIONS_USED_AREA FILE_AREA_SHARE
-#ifdef SHORT_FILENAMES
-# define NH_GUIDEBOOK       "guideboo.txt"        /* Nethack Guidebook*/
-#else
 #define NH_GUIDEBOOK       "Guidebook.txt"       /* Nethack Guidebook*/
-#endif
 #define NH_GUIDEBOOK_AREA	FILE_AREA_DOC
 
 #define LEV_EXT	".lev"		/* extension for special level files */
@@ -283,12 +279,6 @@ typedef xchar	boolean;		/* 0 or 1 */
 #   endif
 #  endif
 # endif
-#endif
-
-#if defined(MICRO)
-#if !defined(AMIGA) && !defined(TOS) && !defined(OS2_HPFS)
-#define SHORT_FILENAMES		/* filenames are 8.3 */
-#endif
 #endif
 
 #ifdef VMS

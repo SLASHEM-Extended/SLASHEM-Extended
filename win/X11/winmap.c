@@ -39,11 +39,7 @@
 #include "hack.h"
 #include "dlb.h"
 #include "winX.h"
-#ifdef SHORT_FILENAMES
-#include "patchlev.h"
-#else
 #include "patchlevel.h"
-#endif
 
 #ifdef USE_XPM
 #include <X11/xpm.h>

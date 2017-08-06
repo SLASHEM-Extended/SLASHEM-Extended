@@ -12,10 +12,6 @@
 #define PRESERVE_NO_SYSV	/* X11 include files may define SYSV */
 #endif
 
-#ifdef MSDOS			/* from compiler */
-#define SHORT_FILENAMES
-#endif
-
 #include <X11/Intrinsic.h>
 #include <X11/StringDefs.h>
 #include <X11/Shell.h>
@@ -29,11 +25,7 @@
 #include <X11/Xos.h>
 
 /* for color support */
-#ifdef SHORT_FILENAMES
-#include <X11/IntrinsP.h>
-#else
 #include <X11/IntrinsicP.h>
-#endif
 
 #ifdef PRESERVE_NO_SYSV
 # ifdef SYSV
@@ -42,18 +34,10 @@
 # undef PRESERVE_NO_SYSV
 #endif
 
-#ifdef SHORT_FILENAMES
-#undef SHORT_FILENAMES	/* hack.h will reset via global.h if necessary */
-#endif
-
 #include "hack.h"
 #include "winX.h"
 #include "dlb.h"
-#ifdef SHORT_FILENAMES
-#include "patchlev.h"
-#else
 #include "patchlevel.h"
-#endif
 
 /* Should be defined in <X11/Intrinsic.h> but you never know */
 #ifndef XtSpecificationRelease

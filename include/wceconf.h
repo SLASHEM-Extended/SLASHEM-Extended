@@ -50,8 +50,6 @@
  *  The remaining code shouldn't need modification.
  * -----------------------------------------------------------------
  */
-/* #define SHORT_FILENAMES	/* All NT filesystems support long names now */
-
 #ifdef MICRO
 #undef MICRO			/* never define this! */
 #endif

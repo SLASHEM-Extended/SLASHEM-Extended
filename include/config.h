@@ -5,9 +5,6 @@
 #ifndef CONFIG_H /* make sure the compiler does not see the typedefs twice */
 #define CONFIG_H
 
-#undef SHORT_FILENAMES
-
-
 /*#define DEBUG*/
 /*#define DDEBUG*/
 
