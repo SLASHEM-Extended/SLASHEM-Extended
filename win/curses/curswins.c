@@ -260,7 +260,7 @@ curses_add_wid(winid wid)
     nethack_wid *new_wid;
     nethack_wid *widptr = nhwids;
 
-    new_wid = malloc(sizeof (nethack_wid));
+    new_wid = alloc(sizeof (nethack_wid));
     new_wid->nhwid = wid;
 
     new_wid->next_wid = NULL;
@@ -477,7 +477,7 @@ curses_puts(winid wid, int attr, const char *text)
         if (!curses_menu_exists(wid)) {
             panic("curses_puts: Attempted write to nonexistant window!");
         }
-        identifier = malloc(sizeof (anything));
+        identifier = alloc(sizeof (anything));
         identifier->a_void = NULL;
         curses_add_nhmenu_item(wid, NO_GLYPH, identifier, 0, 0, attr, text,
                                FALSE);

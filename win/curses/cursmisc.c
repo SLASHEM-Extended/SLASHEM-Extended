@@ -218,7 +218,7 @@ curses_copy_of(const char *s)
 {
     if (!s)
         s = "";
-    return strcpy((char *) alloc((unsigned) (strlen(s) + 1)), s);
+    return strcpy(alloc((unsigned) (strlen(s) + 1)), s);
 }
 
 
@@ -565,7 +565,7 @@ curses_view_file(const char *filename, boolean must_exist)
 
     wid = curses_get_wid(NHW_MENU);
     curses_create_nhmenu(wid);
-    identifier = malloc(sizeof (anything));
+    identifier = alloc(sizeof (anything));
     identifier->a_void = NULL;
 
     while (dlb_fgets(buf, BUFSZ, fp) != NULL) {
