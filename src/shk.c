@@ -53,7 +53,7 @@ STATIC_DCL void shk_names_obj(struct monst *,struct obj *,const char *,long,cons
 STATIC_DCL struct obj *bp_to_obj(struct bill_x *);
 STATIC_DCL boolean inherits(struct monst *,int,int);
 STATIC_DCL void set_repo_loc(struct eshk *);
-STATIC_DCL boolean NDECL(angry_shk_exists);
+STATIC_DCL boolean angry_shk_exists(void);
 STATIC_DCL void rile_shk(struct monst *);
 STATIC_DCL void rouse_shk(struct monst *,BOOLEAN_P);
 STATIC_DCL void remove_damage(struct monst *, BOOLEAN_P);
@@ -67,7 +67,7 @@ static boolean rob_shop(struct monst *);
 #endif
 
 #define NOBOUND         (-1)    /* No lower/upper limit to charge       */
-static void NDECL(shk_other_services);
+static void shk_other_services(void);
 static void shk_identify(char *, struct monst *);
 static void shk_uncurse(char *, struct monst *);
 static void shk_appraisal(char *, struct monst *);

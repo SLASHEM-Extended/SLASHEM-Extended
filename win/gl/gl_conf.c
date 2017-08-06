@@ -32,7 +32,7 @@ static struct TileWindow *opt_main;
 static struct TileWindow *opt_keys;
 
 /* from src/files.c */
-extern const char *NDECL(get_config_write_filename);
+extern const char *get_config_write_filename(void);
 
 
 enum OptLineFlag

@@ -32,7 +32,7 @@
 
 #define MAX_ERRORS	25
 
-extern int  NDECL (yyparse);
+extern int yyparse(void);
 extern int line_number;
 const char *fname = "(stdin)";
 int fatal_error = 0;
@@ -40,7 +40,7 @@ int fatal_error = 0;
 int  main(int,char **);
 void yyerror(const char *);
 void yywarning(const char *);
-int  NDECL (yywrap);
+int  yywrap(void);
 void init_yyin(FILE *);
 void init_yyout(FILE *);
 

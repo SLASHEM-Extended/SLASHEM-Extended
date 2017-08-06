@@ -22,7 +22,7 @@
 #include <ctype.h>
 
 
-extern int NDECL(extcmd_via_menu);
+extern int extcmd_via_menu(void);
 
 #define HEIGHT_ASKNAME  1
 #define DEPTH_ASKNAME   8

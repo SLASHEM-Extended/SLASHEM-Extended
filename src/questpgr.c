@@ -16,13 +16,13 @@
 
 static void Fread(genericptr_t,int,int,dlb *);
 STATIC_DCL struct qtmsg * construct_qtlist(long);
-STATIC_DCL const char * NDECL(intermed);
-STATIC_DCL const char * NDECL(neminame);
-STATIC_DCL const char * NDECL(guardname);
-STATIC_DCL const char * NDECL(homebase);
+STATIC_DCL const char * intermed(void);
+STATIC_DCL const char * neminame(void);
+STATIC_DCL const char * guardname(void);
+STATIC_DCL const char * homebase(void);
 STATIC_DCL struct qtmsg * msg_in(struct qtmsg *,int);
 STATIC_DCL void convert_arg(CHAR_P);
-STATIC_DCL void NDECL(convert_line);
+STATIC_DCL void convert_line(void);
 STATIC_DCL void deliver_by_pline(struct qtmsg *);
 STATIC_DCL void deliver_by_window(struct qtmsg *,int);
 
@@ -33,7 +33,7 @@ static dlb	*msg_file;
 static char	nambuf[sizeof cvt_buf];
 
 #ifdef DEBUG
-static void NDECL(dump_qtlist);
+static void dump_qtlist(void);
 
 static void
 dump_qtlist()	/* dump the character msg list to check appearance */

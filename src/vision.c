@@ -97,7 +97,7 @@ static char right_ptrs[ROWNO][COLNO];
 /* Forward declarations. */
 STATIC_DCL void fill_point(int,int);
 STATIC_DCL void dig_point(int,int);
-STATIC_DCL void NDECL(view_init);
+STATIC_DCL void view_init(void);
 STATIC_DCL void view_from(int,int,char **,char *,char *,int, void (*)(int,int,genericptr_t),genericptr_t);
 STATIC_DCL void get_unused_cs(char ***,char **,char **);
 #ifdef REINCARNATION

@@ -14,7 +14,7 @@ STATIC_DCL char *strprepend(char *,const char *);
 #ifdef OVLB
 static boolean wishymatch(const char *,const char *,BOOLEAN_P);
 #endif
-static char *NDECL(nextobuf);
+static char *nextobuf(void);
 static void add_erosion_words(struct obj *, char *);
 
 STATIC_DCL char *xname2(struct obj *);

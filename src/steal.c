@@ -4,7 +4,7 @@
 
 #include "hack.h"
 
-STATIC_PTR int NDECL(stealarm);
+STATIC_PTR int stealarm(void);
 
 #ifdef OVLB
 STATIC_DCL const char *equipname(struct obj *);

@@ -24,17 +24,17 @@ STATIC_DCL void mktoilet(struct mkroom *);
 STATIC_DCL void mkaltar(struct mkroom *);
 STATIC_DCL void mkgrave(struct mkroom *);
 STATIC_DCL void mkthrone(struct mkroom *);
-STATIC_DCL void NDECL(makevtele);
-STATIC_DCL void NDECL(clear_level_structures);
-STATIC_DCL void NDECL(makelevel);
-STATIC_DCL void NDECL(mineralize);
+STATIC_DCL void makevtele(void);
+STATIC_DCL void clear_level_structures(void);
+STATIC_DCL void makelevel(void);
+STATIC_DCL void mineralize(void);
 STATIC_DCL boolean bydoor(XCHAR_P,XCHAR_P);
 STATIC_DCL struct mkroom *find_branch_room(coord *);
 STATIC_DCL struct mkroom *pos_to_room(XCHAR_P, XCHAR_P);
 STATIC_DCL boolean place_niche(struct mkroom *,int*,int*,int*);
 STATIC_DCL void makeniche(int);
-STATIC_DCL void NDECL(make_niches);
-STATIC_DCL struct permonst * NDECL(morguemonX);
+STATIC_DCL void make_niches(void);
+STATIC_DCL struct permonst * morguemonX(void);
 
 STATIC_DCL void mkstone(struct mkroom *);
 STATIC_DCL void mktree(struct mkroom *);
@@ -53,8 +53,8 @@ STATIC_DCL void mkironbarsX(int,struct mkroom *);
 STATIC_DCL void mkiceX(int,struct mkroom *);
 STATIC_DCL void mkcloudX(int,struct mkroom *);
 
-STATIC_DCL int NDECL(findrandtype);
-/*STATIC_DCL int NDECL(randomwalltype);*/
+STATIC_DCL int findrandtype(void);
+/*STATIC_DCL int randomwalltype(void);*/
 
 STATIC_PTR int  CFDECLSPEC do_comp(const genericptr,const genericptr);
 
@@ -62,7 +62,7 @@ STATIC_DCL void dosdoor(XCHAR_P,XCHAR_P,struct mkroom *,int);
 STATIC_DCL void join(int,int,BOOLEAN_P);
 STATIC_DCL void do_room_or_subroom(struct mkroom *,int,int,int,int,
 				       BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P);
-STATIC_DCL void NDECL(makerooms);
+STATIC_DCL void makerooms(void);
 STATIC_DCL void finddpos(coord *,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P);
 STATIC_DCL void mkinvpos(XCHAR_P,XCHAR_P,int);
 STATIC_DCL void mk_knox_portal(XCHAR_P,XCHAR_P);

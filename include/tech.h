@@ -35,7 +35,7 @@ struct innate_tech {
 struct blitz_tab {
         const char *blitz_cmd; /* the typed command */
         const int blitz_len; /* The length of blitz_cmd */
-        int NDECL((*blitz_funct)); /* function called when the command is executed */
+        int (*blitz_funct)(void); /* function called when the command is executed */
         const int blitz_tech; /* the tech designation - determines tech needed
          		       * to access this blitz and the name of the blitz
           		       */

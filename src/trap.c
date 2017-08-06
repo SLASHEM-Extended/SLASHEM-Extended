@@ -13,7 +13,7 @@ STATIC_DCL void doplasmatrap(struct obj *);
 STATIC_DCL void doicetrap(struct obj *);
 STATIC_DCL void doshocktrap(struct obj *);
 STATIC_DCL void dovolttrap(struct obj *);
-STATIC_DCL void NDECL(domagictrap);
+STATIC_DCL void domagictrap(void);
 STATIC_DCL boolean emergency_disrobe(boolean *);
 STATIC_DCL int untrap_prob(struct trap *ttmp);
 STATIC_DCL void cnv_trap_obj(int, int, struct trap *);

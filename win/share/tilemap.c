@@ -10,7 +10,7 @@
 #include "hack.h"
 
 const char * tilename(int, int);
-void NDECL(init_tilemap);
+void init_tilemap(void);
 void process_substitutions(FILE *);
 
 #if defined(MICRO) || defined(WIN32)

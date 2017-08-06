@@ -11,10 +11,10 @@
 #include "patchlevel.h"
 
 #ifdef POSITIONBAR
-STATIC_DCL void NDECL(do_positionbar);
+STATIC_DCL void do_positionbar(void);
 #endif
 
-STATIC_PTR int NDECL(unfaintX);
+STATIC_PTR int unfaintX(void);
 
 #define decrnknow(spell)	spl_book[spell].sp_know--
 #define spellid(spell)		spl_book[spell].sp_id

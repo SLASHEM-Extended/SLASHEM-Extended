@@ -55,8 +55,8 @@ static int yygrowstack();
 
 extern void yyerror(const char *);
 extern void yywarning(const char *);
-extern int NDECL(yylex);
-int NDECL(yyparse);
+extern int yylex(void);
+int yyparse(void);
 
 extern int get_artifact_id(char *);
 extern int get_floor_type(CHAR_P);
@@ -68,11 +68,11 @@ extern boolean check_monster_char(CHAR_P);
 extern boolean check_object_char(CHAR_P);
 extern char what_map_char(CHAR_P);
 extern void scan_map(char *);
-extern void NDECL(wallify_map);
-extern boolean NDECL(check_subrooms);
+extern void wallify_map(void);
+extern boolean check_subrooms(void);
 extern void check_coord(int,int,const char *);
-extern void NDECL(store_part);
-extern void NDECL(store_room);
+extern void store_part(void);
+extern void store_room(void);
 extern void store_place_list(int,int,int,const struct coord *);
 extern boolean write_level_file(char *,splev *,specialmaze *);
 extern void free_rooms(splev *);

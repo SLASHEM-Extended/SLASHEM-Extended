@@ -8,7 +8,7 @@
 #include "macpopup.h"
 #include "func_tab.h"
 
-extern int NDECL(extcmd_via_menu);	/* cmd.c */
+extern int extcmd_via_menu(void);	/* cmd.c */
 
 typedef Boolean (* key_func)(unsigned char);
 

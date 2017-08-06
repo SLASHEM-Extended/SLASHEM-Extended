@@ -11,17 +11,17 @@ STATIC_DCL boolean hitum(struct monst *,int,int,struct attack *);
 #endif
 STATIC_DCL boolean hmon_hitmon(struct monst *,struct obj *,int);
 STATIC_DCL int joust(struct monst *,struct obj *);
-STATIC_DCL void NDECL(demonpet);
+STATIC_DCL void demonpet(void);
 STATIC_DCL boolean m_slips_free(struct monst *mtmp,struct attack *mattk);
 STATIC_DCL int explum(struct monst *,struct attack *);
 STATIC_DCL void start_engulf(struct monst *);
-STATIC_DCL void NDECL(end_engulf);
+STATIC_DCL void end_engulf(void);
 STATIC_DCL int gulpum(struct monst *,struct attack *);
 STATIC_DCL boolean hmonas(struct monst *,int);
 STATIC_DCL void nohandglow(struct monst *);
 STATIC_DCL boolean shade_aware(struct obj *);
 
-static int NDECL(martial_dmg);
+static int martial_dmg(void);
 
 STATIC_PTR void set_lit(int,int,genericptr_t);
 

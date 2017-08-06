@@ -455,7 +455,7 @@ fuzzymatch(s1, s2, ignore_chars, caseblind)
 #if defined(AMIGA) && !defined(AZTEC_C) && !defined(__SASC_60) && !defined(_DCC) && !defined(__GNUC__)
 extern struct tm *localtime(time_t *);
 #endif
-struct tm *NDECL(getlt);
+struct tm *getlt(void);
 
 void
 setrandom()

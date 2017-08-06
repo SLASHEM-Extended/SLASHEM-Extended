@@ -22,7 +22,7 @@ void display_monster(XCHAR_P,XCHAR_P,struct monst *,int,XCHAR_P);
 STATIC_DCL boolean restrap(struct monst *);
 STATIC_DCL long mm_aggression(struct monst *,struct monst *);
 #ifdef OVL2
-STATIC_DCL int NDECL(pick_animal);
+STATIC_DCL int pick_animal(void);
 STATIC_DCL int select_newcham_form(struct monst *);
 STATIC_DCL void kill_eggs(struct obj *);
 #endif
@@ -53,7 +53,7 @@ long lastwarntime;
 int lastwarnlev;
 
 
-STATIC_DCL void NDECL(warn_effects);
+STATIC_DCL void warn_effects(void);
 #endif /* OVL1 */
 #endif /* 0 */
 

@@ -8,7 +8,7 @@
 #define CONTAINED_SYM	'>'	/* designator for inside a container */
 
 #ifdef OVL1
-STATIC_DCL void NDECL(reorder_invent);
+STATIC_DCL void reorder_invent(void);
 STATIC_DCL boolean mergable(struct obj *,struct obj *);
 STATIC_DCL void invdisp_nothing(const char *,const char *);
 STATIC_DCL boolean worn_wield_only(struct obj *);
@@ -26,7 +26,7 @@ static char display_pickinv(const char *,BOOLEAN_P, long *);
 #endif /* DUMP_LOG */
 #ifdef OVLB
 STATIC_DCL boolean this_type_only(struct obj *);
-STATIC_DCL void NDECL(dounpaid);
+STATIC_DCL void dounpaid(void);
 STATIC_DCL struct obj *find_unpaid(struct obj *,struct obj **);
 STATIC_DCL void menu_identify(int);
 STATIC_DCL boolean tool_in_use(struct obj *);

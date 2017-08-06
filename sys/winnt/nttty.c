@@ -140,9 +140,9 @@ int ttycolors[CLR_MAX];
 /* assumes BACKGROUND_xxx = FOREGROUND_xxx << 4 */
 # ifdef TEXTCOLOR
 int ttycolors[CLR_MAX];
-static void NDECL(init_ttycolor);
+static void init_ttycolor(void);
 # endif
-static void NDECL(really_move_cursor);
+static void really_move_cursor(void);
 
 #define MAX_OVERRIDES	256
 unsigned char key_overrides[MAX_OVERRIDES];

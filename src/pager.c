@@ -15,7 +15,7 @@ STATIC_DCL void checkfile(char *,struct permonst *,BOOLEAN_P,BOOLEAN_P);
 STATIC_DCL int do_look(BOOLEAN_P);
 STATIC_DCL boolean help_menu(int *);
 #ifdef PORT_HELP
-extern void NDECL(port_help);
+extern void port_help(void);
 #endif
 #ifdef EXTENDED_INFO
 STATIC_DCL char * get_description_of_monster_type(struct permonst *, char *);

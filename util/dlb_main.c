@@ -34,8 +34,8 @@ extern int vms_open(const char *,int,unsigned int);
 #endif
 
 static void Write(int,char *,long);
-static void NDECL(usage);
-static void NDECL(verbose_help);
+static void usage(void);
+static void verbose_help(void);
 static void write_dlb_directory(int,int,libdir *,long,long,long);
 
 static char default_progname[] = "dlb";

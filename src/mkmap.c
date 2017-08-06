@@ -14,7 +14,7 @@ STATIC_DCL schar get_map(int,int,SCHAR_P);
 STATIC_DCL void pass_one(SCHAR_P,SCHAR_P);
 STATIC_DCL void pass_two(SCHAR_P,SCHAR_P);
 STATIC_DCL void pass_three(SCHAR_P,SCHAR_P);
-STATIC_DCL void NDECL(wallify_map);
+STATIC_DCL void wallify_map(void);
 STATIC_DCL void join_map(SCHAR_P,SCHAR_P);
 STATIC_DCL void finish_map(SCHAR_P,SCHAR_P,XCHAR_P,XCHAR_P);
 STATIC_DCL void remove_room(unsigned);

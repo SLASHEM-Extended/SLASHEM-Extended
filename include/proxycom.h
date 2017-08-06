@@ -70,11 +70,11 @@ typedef void (*nhext_errhandler)(int, const char *);
 
 E int nhext_init(NhExtIO *, NhExtIO *, struct nhext_svc *);
 E int nhext_set_protocol(int);
-E int NDECL(nhext_async_mode);
-E void NDECL(nhext_end);
+E int nhext_async_mode(void);
+E void nhext_end(void);
 E int nhext_subprotocol0_write_line(struct nhext_line *);
 E void nhext_subprotocol0_free_line(struct nhext_line *);
-E struct nhext_line *NDECL(nhext_subprotocol0_read_line);
+E struct nhext_line *nhext_subprotocol0_read_line(void);
 E char *nhext_subprotocol0_get_failed_packet(int *);
 E nhext_errhandler nhext_set_errhandler(nhext_errhandler);
 E int nhext_rpc_params(NhExtXdr *xdrs, int, ...);
@@ -82,8 +82,8 @@ E int nhext_rpc(unsigned short, ...);
 E int nhext_svc(struct nhext_svc *);
 E void nhext_set_async_masks(int, unsigned long *);
 E void nhext_set_unsupported(int);
-E unsigned short NDECL(nhext_rpc_get_next_serial);
-E unsigned short NDECL(nhext_svc_get_serial);
+E unsigned short nhext_rpc_get_next_serial(void);
+E unsigned short nhext_svc_get_serial(void);
 E void nhext_send_error(unsigned short, unsigned char);
 #endif	/* NHXDR_H */
 
@@ -333,8 +333,8 @@ extern char * get_killer_string(int);
 /* getopt.c */
 extern char * get_option(const char *);
 /* glyphmap.c */
-extern void NDECL(set_glyph_mapping);
-extern struct proxycb_get_glyph_mapping_res * NDECL(get_glyph_mapping);
+extern void set_glyph_mapping(void);
+extern struct proxycb_get_glyph_mapping_res * get_glyph_mapping(void);
 extern void free_glyph_mapping(struct proxycb_get_glyph_mapping_res *);
 
 #endif /* PROXYCOM_H */

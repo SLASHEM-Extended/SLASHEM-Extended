@@ -37,12 +37,12 @@ STATIC_DCL void charm_monsters(int);
 STATIC_DCL int do_improvisation(struct obj *);
 
 #ifdef UNIX386MUSIC
-STATIC_DCL int NDECL(atconsole);
+STATIC_DCL int atconsole(void);
 STATIC_DCL void speaker(struct obj *,char *);
 #endif
 #ifdef VPIX_MUSIC
 extern int sco_flag_console;	/* will need changing if not _M_UNIX */
-STATIC_DCL void NDECL(playinit);
+STATIC_DCL void playinit(void);
 STATIC_DCL void playstring(char *,size_t);
 STATIC_DCL void speaker(struct obj *,char *);
 #endif

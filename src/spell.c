@@ -48,17 +48,17 @@ STATIC_DCL int spell_let_to_idx(CHAR_P);
 STATIC_DCL boolean cursed_book(struct obj *bp);
 STATIC_DCL boolean confused_book(struct obj *);
 STATIC_DCL void deadbook(struct obj *);
-STATIC_PTR int NDECL(learn);
-STATIC_DCL void NDECL(do_reset_learn);
+STATIC_PTR int learn(void);
+STATIC_DCL void do_reset_learn(void);
 STATIC_DCL boolean getspell(int *);
 STATIC_DCL boolean dospellmenu(const char *,int,int *);
 STATIC_DCL int percent_success(int);
-STATIC_DCL void NDECL(cast_protection);
-STATIC_DCL void NDECL(cast_reflection);
+STATIC_DCL void cast_protection(void);
+STATIC_DCL void cast_reflection(void);
 STATIC_DCL void spell_backfire(int);
 STATIC_DCL const char *spelltypemnemonic(int);
 STATIC_DCL int isqrt(int);
-static int NDECL(spell_dash);
+static int spell_dash(void);
 
 /* categories whose names don't come from OBJ_NAME(objects[type]) */
 #define PN_POLEARMS		(-1)

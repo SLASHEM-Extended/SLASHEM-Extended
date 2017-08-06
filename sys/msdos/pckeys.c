@@ -29,9 +29,9 @@ extern boolean inmap;			/* from video.c */
 #define ALT		0x8
 
 # ifdef PC_MOUSE
-STATIC_DCL boolean NDECL(mouse_detect);
-STATIC_DCL void NDECL(mouse_show);
-STATIC_DCL void NDECL(mouse_hide);
+STATIC_DCL boolean mouse_detect(void);
+STATIC_DCL void mouse_show(void);
+STATIC_DCL void mouse_hide(void);
 STATIC_DCL unsigned char mouse_button(unsigned char);
 STATIC_DCL void mouse_abs_pos(int *,int *);
 STATIC_DCL int mouse_rel_pos(int *,int *);

@@ -47,14 +47,14 @@ void nh_stretch_blit(BITMAP *, BITMAP *, int, int, int, int, int, int, int, int)
 /* prototypes */
 int alleg_swallowed(int,int);
 STATIC_DCL void alleg_redrawmap(BOOLEAN_P);
-STATIC_DCL void NDECL(alleg_full_redraw);
-STATIC_DCL void NDECL(alleg_load_cnf);
+STATIC_DCL void alleg_full_redraw(void);
+STATIC_DCL void alleg_load_cnf(void);
 void alleg_cliparound(int,int);
 
 STATIC_DCL void alleg_scrollmap(BOOLEAN_P);
-STATIC_DCL void NDECL(positionbar);
-STATIC_DCL void NDECL(init_progress_meter);
-STATIC_DCL void NDECL(inc_progress_meter);
+STATIC_DCL void positionbar(void);
+STATIC_DCL void init_progress_meter(void);
+STATIC_DCL void inc_progress_meter(void);
 STATIC_DCL void alleg_printGlyph_at(int,int,int); /* row, col, level */
 #define PRINT_BACKGROUND	1
 #define PRINT_FOREGROUND	2

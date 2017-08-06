@@ -145,7 +145,7 @@ static void getline_delete(Widget, XEvent*, String*, Cardinal*);
 static void X11_hangup(Widget, XEvent*, String*, Cardinal*);
 static int input_event(int);
 static void win_visible(Widget,XtPointer,XEvent *,Boolean *);
-static void NDECL(init_standard_windows);
+static void init_standard_windows(void);
 
 
 /*

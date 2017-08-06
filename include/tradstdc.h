@@ -107,8 +107,6 @@
 
 #if defined(NHSTDC) || defined(MSDOS) || defined(MAC) || defined(ULTRIX_PROTO) || defined(__BEOS__)
 
-# define NDECL(f)	f(void)	/* overridden later if USE_TRAMPOLI set */
-
 /* generic pointer, always a macro; genericptr_t is usually a typedef */
 # define genericptr	void *
 
@@ -142,8 +140,6 @@
 # endif
 
 #else /* NHSTDC */	/* a "traditional" C  compiler */
-
-# define NDECL(f)	f()
 
 # if defined(AMIGA) || defined(HPUX) || defined(POSIX_TYPES) || defined(__DECC) || defined(__BORLANDC__)
 #  define genericptr	void *
@@ -202,25 +198,6 @@ typedef genericptr genericptr_t;	/* (void *) or (char *) */
 # if defined(NHSTDC) || defined(ULTRIX_PROTO) || defined(THINK_C)
 # define WIDENED_PROTOTYPES
 # endif
-#endif
-
-#if 0
-/* The problem below is still the case through 4.0.5F, but the suggested
- * compiler flags in the Makefiles suppress the nasty messages, so we don't
- * need to be quite so drastic.
- */
-#if defined(__sgi) && !defined(__GNUC__)
-/*
- * As of IRIX 4.0.1, /bin/cc claims to be an ANSI compiler, but it thinks
- * it's impossible for a prototype to match an old-style definition with
- * unwidened argument types.  Thus, we have to turn off all NetHack
- * prototypes, and avoid declaring several system functions, since the system
- * include files have prototypes and the compiler also complains that
- * prototyped and unprototyped declarations don't match.
- */
-# undef NDECL
-# define NDECL(f)	f()
-#endif
 #endif
 
 

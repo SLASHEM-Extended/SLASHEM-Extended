@@ -7,7 +7,7 @@
 STATIC_DCL boolean tele_jump_ok(int,int,int,int);
 STATIC_DCL boolean teleokX(int,int,BOOLEAN_P);
 STATIC_DCL boolean teleokXconfused(int,int,BOOLEAN_P);
-STATIC_DCL void NDECL(vault_tele);
+STATIC_DCL void vault_tele(void);
 STATIC_DCL boolean rloc_pos_ok(int,int,struct monst *);
 STATIC_DCL void mvault_tele(struct monst *);
 

@@ -27,24 +27,24 @@ extern struct passwd *getpwnam(const char *);
 #ifdef CHDIR
 static void chdirx(const char *,BOOLEAN_P);
 #endif /* CHDIR */
-static boolean NDECL(whoami);
+static boolean whoami(void);
 static void process_options(int, char **);
 
 #ifdef _M_UNIX
-extern void NDECL(check_sco_console);
-extern void NDECL(init_sco_cons);
+extern void check_sco_console(void);
+extern void init_sco_cons(void);
 #endif
 #ifdef __linux__
-extern void NDECL(check_linux_console);
-extern void NDECL(init_linux_cons);
+extern void check_linux_console(void);
+extern void init_linux_cons(void);
 #endif
 
 #ifdef LINUX
-extern void NDECL(check_linux_console);
-extern void NDECL(init_linux_cons);
+extern void check_linux_console(void);
+extern void init_linux_cons(void);
 #endif
  
-static void NDECL(wd_message);
+static void wd_message(void);
 #ifdef WIZARD
 static boolean wiz_error_flag = FALSE;
 #endif

@@ -28,7 +28,7 @@ STATIC_DCL void mswings(struct monst *,struct obj *);
 STATIC_DCL void wildmiss(struct monst *,struct attack *);
 
 STATIC_DCL void hurtarmor(int);
-STATIC_DCL void NDECL(witherarmor);
+STATIC_DCL void witherarmor(void);
 STATIC_DCL void hitmsg(struct monst *,struct attack *);
 
 /* See comment in mhitm.c.  If we use this a lot it probably should be */

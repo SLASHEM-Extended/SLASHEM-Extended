@@ -8,7 +8,7 @@
 #include "edog.h"
 
 STATIC_DCL int throw_obj(struct obj *, int, int);
-STATIC_DCL void NDECL(autoquiver);
+STATIC_DCL void autoquiver(void);
 STATIC_DCL int gem_accept(struct monst *, struct obj *);
 STATIC_DCL void tmiss(struct obj *, struct monst *);
 STATIC_DCL int throw_gold(struct obj *);
@@ -19,7 +19,7 @@ STATIC_DCL boolean toss_up(struct obj *, BOOLEAN_P);
 STATIC_DCL boolean throwing_weapon(struct obj *);
 STATIC_DCL void sho_obj_return_to_u(struct obj *obj);
 STATIC_DCL boolean mhurtle_step(genericptr_t,int,int);
-static void NDECL(autoquiver);	/* KMH -- automatically fill quiver */
+static void autoquiver(void);	/* KMH -- automatically fill quiver */
 
 
 static NEARDATA const char toss_objs[] =

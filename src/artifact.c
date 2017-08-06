@@ -51,7 +51,7 @@ static boolean artiexist[1+NROFARTIFACTS+1];
 
 STATIC_OVL int artidisco[NROFARTIFACTS];
 
-STATIC_DCL void NDECL(hack_artifacts);
+STATIC_DCL void hack_artifacts(void);
 STATIC_DCL boolean attacks(int,struct obj *);
 
 

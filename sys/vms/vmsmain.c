@@ -8,9 +8,9 @@
 
 #include <signal.h>
 
-static void NDECL(whoami);
+static void whoami(void);
 static void process_options(int, char **);
-static void NDECL(byebye);
+static void byebye(void);
 #ifndef SAVE_ON_FATAL_ERROR
 # ifndef __DECC
 #  define vms_handler_type int
@@ -22,7 +22,7 @@ static vms_handler_type vms_handler(genericptr_t,genericptr_t);
 #include <ssdef.h>	/* system service status codes */
 #endif
 
-static void NDECL(wd_message);
+static void wd_message(void);
 #ifdef WIZARD
 static boolean wiz_error_flag = FALSE;
 #endif

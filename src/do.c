@@ -15,15 +15,15 @@ STATIC_DCL void trycall(struct obj *);
 STATIC_DCL void dosinkring(struct obj *);
 
 STATIC_PTR int drop(struct obj *);
-STATIC_PTR int NDECL(wipeoff);
-STATIC_PTR void NDECL(lose_comp_objects);
+STATIC_PTR int wipeoff(void);
+STATIC_PTR void lose_comp_objects(void);
 
 #ifdef OVL0
 STATIC_DCL int menu_drop(int);
 #endif
 #ifdef OVL2
-STATIC_DCL int NDECL(currentlevel_rewrite);
-STATIC_DCL void NDECL(final_level);
+STATIC_DCL int currentlevel_rewrite(void);
+STATIC_DCL void final_level(void);
 /* static boolean badspot(XCHAR_P,XCHAR_P); */
 #endif
 

@@ -46,10 +46,10 @@ extern boolean read_text_tile_info(pixel (*)[MAX_TILE_X], char *ttype, int *numb
 extern boolean read_text_tile(pixel (*)[MAX_TILE_X]);
 extern boolean write_text_tile_info(pixel (*)[MAX_TILE_X], const char *ttype, int number, const char *name);
 extern boolean write_text_tile(pixel (*)[MAX_TILE_X]);
-extern boolean NDECL(fclose_text_file);
+extern boolean fclose_text_file(void);
 
-extern void NDECL(init_colormap);
-extern void NDECL(merge_colormap);
+extern void init_colormap(void);
+extern void merge_colormap(void);
 
 #if defined(MICRO) || defined(WIN32)
 #undef exit

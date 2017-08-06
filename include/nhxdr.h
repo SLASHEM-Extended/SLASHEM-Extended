@@ -21,15 +21,12 @@
 #define MAX(a, b)	((a) >= (b) ? (a) : (b))
 #endif
 
-#ifndef NDECL
 /*
  * Assume an ANSI X3.159 compatible compiler
  */
-#define NDECL(f)		(f)(void)
 #define CHAR_P			int
 #define SHORT_P			int
 #define BOOLEAN_P		int
-#endif
 
 #define NHEXT_XDR_RNDUP(x)	(((x) - 1 | 3) + 1)
 

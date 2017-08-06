@@ -66,7 +66,7 @@ static void ReadTileStrip(FILE *fd, int len);
 /* These should be in gif.h, but there isn't one. */
 boolean fopen_gif_file(const char *, const char *);
 boolean read_gif_tile(pixel(*)[]);
-int NDECL(fclose_gif_file);
+int fclose_gif_file(void);
 
 #ifdef INDEX
 static const char

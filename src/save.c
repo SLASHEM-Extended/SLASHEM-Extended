@@ -36,7 +36,7 @@ STATIC_DCL void savetrapchn(int,struct trap *,int);
 STATIC_DCL void savegamestate(int,int);
 #ifdef MFLOPPY
 STATIC_DCL void savelev0(int,XCHAR_P,int);
-STATIC_DCL boolean NDECL(swapout_oldest);
+STATIC_DCL boolean swapout_oldest(void);
 STATIC_DCL void copyfile(char *,char *);
 #endif /* MFLOPPY */
 #ifdef GCC_WARN

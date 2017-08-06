@@ -6,8 +6,8 @@
 
 #include "hack.h"
 
-STATIC_DCL int NDECL(bc_order);
-STATIC_DCL void NDECL(litter);
+STATIC_DCL int bc_order(void);
+STATIC_DCL void litter(void);
 
 #ifdef DISPLAY_LAYERS
 #define memory_object(x, y)	(levl[x][y].mem_obj)

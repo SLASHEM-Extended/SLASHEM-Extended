@@ -203,20 +203,20 @@ extern void process_openfile(short s_vol, long s_dir, Str255 fNm, OSType ft);
 extern void AddToKeyQueue(unsigned char, Boolean);
 extern unsigned char GetFromKeyQueue (void);
 void trans_num_keys (EventRecord *);
-extern void NDECL (InitMac);
+extern void InitMac(void);
 int try_key_queue(char *);
 void enter_topl_mode(char *);
 void leave_topl_mode(char *);
 void topl_set_resp(char *, char);
 Boolean topl_key(unsigned char, Boolean);
 E void HandleEvent(EventRecord *);	/* used in mmodal.c */
-extern void NDECL(port_help);
+extern void port_help(void);
 
 extern Boolean small_screen;
 
 E void mac_init_nhwindows(int *, char **);
-E void NDECL(mac_askname);
-E void NDECL(mac_get_nh_event);
+E void mac_askname(void);
+E void mac_get_nh_event(void);
 E void mac_exit_nhwindows(const char *);
 E winid mac_create_nhwindow(int);
 E void mac_clear_nhwindow(winid);
@@ -231,14 +231,14 @@ E int mac_select_menu(winid, int, menu_item **);
 #ifdef CLIPPING
 E void mac_cliparound(int, int);
 #endif
-E int NDECL(mac_nhgetch);
+E int mac_nhgetch(void);
 E int mac_nh_poskey(int *, int *, int *);
-E int NDECL(mac_doprev_message);
+E int mac_doprev_message(void);
 E char mac_yn_function(const char *, const char *, CHAR_P);
 E void mac_getlin(const char *,char *);
-E int NDECL(mac_get_ext_cmd);
+E int mac_get_ext_cmd(void);
 E void mac_number_pad(int);
-E void NDECL(mac_delay_output);
+E void mac_delay_output(void);
 
 #undef E
 

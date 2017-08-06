@@ -72,7 +72,7 @@ STATIC_DCL boolean interest_mapseen(mapseen *);
 
 #if defined(DEBUG) || defined(DEBUG_420942)
 #define DD	dungeons[i]
-STATIC_DCL void NDECL(dumpit);
+STATIC_DCL void dumpit(void);
 
 STATIC_OVL void
 dumpit()

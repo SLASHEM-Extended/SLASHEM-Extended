@@ -39,8 +39,8 @@ unsigned long smg$create_virtual_keyboard(), smg$delete_virtual_keyboard(),
 #else
 static short parse_function_key(int);
 #endif
-static void NDECL(setctty);
-static void NDECL(resettty);
+static void setctty(void);
+static void resettty(void);
 
 #define vms_ok(sts) ((sts)&1)
 #define META(c)  ((c)|0x80)	/* 8th bit */

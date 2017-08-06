@@ -31,8 +31,8 @@ hook()
 #ifdef GTK_PROXY
 
 static void GTK_proxy_init_nhwindows(int *, char **);
-static void NDECL(GTK_proxy_askname);
-static int NDECL(GTK_proxy_nhgetch);
+static void GTK_proxy_askname(void);
+static int GTK_proxy_nhgetch(void);
 static void GTK_proxy_raw_print(const char *);
 static void GTK_proxy_raw_print_bold(const char *);
 
@@ -215,8 +215,8 @@ GTK_proxy_init_nhwindows(int *argcp, char **argv)
 #else	/* GTK_PROXY */
 
 static void GTK_int_init_nhwindows(int *, char **);
-static void NDECL(GTK_int_player_selection);
-static void NDECL(GTK_int_askname);
+static void GTK_int_player_selection(void);
+static void GTK_int_askname(void);
 static void GTK_int_clear_nhwindow(winid);
 #ifdef FILE_AREAS
 static void GTK_int_display_file(const char *, const char *, BOOLEAN_P);

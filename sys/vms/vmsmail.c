@@ -6,10 +6,10 @@
 #include "mail.h"
 
 /* lint supression due to lack of extern.h */
-unsigned long NDECL(init_broadcast_trapping);
-unsigned long NDECL(enable_broadcast_trapping);
-unsigned long NDECL(disable_broadcast_trapping);
-struct mail_info *NDECL(parse_next_broadcast);
+unsigned long init_broadcast_trapping(void);
+unsigned long enable_broadcast_trapping(void);
+unsigned long disable_broadcast_trapping(void);
+struct mail_info *parse_next_broadcast(void);
 
 #ifdef MAIL
 #include "wintype.h"
@@ -29,7 +29,7 @@ struct mail_info *NDECL(parse_next_broadcast);
 
 static struct mail_info *parse_brdcst(char *);
 static void filter_brdcst(char *);
-static void NDECL(flush_broadcasts);
+static void flush_broadcasts(void);
 static void broadcast_ast(int);
 extern char *eos(char *);
 extern char *strstri(const char *,const char *);

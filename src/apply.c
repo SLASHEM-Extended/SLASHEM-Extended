@@ -34,14 +34,14 @@ STATIC_DCL void use_figurine(struct obj **);
 STATIC_DCL void use_grease(struct obj *);
 STATIC_DCL void use_trap(struct obj *);
 STATIC_DCL void use_stone(struct obj *);
-STATIC_PTR int NDECL(set_trap);		/* occupation callback */
+STATIC_PTR int set_trap(void);		/* occupation callback */
 STATIC_DCL int use_whip(struct obj *);
 STATIC_DCL int use_pole(struct obj *);
 STATIC_DCL int use_cream_pie(struct obj *);
 STATIC_DCL int use_grapple(struct obj *);
 STATIC_DCL int do_break_wand(struct obj *);
 STATIC_DCL boolean figurine_location_checks(struct obj *, coord *, BOOLEAN_P);
-STATIC_DCL boolean NDECL(uhave_graystone);
+STATIC_DCL boolean uhave_graystone(void);
 STATIC_DCL void add_class(char *, CHAR_P);
 
 #ifdef	AMIGA

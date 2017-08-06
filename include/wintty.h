@@ -98,7 +98,7 @@ E void xwaitforspace(const char *);
 
 E void tty_startup(int*, int*);
 #ifndef NO_TERMS
-E void NDECL(tty_shutdown);
+E void tty_shutdown(void);
 #endif
 #if defined(apollo)
 /* Apollos don't widen old-style function definitions properly -- they try to
@@ -114,22 +114,22 @@ E void xputs(const char *);
 #if defined(SCREEN_VGA) || defined(SCREEN_8514) || defined(ALLEG_FX)
 E void xputg(int, int, unsigned);
 #endif
-E void NDECL(cl_end);
-E void NDECL(clear_screen);
-E void NDECL(home);
-E void NDECL(standoutbeg);
-E void NDECL(standoutend);
+E void cl_end(void);
+E void clear_screen(void);
+E void home(void);
+E void standoutbeg(void);
+E void standoutend(void);
 # if 0
-E void NDECL(revbeg);
-E void NDECL(boldbeg);
-E void NDECL(blinkbeg);
-E void NDECL(dimbeg);
-E void NDECL(m_end);
+E void revbeg(void);
+E void boldbeg(void);
+E void blinkbeg(void);
+E void dimbeg(void);
+E void m_end(void);
 # endif
-E void NDECL(backsp);
-E void NDECL(graph_on);
-E void NDECL(graph_off);
-E void NDECL(cl_eos);
+E void backsp(void);
+E void graph_on(void);
+E void graph_off(void);
+E void cl_eos(void);
 
 /*
  * termcap.c (or facsimiles in other ports) is the right place for doing
@@ -139,11 +139,11 @@ E void NDECL(cl_eos);
  */
 E void term_start_attr(int attr);
 E void term_end_attr(int attr);
-E void NDECL(term_start_raw_bold);
-E void NDECL(term_end_raw_bold);
+E void term_start_raw_bold(void);
+E void term_end_raw_bold(void);
 
 #ifdef TEXTCOLOR
-E void NDECL(term_end_color);
+E void term_end_color(void);
 E void term_start_color(int color);
 E int has_color(int color);
 #endif /* TEXTCOLOR */
@@ -152,27 +152,27 @@ E int has_color(int color);
 /* ### topl.c ### */
 
 E void addtopl(const char *);
-E void NDECL(more);
+E void more(void);
 E void update_topl(const char *);
 E void putsyms(const char*);
 
 /* ### wintty.c ### */
 #ifdef CLIPPING
-E void NDECL(setclipped);
+E void setclipped(void);
 #endif
 E void docorner(int, int);
-E void NDECL(end_glyphout);
+E void end_glyphout(void);
 E void g_putch(int);
-E void NDECL(win_tty_init);
+E void win_tty_init(void);
 
 /* external declarations */
 E void tty_init_nhwindows(int *, char **);
-E void NDECL(tty_player_selection);
-E void NDECL(tty_askname);
-E void NDECL(tty_get_nh_event) ;
+E void tty_player_selection(void);
+E void tty_askname(void);
+E void tty_get_nh_event(void) ;
 E void tty_exit_nhwindows(const char *);
 E void tty_suspend_nhwindows(const char *);
-E void NDECL(tty_resume_nhwindows);
+E void tty_resume_nhwindows(void);
 E winid tty_create_nhwindow(int);
 E void tty_clear_nhwindow(winid);
 E void tty_display_nhwindow(winid, BOOLEAN_P);
@@ -191,9 +191,9 @@ E void tty_add_menu(winid,int,const ANY_P *,
 E void tty_end_menu(winid, const char *);
 E int tty_select_menu(winid, int, MENU_ITEM_P **);
 E char tty_message_menu(CHAR_P,int,const char *);
-E void NDECL(tty_update_inventory);
-E void NDECL(tty_mark_synch);
-E void NDECL(tty_wait_synch);
+E void tty_update_inventory(void);
+E void tty_mark_synch(void);
+E void tty_wait_synch(void);
 #ifdef CLIPPING
 E void tty_cliparound(int, int);
 #endif
@@ -203,27 +203,27 @@ E void tty_update_positionbar(char *);
 E void tty_print_glyph(winid,XCHAR_P,XCHAR_P,int);
 E void tty_raw_print(const char *);
 E void tty_raw_print_bold(const char *);
-E int NDECL(tty_nhgetch);
+E int tty_nhgetch(void);
 E int tty_nh_poskey(int *, int *, int *);
-E void NDECL(tty_nhbell);
-E int NDECL(tty_doprev_message);
+E void tty_nhbell(void);
+E int tty_doprev_message(void);
 E char tty_yn_function(const char *, const char *, CHAR_P);
 E void tty_getlin(const char *,char *);
-E int NDECL(tty_get_ext_cmd);
+E int tty_get_ext_cmd(void);
 E void tty_number_pad(int);
-E void NDECL(tty_delay_output);
+E void tty_delay_output(void);
 #ifdef CHANGE_COLOR
 E void tty_change_color(int color,long rgb,int reverse);
 #ifdef MAC
 E void tty_change_background(int white_or_black);
 E short set_tty_font_name(winid, char *);
 #endif
-E char * NDECL(tty_get_color_string);
+E char * tty_get_color_string(void);
 #endif
 
 /* other defs that really should go away (they're tty specific) */
-E void NDECL(tty_start_screen);
-E void NDECL(tty_end_screen);
+E void tty_start_screen(void);
+E void tty_end_screen(void);
 
 E void genl_outrip(winid,int);
 

@@ -13,7 +13,7 @@ extern struct window_procs curses_procs;
 /* cannot just blindly include winX.h without including all of X11 stuff */
 /* and must get the order of include files right.  Don't bother */
 extern struct window_procs X11_procs;
-extern void NDECL(win_X11_init);
+extern void win_X11_init(void);
 #endif
 #ifdef QT_GRAPHICS
 extern struct window_procs Qt_procs;
@@ -23,7 +23,7 @@ extern struct window_procs Qt_procs;
  * GTK interface (By issei@guru.gr.jp)
  */
 extern struct window_procs GTK_procs;
-extern void NDECL(win_GTK_init);
+extern void win_GTK_init(void);
 #endif
 #ifdef GEM_GRAPHICS
 #include "wingem.h"
@@ -33,12 +33,12 @@ extern struct window_procs mac_procs;
 #endif
 #ifdef BEOS_GRAPHICS
 extern struct window_procs beos_procs;
-extern void NDECL(be_win_init);
+extern void be_win_init(void);
 #endif
 #ifdef AMIGA_INTUITION
 extern struct window_procs amii_procs;
 extern struct window_procs amiv_procs;
-extern void NDECL(ami_wininit_data);
+extern void ami_wininit_data(void);
 #endif
 #ifdef WIN32_GRAPHICS
 extern struct window_procs win32_procs;
@@ -58,7 +58,7 @@ extern struct window_procs sdlgl_softw_procs;
 #ifdef PROXY_GRAPHICS
 #include "winproxy.h"
 extern struct window_procs proxy_procs;
-extern void NDECL(win_proxy_init);
+extern void win_proxy_init(void);
 #endif
 #ifdef MSWIN_GRAPHICS
 extern struct window_procs mswin_procs;
@@ -71,7 +71,7 @@ NEARDATA struct window_procs windowprocs;
 static
 struct win_choices {
     struct window_procs *procs;
-    void NDECL((*ini_routine));		/* optional (can be 0) */
+    void (*ini_routine)(void);		/* optional (can be 0(void) */
 } winchoices[] = {
 #ifdef TTY_GRAPHICS
     { &tty_procs, win_tty_init },

@@ -47,7 +47,7 @@ STATIC_DCL int enhance_skill(boolean);
 #define PN_LIGHTSABER		(-31)
 
 static void give_may_advance_msg(int);
-STATIC_PTR int NDECL(practice);
+STATIC_PTR int practice(void);
 /*static int get_obj_skill(struct obj *);*/
 
 static void mon_ignite_lightsaber(struct obj *, struct monst *);

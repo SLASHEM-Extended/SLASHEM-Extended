@@ -5,11 +5,11 @@
 #include "hack.h"
 
 /*#ifdef OVL1
-STATIC_DCL void NDECL(maybe_wail);
+STATIC_DCL void maybe_wail(void);
 #endif*/ /*OVL1*/
-STATIC_DCL int NDECL(moverock);
+STATIC_DCL int moverock(void);
 STATIC_DCL int still_chewing(XCHAR_P,XCHAR_P);
-STATIC_DCL void NDECL(dosinkfall);
+STATIC_DCL void dosinkfall(void);
 STATIC_DCL boolean findtravelpath(BOOLEAN_P);
 STATIC_DCL boolean monstinroom(struct permonst *,int);
 

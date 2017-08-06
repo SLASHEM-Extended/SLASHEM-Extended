@@ -23,7 +23,7 @@
 #define SIZE(array)	(sizeof(array) / sizeof(*(array)))
 #endif
 
-static void NDECL((*proxy_ini));		/* optional (can be 0) */
+static void (*proxy_ini));		/* optional (can be 0(void) */
 static struct window_ext_procs *proxy_svc;
 
 int proxy_svc_ver_major, proxy_svc_ver_minor, proxy_svc_protocol;
@@ -1273,7 +1273,7 @@ static struct nhext_svc services[] = {
 
 void
 proxy_svc_set_ext_procs(ini_routine, windowprocs)
-void NDECL((*ini_routine));
+void (*ini_routine)(void);
 struct window_ext_procs *windowprocs;
 {
     proxy_ini = ini_routine;

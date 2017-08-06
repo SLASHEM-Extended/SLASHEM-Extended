@@ -14,15 +14,15 @@
 
 #ifdef OVLB
 STATIC_DCL void polyman(const char *,const char *);
-STATIC_DCL void NDECL(break_armor);
+STATIC_DCL void break_armor(void);
 STATIC_DCL void drop_weapon(int);
-STATIC_DCL void NDECL(uunstick);
+STATIC_DCL void uunstick(void);
 STATIC_DCL int armor_to_dragon(int);
-/*STATIC_DCL void NDECL(newman);*/
-STATIC_DCL void NDECL(merge_with_armor);
+/*STATIC_DCL void newman(void);*/
+STATIC_DCL void merge_with_armor(void);
 
 /*  Not Used 
-static void NDECL(special_poly);
+static void special_poly(void);
 */
 
 /* Assumes u.umonster is set up already */

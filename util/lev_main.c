@@ -74,14 +74,14 @@ extern unsigned _stklen = STKSIZ;
 #endif
 #define MAX_ERRORS	25
 
-extern int  NDECL (yyparse);
+extern int  yyparse(void);
 extern void init_yyin(FILE *);
 extern void init_yyout(FILE *);
 
 int  main(int, char **);
 void yyerror(const char *);
 void yywarning(const char *);
-int  NDECL (yywrap);
+int  yywrap(void);
 int get_artifact_id(char *);
 int get_floor_type(CHAR_P);
 int get_room_type(char *);
@@ -92,17 +92,17 @@ boolean check_monster_char(CHAR_P);
 boolean check_object_char(CHAR_P);
 char what_map_char(CHAR_P);
 void scan_map(char *);
-void NDECL(wallify_map);
-boolean NDECL(check_subrooms);
+void wallify_map(void);
+boolean check_subrooms(void);
 void check_coord(int,int,const char *);
-void NDECL(store_part);
-void NDECL(store_room);
+void store_part(void);
+void store_room(void);
 boolean write_level_file(char *,splev *,specialmaze *);
 void free_rooms(splev *);
 
-extern void NDECL(monst_init);
-extern void NDECL(objects_init);
-extern void NDECL(decl_init);
+extern void monst_init(void);
+extern void objects_init(void);
+extern void decl_init(void);
 
 static boolean write_common_data(int,int,lev_init *,long);
 static boolean write_monsters(int,char *,monster ***);
@@ -110,7 +110,7 @@ static boolean write_objects(int,char *,object ***);
 static boolean write_engravings(int,char *,engraving ***);
 static boolean write_maze(int,specialmaze *);
 static boolean write_rooms(int,splev *);
-static void NDECL(init_obj_classes);
+static void init_obj_classes(void);
 
 static struct {
 	const char *name;

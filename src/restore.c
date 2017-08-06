@@ -16,9 +16,9 @@ extern void substitute_tiles(d_level *);       /* from tile.c */
 #endif
 
 #ifdef ZEROCOMP
-static int NDECL(mgetc);
+static int mgetc(void);
 #endif
-STATIC_DCL void NDECL(find_lev_obj);
+STATIC_DCL void find_lev_obj(void);
 STATIC_DCL void restlevchn(int);
 STATIC_DCL void restdamage(int,BOOLEAN_P);
 STATIC_DCL struct obj *restobjchn(int,BOOLEAN_P,BOOLEAN_P);
@@ -44,7 +44,7 @@ struct bucket {
     } map[N_PER_BUCKET];
 };
 
-STATIC_DCL void NDECL(clear_id_mapping);
+STATIC_DCL void clear_id_mapping(void);
 STATIC_DCL void add_id_mapping(unsigned, unsigned);
 
 static int n_ids_mapped = 0;

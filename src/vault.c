@@ -5,7 +5,7 @@
 #include "hack.h"
 #include "vault.h"
 
-STATIC_DCL struct monst *NDECL(findgd);
+STATIC_DCL struct monst *findgd(void);
 
 #define g_monnam(mtmp) \
 	x_monnam(mtmp, ARTICLE_NONE, (char *)0, SUPPRESS_IT, FALSE)

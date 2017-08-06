@@ -9,16 +9,16 @@ struct Window *OpenShWindow(struct ExtNewWindow *);
 struct Window *OpenShWindow(struct NewWindow *);
 #endif
 void CloseShWindow(struct Window *);
-int NDECL( kbhit );
-int NDECL( amikbhit );
-int NDECL( WindowGetchar );
-WETYPE NDECL( WindowGetevent );
-void NDECL( WindowFlush );
+int  kbhit (void);
+int  amikbhit (void);
+int  WindowGetchar (void);
+WETYPE  WindowGetevent (void);
+void  WindowFlush (void);
 void WindowPutchar(char );
 void WindowFPuts(const char *);
 void WindowPuts(const char *);
 void WindowPrintf(char *,... );
-void NDECL( CleanUp );
+void  CleanUp (void);
 int ConvertKey(struct IntuiMessage * );
 #ifndef	SHAREDLIB
 void Abort(long );
@@ -34,7 +34,7 @@ void FreeNewWindow(struct ExtNewWindow *);
 struct NewWindow *DupNewWindow(struct NewWindow *);
 void FreeNewWindow(struct NewWindow *);
 #endif
-void NDECL( bell );
-void NDECL( amii_delay_output );
+void  bell (void);
+void  amii_delay_output (void);
 void amii_number_pad(int );
 void amii_cleanup( void );

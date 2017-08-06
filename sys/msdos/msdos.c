@@ -51,10 +51,10 @@ void get_cursor(int *, int *);
 
 /* direct bios calls are used only when iflags.BIOS is set */
 
-static char NDECL(DOSgetch);
-static char NDECL(BIOSgetch);
+static char DOSgetch(void);
+static char BIOSgetch(void);
 #ifndef __GO32__
-static char * NDECL(getdta);
+static char * getdta(void);
 #endif
 static unsigned int dos_ioctl(int,int,unsigned);
 /* WAC pckeys is now a char */

@@ -144,9 +144,9 @@ static const char *warnings[] = {
 #if 0
 static void wand_explode(struct obj *);
 #endif
-static void NDECL(do_class_genocide);
-static void NDECL(do_total_genocide);
-static void NDECL(do_class_erasure);
+static void do_class_genocide(void);
+static void do_total_genocide(void);
+static void do_class_erasure(void);
 static void stripspe(struct obj *);
 static void p_glow1(struct obj *);
 static void p_glow2(struct obj *,const char *);

@@ -12,7 +12,7 @@
 #include <signal.h>
 #endif
 #include "dlb.h"
-extern int NDECL(enter_explore_mode);
+extern int enter_explore_mode(void);
 
 #ifdef DUMP_LOG
 extern char msgs[][BUFSZ];
@@ -50,9 +50,9 @@ STATIC_DCL void artifact_score(struct obj *,BOOLEAN_P,winid);
 STATIC_DCL void savelife(int);
 STATIC_DCL boolean list_vanquished(CHAR_P, BOOLEAN_P);
 #ifdef DUMP_LOG
-extern void NDECL(dump_spells);
-extern void NDECL(dump_techniques);
-extern void NDECL(dump_discoveries);
+extern void dump_spells(void);
+extern void dump_techniques(void);
+extern void dump_discoveries(void);
 void do_vanquished(int, BOOLEAN_P, BOOLEAN_P);
 STATIC_DCL void list_genocided(int, BOOLEAN_P, BOOLEAN_P);
 #else

@@ -22,28 +22,28 @@ E char *fmt_ptr(const genericptr,char *);
 
 /* ### allmain.c ### */
 
-E void NDECL(moveloop);
-E void NDECL(stop_occupation);
-E void NDECL(display_gamewindows);
-E void NDECL(newgame);
+E void moveloop(void);
+E void stop_occupation(void);
+E void display_gamewindows(void);
+E void newgame(void);
 E void welcome(BOOLEAN_P);
 #if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)
-E time_t NDECL(get_realtime);
+E time_t get_realtime(void);
 #endif
-E boolean NDECL(timebasedlowerchance);
+E boolean timebasedlowerchance(void);
 
 /* ### apply.c ### */
 
-E int NDECL(doapply);
-E int NDECL(dorub);
-E int NDECL(dojump);
+E int doapply(void);
+E int dorub(void);
+E int dojump(void);
 E int jump(int);
 E int jump(int);
-E int NDECL(number_leashed);
+E int number_leashed(void);
 E void o_unleash(struct obj *);
 E void m_unleash(struct monst *,BOOLEAN_P);
-E void NDECL(unleash_all);
-E boolean NDECL(next_to_u);
+E void unleash_all(void);
+E boolean next_to_u(void);
 E struct obj *get_mleash(struct monst *);
 E void check_leash(XCHAR_P,XCHAR_P);
 E void use_floppies(struct obj *);
@@ -53,24 +53,24 @@ E boolean snuff_lit(struct obj *);
 E boolean catch_lit(struct obj *);
 E void use_unicorn_horn(struct obj *);
 E boolean tinnable(struct obj *);
-E void NDECL(reset_trapset);
+E void reset_trapset(void);
 E void fig_transform(genericptr_t, long);
 E int unfixable_trouble_count(BOOLEAN_P);
 E int wand_explode(struct obj *,BOOLEAN_P);
 
 /* ### artifact.c ### */
 
-E void NDECL(init_artifacts);
-E void NDECL(init_artifacts1);
+E void init_artifacts(void);
+E void init_artifacts1(void);
 E void save_artifacts(int);
 E void restore_artifacts(int);
 E const char *artiname(int);
 E struct obj *mk_artifact(struct obj *,ALIGNTYP_P);
-E void NDECL(bad_artifact);
+E void bad_artifact(void);
 E const char *artifact_name(const char *,int *);
 E boolean exist_artifact(int,const char *);
 E void artifact_exists(struct obj *,const char *,BOOLEAN_P);
-E int NDECL(nartifact_exist);
+E int nartifact_exist(void);
 E boolean spec_ability(struct obj *,unsigned long);
 E boolean arti_is_evil(struct obj *);
 E boolean confers_luck(struct obj *);
@@ -85,9 +85,9 @@ E int spec_dbon(struct obj *,struct monst *,int);
 E void discover_artifact(int);
 E boolean undiscovered_artifact(int);
 E int disp_artifact_discoveries(winid);
-E void NDECL(dump_artifact_discoveries);
+E void dump_artifact_discoveries(void);
 E boolean artifact_hit(struct monst *,struct monst *, struct obj *,int *,int);
-E int NDECL(doinvoke);
+E int doinvoke(void);
 E void arti_speak(struct obj *);
 E boolean artifact_light(struct obj *);
 E int artifact_wet(struct obj *, BOOLEAN_P);
@@ -97,49 +97,49 @@ E long spec_m2(struct obj *);
 E boolean artifact_has_invprop(struct obj *,int);
 E long arti_cost(struct obj *);
 E void arti_poly_contents(struct obj *);
-E int NDECL(find_wildtalentartifact);
-E int NDECL(find_prostituteartifact);
-E int NDECL(find_kurwaartifact);
+E int find_wildtalentartifact(void);
+E int find_prostituteartifact(void);
+E int find_kurwaartifact(void);
 
 /* ### attrib.c ### */
 
 E boolean adjattrib(int,int,int);
 E void change_luck(SCHAR_P);
 E int stone_luck(BOOLEAN_P);
-E void NDECL(set_moreluck);
+E void set_moreluck(void);
 E void gainstr(struct obj *,int);
 E void losestr(int);
-E void NDECL(restore_attrib);
+E void restore_attrib(void);
 E void exercise(int,BOOLEAN_P);
-E void NDECL(exerchk);
-E void NDECL(reset_attribute_clock);
+E void exerchk(void);
+E void reset_attribute_clock(void);
 E void init_attr(int);
-E void NDECL(redist_attr);
+E void redist_attr(void);
 E void adjabil(int,int);
-E int NDECL(newhp);
+E int newhp(void);
 E schar acurr(int);
-E schar NDECL(acurrstr);
+E schar acurrstr(void);
 E void adjalign(int);
 /* KMH, balance patch -- new function */
-E void NDECL(recalc_health);
-E int NDECL(recalc_mana);
+E void recalc_health(void);
+E int recalc_mana(void);
 
 /* ### ball.c ### */
 
-E void NDECL(ballfall);
-E void NDECL(placebc);
-E void NDECL(unplacebc);
+E void ballfall(void);
+E void placebc(void);
+E void unplacebc(void);
 E void set_bc(int);
 E void move_bc(int,int,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P);
 E boolean drag_ball(XCHAR_P,XCHAR_P, int *,xchar *,xchar *,xchar *,xchar *, boolean *,BOOLEAN_P);
 E void drop_ball(XCHAR_P,XCHAR_P);
-E void NDECL(drag_down);
+E void drag_down(void);
 
 /* ### bones.c ### */
 
-E boolean NDECL(can_make_bones);
+E boolean can_make_bones(void);
 E void savebones(struct obj *);
-E int NDECL(getbones);
+E int getbones(void);
 
 /* ### borg.c ### */
 
@@ -151,15 +151,15 @@ E char borg_input(void); */
 
 E int xlev_to_rank(int);
 E int title_to_mon(const char *,int *,int *);
-E void NDECL(max_rank_sz);
-E long NDECL(botl_score);
+E void max_rank_sz(void);
+E long botl_score(void);
 E int describe_level(char *, int);
-E const char *NDECL(rank);
+E const char *rank(void);
 E const char *rank_of(int,SHORT_P,BOOLEAN_P);
 E void bot_set_handler(void (*)());
-E void NDECL(bot_reconfig);
-E void NDECL(bot);
-E void NDECL(botreal);
+E void bot_reconfig(void);
+E void bot(void);
+E void botreal(void);
 #ifdef DUMP_LOG
 E void bot1str(char *);
 E void bot2str(char *);
@@ -175,35 +175,35 @@ E const char * shorten_bot2(const char *, unsigned int);
 /* ### cmd.c ### */
 
 #ifdef USE_TRAMPOLI
-E int NDECL(doextcmd);
-E int NDECL(domonability);
-E int NDECL(domonability);
-E int NDECL(polyatwill);
-E int NDECL(playersteal);
-E int NDECL(doprev_message);
-E int NDECL(timed_occupation);
-E int NDECL(wiz_attributes);
-E int NDECL(enter_explore_mode);
+E int doextcmd(void);
+E int domonability(void);
+E int domonability(void);
+E int polyatwill(void);
+E int playersteal(void);
+E int doprev_message(void);
+E int timed_occupation(void);
+E int wiz_attributes(void);
+E int enter_explore_mode(void);
 # ifdef WIZARD
-E int NDECL(wiz_detect);
-E int NDECL(wiz_genesis);
-E int NDECL(wiz_identify);
-E int NDECL(wiz_level_tele);
-E int NDECL(wiz_map);
-E int NDECL(wiz_where);
-E int NDECL(wiz_wish);
+E int wiz_detect(void);
+E int wiz_genesis(void);
+E int wiz_identify(void);
+E int wiz_level_tele(void);
+E int wiz_map(void);
+E int wiz_where(void);
+E int wiz_wish(void);
 E char *montraitname(int);
 # endif /* WIZARD */
 #endif /* USE_TRAMPOLI */
-E void NDECL(reset_occupations);
+E void reset_occupations(void);
 E void set_occupation(int (*)(void),const char *,int);
-E char NDECL(pgetchar);
+E char pgetchar(void);
 E void pushch(CHAR_P);
 E void savech(CHAR_P);
 E void rhack(char *);
-E void NDECL(dokeylist);
-E int NDECL(doextlist);
-E int NDECL(extcmd_via_menu);
+E void dokeylist(void);
+E int doextlist(void);
+E int extcmd_via_menu(void);
 E void enlightenment(int, int);
 E void show_conduct(int);
 #ifdef DUMP_LOG
@@ -214,15 +214,15 @@ E int xytod(SCHAR_P,SCHAR_P);
 E void dtoxy(coord *,int);
 E int movecmd(CHAR_P);
 E int getdir(const char *);
-E void NDECL(confdir);
+E void confdir(void);
 E int isok(int,int);
 E int get_adjacent_loc(const char *, const char *, XCHAR_P, XCHAR_P, coord *);
 E const char *click_to_cmd(int,int,int);
-E char NDECL(readchar);
+E char readchar(void);
 #ifdef WIZARD
-E void NDECL(sanity_check);
+E void sanity_check(void);
 #endif
-E void NDECL(commands_init);
+E void commands_init(void);
 E char* stripspace(char*);
 E void parsebindings(char*);
 E void parseautocomplete(char*,boolean);
@@ -246,7 +246,7 @@ E void destroy_drawbridge(int,int);
 
 /* ### decl.c ### */
 
-E void NDECL(decl_init);
+E void decl_init(void);
 
 /* ### detect.c ### */
 
@@ -261,35 +261,35 @@ E int trap_detect(struct obj *);
 E int trap_detectX(struct obj *);
 E const char *level_distance(d_level *);
 E void use_crystal_ball(struct obj *);
-E void NDECL(water_detect);
-E void NDECL(water_detectX);
-E void NDECL(do_mapping);
-E void NDECL(do_mappingX);
-E void NDECL(do_mappingY);
-E void NDECL(do_vicinity_map);
-E void NDECL(do_vicinity_mapX);
+E void water_detect(void);
+E void water_detectX(void);
+E void do_mapping(void);
+E void do_mappingX(void);
+E void do_mappingY(void);
+E void do_vicinity_map(void);
+E void do_vicinity_mapX(void);
 E void cvt_sdoor_to_door(struct rm *);
 #ifdef USE_TRAMPOLI
 E void findone(int,int,genericptr_t);
 E void openone(int,int,genericptr_t);
 #endif
-E int NDECL(findit);
-E int NDECL(finditX);
-E int NDECL(openit);
+E int findit(void);
+E int finditX(void);
+E int openit(void);
 E void find_trap(struct trap *);
 E int dosearch0(int);
-E int NDECL(dosearch);
-E void NDECL(sokoban_detect);
+E int dosearch(void);
+E void sokoban_detect(void);
 /* KMH -- Sokoban levels */
-E void NDECL(sokoban_detect);
+E void sokoban_detect(void);
 
 /* ### dig.c ### */
 
-E boolean NDECL(is_digging);
+E boolean is_digging(void);
 #ifdef USE_TRAMPOLI
-E int NDECL(dig);
+E int dig(void);
 #endif
-E int NDECL(holetime);
+E int holetime(void);
 E boolean dig_check(struct monst *, BOOLEAN_P, int, int);
 E void digactualhole(int,int,struct monst *,int);
 E boolean dighole(BOOLEAN_P);
@@ -305,9 +305,9 @@ E void rot_organic(genericptr_t, long);
 E void rot_corpse(genericptr_t, long);
 #if 0
 E void bury_monst(struct monst *);
-E void NDECL(bury_you);
-E void NDECL(unearth_you);
-E void NDECL(escape_tomb);
+E void bury_you(void);
+E void unearth_you(void);
+E void escape_tomb(void);
 E void bury_obj(struct obj *);
 #endif
 
@@ -335,35 +335,35 @@ E int glyph_is_floating(int);
 E void swallowed(int);
 E void under_ground(int);
 E void under_water(int);
-E void NDECL(see_monsters);
-E void NDECL(see_monstersX);
-E void NDECL(set_mimic_blocking);
-E void NDECL(see_objects);
-E void NDECL(see_traps);
-E void NDECL(curs_on_u);
-E int NDECL(doredraw);
-E void NDECL(docrt);
+E void see_monsters(void);
+E void see_monstersX(void);
+E void set_mimic_blocking(void);
+E void see_objects(void);
+E void see_traps(void);
+E void curs_on_u(void);
+E int doredraw(void);
+E void docrt(void);
 E void show_glyph(int,int,int);
 E void show_glyphX(int,int,int);
-E void NDECL(clear_glyph_buffer);
+E void clear_glyph_buffer(void);
 E void row_refresh(int,int,int);
-E void NDECL(cls);
+E void cls(void);
 E void flush_screen(int);
 #ifdef DUMP_LOG
-E void NDECL(dump_screen);
+E void dump_screen(void);
 #endif
 E int back_to_glyph(XCHAR_P,XCHAR_P);
 E int zapdir_to_glyph(int,int,int);
 E int glyph_at(XCHAR_P,XCHAR_P);
-E void NDECL(set_wall_state);
+E void set_wall_state(void);
 
 /* ### do.c ### */
 
 #ifdef USE_TRAMPOLI
 E int drop(struct obj *);
-E int NDECL(wipeoff);
+E int wipeoff(void);
 #endif
-E int NDECL(dodrop);
+E int dodrop(void);
 E boolean boulder_hits_pool(struct obj *,int,int,BOOLEAN_P);
 E boolean flooreffects(struct obj *,int,int,const char *);
 E void doaltarobj(struct obj *);
@@ -371,34 +371,34 @@ E boolean canletgo(struct obj *,const char *);
 E void dropx(struct obj *);
 E void dropy(struct obj *);
 E void obj_no_longer_held(struct obj *);
-E int NDECL(doddrop);
-E int NDECL(dodown);
-E int NDECL(doup);
+E int doddrop(void);
+E int dodown(void);
+E int doup(void);
 #ifdef INSURANCE
-E void NDECL(save_currentstate);
+E void save_currentstate(void);
 #endif
 E void goto_level(d_level *,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P);
 E void schedule_goto(d_level *,BOOLEAN_P,BOOLEAN_P,int, const char *,const char *);
-E void NDECL(deferred_goto);
+E void deferred_goto(void);
 E boolean revive_corpse(struct obj *, BOOLEAN_P);
 E void revive_mon(genericptr_t, long);
 E void moldy_corpse(genericptr_t, long);
-E int NDECL(donull);
-E int NDECL(dowipe);
+E int donull(void);
+E int dowipe(void);
 E void set_wounded_legs(long,int);
-E void NDECL(heal_legs);
+E void heal_legs(void);
 
 /* ### do_name.c ### */
 
 E int getpos(coord *,BOOLEAN_P,const char *);
 E struct monst *christen_monst(struct monst *,const char *);
-E int NDECL(do_mname);
+E int do_mname(void);
 E struct obj *oname(struct obj *,const char *);
-E int NDECL(ddocall);
+E int ddocall(void);
 E void docall(struct obj *);
-E const char *NDECL(rndghostname);
-E const char *NDECL(rndplrmonname);
-E const char *NDECL(rndplrmonnamefemale);
+E const char *rndghostname(void);
+E const char *rndplrmonname(void);
+E const char *rndplrmonnamefemale(void);
 E char *x_monnam(struct monst *,int,const char *,int,BOOLEAN_P);
 E char *l_monnam(struct monst *);
 E char *mon_nam(struct monst *);
@@ -411,11 +411,11 @@ E char *Adjmonnam(struct monst *,const char *);
 E char *Amonnam(struct monst *);
 E char *a_monnam(struct monst *);
 E char *distant_monnam(struct monst *,int,char *);
-E const char *NDECL(rndmonnam);
+E const char *rndmonnam(void);
 E const char *hcolor(const char *);
-E const char *NDECL(rndcolor);
+E const char *rndcolor(void);
 #ifdef REINCARNATION
-E const char *NDECL(roguename);
+E const char *roguename(void);
 #endif
 E struct obj *realloc_obj(struct obj *, int, genericptr_t, int, const char *);
 E char *coyotename(struct monst *,char *);
@@ -423,51 +423,51 @@ E char *coyotename(struct monst *,char *);
 
 /* ### do_wear.c ### */
 
-E int NDECL(Armor_on);
-E int NDECL(Boots_on);
-E int NDECL(Cloak_on);
-E int NDECL(Helmet_on);
-E int NDECL(Gloves_on);
-E int NDECL(Shield_on);
-E int NDECL(Shirt_on);
-E void NDECL(Amulet_on);
+E int Armor_on(void);
+E int Boots_on(void);
+E int Cloak_on(void);
+E int Helmet_on(void);
+E int Gloves_on(void);
+E int Shield_on(void);
+E int Shirt_on(void);
+E void Amulet_on(void);
 #ifdef USE_TRAMPOLI
 E int select_off(struct obj *);
-E int NDECL(take_off);
+E int take_off(void);
 #endif
 E void off_msg(struct obj *);
-E void NDECL(set_wear);
+E void set_wear(void);
 E boolean donning(struct obj *);
-E void NDECL(cancel_don);
-E int NDECL(Armor_off);
-E int NDECL(Armor_gone);
-E int NDECL(Helmet_off);
-E int NDECL(Gloves_off);
-E int NDECL(Boots_off);
-E int NDECL(Cloak_off);
-E int NDECL(Shield_off);
-E int NDECL(Shirt_off);
-E void NDECL(Amulet_off);
+E void cancel_don(void);
+E int Armor_off(void);
+E int Armor_gone(void);
+E int Helmet_off(void);
+E int Gloves_off(void);
+E int Boots_off(void);
+E int Cloak_off(void);
+E int Shield_off(void);
+E int Shirt_off(void);
+E void Amulet_off(void);
 E void Ring_on(struct obj *);
 E void Ring_off(struct obj *);
 E void Ring_gone(struct obj *);
 E void Blindf_on(struct obj *);
 E void Blindf_off(struct obj *);
-E int NDECL(dotakeoff);
-E int NDECL(doremring);
+E int dotakeoff(void);
+E int doremring(void);
 E int cursed(struct obj *);
 E int armoroff(struct obj *);
 E int canwearobj(struct obj *, long *, BOOLEAN_P);
-E int NDECL(dowear);
-E int NDECL(doputon);
-E void NDECL(find_ac);
-E void NDECL(glibr);
+E int dowear(void);
+E int doputon(void);
+E void find_ac(void);
+E void glibr(void);
 E struct obj *some_armor(struct monst *);
 E void erode_armor(struct monst *,BOOLEAN_P);
 E struct obj *stuck_ring(struct obj *,int);
-E struct obj *NDECL(unchanger);
-E void NDECL(reset_remarm);
-E int NDECL(doddoremarm);
+E struct obj *unchanger(void);
+E void reset_remarm(void);
+E int doddoremarm(void);
 E int destroy_arm(struct obj *);
 E int dowear2(const char *, const char *);
 
@@ -476,9 +476,9 @@ E int dowear2(const char *, const char *);
 E void initedog(struct monst *);
 E struct monst *make_familiar(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P);
 E struct monst *make_helper(int,XCHAR_P,XCHAR_P);
-E struct monst *NDECL(makedog);
-E void NDECL(update_mlstmv);
-E void NDECL(losedogs);
+E struct monst *makedog(void);
+E void update_mlstmv(void);
+E void losedogs(void);
 E void mon_arrive(struct monst *,BOOLEAN_P);
 E void mon_catchup_elapsed_time(struct monst *,long);
 E void keepdogs(BOOLEAN_P);
@@ -503,17 +503,17 @@ E void wantdoor(int,int,genericptr_t);
 
 E boolean ghitm(struct monst *,struct obj *);
 E void container_impact_dmg(struct obj *);
-E int NDECL(dokick);
+E int dokick(void);
 E boolean ship_object(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P);
-E void NDECL(obj_delivery);
+E void obj_delivery(void);
 E schar down_gate(XCHAR_P,XCHAR_P);
 E void impact_drop(struct obj *,XCHAR_P,XCHAR_P,XCHAR_P);
 
 /* ### dothrow.c ### */
 
 E struct obj *splitoneoff(struct obj **);
-E int NDECL(dothrow);
-E int NDECL(dofire);
+E int dothrow(void);
+E int dofire(void);
 E void hitfloor(struct obj *);
 E void hurtle(int,int,int,BOOLEAN_P);
 E void mhurtle(struct monst *,int,int,int);
@@ -542,12 +542,12 @@ E void assign_rogue_graphics(BOOLEAN_P);
 E void save_dungeon(int,BOOLEAN_P,BOOLEAN_P);
 E void restore_dungeon(int);
 E void insert_branch(branch *,BOOLEAN_P);
-E void NDECL(init_dungeons);
+E void init_dungeons(void);
 E s_level *find_level(const char *);
 E s_level *Is_special(d_level *);
 E branch *Is_branchlev(d_level *);
 E xchar ledger_no(d_level *);
-E xchar NDECL(maxledgerno);
+E xchar maxledgerno(void);
 E schar depth(d_level *);
 E xchar dunlev(d_level *);
 E xchar dunlevs_in_dungeon(d_level *);
@@ -559,9 +559,9 @@ E boolean on_level(d_level *,d_level *);
 E void next_level(BOOLEAN_P);
 E void prev_level(BOOLEAN_P);
 E void u_on_newpos(int,int);
-E void NDECL(u_on_sstairs);
-E void NDECL(u_on_upstairs);
-E void NDECL(u_on_dnstairs);
+E void u_on_sstairs(void);
+E void u_on_upstairs(void);
+E void u_on_dnstairs(void);
 E boolean On_stairs(XCHAR_P,XCHAR_P);
 E void get_level(d_level *,int);
 E boolean Is_botlevel(d_level *);
@@ -594,54 +594,54 @@ E void assign_level(d_level *,d_level *);
 E void assign_rnd_level(d_level *,d_level *,int);
 E int induced_align(int);
 E boolean Invocation_lev(d_level *);
-E xchar NDECL(level_difficulty);
-E xchar NDECL(monster_difficulty);
+E xchar level_difficulty(void);
+E xchar monster_difficulty(void);
 E schar lev_by_name(const char *);
 #ifdef WIZARD
 E schar print_dungeon(BOOLEAN_P,schar *,xchar *);
 #endif
-E int NDECL(donamelevel);
-E int NDECL(dooverview);
+E int donamelevel(void);
+E int dooverview(void);
 E void forget_mapseen(int);
 E void init_mapseen(d_level *);
 
 /* ### eat.c ### */
 
 #ifdef USE_TRAMPOLI
-E int NDECL(eatmdone);
-E int NDECL(eatfood);
-E int NDECL(opentin);
-E int NDECL(unfaint);
+E int eatmdone(void);
+E int eatfood(void);
+E int opentin(void);
+E int unfaint(void);
 #endif
 E boolean is_edible(struct obj *);
-E void NDECL(init_uhunger);
-E int NDECL(Hear_again);
-E void NDECL(reset_eat);
-E int NDECL(doeat);
-E void NDECL(gethungry);
+E void init_uhunger(void);
+E int Hear_again(void);
+E void reset_eat(void);
+E int doeat(void);
+E void gethungry(void);
 E void morehungry(int);
 E void lesshungry(int);
-E boolean NDECL(is_fainted);
-E void NDECL(reset_faint);
-E void NDECL(violated_vegetarian);
+E boolean is_fainted(void);
+E void reset_faint(void);
+E void violated_vegetarian(void);
 #if 0
-E void NDECL(sync_hunger);
+E void sync_hunger(void);
 #endif
 E void newuhs(BOOLEAN_P);
-E boolean NDECL(can_reach_floorobj);
-E void NDECL(vomit);
+E boolean can_reach_floorobj(void);
+E void vomit(void);
 E int eaten_stat(int,struct obj *);
 E void food_disappears(struct obj *);
 E void food_substitution(struct obj *,struct obj *);
 E boolean bite_monster(struct monst *mon);
-E void NDECL(fix_petrification);
+E void fix_petrification(void);
 E void consume_oeaten(struct obj *,int);
 E boolean maybe_finished_meal(BOOLEAN_P);
 
 /* ### end.c ### */
 
 E void done1(int);
-E int NDECL(done2);
+E int done2(void);
 #ifdef USE_TRAMPOLI
 E void done_intr(int);
 #endif
@@ -656,17 +656,17 @@ E void dump(const char * const pre, const char * const str);
 E void do_containerconts(struct obj *,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P);
 #endif
 E void terminate(int);
-E int NDECL(dolistvanq);
-E int NDECL(num_genocides);
+E int dolistvanq(void);
+E int num_genocides(void);
 /* KMH, ethics */
-E int NDECL(doethics);
+E int doethics(void);
 
 
 /* ### engrave.c ### */
 
 E char *random_engraving(char *);
 E void wipeout_text(char *,int,unsigned);
-E boolean NDECL(can_reach_floor);
+E boolean can_reach_floor(void);
 E const char *surface(int,int);
 E const char *ceiling(int,int);
 E struct engr *engr_at(XCHAR_P,XCHAR_P);
@@ -676,15 +676,15 @@ E void wipe_engr_at(XCHAR_P,XCHAR_P,XCHAR_P);
 E boolean sense_engr_at(int,int,BOOLEAN_P);
 E void make_engr_at(int,int,const char *,long,XCHAR_P);
 E void del_engr_at(int,int);
-E int NDECL(freehand);
-E int NDECL(doengrave);
+E int freehand(void);
+E int doengrave(void);
 E void save_engravings(int,int);
 E void rest_engravings(int);
 E void del_engr(struct engr *);
 E void rloc_engr(struct engr *);
 E void make_grave(int,int,const char *);
-E const char *NDECL(random_mesgX);
-E const char *NDECL(random_epitaph);
+E const char *random_mesgX(void);
+E const char *random_epitaph(void);
 
 /* ### exper.c ### */
 
@@ -692,7 +692,7 @@ E long newuexp(int);
 E int experience(struct monst *,int);
 E void more_experienced(int,int);
 E void losexp(const char *, BOOLEAN_P, BOOLEAN_P);
-E void NDECL(newexplevel);
+E void newexplevel(void);
 E void pluslvl(BOOLEAN_P);
 E long rndexp(BOOLEAN_P);
 
@@ -707,9 +707,9 @@ E void arm_bomb(struct obj *, BOOLEAN_P);
 /* ### extralev.c ### */
 
 #ifdef REINCARNATION
-E void NDECL(makeroguerooms);
+E void makeroguerooms(void);
 E void corr(int,int);
-E void NDECL(makerogueghost);
+E void makerogueghost(void);
 #endif
 
 /* ### files.c ### */
@@ -723,32 +723,32 @@ E FILE *fopen_datafile(const char *,const char *,int);
 E boolean uptodate(int,const char *);
 E void store_version(int);
 #ifdef MFLOPPY
-E void NDECL(set_lock_and_bones);
+E void set_lock_and_bones(void);
 #endif
 E void set_levelfile_name(char *,int);
 E int create_levelfile(int,char *);
 E int open_levelfile(int,char *);
 E void delete_levelfile(int);
-E void NDECL(clearlocks);
+E void clearlocks(void);
 E int create_bonesfile(d_level*,char **, char *);
 #ifdef MFLOPPY
-E void NDECL(cancel_bonesfile);
+E void cancel_bonesfile(void);
 #endif
 E void commit_bonesfile(d_level *);
 E int open_bonesfile(d_level*,char **);
 E int delete_bonesfile(d_level*);
-E void NDECL(compress_bonesfile);
-E void NDECL(set_savefile_name);
+E void compress_bonesfile(void);
+E void set_savefile_name(void);
 #ifdef INSURANCE
 E void save_savefile_name(int);
 #endif
 #if defined(WIZARD) && !defined(MICRO)
-E void NDECL(set_error_savefile);
+E void set_error_savefile(void);
 #endif
-E int NDECL(create_savefile);
-E int NDECL(open_savefile);
-E int NDECL(delete_savefile);
-E int NDECL(restore_saved_game);
+E int create_savefile(void);
+E int open_savefile(void);
+E int delete_savefile(void);
+E int restore_saved_game(void);
 E void compress_area(const char *, const char *);
 E void uncompress_area(const char *, const char *);
 #ifndef FILE_AREAS
@@ -761,17 +761,17 @@ E boolean can_read_file(const char *);
 E void read_config_file(const char *);
 E void check_recordfile(const char *);
 #if defined(WIZARD)
-E void NDECL(read_wizkit);
+E void read_wizkit(void);
 #endif
 E void paniclog(const char *, const char *);
 E int validate_prefix_locations(char *);
-E char** NDECL(get_saved_games);
+E char** get_saved_games(void);
 E void free_saved_games(char**);
 #ifdef SELF_RECOVER
-E boolean NDECL(recover_savefile);
+E boolean recover_savefile(void);
 #endif
 #ifdef HOLD_LOCKFILE_OPEN
-E void NDECL(really_close);
+E void really_close(void);
 #endif
 
 /* ### fountain.c ### */
@@ -782,14 +782,14 @@ E void dogushforth(int);
 E void gush(int,int,genericptr_t);
 # endif
 E void dryup(XCHAR_P,XCHAR_P, BOOLEAN_P);
-E void NDECL(drinkfountain);
+E void drinkfountain(void);
 E void dipfountain(struct obj *);
 E void whetstone_fountain_effects(struct obj *);
 E void diptoilet(struct obj *);
 E void breaksink(int,int);
 E void breaktoilet(int,int);
-E void NDECL(drinksink);
-E void NDECL(drinktoilet);
+E void drinksink(void);
+E void drinktoilet(void);
 E void whetstone_sink_effects(struct obj *);
 E void whetstone_toilet_effects(struct obj *);
 
@@ -802,7 +802,7 @@ E void gypsy_chat(struct monst *);
 /* ### hack.c ### */
 
 #ifdef OVL1
-E void NDECL(maybe_wail);
+E void maybe_wail(void);
 #endif /*OVL1*/
 
 #ifdef DUNGEON_GROWTH
@@ -816,8 +816,8 @@ E boolean may_passwall(XCHAR_P,XCHAR_P);
 E boolean bad_rock(struct monst *,XCHAR_P,XCHAR_P);
 E boolean invocation_pos(XCHAR_P,XCHAR_P);
 E boolean test_move(int, int, int, int, int);
-E void NDECL(domove);
-E void NDECL(invocation_message);
+E void domove(void);
+E void invocation_message(void);
 E void wounds_message(struct monst *); 
 E char *mon_wounds(struct monst *); 
 E void spoteffects(BOOLEAN_P);
@@ -825,9 +825,9 @@ E char *in_rooms(XCHAR_P,XCHAR_P,int);
 E char *in_roomscolouur(XCHAR_P,XCHAR_P,int);
 E boolean in_town(int,int);
 E void check_special_room(BOOLEAN_P);
-E int NDECL(dopickup);
-E void NDECL(lookaround);
-E int NDECL(monster_nearby);
+E int dopickup(void);
+E void lookaround(void);
+E int monster_nearby(void);
 E void nomul(int, const char *);
 E void forcenomul(int, const char *);
 E void unmul(const char *);
@@ -835,13 +835,13 @@ E void unmul(const char *);
 E void showdmg(int);
 #endif
 E void losehp(int,const char *, int);
-E int NDECL(weight_cap);
-E int NDECL(inv_weight);
-E int NDECL(near_capacity);
+E int weight_cap(void);
+E int inv_weight(void);
+E int near_capacity(void);
 E int calc_capacity(int);
-E int NDECL(max_capacity);
+E int max_capacity(void);
 E boolean check_capacity(const char *);
-E int NDECL(inv_cnt);
+E int inv_cnt(void);
 #ifdef GOLDOBJ
 E long money_cnt(struct obj *);
 #endif
@@ -877,19 +877,19 @@ E int strncmpi(const char *,const char *,int);
 E char *strstri(const char *,const char *);
 #endif
 E boolean fuzzymatch(const char *,const char *,const char *,BOOLEAN_P);
-E void NDECL(setrandom);
-E int NDECL(getyear);
-E int NDECL(getmonth);	/* KMH -- Used by gypsies */
+E void setrandom(void);
+E int getyear(void);
+E int getmonth(void);	/* KMH -- Used by gypsies */
 #if 0
 E char *yymmdd(time_t);
 #endif
 E long yyyymmdd(time_t);
 E struct tm *getlt();
-E int NDECL(phase_of_the_moon);
-E boolean NDECL(friday_13th);
-E boolean NDECL(groundhog_day);	/* KMH -- February 2 */
-E int NDECL(night);
-E int NDECL(midnight);
+E int phase_of_the_moon(void);
+E boolean friday_13th(void);
+E boolean groundhog_day(void);	/* KMH -- February 2 */
+E int night(void);
+E int midnight(void);
 
 /* ### invent.c ### */
 
@@ -913,207 +913,207 @@ E void delallobj(int,int);
 E void delobj(struct obj *);
 E struct obj *sobj_at(int,int,int);
 E struct obj *carrying(int);
-E boolean NDECL(have_lizard);
-E boolean NDECL(have_loadstone);
-E boolean NDECL(have_pokeloadstone);
-E boolean NDECL(have_invisoloadstone);
-E boolean NDECL(have_sleepstone);
-E boolean NDECL(have_magicresstone);
-E boolean NDECL(have_cursedmagicresstone);
-E boolean NDECL(have_loadboulder);
-E boolean NDECL(have_starlightstone);
+E boolean have_lizard(void);
+E boolean have_loadstone(void);
+E boolean have_pokeloadstone(void);
+E boolean have_invisoloadstone(void);
+E boolean have_sleepstone(void);
+E boolean have_magicresstone(void);
+E boolean have_cursedmagicresstone(void);
+E boolean have_loadboulder(void);
+E boolean have_starlightstone(void);
 
 E boolean stack_too_big(struct obj *);
 
-E boolean NDECL(have_rmbstone);
-E boolean NDECL(have_displaystone);
-E boolean NDECL(have_yellowspellstone);
-E boolean NDECL(have_spelllossstone);
-E boolean NDECL(have_autodestructstone);
-E boolean NDECL(have_memorylossstone);
-E boolean NDECL(have_inventorylossstone);
-E boolean NDECL(have_blackystone);
-E boolean NDECL(have_menubugstone);
-E boolean NDECL(have_speedbugstone);
-E boolean NDECL(have_superscrollerstone);
-E boolean NDECL(have_freehandbugstone);
-E boolean NDECL(have_unidentifystone);
-E boolean NDECL(have_thirststone);
-E boolean NDECL(have_unluckystone);
-E boolean NDECL(have_shadesofgreystone);
-E boolean NDECL(have_faintingstone);
-E boolean NDECL(have_cursingstone);
-E boolean NDECL(have_difficultystone);
-E boolean NDECL(have_deafnessstone);
-E boolean NDECL(have_weaknessstone);
-E boolean NDECL(have_antimagicstone);
-E boolean NDECL(have_rotthirteenstone);
-E boolean NDECL(have_bishopstone);
-E boolean NDECL(have_confusionstone);
-E boolean NDECL(have_dropbugstone);
-E boolean NDECL(have_dstwstone);
-E boolean NDECL(have_statusstone);
-E boolean NDECL(have_alignmentstone);
-E boolean NDECL(have_stairstrapstone);
-E boolean NDECL(have_uninformationstone);
+E boolean have_rmbstone(void);
+E boolean have_displaystone(void);
+E boolean have_yellowspellstone(void);
+E boolean have_spelllossstone(void);
+E boolean have_autodestructstone(void);
+E boolean have_memorylossstone(void);
+E boolean have_inventorylossstone(void);
+E boolean have_blackystone(void);
+E boolean have_menubugstone(void);
+E boolean have_speedbugstone(void);
+E boolean have_superscrollerstone(void);
+E boolean have_freehandbugstone(void);
+E boolean have_unidentifystone(void);
+E boolean have_thirststone(void);
+E boolean have_unluckystone(void);
+E boolean have_shadesofgreystone(void);
+E boolean have_faintingstone(void);
+E boolean have_cursingstone(void);
+E boolean have_difficultystone(void);
+E boolean have_deafnessstone(void);
+E boolean have_weaknessstone(void);
+E boolean have_antimagicstone(void);
+E boolean have_rotthirteenstone(void);
+E boolean have_bishopstone(void);
+E boolean have_confusionstone(void);
+E boolean have_dropbugstone(void);
+E boolean have_dstwstone(void);
+E boolean have_statusstone(void);
+E boolean have_alignmentstone(void);
+E boolean have_stairstrapstone(void);
+E boolean have_uninformationstone(void);
 
-E boolean NDECL(have_amnesiastone);
-E boolean NDECL(have_bigscriptstone);
-E boolean NDECL(have_bankstone);
-E boolean NDECL(have_mapstone);
-E boolean NDECL(have_techniquestone);
-E boolean NDECL(have_disenchantmentstone);
-E boolean NDECL(have_verisiertstone);
-E boolean NDECL(have_chaosterrainstone);
-E boolean NDECL(have_mutenessstone);
-E boolean NDECL(have_engravingstone);
-E boolean NDECL(have_magicdevicestone);
-E boolean NDECL(have_bookstone);
-E boolean NDECL(have_levelstone);
-E boolean NDECL(have_quizstone);
+E boolean have_amnesiastone(void);
+E boolean have_bigscriptstone(void);
+E boolean have_bankstone(void);
+E boolean have_mapstone(void);
+E boolean have_techniquestone(void);
+E boolean have_disenchantmentstone(void);
+E boolean have_verisiertstone(void);
+E boolean have_chaosterrainstone(void);
+E boolean have_mutenessstone(void);
+E boolean have_engravingstone(void);
+E boolean have_magicdevicestone(void);
+E boolean have_bookstone(void);
+E boolean have_levelstone(void);
+E boolean have_quizstone(void);
 
-E boolean NDECL(have_intrinsiclossstone);
-E boolean NDECL(have_bloodlossstone);
-E boolean NDECL(have_badeffectstone);
-E boolean NDECL(have_trapcreationstone);
-E boolean NDECL(have_vulnerabilitystone);
-E boolean NDECL(have_itemportstone);
-E boolean NDECL(have_nastystone);
+E boolean have_intrinsiclossstone(void);
+E boolean have_bloodlossstone(void);
+E boolean have_badeffectstone(void);
+E boolean have_trapcreationstone(void);
+E boolean have_vulnerabilitystone(void);
+E boolean have_itemportstone(void);
+E boolean have_nastystone(void);
 
-E boolean NDECL(have_respawnstone);
-E boolean NDECL(have_captchastone);
-E boolean NDECL(have_farlookstone);
+E boolean have_respawnstone(void);
+E boolean have_captchastone(void);
+E boolean have_farlookstone(void);
 
-E boolean NDECL(have_nonsacredstone);
-E boolean NDECL(have_starvationstone);
-E boolean NDECL(have_droplessstone);
-E boolean NDECL(have_loweffectstone);
-E boolean NDECL(have_invisostone);
-E boolean NDECL(have_ghostlystone);
-E boolean NDECL(have_dehydratingstone);
-E boolean NDECL(have_hatestone);
-E boolean NDECL(have_directionswapstone);
-E boolean NDECL(have_nonintrinsicstone);
-E boolean NDECL(have_dropcursestone);
-E boolean NDECL(have_nakedstone);
-E boolean NDECL(have_antilevelstone);
-E boolean NDECL(have_stealerstone);
-E boolean NDECL(have_rebelstone);
-E boolean NDECL(have_shitstone);
-E boolean NDECL(have_misfirestone);
-E boolean NDECL(have_wallstone);
+E boolean have_nonsacredstone(void);
+E boolean have_starvationstone(void);
+E boolean have_droplessstone(void);
+E boolean have_loweffectstone(void);
+E boolean have_invisostone(void);
+E boolean have_ghostlystone(void);
+E boolean have_dehydratingstone(void);
+E boolean have_hatestone(void);
+E boolean have_directionswapstone(void);
+E boolean have_nonintrinsicstone(void);
+E boolean have_dropcursestone(void);
+E boolean have_nakedstone(void);
+E boolean have_antilevelstone(void);
+E boolean have_stealerstone(void);
+E boolean have_rebelstone(void);
+E boolean have_shitstone(void);
+E boolean have_misfirestone(void);
+E boolean have_wallstone(void);
 
-E boolean NDECL(have_metabolicstone);
-E boolean NDECL(have_noreturnstone);
-E boolean NDECL(have_egostone);
-E boolean NDECL(have_fastforwardstone);
-E boolean NDECL(have_rottenstone);
-E boolean NDECL(have_unskilledstone);
-E boolean NDECL(have_lowstatstone);
-E boolean NDECL(have_trainingstone);
-E boolean NDECL(have_exercisestone);
+E boolean have_metabolicstone(void);
+E boolean have_noreturnstone(void);
+E boolean have_egostone(void);
+E boolean have_fastforwardstone(void);
+E boolean have_rottenstone(void);
+E boolean have_unskilledstone(void);
+E boolean have_lowstatstone(void);
+E boolean have_trainingstone(void);
+E boolean have_exercisestone(void);
 
-E boolean NDECL(have_limitationstone);
-E boolean NDECL(have_weaksightstone);
-E boolean NDECL(have_messagestone);
+E boolean have_limitationstone(void);
+E boolean have_weaksightstone(void);
+E boolean have_messagestone(void);
 
-E boolean NDECL(have_disconnectstone);
-E boolean NDECL(have_interfacescrewstone);
-E boolean NDECL(have_bossfightstone);
-E boolean NDECL(have_entirelevelstone);
-E boolean NDECL(have_bonestone);
-E boolean NDECL(have_autocursestone);
-E boolean NDECL(have_highlevelstone);
-E boolean NDECL(have_spellforgettingstone);
-E boolean NDECL(have_soundeffectstone);
-E boolean NDECL(have_timerunstone);
+E boolean have_disconnectstone(void);
+E boolean have_interfacescrewstone(void);
+E boolean have_bossfightstone(void);
+E boolean have_entirelevelstone(void);
+E boolean have_bonestone(void);
+E boolean have_autocursestone(void);
+E boolean have_highlevelstone(void);
+E boolean have_spellforgettingstone(void);
+E boolean have_soundeffectstone(void);
+E boolean have_timerunstone(void);
 
-E boolean NDECL(have_lootcutstone);
-E boolean NDECL(have_monsterspeedstone);
-E boolean NDECL(have_scalingstone);
-E boolean NDECL(have_inimicalstone);
-E boolean NDECL(have_whitespellstone);
-E boolean NDECL(have_greyoutstone);
-E boolean NDECL(have_quasarstone);
-E boolean NDECL(have_mommystone);
-E boolean NDECL(have_horrorstone);
-E boolean NDECL(have_artificialstone);
-E boolean NDECL(have_wereformstone);
-E boolean NDECL(have_antiprayerstone);
-E boolean NDECL(have_evilpatchstone);
-E boolean NDECL(have_hardmodestone);
-E boolean NDECL(have_secretattackstone);
-E boolean NDECL(have_eaterstone);
-E boolean NDECL(have_covetousstone);
-E boolean NDECL(have_nonseeingstone);
-E boolean NDECL(have_darkmodestone);
-E boolean NDECL(have_unfindablestone);
-E boolean NDECL(have_homicidestone);
-E boolean NDECL(have_multitrappingstone);
-E boolean NDECL(have_wakeupcallstone);
-E boolean NDECL(have_grayoutstone);
-E boolean NDECL(have_graycenterstone);
-E boolean NDECL(have_checkerboardstone);
-E boolean NDECL(have_clockwisestone);
-E boolean NDECL(have_counterclockwisestone);
-E boolean NDECL(have_lagstone);
-E boolean NDECL(have_blesscursestone);
-E boolean NDECL(have_delightstone);
-E boolean NDECL(have_dischargestone);
-E boolean NDECL(have_trashstone);
-E boolean NDECL(have_filteringstone);
-E boolean NDECL(have_deformattingstone);
-E boolean NDECL(have_flickerstripstone);
-E boolean NDECL(have_undressingstone);
-E boolean NDECL(have_hyperbluestone);
-E boolean NDECL(have_nolightstone);
-E boolean NDECL(have_paranoiastone);
-E boolean NDECL(have_fleecestone);
-E boolean NDECL(have_interruptionstone);
-E boolean NDECL(have_dustbinstone);
-E boolean NDECL(have_batterystone);
-E boolean NDECL(have_butterfingerstone);
-E boolean NDECL(have_miscastingstone);
-E boolean NDECL(have_messagesuppressionstone);
-E boolean NDECL(have_stuckannouncementstone);
-E boolean NDECL(have_stormstone);
-E boolean NDECL(have_maximumdamagestone);
-E boolean NDECL(have_latencystone);
-E boolean NDECL(have_starlitskystone);
-E boolean NDECL(have_trapknowledgestone);
-E boolean NDECL(have_highscorestone);
-E boolean NDECL(have_pinkspellstone);
-E boolean NDECL(have_greenspellstone);
-E boolean NDECL(have_evcstone);
-E boolean NDECL(have_underlaidstone);
-E boolean NDECL(have_damagemeterstone);
-E boolean NDECL(have_weightstone);
-E boolean NDECL(have_infofuckstone);
-E boolean NDECL(have_blackspellstone);
-E boolean NDECL(have_cyanspellstone);
-E boolean NDECL(have_heapstone);
-E boolean NDECL(have_bluespellstone);
-E boolean NDECL(have_tronstone);
-E boolean NDECL(have_redspellstone);
-E boolean NDECL(have_tooheavystone);
-E boolean NDECL(have_elongatedstone);
-E boolean NDECL(have_wrapoverstone);
-E boolean NDECL(have_destructionstone);
-E boolean NDECL(have_meleeprefixstone);
-E boolean NDECL(have_automorestone);
-E boolean NDECL(have_unfairattackstone);
+E boolean have_lootcutstone(void);
+E boolean have_monsterspeedstone(void);
+E boolean have_scalingstone(void);
+E boolean have_inimicalstone(void);
+E boolean have_whitespellstone(void);
+E boolean have_greyoutstone(void);
+E boolean have_quasarstone(void);
+E boolean have_mommystone(void);
+E boolean have_horrorstone(void);
+E boolean have_artificialstone(void);
+E boolean have_wereformstone(void);
+E boolean have_antiprayerstone(void);
+E boolean have_evilpatchstone(void);
+E boolean have_hardmodestone(void);
+E boolean have_secretattackstone(void);
+E boolean have_eaterstone(void);
+E boolean have_covetousstone(void);
+E boolean have_nonseeingstone(void);
+E boolean have_darkmodestone(void);
+E boolean have_unfindablestone(void);
+E boolean have_homicidestone(void);
+E boolean have_multitrappingstone(void);
+E boolean have_wakeupcallstone(void);
+E boolean have_grayoutstone(void);
+E boolean have_graycenterstone(void);
+E boolean have_checkerboardstone(void);
+E boolean have_clockwisestone(void);
+E boolean have_counterclockwisestone(void);
+E boolean have_lagstone(void);
+E boolean have_blesscursestone(void);
+E boolean have_delightstone(void);
+E boolean have_dischargestone(void);
+E boolean have_trashstone(void);
+E boolean have_filteringstone(void);
+E boolean have_deformattingstone(void);
+E boolean have_flickerstripstone(void);
+E boolean have_undressingstone(void);
+E boolean have_hyperbluestone(void);
+E boolean have_nolightstone(void);
+E boolean have_paranoiastone(void);
+E boolean have_fleecestone(void);
+E boolean have_interruptionstone(void);
+E boolean have_dustbinstone(void);
+E boolean have_batterystone(void);
+E boolean have_butterfingerstone(void);
+E boolean have_miscastingstone(void);
+E boolean have_messagesuppressionstone(void);
+E boolean have_stuckannouncementstone(void);
+E boolean have_stormstone(void);
+E boolean have_maximumdamagestone(void);
+E boolean have_latencystone(void);
+E boolean have_starlitskystone(void);
+E boolean have_trapknowledgestone(void);
+E boolean have_highscorestone(void);
+E boolean have_pinkspellstone(void);
+E boolean have_greenspellstone(void);
+E boolean have_evcstone(void);
+E boolean have_underlaidstone(void);
+E boolean have_damagemeterstone(void);
+E boolean have_weightstone(void);
+E boolean have_infofuckstone(void);
+E boolean have_blackspellstone(void);
+E boolean have_cyanspellstone(void);
+E boolean have_heapstone(void);
+E boolean have_bluespellstone(void);
+E boolean have_tronstone(void);
+E boolean have_redspellstone(void);
+E boolean have_tooheavystone(void);
+E boolean have_elongatedstone(void);
+E boolean have_wrapoverstone(void);
+E boolean have_destructionstone(void);
+E boolean have_meleeprefixstone(void);
+E boolean have_automorestone(void);
+E boolean have_unfairattackstone(void);
 
-E boolean NDECL(have_primecurse);
+E boolean have_primecurse(void);
 
-E boolean NDECL(have_morgothiancurse);
-E boolean NDECL(have_topiylinencurse);
-E boolean NDECL(have_blackbreathcurse);
+E boolean have_morgothiancurse(void);
+E boolean have_topiylinencurse(void);
+E boolean have_blackbreathcurse(void);
 
-E boolean NDECL(have_mothrelay);
+E boolean have_mothrelay(void);
 
 E struct obj *o_on(unsigned int,struct obj *);
 E boolean obj_here(struct obj *,int,int);
-E boolean NDECL(wearing_armor);
+E boolean wearing_armor(void);
 E boolean is_worn(struct obj *);
 E struct obj *g_at(int,int);
 E struct obj *mkgoldobj(long);
@@ -1127,7 +1127,7 @@ E void identify_pack(int, BOOLEAN_P);
 E int askchain(struct obj **,const char *,int,int (*)(OBJ_P), int (*)(OBJ_P),int,const char *);
 E void prinv(const char *,struct obj *,long);
 E char *xprname(struct obj *,const char *,CHAR_P,BOOLEAN_P,long,long);
-E int NDECL(ddoinv);
+E int ddoinv(void);
 E char display_inventory(const char *,BOOLEAN_P);
 #ifdef DUMP_LOG
 E char dump_inventory(const char *,BOOLEAN_P);
@@ -1135,43 +1135,43 @@ E char dump_inventory(const char *,BOOLEAN_P);
 E int display_binventory(int,int,BOOLEAN_P);
 E struct obj *display_cinventory(struct obj *);
 E struct obj *display_minventory(struct monst *,int,char *);
-E int NDECL(dotypeinv);
+E int dotypeinv(void);
 E const char *dfeature_at(int,int,char *);
 E int look_here(int,BOOLEAN_P);
-E int NDECL(dolook);
+E int dolook(void);
 E boolean will_feel_cockatrice(struct obj *,BOOLEAN_P);
 E void feel_cockatrice(struct obj *,BOOLEAN_P);
 E void stackobj(struct obj *);
-E int NDECL(doprgold);
-E int NDECL(doprwep);
-E int NDECL(doprarm);
-E int NDECL(doprring);
-E int NDECL(dopramulet);
-E int NDECL(doprtool);
-E int NDECL(doprinuse);
+E int doprgold(void);
+E int doprwep(void);
+E int doprarm(void);
+E int doprring(void);
+E int dopramulet(void);
+E int doprtool(void);
+E int doprinuse(void);
 E void useupf(struct obj *,long);
 E char *let_to_name(CHAR_P,BOOLEAN_P,BOOLEAN_P);
-E void NDECL(free_invbuf);
-E void NDECL(reassign);
-E int NDECL(doorganize);
-E int NDECL(domarkforpet);
+E void free_invbuf(void);
+E void reassign(void);
+E int doorganize(void);
+E int domarkforpet(void);
 E int count_unpaid(struct obj *);
 E int count_buc(struct obj *,int);
 E void carry_obj_effects(struct monst *, struct obj *);
 E const char *currency(long);
 E void silly_thing(const char *,struct obj *);
-E int NDECL(doinvinuse);
+E int doinvinuse(void);
 /* KMH, balance patch -- new function */
-E int NDECL(jumble_pack);
+E int jumble_pack(void);
 
 /* ### ioctl.c ### */
 
 #if defined(UNIX) || defined(__BEOS__)
-E void NDECL(getwindowsz);
-E void NDECL(getioctls);
-E void NDECL(setioctls);
+E void getwindowsz(void);
+E void getioctls(void);
+E void setioctls(void);
 # ifdef SUSPEND
-E int NDECL(dosuspend);
+E int dosuspend(void);
 # endif /* SUSPEND */
 #endif /* UNIX || __BEOS__ */
 
@@ -1185,7 +1185,7 @@ E void save_light_sources(int, int, int);
 E void restore_light_sources(int);
 E void relink_light_sources(BOOLEAN_P);
 E void obj_move_light_source(struct obj *, struct obj *);
-E boolean NDECL(any_light_source);
+E boolean any_light_source(void);
 E void snuff_light_source(int, int);
 E boolean obj_sheds_light(struct obj *);
 E boolean obj_is_burning(struct obj *);
@@ -1194,25 +1194,25 @@ E void obj_split_light_source(struct obj *, struct obj *);
 E void obj_merge_light_sources(struct obj *,struct obj *);
 E int candle_light_range(struct obj *);
 #ifdef WIZARD
-E int NDECL(wiz_light_sources);
+E int wiz_light_sources(void);
 #endif
 
 /* ### lock.c ### */
 
 #ifdef USE_TRAMPOLI
-E int NDECL(forcelock);
-E int NDECL(picklock);
+E int forcelock(void);
+E int picklock(void);
 #endif
 E boolean picking_lock(int *,int *);
 E boolean picking_at(int,int);
-E void NDECL(reset_pick);
+E void reset_pick(void);
 E int pick_lock(struct obj **);
-E int NDECL(doforce);
+E int doforce(void);
 E boolean boxlock(struct obj *,struct obj *);
 E boolean doorlock(struct obj *,int,int);
 E boolean doorlockX(int,int,BOOLEAN_P);
-E int NDECL(doopen);
-E int NDECL(doclose);
+E int doopen(void);
+E int doclose(void);
 E int artifact_door(int,int);
 
 #ifdef MAC
@@ -1235,21 +1235,21 @@ E void mac_speaker(struct obj *,char *);
 /* ### macunix.c ### */
 
 E void regularize(char *);
-E void NDECL(getlock);
+E void getlock(void);
 
 /* ### macwin.c ### */
 
 E void lock_mouse_cursor(Boolean);
-E int NDECL(SanePositions);
+E int SanePositions(void);
 
 /* ### mttymain.c ### */
 
 E void getreturn(const char *);
 E void msmsg(const char *,...);
-E void NDECL(gettty);
-E void NDECL(setftty);
+E void gettty(void);
+E void setftty(void);
 E void settty(const char *);
-E int NDECL(tgetch);
+E int tgetch(void);
 E void cmov(int x, int y);
 E void nocmov(int x, int y);
 
@@ -1259,9 +1259,9 @@ E void nocmov(int x, int y);
 
 #ifdef MAIL
 # ifdef UNIX
-E void NDECL(getmailstatus);
+E void getmailstatus(void);
 # endif
-E void NDECL(ckmailstatus);
+E void ckmailstatus(void);
 E void readmail(struct obj *);
 #endif /* MAIL */
 
@@ -1272,7 +1272,7 @@ E boolean monster_with_trait(struct permonst *, int);
 E struct monst *clone_mon(struct monst *,XCHAR_P,XCHAR_P);
 E struct monst *makemon(struct permonst *,int,int,int);
 E boolean create_critters(int,struct permonst *);
-E struct permonst *NDECL(rndmonst);
+E struct permonst *rndmonst(void);
 E void reset_rndmonst(int);
 E struct permonst *mkclass(CHAR_P,int);
 E int pm_mkclass(CHAR_P,int);
@@ -1312,8 +1312,8 @@ E long attk_protection(int);
 /* ### mhitu.c ### */
 
 E const char *mpoisons_subj(struct monst *,struct attack *);
-E void NDECL(u_slow_down);
-E struct monst *NDECL(cloneu);
+E void u_slow_down(void);
+E struct monst *cloneu(void);
 E void expels(struct monst *,struct permonst *,BOOLEAN_P);
 E struct attack *getmattk(struct permonst *,int,int *,struct attack *);
 E int mattacku(struct monst *);
@@ -1335,23 +1335,23 @@ E int chaotic_minion(int);
 E long bribe(struct monst *);
 E int dprince(ALIGNTYP_P);
 E int dlord(ALIGNTYP_P);
-E int NDECL(llord);
+E int llord(void);
 E int ndemon(ALIGNTYP_P);
-E int NDECL(lminion);
-E int NDECL(ntrminion);
+E int lminion(void);
+E int ntrminion(void);
 
 /* ### mklev.c ### */
 
 #ifdef USE_TRAMPOLI
 E int do_comp(genericptr_t,genericptr_t);
 #endif
-E void NDECL(sort_rooms);
+E void sort_rooms(void);
 E void add_room(int,int,int,int,BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P);
 E void add_subroom(struct mkroom *,int,int,int,int, BOOLEAN_P,SCHAR_P,BOOLEAN_P);
-E void NDECL(makecorridors);
-E int NDECL(randomwalltype);
+E void makecorridors(void);
+E int randomwalltype(void);
 E int add_door(int,int,struct mkroom *);
-E void NDECL(mklev);
+E void mklev(void);
 #ifdef SPECIALIZATION
 E void topologize(struct mkroom *,BOOLEAN_P);
 #else
@@ -1363,7 +1363,7 @@ E int okdoor(XCHAR_P,XCHAR_P);
 E void dodoor(int,int,struct mkroom *);
 E void mktrap(int,int,struct mkroom *,coord*);
 E void mkstairs(XCHAR_P,XCHAR_P,CHAR_P,struct mkroom *);
-E void NDECL(mkinvokearea);
+E void mkinvokearea(void);
 
 /* ### mkmap.c ### */
 
@@ -1377,13 +1377,13 @@ E void walkfrom(int,int);
 E void makemaz(const char *);
 E void mazexy(coord *);
 E void mazexy_all(coord *);
-E void NDECL(bound_digging);
+E void bound_digging(void);
 E void mkportal(XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P);
 E boolean bad_location(XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P);
 E boolean really_bad_location(XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P);
 E void place_lregion(XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P, XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P, XCHAR_P,d_level *);
-E void NDECL(movebubbles);
-E void NDECL(water_friction);
+E void movebubbles(void);
+E void water_friction(void);
 E void save_waterlevel(int,int);
 E void restore_waterlevel(int);
 E const char *waterbody_name(XCHAR_P,XCHAR_P);
@@ -1393,10 +1393,10 @@ E const char *waterbody_name(XCHAR_P,XCHAR_P);
 E struct obj *mkobj_at(CHAR_P,int,int,BOOLEAN_P);
 E struct obj *mksobj_at(int,int,int,BOOLEAN_P,BOOLEAN_P);
 E struct obj *mkobj(CHAR_P,BOOLEAN_P);
-E int NDECL(rndmonnum);
-E int NDECL(usefulitem);
-E int NDECL(nastymusableitem);
-E int NDECL(makegreatitem);
+E int rndmonnum(void);
+E int usefulitem(void);
+E int nastymusableitem(void);
+E int makegreatitem(void);
 E struct obj *splitobj(struct obj *,long);
 E void replace_object(struct obj *,struct obj *);
 E void bill_dummy_object(struct obj *);
@@ -1435,7 +1435,7 @@ E void dealloc_obj(struct obj *);
 E void obj_ice_effects(int, int, BOOLEAN_P);
 E long peek_at_iced_corpse_age(struct obj *);
 #if defined(OBJ_SANITY) || defined(WIZARD)
-E void NDECL(obj_sanity_check);
+E void obj_sanity_check(void);
 #endif
 
 /* ### mkroom.c ### */
@@ -1452,10 +1452,10 @@ E boolean somexy(struct mkroom *,coord *);
 E void mkundead(coord *,BOOLEAN_P,int);
 /*E void mkundeadboo(coord *,BOOLEAN_P,int);*/
 E void mkundeadX(coord *,BOOLEAN_P,int);
-E struct permonst *NDECL(courtmon);
-E struct permonst *NDECL(insidemon);
-E struct permonst *NDECL(antholemon);
-E struct permonst *NDECL(realzoomon);
+E struct permonst *courtmon(void);
+E struct permonst *insidemon(void);
+E struct permonst *antholemon(void);
+E struct permonst *realzoomon(void);
 E void save_rooms(int);
 E void rest_rooms(int);
 E struct mkroom *search_special(SCHAR_P);
@@ -1468,7 +1468,7 @@ E int undead_to_corpse(int);
 E int genus(int,int);
 E int pm_to_cham(int);
 E int minliquid(struct monst *);
-E int NDECL(movemon);
+E int movemon(void);
 E int meatmetal(struct monst *);
 E int meatlithic(register struct monst *);
 E int meatanything(struct monst *);
@@ -1481,9 +1481,9 @@ E int max_mon_load(struct monst *);
 E boolean can_carry(struct monst *,struct obj *);
 E int mfndpos(struct monst *,coord *,long *,long);
 E boolean monnear(struct monst *,int,int);
-E void NDECL(dmonsfree);
+E void dmonsfree(void);
 E int mcalcmove(struct monst*);
-E void NDECL(mcalcdistress);
+E void mcalcdistress(void);
 E void replmon(struct monst *,struct monst *);
 E void relmon(struct monst *);
 E struct obj *mlifesaver(struct monst *);
@@ -1505,21 +1505,21 @@ E void poisoned(const char *,int,const char *,int);
 E void m_respond(struct monst *);
 E void setmangry(struct monst *);
 E void wakeup(struct monst *);
-E void NDECL(wake_nearby);
+E void wake_nearby(void);
 E void wake_nearto(int,int,int);
 E void seemimic(struct monst *);
-E void NDECL(rescham);
-E void NDECL(restartcham);
+E void rescham(void);
+E void restartcham(void);
 E void restore_cham(struct monst *);
 E void mon_animal_list(BOOLEAN_P);
 E int newcham(struct monst *,struct permonst *,BOOLEAN_P,BOOLEAN_P);
 E int can_be_hatched(int);
 E int egg_type_from_parent(int,BOOLEAN_P);
 E boolean dead_species(int,BOOLEAN_P);
-E void NDECL(kill_genocided_monsters);
+E void kill_genocided_monsters(void);
 E void golemeffects(struct monst *,int,int);
 E boolean angry_guards(BOOLEAN_P);
-E void NDECL(pacify_guards);
+E void pacify_guards(void);
 E boolean damage_mon(struct monst*,int,int); /* sporkhack */
 
 /* ### mondata.c ### */
@@ -1574,11 +1574,11 @@ E boolean can_ooze(struct monst *);
 
 /* ### monst.c ### */
 
-E void NDECL(monst_init);
+E void monst_init(void);
 
 /* ### monstr.c ### */
 
-E void NDECL(monstr_init);
+E void monstr_init(void);
 
 /* ### mplayer.c ### */
 
@@ -1592,51 +1592,51 @@ E void mplayer_talk(struct monst *);
 /* ### msdos.c,os2.c,tos.c,winnt.c ### */
 
 #  ifndef WIN32
-E int NDECL(tgetch);
+E int tgetch(void);
 #  endif
 #  ifndef TOS
-E char NDECL(switchar);
+E char switchar(void);
 #  endif
 # ifndef __GO32__
 E long freediskspace(char *);
 #  ifdef MSDOS
 E int findfirst_file(char *);
-E int NDECL(findnext_file);
+E int findnext_file(void);
 E long filesize_nh(char *);
 #  else
 E int findfirst(char *);
-E int NDECL(findnext);
+E int findnext(void);
 E long filesize(char *);
 #  endif /* MSDOS */
-E char *NDECL(foundfile_buffer);
+E char *foundfile_buffer(void);
 # endif /* __GO32__ */
 # ifndef __CYGWIN__
 E void chdrive(char *);
 # endif
 # ifndef TOS
-E void NDECL(disable_ctrlP);
-E void NDECL(enable_ctrlP);
+E void disable_ctrlP(void);
+E void enable_ctrlP(void);
 # endif
 # if defined(MICRO) && !defined(WINNT)
-E void NDECL(get_scr_size);
+E void get_scr_size(void);
 #  ifndef TOS
 E void gotoxy(int,int);
 #  endif
 # endif
 # ifdef TOS
 E int _copyfile(char *,char *);
-E int NDECL(kbhit);
-E void NDECL(set_colors);
-E void NDECL(restore_colors);
+E int kbhit(void);
+E void set_colors(void);
+E void restore_colors(void);
 #  ifdef SUSPEND
-E int NDECL(dosuspend);
+E int dosuspend(void);
 #  endif
 # endif /* TOS */
 # ifdef WIN32
 E char *get_username(int *);
 E int set_binary_mode(int, int);
 E void nt_regularize(char *);
-E int NDECL((*nt_kbhit));
+E int (*nt_kbhit)(void);
 E void Delay(int);
 # endif /* WIN32 */
 #endif /* MICRO || WIN32 */
@@ -1682,126 +1682,126 @@ E boolean munstone(struct monst *,BOOLEAN_P);
 
 /* ### music.c ### */
 
-E void NDECL(awaken_soldiers);
+E void awaken_soldiers(void);
 E int do_play_instrument(struct obj *);
 E void do_earthquake(int);
 
 /* ### nhlan.c ### */
 #ifdef LAN_FEATURES
-E void NDECL(init_lan_features);
-E char *NDECL(lan_username);
+E void init_lan_features(void);
+E char *lan_username(void);
 # ifdef LAN_MAIL
-E boolean NDECL(lan_mail_check);
+E boolean lan_mail_check(void);
 E void lan_mail_read(struct obj *);
-E void NDECL(lan_mail_init);
-E void NDECL(lan_mail_finish);
-E void NDECL(lan_mail_terminate);
+E void lan_mail_init(void);
+E void lan_mail_finish(void);
+E void lan_mail_terminate(void);
 # endif
 #endif
 
 /* ### nttty.c ### */
 
 #ifdef WIN32CON
-E void NDECL(get_scr_size);
-E int NDECL(nttty_kbhit);
-E void NDECL(nttty_check_stdio);
-E void NDECL(nttty_open);
-E void NDECL(nttty_rubout);
-E int NDECL(tgetch);
+E void get_scr_size(void);
+E int nttty_kbhit(void);
+E void nttty_check_stdio(void);
+E void nttty_open(void);
+E void nttty_rubout(void);
+E int tgetch(void);
 E int ntposkey(int *, int *, int *);
 E void set_output_mode(int);
-E void NDECL(synch_cursor);
+E void synch_cursor(void);
 #endif
 
 /* ### o_init.c ### */
 
-E void NDECL(init_objects);
-E void NDECL(randommaterials);
-E int NDECL(find_skates);
-E int NDECL(find_skates2);
-E int NDECL(find_skates3);
-E int NDECL(find_skates4);
-E int NDECL(find_opera_cloak);
-E int NDECL(find_explosive_boots);
-E int NDECL(find_irregular_boots);
-E int NDECL(find_wedge_boots);
-E int NDECL(find_aluminium_helmet);
-E int NDECL(find_ghostly_cloak);
-E int NDECL(find_polnish_gloves);
-E int NDECL(find_velcro_boots);
-E int NDECL(find_clumsy_gloves);
-E int NDECL(find_fin_boots);
-E int NDECL(find_profiled_boots);
-E int NDECL(find_void_cloak);
-E int NDECL(find_grey_shaded_gloves);
-E int NDECL(find_weeb_cloak);
-E int NDECL(find_persian_boots);
-E int NDECL(find_hugging_boots);
-E int NDECL(find_fleecy_boots);
-E int NDECL(find_fingerless_gloves);
-E int NDECL(find_mantle_of_coat);
-E int NDECL(find_fatal_gloves);
-E int NDECL(find_beautiful_heels);
-E int NDECL(find_homicidal_cloak);
-E int NDECL(find_castlevania_boots);
-E int NDECL(find_greek_cloak);
-E int NDECL(find_celtic_helmet);
-E int NDECL(find_english_gloves);
-E int NDECL(find_korean_sandals);
-E int NDECL(find_octarine_robe);
-E int NDECL(find_chinese_cloak);
-E int NDECL(find_polyform_cloak);
-E int NDECL(find_absorbing_cloak);
-E int NDECL(find_birthcloth);
-E int NDECL(find_poke_mongo_cloak);
-E int NDECL(find_levuntation_cloak);
-E int NDECL(find_quicktravel_cloak);
-E int NDECL(find_angband_cloak);
-E int NDECL(find_anorexia_cloak);
-E int NDECL(find_dnethack_cloak);
-E int NDECL(find_team_splat_cloak);
-E int NDECL(find_eldritch_cloak);
-E int NDECL(find_erotic_boots);
-E int NDECL(find_secret_helmet);
-E int NDECL(find_difficult_cloak);
-E int NDECL(find_velvet_gloves);
-E int NDECL(find_sputa_boots);
-E int NDECL(find_formula_one_helmet);
-E int NDECL(find_excrement_cloak);
-E int NDECL(find_racer_gloves);
-E int NDECL(find_turbo_boots);
-E int NDECL(find_guild_cloak);
-E int NDECL(find_shitty_gloves);
-E int NDECL(find_foundry_cloak);
-E int NDECL(find_spellsucking_cloak);
-E int NDECL(find_storm_coat);
-E int NDECL(find_fleeceling_cloak);
-E int NDECL(find_princess_gloves);
-E int NDECL(find_uncanny_gloves);
-E int NDECL(find_slaying_gloves);
-E int NDECL(find_blue_sneakers);
-E int NDECL(find_femmy_boots);
-E int NDECL(find_red_sneakers);
-E int NDECL(find_yellow_sneakers);
-E int NDECL(find_pink_sneakers);
-E int NDECL(find_calf_leather_sandals);
-E int NDECL(find_velcro_sandals);
-E int NDECL(find_buffalo_boots);
-E int NDECL(find_heroine_mocassins);
-E int NDECL(find_lolita_boots);
-E int NDECL(find_fetish_heels);
-E int NDECL(find_weapon_light_boots);
-E int NDECL(find_rubynus_helmet);
-E void NDECL(oinit);
+E void init_objects(void);
+E void randommaterials(void);
+E int find_skates(void);
+E int find_skates2(void);
+E int find_skates3(void);
+E int find_skates4(void);
+E int find_opera_cloak(void);
+E int find_explosive_boots(void);
+E int find_irregular_boots(void);
+E int find_wedge_boots(void);
+E int find_aluminium_helmet(void);
+E int find_ghostly_cloak(void);
+E int find_polnish_gloves(void);
+E int find_velcro_boots(void);
+E int find_clumsy_gloves(void);
+E int find_fin_boots(void);
+E int find_profiled_boots(void);
+E int find_void_cloak(void);
+E int find_grey_shaded_gloves(void);
+E int find_weeb_cloak(void);
+E int find_persian_boots(void);
+E int find_hugging_boots(void);
+E int find_fleecy_boots(void);
+E int find_fingerless_gloves(void);
+E int find_mantle_of_coat(void);
+E int find_fatal_gloves(void);
+E int find_beautiful_heels(void);
+E int find_homicidal_cloak(void);
+E int find_castlevania_boots(void);
+E int find_greek_cloak(void);
+E int find_celtic_helmet(void);
+E int find_english_gloves(void);
+E int find_korean_sandals(void);
+E int find_octarine_robe(void);
+E int find_chinese_cloak(void);
+E int find_polyform_cloak(void);
+E int find_absorbing_cloak(void);
+E int find_birthcloth(void);
+E int find_poke_mongo_cloak(void);
+E int find_levuntation_cloak(void);
+E int find_quicktravel_cloak(void);
+E int find_angband_cloak(void);
+E int find_anorexia_cloak(void);
+E int find_dnethack_cloak(void);
+E int find_team_splat_cloak(void);
+E int find_eldritch_cloak(void);
+E int find_erotic_boots(void);
+E int find_secret_helmet(void);
+E int find_difficult_cloak(void);
+E int find_velvet_gloves(void);
+E int find_sputa_boots(void);
+E int find_formula_one_helmet(void);
+E int find_excrement_cloak(void);
+E int find_racer_gloves(void);
+E int find_turbo_boots(void);
+E int find_guild_cloak(void);
+E int find_shitty_gloves(void);
+E int find_foundry_cloak(void);
+E int find_spellsucking_cloak(void);
+E int find_storm_coat(void);
+E int find_fleeceling_cloak(void);
+E int find_princess_gloves(void);
+E int find_uncanny_gloves(void);
+E int find_slaying_gloves(void);
+E int find_blue_sneakers(void);
+E int find_femmy_boots(void);
+E int find_red_sneakers(void);
+E int find_yellow_sneakers(void);
+E int find_pink_sneakers(void);
+E int find_calf_leather_sandals(void);
+E int find_velcro_sandals(void);
+E int find_buffalo_boots(void);
+E int find_heroine_mocassins(void);
+E int find_lolita_boots(void);
+E int find_fetish_heels(void);
+E int find_weapon_light_boots(void);
+E int find_rubynus_helmet(void);
+E void oinit(void);
 E void savenames(int,int);
 E void restnames(int);
 E void discover_object(int,BOOLEAN_P,BOOLEAN_P);
 E void undiscover_object(int);
-E int NDECL(dodiscovered);
+E int dodiscovered(void);
 
 /* ### objects.c ### */
 
-E void NDECL(objects_init);
+E void objects_init(void);
 
 /* ### objnam.c ### */
 
@@ -1844,12 +1844,12 @@ E const char *mimic_obj_name(struct monst *);
 /* ### options.c ### */
 
 E boolean match_optname(const char *,const char *,int,BOOLEAN_P);
-E void NDECL(initoptions);
+E void initoptions(void);
 E void parseoptions(char *,BOOLEAN_P,BOOLEAN_P);
 E void parsetileset(char *);
-E int NDECL(doset);
-E int NDECL(dotogglepickup);
-E void NDECL(option_help);
+E int doset(void);
+E int dotogglepickup(void);
+E void option_help(void);
 E void next_opt(winid,const char *);
 E int fruitadd(char *);
 E int choose_classes_menu(const char *,int,BOOLEAN_P,char *,char *);
@@ -1869,22 +1869,22 @@ E boolean add_menu_coloring(char *);
 #endif
 #ifdef AUTOPICKUP_EXCEPTIONS
 E int add_autopickup_exception(const char *);
-E void NDECL(free_autopickup_exceptions);
+E void free_autopickup_exceptions(void);
 #endif /* AUTOPICKUP_EXCEPTIONS */
 
 /* ### pager.c ### */
 
-E int NDECL(dowhatis);
-E int NDECL(doquickwhatis);
-E int NDECL(doidtrap);
-E int NDECL(dowhatdoes);
+E int dowhatis(void);
+E int doquickwhatis(void);
+E int doidtrap(void);
+E int dowhatdoes(void);
 E char *dowhatdoes_core(CHAR_P, char *);
-E int NDECL(dohelp);
-E int NDECL(dohistory);
+E int dohelp(void);
+E int dohistory(void);
 
-E const char *NDECL(fauxmessage);
-E const char *NDECL(bosstaunt);
-E const char *NDECL(soviettaunt);
+E const char *fauxmessage(void);
+E const char *bosstaunt(void);
+E const char *soviettaunt(void);
 
 /* ### pcmain.c ### */
 
@@ -1897,14 +1897,14 @@ E void chdirx(char *,BOOLEAN_P);
 /* ### pcsys.c ### */
 
 #if defined(MICRO) || defined(WIN32)
-E void NDECL(flushout);
-E int NDECL(dosh);
+E void flushout(void);
+E int dosh(void);
 # ifdef MFLOPPY
 E void eraseall(const char *,const char *);
 E void copybones(int);
-E void NDECL(playwoRAMdisk);
+E void playwoRAMdisk(void);
 E int saveDiskPrompt(int);
-E void NDECL(gameDiskPrompt);
+E void gameDiskPrompt(void);
 # endif
 E void append_slash(char *);
 E void getreturn(const char *);
@@ -1917,9 +1917,9 @@ E FILE *fopenp(const char *,const char *);
 /* ### pctty.c ### */
 
 #if defined(MICRO) || defined(WIN32)
-E void NDECL(gettty);
+E void gettty(void);
 E void settty(const char *);
-E void NDECL(setftty);
+E void setftty(void);
 E void error(const char *,...);
 #if defined(TIMED_DELAY) && defined(_MSC_VER)
 E void msleep(unsigned);
@@ -1932,7 +1932,7 @@ E void msleep(unsigned);
 E void regularize(char *);
 #endif /* MICRO */
 #if defined(PC_LOCKING)
-E void NDECL(getlock);
+E void getlock(void);
 #endif
 
 /* ### pickup.c ### */
@@ -1958,8 +1958,8 @@ E int pickup_object(struct obj *, long, BOOLEAN_P);
 E int query_category(const char *, struct obj *, int, menu_item **, int);
 E int query_objlist(const char *, struct obj *, int, menu_item **, int, boolean (*)(OBJ_P));
 E struct obj *pick_obj(struct obj *);
-E int NDECL(encumber_msg);
-E int NDECL(doloot);
+E int encumber_msg(void);
+E int doloot(void);
 E boolean container_gone(int (*)(OBJ_P));
 E int use_container(struct obj **,int);
 E int loot_mon(struct monst *,int *,boolean *);
@@ -1969,10 +1969,10 @@ E boolean is_autopickup_exception(struct obj *, BOOLEAN_P);
 /* ### pline.c ### */
 
 E void msgpline_add(int, char *);
-E void NDECL(msgpline_free);
+E void msgpline_free(void);
 E void pline(const char *,...) PRINTF_F(1,2);
 E void Norep(const char *,...) PRINTF_F(1,2);
-E void NDECL(free_youbuf);
+E void free_youbuf(void);
 E void You(const char *,...) PRINTF_F(1,2);
 E void Your(const char *,...) PRINTF_F(1,2);
 E void You_feel(const char *,...) PRINTF_F(1,2);
@@ -1984,37 +1984,37 @@ E void verbalize(const char *,...) PRINTF_F(1,2);
 E void raw_printf(const char *,...) PRINTF_F(1,2);
 E void impossible(const char *,...) PRINTF_F(1,2);
 E const char *align_str(ALIGNTYP_P);
-E const char *NDECL(hybrid_str);
-E const char *NDECL(hybrid_strcode);
-E const char *NDECL(generate_garbage_string);
+E const char *hybrid_str(void);
+E const char *hybrid_strcode(void);
+E const char *generate_garbage_string(void);
 E void mstatusline(struct monst *);
 E void mstatuslinebl(struct monst *);
-E void NDECL(ustatusline);
-E void NDECL(self_invis_message);
+E void ustatusline(void);
+E void self_invis_message(void);
 
 /* ### polyself.c ### */
 
-E void NDECL(init_uasmon);
-E void NDECL(set_uasmon);
-E void NDECL(change_sex);
-E void NDECL(newman);
+E void init_uasmon(void);
+E void set_uasmon(void);
+E void change_sex(void);
+E void newman(void);
 E void polyself(BOOLEAN_P);
 E int polymon(int);
-E void NDECL(rehumanize);
-E int NDECL(dobreathe);
-E int NDECL(dospit);
-E int NDECL(doremove);
-E int NDECL(dospinweb);
-E int NDECL(dosummon);
-E int NDECL(dogaze);
-E int NDECL(dohide);
-E int NDECL(domindblast);
+E void rehumanize(void);
+E int dobreathe(void);
+E int dospit(void);
+E int doremove(void);
+E int dospinweb(void);
+E int dosummon(void);
+E int dogaze(void);
+E int dohide(void);
+E int domindblast(void);
 E void skinback(BOOLEAN_P);
 E const char *mbodypart(struct monst *,int);
 E const char *body_part(int);
-E int NDECL(poly_gender);
+E int poly_gender(void);
 E void ugolemeffects(int,int);
-E int NDECL(polyatwill);
+E int polyatwill(void);
 
 /* ### potion.c ### */
 
@@ -2031,8 +2031,8 @@ E void make_blinded(long,BOOLEAN_P);
 E void make_sick(long, const char *, BOOLEAN_P,int);
 E void make_vomiting(long,BOOLEAN_P);
 E boolean make_hallucinated(long,BOOLEAN_P,long);
-E int NDECL(dodrink);
-E void NDECL(badeffect);
+E int dodrink(void);
+E void badeffect(void);
 E int dopotion(struct obj *);
 E int peffects(struct obj *);
 E void healup(int,int,BOOLEAN_P,BOOLEAN_P);
@@ -2040,28 +2040,28 @@ E void strange_feeling(struct obj *,const char *);
 E void potionhit(struct monst *,struct obj *,BOOLEAN_P);
 E void potionbreathe(struct obj *);
 E boolean get_wet(struct obj *, BOOLEAN_P);
-E int NDECL(dodip);
+E int dodip(void);
 E void djinni_from_bottle(struct obj *,int);
 /* KMH, balance patch -- new function */
 E int upgrade_obj(struct obj *);
 E struct monst *split_mon(struct monst *,struct monst *);
-E const char *NDECL(bottlename);
+E const char *bottlename(void);
 
 /* ### pray.c ### */
 
 /*#ifdef USE_TRAMPOLI*/
-E int NDECL(prayer_done);
+E int prayer_done(void);
 
 E void god_zaps_you(ALIGNTYP_P);
 /*#endif*/
-E int NDECL(dosacrifice);
+E int dosacrifice(void);
 E boolean can_pray(BOOLEAN_P);
-E int NDECL(dopray);
-E const char *NDECL(u_gname);
-E int NDECL(doturn);
-E int NDECL(turn_undead);
-E int NDECL(turn_allmonsters);
-E const char *NDECL(a_gname);
+E int dopray(void);
+E const char *u_gname(void);
+E int doturn(void);
+E int turn_undead(void);
+E int turn_allmonsters(void);
+E const char *a_gname(void);
 E const char *a_gname_at(XCHAR_P x,XCHAR_P y);
 E const char *align_gname(ALIGNTYP_P);
 E const char *halu_gname(ALIGNTYP_P);
@@ -2084,18 +2084,18 @@ E struct monst *mk_roamer(struct permonst *,ALIGNTYP_P, XCHAR_P,XCHAR_P,BOOLEAN_
 E void reset_hostility(struct monst *);
 E boolean in_your_sanctuary(struct monst *,XCHAR_P,XCHAR_P);
 E void ghod_hitsu(struct monst *);
-E void NDECL(angry_priest);
-E void NDECL(clearpriests);
+E void angry_priest(void);
+E void clearpriests(void);
 E void restpriest(struct monst *,BOOLEAN_P);
 
 /* ### quest.c ### */
 
-E void NDECL(onquest);
-E void NDECL(nemdead);
-E void NDECL(artitouch);
-E boolean NDECL(ok_to_quest);
+E void onquest(void);
+E void nemdead(void);
+E void artitouch(void);
+E boolean ok_to_quest(void);
 E void leader_speaks(struct monst *);
-E void NDECL(nemesis_speaks);
+E void nemesis_speaks(void);
 E void quest_chat(struct monst *);
 E void quest_talk(struct monst *);
 E void quest_stat_check(struct monst *);
@@ -2103,14 +2103,14 @@ E void finish_quest(struct obj *);
 
 /* ### questpgr.c ### */
 
-E void NDECL(load_qtlist);
-E void NDECL(unload_qtlist);
+E void load_qtlist(void);
+E void unload_qtlist(void);
 E short quest_info(int);
-E const char *NDECL(ldrname);
+E const char *ldrname(void);
 E boolean is_quest_artifact(struct obj*);
 E void com_pager(int);
 E void qt_pager(int);
-E struct permonst *NDECL(qt_montype);
+E struct permonst *qt_montype(void);
 
 /* ### random.c ### */
 
@@ -2118,12 +2118,12 @@ E struct permonst *NDECL(qt_montype);
 E void srandom(unsigned);
 E char *initstate(unsigned,char *,int);
 E char *setstate(char *);
-E long NDECL(random);
+E long random(void);
 #endif /* RANDOM */
 
 /* ### read.c ### */
 
-E int NDECL(doread);
+E int doread(void);
 E boolean is_chargeable(struct obj *);
 E boolean is_enchantable(struct obj *);
 E void recharge(struct obj *,int);
@@ -2131,9 +2131,9 @@ E void randomenchant(struct obj *,int,BOOLEAN_P);
 E void forget(int);
 E void forget_objects(int);
 E void forget_levels(int);
-E void NDECL(forget_traps);
+E void forget_traps(void);
 E void forget_map(int);
-E void NDECL(maprot);
+E void maprot(void);
 E int seffects(struct obj *);
 #ifdef USE_TRAMPOLI
 E void set_lit(int,int,genericptr_t);
@@ -2142,28 +2142,28 @@ E void litroom(BOOLEAN_P,struct obj *);
 E void litroomlite(boolean);
 E void do_genocide(int);
 E void punish(struct obj *);
-E void NDECL(unpunish);
-E void NDECL(punishx);
+E void unpunish(void);
+E void punishx(void);
 E boolean cant_create(int *, BOOLEAN_P);
 #ifdef WIZARD
-E struct monst *NDECL(create_particular);
+E struct monst *create_particular(void);
 #endif
 
 /* ### rect.c ### */
 
-E void NDECL(init_rect);
+E void init_rect(void);
 E NhRect *get_rect(NhRect *);
-E NhRect *NDECL(rnd_rect);
+E NhRect *rnd_rect(void);
 E void remove_rect(NhRect *);
 E void add_rect(NhRect *);
 E void split_rects(NhRect *,NhRect *);
 
 /* ## region.c ### */
-E void NDECL(clear_regions);
-E void NDECL(run_regions);
+E void clear_regions(void);
+E void run_regions(void);
 E boolean in_out_region(XCHAR_P,XCHAR_P);
 E boolean m_in_out_region(struct monst *,XCHAR_P,XCHAR_P);
-E void NDECL(update_player_regions);
+E void update_player_regions(void);
 E void update_monster_region(struct monst *);
 E NhRegion *visible_region_at(XCHAR_P,XCHAR_P);
 E void show_region(NhRegion*, XCHAR_P, XCHAR_P);
@@ -2178,7 +2178,7 @@ E void inven_inuse(BOOLEAN_P);
 E int dorecover(int);
 E void trickery(char *);
 E void getlev(int,int,XCHAR_P,BOOLEAN_P);
-E void NDECL(minit);
+E void minit(void);
 E boolean lookup_id_mapping(unsigned, unsigned *);
 #ifdef ZEROCOMP
 E int mread(int,genericptr_t,unsigned int);
@@ -2200,39 +2200,39 @@ E int rno(int);
 E int d(int,int);
 E int rne(int);
 E int rnz(int);
-E int NDECL(randattack);
-E int NDECL(randenchantment);
-E int NDECL(randnastyenchantment);
-E int NDECL(randomdisableproperty);
-E int NDECL(randominsidetrap);
-E int NDECL(randartmeleeweapon);
-E int NDECL(randartlauncher);
-E int NDECL(randartmissile);
-E int NDECL(randartsuit);
-E int NDECL(randartshirt);
-E int NDECL(randartcloak);
-E int NDECL(randarthelm);
-E int NDECL(randartgloves);
-E int NDECL(randartshield);
-E int NDECL(randartboots);
-E int NDECL(randartring);
-E int NDECL(randartamulet);
-E int NDECL(randartwand);
-E int NDECL(randartspellbook);
-E int NDECL(randartmeleeweaponX);
-E int NDECL(randartlauncherX);
-E int NDECL(randartmissileX);
-E int NDECL(randartsuitX);
-E int NDECL(randartshirtX);
-E int NDECL(randartcloakX);
-E int NDECL(randarthelmX);
-E int NDECL(randartglovesX);
-E int NDECL(randartshieldX);
-E int NDECL(randartbootsX);
-E int NDECL(randartringX);
-E int NDECL(randartamuletX);
-E int NDECL(randartwandX);
-E int NDECL(randartspellbookX);
+E int randattack(void);
+E int randenchantment(void);
+E int randnastyenchantment(void);
+E int randomdisableproperty(void);
+E int randominsidetrap(void);
+E int randartmeleeweapon(void);
+E int randartlauncher(void);
+E int randartmissile(void);
+E int randartsuit(void);
+E int randartshirt(void);
+E int randartcloak(void);
+E int randarthelm(void);
+E int randartgloves(void);
+E int randartshield(void);
+E int randartboots(void);
+E int randartring(void);
+E int randartamulet(void);
+E int randartwand(void);
+E int randartspellbook(void);
+E int randartmeleeweaponX(void);
+E int randartlauncherX(void);
+E int randartmissileX(void);
+E int randartsuitX(void);
+E int randartshirtX(void);
+E int randartcloakX(void);
+E int randarthelmX(void);
+E int randartglovesX(void);
+E int randartshieldX(void);
+E int randartbootsX(void);
+E int randartringX(void);
+E int randartamuletX(void);
+E int randartwandX(void);
+E int randartspellbookX(void);
 
 /* ### role.c ### */
 
@@ -2240,7 +2240,7 @@ E boolean validrole(int);
 E boolean validrace(int, int);
 E boolean validgend(int, int, int);
 E boolean validalign(int, int, int);
-E int NDECL(randrole);
+E int randrole(void);
 E int randrace(int);
 E int randgend(int, int);
 E int randalign(int, int);
@@ -2257,16 +2257,16 @@ E boolean ok_gend(int, int, int, int);
 E int pick_gend(int, int, int, int);
 E boolean ok_align(int, int, int, int);
 E int pick_align(int, int, int, int);
-E void NDECL(role_init);
-E void NDECL(rigid_role_checks);
-E void NDECL(plnamesuffix);
+E void role_init(void);
+E void rigid_role_checks(void);
+E void plnamesuffix(void);
 E const char *Hello(struct monst *);
-E const char *NDECL(Goodbye);
+E const char *Goodbye(void);
 E char *build_plselection_prompt(char *, int, int, int, int, int);
 E char *root_plselection_prompt(char *, int, int, int, int, int);
-E void NDECL(recursioneffect);
-E void NDECL(greenslimetransformation);
-E void NDECL(bindertransformation);
+E void recursioneffect(void);
+E void greenslimetransformation(void);
+E void bindertransformation(void);
 
 /* ### rumors.c ### */
 
@@ -2279,18 +2279,18 @@ E int doconsult(struct monst *);
 
 /* ### save.c ### */
 
-E int NDECL(dosave);
+E int dosave(void);
 #if defined(UNIX) || defined(VMS) || defined(__EMX__) || defined(WIN32)
 E void hangup(int);
 #endif
-E int NDECL(dosave0);
+E int dosave0(void);
 #ifdef INSURANCE
-E void NDECL(savestateinlock);
+E void savestateinlock(void);
 #endif
 #ifdef MFLOPPY
 E boolean savelev(int,XCHAR_P,int);
 E boolean swapin_file(int);
-E void NDECL(co_false);
+E void co_false(void);
 #else
 E void savelev(int,XCHAR_P,int);
 #endif
@@ -2311,8 +2311,8 @@ E void teacher_sound(struct monst *);
 E void principal_sound(struct monst *);
 #endif
 
-E void NDECL(free_dungeons);
-E void NDECL(freedynamicdata);
+E void free_dungeons(void);
+E void freedynamicdata(void);
 
 /* ### shk.c ### */
 
@@ -2330,7 +2330,7 @@ E void u_left_shop(char *,BOOLEAN_P);
 E void remote_burglary(XCHAR_P,XCHAR_P);
 E void u_entered_shop(char *);
 E boolean same_price(struct obj *,struct obj *);
-E void NDECL(shopper_financial_report);
+E void shopper_financial_report(void);
 E int inhishop(struct monst *);
 E struct monst *shop_keeper(CHAR_P);
 E boolean tended_shop(struct mkroom *);
@@ -2340,9 +2340,9 @@ E void home_shk(struct monst *,BOOLEAN_P);
 E void make_happy_shk(struct monst *,BOOLEAN_P);
 E void hot_pursuit(struct monst *);
 E void make_angry_shk(struct monst *,XCHAR_P,XCHAR_P);
-E int NDECL(dopay);
+E int dopay(void);
 E boolean paybill(int);
-E void NDECL(finish_paybill);
+E void finish_paybill(void);
 E struct obj *find_oid(unsigned);
 E long contained_cost(struct obj *,struct monst *,long,BOOLEAN_P, BOOLEAN_P);
 E long contained_gold(struct obj *);
@@ -2385,15 +2385,15 @@ E int get_shop_item(int);
 
 /* ### sit.c ### */
 
-E void NDECL(take_gold);
-E int NDECL(dosit);
-E void NDECL(rndcurse);
-E void NDECL(attrcurse);
-E void NDECL(skillcaploss);
+E void take_gold(void);
+E int dosit(void);
+E void rndcurse(void);
+E void attrcurse(void);
+E void skillcaploss(void);
 
 /* ### sounds.c ### */
 
-E void NDECL(dosounds);
+E void dosounds(void);
 E void pet_distress(struct monst *, int);
 E const char *growl_sound(struct monst *);
 /* JRN: converted growl,yelp,whimper to macros based on pet_distress.
@@ -2402,7 +2402,7 @@ E const char *growl_sound(struct monst *);
 #define yelp(mon) pet_distress((mon),2)
 #define whimper(mon) pet_distress((mon),1)
 E void beg(struct monst *);
-E int NDECL(dotalk);
+E int dotalk(void);
 #ifdef USER_SOUNDS
 E int add_sound_mapping(const char *);
 E void play_sound_for_message(const char *);
@@ -2422,40 +2422,40 @@ E void create_secret_door(struct mkroom *,XCHAR_P);
 E boolean dig_corridor(coord *,coord *,BOOLEAN_P,SCHAR_P,SCHAR_P);
 E void fill_room(struct mkroom *,BOOLEAN_P);
 E boolean load_special(const char *);
-E int NDECL(randomtrap);
-E void NDECL(makerandomtrap);
-E void NDECL(makegirlytrap);
-E void NDECL(makespacewarstrap);
+E int randomtrap(void);
+E void makerandomtrap(void);
+E void makegirlytrap(void);
+E void makespacewarstrap(void);
 
 /* ### spell.c ### */
 
 E boolean spell_known(int);
 #ifdef USE_TRAMPOLI
-E int NDECL(learn);
+E int learn(void);
 #endif
 E int study_book(struct obj *);
 E void book_disappears(struct obj *);
 E void book_substitution(struct obj *,struct obj *);
-E void NDECL(age_spells);
-E int NDECL(docast);
+E void age_spells(void);
+E int docast(void);
 E int spell_skilltype(int);
 E int spelleffects(int,BOOLEAN_P);
-E void NDECL(losespells);
-E int NDECL(dovspell);
+E void losespells(void);
+E int dovspell(void);
 E void learnspell(struct obj *);
-E boolean NDECL(studyspell);
+E boolean studyspell(void);
 E void initialspell(struct obj *);
-E void NDECL(castinertiaspell);
+E void castinertiaspell(void);
 
 /* ### steal.c ### */
 
 #ifdef USE_TRAMPOLI
-E int NDECL(stealarm);
+E int stealarm(void);
 #endif
 #ifdef GOLDOBJ
 E long somegold(long);
 #else
-E long NDECL(somegold);
+E long somegold(void);
 #endif
 E void stealgold(struct monst *);
 E void remove_worn_item(struct obj *,BOOLEAN_P);
@@ -2470,25 +2470,25 @@ E struct obj *findgold(struct obj *);
 
 /* ### steed.c ### */
 
-E void NDECL(rider_cant_reach);
+E void rider_cant_reach(void);
 E boolean can_saddle(struct monst *);
 E int use_saddle(struct obj *);
 E boolean can_ride(struct monst *);
-E int NDECL(doride);
+E int doride(void);
 E boolean mount_steed(struct monst *, BOOLEAN_P);
-E void NDECL(exercise_steed);
-E void NDECL(kick_steed);
+E void exercise_steed(void);
+E void kick_steed(void);
 E void dismount_steed(int);
 E void place_monster(struct monst *,int,int);
 
 /* ### tech.c ### */
 
 E void adjtech(int,int);
-E int NDECL(dotech);
-E int NDECL(dotechwiz);
-E void NDECL(docalm);
+E int dotech(void);
+E int dotechwiz(void);
+E void docalm(void);
 E int tech_inuse(int);
-E void NDECL(tech_timeout);
+E void tech_timeout(void);
 E boolean tech_known(SHORT_P);
 E void learntech(SHORT_P,long,int);
 E int disarm_holdingtrap(struct trap *);
@@ -2510,10 +2510,10 @@ E void teleds(int,int,BOOLEAN_P);
 E boolean safe_teleds(BOOLEAN_P);
 E boolean safe_teledsPD(BOOLEAN_P);
 E boolean teleport_pet(struct monst *,BOOLEAN_P);
-E void NDECL(tele);
+E void tele(void);
 E void phase_door(BOOLEAN_P);
-E int NDECL(dotele);
-E void NDECL(level_tele);
+E int dotele(void);
+E void level_tele(void);
 E void domagicportal(struct trap *);
 E void tele_trap(struct trap *);
 E void tele_trapX(struct trap *);
@@ -2525,13 +2525,13 @@ E boolean tele_restrict(struct monst *);
 E void mtele_trap(struct monst *, struct trap *,int);
 E int mlevel_tele_trap(struct monst *, struct trap *,BOOLEAN_P,int);
 E void rloco(struct obj *);
-E int NDECL(random_teleport_level);
-E int NDECL(random_banish_level);
-E void NDECL(teleX);
+E int random_teleport_level(void);
+E int random_banish_level(void);
+E void teleX(void);
 E boolean u_teleport_mon(struct monst *,BOOLEAN_P);
 E boolean u_teleport_monB(struct monst *,BOOLEAN_P);
-E void NDECL(pushplayer);
-E void NDECL(pushplayersilently);
+E void pushplayer(void);
+E void pushplayersilently(void);
 E boolean teleok(int,int,BOOLEAN_P);
 
 /* ### tile.c ### */
@@ -2541,8 +2541,8 @@ E void substitute_tiles(d_level *);
 
 /* ### timeout.c ### */
 
-E void NDECL(burn_away_slime);
-E void NDECL(nh_timeout);
+E void burn_away_slime(void);
+E void nh_timeout(void);
 E void fall_asleep(int, BOOLEAN_P);
 E void set_obj_poly(struct obj *, struct obj *);
 E void unpoly_obj(genericptr_t, long);
@@ -2561,10 +2561,10 @@ E void begin_burn(struct obj *, BOOLEAN_P);
 E void end_burn(struct obj *, BOOLEAN_P);
 E void burn_faster(struct obj *, long);
 E void lightsaber_deactivate(struct obj *, BOOLEAN_P);
-E void NDECL(do_storms);
+E void do_storms(void);
 E boolean start_timer(long, SHORT_P, SHORT_P, genericptr_t);
 E long stop_timer(SHORT_P, genericptr_t);
-E void NDECL(run_timers);
+E void run_timers(void);
 E void obj_move_timers(struct obj *, struct obj *);
 E void obj_split_timers(struct obj *, struct obj *);
 E void obj_stop_timers(struct obj *);
@@ -2574,10 +2574,10 @@ E void save_timers(int,int,int);
 E void restore_timers(int,int,BOOLEAN_P,long);
 E void relink_timers(BOOLEAN_P);
 #ifdef WIZARD
-E int NDECL(wiz_timeout_queue);
-E void NDECL(timer_sanity_check);
+E int wiz_timeout_queue(void);
+E void timer_sanity_check(void);
 #endif
-E void NDECL(cryogenics);
+E void cryogenics(void);
 
 /* ### topten.c ### */
 
@@ -2588,14 +2588,14 @@ E struct obj *tt_oname(struct obj *);
 /*E void mkundeadboo(coord *,BOOLEAN_P,int);*/
 E void tt_mname(coord *,BOOLEAN_P,int);
 #ifdef GTK_GRAPHICS
-E winid NDECL(create_toptenwin);
-E void NDECL(destroy_toptenwin);
+E winid create_toptenwin(void);
+E void destroy_toptenwin(void);
 #endif
 
 /* ### track.c ### */
 
-E void NDECL(initrack);
-E void NDECL(settrack);
+E void initrack(void);
+E void settrack(void);
 E coord *gettrack(int,int);
 
 /* ### trap.c ### */
@@ -2619,7 +2619,7 @@ E void instapetrify(const char *);
 E void minstapetrify(struct monst *,BOOLEAN_P);
 E void selftouch(const char *);
 E void mselftouch(struct monst *,const char *,BOOLEAN_P);
-E void NDECL(float_up);
+E void float_up(void);
 E void fill_pit(int,int);
 E int float_down(long, long);
 E int fire_damage(struct obj *,BOOLEAN_P,BOOLEAN_P,XCHAR_P,XCHAR_P);
@@ -2628,28 +2628,28 @@ E void doshittrap(struct obj *);
 E void lethe_damage(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E void withering_damage(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E void antimatter_damage(struct obj *,BOOLEAN_P,BOOLEAN_P);
-E boolean NDECL(drown);
+E boolean drown(void);
 E void mon_drain_en(struct monst *, int);
 E void drain_en(int);
-E int NDECL(dountrap);
+E int dountrap(void);
 E int untrap(BOOLEAN_P);
 E boolean chest_trap(struct obj *,int,BOOLEAN_P);
 E void deltrap(struct trap *);
 E boolean delfloortrap(struct trap *);
 E struct trap *t_at(int,int);
 E void b_trapped(const char *,int);
-E boolean NDECL(unconscious);
-E boolean NDECL(lava_effects);
+E boolean unconscious(void);
+E boolean lava_effects(void);
 E void blow_up_landmine(struct trap *);
 E int launch_obj(SHORT_P,int,int,int,int,int);
 /* KMH, balance patch -- new function */
-E int NDECL(uunstone);
+E int uunstone(void);
 
 /* ### u_init.c ### */
 
-E void NDECL(u_init);
-E void NDECL(alter_reality);
-E void NDECL(polyinitors);
+E void u_init(void);
+E void alter_reality(void);
+E void polyinitors(void);
 
 /* ### uhitm.c ### */
 
@@ -2670,31 +2670,31 @@ E int flash_hits_mon(struct monst *,struct obj *);
 
 #ifdef UNIX
 # ifdef PORT_HELP
-E void NDECL(port_help);
+E void port_help(void);
 # endif
 #endif /* UNIX */
 
 /* ### unixtty.c ### */
 
 #if defined(UNIX) || defined(__BEOS__)
-E void NDECL(gettty);
+E void gettty(void);
 E void settty(const char *);
-E void NDECL(setftty);
-E void NDECL(intron);
-E void NDECL(introff);
+E void setftty(void);
+E void intron(void);
+E void introff(void);
 E void error(const char *,...) PRINTF_F(1,2);
 #endif /* UNIX || __BEOS_ */
 
 /* ### unixunix.c ### */
 
 #ifdef UNIX
-E void NDECL(getlock);
+E void getlock(void);
 E void regularize(char *);
 # if defined(TIMED_DELAY) && !defined(msleep) && defined(SYSV)
 E void msleep(unsigned);
 # endif
 # ifndef PUBLIC_SERVER
-E int NDECL(dosh);
+E int dosh(void);
 # endif /* PUBLIC_SERVER */
 # if !defined(PUBLIC_SERVER) || defined(DEF_PAGER) || defined(DEF_MAILREADER)
 E int child(int);
@@ -2729,24 +2729,24 @@ E int hide_privileges(BOOLEAN_P);
 
 E boolean grddead(struct monst *);
 E char vault_occupied(char *);
-E void NDECL(invault);
+E void invault(void);
 E int gd_move(struct monst *);
-E void NDECL(paygd);
-E long NDECL(hidden_gold);
-E boolean NDECL(gd_sound);
+E void paygd(void);
+E long hidden_gold(void);
+E boolean gd_sound(void);
 
 /* ### version.c ### */
 
 E char *version_string(char *);
 E char *getversionstring(char *);
-E int NDECL(doversion);
-E int NDECL(doextversion);
+E int doversion(void);
+E int doextversion(void);
 #ifdef MICRO
 E boolean comp_times(long);
 #endif
 E boolean check_version(struct version_info *, const char *,BOOLEAN_P);
 E unsigned long get_feature_notice_ver(char *);
-E unsigned long NDECL(get_current_feature_ver);
+E unsigned long get_current_feature_ver(void);
 #ifdef RUNTIME_PORT_ID
 E void append_port_id(char *);
 #endif
@@ -2756,8 +2756,8 @@ E void append_port_id(char *);
 #ifdef MSDOS
 E int assign_video(char *);
 # ifdef NO_TERMS
-E void NDECL(gr_init);
-E void NDECL(gr_finish);
+E void gr_init(void);
+E void gr_finish(void);
 # endif
 E void tileview(BOOLEAN_P);
 #endif
@@ -2769,14 +2769,14 @@ E int assign_videocolors(char *);
 /* ### vis_tab.c ### */
 
 #ifdef VISION_TABLES
-E void NDECL(vis_tab_init);
+E void vis_tab_init(void);
 #endif
 
 /* ### vision.c ### */
 
-E void NDECL(vision_init);
+E void vision_init(void);
 E int does_block(int,int,struct rm*);
-E void NDECL(vision_reset);
+E void vision_reset(void);
 E void vision_recalc(int);
 E void block_point(int,int);
 E void unblock_point(int,int);
@@ -2798,11 +2798,11 @@ E char *vms_basename(const char *);
 
 /* ### vmsmail.c ### */
 
-E unsigned long NDECL(init_broadcast_trapping);
-E unsigned long NDECL(enable_broadcast_trapping);
-E unsigned long NDECL(disable_broadcast_trapping);
+E unsigned long init_broadcast_trapping(void);
+E unsigned long enable_broadcast_trapping(void);
+E unsigned long disable_broadcast_trapping(void);
 # if 0
-E struct mail_info *NDECL(parse_next_broadcast);
+E struct mail_info *parse_next_broadcast(void);
 # endif /*0*/
 
 /* ### vmsmain.c ### */
@@ -2814,18 +2814,18 @@ E void chdirx(const char *,BOOLEAN_P);
 
 /* ### vmsmisc.c ### */
 
-E void NDECL(vms_abort);
+E void vms_abort(void);
 E void vms_exit(int);
 
 /* ### vmstty.c ### */
 
-E int NDECL(vms_getchar);
-E void NDECL(gettty);
+E int vms_getchar(void);
+E void gettty(void);
 E void settty(const char *);
 E void shuttty(const char *);
-E void NDECL(setftty);
-E void NDECL(intron);
-E void NDECL(introff);
+E void setftty(void);
+E void intron(void);
+E void introff(void);
 E void error(const char *,...) PRINTF_F(1,2);
 #ifdef TIMED_DELAY
 E void msleep(unsigned);
@@ -2833,25 +2833,25 @@ E void msleep(unsigned);
 
 /* ### vmsunix.c ### */
 
-E void NDECL(getlock);
+E void getlock(void);
 E void regularize(char *);
-E int NDECL(vms_getuid);
+E int vms_getuid(void);
 E boolean file_is_stmlf(int);
 E int vms_define(const char *,const char *,int);
 E int vms_putenv(const char *);
-E char *NDECL(verify_termcap);
+E char *verify_termcap(void);
 # if defined(CHDIR) || !defined(PUBLIC_SERVER) || defined(SECURE)
-E void NDECL(privoff);
-E void NDECL(privon);
+E void privoff(void);
+E void privon(void);
 # endif
 # ifndef PUBLIC_SERVER
-E int NDECL(dosh);
+E int dosh(void);
 # endif
 # if !defined(PUBLIC_SERVER) || defined(MAIL)
 E int vms_doshell(const char *,BOOLEAN_P);
 # endif
 # ifdef SUSPEND
-E int NDECL(dosuspend);
+E int dosuspend(void);
 # endif
 
 #endif /* VMS */
@@ -2865,24 +2865,24 @@ E struct obj *select_rwep(struct monst *);
 E struct obj *select_hwep(struct monst *);
 E void possibly_unwield(struct monst *,BOOLEAN_P);
 E int mon_wield_item(struct monst *);
-E int NDECL(abon);
-E int NDECL(dbon);
-E int NDECL(enhance_weapon_skill);
+E int abon(void);
+E int dbon(void);
+E int enhance_weapon_skill(void);
 #ifdef DUMP_LOG
-E void NDECL(dump_weapon_skill);
+E void dump_weapon_skill(void);
 #endif
 E void unrestrict_weapon_skill(int);
 E void use_skill(int,int);
 E void add_weapon_skill(int);
 E void lose_weapon_skill(int);
 E int weapon_type(struct obj *);
-E int NDECL(uwep_skill_type);
+E int uwep_skill_type(void);
 E int weapon_hit_bonus(struct obj *);
 E int weapon_dam_bonus(struct obj *);
 E int skill_bonus(int);
 E void skill_init(const struct def_skill *);
-E void NDECL(practice_weapon);
-E void NDECL(xtraskillinit);
+E void practice_weapon(void);
+E void xtraskillinit(void);
 E int get_obj_skill(struct obj *);
 
 /* ### were.c ### */
@@ -2891,7 +2891,7 @@ E int counter_were(int);
 E void were_change(struct monst *);
 E void new_were(struct monst *);
 E int were_summon(struct permonst *,BOOLEAN_P,int *,char *);
-E void NDECL(you_were);
+E void you_were(void);
 E void you_unwere(BOOLEAN_P);
 
 /* ### wield.c ### */
@@ -2899,17 +2899,17 @@ E void you_unwere(BOOLEAN_P);
 E void setuwep(struct obj *,BOOLEAN_P);
 E void setuqwep(struct obj *);
 E void setuswapwep(struct obj *,BOOLEAN_P);
-E int NDECL(dowield);
-E int NDECL(doswapweapon);
-E int NDECL(dowieldquiver);
+E int dowield(void);
+E int doswapweapon(void);
+E int dowieldquiver(void);
 E boolean wield_tool(struct obj *,const char *);
-E int NDECL(can_twoweapon);
-E void NDECL(drop_uswapwep);
-E int NDECL(dotwoweapon);
-E void NDECL(uwepgone);
-E void NDECL(uswapwepgone);
-E void NDECL(uqwepgone);
-E void NDECL(untwoweapon);
+E int can_twoweapon(void);
+E void drop_uswapwep(void);
+E int dotwoweapon(void);
+E void uwepgone(void);
+E void uswapwepgone(void);
+E void uqwepgone(void);
+E void untwoweapon(void);
 E void erode_obj(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E int chwepon(struct obj *,int);
 E int welded(struct obj *);
@@ -2925,23 +2925,23 @@ E void genl_preference_update(const char *);
 
 /* ### wizard.c ### */
 
-E void NDECL(amulet);
+E void amulet(void);
 E int mon_has_amulet(struct monst *);
 E int mon_has_special(struct monst *);
 E int tactics(struct monst *);
-E void NDECL(aggravate);
-E void NDECL(clonewiz);
-E int NDECL(pick_nasty);
+E void aggravate(void);
+E void clonewiz(void);
+E int pick_nasty(void);
 E int nasty(struct monst*);
-E void NDECL(resurrect);
-E void NDECL(intervene);
-E void NDECL(wizdead);
+E void resurrect(void);
+E void intervene(void);
+E void wizdead(void);
 E void cuss(struct monst *);
-E void NDECL(randomcuss);
+E void randomcuss(void);
 
 /* ### worm.c ### */
 
-E int NDECL(get_wormno);
+E int get_wormno(void);
 E void initworm(struct monst *,int);
 E void worm_move(struct monst *);
 E void worm_nomove(struct monst *);
@@ -2970,7 +2970,7 @@ E void m_dowear(struct monst *,BOOLEAN_P);
 E struct obj *which_armor(struct monst *,long);
 E void mon_break_armor(struct monst *,BOOLEAN_P);
 E void bypass_obj(struct obj *);
-E void NDECL(clear_bypasses);
+E void clear_bypasses(void);
 E int racial_exception(struct monst *, struct obj *);
 
 /* ### write.c ### */
@@ -3001,7 +3001,7 @@ E int bhito(struct obj *,struct obj *);
 E int bhitpile(struct obj *,int (*)(OBJ_P,OBJ_P),int,int);
 E int zappable(struct obj *);
 E void zapnodir(struct obj *);
-E int NDECL(dozap);
+E int dozap(void);
 E int zapyourself(struct obj *,BOOLEAN_P);
 E boolean cancel_monst(struct monst *,struct obj *, BOOLEAN_P,BOOLEAN_P,BOOLEAN_P);
 E void weffects(struct obj *);
@@ -3020,27 +3020,27 @@ E boolean break_statue(struct obj *);
 E void destroy_item(int,int);
 E int destroy_mitem(struct monst *,int,int);
 E int resist(struct monst *,CHAR_P,int,int);
-E void NDECL(makewish);
-E void NDECL(makenonworkingwish);
-E void NDECL(othergreateffect);
+E void makewish(void);
+E void makenonworkingwish(void);
+E void othergreateffect(void);
 /* KMH -- xchar to XCHAR_P */
 E void zap_strike_fx(XCHAR_P, XCHAR_P, int);
-E void NDECL(throwspell);
+E void throwspell(void);
 
 /* ### livelog.c ### */
 #ifdef LIVELOGFILE
-E boolean NDECL(livelog_start);
-E void NDECL(livelog_achieve_update);
+E boolean livelog_start(void);
+E void livelog_achieve_update(void);
 E void livelog_wish(char*);
-E void NDECL(livelog_avert_death);
+E void livelog_avert_death(void);
 #ifdef LIVELOG_SHOUT
-E int NDECL(doshout);
+E int doshout(void);
 #endif
 #endif
 
 /* ### termcap.c ### */
 E void term_start_bgcolor(int);
-E void NDECL(term_end_bgcolor);
+E void term_end_bgcolor(void);
 
 #endif /* !MAKEDEFS_C && !LEV_LEX_C */
 

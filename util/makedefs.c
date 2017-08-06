@@ -175,24 +175,24 @@ int main(void);
 int main(int,char **);
 #endif
 void do_makedefs(char *);
-void NDECL(do_objs);
-void NDECL(do_data);
-void NDECL(do_dungeon);
+void do_objs(void);
+void do_data(void);
+void do_dungeon(void);
 void do_date(int);
-void NDECL(do_options);
-void NDECL(do_monstr);
-void NDECL(do_permonst);
-void NDECL(do_questtxt);
-void NDECL(do_rumors);
-void NDECL(do_oracles);
-void NDECL(do_vision);
+void do_options(void);
+void do_monstr(void);
+void do_permonst(void);
+void do_questtxt(void);
+void do_rumors(void);
+void do_oracles(void);
+void do_vision(void);
 /*WAC filenames*/
-void NDECL(do_filenames);
+void do_filenames(void);
 
-extern void NDECL(monst_init);		/* monst.c */
-extern void NDECL(objects_init);	/* objects.c */
+extern void monst_init(void);		/* monst.c */
+extern void objects_init(void);	/* objects.c */
 
-static void NDECL(make_version);
+static void make_version(void);
 static char *version_string(char *);
 static char *version_id_string(char *,const char *);
 static char *xcrypt(const char *);
@@ -202,7 +202,7 @@ static boolean d_filter(char *);
 static boolean h_filter(char *);
 static boolean ranged_attk(struct permonst*);
 static int mstrength(struct permonst *);
-static void NDECL(build_savebones_compat_string);
+static void build_savebones_compat_string(void);
 
 static boolean qt_comment(char *);
 static boolean qt_control(char *);
@@ -212,14 +212,14 @@ static boolean known_msg(int,int);
 static void new_msg(char *,int,int);
 static void do_qt_control(char *);
 static void do_qt_text(char *);
-static void NDECL(adjust_qt_hdrs);
-static void NDECL(put_qt_hdrs);
+static void adjust_qt_hdrs(void);
+static void put_qt_hdrs(void);
 
 #ifdef VISION_TABLES
-static void NDECL(H_close_gen);
-static void NDECL(H_far_gen);
-static void NDECL(C_close_gen);
-static void NDECL(C_far_gen);
+static void H_close_gen(void);
+static void H_far_gen(void);
+static void C_close_gen(void);
+static void C_far_gen(void);
 static int clear_path(int,int,int,int);
 #endif
 
@@ -1822,7 +1822,7 @@ do_monstr()
     /* might want to insert a final 0 entry here instead of just newline */
     Fprintf(ofp,"%s};\n", (j & 15) ? "\n" : "");
 
-    Fprintf(ofp,"\nvoid NDECL(monstr_init);\n");
+    Fprintf(ofp,"\nvoid monstr_init(void);\n");
     Fprintf(ofp,"\nvoid\n");
     Fprintf(ofp,"monstr_init()\n");
     Fprintf(ofp,"{\n");
@@ -2354,7 +2354,7 @@ do_vision()
     C_close_gen();
     C_far_gen();
     /* KMH -- vis_tab_init() needs prototype */
-    Fprintf(ofp, "\nvoid NDECL(vis_tab_init);\n");
+    Fprintf(ofp, "\nvoid vis_tab_init);\n"(void);
     Fprintf(ofp,"\nvoid vis_tab_init() { return; }\n");
 #endif /* VISION_TABLES */
 

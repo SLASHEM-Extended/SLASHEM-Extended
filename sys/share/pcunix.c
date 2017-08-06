@@ -15,9 +15,9 @@
 #if defined(WIN32) || defined(MSDOS)
 extern char orgdir[];
 # ifdef WIN32
-extern void NDECL(backsp);
+extern void backsp(void);
 # endif
-extern void NDECL(clear_screen);
+extern void clear_screen(void);
 #endif
 
 #ifdef OVLB
@@ -31,7 +31,7 @@ static struct stat hbuf;
 # endif
 
 #ifdef PC_LOCKING
-static int NDECL(eraseoldlocks);
+static int eraseoldlocks(void);
 #endif
 
 #if 0

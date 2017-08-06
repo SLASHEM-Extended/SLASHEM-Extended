@@ -134,12 +134,12 @@ extern char hackdir[];
 #define ABORT C('a')
 #define getuid() 1
 #define getlogin() ((char *)0)
-extern void NDECL(win32_abort);
+extern void win32_abort(void);
 #ifdef WIN32CON
 extern void nttty_preference_update(const char *);
-extern void NDECL(toggle_mouse_support);
+extern void toggle_mouse_support(void);
 extern void map_subkeyvalue(char *);
-extern void NDECL(load_keyboard_handler);
+extern void load_keyboard_handler(void);
 #endif
 
 #include <fcntl.h>

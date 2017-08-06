@@ -3,29 +3,29 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 /* amidos.c */
-void NDECL(flushout );
+void flushout (void);
 #ifndef	getuid
-int NDECL(getuid );
+int getuid (void);
 #endif
 #ifndef	getpid
-int NDECL(getpid );
+int getpid (void);
 #endif
 #ifndef	getlogin
-char *NDECL(getlogin );
+char *getlogin (void);
 #endif
 #ifndef	abs
 int abs(int );
 #endif
-int NDECL(tgetch );
-int NDECL(dosh );
+int tgetch (void);
+int dosh (void);
 long freediskspace(char *);
 long filesize(char *);
 void eraseall(const char * , const char *);
 char *CopyFile(const char * , const char *);
 void copybones(int );
-void NDECL(playwoRAMdisk );
+void playwoRAMdisk (void);
 int saveDiskPrompt(int );
-void NDECL(gameDiskPrompt );
+void gameDiskPrompt (void);
 void append_slash(char *);
 void getreturn(const char *);
 #ifndef msmsg

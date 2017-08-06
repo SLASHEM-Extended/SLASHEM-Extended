@@ -151,27 +151,27 @@ struct TextItem
  * with a capital `S'.  Everything else has a lowercase `s'.
  */
 E void Sdlgl_init_nhwindows(int *, char **);
-E void NDECL(Sdlgl_get_nh_event) ;
+E void Sdlgl_get_nh_event(void) ;
 E void Sdlgl_exit_nhwindows(const char *);
 E void Sdlgl_suspend_nhwindows(const char *);
-E void NDECL(Sdlgl_resume_nhwindows);
-E void NDECL(Sdlgl_update_inventory);
-E void NDECL(Sdlgl_mark_synch);
-E void NDECL(Sdlgl_wait_synch);
+E void Sdlgl_resume_nhwindows(void);
+E void Sdlgl_update_inventory(void);
+E void Sdlgl_mark_synch(void);
+E void Sdlgl_wait_synch(void);
 E void Sdlgl_raw_print(const char *);
 E void Sdlgl_raw_print_bold(const char *);
-E int NDECL(Sdlgl_nhgetch);
+E int Sdlgl_nhgetch(void);
 E int Sdlgl_nh_poskey(int *, int *, int *);
-E void NDECL(Sdlgl_nhbell);
+E void Sdlgl_nhbell(void);
 E void Sdlgl_number_pad(int);
-E void NDECL(Sdlgl_delay_output);
+E void Sdlgl_delay_output(void);
 
 E void sdlgl_warning(const char *, ...) PRINTF_F(1,2);
 E void sdlgl_error(const char *, ...) PRINTF_F(1,2);
 E void sdlgl_hangup(const char *, ...) PRINTF_F(1,2);
 
 E void sdlgl_sleep(int);
-E int NDECL(sdlgl_get_time);
+E int sdlgl_get_time(void);
 E int sdlgl_get_poskey(int, int *, int *, int *);
 E int sdlgl_get_key(int);
 
@@ -224,8 +224,8 @@ extern int sdlgl_invis_fx;
 extern int sdlgl_gamma;
 
 E void sdlgl_parse_cmdline_options(int *, char **);
-E void NDECL(sdlgl_validate_wincap_options);
-E void NDECL(sdlgl_validate_gl_options);
+E void sdlgl_validate_wincap_options(void);
+E void sdlgl_validate_gl_options(void);
 E void Sdlgl_preference_update(const char *);
 
 
@@ -240,7 +240,7 @@ E void Sdlgl_preference_update(const char *);
  * GL_ROLE
  */
 
-E void NDECL(Sdlgl_player_selection);
+E void Sdlgl_player_selection(void);
 
 
 /*
@@ -278,13 +278,13 @@ struct GraphicUnit
   float trans;
 };
 
-E void NDECL(sdlgl_unit_startup);
-E void NDECL(sdlgl_unit_shutdown);
+E void sdlgl_unit_startup(void);
+E void sdlgl_unit_shutdown(void);
 
 E void sdlgl_begin_units(int, int);
 E void sdlgl_add_unit(GLuint,float,float,float,float,
       short,short,short,short,short,rgbcol_t,float);
-E void NDECL(sdlgl_finish_units);
+E void sdlgl_finish_units(void);
 
 E void sdlgl_hw_make_screenshot(const char *);
 
@@ -502,20 +502,20 @@ struct TileWindow
 
 extern struct TileSet *sdlgl_tiles;
 
-E void NDECL(sdlgl_tile_startup);
-E void NDECL(sdlgl_tile_shutdown);
-E void NDECL(sdlgl_tile_load_rest);
-E void NDECL(sdlgl_start_logo);
-E int NDECL(sdlgl_iterate_logo);
+E void sdlgl_tile_startup(void);
+E void sdlgl_tile_shutdown(void);
+E void sdlgl_tile_load_rest(void);
+E void sdlgl_start_logo(void);
+E int sdlgl_iterate_logo(void);
 E int sdlgl_display_RIP(int);
-E void NDECL(sdlgl_dismiss_RIP);
+E void sdlgl_dismiss_RIP(void);
 
 E struct TileWindow *sdlgl_new_tilewin(struct TileSet *, int, int, int, int);
 E void sdlgl_map_tilewin(struct TileWindow *, int, int, int, int, int);
 E void sdlgl_unmap_tilewin(struct TileWindow *);
 E void sdlgl_free_tilewin(struct TileWindow *);
 E void sdlgl_change_tileset(struct TileWindow *, struct TileSet *, int);
-E void NDECL(sdlgl_flush);
+E void sdlgl_flush(void);
 
 E void sdlgl_add_extrashape(struct TileWindow *, enum ShapeType, short, short, int, int);
 E void sdlgl_remove_extrashapes(struct TileWindow *, short, short);
@@ -558,9 +558,9 @@ extern unsigned char sdlgl_gamma_table[256];
 
 E int sdlgl_quantize_tile_size(int);
 E int sdlgl_mon_tile_face_dir(tileidx_t);
-E void NDECL(sdlgl_generate_gamma_table);
-E void NDECL(sdlgl_init_mouse_cursors);
-E void NDECL(sdlgl_free_mouse_cursors);
+E void sdlgl_generate_gamma_table(void);
+E void sdlgl_init_mouse_cursors(void);
+E void sdlgl_free_mouse_cursors(void);
 
 E void sdlgl_load_face_dirs(const char *, char *);
 E unsigned char * sdlgl_load_png_file(const char*, int*, int*);
@@ -642,8 +642,8 @@ extern struct TileSet *sdlgl_font_menu;
 extern struct TileSet *sdlgl_font_message;
 extern struct TileSet *sdlgl_font_status;
 
-E void NDECL(sdlgl_font_startup);
-E void NDECL(sdlgl_font_shutdown);
+E void sdlgl_font_startup(void);
+E void sdlgl_font_shutdown(void);
 E int sdlgl_quantize_font(int);
 E struct TileSet *sdlgl_next_narrower_font(int);
 
@@ -655,28 +655,28 @@ E struct TileSet *sdlgl_next_narrower_font(int);
  */
 struct rendering_procs
 {
-  void NDECL((*rend_startup));
-  void NDECL((*rend_shutdown));
+  void (*rend_startup)(void);
+  void (*rend_shutdown)(void);
   struct TileSet* (*load_tileset)(const char *, int, int, int, int, int *, int *);
   void (*free_tileset)(struct TileSet *);
-  void NDECL((*create_extra_graphics));
-  void NDECL((*free_extra_shapes));
+  void (*create_extra_graphics)(void);
+  void (*free_extra_shapes)(void);
 
   void (*enable_clipper)(int, int, int, int);
-  void NDECL((*disable_clipper));
-  void NDECL((*blit_frame));
+  void (*disable_clipper)(void);
+  void (*blit_frame)(void);
 
   void (*draw_background)(int, int, int, int, rgbcol_t, int, int);
   void (*draw_extra_shape)(struct TileWindow *, struct ExtraShape *);
   void (*draw_cursor)(struct TileWindow *);
   void (*begin_tile_draw)(int, int);
   void (*draw_tile)(struct TileWindow *, int, int, int, int, tileidx_t, tilecol_t, tileflags_t, short);
-  void NDECL((*finish_tile_draw));
+  void (*finish_tile_draw)(void);
   void (*draw_border)(struct TileWindow *, rgbcol_t);
 
   void (*start_fading)(int, int);
   void (*draw_fading)(float);
-  void NDECL((*finish_fading));
+  void (*finish_fading)(void);
   void (*make_screenshot)(const char *);
 
   void (*set_pan)(struct TileWindow *, int, int);
@@ -1034,13 +1034,13 @@ E void Sdlgl_destroy_nhwindow(winid);
 E void Sdlgl_curs(winid,int,int);
 E void Sdlgl_putstr(winid, int, const char *);
 E void Sdlgl_outrip(winid,int);
-E int NDECL(Sdlgl_doprev_message);
+E int Sdlgl_doprev_message(void);
 
-E void NDECL(sdlgl_win_startup);
-E void NDECL(sdlgl_win_shutdown);
+E void sdlgl_win_startup(void);
+E void sdlgl_win_shutdown(void);
 E void sdlgl_more(struct TextWindow *);
 E void sdlgl_adjust_scrollback(struct TextWindow *, int);
-E void NDECL(sdlgl_remove_scrollback);
+E void sdlgl_remove_scrollback(void);
 E void sdlgl_pan_window(int, int, int);
 E tilecol_t sdlgl_attr_to_tilecol(int attr);
 E void sdlgl_update_mouse_location(int);
@@ -1111,9 +1111,9 @@ E void Sdlgl_print_glyph(winid,XCHAR_P,XCHAR_P,int);
 E void sdlgl_create_map(struct TextWindow *, int, int);
 E void sdlgl_zoom_map(int);
 E int sdlgl_quantize_zoom(int);
-E int NDECL(sdlgl_cursor_visible);
-E void NDECL(sdlgl_center_screen_on_player);
-E void NDECL(sdlgl_toggle_text_view);
+E int sdlgl_cursor_visible(void);
+E void sdlgl_center_screen_on_player(void);
+E void sdlgl_toggle_text_view(void);
 E int sdlgl_find_click(int, int *, int *);
 E void sdlgl_pan_map_window(int, int);
 
@@ -1122,13 +1122,13 @@ E void sdlgl_pan_map_window(int, int);
  * GL_EMUL
  */
 
-E void NDECL(sdlgl_emul_startup);
-E void NDECL(sdlgl_emul_shutdown);
-E void NDECL(Sdlgl_start_screen);
-E void NDECL(Sdlgl_end_screen);
-E void NDECL(Sdlgl_askname);
+E void sdlgl_emul_startup(void);
+E void sdlgl_emul_shutdown(void);
+E void Sdlgl_start_screen(void);
+E void Sdlgl_end_screen(void);
+E void Sdlgl_askname(void);
 E void Sdlgl_getlin(const char *,char *);
-E int NDECL(Sdlgl_get_ext_cmd);
+E int Sdlgl_get_ext_cmd(void);
 
 E struct TextWindow *sdlgl_new_textwin(int);
 E void sdlgl_free_textwin(struct TextWindow *);
