@@ -1869,9 +1869,6 @@ case 143:
 			tmpobj[nobj]->containment = 0;
 			tmpobj[nobj]->x = current_coord.x;
 			tmpobj[nobj]->y = current_coord.y;
-			if (!in_room)
-			    check_coord(current_coord.x, current_coord.y,
-					"Object");
 		  }
 break;
 case 144:
@@ -2433,9 +2430,6 @@ case 193:
 			tmpgold[ngold]->x = current_coord.x;
 			tmpgold[ngold]->y = current_coord.y;
 			tmpgold[ngold]->amount = yyvsp[-2].i;
-			if (!in_room)
-			    check_coord(current_coord.x, current_coord.y,
-					"Gold");
 			ngold++;
 			if (ngold >= MAX_OF_TYPE) {
 				yyerror("Too many golds in room or mazepart!");

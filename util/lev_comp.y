@@ -958,9 +958,6 @@ object_where	: coordinate
 			tmpobj[nobj]->containment = 0;
 			tmpobj[nobj]->x = current_coord.x;
 			tmpobj[nobj]->y = current_coord.y;
-			if (!in_room)
-			    check_coord(current_coord.x, current_coord.y,
-					"Object");
 		  }
 		| CONTAINED
 		  {
@@ -1540,9 +1537,6 @@ gold_detail	: GOLD_ID ':' amount ',' coordinate
 			tmpgold[ngold]->x = current_coord.x;
 			tmpgold[ngold]->y = current_coord.y;
 			tmpgold[ngold]->amount = $<i>3;
-			if (!in_room)
-			    check_coord(current_coord.x, current_coord.y,
-					"Gold");
 			ngold++;
 			if (ngold >= MAX_OF_TYPE) {
 				yyerror("Too many golds in room or mazepart!");
