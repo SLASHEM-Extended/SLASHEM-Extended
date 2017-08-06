@@ -90,14 +90,14 @@ char **argv;
 	if (argv[1][1] == 's') {
 	    seq = atoi(argv[1] + 2);
 	    if (seq < MON_GLYPH || seq > OTH_GLYPH) {
-		Fprintf(stderr, "txtbg: Illegal sequence number %d\n", seq);
+		fprintf(stderr, "txtbg: Illegal sequence number %d\n", seq);
 		exit(EXIT_FAILURE);
 	    }
 	}
     }
 
     if (argc != 3) {
-	Fprintf(stderr, "usage: txtbg [-s<seq>] infile outfile\n");
+	fprintf(stderr, "usage: txtbg [-s<seq>] infile outfile\n");
 	exit(EXIT_FAILURE);
     }
 
@@ -116,7 +116,7 @@ char **argv;
     }
 
     if (!seq) {
-	Fprintf(stderr,
+	fprintf(stderr,
 	  "txtbg: Unable to determine sequence number (use -s)\n");
 	exit(EXIT_FAILURE);
     }

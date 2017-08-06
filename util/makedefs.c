@@ -38,9 +38,6 @@
 # define SpinCursor(x)
 #endif
 
-#define Fprintf	(void) fprintf
-#define Fclose	(void) fclose
-#define Unlink	(void) unlink
 #if !defined(AMIGA) || defined(AZTEC_C)
 #define rewind(fp) fseek((fp),0L,SEEK_SET)	/* guarantee a return value */
 #endif
@@ -273,7 +270,7 @@ char	*argv[];
 		&& (argc != 3)
 #endif
 	) {
-	    Fprintf(stderr, "Bad arg count (%d).\n", argc-1);
+	    fprintf(stderr, "Bad arg count (%d).\n", argc-1);
 	    (void) fflush(stderr);
 	    return 1;
 	}
@@ -309,7 +306,7 @@ char	*options;
 	more_than_one = strlen(options) > 1;
 	while (*options) {
 	    if (more_than_one)
-		Fprintf(stderr, "makedefs -%c\n", *options);
+		fprintf(stderr, "makedefs -%c\n", *options);
 
 	    switch (*options) {
 		case 'o':
@@ -356,7 +353,7 @@ char	*options;
 		case 'z':
 		case 'Z':	do_vision();
 				break;
-		default:	Fprintf(stderr,	"Unknown option '%c'.\n",
+		default:	fprintf(stderr,	"Unknown option '%c'.\n",
 					*options);
 				(void) fflush(stderr);
 				exit(EXIT_FAILURE);
@@ -364,7 +361,7 @@ char	*options;
 	    }
 	    options++;
 	}
-	if (more_than_one) Fprintf(stderr, "Completed.\n");	/* feedback */
+	if (more_than_one) fprintf(stderr, "Completed.\n");	/* feedback */
 
 }
 
@@ -404,14 +401,14 @@ do_rumors()
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,Dont_Edit_Data);
+	fprintf(ofp,Dont_Edit_Data);
 
 	sprintf(infile, DATA_IN_TEMPLATE, RUMOR_FILE);
 	strcat(infile, ".tru");
 	if (!(ifp = fopen(infile, RDTMODE))) {
 		perror(infile);
-		Fclose(ofp);
-		Unlink(filename);	/* kill empty output file */
+		fclose(ofp);
+		unlink(filename);	/* kill empty output file */
 		exit(EXIT_FAILURE);
 	}
 
@@ -427,21 +424,21 @@ do_rumors()
 	while (fgets(in_line, sizeof in_line, ifp) != 0)
 		true_rumor_size += strlen(in_line);	/* includes newline */
 #endif /* VMS */
-	Fprintf(ofp,"%06lx\n", true_rumor_size);
+	fprintf(ofp,"%06lx\n", true_rumor_size);
 	(void) fseek(ifp, 0L, SEEK_SET);
 
 	/* copy true rumors */
 	while (fgets(in_line, sizeof in_line, ifp) != 0)
 		(void) fputs(xcrypt(in_line), ofp);
 
-	Fclose(ifp);
+	fclose(ifp);
 
 	sprintf(infile, DATA_IN_TEMPLATE, RUMOR_FILE);
 	strcat(infile, ".fal");
 	if (!(ifp = fopen(infile, RDTMODE))) {
 		perror(infile);
-		Fclose(ofp);
-		Unlink(filename);	/* kill incomplete output file */
+		fclose(ofp);
+		unlink(filename);	/* kill incomplete output file */
 		exit(EXIT_FAILURE);
 	}
 
@@ -449,8 +446,8 @@ do_rumors()
 	while (fgets(in_line, sizeof in_line, ifp) != 0)
 		(void) fputs(xcrypt(in_line), ofp);
 
-	Fclose(ifp);
-	Fclose(ofp);
+	fclose(ifp);
+	fclose(ofp);
 	free(infile);
 	return;
 }
@@ -615,8 +612,8 @@ int verinfo;
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,"/*\tSCCS Id: @(#)date.h\t3.4\t2002/02/03 */\n\n");
-	Fprintf(ofp,Dont_Edit_Code);
+	fprintf(ofp,"/*\tSCCS Id: @(#)date.h\t3.4\t2002/02/03 */\n\n");
+	fprintf(ofp,Dont_Edit_Code);
 
 #ifdef KR1ED
 	(void) time(&clocktim);
@@ -633,37 +630,37 @@ int verinfo;
 	ul_sfx = "L";
 #endif
 	if (!verinfo) {
-		Fprintf(ofp,"#define BUILD_DATE \"%s\"\n", cbuf);
-		Fprintf(ofp,"#define BUILD_TIME (%ldL)\n", clocktim);
+		fprintf(ofp,"#define BUILD_DATE \"%s\"\n", cbuf);
+		fprintf(ofp,"#define BUILD_TIME (%ldL)\n", clocktim);
 	}
-	Fprintf(ofp,"\n");
-	Fprintf(ofp,"#define VERSION_NUMBER 0x%08lx%s\n",
+	fprintf(ofp,"\n");
+	fprintf(ofp,"#define VERSION_NUMBER 0x%08lx%s\n",
 		version.incarnation, ul_sfx);
-	Fprintf(ofp,"#define VERSION_FEATURES 0x%08lx%s\n",
+	fprintf(ofp,"#define VERSION_FEATURES 0x%08lx%s\n",
 		version.feature_set, ul_sfx);
 #ifdef IGNORED_FEATURES
-	Fprintf(ofp,"#define IGNORED_FEATURES 0x%08lx%s\n",
+	fprintf(ofp,"#define IGNORED_FEATURES 0x%08lx%s\n",
 		(unsigned long) IGNORED_FEATURES, ul_sfx);
 #endif
-	Fprintf(ofp,"#define VERSION_SANITY1 0x%08lx%s\n",
+	fprintf(ofp,"#define VERSION_SANITY1 0x%08lx%s\n",
 		version.entity_count, ul_sfx);
-	Fprintf(ofp,"#define VERSION_SANITY2 0x%08lx%s\n",
+	fprintf(ofp,"#define VERSION_SANITY2 0x%08lx%s\n",
 		version.struct_sizes, ul_sfx);
-	Fprintf(ofp,"\n");
-	Fprintf(ofp,"#define VERSION_STRING \"%s\"\n", version_string(buf));
+	fprintf(ofp,"\n");
+	fprintf(ofp,"#define VERSION_STRING \"%s\"\n", version_string(buf));
 	if (!verinfo)
-		Fprintf(ofp,"#define VERSION_ID \\\n \"%s\"\n",
+		fprintf(ofp,"#define VERSION_ID \\\n \"%s\"\n",
 			version_id_string(buf, cbuf));
 #ifdef AMIGA
 	{
 	struct tm *tm = localtime((time_t *) &clocktim);
-	Fprintf(ofp,"#define AMIGA_VERSION_STRING ");
-	Fprintf(ofp,"\"\\0$VER: NetHack %d.%d.%d (%d.%d.%d)\"\n",
+	fprintf(ofp,"#define AMIGA_VERSION_STRING ");
+	fprintf(ofp,"\"\\0$VER: NetHack %d.%d.%d (%d.%d.%d)\"\n",
 		VERSION_MAJOR, VERSION_MINOR, PATCHLEVEL,
 		tm->tm_mday, tm->tm_mon+1, tm->tm_year+1900);
 	}
 #endif
-	Fclose(ofp);
+	fclose(ofp);
 	free(cbuf);
 	return;
 }
@@ -966,51 +963,51 @@ do_options()
 	}
 
 	build_savebones_compat_string();
-	Fprintf(ofp,"\n    %s version %d.%d.%d",
+	fprintf(ofp,"\n    %s version %d.%d.%d",
 		DEF_GAME_NAME, VERSION_MAJOR, VERSION_MINOR, PATCHLEVEL);
 #ifdef EDITLEVEL
-	Fprintf(ofp, "E%d", EDITLEVEL);
+	fprintf(ofp, "E%d", EDITLEVEL);
 #ifdef FIXLEVEL
-	Fprintf(ofp, "F%d", FIXLEVEL);
+	fprintf(ofp, "F%d", FIXLEVEL);
 #endif
 #endif
 #if defined(ALPHA)
-	Fprintf(ofp, " [alpha]\n");
+	fprintf(ofp, " [alpha]\n");
 #elif defined(BETA)
-	Fprintf(ofp, " [beta]\n");
+	fprintf(ofp, " [beta]\n");
 #else
-	Fprintf(ofp, "\n");
+	fprintf(ofp, "\n");
 #endif
 
-	Fprintf(ofp,"\nOptions compiled into this edition:\n");
+	fprintf(ofp,"\nOptions compiled into this edition:\n");
 
 	length = COLNO + 1;	/* force 1st item onto new line */
 	for (i = 0; i < SIZE(build_opts); i++) {
 	    str = build_opts[i];
 	    if (length + strlen(str) > COLNO - 5)
-		Fprintf(ofp,"\n%s", indent),  length = strlen(indent);
+		fprintf(ofp,"\n%s", indent),  length = strlen(indent);
 	    else
-		Fprintf(ofp," "),  length++;
-	    Fprintf(ofp,"%s", str),  length += strlen(str);
-	    Fprintf(ofp,(i < SIZE(build_opts) - 1) ? "," : "."),  length++;
+		fprintf(ofp," "),  length++;
+	    fprintf(ofp,"%s", str),  length += strlen(str);
+	    fprintf(ofp,(i < SIZE(build_opts) - 1) ? "," : "."),  length++;
 	}
 
-	Fprintf(ofp,"\n\nSupported windowing systems:\n");
+	fprintf(ofp,"\n\nSupported windowing systems:\n");
 
 	length = COLNO + 1;	/* force 1st item onto new line */
 	for (i = 0; i < SIZE(window_opts) - 1; i++) {
 	    str = window_opts[i];
 	    if (length + strlen(str) > COLNO - 5)
-		Fprintf(ofp,"\n%s", indent),  length = strlen(indent);
+		fprintf(ofp,"\n%s", indent),  length = strlen(indent);
 	    else
-		Fprintf(ofp," "),  length++;
-	    Fprintf(ofp,"%s", str),  length += strlen(str);
-	    Fprintf(ofp, ","),  length++;
+		fprintf(ofp," "),  length++;
+	    fprintf(ofp,"%s", str),  length += strlen(str);
+	    fprintf(ofp, ","),  length++;
 	}
-	Fprintf(ofp, "\n%swith a default of %s.", indent, DEFAULT_WINDOW_SYS);
-	Fprintf(ofp,"\n\n");
+	fprintf(ofp, "\n%swith a default of %s.", indent, DEFAULT_WINDOW_SYS);
+	fprintf(ofp,"\n\n");
 
-	Fclose(ofp);
+	fclose(ofp);
 	return;
 }
 
@@ -1069,20 +1066,20 @@ do_data()
 	}
 	if (!(ofp = fopen(filename, WRTMODE))) {	/* data */
 		perror(filename);
-		Fclose(ifp);
+		fclose(ifp);
 		exit(EXIT_FAILURE);
 	}
 	free(infile);
 	if (!(tfp = fopen(tempfile, WRTMODE))) {	/* database.tmp */
 		perror(tempfile);
-		Fclose(ifp);
-		Fclose(ofp);
-		Unlink(filename);
+		fclose(ifp);
+		fclose(ofp);
+		unlink(filename);
 		exit(EXIT_FAILURE);
 	}
 
 	/* output a dummy header record; we'll rewind and overwrite it later */
-	Fprintf(ofp, "%s%08lx\n", Dont_Edit_Data, 0L);
+	fprintf(ofp, "%s%08lx\n", Dont_Edit_Data, 0L);
 
 	entry_cnt = line_cnt = 0;
 	/* read through the input file and split it into two sections */
@@ -1090,23 +1087,23 @@ do_data()
 	    if (d_filter(in_line)) continue;
 	    if (*in_line > ' ') {	/* got an entry name */
 		/* first finish previous entry */
-		if (line_cnt)  Fprintf(ofp, "%d\n", line_cnt),  line_cnt = 0;
+		if (line_cnt)  fprintf(ofp, "%d\n", line_cnt),  line_cnt = 0;
 		/* output the entry name */
 		(void) fputs(in_line, ofp);
 		entry_cnt++;		/* update number of entries */
 	    } else if (entry_cnt) {	/* got some descriptive text */
 		/* update previous entry with current text offset */
-		if (!line_cnt)  Fprintf(ofp, "%ld,", ftell(tfp));
+		if (!line_cnt)  fprintf(ofp, "%ld,", ftell(tfp));
 		/* save the text line in the scratch file */
 		(void) fputs(in_line, tfp);
 		line_cnt++;		/* update line counter */
 	    }
 	}
 	/* output an end marker and then record the current position */
-	if (line_cnt)  Fprintf(ofp, "%d\n", line_cnt);
-	Fprintf(ofp, ".\n%ld,%d\n", ftell(tfp), 0);
+	if (line_cnt)  fprintf(ofp, "%d\n", line_cnt);
+	fprintf(ofp, ".\n%ld,%d\n", ftell(tfp), 0);
 	txt_offset = ftell(ofp);
-	Fclose(ifp);		/* all done with original input file */
+	fclose(ifp);		/* all done with original input file */
 
 	/* reprocess the scratch file; 1st format an error msg, just in case */
 	sprintf(in_line, "rewind of \"%s\"", tempfile);
@@ -1116,8 +1113,8 @@ do_data()
 	    (void) fputs(in_line, ofp);
 
 	/* finished with scratch file */
-	Fclose(tfp);
-	Unlink(tempfile);	/* remove it */
+	fclose(tfp);
+	unlink(tempfile);	/* remove it */
 	free(tempfile);
 
 	/* update the first record of the output file; prepare error msg 1st */
@@ -1130,13 +1127,13 @@ do_data()
 	if (!ok) {
 dead_data:  perror(in_line);	/* report the problem */
 	    /* close and kill the aborted output file, then give up */
-	    Fclose(ofp);
-	    Unlink(filename);
+	    fclose(ofp);
+	    unlink(filename);
 	    exit(EXIT_FAILURE);
 	}
 
 	/* all done */
-	Fclose(ofp);
+	fclose(ofp);
 
 	return;
 }
@@ -1206,23 +1203,23 @@ do_oracles()
 	free(infile);
 	if (!(ofp = fopen(filename, WRTMODE))) {
 		perror(filename);
-		Fclose(ifp);
+		fclose(ifp);
 		exit(EXIT_FAILURE);
 	}
 	if (!(tfp = fopen(tempfile, WRTMODE))) {	/* oracles.tmp */
 		perror(tempfile);
-		Fclose(ifp);
-		Fclose(ofp);
-		Unlink(filename);
+		fclose(ifp);
+		fclose(ofp);
+		unlink(filename);
 		exit(EXIT_FAILURE);
 	}
 
 	/* output a dummy header record; we'll rewind and overwrite it later */
-	Fprintf(ofp, "%s%5d\n", Dont_Edit_Data, 0);
+	fprintf(ofp, "%s%5d\n", Dont_Edit_Data, 0);
 
 	/* handle special oracle; it must come first */
 	(void) fputs("---\n", tfp);
-	Fprintf(ofp, "%05lx\n", ftell(tfp));  /* start pos of special oracle */
+	fprintf(ofp, "%05lx\n", ftell(tfp));  /* start pos of special oracle */
 	for (i = 0; i < SIZE(special_oracle); i++) {
 	    (void) fputs(xcrypt(special_oracle[i]), tfp);
 	    (void) fputc('\n', tfp);
@@ -1231,7 +1228,7 @@ do_oracles()
 
 	oracle_cnt = 1;
 	(void) fputs("---\n", tfp);
-	Fprintf(ofp, "%05lx\n", ftell(tfp));	/* start pos of first oracle */
+	fprintf(ofp, "%05lx\n", ftell(tfp));	/* start pos of first oracle */
 	in_oracle = FALSE;
 
 	while (fgets(in_line, sizeof in_line, ifp)) {
@@ -1243,7 +1240,7 @@ do_oracles()
 		in_oracle = FALSE;
 		oracle_cnt++;
 		(void) fputs("---\n", tfp);
-		Fprintf(ofp, "%05lx\n", ftell(tfp));
+		fprintf(ofp, "%05lx\n", ftell(tfp));
 		/* start pos of this oracle */
 	    } else {
 		in_oracle = TRUE;
@@ -1254,12 +1251,12 @@ do_oracles()
 	if (in_oracle) {	/* need to terminate last oracle */
 	    oracle_cnt++;
 	    (void) fputs("---\n", tfp);
-	    Fprintf(ofp, "%05lx\n", ftell(tfp));	/* eof position */
+	    fprintf(ofp, "%05lx\n", ftell(tfp));	/* eof position */
 	}
 
 	/* record the current position */
 	txt_offset = ftell(ofp);
-	Fclose(ifp);		/* all done with original input file */
+	fclose(ifp);		/* all done with original input file */
 
 	/* reprocess the scratch file; 1st format an error msg, just in case */
 	sprintf(in_line, "rewind of \"%s\"", tempfile);
@@ -1269,8 +1266,8 @@ do_oracles()
 	    (void) fputs(in_line, ofp);
 
 	/* finished with scratch file */
-	Fclose(tfp);
-	Unlink(tempfile);	/* remove it */
+	fclose(tfp);
+	unlink(tempfile);	/* remove it */
 	free(tempfile);
 
 	/* update the first record of the output file; prepare error msg 1st */
@@ -1310,14 +1307,14 @@ dead_data:  perror(in_line);	/* report the problem */
 	    /* close and kill the aborted output file, then give up */
 	    /* KMH -- I don't know why it fails */
 #ifndef MAC
-	    Fclose(ofp);
-	    Unlink(filename);
+	    fclose(ofp);
+	    unlink(filename);
 	    exit(EXIT_FAILURE);
 #endif
 	}
 
 	/* all done */
-	Fclose(ofp);
+	fclose(ofp);
 
 	return;
 }
@@ -1376,7 +1373,7 @@ do_dungeon()
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,Dont_Edit_Data);
+	fprintf(ofp,Dont_Edit_Data);
 
 	while (fgets(in_line, sizeof in_line, ifp) != 0) {
 	    SpinCursor(3);
@@ -1393,15 +1390,15 @@ recheck:
 		    } else
 			(void) fputs(without_control(in_line),ofp);
 		} else {
-		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+		    fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
 			    in_line, DGN_I_FILE, rcnt);
 		    exit(EXIT_FAILURE);
 		}
 	    } else
 		(void) fputs(in_line,ofp);
 	}
-	Fclose(ifp);
-	Fclose(ofp);
+	fclose(ifp);
+	fclose(ofp);
 
 	sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE2);
 	if (!(ifp = fopen(filename, RDTMODE))) {
@@ -1417,7 +1414,7 @@ recheck:
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,Dont_Edit_Data);
+	fprintf(ofp,Dont_Edit_Data);
 
 	while (fgets(in_line, sizeof in_line, ifp) != 0) {
 	    SpinCursor(3);
@@ -1434,15 +1431,15 @@ recheck2:
 		    } else
 			(void) fputs(without_control(in_line),ofp);
 		} else {
-		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+		    fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
 			    in_line, DGN_I_FILE2, rcnt);
 		    exit(EXIT_FAILURE);
 		}
 	    } else
 		(void) fputs(in_line,ofp);
 	}
-	Fclose(ifp);
-	Fclose(ofp);
+	fclose(ifp);
+	fclose(ofp);
 
 	sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE3);
 	if (!(ifp = fopen(filename, RDTMODE))) {
@@ -1458,7 +1455,7 @@ recheck2:
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,Dont_Edit_Data);
+	fprintf(ofp,Dont_Edit_Data);
 
 	while (fgets(in_line, sizeof in_line, ifp) != 0) {
 	    SpinCursor(3);
@@ -1475,15 +1472,15 @@ recheck3:
 		    } else
 			(void) fputs(without_control(in_line),ofp);
 		} else {
-		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+		    fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
 			    in_line, DGN_I_FILE3, rcnt);
 		    exit(EXIT_FAILURE);
 		}
 	    } else
 		(void) fputs(in_line,ofp);
 	}
-	Fclose(ifp);
-	Fclose(ofp);
+	fclose(ifp);
+	fclose(ofp);
 
 	sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE4);
 	if (!(ifp = fopen(filename, RDTMODE))) {
@@ -1499,7 +1496,7 @@ recheck3:
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,Dont_Edit_Data);
+	fprintf(ofp,Dont_Edit_Data);
 
 	while (fgets(in_line, sizeof in_line, ifp) != 0) {
 	    SpinCursor(3);
@@ -1516,15 +1513,15 @@ recheck4:
 		    } else
 			(void) fputs(without_control(in_line),ofp);
 		} else {
-		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+		    fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
 			    in_line, DGN_I_FILE4, rcnt);
 		    exit(EXIT_FAILURE);
 		}
 	    } else
 		(void) fputs(in_line,ofp);
 	}
-	Fclose(ifp);
-	Fclose(ofp);
+	fclose(ifp);
+	fclose(ofp);
 
 	sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE5);
 	if (!(ifp = fopen(filename, RDTMODE))) {
@@ -1540,7 +1537,7 @@ recheck4:
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,Dont_Edit_Data);
+	fprintf(ofp,Dont_Edit_Data);
 
 	while (fgets(in_line, sizeof in_line, ifp) != 0) {
 	    SpinCursor(3);
@@ -1557,15 +1554,15 @@ recheck5:
 		    } else
 			(void) fputs(without_control(in_line),ofp);
 		} else {
-		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+		    fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
 			    in_line, DGN_I_FILE5, rcnt);
 		    exit(EXIT_FAILURE);
 		}
 	    } else
 		(void) fputs(in_line,ofp);
 	}
-	Fclose(ifp);
-	Fclose(ofp);
+	fclose(ifp);
+	fclose(ofp);
 
 	sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE6);
 	if (!(ifp = fopen(filename, RDTMODE))) {
@@ -1581,7 +1578,7 @@ recheck5:
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,Dont_Edit_Data);
+	fprintf(ofp,Dont_Edit_Data);
 
 	while (fgets(in_line, sizeof in_line, ifp) != 0) {
 	    SpinCursor(3);
@@ -1598,15 +1595,15 @@ recheck6:
 		    } else
 			(void) fputs(without_control(in_line),ofp);
 		} else {
-		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+		    fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
 			    in_line, DGN_I_FILE6, rcnt);
 		    exit(EXIT_FAILURE);
 		}
 	    } else
 		(void) fputs(in_line,ofp);
 	}
-	Fclose(ifp);
-	Fclose(ofp);
+	fclose(ifp);
+	fclose(ofp);
 
 	sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE7);
 	if (!(ifp = fopen(filename, RDTMODE))) {
@@ -1622,7 +1619,7 @@ recheck6:
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,Dont_Edit_Data);
+	fprintf(ofp,Dont_Edit_Data);
 
 	while (fgets(in_line, sizeof in_line, ifp) != 0) {
 	    SpinCursor(3);
@@ -1639,15 +1636,15 @@ recheck7:
 		    } else
 			(void) fputs(without_control(in_line),ofp);
 		} else {
-		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+		    fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
 			    in_line, DGN_I_FILE7, rcnt);
 		    exit(EXIT_FAILURE);
 		}
 	    } else
 		(void) fputs(in_line,ofp);
 	}
-	Fclose(ifp);
-	Fclose(ofp);
+	fclose(ifp);
+	fclose(ofp);
 
 	sprintf(filename, DATA_IN_TEMPLATE, DGN_I_FILE8);
 	if (!(ifp = fopen(filename, RDTMODE))) {
@@ -1663,7 +1660,7 @@ recheck7:
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,Dont_Edit_Data);
+	fprintf(ofp,Dont_Edit_Data);
 
 	while (fgets(in_line, sizeof in_line, ifp) != 0) {
 	    SpinCursor(3);
@@ -1680,15 +1677,15 @@ recheck8:
 		    } else
 			(void) fputs(without_control(in_line),ofp);
 		} else {
-		    Fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
+		    fprintf(stderr, "Unknown control option '%s' in file %s at line %d.\n",
 			    in_line, DGN_I_FILE8, rcnt);
 		    exit(EXIT_FAILURE);
 		}
 	    } else
 		(void) fputs(in_line,ofp);
 	}
-	Fclose(ifp);
-	Fclose(ofp);
+	fclose(ifp);
+	fclose(ofp);
 
 	return;
 }
@@ -1809,28 +1806,28 @@ do_monstr()
 	perror(filename);
 	exit(EXIT_FAILURE);
     }
-    Fprintf(ofp,Dont_Edit_Code);
-    Fprintf(ofp,"#include \"config.h\"\n");
-    Fprintf(ofp,"\nconst int monstr[] = {\n");
+    fprintf(ofp,Dont_Edit_Code);
+    fprintf(ofp,"#include \"config.h\"\n");
+    fprintf(ofp,"\nconst int monstr[] = {\n");
     for (ptr = &mons[0], j = 0; ptr->mlet; ptr++) {
 
 	SpinCursor(3);
 
 	i = mstrength(ptr);
-	Fprintf(ofp,"%2d,%c", i, (++j & 15) ? ' ' : '\n');
+	fprintf(ofp,"%2d,%c", i, (++j & 15) ? ' ' : '\n');
     }
     /* might want to insert a final 0 entry here instead of just newline */
-    Fprintf(ofp,"%s};\n", (j & 15) ? "\n" : "");
+    fprintf(ofp,"%s};\n", (j & 15) ? "\n" : "");
 
-    Fprintf(ofp,"\nvoid monstr_init(void);\n");
-    Fprintf(ofp,"\nvoid\n");
-    Fprintf(ofp,"monstr_init()\n");
-    Fprintf(ofp,"{\n");
-    Fprintf(ofp,"    return;\n");
-    Fprintf(ofp,"}\n");
-    Fprintf(ofp,"\n/*monstr.c*/\n");
+    fprintf(ofp,"\nvoid monstr_init(void);\n");
+    fprintf(ofp,"\nvoid\n");
+    fprintf(ofp,"monstr_init()\n");
+    fprintf(ofp,"{\n");
+    fprintf(ofp,"    return;\n");
+    fprintf(ofp,"}\n");
+    fprintf(ofp,"\n/*monstr.c*/\n");
 
-    Fclose(ofp);
+    fclose(ofp);
     return;
 }
 
@@ -1849,27 +1846,27 @@ do_permonst()
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,"/*\tSCCS Id: @(#)pm.h\t3.4\t2002/02/03 */\n\n");
-	Fprintf(ofp,Dont_Edit_Code);
-	Fprintf(ofp,"#ifndef PM_H\n#define PM_H\n");
+	fprintf(ofp,"/*\tSCCS Id: @(#)pm.h\t3.4\t2002/02/03 */\n\n");
+	fprintf(ofp,Dont_Edit_Code);
+	fprintf(ofp,"#ifndef PM_H\n#define PM_H\n");
 
 	if (strcmp(mons[0].mname, "playermon") != 0)
-		Fprintf(ofp,"\n#define\tPM_PLAYERMON\t(-1)");
+		fprintf(ofp,"\n#define\tPM_PLAYERMON\t(-1)");
 
 	for (i = 0; mons[i].mlet; i++) {
 		SpinCursor(3);
-		Fprintf(ofp,"\n#define\tPM_");
+		fprintf(ofp,"\n#define\tPM_");
 		if (mons[i].mlet == S_HUMAN &&
 				!strncmp(mons[i].mname, "were", 4))
-		    Fprintf(ofp, "HUMAN_");
+		    fprintf(ofp, "HUMAN_");
 		for (nam = c = tmpdup(mons[i].mname); *c; c++)
 		    if (*c >= 'a' && *c <= 'z') *c -= (char)('a' - 'A');
 		    else if (*c < 'A' || *c > 'Z') *c = '_';
-		Fprintf(ofp,"%s\t%d", nam, i);
+		fprintf(ofp,"%s\t%d", nam, i);
 	}
-	Fprintf(ofp,"\n\n#define\tNUMMONS\t%d\n", i);
-	Fprintf(ofp,"\n#endif /* PM_H */\n");
-	Fclose(ofp);
+	fprintf(ofp,"\n\n#define\tNUMMONS\t%d\n", i);
+	fprintf(ofp,"\n#endif /* PM_H */\n");
+	fclose(ofp);
 	return;
 }
 
@@ -1918,7 +1915,7 @@ new_id (code)
 	char *code;
 {
 	if(qt_hdr.n_hdr >= N_HDR) {
-	    Fprintf(stderr, OUT_OF_HEADERS, qt_line);
+	    fprintf(stderr, OUT_OF_HEADERS, qt_line);
 	    return(FALSE);
 	}
 
@@ -1949,7 +1946,7 @@ new_msg(s, num, id)
 	struct	qtmsg	*qt_msg;
 
 	if(msg_hdr[num].n_msg >= N_MSG) {
-		Fprintf(stderr, OUT_OF_MESSAGES, qt_line);
+		fprintf(stderr, OUT_OF_MESSAGES, qt_line);
 	} else {
 		qt_msg = &(msg_hdr[num].qt_msg[msg_hdr[num].n_msg++]);
 		qt_msg->msgnum = id;
@@ -1970,12 +1967,12 @@ do_qt_control(s)
 	switch(s[1]) {
 
 	    case 'C':	if(in_msg) {
-			    Fprintf(stderr, CREC_IN_MSG, qt_line);
+			    fprintf(stderr, CREC_IN_MSG, qt_line);
 			    break;
 			} else {
 			    in_msg = TRUE;
 			    if (sscanf(&s[4], "%s %5d", code, &id) != 2) {
-			    	Fprintf(stderr, UNREC_CREC, qt_line);
+			    	fprintf(stderr, UNREC_CREC, qt_line);
 			    	break;
 			    }
 			    num = get_hdr(code);
@@ -1983,18 +1980,18 @@ do_qt_control(s)
 			    	break;
 			    num = get_hdr(code)-1;
 			    if(known_msg(num, id))
-			    	Fprintf(stderr, DUP_MSG, qt_line);
+			    	fprintf(stderr, DUP_MSG, qt_line);
 			    else new_msg(s, num, id);
 			}
 			break;
 
 	    case 'E':	if(!in_msg) {
-			    Fprintf(stderr, END_NOT_IN_MSG, qt_line);
+			    fprintf(stderr, END_NOT_IN_MSG, qt_line);
 			    break;
 			} else in_msg = FALSE;
 			break;
 
-	    default:	Fprintf(stderr, UNREC_CREC, qt_line);
+	    default:	fprintf(stderr, UNREC_CREC, qt_line);
 			break;
 	}
 }
@@ -2004,7 +2001,7 @@ do_qt_text(s)
 	char *s;
 {
 	if (!in_msg) {
-	    Fprintf(stderr, TEXT_NOT_IN_MSG, qt_line);
+	    fprintf(stderr, TEXT_NOT_IN_MSG, qt_line);
 	}
 	curr_msg->size += strlen(s);
 	return;
@@ -2039,7 +2036,7 @@ put_qt_hdrs()
 	 *	The main header record.
 	 */
 #ifdef DEBUG
-	Fprintf(stderr, "%ld: header info.\n", ftell(ofp));
+	fprintf(stderr, "%ld: header info.\n", ftell(ofp));
 #endif
 	(void) fwrite((void *)&(qt_hdr.n_hdr), sizeof(int), 1, ofp);
 	(void) fwrite((void *)&(qt_hdr.id[0][0]), sizeof(char)*LEN_HDR,
@@ -2048,9 +2045,9 @@ put_qt_hdrs()
 							qt_hdr.n_hdr, ofp);
 #ifdef DEBUG
 	for(i = 0; i < qt_hdr.n_hdr; i++)
-		Fprintf(stderr, "%c @ %ld, ", qt_hdr.id[i], qt_hdr.offset[i]);
+		fprintf(stderr, "%c @ %ld, ", qt_hdr.id[i], qt_hdr.offset[i]);
 
-	Fprintf(stderr, "\n");
+	fprintf(stderr, "\n");
 #endif
 
 	/*
@@ -2059,7 +2056,7 @@ put_qt_hdrs()
 	for(i = 0; i < qt_hdr.n_hdr; i++) {
 
 #ifdef DEBUG
-	    Fprintf(stderr, "%ld: %c header info.\n", ftell(ofp),
+	    fprintf(stderr, "%ld: %c header info.\n", ftell(ofp),
 		    qt_hdr.id[i]);
 #endif
 	    (void) fwrite((void *)&(msg_hdr[i].n_msg), sizeof(int),
@@ -2069,7 +2066,7 @@ put_qt_hdrs()
 #ifdef DEBUG
 	    { int j;
 	      for(j = 0; j < msg_hdr[i].n_msg; j++)
-		Fprintf(stderr, "msg %d @ %ld (%ld)\n",
+		fprintf(stderr, "msg %d @ %ld (%ld)\n",
 			msg_hdr[i].qt_msg[j].msgnum,
 			msg_hdr[i].qt_msg[j].offset,
 			msg_hdr[i].qt_msg[j].size);
@@ -2095,7 +2092,7 @@ do_questtxt()
 	sprintf(eos(filename), DATA_TEMPLATE, QTXT_O_FILE);
 	if(!(ofp = fopen(filename, WRBMODE))) {
 		perror(filename);
-		Fclose(ifp);
+		fclose(ifp);
 		exit(EXIT_FAILURE);
 	}
 
@@ -2123,12 +2120,12 @@ do_questtxt()
 		    continue;
 		} else if(qt_comment(in_line)) continue;
 #ifdef DEBUG
-		Fprintf(stderr, "%ld: %s", ftell(stdout), in_line);
+		fprintf(stderr, "%ld: %s", ftell(stdout), in_line);
 #endif
 		(void) fputs(xcrypt(in_line), ofp);
 	}
-	Fclose(ifp);
-	Fclose(ofp);
+	fclose(ifp);
+	fclose(ofp);
 	return;
 }
 
@@ -2164,9 +2161,9 @@ do_objs()
 		perror(filename);
 		exit(EXIT_FAILURE);
 	}
-	Fprintf(ofp,"/*\tSCCS Id: @(#)onames.h\t3.4\t2002/02/03 */\n\n");
-	Fprintf(ofp,Dont_Edit_Code);
-	Fprintf(ofp,"#ifndef ONAMES_H\n#define ONAMES_H\n\n");
+	fprintf(ofp,"/*\tSCCS Id: @(#)onames.h\t3.4\t2002/02/03 */\n\n");
+	fprintf(ofp,Dont_Edit_Code);
+	fprintf(ofp,"#ifndef ONAMES_H\n#define ONAMES_H\n\n");
 
 	for(i = 0; !i || objects[i].oc_class != ILLOBJ_CLASS; i++) {
 		SpinCursor(3);
@@ -2177,7 +2174,7 @@ do_objs()
 		/* make sure probabilities add up to 10000 */
 		if(objects[i].oc_class != class) {
 			if (sum && sum != 10000) {
-			    Fprintf(stderr, "prob error for class %d (%d%%)",
+			    fprintf(stderr, "prob error for class %d (%d%%)",
 				    class, sum);
 			    (void) fflush(stderr);
 			    sumerr = TRUE;
@@ -2192,20 +2189,20 @@ do_objs()
 
 		switch (class) {
 		    case WAND_CLASS:
-			Fprintf(ofp,"#define\tWAN_"); prefix = 1; break;
+			fprintf(ofp,"#define\tWAN_"); prefix = 1; break;
 		    case RING_CLASS:
-			Fprintf(ofp,"#define\tRIN_"); prefix = 1; break;
+			fprintf(ofp,"#define\tRIN_"); prefix = 1; break;
 		    case POTION_CLASS:
-			Fprintf(ofp,"#define\tPOT_"); prefix = 1; break;
+			fprintf(ofp,"#define\tPOT_"); prefix = 1; break;
 		    case SPBOOK_CLASS:
-			Fprintf(ofp,"#define\tSPE_"); prefix = 1; nspell++; break;
+			fprintf(ofp,"#define\tSPE_"); prefix = 1; nspell++; break;
 		    case SCROLL_CLASS:
-			Fprintf(ofp,"#define\tSCR_"); prefix = 1; break;
+			fprintf(ofp,"#define\tSCR_"); prefix = 1; break;
 		    case AMULET_CLASS:
 			/* avoid trouble with stupid C preprocessors */
-			Fprintf(ofp,"#define\t");
+			fprintf(ofp,"#define\t");
 			if(objects[i].oc_material == PLASTIC && objects[i].oc_nutrition == 1) {
-			    Fprintf(ofp,"FAKE_AMULET_OF_YENDOR\t%d\n", i);
+			    fprintf(ofp,"FAKE_AMULET_OF_YENDOR\t%d\n", i);
 			    prefix = -1;
 			    break;
 			}
@@ -2213,16 +2210,16 @@ do_objs()
 		    case GEM_CLASS:
 			/* avoid trouble with stupid C preprocessors */
 			if(objects[i].oc_material == GLASS) {
-			    Fprintf(ofp,"/* #define\t%s\t%d */\n",
+			    fprintf(ofp,"/* #define\t%s\t%d */\n",
 							objnam, i);
 			    prefix = -1;
 			    break;
 			}
 		    default:
-			Fprintf(ofp,"#define\t");
+			fprintf(ofp,"#define\t");
 		}
 		if (prefix >= 0)
-			Fprintf(ofp,"%s\t%d\n", limit(objnam, prefix), i);
+			fprintf(ofp,"%s\t%d\n", limit(objnam, prefix), i);
 		prefix = 0;
 
 		sum += objects[i].oc_prob;
@@ -2230,16 +2227,16 @@ do_objs()
 
 	/* check last set of probabilities */
 	if (sum && sum != 10000) {
-	    Fprintf(stderr, "prob error for class %d (%d%%)", class, sum);
+	    fprintf(stderr, "prob error for class %d (%d%%)", class, sum);
 	    (void) fflush(stderr);
 	    sumerr = TRUE;
 	}
 
-	Fprintf(ofp,"#define\tLAST_GEM\t(JADE)\n");
-	Fprintf(ofp,"#define\tMAXSPELL\t%d\n", nspell+1);
-	Fprintf(ofp,"#define\tNUM_OBJECTS\t%d\n", i);
+	fprintf(ofp,"#define\tLAST_GEM\t(JADE)\n");
+	fprintf(ofp,"#define\tMAXSPELL\t%d\n", nspell+1);
+	fprintf(ofp,"#define\tNUM_OBJECTS\t%d\n", i);
 
-	Fprintf(ofp, "\n/* Artifacts (unique objects) */\n\n");
+	fprintf(ofp, "\n/* Artifacts (unique objects) */\n\n");
 
 	for (i = 1; artifact_names[i]; i++) {
 		SpinCursor(3);
@@ -2253,12 +2250,12 @@ do_objs()
 		/* fudge _platinum_ YENDORIAN EXPRESS CARD */
 		if (!strncmp(objnam, "PLATINUM_", 9))
 			objnam += 9;
-		Fprintf(ofp,"#define\tART_%s\t%d\n", limit(objnam, 1), i);
+		fprintf(ofp,"#define\tART_%s\t%d\n", limit(objnam, 1), i);
 	}
 
-	Fprintf(ofp, "#define\tNROFARTIFACTS\t%d\n", i-1);
-	Fprintf(ofp,"\n#endif /* ONAMES_H */\n");
-	Fclose(ofp);
+	fprintf(ofp, "#define\tNROFARTIFACTS\t%d\n", i-1);
+	fprintf(ofp,"\n#endif /* ONAMES_H */\n");
+	fclose(ofp);
 	if (sumerr) exit(EXIT_FAILURE);
 	return;
 }
@@ -2318,14 +2315,14 @@ do_vision()
 	perror(filename);
 	exit(EXIT_FAILURE);
     }
-    Fprintf(ofp,Dont_Edit_Code);
-    Fprintf(ofp,"#ifdef VISION_TABLES\n");
+    fprintf(ofp,Dont_Edit_Code);
+    fprintf(ofp,"#ifdef VISION_TABLES\n");
 #ifdef VISION_TABLES
     H_close_gen();
     H_far_gen();
 #endif /* VISION_TABLES */
-    Fprintf(ofp,"\n#endif /* VISION_TABLES */\n");
-    Fclose(ofp);
+    fprintf(ofp,"\n#endif /* VISION_TABLES */\n");
+    fclose(ofp);
 
     SpinCursor(3);
 
@@ -2340,13 +2337,13 @@ do_vision()
     if (!(ofp = fopen(filename, WRTMODE))) {
 	perror(filename);
 	sprintf(filename, INCLUDE_TEMPLATE, VIS_TAB_H);
-	Unlink(filename);
+	unlink(filename);
 	exit(EXIT_FAILURE);
     }
-    Fprintf(ofp,Dont_Edit_Code);
-    Fprintf(ofp,"#include \"config.h\"\n");
-    Fprintf(ofp,"#ifdef VISION_TABLES\n");
-    Fprintf(ofp,"#include \"vis_tab.h\"\n");
+    fprintf(ofp,Dont_Edit_Code);
+    fprintf(ofp,"#include \"config.h\"\n");
+    fprintf(ofp,"#ifdef VISION_TABLES\n");
+    fprintf(ofp,"#include \"vis_tab.h\"\n");
 
     SpinCursor(3);
 
@@ -2354,16 +2351,16 @@ do_vision()
     C_close_gen();
     C_far_gen();
     /* KMH -- vis_tab_init() needs prototype */
-    Fprintf(ofp, "\nvoid vis_tab_init);\n"(void);
-    Fprintf(ofp,"\nvoid vis_tab_init() { return; }\n");
+    fprintf(ofp, "\nvoid vis_tab_init);\n"(void);
+    fprintf(ofp,"\nvoid vis_tab_init() { return; }\n");
 #endif /* VISION_TABLES */
 
     SpinCursor(3);
 
-    Fprintf(ofp,"\n#endif /* VISION_TABLES */\n");
-    Fprintf(ofp,"\n/*vis_tab.c*/\n");
+    fprintf(ofp,"\n#endif /* VISION_TABLES */\n");
+    fprintf(ofp,"\n/*vis_tab.c*/\n");
 
-    Fclose(ofp);
+    fclose(ofp);
     return;
 }
 
@@ -2424,34 +2421,34 @@ do_vision()
 static void
 H_close_gen()
 {
-    Fprintf(ofp,"\n/* Close */\n");
-    Fprintf(ofp,"#define CLOSE_MAX_SB_DY %2d\t/* |src row - block row| - 1\t*/\n",
+    fprintf(ofp,"\n/* Close */\n");
+    fprintf(ofp,"#define CLOSE_MAX_SB_DY %2d\t/* |src row - block row| - 1\t*/\n",
 	    TEST_HEIGHT-1);
-    Fprintf(ofp,"#define CLOSE_MAX_SB_DX %2d\t/* |src col - block col|\t*/\n",
+    fprintf(ofp,"#define CLOSE_MAX_SB_DX %2d\t/* |src col - block col|\t*/\n",
 	    TEST_WIDTH);
-    Fprintf(ofp,"#define CLOSE_MAX_BC_DY %2d\t/* |block row - check row|\t*/\n",
+    fprintf(ofp,"#define CLOSE_MAX_BC_DY %2d\t/* |block row - check row|\t*/\n",
 	    TEST_HEIGHT);
-    Fprintf(ofp,"typedef struct {\n");
-    Fprintf(ofp,"    unsigned char close[CLOSE_MAX_SB_DX][CLOSE_MAX_BC_DY];\n");
-    Fprintf(ofp,"} close2d;\n");
-    Fprintf(ofp,"extern close2d close_table[CLOSE_MAX_SB_DY];\n");
+    fprintf(ofp,"typedef struct {\n");
+    fprintf(ofp,"    unsigned char close[CLOSE_MAX_SB_DX][CLOSE_MAX_BC_DY];\n");
+    fprintf(ofp,"} close2d;\n");
+    fprintf(ofp,"extern close2d close_table[CLOSE_MAX_SB_DY];\n");
     return;
 }
 
 static void
 H_far_gen()
 {
-    Fprintf(ofp,"\n/* Far */\n");
-    Fprintf(ofp,"#define FAR_MAX_SB_DY %2d\t/* |src row - block row|\t*/\n",
+    fprintf(ofp,"\n/* Far */\n");
+    fprintf(ofp,"#define FAR_MAX_SB_DY %2d\t/* |src row - block row|\t*/\n",
 	    TEST_HEIGHT);
-    Fprintf(ofp,"#define FAR_MAX_SB_DX %2d\t/* |src col - block col| - 1\t*/\n",
+    fprintf(ofp,"#define FAR_MAX_SB_DX %2d\t/* |src col - block col| - 1\t*/\n",
 	    TEST_WIDTH-1);
-    Fprintf(ofp,"#define FAR_MAX_BC_DY %2d\t/* |block row - check row| - 1\t*/\n",
+    fprintf(ofp,"#define FAR_MAX_BC_DY %2d\t/* |block row - check row| - 1\t*/\n",
 	    TEST_HEIGHT-1);
-    Fprintf(ofp,"typedef struct {\n");
-    Fprintf(ofp,"    unsigned char far_q[FAR_MAX_SB_DX][FAR_MAX_BC_DY];\n");
-    Fprintf(ofp,"} far2d;\n");
-    Fprintf(ofp,"extern far2d far_table[FAR_MAX_SB_DY];\n");
+    fprintf(ofp,"typedef struct {\n");
+    fprintf(ofp,"    unsigned char far_q[FAR_MAX_SB_DX][FAR_MAX_BC_DY];\n");
+    fprintf(ofp,"} far2d;\n");
+    fprintf(ofp,"extern far2d far_table[FAR_MAX_SB_DY];\n");
     return;
 }
 
@@ -2468,27 +2465,27 @@ C_close_gen()
     block_row = BLOCK_HEIGHT-1;
     block_col = BLOCK_WIDTH-1;
 
-    Fprintf(ofp,"\n#ifndef FAR_TABLE_ONLY\n");
-    Fprintf(ofp,"\nclose2d close_table[CLOSE_MAX_SB_DY] = {\n");
+    fprintf(ofp,"\n#ifndef FAR_TABLE_ONLY\n");
+    fprintf(ofp,"\nclose2d close_table[CLOSE_MAX_SB_DY] = {\n");
 #ifndef no_vision_progress
-    Fprintf(stderr,"\nclose:");
+    fprintf(stderr,"\nclose:");
 #endif
 
     for (dy = 1; dy < TEST_HEIGHT; dy++) {
 	src_row = block_row + dy;
-	Fprintf(ofp, "/* DY = %2d (- 1)*/\n  {{\n", dy);
+	fprintf(ofp, "/* DY = %2d (- 1)*/\n  {{\n", dy);
 #ifndef no_vision_progress
-	Fprintf(stderr," %2d",dy),  (void)fflush(stderr);
+	fprintf(stderr," %2d",dy),  (void)fflush(stderr);
 #endif
 	for (dx = 0; dx < TEST_WIDTH; dx++) {
 	    src_col = block_col - dx;
-	    Fprintf(ofp, "  /*%2d*/ {", dx);
+	    fprintf(ofp, "  /*%2d*/ {", dx);
 
 	    no_more = 0;
 	    for (this_row = 0; this_row < TEST_HEIGHT; this_row++) {
 		delim = (this_row < TEST_HEIGHT - 1) ? "," : "";
 		if (no_more) {
-		    Fprintf(ofp, "%s%s", CLOSE_OFF_TABLE_STRING, delim);
+		    fprintf(ofp, "%s%s", CLOSE_OFF_TABLE_STRING, delim);
 		    continue;
 		}
 		SpinCursor(3);
@@ -2500,17 +2497,17 @@ C_close_gen()
 		}
 
 		if (i == MAX_COL) no_more = 1;
-		Fprintf(ofp, "%2d%s", i - block_col, delim);
+		fprintf(ofp, "%2d%s", i - block_col, delim);
 	    }
-	    Fprintf(ofp, "}%s", (dx < TEST_WIDTH - 1) ? ",\n" : "\n");
+	    fprintf(ofp, "}%s", (dx < TEST_WIDTH - 1) ? ",\n" : "\n");
 	}
-	Fprintf(ofp,"  }},\n");
+	fprintf(ofp,"  }},\n");
     }
 
-    Fprintf(ofp,"}; /* close_table[] */\n");		/* closing brace for table */
-    Fprintf(ofp,"#endif /* !FAR_TABLE_ONLY */\n");
+    fprintf(ofp,"}; /* close_table[] */\n");		/* closing brace for table */
+    fprintf(ofp,"#endif /* !FAR_TABLE_ONLY */\n");
 #ifndef no_vision_progress
-    Fprintf(stderr,"\n");
+    fprintf(stderr,"\n");
 #endif
     return;
 }
@@ -2527,21 +2524,21 @@ C_far_gen()
     block_row = BLOCK_HEIGHT-1;
     block_col = BLOCK_WIDTH-1;
 
-    Fprintf(ofp,"\n#ifndef CLOSE_TABLE_ONLY\n");
-    Fprintf(ofp,"\nfar2d far_table[FAR_MAX_SB_DY] = {\n");
+    fprintf(ofp,"\n#ifndef CLOSE_TABLE_ONLY\n");
+    fprintf(ofp,"\nfar2d far_table[FAR_MAX_SB_DY] = {\n");
 #ifndef no_vision_progress
-    Fprintf(stderr,"\n_far_:");
+    fprintf(stderr,"\n_far_:");
 #endif
 
     for (dy = 0; dy < TEST_HEIGHT; dy++) {
 	src_row = block_row - dy;
-	Fprintf(ofp, "/* DY = %2d */\n  {{\n", dy);
+	fprintf(ofp, "/* DY = %2d */\n  {{\n", dy);
 #ifndef no_vision_progress
-	Fprintf(stderr," %2d",dy),  (void)fflush(stderr);
+	fprintf(stderr," %2d",dy),  (void)fflush(stderr);
 #endif
 	for (dx = 1; dx < TEST_WIDTH; dx++) {
 	    src_col = block_col + dx;
-	    Fprintf(ofp, "  /*%2d(-1)*/ {", dx);
+	    fprintf(ofp, "  /*%2d(-1)*/ {", dx);
 
 	    for (this_row = block_row+1; this_row < block_row+TEST_HEIGHT;
 								this_row++) {
@@ -2554,19 +2551,19 @@ C_far_gen()
 		}
 
 		if (block_col-i < 0)
-		    Fprintf(ofp, "%s%s", FAR_OFF_TABLE_STRING, delim);
+		    fprintf(ofp, "%s%s", FAR_OFF_TABLE_STRING, delim);
 		else
-		    Fprintf(ofp, "%2d%s", block_col - i, delim);
+		    fprintf(ofp, "%2d%s", block_col - i, delim);
 	    }
-	    Fprintf(ofp, "}%s", (dx < TEST_WIDTH - 1) ? ",\n" : "\n");
+	    fprintf(ofp, "}%s", (dx < TEST_WIDTH - 1) ? ",\n" : "\n");
 	}
-	Fprintf(ofp,"  }},\n");
+	fprintf(ofp,"  }},\n");
     }
 
-    Fprintf(ofp,"}; /* far_table[] */\n");	/* closing brace for table */
-    Fprintf(ofp,"#endif /* !CLOSE_TABLE_ONLY */\n");
+    fprintf(ofp,"}; /* far_table[] */\n");	/* closing brace for table */
+    fprintf(ofp,"#endif /* !CLOSE_TABLE_ONLY */\n");
 #ifndef no_vision_progress
-    Fprintf(stderr,"\n");
+    fprintf(stderr,"\n");
 #endif
     return;
 }
@@ -2674,15 +2671,15 @@ do_filenames()
 		perror(filename);
 		exit(EXIT_FAILURE);
     }
-    Fprintf(ofp,"/*\tSCCS Id: @(#)filename.h\t3.2\t96/05/17 */\n\n");
-    Fprintf(ofp,Dont_Edit_Code);
+    fprintf(ofp,"/*\tSCCS Id: @(#)filename.h\t3.2\t96/05/17 */\n\n");
+    fprintf(ofp,Dont_Edit_Code);
 
 /*OPEN file*/
     sprintf(infile, INCLUDE_TEMPLATE, FILE_H);
     if (!(ifp = fopen(infile, RDTMODE))) {
         perror(infile);
-        Fclose(ofp);
-        Unlink(filename);       /* kill empty output file */
+        fclose(ofp);
+        unlink(filename);       /* kill empty output file */
         exit(EXIT_FAILURE);
      }
      free(infile);
@@ -2708,8 +2705,8 @@ do_filenames()
            else (void) fputc(in_line[i], ofp);
         }
      }
-     Fclose(ifp);
-     Fclose(ofp);
+     fclose(ifp);
+     fclose(ofp);
      return;
 }
 

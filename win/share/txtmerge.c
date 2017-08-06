@@ -64,14 +64,14 @@ read_tiles()
 		tiles = (struct tile *)realloc(tiles,
 		  alloc_tiles * sizeof(*tiles));
 	    if (!tiles) {
-		Fprintf(stderr, "Not enough memory\n");
+		fprintf(stderr, "Not enough memory\n");
 		exit(EXIT_FAILURE);
 	    }
 	    for(i = no_tiles; i < alloc_tiles; i++) {
 		tiles[i].bitmap = (pixel *)
 		  malloc(tile_x * tile_y * sizeof(pixel));
 		if (!tiles[i].bitmap) {
-		    Fprintf(stderr, "Not enough memory\n");
+		    fprintf(stderr, "Not enough memory\n");
 		    exit(EXIT_FAILURE);
 		}
 	    }
@@ -89,7 +89,7 @@ read_tiles()
 	else {
 	    tiles[no_tiles].name = strdup(name);
 	    if (!tiles[no_tiles].name) {
-		Fprintf(stderr, "Not enough memory\n");
+		fprintf(stderr, "Not enough memory\n");
 		exit(EXIT_FAILURE);
 	    }
 	}
@@ -146,7 +146,7 @@ int source;
 	    for(i = 0; i < no_tiles; i++)
 		if (tiles[i].source != source && tiles[i].name &&
 		  match(tiles[i].name, name)) {
-		    Fprintf(stderr, "warning: replacing tile %s with %s\n",
+		    fprintf(stderr, "warning: replacing tile %s with %s\n",
 		      tiles[i].name, name);
 		    break;
 		}
@@ -160,7 +160,7 @@ int source;
 	    }
 	}
 	else
-	    Fprintf(stderr, "info: tile %s ignored\n",name);
+	    fprintf(stderr, "info: tile %s ignored\n",name);
     }
 }
 
@@ -202,7 +202,7 @@ char **argv;
 	argn += 2;
     }
     if (argc - argn < 1) {
-	Fprintf(stderr,
+	fprintf(stderr,
 	  "usage: txtmerge [-p palette-file] outfile [[-b<bg>] infile] ...\n");
 	exit(EXIT_FAILURE);
     }
@@ -214,7 +214,7 @@ char **argv;
 	    pixel bg = DEFAULT_BACKGROUND;
 	    if (argv[argn][2]) {
 		if (sscanf(argv[argn] + 2, "%02X%02X%02X", &r, &g, &b) != 3) {
-		    Fprintf(stderr, "Background %s not understood.\n",
+		    fprintf(stderr, "Background %s not understood.\n",
 		      argv[argn] + 2);
 		}
 		else {

@@ -47,7 +47,6 @@ void init_yyout(FILE *);
 #ifdef AZTEC_36
 FILE *freopen(char *,char *,FILE *);
 #endif
-#define Fprintf (void)fprintf
 
 #if defined(__BORLANDC__) && !defined(_WIN32)
 extern unsigned _stklen = STKSIZ;
@@ -91,7 +90,7 @@ char **argv;
 		/* the input file had better be a .pdf file */
 		len = strlen(fname) - 4;	/* length excluding suffix */
 		if (len < 0 || strncmp(".pdf", fname + len, 4)) {
-		    Fprintf(stderr,
+		    fprintf(stderr,
 			    "Error - file name \"%s\" in wrong format.\n",
 			    fname);
 		    errors_encountered = TRUE;
@@ -132,14 +131,14 @@ char **argv;
 
 		fin = freopen(infile, "r", stdin);
 		if (!fin) {
-		    Fprintf(stderr, "Can't open %s for input.\n", infile);
+		    fprintf(stderr, "Can't open %s for input.\n", infile);
 		    perror(infile);
 		    errors_encountered = TRUE;
 		    continue;
 		}
 		fout = freopen(outfile, WRBMODE, stdout);
 		if (!fout) {
-		    Fprintf(stderr, "Can't open %s for output.\n", outfile);
+		    fprintf(stderr, "Can't open %s for output.\n", outfile);
 		    perror(outfile);
 		    errors_encountered = TRUE;
 		    continue;
@@ -155,7 +154,7 @@ char **argv;
 	    }
 	}
 	if (fout && fout != stdout && fclose(fout) < 0) {
-	    Fprintf(stderr, "Can't finish output file.");
+	    fprintf(stderr, "Can't finish output file.");
 	    perror(outfile);
 	    errors_encountered = TRUE;
 	}
@@ -173,7 +172,7 @@ char **argv;
 void yyerror(s)
 const char *s;
 {
-	Fprintf(stderr,
+	fprintf(stderr,
 #ifndef MAC_MPW
 	  "%s : line %d : %s\n",
 #else
@@ -193,7 +192,7 @@ const char *s;
 void yywarning(s)
 const char *s;
 {
-	Fprintf(stderr,
+	fprintf(stderr,
 #ifndef MAC_MPW
 	  "%s : line %d : WARNING : %s\n",
 #else

@@ -35,8 +35,6 @@ extern int tile_x, tile_y;
 #define MAX_TILE_X 128
 #define MAX_TILE_Y 128
 
-#define Fprintf (void) fprintf
-
 #define pixel_equal(x,y) ((x.r == y.r) && (x.g == y.g) && (x.b == y.b))
 
 extern boolean fopen_text_file(const char *, const char *);

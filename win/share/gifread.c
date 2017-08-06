@@ -81,14 +81,14 @@ unsigned char	*buf;
 	unsigned char	count;
 
 	if (!ReadOK(fd,&count,1)) {
-		Fprintf(stderr, "error in getting DataBlock size\n");
+		fprintf(stderr, "error in getting DataBlock size\n");
 		return -1;
 	}
 
 	ZeroDataBlock = (count == 0);
 
 	if ((count != 0) && (!ReadOK(fd, buf, count))) {
-		Fprintf(stderr, "error in reading DataBlock\n");
+		fprintf(stderr, "error in reading DataBlock\n");
 		return -1;
 	}
 
@@ -137,7 +137,7 @@ int	label;
 	case 0xfe:		/* Comment Extension */
 		str = "Comment Extension";
 		while (GetDataBlock(fd, (unsigned char*) buf) != 0) {
-			Fprintf(stderr, "gif comment: %s\n", buf );
+			fprintf(stderr, "gif comment: %s\n", buf );
 		}
 		return;
 	case 0xf9:		/* Graphic Control Extension */
@@ -158,7 +158,7 @@ int	label;
 		break;
 	}
 
-	Fprintf(stderr, "got a '%s' extension\n", str);
+	fprintf(stderr, "got a '%s' extension\n", str);
 
 	while (GetDataBlock(fd, (unsigned char*) buf) != 0)
 		;
@@ -199,12 +199,12 @@ FILE	*fd;
 	char		version[4];
 
 	if (!ReadOK(fd,buf,6)) {
-		Fprintf(stderr, "error reading magic number\n");
+		fprintf(stderr, "error reading magic number\n");
 		exit(EXIT_FAILURE);
 	}
 
 	if (strncmp((void *)buf,"GIF",3) != 0) {
-		Fprintf(stderr, "not a GIF file\n");
+		fprintf(stderr, "not a GIF file\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -212,12 +212,12 @@ FILE	*fd;
 	version[3] = '\0';
 
 	if ((strcmp(version, "87a") != 0) && (strcmp(version, "89a") != 0)) {
-		Fprintf(stderr, "bad version number, not '87a' or '89a'\n");
+		fprintf(stderr, "bad version number, not '87a' or '89a'\n");
 		exit(EXIT_FAILURE);
 	}
 
 	if (!ReadOK(fd,buf,7)) {
-		Fprintf(stderr, "failed to read screen descriptor\n");
+		fprintf(stderr, "failed to read screen descriptor\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -230,18 +230,18 @@ FILE	*fd;
 
 	if (BitSet(buf[4], LOCALCOLORMAP)) {	/* Global Colormap */
 		if (!ReadColorMap(fd, GifScreen.Colors)) {
-			Fprintf(stderr, "error reading global colormap\n");
+			fprintf(stderr, "error reading global colormap\n");
 			exit(EXIT_FAILURE);
 		}
 	}
 
 	if (GifScreen.AspectRatio != 0 && GifScreen.AspectRatio != 49) {
-		Fprintf(stderr, "warning - non-square pixels\n");
+		fprintf(stderr, "warning - non-square pixels\n");
 	}
 
 	for (;;) {
 		if (!ReadOK(fd,&c,1)) {
-			Fprintf(stderr, "EOF / read error on image data\n");
+			fprintf(stderr, "EOF / read error on image data\n");
 			exit(EXIT_FAILURE);
 		}
 
@@ -251,7 +251,7 @@ FILE	*fd;
 
 		if (c == '!') {		/* Extension */
 		    if (!ReadOK(fd,&c,1)) {
-			Fprintf(stderr,
+			fprintf(stderr,
 			    "EOF / read error on extension function code\n");
 			exit(EXIT_FAILURE);
 		    }
@@ -260,13 +260,13 @@ FILE	*fd;
 		}
 
 		if (c != ',') {		/* Not a valid start character */
-			Fprintf(stderr,
+			fprintf(stderr,
 				"bogus character 0x%02x, ignoring\n", (int) c);
 			continue;
 		}
 
 		if (!ReadOK(fd,buf,9)) {
-		    Fprintf(stderr, "couldn't read left/top/width/height\n");
+		    fprintf(stderr, "couldn't read left/top/width/height\n");
 		    exit(EXIT_FAILURE);
 		}
 
@@ -274,17 +274,17 @@ FILE	*fd;
 			/* replace global color map with local */
 			GifScreen.Colors = 1<<((buf[8]&0x07)+1);
 			if (!ReadColorMap(fd, GifScreen.Colors)) {
-			    Fprintf(stderr, "error reading local colormap\n");
+			    fprintf(stderr, "error reading local colormap\n");
 			    exit(EXIT_FAILURE);
 			}
 
 		}
 		if (GifScreen.Width != LM_to_uint(buf[4],buf[5])) {
-			Fprintf(stderr, "warning: widths don't match\n");
+			fprintf(stderr, "warning: widths don't match\n");
 			GifScreen.Width = LM_to_uint(buf[4],buf[5]);
 		}
 		if (GifScreen.Height != LM_to_uint(buf[6],buf[7])) {
-			Fprintf(stderr, "warning: heights don't match\n");
+			fprintf(stderr, "warning: heights don't match\n");
 			GifScreen.Height = LM_to_uint(buf[6],buf[7]);
 		}
 		GifScreen.Interlace = BitSet(buf[8], INTERLACE);
@@ -313,7 +313,7 @@ int	flag;
 	if ((curbit+code_size) >= lastbit) {
 		if (done) {
 			if (curbit >= lastbit)
-				Fprintf(stderr, "ran off the end of my bits\n");
+				fprintf(stderr, "ran off the end of my bits\n");
 			return -1;
 		}
 		buf[0] = buf[last_byte-2];
@@ -410,7 +410,7 @@ int	input_code_size;
 				;
 
 			if (count != 0)
-			    Fprintf(stderr,
+			    fprintf(stderr,
 			    "missing EOD in data stream (common occurrence)\n");
 			return -2;
 		}
@@ -425,7 +425,7 @@ int	input_code_size;
 		while (code >= clear_code) {
 			*sp++ = table[1][code];
 			if (code == table[0][code]) {
-			    Fprintf(stderr, "circular table entry BIG ERROR\n");
+			    fprintf(stderr, "circular table entry BIG ERROR\n");
 			    exit(EXIT_FAILURE);
 			}
 			code = table[0][code];
@@ -498,7 +498,7 @@ int	len, height;
 
 fini:
 	if (LWZReadByte(fd,FALSE,(int)input_code_size)>=0)
-		Fprintf(stderr, "too much input data, ignoring extra...\n");
+		fprintf(stderr, "too much input data, ignoring extra...\n");
 }
 
 static
@@ -535,25 +535,25 @@ const char *type;
 	int i;
 
 	if (strcmp(type, RDBMODE)) {
-		Fprintf(stderr, "using reading routine for non-reading?\n");
+		fprintf(stderr, "using reading routine for non-reading?\n");
 		return FALSE;
 	}
 	gif_file = fopen(filename, type);
 	if (gif_file == (FILE *)0) {
-		Fprintf(stderr, "cannot open gif file %s\n", filename);
+		fprintf(stderr, "cannot open gif file %s\n", filename);
 		return FALSE;
 	}
 
 	read_header(gif_file);
 	if (GifScreen.Width % tile_x) {
-		Fprintf(stderr, "error: width %d not divisible by %d\n",
+		fprintf(stderr, "error: width %d not divisible by %d\n",
 				GifScreen.Width, tile_x);
 		exit(EXIT_FAILURE);
 	}
 	tiles_across = GifScreen.Width / tile_x;
 	curr_tiles_across = 0;
 	if (GifScreen.Height % tile_y) {
-		Fprintf(stderr, "error: height %d not divisible by %d\n",
+		fprintf(stderr, "error: height %d not divisible by %d\n",
 				GifScreen.Height, tile_y);
 		/* exit(EXIT_FAILURE) */;
 	}
@@ -577,12 +577,12 @@ const char *type;
 	**  Initialize the Compression routines
 	*/
 	if (!ReadOK(gif_file,&input_code_size,1)) {
-		Fprintf(stderr, "EOF / read error on image data\n");
+		fprintf(stderr, "EOF / read error on image data\n");
 		exit(EXIT_FAILURE);
 	}
 
 	if (LWZReadByte(gif_file, TRUE, (int)input_code_size) < 0) {
-		Fprintf(stderr, "error reading image\n");
+		fprintf(stderr, "error reading image\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -698,12 +698,12 @@ char *argv[];
 		argc = SIZE(std_args);
 		argv = std_args;
 	} else if (argc != 3) {
-		Fprintf(stderr, "usage: gif2txt giffile txtfile\n");
+		fprintf(stderr, "usage: gif2txt giffile txtfile\n");
 		exit(EXIT_FAILURE);
 	}
 #else
 	if (argc != 4) {
-		Fprintf(stderr, "usage: igif2txt indexfile giffile txtfile\n");
+		fprintf(stderr, "usage: igif2txt indexfile giffile txtfile\n");
 		exit(EXIT_FAILURE);
 	}
 #endif
@@ -718,7 +718,7 @@ char *argv[];
 		
 	        if ((fp = fopen(argv[1], "r")) == (FILE *)0)
 	        {
-	                Fprintf(stderr, "Could not open index file '%s'!\n", index_file);
+	                fprintf(stderr, "Could not open index file '%s'!\n", index_file);
 		        exit(EXIT_FAILURE);
 	        }
 	        argc--;
@@ -752,7 +752,7 @@ char *argv[];
 		/* (tile name) */
 
                 sscanf (bufs, "(%[^)])", tilename);
-                Fprintf(stdout, "# tile %d (%s)\n", i, tilename);
+                fprintf(stdout, "# tile %d (%s)\n", i, tilename);
 
 		if (read_gif_tile(pixels))
 			(void) write_text_tile_info(pixels, "tile", i, tilename);

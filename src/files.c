@@ -152,12 +152,12 @@ extern void amii_set_text_font( char *, int );
 #if defined(WIN32) || defined(MSDOS)
 static int lockptr;
 # ifdef MSDOS
-#define Delay(a) msleep(a)
+#  define Delay(a) msleep(a)
 # endif
-#define Close close
-#ifndef WIN_CE
-#define DeleteFile unlink
-#endif
+# define Close close
+# ifndef WIN_CE
+#  define DeleteFile unlink
+# endif
 #endif
 
 #ifdef MAC

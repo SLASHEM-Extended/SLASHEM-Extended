@@ -58,7 +58,7 @@ char *argv[];
 	int i;
 
 	if (argc != 2) {
-		Fprintf(stderr, "usage: tile2img outfile.img\n");
+		fprintf(stderr, "usage: tile2img outfile.img\n");
 		exit(EXIT_FAILURE);
 	} else
 		strcpy(bmpname, argv[1]);
@@ -66,7 +66,7 @@ char *argv[];
 #ifdef OBSOLETE
 	bmpfile2 = fopen(NETHACK_PACKED_TILEFILE, WRBMODE);
 	if (bmpfile2 == (FILE *)0) {
-		Fprintf(stderr, "Unable to open output file %s\n",
+		fprintf(stderr, "Unable to open output file %s\n",
 				NETHACK_PACKED_TILEFILE);
 		exit(EXIT_FAILURE);
 	}
@@ -89,13 +89,13 @@ char *argv[];
 
 	while (filenum < 3) {
 		if (!fopen_text_file(tilefiles[filenum], RDTMODE)) {
-			Fprintf(stderr,
+			fprintf(stderr,
 				"usage: tile2img (from the util directory)\n");
 			exit(EXIT_FAILURE);
 		}
 		num_colors = colorsinmap;
 		if (num_colors > 62) {
-			Fprintf(stderr, "too many colors (%d)\n", num_colors);
+			fprintf(stderr, "too many colors (%d)\n", num_colors);
 			exit(EXIT_FAILURE);
 		}
 		while (read_text_tile(tilepixels)) {
@@ -110,11 +110,11 @@ char *argv[];
 		(void) fclose_text_file();
 		++filenum;
 	}
-	Fprintf(stderr, "Total of %d tiles in memory.\n",tilecount);
+	fprintf(stderr, "Total of %d tiles in memory.\n",tilecount);
 
 	bitmap_to_file(XIMG, MAX_X, (tilecount/20+1)*16, 372, 372, 4, 16, bmpname, get_color, get_pixel ) ;
 
-	Fprintf(stderr, "Total of %d tiles written to %s.\n",tilecount, bmpname);
+	fprintf(stderr, "Total of %d tiles written to %s.\n",tilecount, bmpname);
 
 	exit(EXIT_SUCCESS);
 	/*NOTREACHED*/
@@ -147,7 +147,7 @@ pixel (*pixels)[TILE_X];
 					break;
 		    }
 		    if (cur_color >= num_colors)
-				Fprintf(stderr, "color not in colormap!\n");
+				fprintf(stderr, "color not in colormap!\n");
 		    y = cur_y + yoffset;
 		    x = cur_x + xoffset;
 		    Bild_daten[y][x] =cur_color;

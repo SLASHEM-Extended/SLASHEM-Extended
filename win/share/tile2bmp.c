@@ -154,7 +154,7 @@ char *argv[];
 	int i, j;
 
 	if (argc < 3) {
-		Fprintf(stderr, "usage: %s outfile.bmp txt_file1 [txt_file2 ...]\n", argv[0]);
+		fprintf(stderr, "usage: %s outfile.bmp txt_file1 [txt_file2 ...]\n", argv[0]);
 		exit(EXIT_FAILURE);
 	} else
 		strcpy(bmpname, argv[1]);
@@ -162,7 +162,7 @@ char *argv[];
 #ifdef OBSOLETE
 	bmpfile2 = fopen(NETHACK_PACKED_TILEFILE, WRBMODE);
 	if (bmpfile2 == (FILE *)0) {
-		Fprintf(stderr, "Unable to open output file %s\n",
+		fprintf(stderr, "Unable to open output file %s\n",
 				NETHACK_PACKED_TILEFILE);
 		exit(EXIT_FAILURE);
 	}
@@ -179,12 +179,12 @@ char *argv[];
 	}
 	while ((filenum) < argc) {
 		if (!fopen_text_file(argv[(filenum)],RDTMODE)) {
-			Fprintf(stderr,
+			fprintf(stderr,
 				"usage: tile2bmp (from the util directory)\n");
 			exit(EXIT_FAILURE);
 		}
 		if (colorsinmap > 256) {
-			Fprintf(stderr, "too many colors (%d)\n", colorsinmap);
+			fprintf(stderr, "too many colors (%d)\n", colorsinmap);
 			exit(EXIT_FAILURE);
 		}
 		if (!initflag) {
@@ -192,7 +192,7 @@ char *argv[];
 			maxbmp_y = MAX_Y;
 
 			if (maxbmp_x > MAX_X || maxbmp_y > MAX_Y) {
-				Fprintf(stderr, "Calculated dimensions (%ix%i) larger than max (%ix%i).  Increase MAX_X, MAX_Y\n",
+				fprintf(stderr, "Calculated dimensions (%ix%i) larger than max (%ix%i).  Increase MAX_X, MAX_Y\n",
 						maxbmp_x, maxbmp_y, MAX_X, MAX_Y);
 				exit(EXIT_FAILURE);
 			}
@@ -214,7 +214,7 @@ char *argv[];
 				yoffset += tile_y;
 				xoffset = 0;
 				if ((yoffset+tile_y) > maxbmp_y) {
-					Fprintf(stderr,
+					fprintf(stderr,
 						"Too many tiles (increase MAX_X_TILES or MAX_Y_TILES)\n");
 					exit(EXIT_FAILURE);
 				}
@@ -225,7 +225,7 @@ char *argv[];
 	}
 
 	if (tilecount<1) {
-	    Fprintf(stderr,"No tiles created! (check line end character sequence for your OS).\n");
+	    fprintf(stderr,"No tiles created! (check line end character sequence for your OS).\n");
 	    fclose(fp);
 	    unlink(bmpname);
 		exit(EXIT_FAILURE);
@@ -273,7 +273,7 @@ char *argv[];
 		for (j = 0; j < maxbmp_x; j++)
 			fwrite(&packtile[i][j], sizeof(uchar), 1, fp);
 	fclose(fp);
-	Fprintf(stderr, "Total of %d tiles written to %s.\n",
+	fprintf(stderr, "Total of %d tiles written to %s.\n",
 		tilecount, bmpname);
 
 	exit(EXIT_SUCCESS);
@@ -361,7 +361,7 @@ pixel (*pixels)[MAX_TILE_X];
 		break;
 	  }
 	  if (cur_color >= colorsinmap)
-		Fprintf(stderr, "color not in colormap!\n");
+		fprintf(stderr, "color not in colormap!\n");
 	  y = (maxbmp_y - 1) - (cur_y + yoffset);
 #if BITCOUNT==4
 	  x = (cur_x / 2) + xoffset;

@@ -35,7 +35,7 @@ pix_to_colormap(pix)
     }
 
     if (i == header.ncolors) {
-	Fprintf(stderr, "can't find color: [%u,%u,%u]\n", pix.r, pix.g, pix.b);
+	fprintf(stderr, "can't find color: [%u,%u,%u]\n", pix.r, pix.g, pix.b);
 	exit(1);
     }
     return (unsigned char) (i & 0xFF);
@@ -78,7 +78,7 @@ merge_text_colormap()
 		break;
 
 	if (j >= MAXCOLORMAPSIZE) {
-	    Fprintf(stderr, "colormap overflow\n");
+	    fprintf(stderr, "colormap overflow\n");
 	    exit(1);
 	}
 
@@ -106,7 +106,7 @@ process_file(fname)
     unsigned long count;
 
     if (!fopen_text_file(fname, RDTMODE)) {
-	Fprintf(stderr, "can't open file \"%s\"\n", fname);
+	fprintf(stderr, "can't open file \"%s\"\n", fname);
 	exit(1);
 	}
 
@@ -117,14 +117,14 @@ process_file(fname)
 	 */
 	tile_bytes = malloc(tile_x*tile_y*MAX_GLYPH);
 	if (!tile_bytes) {
-	    Fprintf(stderr, "Not enough memory.\n");
+	    fprintf(stderr, "Not enough memory.\n");
 	    exit(1);
 	}
 	curr_tb = tile_bytes;
     }
     merge_text_colormap();
     count = convert_tiles(&curr_tb);
-    Fprintf(stderr, "%s: %lu tiles\n", fname, count);
+    fprintf(stderr, "%s: %lu tiles\n", fname, count);
     header.ntiles += count;
     fclose_text_file();
 }
@@ -140,7 +140,7 @@ FILE *fp;
     unsigned char *bytes;
 
     if (header.ncolors > 4096) {
-	Fprintf(stderr, "Sorry, only configured for up to 4096 colors\n");
+	fprintf(stderr, "Sorry, only configured for up to 4096 colors\n");
 	exit(1);
 	/* All you need to do is add more char per color - below */
     }
@@ -154,9 +154,9 @@ FILE *fp;
 		*curr_tb++ = 1;
 	    }
 
-    Fprintf(fp, "/* XPM */\n");
-    Fprintf(fp, "static char* nhtiles[] = {\n");
-    Fprintf(fp, "\"%lu %lu %lu %d\",\n",
+    fprintf(fp, "/* XPM */\n");
+    fprintf(fp, "static char* nhtiles[] = {\n");
+    fprintf(fp, "\"%lu %lu %lu %d\",\n",
 		header.tile_width*TILES_PER_ROW,
 		header.tile_height*TILES_PER_COL,
 		header.ncolors,
@@ -169,7 +169,7 @@ FILE *fp;
 	}
 	else
 	    c[0] = i + '0';	/* just one char per color */
-	Fprintf(fp, "\"%s  c #%02x%02x%02x\",\n", c,
+	fprintf(fp, "\"%s  c #%02x%02x%02x\",\n", c,
 		x11_colormap[i][0],
 		x11_colormap[i][1],
 		x11_colormap[i][2]);
@@ -179,7 +179,7 @@ FILE *fp;
 	for (y = 0; y < header.tile_height; y++) {
 	    bytes=tile_bytes+(j*TILES_PER_ROW*header.tile_height+y)*
 	      header.tile_width;
-	    Fprintf(fp, "\"");
+	    fprintf(fp, "\"");
 	    for (i = 0; i < TILES_PER_ROW; i++) {
 		for (x = 0; x < header.tile_width; x++) {
 		    if (header.ncolors > 64) {
@@ -193,7 +193,7 @@ FILE *fp;
 		}
 		bytes+=header.tile_height*header.tile_width;
 	    }
-	    Fprintf(fp, "\",\n");
+	    fprintf(fp, "\",\n");
 	}
 
     return fprintf(fp, "};\n")>=0;
@@ -256,7 +256,7 @@ main(argc, argv)
     }
 
     if (argn == argc) {
-	Fprintf(stderr, "usage: %s [-o out_file] txt_file1 [txt_file2 ...]\n",
+	fprintf(stderr, "usage: %s [-o out_file] txt_file1 [txt_file2 ...]\n",
 	  argv[0]);
 	exit(1);
     }
@@ -269,31 +269,31 @@ main(argc, argv)
 
     for (i = argn; i < argc; i++)
 	process_file(argv[i]);
-    Fprintf(stderr, "Total tiles: %ld\n", header.ntiles);
+    fprintf(stderr, "Total tiles: %ld\n", header.ntiles);
 
     header.tile_width	= tile_x;
     header.tile_height	= tile_y;
 
 #ifdef USE_XPM
     if (xpm_write(fp) == 0) {
-	Fprintf(stderr, "can't write XPM file\n");
+	fprintf(stderr, "can't write XPM file\n");
 	exit(1);
     }
 #else
     if (fwrite_tile_header(&header, fp) == 0) {
-	Fprintf(stderr, "can't write output header\n");
+	fprintf(stderr, "can't write output header\n");
 	exit(1);
 	}
 
     if (fwrite((char *)x11_colormap, 1, header.ncolors*3, fp) == 0) {
-	Fprintf(stderr, "can't write output colormap\n");
+	fprintf(stderr, "can't write output colormap\n");
 	exit(1);
     }
 
     if (fwrite((char *)tile_bytes, 1,
 	(int) header.ntiles*header.tile_width*header.tile_height, fp) == 0) {
 
-	Fprintf(stderr, "can't write tile bytes\n");
+	fprintf(stderr, "can't write tile bytes\n");
 	exit(1);
     }
 #endif

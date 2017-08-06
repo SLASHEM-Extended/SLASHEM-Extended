@@ -147,7 +147,7 @@ int match_load(char *file)
 	i = strlen(buf);
 	if (buf[i - 1] != '\n')
 	{
-	    Fprintf(stderr, "Line %d: Too long (max %d)\n", match_np + 1,
+	    fprintf(stderr, "Line %d: Too long (max %d)\n", match_np + 1,
 	      sizeof(buf) - 1);
 	    errno = EINVAL;
 	    return -1;
@@ -206,7 +206,7 @@ char **argv;
 	    argn ++;
 	    if (argn >= argc)
 	    {
-		Fprintf(stderr, "txtfilt: -f option requires a match file\n");
+		fprintf(stderr, "txtfilt: -f option requires a match file\n");
 		exit(EXIT_FAILURE);
 	    }
 	    if (match_load(argv[argn]))
@@ -219,7 +219,7 @@ char **argv;
 	    argn ++;
 	    if (argn >= argc)
 	    {
-		Fprintf(stderr, "txtfilt: -p option requires a palette file\n");
+		fprintf(stderr, "txtfilt: -p option requires a palette file\n");
 		exit(EXIT_FAILURE);
 	    }
 	    if (!read_text_file_colormap(argv[argn]))
@@ -235,7 +235,7 @@ char **argv;
     }
 
     if (argc - argn != 2) {
-	Fprintf(stderr,
+	fprintf(stderr,
 	  "usage: txtfilt [-f match-file] [-p palette-file] infile outfile\n");
 	exit(EXIT_FAILURE);
     }

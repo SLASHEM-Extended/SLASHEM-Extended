@@ -138,7 +138,7 @@ FILE *txtfile;
 			color_index[n] = num_colors;
 		else
 		{
-			Fprintf(stderr, "error: Illegal color in colormap %s\n",
+			fprintf(stderr, "error: Illegal color in colormap %s\n",
 			  c);
 			continue;
 		}
@@ -161,7 +161,7 @@ FILE *txtfile;
 
 	num_colors = colorsinmainmap;
 	if (num_colors > MAXCOLORMAPSIZE) {
-		Fprintf(stderr, "too many colors (%d)\n", num_colors);
+		fprintf(stderr, "too many colors (%d)\n", num_colors);
 		return FALSE;
 	}
 	for (i = 0; i < num_colors; i++) {
@@ -174,7 +174,7 @@ FILE *txtfile;
 			c[0] = bysx2char(i + 1);
 
 		strcpy(charcolors[i], c);
-		Fprintf(txtfile, "%s = (%d, %d, %d)\n", c,
+		fprintf(txtfile, "%s = (%d, %d, %d)\n", c,
 						(int)MainColorMap[CM_RED][i],
 						(int)MainColorMap[CM_GREEN][i],
 						(int)MainColorMap[CM_BLUE][i]);
@@ -215,18 +215,18 @@ char name[BUFSZ];
 	
 	/* look for non-whitespace at each stage */
 	if (fscanf(txtfile, "%1s", c) < 0) {
-		Fprintf(stderr, "unexpected EOF\n");
+		fprintf(stderr, "unexpected EOF\n");
 		return FALSE;
 	}
 	if (c[0] != '{') {
-		Fprintf(stderr, "didn't find expected '{'\n");
+		fprintf(stderr, "didn't find expected '{'\n");
 		return FALSE;
 	}
 	fmt_string = colorsinmap > 64 ? "%2s" : "%1s";
 	for (j = 0; j < tile_y; j++) {
 		for (i = 0; i < tile_x; i++) {
 			if (fscanf(txtfile, fmt_string, c) < 0) {
-				Fprintf(stderr, "unexpected EOF\n");
+				fprintf(stderr, "unexpected EOF\n");
 				return FALSE;
 			}
 			if (c[1])
@@ -238,7 +238,7 @@ char name[BUFSZ];
 			else
 				k = -1;
 			if (k == -1)
-				Fprintf(stderr,
+				fprintf(stderr,
 				  "%s %d (%s): color %s not in colormap!\n",
 				  ttype, *number, name, c);
 			else {
@@ -249,11 +249,11 @@ char name[BUFSZ];
 		}
 	}
 	if (fscanf(txtfile, "%1s ", c) < 0) {
-		Fprintf(stderr, "unexpected EOF\n");
+		fprintf(stderr, "unexpected EOF\n");
 		return FALSE;
 	}
 	if (c[0] != '}') {
-		Fprintf(stderr, "didn't find expected '}'\n");
+		fprintf(stderr, "didn't find expected '}'\n");
 		return FALSE;
 	}
 #ifdef _DCC
@@ -283,7 +283,7 @@ pixel (*pixels)[MAX_TILE_X];
 	ph = strcmp(ttype, "placeholder") == 0;
 
 	if (!ph && strcmp(ttype,"tile") != 0)
-		Fprintf(stderr,
+		fprintf(stderr,
 			"Keyword \"%s\" unexpected for entry %d\n",
 			ttype, i);
 
@@ -293,9 +293,9 @@ pixel (*pixels)[MAX_TILE_X];
 	     */
 	    p = tilename(tile_set, tile_set_indx);
 	    if (p && strcmp(p, buf)) {
-		Fprintf(stderr, "warning: for tile %d (numbered %d) of %s,\n",
+		fprintf(stderr, "warning: for tile %d (numbered %d) of %s,\n",
 				tile_set_indx, i, TEXT_SETS(tile_set-1));
-		Fprintf(stderr, "\tfound '%s' while expecting '%s'\n",
+		fprintf(stderr, "\tfound '%s' while expecting '%s'\n",
 				buf, p);
 	    }
 	}
@@ -320,13 +320,13 @@ const char *name;
 	int i, j, k;
 
 	if (name)
-	    Fprintf(txtfile, "# %s %d (%s)\n", type, number, name);
+	    fprintf(txtfile, "# %s %d (%s)\n", type, number, name);
 	else
-	    Fprintf(txtfile, "# %s %d (null)\n", type, number);
+	    fprintf(txtfile, "# %s %d (null)\n", type, number);
 
-	Fprintf(txtfile, "{\n");
+	fprintf(txtfile, "{\n");
 	for (j = 0; j < tile_y; j++) {
-		Fprintf(txtfile, "  ");
+		fprintf(txtfile, "  ");
 		for (i = 0; i < tile_x; i++) {
 			for (k = 0; k < colorsinmainmap; k++) {
 				if (MainColorMap[CM_RED][k] == pixels[j][i].r &&
@@ -335,12 +335,12 @@ const char *name;
 					break;
 			}
 			if (k >= colorsinmainmap)
-				Fprintf(stderr, "color not in colormap!\n");
+				fprintf(stderr, "color not in colormap!\n");
 			(void) fputs(charcolors[k], txtfile);
 		}
-		Fprintf(txtfile, "\n");
+		fprintf(txtfile, "\n");
 	}
-	Fprintf(txtfile, "}\n");
+	fprintf(txtfile, "}\n");
 }
 
 static void
@@ -431,7 +431,7 @@ merge_colormap()
 		if (j >= colorsinmainmap) {	/* new color */
 #ifdef FUZZ
 		    if (colorsinmainmap >= MAXCOLORMAPSIZE) {
-			Fprintf(stderr,
+			fprintf(stderr,
 			    "Changing %i,%i,%i => %i,%i,%i (fuzz max(%i), total(%i)).\n",
 			    ColorMap[CM_RED][i],ColorMap[CM_GREEN][i],ColorMap[CM_BLUE][i],
 			    best_r, best_g, best_b, fuzz, totalfuzz);
@@ -447,7 +447,7 @@ merge_colormap()
 		    }
 #else
 		    if (colorsinmainmap >= MAXCOLORMAPSIZE) {
-			Fprintf(stderr,
+			fprintf(stderr,
 			    "Too many colors to merge -- excess ignored.\n");
 		    }
 		    j = colorsinmainmap;
@@ -482,16 +482,16 @@ FILE *txtfile;
 	pos = ftell(txtfile);
 
 	if (fscanf(txtfile, "# %*s %*d (%*[^)]%c",c) <= 0 || c[0] != ')') {
-		Fprintf(stderr, "no tiles in file\n");
+		fprintf(stderr, "no tiles in file\n");
 		return FALSE;
 	}
 	
 	if (fscanf(txtfile, "%1s", c) < 0) {
-		Fprintf(stderr, "unexpected EOF\n");
+		fprintf(stderr, "unexpected EOF\n");
 		return FALSE;
 	}
 	if (c[0] != '{') {
-		Fprintf(stderr, "didn't find expected '{'\n");
+		fprintf(stderr, "didn't find expected '{'\n");
 		return FALSE;
 	}
 	do
@@ -510,14 +510,14 @@ FILE *txtfile;
 		if (!i && ch == '}')
 			break;
 		if (ch != '\n' && ch != '\r') {
-			Fprintf(stderr, "unexpected character %c\n",ch);
+			fprintf(stderr, "unexpected character %c\n",ch);
 			return FALSE;
 		}
 		else
 			ch = getc(txtfile);
 		if (colorsinmap > 64) {
 			if (i & 1) {
-				Fprintf(stderr, "half a pixel?\n");
+				fprintf(stderr, "half a pixel?\n");
 				return FALSE;
 			}
 			i /= 2;
@@ -526,7 +526,7 @@ FILE *txtfile;
 			tile_x = i;
 		else if (tile_x != i)
 		{
-			Fprintf(stderr, "tile width mismatch %d != %d\n",
+			fprintf(stderr, "tile width mismatch %d != %d\n",
 			  tile_x, i);
 			return FALSE;
 		}
@@ -535,7 +535,7 @@ FILE *txtfile;
 		tile_y = j;
 	else if (tile_y != j)
 	{
-		Fprintf(stderr, "tile height mismatch %d != %d\n",
+		fprintf(stderr, "tile height mismatch %d != %d\n",
 		  tile_y, j);
 		return FALSE;
 	}
@@ -551,7 +551,7 @@ const char *filename;
 
 	fp = fopen(filename, RDTMODE);
 	if (fp == (FILE *)0) {
-		Fprintf(stderr, "cannot open text file %s\n", filename);
+		fprintf(stderr, "cannot open text file %s\n", filename);
 		return FALSE;
 	}
 	read_text_colormap(fp);
@@ -580,18 +580,18 @@ const char *type;
 		write_mode = TRUE;
 		
 	} else {
-		Fprintf(stderr, "bad mode (%s) for fopen_text_file\n", type);
+		fprintf(stderr, "bad mode (%s) for fopen_text_file\n", type);
 		return FALSE;
 	}
 
 	if ((write_mode ? out_file : in_file) != (FILE *)0) {
-		Fprintf(stderr, "can only open one text file at at time\n");
+		fprintf(stderr, "can only open one text file at at time\n");
 		return FALSE;
 	}
 
 	fp = fopen(filename, type);
 	if (fp == (FILE *)0) {
-		Fprintf(stderr, "cannot open text file %s\n", filename);
+		fprintf(stderr, "cannot open text file %s\n", filename);
 		return FALSE;
 	}
 
@@ -618,11 +618,11 @@ const char *type;
 	} else {
 		out_file = fp;
 		if (!colorsinmainmap) {
-			Fprintf(stderr, "no colormap set yet\n");
+			fprintf(stderr, "no colormap set yet\n");
 			return FALSE;
 		}
 		if (tile_x < 0 || tile_y < 0) {
-			Fprintf(stderr, "no tile size set yet\n");
+			fprintf(stderr, "no tile size set yet\n");
 			return FALSE;
 		}
 		if (!write_text_colormap(out_file))

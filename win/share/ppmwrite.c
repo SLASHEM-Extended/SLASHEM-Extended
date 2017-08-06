@@ -25,7 +25,7 @@ write_header()
 {
 	if (PpmScreen.Width > 9999 || PpmScreen.Height > 9999) {
 		/* Just increase the number of digits written to solve */
-		Fprintf(stderr, "PPM dimensions too large\n");
+		fprintf(stderr, "PPM dimensions too large\n");
 		return FALSE;
 	}
 	(void) fprintf(ppm_file, "P6 %04d %04d 255\n",
@@ -55,7 +55,7 @@ const char *type;
 	int i;
 
 	if (strcmp(type, WRBMODE)) {
-		Fprintf(stderr, "using writing routine for non-writing?\n");
+		fprintf(stderr, "using writing routine for non-writing?\n");
 		return FALSE;
 	}
 
@@ -63,12 +63,12 @@ const char *type;
          	
 	ppm_file = fopen(filename, type);
 	if (ppm_file == (FILE *)0) {
-		Fprintf(stderr, "cannot open ppm file %s\n", filename);
+		fprintf(stderr, "cannot open ppm file %s\n", filename);
 		return FALSE;
 	}
 
 	if (!colorsinmainmap) {
-		Fprintf(stderr, "no colormap set yet\n");
+		fprintf(stderr, "no colormap set yet\n");
 		return FALSE;
 	}
 
@@ -164,7 +164,7 @@ char *argv[];
 	}
 
 	if (argc-fileargs < 2) {
-		Fprintf(stderr,
+		fprintf(stderr,
 		  "usage: txt2ppm [-w tiles-across] ppmfile txtfile ... \n");
 		exit(EXIT_FAILURE);
 	}

@@ -35,9 +35,6 @@
 
 extern char *tilename(int, int);
 
-#define Fprintf (void) fprintf
-#define Fclose  (void) fclose
-
 static int num_colors;
 static pixel pixels[MAX_TILE_Y][MAX_TILE_X];
 static BITMAP *bigtile_bmp;
@@ -160,7 +157,7 @@ boolean make_big;
 	    int col = (int)(tilecount % TILES_PER_ROW);
 	    int row = (int)(tilecount / TILES_PER_ROW);
 #ifdef DEBUG
-	    Fprintf(stderr, "col: %i row: %i\n", col, row);
+	    fprintf(stderr, "col: %i row: %i\n", col, row);
 #endif
 	    blit(tilebmp, bigtile_bmp, 0, 0, col * tile_x, row * tile_y, tile_x, tile_y);
 	}
@@ -188,7 +185,7 @@ char *argv[];
         set_color_depth(24);
 
         if (argc < 2) {
-	    	Fprintf(stderr, "Bad arg count (%d).\n", argc-1);
+	    	fprintf(stderr, "Bad arg count (%d).\n", argc-1);
 	    	(void) fflush(stderr);
                 exit(EXIT_FAILURE);
         }
@@ -204,7 +201,7 @@ char *argv[];
         if (util_mode != 'i' && util_mode != 'h' && util_mode != 'f' 
 			     && util_mode != 'b' && util_mode != 'c'
 			     && util_mode != 'p') {
-	    	Fprintf(stderr, "Unknown option '-%c'.\n Use -i, -h, -f, -b, -c or -p.\n", 
+	    	fprintf(stderr, "Unknown option '-%c'.\n Use -i, -h, -f, -b, -c or -p.\n", 
 	    					util_mode);
 	    	(void) fflush(stderr);
                 exit(EXIT_FAILURE);        	
@@ -212,7 +209,7 @@ char *argv[];
 
         if (util_mode == 'p') {
             if (argc != 3) {
-	    	Fprintf(stderr, "Bad arg count (%d).\n", argc-1);
+	    	fprintf(stderr, "Bad arg count (%d).\n", argc-1);
 	    	(void) fflush(stderr);
                 exit(EXIT_FAILURE);
             } else {
@@ -226,7 +223,7 @@ char *argv[];
             	bigtile_bmp = load_bitmap(bigtile_file,tmp_pal);
             	
             	if (!bigtile_bmp) {
-	    		Fprintf(stderr, "Unable to load %s.\n", argv[2]);
+	    		fprintf(stderr, "Unable to load %s.\n", argv[2]);
 	    		(void) fflush(stderr);
                 	exit(EXIT_FAILURE);
             	}
@@ -255,27 +252,27 @@ char *argv[];
         }
 
         if ((util_mode == 'c' && argc != 4) || (util_mode != 'c' && argc != 2)) {
-	    	Fprintf(stderr, "Bad arg count (%d).\n", argc-1);
+	    	fprintf(stderr, "Bad arg count (%d).\n", argc-1);
 	    	(void) fflush(stderr);
                 exit(EXIT_FAILURE);
         }
         
         if (util_mode != 'c') {
 	    if (argv[1][2] == '1' && argv[1][3] == '6') {
-    		Fprintf(stderr, "Using 16x16 text tile files\n");
+    		fprintf(stderr, "Using 16x16 text tile files\n");
     		(void) fflush(stderr);
 		tilefiles = tilefiles16;
 		strcpy(bigtile_file, bigtile_file16);
 	    } else if (argv[1][2] == '3' && 
 		    	(argv[1][3] == 'D' || argv[1][3] == 'd')) {
-    		Fprintf(stderr, "Using 48x64 text tile files\n");
+    		fprintf(stderr, "Using 48x64 text tile files\n");
     		(void) fflush(stderr);
 		tilefiles = tilefiles3d;
 		strcpy(bigtile_file, bigtile_file3d);
 		trans_background = TRUE;
 	    } else {
 	       	/* Default mode is 32 */
-    		Fprintf(stderr, "Using 32x32 text tile files\n");
+    		fprintf(stderr, "Using 32x32 text tile files\n");
     		(void) fflush(stderr);
 		tilefiles = tilefiles32;
 		strcpy(bigtile_file, bigtile_file32);
@@ -297,15 +294,15 @@ char *argv[];
 		perror(index_file);
 		exit(EXIT_FAILURE);
 	    }
-	    Fprintf(ofp,Dont_Edit_Index);   
+	    fprintf(ofp,Dont_Edit_Index);   
         } else if (util_mode == 'h') {
 	    if (!(ofp = fopen(allegfx_file, WRTMODE))) {
 		perror(allegfx_file);
 		exit(EXIT_FAILURE);
 	    }
-    	    Fprintf(ofp,"/*\tSCCS Id: @(#)allegfx.h\t3.2\t96/05/17 */\n\n");
-	    Fprintf(ofp,Dont_Edit_Code);	    
-	    Fprintf(ofp,"/*\tNOTE: This file is completely obselete! */\n"
+    	    fprintf(ofp,"/*\tSCCS Id: @(#)allegfx.h\t3.2\t96/05/17 */\n\n");
+	    fprintf(ofp,Dont_Edit_Code);	    
+	    fprintf(ofp,"/*\tNOTE: This file is completely obselete! */\n"
 		"/*\tI have no idea why you made it */\n\n");
         } else if (util_mode == 'b' || util_mode == 'c') {
             bigtile_bmp = NULL;
@@ -317,19 +314,19 @@ char *argv[];
 
 		if (util_mode != 'c') {
                     if (!fopen_text_file(tilefiles[filenum], RDTMODE)) {
-                        Fprintf(stderr,
+                        fprintf(stderr,
                          "Cannot find file '%s'.\n", tilefiles[filenum]);
                         exit(EXIT_FAILURE);
                     }
 		} else if (!fopen_text_file(argv[2], RDTMODE)) {
-                        Fprintf(stderr,
+                        fprintf(stderr,
                          "Cannot find file '%s'.\n", tilefiles[filenum]);
                         exit(EXIT_FAILURE);
 		}
                     
                 num_colors = colorsinmap;
                 if (num_colors > MAXCOLORMAPSIZE) {
-                        Fprintf(stderr, "too many colors (%d)\n", num_colors);
+                        fprintf(stderr, "too many colors (%d)\n", num_colors);
                         exit(EXIT_FAILURE);
                 }
                 if (!paletteflag) {
@@ -352,7 +349,7 @@ char *argv[];
                                 (!filenum) ? 'm' : (filenum == 1) ? 'o' : 'e',
                                 index, ".bmp");
 			if (util_mode == 'i') {
-                            Fprintf(ofp, "%04d (%s) : %s\n", 
+                            fprintf(ofp, "%04d (%s) : %s\n", 
                                 tilecount, tilename(filenum+1,index), 
                                 filename);
 			} else if (util_mode == 'f') {
@@ -371,21 +368,21 @@ char *argv[];
                     switch(filenum)
                     {
 		            case 0:
-		                Fprintf(ofp, "#define NUMBER_OF_MONS %d\n", 
+		                fprintf(ofp, "#define NUMBER_OF_MONS %d\n", 
 		                        tilecount);
 		                break;
 		            case 1:
-		                Fprintf(ofp, "#define NUMBER_OF_OBJS %d\n", 
+		                fprintf(ofp, "#define NUMBER_OF_OBJS %d\n", 
 		                        tilecount);
 		                break;
 		            case 2:
-		                Fprintf(ofp, "#define NUMBER_OF_TILES %d\n", 
+		                fprintf(ofp, "#define NUMBER_OF_TILES %d\n", 
 		                        tilecount);
 		                break;
                     }
 
 		if (util_mode == 'f')
-		    Fprintf(stderr, "%d tiles processed from %s\n", 
+		    fprintf(stderr, "%d tiles processed from %s\n", 
 					index, tilefiles[filenum]);
 
                 (void) fclose_text_file();
@@ -397,9 +394,9 @@ char *argv[];
 
 	/* Close file */
         if ((util_mode == 'i') || (util_mode == 'h'))
-        	Fclose(ofp);
+        	fclose(ofp);
         else if (util_mode == 'f')
-		Fprintf(stderr, "Total of %d bmp tiles written.\n", tilecount);
+		fprintf(stderr, "Total of %d bmp tiles written.\n", tilecount);
         else if (util_mode == 'b' || util_mode == 'c') {
         	PALETTE tmp_pal;
 #ifdef FINAL_COLORDEPTH_8_BPP

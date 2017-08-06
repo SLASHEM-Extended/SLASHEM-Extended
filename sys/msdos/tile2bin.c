@@ -89,7 +89,7 @@ char *argv[];
 	char *paletteptr;
 
 	if (argc != 1) {
-		Fprintf(stderr, "usage: tile2bin (from the util directory)\n");
+		fprintf(stderr, "usage: tile2bin (from the util directory)\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -100,7 +100,7 @@ char *argv[];
 	tibfile1 = fopen(NETHACK_OVERVIEW_TILEFILE, WRBMODE);
 # endif
 	if (tibfile1 == (FILE *)0) {
-		Fprintf(stderr, "Unable to open output file %s\n",
+		fprintf(stderr, "Unable to open output file %s\n",
 # ifndef OVERVIEW_FILE
 				NETHACK_PLANAR_TILEFILE);
 #else
@@ -113,7 +113,7 @@ char *argv[];
 #ifdef PACKED_FILE
 	tibfile2 = fopen(NETHACK_PACKED_TILEFILE, WRBMODE);
 	if (tibfile2 == (FILE *)0) {
-		Fprintf(stderr, "Unable to open output file %s\n",
+		fprintf(stderr, "Unable to open output file %s\n",
 				NETHACK_PACKED_TILEFILE);
 		exit(EXIT_FAILURE);
 	}
@@ -126,13 +126,13 @@ char *argv[];
 	filenum = 0;
 	while (filenum < 3) {
 		if (!fopen_text_file(tilefiles[filenum], RDTMODE)) {
-			Fprintf(stderr,
+			fprintf(stderr,
 			 "usage: tile2bin (from the util or src directory)\n");
 			exit(EXIT_FAILURE);
 		}
 		num_colors = colorsinmap;
 		if (num_colors > 62) {
-			Fprintf(stderr, "too many colors (%d)\n", num_colors);
+			fprintf(stderr, "too many colors (%d)\n", num_colors);
 			exit(EXIT_FAILURE);
 		}
 
@@ -178,10 +178,10 @@ char *argv[];
 	write_tibheader(tibfile1, &tibheader);
 	(void) fclose(tibfile1);
 #  ifndef OVERVIEW_FILE
-	Fprintf(stderr, "Total of %d planar tiles written to %s.\n", 
+	fprintf(stderr, "Total of %d planar tiles written to %s.\n", 
 		tilecount, NETHACK_PLANAR_TILEFILE);
 #  else
-	Fprintf(stderr, "Total of %d planar tiles written to %s.\n", 
+	fprintf(stderr, "Total of %d planar tiles written to %s.\n", 
 		tilecount, NETHACK_OVERVIEW_TILEFILE);
 #  endif
 # endif
@@ -189,7 +189,7 @@ char *argv[];
 # ifdef PACKED_FILE
 	tibheader.tilestyle = PACKED_STYLE;
 	write_tibheader(tibfile2, &tibheader);
-	Fprintf(stderr, "Total of %d packed tiles written to %s.\n", 
+	fprintf(stderr, "Total of %d packed tiles written to %s.\n", 
 		tilecount, NETHACK_PACKED_TILEFILE);
 	(void) fclose(tibfile2);
 # endif
@@ -207,7 +207,7 @@ struct tibhdr_struct *tibhdr;
 {
 
 	if (fseek(fileptr,0L,SEEK_SET)) {
-		Fprintf(stderr, "Error writing header to tile file\n");
+		fprintf(stderr, "Error writing header to tile file\n");
 	}
 	fwrite(tibhdr, sizeof(struct tibhdr_struct), 1, fileptr);
 }
@@ -234,7 +234,7 @@ pixel (*pixels)[MAX_TILE_X];
 					break;
 			}
 			if (k >= num_colors)
-				Fprintf(stderr, "color not in colormap!\n");
+				fprintf(stderr, "color not in colormap!\n");
 #ifdef PACKED_FILE
 			packtile[j][i] = k;
 #endif
@@ -288,7 +288,7 @@ int recnum;
 			(long)TIBHEADER_SIZE;
 # endif
 	if (fseek(tibfile1,fpos,SEEK_SET)) {
-		Fprintf(stderr, "Error seeking before planar tile write %d\n",
+		fprintf(stderr, "Error seeking before planar tile write %d\n",
 			recnum);
 	}
 # ifndef OVERVIEW_FILE
@@ -303,7 +303,7 @@ int recnum;
 	fpos = ((long)(recnum) * (long)sizeof(packtile)) +
 		(long)TIBHEADER_SIZE;
 	if (fseek(tibfile2,fpos,SEEK_SET)) {
-		Fprintf(stderr, "Error seeking before packed tile write %d\n",
+		fprintf(stderr, "Error seeking before packed tile write %d\n",
 			recnum);
 	}
 	fwrite(&packtile, sizeof(packtile), 1, tibfile2);
