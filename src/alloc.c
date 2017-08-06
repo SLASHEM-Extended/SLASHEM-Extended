@@ -58,7 +58,7 @@ genericptr_t alloc(size_t lth) {
 
 	ptr = calloc(1, lth);
 
-	if (!ptr) panic("Memory allocation failure; cannot get %u bytes", lth);
+	if (!ptr) panic("Memory allocation failure; cannot get %zu bytes", lth);
 
 	return ptr;
 }
