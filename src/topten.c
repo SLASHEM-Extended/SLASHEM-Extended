@@ -72,6 +72,7 @@ STATIC_DCL void FDECL(writeentry, (FILE *,struct toptenentry *));
 STATIC_DCL void FDECL(free_ttlist, (struct toptenentry *));
 #ifdef XLOGFILE
 STATIC_DCL void FDECL(write_xlentry, (FILE *,struct toptenentry *));
+STATIC_DCL long NDECL(encodexlogflags);
 #endif
 STATIC_DCL int FDECL(classmon, (char *,BOOLEAN_P));
 STATIC_DCL int FDECL(score_wanted,
@@ -389,10 +390,8 @@ struct toptenentry *tt;
   (void)fprintf(rfile, XLOG_SEP "align0=%s", 
           aligns[1 - u.ualignbase[A_ORIGINAL]].filecode);
 #endif
-  (void)fprintf(rfile, XLOG_SEP "modes="); 
-  (void)fprintf(rfile, (wizard ? "wizard" : 
-                        discover ? "explore" : 
-                        "normal")); 
+  fprintf(rfile, XLOG_SEP "flags=0x%lx", encodexlogflags());
+
   if (flags.gehenna) 
       (void)fprintf(rfile, ",gehenna"); 
   if (flags.dudley) 
@@ -411,6 +410,17 @@ struct toptenentry *tt;
 
   (void)fprintf(rfile, "\n");
 
+}
+
+static long encodexlogflags(void) {
+	long tmp = 0L;
+
+	if (wizard)
+		tmp |= 1L << 0;
+	if (discover)
+		tmp |= 1L << 1;
+
+	return tmp;
 }
 
 #undef XLOG_SEP
