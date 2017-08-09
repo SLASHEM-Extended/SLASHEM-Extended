@@ -647,13 +647,18 @@ void
 you_were()
 {
 	char qbuf[QBUFSZ];
+	char buf[BUFSZ];
 
 	if (Unchanging || (u.umonnum == u.ulycn)) return;
 	if (Polymorph_control && rn2(5) ) {
 	    /* `+4' => skip "were" prefix to get name of beast */
-	    sprintf(qbuf, "Do you want to change into %s? ",
+	    sprintf(qbuf, "Do you want to change into %s? [yes/no]",
 		    an(mons[u.ulycn].mname+4));
-	    if(yn(qbuf) == 'n') return;
+
+		getlin(qbuf,buf);
+		(void) lcase (buf);
+		if (strcmp (buf, "yes")) return;
+
 	}
 	(void) polymon(u.ulycn);
 }
