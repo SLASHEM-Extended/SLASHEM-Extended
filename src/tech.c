@@ -1614,7 +1614,11 @@ dotechmenu(how, tech_no)
 	if (!techs_useable) 
 	    how = PICK_NONE;
 
-	end_menu(tmpwin, how == PICK_ONE ? "Choose a technique" :
+	/* Amy addition: if you are on the vibrating square, print a special message. The reason for it being that
+	 * #technique is one of the commands that ALWAYS works, no matter which nasty traps you have. Yes, there is a trap
+	 * that prevents the techniques from actually working, but the menu can be accessed anyway, and therefore it's
+	 * always possible in theory (he he) to find the VS no matter which, or how many(!!!), interface screws are active */
+	end_menu(tmpwin, (isok(u.ux, u.uy) && invocation_pos(u.ux, u.uy)) ? "You're standing on the vibrating square." : how == PICK_ONE ? "Choose a technique" :
 					   "Currently known techniques");
 
 	n = select_menu(tmpwin, how, &selected);
