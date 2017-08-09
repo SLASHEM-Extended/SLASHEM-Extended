@@ -10769,7 +10769,7 @@ wiz_port_debug()
 		{"show keystroke handler information", "tty",
 				win32con_handler_info},
 #endif
-		{(char *)0, (char *)0, (void (*))(void)0}/* array terminator */
+		{(char *)0, (char *)0, (void (*))0}/* array terminator */
 	};
 
 	num_menu_selections = SIZE(menu_selections) - 1;
