@@ -476,7 +476,16 @@ monsndx(ptr)		/* return an index into the mons array */
 	if (ptr == &upermonst) return PM_PLAYERMON;
 
 	i = (int)(ptr - &mons[0]);
+
 	if ((i < LOW_PM || i >= NUMMONS) && !Race_if(PM_MISSINGNO) && !u.ughmemory ) {
+
+		if (i == PM_PLAYERMON) {
+
+			impossible("monsndx() called with -1 ptr; making PM_HUMAN instead");
+			return PM_HUMAN;
+
+		}
+
 		/* ought to switch this to use `fmt_ptr' */
 	    panic("monsndx - could not index monster (%d)",
 		  i);
