@@ -1476,8 +1476,8 @@ register int x, y, typ, replacechance;
 	if (ttmp->ttyp == INVISIBLE_TRAP) ttmp->hiddentrap = 1;
 
 	if (ttmp->ttyp == HOLE && !In_sokoban(&u.uz) && !ttmp->hiddentrap ) ttmp->tseen = 1;  /* You can't hide a hole */
-	if (ttmp->ttyp == SUPERTHING_TRAP && !ttmp->hiddentrap ) ttmp->tseen = 1;
-	if (ttmp->ttyp == ARABELLA_SPEAKER && !ttmp->hiddentrap ) ttmp->tseen = 1;
+	else if (ttmp->ttyp == SUPERTHING_TRAP && !ttmp->hiddentrap ) ttmp->tseen = 1;
+	else if (ttmp->ttyp == ARABELLA_SPEAKER && !ttmp->hiddentrap ) ttmp->tseen = 1;
 	else ttmp->tseen = 0;
 	ttmp->once = 0;
 	ttmp->tdetected = 0;
