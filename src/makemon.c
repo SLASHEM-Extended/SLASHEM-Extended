@@ -12262,14 +12262,22 @@ register int	mmflags;
 	/* if caller wants random location, do it here */
 	if(x == 0 && y == 0) {
 		int tryct = 0;	/* careful with bigrooms */
+		int tryct2 = 0;
 		struct monst fakemon;
 
 		fakemon.data = ptr;	/* set up for goodpos */
 		do {
 			x = rn1(COLNO-3,2);
 			y = rn2(ROWNO);
-		} while(!goodpos(x, y, ptr ? &fakemon : (struct monst *)0, gpflags) ||
-			(!in_mklev && tryct++ < 50 && cansee(x, y)));
+		} while((!goodpos(x, y, ptr ? &fakemon : (struct monst *)0, gpflags) ||
+			(!in_mklev && tryct++ < 50 && rn2(20) && cansee(x, y))) && tryct2++ < 100000);
+		/* Amy edit: did a few changes. First, have a low chance of monsters spawning in your LOS because I'm evil :P
+		 * second, prevent game freeze if there really is no valid location, by limiting the # of tries */
+
+		if (tryct2 >= 100000) {
+			impossible("makemon(): cannot find location to place monster after 100000 tries.");
+			return((struct monst *)0);
+		}
 
 	} else if (byyou && !in_mklev) {
 		coord bypos;
