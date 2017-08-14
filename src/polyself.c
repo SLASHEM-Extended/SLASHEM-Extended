@@ -1298,8 +1298,13 @@ dogaze()
 		killer = "deliberately gazing at Medusa's hideous countenance";
 		done(STONING);*/
 		You("start turning to stone...");
-		if (!Stoned) Stoned = 7;
-		delayed_killer = "gazing at Medusa";
+		if (!Stoned) {
+			if (Hallucination && rn2(10)) pline("But you are already stoned.");
+			else {
+				Stoned = 7;
+				delayed_killer = "gazing at Medusa";
+			}
+		}
 	} else if (!mtmp->mcansee || mtmp->msleeping) {
 	    pline("But nothing happens.");
 	    return (1);
@@ -2090,8 +2095,13 @@ dogaze()
 			killer = "deliberately meeting Medusa's gaze";
 			done(STONING);*/
 			You("start turning to stone...");
-			if (!Stoned) Stoned = 7;
-			delayed_killer = "deliberately meeting Medusa's gaze";
+			if (!Stoned) {
+				if (Hallucination && rn2(10)) pline("But you are already stoned.");
+				else {
+					Stoned = 7;
+					delayed_killer = "deliberately meeting Medusa's gaze";
+				}
+			}
 		    }
 		}
 	    }

@@ -1166,10 +1166,11 @@ Cloak_on()
 		break;
 	case CLOAK_OF_SLIMING:
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
-		    Slimed = 100L;
-		    flags.botl = 1;
-		    killer_format = KILLED_BY_AN;
-		    delayed_killer = "cloak of sliming";
+			You("don't feel very well.");
+			Slimed = 100L;
+			flags.botl = 1;
+			killer_format = KILLED_BY_AN;
+			delayed_killer = "cloak of sliming";
 		}
 		break;
 	case CLOAK_OF_STARVING:
@@ -1201,8 +1202,11 @@ Cloak_on()
 		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
 				 polymon(PM_STONE_GOLEM)) ) {
 			pline("You start turning to stone!");
-			Stoned = 7;
-			delayed_killer = "cloak of stone";
+			if (Hallucination && rn2(10)) pline("But you are already stoned.");
+			else {
+				Stoned = 7;
+				delayed_killer = "cloak of stone";
+			}
 		}
 		break;
 	case CLOAK_OF_LYCANTHROPY:
@@ -3343,9 +3347,12 @@ Amulet_on()
 		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
 				 polymon(PM_STONE_GOLEM)) ) {
 			pline("You start turning to stone!");
-			Stoned = 7;
-			stop_occupation();
-			delayed_killer = "amulet of stone";
+			if (Hallucination && rn2(10)) pline("But you are already stoned.");
+			else {
+				Stoned = 7;
+				stop_occupation();
+				delayed_killer = "amulet of stone";
+			}
 		}
 		break;
 	case AMULET_OF_DEPRESSION:

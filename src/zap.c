@@ -5545,13 +5545,16 @@ boolean ordinary;
 		case WAN_STONING:
 		case SPE_PETRIFY:
 
-		    if (!Stone_resistance &&
-			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
-			if (!Stoned) { Stoned = 7;
-				pline("You start turning to stone!");
+		    if (!Stone_resistance && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+			if (!Stoned) {
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					Stoned = 7;
+					pline("You start turning to stone!");
+					sprintf(killer_buf, "their own wand of stoning");
+					delayed_killer = killer_buf;
+				}
 			}
-			sprintf(killer_buf, "their own wand of stoning");
-			delayed_killer = killer_buf;
 		
 		    }
 

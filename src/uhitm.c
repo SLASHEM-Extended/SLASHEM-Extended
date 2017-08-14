@@ -3765,9 +3765,13 @@ register struct attack *mattk;
 		You("eat %s brain!", s_suffix(mon_nam(mdef)));
 		u.uconduct.food++;
 		if (touch_petrifies(mdef->data) && !Stone_resistance && !Stoned) {
-		    Stoned = 7;
-		    killer_format = KILLED_BY_AN;
-		    delayed_killer = mdef->data->mname;
+			if (Hallucination && rn2(10)) pline("You are already stoned.");
+			else {
+				You("start turning to stone.");
+				Stoned = 7;
+				killer_format = KILLED_BY_AN;
+				delayed_killer = mdef->data->mname;
+			}
 		}
 		if (!vegan(mdef->data))
 		    u.uconduct.unvegan++;
@@ -4471,9 +4475,13 @@ register struct attack *mattk;
 		You("eat %s brain!", s_suffix(mon_nam(mdef)));
 		u.uconduct.food++;
 		if (touch_petrifies(mdef->data) && !Stone_resistance && !Stoned) {
-		    Stoned = 7;
-		    killer_format = KILLED_BY_AN;
-		    delayed_killer = mdef->data->mname;
+			if (Hallucination && rn2(10)) pline("You are already stoned.");
+			else {
+				You("are turning to stone.");
+				Stoned = 7;
+				killer_format = KILLED_BY_AN;
+				delayed_killer = mdef->data->mname;
+			}
 		}
 		if (!vegan(mdef->data))
 		    u.uconduct.unvegan++;
@@ -5751,8 +5759,13 @@ use_weapon:
 				killer = "deliberately gazing at Medusa's hideous countenance";
 				done(STONING);*/
 				You("start turning to stone...");
-				if (!Stoned) Stoned = 7;
-				delayed_killer = "deliberately gazing at Medusa's hideous countenance";
+				if (!Stoned) {
+					if (Hallucination && rn2(10)) pline("But you are already stoned.");
+					else {
+						Stoned = 7;
+						delayed_killer = "deliberately gazing at Medusa's hideous countenance";
+					}
+				}
 			} else if (!mon->mcansee || mon->msleeping) {
 				pline("But nothing happens.");
 				dhit = 0;
@@ -6496,9 +6509,14 @@ uchar aatyp;
 			    if (!Stone_resistance &&
 				!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 
-				if (!Stoned) Stoned = 7;
-				sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
-				delayed_killer = killer_buf;
+				if (!Stoned) {
+					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+					else {
+						Stoned = 7;
+						sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
+						delayed_killer = killer_buf;
+					}
+				}
 		
 			    }
 
@@ -6998,8 +7016,14 @@ uchar aatyp;
 			/* You("turn to stone...");
 			done_in_by(mon);
 			return 2; */
-			if (!Stoned) Stoned = 7;
-			delayed_killer = "bashing a petrifying monster";
+			if (!Stoned) {
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					You("start turning to stone.");
+					Stoned = 7;
+					delayed_killer = "bashing a petrifying monster";
+				}
+			}
 
 /* damn it! You should be able to do SOMEthing against those things! Insta-stoning on touch just plain sucks, okay?*/
 /* One wrongly pressed key is supposed to end it all? And the travelto command rarely finds the way?*/
@@ -7038,8 +7062,14 @@ uchar aatyp;
 			/* You("turn to stone...");
 			done_in_by(mon);
 			return 2; */
-			if (!Stoned) Stoned = 7;
-			delayed_killer = "bashing a petrifying monster";
+			if (!Stoned) {
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					You("start turning to stone.");
+					Stoned = 7;
+					delayed_killer = "bashing a petrifying monster";
+				}
+			}
 
 		}
 	      }

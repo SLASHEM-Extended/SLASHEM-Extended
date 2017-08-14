@@ -1089,8 +1089,14 @@ boolean hitsroof;
 		You("turn to stone.");
 		if (obj) dropy(obj);	
 		done(STONING); */
-		if (!Stoned) Stoned = 7;
-		delayed_killer = "elementary physics";
+		if (!Stoned) {
+			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
+			else {
+				You("start turning to stone.");
+				Stoned = 7;
+				delayed_killer = "elementary physics";
+			}
+		}
 		return obj ? TRUE : FALSE;
 	    }
 	}

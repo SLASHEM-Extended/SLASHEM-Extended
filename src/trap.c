@@ -5597,8 +5597,12 @@ madnesseffect:
 		seetrap(trap);
 		    if (!Stone_resistance &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
-			if (!Stoned) { Stoned = 7;
-				pline("You start turning to stone!");
+			if (!Stoned) {
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					Stoned = 7;
+					pline("You start turning to stone!");
+				}
 			}
 			sprintf(killer_buf, "petrification trap");
 			delayed_killer = killer_buf;
@@ -5623,6 +5627,7 @@ madnesseffect:
 		pline("CLICK! You have triggered a trap!");
 		seetrap(trap);
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
+			You("don't feel very well.");
 		    Slimed = 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
@@ -12732,9 +12737,15 @@ const char *str;
 	killer_format = KILLED_BY;
 	killer = str;
 	done(STONING); */
-	if (!Stoned) Stoned = 7;
-	stop_occupation();
-	delayed_killer = "coming into contact with a petrifying object";
+	if (!Stoned) {
+		if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+		else {
+			pline("Your status starts changing to statue.");
+			Stoned = 7;
+			stop_occupation();
+			delayed_killer = "coming into contact with a petrifying object";
+		}
+	}
 /* Damn you annoying programmers! At least give us a chance to save ourselves with our stock of lizard corpses! */
 }
 

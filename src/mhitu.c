@@ -5789,21 +5789,25 @@ dopois:
 			    if (!Stoned && !Stone_resistance
 				    && !(poly_when_stoned(youmonst.data) &&
 					polymon(PM_STONE_GOLEM))) {
-				Stoned = 7;
-				delayed_killer = mtmp->data->mname;
-				if (mtmp->data->geno & G_UNIQ) {
-				    if (!type_is_pname(mtmp->data)) {
-					static char kbuf[BUFSZ];
 
-					/* "the" buffer may be reallocated */
-					strcpy(kbuf, the(delayed_killer));
-					delayed_killer = kbuf;
-				    }
-				    killer_format = KILLED_BY;
-				} else killer_format = KILLED_BY_AN;
-				return(1);
-				/* You("turn to stone..."); */
-				/* done_in_by(mtmp); */
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					Stoned = 7;
+					delayed_killer = mtmp->data->mname;
+					if (mtmp->data->geno & G_UNIQ) {
+					    if (!type_is_pname(mtmp->data)) {
+						static char kbuf[BUFSZ];
+	
+						/* "the" buffer may be reallocated */
+						strcpy(kbuf, the(delayed_killer));
+						delayed_killer = kbuf;
+					    }
+					    killer_format = KILLED_BY;
+					} else killer_format = KILLED_BY_AN;
+					return(1);
+					/* You("turn to stone..."); */
+					/* done_in_by(mtmp); */
+				}
 			    }
 			}
 		    }
@@ -5833,21 +5837,25 @@ dopois:
 			    if (!Stoned && !Stone_resistance
 				    && !(poly_when_stoned(youmonst.data) &&
 					polymon(PM_STONE_GOLEM))) {
-				Stoned = 7;
-				delayed_killer = mtmp->data->mname;
-				if (mtmp->data->geno & G_UNIQ) {
-				    if (!type_is_pname(mtmp->data)) {
-					static char kbuf[BUFSZ];
 
-					/* "the" buffer may be reallocated */
-					strcpy(kbuf, the(delayed_killer));
-					delayed_killer = kbuf;
-				    }
-				    killer_format = KILLED_BY;
-				} else killer_format = KILLED_BY_AN;
-				return(1);
-				/* You("turn to stone..."); */
-				/* done_in_by(mtmp); */
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					Stoned = 7;
+					delayed_killer = mtmp->data->mname;
+					if (mtmp->data->geno & G_UNIQ) {
+					    if (!type_is_pname(mtmp->data)) {
+						static char kbuf[BUFSZ];
+	
+						/* "the" buffer may be reallocated */
+						strcpy(kbuf, the(delayed_killer));
+						delayed_killer = kbuf;
+					    }
+					    killer_format = KILLED_BY;
+					} else killer_format = KILLED_BY_AN;
+					return(1);
+					/* You("turn to stone..."); */
+					/* done_in_by(mtmp); */
+				}
 			    }
 			}
 		    }
@@ -8778,21 +8786,24 @@ do_stone2:
 			    if (!Stoned && !Stone_resistance
 				    && !(poly_when_stoned(youmonst.data) &&
 					polymon(PM_STONE_GOLEM))) {
-				Stoned = 7;
-				delayed_killer = mtmp->data->mname;
-				if (mtmp->data->geno & G_UNIQ) {
-				    if (!type_is_pname(mtmp->data)) {
-					static char kbuf[BUFSZ];
-
-					/* "the" buffer may be reallocated */
-					strcpy(kbuf, the(delayed_killer));
-					delayed_killer = kbuf;
-				    }
-				    killer_format = KILLED_BY;
-				} else killer_format = KILLED_BY_AN;
-				return(1);
-				/* You("turn to stone..."); */
-				/* done_in_by(mtmp); */
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					Stoned = 7;
+					delayed_killer = mtmp->data->mname;
+					if (mtmp->data->geno & G_UNIQ) {
+					    if (!type_is_pname(mtmp->data)) {
+						static char kbuf[BUFSZ];
+	
+						/* "the" buffer may be reallocated */
+						strcpy(kbuf, the(delayed_killer));
+						delayed_killer = kbuf;
+					    }
+					    killer_format = KILLED_BY;
+					} else killer_format = KILLED_BY_AN;
+					return(1);
+					/* You("turn to stone..."); */
+					/* done_in_by(mtmp); */
+				}
 			    }
 			}
 		}
@@ -8815,21 +8826,24 @@ do_stone2:
 			    if (!Stoned && !Stone_resistance
 				    && !(poly_when_stoned(youmonst.data) &&
 					polymon(PM_STONE_GOLEM))) {
-				Stoned = 7;
-				delayed_killer = mtmp->data->mname;
-				if (mtmp->data->geno & G_UNIQ) {
-				    if (!type_is_pname(mtmp->data)) {
-					static char kbuf[BUFSZ];
-
-					/* "the" buffer may be reallocated */
-					strcpy(kbuf, the(delayed_killer));
-					delayed_killer = kbuf;
-				    }
-				    killer_format = KILLED_BY;
-				} else killer_format = KILLED_BY_AN;
-				return(1);
-				/* You("turn to stone..."); */
-				/* done_in_by(mtmp); */
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					Stoned = 7;
+					delayed_killer = mtmp->data->mname;
+					if (mtmp->data->geno & G_UNIQ) {
+					    if (!type_is_pname(mtmp->data)) {
+						static char kbuf[BUFSZ];
+	
+						/* "the" buffer may be reallocated */
+						strcpy(kbuf, the(delayed_killer));
+						delayed_killer = kbuf;
+					    }
+					    killer_format = KILLED_BY;
+					} else killer_format = KILLED_BY_AN;
+					return(1);
+					/* You("turn to stone..."); */
+					/* done_in_by(mtmp); */
+				}
 			    }
 			}
 		}
@@ -11381,18 +11395,21 @@ common:
 
 			if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) 
 			{
-				Stoned = 7;
-				delayed_killer = mtmp->data->mname;
-				if (mtmp->data->geno & G_UNIQ) {
-				    if (!type_is_pname(mtmp->data)) {
-					static char kbuf[BUFSZ];
-
-					/* "the" buffer may be reallocated */
-					strcpy(kbuf, the(delayed_killer));
-					delayed_killer = kbuf;
-				    }
-				    killer_format = KILLED_BY;
-				} else killer_format = KILLED_BY_AN;
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					Stoned = 7;
+					delayed_killer = mtmp->data->mname;
+					if (mtmp->data->geno & G_UNIQ) {
+					    if (!type_is_pname(mtmp->data)) {
+						static char kbuf[BUFSZ];
+	
+						/* "the" buffer may be reallocated */
+						strcpy(kbuf, the(delayed_killer));
+						delayed_killer = kbuf;
+					    }
+					    killer_format = KILLED_BY;
+					} else killer_format = KILLED_BY_AN;
+				}
 			}
 
 		break;
@@ -11407,18 +11424,21 @@ common:
 
 			if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) 
 			{
-				Stoned = 7;
-				delayed_killer = mtmp->data->mname;
-				if (mtmp->data->geno & G_UNIQ) {
-				    if (!type_is_pname(mtmp->data)) {
-					static char kbuf[BUFSZ];
-
-					/* "the" buffer may be reallocated */
-					strcpy(kbuf, the(delayed_killer));
-					delayed_killer = kbuf;
-				    }
-				    killer_format = KILLED_BY;
-				} else killer_format = KILLED_BY_AN;
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					Stoned = 7;
+					delayed_killer = mtmp->data->mname;
+					if (mtmp->data->geno & G_UNIQ) {
+					    if (!type_is_pname(mtmp->data)) {
+						static char kbuf[BUFSZ];
+	
+						/* "the" buffer may be reallocated */
+						strcpy(kbuf, the(delayed_killer));
+						delayed_killer = kbuf;
+					    }
+					    killer_format = KILLED_BY;
+					} else killer_format = KILLED_BY_AN;
+				}
 			}
 
 		break;
@@ -11588,9 +11608,12 @@ common:
 			    tmp = 1;
 				pline("You touch the petrifying corpse...");
 			    if (!Stoned && !Stone_resistance) {
-				    Stoned = 7;
-				    killer_format = KILLED_BY;
-				    delayed_killer = "their own petrifying corpse";
+					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+					else {
+					    Stoned = 7;
+					    killer_format = KILLED_BY;
+					    delayed_killer = "their own petrifying corpse";
+					}
 			    }
 			}
 			tmp += dmgval(uwep, &youmonst);
@@ -12326,7 +12349,13 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    killer = mtmp->data->mname;
 		    done(STONING);*/
 		    You("start turning to stone...");
-			if (!Stoned) Stoned = 7; delayed_killer = "petrifying gaze";
+			if (!Stoned) {
+				if (Hallucination && rn2(10)) pline("But you are already stoned.");
+				else {
+					Stoned = 7;
+					delayed_killer = "petrifying gaze";
+				}
+			}
 		}
 		break;
 	    case AD_EDGE:
@@ -12375,7 +12404,13 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    killer = mtmp->data->mname;
 		    done(STONING);*/
 		    You("start turning to stone...");
-			if (!Stoned) Stoned = 7; delayed_killer = "petrifying gaze";
+			if (!Stoned) {
+				if (Hallucination && rn2(10)) pline("But you are already stoned.");
+				else {
+					Stoned = 7;
+					delayed_killer = "petrifying gaze";
+				}
+			}
 		}
 		if (canseemon(mtmp) && couldsee(mtmp->mx, mtmp->my) && !rn2(15) && (!Stone_resistance || !rn2(20)) ) {
 			pline("Sharp-edged stones slit you!");
@@ -14461,9 +14496,14 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			    if (!Stone_resistance &&
 				!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 
-				if (!Stoned) Stoned = 7;
-				sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
-				delayed_killer = killer_buf;
+				if (!Stoned) {
+					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+					else {
+						Stoned = 7;
+						sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
+						delayed_killer = killer_buf;
+					}
+				}
 		
 			    }
 			}

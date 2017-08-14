@@ -4565,8 +4565,12 @@ newboss:
 
 		    if (!Stone_resistance &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
-			if (!Stoned) { Stoned = 7;
-				pline("You start turning to stone!");
+			if (!Stoned) {
+				if (Hallucination && rn2(10)) pline("You are already stoned.");
+				else {
+					Stoned = 7;
+					pline("You start turning to stone!");
+				}
 			}
 			sprintf(killer_buf, "reading a petrification scroll");
 			delayed_killer = killer_buf;

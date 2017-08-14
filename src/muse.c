@@ -3891,9 +3891,13 @@ register struct obj *otmp;
 
 		    if (!Stone_resistance &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
-			if (!Stoned) { Stoned = 7;
-				pline("You start turning to stone!");
-				stop_occupation();
+			if (!Stoned) {
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					Stoned = 7;
+					pline("You start turning to stone!");
+					stop_occupation();
+				}
 			}
 			sprintf(killer_buf, "wand of stoning");
 			delayed_killer = killer_buf;
@@ -5700,9 +5704,13 @@ struct monst *mtmp;
 
 		    if (!Stone_resistance &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
-			if (!Stoned) { Stoned = 7;
-				pline("You start turning to stone!");
-				stop_occupation();
+			if (!Stoned) {
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					Stoned = 7;
+					pline("You start turning to stone!");
+					stop_occupation();
+				}
 			}
 			sprintf(killer_buf, "a petrification scroll");
 			delayed_killer = killer_buf;

@@ -796,8 +796,14 @@ xchar x, y;
 			an(killer_cxname(kickobj, TRUE)));
 		killer = kbuf;
 		done(STONING);	*/
-		if (!Stoned) Stoned = 7;
-		delayed_killer = killer_cxname(kickobj,TRUE);
+		if (!Stoned) {
+
+			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
+			else {
+				Stoned = 7;
+				delayed_killer = killer_cxname(kickobj,TRUE);
+			}
+		}
 
 	    }
 	}

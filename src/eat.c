@@ -518,6 +518,7 @@ register struct obj *food;
 	/* "No longer possible to get slimed from eating food. Wayyyyyy too evil" In Soviet Russia, people don't know that scrolls of fire, wands of fireball, fire traps and prayer exist! Out of general paranoia, they have to remove the incredibly low chance of getting slimed, even though it basically never happened anyway. Chances are they just looked at the code and decided that it must be evil because it's in there. Come on! It has to pass the !rn2(200) chance AND all the "else if"s above, so it's bloody unlikely for it to happen, and even on the off chance it does, that's why you have scrolls of fire/cure! --Amy */
 
 	} else if(!rn2(200) && !Slimed && !issoviet && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) { /* This chance should be even lower. --Amy */
+			You("don't feel very well.");
 		    Slimed = 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
@@ -867,9 +868,15 @@ register int pm;
 		if (victual.piece)
 		    victual.eating = FALSE;
 		return; */
-		if (!Stoned) Stoned = 7;
-		sprintf(killer_buf, "tasting petrifying meat (%s)", mons[pm].mname);
-		delayed_killer = killer_buf;
+		if (!Stoned) {
+			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
+			else {
+				You("start turning to stone.");
+				Stoned = 7;
+				sprintf(killer_buf, "tasting petrifying meat (%s)", mons[pm].mname);
+				delayed_killer = killer_buf;
+			}
+		}
 		
 	    }
 	}
@@ -3088,6 +3095,7 @@ gluttonous()
 	} else if(!rn2(50) && !Sick) { /* The chance of this outcome !MUST! be low. Everything else would be unfair. --Amy */
 	    make_sick(rn1(25,25), "rotten food", TRUE, SICK_VOMITABLE);
 	} else if(!rn2(200) && !Slimed && !issoviet && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) { /* This chance should be even lower. --Amy */
+			You("don't feel very well.");
 		    Slimed = 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
@@ -3177,6 +3185,7 @@ violated_vegetarian()
 	} else if(!rn2(50) && !Sick) { /* The chance of this outcome !MUST! be low. Everything else would be unfair. --Amy */
 	    make_sick(rn1(25,25), "rotten food", TRUE, SICK_VOMITABLE);
 	} else if(!rn2(200) && !Slimed && !issoviet && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) { /* This chance should be even lower. --Amy */
+			You("don't feel very well.");
 		    Slimed = 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
@@ -3561,6 +3570,7 @@ struct obj *obj;
 	} else if(!rn2(50) && !Sick) { /* The chance of this outcome !MUST! be low. Everything else would be unfair. --Amy */
 	    make_sick(rn1(25,25), "rotten food", TRUE, SICK_VOMITABLE);
 	} else if(!rn2(200) && !Slimed && !issoviet && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) { /* This chance should be even lower. --Amy */
+			You("don't feel very well.");
 		    Slimed = 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
@@ -4265,9 +4275,13 @@ struct obj *otmp;
 		makeknown(typ);
 		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
 				 polymon(PM_STONE_GOLEM)) ) {
-			Stoned = 7;
-			stop_occupation();
-			delayed_killer = "eating a petrifying amulet";
+			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
+			else {
+				You("start turning to stone.");
+				Stoned = 7;
+				stop_occupation();
+				delayed_killer = "eating a petrifying amulet";
+			}
 		}
 
 		flags.botl = 1;
@@ -4656,10 +4670,16 @@ register struct obj *otmp;
 		if (touch_petrifies(&mons[otmp->corpsenm])) {
 		    if (!Stone_resistance &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
-			if (!Stoned) Stoned = 7;
-			killer_format = KILLED_BY_AN;
-			sprintf(killer_buf, "petrifying egg (%s)", mons[otmp->corpsenm].mname);
-			delayed_killer = killer_buf;
+			if (!Stoned) {
+				if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
+				else {
+					You("start turning to stone.");
+					Stoned = 7;
+					killer_format = KILLED_BY_AN;
+					sprintf(killer_buf, "petrifying egg (%s)", mons[otmp->corpsenm].mname);
+					delayed_killer = killer_buf;
+				}
+			}
 		    }
 		}
 		break;

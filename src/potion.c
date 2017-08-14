@@ -729,6 +729,7 @@ badeffect()
 
 		case 102:
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
+			You("don't feel very well.");
 		    Slimed = 100L;
 		    flags.botl = 1;
 			stop_occupation();
@@ -884,8 +885,15 @@ badeffect()
 		break;
 
 		case 145:
-		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) &&
-				 polymon(PM_STONE_GOLEM)) ) {Stoned = 7; stop_occupation(); delayed_killer = "bad petrification effect";}
+		if (!Stoned && !Stone_resistance && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
+			if (Hallucination && rn2(10)) pline("You are already stoned.");
+			else {
+				You("start turning to stone!");
+				Stoned = 7;
+				stop_occupation();
+				delayed_killer = "bad petrification effect";
+			}
+		}
 
 		break;
 

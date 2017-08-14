@@ -875,11 +875,13 @@ m_throw(mon, x, y, dx, dy, range, obj)
 		    }
 
 		    if (hitu && singleobj->otyp == EGG) {
-			if (!Stone_resistance
-			    && !(poly_when_stoned(youmonst.data) &&
-				 polymon(PM_STONE_GOLEM))) {
-			    Stoned = 7;
-			    killer = (char *) 0;
+			if (!Stone_resistance && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
+				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else {
+					You("start turning to stone!");
+					Stoned = 7;
+					delayed_killer = "thrown petrifying egg";
+				}
 			}
 		    }
 		    stop_occupation();
