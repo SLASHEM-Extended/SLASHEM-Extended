@@ -477,6 +477,7 @@ register struct monst *grd;
 {
 	int x, y, nx, ny, m, n;
 	int dx, dy, gx, gy, fci;
+	int copcnt;
 	uchar typ;
 	struct fakecorridor *fcp;
 	register struct egd *egrd = EGD(grd);
@@ -565,6 +566,22 @@ letknow:
 			    "see an angry %s approaching." :
 			    "are confronted by an angry %s.",
 			    g_monnam(grd));
+
+			copcnt = rnd(monster_difficulty() ) + 1;
+			if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
+
+			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+				copcnt = (copcnt / 2) + 1;
+			}
+
+			if (RngeAntiGovernment) {
+				copcnt = (copcnt / 2) + 1;
+			}
+
+		      while(--copcnt >= 0) {
+				(void) makemon(mkclass(S_KOP,0), grd->mx, grd->my, MM_ANGRY|MM_ADJACENTOK);
+			} /* while */
+
 		    return(-1);
 		} else {
 		    verbalize("Well, begone.");

@@ -5558,6 +5558,7 @@ register boolean silent;
 {
 	register struct monst *mtmp;
 	register int ct = 0, nct = 0, sct = 0, slct = 0;
+	int copcnt;
 
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (DEADMONSTER(mtmp)) continue;
@@ -5590,6 +5591,22 @@ register boolean silent;
 			You_hear("the shrill sound of a guard's whistle.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Davayte posmotrim, sposobna li ubezhat' ot chasov v obshchey slozhnosti neudachnik! Vozmozhno net!" : "Pfiiiiiiiiiie!");
 	    }
+
+		copcnt = rnd(monster_difficulty() ) + 1;
+		if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
+			copcnt = (copcnt / 2) + 1;
+		}
+
+		if (RngeAntiGovernment) {
+			copcnt = (copcnt / 2) + 1;
+		}
+
+	      while(--copcnt >= 0) {
+			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
+		} /* while */
+
 	    return(TRUE);
 	}
 	return(FALSE);
