@@ -12970,7 +12970,6 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    delayed_killer = mtmp->data->mname;
 		} else
 		    pline("Yuck!");
-		}
 
 		{
 		    register struct obj *littX, *littX2;
@@ -12978,6 +12977,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		      littX2 = littX->nobj;
 			if (!rn2(Acid_resistance ? 100 : 10)) rust_dmg(littX, xname(littX), 3, TRUE, &youmonst);
 		    }
+		}
+
 		}
 
 		break;
