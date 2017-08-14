@@ -553,7 +553,7 @@ register struct monst *mtmp;
 		}
       }
 
-	if (mdat == &mons[PM_LAG_MONSTER]) { /* laaaaaaaaaag! :D --Amy */
+	if (mdat == &mons[PM_LAG_MONSTER] || mdat == &mons[PM_LAG_DEFENSE_TOWER]) { /* laaaaaaaaaag! :D --Amy */
 		int lagamount = rno(10);
 		while (lagamount > 0) {
 			delay_output();
