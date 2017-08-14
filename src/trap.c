@@ -15210,6 +15210,7 @@ register int bodypart;
 boolean disarm;
 {
 	register struct obj *otmp = obj, *otmp2;
+	register struct trap *ttmp;
 	char	buf[80];
 	const char *msg;
 	coord cc;
@@ -15220,6 +15221,35 @@ boolean disarm;
 	otmp->otrapped = 0;	/* trap is one-shot; clear flag first in case
 				   chest kills you and ends up in bones file */
 	You(disarm ? "set it off!" : "trigger a trap!");
+
+	if (!rn2(10)) {
+
+		if (isok(u.ux, u.uy) && !(t_at(u.ux, u.uy)) ) {
+			ttmp = maketrap(u.ux, u.uy, randomtrap(), 100);
+			if (ttmp) {
+				ttmp->tseen = 0;
+				ttmp->hiddentrap = 1;
+			}
+		}
+
+		int tryct = 0;
+		int x, y;
+
+		for (tryct = 0; tryct < 2000; tryct++) {
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+
+			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					ttmp = maketrap(x, y, randomtrap(), 0);
+				if (ttmp) {
+					ttmp->tseen = 0;
+					ttmp->hiddentrap = 1;
+				}
+				if (rn2(3)) break;
+			}
+		}
+	}
+
 	display_nhwindow(WIN_MESSAGE, FALSE);
 	if (Luck > -13 && rn2(13+Luck) > 7) {	/* saved by luck */
 	    /* trap went off, but good luck prevents damage */
@@ -15466,6 +15496,7 @@ register const char *item;
 register int bodypart;
 {
 	register int lvl = level_difficulty();
+	register struct trap *ttmp;
 	int dmg = rnd(5 + (lvl < 5 ? lvl : 2+lvl/2));
 
 	pline("KABOOM!!  %s was booby-trapped!", The(item));
@@ -15474,6 +15505,41 @@ register int bodypart;
 	exercise(A_STR, FALSE);
 	if (bodypart) exercise(A_CON, FALSE);
 	make_stunned(HStun + dmg, TRUE);
+
+	if (!rn2(10)) {
+
+		int i, j;
+
+		for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
+			if (t_at(u.ux + i, u.uy + j)) continue;
+
+			ttmp = maketrap(u.ux + i, u.uy + j, randomtrap(), 100);
+			if (ttmp) {
+				ttmp->tseen = 0;
+				ttmp->hiddentrap = 1;
+			}
+		}
+
+		int tryct = 0;
+		int x, y;
+
+		for (tryct = 0; tryct < 2000; tryct++) {
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+
+			if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					ttmp = maketrap(x, y, randomtrap(), 100);
+				if (ttmp) {
+					ttmp->tseen = 0;
+					ttmp->hiddentrap = 1;
+				}
+				if (rn2(3)) break;
+			}
+		}
+	}
+
 }
 
 /* Monster is hit by trap. */
