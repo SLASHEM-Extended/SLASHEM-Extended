@@ -2114,7 +2114,7 @@ mattacku(mtmp)
 			}
 			break;
 		case AT_BREA:
-			if (/*range2 &&*/ !blue_on_blue(mtmp) && rn2(25) && (mattk->adtyp == AD_RBRE || (mattk->adtyp >= AD_MAGM && mattk->adtyp <= AD_SPC2) ) )
+			if (/*range2 &&*/ !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) && rn2(25) && (mattk->adtyp == AD_RBRE || (mattk->adtyp >= AD_MAGM && mattk->adtyp <= AD_SPC2) ) )
 			    sum[i] = breamu(mtmp, mattk);
 			else if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) )
 			{  
@@ -3311,7 +3311,7 @@ elena37:
 		a->damn = (1 + (mtmp->m_lev / 4));
 		a->damd = (1 + (mtmp->m_lev / 4));
 
-		if (range2 && !blue_on_blue(mtmp))
+		if (range2 && !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) )
 		    sum[i] = breamu(mtmp, a);
 		/* Note: breamu takes care of displacement */
 

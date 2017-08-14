@@ -764,8 +764,11 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	    || closed_door(bhitpos.x+dx, bhitpos.y+dy)
 	    || (levl[bhitpos.x + dx][bhitpos.y + dy].typ == IRONBARS &&
 	        hits_bars(&singleobj, bhitpos.x, bhitpos.y, 0, 0))) {
-	    (void) drop_throw(mon, singleobj, 0, bhitpos.x, bhitpos.y);
-	    return;
+
+		if (!isok(bhitpos.x+dx,bhitpos.y+dy) || !((u.ux == bhitpos.x+dx) && (u.uy == bhitpos.y+dy)) ) {
+		    (void) drop_throw(mon, singleobj, 0, bhitpos.x, bhitpos.y);
+		    return;
+		}
 	}
 
 	/* Note: drop_throw may destroy singleobj.  Since obj must be destroyed
@@ -903,9 +906,13 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			/* Thrown objects "sink" */
 			|| IS_SINK(levl[bhitpos.x][bhitpos.y].typ)
 								) {
-		    if (singleobj) /* hits_bars might have destroyed it */
-			(void) drop_throw(mon, singleobj, 0, bhitpos.x, bhitpos.y);
-		    break;
+
+			if (!range || IS_SINK(levl[bhitpos.x][bhitpos.y].typ) || !isok(bhitpos.x+dx,bhitpos.y+dy) || !((u.ux == bhitpos.x+dx) && (u.uy == bhitpos.y+dy)) ) {
+			    if (singleobj) /* hits_bars might have destroyed it */
+				(void) drop_throw(mon, singleobj, 0, bhitpos.x, bhitpos.y);
+			    break;
+			}
+
 		}
 		tmp_at(bhitpos.x, bhitpos.y);
 		delay_output();

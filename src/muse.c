@@ -3013,12 +3013,12 @@ struct monst *mtmp;
 
 		/* nomore(MUSE_WAN_DEATH); */
 		if (!reflection_skip) {
-		    if(obj->otyp == WAN_DEATH && obj->spe > 0) {
+		    if(obj->otyp == WAN_DEATH && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_DEATH;
 		    }
 		    nomore(MUSE_WAN_SLEEP);
-		    if(obj->otyp == WAN_SLEEP && obj->spe > 0 && multi >= 0) {
+		    if(obj->otyp == WAN_SLEEP && obj->spe > 0 && multi >= 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_SLEEP;
 		    }
@@ -3060,7 +3060,7 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_SLUDGE;
                     }
-		    nomore(MUSE_WAN_TOXIC);                    
+		    nomore(MUSE_WAN_TOXIC);
 		    if(obj->otyp == WAN_TOXIC && obj->spe > 0) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_TOXIC;
@@ -3100,28 +3100,28 @@ struct monst *mtmp;
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_GOOD_NIGHT;
                     }
-		    nomore(MUSE_WAN_FIREBALL);                    
+		    nomore(MUSE_WAN_FIREBALL);
 		    if(obj->otyp == WAN_FIREBALL && obj->spe > 0) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_FIREBALL;
                     }
-		    nomore(MUSE_WAN_ACID);                    
-		    if(obj->otyp == WAN_ACID && obj->spe > 0) {
+		    nomore(MUSE_WAN_ACID);
+		    if(obj->otyp == WAN_ACID && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_ACID;
                     }
 		    nomore(MUSE_WAN_SOLAR_BEAM);                    
-		    if(obj->otyp == WAN_SOLAR_BEAM && obj->spe > 0) {
+		    if(obj->otyp == WAN_SOLAR_BEAM && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_SOLAR_BEAM;
                     }
 		    nomore(MUSE_WAN_PSYBEAM);                    
-		    if(obj->otyp == WAN_PSYBEAM && obj->spe > 0) {
+		    if(obj->otyp == WAN_PSYBEAM && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_PSYBEAM;
                     }
 		    nomore(MUSE_WAN_POISON);
-		    if(obj->otyp == WAN_POISON && obj->spe > 0) {
+		    if(obj->otyp == WAN_POISON && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_POISON;
                     }
@@ -3136,42 +3136,42 @@ struct monst *mtmp;
 			m.has_offense = MUSE_WAN_CHROMATIC_BEAM;
                     }
 		    nomore(MUSE_WAN_DISINTEGRATION_BEAM);
-		    if(obj->otyp == WAN_DISINTEGRATION_BEAM && obj->spe > 0) {
+		    if(obj->otyp == WAN_DISINTEGRATION_BEAM && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_DISINTEGRATION_BEAM;
                     }
 		    nomore(MUSE_WAN_FIRE);
-		    if(obj->otyp == WAN_FIRE && obj->spe > 0) {
+		    if(obj->otyp == WAN_FIRE && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_FIRE;
 		    }
 		    nomore(MUSE_FIRE_HORN);
-		    if(obj->otyp == FIRE_HORN && obj->spe > 0) {
+		    if(obj->otyp == FIRE_HORN && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_FIRE_HORN;
 		    }
 		    nomore(MUSE_WAN_COLD);
-		    if(obj->otyp == WAN_COLD && obj->spe > 0) {
+		    if(obj->otyp == WAN_COLD && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_COLD;
 		    }
 		    nomore(MUSE_FROST_HORN);
-		    if(obj->otyp == FROST_HORN && obj->spe > 0) {
+		    if(obj->otyp == FROST_HORN && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_FROST_HORN;
 		    }
 		    nomore(MUSE_TEMPEST_HORN);
-		    if(obj->otyp == TEMPEST_HORN && obj->spe > 0) {
+		    if(obj->otyp == TEMPEST_HORN && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_TEMPEST_HORN;
 		    }
 		    nomore(MUSE_WAN_LIGHTNING);
-		    if(obj->otyp == WAN_LIGHTNING && obj->spe > 0) {
+		    if(obj->otyp == WAN_LIGHTNING && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_LIGHTNING;
 		    }
 		    nomore(MUSE_WAN_MAGIC_MISSILE);
-		    if(obj->otyp == WAN_MAGIC_MISSILE && obj->spe > 0) {
+		    if(obj->otyp == WAN_MAGIC_MISSILE && obj->spe > 0 && (ZAP_POS(levl[u.ux][u.uy].typ) )) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_MAGIC_MISSILE;
 		    }
