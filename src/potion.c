@@ -2222,6 +2222,16 @@ dodrink()
 #define POTION_OCCUPANT_CHANCE(n) (13 + 2*(n))	/* also in muse.c */
 
 	potion_descr = OBJ_DESCR(objects[otmp->otyp]);
+
+	use_skill(P_DEVICES,1);
+	if (Race_if(PM_FAWN)) {
+		use_skill(P_DEVICES,1);
+	}
+	if (Race_if(PM_SATRE)) {
+		use_skill(P_DEVICES,1);
+		use_skill(P_DEVICES,1);
+	}
+
 	if (potion_descr) {
 	    if ( (!strcmp(potion_descr, "milky") || !strcmp(potion_descr, "ghostly") || !strcmp(potion_descr, "hallowed") || !strcmp(potion_descr, "spiritual")) &&
 		    flags.ghost_count < MAXMONNO &&

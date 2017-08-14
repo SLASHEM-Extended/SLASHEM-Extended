@@ -4675,6 +4675,16 @@ doapply()
 			    obj_extract_self(otmp);
 			    obfree(otmp, (struct obj *)0);
 			}
+
+			use_skill(P_DEVICES,1);
+			if (Race_if(PM_FAWN)) {
+				use_skill(P_DEVICES,1);
+			}
+			if (Race_if(PM_SATRE)) {
+				use_skill(P_DEVICES,1);
+				use_skill(P_DEVICES,1);
+			}
+
 			/*
 			 * Note that while white and pink pills share the
 			 * same otyp value, they are quite different.
@@ -5061,6 +5071,21 @@ doapply()
 
 		delobj(obj);
 
+		use_skill(P_DEVICES,10);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,10);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,10);
+		}
+		if (Role_if(PM_SPACEWARS_FIGHTER)) {
+			use_skill(P_DEVICES,10);
+		}
+		if (Role_if(PM_CAMPERSTRIKER)) {
+			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,10);
+		}
 
 		RMBLoss = 0L;
 		DisplayLoss = 0L;

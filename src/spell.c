@@ -1085,7 +1085,31 @@ register struct obj *spellbook;
 		}
 		if (spellbook->spe && confused && rn2(Role_if(PM_LIBRARIAN) ? 2 : 10) ) {
 		    check_unpaid_usage(spellbook, TRUE);
-		    consume_obj_charge(spellbook, FALSE);
+
+			int nochargechange = 10;
+			if (!(PlayerCannotUseSkills)) {
+				switch (P_SKILL(P_DEVICES)) {
+					default: break;
+					case P_BASIC: nochargechange = 9; break;
+					case P_SKILLED: nochargechange = 8; break;
+					case P_EXPERT: nochargechange = 7; break;
+					case P_MASTER: nochargechange = 6; break;
+					case P_GRAND_MASTER: nochargechange = 5; break;
+					case P_SUPREME_MASTER: nochargechange = 4; break;
+				}
+			}
+
+		    if (nochargechange >= rnd(10)) consume_obj_charge(spellbook, FALSE);
+
+			use_skill(P_DEVICES,1);
+			if (Race_if(PM_FAWN)) {
+				use_skill(P_DEVICES,1);
+			}
+			if (Race_if(PM_SATRE)) {
+				use_skill(P_DEVICES,1);
+				use_skill(P_DEVICES,1);
+			}
+
 		    pline_The("words on the page seem to glow faintly purple.");
 		    You_cant("quite make them out.");
 		    return 1;
@@ -1191,7 +1215,34 @@ register struct obj *spellbook;
 		    delay *= 2;
 		    if (spellbook->spe) {
 			check_unpaid_usage(spellbook, TRUE);
-			consume_obj_charge(spellbook, FALSE);
+
+			int nochargechange = 10;
+			if (!(PlayerCannotUseSkills)) {
+				switch (P_SKILL(P_DEVICES)) {
+					default: break;
+					case P_BASIC: nochargechange = 9; break;
+					case P_SKILLED: nochargechange = 8; break;
+					case P_EXPERT: nochargechange = 7; break;
+					case P_MASTER: nochargechange = 6; break;
+					case P_GRAND_MASTER: nochargechange = 5; break;
+					case P_SUPREME_MASTER: nochargechange = 4; break;
+				}
+			}
+
+			if (nochargechange >= rnd(10)) consume_obj_charge(spellbook, FALSE);
+
+			use_skill(P_DEVICES,1);
+			if (Race_if(PM_FAWN)) {
+				use_skill(P_DEVICES,1);
+			}
+			if (Race_if(PM_SATRE)) {
+				use_skill(P_DEVICES,1);
+				use_skill(P_DEVICES,1);
+			}
+			if (Role_if(PM_LIBRARIAN)) {
+				use_skill(P_DEVICES,1);
+			}
+
 			pline_The("words on the page seem to glow faintly.");
 			if (!too_hard)
 			    delay /= 3;

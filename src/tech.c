@@ -2344,6 +2344,16 @@ int tech_no;
 			    obj_extract_self(otmp);
 			    obfree(otmp, (struct obj *)0);
 			}
+
+			use_skill(P_DEVICES,1);
+			if (Race_if(PM_FAWN)) {
+				use_skill(P_DEVICES,1);
+			}
+			if (Race_if(PM_SATRE)) {
+				use_skill(P_DEVICES,1);
+				use_skill(P_DEVICES,1);
+			}
+
 			pline("Using %s, you dress your wounds.", yname(otmp));
 			healup(techlev(tech_no) * (rnd(2)+1) + (rn1(5,5) * techlev(tech_no)),
 			  0, FALSE, FALSE);
@@ -3139,6 +3149,16 @@ int tech_no;
 		    obj_extract_self(obj);
 		    obfree(obj, (struct obj *)0);
 		}
+
+		use_skill(P_DEVICES,1);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,1);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,1);
+		}
+
 		pline("Using your medical kit, you draw off a phial of your blood.");
 		/* Amy edit: let's make this much more useful by having the level drain only occur 1 out of 3 times. */
 		if (!rn2(3)) {losexp("drawing blood", TRUE, FALSE);

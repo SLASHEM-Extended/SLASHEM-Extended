@@ -774,6 +774,29 @@ doread()
 	    scroll = &otemp;
 	}
 
+	if (!scroll) {
+		impossible("used scroll disappeared before processing its effects?");
+		return(1);
+	}
+
+	if (scroll && scroll->oclass == SCROLL_CLASS && scroll->otyp != SCR_CREATE_CREATE_SCROLL && !(scroll->oartifact == ART_MARAUDER_S_MAP)) {
+
+		use_skill(P_DEVICES,1);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,1);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,1);
+		}
+		if (Role_if(PM_INTEL_SCRIBE)) {
+			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,1);
+		}
+
+	}
+
 	if(!seffects(scroll))  {
 
 		if (!scroll) { /* scroll of copying "phantom crash bug"... --Amy */

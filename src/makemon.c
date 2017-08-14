@@ -17624,7 +17624,19 @@ struct obj *bag;
 	boolean gotone = FALSE;
 	int cnt = 1;
 
-	consume_obj_charge(bag, TRUE);
+	int nochargechange = 10;
+	if (!(PlayerCannotUseSkills)) {
+		switch (P_SKILL(P_DEVICES)) {
+			default: break;
+			case P_BASIC: nochargechange = 9; break;
+			case P_SKILLED: nochargechange = 8; break;
+			case P_EXPERT: nochargechange = 7; break;
+			case P_MASTER: nochargechange = 6; break;
+			case P_GRAND_MASTER: nochargechange = 5; break;
+			case P_SUPREME_MASTER: nochargechange = 4; break;
+		}
+	}
+	if (nochargechange >= rnd(10)) consume_obj_charge(bag, TRUE);
 
 	if (Aggravate_monster) {
 		u.aggravation = 1;
