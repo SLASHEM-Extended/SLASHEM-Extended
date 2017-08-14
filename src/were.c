@@ -34,7 +34,7 @@ register struct monst *mon;
 		    }
 		}
 	    }
-	} else if (!rn2(30) || Protection_from_shape_changers) {
+	} else if (!rn2(30) && !Protection_from_shape_changers) {
 	    new_were(mon);		/* change back into human form */
 	}
 }

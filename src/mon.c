@@ -1166,7 +1166,7 @@ mcalcdistress()
 	mon_regen(mtmp, FALSE);
 
 	/* possibly polymorph shapechangers and lycanthropes */
-	if (mtmp->cham && !rn2(6))
+	if (mtmp->cham && !rn2(6) && !Protection_from_shape_changers)
 	    (void) mon_spec_poly(mtmp, (struct permonst *)0, 0L, FALSE,
 		    cansee(mtmp->mx,mtmp->my) && flags.verbose, FALSE, FALSE);
 	were_change(mtmp);
