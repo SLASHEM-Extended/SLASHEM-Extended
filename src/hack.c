@@ -1161,6 +1161,23 @@ int mode;
 			    opentry = 1;
 		    }
 		    else if (x == ux || y == uy) {
+
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+				You("crash into a door! Ouch!");
+
+				losehp(rnd(10), "walking into a door", KILLED_BY);
+				if (!rn2(10)) {
+					if (rn2(50)) {
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+					} else {
+						You_feel("dizzy!");
+						forget(1 + rn2(5));
+					}
+				}
+			}
+			/* It is not a mistake that the next message will still be displayed,
+			 * since it contains the check for dexterity abuse and hyperbluewalls should not disable that :D --Amy */
+
 			if (Blind || Stunned || Numbed || ACURR(A_DEX) < 10 || Fumbling) {
 			    if (u.usteed) {
 				You_cant("lead %s through that closed door.",
