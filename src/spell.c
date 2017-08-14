@@ -851,7 +851,8 @@ struct obj *book2;
 	register boolean arti1_primed = FALSE, arti2_primed = FALSE,
 			 arti_cursed = FALSE;
 
-	if(book2->cursed) {
+	/* If your book becomes prime cursed or worse, the game should still be winnable --Amy */
+	if(book2->cursed && rn2(2)) {
 	    pline_The("runes appear scrambled.  You can't read them!");
 	    return;
 	}
@@ -866,17 +867,17 @@ struct obj *book2;
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 	    if(otmp->otyp == CANDELABRUM_OF_INVOCATION &&
 	       otmp->spe == 7 && otmp->lamplit) {
-		if(!otmp->cursed) arti1_primed = TRUE;
+		if(!otmp->cursed || !issoviet) arti1_primed = TRUE;
 		else arti_cursed = TRUE;
 	    }
 	    if(otmp->otyp == BELL_OF_OPENING &&
 	       (moves - otmp->age) < 50L) { /* you rang it recently */
-		if(!otmp->cursed) arti2_primed = TRUE;
+		if(!otmp->cursed || !issoviet) arti2_primed = TRUE;
 		else arti_cursed = TRUE;
 	    }
 	}
 
-	if(arti_cursed) {
+	if(arti_cursed && issoviet) { /* Nyah-nyah! --Amy */
 	    pline_The("invocation fails!");
 	    pline("At least one of your artifacts is cursed...");
 	} else if(arti1_primed && arti2_primed) {
@@ -915,6 +916,8 @@ raise_dead:
 	mm.x = u.ux;
 	mm.y = u.uy;
 	mkundead(&mm, TRUE, NO_MINVENT);
+	badeffect();
+	aggravate();
     } else if(book2->blessed) {
 	for(mtmp = fmon; mtmp; mtmp = mtmp2) {
 	    mtmp2 = mtmp->nmon;		/* tamedog() changes chain */
@@ -932,6 +935,8 @@ raise_dead:
 		else monflee(mtmp, rnd(10), FALSE, TRUE);
 	    }
 	}
+	/* Amy edit: infinite command undead would be way overpowered */
+	unbless(book2);
     } else {
 	switch(rn2(3)) {
 	case 0:
@@ -1146,7 +1151,7 @@ register struct obj *spellbook;
 		spellbook->in_use = TRUE;
 		if (!spellbook->blessed &&
 		    spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
-		    if ( (spellbook->cursed || (spellbook->spe < 1 && rn2(5)) ) && !Role_if(PM_LIBRARIAN) && booktype != SPE_BOOK_OF_THE_DEAD ) {
+		    if ( ((spellbook->cursed && rn2(4)) || (spellbook->spe < 1 && rn2(3)) ) && !Role_if(PM_LIBRARIAN) && booktype != SPE_BOOK_OF_THE_DEAD ) {
 			too_hard = TRUE;
 		    } else {
 			/* uncursed - chance to fail */
@@ -1154,12 +1159,13 @@ register struct obj *spellbook;
 			    - 2*objects[booktype].oc_level
 			    + ((ublindf && (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == BOSS_VISOR)) ? 2 : 0);
 			/* only wizards know if a spell is too difficult */
-			if (Role_if(PM_WIZARD) && read_ability < 20 &&
-			    !confused && !spellbook->spe) {
+			/* Amy edit: others may randomly know it sometimes */
+			if ((Role_if(PM_WIZARD) || !rn2(4)) && read_ability < 20 &&
+			    !confused && (!spellbook->spe || spellbook->cursed)) {
 			    char qbuf[QBUFSZ];
 			    sprintf(qbuf,
 		      "This spellbook is %sdifficult to comprehend. Continue?",
-				    (read_ability < 12 ? "very " : ""));
+				    (read_ability < 5 ? "extremely" : read_ability < 12 ? "very " : ""));
 			    if (yn(qbuf) != 'y') {
 				spellbook->in_use = FALSE;
 				return(1);

@@ -1055,13 +1055,15 @@ struct obj **optr;
 		else
 		    pline(nothing_happens);
 
-	    } else if (obj->cursed) {
+	    } else if (obj->cursed && (!invoking || !rn2(2)) ) {
 		coord mm;
 
 		mm.x = u.ux;
 		mm.y = u.uy;
 		mkundead(&mm, FALSE, NO_MINVENT);
 		wakem = TRUE;
+		badeffect();
+		aggravate();
 
 	    } else  if (invoking) {
 		pline("%s an unsettling shrill sound...",
@@ -1132,7 +1134,7 @@ register struct obj *obj;
 		pline("This %s has no %s.", xname(obj), s);
 		return;
 	}
-	if(u.uswallow || obj->cursed) {
+	if(u.uswallow || (obj->cursed && !rn2(2))) {
 		if (!Blind)
 		    pline_The("%s %s for a moment, then %s.",
 			      s, vtense(s, "flicker"), vtense(s, "die"));
