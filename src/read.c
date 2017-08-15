@@ -764,7 +764,7 @@ doread()
 	 * care needs to be taken so that the scroll is used up before
 	 * a potential level teleport occurs.
 	 */
-	if (scroll->otyp == SCR_TELEPORTATION || scroll->otyp == SCR_ANTIMATTER || scroll->otyp == SCR_BAD_EFFECT || scroll->otyp == SCR_SIN || scroll->otyp == SCR_COPYING || scroll->otyp == SCR_TELE_LEVEL || scroll->otyp == SCR_WARPING) {
+	if (scroll->otyp == SCR_TELEPORTATION || scroll->otyp == SCR_ANTIMATTER || scroll->otyp == SCR_BAD_EFFECT || scroll->otyp == SCR_SIN || scroll->otyp == SCR_TELE_LEVEL || scroll->otyp == SCR_WARPING) {
 	    otemp = *scroll;
 	    otemp.where = OBJ_FREE;
 	    otemp.nobj = (struct obj *)0;
@@ -816,7 +816,7 @@ doread()
 				(scroll->blessed ? 2 : 1));
 		}
 		if(scroll->otyp != SCR_BLANK_PAPER && scroll->oartifact != ART_MARAUDER_S_MAP &&
-		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_COPYING && scroll->otyp != SCR_ANTIMATTER && scroll->otyp != SCR_BAD_EFFECT && scroll->otyp != SCR_SIN && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_WARPING) {
+		  scroll->otyp != SCR_TELEPORTATION && scroll->otyp != SCR_ANTIMATTER && scroll->otyp != SCR_BAD_EFFECT && scroll->otyp != SCR_SIN && scroll->otyp != SCR_TELE_LEVEL && scroll->otyp != SCR_WARPING) {
 		    if (carried(scroll)) useup(scroll);
 		    else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
 		    else useupf(scroll, 1L);
@@ -2338,7 +2338,6 @@ register struct obj	*sobj;
 		if (wonderscroll) obfree(wonderscroll, (struct obj *)0);
 
 	}
-
 
 	switch(sobj->otyp) {
 #ifdef MAIL
