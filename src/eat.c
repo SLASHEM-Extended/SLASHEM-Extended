@@ -2611,6 +2611,14 @@ register int pm;
 		case PM_SENIOR_MIND_FLAYER:
 		case PM_ICKY_FACE:
 		case PM_BRAIN_EATER:
+		case PM_BRAIN_OOZE:
+		case PM_BRAIN_MOLE:
+		case PM_BRAIN_GOLEM:
+		case PM_LOWER_BRAIN:
+		case PM_IDIOT_BRAIN:
+		case PM_ELDER_BRAIN:
+		case PM_MASTER_BRAIN:
+		case PM_PETTY_BRAIN_GOLEM:
 		case PM_LARGE_BRAIN_EATER:
 		case PM_PESKY_BRAIN_EATER:
 		case PM_MIND_SUCKER:
