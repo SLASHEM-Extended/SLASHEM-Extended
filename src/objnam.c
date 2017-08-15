@@ -4974,6 +4974,12 @@ char *
 xname2(obj)
 register struct obj *obj;
 {	/* Hallu */
+
+	if (!obj) {
+		impossible("xname2 called with nonexistant object");
+		return("???");
+	}
+
 	register char *buf;
 	register int typ = obj->otyp;
 	register struct objclass *ocl = &objects[typ];
