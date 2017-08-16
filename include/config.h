@@ -44,7 +44,7 @@
  * Some combinations make no sense.  See the installation document.
  */
 #define TTY_GRAPHICS		/* good old tty based graphics */
-#define CURSES_GRAPHICS		/* awful curses interface */
+/* #define CURSES_GRAPHICS	*/	/* awful curses interface */
 /* #define X11_GRAPHICS */	/* X11 interface */
 /* #define QT_GRAPHICS */	/* Qt Interface */
 /* #define KDE */		/* KDE Interface */
@@ -547,6 +547,18 @@ typedef unsigned char	uchar;
 /*#ifdef PUBLIC_SERVER
 #define PHANTOM_CRASH_BUG
 #endif*/
+
+/* On some systems (apparently mostly Unices, but not on any known public
+ * server) there seems to be a bug where restore.c does not re-initialize
+ * monsters with garbled names correctly, leading to crash bugs whenever the
+ * game goes through the list of monsters, such as whenever a monster's weapon
+ * is poisoned. Turning this compile flag on will change the restore.c logic
+ * and make sure the crash does not happen. IT IS MEANT TO BE OFF BY DEFAULT.
+ * Because if it is turned on, the monster names will obviously no longer be
+ * randomized, and the standard behavior of SLEX should be maximum randomization.
+ * So, only turn it on if poisoned weapons crash your game :) --Amy */
+
+/* #define STUPIDRANDOMMONSTERBUG */
 
 #define DUMPMSGS 20
 
