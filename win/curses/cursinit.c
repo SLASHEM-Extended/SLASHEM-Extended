@@ -430,7 +430,7 @@ curses_init_nhcolors()
             init_pair(16, COLOR_WHITE + 8, -1);
         }
 
-        if (can_change_color()) {
+        if (can_change_color() && iflags.should_change_color) {
             /* Preserve initial terminal colors */
             color_content(COLOR_YELLOW, &orig_yellow.r, &orig_yellow.g,
                           &orig_yellow.b);

@@ -392,6 +392,7 @@ struct instance_flags {
 #ifdef AUTO_OPEN
 	boolean  autoopen;	/* open doors by walking into them */
 #endif
+	boolean should_change_color; /* should curses change the colourscheme? */
 };
 
 /*

@@ -246,6 +246,7 @@ static struct Bool_Opt
 #else
 	{"sanity_check", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
+	{"should_change_color", &iflags.should_change_color, TRUE, SET_IN_FILE},
 	{"showexp", &flags.showexp, FALSE, SET_IN_GAME},
 	{"showrace", &iflags.showrace, FALSE, SET_IN_GAME},
 #ifdef REALTIME_ON_BOTL
