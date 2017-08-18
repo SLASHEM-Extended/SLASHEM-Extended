@@ -15910,13 +15910,6 @@ register struct monst *mon;
         boolean protect_test = !(ublindf && (ublindf->otyp == CONDOME              || ublindf->otyp == SOFT_CHASTITY_BELT))
                             && !(uarm    && (uarm->oartifact == ART_CHASTITY_ARMOR || uarm->oartifact == ART_LITTLE_PENIS_WANKER));
 
-        int slexuality1[] = {5,     200,   50,    20,    40,    100,   20,    20,    100,    100,   1000,  1000, 10000, 2000,  1000,  800,
-                             1000,  2000,  2000,  5000,  5000,  10000, 4000,  3000,  50000,  5000,  2000,  200,  200,   5000,  2000,  80,
-                             2000,  1000,  400,   400,   800,   2000,  6000,  8000,  10000,  10000, 10000,};
-        int slexuality2[] = {25,    1000,  250,   100,   200,   500,   100,   100,   500,    500,   5000,  5000, 50000, 10000, 5000,  4000,
-                             5000,  10000, 10000, 25000  25000, 50000, 20000, 15000, 250000, 25000, 10000, 1000, 1000,  25000, 10000, 400,
-                             10000, 5000,  2000,  2000,  4000,  10000, 30000, 40000, 50000, 50000,  50000};
-
 	/* maybe contract a disease? --Amy */
 	if (protect_test) {
 #define slextest(a, b) if (!rn2(RngeSlexuality ? a : b))
