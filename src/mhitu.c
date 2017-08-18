@@ -15920,15 +15920,17 @@ register struct monst *mon;
 	/* maybe contract a disease? --Amy */
 	if (protect_test) {
 #define slextest(a, b) if (!rn2(RngeSlexuality ? a : b))
+#define sickmsg(s) pline("Ulch - you contracted %s from having unprotected intercourse with your lover!", s)
+
 
 		if (!rn2(RngeSlexuality ? 5 : 25) ) {
-			pline("Ulch - you contracted syphilis from having unprotected intercourse with your lover!");
+			sickmsg("syphilis");
 
 			diseasemu(mon->data);
 		}
 
             slextest(200, 1000) {
-		pline("Ulch - you contracted AIDS from having unprotected intercourse with your lover!");
+		sickmsg("AIDS");
 		u.uprops[DEAC_FIRE_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_COLD_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_SLEEP_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
@@ -15993,25 +15995,25 @@ register struct monst *mon;
         
 
             slextest(50, 250) {
-		pline("Ulch - you contracted ataxia from having unprotected intercourse with your lover!");
+		sickmsg("ataxia");
 		HFumbling = FROMOUTSIDE | rnd(5);
 		incr_itimeout(&HFumbling, rnd(20));
 		u.fumbleduration += rnz(1000);
             }
 
             slextest(20, 100) {
-		pline("Ulch - you contracted rust chancres from having unprotected intercourse with your lover!");
+		sickmsg("rust chancres");
                 HAggravate_monster |= FROMOUTSIDE;
             }
 
             slextest(40, 200) {
-		pline("Ulch - you contracted chills from having unprotected intercourse with your lover!");
+		sickmsg("chills");
 		make_frozen(HFrozen + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
 		set_itimeout(&HeavyFrozen, HFrozen);
             }
 
             slextest(100, 500) {
-		pline("Ulch - you contracted blackheart plague from having unprotected intercourse with your lover!");
+		sickmsg("blackheart plague");
 
 		if (!flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) && !Slimed) {
 		    You("don't feel very well.");
@@ -16025,220 +16027,220 @@ register struct monst *mon;
             }
 
             slextest(20, 100) {
-		pline("Ulch - you contracted swamp fever from having unprotected intercourse with your lover!");
+		sickmsg("swamp fever");
 		make_burned(HBurned + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
 		set_itimeout(&HeavyBurned, HBurned);
             }
 
             slextest(20, 100) {
-		pline("Ulch - you contracted depression from having unprotected intercourse with your lover!");
+		sickmsg("depression");
 		make_dimmed(HDimmed + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
 		set_itimeout(&HeavyDimmed, HDimmed);
             }
 
             slextest(100, 500) {
-		pline("Ulch - you contracted gray star from having unprotected intercourse with your lover!");
+		sickmsg("gray star");
 		make_blinded(Blinded + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
 		set_itimeout(&HeavyBlind, Blinded);
             }
 
             slextest(100, 500) {
-		pline("Ulch - you contracted voracious hunger from having unprotected intercourse with your lover!");
+		sickmsg("voracious hunger");
                 HHunger |= FROMOUTSIDE;
             }
 
             slextest(1000, 5000) {
-		pline("Ulch - you contracted polymorphitis from having unprotected intercourse with your lover!");
+		sickmsg("polymorphitis");
                 HPolymorph |= FROMOUTSIDE;
             }
 
             slextest(1000, 5000) {
-		pline("Ulch - you contracted green star from having unprotected intercourse with your lover!");
+		sickmsg("green star");
                 u.uprops[WEAKSIGHT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(10000, 50000) {
-		pline("Ulch - you contracted an ancient foul curse from having unprotected intercourse with your lover!");
+		sickmsg("an ancient foul curse");
                 u.uprops[PREMDEATH].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted witbane from having unprotected intercourse with your lover!");
+		sickmsg("witbane");
                 u.uprops[UNIDENTIFY].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(1000, 5000) {
-		pline("Ulch - you contracted brain rot from having unprotected intercourse with your lover!");
+		sickmsg("brain rot");
                 u.uprops[LOW_EFFECTS].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(800, 4000) {
-		pline("Ulch - you contracted dehydration from having unprotected intercourse with your lover!");
+		sickmsg("dehydration");
                 u.uprops[DEHYDRATION].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(1000, 5000) {
-		pline("Ulch - you contracted alexithymia from having unprotected intercourse with your lover!");
+		sickmsg("alexithymia");
                 u.uprops[HATE_TRAP_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted hydroanemia from having unprotected intercourse with your lover!");
+		sickmsg("hydroanemia");
                 u.uprops[THIRST].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted lung cancer from having unprotected intercourse with your lover!");
+		sickmsg("lung cancer");
                 u.uprops[NONINTRINSIC_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(5000, 25000) {
-		pline("Ulch - you contracted orientation loss from having unprotected intercourse with your lover!");
+		sickmsg("orientation loss");
                 u.uprops[TOTTER_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(5000, 25000) {
-		pline("Ulch - you contracted forced atheism from having unprotected intercourse with your lover!");
+		sickmsg("forced atheism");
                 u.uprops[NON_PRAYER_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(10000, 50000) {
-		pline("Ulch - you contracted gangrene from having unprotected intercourse with your lover!");
+		sickmsg("gangrene");
                 u.uprops[HARD_MODE_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(4000, 20000) {
-		pline("Ulch - you contracted light sensitivity from having unprotected intercourse with your lover!");
+		sickmsg("light sensitivity");
                 u.uprops[DARK_MODE_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(3000, 15000) {
-		pline("Ulch - you contracted imperception from having unprotected intercourse with your lover!");
+		sickmsg("imperception");
                 u.uprops[ANTISEARCH_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(50000, 250000) {
-		pline("Ulch - you contracted ether corruption from having unprotected intercourse with your lover!");
+		sickmsg("ether corruption");
                 u.uprops[EVIL_PATCH_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(5000, 25000) {
-		pline("Ulch - you contracted shapechanging anomaly from having unprotected intercourse with your lover!");
+		sickmsg("shapechanging anomaly");
                 u.uprops[WEREFORM_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted Dudley's disease from having unprotected intercourse with your lover!");
+		sickmsg("Dudley's disease");
                 u.uprops[LUCK_LOSS].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(200, 1000) {
-		pline("Ulch - you contracted fuckedupness (the disease that has befallen Christian Grey) from having unprotected intercourse with your lover!");
+		sickmsg("fuckedupness (the disease that has befallen Christian Grey)");
                 u.uprops[SHADES_OF_GREY].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(200, 1000) {
-		pline("Ulch - you contracted Rodney's Black Cancer from having unprotected intercourse with your lover!");
+		sickmsg("Rodney's Black Cancer");
                 u.uprops[ITEMCURSING].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(5000, 25000) {
-		pline("Ulch - you contracted Tourette's syndrome from having unprotected intercourse with your lover!");
+		sickmsg("Tourette's syndrome");
                 u.uprops[MOMMA_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted narcolepsy from having unprotected intercourse with your lover!");
+		sickmsg("narcolepsy");
                 u.uprops[FAINT_ACTIVE].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(80, 400) {
-		pline("Ulch - you contracted diarrhea from having unprotected intercourse with your lover!");
+		sickmsg("diarrhea");
                 u.uprops[CRAP_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted deafness from having unprotected intercourse with your lover!");
+		sickmsg("deafness");
                 u.uprops[DEAFNESS].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(1000, 5000) {
-		pline("Ulch - you contracted a tapeworm infection from having unprotected intercourse with your lover!");
+		sickmsg("a tapeworm infection");
                 u.uprops[WEAKNESS_PROBLEM].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(400, 2000) {
-		pline("Ulch - you contracted a heavy flu from having unprotected intercourse with your lover!");
+		sickmsg("a heavy flu");
                 u.uprops[STATUS_FAILURE].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(400, 2000) {
-		pline("Ulch - you contracted loss of will from having unprotected intercourse with your lover!");
+		sickmsg("loss of will");
                 u.uprops[ITEM_STEALING_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(800, 4000) {
-		pline("Ulch - you contracted incontinence from having unprotected intercourse with your lover!");
+		sickmsg("incontinence");
                 u.uprops[REBELLION_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted migraine from having unprotected intercourse with your lover!");
+		sickmsg("migraine");
                 u.uprops[UNINFORMATION].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(6000, 30000) {
-		pline("Ulch - you contracted arrhythmia from having unprotected intercourse with your lover!");
+		sickmsg("arrhythmia");
                 u.uprops[MONSTER_SPEED_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(8000, 40000) {
-		pline("Ulch - you contracted optical nervitis from having unprotected intercourse with your lover!");
+		sickmsg("optical nervitis");
                 u.uprops[GRAYOUT_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(10000, 50000) {
-		pline("Ulch - you contracted retina destruction from having unprotected intercourse with your lover!");
+		sickmsg("retina destruction");
                 u.uprops[GRAY_CENTER_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(10000, 50000) {
-		pline("Ulch - you contracted checkerboard disease from having unprotected intercourse with your lover!");
+		sickmsg("checkerboard disease");
                 u.uprops[CHECKERBOARD_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(10000, 50000) {
-		pline("Ulch - you contracted severe rotating worm from having unprotected intercourse with your lover!");
+		sickmsg("severe rotating worm");
                 u.uprops[CLOCKWISE_SPIN_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(5000, 25000) {
-		pline("Ulch - you contracted rotating worm from having unprotected intercourse with your lover!");
+		sickmsg("rotating worm");
                 u.uprops[COUNTERCLOCKWISE_SPIN_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(10000, 50000) {
-		pline("Ulch - you contracted mind lag from having unprotected intercourse with your lover!");
+		sickmsg("mind lag");
                 u.uprops[LAG_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(4000, 20000) {
-		pline("Ulch - you contracted cursed hands from having unprotected intercourse with your lover!");
+		sickmsg("cursed hands");
                 u.uprops[BLESSCURSE_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(10000, 50000) {
-		pline("Ulch - you contracted antechamber flickering from having unprotected intercourse with your lover!");
+		sickmsg("antechamber flickering");
                 u.uprops[FLICKER_STRIP_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(5000, 25000) {
-		pline("Ulch - you contracted exhibitionism from having unprotected intercourse with your lover!");
+		sickmsg("exhibitionism");
                 u.uprops[UNDRESSING_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(8000, 40000) {
-		pline("Ulch - you contracted paranoia from having unprotected intercourse with your lover!");
+		sickmsg("paranoia");
                 u.uprops[PARANOIA_BUG].intrinsic |= FROMOUTSIDE;
             }
 
@@ -16248,169 +16250,170 @@ register struct monst *mon;
             }
 
             slextest(3000, 15000) {
-		pline("Ulch - you contracted mana battery disease from having unprotected intercourse with your lover!");
+		sickmsg("mana battery disease");
                 u.uprops[MANA_BATTERY_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(3000, 15000) {
-		pline("Ulch - you contracted poison hands disease from having unprotected intercourse with your lover!");
+		sickmsg("poison hands disease");
                 u.uprops[MONSTERFINGERS_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(6000, 30000) {
-		pline("Ulch - you contracted monster schizophreny from having unprotected intercourse with your lover!");
+		sickmsg("monster schizophreny");
                 u.uprops[EVC_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(3000, 6000) {
-		pline("Ulch - you contracted identity loss from having unprotected intercourse with your lover!");
+		sickmsg("identity loss");
                 u.uprops[FUCKED_INFO_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(5000, 10000) {
-		pline("Ulch - you contracted... you contracted... you contracted... you contracted... you contracted...");
+		sickmsg("... you contracted... you");
                 u.uprops[HEAP_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(4000, 20000) {
-		pline("Ulch - you contracted mongoloism (trisomia-13) from having unprotected intercourse with your lover!");
+		sickmsg("mongoloism (trisomia-13)");
                 u.uprops[ANTILEVELING].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(10000, 50000) {
-		pline("Ulch - you contracted quasar vision from having unprotected intercourse with your lover!");
+		sickmsg("quasar vision");
                 u.uprops[QUASAR_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted ulcerous skin anomaly from having unprotected intercourse with your lover!");
+		sickmsg("ulcerous skin anomaly");
                 u.uprops[ENMITY_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(4000, 20000) {
-		pline("Ulch - you contracted selective inertia from having unprotected intercourse with your lover!");
+		sickmsg("selective inertia");
                 u.uprops[TIMERUN_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(4000, 20000) {
-		pline("Ulch - you contracted disconnection from having unprotected intercourse with your lover!");
+		sickmsg("disconnection");
                 u.uprops[DISCONNECTED_STAIRS].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(10000, 50000) {
-		pline("Ulch - you contracted screwedness from having unprotected intercourse with your lover!");
+		sickmsg("screwedness");
                 u.uprops[INTERFACE_SCREW].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted Alzheimer's disease from having unprotected intercourse with your lover!");
+		sickmsg("Alzheimer's disease");
                 u.uprops[RECURRING_AMNESIA].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted intellectual poorness from having unprotected intercourse with your lover!");
+		sickmsg("intellectual poorness");
                 u.uprops[SPELL_FORGETTING].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted accoustic hallucinations from having unprotected intercourse with your lover!");
+		sickmsg("accoustic hallucinations");
                 u.uprops[SOUND_EFFECT_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted telomer cutting disease from having unprotected intercourse with your lover!");
+		sickmsg("telomer cutting disease");
                 u.uprops[INTRINSIC_LOSS].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted tongue crippling from having unprotected intercourse with your lover!");
+		sickmsg("tongue crippling");
                 u.uprops[MUTENESS].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted parkinson from having unprotected intercourse with your lover!");
+		sickmsg("parkinson");
                 u.uprops[ENGRAVINGBUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(400, 2000) {
-		pline("Ulch - you contracted jazzy hands from having unprotected intercourse with your lover!");
+		sickmsg("jazzy hands");
                 u.uprops[PROJECTILES_MISFIRE].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted shatterhands from having unprotected intercourse with your lover!");
+		sickmsg("shatterhands");
                 u.uprops[MAGIC_DEVICE_BUG].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted dyslexia from having unprotected intercourse with your lover!");
+		sickmsg("dyslexia");
                 u.uprops[BOOKBUG].intrinsic |= FROMOUTSIDE;
                 u.uprops[CONFUSION_PROBLEM].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted hypermetabolism from having unprotected intercourse with your lover!");
+		sickmsg("hypermetabolism");
                 u.uprops[FAST_METABOLISM].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted ghoulification from having unprotected intercourse with your lover!");
+		sickmsg("ghoulification");
                 u.uprops[FOOD_IS_ROTTEN].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted autism from having unprotected intercourse with your lover!");
+		sickmsg("autism");
                 u.uprops[SKILL_DEACTIVATED].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted schizophreny from having unprotected intercourse with your lover!");
+		sickmsg("schizophreny");
                 u.uprops[STATS_LOWERED].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted down syndrome from having unprotected intercourse with your lover!");
+		sickmsg("down syndrome");
                 u.uprops[TRAINING_DEACTIVATED].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted locked-in syndrome from having unprotected intercourse with your lover!");
+		sickmsg("locked-in syndrome");
                 u.uprops[EXERCISE_DEACTIVATED].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted magic vacuum from having unprotected intercourse with your lover!");
+		sickmsg("magic vacuum");
                 u.uprops[NORETURN].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(2000, 10000) {
-		pline("Ulch - you contracted brittle bones from having unprotected intercourse with your lover!");
+		sickmsg("brittle bones");
                 u.uprops[NAKEDNESS].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(200, 1000) {
-		pline("Ulch - you contracted osteoporosis from having unprotected intercourse with your lover!");
+		sickmsg("osteoporosis");
 		set_wounded_legs(LEFT_SIDE, HWounded_legs + rnz(10000));
 		set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnz(10000));
 
             }
 
             slextest(400, 2000) {
-		pline("Ulch - you contracted porphyric hemophilia from having unprotected intercourse with your lover!");
+		sickmsg("porphyric hemophilia");
                 u.uprops[BLOOD_LOSS].intrinsic |= FROMOUTSIDE;
             }
 
             slextest(10000, 50000) {
-		pline("Ulch - you contracted an ancient Morgothian curse from having unprotected intercourse with your lover!");
+		sickmsg("an ancient Morgothian curse");
                 u.uprops[NASTINESS_EFFECTS].intrinsic |= FROMOUTSIDE;
             }
 
             if (!rn2(RngeSlexuality ? 15 : 75) && !flags.female ) {
-		pline("Ulch - you contracted erective dysfunction from having unprotected intercourse with your lover!");
+		sickmsg("erective dysfunction");
 		make_numbed(HNumbed + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
 		set_itimeout(&HeavyNumbed, HNumbed);
             }
 #undef slextest
+#undef sickmsg
         } else {
             if (ublindf && ublindf->otyp == CONDOME) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
             if (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
