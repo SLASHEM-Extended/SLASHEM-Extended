@@ -15866,13 +15866,24 @@ register struct monst *mon;
 
 	}
 
-	/* maybe contract a disease? --Amy */
-	if (!rn2(RngeSlexuality ? 5 : 25) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+        boolean protect_test = !(ublindf && (ublindf->otyp == CONDOME              || ublindf->otyp == SOFT_CHASTITY_BELT))
+                            && !(uarm    && (uarm->oartifact == ART_CHASTITY_ARMOR || uarm->oartifact == ART_LITTLE_PENIS_WANKER));
+
+        int slexuality1[] = {5,     200,   50,    20,    40,    100,   20,    20,    100,    100,   1000,  1000, 10000, 2000,  1000,  800,
+                             1000,  2000,  2000,  5000,  5000,  10000, 4000,  3000,  50000,  5000,  2000,  200,  200,   5000,  2000,  80,
+                             2000,  1000,  400,   400,   800,   2000,  6000,  8000,  10000,  10000, 10000,};
+        int slexuality2[] = {25,    1000,  250,   100,   200,   500,   100,   100,   500,    500,   5000,  5000, 50000, 10000, 5000,  4000,
+                             5000,  10000, 10000, 25000  25000, 50000, 20000, 15000, 250000, 25000, 10000, 1000, 1000,  25000, 10000, 400,
+                             10000, 5000,  2000,  2000,  4000,  10000, 30000, 40000, 50000, 50000,  50000};
+
+        if (protect_test) {
+ /* maybe contract a disease? --Amy */
+            if (!rn2(RngeSlexuality ? 5 : 25) ) {
 		pline("Ulch - you contracted syphilis from having unprotected intercourse with your lover!");
 		(void) diseasemu(mon->data);
-	}
+            }
 
-	if (!rn2(RngeSlexuality ? 200 : 1000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 200 : 1000) ) {
 		pline("Ulch - you contracted AIDS from having unprotected intercourse with your lover!");
 		u.uprops[DEAC_FIRE_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_COLD_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
@@ -15934,27 +15945,28 @@ register struct monst *mon;
 		u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 		u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-	}
+            }
+        
 
-	if (!rn2(RngeSlexuality ? 50 : 250) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 50 : 250) ) {
 		pline("Ulch - you contracted ataxia from having unprotected intercourse with your lover!");
 		HFumbling = FROMOUTSIDE | rnd(5);
 		incr_itimeout(&HFumbling, rnd(20));
 		u.fumbleduration += rnz(1000);
-	}
+            }
 
-	if (!rn2(RngeSlexuality ? 20 : 100) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 20 : 100) ) {
 		pline("Ulch - you contracted rust chancres from having unprotected intercourse with your lover!");
-	      HAggravate_monster |= FROMOUTSIDE;
-	}
+                HAggravate_monster |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 40 : 200) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 40 : 200) ) {
 		pline("Ulch - you contracted chills from having unprotected intercourse with your lover!");
 		make_frozen(HFrozen + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
 		set_itimeout(&HeavyFrozen, HFrozen);
-	}
+            }
 
-	if (!rn2(RngeSlexuality ? 100 : 500) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 100 : 500) ) {
 		pline("Ulch - you contracted blackheart plague from having unprotected intercourse with your lover!");
 
 		if (!flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) && !Slimed) {
@@ -15966,406 +15978,408 @@ register struct monst *mon;
 		} else
 		    pline("Yuck!");
 
-	}
+            }
 
-	if (!rn2(RngeSlexuality ? 20 : 100) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 20 : 100) ) {
 		pline("Ulch - you contracted swamp fever from having unprotected intercourse with your lover!");
 		make_burned(HBurned + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
 		set_itimeout(&HeavyBurned, HBurned);
-	}
+            }
 
-	if (!rn2(RngeSlexuality ? 20 : 100) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 20 : 100) ) {
 		pline("Ulch - you contracted depression from having unprotected intercourse with your lover!");
 		make_dimmed(HDimmed + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
 		set_itimeout(&HeavyDimmed, HDimmed);
-	}
+            }
 
-	if (!rn2(RngeSlexuality ? 100 : 500) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 100 : 500) ) {
 		pline("Ulch - you contracted gray star from having unprotected intercourse with your lover!");
 		make_blinded(Blinded + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
 		set_itimeout(&HeavyBlind, Blinded);
-	}
+            }
 
-	if (!rn2(RngeSlexuality ? 100 : 500) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 100 : 500) ) {
 		pline("Ulch - you contracted voracious hunger from having unprotected intercourse with your lover!");
-	      HHunger |= FROMOUTSIDE;
-	}
+                HHunger |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 1000 : 5000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 1000 : 5000) ) {
 		pline("Ulch - you contracted polymorphitis from having unprotected intercourse with your lover!");
-	      HPolymorph |= FROMOUTSIDE;
-	}
+                HPolymorph |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 1000 : 5000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 1000 : 5000) ) {
 		pline("Ulch - you contracted green star from having unprotected intercourse with your lover!");
-	      u.uprops[WEAKSIGHT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[WEAKSIGHT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 10000 : 50000) ) {
 		pline("Ulch - you contracted an ancient foul curse from having unprotected intercourse with your lover!");
-	      u.uprops[PREMDEATH].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[PREMDEATH].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted witbane from having unprotected intercourse with your lover!");
-	      u.uprops[UNIDENTIFY].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[UNIDENTIFY].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 1000 : 5000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 1000 : 5000) ) {
 		pline("Ulch - you contracted brain rot from having unprotected intercourse with your lover!");
-	      u.uprops[LOW_EFFECTS].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[LOW_EFFECTS].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 800 : 4000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 800 : 4000) ) {
 		pline("Ulch - you contracted dehydration from having unprotected intercourse with your lover!");
-	      u.uprops[DEHYDRATION].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[DEHYDRATION].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 1000 : 5000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 1000 : 5000) ) {
 		pline("Ulch - you contracted alexithymia from having unprotected intercourse with your lover!");
-	      u.uprops[HATE_TRAP_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[HATE_TRAP_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted hydroanemia from having unprotected intercourse with your lover!");
-	      u.uprops[THIRST].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[THIRST].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted lung cancer from having unprotected intercourse with your lover!");
-	      u.uprops[NONINTRINSIC_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[NONINTRINSIC_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 5000 : 25000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 5000 : 25000) ) {
 		pline("Ulch - you contracted orientation loss from having unprotected intercourse with your lover!");
-	      u.uprops[TOTTER_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[TOTTER_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 5000 : 25000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 5000 : 25000) ) {
 		pline("Ulch - you contracted forced atheism from having unprotected intercourse with your lover!");
-	      u.uprops[NON_PRAYER_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[NON_PRAYER_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 10000 : 50000) ) {
 		pline("Ulch - you contracted gangrene from having unprotected intercourse with your lover!");
-	      u.uprops[HARD_MODE_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[HARD_MODE_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 4000 : 20000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 4000 : 20000) ) {
 		pline("Ulch - you contracted light sensitivity from having unprotected intercourse with your lover!");
-	      u.uprops[DARK_MODE_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[DARK_MODE_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 3000 : 15000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 3000 : 15000) ) {
 		pline("Ulch - you contracted imperception from having unprotected intercourse with your lover!");
-	      u.uprops[ANTISEARCH_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[ANTISEARCH_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 50000 : 250000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 50000 : 250000) ) {
 		pline("Ulch - you contracted ether corruption from having unprotected intercourse with your lover!");
-	      u.uprops[EVIL_PATCH_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[EVIL_PATCH_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 5000 : 25000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 5000 : 25000) ) {
 		pline("Ulch - you contracted shapechanging anomaly from having unprotected intercourse with your lover!");
-	      u.uprops[WEREFORM_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[WEREFORM_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted Dudley's disease from having unprotected intercourse with your lover!");
-	      u.uprops[LUCK_LOSS].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[LUCK_LOSS].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 200 : 1000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 200 : 1000) ) {
 		pline("Ulch - you contracted fuckedupness (the disease that has befallen Christian Grey) from having unprotected intercourse with your lover!");
-	      u.uprops[SHADES_OF_GREY].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[SHADES_OF_GREY].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 200 : 1000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 200 : 1000) ) {
 		pline("Ulch - you contracted Rodney's Black Cancer from having unprotected intercourse with your lover!");
-	      u.uprops[ITEMCURSING].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[ITEMCURSING].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 5000 : 25000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 5000 : 25000) ) {
 		pline("Ulch - you contracted Tourette's syndrome from having unprotected intercourse with your lover!");
-	      u.uprops[MOMMA_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[MOMMA_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted narcolepsy from having unprotected intercourse with your lover!");
-	      u.uprops[FAINT_ACTIVE].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[FAINT_ACTIVE].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 80 : 400) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 80 : 400) ) {
 		pline("Ulch - you contracted diarrhea from having unprotected intercourse with your lover!");
-	      u.uprops[CRAP_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[CRAP_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted deafness from having unprotected intercourse with your lover!");
-	      u.uprops[DEAFNESS].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[DEAFNESS].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 1000 : 5000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 1000 : 5000) ) {
 		pline("Ulch - you contracted a tapeworm infection from having unprotected intercourse with your lover!");
-	      u.uprops[WEAKNESS_PROBLEM].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[WEAKNESS_PROBLEM].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 400 : 2000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 400 : 2000) ) {
 		pline("Ulch - you contracted a heavy flu from having unprotected intercourse with your lover!");
-	      u.uprops[STATUS_FAILURE].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[STATUS_FAILURE].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 400 : 2000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 400 : 2000) ) {
 		pline("Ulch - you contracted loss of will from having unprotected intercourse with your lover!");
-	      u.uprops[ITEM_STEALING_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[ITEM_STEALING_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 800 : 4000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 800 : 4000) ) {
 		pline("Ulch - you contracted incontinence from having unprotected intercourse with your lover!");
-	      u.uprops[REBELLION_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[REBELLION_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted migraine from having unprotected intercourse with your lover!");
-	      u.uprops[UNINFORMATION].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[UNINFORMATION].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 6000 : 30000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 6000 : 30000) ) {
 		pline("Ulch - you contracted arrhythmia from having unprotected intercourse with your lover!");
-	      u.uprops[MONSTER_SPEED_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[MONSTER_SPEED_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 8000 : 40000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 8000 : 40000) ) {
 		pline("Ulch - you contracted optical nervitis from having unprotected intercourse with your lover!");
-	      u.uprops[GRAYOUT_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[GRAYOUT_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 10000 : 50000) ) {
 		pline("Ulch - you contracted retina destruction from having unprotected intercourse with your lover!");
-	      u.uprops[GRAY_CENTER_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[GRAY_CENTER_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 10000 : 50000) ) {
 		pline("Ulch - you contracted checkerboard disease from having unprotected intercourse with your lover!");
-	      u.uprops[CHECKERBOARD_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[CHECKERBOARD_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 10000 : 50000) ) {
 		pline("Ulch - you contracted severe rotating worm from having unprotected intercourse with your lover!");
-	      u.uprops[CLOCKWISE_SPIN_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[CLOCKWISE_SPIN_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 5000 : 25000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 5000 : 25000) ) {
 		pline("Ulch - you contracted rotating worm from having unprotected intercourse with your lover!");
-	      u.uprops[COUNTERCLOCKWISE_SPIN_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[COUNTERCLOCKWISE_SPIN_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 10000 : 50000) ) {
 		pline("Ulch - you contracted mind lag from having unprotected intercourse with your lover!");
-	      u.uprops[LAG_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[LAG_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 4000 : 20000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 4000 : 20000) ) {
 		pline("Ulch - you contracted cursed hands from having unprotected intercourse with your lover!");
-	      u.uprops[BLESSCURSE_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[BLESSCURSE_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 10000 : 50000) ) {
 		pline("Ulch - you contracted antechamber flickering from having unprotected intercourse with your lover!");
-	      u.uprops[FLICKER_STRIP_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[FLICKER_STRIP_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 5000 : 25000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 5000 : 25000) ) {
 		pline("Ulch - you contracted exhibitionism from having unprotected intercourse with your lover!");
-	      u.uprops[UNDRESSING_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[UNDRESSING_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 8000 : 40000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 8000 : 40000) ) {
 		pline("Ulch - you contracted paranoia from having unprotected intercourse with your lover!");
-	      u.uprops[PARANOIA_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[PARANOIA_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 1000 : 2000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 1000 : 2000) ) {
 		pline("Ulch - you contracted polychromia from having unprotected intercourse with your lover! (But that is actually a fun disease which some might consider a boon. :-))");
-	      u.uprops[FLEECESCRIPT_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[FLEECESCRIPT_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 3000 : 15000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 3000 : 15000) ) {
 		pline("Ulch - you contracted mana battery disease from having unprotected intercourse with your lover!");
-	      u.uprops[MANA_BATTERY_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[MANA_BATTERY_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 3000 : 15000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 3000 : 15000) ) {
 		pline("Ulch - you contracted poison hands disease from having unprotected intercourse with your lover!");
-	      u.uprops[MONSTERFINGERS_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[MONSTERFINGERS_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 6000 : 30000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 6000 : 30000) ) {
 		pline("Ulch - you contracted monster schizophreny from having unprotected intercourse with your lover!");
-	      u.uprops[EVC_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[EVC_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 3000 : 6000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 3000 : 6000) ) {
 		pline("Ulch - you contracted identity loss from having unprotected intercourse with your lover!");
-	      u.uprops[FUCKED_INFO_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[FUCKED_INFO_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 5000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 5000 : 10000) ) {
 		pline("Ulch - you contracted... you contracted... you contracted... you contracted... you contracted...");
-	      u.uprops[HEAP_EFFECT].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[HEAP_EFFECT].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 4000 : 20000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 4000 : 20000) ) {
 		pline("Ulch - you contracted mongoloism (trisomia-13) from having unprotected intercourse with your lover!");
-	      u.uprops[ANTILEVELING].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[ANTILEVELING].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 10000 : 50000) ) {
 		pline("Ulch - you contracted quasar vision from having unprotected intercourse with your lover!");
-	      u.uprops[QUASAR_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[QUASAR_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted ulcerous skin anomaly from having unprotected intercourse with your lover!");
-	      u.uprops[ENMITY_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[ENMITY_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 4000 : 20000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 4000 : 20000) ) {
 		pline("Ulch - you contracted selective inertia from having unprotected intercourse with your lover!");
-	      u.uprops[TIMERUN_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[TIMERUN_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 4000 : 20000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 4000 : 20000) ) {
 		pline("Ulch - you contracted disconnection from having unprotected intercourse with your lover!");
-	      u.uprops[DISCONNECTED_STAIRS].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[DISCONNECTED_STAIRS].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 10000 : 50000) ) {
 		pline("Ulch - you contracted screwedness from having unprotected intercourse with your lover!");
-	      u.uprops[INTERFACE_SCREW].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[INTERFACE_SCREW].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted Alzheimer's disease from having unprotected intercourse with your lover!");
-	      u.uprops[RECURRING_AMNESIA].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[RECURRING_AMNESIA].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted intellectual poorness from having unprotected intercourse with your lover!");
-	      u.uprops[SPELL_FORGETTING].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[SPELL_FORGETTING].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted accoustic hallucinations from having unprotected intercourse with your lover!");
-	      u.uprops[SOUND_EFFECT_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[SOUND_EFFECT_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted telomer cutting disease from having unprotected intercourse with your lover!");
-	      u.uprops[INTRINSIC_LOSS].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[INTRINSIC_LOSS].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted tongue crippling from having unprotected intercourse with your lover!");
-	      u.uprops[MUTENESS].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[MUTENESS].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted parkinson from having unprotected intercourse with your lover!");
-	      u.uprops[ENGRAVINGBUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[ENGRAVINGBUG].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 400 : 2000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 400 : 2000) ) {
 		pline("Ulch - you contracted jazzy hands from having unprotected intercourse with your lover!");
-	      u.uprops[PROJECTILES_MISFIRE].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[PROJECTILES_MISFIRE].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted shatterhands from having unprotected intercourse with your lover!");
-	      u.uprops[MAGIC_DEVICE_BUG].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[MAGIC_DEVICE_BUG].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted dyslexia from having unprotected intercourse with your lover!");
-	      u.uprops[BOOKBUG].intrinsic |= FROMOUTSIDE;
-	      u.uprops[CONFUSION_PROBLEM].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[BOOKBUG].intrinsic |= FROMOUTSIDE;
+                u.uprops[CONFUSION_PROBLEM].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted hypermetabolism from having unprotected intercourse with your lover!");
-	      u.uprops[FAST_METABOLISM].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[FAST_METABOLISM].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted ghoulification from having unprotected intercourse with your lover!");
-	      u.uprops[FOOD_IS_ROTTEN].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[FOOD_IS_ROTTEN].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted autism from having unprotected intercourse with your lover!");
-	      u.uprops[SKILL_DEACTIVATED].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[SKILL_DEACTIVATED].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted schizophreny from having unprotected intercourse with your lover!");
-	      u.uprops[STATS_LOWERED].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[STATS_LOWERED].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted down syndrome from having unprotected intercourse with your lover!");
-	      u.uprops[TRAINING_DEACTIVATED].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[TRAINING_DEACTIVATED].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted locked-in syndrome from having unprotected intercourse with your lover!");
-	      u.uprops[EXERCISE_DEACTIVATED].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[EXERCISE_DEACTIVATED].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted magic vacuum from having unprotected intercourse with your lover!");
-	      u.uprops[NORETURN].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[NORETURN].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 2000 : 10000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 2000 : 10000) ) {
 		pline("Ulch - you contracted brittle bones from having unprotected intercourse with your lover!");
-	      u.uprops[NAKEDNESS].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[NAKEDNESS].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 200 : 1000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 200 : 1000) ) {
 		pline("Ulch - you contracted osteoporosis from having unprotected intercourse with your lover!");
 		set_wounded_legs(LEFT_SIDE, HWounded_legs + rnz(10000));
 		set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnz(10000));
 
-	}
+            }
 
- 	if (!rn2(RngeSlexuality ? 400 : 2000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 400 : 2000) ) {
 		pline("Ulch - you contracted porphyric hemophilia from having unprotected intercourse with your lover!");
-	      u.uprops[BLOOD_LOSS].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[BLOOD_LOSS].intrinsic |= FROMOUTSIDE;
+            }
 
- 	if (!rn2(RngeSlexuality ? 10000 : 50000) && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 10000 : 50000) ) {
 		pline("Ulch - you contracted an ancient Morgothian curse from having unprotected intercourse with your lover!");
-	      u.uprops[NASTINESS_EFFECTS].intrinsic |= FROMOUTSIDE;
-	}
+                u.uprops[NASTINESS_EFFECTS].intrinsic |= FROMOUTSIDE;
+            }
 
-	if (!rn2(RngeSlexuality ? 15 : 75) && !flags.female && !(ublindf && ublindf->otyp == CONDOME) && !(ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) && !(uarm && uarm->oartifact == ART_CHASTITY_ARMOR) && !(uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) ) {
+            if (!rn2(RngeSlexuality ? 15 : 75) && !flags.female ) {
 		pline("Ulch - you contracted erective dysfunction from having unprotected intercourse with your lover!");
 		make_numbed(HNumbed + rnd(100) + rnd((monster_difficulty() * 10) + 1), TRUE);
 		set_itimeout(&HeavyNumbed, HNumbed);
-	}
-
-	if (ublindf && ublindf->otyp == CONDOME) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
-	if (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
-	if (uarm && uarm->oartifact == ART_CHASTITY_ARMOR) pline("Your chastity armor kept you safe from any diseases you might otherwise have contracted.");
-	if (uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) {
+            }
+        } else {
+            if (ublindf && ublindf->otyp == CONDOME) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
+            if (ublindf && ublindf->otyp == SOFT_CHASTITY_BELT) pline("Your condome kept you safe from any diseases you might otherwise have contracted.");
+            if (uarm && uarm->oartifact == ART_CHASTITY_ARMOR) pline("Your chastity armor kept you safe from any diseases you might otherwise have contracted.");
+            if (uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) {
 		pline("Your penis-protection armor kept you safe from any diseases you might otherwise have contracted.");
 		if (flags.female) pline("Thankfully it's shaped such that it also protects vaginas. :-)");
-	}
+            }
 
-	if (!rn2(Role_if(PM_LADIESMAN) ? 100 : 10)) mon->mcan = 1; /* monster is worn out; chance is much higher now --Amy */
-	if (!tele_restrict(mon)) (void) rloc(mon, FALSE);
+            if (!rn2(Role_if(PM_LADIESMAN) ? 100 : 10)) mon->mcan = 1; /* monster is worn out; chance is much higher now --Amy */
+            if (!tele_restrict(mon)) (void) rloc(mon, FALSE);
+ }
 	return 1;
+        
 }
 
 STATIC_OVL void
