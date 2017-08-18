@@ -16270,7 +16270,7 @@ register struct monst *mon;
             }
 
             slextest(5000, 10000) {
-		sickmsg("... you contracted... you");
+		pline("Ulch - you contracted... you contracted... you contracted... you contracted... you contracted...");
                 u.uprops[HEAP_EFFECT].intrinsic |= FROMOUTSIDE;
             }
 
