@@ -379,6 +379,16 @@ register struct monst *mon;
 		base -= ARM_BONUS(obj);
 		/* since ARM_BONUS is positive, subtracting it increases AC */
 	}
+
+
+	/* Monsters with too good AC should not be completely unhittable. --Amy */
+	if (!rn2(20)) {
+		int absoluteac = (-(base - 10));
+		if (absoluteac < 0) absoluteac *= -1;
+		base += (absoluteac / 2);
+		if (base > 10) base = 10;
+	}
+
 	return base;
 }
 

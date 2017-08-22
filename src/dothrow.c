@@ -1591,8 +1591,8 @@ int thrown;
 	else if (thrown == 2) launcher = uswapwep;
 	else launcher = (struct obj *)0;
 
-	tmp = -1 + Luck + find_mac(mon) + u.uhitinc +
-			maybe_polyd(youmonst.data->mlevel, u.ulevel);
+	tmp = -1 + ( (!rn2(3) && Luck > 0) ? rnd(Luck) : Luck) + find_mac(mon) + u.uhitinc +
+			(!rn2(3) ? (maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(u.ulevel))) : (maybe_polyd(youmonst.data->mlevel + 1, u.ulevel)) );
 
 	/* early-game bonuses to make starting characters not suck too badly --Amy */
 	if (u.ulevel < 6) tmp += 1;
@@ -1623,7 +1623,7 @@ int thrown;
 
 	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) tmp += 5;
 
-	if (!rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
+	if (!issoviet && !rn2(20 - (u.ulevel / 2) )) tmp += rnd(u.ulevel);
 
 	/* let's just add that bonus anyway. --Amy */
 	if(mon->mstun) tmp += 2;

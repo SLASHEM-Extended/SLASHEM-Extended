@@ -383,8 +383,8 @@ register struct monst *mtmp;
 
 	/* idea gotten from watching Chris's to-hit discussion: high luck gave too big boosts --Amy */
 
-	tmp = 1 + ( (Luck > 0) ? rnd(Luck) : Luck) + abon() + find_mac(mtmp) + u.uhitinc +
-		maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(u.ulevel));
+	tmp = 1 + ( (rn2(2) && Luck > 0) ? rnd(Luck) : Luck) + abon() + find_mac(mtmp) + u.uhitinc +
+		(rn2(2) ? (maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(u.ulevel))) : (maybe_polyd(youmonst.data->mlevel + 1, u.ulevel)) );
 
 	/* another extra boost --Amy */
 	/* In Soviet Russia, to-hit bonuses generally get trashed. Nobody needs to be able to hit a -40 AC monster anyway,
