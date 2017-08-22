@@ -5884,7 +5884,7 @@ dodip()
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {
 
-			if (rn2(2) && !obj->oerodeproof && is_rustprone(obj) && obj->oeroded == MAX_ERODE) {
+			if (rn2(2) && !stack_too_big(obj) && !obj->oerodeproof && is_rustprone(obj) && obj->oeroded == MAX_ERODE) {
 
 				remove_worn_item(obj, FALSE);
 				if (obj == uball) unpunish();
@@ -5900,6 +5900,63 @@ dodip()
 		    }
 		    return 1;
 		}
+	} else if (is_lava(u.ux,u.uy)) {
+		sprintf(qbuf, "Dip it into the lava?");
+		if (yn(qbuf) == 'y') {
+		    if (Levitation) {
+			floating_above("lava");
+		    } else if (u.usteed && !is_swimmer(u.usteed->data) && !u.usteed->egotype_watersplasher &&
+			    (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
+			rider_cant_reach(); /* not skilled enough to reach */
+		    } else {
+
+			if (obj && rn2(2) && !stack_too_big(obj) && !obj->oerodeproof && is_flammable(obj) && obj->oeroded == MAX_ERODE) {
+
+				remove_worn_item(obj, FALSE);
+				if (obj == uball) unpunish();
+				useupall(obj);
+				update_inventory();
+				pline("The item burned away completely!");
+
+				return 1;
+			}
+
+			if (obj && !stack_too_big(obj) && !obj->oerodeproof && (obj->oclass == SCROLL_CLASS) ) {
+
+				remove_worn_item(obj, FALSE);
+				if (obj == uball) unpunish();
+				useupall(obj);
+				update_inventory();
+				pline("The scroll burns up!");
+
+				return 1;
+			}
+
+			if (obj && !stack_too_big(obj) && !obj->oerodeproof && (obj->oclass == POTION_CLASS) ) {
+
+				pline("The potion explodes!");
+				potionbreathe(obj);
+				remove_worn_item(obj, FALSE);
+				if (obj == uball) unpunish();
+				useupall(obj);
+				update_inventory();
+
+				return 1;
+			}
+
+			if (obj && !stack_too_big(obj) && is_flammable(obj) && obj->oeroded < MAX_ERODE && !obj->oerodeproof && !rn2(2)) {
+				pline("%s %s%s.", Yname2(obj), otense(obj, "burn"),
+			      obj->oeroded+1 == MAX_ERODE ? " completely" :
+			      obj->oeroded ? " further" : "");
+				obj->oeroded++;
+				return 1;
+			}
+			pline("%s is warmed.", Yname2(obj));
+
+		    }
+		    return 1;
+		}
+
 	}
 
 	if(!(potion = getobj(beverages, "dip into")))
