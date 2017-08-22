@@ -274,6 +274,15 @@ struct monst {
 	Bitfield(egotype_rngabuser,1); /* AD_RNG */
 	Bitfield(egotype_mastercaster,1); /* AD_CAST */
 
+	Bitfield(egotype_aligner,1); /* AD_ALIN */
+	Bitfield(egotype_sinner,1); /* AD_SIN */
+	Bitfield(egotype_aggravator,1); /* AD_AGGR */
+	Bitfield(egotype_minator,1); /* AD_MINA */
+	Bitfield(egotype_contaminator,1); /* AD_CONT melee */
+	Bitfield(egotype_radiator,1); /* AD_CONT breath */
+	Bitfield(egotype_weeper,1); /* AD_CONT gaze */
+	Bitfield(egotype_reactor,1); /* AD_CONT hug */
+
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */
 	Bitfield(crapbonus,6);

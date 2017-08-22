@@ -842,6 +842,7 @@ E int calc_capacity(int);
 E int max_capacity(void);
 E boolean check_capacity(const char *);
 E int inv_cnt(void);
+E void contaminate(int);
 #ifdef GOLDOBJ
 E long money_cnt(struct obj *);
 #endif

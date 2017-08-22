@@ -1382,6 +1382,9 @@ water_prayer(bless_water)
     register long changed = 0;
     boolean other = FALSE, bc_known = !(Blind || Hallucination);
 
+    /* Praying on a coaligned altar will completely decontaminate you if it was safe to pray --Amy */
+    if (bless_water && u.contamination) decontaminate(u.contamination);
+
     for(otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere) {
 	/* turn water into (un)holy water */
 	if (otmp->otyp == POT_WATER &&

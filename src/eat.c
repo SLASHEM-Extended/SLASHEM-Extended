@@ -881,6 +881,13 @@ register int pm;
 	    }
 	}
 
+	if (dmgtype(&mons[pm], AD_AGGR) ) {
+	    You_feel("that %s the %s%s was a bad idea.",
+	      victual.eating ? "eating" : "biting",
+	      occupation == opentin ? "tinned " : "", mons[pm].mname);
+	    HAggravate_monster |= FROMOUTSIDE;
+	}
+
 	switch(pm) {
 	    case PM_LITTLE_DOG:
 	    case PM_DOG:
@@ -2602,6 +2609,7 @@ register int pm;
 	    case PM_GIGANTIC_MIND_FLAYER:
 	    case PM_GRANDMASTER_MIND_FLAYER:
 	    case PM_NASTY_MASTER_MIND_FLAYER:
+	    case PM_UNSEXY_MASTER_MIND_FLAYER:
 	    case PM_ILLITHID:
 	    case PM_MIND_BEAMER:
 		case PM_COCKATRICE:
@@ -2957,6 +2965,12 @@ register int pm;
 	/* Eating bad effect monsters causes another bad effect --Amy */
 		if (dmgtype(ptr, AD_BADE) ) {
 			badeffect();
+		}
+
+	/* Eating contaminating monsters increases your contamination --Amy */
+		if (dmgtype(ptr, AD_CONT) ) {
+			pline("The food was contaminated! Your contamination increases.");
+			contaminate(rnz((level_difficulty() + 40) * 5));
 		}
 
 	/* Mimics will always cause you to mimic something --Amy */

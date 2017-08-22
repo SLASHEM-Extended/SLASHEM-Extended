@@ -3511,6 +3511,62 @@ showdmg(n)
 }
 #endif
 
+/* dnethack weeping angel contamination. Unlike dnethack, we have many sources of contamination, which is why I
+ * don't call it "weeping angel" contamination; it's more like nuclear radiation or something. There will be certain
+ * weeping angel types that use it as an attack, but the effect is just a generic "contamination". --Amy */
+void
+contaminate(amount)
+register int amount;
+{
+	int precheckamount;
+
+	if (flags.female) {
+		while (!rn2(5)) amount *= 2;
+	}
+	/* Yes I totally know this will call the SJWs and they will whine and bitch like mad, but there is an actual reason
+	 * for this: female characters are much more resistant to most item-stealers (since almost all nymphs are female),
+	 * and mhitu.c also specifically makes females more resistant to certain shoes when they are used by monsters.
+	 * Some players have even asserted that there is basically no advantage to playing a male character, and so I
+	 * decided to make females a little bit more susceptible to contamination.
+	 * THIS DOES NOT MEAN I HATE WOMEN, SO YOU SJWS CAN JUST BUGGER OFF KTHX --Amy */
+
+	if (Race_if(PM_HUMANOID_ANGEL)) amount *= 2;
+	/* It is also widely known that the angel race is teh uber pwnz0r and has almost no downsides, so I added one here */
+
+	precheckamount = u.contamination;
+
+	u.contamination += amount;
+
+	if (u.contamination >= 100 && u.contamination < 200 && precheckamount < 100) pline(Hallucination ? "Your body itches comfortably." : "You are now afflicted with minor contamination.");
+	if (u.contamination >= 200 && u.contamination < 400 && precheckamount < 200) pline(Hallucination ? "The itching on your body increases." : "You are now afflicted with light contamination.");
+	if (u.contamination >= 400 && u.contamination < 600 && precheckamount < 400) pline(Hallucination ? "You seem to be developing ulcers." : "You are now afflicted with contamination.");
+	if (u.contamination >= 600 && u.contamination < 800 && precheckamount < 600) pline(Hallucination ? "You feel like your digestive tract started to digest itself." : "You are now afflicted with severe contamination.");
+	if (u.contamination >= 800 && u.contamination < 1000 && precheckamount < 800) pline(Hallucination ? "You feel that your body is consuming itself from within." : "You are now afflicted with lethal contamination.");
+	if (u.contamination >= 1000 && precheckamount < 1000) pline(Hallucination ? "You feel terminally ill. Something tells you that you only have three days to live." : "You are now afflicted with fatal contamination. Seek medical attention immediately.");
+
+	/* Actual contamination effects are handled in attrib.c */
+}
+
+void
+decontaminate(amount)
+register int amount;
+{
+	int precheckamount;
+
+	precheckamount = u.contamination;
+
+	u.contamination -= amount;
+	if (u.contamination < 0) u.contamination = 0;
+
+	if (u.contamination == 0 && precheckamount >= 1) pline(Hallucination ? "Your body feels completely normal again." : "Your contamination has faded away completely.");
+	if (u.contamination < 100 && u.contamination >= 1 && precheckamount >= 100) pline(Hallucination ? "Your body no longer itches." : "Your contamination decreased to a low level.");
+	if (u.contamination < 200 && u.contamination >= 100 && precheckamount >= 200) pline(Hallucination ? "The itching on your body decreases." : "You are only very slightly contaminated now.");
+	if (u.contamination < 400 && u.contamination >= 200 && precheckamount >= 400) pline(Hallucination ? "Your ulcers disappear." : "You are only lightly contaminated now.");
+	if (u.contamination < 600 && u.contamination >= 400 && precheckamount >= 600) pline(Hallucination ? "Your digestive tract seems okay now." : "Your contamination is no longer severe.");
+	if (u.contamination < 800 && u.contamination >= 600 && precheckamount >= 800) pline(Hallucination ? "Your body no longer tries to consume itself." : "You are only severely contaminated now.");
+	if (u.contamination < 1000 && u.contamination >= 800 && precheckamount >= 1000) pline(Hallucination ? "Your terminal illness has passed and you may actually survive." : "You are only lethally contaminated now.");
+
+}
 
 void
 losehp(n, knam, k_format)

@@ -945,6 +945,8 @@ struct you {
 	int nataljetrapturns;
 	int nataljetrapx, nataljetrapy;
 
+	int contamination;	/* weeping angel, but also other effects */
+
 	/* KMH -- Info shared among gypsies */
 	int umonteluck;		/* Chance of winning; lower is better */
 	char umontelast;	/* Last monte card picked */

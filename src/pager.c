@@ -1702,6 +1702,12 @@ get_description_of_damage_type(uchar id)
 		case AD_MIDI: return "identity-specific attack";
 		case AD_CAST: return "evil spellcasting";
 
+		case AD_ALIN: return "reduce alignment record";
+		case AD_SIN: return "increase sin counter";
+		case AD_MINA: return "identity-specific nastiness";
+		case AD_AGGR: return "aggravate monster";
+		case AD_CONT: return "contamination";
+
 		case AD_ENDS: return "placeholder attack";
 		default:
 		if (!missingnoprotect) {
@@ -4291,7 +4297,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Captcha! Please type in the following word(s) to continue: Donald Trump",
 	"Captcha! Please type in the following word(s) to continue: Saddam Hussein",
 	"Captcha! Please type in the following word(s) to continue: Atler Hidolf",
-	"Captcha! Please type in the following word(s) to continue: 3lÃ¶kjepÃ¼2'IP2wjl215ERplqvmÂ§",
+	"Captcha! Please type in the following word(s) to continue: 3lökjepü2'IP2wjl215ERplqvm§",
 	"Captcha! Please type in the following word(s) to continue: 11111llil1ll1ili11li1lilil11IILII!1L1IL1L1I",
 	"Captcha! Please type in the following word(s) to continue: 6666696969699996669696999996996969669669699666969",
 	"You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.",

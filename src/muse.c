@@ -2192,7 +2192,7 @@ mon_tele:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(333);
+			monstercolor = rnd(338);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
@@ -7647,7 +7647,7 @@ skipmsg:
 		mquaffmsg(mtmp, otmp);
 
 		mtmp->isegotype = 1;
-		switch (rnd(160)) {
+		switch (rnd(174)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7808,6 +7808,20 @@ skipmsg:
 			case 158: mtmp->egotype_midiplayer = 1; break;
 			case 159: mtmp->egotype_rngabuser = 1; break;
 			case 160: mtmp->egotype_mastercaster = 1; break;
+			case 161: mtmp->egotype_aligner = 1; break;
+			case 162: mtmp->egotype_sinner = 1; break;
+			case 163: mtmp->egotype_aggravator = 1; break;
+			case 164: mtmp->egotype_minator = 1; break;
+			case 165: mtmp->egotype_contaminator = 1; break;
+			case 166: mtmp->egotype_radiator = 1; break;
+			case 167: mtmp->egotype_weeper = 1; break;
+			case 168: mtmp->egotype_reactor = 1; break;
+			case 169: mtmp->egotype_aligner = 1; break;
+			case 170: mtmp->egotype_aligner = 1; break;
+			case 171: mtmp->egotype_aggravator = 1; break;
+			case 172: mtmp->egotype_contaminator = 1; break;
+			case 173: mtmp->egotype_contaminator = 1; break;
+			case 174: mtmp->egotype_contaminator = 1; break;
 		}
 
 		if (oseen) makeknown(POT_MUTATION);
@@ -7819,7 +7833,7 @@ skipmsg:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		mtmp->isegotype = 1;
-		switch (rnd(160)) {
+		switch (rnd(174)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7980,6 +7994,20 @@ skipmsg:
 			case 158: mtmp->egotype_midiplayer = 1; break;
 			case 159: mtmp->egotype_rngabuser = 1; break;
 			case 160: mtmp->egotype_mastercaster = 1; break;
+			case 161: mtmp->egotype_aligner = 1; break;
+			case 162: mtmp->egotype_sinner = 1; break;
+			case 163: mtmp->egotype_aggravator = 1; break;
+			case 164: mtmp->egotype_minator = 1; break;
+			case 165: mtmp->egotype_contaminator = 1; break;
+			case 166: mtmp->egotype_radiator = 1; break;
+			case 167: mtmp->egotype_weeper = 1; break;
+			case 168: mtmp->egotype_reactor = 1; break;
+			case 169: mtmp->egotype_aligner = 1; break;
+			case 170: mtmp->egotype_aligner = 1; break;
+			case 171: mtmp->egotype_aggravator = 1; break;
+			case 172: mtmp->egotype_contaminator = 1; break;
+			case 173: mtmp->egotype_contaminator = 1; break;
+			case 174: mtmp->egotype_contaminator = 1; break;
 		}
 
 		if (oseen) makeknown(WAN_MUTATION);
@@ -8341,7 +8369,7 @@ newboss:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(333);
+			monstercolor = rnd(338);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);

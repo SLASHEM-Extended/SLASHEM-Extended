@@ -1613,6 +1613,39 @@ physical:
 		}
 
 		break;
+
+	    case AD_AGGR:
+		aggravate();
+		if (!rn2(20)) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			(void) makemon((struct permonst *)0, magr->mx, magr->my, MM_ANGRY|MM_ADJACENTOK);
+			u.aggravation = 0;
+		}
+
+		break;
+
+	    case AD_CONT:
+
+		if (!rn2(3)) {
+			mdef->isegotype = 1;
+			mdef->egotype_contaminator = 1;
+		}
+		if (!rn2(10)) {
+			mdef->isegotype = 1;
+			mdef->egotype_weeper = 1;
+		}
+		if (!rn2(25)) {
+			mdef->isegotype = 1;
+			mdef->egotype_radiator = 1;
+		}
+		if (!rn2(25)) {
+			mdef->isegotype = 1;
+			mdef->egotype_reactor = 1;
+		}
+
+		break;
+
 	    case AD_FRZE:
 		if (!resists_cold(mdef) && resists_fire(mdef)) {
 			tmp *= 2;
@@ -2517,6 +2550,39 @@ int mdead;
 		if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 		if (canseemon(mdef)) pline("%s looks healthier!", Monnam(mdef) );
 		}
+		break;
+
+	    case AD_AGGR:
+
+		aggravate();
+		if (!rn2(20)) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			(void) makemon((struct permonst *)0, mdef->mx, mdef->my, MM_ANGRY|MM_ADJACENTOK);
+			u.aggravation = 0;
+		}
+
+		break;
+
+	    case AD_CONT:
+
+		if (!rn2(3)) {
+			magr->isegotype = 1;
+			magr->egotype_contaminator = 1;
+		}
+		if (!rn2(10)) {
+			magr->isegotype = 1;
+			magr->egotype_weeper = 1;
+		}
+		if (!rn2(25)) {
+			magr->isegotype = 1;
+			magr->egotype_radiator = 1;
+		}
+		if (!rn2(25)) {
+			magr->isegotype = 1;
+			magr->egotype_reactor = 1;
+		}
+
 		break;
 
 	    case AD_FRZE:

@@ -1527,6 +1527,11 @@ forget(howmuch)
 int howmuch;
 {
 
+	/* Amnesia can make you forget contamination, but only if it's less than fatal --Amy */
+	if (u.contamination && u.contamination < 1000) {
+		decontaminate(100);
+	}
+
 	if (Punished) u.bc_felt = 0;	/* forget felt ball&chain */
 
 	forget_map(howmuch);
@@ -1535,7 +1540,7 @@ int howmuch;
 	/* 1 in 3 chance of forgetting some levels */
 	if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));
 
-	/* 1 in 10 chance of forgeting some objects */
+	/* 1 in 5 chance of forgeting some objects */
 	if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));
 
 	if (howmuch & ALL_SPELLS) losespells();
@@ -2890,6 +2895,10 @@ register struct obj	*sobj;
 		if (sobj->cursed) {
 		    pline_The("scroll disintegrates.");
 		} else {
+
+			/* Scroll of remove curse will completely decontaminate you --Amy */
+			if (u.contamination && !(sobj->otyp == SPE_REMOVE_CURSE)) decontaminate(u.contamination);
+
 		    for (obj = invent; obj; obj = obj->nobj) {
 			long wornmask;
 #ifdef GOLDOBJ
@@ -3808,7 +3817,7 @@ register struct obj	*sobj;
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(333);
+			monstercolor = rnd(338);
 		}
 
 		while(cnt--) {

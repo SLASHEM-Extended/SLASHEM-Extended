@@ -4274,6 +4274,18 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.contamination) {
+		if (u.contamination >= 1000) sprintf(buf, "suffering from fatal contamination. Health and mana regeneration are reduced.");
+		else if (u.contamination >= 800) sprintf(buf, "suffering from lethal contamination.");
+		else if (u.contamination >= 600) sprintf(buf, "suffering from severe contamination.");
+		else if (u.contamination >= 400) sprintf(buf, "suffering from contamination.");
+		else if (u.contamination >= 200) sprintf(buf, "suffering from light contamination.");
+		else if (u.contamination >= 100) sprintf(buf, "suffering from minor contamination.");
+		else if (u.contamination >= 1) sprintf(buf, "suffering from very slight contamination.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.contamination);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && TimeStopped) {
 		sprintf(buf, "stopped the flow of time.");
 	      sprintf(eos(buf), " (%d)", TimeStopped);
@@ -7183,6 +7195,18 @@ int final;
 	if (FemaleTrapMaurah) {
 		sprintf(buf, "possessed by the ghost of Maurah.");
 	      sprintf(eos(buf), " (%d)", FemaleTrapMaurah);
+		dump(youwere, buf);
+	}
+
+	if (u.contamination) {
+		if (u.contamination >= 1000) sprintf(buf, "suffering from fatal contamination. Health and mana regeneration were reduced.");
+		else if (u.contamination >= 800) sprintf(buf, "suffering from lethal contamination.");
+		else if (u.contamination >= 600) sprintf(buf, "suffering from severe contamination.");
+		else if (u.contamination >= 400) sprintf(buf, "suffering from contamination.");
+		else if (u.contamination >= 200) sprintf(buf, "suffering from light contamination.");
+		else if (u.contamination >= 100) sprintf(buf, "suffering from minor contamination.");
+		else if (u.contamination >= 1) sprintf(buf, "suffering from very slight contamination.");
+		sprintf(eos(buf), " (%d)", u.contamination);
 		dump(youwere, buf);
 	}
 

@@ -215,7 +215,7 @@ int
 randattack()
 {
 
-	switch (rnd(302)) {
+	switch (rnd(314)) {
 
 		case 1:
 		case 2:
@@ -628,6 +628,23 @@ randattack()
 			return AD_WGHT;
 		case 301:
 			return AD_NTHR;
+		case 302:
+		case 303:
+		case 304:
+		case 305:
+			return AD_CONT;
+		case 306:
+		case 307:
+		case 308:
+		case 309:
+		case 310:
+			return AD_ALIN;
+		case 311:
+			return AD_SIN;
+		case 312:
+		case 313:
+		case 314:
+			return AD_AGGR;
 		default:
 			return AD_PHYS;
 

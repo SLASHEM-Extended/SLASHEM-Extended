@@ -1227,6 +1227,18 @@ void
 exerchk()
 {
 	int	i, mod_val;
+	boolean contaminated;
+	boolean verycontaminated;
+
+	/* contamination is guaranteed to damage wisdom if at least 100 points accumulated on the contamination counter;
+	 * otherwise, have a chance of damaging it --Amy */
+	contaminated = FALSE;
+	verycontaminated = FALSE;
+	if (u.contamination >= 100) {
+		contaminated = TRUE;
+		verycontaminated = TRUE;
+	}
+	if (u.contamination && u.contamination < 100) contaminated = (rn2(100) < u.contamination);
 
 	/*	Check out the periodic accumulations */
 	exerper();
@@ -1255,10 +1267,32 @@ exerchk()
 	     */
 	    for(i = 0; i < A_MAX; AEXE(i++) /= 2) {
 
+		if (contaminated && i == A_WIS) {
+			pline(Hallucination ? "You have a severe coughing fit and an intense desire to vomit!" : "You are consumed by your contamination!");
+			ABASE(A_WIS) -= 1;
+			AMAX(A_WIS) -= 1;
+			if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {
+				pline("The contamination consumes you completely...");
+				killer = "being consumed by the contamination";
+				killer_format = KILLED_BY;
+				done(DIED);
+			}
+
+			/* contamination can now go down; if at least 100, only a chance of going down --Amy */
+			if (u.contamination >= 100 && !rn2(2)) decontaminate(100);
+			/* otherwise, decontaminate by a random amount, meaning you'll probably still be contaminated :D */
+			else if (u.contamination) decontaminate(rnd(u.contamination));
+
+			continue;
+		}
+
 		/*if(Upolyd && i != A_WIS) continue;*/
 		if(/*ABASE(i) >= 18 ||*/ !AEXE(i)) continue;
 		if(ABASE(i) >= 18 && sgn(AEXE(i)) >= 1) continue; /* can still abuse stats if they're above 18 --Amy */
 		if(i == A_INT || i == A_CHA) continue;/* can't exercise these */
+
+		/* if your contamination was at least 100, you cannot exercise any stats at all --Amy */
+		if (verycontaminated && sgn(AEXE(i)) >= 1) continue;
 
 #ifdef DEBUG
 		pline("exerchk: testing %s (%d).",

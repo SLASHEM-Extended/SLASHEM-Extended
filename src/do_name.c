@@ -888,6 +888,14 @@ boolean called;
 	    if (mtmp->egotype_midiplayer) sprintf(eos(buf), " Midi-Player");
 	    if (mtmp->egotype_rngabuser) sprintf(eos(buf), " RNG-abuser");
 	    if (mtmp->egotype_mastercaster) sprintf(eos(buf), " Mastercaster");
+	    if (mtmp->egotype_aligner) sprintf(eos(buf), " Aligner");
+	    if (mtmp->egotype_sinner) sprintf(eos(buf), " Sinner");
+	    if (mtmp->egotype_aggravator) sprintf(eos(buf), " Aggravator");
+	    if (mtmp->egotype_minator) sprintf(eos(buf), " Minator");
+	    if (mtmp->egotype_contaminator) sprintf(eos(buf), " Contaminator");
+	    if (mtmp->egotype_radiator) sprintf(eos(buf), " Radiator");
+	    if (mtmp->egotype_weeper) sprintf(eos(buf), " Weeper");
+	    if (mtmp->egotype_reactor) sprintf(eos(buf), " Reactor");
 
 	}
 
