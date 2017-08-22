@@ -54,7 +54,7 @@ struct permonst {
 	uchar		msound;			/* noise it makes (6 bits) */
 	uchar		msize;			/* physical size (3 bits) */
         unsigned long   mresists;               /* resistances */
-	uchar		mconveys;		/* conveyed by eating */
+	unsigned long		mconveys;		/* conveyed by eating */
 	unsigned long	mflags1,		/* boolean bitflags */
 			mflags2;		/* more boolean bitflags */
 	unsigned long		mflags3;		/* yet more boolean bitflags */
