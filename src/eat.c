@@ -915,6 +915,7 @@ register int pm;
 	    case PM_CAVE_LIZARD:
 	    case PM_PREHISTORIC_CAVE_LIZARD:
 	    case PM_CHAOS_LIZARD:
+	    case PM_CHAOTIC_LIZARD:
 	    case PM_HUGE_LIZARD:
 	    case PM_SAND_TIDE:
 	    case PM_FBI_AGENT:
@@ -1051,6 +1052,7 @@ struct monst *mon;
 	case PM_CAVE_LIZARD:
 	case PM_PREHISTORIC_CAVE_LIZARD:
 	case PM_CHAOS_LIZARD:
+	case PM_CHAOTIC_LIZARD:
 	case PM_LIZARD_EEL:
 	case PM_EEL_LIZARD:
 	case PM_GRASS_LIZARD:
@@ -2429,6 +2431,7 @@ register int pm;
 	    case PM_GIANT_LIZARD:
 			lesshungry(300); /* fall thru */
 	    case PM_CHAOS_LIZARD:
+	    case PM_CHAOTIC_LIZARD:
 	    case PM_LIZARD_MAN:
 			lesshungry(180); /* fall thru */
 	    case PM_LIZARD:

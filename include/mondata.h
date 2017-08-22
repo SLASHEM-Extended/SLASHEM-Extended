@@ -225,6 +225,7 @@
 #define is_dnethackmonster(ptr)	((ptr)->mflags5 & M5_DNETHACK)
 #define is_jokemonster(ptr)	((ptr)->mflags5 & M5_JOKE)
 #define is_diablomonster(ptr)	((ptr)->mflags5 & M5_DIABLO)
+#define is_jonadabmonster(ptr)	((ptr)->mflags5 & M5_JONADAB)
 
 #define nocorpsedecay(ptr)		((ptr)->mflags3 & M3_NO_DECAY)
 

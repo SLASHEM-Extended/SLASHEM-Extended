@@ -1038,6 +1038,8 @@ have_lizard()
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_CHAOS_LIZARD)
 			return(TRUE);
+		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_CHAOTIC_LIZARD)
+			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_LIZARD_OF_YENDOR)
 			return(TRUE);
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_GRASS_LIZARD)
