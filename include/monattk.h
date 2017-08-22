@@ -171,7 +171,14 @@
 #define AD_WGHT		112	/* weight - temporarily increases player's carry weight to encumber you */
 #define AD_NTHR		113	/* nether - drains a bit of experience from the target and heals attacker */
 
-#define AD_ENDS		114	/* placeholder */
+#define AD_ALIN		114	/* drain alignment record */
+#define AD_SIN		115	/* increase sin counter */
+#define AD_CONT		116	/* contamination (similar to weeping angels in dnethack) */
+#define AD_AGGR		117	/* aggravate monster (gives the intrinsic temporarily, may spawn monsters) */
+
+#define AD_ENDS		118	/* placeholder */
+
+#define AD_MINA		236	/* monster identity nastiness - pick nasty trap effect based on the monster's m_id */
 
 #define AD_CAST		237	/* spellcasting, can select either AD_CLRC or AD_SPEL monster spell at random */
 #define AD_RNG		238	/* RNG intervention - like AD_RBRE, but all damage types have the same chance */

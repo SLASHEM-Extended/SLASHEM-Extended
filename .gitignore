@@ -129,3 +129,6 @@ sys/unixserver/Makefile.utl
 sys/unixserver/setup.sh
 src/cursmake.gcc
 src/graphicschk
+src/o/obj.tag
+src/o/sp_lev.tag
+src/o/utility.tag
