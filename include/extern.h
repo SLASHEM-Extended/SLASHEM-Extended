@@ -26,6 +26,7 @@ E void moveloop(void);
 E void stop_occupation(void);
 E void display_gamewindows(void);
 E void newgame(void);
+E boolean contaminationcheck(void);
 E void welcome(BOOLEAN_P);
 #if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)
 E time_t get_realtime(void);
@@ -843,6 +844,7 @@ E int max_capacity(void);
 E boolean check_capacity(const char *);
 E int inv_cnt(void);
 E void contaminate(int);
+E void decontaminate(int);
 #ifdef GOLDOBJ
 E long money_cnt(struct obj *);
 #endif
