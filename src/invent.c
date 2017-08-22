@@ -9972,9 +9972,9 @@ struct obj *obj;
 			case SPE_DRAIN_LIFE:
 				pline("This spell drains the life force out of monsters, reducing their level. It also reduces the enchantment of objects it hits."); break;
 			case SPE_COMMAND_UNDEAD:
-				pline("A spell that attempts to tame all adjacent undead monsters."); break;
+				pline("A spell that attempts to tame all adjacent undead monsters. They have a chance of resisting, and very rarely they may instead enter a state of frenzy, becoming immune to further taming attempts."); break;
 			case SPE_SUMMON_UNDEAD:
-				pline("Summons an undead monster."); break;
+				pline("Summons an undead monster. Rarely, it also makes a trap on the level."); break;
 			case SPE_STONE_TO_FLESH:
 				pline("This spell can be cast at items, dungeon features and monsters that are made of stone, turning them into meat."); break;
 			case SPE_HEALING:

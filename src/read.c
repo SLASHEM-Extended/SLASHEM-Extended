@@ -3637,6 +3637,8 @@ register struct obj	*sobj;
 
 	case SPE_SUMMON_UNDEAD:
 		if (confused) break;
+		if (!rn2(10)) makerandomtrap();
+
 	case SCR_SUMMON_UNDEAD:        
 	    {
 		int cnt = 1, oldmulti = multi;
@@ -3680,8 +3682,9 @@ register struct obj	*sobj;
 		     * (if not cursed <g>).  Check curse status in case
 		     * this ever becomes a scroll
 		     */
+			/* Amy edit: can control them *only* if it's the scroll (nerf :P) */
 		    if (mtmp)
-			if (!sobj->cursed && (Role_if(PM_NECROMANCER) || Race_if(PM_MUMMY) || Race_if(PM_LICH_WARRIOR)) ) {
+			if (!sobj->cursed && sobj->oclass == SCROLL_CLASS && (Role_if(PM_NECROMANCER) || Race_if(PM_MUMMY) || Race_if(PM_LICH_WARRIOR)) ) {
 			    if (!resist(mtmp, sobj->oclass, 0, TELL)) {
 				mtmp = tamedog(mtmp, (struct obj *) 0, FALSE);
 				if (mtmp) You("dominate %s!", mon_nam(mtmp));
@@ -3693,7 +3696,8 @@ register struct obj	*sobj;
 		 * Since spell is area affect,  do this after all undead
 		 * are summoned
 		 */
-		if (!Role_if(PM_NECROMANCER) && !Race_if(PM_MUMMY) && !Race_if(PM_LICH_WARRIOR) && !(sobj->cursed)) {
+			/* Amy edit: also only if it's the scroll :P */
+		if (!Role_if(PM_NECROMANCER) && !Race_if(PM_MUMMY) && !Race_if(PM_LICH_WARRIOR) && !(sobj->cursed) && sobj->oclass == SCROLL_CLASS) {
 		    if (objects[SPE_COMMAND_UNDEAD].oc_name_known) {
 			int sp_no;
 			for (sp_no = 0; sp_no < MAXSPELL; sp_no++)
@@ -4889,6 +4893,8 @@ newboss:
 		}
 		break;
 	case SPE_COMMAND_UNDEAD:
+		/* Amy edit: nerf - no longer guaranteed to work, and has a small chance of frenzying the monster instead
+		 * the chance of failure is much lower than that of charm monster, considering this is undead-specific */
 		if (confused) break;
 		if (u.uswallow) {
 		    if (is_undead(u.ustuck->data) || u.ustuck->egotype_undead) maybe_tame(u.ustuck, sobj);
@@ -4900,7 +4906,14 @@ newboss:
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 &&
 				(is_undead(mtmp->data) || mtmp->egotype_undead) )
-			    maybe_tame(mtmp, sobj);
+			    if (!rn2(2)) maybe_tame(mtmp, sobj);
+
+			    else if (!rn2(25) && !mtmp->mfrenzied && !mtmp->mtame) {
+				pline("Instead of being tamed, %s enters a state of frenzy!", mon_nam(mtmp));
+				mtmp->mpeaceful = 0;
+				mtmp->mfrenzied = 1;
+			    }
+
 		    }
 		}
 		break;
