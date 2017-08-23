@@ -7093,8 +7093,9 @@ void * arg;
 {
     timer_element *gnu;
 
-    if (func_index < 0 || func_index >= NUM_TIME_FUNCS)
+    if (func_index < 0 || func_index >= NUM_TIME_FUNCS) {
 	panic("start_timer");
+	}
 
     gnu = (timer_element *) alloc(sizeof(timer_element));
     gnu->next = 0;
@@ -7157,8 +7158,9 @@ obj_move_timers(src, dest)
 	    dest->timed++;
 	    count++;
 	}
-    if (count != src->timed)
+    if (count != src->timed) {
 	panic("obj_move_timers");
+	}
     src->timed = 0;
 }
 
@@ -7299,6 +7301,11 @@ write_timer(fd, timer)
 		arg_save = timer->arg;
 		if (!((struct obj *)timer->arg)) {
 			impossible("ERROR! write_timer - object does not exist");
+			/* the dreaded "segfault panic" bug... apparently we need to write the timer anyway,
+			 * because if we don't, we produce a corrupted savegame --Amy
+			 * set the timeout to occur on the next turn to ensure the bugged timer is removed ASAP */
+			timer->timeout = (moves + 1);
+			if (!issegfaulter) bwrite(fd, (void *)timer, sizeof(timer_element));
 			break;
 		}
 
@@ -7384,7 +7391,22 @@ obj_is_local(obj)
 	case OBJ_CONTAINED:	return obj_is_local(obj->ocontainer);
 	case OBJ_MINVENT:	return mon_is_local(obj->ocarry);
     }
-    panic("obj_is_local: %s, %d", cxname(obj), obj->where); /* improvement by Patric Mueller */
+	impossible("obj is local panic");
+	pline("obj location %d", obj->where);
+	if (obj) pline("obj in question: %s", cxname(obj));
+      if (issegfaulter) panic("obj_is_local: %s, %d", cxname(obj), obj->where); /* improvement by Patric Mueller */
+
+	/* This is the "segfault panic", "hallucination bug" and "timed object bug" that has been plaguing SLEX for a while.
+	 * Due to some weirdness, the actual panic message almost never displays, making it next to impossible
+	 * to diagnose the bug - maybe because obj is undefined and the cxname() function thus causes a segfault?
+	 * I've removed the panic now, and write_timer is changed to try to salvage the bugged timer by making it time out
+	 * on the next turn. Wizmode testing with the segfaulter race shows that it does in fact work!
+	 * HOWEVER, the segfaulter race should actually cause segfault panics on purpose. Yeah, I know, I'm crazy.
+	 * Therefore, for the segfaulter race only, the bugged code will still be used. This also has the advantage
+	 * of allowing me to test the game's behavior in the case of a segfault, similar to a missingno, except that the
+	 * latter usually leaves a recoverable savegame file. Producing segfaults on purpose is otherwise actually
+	 * not all that easy! --Amy */
+
     return FALSE;
 }
 
@@ -7551,8 +7573,9 @@ relink_timers(ghostly)
 	if (curr->needs_fixup) {
 	    if (curr->kind == TIMER_OBJECT) {
 		if (ghostly) {
-		    if (!lookup_id_mapping((unsigned)curr->arg, &nid))
+		    if (!lookup_id_mapping((unsigned)curr->arg, &nid)) {
 			panic("relink_timers 1");
+			}
 		} else
 		    nid = (unsigned) curr->arg;
 		curr->arg = (void *) find_oid(nid);
@@ -7564,15 +7587,17 @@ relink_timers(ghostly)
                  * and light source code
                  */
 		if (ghostly) {
-		    if (!lookup_id_mapping((unsigned)curr->arg, &nid))
+		    if (!lookup_id_mapping((unsigned)curr->arg, &nid)) {
                         panic("relink_timers 1b");
+			}
 		} else
 		    nid = (unsigned) curr->arg;
                 curr->arg = (void *) find_mid(nid, FM_EVERYWHERE);
 		if (!curr->arg) panic("cant find m_id %d", nid);
 		curr->needs_fixup = 0;
-	    } else
+	    } else {
 		panic("relink_timers 2");
+		}
 	}
     }
 }
