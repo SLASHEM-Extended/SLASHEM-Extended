@@ -129,6 +129,17 @@ sys/unixserver/Makefile.utl
 sys/unixserver/setup.sh
 src/cursmake.gcc
 src/graphicschk
+lib/libpdcurses.a
+lib/libSDL.a
+src/o/gamedir.tag
+util/dgn_comp.exe
+src/o/install.tag
 src/o/obj.tag
 src/o/sp_lev.tag
 src/o/utility.tag
+util/dgn_flex.c
+util/dlb_main.exe
+util/lev_comp.exe
+util/lev_flex.c
+util/makedefs.exe
+util/uudecode.exe
