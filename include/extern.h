@@ -2594,6 +2594,7 @@ E void tt_mname(coord *,BOOLEAN_P,int);
 E winid create_toptenwin(void);
 E void destroy_toptenwin(void);
 #endif
+E const char *gamemode_strcode(void);
 
 /* ### track.c ### */
 

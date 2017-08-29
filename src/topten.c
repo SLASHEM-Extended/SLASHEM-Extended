@@ -352,6 +352,8 @@ struct toptenentry *tt;
    
   (void)fprintf(rfile, XLOG_SEP "hybrid=%s", hybrid_strcode());
 
+  (void)fprintf(rfile, XLOG_SEP "gamemode=%s", gamemode_strcode());
+
   (void)fprintf(rfile, XLOG_SEP "name=%s", plname);
 
   (void)fprintf(rfile, XLOG_SEP "death=%s", tt->death);
@@ -386,22 +388,6 @@ struct toptenentry *tt;
           aligns[1 - u.ualignbase[A_ORIGINAL]].filecode);
 #endif
   fprintf(rfile, XLOG_SEP "flags=0x%lx", encodexlogflags());
-
-  if (flags.gehenna) 
-      (void)fprintf(rfile, ",gehenna"); 
-  if (flags.dudley) 
-      (void)fprintf(rfile, ",dudley"); 
-  if (flags.iwbtg) 
-      (void)fprintf(rfile, ",iwbtg"); 
-  if (flags.hippie) 
-      (void)fprintf(rfile, ",hippie"); 
-  if (flags.blindfox) 
-      (void)fprintf(rfile, ",blindfox"); 
-  if (flags.uberlostsoul) 
-      (void)fprintf(rfile, ",uberlostsoul"); 
-  else if (flags.lostsoul) 
-      (void)fprintf(rfile, ",lostsoul"); 
-
 
   (void)fprintf(rfile, "\n");
 
@@ -1519,4 +1505,24 @@ destroy_toptenwin()
     toptenwin = WIN_ERR;
 }
 #endif
+
+const char *
+gamemode_strcode()
+{
+    static char string[BUFSZ];
+    *string = '\0';
+
+	if (flags.gehenna) sprintf(eos(string), "gehenna");
+	if (flags.dudley) sprintf(eos(string), "dudley");
+	if (flags.iwbtg) sprintf(eos(string), "iwbtg");
+	if (flags.hippie) sprintf(eos(string), "hippie");
+	if (flags.blindfox) sprintf(eos(string), "blindfox");
+	if (flags.uberlostsoul) sprintf(eos(string), "uberlostsoul");
+	if (flags.lostsoul && !(flags.uberlostsoul)) sprintf(eos(string), "lostsoul");
+
+	if (!(flags.gehenna) && !(flags.dudley) && !(flags.iwbtg) && !(flags.hippie) && !(flags.blindfox) && !(flags.uberlostsoul) && !(flags.lostsoul)) sprintf(eos(string), "none");
+
+    return (string);
+}
+
 /*topten.c*/
