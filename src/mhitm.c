@@ -2147,7 +2147,7 @@ physical:
 		if (!mdef->iswiz && mdef->data != &mons[PM_MEDUSA] &&
 			!(mdef->data->mflags3 & M3_COVETOUS) &&
 			!(mdef->data->geno & G_UNIQ) &&
-			(magr->mtame || mdef->mtame)) {
+			((magr->mtame && !rn2(10)) || mdef->mtame)) {
 		    if (vis) pline("%s looks calmer.", Monnam(mdef));
 		    if (mdef == u.usteed)
 			dismount_steed(DISMOUNT_THROWN);
