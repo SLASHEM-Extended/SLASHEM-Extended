@@ -336,6 +336,278 @@ dosounds()
 		You(golemhall_msg[rn2(3+hallu*2)]);
 		return;
 	    }
+
+	    if (level.flags.has_cryptroom && !rn2(200)) {
+		static const char *cryptroom_msg[] = {
+			"smell rotting flesh.",
+			"hear shuffling noises.",
+			"hear a loud moan.",
+			"feel that you're near death!",
+			"don't have much longer to live...",
+		};
+		You(cryptroom_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_troublezone && !rn2(200)) {
+		static const char *troublezone_msg[] = {
+			"smell trouble.",
+			"feel that something's gonna happen.",
+			"sense several evil presences.",
+			"have to count to three, and if you fail, you can forget about your game!",
+			"are way in over your head!",
+		};
+		You(troublezone_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_weaponchamber && !rn2(200)) {
+		static const char *weaponchamber_msg[] = {
+			"hear metallic clashes.",
+			"are listening to someone practicing their sword skill.",
+			"hear a trumpet, followed by attack orders.",
+			"are ambushed by shadowy figures with gleaming swords!",
+			"should impale yourself on your weapon while you still can...",
+		};
+		You(weaponchamber_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_hellpit && !rn2(200)) {
+		static const char *hellpit_msg[] = {
+			"smell brimstone.",
+			"hear the bubbling of lava.",
+			"chime in on a pack of demons performing a satanic ritual.",
+			"feel that Mehrunes Dagon will open the Great Gate of Oblivion soon!",
+			"realize that the hellspawn invasion has already begun...",
+		};
+		You(hellpit_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_feminismroom && !rn2(200)) {
+		static const char *feminismroom_msg[] = {
+			"hear a female voice shouting angrily.",
+			"listen to a long, squeaking sound.",
+			"can hear the clacking noises of high heels walking on a hard floor.",
+			"fear that some stupid woman is gonna slap you silly!",
+			"can't resist thinking of a pair of brown leather boots with black block heels, and start wanking off to the thought.",
+		};
+		You(feminismroom_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_meadowroom && !rn2(200)) {
+		static const char *meadowroom_msg[] = {
+			"feel a slight breeze.",
+			"hear crickets chirping.",
+			"can hear the cattle bellowing.",
+			"hear someone sing 'Old Mac Donald had a farm...'",
+			"can't help it but feel that something that looks normal is terribly amiss.",
+		};
+		You(meadowroom_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_coolingchamber && !rn2(200)) {
+		static const char *coolingchamber_msg[] = {
+			"are chilled by cold air.",
+			"shiver for a moment.",
+			"feel that someone forgot to close the door to the freezer.",
+			"fear that you're gonna develop a lung inflammation.",
+			"hear someone calling you to the iceblock shooting.",
+		};
+		You(coolingchamber_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_voidroom && !rn2(200)) {
+		static const char *voidroom_msg[] = {
+			"are struck by a sense of emptiness.",
+			"sense a black hole in the fabric of reality.",
+			"feel that a special challenge awaits you.",
+			"hear Galadriel whispering 'It is very likely that you die on your journey, but you must go anyway...'",
+			"realize that the atmosphere does not contain oxygen! If you stay around you'll suffocate!",
+		};
+		You(voidroom_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_hamletroom && !rn2(200)) {
+		static const char *hamletroom_msg[] = {
+			"have a sense of familiarity.",
+			"feel relaxed.",
+			"hear a storeclerk making a transaction.",
+			"feel like returning to your burned home... wait, is there really a reason for doing so?",
+			"hope that you don't have to master the fleeing mine...",
+		};
+		You(hamletroom_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_kopstation && !rn2(200)) {
+		static const char *kopstation_msg[] = {
+			"hear a loud siren.",
+			"can hear a police officer requesting reinforcement.",
+			"hear the whipping sound of a rubber hose.",
+			"realize that your cop wanted level is 6, and the forces of law are coming to bust you!",
+			"are chased by a speeding police car!",
+		};
+		if (rn2(5)) You(kopstation_msg[rn2(3+hallu*2)]);
+		else verbalize("Alert! All units, apprehend %s immediately!", plname);
+		return;
+	    }
+
+	    if (level.flags.has_bossroom && !rn2(200)) {
+		static const char *bossroom_msg[] = {
+			"feel that you're in a hopeless situation.",
+			"are left hanging in suspense.",
+			"feel that the future is dark, and it gets even darker.",
+			"realize that the challenge of your life awaits you.",
+			"get the feeling that a true champion is going to challenge you soon.",
+			"will not be able to defeat Whitney's Miltank, because the fleecy Whitney will mop the floor with you wimp!",
+			"are not going to get past Pryce, since his ice pokemon can crash the game at will.",
+			"have to fight Lance and his Dragonite, but with your uselessly weak pokemon you don't stand a chance.",
+			"loser will never beat Gary, whose Meganium always uses 'Contro' and defeats each of your pokemon in one hit, hahaha!",
+		};
+		You(bossroom_msg[rn2(5+hallu*4)]);
+		return;
+	    }
+
+	    if (level.flags.has_rngcenter && !rn2(200)) {
+		static const char *rngcenter_msg[] = {
+			"sense the shuffling of random numbers.",
+			"hear the dungeon master testing a set of dice.",
+			"feel that this particular floor is especially random.",
+			"just know that the monsters on this level have the most evil and unbalanced attacks possible.",
+			"test your d20 several times, only to realize in shock that it always rolls 1!",
+		};
+		You(rngcenter_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_wizardsdorm && !rn2(200)) {
+		static const char *wizardsdorm_msg[] = {
+			"hear a grating, annoying snore.",
+			"smell dragonbreath in the air.",
+			"hear a 'Klieau!' sound.",
+			"are hit by the 1st tailspike! You are hit by the 2nd tailspike! Warning: HP low! You are hit by the 3rd tailspike! You die. Do you want your possessions identified? DYWYPI? [ynq] (n) _",
+			"want to do wizard farming like in the old days, since it's more profitable than pudding farming.",
+		};
+		You(wizardsdorm_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_doomedbarracks && !rn2(200)) {
+		static const char *doomedbarracks_msg[] = {
+			"hear a sound reminiscent of a frog.",
+			"feel that the gate to Hell has to be closed from the other side.",
+			"realize that the aliens have built a base here.",
+			"hear a deep voice chanting the name 'Jason'...",
+			"hear someone shout 'Neau!'",
+		};
+		You(doomedbarracks_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_sleepingroom && !rn2(200)) {
+		static const char *sleepingroom_msg[] = {
+			"felt like you heard a faint noise, but can't make out what it is.",
+			"hear a loud yawn.",
+			"get the impression that the current atmosphere is quiet... too quiet.",
+			"listen to a soothing melody and a chant that sounds like 'Sleep-bundle-wing!'",
+			"suddenly fall asleep. (Hopefully no monster decides to feast on your exposed flesh before you wake up.)",
+		};
+		You(sleepingroom_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_diverparadise && !rn2(200)) {
+		static const char *diverparadise_msg[] = {
+			"inhale the scent of seawater.",
+			"listen to fishes splashing water around.",
+			"listen to the sound of gentle waves.",
+			"hear a 'splash splash' noise!",
+			"hear someone announce 'The entrance to Diver's Paradise is free today! Come on over and enjoy the most beautiful terrain in this dungeon - water!'",
+		};
+		You(diverparadise_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_menagerie && !rn2(200)) {
+		static const char *menagerie_msg[] = {
+			"can hear animal sounds.",
+			"hear the sound of a caged animal knocking at the lattice.",
+			"hear the roar of hungry zoo animals.",
+			"hear a hissing sound, and it's right behind you!",
+			"look behind you and see a three-headed monkey!",
+		};
+		You(menagerie_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_emptydesert && !rn2(200)) {
+		static const char *emptydesert_msg[] = {
+			"feel that the air is hot around here.",
+			"feel a lack of humidity.",
+			"hear the roaring of a tornado.",
+			"seem to sink into the floor!",
+			"encounter a sweet asian girl, but as you move to greet her, she suddenly thrusts you into quicksand! You die. Do you want your possessions identified? DYWYPI? [ynq] (n) _",
+		};
+		You(emptydesert_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_rarityroom && !rn2(200)) {
+		static const char *rarityroom_msg[] = {
+			"hear uncommon noises.",
+			"can feel the earth shaking.",
+			"sense a supernatural presence.",
+			"know that you'll see something not meant for mortal eyes.",
+			"hear Pale Night tempting you to remove her veil and look at what's underneath...",
+		};
+		You(rarityroom_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_prisonchamber && !rn2(200)) {
+		static const char *prisonchamber_msg[] = {
+			"feel that you must free someone who's being held captive.",
+			"hear someone calling for you.",
+			"must free the prisoner unless you want him to be executed.",
+			"were too slow and now the prisoner is dead. You failure!",
+			"really have to hurry - if you don't free the prisoner in 10 turns, he will be killed!",
+		};
+		You(prisonchamber_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_nuclearchamber && !rn2(200)) {
+		static const char *nuclearchamber_msg[] = {
+			"realize that your Geiger counter has started ticking like mad.",
+			"smell the stench of contamination in the air.",
+			"listen to scientists talking about their experiments.",
+			"feel the presence of the ether generator!",
+			"can overhear the president saying 'That was the last straw! I'll bomb that fucking country now! I just need to get the code and press the big red button!'",
+		};
+		You(nuclearchamber_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+
+	    if (level.flags.has_variantroom && !rn2(200)) {
+		static const char *variantroom_msg[] = {
+			"sense the presence of beings from another universe.",
+			"hear the elder priest fiercely lashing his tentacles around.",
+			"feel an earthquake-like trembling, probably caused by a migmatite horror...",
+			"hear Morgoth muttering a chant.",
+			"hear the scream of Lina Inverse's high-pitched voice.",
+			"receive a stamped scroll from the mail demon! It reads: 'Muahahahaha, I kidnapped Princess Peach again. Sincerely, Bowser.'",
+			"start eating the hill giant corpse. Ulch - that meat was tainted! You die from your illness. Do you want your possessions identified? DYWYPI? [ynq] (n) _",
+		};
+		You(variantroom_msg[rn2(5+hallu*2)]);
+		return;
+	    }
+
 	    if (level.flags.has_coinhall && !rn2(200)) {
 		static const char *coinhall_msg[4] = {
 			"notice the sound of clinging coins.",

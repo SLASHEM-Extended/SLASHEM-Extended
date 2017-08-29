@@ -972,6 +972,32 @@ struct levelflags {
 	Bitfield(has_insideroom, 1);
 	Bitfield(has_riverroom, 1);
 
+	Bitfield(has_cryptroom, 1);
+	Bitfield(has_troublezone, 1);
+	Bitfield(has_weaponchamber, 1);
+	Bitfield(has_hellpit, 1);
+	Bitfield(has_feminismroom, 1);
+	Bitfield(has_meadowroom, 1);
+	Bitfield(has_coolingchamber, 1);
+	Bitfield(has_voidroom, 1);
+	Bitfield(has_hamletroom, 1);
+	Bitfield(has_kopstation, 1);
+	Bitfield(has_bossroom, 1);
+	Bitfield(has_rngcenter, 1);
+	Bitfield(has_wizardsdorm, 1);
+	Bitfield(has_doomedbarracks, 1);
+	Bitfield(has_sleepingroom, 1);
+	Bitfield(has_diverparadise, 1);
+	Bitfield(has_menagerie, 1);
+	Bitfield(has_nastycentral, 1);
+	Bitfield(has_emptydesert, 1);
+	Bitfield(has_rarityroom, 1);
+	Bitfield(has_exhibitroom, 1);
+	Bitfield(has_prisonchamber, 1);
+	Bitfield(has_nuclearchamber, 1);
+	Bitfield(has_levelseventyroom, 1);
+	Bitfield(has_variantroom, 1);
+
 	Bitfield(has_swamp, 1);
 	Bitfield(noteleport,1);
 	Bitfield(hardfloor,1);

@@ -27,6 +27,7 @@ STATIC_DCL struct permonst * douglas_adams_mon(void);
 STATIC_DCL struct permonst * tenshallmon(void);
 STATIC_DCL struct permonst * tenshallmonB(void);
 STATIC_DCL struct permonst * squadmon(void);
+STATIC_DCL struct permonst * doomsquadmon(void);
 STATIC_DCL struct permonst * fungus(void);
 STATIC_DCL struct permonst * beehivemon(void);
 
@@ -34,6 +35,9 @@ STATIC_DCL struct permonst * beehivemon(void);
 
 STATIC_DCL void mktraproom(void);
 STATIC_DCL void mkpoolroom(void);
+STATIC_DCL void mkbossroom(void);
+STATIC_DCL void mknastycentral(void);
+STATIC_DCL void mkemptydesert(void);
 STATIC_DCL void mkstatueroom(void);
 STATIC_DCL void mkinsideroom(void);
 STATIC_DCL void mkriverroom(void);
@@ -103,9 +107,36 @@ int	roomtype;
 	case ARMORY: mkzoo(ARMORY); break;
 	case EMPTYNEST: mkzoo(EMPTYNEST); break;
 
+	case CRYPTROOM: mkzoo(CRYPTROOM); break;
+	case TROUBLEZONE: mkzoo(TROUBLEZONE); break;
+	case WEAPONCHAMBER: mkzoo(WEAPONCHAMBER); break;
+	case HELLPIT: mkzoo(HELLPIT); break;
+	case FEMINISMROOM: mkzoo(FEMINISMROOM); break;
+	case MEADOWROOM: mkzoo(MEADOWROOM); break;
+	case COOLINGCHAMBER: mkzoo(COOLINGCHAMBER); break;
+	case VOIDROOM: mkzoo(VOIDROOM); break;
+	case HAMLETROOM: mkzoo(HAMLETROOM); break;
+	case KOPSTATION: mkzoo(KOPSTATION); break;
+	case BOSSROOM: mkbossroom(); break;
+	case RNGCENTER: mkzoo(RNGCENTER); break;
+	case WIZARDSDORM: mkzoo(WIZARDSDORM); break;
+	case DOOMEDBARRACKS: mkzoo(DOOMEDBARRACKS); break;
+	case SLEEPINGROOM: mkzoo(SLEEPINGROOM); break;
+	case DIVERPARADISE: mkzoo(DIVERPARADISE); break;
+	case MENAGERIE: mkzoo(MENAGERIE); break;
+	case NASTYCENTRAL: mknastycentral(); break;
+	case EMPTYDESERT: mkemptydesert(); break;
+	case RARITYROOM: mkzoo(RARITYROOM); break;
+	case EXHIBITROOM: mkzoo(EXHIBITROOM); break;
+	case PRISONCHAMBER: mkzoo(PRISONCHAMBER); break;
+	case NUCLEARCHAMBER: mkzoo(NUCLEARCHAMBER); break;
+	case LEVELSEVENTYROOM: mkzoo(LEVELSEVENTYROOM); break;
+	case VARIANTROOM: mkzoo(VARIANTROOM); break;
+
+
 	case RANDOMROOM: {
 
-		switch (rnd(37)) {
+		switch (rnd(63)) {
 
 			case 1: mkzoo(COURT); break;
 			case 2: mkswamp(); break;
@@ -144,6 +175,32 @@ int	roomtype;
 			case 35: mkriverroom(); break;
 			case 36: mktemple(); break;
 			case 37: mkzoo(EMPTYNEST); break;
+			case 38: mkzoo(GRUEROOM); break;
+			case 39: mkzoo(CRYPTROOM); break;
+			case 40: mkzoo(TROUBLEZONE); break;
+			case 41: mkzoo(WEAPONCHAMBER); break;
+			case 42: mkzoo(HELLPIT); break;
+			case 43: mkzoo(FEMINISMROOM); break;
+			case 44: mkzoo(MEADOWROOM); break;
+			case 45: mkzoo(COOLINGCHAMBER); break;
+			case 46: mkzoo(VOIDROOM); break;
+			case 47: mkzoo(HAMLETROOM); break;
+			case 48: mkzoo(KOPSTATION); break;
+			case 49: mkbossroom(); break;
+			case 50: mkzoo(RNGCENTER); break;
+			case 51: mkzoo(WIZARDSDORM); break;
+			case 52: mkzoo(DOOMEDBARRACKS); break;
+			case 53: mkzoo(SLEEPINGROOM); break;
+			case 54: mkzoo(DIVERPARADISE); break;
+			case 55: mkzoo(MENAGERIE); break;
+			case 56: rn2(20) ? mkzoo(TROUBLEZONE) : mknastycentral(); break;
+			case 57: mkemptydesert(); break;
+			case 58: mkzoo(RARITYROOM); break;
+			case 59: mkzoo(EXHIBITROOM); break;
+			case 60: mkzoo(PRISONCHAMBER); break;
+			case 61: mkzoo(NUCLEARCHAMBER); break;
+			case 62: mkzoo(LEVELSEVENTYROOM); break;
+			case 63: mkzoo(VARIANTROOM); break;
 
 		}
 		break;
@@ -389,6 +446,7 @@ struct mkroom *sroom;
 		/* TODO: try to ensure the enthroned monster is an M2_PRINCE */
 		break;
 	    case BEEHIVE:
+	    case PRISONCHAMBER:
 	    case MIGOHIVE:
 		tx = sroom->lx + (sroom->hx - sroom->lx + 1)/2;
 		ty = sroom->ly + (sroom->hy - sroom->ly + 1)/2;
@@ -417,6 +475,10 @@ struct mkroom *sroom;
 		case TROLLHALL:
 		case NYMPHHALL:
 		case GRUEROOM:
+		    break;
+		case VARIANTROOM:
+			u.specialtensionmonster = !rn2(4) ? 324 : !rn2(3) ? 325 : !rn2(2) ? 326 : 330;
+			/* angband, animeband, steamband or dnethack; one day elona shall be added */
 		    break;
 		case TENSHALL:
 			u.tensionmonster = (rn2(187) + 1);
@@ -454,7 +516,7 @@ struct mkroom *sroom;
 	if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
 
 	/* evil patch idea by Amy: 2% chance that special rooms are populated with much higher-leveled monsters */
-	if (!rn2(50)) {
+	if (!rn2(50) || (type == VOIDROOM) ) {
 		u.aggravation = 1;
 		reset_rndmonst(NON_PM);
 	}
@@ -478,29 +540,52 @@ struct mkroom *sroom;
 		if(type == COURT && IS_THRONE(levl[sx][sy].typ))
 		    continue;
                /* armories don't contain as many monsters */
-		if (( (type != ARMORY && rn2(moreorless) ) || rn2(2)) && (type != EMPTYNEST) ) mon = makemon(
+		if (( (type != ARMORY && rn2(moreorless) ) || rn2(2)) && (type != HAMLETROOM || !rn2(20)) && (type != LEVELSEVENTYROOM || !rn2(2)) && (type != EMPTYNEST) ) mon = makemon(
 		    (type == COURT) ? (rn2(5) ? courtmon() : mkclass(S_ORC,0) ) :
 
 		    (type == INSIDEROOM) ? (/*!*/rn2(Role_if(PM_CAMPERSTRIKER) ? 20 : 40) ? insidemon() : (struct permonst *) 0 ) :
 
 		    (type == BARRACKS) ? squadmon() :
+		    (type == DOOMEDBARRACKS) ? doomsquadmon() :
 			(type == CLINIC) ? specialtensmon(218) /* AD_HEAL */ :
 			(type == TERRORHALL) ? mkclass(S_UMBER,0) :
+			(type == VARIANTROOM) ? specialtensmon(u.specialtensionmonster) :
 			(type == TENSHALL) ? (u.specialtensionmonsterB ? (rn2(2) ? specialtensmon(u.specialtensionmonsterB) : specialtensmon(u.specialtensionmonster) ) : u.specialtensionmonster ? specialtensmon(u.specialtensionmonster) : u.tensionmonsterspecB ? (rn2(2) ? u.tensionmonsterspecB : u.tensionmonsterspec ) : u.tensionmonsterspec ? u.tensionmonsterspec : u.colormonsterB ? (rn2(2) ? colormon(u.colormonsterB) : colormon(u.colormonster) ) : u.colormonster ? colormon(u.colormonster) : u.tensionmonsterB ? (rn2(2) ? tenshallmon() : tenshallmonB() ) : tenshallmon()) :
 			(type == ELEMHALL) ? mkclass(S_ELEMENTAL,0) :
 			(type == ANGELHALL) ? mkclass(S_ANGEL,0) :
+			(type == FEMINISMROOM) ? (!rn2(20) ? specialtensmon(333) /* MS_STENCH */ : !rn2(3) ? specialtensmon(38) : !rn2(2) ? specialtensmon(39) : specialtensmon(40) ) /* MS_FART_foo */ :
 			(type == MIMICHALL) ? mkclass(S_MIMIC,0) :
+			(type == MEADOWROOM) ? (!rn2(10) ? mkclass(S_NYMPH,0) : !rn2(3) ? mkclass(S_ANT,0) : !rn2(2) ? mkclass(S_QUADRUPED,0) : mkclass(S_XAN,0)) :
+			(type == SLEEPINGROOM) ? (!rn2(10) ? mkclass(S_OGRE,0) : !rn2(3) ? mkclass(S_KOBOLD,0) : !rn2(2) ? mkclass(S_RODENT,0) : mkclass(S_ORC,0)) :
+			(type == HELLPIT) ? (!rn2(10) ? mkclass(S_ARCHFIEND,0) : (rnd(9) > 2) ? mkclass(S_DEMON,0) : specialtensmon(109) /* M2_DEMON */ ) :
+			(type == MENAGERIE) ? (!rn2(8) ? mkclass(S_DOG,0) : !rn2(7) ? mkclass(S_FELINE,0) : !rn2(6) ? mkclass(S_RODENT,0) : !rn2(5) ? mkclass(S_UNICORN,0) : !rn2(4) ? mkclass(S_ZOUTHERN,0) : !rn2(3) ? mkclass(S_BAT,0) : !rn2(2) ? mkclass(S_SNAKE,0) : mkclass(S_YETI,0)) :
+			(type == EXHIBITROOM) ? (!rn2(7) ? mkclass(S_EYE,0) : !rn2(6) ? mkclass(S_GREMLIN,0) : !rn2(5) ? mkclass(S_PIERCER,0) : !rn2(4) ? mkclass(S_TRAPPER,0) : !rn2(3) ? mkclass(S_WORM,0) : !rn2(2) ? mkclass(S_LIGHT,0) : mkclass(S_NAGA,0)) :
+			(type == RARITYROOM) ? (!rn2(5) ? mkclass(S_QUANTMECH,0) : !rn2(4) ? mkclass(S_JABBERWOCK,0) : !rn2(3) ? mkclass(S_RUBMONST,0) : !rn2(2) ? mkclass(S_XORN,0) : mkclass(S_WALLMONST,0)) :
 			(type == NYMPHHALL) ? mkclass(S_NYMPH,0) :
+			(type == DIVERPARADISE) ? mkclass(S_EEL,0) :
+			(type == WEAPONCHAMBER) ? specialtensmon(190) /* AT_WEAP */ :
+			(type == TROUBLEZONE) ? (!rn2(10) ? mkclass(S_KOP,0) : !rn2(4) ? mkclass(S_TROLL,0) : !rn2(3) ? mkclass(S_UMBER,0) : !rn2(2) ? mkclass(S_DEMON,0) : mkclass(S_VORTEX,0)) :
 			(type == TROLLHALL) ? mkclass(S_TROLL,0) :
 			(type == SPIDERHALL) ? mkclass(S_SPIDER,0) :
+			(type == COOLINGCHAMBER) ? (!rn2(3) ? specialtensmon(195) : !rn2(2) ? specialtensmon(243) : specialtensmon(299) ) /* AD_COLD, AD_FRZE and AD_ICEB */ :
 			(type == HUMANHALL) ? mkclass(S_HUMAN,0) :
+			(type == VOIDROOM) ? mkclass(S_GHOST,0) :
+			(type == WIZARDSDORM) ? (!rn2(4) ? mkclass(S_DRAGON,0) : !rn2(3) ? specialtensmon(180) : !rn2(2) ? specialtensmon(236) : specialtensmon(313)) /* AT_SPIT, AD_TCKL, AD_CAST */ :
+			(type == KOPSTATION) ? mkclass(S_KOP,0) :
+			(type == RNGCENTER) ? (!rn2(2) ? specialtensmon(312) : specialtensmon(331) ) /* AD_RNG, M5_RANDOMIZED */ :
+			(type == HAMLETROOM) ? mkclass(S_GIANT,0) :
 			(type == GOLEMHALL) ? mkclass(S_GOLEM,0) :
+			(type == CRYPTROOM) ? specialtensmon(95) /* M2_UNDEAD */ :
+			(type == NUCLEARCHAMBER) ? specialtensmon(337) /* AD_CONT */ :
+			(type == LEVELSEVENTYROOM) ? specialtensmon(0) /* any random monster */ :
 			(type == COINHALL) ? mkclass(S_BAD_COINS,0) :
 			(type == GRUEROOM) ? mkclass(S_GRUE,0) :
 		    (type == MORGUE) ? morguemon() :
 		    (type == FUNGUSFARM) ? (!rn2(4) ? mkclass(S_BLOB,0) : !rn2(3) ? mkclass(S_PUDDING,0) : !rn2(2) ? mkclass(S_JELLY,0) : mkclass(S_FUNGUS,0)) :
 		    (type == BEEHIVE) ?
 			(sx == tx && sy == ty ? &mons[PM_QUEEN_BEE] : beehivemon()) :
+		    (type == PRISONCHAMBER) ?
+			(sx == tx && sy == ty ? &mons[PM_PRISONER] : mkclass(S_OGRE,0) ) :
 		    (type == DOUGROOM) ? douglas_adams_mon() : 
 		    (type == LEPREHALL) ? mkclass(S_LEPRECHAUN,0) :
 		    (type == COCKNEST) ? mkclass(S_COCKATRICE,0) :
@@ -848,6 +933,83 @@ struct mkroom *sroom;
             case GRUEROOM:
               level.flags.has_grueroom = 1;
               break;
+
+	    case CRYPTROOM:
+		level.flags.has_cryptroom = 1;
+		break;
+	    case TROUBLEZONE:
+		level.flags.has_troublezone = 1;
+		break;
+	    case WEAPONCHAMBER:
+		level.flags.has_weaponchamber = 1;
+		break;
+	    case HELLPIT:
+		level.flags.has_hellpit = 1;
+		break;
+	    case FEMINISMROOM:
+		level.flags.has_feminismroom = 1;
+		break;
+	    case MEADOWROOM:
+		level.flags.has_meadowroom = 1;
+		break;
+	    case COOLINGCHAMBER:
+		level.flags.has_coolingchamber = 1;
+		break;
+	    case VOIDROOM:
+		level.flags.has_voidroom = 1;
+		break;
+	    case HAMLETROOM:
+		level.flags.has_hamletroom = 1;
+		break;
+	    case KOPSTATION:
+		level.flags.has_kopstation = 1;
+		break;
+	    case BOSSROOM:
+		level.flags.has_bossroom = 1;
+		break;
+	    case RNGCENTER:
+		level.flags.has_rngcenter = 1;
+		break;
+	    case WIZARDSDORM:
+		level.flags.has_wizardsdorm = 1;
+		break;
+	    case DOOMEDBARRACKS:
+		level.flags.has_doomedbarracks = 1;
+		break;
+	    case SLEEPINGROOM:
+		level.flags.has_sleepingroom = 1;
+		break;
+	    case DIVERPARADISE:
+		level.flags.has_diverparadise = 1;
+		break;
+	    case MENAGERIE:
+		level.flags.has_menagerie = 1;
+		break;
+	    case NASTYCENTRAL:
+		level.flags.has_nastycentral = 1;
+		break;
+	    case EMPTYDESERT:
+		level.flags.has_emptydesert = 1;
+		break;
+	    case RARITYROOM:
+		level.flags.has_rarityroom = 1;
+		break;
+	    case EXHIBITROOM:
+		level.flags.has_exhibitroom = 1;
+		break;
+	    case PRISONCHAMBER:
+		level.flags.has_prisonchamber = 1;
+		break;
+	    case NUCLEARCHAMBER:
+		level.flags.has_nuclearchamber = 1;
+		break;
+	    case LEVELSEVENTYROOM:
+		level.flags.has_levelseventyroom = 1;
+		break;
+	    case VARIANTROOM:
+		level.flags.has_variantroom = 1;
+		break;
+
             case POOLROOM:
               level.flags.has_poolroom = 1;
               break;
@@ -1578,6 +1740,19 @@ gotone:
 	else			    return((struct permonst *) 0);
 }
 
+STATIC_OVL struct permonst *
+doomsquadmon()
+{
+	int     i = rn2(60) + rn2(3*level_difficulty());
+
+	if (rn2(4)) return(&mons[PM_ZOMBIEMAN]);
+	else if (rn2(3)) return(&mons[PM_FORMER_SERGEANT]);
+	else if (rn2(2) && i > 90) return(&mons[PM_WOLFENSTEINER]);
+	else if (rn2(2) && i > 115) return(&mons[PM_ARACHNOTRON]);
+	else if (rn2(2) && i > 150) return(&mons[PM_MANCUBUS]);
+	else return(&mons[PM_ZOMBIEMAN]);
+}
+
 /*
  * save_room : A recursive function that saves a room and its subrooms
  * (if any).
@@ -1629,6 +1804,69 @@ mktraproom()
 				(void) maketrap(sx, sy, rtrap, 100);
 			if (randomnes == 1) rtrap = randomtrap();
 		}
+
+}
+
+void
+mkbossroom()
+{
+    struct mkroom *sroom;
+
+	register int sx,sy = 0;
+	int rtrap;
+	int randomnes = 0;
+
+    if(!(sroom = pick_room(FALSE))) return;
+
+    sroom->rtype = BOSSROOM;
+
+	/* boss spawner traps to be added here */
+
+	level.flags.has_bossroom = 1;
+
+}
+
+void
+mknastycentral()
+{
+    struct mkroom *sroom;
+	register int sx,sy = 0;
+
+    if (!(sroom = pick_room(FALSE))) return;
+
+	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
+
+    sroom->rtype = NASTYCENTRAL;
+
+	for(sx = sroom->lx; sx <= sroom->hx; sx++)
+	for(sy = sroom->ly; sy <= sroom->hy; sy++) {
+		(void) mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE, NASTY_STONE), sx, sy, TRUE, FALSE);
+	}
+
+	level.flags.has_nastycentral = 1;
+
+}
+
+void
+mkemptydesert()
+{
+    struct mkroom *sroom;
+	register int sx,sy = 0;
+
+    if (!(sroom = pick_room(FALSE))) return;
+
+	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
+
+    sroom->rtype = EMPTYDESERT;
+
+	for(sx = sroom->lx; sx <= sroom->hx; sx++)
+	for(sy = sroom->ly; sy <= sroom->hy; sy++) {
+		if(levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) {
+			levl[sx][sy].typ = rn2(5) ? SAND : SHIFTINGSAND;
+		}
+	}
+
+	level.flags.has_emptydesert = 1;
 
 }
 

@@ -3370,7 +3370,7 @@ boolean prefilled;
 
 	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
-		switch (rnd(57)) {
+		switch (rnd(83)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -3429,6 +3429,32 @@ boolean prefilled;
 			case 55: croom->rtype = RIVERROOM; break;
 			case 56: croom->rtype = RIVERROOM; break;
 			case 57: croom->rtype = RIVERROOM; break;
+			case 58: croom->rtype = GRUEROOM; break;
+			case 59: croom->rtype = CRYPTROOM; break;
+			case 60: croom->rtype = TROUBLEZONE; break;
+			case 61: croom->rtype = WEAPONCHAMBER; break;
+			case 62: croom->rtype = HELLPIT; break;
+			case 63: croom->rtype = FEMINISMROOM; break;
+			case 64: croom->rtype = MEADOWROOM; break;
+			case 65: croom->rtype = COOLINGCHAMBER; break;
+			case 66: croom->rtype = VOIDROOM; break;
+			case 67: croom->rtype = HAMLETROOM; break;
+			case 68: croom->rtype = KOPSTATION; break;
+			case 69: croom->rtype = BOSSROOM; break;
+			case 70: croom->rtype = RNGCENTER; break;
+			case 71: croom->rtype = WIZARDSDORM; break;
+			case 72: croom->rtype = DOOMEDBARRACKS; break;
+			case 73: croom->rtype = SLEEPINGROOM; break;
+			case 74: croom->rtype = DIVERPARADISE; break;
+			case 75: croom->rtype = MENAGERIE; break;
+			case 76: croom->rtype = rn2(20) ? TROUBLEZONE : NASTYCENTRAL; break;
+			case 77: croom->rtype = EMPTYDESERT; break;
+			case 78: croom->rtype = RARITYROOM; break;
+			case 79: croom->rtype = EXHIBITROOM; break;
+			case 80: croom->rtype = PRISONCHAMBER; break;
+			case 81: croom->rtype = NUCLEARCHAMBER; break;
+			case 82: croom->rtype = LEVELSEVENTYROOM; break;
+			case 83: croom->rtype = VARIANTROOM; break;
 
 		}
 
@@ -3568,7 +3594,7 @@ boolean prefilled;
 
 	if (croom->rtype == RANDOMROOM) {
 
-		switch (rnd(37)) {
+		switch (rnd(63)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -3607,6 +3633,32 @@ boolean prefilled;
 			case 35: croom->rtype = RIVERROOM; break;
 			case 36: croom->rtype = TEMPLE; break;
 			case 37: croom->rtype = EMPTYNEST; break;
+			case 38: croom->rtype = GRUEROOM; break;
+			case 39: croom->rtype = CRYPTROOM; break;
+			case 40: croom->rtype = TROUBLEZONE; break;
+			case 41: croom->rtype = WEAPONCHAMBER; break;
+			case 42: croom->rtype = HELLPIT; break;
+			case 43: croom->rtype = FEMINISMROOM; break;
+			case 44: croom->rtype = MEADOWROOM; break;
+			case 45: croom->rtype = COOLINGCHAMBER; break;
+			case 46: croom->rtype = VOIDROOM; break;
+			case 47: croom->rtype = HAMLETROOM; break;
+			case 48: croom->rtype = KOPSTATION; break;
+			case 49: croom->rtype = BOSSROOM; break;
+			case 50: croom->rtype = RNGCENTER; break;
+			case 51: croom->rtype = WIZARDSDORM; break;
+			case 52: croom->rtype = DOOMEDBARRACKS; break;
+			case 53: croom->rtype = SLEEPINGROOM; break;
+			case 54: croom->rtype = DIVERPARADISE; break;
+			case 55: croom->rtype = MENAGERIE; break;
+			case 56: croom->rtype = rn2(20) ? TROUBLEZONE : NASTYCENTRAL; break;
+			case 57: croom->rtype = EMPTYDESERT; break;
+			case 58: croom->rtype = RARITYROOM; break;
+			case 59: croom->rtype = EXHIBITROOM; break;
+			case 60: croom->rtype = PRISONCHAMBER; break;
+			case 61: croom->rtype = NUCLEARCHAMBER; break;
+			case 62: croom->rtype = LEVELSEVENTYROOM; break;
+			case 63: croom->rtype = VARIANTROOM; break;
 
 		}
 
@@ -3696,6 +3748,31 @@ boolean prefilled;
 		case GRUEROOM:
 		/*case STATUEROOM:*/
 		case DOUGROOM:
+
+	    case CRYPTROOM:
+	    case TROUBLEZONE:
+	    case WEAPONCHAMBER:
+	    case HELLPIT:
+	    case FEMINISMROOM:
+	    case MEADOWROOM:
+	    case COOLINGCHAMBER:
+	    case VOIDROOM:
+	    case HAMLETROOM:
+	    case KOPSTATION:
+	    case BOSSROOM:
+	    case RNGCENTER:
+	    case WIZARDSDORM:
+	    case DOOMEDBARRACKS:
+	    case SLEEPINGROOM:
+	    case DIVERPARADISE:
+	    case MENAGERIE:
+	    case RARITYROOM:
+	    case EXHIBITROOM:
+	    case PRISONCHAMBER:
+	    case NUCLEARCHAMBER:
+	    case LEVELSEVENTYROOM:
+	    case VARIANTROOM:
+
 		    fill_zoo(croom);
 		    break;
 	    }
@@ -3765,6 +3842,41 @@ boolean prefilled;
 
 			}
 
+		}
+
+	}
+
+	if (croom->rtype == BOSSROOM) {
+
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
+		/* boss spawner traps to be added here */
+
+	}
+
+	if (croom->rtype == NASTYCENTRAL) {
+
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++) {
+			(void) mksobj_at(rnd_class(RIGHT_MOUSE_BUTTON_STONE, NASTY_STONE), sx, sy, TRUE, FALSE);
+		}
+
+	}
+
+	if (croom->rtype == EMPTYDESERT) {
+
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++) {
+			if(levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) {
+				levl[sx][sy].typ = rn2(5) ? SAND : SHIFTINGSAND;
+			}
 		}
 
 	}
@@ -3924,6 +4036,81 @@ boolean prefilled;
 		break;
 	    case GRUEROOM:
 		level.flags.has_grueroom = TRUE;
+		break;
+	    case CRYPTROOM:
+		level.flags.has_cryptroom = TRUE;
+		break;
+	    case TROUBLEZONE:
+		level.flags.has_troublezone = TRUE;
+		break;
+	    case WEAPONCHAMBER:
+		level.flags.has_weaponchamber = TRUE;
+		break;
+	    case HELLPIT:
+		level.flags.has_hellpit = TRUE;
+		break;
+	    case FEMINISMROOM:
+		level.flags.has_feminismroom = TRUE;
+		break;
+	    case MEADOWROOM:
+		level.flags.has_meadowroom = TRUE;
+		break;
+	    case COOLINGCHAMBER:
+		level.flags.has_coolingchamber = TRUE;
+		break;
+	    case VOIDROOM:
+		level.flags.has_voidroom = TRUE;
+		break;
+	    case HAMLETROOM:
+		level.flags.has_hamletroom = TRUE;
+		break;
+	    case KOPSTATION:
+		level.flags.has_kopstation = TRUE;
+		break;
+	    case BOSSROOM:
+		level.flags.has_bossroom = TRUE;
+		break;
+	    case RNGCENTER:
+		level.flags.has_rngcenter = TRUE;
+		break;
+	    case WIZARDSDORM:
+		level.flags.has_wizardsdorm = TRUE;
+		break;
+	    case DOOMEDBARRACKS:
+		level.flags.has_doomedbarracks = TRUE;
+		break;
+	    case SLEEPINGROOM:
+		level.flags.has_sleepingroom = TRUE;
+		break;
+	    case DIVERPARADISE:
+		level.flags.has_diverparadise = TRUE;
+		break;
+	    case MENAGERIE:
+		level.flags.has_menagerie = TRUE;
+		break;
+	    case NASTYCENTRAL:
+		level.flags.has_nastycentral = TRUE;
+		break;
+	    case EMPTYDESERT:
+		level.flags.has_emptydesert = TRUE;
+		break;
+	    case RARITYROOM:
+		level.flags.has_rarityroom = TRUE;
+		break;
+	    case EXHIBITROOM:
+		level.flags.has_exhibitroom = TRUE;
+		break;
+	    case PRISONCHAMBER:
+		level.flags.has_prisonchamber = TRUE;
+		break;
+	    case NUCLEARCHAMBER:
+		level.flags.has_nuclearchamber = TRUE;
+		break;
+	    case LEVELSEVENTYROOM:
+		level.flags.has_levelseventyroom = TRUE;
+		break;
+	    case VARIANTROOM:
+		level.flags.has_variantroom = TRUE;
 		break;
 	    case POOLROOM:
 		level.flags.has_poolroom = TRUE;

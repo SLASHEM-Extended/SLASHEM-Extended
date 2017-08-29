@@ -3326,6 +3326,9 @@ register boolean newlev;
 	      case STATUEROOM:
                 if (wizard) You("enter a statue room!");
                 break;
+	      case NASTYCENTRAL:
+                if (wizard) You("enter a nasty central!");
+                break;
 	      case INSIDEROOM:
                 You(Hallucination ? "enter a normal-looking room." : "enter a weird-looking room...");
 		    if (!issoviet) wake_nearby();
@@ -3336,12 +3339,112 @@ register boolean newlev;
                 break;
 	      case GRUEROOM:
                 pline(Hallucination ? "It is radiant bright. You are likely to be eaten by the sun." : "It is pitch black. You are likely to be eaten by a grue.");
-
 	    do_clear_areaX(u.ux,u.uy,		/* extra darkness --Amy */
 		15, set_litX, (void *)((char *)0));
 		/* IMHO grue rooms may remove light every time you enter them. --Amy */
 		    if (!issoviet) wake_nearby();
                 break;
+	      case CRYPTROOM:
+                You(Hallucination ? "forgot to bring your light source and can't see anything in this room." : "enter the dark crypts!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case TROUBLEZONE:
+                You(Hallucination ? "got tons of trouble, baby!" : "enter the trouble zone!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case WEAPONCHAMBER:
+                You(Hallucination ? "see people with long pointy sticks who want to impale you!" : "enter a weapons chamber!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case HELLPIT:
+                pline(Hallucination ? "Gee, this looks exactly like the realms of Oblivion!" : "You enter the fiery pits of Hell!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case FEMINISMROOM:
+                You(Hallucination ? "enter a room full of girls in sexy bikinis and high-heeled leather boots! WOW!" : "enter a feminist meeting room!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case MEADOWROOM:
+                You(Hallucination ? "stumble into a ranch! Where's the cowboys and horses?" : "encounter a cattle meadow!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case COOLINGCHAMBER:
+                You(Hallucination ? "entered the radiator area!" : "freeze as you enter the cooling chamber.");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case VOIDROOM:
+                pline(Hallucination ? "Your body warps strangely and you cease to exist... Do you want your possessions identified? [ynq] (n) _" : "You entered the Void!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case HAMLETROOM:
+                pline(Hallucination ? "This room looks not dangerous at all." : "You've stumbled over a tiny hamlet!");
+			if (Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER)) {
+	            	pline(Hallucination ? "You feel that you've seen this before... it reminds you of the Woodstock Festival!" : "It looks familiar... didn't your adventures usually start in a similar place?");
+
+			}
+		    if (!issoviet) wake_nearby();
+                break;
+	      case KOPSTATION:
+                pline(Hallucination ? "As you enter the heavily guarded army base, bullets start flying in your direction! TAKE COVER!" : "You've entered the local police station!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case BOSSROOM:
+                You(Hallucination ? "were fated to die here. DIE!" : "feel that you will meet your fate here.");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case RNGCENTER:
+                You(Hallucination ? "enter a room that looks like it was designed by God Himself!" : "enter the Random Number Generator central!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case WIZARDSDORM:
+                You(Hallucination ? "disturbed some old wizened fool that lives here, and now you have to kill that stupid git!" : "entered a wizard's dormitory!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case DOOMEDBARRACKS:
+                You(Hallucination ? "realize that the game has turned into DoomRL! Quick, ready your kalashnikov and BFG!" : "enter an alien barracks!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case SLEEPINGROOM:
+                pline(Hallucination ? "I heard you were sleeping there." : "You stumble into a sleeping room!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case DIVERPARADISE:
+                You(Hallucination ? "enter a huge swimming pool, and the entrance is free! YEAH! Now you can splash around in the water and have many hours of pure FUN!" : "encounter the diver's paradise!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case MENAGERIE:
+                You(Hallucination ? "enter a zoo filled with prehistoric animals! Err... I really hope they're peaceful!" : "enter a menagerie!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case EMPTYDESERT:
+                pline(Hallucination ? "This looks like the Shifting Sand Land from Super Mario 64!" : "The air in this room is hot and arid.");
+                break;
+	      case RARITYROOM:
+                pline(Hallucination ? "It's the dungeon master's rarity collection! Quick, steal it before he turns up!" : "You enter a room filled with rare creatures!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case EXHIBITROOM:
+                pline(Hallucination ? "Oh, look at all the zoo exhibits! Can I feed them? Can I pet them? Mind if I incinerate them?" : "You encounter an exhibit of strange creatures!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case PRISONCHAMBER:
+                pline(Hallucination ? "Go directly to jail. Do not pass go. Do not collect 200 zorkmids." : "You enter a prison!");
+			if (Hallucination) pline("Do you want your possessions identified? [ynq] (n) _");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case NUCLEARCHAMBER:
+                pline(Hallucination ? "It's where the government is researching weaponized uranium! If you can steal their technology, you can nuke the entire dungeon and ascend prematurely!" : "You encounter a nuclear power plant!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case LEVELSEVENTYROOM: /* no message but still wake_nearby --Amy */
+                if (wizard) You("enter a level 70 room!");
+		    if (!issoviet) wake_nearby();
+                break;
+	      case VARIANTROOM:
+                pline(Hallucination ? "The game suddenly turned into dnethack. The elder priest tentacles to tentacle you! Your cloak of magic resistance disintegrates!" : "You encounter a room from another variant!");
+		    if (!issoviet) wake_nearby();
+                break;
+
 		case BARRACKS:
 		    if(monstinroom(&mons[PM_SOLDIER], roomno) ||
 			monstinroom(&mons[PM_SERGEANT], roomno) ||
@@ -3421,6 +3524,81 @@ register boolean newlev;
                         break;
                       case GRUEROOM:
                         level.flags.has_grueroom = 0;
+                        break;
+                      case CRYPTROOM:
+                        level.flags.has_cryptroom = 0;
+                        break;
+                      case TROUBLEZONE:
+                        level.flags.has_troublezone = 0;
+                        break;
+                      case WEAPONCHAMBER:
+                        level.flags.has_weaponchamber = 0;
+                        break;
+                      case HELLPIT:
+                        level.flags.has_hellpit = 0;
+                        break;
+                      case FEMINISMROOM:
+                        level.flags.has_feminismroom = 0;
+                        break;
+                      case MEADOWROOM:
+                        level.flags.has_meadowroom = 0;
+                        break;
+                      case COOLINGCHAMBER:
+                        level.flags.has_coolingchamber = 0;
+                        break;
+                      case VOIDROOM:
+                        level.flags.has_voidroom = 0;
+                        break;
+                      case HAMLETROOM:
+                        level.flags.has_hamletroom = 0;
+                        break;
+                      case KOPSTATION:
+                        level.flags.has_kopstation = 0;
+                        break;
+                      case BOSSROOM:
+                        level.flags.has_bossroom = 0;
+                        break;
+                      case RNGCENTER:
+                        level.flags.has_rngcenter = 0;
+                        break;
+                      case WIZARDSDORM:
+                        level.flags.has_wizardsdorm = 0;
+                        break;
+                      case DOOMEDBARRACKS:
+                        level.flags.has_doomedbarracks = 0;
+                        break;
+                      case SLEEPINGROOM:
+                        level.flags.has_sleepingroom = 0;
+                        break;
+                      case DIVERPARADISE:
+                        level.flags.has_diverparadise = 0;
+                        break;
+                      case MENAGERIE:
+                        level.flags.has_menagerie = 0;
+                        break;
+                      case NASTYCENTRAL:
+                        level.flags.has_nastycentral = 0;
+                        break;
+                      case EMPTYDESERT:
+                        level.flags.has_emptydesert = 0;
+                        break;
+                      case RARITYROOM:
+                        level.flags.has_rarityroom = 0;
+                        break;
+                      case EXHIBITROOM:
+                        level.flags.has_exhibitroom = 0;
+                        break;
+                      case PRISONCHAMBER:
+                        level.flags.has_prisonchamber = 0;
+                        break;
+                      case NUCLEARCHAMBER:
+                        level.flags.has_nuclearchamber = 0;
+                        break;
+                      case LEVELSEVENTYROOM:
+                        level.flags.has_levelseventyroom = 0;
+                        break;
+                      case VARIANTROOM:
+                        level.flags.has_variantroom = 0;
                         break;
                       case POOLROOM:
                         level.flags.has_poolroom = 0;

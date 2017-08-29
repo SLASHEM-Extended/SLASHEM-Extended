@@ -97,9 +97,35 @@ extern NEARDATA struct door doors[DOORMAX];
 #define RIVERROOM	40	/* underground rivers in a room */
 #define EMPTYNEST	41	/* no monsters, just eggs */
 
-#define RANDOMROOM 42	/* supposed to select one from an array of other special rooms, for use in .des files */
+#define CRYPTROOM 42	/* floor of the crypt and many undead */
+#define TROUBLEZONE 43	/* T, U, &, v, sometimes K */
+#define WEAPONCHAMBER 44	/* monsters with weapon attacks */
+#define HELLPIT 45	/* lava, fire-based traps, demons */
+#define FEMINISMROOM 46	/* feminism monsters and traps */
+#define MEADOWROOM 47	/* grassland, food, a, q, x and n */
+#define COOLINGCHAMBER 48	/* snow and ice, cold-based monsters */
+#define VOIDROOM 49	/* nether mist, giant chasms, ghosts */
+#define HAMLETROOM 50	/* grassland, wells, wagons, H, statue traps, warp zones, monster cubes */
+#define KOPSTATION 51	/* keystone kops */
+#define BOSSROOM 52	/* boss spawner traps */
+#define RNGCENTER 53	/* randomly generated monsters */
+#define WIZARDSDORM 54	/* bed, table, caster and spitter monsters, dragons */
+#define DOOMEDBARRACKS 55	/* zombieman, former sergeant, wolfensteiner, arachnotron, mancubus */
+#define SLEEPINGROOM 56	/* k, r, o, O, mattresses */
+#define DIVERPARADISE 57	/* water tunnels and water monsters */
+#define MENAGERIE 58	/* d, f, r, u, z, B, S, Y */
+#define NASTYCENTRAL 59	/* nasty gray stones everywhere */
+#define EMPTYDESERT 60	/* sand and shifting sand */
+#define RARITYROOM 61	/* random terrain, Q, J, 7, X, wall monsters */
+#define EXHIBITROOM 62	/* e, g, p, t, w, y, N */
+#define PRISONCHAMBER 63	/* O and a prisoner on altar */
+#define NUCLEARCHAMBER 64	/* styx rivers, contamination monsters */
+#define LEVELSEVENTYROOM 65	/* grave walls, traps, monsters */
+#define VARIANTROOM 66	/* monsters from a specific variant */
 
-#define SHOPBASE        43     	/* everything above this is a shop */
+#define RANDOMROOM 67	/* supposed to select one from an array of other special rooms, for use in .des files */
+
+#define SHOPBASE        68     	/* everything above this is a shop */
 #define ARMORSHOP       (SHOPBASE+ 1)   /* specific shop defines for level compiler */
 #define SCROLLSHOP      (SHOPBASE+ 2)
 #define POTIONSHOP      (SHOPBASE+ 3)
