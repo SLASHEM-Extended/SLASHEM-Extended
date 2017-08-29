@@ -5286,6 +5286,66 @@ char *buf;
 	    dfeature = level.flags.lethe ? "sparkling fountain" : "fountain";
 	else if (IS_THRONE(ltyp))
 	    cmap = S_throne;				/* "opulent throne" */
+	else if (IS_GRAVEWALL(ltyp))
+	    cmap = S_gravewall;
+	else if (IS_TUNNELWALL(ltyp))
+	    cmap = S_tunnelwall;
+	else if (IS_FARMLAND(ltyp))
+	    cmap = S_farmland;
+	else if (IS_MOUNTAIN(ltyp))
+	    cmap = S_mountain;
+	else if (IS_WATERTUNNEL(ltyp))
+	    cmap = S_watertunnel;
+	else if (IS_CRYSTALWATER(ltyp))
+	    cmap = S_crystalwater;
+	else if (IS_MOORLAND(ltyp))
+	    cmap = S_moorland;
+	else if (IS_URINELAKE(ltyp))
+	    cmap = S_urinelake;
+	else if (IS_SHIFTINGSAND(ltyp))
+	    cmap = S_shiftingsand;
+	else if (IS_STYXRIVER(ltyp))
+	    cmap = S_styxriver;
+	else if (IS_PENTAGRAM(ltyp))
+	    cmap = S_pentagram;
+	else if (IS_WELL(ltyp))
+	    cmap = S_well;
+	else if (IS_POISONEDWELL(ltyp))
+	    cmap = S_poisonedwell;
+	else if (IS_WAGON(ltyp))
+	    cmap = S_wagon;
+	else if (IS_BURNINGWAGON(ltyp))
+	    cmap = S_burningwagon;
+	else if (IS_WOODENTABLE(ltyp))
+	    cmap = S_woodentable;
+	else if (IS_CARVEDBED(ltyp))
+	    cmap = S_carvedbed;
+	else if (IS_STRAWMATTRESS(ltyp))
+	    cmap = S_strawmattress;
+	else if (IS_SNOW(ltyp))
+	    cmap = S_snow;
+	else if (IS_ASH(ltyp))
+	    cmap = S_ash;
+	else if (IS_SAND(ltyp))
+	    cmap = S_sand;
+	else if (IS_PAVEDFLOOR(ltyp))
+	    cmap = S_pavedfloor;
+	else if (IS_HIGHWAY(ltyp))
+	    cmap = S_highway;
+	else if (IS_GRASSLAND(ltyp))
+	    cmap = S_grassland;
+	else if (IS_NETHERMIST(ltyp))
+	    cmap = S_nethermist;
+	else if (IS_STALACTITE(ltyp))
+	    cmap = S_stalactite;
+	else if (IS_CRYPTFLOOR(ltyp))
+	    cmap = S_cryptfloor;
+	else if (IS_BUBBLES(ltyp))
+	    cmap = S_bubbles;
+	else if (IS_RAINCLOUD(ltyp))
+	    cmap = S_raincloud;
+	else if (IS_CLOUD(ltyp))
+	    cmap = S_cloud;
 	else if (is_lava(x,y))
 	    cmap = S_lava;				/* "molten lava" */
 	else if (is_ice(x,y))
@@ -5400,12 +5460,14 @@ boolean picked_some;
 
 		if (flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7) && IS_THRONE(levl[u.ux][u.uy].typ))
 		    strcat(fbuf, "  Use #sit to interact with it.");
+		if (flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7) && IS_PENTAGRAM(levl[u.ux][u.uy].typ))
+		    strcat(fbuf, "  Use #invoke to draw on the magical energies.");
 		if (flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7) && IS_ALTAR(levl[u.ux][u.uy].typ))
 		    strcat(fbuf, "  Use #offer to make a sacrifice.");
 
 	}
 
-	if (!otmp || is_lava(u.ux,u.uy) || (is_pool(u.ux,u.uy) && !Underwater)) {
+	if (!otmp || is_lava(u.ux,u.uy) || (is_waterypool(u.ux,u.uy) && !Underwater) || (is_watertunnel(u.ux,u.uy) && !Underwater)) {
 		if (dfeature) pline(fbuf);
 		sense_engr_at(u.ux, u.uy, FALSE); /* Eric Backus */
 		if (!skip_objects && (Blind || !dfeature))

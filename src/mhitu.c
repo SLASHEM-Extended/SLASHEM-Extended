@@ -1798,7 +1798,7 @@ mattacku(mtmp)
 			struct obj *obj = level.objects[u.ux][u.uy];
 
 			if (obj ||
-			      (youmonst.data->mlet == S_EEL && is_pool(u.ux, u.uy))) {
+			      (youmonst.data->mlet == S_EEL && is_waterypool(u.ux, u.uy))) {
 			    int save_spe = 0; /* suppress warning */
 			    if (obj) {
 				save_spe = obj->spe;
@@ -4267,7 +4267,7 @@ hitmu(mtmp, mattk)
 		if ((obj = level.objects[mtmp->mx][mtmp->my]) != 0) {
 		    if (Blind && !obj->dknown)
 			what = something;
-		    else if (is_pool(mtmp->mx, mtmp->my) && !Underwater)
+		    else if (is_waterypool(mtmp->mx, mtmp->my) && !Underwater)
 			what = "the water";
 		    else
 			what = doname(obj);
@@ -6029,7 +6029,7 @@ dopois:
 			}
 		    } else if(u.ustuck == mtmp) {
 
-			if (is_pool(mtmp->mx,mtmp->my)) {
+			if (is_drowningpool(mtmp->mx,mtmp->my)) {
 
 		/* Being drowned should ALWAYS involve your stuff getting wet. 
 		 * Even if you're unbreathing, swimming or whatever. Your stuff isn't immune just because you are.  --Amy	*/
@@ -6086,7 +6086,7 @@ dopois:
 
 			}
 
-			if (is_pool(mtmp->mx,mtmp->my) && !Swimming
+			if (is_drowningpool(mtmp->mx,mtmp->my) && !Swimming
 			    && !Amphibious && !Breathless && !rn2(3) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) ) { /* greatly lowered chance of getting drowned --Amy */
 			    boolean moat =
 				(levl[mtmp->mx][mtmp->my].typ != POOL) &&

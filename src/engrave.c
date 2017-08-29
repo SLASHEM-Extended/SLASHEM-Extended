@@ -783,7 +783,7 @@ register int x, y;
 	    return "maw";
 	else if (IS_AIR(lev->typ) && Is_airlevel(&u.uz))
 	    return "air";
-	else if (is_pool(x,y))
+	else if (is_waterypool(x,y))
 	    return (Underwater && !Is_waterlevel(&u.uz)) ? "bottom" : "water";
 	else if (is_ice(x,y))
 	    return "ice";
@@ -1147,7 +1147,15 @@ doengrave()
 		You_cant("write on the lava!");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
-	} else if (is_pool(u.ux,u.uy) || IS_FOUNTAIN(levl[u.ux][u.uy].typ)) {
+	} else if (is_styxriver(u.ux, u.uy)) {
+		You_cant("write on the styx river!");
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return(0);
+	} else if (is_shiftingsand(u.ux, u.uy)) {
+		You_cant("write on the shifting sand!");
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return(0);
+	} else if (is_waterypool(u.ux,u.uy) || is_watertunnel(u.ux,u.uy) || is_moorland(u.ux,u.uy) || IS_FOUNTAIN(levl[u.ux][u.uy].typ)) {
 		You_cant("write on the water!");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);

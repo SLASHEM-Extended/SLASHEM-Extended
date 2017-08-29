@@ -370,7 +370,7 @@ trap_of_walls:
 		count = 0;
 		for (i= -1; i<=1; i++) for(j= -1; j<=1; j++) {
 			if (!i && !j) continue;
-			if (!isok(randomx+i, randomy+j) || IS_STWALL(levl[randomx+i][randomy+j].typ) )
+			if (!isok(randomx+i, randomy+j) || IS_WATERTUNNEL(levl[randomx+i][randomy+j].typ) || IS_STWALL(levl[randomx+i][randomy+j].typ) )
 				count++;
 		}
 		switch (count) {
@@ -976,15 +976,15 @@ may_dig(x,y)
 register xchar x,y;
 /* intended to be called only on ROCKs */
 {
-    return (boolean)(!(IS_STWALL(levl[x][y].typ) &&
-			(levl[x][y].wall_info & W_NONDIGGABLE)));
+    return (boolean)(!(IS_STWALL(levl[x][y].typ) && !(IS_DIGGABLEWALL(levl[x][y].typ)) &&
+			(levl[x][y].wall_info & W_NONDIGGABLE)) && !(IS_FARMLAND(levl[x][y].typ)) && !(IS_GRAVEWALL(levl[x][y].typ)) && !(IS_MOUNTAIN(levl[x][y].typ)) );
 }
 
 boolean
 may_passwall(x,y)
 register xchar x,y;
 {
-   return (boolean)(!(IS_STWALL(levl[x][y].typ) &&
+   return (boolean)(!(IS_STWALL(levl[x][y].typ) && !(IS_DIGGABLEWALL(levl[x][y].typ)) &&
 			(levl[x][y].wall_info & W_NONPASSWALL)));
 }
 
@@ -1042,7 +1042,7 @@ int mode;
     /*
      *  Check for physical obstacles.  First, the place we are going.
      */
-    if (IS_ROCK(tmpr->typ) || tmpr->typ == IRONBARS) {
+    if (IS_ROCK(tmpr->typ) || tmpr->typ == IRONBARS || tmpr->typ == WATERTUNNEL) {
 	if (Blind && mode == DO_MOVE) feel_location(x,y);
 	if (tmpr->typ == IRONBARS) {
 	    if (!(Passes_walls || passes_bars(youmonst.data) )) {
@@ -1073,6 +1073,119 @@ int mode;
 	    ;	/* do nothing */
 	} else if (Race_if(PM_HUMANOID_DRYAD) && tmpr->typ == TREE) {
 	    ;	/* dryad can walk thru trees --Amy */
+	} else if (tmpr->typ == MOUNTAIN) {
+		if (mode != DO_MOVE) return FALSE;
+		if (mode == DO_MOVE && !Passes_walls) {
+			if (!(u.usteed) && rn2(100)) {
+				TimerunBug += 1; /* ugly hack --Amy */
+				Norep("You try to scale the mountain. This may take many attempts to succeed.");
+				/* Note that it is not a bug that you cannot easily walk over the next mountain tile
+				 * even if you're already on one, since they're considered to have different heights :D --Amy */
+				return(FALSE);
+			}
+			/* success! */
+			if (!(u.usteed)) {
+				You("successfully climb the mountain.");
+				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			}
+		}
+
+	} else if (tmpr->typ == FARMLAND) {
+		if (mode != DO_MOVE && !Levitation && !Flying && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
+
+		if (mode == DO_MOVE && !Levitation && !Flying && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) {
+
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+				You("crash into a farmland! Ouch!");
+
+				losehp(rnd(10), "walking into a farmland", KILLED_BY);
+				if (!rn2(10)) {
+					if (rn2(50)) {
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+					} else {
+						You_feel("dizzy!");
+						forget(1 + rn2(5));
+					}
+				}
+			} else {
+				You("cannot cross the farmland!");
+				if (Hallucination) pline("Nature preservation and all that.");
+				/* Even passwall does not help here, this is intentional. --Amy */
+			}
+
+			return FALSE;
+		}
+
+	} else if (tmpr->typ == TUNNELWALL) {
+		if (mode != DO_MOVE && !Passes_walls && (Flying || Levitation)) return FALSE;
+		if (mode == DO_MOVE && !Passes_walls && (Flying || Levitation)) {
+
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+				You("crash into a tunnel! Ouch!");
+
+				losehp(rnd(10), "walking into a tunnel", KILLED_BY);
+				if (!rn2(10)) {
+					if (rn2(50)) {
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+					} else {
+						You_feel("dizzy!");
+						forget(1 + rn2(5));
+					}
+				}
+			} else {
+				if (Levitation) pline("While levitating, you cannot enter the tunnel.");
+				else pline("While flying, you cannot enter the tunnel.");
+			}
+
+			return FALSE;
+
+		}
+
+	} else if (tmpr->typ == GRAVEWALL) {
+		/* Once again, passwall intentionally does not help --Amy */
+		if (mode != DO_MOVE) return FALSE;
+		if (rn2(5)) {
+			Norep("You dig into the grave wall.");
+			TimerunBug += 1; /* ugly hack --Amy */
+			return FALSE;
+		} else {
+			You("dig out the grave wall.");
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			tmpr->typ = CORR;
+			if (!rn2(20) && isok(ux+dx, uy+dy)) {
+				maketrap(ux+dx, uy+dy, randomtrap(), 100 );
+			} else if (!rn2(20) && isok(ux+dx, uy+dy)) {
+				pline("There was a monster hidden underneath the wall!");
+				makemon((struct permonst *)0, ux+dx, uy+dy, MM_ADJACENTOK);
+				return FALSE;
+			}
+		}
+	} else if (tmpr->typ == WATERTUNNEL) {
+		if (mode != DO_MOVE) return FALSE;
+
+		if (mode == DO_MOVE && !Passes_walls && (Flying || Levitation)) {
+
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+				You("crash into a water tunnel! Ouch!");
+
+				losehp(rnd(10), "walking into a water tunnel", KILLED_BY);
+				if (!rn2(10)) {
+					if (rn2(50)) {
+						adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+					} else {
+						You_feel("dizzy!");
+						forget(1 + rn2(5));
+					}
+				}
+			} else {
+				if (Levitation) pline("While levitating, you cannot enter the water tunnel.");
+				else pline("While flying, you cannot enter the water tunnel.");
+			}
+
+			return FALSE;
+
+		}
+
 	} else if ( ( (tunnels(youmonst.data) && !needspick(youmonst.data)) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (Race_if(PM_SCURRIER) && !Upolyd) || u.geolysis) ) {
 	    /* Eat the rock. */
 	    if (mode == DO_MOVE && still_chewing(x,y)) return FALSE;
@@ -1267,7 +1380,7 @@ int mode;
 	if ((t && t->tseen) ||
 	    (!Levitation && !Flying &&
 	     !is_clinger(youmonst.data) &&
-	     (is_pool(x, y) || is_lava(x, y)) && levl[x][y].seenv))
+	     (is_waterypool(x, y) || is_watertunnel(x,y) || is_moorland(x,y) || is_styxriver(x,y) || is_shiftingsand(x,y) || is_urinelake(x,y) || is_lava(x, y)) && levl[x][y].seenv))
 	    return FALSE;
     }
 
@@ -1572,6 +1685,116 @@ ask_about_lava(int x, int y)
 	return FALSE;
 }
 
+boolean
+ask_about_watertunnel(int x, int y)
+{
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
+	if (is_watertunnel(u.ux, u.uy)) return FALSE;
+
+	if (is_watertunnel(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	return FALSE;
+}
+
+boolean
+ask_about_crystalwater(int x, int y)
+{
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
+	if (is_crystalwater(u.ux, u.uy)) return FALSE;
+
+	if (is_crystalwater(x, y) && (Levitation || Flying) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	return FALSE;
+}
+
+boolean
+ask_about_moorland(int x, int y)
+{
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
+	if (is_moorland(u.ux, u.uy)) return FALSE;
+
+	if (is_moorland(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	return FALSE;
+}
+
+boolean
+ask_about_urinelake(int x, int y)
+{
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
+	if (is_urinelake(u.ux, u.uy)) return FALSE;
+
+	if (is_urinelake(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	return FALSE;
+}
+
+boolean
+ask_about_shiftingsand(int x, int y)
+{
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
+	if (is_shiftingsand(u.ux, u.uy)) return FALSE;
+
+	if (is_shiftingsand(x, y) && !Levitation && !Flying && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	return FALSE;
+}
+
+boolean
+ask_about_styxriver(int x, int y)
+{
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
+	if (is_styxriver(u.ux, u.uy)) return FALSE;
+
+	if (is_styxriver(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	return FALSE;
+}
+
+boolean
+ask_about_burningwagon(int x, int y)
+{
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
+	if (is_burningwagon(u.ux, u.uy)) return FALSE;
+
+	if (is_burningwagon(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	return FALSE;
+}
+
+boolean
+ask_about_nethermist(int x, int y)
+{
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
+	if (is_nethermist(u.ux, u.uy)) return FALSE;
+
+	if (is_nethermist(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	return FALSE;
+}
+
+boolean
+ask_about_stalactite(int x, int y)
+{
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
+	if (is_stalactite(u.ux, u.uy)) return FALSE;
+
+	if (is_stalactite(x, y) && (Flying || Levitation) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	return FALSE;
+}
+
+boolean
+ask_about_raincloud(int x, int y)
+{
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
+	if (is_raincloud(u.ux, u.uy)) return FALSE;
+
+	if (is_raincloud(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	return FALSE;
+}
+
 void
 domove()
 {
@@ -1719,7 +1942,7 @@ domove()
 		if (((trap = t_at(x, y)) && trap->tseen) ||
 		    (Blind && !Levitation && !Flying &&
 		     !is_clinger(youmonst.data) &&
-		     (is_pool(x, y) || is_lava(x, y)) && levl[x][y].seenv)) {
+		     (is_waterypool(x, y) || is_watertunnel(x,y) || is_shiftingsand(x,y) || is_moorland(x,y) || is_urinelake(x,y) || is_lava(x, y)) && levl[x][y].seenv)) {
 			if(flags.run >= 2) {
 				forcenomul(0, 0);
 				flags.move = 0;
@@ -1863,7 +2086,7 @@ domove()
 		You("%s %s.",
 		    expl ? "explode at" : "attack",
 		    !Underwater ? "thin air" :
-		    is_pool(x,y) ? "empty water" : buf);
+		    is_waterypool(x,y) ? "empty water" : buf);
 		unmap_object(x, y); /* known empty -- remove 'I' if present */
 		newsym(x, y);
 		forcenomul(0, 0);
@@ -2166,6 +2389,103 @@ domove()
 		}
 	}
 
+	if (ask_about_watertunnel(x, y)) {
+
+		if (yn("This is a water tunnel that can cause you to drown. Really dive into it?") != 'y') {
+			forcenomul(0, 0);
+			flags.move = 0;
+			return;
+		}
+	}
+
+	if (ask_about_crystalwater(x, y)) {
+
+		if (yn("This is a crystal water tile that can cause you to drown. Really fly into it?") != 'y') {
+			forcenomul(0, 0);
+			flags.move = 0;
+			return;
+		}
+	}
+
+	if (ask_about_moorland(x, y)) {
+
+		if (yn("This is moorland; swimming in it will continuously hurt you. Really do it?") != 'y') {
+			forcenomul(0, 0);
+			flags.move = 0;
+			return;
+		}
+	}
+
+	if (ask_about_urinelake(x, y)) {
+
+		if (yn("This is a urine lake, which can be detrimental to swim in. Really do it?") != 'y') {
+			forcenomul(0, 0);
+			flags.move = 0;
+			return;
+		}
+	}
+
+	if (ask_about_shiftingsand(x, y)) {
+
+		if (yn("This is a shifting sand tile, which will quickly kill you by suffocation. Really step on it?") != 'y') {
+			forcenomul(0, 0);
+			flags.move = 0;
+			return;
+		}
+		char bufX[BUFSZ];
+		getlin ("Are you really sure [yes/no]?",bufX);
+		if (strcmp (bufX, "yes")) {
+			forcenomul(0, 0);
+			flags.move = 0;
+			return;
+		}
+	}
+
+	if (ask_about_styxriver(x, y)) {
+
+		if (yn("This is a styx river, which will continuously contaminate you. Really step on it?") != 'y') {
+			forcenomul(0, 0);
+			flags.move = 0;
+			return;
+		}
+	}
+
+	if (ask_about_burningwagon(x, y)) {
+
+		if (yn("This is a burning wagon, which will burn you. Really step on it?") != 'y') {
+			forcenomul(0, 0);
+			flags.move = 0;
+			return;
+		}
+	}
+
+	if (ask_about_nethermist(x, y)) {
+
+		if (yn("This is a nether mist tile, which can drain your experience. Really step on it?") != 'y') {
+			forcenomul(0, 0);
+			flags.move = 0;
+			return;
+		}
+	}
+
+	if (ask_about_stalactite(x, y)) {
+
+		if (yn("This is a stalactite, which will hurt you if you fly into it. Really do it?") != 'y') {
+			forcenomul(0, 0);
+			flags.move = 0;
+			return;
+		}
+	}
+
+	if (ask_about_raincloud(x, y)) {
+
+		if (yn("This is a rain cloud, which will make you and your entire inventory wet. Really step into it?") != 'y') {
+			forcenomul(0, 0);
+			flags.move = 0;
+			return;
+		}
+	}
+
 	} else if (!test_move(u.ux, u.uy, x-u.ux, y-u.uy, TEST_MOVE)) {
 	    /*
 	     * If a monster attempted to displace us but failed
@@ -2346,7 +2666,7 @@ domove()
 	if (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 	else if (youmonst.data->mlet == S_EEL)
-	    u.uundetected = is_pool(u.ux, u.uy) && !Is_waterlevel(&u.uz);
+	    u.uundetected = is_waterypool(u.ux, u.uy) && !Is_waterlevel(&u.uz);
 	else if (u.dx || u.dy)
 	    u.uundetected = 0;
 
@@ -2527,7 +2847,7 @@ boolean pick;
 	if(u.uinwater) {
 		int was_underwater;
 
-		if (!is_pool(u.ux,u.uy)) {
+		if (!is_drowningpool(u.ux,u.uy)) {
 			if (Is_waterlevel(&u.uz))
 				You("pop into an air bubble.");
 			else if (is_lava(u.ux, u.uy))
@@ -2561,7 +2881,7 @@ boolean pick;
 stillinwater:;
 	if (!Levitation && !u.ustuck && !Flying && !(uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "flier cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plashch letchika") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "uchuvchi plash") )) ) {
 	    /* limit recursive calls through teleds() */
-	    if (is_pool(u.ux, u.uy) || is_lava(u.ux, u.uy)) {
+	    if ((is_drowningpool(u.ux, u.uy) && !(is_crystalwater(u.ux,u.uy))) || is_lava(u.ux, u.uy)) {
 		if (u.usteed && !is_flyer(u.usteed->data) && (!u.usteed->egotype_flying) &&
 			!is_floater(u.usteed->data) &&
 			!is_clinger(u.usteed->data)) {
@@ -3179,7 +3499,7 @@ dopickup()
 		return loot_mon(u.ustuck, &tmpcount, (boolean *)0);
 	    }
 	}
-	if(is_pool(u.ux, u.uy)) {
+	if(is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy) || is_moorland(u.ux, u.uy) || is_urinelake(u.ux, u.uy)) {
 	    if (Wwalking || is_floater(youmonst.data) || is_clinger(youmonst.data)
 			|| (Flying && !Breathless)) {
 		You("cannot dive into the water to pick things up.");
@@ -3303,7 +3623,7 @@ bcorr:
 	    if(flags.run == 1) goto bcorr;	/* if you must */
 	    if(x == u.ux+u.dx && y == u.uy+u.dy) goto stop;
 	    continue;
-	} else if (is_pool(x,y) || is_lava(x,y)) {
+	} else if (is_waterypool(x,y) || is_watertunnel(x,y) || is_urinelake(x,y) || is_shiftingsand(x,y) || is_moorland(x,y) || is_lava(x,y)) {
 	    /* water and lava only stop you if directly in front, and stop
 	     * you even if you are running
 	     */

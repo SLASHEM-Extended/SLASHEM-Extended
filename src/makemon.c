@@ -14448,9 +14448,9 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_MIMIC_ANT]) set_mimic_sym(mtmp);
 			break;
 		case S_HUMAN:
-			if (is_pool(x, y) && (mndx == PM_HUMAN_WEREPIRANHA || mndx == PM_HUMAN_WEREEEL || mndx == PM_HUMAN_WEREKRAKEN) )
+			if (is_waterypool(x, y) && (mndx == PM_HUMAN_WEREPIRANHA || mndx == PM_HUMAN_WEREEEL || mndx == PM_HUMAN_WEREKRAKEN) )
 			    mtmp->mundetected = TRUE;
-			if ( (is_pool(x, y) || is_lava(x, y) ) && (mndx == PM_HUMAN_WEREFLYFISH) )
+			if ( (is_waterypool(x, y) || is_lava(x, y) ) && (mndx == PM_HUMAN_WEREFLYFISH) )
 			    mtmp->mundetected = TRUE;
 			if (mtmp->data == &mons[PM_OSCILLATOR]) set_mimic_sym(mtmp);
 
@@ -14528,7 +14528,7 @@ register int	mmflags;
 			if (mndx == PM_SECLUDED_COLONY) set_mimic_sym(mtmp);
 			break;
 		case S_EEL:
-			if (is_pool(x, y))
+			if (is_waterypool(x, y))
 			    mtmp->mundetected = TRUE;
 			if (mtmp->data == &mons[PM_CAMO_FISH] || mtmp->data == &mons[PM_DEFORMED_FISH] || mtmp->data == &mons[PM_AMORPHOUS_FISH]) set_mimic_sym(mtmp);
 
@@ -14539,7 +14539,7 @@ register int	mmflags;
 
 			break;
 		case S_FLYFISH:
-			if (is_pool(x, y) || is_lava(x, y) )
+			if (is_waterypool(x, y) || is_lava(x, y) )
 			    mtmp->mundetected = TRUE;
 			if (mtmp->data == &mons[PM_FLYING_CAMO_FISH]) set_mimic_sym(mtmp);
 			if (ptr == &mons[PM_STALKISH]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
@@ -17717,7 +17717,7 @@ register struct monst *mtmp;
 
 			ap_type = M_AP_FURNITURE;
 
-			switch (rnd(19)) {
+			switch (rnd(50)) {
 
 				case 1:		appear = S_stone; break;
 				case 2:		appear = S_bars; break;
@@ -17738,6 +17738,37 @@ register struct monst *mtmp;
 				case 17:		appear = S_air; break;
 				case 18:		appear = S_cloud; break;
 				case 19:		appear = S_water; break;
+				case 20:		appear = S_gravewall; break;
+				case 21:		appear = S_rockwall; break;
+				case 22:		appear = S_tunnelwall; break;
+				case 23:		appear = S_farmland; break;
+				case 24:		appear = S_mountain; break;
+				case 25:		appear = S_watertunnel; break;
+				case 26:		appear = S_crystalwater; break;
+				case 27:		appear = S_moorland; break;
+				case 28:		appear = S_urinelake; break;
+				case 29:		appear = S_shiftingsand; break;
+				case 30:		appear = S_styxriver; break;
+				case 31:		appear = S_well; break;
+				case 32:		appear = S_poisonedwell; break;
+				case 33:		appear = S_wagon; break;
+				case 34:		appear = S_burningwagon; break;
+				case 35:		appear = S_woodentable; break;
+				case 36:		appear = S_strawmattress; break;
+				case 37:		appear = S_snow; break;
+				case 38:		appear = S_ash; break;
+				case 39:		appear = S_sand; break;
+				case 40:		appear = S_pavedfloor; break;
+				case 41:		appear = S_highway; break;
+				case 42:		appear = S_grassland; break;
+				case 43:		appear = S_nethermist; break;
+				case 44:		appear = S_stalactite; break;
+				case 45:		appear = S_cryptfloor; break;
+				case 46:		appear = S_bubbles; break;
+				case 47:		appear = S_raincloud; break;
+				case 48:		appear = S_pentagram; break;
+				case 49:		appear = S_carvedbed; break;
+				case 50:		appear = S_grayglyph; break;
 				default:		appear = S_stone; break;
 
 			}
@@ -17810,7 +17841,7 @@ assign_sym:
 
 			ap_type = M_AP_FURNITURE;
 
-			switch (rnd(19)) {
+			switch (rnd(50)) {
 
 				case 1:		appear = S_stone; break;
 				case 2:		appear = S_bars; break;
@@ -17831,6 +17862,37 @@ assign_sym:
 				case 17:		appear = S_air; break;
 				case 18:		appear = S_cloud; break;
 				case 19:		appear = S_water; break;
+				case 20:		appear = S_gravewall; break;
+				case 21:		appear = S_rockwall; break;
+				case 22:		appear = S_tunnelwall; break;
+				case 23:		appear = S_farmland; break;
+				case 24:		appear = S_mountain; break;
+				case 25:		appear = S_watertunnel; break;
+				case 26:		appear = S_crystalwater; break;
+				case 27:		appear = S_moorland; break;
+				case 28:		appear = S_urinelake; break;
+				case 29:		appear = S_shiftingsand; break;
+				case 30:		appear = S_styxriver; break;
+				case 31:		appear = S_well; break;
+				case 32:		appear = S_poisonedwell; break;
+				case 33:		appear = S_wagon; break;
+				case 34:		appear = S_burningwagon; break;
+				case 35:		appear = S_woodentable; break;
+				case 36:		appear = S_strawmattress; break;
+				case 37:		appear = S_snow; break;
+				case 38:		appear = S_ash; break;
+				case 39:		appear = S_sand; break;
+				case 40:		appear = S_pavedfloor; break;
+				case 41:		appear = S_highway; break;
+				case 42:		appear = S_grassland; break;
+				case 43:		appear = S_nethermist; break;
+				case 44:		appear = S_stalactite; break;
+				case 45:		appear = S_cryptfloor; break;
+				case 46:		appear = S_bubbles; break;
+				case 47:		appear = S_raincloud; break;
+				case 48:		appear = S_pentagram; break;
+				case 49:		appear = S_carvedbed; break;
+				case 50:		appear = S_grayglyph; break;
 				default:		appear = S_stone; break;
 
 			}

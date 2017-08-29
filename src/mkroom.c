@@ -1323,6 +1323,27 @@ int type;
 }
 
 struct permonst *
+speedymon() /* returns a monster whose speed is at least 18 */
+{
+
+	register struct permonst *ptr;
+	register int ct = 0;
+
+	ptr = rndmonst();
+
+	do {
+
+		ptr = rndmonst();
+		ct++;
+		if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+	} while ( !ptr || ((ptr->mmove < 18) && (ct < 250000) ));
+
+	return ptr;
+
+}
+
+struct permonst *
 tenshallmon()
 {
 	if (u.tensionmonster < 6) return (mkclass(S_ANT,0));
@@ -1623,7 +1644,8 @@ mkpoolroom()
 	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
 
     sroom->rtype = POOLROOM;
-    typ = !rn2(3) ? POOL : !rn2(4) ? ICE : !rn2(5) ? CLOUD : !rn2(8) ? AIR : !rn2(10) ? STONE : !rn2(10) ? TREE : !rn2(15) ? IRONBARS : !rn2(120) ? FOUNTAIN : !rn2(250) ? THRONE : !rn2(60) ? SINK : !rn2(40) ? TOILET : !rn2(20) ? GRAVE : !rn2(500) ? ALTAR : LAVAPOOL;
+
+    typ = !rn2(6) ? POOL : !rn2(5) ? MOAT : !rn2(8) ? ICE : !rn2(14) ? GRASSLAND : !rn2(25) ? SNOW : !rn2(30) ? ASH : !rn2(35) ? SAND : !rn2(35) ? PAVEDFLOOR : !rn2(50) ? HIGHWAY : !rn2(45) ? GRAVEWALL : !rn2(20) ? CLOUD : !rn2(32) ? AIR : !rn2(40) ? ROCKWALL : !rn2(40) ? TREE : !rn2(50) ? FARMLAND : !rn2(75) ? NETHERMIST : !rn2(100) ? STALACTITE : !rn2(100) ? MOUNTAIN : !rn2(60) ? IRONBARS : !rn2(70) ? CRYSTALWATER : !rn2(100) ? TUNNELWALL : !rn2(150) ? WATERTUNNEL : !rn2(100) ? MOORLAND : !rn2(150) ? URINELAKE : !rn2(200) ? SHIFTINGSAND : !rn2(50) ? STYXRIVER : !rn2(400) ? WOODENTABLE : !rn2(800) ? CARVEDBED : !rn2(300) ? STRAWMATTRESS : !rn2(800) ? WELL : !rn2(800) ? POISONEDWELL : !rn2(800) ? WAGON : !rn2(800) ? BURNINGWAGON : !rn2(480) ? FOUNTAIN : !rn2(60) ? CRYPTFLOOR : !rn2(100) ? BUBBLES : !rn2(80) ? RAINCLOUD : !rn2(1000) ? PENTAGRAM : !rn2(1000) ? THRONE : !rn2(240) ? SINK : !rn2(160) ? TOILET : !rn2(80) ? GRAVE : !rn2(1000) ? ALTAR : LAVAPOOL;
 
 		if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
 		if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
@@ -1677,7 +1699,7 @@ mkinsideroom()
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 
-    typ = !rn2(5) ? POOL : !rn2(5) ? ICE : !rn2(7) ? CLOUD : !rn2(8) ? AIR : !rn2(8) ? STONE : !rn2(8) ? TREE : !rn2(10) ? IRONBARS : !rn2(20) ? FOUNTAIN : !rn2(50) ? THRONE : !rn2(16) ? SINK : !rn2(12) ? TOILET : !rn2(6) ? GRAVE : !rn2(100) ? ALTAR : LAVAPOOL;
+    typ = !rn2(8) ? POOL : !rn2(10) ? MOAT : !rn2(9) ? ICE : !rn2(20) ? GRASSLAND : !rn2(50) ? SNOW : !rn2(75) ? ASH : !rn2(100) ? SAND : !rn2(35) ? PAVEDFLOOR : !rn2(150) ? HIGHWAY : !rn2(25) ? GRAVEWALL : !rn2(15) ? CLOUD : !rn2(16) ? AIR : !rn2(16) ? ROCKWALL : !rn2(16) ? TREE : !rn2(30) ? FARMLAND : !rn2(100) ? NETHERMIST : !rn2(200) ? STALACTITE : !rn2(20) ? MOUNTAIN : !rn2(20) ? IRONBARS : !rn2(50) ? CRYSTALWATER : !rn2(16) ? TUNNELWALL : !rn2(150) ? WATERTUNNEL : !rn2(100) ? MOORLAND : !rn2(200) ? URINELAKE : !rn2(300) ? SHIFTINGSAND : !rn2(100) ? STYXRIVER : !rn2(200) ? WOODENTABLE : !rn2(300) ? CARVEDBED : !rn2(100) ? STRAWMATTRESS : !rn2(400) ? WELL : !rn2(200) ? POISONEDWELL : !rn2(400) ? WAGON : !rn2(200) ? BURNINGWAGON : !rn2(40) ? FOUNTAIN : !rn2(60) ? CRYPTFLOOR : !rn2(100) ? BUBBLES : !rn2(80) ? RAINCLOUD : !rn2(100) ? PENTAGRAM : !rn2(100) ? THRONE : !rn2(32) ? SINK : !rn2(24) ? TOILET : !rn2(12) ? GRAVE : !rn2(200) ? ALTAR : LAVAPOOL;
 
 		typ2 = randominsidetrap();
 
@@ -1742,7 +1764,7 @@ mkriverroom()
 		for(sy = sroom->ly; sy <= sroom->hy; sy++)
 		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 
-	    typ = !rn2(3) ? POOL : !rn2(10) ? ICE : !rn2(10) ? FOUNTAIN : !rn2(3) ? STONE : !rn2(8) ? TREE : ROOM;
+	    typ = !rn2(5) ? POOL : !rn2(6) ? MOAT : !rn2(20) ? ICE : !rn2(20) ? GRASSLAND : !rn2(80) ? HIGHWAY : !rn2(20) ? FOUNTAIN : !rn2(30) ? FARMLAND : !rn2(35) ? MOUNTAIN : !rn2(50) ? CRYSTALWATER : !rn2(100) ? TUNNELWALL : !rn2(150) ? WATERTUNNEL : !rn2(6) ? ROCKWALL : !rn2(16) ? TREE : ROOM;
 
 		levl[sx][sy].typ = typ;
 		if (typ == FOUNTAIN) 	level.flags.nfountains++;

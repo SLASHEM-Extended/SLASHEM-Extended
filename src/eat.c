@@ -5679,7 +5679,7 @@ boolean incr;
 boolean can_reach_floorobj()
 {
     return can_reach_floor() &&
-	  !((is_pool(u.ux, u.uy) || is_lava(u.ux, u.uy)) &&
+	  !((is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy) || is_lava(u.ux, u.uy)) &&
 	    (Wwalking || is_clinger(youmonst.data) || (Flying && !Breathless)));
 }
 

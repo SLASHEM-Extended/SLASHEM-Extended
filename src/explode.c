@@ -463,7 +463,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 		generic = TRUE;
 	    }
 	    if (flags.soundok)
-		You_hear(is_pool(x, y) ? "a muffled explosion." : "a blast.");
+		You_hear(is_waterypool(x, y) ? "a muffled explosion." : "a blast.");
 	}
 
 	    if (dam) for(i = 0; i < area->nlocations; i++) {

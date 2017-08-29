@@ -2426,7 +2426,7 @@ boolean quietly;
 	    !(passes_walls(&mons[obj->corpsenm]) && may_passwall(x,y))) {
 		if (!quietly)
 		    You("cannot place a figurine in %s!",
-			IS_TREE(levl[x][y].typ) ? "a tree" : "solid rock");
+			IS_TREE(levl[x][y].typ) ? "a tree" : IS_FARMLAND(levl[x][y].typ) ? "a farmland" : IS_MOUNTAIN(levl[x][y].typ) ? "a mountain" : "solid rock");
 		return FALSE;
 	}
 	if (sobj_at(BOULDER,x,y) && !passes_walls(&mons[obj->corpsenm])
@@ -2697,7 +2697,7 @@ struct obj *stone, *obj;
 		obj->quan > 1 ? "s" : "");
 	} else
 #endif
-	if (!is_pool(u.ux, u.uy) && !IS_FOUNTAIN(levl[u.ux][u.uy].typ)
+	if (!is_waterypool(u.ux, u.uy) && !is_watertunnel(u.ux, u.uy) && !IS_FOUNTAIN(levl[u.ux][u.uy].typ)
 	    && !IS_SINK(levl[u.ux][u.uy].typ) && !IS_TOILET(levl[u.ux][u.uy].typ)
 	    ) {
 	    if (carrying(POT_WATER) && objects[POT_WATER].oc_name_known) {

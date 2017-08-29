@@ -24,6 +24,14 @@ STATIC_DCL void mktoilet(struct mkroom *);
 STATIC_DCL void mkaltar(struct mkroom *);
 STATIC_DCL void mkgrave(struct mkroom *);
 STATIC_DCL void mkthrone(struct mkroom *);
+STATIC_DCL void mkpentagram(struct mkroom *);
+STATIC_DCL void mkwell(struct mkroom *);
+STATIC_DCL void mkpoisonedwell(struct mkroom *);
+STATIC_DCL void mkwagon(struct mkroom *);
+STATIC_DCL void mkburningwagon(struct mkroom *);
+STATIC_DCL void mkwoodentable(struct mkroom *);
+STATIC_DCL void mkcarvedbed(struct mkroom *);
+STATIC_DCL void mkstrawmattress(struct mkroom *);
 STATIC_DCL void makevtele(void);
 STATIC_DCL void clear_level_structures(void);
 STATIC_DCL void makelevel(void);
@@ -44,6 +52,27 @@ STATIC_DCL void mkironbars(struct mkroom *);
 STATIC_DCL void mkdoor(struct mkroom *);
 STATIC_DCL void mkice(struct mkroom *);
 STATIC_DCL void mkcloud(struct mkroom *);
+STATIC_DCL void mkgravewall(struct mkroom *);
+STATIC_DCL void mktunnelwall(struct mkroom *);
+STATIC_DCL void mkfarmland(struct mkroom *);
+STATIC_DCL void mkmountain(struct mkroom *);
+STATIC_DCL void mkwatertunnel(struct mkroom *);
+STATIC_DCL void mkcrystalwater(struct mkroom *);
+STATIC_DCL void mkmoorland(struct mkroom *);
+STATIC_DCL void mkurinelake(struct mkroom *);
+STATIC_DCL void mkshiftingsand(struct mkroom *);
+STATIC_DCL void mkstyxriver(struct mkroom *);
+STATIC_DCL void mksnow(struct mkroom *);
+STATIC_DCL void mkash(struct mkroom *);
+STATIC_DCL void mksand(struct mkroom *);
+STATIC_DCL void mkpavedfloor(struct mkroom *);
+STATIC_DCL void mkhighway(struct mkroom *);
+STATIC_DCL void mkgrassland(struct mkroom *);
+STATIC_DCL void mknethermist(struct mkroom *);
+STATIC_DCL void mkstalactite(struct mkroom *);
+STATIC_DCL void mkcryptfloor(struct mkroom *);
+STATIC_DCL void mkbubbles(struct mkroom *);
+STATIC_DCL void mkraincloud(struct mkroom *);
 
 STATIC_DCL void mkstoneX(int,struct mkroom *);
 STATIC_DCL void mktreeX(int,struct mkroom *);
@@ -52,6 +81,27 @@ STATIC_DCL void mklavapoolX(int,struct mkroom *);
 STATIC_DCL void mkironbarsX(int,struct mkroom *);
 STATIC_DCL void mkiceX(int,struct mkroom *);
 STATIC_DCL void mkcloudX(int,struct mkroom *);
+STATIC_DCL void mkgravewallX(int,struct mkroom *);
+STATIC_DCL void mktunnelwallX(int,struct mkroom *);
+STATIC_DCL void mkfarmlandX(int,struct mkroom *);
+STATIC_DCL void mkmountainX(int,struct mkroom *);
+STATIC_DCL void mkwatertunnelX(int,struct mkroom *);
+STATIC_DCL void mkcrystalwaterX(int,struct mkroom *);
+STATIC_DCL void mkmoorlandX(int,struct mkroom *);
+STATIC_DCL void mkurinelakeX(int,struct mkroom *);
+STATIC_DCL void mkshiftingsandX(int,struct mkroom *);
+STATIC_DCL void mkstyxriverX(int,struct mkroom *);
+STATIC_DCL void mksnowX(int,struct mkroom *);
+STATIC_DCL void mkashX(int,struct mkroom *);
+STATIC_DCL void mksandX(int,struct mkroom *);
+STATIC_DCL void mkpavedfloorX(int,struct mkroom *);
+STATIC_DCL void mkhighwayX(int,struct mkroom *);
+STATIC_DCL void mkgrasslandX(int,struct mkroom *);
+STATIC_DCL void mknethermistX(int,struct mkroom *);
+STATIC_DCL void mkstalactiteX(int,struct mkroom *);
+STATIC_DCL void mkcryptfloorX(int,struct mkroom *);
+STATIC_DCL void mkbubblesX(int,struct mkroom *);
+STATIC_DCL void mkraincloudX(int,struct mkroom *);
 
 STATIC_DCL int findrandtype(void);
 /*STATIC_DCL int randomwalltype(void);*/
@@ -145,9 +195,32 @@ findrandtype()
 }
 
 int
+walkableterrain()
+{
+	switch (rnd(14)) {
+		case 1: return ICE;
+		case 2: return CLOUD;
+		case 3: return GRAVEWALL;
+		case 4: return SNOW;
+		case 5: return ASH;
+		case 6: return SAND;
+		case 7: return PAVEDFLOOR;
+		case 8: return HIGHWAY;
+		case 9: return GRASSLAND;
+		case 10: return NETHERMIST;
+		case 11: return STALACTITE;
+		case 12: return CRYPTFLOOR;
+		case 13: return BUBBLES;
+		case 14: return RAINCLOUD;
+	}
+
+
+}
+
+int
 randomwalltype()
 {
-	switch (rnd(8)) {
+	switch (rnd(29)) {
 		case 1: return TREE;
 		case 2: return MOAT;
 		case 3: return LAVAPOOL;
@@ -155,7 +228,28 @@ randomwalltype()
 		case 5: return CORR;
 		case 6: return ICE;
 		case 7: return CLOUD;
-		case 8: return STONE;
+		case 8: return ROCKWALL;
+		case 9: return GRAVEWALL;
+		case 10: return TUNNELWALL;
+		case 11: return FARMLAND;
+		case 12: return MOUNTAIN;
+		case 13: return WATERTUNNEL;
+		case 14: return CRYSTALWATER;
+		case 15: return MOORLAND;
+		case 16: return URINELAKE;
+		case 17: return SHIFTINGSAND;
+		case 18: return STYXRIVER;
+		case 19: return SNOW;
+		case 20: return ASH;
+		case 21: return SAND;
+		case 22: return PAVEDFLOOR;
+		case 23: return HIGHWAY;
+		case 24: return GRASSLAND;
+		case 25: return NETHERMIST;
+		case 26: return STALACTITE;
+		case 27: return CRYPTFLOOR;
+		case 28: return BUBBLES;
+		case 29: return RAINCLOUD;
 	}
 
 
@@ -219,7 +313,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	boolean wallifyxtra = 0;
 	if ( !((moves + u.monstertimefinish) % 9357 ) || (!(u.monstertimefinish % 77) && !rn2(iswarper ? 50 : 500)) || (!(u.monstertimefinish % 773) && !rn2(iswarper ? 10 : 100)) || (!rn2(iswarper ? 100 : 5000))) {
 
-		switch (rnd(7)) {
+		switch (rnd(28)) {
 
 			case 1:
 				wallifytype = TREE; break;
@@ -235,7 +329,49 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 				wallifytype = ICE; break;
 			case 7:
 				wallifytype = CLOUD; break;
-		}
+			case 8:
+				wallifytype = RAINCLOUD; break;
+			case 9:
+				wallifytype = GRAVEWALL; break;
+			case 10:
+				wallifytype = TUNNELWALL; break;
+			case 11:
+				wallifytype = FARMLAND; break;
+			case 12:
+				wallifytype = MOUNTAIN; break;
+			case 13:
+				wallifytype = WATERTUNNEL; break;
+			case 14:
+				wallifytype = CRYSTALWATER; break;
+			case 15:
+				wallifytype = MOORLAND; break;
+			case 16:
+				wallifytype = URINELAKE; break;
+			case 17:
+				wallifytype = SHIFTINGSAND; break;
+			case 18:
+				wallifytype = STYXRIVER; break;
+			case 19:
+				wallifytype = SNOW; break;
+			case 20:
+				wallifytype = ASH; break;
+			case 21:
+				wallifytype = SAND; break;
+			case 22:
+				wallifytype = PAVEDFLOOR; break;
+			case 23:
+				wallifytype = HIGHWAY; break;
+			case 24:
+				wallifytype = GRASSLAND; break;
+			case 25:
+				wallifytype = NETHERMIST; break;
+			case 26:
+				wallifytype = STALACTITE; break;
+			case 27:
+				wallifytype = CRYPTFLOOR; break;
+			case 28:
+				wallifytype = BUBBLES; break;
+			}
 
 		if (!rn2(50)) wallifyxtra = 1;
 
@@ -245,7 +381,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	boolean wallifyBxtra = 0;
 	if ( !((moves + u.monstertimefinish) % 8357 ) || (!(u.monstertimefinish % 73) && !rn2(iswarper ? 100 : 500)) || (!(u.monstertimefinish % 673) && !rn2(iswarper ? 20 : 100)) || (!rn2(iswarper ? 200 : 5000))) {
 
-		switch (rnd(7)) {
+		switch (rnd(28)) {
 
 			case 1:
 				wallifytypeB = TREE; break;
@@ -261,6 +397,48 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 				wallifytypeB = ICE; break;
 			case 7:
 				wallifytypeB = CLOUD; break;
+			case 8:
+				wallifytypeB = RAINCLOUD; break;
+			case 9:
+				wallifytypeB = GRAVEWALL; break;
+			case 10:
+				wallifytypeB = TUNNELWALL; break;
+			case 11:
+				wallifytypeB = FARMLAND; break;
+			case 12:
+				wallifytypeB = MOUNTAIN; break;
+			case 13:
+				wallifytypeB = WATERTUNNEL; break;
+			case 14:
+				wallifytypeB = CRYSTALWATER; break;
+			case 15:
+				wallifytypeB = MOORLAND; break;
+			case 16:
+				wallifytypeB = URINELAKE; break;
+			case 17:
+				wallifytypeB = SHIFTINGSAND; break;
+			case 18:
+				wallifytypeB = STYXRIVER; break;
+			case 19:
+				wallifytypeB = SNOW; break;
+			case 20:
+				wallifytypeB = ASH; break;
+			case 21:
+				wallifytypeB = SAND; break;
+			case 22:
+				wallifytypeB = PAVEDFLOOR; break;
+			case 23:
+				wallifytypeB = HIGHWAY; break;
+			case 24:
+				wallifytypeB = GRASSLAND; break;
+			case 25:
+				wallifytypeB = NETHERMIST; break;
+			case 26:
+				wallifytypeB = STALACTITE; break;
+			case 27:
+				wallifytypeB = CRYPTFLOOR; break;
+			case 28:
+				wallifytypeB = BUBBLES; break;
 		}
 
 		if (!rn2(50)) wallifyBxtra = 1;
@@ -751,7 +929,7 @@ boolean nxcor;
 				level.flags.arboreal ? ROOM : CORR, STONE))
 		    return;
 	} else {
-		if (!dig_corridor(&org, &dest, nxcor, rn2(2) ? ICE : CLOUD, STONE))
+		if (!dig_corridor(&org, &dest, nxcor, walkableterrain(), STONE))
 		    return;
 	}
 
@@ -1090,7 +1268,7 @@ boolean lava,rndom;
 	else */if (levl[cx][cy].typ == CORR) chance = 15;
 	else if (levl[cx][cy].typ == ROOM) chance = 30;
 	else if (IS_ROCK(levl[cx][cy].typ)) chance = 100;
-	if (rndomizat) trynmbr = (rn2(5) ? rnd(20) : rnd(7));
+	if (rndomizat) trynmbr = (rn2(5) ? rnd(80) : rnd(28));
 
 	if (rn2(100) < chance && !t_at(cx,cy)) {
 	    if (lava) {
@@ -1102,6 +1280,27 @@ boolean lava,rndom;
 			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
 			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
 			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
+			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
+			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
+			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
+			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
+			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
+			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
+			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
+			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
+			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
+			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
+			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
+			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
+			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
+			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
+			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
+			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
+			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
+			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
+			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
+			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
 			else levl[cx][cy].typ = LAVAPOOL;
 		}
 		else {levl[cx][cy].typ = LAVAPOOL;
@@ -1115,6 +1314,27 @@ boolean lava,rndom;
 			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
 			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
 			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
+			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
+			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
+			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
+			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
+			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
+			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
+			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
+			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
+			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
+			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
+			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
+			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
+			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
+			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
+			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
+			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
+			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
+			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
+			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
+			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
 			else levl[cx][cy].typ = POOL;
 		}
 		else 
@@ -1124,6 +1344,22 @@ boolean lava,rndom;
 			levl[cx][cy].typ = THRONE;
 		else if (!((moves + u.monstertimefinish) % 857 ) && !rn2(ishaxor ? 1000 : 2000))
 			levl[cx][cy].typ = THRONE;
+		else if (!rn2(ishaxor ? 50000 : 100000))
+			levl[cx][cy].typ = PENTAGRAM;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = WELL;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = POISONEDWELL;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = WAGON;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = BURNINGWAGON;
+		else if (!rn2(ishaxor ? 20000 : 40000))
+			levl[cx][cy].typ = WOODENTABLE;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = CARVEDBED;
+		else if (!rn2(ishaxor ? 10000 : 20000))
+			levl[cx][cy].typ = STRAWMATTRESS;
 		else if (!rn2(ishaxor ? 2500 : 5000)) {
 			levl[cx][cy].typ = FOUNTAIN;
 			level.flags.nfountains++;
@@ -1266,7 +1502,7 @@ boolean lava,rndom;
 	if (levl[cx][cy].typ == CORR) chance = 15;
 	else if (levl[cx][cy].typ == ROOM) chance = 30;
 	else if (IS_ROCK(levl[cx][cy].typ)) chance = 100;
-	if (rndomizat) trynmbr = (rn2(5) ? rnd(12) : rnd(7));
+	if (rndomizat) trynmbr = (rn2(5) ? rnd(50) : rnd(28));
 
 	if (rn2(100) < chance && !t_at(cx,cy)) {
 	    if (lava) {
@@ -1278,6 +1514,27 @@ boolean lava,rndom;
 			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
 			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
 			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
+			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
+			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
+			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
+			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
+			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
+			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
+			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
+			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
+			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
+			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
+			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
+			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
+			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
+			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
+			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
+			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
+			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
+			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
+			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
+			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
 			else levl[cx][cy].typ = LAVAPOOL;
 		}
 		else {levl[cx][cy].typ = LAVAPOOL;
@@ -1291,6 +1548,27 @@ boolean lava,rndom;
 			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
 			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
 			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
+			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
+			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
+			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
+			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
+			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
+			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
+			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
+			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
+			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
+			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
+			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
+			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
+			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
+			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
+			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
+			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
+			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
+			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
+			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
+			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
 			else levl[cx][cy].typ = POOL;
 		}
 		else 
@@ -1300,6 +1578,22 @@ boolean lava,rndom;
 			levl[cx][cy].typ = THRONE;
 		else if (!((moves + u.monstertimefinish) % 877 ) && !rn2(ishaxor ? 1000 : 2000))
 			levl[cx][cy].typ = THRONE;
+		else if (!rn2(ishaxor ? 50000 : 100000))
+			levl[cx][cy].typ = PENTAGRAM;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = WELL;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = POISONEDWELL;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = WAGON;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = BURNINGWAGON;
+		else if (!rn2(ishaxor ? 20000 : 40000))
+			levl[cx][cy].typ = WOODENTABLE;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = CARVEDBED;
+		else if (!rn2(ishaxor ? 10000 : 20000))
+			levl[cx][cy].typ = STRAWMATTRESS;
 		else if (!rn2(ishaxor ? 2500 : 5000)) {
 			levl[cx][cy].typ = FOUNTAIN;
 			level.flags.nfountains++;
@@ -1392,7 +1686,7 @@ mkrivers()
     if (!rn2(10000)) nriv += rnd(15);
     while (nriv--) {
       lava = rn2(100) < depth(&u.uz);
-      rndom = (rn2(5) ? 0 : 1);
+      rndom = (rn2(4) ? 0 : 1);
 	if (rn2(2)) makeriver(0, rn2(ROWNO), COLNO-1, rn2(ROWNO), lava, rndom);
 	else makeriver(rn2(COLNO), 0, rn2(COLNO), ROWNO-1, lava, rndom);
     }
@@ -8893,6 +9187,30 @@ skip0:
 		if(!rn2(500)) mkthrone(croom); /* rare cause they may give wishes --Amy */
 		if(ishaxor && !rn2(500)) mkthrone(croom); /* rare cause they may give wishes --Amy */
 
+		if(!rn2(500)) mkpentagram(croom);
+		if(ishaxor && !rn2(500)) mkpentagram(croom);
+
+		if(!rn2(250)) mkwell(croom);
+		if(ishaxor && !rn2(250)) mkwell(croom);
+
+		if(!rn2(250)) mkpoisonedwell(croom);
+		if(ishaxor && !rn2(250)) mkpoisonedwell(croom);
+
+		if(!rn2(250)) mkwagon(croom);
+		if(ishaxor && !rn2(250)) mkwagon(croom);
+
+		if(!rn2(250)) mkburningwagon(croom);
+		if(ishaxor && !rn2(250)) mkburningwagon(croom);
+
+		if(!rn2(150)) mkwoodentable(croom);
+		if(ishaxor && !rn2(150)) mkwoodentable(croom);
+
+		if(!rn2(300)) mkcarvedbed(croom);
+		if(ishaxor && !rn2(300)) mkcarvedbed(croom);
+
+		if(!rn2(75)) mkstrawmattress(croom);
+		if(ishaxor && !rn2(75)) mkstrawmattress(croom);
+
 		if(!rn2(60)) {
 		    mksink(croom);
 		    if(!rn2(3)) mktoilet(croom);
@@ -9100,6 +9418,468 @@ skip0:
 		if(ishaxor && !rn2(1000)) mkironbarsX(rnz(10),croom);
 		if(ishaxor && !rn2(5000)) mkironbarsX(rnz(25),croom);
 
+		if(!rn2(1000)) {
+		    mkgravewall(croom);
+		    if(!rn2(3)) mkgravewall(croom);
+		    if(!rn2(9)) mkgravewall(croom);
+		    if(!rn2(27)) mkgravewall(croom);
+		    if(!rn2(81)) mkgravewall(croom);
+		}
+
+		if(ishaxor && !rn2(1000)) {
+		    mkgravewall(croom);
+		    if(!rn2(3)) mkgravewall(croom);
+		    if(!rn2(9)) mkgravewall(croom);
+		    if(!rn2(27)) mkgravewall(croom);
+		    if(!rn2(81)) mkgravewall(croom);
+		}
+
+		if(!rn2(1000)) mkgravewallX(rnz(10),croom);
+		if(!rn2(5000)) mkgravewallX(rnz(25),croom);
+
+		if(ishaxor && !rn2(1000)) mkgravewallX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mkgravewallX(rnz(25),croom);
+
+		if(!rn2(1000)) {
+		    mksnow(croom);
+		    if(!rn2(3)) mksnow(croom);
+		    if(!rn2(9)) mksnow(croom);
+		    if(!rn2(27)) mksnow(croom);
+		    if(!rn2(81)) mksnow(croom);
+		}
+
+		if(ishaxor && !rn2(1000)) {
+		    mksnow(croom);
+		    if(!rn2(3)) mksnow(croom);
+		    if(!rn2(9)) mksnow(croom);
+		    if(!rn2(27)) mksnow(croom);
+		    if(!rn2(81)) mksnow(croom);
+		}
+
+		if(!rn2(1000)) mksnowX(rnz(10),croom);
+		if(!rn2(5000)) mksnowX(rnz(25),croom);
+
+		if(ishaxor && !rn2(1000)) mksnowX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mksnowX(rnz(25),croom);
+
+		if(!rn2(1000)) {
+		    mkash(croom);
+		    if(!rn2(3)) mkash(croom);
+		    if(!rn2(9)) mkash(croom);
+		    if(!rn2(27)) mkash(croom);
+		    if(!rn2(81)) mkash(croom);
+		}
+
+		if(ishaxor && !rn2(1000)) {
+		    mkash(croom);
+		    if(!rn2(3)) mkash(croom);
+		    if(!rn2(9)) mkash(croom);
+		    if(!rn2(27)) mkash(croom);
+		    if(!rn2(81)) mkash(croom);
+		}
+
+		if(!rn2(1000)) mkashX(rnz(10),croom);
+		if(!rn2(5000)) mkashX(rnz(25),croom);
+
+		if(ishaxor && !rn2(1000)) mkashX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mkashX(rnz(25),croom);
+
+		if(!rn2(1000)) {
+		    mksand(croom);
+		    if(!rn2(3)) mksand(croom);
+		    if(!rn2(9)) mksand(croom);
+		    if(!rn2(27)) mksand(croom);
+		    if(!rn2(81)) mksand(croom);
+		}
+
+		if(ishaxor && !rn2(1000)) {
+		    mksand(croom);
+		    if(!rn2(3)) mksand(croom);
+		    if(!rn2(9)) mksand(croom);
+		    if(!rn2(27)) mksand(croom);
+		    if(!rn2(81)) mksand(croom);
+		}
+
+		if(!rn2(1000)) mksandX(rnz(10),croom);
+		if(!rn2(5000)) mksandX(rnz(25),croom);
+
+		if(ishaxor && !rn2(1000)) mksandX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mksandX(rnz(25),croom);
+
+		if(!rn2(1000)) {
+		    mkpavedfloor(croom);
+		    if(!rn2(3)) mkpavedfloor(croom);
+		    if(!rn2(9)) mkpavedfloor(croom);
+		    if(!rn2(27)) mkpavedfloor(croom);
+		    if(!rn2(81)) mkpavedfloor(croom);
+		}
+
+		if(ishaxor && !rn2(1000)) {
+		    mkpavedfloor(croom);
+		    if(!rn2(3)) mkpavedfloor(croom);
+		    if(!rn2(9)) mkpavedfloor(croom);
+		    if(!rn2(27)) mkpavedfloor(croom);
+		    if(!rn2(81)) mkpavedfloor(croom);
+		}
+
+		if(!rn2(1000)) mkpavedfloorX(rnz(10),croom);
+		if(!rn2(5000)) mkpavedfloorX(rnz(25),croom);
+
+		if(ishaxor && !rn2(1000)) mkpavedfloorX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mkpavedfloorX(rnz(25),croom);
+
+		if(!rn2(1000)) {
+		    mkhighway(croom);
+		    if(!rn2(3)) mkhighway(croom);
+		    if(!rn2(9)) mkhighway(croom);
+		    if(!rn2(27)) mkhighway(croom);
+		    if(!rn2(81)) mkhighway(croom);
+		}
+
+		if(ishaxor && !rn2(1000)) {
+		    mkhighway(croom);
+		    if(!rn2(3)) mkhighway(croom);
+		    if(!rn2(9)) mkhighway(croom);
+		    if(!rn2(27)) mkhighway(croom);
+		    if(!rn2(81)) mkhighway(croom);
+		}
+
+		if(!rn2(1000)) mkhighwayX(rnz(10),croom);
+		if(!rn2(5000)) mkhighwayX(rnz(25),croom);
+
+		if(ishaxor && !rn2(1000)) mkhighwayX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mkhighwayX(rnz(25),croom);
+
+		if(!rn2(1000)) {
+		    mkgrassland(croom);
+		    if(!rn2(3)) mkgrassland(croom);
+		    if(!rn2(9)) mkgrassland(croom);
+		    if(!rn2(27)) mkgrassland(croom);
+		    if(!rn2(81)) mkgrassland(croom);
+		}
+
+		if(ishaxor && !rn2(1000)) {
+		    mkgrassland(croom);
+		    if(!rn2(3)) mkgrassland(croom);
+		    if(!rn2(9)) mkgrassland(croom);
+		    if(!rn2(27)) mkgrassland(croom);
+		    if(!rn2(81)) mkgrassland(croom);
+		}
+
+		if(!rn2(1000)) mkgrasslandX(rnz(10),croom);
+		if(!rn2(5000)) mkgrasslandX(rnz(25),croom);
+
+		if(ishaxor && !rn2(1000)) mkgrasslandX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mkgrasslandX(rnz(25),croom);
+
+		if(!rn2(1000)) {
+		    mknethermist(croom);
+		    if(!rn2(3)) mknethermist(croom);
+		    if(!rn2(9)) mknethermist(croom);
+		    if(!rn2(27)) mknethermist(croom);
+		    if(!rn2(81)) mknethermist(croom);
+		}
+
+		if(ishaxor && !rn2(1000)) {
+		    mknethermist(croom);
+		    if(!rn2(3)) mknethermist(croom);
+		    if(!rn2(9)) mknethermist(croom);
+		    if(!rn2(27)) mknethermist(croom);
+		    if(!rn2(81)) mknethermist(croom);
+		}
+
+		if(!rn2(1000)) mknethermistX(rnz(10),croom);
+		if(!rn2(5000)) mknethermistX(rnz(25),croom);
+
+		if(ishaxor && !rn2(1000)) mknethermistX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mknethermistX(rnz(25),croom);
+
+		if(!rn2(1000)) {
+		    mkstalactite(croom);
+		    if(!rn2(3)) mkstalactite(croom);
+		    if(!rn2(9)) mkstalactite(croom);
+		    if(!rn2(27)) mkstalactite(croom);
+		    if(!rn2(81)) mkstalactite(croom);
+		}
+
+		if(ishaxor && !rn2(1000)) {
+		    mkstalactite(croom);
+		    if(!rn2(3)) mkstalactite(croom);
+		    if(!rn2(9)) mkstalactite(croom);
+		    if(!rn2(27)) mkstalactite(croom);
+		    if(!rn2(81)) mkstalactite(croom);
+		}
+
+		if(!rn2(1000)) mkstalactiteX(rnz(10),croom);
+		if(!rn2(5000)) mkstalactiteX(rnz(25),croom);
+
+		if(ishaxor && !rn2(1000)) mkstalactiteX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mkstalactiteX(rnz(25),croom);
+
+		if(!rn2(1000)) {
+		    mkcryptfloor(croom);
+		    if(!rn2(3)) mkcryptfloor(croom);
+		    if(!rn2(9)) mkcryptfloor(croom);
+		    if(!rn2(27)) mkcryptfloor(croom);
+		    if(!rn2(81)) mkcryptfloor(croom);
+		}
+
+		if(ishaxor && !rn2(1000)) {
+		    mkcryptfloor(croom);
+		    if(!rn2(3)) mkcryptfloor(croom);
+		    if(!rn2(9)) mkcryptfloor(croom);
+		    if(!rn2(27)) mkcryptfloor(croom);
+		    if(!rn2(81)) mkcryptfloor(croom);
+		}
+
+		if(!rn2(1000)) mkcryptfloorX(rnz(10),croom);
+		if(!rn2(5000)) mkcryptfloorX(rnz(25),croom);
+
+		if(ishaxor && !rn2(1000)) mkcryptfloorX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mkcryptfloorX(rnz(25),croom);
+
+		if(!rn2(1000)) {
+		    mkbubbles(croom);
+		    if(!rn2(3)) mkbubbles(croom);
+		    if(!rn2(9)) mkbubbles(croom);
+		    if(!rn2(27)) mkbubbles(croom);
+		    if(!rn2(81)) mkbubbles(croom);
+		}
+
+		if(ishaxor && !rn2(1000)) {
+		    mkbubbles(croom);
+		    if(!rn2(3)) mkbubbles(croom);
+		    if(!rn2(9)) mkbubbles(croom);
+		    if(!rn2(27)) mkbubbles(croom);
+		    if(!rn2(81)) mkbubbles(croom);
+		}
+
+		if(!rn2(1000)) mkbubblesX(rnz(10),croom);
+		if(!rn2(5000)) mkbubblesX(rnz(25),croom);
+
+		if(ishaxor && !rn2(1000)) mkbubblesX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mkbubblesX(rnz(25),croom);
+
+		if(!rn2(1000)) {
+		    mkraincloud(croom);
+		    if(!rn2(3)) mkraincloud(croom);
+		    if(!rn2(9)) mkraincloud(croom);
+		    if(!rn2(27)) mkraincloud(croom);
+		    if(!rn2(81)) mkraincloud(croom);
+		}
+
+		if(ishaxor && !rn2(1000)) {
+		    mkraincloud(croom);
+		    if(!rn2(3)) mkraincloud(croom);
+		    if(!rn2(9)) mkraincloud(croom);
+		    if(!rn2(27)) mkraincloud(croom);
+		    if(!rn2(81)) mkraincloud(croom);
+		}
+
+		if(!rn2(1000)) mkraincloudX(rnz(10),croom);
+		if(!rn2(5000)) mkraincloudX(rnz(25),croom);
+
+		if(ishaxor && !rn2(1000)) mkraincloudX(rnz(10),croom);
+		if(ishaxor && !rn2(5000)) mkraincloudX(rnz(25),croom);
+
+		if(!rn2(2000)) {
+		    mkcrystalwater(croom);
+		    if(!rn2(3)) mkcrystalwater(croom);
+		    if(!rn2(9)) mkcrystalwater(croom);
+		    if(!rn2(27)) mkcrystalwater(croom);
+		    if(!rn2(81)) mkcrystalwater(croom);
+		}
+
+		if(ishaxor && !rn2(2000)) {
+		    mkcrystalwater(croom);
+		    if(!rn2(3)) mkcrystalwater(croom);
+		    if(!rn2(9)) mkcrystalwater(croom);
+		    if(!rn2(27)) mkcrystalwater(croom);
+		    if(!rn2(81)) mkcrystalwater(croom);
+		}
+
+		if(!rn2(2000)) mkcrystalwaterX(rnz(10),croom);
+		if(!rn2(10000)) mkcrystalwaterX(rnz(25),croom);
+
+		if(ishaxor && !rn2(2000)) mkcrystalwaterX(rnz(10),croom);
+		if(ishaxor && !rn2(10000)) mkcrystalwaterX(rnz(25),croom);
+
+		if(!rn2(2000)) {
+		    mkmoorland(croom);
+		    if(!rn2(3)) mkmoorland(croom);
+		    if(!rn2(9)) mkmoorland(croom);
+		    if(!rn2(27)) mkmoorland(croom);
+		    if(!rn2(81)) mkmoorland(croom);
+		}
+
+		if(ishaxor && !rn2(2000)) {
+		    mkmoorland(croom);
+		    if(!rn2(3)) mkmoorland(croom);
+		    if(!rn2(9)) mkmoorland(croom);
+		    if(!rn2(27)) mkmoorland(croom);
+		    if(!rn2(81)) mkmoorland(croom);
+		}
+
+		if(!rn2(2000)) mkmoorlandX(rnz(10),croom);
+		if(!rn2(10000)) mkmoorlandX(rnz(25),croom);
+
+		if(ishaxor && !rn2(2000)) mkmoorlandX(rnz(10),croom);
+		if(ishaxor && !rn2(10000)) mkmoorlandX(rnz(25),croom);
+
+		if(!rn2(2000)) {
+		    mkurinelake(croom);
+		    if(!rn2(3)) mkurinelake(croom);
+		    if(!rn2(9)) mkurinelake(croom);
+		    if(!rn2(27)) mkurinelake(croom);
+		    if(!rn2(81)) mkurinelake(croom);
+		}
+
+		if(ishaxor && !rn2(2000)) {
+		    mkurinelake(croom);
+		    if(!rn2(3)) mkurinelake(croom);
+		    if(!rn2(9)) mkurinelake(croom);
+		    if(!rn2(27)) mkurinelake(croom);
+		    if(!rn2(81)) mkurinelake(croom);
+		}
+
+		if(!rn2(2000)) mkurinelakeX(rnz(10),croom);
+		if(!rn2(10000)) mkurinelakeX(rnz(25),croom);
+
+		if(ishaxor && !rn2(2000)) mkurinelakeX(rnz(10),croom);
+		if(ishaxor && !rn2(10000)) mkurinelakeX(rnz(25),croom);
+
+		if(!rn2(2000)) {
+		    mkshiftingsand(croom);
+		    if(!rn2(3)) mkshiftingsand(croom);
+		    if(!rn2(9)) mkshiftingsand(croom);
+		    if(!rn2(27)) mkshiftingsand(croom);
+		    if(!rn2(81)) mkshiftingsand(croom);
+		}
+
+		if(ishaxor && !rn2(2000)) {
+		    mkshiftingsand(croom);
+		    if(!rn2(3)) mkshiftingsand(croom);
+		    if(!rn2(9)) mkshiftingsand(croom);
+		    if(!rn2(27)) mkshiftingsand(croom);
+		    if(!rn2(81)) mkshiftingsand(croom);
+		}
+
+		if(!rn2(2000)) mkshiftingsandX(rnz(10),croom);
+		if(!rn2(10000)) mkshiftingsandX(rnz(25),croom);
+
+		if(ishaxor && !rn2(2000)) mkshiftingsandX(rnz(10),croom);
+		if(ishaxor && !rn2(10000)) mkshiftingsandX(rnz(25),croom);
+
+		if(!rn2(2000)) {
+		    mkstyxriver(croom);
+		    if(!rn2(3)) mkstyxriver(croom);
+		    if(!rn2(9)) mkstyxriver(croom);
+		    if(!rn2(27)) mkstyxriver(croom);
+		    if(!rn2(81)) mkstyxriver(croom);
+		}
+
+		if(ishaxor && !rn2(2000)) {
+		    mkstyxriver(croom);
+		    if(!rn2(3)) mkstyxriver(croom);
+		    if(!rn2(9)) mkstyxriver(croom);
+		    if(!rn2(27)) mkstyxriver(croom);
+		    if(!rn2(81)) mkstyxriver(croom);
+		}
+
+		if(!rn2(2000)) mkstyxriverX(rnz(10),croom);
+		if(!rn2(10000)) mkstyxriverX(rnz(25),croom);
+
+		if(ishaxor && !rn2(2000)) mkstyxriverX(rnz(10),croom);
+		if(ishaxor && !rn2(10000)) mkstyxriverX(rnz(25),croom);
+
+		if(!rn2(5000)) {
+		    mktunnelwall(croom);
+		    if(!rn2(3)) mktunnelwall(croom);
+		    if(!rn2(9)) mktunnelwall(croom);
+		    if(!rn2(27)) mktunnelwall(croom);
+		    if(!rn2(81)) mktunnelwall(croom);
+		}
+
+		if(ishaxor && !rn2(5000)) {
+		    mktunnelwall(croom);
+		    if(!rn2(3)) mktunnelwall(croom);
+		    if(!rn2(9)) mktunnelwall(croom);
+		    if(!rn2(27)) mktunnelwall(croom);
+		    if(!rn2(81)) mktunnelwall(croom);
+		}
+
+		if(!rn2(5000)) mktunnelwallX(rnz(10),croom);
+		if(!rn2(20000)) mktunnelwallX(rnz(25),croom);
+
+		if(ishaxor && !rn2(5000)) mktunnelwallX(rnz(10),croom);
+		if(ishaxor && !rn2(20000)) mktunnelwallX(rnz(25),croom);
+
+		if(!rn2(5000)) {
+		    mkfarmland(croom);
+		    if(!rn2(3)) mkfarmland(croom);
+		    if(!rn2(9)) mkfarmland(croom);
+		    if(!rn2(27)) mkfarmland(croom);
+		    if(!rn2(81)) mkfarmland(croom);
+		}
+
+		if(ishaxor && !rn2(5000)) {
+		    mkfarmland(croom);
+		    if(!rn2(3)) mkfarmland(croom);
+		    if(!rn2(9)) mkfarmland(croom);
+		    if(!rn2(27)) mkfarmland(croom);
+		    if(!rn2(81)) mkfarmland(croom);
+		}
+
+		if(!rn2(5000)) mkfarmlandX(rnz(10),croom);
+		if(!rn2(20000)) mkfarmlandX(rnz(25),croom);
+
+		if(ishaxor && !rn2(5000)) mkfarmlandX(rnz(10),croom);
+		if(ishaxor && !rn2(20000)) mkfarmlandX(rnz(25),croom);
+
+		if(!rn2(5000)) {
+		    mkmountain(croom);
+		    if(!rn2(3)) mkmountain(croom);
+		    if(!rn2(9)) mkmountain(croom);
+		    if(!rn2(27)) mkmountain(croom);
+		    if(!rn2(81)) mkmountain(croom);
+		}
+
+		if(ishaxor && !rn2(5000)) {
+		    mkmountain(croom);
+		    if(!rn2(3)) mkmountain(croom);
+		    if(!rn2(9)) mkmountain(croom);
+		    if(!rn2(27)) mkmountain(croom);
+		    if(!rn2(81)) mkmountain(croom);
+		}
+
+		if(!rn2(5000)) mkmountainX(rnz(10),croom);
+		if(!rn2(20000)) mkmountainX(rnz(25),croom);
+
+		if(ishaxor && !rn2(5000)) mkmountainX(rnz(10),croom);
+		if(ishaxor && !rn2(20000)) mkmountainX(rnz(25),croom);
+
+		if(!rn2(5000)) {
+		    mkwatertunnel(croom);
+		    if(!rn2(3)) mkwatertunnel(croom);
+		    if(!rn2(9)) mkwatertunnel(croom);
+		    if(!rn2(27)) mkwatertunnel(croom);
+		    if(!rn2(81)) mkwatertunnel(croom);
+		}
+
+		if(ishaxor && !rn2(5000)) {
+		    mkwatertunnel(croom);
+		    if(!rn2(3)) mkwatertunnel(croom);
+		    if(!rn2(9)) mkwatertunnel(croom);
+		    if(!rn2(27)) mkwatertunnel(croom);
+		    if(!rn2(81)) mkwatertunnel(croom);
+		}
+
+		if(!rn2(5000)) mkwatertunnelX(rnz(10),croom);
+		if(!rn2(20000)) mkwatertunnelX(rnz(25),croom);
+
+		if(ishaxor && !rn2(5000)) mkwatertunnelX(rnz(10),croom);
+		if(ishaxor && !rn2(20000)) mkwatertunnelX(rnz(25),croom);
+
 		x = 80 - (depth(&u.uz) * 2);
 		if (x < 2) x = 2;
 		if(!rn2(x)) mkgrave(croom);
@@ -9201,7 +9981,7 @@ mineralize()
 	boolean otherwallxtra = 0;
 	if (!rn2(!(u.monstertimefinish % 1777) ? (iswarper ? 3 : 20) : !(u.monstertimefinish % 277) ? (iswarper ? 10 : 50) : (iswarper ? 100 : 500) )) {
 
-		switch (rnd(7)) {
+		switch (rnd(28)) {
 
 			case 1:
 				otherwalltype = TREE; break;
@@ -9217,6 +9997,48 @@ mineralize()
 				otherwalltype = ICE; break;
 			case 7:
 				otherwalltype = CLOUD; break;
+			case 8:
+				otherwalltype = RAINCLOUD; break;
+			case 9:
+				otherwalltype = GRAVEWALL; break;
+			case 10:
+				otherwalltype = TUNNELWALL; break;
+			case 11:
+				otherwalltype = FARMLAND; break;
+			case 12:
+				otherwalltype = MOUNTAIN; break;
+			case 13:
+				otherwalltype = WATERTUNNEL; break;
+			case 14:
+				otherwalltype = CRYSTALWATER; break;
+			case 15:
+				otherwalltype = MOORLAND; break;
+			case 16:
+				otherwalltype = URINELAKE; break;
+			case 17:
+				otherwalltype = SHIFTINGSAND; break;
+			case 18:
+				otherwalltype = STYXRIVER; break;
+			case 19:
+				otherwalltype = SNOW; break;
+			case 20:
+				otherwalltype = ASH; break;
+			case 21:
+				otherwalltype = SAND; break;
+			case 22:
+				otherwalltype = PAVEDFLOOR; break;
+			case 23:
+				otherwalltype = HIGHWAY; break;
+			case 24:
+				otherwalltype = GRASSLAND; break;
+			case 25:
+				otherwalltype = NETHERMIST; break;
+			case 26:
+				otherwalltype = STALACTITE; break;
+			case 27:
+				otherwalltype = CRYPTFLOOR; break;
+			case 28:
+				otherwalltype = BUBBLES; break;
 		}
 
 		if (!rn2(50)) otherwallxtra = 1;
@@ -9231,7 +10053,7 @@ mineralize()
 		if ((levl[x][y].typ == STONE) && otherwalltype && (rnd(density) < 4) ) {
 
 			if (otherwallxtra) {
-				switch (rnd(8)) {
+				switch (rnd(29)) {
 
 					case 1:
 						otherwalltype = TREE; break;
@@ -9248,7 +10070,49 @@ mineralize()
 					case 7:
 						otherwalltype = CLOUD; break;
 					case 8:
-						otherwalltype = CROSSWALL; break;
+						otherwalltype = RAINCLOUD; break;
+					case 9:
+						otherwalltype = GRAVEWALL; break;
+					case 10:
+						otherwalltype = TUNNELWALL; break;
+					case 11:
+						otherwalltype = FARMLAND; break;
+					case 12:
+						otherwalltype = MOUNTAIN; break;
+					case 13:
+						otherwalltype = WATERTUNNEL; break;
+					case 14:
+						otherwalltype = CRYSTALWATER; break;
+					case 15:
+						otherwalltype = MOORLAND; break;
+					case 16:
+						otherwalltype = URINELAKE; break;
+					case 17:
+						otherwalltype = SHIFTINGSAND; break;
+					case 18:
+						otherwalltype = STYXRIVER; break;
+					case 19:
+						otherwalltype = SNOW; break;
+					case 20:
+						otherwalltype = ASH; break;
+					case 21:
+						otherwalltype = SAND; break;
+					case 22:
+						otherwalltype = PAVEDFLOOR; break;
+					case 23:
+						otherwalltype = HIGHWAY; break;
+					case 24:
+						otherwalltype = GRASSLAND; break;
+					case 25:
+						otherwalltype = NETHERMIST; break;
+					case 26:
+						otherwalltype = STALACTITE; break;
+					case 27:
+						otherwalltype = CRYPTFLOOR; break;
+					case 28:
+						otherwalltype = BUBBLES; break;
+					case 29:
+						otherwalltype = ROCKWALL; break;
 				}
 			}
 
@@ -9258,6 +10122,22 @@ mineralize()
 				levl[x][y].typ = THRONE;
 			else if (!((moves + u.monstertimefinish) % 897 ) && !rn2(ishaxor ? 1000 : 2000))
 				levl[x][y].typ = THRONE;
+			else if (!rn2(ishaxor ? 50000 : 100000))
+				levl[x][y].typ = PENTAGRAM;
+			else if (!rn2(ishaxor ? 25000 : 50000))
+				levl[x][y].typ = WELL;
+			else if (!rn2(ishaxor ? 25000 : 50000))
+				levl[x][y].typ = POISONEDWELL;
+			else if (!rn2(ishaxor ? 25000 : 50000))
+				levl[x][y].typ = WAGON;
+			else if (!rn2(ishaxor ? 25000 : 50000))
+				levl[x][y].typ = BURNINGWAGON;
+			else if (!rn2(ishaxor ? 20000 : 40000))
+				levl[x][y].typ = WOODENTABLE;
+			else if (!rn2(ishaxor ? 25000 : 50000))
+				levl[x][y].typ = CARVEDBED;
+			else if (!rn2(ishaxor ? 10000 : 20000))
+				levl[x][y].typ = STRAWMATTRESS;
 			else if (!rn2(ishaxor ? 2500 : 5000)) {
 				levl[x][y].typ = FOUNTAIN;
 				level.flags.nfountains++;
@@ -9510,6 +10390,68 @@ mineralize()
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makemon(mkclass(S_WORM,0), x, y, MM_ADJACENTOK);
 
+		if ((levl[x][y].typ == FARMLAND && !rn2((ishaxor && !issuxxor) ? 40 : (issuxxor && !ishaxor) ? 160 : 80)) )
+	    	    makemon(mkclass(S_QUADRUPED,0), x, y, MM_ADJACENTOK);
+
+		if ((levl[x][y].typ == MOUNTAIN && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+	    	    makemon(specialtensmon(61), x, y, MM_ADJACENTOK); /* flying */
+		if ((levl[x][y].typ == WATERTUNNEL && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == CRYSTALWATER && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == MOORLAND && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+	    	    makemon(specialtensmon(70), x, y, MM_ADJACENTOK); /* amphibious */
+		if ((levl[x][y].typ == URINELAKE && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
+	    	    makemon(specialtensmon(88), x, y, MM_ADJACENTOK); /* acidic */
+		if ((levl[x][y].typ == SHIFTINGSAND && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+	    	    makemon(specialtensmon(219), x, y, MM_ADJACENTOK); /* AD_WRAP */
+		if ((levl[x][y].typ == STYXRIVER && !rn2((ishaxor && !issuxxor) ? 15 : (issuxxor && !ishaxor) ? 60 : 30)) )
+	    	    makemon(mkclass(S_FLYFISH,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == STYXRIVER && !rn2((ishaxor && !issuxxor) ? 15 : (issuxxor && !ishaxor) ? 60 : 30)) )
+	    	    makemon(specialtensmon(337), x, y, MM_ADJACENTOK); /* AD_CONT
+		if ((levl[x][y].typ == PENTAGRAM && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
+	    	    makemon(specialtensmon(313), x, y, MM_ADJACENTOK); /* AD_CAST */
+		if ((levl[x][y].typ == WELL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makemon(mkclass(S_ZOMBIE,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == POISONEDWELL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makemon(specialtensmon(89), x, y, MM_ADJACENTOK); /* poisonous */
+		if ((levl[x][y].typ == WAGON && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makemon(specialtensmon(68), x, y, MM_ADJACENTOK); /* concealing */
+		if ((levl[x][y].typ == BURNINGWAGON && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makemon(specialtensmon(194), x, y, MM_ADJACENTOK); /* AD_FIRE */
+		if ((levl[x][y].typ == WOODENTABLE && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+	    	    makemon(specialtensmon(82), x, y, MM_ADJACENTOK); /* thick hide */
+		if ((levl[x][y].typ == CARVEDBED && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
+	    	    makemon(specialtensmon(45), x, y, MM_ADJACENTOK); /* resist sleep */
+		if ((levl[x][y].typ == STRAWMATTRESS && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
+	    	    makemon(specialtensmon(205), x, y, MM_ADJACENTOK); /* AD_PLYS */
+		if ((levl[x][y].typ == SNOW && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makemon(specialtensmon(44), x, y, MM_ADJACENTOK); /* resist cold */
+		if ((levl[x][y].typ == ASH && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+	    	    makemon(specialtensmon(43), x, y, MM_ADJACENTOK); /* resist fire */
+		if ((levl[x][y].typ == SAND && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+	    	    makemon(specialtensmon(90), x, y, MM_ADJACENTOK); /* carnivorous */
+		if ((levl[x][y].typ == PAVEDFLOOR && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makemon(specialtensmon(332), x, y, MM_ADJACENTOK); /* MS_SHOE */
+		if ((levl[x][y].typ == HIGHWAY && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+	    	    makemon(speedymon(), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == GRASSLAND && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makemon(specialtensmon(172), x, y, MM_ADJACENTOK); /* AT_BITE */
+		if ((levl[x][y].typ == NETHERMIST && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+	    	    makemon(specialtensmon(310), x, y, MM_ADJACENTOK); /* AD_NTHR */
+		if ((levl[x][y].typ == STALACTITE && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
+	    	    makemon(mkclass(S_PIERCER,0), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == CRYPTFLOOR && !rn2((ishaxor && !issuxxor) ? 2 : (issuxxor && !ishaxor) ? 8 : 4)) )
+	    	    makemon(morguemonX(), x, y, MM_ADJACENTOK);
+		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
+			(void) maketrap(x, y, CURSED_GRAVE, 100);
+		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
+			(void) maketrap(x, y, randomtrap(), 100);
+		if ((levl[x][y].typ == BUBBLES && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+	    	    makemon(specialtensmon(203), x, y, MM_ADJACENTOK); /* AD_STUN
+		if ((levl[x][y].typ == RAINCLOUD && !rn2((ishaxor && !issuxxor) ? 4 : (issuxxor && !ishaxor) ? 16 : 8)) )
+	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK);
+
 		if ((levl[x][y].typ == GRAVE && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
 	    	    makemon(morguemonX(), x, y, MM_ADJACENTOK);
 
@@ -9519,7 +10461,7 @@ mineralize()
 		if ((levl[x][y].typ == STONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
+		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == ROCKWALL || levl[x][y].typ == GRAVEWALL || levl[x][y].typ == TUNNELWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == SDOOR && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
@@ -9623,7 +10565,7 @@ mineralize()
 		if ((levl[x][y].typ == STONE && !((moves + u.monstertimefinish) % 4411 ) && !rn2((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500)) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !((moves + u.monstertimefinish) % 4413 ) && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == ROCKWALL || levl[x][y].typ == GRAVEWALL || levl[x][y].typ == TUNNELWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !((moves + u.monstertimefinish) % 4413 ) && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == SDOOR && !((moves + u.monstertimefinish) % 4415 ) && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
@@ -9775,6 +10717,68 @@ mineralize()
 		if ((levl[x][y].typ == TOILET && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
 	    	    makerandomtrap_at(x, y);
 
+		if ((levl[x][y].typ == FARMLAND && !rn2((ishaxor && !issuxxor) ? 40 : (issuxxor && !ishaxor) ? 160 : 80)) )
+	    	    makerandomtrap_at(x, y);
+
+		if ((levl[x][y].typ == MOUNTAIN && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == WATERTUNNEL && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == CRYSTALWATER && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == MOORLAND && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == URINELAKE && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SHIFTINGSAND && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == STYXRIVER && !rn2((ishaxor && !issuxxor) ? 15 : (issuxxor && !ishaxor) ? 60 : 30)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == STYXRIVER && !rn2((ishaxor && !issuxxor) ? 15 : (issuxxor && !ishaxor) ? 60 : 30)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == PENTAGRAM && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == WELL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == POISONEDWELL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == WAGON && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == BURNINGWAGON && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == WOODENTABLE && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == CARVEDBED && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == STRAWMATTRESS && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SNOW && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == ASH && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == SAND && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == PAVEDFLOOR && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == HIGHWAY && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == GRASSLAND && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == NETHERMIST && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == STALACTITE && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
+			(void) maketrap(x, y, CURSED_GRAVE, 100);
+		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
+			(void) maketrap(x, y, randomtrap(), 100);
+		if ((levl[x][y].typ == CRYPTFLOOR && !rn2((ishaxor && !issuxxor) ? 2 : (issuxxor && !ishaxor) ? 8 : 4)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == BUBBLES && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+	    	    makerandomtrap_at(x, y);
+		if ((levl[x][y].typ == RAINCLOUD && !rn2((ishaxor && !issuxxor) ? 4 : (issuxxor && !ishaxor) ? 16 : 8)) )
+	    	    makerandomtrap_at(x, y);
+
 		if ((levl[x][y].typ == GRAVE && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
 	    	    makerandomtrap_at(x, y);
 
@@ -9784,7 +10788,7 @@ mineralize()
 		if ((levl[x][y].typ == STONE && !rn2((ishaxor && !issuxxor) ? 5000 : (issuxxor && !ishaxor) ? 20000 : 10000)) )
 			makerandomtrap_at(x, y);
 
-		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
+		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == ROCKWALL || levl[x][y].typ == GRAVEWALL || levl[x][y].typ == TUNNELWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
 			makerandomtrap_at(x, y);
 
 		if ((levl[x][y].typ == SDOOR && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
@@ -9888,7 +10892,7 @@ mineralize()
 		if ((levl[x][y].typ == STONE && !((moves + u.monstertimefinish) % 4411 ) && !rn2((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500)) )
 	    	    makerandomtrap_at(x, y);
 
-		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !((moves + u.monstertimefinish) % 4413 ) && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
+		if (( (levl[x][y].typ == VWALL || levl[x][y].typ == ROCKWALL || levl[x][y].typ == GRAVEWALL || levl[x][y].typ == TUNNELWALL || levl[x][y].typ == HWALL || levl[x][y].typ == TLCORNER || levl[x][y].typ == TRCORNER || levl[x][y].typ == BLCORNER || levl[x][y].typ == BRCORNER || levl[x][y].typ == CROSSWALL || levl[x][y].typ == TUWALL || levl[x][y].typ == TDWALL || levl[x][y].typ == TRWALL || levl[x][y].typ == TLWALL || levl[x][y].typ == DBWALL ) && !((moves + u.monstertimefinish) % 4413 ) && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
 
 		if ((levl[x][y].typ == SDOOR && !((moves + u.monstertimefinish) % 4415 ) && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
@@ -10250,7 +11254,11 @@ register xchar x, y;
 	return((boolean)(t_at(x, y)
 		|| IS_FURNITURE(levl[x][y].typ)
 		|| is_lava(x,y)
-		|| is_pool(x,y)
+		|| is_waterypool(x,y)
+		|| is_watertunnel(x,y)
+		|| is_shiftingsand(x,y)
+		|| is_moorland(x,y)
+		|| is_urinelake(x,y)
 		|| invocation_pos(x,y)
 		));
 }
@@ -10268,7 +11276,7 @@ coord *tm;
 	boolean isspecific;
 
 	/* no traps in pools */
-	if (tm && is_pool(tm->x,tm->y)) return;
+	if (tm && is_waterypool(tm->x,tm->y)) return;
 
 	if (num < -1) {
 		num += 256; /* sucky workaround --Amy */
@@ -11207,6 +12215,531 @@ register struct mkroom *croom;
 }
 
 STATIC_OVL void
+mkgravewallX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = GRAVEWALL;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mktunnelwallX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = TUNNELWALL;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkfarmlandX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = FARMLAND;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkmountainX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = MOUNTAIN;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkwatertunnelX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = WATERTUNNEL;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkcrystalwaterX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = CRYSTALWATER;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkmoorlandX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = MOORLAND;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkurinelakeX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = URINELAKE;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkshiftingsandX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = SHIFTINGSAND;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkstyxriverX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = STYXRIVER;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mksnowX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = SNOW;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkashX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = ASH;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mksandX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = SAND;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkpavedfloorX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = PAVEDFLOOR;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkhighwayX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = HIGHWAY;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkgrasslandX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = GRASSLAND;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mknethermistX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = NETHERMIST;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkstalactiteX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = STALACTITE;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkcryptfloorX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = CRYPTFLOOR;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkbubblesX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = BUBBLES;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
+mkraincloudX(amount,croom)
+register int amount;
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+	int n = 0;
+
+	while (n < amount) {
+
+		do {
+		    if(++tryct > 1) return;
+		    if (!somexy(croom, &m))
+			return;
+		} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+	
+		levl[m.x][m.y].typ = RAINCLOUD;
+		n++;
+		tryct = 0;
+
+	}
+
+}
+
+STATIC_OVL void
 mkiceX(amount,croom)
 register int amount;
 register struct mkroom *croom;
@@ -11374,6 +12907,384 @@ register struct mkroom *croom;
 }
 
 STATIC_OVL void
+mkgravewall(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = GRAVEWALL;
+
+}
+
+STATIC_OVL void
+mktunnelwall(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = TUNNELWALL;
+
+}
+
+STATIC_OVL void
+mkfarmland(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = FARMLAND;
+
+}
+
+STATIC_OVL void
+mkmountain(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = MOUNTAIN;
+
+}
+
+STATIC_OVL void
+mkwatertunnel(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = WATERTUNNEL;
+
+}
+
+STATIC_OVL void
+mkcrystalwater(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = CRYSTALWATER;
+
+}
+
+STATIC_OVL void
+mkmoorland(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = MOORLAND;
+
+}
+
+STATIC_OVL void
+mkurinelake(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = URINELAKE;
+
+}
+
+STATIC_OVL void
+mkshiftingsand(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = SHIFTINGSAND;
+
+}
+
+STATIC_OVL void
+mkstyxriver(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = STYXRIVER;
+
+}
+
+STATIC_OVL void
+mksnow(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = SNOW;
+
+}
+
+STATIC_OVL void
+mkash(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = ASH;
+
+}
+
+STATIC_OVL void
+mksand(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = SAND;
+
+}
+
+STATIC_OVL void
+mkpavedfloor(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = PAVEDFLOOR;
+
+}
+
+STATIC_OVL void
+mkhighway(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = HIGHWAY;
+
+}
+
+STATIC_OVL void
+mkgrassland(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = GRASSLAND;
+
+}
+
+STATIC_OVL void
+mknethermist(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = NETHERMIST;
+
+}
+
+STATIC_OVL void
+mkstalactite(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = STALACTITE;
+
+}
+
+STATIC_OVL void
+mkcryptfloor(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = CRYPTFLOOR;
+
+}
+
+STATIC_OVL void
+mkbubbles(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = BUBBLES;
+
+}
+
+STATIC_OVL void
+mkraincloud(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = RAINCLOUD;
+
+}
+
+STATIC_OVL void
 mkice(croom)
 register struct mkroom *croom;
 {
@@ -11514,6 +13425,150 @@ register struct mkroom *croom;
 
 	/* Put a sink at m.x, m.y */
 	levl[m.x][m.y].typ = THRONE;
+
+}
+
+STATIC_OVL void
+mkpentagram(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = PENTAGRAM;
+
+}
+
+STATIC_OVL void
+mkwell(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = WELL;
+
+}
+
+STATIC_OVL void
+mkpoisonedwell(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = POISONEDWELL;
+
+}
+
+STATIC_OVL void
+mkwagon(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = WAGON;
+
+}
+
+STATIC_OVL void
+mkburningwagon(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = BURNINGWAGON;
+
+}
+
+STATIC_OVL void
+mkwoodentable(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = WOODENTABLE;
+
+}
+
+STATIC_OVL void
+mkcarvedbed(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = CARVEDBED;
+
+}
+
+STATIC_OVL void
+mkstrawmattress(croom)
+register struct mkroom *croom;
+{
+	coord m;
+	register int tryct = 0;
+
+	do {
+	    if(++tryct > 200) return;
+	    if (!somexy(croom, &m))
+		return;
+	} while(occupied(m.x, m.y) || bydoor(m.x, m.y));
+
+	/* Put a sink at m.x, m.y */
+	levl[m.x][m.y].typ = STRAWMATTRESS;
 
 }
 
@@ -11748,7 +13803,7 @@ int dist;
 
     switch(dist) {
     case 1: /* fire traps */
-	if (is_pool(x,y)) break;
+	if (is_waterypool(x,y)) break;
 	lev->typ = ROOM;
 	ttmp = maketrap(x, y, FIRE_TRAP, 0);
 	if (ttmp) ttmp->tseen = TRUE;

@@ -4266,40 +4266,75 @@ draw_energy()
 		if(isok(u.ux + u.dx, u.uy + u.dy)) {
 			switch((&levl[u.ux + u.dx][u.uy + u.dy])->typ) {
 			    case ALTAR: /* Divine power */
-			    	powbonus =  (u.uenmax > 28 ? u.uenmax / 4
-			    			: 7);
+			    	powbonus =  (u.uenmax > 28 ? u.uenmax / 4 : 7);
 				break;
 			    case THRONE: /* Regal == pseudo divine */
-			    	powbonus =  (u.uenmax > 36 ? u.uenmax / 6
-			    			: 6);			    		 	
+			    	powbonus = (u.uenmax > 36 ? u.uenmax / 6 : 6);
+				break;
+			    case PENTAGRAM:
+			    	powbonus = (u.uenmax > 10 ? u.uenmax / 2 : 4);
 				break;
 			    case CLOUD: /* Air */
 			    case TREE: /* Earth */
 			    case LAVAPOOL: /* Fire */
 			    case ICE: /* Water - most ordered form */
+			    case STYXRIVER:
+			    case BURNINGWAGON:
+			    case BUBBLES:
 			    	powbonus = (u.uenmax > 40 ? u.uenmax / 8 : 5);
 				break;
 			    case AIR:
 			    case MOAT: /* Doesn't freeze */
 			    case WATER:
+			    case WATERTUNNEL:
+			    case WAGON:
+			    case NETHERMIST:
 			    	powbonus = (u.uenmax > 40 ? u.uenmax / 10 : 4);
 				break;
+			    case CRYSTALWATER:
+			    case CARVEDBED:
+			    case RAINCLOUD:
+			    	powbonus = (u.uenmax > 20 ? u.uenmax / 5 : 4);
+				break;
 			    case POOL: /* Can dry up */
+			    case WOODENTABLE:
+			    case SNOW:
+			    case ASH:
+			    case HIGHWAY:
 			    	powbonus = (u.uenmax > 36 ? u.uenmax / 12 : 3);
 				break;
+			    case STRAWMATTRESS:
+			    case GRASSLAND:
+			    case STALACTITE:
+			    	powbonus = (u.uenmax > 50 ? u.uenmax / 20 : 2);
+				break;
 			    case FOUNTAIN:
+			    case WELL:
+			    case SHIFTINGSAND:
+			    case SAND:
 			    	powbonus = (u.uenmax > 30 ? u.uenmax / 15 : 2);
+				break;
+			    case FARMLAND:
+			    case MOUNTAIN:
+			    case CRYPTFLOOR:
+			    	powbonus = (u.uenmax > 20 ? u.uenmax / 10 : 2);
 				break;
 			    case SINK:  /* Cleansing water */
 			    	if (!rn2(3)) powbonus = 2;
 				break;
 			    case TOILET: /* Water Power...but also waste! */
+			    case MOORLAND:
+			    case POISONEDWELL:
 			    	if (rn2(100) < 50)
 			    		powbonus = 2;
 			    	else powbonus = -2;
 				break;
 			    case GRAVE:
+			    case GRAVEWALL:
 			    	powbonus = -4;
+				break;
+			    case URINELAKE:
+			    	powbonus = -10;
 				break;
 			    default:
 				break;

@@ -711,7 +711,7 @@ water_detect()
 
     for (zx = 1; zx < COLNO; zx++)
 	for (zy = 0; zy < ROWNO; zy++)
-	    if (levl[zx][zy].typ == WATER || levl[zx][zy].typ == POOL || levl[zx][zy].typ == MOAT || levl[zx][zy].typ == FOUNTAIN || levl[zx][zy].typ == SINK || levl[zx][zy].typ == TOILET) {
+	    if (levl[zx][zy].typ == WATER || levl[zx][zy].typ == POOL || levl[zx][zy].typ == CRYSTALWATER || levl[zx][zy].typ == WATERTUNNEL || levl[zx][zy].typ == WELL || levl[zx][zy].typ == POISONEDWELL || levl[zx][zy].typ == RAINCLOUD || levl[zx][zy].typ == MOAT || levl[zx][zy].typ == FOUNTAIN || levl[zx][zy].typ == SINK || levl[zx][zy].typ == TOILET) {
 			show_map_spot(zx, zy);
 			detectamount++;
 		}
@@ -734,7 +734,7 @@ water_detectX()
 
     for (zx = 1; zx < COLNO; zx++)
 	for (zy = 0; zy < ROWNO; zy++)
-	    if ((levl[zx][zy].typ == WATER || levl[zx][zy].typ == POOL || levl[zx][zy].typ == MOAT || levl[zx][zy].typ == FOUNTAIN || levl[zx][zy].typ == SINK || levl[zx][zy].typ == TOILET) && rn2(2)) {
+	    if ((levl[zx][zy].typ == WATER || levl[zx][zy].typ == POOL || levl[zx][zy].typ == CRYSTALWATER || levl[zx][zy].typ == WATERTUNNEL || levl[zx][zy].typ == WELL || levl[zx][zy].typ == POISONEDWELL || levl[zx][zy].typ == RAINCLOUD || levl[zx][zy].typ == MOAT || levl[zx][zy].typ == FOUNTAIN || levl[zx][zy].typ == SINK || levl[zx][zy].typ == TOILET) && rn2(2)) {
 			show_map_spot(zx, zy);
 			detectamount++;
 		}

@@ -58,7 +58,7 @@ unsigned gpflags;
 		is_badpos = 1;
 
 	    mdat = mtmp->data;
-	    pool = is_pool(x,y);
+	    pool = is_waterypool(x,y);
 	    if (mdat->mlet == S_EEL && !pool && rn2(13) && !ignorewater)
 		is_badpos = 1;
 
@@ -82,7 +82,7 @@ unsigned gpflags;
 	    /*if ( (mtmp != &youmonst) && mtmp->egotype_wallwalk && may_passwall(x,y)) return is_badpos;*/
 	}
 	if (!ACCESSIBLE(levl[x][y].typ) ) {
-		if (!(is_pool(x,y) && ignorewater)) return -1;
+		if (!(is_waterypool(x,y) && ignorewater)) return -1;
 	}
 
 	if (closed_door(x, y) && (!mdat || !amorphous(mdat)))
@@ -487,7 +487,9 @@ boolean trapok;
 
 	/* In Soviet Russia, water is considered safe as long as you can swim, because hehehe. --Amy */
 
-	if (is_pool(x, y) && !(HLevitation || Flying || Wwalking || (issoviet && (Swimming || Amphibious) ) )) return FALSE;
+	if (is_waterypool(x, y) && !(HLevitation || Flying || Wwalking || (issoviet && (Swimming || Amphibious) ) )) return FALSE;
+	if (is_watertunnel(x,y) && (Levitation || Flying) && !Passes_walls) return FALSE;
+	if (is_watertunnel(x,y) && !(Levitation || Flying || (issoviet && (Swimming || Amphibious) ))) return FALSE;
 
 	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
 	if (!in_out_region(x, y)) return FALSE;
@@ -504,7 +506,9 @@ boolean trapok;
 	if (!trapok && t_at(x, y)) return FALSE;
 	if (!goodpos(x, y, &youmonst, 0)) return FALSE;
 
-	if (is_pool(x, y) && !(HLevitation || Flying || Wwalking)) return FALSE;
+	if (is_waterypool(x, y) && !(HLevitation || Flying || Wwalking)) return FALSE;
+	if (is_watertunnel(x,y) && (Levitation || Flying) && !Passes_walls) return FALSE;
+	if (is_watertunnel(x,y) && !(Levitation || Flying)) return FALSE;
 
 	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
 	if (!in_out_region(x, y)) return FALSE;
@@ -524,7 +528,9 @@ boolean trapok;
 	if (!trapok && t_at(x, y)) return FALSE;
 	if (!goodpos(x, y, &youmonst, 0)) return FALSE;
 
-	if (is_pool(x, y) && !(HLevitation || Flying || Wwalking)) return FALSE;
+	if (is_waterypool(x, y) && !(HLevitation || Flying || Wwalking)) return FALSE;
+	if (is_watertunnel(x,y) && (Levitation || Flying) && !Passes_walls) return FALSE;
+	if (is_watertunnel(x,y) && !(Levitation || Flying)) return FALSE;
 
 	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
 	if (!in_out_region(x, y)) return FALSE;
@@ -579,7 +585,7 @@ boolean allow_drag;
 	if (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE))
 		u.uundetected = OBJ_AT(nux, nuy);
 	else if (youmonst.data->mlet == S_EEL)
-		u.uundetected = is_pool(nux, nuy);
+		u.uundetected = is_waterypool(nux, nuy);
 	else {
 		u.uundetected = 0;
 		/* mimics stop being unnoticed */
@@ -1925,11 +1931,11 @@ newtry:
 
 		if (!isok(ccc.x, ccc.y)) break; /* otherwise the game could segfault! */
 
-		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD &&
+		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
 			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0 ) break;
 		}
 
-		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD &&
+		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
 			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
 		if (trycnt < 50) {trycnt++; goto newtry;}
 		return; /* more than 50 tries */
@@ -1971,11 +1977,11 @@ newtry:
 
 		if (!isok(ccc.x, ccc.y)) break; /* otherwise the game could segfault! */
 
-		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD &&
+		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
 			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0 ) break;
 		}
 
-		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD &&
+		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
 			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
 		if (trycnt < 50) {trycnt++; goto newtry;}
 		return; /* more than 50 tries */

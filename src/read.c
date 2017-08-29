@@ -4794,6 +4794,14 @@ newboss:
 				terrainfeature = randomwalltype();
 				if (!rn2(50)) terrainfeature = FOUNTAIN;
 				else if (!rn2(2000)) terrainfeature = THRONE;
+				else if (!rn2(10000)) terrainfeature = PENTAGRAM;
+				else if (!rn2(5000)) terrainfeature = WELL;
+				else if (!rn2(5000)) terrainfeature = POISONEDWELL;
+				else if (!rn2(5000)) terrainfeature = WAGON;
+				else if (!rn2(5000)) terrainfeature = BURNINGWAGON;
+				else if (!rn2(4000)) terrainfeature = WOODENTABLE;
+				else if (!rn2(5000)) terrainfeature = CARVEDBED;
+				else if (!rn2(2000)) terrainfeature = STRAWMATTRESS;
 				else if (!rn2(100)) terrainfeature = SINK;
 				else if (!rn2(200)) terrainfeature = TOILET;
 				else if (!rn2(50)) terrainfeature = GRAVE;

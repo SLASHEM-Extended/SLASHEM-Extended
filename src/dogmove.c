@@ -205,7 +205,7 @@ boolean devour;
 	    newsym(x, y);
 	    newsym(mtmp->mx, mtmp->my);
 	}
-	if (is_pool(x, y) && !Underwater) {
+	if ((is_waterypool(x, y) || is_watertunnel(x,y)) && !Underwater) {
 	    /* Don't print obj */
 	    /* TODO: Reveal presence of sea monster (especially sharks) */
 	} else
@@ -1046,7 +1046,7 @@ newdogpos:
 		}
 		if (!m_in_out_region(mtmp, nix, niy))
 		    return 1;
-		if (((IS_ROCK(levl[nix][niy].typ) && may_dig(nix,niy)) ||
+		if (((IS_ROCK(levl[nix][niy].typ) && !(IS_FARMLAND(levl[nix][niy].typ)) && !(IS_GRAVEWALL(levl[nix][niy].typ)) && !(IS_MOUNTAIN(levl[nix][niy].typ)) && may_dig(nix,niy)) ||
 		     closed_door(nix, niy)) &&
 		    mtmp->weapon_check != NO_WEAPON_WANTED &&
 		    tunnels(mtmp->data) && needspick(mtmp->data)) {
@@ -1121,7 +1121,7 @@ could_reach_item(mon, nx, ny)
 struct monst *mon;
 xchar nx, ny;
 {
-    if ((!is_pool(nx,ny) || mon->egotype_watersplasher || is_swimmer(mon->data)) &&
+    if ((!is_waterypool(nx,ny) || mon->egotype_watersplasher || is_swimmer(mon->data)) &&
 	(!is_lava(nx,ny) || likes_lava(mon->data)) &&
 	(!sobj_at(BOULDER,nx,ny) || throws_rocks(mon->data)))
     	return TRUE;
@@ -1153,8 +1153,10 @@ xchar mx, my, fx, fy;
 		continue;
 	    if (dist2(i, j, fx, fy) >= dist)
 		continue;
-	    if (IS_ROCK(levl[i][j].typ) && !passes_walls(mon->data) && (!mon->egotype_wallwalk) &&
+	    if (IS_ROCK(levl[i][j].typ) && !(IS_FARMLAND(levl[i][j].typ)) && !passes_walls(mon->data) && (!mon->egotype_wallwalk) &&
 				    (!may_dig(i,j) || !tunnels(mon->data)))
+		continue;
+	    if (IS_MOUNTAIN(levl[i][j].typ) && !passes_walls(mon->data) && (!mon->egotype_wallwalk))
 		continue;
 	    if (IS_DOOR(levl[i][j].typ) &&
 				(levl[i][j].doormask & (D_CLOSED | D_LOCKED)))

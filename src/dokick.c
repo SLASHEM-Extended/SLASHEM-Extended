@@ -819,7 +819,7 @@ xchar x, y;
 
 	if(martial()) range += rnd(3);
 
-	if (is_pool(x, y)) {
+	if (is_waterypool(x, y) || is_watertunnel(x,y)) {
 	    /* you're in the water too; significantly reduce range */
 	    range = range / 3 + 1;	/* {1,2}=>1, {3,4,5}=>2, {6,7,8}=>3 */
 	} else {
@@ -973,6 +973,11 @@ char *buf;
 	if (kickobj) what = distant_name(kickobj,doname);
 	else if (IS_DOOR(maploc->typ)) what = "a door";
 	else if (IS_TREE(maploc->typ)) what = "a tree";
+	else if (IS_GRAVEWALL(maploc->typ)) what = "a grave wall";
+	else if (IS_TUNNELWALL(maploc->typ)) what = "a tunnel";
+	else if (IS_FARMLAND(maploc->typ)) what = "a farmland";
+	else if (IS_MOUNTAIN(maploc->typ)) what = "a mountain";
+	else if (IS_WATERTUNNEL(maploc->typ)) what = "a water tunnel";
 	else if (IS_STWALL(maploc->typ)) what = "a wall";
 	else if (IS_ROCK(maploc->typ)) what = "a rock";
 	else if (IS_THRONE(maploc->typ)) what = "a throne";
@@ -1155,7 +1160,7 @@ dokick()
 		unmap_object(x, y);
 		newsym(x, y);
 	}
-	if (is_pool(x, y) ^ !!u.uinwater) {
+	if (is_waterypool(x, y) ^ !!u.uinwater) {
 		/* objects normally can't be removed from water by kicking */
 		You("splash some water around.");
 		return 1;
@@ -1418,7 +1423,7 @@ dokick()
 		    }
 		    goto ouch;
 		}
-		if (maploc->typ == STAIRS || maploc->typ == LADDER ||
+		if (maploc->typ == STAIRS || maploc->typ == WATERTUNNEL || maploc->typ == LADDER ||
 						    IS_STWALL(maploc->typ)) {
 		    if(!IS_STWALL(maploc->typ) && maploc->ladder == LA_DOWN)
 			goto dumb;

@@ -494,14 +494,26 @@ lookat(x, y, buf, monbuf)
 	    strcat(buf, " stuck in a tree"); 
 	else if (IS_IRONBAR(levl[x][y].typ))
 	    strcat(buf, " stuck in iron bars"); 
+	else if (IS_GRAVEWALL(levl[x][y].typ))
+	    strcat(buf, " embedded in a grave wall"); 
+	else if (IS_TUNNELWALL(levl[x][y].typ))
+	    strcat(buf, " lying in a tunnel"); 
+	else if (IS_FARMLAND(levl[x][y].typ))
+	    strcat(buf, " on a farmland");
+	else if (IS_MOUNTAIN(levl[x][y].typ))
+	    strcat(buf, " atop a mountain"); 
 	else if (levl[x][y].typ == STONE || levl[x][y].typ == SCORR)
 	    strcat(buf, " embedded in stone");
 	else if (IS_WALL(levl[x][y].typ) || levl[x][y].typ == SDOOR)
 	    strcat(buf, " embedded in a wall");
 	else if (closed_door(x,y))
 	    strcat(buf, " embedded in a door");
-	else if (is_pool(x,y))
+	else if (is_waterypool(x,y))
 	    strcat(buf, " in water");
+	else if (is_styxriver(x,y))
+	    strcat(buf, " in a styx river");
+	else if (is_watertunnel(x,y))
+	    strcat(buf, " in a water tunnel");
 	else if (is_lava(x,y))
 	    strcat(buf, " in molten lava");	/* [can this ever happen?] */
     } else if (glyph_is_trap(glyph)) {

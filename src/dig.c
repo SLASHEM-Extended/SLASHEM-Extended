@@ -153,7 +153,7 @@ xchar x, y;
 			(ispick ? DIGTYP_UNDIGGABLE : DIGTYP_TREE) :
 		(ispick
 		 || issaber
-		) && IS_ROCK(levl[x][y].typ) &&
+		) && (IS_ROCK(levl[x][y].typ) || IS_WATERTUNNEL(levl[x][y].typ)) &&
 			(!level.flags.arboreal || IS_WALL(levl[x][y].typ)) ?
 			DIGTYP_ROCK : DIGTYP_UNDIGGABLE);
 }
@@ -195,6 +195,15 @@ dig_check(madeby, verbose, x, y)
 	} else if (IS_THRONE(levl[x][y].typ) && madeby != BY_OBJECT) {
 	    if(verbose) pline_The("throne is too hard to break apart.");
 	    return(FALSE);
+	} else if (IS_FARMLAND(levl[x][y].typ) && madeby != BY_OBJECT) {
+	    if(verbose) pline("Farmland cannot be dug out.");
+	    return(FALSE);
+	} else if (IS_MOUNTAIN(levl[x][y].typ) && madeby != BY_OBJECT) {
+	    if(verbose) pline_The("mountain is too hard to dig into.");
+	    return(FALSE);
+	} else if (IS_GRAVEWALL(levl[x][y].typ) && madeby != BY_OBJECT) {
+	    if(verbose) pline_The("grave wall needs to be dug by moving into it.");
+	    return(FALSE);
 	} else if (IS_ALTAR(levl[x][y].typ) && (madeby != BY_OBJECT ||
 				Is_astralevel(&u.uz) || Is_sanctum(&u.uz))) {
 	    if(verbose) pline_The("altar is too hard to break apart.");
@@ -207,6 +216,7 @@ dig_check(madeby, verbose, x, y)
 	    return(FALSE);
 	} else if ((IS_ROCK(levl[x][y].typ) && levl[x][y].typ != SDOOR &&
 		      (levl[x][y].wall_info & W_NONDIGGABLE) != 0)
+		|| (IS_FARMLAND(levl[x][y].typ)) || (IS_MOUNTAIN(levl[x][y].typ))  || (IS_GRAVEWALL(levl[x][y].typ))
 		|| (ttmp &&
 		      (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HEEL_TRAP || ttmp->ttyp == LOUDSPEAKER || ttmp->ttyp == ARABELLA_SPEAKER || ttmp->ttyp == FART_TRAP || !Can_dig_down(&u.uz)))) {
 	    if(verbose) pline_The("%s here is too hard to %s.",
@@ -218,7 +228,7 @@ dig_check(madeby, verbose, x, y)
 	} else if (madeby == BY_OBJECT &&
 		    /* the block against existing traps is mainly to
 		       prevent broken wands from turning holes into pits */
-		    (ttmp || is_pool(x,y) || is_lava(x,y))) {
+		    (ttmp || is_waterypool(x,y) || is_styxriver(x,y) || is_lava(x,y))) {
 	    /* digging by player handles pools separately */
 	    return FALSE;
 	}
@@ -262,7 +272,7 @@ dig()
 	    		dig_typ(uwep, dpx, dpy) == DIGTYP_ROCK ||
 		    IS_DOOR(lev->typ) && artifact_door(dpx, dpy)) {
 		pline("This %s is too hard to %s.",
-			IS_DOOR(lev->typ) ? "door" : "wall", verb);
+			IS_DOOR(lev->typ) ? "door" : IS_MOUNTAIN(lev->typ) ? "mountain" : IS_FARMLAND(lev->typ) ? "farmland" : "wall", verb);
 		return(0);
 	    }
 	}
@@ -360,7 +370,7 @@ dig()
 			    place_object(bobj, dpx, dpy);
 			}
 			digtxt = "The boulder falls apart.";
-		} else if (lev->typ == STONE || lev->typ == SCORR || IS_IRONBAR(lev->typ) ||
+		} else if (lev->typ == STONE || lev->typ == WATERTUNNEL || lev->typ == SCORR || IS_IRONBAR(lev->typ) ||
 				IS_TREE(lev->typ)) {
 			if(Is_earthlevel(&u.uz)) {
 			    if(uwep->blessed && !rn2(3)) {
@@ -376,6 +386,9 @@ dig()
 			    digtxt = "You cut down the tree.";
 			    lev->typ = ROOM;
 			    if (!rn2(5)) (void) rnd_treefruit_at(dpx, dpy);
+			} else if (IS_WATERTUNNEL(lev->typ)) {
+			    digtxt = "You smash the solid part of the tunnel apart.  Now it's a moat!";
+			    lev->typ = MOAT;
 			} else if (uwep && IS_IRONBAR(lev->typ) && is_antibar(uwep) ) {
 			    digtxt = "You smash the bars to the ground.";
 
@@ -409,6 +422,10 @@ dig()
 			    lev->typ = /*ROOM*/CORR;
 			} else if (level.flags.is_cavernous_lev &&
 				   !in_town(dpx, dpy)) {
+			    lev->typ = CORR;
+			} else if (IS_WATERTUNNEL(lev->typ)) {
+			    lev->typ = MOAT;
+			} else if (IS_DIGGABLEWALL(lev->typ)) {
 			    lev->typ = CORR;
 			} else {
 			    lev->typ = DOOR;
@@ -476,10 +493,10 @@ cleanup:
 		if (IS_WALL(lev->typ) || dig_target == DIGTYP_DOOR) {
 		    if(*in_rooms(dpx, dpy, SHOPBASE)) {
 			pline("This %s seems too hard to %s.",
-			      IS_DOOR(lev->typ) ? "door" : "wall", verb);
+			      IS_DOOR(lev->typ) ? "door" : IS_MOUNTAIN(lev->typ) ? "mountain" : IS_FARMLAND(lev->typ) ? "farmland" : "wall", verb);
 			return(0);
 		    }
-		} else if (!IS_ROCK(lev->typ) && dig_target == DIGTYP_ROCK)
+		} else if (!IS_ROCK(lev->typ) && !IS_WATERTUNNEL(lev->typ) && dig_target == DIGTYP_ROCK)
 		    return(0); /* statue or boulder got taken */
 		if(!did_dig_msg) {
 		    if (is_lightsaber(uwep)) You("burn steadily through %s.",
@@ -730,7 +747,7 @@ boolean pit_only;
 	    (lev->wall_info & W_NONDIGGABLE) != 0)) {
 		pline_The("%s here is too hard to dig in.", surface(u.ux,u.uy));
 
-	} else if (is_pool(u.ux, u.uy) || is_lava(u.ux, u.uy)) {
+	} else if (is_waterypool(u.ux, u.uy) || is_styxriver(u.ux, u.uy) || is_lava(u.ux, u.uy)) {
 		pline_The("%s sloshes furiously for a moment, then subsides.",
 			is_lava(u.ux, u.uy) ? "lava" : "water");
 		wake_nearby();	/* splashing */
@@ -814,6 +831,13 @@ boolean pit_only;
 	/* the following two are here for the wand of digging */
 	} else if (IS_THRONE(lev->typ)) {
 		pline_The("throne is too hard to break apart.");
+
+	} else if (IS_FARMLAND(lev->typ)) {
+		pline("Farmland cannot be dug out.");
+	} else if (IS_MOUNTAIN(lev->typ)) {
+		pline_The("mountain is too hard to dig into.");
+	} else if (IS_GRAVEWALL(lev->typ)) {
+		pline_The("grave wall needs to be dug by moving into it.");
 
 	} else if (IS_ALTAR(lev->typ)) {
 		pline_The("altar is too hard to break apart.");
@@ -1130,10 +1154,10 @@ struct obj *obj;
 		if (Hallucination) pline("It creates erotic air current noises.");
 	} else if (!can_reach_floor()) {
 		You_cant("reach the %s.", surface(u.ux,u.uy));
-	} else if (is_pool(u.ux, u.uy) || is_lava(u.ux, u.uy)) {
+	} else if (is_waterypool(u.ux, u.uy) || is_lava(u.ux, u.uy)) {
 		/* Monsters which swim also happen not to be able to dig */
 		You("cannot stay under%s long enough.",
-				is_pool(u.ux, u.uy) ? "water" : " the lava");
+				is_waterypool(u.ux, u.uy) ? "water" : " the lava");
 	} else if (digtyp == 2) {
 		Your("%s merely scratches the %s.",
 				aobjnam(obj, (char *)0), surface(u.ux,u.uy));
@@ -1243,13 +1267,13 @@ register struct monst *mtmp;
 	    }
 	    newsym(mtmp->mx, mtmp->my);
 	    return FALSE;
-	} else if (!IS_ROCK(here->typ) && !IS_TREE(here->typ)) /* no dig */
+	} else if ((!IS_ROCK(here->typ) && !IS_WATERTUNNEL(here->typ) && !IS_TREE(here->typ)) || IS_FARMLAND(here->typ) || IS_MOUNTAIN(here->typ) || IS_GRAVEWALL(here->typ)) /* no dig */
 	    return FALSE;
 
 	/* Only rock, trees, and walls fall through to this point. */
 	if ((here->wall_info & W_NONDIGGABLE) != 0) { /* This is not a bug. So let's get rid of the message. --Amy */
 	    /*impossible*//*pline("mdig_tunnel:  %s at (%d,%d) is undiggable",
-		       (IS_WALL(here->typ) ? "wall" : "stone"),
+		       (IS_WALL(here->typ) ? "wall" : IS_MOUNTAIN(here->typ) ? "mountain" : IS_FARMLAND(here->typ) ? "farmland" : "stone"),
 		       (int) mtmp->mx, (int) mtmp->my);*/
 	    return FALSE;	/* still alive */
 	}
@@ -1268,6 +1292,10 @@ register struct monst *mtmp;
 	    } else if (level.flags.is_cavernous_lev &&
 		       !in_town(mtmp->mx, mtmp->my)) {
 		here->typ = CORR;
+	    } else if (IS_WATERTUNNEL(here->typ)) {
+		here->typ = MOAT;
+	    } else if (IS_DIGGABLEWALL(here->typ)) {
+		here->typ = CORR;
 	    } else {
 		here->typ = DOOR;
 		here->doormask = D_NODOOR;
@@ -1276,6 +1304,8 @@ register struct monst *mtmp;
 	    here->typ = ROOM;
 	    if (!rn2(50) && pile && pile < 5) /* it shouldn't be that easy to get tree fruits... --Amy */
 		(void) rnd_treefruit_at(mtmp->mx, mtmp->my);
+	} else if (IS_WATERTUNNEL(here->typ)) {
+	    here->typ = MOAT;
 	} else {
 	    here->typ = CORR;
 	    if (!rn2(7) && pile && pile < 5) /* if you dig out rock yourself, you don't get boulders or rock either! --Amy */
@@ -1429,7 +1459,14 @@ boolean bigrange;
 		if (issoviet && maze_dig) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
 		if (issoviet && maze_dig) break;
 	    } else if (maze_dig) {
-		if (IS_WALL(room->typ)) {
+		if (IS_WATERTUNNEL(room->typ)) {
+			room->typ = MOAT;
+			unblock_point(zx,zy); /* vision */
+			digdepth -= 2; /* fix stupidity --Amy */
+			if (issoviet) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
+			if (issoviet) break;
+
+		} if (IS_WALL(room->typ) && !(IS_FARMLAND(room->typ)) && !(IS_MOUNTAIN(room->typ)) && !(IS_GRAVEWALL(room->typ)) ) {
 		    if (!(room->wall_info & W_NONDIGGABLE)) {
 			if (*in_rooms(zx,zy,SHOPBASE)) {
 			    add_damage(zx, zy, 200L);
@@ -1472,7 +1509,7 @@ boolean bigrange;
 			break;
 		    }
 		}
-	    } else if (IS_ROCK(room->typ)) {
+	    } else if (IS_ROCK(room->typ) || IS_WATERTUNNEL(room->typ)) {
 		if (!may_dig(zx,zy)) break;
 		if (IS_WALL(room->typ) || room->typ == SDOOR) {
 		    if (*in_rooms(zx,zy,SHOPBASE)) {
@@ -1482,6 +1519,10 @@ boolean bigrange;
 		    watch_dig((struct monst *)0, zx, zy, TRUE);
 		    if (level.flags.is_cavernous_lev && !in_town(zx, zy)) {
 			room->typ = CORR;
+		    } else if (IS_WATERTUNNEL(room->typ)) {
+			room->typ = MOAT;
+		    } else if (IS_DIGGABLEWALL(room->typ)) {
+			room->typ = CORR;
 		    } else {
 			room->typ = DOOR;
 			room->doormask = D_NODOOR;
@@ -1489,6 +1530,9 @@ boolean bigrange;
 		    digdepth -= 2;
 		} else if (IS_TREE(room->typ)) {
 		    room->typ = ROOM;
+		    digdepth -= 2;
+		} else if (IS_WATERTUNNEL(room->typ)) {
+		    room->typ = MOAT;
 		    digdepth -= 2;
 		} else {	/* IS_ROCK but not IS_WALL or SDOOR */
 		    room->typ = CORR;

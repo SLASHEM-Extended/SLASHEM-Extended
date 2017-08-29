@@ -375,7 +375,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 		pline("Doing that would probably melt your %s.",
 		      xname(pick));
 		return 0;
-	    } else if (is_pool(u.ux, u.uy) && !Underwater) {
+	    } else if (is_waterypool(u.ux, u.uy) && !Underwater) {
 		pline_The("water has no lock.");
 		return 0;
 	    }
@@ -697,7 +697,7 @@ doforce()		/* try to force a chest with your weapon */
 		pline("Doing that would probably melt your %s.",
 		      xname(uwep));
 		return 0;
-	    } else if (is_pool(u.ux, u.uy) && !Underwater) {
+	    } else if (is_waterypool(u.ux, u.uy) && !Underwater) {
 		pline_The("water has no lock.");
 		return 0;
 	    }

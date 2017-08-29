@@ -274,37 +274,37 @@ struct monst *mon;
 
 	/* trident is highly effective against swimmers */
 	if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
-	   if (is_pool(mon->mx, mon->my)) tmp += 4;
+	   if (is_waterypool(mon->mx, mon->my)) tmp += 4;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 2;
 	}
 
 	if (otmp->otyp == FOURDENT && is_swimmer(ptr)) {
-	   if (is_pool(mon->mx, mon->my)) tmp += 4;
+	   if (is_waterypool(mon->mx, mon->my)) tmp += 4;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 2;
 	}
 
 	if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr)) {
-	   if (is_pool(mon->mx, mon->my)) tmp += 10;
+	   if (is_waterypool(mon->mx, mon->my)) tmp += 10;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 5;
 	}
 
 	if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr)) {
-	   if (is_pool(mon->mx, mon->my)) tmp += 10;
+	   if (is_waterypool(mon->mx, mon->my)) tmp += 10;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 5;
 	}
 
 	if (otmp->otyp == PLOW && is_swimmer(ptr)) {
-	   if (is_pool(mon->mx, mon->my)) tmp += 10;
+	   if (is_waterypool(mon->mx, mon->my)) tmp += 10;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 5;
 	}
 
 	if (otmp->otyp == MANCATCHER && is_swimmer(ptr)) {
-	   if (is_pool(mon->mx, mon->my)) tmp += 10;
+	   if (is_waterypool(mon->mx, mon->my)) tmp += 10;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 5;
 	}
 
 	if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr)) {
-	   if (is_pool(mon->mx, mon->my)) tmp += 12;
+	   if (is_waterypool(mon->mx, mon->my)) tmp += 12;
 	   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) tmp += 6;
 	}
 
@@ -623,37 +623,37 @@ struct monst *mon;
 
 	    /* trident is highly effective against swimmers */
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 12;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 12;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
 	    }
 
@@ -1121,214 +1121,214 @@ struct monst *mon;
 
 	    /* trident is highly effective against swimmers */
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 10;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 10;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 5;
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr)) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 12;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 12;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
 	    }
 
 		if (!(PlayerCannotUseSkills)) {
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 2;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 2;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 1;
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SKILLED) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 6;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 6;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 3;
 	    }
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 4;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 4;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 2;
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_EXPERT) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 12;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 12;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 6;
 	    }
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 8;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 8;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 4;
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 16;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 16;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 16;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 16;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 24;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 24;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 12;
 	    }
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 16;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 16;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 16;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 8;
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 32;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 32;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 32;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 32;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 32;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 32;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 32;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 32;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 16;
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_GRAND_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 48;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 48;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 24;
 	    }
 
 	    if (otmp->otyp == TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 20;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
 	    }
 
 	    if (otmp->otyp == FOURDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 20;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 20;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 10;
 	    }
 
 	    if (otmp->otyp == STYGIAN_PIKE && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 40;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 40;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 20;
 	    }
 
 	    if (otmp->otyp == MANCATCHER && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 40;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 40;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 20;
 	    }
 
 	    if (otmp->otyp == MARE_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 40;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 40;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 20;
 	    }
 
 	    if (otmp->otyp == PLOW && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 40;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 40;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 20;
 	    }
 
 	    if (otmp->otyp == TWO_HANDED_TRIDENT && is_swimmer(ptr) && (P_SKILL(P_TRIDENT) == P_SUPREME_MASTER) ) {
-		   if (is_pool(mon->mx, mon->my)) bonus += 60;
+		   if (is_waterypool(mon->mx, mon->my)) bonus += 60;
 		   else if (ptr->mlet == S_EEL || ptr->mlet == S_SNAKE) bonus += 30;
 	    }
 

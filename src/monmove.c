@@ -1626,7 +1626,7 @@ not_special:
 	    if (mmoved==1 && (u.ux != nix || u.uy != niy) && itsstuck(mtmp))
 		return(3);
 
-	    if (((IS_ROCK(levl[nix][niy].typ) && may_dig(nix,niy)) ||
+	    if (((IS_ROCK(levl[nix][niy].typ) && !(IS_FARMLAND(levl[nix][niy].typ) || IS_MOUNTAIN(levl[nix][niy].typ) || IS_GRAVEWALL(levl[nix][niy].typ)) && may_dig(nix,niy)) ||
 		 closed_door(nix, niy)) &&
 		mmoved==1 && can_tunnel && needspick(ptr)) {
 		if (closed_door(nix, niy)) {
@@ -1899,7 +1899,7 @@ postmov:
 			(mtmp->mcanmove && !mtmp->msleeping && rn2(5)))
 		    mtmp->mundetected = (ptr->mlet != S_EEL) ?
 			OBJ_AT(mtmp->mx, mtmp->my) :
-			(is_pool(mtmp->mx, mtmp->my) && !Is_waterlevel(&u.uz));
+			(is_waterypool(mtmp->mx, mtmp->my) && !Is_waterlevel(&u.uz));
 		newsym(mtmp->mx, mtmp->my);
 	    }
 	    if (mtmp->isshk) {

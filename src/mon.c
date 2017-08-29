@@ -957,8 +957,8 @@ register struct monst *mtmp;
 {
     boolean inpool, inlava, infountain;
 
-    inpool = is_pool(mtmp->mx,mtmp->my) &&
-	     !is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
+    inpool = (is_waterypool(mtmp->mx,mtmp->my) || is_watertunnel(mtmp->mx,mtmp->my)) &&
+	     !is_flyer(mtmp->data) && !(is_urinelake(mtmp->mx,mtmp->my)) && !(is_moorland(mtmp->mx,mtmp->my)) && !(is_crystalwater(mtmp->mx,mtmp->my)) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
     inlava = is_lava(mtmp->mx,mtmp->my) &&
 	     !is_flyer(mtmp->data) && (!mtmp->egotype_flying) && !is_floater(mtmp->data);
     infountain = IS_FOUNTAIN(levl[mtmp->mx][mtmp->my].typ);
@@ -1786,7 +1786,8 @@ mpickstuff(mtmp, str)
 			!acidic(&mons[otmp->corpsenm])) continue;
 		if (!touch_artifact(otmp,mtmp)) continue;
 		if (!can_carry(mtmp,otmp)) continue;
-		if (is_pool(mtmp->mx,mtmp->my)) continue;
+		if (is_waterypool(mtmp->mx,mtmp->my)) continue;
+		if (is_watertunnel(mtmp->mx,mtmp->my)) continue;
 		if ((otmp->oinvis && !perceives(mtmp->data) || otmp->oinvisreal) ) continue;
 		if (cansee(mtmp->mx,mtmp->my) && flags.verbose)
 			pline("%s picks up %s.", Monnam(mtmp),
@@ -1971,7 +1972,9 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 	for(nx = max(1,x-1); nx <= maxx; nx++)
 	  for(ny = max(0,y-1); ny <= maxy; ny++) {
 	    if(nx == x && ny == y) continue;
-	    if(IS_ROCK(ntyp = levl[nx][ny].typ) &&
+	    if(IS_ROCK(ntyp = levl[nx][ny].typ) && ntyp != FARMLAND &&
+		 !(ntyp == TUNNELWALL && !is_flyer(mdat) && !is_floater(mdat) && !(mon->egotype_flying)) &&
+		 !(ntyp == MOUNTAIN && (is_flyer(mdat) || is_floater(mdat) || (mon->egotype_flying))) &&
 	       !((flag & ALLOW_WALL) && may_passwall(nx,ny)) &&
 	       !((IS_TREE(ntyp) ? treeok : rockok) && may_dig(nx,ny))) continue;
 	    /* KMH -- Added iron bars */
@@ -2001,8 +2004,10 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 		continue;
 	    /*if((is_pool(nx,ny) == wantpool || is_lava(nx,ny) == wantlava || poolok) &&
 	       ( lavaok || wantlava || !is_lava(nx,ny))) {*/
-	    if((is_pool(nx,ny) == wantpool || (is_lava(nx,ny) && wantlava) || poolok) &&
-	       (lavaok || wantlava || !is_lava(nx,ny))) {
+
+	    if(( ( ( (is_waterypool(nx,ny) && !(is_crystalwater(nx,ny))) || is_watertunnel(nx,ny)) == wantpool) ||
+		 (is_lava(nx,ny) && wantlava) || (is_styxriver(nx,ny) && wantlava) || poolok) &&
+	       (lavaok || wantlava || (!is_lava(nx,ny) && !is_styxriver(nx,ny)) )) {
 		int dispx, dispy;
 		boolean monseeu = (mon->mcansee && (!Invis || perceives(mdat)));
 		boolean checkobj = OBJ_AT(nx,ny);
@@ -2484,13 +2489,13 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 	}
 
 	/* The following code assumes that all "wantlava" monsters are also "wantpool". --Amy */
-	if(!cnt && wantlava && !is_lava(x,y) && !is_pool(x,y) ) {
+	if(!cnt && wantlava && !is_lava(x,y) && !is_styxriver(x,y) && !is_waterypool(x,y) && !is_watertunnel(x,y) ) {
 		wantlava = FALSE;
 		wantpool = FALSE;
 		goto nexttry;
 	}
 	/* The reverse is obviously not true; this check had to be changed to make sure lava-loving monsters don't leave their pools of lava... */
-	if(!cnt && wantpool && !wantlava && !is_pool(x,y)) {
+	if(!cnt && wantpool && !wantlava && !is_waterypool(x,y) && !is_watertunnel(x,y)) {
 		wantpool = FALSE;
 		goto nexttry;
 	}
@@ -3597,7 +3602,7 @@ register struct monst *mdef;
 	if (mdef->mhp > 0) return;	/* lifesaved */
 
 	if (corpse_chance(mdef, (struct monst *)0, FALSE) /*&&
-	    (accessible(mdef->mx, mdef->my) || is_pool(mdef->mx, mdef->my))*/)
+	    (accessible(mdef->mx, mdef->my) || is_waterypool(mdef->mx, mdef->my))*/)
 		(void) make_corpse(mdef);
 }
 
@@ -3913,7 +3918,7 @@ xkilled(mtmp, dest)
 
 	if (issoviet && (x == u.ux) && (y == u.uy) ) goto sovietnothing;
 
-	if((!accessible(x, y) && !is_pool(x, y)) ||
+	if((!accessible(x, y) && !is_waterypool(x, y) && !is_watertunnel(x,y)) ||
 	   (x == u.ux && y == u.uy)) {
 	    /* might be mimic in wall or corpse in lava or on player's spot */
 	    redisp = TRUE;
@@ -5273,7 +5278,7 @@ boolean msg;
 	    mtmp->perminvis = pm_invisible(mdat);
 	mtmp->minvis = mtmp->invis_blkd ? 0 : mtmp->perminvis;
 	if (!(hides_under(mdat) && OBJ_AT(mtmp->mx, mtmp->my)) &&
-			!(mdat->mlet == S_EEL && is_pool(mtmp->mx, mtmp->my)))
+			!(mdat->mlet == S_EEL && is_waterypool(mtmp->mx, mtmp->my)))
 		mtmp->mundetected = 0;
 	if (u.usteed) {
 	    if (touch_petrifies(u.usteed->data) &&

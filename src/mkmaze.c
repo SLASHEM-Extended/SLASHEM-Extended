@@ -198,7 +198,7 @@ int x1, y1, x2, y2;
 	    for(y = y1; y <= y2; y++) {
 		lev = &levl[x][y];
 		type = lev->typ;
-		if (IS_WALL(type) && type != DBWALL) {
+		if (IS_WALL(type) && type != DBWALL && type != ROCKWALL && type != TUNNELWALL && type != GRAVEWALL) {
 		    if (is_solid(x-1,y-1) &&
 			is_solid(x-1,y  ) &&
 			is_solid(x-1,y+1) &&
@@ -220,7 +220,7 @@ int x1, y1, x2, y2;
 	    for(y = y1; y <= y2; y++) {
 		lev = &levl[x][y];
 		type = lev->typ;
-		if ( !(IS_WALL(type) && type != DBWALL)) continue;
+		if ( !(IS_WALL(type) && type != DBWALL && type != ROCKWALL && type != TUNNELWALL && type != GRAVEWALL)) continue;
 
 		/* set the locations TRUE if rock or wall or out of bounds */
 		locale[0][0] = iswall_or_stone(x-1,y-1);
@@ -262,28 +262,70 @@ boolean initial;
 
 	/* Put in the walls... */
 	{
-	    int wallchoice = rn2(100);
+	    int wallchoice = rn2(250);
 
-	    if(!(u.monstertimefinish % 43)) wallchoice = (50 + rn2(50));
+	    if(!(u.monstertimefinish % 43)) wallchoice = (101 + rn2(150));
 
-	    if(!(u.monstertimefinish % 943)) wallchoice = (75 + rn2(25));
+	    if(!(u.monstertimefinish % 943)) wallchoice = (151 + rn2(100));
 
-	    if(!(u.monstertimefinish % 3943)) wallchoice = (85 + rn2(15));
+	    if(!(u.monstertimefinish % 3943)) wallchoice = (201 + rn2(50));
 
-	    if (wallchoice < 88)
+	    if (wallchoice < 217)
 		wallify_stone(x1, y1, x2, y2);
-	    else if (wallchoice < 89)
+	    else if (wallchoice < 218)
 		wallify_special(x1, y1, x2, y2, CROSSWALL);
-	    else if (wallchoice < 90)
+	    else if (wallchoice < 219)
 		wallify_special(x1, y1, x2, y2, CLOUD);
-	    else if (wallchoice < 92)
+	    else if (wallchoice < 221)
 		wallify_special(x1, y1, x2, y2, MOAT);
-	    else if (wallchoice < 94)
+	    else if (wallchoice < 223)
 		wallify_special(x1, y1, x2, y2, ICE);
-	    else if (wallchoice < 96)
+	    else if (wallchoice < 225)
 		wallify_special(x1, y1, x2, y2, LAVAPOOL);
-	    else if (wallchoice < 97)
+	    else if (wallchoice < 226)
 		wallify_special(x1, y1, x2, y2, TREE);
+	    else if (wallchoice < 227)
+		wallify_special(x1, y1, x2, y2, GRAVEWALL);
+	    else if (wallchoice < 228)
+		wallify_special(x1, y1, x2, y2, TUNNELWALL);
+	    else if (wallchoice < 229)
+		wallify_special(x1, y1, x2, y2, FARMLAND);
+	    else if (wallchoice < 230)
+		wallify_special(x1, y1, x2, y2, MOUNTAIN);
+	    else if (wallchoice < 231)
+		wallify_special(x1, y1, x2, y2, WATERTUNNEL);
+	    else if (wallchoice < 232)
+		wallify_special(x1, y1, x2, y2, CRYSTALWATER);
+	    else if (wallchoice < 233)
+		wallify_special(x1, y1, x2, y2, MOORLAND);
+	    else if (wallchoice < 234)
+		wallify_special(x1, y1, x2, y2, URINELAKE);
+	    else if (wallchoice < 235)
+		wallify_special(x1, y1, x2, y2, SHIFTINGSAND);
+	    else if (wallchoice < 236)
+		wallify_special(x1, y1, x2, y2, STYXRIVER);
+	    else if (wallchoice < 237)
+		wallify_special(x1, y1, x2, y2, SNOW);
+	    else if (wallchoice < 238)
+		wallify_special(x1, y1, x2, y2, ASH);
+	    else if (wallchoice < 239)
+		wallify_special(x1, y1, x2, y2, SAND);
+	    else if (wallchoice < 240)
+		wallify_special(x1, y1, x2, y2, PAVEDFLOOR);
+	    else if (wallchoice < 241)
+		wallify_special(x1, y1, x2, y2, HIGHWAY);
+	    else if (wallchoice < 242)
+		wallify_special(x1, y1, x2, y2, GRASSLAND);
+	    else if (wallchoice < 243)
+		wallify_special(x1, y1, x2, y2, NETHERMIST);
+	    else if (wallchoice < 244)
+		wallify_special(x1, y1, x2, y2, STALACTITE);
+	    else if (wallchoice < 245)
+		wallify_special(x1, y1, x2, y2, CRYPTFLOOR);
+	    else if (wallchoice < 246)
+		wallify_special(x1, y1, x2, y2, BUBBLES);
+	    else if (wallchoice < 247)
+		wallify_special(x1, y1, x2, y2, RAINCLOUD);
 	    else
 		wallify_special(x1, y1, x2, y2, IRONBARS);
 	}
@@ -325,7 +367,7 @@ bad_location(x, y, lx, ly, hx, hy)
     return((boolean)(occupied(x, y) ||
 	   within_bounded_area(x,y, lx,ly, hx,hy) ||
 	   !((levl[x][y].typ == CORR /*&& level.flags.is_maze_lev*/) ||
-	       levl[x][y].typ == ROOM || levl[x][y].typ == AIR || levl[x][y].typ == CLOUD || levl[x][y].typ == ICE)));
+	       levl[x][y].typ == ROOM || levl[x][y].typ == AIR || levl[x][y].typ == CLOUD || levl[x][y].typ == ICE || levl[x][y].typ == SNOW || levl[x][y].typ == ASH || levl[x][y].typ == SAND || levl[x][y].typ == PAVEDFLOOR || levl[x][y].typ == HIGHWAY || levl[x][y].typ == GRASSLAND || levl[x][y].typ == NETHERMIST || levl[x][y].typ == STALACTITE || levl[x][y].typ == CRYPTFLOOR || levl[x][y].typ == BUBBLES || levl[x][y].typ == RAINCLOUD)));
 }
 
 boolean
@@ -624,7 +666,7 @@ fixup_special()
 	for(x = croom->lx; x <= croom->hx; x++)
 	    for(y = croom->ly; y <= croom->hy; y++) {
 		(void) mkgold((long) rn1(300, 600), x, y);
-		if (!rn2(3) && !is_pool(x,y))
+		if (!rn2(3) && !is_waterypool(x,y))
 		    (void)maketrap(x, y, rn2(3) ? LANDMINE : SPIKED_PIT, 5);
 	    }
     } else if (Role_if(PM_PRIEST) && In_quest(&u.uz)) {
@@ -691,7 +733,7 @@ boolean lava,rndom;
 	else*/ if (levl[cx][cy].typ == CORR) chance = 15;
 	else if (levl[cx][cy].typ == ROOM) chance = 30;
 	else if (IS_ROCK(levl[cx][cy].typ)) chance = 100;
-	if (rndomizat) trynmbr = (rn2(5) ? rnd(20) : rnd(7));
+	if (rndomizat) trynmbr = (rn2(5) ? rnd(80) : rnd(28));
 
 	if (rn2(100) < chance && !t_at(cx,cy)) {
 	    if (lava) {
@@ -703,6 +745,27 @@ boolean lava,rndom;
 			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
 			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
 			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
+			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
+			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
+			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
+			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
+			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
+			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
+			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
+			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
+			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
+			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
+			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
+			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
+			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
+			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
+			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
+			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
+			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
+			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
+			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
+			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
 			else levl[cx][cy].typ = LAVAPOOL;
 		}
 		else {levl[cx][cy].typ = LAVAPOOL;
@@ -716,6 +779,27 @@ boolean lava,rndom;
 			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
 			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
 			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
+			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
+			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
+			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
+			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
+			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
+			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
+			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
+			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
+			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
+			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
+			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
+			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
+			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
+			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
+			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
+			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
+			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
+			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
+			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
+			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
 			else levl[cx][cy].typ = POOL;
 		}
 		else 
@@ -725,6 +809,22 @@ boolean lava,rndom;
 			levl[cx][cy].typ = THRONE;
 		else if (!((moves + u.monstertimefinish) % 857 ) && !rn2(ishaxor ? 1000 : 2000))
 			levl[cx][cy].typ = THRONE;
+		else if (!rn2(ishaxor ? 50000 : 100000))
+			levl[cx][cy].typ = PENTAGRAM;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = WELL;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = POISONEDWELL;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = WAGON;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = BURNINGWAGON;
+		else if (!rn2(ishaxor ? 20000 : 40000))
+			levl[cx][cy].typ = WOODENTABLE;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = CARVEDBED;
+		else if (!rn2(ishaxor ? 10000 : 20000))
+			levl[cx][cy].typ = STRAWMATTRESS;
 		else if (!rn2(ishaxor ? 2500 : 5000)) {
 			levl[cx][cy].typ = FOUNTAIN;
 			level.flags.nfountains++;
@@ -866,7 +966,7 @@ boolean lava,rndom;
 	if (levl[cx][cy].typ == CORR) chance = 15;
 	else if (levl[cx][cy].typ == ROOM) chance = 30;
 	else if (IS_ROCK(levl[cx][cy].typ)) chance = 100;
-	if (rndomizat) trynmbr = (rn2(5) ? rnd(12) : rnd(7));
+	if (rndomizat) trynmbr = (rn2(5) ? rnd(50) : rnd(28));
 
 	if (rn2(100) < chance && !t_at(cx,cy)) {
 	    if (lava) {
@@ -878,6 +978,27 @@ boolean lava,rndom;
 			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
 			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
 			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
+			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
+			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
+			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
+			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
+			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
+			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
+			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
+			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
+			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
+			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
+			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
+			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
+			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
+			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
+			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
+			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
+			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
+			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
+			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
+			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
 			else levl[cx][cy].typ = LAVAPOOL;
 		}
 		else {levl[cx][cy].typ = LAVAPOOL;
@@ -891,6 +1012,27 @@ boolean lava,rndom;
 			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
 			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
 			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
+			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
+			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
+			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
+			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
+			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
+			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
+			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
+			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
+			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
+			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
+			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
+			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
+			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
+			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
+			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
+			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
+			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
+			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
+			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
+			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
+			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
 			else levl[cx][cy].typ = POOL;
 		}
 		else 
@@ -900,6 +1042,22 @@ boolean lava,rndom;
 			levl[cx][cy].typ = THRONE;
 		else if (!((moves + u.monstertimefinish) % 877 ) && !rn2(ishaxor ? 1000 : 2000))
 			levl[cx][cy].typ = THRONE;
+		else if (!rn2(ishaxor ? 50000 : 100000))
+			levl[cx][cy].typ = PENTAGRAM;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = WELL;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = POISONEDWELL;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = WAGON;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = BURNINGWAGON;
+		else if (!rn2(ishaxor ? 20000 : 40000))
+			levl[cx][cy].typ = WOODENTABLE;
+		else if (!rn2(ishaxor ? 25000 : 50000))
+			levl[cx][cy].typ = CARVEDBED;
+		else if (!rn2(ishaxor ? 10000 : 20000))
+			levl[cx][cy].typ = STRAWMATTRESS;
 		else if (!rn2(ishaxor ? 2500 : 5000)) {
 			levl[cx][cy].typ = FOUNTAIN;
 			level.flags.nfountains++;
@@ -992,7 +1150,7 @@ mkriversY()
     if (!rn2(10000)) nriv += rnd(15);
     while (nriv--) {
       lava = rn2(100) < depth(&u.uz);
-      rndom = (rn2(5) ? 0 : 1);
+      rndom = (rn2(4) ? 0 : 1);
 	if (rn2(2)) makeriverY(0, rn2(ROWNO), COLNO-1, rn2(ROWNO), lava, rndom);
 	else makeriverY(rn2(COLNO), 0, rn2(COLNO), ROWNO-1, lava, rndom);
     }
@@ -1327,6 +1485,22 @@ int x,y;
 				levl[x][y].typ = THRONE;
 			else if (!((moves + u.monstertimefinish) % 757 ) && !rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = THRONE;
+			else if (!rn2(ishaxor ? 50000 : 100000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = PENTAGRAM;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WELL;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = POISONEDWELL;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WAGON;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = BURNINGWAGON;
+			else if (!rn2(ishaxor ? 20000 : 40000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WOODENTABLE;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CARVEDBED;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = STRAWMATTRESS;
 			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = FOUNTAIN;
 				level.flags.nfountains++;
@@ -1421,11 +1595,53 @@ int x,y;
 				levl[x][y].typ = CLOUD;
 			else if (!((moves + u.monstertimefinish) % 777 ) && !rn2(ishaxor ? 50 : 100) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = CLOUD;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = GRAVEWALL;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SNOW;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = ASH;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SAND;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = PAVEDFLOOR;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = HIGHWAY;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = GRASSLAND;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = NETHERMIST;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = STALACTITE;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CRYPTFLOOR;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = BUBBLES;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = RAINCLOUD;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = TUNNELWALL;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = FARMLAND;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = MOUNTAIN;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WATERTUNNEL;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CRYSTALWATER;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = MOORLAND;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = URINELAKE;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SHIFTINGSAND;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = STYXRIVER;
 
 		}
 		if(!IS_DOOR(levl[x][y].typ) && specialcorridor) {
 
-		    levl[x][y].typ = (specialcorridor == 1) ? ICE : CLOUD;
+		    levl[x][y].typ = walkableterrain();
 		    levl[x][y].flags = 0;
 		}
 
@@ -1449,6 +1665,22 @@ int x,y;
 				levl[x][y].typ = THRONE;
 			else if (!((moves + u.monstertimefinish) % 757 ) && !rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = THRONE;
+			else if (!rn2(ishaxor ? 50000 : 100000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = PENTAGRAM;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WELL;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = POISONEDWELL;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WAGON;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = BURNINGWAGON;
+			else if (!rn2(ishaxor ? 20000 : 40000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WOODENTABLE;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CARVEDBED;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = STRAWMATTRESS;
 			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))){
 				levl[x][y].typ = FOUNTAIN;
 				level.flags.nfountains++;
@@ -1543,9 +1775,51 @@ int x,y;
 				levl[x][y].typ = CLOUD;
 			else if (!((moves + u.monstertimefinish) % 777 ) && !rn2(ishaxor ? 50 : 100) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = CLOUD;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = GRAVEWALL;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SNOW;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = ASH;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SAND;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = PAVEDFLOOR;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = HIGHWAY;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = GRASSLAND;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = NETHERMIST;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = STALACTITE;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CRYPTFLOOR;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = BUBBLES;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = RAINCLOUD;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = TUNNELWALL;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = FARMLAND;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = MOUNTAIN;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WATERTUNNEL;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CRYSTALWATER;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = MOORLAND;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = URINELAKE;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SHIFTINGSAND;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = STYXRIVER;
 
 			}
-			else levl[x][y].typ = (specialcorridor == 1) ? ICE : CLOUD;
+			else levl[x][y].typ = walkableterrain();
 
 			move(&x, &y, dir);
 			pos++;
@@ -1589,6 +1863,22 @@ int x,y;
 				levl[x][y].typ = THRONE;
 			else if (!((moves + u.monstertimefinish) % 757 ) && !rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = THRONE;
+			else if (!rn2(ishaxor ? 50000 : 100000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = PENTAGRAM;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WELL;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = POISONEDWELL;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WAGON;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = BURNINGWAGON;
+			else if (!rn2(ishaxor ? 20000 : 40000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WOODENTABLE;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CARVEDBED;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = STRAWMATTRESS;
 			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = FOUNTAIN;
 				level.flags.nfountains++;
@@ -1683,11 +1973,53 @@ int x,y;
 				levl[x][y].typ = CLOUD;
 			else if (!((moves + u.monstertimefinish) % 777 ) && !rn2(ishaxor ? 50 : 100) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = CLOUD;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = GRAVEWALL;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SNOW;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = ASH;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SAND;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = PAVEDFLOOR;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = HIGHWAY;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = GRASSLAND;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = NETHERMIST;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = STALACTITE;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CRYPTFLOOR;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = BUBBLES;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = RAINCLOUD;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = TUNNELWALL;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = FARMLAND;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = MOUNTAIN;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WATERTUNNEL;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CRYSTALWATER;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = MOORLAND;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = URINELAKE;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SHIFTINGSAND;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = STYXRIVER;
 
 	}
 	if(!IS_DOOR(levl[x][y].typ) && specialcorridor) {
 
-	    levl[x][y].typ = (specialcorridor == 1) ? ICE : CLOUD;
+	    levl[x][y].typ = walkableterrain();
 	    levl[x][y].flags = 0;
 	}
 
@@ -1708,6 +2040,22 @@ int x,y;
 				levl[x][y].typ = THRONE;
 			else if (!((moves + u.monstertimefinish) % 757 ) && !rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = THRONE;
+			else if (!rn2(ishaxor ? 50000 : 100000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = PENTAGRAM;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WELL;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = POISONEDWELL;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WAGON;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = BURNINGWAGON;
+			else if (!rn2(ishaxor ? 20000 : 40000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WOODENTABLE;
+			else if (!rn2(ishaxor ? 25000 : 50000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CARVEDBED;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = STRAWMATTRESS;
 			else if (!rn2(ishaxor ? 2500 : 5000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
 				levl[x][y].typ = FOUNTAIN;
 				level.flags.nfountains++;
@@ -1799,9 +2147,51 @@ int x,y;
 				levl[x][y].typ = CLOUD;
 			else if (!((moves + u.monstertimefinish) % 777 ) && !rn2(ishaxor ? 50 : 100) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = CLOUD;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = GRAVEWALL;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SNOW;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = ASH;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SAND;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = PAVEDFLOOR;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = HIGHWAY;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = GRASSLAND;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = NETHERMIST;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = STALACTITE;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CRYPTFLOOR;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = BUBBLES;
+			else if (!rn2(ishaxor ? 2000 : 4000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = RAINCLOUD;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = TUNNELWALL;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = FARMLAND;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = MOUNTAIN;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = WATERTUNNEL;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = CRYSTALWATER;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = MOORLAND;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = URINELAKE;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = SHIFTINGSAND;
+			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
+				levl[x][y].typ = STYXRIVER;
 
 		}
-		else levl[x][y].typ = (specialcorridor == 1) ? ICE : CLOUD;
+		else levl[x][y].typ = walkableterrain();
 		move(&x,&y,dir);
 		walkfrom(x,y);
 	}
@@ -1860,7 +2250,7 @@ mazexy(cc)	/* find random point in generated corridors,
 		    for (y = 0; y < (y_maze_max>>1) - 1; y++) {
 			cc->x = 3 + 2 * x;
 			cc->y = 3 + 2 * y;
-			if ((levl[cc->x][cc->y].typ == CLOUD) || (levl[cc->x][cc->y].typ == ICE)) return;
+			if ((levl[cc->x][cc->y].typ == CLOUD) || (levl[cc->x][cc->y].typ == ICE) || (levl[cc->x][cc->y].typ == SNOW) || (levl[cc->x][cc->y].typ == ASH) || (levl[cc->x][cc->y].typ == SAND) || (levl[cc->x][cc->y].typ == PAVEDFLOOR) || (levl[cc->x][cc->y].typ == HIGHWAY) || (levl[cc->x][cc->y].typ == GRASSLAND) || (levl[cc->x][cc->y].typ == NETHERMIST) || (levl[cc->x][cc->y].typ == STALACTITE) || (levl[cc->x][cc->y].typ == CRYPTFLOOR) || (levl[cc->x][cc->y].typ == BUBBLES) || (levl[cc->x][cc->y].typ == RAINCLOUD)) return;
 		    }
 
 		panic("mazexy: can't find a place!");
@@ -1905,7 +2295,7 @@ mazexy_all(cc)	/* mazexy() only returns "even-numbered" squares... --Amy */
 		    for (y = 0; y < (y_maze_max) - 1; y++) {
 			cc->x = 3 + x;
 			cc->y = 3 + y;
-			if ((levl[cc->x][cc->y].typ == CLOUD) || (levl[cc->x][cc->y].typ == ICE)) return;
+			if ((levl[cc->x][cc->y].typ == CLOUD) || (levl[cc->x][cc->y].typ == ICE) || (levl[cc->x][cc->y].typ == SNOW) || (levl[cc->x][cc->y].typ == ASH) || (levl[cc->x][cc->y].typ == SAND) || (levl[cc->x][cc->y].typ == PAVEDFLOOR) || (levl[cc->x][cc->y].typ == HIGHWAY) || (levl[cc->x][cc->y].typ == GRASSLAND) || (levl[cc->x][cc->y].typ == NETHERMIST) || (levl[cc->x][cc->y].typ == STALACTITE) || (levl[cc->x][cc->y].typ == CRYPTFLOOR) || (levl[cc->x][cc->y].typ == BUBBLES) || (levl[cc->x][cc->y].typ == RAINCLOUD)) return;
 		    }
 
 		panic("mazexy_all: can't find a place!");
@@ -2202,7 +2592,7 @@ water_friction()
 		do {
 		    dy = rn2(3) - 1;		/* -1, 0, 1 */
 		    y = u.uy + dy;
-		} while (dy && (!isok(x,y) || !is_pool(x,y)));
+		} while (dy && (!isok(x,y) || !is_waterypool(x,y)));
 		u.dx = 0;
 		u.dy = dy;
 		eff = TRUE;
@@ -2212,7 +2602,7 @@ water_friction()
 		do {
 		    dx = rn2(3) - 1;		/* -1 .. 1 */
 		    x = u.ux + dx;
-		} while (dx && (!isok(x,y) || !is_pool(x,y)));
+		} while (dx && (!isok(x,y) || !is_waterypool(x,y)));
 		u.dy = 0;
 		u.dx = dx;
 		eff = TRUE;
@@ -2302,6 +2692,12 @@ xchar x,y;
 		return "swamp";
 	else if (ltyp == POOL)
 		return "pool of water";
+	else if (ltyp == MOORLAND)
+		return "moorland";
+	else if (ltyp == URINELAKE)
+		return "urine lake";
+	else if (ltyp == STYXRIVER)
+		return "styx river";
 	else return "water";
 }
 

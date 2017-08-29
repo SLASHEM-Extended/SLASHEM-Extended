@@ -116,7 +116,7 @@ unsigned *ospecial;
 	ch = showsyms[offset];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {
-	    if (offset >= S_vwall && offset <= S_hcdoor)
+	    if (offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall))
 		color = CLR_BROWN;
 	    else if (offset >= S_arrow_trap && offset <= S_timerun_trap)
 		color = CLR_MAGENTA;
@@ -140,7 +140,7 @@ unsigned *ospecial;
 		color = CLR_YELLOW;
 		/* special level colors by Amy, code partly stolen from dnethack */
 	    else if(Is_lawful_quest(&u.uz)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BLACK;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -148,7 +148,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(Is_nymph_level(&u.uz)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GREEN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -156,7 +156,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(Is_forge_level(&u.uz)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_ORANGE;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -164,7 +164,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(Is_hitch_level(&u.uz)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_CYAN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -172,7 +172,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(Is_compu_level(&u.uz)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -180,7 +180,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(Is_key_level(&u.uz)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_MAGENTA;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -188,7 +188,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(Is_mtemple_level(&u.uz)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_ORANGE;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -196,7 +196,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(Is_stronghold(&u.uz)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_RED;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -204,7 +204,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(In_sheol(&u.uz)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_CYAN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -212,7 +212,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,BEEHIVE)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -220,7 +220,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,COURT)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_MAGENTA;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -228,7 +228,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,SWAMP)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GREEN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -236,7 +236,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,VAULT)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -244,7 +244,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,MORGUE)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BLACK;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -252,7 +252,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,BARRACKS)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_RED;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -260,7 +260,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,ZOO)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BROWN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -268,7 +268,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,REALZOO)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BROWN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -276,7 +276,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,DELPHI)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -284,7 +284,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,TEMPLE)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_CYAN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -292,7 +292,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,GIANTCOURT)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_CYAN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -300,7 +300,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,LEPREHALL)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GREEN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -308,7 +308,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,DRAGONLAIR)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_MAGENTA;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -316,7 +316,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,BADFOODSHOP)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_RED;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -324,7 +324,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,COCKNEST)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -332,7 +332,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,ANTHOLE)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BROWN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -340,7 +340,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,LEMUREPIT)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BLACK;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -348,7 +348,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,MIGOHIVE)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_GREEN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -356,7 +356,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,FUNGUSFARM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_GREEN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -364,7 +364,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,CLINIC)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_ORANGE;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -372,7 +372,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,TERRORHALL)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_CYAN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -380,7 +380,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,RIVERROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -388,7 +388,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,ELEMHALL)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -396,7 +396,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,ANGELHALL)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_WHITE;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -404,7 +404,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,NYMPHHALL)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GREEN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -412,7 +412,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,SPIDERHALL)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -420,7 +420,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,TROLLHALL)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BROWN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -428,7 +428,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,HUMANHALL)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -436,7 +436,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,GOLEMHALL)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_GRAY;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -444,7 +444,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,COINHALL)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_YELLOW;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -452,7 +452,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,DOUGROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_CYAN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -460,7 +460,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,ARMORY)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_CYAN;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -468,7 +468,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,TENSHALL)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -476,7 +476,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,INSIDEROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -484,7 +484,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_rooms(x,y,POOLROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_BRIGHT_BLUE;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -492,7 +492,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,1) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 1;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -500,7 +500,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,2) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 2;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -508,7 +508,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,3) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 3;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -516,7 +516,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,4) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 4;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -524,7 +524,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,5) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 5;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -532,7 +532,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,6) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 6;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -540,7 +540,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,7) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 7;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -548,7 +548,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,8) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 8;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -556,7 +556,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,9) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 9;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -564,7 +564,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,10) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 10;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -572,7 +572,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,11) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 11;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -580,7 +580,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,12) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 12;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -588,7 +588,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,13) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 13;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -596,7 +596,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,14) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 14;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -604,7 +604,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,15) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 15;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -612,7 +612,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if(*in_roomscolouur(x,y,20) && *in_rooms(x,y,OROOM)) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -621,7 +621,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 1) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 1;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -630,7 +630,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 2) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 2;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -639,7 +639,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 3) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 3;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -648,7 +648,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 4) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 4;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -657,7 +657,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 5) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 5;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -666,7 +666,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 6) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 6;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -675,7 +675,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 7) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 7;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -684,7 +684,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 8) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 8;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -693,7 +693,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 9) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 9;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -702,7 +702,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 10) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 10;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -711,7 +711,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 11) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 11;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -720,7 +720,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 12) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 12;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -729,7 +729,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 13) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 13;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -738,7 +738,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 14) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 14;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -747,7 +747,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 15) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 15;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -756,7 +756,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if (colorroom->fleecycolor == 16) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -765,7 +765,7 @@ unsigned *ospecial;
 			else cmap_color(offset);
 		}
 		else if ((100 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 1;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -773,7 +773,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((101 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 2;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -781,7 +781,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((102 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 3;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -789,7 +789,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((103 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 4;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -797,7 +797,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((104 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 5;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -805,7 +805,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((105 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 6;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -813,7 +813,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((106 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 7;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -821,7 +821,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((107 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 8;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -829,7 +829,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((108 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 9;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -837,7 +837,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((109 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 10;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -845,7 +845,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((110 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 11;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -853,7 +853,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((111 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 12;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -861,7 +861,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((112 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 13;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -869,7 +869,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((113 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 14;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -877,7 +877,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((114 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = 15;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -885,7 +885,7 @@ unsigned *ospecial;
 			}
 			else cmap_color(offset);
 		} else if ((115 + u.monstertimefinish + depth(&u.uz)) % 16 == 0) {
-			if(offset >= S_vwall && offset <= S_hcdoor){
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
@@ -922,7 +922,7 @@ unsigned *ospecial;
 					break;
 			}
 		}
-		if ((Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) && (offset >= S_vwall && offset <= S_hcdoor)) color = CLR_BRIGHT_BLUE;
+		if ((Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) && (offset >= S_vwall && offset <= S_hcdoor) && !(offset >= S_rockwall && offset <= S_tunnelwall)) color = CLR_BRIGHT_BLUE;
 		if ((Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) && (offset == S_dungwall)) color = CLR_BRIGHT_BLUE;
 		if ((KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone()) && (offset == S_grayglyph)) color = rnd(15);
 		if (Hallucination) color = rnd(15);

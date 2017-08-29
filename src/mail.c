@@ -303,7 +303,7 @@ md_rush(md,tx,ty)
 	/* Find a good location next to (fx,fy) closest to (tx,ty). */
 	d1 = dist2(fx,fy,tx,ty);
 	for (dx = -1; dx <= 1; dx++) for(dy = -1; dy <= 1; dy++)
-	    if ((dx || dy) && isok(fx+dx,fy+dy) &&
+	    if ((dx || dy) && isok(fx+dx,fy+dy) && !IS_WATERTUNNEL(levl[fx+dx][fy+dy].typ) &&
 				       !IS_STWALL(levl[fx+dx][fy+dy].typ)) {
 		d2 = dist2(fx+dx,fy+dy,tx,ty);
 		if (d2 < d1) {

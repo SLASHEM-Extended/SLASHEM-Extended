@@ -48,6 +48,34 @@ int x,y;
 }
 
 boolean
+is_waterypool(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == POOL || ltyp == MOAT || ltyp == WATER || ltyp == CRYSTALWATER || ltyp == MOORLAND || ltyp == URINELAKE) return TRUE;
+    if (ltyp == DRAWBRIDGE_UP &&
+	(levl[x][y].drawbridgemask & DB_UNDER) == DB_MOAT) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_drowningpool(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == POOL || ltyp == MOAT || ltyp == WATER || ltyp == CRYSTALWATER || ltyp == WATERTUNNEL) return TRUE;
+    if (ltyp == DRAWBRIDGE_UP &&
+	(levl[x][y].drawbridgemask & DB_UNDER) == DB_MOAT) return TRUE;
+    return FALSE;
+}
+
+boolean
 is_lava(x,y)
 int x,y;
 {
@@ -58,6 +86,126 @@ int x,y;
     if (ltyp == LAVAPOOL
 	|| (ltyp == DRAWBRIDGE_UP
 	    && (levl[x][y].drawbridgemask & DB_UNDER) == DB_LAVA)) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_watertunnel(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == WATERTUNNEL) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_crystalwater(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == CRYSTALWATER) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_moorland(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == MOORLAND) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_urinelake(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == URINELAKE) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_shiftingsand(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == SHIFTINGSAND) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_styxriver(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == STYXRIVER) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_burningwagon(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == BURNINGWAGON) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_nethermist(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == NETHERMIST) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_stalactite(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == STALACTITE) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_raincloud(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == RAINCLOUD) return TRUE;
     return FALSE;
 }
 

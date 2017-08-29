@@ -231,38 +231,68 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'-', "wall",		C(CLR_GRAY)},	/* tdwall */
 /*10*/	{'|', "wall",		C(CLR_GRAY)},	/* tlwall */
 	{'|', "wall",		C(CLR_GRAY)},	/* trwall */
+	{'#', "rock wall",		C(CLR_BROWN)},	/* rockwall */
+	{'#', "grave wall",		C(CLR_YELLOW)},	/* gravewall */
+	{'#', "tunnel",		C(CLR_RED)},	/* tunnelwall */
 	{'.', "doorway",	C(CLR_GRAY)},	/* ndoor */
 	{'-', "open door",	C(CLR_BROWN)},	/* vodoor */
 	{'|', "open door",	C(CLR_BROWN)},	/* hodoor */
 	{'+', "closed door",	C(CLR_BROWN)},	/* vcdoor */
 	{'+', "closed door",	C(CLR_BROWN)},	/* hcdoor */
-	{'#', "iron bars",	C(HI_METAL)},	/* bars */
+/*20*/	{'#', "iron bars",	C(HI_METAL)},	/* bars */
 	{'#', "tree",		C(CLR_GREEN)},	/* tree */
+	{'#', "farmland",		C(CLR_BRIGHT_GREEN)},	/* farmland */
+	{'#', "mountain",		C(CLR_WHITE)},	/* mountain */
 	{'.', "floor of a room",C(CLR_GRAY)},	/* room */
 	{'.', "dark part of a room",C(CLR_BLACK)},	/* dark room */
-/*20*/	{',', "corridor",	C(CLR_BLACK)},	/* dark corr */
+	{',', "corridor",	C(CLR_BLACK)},	/* dark corr */
 	{',', "lit corridor",	C(CLR_GRAY)},	/* lit corr (see mapglyph.c) */
 	{'<', "staircase up",	C(CLR_WHITE)},	/* upstair */
 	{'>', "staircase down",	C(CLR_WHITE)},	/* dnstair */
-	{'<', "ladder up",	C(CLR_BROWN)},	/* upladder */
+/*30*/	{'<', "ladder up",	C(CLR_BROWN)},	/* upladder */
 	{'>', "ladder down",	C(CLR_BROWN)},	/* dnladder */
 	{'_', "altar",		C(CLR_GRAY)},	/* altar */
 	{'|', "grave",      C(CLR_GRAY)},   /* grave */
 	{'\\', "opulent throne",C(HI_GOLD)},	/* throne */
 	{'{', "sink",		C(CLR_ORANGE)},	/* sink */
-/*30*/	{'{', "toilet",         C(CLR_YELLOW)},  /* toilet */
+	{'{', "toilet",         C(CLR_YELLOW)},  /* toilet */
 	{'{', "fountain",       C(CLR_BRIGHT_BLUE)},   /* fountain */
 	{'}', "water",		C(CLR_BRIGHT_BLUE)},	/* pool */
 	{'.', "ice",		C(CLR_CYAN)},	/* ice */
-	{'}', "molten lava",	C(CLR_RED)},	/* lava */
+/*40*/	{'}', "molten lava",	C(CLR_RED)},	/* lava */
 	{'.', "lowered drawbridge",C(CLR_ORANGE)},	/* vodbridge */
 	{'.', "lowered drawbridge",C(CLR_ORANGE)},	/* hodbridge */
 	{'#', "raised drawbridge",C(CLR_ORANGE)},/* vcdbridge */
 	{'#', "raised drawbridge",C(CLR_ORANGE)},/* hcdbridge */
 	{'`', "air",		C(CLR_YELLOW)},	/* open air */
-/*40*/	{'`', "cloud",		C(CLR_CYAN)},	/* [part of] a cloud */
+	{'`', "cloud",		C(CLR_CYAN)},	/* [part of] a cloud */
 	{'#', "solid rock",		C(CLR_BROWN)},	/* dungwall */
 	{'}', "water",		C(CLR_BRIGHT_BLUE)},	/* under water */
+	{'#', "water tunnel",		C(CLR_BRIGHT_BLUE)},	/* watertunnel */
+/*50*/	{'}', "crystal water",		C(CLR_BRIGHT_CYAN)},	/* crystalwater */
+	{'}', "moorland",		C(CLR_GREEN)},	/* moorland */
+	{'}', "urine lake",		C(CLR_YELLOW)},	/* urinelake */
+	{'}', "shifting sand",		C(CLR_BROWN)},	/* shiftingsand */
+	{'}', "styx river",		C(CLR_BRIGHT_GREEN)},	/* styxriver */
+	{'{', "well",		C(CLR_GREEN)},	/* well */
+	{'{', "poisoned well",		C(CLR_BRIGHT_GREEN)},	/* poisonedwell */
+	{'\\', "wagon",		C(CLR_RED)},	/* wagon */
+	{'\\', "burning wagon",		C(CLR_ORANGE)},	/* burningwagon */
+	{'|', "wooden table",		C(CLR_BROWN)},	/* woodentable */
+/*60*/	{'|', "rude straw mattress",		C(CLR_YELLOW)},	/* strawmattress */
+	{'.', "snow",		C(CLR_WHITE)},	/* snow */
+	{'.', "ash",		C(CLR_ORANGE)},	/* ash */
+	{'.', "sand",		C(CLR_BROWN)},	/* sand */
+	{'.', "paved floor",		C(CLR_BRIGHT_GREEN)},	/* pavedfloor */
+	{'.', "highway",		C(CLR_YELLOW)},	/* highway */
+	{'.', "grass",		C(CLR_GREEN)},	/* grassland */
+	{'.', "nether mist",		C(CLR_BRIGHT_MAGENTA)},	/* nethermist */
+	{'`', "stalactite",		C(CLR_BRIGHT_MAGENTA)},	/* stalactite */
+	{'.', "floor of the crypt",		C(CLR_BRIGHT_BLUE)},	/* cryptfloor */
+/*70*/	{'`', "bubble",		C(CLR_ORANGE)},	/* bubbles */
+	{'`', "rain cloud",		C(CLR_BRIGHT_BLUE)},	/* raincloud */
+	{'|', "pentagram inscribed on the floor",		C(CLR_ORANGE)},	/* pentagram */
+	{'|', "ornately carved bed",		C(CLR_BRIGHT_CYAN)},	/* carvedbed */
 	{'#', "grayout",		C(CLR_GRAY)},	/* gray glyph */
 	{'^', "arrow trap",	C(HI_METAL)},	/* trap */
 	{'^', "dart trap",	C(HI_METAL)},	/* trap */
@@ -272,7 +302,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "land mine",	C(CLR_RED)},	/* trap */
 	{'^', "rolling boulder trap",	C(CLR_GRAY)},	/* trap */
 	{'^', "sleeping gas trap",C(HI_ZAP)},	/* trap */
-/*50*/	{'^', "rust trap",	C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "rust trap",	C(CLR_BRIGHT_BLUE)},	/* trap */
 	{'^', "fire trap",	C(CLR_ORANGE)},	/* trap */
 	{'^', "pit",		C(CLR_BLACK)},	/* trap */
 	{'^', "spiked pit",	C(CLR_BLACK)},	/* trap */
@@ -282,7 +312,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "level teleporter", C(CLR_MAGENTA)},	/* trap */
 	{'^', "magic portal",	C(CLR_BRIGHT_MAGENTA)},	/* trap */
 	{'^', "web",		C(CLR_WHITE)},	/* web */
-/*60*/	{'^', "statue trap",	C(CLR_GRAY)},	/* trap */
+	{'^', "statue trap",	C(CLR_GRAY)},	/* trap */
 	{'^', "magic trap",	C(HI_ZAP)},	/* trap */
 	{'^', "anti-magic field", C(HI_ZAP)},	/* trap */
 	{'^', "polymorph trap",	C(CLR_BRIGHT_GREEN)},	/* trap */
@@ -724,38 +754,68 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	0xc2,	/* S_tdwall:	meta-B, T down */
 /*10*/	0xb4,	/* S_tlwall:	meta-4, T left */
 	0xc3,	/* S_trwall:	meta-C, T right */
+	g_FILLER(S_rockwall),	/* rockwall */
+	g_FILLER(S_gravewall),	/* gravewall */
+	g_FILLER(S_tunnelwall),	/* tunnelwall */
 	0xfa,	/* S_ndoor:	meta-z, centered dot */
 	0xfe,	/* S_vodoor:	meta-~, small centered square */
 	0xfe,	/* S_hodoor:	meta-~, small centered square */
 	g_FILLER(S_vcdoor),
 	g_FILLER(S_hcdoor),
-	g_FILLER(S_bars),	/* S_bars:	equivalency, courtesy Sascha; but Amy says it just shows as "-" on some systems */
+/*20*/	g_FILLER(S_bars),	/* S_bars:	equivalency, courtesy Sascha; but Amy says it just shows as "-" on some systems */
 	241,	/* S_tree:	plus or minus symbol */
+	241,	/* S_farmland:	plus or minus symbol */
+	g_FILLER(S_mountain),	/* mountain */
 	0xfa,	/* S_room:	meta-z, centered dot */
 	g_FILLER(S_stone),	/* S_darkroom:	meta-z, centered dot */
-/*20*/	0xb0,	/* S_corr:	meta-0, light shading */
+	0xb0,	/* S_corr:	meta-0, light shading */
 	0xb1,	/* S_litcorr:	meta-1, medium shading */
 	g_FILLER(S_upstair),
 	g_FILLER(S_dnstair),
-	g_FILLER(S_upladder),
+/*30*/	g_FILLER(S_upladder),
 	g_FILLER(S_dnladder),
 	g_FILLER(S_altar),
 	g_FILLER(S_grave),
 	g_FILLER(S_throne),
 	0xf4, /*(S_sink)*/
-/*30*/	0xf4, /*(S_toilet),*/
+	0xf4, /*(S_toilet),*/
 	0xf4,	/* S_fountain:	meta-t, integral top half */
 	0xf7,	/* S_pool:	meta-w, approx. equals */
 	0xfa,	/* S_ice:	meta-z, centered dot */
-	0xf7,	/* S_lava:	meta-w, approx. equals */
+/*40*/	0xf7,	/* S_lava:	meta-w, approx. equals */
 	0xfa,	/* S_vodbridge:	meta-z, centered dot */
 	0xfa,	/* S_hodbridge:	meta-z, centered dot */
 	g_FILLER(S_vcdbridge),
 	g_FILLER(S_hcdbridge),
 	g_FILLER(S_air),
-/*40*/	g_FILLER(S_cloud),
+	g_FILLER(S_cloud),
 	g_FILLER(S_dungwall),	/* dungwall */
 	0xf7,	/* S_water:	meta-w, approx. equals */
+	g_FILLER(S_watertunnel),	/* watertunnel */
+/*50*/	0xf7,	/* S_crystalwater:	meta-w, approx. equals */
+	0xf7, /* moorland */
+	0xf7, /* urinelake */
+	0xf7, /* shiftingsand */
+	0xf7, /* styxriver */
+	0xf4, /* well */
+	0xf4, /* poisonedwell */
+	g_FILLER(S_wagon),
+	g_FILLER(S_burningwagon),
+	g_FILLER(S_woodentable),
+/*60*/	g_FILLER(S_strawmattress),
+	0xfa, /* S_snow */
+	0xfa, /* S_ash */
+	0xfa, /* S_sand */
+	0xfa, /* S_pavedfloor */
+	0xfa, /* S_highway */
+	0xfa, /* S_grass */
+	0xfa, /* S_nethermist */
+	g_FILLER(S_stalactite),
+	0xfa, /* S_cryptfloor */
+/*70*/	g_FILLER(S_bubbles),
+	g_FILLER(S_raincloud),
+	g_FILLER(S_pentagram),
+	g_FILLER(S_carvedbed),
 	g_FILLER(S_grayglyph),
 	g_FILLER(S_arrow_trap),
 	g_FILLER(S_dart_trap),
@@ -765,7 +825,7 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_land_mine),
 	g_FILLER(S_rolling_boulder_trap),
 	g_FILLER(S_sleeping_gas_trap),
-/*50*/	g_FILLER(S_rust_trap),
+	g_FILLER(S_rust_trap),
 	g_FILLER(S_fire_trap),
 	g_FILLER(S_pit),
 	g_FILLER(S_spiked_pit),
@@ -775,7 +835,7 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_level_teleporter),
 	g_FILLER(S_magic_portal),
 	g_FILLER(S_web),
-/*60*/	g_FILLER(S_statue_trap),
+	g_FILLER(S_statue_trap),
 	g_FILLER(S_magic_trap),
 	g_FILLER(S_anti_magic_trap),
 	g_FILLER(S_polymorph_trap),
@@ -1204,38 +1264,69 @@ static uchar dec_graphics[MAXPCHARS] = {
 	0xf7,	/* S_tdwall:	meta-w, T down */
 /*10*/	0xf5,	/* S_tlwall:	meta-u, T left */
 	0xf4,	/* S_trwall:	meta-t, T right */
+	g_FILLER(S_rockwall),	/* rockwall */
+	g_FILLER(S_gravewall),	/* gravewall */
+	g_FILLER(S_tunnelwall),	/* tunnelwall */
 	0xfe,	/* S_ndoor:	meta-~, centered dot */
 	0xe1,	/* S_vodoor:	meta-a, solid block */
 	0xe1,	/* S_hodoor:	meta-a, solid block */
 	g_FILLER(S_vcdoor),
 	g_FILLER(S_hcdoor),
-	0xfb,	/* S_bars:	meta-{, small pi, courtesy Pat Rankin */
+/*20*/	0xfb,	/* S_bars:	meta-{, small pi, courtesy Pat Rankin */
+
 	0xe7,	/* S_tree:	meta-g, plus-or-minus, courtesy Pat Rankin */
+	0xe7,	/* S_farmland */
+	g_FILLER(S_mountain),	/* mountain */
 	0xfe,	/* S_room:	meta-~, centered dot */
 	g_FILLER(S_stone),	/* S_darkroom:	meta-~, centered dot */
-/*20*/	g_FILLER(S_corr),
+	g_FILLER(S_corr),
 	g_FILLER(S_litcorr),
 	g_FILLER(S_upstair),
 	g_FILLER(S_dnstair),
-	0xf9,	/* S_upladder:	meta-y, greater-than-or-equals */
+/*30*/	0xf9,	/* S_upladder:	meta-y, greater-than-or-equals */
 	0xfa,	/* S_dnladder:	meta-z, less-than-or-equals */
 	g_FILLER(S_altar),	/* 0xc3, \E)3: meta-C, dagger */
 	g_FILLER(S_grave),
 	g_FILLER(S_throne),
 	g_FILLER(S_sink),
-/*30*/	g_FILLER(S_toilet),
+	g_FILLER(S_toilet),
 	g_FILLER(S_fountain),	/* 0xdb, \E)3: meta-[, integral top half */
 	0xe0,	/* S_pool:	meta-\, diamond */
 	0xfe,	/* S_ice:	meta-~, centered dot */
-	0xe0,	/* S_lava:	meta-\, diamond */
+/*40*/	0xe0,	/* S_lava:	meta-\, diamond */
 	0xfe,	/* S_vodbridge:	meta-~, centered dot */
 	0xfe,	/* S_hodbridge:	meta-~, centered dot */
 	g_FILLER(S_vcdbridge),
 	g_FILLER(S_hcdbridge),
 	g_FILLER(S_air),
-/*40*/	g_FILLER(S_cloud),
+	g_FILLER(S_cloud),
 	g_FILLER(S_dungwall),	/* dungwall */
 	0xe0,	/* S_water:	meta-\, diamond */
+	g_FILLER(S_watertunnel),	/* watertunnel */
+/*50*/	0xf7,	/* S_crystalwater:	meta-w, approx. equals */
+	0xe0, /* moorland */
+	0xe0, /* urinelake */
+	0xe0, /* shiftingsand */
+	0xe0, /* styxriver */
+	g_FILLER(S_well),
+	g_FILLER(S_poisonedwell),
+	g_FILLER(S_wagon),
+	g_FILLER(S_burningwagon),
+	g_FILLER(S_woodentable),
+/*60*/	g_FILLER(S_strawmattress),
+	0xfe, /* S_snow */
+	0xfe, /* S_ash */
+	0xfe, /* S_sand */
+	0xfe, /* S_pavedfloor */
+	0xfe, /* S_highway */
+	0xfe, /* S_grass */
+	0xfe, /* S_nethermist */
+	g_FILLER(S_stalactite),
+	0xfe, /* S_cryptfloor */
+/*70*/	g_FILLER(S_bubbles),
+	g_FILLER(S_raincloud),
+	g_FILLER(S_pentagram),
+	g_FILLER(S_carvedbed),
 	g_FILLER(S_grayglyph),
 	g_FILLER(S_arrow_trap),
 	g_FILLER(S_dart_trap),
@@ -1245,7 +1336,7 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_land_mine),
 	g_FILLER(S_rolling_boulder_trap),
 	g_FILLER(S_sleeping_gas_trap),
-/*50*/	g_FILLER(S_rust_trap),
+	g_FILLER(S_rust_trap),
 	g_FILLER(S_fire_trap),
 	g_FILLER(S_pit),
 	g_FILLER(S_spiked_pit),
@@ -1255,7 +1346,7 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_level_teleporter),
 	g_FILLER(S_magic_portal),
 	g_FILLER(S_web),	/* 0xbd, \E)3: meta-=, int'l currency */
-/*60*/	g_FILLER(S_statue_trap),
+	g_FILLER(S_statue_trap),
 	g_FILLER(S_magic_trap),
 	g_FILLER(S_anti_magic_trap),
 	g_FILLER(S_polymorph_trap),
@@ -1682,37 +1773,69 @@ static uchar mac_graphics[MAXPCHARS] = {
 	0xcb,	/* S_tdwall */
 /*10*/	0xb9,	/* S_tlwall */
 	0xcc,	/* S_trwall */
+	g_FILLER(S_rockwall),	/* rockwall */
+	g_FILLER(S_gravewall),	/* gravewall */
+	g_FILLER(S_tunnelwall),	/* tunnelwall */
 	0xb0,	/* S_ndoor */
 	0xee,	/* S_vodoor */
 	0xee,	/* S_hodoor */
 	0xef,	/* S_vcdoor */
 	0xef,	/* S_hcdoor */
-	0xf0,	/* S_bars:	equivalency symbol */
+/*20*/	0xf0,	/* S_bars:	equivalency symbol */
+
 	0xf1,	/* S_tree:	plus-or-minus */
+	0xf1,	/* S_farmland:	plus or minus symbol */
+	g_FILLER(S_mountain),	/* mountain */
 	g_FILLER(S_Room),
 	g_FILLER(S_stone), /* S_darkroom */
-/*20*/	0xB0,	/* S_corr */
+	0xB0,	/* S_corr */
 	g_FILLER(S_litcorr),
 	g_FILLER(S_upstair),
 	g_FILLER(S_dnstair),
-	g_FILLER(S_upladder),
+/*30*/	g_FILLER(S_upladder),
 	g_FILLER(S_dnladder),
 	g_FILLER(S_altar),
 	0xef,	/* S_grave:	same as open door */
 	g_FILLER(S_throne),
 	g_FILLER(S_sink),
-/*30*/	g_FILLER(S_toilet),
+	g_FILLER(S_toilet),
 	g_FILLER(S_fountain),
 	0xe0,	/* S_pool */
 	g_FILLER(S_ice),
-	g_FILLER(S_lava),
+/*40*/	g_FILLER(S_lava),
 	g_FILLER(S_vodbridge),
 	g_FILLER(S_hodbridge),
 	g_FILLER(S_vcdbridge),
 	g_FILLER(S_hcdbridge),
 	g_FILLER(S_air),
-/*40*/	g_FILLER(S_cloud),
+	g_FILLER(S_cloud),
 	g_FILLER(S_dungwall),	/* dungwall */
+	0xf7,	/* S_water:	meta-w, approx. equals */
+	g_FILLER(S_watertunnel),	/* watertunnel */
+/*50*/	0xf7,	/* S_crystalwater:	meta-w, approx. equals */
+	0xf7, /* moorland */
+	0xf7, /* urinelake */
+	0xf7, /* shiftingsand */
+	0xf7, /* styxriver */
+	g_FILLER(S_well),
+	g_FILLER(S_poisonedwell),
+	g_FILLER(S_wagon),
+	g_FILLER(S_burningwagon),
+	g_FILLER(S_woodentable),
+/*60*/	g_FILLER(S_strawmattress),
+	g_FILLER(S_snow),
+	g_FILLER(S_ash),
+	g_FILLER(S_sand),
+	g_FILLER(S_pavedfloor),
+	g_FILLER(S_highway),
+	g_FILLER(S_grass),
+	g_FILLER(S_nethermist),
+	g_FILLER(S_stalactite),
+	g_FILLER(S_cryptfloor),
+/*70*/	g_FILLER(S_bubbles),
+	g_FILLER(S_raincloud),
+	g_FILLER(S_pentagram),
+	g_FILLER(S_carvedbed),
 	g_FILLER(S_grayglyph),
 	g_FILLER(S_water),
 	g_FILLER(S_arrow_trap),
@@ -1723,7 +1846,7 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_land_mine),
 	g_FILLER(S_rolling_boulder_trap),
 	g_FILLER(S_sleeping_gas_trap),
-/*50*/	g_FILLER(S_rust_trap),
+	g_FILLER(S_rust_trap),
 	g_FILLER(S_fire_trap),
 	g_FILLER(S_pit),
 	g_FILLER(S_spiked_pit),
@@ -1733,7 +1856,7 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_level_teleporter),
 	g_FILLER(S_magic_portal),
 	g_FILLER(S_web),
-/*60*/	g_FILLER(S_statue_trap),
+	g_FILLER(S_statue_trap),
 	g_FILLER(S_magic_trap),
 	g_FILLER(S_anti_magic_trap),
 	g_FILLER(S_polymorph_trap),

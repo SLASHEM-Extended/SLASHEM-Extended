@@ -6410,7 +6410,7 @@ struct obj *obj;	/* wand or spell */
 		*/
 		e = engr_at(u.ux, u.uy);
 		if (!(e && e->engr_type == ENGRAVE)) {
-		    if (is_pool(u.ux, u.uy) || is_ice(u.ux, u.uy))
+		    if (is_waterypool(u.ux, u.uy) || is_ice(u.ux, u.uy))
 			pline(nothing_happens);
 		    else
 			pline("Blood %ss %s your %s.",
@@ -7172,11 +7172,13 @@ struct obj **obj_p;			/* object tossed/used */
 		delay_output();
 		/* kicked objects fall in pools */
 		if((weapon == KICKED_WEAPON) &&
-		   (is_pool(bhitpos.x, bhitpos.y) ||
+		   (is_waterypool(bhitpos.x, bhitpos.y) ||
 		   is_lava(bhitpos.x, bhitpos.y)))
 		    break;
 		if(IS_SINK(typ) && weapon != FLASHED_LIGHT)
 		    break;	/* physical objects fall onto sink */
+		if(IS_WATERTUNNEL(typ) && weapon != FLASHED_LIGHT)
+		    break;
 	    }
 	    /* limit range of ball so hero won't make an invalid move */
 	    if (weapon == THROWN_WEAPON && range > 0 &&
@@ -7276,6 +7278,8 @@ int dx, dy;
 		if(ct % 5 != 0) i++;
 		if(IS_SINK(levl[bhitpos.x][bhitpos.y].typ))
 			break;	/* boomerang falls on sink */
+		if(IS_WATERTUNNEL(levl[bhitpos.x][bhitpos.y].typ))
+			break;
 	}
 	tmp_at(DISP_END, 0);	/* do not leave last symbol */
 	return (struct monst *)0;

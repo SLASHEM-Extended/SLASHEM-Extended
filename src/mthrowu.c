@@ -761,6 +761,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	  skipped when reaching them at point blank range */
 	if (!isok(bhitpos.x+dx,bhitpos.y+dy)
 	    || IS_ROCK(levl[bhitpos.x+dx][bhitpos.y+dy].typ)
+	    || IS_WATERTUNNEL(levl[bhitpos.x+dx][bhitpos.y+dy].typ)
 	    || closed_door(bhitpos.x+dx, bhitpos.y+dy)
 	    || (levl[bhitpos.x + dx][bhitpos.y + dy].typ == IRONBARS &&
 	        hits_bars(&singleobj, bhitpos.x, bhitpos.y, 0, 0))) {
@@ -905,9 +906,10 @@ m_throw(mon, x, y, dx, dy, range, obj)
 		        hits_bars(&singleobj, bhitpos.x, bhitpos.y, !rn2(5), 0))
 			/* Thrown objects "sink" */
 			|| IS_SINK(levl[bhitpos.x][bhitpos.y].typ)
+			|| IS_WATERTUNNEL(levl[bhitpos.x][bhitpos.y].typ)
 								) {
 
-			if (!range || IS_SINK(levl[bhitpos.x][bhitpos.y].typ) || !isok(bhitpos.x+dx,bhitpos.y+dy) || !((u.ux == bhitpos.x+dx) && (u.uy == bhitpos.y+dy)) ) {
+			if (!range || IS_SINK(levl[bhitpos.x][bhitpos.y].typ) || IS_WATERTUNNEL(levl[bhitpos.x][bhitpos.y].typ) || !isok(bhitpos.x+dx,bhitpos.y+dy) || !((u.ux == bhitpos.x+dx) && (u.uy == bhitpos.y+dy)) ) {
 			    if (singleobj) /* hits_bars might have destroyed it */
 				(void) drop_throw(mon, singleobj, 0, bhitpos.x, bhitpos.y);
 			    break;

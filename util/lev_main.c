@@ -855,6 +855,35 @@ char c;
 		  case 'T'	: return (TREE);
 		  case 'F'	: return (IRONBARS);	/* Fe = iron */
 		  case 'Z'  : return(TOILET);	/* Kazi */
+		  case 'G'	: return (GRAVEWALL);
+		  case 'U'	: return (TUNNELWALL);
+		  case 'J'	: return (FARMLAND);
+		  case 'M'	: return (MOUNTAIN);
+		  case 'X'	: return (WATERTUNNEL);
+		  case 'Y'	: return (CRYSTALWATER);
+		  case 'O'	: return (MOORLAND);
+		  case 'R'	: return (URINELAKE);
+		  case 's'	: return (SHIFTINGSAND);
+		  case 'y'	: return (STYXRIVER);
+		  case 'p'	: return (PENTAGRAM);
+		  case 'w'	: return (WELL);
+		  case 'o'	: return (POISONEDWELL);
+		  case 'a'	: return (WAGON);
+		  case 'b'	: return (BURNINGWAGON);
+		  case 't'	: return (WOODENTABLE);
+		  case 'c'	: return (CARVEDBED);
+		  case 'm'	: return (STRAWMATTRESS);
+		  case 'n'	: return (SNOW);
+		  case 'h'	: return (ASH);
+		  case 'd'	: return (SAND);
+		  case 'v'	: return (PAVEDFLOOR);
+		  case 'i'	: return (HIGHWAY);
+		  case 'g'	: return (GRASSLAND);
+		  case 'r'	: return (NETHERMIST);
+		  case 'l'	: return (STALACTITE);
+		  case 'f'	: return (CRYPTFLOOR);
+		  case 'u'	: return (BUBBLES);
+		  case 'q'	: return (RAINCLOUD);
 	    }
 	return(INVALID_TYPE);
 }

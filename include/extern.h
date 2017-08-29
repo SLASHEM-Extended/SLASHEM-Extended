@@ -235,7 +235,19 @@ E char yn_function(const char *, const char *, CHAR_P);
 /* ### dbridge.c ### */
 
 E boolean is_pool(int,int);
+E boolean is_waterypool(int,int);
+E boolean is_drowningpool(int,int);
 E boolean is_lava(int,int);
+E boolean is_watertunnel(int,int);
+E boolean is_crystalwater(int,int);
+E boolean is_moorland(int,int);
+E boolean is_urinelake(int,int);
+E boolean is_shiftingsand(int,int);
+E boolean is_styxriver(int,int);
+E boolean is_burningwagon(int,int);
+E boolean is_nethermist(int,int);
+E boolean is_stalactite(int,int);
+E boolean is_raincloud(int,int);
 E boolean is_ice(int,int);
 E int is_drawbridge_wall(int,int);
 E boolean is_db_wall(int,int);
@@ -1353,6 +1365,7 @@ E void add_room(int,int,int,int,BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P);
 E void add_subroom(struct mkroom *,int,int,int,int, BOOLEAN_P,SCHAR_P,BOOLEAN_P);
 E void makecorridors(void);
 E int randomwalltype(void);
+E int walkableterrain(void);
 E int add_door(int,int,struct mkroom *);
 E void mklev(void);
 #ifdef SPECIALIZATION
@@ -1464,6 +1477,7 @@ E void rest_rooms(int);
 E struct mkroom *search_special(SCHAR_P);
 E struct permonst * colormon(int);
 E struct permonst * specialtensmon(int);
+E struct permonst * speedymon(void);
 
 /* ### mon.c ### */
 

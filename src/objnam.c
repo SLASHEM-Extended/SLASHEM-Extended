@@ -7507,6 +7507,180 @@ srch:
 			newsym(u.ux, u.uy);
 			return &zeroobj;
 		}
+		if(!BSTRCMP(bp, p-10, "grave wall")) {
+			levl[u.ux][u.uy].typ = GRAVEWALL;
+			pline("A grave wall.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-11, "watertunnel")) {
+			levl[u.ux][u.uy].typ = WATERTUNNEL;
+			pline("A water tunnel.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-6, "tunnel")) {
+			levl[u.ux][u.uy].typ = TUNNELWALL;
+			pline("A tunnel.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-8, "farmland")) {
+			levl[u.ux][u.uy].typ = FARMLAND;
+			pline("Farmland.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-8, "mountain")) {
+			levl[u.ux][u.uy].typ = MOUNTAIN;
+			pline("A mountain.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-13, "crystal water")) {
+			levl[u.ux][u.uy].typ = CRYSTALWATER;
+			pline("Crystal water.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-8, "moorland")) {
+			levl[u.ux][u.uy].typ = MOORLAND;
+			pline("Moorland.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-10, "urine lake")) {
+			levl[u.ux][u.uy].typ = URINELAKE;
+			pline("A urine lake.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-13, "shifting sand")) {
+			levl[u.ux][u.uy].typ = SHIFTINGSAND;
+			pline("Shifting sand.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-10, "styx river")) {
+			levl[u.ux][u.uy].typ = STYXRIVER;
+			pline("A styx river.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-9, "pentagram")) {
+			levl[u.ux][u.uy].typ = PENTAGRAM;
+			pline("A pentagram.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-12, "poisonedwell")) {
+			levl[u.ux][u.uy].typ = POISONEDWELL;
+			pline("A poisoned well.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-4, "well")) {
+			levl[u.ux][u.uy].typ = WELL;
+			pline("A well.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-12, "burningwagon")) {
+			levl[u.ux][u.uy].typ = BURNINGWAGON;
+			pline("A burning wagon.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-5, "wagon")) {
+			levl[u.ux][u.uy].typ = WAGON;
+			pline("A wagon.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-12, "wooden table")) {
+			levl[u.ux][u.uy].typ = WOODENTABLE;
+			pline("A wooden table.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-10, "carved bed")) {
+			levl[u.ux][u.uy].typ = CARVEDBED;
+			pline("A carved bed.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-14, "straw mattress")) {
+			levl[u.ux][u.uy].typ = STRAWMATTRESS;
+			pline("A straw mattress.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-4, "snow")) {
+			levl[u.ux][u.uy].typ = SNOW;
+			pline("Snow.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-3, "ash")) {
+			levl[u.ux][u.uy].typ = ASH;
+			pline("Ash.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-4, "sand")) {
+			levl[u.ux][u.uy].typ = SAND;
+			pline("Sand.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-11, "paved floor")) {
+			levl[u.ux][u.uy].typ = PAVEDFLOOR;
+			pline("Paved floor.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-7, "highway")) {
+			levl[u.ux][u.uy].typ = HIGHWAY;
+			pline("A highway.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-9, "grassland")) {
+			levl[u.ux][u.uy].typ = GRASSLAND;
+			pline("Grassland.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-11, "nether mist")) {
+			levl[u.ux][u.uy].typ = NETHERMIST;
+			pline("Nether mist.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-10, "stalactite")) {
+			levl[u.ux][u.uy].typ = STALACTITE;
+			pline("A stalactite.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-11, "crypt floor")) {
+			levl[u.ux][u.uy].typ = CRYPTFLOOR;
+			pline("A crypt floor.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-6, "bubble")) {
+			levl[u.ux][u.uy].typ = BUBBLES;
+			pline("A bubble.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
+		if(!BSTRCMP(bp, p-10, "rainycloud")) {
+			levl[u.ux][u.uy].typ = RAINCLOUD;
+			pline("A rain cloud.");
+			newsym(u.ux, u.uy);
+			return &zeroobj;
+		}
 		if(!BSTRCMP(bp, p-4, "sink")) {
 			levl[u.ux][u.uy].typ = SINK;
 			level.flags.nsinks++;

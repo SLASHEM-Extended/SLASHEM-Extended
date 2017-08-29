@@ -163,7 +163,7 @@ boolean quietly;
 
 	if (!mtmp) return (struct monst *)0;
 
-	if (is_pool(mtmp->mx, mtmp->my) && minliquid(mtmp))
+	if ((is_waterypool(mtmp->mx, mtmp->my) || is_watertunnel(mtmp->mx, mtmp->my)) && minliquid(mtmp))
 		return (struct monst *)0;
 
 	initedog(mtmp);

@@ -1162,7 +1162,7 @@ moveloop()
 
 			if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "greek cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "grecheskiy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yunon plash") ) ) moveamt += NORMAL_SPEED / 2;
 
-			if (uarmf && uarmf->oartifact == ART_WARP_SPEED && is_pool(u.ux, u.uy)) moveamt += (NORMAL_SPEED * 5);
+			if (uarmf && uarmf->oartifact == ART_WARP_SPEED && (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy))) moveamt += (NORMAL_SPEED * 5);
 
 			if (tech_inuse(T_BLINK)) { /* TECH: Blinking! */
 			    /* Case    Average  Variance
@@ -6056,7 +6056,7 @@ newboss:
 		    if (u.uinvulnerable) {
 			/* for the moment at least, you're in tiptop shape */
 			wtcap = UNENCUMBERED;
-		    } else if (Upolyd && youmonst.data->mlet == S_EEL && !is_pool(u.ux,u.uy) && !Is_waterlevel(&u.uz)) {
+		    } else if (Upolyd && youmonst.data->mlet == S_EEL && !is_waterypool(u.ux,u.uy) && !is_crystalwater(u.ux,u.uy) && !Is_waterlevel(&u.uz)) {
 			if (u.mh > 1) {
 			    u.mh--;
 			    flags.botl = 1;
@@ -7417,7 +7417,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (new_game) pline("Welcome to SLASH'EM Extended! For game discussion, bug reports etc. join the #slashemextended or #em.slashem.me IRC channel on Freenode. :-) --Amy");
 #else
 	if (new_game) pline("You are playing SLASH'EM Extended on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Freenode. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!");
-	if (new_game) pline("Message of the day: You can turn on the curses interface by adding a line to your options file. OPTIONS=windowtype:curses - it's still in beta stage and occasionally crashes, but I found that if your terminal size is 140x40 and you turn on the popup_dialog option then it's working rather well. Have fun, and remember, #em.slashem.me IRC channel on Freenode if you have any questions :-) --Amy");
+	if (new_game) pline("Message of the day: New terrain types and dungeon features have been added to the game. These are currently in beta stage. Please report any terrain that is behaving strangely to Amy. Have fun, and remember, #em.slashem.me IRC channel on Freenode if you have any questions :-) --Amy");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */

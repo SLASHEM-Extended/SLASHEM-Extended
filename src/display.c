@@ -788,7 +788,7 @@ feel_location(x, y)
     if (memory_is_invisible(x,y) && m_at(x,y)) return;
 
     /* The hero can't feel non pool locations while under water. */
-    if (Underwater && !Is_waterlevel(&u.uz) && ! is_pool(x,y))
+    if (Underwater && !Is_waterlevel(&u.uz) && !is_waterypool(x,y) && !is_watertunnel(x,y))
 	return;
 
     /* Set the seen vector as if the hero had seen it.  It doesn't matter */
@@ -986,7 +986,7 @@ newsym(x,y)
     if (Underwater && !Is_waterlevel(&u.uz)) {
 	/* don't do anything unless (x,y) is an adjacent underwater position */
 	int dx, dy;
-	if (!is_pool(x,y)) return;
+	if (!is_waterypool(x,y) && !is_watertunnel(x,y)) return;
 	dx = x - u.ux;	if (dx < 0) dx = -dx;
 	dy = y - u.uy;	if (dy < 0) dy = -dy;
 	if (dx > 1 || dy > 1) return;
@@ -1160,7 +1160,7 @@ newsymX(x,y)
     if (Underwater && !Is_waterlevel(&u.uz)) {
 	/* don't do anything unless (x,y) is an adjacent underwater position */
 	int dx, dy;
-	if (!is_pool(x,y)) return;
+	if (!is_waterypool(x,y) && !is_watertunnel(x,y)) return;
 	dx = x - u.ux;	if (dx < 0) dx = -dx;
 	dy = y - u.uy;	if (dy < 0) dy = -dy;
 	if (dx > 1 || dy > 1) return;
@@ -1581,7 +1581,7 @@ under_water(mode)
     }
     for (x = u.ux-1; x <= u.ux+1; x++)
 	for (y = u.uy-1; y <= u.uy+1; y++)
-	    if (isok(x,y) && is_pool(x,y)) {
+	    if (isok(x,y) && (is_waterypool(x,y) || is_watertunnel(x,y))) {
 		if (Blind && !(x == u.ux && y == u.uy))
 		    show_glyph(x,y,cmap_to_glyph(S_stone));
 		else	
@@ -2260,6 +2260,38 @@ back_to_cmap(x,y)
 	case AIR:		idx = S_air;	  break;
 	case CLOUD:		idx = S_cloud;	  break;
 	case WATER:		idx = S_water;	  break;
+
+	case ROCKWALL:		idx = S_rockwall;	  break;
+	case GRAVEWALL:		idx = S_gravewall;	  break;
+	case TUNNELWALL:		idx = S_tunnelwall;	  break;
+	case FARMLAND:		idx = S_farmland;	  break;
+	case MOUNTAIN:		idx = S_mountain;	  break;
+	case WATERTUNNEL:		idx = S_watertunnel;	  break;
+	case CRYSTALWATER:		idx = S_crystalwater;	  break;
+	case MOORLAND:		idx = S_moorland;	  break;
+	case URINELAKE:		idx = S_urinelake;	  break;
+	case SHIFTINGSAND:		idx = S_shiftingsand;	  break;
+	case STYXRIVER:		idx = S_styxriver;	  break;
+	case PENTAGRAM:		idx = S_pentagram;	  break;
+	case WELL:		idx = S_well;	  break;
+	case POISONEDWELL:		idx = S_poisonedwell;	  break;
+	case WAGON:		idx = S_wagon;	  break;
+	case BURNINGWAGON:		idx = S_burningwagon;	  break;
+	case WOODENTABLE:		idx = S_woodentable;	  break;
+	case CARVEDBED:		idx = S_carvedbed;	  break;
+	case STRAWMATTRESS:		idx = S_strawmattress;	  break;
+	case SNOW:		idx = S_snow;	  break;
+	case ASH:		idx = S_ash;	  break;
+	case SAND:		idx = S_sand;	  break;
+	case PAVEDFLOOR:		idx = S_pavedfloor;	  break;
+	case HIGHWAY:		idx = S_highway;	  break;
+	case GRASSLAND:		idx = S_grassland;	  break;
+	case NETHERMIST:		idx = S_nethermist;	  break;
+	case STALACTITE:		idx = S_stalactite;	  break;
+	case CRYPTFLOOR:		idx = S_cryptfloor;	  break;
+	case BUBBLES:		idx = S_bubbles;	  break;
+	case RAINCLOUD:		idx = S_raincloud;	  break;
+
 	case DBWALL:
 	    idx = (ptr->horizontal) ? S_hcdbridge : S_vcdbridge;
 	    break;
@@ -2373,12 +2405,17 @@ static const char *type_names[MAX_TYPE] = {
 	"STONE",	"VWALL",	"HWALL",	"TLCORNER",
 	"TRCORNER",	"BLCORNER",	"BRCORNER",	"CROSSWALL",
 	"TUWALL",	"TDWALL",	"TLWALL",	"TRWALL",
-	"DBWALL",	"SDOOR",	"SCORR",	"POOL",
-	"MOAT",		"WATER",	"DRAWBRIDGE_UP","LAVAPOOL",
-	"DOOR",		"CORR",		"ROOM",		"STAIRS",
+	"DBWALL",	"ROCKWALL",	"GRAVEWALL", "TUNNELWALL", "SDOOR",	"SCORR",	"POOL",
+	"MOAT",		"WATER",	"WATERTUNNEL",	"CRYSTALWATER",
+	"MOORLAND",	"URINELAKE",	"DRAWBRIDGE_UP",	"SHIFTINGSAND",	"LAVAPOOL",
+	"STYXRIVER",	"DOOR",		"CORR",		"ROOM",		"STAIRS",
 	"LADDER",	"FOUNTAIN",	"THRONE",	"SINK",
-	"ALTAR",	"ICE",		"DRAWBRIDGE_DOWN","AIR",
-	"CLOUD"
+	"ALTAR",	"PENTAGRAM",	"WELL",	"POISONEDWELL",
+	"WAGON",	"BURNINGWAGON",	"WOODENTABLE",	"CARVEDBED",	"STRAWMATTRESS",
+	"ICE",	"SNOW",	"ASH",	"SAND",	"PAVEDFLOOR",
+	"HIGHWAY",	"GRASSLAND",	"NETHERMIST",	"STALACTITE",	"CRYPTFLOOR",
+	"DRAWBRIDGE_DOWN",	"AIR",
+	"CLOUD",	"BUBBLES",	"RAINCLOUD"
 };
 
 

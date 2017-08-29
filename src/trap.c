@@ -11223,7 +11223,7 @@ long ocount;
 		cc.x = x; cc.y = y;
 		/* Prevent boulder from being placed on water */
 		if (ttmp->ttyp == ROLLING_BOULDER_TRAP
-				&& is_pool(x+distance*dx,y+distance*dy))
+				&& is_waterypool(x+distance*dx,y+distance*dy))
 			success = FALSE;
 		else success = isclearpath(&cc, distance, dx, dy);
 		if (ttmp->ttyp == ROLLING_BOULDER_TRAP) {
@@ -12920,7 +12920,7 @@ long hmask, emask;     /* might cancel timeout */
 	}
 
 	if (Punished && !carried(uball) &&
-	    (is_pool(uball->ox, uball->oy) ||
+	    (is_waterypool(uball->ox, uball->oy) ||
 	     ((trap = t_at(uball->ox, uball->oy)) &&
 	      ((trap->ttyp == PIT) || (trap->ttyp == SPIKED_PIT) || (trap->ttyp == GIANT_CHASM) || (trap->ttyp == SHIT_PIT) || (trap->ttyp == MANA_PIT) || (trap->ttyp == ANOXIC_PIT) || (trap->ttyp == SHAFT_TRAP) || (trap->ttyp == CURRENT_SHAFT) ||
 	       (trap->ttyp == TRAPDOOR) || (trap->ttyp == HOLE))))) {
@@ -12951,7 +12951,7 @@ long hmask, emask;     /* might cancel timeout */
 		 * Use knowledge of the two routines as a hack -- this
 		 * should really be handled differently -dlc
 		 */
-		if(is_pool(u.ux,u.uy) && !Wwalking && !Swimming && !u.uinwater)
+		if(is_drowningpool(u.ux,u.uy) && !(is_crystalwater(u.ux,u.uy)) && !Wwalking && !Swimming && !u.uinwater)
 			no_msg = drown();
 
 		if(is_lava(u.ux,u.uy)) {
@@ -12972,7 +12972,7 @@ long hmask, emask;     /* might cancel timeout */
 		    boolean sokoban_trap = (In_sokoban(&u.uz) && trap);
 		    if (Hallucination)
 			pline("Bummer!  You've %s.",
-			      is_pool(u.ux,u.uy) ?
+			      is_waterypool(u.ux,u.uy) ?
 			      "splashed down" : sokoban_trap ? "crashed" :
 			      "hit the ground");
 		    else {
@@ -13201,7 +13201,7 @@ struct obj *box;	/* null for floor trap */
  * to be done upon its contents.
  */
 
-	if ((box && !carried(box)) ? is_pool(box->ox, box->oy) : Underwater) {
+	if ((box && !carried(box)) ? is_waterypool(box->ox, box->oy) : Underwater) {
 	    pline("A cascade of steamy bubbles erupts from %s!",
 		    the(box ? xname(box) : surface(u.ux,u.uy)));
 	    if (Fire_resistance) You("are uninjured.");
@@ -13268,7 +13268,7 @@ struct obj *box;	/* null for floor trap */
  * to be done upon its contents.
  */
 
-	if ((box && !carried(box)) ? is_pool(box->ox, box->oy) : Underwater) {
+	if ((box && !carried(box)) ? is_waterypool(box->ox, box->oy) : Underwater) {
 	    pline("A cascade of steamy bubbles erupts from %s!",
 		    the(box ? xname(box) : surface(u.ux,u.uy)));
 	    if (Fire_resistance) You("are uninjured.");
@@ -14005,7 +14005,7 @@ drown()
 	const char *sparkle = level.flags.lethe? "sparkling " : "";
 
 	/* happily wading in the same contiguous pool */
-	if (u.uinwater && is_pool(u.ux-u.dx,u.uy-u.dy) &&
+	if (u.uinwater && !(is_crystalwater(u.ux-u.dx,u.uy-u.dy)) && is_drowningpool(u.ux-u.dx,u.uy-u.dy) &&
 	    (Swimming || Amphibious || Breathless)) {
 		/* water effects on objects every now and then */
 		if (!rn2(5)) inpool_ok = TRUE;
@@ -14085,13 +14085,17 @@ drown()
 		You("attempt a teleport spell.");	/* utcsri!carroll */
 		if (!level.flags.noteleport) {
 			(void) dotele();
-			if(!is_pool(u.ux,u.uy))
+			if(!is_drowningpool(u.ux,u.uy))
+				return(TRUE);
+			if(is_crystalwater(u.ux,u.uy))
 				return(TRUE);
 		} else pline_The("attempted teleport spell fails.");
 	}
 	if (u.usteed) {
 		dismount_steed(DISMOUNT_GENERIC);
-		if(!is_pool(u.ux,u.uy))
+		if(!is_drowningpool(u.ux,u.uy))
+			return(TRUE);
+		if(is_crystalwater(u.ux,u.uy))
 			return(TRUE);
 	}
 	crawl_ok = FALSE;

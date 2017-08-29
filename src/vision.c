@@ -163,11 +163,11 @@ does_block(x,y,lev)
 
     /* Features that block . . */
     /* KMH -- added trees */
-    if (IS_ROCK(lev->typ) || lev->typ == TREE || (IS_DOOR(lev->typ) &&
-			    (lev->doormask & (D_CLOSED|D_LOCKED|D_TRAPPED) )))
+    if ( ( (IS_ROCK(lev->typ) && !(IS_FARMLAND(lev->typ))) || lev->typ == TREE || lev->typ == WATERTUNNEL || ((IS_DOOR(lev->typ))
+	&& (lev->doormask & (D_CLOSED|D_LOCKED|D_TRAPPED) ))) )
 	return 1;
 
-    if (lev->typ == CLOUD || lev->typ == WATER ||
+    if (lev->typ == CLOUD || lev->typ == BUBBLES || lev->typ == RAINCLOUD || lev->typ == WATER ||
 			(lev->typ == MOAT && Underwater))
 	return 1;
 
@@ -591,7 +591,7 @@ vision_recalc(control)
 
 	    for (row = u.uy-1; row <= u.uy+1; row++)
 		for (col = u.ux-1; col <= u.ux+1; col++) {
-		    if (!isok(col,row) || !is_pool(col,row)) continue;
+		    if (!isok(col,row) || !is_waterypool(col,row)) continue;
 
 		    next_rmin[row] = min(next_rmin[row], col);
 		    next_rmax[row] = max(next_rmax[row], col);
