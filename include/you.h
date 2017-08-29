@@ -942,6 +942,8 @@ struct you {
 
 	int riennevaplus;
 
+	int stairscumslowing;
+
 	int nataljetrapturns;
 	int nataljetrapx, nataljetrapy;
 

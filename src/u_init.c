@@ -7836,6 +7836,7 @@ u_init()
 	u.nataljetrapx = 0;
 	u.nataljetrapy = 0;
 	u.riennevaplus = 0;
+	u.stairscumslowing = 0;
 
 	u.contamination = 0;
 

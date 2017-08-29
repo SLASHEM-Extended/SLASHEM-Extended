@@ -6638,6 +6638,11 @@ newboss:
 				if (!rn2(3)) pline(fauxmessage());
 			}
 
+			if (u.stairscumslowing) {
+				u.stairscumslowing--;
+				if (u.stairscumslowing < 0) u.stairscumslowing = 0;
+			}
+
 		    if(!u.uinvulnerable) {
 			if(Teleportation && (ishaxor ? !rn2(150) : !rn2(250)) ) {
 			    xchar old_ux = u.ux, old_uy = u.uy;

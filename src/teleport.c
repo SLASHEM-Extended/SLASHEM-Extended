@@ -1258,6 +1258,8 @@ register struct trap *ttmp;
 
 	You("activated a magic portal!");
 
+	if (!rn2(5)) u.stairscumslowing += rn1(5,5);
+
 	/* prevent the poor shnook, whose amulet was stolen while in
 	 * the endgame, from accidently triggering the portal to the
 	 * next level, and thus losing the game

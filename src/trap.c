@@ -6046,6 +6046,12 @@ madnesseffect:
 	    }
 	    case MAGIC_PORTAL:
 		seetrap(trap);
+
+		if (u.stairscumslowing && !u.uhave.amulet && !(In_endgame(&u.uz))) {
+			pline("This portal is currently deactivated and will become active in %d turns.", u.stairscumslowing);
+			break;
+		}
+
 		if (u.usteed &&
 			(Is_blackmarket(&trap->dst) || Is_blackmarket(&u.uz)))
 		    pline("%s seems to shimmer for a moment.",

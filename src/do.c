@@ -1062,6 +1062,11 @@ dodown()
 
 	}
 
+	if (u.stairscumslowing && (stairs_down || ladder_down) ) {
+		pline("This stair is currently blocked and will reopen in %d turns.", u.stairscumslowing);
+		return(0);
+	}
+
 	if (Role_if(PM_GNOME) && on_level(&mineend_level,&u.uz)) {
 		pline("The staircase is filled with tons of rubble and debris.");
 		pline("Poor Ruggo!");
@@ -1185,6 +1190,10 @@ doup()
 
 	}
 
+	if (u.stairscumslowing && !u.uhave.amulet) {
+		pline("This stair is currently blocked and will reopen in %d turns.", u.stairscumslowing);
+		return(0);
+	}
 
 	if (u.usteed && !u.usteed->mcanmove) {
 		pline("%s won't move!", Monnam(u.usteed));
@@ -3454,6 +3463,8 @@ final_level()
 static char *dfr_pre_msg = 0,	/* pline() before level change */
 	    *dfr_post_msg = 0;	/* pline() after level change */
 
+static boolean portaldeferring = FALSE;
+
 /* change levels at the end of this turn, after monsters finish moving */
 void
 schedule_goto(tolev, at_stairs, falling, portal_flag, pre_msg, post_msg)
@@ -3477,6 +3488,9 @@ const char *pre_msg, *post_msg;
 	    dfr_pre_msg = strcpy((char *)alloc(strlen(pre_msg) + 1), pre_msg);
 	if (post_msg)
 	    dfr_post_msg = strcpy((char *)alloc(strlen(post_msg)+1), post_msg);
+
+	if (portal_flag && !program_state.gameover && (!rn2(50) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone()) ) portaldeferring = TRUE; 
+
 }
 
 /* handle something like portal ejection */
@@ -3505,6 +3519,15 @@ deferred_goto()
 	    free((void *)dfr_pre_msg),  dfr_pre_msg = 0;
 	if (dfr_post_msg)
 	    free((void *)dfr_post_msg),  dfr_post_msg = 0;
+
+	if (portaldeferring == TRUE && !program_state.gameover) {
+
+		pline(Hallucination ? "Things open up on the flipside!" : "The portal radiates strange energy, and monsters appear from nowhere!");
+		pushplayer();
+		(void)nasty((struct monst *)0);
+		u.stairscumslowing += rn1(5,5);
+		portaldeferring = FALSE;
+	}
 }
 
 #endif /* OVL2 */
