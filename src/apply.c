@@ -1537,7 +1537,7 @@ static NEARDATA const char cuddly[] = { TOOL_CLASS, GEM_CLASS, 0 };
 int
 dorub()
 {
-	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
+	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone() ) {
 	pline("The rub command is currently unavailable!");
 	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
