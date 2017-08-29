@@ -4584,6 +4584,152 @@ register struct monst *mtmp;
 		if (!rn2(3)) (void)mongets(mtmp,(rn2(2)) ? CLUB : RUBBER_HOSE);
 		if (!rn2(500)) (void)mongets(mtmp, nastymusableitem() );
 
+		if (ptr == &mons[PM_KOLDIER]) {
+			(void)mongets(mtmp, (rn2(2)) ? RIFLE : SUBMACHINE_GUN);
+		  	  m_initthrow(mtmp, BULLET, 25);
+		  	  m_initthrow(mtmp, BULLET, 25);
+			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
+			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
+		}
+
+		if (ptr == &mons[PM_WATCH_KOP]) {
+			if (!rn2(2)) (void)mongets(mtmp, rn1(BEC_DE_CORBIN - PARTISAN + 1, PARTISAN));
+			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
+			if (!rn2(2)) (void)mongets(mtmp, (rn2(2)) ? SPEAR : SHORT_SWORD);
+		}
+
+		if (ptr == &mons[PM_WATCH_KAPTAIN]) {
+			(void)mongets(mtmp, (rn2(2)) ? LONG_SWORD : SILVER_SABER);
+		}
+
+		if (ptr == &mons[PM_BLACK_KOPETEER]) {
+			(void)mongets(mtmp, TWO_HANDED_SWORD);
+		}
+
+		if (ptr == &mons[PM_WATCH_KIEUTENANT]) {
+			(void)mongets(mtmp, (rn2(2)) ? LONG_SWORD : SILVER_SABER);
+		}
+
+		if (ptr == &mons[PM_KOPKEEPER]) {
+			(void)mongets(mtmp, (rn2(2)) ? SHOTGUN : SAWED_OFF_SHOTGUN);
+			m_initthrow(mtmp, SHOTGUN_SHELL, 30);
+		}
+
+		if (ptr == &mons[PM_WATCH_KEADER]) {
+			(void)mongets(mtmp, (rn2(2)) ? LONG_SWORD : SILVER_SABER);
+		}
+
+		if (ptr == &mons[PM_KIEUTENANT]) {
+			(void)mongets(mtmp, (rn2(2)) ? HEAVY_MACHINE_GUN : SUBMACHINE_GUN);
+		  	m_initthrow(mtmp, BULLET, 30);
+		  	m_initthrow(mtmp, BULLET, 30);
+			if (!rn2(2)) m_initthrow(mtmp, BULLET, 50);
+			if (!rn2(5)) m_initthrow(mtmp, BULLET, 50);
+			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
+			if (rn2(2)) (void) mongets(mtmp, (rn2(2)) ? GAS_GRENADE : FRAG_GRENADE);
+		}
+
+		if (ptr == &mons[PM_KERGEANT]) {
+			if (rn2(2)) {
+				(void)mongets(mtmp, AUTO_SHOTGUN);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 10);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 10);
+			} else {
+				(void)mongets(mtmp, ASSAULT_RIFLE);
+				m_initthrow(mtmp, BULLET, 30);
+				m_initthrow(mtmp, BULLET, 30);
+			}
+			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
+			if (!rn2(3)) {
+				(void) mongets(mtmp, (rn2(2)) ? GAS_GRENADE : FRAG_GRENADE);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			}
+		}
+
+		if (ptr == &mons[PM_KAPTAIN]) {
+			if (rn2(2)) {
+				(void)mongets(mtmp, AUTO_SHOTGUN);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 20);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 20);
+			} else if (rn2(2)) {
+				(void)mongets(mtmp, HEAVY_MACHINE_GUN);
+				m_initthrow(mtmp, BULLET, 60);
+				m_initthrow(mtmp, BULLET, 60);
+				m_initthrow(mtmp, BULLET, 60);
+			} else {
+				(void)mongets(mtmp, ASSAULT_RIFLE);
+				m_initthrow(mtmp, BULLET, 60);
+				m_initthrow(mtmp, BULLET, 60);
+			}
+			if (rn2(2)) {
+				(void)mongets(mtmp, ROCKET_LAUNCHER);
+				m_initthrow(mtmp, ROCKET, 5);
+			}
+			(void)mongets(mtmp, (rn2(2)) ? SILVER_SABER : DAGGER);
+			if (!rn2(3)) {
+				(void) mongets(mtmp, (rn2(2)) ? GAS_GRENADE : FRAG_GRENADE);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			}
+
+		}
+
+		if (ptr == &mons[PM_KENERAL]) {
+			if (rn2(2)) {
+				(void)mongets(mtmp, AUTO_SHOTGUN);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 20);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 20);
+			} else if (rn2(2)) {
+				(void)mongets(mtmp, HEAVY_MACHINE_GUN);
+				m_initthrow(mtmp, BULLET, 60);
+				m_initthrow(mtmp, BULLET, 60);
+				m_initthrow(mtmp, BULLET, 60);
+			} else {
+				(void)mongets(mtmp, ASSAULT_RIFLE);
+				m_initthrow(mtmp, BULLET, 60);
+				m_initthrow(mtmp, BULLET, 60);
+			}
+			if (rn2(2)) {
+				(void)mongets(mtmp, ROCKET_LAUNCHER);
+				m_initthrow(mtmp, ROCKET, 5);
+			}
+			(void)mongets(mtmp, (rn2(2)) ? SILVER_SABER : DAGGER);
+			if (!rn2(3)) {
+				(void) mongets(mtmp, (rn2(2)) ? GAS_GRENADE : FRAG_GRENADE);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			}
+
+		}
+
+		if (ptr == &mons[PM_KARNEL]) {
+			if (rn2(2)) {
+				(void)mongets(mtmp, ARM_BLASTER);
+				m_initthrow(mtmp, BLASTER_BOLT, 50);
+				m_initthrow(mtmp, BLASTER_BOLT, 50);
+			} else if (rn2(2)) {
+				(void)mongets(mtmp, BFG);
+				m_initthrow(mtmp, BFG_AMMO, 60);
+				m_initthrow(mtmp, BFG_AMMO, 60);
+				m_initthrow(mtmp, BFG_AMMO, 60);
+			} else {
+				(void)mongets(mtmp, RAYGUN);
+				m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 60);
+				m_initthrow(mtmp, LASER_BEAM, 60);
+			}
+			if (rn2(2)) {
+				(void)mongets(mtmp, ROCKET_LAUNCHER);
+				m_initthrow(mtmp, ROCKET, 5);
+				m_initthrow(mtmp, ROCKET, 5);
+			}
+			(void)mongets(mtmp, (rn2(2)) ? SILVER_LONG_SWORD : COLLUSION_KNIFE);
+			if (!rn2(3)) {
+				(void) mongets(mtmp, (rn2(2)) ? GAS_GRENADE : FRAG_GRENADE);
+				(void) mongets(mtmp, (rn2(2)) ? GAS_GRENADE : FRAG_GRENADE);
+				(void) mongets(mtmp, (rn2(2)) ? GAS_GRENADE : FRAG_GRENADE);
+				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
+			}
+
+		}
+
 		break;
 	    case S_ORC:
 
@@ -4977,7 +5123,7 @@ register struct	monst	*mtmp;
 			if (!rn2(5)) mongets(mtmp,SCR_WOUNDS);
 			if (!rn2(7)) mongets(mtmp,SCR_WOUNDS);
 		}
-		if (ptr == &mons[PM_MAUD_AGENT] || ptr == &mons[PM_DUAM_XNAHT_AGENT]) (void) mongets(mtmp, POT_AMNESIA);
+		if (ptr == &mons[PM_MAUD_AGENT] || ptr == &mons[PM_MUAD_AGENT] || ptr == &mons[PM_DUAM_XNAHT_AGENT]) (void) mongets(mtmp, POT_AMNESIA);
 
 		if (ptr == &mons[PM_DELUGE_AGENT] || ptr == &mons[PM_FLOOD_SURFER] || ptr == &mons[PM_WATER_GIRL] || ptr == &mons[PM_WATER_LADY]) (void) mongets(mtmp, SCR_FLOOD);
 		if (ptr == &mons[PM_LAVA_LOVER] || ptr == &mons[PM_CRISPY_BURNER] || ptr == &mons[PM_FIRE_GIRL] || ptr == &mons[PM_FIERY_LADY]) (void) mongets(mtmp, SCR_LAVA);
@@ -17119,6 +17265,7 @@ int type;
 		case PM_BEST_TEACHER_EVER: return 137;
 		case PM_TGWTG: return 137;
 		case PM_THE_FOREVER_TRAIN: return 137;
+		case PM_TRUCK_OF_PEACE: return 200;
 		case PM_AMUSING_THIRTEEN_GRADER: return 137;
 		case PM_SECURITY_BOT: return 137;
 		case PM_ANIMATED_MARBLE_STATUE: return 199;

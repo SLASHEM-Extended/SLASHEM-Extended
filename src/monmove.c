@@ -561,6 +561,18 @@ register struct monst *mtmp;
 		}
 	}
 
+	if (mdat == &mons[PM_UBERNAZGUL] && rn2(2)) { /* sporkhack nazgul --Amy */
+		if (canseemon(mtmp)) {
+			pline("%s screams!",Monnam(mtmp));
+		} else {
+			You_hear("a horrific scream!");
+		}
+		if (u.usleep) { unmul("You are shocked awake!"); }
+		Your("mind reels from the noise!");
+		make_stunned(HStun + rnd(20),FALSE);
+
+	}
+
 	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone()) && mtmp->mpeaceful && !mtmp->mtame && !rn2(10000)) {
 		wakeup(mtmp);
 	}

@@ -1902,6 +1902,7 @@ register int pm;
 	    case PM_STONING_SPHERE:
 	    case PM_LEVELING_TROVE:
 	    case PM_DREAMER_COCKATRICE:
+	    case PM_DISINTITRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 	      You_feel("that was a smart thing to do.");
 		pluslvl(FALSE);
@@ -2616,6 +2617,7 @@ register int pm;
 	    case PM_ILLITHID:
 	    case PM_MIND_BEAMER:
 		case PM_COCKATRICE:
+		case PM_DISENTITRICE:
 		case PM_PETTY_COCKATRICE:
 		case PM_BASILISK:
 		case PM_PETTY_MIND_FLAYER:

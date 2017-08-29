@@ -4080,7 +4080,7 @@ register struct monst *shkp;
 	    remove_damage(shkp, FALSE);
 
 	if((udist = distu(omx,omy)) < 3 &&
-	   ((shkp->data != &mons[PM_GRID_BUG] && shkp->data != &mons[PM_WEREGRIDBUG] && shkp->data != &mons[PM_GRID_XORN] && shkp->data != &mons[PM_STONE_BUG] && shkp->data != &mons[PM_WEAPON_BUG] && shkp->data != &mons[PM_VORPAL_GRID_BUG] && shkp->data != &mons[PM_NATURAL_BUG] && shkp->data != &mons[PM_MELEE_BUG]) || (omx==u.ux || omy==u.uy))) {
+	   ((shkp->data != &mons[PM_GRID_BUG] && shkp->data != &mons[PM_WEREGRIDBUG] && shkp->data != &mons[PM_GRID_XORN] && shkp->data != &mons[PM_STONE_BUG] && shkp->data != &mons[PM_WEAPON_BUG] && shkp->data != &mons[PM_SPECIFIC_BUG] && shkp->data != &mons[PM_CONTAMINATED_BUG] && shkp->data != &mons[PM_VORPAL_GRID_BUG] && shkp->data != &mons[PM_NATURAL_BUG] && shkp->data != &mons[PM_MELEE_BUG]) || (omx==u.ux || omy==u.uy))) {
 		if(ANGRY(shkp) ||
 		   (Conflict && !resist(shkp, RING_CLASS, 0, 0))) {
 			if(Displaced)
