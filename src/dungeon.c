@@ -2315,6 +2315,20 @@ dooverview()
 
 	first = TRUE;
 
+	if (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone()) {
+
+		pline("Haha, you probably wish you could do that.");
+		return 0;
+
+	}
+
+	if (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) {
+
+		pline("Well, I'm sure you'd love to see the overview, but no. Sorry.");
+		return 0;
+
+	}
+
 	win = create_nhwindow(NHW_MENU);
 
 	for (mptr = mapseenchn; mptr; mptr = mptr->next) {
