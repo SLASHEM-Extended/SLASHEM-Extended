@@ -1331,7 +1331,7 @@ dopay()
 
 	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The pay command is currently unavailable!");
-	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}
 

@@ -3178,7 +3178,7 @@ int tech_no;
 	    case T_JEDI_JUMP:
 		if (u.uen < 25){
 			You("can't channel the force around you. Jedi jumps require 25 points of mana!");
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return(0);
 		}
 		if (!jump((techlev(tech_no)/5)+1)) return 0;
@@ -4362,7 +4362,7 @@ doblitz()
 	
 	if (u.uen < 10) {
 		You("are too weak to attempt this! You need at least 10 points of mana!");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
             	return(0);
 	}
 

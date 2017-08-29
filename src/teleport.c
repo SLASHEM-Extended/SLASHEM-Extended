@@ -1296,7 +1296,7 @@ struct trap *trap;
 		You("%s onto a vault teleporter!",
 		      Levitation ? (const char *)"float" :
 				  locomotion(youmonst.data, "step"));
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		deltrap(trap);
 		newsym(u.ux,u.uy);	/* get rid of trap symbol */
 		vault_tele();
@@ -1304,7 +1304,7 @@ struct trap *trap;
 		You("%s onto a teleport trap!",
 		      Levitation ? (const char *)"float" :
 				  locomotion(youmonst.data, "step"));
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		tele();
 		}
 }
@@ -1322,7 +1322,7 @@ struct trap *trap;
 		You("%s onto a vault teleporter!",
 		      Levitation ? (const char *)"float" :
 				  locomotion(youmonst.data, "step"));
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		deltrap(trap);
 		newsym(u.ux,u.uy);	/* get rid of trap symbol */
 		vault_tele();
@@ -1330,7 +1330,7 @@ struct trap *trap;
 		You("%s onto a teleport trap!",
 		      Levitation ? (const char *)"float" :
 				  locomotion(youmonst.data, "step"));
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		tele();
 		}
 }

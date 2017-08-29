@@ -786,7 +786,7 @@ do_look(quick)
 		pline("Please move the cursor to %s.",
 		       what_is_an_unknown_object);
 	    else {
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		pline("Pick an object."); }
 
 	    ans = getpos(&cc, quick, what_is_an_unknown_object);

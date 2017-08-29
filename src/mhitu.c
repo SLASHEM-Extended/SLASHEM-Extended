@@ -4655,7 +4655,7 @@ hitmu(mtmp, mattk)
 		    setustuck(mtmp);
 		    pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-		    if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		    You("get zapped!");
 		    if (Shock_resistance && rn2(20)) {
@@ -5746,7 +5746,7 @@ dopois:
 				setustuck(mtmp);
 				pline("%s grabs you!", Monnam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
 		    case 7:
@@ -6013,7 +6013,7 @@ dopois:
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 		break;
 	    case AD_WRAP:
@@ -6024,7 +6024,7 @@ dopois:
 			} else {
 			    pline("%s swings itself around you!",
 				  Monnam(mtmp));
-				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    setustuck(mtmp);
 			}
 		    } else if(u.ustuck == mtmp) {
@@ -6077,7 +6077,7 @@ dopois:
 
 				}
 				else {
-					if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+					if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 					You("scream "); verbalize("HAHAHAHAHAHAHAAAAAAAA!"); /* Super Mario 64 */
 					u.uhpmax -= rnd(10);
 					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -6481,7 +6481,7 @@ dopois:
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		}
 
@@ -8845,7 +8845,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				}
 				u.aggravation = 0;
 				pline("Several monsters come out of a portal.");
-				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 			}
 
@@ -9225,7 +9225,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				setustuck(mtmp);
 				pline("%s grabs you!", Monnam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
 		    case 7:
@@ -9533,7 +9533,7 @@ do_stone2:
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 		break;
 	    case AD_SGLD:
@@ -10397,7 +10397,7 @@ do_stone2:
 		    setustuck(mtmp);
 		    pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-		    if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		    break;
 
@@ -10759,7 +10759,7 @@ boolean ufound;
 		setustuck(mtmp);
 		pline("%s grabs you!", Monnam(mtmp));
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		if (!rn2(issoviet ? 6 : 33))
 			destroy_item(WAND_CLASS, AD_ELEC);
 		if (!rn2(issoviet ? 6 : 33))
@@ -10863,7 +10863,7 @@ common:
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		}
 
@@ -13754,7 +13754,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!u.ustuck && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s gazes to hold you in place!", Monnam(mtmp));
-				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 		}
 		break;
@@ -14160,7 +14160,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				setustuck(mtmp);
 				pline("%s grabs you!", Monnam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
 		    case 7:
@@ -15156,7 +15156,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    setustuck(mtmp);
 		    pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-		    if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		    if (Shock_resistance && rn2(20)) {
 			pline_The("gaze doesn't shock you!");
@@ -15436,7 +15436,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				}
 				u.aggravation = 0;
 				pline("Several monsters come out of a portal.");
-				if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 			}
 		}
@@ -18024,7 +18024,7 @@ register struct attack *mattk;
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		}
 

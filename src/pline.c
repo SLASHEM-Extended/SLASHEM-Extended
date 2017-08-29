@@ -321,7 +321,7 @@ pline VA_DECL(const char *, line)
 	}
 
 	strncpy(prevmsg, line, BUFSZ);
-	if (typ == MSGTYP_STOP) display_nhwindow(WIN_MESSAGE, TRUE); /* --more-- */
+	if (typ == MSGTYP_STOP && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE); /* --more-- */
 }
 
 /*VARARGS1*/

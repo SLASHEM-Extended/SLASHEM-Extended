@@ -1359,7 +1359,7 @@ void * num;
 		cvt_sdoor_to_door(&levl[zx][zy]);	/* .typ = DOOR */
 		You("find a secret door!");
 		use_skill(P_SEARCHING,1);
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
 		newsym(zx, zy);
 		(*(int*)num)++;
@@ -1368,7 +1368,7 @@ void * num;
 		unblock_point(zx,zy);
 		You("find a secret passage!");
 		use_skill(P_SEARCHING,1);
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
 		newsym(zx, zy);
 		(*(int*)num)++;
@@ -1411,7 +1411,7 @@ void * num;
 		cvt_sdoor_to_door(&levl[zx][zy]);	/* .typ = DOOR */
 		You("find a secret door!");
 		use_skill(P_SEARCHING,1);
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
 		newsym(zx, zy);
 		(*(int*)num)++;
@@ -1420,7 +1420,7 @@ void * num;
 		unblock_point(zx,zy);
 		You("find a secret passage!");
 		use_skill(P_SEARCHING,1);
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		magic_map_background(zx, zy, 0);
 		newsym(zx, zy);
 		(*(int*)num)++;
@@ -1641,7 +1641,7 @@ register int aflag;
 			cvt_sdoor_to_door(&levl[x][y]);	/* .typ = DOOR */
 			You("find a secret door!");
 			use_skill(P_SEARCHING,1);
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
 			nomul(0, 0);
 			if (Blind && (!aflag || !rn2(fundxtrachange) || !rn2(fundxtrachange)) )
@@ -1654,7 +1654,7 @@ register int aflag;
 			unblock_point(x,y);	/* vision */
 			You("find a secret passage!");
 			use_skill(P_SEARCHING,1);
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
 			nomul(0, 0);
 			newsym(x,y);

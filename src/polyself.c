@@ -1253,12 +1253,12 @@ dogaze()
 
 	if (Blind) {
 		You("can't see a thing!");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 	if (u.uen < 20) {
 		You("lack the energy to use your special gaze! Gaze attacks cost 20 mana!");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 	pline("Where do you wish to look?");
@@ -1334,7 +1334,7 @@ dobreathe()
 
 	if (Strangled) {
 	    You_cant("breathe.  Sorry.");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return(0);
 	}
 
@@ -1361,7 +1361,7 @@ dobreathe()
 
 	if (u.uen < energy) {
 	    You("don't have enough energy to breathe! You need at least %d mana!",energy);
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return(0);
 	}
 
@@ -1395,7 +1395,7 @@ dospit()
 
 	if (u.uen < 5) {
 		You("lack the energy to spit - need at least 5 mana!");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 

@@ -346,7 +346,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 
 	if(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 		You_cant("hold %s -- you have no hands!", doname(pick));
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 
@@ -614,7 +614,7 @@ doforce()		/* try to force a chest with your weapon */
 
 	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
 	pline("The force command is currently unavailable!");
-	if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}
 
@@ -625,18 +625,18 @@ doforce()		/* try to force a chest with your weapon */
 
 	if (!uwep) { /* Might want to make this so you use your shoulder */
 	    You_cant("force anything without a weapon.");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	     return(0);
 	}
 
 	if (u.utrap && u.utraptype == TT_WEB) {
 	    You("are entangled in a web!");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return(0);
 	} else if (uwep && is_lightsaber(uwep)) {
 	    if (!uwep->lamplit) {
 		Your("lightsaber is deactivated!");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	    }
 	} else if(uwep->otyp == LOCK_PICK ||
@@ -657,7 +657,7 @@ doforce()		/* try to force a chest with your weapon */
 	  ) {
 	    You_cant("force anything without a %sweapon.",
 		  (uwep) ? "proper " : "");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return(0);
 	}
 
@@ -961,12 +961,12 @@ doopen_indir(x, y)		/* try to open a door in direction u.dx/u.dy */
 
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 	    You_cant("open anything -- you have no hands!");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("Try to open it with another part of your body instead?") == 'y') {
 			if (rn2(3)) { 			make_blinded(Blinded + rnd(50),TRUE);
 			pline("Off - you just blinded yourself!");
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		    return 1;}
 		}
 		else {return(0);}
@@ -974,7 +974,7 @@ doopen_indir(x, y)		/* try to open a door in direction u.dx/u.dy */
 
 	if (u.utrap && u.utraptype == TT_PIT) {
 	    You_cant("reach over the edge of the pit.");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return 0;
 	}
 
@@ -1099,12 +1099,12 @@ doclose()		/* try to close a door */
 
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 	    You_cant("close anything -- you have no hands!");
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("Try to close it with another part of your body instead?") == 'y') {
 			if (rn2(3)) { 			make_blinded(Blinded + rnd(50),TRUE);
 			pline("Something got in your face! You can't see!");
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		    return 1;}
 		}
 		else {return(0);}
@@ -1112,7 +1112,7 @@ doclose()		/* try to close a door */
 
 	if (u.utrap && u.utraptype == TT_PIT) {
 	    You_cant("reach over the edge of the pit.");
-	    if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	    if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return 0;
 	}
 

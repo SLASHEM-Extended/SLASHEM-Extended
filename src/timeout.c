@@ -37,7 +37,7 @@ stoned_dialogue()
 
 	if (i > 0L && i <= SIZE(stoned_texts))
 		pline(stoned_texts[SIZE(stoned_texts) - i]);
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	if (i == 7L)
 		HFast = 0L;
 	if (i == 1L) {
@@ -126,14 +126,14 @@ choke_dialogue()
 		pline(choke_texts2[SIZE(choke_texts2) - i], body_part(NECK));
 	    else {
 		const char *str = choke_texts[SIZE(choke_texts)-i];
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (index(str, '%')) {
 		    pline(str, hcolor(NH_BLUE));
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */ }
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */ }
 		else
 		    pline(str);
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    }
 	}
 	exercise(A_STR, FALSE);
@@ -160,13 +160,13 @@ slime_dialogue()
 		if (i == 4L) {	/* "you are turning green" */
 		    if (!Blind)	/* [what if you're already green?] */
 			pline(str, hcolor(NH_GREEN));
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		} else
 		    pline(str, an(Hallucination ? rndmonnam() : "green slime"));
-			if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    } else
 		pline(str);
-		if (flags.moreforced) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
 	if (i == 3L) {	/* limbs becoming oozy */
 	    HFast = 0L;	/* lose intrinsic speed */
