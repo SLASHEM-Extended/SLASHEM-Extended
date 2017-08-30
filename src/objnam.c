@@ -4983,6 +4983,7 @@ register struct obj *obj;
 	register char *buf;
 	register int typ = obj->otyp;
 	register struct objclass *ocl = &objects[typ];
+
 	register int nn = ocl->oc_name_known;
 	register const char *actualn = OBJ_NAME(*ocl);
 	register const char *dn = OBJ_DESCR(*ocl);
