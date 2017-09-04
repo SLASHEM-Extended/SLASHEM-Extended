@@ -7067,7 +7067,8 @@ run_timers()
 	if (curr->kind == TIMER_OBJECT) {
 
 		if (!((struct obj *)curr->arg)) {
-			impossible("ERROR! run_timers - object does not exist");
+			impossible("ERROR! run_timers %s - object does not exist", timeout_funcs[curr->func_index].name);
+
 			free((void *) curr);
 			return;
 		}
@@ -7300,12 +7301,13 @@ write_timer(fd, timer)
 		/* replace object pointer with id */
 		arg_save = timer->arg;
 		if (!((struct obj *)timer->arg)) {
-			impossible("ERROR! write_timer - object does not exist");
+			impossible("ERROR! write_timer %s - object does not exist", timeout_funcs[timer->func_index].name);
+
 			/* the dreaded "segfault panic" bug... apparently we need to write the timer anyway,
 			 * because if we don't, we produce a corrupted savegame --Amy
 			 * set the timeout to occur on the next turn to ensure the bugged timer is removed ASAP */
 			timer->timeout = (moves + 1);
-			if (!issegfaulter) bwrite(fd, (void *)timer, sizeof(timer_element));
+			if (!issegfaulter || !strncmpi(plname, "BSOD2", 5)) bwrite(fd, (void *)timer, sizeof(timer_element));
 			break;
 		}
 
@@ -7391,10 +7393,12 @@ obj_is_local(obj)
 	case OBJ_CONTAINED:	return obj_is_local(obj->ocontainer);
 	case OBJ_MINVENT:	return mon_is_local(obj->ocarry);
     }
-	impossible("obj is local panic");
-	pline("obj location %d", obj->where);
-	if (obj) pline("obj in question: %s", cxname(obj));
-      if (issegfaulter) panic("obj_is_local: %s, %d", cxname(obj), obj->where); /* improvement by Patric Mueller */
+	impossible("obj is local panic - CRITICAL BUG, YOU SHOULD SAVE THE GAME RIGHT AWAY");
+	/*pline("obj location %d", obj->where);*/
+	/*if (issegfaulter) && obj) pline("obj in question: %s", cxname(obj));*/
+	/* the above line was sometimes causing a segfault in xname2() even if obj existed... */
+
+      if (issegfaulter && strncmpi(plname, "BSOD2", 5)) panic("obj_is_local: %s, %d", cxname(obj), obj->where); /* improvement by Patric Mueller */
 
 	/* This is the "segfault panic", "hallucination bug" and "timed object bug" that has been plaguing SLEX for a while.
 	 * Due to some weirdness, the actual panic message almost never displays, making it next to impossible
@@ -7406,6 +7410,8 @@ obj_is_local(obj)
 	 * of allowing me to test the game's behavior in the case of a segfault, similar to a missingno, except that the
 	 * latter usually leaves a recoverable savegame file. Producing segfaults on purpose is otherwise actually
 	 * not all that easy! --Amy */
+
+	/* The BSOD2 check is an ugly kludge that shall serve as a way for me to run tests on the hardfought server --Amy */
 
     return FALSE;
 }
