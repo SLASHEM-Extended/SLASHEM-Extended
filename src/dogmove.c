@@ -115,14 +115,19 @@ struct obj *obj;
 		mtmp->meating = objects[obj->otyp].oc_delay;
 		nutrit = objects[obj->otyp].oc_nutrition;
 	    }
-	    switch(mtmp->data->msize) {
-		case MZ_TINY: nutrit *= 8; break;
-		case MZ_SMALL: nutrit *= 6; break;
-		default:
-		case MZ_MEDIUM: nutrit *= 5; break;
-		case MZ_LARGE: nutrit *= 4; break;
-		case MZ_HUGE: nutrit *= 3; break;
-		case MZ_GIGANTIC: nutrit *= 2; break;
+
+		/* it was insane how much nutrition they got from corpses, since I increased the average amount corpses give,
+		 * so I hereby decide to reduce it. Use tripe rations or slime molds to keep your pets fed :P --Amy */
+	    if (obj->otyp != CORPSE) {
+		    switch(mtmp->data->msize) {
+			case MZ_TINY: nutrit *= 8; break;
+			case MZ_SMALL: nutrit *= 6; break;
+			default:
+			case MZ_MEDIUM: nutrit *= 5; break;
+			case MZ_LARGE: nutrit *= 4; break;
+			case MZ_HUGE: nutrit *= 3; break;
+			case MZ_GIGANTIC: nutrit *= 2; break;
+		    }
 	    }
 	    if(obj->oeaten) {
 		mtmp->meating = eaten_stat(mtmp->meating, obj);
@@ -140,7 +145,8 @@ struct obj *obj;
 	     * eat.c.  (This also applies to pets eating gold.)
 	     */
 	    mtmp->meating = obj->owt/20 + 1;
-	    nutrit = 25*(objects[obj->otyp].oc_nutrition + 1); /* factor increased --Amy */
+	    nutrit = 5*(objects[obj->otyp].oc_nutrition + 1);
+		/* old factor restored by Amy; the +1 is so that zero-weight objects don't give zero nutrition */
 	}
 	use_skill(P_PETKEEPING,1);
 
