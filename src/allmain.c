@@ -669,6 +669,19 @@ moveloop()
 					copcnt = (copcnt / 2) + 1;
 				}
 
+				int tryct = 0;
+				int x, y;
+
+				for (tryct = 0; tryct < 2000; tryct++) {
+					x = rn1(COLNO-3,2);
+					y = rn2(ROWNO);
+
+					if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+						(void) maketrap(x, y, KOP_CUBE, 0);
+						break;
+						}
+				}
+
 			      while(--copcnt >= 0) {
 					if (xupstair) (void) makemon(mkclass(S_KOP,0), xupstair, yupstair, MM_ANGRY|MM_ADJACENTOK);
 					else (void) makemon(mkclass(S_KOP,0), 0, 0, MM_ANGRY|MM_ADJACENTOK);

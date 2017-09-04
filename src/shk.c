@@ -4366,7 +4366,7 @@ coord *mm;
 	for (ik=0; kop_pm[ik]; ik++) {
 	  /*if (!(mvitals[kop_pm[ik]].mvflags & G_GONE)) {*/
 	    cnt = epathto(mc, kop_cnt[ik], mm->x, mm->y, &mons[kop_pm[ik]]);
-	    while(--cnt >= 0)
+	    while(--cnt >= 0) {
 		switch (rnd(303)) {
 		case 1:
 		case 2:
@@ -4609,6 +4609,25 @@ coord *mm;
 		(void) makemon(mkclass(S_KOP,0), mc[cnt].x, mc[cnt].y, MM_ANGRY|MM_ADJACENTOK);
 		break;
 		} /* switch */
+
+		if (!rn2(10)) {
+
+			int koptryct = 0;
+			int kox, koy;
+
+			for (koptryct = 0; koptryct < 2000; koptryct++) {
+				kox = rn1(COLNO-3,2);
+				koy = rn2(ROWNO);
+
+				if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
+					(void) maketrap(kox, koy, KOP_CUBE, 0);
+					break;
+					}
+			}
+
+		}
+
+	    }
 
 	/*}*/
 	}

@@ -3190,6 +3190,24 @@ register struct monst *mtmp;
 
 	      while(--copcnt >= 0) {
 			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
+
+			if (!rn2(10)) {
+
+				int koptryct = 0;
+				int kox, koy;
+
+				for (koptryct = 0; koptryct < 2000; koptryct++) {
+					kox = rn1(COLNO-3,2);
+					koy = rn2(ROWNO);
+
+					if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
+						(void) maketrap(kox, koy, KOP_CUBE, 0);
+						break;
+						}
+				}
+
+			}
+
 		} /* while */
 
 	}
@@ -4778,6 +4796,9 @@ void
 setmangry(mtmp)
 register struct monst *mtmp;
 {
+	struct permonst *mdat;
+	mdat = mtmp->data;
+
 	mtmp->mstrategy &= ~STRAT_WAITMASK;
 	/* Even if the black marketeer is already angry he may not have called
 	 * for his assistants if he or his staff have not been assaulted yet.
@@ -4787,6 +4808,29 @@ register struct monst *mtmp;
 	if(!mtmp->mpeaceful) return;
 	if(mtmp->mtame) return;
 	mtmp->mpeaceful = 0;
+
+	if (mtmp->isshk || mtmp->ispriest || mtmp->isgd || (mdat == &mons[PM_WATCHMAN]) || (mdat == &mons[PM_WATCH_CAPTAIN]) || (mdat == &mons[PM_WATCH_LEADER]) || (mdat == &mons[PM_WATCH_LIEUTENANT])) {
+
+
+		int koptryct;
+		int kox, koy;
+
+newkopcube:
+		koptryct = 0;
+
+		for (koptryct = 0; koptryct < 2000; koptryct++) {
+			kox = rn1(COLNO-3,2);
+			koy = rn2(ROWNO);
+
+			if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
+				(void) maketrap(kox, koy, KOP_CUBE, 0);
+				break;
+				}
+		}
+		if (rn2(2)) goto newkopcube;
+
+	}
+
 	if(mtmp->ispriest) {
 		if(p_coaligned(mtmp)) adjalign(-50); /* very bad */
 		else adjalign(2);
@@ -5638,6 +5682,24 @@ register boolean silent;
 
 	      while(--copcnt >= 0) {
 			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
+
+			if (!rn2(10)) {
+
+				int koptryct = 0;
+				int kox, koy;
+
+				for (koptryct = 0; koptryct < 2000; koptryct++) {
+					kox = rn1(COLNO-3,2);
+					koy = rn2(ROWNO);
+
+					if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
+						(void) maketrap(kox, koy, KOP_CUBE, 0);
+						break;
+						}
+				}
+
+			}
+
 		} /* while */
 
 	    return(TRUE);

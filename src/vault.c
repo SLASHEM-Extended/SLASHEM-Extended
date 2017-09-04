@@ -580,6 +580,24 @@ letknow:
 
 		      while(--copcnt >= 0) {
 				(void) makemon(mkclass(S_KOP,0), grd->mx, grd->my, MM_ANGRY|MM_ADJACENTOK);
+
+				if (!rn2(10)) {
+
+					int koptryct = 0;
+					int kox, koy;
+
+					for (koptryct = 0; koptryct < 2000; koptryct++) {
+						kox = rn1(COLNO-3,2);
+						koy = rn2(ROWNO);
+
+						if (kox && koy && isok(kox, koy) && (levl[kox][koy].typ > DBWALL) && !(t_at(kox, koy)) ) {
+							(void) maketrap(kox, koy, KOP_CUBE, 0);
+							break;
+							}
+					}
+
+				}
+
 			} /* while */
 
 		    return(-1);
