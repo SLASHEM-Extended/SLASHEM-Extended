@@ -3874,7 +3874,7 @@ boolean prefilled;
 
 		for(sx = croom->lx; sx <= croom->hx; sx++)
 		for(sy = croom->ly; sy <= croom->hy; sy++) {
-			if(levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) {
+			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(10)) {
 				levl[sx][sy].typ = rn2(5) ? SAND : SHIFTINGSAND;
 			}
 		}
@@ -3887,12 +3887,12 @@ boolean prefilled;
 		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
 
 		  if (!rn2(10)) {
-			  (void) somexy(croom, &mm);
-			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+			  if (somexy(croom, &mm))
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
 
 			while (!rn2(2)) {
-			  (void) somexy(croom, &mm);
-			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+			  if (somexy(croom, &mm))
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
 			}
 		  }
 
@@ -3943,8 +3943,8 @@ boolean prefilled;
 		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
 
 		  if (!rn2(30)) {
-			  (void) somexy(croom, &mm);
-			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+			  if (somexy(croom, &mm))
+				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
 		  }
 
 		for(sx = croom->lx; sx <= croom->hx; sx++)
