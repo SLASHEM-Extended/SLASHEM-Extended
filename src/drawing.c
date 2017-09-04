@@ -692,6 +692,10 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "automore trap", C(CLR_BLACK)},	/* trap */
 	{'^', "unfair attack trap", C(CLR_MAGENTA)},	/* trap */
 
+	{'^', "kop cube", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "boss spawner", C(CLR_MAGENTA)},	/* trap */
+	{'^', "contamination trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1215,6 +1219,10 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_automore_trap),
 	g_FILLER(S_unfair_attack_trap),
 
+	g_FILLER(S_kop_cube),
+	g_FILLER(S_boss_spawner),
+	g_FILLER(S_contamination_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -1726,6 +1734,10 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_automore_trap),
 	g_FILLER(S_unfair_attack_trap),
 
+	g_FILLER(S_kop_cube),
+	g_FILLER(S_boss_spawner),
+	g_FILLER(S_contamination_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -2235,6 +2247,10 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_melee_prefix_trap),
 	g_FILLER(S_automore_trap),
 	g_FILLER(S_unfair_attack_trap),
+
+	g_FILLER(S_kop_cube),
+	g_FILLER(S_boss_spawner),
+	g_FILLER(S_contamination_trap),
 
 	g_FILLER(S_timerun_trap),
 	g_FILLER(S_vbeam),
@@ -2917,6 +2933,10 @@ boolean is_rlevel;
 	    showsyms[S_melee_prefix_trap] = 0x04;
 	    showsyms[S_automore_trap] = 0x04;
 	    showsyms[S_unfair_attack_trap] = 0x04;
+
+	    showsyms[S_kop_cube] = 0x04;
+	    showsyms[S_boss_spawner] = 0x04;
+	    showsyms[S_contamination_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif

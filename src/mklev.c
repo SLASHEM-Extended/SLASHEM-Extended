@@ -151,6 +151,7 @@ const void * vy;
 STATIC_OVL int
 findrandtype()
 {
+retryrandtype:
 	switch (rnd(63)) {
 		case 1: return COURT;
 		case 2: return SWAMP;
@@ -207,7 +208,9 @@ findrandtype()
 		case 53: return SLEEPINGROOM;
 		case 54: return DIVERPARADISE;
 		case 55: return MENAGERIE;
-		case 56: return rn2(20) ? TROUBLEZONE : NASTYCENTRAL;
+		case 56: 
+			if (!rn2(20)) return NASTYCENTRAL;
+			else goto retryrandtype;
 		case 57: return EMPTYDESERT;
 		case 58: return RARITYROOM;
 		case 59: return EXHIBITROOM;
@@ -12013,6 +12016,12 @@ selecttrap:
 			if (rn2(50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case WARP_ZONE:
+			if (rn2(50) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case KOP_CUBE:
+			if (rn2(50) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case BOSS_SPAWNER:
 			if (rn2(50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case MIND_WIPE_TRAP:

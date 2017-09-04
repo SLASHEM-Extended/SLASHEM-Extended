@@ -448,8 +448,12 @@ extern struct trap *ftrap;
 #define AUTOMORE_TRAP	380
 #define UNFAIR_ATTACK_TRAP	381
 
-#define TIMERUN_TRAP	382
+#define KOP_CUBE	382
+#define BOSS_SPAWNER	383
+#define CONTAMINATION_TRAP	384
 
-#define TRAPNUM 383
+#define TIMERUN_TRAP	385
+
+#define TRAPNUM 386
 
 #endif /* TRAP_H */

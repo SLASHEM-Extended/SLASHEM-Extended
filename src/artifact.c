@@ -2902,8 +2902,8 @@ doinvoke()
 					}
 					break;
 				case 18:
-					/* gain/lose random intrinsic code goes here */
-					pline("Nothing happens...");
+					Your("intrinsics change.");
+					intrinsicgainorloss();
 					break;
 				case 19:
 					{
@@ -2921,8 +2921,182 @@ doinvoke()
 
 					break;
 				case 20:
-					/* double skill training code goes here */
-					pline("Nothing happens...");
+					You("may double your amount of training points in a skill of your choice!");
+
+					int acquiredskill;
+					acquiredskill = 0;
+
+					pline("Pick a skill to train. The prompt will loop until you actually make a choice.");
+
+					while (acquiredskill == 0) { /* ask the player what they want --Amy */
+
+					if (P_ADVANCE(P_DAGGER) && yn("Do you want to train the dagger skill?")=='y') {
+						P_ADVANCE(P_DAGGER) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_KNIFE) && yn("Do you want to train the knife skill?")=='y') {
+						P_ADVANCE(P_KNIFE) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_AXE) && yn("Do you want to train the axe skill?")=='y') {
+						P_ADVANCE(P_AXE) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_PICK_AXE) && yn("Do you want to train the pick-axe skill?")=='y') {
+						P_ADVANCE(P_PICK_AXE) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SHORT_SWORD) && yn("Do you want to train the short sword skill?")=='y') {
+						P_ADVANCE(P_SHORT_SWORD) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_BROAD_SWORD) && yn("Do you want to train the broad sword skill?")=='y') {
+						P_ADVANCE(P_BROAD_SWORD) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_LONG_SWORD) && yn("Do you want to train the long sword skill?")=='y') {
+						P_ADVANCE(P_LONG_SWORD) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_TWO_HANDED_SWORD) && yn("Do you want to train the two-handed sword skill?")=='y') {
+						P_ADVANCE(P_TWO_HANDED_SWORD) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SCIMITAR) && yn("Do you want to train the scimitar skill?")=='y') {
+						P_ADVANCE(P_SCIMITAR) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SABER) && yn("Do you want to train the saber skill?")=='y') {
+						P_ADVANCE(P_SABER) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_CLUB) && yn("Do you want to train the club skill?")=='y') {
+						P_ADVANCE(P_CLUB) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_PADDLE) && yn("Do you want to train the paddle skill?")=='y') {
+						P_ADVANCE(P_PADDLE) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_MACE) && yn("Do you want to train the mace skill?")=='y') {
+						P_ADVANCE(P_MACE) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_MORNING_STAR) && yn("Do you want to train the morning star skill?")=='y') {
+						P_ADVANCE(P_MORNING_STAR) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_FLAIL) && yn("Do you want to train the flail skill?")=='y') {
+						P_ADVANCE(P_FLAIL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_HAMMER) && yn("Do you want to train the hammer skill?")=='y') {
+						P_ADVANCE(P_HAMMER) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_QUARTERSTAFF) && yn("Do you want to train the quarterstaff skill?")=='y') {
+						P_ADVANCE(P_QUARTERSTAFF) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_POLEARMS) && yn("Do you want to train the polearms skill?")=='y') {
+						P_ADVANCE(P_POLEARMS) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SPEAR) && yn("Do you want to train the spear skill?")=='y') {
+						P_ADVANCE(P_SPEAR) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_JAVELIN) && yn("Do you want to train the javelin skill?")=='y') {
+						P_ADVANCE(P_JAVELIN) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_TRIDENT) && yn("Do you want to train the trident skill?")=='y') {
+						P_ADVANCE(P_TRIDENT) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_LANCE) && yn("Do you want to train the lance skill?")=='y') {
+						P_ADVANCE(P_LANCE) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_BOW) && yn("Do you want to train the bow skill?")=='y') {
+						P_ADVANCE(P_BOW) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SLING) && yn("Do you want to train the sling skill?")=='y') {
+						P_ADVANCE(P_SLING) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_FIREARM) && yn("Do you want to train the firearms skill?")=='y') {
+						P_ADVANCE(P_FIREARM) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_CROSSBOW) && yn("Do you want to train the crossbow skill?")=='y') {
+						P_ADVANCE(P_CROSSBOW) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_DART) && yn("Do you want to train the dart skill?")=='y') {
+						P_ADVANCE(P_DART) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SHURIKEN) && yn("Do you want to train the shuriken skill?")=='y') {
+						P_ADVANCE(P_SHURIKEN) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_BOOMERANG) && yn("Do you want to train the boomerang skill?")=='y') {
+						P_ADVANCE(P_BOOMERANG) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_WHIP) && yn("Do you want to train the whip skill?")=='y') {
+						P_ADVANCE(P_WHIP) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_UNICORN_HORN) && yn("Do you want to train the unicorn horn skill?")=='y') {
+						P_ADVANCE(P_UNICORN_HORN) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_LIGHTSABER) && yn("Do you want to train the lightsaber skill?")=='y') {
+						P_ADVANCE(P_LIGHTSABER) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_ATTACK_SPELL) && yn("Do you want to train the attack spell skill?")=='y') {
+						P_ADVANCE(P_ATTACK_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_HEALING_SPELL) && yn("Do you want to train the healing spell skill?")=='y') {
+						P_ADVANCE(P_HEALING_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_DIVINATION_SPELL) && yn("Do you want to train the divination spell skill?")=='y') {
+						P_ADVANCE(P_DIVINATION_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_ENCHANTMENT_SPELL) && yn("Do you want to train the enchantment spell skill?")=='y') {
+						P_ADVANCE(P_ENCHANTMENT_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_PROTECTION_SPELL) && yn("Do you want to train the protection spell skill?")=='y') {
+						P_ADVANCE(P_PROTECTION_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_BODY_SPELL) && yn("Do you want to train the body spell skill?")=='y') {
+						P_ADVANCE(P_BODY_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_OCCULT_SPELL) && yn("Do you want to train the occult spell skill?")=='y') {
+						P_ADVANCE(P_OCCULT_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_ELEMENTAL_SPELL) && yn("Do you want to train the elemental spell skill?")=='y') {
+						P_ADVANCE(P_ELEMENTAL_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_CHAOS_SPELL) && yn("Do you want to train the chaos spell skill?")=='y') {
+						P_ADVANCE(P_CHAOS_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_MATTER_SPELL) && yn("Do you want to train the matter spell skill?")=='y') {
+						P_ADVANCE(P_MATTER_SPELL) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_RIDING) && yn("Do you want to train the riding skill?")=='y') {
+						P_ADVANCE(P_RIDING) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_HIGH_HEELS) && yn("Do you want to train the high heels skill?")=='y') {
+						P_ADVANCE(P_HIGH_HEELS) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_GENERAL_COMBAT) && yn("Do you want to train the general combat skill?")=='y') {
+						P_ADVANCE(P_GENERAL_COMBAT) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SHIELD) && yn("Do you want to train the shield skill?")=='y') {
+						P_ADVANCE(P_SHIELD) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_BODY_ARMOR) && yn("Do you want to train the body armor skill?")=='y') {
+						P_ADVANCE(P_BODY_ARMOR) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_TWO_HANDED_WEAPON) && yn("Do you want to train the two-handed weapon skill?")=='y') {
+						P_ADVANCE(P_TWO_HANDED_WEAPON) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_TWO_WEAPON_COMBAT) && yn("Do you want to train the two-weapon combat skill?")=='y') {
+						P_ADVANCE(P_TWO_WEAPON_COMBAT) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_POLYMORPHING) && yn("Do you want to train the polymorphing skill?")=='y') {
+						P_ADVANCE(P_POLYMORPHING) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_DEVICES) && yn("Do you want to train the devices skill?")=='y') {
+						P_ADVANCE(P_DEVICES) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SEARCHING) && yn("Do you want to train the searching skill?")=='y') {
+						P_ADVANCE(P_SEARCHING) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_SPIRITUALITY) && yn("Do you want to train the spirituality skill?")=='y') {
+						P_ADVANCE(P_SPIRITUALITY) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_PETKEEPING) && yn("Do you want to train the petkeeping skill?")=='y') {
+						P_ADVANCE(P_PETKEEPING) *= 2;
+						acquiredskill = 1; }
+					else if (yn("Do you want to train no skill at all?")=='y') {
+						acquiredskill = 1; }
+					}
+					pline("Training complete!");
+
 					break;
 				default:
 					impossible("undefined pentagram effect");
@@ -3544,6 +3718,1162 @@ find_kurwaartifact()
 {
 	int artifactnumber = artilist[ART_LORSKEL_S_INTEGRITY].otyp;
 	return artifactnumber;
+}
+
+/* Function that adds or removes a random intrinsic from the player. --Amy */
+void
+intrinsicgainorloss()
+{
+	register boolean intloss = rn2(2);
+
+	if (rn2(4)) { /* ones that can easily be gained by eating things */
+		switch (rnd(16)) {
+
+			case 1:
+				if (intloss) {
+					if (HFire_resistance & INTRINSIC) {
+						HFire_resistance &= ~INTRINSIC;
+						You_feel("warmer.");
+					}
+					if (HFire_resistance & TIMEOUT) {
+						HFire_resistance &= ~TIMEOUT;
+						You_feel("warmer.");
+					}
+				} else {
+					if(!(HFire_resistance & FROMOUTSIDE)) {
+						You(Hallucination ? "be chillin'." : "feel a momentary chill.");
+						HFire_resistance |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 2:
+				if (intloss) {
+					if (HTeleportation & INTRINSIC) {
+						HTeleportation &= ~INTRINSIC;
+						You_feel("less jumpy.");
+					}
+					if (HTeleportation & TIMEOUT) {
+						HTeleportation &= ~TIMEOUT;
+						You_feel("less jumpy.");
+					}
+				} else {
+					if(!(HTeleportation & FROMOUTSIDE)) {
+						You_feel(Hallucination ? "diffuse." : "very jumpy.");
+						HTeleportation |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 3:
+				if (intloss) {
+					if (HPoison_resistance & INTRINSIC) {
+						HPoison_resistance &= ~INTRINSIC;
+						You_feel("a little sick!");
+					}
+					if (HPoison_resistance & TIMEOUT) {
+						HPoison_resistance &= ~TIMEOUT;
+						You_feel("a little sick!");
+					}
+				} else {
+					if(!(HPoison_resistance & FROMOUTSIDE)) {
+						You_feel(Poison_resistance ? "especially healthy." : "healthy.");
+						HPoison_resistance |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 4:
+				if (intloss) {
+					if (HTelepat & INTRINSIC) {
+						HTelepat &= ~INTRINSIC;
+						Your("senses fail!");
+					}
+					if (HTelepat & TIMEOUT) {
+						HTelepat &= ~TIMEOUT;
+						Your("senses fail!");
+					}
+				} else {
+					if(!(HTelepat & FROMOUTSIDE)) {
+						You_feel(Hallucination ? "in touch with the cosmos." : "a strange mental acuity.");
+						HTelepat |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 5:
+				if (intloss) {
+					if (HCold_resistance & INTRINSIC) {
+						HCold_resistance &= ~INTRINSIC;
+						You_feel("cooler.");
+					}
+					if (HCold_resistance & TIMEOUT) {
+						HCold_resistance &= ~TIMEOUT;
+						You_feel("cooler.");
+					}
+				} else {
+					if(!(HCold_resistance & FROMOUTSIDE)) {
+						You_feel("full of hot air.");
+						HCold_resistance |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 6:
+				if (intloss) {
+					if (HInvis & INTRINSIC) {
+						HInvis &= ~INTRINSIC;
+						You_feel("paranoid.");
+					}
+					if (HInvis & TIMEOUT) {
+						HInvis &= ~TIMEOUT;
+						You_feel("paranoid.");
+					}
+				} else {
+					if(!(HInvis & FROMOUTSIDE)) {
+						You_feel("less visible.");
+						HInvis |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 7:
+				if (intloss) {
+					if (HSee_invisible & INTRINSIC) {
+						HSee_invisible &= ~INTRINSIC;
+						You("%s!", Hallucination ? "tawt you taw a puttie tat" : "thought you saw something");
+					}
+					if (HSee_invisible & TIMEOUT) {
+						HSee_invisible &= ~TIMEOUT;
+						You("%s!", Hallucination ? "tawt you taw a puttie tat" : "thought you saw something");
+					}
+				} else {
+					if(!(HSee_invisible & FROMOUTSIDE)) {
+						You_feel("your vision sharpen.");
+						HSee_invisible |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 8:
+				if (intloss) {
+					if (HFast & INTRINSIC) {
+						HFast &= ~INTRINSIC;
+						You_feel("slower.");
+					}
+					if (HFast & TIMEOUT) {
+						HFast &= ~TIMEOUT;
+						You_feel("slower.");
+					}
+				} else {
+					if(!(HFast & FROMOUTSIDE)) {
+						You_feel("faster.");
+						HFast |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 9:
+				if (intloss) {
+					if (HAggravate_monster & INTRINSIC) {
+						HAggravate_monster &= ~INTRINSIC;
+						You_feel("less attractive.");
+					}
+					if (HAggravate_monster & TIMEOUT) {
+						HAggravate_monster &= ~TIMEOUT;
+						You_feel("less attractive.");
+					}
+				} else {
+					if(!(HAggravate_monster & FROMOUTSIDE)) {
+						You_feel("monsters setting up portals.");
+						HAggravate_monster |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 10:
+				if (intloss) {
+					if (HSleep_resistance & INTRINSIC) {
+						HSleep_resistance &= ~INTRINSIC;
+						You_feel("tired all of a sudden.");
+					}
+					if (HSleep_resistance & TIMEOUT) {
+						HSleep_resistance &= ~TIMEOUT;
+						You_feel("tired all of a sudden.");
+					}
+				} else {
+					if(!(HSleep_resistance & FROMOUTSIDE)) {
+						You_feel("wide awake.");
+						HSleep_resistance |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 11:
+				if (intloss) {
+					if (HDisint_resistance & INTRINSIC) {
+						HDisint_resistance &= ~INTRINSIC;
+						You_feel("like you're going to break apart.");
+					}
+					if (HDisint_resistance & TIMEOUT) {
+						HDisint_resistance &= ~TIMEOUT;
+						You_feel("like you're going to break apart.");
+					}
+				} else {
+					if(!(HDisint_resistance & FROMOUTSIDE)) {
+						You_feel(Hallucination ? "totally together, man." : "very firm.");
+						HDisint_resistance |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 12:
+				if (intloss) {
+					if (HShock_resistance & INTRINSIC) {
+						HShock_resistance &= ~INTRINSIC;
+						You_feel("like someone has zapped you.");
+					}
+					if (HShock_resistance & TIMEOUT) {
+						HShock_resistance &= ~TIMEOUT;
+						You_feel("like someone has zapped you.");
+					}
+				} else {
+					if(!(HShock_resistance & FROMOUTSIDE)) {
+						if (Hallucination)
+							You_feel("grounded in reality.");
+						else
+							Your("health currently feels amplified!");
+						HShock_resistance |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 13:
+				if (intloss) {
+					if (HTeleport_control & INTRINSIC) {
+						HTeleport_control &= ~INTRINSIC;
+						You_feel("unable to control where you're going.");
+					}
+					if (HTeleport_control & TIMEOUT) {
+						HTeleport_control &= ~TIMEOUT;
+						You_feel("unable to control where you're going.");
+					}
+				} else {
+					if(!(HTeleport_control & FROMOUTSIDE)) {
+						You_feel(Hallucination ? "centered in your personal space." : "in control of yourself.");
+						HTeleport_control |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 14:
+				if (intloss) {
+					if (HAcid_resistance & INTRINSIC) {
+						HAcid_resistance &= ~INTRINSIC;
+						You_feel("worried about corrosion!");
+					}
+					if (HAcid_resistance & TIMEOUT) {
+						HAcid_resistance &= ~TIMEOUT;
+						You_feel("worried about corrosion!");
+					}
+				} else {
+					if(!(HAcid_resistance & FROMOUTSIDE)) {
+						You(Hallucination ? "wanna do more acid!" : "feel less afraid of corrosives.");
+						HAcid_resistance |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 15:
+				{
+				int foopathynumber = rnd(13);
+				switch (foopathynumber) {
+
+					case 1:
+
+						if (intloss) {
+							if (HHallu_party & INTRINSIC) {
+								HHallu_party &= ~INTRINSIC;
+								You_feel("that the party is over!");
+							}
+							if (HHallu_party & TIMEOUT) {
+								HHallu_party &= ~TIMEOUT;
+								You_feel("that the party is over!");
+							}
+						} else {
+							if(!(HHallu_party & FROMOUTSIDE)) {
+								You_feel(Hallucination ?
+								    "like throwing wild parties with lots of sexy girls! Yeah!" :
+								    "a strange desire to celebrate.");
+								HHallu_party |= FROMOUTSIDE;
+							}
+						}
+						break;
+					case 2:
+
+						if (intloss) {
+							if (HDrunken_boxing & INTRINSIC) {
+								HDrunken_boxing &= ~INTRINSIC;
+								You_feel("a little drunk!");
+							}
+							if (HDrunken_boxing & TIMEOUT) {
+								HDrunken_boxing &= ~TIMEOUT;
+								You_feel("a little drunk!");
+							}
+						} else {
+							if(!(HDrunken_boxing & FROMOUTSIDE)) {
+								You_feel(Hallucination ? "like Mike Tyson!" : "ready for a good brawl.");
+								HDrunken_boxing |= FROMOUTSIDE;
+							}
+						}
+						break;
+					case 3:
+
+						if (intloss) {
+							if (HStunnopathy & INTRINSIC) {
+								HStunnopathy &= ~INTRINSIC;
+								You_feel("an uncontrolled stunning!");
+							}
+							if (HStunnopathy & TIMEOUT) {
+								HStunnopathy &= ~TIMEOUT;
+								You_feel("an uncontrolled stunning!");
+							}
+						} else {
+							if(!(HStunnopathy & FROMOUTSIDE)) {
+								You_feel(Hallucination ? "a controlled wobbling! Feels like being on a bouncy ship!" : "steadily observant.");
+								HStunnopathy |= FROMOUTSIDE;
+							}
+						}
+						break;
+					case 4:
+
+						if (intloss) {
+							if (HNumbopathy & INTRINSIC) {
+								HNumbopathy &= ~INTRINSIC;
+								You_feel("numbness spreading through your body!");
+							}
+							if (HNumbopathy & TIMEOUT) {
+								HNumbopathy &= ~TIMEOUT;
+								You_feel("numbness spreading through your body!");
+							}
+						} else {
+							if(!(HNumbopathy & FROMOUTSIDE)) {
+								You_feel(Hallucination ?
+						    "as if a sweet woman were clamping your toes with a block-heeled combat boot!" :
+					    "a numb feeling spreading through your body. Somehow, it doesn't feel bad at all...");
+								HNumbopathy |= FROMOUTSIDE;
+							}
+						}
+						break;
+					case 5:
+
+						if (intloss) {
+							if (HDimmopathy & INTRINSIC) {
+								HDimmopathy &= ~INTRINSIC;
+								You_feel(Hallucination ? "that your marriage is no longer safe..." : "worried about the future!");
+							}
+							if (HDimmopathy & TIMEOUT) {
+								HDimmopathy &= ~TIMEOUT;
+								You_feel(Hallucination ? "that your marriage is no longer safe..." : "worried about the future!");
+							}
+						} else {
+							if(!(HDimmopathy & FROMOUTSIDE)) {
+								HDimmopathy |= FROMOUTSIDE;
+								You_feel(Hallucination ?
+								    "like your wife was contemplating a breakup, but then you realize that she's gonna stay with you to the end of all time." :
+								    "a little down. But then, good feelings overcome you.");
+							}
+						}
+						break;
+					case 6:
+
+						if (intloss) {
+							if (HFreezopathy & INTRINSIC) {
+								HFreezopathy &= ~INTRINSIC;
+								You_feel("ice-cold!");
+							}
+							if (HFreezopathy & TIMEOUT) {
+								HFreezopathy &= ~TIMEOUT;
+								You_feel("ice-cold!");
+							}
+						} else {
+							if(!(HFreezopathy & FROMOUTSIDE)) {
+								You_feel(Hallucination ? "like eating a big cone of ice-cream - mmmmmmmm!" : "icy.");
+								HFreezopathy |= FROMOUTSIDE;
+							}
+						}
+						break;
+					case 7:
+
+						if (intloss) {
+							if (HStoned_chiller & INTRINSIC) {
+								HStoned_chiller &= ~INTRINSIC;
+								You_feel("that you ain't gonna get time for relaxing anymore!");
+							}
+							if (HStoned_chiller & TIMEOUT) {
+								HStoned_chiller &= ~TIMEOUT;
+								You_feel("that you ain't gonna get time for relaxing anymore!");
+							}
+						} else {
+							if(!(HStoned_chiller & FROMOUTSIDE)) {
+								You_feel(Hallucination ? "that you're simply the best - yeah, no shit, man!" :     "like relaxing on a couch.");
+								HStoned_chiller |= FROMOUTSIDE;
+							}
+						}
+						break;
+					case 8:
+
+						if (intloss) {
+							if (HCorrosivity & INTRINSIC) {
+								HCorrosivity &= ~INTRINSIC;
+								You_feel("the protective layer on your skin disappearing!");
+							}
+							if (HCorrosivity & TIMEOUT) {
+								HCorrosivity &= ~TIMEOUT;
+								You_feel("the protective layer on your skin disappearing!");
+							}
+						} else {
+							if(!(HCorrosivity & FROMOUTSIDE)) {
+								You_feel(Hallucination ? "like you just got splashed with gunks of acid!" : "an acidic burning.");
+								HCorrosivity |= FROMOUTSIDE;
+							}
+						}
+						break;
+					case 9:
+
+						if (intloss) {
+							if (HFear_factor & INTRINSIC) {
+								HFear_factor &= ~INTRINSIC;
+								You_feel("fearful!");
+							}
+							if (HFear_factor & TIMEOUT) {
+								HFear_factor &= ~TIMEOUT;
+								You_feel("fearful!");
+							}
+						} else {
+							if(!(HFear_factor & FROMOUTSIDE)) {
+								You_feel(Hallucination ? "like you're always running - from something! And the 'something' is a prostitute." : "ready to face your fears.");
+								HFear_factor |= FROMOUTSIDE;
+							}
+						}
+						break;
+					case 10:
+
+						if (intloss) {
+							if (HBurnopathy & INTRINSIC) {
+								HBurnopathy &= ~INTRINSIC;
+								You_feel("red-hot!");
+							}
+							if (HBurnopathy & TIMEOUT) {
+								HBurnopathy &= ~TIMEOUT;
+								You_feel("red-hot!");
+							}
+						} else {
+							if(!(HBurnopathy & FROMOUTSIDE)) {
+								You_feel(Hallucination ? "super burninated by enemy with very tired!" : "a burning inside. Strangely, it feels quite soothing.");
+								HBurnopathy |= FROMOUTSIDE;
+							}
+						}
+						break;
+					case 11:
+
+						if (intloss) {
+							if (HSickopathy & INTRINSIC) {
+								HSickopathy &= ~INTRINSIC;
+								You_feel("a loss of medical knowledge!");
+							}
+							if (HSickopathy & TIMEOUT) {
+								HSickopathy &= ~TIMEOUT;
+								You_feel("a loss of medical knowledge!");
+							}
+						} else {
+							if(!(HSickopathy & FROMOUTSIDE)) {
+								You_feel(Hallucination ?
+							    "that you just smoked some really wacky stuff! What the heck was in there?" :
+						    "ill for a moment, but get the feeling that you know more about diseases now.");
+								HSickopathy |= FROMOUTSIDE;
+							}
+						}
+						break;
+					case 12:
+
+						if (intloss) {
+							if (HWonderlegs & INTRINSIC) {
+								HWonderlegs &= ~INTRINSIC;
+								You_feel("that all girls and women will scratch bloody wounds on your legs with their high heels!");
+							}
+							if (HWonderlegs & TIMEOUT) {
+								HWonderlegs &= ~TIMEOUT;
+								You_feel("that all girls and women will scratch bloody wounds on your legs with their high heels!");
+							}
+						} else {
+							if(!(HWonderlegs & FROMOUTSIDE)) {
+								You_feel(Hallucination ?
+								    "a wonderful sensation in your shins, like they were just kicked by female hugging boots! How lovely!" :
+							    "like having your legs scratched up and down by sexy leather pumps.");
+								HWonderlegs |= FROMOUTSIDE;
+							}
+						}
+						break;
+					case 13:
+
+						if (intloss) {
+							if (HGlib_combat & INTRINSIC) {
+								HGlib_combat &= ~INTRINSIC;
+								You_feel("fliction in your %s!", makeplural(body_part(HAND)));
+							}
+							if (HGlib_combat & TIMEOUT) {
+								HGlib_combat &= ~TIMEOUT;
+								You_feel("fliction in your %s!", makeplural(body_part(HAND)));
+							}
+						} else {
+							if(!(HGlib_combat & FROMOUTSIDE)) {
+								You_feel(Hallucination ?
+					    "like an absolute marital arts champion, so you can start fighting off your spouse!" :
+								    "the fliction in your hands disappearing.");
+								HGlib_combat |= FROMOUTSIDE;
+							}
+						}
+						break;
+					}
+				}
+				break;
+			case 16:
+				if (intloss) {
+					if (HStone_resistance & INTRINSIC) {
+						HStone_resistance &= ~INTRINSIC;
+						You_feel("less solid!");
+					}
+					if (HStone_resistance & TIMEOUT) {
+						HStone_resistance &= ~TIMEOUT;
+						You_feel("less solid!");
+					}
+				} else {
+					if(!(HStone_resistance & FROMOUTSIDE)) {
+						You(Hallucination ? "feel stony and groovy, man." : "feel rock solid.");
+						HStone_resistance |= FROMOUTSIDE;
+					}
+				}
+				break;
+			default: /* shouldn't happen */
+				break;
+
+		}
+	} else switch (rnd(34)) { /* ones that require eating jewelry or other weird actions */
+
+			case 1:
+				if (intloss) {
+					if (HStealth & INTRINSIC) {
+						HStealth &= ~INTRINSIC;
+						You_feel("clumsy.");
+					}
+					if (HStealth & TIMEOUT) {
+						HStealth &= ~TIMEOUT;
+						You_feel("clumsy.");
+					}
+				} else {
+					if(!(HStealth & FROMOUTSIDE)) {
+						HStealth |= FROMOUTSIDE;
+						You_feel("stealthy.");
+					}
+				}
+
+				break;
+			case 2:
+				if (intloss) {
+					if (HProtection & INTRINSIC) {
+						HProtection &= ~INTRINSIC;
+						You_feel("vulnerable.");
+					}
+					if (HProtection & TIMEOUT) {
+						HProtection &= ~TIMEOUT;
+						You_feel("vulnerable.");
+					}
+				} else {
+					if(!(HProtection & FROMOUTSIDE)) {
+						HProtection |= FROMOUTSIDE;
+						You_feel("protected.");
+					}
+				}
+				break;
+			case 3:
+				if (intloss) {
+					if (HDrain_resistance & INTRINSIC) {
+						HDrain_resistance &= ~INTRINSIC;
+						You_feel("like someone is sucking out your life-force.");
+					}
+					if (HDrain_resistance & TIMEOUT) {
+						HDrain_resistance &= ~TIMEOUT;
+						You_feel("like someone is sucking out your life-force.");
+					}
+				} else {
+					if(!(HDrain_resistance & FROMOUTSIDE)) {
+						You_feel("that your life force is safe now.");
+						HDrain_resistance |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 4:
+				if (intloss) {
+					if (HSick_resistance & INTRINSIC) {
+						HSick_resistance &= ~INTRINSIC;
+						You_feel("no longer immune to diseases!");
+					}
+					if (HSick_resistance & TIMEOUT) {
+						HSick_resistance &= ~TIMEOUT;
+						You_feel("no longer immune to diseases!");
+					}
+				} else {
+					if(!(HSick_resistance & FROMOUTSIDE)) {
+						You_feel("immune to diseases.");
+						HSick_resistance |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 5:
+				if (intloss) {
+					if (HWarning & INTRINSIC) {
+						HWarning &= ~INTRINSIC;
+						You_feel("that your radar has just stopped working!");
+					}
+					if (HWarning & TIMEOUT) {
+						HWarning &= ~TIMEOUT;
+						You_feel("that your radar has just stopped working!");
+					}
+				} else {
+					if(!(HWarning & FROMOUTSIDE)) {
+						You_feel("that your radar was turned on.");
+						HWarning |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 6:
+				if (intloss) {
+					if (HSearching & INTRINSIC) {
+						HSearching &= ~INTRINSIC;
+						You_feel("unable to find something you lost!");
+					}
+					if (HSearching & TIMEOUT) {
+						HSearching &= ~TIMEOUT;
+						You_feel("unable to find something you lost!");
+					}
+				} else {
+					if(!(HSearching & FROMOUTSIDE)) {
+						You_feel("capable of finding hidden secrets.");
+						HSearching |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 7:
+				if (intloss) {
+					if (HClairvoyant & INTRINSIC) {
+						HClairvoyant &= ~INTRINSIC;
+						You_feel("a loss of mental capabilities!");
+					}
+					if (HClairvoyant & TIMEOUT) {
+						HClairvoyant &= ~TIMEOUT;
+						You_feel("a loss of mental capabilities!");
+					}
+				} else {
+					if(!(HClairvoyant & FROMOUTSIDE)) {
+						You_feel("your consciousness expand!");
+						HClairvoyant |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 8:
+				if (intloss) {
+					if (HInfravision & INTRINSIC) {
+						HInfravision &= ~INTRINSIC;
+						You_feel("shrouded in darkness.");
+					}
+					if (HInfravision & TIMEOUT) {
+						HInfravision &= ~TIMEOUT;
+						You_feel("shrouded in darkness.");
+					}
+				} else {
+					if(!(HInfravision & FROMOUTSIDE)) {
+						You_feel("capable of seeing in the dark.");
+						HInfravision |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 9:
+				if (!rn2(200)) { /* detect monsters is the grand daddy and thus very rare --Amy */
+
+					if (intloss) {
+						if (HDetect_monsters & INTRINSIC) {
+							HDetect_monsters &= ~INTRINSIC;
+							You_feel("that you can no longer sense monsters.");
+						}
+						if (HDetect_monsters & TIMEOUT) {
+							HDetect_monsters &= ~TIMEOUT;
+							You_feel("that you can no longer sense monsters.");
+						}
+					} else {
+						if(!(HDetect_monsters & FROMOUTSIDE)) {
+							HDetect_monsters |= FROMOUTSIDE;
+							You("sense monsters.");
+						}
+					}
+
+				} else {
+
+					if (intloss) {
+						if (HJumping & INTRINSIC) {
+							HJumping &= ~INTRINSIC;
+							You_feel("your legs shrinking.");
+						}
+						if (HJumping & TIMEOUT) {
+							HJumping &= ~TIMEOUT;
+							You_feel("your legs shrinking.");
+						}
+					} else {
+						if(!(HJumping & FROMOUTSIDE)) {
+							HJumping |= FROMOUTSIDE;
+							You_feel("a sudden ability to jump.");
+						}
+					}
+				}
+				break;
+			case 10:
+				if (intloss) {
+					if (HMagical_breathing & INTRINSIC) {
+						HMagical_breathing &= ~INTRINSIC;
+						You_feel("you suddenly need to breathe!");
+					}
+					if (HMagical_breathing & TIMEOUT) {
+						HMagical_breathing &= ~TIMEOUT;
+						You_feel("you suddenly need to breathe!");
+					}
+				} else {
+					if(!(HMagical_breathing & FROMOUTSIDE)) {
+						You_feel("that you don't need to breathe any longer.");
+						HMagical_breathing |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 11:
+				if (intloss) {
+					if (HRegeneration & INTRINSIC) {
+						HRegeneration &= ~INTRINSIC;
+						You_feel("your wounds are healing slower!");
+					}
+					if (HRegeneration & TIMEOUT) {
+						HRegeneration &= ~TIMEOUT;
+						You_feel("your wounds are healing slower!");
+					}
+				} else {
+					if(!(HRegeneration & FROMOUTSIDE)) {
+						You_feel("your wounds healing more quickly.");
+						HRegeneration |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 12:
+				if (intloss) {
+					if (HEnergy_regeneration & INTRINSIC) {
+						HEnergy_regeneration &= ~INTRINSIC;
+						You_feel("a loss of mystic power!");
+					}
+					if (HEnergy_regeneration & TIMEOUT) {
+						HEnergy_regeneration &= ~TIMEOUT;
+						You_feel("a loss of mystic power!");
+					}
+				} else {
+					if(!(HEnergy_regeneration & FROMOUTSIDE)) {
+						HEnergy_regeneration |= FROMOUTSIDE;
+						You_feel("a surge of mystic power.");
+					}
+				}
+				break;
+			case 13:
+				if (intloss) {
+					if (HPolymorph & INTRINSIC) {
+						HPolymorph &= ~INTRINSIC;
+						You_feel("unable to change form!");
+					}
+					if (HPolymorph & TIMEOUT) {
+						HPolymorph &= ~TIMEOUT;
+						You_feel("unable to change form!");
+					}
+				} else {
+					if(!(HPolymorph & FROMOUTSIDE)) {
+						HPolymorph |= FROMOUTSIDE;
+						You_feel("unstable.");
+					}
+				}
+				break;
+			case 14:
+				if (intloss) {
+					if (HPolymorph_control & INTRINSIC) {
+						HPolymorph_control &= ~INTRINSIC;
+						You_feel("less control over your own body.");
+					}
+					if (HPolymorph_control & TIMEOUT) {
+						HPolymorph_control &= ~TIMEOUT;
+						You_feel("less control over your own body.");
+					}
+				} else {
+					if(!(HPolymorph_control & FROMOUTSIDE)) {
+						HPolymorph_control |= FROMOUTSIDE;
+						You_feel("more control over your own body.");
+					}
+				}
+				break;
+			case 15:
+				if (intloss) {
+					if (HHunger & INTRINSIC) {
+						HHunger &= ~INTRINSIC;
+						You_feel("like you just ate a chunk of meat.");
+					}
+					if (HHunger & TIMEOUT) {
+						HHunger &= ~TIMEOUT;
+						You_feel("like you just ate a chunk of meat.");
+					}
+				} else {
+					if(!(HHunger & FROMOUTSIDE)) {
+						HHunger |= FROMOUTSIDE;
+						You_feel("very hungry.");
+					}
+				}
+				break;
+			case 16:
+				if (intloss) {
+					if (HConflict & INTRINSIC) {
+						HConflict &= ~INTRINSIC;
+						You_feel("more acceptable.");
+					}
+					if (HConflict & TIMEOUT) {
+						HConflict &= ~TIMEOUT;
+						You_feel("more acceptable.");
+					}
+				} else {
+					if(!(HConflict & FROMOUTSIDE)) {
+						HConflict |= FROMOUTSIDE;
+						You_feel("like a rabble-rouser.");
+					}
+				}
+				break;
+			case 17:
+				if (intloss) {
+					if (HSlow_digestion & INTRINSIC) {
+						HSlow_digestion &= ~INTRINSIC;
+						You_feel("like you're burning calories faster.");
+					}
+					if (HSlow_digestion & TIMEOUT) {
+						HSlow_digestion &= ~TIMEOUT;
+						You_feel("like you're burning calories faster.");
+					}
+				} else {
+					if(!(HSlow_digestion & FROMOUTSIDE)) {
+						You_feel("constipated.");
+						HSlow_digestion |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 18:
+				if (intloss) {
+					if (HFlying & INTRINSIC) {
+						HFlying &= ~INTRINSIC;
+						You_feel("like you just lost your wings!");
+					}
+					if (HFlying & TIMEOUT) {
+						HFlying &= ~TIMEOUT;
+						You_feel("like you just lost your wings!");
+					}
+				} else {
+					if(!(HFlying & FROMOUTSIDE)) {
+						You_feel("airborne.");
+						HFlying |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 19:
+
+				if (!rn2(200)) { /* passwall is teh uber pwnz0r and therefore rare */
+
+					if (intloss) {
+						if (HPasses_walls & INTRINSIC) {
+							HPasses_walls &= ~INTRINSIC;
+							You_feel("less ethereal!");
+						}
+						if (HPasses_walls & TIMEOUT) {
+							HPasses_walls &= ~TIMEOUT;
+							You_feel("less ethereal!");
+						}
+					} else {
+						if(!(HPasses_walls & FROMOUTSIDE)) {
+							You_feel("ethereal.");
+							HPasses_walls |= FROMOUTSIDE;
+						}
+					}
+				} else {
+
+					if (intloss) {
+						if (HAntimagic & INTRINSIC) {
+							HAntimagic &= ~INTRINSIC;
+							You_feel("less protected from magic!");
+						}
+						if (HAntimagic & TIMEOUT) {
+							HAntimagic &= ~TIMEOUT;
+							You_feel("less protected from magic!");
+						}
+					} else {
+						if(!(HAntimagic & FROMOUTSIDE)) {
+							You_feel("magic-protected.");
+							HAntimagic |= FROMOUTSIDE;
+						}
+					}
+
+				}
+
+				break;
+			case 20:
+				if (intloss) {
+					if (HReflecting & INTRINSIC) {
+						HReflecting &= ~INTRINSIC;
+						You_feel("less reflexive!");
+					}
+					if (HReflecting & TIMEOUT) {
+						HReflecting &= ~TIMEOUT;
+						You_feel("less reflexive!");
+					}
+				} else {
+					if(!(HReflecting & FROMOUTSIDE)) {
+						You_feel("reflexive.");
+						HReflecting |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 21:
+				if (intloss) {
+					if (HSwimming & INTRINSIC) {
+						HSwimming &= ~INTRINSIC;
+						You_feel("less aquatic!");
+					}
+					if (HSwimming & TIMEOUT) {
+						HSwimming &= ~TIMEOUT;
+						You_feel("less aquatic!");
+					}
+				} else {
+					if(!(HSwimming & FROMOUTSIDE)) {
+						You_feel("aquatic.");
+						HSwimming |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 22:
+				if (intloss) {
+					if (HFree_action & INTRINSIC) {
+						HFree_action &= ~INTRINSIC;
+						You_feel("a loss of freedom!");
+					}
+					if (HFree_action & TIMEOUT) {
+						HFree_action &= ~TIMEOUT;
+						You_feel("a loss of freedom!");
+					}
+				} else {
+					if(!(HFree_action & FROMOUTSIDE)) {
+						You_feel("free.");
+						HFree_action |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 23:
+				if (intloss) {
+					if (HFear_resistance & INTRINSIC) {
+						HFear_resistance &= ~INTRINSIC;
+						You_feel("a little anxious!");
+					}
+					if (HFear_resistance & TIMEOUT) {
+						HFear_resistance &= ~TIMEOUT;
+						You_feel("a little anxious!");
+					}
+				} else {
+					if(!(HFear_resistance & FROMOUTSIDE)) {
+						You_feel("unafraid.");
+						HFear_resistance |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 24:
+				if (intloss) {
+					if (HKeen_memory & INTRINSIC) {
+						HKeen_memory &= ~INTRINSIC;
+						You_feel("a case of selective amnesia...");
+					}
+					if (HKeen_memory & TIMEOUT) {
+						HKeen_memory &= ~TIMEOUT;
+						You_feel("a case of selective amnesia...");
+					}
+				} else {
+					if(!(HKeen_memory & FROMOUTSIDE)) {
+						You_feel("capable of remembering everything.");
+						HKeen_memory |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 25:
+				if (intloss) {
+					if (HVersus_curses & INTRINSIC) {
+						HVersus_curses &= ~INTRINSIC;
+						You_feel("cursed!");
+					}
+					if (HVersus_curses & TIMEOUT) {
+						HVersus_curses &= ~TIMEOUT;
+						You_feel("cursed!");
+					}
+				} else {
+					if(!(HVersus_curses & FROMOUTSIDE)) {
+						You_feel("protected from curse words.");
+						HVersus_curses |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 26:
+				if (intloss) {
+					if (HStun_resist & INTRINSIC) {
+						HStun_resist &= ~INTRINSIC;
+						You_feel("a little stunned!");
+					}
+					if (HStun_resist & TIMEOUT) {
+						HStun_resist &= ~TIMEOUT;
+						You_feel("a little stunned!");
+					}
+				} else {
+					if(!(HStun_resist & FROMOUTSIDE)) {
+						You_feel("the ability to control stunning.");
+						HStun_resist |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 27:
+				if (intloss) {
+					if (HConf_resist & INTRINSIC) {
+						HConf_resist &= ~INTRINSIC;
+						You_feel("a little confused!");
+					}
+					if (HConf_resist & TIMEOUT) {
+						HConf_resist &= ~TIMEOUT;
+						You_feel("a little confused!");
+					}
+				} else {
+					if(!(HConf_resist & FROMOUTSIDE)) {
+						You_feel("capable of concentrating even while confused.");
+						HConf_resist |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 28:
+				if (intloss) {
+					if (HExtra_wpn_practice & INTRINSIC) {
+						HExtra_wpn_practice &= ~INTRINSIC;
+						You_feel("less able to learn new stuff!");
+					}
+					if (HExtra_wpn_practice & TIMEOUT) {
+						HExtra_wpn_practice &= ~TIMEOUT;
+						You_feel("less able to learn new stuff!");
+					}
+				} else {
+					if(!(HExtra_wpn_practice & FROMOUTSIDE)) {
+						You_feel("like a quick learner.");
+						HExtra_wpn_practice |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 29:
+				if (intloss) {
+					if (HDisplaced & INTRINSIC) {
+						HDisplaced &= ~INTRINSIC;
+						You_feel("a little exposed!");
+					}
+					if (HDisplaced & TIMEOUT) {
+						HDisplaced &= ~TIMEOUT;
+						You_feel("a little exposed!");
+					}
+				} else {
+					if(!(HDisplaced & FROMOUTSIDE)) {
+						You_feel("less exposed.");
+						HDisplaced |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 30:
+				if (intloss) {
+					if (HPsi_resist & INTRINSIC) {
+						HPsi_resist &= ~INTRINSIC;
+						You_feel("empty-minded!");
+					}
+					if (HPsi_resist & TIMEOUT) {
+						HPsi_resist &= ~TIMEOUT;
+						You_feel("empty-minded!");
+					}
+				} else {
+					if(!(HPsi_resist & FROMOUTSIDE)) {
+						You_feel("mentally strong.");
+						HPsi_resist |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 31:
+				if (intloss) {
+					if (HSight_bonus & INTRINSIC) {
+						HSight_bonus &= ~INTRINSIC;
+						You_feel("less perceptive!");
+					}
+					if (HSight_bonus & TIMEOUT) {
+						HSight_bonus &= ~TIMEOUT;
+						You_feel("less perceptive!");
+					}
+				} else {
+					if(!(HSight_bonus & FROMOUTSIDE)) {
+						You_feel("the presence of a globe of light.");
+						HSight_bonus |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 32:
+				if (intloss) {
+					if (HManaleech & INTRINSIC) {
+						HManaleech &= ~INTRINSIC;
+						You_feel("less magically attuned!");
+					}
+					if (HManaleech & TIMEOUT) {
+						HManaleech &= ~TIMEOUT;
+						You_feel("less magically attuned!");
+					}
+				} else {
+					if(!(HManaleech & FROMOUTSIDE)) {
+						You_feel("magically attuned.");
+						HManaleech |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 33:
+				if (intloss) {
+					if (HMap_amnesia & INTRINSIC) {
+						HMap_amnesia &= ~INTRINSIC;
+						You_feel("less forgetful!");
+					}
+					if (HMap_amnesia & TIMEOUT) {
+						HMap_amnesia &= ~TIMEOUT;
+						You_feel("less forgetful!");
+					}
+				} else {
+					if(!(HMap_amnesia & FROMOUTSIDE)) {
+						You_feel("very forgetful!");
+						HMap_amnesia |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 34:
+				if (intloss) {
+					if (HPeacevision & INTRINSIC) {
+						HPeacevision &= ~INTRINSIC;
+						You_feel("less peaceful!");
+					}
+					if (HPeacevision & TIMEOUT) {
+						HPeacevision &= ~TIMEOUT;
+						You_feel("less peaceful!");
+					}
+				} else {
+					if(!(HPeacevision & FROMOUTSIDE)) {
+						You_feel("a sense of peace.");
+						HPeacevision |= FROMOUTSIDE;
+					}
+				}
+				break;
+			default: /* shouldn't happen */
+				break;
+
+	}
 }
 
 #endif /* OVLB */

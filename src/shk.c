@@ -3923,6 +3923,9 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != HIGHLEVEL_TRAP
 				&& ttmp->ttyp != SPELL_FORGETTING_TRAP
 				&& ttmp->ttyp != SOUND_EFFECT_TRAP
+				&& ttmp->ttyp != CONTAMINATION_TRAP
+				&& ttmp->ttyp != BOSS_SPAWNER
+				&& ttmp->ttyp != KOP_CUBE
 
 				&& (ttmp->ttyp != DEATH_TRAP ||
 				    (nonliving(shkp->data) || is_demon(shkp->data) || resists_death(shkp) || shkp->data->msound == MS_NEMESIS || resists_magm(shkp)) )

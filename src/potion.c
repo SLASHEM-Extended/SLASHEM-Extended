@@ -573,7 +573,7 @@ badeffect()
 		return;
 	}
 
-	switch (rnd(380)) {
+	switch (rnd(391)) {
 
 		case 1:
 		case 2:
@@ -2110,6 +2110,22 @@ badeffect()
 		if (Hallucination) You_feel("totally bad! Your wife is going to abandon you...");
 		else pline("You're dimmed!");
 		make_dimmed(HDimmed + rnz(150),FALSE);
+		break;
+
+		case 381:
+		case 382:
+		case 383:
+		case 384:
+		case 385:
+		case 386:
+		case 387:
+		case 388:
+		case 389:
+		case 390:
+			contaminate(rnd(10 + level_difficulty()));
+		break;
+		case 391:
+			contaminate(rnz(100 + (level_difficulty() * 10)));
 		break;
 
 		default:

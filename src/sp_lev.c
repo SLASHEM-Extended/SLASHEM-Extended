@@ -1168,6 +1168,12 @@ selecttrap:
 	     case WARP_ZONE:
 			if (rn2(50) && !NastyTrapNation) goto selecttrap;
 			break;
+	     case KOP_CUBE:
+			if (rn2(50) && !NastyTrapNation) goto selecttrap;
+			break;
+	     case BOSS_SPAWNER:
+			if (rn2(50) && !NastyTrapNation) goto selecttrap;
+			break;
 	     case MIND_WIPE_TRAP:
 			if (rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
@@ -1580,6 +1586,8 @@ selecttrap:
 	      if (rtrap == RECURSION_TRAP && rn2(500) && !NastyTrapNation) goto selecttrap;
 	      if (rtrap == TEMPORARY_RECURSION_TRAP && rn2(50) && !NastyTrapNation) goto selecttrap;
 	      if (rtrap == WARP_ZONE && rn2(50) && !NastyTrapNation) goto selecttrap;
+	      if (rtrap == KOP_CUBE && rn2(50) && !NastyTrapNation) goto selecttrap;
+	      if (rtrap == BOSS_SPAWNER && rn2(50) && !NastyTrapNation) goto selecttrap;
 	      if (rtrap == MIND_WIPE_TRAP && rn2(10) && !NastyTrapNation) goto selecttrap;
 	      if (rtrap == GATEWAY_FROM_HELL && rn2(20) && !NastyTrapNation) goto selecttrap;
 
@@ -3370,6 +3378,7 @@ boolean prefilled;
 
 	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
+retryrandtype:
 		switch (rnd(83)) {
 
 			case 1: croom->rtype = COURT; break;
@@ -3447,7 +3456,11 @@ boolean prefilled;
 			case 73: croom->rtype = SLEEPINGROOM; break;
 			case 74: croom->rtype = DIVERPARADISE; break;
 			case 75: croom->rtype = MENAGERIE; break;
-			case 76: croom->rtype = rn2(20) ? TROUBLEZONE : NASTYCENTRAL; break;
+			case 76:
+				if (!rn2(20)) {
+					croom->rtype = NASTYCENTRAL; break;
+				}
+				else goto retryrandtype;
 			case 77: croom->rtype = EMPTYDESERT; break;
 			case 78: croom->rtype = RARITYROOM; break;
 			case 79: croom->rtype = EXHIBITROOM; break;
@@ -3851,7 +3864,12 @@ boolean prefilled;
 		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
 		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
 
-		/* boss spawner traps to be added here */
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++) {
+
+			if(!rn2(5) && !t_at(sx, sy))
+				(void) maketrap(sx, sy, BOSS_SPAWNER, 100);
+		}
 
 	}
 

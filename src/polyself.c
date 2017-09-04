@@ -1709,6 +1709,7 @@ dospinweb()
 		case DIMNESS_TRAP:
 		case EVIL_ARTIFACT_TRAP:
 		case RODNEY_TRAP:
+		case CONTAMINATION_TRAP:
 
 			You("have triggered a trap!");
 			dotrap(ttmp, 0);
@@ -1911,6 +1912,8 @@ dospinweb()
 		case HIGHLEVEL_TRAP:
 		case SPELL_FORGETTING_TRAP:
 		case SOUND_EFFECT_TRAP:
+		case KOP_CUBE:
+		case BOSS_SPAWNER:
 
 			dotrap(ttmp, 0);
 			return(1);

@@ -903,7 +903,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(205)) {
+	switch(rnd(210)) {
 	case 1 : 
 	case 2 : 
 	case 3 : 
@@ -1697,6 +1697,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HGlib_combat & TIMEOUT) {
 			HGlib_combat &= ~TIMEOUT;
 			You_feel("fliction in your %s!", makeplural(body_part(HAND)));
+		}
+		break;
+	case 204:
+	case 205:
+	case 206: if (HStone_resistance & INTRINSIC) {
+			HStone_resistance &= ~INTRINSIC;
+			You_feel("less solid!");
+		}
+		if (HStone_resistance & TIMEOUT) {
+			HStone_resistance &= ~TIMEOUT;
+			You_feel("less solid!");
 		}
 		break;
 	default: break;

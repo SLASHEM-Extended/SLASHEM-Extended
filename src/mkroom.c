@@ -136,6 +136,7 @@ int	roomtype;
 
 	case RANDOMROOM: {
 
+retryrandtype:
 		switch (rnd(63)) {
 
 			case 1: mkzoo(COURT); break;
@@ -193,7 +194,11 @@ int	roomtype;
 			case 53: mkzoo(SLEEPINGROOM); break;
 			case 54: mkzoo(DIVERPARADISE); break;
 			case 55: mkzoo(MENAGERIE); break;
-			case 56: rn2(20) ? mkzoo(TROUBLEZONE) : mknastycentral(); break;
+			case 56: 
+				if (!rn2(20)) {
+					mknastycentral(); break;
+				}
+				else goto retryrandtype;
 			case 57: mkemptydesert(); break;
 			case 58: mkzoo(RARITYROOM); break;
 			case 59: mkzoo(EXHIBITROOM); break;
@@ -672,8 +677,8 @@ struct mkroom *sroom;
 			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(5)) {
 				levl[sx][sy].typ = STYXRIVER;
 			}
-			/*if(!rn2(2) && !t_at(sx, sy))
-				(void) maketrap(sx, sy, CONTAMINATION_TRAP, 100);*/
+			if(!rn2(2) && !t_at(sx, sy))
+				(void) maketrap(sx, sy, CONTAMINATION_TRAP, 100);
 			break;
 
 		    case PRISONCHAMBER:
@@ -684,13 +689,13 @@ struct mkroom *sroom;
 			break;
 
 		    case KOPSTATION:
-			/*if(!rn2(5) && !t_at(sx, sy))
-				(void) maketrap(sx, sy, KOP_CUBE, 100);*/
+			if(!rn2(5) && !t_at(sx, sy))
+				(void) maketrap(sx, sy, KOP_CUBE, 100);
 			break;
 
 		    case BOSSROOM:
-			/*if(!rn2(5) && !t_at(sx, sy))
-				(void) maketrap(sx, sy, BOSS_SPAWNER, 100);*/
+			if(!rn2(5) && !t_at(sx, sy))
+				(void) maketrap(sx, sy, BOSS_SPAWNER, 100);
 			break;
 
 		    case HAMLETROOM:
@@ -1953,7 +1958,12 @@ mkbossroom()
 
     sroom->rtype = BOSSROOM;
 
-	/* boss spawner traps to be added here */
+	for(sx = sroom->lx; sx <= sroom->hx; sx++)
+	for(sy = sroom->ly; sy <= sroom->hy; sy++) {
+
+		if(!rn2(5) && !t_at(sx, sy))
+			(void) maketrap(sx, sy, BOSS_SPAWNER, 100);
+	}
 
 	level.flags.has_bossroom = 1;
 

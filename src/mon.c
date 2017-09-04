@@ -2444,6 +2444,10 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != MISFIRE_TRAP
 				&& ttmp->ttyp != TRAP_OF_WALLS
 
+				&& ttmp->ttyp != KOP_CUBE
+				&& ttmp->ttyp != BOSS_SPAWNER
+				&& ttmp->ttyp != CONTAMINATION_TRAP
+
 				&& ((ttmp->ttyp != PIT
 				    && ttmp->ttyp != SPIKED_PIT
 				    && ttmp->ttyp != GIANT_CHASM

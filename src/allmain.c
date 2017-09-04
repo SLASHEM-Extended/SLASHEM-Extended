@@ -1416,6 +1416,125 @@ moveloop()
 				if (!rn2(3)) pline(fauxmessage());
 			}
 
+			if (ttmp && ttmp->ttyp == KOP_CUBE && !rn2(50) && !(m_at(ttmp->tx, ttmp->ty)) ) {
+
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+				(void) makemon(mkclass(S_KOP,0), ttmp->tx, ttmp->ty, MM_ANGRY);
+				u.aggravation = 0;
+				if (!rn2(20)) {
+					deltrap(ttmp);
+					goto trapsdone; /* we check for ttmp below, but just to be on the safe side... --Amy */
+				}
+
+			}
+
+			if (ttmp && ttmp->ttyp == BOSS_SPAWNER) {
+
+				int bossfrequency = 50;
+				switch (ttmp->launch_otyp) {
+
+					default: /* 1-10 */
+						break;
+					case 11:
+						bossfrequency = 100;
+						break;
+					case 12:
+						bossfrequency = 200;
+						break;
+					case 13:
+						bossfrequency = 300;
+						break;
+					case 14:
+						bossfrequency = 400;
+						break;
+					case 15:
+						bossfrequency = 500;
+						break;
+					case 16:
+						bossfrequency = 1000;
+						break;
+					case 17:
+						bossfrequency = 1500;
+						break;
+					case 18:
+						bossfrequency = 2000;
+						break;
+					case 19:
+						bossfrequency = 2500;
+						break;
+					case 20:
+						bossfrequency = 5000;
+						break;
+
+				}
+
+				if (bossfrequency < 50) bossfrequency = 50; /* fail safe */
+
+				if (!rn2(bossfrequency)) {
+
+					if (!rn2(4)) {
+
+						u.aggravation = 1;
+						reset_rndmonst(NON_PM);
+
+						int attempts = 0;
+						register struct permonst *ptrZ;
+newbossS:
+						do {
+
+							ptrZ = rndmonst();
+							attempts++;
+							if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+						} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
+
+						if (ptrZ && ptrZ->geno & G_UNIQ) {
+							if (wizard) pline("monster generation: %s", ptrZ->mname);
+							(void) makemon(ptrZ, ttmp->tx, ttmp->ty, MM_ANGRY|MM_ADJACENTOK);
+						}
+						else if (rn2(50)) {
+							attempts = 0;
+							goto newbossS;
+						}
+
+						switch (rnd(8)) {
+
+							case 1:
+								You_hear("a dramatic sound that tells of imminent danger!");
+								break;
+							case 2:
+								You_hear("an innocuous tune that seems to decrease in pitch...");
+								break;
+							case 3:
+								You_hear("a terrible melody, and realize that there is no escape!");
+								break;
+							case 4:
+								You_hear("a wavy, repeating sound!");
+								break;
+							case 5:
+								You_hear("a deep metallic tune.");
+								break;
+							case 6:
+								You_hear("a standard combat jingle, except in the end it somehow sounds nonstandard...");
+								break;
+							case 7:
+								You_hear("a frantic melody that quickly rises and falls in pitch!");
+								break;
+							case 8:
+								You_hear("an extremely high-pitch jingle and instantly know that something completely abnormal must have happened!");
+								break;
+
+						}
+
+						u.aggravation = 0;
+						deltrap(ttmp);
+						goto trapsdone;
+					} 
+				}
+
+			}
+
 			if (ttmp && ttmp->ttyp == FUMAROLE && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
 
 				if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtered helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fil'truyut shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "filtrlangan zarbdan") ) && !rn2(2) ) {
@@ -1501,6 +1620,7 @@ moveloop()
 			}
 
 		}
+trapsdone:
 
 		if (have_faintingstone() && !rn2(100) && multi >= 0) {
 

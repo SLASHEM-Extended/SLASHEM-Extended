@@ -1209,6 +1209,15 @@ register int x, y, typ, replacechance;
 		break;
 	      }
 
+	    case BOSS_SPAWNER:
+
+		{
+
+		ttmp->launch_otyp = rnd(20);
+
+		break;
+	      }
+
 	    case MAGIC_BEAM_TRAP:
 	    case PIERCING_BEAM_TRAP:
 		{
@@ -1474,6 +1483,8 @@ register int x, y, typ, replacechance;
 
 	if (ttmp->ttyp == u.invisotrap) ttmp->hiddentrap = 1;
 	if (ttmp->ttyp == INVISIBLE_TRAP) ttmp->hiddentrap = 1;
+	if (ttmp->ttyp == KOP_CUBE) ttmp->hiddentrap = 1;
+	if (ttmp->ttyp == BOSS_SPAWNER) ttmp->hiddentrap = 1;
 
 	if (ttmp->ttyp == HOLE && !In_sokoban(&u.uz) && !ttmp->hiddentrap ) ttmp->tseen = 1;  /* You can't hide a hole */
 	else if (ttmp->ttyp == SUPERTHING_TRAP && !ttmp->hiddentrap ) ttmp->tseen = 1;
@@ -1953,7 +1964,7 @@ unsigned trflags;
 	 * rarely, but the fact that it was possible at all was unintentional, so I'm closing this loophole just to cover
 	 * my butt. Nasty traps are supposed to be really difficult to spot! --Amy */
 	if (ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != LOOTCUT_TRAP && ttype != MONSTER_SPEED_TRAP && ttype != SCALING_TRAP && ttype != ENMITY_TRAP && ttype != WHITE_SPELL_TRAP && ttype != COMPLETE_GRAY_SPELL_TRAP && ttype != QUASAR_TRAP && ttype != MOMMA_TRAP && ttype != HORROR_TRAP && ttype != ARTIFICER_TRAP && ttype != WEREFORM_TRAP && ttype != NON_PRAYER_TRAP && ttype != EVIL_PATCH_TRAP && ttype != HARD_MODE_TRAP && ttype != SECRET_ATTACK_TRAP && ttype != EATER_TRAP && ttype != COVETOUSNESS_TRAP && ttype != NOT_SEEN_TRAP && ttype != DARK_MODE_TRAP && ttype != ANTISEARCH_TRAP && ttype != HOMICIDE_TRAP && ttype !=  NASTY_NATION_TRAP && ttype != WAKEUP_CALL_TRAP && ttype != GRAYOUT_TRAP && ttype != GRAY_CENTER_TRAP && ttype != CHECKERBOARD_TRAP && ttype != CLOCKWISE_SPIN_TRAP && ttype != COUNTERCLOCKWISE_SPIN_TRAP && ttype != LAG_TRAP && ttype != BLESSCURSE_TRAP && ttype != DE_LIGHT_TRAP && ttype != DISCHARGE_TRAP && ttype != TRASHING_TRAP && ttype != FILTERING_TRAP && ttype != DEFORMATTING_TRAP && ttype != FLICKER_STRIP_TRAP && ttype != UNDRESSING_TRAP && ttype != HYPERBLUEWALL_TRAP && ttype != NOLITE_TRAP && ttype != PARANOIA_TRAP && ttype != FLEECESCRIPT_TRAP && ttype != INTERRUPT_TRAP && ttype != DUSTBIN_TRAP && ttype != MANA_BATTERY_TRAP && ttype != MONSTERFINGERS_TRAP && ttype != MISCAST_TRAP && ttype != MESSAGE_SUPPRESSION_TRAP && ttype != STUCK_ANNOUNCEMENT_TRAP && ttype != BLOODTHIRSTY_TRAP && ttype != MAXIMUM_DAMAGE_TRAP && ttype != LATENCY_TRAP && ttype != STARLIT_TRAP && ttype != KNOWLEDGE_TRAP && ttype != HIGHSCORE_TRAP && ttype != PINK_SPELL_TRAP && ttype != GREEN_SPELL_TRAP && ttype != EVC_TRAP && ttype != UNDERLAYER_TRAP && ttype != DAMAGE_METER_TRAP && ttype != ARBITRARY_WEIGHT_TRAP && ttype != FUCKED_INFO_TRAP && ttype != BLACK_SPELL_TRAP && ttype != CYAN_SPELL_TRAP && ttype != HEAP_TRAP && ttype != BLUE_SPELL_TRAP && ttype != TRON_TRAP && ttype != RED_SPELL_TRAP && ttype != TOO_HEAVY_TRAP && ttype != ELONGATION_TRAP && ttype != WRAPOVER_TRAP && ttype != DESTRUCTION_TRAP && ttype != MELEE_PREFIX_TRAP && ttype != AUTOMORE_TRAP && ttype != UNFAIR_ATTACK_TRAP && ttype != UNINFORMATION_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != LASER_TRAP &&
-		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP)
+		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP && ttype != KOP_CUBE && ttype != BOSS_SPAWNER)
 		nomul(0, 0);
 
 	if (u.uprops[INVIS_TRAPS_EFFECT].extrinsic || InvisibleTrapsEffect || have_invisostone() ) {
@@ -5651,9 +5662,20 @@ madnesseffect:
 		do_earthquake((u.ulevel - 1) / 3 + 1);
 		break;
 
+	    case CONTAMINATION_TRAP:
+
+		pline("You stepped on a trigger!");
+		seetrap(trap);
+		pline("Suddenly you're exposed to the contamination.");
+		contaminate(rnd(10 + level_difficulty()));
+
+		break;
+
 	    case ADJACENT_TRAP:
 	    case SPREADING_TRAP:
 	    case SUPERTHING_TRAP: /* these three don't do anything if you trigger them */
+	    case KOP_CUBE:
+	    case BOSS_SPAWNER:
 
 		break;
 
@@ -12493,6 +12515,9 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case CANNON_TRAP:
 		case VENOM_SPRINKLER:
 		case FUMAROLE:
+		case KOP_CUBE:
+		case BOSS_SPAWNER:
+		case CONTAMINATION_TRAP:
 
 			break;
 
