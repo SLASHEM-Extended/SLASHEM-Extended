@@ -541,9 +541,10 @@ int verbose;
 
 	/* TODO:	Add in dungeon name */
 	/* done by Amy */
-	if (Is_knox(&u.uz))
+	/* It was INCREDIBLY stOOpid that Ludios still did not display its depth. */
+	/*if (Is_knox(&u.uz))
 		sprintf(buf, "%s ", dungeons[u.uz.dnum].dname);
-	else if (In_quest(&u.uz))
+	else*/ if (In_quest(&u.uz))
 		sprintf(buf, flags.showlongstats ? "Quest %d " : "Ques %d ", dunlev(&u.uz)); /* used to be called home --Amy */
 	else if (Is_astralevel(&u.uz)) /* why the heck is there a "l" missing in "astra_l_level"? */
 		sprintf(buf, flags.showlongstats ? "Astral Plane " : "Astral ");
