@@ -5996,8 +5996,6 @@ dodip()
 
 			if (obj && !stack_too_big(obj) && !obj->oerodeproof && (obj->oclass == SCROLL_CLASS) ) {
 
-				remove_worn_item(obj, FALSE);
-				if (obj == uball) unpunish();
 				useupall(obj);
 				update_inventory();
 				pline("The scroll burns up!");
@@ -6005,12 +6003,19 @@ dodip()
 				return 1;
 			}
 
-			if (obj && !stack_too_big(obj) && !obj->oerodeproof && (obj->oclass == POTION_CLASS) ) {
+			else if (obj && !stack_too_big(obj) && !obj->oerodeproof && (obj->oclass == SPBOOK_CLASS) ) {
+
+				useupall(obj);
+				update_inventory();
+				pline("The book burns up!");
+
+				return 1;
+			}
+
+			else if (obj && !stack_too_big(obj) && !obj->oerodeproof && (obj->oclass == POTION_CLASS) ) {
 
 				pline("The potion explodes!");
 				potionbreathe(obj);
-				remove_worn_item(obj, FALSE);
-				if (obj == uball) unpunish();
 				useupall(obj);
 				update_inventory();
 
