@@ -89,6 +89,8 @@ int mndx;
 	case PM_VAMPIRE_LORD:
 	case PM_VAMPIRE_MAGE:
 	case PM_HUMAN_ZOMBIE:
+	case PM_GRUNTHACK_ZOMBIE:
+	case PM_GRUNT_A_LOT_ZOMBIE:
 	case PM_BLACK_DEATH:
 	case PM_DRAUGR_DEATHLORD:
 	case PM_WALKING_CORPSE:
@@ -112,6 +114,7 @@ int mndx;
 	case PM_BLACK_ONES:
 	case PM_CORNFLAKE_ZOMBIE:
 	case PM_ZOMBIE:
+	case PM_WEAUM_ZOMBIE:
 	case PM_GNOLL_GHOUL:
 	case PM_DRAUGR_ZOMBIE:
 	case PM_STEEL_ZOMBIE:
@@ -419,6 +422,8 @@ register struct monst *mtmp;
 	    case PM_ORC_ZOMBIE:
 	    case PM_ELF_ZOMBIE:
 	    case PM_HUMAN_ZOMBIE:
+	case PM_GRUNTHACK_ZOMBIE:
+	case PM_GRUNT_A_LOT_ZOMBIE:
 	case PM_CADAVER:
 	case PM_POISONOUS_WIMP:
 	case PM_PRESERVED_DEAD:
@@ -455,6 +460,7 @@ register struct monst *mtmp;
 	    case PM_BLACK_ONES:
 	    case PM_CORNFLAKE_ZOMBIE:
 	    case PM_ZOMBIE:
+	case PM_WEAUM_ZOMBIE:
 	    case PM_GIANT_ZOMBIE:
 	    case PM_ETTIN_ZOMBIE:
 		case PM_GNOLL_GHOUL:
@@ -3039,6 +3045,28 @@ register struct monst *mtmp;
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREWORM], -1);
 	else if (mtmp->data == &mons[PM_WEREDRAGON])
 	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREDRAGON], -1);
+	else if (mtmp->data == &mons[PM_WEREWEDGESANDAL])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREWEDGESANDAL], -1);
+	else if (mtmp->data == &mons[PM_WEREHUGGINGBOOT])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREHUGGINGBOOT], -1);
+	else if (mtmp->data == &mons[PM_WEREPEEPTOE])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREPEEPTOE], -1);
+	else if (mtmp->data == &mons[PM_WERESEXYLEATHERPUMP])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERESEXYLEATHERPUMP], -1);
+	else if (mtmp->data == &mons[PM_WEREBLOCKHEELEDCOMBATBOOT])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBLOCKHEELEDCOMBATBOOT], -1);
+	else if (mtmp->data == &mons[PM_WERECOMBATSTILETTO])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERECOMBATSTILETTO], -1);
+	else if (mtmp->data == &mons[PM_WEREBEAUTIFULFUNNELHEELEDPUMP])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREBEAUTIFULFUNNELHEELEDPUMP], -1);
+	else if (mtmp->data == &mons[PM_WEREPROSTITUTESHOE])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREPROSTITUTESHOE], -1);
+	else if (mtmp->data == &mons[PM_WERESTILETTOSANDAL])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WERESTILETTOSANDAL], -1);
+	else if (mtmp->data == &mons[PM_WEREUNFAIRSTILETTO])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREUNFAIRSTILETTO], -1);
+	else if (mtmp->data == &mons[PM_WEREWINTERSTILETTO])
+	    set_mon_data(mtmp, &mons[PM_HUMAN_WEREWINTERSTILETTO], -1);
 
 	/* if MAXMONNO monsters of a given type have died, and it
 	 * can be done, extinguish that monster.

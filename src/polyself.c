@@ -1963,6 +1963,17 @@ dosummon()
 	if (u.ulycn == PM_WERELICH) somanymana = 100;
 	if (u.ulycn == PM_WEREMINDFLAYER) somanymana = 150;
 	if (u.ulycn == PM_WEREJABBERWOCK) somanymana = 200;
+	if (u.ulycn == PM_WEREWEDGESANDAL) somanymana = 80;
+	if (u.ulycn == PM_WEREHUGGINGBOOT) somanymana = 120;
+	if (u.ulycn == PM_WEREPEEPTOE) somanymana = 140;
+	if (u.ulycn == PM_WERESEXYLEATHERPUMP) somanymana = 160;
+	if (u.ulycn == PM_WEREBLOCKHEELEDCOMBATBOOT) somanymana = 160;
+	if (u.ulycn == PM_WERECOMBATSTILETTO) somanymana = 200;
+	if (u.ulycn == PM_WEREBEAUTIFULFUNNELHEELEDPUMP) somanymana = 240;
+	if (u.ulycn == PM_WEREPROSTITUTESHOE) somanymana = 240;
+	if (u.ulycn == PM_WERESTILETTOSANDAL) somanymana = 250;
+	if (u.ulycn == PM_WEREUNFAIRSTILETTO) somanymana = 260;
+	if (u.ulycn == PM_WEREWINTERSTILETTO) somanymana = 300;
 	
 	if (u.uen < somanymana) {
 	    You("lack the energy to send forth a call for help! You need at least %d!",somanymana);

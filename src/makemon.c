@@ -4216,6 +4216,14 @@ register struct monst *mtmp;
 			else if (mm == PM_ANIMATED_STILETTO_SANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 			else if (mm == PM_ANIMATED_ROLLER_BLADE) (void)mongets(mtmp, ROLLER_BLADE);
 			else if (mm == PM_ANIMATED_PROSTITUTE_SHOE) (void)mongets(mtmp, HIPPIE_HEELS);
+			else if (mm == PM_WEREPROSTITUTESHOE) (void)mongets(mtmp, HIPPIE_HEELS);
+			else if (mm == PM_WERESEXYLEATHERPUMP) (void)mongets(mtmp, FEMININE_PUMPS);
+			else if (mm == PM_WEREWEDGESANDAL) (void)mongets(mtmp, WEDGE_SANDALS);
+			else if (mm == PM_WEREUNFAIRSTILETTO) (void)mongets(mtmp, UNFAIR_STILETTOS);
+			else if (mm == PM_WEREBEAUTIFULFUNNELHEELEDPUMP) (void)mongets(mtmp, FEMININE_PUMPS);
+			else if (mm == PM_WEREPEEPTOE) (void)mongets(mtmp, LEATHER_PEEP_TOES);
+			else if (mm == PM_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
+			else if (mm == PM_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 
 			if (mm == PM_ATHENA_GUARDIAN) (void)mongets(mtmp, HEAVY_HAMMER);
 			if (mm == PM_ATHENA_GIANT) (void)mongets(mtmp, MALLET);
@@ -5110,6 +5118,16 @@ register struct	monst	*mtmp;
 
 	switch(ptr->mlet) {
 	    case S_HUMAN:
+
+		if (monsndx(ptr) == PM_HUMAN_WEREPROSTITUTESHOE) (void)mongets(mtmp, HIPPIE_HEELS);
+		else if (monsndx(ptr) == PM_HUMAN_WERESEXYLEATHERPUMP) (void)mongets(mtmp, FEMININE_PUMPS);
+		else if (monsndx(ptr) == PM_HUMAN_WEREWEDGESANDAL) (void)mongets(mtmp, WEDGE_SANDALS);
+		else if (monsndx(ptr) == PM_HUMAN_WEREUNFAIRSTILETTO) (void)mongets(mtmp, UNFAIR_STILETTOS);
+		else if (monsndx(ptr) == PM_HUMAN_WEREBEAUTIFULFUNNELHEELEDPUMP) (void)mongets(mtmp, FEMININE_PUMPS);
+		else if (monsndx(ptr) == PM_HUMAN_WEREPEEPTOE) (void)mongets(mtmp, LEATHER_PEEP_TOES);
+		else if (monsndx(ptr) == PM_HUMAN_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
+		else if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
+
 		if (monsndx(ptr) == PM_FORD_PERFECT || monsndx(ptr) == PM_ARTHUR_DENT) {
 			mongets(mtmp,PEANUT_BAG);
 		} 
@@ -5380,6 +5398,12 @@ register struct	monst	*mtmp;
 	    case S_ZOMBIE:
 		if (mtmp->data == &mons[PM_ROBOT_TERMINATOR_ZOMBIE]) {
 			 (void) mongets(mtmp, RED_LIGHTSABER);
+		}
+		if (mtmp->data == &mons[PM_WALKING_STICK_BLUBBERER]) {
+			 (void) mongets(mtmp, WALKING_STICK);
+		}
+		if (mtmp->data == &mons[PM_SPADE_TYPE]) {
+			 (void) mongets(mtmp, PICK_AXE);
 		}
 
 		if (mtmp->data == &mons[PM_ZOMBIEMAN]) {
@@ -5723,6 +5747,8 @@ register struct	monst	*mtmp;
 		}
 
 		if (mtmp->data == &mons[PM_BREEDER]) (void) mongets(mtmp, EGG);
+
+		if (mtmp->data == &mons[PM_TOEMODEL]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
 
 		if (mtmp->data == &mons[PM_YASAMAN_S_LEATHER_BOOT]) (void) mongets(mtmp, HIPPIE_HEELS);
 		if (mtmp->data == &mons[PM_YASAMAN_S_WEDGE_SANDAL]) {
@@ -6159,6 +6185,10 @@ register struct	monst	*mtmp;
 		break;
 
 	    case S_BLOB:
+
+		if (ptr == &mons[PM_EXPLODING_GREASEBALL]) {
+			m_initthrow(mtmp, CREAM_PIE, 2);
+		}
 
 		if (ptr == &mons[PM_ONANOCTER__A]) {
 			 (void) mongets(mtmp, PISTOL);
@@ -7006,6 +7036,7 @@ register struct	monst	*mtmp;
 			m_initthrow(mtmp, BFG_AMMO, 50);
 
 		}
+		if (mtmp->data == &mons[PM_STUPID_FURY]) { (void) mongets(mtmp, UMBRELLA); (void) mongets(mtmp, FEMININE_PUMPS); }
 
 		if(ptr == &mons[PM_CHARGING_KINDNESS] || ptr == &mons[PM_ARMORED_BUNDLE_GIRL]) (void) mongets(mtmp, COMBAT_STILETTOS);
 		if (mtmp->data == &mons[PM_CONNY_S_COMBAT_BOOT]) { (void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT); (void) mongets(mtmp, HIPPIE_HEELS); }
@@ -7325,6 +7356,16 @@ register struct	monst	*mtmp;
 	    case S_EYE:
 		if (ptr == &mons[PM_OAK_SAGE]) (void) mongets(mtmp, POT_FULL_HEALING);
 		if (ptr == &mons[PM_VISOR]) (void) mongets(mtmp, WAN_MAKE_VISIBLE);
+
+		if (ptr == &mons[PM_BANG_BAG]) m_initthrow(mtmp, FRAG_GRENADE, 7);
+
+		if (ptr == &mons[PM_K__BEHOLDER]) {
+			(void) mongets(mtmp, BOULDER);
+			(void) mongets(mtmp, BOULDER);
+			(void) mongets(mtmp, BOULDER);
+			(void) mongets(mtmp, BOULDER);
+			(void) mongets(mtmp, BOULDER);
+		}
 
 		if (ptr == &mons[PM_WOLFENSTEINER]) {
 			(void) mongets(mtmp, CUTTING_LASER);
@@ -13894,6 +13935,7 @@ register int	mmflags;
 		case S_LICH:
 			if (mndx == PM_MIMIC_LICH) set_mimic_sym(mtmp);
 			if (mndx == PM_DEMILICH_PERMAMIMIC) set_mimic_sym(mtmp);
+			if (mndx == PM_SUPER_STEALTH_LICH) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
 		case S_IMP:
@@ -14337,6 +14379,7 @@ register int	mmflags;
 
 			if (mndx == PM_CAMO_DWARF) set_mimic_sym(mtmp);
 			if (mndx == PM_DWARF_KING_PERMAMIMIC) set_mimic_sym(mtmp);
+			if (mndx == PM_ONE_RING_HOBBIT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
 
@@ -14451,6 +14494,7 @@ register int	mmflags;
 		case S_ANT:
 			if (mtmp->data == &mons[PM_DISGUISED_SOLDIER_ANT]) set_mimic_sym(mtmp);
 			if (mtmp->data == &mons[PM_MIMIC_ANT]) set_mimic_sym(mtmp);
+			if (mndx == PM_SUPER_STEALTH_ANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			break;
 		case S_HUMAN:
 			if (is_waterypool(x, y) && (mndx == PM_HUMAN_WEREPIRANHA || mndx == PM_HUMAN_WEREEEL || mndx == PM_HUMAN_WEREKRAKEN) )
@@ -17209,6 +17253,9 @@ int type;
 		case PM_ANIMATED_DAGGER: return 100;
 		case PM_SWORD_FAMILIAR: return 150;
 		case PM_ROPE_GOLEM: return 60;
+		case PM_BUNDLE_MONSTER: return 60;
+		case PM_CUDDLE_MONSTER: return 80;
+		case PM_FLEECE_MONSTER: return 100;
 		case PM_TIN_SOLDIER: return 60;
 		case PM_CLAY_SOLDIER: return 60;
 		case PM_LEATHER_GOLEM: return 80;
@@ -17264,6 +17311,7 @@ int type;
 		case PM_DARK_SAILOR: return 103;
 		case PM_HYPERTYPE: return 103;
 		case PM_ANIMATED_WEDGE_SANDAL: return 100;
+		case PM_WEREWEDGESANDAL: return 100;
 		case PM_ANIMATED_IRON_STATUE: return 137;
 		case PM_ELTRA_VANISHING_POINT: return 137;
 		case PM_MEGA_VANISHING_POINT: return 137;
@@ -17335,6 +17383,7 @@ int type;
 		case PM_CLAY_STATUE: return 150;
 		case PM_TREASURY_GOLEM: return 160;
 		case PM_ANIMATED_HUGGING_BOOT: return 160;
+		case PM_WEREHUGGINGBOOT: return 160;
 		case PM_SNOW_GOLEM: return 160;
 		case PM_STONE_GOLEM: return 180;
 		case PM_GRAY_STONE_GOLEM: return 180;
@@ -17349,9 +17398,11 @@ int type;
 		case PM_AQUATIC_GOLEM: return 190;
 		case PM_BONE_GOLEM: return 200;
 		case PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT: return 200;
+		case PM_WEREBLOCKHEELEDCOMBATBOOT: return 200;
 		case PM_ANIMATED_IRREGULAR_HEEL: return 233;
 		case PM_SAURON_THE_IMPRISONED: return 200;
 		case PM_ANIMATED_LEATHER_PEEP_TOE: return 250;
+		case PM_WEREPEEPTOE: return 250;
 		case PM_ANIMATED_ROLLER_BLADE: return 260;
 		case PM_IRONMAN: return 240;
 		case PM_IRON_GOLEM: return 240;
@@ -17382,6 +17433,7 @@ int type;
 		case PM_EOG_GOLEM: return 340;
 		case PM_SILENT_WATCHER: return 350;
 		case PM_ANIMATED_STILETTO_SANDAL: return 350;
+		case PM_WERESTILETTOSANDAL: return 350;
 		case PM_COLOSSUS: return 360;
 		case PM_DROLEM: return 440;
 		case PM_JNR: return 400;
@@ -17391,12 +17443,16 @@ int type;
 		case PM_BLADE_OF_SLAUGHTER: return 450;
 		case PM_DIFFICULT_LEAD_GOLEM: return 400;
 		case PM_ANIMATED_PROSTITUTE_SHOE: return 400;
+		case PM_WEREPROSTITUTESHOE: return 400;
 		case PM_JUGGERNAUT_OF_KHORNE: return 450;
 		case PM_BURNING_MONSTER: return 250;
 		case PM_ANIMATED_SEXY_LEATHER_PUMP: return 250;
+		case PM_WERESEXYLEATHERPUMP: return 250;
 		case PM_ANIMATED_SKY_HIGH_HEEL: return 300;
 		case PM_ANIMATED_UNFAIR_STILETTO: return 350;
+		case PM_WEREUNFAIRSTILETTO: return 350;
 		case PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP: return 350;
+		case PM_WEREBEAUTIFULFUNNELHEELEDPUMP: return 350;
 		case PM_DIAMOND_GOLEM: return 270;
 		case PM_SAPPHIRE_GOLEM: return 280;
 		case PM_STEEL_GOLEM: return 290;
@@ -17404,6 +17460,7 @@ int type;
 		case PM_CRYSTAL_STATUE: return 300;
 		case PM_CRYSTAL_ICE_GOLEM: return 300;
 		case PM_ANIMATED_COMBAT_STILETTO: return 300;
+		case PM_WERECOMBATSTILETTO: return 300;
 		case PM_ETERNIUM_GOLEM: return 350;
 		case PM_THE_DISGUSTING_SMOKER_FRIEND_OF_MARIE: return 350;
 		case PM_EBONY_GOLEM: return 400;
@@ -17420,6 +17477,7 @@ int type;
 		case PM_BLOODY_BEAUTIES: return 500;
 		case PM_KASTORTRANSPORT: return 500;
 		case PM_ANIMATED_WINTER_STILETTO: return 500;
+		case PM_WEREWINTERSTILETTO: return 500;
 		case PM_ROBO_KY: return 750;
 		case PM_IRIS_S_SILVER_PUMP: return 750;
 		case PM_INVULNERABLE_GOLEM: return 2000;
