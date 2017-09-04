@@ -4403,6 +4403,8 @@ SCROLL((char *)0,               "VIK LADY",  P_NONE,     1,   0, 300, CLR_YELLOW
 SCROLL((char *)0,               "GET SLEX TODAY",  P_NONE,     1,   0, 300, CLR_MAGENTA),
 SCROLL((char *)0,               "SLEX NOW WITH TRANSVESTITE ROLE",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA),
 SCROLL((char *)0,               "GET YOUR PET GIRL IN SLEX",  P_NONE,     1,   0, 300, CLR_YELLOW),
+SCROLL((char *)0,               "CURSE THE CURSES INTERFACE",  P_NONE,     1,   0, 300, CLR_MAGENTA),
+SCROLL((char *)0,               "GOOD OLD TTY OWNS AWFUL CURSES INTERFACE",  P_NONE,     1,   0, 300, CLR_WHITE),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE),
