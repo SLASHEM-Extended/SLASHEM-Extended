@@ -4286,6 +4286,12 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.copwantedlevel) {
+		sprintf(buf, "being chased by the kops.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.copwantedlevel);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && TimeStopped) {
 		sprintf(buf, "stopped the flow of time.");
 	      sprintf(eos(buf), " (%d)", TimeStopped);
@@ -7207,6 +7213,12 @@ int final;
 		else if (u.contamination >= 100) sprintf(buf, "suffering from minor contamination.");
 		else if (u.contamination >= 1) sprintf(buf, "suffering from very slight contamination.");
 		sprintf(eos(buf), " (%d)", u.contamination);
+		dump(youwere, buf);
+	}
+
+	if (u.copwantedlevel) {
+		sprintf(buf, "being chased by the kops.");
+		sprintf(eos(buf), " (%d)", u.copwantedlevel);
 		dump(youwere, buf);
 	}
 

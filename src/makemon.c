@@ -5974,6 +5974,10 @@ register struct	monst	*mtmp;
 
 	    case S_KOP:
 
+		if (ptr == &mons[PM_WHITLEVEL_KOP] || ptr == &mons[PM_BLAKLEVEL_KOP] || ptr == &mons[PM_GREYLEVEL_KOP] || ptr == &mons[PM_RNGED_KOP] || ptr == &mons[PM_EXMINATOR_KOP]) {
+			(void) maketrap(mtmp->mx, mtmp->my, KOP_CUBE, 0);
+		}
+
 		if (ptr == &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL]) {
 			(void) mongets(mtmp, WEDGE_SANDALS);
 			(void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL);
@@ -12510,8 +12514,9 @@ register int	mmflags;
 	   mtmp->m_lev = (1 + rn2(base_you) + rn2(base_lev) / 2)+1;
 	}
 
-	if (ptr == &mons[PM_BLACKY]) {
+	if (ptr == &mons[PM_BLACKY] || ptr == &mons[PM_WHITLEVEL_KOP] || ptr == &mons[PM_BLAKLEVEL_KOP] || ptr == &mons[PM_GREYLEVEL_KOP] || ptr == &mons[PM_RNGED_KOP] || ptr == &mons[PM_EXMINATOR_KOP]) {
 	   /* blacky too --Amy */
+	   /* and specific kop types */
 	   int base_you, base_lev;
 	   base_you = (u.ulevel / 2)+1;
 	   base_lev = level_difficulty()+1;

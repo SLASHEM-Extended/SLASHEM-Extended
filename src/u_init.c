@@ -7838,6 +7838,8 @@ u_init()
 	u.riennevaplus = 0;
 	u.stairscumslowing = 0;
 
+	u.copwantedlevel = 0;
+
 	u.bedsleeping = 0;
 	u.shiftingsandsinking = 0;
 

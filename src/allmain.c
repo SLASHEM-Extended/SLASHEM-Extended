@@ -658,6 +658,9 @@ moveloop()
 			}
 
 			if (u.ualign.sins && (rn2(100000) < u.ualign.sins ) ) {
+
+				u.copwantedlevel += rnz((u.ualign.sins + 1) * 10);
+
 				int copcnt = rnd(monster_difficulty() ) + 1;
 				if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
@@ -686,6 +689,42 @@ moveloop()
 					if (xupstair) (void) makemon(mkclass(S_KOP,0), xupstair, yupstair, MM_ANGRY|MM_ADJACENTOK);
 					else (void) makemon(mkclass(S_KOP,0), 0, 0, MM_ANGRY|MM_ADJACENTOK);
 				} /* while */
+
+			}
+
+			if (u.copwantedlevel) {
+
+				u.copwantedlevel--;
+				if (u.copwantedlevel < 0) u.copwantedlevel = 0; /* fail safe */
+
+				if ( !(rn2(2) && (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ))) && !(rn2(2) && RngeAntiGovernment) && !rn2(50)) {
+
+					(void) makemon(mkclass(S_KOP,0), 0, 0, MM_ANGRY|MM_ADJACENTOK);
+					if (!rn2(20)) {
+						switch (rnd(5)) {
+							case 1:
+								if (level_difficulty() > 39) (void) makemon(&mons[PM_EXMINATOR_KOP], 0, 0, MM_ANGRY|MM_ADJACENTOK);
+								else (void) makemon(&mons[PM_WHITLEVEL_KOP], 0, 0, MM_ANGRY|MM_ADJACENTOK);
+								break;
+							case 2:
+								if (level_difficulty() > 29) (void) makemon(&mons[PM_RNGED_KOP], 0, 0, MM_ANGRY|MM_ADJACENTOK);
+								else (void) makemon(&mons[PM_WHITLEVEL_KOP], 0, 0, MM_ANGRY|MM_ADJACENTOK);
+								break;
+							case 3:
+								if (level_difficulty() > 19) (void) makemon(&mons[PM_GREYLEVEL_KOP], 0, 0, MM_ANGRY|MM_ADJACENTOK);
+								else (void) makemon(&mons[PM_WHITLEVEL_KOP], 0, 0, MM_ANGRY|MM_ADJACENTOK);
+								break;
+							case 4:
+								if (level_difficulty() > 9) (void) makemon(&mons[PM_BLAKLEVEL_KOP], 0, 0, MM_ANGRY|MM_ADJACENTOK);
+								else (void) makemon(&mons[PM_WHITLEVEL_KOP], 0, 0, MM_ANGRY|MM_ADJACENTOK);
+								break;
+							case 5:
+								(void) makemon(&mons[PM_WHITLEVEL_KOP], 0, 0, MM_ANGRY|MM_ADJACENTOK);
+								break;
+						}
+					}
+
+				}
 
 			}
 

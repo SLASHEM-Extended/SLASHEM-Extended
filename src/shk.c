@@ -351,6 +351,9 @@ register boolean nearshop;
 	    if (PlayerHearsSoundEffects) pline(issoviet ? "Veselites' vmeste s politseyskimi. Oni budut vas arestovat', ili na samom dele, tak kak vash personazh tak pateticheski slaby, oni mogut prosto ubit' vas skhodu, a zatem vy mozhete svernut' novuyu. Da!" : "Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue! Wueueueueueue!");
 	}
 
+	/* make new ones appear over time for a while, even if you switch dungeon levels to escape them --Amy */
+	u.copwantedlevel += rnz(1000);
+
 	nokops = ((mvitals[PM_KEYSTONE_KOP].mvflags & G_GONE) &&
 		  (mvitals[PM_KOP_SERGEANT].mvflags & G_GONE) &&
 		  (mvitals[PM_KOP_LIEUTENANT].mvflags & G_GONE) &&

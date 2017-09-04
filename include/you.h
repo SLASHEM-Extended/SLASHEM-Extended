@@ -949,6 +949,8 @@ struct you {
 
 	int contamination;	/* weeping angel, but also other effects */
 
+	int copwantedlevel;	/* for hot pursuits, i.e. when you've stolen from a shop */
+
 	int bedsleeping;	/* used to prevent you from constantly sleeping */
 	int shiftingsandsinking;	/* to instakill you if you stand in shifting sand for too long */
 
