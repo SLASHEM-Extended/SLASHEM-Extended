@@ -2157,7 +2157,10 @@ int thrown;
 	}
 
 	if (mon->egotype_flickerer) {
-		pline("%s flickers and is impervious to melee attacks!", Monnam(mon));
+		pline("%s flickers and is impervious to melee and missile attacks!", Monnam(mon));
+		if (!rn2(30)) pline("Reminder: you must use something else in order to damage this monster!");
+		else if (!rn2(30)) pline("You read that right: your attacks are doing no damage at all!");
+		else if (!rn2(30)) pline("Hint: try offensive wands or spells.");
 	      tmp = 0;
 	}
 
@@ -4143,7 +4146,10 @@ register struct attack *mattk;
 	}
 
 	if (mdef->egotype_flickerer && tmp && !DEADMONSTER(mdef)) {
-		pline("%s flickers and is impervious to melee attacks!", Monnam(mdef));
+		pline("%s flickers and is impervious to melee and missile attacks!", Monnam(mdef));
+		if (!rn2(30)) pline("Reminder: you must use something else in order to damage this monster!");
+		else if (!rn2(30)) pline("You read that right: your attacks are doing no damage at all!");
+		else if (!rn2(30)) pline("Hint: try offensive wands or spells.");
 	      tmp = 0;
 	      return 1;
 	}

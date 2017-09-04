@@ -499,7 +499,11 @@ register xchar x, y;
 	}
 
 	if (mon->egotype_flickerer) {
-		pline("%s flickers and is impervious to melee attacks!", Monnam(mon));
+		pline("%s flickers and is impervious to melee and missile attacks!", Monnam(mon));
+		if (!rn2(30)) pline("Reminder: you must use something else in order to damage this monster!");
+		else if (!rn2(30)) pline("You read that right: your attacks are doing no damage at all!");
+		else if (!rn2(30)) pline("Hint: try offensive wands or spells.");
+
 		(void) passive(mon, FALSE, 1, TRUE);
 		return;
 	}
