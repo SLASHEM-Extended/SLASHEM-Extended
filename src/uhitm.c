@@ -1054,9 +1054,20 @@ int thrown;
 	char unconventional[BUFSZ];	/* substituted for word "attack" in msg */
 	char saved_oname[BUFSZ];
 
+	boolean stupidrock = 0;
+	if (thrown && obj->otyp == ROCK) stupidrock = 1;
+
+	boolean pieks = 0;
+	if (thrown == 1 && objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
+	if (thrown == 1 && objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
+	if (thrown == 1 && obj->otyp == GRAPPLING_HOOK) pieks = 1;
+
 	if (thrown == 1) launcher = uwep;
 	else if (thrown == 2) launcher = uswapwep;
 	else launcher = 0;
+
+	boolean gunused = 0;
+	if (launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_FIREARM) gunused = 1;
 
 	objenchant = !thrown && no_obj || obj->spe < 0 ? 0 : obj->spe;
 
@@ -1267,7 +1278,7 @@ int thrown;
 
 		    if ((is_launcher(obj) || is_missile(obj) || is_pole(obj) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown)		{
 
-			if (!(PlayerCannotUseSkills)) {
+			if (!(PlayerCannotUseSkills) && !rn2(2)) {
 
 			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_SKILLED) tmp += rnd(2);
 			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_EXPERT) tmp += rnd(4);
@@ -1931,6 +1942,12 @@ int thrown;
 	/****** NOTE: perhaps obj is undefined!! (if !thrown && BOOMERANG)
 	 *      *OR* if attacking bare-handed!! */
 
+	if (thrown && stupidrock && rn2(4)) get_dmg_bonus = 0;
+
+	if (thrown && !stupidrock && !gunused && !pieks && rn2(2)) get_dmg_bonus = 0;
+
+	if (!get_dmg_bonus) pline("no dmg bonus");
+
 	if (get_dmg_bonus && tmp > 0) {
 		tmp += u.udaminc;
 		if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
@@ -1985,13 +2002,16 @@ int thrown;
 	/*Lycanthrope claws do +level bare hands dmg
                 (multi-hit, stun/freeze)..- WAC*/
 
-	if (tech_inuse(T_KIII)) tmp *= 2;
-	if (u.berserktime) tmp *= 2;
-	if (tech_inuse(T_BERSERK)) tmp += 4;
-	if (tech_inuse(T_EVISCERATE)) {
-		tmp += rnd((int) (u.ulevel/2 + 1)) + (u.ulevel/2); /* [max] was only + u.ulevel */
-                You("slash %s!", mon_nam(mon));
-		hittxt = TRUE;
+	if (!thrown) {
+
+		if (tech_inuse(T_KIII)) tmp *= 2;
+		if (u.berserktime) tmp *= 2;
+		if (tech_inuse(T_BERSERK)) tmp += 4;
+		if (tech_inuse(T_EVISCERATE)) {
+			tmp += rnd((int) (u.ulevel/2 + 1)) + (u.ulevel/2); /* [max] was only + u.ulevel */
+	                You("slash %s!", mon_nam(mon));
+			hittxt = TRUE;
+		}
 	}
 
 	if (valid_weapon_attack) {
@@ -5545,7 +5565,7 @@ use_weapon:
 			    if (uwep) tmp1 = tmp + hitval(uwep, mon);
 			    tohit(UWEP_ROLL) = tmp1;
 			    if (tmp1 <= (dice(UWEP_ROLL) = rnd(20)) &&
-				    !u.uswallow)
+				    (!u.uswallow || !rn2(3)))
 				dhit &= ~HIT_UWEP; /* missed */
 				
 			    if (tmp1 > dice(UWEP_ROLL)) exercise(A_DEX, TRUE);
@@ -5561,7 +5581,7 @@ use_weapon:
 			    tohit(USWAPWEP_ROLL) = tmp2;
 
 			    if (tmp2 <= (dice(USWAPWEP_ROLL) = rnd(20)) &&
-				    !u.uswallow)
+				    (!u.uswallow || !rn2(3)))
 				dhit &= ~HIT_USWAPWEP;
 
 			    if (tmp2 > dice(USWAPWEP_ROLL))
@@ -5581,7 +5601,7 @@ use_weapon:
 			    hittmp += weapon_hit_bonus(uwep);
 			    tmp += hittmp;
 			}
-			if (tmp > (dice(UWEP_ROLL) = rnd(20)) || u.uswallow)
+			if (tmp > (dice(UWEP_ROLL) = rnd(20)) || (u.uswallow && rn2(3)))
 			    dhit = HIT_UWEP;
 			else dhit = 0;
 			/* KMH -- Don't accumulate to-hit bonuses */
@@ -5713,7 +5733,7 @@ use_weapon:
 				 mon->data == &mons[PM_MEDUSA]))
 			    break;
 		case AT_KICK:
-			if ((dhit = (tmp > (dieroll = rnd(20)) || u.uswallow)) != 0) {
+			if ((dhit = (tmp > (dieroll = rnd(20)) || (u.uswallow && rn2(3)) )) != 0) {
 			    int compat;
 
 			    if (!u.uswallow &&

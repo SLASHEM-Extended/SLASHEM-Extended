@@ -343,7 +343,7 @@ int thrown;
 	if (multishot < 1) multishot = 1;
 
 	/* nerf multishot --Amy */
-	if ((multishot > 3) && !(launcher && launcher->oartifact == ART_STREAMSHOOTER) && !(objects[obj->otyp].oc_skill == -P_FIREARM) && !(objects[obj->otyp].oc_skill == P_FIREARM) && !(launcher && launcher->otyp == DEMON_CROSSBOW)) multishot = 2 + rno(multishot - 2);
+	if ((multishot > 3) && !(launcher && launcher->oartifact == ART_STREAMSHOOTER) && !(objects[obj->otyp].oc_skill == -P_FIREARM) && !(objects[obj->otyp].oc_skill == P_FIREARM) ) multishot = 2 + rno(multishot - 2);
 
 	m_shot.s = ammo_and_launcher(obj,uwep) ? TRUE : FALSE;
 	/* give a message if shooting more than one, or if player
@@ -1216,7 +1216,7 @@ int thrown;
 	    }
 	    if (u.dz < 0 && Role_if(PM_JEDI) &&
 		    is_lightsaber(obj) && obj->lamplit && !impaired &&
-			!(PlayerCannotUseSkills) &&
+			!(PlayerCannotUseSkills) && rn2(2) &&
 		    P_SKILL(weapon_type(obj)) >= P_SKILLED) {
 		pline("%s the %s and returns to your hand!",
 		      Tobjnam(obj, "hit"), ceiling(u.ux,u.uy));
@@ -1389,7 +1389,7 @@ int thrown;
 		/* the code following might become part of dropy() */
 		if ((obj->oartifact == ART_MJOLLNIR &&
 			Role_if(PM_VALKYRIE) && rn2(100)) ||
-		    (is_lightsaber(obj) && obj->lamplit && Role_if(PM_JEDI) &&
+		    (is_lightsaber(obj) && obj->lamplit && rn2(2) && Role_if(PM_JEDI) &&
 			!(PlayerCannotUseSkills) &&
 		     P_SKILL(weapon_type(obj)) >= P_SKILLED)){
 		    /* we must be wearing Gauntlets of Power to get here */
@@ -1570,7 +1570,15 @@ int thrown;
 	register struct obj *blocker = (struct obj *)0;
 	
 	int otyp = obj->otyp;
-	boolean guaranteed_hit = (u.uswallow && mon == u.ustuck);
+	boolean guaranteed_hit = (u.uswallow && mon == u.ustuck && rn2(3));
+
+	boolean stupidrock = 0;
+	if (obj->otyp == ROCK) stupidrock = 1;
+
+	boolean pieks = 0;
+	if (objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
+	if (objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
+	if (obj->otyp == GRAPPLING_HOOK) pieks = 1;
 
 	register int shieldblockrate = 0;
 
@@ -1590,6 +1598,9 @@ int thrown;
 	if (thrown == 1) launcher = uwep;
 	else if (thrown == 2) launcher = uswapwep;
 	else launcher = (struct obj *)0;
+
+	boolean gunused = 0;
+	if (launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_FIREARM) gunused = 1;
 
 	tmp = -1 + ( (!rn2(3) && Luck > 0) ? rnd(Luck) : Luck) + find_mac(mon) + u.uhitinc +
 			(!rn2(3) ? (maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(u.ulevel))) : (maybe_polyd(youmonst.data->mlevel + 1, u.ulevel)) );
@@ -1637,17 +1648,73 @@ int thrown;
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
 
 	/* certain monsters are capable of deflecting projectiles --Amy */
-	if (verysmall(mon->data) && !rn2(4)) {
-		tmp = -100;
-		pline("%s avoids the projectile!", Monnam(mon));
+
+	if (!pieks && !(gunused && rn2(3)) ) {
+
+		if (verysmall(mon->data) && !rn2(4)) {
+			tmp = -100;
+			pline("%s avoids the projectile!", Monnam(mon));
+		}
+		if (rathersmall(mon->data) && !(verysmall(mon->data)) && !rn2(10)) {
+			tmp = -100;
+			pline("%s avoids the projectile!", Monnam(mon));
+		}
+		if (hugemonst(mon->data) && !rn2(2) && (mon->m_lev > rnd(u.ulevel) ) ) {
+			tmp -= 100;
+			pline("%s shrugs off the projectile!", Monnam(mon));
+		}
+		if (bigmonst(mon->data) && !(hugemonst(mon->data)) && !rn2(5) && (mon->m_lev > rnd(u.ulevel) ) ) {
+			tmp -= 100;
+			pline("%s shrugs off the projectile!", Monnam(mon));
+		}
+
 	}
-	if (rathersmall(mon->data) && !(verysmall(mon->data)) && !rn2(10)) {
-		tmp = -100;
-		pline("%s avoids the projectile!", Monnam(mon));
-	}
-	if (hugemonst(mon->data) && !rn2(2) && (mon->m_lev > rnd(u.ulevel) ) ) {
+
+	/* certain traits also allow monsters to avoid getting hit */
+
+	if (amorphous(mon->data) && !rn2(5) && tmp > -20) {
 		tmp -= 100;
-		pline("%s shrugs off the projectile!", Monnam(mon));
+		pline("%s's amorphous body skillfully dodges the projectile!", Monnam(mon));
+	}
+	if (noncorporeal(mon->data) && rn2(3) && tmp > -20) {
+		tmp -= 100;
+		pline("%s easily avoids the projectile due to being noncorporeal!", Monnam(mon));
+	}
+	if (unsolid(mon->data) && !rn2(4) && tmp > -20) {
+		tmp -= 100;
+		pline("%s's unsolid body lets the projectile pass through harmlessly!", Monnam(mon));
+	}
+
+	if (stupidrock && tmp > -20) {
+		if (verysmall(mon->data) && !rn2(4)) {
+			tmp = -100;
+			pline("%s avoids the projectile!", Monnam(mon));
+		}
+		if (rathersmall(mon->data) && !(verysmall(mon->data)) && !rn2(10)) {
+			tmp = -100;
+			pline("%s avoids the projectile!", Monnam(mon));
+		}
+		if (hugemonst(mon->data) && !rn2(2) && (mon->m_lev > rnd(u.ulevel) ) ) {
+			tmp -= 100;
+			pline("%s shrugs off the projectile!", Monnam(mon));
+		}
+		if (bigmonst(mon->data) && !(hugemonst(mon->data)) && !rn2(5) && (mon->m_lev > rnd(u.ulevel) ) ) {
+			tmp -= 100;
+			pline("%s shrugs off the projectile!", Monnam(mon));
+		}
+		if (amorphous(mon->data) && !rn2(5) && tmp > -20) {
+			tmp -= 100;
+			pline("%s's amorphous body skillfully dodges the projectile!", Monnam(mon));
+		}
+		if (noncorporeal(mon->data) && rn2(3) && tmp > -20) {
+			tmp -= 100;
+			pline("%s easily avoids the projectile due to being noncorporeal!", Monnam(mon));
+		}
+		if (unsolid(mon->data) && !rn2(4) && tmp > -20) {
+			tmp -= 100;
+			pline("%s's unsolid body lets the projectile pass through harmlessly!", Monnam(mon));
+		}
+
 	}
 
 	if (blocker = (which_armor(mon, W_ARMS))) {
@@ -1780,6 +1847,8 @@ int thrown;
 		if (shieldblockrate && (blocker->spe > 0)) shieldblockrate += (blocker->spe * 2);
 		if (blocker->blessed) shieldblockrate += 5;
 
+		if (stupidrock && shieldblockrate) shieldblockrate *= 2;
+
 		if (rnd(100) < shieldblockrate) {
 			tmp = -100;
 			pline("%s's shield deflects your projectile!", Monnam(mon));
@@ -1790,9 +1859,52 @@ int thrown;
 	 * Polearms get a distance penalty even when wielded; it's
 	 * hard to hit at a distance.
 	 */
-	disttmp = 3 - distmin(u.ux, u.uy, mon->mx, mon->my);
-	if(disttmp < -4) disttmp = -4;
-	tmp += disttmp;
+
+	/* Amy edit: ranged combat was way too powerful, I decided to greatly reduce to-hit at long distances.
+	 * Firearms are an exception for two reasons: one, their ammo always breaks; two, some of them (especially rifles)
+	 * are actually meant to be used at range and those that are not (e.g. shotguns) have limited range anyway.
+	 * Crossbows are a bit of a special case: they're potentially the most damaging shooter for which the ammos
+	 * can be re-used, but most types also need a pretty high enchantment value to get any serious multishot,
+	 * and they're also kind of meant to be used at long range, so their to-hit will receive a lesser nerf. */
+
+	if ( !(launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_FIREARM) && (!(launcher  && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_CROSSBOW && !rn2(2)) ) ) {
+
+		disttmp = 3 - distmin(u.ux, u.uy, mon->mx, mon->my);
+		if(disttmp < -4) disttmp = -4;
+		tmp += disttmp;
+
+		if (distmin(u.ux, u.uy, mon->mx, mon->my) > 3) {
+
+			switch (distmin(u.ux, u.uy, mon->mx, mon->my)) {
+
+				case 4:
+					tmp -= rn2(2);
+					break;
+				case 5:
+					tmp -= rn2(4);
+					break;
+				case 6:
+					tmp -= rn2(6);
+					break;
+				case 7:
+					tmp -= rn2(9);
+					break;
+				case 8:
+					tmp -= rn2(12);
+					break;
+				case 9:
+					tmp -= rn2(16);
+					break;
+				case 10:
+				default:
+					tmp -= rn2(20);
+					break;
+
+			}
+
+		}
+
+	}
 
 	/* gloves are a hinderance to proper use of bows */
 	if (uarmg && launcher && objects[launcher->otyp].oc_skill == P_BOW) {
@@ -1823,7 +1935,13 @@ int thrown;
 	    }
 	}
 
+/*	with a lot of luggage, your agility diminishes */
+	if (near_capacity()) tmp -= rnd(near_capacity() * 5);
+	if (u.utrap) tmp -= 5;
+
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "clumsy gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "neuklyuzhiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "qo'pol qo'lqop") ) ) tmp -= 3;
+
+	if (Race_if(PM_PLAYER_SKELETON)) tmp -= rnd(u.ulevel); /* lesser nerf than melee, since you also misfire */
 
 	tmp += omon_adj(mon, obj, TRUE);
 	if (is_orc(mon->data) && maybe_polyd(is_elf(youmonst.data),
