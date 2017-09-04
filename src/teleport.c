@@ -25,7 +25,7 @@ int x, y;
 struct monst *mtmp;
 unsigned gpflags;
 {
-	int is_badpos = 0, pool;
+	int is_badpos = 0, pool, crystalpool;
 	struct permonst *mdat = NULL;
 	boolean ignorewater = ((gpflags & MM_IGNOREWATER) != 0);
 	struct monst *mtmp2;
@@ -59,8 +59,11 @@ unsigned gpflags;
 
 	    mdat = mtmp->data;
 	    pool = is_waterypool(x,y);
+	    crystalpool = is_crystalwater(x,y);
 	    if (mdat->mlet == S_EEL && !pool && rn2(13) && !ignorewater)
 		is_badpos = 1;
+
+		if ((mtmp == &youmonst) && (Flying || Levitation) && crystalpool) return -1;
 
 	    if (pool && !ignorewater) {
 		if (mtmp == &youmonst)
@@ -584,6 +587,8 @@ boolean allow_drag;
 
 	if (hides_under(youmonst.data) || (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "secret helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sekret shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yashirin dubulg'a") ) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE))
 		u.uundetected = OBJ_AT(nux, nuy);
+	else if (is_wagon(nux, nuy))
+	    u.uundetected = TRUE;
 	else if (youmonst.data->mlet == S_EEL)
 		u.uundetected = is_waterypool(nux, nuy);
 	else {

@@ -592,6 +592,10 @@ register struct monst *mtmp;
 
 	if (Race_if(PM_DEVELOPER)) tmp += 3;
 
+	if (is_table(u.ux, u.uy)) tmp += 3;
+
+	if (is_grassland(u.ux, u.uy)) tmp -= rnd(5);
+
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapWendy) tmp -= rnd(20);
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */

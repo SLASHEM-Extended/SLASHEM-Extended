@@ -14087,8 +14087,6 @@ drown()
 			(void) dotele();
 			if(!is_drowningpool(u.ux,u.uy))
 				return(TRUE);
-			if(is_crystalwater(u.ux,u.uy))
-				return(TRUE);
 		} else pline_The("attempted teleport spell fails.");
 	}
 	if (u.usteed) {
@@ -14174,6 +14172,106 @@ drown()
 	}
 	return(TRUE);
 	
+}
+
+boolean
+crystaldrown()
+{
+	boolean inpool_ok = FALSE, crawl_ok;
+	int i, x, y;
+	const char *sparkle = level.flags.lethe? "sparkling " : "";
+
+	if (Swimming || Amphibious || Breathless) inpool_ok = TRUE;
+
+	if (level.flags.lethe) {
+	    /* Bad idea */
+	    You_feel("the sparkling waters of the Lethe sweep away your cares!");
+	    forget(5); /* used to be 25 --Amy */
+	}
+
+	water_damage(invent, FALSE, FALSE);
+	if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+	if (Burned) make_burned(0L, TRUE);
+
+	if (u.umonnum == PM_GREMLIN && rn2(3))
+	    (void)split_mon(&youmonst, (struct monst *)0);
+	else if (u.umonnum == PM_IRON_GOLEM) {
+	    You("rust!");
+	    i = d(2,6);
+	    if (u.mhmax > i) u.mhmax -= i;
+	    losehp(i, "rusting away", KILLED_BY);
+	}
+	if (inpool_ok) return(FALSE);
+
+	if ((Teleportation || can_teleport(youmonst.data)) &&
+		    !u.usleep && (Teleport_control || rn2(3) < Luck+2)) {
+		You("attempt a teleport spell.");	/* utcsri!carroll */
+		if (!level.flags.noteleport) {
+			(void) dotele();
+		} else pline_The("attempted teleport spell fails.");
+	}
+	crawl_ok = FALSE;
+	x = y = 0;		/* lint suppression */
+	/* if sleeping, wake up now so that we don't crawl out of water
+	   while still asleep; we can't do that the same way that waking
+	   due to combat is handled; note unmul() clears u.usleep */
+	if (u.usleep) unmul("Suddenly you wake up!");
+	/* can't crawl if unable to move (crawl_ok flag stays false) */
+	if (multi < 0 || (Upolyd && !youmonst.data->mmove)) goto crawl;
+	/* look around for a place to crawl to */
+	for (i = 0; i < 100; i++) {
+		x = rn1(3,u.ux - 1);
+		y = rn1(3,u.uy - 1);
+		if (goodpos(x, y, &youmonst, 0)) {
+			crawl_ok = TRUE;
+			goto crawl;
+		}
+	}
+	/* one more scan */
+	for (x = u.ux - 1; x <= u.ux + 1; x++)
+		for (y = u.uy - 1; y <= u.uy + 1; y++)
+			if (goodpos(x, y, &youmonst, 0)) {
+				crawl_ok = TRUE;
+				goto crawl;
+			}
+ crawl:
+	if (crawl_ok) {
+		boolean lost = FALSE;
+		/* time to do some strip-tease... */
+		boolean succ = Is_waterlevel(&u.uz) ? TRUE :
+				emergency_disrobe(&lost);
+
+		You("try to fly out of the water.");
+		if (lost)
+			You("dump some of your gear to lose weight...");
+		if (succ) {
+			pline("Pheew!  That was close.");
+			teleds(x,y,TRUE);
+			return(TRUE);
+		}
+		/* still too much weight */
+		pline("But in vain.");
+	}
+
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) {
+	pline("Your fin boots prevent you from drowning.");
+	return(FALSE);
+	}
+
+	You("drown.");
+	if (PlayerHearsSoundEffects) pline(issoviet ? "Nikto ne znayet, pochemu ty byl nastol'ko glup, chtoby upast' v vodu, no eto ne imeyet nikakogo znacheniya, v lyubom sluchaye, potomu chto vy mozhete svernut' novogo personazha pryamo seychas." : "HUAAAAAAA-A-AAAAHHHHHH!");
+
+	killer_format = KILLED_BY_AN;
+	killer = "crystal water";
+	done(DROWNING);
+	/* oops, we're still alive.  better get out of the water. */
+	while (!safe_teleds(TRUE)) {
+		pline("You're still drowning.");
+		done(DROWNING);
+	}
+	return(TRUE);
+	
+
 }
 
 void

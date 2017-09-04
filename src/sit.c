@@ -291,6 +291,25 @@ dosit()
 
 	    You(sit_message, "drawbridge");
 
+	} else if(IS_CARVEDBED(typ)) {
+
+		if (Sleep_resistance) {
+
+			pline(Hallucination ? "It seems you drank too much coffee and therefore cannot sleep." : "You can't seem to fall asleep.");
+
+		} else if (!Sleep_resistance && (moves < u.bedsleeping)) {
+
+			You("don't feel sleepy yet.");
+
+		} else if (!Sleep_resistance && (moves >= u.bedsleeping)) {
+
+			You("go to bed.");
+			if (Hallucination) pline("Sleep-bundle-wing!");
+			u.bedsleeping = moves + 100;
+			fall_asleep(-rnd(20), TRUE);
+
+		}
+
 	} else if(IS_THRONE(typ)) {
 
 	    You(sit_message, defsyms[S_throne].explanation);

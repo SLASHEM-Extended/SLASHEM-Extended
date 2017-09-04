@@ -380,6 +380,7 @@ register struct monst *mon;
 		/* since ARM_BONUS is positive, subtracting it increases AC */
 	}
 
+	if (is_wagon(mon->mx, mon->my)) base -= 10;
 
 	/* Monsters with too good AC should not be completely unhittable. --Amy */
 	if (!rn2(20)) {

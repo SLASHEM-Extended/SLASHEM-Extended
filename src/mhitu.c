@@ -1797,14 +1797,18 @@ mattacku(mtmp)
 			 */
 			struct obj *obj = level.objects[u.ux][u.uy];
 
-			if (obj ||
+			if (obj || is_wagon(u.ux, u.uy) ||
 			      (youmonst.data->mlet == S_EEL && is_waterypool(u.ux, u.uy))) {
 			    int save_spe = 0; /* suppress warning */
 			    if (obj) {
 				save_spe = obj->spe;
 				if (obj->otyp == EGG) obj->spe = 0;
 			    }
-			    if (youmonst.data->mlet == S_EEL)
+			    if (is_wagon(u.ux, u.uy)) {
+	     pline("Wait, %s!  There's a %s named %s hiding under a wagon!",
+				m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", plname);
+
+			    } else if (youmonst.data->mlet == S_EEL)
 		pline("Wait, %s!  There's a hidden %s named %s there!",
 				m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", plname);
 			    else if (uarmh && uarmh->oartifact == ART_JANA_S_DECEPTIVE_MASK && !rn2(100)) {
@@ -1882,6 +1886,7 @@ mattacku(mtmp)
 	if (mtmp->egotype_farter) tmp += 15;
 	if (mtmp->fartbonus) tmp += mtmp->fartbonus;
 	if (mtmp->crapbonus) tmp += mtmp->crapbonus;
+	if (is_table(mtmp->mx, mtmp->my)) tmp += 3;
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && FemaleTrapMadeleine) tmp += 100;
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapWendy) tmp += rnd(20);
 
@@ -6062,6 +6067,85 @@ dopois:
 			    destroy_item(SPBOOK_CLASS, AD_FIRE);
 			    destroy_item(POTION_CLASS, AD_FIRE);
 				burnarmor(&youmonst);
+
+			}
+
+			if (is_urinelake(mtmp->mx,mtmp->my)) {
+				pline("%s pulls you into the urine lake!", Monnam(mtmp));
+				if (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record > 0) {
+					pline("Ulch - your divine body is tainted by that filthy yellow liquid!");
+					u.ualign.record = -20;
+				}
+
+			}
+
+			if (is_moorland(mtmp->mx,mtmp->my)) {
+
+				pline("%s pulls you into the moorland!", Monnam(mtmp));
+				/* do nothing */
+
+			}
+
+			if (is_shiftingsand(mtmp->mx,mtmp->my)) {
+
+				pline("%s pulls you into the shifting sand!", Monnam(mtmp));
+				losehp((u.uhp / 2), "being pulled into shifting sand", KILLED_BY);
+
+			}
+
+			if (is_styxriver(mtmp->mx,mtmp->my)) {
+				pline("%s pulls you into the styx river!", Monnam(mtmp));
+				contaminate(rnd(10));
+			}
+
+			if (is_urinelake(mtmp->mx,mtmp->my) && !rn2(3)) {
+
+				if (u.ualign.record > 0) {
+					pline("The yellow liquid seems harmless.");
+				}
+
+				else if (u.ualign.record == 0) {
+					pline("The yellow liquid tickles your skin.");
+					losehp(1, "being pulled into a urine lake while nominally aligned", KILLED_BY);
+				}
+
+				else if (u.ualign.record < 0) {
+					pline("The yellow liquid %scorrodes your unprotected skin!", !Acid_resistance ? "severely " : "");
+					losehp(rnd(10 + (level_difficulty() / 2)), "being pulled into a urine lake", KILLED_BY);
+					if (!Acid_resistance) losehp(rnd(30 + level_difficulty()), "being pulled into a urine lake", KILLED_BY);
+					if (!rn2(3)) badeffect();
+
+					if (!rn2(3)) {
+						register struct obj *objU, *objU2;
+						for (objU = invent; objU; objU = objU2) {
+						      objU2 = objU->nobj;
+							if (!rn2(5)) rust_dmg(objU, xname(objU), 3, TRUE, &youmonst);
+						}
+					}
+
+				}
+
+			}
+
+			if (is_moorland(mtmp->mx,mtmp->my) && !rn2(3)) {
+				pline("The adverse conditions in the moorland hurt your health!");
+				losehp(rnd(10 + (level_difficulty() / 3)), "being pulled into moorland", KILLED_BY);
+
+			}
+
+			if (is_shiftingsand(mtmp->mx,mtmp->my) && !rn2(3)) {
+				/* instakill the poor sap - there is *no* resistance against this, and that's intentional --Amy */
+				You("are pulled below the surface and suffocate.");
+				killer_format = KILLED_BY_AN;
+				sprintf(buf, "shifting sand by %s", an(mtmp->data->mname));
+				killer = buf;
+				done(DROWNING);
+
+			}
+
+			if (is_styxriver(mtmp->mx,mtmp->my) && !rn2(3)) {
+				pline("You're exposed to the styx river, and your contamination greatly increases.");
+				contaminate(rnd(100 + (level_difficulty() * 10)));
 
 			}
 

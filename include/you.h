@@ -949,6 +949,9 @@ struct you {
 
 	int contamination;	/* weeping angel, but also other effects */
 
+	int bedsleeping;	/* used to prevent you from constantly sleeping */
+	int shiftingsandsinking;	/* to instakill you if you stand in shifting sand for too long */
+
 	/* KMH -- Info shared among gypsies */
 	int umonteluck;		/* Chance of winning; lower is better */
 	char umontelast;	/* Last monte card picked */

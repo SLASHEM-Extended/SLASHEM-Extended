@@ -892,6 +892,24 @@ doforce()		/* try to force a chest with your weapon */
 		}
 		return(0);
 	    }
+
+	    if (is_farmland(x,y)) {
+			if (u.uen < 5) {
+				pline("You have too little energy to force the farmland!");
+				return(0);
+			} else {
+				u.uen -= 5;
+				pline("You fire an ammo at the farmland.");
+				if (rn2(20)) pline("It doesn't seem to have any effect.");
+				else {
+					pline("The farmland disappears.");
+					levl[x][y].typ = CORR;
+					newsym(x,y);
+				}
+				return(1);
+			}
+		}
+
 	    /* Lightsabers dig through doors and walls via dig.c */
 	    if (is_pick(uwep) || is_antibar(uwep) ||
 		    is_lightsaber(uwep) ||

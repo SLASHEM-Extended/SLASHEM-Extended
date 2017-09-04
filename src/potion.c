@@ -2141,6 +2141,8 @@ dodrink()
 	if (!u.uswallow && (IS_FOUNTAIN(levl[u.ux][u.uy].typ) ||
 			    IS_SINK(levl[u.ux][u.uy].typ) ||
 			    IS_TOILET(levl[u.ux][u.uy].typ) ||
+			    IS_WELL(levl[u.ux][u.uy].typ) ||
+			    IS_POISONEDWELL(levl[u.ux][u.uy].typ) ||
 			    Underwater || IS_POOL(levl[u.ux][u.uy].typ)))
 	    *qp++ = ALLOW_THISPLACE;
 	strcpy(qp, beverages);
@@ -2162,6 +2164,61 @@ dodrink()
 		}
 
 		return 1;
+	    }
+	    else if (IS_WELL(levl[u.ux][u.uy].typ)) {
+		You("draw water from a well.");
+
+		if (level.flags.lethe) {
+			pline("Whoops, you forgot that it contains lethe water.");
+			if (Hallucination) pline("You also forgot whether lethe water can cause amnesia.");
+			forget(ALL_SPELLS | ALL_MAP);
+		}
+
+		morehungry(-50);
+		if (RngeLiquidDiet) {
+			morehungry(-10);
+		}
+		healup(d(2,6) + rnz(u.ulevel), 0, FALSE, FALSE);
+		if (!rn2(10)) {
+			levl[u.ux][u.uy].typ = POISONEDWELL;
+			pline("Suddenly the well becomes poisoned...");
+		} else if (!rn2(100)) {
+			levl[u.ux][u.uy].typ = CORR;
+			pline("The well dries up!");
+		}
+		return 1;
+	    }
+	    else if (IS_POISONEDWELL(levl[u.ux][u.uy].typ)) {
+		You("draw water from a well.");
+
+		if (level.flags.lethe) {
+			pline("Whoops, you forgot that it contains lethe water.");
+			if (Hallucination) pline("You also forgot whether lethe water can cause amnesia.");
+			forget(ALL_SPELLS | ALL_MAP);
+		}
+
+		morehungry(-50);
+		if (RngeLiquidDiet) {
+			morehungry(-10);
+		}
+		pline(Hallucination ? "Urgh - that tastes like cactus juice with full-length thorns in it!" : "Ecch - that must have been poisonous!");
+		if(!Poison_resistance) {
+		    losestr(rnd(4));
+		    losehp(rnd(15), xname(otmp), KILLED_BY_AN);
+		} else You("resist the effects but still don't feel so good.");
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
+		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
+		poisoned("The water", rn2(A_MAX), "poisoned well", 30);
+		if (!rn2(20)) {
+			levl[u.ux][u.uy].typ = CORR;
+			pline("The well dries up!");
+		}
+		return 1;
+
 	    }
 	    else if (IS_SINK(levl[u.ux][u.uy].typ)) {
 		drinksink();

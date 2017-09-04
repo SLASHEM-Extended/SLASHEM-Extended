@@ -5072,6 +5072,8 @@ find_ac()
 
 	if (u.tunnelized) uac += 20;
 
+	if (is_wagon(u.ux, u.uy)) uac -= 5;
+
 	if (u.burrowed) {
 		uac -= 20;
 		if (!(PlayerCannotUseSkills)) {

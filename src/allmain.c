@@ -971,6 +971,9 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
 				moveamt /= 2;
 
+			if (is_sand(u.ux,u.uy) && !Flying && !Levitation && !rn2(4) && moveamt > 1)
+				moveamt /= 2;
+
 			if (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
@@ -1003,6 +1006,29 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* frozen characters move at half speed --Amy */
 			}
+
+			if (is_snow(u.ux, u.uy) && !Flying && !Levitation) {
+
+					static boolean canwalkonsnow = 0;
+				    static int skates = 0;
+				    if (!skates) skates = find_skates();
+				    static int skates2 = 0;
+				    if (!skates2) skates2 = find_skates2();
+				    static int skates3 = 0;
+				    if (!skates3) skates3 = find_skates3();
+				    static int skates4 = 0;
+				    if (!skates4) skates4 = find_skates4();
+				    if ((uarmf && uarmf->otyp == skates)
+					    || (uarmf && uarmf->otyp == skates2)
+					    || (uarmf && uarmf->otyp == skates3)
+					    || (uarmf && uarmf->otyp == skates4)
+					    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
+					    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
+
+				if ((youmonst.data->mmove > 1 || !rn2(2)) && !canwalkonsnow)
+				moveamt /= 4;
+			}
+
 			if ((uwep && uwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
@@ -1141,6 +1167,10 @@ moveloop()
 
 			/* unicorns are ultra fast!!! However, they have enough bullshit downsides to reign them in. --Amy */
 			if (Race_if(PM_PLAYER_UNICORN)) {
+				moveamt *= 2;
+			}
+
+			if (is_highway(u.ux, u.uy)) {
 				moveamt *= 2;
 			}
 
@@ -3954,6 +3984,52 @@ newbossX:
 			flags.botl = 1;
 		}
 
+		if (is_carvedbed(u.ux, u.uy) && (multi < 0)) {
+			if (!Upolyd) {
+				u.uhp += rnd(10);
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			}
+			if (Upolyd) {
+				u.mh += rnd(10);
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			}
+			flags.botl = 1;
+
+		}
+
+		if (is_mattress(u.ux, u.uy) && (multi >= 0)) {
+
+			if (!rn2(Sleep_resistance ? 200 : 20)) {
+
+				You("suddenly feel an immense need to lie down on the mattress and sleep for a bit.");
+				fall_asleep(-rnd(5), TRUE);
+
+			}
+
+		}
+
+		if (is_shiftingsand(u.ux, u.uy) && !Flying && !Levitation) {
+			u.shiftingsandsinking++;
+			switch (u.shiftingsandsinking) {
+				/* make it VERY clear to the player that they will die unless they get out immediately --Amy */
+				case 1:
+					You("start sinking in the shifting sand. This will quickly kill you, better try to get out ASAP.");
+					break;
+				case 2:
+					You("are struggling against the shifting sand, but you're almost completely submerged now. Pull yourself out immediately or you'll end up in a sandy grave.");
+					break;
+				case 3:
+				default:
+					You("sink below the surface and die.");
+					/* Unbreathing doesn't help, similar to lava (intentional) --Amy */
+					killer = "sinking in shifting sand";
+					killer_format = KILLED_BY;
+					done(DIED);
+					u.shiftingsandsinking = 0; /* if lifesaved, have a few turns to save your hide */
+					break;
+			}
+		}
+
 		if (uarmf && uarmf->oartifact == ART_SUCH_A_WONDERFUL_ROOMMATE && (multi < 0) && (u.uhs >= HUNGRY)) {
 			Your("stomach fills.");
 			u.uhunger += 100;
@@ -4343,6 +4419,131 @@ newbossB:
 
 		if (uarm && uarm->oartifact == ART_WATER_SHYNESS && !rn2(100) && (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) ) {
 			levl[u.ux][u.uy].typ = POOL;
+		}
+
+		if (is_sand(u.ux, u.uy) && !rn2(20)) {
+			You("are caught in a sandstorm, and the sand gets in your %s!", body_part(EYE));
+			make_blinded(Blinded + rnd(5),FALSE);
+		}
+
+		if (is_nethermist(u.ux, u.uy) && !rn2(5)) {
+
+			if ((!Drain_resistance || !rn2(5)) && u.uexp > 100) {
+				u.uexp -= (u.uexp / 100);
+				You_feel("your life slipping away!");
+				if (u.uexp < newuexp(u.ulevel - 1)) {
+				      losexp("nether mist", TRUE, FALSE);
+				}
+			}
+
+		}
+
+		if (is_snow(u.ux, u.uy) && !rn2(20) && (Flying || Levitation)) {
+			You("are caught in a snowstorm!");
+			make_stunned(Stunned + rnd(5),FALSE);
+			    stop_occupation();
+		}
+
+		if (is_styxriver(u.ux, u.uy)) {
+
+			if ((!Flying && !Levitation) || !rn2(5)) {
+				Norep("Continued exposure to the Styx River will cause contamination.");
+				contaminate(rnd(10 + level_difficulty()));
+			}
+
+		}
+
+		if (is_burningwagon(u.ux, u.uy)) {
+			pline("The wagon burns you!");
+			make_burned(HBurned + rnd(10 + level_difficulty()), FALSE);
+			if (!Fire_resistance || !rn2(20)) losehp(rnd(5 + (level_difficulty() / 3)), "a burning wagon", KILLED_BY);
+
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		      (void)destroy_item(POTION_CLASS, AD_FIRE);
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
+		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
+		    burn_away_slime();
+		    if (!rn2(10)) burnarmor(&youmonst);
+
+		}
+
+		if (is_moorland(u.ux, u.uy) && !Flying && !Levitation) {
+			Norep("Swimming in moorland causes continuous damage.");
+			losehp(rnd(5 + (level_difficulty() / 5)), "swimming in moorland", KILLED_BY);
+		}
+
+		if (is_raincloud(u.ux, u.uy)) {
+
+			if (level.flags.lethe) pline("Sparkling rain washes over you.");
+			else pline("Rain washes over you.");
+
+			if (multi >= 0 && !rn2(8)) {
+
+				pline("Kaboom!!!  Boom!!  Boom!!");
+				stop_occupation();
+				nomul(-3, "hiding from thunderstorm");
+				nomovemsg = 0;
+
+			}
+
+			water_damage(invent, FALSE, FALSE);
+			if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+
+		}
+
+		if (is_urinelake(u.ux, u.uy) && !Flying && !Levitation) {
+
+			if (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record > 0) {
+				pline("Ulch - your divine body is tainted by that filthy yellow liquid!");
+				u.ualign.record = -20;
+			}
+			/* This isn't much of a downside, since usually angels with positive alignment fly anyway :D --Amy */
+
+			if (u.ualign.record > 0) {
+				Norep("The yellow liquid actually feels comfortable on your skin.");
+			}
+
+			else if (u.ualign.record == 0) {
+				Norep("The yellow liquid tickles your skin.");
+				losehp(1, "swimming in urine while nominally aligned", KILLED_BY);
+			}
+
+			else if (u.ualign.record < 0) {
+				pline("The yellow liquid %scorrodes your unprotected skin!", !Acid_resistance ? "severely " : "");
+				losehp(rnd(5 + (level_difficulty() / 2)), "foolishly swimming in urine", KILLED_BY);
+				if (!Acid_resistance) losehp(rnd(10 + level_difficulty()), "foolishly swimming in urine", KILLED_BY);
+				if (!rn2(10)) badeffect();
+
+				if (!rn2(10)) {
+					register struct obj *objU, *objU2;
+					for (objU = invent; objU; objU = objU2) {
+					      objU2 = objU->nobj;
+						if (!rn2(5)) rust_dmg(objU, xname(objU), 3, TRUE, &youmonst);
+					}
+				}
+
+			}
+
+		}
+
+		if (is_stalactite(u.ux, u.uy) && (Flying || Levitation)) {
+			pline("The stalactite pierces you!");
+			losehp(rnd(10 + level_difficulty()), "being impaled on a stalactite", KILLED_BY);
+		}
+
+		if (u.umoved && is_pavedfloor(u.ux, u.uy) && !Flying && !Levitation) {
+			Norep("Walking on paved floor makes lots of noise.");
+			wake_nearby();
+
+			if (PlayerInHighHeels && !rn2(40) && ((rnd(4) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) )) {
+				nomul(-(1 + rnd(5)), "crashing into a paved floor");
+				set_wounded_legs(rn2(2) ? RIGHT_SIDE : LEFT_SIDE, HWounded_legs + rnz(200));
+				pline("Since you're not proficient at walking in high heels, you sprain your %s very painfully and crash into the floor.", body_part(LEG));
+
+			}
+
 		}
 
 		if (uwep && uwep->oartifact == ART_OVERHEATER && !rn2(1000) && !(t_at(u.ux, u.uy) ) ) {
@@ -6068,6 +6269,7 @@ newboss:
 			regenrate = (20 - (u.ulevel / 3));
 			if (regenrate < 6) regenrate = 6;
 			if (Race_if(PM_HAXOR)) regenrate /= 2;
+			if (is_grassland(u.ux, u.uy)) regenrate *= 2;
 
 			if (u.mh < 1)
 			    rehumanize();
@@ -6916,6 +7118,12 @@ newboss:
 	/****************************************/
 	/* once-per-player-input things go here */
 	/****************************************/
+
+	if (u.shiftingsandsinking && !(is_shiftingsand(u.ux, u.uy))) {
+		u.shiftingsandsinking = 0;
+		You("escaped the shifting sand.");
+		if (Hallucination) pline("The Grim Reaper was waiting to take you away, too.");
+	}
 
 	if (LatencyBugEffect || u.uprops[LATENCY_BUG].extrinsic || have_latencystone()) {
 

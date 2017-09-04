@@ -1042,7 +1042,7 @@ int mode;
     /*
      *  Check for physical obstacles.  First, the place we are going.
      */
-    if (IS_ROCK(tmpr->typ) || tmpr->typ == IRONBARS || tmpr->typ == WATERTUNNEL) {
+    if (IS_ROCK(tmpr->typ) || tmpr->typ == IRONBARS || tmpr->typ == WOODENTABLE || tmpr->typ == WATERTUNNEL) {
 	if (Blind && mode == DO_MOVE) feel_location(x,y);
 	if (tmpr->typ == IRONBARS) {
 	    if (!(Passes_walls || passes_bars(youmonst.data) )) {
@@ -1073,6 +1073,17 @@ int mode;
 	    ;	/* do nothing */
 	} else if (Race_if(PM_HUMANOID_DRYAD) && tmpr->typ == TREE) {
 	    ;	/* dryad can walk thru trees --Amy */
+
+	} else if (tmpr->typ == WOODENTABLE) {
+
+		if ( (near_capacity() > UNENCUMBERED) && !Passes_walls) {
+			if (mode != DO_MOVE) return FALSE;
+			if (mode == DO_MOVE) {
+				pline("Climbing the table does not work while you're burdened.");
+				return FALSE;
+			}
+		}
+
 	} else if (tmpr->typ == MOUNTAIN) {
 		if (mode != DO_MOVE) return FALSE;
 		if (mode == DO_MOVE && !Passes_walls) {
@@ -1795,6 +1806,17 @@ ask_about_raincloud(int x, int y)
 	return FALSE;
 }
 
+boolean
+ask_about_bubble(int x, int y)
+{
+	if (ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) return FALSE;
+
+	if (is_bubble(u.ux, u.uy)) return FALSE;
+
+	if (is_bubble(x, y) && !(Confusion && !Conf_resist) && !(Stunned && !Stun_resist) && levl[x][y].seenv) return TRUE; 
+	return FALSE;
+}
+
 void
 domove()
 {
@@ -2486,6 +2508,15 @@ domove()
 		}
 	}
 
+	if (ask_about_bubble(x, y)) {
+
+		if (yn("This is a bubble, which causes stunning. Really step into it?") != 'y') {
+			forcenomul(0, 0);
+			flags.move = 0;
+			return;
+		}
+	}
+
 	} else if (!test_move(u.ux, u.uy, x-u.ux, y-u.uy, TEST_MOVE)) {
 	    /*
 	     * If a monster attempted to displace us but failed
@@ -2667,6 +2698,8 @@ domove()
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 	else if (youmonst.data->mlet == S_EEL)
 	    u.uundetected = is_waterypool(u.ux, u.uy) && !Is_waterlevel(&u.uz);
+	else if (is_wagon(u.ux, u.uy))
+	    u.uundetected = TRUE;
 	else if (u.dx || u.dy)
 	    u.uundetected = 0;
 
@@ -2842,6 +2875,10 @@ boolean pick;
 		pline(Hallucination ? "A twister... or is that a tornado?" : "You are enclosed in a whirlwind!");
 		losehp(rnd(u.legscratching + 2), "whirlwinds", KILLED_BY);
 
+	}
+
+	if (is_crystalwater(u.ux,u.uy) && (Flying || Levitation)) {
+		crystaldrown();
 	}
 
 	if(u.uinwater) {

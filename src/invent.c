@@ -5295,9 +5295,9 @@ char *buf;
 	else if (IS_MOUNTAIN(ltyp))
 	    cmap = S_mountain;
 	else if (IS_WATERTUNNEL(ltyp))
-	    cmap = S_watertunnel;
+	    dfeature = level.flags.lethe ? "sparkling water tunnel" : "water tunnel";
 	else if (IS_CRYSTALWATER(ltyp))
-	    cmap = S_crystalwater;
+	    dfeature = level.flags.lethe ? "sparkling crystal water" : "crystal water";
 	else if (IS_MOORLAND(ltyp))
 	    cmap = S_moorland;
 	else if (IS_URINELAKE(ltyp))
@@ -5309,9 +5309,9 @@ char *buf;
 	else if (IS_PENTAGRAM(ltyp))
 	    cmap = S_pentagram;
 	else if (IS_WELL(ltyp))
-	    cmap = S_well;
+	    dfeature = level.flags.lethe ? "sparkling well" : "well";
 	else if (IS_POISONEDWELL(ltyp))
-	    cmap = S_poisonedwell;
+	    dfeature = level.flags.lethe ? "sparkling poisoned well" : "poisoned well";
 	else if (IS_WAGON(ltyp))
 	    cmap = S_wagon;
 	else if (IS_BURNINGWAGON(ltyp))
@@ -5343,7 +5343,7 @@ char *buf;
 	else if (IS_BUBBLES(ltyp))
 	    cmap = S_bubbles;
 	else if (IS_RAINCLOUD(ltyp))
-	    cmap = S_raincloud;
+	    dfeature = level.flags.lethe ? "sparkling rain cloud" : "rain cloud";
 	else if (IS_CLOUD(ltyp))
 	    cmap = S_cloud;
 	else if (is_lava(x,y))
@@ -5454,11 +5454,15 @@ boolean picked_some;
 		if (flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7) &&
 			(IS_FOUNTAIN(levl[u.ux][u.uy].typ) ||
 			 IS_SINK(levl[u.ux][u.uy].typ) ||
+			 IS_WELL(levl[u.ux][u.uy].typ) ||
+			 IS_POISONEDWELL(levl[u.ux][u.uy].typ) ||
 			 IS_TOILET(levl[u.ux][u.uy].typ)
 			))
 		    strcat(fbuf, "  Use \"q.\" to drink from it.");
 
 		if (flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7) && IS_THRONE(levl[u.ux][u.uy].typ))
+		    strcat(fbuf, "  Use #sit to interact with it.");
+		if (flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7) && IS_CARVEDBED(levl[u.ux][u.uy].typ))
 		    strcat(fbuf, "  Use #sit to interact with it.");
 		if (flags.suppress_alert < FEATURE_NOTICE_VER(0,0,7) && IS_PENTAGRAM(levl[u.ux][u.uy].typ))
 		    strcat(fbuf, "  Use #invoke to draw on the magical energies.");

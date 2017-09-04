@@ -126,6 +126,30 @@ int x,y;
 }
 
 boolean
+is_pavedfloor(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == PAVEDFLOOR) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_highway(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == HIGHWAY) return TRUE;
+    return FALSE;
+}
+
+boolean
 is_urinelake(x,y)
 int x,y;
 {
@@ -162,6 +186,18 @@ int x,y;
 }
 
 boolean
+is_wagon(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == WAGON) return TRUE;
+    return FALSE;
+}
+
+boolean
 is_burningwagon(x,y)
 int x,y;
 {
@@ -170,6 +206,78 @@ int x,y;
     if (!isok(x,y)) return FALSE;
     ltyp = levl[x][y].typ;
     if (ltyp == BURNINGWAGON) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_well(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == WELL) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_poisonedwell(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == POISONEDWELL) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_pentagram(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == PENTAGRAM) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_carvedbed(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == CARVEDBED) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_table(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == WOODENTABLE) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_mattress(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == STRAWMATTRESS) return TRUE;
     return FALSE;
 }
 
@@ -206,6 +314,78 @@ int x,y;
     if (!isok(x,y)) return FALSE;
     ltyp = levl[x][y].typ;
     if (ltyp == RAINCLOUD) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_bubble(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == BUBBLES) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_ash(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == ASH) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_sand(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == SAND) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_farmland(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == FARMLAND) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_grassland(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == GRASSLAND) return TRUE;
+    return FALSE;
+}
+
+boolean
+is_snow(x,y)
+int x,y;
+{
+    schar ltyp;
+
+    if (!isok(x,y)) return FALSE;
+    ltyp = levl[x][y].typ;
+    if (ltyp == SNOW) return TRUE;
     return FALSE;
 }
 

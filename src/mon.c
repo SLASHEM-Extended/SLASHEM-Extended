@@ -968,6 +968,18 @@ register struct monst *mtmp;
 	if (mtmp == u.usteed && (Flying || Levitation))
 		return (0);
 
+	/* poisonous non-zombies will poison a well --Amy */
+    if (IS_WELL(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && poisonous(mtmp->data) && !(mtmp->data->mlet == S_ZOMBIE)) {
+		levl[mtmp->mx][mtmp->my].typ = POISONEDWELL;
+		if (cansee(mtmp->mx, mtmp->my)) pline("%s poisons the well!", Monnam(mtmp));
+    }
+
+	/* but zombies will cure it... no matter how nonsensical this might seem, it's intentional */
+    if (IS_POISONEDWELL(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && mtmp->data->mlet == S_ZOMBIE) {
+		levl[mtmp->mx][mtmp->my].typ = WELL;
+		if (cansee(mtmp->mx, mtmp->my)) pline("%s cures the well of its poison!", Monnam(mtmp));
+    }
+
     if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemaleTrapKatharina) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) || FemaleTrapThai ) ) {
 	if (cansee(mtmp->mx,mtmp->my)) {
 		pline("%s produces %s crapping noises with %s %s butt.", Monnam(mtmp), mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
@@ -1126,6 +1138,8 @@ struct monst *mon;
 
     if (mon->egotype_speedster) mmove += 6;
     if (mon->egotype_racer) mmove += 12;
+
+	if (is_highway(mon->mx, mon->my)) mmove += rnd(mmove);
 
 	if ((MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || have_monsterspeedstone()) && !rn2(2) && (mmove > 0)) {
 		mmove *= 3;
@@ -2006,6 +2020,7 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 	       ( lavaok || wantlava || !is_lava(nx,ny))) {*/
 
 	    if(( ( ( (is_waterypool(nx,ny) && !(is_crystalwater(nx,ny))) || is_watertunnel(nx,ny)) == wantpool) ||
+		 (is_crystalwater(nx,ny) && wantpool) || (is_shiftingsand(nx,ny) && wantpool) ||
 		 (is_lava(nx,ny) && wantlava) || (is_styxriver(nx,ny) && wantlava) || poolok) &&
 	       (lavaok || wantlava || (!is_lava(nx,ny) && !is_styxriver(nx,ny)) )) {
 		int dispx, dispy;
@@ -4402,6 +4417,14 @@ newbossA:
 
 		u.aggravation = 0;
 
+	}
+
+	if (mdat->maligntyp > 0 && is_nethermist(mtmp->mx, mtmp->my) ) {
+		levl[mtmp->mx][mtmp->my].typ = CORR;
+		if (cansee(mtmp->mx,mtmp->my)) {
+			pline("The nether mist dissipates.");
+			newsym(mtmp->mx, mtmp->my);
+		}
 	}
 
 	/* adjust alignment points */

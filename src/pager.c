@@ -558,6 +558,21 @@ lookat(x, y, buf, monbuf)
     case S_pool:
 	strcpy(buf, level.flags.lethe? "sparkling water" : "water");
 	break;
+    case S_well:
+	strcpy(buf, level.flags.lethe? "sparkling well" : "well");
+	break;
+    case S_poisonedwell:
+	strcpy(buf, level.flags.lethe? "sparkling poisoned well" : "poisoned well");
+	break;
+    case S_crystalwater:
+	strcpy(buf, level.flags.lethe? "sparkling crystal water" : "crystal water");
+	break;
+    case S_raincloud:
+	strcpy(buf, level.flags.lethe? "sparkling rain cloud" : "rain cloud");
+	break;
+    case S_watertunnel:
+	strcpy(buf, level.flags.lethe? "sparkling water tunnel" : "water tunnel");
+	break;
     case S_fountain:
 	strcpy(buf, level.flags.lethe? "sparkling fountain" : "fountain");
 	break;
