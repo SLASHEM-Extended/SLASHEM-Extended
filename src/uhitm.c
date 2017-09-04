@@ -1946,7 +1946,17 @@ int thrown;
 
 	if (thrown && !stupidrock && !gunused && !pieks && rn2(2)) get_dmg_bonus = 0;
 
-	if (!get_dmg_bonus) pline("no dmg bonus");
+	if (thrown && launcher && ammo_and_launcher(obj, launcher) && !gunused && (distmin(u.ux, u.uy, mon->mx, mon->my) == 1)) {
+		get_dmg_bonus = 0;
+		if (tmp > 1) tmp /= 2;
+		if (flags.bash_reminder && !rn2(10)) pline("Firing that weapon at point blank range is not very effective...");
+	}
+
+	if (thrown && launcher && ammo_and_launcher(obj, launcher) && !gunused && u.uswallow) {
+		get_dmg_bonus = 0;
+		if (tmp > 1) tmp /= 2;
+		if (flags.bash_reminder && !rn2(10)) You("can't fire that weapon effectively while engulfed...");
+	}
 
 	if (get_dmg_bonus && tmp > 0) {
 		tmp += u.udaminc;
