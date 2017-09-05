@@ -6021,7 +6021,7 @@ dodip()
 				return 1;
 			}
 
-			else if (obj && !stack_too_big(obj) && !obj->oerodeproof && (obj->oclass == SPBOOK_CLASS) ) {
+			else if (obj && !stack_too_big(obj) && !evades_destruction(obj) && !obj->oerodeproof && (obj->oclass == SPBOOK_CLASS) ) {
 
 				useupall(obj);
 				update_inventory();
