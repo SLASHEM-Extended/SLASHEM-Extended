@@ -1079,6 +1079,10 @@ moveloop()
 
 				if ((youmonst.data->mmove > 1 || !rn2(2)) && !canwalkonsnow)
 				moveamt /= 4;
+
+				if (canwalkonsnow && ((uarmf && uarmf->otyp == skates4) || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) && !rn2(2)) {
+					moveamt *= 2;
+				}
 			}
 
 			if ((uwep && uwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) && moveamt > 1) {

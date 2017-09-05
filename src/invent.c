@@ -7310,7 +7310,7 @@ struct obj *obj;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sharp-edged sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ostrokonechnyye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'tkir xanjarday kavushlari"))))
 			pline("The heels of this pair of female sandals are very sharp-edged.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chang'i poshnalar"))))
-			pline("A special pair of high-heeled footwear that can walk over 'snow', even though there is no snow terrain in the game at all. But they walk on ice just as well :-). However, they have a tendency to step into invisible heaps of shit and might also trigger other traps without you noticing.");
+			pline("A special pair of high-heeled footwear that can walk over snow, which is now actually in the game and causes them to speed up. But they walk on ice just as well :-). However, they have a tendency to step into invisible heaps of shit and might also trigger other traps without you noticing.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "slowing gown") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zamedlennoye plat'ye") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sekinlashuvi libos"))))
 			pline("It's very heavy and improves your armor class by an extra 3 points, but also slows you down to half speed.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "foundry cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "liteynyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "quyish plash"))))
@@ -14071,7 +14071,7 @@ struct obj *obj;
 				case ART_MELISSA_S_BEAUTY:
 					pline("Artifact specs: +10 charisma, +5 AC and +5 to-hit when worn, chaotic."); break;
 				case ART_CORINA_S_SNOWY_TREAD:
-					pline("Artifact specs: cold resistance, aggravate monster and prevents your potions from shattering due to cold attacks when worn. Also improves the chance of the disarm technique working."); break;
+					pline("Artifact specs: cold resistance, aggravate monster and prevents your potions from shattering due to cold attacks when worn. Also improves the chance of the disarm technique working, and they speed up when walking on snow."); break;
 				case ART_NUMBER___:
 					pline("Artifact specs: psi resistance when worn."); break;
 				case ART_HAUNTNIGHT:
@@ -14479,7 +14479,7 @@ struct obj *obj;
 				case ART_SHORTFALL:
 					pline("Artifact specs: fire resistance and magical breathing when worn."); break;
 				case ART_BRIDGE_SHITTE:
-					pline("Artifact specs: can walk on snow, but shit traps will spawn constantly and you trigger them even if you fly."); break;
+					pline("Artifact specs: can walk on snow (and speed up in the process), but shit traps will spawn constantly and you trigger them even if you fly."); break;
 				case ART_SUCH_A_WONDERFUL_ROOMMATE:
 					pline("Artifact specs: The Amy her wonderful roommate will fill your stomach if you get paralyzed while hungry or worse."); break;
 				case ART_VRRRRRRRRRRRR:
