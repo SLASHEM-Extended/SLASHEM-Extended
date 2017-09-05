@@ -1281,7 +1281,7 @@ exerchk()
 			/* contamination can now go down; if at least 100, only a chance of going down --Amy */
 			if (u.contamination >= 100 && !rn2(2)) decontaminate(100);
 			/* otherwise, decontaminate by a random amount, meaning you'll probably still be contaminated :D */
-			else if (u.contamination) decontaminate(rnd(u.contamination));
+			else if (u.contamination && u.contamination < 100) decontaminate(rnd(u.contamination));
 
 			continue;
 		}
