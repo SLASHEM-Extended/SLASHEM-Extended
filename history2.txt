@@ -1,0 +1,96 @@
+Incomplete changelog for SLASH'EM Extended, written by Amy
+
+2.0.5
+- Fixed a bug where decontamination was too easy.
+- Allow players wearing ski heels or certain artifacts to walk on snow more quickly.
+- Dipping the book of the dead in lava doesn't erroneously say "the book burns up" when it really doesn't.
+- Shoplifting or having a high sin counter can give a cop wanted level, which repeatedly causes kops to respawn for a while.
+- Firing a bow, crossbow or sling at point blank is ineffective and does less damage than it would if the monster were standing farther away.
+- Pets eating corpses or non-comestible food gain less nutrition than previously.
+- Attacking a monster with the flickerer egotype using something that does no damage gives better messages, since players used to not realize they were doing no damage.
+- Ranged weapons were nerfed in a number of ways, including a lowered chance to hit if the target is standing far away, a reduction of the damage bonuses given to the individual ammos, and allowing certain monsters (most notably ghosts, but also amorphous ones) to avoid projectiles with a certain chance. Firearms are exempt from most of those nerfs.
+- When the player is on Fort Ludios, the dungeon depth is displayed.
+- Certain actions that summon kops will now spawn kop cubes too.
+- Dipping spellbooks into lava will burn them away completely.
+- Finished functionality for the new special rooms and terrain types.
+
+2.0.4
+- Improved the handling of the obj_is_local error. The underlying cause was not found, but the odds of producing a corrupted savegame should be lower now.
+- Added many new terrain types, dungeon features and special rooms that can be randomly generated over the course of the game.
+- Better display of the gamemode string in the xlogfile entry.
+- The message suppression trap suppresses any and all --More-- prompts as well.
+- The previous message command cannot be used to "cheat" past certain interface screw trap effects.
+- The #overview command does not work at all while the display loss trap is in effect.
+- Stairdancing is limited: now, there's a chance that the player cannot use staircases for a couple of turns after taking one, forcing them to fight whichever monsters they were trying to cheese. Magic portals are also affected for the same reason.
+- Monster-versus-monster calming attacks are no longer guaranteed to calm the defending monster.
+
+2.0.3
+- Fixed an error in the handling of the obj_is_local crash where the game would fail to save data to the savegame, corrupting it in the process.
+- The summon undead spell no longer produces tame undead, and the command undead spell can sometimes create traps on the current dungeon level as a negative side effect, plus monsters are more resistant to the effect and can occasionally be frenzied instead.
+- Items can be dipped into lava.
+- Slightly improved player's melee to-hit rating, nerfed ranged weapon to-hit rating to be closer to the new melee values, and there's a 5% chance of a monster's AC being halved for any particular AC check, making them a little bit easier to hit (AC -30 monsters should not be completely impossible to hit unless you have uber items and stats).
+- Contamination effects on HP/Pw regeneration depend on how contaminated you are.
+- Added a couple of monster attacks, and the contamination effect that works similar to weeping angels from dnethack: it gradually saps the player's wisdom in a way that cannot be restored.
+
+2.0.2
+- Added a STUPIDRANDOMMONSTERBUG compile flag that is not defined by default, but can be turned on in case seemingly random things (e.g. monsters hitting with a poisoned attack) are causing the game to crash (seems to happen on certain Unices). It should *only* be turned on if those crashes are actually happening, since it turns off the randomized names of certain monsters.
+- Tried to fix the scroll of copying segfault that happens on public servers, not sure if it works now.
+- Monsters associated with brains can give +INT when eaten.
+- Protection from shape changers works better and should not make 50% of all werefoo unkillable anymore.
+- Monsters with M2_DOMESTIC or M3_PETTY flags are tameable, even if they'd otherwise be resistant to taming (e.g. due to being in the @ monster class).
+- Increased the prices for certain magical types of shields.
+- Angering the watchmen in town levels summons Keystone Kops.
+- The "lag defense tower" monster causes artificial lag.
+- Monsters with ranged attacks will not breathe while the player is in a wall, and if they fire a projectile it can now hit the player instead of stopping on the empty square in front of the wall.
+- Chest and door traps can sometimes surround the player with more traps.
+- Turning off the sparkle option no longer disables the lag trap's artificial lag effect.
+- Overhauled the shop maze level by making sure all the shops can be reached without teleportation or digging.
+- Cursed invocation tools still have a chance of working correctly on the vibrating square.
+- Stoning and sliming should always give a message when they start.
+- Hallucination provides 90% chance of not turning to stone when the player otherwise would.
+- Fixed a bug where bumping into a door while under the hyperbluewall trap effect didn't damage the player.
+- Scrolls, potions and spellbooks can train the device skill, and the latter benefit from it as well.
+- Fixed a bug where monsters with litter gazes could affect the player even while not seen.
+- Controlled lycanthropy prompts require a full yes/no answer.
+- Using #technique while on the vibrating square gives a special message. This is meant as a way to find the vibrating square while under the effect of multiple interface screw trap effects, which is not all that likely but in the case that it does happen, the game should not be unwinnable by insanity.
+- Certain traps that were supposed to be always visible were not. Fixed.
+- Prevent an infinite loop if the game tries to spawn a monster on a level filled completely with monsters, by having it abort and print an error message if no suitable position was found after 100000 tries.
+- Occasionally, newly spawned monsters might be in the player's field of view now even if positions outside of the player's LOS were available.
+- Circumvent monsndx panic error by having the game default to spawning a PM_HUMAN.
+
+2.0.1
+- Set the default value for the popup_dialog option to true.
+- Set the default interface to tty if both tty and curses are available.
+- Fake artifacts are resistant to bad polymorphs and nymphs' item-stealing attacks.
+- Armors with enchantment properties will not be deleted if they are a part of a monster's starting inventory and the monster is killed.
+- Cancelled gremlins once again cannot steal intrinsics from the player.
+- Increased the spawn chances for the different types of candles, and placed a bunch of various candles on Vlad's tower.
+- Fixed the bug where the mail daemon would deliver gold pieces for minimalist race players.
+- While standing on a pit but not actually trapped in it, the > key allows the player to descend into the pit.
+- Quitting or escaping the dungeon early on prevents the game from getting on the high-score list.
+- Quaffing lethe water now causes amnesia.
+- Increased the starting HP for the erdrick role.
+- Rodney's tower and the fake towers now spawn with random special rooms.
+- Fungus farms and lemure pits spawn a wider range of monster types.
+- Artifacts (both real and fake) never resist identification attempts, and are never deleted when they were in a monster's starting inventory. If a weapon or armor is randomly generated with a nonzero enchantment value, there's a significant chance that it gets made into a fake artifact.
+- Implemented the #annotate and #overview commands.
+- Using : while standing on a throne or altar tells the player how to interact with these dungeon features.
+- Lightsabers can #force in > direction while lit to dig a hole.
+- If the player is polymorphed into or riding a very fast (speed > 24) monster, their actual movement speed will be lower than the monster's nominal speed, depending on the polymorphing/riding skill.
+- Dipping an item into a toilet can cause the toilet to break.
+- The prompt when a nymph tries to steal a cursed item requires a yes/no answer.
+- Failed wishes (usually when the player's luck is negative) can have a variety of nasty effects.
+- The cmdassist message tells the player how to switch between vikeys and number pad.
+- If the player reads a scroll of symmetry, the quicktravel command is deactivated.
+- Changed generation chances for certain weapons, most notably making firearms and their ammo more common, and long swords are no longer more common than short swords.
+- Fix the segfault caused by cutting a long worm in two when it only had 1 HP or long worms were genocided.
+- Items whose weight is specified as zero in objects.c weigh 16 times less (they used to weigh a half weight unit).
+- Prostitutes can have sex with the player, and their maledictions can cause the dim status effect.
+- Jonadab's Heavyload was incorrectly not flagged as an evil artifact.
+- The god-o-meter can also work while not blessed.
+- If an artifact is overenchanted and would normally evaporate, it becomes +0 instead.
+- Added a bunch of dungeon level variants from GruntHack and NetHack Fourk, and harder versions of the dnethack demon lairs.
+
+:-) ? *bundlebundlebundle ? :D
+
+
