@@ -91,6 +91,6 @@ Incomplete changelog for SLASH'EM Extended, written by Amy
 - If an artifact is overenchanted and would normally evaporate, it becomes +0 instead.
 - Added a bunch of dungeon level variants from GruntHack and NetHack Fourk, and harder versions of the dnethack demon lairs.
 
-:-) ? *bundlebundlebundle ? :D
+:-) <3 *bundlebundlebundle* <3 :D
 
 
