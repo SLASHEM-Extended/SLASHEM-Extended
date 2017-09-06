@@ -667,9 +667,9 @@ register struct monst *mtmp;
     int udist = distu(mtmp->mx, mtmp->my);
 
     if (udist < 4 && has_edog && (!mtmp->isspell || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) ) && !rn2(3)
-		    && (can_betray(mtmp->data) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) || (mtmp->m_lev >= 40) )
+		    && (can_betray(mtmp->data) || (is_jonadabmonster(mtmp->data)) || (mtmp->data->mlevel >= 50) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) || (mtmp->m_lev >= 40) )
 		    /*&& !mindless(mtmp->data)*/ /* mindless creatures may still decide to attack randomly --Amy */
-		    && (mtmp->mhp >= u.uhp || !rn2(5) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE))	/* Pet is buff enough */
+		    && (mtmp->mhp >= u.uhp || !rn2(5) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (is_jonadabmonster(mtmp->data)) || (mtmp->data->mlevel >= 50) || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE))	/* Pet is buff enough */
 		    && rn2(22) > mtmp->mtame	/* Roll against tameness */
 		    && rn2(edog->abuse + rnd(2) )) {
 	/* Treason */
@@ -682,6 +682,13 @@ register struct monst *mtmp;
 	mtmp->mtraitor = TRUE;
 	mtmp->isspell = 0;
 	mtmp->uexp = 0;
+
+	/* if the monster is a domestic animal, you could just re-tame it indefinitely... prevent that :P --Amy */
+	if (!rn2(5)) {
+		mtmp->mfrenzied = 1;
+		if (canseemon(mtmp))
+		    pline("In fact, %s apparently decides to stop at nothing until you're dead!", mon_nam(mtmp));
+	}
 
 	/* Do we need to call newsym() here? */
 	newsym(mtmp->mx, mtmp->my);
@@ -748,6 +755,8 @@ register int after;	/* this is extra fast monster movement */
 	/* Intelligent pets may rebel (apart from minions, spell beings) */
 	/* if it's a species that's supposed to not be tameable, make it happen much more often --Amy */
 	if (!rn2( cannot_be_tamed(mtmp->data) ? 85 : 850) && betrayed(mtmp)) return 1;
+	if (!rn2(85) && is_jonadabmonster(mtmp->data) && betrayed(mtmp)) return 1;
+	if (!rn2(850) && (mtmp->data->mlevel >= 50) && betrayed(mtmp)) return 1;
 	if (Aggravate_monster && !rn2( cannot_be_tamed(mtmp->data) ? 85 : 850) && betrayed(mtmp)) return 1;
 	if (!rn2(10) && mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM] && betrayed(mtmp)) return 1;
 	if ((u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) && !rn2(85) && betrayed(mtmp)) return 1;
