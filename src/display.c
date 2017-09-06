@@ -1971,10 +1971,10 @@ show_glyph(x,y,glyph)
 	return;
     }
 
-	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) && !(glyph >= (GLYPH_CMAP_OFF + 19) && glyph < (GLYPH_CMAP_OFF + 23) ) )
+	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
 	return;
 
-	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) || (glyph == (GLYPH_CMAP_OFF + 42) ) ) )
+	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) || (glyph == (GLYPH_CMAP_OFF + 47) ) ) )
 	return;
 
     if (glyph >= MAX_GLYPH) {
@@ -2048,10 +2048,10 @@ show_glyphX(x,y,glyph)
 	return;
     }
 
-	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) && !(glyph >= (GLYPH_CMAP_OFF + 19) && glyph < (GLYPH_CMAP_OFF + 23) ) )
+	if ( (RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone()) && glyph >= GLYPH_OBJ_OFF && !(glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) && !(glyph >= (GLYPH_CMAP_OFF + 24) && glyph < (GLYPH_CMAP_OFF + 28) ) && !(glyph == (GLYPH_CMAP_OFF + 47) ) )
 	return;
 
-	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 12) ) || (glyph == (GLYPH_CMAP_OFF + 42) ) ) )
+	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) || (glyph == (GLYPH_CMAP_OFF + 47) ) ) )
 	return;
 
     if (glyph >= MAX_GLYPH) {
