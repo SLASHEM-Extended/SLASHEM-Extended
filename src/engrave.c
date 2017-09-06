@@ -40,13 +40,9 @@ static const char *random_mesg[] = {
 	"John 3:16", /* You see this everywhere; why not here? */
 	"Exhale! Exhale! Exhale!", /* Prodigy */
 	"All you need is love.", /* The Beatles */
-	"Please don't feed the animals.", /* Various zoos around the world */
 	"....TCELES B HSUP   A magic spell?", /* Final Fantasy I (US) */
 	"Madam, in Eden, I'm Adam.", /* A palindrome */
-	"Two thumbs up!", /* Siskel & Ebert */
-	"Hello, World!", /* The First Program line */
 	"Turn around.", /* Various people at various times in history */
-	"You've got mail!", /* AOL */
 	"UY WUZ HERE", /* :] */
 	"Time flies when you're having fun.", /* Who said this first, anyway? */
 	"As if!", /* Clueless */
@@ -369,13 +365,10 @@ static const char *random_mesg[] = {
 	"Haermund Hardaxe carved these runes", /* viking graffiti */
 	"Here be dragons",
 	"Need a light?  Come visit the Minetown branch of Izchak's Lighting Store!",
-	"Save now, and do your homework!",
 	"Snakes on the Astral Plane - Soon in a dungeon near you!",
 	"There was a hole here.  It's gone now.",
 	"The Vibrating Square",
 	"This is a pit!",
-	"This is not the dungeon you are looking for.",
-	"This square deliberately left blank.",
 	"Warning, Exploding runes!",
 	"Watch out, there's a gnome with a wand of death behind that door!",
 	"X marks the spot",
@@ -656,6 +649,295 @@ static const char *random_mesg[] = {
 	"This area is property of Team Dislexiapater.",
 	"Anna's Hussy Club - Main Entrance",
 	"Marking left by Arabella to denote space for nasty traps",
+	"ElberethElbereth", "ElberethElberethElbereth",
+	"ElberetnElherethLlberethElbcrethElbere?hElbercthFlbereth", "Ylbereth",
+	"I never hit with a wielded weapon, but I changed form six times.",
+	"Always name your kitten after a famous wizard.",
+	"You are in a maze of twisty little passages, all alike.",
+	"You have died of dysentery.",
+	"The cake is a lie.",
+	"The cake is a lie, says Super Mario after rescuing the princess 5 minutes into the game in Super Mario 64 by using TAS tools",
+	"We all make choices, but in the end our choices make us.",
+	"We juggle priceless eggs in variable gravity.", /* Gateway */
+	"They therefore went up here with much agility and speed", /* Borders of Infinity (and originally from Pilgrim's Progress) */
+	"We are the dead.", /* 1984 */
+	"To sleep, perchance to dream, aye, there's the rub.", /* Hamlet */
+	"When the goat turns red strikes true.", /* Order of the Stick */
+	"It is a far, far better thing I do than I have ever done.", /* A Tale of Two Cities */
+	"All dungeon adventurers are equal; but some are more equal than others.", /* Animal Farm */
+
+	"Dare mighty things.", /* Moto of the Mars Science Laboratory */
+	"are we cool yet?", /* SCP Foundation */
+	"I seem to be having tremendous difficulty with my lifestyle", /* Hitchhiker's Guide to the Galaxy */
+	"The flow of time itself is convoluted, with heroes centuries old phasing in and out.", /* Dark Souls */
+
+	"Who are you?", "What do you want?", "Why are you here?", "Where are you going?", /*Babylon 5*/
+	"Beware of the weeping angels", /* Doctor Who */
+	"Duck, Sally Sparrow", /* Doctor Who */
+	"Standing on this square increases your weeping angel contamination by 50 per turn",
+	"You made a mistake by stepping on this square - now dnethack's elder priest was spawned on the current level.",
+
+	"4 8 15 16 23 42", /* Lost */
+	
+	"This too shall pass.", /* medieval Persian adage */
+
+	"Write down the coordinates, he said.", /* the Submachine series */
+	"...look for a green leaf...",
+	"...bring it to the statue...",
+	"...you should arrive at the lab...",
+	"...or somewhere nearby...", 
+
+	"Here would be graffiti about one of the first nine ascenders of dnethack, but this isn't dnethack.",
+	"AmyBSOD was here. AmyBSOD followed AmyBSOD. (repeat 6 times) Why is no one else ascending SLEX?",
+	"Why don't you put some effort into it and ascend? SLEX's demigod bar is waiting for you!",
+
+	"@ <--- You are here.",
+	
+	"Jesus was here 2/15/57 B.C.", /* Family Guy */
+	"If you have time to read this, you should get to the down stairs immediately!" /* Zelda 3 */
+	"Gary was here! Ash is a loser!" /* Pokemon */
+	
+	"I see you...",
+		"...do you see me?",
+		"That was a mistake.",
+	"What was drowned, and washed away, might never rise again.",
+		"Eternity is a lie.",
+		"Everything dies.",
+		"What is lost might not be found.",
+		"And even if it all came back, it would never be the same.",
+	
+	"Department of Game Balance: Closing barn doors since day two.",
+	"Department of Game Balance, DNetHack Branch Office: Designing well-balanced elder priests for you to enjoy fighting!",
+	
+	"Listen at us, won't you?", /* All Our Friends Are Dead */
+		"Share with us your head",
+		"Do hide behind the iris",
+		"As all of our friends are dead.",
+	
+	"T1M3 FOr WH4T?", /*Homestuck. This is Terezi's side of her conversation with Snowman, */
+		"WH4T M1SS1ON?", /*in which Terezi communicated by writing on walls and statues etc with colored chalk*/
+		"WH4T 4BOUT TH3 QU33N?",
+		"J4CK W4S H3LP1NG US 3X1L3 H3R SO...BOTH??? >:\\",
+		"OK H3H3H3 >:] WOW OHMYGOD D4RK T3XT L4DY! 1 G3T 1T!!!!!",
+		">8[ NO 1 DONT TH1NK SO WH3R3 4R3 YOU TH3N?",
+		"OK SORRY 1 4SK3D! >:O",
+		"WH4T? NO H3H3H3 1TS OK B3C4US3",
+		"1 DONT W4NT TO RUN OUT OF R3D >:[",
+		"B3C4US3!!! R3D 1S TH3 B3ST 4ND T4ST3S TH3 B3ST!!! <3",
+		"OK TH3N WH4T?",
+		"WH3R3 1S 1T?",
+	"Im Sure That Possibly All Made Sense Good Speech",
+	
+	"And there shall be laughter and magic and blood, and we shall dance our dance until the end of time...", /*Incursion, Halls of the Goblin King*/
+		"May you find beauty in endings.",
+	
+	"The eclipse will shatter the sky and from the remnants will bleed a storm of fire to engulf the earth.",	/* Gone with the Blastwave */
+		"The spirits of past sins will char the land and cleanse the planet.",
+		"As humans shed their former selves their true form shall be revealed.",
+		"Join us in the dancing lights. Join us in the Celebration!",
+		"Burn them! Burn ALL!",
+		
+	"Speak not the Watchers.",	/* Drakengard */
+		"Draw not the Watchers.",
+		"Write not the Watchers.",
+		"Sculpt not the Watchers.",
+		"Sing not the Watchers.",
+		"Call not the Watchers' name.",
+	"Should you encounter God on your quest, God will be cut.", /*Kill Bill*/
+	"Generally, when one is conducting an experiment, it is worth noting that the observers went insane, killed each other, and then rose from the dead.", 
+		/*Pyro627, regarding an experiment in creating undead bacon in Dwarf Fortress. An "accident" with an axe led to a zombified army, 
+			which the poster didn't even comment on.*/
+		"Today, in 'poor word choice': 'Urist, go make a new table with our mason.'", /*Swonnrr, regarding a fell mood.*/
+		"The horses outnumber us. I have seen settlements with a thousand horses to a man. I have seen them in the deepest caverns. They are everywhere. Save us.", /*Quote from: Fniff regarding a bug causing ubiquitous horses*/
+	"All the world's cracked but me and thee; and I'm not too sure about thee.",
+	"Some walls are made of fear, but some are made from wall material.", /*Clash of Clans metro advert */
+	"No gods, no masters.", /*Anarchist slogan*/
+	"For the world's more full of weeping than you can understand.", /*The Stolen Child*/
+	"No matter where you go, there you are.",
+	"You noticed them, and they noticed that you noticed them.", /*The Mothman Prophecies*/
+	"Well, how did I get here?", /*Once In A Lifetime*/
+	"You can be me when I'm gone.", /*Sandman*/
+		"You can stop being anything.",
+		"Sometimes you wake up. Sometimes the fall kills you. And sometimes, when you fall, you fly.",
+		"To absent friends, lost loves, old gods and the season of mists.",
+		"And may each and everyone of us always give the devil his due.",
+		"Innocence, once lost, can never be regained.",
+		"In the pale light of the Moon I play the game of you. Whoever I am. Whoever you are.",
+	"Have been unavoidably detained by the world. Expect us when you see us.", /* Stardust */
+		"There was once a young man who wished to gain his Heart's Desire.",
+		"Time, the thief, eventually takes all things into his dusty storehouse.",
+		"Scuse me, but would you mind dreamin' a bit quieter?",
+	"He who is valiant and pure of spirit may find the holy grail in the Castle of Aaaaarrrrrrggghhh...", /*Monty Python*/
+	"If someone is reading this...I must have failed.", /*The Guardian Legend*/
+	"\"Wasn't somebody's father?\"", /*The main plot point of Star Wars, according to one who hasn't seen it*/
+	"The psychic efficacy of evil magic swords is vastly overrated.", /* The Water Phoenix King*/
+		"It is dangerous to be right when the gods are wrong.",
+		"Here are blind idiot children playing with a magic that hates them.",
+		"The walled-up abomination seems friendly enough.",
+		"Kill you... Take your face...",
+		"The trees don't even change color anymore.",
+		"What happend to you? It wasn't me!",
+		"I'm sorry you could never forgive me.",
+	"Reach heaven through violence.",/*Kill 6 Billion Demons*/
+		"Kindly ignore my first three answers.",
+	"ALL POWER TO THE OLD FLESH!!!!!!! A HOWLING VOID UPON DETRACTORS!!!", /*Awful Hospital*/
+	"You are lost. You can never go home.", /* Gollum's Song */
+	"But now, we dance this grim fandango, and will for years until we rest.", /* Grim Fandango */
+	"Bad Wolf", /* Dr. Who */
+	"It's only the end if you want it to be.", /*Batgirl*/
+	"Mistakes were made.",
+	"But at what cost?",
+	"Live. Die. Repeat.", /*Edge of Tomorrow*/
+	"For we wrestle not against flesh and blood, but against principalities and powers.", /* Ephesians 6:12 */
+	"Life is truth, and never a dream...", /* Persona 4 */
+	"fire, walk with me.", /*Twin Peaks*/
+	"redefine happiness", /* Blue Oyster Cult */
+	"Evolve. Transform. Transcend", /*Heart of the Swarm*/
+	"no more sadness, no more anger, no more envy...", /*Halo*/
+		"Silence fills the empty grave, now that I have gone.",
+		"But my mind is not at rest, for questions linger on.",
+	"Everyone you know will tell you small lies, except the ones you love, who will tell you large ones.", /*Borderlands 2*/
+		"I am eternal / Death will never capture me / My skills exceed his.",
+	"We are born of the blood.",/*Bloodborne*/
+		"Made men by the blood.",
+		"Undone by the blood.",
+		"Fear the old blood.",
+		"The Great Ones are sympathetic in spirit, and often answer when called upon.",
+		"O Flora, of the moon, of the dream.",
+		"O Little ones, o fleeting will of the ancients.",
+		"Let the hunter be safe.  Let this dream foretell a pleasant awakening...",
+	"We do not breathe. We do not eat. We do not sleep. We do not stop. ", /* Sigma */
+		"We have outlasted our gods. We know true freedom.",
+		"We do not suffer the enslavement of your passions, or your religions, or your creeds and your self conflict.",
+		"We are the Vederiction of our fallen deities, their visage perfected.",
+		"We have marched upon the cosmos long before your ancestors left their home.",
+		"And we will endure long after your dying civilization perishes on the chain of worlds.",
+	"Even false things are true",	"FIVE TONS OF FLAX!",	"Fnord", /*Discordianism*/
+	"Ash nazg durbatuluk, ash nazg gimbatul, ash nazg thrakatuluk, agh burzum-ishi krimpatul", /*the Lord of the Rings*/
+		"This thing all things devours.",
+		"Not all those who wander are lost.",
+	"This is the curse of the Buddha-you will never again be the same as once you were.", /*Lord of Light*/
+		"Tricky and brilliant and heartfelt and dangerous.",
+		"Death is mighty, and is no one's friend.",
+		"It is the difference between the unknown and the unknowable, between science and fantasy-it is a matter of essence.",
+		"Go away. This is not a place to be.",
+	"No Fate", /*Terminator*/
+	"When the world is in darkness Four Warriors will come....", /*FF I*/
+	"This world can have but one Emperor.", /*FF II*/
+	"We shall devour your light, and use it to return this world to the Void!", /*FF III*/
+	"You tread the path of darkness.",/*FF IV*/
+	"My hatred will not be stanched until it has consumed all else!", /*FF V*/
+	"Life... dreams... hope... Where do they come from? And where do they go...?", /*FF VI*/
+	"Mine is special. It's good for absolutely nothing!", /*FF VII*/
+	"I will NEVER be a memory.", /*FF VII Advent Children*/
+	"Trees fade with time, as do many things in this world.", /*FF VII Dirge of Cerberus*/
+	"Even if the world becomes your enemy... I'll be your knight, I'll protect you.", /*FF VIII*/
+	"You don't need a reason to help someone.", /*FF IX*/
+	"Memories are nice, but that's all they are.", /*FF X*/
+	"Better to leave things lost.", /*FF X-2*/
+	"Benighted child, Unchosen, with life so short, This tower freely may you tread.", /*FF XII*/
+	"The thirteen days after we awoke were the beginning of the end.", /*FF XIII*/
+	"Servant of time. Daughter of chaos. Unto the world unseen, the untamed you guide.", /*FF XIII-2*/
+	"One day, the light touched me.", /*FF XIII-3*/
+	"What greater weapon is there than to turn an enemy to your cause? To use their own knowledge against them?", /* Knights of the Old Republic */
+		"Sand stays.  All else changes.",
+		"We will remember you when you are sand too.",
+	"That is a lesson I will never learn, for I do not believe it.", /* Knights of the Old Republic II */
+	"Do not call up any that you can not put down.", /*HP Lovecraft*/
+		"That is not dead, that can eternal lie,",
+		"for with strange aeons even death may die.",
+	"All the world will be your enemy, Prince With A Thousand Enemies...", /*Watership Down*/
+		"...and when they catch you they will kill you...",
+		"but first they must catch you.",
+	"This statement is false.", /*Logical contradiction*/
+	"History is an account, mostly false, of events, mostly unimportant, which are brought about by rulers, mostly knaves, and soldiers, mostly fools",  /*Ambrose Bierce*/
+	"Quod Erat Demonstrandum",	"anno Domini",	"per centum", /* QED, AD, percent */
+	"I was so surprised, I CLASSIFIED INFORMATION, I really did!", /*Haruhi Suzumiya*/
+		"Problems that cannot be solved do not exist in this world.",
+		"Feelings of love are just a temporary lapse in judgment.",
+	"I'm not going there to die. I'm going to find out if I'm really alive.", /*Cowboy Bebop*/
+		"There is nothing left to believe in.",
+	"He hides who he really is and pretends to be someone else forever.", /*FLCL*/
+		"So in time he becomes that person, so his lie becomes the truth, see?  He transcends the mask.",
+		"Well, don't you get it? That's how he finds happiness. That's pretty good, right?",
+		"Special Containment Procedures: You're going to die, you poor dumb fuck.", /* SCP-1983 */
+		"Hello.", "You are no longer lost.", "Here is the map for your journey up.", /* SCP-2084 - Anabasis */
+		"A war, whoever was left alive, was Clean.", /* Red Sea Object */
+		"Let the depths rise up and sweep over the shores, rendering the works of man to dust.", /* SCP-1014 - Jonah Crusoe */
+		"in my head theres a sick silk nail", /* SCP 1291 */
+	"I prepared Explosive Runes this morning.", /*Order of the Stick*/
+		"In any battle, there's always a level of force against which no tactics can succeed.",
+	"1002: He is Not that Which He Says He Is.", /*Good Omens*/
+		"3001: Behinde the Eagle's Neste a grate Ash hath fellen.",
+	"VI. You Shall Not Subject Your God To Market Forces!",	/*Discworld*/
+		"Nae quin! Nae laird! Nae master! We willna be fooled again!",
+		"Morituri Nolumus Mori",
+		"End-of-the-World Switch. PLEASE DO NOT TOUCH",
+		"Give a man a fire and he's warm for a day, but set fire to him and he's warm for the rest of his life.",
+		"Do not, under any circumstances, open this door",
+		"WORDS IN THE HEART CANNOT BE TAKEN",
+		"Slab: Jus' say \"AarrghaarrghpleeassennononoUGH\"",
+		"Ahahahahaha! Ahahahaha! Aahahaha! BEWARE!!!!! Yrs sincerely, The Opera Ghost",
+		"Bee There Orr Bee A Rectangular Thyng",
+		"We're certainly dwarves",
+		"There is no doubt being human is incredibly difficult and cannot be mastered in one lifetime.",
+	"NOT A Secret Base", /*Gunnerkrigg Court*/
+	"We have the option to definitely die, but I've decided against it.", /*Schlock Mercenary*/
+	"Short to long term memory impaired. Go to Robotics Building. Explain about Bowman's architecture. Write down everything.", /*Freefall*/
+	"I SAW THE EYE. Over the horizon, like a rising sun!", /* Dresden Codak */
+		"That's Science, isn't it? The perpetual horizon. But we found a way, haha, we found a way around that!",
+		"What would YOU give up to... to see it through?",
+		"Nothing. A shadow is nothing. It is merely a question not yet answered. We only fear the dark if we have no means of lighting our way.",
+		"The world turns, and dawn comes. And under the light of the sun I shall slay giants.",
+	"Don't trust the skull.", /* Cynarfpncr: Gbezrag (mild spoiler) */
+	"death is the greatest illusion", /*Blade of Innocence*/
+	"Our sandwiches come with attempted assassination plots. New sales gimmick!", /*Shemeska's Planescape Storyhour*/
+		"I've stood at that edge! I've looked over into that void! I'm just looking at it from the bottom now!",
+		"Free! Apple pie with every meal! We don't care if you don't like apple - Take It!",
+		"For there is a hole in the sky",
+		"and too long have I gazed",
+	"The quality of your lives depends on what you make of them!", /* The Life and Times of Scrooge McDuck */
+	"We do not threaten or warn or advise. We tell the truth.", /* The Mansion of E */
+		"What you stole is even more dangerous and precious than you know.",
+		"In the end, you will fly away and live forever, and you will leave the world shattered in your wake.",
+		"You will return to where you started, and you will become what you hate.",
+		"And in doing so, you will restore the world to what it was.",
+		">^ N^T R3A> T||1S S1<N",
+		">^ R3A> T||1S ^N3",
+	"Fall in a more hardboiled manner.", /* MS Paint Adventures */
+		"Since you are reading this, chances are you have already installed this game on your computer.  If this is true, you have just participated in bringing about the end of the world.  But don't beat yourself up about it.",
+		"YOU HATE TIME TRAVEL YOU HATE TIME TRAVEL YOU HATE....",
+		"It begins to dawn on you that everything you just did may have been a colossal waste of time.",
+	"We will BUILD heroes!", /* THE PROTOMEN */
+		"If you replace the working parts, you get a different machine.",
+		"If you destroy the working parts, what you get is a broken machine.",
+	"To right the countless wrongs of our day, we shine this light of true redemption, that this place may become as paradise.",/*It's a Wonderful World/The World Ends with You*/
+		"What a wonderful world such would be...",
+		"Please...Don't kill me...",
+		"Another world awaits. ...And you're going!",
+		"You have seven days.",
+	"But the future refused to change.", /*Chrono Trigger*/
+	"WHEN ALL ELSE FAILS USE FIRE",
+	"Don't you see? All of you... YOUR GODS DESTROYED YOU",
+		"The wind... It is blowing...",
+	"I wonder... If you do the right thing... Does it really make... everybody... happy?",/*Majora's Mask*/
+		"Your friends... What kind of... people are they? I wonder... Do these people... think of you... as a friend?",
+		"What makes you happy? I wonder...what makes you happy...does it make...others happy, too?",
+		"Your true face... What kind of... face is it? I wonder... The face under the mask... Is that... your true face?",
+		"You've met with a terrible fate, haven't you?",
+	"Why are you sad?", /*Blood-C*/
+	"Only accurate information has practical application.", /* not sure where this originated, possibly Aron Ra?*/
+	"We will come for you again  When you are alone  In the dark  Without your sword", /*Jake Wyatt's Necropolis*/
+		"My sword is only steel in a useful shape. It's me you should fear, you stupid, dead things.",
+		"There are horrors.  But also the sun, the grass... And the road I wish to travel.",
+	"Now watch what you say or they'll be calling you a radical!", /* The Logical Song, Supertramp */
+	"I took a walk around the world, to ease my troubled mind.", /* Kryptonite */
+	"Do what thou wilt shall be the whole of the Law", /* Aleister Crowley */
+	"Oh, 'great warrior...' Wars not make one great!", /*Star Wars*/
+		"I've got a bad feeling about this...",
+		"Do, or Do Not.  There is no Try.",
+		"Never tell me the odds!"
+
 };
 
 const char *
@@ -3906,6 +4188,42 @@ static const char *epitaphs[] = {
 "Molested like a loli by the elder priest's tentacles.",
 "stupid water tiles!",
 "monsters should not spawn with wands of disintegration before level 20 because i noob and i forgot that items not have levels in this game",
+
+	"TANJ!", /* Larry Niven */
+	"Summer Rose - Thus Kindly I Scatter", /* RWBY */
+	"Hold my beer and watch this!", /* Rango */
+	"Of course, you realize, this means war.",
+	"In death ground, fight.", /* Sun Tzu */
+	"Did you see him passing by?", /* Dark Souls 3 */
+		"The world began without knowledge, and without knowledge will it end.", /* Dark Souls */
+		"Fear not the dark, my friend. And let the feast begin.",
+	"For every hero commemorated, a thousand martyrs die unmourned and unremembered." /*Warhammer 40k*/
+	"FIQ:  One step from divinity.",
+		"FIQ:  Debugging dNethack, one iron ball to the face at a time.",
+		"FIQ, killed by a clockwork bug.",
+	"Khor:  \"Wait, did that axe just fall off the edge of the world?\"",
+		"Khor:  Balancing dNethack, one sleeping potion to the face at a time.",
+	"AmyBSoD: \"Phew, killed that elder priest.  He shredded my CoMR but at least he's de-\"",
+	"Package contains: One posthumous worm feeder",
+	"Was that the hill I wanted to die on?",
+	"Used no net, knew no fear, made mis-step, wound up here.", /*Balder's Gate gravestones*/
+		"Here lies the body of Rob.  If not, please notify the undertakers at once.",
+		"When I can no longer stand alone, then it will be time to die.",
+		"I feel my body rising towards the bright light...wait, now it's falling, What the HELL!",
+		"Reader if cash thou art in want of any, dig four feet deep and find a penny",
+		"A lesson learned. Too bad I'm dead.",
+	"I never got a single answer to any of my biggest questions, and now I will never know.", /*Unicorn Jelly*/
+	"I beat you in the human race.", /*Fable*/
+	"Nobody expects the Spanish Inquisition!", /*Monty Python*/
+	"Omnes una manet nox", /*One night awaits us all*/
+	"I wake. I work. I sleep. I die." /*Alpha Centauri*/
+	"I suddenly have a LOT of regrets.", /*Water Phoenix King is very quoteable...*/
+	"You either die a hero, or you live long enough to see yourself become the villain.", /* Batman, the Dark Knight */
+	"What can men do against such reckless hate?", /* the Lord of the Rings (Two Towers movie) */
+	"I'll just hit this thing a couple more times, it'll die.", /*jonadab*/
+		"I don't need to unburden myself, they're only soldiers, I've been killing soldiers, it'll be fine.",
+	"Maybe if I press this key a bit harder I'll hit for more damage next time.", /*Grasshopper*/
+	"...nor the battle to the strong", /*Bible*/
 
 };
 

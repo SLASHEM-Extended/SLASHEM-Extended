@@ -672,6 +672,69 @@ doread()
 "Why are you looking at my shirt? My high heels are what should be catching your eyesight!",
 "I got 113 trophies in Junethack without resorting to botting or similarly lame strategies!",
 "I ascended Nethack 343, 360, Unnethack, Dynahack and Nethack4 - now I'll ascend SLEX!",
+	"I'm not wearing any pants",
+	"Down with the living!",
+	"Vegetarian",
+	"Vegan and Proud and Soon To Be Starved", /* sorry jonadab but I don't support eating disorders --Amy */
+	"Hello, I'm War",
+	"Sredni Vashtar went forth.  " /* Saki short story */
+	"His thoughts were red and his teeth were white.",
+	"Keep calm and explore the dungeon.",
+	"One does not simply kill the Wizard of Yendor.",
+	"I killed the Wizard of Yendor.  (He got over it.)",
+	"Giants are Tossers!", /* -- elenmirie */
+	"I don't keep calm. I plot and seek revenge.",
+	"I DON'T KEEP CALM! AVADA KEDAVRA!!!",
+	"I fucked dnethack's elder priest and severed his asshole tentacles and all I got is this lousy t-shirt!",
+	"Flauusch!",
+	"I love high heels!",
+	"Supreme Superschool Speaker",
+	"SLASH'EM Extended devteam member",
+	"I love to eat rotten food! (Bleech!)",
+	"If you're a smoker, don't get closer than 100 feet to me, for I will sever your tentacle with my high heels if you dare smoke in my presence.",
+	"Newt Fodder",
+	"My Dog ate Og",
+	"End Lich Prejudice Now!",
+	"Down With The Living!",
+	"Pudding Farmer",
+	"Dudley",
+	"I pray to Our Lady of Perpetual Mood Swings",
+	"Soooo, When's the Wizard Getting Back to You About That Brain?",
+	"I plan to go to Astral",
+	"If They Don't Have Fruit Juice in Heaven, I Ain't Going",
+	"Living Dead",
+
+	/* #nethack suggestions */
+	"Lich Park",
+	"I'd rather be pudding farming",
+
+	"Great Cthulhu for President -- why settle for the lesser evil?",
+	"Wizard Farming Is More Profitable Than Pudding Farming",
+	"I don't like the actors lines.",
+	"I don't like the way the RNG determines what message is displayed on my shirt.",
+	"Sign the petition for shirts' rights now - vote YES for making all shirts readable, including the striped shirt!",
+	"Our love must become strength.",
+	"I'm doing the breatharian conduct today",
+	"Watch me get my first wishless ascension!",
+	"I am Iron Man. I ascended a binder in slex in ironman mode. Wishless conduct to boot. Beat that! :P",
+	"Look, behind you! An air elemental speed beholder!",
+	"I ascended SLEX, why didn't you?",
+	"I ran a half marathon untrained in 2h 38min! Beat that! :P",
+	"I scored 113 trophies in last year's Junethack! If you don't have that many yourself, GTFO pleb :P",
+	"I love inhaling the fragrance of Josefine's sweaty feet",
+	"The scent of femininity that emanates from me is the wonderful Christina Aguilera Shower Gel <3",
+	"I love Britney Spears!",
+	"If you pay me $5 I'll let you kick me in the nuts once!",
+	"My mistress is a cruel lady but I love her anyway",
+	"Being tied up is fun!",
+	"Wanna undress the soft cotton that covers my sexy female body?",
+	"Streichelbefuehlueng", /* shame we can't use 'ü' */
+	"I say the kurwa role is easy", /* by dolores */
+	"I'm an OP necro", /* ditto */
+	"Camperstriker is the best role!", /* ditto */
+	"Ranged chars are OP!", /* ditto */
+	"Fuck ugods!", /* ditto */
+	"If you move and shoot at the same time I'll call you out for cheating", /* ditto */
 
 	    };
 	    char buf[BUFSZ];
