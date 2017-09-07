@@ -3720,8 +3720,8 @@ register const char *let,*word;
 	boolean allowthisplace = FALSE;
 	boolean useboulder = FALSE;
 	xchar foox = 0;
-	long cnt;
-	boolean prezero = FALSE;
+	long cnt, prevcnt;
+	boolean prezero;
 	long dummymask;
 	int ugly;
 	struct obj *floorchain;
@@ -3875,6 +3875,7 @@ register const char *let,*word;
 	for(;;) {
 		cnt = 0;
 		if (allowcnt == 2) allowcnt = 1;  /* abort previous count */
+		prezero = FALSE;
 		sprintf(qbuf, "What do you want to %s? [", word);
 		bp = eos(qbuf);
 		if (buf[0]) {
@@ -3898,16 +3899,28 @@ register const char *let,*word;
 		    ilet = readchar();
 		else
 		    ilet = yn_function(qbuf, (char *)0, '\0');
-		if(ilet == '0') prezero = TRUE;
-		while(digit(ilet) && allowcnt) {
-			if (ilet != '?' && ilet != '*')	savech(ilet);
-			cnt = 10*cnt + (ilet - '0');
-			allowcnt = 2;	/* signal presence of cnt */
-			ilet = readchar();
+		if (digit(ilet) && !allowcnt) {
+		    pline("No count allowed with this command.");
+		    continue;
 		}
-		if(digit(ilet)) {
-			pline("No count allowed with this command.");
-			continue;
+		if(ilet == '0') prezero = TRUE;
+		while(digit(ilet)) {
+			if (ilet != '?' && ilet != '*')	savech(ilet);
+
+		    /* accumulate unless cnt has overflowed */
+		    if (allowcnt < 3) {
+			prevcnt = cnt;
+			cnt = 10L * cnt + (long)(ilet - '0');
+			/* signal presence of cnt */
+			allowcnt = (cnt >= prevcnt) ? 2 : 3;
+		    }
+		    ilet = readchar();
+		}
+		if (allowcnt == 3) {
+		    /* overflow detected; force cnt to be invalid */
+		    cnt = -1L;
+		    allowcnt = 2;
+
 		}
 		if(index(quitchars,ilet)) {
 		    if(flags.verbose)
@@ -3932,16 +3945,17 @@ register const char *let,*word;
 				return(struct obj *)0;
 #endif
 			} 
-			if(cnt == 0 && prezero) return((struct obj *)0);
 			/* Historic note: early Nethack had a bug which was
 			 * first reported for Larn, where trying to drop 2^32-n
 			 * gold pieces was allowed, and did interesting things
 			 * to your money supply.  The LRS is the tax bureau
 			 * from Larn.
 			 */
-			if(cnt < 0) {
-	pline_The("LRS would be very interested to know you have that much.");
-				return(struct obj *)0;
+
+			if (cnt <= 0) {
+			    if (cnt < 0 || !prezero)
+				pline_The("LRS would be very interested to know you have that much.");
+			    return (struct obj *)0;
 			}
 
 #ifndef GOLDOBJ
