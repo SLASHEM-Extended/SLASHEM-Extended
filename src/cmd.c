@@ -1467,6 +1467,24 @@ enter_explore_mode()
 			clear_nhwindow(WIN_MESSAGE);
 			pline("Resuming normal game.");
 		}
+	/* Amy edit: For testing purposes, allow switching to explore mode while in wizard mode.
+	 * Any ascensions made that way still don't get on the high-score list, and wizard mode bones stuffing
+	 * was already possible anyway, so I don't really see how this could cause any harm as long as it's
+	 * not possible to switch from either wizard or explore mode to normal mode. */
+	} else if (wizard && !discover) {
+		getlin ("Do you want to switch to explore mode? [yes/no]?",buf);
+		(void) lcase (buf);
+		if (!(strcmp (buf, "yes"))) {
+			clear_nhwindow(WIN_MESSAGE);
+			You("are now in non-scoring explore mode.");
+			discover = TRUE;
+			wizard = FALSE;
+		}
+		else {
+			clear_nhwindow(WIN_MESSAGE);
+			pline("Resuming wizard mode.");
+		}
+
 	}
 	return 0;
 }
@@ -8339,7 +8357,9 @@ doattributes()
 {
 	if (!minimal_enlightenment())
 		return 0;
-	if (wizard || discover)
+	if (wizard)
+		enlightenment(0, 1);
+	else if (discover && (yn("Show the attributes screen?") == 'y') )
 		enlightenment(0, 1);
 	return 0;
 }
