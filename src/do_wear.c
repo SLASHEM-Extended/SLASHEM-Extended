@@ -1034,9 +1034,11 @@ Cloak_on()
 		    if (Hallucination) {
 			You("have an out of body experience.");
 		    } else if (!rnd(50)) {
+			u.youaredead = 1;
 			killer_format = KILLED_BY_AN;
 			killer = "cloak of death";
 			done(DIED);
+			u.youaredead = 0;
 		    } else {
 			u.uhpmax -= d(4, 4);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;

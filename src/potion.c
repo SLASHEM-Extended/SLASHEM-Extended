@@ -860,10 +860,12 @@ badeffect()
 			    You("suddenly feel weaker!");
 			    losestr(rnz(4));
 			    if (u.uhp < 1) {
+				u.youaredead = 1;
 				u.uhp = 0;
 				killer_format = KILLED_BY;
 				killer = "a fatally low strength";
 				done(DIED);
+				u.youaredead = 0;
 
 				}
 			}
@@ -1862,7 +1864,11 @@ badeffect()
 				    /* destroy shirt */
 				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 				    break;
-				} else done(DIED);
+				} else {
+					u.youaredead = 1;
+					done(DIED);
+					u.youaredead = 0;
+				}
 	
 			}
 

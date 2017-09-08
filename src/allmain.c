@@ -1782,10 +1782,12 @@ trapsdone:
 					u.uhp -= 5;
 					u.uhpmax -= 5;
 					if (u.uhp < 1) {
+						u.youaredead = 1;
 						pline("The nails cut you fatally and you die.");
 						killer_format = KILLED_BY;
 						killer = "painted asian toenails";
 						done(DIED);
+						u.youaredead = 0;
 
 					}
 				    }
@@ -1895,10 +1897,12 @@ trapsdone:
 
 		if (Prem_death && !rn2(10000)) { /* evil patch idea by jonadab */
 
+			u.youaredead = 1;
 			You("suddenly die.");
 			killer_format = KILLED_BY;
 			killer = "premature death";
 			done(DIED);
+			u.youaredead = 0;
 
 		}
 
@@ -4196,11 +4200,13 @@ newbossX:
 					break;
 				case 3:
 				default:
+					u.youaredead = 1;
 					You("sink below the surface and die.");
 					/* Unbreathing doesn't help, similar to lava (intentional) --Amy */
 					killer = "sinking in shifting sand";
 					killer_format = KILLED_BY;
 					done(DIED);
+					u.youaredead = 0;
 					u.shiftingsandsinking = 0; /* if lifesaved, have a few turns to save your hide */
 					break;
 			}
@@ -5787,9 +5793,11 @@ newboss:
 				u.uhpmax -= rnd(5);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				if (u.uhpmax < 1) {
+				    u.youaredead = 1;
 				    killer = "failing to solve a captcha";
 				    killer_format = KILLED_BY;
 				    done(DIED);
+				    u.youaredead = 0;
 				}
 				u.uenmax -= rnd(5);
 				if (u.uenmax < 0) {
@@ -5985,9 +5993,11 @@ newboss:
 				u.uhpmax -= rnd(5);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				if (u.uhpmax < 1) {
+				    u.youaredead = 1;
 				    killer = "failing to solve a captcha";
 				    killer_format = KILLED_BY;
 				    done(DIED);
+				    u.youaredead = 0;
 				}
 				u.uenmax -= rnd(5);
 				if (u.uenmax < 0) {
@@ -6022,9 +6032,11 @@ newboss:
 				u.uhpmax -= rnd(5);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				if (u.uhpmax < 1) {
+				    u.youaredead = 1;
 				    killer = "failing to solve a captcha";
 				    killer_format = KILLED_BY;
 				    done(DIED);
+				    u.youaredead = 0;
 				}
 				u.uenmax -= rnd(5);
 				if (u.uenmax < 0) {
@@ -6170,9 +6182,11 @@ newboss:
 			u.uenmax -= 1;
 			if (u.uen > u.uenmax) u.uen--;
 			if (u.uhp < 1) {
+				u.youaredead = 1;
 				killer = "an irradiation cloak";
 				killer_format = KILLED_BY;
 				done(DIED);
+				u.youaredead = 0;
 			}
 
 		}
@@ -6351,10 +6365,12 @@ newboss:
 		    else if (!u.uinvulnerable) {
 			u.utrap -= 1<<8;
 			if(u.utrap < 1<<8) {
+			    u.youaredead = 1;
 			    killer_format = KILLED_BY;
 			    killer = "molten lava";
 			    You(Hallucination ? "dissolve completely, warping to another plane of existence." : "sink below the surface and die.");
 			    done(DISSOLVED);
+			    u.youaredead = 0;
 			} else if(didmove && !u.umoved) {
 			    /*Norep*/pline(Hallucination ? "Your body is dissolving... maybe the Grim Reaper is waiting for you?" : "You sink deeper into the lava.");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -9748,9 +9764,11 @@ boolean new_game;	/* false => restoring an old game */
 		u.uhpmax -= rnd(20);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhpmax < 1) {
+		    u.youaredead = 1;
 		    killer = "critical existence failure";
 		    killer_format = KILLED_BY;
 		    done(DIED);
+		    u.youaredead = 0;
 		}
 		u.uenmax -= rnd(20);
 		if (u.uenmax < 0) {
@@ -9764,6 +9782,21 @@ boolean new_game;	/* false => restoring an old game */
 
 		u.hangupcheat--;
 		u.hangupparalysis = 0;
+
+	}
+
+	if (!new_game && u.youaredead) {
+
+		pline("Apparently you decided to be a wise-guy and hang up to prevent an instakill from affecting you. Unfortunately for you though, the Amy decided to fix that oversight, and since you should actually have died already, it's game over for you now.");
+		killer = "trying to circumvent an instadeath via hangup cheating";
+		killer_format = KILLED_BY;
+		done(DIED);
+
+		/* lifesaved */
+		You_feel("like a filthy cheater.");
+		/* I could add luck penalties or whatnot, but meh. You've hanged up anyway, and are thus most probably
+		 * gonna eat the hangup penalties below :P */
+		u.youaredead = 0;
 
 	}
 
@@ -9782,9 +9815,11 @@ boolean new_game;	/* false => restoring an old game */
 		u.uhpmax -= rnd(5);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhpmax < 1) {
+		    u.youaredead = 1;
 		    killer = "critical existence failure";
 		    killer_format = KILLED_BY;
 		    done(DIED);
+		    u.youaredead = 0;
 		}
 		u.uenmax -= rnd(5);
 		if (u.uenmax < 0) {

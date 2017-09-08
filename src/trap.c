@@ -2046,10 +2046,12 @@ unsigned trflags;
 	}
 
 	if (uarmc && uarmc->oartifact == ART_JANA_S_FAIRNESS_CUP && !rn2(100)) {
+		u.youaredead = 1;
 		pline("NETHACK caused a General Protection Fault at address 0001:0001.");
 		killer_format = KILLED_BY;
 		killer = "Jana's (un)fairness";
 		done(DIED);
+		u.youaredead = 0;
 	}
 
 	switch(ttype) {
@@ -4321,10 +4323,12 @@ rerollX:
 			pline("A definite, impenetrable black glow suddenly surrounds you...");
 
 			if (!rn2(20) && !Antimagic ) {
+				u.youaredead = 1;
 				killer_format = KILLED_BY_AN;
 				killer = "instadeath trap";
-				done(DIED);}
-			else {
+				done(DIED);
+				u.youaredead = 0;
+			} else {
 
 		      int dmgnum = 0;
 		      dmgnum = d(2, 6) + rnd((monster_difficulty() * 2) + 1);
@@ -4720,7 +4724,11 @@ rerollX:
 			    /* destroy shirt */
 			    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 			    break;
-			} else done(DIED);
+			} else {
+				u.youaredead = 1;
+				done(DIED);
+				u.youaredead = 0;
+			}
 
 		}
 		else {
@@ -6322,6 +6330,7 @@ madnesseffect:
 				if (youbreath) {
 				    pline("It is sweet smell of gorgeous dinners.");
 				    if (u.uhunger <= 0) {
+					u.youaredead = 1;
 					u.uhs = 6; /* STARVED */
 					flags.botl = 1;
 					bot();
@@ -6329,6 +6338,7 @@ madnesseffect:
 					killer_format = KILLED_BY;
 					killer = "being caught in smell of gorgeous dinners which can't get";
 					done(DIED);
+					u.youaredead = 0;
 				    } else {
 					You_feel("hungry%s.", (u.uhunger > 500) ? " a bit" : "");
 					if (u.uhunger > 500) u.uhunger = 500;
@@ -9579,6 +9589,7 @@ madnesseffect:
 							    break;
 							}
 						    }
+							u.youaredead = 1;
 
 						    if (lifesaved)
 							pline("Unfortunately your brain is still gone.");
@@ -9588,6 +9599,7 @@ madnesseffect:
 						    killer_format = KILLED_BY;
 						    done(DIED);
 						    lifesaved++;
+							u.youaredead = 0;
 						}
 					    }
 					}
@@ -13633,10 +13645,12 @@ register boolean force, here;
 	}
 
 	if (uarmf && uarmf->oartifact == ART_JANA_S_VAGINAL_FUN && !rn2(100)) {
+		u.youaredead = 1;
 		pline("Jana suddenly appears and pees on you, and you melt instantly.");
 		killer_format = KILLED_BY;
 		killer = "Jana's vaginal fun";
 		done(DIED);
+		u.youaredead = 0;
 	}
 
 	/* Scrolls, spellbooks, potions, weapons and
@@ -14181,14 +14195,18 @@ drown()
 		You("fly up out of the water!");
 		return (TRUE);
 	}
+	u.youaredead = 1;
 	killer_format = KILLED_BY_AN;
 	killer = (levl[u.ux][u.uy].typ == POOL || Is_medusa_level(&u.uz)) ?
 	    "pool of water" : "moat";
 	done(DROWNING);
+	u.youaredead = 0;
 	/* oops, we're still alive.  better get out of the water. */
 	while (!safe_teleds(TRUE)) {
+		u.youaredead = 1;
 		pline("You're still drowning.");
 		done(DROWNING);
+		u.youaredead = 0;
 	}
 	if (u.uinwater) {
 	u.uinwater = 0;
@@ -14282,6 +14300,7 @@ crystaldrown()
 	pline("Your fin boots prevent you from drowning.");
 	return(FALSE);
 	}
+	u.youaredead = 1;
 
 	You("drown.");
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Nikto ne znayet, pochemu ty byl nastol'ko glup, chtoby upast' v vodu, no eto ne imeyet nikakogo znacheniya, v lyubom sluchaye, potomu chto vy mozhete svernut' novogo personazha pryamo seychas." : "HUAAAAAAA-A-AAAAHHHHHH!");
@@ -14289,10 +14308,13 @@ crystaldrown()
 	killer_format = KILLED_BY_AN;
 	killer = "crystal water";
 	done(DROWNING);
+	u.youaredead = 0;
 	/* oops, we're still alive.  better get out of the water. */
 	while (!safe_teleds(TRUE)) {
+		u.youaredead = 1;
 		pline("You're still drowning.");
 		done(DROWNING);
+		u.youaredead = 0;
 	}
 	return(TRUE);
 	
@@ -15808,15 +15830,19 @@ lava_effects()
 	}
 
 	/* s/he died... */
+	u.youaredead = 1;
 	u.uhp = -1;
 	killer_format = KILLED_BY;
 	killer = lava_killer;
 	You("burn to a crisp...");
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Do svidaniya! Vy, navernoye, sdelal oshibku khodit' vokrug vo vremya oglusheniya ili sputannost' soznaniya, i teper' vy zaplatili samuyu vysokuyu tsenu." : "Ohoho-ho-ho!");
 	done(BURNING);
+	u.youaredead = 0;
 	while (!safe_teleds(TRUE)) {
+		u.youaredead = 1;
 		pline("You're still burning.");
 		done(BURNING);
+		u.youaredead = 0;
 	}
 	You("find yourself back on solid %s.", surface(u.ux, u.uy));
 	return(TRUE);

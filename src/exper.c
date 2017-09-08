@@ -352,9 +352,11 @@ boolean dresistance;	/* level drain resistance can protect you */
 		reset_rndmonst(NON_PM);	/* new monster selection */
 	} else {
 		if (drainer) {
+			u.youaredead = 1;
 			killer_format = KILLED_BY;
 			killer = drainer;
 			done(DIED);
+			u.youaredead = 0;
 		}
 		/* no drainer or lifesaved */
 		u.uexp = 0;

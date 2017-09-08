@@ -924,6 +924,7 @@ nh_timeout()
 							}
 						    }
 
+							u.youaredead = 1;
 						    if (lifesaved)
 							pline("Unfortunately your brain is still gone.");
 						    else
@@ -931,6 +932,7 @@ nh_timeout()
 						    killer = "brainlessness";
 						    killer_format = KILLED_BY;
 						    done(DIED);
+							u.youaredead = 0;
 						    lifesaved++;
 						}
 					    }
@@ -4538,20 +4540,24 @@ nh_timeout()
 			u.uhpmax -= 3;
 			if (u.uhp > u.uhpmax) u.uhp -= 3;
 			if (u.uhp < 1) {
+				u.youaredead = 1;
 				pline("You pass away due to being too weak.");
 				killer_format = KILLED_BY_AN;
 				killer = "fatal weakness";
 				done(DIED);
+				u.youaredead = 0;
 			}
 
 		} else {
 
 			u.uhp -= 3;
 			if (u.uhp < 1) {
+				u.youaredead = 1;
 				pline("You pass away due to being too weak.");
 				killer_format = KILLED_BY_AN;
 				killer = "fatal weakness";
 				done(DIED);
+				u.youaredead = 0;
 			}
 
 		}
@@ -4564,10 +4570,12 @@ nh_timeout()
 		if (u.uhp < 10) pline("Tensa Zangetsu causes you to feel weaker!");
 		if (u.uhp < 3) pline("In fact, you feel almost faint...");
 		if (u.uhp < 1) {
+			u.youaredead = 1;
 			pline("Tensa Zangetsu sapped your last bit of life and you die. Goodbye.");
 			killer_format = KILLED_BY;
 			killer = "wielding Tensa Zangetsu for too long";
 			done(DIED);
+			u.youaredead = 0;
 		}
 	}
 
@@ -4577,10 +4585,12 @@ nh_timeout()
 		if (u.uhp < 10) pline("Tensa Zangetsu causes you to feel weaker!");
 		if (u.uhp < 3) pline("In fact, you feel almost faint...");
 		if (u.uhp < 1) {
+			u.youaredead = 1;
 			pline("Tensa Zangetsu sapped your last bit of life and you die. Goodbye.");
 			killer_format = KILLED_BY;
 			killer = "wielding Tensa Zangetsu for too long";
 			done(DIED);
+			u.youaredead = 0;
 		}
 	}
 
@@ -4590,10 +4600,12 @@ nh_timeout()
 		if (u.uhp < 10) pline("Die tumin! Die tumin all.");
 		if (u.uhp < 3) pline("Bi sheng, pliya.");
 		if (u.uhp < 1) {
+			u.youaredead = 1;
 			pline("Tschingtsching-tschingesswey!");
 			killer_format = KILLED_BY;
 			killer = "wielding a life-sapping artifact for too long";
 			done(DIED);
+			u.youaredead = 0;
 		}
 	}
 
@@ -4603,10 +4615,12 @@ nh_timeout()
 		if (u.uhp < 10) pline("Die tumin! Die tumin all.");
 		if (u.uhp < 3) pline("Bi sheng, pliya.");
 		if (u.uhp < 1) {
+			u.youaredead = 1;
 			pline("Tschingtsching-tschingesswey!");
 			killer_format = KILLED_BY;
 			killer = "wielding a life-sapping artifact for too long";
 			done(DIED);
+			u.youaredead = 0;
 		}
 	}
 
@@ -4773,6 +4787,7 @@ nh_timeout()
 	    if((upp->intrinsic & TIMEOUT) && !(--upp->intrinsic & TIMEOUT)) {
 		switch(upp - u.uprops){
 		case STONED:
+			u.youaredead = 1;
 			if (delayed_killer && !killer) {
 				killer = delayed_killer;
 				delayed_killer = 0;
@@ -4784,6 +4799,7 @@ nh_timeout()
 				killer = "killed by petrification";
 			}
 			done(STONING);
+			u.youaredead = 0;
 			break;
 		case SLIMED:
 			if (Polymorph_control) {
@@ -4792,6 +4808,7 @@ nh_timeout()
 				if (Upolyd) rehumanize();
 				break;
 			}
+			u.youaredead = 1;
 
 			if (delayed_killer && !killer) {
 				killer = delayed_killer;
@@ -4802,6 +4819,7 @@ nh_timeout()
 				killer = "turned into green slime";
 			}
 			done(TURNED_SLIME);
+			u.youaredead = 0;
 			break;
 		case VOMITING:
 			make_vomiting(0L, TRUE);
@@ -4919,6 +4937,7 @@ nh_timeout()
 			pline("You survived the poisoning!");
 			break;
 			}
+			u.youaredead = 1;
 
 			You("die from your illness.");
 			killer_format = KILLED_BY_AN;
@@ -4934,6 +4953,7 @@ nh_timeout()
 			}
 			u.usick_type = 0;
 			done(POISONING);
+			u.youaredead = 0;
 			break;
 		case FAST:
 			if (!Very_fast)
@@ -5178,9 +5198,11 @@ nh_timeout()
 			losehp(u.uhpmax, "failing to defeat Blacky in time", KILLED_BY);
 			break;
 		case STRANGLED:
+			u.youaredead = 1;
 			killer_format = KILLED_BY;
 			killer = (u.uburied) ? "suffocation" : "strangulation";
 			done(DIED);
+			u.youaredead = 0;
 			break;
 		case FUMBLING:
 			/* call this only when a move took place.  */

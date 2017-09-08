@@ -315,6 +315,7 @@ void
 done_in_by(mtmp)
 register struct monst *mtmp;
 {
+	u.youaredead = 1;
 	char buf[BUFSZ];
 	boolean distorted = (boolean)(Hallucination && canspotmon(mtmp));
 
@@ -401,6 +402,8 @@ register struct monst *mtmp;
 		done(BETRAYED);
 	else
 		done(DIED);
+
+	u.youaredead = 0;
 	return;
 }
 
@@ -820,6 +823,9 @@ int how;
 #ifdef LIVELOGFILE
 		livelog_avert_death();
 #endif
+
+		u.youaredead = 0;
+
 		return;
 	}
 
@@ -834,6 +840,8 @@ int how;
 #ifdef LIVELOGFILE
 		livelog_avert_death();
 #endif
+		u.youaredead = 0;
+
 		return;
 
 	}
@@ -849,6 +857,8 @@ int how;
 #ifdef LIVELOGFILE
 		livelog_avert_death();
 #endif
+		u.youaredead = 0;
+
 		return;
 
 	}
@@ -865,6 +875,8 @@ int how;
 #ifdef LIVELOGFILE
 		livelog_avert_death();
 #endif
+		u.youaredead = 0;
+
 		return;
 
 	}
@@ -880,6 +892,8 @@ int how;
 #ifdef LIVELOGFILE
 		livelog_avert_death();
 #endif
+		u.youaredead = 0;
+
 		return;
 
 	}
@@ -898,6 +912,8 @@ int how;
 #ifdef LIVELOGFILE
 		livelog_avert_death();
 #endif
+		u.youaredead = 0;
+
 		return;
 
 	}
@@ -914,6 +930,8 @@ int how;
 #ifdef LIVELOGFILE
 		livelog_avert_death();
 #endif
+		u.youaredead = 0;
+
 		return;
 
 	}
@@ -945,6 +963,8 @@ int how;
 #ifdef LIVELOGFILE
 			livelog_avert_death();
 #endif
+			u.youaredead = 0;
+
 			return;
 		}
 	}
@@ -1002,6 +1022,8 @@ int how;
 #ifdef LIVELOGFILE
 			    livelog_avert_death();
 #endif
+			    u.youaredead = 0;
+
 			    return;
 			}
 
@@ -1064,6 +1086,8 @@ int how;
 #ifdef LIVELOGFILE
 			    livelog_avert_death();
 #endif
+			    u.youaredead = 0;
+
 			    return;
 			}
 
@@ -1087,6 +1111,7 @@ int how;
 		savelife(how);
 		killer = 0;
 		killer_format = 0;
+		u.youaredead = 0;
 		return;
 	}
 
@@ -1099,6 +1124,7 @@ int how;
 	  if(yn("Continue in explore mode?") == 'y') {
 	    enter_explore_mode();
 	    if (discover) goexplore = TRUE;
+	    u.youaredead = 0;
 	  }
 	}
 

@@ -6567,6 +6567,8 @@ u_init()
 	u.hangupparalysis = 0;
 	u.hanguppenalty = 0;
 
+	u.youaredead = 0;	/* if this is non-zero, returning to the game kills you because you should have died --Amy */
+
 	u.bankcashamount = 0;
 	u.bankcashlimit = 0;
 

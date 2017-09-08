@@ -827,6 +827,8 @@ struct you {
 	int hanguppenalty;
 	int hangupparalysis;	/* saved paralysis counter so you *really* cannot cheat */
 
+	int youaredead;		/* if you hang up at a prompt before an instadeath, i.e. sickness */
+
 	int negativeprotection;	/* AD_NPRO - deduct this amount from the player's AC */
 	int chokhmahdamage;	/* AD_CHKH - damage increases by 1 with every hit */
 	int extralives;		/* for scroll of resurrection */

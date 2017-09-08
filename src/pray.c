@@ -628,11 +628,13 @@ aligntyp resp_god;
 {
 	char killerbuf[64];
 
+	u.youaredead = 1;
 	You("fry to a crisp.");
 	killer_format = KILLED_BY;
 	sprintf(killerbuf, "the wrath of a deity (%s)", align_gname(resp_god));
 	killer = killerbuf;
 	done(DIED);
+	u.youaredead = 0;
 }
 
 STATIC_OVL void

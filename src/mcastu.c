@@ -633,9 +633,11 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 			dmg = 0;
 		}
 		else if (!Antimagic && !rn2(20)) {
+		    u.youaredead = 1;
 		    killer_format = KILLED_BY_AN;
 		    killer = "Avada Kedavra curse";
 		    done(DIED);
+		    u.youaredead = 0;
 		    return 1; /* lifesaved */
 		}
 		break;
@@ -708,10 +710,12 @@ int spellnum;
 	    if (Hallucination) {
 		You("have an out of body experience.");
 	    } else if (!rnd(50)) {
+		u.youaredead = 1;
 		killer_format = KILLED_BY_AN;
 		killer = "touch of death";
-		done(DIED);}
-		else {
+		done(DIED);
+		u.youaredead = 0;
+	    } else {
 			dmg = d(8,6);
 			/* Magic resistance or half spell damage will cut this in half... */
 			/* and also prevent a reduction of maximum hit points */

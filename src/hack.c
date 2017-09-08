@@ -4110,11 +4110,13 @@ register const char *knam;
 int k_format; /* WAC k_format is an int */
 {
 	if (flags.iwbtg) {
+		u.youaredead = 1;
 		killer_format = k_format;
 		killer = knam;		/* the thing that killed you */
 		You("explode in a fountain of red pixels!");
 		pline("GAME OVER - press R to try again");
 		done(DIED);
+		u.youaredead = 0;
 
 	}
 
@@ -4176,10 +4178,12 @@ int k_format; /* WAC k_format is an int */
 	flags.botl = 1; /* Update status bar */
 
 	if(u.uhp < 1) {
+		u.youaredead = 1;
 		killer_format = k_format;
 		killer = knam;		/* the thing that killed you */
 		You(isangbander ? "have died." : "die...");
 		done(DIED);
+		u.youaredead = 0;
 	} else if (n > 0 && u.uhp*10 < u.uhpmax) {
 		maybe_wail();
 	}

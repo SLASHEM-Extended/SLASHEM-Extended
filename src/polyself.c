@@ -262,10 +262,12 @@ newman()
 		    if (u.uhpmax <= 0) u.uhpmax = 1;
 		} else {
 dead: /* we come directly here if their experience level went to 0 or less */
+			u.youaredead = 1;
 		    Your("new form doesn't seem healthy enough to survive.");
 		    killer_format = KILLED_BY_AN;
 		    killer="unsuccessful polymorph";
 		    done(DIED);
+			u.youaredead = 0;
 		    newuhs(FALSE);
 		    return; /* lifesaved */
 		}
@@ -1201,9 +1203,11 @@ rehumanize()
 	
 	/* KMH, balance patch -- you can't revert back while unchanging */
 	if (Unchanging && forced) {
+		u.youaredead = 1;
 		killer_format = NO_KILLER_PREFIX;
 		killer = "killed while stuck in creature form";
 		done(DIED);
+		u.youaredead = 0;
 	}
 
 	if (emits_light(youmonst.data))
@@ -1216,10 +1220,12 @@ rehumanize()
 	if (u.uhp < 1) {
 	    char kbuf[256];
 
+		u.youaredead = 1;
 	    sprintf(kbuf, "reverting to unhealthy %s form", urace.adj);
 	    killer_format = KILLED_BY;
 	    killer = kbuf;
 	    done(DIED);
+		u.youaredead = 0;
 	}
 	
 	if (forced || /*(!Race_if(PM_DOPPELGANGER) && */(rn2(20) > ACURR(A_CON)))/*)*/ {

@@ -1074,6 +1074,7 @@ level_tele()
 		if (trycnt >= 10)
 		    goto random_levtport;
 		if (ynq("Go to Nowhere.  Are you sure?") != 'y') return;
+		u.youaredead = 1;
 		You("%s in agony as your body begins to warp...",
 		    is_silent(youmonst.data) ? "writhe" : "scream");
 		display_nhwindow(WIN_MESSAGE, FALSE);
@@ -1083,6 +1084,7 @@ level_tele()
 		killer_format = NO_KILLER_PREFIX;
 		killer = "committed suicide";
 		done(DIED);
+		u.youaredead = 0;
 		pline("An energized cloud of dust begins to coalesce.");
 		Your("body rematerializes%s.", invent ?
 			", and you gather up all your possessions" : "");

@@ -3819,9 +3819,11 @@ register struct obj *otmp;
 			    break;
 			}
 
+			u.youaredead = 1;
 			killer_format = KILLED_BY_AN;
 			killer = "wand of disintegration";
 		      done(DIED);
+			u.youaredead = 0;
 			return 0;
 
 		} else {

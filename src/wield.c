@@ -181,10 +181,12 @@ boolean put_away;
 	if (uwep && uwep->oartifact == ART_BANG_BANG && uwep->spe < 2) uwep->spe = 2;
 
 	if (uwep && uwep->oartifact == ART_DEADLY_GAMBLING && !rn2(100) ) {
+		u.youaredead = 1;
 		pline("BANG! You die.");
 		killer_format = KILLED_BY;
 		killer = "deadly gambling";
 		done(DIED);
+		u.youaredead = 0;
 	}
 
 	if (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS && !uwep->cursed) {

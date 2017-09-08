@@ -716,6 +716,7 @@ int dest, how;
 			(void) lava_effects();
 		} else {
 			coord xy;
+			u.youaredead = 1;
 
 			/* use more specific killer if specified */
 			if (!killer) {
@@ -723,6 +724,7 @@ int dest, how;
 			    killer = "falling drawbridge";
 			}
 			done(how);
+			u.youaredead = 0;
 			/* So, you didn't die */
 			if (!e_survives_at(etmp, etmp->ex, etmp->ey)) {
 			    if (enexto(&xy, etmp->ex, etmp->ey, etmp->edata)) {

@@ -750,10 +750,12 @@ boolean purify;
 	    if (Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_) ) {
 		/* An attempt to purify you has been made! */
 		if (in_wereform && Unchanging) {
+			u.youaredead = 1;
 		    killer_format = NO_KILLER_PREFIX;
 		    killer = "purified while stuck in creature form";
 		    pline_The("purification was deadly...");
 		    done(DIED);
+			u.youaredead = 0;
 		} else {
 		    You_feel("very bad!");
 		    if (in_wereform && !Race_if(PM_UNGENOMOLD) )

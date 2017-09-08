@@ -1272,10 +1272,12 @@ exerchk()
 			ABASE(A_WIS) -= 1;
 			AMAX(A_WIS) -= 1;
 			if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {
+				u.youaredead = 1;
 				pline("The contamination consumes you completely...");
 				killer = "being consumed by the contamination";
 				killer_format = KILLED_BY;
 				done(DIED);
+				u.youaredead = 0;
 			}
 
 			/* contamination can now go down; if at least 100, only a chance of going down --Amy */

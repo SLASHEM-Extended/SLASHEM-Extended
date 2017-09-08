@@ -1850,7 +1850,11 @@ boolean atme;
 				pline("Your maximum health was reduced by %d.", energy / 5);
 				u.uhpmax -= (energy / 5);
 				u.uhp -= (energy / 5);
-				if (u.uhp < 1) done(DIED);
+				if (u.uhp < 1) {
+					u.youaredead = 1;
+					done(DIED);
+					u.youaredead = 0;
+				}
 			}
 
 			losehp(energy,"spellcasting exhaustion", KILLED_BY);
@@ -3102,9 +3106,11 @@ boolean atme;
 			u.uhpmax -= rnd(5);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			if (u.uhp < 1) {
+				u.youaredead = 1;
 				killer = "summoning an elemental with too little health";
 				killer_format = KILLED_BY;
 				done(DIED);
+				u.youaredead = 0;
 			}
 			if (Upolyd) {
 				u.mhmax -= rnd(5);
@@ -3137,9 +3143,11 @@ boolean atme;
 			u.uhpmax -= rno(8);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			if (u.uhp < 1) {
+				u.youaredead = 1;
 				killer = "summoning vortices with too little health";
 				killer_format = KILLED_BY;
 				done(DIED);
+				u.youaredead = 0;
 			}
 			if (Upolyd) {
 				u.mhmax -= rno(8);
@@ -3232,6 +3240,7 @@ boolean atme;
 
 		ABASE(A_INT) -= rnd(2);
 		if (ABASE(A_INT) < ATTRMIN(A_INT)) {
+			u.youaredead = 1;
 			Your("last thought fades away.");
 			killer = "brainlessness";
 			killer_format = KILLED_BY;
@@ -3243,6 +3252,7 @@ boolean atme;
 			killer = "brainlessness";
 			killer_format = KILLED_BY;
 			done(DIED);
+			u.youaredead = 0;
 
 			/* if you're still alive then you're either in wizard mode, or you deserve to be able to go on playing. */
 
@@ -3254,10 +3264,12 @@ boolean atme;
 		ABASE(A_WIS) -= rnd(2);
 		if (ABASE(A_WIS) < ATTRMIN(A_WIS)) {
 
+			u.youaredead = 1;
 			You("turn into an unthinkable vegetable and die.");
 			killer = "being turned into a vegetable";
 			killer_format = KILLED_BY;
 			done(DIED);
+			u.youaredead = 0;
 
 			/* player still alive somehow? well then, you can go on playing */
 
@@ -3914,6 +3926,8 @@ boolean atme;
 		    int i, j, bd = 3;
 		    struct monst *mtmp;
 
+			u.youaredead = 1;
+
 			pline("%s used SELFDESTRUCT!", plname);
 
 		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
@@ -3932,6 +3946,7 @@ boolean atme;
 			killer = "selfdestructing";
 			killer_format = KILLED_BY;
 			done(DIED);
+			u.youaredead = 0;
 			/* No, being polymorphed does not save you. If it did, this spell would be rendered overpowered. --Amy */
 
 		}
@@ -3944,6 +3959,7 @@ boolean atme;
 		    int i, j, bd = 5;
 		    struct monst *mtmp;
 
+			u.youaredead = 1;
 			pline("%s used EXPLOSION!", plname);
 
 		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
@@ -3962,6 +3978,7 @@ boolean atme;
 			killer = "exploding";
 			killer_format = KILLED_BY;
 			done(DIED);
+			u.youaredead = 0;
 			/* No, being polymorphed does not save you. If it did, this spell would be rendered overpowered. --Amy */
 
 		}
@@ -4772,18 +4789,22 @@ boolean atme;
 			u.uhpmax -= rnd(50);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			if (u.uhp < 1) {
+				u.youaredead = 1;
 				killer = "playing russian roulette";
 				killer_format = KILLED_BY;
 				done(DIED);
+				u.youaredead = 0;
 			}
 			if (Upolyd) {
 				u.mh -= rnd(50);
 				u.mhmax -= rnd(50);
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				if (u.mh < 1) {
+					u.youaredead = 1;
 					killer = "playing russian roulette";
 					killer_format = KILLED_BY;
 					done(DIED);
+					u.youaredead = 0;
 				}
 			}
 			u.uenmax -= rnd(30);
@@ -4981,9 +5002,11 @@ boolean atme;
 		u.uhpmax -= rnd(10);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
+			u.youaredead = 1;
 			killer = "melting down";
 			killer_format = KILLED_BY;
 			done(DIED);
+			u.youaredead = 0;
 		}
 		if (Upolyd) {
 			u.mhmax -= rnd(10);
@@ -5328,17 +5351,21 @@ boolean atme;
 				u.uhpmax -= rnd(10);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				if (u.uhp < 1) {
+					u.youaredead = 1;
 					killer = "an avalanche";
 					killer_format = KILLED_BY;
 					done(DIED);
+					u.youaredead = 0;
 				}
 				if (Upolyd) {
 					u.mhmax -= rnd(10);
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
 					if (u.mh < 1) {
+						u.youaredead = 1;
 						killer = "an avalanche";
 						killer_format = KILLED_BY;
 						done(DIED);
+						u.youaredead = 0;
 					}
 				}
 				u.uenmax -= rnd(10);
@@ -5517,9 +5544,11 @@ boolean atme;
 		u.uhpmax -= rnd(4);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
+			u.youaredead = 1;
 			killer = "invoking geolysis with too little health";
 			killer_format = KILLED_BY;
 			done(DIED);
+			u.youaredead = 0;
 		}
 		if (Upolyd) {
 			u.mhmax -= rnd(4);
@@ -5537,9 +5566,11 @@ boolean atme;
 		u.uhpmax -= rnd(15);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
+			u.youaredead = 1;
 			killer = "dripping the elements with too little health";
 			killer_format = KILLED_BY;
 			done(DIED);
+			u.youaredead = 0;
 		}
 		if (Upolyd) {
 			u.mhmax -= rnd(15);
@@ -5811,9 +5842,11 @@ boolean atme;
 		u.uhpmax -= rnd(25);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
+			u.youaredead = 1;
 			killer = "invoking world fall with too little health";
 			killer_format = KILLED_BY;
 			done(DIED);
+			u.youaredead = 0;
 		}
 		if (Upolyd) {
 			u.mhmax -= rnd(25);
@@ -6261,9 +6294,11 @@ rerollX:
 		u.uhpmax -= rnd(10);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
+			u.youaredead = 1;
 			killer = "the strain of casting reroll artifact";
 			killer_format = KILLED_BY;
 			done(DIED);
+			u.youaredead = 0;
 		}
 		if (Upolyd) {
 			u.mhmax -= rnd(10);

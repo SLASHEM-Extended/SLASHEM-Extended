@@ -1812,10 +1812,12 @@ mattacku(mtmp)
 		pline("Wait, %s!  There's a hidden %s named %s there!",
 				m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", plname);
 			    else if (uarmh && uarmh->oartifact == ART_JANA_S_DECEPTIVE_MASK && !rn2(100)) {
+					u.youaredead = 1;
 					pline("NETHACK caused a General Protection Fault at address 0014:2035.");
 					killer_format = KILLED_BY;
 					killer = "Jana's deception";
 					done(DIED);
+					u.youaredead = 0;
 				} else
 	     pline("Wait, %s!  There's a %s named %s hiding under %s!",
 				m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", plname,
@@ -2340,6 +2342,7 @@ elena30:
 							    break;
 							}
 						    }
+						    u.youaredead = 1;
 
 						    if (lifesaved)
 							pline("Unfortunately your brain is still gone.");
@@ -2348,6 +2351,7 @@ elena30:
 						    killer = "brainlessness";
 						    killer_format = KILLED_BY;
 						    done(DIED);
+						    u.youaredead = 0;
 						    lifesaved++;
 						}
 					    }
@@ -4457,12 +4461,14 @@ hitmu(mtmp, mattk)
 				is_vampire(youmonst.data)) {
 			    if (otmp->oartifact == ART_STAKE_OF_VAN_HELSING) {
 				if (!rn2(10)) {
+				    u.youaredead = 1;
 				    pline("%s plunges the stake into your heart.",
 					    Monnam(mtmp));
 				    killer = "a wooden stake in the heart.";
 				    killer_format = KILLED_BY_AN;
 				    u.ugrave_arise = NON_PM; /* No corpse */
 				    done(DIED);
+				    u.youaredead = 0;
 				} else {
 				    pline("%s drives the stake into you.",
 					    Monnam(mtmp));
@@ -5494,6 +5500,7 @@ dopois:
 				    break;
 				}
 			    }
+			    u.youaredead = 1;
 
 			    if (lifesaved)
 				pline("Unfortunately your brain is still gone.");
@@ -5502,6 +5509,7 @@ dopois:
 			    killer = "brainlessness";
 			    killer_format = KILLED_BY;
 			    done(DIED);
+			    u.youaredead = 0;
 			    lifesaved++;
 			}
 		    }
@@ -6135,11 +6143,13 @@ dopois:
 
 			if (is_shiftingsand(mtmp->mx,mtmp->my) && !rn2(3)) {
 				/* instakill the poor sap - there is *no* resistance against this, and that's intentional --Amy */
+				u.youaredead = 1;
 				You("are pulled below the surface and suffocate.");
 				killer_format = KILLED_BY_AN;
 				sprintf(buf, "shifting sand by %s", an(mtmp->data->mname));
 				killer = buf;
 				done(DROWNING);
+				u.youaredead = 0;
 
 			}
 
@@ -6152,12 +6162,14 @@ dopois:
 			if (is_lava(mtmp->mx,mtmp->my) && !rn2(3)) {
 
 				if (!Fire_resistance) {
+					u.youaredead = 1;
 					You("burn to ashes...");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Kha! Ne ozhidal, chto budet mgnovennaya smert'? Nu, vashi poteri. Spasibo prikhodi yeshche." : "brrtzlbrrtzlbrrtzlbrrtzlbrrtzl");
 					killer_format = KILLED_BY_AN;
 					    sprintf(buf, "pool of lava by %s", an(mtmp->data->mname));
 					    killer = buf;
 					done(BURNING);
+					u.youaredead = 0;
 
 				}
 				else {
@@ -6178,6 +6190,8 @@ dopois:
 				!Is_medusa_level(&u.uz) &&
 				!Is_waterlevel(&u.uz);
 
+			    u.youaredead = 1;
+
 			    pline("%s drowns you...", Monnam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vy znali, chto sluchilos' by, ne tak li? I do sikh por vy ne ispol'zovali element, kotoryy by spas vas, potomu chto vy glupost' v dvizhenii! Geniy!" : "HUAAAAAAA-A-AAAAHHHHHH!");
 			    killer_format = KILLED_BY_AN;
@@ -6186,6 +6200,9 @@ dopois:
 				    an(mtmp->data->mname));
 			    killer = buf;
 			    done(DROWNING);
+
+			    u.youaredead = 0;
+
 			} /*else*/ if(mattk->aatyp == AT_HUGS)
 			    You("are being crushed.");
 			    else You("are being wrapped.");
@@ -7188,7 +7205,9 @@ dopois:
 		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
 		}
+		u.youaredead = 1;
 	    done(DIED);
+		u.youaredead = 0;
 	    return 1; /* lifesaved */
 
 	}
@@ -7221,7 +7240,9 @@ dopois:
 		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
 		}
+		u.youaredead = 1;
 	    done(DIED);
+		u.youaredead = 0;
 	    return 1; /* lifesaved */
 
 	}
@@ -7518,9 +7539,11 @@ dopois:
 		switch (rn2(20)) {
 		case 19: /* case 18: case 17: */
 		    if (!Antimagic) {
+			u.youaredead = 1;
 			killer_format = KILLED_BY_AN;
 			killer = "touch of death";
 			done(DIED);
+			u.youaredead = 0;
 			dmg = 0;
 			break;
 		    } /* else FALLTHRU */
@@ -7877,12 +7900,14 @@ dopois:
 				is_vampire(youmonst.data)) {
 			    if (otmp->oartifact == ART_STAKE_OF_VAN_HELSING) {
 				if (!rn2(10)) {
+					u.youaredead = 1;
 				    pline("%s plunges the stake into your heart.",
 					    Monnam(mtmp));
 				    killer = "a wooden stake in the heart.";
 				    killer_format = KILLED_BY_AN;
 				    u.ugrave_arise = NON_PM; /* No corpse */
 				    done(DIED);
+					u.youaredead = 0;
 				} else {
 				    pline("%s drives the stake into you.",
 					    Monnam(mtmp));
@@ -10141,9 +10166,11 @@ do_stone2:
 		switch (rn2(20)) {
 		case 19: /* case 18: case 17: */
 		    if (!Antimagic) {
+			u.youaredead = 1;
 			killer_format = KILLED_BY_AN;
 			killer = "engulf of death";
 			done(DIED);
+			u.youaredead = 0;
 			tmp = 0;
 			break;
 		    } /* else FALLTHRU */
@@ -10584,6 +10611,7 @@ do_stone2:
 				    break;
 				}
 			    }
+				u.youaredead = 1;
 
 			    if (lifesaved)
 				pline("Unfortunately your brain is still gone.");
@@ -10592,6 +10620,7 @@ do_stone2:
 			    killer = "brainlessness";
 			    killer_format = KILLED_BY;
 			    done(DIED);
+				u.youaredead = 0;
 			    lifesaved++;
 			}
 		    }
@@ -10666,7 +10695,9 @@ do_stone2:
 		    break;
 		}
 
+		u.youaredead = 1;
 	    done(DIED);
+		u.youaredead = 0;
 	    return 1; /* lifesaved */
 
 	}
@@ -10704,7 +10735,9 @@ do_stone2:
 		    break;
 		}
 
+		u.youaredead = 1;
 	    done(DIED);
+		u.youaredead = 0;
 	    return 1; /* lifesaved */
 
 	}
@@ -11382,9 +11415,11 @@ common:
 		switch (rn2(20)) {
 		case 19: /* case 18: case 17: */
 		    if (!Antimagic) {
+			u.youaredead = 1;
 			killer_format = KILLED_BY_AN;
 			killer = "explosion of death";
 			done(DIED);
+			u.youaredead = 0;
 			tmp = 0;
 			break;
 		    } /* else FALLTHRU */
@@ -12392,7 +12427,9 @@ common:
 		    break;
 		}
 
+		u.youaredead = 1;
 	      done(DIED);
+		u.youaredead = 0;
 
 		break;
 
@@ -12427,7 +12464,9 @@ common:
 		    break;
 		}
 
+		u.youaredead = 1;
 	      done(DIED);
+		u.youaredead = 0;
 
 		break;
 
@@ -12990,6 +13029,7 @@ common:
 				    break;
 				}
 			    }
+				u.youaredead = 1;
 
 			    if (lifesaved)
 				pline("Unfortunately your brain is still gone.");
@@ -12998,6 +13038,7 @@ common:
 			    killer = "brainlessness";
 			    killer_format = KILLED_BY;
 			    done(DIED);
+				u.youaredead = 0;
 			    lifesaved++;
 			}
 		    }
@@ -13747,7 +13788,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    break;
 		}
 
+		u.youaredead = 1;
 	    done(DIED);
+		u.youaredead = 0;
 	    return 1; /* lifesaved */
 
 		}
@@ -13791,7 +13834,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    break;
 		}
 
+		u.youaredead = 1;
 	    done(DIED);
+		u.youaredead = 0;
 	    return 1; /* lifesaved */
 
 		}
@@ -15455,10 +15500,12 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    } else if (Antimagic) {
 			You("shudder momentarily...");
 		    } else {
+			u.youaredead = 1;
 			You(isangbander ? "have died." : "die...");
 			killer_format = KILLED_BY_AN;
 			killer = "gaze of death";
 			done(DIED);
+			u.youaredead = 0;
 		    }
 		}
 		break;
@@ -17213,12 +17260,14 @@ register struct monst *mon;
 		}
 
 		if (uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) {
+			u.youaredead = 1;
 			pline("Oh no... your heart... it's... getting... unsteady...");
 			pline("BEEPBEEP BEEPBEEP BEEP BEEP BEEEEEEEEEEEEEEEEEEEEP!");
 			pline("You die from a heart failure.");
 			killer_format = KILLED_BY;
 			killer = "complications from childbirth";
 			done(DIED);
+			u.youaredead = 0;
 		}
 
 	}

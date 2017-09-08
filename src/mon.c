@@ -4695,10 +4695,12 @@ int  typ, fatal;
 		losehp(i, pname, kprefix);
 	}
 	if(u.uhp < 1) {
+		u.youaredead = 1;
 		killer_format = kprefix;
 		killer = pname;
 		/* "Poisoned by a poisoned ___" is redundant */
 		done(strstri(pname, "poison") ? DIED : POISONING);
+		u.youaredead = 0;
 	}
 	(void) encumber_msg();
 }

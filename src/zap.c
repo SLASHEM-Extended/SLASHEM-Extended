@@ -5558,9 +5558,11 @@ boolean ordinary;
 			    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 			    break;
 			}
+			u.youaredead = 1;
 			killer_format = KILLED_BY;
 			killer = "self-disintegration";
 		      done(DIED);
+			u.youaredead = 0;
 			return 0;
 
 		    break;
@@ -5594,11 +5596,13 @@ boolean ordinary;
 			break;
 
 		case WAN_DESLEXIFICATION:
+			u.youaredead = 1;
 			makeknown(obj->otyp);
 			killer_format = KILLED_BY;
 			killer = "self-deslexification";
 			pline("Ochen' zhal'! Vy igrayete ikh slesh prodlen, kotoryy techically yeshche chast' Slex, i poetomu vy vdrug perestanet sushchestvovat', potomu chto vy byli DESLEXIFIED.");
 			done(DIED);
+			u.youaredead = 0;
 			break;
 
 		case WAN_TIME:
@@ -5939,6 +5943,7 @@ boolean ordinary;
 			pline("You are unharmed!");
 			break;
 		    }
+			u.youaredead = 1;
 		    killer_format = NO_KILLER_PREFIX;
 		    sprintf(buf, "shot %sself with a death ray", uhim());
 		    killer = buf;
@@ -5947,6 +5952,7 @@ boolean ordinary;
 		    makeknown(obj->otyp);
 			/* They might survive with an amulet of life saving */
 		    done(DIED);
+			u.youaredead = 0;
 		    break;
 
 		case WAN_UNDEAD_TURNING:
@@ -7585,11 +7591,13 @@ xchar sx, sy;
 	    }
 
 		if (!rn2(20) || abs(type) == ZT_BREATH(ZT_DEATH) ) {
+		u.youaredead = 1;
 	    killer_format = KILLED_BY_AN;
 	    killer = fltxt;
 	    /* when killed by disintegration breath, don't leave corpse */
 	    u.ugrave_arise = (type == -ZT_BREATH(ZT_DEATH)) ? -3 : NON_PM;
 	    done(DIED);
+		u.youaredead = 0;
 	    return; /* lifesaved */
 		}
 		else

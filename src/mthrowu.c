@@ -387,7 +387,11 @@ const char *name;	/* if null, then format `obj' */
 				} else if (uarmu) {
 				    /* destroy shirt */
 				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
-				} else done(DIED);
+				} else {
+					u.youaredead = 1;
+					done(DIED);
+					u.youaredead = 0;
+				}
 	
 			}
 		}
@@ -1244,6 +1248,8 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 
 			if (isangbander && rn2(2) && (rnd( (int)mattk->damn * 10) > u.uhp )) {
 
+			u.youaredead = 1;
+
 			pline("It breathes"); /* The following --More-- prompt is forced and shall not be disabled --Amy */
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			pline("You have died.");
@@ -1252,10 +1258,14 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 			killer = "fatal breath attack";
 			done(DIED);
 
+			u.youaredead = 0;
+
 			return(0);
 			}
 
 			if (isangbander && rn2(2) && (rnd( (int)mattk->damd * 10) > u.uhp )) {
+
+			u.youaredead = 1;
 
 			pline("It breathes");
 			display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -1264,6 +1274,8 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 			killer_format = KILLED_BY_AN;
 			killer = "fatal breath attack";
 			done(DIED);
+
+			u.youaredead = 0;
 
 			return(0);
 			}

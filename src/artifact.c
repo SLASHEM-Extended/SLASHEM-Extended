@@ -3246,10 +3246,12 @@ arti_invoke(obj)
 		/* This is ground zero.  Not good news ... */
 		u.uhp /= 100;
 		if (u.uhp < 1) {
+		    u.youaredead = 1;
 		    u.uhp = 0;
 		    killer_format = KILLED_BY;
 		    killer = "the Holy Spear of Light";
 		    done(DIED);
+		    u.youaredead = 0;
 		}
 	    }
 	    /* Undead and Demonics can't stand the light */
@@ -3274,11 +3276,13 @@ arti_invoke(obj)
 	    break;
 	case DEATH_GAZE:
 	    if (u.uluck < -9) {
+		u.youaredead = 1;
 		pline_The("Eye turns on you!");
 		u.uhp = 0;
 		killer_format = KILLED_BY;
 		killer = "the Eye of the Beholder";
 		done(DIED);
+		u.youaredead = 0;
 	    }
 	    pline_The("Eye looks around with its icy gaze!");
 	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
@@ -3299,9 +3303,11 @@ arti_invoke(obj)
 		u.uhp -= rn2(20) + 5;
 		pline_The("Hand claws you with its icy nails!");
 		if (u.uhp <= 0) {
+		    u.youaredead = 1;
 		    killer_format = KILLED_BY;
 		    killer="the Hand of Vecna";
 		    done(DIED);
+		    u.youaredead = 0;
 		}
 	    }
 	    summon_loop = rn2(4) + 4;

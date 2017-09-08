@@ -546,6 +546,7 @@ register struct obj *food;
 		nomovemsg = 0;
 		vomit();
 	} else {
+		u.youaredead = 1;
 		killer_format = KILLED_BY_AN;
 		/*
 		 * Note all "killer"s below read "Choked on %s" on the
@@ -570,6 +571,7 @@ register struct obj *food;
 		}
 		You(isangbander ? "have died." : "die...");
 		done(CHOKING);
+		u.youaredead = 0;
 	}
 }
 
@@ -1004,12 +1006,14 @@ register int pm;
 	    case PM_GREED:
 	    case PM_DEPRESSION:
 		{ char buf[BUFSZ];
+		    u.youaredead = 1;
 		    pline("Eating that is instantly fatal.");
 		    sprintf(buf, "unwisely ate the body of a monster (%s)",
 			    mons[pm].mname);
 		    killer = buf;
 		    killer_format = NO_KILLER_PREFIX;
 		    done(DIED);
+		    u.youaredead = 0;
 		    /* It so happens that since we know these monsters */
 		    /* cannot appear in tins, victual.piece will always */
 		    /* be what we want, which is not generally true. */
@@ -4657,9 +4661,11 @@ register struct obj *otmp;
 		You_feel("a burning inside!");
 		u.uhp -= rn1(50,150);
 		if (u.uhp <= 0) {
+		  u.youaredead = 1;
 		  killer_format = KILLED_BY;
 		  killer = food_xname(otmp, TRUE);
 		  done(CHOKING);
+		  u.youaredead = 0;
 		}
 		break;
 
@@ -4676,9 +4682,11 @@ register struct obj *otmp;
 		You_feel("the hand scrabbling around inside of you!");
 		u.uhp -= rn1(50,150);
 		if (u.uhp <= 0) {
+		  u.youaredead = 1;
 		  killer_format = KILLED_BY;
 		  killer = food_xname(otmp, TRUE);
 		  done(CHOKING);
+		  u.youaredead = 0;
 		}
 		break;
 	    case FORTUNE_COOKIE:
@@ -4723,9 +4731,11 @@ register struct obj *otmp;
 			if(!rn2(17)) u.uhpmax++;
 			u.uhp = u.uhpmax;
 		    } else if(u.uhp <= 0) {
+			u.youaredead = 1;
 			killer_format = KILLED_BY_AN;
 			killer = "rotten lump of royal jelly";
 			done(POISONING);
+			u.youaredead = 0;
 		    }
 		}
 		if(!otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ) heal_legs();
@@ -5649,6 +5659,7 @@ boolean incr;
 			}
 		} else
 		if(u.uhunger < -(int)(1000 + 50*ACURR(A_CON))) {
+			u.youaredead = 1;
 			u.uhs = STARVED;
 			flags.botl = 1;
 			bot();
@@ -5656,6 +5667,7 @@ boolean incr;
 			killer_format = KILLED_BY;
 			killer = "starvation";
 			done(STARVING);
+			u.youaredead = 0;
 			/* if we return, we lifesaved, and that calls newuhs */
 			return;
 		}
@@ -5708,10 +5720,12 @@ boolean incr;
 		flags.botl = 1;
 		bot();
 		if ((Upolyd ? u.mh : u.uhp) < 1) {
+			u.youaredead = 1;
 			You(Hallucination ? "pass away like a filthy bum." : (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") ))) ? "are embraced by the shadowy figure of your deity..." : "die from hunger and exhaustion.");
 			killer_format = KILLED_BY;
 			killer = "exhaustion";
 			done(STARVING);
+			u.youaredead = 0;
 			return;
 		}
 	}

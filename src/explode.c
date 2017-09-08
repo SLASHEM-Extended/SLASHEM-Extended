@@ -623,6 +623,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 			}
 			rehumanize();
 		    } else {
+			u.youaredead = 1;
 			if (olet == MON_EXPLODE) {
 			    /* killer handled by caller */
 			    if (str != killer_buf && !generic)
@@ -643,6 +644,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 			/* Known BUG: BURNING suppresses corpse in bones data,
 			   but done does not handle killer reason correctly */
 			done((adtyp == AD_FIRE) ? BURNING : DIED);
+			u.youaredead = 0;
 		    }
 		}
 		exercise(A_STR, FALSE);

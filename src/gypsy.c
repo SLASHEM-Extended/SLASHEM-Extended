@@ -388,9 +388,11 @@ fortune (mtmp)
 			else if(Hallucination)
 				You("have an out of body experience.");
 			else  {
+				u.youaredead = 1;
 				killer_format = KILLED_BY;
 				killer = "the card of Death";
 				done(DIED);
+				u.youaredead = 0;
 			}
 			break;
 		case 14: /* the Tower */

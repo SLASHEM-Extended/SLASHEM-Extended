@@ -169,10 +169,12 @@ boolean barehanded;
 		    !(!Blind && mtmp->mundetected && hides_under(mtmp->data))) {
 
 		if (uarmc && uarmc->oartifact == ART_JANA_S_SECRET_CAR && !rn2(100) ) {
+			u.youaredead = 1;
 			pline("NETHACK caused a General Protection Fault at address 0003:0CED.");
 			killer_format = KILLED_BY;
 			killer = "Jana's secret car";
 			done(DIED);
+			u.youaredead = 0;
 		} else
 		pline("Wait!  There's %s there you can't see!",
 			something);
@@ -201,10 +203,12 @@ boolean barehanded;
 		    return retval;
 		}
 		if (uarmc && uarmc->oartifact == ART_JANA_S_GRAVE_WALL && !rn2(100) ) {
+			u.youaredead = 1;
 			pline("NETHACK caused a General Protection Fault at address 000B:0122.");
 			killer_format = KILLED_BY;
 			killer = "Jana's grave wall";
 			done(DIED);
+			u.youaredead = 0;
 		} else
 		stumble_onto_mimic(mtmp);
 		return 0;
@@ -226,10 +230,12 @@ boolean barehanded;
 		    pline("Wait!  There's a hidden monster there!");
 		else if ((obj = level.objects[mtmp->mx][mtmp->my]) != 0) {
 			if (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE && !rn2(100) ) {
+				u.youaredead = 1;
 				pline("NETHACK caused a General Protection Fault at address 000D:001D.");
 				killer_format = KILLED_BY;
 				killer = "Jana's devious cloak";
 				done(DIED);
+				u.youaredead = 0;
 			} else
 			pline("Wait!  There's %s hiding under %s!", an(l_monnam(mtmp)), doname(obj));
 		}
@@ -1001,9 +1007,11 @@ int thrown;	/* 0: not thrown, 1: launched with uwep,
 			pline("You kill the smirking sneak thief!");
 
 			if (!rn2(20) && (!Antimagic && !is_undead(youmonst.data) )) {
+				u.youaredead = 1;
 				killer_format = KILLED_BY;
 				killer = "hitting a huge ogre thief thrice";
 				done(DIED);
+				u.youaredead = 0;
 			}
 			else {
 				if (Upolyd) losehp(rnz(u.mhmax), "hitting a huge ogre thief thrice", KILLED_BY);
@@ -4072,10 +4080,12 @@ register struct attack *mattk;
 			You("shudder momentarily...");
 			break;
 		    }
+			u.youaredead = 1;
 		    You(isangbander ? "have died." : "die...");
 		    killer_format = KILLED_BY;
 		    killer = "a reflected gaze of death";
 		    done(DIED);
+			u.youaredead = 0;
 		} else if (is_undead(mdef->data) || mdef->egotype_undead) {
 		    /* Still does normal damage */
 		    if (!Blind) pline("Something didn't work...");
@@ -4811,6 +4821,7 @@ register struct attack *mattk;
 		if (!rn2(50)) { /*muuuuuch lower chance because this attack is totally unbalanced anyway --Amy*/
 			/* eating a Rider or its corpse is fatal */
 			if (is_rider(mdef->data) || is_deadlysin(mdef->data)) {
+				u.youaredead = 1;
 			 pline("Unfortunately, digesting any of it is fatal.");
 			    end_engulf();
 			    sprintf(msgbuf, "unwisely tried to eat a monster (%s)",
@@ -4818,6 +4829,7 @@ register struct attack *mattk;
 			    killer = msgbuf;
 			    killer_format = NO_KILLER_PREFIX;
 			    done(DIED);
+				u.youaredead = 0;
 			    return 0;		/* lifesaved */
 			}
 
@@ -7375,6 +7387,7 @@ uchar aatyp;
 				}
 			    }
 
+				u.youaredead = 1;
 			    if (lifesaved)
 				pline("Unfortunately your brain is still gone.");
 			    else
@@ -7382,6 +7395,7 @@ uchar aatyp;
 			    killer = "brainlessness";
 			    killer_format = KILLED_BY;
 			    done(DIED);
+				u.youaredead = 0;
 			    lifesaved++;
 			}
 		    }
@@ -7648,9 +7662,11 @@ uchar aatyp;
 		switch (rn2(20)) {
 		case 19: /* case 18: case 17: */
 		    if (!Antimagic) {
+			u.youaredead = 1;
 			killer_format = KILLED_BY_AN;
 			killer = "touch of death";
 			done(DIED);
+			u.youaredead = 0;
 			tmp = 0;
 			break;
 		    } /* else FALLTHRU */
@@ -8389,7 +8405,9 @@ uchar aatyp;
 		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
 		}
+		u.youaredead = 1;
 	    done(DIED);
+		u.youaredead = 0;
 	    return (malive | mhit); /* lifesaved */
 
 		}
@@ -8425,7 +8443,9 @@ uchar aatyp;
 		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
 		}
+		u.youaredead = 1;
 	    done(DIED);
+		u.youaredead = 0;
 	    return (malive | mhit); /* lifesaved */
 
 		}

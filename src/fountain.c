@@ -362,11 +362,16 @@ drinkfountain()
 
 			if (!Amphibious && !Swimming && !Breathless && !rn2(20) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) ) {
 
+				u.youaredead = 1;
+
 				pline("You drown...");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu ty slishkom glup, chtoby zhit' tak ili inache? Do svidaniya!" : "HUAAAAAAA-A-AAAAHHHHHH!");
 				    killer_format = KILLED_BY_AN;
 				    killer = "overflowing fountain";
 				    done(DROWNING);
+
+				u.youaredead = 0;
+
 
 			}
 
@@ -392,10 +397,12 @@ drinkfountain()
 	}
 
 	if (uarmc && uarmc->oartifact == ART_JANA_S_ROULETTE_OF_LIFE && !rn2(100)) {
+		u.youaredead = 1;
 		pline("Bad luck! You die.");
 		killer_format = KILLED_BY;
 		killer = "Jana's roulette";
 		done(DIED);
+		u.youaredead = 0;
 	}
 
 	dryup(u.ux, u.uy, TRUE);
