@@ -1031,9 +1031,9 @@ It is said for yedong's tail sold to be made a profit, others feels ill in fact.
 In Slash'EM Extended, it's possible for Excalibur to be created randomly.
 Some monsters in Slash'EM Extended will try to avoid the player, even ones that aren't unicorns.
 Slash'EM Extended has been created by Amy Bluescreenofdeath.
-Naming your character 'Dudley' will set your luck to -13 with no way to change it.
-Naming your character 'Blindfox' means you'll be blind for the duration of your game. Also known as 'zen conduct'.
-Naming your character 'Hippie' means you'll be hallucinating for the duration of your game.
+Using the dudley option will set your luck to -13 with no way to change it.
+Using the blindfox option means you'll be blind for the duration of your game. Also known as 'zen conduct'.
+Using the hippie option means you'll be hallucinating for the duration of your game.
 They say that One-Eyed Sam dislikes people trying to cause conflict.
 Slash'EM Extended has a group spawn system that can randomly fill a level with monsters of a specific class.
 Asgardians move at half speed sometimes. This is not a bug.
@@ -1043,7 +1043,7 @@ Leveling up will give a small boost to your mana regeneration.
 Having a spell school at skilled will improve mana regeneration.
 Having a spell school at expert will improve mana regeneration even more.
 Mouldic characters have a higher chance to polymorph while in their natural form.
-Naming your character 'LostSoul' means you start at Medusa depth instead of dlvl1.
+Using the lostsoul option means you start at Medusa depth instead of dlvl1.
 Blessed stethoscopes are better than uncursed ones.
 Jumping is no longer completely free; it costs 10 mana now.
 Slash'EM Extended greatly reduces the ability of players to farm for cram rations with a fishing rod.
@@ -1061,10 +1061,10 @@ The astral call bug doesn't exist anymore in Slash'EM Extended.
 All monster names are be possible for hallucinatory monsters, even unique and genocided ones. This adds more variety.
 Couriers have no head, and are thus unable to wear helmets.
 Leveling up will give a small boost to your AC.
-Transvestites can always tame stuff that's not tameable; kludge for attire charm technique.
+Transvestites can tame stuff that's not tameable with the attire charm technique, within certain limits.
 The amount of nutrition gained by eating metal objects has been increased in Slash'EM Extended.
 Daggers, spears and knives have a low chance of breaking when thrown.
-The deepest level in the Dungeons of Doom is the sanctum at dlvl65.
+The deepest level in the Dungeons of Doom is the sanctum at dlvl72.
 Slash'EM Extended greatly increases the maximum monster level for monsters spawned in the Gehennom.
 If you choke over your food but don't die, and it was no normal food, you will lose some nutrition so you don't choke again instantly.
 The chance of gaining intrinsics from eating corpses is much lower in Slash'EM Extended compared to vanilla.
@@ -1074,9 +1074,9 @@ They say that eating bananas is good if you're hallucinating.
 They say you can cure confusion by eating a melon.
 They say that if you're stunned, pears are suddenly very delicious.
 They say that asian pears can cure both stun and confusion, but are very hard to come by.
-In Slash'EM Extended, the nutrition amount that makes you oversatiated has been increased to 3000.
+In Slash'EM Extended, the nutrition amount that makes you oversatiated has been increased to 4500.
 They say that causing conflict causes much more hunger than regenerating.
-In Slash'EM Extended, the nutrition amount that makes you satiated has been increased to 1500.
+In Slash'EM Extended, the nutrition amount that makes you satiated has been increased to 2500.
 Troll characters have a chance of reviving.
 Burned Elbereth engravings will no longer be truly permanent.
 If you're surrounded by 20 killer bees and 10 large cats, losing a turn while engraving might be enough to kill you.
@@ -1089,7 +1089,7 @@ Gaining alignment points for killing hostile monsters is slower in Slash'EM Exte
 Monsters attacking each other with digestion attacks only have a 4% chance of instakilling.
 Beware of enemies attacking you with feminine pumps. They will do more damage with every successful attack.
 Engulfing monsters have a 10% chance to miss the player character.
-The chance of magic cancellation 3 preventing a special attack has been reduced to 95% (used to be 98%).
+The chance of magic cancellation 3 preventing a special attack has been reduced, and depends on the player's spirituality skill now.
 Gremlins can always steal intrinsics in Slash'EM Extended, and the pool of intrinsics they can steal has been increased.
 Damage reduction will start at -1 rather than -11 AC in Slash'EM Extended.
 The maximum amount of damage absorbed by a high AC has been increased to 20 in Slash'EM Extended.
@@ -1121,7 +1121,7 @@ Blessed potions of gain ability no longer increase all stats in Slash'EM Extende
 Potions of gain ability: a blessed one has a chance to increase more than one stat, or increase one stat twice.
 There are no more stacks of healthstones for cavedwarfs, sorry.
 Divine wrath ignores mundane stuff like drain resistance.
-Altar campers who do a lot of water prayers have a 1% chance every time for the altar to simply disappear.
+Altar campers who do a lot of water prayers used to have a 1% chance every time for the altar to simply disappear, but that "feature" was deemed unnecessarily stupid and got removed.
 Altar campers who do a lot of sacrifices have a 1% chance every time for the altar to simply disappear.
 Lawful characters polymorphed into an undead (or of vampiric or ghast race) have a higher chance of their prayers actually working.
 There is no unlimited recharging of wands of charging.
@@ -1401,3 +1401,119 @@ They say that contamination will damage your wisdom over time, and kill you if i
 They say that contamination can be healed with remove curse or an altar of your own deity.
 They say that amnesia can make you forget non-fatal contamination.
 They say that fatal contamination starts with 1000 points on your contamination counter and greatly reduces your regeneration rate.
+Hangup cheating is bad. Don't do it, or you lose maximum hit points and mana.
+If you hang up while at "You die from your illness.", the game will remember that you should have died, and kills you upon restoring the game.
+Monsters are aggravated if an angel with negative alignment record strolls through the dungeon.
+They say that the elder priest can tentacle to tentacle you.
+They call the elder priest's tentacle attack "LarienTelrunya's Bane".
+Pets whose base level is 50 or higher have a slightly higher chance of spontaneously rebelling.
+If you get one of jonadab's script-generated monsters as a pet, it will have a greatly increased chance of spontaneously becoming hostile.
+A pet that spontaneously turns traitor has a chance of becoming immune to all attempts of taming it.
+The idea of a "bundle monster" was suggested by K2.
+Ski heels can really walk on snow. They're high-heeled skiers, kind of. Watch out though, stepping into dog shit with them is really shitty since cleaning them is an unholy pain in the butt!
+Dipping objects that are vulnerable to fire into lava is possible, and can get rid of such items.
+Curse the curses interface.
+Being attacked by wereheels can make you into one of them, and then you can use kick attacks.
+If you keep disrespecting Team K, you will find out the hard way that the Kops have been beefed up konsiderably.
+Firing a bow, sling or similar weapon at point blank range will greatly reduce the damage you deal.
+Monsters with the flickerer egotype are IMMUNE to your melee and missile attacks. Don't plug away like an idiot, use wands or spells instead!
+Sling rocks aren't the most damaging ammo you can shoot. Find some flint stones!
+Terror halls, trouble zones, void rooms and feminism rooms are among the most dangerous special rooms in the dungeon.
+Terror halls can be made easier to deal with by blindfolding yourself as a protection from confusion gazes, but some dangerous monsters in those rooms are not detected by telepathy.
+Be careful if there's a void room on the level. Once awake, the ghosts will phase right through the walls to get to you, and they're usually very high-level ones too.
+If the game spawns a feminism room, be aware that all the girls in there can use their sexy butt cheeks as a deadly weapon.
+Standing on grassland improves your HP regeneration rate.
+Standing on grassland reduces your to-hit with melee weapons, can make your ranged attacks misfire, and causes your spells to fail sometimes.
+Boss rooms don't initially have monsters, but they will spawn high-level boss monsters after a while.
+Doomed barracks are a good source of shotguns and energy guns, but beware, they're initially in the hands of monsters.
+The diver paradise can often be traversed only via digging, swimming or magical breathing. And the latter two methods make your inventory wet.
+Shifting sand is one of the most deadly terrain types in existence. Stand on it for more than two turns and you die instantly, unless you can fly.
+The nuclear chamber is a special room that's best avoided entirely, since everything in there will contaminate you.
+You can dig through grave walls by simply moving into them repeatedly, but occasionally monsters or traps are hidden underneath that cannot be detected in advance.
+Tunnels block movement for flying or levitating characters, but a pick-axe or wand of digging can remove them.
+Farmland terrain can block your movement, but here's a hint: try using #force on it often enough and it will be removed.
+It's possible to climb mountain terrain, but it can take 100 or more attempts. If you absolutely have to get past one, don't lose patience - keep trying!
+Crystal water is water that clings from the ceiling, and will only affect flying or levitating characters.
+Moorland will damage you continuously while you swim in it, and it's impossible to pick up items dropped in it.
+If you see an important item drop on a moorland tile, you need to zap teleport or use a grappling hook or similar things to retrieve it.
+Swimming in a urine lake will melt you and your inventory if your alignment record is negative.
+Swimming in the styx river increases your contamination. Flying over it is less harmful but will still contaminate you slowly.
+In order to draw on the powers of a pentagram, use #invoke.
+You can quaff from a well in order to gain a bit of nutrition and recover lost hit points.
+Don't quaff from a poisoned well - it can drain all your stats, and even kill you if you're not poison resistant!
+If you stand on a wagon, you're hidden from monsters and also have higher armor class.
+Stepping on a burning wagon is a good idea to get rid of flammable items and hit points.
+Wooden tables are useful in case you're levitating, since they allow you to reach the ground even when you normally couldn't do so.
+If you #sit on a carved bed, you will fall asleep unless resistant, and recover hit points rapidly while asleep.
+Stepping on a straw mattress can cause you to spontaneously fall asleep.
+Snow terrain slows you down greatly if you walk on it, or causes you to be caught in snowstorms if you fly.
+Ash terrain is really solidified lava. Zapping it with a wand of fire will melt it, with fatal consequences if you stand on it.
+Walking on sand can cause you to be caught in a sandstorm, which blinds you for a couple of turns.
+They say that walking on paved floor makes a lot of noise, and is outright dangerous for anyone who wears high heels unless they're really skilled at walking in them.
+Everyone who stands on a highway tile is capable of moving more quickly than usual.
+They say that if you spend too many turns on a nether mist tile, your experience points may be drained.
+They say that nether mist dissipates if a lawful monster is killed on it.
+Flying and levitating players should beware the stalactites, which can deal impaling damage.
+Bubbles will stun you if you step into them.
+They say that rain clouds will make your entire inventory wet, so you should put away rustprone things that you want to keep. Use a wooden box or large chest.
+Curased coffin is not a misspelling.
+Yerles conbat plane is not a misspelling either.
+Using a staircase has a significant chance of preventing the player from using staircases for the next few turns.
+The summon and create undead spells have a chance of failure; players coming from regular SLASH'EM please note.
+If you anger the watchmen in town levels, they will call the kops.
+Walking through walls no longer allows the player to trick the monster AI into emptying their ray wands.
+Chest and door traps can surround the player with new, invisible traps.
+GruntHack is more evil than SLASH'EM Extended.
+The elder priest in dnethack is more evil than any mandatory boss monster in SLASH'EM Extended.
+The evil patch ideas implemented in Nethack Fourk are more evil than even the worst ones in SLASH'EM Extended.
+AmyBSOD never makes commits that cause players to prefer earlier versions, since none of her commits are regressions.
+AmyBSOD's NetHack variant is very nice, so it's a surprise that she herself is such an evil person.
+Cursed invocation tools still have a chance of working on the vibrating square.
+Blue walls aren't dangerous per se, but if all the walls on the current dungeon level suddenly turn blue you'd better stop bumping into them.
+The devices skill can be trained by zapping charged wands, applying charged tools, or reading scrolls or spellbooks or quaffing potions.
+Hint: no matter how many interface screw traps are affecting you, finding the vibrating square is still possible. Use #technique while standing on it, and you'll get a special message.
+Black hashes are loudspeakers. Don't farlook them; doing so will paralyze you.
+Fake artifacts resist bad polymorphs and nymph theft attacks.
+They say that Vlad likes to light up his tower with various types of candles.
+They say that Rodney may have built various rooms into his tower, filled with differently-flavored monsters.
+Riding a very fast monster, or polymorphing into a very fast one, doesn't give you the full movement speed if your skill isn't good enough.
+If you're unlucky enough to have your wish fail, you can have bad items force-welded to your body.
+They say that AmyBSOD dedicates more time to SLASH'EM Extended than ToME-SX.
+If you play the prostitute or kurwa role, chatting to intelligent monsters will initiate a sexual encounter.
+The kurwa is a hard role.
+It's difficult to reach experience level 12 with a kurwa.
+One of the main weaknesses of the kurwa role is that she can get chain-paralyzed by monsters with claw attacks.
+Overenchanting an artifact will set it to +0 instead of vaporizing it.
+The player's armor class works less well if the player is causing conflict.
+The wand of remove resistance managed to make a player ragequit SLASH'EM Extended forever.
+Truck ghosts are not overpowered.
+The "ugod" monster was so successful at 0wning player characters that Amy decided to add greater ugods as monsters.
+They say that the nasty head spike attack used by uvuudaums and certain other monsters can instantly kill you.
+There's a trap that forces you to walk like a grid bug when triggered. You also can't attack, zap etc. at a diagonal in that case.
+You cannot endlessly tame monsters with a blessed book of the dead.
+While hallucinating, you're resistant to stoning effects since you're already stoned.
+SLASHTHEM is inferior to SLASH'EM Extended by far, and in every single way.
+SLASHTHEM reverted every single SLEX change that can be attributed to Amy, even her obvious bugfixes, including the monster spawn increase timeout error and the martial arts error. As a result, SLASHTHEM has those errors again even though I fixed them.
+SLASHTHEM removed the transvestite role, allegedly "because Soviet could not think of a good quest design" although we all know why he really removed it: because of his prudery.
+If you REALLY insist on playing SLASHTHEM instead of SLEX, you have a clear choice: pick the soviet race in SLEX, because then you can enjoy the advantages of SLEX while many game rules behave like SLASHTHEM.
+Fake artifact weapons and armor are often highly enchanted. Beware, they can also be negatively enchanted, so test their BUC first.
+Artifacts can be generated cursed, just like any other item. Don't put on everything you find if you don't know whether it's cursed!
+Remember that some of SLEX's artifacts have evil side effects. Just because Arabella's Warding Hoe passes the pet test doesn't mean that wielding it is safe.
+Tools can be generated cursed. Just because you have the habit of putting on any blindfold you find immediately, doesn't mean that it's a wise idea in SLEX.
+Be careful when wielding unidentified gems, iron balls or chains. If they are cursed, they will weld themselves to your hand!
+Be sure to check the randomized appearances of your armor pieces. There are certain ones that will screw you over.
+Trying to identify an item can fail. But if you try repeatedly, you may get lucky and succeed in identifying it.
+Amulets, rings and armor pieces are much more likely to be successfully identified if you put them on first and expose yourself to their potentially harmful effects, although that can obviously be dangerous.
+About the identification minigame, you have two choices: be bold and use/wear-test sometimes, or end up playing through the entire game not knowing what most of your stuff is.
+If you're sacfesting and the altar disappears before you get an artifact gift, it's the RNG telling you that you're not getting an artifact from that particular altar and you should move on instead of complaining. Artifact gifts are not guaranteed!
+If you're trying to tame a wounding knight with command undead, keep failing, and end up weak from hunger with no food, better move on and secure a source of nutrition rather than risking death by starvation!
+If your doppelganger ends up losing intrinsic polymorph control to a wand of remove resistance, you should try to find a ring of polymorph control soon or just swallow your pride and play without polycontrol for a while.
+If you get the superscroller, and Amy watches your game and tells you to look everywhere so you can disarm it and stop the effects, do it. In any case DON'T LEAVE THE LEVEL UNTIL YOU FOUND IT.
+Don't fight thick farting girls in melee combat unless you're massively overleveled. And don't let the fact that they're only base level 6 fool you - they will mop the floor with you.
+The Coure is a VERY dangerous level 1 monster. Unless you have an absurd amount of skill in your weapon and equipment that boosts to-hit, you'll probably never even land a single hit.
+The xyloman is a rather hard-hitting, fast early game monster.
+They say that the Seven Deadly Sins wait for you on the vibrating square level.
+Just because you got the Amulet of Yendor doesn't mean you're invincible. All it takes to end your run is to get undressed by a foocubus, skip past the messages because you're impatient, and getting breathed on by a black dragon.
+Don't melee gray F glyphs. This is especially true if your race gets several attacks per turn. Especially, don't skip past the messages if you do melee them!
+Invisible shopkeepers don't want to be bumped into. If you encounter a shop and the expected NPC greets you but isn't visible, it doesn't mean he's not there, and thus, if you walk around randomly he'll help you get your possessions identified.
+If you get engulfed on a lava level and cannot survive on lava, remember where the lava is and don't kill the engulfer while it is on a lava square!

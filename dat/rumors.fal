@@ -2649,3 +2649,110 @@ They say that contamination will damage your wisdom over time, but if you alread
 They say that contamination can be healed by quaffing a potion of full healing or casting the spell of remove curse.
 They say that amnesia can make you forget contamination, no matter how contaminated you have been.
 They say that fatal contamination starts with 5000 points on your contamination counter, but only has cosmetic effects anyway so you don't really need to care.
+Hangup cheating is bad. Don't do it, or the game will instantly kill you.
+If you hang up while at "You die from your illness.", your account on the server will be banned for a day for trying to hangup cheat.
+Monsters are aggravated if an angel that ever had a negative alignment record strolls through the dungeon.
+They say that if the elder priest tentacles to tentacle you, your character is always killed instantly.
+They call the elder priest's tentacle attack "LarienTelrunya's Most Favorite DNetHack Feature".
+Pets whose base level is 50 or higher will untame with a 1 in 10 chance per turn.
+If you get one of jonadab's script-generated monsters as a pet, it will never be untamed no matter how much you abuse it.
+A pet that spontaneously turns traitor cannot be tamed via thrown food or charm monster spells anymore. The only way to tame it is to throw a high-heeled shoe at its face.
+Ski heels can supposedly walk on "snow", but there is no snow terrain in this game.
+Dipping objects that are vulnerable to fire into lava is possible. While scrolls will burn up instantly, spellbooks will require four consecutive dips.
+Hallucination never crashes the curses interface! Seriously! The egg timer bug is just a figment of your imagination!
+Being attacked by wereheels can make you into one of them, and then you instantly die if you take off your high-heeled footwear or allow them to get stolen.
+If you steal from shops, kop cubes will be spawned, but they spawn the same weakling level 1 kops like everything else, so don't worry.
+Firing a bow, sling or similar weapon at point blank range will greatly reduce your to-hit, but the damage you deal will be the same.
+Monsters with the flickerer egotype are not immune to melee and missile weapons. You have a 5% chance of damaging them anyway.
+Sling rocks are plentiful ammo and, if you're wearing a ring of increase damage, will be capable of bringing down even the mightiest foes in a few volleys!
+Terror halls are a cakewalk if you just equip a blindfold, since then all those confusion gaze monsters can bite you.
+Don't shit your pants if you have a void room on the dungeon level you're on. Just use that wand of fire and kill the weak ghosts!
+If you encounter a feminism room, the best course of action is to teleport right smack in the middle of the girls and let them swarming swing bundle you.
+Standing on grassland makes your techniques become available again more quickly.
+Standing on grassland increases your AC since monsters have difficulties hitting you.
+If a boss room doesn't spawn a boss on creation, lucky you! It means you won't have to fight a boss there.
+Doomed barracks are a good source of shotguns and energy guns. You just need to grab them, since the previous owners have long since passed away.
+The diver paradise special room has the interesting quirk that swimming in the water does not make your inventory wet.
+Shifting sand is a terrain type that kills you slowly, but I walked on it for 50 turns straight and survived with no aftereffects.
+The nuclear chamber is a harmless special room. It even has decontamination "traps" that you can trigger to cure your contamination!
+You can dig through grave walls by simply moving into them repeatedly, and occasionally gold or treasure chests are hidden underneath.
+Tunnel tiles block movement for flying and levitating characters and are always undiggable.
+Farmland terrain can block your movement, but here's a hint: try using #force on it. If it works on the first try, great! The farmland is now gone. But if it doesn't work, don't bother trying repeatedly.
+It's possible to climb mountain terrain, but if you aren't successful after 10 attempts, don't bother. It means that your strength is too low to climb it.
+Crystal water is water that clings from the ceiling, but if you don't fly or levitate, each turn you spend underneath it has 1% chance of it coming down on you, resulting in instant drowning.
+Moorland terrain is harmless to swim in, except if you stay in it for too long, then you become short-sighted for 100 turns.
+Don't worry if you accidentally drop your items in moorland. Just pick them up again - it doesn't matter if you can't actually see the items, just press comma while on the right tile!
+Swimming in a urine lake will melt you and your inventory, so you shouldn't ever do that unless you really hate yourself.
+If you can fly, you can freely move over styx rivers. Ignore the stupid warning message, it's only there to scare little children.
+In order to draw on the powers of a pentagram, use #invoke. This has a 1% chance of killing you outright, and a 0.00001% chance of teleporting you on the high altar on the Astral Plane with the Amulet of Yendor.
+Quaffing from a well is a bad idea, since it can cause several monsters to come out of a portal.
+The poisoned well is not dangerous at all; you should in fact quaff from it repeatedly for a chance of gaining intrinsic poison resistance.
+If you stand on a wagon tile, there's a 1% chance per turn for the wagon to spontaneously roll over you, which is an instadeath and destroys your entire inventory in case you have life saving.
+Stepping on a burning wagon has a chance of giving you intrinsic fire resistance, so you should do so repeatedly.
+If you step on a wooden table while levitating, you rise up through the ceiling to the level above. Don't do that on dungeon level 1 without the Amulet of Yendor or the game will end prematurely.
+If you #sit on a carved bed, you will fall asleep for 2400 turns, and monsters cannot wake you from that sleep.
+Stepping on a straw mattress tile is something you should always do. Every mattress opens a hidden passage on the current level that can't be discovered in any other way.
+Snow terrain is completely impassable unless you wear ski heels or winter stilettos or other boots equipped for walking on it. Even flying does not help.
+Ash terrain is solidified lava, but don't worry, there is no way for it to turn back into lava.
+Walking on sand can cause you to be caught in a sandstorm, which buffets you around and can push you into dangerous shifting sand tiles.
+They say that walking on paved floor can make you fall down and break your legs, unless you wear high heels.
+If you stand on a highway tile, nothing happens. But if a monster stands on it, its movement speed is increased by a factor 3 and its melee attacks autohit you.
+They say that if you spend too many turns on a nether mist tile, it turns into a fart trap.
+They say that nether mist dissipates if you polymorph into a farting monster while standing on it and then use #monster.
+Hint: If you can fly or levitate, actively seek out stalactite tiles and #loot them to convert them into ammo.
+Bubbles will allow you to stun monsters if you use melee attacks while both you and the monster are standing in one.
+They say that rain clouds will make your entire inventory wet, so you should put away rustprone things that you want to keep. Put them in an ice box.
+If you use a staircase and end up surrounded by monsters on the new level, the staircase will be blocked until you killed all the monsters, you cheater.
+Compared to SLASH'EM, command and summon undead spells have been boosted in slex and will tame undead in a bigger radius or summon more undead pets at once.
+If you anger the watchmen in town levels, they will summon soldiers and arch-liches. Don't say I didn't warn you.
+The player walking through walls will now allow monsters to fire ray wands through walls.
+Chest and door traps can surround the player with new traps, but there will be a message if that happens.
+SLASH'EM Extended is more evil than GruntHack.
+The elder priest in dnethack is less evil than SLASH'EM Extended's Cthulhu.
+The evil patch ideas implemented in Nethack Fourk are less evil than the ones in SLASH'EM Extended.
+AmyBSOD purposefully screws over the gameplay with every new version, since she loves it if players use old, outdated and buggy versions.
+AmyBSOD's NetHack variant is very evil, so it's a surprise that she herself is such a nice person.
+If one of your invocation tools becomes prime cursed or worse, you might as well commit sudoku or hari kari since the game is now almost unwinnable unless you cast remove curse 2000 times in a row.
+There's a trap called "hyperbluewall trap", which makes all walls blue. This is a purely visual effect and does not affect gameplay.
+The devices skill can only be trained by zapping a wand, which is actually quite stupid design considering how many zaps it takes to enhance the skill.
+Black hashes are loudspeakers. Identify them by farlooking, then dig them away with your pick-axe.
+Fake artifacts resist enchant weapon/armor scrolls, so if you want to get a +7 item, use another one instead.
+They say that the only guaranteed candles in the game are in Izchak's shop. There is no other place where they're guaranteed to spawn, so better save up the ones you got from Minetown!
+They say that Rodney now has shops in his tower. Genocide all mimics first to increase the odds of getting good items there!
+Riding a very fast monster, or polymorphing into a very fast one, will give you extra speed beyond the monster's natural speed if your skill is at least Expert.
+If you're unlucky enough to have your wish fail, and Rodney isn't awake yet, he will wake up prematurely. Good luck (literally), you'll need it!
+They say that AmyBSOD dedicates more time to ToME-SX than SLASH'EM Extended.
+If you play the prostitute or kurwa role, having sex with a monster will give that monster a random STD.
+The kurwa is an easy role.
+Reaching experience level 12 as a kurwa can be done in your sleep, it's really too easy!
+One of the main weaknesses of the kurwa role is that she can get paralyzed by monsters with claw attacks, but thankfully she can't be paralyzed again while already paralyzed.
+Overenchanting an artifact will set it to -20 and put an ancient Morgothian curse on it, which will make you wish it just evaporated like in vanilla instead.
+If you cause conflict for a prolonged amount of time, your food consumption per turn will increase, eventually reaching a point where you just starve instantly even if you were satiated one turn earlier.
+The wand of remove resistance is so unfair that AmyBSOD should remove it from the game.
+Truck ghosts are way too powerful considering how early they can spawn.
+The "ugod" monster was so successful at 0wning player characters that Amy decided to remove them from the game, and now they no longer exist.
+They say that the nasty head spike attack used by uvuudaums and certain other monsters will always disintegrate your helmet, or you if you're not wearing one.
+There's a trap that forces you to walk like a grid bug when triggered. But you can still attack, zap etc. at a diagonal while under the effect.
+You can endlessly tame undead monsters with a blessed book of the dead just like in vanilla.
+While hallucinating, the game will tell you that you're already stoned if a cockatrice hisses, but that's a fake message and you silently get turned to stone anyway! Eat that lizard corpse, FAST!
+Fake artifact weapons and armor are often highly enchanted. You should always put them on immediately since they're never generated cursed.
+Artifacts cannot be generated cursed, and are always safe to wear.
+In the land of SLEX, artifacts are always beneficial. If you really want to make sure, test them on an altar first, but I can assure you that wearing Jana's Fairness Cup will have strictly positive effects.
+SLEX kept the vanilla feature where tools are always generated uncursed, so that random blindfold you found on the floor? Unless it's from a bones level, putting it on is always safe.
+Cursed gems, iron balls or chains will weld themselves to your hand if wielded, but randomly generated ones are guaranteed to be uncursed.
+Some randomized appearances of armor pieces have special effects when worn, but all of them are strictly beneficial so it's no big deal if you fail to check them.
+Trying to identify an item may fail. If that happens, stop trying - that particular item will always resist. Try to identify something else instead.
+If your amulet or ring fails to get identified, just try repeatedly. In any case, don't put it on before you know what it does!
+You never need to wear-test armor or read-test scrolls in this game. Just be patient and you'll get more than enough identify scrolls to identify everything, despite the items being able to resist!
+If you're sacfesting and the altar disappears before you get an artifact gift, you should write a long, convoluted rant (at least 10 pages in length) and post that on AmyBSOD's user page to show that stupid bitch what you think of that bullshit mechanic.
+If you're trying to tame a wounding knight with command undead, keep failing, and end up weak from hunger with no food, you should use #quit. Doing so will definitely make you a better player.
+If your doppelganger ends up losing intrinsic polymorph control to a wand of remove resistance, you should ragequit SLASH'EM Extended, tell Amy that you'll never play her game again, and finish it up by calling her out for "stalking your Facebook account".
+If you get the superscroller, and Amy watches your game and tells you to look everywhere so you can disarm it and stop the effects, disregard her false advice and just get off the level. Amy has no clue about her own game anyway and only tries to sound like a fucking smartass!
+Don't freak out if you run into a thick farting girl; they're only level 6, and unless your character is also only level 6, you can simply beat her up fair and square.
+Coures are one of the lowest-level angelic beings, and easily dealt with. Just whack them once or twice with your favorite melee weapon and they die.
+The xyloman is a harmless monster that poses literally no threat.
+They say that the Seven Deadly Sins get summoned once you commit them, or as soon as you kill Rodney.
+If you get the Amulet of Yendor, you've proven that you're invincible. Freely skip past all the annoying battle spam on the ascension run, you can't die.
+If you see a gray F glyph, attack it in melee repeatedly. Don't pay attention to the messages, they're only trying to distract you anyway.
+Invisible shopkeepers let you enter their shops normally, and if you would have moved on the square they're standing on, they will quickly move out of the way.
+Engulfers on lava levels will make sure to expel you on a non-lava tile, so you don't have to fear an instadeath there.
