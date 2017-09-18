@@ -2166,8 +2166,16 @@ degradeagain:
 
 	unfixable_trbl = unfixable_trouble_count(TRUE);
 
-	/* collect attribute troubles */
+	/* Amy edit: I decided that it would be nice if unicorn horns always tried to fix status effects first,
+	 * since you don't care about that one lousy dexterity point if you're fighting Famine and he's stunlocking you.
+	 * Also, attribute troubles can be permanently not-fixed in slex, and you might not want that either, yet you
+	 * probably still want to use the unihorn to get rid of status problems, so there.
+	 * In Soviet Russia it's par for the course if you get that dexterity point while deathly sick
+	 * and then die from the sickness, naturally. */
 
+	if (trouble_count && !issoviet) goto fixthings;
+
+	/* collect attribute troubles */
 
 	for (idx = 0; idx < A_MAX; idx++) {
 	    val_limit = AMAX(idx);
@@ -2182,6 +2190,7 @@ degradeagain:
 	    unfixable_trbl += (AMAX(idx) - val_limit);
 	}  
 
+fixthings:
 	if (trouble_count == 0) {
 	    pline(nothing_happens);
 	    return;
