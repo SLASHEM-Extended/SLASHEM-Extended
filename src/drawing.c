@@ -1311,7 +1311,7 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_dungwall),	/* dungwall */
 	0xe0,	/* S_water:	meta-\, diamond */
 	g_FILLER(S_watertunnel),	/* watertunnel */
-/*50*/	0xf7,	/* S_crystalwater:	meta-w, approx. equals */
+/*50*/	0xe0,	/* S_crystalwater:	meta-w, approx. equals */
 	0xe0, /* moorland */
 	0xe0, /* urinelake */
 	0xe0, /* shiftingsand */
