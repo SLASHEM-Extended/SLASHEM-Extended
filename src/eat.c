@@ -1017,9 +1017,13 @@ register int pm;
 		    /* It so happens that since we know these monsters */
 		    /* cannot appear in tins, victual.piece will always */
 		    /* be what we want, which is not generally true. */
-		    if (revive_corpse(victual.piece, FALSE))
-			victual.piece = (struct obj *)0;
-		    return;
+			/* Amy edit: no longer the case. Black hole blobs exist now. Segfaults ahoy. */
+
+			if (victual.piece) {
+			    if (revive_corpse(victual.piece, FALSE))
+				victual.piece = (struct obj *)0;
+			    return;
+			}
 		}
 		/* Fall through */
 	    default:
