@@ -1,5 +1,15 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy
 
+2.0.7
+- Added missing descriptions for some new monster traits that were added in previous versions.
+- Shoplifting can increase the cop wanted level by an amount relative to how much the stolen merchandise cost.
+- Fixed a segfault when eating a tin of black hole blob.
+- Crystal water uses the correct glyph in DECgraphics mode now.
+- Ctrl-P at a prompt really doesn't work while under certain nasty trap effects (it used to be possible to circumvent those trap effects to a certain degree!).
+- Unicorn horns fix status effects first, and only if there are none that can be fixed, it will try to fix lost attribute points.
+- Bundle monsters should have specific melee attack messages, but I found out they aren't being displayed since the attack types don't match. Maybe I'll add them later.
+- Switched to a different method of determining the message on a t-shirt, making them truly random. This is done by adding an extra variable to items, hence the savebreak. Any item that gets generated will have this variable set to a random number, but for now it's only relevant for shirts.
+
 2.0.6
 - Hanging up at a pending instadeath but before the game actually declares the player dead will instakill the player upon restoring.
 - The #explore command can be used in wizard mode to switch to explore mode.
