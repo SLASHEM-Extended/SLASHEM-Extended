@@ -4379,6 +4379,15 @@ hitmu(mtmp, mattk)
 			if (mtmp->data == &mons[PM_ROPE_GOLEM] && Breathless) {
 			    You("are being strangled.");
 			    dmg = (dmg+1) / 2;
+			} else if (mtmp->data == &mons[PM_BUNDLE_MONSTER]) {
+			    You("are being bundled.");
+			    dmg = (dmg+1) / 2;
+			} else if (mtmp->data == &mons[PM_CUDDLE_MONSTER]) {
+			    You("are being cuddled.");
+			    dmg = (dmg+1) / 2;
+			} else if (mtmp->data == &mons[PM_FLEECE_MONSTER]) {
+			    You("are being fleeced.");
+			    dmg = (dmg+1) / 2;
 			} else
 			    You("are being %s.",
 				    (mtmp->data == &mons[PM_ROPE_GOLEM])
