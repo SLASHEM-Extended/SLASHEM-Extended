@@ -563,6 +563,11 @@ struct monst *shkp;
 
 	/* by this point, we know an actual robbery has taken place */
 	eshkp->robbed += total;
+
+	/* it was annoying that the total was completely irrelevant unless you somehow wanted to compensate the shopkeeper,
+	 * and therefore I decided to have it influence the kop wanted level --Amy */
+	if (!rn2(5) && (total > 0)) u.copwantedlevel += rnz(total);
+
 	You("stole %ld %s worth of merchandise.",
 	    total, currency(total));
 	if (!Role_if(PM_ROGUE)) {     /* stealing is unlawful */
