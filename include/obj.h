@@ -127,6 +127,8 @@ struct obj {
 	unsigned oeaten;	/* nutrition left in food, if partly eaten */
 	long age;		/* creation date */
 
+	int shirtmessage;	/* o_id is not random enough for me. --Amy */
+
 	uchar onamelth;		/* length of name (following oxlth) */
 	Bitfield(selfmade,1);	/* made with chemistry set or magic marker */
 	/*short*/long oxlth;		/* length of following data */

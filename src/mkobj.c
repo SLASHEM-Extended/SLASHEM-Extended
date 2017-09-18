@@ -1586,6 +1586,10 @@ boolean artif;
 	otmp->altmode = WP_MODE_AUTO;
 	otmp->fakeartifact = 0;
 	otmp->enchantment = 0;
+
+	otmp->shirtmessage = rnd(1000000);
+	/* for use in read.c (shirts only) - since items can be polymorphed, set it for everything, including non-shirts */
+
 	if ((otmp->otyp >= ELVEN_SHIELD && otmp->otyp <= ORCISH_SHIELD) ||
 			otmp->otyp == SHIELD_OF_REFLECTION)
 		otmp->dknown = 0;

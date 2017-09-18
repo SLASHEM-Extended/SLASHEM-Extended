@@ -735,6 +735,22 @@ doread()
 	"Ranged chars are OP!", /* ditto */
 	"Fuck ugods!", /* ditto */
 	"If you move and shoot at the same time I'll call you out for cheating", /* ditto */
+	"Yes, wands of remove resistance can steal your intrinsic polymorph control. Deal with it, n00b!",
+	"So you're calling me the 'squatter' of SLASHEM Extended and accuse me of 'stalking' your Facebook account? Well, sue me! :-P",
+	"No, I'm not looking to gain the 'respect' of players who ragequit over something minor like being zapped with a wand of remove resistance. Play my variant or bugger off :P",
+	"I know the difference between cone, block and wedge heels!",
+	"I Hate Boys", /* Christina Aguilera */
+	"I'm a primadonna, I can rule the world!", /* ditto */
+	"I'm the sexiest bitch in this dungeon!",
+	"I have grand master high heels skill! What about you?",
+	"My riding skill is at Grand Master and I'm riding a speed 72 cockatrice. I bet I can outspeed your car.",
+	"omg chevalier detects BUC omg that role is OP", /* by dolores */
+	"I beat Elona with a snail tourist and only got killed by cleaners twice",
+	"I can play the piano in Vernis without getting my skull split by Loyter!",
+	"I'm a 4chan rlg memeposter!",
+	"FeAr MiNe HoMo KoCk BaBe", /* DCSS - yes, it really allows you to have characters that will shortcut to those words */
+	"I dEfEaTeD aNdOr DrAkOn AnD wEnT iNsAnE", /* ADOM */
+	"Why don't you shove a dildo golem up yourself?", /* by Crawldragon */
 
 	    };
 	    char buf[BUFSZ];
@@ -747,7 +763,7 @@ doread()
 	    u.uconduct.literate++;
 	    if(flags.verbose)
 		pline("It reads:");
-	    strcpy(buf, shirt_msgs[scroll->o_id % SIZE(shirt_msgs)]);
+	    strcpy(buf, shirt_msgs[scroll->shirtmessage % SIZE(shirt_msgs)]);
 	    erosion = greatest_erosion(scroll);
 	    if (erosion)
 		wipeout_text(buf,
