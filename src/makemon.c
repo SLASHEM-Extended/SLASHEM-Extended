@@ -5384,6 +5384,9 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE));
 			(void) mongets(mtmp, rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE));
 		}
+		if (mtmp->data == &mons[PM_DILDO_GOLEM]) {
+			 (void) mongets(mtmp, VIBROBLADE);
+		}
 
 		break;
 
@@ -17241,6 +17244,7 @@ int type;
 		case PM_ANIMATED_TORCH: return 50;
 		case PM_PLUSH_BEAR_GOLEM: return 50;
 		case PM_INTERCEPTOR_DOLL: return 50;
+		case PM_DILDO_GOLEM: return 100;
 
 		case PM_FLAME_ATRONACH: return 50;
 		case PM_FROST_ATRONACH: return 100;
@@ -17264,6 +17268,7 @@ int type;
 		case PM_EEL_GOLEM: return 80;
 		case PM_STONE_SOLDIER: return 80;
 		case PM_BRONZE_GOLEM: return 80;
+		case PM_RUST_GOLEM: return 80;
 		case PM_BANANA_PEEL_GOLEM: return 80;
 		case PM_WOOD_GOLEM: return 100;
 		case PM_WOODEN_GOLEM: return 100;
@@ -17389,6 +17394,7 @@ int type;
 		case PM_GRAY_STONE_GOLEM: return 180;
 		case PM_STONE_STATUE: return 180;
 		case PM_GLASS_GOLEM: return 140;
+		case PM_FIBERGLASS_INSULATION_GOLEM: return 140;
 		case PM_SERVANT_OF_THE_UNKNOWN_GOD: return 140;
 		case PM_HEAD_OF_THE_UNKNOWN_GOD: return 140;
 		case PM_BODY_OF_THE_UNKNOWN_GOD: return 140;
