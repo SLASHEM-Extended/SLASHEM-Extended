@@ -6376,6 +6376,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"The have returned to percentns lair.",
 	"May is urf.",
 	"Incoming message for Player 1. The message is from 'Marike'. It reads: 'I have very cute fingernails!'",
+	"Incoming message for Player 1. The message is from 'Jannik'. It reads: 'I'm faster than all others.'",
 
 };
 
