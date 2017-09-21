@@ -6375,6 +6375,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Hannes'. It reads: 'You murdered a policeman. The sentence is death. I will shoot you on sight.'",
 	"The have returned to percentns lair.",
 	"May is urf.",
+	"Incoming message for Player 1. The message is from 'Marike'. It reads: 'I have very cute fingernails!'",
 
 };
 
