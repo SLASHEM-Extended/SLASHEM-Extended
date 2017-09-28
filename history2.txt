@@ -1,6 +1,7 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy
 
 2.0.7
+- Fixed the long-standing bug where hallucinated appearances for tools would cause obj_is_local segfault panics (corrupting the savegame beyond repair) when the temporary hallucinated tool was a container that contained a timed object (e.g. an egg). This bug exists in SLASH'EM too.
 - Added missing descriptions for some new monster traits that were added in previous versions.
 - Shoplifting can increase the cop wanted level by an amount relative to how much the stolen merchandise cost.
 - Fixed a segfault when eating a tin of black hole blob.
