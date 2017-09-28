@@ -182,6 +182,16 @@
 # endif
 #endif
 
+/* The curses version on Windows WILL NOT WORK without this. However, due to the numerous issues,
+ * we don't want curses to be the default if tty is also available. --Amy */
+#ifdef CURSES_GRAPHICS
+# ifndef DEFAULT_WINDOW_SYS
+#  ifndef TTY_GRAPHICS
+#   define DEFAULT_WINDOW_SYS "curses"
+#  endif
+# endif
+#endif
+
 #ifndef DEFAULT_WINDOW_SYS
 # define DEFAULT_WINDOW_SYS "tty"
 #endif
