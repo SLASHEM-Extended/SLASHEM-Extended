@@ -7435,6 +7435,11 @@ obj_is_local(obj)
 
 	/* The BSOD2 check is an ugly kludge that shall serve as a way for me to run tests on the hardfought server --Amy */
 
+	/* update: The root of that bug was in objnam.c, hallucination would not check whether a hallucinated tool
+	 * is free of contents. The eggs or whatever was in those containers would get initialized with timers,
+	 * then the container holding them would disappear, but the egg timer wasn't deleted, leading to crashes.
+	 * It has now been fixed, but just in case there are any other obj_is_local errors, the above fixes are preserved. */
+
     return FALSE;
 }
 
