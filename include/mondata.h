@@ -252,6 +252,18 @@
 				  (ptr) == &mons[PM_FIRE_VORTEX]) ? 3 : \
 				 ((ptr) == &mons[PM_FIRE_ELEMENTAL]) ? 2 : \
 				 ((ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_MOLD]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_GROWTH]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_FUNGUS]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_PATCH]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_STALK]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_MUSHROOM]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_SPORE]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_COLONY]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_FORCE_FUNGUS]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_FORCE_PATCH]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_WARP_FUNGUS]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINESCENT_WARP_PATCH]) ? 3 : \
 				 ((ptr) == &mons[PM_FIRE_VAMPIRE])? 2 : \
 				 ((ptr) == &mons[PM_GLOWING_DRACONIAN]) ? 2 : \
 				 ((ptr) == &mons[PM_FLAMING_SPHERE]) ? 1 : \

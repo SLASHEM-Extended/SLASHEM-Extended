@@ -4224,6 +4224,7 @@ register struct monst *mtmp;
 			else if (mm == PM_WEREPEEPTOE) (void)mongets(mtmp, LEATHER_PEEP_TOES);
 			else if (mm == PM_WERECOMBATSTILETTO) (void)mongets(mtmp, COMBAT_STILETTOS);
 			else if (mm == PM_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
+			else if (mm == PM_SLAP_HEELED_SANDAL_BOOT) (void)mongets(mtmp, HIGH_HEELED_SANDAL);
 
 			if (mm == PM_ATHENA_GUARDIAN) (void)mongets(mtmp, HEAVY_HAMMER);
 			if (mm == PM_ATHENA_GIANT) (void)mongets(mtmp, MALLET);
@@ -9242,6 +9243,20 @@ register struct	monst	*mtmp;
 	}
 
 	if (ptr == &mons[PM_THICK_FARTING_GIRL]) {
+
+		mtmp->fartbonus = 9;
+		mtmp->crapbonus = 10;
+
+	}
+
+	if (ptr == &mons[PM_FAT_FARTING_GIRL]) {
+
+		mtmp->fartbonus = 9;
+		mtmp->crapbonus = 10;
+
+	}
+
+	if (ptr == &mons[PM_EVEN_FATTER_FARTING_GIRL]) {
 
 		mtmp->fartbonus = 9;
 		mtmp->crapbonus = 10;
@@ -17404,6 +17419,7 @@ int type;
 		case PM_AQUATIC_GOLEM: return 190;
 		case PM_BONE_GOLEM: return 200;
 		case PM_ANIMATED_BLOCK_HEELED_COMBAT_BOOT: return 200;
+		case PM_SLAP_HEELED_SANDAL_BOOT: return 200;
 		case PM_WEREBLOCKHEELEDCOMBATBOOT: return 200;
 		case PM_ANIMATED_IRREGULAR_HEEL: return 233;
 		case PM_SAURON_THE_IMPRISONED: return 200;
