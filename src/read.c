@@ -7159,6 +7159,7 @@ create_particular()
 	    getlin("Create what kind of monster? [type the name or symbol]",
 		   buf);
 	    bufp = mungspaces(buf);
+
 	    if (*bufp == '\033') return (struct monst *)0;
 	    /* allow the initial disposition to be specified */
 	    if (!strncmpi(bufp, "tame ", 5)) {
@@ -7210,6 +7211,45 @@ create_particular()
 	return mtmp;
 }
 #endif /* WIZARD */
+
+/* For GM mode (Game Master mode): this allows Amy to interfere with user's games that are played online.
+ * She can then send mail to the player that causes a monster specificed by her to spawn somewhere on the level :D */
+void
+gmmode_genesis(specifictype)
+const char *specifictype;
+{
+	char buf[BUFSZ], *bufp, monclass = MAXMCLASSES;
+	int which, i;
+	struct permonst *whichpm;
+	struct monst *mtmp = (struct monst *)0;
+
+	which = urole.malenum;      /* an arbitrary index into mons[] */
+	bufp = specifictype;
+	if (*bufp == '\033') return;
+
+	/* decide whether a valid monster was chosen */
+	if (strlen(bufp) == 1) {
+		monclass = def_char_to_monclass(*bufp);
+		if (monclass != MAXMCLASSES) goto okay;	/* got one */
+	} else {
+		which = name_to_mon(bufp);
+		if (which >= LOW_PM) goto okay;		/* got one */
+	}
+	/* not a valid one... */
+	pline("The Amy tried to spawn an invalid monster (%s).", bufp);
+	return;
+
+okay:
+
+	(void) cant_create(&which, FALSE);
+	whichpm = &mons[which];
+	for (i = 0; i <= multi; i++) {
+		if (monclass != MAXMCLASSES)
+		    whichpm = mkclass(monclass, 0);
+		mtmp = makemon(whichpm, 0, 0, MM_ANGRY);
+	}
+
+}
 
 #endif /* OVLB */
 

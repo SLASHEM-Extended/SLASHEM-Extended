@@ -953,6 +953,8 @@ struct you {
 
 	int copwantedlevel;	/* for hot pursuits, i.e. when you've stolen from a shop */
 
+	int gmmailsreceived;	/* in game master mode, track how often I spawn monsters for you */
+
 	int bedsleeping;	/* used to prevent you from constantly sleeping */
 	int shiftingsandsinking;	/* to instakill you if you stand in shifting sand for too long */
 

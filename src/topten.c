@@ -1519,8 +1519,9 @@ gamemode_strcode()
 	if (flags.blindfox) sprintf(eos(string), "blindfox");
 	if (flags.uberlostsoul) sprintf(eos(string), "uberlostsoul");
 	if (flags.lostsoul && !(flags.uberlostsoul)) sprintf(eos(string), "lostsoul");
+	if (flags.gmmode) sprintf(eos(string), "gmmode");
 
-	if (!(flags.gehenna) && !(flags.dudley) && !(flags.iwbtg) && !(flags.hippie) && !(flags.blindfox) && !(flags.uberlostsoul) && !(flags.lostsoul)) sprintf(eos(string), "none");
+	if (!(flags.gehenna) && !(flags.dudley) && !(flags.gmmode) && !(flags.iwbtg) && !(flags.hippie) && !(flags.blindfox) && !(flags.uberlostsoul) && !(flags.lostsoul)) sprintf(eos(string), "none");
 
     return (string);
 }

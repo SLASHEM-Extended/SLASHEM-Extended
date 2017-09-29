@@ -719,7 +719,7 @@ bot2str(char *newbot2)
 		newbot2[0] = '\0';
 	if (bot2_abbrev < 1)
 		sprintf(nb = eos(newbot2), "%c%d ",
-		  oc_syms[COIN_CLASS],
+		  flags.gmmode ? monsyms[S_GNOME] : oc_syms[COIN_CLASS],
 #ifndef GOLDOBJ
 		u.ugold
 #else

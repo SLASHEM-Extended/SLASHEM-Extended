@@ -2182,6 +2182,7 @@ E boolean cant_create(int *, BOOLEAN_P);
 #ifdef WIZARD
 E struct monst *create_particular(void);
 #endif
+E void gmmode_genesis(const char *);
 
 /* ### rect.c ### */
 

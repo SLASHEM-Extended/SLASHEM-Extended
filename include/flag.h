@@ -50,6 +50,9 @@ struct flag {
 	boolean  female;
 	boolean  forcefight;
 	boolean  friday13;	/* it's Friday the 13th */
+
+	boolean  gmmessage;	/* if on, game master mode will tell you what monster got spawned */
+
 	boolean  groundhogday;	/* KMH -- February 2 */
 	boolean  help;		/* look in data file for info about stuff */
     boolean  hitpointbar; /* colourful hit point status bar */
@@ -129,6 +132,7 @@ struct flag {
 	boolean blindfox; 
 	boolean lostsoul; 
 	boolean uberlostsoul; 
+	boolean gmmode;
 
 #define NEW_MOON	0
 #define FULL_MOON	4

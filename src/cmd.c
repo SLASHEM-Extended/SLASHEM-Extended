@@ -2262,6 +2262,7 @@ boolean guaranteed;
 	if (flags.iwbtg) you_are("playing in IWBTG mode");
 	if (flags.blindfox) you_are("playing in blindfox mode");
 	if (flags.hippie) you_are("playing in hippie mode");
+	if (flags.gmmode) you_are("playing in game master mode");
 
 	if ((guaranteed || !rn2(10)) && u.uevent.uhand_of_elbereth) {
 	    static const char * const hofe_titles[3] = {
@@ -4322,6 +4323,12 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.gmmailsreceived) {
+		sprintf(buf, "received monster-summoning mail from AmyBSOD, the Game Master.");
+	    	sprintf(eos(buf), " (%d)", u.gmmailsreceived);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && TimeStopped) {
 		sprintf(buf, "stopped the flow of time.");
 	      sprintf(eos(buf), " (%d)", TimeStopped);
@@ -5385,6 +5392,7 @@ int final;
 	if (flags.iwbtg) dump(youwere, "playing in IWBTG mode");
 	if (flags.blindfox) dump(youwere, "playing in blindfox mode");
 	if (flags.hippie) dump(youwere, "playing in hippie mode");
+	if (flags.gmmode) dump(youwere, "playing in game master mode");
 
 	if (u.uevent.uhand_of_elbereth) {
 	    static const char * const hofe_titles[3] = {
@@ -7250,6 +7258,12 @@ int final;
 		sprintf(buf, "being chased by the kops.");
 		sprintf(eos(buf), " (%d)", u.copwantedlevel);
 		dump(youwere, buf);
+	}
+
+	if (u.gmmailsreceived) {
+		sprintf(buf, "received monster-summoning mail from AmyBSOD, the Game Master.");
+	    	sprintf(eos(buf), " (%d)", u.gmmailsreceived);
+		dump(youhad, buf);
 	}
 
 	if (TimeStopped) {

@@ -130,6 +130,7 @@ static struct Bool_Opt
 	{"flush", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
 	{"fullscreen", &iflags.wc2_fullscreen, FALSE, SET_IN_FILE},
+	{"gmmessage", &flags.gmmessage, TRUE, SET_IN_GAME},
 	{"guicolor", &iflags.wc2_guicolor, TRUE, SET_IN_GAME},
 	{"help", &flags.help, TRUE, SET_IN_GAME},
 	{"hilite_pet",    &iflags.wc_hilite_pet, TRUE, SET_IN_GAME},	/*WC*/
@@ -306,6 +307,7 @@ static struct Bool_Opt
 	{"iwbtg", &flags.iwbtg, FALSE, DISP_IN_GAME}, 
 	{"lostsoul", &flags.lostsoul, FALSE, DISP_IN_GAME}, 
 	{"uberlostsoul", &flags.uberlostsoul, FALSE, DISP_IN_GAME}, 
+	{"gmmode", &flags.gmmode, FALSE, DISP_IN_GAME}, 
 
 	{"hybridangbander", &flags.hybridangbander, FALSE, DISP_IN_GAME}, 
 	{"hybridaquarian", &flags.hybridaquarian, FALSE, DISP_IN_GAME}, 

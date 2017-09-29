@@ -7842,6 +7842,8 @@ u_init()
 
 	u.copwantedlevel = 0;
 
+	u.gmmailsreceived = 0;
+
 	u.bedsleeping = 0;
 	u.shiftingsandsinking = 0;
 
