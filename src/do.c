@@ -198,7 +198,8 @@ const char *verb;
 		    if (mtmp) {
 			if (!passes_walls(mtmp->data) && (!mtmp->egotype_wallwalk) &&
 				!throws_rocks(mtmp->data)) {
-			    if (hmon(mtmp, obj, 3) && !is_whirly(mtmp->data))
+				int dieroll = rnd(20);
+			    if (hmon(mtmp, obj, 3, dieroll) && !is_whirly(mtmp->data))
 				return FALSE;	/* still alive */
 			}
 			mtmp->mtrapped = 0;

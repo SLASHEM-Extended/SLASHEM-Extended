@@ -1571,6 +1571,7 @@ int thrown;
 	
 	int otyp = obj->otyp;
 	boolean guaranteed_hit = (u.uswallow && mon == u.ustuck && rn2(3));
+	int dieroll = rnd(20);
 
 	boolean stupidrock = 0;
 	if (obj->otyp == ROCK) stupidrock = 1;
@@ -2035,8 +2036,8 @@ int thrown;
 	    pline("(%i/20)", tmp);
 #endif
 
-	    if (tmp >= rnd(20)) {
-		if (hmon(mon,obj,thrown?thrown:3)) {  /* mon still alive */
+	    if (tmp >= dieroll) {
+		if (hmon(mon,obj,thrown?thrown:3,dieroll)) {  /* mon still alive */
 		    (void) cutworm(mon, bhitpos.x, bhitpos.y, obj);
 		}
 		exercise(A_DEX, TRUE);
@@ -2153,11 +2154,11 @@ int thrown;
 
 	} else if (otyp == HEAVY_IRON_BALL) {
 	    exercise(A_STR, TRUE);
-	    if (tmp >= rnd(20)) {
+	    if (tmp >= dieroll) {
 		int was_swallowed = guaranteed_hit;
 
 		exercise(A_DEX, TRUE);
-		if (!hmon(mon,obj,thrown?thrown:3)) {         /* mon killed */
+		if (!hmon(mon,obj,thrown?thrown:3,dieroll)) {         /* mon killed */
 		    if (was_swallowed && !u.uswallow && obj == uball)
 			return 1;	/* already did placebc() */
 		}
@@ -2167,9 +2168,9 @@ int thrown;
 
 	} else if (otyp == BOULDER) {
 	    exercise(A_STR, TRUE);
-	    if (tmp >= rnd(20)) {
+	    if (tmp >= dieroll) {
 		exercise(A_DEX, TRUE);
-		(void) hmon(mon,obj,thrown?thrown:3);
+		(void) hmon(mon,obj,thrown?thrown:3,dieroll);
 	    } else {
 		tmiss(obj, mon);
 	    }
@@ -2177,7 +2178,7 @@ int thrown;
 	} else if ((otyp == EGG || otyp == CREAM_PIE ||
 		    otyp == BLINDING_VENOM || otyp == FAERIE_FLOSS_RHING || otyp == ACID_VENOM || otyp == SEGFAULT_VENOM || otyp == TAIL_SPIKES) &&
 		(guaranteed_hit || ACURR(A_DEX) > rnd(25) || tmp >= rnd(20) )) { /* F this stupidity. Sorry. --Amy */
-	    (void) hmon(mon, obj, thrown?thrown:3);
+	    (void) hmon(mon, obj, thrown?thrown:3,dieroll);
 		if (issegfaulter && otyp == SEGFAULT_VENOM) { /* segfault panic! */
  			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (void *) obj);
 		} else if (obj->oartifact == ART_DO_NOT_THROW_ME) { /* uh-oh... you really messed up big time there. */

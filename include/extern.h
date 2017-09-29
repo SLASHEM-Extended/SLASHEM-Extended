@@ -2694,7 +2694,7 @@ E int attack_checks(struct monst *,BOOLEAN_P);
 E void check_caitiff(struct monst *);
 E schar find_roll_to_hit(struct monst *);
 E boolean attack(struct monst *);
-E boolean hmon(struct monst *,struct obj *,int);
+E boolean hmon(struct monst *,struct obj *,int,int);
 E int damageum(struct monst *,struct attack *);
 E void missum(struct monst *,int, int, struct attack *);
 E int passive(struct monst *,int,int,UCHAR_P);

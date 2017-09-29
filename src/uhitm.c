@@ -4,12 +4,12 @@
 
 #include "hack.h"
 
-STATIC_DCL boolean known_hitum(struct monst *,int,int *,struct attack *);
+STATIC_DCL boolean known_hitum(struct monst *,int,int *,struct attack *,int);
 STATIC_DCL void steal_it(struct monst *, struct attack *);
 #if 0
 STATIC_DCL boolean hitum(struct monst *,int,int,struct attack *);
 #endif
-STATIC_DCL boolean hmon_hitmon(struct monst *,struct obj *,int);
+STATIC_DCL boolean hmon_hitmon(struct monst *,struct obj *,int,int);
 STATIC_DCL int joust(struct monst *,struct obj *);
 STATIC_DCL void demonpet(void);
 STATIC_DCL boolean m_slips_free(struct monst *mtmp,struct attack *mattk);
@@ -27,7 +27,8 @@ STATIC_PTR void set_lit(int,int,void *);
 
 extern boolean notonhead;	/* for long worms */
 /* The below might become a parameter instead if we use it a lot */
-static int dieroll;
+/* and now it actually did */
+/* static int dieroll; */
 static int rolls[2][2];
 #define dice(x) rolls[0][x]
 #define tohit(x) rolls[1][x]
@@ -769,7 +770,7 @@ atk_done:
 }
 
 STATIC_OVL boolean
-known_hitum(mon, mattack, mhit, uattk)   /* returns TRUE if monster still lives */
+known_hitum(mon, mattack, mhit, uattk, dieroll)   /* returns TRUE if monster still lives */
 register struct monst *mon;
 int mattack;			/* Which weapons you attacked with -ALI */
 register int *mhit;
@@ -804,7 +805,7 @@ struct attack *uattk;
 		if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep)))
 		    u.uconduct.weaphit++;
 		dieroll = dice(UWEP_ROLL);
-		malive = hmon(mon, uwep, 0);
+		malive = hmon(mon, uwep, 0, dieroll);
 	    } else if (mattack & HIT_UWEP)
 		missum(mon, tohit(UWEP_ROLL), dice(UWEP_ROLL), uattk);
 	    if ((mattack & HIT_USWAPWEP) && malive && m_at(x, y) == mon) {
@@ -812,7 +813,7 @@ struct attack *uattk;
 	    	if (*mhit & HIT_USWAPWEP) {
 		    if (uswapwep) u.uconduct.weaphit++;
 		    dieroll = dice(USWAPWEP_ROLL);
-		    malive = hmon(mon, uswapwep, 0);
+		    malive = hmon(mon, uswapwep, 0, dieroll);
 	    	} else
 		    missum(mon, tohit(USWAPWEP_ROLL), dice(USWAPWEP_ROLL), uattk);
 	    }
@@ -927,7 +928,7 @@ struct attack *uattk;
 #endif
 	}
 	
-	malive = known_hitum(mon, mattack, &mhit, uattk);
+	malive = known_hitum(mon, mattack, &mhit, uattk, dieroll);
 	(void) passive(mon, mhit, malive, AT_WEAP);
 	/* berserk lycanthropes calm down after the enemy is dead */
 	if (!malive) repeat_hit = 0;
@@ -979,11 +980,12 @@ martial_dmg()
 }
 
 boolean			/* general "damage monster" routine */
-hmon(mon, obj, thrown)		/* return TRUE if mon still alive */
+hmon(mon, obj, thrown, dieroll)		/* return TRUE if mon still alive */
 struct monst *mon;
 struct obj *obj;
 int thrown;	/* 0: not thrown, 1: launched with uwep,
 		   2: launched with uswapwep, 3: thrown by some other means */
+int dieroll;
 {
 	boolean result, anger_guards;
 	struct obj *obj2;
@@ -994,7 +996,7 @@ int thrown;	/* 0: not thrown, 1: launched with uwep,
 			     mon->data == &mons[PM_WATCH_LIEUTENANT] ||
 			     mon->data == &mons[PM_WATCH_LEADER] ||
 			     mon->data == &mons[PM_WATCH_CAPTAIN]));
-	result = hmon_hitmon(mon, obj, thrown);
+	result = hmon_hitmon(mon, obj, thrown, dieroll);
 	if (mon->ispriest && !rn2(2)) ghod_hitsu(mon);
 
 	if (mon->data == &mons[PM_HUGE_OGRE_THIEF]) {
@@ -1027,10 +1029,11 @@ int thrown;	/* 0: not thrown, 1: launched with uwep,
 
 /* guts of hmon() */
 STATIC_OVL boolean
-hmon_hitmon(mon, obj, thrown)
+hmon_hitmon(mon, obj, thrown, dieroll)
 struct monst *mon;
 struct obj *obj;
 int thrown;
+int dieroll;
 {
 	int tmp, canhitmon = 0, objenchant;
 	struct permonst *mdat = mon->data;
@@ -5521,6 +5524,7 @@ register int tmp;
 	int	dhit = 0;
 	int 	mhit = 0; /* Used to pass the attacks used */
 	int 	tmp1, tmp2;
+	int dieroll = rnd(20);
 	boolean Old_Upolyd = Upolyd;
 	static const int hit_touch[] = {0, HIT_BODY, HIT_BODY|HIT_FATAL};
 	static const int hit_notouch[] = {0, HIT_OTHER, HIT_OTHER|HIT_FATAL};
@@ -5713,7 +5717,7 @@ use_weapon:
 			}
 
 			/* Enemy dead, before any special abilities used */
-			if (!known_hitum(mon,mhit,&dhit,mattk)) {
+			if (!known_hitum(mon,mhit,&dhit,mattk,dieroll)) {
 			    sum[i] = dhit | HIT_FATAL;
 			    break;
 			} else sum[i] = dhit;
@@ -5761,7 +5765,7 @@ use_weapon:
 				 mon->data == &mons[PM_MEDUSA]))
 			    break;
 		case AT_KICK:
-			if ((dhit = (tmp > (dieroll = rnd(20)) || (u.uswallow && rn2(3)) )) != 0) {
+			if ((dhit = ((tmp > dieroll) || (u.uswallow && rn2(3)) )) != 0) {
 			    int compat;
 
 			    if (!u.uswallow &&
@@ -6675,7 +6679,8 @@ uchar aatyp;
 					s_suffix(Monnam(mon)));
 				poisoned(buf, A_CON, mon->data->mname, 30);
 			}
-			
+			int dieroll = rnd(20);
+
 			if (tmp <= 0) tmp = 1;
 			tmptemp = tmp;
 			if (!(uwep->oartifact && artifact_hit(mon, &youmonst, uwep, &tmptemp,dieroll))) pline("Rattle/clink!");
