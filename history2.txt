@@ -1,6 +1,14 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy
 
 2.0.9
+- The Gehennom trophy can only be gotten by entering through the front entrance, which is the downstair on the Valley of the Dead.
+- If you die with 0 points, the game will call you a noob.
+- Fixed a bug where it was impossible to pick up an object on a crystal water tile. Also, it should no longer be possible to dip items into crystal water that you shouldn't be able to reach.
+- Levitator race player characters will pick up an entire stack of objects now if they use one of their tools or the telekinesis techniques.
+- The nopet option is ignored if the player uses the Kurwa role; they will start with a pet regardless of the option setting now.
+- Monsters in doomed barracks generate with less ammo.
+- The water bolt spell is now level 6 instead of 1, considering how powerful it is.
+- Tried again to fix the bug where tools being destroyed on use (e.g. unicorn horns randomly vanishing, but also the vanilla behavior of cursed crystal balls exploding) could produce a segfault because somehow arti_speaks was called even though it should not. However, I fear the bug may still exist...
 - Added GM mode (Game Master mode), which is turned on with the OPTIONS=gmmode line in the options file. It allows me (Amy) to send mail to the player to spawn monsters. Also added a gmmessage option that defaults to on; if turned off, the player will not be told which monsters I'm spawning.
 - Fixed the bug where once the player's Vorpal Blade decapitates a monster, it could then be thrown to automatically decapitate monsters as long as no further melee attacks are used.
 
