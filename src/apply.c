@@ -3144,7 +3144,7 @@ struct obj *obj;
 	    if (otmp && proficient) {
 		You("wrap your bullwhip around %s on the %s.",
 		    an(singular(otmp, xname)), surface(u.ux, u.uy));
-		if (rnl(6 - proficient) || pickup_object(otmp, 1L, TRUE) < 1)
+		if (rnl(6 - proficient) || pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1L, TRUE) < 1)
 		    pline(msg_slipsfree);
 		return 1;
 	    }
@@ -3339,6 +3339,21 @@ use_pole (obj)
 	struct monst *mtmp;
 	struct obj *otmp;
 	boolean fishing;
+	int levitatorskill = 1;
+
+	if (Race_if(PM_LEVITATOR) && !(PlayerCannotUseSkills)) {
+
+		switch (P_SKILL(P_POLEARMS)) {
+			default: levitatorskill = 1; break;
+			case P_BASIC: levitatorskill = 2; break;
+			case P_SKILLED: levitatorskill = 4; break;
+			case P_EXPERT: levitatorskill = 7; break;
+			case P_MASTER: levitatorskill = 10; break;
+			case P_GRAND_MASTER: levitatorskill = 20; break;
+			case P_SUPREME_MASTER: levitatorskill = 50; break;
+		}
+
+	}
 
 
 	/* Are you allowed to use the pole? */
@@ -3390,7 +3405,7 @@ use_pole (obj)
 	if (obj->otyp == FISHING_POLE) {
 	    fishing = is_pool(cc.x, cc.y);
 	    /* Try a random effect */
-	    switch (Race_if(PM_LEVITATOR) ? (1 + rnd(4) ) : rnd(6))
+	    switch (Race_if(PM_LEVITATOR) ? (rn2(levitatorskill) ? (1 + rnd(2)) : (1 + rnd(4)) ) : rnd(6))
 	    {
 		case 1:
 		    /* Snag yourself */
@@ -3417,7 +3432,7 @@ use_pole (obj)
 		    /* Snag an existing object */
 		    if ((otmp = level.objects[cc.x][cc.y]) != (struct obj *)0) {
 			You("snag an object from the %s!", surface(cc.x, cc.y));
-			pickup_object(otmp, 1, FALSE);
+			pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1, FALSE);
 			/* If pickup fails, leave it alone */
 			newsym(cc.x, cc.y);
 			return 1;
@@ -3647,7 +3662,7 @@ use_grapple (obj)
 	case 1:	/* Object */
 	    if ((otmp = level.objects[cc.x][cc.y]) != 0) {
 		You("snag an object from the %s!", surface(cc.x, cc.y));
-		(void) pickup_object(otmp, 1L, FALSE);
+		(void) pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1L, FALSE);
 		/* If pickup fails, leave it alone */
 		newsym(cc.x, cc.y);
 		return (1);
