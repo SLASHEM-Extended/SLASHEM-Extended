@@ -1194,6 +1194,10 @@ die:
 	 * smiling... :-)  -3.
 	 */
 	if (Frozen) pline("Your body shatters and melts into ice cubes."); /* Diablo 2 */
+
+	if (botl_score() == 0 && how < PANICKED)
+		pline("You didn't even score a single point. You noob!");
+
 	if (moves <= 1 && how < PANICKED)	/* You die... --More-- */
 	    pline("Do not pass go.  Do not collect 200 %s.", currency(200L));
 	else if (moves == 2 && how < PANICKED) {
