@@ -240,7 +240,7 @@ makedog()
 	int   pettype, petsym;
 	static int petname_used = 0;
 
-	if (preferred_pet == 'n') return((struct monst *) 0);
+	if (!Role_if(PM_KURWA) && (preferred_pet == 'n')) return((struct monst *) 0);
 
 	pettype = pet_type();
 
