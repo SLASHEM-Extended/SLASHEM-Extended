@@ -5334,8 +5334,9 @@ doapply()
 		nomul(0, 0);
 		return 0;
 	}
-	if (res && obj && obj->oartifact) arti_speak(obj);
 	nomul(0, 0);
+	if (!obj) return res;
+	if (res && obj && obj->oartifact) arti_speak(obj);
 	return res;
 }
 

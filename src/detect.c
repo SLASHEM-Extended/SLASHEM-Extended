@@ -1074,6 +1074,7 @@ struct obj *obj;
 	    useup(obj);
 	    obj = 0;	/* it's gone */
 	    losehp(rnd(30), "exploding crystal ball", KILLED_BY_AN);
+	    return;
 	    break;
 	}
 	if (obj) consume_obj_charge(obj, TRUE);
