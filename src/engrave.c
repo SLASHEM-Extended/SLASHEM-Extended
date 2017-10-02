@@ -4225,6 +4225,7 @@ static const char *epitaphs[] = {
 	"Maybe if I press this key a bit harder I'll hit for more damage next time.", /*Grasshopper*/
 	"...nor the battle to the strong", /*Bible*/
 	"fucking yora chick suck dick.", /* by GoldenIvy */
+	"looks like it's get the fuck out of here o'clock", /* by Khor */
 
 };
 
