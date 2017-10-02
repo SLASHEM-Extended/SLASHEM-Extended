@@ -5970,7 +5970,7 @@ dodip()
 			diptoilet(obj);
 			return(1);
 		}
-	} else if (is_waterypool(u.ux,u.uy)) {
+	} else if (is_waterypool(u.ux,u.uy) && !(is_crystalwater(u.ux, u.uy) && !(Levitation || Flying)) ) {
 		tmp = waterbody_name(u.ux,u.uy);
 		sprintf(qbuf, "Dip it into the %s?", tmp);
 		if (yn(qbuf) == 'y') {
