@@ -4649,7 +4649,7 @@ SPELL("trap disarming",    "listening",  P_OCCULT_SPELL, 10,  25, 8, 1, NODIR,  
 SPELL("switcheroo",    "amazing",        P_OCCULT_SPELL, 10,  25, 8, 1, NODIR,     CLR_RED),
 SPELL("whispers from beyond", "detestable", P_OCCULT_SPELL, 3, 25, 8, 1, NODIR,    CLR_MAGENTA),
 
-SPELL("water bolt",    "accusory",       P_ELEMENTAL_SPELL, 10,   6, 1, 1, IMMEDIATE, CLR_RED),
+SPELL("water bolt",    "accusory",       P_ELEMENTAL_SPELL, 10,  36, 6, 1, IMMEDIATE, CLR_RED),
 SPELL("air current",    "court",         P_ELEMENTAL_SPELL, 50,   6, 1, 1, NODIR,     CLR_GREEN),
 SPELL("volt rock",    "mistranslated",   P_ELEMENTAL_SPELL, 20,   6, 1, 1, IMMEDIATE, CLR_WHITE),
 SPELL("water flame",    "complementary", P_ELEMENTAL_SPELL, 20,   6, 1, 1, IMMEDIATE, CLR_MAGENTA),
