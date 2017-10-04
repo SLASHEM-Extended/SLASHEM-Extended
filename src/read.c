@@ -751,6 +751,7 @@ doread()
 	"FeAr MiNe HoMo KoCk BaBe", /* DCSS - yes, it really allows you to have characters that will shortcut to those words */
 	"I dEfEaTeD aNdOr DrAkOn AnD wEnT iNsAnE", /* ADOM */
 	"Why don't you shove a dildo golem up yourself?", /* by Crawldragon */
+	"Wow, it's incredible that a single t-shirt can be SO fleecy!",
 
 	    };
 	    char buf[BUFSZ];
