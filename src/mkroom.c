@@ -30,6 +30,7 @@ STATIC_DCL struct permonst * squadmon(void);
 STATIC_DCL struct permonst * doomsquadmon(void);
 STATIC_DCL struct permonst * fungus(void);
 STATIC_DCL struct permonst * beehivemon(void);
+STATIC_DCL struct permonst * migohivemon(void);
 
 /*STATIC_DCL struct permonst * colormon(int);*/
 
@@ -587,10 +588,8 @@ struct mkroom *sroom;
 			(type == GRUEROOM) ? mkclass(S_GRUE,0) :
 		    (type == MORGUE) ? morguemon() :
 		    (type == FUNGUSFARM) ? (!rn2(4) ? mkclass(S_BLOB,0) : !rn2(3) ? mkclass(S_PUDDING,0) : !rn2(2) ? mkclass(S_JELLY,0) : mkclass(S_FUNGUS,0)) :
-		    (type == BEEHIVE) ?
-			(sx == tx && sy == ty ? &mons[PM_QUEEN_BEE] : beehivemon()) :
-		    (type == PRISONCHAMBER) ?
-			(sx == tx && sy == ty ? &mons[PM_PRISONER] : mkclass(S_OGRE,0) ) :
+		    (type == BEEHIVE) ? (sx == tx && sy == ty ? &mons[PM_QUEEN_BEE] : beehivemon()) :
+		    (type == PRISONCHAMBER) ? (sx == tx && sy == ty ? &mons[PM_PRISONER] : mkclass(S_OGRE,0) ) :
 		    (type == DOUGROOM) ? douglas_adams_mon() : 
 		    (type == LEPREHALL) ? mkclass(S_LEPRECHAUN,0) :
 		    (type == COCKNEST) ? mkclass(S_COCKATRICE,0) :
@@ -598,11 +597,8 @@ struct mkroom *sroom;
 		    (type == ANTHOLE) ? mkclass(S_ANT,0) :
 		    (type == DRAGONLAIR) ? mkclass(S_DRAGON,0) :
 		    (type == LEMUREPIT)? 
-		    	(!rn2(20) ? &mons[PM_HORNED_DEVIL] : !rn2(20) ? mkclass(S_DEMON,0) : !rn2(50) ? &mons[ndemon(A_NONE)] : rn2(2) ? mkclass(S_IMP,0) :
-			           &mons[PM_LEMURE]) :
-		    (type == MIGOHIVE) ?
-		      (sx == tx && sy == ty ? &mons[PM_MIGO_QUEEN] :
-	              (rn2(2) ? &mons[PM_MIGO_DRONE] : &mons[PM_MIGO_WARRIOR])) :
+		    	(!rn2(20) ? &mons[PM_HORNED_DEVIL] : !rn2(20) ? mkclass(S_DEMON,0) : !rn2(50) ? &mons[ndemon(A_NONE)] : rn2(2) ? mkclass(S_IMP,0) : &mons[PM_LEMURE]) :
+		    (type == MIGOHIVE) ? (sx == tx && sy == ty ? &mons[PM_MIGO_QUEEN] : migohivemon()) :
 		    (type == BADFOODSHOP) ? mkclass(S_BAD_FOOD,0) :
 		    (type == REALZOO) ? (rn2(5) ? realzoomon() : rn2(3) ? mkclass(S_QUADRUPED,0) : rn2(3) ? mkclass(S_FELINE,0) : rn2(3) ? mkclass(S_YETI,0) : mkclass(S_SNAKE,0) ) :
 		    (type == GIANTCOURT) ? mkclass(S_GIANT,0) :
@@ -1830,6 +1826,49 @@ beehivemon()
 	else if (i > 30) return(&mons[PM_JELLY_BEE]);
 	else return(&mons[PM_KILLER_BEE]);
 
+}
+
+struct permonst *
+migohivemon()
+{
+	if (rn2(8)) return (rn2(2) ? &mons[PM_MIGO_WARRIOR] : &mons[PM_MIGO_DRONE]);
+	else if (!rn2(4)) return (rn2(2) ? &mons[PM_MIGO_FORCE_DRONE] : &mons[PM_ARMED_MIGO_DRONE]);
+	else switch (rnd(14)) {
+
+		case 1:
+			return &mons[PM_MIGO_DRONE];
+		case 2:
+			return &mons[PM_MIGO_FORCE_DRONE];
+		case 3:
+			return &mons[PM_PETTY_MIGO_DRONE];
+		case 4:
+			return &mons[PM_ARMED_MIGO_DRONE];
+		case 5:
+			return &mons[PM_MIGO_WARRIOR];
+		case 6:
+			return &mons[PM_ARMED_MIGO_WARRIOR];
+		case 7:
+			if (level_difficulty() > 14) return &mons[PM_MIGO_QUEEN];
+			else return &mons[PM_MIGO_WARRIOR];
+		case 8:
+			if (level_difficulty() > 14) return &mons[PM_ARMED_MIGO_QUEEN];
+			else return &mons[PM_MIGO_WARRIOR];
+		case 9:
+			if (level_difficulty() > 25) return &mons[PM_MIGO_EMPRESS];
+			else return &mons[PM_MIGO_WARRIOR];
+		case 10:
+			return &mons[PM_MI_GO__THE_FUNGI_FROM_YUGGOTH];
+		case 11:
+			return &mons[PM_GOMI_WORKER];
+		case 12:
+			return &mons[PM_GOMI_SOLDIER];
+		case 13:
+			return &mons[PM_GOMI_PHILOSOPHER];
+		case 14:
+			if (level_difficulty() > 14) return &mons[PM_GOMI_QUEEN];
+			else return &mons[PM_MIGO_WARRIOR];
+
+	}
 }
 
 struct permonst *
