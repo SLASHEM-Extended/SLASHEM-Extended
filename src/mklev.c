@@ -3996,16 +3996,16 @@ makelevel()
 
 		switch (rnd(10)) {
 
-			case 1: makemaz("hmnend-1"); return;
-			case 2: makemaz("hmnend-2"); return;
-			case 3: makemaz("hmnend-3"); return;
-			case 4: makemaz("hmnend-4"); return;
-			case 5: makemaz("hmnend-5"); return;
-			case 6: makemaz("hmnend-6"); return;
-			case 7: makemaz("hmnend-7"); return;
-			case 8: makemaz("hmnend-8"); return;
-			case 9: makemaz("hmnend-9"); return;
-			case 10: makemaz("hmnend-10"); return;
+			case 1: makemaz("hmnen-1"); return;
+			case 2: makemaz("hmnen-2"); return;
+			case 3: makemaz("hmnen-3"); return;
+			case 4: makemaz("hmnen-4"); return;
+			case 5: makemaz("hmnen-5"); return;
+			case 6: makemaz("hmnen-6"); return;
+			case 7: makemaz("hmnen-7"); return;
+			case 8: makemaz("hmnen-8"); return;
+			case 9: makemaz("hmnen-9"); return;
+			case 10: makemaz("hmnen-10"); return;
 
 		}
 		break;
@@ -7600,16 +7600,16 @@ makelevel()
 
 		switch (rnd(10)) {
 
-			case 1: makemaz("hmnend-1"); return;
-			case 2: makemaz("hmnend-2"); return;
-			case 3: makemaz("hmnend-3"); return;
-			case 4: makemaz("hmnend-4"); return;
-			case 5: makemaz("hmnend-5"); return;
-			case 6: makemaz("hmnend-6"); return;
-			case 7: makemaz("hmnend-7"); return;
-			case 8: makemaz("hmnend-8"); return;
-			case 9: makemaz("hmnend-9"); return;
-			case 10: makemaz("hmnend-10"); return;
+			case 1: makemaz("hmnen-1"); return;
+			case 2: makemaz("hmnen-2"); return;
+			case 3: makemaz("hmnen-3"); return;
+			case 4: makemaz("hmnen-4"); return;
+			case 5: makemaz("hmnen-5"); return;
+			case 6: makemaz("hmnen-6"); return;
+			case 7: makemaz("hmnen-7"); return;
+			case 8: makemaz("hmnen-8"); return;
+			case 9: makemaz("hmnen-9"); return;
+			case 10: makemaz("hmnen-10"); return;
 
 		}
 		break;
