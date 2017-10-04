@@ -9015,6 +9015,8 @@ makelevel()
 
 	/* "Make special rooms show up later. Reverted existant special room chances to their original values, new rooms have values that I believe work.  If not, they will be adjusted accordingly." The existing values do work, too; some players just don't seem to know what to do if there's a room filled with trolls on dlvl2: stay FAR away from there until you can handle it! But sure, in Soviet Russia they start appearing later. All the other races will have to contend with my intended values though. --Amy */
 
+gehennomxtra:
+
 	    /* courtrooms & barracks */
 	    if(depth(&u.uz) > (issoviet ? 4 : 3) && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(COURT);
 		else if (depth(&u.uz) > (issoviet ? 5 : 4) && (ishaxor ? !rn2(5) : !rn2(9))) mkroom(LEPREHALL);
@@ -9107,6 +9109,10 @@ makelevel()
 
 		/* random rooms, which means a chance of getting several of the same type of room --Amy */
 		while ((u_depth > 10 || (rn2(u_depth) && !rn2(20 - u_depth) ) ) && !rn2(ishaxor ? 7 : 15)) mkroom(RANDOMROOM);
+
+	/* If we make a rooms-and-corridors level in Gehennom, or generally anywhere with a depth greater than castle,
+	 * we'll have a chance of more special rooms because this part of the game is supposed to be harder --Amy */
+	if (!rn2(2) && u_depth > 40) goto gehennomxtra;
 
 		if ((isironman || RngeIronmanMode) && (!rn2(10) || u_depth > 1) ) {
 			mkroom(RANDOMROOM);
