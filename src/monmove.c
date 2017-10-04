@@ -763,6 +763,32 @@ register struct monst *mtmp;
 		badeffect();
 	}
 
+	/* Monsters with MS_BONES can rattle. If this causes you to snap out of a longer paralysis, more power to you :D */
+	if (mdat->msound == MS_BONES && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(100)) {
+		pline("%s rattles noisily!", Monnam(mtmp));
+
+		armpro = magic_negation(&youmonst);
+		armprolimit = 75;
+		if (!(PlayerCannotUseSkills)) {
+
+			switch (P_SKILL(P_SPIRITUALITY)) {
+				default: armprolimit = 75; break;
+				case P_BASIC: armprolimit = 78; break;
+				case P_SKILLED: armprolimit = 81; break;
+				case P_EXPERT: armprolimit = 84; break;
+				case P_MASTER: armprolimit = 87; break;
+				case P_GRAND_MASTER: armprolimit = 90; break;
+				case P_SUPREME_MASTER: armprolimit = 93; break;
+			}
+		}
+
+		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
+			You("freeze for a moment.");
+			nomul(-2, "scared by rattling");
+			nomovemsg = 0;
+		}
+	}
+
 	/* the watch will look around and see if you are up to no good :-) */
 	if (mdat == &mons[PM_WATCHMAN] || mdat == &mons[PM_WATCH_CAPTAIN] || mdat == &mons[PM_WATCH_LEADER] || mdat == &mons[PM_WATCH_LIEUTENANT])
 		watch_on_duty(mtmp);
