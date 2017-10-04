@@ -11231,6 +11231,7 @@ find_branch_room(mp)
 	do {
 	    if (!somexy(croom, mp))
 		impossible("Can't place branch!");
+		return croom;
 	} while(occupied(mp->x, mp->y) ||
 	    (levl[mp->x][mp->y].typ != CORR && levl[mp->x][mp->y].typ != ROOM));
     }
@@ -11290,6 +11291,8 @@ xchar x, y;	/* location */
 
 	if (br->type == BR_PORTAL) {
 	    mkportal(x, y, dest->dnum, dest->dlevel);
+		/* Amy edit: make sure it's accessible */
+		if (IS_ROCK(levl[x][y].typ)) levl[x][y].typ = ROOM;
 	} else if (make_stairs) {
 	    sstairs.sx = x;
 	    sstairs.sy = y;

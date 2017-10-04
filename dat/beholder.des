@@ -246,6 +246,8 @@ RANDOM_PLACES:(38,15),(16,15),(60,15)
 BRANCH:(40,00,40,00),(0,0,0,0)
 
 REGION:(38,03,38,03),lit,"random shop",filled,true
+REGION:(16,03,16,03),lit,"ordinary",filled,true
+REGION:(60,03,60,03),lit,"ordinary",filled,true
 
 DOOR:closed,(38,01)
 DOOR:closed,(16,01)

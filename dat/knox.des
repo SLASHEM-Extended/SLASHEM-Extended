@@ -40,10 +40,10 @@ MONSTER:'@',"Croesus",(43,10),hostile
 #   identification in mkmaze.c
 REGION:(21,08,35,11),lit,"morgue",unfilled
 #   Corner towers
-REGION:(19,06,21,06),lit,"ordinary"
-REGION:(46,06,48,06),lit,"ordinary"
-REGION:(19,13,21,13),lit,"ordinary"
-REGION:(46,13,48,13),lit,"ordinary"
+REGION:(19,06,21,06),lit,"ordinary",filled,true
+REGION:(46,06,48,06),lit,"ordinary",filled,true
+REGION:(19,13,21,13),lit,"ordinary",filled,true
+REGION:(46,13,48,13),lit,"ordinary",filled,true
 #   A welcoming committee
 REGION:(03,10,07,13),lit,"zoo",filled,true
 #   arrival chamber; needs to be a real room to control migrating monsters,
@@ -143,10 +143,10 @@ MONSTER:'@',"Croesus",(63,08),hostile
 #   identification in mkmaze.c
 REGION:(41,06,55,09),lit,"morgue",unfilled
 #   Corner towers
-REGION:(39,04,41,04),lit,"ordinary"
-REGION:(66,04,68,04),lit,"ordinary"
-REGION:(39,11,41,11),lit,"ordinary"
-REGION:(66,11,68,11),lit,"ordinary"
+REGION:(39,04,41,04),lit,"ordinary",filled,true
+REGION:(66,04,68,04),lit,"ordinary",filled,true
+REGION:(39,11,41,11),lit,"ordinary",filled,true
+REGION:(66,11,68,11),lit,"ordinary",filled,true
 #   A welcoming committee
 REGION:(03,10,07,13),lit,"zoo",filled,true
 #   arrival chamber; needs to be a real room to control migrating monsters,
@@ -430,10 +430,10 @@ MONSTER:'@',random,(43,10),hostile
 #   identification in mkmaze.c
 REGION:(21,08,35,11),lit,"morgue",unfilled
 #   Corner towers
-REGION:(19,06,21,06),lit,"ordinary"
-REGION:(46,06,48,06),lit,"ordinary"
-REGION:(19,13,21,13),lit,"ordinary"
-REGION:(46,13,48,13),lit,"ordinary"
+REGION:(19,06,21,06),lit,"ordinary",filled,true
+REGION:(46,06,48,06),lit,"ordinary",filled,true
+REGION:(19,13,21,13),lit,"ordinary",filled,true
+REGION:(46,13,48,13),lit,"ordinary",filled,true
 #   A welcoming committee
 REGION:(03,10,07,13),lit,"zoo",filled,true
 #   arrival chamber; needs to be a real room to control migrating monsters,
@@ -534,10 +534,10 @@ MONSTER:'@',random,(63,08),hostile
 #   identification in mkmaze.c
 REGION:(41,06,55,09),lit,"morgue",unfilled
 #   Corner towers
-REGION:(39,04,41,04),lit,"ordinary"
-REGION:(66,04,68,04),lit,"ordinary"
-REGION:(39,11,41,11),lit,"ordinary"
-REGION:(66,11,68,11),lit,"ordinary"
+REGION:(39,04,41,04),lit,"ordinary",filled,true
+REGION:(66,04,68,04),lit,"ordinary",filled,true
+REGION:(39,11,41,11),lit,"ordinary",filled,true
+REGION:(66,11,68,11),lit,"ordinary",filled,true
 #   A welcoming committee
 REGION:(03,10,07,13),lit,"zoo",filled,true
 #   arrival chamber; needs to be a real room to control migrating monsters,
@@ -822,10 +822,10 @@ MONSTER:'@',random,(43,10),hostile
 #   identification in mkmaze.c
 REGION:(21,08,35,11),lit,"morgue",unfilled
 #   Corner towers
-REGION:(19,06,21,06),lit,"ordinary"
-REGION:(46,06,48,06),lit,"ordinary"
-REGION:(19,13,21,13),lit,"ordinary"
-REGION:(46,13,48,13),lit,"ordinary"
+REGION:(19,06,21,06),lit,"ordinary",filled,true
+REGION:(46,06,48,06),lit,"ordinary",filled,true
+REGION:(19,13,21,13),lit,"ordinary",filled,true
+REGION:(46,13,48,13),lit,"ordinary",filled,true
 #   A welcoming committee
 REGION:(03,10,07,13),lit,"zoo",filled,true
 #   arrival chamber; needs to be a real room to control migrating monsters,
@@ -961,10 +961,10 @@ MONSTER:'@',random,(63,08),hostile
 #   identification in mkmaze.c
 REGION:(41,06,55,09),lit,"morgue",unfilled
 #   Corner towers
-REGION:(39,04,41,04),lit,"ordinary"
-REGION:(66,04,68,04),lit,"ordinary"
-REGION:(39,11,41,11),lit,"ordinary"
-REGION:(66,11,68,11),lit,"ordinary"
+REGION:(39,04,41,04),lit,"ordinary",filled,true
+REGION:(66,04,68,04),lit,"ordinary",filled,true
+REGION:(39,11,41,11),lit,"ordinary",filled,true
+REGION:(66,11,68,11),lit,"ordinary",filled,true
 #   A welcoming committee
 REGION:(03,10,07,13),lit,"zoo",filled,true
 #   arrival chamber; needs to be a real room to control migrating monsters,

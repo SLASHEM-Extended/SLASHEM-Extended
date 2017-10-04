@@ -231,28 +231,28 @@ REGION:(57,05,62,11),lit,"ordinary"
 #   Throne room
 REGION:(27,05,37,11),lit,"throne",unfilled
 #   Antechamber
-REGION:(07,05,14,11),lit,"ordinary"
+REGION:(07,05,14,11),lit,"ordinary",filled,true
 #   Storerooms
-REGION:(39,05,45,06),lit,"ordinary"
-REGION:(39,10,45,11),lit,"ordinary"
-REGION:(49,05,55,06),lit,"ordinary"
-REGION:(49,10,55,11),lit,"ordinary"
+REGION:(39,05,45,06),lit,"ordinary",filled,true
+REGION:(39,10,45,11),lit,"ordinary",filled,true
+REGION:(49,05,55,06),lit,"ordinary",filled,true
+REGION:(49,10,55,11),lit,"ordinary",filled,true
 #   Corners
-REGION:(02,02,06,03),lit,"ordinary"
-REGION:(56,02,60,03),lit,"ordinary"
-REGION:(02,13,06,14),lit,"ordinary"
-REGION:(56,13,60,14),lit,"ordinary"
+REGION:(02,02,06,03),lit,"ordinary",filled,true
+REGION:(56,02,60,03),lit,"ordinary",filled,true
+REGION:(02,13,06,14),lit,"ordinary",filled,true
+REGION:(56,13,60,14),lit,"ordinary",filled,true
 #   Barracks
 REGION:(16,05,25,06),lit,"barracks"
 REGION:(16,10,25,11),lit,"barracks"
 #   Hallways
-REGION:(08,03,54,03),unlit,"ordinary"
-REGION:(08,13,54,13),unlit,"ordinary"
-REGION:(16,08,25,08),unlit,"ordinary"
-REGION:(39,08,55,08),unlit,"ordinary"
+REGION:(08,03,54,03),unlit,"ordinary",filled,true
+REGION:(08,13,54,13),unlit,"ordinary",filled,true
+REGION:(16,08,25,08),unlit,"ordinary",filled,true
+REGION:(39,08,55,08),unlit,"ordinary",filled,true
 #   Storeroom alcoves
-REGION:(47,05,47,06),unlit,"ordinary"
-REGION:(47,10,47,11),unlit,"ordinary"
+REGION:(47,05,47,06),unlit,"ordinary",filled,true
+REGION:(47,10,47,11),unlit,"ordinary",filled,true
 
 MAZE:"castl-2",random
 FLAGS: noteleport, lethe
@@ -337,8 +337,8 @@ REGION:(00,00,62,20),lit,"ordinary"
 REGION:(63,00,75,01),lit,"ordinary"
 
 # and the dragon pens are unlit
-REGION:(47,03,52,06),unlit,"ordinary"
-REGION:(47,12,52,15),unlit,"ordinary"
+REGION:(47,03,52,06),unlit,"ordinary",filled,true
+REGION:(47,13,47,13),unlit,"ordinary",filled,true
 
 REGION:(24,03,31,15),lit,"throne",unfilled,true
 
@@ -346,7 +346,7 @@ REGION:(14,03,22,05),lit,"barracks"
 REGION:(14,13,22,15),lit,"barracks"
 
 # the armouries and the treasure room are unlit
-REGION:(09,03,12,15),unlit,"ordinary"
+REGION:(09,03,12,15),unlit,"ordinary",filled,true
 
 # northern armoury
 OBJECT:object[0],random,(09,03)
@@ -526,13 +526,13 @@ REGION:(34,11,60,14),unlit,"ordinary"
 REGION:(60,13,64,14),unlit,"ordinary"
 
 # the hallways in the castle are dark
-REGION:(17,05,35,05),unlit,"ordinary"
-REGION:(25,00,25,04),unlit,"ordinary"
+REGION:(17,05,35,05),unlit,"ordinary",filled,true
+REGION:(25,01,25,03),unlit,"ordinary",filled,true
 
-REGION:(01,01,03,01),unlit,"ordinary"
-REGION:(01,01,01,13),unlit,"ordinary"
-REGION:(01,09,03,11),unlit,"ordinary"
-REGION:(01,11,15,11),unlit,"ordinary"
+REGION:(01,01,03,01),unlit,"ordinary",filled,true
+REGION:(01,01,01,13),unlit,"ordinary",filled,true
+REGION:(01,09,03,11),unlit,"ordinary",filled,true
+REGION:(01,11,15,11),unlit,"ordinary",filled,true
 
 # the special rooms in the castle
 REGION:(05,03,15,07),lit,"throne",unfilled,true
@@ -921,34 +921,34 @@ NON_DIGGABLE:(00,00,62,18)
 REGION:(00,00,62,18),unlit,"ordinary"
 
 #   Courtyards
-REGION:(00,07,02,11),lit,"ordinary"
-REGION:(60,07,62,11),lit,"ordinary"
+REGION:(00,07,02,11),lit,"ordinary",filled,true
+REGION:(60,07,62,11),lit,"ordinary",filled,true
 #   Throne room
 REGION:(31,06,37,12),lit,"throne",unfilled
 #   Antechamber
-REGION:(08,07,14,12),lit,"ordinary"
-REGION:(09,05,14,14),lit,"ordinary"
+REGION:(08,07,14,12),lit,"ordinary",filled,true
+REGION:(09,05,14,14),lit,"ordinary",filled,true
 
 REGION:(15,05,17,05),lit,"ordinary"
-REGION:(15,14,17,14),lit,"ordinary"
+REGION:(15,14,17,14),lit,"ordinary",filled,true
 
-REGION:(27,06,29,12),lit,"ordinary"
+REGION:(27,06,29,12),lit,"ordinary",filled,true
 
-REGION:(47,07,55,12),lit,"ordinary"
-REGION:(47,05,54,14),lit,"ordinary"
+REGION:(47,07,55,12),lit,"ordinary",filled,true
+REGION:(47,05,54,14),lit,"ordinary",filled,true
 
 REGION:(44,05,46,05),lit,"ordinary"
-REGION:(44,14,46,14),lit,"ordinary"
+REGION:(44,14,46,14),lit,"ordinary",filled,true
 #   Storerooms
-REGION:(39,06,42,07),lit,"ordinary"
-REGION:(39,09,40,12),lit,"ordinary"
-REGION:(44,06,45,09),lit,"ordinary"
-REGION:(42,11,45,12),lit,"ordinary"
+REGION:(39,06,42,07),lit,"ordinary",filled,true
+REGION:(39,09,40,12),lit,"ordinary",filled,true
+REGION:(44,06,45,09),lit,"ordinary",filled,true
+REGION:(42,11,45,12),lit,"ordinary",filled,true
 #   Corners
-REGION:(02,02,06,04),lit,"ordinary"
-REGION:(56,02,60,04),lit,"ordinary"
-REGION:(02,14,06,16),lit,"ordinary"
-REGION:(56,14,60,16),lit,"ordinary"
+REGION:(02,02,06,04),lit,"ordinary",filled,true
+REGION:(56,02,60,04),lit,"ordinary",filled,true
+REGION:(02,14,06,16),lit,"ordinary",filled,true
+REGION:(56,14,60,16),lit,"ordinary",filled,true
 #   Barracks
 REGION:(16,06,25,07),lit,"barracks"
 REGION:(16,11,25,12),lit,"barracks"
@@ -969,21 +969,21 @@ GEOMETRY:center,center
 MAP
 0                   }  }    ## ##     }-----------------     ####           
 1 ....            ..}T}}T.   ###      }|...|...|...|...|    ######    ....  
-2......    T....T..T}}}T .T.  H  .T..}}--.---.---.---.--.  H ####   ##..{.. 
+2......    T....T..T}}}T .T.  H  .T..}}--B---B---B---B--.  H ####   ##..{.. 
 3 ...    .....T......}T .....T......}}....................T.      ###  ...  
 4 #      .  T....T...}|...T....T...}}..T.........T.........  ..   H         
 5 ##    .T....T.....T}T T..T.....T}}T...............T...    ..... ..        
 6  #   ....T.....T...}}T  ....T.T}}.}.....T............TFT...........       
 7....##.  ....T.....}T}}}T TT T .}.}.}...........T...F T.......T.......|---|
-8....  .. T..   ...}}}}}}}}}}}}T ..T.}T......T.......T...............T.....|
+8....  .. T..   ...}}}}}}}}}}}}T ..T.}T......T.......T...............T.B...|
 9     .T...T  }}}}}}}}}}}}}}}}}}TT  TT T ..........FT T................|---|
-0}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}TT ........ ............T..........|
+0}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}TT ........ ............T......B...|
 1}}}}}}}}}}}}}}}}}}..........}}}}}}}}}}}}}}.}....T T.....T.............|---|
-2................}..............}}}}}}}}}}.}.}.}  ..................T......|
+2................}..............}}}}}}}}}}.}.}.}  ..................T..B...|
 3-----S----------....................}}}}.}.}.}}}}.}.............T.....|---|
-4 |.......|..+..|........................}.}}}}}}.}.}.}....T...............|
+4 |.......|..+..|........................}.}}}}}}.}.}.}....T...........B...|
 5 |.......|----.|..........----......  ... }}}.}.}.}.}}................|---|
-6 |.......+.....|----------|..|            }..}.}.}.}..T......T............|
+6 |.......+.....|----------|..|            }..}.}.}.}..T......T........B...|
 7 |.......|----.|.+........+..S.  .......... }}}}}}}}  ............T...|---|
 8 |...\...|..+....|   H    ----...........    }}}}}}     ............  H### 
 9 ---------..------#######                     }}}}                    #### 
@@ -1019,22 +1019,22 @@ REGION:(65,01,73,05),unlit,"ordinary"
 REGION:(00,10,31,18),lit,"ordinary"
 REGION:(31,13,39,18),lit,"ordinary"
 # Northern huts
-REGION:(39,01,41,01),unlit,"ordinary"
-REGION:(43,01,45,01),unlit,"ordinary"
-REGION:(47,01,49,01),unlit,"ordinary"
-REGION:(51,01,53,01),unlit,"ordinary"
+REGION:(39,01,41,01),unlit,"ordinary",filled,true
+REGION:(43,01,45,01),unlit,"ordinary",filled,true
+REGION:(47,01,49,01),unlit,"ordinary",filled,true
+REGION:(51,01,53,01),unlit,"ordinary",filled,true
 # Eastern Huts
-REGION:(71,08,73,08),unlit,"ordinary"
-REGION:(71,10,73,10),unlit,"ordinary"
-REGION:(71,12,73,12),unlit,"ordinary"
-REGION:(71,14,73,14),unlit,"ordinary"
-REGION:(71,16,73,16),unlit,"ordinary"
+REGION:(71,08,73,08),unlit,"ordinary",filled,true
+REGION:(71,10,73,10),unlit,"ordinary",filled,true
+REGION:(71,12,73,12),unlit,"ordinary",filled,true
+REGION:(71,14,73,14),unlit,"ordinary",filled,true
+REGION:(71,16,73,16),unlit,"ordinary",filled,true
 # Tower
-REGION:(02,14,08,18),unlit,"ordinary"
-REGION:(10,14,14,18),unlit,"ordinary"
+REGION:(02,14,08,18),unlit,"ordinary",filled,true
+REGION:(10,14,14,18),unlit,"ordinary",filled,true
 REGION:(15,17,16,18),unlit,"ordinary"
-REGION:(17,17,26,17),unlit,"ordinary"
-REGION:(27,16,28,17),unlit,"ordinary"
+REGION:(18,17,25,17),unlit,"ordinary",filled,true
+REGION:(27,16,28,17),unlit,"ordinary",filled,true
 # Stairs
 STAIR:(02,02),up
 # The drawbridge
@@ -1449,43 +1449,43 @@ REGION:(00,00,62,18),unlit,"ordinary"
 #REGION:(00,09,24,18),lit,"ordinary"
 #REGION:(09,08,12,09),lit,"ordinary"
 #REGION:(13,05,19,18),lit,"ordinary"
-REGION:(05,00,05,09),lit,"ordinary",unfilled,true
+REGION:(05,00,05,09),lit,"ordinary",filled,true
 
-REGION:(26,11,32,13),lit,"ordinary"
+REGION:(26,11,32,13),lit,"ordinary",filled,true
 #   Throne room
 REGION:(34,11,45,14),lit,"throne",unfilled
 #   Antechambers
-REGION:(25,05,31,10),lit,"ordinary"
-REGION:(25,10,33,14),lit,"ordinary"
-REGION:(25,08,41,09),lit,"ordinary"
+REGION:(26,06,30,09),lit,"ordinary",filled,true
+REGION:(26,11,32,13),lit,"ordinary",filled,true
+REGION:(26,08,41,09),lit,"ordinary",filled,true
 #   Storerooms
-REGION:(43,05,48,05),lit,"ordinary"
-REGION:(43,06,46,07),lit,"ordinary"
+REGION:(43,05,48,05),lit,"ordinary",filled,true
+REGION:(43,06,46,07),lit,"ordinary",filled,true
 
-REGION:(50,05,55,05),lit,"ordinary"
-REGION:(52,06,55,07),lit,"ordinary"
+REGION:(50,05,55,05),lit,"ordinary",filled,true
+REGION:(52,06,55,07),lit,"ordinary",filled,true
 
-REGION:(53,11,55,14),lit,"ordinary"
-REGION:(52,13,52,14),lit,"ordinary"
+REGION:(53,11,55,14),lit,"ordinary",filled,true
+REGION:(52,13,52,14),lit,"ordinary",filled,true
 
-REGION:(47,11,48,14),lit,"ordinary"
-REGION:(49,13,50,14),lit,"ordinary"
-REGION:(45,14,46,14),lit,"ordinary"
+REGION:(47,11,48,14),lit,"ordinary",filled,true
+REGION:(49,13,50,14),lit,"ordinary",filled,true
+REGION:(45,14,46,14),lit,"ordinary",filled,true
 
 #   Corners
 REGION:(16,15,32,16),lit,"ordinary"
-REGION:(57,12,58,16),lit,"ordinary"
-REGION:(10,02,11,06),lit,"ordinary"
-REGION:(57,02,58,06),lit,"ordinary"
+REGION:(57,12,58,16),lit,"ordinary",filled,true
+REGION:(10,02,11,06),lit,"ordinary",filled,true
+REGION:(57,02,58,06),lit,"ordinary",filled,true
 #   Barracks
 REGION:(21,05,25,07),lit,"barracks"
 REGION:(31,05,41,06),lit,"barracks"
 #############################################################
 #   Hallways
-REGION:(13,03,55,03),unlit,"ordinary"
-REGION:(34,16,55,16),unlit,"ordinary"
-REGION:(43,09,57,09),unlit,"ordinary"
-REGION:(57,08,57,10),unlit,"ordinary"
+REGION:(13,03,55,03),unlit,"ordinary",filled,true
+REGION:(34,16,55,16),unlit,"ordinary",filled,true
+REGION:(43,09,57,09),unlit,"ordinary",filled,true
+REGION:(57,08,57,10),unlit,"ordinary",filled,true
 
 ##
 ##Castle 5
@@ -1684,33 +1684,33 @@ NON_DIGGABLE:(00,00,62,16)
 #   Entire castle area
 REGION:(00,00,62,16),unlit,"ordinary"
 #   Courtyards
-REGION:(57,05,62,11),lit,"ordinary"
+REGION:(58,06,62,10),lit,"ordinary",filled,true
 #   Throne room
 REGION:(28,05,37,11),lit,"throne",unfilled
 #   Antechamber
-REGION:(07,07,07,07),lit,"ordinary",unfilled,true
+REGION:(07,07,07,07),lit,"ordinary",filled,true
 #   Storerooms
-REGION:(39,05,45,06),lit,"ordinary"
-REGION:(39,10,45,11),lit,"ordinary"
-REGION:(49,05,55,06),lit,"ordinary"
-REGION:(49,10,55,11),lit,"ordinary"
+REGION:(39,05,45,06),lit,"ordinary",filled,true
+REGION:(39,10,45,11),lit,"ordinary",filled,true
+REGION:(49,05,55,06),lit,"ordinary",filled,true
+REGION:(49,10,55,11),lit,"ordinary",filled,true
 #   Corners
-REGION:(17,02,21,03),lit,"ordinary"
-REGION:(56,02,60,03),lit,"ordinary"
-REGION:(20,13,24,14),lit,"ordinary"
-REGION:(56,13,60,14),lit,"ordinary"
+REGION:(17,02,21,03),lit,"ordinary",filled,true
+REGION:(56,02,60,03),lit,"ordinary",filled,true
+REGION:(20,13,24,14),lit,"ordinary",filled,true
+REGION:(56,13,60,14),lit,"ordinary",filled,true
 #   Barracks
 REGION:(17,08,26,11),lit,"barracks"
 #   Hallways
-REGION:(23,03,54,03),unlit,"ordinary"
-REGION:(26,13,54,13),unlit,"ordinary"
-REGION:(13,06,26,06),unlit,"ordinary"
-REGION:(39,08,55,08),unlit,"ordinary"
+REGION:(23,03,54,03),unlit,"ordinary",filled,true
+REGION:(26,13,54,13),unlit,"ordinary",filled,true
+REGION:(13,06,26,06),unlit,"ordinary",filled,true
+REGION:(39,08,55,08),unlit,"ordinary",filled,true
 #   Storeroom alcoves
-REGION:(47,05,47,06),unlit,"ordinary"
-REGION:(47,10,47,11),unlit,"ordinary"
+REGION:(47,05,47,06),unlit,"ordinary",filled,true
+REGION:(47,10,47,11),unlit,"ordinary",filled,true
 #	Bloody Hallway hack/patch
-REGION:(06,06,12,06),lit,"ordinary"
+REGION:(06,06,12,06),lit,"ordinary",filled,true
 
 
 MAZE:"castl-8",random
@@ -1918,15 +1918,15 @@ REGION:(00,00,62,18),unlit,"ordinary"
 #REGION:(00,09,24,18),lit,"ordinary"
 #REGION:(09,08,12,09),lit,"ordinary"
 #REGION:(13,05,19,18),lit,"ordinary"
-REGION:(05,00,05,09),lit,"ordinary",unfilled,true
+REGION:(05,00,05,09),lit,"ordinary",filled,true
 
 REGION:(26,11,32,13),random,"randomroom"
 #   Throne room
 REGION:(34,11,45,14),lit,"throne",unfilled
 #   Antechambers
-REGION:(25,05,31,10),lit,"ordinary"
-REGION:(25,10,33,14),lit,"ordinary"
-REGION:(25,08,41,09),lit,"ordinary"
+REGION:(26,06,30,09),lit,"ordinary",filled,true
+REGION:(26,11,32,13),lit,"ordinary",filled,true
+REGION:(26,08,41,09),lit,"ordinary",filled,true
 #   Storerooms
 REGION:(43,05,48,05),random,"randomroom"
 REGION:(43,06,46,07),random,"randomroom"
@@ -1953,8 +1953,8 @@ REGION:(31,05,41,06),lit,"barracks"
 #   Hallways
 REGION:(13,03,55,03),random,"randomroom"
 REGION:(34,16,55,16),random,"randomroom"
-REGION:(43,09,57,09),unlit,"ordinary"
-REGION:(57,08,57,10),unlit,"ordinary"
+REGION:(43,09,57,09),unlit,"ordinary",filled,true
+REGION:(57,08,57,10),unlit,"ordinary",filled,true
 
 # idea by Khor - castle with a grid bug invasion. I'll make it spawn random x instead though. --Amy
 
@@ -2041,8 +2041,8 @@ REGION:(00,00,62,20),lit,"ordinary"
 REGION:(63,00,75,01),lit,"ordinary"
 
 # and the dragon pens are unlit
-REGION:(47,03,52,06),unlit,"ordinary"
-REGION:(47,12,52,15),unlit,"ordinary"
+REGION:(47,03,52,06),unlit,"ordinary",filled,true
+REGION:(47,13,47,13),unlit,"ordinary",filled,true
 
 REGION:(24,03,31,15),lit,"throne",unfilled,true
 
@@ -2050,7 +2050,7 @@ REGION:(14,03,22,05),lit,"barracks"
 REGION:(14,13,22,15),lit,"barracks"
 
 # the armouries and the treasure room are unlit
-REGION:(09,03,12,15),unlit,"ordinary"
+REGION:(09,03,12,15),unlit,"ordinary",filled,true
 
 # northern armoury
 OBJECT:object[0],random,(09,03)
@@ -2449,7 +2449,7 @@ OBJECT:'(',"chest",place[4]
 CONTAINER:'(',"chest",place[5]
 
 # West Wing Hazards:
-REGION:(14,08,23,10),unlit,"ordinary",unfilled
+REGION:(14,08,23,10),unlit,"ordinary",filled,true
 TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
@@ -2458,7 +2458,7 @@ MONSTER:'@',"soldier",random
 MONSTER:'@',"soldier",random
 
 # East Wing Hazards:
-REGION:(51,08,60,10),unlit,"ordinary",unfilled
+REGION:(51,08,60,10),unlit,"ordinary",filled,true
 TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
@@ -2693,7 +2693,7 @@ OBJECT:'(',"chest",place[4]
 CONTAINER:'(',"chest",place[5]
 
 # West Wing Hazards:
-REGION:(14,08,23,10),unlit,"ordinary",unfilled
+REGION:(14,08,23,10),unlit,"ordinary",filled,true
 TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
@@ -2702,7 +2702,7 @@ MONSTER:'@',"soldier",random
 MONSTER:'@',"soldier",random
 
 # East Wing Hazards:
-REGION:(51,08,60,10),unlit,"ordinary",unfilled
+REGION:(51,08,60,10),unlit,"ordinary",filled,true
 TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
@@ -3841,28 +3841,28 @@ REGION:(57,05,62,11),lit,"ordinary"
 #   Throne room
 REGION:(27,05,37,11),lit,"throne",unfilled
 #   Antechamber
-REGION:(07,05,14,11),lit,"ordinary"
+REGION:(07,05,14,11),lit,"ordinary",filled,true
 #   Storerooms
-REGION:(39,05,45,06),lit,"ordinary"
-REGION:(39,10,45,11),lit,"ordinary"
-REGION:(49,05,55,06),lit,"ordinary"
-REGION:(49,10,55,11),lit,"ordinary"
+REGION:(39,05,45,06),lit,"ordinary",filled,true
+REGION:(39,10,45,11),lit,"ordinary",filled,true
+REGION:(49,05,55,06),lit,"ordinary",filled,true
+REGION:(49,10,55,11),lit,"ordinary",filled,true
 #   Corners
-REGION:(02,02,06,03),lit,"ordinary"
-REGION:(56,02,60,03),lit,"ordinary"
-REGION:(02,13,06,14),lit,"ordinary"
-REGION:(56,13,60,14),lit,"ordinary"
+REGION:(02,02,06,03),lit,"ordinary",filled,true
+REGION:(56,02,60,03),lit,"ordinary",filled,true
+REGION:(02,13,06,14),lit,"ordinary",filled,true
+REGION:(56,13,60,14),lit,"ordinary",filled,true
 #   Barracks
 REGION:(16,05,25,06),lit,"barracks"
 REGION:(16,10,25,11),lit,"barracks"
 #   Hallways
-REGION:(08,03,54,03),unlit,"ordinary"
-REGION:(08,13,54,13),unlit,"ordinary"
-REGION:(16,08,25,08),unlit,"ordinary"
-REGION:(39,08,55,08),unlit,"ordinary"
+REGION:(08,03,54,03),unlit,"ordinary",filled,true
+REGION:(08,13,54,13),unlit,"ordinary",filled,true
+REGION:(16,08,25,08),unlit,"ordinary",filled,true
+REGION:(39,08,55,08),unlit,"ordinary",filled,true
 #   Storeroom alcoves
-REGION:(47,05,47,06),unlit,"ordinary"
-REGION:(47,10,47,11),unlit,"ordinary"
+REGION:(47,05,47,06),unlit,"ordinary",filled,true
+REGION:(47,10,47,11),unlit,"ordinary",filled,true
 
 MAZE:"ecstl-2",random
 FLAGS: noteleport, lethe
@@ -3947,8 +3947,8 @@ REGION:(00,00,62,20),lit,"ordinary"
 REGION:(63,00,75,01),lit,"ordinary"
 
 # and the dragon pens are unlit
-REGION:(47,03,52,06),unlit,"ordinary"
-REGION:(47,12,52,15),unlit,"ordinary"
+REGION:(47,03,52,06),unlit,"ordinary",filled,true
+REGION:(47,13,47,13),unlit,"ordinary",filled,true
 
 REGION:(24,03,31,15),lit,"throne",unfilled,true
 
@@ -3956,7 +3956,7 @@ REGION:(14,03,22,05),lit,"barracks"
 REGION:(14,13,22,15),lit,"barracks"
 
 # the armouries and the treasure room are unlit
-REGION:(09,03,12,15),unlit,"ordinary"
+REGION:(09,03,12,15),unlit,"ordinary",filled,true
 
 # northern armoury
 OBJECT:object[0],random,(09,03)
@@ -4136,13 +4136,13 @@ REGION:(34,11,60,14),unlit,"ordinary"
 REGION:(60,13,64,14),unlit,"ordinary"
 
 # the hallways in the castle are dark
-REGION:(17,05,35,05),unlit,"ordinary"
-REGION:(25,00,25,04),unlit,"ordinary"
+REGION:(17,05,35,05),unlit,"ordinary",filled,true
+REGION:(25,01,25,03),unlit,"ordinary",filled,true
 
-REGION:(01,01,03,01),unlit,"ordinary"
-REGION:(01,01,01,13),unlit,"ordinary"
-REGION:(01,09,03,11),unlit,"ordinary"
-REGION:(01,11,15,11),unlit,"ordinary"
+REGION:(01,01,03,01),unlit,"ordinary",filled,true
+REGION:(01,01,01,13),unlit,"ordinary",filled,true
+REGION:(01,09,03,11),unlit,"ordinary",filled,true
+REGION:(01,11,15,11),unlit,"ordinary",filled,true
 
 # the special rooms in the castle
 REGION:(05,03,15,07),lit,"throne",unfilled,true
@@ -4531,34 +4531,34 @@ NON_DIGGABLE:(00,00,62,18)
 REGION:(00,00,62,18),unlit,"ordinary"
 
 #   Courtyards
-REGION:(00,07,02,11),lit,"ordinary"
-REGION:(60,07,62,11),lit,"ordinary"
+REGION:(00,07,02,11),lit,"ordinary",filled,true
+REGION:(60,07,62,11),lit,"ordinary",filled,true
 #   Throne room
 REGION:(31,06,37,12),lit,"throne",unfilled
 #   Antechamber
-REGION:(08,07,14,12),lit,"ordinary"
-REGION:(09,05,14,14),lit,"ordinary"
+REGION:(08,07,14,12),lit,"ordinary",filled,true
+REGION:(09,05,14,14),lit,"ordinary",filled,true
 
 REGION:(15,05,17,05),lit,"ordinary"
-REGION:(15,14,17,14),lit,"ordinary"
+REGION:(15,14,17,14),lit,"ordinary",filled,true
 
-REGION:(27,06,29,12),lit,"ordinary"
+REGION:(27,06,29,12),lit,"ordinary",filled,true
 
-REGION:(47,07,55,12),lit,"ordinary"
-REGION:(47,05,54,14),lit,"ordinary"
+REGION:(47,07,55,12),lit,"ordinary",filled,true
+REGION:(47,05,54,14),lit,"ordinary",filled,true
 
 REGION:(44,05,46,05),lit,"ordinary"
-REGION:(44,14,46,14),lit,"ordinary"
+REGION:(44,14,46,14),lit,"ordinary",filled,true
 #   Storerooms
-REGION:(39,06,42,07),lit,"ordinary"
-REGION:(39,09,40,12),lit,"ordinary"
-REGION:(44,06,45,09),lit,"ordinary"
-REGION:(42,11,45,12),lit,"ordinary"
+REGION:(39,06,42,07),lit,"ordinary",filled,true
+REGION:(39,09,40,12),lit,"ordinary",filled,true
+REGION:(44,06,45,09),lit,"ordinary",filled,true
+REGION:(42,11,45,12),lit,"ordinary",filled,true
 #   Corners
-REGION:(02,02,06,04),lit,"ordinary"
-REGION:(56,02,60,04),lit,"ordinary"
-REGION:(02,14,06,16),lit,"ordinary"
-REGION:(56,14,60,16),lit,"ordinary"
+REGION:(02,02,06,04),lit,"ordinary",filled,true
+REGION:(56,02,60,04),lit,"ordinary",filled,true
+REGION:(02,14,06,16),lit,"ordinary",filled,true
+REGION:(56,14,60,16),lit,"ordinary",filled,true
 #   Barracks
 REGION:(16,06,25,07),lit,"barracks"
 REGION:(16,11,25,12),lit,"barracks"
@@ -4579,21 +4579,21 @@ GEOMETRY:center,center
 MAP
 0                   }  }    ## ##     }-----------------     ####           
 1 ....            ..}T}}T.   ###      }|...|...|...|...|    ######    ....  
-2......    T....T..T}}}T .T.  H  .T..}}--.---.---.---.--.  H ####   ##..{.. 
+2......    T....T..T}}}T .T.  H  .T..}}--B---B---B---B--.  H ####   ##..{.. 
 3 ...    .....T......}T .....T......}}....................T.      ###  ...  
 4 #      .  T....T...}|...T....T...}}..T.........T.........  ..   H         
 5 ##    .T....T.....T}T T..T.....T}}T...............T...    ..... ..        
 6  #   ....T.....T...}}T  ....T.T}}.}.....T............TFT...........       
 7....##.  ....T.....}T}}}T TT T .}.}.}...........T...F T.......T.......|---|
-8....  .. T..   ...}}}}}}}}}}}}T ..T.}T......T.......T...............T.....|
+8....  .. T..   ...}}}}}}}}}}}}T ..T.}T......T.......T...............T.B...|
 9     .T...T  }}}}}}}}}}}}}}}}}}TT  TT T ..........FT T................|---|
-0}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}TT ........ ............T..........|
+0}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}TT ........ ............T......B...|
 1}}}}}}}}}}}}}}}}}}..........}}}}}}}}}}}}}}.}....T T.....T.............|---|
-2................}..............}}}}}}}}}}.}.}.}  ..................T......|
+2................}..............}}}}}}}}}}.}.}.}  ..................T..B...|
 3-----S----------....................}}}}.}.}.}}}}.}.............T.....|---|
-4 |.......|..+..|........................}.}}}}}}.}.}.}....T...............|
+4 |.......|..+..|........................}.}}}}}}.}.}.}....T...........B...|
 5 |.......|----.|..........----......  ... }}}.}.}.}.}}................|---|
-6 |.......+.....|----------|..|            }..}.}.}.}..T......T............|
+6 |.......+.....|----------|..|            }..}.}.}.}..T......T........B...|
 7 |.......|----.|.+........+..S.  .......... }}}}}}}}  ............T...|---|
 8 |...\...|..+....|   H    ----...........    }}}}}}     ............  H### 
 9 ---------..------#######                     }}}}                    #### 
@@ -4629,22 +4629,22 @@ REGION:(65,01,73,05),unlit,"ordinary"
 REGION:(00,10,31,18),lit,"ordinary"
 REGION:(31,13,39,18),lit,"ordinary"
 # Northern huts
-REGION:(39,01,41,01),unlit,"ordinary"
-REGION:(43,01,45,01),unlit,"ordinary"
-REGION:(47,01,49,01),unlit,"ordinary"
-REGION:(51,01,53,01),unlit,"ordinary"
+REGION:(39,01,41,01),unlit,"ordinary",filled,true
+REGION:(43,01,45,01),unlit,"ordinary",filled,true
+REGION:(47,01,49,01),unlit,"ordinary",filled,true
+REGION:(51,01,53,01),unlit,"ordinary",filled,true
 # Eastern Huts
-REGION:(71,08,73,08),unlit,"ordinary"
-REGION:(71,10,73,10),unlit,"ordinary"
-REGION:(71,12,73,12),unlit,"ordinary"
-REGION:(71,14,73,14),unlit,"ordinary"
-REGION:(71,16,73,16),unlit,"ordinary"
+REGION:(71,08,73,08),unlit,"ordinary",filled,true
+REGION:(71,10,73,10),unlit,"ordinary",filled,true
+REGION:(71,12,73,12),unlit,"ordinary",filled,true
+REGION:(71,14,73,14),unlit,"ordinary",filled,true
+REGION:(71,16,73,16),unlit,"ordinary",filled,true
 # Tower
-REGION:(02,14,08,18),unlit,"ordinary"
-REGION:(10,14,14,18),unlit,"ordinary"
+REGION:(02,14,08,18),unlit,"ordinary",filled,true
+REGION:(10,14,14,18),unlit,"ordinary",filled,true
 REGION:(15,17,16,18),unlit,"ordinary"
-REGION:(17,17,26,17),unlit,"ordinary"
-REGION:(27,16,28,17),unlit,"ordinary"
+REGION:(18,17,25,17),unlit,"ordinary",filled,true
+REGION:(27,16,28,17),unlit,"ordinary",filled,true
 # Stairs
 STAIR:(02,02),up
 # The drawbridge
@@ -5059,43 +5059,43 @@ REGION:(00,00,62,18),unlit,"ordinary"
 #REGION:(00,09,24,18),lit,"ordinary"
 #REGION:(09,08,12,09),lit,"ordinary"
 #REGION:(13,05,19,18),lit,"ordinary"
-REGION:(05,00,05,09),lit,"ordinary",unfilled,true
+REGION:(05,00,05,09),lit,"ordinary",filled,true
 
-REGION:(26,11,32,13),lit,"ordinary"
+REGION:(26,11,32,13),lit,"ordinary",filled,true
 #   Throne room
 REGION:(34,11,45,14),lit,"throne",unfilled
 #   Antechambers
-REGION:(25,05,31,10),lit,"ordinary"
-REGION:(25,10,33,14),lit,"ordinary"
-REGION:(25,08,41,09),lit,"ordinary"
+REGION:(26,06,30,09),lit,"ordinary",filled,true
+REGION:(26,11,32,13),lit,"ordinary",filled,true
+REGION:(26,08,41,09),lit,"ordinary",filled,true
 #   Storerooms
-REGION:(43,05,48,05),lit,"ordinary"
-REGION:(43,06,46,07),lit,"ordinary"
+REGION:(43,05,48,05),lit,"ordinary",filled,true
+REGION:(43,06,46,07),lit,"ordinary",filled,true
 
-REGION:(50,05,55,05),lit,"ordinary"
-REGION:(52,06,55,07),lit,"ordinary"
+REGION:(50,05,55,05),lit,"ordinary",filled,true
+REGION:(52,06,55,07),lit,"ordinary",filled,true
 
-REGION:(53,11,55,14),lit,"ordinary"
-REGION:(52,13,52,14),lit,"ordinary"
+REGION:(53,11,55,14),lit,"ordinary",filled,true
+REGION:(52,13,52,14),lit,"ordinary",filled,true
 
-REGION:(47,11,48,14),lit,"ordinary"
-REGION:(49,13,50,14),lit,"ordinary"
-REGION:(45,14,46,14),lit,"ordinary"
+REGION:(47,11,48,14),lit,"ordinary",filled,true
+REGION:(49,13,50,14),lit,"ordinary",filled,true
+REGION:(45,14,46,14),lit,"ordinary",filled,true
 
 #   Corners
 REGION:(16,15,32,16),lit,"ordinary"
-REGION:(57,12,58,16),lit,"ordinary"
-REGION:(10,02,11,06),lit,"ordinary"
-REGION:(57,02,58,06),lit,"ordinary"
+REGION:(57,12,58,16),lit,"ordinary",filled,true
+REGION:(10,02,11,06),lit,"ordinary",filled,true
+REGION:(57,02,58,06),lit,"ordinary",filled,true
 #   Barracks
 REGION:(21,05,25,07),lit,"barracks"
 REGION:(31,05,41,06),lit,"barracks"
 #############################################################
 #   Hallways
-REGION:(13,03,55,03),unlit,"ordinary"
-REGION:(34,16,55,16),unlit,"ordinary"
-REGION:(43,09,57,09),unlit,"ordinary"
-REGION:(57,08,57,10),unlit,"ordinary"
+REGION:(13,03,55,03),unlit,"ordinary",filled,true
+REGION:(34,16,55,16),unlit,"ordinary",filled,true
+REGION:(43,09,57,09),unlit,"ordinary",filled,true
+REGION:(57,08,57,10),unlit,"ordinary",filled,true
 
 ##
 ##Castle 5
@@ -5294,33 +5294,33 @@ NON_DIGGABLE:(00,00,62,16)
 #   Entire castle area
 REGION:(00,00,62,16),unlit,"ordinary"
 #   Courtyards
-REGION:(57,05,62,11),lit,"ordinary"
+REGION:(58,06,62,10),lit,"ordinary",filled,true
 #   Throne room
 REGION:(28,05,37,11),lit,"throne",unfilled
 #   Antechamber
-REGION:(07,07,07,07),lit,"ordinary",unfilled,true
+REGION:(07,07,07,07),lit,"ordinary",filled,true
 #   Storerooms
-REGION:(39,05,45,06),lit,"ordinary"
-REGION:(39,10,45,11),lit,"ordinary"
-REGION:(49,05,55,06),lit,"ordinary"
-REGION:(49,10,55,11),lit,"ordinary"
+REGION:(39,05,45,06),lit,"ordinary",filled,true
+REGION:(39,10,45,11),lit,"ordinary",filled,true
+REGION:(49,05,55,06),lit,"ordinary",filled,true
+REGION:(49,10,55,11),lit,"ordinary",filled,true
 #   Corners
-REGION:(17,02,21,03),lit,"ordinary"
-REGION:(56,02,60,03),lit,"ordinary"
-REGION:(20,13,24,14),lit,"ordinary"
-REGION:(56,13,60,14),lit,"ordinary"
+REGION:(17,02,21,03),lit,"ordinary",filled,true
+REGION:(56,02,60,03),lit,"ordinary",filled,true
+REGION:(20,13,24,14),lit,"ordinary",filled,true
+REGION:(56,13,60,14),lit,"ordinary",filled,true
 #   Barracks
 REGION:(17,08,26,11),lit,"barracks"
 #   Hallways
-REGION:(23,03,54,03),unlit,"ordinary"
-REGION:(26,13,54,13),unlit,"ordinary"
-REGION:(13,06,26,06),unlit,"ordinary"
-REGION:(39,08,55,08),unlit,"ordinary"
+REGION:(23,03,54,03),unlit,"ordinary",filled,true
+REGION:(26,13,54,13),unlit,"ordinary",filled,true
+REGION:(13,06,26,06),unlit,"ordinary",filled,true
+REGION:(39,08,55,08),unlit,"ordinary",filled,true
 #   Storeroom alcoves
-REGION:(47,05,47,06),unlit,"ordinary"
-REGION:(47,10,47,11),unlit,"ordinary"
+REGION:(47,05,47,06),unlit,"ordinary",filled,true
+REGION:(47,10,47,11),unlit,"ordinary",filled,true
 #	Bloody Hallway hack/patch
-REGION:(06,06,12,06),lit,"ordinary"
+REGION:(06,06,12,06),lit,"ordinary",filled,true
 
 
 MAZE:"ecstl-8",random
@@ -5528,15 +5528,15 @@ REGION:(00,00,62,18),unlit,"ordinary"
 #REGION:(00,09,24,18),lit,"ordinary"
 #REGION:(09,08,12,09),lit,"ordinary"
 #REGION:(13,05,19,18),lit,"ordinary"
-REGION:(05,00,05,09),lit,"ordinary",unfilled,true
+REGION:(05,00,05,09),lit,"ordinary",filled,true
 
 REGION:(26,11,32,13),random,"randomroom"
 #   Throne room
 REGION:(34,11,45,14),lit,"throne",unfilled
 #   Antechambers
-REGION:(25,05,31,10),lit,"ordinary"
-REGION:(25,10,33,14),lit,"ordinary"
-REGION:(25,08,41,09),lit,"ordinary"
+REGION:(26,06,30,09),lit,"ordinary",filled,true
+REGION:(26,11,32,13),lit,"ordinary",filled,true
+REGION:(26,08,41,09),lit,"ordinary",filled,true
 #   Storerooms
 REGION:(43,05,48,05),random,"randomroom"
 REGION:(43,06,46,07),random,"randomroom"
@@ -5563,8 +5563,8 @@ REGION:(31,05,41,06),lit,"barracks"
 #   Hallways
 REGION:(13,03,55,03),random,"randomroom"
 REGION:(34,16,55,16),random,"randomroom"
-REGION:(43,09,57,09),unlit,"ordinary"
-REGION:(57,08,57,10),unlit,"ordinary"
+REGION:(43,09,57,09),unlit,"ordinary",filled,true
+REGION:(57,08,57,10),unlit,"ordinary",filled,true
 
 # idea by Khor - castle with a grid bug invasion. I'll make it spawn random x instead though. --Amy
 
@@ -5651,8 +5651,8 @@ REGION:(00,00,62,20),lit,"ordinary"
 REGION:(63,00,75,01),lit,"ordinary"
 
 # and the dragon pens are unlit
-REGION:(47,03,52,06),unlit,"ordinary"
-REGION:(47,12,52,15),unlit,"ordinary"
+REGION:(47,03,52,06),unlit,"ordinary",filled,true
+REGION:(47,13,47,13),unlit,"ordinary",filled,true
 
 REGION:(24,03,31,15),lit,"throne",unfilled,true
 
@@ -5660,7 +5660,7 @@ REGION:(14,03,22,05),lit,"barracks"
 REGION:(14,13,22,15),lit,"barracks"
 
 # the armouries and the treasure room are unlit
-REGION:(09,03,12,15),unlit,"ordinary"
+REGION:(09,03,12,15),unlit,"ordinary",filled,true
 
 # northern armoury
 OBJECT:object[0],random,(09,03)
@@ -6059,7 +6059,7 @@ OBJECT:'(',"chest",place[4]
 CONTAINER:'(',"chest",place[5]
 
 # West Wing Hazards:
-REGION:(14,08,23,10),unlit,"ordinary",unfilled
+REGION:(14,08,23,10),unlit,"ordinary",filled,true
 TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
@@ -6068,7 +6068,7 @@ MONSTER:'@',"soldier",random
 MONSTER:'@',"soldier",random
 
 # East Wing Hazards:
-REGION:(51,08,60,10),unlit,"ordinary",unfilled
+REGION:(51,08,60,10),unlit,"ordinary",filled,true
 TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
@@ -6303,7 +6303,7 @@ OBJECT:'(',"chest",place[4]
 CONTAINER:'(',"chest",place[5]
 
 # West Wing Hazards:
-REGION:(14,08,23,10),unlit,"ordinary",unfilled
+REGION:(14,08,23,10),unlit,"ordinary",filled,true
 TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
@@ -6312,7 +6312,7 @@ MONSTER:'@',"soldier",random
 MONSTER:'@',"soldier",random
 
 # East Wing Hazards:
-REGION:(51,08,60,10),unlit,"ordinary",unfilled
+REGION:(51,08,60,10),unlit,"ordinary",filled,true
 TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
@@ -7452,28 +7452,28 @@ REGION:(57,05,62,11),lit,"ordinary"
 #   Throne room
 REGION:(27,05,37,11),lit,"throne",unfilled
 #   Antechamber
-REGION:(07,05,14,11),lit,"ordinary"
+REGION:(07,05,14,11),lit,"ordinary",filled,true
 #   Storerooms
-REGION:(39,05,45,06),lit,"ordinary"
-REGION:(39,10,45,11),lit,"ordinary"
-REGION:(49,05,55,06),lit,"ordinary"
-REGION:(49,10,55,11),lit,"ordinary"
+REGION:(39,05,45,06),lit,"ordinary",filled,true
+REGION:(39,10,45,11),lit,"ordinary",filled,true
+REGION:(49,05,55,06),lit,"ordinary",filled,true
+REGION:(49,10,55,11),lit,"ordinary",filled,true
 #   Corners
-REGION:(02,02,06,03),lit,"ordinary"
-REGION:(56,02,60,03),lit,"ordinary"
-REGION:(02,13,06,14),lit,"ordinary"
-REGION:(56,13,60,14),lit,"ordinary"
+REGION:(02,02,06,03),lit,"ordinary",filled,true
+REGION:(56,02,60,03),lit,"ordinary",filled,true
+REGION:(02,13,06,14),lit,"ordinary",filled,true
+REGION:(56,13,60,14),lit,"ordinary",filled,true
 #   Barracks
 REGION:(16,05,25,06),lit,"barracks"
 REGION:(16,10,25,11),lit,"barracks"
 #   Hallways
-REGION:(08,03,54,03),unlit,"ordinary"
-REGION:(08,13,54,13),unlit,"ordinary"
-REGION:(16,08,25,08),unlit,"ordinary"
-REGION:(39,08,55,08),unlit,"ordinary"
+REGION:(08,03,54,03),unlit,"ordinary",filled,true
+REGION:(08,13,54,13),unlit,"ordinary",filled,true
+REGION:(16,08,25,08),unlit,"ordinary",filled,true
+REGION:(39,08,55,08),unlit,"ordinary",filled,true
 #   Storeroom alcoves
-REGION:(47,05,47,06),unlit,"ordinary"
-REGION:(47,10,47,11),unlit,"ordinary"
+REGION:(47,05,47,06),unlit,"ordinary",filled,true
+REGION:(47,10,47,11),unlit,"ordinary",filled,true
 
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
@@ -7592,8 +7592,8 @@ REGION:(00,00,62,20),lit,"ordinary"
 REGION:(63,00,75,01),lit,"ordinary"
 
 # and the dragon pens are unlit
-REGION:(47,03,52,06),unlit,"ordinary"
-REGION:(47,12,52,15),unlit,"ordinary"
+REGION:(47,03,52,06),unlit,"ordinary",filled,true
+REGION:(47,13,47,13),unlit,"ordinary",filled,true
 
 REGION:(24,03,31,15),lit,"throne",unfilled,true
 
@@ -7601,7 +7601,7 @@ REGION:(14,03,22,05),lit,"barracks"
 REGION:(14,13,22,15),lit,"barracks"
 
 # the armouries and the treasure room are unlit
-REGION:(09,03,12,15),unlit,"ordinary"
+REGION:(09,03,12,15),unlit,"ordinary",filled,true
 
 # northern armoury
 OBJECT:object[0],random,(09,03)
@@ -7815,13 +7815,13 @@ REGION:(34,11,60,14),unlit,"ordinary"
 REGION:(60,13,64,14),unlit,"ordinary"
 
 # the hallways in the castle are dark
-REGION:(17,05,35,05),unlit,"ordinary"
-REGION:(25,00,25,04),unlit,"ordinary"
+REGION:(17,05,35,05),unlit,"ordinary",filled,true
+REGION:(25,01,25,03),unlit,"ordinary",filled,true
 
-REGION:(01,01,03,01),unlit,"ordinary"
-REGION:(01,01,01,13),unlit,"ordinary"
-REGION:(01,09,03,11),unlit,"ordinary"
-REGION:(01,11,15,11),unlit,"ordinary"
+REGION:(01,01,03,01),unlit,"ordinary",filled,true
+REGION:(01,01,01,13),unlit,"ordinary",filled,true
+REGION:(01,09,03,11),unlit,"ordinary",filled,true
+REGION:(01,11,15,11),unlit,"ordinary",filled,true
 
 # the special rooms in the castle
 REGION:(05,03,15,07),lit,"throne",unfilled,true
@@ -8245,34 +8245,34 @@ NON_DIGGABLE:(00,00,62,18)
 REGION:(00,00,62,18),unlit,"ordinary"
 
 #   Courtyards
-REGION:(00,07,02,11),lit,"ordinary"
-REGION:(60,07,62,11),lit,"ordinary"
+REGION:(00,07,02,11),lit,"ordinary",filled,true
+REGION:(60,07,62,11),lit,"ordinary",filled,true
 #   Throne room
 REGION:(31,06,37,12),lit,"throne",unfilled
 #   Antechamber
-REGION:(08,07,14,12),lit,"ordinary"
-REGION:(09,05,14,14),lit,"ordinary"
+REGION:(08,07,14,12),lit,"ordinary",filled,true
+REGION:(09,05,14,14),lit,"ordinary",filled,true
 
 REGION:(15,05,17,05),lit,"ordinary"
-REGION:(15,14,17,14),lit,"ordinary"
+REGION:(15,14,17,14),lit,"ordinary",filled,true
 
-REGION:(27,06,29,12),lit,"ordinary"
+REGION:(27,06,29,12),lit,"ordinary",filled,true
 
-REGION:(47,07,55,12),lit,"ordinary"
-REGION:(47,05,54,14),lit,"ordinary"
+REGION:(47,07,55,12),lit,"ordinary",filled,true
+REGION:(47,05,54,14),lit,"ordinary",filled,true
 
 REGION:(44,05,46,05),lit,"ordinary"
-REGION:(44,14,46,14),lit,"ordinary"
+REGION:(44,14,46,14),lit,"ordinary",filled,true
 #   Storerooms
-REGION:(39,06,42,07),lit,"ordinary"
-REGION:(39,09,40,12),lit,"ordinary"
-REGION:(44,06,45,09),lit,"ordinary"
-REGION:(42,11,45,12),lit,"ordinary"
+REGION:(39,06,42,07),lit,"ordinary",filled,true
+REGION:(39,09,40,12),lit,"ordinary",filled,true
+REGION:(44,06,45,09),lit,"ordinary",filled,true
+REGION:(42,11,45,12),lit,"ordinary",filled,true
 #   Corners
-REGION:(02,02,06,04),lit,"ordinary"
-REGION:(56,02,60,04),lit,"ordinary"
-REGION:(02,14,06,16),lit,"ordinary"
-REGION:(56,14,60,16),lit,"ordinary"
+REGION:(02,02,06,04),lit,"ordinary",filled,true
+REGION:(56,02,60,04),lit,"ordinary",filled,true
+REGION:(02,14,06,16),lit,"ordinary",filled,true
+REGION:(56,14,60,16),lit,"ordinary",filled,true
 #   Barracks
 REGION:(16,06,25,07),lit,"barracks"
 REGION:(16,11,25,12),lit,"barracks"
@@ -8327,21 +8327,21 @@ GEOMETRY:center,center
 MAP
 0                   }  }    ## ##     }-----------------     ####           
 1 ....            ..}T}}T.   ###      }|...|...|...|...|    ######    ....  
-2......    T....T..T}}}T .T.  H  .T..}}--.---.---.---.--.  H ####   ##..{.. 
+2......    T....T..T}}}T .T.  H  .T..}}--B---B---B---B--.  H ####   ##..{.. 
 3 ...    .....T......}T .....T......}}....................T.      ###  ...  
 4 #      .  T....T...}|...T....T...}}..T.........T.........  ..   H         
 5 ##    .T....T.....T}T T..T.....T}}T...............T...    ..... ..        
 6  #   ....T.....T...}}T  ....T.T}}.}.....T............TFT...........       
 7....##.  ....T.....}T}}}T TT T .}.}.}...........T...F T.......T.......|---|
-8....  .. T..   ...}}}}}}}}}}}}T ..T.}T......T.......T...............T.....|
+8....  .. T..   ...}}}}}}}}}}}}T ..T.}T......T.......T...............T.B...|
 9     .T...T  }}}}}}}}}}}}}}}}}}TT  TT T ..........FT T................|---|
-0}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}TT ........ ............T..........|
+0}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}TT ........ ............T......B...|
 1}}}}}}}}}}}}}}}}}}..........}}}}}}}}}}}}}}.}....T T.....T.............|---|
-2................}..............}}}}}}}}}}.}.}.}  ..................T......|
+2................}..............}}}}}}}}}}.}.}.}  ..................T..B...|
 3-----S----------....................}}}}.}.}.}}}}.}.............T.....|---|
-4 |.......|..+..|........................}.}}}}}}.}.}.}....T...............|
+4 |.......|..+..|........................}.}}}}}}.}.}.}....T...........B...|
 5 |.......|----.|..........----......  ... }}}.}.}.}.}}................|---|
-6 |.......+.....|----------|..|            }..}.}.}.}..T......T............|
+6 |.......+.....|----------|..|            }..}.}.}.}..T......T........B...|
 7 |.......|----.|.+........+..S.  .......... }}}}}}}}  ............T...|---|
 8 |...\...|..+....|   H    ----...........    }}}}}}     ............  H### 
 9 ---------..------#######                     }}}}                    #### 
@@ -8377,22 +8377,22 @@ REGION:(65,01,73,05),unlit,"ordinary"
 REGION:(00,10,31,18),lit,"ordinary"
 REGION:(31,13,39,18),lit,"ordinary"
 # Northern huts
-REGION:(39,01,41,01),unlit,"ordinary"
-REGION:(43,01,45,01),unlit,"ordinary"
-REGION:(47,01,49,01),unlit,"ordinary"
-REGION:(51,01,53,01),unlit,"ordinary"
+REGION:(39,01,41,01),unlit,"ordinary",filled,true
+REGION:(43,01,45,01),unlit,"ordinary",filled,true
+REGION:(47,01,49,01),unlit,"ordinary",filled,true
+REGION:(51,01,53,01),unlit,"ordinary",filled,true
 # Eastern Huts
-REGION:(71,08,73,08),unlit,"ordinary"
-REGION:(71,10,73,10),unlit,"ordinary"
-REGION:(71,12,73,12),unlit,"ordinary"
-REGION:(71,14,73,14),unlit,"ordinary"
-REGION:(71,16,73,16),unlit,"ordinary"
+REGION:(71,08,73,08),unlit,"ordinary",filled,true
+REGION:(71,10,73,10),unlit,"ordinary",filled,true
+REGION:(71,12,73,12),unlit,"ordinary",filled,true
+REGION:(71,14,73,14),unlit,"ordinary",filled,true
+REGION:(71,16,73,16),unlit,"ordinary",filled,true
 # Tower
-REGION:(02,14,08,18),unlit,"ordinary"
-REGION:(10,14,14,18),unlit,"ordinary"
+REGION:(02,14,08,18),unlit,"ordinary",filled,true
+REGION:(10,14,14,18),unlit,"ordinary",filled,true
 REGION:(15,17,16,18),unlit,"ordinary"
-REGION:(17,17,26,17),unlit,"ordinary"
-REGION:(27,16,28,17),unlit,"ordinary"
+REGION:(18,17,25,17),unlit,"ordinary",filled,true
+REGION:(27,16,28,17),unlit,"ordinary",filled,true
 # Stairs
 STAIR:(02,02),up
 # The drawbridge
@@ -8841,43 +8841,43 @@ REGION:(00,00,62,18),unlit,"ordinary"
 #REGION:(00,09,24,18),lit,"ordinary"
 #REGION:(09,08,12,09),lit,"ordinary"
 #REGION:(13,05,19,18),lit,"ordinary"
-REGION:(05,00,05,09),lit,"ordinary",unfilled,true
+REGION:(05,00,05,09),lit,"ordinary",filled,true
 
-REGION:(26,11,32,13),lit,"ordinary"
+REGION:(26,11,32,13),lit,"ordinary",filled,true
 #   Throne room
 REGION:(34,11,45,14),lit,"throne",unfilled
 #   Antechambers
-REGION:(25,05,31,10),lit,"ordinary"
-REGION:(25,10,33,14),lit,"ordinary"
-REGION:(25,08,41,09),lit,"ordinary"
+REGION:(26,06,30,09),lit,"ordinary",filled,true
+REGION:(26,11,32,13),lit,"ordinary",filled,true
+REGION:(26,08,41,09),lit,"ordinary",filled,true
 #   Storerooms
-REGION:(43,05,48,05),lit,"ordinary"
-REGION:(43,06,46,07),lit,"ordinary"
+REGION:(43,05,48,05),lit,"ordinary",filled,true
+REGION:(43,06,46,07),lit,"ordinary",filled,true
 
-REGION:(50,05,55,05),lit,"ordinary"
-REGION:(52,06,55,07),lit,"ordinary"
+REGION:(50,05,55,05),lit,"ordinary",filled,true
+REGION:(52,06,55,07),lit,"ordinary",filled,true
 
-REGION:(53,11,55,14),lit,"ordinary"
-REGION:(52,13,52,14),lit,"ordinary"
+REGION:(53,11,55,14),lit,"ordinary",filled,true
+REGION:(52,13,52,14),lit,"ordinary",filled,true
 
-REGION:(47,11,48,14),lit,"ordinary"
-REGION:(49,13,50,14),lit,"ordinary"
-REGION:(45,14,46,14),lit,"ordinary"
+REGION:(47,11,48,14),lit,"ordinary",filled,true
+REGION:(49,13,50,14),lit,"ordinary",filled,true
+REGION:(45,14,46,14),lit,"ordinary",filled,true
 
 #   Corners
 REGION:(16,15,32,16),lit,"ordinary"
-REGION:(57,12,58,16),lit,"ordinary"
-REGION:(10,02,11,06),lit,"ordinary"
-REGION:(57,02,58,06),lit,"ordinary"
+REGION:(57,12,58,16),lit,"ordinary",filled,true
+REGION:(10,02,11,06),lit,"ordinary",filled,true
+REGION:(57,02,58,06),lit,"ordinary",filled,true
 #   Barracks
 REGION:(21,05,25,07),lit,"barracks"
 REGION:(31,05,41,06),lit,"barracks"
 #############################################################
 #   Hallways
-REGION:(13,03,55,03),unlit,"ordinary"
-REGION:(34,16,55,16),unlit,"ordinary"
-REGION:(43,09,57,09),unlit,"ordinary"
-REGION:(57,08,57,10),unlit,"ordinary"
+REGION:(13,03,55,03),unlit,"ordinary",filled,true
+REGION:(34,16,55,16),unlit,"ordinary",filled,true
+REGION:(43,09,57,09),unlit,"ordinary",filled,true
+REGION:(57,08,57,10),unlit,"ordinary",filled,true
 
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
@@ -9111,33 +9111,33 @@ NON_DIGGABLE:(00,00,62,16)
 #   Entire castle area
 REGION:(00,00,62,16),unlit,"ordinary"
 #   Courtyards
-REGION:(57,05,62,11),lit,"ordinary"
+REGION:(58,06,62,10),lit,"ordinary",filled,true
 #   Throne room
 REGION:(28,05,37,11),lit,"throne",unfilled
 #   Antechamber
-REGION:(07,07,07,07),lit,"ordinary",unfilled,true
+REGION:(07,07,07,07),lit,"ordinary",filled,true
 #   Storerooms
-REGION:(39,05,45,06),lit,"ordinary"
-REGION:(39,10,45,11),lit,"ordinary"
-REGION:(49,05,55,06),lit,"ordinary"
-REGION:(49,10,55,11),lit,"ordinary"
+REGION:(39,05,45,06),lit,"ordinary",filled,true
+REGION:(39,10,45,11),lit,"ordinary",filled,true
+REGION:(49,05,55,06),lit,"ordinary",filled,true
+REGION:(49,10,55,11),lit,"ordinary",filled,true
 #   Corners
-REGION:(17,02,21,03),lit,"ordinary"
-REGION:(56,02,60,03),lit,"ordinary"
-REGION:(20,13,24,14),lit,"ordinary"
-REGION:(56,13,60,14),lit,"ordinary"
+REGION:(17,02,21,03),lit,"ordinary",filled,true
+REGION:(56,02,60,03),lit,"ordinary",filled,true
+REGION:(20,13,24,14),lit,"ordinary",filled,true
+REGION:(56,13,60,14),lit,"ordinary",filled,true
 #   Barracks
 REGION:(17,08,26,11),lit,"barracks"
 #   Hallways
-REGION:(23,03,54,03),unlit,"ordinary"
-REGION:(26,13,54,13),unlit,"ordinary"
-REGION:(13,06,26,06),unlit,"ordinary"
-REGION:(39,08,55,08),unlit,"ordinary"
+REGION:(23,03,54,03),unlit,"ordinary",filled,true
+REGION:(26,13,54,13),unlit,"ordinary",filled,true
+REGION:(13,06,26,06),unlit,"ordinary",filled,true
+REGION:(39,08,55,08),unlit,"ordinary",filled,true
 #   Storeroom alcoves
-REGION:(47,05,47,06),unlit,"ordinary"
-REGION:(47,10,47,11),unlit,"ordinary"
+REGION:(47,05,47,06),unlit,"ordinary",filled,true
+REGION:(47,10,47,11),unlit,"ordinary",filled,true
 #	Bloody Hallway hack/patch
-REGION:(06,06,12,06),lit,"ordinary"
+REGION:(06,06,12,06),lit,"ordinary",filled,true
 
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
@@ -9379,15 +9379,15 @@ REGION:(00,00,62,18),unlit,"ordinary"
 #REGION:(00,09,24,18),lit,"ordinary"
 #REGION:(09,08,12,09),lit,"ordinary"
 #REGION:(13,05,19,18),lit,"ordinary"
-REGION:(05,00,05,09),lit,"ordinary",unfilled,true
+REGION:(05,00,05,09),lit,"ordinary",filled,true
 
 REGION:(26,11,32,13),random,"randomroom"
 #   Throne room
 REGION:(34,11,45,14),lit,"throne",unfilled
 #   Antechambers
-REGION:(25,05,31,10),lit,"ordinary"
-REGION:(25,10,33,14),lit,"ordinary"
-REGION:(25,08,41,09),lit,"ordinary"
+REGION:(26,06,30,09),lit,"ordinary",filled,true
+REGION:(26,11,32,13),lit,"ordinary",filled,true
+REGION:(26,08,41,09),lit,"ordinary",filled,true
 #   Storerooms
 REGION:(43,05,48,05),random,"randomroom"
 REGION:(43,06,46,07),random,"randomroom"
@@ -9414,8 +9414,8 @@ REGION:(31,05,41,06),lit,"barracks"
 #   Hallways
 REGION:(13,03,55,03),random,"randomroom"
 REGION:(34,16,55,16),random,"randomroom"
-REGION:(43,09,57,09),unlit,"ordinary"
-REGION:(57,08,57,10),unlit,"ordinary"
+REGION:(43,09,57,09),unlit,"ordinary",filled,true
+REGION:(57,08,57,10),unlit,"ordinary",filled,true
 
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random
@@ -9536,8 +9536,8 @@ REGION:(00,00,62,20),lit,"ordinary"
 REGION:(63,00,75,01),lit,"ordinary"
 
 # and the dragon pens are unlit
-REGION:(47,03,52,06),unlit,"ordinary"
-REGION:(47,12,52,15),unlit,"ordinary"
+REGION:(47,03,52,06),unlit,"ordinary",filled,true
+REGION:(47,13,47,13),unlit,"ordinary",filled,true
 
 REGION:(24,03,31,15),lit,"throne",unfilled,true
 
@@ -9545,7 +9545,7 @@ REGION:(14,03,22,05),lit,"barracks"
 REGION:(14,13,22,15),lit,"barracks"
 
 # the armouries and the treasure room are unlit
-REGION:(09,03,12,15),unlit,"ordinary"
+REGION:(09,03,12,15),unlit,"ordinary",filled,true
 
 # northern armoury
 OBJECT:object[0],random,(09,03)
@@ -9978,7 +9978,7 @@ OBJECT:'(',"chest",place[4]
 CONTAINER:'(',"chest",place[5]
 
 # West Wing Hazards:
-REGION:(14,08,23,10),unlit,"ordinary",unfilled
+REGION:(14,08,23,10),unlit,"ordinary",filled,true
 TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
@@ -9996,7 +9996,7 @@ MONSTER:'@',"soldier",random
 MONSTER:'@',"soldier",random
 
 # East Wing Hazards:
-REGION:(51,08,60,10),unlit,"ordinary",unfilled
+REGION:(51,08,60,10),unlit,"ordinary",filled,true
 TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
@@ -10267,7 +10267,7 @@ OBJECT:'(',"chest",place[4]
 CONTAINER:'(',"chest",place[5]
 
 # West Wing Hazards:
-REGION:(14,08,23,10),unlit,"ordinary",unfilled
+REGION:(14,08,23,10),unlit,"ordinary",filled,true
 TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
@@ -10285,7 +10285,7 @@ MONSTER:'@',"soldier",random
 MONSTER:'@',"soldier",random
 
 # East Wing Hazards:
-REGION:(51,08,60,10),unlit,"ordinary",unfilled
+REGION:(51,08,60,10),unlit,"ordinary",filled,true
 TRAP:"trap door",random
 TRAP:random,random
 TRAP:random,random
