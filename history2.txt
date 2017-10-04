@@ -1,6 +1,11 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy
 
 2.0.9
+- Changed regions in some special levels, which enables them to be filled with monsters in ironman mode. This causes a few issues on certain levels, most prominently a "Cannot place branch!" error; the way the game originally handled this was very stupid, because it entered an infinite loop. 0/10, vanilla devteam. Sorry. Anyway, I changed it so it simply forces the branch to be placed anyway, and since this can cause magic portals to appear in a wall, I added extra code to transform the terrain underneath a generated magic portal to a walkable one (water still counts as walkable, so ad aquarium vaults should work like they used to).
+- Migohives now have a chance of spawning a wider variety of migos, including the "gomi" monsters from dnethack.
+- Monsters that use the MS_BONES sound, e.g. skeletons, can now rattle while near the player. Unless the player makes a saving throw based on magic cancellation, this will cause 2 turns of paralysis.
+- Fixed a bug where "hmnen" levels could never be generated due to a typo.
+- If a rooms-and-corridors level is generated in Gehennom, there is a higher than usual chance of it containing special rooms.
 - The Gehennom trophy can only be gotten by entering through the front entrance, which is the downstair on the Valley of the Dead.
 - If you die with 0 points, the game will call you a noob.
 - Fixed a bug where it was impossible to pick up an object on a crystal water tile. Also, it should no longer be possible to dip items into crystal water that you shouldn't be able to reach.
