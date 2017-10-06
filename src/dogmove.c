@@ -1027,10 +1027,20 @@ register int after;	/* this is extra fast monster movement */
 		    rn2(13 * uncursedcnt)) continue;
 
 		/* lessen the chance of backtracking to previous position(s) */
-		k = (has_edog && !is_spell) ? uncursedcnt : cnt;
-		for (j = 0; j < MTSZ && j < k - 1; j++)
-			if (nx == mtmp->mtrack[j].x && ny == mtmp->mtrack[j].y)
-				if (rn2(MTSZ * (k - j))) goto nxti;
+
+		/* FIQ says that this code is supposedly bad. While I don't agree with him (it makes the pet follow too
+		 * closely for my taste, and if you have more than one pet, it will lead to clogging up corridors, and
+		 * those will then be ultra annoying if you're stunned, confused or punished, because you can't displace
+		 * them), I can see how if you're using a leash or tin whistle, you want your pets to stay close,
+		 * so yeah, those will now turn off the "offending" code. --Amy */
+
+		if (!(mtmp->mleashed || (has_edog && (monstermoves - edog->whistletime < 10)) )) {
+
+			k = (has_edog && !is_spell) ? uncursedcnt : cnt;
+			for (j = 0; j < MTSZ && j < k - 1; j++)
+				if (nx == mtmp->mtrack[j].x && ny == mtmp->mtrack[j].y)
+					if (rn2(MTSZ * (k - j))) goto nxti;
+		}
 
 		j = ((ndist = GDIST(nx,ny)) - nidist) * appr;
 		if ((j == 0 && !rn2(++chcnt)) || j < 0 ||
