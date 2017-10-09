@@ -5413,8 +5413,8 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_ZOMBIEMAN]) {
 			if (!rn2(2)) {
 				(void) mongets(mtmp, HAND_BLASTER);
-				if (rn2(10)) m_initthrow(mtmp, BLASTER_BOLT, 20);
-				else if (rn2(3)) m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 15);
+				if (rn2(100)) m_initthrow(mtmp, BLASTER_BOLT, 20);
+				else if (rn2(10)) m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 15);
 				else m_initthrow(mtmp, LASER_BEAM, 10);
 			} else {
 				(void) mongets(mtmp, SHOTGUN);
