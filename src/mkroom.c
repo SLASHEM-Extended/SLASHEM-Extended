@@ -516,7 +516,28 @@ struct mkroom *sroom;
 		break;
 	}
 
-	moreorless = (rnd((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 5 : 10) + 1);
+	moreorless = 100;
+	if (rn2(10)) moreorless -= rnd(20);
+	if (!rn2(3)) {
+		moreorless -= rnd(30);
+		if (!rn2(5)) moreorless -= rnd(40);
+	}
+
+	/* armories don't contain as many monsters; also, some other rooms and settings change the values */
+
+	if (ishaxor && rn2(2)) moreorless = 100;
+	if (type == VOIDROOM) {
+		if (rn2(2)) moreorless /= 2;
+		else moreorless /= 3;
+	}
+	if (type == ARMORY) moreorless /= 2;
+	if (type == DIVERPARADISE) moreorless /= 5;
+	if (type == LEVELSEVENTYROOM) moreorless /= 2;
+	if (type == NUCLEARCHAMBER) moreorless /= 2;
+	if (type == HAMLETROOM && moreorless > 5) moreorless = 5;
+	if (issuxxor) moreorless /= 2;
+	if (moreorless < 0) moreorless = 0;
+	if (moreorless > 100) moreorless = 100;
 
 	if (sroom->ly == 20 && sroom->hy == 19) sroom->ly = sroom->hy = 20;
 	if (sroom->ly == 1 && sroom->hy == 0) sroom->ly = sroom->hy = 0;
@@ -545,8 +566,7 @@ struct mkroom *sroom;
 		/* don't place monster on explicitly placed throne */
 		if(type == COURT && IS_THRONE(levl[sx][sy].typ))
 		    continue;
-               /* armories don't contain as many monsters */
-		if (( (type != ARMORY && rn2(moreorless) ) || rn2(2)) && (type != HAMLETROOM || !rn2(20)) && (type != DIVERPARADISE || !rn2(5)) && (type != LEVELSEVENTYROOM || !rn2(2)) && (type != EMPTYNEST) ) mon = makemon(
+		if ( (rnd(100) <= moreorless) && (type != EMPTYNEST) ) mon = makemon(
 		    (type == COURT) ? (rn2(5) ? courtmon() : mkclass(S_ORC,0) ) :
 
 		    (type == INSIDEROOM) ? (/*!*/rn2(Role_if(PM_CAMPERSTRIKER) ? 20 : 40) ? insidemon() : (struct permonst *) 0 ) :
