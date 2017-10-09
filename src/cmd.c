@@ -1483,7 +1483,7 @@ enter_explore_mode()
 	 * Any ascensions made that way still don't get on the high-score list, and wizard mode bones stuffing
 	 * was already possible anyway, so I don't really see how this could cause any harm as long as it's
 	 * not possible to switch from either wizard or explore mode to normal mode. */
-	} else if (wizard && !discover) {
+	} else if (wizard) {
 		getlin ("Do you want to switch to explore mode? [yes/no]?",buf);
 		(void) lcase (buf);
 		if (!(strcmp (buf, "yes"))) {
