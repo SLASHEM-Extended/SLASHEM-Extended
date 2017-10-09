@@ -1,6 +1,15 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy
 
 2.0.9
+- Added anoter possible negative effect to fountain quaffing.
+- A player standing on a crystal water tile was able to quaff from it, which was not intended. Fixed.
+- Hostile werecreatures have a chance of summoning more monsters in a single summon.
+- Fixed an oversight that prevented switching from wizard to explore mode more than once.
+- The zombieman has a much lower chance of starting with the stronger energy gun ammos, which is supposed to make the doomed barracks special room less deadly for a low-level player.
+- Changed monster population formula for special rooms, which should randomize their "filled-ness" more than before. Also toned down the amount of monsters in certain types of rooms, especially the otherwise far too dangerous void room.
+- Pseudo objects, used for e.g. hallucination and spellcasting, can no longer be artifacts, and if they become fake artifacts they won't increase the fake artifact counter.
+- Fixed an error introduced by an earlier commit which made it possible to tame any domestic monster with any type of food.
+- If a pet is leashed or the player has recently used a tin whistle, the "tracking code" will be disabled. This makes the pet follow more closely, but can cause it to get stuck in a U-turn.
 - Changed regions in some special levels, which enables them to be filled with monsters in ironman mode. This causes a few issues on certain levels, most prominently a "Cannot place branch!" error; the way the game originally handled this was very stupid, because it entered an infinite loop. 0/10, vanilla devteam. Sorry. Anyway, I changed it so it simply forces the branch to be placed anyway, and since this can cause magic portals to appear in a wall, I added extra code to transform the terrain underneath a generated magic portal to a walkable one (water still counts as walkable, so ad aquarium vaults should work like they used to).
 - Migohives now have a chance of spawning a wider variety of migos, including the "gomi" monsters from dnethack.
 - Monsters that use the MS_BONES sound, e.g. skeletons, can now rattle while near the player. Unless the player makes a saving throw based on magic cancellation, this will cause 2 turns of paralysis.
