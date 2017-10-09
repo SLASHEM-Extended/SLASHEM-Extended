@@ -1520,3 +1520,17 @@ If you get engulfed on a lava level and cannot survive on lava, remember where t
 You have to guess! Maybe this rumor is true.
 Contamination resistance reduces all incoming contamination by a factor 5.
 NetHack doesn't care if you live or die. Slash'EM wants you dead. Slash'EM Extended wants you to go, "Wait, WHAT? That can HAPPEN?"
+There are disintegration traps in this game, but unlike Nethack Fourk or the Gehennom Evil Patch, your equipment is safe as long as you have disintegration resistance.
+If your character suddenly becomes thirsty, it probably means you triggered a thirst trap, and will have to quaff something every couple turns or you start to hallucinate. The only way to stop those hallucinations is by quaffing something.
+Luck traps are a nasty trap type that cause your luck to decrease every time it affects a result. If you somehow manage to gain positive luck while it's already at the maximum, this trap will cause it to wrap around to the worst possible negative value.
+They say that there are death traps on the Astral Plane, which can instantly kill you if you trigger them. Magic resistance prevents the instadeath, though.
+The weakness trap is devious, as it silently reduces your hit points with no message if you're weak from hunger or worse. Eventually it will kill you.
+If you trigger the rot13 trap, all messages appear in unreadable gibberish. But you can use a rot13 converter to make them readable.
+Wondering why there are squares you simply cannot walk on? Use the search command to reveal them as super nupesell nix areas. Scrolls and wands of trap disarming can remove them.
+One of the nasty traps in this game is the one that prevents you from dropping your items. But you can still throw them, so don't worry about picking up a heavy corpse and being unable to get yourself unburdened.
+Uninformation traps are among the nastier trap types in the game: they prevent you from seeing what any of your items are, and you also cannot access your discoveries list.
+The recursion trap comes in two varieties: one of them changes your role/race permanently, while the other makes it so that you'll eventually revert to what you were at the start of the game.
+If you keep encountering the same types of monsters that you already killed, you might have triggered a respawn trap. On average, it spawns exactly as many monsters as you kill.
+Captchas that you need to solve due to triggering the captcha trap will drain your maximum health if you fail to solve them, so don't screw them up.
+Falling into a shit pit is dangerous, since it will deal acid damage to you and your boots every turn until you finally manage to climb out.
+There is a farlook trap, which is the reason why peacevision is an intrinsic instead of defaulting to on. It means that farlooking a peaceful monster will anger it.

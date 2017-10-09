@@ -4226,6 +4226,26 @@ static const char *epitaphs[] = {
 	"...nor the battle to the strong", /*Bible*/
 	"fucking yora chick suck dick.", /* by GoldenIvy */
 	"looks like it's get the fuck out of here o'clock", /* by Khor */
+	"It's a kick in the pants when you get killed by your spouse for playing the piano.",
+	"that is why the dnethack elder priest exists - to simply frustrate everyone", /* by rikersan, and I couldn't agree more (as if that wasn't obvious from all the other messages about that mother fucker tentacle asshole :P) */
+	"Forgot to wear a cloak, and then the wight used his level-draining attack a couple of times.",
+	"What? I didn't know that thing autocurses!",
+	"WTF, the hippie heels autocurse even if they are blessed? And they convey extrinsic hallucination? That's unfair!!!",
+	"Here lies the n00b that decided to ragequit after his doppelganger was zapped with remove resistance and lost intrinsic polymorph control.",
+	"Here lies a n00b that used #quit on dungeon level 25 after suffering what should have been only a minor setback.",
+	"Please don't spawn whitlevel kops next time!",
+	"Well, the void room is more than just a little unbalanced.",
+	"Committed shoplifting and levelported away. How did the kops get from dlvl5 to 35 SO fast???", /* many thanks to Elronnd for the inspiration */
+	"Why is the undead katcher not undead? I would have lived if he was, I had command undead at 0%% fail!",
+	"Unfair attack trap. And then a normally harmless gnome lord randomly decided to get a touch of death off.",
+	"I was too impatient. I had gotten the Amulet of Yendor already, but on the way up I ESCed out of the messages telling me about the succubus taking off my silver dragon scale mail, and then a black dragon breathed disintegration.",
+	"Well, apparently eating up all the K-rations before hitting the Astral Plane is not the best idea if you then run out of permafood while fighting Famine.",
+	"Whoa, I completely forgot that Pestilence can do up to 128 damage per round. I thought he couldn't touch me, I had a blessed unicorn horn after all.",
+	"Wait, so you're saying there is a defense against random monsters with a wand of disintegration that appear out of nowhere? I don't believe that, all I saw was 'you hear a nearby zap' followed by the DYWYPI prompt!",
+	"Scrolls of flood are bullshit on Sokoban. #quit",
+	"You can't play with the yellow spell trap. I decided to #(rage)quit upon triggering it, because I'm convinced that makes me a better player.",
+	"You can't play with the yellow spell trap. I decided to #(rage)quit upon triggering it, because I'm not touching SLASH'EM Extended again. I'll play casual games like Pac-Man or Minesweeper instead, since I need to polish my ego and that whole concept of 'difficult games' is too much for me to handle.",
+	"The counterclockwise spin trap screwed me over, without it I'd have hit the correct button and walked away from the monster instead of bumping into it!",
 
 };
 
