@@ -133,7 +133,7 @@ struct obj *
 mkobj_at(let, x, y, artif)
 char let;
 int x, y;
-boolean artif;
+int artif;
 {
 	struct obj *otmp;
 
@@ -145,7 +145,8 @@ boolean artif;
 struct obj *
 mksobj_at(otyp, x, y, init, artif)
 int otyp, x, y;
-boolean init, artif;
+boolean init;
+int artif;
 {
 	struct obj *otmp;
 
@@ -155,10 +156,16 @@ boolean init, artif;
 	return(otmp);
 }
 
+/* mkobj change by Amy: "artif" used to be a boolean and is now an int.
+ * 0 = usually don't make item into an artifact, but retain a very low chance
+ * 1 = normal chance of making the item into an artifact
+ * 2 = absolutely never make the item into an artifact, and also don't make contents if it's a container
+ */
+
 struct obj *
 mkobj(oclass, artif)
 char oclass;
-boolean artif;  
+int artif;
 {
 	int tprob, i, j, prob = rnd(10000);
 
@@ -1508,7 +1515,7 @@ struct obj *
 mksobj(otyp, init, artif)
 int otyp;
 boolean init;
-boolean artif;
+int artif;
 {
 	int mndx, tryct;
 	struct obj *otmp;
@@ -1647,12 +1654,12 @@ boolean artif;
 		} else	blessorcurse_on_creation(otmp, 10);
 		if (is_poisonable(otmp) && !rn2(100))
 			otmp->opoisoned = 1;
-		if (artif && !rn2(20))
+		if (artif && (artif != 2) && !rn2(20))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 50)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 			}
 		if (otmp->otyp == STICK_OF_DYNAMITE) {
 			otmp->age = (otmp->cursed ? rn2(15) + 2 : 
@@ -1725,12 +1732,12 @@ boolean artif;
 		otmp->otyp == KELP_FROND || otmp->otyp == PEAR || otmp->otyp == ASIAN_PEAR || otmp->otyp == BANANA
 	|| otmp->otyp == ORANGE || otmp->otyp == MELON || otmp->otyp == SLIME_MOLD)*/
 		blessorcurse_on_creation(otmp, 10);
-		if (artif && !rn2(200))
+		if (artif && (artif != 2) && !rn2(200))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(500)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 		}
 		 break;
 	    /* no longer fall into next case --Amy */
@@ -1746,12 +1753,12 @@ boolean artif;
 			if (!rn2(6)) otmp->quan = rn2(5) ? 2L : rn2(4) ? rn1(5,5) : rn1(10,10);
 			else otmp->quan = 1L;
 
-			if (artif && !rn2(50))
+			if (artif && (artif != 2) && !rn2(50))
 			    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
 			    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 				otmp->fakeartifact = 1;
-				u.fakeartifacts++;
+				if (artif != 2) u.fakeartifacts++;
 			}
 
 			break;
@@ -1775,12 +1782,12 @@ boolean artif;
 			otmp->spe = -rne(2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
-		if (artif && !rn2(50))
+		if (artif && (artif != 2) && !rn2(50))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 		}
 
 	/* "Disable enchantable rocks. The racial + stregnth + sling enchantment bonus is more than enough." In Soviet Russia, people never use slings anyway so they never noticed that those retarded things never do enough damage. They also completely disregard the fact that higher enchantment means a lower chance for the projectiles to disappear too. Guess they never used a stack of blessed +7 rocks in their life, otherwise they'd know the benefits of having them. --Amy */
@@ -1863,7 +1870,7 @@ boolean artif;
 		case TREASURE_CHEST:
 			otmp->olocked = TRUE;
 			otmp->otrapped = rn2(5);
-			mkbox_cnts(otmp);
+			if (artif != 2) mkbox_cnts(otmp);
 			blessorcurse_on_creation(otmp, 8);
 		break;
 
@@ -1879,7 +1886,7 @@ boolean artif;
 		case OILSKIN_SACK:
 		case BAG_OF_HOLDING:
 		case MEDICAL_KIT:
-			mkbox_cnts(otmp);
+			if (artif != 2) mkbox_cnts(otmp);
 		blessorcurse_on_creation(otmp, 8);
 					break;
 		case EXPENSIVE_CAMERA:
@@ -1977,12 +1984,12 @@ boolean artif;
 		break;
 	    }
 
-		if (artif && !rn2(40))
+		if (artif && (artif != 2) && !rn2(40))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if ((artif && !rn2(100)) || (otmp->spe && is_weptool(otmp) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 20)) ) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 		}
 
 	    break;
@@ -1998,23 +2005,23 @@ boolean artif;
 		} else {
 			blessorcurse_on_creation(otmp, 10);
 		}
-		if (artif && !rn2(60))
+		if (artif && (artif != 2) && !rn2(60))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(140)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 		}
 
 		break;
 	case VENOM_CLASS:
 		blessorcurse_on_creation(otmp, 10);
-		if (artif && !rn2(20))
+		if (artif && (artif != 2) && !rn2(20))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(50)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 		}
 		break;
 	case CHAIN_CLASS:
@@ -2031,12 +2038,12 @@ boolean artif;
 
 		if (issoviet) otmp->spe = 0;
 
-		if (artif && !rn2(50))
+		if (artif && (artif != 2) && !rn2(50))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 		}
 
 		break;
@@ -2050,12 +2057,12 @@ boolean artif;
 #endif
 			blessorcurse_on_creation(otmp, 4);
 
-		if (artif && !rn2(160))
+		if (artif && (artif != 2) && !rn2(160))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(400)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 		}
 
 		break;
@@ -2068,12 +2075,12 @@ boolean artif;
 		otmp->recharged = 0;
 		if(!rn2(3)) otmp->recharged = rnd(7);
 		blessorcurse_on_creation(otmp, 17);
-		if (artif && !rn2(100))
+		if (artif && (artif != 2) && !rn2(100))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(250)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 		}
 
 		break;
@@ -2114,12 +2121,12 @@ boolean artif;
 			 else	blessorcurse_on_creation(otmp, 3);
 			otmp->spe = rne(2);
 		} else	blessorcurse_on_creation(otmp, 10);
-		if (artif && !rn2(40))                
+		if (artif && (artif != 2) && !rn2(40))                
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 100)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 		}
 		/* simulate lacquered armor for samurai */
 		if ( ( Role_if(PM_SAMURAI) && otmp->otyp == SPLINT_MAIL) || (Role_if(PM_ERDRICK) && otmp->otyp == HELMET) ) {
@@ -2174,12 +2181,12 @@ boolean artif;
 		if (otmp->otyp != WAN_WISHING && otmp->otyp != WAN_ACQUIREMENT && otmp->otyp != WAN_GENOCIDE && otmp->otyp != WAN_GAIN_LEVEL && otmp->otyp != WAN_INCREASE_MAX_HITPOINTS) otmp->recharged = 0; /* used to control recharging */
 		if (!rn2(10)) otmp->recharged = rnd(7); /* allow recharged wands to spawn --Amy */
 
-		if (artif && !rn2(160))
+		if (artif && (artif != 2) && !rn2(160))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(500)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 		}
 
 		break;
@@ -2213,12 +2220,12 @@ boolean artif;
 			curse_on_creation(otmp);
 		}
 
-		if (artif && !rn2(50))
+		if (artif && (artif != 2) && !rn2(50))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(125)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 		}
 
 		break;
@@ -2227,19 +2234,19 @@ boolean artif;
 		    case STATUE:
 			/* possibly overridden by mkcorpstat() */
 			otmp->corpsenm = rndmonnum();
-			if ( (!verysmall(&mons[otmp->corpsenm]) || !rn2(10) ) &&
+			if ( (!verysmall(&mons[otmp->corpsenm]) || !rn2(10) ) && (artif != 2) &&
 				rn2(level_difficulty()/2 + 10) > 10)
 			    (void) add_to_container(otmp,
 						    mkobj(SPBOOK_CLASS,FALSE));
 		}
 	      blessorcurse_on_creation(otmp, 7);
 
-		if (artif && !rn2(200))
+		if (artif && (artif != 2) && !rn2(200))
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 		else if (artif && !rn2(500)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
-			u.fakeartifacts++;
+			if (artif != 2) u.fakeartifacts++;
 		}
 
 		break;
