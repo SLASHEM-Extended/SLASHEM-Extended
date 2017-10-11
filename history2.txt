@@ -1,4 +1,4 @@
-Incomplete changelog for SLASH'EM Extended, written by Amy
+Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.0.9
 - Added anoter possible negative effect to fountain quaffing.
@@ -138,6 +138,70 @@ Incomplete changelog for SLASH'EM Extended, written by Amy
 - The god-o-meter can also work while not blessed.
 - If an artifact is overenchanted and would normally evaporate, it becomes +0 instead.
 - Added a bunch of dungeon level variants from GruntHack and NetHack Fourk, and harder versions of the dnethack demon lairs.
+
+2.0.0
+- A player character causing conflict will be significantly more likely to get hit by monster attacks, which has the effect of changing it from its previous "generally a boon, unless you have pets" implementation to the two-edged sword it should always have been.
+- Blessed scrolls of remove curse are no longer guaranteed to uncurse everything in the player's main inventory; non-equipped items have a chance to resist. Also, full-inventory identify effects have lower odds per item to reveal stuff.
+- Casting the air current spell gives a luck penalty if done in Sokoban.
+- Reduced speed of the Deadly Sins to 11, and prevented them from leaving death drops to make them harder to farm in case anyone is lame enough to actually attempt that.
+- Fixed an error where certain nasty traps were behaving incorrectly with the curses interface.
+- Fixed a fatal error where branch staircases or magic portals could fail to be placed if the game tried to make them on a terrain type that wasn't open floor.
+- Blind monsters, which were supposed to be immune to conflict, would still wander randomly (as opposed to making a beeline to the player character to attack) when a player was causing conflict. This has been corrected.
+- Improved the nexus field, tunnelization, grow trees and geolysis spells.
+- Fawn, satre and sticker race player characters will train the device skill more quickly than others.
+- Stepping on the vibrating square will light it, and the status message will tell the player they're standing on it.
+- Added a message when the player zaps a wand of inertia control.
+- If the player has the petkeeping skill, it's possible to take pets along to other levels even if they're not adjacent. The higher the skill, the greater the radius. And because skills shouldn't ever have drawbacks when increased, there is a y/n prompt so the player won't have to go out of their way to ditch unwanted pets while having high skill levels.
+- The sudden/unfair attack traps were doing nothing due to an oversight, which has been fixed.
+- Paralysis is shown in the bottom status line.
+- Blessed destroy armor scrolls prompt the player to choose the item that can be destroyed.
+- Sink quaffing could cause error messages if the effect was a random potion and the game failed to make one.
+- Nurse halls and beehives spawn a greater variety of monsters.
+- Fixed the autoopendoors patch not interacting correctly with certain nasty traps.
+- The polyinitor race has a better chance of getting a form with weapon attacks.
+- Special rooms can occasionally be generated with aggravate monster rules, producing monsters that are possibly out of depth.
+- Terrain-altering scrolls have lesser effects on Sokoban levels, to reduce the odds of the levels becoming nearly impossible to complete.
+- Hunger level has a lesser effect on attribute training.
+- Foocubus seduction has a full yes/no prompt; it was too easy to spacebar past it in the heat of combat and give an answer you didn't intend to give.
+- At this point, the autoopendoors patch was implemented.
+- Increased the chance of "odd" tension rooms, that is, ones where the monster selection isn't based on a specific glyph but a specific color or other random trait.
+- Being zapped by a monster's wand of cancellation interrupts the player.
+- The #invoke command will also suggest fake artifacts as valid choices.
+- The player's summoning spells (create monster, summon undead) don't produce higher level monsters if the player has aggravate monster.
+- Hostile whores have better to-hit against the player.
+- Cursed lizards were abusable. Closed the loophole.
+- Wishing for an object has a small chance of giving the player amnesia.
+- Added a variety of warning messages in case the player is bashing with a launcher or polearm.
+- Eating any mimic corpse just causes the player to mimic gold or an orange for a random time.
+- Very rarely, boss monsters can be generated to "avenge" other monsters the player has killed.
+- The player cannot easily uncurse their items by using pools of lethe water; they will still unbless items though.
+- Fixed a ton of stuff to make the curses interface work correctly. Also added a "moreforced" option that can be disabled to turn off any predefined --More-- prompts, and made the brain-ruptured (sorry) tab confirmation in curses mode into a "tabcursesconfirm" option that defaults to off. This is because the message telling the player to press tab will not always be displayed for some reason, and we don't want players to think their game died - default behavior should always be "spacebar clears away any and all messages"!
+- The curses interface was added at this point.
+- Fixed the garbage strings on Unix. The flicker strip trap in particular exposed that they had huge problems.
+- Fixed a bug where monsters with gaze-based item stealing attacks wouldn't check whether the player can actually see them.
+- Fixed some artifacts' special attacks never triggering even though they should.
+- Fixed a formatting error with erosionproof item names.
+- Greatly reduced the chance of the bell of opening actually opening locked doors and iron chains, since it has many more charges now and we don't want those special effects to be too easily obtainable.
+- While under the effect of a knowledge trap, the player will no longer get a confirmation when trying to step on a known trap.
+- No robes will give spellcasting penalties, not even the robe of weakness.
+- Added the Prostitute and Kurwa roles.
+
+1.9.8
+- A player polymorphed into a monster with spellcasting attacks has better spellcasting success chances.
+- Fixed the bug where triggering a map amnesia trap wouldn't immediately refresh the screen.
+- Monsters in IVAN vaults always generate with aggravate monster rules.
+- Demons summoned from same-race sacrificing can be princes now, and have a very minuscule chance of being tame.
+- Fixed some fallthrough bugs that caused certain characters to have the wrong starting inventory or alignment record.
+- If a nymph tries to steal the player's weapon and fails, the game correctly says "weapon" now.
+- Banned grid bug players and players who triggered the bishop trap from using autotravel, since it could be used to bypass the movement restrictions in certain cases.
+- Fixed an off-by-one error when creating irregular rooms, which would occasionally result in such rooms being generated without walkable floor tiles and causing a panic.
+- Peacevision highlights monsters with a "peaceful" green color now, as opposed to the hostile-looking orange one we had earlier.
+- Beefed up skill cap drain and nastiness monster attacks by making their special effects proc more often.
+- Gave scrolls of root password detection to all the new demon lords.
+- If the player polymorphs one of the riders, or also if they self-polymorph for any reason, a new rider is generated somewhere on the level. This is because it's possible to get rid of them permanently by turning the polymorphed rider to stone.
+
+1.9.7
+(insert content here)
 
 :-) <3 *bundlebundlebundle* <3 :D
 
