@@ -154,7 +154,16 @@ curses_block(boolean require_tab)
     if (require_tab)
         curses_alert_main_borders(TRUE);
     wrefresh(win);
+
+
+#ifdef BORG
+    if (borg_on) {
+        ret = '\t'; // HAX!
+    } else
+#endif
+    // Don't require anything when borg_on
     while ((ret = wgetch(win) != '\t') && require_tab);
+
     if (require_tab)
         curses_alert_main_borders(FALSE);
     if (height == 1) {

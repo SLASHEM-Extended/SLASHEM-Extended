@@ -146,9 +146,11 @@ E int getbones(void);
 
 /* ### borg.c ### */
 
-/* E char borg_on;
+#ifdef BORG
+E char borg_on;
 E char borg_line[80];
-E char borg_input(void); */
+E char borg_input(void);
+#endif
 
 /* ### botl.c ### */
 
