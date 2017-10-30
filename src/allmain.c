@@ -1226,6 +1226,10 @@ moveloop()
 				moveamt *= 2;
 			}
 
+			if (numberofwornetheritems() > rn2(20)) {
+				moveamt *= 2;
+			}
+
 			if (is_highway(u.ux, u.uy)) {
 				moveamt *= 2;
 			}
@@ -1886,7 +1890,7 @@ trapsdone:
 					pline("That is erodable, and therefore it doesn't work!");
 				else if (objects[(steeling)->otyp].oc_material == PLASTIC)
 					pline("That is erodable, and therefore it doesn't work!");
-				else if (objects[(steeling)->otyp].oc_material >= VIVA && objects[(steeling)->otyp].oc_material <= COMPOST) 
+				else if (objects[(steeling)->otyp].oc_material >= VIVA && objects[(steeling)->otyp].oc_material <= BRICK) 
 					pline("That is erodable, and therefore it doesn't work!");
 				else {
 					steeling->oerodeproof = 1;
@@ -2812,6 +2816,27 @@ newbossA:
 	 	    if (!rn2(15)) (void) makemon(mkclass(S_LIGHT,0), u.ux, u.uy, MM_ANGRY);
 
 			u.aggravation = 0;
+		}
+
+		/* "ether disease" similar to Elona - any ether items in your inventory will cause this --Amy */
+		if (numberofetheritems() > 0) {
+
+			int etherslow = numberofetheritems();
+			int etherquick = numberofwornetheritems();
+			/* ones that are actually worn are much worse */
+
+			while (etherslow > 0) {
+				etherslow--;
+				if (!rn2(1000)) contaminate(rnd(20));
+			}
+			while (etherquick > 0) {
+				etherquick--;
+				if (!rn2(50)) {
+					if (!rn2(10)) pline("Your ether equipment causes your contamination to deteriorate.");
+					contaminate(rnd(10));
+				}
+			}
+
 		}
 
 		if (uarmc && uarmc->oartifact == ART_PROZACELF_S_AUTOHEALER && !rn2(1000) ) {

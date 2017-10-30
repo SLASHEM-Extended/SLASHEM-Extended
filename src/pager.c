@@ -7768,6 +7768,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Almuth'. It reads: 'My sneakers are cuddly-soft and want to be caressed!'",
 	"Incoming message for Player 1. The message is from 'Kerstin'. It reads: 'You're wondering why I'm so good at driving a car? Well, I have a driver's license.'",
 	"Incoming message for Player 1. The message is from 'Gudrun'. It reads: 'Stop complaining and put on the wedge sandals! Do you want to be a model or not?'",
+	"Your ether equipment causes your contamination to deteriorate.",
 
 };
 

@@ -2937,7 +2937,7 @@ register struct obj *otmp;
 	if (objects[otyp].oc_oprop == FIRE_RES || otyp == WAN_FIRE)
 		return FALSE;
 
-	return((boolean)((omat <= WOOD && omat != LIQUID) || omat == PLASTIC || omat == VIVA || omat == SILK || omat == ARCANIUM || omat == POURPOOR));
+	return((boolean)((omat <= WOOD && omat != LIQUID) || omat == PLASTIC || omat == VIVA || omat == SILK || omat == ARCANIUM || omat == POURPOOR || omat == ETHER || omat == BRICK));
 }
 
 boolean
@@ -2950,6 +2950,7 @@ register struct obj *otmp;
 	if (objects[otyp].oc_material == ARCANIUM) return TRUE;
 	if (objects[otyp].oc_material == SECREE) return TRUE;
 	if (objects[otyp].oc_material == COMPOST) return TRUE;
+	if (objects[otyp].oc_material == BRICK) return TRUE;
 
 	return((boolean)(objects[otyp].oc_material <= WOOD &&
 			objects[otyp].oc_material != LIQUID));

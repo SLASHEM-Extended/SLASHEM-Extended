@@ -5409,6 +5409,9 @@ char *prefix;
 			(objects[(obj)->otyp].oc_material == SECREE) ? "coagulated " :
 			(objects[(obj)->otyp].oc_material == ARCANIUM) ? "erosionproof " :
 			(objects[(obj)->otyp].oc_material == COMPOST) ? "preserved " :
+			(objects[(obj)->otyp].oc_material == ETERNIUM) ? "everlasting " :
+			(objects[(obj)->otyp].oc_material == ETHER) ? "windy " :
+			(objects[(obj)->otyp].oc_material == BRICK) ? "rock-solid " :
 		       is_rustprone(obj) ? "rustproof " :
 		       is_corrodeable(obj) ? "corrodeproof " :	/* "stainless"? */
 		       is_flammable(obj) ? "fireproof " : "stainless "); /* Amy edit: let's use that :-) */

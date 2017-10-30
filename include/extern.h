@@ -146,11 +146,9 @@ E int getbones(void);
 
 /* ### borg.c ### */
 
-#ifdef BORG
-E char borg_on;
+/* E char borg_on;
 E char borg_line[80];
-E char borg_input(void);
-#endif
+E char borg_input(void); */
 
 /* ### botl.c ### */
 
@@ -956,6 +954,9 @@ E boolean have_magicresstone(void);
 E boolean have_cursedmagicresstone(void);
 E boolean have_loadboulder(void);
 E boolean have_starlightstone(void);
+
+E int numberofetheritems(void);
+E int numberofwornetheritems(void);
 
 E boolean stack_too_big(struct obj *);
 

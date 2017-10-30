@@ -154,7 +154,7 @@ randommaterials()
 		while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
 		/* we roll until we get an item that can be randomly generated and is not a gold piece or other weird thing --Amy */
 
-		objects[objtomodify].oc_material = rn2(COMPOST + 1); /* allow every material, including 0 (mysterious) */
+		objects[objtomodify].oc_material = rn2(BRICK + 1); /* allow every material, including 0 (mysterious) */
 		/*if (wizard) pline("Modifying material of object %d", objtomodify);*/ /* debug message */
 
 	}
@@ -165,7 +165,7 @@ randommaterials()
 			objtomodify = -1;
 			while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
 
-			objects[objtomodify].oc_material = rn2(COMPOST + 1); /* allow every material, including 0 (mysterious) */
+			objects[objtomodify].oc_material = rn2(BRICK + 1); /* allow every material, including 0 (mysterious) */
 
 		}
 
@@ -177,7 +177,7 @@ randommaterials()
 			objtomodify = -1;
 			while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
 
-			objects[objtomodify].oc_material = rn2(COMPOST + 1); /* allow every material, including 0 (mysterious) */
+			objects[objtomodify].oc_material = rn2(BRICK + 1); /* allow every material, including 0 (mysterious) */
 
 		}
 
@@ -189,7 +189,7 @@ randommaterials()
 			objtomodify = -1;
 			while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
 
-			objects[objtomodify].oc_material = rn2(COMPOST + 1); /* allow every material, including 0 (mysterious) */
+			objects[objtomodify].oc_material = rn2(BRICK + 1); /* allow every material, including 0 (mysterious) */
 
 		}
 

@@ -2331,7 +2331,7 @@ unsigned trflags;
 				  body_part(HEAD));
 
 			    if (uarmh) {
-				if(is_metallic(uarmh)) {
+				if(is_metallic(uarmh) && !is_etheritem(uarmh)) {
 				    pline("Fortunately, you are wearing a hard helmet.");
 				    dmg /= 4;
 				} else if (flags.verbose) {
@@ -2364,7 +2364,7 @@ unsigned trflags;
 				  body_part(HEAD));
 
 			    if (uarmh) {
-				if(is_metallic(uarmh)) {
+				if(is_metallic(uarmh) && !is_etheritem(uarmh)) {
 				    pline("Fortunately, you are wearing a hard helmet.");
 				    dmg /= 2;
 				} else if (flags.verbose) {
@@ -2400,7 +2400,7 @@ unsigned trflags;
 				  body_part(HEAD));
 
 			    if (uarmh) {
-				if(is_metallic(uarmh)) {
+				if(is_metallic(uarmh) && !is_etheritem(uarmh)) {
 				    pline("Fortunately, you are wearing a hard helmet.");
 				    dmg /= 2;
 				} else if (flags.verbose) {
@@ -2443,7 +2443,7 @@ unsigned trflags;
 				  body_part(HEAD));
 
 			    if (uarmh) {
-				if(is_metallic(uarmh)) {
+				if(is_metallic(uarmh) && !is_etheritem(uarmh)) {
 				    pline("Fortunately, you are wearing a hard helmet.");
 				    dmg /= 2;
 				} else if (flags.verbose) {
@@ -10736,7 +10736,7 @@ int zx,zy;
 	if (somehit) {
 		pline("Some rocks land on your %s!",body_part(HEAD));
 		if (uarmh) {
-			if (is_metallic(uarmh)) {
+			if (is_metallic(uarmh) && !is_etheritem(uarmh)) {
 				pline("Your hard helmet protects you somewhat.");
 				dmg /= 2;
 			} else if (flags.verbose) {
@@ -13595,15 +13595,16 @@ register boolean force, here;
 
 		otmp = here ? obj->nexthere : obj->nobj;
 
+
 	/* The invocation artifacts and the Amulet of Yendor must be immune.
 	 * Alignment keys, too, even though the game is still winnable without them. */
 
-			if ( (!rn2(50) || force ) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && (!obj->blessed || !rn2(4) ) && !stack_too_big(obj) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY   ) { /* 2% chance for each item to be affected, blessed ones are only affected with 0.5% chance --Amy */
+			if ( (!rn2(50) || force ) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && (!obj->blessed || !rn2(4) ) && !stack_too_big(obj) && !is_unwitherable(obj) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY   ) { /* 2% chance for each item to be affected, blessed ones are only affected with 0.5% chance --Amy */
 
 				if (rn2(2)) {
 
 					if (obj->oeroded < MAX_ERODE && !((obj->blessed && !rnl(4)))) obj->oeroded++;
-					else if (obj->oeroded == MAX_ERODE)
+					else if (obj->oeroded == MAX_ERODE && !hard_to_destruct(obj))
 					{
 				    
 					pline("One of your objects withered away!");
@@ -13615,7 +13616,7 @@ register boolean force, here;
 				else {
 
 					if (obj->oeroded2 < MAX_ERODE && !((obj->blessed && !rnl(4)))) obj->oeroded2++;
-					else if (obj->oeroded2 == MAX_ERODE)
+					else if (obj->oeroded2 == MAX_ERODE && !hard_to_destruct(obj))
 					{
 				    
 					pline("One of your objects withered away!");
@@ -13834,7 +13835,7 @@ register boolean force, here;
 					!(obj->oerodeproof || 
 					 (obj->blessed && !rnl(4))))
 				obj->oeroded++;
-			else if (is_rustprone(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded == MAX_ERODE &&
+			else if (is_rustprone(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded == MAX_ERODE && !hard_to_destruct(obj) &&
 					!(obj->oerodeproof ))
 			{
 			    
@@ -13873,6 +13874,8 @@ register boolean force, here;
 
 		if (stack_too_big(obj)) continue;
 
+		if (is_unwitherable(obj)) continue;
+
 		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(2) ) continue;
 
 		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shol plash") ) ) continue;
@@ -13884,7 +13887,7 @@ register boolean force, here;
 
 			if (obj->oeroded < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !( (obj->blessed && !rnl(4))))
 				obj->oeroded++;
-			else if (obj->oeroded == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
+			else if (obj->oeroded == MAX_ERODE && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
 				pline("One of your objects withered away!");
@@ -13896,7 +13899,7 @@ register boolean force, here;
 
 			if (obj->oeroded2 < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !( (obj->blessed && !rnl(4))))
 				obj->oeroded2++;
-			else if (obj->oeroded2 == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
+			else if (obj->oeroded2 == MAX_ERODE && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
 				pline("One of your objects withered away!");
@@ -13924,6 +13927,8 @@ register boolean force, here;
 
 		if (stack_too_big(obj)) continue;
 
+		if (is_unwitherable(obj)) continue;
+
 		if (rn2(10)) continue;
 
 		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(2) ) continue;
@@ -13937,7 +13942,7 @@ register boolean force, here;
 
 			if (obj->oeroded < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !( (obj->blessed && !rnl(4))))
 				obj->oeroded++;
-			else if (obj->oeroded == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
+			else if (obj->oeroded == MAX_ERODE && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
 				pline("One of your objects withered away!");
@@ -13949,7 +13954,7 @@ register boolean force, here;
 
 			if (obj->oeroded2 < MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !( (obj->blessed && !rnl(4))))
 				obj->oeroded2++;
-			else if (obj->oeroded2 == MAX_ERODE && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
+			else if (obj->oeroded2 == MAX_ERODE && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ))
 			{
 			    
 				pline("One of your objects withered away!");

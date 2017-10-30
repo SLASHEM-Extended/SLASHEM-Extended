@@ -4532,7 +4532,8 @@ static const char *foodwords[] = {
 	"iron", "metal", "copper", "silver", "gold", "platinum", "mithril",
 	"plastic", "glass", "rich food", "stone",
 	"fissile metal", "elasthan", "bitumen", "silk",
-	"arcanium", "secretion", "poor food", "compost"
+	"arcanium", "secretion", "poor food", "compost",
+	"eternium", "contamination", "brick wall",
 };
 
 STATIC_OVL const char *
@@ -5166,7 +5167,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		    losehp(rnd(15), xname(otmp), KILLED_BY_AN);
 		} else
 		    You("seem unaffected by the poison.");
-	    } else if (!otmp->cursed && material != SECREE && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ) {
+	    } else if (!otmp->cursed && material != SECREE && material != ETHER && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ) {
 		pline("This %s is delicious!",
 		      otmp->oclass == COIN_CLASS ? foodword(otmp) :
 		      singular(otmp, xname));
@@ -5175,6 +5176,10 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    if (material == SECREE) {
 			pline("Ulch - this %s tastes like secretion!", otmp->oclass == COIN_CLASS ? foodword(otmp) : singular(otmp, xname));
 			badeffect();
+	    }
+	    if (material == ETHER) {
+			pline("The contamination spreads through your body.");
+			contaminate(rnz((level_difficulty() + 40) * 5));
 	    }
 	    if (material == VIVA) {
 			pline("Eating radioactive metal is a bad idea.");

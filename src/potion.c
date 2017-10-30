@@ -5981,7 +5981,7 @@ dodip()
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {
 
-			if (rn2(2) && !stack_too_big(obj) && !obj->oerodeproof && is_rustprone(obj) && obj->oeroded == MAX_ERODE) {
+			if (rn2(2) && !stack_too_big(obj) && !obj->oerodeproof && is_rustprone(obj) && !hard_to_destruct(obj) && obj->oeroded == MAX_ERODE) {
 
 				remove_worn_item(obj, FALSE);
 				if (obj == uball) unpunish();
@@ -6007,7 +6007,7 @@ dodip()
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {
 
-			if (obj && rn2(2) && !stack_too_big(obj) && !obj->oerodeproof && is_flammable(obj) && obj->oeroded == MAX_ERODE) {
+			if (obj && rn2(2) && !stack_too_big(obj) && !obj->oerodeproof && is_flammable(obj) && !hard_to_destruct(obj) && obj->oeroded == MAX_ERODE) {
 
 				remove_worn_item(obj, FALSE);
 				if (obj == uball) unpunish();

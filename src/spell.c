@@ -6742,7 +6742,7 @@ int spell;
 	    splcaster += 2;
 
 	/* Robes are body armour in SLASH'EM */
-	if (uarm && is_metallic(uarm)) {
+	if (uarm && is_metallic(uarm) && !is_etheritem(uarm)) {
 		armorpenalties = 15;
 
 		switch (objects[(uarm)->otyp].oc_material) {
@@ -6761,7 +6761,7 @@ int spell;
 
 		splcaster += (urole.spelarmr * armorpenalties / 12);
 	}
-	if (uarmc && is_metallic(uarmc)) {
+	if (uarmc && is_metallic(uarmc) && !is_etheritem(uarmc)) {
 		armorpenalties = 15;
 
 		switch (objects[(uarmc)->otyp].oc_material) {
@@ -6780,7 +6780,7 @@ int spell;
 
 		splcaster += (urole.spelarmr * armorpenalties / 36);
 	}
-	if (uarmu && is_metallic(uarmu)) {
+	if (uarmu && is_metallic(uarmu) && !is_etheritem(uarmu)) {
 		armorpenalties = 15;
 
 		switch (objects[(uarmu)->otyp].oc_material) {
@@ -6801,7 +6801,7 @@ int spell;
 	}
 	if (uarms) {
 		shieldpenalties = 15;
-		if (!is_metallic(uarms)) shieldpenalties /= 3;
+		if (!is_metallic(uarms) || is_etheritem(uarms)) shieldpenalties /= 3;
 
 		switch (objects[(uarms)->otyp].oc_material) {
 			default: break;
@@ -6820,7 +6820,7 @@ int spell;
 		splcaster += (urole.spelshld * shieldpenalties / 12);
 	}
 
-	if (uarmh && is_metallic(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
+	if (uarmh && is_metallic(uarmh) && !is_etheritem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
 		armorpenalties = 15;
 
 		switch (objects[(uarmh)->otyp].oc_material) {
@@ -6839,7 +6839,7 @@ int spell;
 
 		splcaster += (uarmhbon * armorpenalties / 12);
 	}
-	if (uarmg && is_metallic(uarmg)) {
+	if (uarmg && is_metallic(uarmg) && !is_etheritem(uarmg)) {
 		armorpenalties = 15;
 
 		switch (objects[(uarmg)->otyp].oc_material) {
@@ -6858,7 +6858,7 @@ int spell;
 
 		splcaster += (uarmgbon * armorpenalties / 12);
 	}
-	if (uarmf && is_metallic(uarmf)) {
+	if (uarmf && is_metallic(uarmf) && !is_etheritem(uarmf)) {
 		armorpenalties = 15;
 
 		switch (objects[(uarmf)->otyp].oc_material) {

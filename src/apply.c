@@ -2885,6 +2885,9 @@ struct obj *tstone;
 	case COMPOST:
 	    pline("%s a little dirtier now.", Tobjnam(tstone, "look"));
 	    return;
+	case ETHER:
+	    pline("%s seems contaminated.", Tobjnam(tstone, "look"));
+	    return;
 	case SECREE:
 	    pline("%s has gunk on it now.", Tobjnam(tstone, "look"));
 	    return;

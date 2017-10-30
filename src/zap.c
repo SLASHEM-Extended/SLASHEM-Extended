@@ -2170,6 +2170,9 @@ int ochance, achance;	/* percent chance for ordinary objects, artifacts */
 	 */
 	if (evades_destruction(obj) && (ochance || achance))
 		return TRUE;
+
+	if (hard_to_destruct(obj) && (ochance || achance) && rn2(10)) return TRUE;
+
 	if (obj->otyp == AMULET_OF_YENDOR ||
 	    obj->otyp == SPE_BOOK_OF_THE_DEAD ||
 	    obj->otyp == CANDELABRUM_OF_INVOCATION ||
@@ -6368,7 +6371,7 @@ struct obj *obj;	/* wand or spell */
 		/* similar to zap_dig() */
 		pline("A rock is dislodged from the %s and falls on your %s.",
 		      ceiling(x, y), body_part(HEAD));
-		losehp(rnd((uarmh && is_metallic(uarmh)) ? 2 : 6),
+		losehp(rnd((uarmh && is_metallic(uarmh) && !is_etheritem(uarmh)) ? 2 : 6),
 		       "falling rock", KILLED_BY_AN);
 		if ((otmp = mksobj_at(ROCK, x, y, FALSE, FALSE)) != 0) {
 
@@ -7551,6 +7554,10 @@ xchar sx, sy;
 	    break;
 	case ZT_DEATH:
 	    if (abs(type) == ZT_BREATH(ZT_DEATH)) {
+
+		dam = d(nd, Disint_resistance ? 3 : 6);
+		losehp(dam, "a disintegration beam", KILLED_BY);
+
 		if (Disint_resistance && rn2(100)) {
 		    You("are not disintegrated.");
 		    break;

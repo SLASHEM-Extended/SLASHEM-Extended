@@ -1772,7 +1772,7 @@ mattacku(mtmp)
 			return(0);	/* trappers don't attack */
 
 		    obj = which_armor(mtmp, WORN_HELMET);
-		    if (obj && is_metallic(obj)) {
+		    if (obj && is_metallic(obj) && !is_etheritem(obj)) {
 			Your("blow glances off %s helmet.",
 			               s_suffix(mon_nam(mtmp)));
 		    } else {

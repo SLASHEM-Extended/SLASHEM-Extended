@@ -1116,6 +1116,31 @@ have_loadstone()
 	return(FALSE);
 }
 
+int
+numberofetheritems()
+{
+	int number = 0;
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if (is_etheritem(otmp)) number++;
+	}
+	return number;
+}
+
+int
+numberofwornetheritems()
+{
+	int number = 0;
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if (is_etheritem(otmp) && otmp->owornmask) number++;
+	}
+	return number;
+
+}
+
 boolean
 have_pokeloadstone()
 {

@@ -39,7 +39,7 @@ struct objclass {
 #define EXPLOSION	4	/* (rockets,  grenades) */
 #define WHACK		0
 
-	Bitfield(oc_material,5);
+	Bitfield(oc_material,8); /* wow. Managed to run out of a bitfield again! --Amy */
 #define LIQUID		1	/* currently only for venom */
 #define WAX		2
 #define VEGGY		3	/* foodstuffs */
@@ -70,19 +70,26 @@ struct objclass {
 #define SECREE		27	/* "secretion" would sound too icky, I think */
 #define POURPOOR		28	/* the "poor man's" version of iron */
 #define COMPOST		29	/* organic material that's not flammable (too wet or humid to catch fire) */
+#define ETERNIUM		30	/* inedible material that resists destruction */
+#define ETHER		31	/* like Elona, except that we have generic contamination instead of ether disease */
+#define BRICK		32	/* lithic material that resists withering */
 /* if the last material changes, update randommaterials() in o_init.c accordingly --Amy */
 
 #define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= WOOD || objects[(otmp)->otyp].oc_material == DRAGON_HIDE || objects[(otmp)->otyp].oc_material == INKA || objects[(otmp)->otyp].oc_material == SILK || objects[(otmp)->otyp].oc_material == SECREE || objects[(otmp)->otyp].oc_material == COMPOST)
 #define is_metallic(otmp)	((objects[(otmp)->otyp].oc_material >= IRON && \
-				 objects[(otmp)->otyp].oc_material <= MITHRIL) || objects[(otmp)->otyp].oc_material == VIVA || objects[(otmp)->otyp].oc_material == POURPOOR)
-#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == BONE || objects[(otmp)->otyp].oc_material == GLASS || objects[(otmp)->otyp].oc_material == GEMSTONE || objects[(otmp)->otyp].oc_material == MINERAL || objects[(otmp)->otyp].oc_material == TAR)
+				 objects[(otmp)->otyp].oc_material <= MITHRIL) || objects[(otmp)->otyp].oc_material == VIVA || objects[(otmp)->otyp].oc_material == ETHER || objects[(otmp)->otyp].oc_material == POURPOOR)
+#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == BONE || objects[(otmp)->otyp].oc_material == GLASS || objects[(otmp)->otyp].oc_material == GEMSTONE || objects[(otmp)->otyp].oc_material == MINERAL || objects[(otmp)->otyp].oc_material == TAR || objects[(otmp)->otyp].oc_material == BRICK)
 
 /* primary damage: fire/rust/--- */
 /* is_flammable(otmp), is_rottable(otmp) in mkobj.c */
-#define is_rustprone(otmp)	(objects[otmp->otyp].oc_material == IRON || objects[(otmp)->otyp].oc_material == INKA || objects[(otmp)->otyp].oc_material == ARCANIUM || objects[(otmp)->otyp].oc_material == POURPOOR)
+#define is_rustprone(otmp)	(objects[otmp->otyp].oc_material == IRON || objects[(otmp)->otyp].oc_material == INKA || objects[(otmp)->otyp].oc_material == ARCANIUM || objects[(otmp)->otyp].oc_material == POURPOOR || objects[(otmp)->otyp].oc_material == ETERNIUM || objects[(otmp)->otyp].oc_material == ETHER || objects[(otmp)->otyp].oc_material == BRICK)
 
 /* secondary damage: rot/acid/acid */
-#define is_corrodeable(otmp)	(objects[otmp->otyp].oc_material == COPPER || objects[otmp->otyp].oc_material == IRON || objects[(otmp)->otyp].oc_material == VIVA || objects[(otmp)->otyp].oc_material == TAR || objects[(otmp)->otyp].oc_material == ARCANIUM || objects[(otmp)->otyp].oc_material == SECREE || objects[(otmp)->otyp].oc_material == POURPOOR)
+#define is_corrodeable(otmp)	(objects[otmp->otyp].oc_material == COPPER || objects[otmp->otyp].oc_material == IRON || objects[(otmp)->otyp].oc_material == VIVA || objects[(otmp)->otyp].oc_material == TAR || objects[(otmp)->otyp].oc_material == ARCANIUM || objects[(otmp)->otyp].oc_material == SECREE || objects[(otmp)->otyp].oc_material == POURPOOR || objects[(otmp)->otyp].oc_material == ETERNIUM || objects[(otmp)->otyp].oc_material == BRICK)
+
+#define is_unwitherable(otmp)	(objects[otmp->otyp].oc_material == BRICK)
+#define hard_to_destruct(otmp)	(objects[otmp->otyp].oc_material == ETERNIUM)
+#define is_etheritem(otmp)	(objects[otmp->otyp].oc_material == ETHER)
 
 #define is_damageable(otmp) (is_rustprone(otmp) || is_flammable(otmp) || \
 				is_rottable(otmp) || is_corrodeable(otmp))
