@@ -1,0 +1,405 @@
+#	SCCS Id: @(#)Spacew.des	3.4	1998/09/10
+#	Copyright (c) 2014 by Amy Bluescreenofdeath
+# NetHack may be freely redistributed.  See license for details.
+
+
+# Based on some obscure old roguelike game that nobody knows.
+# It's called "Castle of the Winds".
+# Also partly based on the Yeoman quest. Everything else is my own quest design. --Amy
+
+
+### The quest "start" level ###
+#
+#	Starting town in part 2 of CoW.
+#	This is not an exact reproduction of it, but it comes quite close.
+#
+MAZE: "Sco-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+............................v..........................                     
+............................vv.........................                     
+......vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.....                     
+......vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.....                     
+......vv........................................vv.....                     
+......vv....--------------------------------....vv..... .... .... .... .....
+......vv....|..............................|....vv.....|....|....|....|.....
+......vv....|..............................|....vv.....|....|....|....|.....
+......vv....|..............................|....vv.....|+---|+---|+---|+----
+......vv....|..............................+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+......vv....|..............................+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+......vv....|..............................|....vv.....|+---|+---|+---|+----
+......vv....|..............................|....vv.....|....|....|....|.....
+......vv....|..............................|....vv.....|....|....|....|.....
+......vv....--------------------------------....vv..... .... .... .... .....
+......vv..............vvvvvvvvvvvvv.............vv.....                     
+......vvvvvvvvvvvvvvvvvv---------vvvvvvvvvvvvvvvvv.....                     
+......vvvvvvvvvvvvvvvvvv|.......|vvvvvvvvvvvvvvvvv.....                     
+......vv................|.......+vv....................                     
+......vv................|.......|......................                     
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+
+REGION:(00,00,75,19),lit,"ordinary"
+
+DOOR:locked,(43,09)
+DOOR:locked,(43,10)
+REGION:(13,06,42,13),lit,"throne"
+
+DOOR:closed,(56,08)
+REGION:(56,05,59,07),lit,"random shop"
+
+DOOR:closed,(61,08)
+REGION:(61,05,64,07),lit,"random shop"
+
+DOOR:closed,(66,08)
+REGION:(66,05,69,07),lit,"random shop"
+
+DOOR:closed,(71,08)
+REGION:(71,05,75,07),lit,"random shop"
+
+DOOR:closed,(56,11)
+REGION:(56,12,59,14),lit,"random shop"
+
+DOOR:closed,(61,11)
+REGION:(61,12,64,14),lit,"random shop"
+
+DOOR:closed,(66,11)
+REGION:(66,12,69,14),lit,"random shop"
+
+DOOR:closed,(71,11)
+REGION:(71,12,75,14),lit,"random shop"
+
+DOOR:closed,(32,18)
+REGION:(25,17,31,19),lit,"temple"
+ALTAR:(27,18),align[0],shrine
+
+BRANCH:(47,11,47,11),(0,0,0,0)
+
+FOUNTAIN: (03, 10)
+FOUNTAIN: (02, 10)
+FOUNTAIN: (03, 11)
+FOUNTAIN: (02, 11)
+
+# Let's just allow the thugs to randomly roam the level.
+MONSTER:'@',"thug",random
+MONSTER:'@',"thug",random
+MONSTER:'@',"thug",random
+MONSTER:'@',"thug",random
+MONSTER:'@',"thug",random
+MONSTER:'@',"thug",random
+MONSTER:'@',"thug",random
+MONSTER:'@',"thug",random
+MONSTER:'@',"thug",random
+MONSTER:'@',"thug",random
+MONSTER:'@',"Hans Walt",(11,09)
+
+# No random starting monsters. This won't stop the game from spawning some if the player lingers around, of course.
+
+STAIR:(29,00),down
+
+### Upper filler levels ###
+#
+#	Hidden Diamond Path
+#
+MAZE: "Sco-fila", ' '
+FLAGS: noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+            .           .           .           .           .               
+                                                                            
+      .           .           .           .           .           .         
+     ...         ...         ...         ...         ...         ...        
+    .....       .....       .....       .....       .....       .....       
+   .......     .......     .......     .......     .......     .......      
+  .........   .........   .........   .........   .........   .........     
+ ...........+...........+...........+...........+...........+...........    
+  .........   .........   .........   .........   .........   .........     
+   .......     .......     .......     .......     .......     .......      
+    .....       .....       .....       .....       .....       .....       
+     ...         ...         ...         ...         ...         ...        
+      .           .           .           .           .           .         
+                                                                            
+            .           .           .           .           .               
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+
+STAIR:(06,07),up
+STAIR:(66,07),down
+
+DOOR:closed,(12,07)
+DOOR:closed,(24,07)
+DOOR:closed,(36,07)
+DOOR:closed,(48,07)
+DOOR:closed,(60,07)
+
+REGION:(06,07,06,07),lit,"ordinary",filled,true
+REGION:(18,07,18,07),lit,"sleepingroom",filled,true
+REGION:(54,07,54,07),lit,"sleepingroom",filled,true
+REGION:(30,07,30,07),lit,"prisonchamber",filled,true
+REGION:(42,07,42,07),lit,"prisonchamber",filled,true
+REGION:(66,07,66,07),lit,"ordinary",filled,true
+
+REGION:(12,00,12,00),lit,"randomroom"
+REGION:(24,00,24,00),lit,"randomroom"
+REGION:(36,00,36,00),lit,"randomroom"
+REGION:(48,00,48,00),lit,"randomroom"
+REGION:(60,00,60,00),lit,"randomroom"
+REGION:(12,14,12,14),lit,"randomroom"
+REGION:(24,14,24,14),lit,"randomroom"
+REGION:(36,14,36,14),lit,"randomroom"
+REGION:(48,14,48,14),lit,"randomroom"
+REGION:(60,14,60,14),lit,"randomroom"
+
+OBJECT:'$',random,(12,00)
+OBJECT:'$',random,(24,00)
+OBJECT:'$',random,(36,00)
+OBJECT:'$',random,(48,00)
+OBJECT:'$',random,(60,00)
+OBJECT:'$',random,(12,14)
+OBJECT:'$',random,(24,14)
+OBJECT:'$',random,(36,14)
+OBJECT:'$',random,(48,14)
+OBJECT:'$',random,(60,14)
+OBJECT:'(',"large box",(12,00)
+OBJECT:'(',"large box",(24,00)
+OBJECT:'(',"large box",(36,00)
+OBJECT:'(',"large box",(48,00)
+OBJECT:'(',"large box",(60,00)
+OBJECT:'(',"large box",(12,14)
+OBJECT:'(',"large box",(24,14)
+OBJECT:'(',"large box",(36,14)
+OBJECT:'(',"large box",(48,14)
+OBJECT:'(',"large box",(60,14)
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+### The quest "locate" level ###
+#
+#	Infinitesimal Highway
+#
+MAZE: "Sco-loca",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+JJJJJJgggggggggggggggggggggggggggggaggggggggggggggggggggggggg U ggggggJJJJJJ
+JJJJJJgggggggggggggggggggaggggggggggggggggggggggggggggggggggg U gggaggJJJJJJ
+JJJJJJggggggagggggggggggggggggggggggggggggggggggggggggggggggg U gggggggggggg
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggggggagggg U gggggggggggg
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggggggggggg U ggggggggggag
+iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiaiiiiiiiiiiiiiiiiiiiaiiiiiiiiiiiiiiiii
+.iiiiiiiiiiiiiiiiiaiiiiiiiiiiiiiiiiiiiiiiiiib hiiiiiiiiiiiiiiiiiiiiiiiiiiii.
+iiiiiiiiaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiisbbLiiiiiiiiiiiiiiiiiiiiaiiiiiiii
+JJJJJJggggggggggggggggggggggggggggggggggggggggggaggggggggggggggggggggggggggg
+JJJJJJggggggggggggggggagggggggggggggggggggggggggggggggggggggggggggggggggggJJ
+JJJJJJggggggggggggggggggggggggggggggggggggggggggggggMgggggggggggggggggggggJJ
+JJJJOOggggggggagggggggggggggggggggggggaggggggggggggMMMggggggggggggggggggagJJ
+JJJJOOggggggggggggggggggggggggggggggggggggggggggggMMMMMgggggggggggggggggggJJ
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+
+STAIR:(00,06),up
+STAIR:(75,06),down
+
+# bang gang and hussy club affiliated monsters by Amy
+MONSTER:'a',"bang gang guy",random
+MONSTER:'b',"nice girl in velcro shoes",random
+MONSTER:'b',"fat bully",random
+MONSTER:'d',"ae",random
+MONSTER:'d',"northern shin smasher",random
+MONSTER:'d',"hell bride",random
+MONSTER:'h',"farting asian girl",random
+MONSTER:'h',"bloodcap-aiming girl",random
+MONSTER:'h',"pseudo mermaid",random
+MONSTER:'h',"vietnamese beauty",random
+MONSTER:'n',"alpha pussy",random
+MONSTER:'s',"shy asian girl",random
+MONSTER:'s',"holding girl",random
+MONSTER:'s',"lamyflagium",random
+MONSTER:'s',"thick beauty",random
+MONSTER:'v',"anorexic topmodel",random
+MONSTER:'w',"tail gutter",random
+MONSTER:'C',"buttfucking alphawoman",random
+MONSTER:'D',"nice dutch girl",random
+MONSTER:'D',"super-sweet girl in plateau boots",random
+MONSTER:'D',"thick farting girl",random
+MONSTER:'D',"mysterious 2",random
+MONSTER:'D',"dutch girl",random
+MONSTER:'D',"stupid girl",random
+MONSTER:'D',"dancress",random
+MONSTER:'D',"sweet thick girl",random
+MONSTER:'D',"latin six girl",random
+MONSTER:'D',"girl who hates latin teachers",random
+MONSTER:'D',"full-skinny beauty",random
+MONSTER:'D',"loving asian girl",random
+MONSTER:'D',"beautiful dutch girl",random
+MONSTER:'D',"fat farting girl",random
+MONSTER:'E',"huh what",random
+MONSTER:'E',"lovely squeezer girl",random
+MONSTER:'H',"gang leader",random
+MONSTER:'H',"plateau girl",random
+MONSTER:'H',"girl in odorous sneakers",random
+MONSTER:'H',"bang gang girl",random
+MONSTER:'H',"girl in worn-out sneakers",random
+MONSTER:'T',"stupid blonde girl",random
+MONSTER:'W',"serbian boss",random
+MONSTER:'Z',"paper snatcher",random
+MONSTER:'\'',"castor transport",random
+MONSTER:'@',"turkish bandit",random
+MONSTER:'@',"turkish thief",random
+MONSTER:'@',"stupid thieving girl",random
+MONSTER:'8',"finger smasher",random
+MONSTER:'8',"sadistic asian girl",random
+MONSTER:'I',"dark force girl",random
+
+### Lower fill levels ###
+#
+#	Rivers with a vengeance
+#
+MAZE: "Sco-filb", ' '
+FLAGS: lethe, noteleport, hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+..............          OOOOOO     ................+GGGGGGGGGGGGGGGGGGG ....
+..............          O    O     ................ GGGGGGGGGGGGGGGGGGG ....
+..............          O    OOOOOO................ GGGGGGGGGGGGGGGGGGGB....
+..............        OOO                                               ....
+..............        O                 RRR RRR  ..........+.........B. ....
+B        yyyyy        OOOOOOOOOOOOO RRR   R R R  ..........             ....
+...      yyyyyyyy                 + R R   R R R  ..........+.........B. ....
+...        yyyyyy   ............... R RRRRRRR R  ..........             ....
+...           yyy   ............... R       R R  ..........+.........B. ....
+     ............   ............... R       R R  ..........             ....
+     ............   ............... RRRRRRR R R  ..........+.........B. ....
+     ............   ............... R     R R R  ..........             ....
+     ............       n           RR RRRR R RRR..........+.........B. ....
+     +                  n              +         ..........             ....
+     .................  n   .................... ..........+.........B. ....
+     .................  n   ....................                        ....
+     .................  n                      Y}Y}Y}Y}Y}Y}Y}Y}Y}Y}Y}Y} ....
+     .................nnn                      }Y}Y}Y}Y}Y}Y}Y}Y}Y}Y}Y}Y+....
+ENDMAP
+# Specifications for the whole level
+RANDOM_PLACES:(70,04),(70,06),(70,08),(70,10),(70,12),(70,14)
+
+NON_DIGGABLE:(00,00,75,17)
+
+STAIR:(1,7),up
+STAIR:place[0],down
+
+DOOR:locked,(05,13)
+DOOR:locked,(34,06)
+DOOR:locked,(51,00)
+DOOR:locked,(71,17)
+DOOR:locked,(39,13)
+DOOR:locked,(59,04)
+DOOR:locked,(59,06)
+DOOR:locked,(59,08)
+DOOR:locked,(59,10)
+DOOR:locked,(59,12)
+DOOR:locked,(59,14)
+
+REGION:(00,00,13,04),lit,"riverroom"
+REGION:(05,09,16,12),lit,"riverroom"
+REGION:(05,14,21,17),lit,"riverroom"
+REGION:(20,07,34,11),lit,"riverroom"
+REGION:(35,00,50,02),lit,"riverroom"
+REGION:(72,00,75,17),lit,"riverroom"
+REGION:(28,14,47,15),lit,"riverroom"
+REGION:(49,04,58,14),lit,"riverroom"
+REGION:(60,04,68,04),lit,"riverroom"
+REGION:(60,06,68,06),lit,"riverroom"
+REGION:(60,08,68,08),lit,"riverroom"
+REGION:(60,10,68,10),lit,"riverroom"
+REGION:(60,12,68,12),lit,"riverroom"
+REGION:(60,14,68,14),lit,"riverroom"
+
+### The quest "goal" level ###
+#
+#	Hussy Club Branch Office
+#
+MAZE: "Sco-goal", ' '
+FLAGS: lethe, noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+............................................. ..............................
+...----------------------.................... ...----------------------.....
+...|.....|......|.|.|.|.|.................... ...|.....|......|.|.|.|.|.....
+...|.....|............|.|.................... ...|.....|............|.|.....
+...|.....-----..-----...|.................... ...|.....-----..-----...|.....
+...|............F.....--|.................... ...|............F.....--|.....
+...|.....-----..-------Z|.................... ...|.....-----..-------Z|.....
+...|.....|..............|.................... ...|.....|..............|.....
+...|----------++--------|.................... ...|----------++--------|.....
+............................................. ..............................
+............................................. ..............................
+............................................. ..............................
+
+............................................. ..............................
+............................................. ..............................
+............................................. ..............................
+............................................. ..............................
+............................................. ..............................
+............................................. ..............................
+............................................. ..............................
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+
+# Specifications for the whole level
+
+STAIR:(29,09),up
+
+DOOR:locked,(14,08)
+DOOR:locked,(15,08)
+DOOR:locked,(60,08)
+DOOR:locked,(61,08)
+
+OBJECT:'[',"helm of steel",(05,05),blessed,+3,"Meteoric AC"
+MONSTER:'b',"Hussy Jill",(05,05),hostile
+
+REGION:(00,00,75,19),lit,"ordinary"
+
+REGION:(05,05,05,05),lit,"variantroom",filled,true
+REGION:(52,05,52,05),lit,"levelseventyroom",filled,true
+REGION:(00,13,44,19),lit,"insideroom"
+REGION:(46,13,75,19),lit,"insideroom"

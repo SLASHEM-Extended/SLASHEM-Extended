@@ -1,0 +1,404 @@
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Robert the Lifer
+#	and receive your quest assignment.
+#
+MAZE:"Fem-strt",' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--------------------------------------------------------|-----------------|
+|.c..|c..|c..|c..|c..|c..|c..|c..|c..|c..|c..|c..|c..|c..|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|---.---.---.---.---.---.---.---.---.---.---.---.---.---.|.................|
+|........................................................B.................|
+|........................................................B.................|
+|....|.---.---.---.---.---.---.---.---.---.---.---.---.---.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|..c|..c|..c|..c|..c|..c|..c|..c|..c|..c|..c|..c|..c|t................|
+|....|---------------------------------------------------|.................|
+|....|c..|c..|c..|c..|c..|c..|c..|c..|c..|c..|c..|c..|c..|t................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|....|--.---.---.---.---.---.---.---.---.---.---.---.---.|.................|
+|........................................................B.................|
+|........................................................B.................|
+|........................................................B.................|
+|.----.---.---.---.---.---.---.---.---.---.---.---.---.--|.................|
+|....|...|...|...|...|...|...|...|...|...|...|...|...|...|.................|
+|..c.|..c|..c|..c|..c|..c|..c|..c|..c|..c|..c|..c|..c|..c|.................|
+|--------------------------------------------------------|-----------------|
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+REGION:(04,08,04,08),lit,"randomroom",filled,true
+# Stairs
+STAIR:(01,08),down
+# Portal arrival point
+BRANCH:(71,03,71,03),(0,0,0,0)
+# Robert the Lifer
+MONSTER:'@',"Femmy",(74,18)
+# fellow prisoners
+MONSTER:'@',"nymphet",(73,18)
+MONSTER:'@',"nymphet",(72,18)
+MONSTER:'@',"nymphet",(71,18)
+MONSTER:'@',"nymphet",(70,18)
+MONSTER:'@',"nymphet",(72,17)
+MONSTER:'@',"nymphet",(72,16)
+MONSTER:'@',"nymphet",(71,16)
+MONSTER:'@',"nymphet",(71,15)
+# Corrupt guards
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+
+#
+#	The "locate" level for the quest.
+#
+#	Here you have to find the exit from the Royal Dungeons
+#	to go further towards your assigned quest.
+#
+
+MAZE:"Fem-loca",' '
+FLAGS:hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+---------------                                              ---------------
+|.....F.......| #################################            |............K|
+|.....F.......+##    |...|     #                #############+.............|
+|.....F.......|      |...| ... # ....        .. #      |.....|.............|
+|.....+.......| ...  |---| ... # .... |----| .. #      |.....|.............|
+|.....F.......| ...            # .... |....| .. #      |.....|.............|
+|.....F.......| ...          ### .... |....| .. #   |--|.....|.............|
+|.....F.......| ...         ##   .... |....| .. #   |........|FFF.FFFFF.FFF|
+|-------------- ... #########         |....| .. #   |........|......|......|
+                ... #      |S-------| |....#    #   |--|.....|......|......|
+-----               # ...  |........| |----######      |.....|-------------|
+|...################# ...  |........|      #    H .... |........|           
+|...#          |....| ...  |........+#######    # .... |........|         ..
+|...#          |....| ...  |----S---|           #      |.....|----------| ..
+-|--+-------|  |....| ...       #               #####  |.....|..........| ..
+ |..........|  |....| ... |-----#               #   #  |.....|..........| ..
+ |..........|  |....| ... |.....#     |------|  #   #########+..........| ..
+ |..........|  |----| ... |.....######S......+###            |..........| ..
+ |----------|         ... |-----|     |......|    .......... |----------| ..
+                      ...             |------|    ..........              ..
+ENDMAP
+# Dungeon Description
+REGION:(01,01,13,07),lit,"ordinary"
+REGION:(02,15,11,17),lit,"randomroom"
+REGION:(62,01,74,09),lit,"randomroom"
+REGION:(62,14,71,17),lit,"ordinary"
+REGION:(28,10,35,12),lit,"randomroom"
+REGION:(39,17,44,18),lit,"randomroom"
+REGION:(33,03,36,07),lit,"randomroom"
+REGION:(50,18,59,19),lit,"randomroom"
+REGION:(16,04,18,10),lit,"randomroom"
+REGION:(22,10,24,19),lit,"randomroom"
+REGION:(74,12,75,19),lit,"randomroom"
+REGION:(50,11,53,12),lit,"randomroom"
+REGION:(35,03,36,08),lit,"randomroom"
+REGION:(27,03,29,04),lit,"randomroom"
+# Stairs
+STAIR:(02,03),up
+STAIR:(70,15),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+DOOR:locked,(04,14)
+DOOR:locked,(06,04)
+DOOR:open,(14,02)
+DOOR:closed,(61,16)
+DOOR:closed,(45,17)
+DOOR:locked,(36,12)
+DOOR:closed,(61,02)
+# Police station kops
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+# Iron golem in supply room
+MONSTER: random,random,random,hostile
+# Supply room junk
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Warden Arianna, your nemesis monster.  You have to
+#	defeat Warden Arianna in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE:"Fem-goal",' '
+FLAGS:hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+          .......              ..................                   ........
+   .................       .........      .............. ...................
+....................................        ..............................  
+............ ..................            ...........  .................   
+.........      ..............         ...........          ..........       
+......         .................        ...........          ......         
+....        ......................       ..........        .........        
+..         ............................       ........     ..........       
+      ...................................       .......      ..........     
+...................          ...............      ...............    .......
+..............           ......................         .................   
+.......    ......      ...........      ..........    ..................... 
+....        ..................          .....................     ..........
+.                  .......                   ..........             ........
+ENDMAP
+# Dungeon Description
+
+# Stairs
+STAIR:random,up
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,13)
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Lava demons
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+MONSTER: random,random,random,hostile
+# Objects
+OBJECT:')',"bulletproof chainwhip",(45,04),blessed,0,"Gender-Inspecific Whip"
+# Warden Arianna
+MONSTER:'&',"Dr. Faust, the Patriarch",(45,04),hostile
+
+#
+#       The "fill" levels for the quest.
+#
+#       These levels are used to fill out any levels not occupied by specific
+#       levels as defined above. "filla" is the upper filler, between the
+#       start and locate levels, and "fillb" the lower between the locate
+#       and goal levels.
+#
+
+MAZE:"Fem-fila",' '
+FLAGS:hardfloor
+GEOMETRY:left,top
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ.................JJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ.................JJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ.................JJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ.................JJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJBBBBBBBBBBBBBBBBBJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+..............................B.................B...........................
+..............................B.................B...........................
+..............................B.................B...........................
+..............................B.................B...........................
+..............................B.................B...........................
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJBBBBBBBBBBBBBBBBBJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ.................JJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ.................JJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ.................JJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ.................JJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+ENDMAP
+# Dungeon Description
+REGION:(40,07,40,07),unlit,"insideroom",filled,true
+# Stairs
+STAIR:random,up
+STAIR:random,down
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+
+LEVEL: "Fem-filb"
+ROOM: "ordinary", random, random, random, random
+STAIR: random,up
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,down
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+ROOM: "randomroom", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+ROOM: "randomroom", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+ROOM: "randomroom", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+ROOM: "randomroom", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+ROOM: "randomroom", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+ROOM: "randomroom", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+RANDOM_CORRIDORS

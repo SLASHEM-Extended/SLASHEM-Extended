@@ -55,6 +55,66 @@ static struct trobj Anachronist[] = {
 	{ 0, 0, 0, 0, 0 }  
 };  
 
+static struct trobj Feminist[] = {
+	{ HIGH_HEELED_SANDAL, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ SHURIKEN, UNDEF_SPE, WEAPON_CLASS, 20, UNDEF_BLESS },
+	{ LANCE, UNDEF_SPE, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ KILLER_HEELS, UNDEF_SPE, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ LEATHER_LEASH, 0, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ STETHOSCOPE, 0, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 5, UNDEF_BLESS },
+
+	{ 0, 0, 0, 0, 0 }  
+};  
+
+static struct trobj FormChanger[] = {
+	{ WAN_POLYMORPH, 15, WAND_CLASS, 1, 1 },
+
+	{ 0, 0, 0, 0, 0 }  
+};  
+
+static struct trobj Tracer[] = {
+	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 2, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 2, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ UNDEF_TYP, UNDEF_SPE, FOOD_CLASS, 3, UNDEF_BLESS },
+	{ TAIL_SPIKES, 0, VENOM_CLASS, 1, 0 },
+	{ LUCKSTONE, UNDEF_SPE, GEM_CLASS, 1, 0 },
+
+	{ 0, 0, 0, 0, 0 }  
+};  
+
+static struct trobj NuclearPhysicist[] = {
+	{ SPEAR, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ JUMPSUIT, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ POT_HEALING, 0, POTION_CLASS, 2, UNDEF_BLESS },
+	{ WAN_PROBING, 30, WAND_CLASS, 1, UNDEF_BLESS },
+
+	{ 0, 0, 0, 0, 0 }  
+};  
+
+static struct trobj GangScholar[] = {
+#define GSC_WEAPON          0
+#define GSC_ARMOR          1
+#define GSC_RING          2
+#define GSC_POTION          3
+#define GSC_SCROLL          4
+#define GSC_WAND          5
+#define GSC_BOOK          6
+	{ DAGGER, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ LEATHER_ARMOR, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ RIN_ADORNMENT, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
+	{ POT_HEALING, 0, POTION_CLASS, 1, UNDEF_BLESS },
+	{ SCR_PHASE_DOOR, 0, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ WAN_MAGIC_MISSILE, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
+	{ SPE_PROTECTION, 2, SPBOOK_CLASS, 1, UNDEF_BLESS },
+
+	{ 0, 0, 0, 0, 0 }  
+};  
+
 static struct trobj Artist[] = {
 	{ SPOON, 2, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ TOUCHSTONE, 0, TOOL_CLASS, 1, UNDEF_BLESS },
@@ -3825,6 +3885,46 @@ static const struct def_skill Skill_Cam[] = {
     { P_NONE, 0 }
 };
 
+static const struct def_skill Skill_Sco[] = {
+
+    { P_DAGGER, P_MASTER },             { P_KNIFE,  P_EXPERT },
+    { P_AXE, P_EXPERT },                 { P_PICK_AXE, P_EXPERT },
+    { P_SHORT_SWORD, P_EXPERT },        { P_BROAD_SWORD, P_EXPERT },
+    { P_LONG_SWORD, P_EXPERT },        { P_TWO_HANDED_SWORD, P_EXPERT },
+    { P_SCIMITAR, P_EXPERT },          { P_SABER, P_EXPERT },
+    { P_CLUB, P_EXPERT },    { P_PADDLE, P_EXPERT },
+    { P_MACE, P_EXPERT },                { P_MORNING_STAR, P_EXPERT },
+    { P_FLAIL, P_EXPERT },               { P_HAMMER, P_EXPERT },
+    { P_QUARTERSTAFF, P_EXPERT },        { P_POLEARMS, P_EXPERT },
+
+    { P_SPEAR, P_EXPERT },               { P_JAVELIN, P_EXPERT },
+    { P_TRIDENT, P_EXPERT },             { P_LANCE, P_EXPERT },
+
+	{ P_FIREARM, P_MASTER },
+    { P_HIGH_HEELS, P_MASTER },
+
+    { P_WHIP, P_EXPERT },                { P_LIGHTSABER, P_MASTER },
+
+    { P_ATTACK_SPELL, P_EXPERT },      { P_HEALING_SPELL, P_EXPERT },
+    { P_DIVINATION_SPELL, P_EXPERT },   { P_ENCHANTMENT_SPELL, P_EXPERT },
+    { P_PROTECTION_SPELL, P_EXPERT },    { P_BODY_SPELL, P_EXPERT },
+    { P_MATTER_SPELL, P_EXPERT },
+
+    { P_GENERAL_COMBAT, P_EXPERT },
+    { P_SHIELD, P_EXPERT },
+    { P_BODY_ARMOR, P_EXPERT },
+    { P_TWO_HANDED_WEAPON, P_EXPERT },
+    { P_DEVICES, P_MASTER },
+    { P_SEARCHING, P_EXPERT },
+
+    { P_OCCULT_SPELL, P_EXPERT },
+    { P_ELEMENTAL_SPELL, P_EXPERT },
+    { P_CHAOS_SPELL, P_EXPERT },
+
+    { P_BARE_HANDED_COMBAT, P_EXPERT },
+    { P_NONE, 0 }
+};
+
 static const struct def_skill Skill_Ele[] = {
 /*Style: small-med edged weapons, blunt weapons*/
     { P_DAGGER, P_EXPERT },             { P_KNIFE,  P_EXPERT },
@@ -4289,6 +4389,66 @@ static const struct def_skill Skill_Sci[] = {
     { P_NONE, 0 }
 };
 
+static const struct def_skill Skill_Nuc[] = {
+    { P_KNIFE,  P_EXPERT },
+    { P_CLUB, P_EXPERT },		{ P_HAMMER,  P_EXPERT },
+    { P_PADDLE, P_EXPERT },		    { P_FLAIL, P_EXPERT },		    
+    { P_POLEARMS, P_EXPERT },		    { P_SLING, P_EXPERT },		    
+    { P_WHIP, P_EXPERT },		    { P_LIGHTSABER, P_EXPERT },		    
+
+    { P_FIREARM, P_EXPERT },
+    { P_MATTER_SPELL, P_EXPERT },	{ P_HEALING_SPELL, P_EXPERT },
+	{ P_DIVINATION_SPELL, P_MASTER },
+    { P_MARTIAL_ARTS, P_MASTER },
+    { P_RIDING, P_EXPERT },
+    { P_TWO_WEAPON_COMBAT, P_EXPERT },
+    { P_HIGH_HEELS, P_EXPERT },
+
+    { P_POLYMORPHING, P_MASTER },
+    { P_DEVICES, P_MASTER },
+    { P_SEARCHING, P_EXPERT },
+    { P_SPIRITUALITY, P_EXPERT },
+    { P_PETKEEPING, P_EXPERT },
+
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_For[] = {
+
+    { P_POLYMORPHING, P_GRAND_MASTER },
+    { P_AXE, P_EXPERT },		{ P_BROAD_SWORD, P_EXPERT },
+    { P_SCIMITAR, P_EXPERT },		{ P_MORNING_STAR, P_EXPERT },
+    { P_QUARTERSTAFF, P_EXPERT },		{ P_LANCE, P_EXPERT },
+    { P_BOOMERANG, P_MASTER },		{ P_UNICORN_HORN, P_MASTER },
+    { P_ENCHANTMENT_SPELL, P_EXPERT },		{ P_BODY_SPELL, P_GRAND_MASTER },
+    { P_OCCULT_SPELL, P_EXPERT },		{ P_CHAOS_SPELL, P_MASTER },
+    { P_BARE_HANDED_COMBAT, P_EXPERT },		{ P_HIGH_HEELS, P_EXPERT },
+    { P_SHIELD, P_MASTER },		{ P_DEVICES, P_MASTER },
+    { P_PETKEEPING, P_EXPERT },		{ P_MISSILE_WEAPONS, P_EXPERT },
+    { P_RIDING, P_EXPERT },
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Fem[] = {
+    { P_MATTER_SPELL, P_EXPERT },		{ P_HEALING_SPELL, P_EXPERT  },
+    { P_BODY_SPELL, P_EXPERT  },		{ P_DIVINATION_SPELL, P_EXPERT  },
+    { P_PROTECTION_SPELL, P_EXPERT  },		{ P_ATTACK_SPELL, P_EXPERT  },
+    { P_ENCHANTMENT_SPELL, P_EXPERT  },		{ P_CHAOS_SPELL, P_EXPERT  },
+    { P_OCCULT_SPELL, P_EXPERT  },		{ P_ELEMENTAL_SPELL, P_EXPERT  },
+    { P_SCIMITAR, P_EXPERT },		{ P_CLUB, P_EXPERT },
+    { P_PADDLE, P_MASTER },		{ P_MACE, P_EXPERT },
+    { P_MORNING_STAR, P_EXPERT },		{ P_HAMMER, P_EXPERT },
+    { P_QUARTERSTAFF, P_EXPERT },		{ P_POLEARMS, P_EXPERT },
+    { P_JAVELIN, P_EXPERT },		{ P_TRIDENT, P_EXPERT },
+    { P_LANCE, P_MASTER },		{ P_SLING, P_EXPERT },
+    { P_FIREARM, P_MASTER },		{ P_CROSSBOW, P_EXPERT },
+    { P_SHURIKEN, P_EXPERT },		{ P_BOOMERANG, P_EXPERT },
+    { P_WHIP, P_EXPERT },		{ P_MARTIAL_ARTS, P_EXPERT },
+    { P_HIGH_HEELS, P_GRAND_MASTER },		{ P_GENERAL_COMBAT, P_EXPERT },
+    { P_TWO_HANDED_WEAPON, P_EXPERT },		{ P_RIDING, P_MASTER },
+
+    { P_NONE, 0 }
+};
 
 static const struct def_skill Skill_G[] = {
     { P_DAGGER, P_EXPERT },		{ P_KNIFE, P_EXPERT },
@@ -4603,6 +4763,11 @@ static const struct def_skill Skill_Cha[] = {
 };
 
 static const struct def_skill Skill_Wil[] = {
+
+    { P_NONE, 0 }
+};
+
+static const struct def_skill Skill_Trc[] = {
 
     { P_NONE, 0 }
 };
@@ -6165,19 +6330,20 @@ static const char * const hereticgods[] = {
 /* pantheons for priests etc. These contain all the roles pantheons; they need to be aligned so that if we pick a random number and apply that to all three, a consistent role's pantheon is created! It also contains made-up pantheons that don't belong to an actual role. --Amy */
 static const char * const lawfulgods[] = {
 
-"The Lord of the Pit", "Anti-War Movement", "_Eilistraee", "_Suzanne Collins", "Quetzalcoatl", "Leonardo", "Ehud", "Dunlain", "Mitra", "Garl Glittergold", "Yaldabaoth", "Glycocalyx", "_Rhea Oro", "Eddergud", "_Everella Shrine", "Anu", "Buddha", "Ilmater", "McDonalds", "President Kimball", "Jacob Black", "Merlin", "Tane", "_Sakuya", "Apollo", "Orome", "Thomas Alva Edison", "Solonor Thelandira", "James Bond", "Prometheus", "Earth", "Colonel Campbell", "Nintendo", "Claude Speed", "UNIX", "Sulla", "_B'loody Mary", "Jobs", "_Athena", "Air", "Bowditch", "the Light Side", "Barnum", "Lugh", "Erzulie Freda", "Hugh Hefner", "Leo Tolstoi", "Nuada", "Eluvian", "_Queen Serenity", "Shan Lai Ching", "Falis", "Donblas", "Nharlotep", "Votishal", "God the Father", "Magnum", "_Vaire", "Brahma", "Ariel", "Danzai", "the Lord", "A'En", "Democracy", "Bickney", "Mercury", "Classic Rock", "Issek", "_Cassandra", "Moori", "_Amaterasu Omikami", "Nikola Tesla", "Airyaman", "_Lady Ariane", "the Homies", "Manwe Sulimo", "Speedy Gonzales", "Blind Io", "_Olivia", "Seeker", "_Hel", "Tyr", "Larry Koopa", "Talos", "Ptah", "His Majesty", "Balder", "Andromorph", "Seraphimon", "Scorpion", "Dios", "Ceipheid", "_Tsunami", "Ladon", "_Osiris", "_Goddess", "Biron", "_Ishtar", "_Nayru", "Zephyr", "Aslan", "Bahamut", "_Princess Celestia", "_Rainbow Dash", "Ceiling Cat", "SlimKirby", "Superego", "Porphyry", "Nike", "Little Mac", "Noeda", "Dungeon Collapse", "Commissioner Hunter", "upper bull", "Acehack", "Johanna from Orleans", "Kelvin", "Bar", "Deckard Cain", "Pepin the Healer", "Sulla", "Cheibriados", "Fedhas", "Lugonu", "Okawaru", "Vehumet", "Zin", "_the Bitches", "King Somnus", "Gaia", "Khronos", "Brahma", "Pangu", "Atum", "Khepri", "Corak", "Chiyo-chichi", "Truth", "Mr. Black", "_Irina", "Ulfric Stormcloak", "Gaming PC", "Aurum", "Moradin", "Lurtz", "Legolas", "Selvetarm", "Mahal", "Ilneval", "_Vandria", "Saint Cuthbert", "_Breasts", "_Mother", "Eden", "_Balam", "Enki", "_Eurynome", "Nudziarth", "Huginn and Muninn", "Jack", "Shiro", "Tenebrous", "_Paimon", "Dahlver-Nar", "potion of urine", "Tal Rascha", "China", "General Fai", "Terrans", "Kormu", "_Demeter", "Tartarica", "_Minerva", "Static", "Jiraiya", "Nereus", "_Tenderness", "_Softness", "Toesmashing", "Bill Gates", "Albert Einstein", "Dagobert Duck", "Donkey Kong", "Mr. Spock", "the U.N.O.", "the gnome with the wand of death", "bhaak", "Elronnd", "Dudley", "stth", "muad", "Eidolos", "Boko Haram", "_Nicki Minaj", "Full Moon", "Doenerteller Versace", "Grizz", "Zombieman Brigade", "Powdery Snow", "Sol", "_Selene", "Lawful Good", "_Umbrellarina Madeline", "Jonathan Joestar", "Seveso Toxin", "Milahowalpaw", "Kanigyilak", "The Riddler", "Zeon Zum Deikun", "_Laya", "the Great Light", "Asgore Dreemurr", "the Wave Existence", "_Arle Nadja", "Amon Ra", "Fate", "Regunin", "_Mercedes", "_Ewa", 
+"The Lord of the Pit", "Anti-War Movement", "_Eilistraee", "_Suzanne Collins", "Quetzalcoatl", "Leonardo", "Ehud", "Dunlain", "Mitra", "Garl Glittergold", "Yaldabaoth", "Glycocalyx", "_Rhea Oro", "Eddergud", "_Everella Shrine", "Anu", "Buddha", "Ilmater", "McDonalds", "President Kimball", "Jacob Black", "Merlin", "Tane", "_Sakuya", "Apollo", "Orome", "Thomas Alva Edison", "Solonor Thelandira", "James Bond", "Prometheus", "Earth", "Colonel Campbell", "Nintendo", "Claude Speed", "UNIX", "Sulla", "_B'loody Mary", "Jobs", "_Athena", "Air", "Bowditch", "the Light Side", "Barnum", "Lugh", "Erzulie Freda", "Hugh Hefner", "Leo Tolstoi", "Nuada", "Eluvian", "_Queen Serenity", "Shan Lai Ching", "Falis", "Donblas", "Nharlotep", "Votishal", "God the Father", "Magnum", "_Vaire", "Brahma", "Ariel", "Danzai", "the Lord", "A'En", "Democracy", "Bickney", "Mercury", "Classic Rock", "Issek", "_Cassandra", "Moori", "_Amaterasu Omikami", "Nikola Tesla", "Airyaman", "_Lady Ariane", "the Homies", "Manwe Sulimo", "Speedy Gonzales", "Blind Io", "_Olivia", "Seeker", "_Hel", "Tyr", "Larry Koopa", "Talos", "Ptah", "His Majesty", "Balder", "Andromorph", "Seraphimon", "Scorpion", "Dios", "Ceipheid", "_Tsunami", "Ladon", "_Osiris", "_Goddess", "Biron", "_Ishtar", "_Nayru", "Zephyr", "Aslan", "Bahamut", "_Princess Celestia", "_Rainbow Dash", "Ceiling Cat", "SlimKirby", "Superego", "Porphyry", "Nike", "Little Mac", "Noeda", "Dungeon Collapse", "Commissioner Hunter", "upper bull", "Acehack", "Johanna from Orleans", "Kelvin", "Bar", "Deckard Cain", "Pepin the Healer", "Sulla", "Cheibriados", "Fedhas", "Lugonu", "Okawaru", "Vehumet", "Zin", "_the Bitches", "King Somnus", "Gaia", "Khronos", "Brahma", "Pangu", "Atum", "Khepri", "Corak", "Chiyo-chichi", "Truth", "Mr. Black", "_Irina", "Ulfric Stormcloak", "Gaming PC", "Aurum", "Moradin", "Lurtz", "Legolas", "Selvetarm", "Mahal", "Ilneval", "_Vandria", "Saint Cuthbert", "_Breasts", "_Mother", "Eden", "_Balam", "Enki", "_Eurynome", "Nudziarth", "Huginn and Muninn", "Jack", "Shiro", "Tenebrous", "_Paimon", "Dahlver-Nar", "potion of urine", "Tal Rascha", "China", "General Fai", "Terrans", "Kormu", "_Demeter", "Tartarica", "_Minerva", "Static", "Jiraiya", "Nereus", "_Tenderness", "_Softness", "Toesmashing", "Bill Gates", "Albert Einstein", "Dagobert Duck", "Donkey Kong", "Mr. Spock", "the U.N.O.", "the gnome with the wand of death", "bhaak", "Elronnd", "Dudley", "stth", "muad", "Eidolos", "Boko Haram", "_Nicki Minaj", "Full Moon", "Doenerteller Versace", "Grizz", "Zombieman Brigade", "Powdery Snow", "Sol", "_Selene", "Lawful Good", "_Umbrellarina Madeline", "Jonathan Joestar", "Seveso Toxin", "Milahowalpaw", "Kanigyilak", "The Riddler", "Zeon Zum Deikun", "_Laya", "the Great Light", "Asgore Dreemurr", "the Wave Existence", "_Arle Nadja", "Amon Ra", "Fate", "Regunin", "_Mercedes", "_Ewa", "_Kumiromi of Harvest", "Yacatect of Wealth", "_Jure of Healing", "_Morodwyn", "Corellius", "Elderon", "The One Who Sees", "Onn", "Sssracht", "_Shalla", "Ka'Omsh", "Gnarl", "Order", "Fiit-Ssaaar", "Valpurus", "Legifer", "Atavus", "_Dulcis", "_Seges", "Polypiling", "Mr. Maradonna", "_Gina", "_Polyhymnia", 
 
 };
 
 static const char * const neutralgods[] = {
 
-"Goldblight of the Flame", "Global Freedom Council", "_Kiaransali", "_Effie Trinket", "Camaxtli", "Picasso", "Ford", "Savos Aren", "Crom", "Flandal Steelskin", "the void", "Fibrinogen", "_Liebea Luna", "Vhaeraun", "Butch DeLoria", "_Ishtar", "Jahwe", "Grumbar", "Kentucky's Fried Chicken", "Mr. House", "_Bella Swan", "Salazar Slytherin", "Tangaroa", "_Reimu", "Dionysus", "_Yavanna", "Benjamin Franklin", "Aerdrie Faenya", "Chuck Norris", "Thor", "Fire", "Deepthroat", "Microsoft", "Carl CJ Johnson", "the PDP-7", "Cicero", "_Ebony Dark'ness", "Wozniak", "Hermes", "Frost", "Peabody", "the Force", "Bailey", "_Brigit", "Marassa Jumeaux", "G-boy", "Stephen Hawking", "Dagda", "Moon", "_Angel Aphrodite", "Chih Sung-tzu", "_Marfa", "Grome", "Zugguthobal", "Raiden", "_Mother Earth", "Smith", "_Varda Elentari", "Vishnu", "Tyrael", "Milanor", "_the deep blue sea", "Dr. Oujide", "Communism", "Corridor", "_Venus", "Symphonic Metal", "Mog", "Menelaos", "King Kai", "Raijin", "Erwin Schroedinger", "Gandarewa", "Lord Stahngnir", "the Robbers", "Mandos", "Dan Naginati", "_The Lady", "Peyman", "_Osiris", "Pluto", "Odin", "Roy Koopa", "_Meridia", "Thoth", "His Holiness", "_Edda", "Technix", "_Ophanimon", "Sub-Zero", "_the Rose Bride", "_the Lord of Nightmares", "_Washu", "Namanda", "Obelisk", "Doom", "Tieg", "Filaha", "_Farore", "_Raftina", "the Emperor-beyond-the-Sea", "Io", "_the Fausticorn", "_Fluttershy", "Longcat", "Lucahjin", "Ego", "_Fanny Kemble", "Adidas", "Mister Sandman", "Soviet5lo", "Segfault Bug", "Jeweler Jublgrais", "type of ice block", "DNethack", "Queen Katharina", "Celsius", "Torr", "Qual-Kehk", "Griswold the Armorer", "Amenophis", "Beogh", "Elyvilon", "Kikubaaqudgha", "Nemelex", "Trog", "Yredelemnul", "_the Hell Brides", "_Rubiss", "Ahura Mazda", "Demiourgos", "Aeon", "Bulaing", "Kamui", "Vishvakarman", "the Dragon Pharaoh", "Neco Coneco", "Love", "Big Bear", "Max", "_Delphine", "Sony PlayStation", "Argentum", "Dumathoin", "Saruman", "_Eowyn", "Keptolo", "Holashner", "_Luthic", "Corellon", "Helm", "_Feet", "Andromalius", "Berith", "_Cosmos", "Buer", "Amon", "Andrealphus", "Fafnir", "Astaroth", "_Eve", "_Chupoclops", "Naberius", "Orthos", "scroll of bullshit", "_Blood Raven", "USA", "General Townes", "Zerg", "_Sophie", "_Hestia", "Acetica", "Apollo", "Magnet", "_Tsunade", "Neptune", "_Beautifulness", "_Squeakiness", "Shin Kick", "_Britney Spears", "Homer Simpson", "_Xena", "Jack Bauer", "_Your mom", "the Flying Spaghetti Monster", "paxed", "tungtn", "Dion Nicolaas", "the RNG", "Adeon", "speedycat7", "dograt", "The Taliban", "_Taylor Swift", "New Moon", "Fish and Chips", "Panda", "The Revenants", "Large Snowflakes", "_Terra", "Helios", "True Neutral", "_Medium Deborah", "_Crueltrainer Cindy", "Hirohiko Araki", "Fukoshima Radiation", "_Timalixomol", "Omeatl", "_Poison Ivy", "Degwin Sodo Zabi", "Orakio", "Lutz", "the Absolute GOD of Hyperdeath", "Emperor Cain", "_Celine Jules", "Hersifon", "Unlimited Blade Works", "Caxon", "_Misty", "Lorskel", 
+"Goldblight of the Flame", "Global Freedom Council", "_Kiaransali", "_Effie Trinket", "Camaxtli", "Picasso", "Ford", "Savos Aren", "Crom", "Flandal Steelskin", "the void", "Fibrinogen", "_Liebea Luna", "Vhaeraun", "Butch DeLoria", "_Ishtar", "Jahwe", "Grumbar", "Kentucky's Fried Chicken", "Mr. House", "_Bella Swan", "Salazar Slytherin", "Tangaroa", "_Reimu", "Dionysus", "_Yavanna", "Benjamin Franklin", "Aerdrie Faenya", "Chuck Norris", "Thor", "Fire", "Deepthroat", "Microsoft", "Carl CJ Johnson", "the PDP-7", "Cicero", "_Ebony Dark'ness", "Wozniak", "Hermes", "Frost", "Peabody", "the Force", "Bailey", "_Brigit", "Marassa Jumeaux", "G-boy", "Stephen Hawking", "Dagda", "Moon", "_Angel Aphrodite", "Chih Sung-tzu", "_Marfa", "Grome", "Zugguthobal", "Raiden", "_Mother Earth", "Smith", "_Varda Elentari", "Vishnu", "Tyrael", "Milanor", "_the deep blue sea", "Dr. Oujide", "Communism", "Corridor", "_Venus", "Symphonic Metal", "Mog", "Menelaos", "King Kai", "Raijin", "Erwin Schroedinger", "Gandarewa", "Lord Stahngnir", "the Robbers", "Mandos", "Dan Naginati", "_The Lady", "Peyman", "_Osiris", "Pluto", "Odin", "Roy Koopa", "_Meridia", "Thoth", "His Holiness", "_Edda", "Technix", "_Ophanimon", "Sub-Zero", "_the Rose Bride", "_the Lord of Nightmares", "_Washu", "Namanda", "Obelisk", "Doom", "Tieg", "Filaha", "_Farore", "_Raftina", "the Emperor-beyond-the-Sea", "Io", "_the Fausticorn", "_Fluttershy", "Longcat", "Lucahjin", "Ego", "_Fanny Kemble", "Adidas", "Mister Sandman", "Soviet5lo", "Segfault Bug", "Jeweler Jublgrais", "type of ice block", "DNethack", "Queen Katharina", "Celsius", "Torr", "Qual-Kehk", "Griswold the Armorer", "Amenophis", "Beogh", "Elyvilon", "Kikubaaqudgha", "Nemelex", "Trog", "Yredelemnul", "_the Hell Brides", "_Rubiss", "Ahura Mazda", "Demiourgos", "Aeon", "Bulaing", "Kamui", "Vishvakarman", "the Dragon Pharaoh", "Neco Coneco", "Love", "Big Bear", "Max", "_Delphine", "Sony PlayStation", "Argentum", "Dumathoin", "Saruman", "_Eowyn", "Keptolo", "Holashner", "_Luthic", "Corellon", "Helm", "_Feet", "Andromalius", "Berith", "_Cosmos", "Buer", "Amon", "Andrealphus", "Fafnir", "Astaroth", "_Eve", "_Chupoclops", "Naberius", "Orthos", "scroll of bullshit", "_Blood Raven", "USA", "General Townes", "Zerg", "_Sophie", "_Hestia", "Acetica", "Apollo", "Magnet", "_Tsunade", "Neptune", "_Beautifulness", "_Squeakiness", "Shin Kick", "_Britney Spears", "Homer Simpson", "_Xena", "Jack Bauer", "_Your mom", "the Flying Spaghetti Monster", "paxed", "tungtn", "Dion Nicolaas", "the RNG", "Adeon", "speedycat7", "dograt", "The Taliban", "_Taylor Swift", "New Moon", "Fish and Chips", "Panda", "The Revenants", "Large Snowflakes", "_Terra", "Helios", "True Neutral", "_Medium Deborah", "_Crueltrainer Cindy", "Hirohiko Araki", "Fukoshima Radiation", "_Timalixomol", "Omeatl", "_Poison Ivy", "Degwin Sodo Zabi", "Orakio", "Lutz", "the Absolute GOD of Hyperdeath", "Emperor Cain", "_Celine Jules", "Hersifon", "Unlimited Blade Works", "Caxon", "_Misty", "Lorskel", "Opatos of Earth", "Itzpalt of Element", "Mani of Machine", "Clamgaddin", "_Ayssia", "_Anssaria", "The One Who Kills", "_Istaria", "Issrecht", "_Auroree", "Ne'Ftrr", "_Berwyn", "Balance", "Sssaass", "Loricatus", "_Silva", "Mellis", "_Cleptia", "Sophos", "Monster Polymorphing", "_Ms. Unfortunate Forest", "Gordon Freeman", "_Euterpe", 
 
 };
 
 static const char * const chaoticgods[] = {
 
-"Warpfire Hellspawn", "Human Rights Progression", "_Lolth", "President Snow", "Huhetotl", "Dali", "Ivins", "_Hert the Vampire", "Set", "Urdlen", "_Sophia", "_Hemophilia", "_Elenya Pure", "the black web", "Draco Malfoy", "Anshar", "Allah", "_Tymora", "Burger King", "Caesar", "Edward Cullen", "Lord Voldemort", "Whiro", "_Yukari Yakumo", "Pan", "Tulkas", "_Marilyn Monroe", "Erevan Ilesere", "Jackie Chan", "Arson", "Ash", "The Patriots", "Sony", "Tommy Vercetti", "VMS", "Catilina", "Darth Valer", "Gates", "Poseidon", "Smoke", "Rothchild", "the Dark Side", "Shaco", "Manannan Mac Lir", "Papa Legba", "Arsene Lupin", "H. P. Lovecraft", "Morrigan", "Lycanthus", "_Queen Beryl", "Huan Ti", "Falaris", "Arioch", "Gothuulbe", "Rat God", "the Satan", "Wesson", "_Nessa", "_Shiva", "Gabriel", "Daini", "the Devil", "Team Missile Bomb", "Despotism", "Lockney", "Mars", "Hardcore Punk", "Kos", "_Helen of Troy", "Vegeta", "Susanowo", "Wernher von Braun", "Daevas", "Sven Fanara", "the Motherfuckers", "Lorien", "_Kylie Lum", "Offler", "_Lady Gaga", "Seth", "Orcus", "Loki", "Morton Koopa Jr.", "Clavicus Vile", "Anhur", "The Commons", "Hagen", "Mechatron", "Cherubimon", "Kano", "End of the World", "Shabranigdo", "_Tokimi", "_Myria", "Ra", "Poltergeist", "the Mist", "Asmodeus", "_Din", "Justine", "Tash", "_Tiamat", "_Princess Luna", "_Pinkie Pie", "Basement Cat", "The Dark Id", "Id", "Amos Bronson Alcott", "Puma", "Mike Tyson", "Kerio", "Game Freeze", "Captain Future", "water puddle", "SLASH'EM Extended", "Al-Mutasim", "Fahrenheit", "Atue", "Geglash", "Farnham the Drunk", "Pyrrhus", "Ashenzari", "Dithmenos", "Jiyva", "Makhleb", "Sif Muna", "Xom", "_the Sluts with Syphilis", "Malroth", "Viracocha", "Mbombo", "Unkulunkulu", "Apsu", "Coatlique", "Tepeu", "Sheltem", "Kamineko", "Courage", "Faster-Than-All-Others", "Anton", "General Tullius", "XBox 360", "Antimony", "Abbathor", "Morgoth", "Eol", "Ghaunadaur", "Armok", "Gruumsh", "_Sehanine", "_Mask", "Sexy Butt", "_Marionette", "Ymir", "Dantalion", "_Iris", "Acererak", "Ose", "Ahazu", "_Echidna", "Miska", "Malphas", "Otias", "_Simurgh", "wand of summon sexy girl", "B-a-a-l", "Global Liberation Army", "Rodall 'Demo' Juhziz", "Protoss", "Gabnid", "_Adephagia", "Hydrocloria", "Linus", "Lightning", "Orochimaru", "Proteus", "_Disgustingness", "_Loudness", "Kick in the Nuts", "_Mother Teresa", "George W. Bush", "Super Mario", "the blue Power Ranger", "the universe", "the Invisible Pink Unicorn", "the DevTeam", "_Bluescreenofdeath", "marvin", "Tariru", "mrivan", "stenno", "DeathOnAStick", "The IS", "_Miley Cyrus", "Friday the 13th", "Fugu Globefish Sushi", "Ice Bear", "Cyberdemon MkIII Deluxe", "Blizzard", "_Luna", "_Eos", "Chaotic Evil", "Cars", "Mustard Gas", "Emoxivalirex", "Tleselagyila", "Two-Face", "Gihren Zabi", "Dark Force", "_the Profound Darkness", "Chara", "Deus", "_Miki Onimaru", "Mor Havoc", "Heaven's Feel", "_Jylla", "_Kendl", "Kaczynski", 
+"Warpfire Hellspawn", "Human Rights Progression", "_Lolth", "President Snow", "Huhetotl", "Dali", "Ivins", "_Hert the Vampire", "Set", "Urdlen", "_Sophia", "_Hemophilia", "_Elenya Pure", "the black web", "Draco Malfoy", "Anshar", "Allah", "_Tymora", "Burger King", "Caesar", "Edward Cullen", "Lord Voldemort", "Whiro", "_Yukari Yakumo", "Pan", "Tulkas", "_Marilyn Monroe", "Erevan Ilesere", "Jackie Chan", "Arson", "Ash", "The Patriots", "Sony", "Tommy Vercetti", "VMS", "Catilina", "Darth Valer", "Gates", "Poseidon", "Smoke", "Rothchild", "the Dark Side", "Shaco", "Manannan Mac Lir", "Papa Legba", "Arsene Lupin", "H. P. Lovecraft", "Morrigan", "Lycanthus", "_Queen Beryl", "Huan Ti", "Falaris", "Arioch", "Gothuulbe", "Rat God", "the Satan", "Wesson", "_Nessa", "_Shiva", "Gabriel", "Daini", "the Devil", "Team Missile Bomb", "Despotism", "Lockney", "Mars", "Hardcore Punk", "Kos", "_Helen of Troy", "Vegeta", "Susanowo", "Wernher von Braun", "Daevas", "Sven Fanara", "the Motherfuckers", "Lorien", "_Kylie Lum", "Offler", "_Lady Gaga", "Seth", "Orcus", "Loki", "Morton Koopa Jr.", "Clavicus Vile", "Anhur", "The Commons", "Hagen", "Mechatron", "Cherubimon", "Kano", "End of the World", "Shabranigdo", "_Tokimi", "_Myria", "Ra", "Poltergeist", "the Mist", "Asmodeus", "_Din", "Justine", "Tash", "_Tiamat", "_Princess Luna", "_Pinkie Pie", "Basement Cat", "The Dark Id", "Id", "Amos Bronson Alcott", "Puma", "Mike Tyson", "Kerio", "Game Freeze", "Captain Future", "water puddle", "SLASH'EM Extended", "Al-Mutasim", "Fahrenheit", "Atue", "Geglash", "Farnham the Drunk", "Pyrrhus", "Ashenzari", "Dithmenos", "Jiyva", "Makhleb", "Sif Muna", "Xom", "_the Sluts with Syphilis", "Malroth", "Viracocha", "Mbombo", "Unkulunkulu", "Apsu", "Coatlique", "Tepeu", "Sheltem", "Kamineko", "Courage", "Faster-Than-All-Others", "Anton", "General Tullius", "XBox 360", "Antimony", "Abbathor", "Morgoth", "Eol", "Ghaunadaur", "Armok", "Gruumsh", "_Sehanine", "_Mask", "Sexy Butt", "_Marionette", "Ymir", "Dantalion", "_Iris", "Acererak", "Ose", "Ahazu", "_Echidna", "Miska", "Malphas", "Otias", "_Simurgh", "wand of summon sexy girl", "B-a-a-l", "Global Liberation Army", "Rodall 'Demo' Juhziz", "Protoss", "Gabnid", "_Adephagia", "Hydrocloria", "Linus", "Lightning", "Orochimaru", "Proteus", "_Disgustingness", "_Loudness", "Kick in the Nuts", "_Mother Teresa", "George W. Bush", "Super Mario", "the blue Power Ranger", "the universe", "the Invisible Pink Unicorn", "the DevTeam", "_Bluescreenofdeath", "marvin", "Tariru", "mrivan", "stenno", "DeathOnAStick", "The IS", "_Miley Cyrus", "Friday the 13th", "Fugu Globefish Sushi", "Ice Bear", "Cyberdemon MkIII Deluxe", "Blizzard", "_Luna", "_Eos", "Chaotic Evil", "Cars", "Mustard Gas", "Emoxivalirex", "Tleselagyila", "Two-Face", "Gihren Zabi", "Dark Force", "_the Profound Darkness", "Chara", "Deus", "_Miki Onimaru", "Mor Havoc", "Heaven's Feel", "_Jylla", "_Kendl", "Kaczynski", "_Ehekatl of Luck", "_Lulwy of Wind", "Eyth of Infidel", "Abbad-Undar", "Ni'Pregh", "_Rofl'th", "The One Who Rages", "Ssraxx", "Ussrachs", "Fnordjar", "Vagrak", "_Urglyn", "Chaos", "Fiit-Yaaar", "Mortifer", "Cruentus", "_Infuscor", "_Scabies", "_Nefas", "Self-Polymorph", "_Ms. Storm", "G-Man", "_Terpsichore", 
+
 
 };
 
@@ -7407,6 +7573,21 @@ u_init()
 		if (!rn2(10)) u.minimalism += rnd(5);
 		if (!rn2(100)) u.minimalism += rnz(5);
 	}
+
+	u.femauspices4 = rnd(6);
+	u.femauspices6 = rnd(7);
+	u.femauspices8 = rnd(6);
+	u.femauspices11 = rnd(9);
+	u.femauspices13 = rnd(5);
+	u.femauspices15 = rnd(6);
+	u.femauspices17 = rnd(6);
+	u.femauspices20 = rnd(7);
+	u.femauspices22 = rnd(6);
+	u.femauspices25 = rnd(5);
+	u.femauspices28 = rnd(8);
+	u.femauspices30 = rnd(8);
+
+	u.scholarturns = 0;
 
 	u.unobtainablegeno = -1;
 
@@ -9419,8 +9600,164 @@ u_init()
 		skill_init(Skill_Mah);
 		break;
 
+	case PM_FEMINIST:
+		ini_inv(Feminist);
+
+		skill_init(Skill_Fem);
+		break;
+
+	case PM_TRACER:
+		ini_inv(Tracer);
+
+		skill_init(Skill_Trc);
+		break;
+
+	case PM_NUCLEAR_PHYSICIST:
+		ini_inv(NuclearPhysicist);
+
+		skill_init(Skill_Nuc);
+		break;
+
+	case PM_FORM_CHANGER:
+		ini_inv(FormChanger);
+
+		skill_init(Skill_For);
+		break;
+
+	case PM_GANG_SCHOLAR:
+
+		switch (rnd(11)) {
+		    case 1: GangScholar[GSC_WEAPON].trotyp = DAGGER; break;
+		    case 2: GangScholar[GSC_WEAPON].trotyp = MACE; break;
+		    case 3: GangScholar[GSC_WEAPON].trotyp = MORNING_STAR; break;
+		    case 4: GangScholar[GSC_WEAPON].trotyp = SHORT_SWORD; break;
+		    case 5: GangScholar[GSC_WEAPON].trotyp = FLAIL; break;
+		    case 6: GangScholar[GSC_WEAPON].trotyp = TWO_HANDED_SWORD; break;
+		    case 7: GangScholar[GSC_WEAPON].trotyp = SPEAR; break;
+		    case 8: GangScholar[GSC_WEAPON].trotyp = QUARTERSTAFF; break;
+		    case 9: GangScholar[GSC_WEAPON].trotyp = LONG_SWORD; break;
+		    case 10: GangScholar[GSC_WEAPON].trotyp = BROADSWORD; break;
+		    case 11: GangScholar[GSC_WEAPON].trotyp = CLUB; break;
+		    default: break;
+		}
+
+		switch (rnd(9)) {
+		    case 1: GangScholar[GSC_ARMOR].trotyp = LEATHER_ARMOR; break;
+		    case 2: GangScholar[GSC_ARMOR].trotyp = YELLOW_DRAGON_SCALES; break;
+		    case 3: GangScholar[GSC_ARMOR].trotyp = RING_MAIL; break;
+		    case 4: GangScholar[GSC_ARMOR].trotyp = SCALE_MAIL; break;
+		    case 5: GangScholar[GSC_ARMOR].trotyp = CHAIN_MAIL; break;
+		    case 6: GangScholar[GSC_ARMOR].trotyp = SPLINT_MAIL; break;
+		    case 7: GangScholar[GSC_ARMOR].trotyp = PLATE_MAIL; break;
+		    case 8: GangScholar[GSC_ARMOR].trotyp = STUDDED_LEATHER_ARMOR; break;
+		    case 9: GangScholar[GSC_ARMOR].trotyp = ELVEN_MITHRIL_COAT; break;
+		}
+
+		switch (rnd(8)) {
+		    case 1: GangScholar[GSC_RING].trotyp = RIN_ADORNMENT; break;
+		    case 2: GangScholar[GSC_RING].trotyp = RIN_PROTECTION; break;
+		    case 3: GangScholar[GSC_RING].trotyp = RIN_GAIN_CONSTITUTION; break;
+		    case 4: GangScholar[GSC_RING].trotyp = RIN_GAIN_DEXTERITY; break;
+		    case 5: GangScholar[GSC_RING].trotyp = RIN_GAIN_INTELLIGENCE; break;
+		    case 6: GangScholar[GSC_RING].trotyp = RIN_GAIN_STRENGTH; break;
+		    case 7: GangScholar[GSC_RING].trotyp = RIN_INCREASE_ACCURACY; break;
+		    case 8: GangScholar[GSC_RING].trotyp = RIN_INCREASE_DAMAGE; break;
+		}
+
+		switch (rnd(11)) {
+		    case 1: GangScholar[GSC_POTION].trotyp = POT_HEALING; break;
+		    case 2: GangScholar[GSC_POTION].trotyp = POT_EXTRA_HEALING; break;
+		    case 3: GangScholar[GSC_POTION].trotyp = POT_GAIN_ENERGY; break;
+		    case 4: GangScholar[GSC_POTION].trotyp = POT_BANISHING_FEAR; break;
+		    case 5: GangScholar[GSC_POTION].trotyp = POT_MONSTER_DETECTION; break;
+		    case 6: GangScholar[GSC_POTION].trotyp = POT_OBJECT_DETECTION; break;
+		    case 7: GangScholar[GSC_POTION].trotyp = POT_LEVITATION; break;
+		    case 8: GangScholar[GSC_POTION].trotyp = POT_SPEED; break;
+		    case 9: GangScholar[GSC_POTION].trotyp = POT_GAIN_ABILITY; break;
+		    case 10: GangScholar[GSC_POTION].trotyp = POT_GAIN_LEVEL; break;
+		    case 11: GangScholar[GSC_POTION].trotyp = POT_WATER; break;
+		}
+
+		switch (rnd(13)) {
+		    case 1: GangScholar[GSC_SCROLL].trotyp = SCR_CREATE_MONSTER; break;
+		    case 2: GangScholar[GSC_SCROLL].trotyp = SCR_SUMMON_UNDEAD; break;
+		    case 3: GangScholar[GSC_SCROLL].trotyp = SCR_LIGHT; break;
+		    case 4: GangScholar[GSC_SCROLL].trotyp = SCR_IDENTIFY; break;
+		    case 5: GangScholar[GSC_SCROLL].trotyp = SCR_MAGIC_MAPPING; break;
+		    case 6: GangScholar[GSC_SCROLL].trotyp = SCR_REMOVE_CURSE; break;
+		    case 7: GangScholar[GSC_SCROLL].trotyp = SCR_TELEPORTATION; break;
+		    case 8: GangScholar[GSC_SCROLL].trotyp = SCR_HEALING; break;
+		    case 9: GangScholar[GSC_SCROLL].trotyp = SCR_PHASE_DOOR; break;
+		    case 10: GangScholar[GSC_SCROLL].trotyp = SCR_TRAP_DETECTION; break;
+		    case 11: GangScholar[GSC_SCROLL].trotyp = SCR_TRAP_CREATION; break;
+		    case 12: GangScholar[GSC_SCROLL].trotyp = SCR_SLEEP; break;
+		    case 13: GangScholar[GSC_SCROLL].trotyp = SCR_BLANK_PAPER; break;
+		}
+
+		switch (rnd(26)) {
+		    case 1: GangScholar[GSC_WAND].trotyp = WAN_LIGHT; break;
+		    case 2: GangScholar[GSC_WAND].trotyp = WAN_NOTHING; break;
+		    case 3: GangScholar[GSC_WAND].trotyp = WAN_HEALING; break;
+		    case 4: GangScholar[GSC_WAND].trotyp = WAN_IDENTIFY; break;
+		    case 5: GangScholar[GSC_WAND].trotyp = WAN_REMOVE_CURSE; break;
+		    case 6: GangScholar[GSC_WAND].trotyp = WAN_ENTRAPPING; break;
+		    case 7: GangScholar[GSC_WAND].trotyp = WAN_TRAP_CREATION; break;
+		    case 8: GangScholar[GSC_WAND].trotyp = WAN_MAGIC_MAPPING; break;
+		    case 9: GangScholar[GSC_WAND].trotyp = WAN_DETECT_MONSTERS; break;
+		    case 10: GangScholar[GSC_WAND].trotyp = WAN_OBJECTION; break;
+		    case 11: GangScholar[GSC_WAND].trotyp = WAN_SLOW_MONSTER; break;
+		    case 12: GangScholar[GSC_WAND].trotyp = WAN_SPEED_MONSTER; break;
+		    case 13: GangScholar[GSC_WAND].trotyp = WAN_HASTE_MONSTER; break;
+		    case 14: GangScholar[GSC_WAND].trotyp = WAN_CREATE_MONSTER; break;
+		    case 15: GangScholar[GSC_WAND].trotyp = WAN_SUMMON_UNDEAD; break;
+		    case 16: GangScholar[GSC_WAND].trotyp = WAN_POLYMORPH; break;
+		    case 17: GangScholar[GSC_WAND].trotyp = WAN_TELEPORTATION; break;
+		    case 18: GangScholar[GSC_WAND].trotyp = WAN_BANISHMENT; break;
+		    case 19: GangScholar[GSC_WAND].trotyp = WAN_EXTRA_HEALING; break;
+		    case 20: GangScholar[GSC_WAND].trotyp = WAN_FULL_HEALING; break;
+		    case 21: GangScholar[GSC_WAND].trotyp = WAN_MAGIC_MISSILE; break;
+		    case 22: GangScholar[GSC_WAND].trotyp = WAN_FIRE; break;
+		    case 23: GangScholar[GSC_WAND].trotyp = WAN_COLD; break;
+		    case 24: GangScholar[GSC_WAND].trotyp = WAN_SLEEP; break;
+		    case 25: GangScholar[GSC_WAND].trotyp = WAN_LIGHTNING; break;
+		    case 26: GangScholar[GSC_WAND].trotyp = WAN_FIREBALL; break;
+		}
+
+		switch (rnd(25)) {
+		    case 1: GangScholar[GSC_BOOK].trotyp = SPE_CREATE_MONSTER; break;
+		    case 2: GangScholar[GSC_BOOK].trotyp = SPE_HEALING; break;
+		    case 3: GangScholar[GSC_BOOK].trotyp = SPE_EXTRA_HEALING; break;
+		    case 4: GangScholar[GSC_BOOK].trotyp = SPE_LIGHT; break;
+		    case 5: GangScholar[GSC_BOOK].trotyp = SPE_CLAIRVOYANCE; break;
+		    case 6: GangScholar[GSC_BOOK].trotyp = SPE_DETECT_MONSTERS; break;
+		    case 7: GangScholar[GSC_BOOK].trotyp = SPE_DETECT_TREASURE; break;
+		    case 8: GangScholar[GSC_BOOK].trotyp = SPE_IDENTIFY; break;
+		    case 9: GangScholar[GSC_BOOK].trotyp = SPE_ENTRAPPING; break;
+		    case 10: GangScholar[GSC_BOOK].trotyp = SPE_SLOW_MONSTER; break;
+		    case 11: GangScholar[GSC_BOOK].trotyp = SPE_PROTECTION; break;
+		    case 12: GangScholar[GSC_BOOK].trotyp = SPE_ENDURE_COLD; break;
+		    case 13: GangScholar[GSC_BOOK].trotyp = SPE_ENDURE_HEAT; break;
+		    case 14: GangScholar[GSC_BOOK].trotyp = SPE_INSULATE; break;
+		    case 15: GangScholar[GSC_BOOK].trotyp = SPE_REMOVE_CURSE; break;
+		    case 16: GangScholar[GSC_BOOK].trotyp = SPE_LEVITATION; break;
+		    case 17: GangScholar[GSC_BOOK].trotyp = SPE_TELEPORT_AWAY; break;
+		    case 18: GangScholar[GSC_BOOK].trotyp = SPE_POLYMORPH; break;
+		    case 19: GangScholar[GSC_BOOK].trotyp = SPE_FIRE_BOLT; break;
+		    case 20: GangScholar[GSC_BOOK].trotyp = SPE_PHASE_DOOR; break;
+		    case 21: GangScholar[GSC_BOOK].trotyp = SPE_MAGIC_MISSILE; break;
+		    case 22: GangScholar[GSC_BOOK].trotyp = SPE_FIREBALL; break;
+		    case 23: GangScholar[GSC_BOOK].trotyp = SPE_CONE_OF_COLD; break;
+		    case 24: GangScholar[GSC_BOOK].trotyp = SPE_SLEEP; break;
+		    case 25: GangScholar[GSC_BOOK].trotyp = SPE_LIGHTNING; break;
+		}
+
+		ini_inv(GangScholar);
+
+		skill_init(Skill_Sco);
+		break;
+
 	case PM_PRIEST:
-		switch (rnd(9)) {   
+		switch (rnd(9)) {
 		    case 1: Priest[P_BOOK].trotyp = SPE_FORCE_BOLT; break;
 		    case 2: Priest[P_BOOK].trotyp = SPE_SLEEP; break;
 		    case 3: Priest[P_BOOK].trotyp = SPE_RESIST_POISON; break;
@@ -10061,6 +10398,26 @@ u_init()
 	      skill_init(Skill_Cam);
 		break;
 
+	case PM_GANG_SCHOLAR:
+	      skill_init(Skill_Sco);
+		break;
+
+	case PM_FORM_CHANGER:
+	      skill_init(Skill_For);
+		break;
+
+	case PM_NUCLEAR_PHYSICIST:
+	      skill_init(Skill_Nuc);
+		break;
+
+	case PM_FEMINIST:
+	      skill_init(Skill_Fem);
+		break;
+
+	case PM_TRACER:
+	      skill_init(Skill_Trc);
+		break;
+
 	case PM_ROCKER:
             skill_init(Skill_Roc);
 		break;
@@ -10445,7 +10802,7 @@ u_init()
 
 	if (!isnullrace) { /* randomizer only */
 
-	switch (rnd(118)) {
+	switch (rnd(123)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -11574,6 +11931,157 @@ u_init()
 	case 118:
 
 		ini_inv(Kurwa);
+		break;
+
+	case 119:
+		ini_inv(Feminist);
+
+		break;
+
+	case 120:
+		ini_inv(Tracer);
+
+		break;
+
+	case 121:
+		ini_inv(NuclearPhysicist);
+
+		break;
+
+	case 122:
+		ini_inv(FormChanger);
+
+		break;
+
+	case 123:
+
+		switch (rnd(11)) {
+		    case 1: GangScholar[GSC_WEAPON].trotyp = DAGGER; break;
+		    case 2: GangScholar[GSC_WEAPON].trotyp = MACE; break;
+		    case 3: GangScholar[GSC_WEAPON].trotyp = MORNING_STAR; break;
+		    case 4: GangScholar[GSC_WEAPON].trotyp = SHORT_SWORD; break;
+		    case 5: GangScholar[GSC_WEAPON].trotyp = FLAIL; break;
+		    case 6: GangScholar[GSC_WEAPON].trotyp = TWO_HANDED_SWORD; break;
+		    case 7: GangScholar[GSC_WEAPON].trotyp = SPEAR; break;
+		    case 8: GangScholar[GSC_WEAPON].trotyp = QUARTERSTAFF; break;
+		    case 9: GangScholar[GSC_WEAPON].trotyp = LONG_SWORD; break;
+		    case 10: GangScholar[GSC_WEAPON].trotyp = BROADSWORD; break;
+		    case 11: GangScholar[GSC_WEAPON].trotyp = CLUB; break;
+		    default: break;
+		}
+
+		switch (rnd(9)) {
+		    case 1: GangScholar[GSC_ARMOR].trotyp = LEATHER_ARMOR; break;
+		    case 2: GangScholar[GSC_ARMOR].trotyp = YELLOW_DRAGON_SCALES; break;
+		    case 3: GangScholar[GSC_ARMOR].trotyp = RING_MAIL; break;
+		    case 4: GangScholar[GSC_ARMOR].trotyp = SCALE_MAIL; break;
+		    case 5: GangScholar[GSC_ARMOR].trotyp = CHAIN_MAIL; break;
+		    case 6: GangScholar[GSC_ARMOR].trotyp = SPLINT_MAIL; break;
+		    case 7: GangScholar[GSC_ARMOR].trotyp = PLATE_MAIL; break;
+		    case 8: GangScholar[GSC_ARMOR].trotyp = STUDDED_LEATHER_ARMOR; break;
+		    case 9: GangScholar[GSC_ARMOR].trotyp = ELVEN_MITHRIL_COAT; break;
+		}
+
+		switch (rnd(8)) {
+		    case 1: GangScholar[GSC_RING].trotyp = RIN_ADORNMENT; break;
+		    case 2: GangScholar[GSC_RING].trotyp = RIN_PROTECTION; break;
+		    case 3: GangScholar[GSC_RING].trotyp = RIN_GAIN_CONSTITUTION; break;
+		    case 4: GangScholar[GSC_RING].trotyp = RIN_GAIN_DEXTERITY; break;
+		    case 5: GangScholar[GSC_RING].trotyp = RIN_GAIN_INTELLIGENCE; break;
+		    case 6: GangScholar[GSC_RING].trotyp = RIN_GAIN_STRENGTH; break;
+		    case 7: GangScholar[GSC_RING].trotyp = RIN_INCREASE_ACCURACY; break;
+		    case 8: GangScholar[GSC_RING].trotyp = RIN_INCREASE_DAMAGE; break;
+		}
+
+		switch (rnd(11)) {
+		    case 1: GangScholar[GSC_POTION].trotyp = POT_HEALING; break;
+		    case 2: GangScholar[GSC_POTION].trotyp = POT_EXTRA_HEALING; break;
+		    case 3: GangScholar[GSC_POTION].trotyp = POT_GAIN_ENERGY; break;
+		    case 4: GangScholar[GSC_POTION].trotyp = POT_BANISHING_FEAR; break;
+		    case 5: GangScholar[GSC_POTION].trotyp = POT_MONSTER_DETECTION; break;
+		    case 6: GangScholar[GSC_POTION].trotyp = POT_OBJECT_DETECTION; break;
+		    case 7: GangScholar[GSC_POTION].trotyp = POT_LEVITATION; break;
+		    case 8: GangScholar[GSC_POTION].trotyp = POT_SPEED; break;
+		    case 9: GangScholar[GSC_POTION].trotyp = POT_GAIN_ABILITY; break;
+		    case 10: GangScholar[GSC_POTION].trotyp = POT_GAIN_LEVEL; break;
+		    case 11: GangScholar[GSC_POTION].trotyp = POT_WATER; break;
+		}
+
+		switch (rnd(13)) {
+		    case 1: GangScholar[GSC_SCROLL].trotyp = SCR_CREATE_MONSTER; break;
+		    case 2: GangScholar[GSC_SCROLL].trotyp = SCR_SUMMON_UNDEAD; break;
+		    case 3: GangScholar[GSC_SCROLL].trotyp = SCR_LIGHT; break;
+		    case 4: GangScholar[GSC_SCROLL].trotyp = SCR_IDENTIFY; break;
+		    case 5: GangScholar[GSC_SCROLL].trotyp = SCR_MAGIC_MAPPING; break;
+		    case 6: GangScholar[GSC_SCROLL].trotyp = SCR_REMOVE_CURSE; break;
+		    case 7: GangScholar[GSC_SCROLL].trotyp = SCR_TELEPORTATION; break;
+		    case 8: GangScholar[GSC_SCROLL].trotyp = SCR_HEALING; break;
+		    case 9: GangScholar[GSC_SCROLL].trotyp = SCR_PHASE_DOOR; break;
+		    case 10: GangScholar[GSC_SCROLL].trotyp = SCR_TRAP_DETECTION; break;
+		    case 11: GangScholar[GSC_SCROLL].trotyp = SCR_TRAP_CREATION; break;
+		    case 12: GangScholar[GSC_SCROLL].trotyp = SCR_SLEEP; break;
+		    case 13: GangScholar[GSC_SCROLL].trotyp = SCR_BLANK_PAPER; break;
+		}
+
+		switch (rnd(26)) {
+		    case 1: GangScholar[GSC_WAND].trotyp = WAN_LIGHT; break;
+		    case 2: GangScholar[GSC_WAND].trotyp = WAN_NOTHING; break;
+		    case 3: GangScholar[GSC_WAND].trotyp = WAN_HEALING; break;
+		    case 4: GangScholar[GSC_WAND].trotyp = WAN_IDENTIFY; break;
+		    case 5: GangScholar[GSC_WAND].trotyp = WAN_REMOVE_CURSE; break;
+		    case 6: GangScholar[GSC_WAND].trotyp = WAN_ENTRAPPING; break;
+		    case 7: GangScholar[GSC_WAND].trotyp = WAN_TRAP_CREATION; break;
+		    case 8: GangScholar[GSC_WAND].trotyp = WAN_MAGIC_MAPPING; break;
+		    case 9: GangScholar[GSC_WAND].trotyp = WAN_DETECT_MONSTERS; break;
+		    case 10: GangScholar[GSC_WAND].trotyp = WAN_OBJECTION; break;
+		    case 11: GangScholar[GSC_WAND].trotyp = WAN_SLOW_MONSTER; break;
+		    case 12: GangScholar[GSC_WAND].trotyp = WAN_SPEED_MONSTER; break;
+		    case 13: GangScholar[GSC_WAND].trotyp = WAN_HASTE_MONSTER; break;
+		    case 14: GangScholar[GSC_WAND].trotyp = WAN_CREATE_MONSTER; break;
+		    case 15: GangScholar[GSC_WAND].trotyp = WAN_SUMMON_UNDEAD; break;
+		    case 16: GangScholar[GSC_WAND].trotyp = WAN_POLYMORPH; break;
+		    case 17: GangScholar[GSC_WAND].trotyp = WAN_TELEPORTATION; break;
+		    case 18: GangScholar[GSC_WAND].trotyp = WAN_BANISHMENT; break;
+		    case 19: GangScholar[GSC_WAND].trotyp = WAN_EXTRA_HEALING; break;
+		    case 20: GangScholar[GSC_WAND].trotyp = WAN_FULL_HEALING; break;
+		    case 21: GangScholar[GSC_WAND].trotyp = WAN_MAGIC_MISSILE; break;
+		    case 22: GangScholar[GSC_WAND].trotyp = WAN_FIRE; break;
+		    case 23: GangScholar[GSC_WAND].trotyp = WAN_COLD; break;
+		    case 24: GangScholar[GSC_WAND].trotyp = WAN_SLEEP; break;
+		    case 25: GangScholar[GSC_WAND].trotyp = WAN_LIGHTNING; break;
+		    case 26: GangScholar[GSC_WAND].trotyp = WAN_FIREBALL; break;
+		}
+
+		switch (rnd(25)) {
+		    case 1: GangScholar[GSC_BOOK].trotyp = SPE_CREATE_MONSTER; break;
+		    case 2: GangScholar[GSC_BOOK].trotyp = SPE_HEALING; break;
+		    case 3: GangScholar[GSC_BOOK].trotyp = SPE_EXTRA_HEALING; break;
+		    case 4: GangScholar[GSC_BOOK].trotyp = SPE_LIGHT; break;
+		    case 5: GangScholar[GSC_BOOK].trotyp = SPE_CLAIRVOYANCE; break;
+		    case 6: GangScholar[GSC_BOOK].trotyp = SPE_DETECT_MONSTERS; break;
+		    case 7: GangScholar[GSC_BOOK].trotyp = SPE_DETECT_TREASURE; break;
+		    case 8: GangScholar[GSC_BOOK].trotyp = SPE_IDENTIFY; break;
+		    case 9: GangScholar[GSC_BOOK].trotyp = SPE_ENTRAPPING; break;
+		    case 10: GangScholar[GSC_BOOK].trotyp = SPE_SLOW_MONSTER; break;
+		    case 11: GangScholar[GSC_BOOK].trotyp = SPE_PROTECTION; break;
+		    case 12: GangScholar[GSC_BOOK].trotyp = SPE_ENDURE_COLD; break;
+		    case 13: GangScholar[GSC_BOOK].trotyp = SPE_ENDURE_HEAT; break;
+		    case 14: GangScholar[GSC_BOOK].trotyp = SPE_INSULATE; break;
+		    case 15: GangScholar[GSC_BOOK].trotyp = SPE_REMOVE_CURSE; break;
+		    case 16: GangScholar[GSC_BOOK].trotyp = SPE_LEVITATION; break;
+		    case 17: GangScholar[GSC_BOOK].trotyp = SPE_TELEPORT_AWAY; break;
+		    case 18: GangScholar[GSC_BOOK].trotyp = SPE_POLYMORPH; break;
+		    case 19: GangScholar[GSC_BOOK].trotyp = SPE_FIRE_BOLT; break;
+		    case 20: GangScholar[GSC_BOOK].trotyp = SPE_PHASE_DOOR; break;
+		    case 21: GangScholar[GSC_BOOK].trotyp = SPE_MAGIC_MISSILE; break;
+		    case 22: GangScholar[GSC_BOOK].trotyp = SPE_FIREBALL; break;
+		    case 23: GangScholar[GSC_BOOK].trotyp = SPE_CONE_OF_COLD; break;
+		    case 24: GangScholar[GSC_BOOK].trotyp = SPE_SLEEP; break;
+		    case 25: GangScholar[GSC_BOOK].trotyp = SPE_LIGHTNING; break;
+		}
+
+		ini_inv(GangScholar);
+
 		break;
 
 	default:	/* impossible */
@@ -11732,7 +12240,7 @@ u_init()
 
 	if (Race_if(PM_BASTARD)) {
 
-	switch (rnd(118)) {
+	switch (rnd(123)) {
 	case 1:
 		switch (rnd(5)) {   
 		    case 1: Archeologist[A_BOOK].trotyp = SPE_DETECT_FOOD; break;
@@ -12861,6 +13369,157 @@ u_init()
 	case 118:
 
 		ini_inv(Kurwa);
+		break;
+
+	case 119:
+		ini_inv(Feminist);
+
+		break;
+
+	case 120:
+		ini_inv(Tracer);
+
+		break;
+
+	case 121:
+		ini_inv(NuclearPhysicist);
+
+		break;
+
+	case 122:
+		ini_inv(FormChanger);
+
+		break;
+
+	case 123:
+
+		switch (rnd(11)) {
+		    case 1: GangScholar[GSC_WEAPON].trotyp = DAGGER; break;
+		    case 2: GangScholar[GSC_WEAPON].trotyp = MACE; break;
+		    case 3: GangScholar[GSC_WEAPON].trotyp = MORNING_STAR; break;
+		    case 4: GangScholar[GSC_WEAPON].trotyp = SHORT_SWORD; break;
+		    case 5: GangScholar[GSC_WEAPON].trotyp = FLAIL; break;
+		    case 6: GangScholar[GSC_WEAPON].trotyp = TWO_HANDED_SWORD; break;
+		    case 7: GangScholar[GSC_WEAPON].trotyp = SPEAR; break;
+		    case 8: GangScholar[GSC_WEAPON].trotyp = QUARTERSTAFF; break;
+		    case 9: GangScholar[GSC_WEAPON].trotyp = LONG_SWORD; break;
+		    case 10: GangScholar[GSC_WEAPON].trotyp = BROADSWORD; break;
+		    case 11: GangScholar[GSC_WEAPON].trotyp = CLUB; break;
+		    default: break;
+		}
+
+		switch (rnd(9)) {
+		    case 1: GangScholar[GSC_ARMOR].trotyp = LEATHER_ARMOR; break;
+		    case 2: GangScholar[GSC_ARMOR].trotyp = YELLOW_DRAGON_SCALES; break;
+		    case 3: GangScholar[GSC_ARMOR].trotyp = RING_MAIL; break;
+		    case 4: GangScholar[GSC_ARMOR].trotyp = SCALE_MAIL; break;
+		    case 5: GangScholar[GSC_ARMOR].trotyp = CHAIN_MAIL; break;
+		    case 6: GangScholar[GSC_ARMOR].trotyp = SPLINT_MAIL; break;
+		    case 7: GangScholar[GSC_ARMOR].trotyp = PLATE_MAIL; break;
+		    case 8: GangScholar[GSC_ARMOR].trotyp = STUDDED_LEATHER_ARMOR; break;
+		    case 9: GangScholar[GSC_ARMOR].trotyp = ELVEN_MITHRIL_COAT; break;
+		}
+
+		switch (rnd(8)) {
+		    case 1: GangScholar[GSC_RING].trotyp = RIN_ADORNMENT; break;
+		    case 2: GangScholar[GSC_RING].trotyp = RIN_PROTECTION; break;
+		    case 3: GangScholar[GSC_RING].trotyp = RIN_GAIN_CONSTITUTION; break;
+		    case 4: GangScholar[GSC_RING].trotyp = RIN_GAIN_DEXTERITY; break;
+		    case 5: GangScholar[GSC_RING].trotyp = RIN_GAIN_INTELLIGENCE; break;
+		    case 6: GangScholar[GSC_RING].trotyp = RIN_GAIN_STRENGTH; break;
+		    case 7: GangScholar[GSC_RING].trotyp = RIN_INCREASE_ACCURACY; break;
+		    case 8: GangScholar[GSC_RING].trotyp = RIN_INCREASE_DAMAGE; break;
+		}
+
+		switch (rnd(11)) {
+		    case 1: GangScholar[GSC_POTION].trotyp = POT_HEALING; break;
+		    case 2: GangScholar[GSC_POTION].trotyp = POT_EXTRA_HEALING; break;
+		    case 3: GangScholar[GSC_POTION].trotyp = POT_GAIN_ENERGY; break;
+		    case 4: GangScholar[GSC_POTION].trotyp = POT_BANISHING_FEAR; break;
+		    case 5: GangScholar[GSC_POTION].trotyp = POT_MONSTER_DETECTION; break;
+		    case 6: GangScholar[GSC_POTION].trotyp = POT_OBJECT_DETECTION; break;
+		    case 7: GangScholar[GSC_POTION].trotyp = POT_LEVITATION; break;
+		    case 8: GangScholar[GSC_POTION].trotyp = POT_SPEED; break;
+		    case 9: GangScholar[GSC_POTION].trotyp = POT_GAIN_ABILITY; break;
+		    case 10: GangScholar[GSC_POTION].trotyp = POT_GAIN_LEVEL; break;
+		    case 11: GangScholar[GSC_POTION].trotyp = POT_WATER; break;
+		}
+
+		switch (rnd(13)) {
+		    case 1: GangScholar[GSC_SCROLL].trotyp = SCR_CREATE_MONSTER; break;
+		    case 2: GangScholar[GSC_SCROLL].trotyp = SCR_SUMMON_UNDEAD; break;
+		    case 3: GangScholar[GSC_SCROLL].trotyp = SCR_LIGHT; break;
+		    case 4: GangScholar[GSC_SCROLL].trotyp = SCR_IDENTIFY; break;
+		    case 5: GangScholar[GSC_SCROLL].trotyp = SCR_MAGIC_MAPPING; break;
+		    case 6: GangScholar[GSC_SCROLL].trotyp = SCR_REMOVE_CURSE; break;
+		    case 7: GangScholar[GSC_SCROLL].trotyp = SCR_TELEPORTATION; break;
+		    case 8: GangScholar[GSC_SCROLL].trotyp = SCR_HEALING; break;
+		    case 9: GangScholar[GSC_SCROLL].trotyp = SCR_PHASE_DOOR; break;
+		    case 10: GangScholar[GSC_SCROLL].trotyp = SCR_TRAP_DETECTION; break;
+		    case 11: GangScholar[GSC_SCROLL].trotyp = SCR_TRAP_CREATION; break;
+		    case 12: GangScholar[GSC_SCROLL].trotyp = SCR_SLEEP; break;
+		    case 13: GangScholar[GSC_SCROLL].trotyp = SCR_BLANK_PAPER; break;
+		}
+
+		switch (rnd(26)) {
+		    case 1: GangScholar[GSC_WAND].trotyp = WAN_LIGHT; break;
+		    case 2: GangScholar[GSC_WAND].trotyp = WAN_NOTHING; break;
+		    case 3: GangScholar[GSC_WAND].trotyp = WAN_HEALING; break;
+		    case 4: GangScholar[GSC_WAND].trotyp = WAN_IDENTIFY; break;
+		    case 5: GangScholar[GSC_WAND].trotyp = WAN_REMOVE_CURSE; break;
+		    case 6: GangScholar[GSC_WAND].trotyp = WAN_ENTRAPPING; break;
+		    case 7: GangScholar[GSC_WAND].trotyp = WAN_TRAP_CREATION; break;
+		    case 8: GangScholar[GSC_WAND].trotyp = WAN_MAGIC_MAPPING; break;
+		    case 9: GangScholar[GSC_WAND].trotyp = WAN_DETECT_MONSTERS; break;
+		    case 10: GangScholar[GSC_WAND].trotyp = WAN_OBJECTION; break;
+		    case 11: GangScholar[GSC_WAND].trotyp = WAN_SLOW_MONSTER; break;
+		    case 12: GangScholar[GSC_WAND].trotyp = WAN_SPEED_MONSTER; break;
+		    case 13: GangScholar[GSC_WAND].trotyp = WAN_HASTE_MONSTER; break;
+		    case 14: GangScholar[GSC_WAND].trotyp = WAN_CREATE_MONSTER; break;
+		    case 15: GangScholar[GSC_WAND].trotyp = WAN_SUMMON_UNDEAD; break;
+		    case 16: GangScholar[GSC_WAND].trotyp = WAN_POLYMORPH; break;
+		    case 17: GangScholar[GSC_WAND].trotyp = WAN_TELEPORTATION; break;
+		    case 18: GangScholar[GSC_WAND].trotyp = WAN_BANISHMENT; break;
+		    case 19: GangScholar[GSC_WAND].trotyp = WAN_EXTRA_HEALING; break;
+		    case 20: GangScholar[GSC_WAND].trotyp = WAN_FULL_HEALING; break;
+		    case 21: GangScholar[GSC_WAND].trotyp = WAN_MAGIC_MISSILE; break;
+		    case 22: GangScholar[GSC_WAND].trotyp = WAN_FIRE; break;
+		    case 23: GangScholar[GSC_WAND].trotyp = WAN_COLD; break;
+		    case 24: GangScholar[GSC_WAND].trotyp = WAN_SLEEP; break;
+		    case 25: GangScholar[GSC_WAND].trotyp = WAN_LIGHTNING; break;
+		    case 26: GangScholar[GSC_WAND].trotyp = WAN_FIREBALL; break;
+		}
+
+		switch (rnd(25)) {
+		    case 1: GangScholar[GSC_BOOK].trotyp = SPE_CREATE_MONSTER; break;
+		    case 2: GangScholar[GSC_BOOK].trotyp = SPE_HEALING; break;
+		    case 3: GangScholar[GSC_BOOK].trotyp = SPE_EXTRA_HEALING; break;
+		    case 4: GangScholar[GSC_BOOK].trotyp = SPE_LIGHT; break;
+		    case 5: GangScholar[GSC_BOOK].trotyp = SPE_CLAIRVOYANCE; break;
+		    case 6: GangScholar[GSC_BOOK].trotyp = SPE_DETECT_MONSTERS; break;
+		    case 7: GangScholar[GSC_BOOK].trotyp = SPE_DETECT_TREASURE; break;
+		    case 8: GangScholar[GSC_BOOK].trotyp = SPE_IDENTIFY; break;
+		    case 9: GangScholar[GSC_BOOK].trotyp = SPE_ENTRAPPING; break;
+		    case 10: GangScholar[GSC_BOOK].trotyp = SPE_SLOW_MONSTER; break;
+		    case 11: GangScholar[GSC_BOOK].trotyp = SPE_PROTECTION; break;
+		    case 12: GangScholar[GSC_BOOK].trotyp = SPE_ENDURE_COLD; break;
+		    case 13: GangScholar[GSC_BOOK].trotyp = SPE_ENDURE_HEAT; break;
+		    case 14: GangScholar[GSC_BOOK].trotyp = SPE_INSULATE; break;
+		    case 15: GangScholar[GSC_BOOK].trotyp = SPE_REMOVE_CURSE; break;
+		    case 16: GangScholar[GSC_BOOK].trotyp = SPE_LEVITATION; break;
+		    case 17: GangScholar[GSC_BOOK].trotyp = SPE_TELEPORT_AWAY; break;
+		    case 18: GangScholar[GSC_BOOK].trotyp = SPE_POLYMORPH; break;
+		    case 19: GangScholar[GSC_BOOK].trotyp = SPE_FIRE_BOLT; break;
+		    case 20: GangScholar[GSC_BOOK].trotyp = SPE_PHASE_DOOR; break;
+		    case 21: GangScholar[GSC_BOOK].trotyp = SPE_MAGIC_MISSILE; break;
+		    case 22: GangScholar[GSC_BOOK].trotyp = SPE_FIREBALL; break;
+		    case 23: GangScholar[GSC_BOOK].trotyp = SPE_CONE_OF_COLD; break;
+		    case 24: GangScholar[GSC_BOOK].trotyp = SPE_SLEEP; break;
+		    case 25: GangScholar[GSC_BOOK].trotyp = SPE_LIGHTNING; break;
+		}
+
+		ini_inv(GangScholar);
+
 		break;
 
 	default:	/* impossible */
@@ -24339,6 +24998,11 @@ int otyp;
      case PM_COURIER:		skills = Skill_Cou; break;
      case PM_SPACEWARS_FIGHTER:		skills = Skill_Spa; break;
      case PM_CAMPERSTRIKER:		skills = Skill_Cam; break;
+     case PM_NUCLEAR_PHYSICIST:		skills = Skill_Nuc; break;
+     case PM_FORM_CHANGER:		skills = Skill_For; break;
+     case PM_TRACER:		skills = Skill_Trc; break;
+     case PM_FEMINIST:		skills = Skill_Fem; break;
+     case PM_GANG_SCHOLAR:		skills = Skill_Sco; break;
      case PM_ROCKER:		skills = Skill_Roc; break;
      case PM_ZYBORG:		skills = Skill_Zyb; break;
      case PM_LUNATIC:		skills = Skill_Lun; break;
@@ -26191,6 +26855,19 @@ alter_reality()
 		if (!rn2(10)) u.minimalism += rnd(5);
 		if (!rn2(100)) u.minimalism += rnz(5);
 	}
+
+	u.femauspices4 = rnd(6);
+	u.femauspices6 = rnd(7);
+	u.femauspices8 = rnd(6);
+	u.femauspices11 = rnd(9);
+	u.femauspices13 = rnd(5);
+	u.femauspices15 = rnd(6);
+	u.femauspices17 = rnd(6);
+	u.femauspices20 = rnd(7);
+	u.femauspices22 = rnd(6);
+	u.femauspices25 = rnd(5);
+	u.femauspices28 = rnd(8);
+	u.femauspices30 = rnd(8);
 
 	u.unobtainable = -1;
 	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == STRANGE_OBJECT) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable].oc_prob < 1) ) u.unobtainable = rn2(NUM_OBJECTS);

@@ -501,6 +501,7 @@ boolean incr;	/* true iff via incremental experience growth */
 {		/*	(false for potion of gain level)      */
 	register int num;
 	struct obj *ubookz;
+	register struct obj *acqo;
 
 	if (!incr) You_feel("more experienced.");
 
@@ -629,7 +630,414 @@ boolean incr;	/* true iff via incremental experience growth */
 	} /* u.ulevel > or < MAXULEV */
 
 
-	if (u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) u.urmaxlvlUP = (u.ulevel + 1);
+	if (u.ulevel >= u.urmaxlvlUP && u.ulevel < 30) {
+		u.urmaxlvlUP = (u.ulevel + 1);
+
+		if (Role_if(PM_FEMINIST) && !rn2(5)) {
+
+			acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+			if (acqo) {
+			    dropy(acqo);
+				if (P_MAX_SKILL(get_obj_skill(acqo)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(acqo));
+				} else if (P_MAX_SKILL(get_obj_skill(acqo)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(acqo));
+					P_MAX_SKILL(get_obj_skill(acqo)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(acqo)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(acqo)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(acqo)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(acqo)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(acqo)) = P_SUPREME_MASTER;
+				}
+
+			    discover_artifact(acqo->oartifact);
+
+				if (!u.ugifts) u.ugifts = 1;
+				pline("An artifact appeared beneath you!");
+
+			}
+
+		}
+
+		if (Role_if(PM_FEMINIST) && !rn2(3)) {
+
+			boolean femintcheck = 0;
+			if (rnd(70) < ACURR(A_INT)) femintcheck = 1;
+
+			if (u.urmaxlvlUP == 3) {
+				switch (u.femauspices4) {
+					case 1:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, your potions will have a chance of not working when quaffed.");
+						else pline("Your auspices say: 4 1");
+						break;
+					case 2:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, your techniques will stop working.");
+						else pline("Your auspices say: 4 2");
+						break;
+					case 3:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, Elbereth engravings will no longer work.");
+						else pline("Your auspices say: 4 3");
+						break;
+					case 4:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, zapping a wand will have a chance to make it explode.");
+						else pline("Your auspices say: 4 4");
+						break;
+					case 5:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, reading a spellbook is no longer safe.");
+						else pline("Your auspices say: 4 5");
+						break;
+					case 6:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, your magical effects will always be very low-level.");
+						else pline("Your auspices say: 4 6");
+						break;
+				}
+
+			} else if (u.urmaxlvlUP == 5) {
+				switch (u.femauspices6) {
+					case 1:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, your right mouse button will fail.");
+						else pline("Your auspices say: 6 1");
+						break;
+					case 2:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, your display will fail.");
+						else pline("Your auspices say: 6 2");
+						break;
+					case 3:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, there will be low local memory.");
+						else pline("Your auspices say: 6 3");
+						break;
+					case 4:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, you will get BIGscript.");
+						else pline("Your auspices say: 6 4");
+						break;
+					case 5:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, you will be afflicted with weak sight.");
+						else pline("Your auspices say: 6 5");
+						break;
+					case 6:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, you will see flicker strips.");
+						else pline("Your auspices say: 6 6");
+						break;
+					case 7:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, menus will be fleecy-colored.");
+						else pline("Your auspices say: 6 7");
+						break;
+				}
+
+			} else if (u.urmaxlvlUP == 7) {
+				switch (u.femauspices8) {
+					case 1:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, the entire game will display in shades of grey.");
+						else pline("Your auspices say: 8 1");
+						break;
+					case 2:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, a ROT13 cypher will be activated.");
+						else pline("Your auspices say: 8 2");
+						break;
+					case 3:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, you will have to solve captchas.");
+						else pline("Your auspices say: 8 3");
+						break;
+					case 4:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, you will have to take part in the Nethack Quiz.");
+						else pline("Your auspices say: 8 4");
+						break;
+					case 5:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, there will be sound effects.");
+						else pline("Your auspices say: 8 5");
+						break;
+					case 6:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, walls will become hyper blue.");
+						else pline("Your auspices say: 8 6");
+						break;
+				}
+
+			} else if (u.urmaxlvlUP == 10) {
+				switch (u.femauspices11) {
+					case 1:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become pink.");
+						else pline("Your auspices say: 11 1");
+						break;
+					case 2:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become cyan.");
+						else pline("Your auspices say: 11 2");
+						break;
+					case 3:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become black.");
+						else pline("Your auspices say: 11 3");
+						break;
+					case 4:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become red.");
+						else pline("Your auspices say: 11 4");
+						break;
+					case 5:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become green.");
+						else pline("Your auspices say: 11 5");
+						break;
+					case 6:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become blue.");
+						else pline("Your auspices say: 11 6");
+						break;
+					case 7:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become completely gray.");
+						else pline("Your auspices say: 11 7");
+						break;
+					case 8:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become white.");
+						else pline("Your auspices say: 11 8");
+						break;
+					case 9:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become yellow.");
+						else pline("Your auspices say: 11 9");
+						break;
+				}
+
+			} else if (u.urmaxlvlUP == 12) {
+				switch (u.femauspices13) {
+					case 1:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 13, you will be subjected to random intrinsic loss.");
+						else pline("Your auspices say: 13 1");
+						break;
+					case 2:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 13, you will start to temporarily lose intrinsics.");
+						else pline("Your auspices say: 13 2");
+						break;
+					case 3:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 13, you will start suffering from blood loss.");
+						else pline("Your auspices say: 13 3");
+						break;
+					case 4:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 13, all newly spawned monsters will be hostile.");
+						else pline("Your auspices say: 13 4");
+						break;
+					case 5:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 13, covetous monsters start using their AI in a smarter way.");
+						else pline("Your auspices say: 13 5");
+						break;
+				}
+
+			} else if (u.urmaxlvlUP == 14) {
+				switch (u.femauspices15) {
+					case 1:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, you will get the speed bug.");
+						else pline("Your auspices say: 15 1");
+						break;
+					case 2:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, your multi-turn actions will be interrupted every turn.");
+						else pline("Your auspices say: 15 2");
+						break;
+					case 3:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, you can no longer teleport at all.");
+						else pline("Your auspices say: 15 3");
+						break;
+					case 4:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, all items that you drop will automatically curse themselves.");
+						else pline("Your auspices say: 15 4");
+						break;
+					case 5:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, monsters can randomly move faster than normal.");
+						else pline("Your auspices say: 15 5");
+						break;
+					case 6:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, blessed items that you pick up will instantly become cursed.");
+						else pline("Your auspices say: 15 6");
+						break;
+				}
+
+			} else if (u.urmaxlvlUP == 16) {
+				switch (u.femauspices17) {
+					case 1:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, the monster difficulty will be increased.");
+						else pline("Your auspices say: 17 1");
+						break;
+					case 2:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, monsters start spawning much faster.");
+						else pline("Your auspices say: 17 2");
+						break;
+					case 3:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, boss monsters become more common.");
+						else pline("Your auspices say: 17 3");
+						break;
+					case 4:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, rare monsters become common.");
+						else pline("Your auspices say: 17 4");
+						break;
+					case 5:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, high-level monsters become more common.");
+						else pline("Your auspices say: 17 5");
+						break;
+					case 6:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, the minimum level for newly spawned monsters will start scaling with the actual level difficulty.");
+						else pline("Your auspices say: 17 6");
+						break;
+				}
+
+			} else if (u.urmaxlvlUP == 19) {
+				switch (u.femauspices20) {
+					case 1:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, your possessions start randomly unidentifying themselves.");
+						else pline("Your auspices say: 20 1");
+						break;
+					case 2:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, you will get insufficient information about items.");
+						else pline("Your auspices say: 20 2");
+						break;
+					case 3:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, dungeon floors become invisible.");
+						else pline("Your auspices say: 20 3");
+						break;
+					case 4:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, monsters become stronger if many of their species have been generated already.");
+						else pline("Your auspices say: 20 4");
+						break;
+					case 5:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, walls become invisible.");
+						else pline("Your auspices say: 20 5");
+						break;
+					case 6:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, the map will fill up with fake I markers.");
+						else pline("Your auspices say: 20 6");
+						break;
+					case 7:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, I markers become invisible and will cost a turn if you bump into them.");
+						else pline("Your auspices say: 20 7");
+						break;
+				}
+
+			} else if (u.urmaxlvlUP == 21) {
+				switch (u.femauspices22) {
+					case 1:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, you can no longer cure status effects.");
+						else pline("Your auspices say: 22 1");
+						break;
+					case 2:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, the dungeon starts becoming ever more chaotic.");
+						else pline("Your auspices say: 22 2");
+						break;
+					case 3:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, altars and prayer become unsafe.");
+						else pline("Your auspices say: 22 3");
+						break;
+					case 4:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, all newly spawned monsters will be invisible, and see invisible won't help.");
+						else pline("Your auspices say: 22 4");
+						break;
+					case 5:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, all newly spawned traps will be invisible, and there is no way to make them visible again.");
+						else pline("Your auspices say: 22 5");
+						break;
+					case 6:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, empty dungeon floor tiles will quickly turn into walls.");
+						else pline("Your auspices say: 22 6");
+						break;
+				}
+
+			} else if (u.urmaxlvlUP == 24) {
+				switch (u.femauspices25) {
+					case 1:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, the display will intermittently become all gray.");
+						else pline("Your auspices say: 25 1");
+						break;
+					case 2:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, your position and the eight surrounding squares will be obscured.");
+						else pline("Your auspices say: 25 2");
+						break;
+					case 3:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, you will contract the checkerboard disease.");
+						else pline("Your auspices say: 25 3");
+						break;
+					case 4:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, you will no longer be able to identify the type of a trap.");
+						else pline("Your auspices say: 25 4");
+						break;
+					case 5:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, you will no longer be able to determine what monsters are.");
+						else pline("Your auspices say: 25 5");
+						break;
+				}
+
+			} else if (u.urmaxlvlUP == 27) {
+				switch (u.femauspices28) {
+					case 1:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, your maximum alignment record will decrease over time.");
+						else pline("Your auspices say: 28 1");
+						break;
+					case 2:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, you will start suffering from recurring amnesia.");
+						else pline("Your auspices say: 28 2");
+						break;
+					case 3:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, your items will start to disenchant themselves spontaneously.");
+						else pline("Your auspices say: 28 3");
+						break;
+					case 4:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, all equipment you put on will autocurse.");
+						else pline("Your auspices say: 28 4");
+						break;
+					case 5:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, monsters will be able to use their secret attack.");
+						else pline("Your auspices say: 28 5");
+						break;
+					case 6:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, you will suffer from random item destruction.");
+						else pline("Your auspices say: 28 6");
+						break;
+					case 7:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, monsters learn to use their ranged attacks from infinitely far away.");
+						else pline("Your auspices say: 28 7");
+						break;
+					case 8:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, monsters will be able to use unfair attacks.");
+						else pline("Your auspices say: 28 8");
+						break;
+				}
+
+			} else if (u.urmaxlvlUP == 29) {
+				switch (u.femauspices30) {
+					case 1:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 30, you can no longer open your inventory.");
+						else pline("Your auspices say: 30 1");
+						break;
+					case 2:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 30, killed monsters no longer drop corpses.");
+						else pline("Your auspices say: 30 2");
+						break;
+					case 3:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 30, your directional keys will be inverted.");
+						else pline("Your auspices say: 30 3");
+						break;
+					case 4:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 30, you always have to press Ctrl-R to see what happened.");
+						else pline("Your auspices say: 30 8");
+						break;
+					case 5:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 30, you will barely be able to see the quasars.");
+						else pline("Your auspices say: 30 4");
+						break;
+					case 6:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 30, your directional keys will be shifted 45 degrees clockwise.");
+						else pline("Your auspices say: 30 5");
+						break;
+					case 7:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 30, your directional keys will be shifted 90 degrees counterclockwise.");
+						else pline("Your auspices say: 30 6");
+						break;
+					case 8:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 30, bumping into monsters will cost a turn unless you use a certain prefix.");
+						else pline("Your auspices say: 30 7");
+						break;
+				}
+
+			}
+
+		}
+
+	}
 	
 	if(u.ulevel < MAXULEV) {
 	    if (incr) {

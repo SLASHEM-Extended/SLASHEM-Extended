@@ -194,6 +194,21 @@ register boolean special;
 		case PM_MURDERER:
 		    weapon = HEAVY_IRON_BALL;
 		    break;
+		case PM_TRACER:
+		    weapon = SHORT_SWORD;
+		    break;
+		case PM_FEMINIST:
+		    weapon = HIGH_HEELED_SANDAL;
+		    break;
+		case PM_FORM_CHANGER:
+		    weapon = CLUB;
+		    break;
+		case PM_NUCLEAR_PHYSICIST:
+		    weapon = INKA_SPEAR;
+		    break;
+		case PM_GANG_SCHOLAR:
+		    weapon = TWO_HANDED_SWORD;
+		    break;
 		case PM_GEEK:
 		    weapon = ELECTRIC_SWORD;
 		    break;

@@ -1126,6 +1126,34 @@ const struct Role roles[] = {
 	10, 8,-2, 0,  9, A_WIS, SPE_JUMPING,     -4
 },
 
+{	{"Feminist", 0}, {
+	{"Rebel Woman",    0},
+	{"Wannabe Maneater",    0},
+	{"Fingernail Scratcher",    0},
+	{"Purple Dress Wearer",    0},
+	{"Well-known SJW",    0},
+	{"Safe Zone Defender",    0},
+	{"Nutsmasher",    0},
+	{"Rolling Pin Swinger",    0},
+	{"Bane of Men Worldwide",      0} },
+	"_Tinanya", "_Helen", "_Rejda",
+	"Fem", "Designated Safe Zone", "Men-Infested Caverns",
+	PM_FEMINIST, NON_PM, PM_UNDEAD_FEMINIST, NON_PM, PM_BLOCK_HEELED_GIRL,
+	PM_FEMMY, PM_NYMPHET, PM_DR__FAUST__THE_PATRIARCH, PM_WIFEBEATER_ASSHOLE,
+	PM_POWERFUL_IDIOT, PM_PATRIARCH, S_CENTAUR, S_GIANT,
+	ART_GENDER_INSPECIFIC_WHIP,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  20,  5,  5, 20, 20, 30 },
+	/* Init   Lower  Higher */
+	{ 15, 0,  0, 4,  4, 0 },	/* Hit points */
+	{ 10, 0,  0, 7,  0, 0 }, 15,	/* Energy */
+	0, 6, -4, 2, 7, A_INT, SPE_HORRIFY,   -4
+},
+
 {	{"Fencer", 0}, {
 	{"Alcor",	0},
 	{"Dubhe",	0},
@@ -1244,6 +1272,34 @@ const struct Role roles[] = {
 	2, 10, A_INT, SPE_FIREBALL,        -4 /* From old role.c */
 },
 
+{	{"Form Changer", 0}, {
+	{"Balanced Doppelganger",    0},
+	{"Fluctuated Controller",    0},
+	{"Restricted Polymorpher",    0},
+	{"Armor Preserver",    0},
+	{"Shuddering Vibrator",    0},
+	{"Skillful Shifter",    0},
+	{"Master of Transmogrifying",    0},
+	{"Polyself Hero",    0},
+	{"Reality Creator",      0} },
+	"Polypiling", "Monster Polymorphing", "Self-Polymorph",
+	"For", "Everchanging Automata", "Unmappable Level",
+	PM_FORM_CHANGER, NON_PM, PM_UNDEAD_FORM_CHANGER, NON_PM, PM_CHAMELEON,
+	PM_JONADAB, PM_SHIFTER, PM_PINOBOT, PM_THERESA_FLAUSCHEBUESCHEL_MAY,
+	PM_GENETIC_ENGINEER, PM_NIGHTINGALE, S_QUANTMECH, S_LIZARD,
+	ART_EXTRA_CONTROL,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  16, 16, 17, 17, 16, 16 },
+	/* Init   Lower  Higher */
+	{ 10, 0,  0, 2,  2, 0 },	/* Hit points */
+	{ 30, 0,  0, 10,  0, 5 }, 16,	/* Energy */
+	10, 8, 0, 5, 13, A_INT, SPE_POLYMORPH,   -4
+},
+
 {	{"Foxhound Agent", 0}, {
 	{"Recruit",   0},
 	{"Octopus",   0},
@@ -1298,6 +1354,34 @@ const struct Role roles[] = {
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 20, 4,  0, 1,  0, 2 },20,	/* Energy */
 	10, 3,-3, 2, 10, A_WIS, SPE_GODMODE,   -4
+},
+
+{	{"Gang Scholar", 0}, {
+	{"Bullying Victim",    0},
+	{"Mobfer",    0}, /* german for "bullying victim" */
+	{"Pupil Without Pocket Money",    0},
+	{"Bang Gang's Punching Bag",    0},
+	{"Hussy Club Doormat",    0},
+	{"Teacher Friend",    0},
+	{"Victim Turned Executioner",    0},
+	{"Headhunter Spokesman",    "Headhunter Spokeswoman"},
+	{"One Who Will Defeat Anna",      0} },
+	"Mr. Maradonna", "_Ms. Unfortunate Forest", "_Ms. Storm",
+	"Sco", "Superschool HQ", "Hussy Club Branch Office",
+	PM_GANG_SCHOLAR, NON_PM, PM_UNDEAD_GANG_SCHOLAR, NON_PM, PM_SUPERSCHOOL_SPEAKER,
+	PM_HANS_WALT, PM_THUG, PM_HUSSY_JILL, PM_VELCRO_BITCH,
+	PM_POLINA, PM_JES_SIKA, S_JELLY, S_KOBOLD,
+	ART_METEORIC_AC,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  15, 15, 15, 15, 25, 15 },
+	/* Init   Lower  Higher */
+	{ 14, 0,  0, 5,  5, 0 },	/* Hit points */
+	{ 7, 0,  0, 3,  0, 3 }, 14,	/* Energy */
+	10, 6, -4, 4, 6, A_INT, SPE_MANA_BOLT,   -4
 },
 
 {	{"Gangster", 0}, {
@@ -2169,6 +2253,34 @@ const struct Role roles[] = {
 	10, 4,-4, 4, 8, A_INT, SPE_PROTECTION, -24
 },
 
+{	{"Nuclear Physicist", 0}, {
+	{"Safety Officer",    0},
+	{"Burning Stick Controller",    0},
+	{"Uranium Handler",    0},
+	{"Walking Geiger Counter",    0},
+	{"Atomic Counselor",    0},
+	{"Ordinance Observer",    0},
+	{"HEV Suit Wearer",    0},
+	{"Resonance Cascade Averter",    0},
+	{"Gordon Freeman Clone",      0} },
+	"_Gina", "Gordon Freeman", "G-Man", /* Half-Life */
+	"Nuc", "Anomalous Materials Laboratory", "Sector E Propulsion Chamber",
+	PM_NUCLEAR_PHYSICIST, NON_PM, PM_UNDEAD_NUCLEAR_PHYSICIST, NON_PM, PM_BRAIN_EATING_GHOUL,
+	PM_THESCI, PM_ATTENDANT, PM_INTERNATIONAL_ENERGY_COMMISSIONER, PM_ATOMIC_TESTER,
+	PM_SKELETON, PM_GREATER_UGOD, S_UMBER, S_GHOST,
+	ART_NUCLEAR_SPEAR,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  10, 35, 20, 15, 15,  5 },
+	/* Init   Lower  Higher */
+	{ 9,  0, 0, 4,  1, 0 },	/* Hit points */
+	{ 16, 0, 0, 5,  0, 3 }, 10,	/* Energy */
+	-10, 8, -1, 8, 20, A_INT, SPE_ACIDSHIELD,   -4
+},
+
 {	{"Occult Master", 0}, {
 	{"Risky Apprentice",         0},
 	{"Dark Magician",         0},
@@ -2179,7 +2291,7 @@ const struct Role roles[] = {
 	{"Controller of Dark Arts",         0},
 	{"Occult Library Owner",         0},
 	{"Backlash Master",  0} },
-	"Fate", "Unlimited Blade Works", "Heaven's Feel", /* suggestion on gamefaqs IIRC? */
+	"_Kumiromi of Harvest", "Opatos of Earth", "_Ehekatl of Luck",
 	"Occ", "Occultist Cave", "Spell Dungeons",
 	PM_OCCULT_MASTER, NON_PM, PM_UNDEAD_OCCULT_MASTER, NON_PM, PM_DARK_NIGHTMARE,
 	PM_NADJA_THE_OCCULTIST, PM_ATTENDANT, PM_VILJA_THE_BITCH, PM_IRON_GIRL,
@@ -2999,6 +3111,34 @@ const struct Role roles[] = {
 	{ 16, 0,  0, 8,  0, 0 },	/* Hit points */
 	{ 12, 0,  0, 1,  0, 1 },14,	/* Energy */
 	0, 5, 1, 2, 10, A_INT, SPE_CHARM_MONSTER,   -4
+},
+
+{	{"Tracer", 0}, {
+	{"Cursed Beginner",    0},
+	{"RNG Whim",    0},
+	{"Would-Be Creator",    0},
+	{"Fated Grumbler",    0},
+	{"Bad Wielder",    0},
+	{"Sent Manipulator",    0},
+	{"Evasive Switcher",    0},
+	{"Random Ascension Kit Wearer",    0},
+	{"Nastiness Survivor",      0} },
+	"Fate", "Unlimited Blade Works", "Heaven's Feel",
+	"Trc", "Game Alike Hall", "Trapped Corridor",
+	PM_TRACER, NON_PM, PM_UNDEAD_TRACER, NON_PM, PM_ROTHE,
+	PM_STEREOTYPICAL_QUEST_GIVER, PM_STARNOID, PM_EVIL_PATCH_PERPETRATOR, PM_FIGMENT_OF_NASTINESS,
+	PM_BAOBHAN_SITH, PM_SNAKEMAN_BRUTE, S_HUMANOID, S_QUANTMECH,
+	ART_SWORD_OF_GILGAMESH,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  15, 15,  5, 30, 10, 25 },
+	/* Init   Lower  Higher */
+	{ 8,  0,  0, 1,  7, 0 },	/* Hit points */
+	{ 35, 0,  0, 1,  0, 1 }, 20,	/* Energy */
+	0, 12, -6, 2, 4, A_INT, SPE_POLYFORM,   -4
 },
 
 {	{"Transsylvanian", 0}, {

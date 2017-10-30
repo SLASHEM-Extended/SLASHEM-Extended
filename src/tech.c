@@ -297,6 +297,8 @@ static const struct innate_tech
 	gan_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   1, T_LUCKY_GAMBLE, 1},
 		       {   0, 0, 0} },
+	nuc_tech[] = { {   1, T_DECONTAMINATE, 1},
+		       {   0, 0, 0} },
 	roc_tech[] = { {   1, T_EGG_BOMB, 1},
 		       {   1, T_FLURRY, 1},
 		       {   0, 0, 0} },
@@ -2203,9 +2205,10 @@ int tech_no;
 			if (u.ualign.record < 0) {
 
 				if ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) {
-					pline("%s is inaccessible, and Moloch decides to smite you!",u_gname() );
+					pline("%s is inaccessible, and %s decides to smite you!",u_gname(), Role_if(PM_GANG_SCHOLAR) ? "Anna" : "Moloch" );
 					u.ublesscnt += rnz(-u.ualign.record);
-					losehp(rnz(-u.ualign.record), "annoying Moloch", KILLED_BY);
+					if (Role_if(PM_GANG_SCHOLAR)) losehp(rnz(-u.ualign.record), "annoying Anna", KILLED_BY);
+					else losehp(rnz(-u.ualign.record), "annoying Moloch", KILLED_BY);
 				} else {
 					pline("%s smites you for your sins!",u_gname() );
 					u.ublesscnt += rnz(-u.ualign.record);
@@ -2222,7 +2225,7 @@ int tech_no;
 			} 
 
 			else if ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) {
-				pline("%s is inaccessible, and Moloch decides to smite you!",u_gname() );
+				pline("%s is inaccessible, and %s decides to smite you!",u_gname(), Role_if(PM_GANG_SCHOLAR) ? "Anna" : "Moloch" );
 				u.ublesscnt += rnz(monster_difficulty() + 1 );
 				losehp(rnz(monster_difficulty() + 1 ), "trying to contact their deity in Gehennom", KILLED_BY);
 /* Trying to invoke a deity in Gehennom is never a good idea... */
@@ -4057,6 +4060,7 @@ role_tech()
 		case PM_DEATH_EATER: 		return (dea_tech);
 		case PM_DIVER: 		return (div_tech);
 		case PM_POKEMON: 		return (pok_tech);
+		case PM_NUCLEAR_PHYSICIST: 		return (nuc_tech);
 		case PM_GANGSTER: 		return (gan_tech);
 		case PM_ROCKER: 		return (roc_tech);
 		case PM_NECROMANCER:	return (nec_tech);

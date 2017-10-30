@@ -2958,7 +2958,7 @@ makelevel()
 	    case 92:
 	    case 93:
 
-		switch (rnd(590)) {
+		switch (rnd(615)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -3550,6 +3550,31 @@ makelevel()
 			case 588: makemaz("Kur-3"); return;
 			case 589: makemaz("Kur-4"); return;
 			case 590: makemaz("Kur-5"); return;
+			case 591: makemaz("For-1"); return;
+			case 592: makemaz("For-2"); return;
+			case 593: makemaz("For-3"); return;
+			case 594: makemaz("For-4"); return;
+			case 595: makemaz("For-5"); return;
+			case 596: makemaz("Trc-1"); return;
+			case 597: makemaz("Trc-2"); return;
+			case 598: makemaz("Trc-3"); return;
+			case 599: makemaz("Trc-4"); return;
+			case 600: makemaz("Trc-5"); return;
+			case 601: makemaz("Nuc-1"); return;
+			case 602: makemaz("Nuc-2"); return;
+			case 603: makemaz("Nuc-3"); return;
+			case 604: makemaz("Nuc-4"); return;
+			case 605: makemaz("Nuc-5"); return;
+			case 606: makemaz("Sco-1"); return;
+			case 607: makemaz("Sco-2"); return;
+			case 608: makemaz("Sco-3"); return;
+			case 609: makemaz("Sco-4"); return;
+			case 610: makemaz("Sco-5"); return;
+			case 611: makemaz("Fem-1"); return;
+			case 612: makemaz("Fem-2"); return;
+			case 613: makemaz("Fem-3"); return;
+			case 614: makemaz("Fem-4"); return;
+			case 615: makemaz("Fem-5"); return;
 
 		}
 		break;
@@ -4553,7 +4578,7 @@ makelevel()
 	    case 92:
 	    case 93:
 
-		switch (rnd(590)) {
+		switch (rnd(615)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -5145,6 +5170,31 @@ makelevel()
 			case 588: makemaz("Kur-8"); return;
 			case 589: makemaz("Kur-9"); return;
 			case 590: makemaz("Kur-0"); return;
+			case 591: makemaz("For-6"); return;
+			case 592: makemaz("For-7"); return;
+			case 593: makemaz("For-8"); return;
+			case 594: makemaz("For-9"); return;
+			case 595: makemaz("For-0"); return;
+			case 596: makemaz("Trc-6"); return;
+			case 597: makemaz("Trc-7"); return;
+			case 598: makemaz("Trc-8"); return;
+			case 599: makemaz("Trc-9"); return;
+			case 600: makemaz("Trc-0"); return;
+			case 601: makemaz("Nuc-6"); return;
+			case 602: makemaz("Nuc-7"); return;
+			case 603: makemaz("Nuc-8"); return;
+			case 604: makemaz("Nuc-9"); return;
+			case 605: makemaz("Nuc-0"); return;
+			case 606: makemaz("Sco-6"); return;
+			case 607: makemaz("Sco-7"); return;
+			case 608: makemaz("Sco-8"); return;
+			case 609: makemaz("Sco-9"); return;
+			case 610: makemaz("Sco-0"); return;
+			case 611: makemaz("Fem-6"); return;
+			case 612: makemaz("Fem-7"); return;
+			case 613: makemaz("Fem-8"); return;
+			case 614: makemaz("Fem-9"); return;
+			case 615: makemaz("Fem-0"); return;
 		}
 		break;
 
@@ -6566,7 +6616,7 @@ makelevel()
 	    case 92:
 	    case 93:
 
-		switch (rnd(590)) {
+		switch (rnd(615)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -7158,6 +7208,31 @@ makelevel()
 			case 588: makemaz("Kur-3"); return;
 			case 589: makemaz("Kur-4"); return;
 			case 590: makemaz("Kur-5"); return;
+			case 591: makemaz("For-1"); return;
+			case 592: makemaz("For-2"); return;
+			case 593: makemaz("For-3"); return;
+			case 594: makemaz("For-4"); return;
+			case 595: makemaz("For-5"); return;
+			case 596: makemaz("Trc-1"); return;
+			case 597: makemaz("Trc-2"); return;
+			case 598: makemaz("Trc-3"); return;
+			case 599: makemaz("Trc-4"); return;
+			case 600: makemaz("Trc-5"); return;
+			case 601: makemaz("Nuc-1"); return;
+			case 602: makemaz("Nuc-2"); return;
+			case 603: makemaz("Nuc-3"); return;
+			case 604: makemaz("Nuc-4"); return;
+			case 605: makemaz("Nuc-5"); return;
+			case 606: makemaz("Sco-1"); return;
+			case 607: makemaz("Sco-2"); return;
+			case 608: makemaz("Sco-3"); return;
+			case 609: makemaz("Sco-4"); return;
+			case 610: makemaz("Sco-5"); return;
+			case 611: makemaz("Fem-1"); return;
+			case 612: makemaz("Fem-2"); return;
+			case 613: makemaz("Fem-3"); return;
+			case 614: makemaz("Fem-4"); return;
+			case 615: makemaz("Fem-5"); return;
 		}
 		break;
 
@@ -8157,7 +8232,7 @@ makelevel()
 	    case 92:
 	    case 93:
 
-		switch (rnd(590)) {
+		switch (rnd(615)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -8749,6 +8824,31 @@ makelevel()
 			case 588: makemaz("Kur-8"); return;
 			case 589: makemaz("Kur-9"); return;
 			case 590: makemaz("Kur-0"); return;
+			case 591: makemaz("For-6"); return;
+			case 592: makemaz("For-7"); return;
+			case 593: makemaz("For-8"); return;
+			case 594: makemaz("For-9"); return;
+			case 595: makemaz("For-0"); return;
+			case 596: makemaz("Trc-6"); return;
+			case 597: makemaz("Trc-7"); return;
+			case 598: makemaz("Trc-8"); return;
+			case 599: makemaz("Trc-9"); return;
+			case 600: makemaz("Trc-0"); return;
+			case 601: makemaz("Nuc-6"); return;
+			case 602: makemaz("Nuc-7"); return;
+			case 603: makemaz("Nuc-8"); return;
+			case 604: makemaz("Nuc-9"); return;
+			case 605: makemaz("Nuc-0"); return;
+			case 606: makemaz("Sco-6"); return;
+			case 607: makemaz("Sco-7"); return;
+			case 608: makemaz("Sco-8"); return;
+			case 609: makemaz("Sco-9"); return;
+			case 610: makemaz("Sco-0"); return;
+			case 611: makemaz("Fem-6"); return;
+			case 612: makemaz("Fem-7"); return;
+			case 613: makemaz("Fem-8"); return;
+			case 614: makemaz("Fem-9"); return;
+			case 615: makemaz("Fem-0"); return;
 		}
 		break;
 
@@ -9029,7 +9129,7 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TRAPROOM);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
-	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) :  (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
+	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
 	    /* hives */
 	    if(depth(&u.uz) > (issoviet ? 9 : 5) && (ishaxor ? !rn2(11) : !rn2(22))) mkroom(BEEHIVE);
@@ -9045,7 +9145,7 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 15 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(POOLROOM);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
-	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
+	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
 
 	    /* zoos */
@@ -9065,7 +9165,7 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(STATUEROOM);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
-	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
+	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
 	    /* neat rooms */
 	    if(depth(&u.uz) > (issoviet ? 8 : 1) && (ishaxor ? !rn2(7) : !rn2(13))) mkroom(TEMPLE);
@@ -9085,7 +9185,7 @@ gehennomxtra:
  	else if(depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(8) : !rn2(16))) mkroom(DOUGROOM);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
-	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
+	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
 	    /* dangerous ones */
 	    if (u_depth > (issoviet ? 16 : 10) && (ishaxor ? !rn2(17) : !rn2(33))) mkroom(COCKNEST);
@@ -9105,7 +9205,7 @@ gehennomxtra:
 	    else if (u_depth > (issoviet ? 5 : 1) && (ishaxor ? !rn2(100) : !rn2(200))) mkroom(NASTYCENTRAL);
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
-	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
+	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
 		/* random rooms, which means a chance of getting several of the same type of room --Amy */
 		while ((u_depth > 10 || (rn2(u_depth) && !rn2(20 - u_depth) ) ) && !rn2(ishaxor ? 7 : 15)) mkroom(RANDOMROOM);

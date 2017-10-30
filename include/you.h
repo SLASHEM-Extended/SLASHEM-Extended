@@ -959,6 +959,21 @@ struct you {
 	int bedsleeping;	/* used to prevent you from constantly sleeping */
 	int shiftingsandsinking;	/* to instakill you if you stand in shifting sand for too long */
 
+	int femauspices4;	/* for feminist role: determine at game start which nasty trap effects you'll get later */
+	int femauspices6;
+	int femauspices8;
+	int femauspices11;
+	int femauspices13;
+	int femauspices15;
+	int femauspices17;
+	int femauspices20;
+	int femauspices22;
+	int femauspices25;
+	int femauspices28;
+	int femauspices30;
+
+	int scholarturns; /* to give warnings when trying to pray */
+
 	/* KMH -- Info shared among gypsies */
 	int umonteluck;		/* Chance of winning; lower is better */
 	char umontelast;	/* Last monte card picked */

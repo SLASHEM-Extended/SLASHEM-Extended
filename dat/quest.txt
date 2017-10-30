@@ -2754,6 +2754,276 @@ You again sense %l pleading for help.
 essential in locating the Amulet of Yendor."
 %E
 
+#
+#       Nuclear Physicist
+#
+%Cc Nuc 00001
+You are suddenly in familiar surroundings.  The buildings in the distance
+appear to be those of your old alma mater, but something is wrong.  It looks
+as if there has been a riot recently, or %H has
+been under siege.
+
+All of the windows are boarded up, and there are objects scattered around
+the entrance.
+
+Strange forbidding shapes seem to be moving in the distance.
+%E
+%Cp Nuc 00002
+Once again, you are back at %H.
+%E
+%Cp Nuc 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Nuc 00005
+"Did you see Lash LaRue in 'Song of Old Wyoming' the other night?"
+%E
+%Cp Nuc 00006
+"Hey man, got any potions of hallucination for sale?"
+%E
+%Cp Nuc 00007
+"Did you see the artifact %l brought back from the last dig?"
+%E
+%Cp Nuc 00008
+"So what species do *you* think we evolved from?"
+%E
+%Cp Nuc 00009
+"So you're %ls prize pupil!  I don't know what he sees in you."
+%E
+%Cp Nuc 00010
+"Did you see Lash LaRue in 'Song of Old Wyoming' the other night?"
+%E
+%Cp Nuc 00011
+"Hey man, got any potions of hallucination for sale?"
+%E
+%Cp Nuc 00012
+"I guess you are guaranteed to make full professor now."
+%E
+%Cp Nuc 00013
+"So, what was worse, %n or your entrance exams?"
+%E
+%Cp Nuc 00014
+"%oC is impressive, but nothing like the bones I dug up!"
+%E
+%Cc Nuc 00015
+"Finally you have returned, %p.  You were always
+my most promising student.  Allow me to see if you are ready for the
+most difficult task of your career."
+%E
+%Cp Nuc 00016
+"Again, %p, you stand before me.
+Let me see if you have gained experience in the interim."
+%E
+%Cp Nuc 00017
+"Once more, %p, you have returned from the field.
+Are you finally ready for the task that must be accomplished?"
+%E
+%Cc Nuc 00018
+"%p, you have failed us.  All of my careful training has been in
+vain.  Begone!  Your tenure at this college has been revoked!
+
+"You are a disgrace to the profession!"
+%E
+%Cc Nuc 00019
+"%p, you are yet too inexperienced to undertake such a demanding
+quest.  A mere %r could not possibly face the rigors demanded and
+survive.  Go forth, and come here again when your adventures have further
+taught you."
+%E
+%Cc Nuc 00020
+"%pC!  I've heard that you've been using sloppy techniques.  Your
+results lately can hardly be called suitable for %ra!
+
+"How could you have strayed from the %a path?  Go from here, and come
+back only when you have purified yourself."
+%E
+%Cc Nuc 00021
+"Grave times have befallen the college, for %na has
+stolen %o.  Without it, the board of directors of
+the university will soon have no choice but to revoke our research grants.
+
+"You must locate the entrance to %i.  Within it,
+you will find %n.
+
+"You must then defeat %n and return %o
+to me.
+
+"Only in this way will we be able to prevent the budget cuts that could
+close this college.
+
+"May the wisdom of %d be your guide."
+%E
+%Cp Nuc 00025
+"Beware, for %n is powerful and cunning."
+%E
+%Cp Nuc 00026
+"To locate the entrance to %i, you must pass
+many traps."
+%E
+%Cp Nuc 00027
+"A %nt may be vulnerable to attacks by magical cold."
+%E
+%Cp Nuc 00028
+"Call upon %d when you encounter %n."
+%E
+%Cp Nuc 00029
+"You must destroy %n.  It will pursue you otherwise."
+%E
+%Cp Nuc 00030
+"%oC is a mighty talisman.  With it you
+can destroy %n."
+%E
+%Cp Nuc 00031
+"Go forth with the blessings of %d."
+%E
+%Cp Nuc 00032
+"I will have my %gP watch for your return."
+%E
+%Cp Nuc 00033
+"Remember not to stray from the true %a path."
+%E
+%Cp Nuc 00034
+"You may be able to sense %o when you are near."
+%E
+%Cc Nuc 00035
+A plain opens before you.  Beyond the plain lies a foreboding edifice.
+
+You have the feeling that you will soon find the entrance to
+%i.
+%E
+%Cp Nuc 00036
+Once again, you are near the entrance to %i.
+%E
+%Cc Nuc 00040
+A strange feeling washes over you, and you think back to things you
+learned during the many lectures of %l.
+
+You realize the feeling must be the presence of %o.
+%E
+%Cp Nuc 00041
+The familiar presence of %o is in the ether.
+%E
+%Cc Nuc 00050
+"So, %p, you think that you can succeed in recovering
+%o, when your teacher, %l, has already failed.
+
+"Come, try your best!  I shall destroy you, and gnaw on your bones."
+%E
+%Cc Nuc 00051
+"Again you try to best me, eh %p?  Well, you shall fail again.
+
+"You shall never recover %o.
+
+"I shall bear your soul to the Plane of Origins for my master's pleasure."
+%E
+%Cp Nuc 00052
+"You persist yet %p!  Good.  Now, you shall die!"
+%E
+%Cp Nuc 00053
+"I shall have %o from you, %p, then feast
+upon your entrails!"
+%E
+%Cp Nuc 00060
+"Try your best, %p.  You cannot defeat me."
+%E
+%Cp Nuc 00061
+"I shall rend the flesh from your body whilst you still breathe!"
+%E
+%Cp Nuc 00062
+"First you, %p, then I shall destroy your mentor, %l."
+%E
+%Cp Nuc 00063
+"Tiring yet, %p?  I draw my power from my master and cannot
+falter!"
+%E
+%Cp Nuc 00064
+"I shall rend thy soul from thy body and consume it!"
+%E
+%Cp Nuc 00065
+"You are far too %a -- it weakens you.  You shall die in this place."
+%E
+%Cp Nuc 00066
+"%d has forsaken you!  You are lost now!"
+%E
+%Cp Nuc 00067
+"A mere %r cannot hope to defeat me!"
+%E
+%Cp Nuc 00068
+"If you are the best %l can send, I have nothing to fear."
+%E
+%Cp Nuc 00069
+"Die %c!  I shall exhibit your carcass as a trophy."
+%E
+%Cc Nuc 00070
+The power of %o flows through your body!  You feel
+as if you could now take on the Wizard of Yendor himself and win, but
+you know you must return %o to %l.
+%E
+%Cp Nuc 00080
+The body of %n dissipates in a cloud of noxious fumes.
+%E
+%Cc Nuc 00081
+%lC touches %o briefly, gazes into it,
+then smiles at you and says:
+
+"Well done, %p.  You have defeated %n and
+recovered %o.  But I fear that it shall never be safe
+here.
+
+Please take %o with you.  You, %p, can
+guard it now far better than I.
+
+May the blessings of %d follow you and guard you."
+%E
+# assumes Orb of Detection (glass object)
+%Cc Nuc 00082
+"Careful, %p!  %oC might break, and that would be
+a tragic loss.  You are its keeper now, and the time has come to
+resume your search for the Amulet.  %Z await your
+return through the magic portal that brought you here."
+%E
+%Cc Nuc 00090
+"Welcome back, %p.  Have you progressed with your quest to
+regain the Amulet of Yendor for %d?"
+%E
+%Cc Nuc 00091
+"Congratulations, %p.  I wondered if anyone could prevail against
+the Wizard and the minions of Moloch.  Now, you must embark on one
+final adventure.
+
+"Take the Amulet, and find your way onto the astral plane.
+There you must find the altar of %d and sacrifice the
+Amulet on that altar to fulfill your destiny.
+
+"Remember, your path now should always be upwards."
+%E
+%Cc Nuc 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+
+%Cp Nuc 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Nuc 00101
+You again sense %l pleading for help.
+%E
+%Cp Nuc 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
 
 #
 #	Bard
@@ -13111,6 +13381,279 @@ You couldn't quite make out that last message.
 You again sense %l pleading for help.
 %E
 %Cp Kni 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
+#       Tracer
+#
+%Cc Trc 00001
+You materialize in the shadows of %H.  Immediately, you notice
+that something is wrong.  The fields around the castle are trampled and
+withered, as if some great battle has been recently fought.
+
+Looking closer, you %x long gouges in the walls of %H.
+You know of only one creature that makes those kinds of marks...
+%E
+%Cp Trc 00002
+Once again you stand in the shadows of %H.
+%E
+%Cp Trc 00003
+Again, you stand before %H.  You vaguely sense that this
+may be the last time you stand before %l.
+%E
+%Cp Trc 00005
+"Hail, %p!  Verily, thou lookest well."
+%E
+%Cp Trc 00006
+"There is word, %p, that %n hath been sighted in the fens
+near %i."
+%E
+%Cp Trc 00007
+"Thou art our only hope now, %p."
+%E
+%Cp Trc 00008
+"Verily, %l could have no better champion, %p."
+%E
+%Cp Trc 00009
+"Many brave %cP died when %n attacked."
+%E
+%Cp Trc 00010
+"Hail, %p!  Verily, thou lookest well."
+%E
+%Cp Trc 00011
+"So, %p, didst thou find %n in the fens
+near %i?"
+%E
+%Cp Trc 00012
+"Worthy %p, hast thou proven thy right purpose on the body of %n?"
+%E
+%Cp Trc 00013
+"Verily, %l could have no better champion, %p."
+%E
+%Cp Trc 00014
+"Hast thou indeed recovered %o?"
+%E
+%Cc Trc 00015
+"Ah, %p.  We see thou hast received Our summons.
+We are in dire need of thy prowess.  But first, We must needs
+decide if thou art ready for this great undertaking."
+%E
+%Cp Trc 00016
+"Welcome again, %p.  We hope thou art ready now."
+%E
+%Cp Trc 00017
+"Once again, thou standest before Us, %p.  Art thou ready now?"
+%E
+%Cc Trc 00018
+"Thou disgracest this noble court with thine impure presence.  We have been
+lenient with thee, but no more.  Thy name shall be spoken no more.  We
+hereby strip thee of thy title, thy lands, and thy standing as %ca.
+Begone from Our sight!"
+%E
+%Cc Trc 00019
+"Verily, %p, thou hast done well.  That thou hast survived thus
+far is a credit to thy valor, but thou art yet unprepared for
+the demands required as Our Champion.  %rA, no matter how
+pure, could never hope to defeat the foul %n.
+
+"Journey forth from this place, and hone thy skills.  Return to
+Our presence when thou hast attained the noble title of %R."
+%E
+%Cc Trc 00020
+"Thou dishonourest Us, %p!  Thou hast strayed from the path of
+chivalry! Go from Our presence and do penance.  Only when thou art again
+pure mayst thou return hence."
+%E
+%Cc Trc 00021
+"Ah, %p.  Thou art truly ready, as no %c before thee hath
+been.  Hear now Our words:
+
+"As thou noticed as thou approached %H, a great battle hath
+been fought recently in these fields.  Know thou that Merlin himself
+came to aid Us here as We battled the foul %n.  In the midst of that
+battle, %n struck Merlin a great blow, felling him.  Then, as Our
+forces were pressed back, %n stole %o.
+
+"We eventually turned the tide, but lost many %cP in doing so.
+Merlin was taken off by his apprentice, but hath not recovered.  We have
+been told that so long as %n possesseth %o,
+Merlin will not regain his health.
+
+"We hereby charge thee with this most important of duties:
+
+"Go forth from this place, to the fens, and there thou wilt find
+%i.  From there, thou must track down %n.  Destroy the
+beast, and return to Us %o.  Only then can
+We restore Merlin to health."
+%E
+%Cp Trc 00025
+"Remember, %p, follow always the path of %d."
+%E
+%Cp Trc 00026
+"Though %n is verily a mighty foe, We have confidence in thy victory."
+%E
+%Cp Trc 00027
+"Beware, for %n hath surrounded himself with hordes of foul creatures."
+%E
+%Cp Trc 00028
+"Great treasure, 'tis said, is hoarded in the lair of %n."
+%E
+%Cp Trc 00029
+"If thou possessest %o, %p, %ns magic
+shall therewith be thwarted."
+%E
+%Cp Trc 00030
+"The gates of %i are guarded by forces unseen, %p.
+Go carefully."
+%E
+%Cp Trc 00031
+"Return %o to Us quickly, %p."
+%E
+%Cp Trc 00032
+"Destroy %n, %p, else %H shall surely fall."
+%E
+%Cp Trc 00033
+"Call upon %d when thou art in need."
+%E
+%Cp Trc 00034
+"To find %i, thou must keep thy heart pure."
+%E
+%Cc Trc 00035
+You stand at the foot of %i.  Atop, you can %x a shrine.
+Strange energies seem to be focused here, and the hair on the back
+of your neck stands on end.
+%E
+%Cp Trc 00036
+Again, you stand at the foot of %i.
+%E
+%Cc Trc 00040
+As you exit the swamps, you %x before you a huge, gaping hole in the
+side of a hill.  From within, you smell the foul stench of carrion.
+
+The pools on either side of the entrance are fouled with blood, and
+pieces of rusted metal and broken weapons show above the surface.
+%E
+%Cp Trc 00041
+Again, you stand at the entrance to %ns lair.
+%E
+%Cc Trc 00050
+"Hah!  Another puny %c seeks death.  I shall dine well tonight,
+then tomorrow, %H shall fall!"
+%E
+%Cp Trc 00051
+"Again, thou challengest me, %r?  So be it.  Thou wilt die here."
+%E
+%Cp Trc 00052
+"Thou art truly foolish, %r.  I shall dispatch thee anon."
+%E
+%Cp Trc 00053
+"So, thou darest touch MY property!  I shall have that bauble back,
+puny %r.  Thou wilt die in agony!"
+%E
+%Cp Trc 00060
+"A mere %r can never withstand me!"
+%E
+%Cp Trc 00061
+"I shall kill thee now, and feast!"
+%E
+%Cp Trc 00062
+"Puny %c.  What manner of death dost thou wish?"
+%E
+%Cp Trc 00063
+"First thee, %p, then I shall feast upon %l."
+%E
+%Cp Trc 00064
+"Hah!  Thou hast failed, %r.  Now thou shalt die."
+%E
+%Cp Trc 00065
+"Die, %c.  Thou art as nothing against my might."
+%E
+%Cp Trc 00066
+"I shall suck the marrow from thy bones, %c."
+%E
+%Cp Trc 00067
+"Let's see...  Broiled?  No.  Fried?  Nay.  Baked?  Yea verily,
+that is the way I like my %c for dinner."
+%E
+%Cp Trc 00068
+"Thy strength waneth, %p.  The time of thy death draweth near."
+%E
+%Cp Trc 00069
+"Call upon thy precious %d, %p.  It shall not avail thee."
+%E
+%Cc Trc 00070
+As you pick up %o, you feel its protective fields
+form around your body.  You also feel a faint stirring in your mind,
+as if you are in two places at once, and in the second, you are waking
+from a long sleep.
+%E
+%Cc Trc 00080
+As %n sinks to the ground, blood gushing from his open mouth, he
+defiantly curses you and %l:
+
+    Thou hast not won yet, %r.  By the gods, I shall return and dog
+    thy steps to the grave!
+
+His tail flailing madly, %n tries to crawl towards you, but slumps
+to the ground and dies in a pool of his own blood.
+%E
+%Cc Trc 00081
+As you approach %l, he beams at you and says:
+
+    Well done!  Thou art truly the Champion of %H.  We
+    have received word that Merlin is recovering, and shall soon
+    rejoin Us.
+    
+    He hath instructed Us that thou art now to be the guardian of
+    %o.  He feeleth that thou mayst have need of
+    its powers in thine adventures.  It is Our wish that thou keepest
+    %o with thee as thou searchest for the fabled
+    Amulet of Yendor.
+%E
+# assumes Magic Mirror of Merlin (glass object)
+%Cc Trc 00082
+"Careful, %p!  %oC might break, and that would
+be a tragic loss.  Thou art its keeper now, and the time hath come
+to resume thy search for the Amulet.  %Z await thy
+return through the magic portal that brought thee here."
+%E
+%Cp Trc 00090
+"Well met, %p.  How goeth thy search for the Amulet of Yendor?"
+%E
+%Cc Trc 00091
+"Thou hast succeeded, We see, %p!  Now thou art commanded to take
+the Amulet to be sacrificed to %d in the plane of the astral.
+
+"Merlin hath counseled Us that thou must travel always upwards through
+the planes of the elements, to achieve this goal.
+
+"Go with %d, %p."
+%E
+%Cc Trc 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+
+%Cp Trc 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Trc 00101
+You again sense %l pleading for help.
+%E
+%Cp Trc 00102
 "The silver bell which was hoarded by %n will be
 essential in locating the Amulet of Yendor."
 %E
@@ -24270,6 +24813,238 @@ You again sense %l pleading for help.
 essential in locating the Amulet of Yendor."
 %E
 
+#
+#	Feminist
+#
+%Cc Fem 00001
+It's %H. You fear that %l may be in trouble. But it is
+your obligation to help out, in the name of %d.
+
+Let's find out what exactly %l needs you for!
+%E
+%Cp Fem 00002
+You have returned to %H. Something is still wrong, and
+%l absolutely needs your help.
+%E
+%Cp Fem 00003
+You are back at %H. Somehow, you get the feeling that
+if you do not help %l now, you will be stripped of your
+title. That wouldn't be good.
+%E
+%Cp Fem 00005
+"We are planning our next action!"
+%E
+%Cp Fem 00006
+"We'll rid the world of all the evil men!"
+%E
+%Cp Fem 00007
+"You must help %l fight the evil patriarch!"
+%E
+%Cp Fem 00008
+"Something crazy is going on. %l may tell you more."
+%E
+%Cp Fem 00009
+"Been quite active lately, %p?"
+%E
+%Cp Fem 00010
+"You're a great %r, %p."
+%E
+%Cp Fem 00011
+"Thank you for everything!"
+%E
+%Cp Fem 00012
+"The Feminists rule!"
+%E
+%Cp Fem 00013
+"We will continue trying to make the world a female place!"
+%E
+%Cp Fem 00014
+"Well done, %p!"
+%E
+%Cc Fem 00015
+"Welcome back, %p. There is a task that needs to be
+completed, and I would like to send you to do it for me.
+Are you ready?"
+%E
+%Cp Fem 00016
+"Ready now, %p?"
+%E
+%Cp Fem 00017
+"%p, you'd better be ready now! If I can't rely on you,
+I'll have to remove you from our group!"
+%E
+%Cc Fem 00018
+"%p, you are useless! I should have sent another feminist
+to go in your stead! And guess what, that's what I'm
+gonna do now. Bye."
+%E
+%Cc Fem 00019
+"%p, you are not ready yet. Train your skills and then
+come back to me."
+%E
+%Cc Fem 00020
+"%p, you don't seem to fully support the views of %d!
+Tell me, have you sinned or what? Cause that would be
+very bad for you. Whatever it was, do something good now 
+and then come back to me."
+%E
+%Cc Fem 00021
+"Okay, I'll tell you what the problem is: There's an evil being
+called %n. He is constantly beating his wife and doesn't even
+feel bad about it.
+
+Your mission is to kill him with extreme prejudice and
+put his corpse on a stick to deter all other asshole men who
+would hurt a harmless woman. Bring %o as a proof."
+%E
+%Cp Fem 00025
+"Go and erase %n from existence!"
+%E
+%Cp Fem 00026
+"Remember what I said, %p!"
+%E
+%Cp Fem 00027
+"Never break the %d code of conduct!"
+%E
+%Cp Fem 00028
+"You must save the poor girls from the evil men!"
+%E
+%Cp Fem 00029
+"We don't know why %n has been conceived, but he must be killed."
+%E
+%Cp Fem 00030
+"Remember to stomp %n's balls with your high heels!"
+%E
+%Cp Fem 00031
+"Remember, men are evil! Punish them for the crime of being male!"
+%E
+%Cp Fem 00032
+"This task is of utmost importance. If you succeed, it will be a signal
+against the oppression of women worldwide."
+%E
+%Cp Fem 00033
+"Wear your heels! They make a great weapon!"
+%E
+%Cp Fem 00034
+"Wear your heels and kick any male asshole that gets in your way!"
+%E
+%Cc Fem 00035
+You're still looking for %n. The entrance to his lair
+must be hidden somewhere around here.
+%E
+%Cp Fem 00036
+Where is the entrance to %n's lair?
+%E
+%Cc Fem 00040
+So this is it. %n is waiting for you, and it will be no easy fight.
+
+Remember what %l said - he must die in a most painful way! Kill him!
+%E
+%Cc Fem 00041
+You shudder as you listen to the lash of a whip, followed by
+a pained moan.
+
+The moan belonged to a woman, and she's being tortured by %n!
+You must stop at nothing to ensure that he pays for his sins!
+%E
+%Cc Fem 00050
+%n laughs: "Ha ha ha, how cute, a feminist. I'll whip your sorry butt,
+and then I'll batter and bash you to my heart's content.
+Get ready to become my slave!"
+%E
+%Cc Fem 00051
+%n's presence haunts you.
+%E
+%Cp Fem 00052
+You are stricken with fear as %n comes closer to you.
+%E
+%Cp Fem 00053
+You still need to fight %n if you ever want to rescue all the girls here.
+%E
+%Cp Fem 00060
+%n grips his whip with a sadistic smile in his eyes.
+%E
+%Cp Fem 00061
+The presence of %n lets the hair on the back of your neck stand up.
+%E
+%Cp Fem 00062
+"Puny feminist! I'll use your neck for my whip-lashing practice!"
+%E
+%Cp Fem 00063
+"The last girl that came here screamed real good when I whipped her!"
+%E
+%Cp Fem 00064
+"I'm really looking forward to causing pain to you."
+%E
+%Cp Fem 00065
+"Every time you cry out in pain, I'll lash you stronger than before!"
+%E
+%Cp Fem 00066
+"Just accept that women are meant to be the slaves of men!"
+%E
+%Cp Fem 00067
+"I will never let a woman dictate anything! I'm the boss around here!"
+%E
+%Cp Fem 00068
+"Tell %l that she'll be my next victim!"
+%E
+%Cp Fem 00069
+"I whipped every woman I met in my life and now I will whip you."
+%E
+%Cc Fem 00070
+As you steal %n's whip, you suddenly feel an urge to test it on him.
+If this thing can whip a woman, it can certainly whip a man too, right?
+%E
+%Cc Fem 00080
+%n screams in agony as he realizes you landed the final blow on him.
+
+But, he's not dead yet. He is slowly bleeding out from his mortal wound,
+and you take the opportunity to stomp his balls repeatedly with your heels.
+As you keep causing pain to %n, his screams are echoing from the halls,
+but only when you finally manage to lacerate his scrotum veins for good,
+you finally let go of him.
+
+It still takes what feels like hours until %n's wounds finally kill him,
+but you feel strangely pleased for some reason.
+
+As you walk away, you think to yourself, "The souls of the women
+have been avenged at last."
+%E
+%Cc Fem 00081
+"Oh thank all the gods! You have defeated a great evil, and now our quest
+to purge the world of all the evil men can begin in earnest.
+
+Keep %o - it may never get into the hands of a man again!"
+%E
+%Cc Fem 00082
+"It seems that this whip will severely hurt male assholes! Use it to kill them!"
+%E
+%Cc Fem 00090
+"Thanks for all your help, %p. You may rest a while if you want."
+%E
+%Cc Fem 00091
+"You're indeed helping the women with your actions, %p! It's great
+to have you around. Keep following the ways of %d!"
+%E
+%Cc Fem 00095
+"You have betrayed the feminists. And since you're still here,
+I hereby put a death verdict on you.
+
+Nymphets, kill this asshole and feed the remains to the vultures!"
+%E
+
+%Cp Fem 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Fem 00101
+You again sense %l pleading for help.
+%E
+%Cp Fem 00102
+"%p, you must kill %n or the women of this world will forever be oppressed!"
+%E
 
 #
 #       Doll Mistress
@@ -27300,6 +28075,240 @@ essential in locating the Amulet of Yendor."
 %E
 
 #
+#       Gang Scholar
+#
+%Cc Sco 00001
+You're suddenly back at %H, even though the school is closed today.
+
+%l might have news for you concerning the everlasting fight
+against the Bang Gang and Anna's Hussy Club, so you'd better hurry!
+%E
+%Cp Sco 00002
+Once again, you are back at %H.
+%E
+%Cp Sco 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp Sco 00005
+"Will the oppression ever end?"
+%E
+%Cp Sco 00006
+"I'm too scared to fight the Bang Gang!"
+%E
+%Cp Sco 00007
+"Anna and her hussies stole all of my clothes!"
+%E
+%Cp Sco 00008
+"Only %l and %d can save us now!"
+%E
+%Cp Sco 00009
+"This school is a cruel place!"
+%E
+%Cp Sco 00010
+"The hussies have been weakened, but they're still dangerous!"
+%E
+%Cp Sco 00011
+"I guess the Bang Gang is plotting revenge now..."
+%E
+%Cp Sco 00012
+"You did a good job, but the main threat still remains at large!"
+%E
+%Cp Sco 00013
+"Killing one hussy won't really help. But, well, thanks for doing it."
+%E
+%Cp Sco 00014
+"We should hunt the Bang Gang leaders now!"
+%E
+%Cc Sco 00015
+"Welcome back, %p. You might be wondering what I'm doing here.
+
+%d has devised a plan to weaken Anna, but before you can undertake
+this task, I need to make sure that you're ready.
+I will also scan you for any signs of brainwashing, since we can't
+allow the information I'm giving to you now to end up in the wrong hands."
+%E
+%Cp Sco 00016
+"%p, I sure hope you're free from any bad influences now."
+%E
+%Cp Sco 00017
+"%p, this is your last chance!"
+%E
+%Cc Sco 00018
+"Go home, %p, I see you're never gonna make it.
+
+Either we'll quickly find another volunteer, or our school
+may well be doomed now."
+%E
+%Cc Sco 00019
+"You're not ready to go on this task! Take some more fighting
+lessons and then come back!"
+%E
+%Cc Sco 00020
+"I see that Anna and her hussies have indeed brainwashed you.
+Seek a doctor and become sane again and then come back!"
+%E
+%Cc Sco 00021
+"The task that %d wants you to perform is simple, yet dangerous.
+
+As you may well know, the Bang Gang and Anna's hussies have declared you
+their public enemy number one, and they fully expect you to try to
+steal their source of power. They wouldn't consider us using a different
+tactic, though. In particular, they wouldn't ever think we were going
+to assassinate one of them.
+
+But that's what you will do. I've located %i, where some of the hussies
+are hanging around when they have nothing better to do. Currently,
+%n is there, and you must kill her. Beware, she might look like
+a cute little girl, but she has a bad temper and will go berserk when
+angered. If you can put her down, the hussies will lose a lot of
+influence and your task of bringing down Anna becomes easier!"
+%E
+%Cp Sco 00025
+"%n will only come for you when she's hurt. Use this to your advantage."
+%E
+%Cp Sco 00026
+"It will take a lot of effort to get past %n's defenses."
+%E
+%Cp Sco 00027
+"Use your Pokedex to scan %n for weaknesses."
+%E
+%Cp Sco 00028
+"Good luck on your task!"
+%E
+%Cp Sco 00029
+"Don't let the hussies get you!"
+%E
+%Cp Sco 00030
+"%d will try to help you on your path."
+%E
+%Cp Sco 00031
+"I really hope one day this school will not have the Bang Gang anymore."
+%E
+%Cp Sco 00032
+"Many pupils will be relieved if you can defeat the hussies for good."
+%E
+%Cp Sco 00033
+"You can defeat %n! But don't hesitate to run if the fight goes badly."
+%E
+%Cp Sco 00034
+"The hussies have always fought dirty. Feel free to do the same in order to succeed."
+%E
+%Cc Sco 00035
+You're journeying along a highway. Why did %l not tell you about the distance?
+In fact, why did the hussies build %i so far away from the school?!
+%E
+%Cp Sco 00036
+Your feet hurt as you walk the highway leading to %i. Are we there yet?
+%E
+%Cc Sco 00040
+At last, %i is within your view. You have to enter the place and
+probably sneak past or fight a couple of guards in order to fight %n.
+%E
+%Cp Sco 00041
+%n is still alive. You absolutely have to kill her.
+%E
+%Cc Sco 00050
+"What??? I don't like that at all! Now you made me really angry!
+
+And if I'm angry, I'll screw you over big time!"
+%E
+%Cc Sco 00051
+"Go away and never come back or I'll do nasty things to you!"
+%E
+%Cp Sco 00052
+"You think you're lucky that you came here while most of the other hussies
+are otherwise occupied, but I'll still mess you up for your transgression!"
+%E
+%Cp Sco 00053
+"So you made yourself guilty of theft, too! If you survive my wrath,
+I'll sue you and my lawyer is going to make sure you end up in jail!"
+%E
+%Cp Sco 00060
+"I'll force you to smell my worn socks!"
+%E
+%Cp Sco 00061
+"My velcro lashes will rip your skin to shreds!"
+%E
+%Cp Sco 00062
+"No one ever defeated my velcro shoes and you won't manage it either!"
+%E
+%Cp Sco 00063
+"I'll grab your feet and force push your shoes into a heap of dog shit!"
+%E
+%Cp Sco 00064
+"Wait until I pull down your trousers!"
+%E
+%Cp Sco 00065
+"I'll spray my perfume into your face."
+%E
+%Cp Sco 00066
+"I'll sit on you once you're down."
+%E
+%Cp Sco 00067
+"You'll pay for all the lies you've been telling!"
+%E
+%Cp Sco 00068
+"My big sister will teach you to mess with me!"
+%E
+%Cp Sco 00069
+"Even if you defeat me, you're no match for Anna!"
+%E
+%Cc Sco 00070
+This helmet was in the possession of %n. Who knows,
+maybe it'll be useful.
+%E
+%Cc Sco 00080
+By using all your force, you finally manage to rip open
+%n's velcro lashes and pull off her shoes. They seem to be
+where her power came from, and without them, she's easily defeated.
+
+It's very likely there were witnesses who will tell Anna about
+your assassination of %n, so you'd better clear out quickly.
+%E
+%Cc Sco 00081
+"Ah, you've been successful. Good job. The silver bell is one of the
+three artifacts that you need in order to open the path to Anna's domain.
+Now get the papyrus spellbook and the candelabrum!"
+%E
+# assumes Orb of Detection (glass object)
+%Cc Sco 00082
+"This helmet improves your armor class, so if you wear it, you'll be
+hit less often by your enemies."
+%E
+%Cc Sco 00090
+"I can feel the tide turning! Anna and her hussies are actually
+trying to defend their sanctum now, which means they don't have time
+for harassing pupils anymore!
+
+Don't let up the pressure! Get the Amulet of Yendor!"
+%E
+%Cc Sco 00091
+"By all means, you have it! %d is the only person who can make sure
+the Amulet of Yendor never lands in Anna's grasp again, so hurry up!
+The hussies and Bang Gangers are certainly trying their best to kill
+you now, and they may not succeed!"
+%E
+%Cc Sco 00095
+"You are no longer welcome here. Once %d learns of your misbehavior,
+you will be expelled. Leave this school at once!"
+%E
+
+%Cp Sco 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp Sco 00101
+You again sense %l pleading for help.
+%E
+%Cp Sco 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
 #       Gamer
 #
 %Cc Gam 00001
@@ -30055,6 +31064,290 @@ You couldn't quite make out that last message.
 You again sense %l pleading for help.
 %E
 %Cp Sha 00102
+"The silver bell which was hoarded by %n will be
+essential in locating the Amulet of Yendor."
+%E
+
+#
+#	Form Changer
+#
+%Cc For 00001
+You are suddenly in familiar surroundings.  You notice what appears to
+be a large, squat stone structure nearby.  Wait!  That looks like the
+tower of your former teacher, %l.
+
+However, things are not the same as when you were last here.  Mists and
+areas of unexplained darkness surround the tower.  There is movement in
+the shadows.
+
+Your teacher would never allow such unaesthetic forms to surround the
+tower...  unless something were dreadfully wrong!
+%E
+%Cp For 00002
+Once again, you are back at %H.
+%E
+%Cp For 00003
+You are back at %H.
+You have an odd feeling this may be the last time you ever come here.
+%E
+%Cp For 00005
+"Would you happen to have some eye of newt in that overstuffed pack, %s?"
+%E
+%Cp For 00006
+"Ah, the spell to create the magic portal worked.  Outstanding!"
+%E
+%Cp For 00007
+"Hurry!  %lC may not survive that casting of the
+portal spell!!"
+%E
+%Cp For 00008
+"The spells of %n were just too powerful for us to withstand."
+%E
+%Cp For 00009
+"I, too, will venture into the world, because %n is but one of
+many evils to be vanquished."
+%E
+%Cp For 00010
+"I have some eye of newt to trade, do you have a spare blind-worm's sting?"
+%E
+%Cp For 00011
+"The magic portal now seems like it will remain stable for quite some time."
+%E
+%Cp For 00012
+"Have you noticed how much stronger %l is since %o was recovered?"
+%E
+%Cp For 00013
+"Thank %d!  We weren't positive you would defeat %n."
+%E
+%Cp For 00014
+"I, too, will venture into the world, because %n was but one of
+many evils to be vanquished."
+%E
+%Cc For 00015
+"Come closer, %p, for my voice falters in my old age.
+Yes, I see that you have come a long way since you went out into the
+world, leaving the safe confines of this tower.  However, I must first
+determine if you have all of the skills required to take on the task
+I require of you."
+%E
+%Cp For 00016
+"Well, %p, you have returned.  Perhaps you are now ready..."
+%E
+%Cp For 00017
+"This is getting tedious, %p, but perseverance is a sign of a true mage.
+I certainly hope that you are truly ready this time!"
+%E
+%Cc For 00018
+"You fool, %p!  Why did I waste all of those years teaching you
+the esoteric arts?  Get out of here!  I shall find another."
+%E
+%Cc For 00019
+"Alas, %p, you have not yet shown your proficiency as a worthy
+spellcaster.  As %ra, you would surely be overcome in the challenge
+ahead.  Go, now, expand your horizons, and return when you have attained
+renown as %Ra."
+%E
+%Cc For 00020
+"You amaze me, %p!  How many times did I tell you that the way of a mage
+is an exacting one.  One must use the world with care, lest one leave it
+in ruins and simplify the task of %n.
+
+"You must go back and show your worthiness.  Do not return until you are
+truly ready for this quest.  May %d guide you in this task."
+%E
+%Cc For 00021
+"Yes, %p, you truly are ready for this dire task.  Listen,
+carefully, for what I tell you now will be of vital importance.
+
+"Since you left us to hone your skills in the world, we unexpectedly came
+under attack by the forces of %n.  As you know, we thought
+%n had perished at the end of the last age, but, alas, this was
+not the case.
+
+"%nC sent an army of abominations against us.  Among them was a
+minion, mindless and ensorcelled, and thus, in the confusion, it was able
+to penetrate our defenses.  Alas, this creature has stolen
+%o and I fear it has delivered %o
+to %n.
+
+"Over the years, I had woven most of my power into this amulet, and thus,
+without it, I have but a shadow of my former power, and I fear that I
+shall soon perish.
+
+"You must travel to %i, and within its dungeons,
+find and overcome %n, and return %o to me.
+
+"Go now, with %d, and complete this quest before it is too late."
+%E
+%Cp For 00025
+"Beware, for %n is immune to most magical attacks."
+%E
+%Cp For 00026
+"To enter %i you must pass many traps."
+%E
+%Cp For 00027
+"%nC may be vulnerable to physical attacks."
+%E
+%Cp For 00028
+"%d will come to your aid when you call."
+%E
+%Cp For 00029
+"You must utterly destroy %n.  He will pursue you otherwise."
+%E
+%Cp For 00030
+"%oC is a mighty artifact.  With it you can
+destroy %n."
+%E
+%Cp For 00031
+"Go forth with the blessings of %d."
+%E
+%Cp For 00032
+"I will have my %gP watch for your return."
+%E
+%Cp For 00033
+"Feel free to take any items in that chest that might aid you."
+%E
+%Cp For 00034
+"You will know when %o is near.  Proceed with care!"
+%E
+%Cc For 00035
+Wisps of fog swirl nearby.  You feel that %ns lair is close.
+%E
+%Cp For 00036
+You believe that you may once again invade %i.
+%E
+%Cc For 00040
+You feel your mentor's presence; perhaps %o is nearby.
+%E
+%Cp For 00041
+The aura of %o tingles at the edge of your perception.
+%E
+%Cc For 00050
+"Ah, I recognize you, %p.  So, %l has sent you to steal
+%o from me, hmmm?  Well, %l is a
+fool to send such a mental weakling against me.
+
+"Your destruction, however, should make for good sport.  In the end, you
+shall beg me to kill you!"
+%E
+%Cc For 00051
+"How nice of you to return, %p!  I enjoyed our last meeting.  Are you
+still hungry for more pain?
+
+"Come!  Your soul, like %o, shall soon be mine to
+command."
+%E
+%Cp For 00052
+"I'm sure that your perseverance shall be the subject of innumerable
+ballads, but you shall not be around to hear them, I fear!"
+%E
+%Cp For 00053
+"Thief!  %o belongs to me, now.  I shall feed
+your living flesh to my minions."
+%E
+%Cp For 00060
+"Your puny powers are no match for me, fool!"
+%E
+%Cp For 00061
+"When you are defeated, your torment will last for a thousand years."
+%E
+%Cp For 00062
+"After your downfall, %p, I shall devour %l
+for dessert!"
+%E
+%Cp For 00063
+"Are you ready yet to beg for mercy?  I could be lenient..."
+%E
+%Cp For 00064
+"Your soul shall join the enslaved multitude I command!"
+%E
+%Cp For 00065
+"Your lack of will is evident, and you shall die as a result."
+%E
+%Cp For 00066
+"Your faith in %d is for naught!  Come, submit to me now!"
+%E
+%Cp For 00067
+"A mere %r is nothing compared to my skill!"
+%E
+%Cp For 00068
+"So, you are the best hope of %l?  How droll."
+%E
+%Cp For 00069
+"Feel my power, %c!  My victory is imminent!"
+%E
+%Cc For 00070
+As you touch %o, its comforting power infuses you
+with new energy.  You feel as if you can detect others' thoughts flowing
+through it.  Although you yearn to wear %o
+and attack the Wizard of Yendor, you know you must return it to its
+rightful owner, %l.
+%E
+%Cc For 00080
+%nC croaks out, as his body begins to shrivel up:
+
+    I shall haunt your progress until the end of time.  A thousand
+    curses on you and %l.
+
+Then, the body bursts into a cloud of choking dust, and blows away.
+%E
+%Cc For 00081
+%lC notices %o in your possession,
+beams at you and says:
+
+    I knew you could defeat %n and retrieve
+    %o.  We shall never forget this
+    brave service.
+
+    Take %o with you in your quest for
+    the Amulet of Yendor.  I can sense that it has attuned
+    itself to you already.
+
+    May %d guide you in your quest, and keep you from harm.
+%E
+%Cc For 00082
+"You are the keeper of %o now.  It is time to
+recover the /other/ Amulet.  %Z await your return through
+the magic portal which brought you here."
+%E
+%Cp For 00090
+"Come near, my %S, and share your adventures with me.
+So, have you succeeded in your quest for the Amulet of Yendor?"
+%E
+%Cc For 00091
+"Congratulations, %p.  I always knew that if anyone could succeed
+in defeating the Wizard of Yendor and his minions, it would be you.
+
+"Go now, and take the Amulet to the astral plane.  Once there, present
+the Amulet on the altar of %d.  Along the way you shall pass through the
+four elemental planes.  These planes are like nothing you have ever
+experienced before, so be prepared!
+
+"For this you were born, %s!  I am very proud of you."
+%E
+%Cc For 00095
+"You have betrayed all those who hold allegiance to %d, as you once did.
+My allegiance to %d holds fast and I cannot condone or accept what you 
+have done.
+
+Leave this place.  You shall never set foot at %H again.
+That which you seek is now lost forever, for without the Bell of Opening, 
+you will never be able to enter the place where he who has the Amulet 
+resides.
+
+Go now!  You are banished from this place.
+%E
+
+%Cp For 00100
+You receive a faint telepathic message from %l:
+Your help is urgently needed at %H!
+Look for a ...ic transporter.
+You couldn't quite make out that last message.
+%E
+%Cp For 00101
+You again sense %l pleading for help.
+%E
+%Cp For 00102
 "The silver bell which was hoarded by %n will be
 essential in locating the Amulet of Yendor."
 %E
@@ -33693,6 +34986,56 @@ King of Rings.
  s suffix:      return s_suffix(root);
  S suffix:      return s_suffix(capitalized(root));
  t suffix:      return strip_the_prefix(root);
+%E
+#
+# Alternate legacy text for Gang Scholar role
+#
+%Cc - 00198
+It is written in the Book of %d:
+
+This is the story of %p, one of the most promising
+students attending our school. Since the beginning of
+time, %p has been like a %S to me. Unfortunately,
+my %S is in the worst class of the entire school.
+
+The core problem is that this class is home to the
+feared Bang Gang, a group of pupils who would not come
+to learn things. Rather, they want to bully everyone
+who doesn't belong to them. %p has always been one
+of their victims, with me trying my best to protect
+my %S from harm.
+
+Recently, though, things have escalated. It seems that
+leading Bang Gang members decided to declare %p their
+public enemy number one, and in order to force my %S
+to quit school entirely, they hired help. For this school
+also houses the Hussy Club, a group of girls who will
+fulfill any request for the right price, as long as it
+involves making someone's life hard. And obviously,
+the Bang Gang was the highest bidder.
+
+As a result, %p now has to endure the attacks of Anna
+and her fellow hussies as well, in addition to whatever
+cruel things the Bang Gangers are doing. The hussies
+happily steal my %S's pocket money, or humiliate %p
+in public, or whatever floats their mind. This is
+intolerable, and the evil perpetrators have to be stopped.
+
+Therefore, %p will have to undertake a perilous journey
+and complete a very difficult task. For Anna's source of
+power is hidden deep in this school, in an area commonly
+named "Gehennom". My %S has to venture there, avoid or
+defeat all of Anna's guards and the members of the Bang Gang
+that want to prevent the Amulet of Yendor from being stolen,
+and bring it to me.
+
+Once that has been done, Anna will lose all of her special
+powers, and her hussies will be unable to bully my pupils
+ever again. This is no easy mission for %p, I'm aware of that,
+but I'll use my power to protect my %S from Anna and the
+Bang Gangers along the grueling path that lies ahead.
+
+For the sake of us all:  Rescue our school in the name of %d!
 %E
 #
 # Alternate legacy text for Convict role

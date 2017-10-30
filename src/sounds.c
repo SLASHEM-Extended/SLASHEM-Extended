@@ -1399,6 +1399,9 @@ register struct monst *mtmp;
 		case PM_POKEMON:
 		    verbl_msg = "Little strawberry me baby!";
 		    break;
+		case PM_GANG_SCHOLAR:
+		    verbl_msg = "I'm constantly being bullied by the Bang Gang and Anna's hussies...";
+		    break;
 		case PM_TRANSVESTITE:
 		    verbl_msg = "Look at my heels! Do you think they're beautiful?";
 		    break;

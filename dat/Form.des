@@ -1,0 +1,322 @@
+#       SCCS Id: @(#)Dopp.des 3.1     92/09/22
+#       Copyright (c) 1989 by Jean-Christophe Collet
+#       Copyright (c) 1991-2 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#       The "start" level for the quest.
+#
+#       Here you meet your (besieged) class leader, Master Shifter
+#       and receive your quest assignment.
+#
+MAZE: "For-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+
+............................................................................
+............................................................................
+.........................................................-..................
+.....................................................--.....................
+...................-----------------------.........-....-..-..|.............
+...................|..|..........|...|..|...|---.....-.-....................
+...................|..|...|......|...|..|----.......|...-...-...............
+...................|..|...|......|...|............----....|.................
+...................|..---.------.|.---..-----.---.......-.-..|..............
+...................|..|..........|......|..|..|......--...-.................
+...................|.............|.-----|..|..|.--..-..-....|...............
+...................|.---.........|......|..|..|............---..............
+...................|...|.........|.----.|..|..|...-..-..-....|..............
+...................|...---------.|.|..|.|..|..|.|........|..................
+...................|....|........|.|..|.|..|..|.|...|. |.-..................
+...................|..--|.--------.|..|.|..|..|.|..--.......................
+...................|....|..........|..|.......|.--......--..................
+...................----------------------------.............................
+............................................................................
+............................................................................
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,19),lit,"ordinary"
+# Portal arrival point
+BRANCH:(05,04,05,04),(0,0,0,0)
+# Stairs
+STAIR:(52,09),down
+# Quest Leader
+MONSTER:'@',"Jonadab",(28,10)
+# The treasure of Master Shifter
+OBJECT:'(',"chest",(28,11)
+# A few remaining guards
+MONSTER:'@',"shifter",(24,10)
+MONSTER:'@',"shifter",(25,10)
+MONSTER:'@',"shifter",(26,10)
+MONSTER:'@',"shifter",(27,10)
+MONSTER:'@',"shifter",(24,11)
+MONSTER:'@',"shifter",(25,11)
+MONSTER:'@',"shifter",(26,11)
+MONSTER:'@',"shifter",(27,11)
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Random traps
+TRAP:"polymorph",(39,07)    
+TRAP:"polymorph",(45,08)
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Monsters on siege duty.
+MONSTER: random,random,(10,05)
+MONSTER: random,random,(20,06)
+MONSTER: random,random,(20,07)
+MONSTER: random,random,(04,04)
+MONSTER: random,random,(06,11)
+MONSTER: random,random,(04,12)
+MONSTER: random,random,(03,08)
+MONSTER: random,random,(07,07)
+MONSTER: random,random,(09,05)
+MONSTER: random,random,(21,06)
+MONSTER: random,random,(05,05)
+MONSTER: random,random,(01,17)
+ 
+#
+#       The "locate" level for the quest.
+#
+
+MAZE: "For-loca",' '
+GEOMETRY:center,center
+MAP
+             ----------------------------------------------------   --------
+           ---...............................|.....|..|........-    --......
+         ---...--------........------........|.....|..|......---     ---....
+       ---.....-      --.......-     ---.....|.....|..|-------         --.--
+     ---.....----       -------        --....|.....|..|....--         --..|
+   ---...-----                       ----.----.....----.....---      --..||
+----..----                       -----..---  |...---  |.......---   --...|
+|...---                       ----....---    |.---    |......||.-- --...||
+|...-                         |.....---     ----      |.....||...---....|
+|...----                      -------       |         |-----|.....-....||
+|......-----          ---        --         |     -----...|............|
+|..........-----   ----.-----  -- ---       -------...|..||.....|.....||
+|..............-----........----....---     |....|....|..|||....||....|
+|------------.........................---   |....|....|.|| |....||...||
+|LLLLLLLLLLL|........------.............-----....|....|||  ||....|...|
+|yyyyyyyyyyL|.......--    ---...............|....|....||    |.......||
+|PPPPPPPPPyL|.......-       ---.............|....|..--|     ||......|
+|--------PyL|.......----      --............|....----        |.....||
+|.......|PyL|..........--------.............------           ||....|
+|.......|PyL|............................----                 |....|
+------------------------------------------                    ------
+ENDMAP
+# Dungeon Description
+REGION:(00,00,75,20),lit,"ordinary"
+# Stairs
+STAIR:(73,01),up
+STAIR:(03,19),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,20)
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+# Random monsters.
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+
+#
+#       The "goal" level for the quest.
+#
+#       Here you meet Transmuter your nemesis monster.  You have to
+#       defeat Transmuter in combat to gain the artifact you have
+#       been assigned to retrieve.
+#
+
+MAZE: "For-goal", ' '
+INIT_MAP: 'L' , '.' , false , false , unlit , false
+GEOMETRY:center,center
+MAP
+.L......L.LLL.......LL....
+.LLL.......L......LL......
+LL.LL.............L.LL....
+..........................
+......................LL..
+......................LLL.
+LL........................
+.LL.......................
+.LL................LL.L...
+..LL.....L.LL.......LLL...
+.........LLL.........L....
+ENDMAP
+# Dungeon Description
+REGION:(00,00,25,10),unlit,"ordinary"
+# Stairs
+STAIR:(20,05),up
+# Objects
+OBJECT:'/',"inertia control" ,(13,05),blessed,+10,"Extra Control"
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:random,random
+TRAP:random,random
+# KMH, balance patch 2 -- all quests now have an altar
+ALTAR:(13,05),noalign,altar
+# Random monsters.
+MONSTER:'\'',"Pinobot",(13,05)
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+MONSTER: random,random,random
+
+#
+#       The "fill" levels for the quest.
+#
+#       These levels are used to fill out any levels not occupied by specific
+#       levels as defined above. "filla" is the upper filler, between the
+#       start and locate levels, and "fillb" the lower between the locate
+#       and goal levels.
+#
+
+LEVEL: "For-fila"
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+
+RANDOM_CORRIDORS
+
+LEVEL: "For-filb"
+#
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: random, random, random, hostile
+
+ROOM: "randomroom" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random,random,random
+MONSTER: random, random, random, hostile
+
+ROOM: "randomroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+OBJECT: random,random,random
+MONSTER: random, random, random, hostile
+
+ROOM: "ordinary" , random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+MONSTER: random, random, random, hostile
+
+ROOM: "randomroom" , random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+
+ROOM: "randomroom" , random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+
+RANDOM_CORRIDORS
+

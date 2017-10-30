@@ -1296,6 +1296,7 @@ have_rmbstone()
 		}
 
 	if (u.nastinator01) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 1) return TRUE;
 	return(FALSE);
 }
 
@@ -1309,6 +1310,7 @@ have_displaystone()
 			return(TRUE);
 		}
 	if (u.nastinator02) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 2) return TRUE;
 	return(FALSE);
 }
 
@@ -1322,6 +1324,7 @@ have_yellowspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator03) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 1) return TRUE;
 	return(FALSE);
 }
 
@@ -1348,6 +1351,7 @@ have_autodestructstone()
 			return(TRUE);
 		}
 	if (u.nastinator05) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 2) return TRUE;
 	return(FALSE);
 }
 
@@ -1361,6 +1365,7 @@ have_memorylossstone()
 			return(TRUE);
 		}
 	if (u.nastinator06) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 3) return TRUE;
 	return(FALSE);
 }
 
@@ -1374,6 +1379,7 @@ have_inventorylossstone()
 			return(TRUE);
 		}
 	if (u.nastinator07) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 1) return TRUE;
 	return(FALSE);
 }
 
@@ -1413,6 +1419,7 @@ have_speedbugstone()
 			return(TRUE);
 		}
 	if (u.nastinator10) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 1) return TRUE;
 	return(FALSE);
 }
 
@@ -1452,6 +1459,7 @@ have_unidentifystone()
 			return(TRUE);
 		}
 	if (u.nastinator13) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 1) return TRUE;
 	return(FALSE);
 }
 
@@ -1491,6 +1499,7 @@ have_shadesofgreystone()
 			return(TRUE);
 		}
 	if (u.nastinator16) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 1) return TRUE;
 	return(FALSE);
 }
 
@@ -1530,6 +1539,7 @@ have_difficultystone()
 			return(TRUE);
 		}
 	if (u.nastinator19) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 1) return TRUE;
 	return(FALSE);
 }
 
@@ -1582,6 +1592,7 @@ have_rotthirteenstone()
 			return(TRUE);
 		}
 	if (u.nastinator23) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 2) return TRUE;
 	return(FALSE);
 }
 
@@ -1634,6 +1645,9 @@ have_dstwstone()
 			return(TRUE);
 		}
 	if (u.nastinator27) return TRUE;
+
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 1) return TRUE;
+
 	return(FALSE);
 }
 
@@ -1647,6 +1661,7 @@ have_amnesiastone()
 			return(TRUE);
 		}
 	if (u.nastinator28) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 2) return TRUE;
 	return(FALSE);
 }
 
@@ -1660,6 +1675,7 @@ have_bigscriptstone()
 			return(TRUE);
 		}
 	if (u.nastinator29) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 4) return TRUE;
 	return(FALSE);
 }
 
@@ -1686,6 +1702,7 @@ have_mapstone()
 			return(TRUE);
 		}
 	if (u.nastinator31) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 3) return TRUE;
 	return(FALSE);
 }
 
@@ -1699,6 +1716,7 @@ have_techniquestone()
 			return(TRUE);
 		}
 	if (u.nastinator32) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 2) return TRUE;
 	return(FALSE);
 }
 
@@ -1712,6 +1730,7 @@ have_disenchantmentstone()
 			return(TRUE);
 		}
 	if (u.nastinator33) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 3) return TRUE;
 	return(FALSE);
 }
 
@@ -1725,6 +1744,7 @@ have_verisiertstone()
 			return(TRUE);
 		}
 	if (u.nastinator34) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 2) return TRUE;
 	return(FALSE);
 }
 
@@ -1738,6 +1758,7 @@ have_chaosterrainstone()
 			return(TRUE);
 		}
 	if (u.nastinator35) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 2) return TRUE;
 	return(FALSE);
 }
 
@@ -1764,6 +1785,7 @@ have_engravingstone()
 			return(TRUE);
 		}
 	if (u.nastinator37) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 3) return TRUE;
 	return(FALSE);
 }
 
@@ -1777,6 +1799,7 @@ have_magicdevicestone()
 			return(TRUE);
 		}
 	if (u.nastinator38) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 4) return TRUE;
 	return(FALSE);
 }
 
@@ -1790,6 +1813,7 @@ have_bookstone()
 			return(TRUE);
 		}
 	if (u.nastinator39) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 5) return TRUE;
 	return(FALSE);
 }
 
@@ -1803,6 +1827,7 @@ have_levelstone()
 			return(TRUE);
 		}
 	if (u.nastinator40) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 4) return TRUE;
 	return(FALSE);
 }
 
@@ -1816,6 +1841,7 @@ have_quizstone()
 			return(TRUE);
 		}
 	if (u.nastinator41) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 4) return TRUE;
 	return(FALSE);
 }
 
@@ -1829,6 +1855,7 @@ have_statusstone()
 			return(TRUE);
 		}
 	if (u.nastinator42) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 1) return TRUE;
 	return(FALSE);
 }
 
@@ -1842,6 +1869,7 @@ have_alignmentstone()
 			return(TRUE);
 		}
 	if (u.nastinator43) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 1) return TRUE;
 	return(FALSE);
 }
 
@@ -1868,6 +1896,7 @@ have_uninformationstone()
 			return(TRUE);
 		}
 	if (u.nastinator45) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 2) return TRUE;
 	return(FALSE);
 }
 
@@ -1881,6 +1910,7 @@ have_captchastone()
 			return(TRUE);
 		}
 	if (u.nastinator46) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 3) return TRUE;
 	return(FALSE);
 }
 
@@ -1920,6 +1950,7 @@ have_intrinsiclossstone()
 			return(TRUE);
 		}
 	if (u.nastinator49) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 1) return TRUE;
 	return(FALSE);
 }
 
@@ -1933,6 +1964,7 @@ have_bloodlossstone()
 			return(TRUE);
 		}
 	if (u.nastinator50) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 3) return TRUE;
 	return(FALSE);
 }
 
@@ -1972,6 +2004,7 @@ have_vulnerabilitystone()
 			return(TRUE);
 		}
 	if (u.nastinator53) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 2) return TRUE;
 	return(FALSE);
 }
 
@@ -2024,6 +2057,7 @@ have_noreturnstone()
 			return(TRUE);
 		}
 	if (u.nastinator57) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 3) return TRUE;
 	return(FALSE);
 }
 
@@ -2141,6 +2175,7 @@ have_weaksightstone()
 			return(TRUE);
 		}
 	if (u.nastinator66) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 5) return TRUE;
 	return(FALSE);
 }
 
@@ -2167,6 +2202,7 @@ have_nonsacredstone()
 			return(TRUE);
 		}
 	if (u.nastinator68) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 3) return TRUE;
 	return(FALSE);
 }
 
@@ -2180,6 +2216,7 @@ have_starvationstone()
 			return(TRUE);
 		}
 	if (u.nastinator69) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 2) return TRUE;
 	return(FALSE);
 }
 
@@ -2206,6 +2243,7 @@ have_loweffectstone()
 			return(TRUE);
 		}
 	if (u.nastinator71) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 6) return TRUE;
 	return(FALSE);
 }
 
@@ -2219,6 +2257,7 @@ have_invisostone()
 			return(TRUE);
 		}
 	if (u.nastinator72) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 5) return TRUE;
 	return(FALSE);
 }
 
@@ -2232,6 +2271,7 @@ have_ghostlystone()
 			return(TRUE);
 		}
 	if (u.nastinator73) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 4) return TRUE;
 	return(FALSE);
 }
 
@@ -2271,6 +2311,7 @@ have_directionswapstone()
 			return(TRUE);
 		}
 	if (u.nastinator76) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 3) return TRUE;
 	return(FALSE);
 }
 
@@ -2297,6 +2338,7 @@ have_dropcursestone()
 			return(TRUE);
 		}
 	if (u.nastinator78) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 4) return TRUE;
 	return(FALSE);
 }
 
@@ -2388,6 +2430,7 @@ have_wallstone()
 			return(TRUE);
 		}
 	if (u.nastinator85) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 6) return TRUE;
 	return(FALSE);
 }
 
@@ -2414,6 +2457,7 @@ have_interfacescrewstone()
 			return(TRUE);
 		}
 	if (u.nastinator87) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 4) return TRUE;
 	return(FALSE);
 }
 
@@ -2427,6 +2471,7 @@ have_bossfightstone()
 			return(TRUE);
 		}
 	if (u.nastinator88) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 3) return TRUE;
 	return(FALSE);
 }
 
@@ -2440,6 +2485,7 @@ have_entirelevelstone()
 			return(TRUE);
 		}
 	if (u.nastinator89) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 4) return TRUE;
 	return(FALSE);
 }
 
@@ -2466,6 +2512,7 @@ have_autocursestone()
 			return(TRUE);
 		}
 	if (u.nastinator91) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 4) return TRUE;
 	return(FALSE);
 }
 
@@ -2479,6 +2526,7 @@ have_highlevelstone()
 			return(TRUE);
 		}
 	if (u.nastinator92) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 5) return TRUE;
 	return(FALSE);
 }
 
@@ -2505,6 +2553,7 @@ have_soundeffectstone()
 			return(TRUE);
 		}
 	if (u.nastinator94) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 5) return TRUE;
 	return(FALSE);
 }
 
@@ -2544,6 +2593,7 @@ have_monsterspeedstone()
 			return(TRUE);
 		}
 	if (u.nastinator97) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 5) return TRUE;
 	return(FALSE);
 }
 
@@ -2557,6 +2607,7 @@ have_scalingstone()
 			return(TRUE);
 		}
 	if (u.nastinator98) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 6) return TRUE;
 	return(FALSE);
 }
 
@@ -2570,6 +2621,7 @@ have_inimicalstone()
 			return(TRUE);
 		}
 	if (u.nastinator99) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 4) return TRUE;
 	return(FALSE);
 }
 
@@ -2583,6 +2635,7 @@ have_whitespellstone()
 			return(TRUE);
 		}
 	if (u.nastinator100) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 2) return TRUE;
 	return(FALSE);
 }
 
@@ -2596,6 +2649,7 @@ have_greyoutstone()
 			return(TRUE);
 		}
 	if (u.nastinator101) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 3) return TRUE;
 	return(FALSE);
 }
 
@@ -2609,6 +2663,7 @@ have_quasarstone()
 			return(TRUE);
 		}
 	if (u.nastinator102) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 5) return TRUE;
 	return(FALSE);
 }
 
@@ -2713,6 +2768,7 @@ have_secretattackstone()
 			return(TRUE);
 		}
 	if (u.nastinator110) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 5) return TRUE;
 	return(FALSE);
 }
 
@@ -2739,6 +2795,7 @@ have_covetousstone()
 			return(TRUE);
 		}
 	if (u.nastinator112) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 5) return TRUE;
 	return(FALSE);
 }
 
@@ -2752,6 +2809,7 @@ have_nonseeingstone()
 			return(TRUE);
 		}
 	if (u.nastinator113) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 5) return TRUE;
 	return(FALSE);
 }
 
@@ -2830,6 +2888,7 @@ have_grayoutstone()
 			return(TRUE);
 		}
 	if (u.nastinator119) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 1) return TRUE;
 	return(FALSE);
 }
 
@@ -2843,6 +2902,7 @@ have_graycenterstone()
 			return(TRUE);
 		}
 	if (u.nastinator120) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 2) return TRUE;
 	return(FALSE);
 }
 
@@ -2856,6 +2916,7 @@ have_checkerboardstone()
 			return(TRUE);
 		}
 	if (u.nastinator121) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 3) return TRUE;
 	return(FALSE);
 }
 
@@ -2869,6 +2930,7 @@ have_clockwisestone()
 			return(TRUE);
 		}
 	if (u.nastinator122) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 6) return TRUE;
 	return(FALSE);
 }
 
@@ -2882,6 +2944,7 @@ have_counterclockwisestone()
 			return(TRUE);
 		}
 	if (u.nastinator123) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 7) return TRUE;
 	return(FALSE);
 }
 
@@ -2907,6 +2970,7 @@ have_blesscursestone()
 		if(otmp->otyp == BLESSCURSE_STONE)
 			return(TRUE);
 		}
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 6) return TRUE;
 	if (u.nastinator125) return TRUE;
 	return(FALSE);
 }
@@ -2947,6 +3011,7 @@ have_trashstone()
 			return(TRUE);
 		}
 	if (u.nastinator128) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 6) return TRUE;
 	return(FALSE);
 }
 
@@ -2986,6 +3051,7 @@ have_flickerstripstone()
 			return(TRUE);
 		}
 	if (u.nastinator131) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 6) return TRUE;
 	return(FALSE);
 }
 
@@ -3012,6 +3078,7 @@ have_hyperbluestone()
 			return(TRUE);
 		}
 	if (u.nastinator133) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 6) return TRUE;
 	return(FALSE);
 }
 
@@ -3051,6 +3118,7 @@ have_fleecestone()
 			return(TRUE);
 		}
 	if (u.nastinator136) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 7) return TRUE;
 	return(FALSE);
 }
 
@@ -3194,6 +3262,7 @@ have_starlitskystone()
 			return(TRUE);
 		}
 	if (u.nastinator147) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 5) return TRUE;
 	return(FALSE);
 }
 
@@ -3207,6 +3276,7 @@ have_trapknowledgestone()
 			return(TRUE);
 		}
 	if (u.nastinator148) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 4) return TRUE;
 	return(FALSE);
 }
 
@@ -3233,6 +3303,7 @@ have_pinkspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator150) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 9) return TRUE;
 	return(FALSE);
 }
 
@@ -3246,6 +3317,7 @@ have_greenspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator151) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 5) return TRUE;
 	return(FALSE);
 }
 
@@ -3259,6 +3331,7 @@ have_evcstone()
 			return(TRUE);
 		}
 	if (u.nastinator152) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 6) return TRUE;
 	return(FALSE);
 }
 
@@ -3272,6 +3345,7 @@ have_underlaidstone()
 			return(TRUE);
 		}
 	if (u.nastinator153) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 7) return TRUE;
 	return(FALSE);
 }
 
@@ -3324,6 +3398,7 @@ have_blackspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator157) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 7) return TRUE;
 	return(FALSE);
 }
 
@@ -3337,6 +3412,7 @@ have_cyanspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator158) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 8) return TRUE;
 	return(FALSE);
 }
 
@@ -3363,6 +3439,7 @@ have_bluespellstone()
 			return(TRUE);
 		}
 	if (u.nastinator160) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 4) return TRUE;
 	return(FALSE);
 }
 
@@ -3389,6 +3466,7 @@ have_redspellstone()
 			return(TRUE);
 		}
 	if (u.nastinator162) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 6) return TRUE;
 	return(FALSE);
 }
 
@@ -3415,6 +3493,7 @@ have_elongatedstone()
 			return(TRUE);
 		}
 	if (u.nastinator164) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 7) return TRUE;
 	return(FALSE);
 }
 
@@ -3454,6 +3533,7 @@ have_meleeprefixstone()
 			return(TRUE);
 		}
 	if (u.nastinator167) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 8) return TRUE;
 	return(FALSE);
 }
 
@@ -3480,6 +3560,7 @@ have_unfairattackstone()
 			return(TRUE);
 		}
 	if (u.nastinator169) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 8) return TRUE;
 	return(FALSE);
 }
 
@@ -14591,6 +14672,16 @@ struct obj *obj;
 					pline("Artifact specs: prevents your potions from being destroyed by cold and also gives cold resistance, increases the effect of healing potions and spells, but you cannot tame new pets and existing ones can spontaneously rebel. Lawful."); break;
 				case ART_ELONA_S_SNAIL_TRAIL:
 					pline("Artifact specs: Wearing it as a snail will give +10 constitution and make you very fast, but if you're not a snail, it slows you down to half speed instead."); break;
+				case ART_GENDER_INSPECIFIC_WHIP:
+					pline("Artifact specs: +8 to-hit and +20 damage to monsters that are either always male or always female, feminist quest artifact."); break;
+				case ART_EXTRA_CONTROL:
+					pline("Artifact specs: never explodes when recharged, form changer quest artifact."); break;
+				case ART_METEORIC_AC:
+					pline("Artifact specs: 15 extra points of AC when worn, gang scholar quest artifact."); break;
+				case ART_NUCLEAR_SPEAR:
+					pline("Artifact specs: +14 damage to fire-susceptible monsters, can be invoked for dragon breath, nuclear physicist quest artifact."); break;
+				case ART_SWORD_OF_GILGAMESH:
+					pline("Artifact specs: warning and reflection when wielded, +5 to-hit and +10 damage, tracer quest artifact."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -1013,7 +1013,7 @@ int curse_bless;
 	    n = (int)obj->recharged;
 	    if (n > 0 && (obj->otyp == WAN_WISHING || obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT || obj->otyp == WAN_GAIN_LEVEL || obj->otyp == WAN_INCREASE_MAX_HITPOINTS ||
 		/* no unlimited recharging of wands of charging --Amy */
-		    ((n * n * n > rn2(7*7*7)) && !rn2( Role_if(PM_WANDKEEPER) ? 10 : 2) ))) {	/* recharge_limit */
+		    ((n * n * n > rn2(7*7*7) && !(obj->oartifact == ART_EXTRA_CONTROL) ) && !rn2( Role_if(PM_WANDKEEPER) ? 10 : 2) ))) {	/* recharge_limit */
 		Your("%s vibrates violently, and explodes!",xname(obj));
 		wand_explode(obj, FALSE);
 		return;
@@ -6115,7 +6115,7 @@ newbossC:
 		} else {
 			al = u.ualign.type;
 		}
-		pline("Pronouncing arcane formulas, you consecrate the altar to %s.",(al == A_NONE) ? "Moloch" : align_gname(al));
+		pline("Pronouncing arcane formulas, you consecrate the altar to %s.",(al == A_NONE) ? (Role_if(PM_GANG_SCHOLAR) ? "Anna" : "Moloch") : align_gname(al));
 		levl[u.ux][u.uy].typ = ALTAR;
 		levl[u.ux][u.uy].altarmask = Align2amask(al);
 		x = (al == ual) ? 1 : ((al == A_NONE) ? -3 : -1);

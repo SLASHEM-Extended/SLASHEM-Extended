@@ -344,6 +344,13 @@ const struct innate {
 	kni_abil[] = { {	 7, &(HFast), "quick", "slow" },
 		     {	 0, 0, 0, 0 } },
 
+	nuc_abil[] = { {	 1, &(HCont_resist), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	for_abil[] = { {	 1, &(HPolymorph_control), "", "" },
+		       {   5, &(HPolymorph), "polymorphic", "form-stable" },
+		     {	 0, 0, 0, 0 } },
+
 	war_abil[] = { {	 7, &(HFast), "quick", "slow" },
 		     {	 0, 0, 0, 0 } },
 
@@ -1503,6 +1510,7 @@ int oldlevel, newlevel;
 	case PM_GEEK:	abil = gee_abil;	break;
 	case PM_GRADUATE:	abil = gra_abil;	break;
 	case PM_POKEMON:	abil = pok_abil;	break;
+	case PM_NUCLEAR_PHYSICIST:	abil = nuc_abil;	break;
 	case PM_HEALER:         abil = hea_abil;	break;
 	case PM_ELECTRIC_MAGE:	abil = ele_abil;	break;
 	case PM_POISON_MAGE:	abil = psn_abil;	break;
@@ -1513,6 +1521,7 @@ int oldlevel, newlevel;
 	case PM_JEDI:		abil = jed_abil;	break;
 	case PM_KNIGHT:         abil = kni_abil;	break;
 	case PM_WARRIOR:         abil = war_abil;	break;
+	case PM_FORM_CHANGER:         abil = for_abil;	break;
 	case PM_AUGURER:         abil = aug_abil;	break;
 	case PM_ARTIST:         abil = art_abil;	break;
 	case PM_OTAKU:         abil = ota_abil;	break;

@@ -1470,6 +1470,7 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 		$(DAT)\tourist.des  $(DAT)\slayer.des   $(DAT)\noble.des 	$(DAT)\valkyrie.des \
 		$(DAT)\electric.des  $(DAT)\poison.des  $(DAT)\courier.des   $(DAT)\cheval.des 	$(DAT)\trans.des \
 		$(DAT)\elf.des  $(DAT)\cyborg.des   $(DAT)\gangster.des   $(DAT)\deatheat.des   $(DAT)\transs.des \
+		$(DAT)\tracer.des  $(DAT)\feminist.des   $(DAT)\nuclear.des   $(DAT)\scholar.des   $(DAT)\form.des \
 		$(DAT)\wizard.des   $(DAT)\sheol.des   $(DAT)\yeoman.des   $(DAT)\frnknstn.des \
 		$(DAT)\forge.des    $(DAT)\hitch.des   $(DAT)\compu.des    $(DAT)\key.des \
 		$(DAT)\occult.des    $(DAT)\element.des   $(DAT)\chaos.des    $(DAT)\wildtal.des \
@@ -1534,6 +1535,12 @@ sp_lev.tag:     utility.tag         $(DAT)\beholder.des $(DAT)\gradu.des $(DAT)\
 	lev_comp $(DDAT)/mahou.des
 	lev_comp $(DDAT)/kwests.des
 	lev_comp $(DDAT)/mazes.des
+
+	lev_comp $(DDAT)/tracer.des
+	lev_comp $(DDAT)/feminist.des
+	lev_comp $(DDAT)/nuclear.des
+	lev_comp $(DDAT)/form.des
+	lev_comp $(DDAT)/scholar.des
 
 	lev_comp $(DDAT)/bard.des
 	lev_comp $(DDAT)/amazon.des

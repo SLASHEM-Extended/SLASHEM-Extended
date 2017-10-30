@@ -48,6 +48,7 @@ static void god_gives_benefit(ALIGNTYP_P);
  *	Moloch is unaligned.
  */
 static const char	*Moloch = "Moloch";
+static const char	*ScholarMoloch = "_Anna";
 
 static const char *godvoices[] = {
     "booms out",
@@ -2200,7 +2201,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 	    /* The player can gain an artifact */
 	    /* The chance goes down as the number of artifacts goes up */
 	    if (u.ulevel > 2 && u.uluck >= 0 &&
-		!rn2(10 + (5 * u.ugifts) + (nartifacts))) { /* modified chance --Amy */
+		!rn2(Role_if(PM_GANG_SCHOLAR) ? (2 + (u.ugifts) + (nartifacts)) : (10 + (5 * u.ugifts) + (nartifacts)))) { /* modified chance --Amy */
 		otmp = mk_artifact((struct obj *)0, a_align(u.ux,u.uy));
 		if (otmp) {
 		    if (otmp->spe < 0) otmp->spe = 0;
@@ -2338,6 +2339,22 @@ int
 dopray()
 {
     /* Confirm accidental slips of Alt-P */
+
+    if (Role_if(PM_GANG_SCHOLAR) && u.scholarturns < moves) {
+
+	u.scholarturns = moves + 1000;
+
+	if (can_pray(FALSE) && !u.ugangr) godvoice(u.ualign.type, "Ah yes, my scholar, pray to me and I will lend thee my helping hand!");
+	else {
+		if (u.ugangr) godvoice(u.ualign.type, "Thou hast angered me before. I expect thee to make a valuable sacrifice to me first before thou mayst pray again.");
+		if (u.ublesscnt > 0) godvoice(u.ualign.type, "Thou mayst not pray yet!");
+		if ((int)Luck < 0) godvoice(u.ualign.type, "Thou art unlucky! I cannot help thee now!");
+		if (u.ualign.record < 0) godvoice(u.ualign.type, "Thou must not pray to me, for thou hath sinned!");
+		if (Inhell || flags.gehenna) godvoice(u.ualign.type, "My scholar, I cannot help thee in the Under World!");
+	}
+
+    }
+
     if (flags.prayconfirm)
 	if (yn("Are you sure you want to pray?") == 'n')
 	    return 0;
@@ -2643,7 +2660,7 @@ aligntyp alignment;
 	     case 2:	gnam = roles[which].cgod; break;
 	     default:	gnam = 0; break;		/* lint suppression */
 	    }
-	    if (!gnam) gnam = Moloch;
+	    if (!gnam) gnam = Role_if(PM_GANG_SCHOLAR) ? ScholarMoloch : Moloch;
 	    if (*gnam == '_') ++gnam;
 	    return gnam;
 	}
@@ -2651,7 +2668,7 @@ aligntyp alignment;
 	if (isheretic || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_TRANSSYLVANIAN) || Role_if(PM_PRIEST) || Role_if(PM_MYSTIC) || Role_if(PM_SHAPESHIFTER) || Role_if(PM_GUNNER) || Role_if(PM_WILD_TALENT) || Role_if(PM_ERDRICK) || Role_if(PM_ANACHRONIST) ) {
 
     switch (alignment) {
-     case A_NONE:	gnam = Moloch; break;
+     case A_NONE:	gnam = Role_if(PM_GANG_SCHOLAR) ? ScholarMoloch : Moloch; break;
      case A_LAWFUL:	gnam = u.hereticlgod; break;
      case A_NEUTRAL:	gnam = u.hereticngod; break;
      case A_CHAOTIC:	gnam = u.hereticcgod; break;
@@ -2662,7 +2679,7 @@ aligntyp alignment;
 	} else {
 
     switch (alignment) {
-     case A_NONE:	gnam = Moloch; break;
+     case A_NONE:	gnam = Role_if(PM_GANG_SCHOLAR) ? ScholarMoloch : Moloch; break;
      case A_LAWFUL:	gnam = urole.lgod; break;
      case A_NEUTRAL:	gnam = urole.ngod; break;
      case A_CHAOTIC:	gnam = urole.cgod; break;
@@ -2694,7 +2711,7 @@ aligntyp alignment;
      case 2:	gnam = roles[which].cgod; break;
      default:	gnam = 0; break;		/* lint suppression */
     }
-    if (!gnam) gnam = Moloch;
+    if (!gnam) gnam = Role_if(PM_GANG_SCHOLAR) ? ScholarMoloch : Moloch;
     if (*gnam == '_') ++gnam;
     return gnam;
 }

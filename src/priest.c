@@ -371,6 +371,7 @@ register int roomno;
 		if(sanctum && Is_sanctum(&u.uz)) {
 		    if(priest->mpeaceful) {	/* never the case in this game --Amy */
 			msg1 = "Infidel, you have entered Moloch's Sanctum!";
+			if (Role_if(PM_GANG_SCHOLAR)) msg1 = "Infidel, you have entered Anna's Sanctum!";
 			msg2 = "Be gone!";
 			priest->mpeaceful = 0;
 			set_malign(priest);
@@ -378,6 +379,7 @@ register int roomno;
 			if (rn2(2)) msg1 = "You desecrate this place by your presence!";
 			else {
 			msg1 = "Infidel, you have entered Moloch's Sanctum!";
+			if (Role_if(PM_GANG_SCHOLAR)) msg1 = "Infidel, you have entered Anna's Sanctum!";
 			msg2 = "Be gone!";
 			}
 			}

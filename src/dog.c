@@ -242,6 +242,9 @@ makedog()
 
 	if (!Role_if(PM_KURWA) && (preferred_pet == 'n')) return((struct monst *) 0);
 
+	/* Gang scholars are supposed to start without a pet. However, every once in a blue moon they do get one --Amy */
+	if (Role_if(PM_GANG_SCHOLAR) && rn2(100)) return((struct monst *) 0);
+
 	pettype = pet_type();
 
 	/* In Soviet Russia, people don't like exotic pets. Even interesting ones like Green-elves or animated wedge sandals they despise for some reason, and want them to be "normalized" into being dogs or cats. Of course, for other races there's no such communist normalization, so they will get their actual pets. --Amy */
@@ -297,9 +300,12 @@ makedog()
 
 	if (pettype == PM_AGGRESSIVE_LICHEN) petname = "Sessilium";
 	if (pettype == PM_PILE_OF_COPPER_COINS) petname = "Counterfeit";
+	if (pettype == PM_BLOCK_HEELED_GIRL) petname = "Dora";
 
 	if (pettype == PM_GRIMER) petname = "BADEB";
 	if (pettype == PM_DARK_NIGHTMARE) petname = "Opel Manta";
+	if (pettype == PM_SUPERSCHOOL_SPEAKER) petname = "Walt";
+	if (pettype == PM_BRAIN_EATING_GHOUL) petname = "Barnotis";
 
 	if (pettype == PM_VENOM_FUNGUS) petname = "This Is A BioHazard";
 	if (pettype == PM_MARTTI_IHRASAARI) petname = "Martti Ihrasaari";
@@ -321,6 +327,7 @@ makedog()
 	if (pettype == PM_VALKYRIE) petname = "Rue";	/* hunger games */
 	if (pettype == PM_PLATYPUS) petname = "Donald Duck";
 	if (pettype == PM_ORDINATOR) petname = "Andragil";
+	if (pettype == PM_ROTHE) petname = "Rambo";
 
 	if (pettype == PM_FLOATING_EYE) petname = "Gazing Beholder Orb";
 
@@ -1108,7 +1115,7 @@ boolean guaranteed;
 		return((struct monst *)0);
 	}
 
-	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || have_hatestone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) {
+	if (u.uprops[HATE_TRAP_EFFECT].extrinsic || HateTrapEffect || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || have_hatestone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) || Role_if(PM_GANG_SCHOLAR) ) {
         	pline("%s hates you too much!", Monnam(mtmp));
 		return((struct monst *)0);
 	}

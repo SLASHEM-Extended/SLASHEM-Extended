@@ -4364,6 +4364,57 @@ const struct def_skill *class_skill;
 		P_MAX_SKILL(skilltochange) = P_GRAND_MASTER;
 	}
 
+	if (Role_if(PM_TRACER)) {
+		register int skilltochange = rnd(P_LAST_WEAPON);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_BASIC;
+		skilltochange = rnd(P_LAST_WEAPON);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_BASIC;
+		skilltochange = rnd(P_LAST_WEAPON);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_BASIC;
+		skilltochange = rnd(P_LAST_WEAPON);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_SKILLED;
+		skilltochange = rnd(P_LAST_WEAPON);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_SKILLED;
+		skilltochange = rnd(P_LAST_WEAPON);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_SKILLED;
+		skilltochange = rnd(P_LAST_WEAPON);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_EXPERT;
+		skilltochange = rnd(P_LAST_WEAPON);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_EXPERT;
+		skilltochange = rnd(P_LAST_WEAPON);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_EXPERT;
+
+		skilltochange = P_FIRST_SPELL + rn2((P_LAST_SPELL - P_FIRST_SPELL) + 1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_BASIC;
+		skilltochange = P_FIRST_SPELL + rn2((P_LAST_SPELL - P_FIRST_SPELL) + 1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_SKILLED;
+		skilltochange = P_FIRST_SPELL + rn2((P_LAST_SPELL - P_FIRST_SPELL) + 1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_EXPERT;
+
+		skilltochange = P_FIRST_H_TO_H + rn2((P_LAST_H_TO_H - P_FIRST_H_TO_H) + 1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_BASIC;
+		skilltochange = P_FIRST_H_TO_H + rn2((P_LAST_H_TO_H - P_FIRST_H_TO_H) + 1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_SKILLED;
+		skilltochange = P_FIRST_H_TO_H + rn2((P_LAST_H_TO_H - P_FIRST_H_TO_H) + 1);
+		unrestrict_weapon_skill(skilltochange);
+		P_MAX_SKILL(skilltochange) = P_EXPERT;
+
+	}
+
 	/* Batman obviously has legendary boomerang abilities --Amy */
 	if (Race_if(PM_BATMAN)) {
 		if (P_RESTRICTED(P_BOOMERANG)) {	

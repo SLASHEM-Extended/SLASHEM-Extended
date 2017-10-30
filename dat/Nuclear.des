@@ -1,0 +1,434 @@
+# Geek.des
+# The Geek quest
+# 03/19/94 by Sebastian Klein
+
+# --- start level ---
+
+MAZE: "Nuc-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY: center,center
+
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+MAP
+.........................................................yy...............UY
+.........................................................yy...............UY
+..........................|-------------------------|....yy...............UY
+...sss....................|.........................|....yy...............UY
+...sss....................|-------------+-----------|....yyy..............UY
+...sss....................hhhhhhhhhhhhhhhhhhhhhhhhhhh....yyy..............UY
+..........................hhhhhhhhhhhhhhhhhhhhhhhhhhh....yyy..............UY
+..........................hhhhhhhhhhhhhhhhhhhhhhhhhhh....yyy..............UY
+..........................|-------------------------|-|...yy..............UY
+..........................|.........................|.|...yy..............UY
+..........................|.........................|.|...yy..............UY
+..........................|.........................|.|...yy..............UY
+..........................|.........................+.+...yyy.............UY
+..........................|.........................|.|....yy.............UY
+..........................|.........................|.|....yy.............UY
+..........................|.........................|.|....yy.............UY
+..........................|-------------------------|-|...yyy.............UY
+..........................................................yy..............UY
+..........................................................yy..............UY
+..........................................................yy..............UY
+ENDMAP
+
+REGION:(00,00,75,19),lit,"ordinary"
+
+BRANCH:(60,18,60,18),(0,0,0,0)
+
+STAIR:(27,03),down
+
+DOOR:locked,(40,04)
+DOOR:locked,(54,12)
+DOOR:locked,(52,12)
+
+MONSTER:'@',"Thesci",(38,12)
+
+MONSTER:'@',"attendant",(37,11)
+MONSTER:'@',"attendant",(38,11)
+MONSTER:'@',"attendant",(39,11)
+MONSTER:'@',"attendant",(37,12)
+MONSTER:'@',"attendant",(39,12)
+MONSTER:'@',"attendant",(37,13)
+MONSTER:'@',"attendant",(38,13)
+MONSTER:'@',"attendant",(39,13)
+
+# "May the force be with you"
+MONSTER:'M',random,(27,03),hostile
+MONSTER:'a',random,(28,03),hostile
+MONSTER:'y',random,(29,03),hostile
+MONSTER:':',random,(30,03),hostile
+MONSTER:'t',random,(31,03),hostile
+MONSTER:'h',random,(32,03),hostile
+MONSTER:'e',random,(33,03),hostile
+MONSTER:':',random,(34,03),hostile
+MONSTER:'f',random,(35,03),hostile
+MONSTER:'o',random,(36,03),hostile
+MONSTER:'r',random,(37,03),hostile
+MONSTER:'c',random,(38,03),hostile
+MONSTER:'e',random,(39,03),hostile
+MONSTER:':',random,(40,03),hostile
+MONSTER:'b',random,(41,03),hostile
+MONSTER:'e',random,(42,03),hostile
+MONSTER:':',random,(43,03),hostile
+MONSTER:'w',random,(44,03),hostile
+MONSTER:'i',random,(45,03),hostile
+MONSTER:'t',random,(46,03),hostile
+MONSTER:'h',random,(47,03),hostile
+MONSTER:':',random,(48,03),hostile
+MONSTER:'y',random,(49,03),hostile
+MONSTER:'o',random,(50,03),hostile
+MONSTER:'u',random,(51,03),hostile
+
+# "WELCOME"
+MONSTER:'W',random,(53,09),hostile
+MONSTER:'E',random,(53,10),hostile
+MONSTER:'L',random,(53,11) ,hostile
+MONSTER:'C',random,(53,12),hostile
+MONSTER:'O',random,(53,12),hostile
+MONSTER:'M',random,(53,13),hostile
+MONSTER:'E',random,(53,14),hostile
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+# --- locate level ---
+
+# looks harmless but *IS* tough!!!
+
+MAZE: "Nuc-loca",' '
+FLAGS: hardfloor
+GEOMETRY: center,center
+
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+MAP
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRfggggggggggfRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRfggggggggggfRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRfggggggggggfRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+................................fggggggggggf................................
+.....--------------------------|fggggggggggf|--------------------------.....
+.....GGGGGGGGGGGGGGGGGGGGGGGG..|fggggggggggf|..yyyyyyyyyyyyyyyyyyyyyyyy.....
+...-------------------------|JJ|fggggggggggf|rr|-------------------------...
+...YYYYYYYYYYYYYYYYYYYYYYY..|JJ|fggggggggggf|rr|..OOOOOOOOOOOOOOOOOOOOOOO...
+.---------------------|--|MM|JJ|fggggggggggf|rr|nn|--|---------------------.
+......................|..|..|..|ffffffffffff|..|..|..|......................
+.---------------------|--|vv|ll|fggggggggggf|ii|dd|--|---------------------.
+...qqqqqqqqqqqqqqqqqqqqqqq..|ll|fggggggggggf|ii|..sssssssssssssssssssssss...
+...-------------------------|ll|fggggggggggf|ii|-------------------------...
+.....uuuuuuuuuuuuuuuuuuuuuuuu..|fggggggggggf|..XXXXXXXXXXXXXXXXXXXXXXXX.....
+.....--------------------------|fggggggggggf|--------------------------.....
+................................fggggggggggf................................
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRfggggggggggfRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRfggggggggggfRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRfggggggggggfRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRfggggggggggfRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+ENDMAP
+
+RANDOM_PLACES: (24,09), (27,09), (30,09), (45,09), (48,09), (51,09)
+
+REGION:(00,00,75,19),lit,"ordinary"
+
+# the niches 
+STAIR:place[0],down
+OBJECT:'"',"amulet of restful sleep",place[1]
+OBJECT:'"',"amulet of strangulation",place[2]
+MONSTER:'m',random,place[3], m_feature "staircase down"
+MONSTER:'m',random,place[4], m_feature "staircase down"
+TRAP:"polymorph",place[5]
+
+STAIR:random,up
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+MONSTER:random,random,random,hostile
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+# --- the goal level ---
+
+MAZE: "Nuc-goal", ' '
+GEOMETRY:center,center
+
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+MAP
+............................................................................
+.-------------------------------------------------------------------------|.
+....yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy|.
+....|-----------------------------------------------------------------|YYY|.
+....|GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG|YYY|.
+....|GGG|---------------------------------------------------------|GGG|YYY|.
+....|GGG|ggg+.....................................................|GGG|YYY|.
+....|GGG|ggg|.....................................................|GGG|YYY|.
+....|GGG|ggg|.....................................................|GGG|YYY|.
+....|GGG|ggg|........................\............................|GGG|YYY|.
+....|GGG|ggg|.....................................................|GGG|YYY|.
+....|GGG|ggg|.....................................................|GGG|YYY|.
+....|GGG|ggg|.....................................................|GGG|YYY|.
+....|GGG|ggg|-----------------------------------------------------|GGG|YYY|.
+....|hhh|gggGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG|YYY|.
+....|hhh|-------------------------------------------------------------|YYY|.
+....|hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhYYY|.
+....|---------------------------------------------------------------------|.
+............................................................................
+............................................................................
+ENDMAP
+
+REGION:(0,0,75,19),lit,"ordinary"
+
+REGION:(13,06,65,12),unlit,"nuclearchamber"
+
+STAIR:(75,19),up
+
+DOOR:locked,(12,06)
+
+# that's what's this all about :-)
+OBJECT:')',"orcish spear",(37,09),blessed,0,"Nuclear Spear"
+MONSTER:'@',"International Energy Commissioner",(37,09),hostile
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+# --- fill a ---
+
+LEVEL: "Nuc-fila"
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,up
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,down
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+
+RANDOM_CORRIDORS
+
+
+# --- fill b ---
+
+LEVEL: "Nuc-filb"
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,up
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+STAIR: random,down
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+ROOM: "ordinary", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+ROOM: "levelseventyroom", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+ROOM: "nuclearchamber", random, random, random, random
+OBJECT:random,random,random
+OBJECT:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+RANDOM_CORRIDORS

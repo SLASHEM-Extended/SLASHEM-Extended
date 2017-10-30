@@ -613,6 +613,11 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_SUPERMARKET_CASHIER:
 	    case PM_UNDEAD_SLAVE_MASTER:
 	    case PM_UNDEAD_MYSTIC:
+	    case PM_UNDEAD_FORM_CHANGER:
+	    case PM_UNDEAD_TRACER:
+	    case PM_UNDEAD_NUCLEAR_PHYSICIST:
+	    case PM_UNDEAD_GANG_SCHOLAR:
+	    case PM_UNDEAD_FEMINIST:
 	    case PM_UNDEAD_BLOODSEEKER:
 	    case PM_UNDEAD_LADIESMAN:
 	    case PM_UNDEAD_JESTER:
@@ -1117,6 +1122,15 @@ mcalcmove(mon)
 struct monst *mon;
 {
     int mmove = mon->data->mmove;
+
+	if (mon->data == &mons[PM_HUSSY_JILL] || mon->data == &mons[PM_VELCRO_BITCH] ) {
+	/* Hussy Jill is a dangerous quest nemesis. As long as you don't hurt her, she'll just stand in place...
+	 * but as soon as she loses as much as a single hit point, she'll completely 0wn your sorry butt :P --Amy */
+		if (mon->mhp == mon->mhpmax) {
+			mmove = 0;
+			return mmove;
+		}
+	}
 
 	if (mon->data == &mons[PM_HEFFER] || mon->data == &mons[PM_THE_SMITH] ) {
 	/* Hephaisto, also known as "The Armorer", speeds up whenever he takes damage. --Amy */

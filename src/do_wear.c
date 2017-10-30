@@ -4972,6 +4972,7 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_HARD_HAT_AREA) uac -= 5;
 	if (uarmh && uarmh->oartifact == ART_STEELSKULL_PROTECTOR) uac -= 3;
 	if (uarmh && uarmh->oartifact == ART_HELM_OF_THE_DARK_LORD) uac -= 5;
+	if (uarmh && uarmh->oartifact == ART_METEORIC_AC) uac -= 15;
 	if (uarmg && uarmg->oartifact == ART_MOLASS_TANK) uac -= 10;
 	if (uarmg && uarmg->oartifact == ART_TANKS_A_LOT) uac -= 5;
 	if (uarms && uarms->oartifact == ART_AEAEAEAEAEGIS) uac -= 10;

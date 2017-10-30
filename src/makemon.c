@@ -1684,6 +1684,76 @@ register struct monst *mtmp;
 
 		   break;
 
+		   case PM_FORM_CHANGER:
+		   case PM_UNDEAD_FORM_CHANGER:
+		     (void)mongets(mtmp, WAN_POLYMORPH);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+		   break;
+
+		   case PM_TRACER:
+		   case PM_UNDEAD_TRACER:
+		     (void)mongets(mtmp, SHORT_SWORD);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+
+		   break;
+
+		   case PM_GANG_SCHOLAR:
+		   case PM_UNDEAD_GANG_SCHOLAR:
+		     (void)mongets(mtmp, DAGGER);
+		     (void)mongets(mtmp, LEATHER_ARMOR);
+		     (void)mongets(mtmp, WAN_MAGIC_MISSILE);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+
+		   break;
+
+		   case PM_FEMINIST:
+		   case PM_UNDEAD_FEMINIST:
+		     (void)mongets(mtmp, HIGH_HEELED_SANDAL);
+		     (void)mongets(mtmp, WEDGE_SANDALS);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+
+		   break;
+
+		   case PM_NUCLEAR_PHYSICIST:
+		   case PM_UNDEAD_NUCLEAR_PHYSICIST:
+		     (void)mongets(mtmp, SPEAR);
+		     (void)mongets(mtmp, POT_RADIUM);
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+
+		   break;
+
 		   case PM_WARRIOR:
 		   case PM_UNDEAD_WARRIOR:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -15258,7 +15328,7 @@ uncommon(mndx)
 int mndx;
 {
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
-	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : u.aggravation ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Role_if(PM_TRANSSYLVANIAN) ) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : u.aggravation ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
@@ -15930,6 +16000,14 @@ loopback:
 		if (ct > 0 && (Race_if(PM_RODNEYAN) && dmgtype(ptr, AD_MINA) )) ct += 6;
 		if (ct > 0 && (Race_if(PM_SINNER) && dmgtype(ptr, AD_SIN) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_SPIRIT) && dmgtype(ptr, AD_AGGR) )) ct += 6;
+		if (ct > 0 && (Role_if(PM_FEMINIST) && is_male(ptr) )) ct += 2;
+		if (ct > 0 && (Role_if(PM_FEMINIST) && attacktype(ptr, AT_LASH) )) ct += 3;
+		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && (ptr->msound == MS_FART_NORMAL) )) ct += 20;
+		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && (ptr->msound == MS_FART_QUIET) )) ct += 20;
+		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && (ptr->msound == MS_FART_LOUD) )) ct += 20;
+		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && (ptr->msound == MS_STENCH) )) ct += 50;
+		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && is_jokemonster(ptr) )) ct += 100;
+		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && is_cowmonster(ptr) )) ct += 20;
 
 		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
 
@@ -16098,7 +16176,7 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
-	if (!rn2(u.aggravation ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) ) mask = (G_NOGEN) & ~spc;
+	if (!rn2(u.aggravation ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
 
 	int uncommontwo = 0;
 	int uncommonthree = 0;
@@ -16574,6 +16652,14 @@ int     spc;
 		if ((Race_if(PM_RODNEYAN) && dmgtype(&mons[last], AD_MINA) )) num += 6;
 		if ((Race_if(PM_SINNER) && dmgtype(&mons[last], AD_SIN) )) num += 2;
 		if ((Race_if(PM_SPIRIT) && dmgtype(&mons[last], AD_AGGR) )) num += 6;
+		if ((Role_if(PM_FEMINIST) && is_male(&mons[last]) )) num += 2;
+		if ((Role_if(PM_FEMINIST) && attacktype(&mons[last], AT_LASH) )) num += 3;
+		if ((Role_if(PM_GANG_SCHOLAR) && (mons[last].msound == MS_FART_NORMAL) )) num += 20;
+		if ((Role_if(PM_GANG_SCHOLAR) && (mons[last].msound == MS_FART_QUIET) )) num += 20;
+		if ((Role_if(PM_GANG_SCHOLAR) && (mons[last].msound == MS_FART_LOUD) )) num += 20;
+		if ((Role_if(PM_GANG_SCHOLAR) && (mons[last].msound == MS_STENCH) )) num += 50;
+		if ((Role_if(PM_GANG_SCHOLAR) && is_jokemonster(&mons[last]) )) num += 100;
+		if ((Role_if(PM_GANG_SCHOLAR) && is_cowmonster(&mons[last]) )) num += 20;
 		if (monster_with_trait(&mons[last], u.frequenttrait1)) num += u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[last], u.frequenttrait2)) num += u.freqtraitbonus2;
 		if (u.frequenttrait3 && monster_with_trait(&mons[last], u.frequenttrait3)) num += u.freqtraitbonus3;
@@ -16933,6 +17019,14 @@ int     spc;
 		if ((Race_if(PM_RODNEYAN) && dmgtype(&mons[first], AD_MINA) )) num -= 6;
 		if ((Race_if(PM_SINNER) && dmgtype(&mons[first], AD_SIN) )) num -= 2;
 		if ((Race_if(PM_SPIRIT) && dmgtype(&mons[first], AD_AGGR) )) num -= 6;
+		if ((Role_if(PM_FEMINIST) && is_male(&mons[first]) )) num -= 2;
+		if ((Role_if(PM_FEMINIST) && attacktype(&mons[first], AT_LASH) )) num -= 3;
+		if ((Role_if(PM_GANG_SCHOLAR) && (mons[first].msound == MS_FART_NORMAL) )) num -= 20;
+		if ((Role_if(PM_GANG_SCHOLAR) && (mons[first].msound == MS_FART_QUIET) )) num -= 20;
+		if ((Role_if(PM_GANG_SCHOLAR) && (mons[first].msound == MS_FART_LOUD) )) num -= 20;
+		if ((Role_if(PM_GANG_SCHOLAR) && (mons[first].msound == MS_STENCH) )) num -= 50;
+		if ((Role_if(PM_GANG_SCHOLAR) && is_jokemonster(&mons[first]) )) num -= 100;
+		if ((Role_if(PM_GANG_SCHOLAR) && is_cowmonster(&mons[first]) )) num -= 20;
 
 		if (monster_with_trait(&mons[first], u.frequenttrait1)) num -= u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[first], u.frequenttrait2)) num -= u.freqtraitbonus2;

@@ -78,6 +78,7 @@ moveloop()
 	int nastyitemchance;
 	coord cc;
     int cx,cy;
+	register struct obj *acqo;
 
     char buf[BUFSZ];
 	char ebuf[BUFSZ];
@@ -2725,6 +2726,43 @@ trapsdone:
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
+		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(Stealth ? 10000 : 2000)) {
+		/* feminist aggravation idea by bugsniper */
+
+			int aggroamount = rnd(6);
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			while (aggroamount) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+newbossF:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET || pm->msound == MS_STENCH ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossF;
+			}
+			if (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET || pm->msound == MS_STENCH) && rn2(50) ) {
+				attempts = 0;
+				goto newbossF;
+			}
+
+			if (pm) (void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+
+			} /* while (aggroamount) */
+
+			pline("Several angry females come out of a portal.");
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		}
+
 		if (RngeBossEncounters && !rn2(10000) ) {
 			int attempts = 0;
 			register struct permonst *ptrZ;
@@ -2845,6 +2883,41 @@ newbossA:
 			if (Upolyd) u.mhmax++;
 			Your("health increases, at the cost of nasty side effects.");
 			NastinessProblem += rnd(1000);
+
+		}
+
+		if (Role_if(PM_FEMINIST) && !rn2(5000)) {
+			bad_artifact_xtra();
+		}
+
+		if (Role_if(PM_TRACER) && !rn2(10000)) {
+
+			acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+			if (acqo) {
+			    dropy(acqo);
+				if (P_MAX_SKILL(get_obj_skill(acqo)) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(get_obj_skill(acqo));
+				} else if (P_MAX_SKILL(get_obj_skill(acqo)) == P_UNSKILLED) {
+					unrestrict_weapon_skill(get_obj_skill(acqo));
+					P_MAX_SKILL(get_obj_skill(acqo)) = P_BASIC;
+				} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(acqo)) == P_BASIC) {
+					P_MAX_SKILL(get_obj_skill(acqo)) = P_SKILLED;
+				} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(acqo)) == P_SKILLED) {
+					P_MAX_SKILL(get_obj_skill(acqo)) = P_EXPERT;
+				} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(acqo)) == P_EXPERT) {
+					P_MAX_SKILL(get_obj_skill(acqo)) = P_MASTER;
+				} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(acqo)) == P_MASTER) {
+					P_MAX_SKILL(get_obj_skill(acqo)) = P_GRAND_MASTER;
+				} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(acqo)) == P_GRAND_MASTER) {
+					P_MAX_SKILL(get_obj_skill(acqo)) = P_SUPREME_MASTER;
+				}
+
+			    discover_artifact(acqo->oartifact);
+
+				if (!u.ugifts) u.ugifts = 1;
+				pline("An artifact appeared beneath you!");
+
+			}
 
 		}
 
@@ -4761,6 +4834,21 @@ newbossB:
 		}
 
 		if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS && !rn2(1000) ) {
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, SHIT_TRAP, 0);
+					break;
+					}
+			}
+		}
+
+		if (Role_if(PM_GANG_SCHOLAR) && !rn2(500) ) {
 			int tryct = 0;
 			int x, y;
 
@@ -7722,6 +7810,8 @@ newgame()
 		flush_screen(1);
         if (Role_if(PM_CONVICT)) {
 		    com_pager(199);
+        } else if (Role_if(PM_GANG_SCHOLAR)) {
+		    com_pager(198);
         } else {
 		    com_pager(1);
         }
