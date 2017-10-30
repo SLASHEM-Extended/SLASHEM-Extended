@@ -4541,7 +4541,7 @@ hitmu(mtmp, mattk)
 			if (!dmg) break;
 			if (u.mh > 1 && u.mh > ((u.uac>0) ? dmg : dmg+u.uac) &&
 				   objects[otmp->otyp].oc_material == IRON &&
-					(u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING
+					(u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_DRUDDING || u.umonnum==PM_BLACK_DRUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING
 					|| u.umonnum==PM_BROWN_PUDDING || u.umonnum==PM_BLACK_PIERCER)) {
 			    /* This redundancy necessary because you have to
 			     * take the damage _before_ being cloned.
@@ -7979,7 +7979,7 @@ dopois:
 
 			if (u.mh > 1 && u.mh > ((u.uac>0) ? dmg : dmg+u.uac) &&
 				   objects[otmp->otyp].oc_material == IRON &&
-					(u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING
+					(u.umonnum==PM_BLACK_PUDDING || u.umonnum==PM_DRUDDING || u.umonnum==PM_BLACK_DRUDDING || u.umonnum==PM_BLACKSTEEL_PUDDING || u.umonnum==PM_BLOOD_PUDDING
 					|| u.umonnum==PM_BROWN_PUDDING || u.umonnum==PM_BLACK_PIERCER)) {
 			    /* This redundancy necessary because you have to
 			     * take the damage _before_ being cloned.

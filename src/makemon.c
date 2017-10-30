@@ -5988,6 +5988,14 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_SADISTIC_ASIAN_GIRL]) (void) mongets(mtmp, HUGGING_BOOT);
 		if (mtmp->data == &mons[PM_MUM]) (void) mongets(mtmp, SWEET_MOCASSINS);
 		if (mtmp->data == &mons[PM_FINGER_SMASHER]) (void) mongets(mtmp, SOFT_SNEAKERS);
+		if (mtmp->data == &mons[PM_DUNGEON_COLLAPSE]) {
+			(void) mongets(mtmp, SCR_LOCKOUT);
+			(void) mongets(mtmp, SCR_EARTH);
+		}
+		if (mtmp->data == &mons[PM_HIGH_HEEL_SPIRIT]) {
+			(void) mongets(mtmp, SEXY_LEATHER_PUMP);
+			(void) mongets(mtmp, COMBAT_STILETTOS);
+		}
 
 		break;
 
@@ -14498,6 +14506,7 @@ register int	mmflags;
 
 			if (mndx == PM_SHADOW_SHAPE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_TOP_SECRET_AGENT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_UNSEEN_GHOST) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
 		case S_QUADRUPED:
@@ -17316,6 +17325,8 @@ int type;
 		case PM_RUBBER_GOLEM: return 150;
 		case PM_BRASS_GOLEM: return 170;
 		case PM_ALLOY_GOLEM: return 180;
+		case PM_HOLY_WATER_GOLEM: return 200;
+		case PM_UNHOLY_WATER_GOLEM: return 200;
 		case PM_MIRROR_GOLEM: return 210;
 		case PM_TITANIUM_GOLEM: return 230;
 		case PM_DANCING_BLADE: return 230;
@@ -17359,6 +17370,8 @@ int type;
 		case PM_CANNON_GOLEM: return 400;
 		case PM_MISHAPEN_GOLEM: return 400;
 		case PM_FROST_GOLEM: return 400;
+		case PM_AQUA_REGIA_GOLEM: return 350;
+		case PM_PURPLE_CRYSTAL_GOLEM: return 750;
 
 		case PM_ANIMATED_COPPER_STATUE: return 237;
 		case PM_GREAT_PROJECTION_STATUE: return 237;
@@ -17383,6 +17396,7 @@ int type;
 		case PM_SPACE_TRANSPORT: return 199;
 		case PM_WEATWIND: return 199;
 		case PM_FLESH_GOLEM: return 120;
+		case PM_HUMAN_FLESH_GOLEM: return 120;
 		case PM_ANIMATED_SYNTHETIC_SANDAL: return 120;
 		case PM_BRAIN_GOLEM: return 120;
 		case PM_PETTY_BRAIN_GOLEM: return 120;

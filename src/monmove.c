@@ -1370,9 +1370,9 @@ register int after;
 #endif
 
 	/* teleport if that lies in our nature */
-	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
+	if( (ptr == &mons[PM_TENGU] || ptr == &mons[PM_TELEPORTER] || ptr == &mons[PM_EASTERN_TENGU] || ptr == &mons[PM_PHASING_TENGU] || ptr == &mons[PM_CHEERFUL_LEPRECHAUN] || ptr == &mons[PM_BLINK] || ptr == &mons[PM_VORPAL_BUNNY] || ptr == &mons[PM_KING_OF_PORN] || ptr == &mons[PM_PEARDUCK] || ptr == &mons[PM_SPOOPY_GHOST] || ptr == &mons[PM_ANNOYING_SLEX_GHOST] || ptr == &mons[PM_SPRING_WOLF] || ptr == &mons[PM_DIMENSIONAL_SHAMBLER] || ptr == &mons[PM_MAGNET_ELEMENTAL] || ptr == &mons[PM_PHASE_KNIGHT] || ptr == &mons[PM_TELEPORTING_DEMON] || ptr == &mons[PM_BEAMING_UFO_PART] || ptr == &mons[PM_BEAMER] || mtmp->egotype_teleportself) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp)) {
-	    if(mtmp->mhp < 7 || mtmp->mpeaceful || rn2(2))
+	    if(mtmp->mhp < 7 || (ptr == PM_SPOOPY_GHOST) || mtmp->mpeaceful || rn2(2))
 		(void) rloc(mtmp, FALSE);
 	    else
 		mnexto(mtmp);
@@ -1394,6 +1394,7 @@ not_special:
 	gy = mtmp->muy;
 	appr = mtmp->mflee ? -1 : 1;
 	if (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_PANCAKE_SPIRIT) mtmp->mconf = 1;
 	if (mtmp->mconf || (uarmh && !rn2(10) && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "inkcoat helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem pal'to chernil") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "siyoh palto dubulg'a") ) ) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (monsndx(ptr) == PM_DANCING_DRAGON) || (monsndx(ptr) == PM_NOTHING_CHECKER_WHO_IS_CONFUSED) || (monsndx(ptr) == PM_TREMBLING_POPLAR) || (u.uswallow && mtmp == u.ustuck))
 		appr = 0;
 	else {
@@ -1444,6 +1445,7 @@ not_special:
 	if (ptr == &mons[PM_ANCIENT_BIBLICAL_DRAGON]) appr = -1;
 	if (ptr == &mons[PM_BOGUXORN]) appr = -1;
 	if (ptr == &mons[PM_POOL_EDGE_SWIMMER]) appr = -1;
+	if (ptr == &mons[PM_SOCIAL_DISORDER]) appr = -1;
 
 	if ((!mtmp->mpeaceful || !rn2(10))
 #ifdef REINCARNATION

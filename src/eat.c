@@ -1734,6 +1734,7 @@ register int pm;
 	    case PM_HUGE_NEWT:
 	    case PM_EIGHT_FOOTED_SNAKE:
 	    case PM_NASTY_TURBO_CHICKEN:
+	    case PM_WINGED_KRAKEN_LICHATRICE:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 	      {int old_uen = u.uen;
 		if (rn2(3)) {
@@ -2468,6 +2469,7 @@ register int pm;
 	    case PM_SPEED_TROVE:
 	    case PM_MINI_CHICKATRICE:
 	    case PM_SPEEDOTRICE:
+	    case PM_UNCERTAINTY_DEMON:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		Your("velocity suddenly seems very uncertain!");
 		if (HFast & INTRINSIC) {
@@ -2670,6 +2672,7 @@ register int pm;
 	    case PM_UNSEXY_MASTER_MIND_FLAYER:
 	    case PM_ILLITHID:
 	    case PM_MIND_BEAMER:
+	    case PM_MINT_FLAYER:
 		case PM_COCKATRICE:
 		case PM_DISENTITRICE:
 		case PM_PETTY_COCKATRICE:
