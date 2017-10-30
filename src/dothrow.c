@@ -144,7 +144,8 @@ int thrown;
 		The(xname(obj)));
 		return(0);
 	}
-	if ((obj->oartifact == ART_MJOLLNIR && ACURR(A_STR) < STR19(25))
+	/* Since it's almost impossible to get 25 strength in slex, valkyries can simply throw Mjollnir at all times --Amy */
+	if ((obj->oartifact == ART_MJOLLNIR && !Role_if(PM_VALKYRIE) && ACURR(A_STR) < STR19(25))
 	   || (obj->otyp == BOULDER && !throws_rocks(youmonst.data))) {
 		pline("It's too heavy.");
 		return(1);
