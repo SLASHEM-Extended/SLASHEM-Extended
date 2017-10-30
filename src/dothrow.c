@@ -2188,6 +2188,10 @@ int thrown;
 
 		    if (otyp == DART_OF_DISINTEGRATION && rn2(10) ) broken = 1;
 
+			/* Due to segfaults and stuff when trying to make this work in other functions, I'm just deciding that
+			 * any thoroughly eroded stuff you throw will always be destroyed. --Amy */
+		    if (obj->oeroded == MAX_ERODE || obj->oeroded2 == MAX_ERODE) broken = 1;
+
 		    if (broken) {
 			if (*u.ushops)
 			    check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
