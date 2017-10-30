@@ -10459,6 +10459,18 @@ mineralize()
 		if (levl[x][y].typ == TREE && Role_if(PM_CAMPERSTRIKER) && !rn2(10) && Is_qlocate(&u.uz) )
 			makerandomtrap_at(x, y);
 
+		/* give a random, low, chance that any given square has a trap --Amy */
+
+		if (!(In_sokoban(&u.uz)) || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM)) {
+
+		    	if (!rn2(5000)) makerandomtrap_at(x, y);
+		    	if (ishaxor && !rn2(5000)) makerandomtrap_at(x, y);
+
+		    	if (ishomicider && !rn2(2000)) makerandomtrap_at(x, y);
+		    	if (Role_if(PM_GANG_SCHOLAR) && !rn2(2500)) makerandomtrap_at(x, y);
+
+		}
+
 		if (!ishomicider) {
 
 		/* Random sea monsters if there is water. --Amy */
