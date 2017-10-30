@@ -6794,6 +6794,11 @@ uchar aatyp;
 
 		break;
 
+	    case AD_DATA:
+
+		datadeleteattack();
+		break;
+
 	    case AD_MINA:
 
 		{

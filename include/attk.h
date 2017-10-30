@@ -234,6 +234,8 @@ extern char *attk_dname(Attk);
 
 #define AD_ENDS		118	/* placeholder */
 
+#define AD_DATA		235	/* data delete - probably one of the most evil attacks in the game */
+
 #define AD_MINA		236	/* monster identity nastiness - pick nasty trap effect based on the monster's m_id */
 
 #define AD_CAST		237	/* spellcasting, can select either AD_CLRC or AD_SPEL monster spell at random */

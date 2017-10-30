@@ -37,7 +37,6 @@ STATIC_DCL int in_or_out_menu(const char *,struct obj *, BOOLEAN_P, BOOLEAN_P);
 STATIC_DCL int container_at(int, int, BOOLEAN_P);
 STATIC_DCL boolean able_to_loot(int, int);
 STATIC_DCL boolean mon_beside(int, int);
-STATIC_DCL int dump_container(struct obj*, BOOLEAN_P);
 
 /* define for query_objlist() and autopickup() */
 #define FOLLOW(curr, flags) \

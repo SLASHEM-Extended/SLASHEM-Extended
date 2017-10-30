@@ -1737,6 +1737,7 @@ get_description_of_damage_type(uchar id)
 		case AD_MINA: return "identity-specific nastiness";
 		case AD_AGGR: return "aggravate monster";
 		case AD_CONT: return "contamination";
+		case AD_DATA: return "data delete";
 
 		case AD_ENDS: return "placeholder attack";
 		default:
@@ -8061,6 +8062,23 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel less resistant to contamination!",
 	"Error, we have lag! Trying to sleep for -15 seconds! (Our delta is 48)",
 	"Warning: Skynethack will become self-aware and realise that Nethack works much better and bug-free if there are no human players.",
+	"Your data is deleted!",
+	"Suddenly you don't remember anything.",
+	"Suddenly you don't remember your spells.",
+	"You feel a severe attribute loss.",
+	"You feel all your attributes draining.",
+	"You cannot pray any longer.",
+	"Your alignment is nuked.",
+	"Your level is resetted to 1.",
+	"You feel a loss of intrinsics...",
+	"One of your intrinsics is permanently deactivated!",
+	"You feel much less skilled than before.",
+	"Your possessions are severely damaged!",
+	"Your magical items turn into mundane ones.",
+	"You lose all of your armor!",
+	"Your health and mana are severely damaged!",
+	"Some of your techniques no longer work...",
+	"Your items are randomly deleted!",
 
 };
 

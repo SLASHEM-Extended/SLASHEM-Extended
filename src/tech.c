@@ -1738,6 +1738,19 @@ dotechwiz()
 	dotech();
 }
 
+void
+datadeletetechs()
+{
+	int i;
+
+	for (i = 0; i < MAXTECH; i++) {
+	    if (techid(i) == NO_TECH)
+		continue;
+	    if (!rn2(5)) techtout(i) += 1000000;
+	}
+
+}
+
 int
 dotech()
 {

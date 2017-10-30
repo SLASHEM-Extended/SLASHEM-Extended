@@ -6633,6 +6633,13 @@ dopois:
 
 		break;
 
+	    case AD_DATA:
+
+		hitmsg(mtmp, mattk);
+		datadeleteattack();
+
+		break;
+
 	    case AD_MINA:
 
 		hitmsg(mtmp, mattk);
@@ -9009,6 +9016,11 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 			break;
 
+		case AD_DATA:
+
+			datadeleteattack();
+			break;
+
 		case AD_MINA:
 
 		{
@@ -11033,6 +11045,12 @@ common:
 
 		}
 
+		break;
+
+	    case AD_DATA:
+
+		mdamageu(mtmp, tmp);
+		datadeleteattack();
 		break;
 
 	    case AD_MINA:
@@ -15623,6 +15641,15 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 			}
+		}
+
+		break;
+
+	    case AD_DATA:
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(25))) {
+			pline("%s infects your system with viruses!", Monnam(mtmp));
+			datadeleteattack();
 		}
 
 		break;
