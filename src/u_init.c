@@ -6804,6 +6804,7 @@ u_init()
 	u.totter = 0;
 
 	u.nurseextracost = 1000;	/* cost to buy max HP from nurses, goes up every time the player does so --Amy */
+	u.nursedecontamcost = 1000;	/* cost to buy decontamination from nurses */
 
 	u.shaperoomchance = (rnd(15) + 3);	/* chance of irregular rooms */
 

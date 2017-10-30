@@ -1524,6 +1524,22 @@ register struct monst *mtmp;
 	case MS_NURSE:
 
 	    {
+		int nursedecontcost = u.nursedecontamcost;
+	
+		if (u.ugold >= nursedecontcost && u.contamination) {
+			verbalize("I can decontaminate you for %d dollars if you want.", nursedecontcost);
+			if (yn("Accept the offer?") == 'y') {
+				verbalize("Okay, hold still while I puncture you with this long, pointy needle...");
+				u.ugold -= nursedecontcost;
+				decontaminate(u.contamination);
+				pline("Now you don't have the %d gold pieces any longer.", nursedecontcost);
+				if (Hallucination) pline("You offer a 'thank you' to Captain Obvious.");
+				u.nursedecontamcost += 500;
+				if (u.nursedecontamcost < 1000) u.nursedecontamcost = 1000; /* fail safe */
+				break;
+			}
+		}
+
 		int nursehpcost = u.nurseextracost;
 		if (Upolyd) nursehpcost /= 5;
 	
@@ -1536,10 +1552,11 @@ register struct monst *mtmp;
 				else u.mhmax++;
 				u.nurseextracost += 50;
 				if (u.nurseextracost < 1000) u.nurseextracost = 1000; /* fail safe */
+				break;
 			}
 		}
 
-	    else if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
+	    if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == CHAIN_CLASS || is_weptool(uwep))
 		|| (u.twoweap && uswapwep && (uswapwep->oclass == WEAPON_CLASS
 		|| is_weptool(uswapwep))))
 		verbl_msg = "Put that weapon away before you hurt someone!";

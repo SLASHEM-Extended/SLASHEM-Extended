@@ -859,6 +859,7 @@ struct you {
 	boolean totter;	/* scroll of symmetry toggles this */
 
 	int nurseextracost;	/* for chat-to-nurses functionality */
+	int nursedecontamcost;	/* ditto */
 
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
