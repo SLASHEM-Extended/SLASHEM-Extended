@@ -484,7 +484,7 @@ typedef unsigned char	uchar;
                       /* Only supported on Qt with NAS - Network Audio System */
 
 
-/* #define BORG */            /* Works only under DOS */
+// #define BORG            // Fixed for non-DOS --ELR
 /* #define KEEP_SAVE */       /* Keep savefiles after Restore (wac@intergate.bc.ca)*/
 /* #define CHARON */	/* Charon's boat, enables Cerebus - not implemented */
 #define SHOW_DMG        /* WAC made dmg reports optional (wac@intergate.bc.ca)*/

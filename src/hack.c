@@ -3714,7 +3714,7 @@ dopickup()
 		return loot_mon(u.ustuck, &tmpcount, (boolean *)0);
 	    }
 	}
-	if(is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy) || is_moorland(u.ux, u.uy) || is_urinelake(u.ux, u.uy)) {
+	if((is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy) || is_moorland(u.ux, u.uy) || is_urinelake(u.ux, u.uy)) && !(is_crystalwater(u.ux, u.uy)) ) {
 	    if (Wwalking || is_floater(youmonst.data) || is_clinger(youmonst.data)
 			|| (Flying && !Breathless)) {
 		You("cannot dive into the water to pick things up.");

@@ -276,7 +276,7 @@ char *genbuf;
 	 */
 	if (pm == PM_PLAYERMON)
 	    pm = urace.malenum;
-	for(i = rnd(2); i > 0; i--) {
+	for(i = ((!rn2(5) && !yours) ? rnd(5) : rnd(2)); i > 0; i--) {
 	   switch(pm) {
 
 		/* no concealing monsters due to possibility of abuse --Amy */

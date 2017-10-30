@@ -857,6 +857,26 @@ parse_escape_sequence(void)
 #endif /* !PDCURSES */
 }
 
+static int _curses_kbhit(int count) {
+    int c = getch();
+
+    if (c == ERR) {
+        return count;
+    }
+
+    int ret = _curses_kbhit(count+1);
+    ungetch(c);
+    return ret;
+}
+
+int curses_kbhit(void) {
+    nodelay(stdscr, TRUE);
+    int ret = _curses_kbhit(0);
+    nodelay(stdscr, FALSE);
+    return ret;
+}
+
+
 
 /* This is a kludge for the statuscolors patch which calls tty-specific
 functions, which causes a compiler error if TTY_GRAPHICS is not

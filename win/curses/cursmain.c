@@ -5,6 +5,7 @@
 #include "patchlevel.h"
 #include "color.h"
 #include "wincurs.h"
+#include "cursmisc.h"
 
 /* Public functions for curses NetHack interface */
 
@@ -63,6 +64,7 @@ struct window_procs curses_procs = {
     curses_end_screen,
     genl_outrip,
     curses_preference_update,
+    curses_kbhit,
 };
 
 /* Track if we're performing an update to the permanent window.

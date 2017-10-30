@@ -240,7 +240,7 @@ makedog()
 	int   pettype, petsym;
 	static int petname_used = 0;
 
-	if (preferred_pet == 'n') return((struct monst *) 0);
+	if (!Role_if(PM_KURWA) && (preferred_pet == 'n')) return((struct monst *) 0);
 
 	pettype = pet_type();
 
@@ -1196,6 +1196,10 @@ boolean guaranteed;
 
 		if (!is_domestic(mtmp->data) && !is_petty(mtmp->data) && !(guaranteed) )
 			return (struct monst *)0;
+
+		if (!(guaranteed) && obj && dogfood(mtmp, obj) >= MANFOOD)
+			return (struct monst *)0;
+
 		}
 
 	/* failsafe for things that REALLY cannot be tamed --Amy */

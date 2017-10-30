@@ -4102,7 +4102,7 @@ rerollX:
 		    boolean didmerge;
 
 			/* pseudo is a temporary "false" object containing the spell stats. */
-			pseudo = mksobj(SPE_STONE_TO_FLESH, FALSE, FALSE);
+			pseudo = mksobj(SPE_STONE_TO_FLESH, FALSE, 2);
 			if (!pseudo) break;
 			if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_STONE_TO_FLESH; /* minimalist fix */
 			pseudo->blessed = pseudo->cursed = 0;

@@ -803,7 +803,7 @@ MAP
 -----         ---------                                                    
 |...---  ------.......--    -------                       ---------------  
 |.....----.........--..|    |.....|          -------      |.............|  
---..-....-.----------..|    |.....|          |.....|     --+---+--.----+-  
+--..-....-.----------..|    |.....|          |.....|     --+---+--B----+-  
  --.--.....----     ----    |.....|  ------  --....----  |..-...--.-.+..|  
   ---.........----  -----   ---+---  |..+.|   ---..-..----..---+-..---..|  
     ----.-....|..----...--    |.|    |..|.|    ---+-.....-+--........--+-  
@@ -837,7 +837,7 @@ REGION:(48,08,52,10),lit,"ordinary"
 REGION:(64,17,68,19),lit,"ordinary"
 REGION:(37,13,39,17),lit,"ordinary"
 REGION:(36,14,40,17),lit,"ordinary"
-REGION:(59,02,72,10),lit,"ordinary"
+REGION:(59,02,72,10),lit,"ordinary",filled,true
 
 MONSTER: '@', "watchman", random, peaceful
 MONSTER: '@', "watchman", random, peaceful
@@ -944,7 +944,7 @@ STAIR:levregion(01,03,20,19),(0,0,39,15),up
 STAIR:levregion(61,03,75,19),(0,0,39,15),down
 FOUNTAIN:(22,07)
 FOUNTAIN:(09,13)
-REGION:(13,5,14,6),unlit,"ordinary"
+REGION:(13,5,14,6),unlit,"ordinary",filled,true
 REGION:(9,7,11,9),lit,"candle shop"
 REGION:(16,4,18,6),lit,"tool shop"
 REGION:(23,1,25,3),lit,"shop"
@@ -1410,7 +1410,7 @@ MAP
 -----         ---------                                                    
 |...---  ------.......--    -------                       ---------------  
 |.....----.........--..|    |.....|          -------      |.............|  
---..-....-.----------..|    |.....|          |.....|     --+---+--.----+-  
+--..-....-.----------..|    |.....|          |.....|     --+---+--B----+-  
  --.--.....----     ----    |.....|  ------  --....----  |..-...--.-.+..|  
   ---.........----  -----   ---+---  |..+.|   ---..-..----..---+-..---..|  
     ----.-....|..----...--    |.|    |..|.|    ---+-.....-+--........--+-  
@@ -1444,7 +1444,7 @@ REGION:(48,08,52,10),lit,"ordinary"
 REGION:(64,17,68,19),lit,"ordinary"
 REGION:(37,13,39,17),lit,"ordinary"
 REGION:(36,14,40,17),lit,"ordinary"
-REGION:(59,02,72,10),lit,"ordinary"
+REGION:(59,02,72,10),lit,"ordinary",filled,true
 
 MONSTER: '@', "watchman", random, peaceful
 MONSTER: '@', "watchman", random, peaceful
@@ -2333,7 +2333,7 @@ MAP
 -----         ---------                                                    
 |...---  ------.......--    -------                       ---------------  
 |.....----.........--..|    |.....|          -------      |.............|  
---..-....-.----------..|    |.....|          |.....|     --+---+--.----+-  
+--..-....-.----------..|    |.....|          |.....|     --+---+--B----+-  
  --.--.....----     ----    |.....|  ------  --....----  |..-...--.-.+..|  
   ---.........----  -----   ---+---  |..+.|   ---..-..----..---+-..---..|  
     ----.-....|..----...--    |.|    |..|.|    ---+-.....-+--........--+-  
@@ -2367,7 +2367,7 @@ REGION:(48,08,52,10),lit,"ordinary"
 REGION:(64,17,68,19),lit,"ordinary"
 REGION:(37,13,39,17),lit,"ordinary"
 REGION:(36,14,40,17),lit,"ordinary"
-REGION:(59,02,72,10),lit,"ordinary"
+REGION:(59,02,72,10),lit,"ordinary",filled,true
 
 MONSTER: '@', "watchman", random, peaceful
 MONSTER: '@', "watchman", random, peaceful
@@ -2694,9 +2694,9 @@ REGION:(3,3,4,5),lit,"food shop"
 REGION:(11,4,13,6),lit,"candle shop"
 REGION:(18,2,22,4),lit,"temple"
 ALTAR:(20,3),align[1],shrine
-REGION:(24,2,25,4),lit,"ordinary"
-REGION:(11,10,12,12),lit,"ordinary"
-REGION:(14,11,15,12),unlit,"ordinary"
+REGION:(24,2,25,4),lit,"ordinary",filled,true
+REGION:(11,10,12,12),lit,"ordinary",filled,true
+REGION:(15,11,15,12),unlit,"ordinary",filled,true
 REGION:(17,10,19,12),lit,"tool shop"
 REGION:(23,10,25,12),lit,"shop"
 DOOR:closed,(4,6)
@@ -3025,12 +3025,12 @@ ENDMAP
 
 # Dungeon Description
 FOUNTAIN:(14,13)
-REGION:(23,03,48,06),lit,"ordinary"
-REGION:(21,06,22,06),lit,"ordinary"
-REGION:(14,04,14,04),unlit,"ordinary"
-REGION:(10,05,14,08),unlit,"ordinary"
-REGION:(10,09,11,09),unlit,"ordinary"
-REGION:(15,08,16,08),unlit,"ordinary"
+REGION:(23,03,48,06),lit,"ordinary",filled,true
+REGION:(21,06,22,06),lit,"ordinary",filled,true
+REGION:(14,04,14,04),unlit,"ordinary",filled,true
+REGION:(10,05,14,08),unlit,"ordinary",filled,true
+REGION:(10,09,11,09),unlit,"ordinary",filled,true
+REGION:(15,08,16,08),unlit,"ordinary",filled,true
 # Secret doors
 DOOR:locked,(12,02)
 DOOR:locked,(11,06)
@@ -3154,7 +3154,7 @@ NON_DIGGABLE:(0,12,2,16)
 FOUNTAIN:(12,08)
 FOUNTAIN:(51,15)
 REGION:(0,0,75,16),unlit,"ordinary"
-REGION:(38,6,46,10),lit,"ordinary"
+REGION:(38,6,46,10),lit,"ordinary",filled,true
 DOOR:closed,(37,8)
 DOOR:closed,(47,8)
 DOOR:closed,(73,5)
@@ -4066,12 +4066,12 @@ MONSTER:random,random,(70,06),hostile
 
 # Dungeon Description
 FOUNTAIN:(14,13)
-REGION:(23,03,48,06),lit,"ordinary"
-REGION:(21,06,22,06),lit,"ordinary"
-REGION:(14,04,14,04),unlit,"ordinary"
-REGION:(10,05,14,08),unlit,"ordinary"
-REGION:(10,09,11,09),unlit,"ordinary"
-REGION:(15,08,16,08),unlit,"ordinary"
+REGION:(23,03,48,06),lit,"ordinary",filled,true
+REGION:(21,06,22,06),lit,"ordinary",filled,true
+REGION:(14,04,14,04),unlit,"ordinary",filled,true
+REGION:(10,05,14,08),unlit,"ordinary",filled,true
+REGION:(10,09,11,09),unlit,"ordinary",filled,true
+REGION:(15,08,16,08),unlit,"ordinary",filled,true
 # Secret doors
 DOOR:locked,(12,02)
 DOOR:locked,(11,06)
@@ -4196,7 +4196,7 @@ NON_DIGGABLE:(0,12,2,16)
 FOUNTAIN:(12,08)
 FOUNTAIN:(51,15)
 REGION:(0,0,75,16),unlit,"ordinary"
-REGION:(38,6,46,10),lit,"ordinary"
+REGION:(38,6,46,10),lit,"ordinary",filled,true
 ENGRAVING:(01,15),burn,"iter vehemens ad necem"
 ENGRAVING:(03,15),burn,"iter vehemens ad necem"
 ENGRAVING:(74,05),burn,"iter vehemens ad necem"
@@ -12308,7 +12308,7 @@ MAP
 -----         ---------                                                    
 |...---  ------.......--    -------                       ---------------  
 |.....----.........--..|    |.....|          -------      |.............|  
---..-....-.----------..|    |.....|          |.....|     --+---+--.----+-  
+--..-....-.----------..|    |.....|          |.....|     --+---+--B----+-  
  --.--.....----     ----    |.....|  ------  --....----  |..-...--.-.+..|  
   ---.........----  -----   ---+---  |..+.|   ---..-..----..---+-..---..|  
     ----.-....|..----...--    |.|    |..|.|    ---+-.....-+--........--+-  
@@ -12342,7 +12342,7 @@ REGION:(48,08,52,10),lit,"ordinary"
 REGION:(64,17,68,19),lit,"ordinary"
 REGION:(37,13,39,17),lit,"ordinary"
 REGION:(36,14,40,17),lit,"ordinary"
-REGION:(59,02,72,10),lit,"ordinary"
+REGION:(59,02,72,10),lit,"ordinary",filled,true
 
 MONSTER: '@', "watchman", random, peaceful
 MONSTER: '@', "watchman", random, peaceful
@@ -12483,7 +12483,7 @@ STAIR:levregion(01,03,20,19),(0,0,39,15),up
 STAIR:levregion(61,03,75,19),(0,0,39,15),down
 FOUNTAIN:(22,07)
 FOUNTAIN:(09,13)
-REGION:(13,5,14,6),unlit,"ordinary"
+REGION:(13,5,14,6),unlit,"ordinary",filled,true
 REGION:(9,7,11,9),lit,"candle shop"
 REGION:(16,4,18,6),lit,"tool shop"
 REGION:(23,1,25,3),lit,"shop"
@@ -13090,7 +13090,7 @@ MAP
 -----         ---------                                                    
 |...---  ------.......--    -------                       ---------------  
 |.....----.........--..|    |.....|          -------      |.............|  
---..-....-.----------..|    |.....|          |.....|     --+---+--.----+-  
+--..-....-.----------..|    |.....|          |.....|     --+---+--B----+-  
  --.--.....----     ----    |.....|  ------  --....----  |..-...--.-.+..|  
   ---.........----  -----   ---+---  |..+.|   ---..-..----..---+-..---..|  
     ----.-....|..----...--    |.|    |..|.|    ---+-.....-+--........--+-  
@@ -13124,7 +13124,7 @@ REGION:(48,08,52,10),lit,"ordinary"
 REGION:(64,17,68,19),lit,"ordinary"
 REGION:(37,13,39,17),lit,"ordinary"
 REGION:(36,14,40,17),lit,"ordinary"
-REGION:(59,02,72,10),lit,"ordinary"
+REGION:(59,02,72,10),lit,"ordinary",filled,true
 
 MONSTER: '@', "watchman", random, peaceful
 MONSTER: '@', "watchman", random, peaceful
@@ -14329,7 +14329,7 @@ MAP
 -----         ---------                                                    
 |...---  ------.......--    -------                       ---------------  
 |.....----.........--..|    |.....|          -------      |.............|  
---..-....-.----------..|    |.....|          |.....|     --+---+--.----+-  
+--..-....-.----------..|    |.....|          |.....|     --+---+--B----+-  
  --.--.....----     ----    |.....|  ------  --....----  |..-...--.-.+..|  
   ---.........----  -----   ---+---  |..+.|   ---..-..----..---+-..---..|  
     ----.-....|..----...--    |.|    |..|.|    ---+-.....-+--........--+-  
@@ -14363,7 +14363,7 @@ REGION:(48,08,52,10),lit,"ordinary"
 REGION:(64,17,68,19),lit,"ordinary"
 REGION:(37,13,39,17),lit,"ordinary"
 REGION:(36,14,40,17),lit,"ordinary"
-REGION:(59,02,72,10),lit,"ordinary"
+REGION:(59,02,72,10),lit,"ordinary",filled,true
 
 MONSTER: '@', "watchman", random, peaceful
 MONSTER: '@', "watchman", random, peaceful
@@ -14801,9 +14801,9 @@ REGION:(3,3,4,5),lit,"food shop"
 REGION:(11,4,13,6),lit,"candle shop"
 REGION:(18,2,22,4),lit,"temple"
 ALTAR:(20,3),align[1],shrine
-REGION:(24,2,25,4),lit,"ordinary"
-REGION:(11,10,12,12),lit,"ordinary"
-REGION:(14,11,15,12),unlit,"ordinary"
+REGION:(24,2,25,4),lit,"ordinary",filled,true
+REGION:(11,10,12,12),lit,"ordinary",filled,true
+REGION:(15,11,15,12),unlit,"ordinary",filled,true
 REGION:(17,10,19,12),lit,"tool shop"
 REGION:(23,10,25,12),lit,"shop"
 DOOR:closed,(4,6)
@@ -15254,12 +15254,12 @@ ENDMAP
 
 # Dungeon Description
 FOUNTAIN:(14,13)
-REGION:(23,03,48,06),lit,"ordinary"
-REGION:(21,06,22,06),lit,"ordinary"
-REGION:(14,04,14,04),unlit,"ordinary"
-REGION:(10,05,14,08),unlit,"ordinary"
-REGION:(10,09,11,09),unlit,"ordinary"
-REGION:(15,08,16,08),unlit,"ordinary"
+REGION:(23,03,48,06),lit,"ordinary",filled,true
+REGION:(21,06,22,06),lit,"ordinary",filled,true
+REGION:(14,04,14,04),unlit,"ordinary",filled,true
+REGION:(10,05,14,08),unlit,"ordinary",filled,true
+REGION:(10,09,11,09),unlit,"ordinary",filled,true
+REGION:(15,08,16,08),unlit,"ordinary",filled,true
 # Secret doors
 DOOR:locked,(12,02)
 DOOR:locked,(11,06)
@@ -15435,7 +15435,7 @@ NON_DIGGABLE:(0,12,2,16)
 FOUNTAIN:(12,08)
 FOUNTAIN:(51,15)
 REGION:(0,0,75,16),unlit,"ordinary"
-REGION:(38,6,46,10),lit,"ordinary"
+REGION:(38,6,46,10),lit,"ordinary",filled,true
 DOOR:closed,(37,8)
 DOOR:closed,(47,8)
 DOOR:closed,(73,5)
@@ -16634,12 +16634,12 @@ MONSTER:random,random,(70,06),hostile
 
 # Dungeon Description
 FOUNTAIN:(14,13)
-REGION:(23,03,48,06),lit,"ordinary"
-REGION:(21,06,22,06),lit,"ordinary"
-REGION:(14,04,14,04),unlit,"ordinary"
-REGION:(10,05,14,08),unlit,"ordinary"
-REGION:(10,09,11,09),unlit,"ordinary"
-REGION:(15,08,16,08),unlit,"ordinary"
+REGION:(23,03,48,06),lit,"ordinary",filled,true
+REGION:(21,06,22,06),lit,"ordinary",filled,true
+REGION:(14,04,14,04),unlit,"ordinary",filled,true
+REGION:(10,05,14,08),unlit,"ordinary",filled,true
+REGION:(10,09,11,09),unlit,"ordinary",filled,true
+REGION:(15,08,16,08),unlit,"ordinary",filled,true
 # Secret doors
 DOOR:locked,(12,02)
 DOOR:locked,(11,06)
@@ -16816,7 +16816,7 @@ NON_DIGGABLE:(0,12,2,16)
 FOUNTAIN:(12,08)
 FOUNTAIN:(51,15)
 REGION:(0,0,75,16),unlit,"ordinary"
-REGION:(38,6,46,10),lit,"ordinary"
+REGION:(38,6,46,10),lit,"ordinary",filled,true
 ENGRAVING:(01,15),burn,"iter vehemens ad necem"
 ENGRAVING:(03,15),burn,"iter vehemens ad necem"
 ENGRAVING:(74,05),burn,"iter vehemens ad necem"

@@ -1491,7 +1491,7 @@ REGION:(37,07,41,08),unlit,"lemurepit"
 REGION:(31,07,35,09),unlit,"lemurepit"
 REGION:(25,07,29,10),unlit,"lemurepit"
 REGION:(48,03,58,09),lit,"ordinary"
-REGION:(06,15,16,18),lit,"ordinary"
+REGION:(06,15,16,18),lit,"ordinary",filled,true
 # The fellow in residence
 MONSTER:'&',random,(11,16)
 OBJECT:'?',"root password detection",(11,16)
@@ -2110,7 +2110,7 @@ TRAP:random, random
 TRAP:random, random
 #
 # And the inner room:
-REGION:(08,05,16,07),unlit,"ordinary"
+REGION:(08,05,16,07),unlit,"ordinary",filled,true
 MONSTER:'&',random,random
 MONSTER:'&',random,random
 MONSTER:'&',random,random
@@ -2216,7 +2216,7 @@ TRAP:random, random
 TRAP:random, random
 #
 # And the inner room:
-REGION:(08,05,16,07),unlit,"ordinary"
+REGION:(08,05,16,07),unlit,"ordinary",filled,true
 MONSTER:'&',random,random
 MONSTER:'&',random,random
 MONSTER:'&',random,random
@@ -12314,7 +12314,7 @@ REGION:(37,07,41,08),unlit,"lemurepit"
 REGION:(31,07,35,09),unlit,"lemurepit"
 REGION:(25,07,29,10),unlit,"lemurepit"
 REGION:(48,03,58,09),lit,"ordinary"
-REGION:(06,15,16,18),lit,"ordinary"
+REGION:(06,15,16,18),lit,"ordinary",filled,true
 # The fellow in residence
 MONSTER:'&',random,(11,16)
 OBJECT:'?',"root password detection",(11,16)
@@ -13164,7 +13164,7 @@ TRAP:random, random
 TRAP:random, random
 #
 # And the inner room:
-REGION:(08,05,16,07),unlit,"ordinary"
+REGION:(08,05,16,07),unlit,"ordinary",filled,true
 MONSTER:'&',random,random
 MONSTER:'&',random,random
 MONSTER:'&',random,random
@@ -13331,7 +13331,7 @@ TRAP:random, random
 TRAP:random, random
 #
 # And the inner room:
-REGION:(08,05,16,07),unlit,"ordinary"
+REGION:(08,05,16,07),unlit,"ordinary",filled,true
 MONSTER:'&',random,random
 MONSTER:'&',random,random
 MONSTER:'&',random,random

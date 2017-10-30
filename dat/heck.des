@@ -4290,10 +4290,10 @@ MAP
 ENDMAP
 
 #  Regions
-REGION:(04,02,06,02),lit,"ordinary"
+REGION:(04,02,06,02),lit,"ordinary",filled,true
 REGION:(07,05,13,07),lit,"barracks"
-REGION:(21,10,28,12),unlit,"ordinary"
-REGION:(23,04,33,06),unlit,"ordinary"
+REGION:(21,10,28,12),unlit,"ordinary",filled,true
+REGION:(23,04,33,06),unlit,"ordinary",filled,true
 REGION:(41,02,61,08),unlit,"swamp"
 # Stairs
 BRANCH:(04,02,04,02),(00,00,00,00)
@@ -5043,9 +5043,9 @@ REGION:(00,00,52,19),unlit,"ordinary"
 REGION:(53,00,75,19),lit,"ordinary"
 
 # Outside Chambers
-REGION:(66,01,72,03),unlit,"ordinary"
-REGION:(69,08,74,11),unlit,"ordinary"
-REGION:(66,16,72,18),unlit,"ordinary"
+REGION:(66,01,72,03),unlit,"ordinary",filled,true
+REGION:(71,08,71,08),unlit,"ordinary",filled,true
+REGION:(66,16,72,18),unlit,"ordinary",filled,true
 
 # Main Temple
 ALTAR:(04,09),noalign,sanctum
@@ -5331,7 +5331,7 @@ ENDMAP
 #         1         2         3         4         5         6         7    7
 # Dungeon Description
 REGION:(00,00,75,19),lit,"ordinary"
-REGION:(04,02,08,04),lit,"ordinary"
+REGION:(04,02,08,04),lit,"ordinary",filled,true
 REGION:(05,12,17,15),unlit,"ordinary"
 REGION:(34,01,48,02),unlit,"ordinary"
 REGION:(58,01,65,04),unlit,"ordinary"
@@ -5473,7 +5473,7 @@ ENDMAP
 #         1         2         3         4         5         6         7    7
 # Dungeon Description
 REGION:(00,00,75,19),lit,"ordinary"
-REGION:(04,02,08,04),lit,"ordinary"
+REGION:(04,02,08,04),lit,"ordinary",filled,true
 REGION:(05,12,17,15),unlit,"ordinary"
 REGION:(34,01,48,02),unlit,"ordinary"
 REGION:(58,01,65,04),unlit,"ordinary"
@@ -6074,18 +6074,18 @@ ENDMAP
 REGION:(02,01,35,07),lit,"ordinary"
 REGION:(02,08,11,18),lit,"ordinary"
 REGION:(37,01,48,08),lit,"ordinary"
-REGION:(53,05,55,07),lit,"ordinary"
-REGION:(59,01,61,02),lit,"ordinary"
+REGION:(53,05,55,07),lit,"ordinary",filled,true
+REGION:(59,01,61,02),lit,"ordinary",filled,true
 REGION:(13,09,21,11),lit,"zoo"
 REGION:(13,16,21,18),lit,"ordinary"
-REGION:(23,11,29,12),unlit,"ordinary"
-REGION:(23,09,24,09),unlit,"ordinary"
-REGION:(26,09,26,09),unlit,"ordinary"
-REGION:(28,09,29,09),unlit,"ordinary"
-REGION:(23,16,29,18),lit,"ordinary"
-REGION:(31,09,35,12),lit,"ordinary"
-REGION:(31,16,35,18),lit,"ordinary"
-REGION:(13,14,35,14),lit,"ordinary"
+REGION:(23,11,29,12),unlit,"ordinary",filled,true
+REGION:(23,09,24,09),unlit,"ordinary",filled,true
+REGION:(26,09,26,09),unlit,"ordinary",filled,true
+REGION:(28,09,29,09),unlit,"ordinary",filled,true
+REGION:(23,16,29,18),lit,"ordinary",filled,true
+REGION:(31,09,35,12),lit,"ordinary",filled,true
+REGION:(31,16,35,18),lit,"ordinary",filled,true
+REGION:(13,14,35,14),lit,"ordinary",filled,true
 # Throne Room, in two parts
 REGION:(38,10,45,13),lit,"throne"
 REGION:(38,15,45,18),lit,"throne"
@@ -6231,18 +6231,18 @@ REGION:(29,04,32,04),lit,"fungusfarm"
 REGION:(29,06,32,07),lit,"fungusfarm"
 REGION:(02,08,11,18),lit,"ordinary"
 REGION:(37,01,48,08),lit,"ordinary"
-REGION:(53,05,55,07),lit,"ordinary"
-REGION:(59,01,61,02),lit,"ordinary"
+REGION:(53,05,55,07),lit,"ordinary",filled,true
+REGION:(59,01,61,02),lit,"ordinary",filled,true
 REGION:(13,09,21,11),lit,"morgue"
-REGION:(13,16,21,18),lit,"ordinary"
-REGION:(23,11,29,12),unlit,"ordinary"
-REGION:(23,09,24,09),unlit,"ordinary"
-REGION:(26,09,26,09),unlit,"ordinary"
-REGION:(28,09,29,09),unlit,"ordinary"
-REGION:(23,16,29,18),lit,"ordinary"
-REGION:(31,09,35,12),lit,"ordinary"
-REGION:(31,16,35,18),lit,"ordinary"
-REGION:(13,14,35,14),lit,"ordinary"
+REGION:(13,16,21,18),lit,"ordinary",filled,true
+REGION:(23,11,29,12),unlit,"ordinary",filled,true
+REGION:(23,09,24,09),unlit,"ordinary",filled,true
+REGION:(26,09,26,09),unlit,"ordinary",filled,true
+REGION:(28,09,29,09),unlit,"ordinary",filled,true
+REGION:(23,16,29,18),lit,"ordinary",filled,true
+REGION:(31,09,35,12),lit,"ordinary",filled,true
+REGION:(31,16,35,18),lit,"ordinary",filled,true
+REGION:(13,14,35,14),lit,"ordinary",filled,true
 # Throne Room, in two parts
 REGION:(38,10,45,13),lit,"morgue"
 REGION:(38,15,45,18),lit,"morgue"
@@ -6495,7 +6495,7 @@ ENDMAP
 #         1         2         3         4         5         6         7    7
 # Dungeon Description
 REGION:(00,00,75,19),lit,"ordinary"
-REGION:(02,01,02,02),lit,"ordinary"
+REGION:(02,01,02,02),lit,"ordinary",filled,true
 REGION:(04,01,08,02),lit,"temple"
 ALTAR:(06,01),random,shrine
 REGION:(02,16,07,18),unlit,"ordinary"
@@ -6503,9 +6503,9 @@ REGION:(14,15,18,18),unlit,"ordinary"
 REGION:(28,16,33,18),unlit,"ordinary"
 REGION:(41,03,45,05),unlit,"ordinary"
 REGION:(48,08,53,11),unlit,"ordinary"
-REGION:(71,01,74,02),lit,"ordinary"
-REGION:(64,14,71,16),lit,"ordinary"
-REGION:(69,12,73,12),lit,"ordinary"
+REGION:(71,01,74,02),lit,"ordinary",filled,true
+REGION:(64,14,71,16),lit,"ordinary",filled,true
+REGION:(69,12,73,12),lit,"ordinary",filled,true
 # Stairs
 STAIR:(73,01),down
 STAIR:(30,17),up 
@@ -6643,9 +6643,9 @@ ENDMAP
 #         1         2         3         4         5         6         7    7
 # Dungeon Description
 REGION:(00,00,75,19),lit,"ordinary"
-REGION:(03,01,09,03),lit,"ordinary"
+REGION:(03,01,09,03),lit,"ordinary",filled,true
 REGION:(11,01,69,03),unlit,"ordinary"
-REGION:(71,01,74,03),lit,"ordinary"
+REGION:(71,01,74,03),lit,"ordinary",filled,true
 REGION:(18,14,27,18),unlit,"migohive"
 REGION:(44,06,53,09),unlit,"migohive"
 REGION:(60,16,68,18),unlit,"migohive"
@@ -6762,14 +6762,14 @@ ENDMAP
 # Dungeon Description
 REGION:(00,00,46,19),lit,"ordinary"
 REGION:(47,00,75,19),unlit,"ordinary"
-REGION:(01,07,03,09),lit,"ordinary"
-REGION:(14,09,16,12),unlit,"ordinary"
-REGION:(18,07,22,09),unlit,"ordinary"
-REGION:(18,11,22,13),unlit,"ordinary"
+REGION:(01,07,03,09),lit,"ordinary",filled,true
+REGION:(14,09,16,12),unlit,"ordinary",filled,true
+REGION:(18,07,22,09),unlit,"ordinary",filled,true
+REGION:(18,11,22,13),unlit,"ordinary",filled,true
 REGION:(24,09,29,13),unlit,"barracks"
 REGION:(59,01,63,05),unlit,"morgue"
-REGION:(66,09,70,11),unlit,"ordinary"
-REGION:(72,09,74,11),unlit,"ordinary"
+REGION:(66,09,70,11),unlit,"ordinary",filled,true
+REGION:(72,09,74,11),unlit,"ordinary",filled,true
 # Stairs
 BRANCH:(74,10,74,10),(0,0,0,0)
 STAIR:(02,08),up
@@ -11052,6 +11052,8 @@ STAIR:random,up
 STAIR:random,down
 
 REGION:(38,03,38,03),lit,"random shop",filled,true
+REGION:(16,03,16,03),lit,"ordinary",filled,true
+REGION:(60,03,60,03),lit,"ordinary",filled,true
 
 DOOR:closed,(38,01)
 DOOR:closed,(16,01)

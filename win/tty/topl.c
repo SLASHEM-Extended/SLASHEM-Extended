@@ -10,11 +10,6 @@
 #include "wintty.h"
 #include <ctype.h>
 
-#ifdef  __WATCOMC__
- /* for delay() */
- #include <i86.h>
-#endif
-
 #ifndef C	/* this matches src/cmd.c */
 #define C(c)	(0x1f & (c))
 #endif
@@ -27,10 +22,6 @@ STATIC_DCL void remember_topl(void);
 STATIC_DCL void removetopl(int);
 
 #ifdef OVLB
-
-#ifdef BORG
-extern char borg_on;
-#endif
 
 int
 tty_doprev_message()
@@ -261,12 +252,8 @@ more()
 
 #ifdef BORG
     if (borg_on) {
-#ifdef  __WATCOMC__
-         delay(100);
-#else
-       delay_output();
-       delay_output(); /* 100ms wait */
-#endif
+//       delay_output();
+//       delay_output(); /* 100ms wait */
    } else {
 
     xwaitforspace("\033 ");

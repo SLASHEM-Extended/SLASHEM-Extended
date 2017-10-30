@@ -2758,3 +2758,18 @@ Invisible shopkeepers let you enter their shops normally, and if you would have 
 Engulfers on lava levels will make sure to expel you on a non-lava tile, so you don't have to fear an instadeath there.
 You have to guess! Maybe this rumor is true.
 Contamination resistance means that only 1 out of 20 attempts to contaminate you will actually do anything.
+SLASH'EM Extended is a very nice variant that never kills you in unfair ways and removed absolutely all of vanilla NetHack's instadeaths.
+There are disintegration traps in this game, and just like Nethack Fourk or the Gehennom Evil Patch, your equipment is not safe just because you have disintegration resistance.
+If your character suddenly becomes thirsty, it probably means you triggered a thirst trap, and will have to quaff something every couple turns or you start to hallucinate. But you can just unihorn those hallucinations away.
+Luck traps are a nasty trap type that cause your luck to decrease every time it affects a result, but if it gets drained below the maximum negative value, it will wrap around to the highest possible positive value.
+They say that there are death traps on the Astral Plane, which can instantly kill you if you trigger them. No matter which intrinsics or items you have, you will get killed by them.
+The weakness trap will occasionally damage your health while you're weak from hunger or worse, but there is a warning message if it drains you below 20% of your health.
+Vs lbh gevttre n ebg13 genc, nyy zrffntrf ghea vagb tvoorevfu. Gurl ner npghnyyl rapelcgrq, fb gurer vf ab jnl gb qrpvcure gurz.
+Wondering why there are squares you simply cannot walk on? These are "special" - if you try often enough, it will work... but at the same time your game will also be made unwinnable, because it permanently removes the high altars from the Astral Plane.
+One of the nasty traps in this game is the one that prevents you from dropping your items. You also won't be able to throw, offer or otherwise get rid of them, so if you picked up a heavy corpse, all you can do is wait until it rots away. May God help you if you pick up a heavy iron ball, though.
+Uninformation traps are among the nastier trap types in the game: they prevent you from seeing what any of your items are, but if you use a scroll of identify (by guessing correctly which of your scrolls is one) then the effect instantly dissipates and you'll recognize all items again.
+The recursion trap comes in two varieties: one of them permanently polymorphs you into a monster and forces you to play through the game in that form, the other removes your entire inventory and hands you the starting inventory of a randomly selected role.
+If you keep encountering the same types of monsters that you already killed, you might have triggered a respawn trap. It means that whenever you kill a monster, two more of the same kind are generated.
+The captcha trap can simply be ignored if you don't feel like actually solving them. Just hit escape and they will go away with no ill effects.
+Falling into a shit pit can be beneficial if you #loot the shit and then throw it at the nearest monster, because then that monster will be attacked by all other monsters, even those that are allied with it.
+The farlook trap effect and the peacevision extrinsic are not correlated in any other way; Amy simply decided to be a mean bitch by making the latter into a non-permanent effect.

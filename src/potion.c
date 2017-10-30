@@ -2183,7 +2183,7 @@ dodrink()
 			    IS_TOILET(levl[u.ux][u.uy].typ) ||
 			    IS_WELL(levl[u.ux][u.uy].typ) ||
 			    IS_POISONEDWELL(levl[u.ux][u.uy].typ) ||
-			    Underwater || IS_POOL(levl[u.ux][u.uy].typ)))
+			    Underwater || (IS_POOL(levl[u.ux][u.uy].typ) && !(IS_CRYSTALWATER(levl[u.ux][u.uy].typ))) ))
 	    *qp++ = ALLOW_THISPLACE;
 	strcpy(qp, beverages);
 
@@ -5970,7 +5970,7 @@ dodip()
 			diptoilet(obj);
 			return(1);
 		}
-	} else if (is_waterypool(u.ux,u.uy)) {
+	} else if (is_waterypool(u.ux,u.uy) && !(is_crystalwater(u.ux, u.uy) && !(Levitation || Flying)) ) {
 		tmp = waterbody_name(u.ux,u.uy);
 		sprintf(qbuf, "Dip it into the %s?", tmp);
 		if (yn(qbuf) == 'y') {

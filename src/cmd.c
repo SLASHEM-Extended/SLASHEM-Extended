@@ -314,12 +314,6 @@ STATIC_DCL boolean help_dir(CHAR_P,const char *);
 
 STATIC_PTR int domenusystem(void); /* WAC the menus*/
 
-#ifdef BORG
-/* in borg.c */
-extern char borg_on;
-extern char borg_line[80];
-char borg_input(void);
-#endif
 #ifdef OVL1
 
 STATIC_VAR NEARDATA const char *names[] = { 0,
@@ -1218,13 +1212,8 @@ doremoveimarkers()
 
 
 #ifdef BORG
-STATIC_PTR int 
-doborgtoggle()
-{
-	char    qbuf[QBUFSZ];
-	char    c;
-	strcpy(qbuf,"Really enable cyborg?");
-	if ((c = yn_function(qbuf, ynqchars, 'n')) == 'y') {
+static int doborgtoggle(void) {
+	if (yn_function("Really enable cyborg?", ynqchars, 'n') == 'y') {
 		borg_on = 1;
 		pline("The cyborg is enabled.... Good luck!");
 	}
@@ -1483,7 +1472,7 @@ enter_explore_mode()
 	 * Any ascensions made that way still don't get on the high-score list, and wizard mode bones stuffing
 	 * was already possible anyway, so I don't really see how this could cause any harm as long as it's
 	 * not possible to switch from either wizard or explore mode to normal mode. */
-	} else if (wizard && !discover) {
+	} else if (wizard) {
 		getlin ("Do you want to switch to explore mode? [yes/no]?",buf);
 		(void) lcase (buf);
 		if (!(strcmp (buf, "yes"))) {
@@ -8944,6 +8933,9 @@ struct ext_func_tab extcmdlist[] = {
 	{"2weapon", "toggle two-weapon combat", dotwoweapon, !IFBURIED, AUTOCOMPLETE},
 	{"adjust", "adjust inventory letters", doorganize, IFBURIED, AUTOCOMPLETE},
 	{"annotate", "name current level", donamelevel, TRUE, AUTOCOMPLETE},
+#ifdef BORG
+	{"borg", "enable borg mode", doborgtoggle, IFBURIED, AUTOCOMPLETE},
+#endif
 	{"borrow", "steal from monsters", playersteal, IFBURIED, AUTOCOMPLETE},  /* jla */        
 	{"chat", "talk to someone", dotalk, IFBURIED, AUTOCOMPLETE},    /* converse? */
 	{"conduct", "list which challenges you have adhered to", doconduct, IFBURIED, AUTOCOMPLETE},
@@ -10613,9 +10605,7 @@ parse()
 	static char in_line[COLNO];
 #endif
 	register int foo;
-#ifdef BORG
-	char junk_char;
-#endif
+
 	static char repeat_char;
 	boolean prezero = FALSE;
 
@@ -10625,12 +10615,12 @@ parse()
 
 #ifdef BORG
 	if (borg_on) {
-	/* KMH -- Danger!  kbhit() is non-standard! */
+		// TODO: implement kbhit for other windowports --ELR
 	   if (!kbhit()) {
 	       borg_input();
 	       return(borg_line);
 	   } else {
-		 junk_char = readchar();
+		 nhgetch();
 		 pline("Cyborg terminated.");
 		 borg_on = 0;
 	   }

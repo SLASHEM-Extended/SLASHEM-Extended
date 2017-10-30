@@ -2009,7 +2009,7 @@ boolean atme;
 	exercise(A_WIS, TRUE);
 
 	/* pseudo is a temporary "false" object containing the spell stats. */
-	pseudo = mksobj(spellid(spell), FALSE, FALSE);
+	pseudo = mksobj(spellid(spell), FALSE, 2);
 	if (!pseudo) {
 		pline("The spell failed spontaneously!");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

@@ -2908,7 +2908,7 @@ doinvoke()
 				case 19:
 					{
 					struct obj *pseudo;
-					pseudo = mksobj(SCR_ITEM_GENOCIDE, FALSE, FALSE);
+					pseudo = mksobj(SCR_ITEM_GENOCIDE, FALSE, 2);
 					if (!pseudo) {
 						pline("Nothing happens...");
 						break;
@@ -3165,7 +3165,7 @@ arti_invoke(obj)
 	    break;
 	  }
 	case IDENTIFY: {
-		struct obj *pseudo = mksobj(SPE_IDENTIFY, FALSE, FALSE);
+		struct obj *pseudo = mksobj(SPE_IDENTIFY, FALSE, 2);
 		if (!pseudo) break;
 		pseudo->blessed = pseudo->cursed = 0;
 		pseudo->quan = 42L;		/* do not let useup get it */

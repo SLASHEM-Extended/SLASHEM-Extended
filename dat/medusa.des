@@ -36,9 +36,9 @@ ENDMAP
 # Dungeon Description
 # (must maintain one room definition; `unfilled' forces its room to be kept)
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(31,07,45,07),unlit,"ordinary"
-REGION:(35,09,41,10),unlit,"ordinary",unfilled
-REGION:(31,12,45,12),unlit,"ordinary"
+REGION:(31,07,45,07),unlit,"ordinary",filled,true
+REGION:(35,09,41,10),unlit,"ordinary",filled,true
+REGION:(31,12,45,12),unlit,"ordinary",filled,true
 # Teleport: down to up stairs island, up to Medusa's island
 TELEPORT_REGION:(01,01,05,17),(0,0,0,0),down
 TELEPORT_REGION:(26,04,50,15),(0,0,0,0),up
@@ -139,10 +139,10 @@ MAP
 ENDMAP
 # Dungeon Description
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(02,03,05,16),unlit,"ordinary"
-REGION:(61,03,72,16),unlit,"ordinary",unfilled,true
-REGION:(71,08,72,11),unlit,"ordinary"
-REGION:(67,08,69,11),lit,"ordinary"
+REGION:(02,03,05,16),unlit,"ordinary",filled,true
+REGION:(61,03,72,16),unlit,"ordinary",filled,true
+REGION:(71,08,72,11),unlit,"ordinary",filled,true
+REGION:(67,08,69,11),lit,"ordinary",filled,true
 # Teleport: down to up stairs island, up to Medusa's island
 TELEPORT_REGION:(02,03,05,16),(0,0,0,0),down
 TELEPORT_REGION:(61,03,72,16),(0,0,0,0),up
@@ -255,10 +255,10 @@ MAP
 ENDMAP
 RANDOM_PLACES:(08,06),(66,05),(46,15)
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(49,14,51,16),random,"ordinary",unfilled
-REGION:(07,05,09,07),unlit,"ordinary"
-REGION:(65,04,67,06),unlit,"ordinary"
-REGION:(45,14,47,16),unlit,"ordinary"
+REGION:(49,14,51,16),random,"ordinary",filled,true
+REGION:(07,05,09,07),unlit,"ordinary",filled,true
+REGION:(65,04,67,06),unlit,"ordinary",filled,true
+REGION:(45,14,47,16),unlit,"ordinary",filled,true
 # All places are accessible also with jumping, so don't bother
 # restricting the placement when teleporting from levels below this.
 TELEPORT_REGION:(33,02,38,07),(0,0,0,0),down
@@ -378,7 +378,7 @@ ENDMAP
 RANDOM_PLACES:(04,08),(10,04),(10,08),(10,12)
 #
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(13,03,18,13),lit,"ordinary",unfilled
+REGION:(13,03,18,13),lit,"ordinary",filled,true
 #
 TELEPORT_REGION:(64,01,74,17),(0,0,0,0),down
 TELEPORT_REGION:(02,02,18,13),(0,0,0,0),up
@@ -501,9 +501,9 @@ REGION:(02,03,05,16),unlit,"temple"
 ALTAR:(02,14),align[0],altar
 MONSTER:'@',"aligned priest",(02,05),align[0],peaceful
 
-REGION:(61,03,72,16),unlit,"ordinary",unfilled,true
+REGION:(61,03,72,16),unlit,"ordinary",filled,true
 REGION:(71,08,72,11),unlit,"angelhall"
-REGION:(67,08,69,11),lit,"ordinary"
+REGION:(67,08,69,11),lit,"ordinary",filled,true
 # Teleport: down to up stairs island, up to Medusa's island
 TELEPORT_REGION:(02,03,05,16),(0,0,0,0),down
 TELEPORT_REGION:(61,03,72,16),(0,0,0,0),up
@@ -738,10 +738,10 @@ MAP
 ENDMAP
 # Dungeon Description
 REGION:(00,00,74,19),unlit,"ordinary"
-REGION:(02,03,05,16),unlit,"ordinary"
-REGION:(62,03,71,16),unlit,"ordinary",unfilled,true
-REGION:(71,08,72,11),unlit,"ordinary"
-REGION:(67,08,69,11),unlit,"ordinary"
+REGION:(02,03,05,16),unlit,"ordinary",filled,true
+REGION:(62,03,71,16),unlit,"ordinary",filled,true
+REGION:(71,08,72,11),unlit,"ordinary",filled,true
+REGION:(67,08,69,11),unlit,"ordinary",filled,true
 # Teleport: down to up stairs island, up to Medusa's island
 TELEPORT_REGION:(02,03,05,16),(0,0,0,0),down
 TELEPORT_REGION:(61,03,72,16),(0,0,0,0),up
@@ -877,10 +877,10 @@ MAP
 ENDMAP
 RANDOM_PLACES:(08,06),(66,05),(46,15)
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(49,14,51,16),random,"ordinary",unfilled
-REGION:(07,05,09,07),unlit,"ordinary"
-REGION:(65,04,67,06),unlit,"ordinary"
-REGION:(45,14,47,16),unlit,"ordinary"
+REGION:(49,14,51,16),random,"ordinary",filled,true
+REGION:(07,05,09,07),unlit,"ordinary",filled,true
+REGION:(65,04,67,06),unlit,"ordinary",filled,true
+REGION:(45,14,47,16),unlit,"ordinary",filled,true
 # All places are accessible also with jumping, so don't bother
 # restricting the placement when teleporting from levels below this.
 TELEPORT_REGION:(33,02,38,07),(0,0,0,0),down
@@ -1000,7 +1000,7 @@ ENDMAP
 RANDOM_PLACES:(04,08),(10,04),(10,08),(10,12)
 #
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(13,03,18,13),lit,"ordinary",unfilled
+REGION:(13,03,18,13),lit,"ordinary",filled,true
 #
 TELEPORT_REGION:(64,01,74,17),(0,0,0,0),down
 TELEPORT_REGION:(02,02,18,13),(0,0,0,0),up
@@ -1120,7 +1120,7 @@ REGION:(00,00,74,19),lit,"ordinary"
 
 REGION:(02,03,05,16),random,"randomroom"
 
-REGION:(61,03,72,16),unlit,"ordinary",unfilled,true
+REGION:(61,03,72,16),unlit,"ordinary",filled,true
 REGION:(71,08,72,11),random,"randomroom"
 REGION:(67,08,69,11),random,"randomroom"
 # Teleport: down to up stairs island, up to Medusa's island
@@ -1477,9 +1477,9 @@ ENDMAP
 # Dungeon Description
 # (must maintain one room definition; `unfilled' forces its room to be kept)
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(31,07,45,07),unlit,"ordinary"
-REGION:(35,09,41,10),unlit,"ordinary",unfilled
-REGION:(31,12,45,12),unlit,"ordinary"
+REGION:(31,07,45,07),unlit,"ordinary",filled,true
+REGION:(35,09,41,10),unlit,"ordinary",filled,true
+REGION:(31,12,45,12),unlit,"ordinary",filled,true
 # Teleport: down to up stairs island, up to Medusa's island
 TELEPORT_REGION:(01,01,05,17),(0,0,0,0),down
 TELEPORT_REGION:(26,04,50,15),(0,0,0,0),up
@@ -1580,10 +1580,10 @@ MAP
 ENDMAP
 # Dungeon Description
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(02,03,05,16),unlit,"ordinary"
-REGION:(61,03,72,16),unlit,"ordinary",unfilled,true
-REGION:(71,08,72,11),unlit,"ordinary"
-REGION:(67,08,69,11),lit,"ordinary"
+REGION:(02,03,05,16),unlit,"ordinary",filled,true
+REGION:(61,03,72,16),unlit,"ordinary",filled,true
+REGION:(71,08,72,11),unlit,"ordinary",filled,true
+REGION:(67,08,69,11),lit,"ordinary",filled,true
 # Teleport: down to up stairs island, up to Medusa's island
 TELEPORT_REGION:(02,03,05,16),(0,0,0,0),down
 TELEPORT_REGION:(61,03,72,16),(0,0,0,0),up
@@ -1696,10 +1696,10 @@ MAP
 ENDMAP
 RANDOM_PLACES:(08,06),(66,05),(46,15)
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(49,14,51,16),random,"ordinary",unfilled
-REGION:(07,05,09,07),unlit,"ordinary"
-REGION:(65,04,67,06),unlit,"ordinary"
-REGION:(45,14,47,16),unlit,"ordinary"
+REGION:(49,14,51,16),random,"ordinary",filled,true
+REGION:(07,05,09,07),unlit,"ordinary",filled,true
+REGION:(65,04,67,06),unlit,"ordinary",filled,true
+REGION:(45,14,47,16),unlit,"ordinary",filled,true
 # All places are accessible also with jumping, so don't bother
 # restricting the placement when teleporting from levels below this.
 TELEPORT_REGION:(33,02,38,07),(0,0,0,0),down
@@ -1819,7 +1819,7 @@ ENDMAP
 RANDOM_PLACES:(04,08),(10,04),(10,08),(10,12)
 #
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(13,03,18,13),lit,"ordinary",unfilled
+REGION:(13,03,18,13),lit,"ordinary",filled,true
 #
 TELEPORT_REGION:(64,01,74,17),(0,0,0,0),down
 TELEPORT_REGION:(02,02,18,13),(0,0,0,0),up
@@ -1942,9 +1942,9 @@ REGION:(02,03,05,16),unlit,"temple"
 ALTAR:(02,14),align[0],altar
 MONSTER:'@',"aligned priest",(02,05),align[0],peaceful
 
-REGION:(61,03,72,16),unlit,"ordinary",unfilled,true
+REGION:(61,03,72,16),unlit,"ordinary",filled,true
 REGION:(71,08,72,11),unlit,"angelhall"
-REGION:(67,08,69,11),lit,"ordinary"
+REGION:(67,08,69,11),lit,"ordinary",filled,true
 # Teleport: down to up stairs island, up to Medusa's island
 TELEPORT_REGION:(02,03,05,16),(0,0,0,0),down
 TELEPORT_REGION:(61,03,72,16),(0,0,0,0),up
@@ -2179,10 +2179,10 @@ MAP
 ENDMAP
 # Dungeon Description
 REGION:(00,00,74,19),unlit,"ordinary"
-REGION:(02,03,05,16),unlit,"ordinary"
-REGION:(62,03,71,16),unlit,"ordinary",unfilled,true
-REGION:(71,08,72,11),unlit,"ordinary"
-REGION:(67,08,69,11),unlit,"ordinary"
+REGION:(02,03,05,16),unlit,"ordinary",filled,true
+REGION:(62,03,71,16),unlit,"ordinary",filled,true
+REGION:(71,08,72,11),unlit,"ordinary",filled,true
+REGION:(67,08,69,11),unlit,"ordinary",filled,true
 # Teleport: down to up stairs island, up to Medusa's island
 TELEPORT_REGION:(02,03,05,16),(0,0,0,0),down
 TELEPORT_REGION:(61,03,72,16),(0,0,0,0),up
@@ -2318,10 +2318,10 @@ MAP
 ENDMAP
 RANDOM_PLACES:(08,06),(66,05),(46,15)
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(49,14,51,16),random,"ordinary",unfilled
-REGION:(07,05,09,07),unlit,"ordinary"
-REGION:(65,04,67,06),unlit,"ordinary"
-REGION:(45,14,47,16),unlit,"ordinary"
+REGION:(49,14,51,16),random,"ordinary",filled,true
+REGION:(07,05,09,07),unlit,"ordinary",filled,true
+REGION:(65,04,67,06),unlit,"ordinary",filled,true
+REGION:(45,14,47,16),unlit,"ordinary",filled,true
 # All places are accessible also with jumping, so don't bother
 # restricting the placement when teleporting from levels below this.
 TELEPORT_REGION:(33,02,38,07),(0,0,0,0),down
@@ -2441,7 +2441,7 @@ ENDMAP
 RANDOM_PLACES:(04,08),(10,04),(10,08),(10,12)
 #
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(13,03,18,13),lit,"ordinary",unfilled
+REGION:(13,03,18,13),lit,"ordinary",filled,true
 #
 TELEPORT_REGION:(64,01,74,17),(0,0,0,0),down
 TELEPORT_REGION:(02,02,18,13),(0,0,0,0),up
@@ -2561,7 +2561,7 @@ REGION:(00,00,74,19),lit,"ordinary"
 
 REGION:(02,03,05,16),random,"randomroom"
 
-REGION:(61,03,72,16),unlit,"ordinary",unfilled,true
+REGION:(61,03,72,16),unlit,"ordinary",filled,true
 REGION:(71,08,72,11),random,"randomroom"
 REGION:(67,08,69,11),random,"randomroom"
 # Teleport: down to up stairs island, up to Medusa's island
@@ -2917,9 +2917,9 @@ ENDMAP
 # Dungeon Description
 # (must maintain one room definition; `unfilled' forces its room to be kept)
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(31,07,45,07),unlit,"ordinary"
-REGION:(35,09,41,10),unlit,"ordinary",unfilled
-REGION:(31,12,45,12),unlit,"ordinary"
+REGION:(31,07,45,07),unlit,"ordinary",filled,true
+REGION:(35,09,41,10),unlit,"ordinary",filled,true
+REGION:(31,12,45,12),unlit,"ordinary",filled,true
 # Teleport: down to up stairs island, up to Medusa's island
 TELEPORT_REGION:(01,01,05,17),(0,0,0,0),down
 TELEPORT_REGION:(26,04,50,15),(0,0,0,0),up
@@ -3079,10 +3079,10 @@ MAP
 ENDMAP
 # Dungeon Description
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(02,03,05,16),unlit,"ordinary"
-REGION:(61,03,72,16),unlit,"ordinary",unfilled,true
-REGION:(71,08,72,11),unlit,"ordinary"
-REGION:(67,08,69,11),lit,"ordinary"
+REGION:(02,03,05,16),unlit,"ordinary",filled,true
+REGION:(61,03,72,16),unlit,"ordinary",filled,true
+REGION:(71,08,72,11),unlit,"ordinary",filled,true
+REGION:(67,08,69,11),lit,"ordinary",filled,true
 # Teleport: down to up stairs island, up to Medusa's island
 TELEPORT_REGION:(02,03,05,16),(0,0,0,0),down
 TELEPORT_REGION:(61,03,72,16),(0,0,0,0),up
@@ -3246,10 +3246,10 @@ MAP
 ENDMAP
 RANDOM_PLACES:(08,06),(66,05),(46,15)
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(49,14,51,16),random,"ordinary",unfilled
-REGION:(07,05,09,07),unlit,"ordinary"
-REGION:(65,04,67,06),unlit,"ordinary"
-REGION:(45,14,47,16),unlit,"ordinary"
+REGION:(49,14,51,16),random,"ordinary",filled,true
+REGION:(07,05,09,07),unlit,"ordinary",filled,true
+REGION:(65,04,67,06),unlit,"ordinary",filled,true
+REGION:(45,14,47,16),unlit,"ordinary",filled,true
 # All places are accessible also with jumping, so don't bother
 # restricting the placement when teleporting from levels below this.
 TELEPORT_REGION:(33,02,38,07),(0,0,0,0),down
@@ -3406,7 +3406,7 @@ ENDMAP
 RANDOM_PLACES:(04,08),(10,04),(10,08),(10,12)
 #
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(13,03,18,13),lit,"ordinary",unfilled
+REGION:(13,03,18,13),lit,"ordinary",filled,true
 #
 TELEPORT_REGION:(64,01,74,17),(0,0,0,0),down
 TELEPORT_REGION:(02,02,18,13),(0,0,0,0),up
@@ -3584,9 +3584,9 @@ REGION:(02,03,05,16),unlit,"temple"
 ALTAR:(02,14),align[0],altar
 MONSTER:'@',"aligned priest",(02,05),align[0],peaceful
 
-REGION:(61,03,72,16),unlit,"ordinary",unfilled,true
+REGION:(61,03,72,16),unlit,"ordinary",filled,true
 REGION:(71,08,72,11),unlit,"angelhall"
-REGION:(67,08,69,11),lit,"ordinary"
+REGION:(67,08,69,11),lit,"ordinary",filled,true
 # Teleport: down to up stairs island, up to Medusa's island
 TELEPORT_REGION:(02,03,05,16),(0,0,0,0),down
 TELEPORT_REGION:(61,03,72,16),(0,0,0,0),up
@@ -3908,10 +3908,10 @@ MAP
 ENDMAP
 # Dungeon Description
 REGION:(00,00,74,19),unlit,"ordinary"
-REGION:(02,03,05,16),unlit,"ordinary"
-REGION:(62,03,71,16),unlit,"ordinary",unfilled,true
-REGION:(71,08,72,11),unlit,"ordinary"
-REGION:(67,08,69,11),unlit,"ordinary"
+REGION:(02,03,05,16),unlit,"ordinary",filled,true
+REGION:(62,03,71,16),unlit,"ordinary",filled,true
+REGION:(71,08,72,11),unlit,"ordinary",filled,true
+REGION:(67,08,69,11),unlit,"ordinary",filled,true
 # Teleport: down to up stairs island, up to Medusa's island
 TELEPORT_REGION:(02,03,05,16),(0,0,0,0),down
 TELEPORT_REGION:(61,03,72,16),(0,0,0,0),up
@@ -4132,10 +4132,10 @@ MAP
 ENDMAP
 RANDOM_PLACES:(08,06),(66,05),(46,15)
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(49,14,51,16),random,"ordinary",unfilled
-REGION:(07,05,09,07),unlit,"ordinary"
-REGION:(65,04,67,06),unlit,"ordinary"
-REGION:(45,14,47,16),unlit,"ordinary"
+REGION:(49,14,51,16),random,"ordinary",filled,true
+REGION:(07,05,09,07),unlit,"ordinary",filled,true
+REGION:(65,04,67,06),unlit,"ordinary",filled,true
+REGION:(45,14,47,16),unlit,"ordinary",filled,true
 # All places are accessible also with jumping, so don't bother
 # restricting the placement when teleporting from levels below this.
 TELEPORT_REGION:(33,02,38,07),(0,0,0,0),down
@@ -4292,7 +4292,7 @@ ENDMAP
 RANDOM_PLACES:(04,08),(10,04),(10,08),(10,12)
 #
 REGION:(00,00,74,19),lit,"ordinary"
-REGION:(13,03,18,13),lit,"ordinary",unfilled
+REGION:(13,03,18,13),lit,"ordinary",filled,true
 #
 TELEPORT_REGION:(64,01,74,17),(0,0,0,0),down
 TELEPORT_REGION:(02,02,18,13),(0,0,0,0),up
@@ -4467,7 +4467,7 @@ REGION:(00,00,74,19),lit,"ordinary"
 
 REGION:(02,03,05,16),random,"randomroom"
 
-REGION:(61,03,72,16),unlit,"ordinary",unfilled,true
+REGION:(61,03,72,16),unlit,"ordinary",filled,true
 REGION:(71,08,72,11),random,"randomroom"
 REGION:(67,08,69,11),random,"randomroom"
 # Teleport: down to up stairs island, up to Medusa's island

@@ -5413,12 +5413,12 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_ZOMBIEMAN]) {
 			if (!rn2(2)) {
 				(void) mongets(mtmp, HAND_BLASTER);
-				if (rn2(10)) m_initthrow(mtmp, BLASTER_BOLT, 50);
-				else if (rn2(3)) m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 50);
-				else m_initthrow(mtmp, LASER_BEAM, 50);
+				if (rn2(100)) m_initthrow(mtmp, BLASTER_BOLT, 20);
+				else if (rn2(10)) m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 15);
+				else m_initthrow(mtmp, LASER_BEAM, 10);
 			} else {
 				(void) mongets(mtmp, SHOTGUN);
-				 m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+				 m_initthrow(mtmp, SHOTGUN_SHELL, 15);
 			}
 		}
 
@@ -7339,7 +7339,7 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_FORMER_SERGEANT]) {
 			(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
-			 m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+			 m_initthrow(mtmp, SHOTGUN_SHELL, 20);
 		}
 
  		break;
@@ -7373,9 +7373,9 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_WOLFENSTEINER]) {
 			(void) mongets(mtmp, CUTTING_LASER);
-			if (rn2(10)) m_initthrow(mtmp, BLASTER_BOLT, 50);
-			else if (rn2(3)) m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 50);
-			else m_initthrow(mtmp, LASER_BEAM, 50);
+			if (rn2(10)) m_initthrow(mtmp, BLASTER_BOLT, 30);
+			else if (rn2(3)) m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 25);
+			else m_initthrow(mtmp, LASER_BEAM, 20);
 
 		}
 
@@ -7401,9 +7401,9 @@ register struct	monst	*mtmp;
 			if (rn2(2)) (void) mongets(mtmp, RAYGUN);
 			else (void) mongets(mtmp, ARM_BLASTER);
 
-			if (rn2(10)) m_initthrow(mtmp, BLASTER_BOLT, 50);
-			else if (rn2(3)) m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 50);
-			else m_initthrow(mtmp, LASER_BEAM, 50);
+			if (rn2(10)) m_initthrow(mtmp, BLASTER_BOLT, 40);
+			else if (rn2(3)) m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 35);
+			else m_initthrow(mtmp, LASER_BEAM, 30);
 		}
 
 		if (ptr == &mons[PM_NONEXISTANT_COP]) {
