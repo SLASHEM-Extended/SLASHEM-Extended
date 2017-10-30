@@ -226,6 +226,7 @@
 #define is_jokemonster(ptr)	((ptr)->mflags5 & M5_JOKE)
 #define is_diablomonster(ptr)	((ptr)->mflags5 & M5_DIABLO)
 #define is_jonadabmonster(ptr)	((ptr)->mflags5 & M5_JONADAB)
+#define is_evilpatchmonster(ptr)	((ptr)->mflags5 & M5_EVIL)
 
 #define nocorpsedecay(ptr)		((ptr)->mflags3 & M3_NO_DECAY)
 

@@ -1528,6 +1528,9 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	if (ptr->mflags5 & M5_JONADAB) {
 		strcat(description, " Origin: jonadab's random monster generator script.");
 	}
+	if (ptr->mflags5 & M5_EVIL) {
+		strcat(description, " Origin: Evil Variant.");
+	}
 
 	
 	if (polyok(ptr)) {
