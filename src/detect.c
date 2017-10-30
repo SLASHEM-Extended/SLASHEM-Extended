@@ -1681,7 +1681,10 @@ register int aflag;
 				    }
 				} else if (!sensemon(mtmp))
 				    You("find %s.", a_monnam(mtmp));
-				return(1);
+
+				/* No idea why finding a monster stops searching the other squares. Bullshit, I say! --Amy */
+				if (issoviet) return(1); /* soviet message to be added */
+				else continue;
 			    }
 			    if(!canspotmon(mtmp)) {
 				if (mtmp->mundetected &&
