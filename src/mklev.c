@@ -12211,16 +12211,16 @@ selecttrap:
 			if (rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case FEMMY_TRAP:
-			if (rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case MADELEINE_TRAP:
-			if (rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case MARLENA_TRAP:
-			if (rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ANASTASIA_TRAP:
-			if (rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case TOXIC_VENOM_TRAP:
 			if (rn2(7) && !NastyTrapNation) goto selecttrap;
@@ -12232,43 +12232,43 @@ selecttrap:
 			if (rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case JESSICA_TRAP:
-			if (rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case SOLVEJG_TRAP:
-			if (rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case WENDY_TRAP:
-			if (rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case KATHARINA_TRAP:
-			if (rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ELENA_TRAP:
-			if (rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case THAI_TRAP:
-			if (rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ELIF_TRAP:
-			if (rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case NADJA_TRAP:
-			if (rn2(20) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(20) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case SANDRA_TRAP:
-			if (rn2(15) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(15) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case NATALJE_TRAP:
-			if (rn2(50) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case JEANETTA_TRAP:
-			if (rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case YVONNE_TRAP:
-			if (rn2(5) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case MAURAH_TRAP:
-			if (rn2(10) && !NastyTrapNation) goto selecttrap;
+			if (!Role_if(PM_FEMINIST) && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 
 		    case SIN_TRAP:
