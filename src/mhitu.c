@@ -74,7 +74,28 @@ on the first floor, especially when you're playing as something with drain resis
 		case AT_CLAW:
 			pline("%s claws you!", Monnam(mtmp));
 
-			if (Role_if(PM_PROSTITUTE) || Role_if(PM_KURWA)) {
+			if (Role_if(PM_PROSTITUTE) && (multi < 0) && !rn2(4)) {
+
+				You_cant("move!");
+				nomul(-2, "being clawed");
+
+			}
+
+			if (Role_if(PM_PROSTITUTE) && (multi >= 0) && !rn2(2)) {
+
+				You_cant("move!");
+				nomul(-2, "being clawed");
+
+			}
+
+			if (Role_if(PM_KURWA) && (multi < 0) && rn2(4)) {
+
+				You_cant("move!");
+				nomul(-2, "being clawed");
+
+			}
+
+			if (Role_if(PM_KURWA) && (multi >= 0) && rn2(10)) {
 
 				You_cant("move!");
 				nomul(-2, "being clawed");
