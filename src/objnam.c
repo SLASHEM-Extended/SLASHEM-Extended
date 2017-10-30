@@ -351,6 +351,8 @@ int prop;
 			return "defusing";
 		case RNGE_DENASTIFICATION:
 			return "denastification";
+		case CONT_RES:
+			return "contamination resistance";
 
 		default:
 			return "Team Nastytrap";
@@ -2645,6 +2647,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ UNFAIR_ATTACK_CLOAK, "plashch s nespravedlivoy atakoy" },
 	{ UNFAIR_ATTACK_STONE, "nechestnyy kamen' napadeniya" },
 	{ TREASURE_CHEST, "sunduk s sokrovishchami" },
+	{ HELM_OF_DECONTAMINATION, "obezzarazhivaniye shlema" },
+	{ AMULET_OF_CONTAMINATION_RESIST, "amulet of ustoychivost' k zagryazneniyu" },
+	{ CLOAK_OF_CONTAMINATION_RESISTA, "plashch ustoychivost' k zagryazneniyu" },
 
 	{0, "" }
 };
@@ -4766,6 +4771,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ UNFAIR_ATTACK_CLOAK, "adolatsiz hujum plash" },
 	{ UNFAIR_ATTACK_STONE, "adolatsiz hujum tosh" },
 	{ TREASURE_CHEST, "xazina ko'krak" },
+	{ HELM_OF_DECONTAMINATION, "dekontaminatsiya dubulg'a" },
+	{ AMULET_OF_CONTAMINATION_RESIST, "amulet of ifloslanish qarshiligi" },
+	{ CLOAK_OF_CONTAMINATION_RESISTA, "ifloslanish qarshiligi plash" },
 
 	{0, "" }
 };

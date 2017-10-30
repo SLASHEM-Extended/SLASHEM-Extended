@@ -8058,6 +8058,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You must never forget, Conny always reminds you, 'You cannot defeat my high-heeled combat boots. Either the buckles or the zippers will add bloody wounds to your legs, and a kick with the massive heel is strong enough to bludgeon you outright.'",
 	"You have a message from Manuela.  'You have not paid your fine of 100 euros, which means that it increased to 200 now. Pay within one week or I'll send a lawyer to fuck you up.'",
 	"Whether it is true, or whether it is untrue, you cannot say; but surely this is what Anna is telling you:  'My fellow hussies will make sure you can never claim the Amulet of Yendor. Fear the power of Anna's Hussy Club!'",
+	"You feel less resistant to contamination!",
 
 };
 

@@ -2080,6 +2080,12 @@ int dieroll;
 					use_skill(P_GENERAL_COMBAT, 1);
 				}
 
+				u.umissileweaponturns++;
+				if (u.umissileweaponturns >= 3) {
+					u.umissileweaponturns = 0;
+					use_skill(P_MISSILE_WEAPONS, 1);
+				}
+
 			}
 
 	    }
@@ -6100,7 +6106,7 @@ uchar aatyp;
 
 	    case AD_VULN:
 
-		 switch (rnd(123)) {
+		 switch (rnd(124)) {
 
 			case 1:
 			case 2:
@@ -6404,6 +6410,10 @@ uchar aatyp;
 			case 123:
 				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (tmp * rnd(30) ) + 1);
 				pline("You are prevented from having peacevision!");
+				break;
+			case 124:
+				u.uprops[DEAC_CONT_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having contamination resistance!");
 				break;
 		}
 

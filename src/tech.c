@@ -109,6 +109,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"ent's potion",
 	"lucky gamble",
 	"panic digging",
+	"decontaminate",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -151,6 +152,7 @@ static const struct innate_tech
 	mar_tech[] = { {   1, T_CREATE_AMMO, 1},
 		       {   0, 0, 0} },
 	ana_tech[] = { {   1, T_CREATE_AMMO, 1},
+		       {   1, T_DECONTAMINATE, 1},
 		       {   0, 0, 0} },
 	lib_tech[] = { {   1, T_RESEARCH, 1},
 		       {   20, T_RECHARGE, 1},
@@ -187,6 +189,9 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	bul_tech[] = { {   6, T_IRON_SKIN, 1},
+		       {   0, 0, 0} },
+
+	sta_tech[] = { {   12, T_DECONTAMINATE, 1},
 		       {   0, 0, 0} },
 
 	ord_tech[] = { {   1, T_PRACTICE, 1},
@@ -313,6 +318,7 @@ static const struct innate_tech
 		       {   15, T_TELEKINESIS, 1},
 		       {   18, T_IRON_SKIN, 1},
 		       {   19, T_SUMMON_TEAM_ANT, 1},
+		       {   21, T_DECONTAMINATE, 1},
 		       {   23, T_RECHARGE, 1},
 		       {   25, T_VANISH, 1},
 		       {   28, T_POLYFORM, 1},
@@ -600,6 +606,7 @@ static const struct innate_tech
 		       {   12, T_DOUBLE_THROWNAGE, 1},
 		       {   15, T_RECHARGE, 1},
 		       {   18, T_EDDY_WIND, 1},
+		       {   20, T_DECONTAMINATE, 1},
 		       {   0, 0, 0} },
 	unt_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   5, T_BLOOD_RITUAL, 1},
@@ -803,6 +810,7 @@ static const struct innate_tech
 		       {   20, T_ENT_S_POTION, 1},
 		       {   23, T_SIGIL_CONTROL, 1},
 		       {   25, T_EDDY_WIND, 1},
+		       {   28, T_DECONTAMINATE, 1},
 		       {   0, 0, 0} },
 	ogr_tech[] = { {   1, T_FLURRY, 1},
 		       {   1, T_APPRAISAL, 1},
@@ -2009,6 +2017,10 @@ dotech()
 
 		case T_LUCKY_GAMBLE:
 			pline("Randomly increases or decreases your base luck by one, with equal probability.");
+			break;
+
+		case T_DECONTAMINATE:
+			pline("Greatly reduces your contamination when used.");
 			break;
 
 		case T_CHARGE_SABER:
@@ -3666,6 +3678,24 @@ int tech_no;
 	      t_timeout = rnz(2000);
 	      break;
 
+	    case T_DECONTAMINATE:
+		/* divide player's contamination by half, but don't reduce it by more than 1000 --Amy */
+
+		if (!u.contamination) {
+		      t_timeout = rnz(200);
+			You("were not contaminated to begin with.");
+			pline("Nothing happens.");
+			break;
+		}
+
+		pline("Your contamination is cured greatly.");
+
+		if (u.contamination < 2000) decontaminate(u.contamination / 2);
+		else decontaminate(1000);
+	      t_timeout = rnz(4000);
+
+		break;
+
 	    case T_EDDY_WIND:
 		num = 1 + techlev(tech_no);
 	    	techt_inuse(tech_no) = num + 1;
@@ -3969,6 +3999,7 @@ role_tech()
 		case PM_BOSMER:	return (bos_tech);
 		case PM_BULLY:	return (bul_tech);
 		case PM_DUNMER:	return (dun_tech);
+		case PM_STAND_USER:	return (sta_tech);
 		case PM_ORDINATOR:	return (ord_tech);
 		case PM_THALMOR:	return (tha_tech);
 		case PM_DRUNK:	return (dru_tech);

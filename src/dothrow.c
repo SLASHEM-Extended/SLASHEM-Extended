@@ -77,6 +77,8 @@ int thrown;
 	struct obj *otmp;
 	struct obj *launcher;
 	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? 3 : Race_if(PM_MANSTER) ? 2 : Race_if(PM_HAXOR) ? rnd(2) : 1;
+	boolean fullmultishot; /* depends on missile weapons skill --Amy */
+
 	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;
 	if (uwep && uwep->oartifact == ART_LASER_PALADIN) multishot += 1;
 	if (uarmg && uarmg->oartifact == ART_WHINY_MARY) multishot += rnd(5);
@@ -343,7 +345,24 @@ int thrown;
 	if (multishot < 1) multishot = 1;
 
 	/* nerf multishot --Amy */
-	if ((multishot > 3) && !(launcher && launcher->oartifact == ART_STREAMSHOOTER) && !(objects[obj->otyp].oc_skill == -P_FIREARM) && !(objects[obj->otyp].oc_skill == P_FIREARM) ) multishot = 2 + rno(multishot - 2);
+
+	fullmultishot = 0;
+	if (tech_inuse(T_FLURRY) && rn2(3)) fullmultishot = 1;
+	if (tech_inuse(T_DOUBLE_THROWNAGE) && rn2(3)) fullmultishot = 1;
+
+	if (!(PlayerCannotUseSkills)) {
+
+	    switch (P_SKILL(P_MISSILE_WEAPONS)) {
+	    default:	break;
+	    case P_SKILLED: if (!rn2(8)) fullmultishot = 1; break;
+	    case P_EXPERT: if (!rn2(6)) fullmultishot = 1; break;
+	    case P_MASTER: if (!rn2(4)) fullmultishot = 1; break;
+	    case P_GRAND_MASTER: if (!rn2(2)) fullmultishot = 1; break;
+	    case P_SUPREME_MASTER: fullmultishot = 1; break;
+	    }
+	}
+
+	if ((multishot > 3) && !fullmultishot && !(launcher && launcher->oartifact == ART_STREAMSHOOTER) && !(objects[obj->otyp].oc_skill == -P_FIREARM) && !(objects[obj->otyp].oc_skill == P_FIREARM) ) multishot = 2 + rno(multishot - 2);
 
 	m_shot.s = ammo_and_launcher(obj,uwep) ? TRUE : FALSE;
 	/* give a message if shooting more than one, or if player
@@ -1568,7 +1587,9 @@ int thrown;
 	register int	disttmp; /* distance modifier */
 	struct obj *launcher;
 	register struct obj *blocker = (struct obj *)0;
-	
+
+	int skillpierce; /* with high skill, you can hit monsters that would normally have dodged --Amy */
+
 	int otyp = obj->otyp;
 	boolean guaranteed_hit = (u.uswallow && mon == u.ustuck && rn2(3));
 	int dieroll = rnd(20);
@@ -1645,12 +1666,44 @@ int thrown;
 	if(mon->msleeping) tmp += 2;
 	if(!mon->mcanmove) tmp += 4;
 
+	/* Missile weapon skill: without it, you generally have a lower to-hit; with it, you eventually gain positive bonuses --Amy */
+	tmp -= rn2(5);
+	skillpierce = 0;
+	if (!(PlayerCannotUseSkills)) {
+		switch (P_SKILL(P_MISSILE_WEAPONS)) {
+			default: break;
+			case P_BASIC: tmp += rnd(2); skillpierce = 1; break;
+			case P_SKILLED: tmp += rnd(4); skillpierce = 2; break;
+			case P_EXPERT: tmp += rnd(6); skillpierce = 3; break;
+			case P_MASTER: tmp += rnd(8); skillpierce = 4; break;
+			case P_GRAND_MASTER: tmp += rnd(10); skillpierce = 5; break;
+			case P_SUPREME_MASTER: tmp += rnd(12); skillpierce = 6; break;
+		}
+
+		/* polearms and such should get to-hit bonuses from general combat as well, because I want it :D --Amy */
+		if (pieks) {
+
+			switch (P_SKILL(P_GENERAL_COMBAT)) {
+				default: break;
+				case P_BASIC: tmp += rnd(2); skillpierce = 1; break;
+				case P_SKILLED: tmp += rnd(4); skillpierce = 2; break;
+				case P_EXPERT: tmp += rnd(6); skillpierce = 3; break;
+				case P_MASTER: tmp += rnd(8); skillpierce = 4; break;
+				case P_GRAND_MASTER: tmp += rnd(10); skillpierce = 5; break;
+				case P_SUPREME_MASTER: tmp += rnd(12); skillpierce = 6; break;
+			}
+
+		}
+
+	}
+
+
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
 
 	/* certain monsters are capable of deflecting projectiles --Amy */
 
-	if (!pieks && !(gunused && rn2(3)) ) {
+	if (!pieks && !(gunused && rn2(3)) && !(rn2(13) < skillpierce ) ) {
 
 		if (verysmall(mon->data) && !rn2(4)) {
 			tmp = -100;
@@ -1673,20 +1726,20 @@ int thrown;
 
 	/* certain traits also allow monsters to avoid getting hit */
 
-	if (amorphous(mon->data) && !rn2(5) && tmp > -20) {
+	if (amorphous(mon->data) && !rn2(5) && tmp > -20 && !(rn2(20) < skillpierce ) ) {
 		tmp -= 100;
 		pline("%s's amorphous body skillfully dodges the projectile!", Monnam(mon));
 	}
-	if (noncorporeal(mon->data) && rn2(3) && tmp > -20) {
+	if (noncorporeal(mon->data) && rn2(3) && tmp > -20 && !(rn2(40) < skillpierce ) ) {
 		tmp -= 100;
 		pline("%s easily avoids the projectile due to being noncorporeal!", Monnam(mon));
 	}
-	if (unsolid(mon->data) && !rn2(4) && tmp > -20) {
+	if (unsolid(mon->data) && !rn2(4) && tmp > -20 && !(rn2(20) < skillpierce ) ) {
 		tmp -= 100;
 		pline("%s's unsolid body lets the projectile pass through harmlessly!", Monnam(mon));
 	}
 
-	if (stupidrock && tmp > -20) {
+	if (stupidrock && tmp > -20 && !(rn2(25) < skillpierce ) ) {
 		if (verysmall(mon->data) && !rn2(4)) {
 			tmp = -100;
 			pline("%s avoids the projectile!", Monnam(mon));
@@ -2103,6 +2156,18 @@ int thrown;
 			/* also save uncursed ones sometimes --Amy */
 		    if (!obj->blessed && !obj->cursed && !rn2(3) && !rnl(6))
 			broken = 0;
+
+			if (!(PlayerCannotUseSkills)) {
+				switch (P_SKILL(P_MISSILE_WEAPONS)) {
+					default: break;
+					case P_BASIC: if (rn2(10) < 1) broken = 0; break;
+					case P_SKILLED: if (rn2(10) < 2) broken = 0; break;
+					case P_EXPERT: if (rn2(10) < 3) broken = 0; break;
+					case P_MASTER: if (rn2(10) < 4) broken = 0; break;
+					case P_GRAND_MASTER: if (rn2(10) < 5) broken = 0; break;
+					case P_SUPREME_MASTER: if (rn2(10) < 6) broken = 0; break;
+				}
+			}
 
 			/* allow skill to save ammo --Amy */
 		    if (objects[otyp].oc_skill == -P_BOW && (P_SKILL(P_BOW) >= P_BASIC) && rn2(P_SKILL(P_BOW)) )

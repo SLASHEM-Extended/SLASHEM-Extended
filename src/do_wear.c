@@ -353,7 +353,7 @@ Boots_on()
 		while (extraabilities > 0) {
 			extraabilities--;
 
-		 switch (rnd(123)) {
+		 switch (rnd(124)) {
 
 			case 1:
 			case 2:
@@ -658,6 +658,10 @@ Boots_on()
 				u.uprops[DEAC_PEACEVISION].intrinsic += 1000000;
 				pline("You are prevented from having peacevision!");
 				break;
+			case 124:
+				u.uprops[DEAC_CONT_RES].intrinsic += 1000000;
+				pline("You are prevented from having contamination resistance!");
+				break;
 			}
 
 		}
@@ -934,6 +938,7 @@ Cloak_on()
 	case HIDE:
 	case CLOAK_OF_PEACE:
 	case CLOAK_OF_DIMNESS:
+	case CLOAK_OF_CONTAMINATION_RESISTA:
 	case DISPLACER_BEAST_HIDE:
 	case THE_NEMEAN_LION_HIDE:
 	case CLOAK_OF_SPRAY:
@@ -1374,7 +1379,7 @@ Cloak_on()
 				while (disabling > 0) {
 					disabling--;
 
-		 switch (rnd(123)) {
+		 switch (rnd(124)) {
 
 			case 1:
 			case 2:
@@ -1679,6 +1684,10 @@ Cloak_on()
 				u.uprops[DEAC_PEACEVISION].intrinsic += 1000000;
 				pline("You are prevented from having peacevision!");
 				break;
+			case 124:
+				u.uprops[DEAC_CONT_RES].intrinsic += 1000000;
+				pline("You are prevented from having contamination resistance!");
+				break;
 		}
 
 				}
@@ -1921,6 +1930,7 @@ Cloak_off()
 	case HIDE:
 	case CLOAK_OF_PEACE:
 	case CLOAK_OF_DIMNESS:
+	case CLOAK_OF_CONTAMINATION_RESISTA:
 	case DISPLACER_BEAST_HIDE:
 	case THE_NEMEAN_LION_HIDE:
 	case CLOAK_OF_SPRAY:
@@ -1993,6 +2003,7 @@ Helmet_on()
 	case HELM_OF_SAFEGUARD:
 	case HELM_OF_UNDERWATER_ACTION:
 	case HELM_OF_JAMMING:
+	case HELM_OF_DECONTAMINATION:
 
 	case HELM_OF_STEEL:
 	case SEDGE_HAT:
@@ -2291,6 +2302,7 @@ Helmet_off()
 	case WONDER_HELMET:
 	case POINTED_HELMET:
 	case BOG_STANDARD_HELMET:
+	case HELM_OF_DECONTAMINATION:
 
 	case SEDGE_HAT:
 	case SKULLCAP:

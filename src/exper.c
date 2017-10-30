@@ -34,10 +34,11 @@ STATIC_DCL int enermod(int);
 #define PN_SEARCHING		(-25)
 #define PN_SPIRITUALITY		(-26)
 #define PN_PETKEEPING		(-27)
-#define PN_MARTIAL_ARTS		(-28)
-#define PN_RIDING		(-29)
-#define PN_TWO_WEAPONS		(-30)
-#define PN_LIGHTSABER		(-31)
+#define PN_MISSILE_WEAPONS		(-28)
+#define PN_MARTIAL_ARTS		(-29)
+#define PN_RIDING		(-30)
+#define PN_TWO_WEAPONS		(-31)
+#define PN_LIGHTSABER		(-32)
 
 #ifndef OVLB
 
@@ -68,7 +69,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS, PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -103,6 +104,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "searching",
     "spirituality",
     "petkeeping",
+    "missile weapons",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -1613,6 +1615,11 @@ boolean incr;	/* true iff via incremental experience growth */
 			    	You("learn how to perform lucky gamble!");
 				}
 				break;
+			case 166: 
+				if (!tech_known(T_DECONTAMINATE)) {    	learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
+			    	You("learn how to perform decontaminate!");
+				}
+				break;
 
 			default:
 				break;
@@ -2399,6 +2406,11 @@ boolean incr;	/* true iff via incremental experience growth */
 			    	You("learn how to perform lucky gamble!");
 				}
 				break;
+			case 166: 
+				if (!tech_known(T_DECONTAMINATE)) {    	learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
+			    	You("learn how to perform decontaminate!");
+				}
+				break;
 
 			default:
 				break;
@@ -2827,6 +2839,11 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 165: 
 				if (!tech_known(T_LUCKY_GAMBLE)) {    	learntech(T_LUCKY_GAMBLE, FROMOUTSIDE, 1);
 			    	You("learn how to perform lucky gamble!");
+				}
+				break;
+			case 166: 
+				if (!tech_known(T_DECONTAMINATE)) {    	learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
+			    	You("learn how to perform decontaminate!");
 				}
 				break;
 
@@ -3258,6 +3275,11 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 165: 
 				if (!tech_known(T_LUCKY_GAMBLE)) {    	learntech(T_LUCKY_GAMBLE, FROMOUTSIDE, 1);
 			    	You("learn how to perform lucky gamble!");
+				}
+				break;
+			case 166: 
+				if (!tech_known(T_DECONTAMINATE)) {    	learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
+			    	You("learn how to perform decontaminate!");
 				}
 				break;
 
@@ -3697,6 +3719,11 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 165: 
 				if (!tech_known(T_LUCKY_GAMBLE)) {    	learntech(T_LUCKY_GAMBLE, FROMOUTSIDE, 1);
 			    	You("learn how to perform lucky gamble!");
+				}
+				break;
+			case 166: 
+				if (!tech_known(T_DECONTAMINATE)) {    	learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
+			    	You("learn how to perform decontaminate!");
 				}
 				break;
 

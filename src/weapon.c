@@ -41,10 +41,11 @@ STATIC_DCL int enhance_skill(boolean);
 #define PN_SEARCHING		(-25)
 #define PN_SPIRITUALITY		(-26)
 #define PN_PETKEEPING		(-27)
-#define PN_MARTIAL_ARTS		(-28)
-#define PN_RIDING		(-29)
-#define PN_TWO_WEAPONS		(-30)
-#define PN_LIGHTSABER		(-31)
+#define PN_MISSILE_WEAPONS		(-28)
+#define PN_MARTIAL_ARTS		(-29)
+#define PN_RIDING		(-30)
+#define PN_TWO_WEAPONS		(-31)
+#define PN_LIGHTSABER		(-32)
 
 static void give_may_advance_msg(int);
 STATIC_PTR int practice(void);
@@ -87,7 +88,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS, PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -122,6 +123,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "searching",
     "spirituality",
     "petkeeping",
+    "missile weapons",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -2636,6 +2638,9 @@ int skill;
 		case P_PETKEEPING:
 			    HTelepat |= FROMOUTSIDE; pline("Got telepathy!"); break;
 		break;
+		case P_MISSILE_WEAPONS:
+			    HCont_resist |= FROMOUTSIDE; pline("Got contamination resistance!"); break;
+		break;
 
 		default: break;
 
@@ -2916,6 +2921,11 @@ int skill;
 		case P_PETKEEPING:
 				if (!tech_known(T_SUMMON_PET)) {    	learntech(T_SUMMON_PET, FROMOUTSIDE, 1);
 			    	You("learn how to perform summon pet!");
+				}
+		break;
+		case P_MISSILE_WEAPONS:
+				if (!tech_known(T_DECONTAMINATE)) {    	learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
+			    	You("learn how to perform decontaminate!");
 				}
 		break;
 
@@ -4523,6 +4533,15 @@ const struct def_skill *class_skill;
 			P_SKILL(P_PETKEEPING) = P_BASIC;
 			if (P_MAX_SKILL(P_PETKEEPING) == P_EXPERT) P_MAX_SKILL(P_PETKEEPING) = P_GRAND_MASTER;
 			else P_MAX_SKILL(P_PETKEEPING) = P_SUPREME_MASTER;
+		}
+		if (P_RESTRICTED(P_MISSILE_WEAPONS)) {
+			P_SKILL(P_MISSILE_WEAPONS) = P_BASIC;
+			P_ADVANCE(P_MISSILE_WEAPONS) = 20;
+			P_MAX_SKILL(P_MISSILE_WEAPONS) = P_SKILLED;
+		} else {
+			P_SKILL(P_MISSILE_WEAPONS) = P_BASIC;
+			if (P_MAX_SKILL(P_MISSILE_WEAPONS) == P_EXPERT) P_MAX_SKILL(P_MISSILE_WEAPONS) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_MISSILE_WEAPONS) = P_SUPREME_MASTER;
 		}
 		if (P_RESTRICTED(P_DEVICES)) {
 			P_SKILL(P_DEVICES) = P_BASIC;

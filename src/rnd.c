@@ -656,7 +656,7 @@ int
 randenchantment()
 {
 
-	switch (rnd(156)) {
+	switch (rnd(157)) {
 
 		case 1:
 		case 2:
@@ -1153,6 +1153,8 @@ randenchantment()
 			return CONFUSION;
 		case 156:
 			return FEARED;
+		case 157:
+			return CONT_RES;
 
 		default:
 			return POISON_RES;
@@ -1344,7 +1346,7 @@ randnastyenchantment()
 int
 randomdisableproperty()
 {
-	switch (rnd(60)) {
+	switch (rnd(61)) {
 
 		case 1:
 			return FIRE_RES;
@@ -1466,6 +1468,8 @@ randomdisableproperty()
 			return DIMMOPATHY;
 		case 60:
 			return PEACEVISION;
+		case 61:
+			return CONT_RES;
 		default:
 			return POISON_RES;
 	}		

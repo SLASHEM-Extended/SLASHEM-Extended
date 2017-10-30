@@ -954,7 +954,7 @@ nh_timeout()
 
 	if (!rn2(250) && u.uprops[REPEATING_VULNERABILITY].extrinsic) {
 
-		switch (rnd(123)) {
+		switch (rnd(124)) {
 
 			case 1:
 			case 2:
@@ -1258,13 +1258,17 @@ nh_timeout()
 			case 123:
 				u.uprops[DEAC_PEACEVISION].intrinsic += rnz(200);
 				pline("You are prevented from having peacevision!");
+				break;
+			case 124:
+				u.uprops[DEAC_CONT_RES].intrinsic += rnz(200);
+				pline("You are prevented from having contamination resistance!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && AutomaticVulnerabilitiy) {
 
-		switch (rnd(123)) {
+		switch (rnd(124)) {
 
 			case 1:
 			case 2:
@@ -1568,13 +1572,17 @@ nh_timeout()
 			case 123:
 				u.uprops[DEAC_PEACEVISION].intrinsic += rnz(200);
 				pline("You are prevented from having peacevision!");
+				break;
+			case 124:
+				u.uprops[DEAC_CONT_RES].intrinsic += rnz(200);
+				pline("You are prevented from having contamination resistance!");
 				break;
 			}
 	}
 
 	if (!rn2(250) && have_vulnerabilitystone() ) {
 
-		switch (rnd(123)) {
+		switch (rnd(124)) {
 
 			case 1:
 			case 2:
@@ -1878,6 +1886,10 @@ nh_timeout()
 			case 123:
 				u.uprops[DEAC_PEACEVISION].intrinsic += rnz(200);
 				pline("You are prevented from having peacevision!");
+				break;
+			case 124:
+				u.uprops[DEAC_CONT_RES].intrinsic += rnz(200);
+				pline("You are prevented from having contamination resistance!");
 				break;
 			}
 	}
@@ -5189,6 +5201,10 @@ nh_timeout()
 			if (!Conf_resist)
 				pline("You no longer resist confusion.");
 			break;
+		case CONT_RES:
+			if (!Cont_resist)
+				pline("You no longer resist contamination.");
+			break;
 		case BLACK_NG_WALLS:
 
 			pline(Hallucination ? "Rien ne va plus... You seem to remember this slogan being printed on all official Pokemon games' box covers. It's like 'Rien ne va plus' is the official Pokemon slogan!" : "Rien ne va plus...");
@@ -5426,6 +5442,9 @@ nh_timeout()
 			break;
 		case DEAC_PEACEVISION:
 			pline("You are no longer prevented from having peacevision.");
+			break;
+		case DEAC_CONT_RES:
+			pline("You are no longer prevented from having contamination resistance.");
 			break;
 
 		}

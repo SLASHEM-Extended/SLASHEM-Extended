@@ -4873,7 +4873,7 @@ hitmu(mtmp, mattk)
 	    case AD_VULN:
 		hitmsg(mtmp, mattk);
 
-		 switch (rnd(123)) {
+		 switch (rnd(124)) {
 
 			case 1:
 			case 2:
@@ -5177,6 +5177,10 @@ hitmu(mtmp, mattk)
 			case 123:
 				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (dmg * rnd(30) ) + 1);
 				pline("You are prevented from having peacevision!");
+				break;
+			case 124:
+				u.uprops[DEAC_CONT_RES].intrinsic += rnz( (dmg * rnd(30) ) + 1);
+				pline("You are prevented from having contamination resistance!");
 				break;
 		}
 
@@ -8374,7 +8378,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	      case AD_VULN:
 				pline("You are covered with aggressive bacteria!");
 
-		 switch (rnd(123)) {
+		 switch (rnd(124)) {
 
 			case 1:
 			case 2:
@@ -8678,6 +8682,10 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			case 123:
 				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (tmp * rnd(30) ) + 1);
 				pline("You are prevented from having peacevision!");
+				break;
+			case 124:
+				u.uprops[DEAC_CONT_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having contamination resistance!");
 				break;
 		}
 
@@ -12040,7 +12048,7 @@ common:
 
 	    case AD_VULN:
 
-		 switch (rnd(123)) {
+		 switch (rnd(124)) {
 
 			case 1:
 			case 2:
@@ -12344,6 +12352,10 @@ common:
 			case 123:
 				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (tmp * rnd(30) ) + 1);
 				pline("You are prevented from having peacevision!");
+				break;
+			case 124:
+				u.uprops[DEAC_CONT_RES].intrinsic += rnz( (tmp * rnd(30) ) + 1);
+				pline("You are prevented from having contamination resistance!");
 				break;
 		}
 
@@ -15954,7 +15966,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
                 pline("%s laughs devilishly!", Monnam(mtmp));
 
-		 switch (rnd(123)) {
+		 switch (rnd(124)) {
 
 			case 1:
 			case 2:
@@ -16258,6 +16270,10 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			case 123:
 				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (dmgplus * rnd(30) ) + 1);
 				pline("You are prevented from having peacevision!");
+				break;
+			case 124:
+				u.uprops[DEAC_CONT_RES].intrinsic += rnz( (dmgplus * rnd(30) ) + 1);
+				pline("You are prevented from having contamination resistance!");
 				break;
 		}
 		}
@@ -17318,66 +17334,67 @@ register struct monst *mon;
 
             slextest(200, 1000) {
 		stdmsg("AIDS");
-		u.uprops[DEAC_FIRE_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_COLD_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_SLEEP_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_DISINT_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_SHOCK_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_POISON_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_DRAIN_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_SICK_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_ANTIMAGIC].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_ACID_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_STONE_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_FEAR_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_SEE_INVIS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_TELEPAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_WARNING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_SEARCHING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_CLAIRVOYANT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_INFRAVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_DETECT_MONSTERS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_INVIS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_DISPLACED].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_STEALTH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_JUMPING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_FLYING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_PASSES_WALLS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_SLOW_DIGESTION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_HALF_SPDAM].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_HALF_PHDAM].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_REGENERATION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_FAST].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_REFLECTING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_FREE_ACTION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_HALLU_PARTY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_CORROSIVITY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_FEAR_FACTOR].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_BURNOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_SICKOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_THE_FORCE].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_STUN_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_CONF_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_PSI_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_WONDERLEGS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-		u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+		u.uprops[DEAC_FIRE_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_COLD_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_SLEEP_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_DISINT_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_SHOCK_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_POISON_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_DRAIN_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_SICK_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_ANTIMAGIC].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_ACID_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_STONE_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_FEAR_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_SEE_INVIS].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_TELEPAT].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_WARNING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_SEARCHING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_CLAIRVOYANT].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_INFRAVISION].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_DETECT_MONSTERS].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_INVIS].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_DISPLACED].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_STEALTH].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_JUMPING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_FLYING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_PASSES_WALLS].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_SLOW_DIGESTION].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_HALF_SPDAM].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_HALF_PHDAM].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_REGENERATION].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_FAST].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_REFLECTING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_FREE_ACTION].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_HALLU_PARTY].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_CORROSIVITY].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_FEAR_FACTOR].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_BURNOPATHY].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_SICKOPATHY].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_THE_FORCE].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_STUN_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_CONF_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_PSI_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_WONDERLEGS].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_CONT_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
             }
         
 

@@ -7466,6 +7466,8 @@ struct obj *obj;
 				pline("Wearing this cloak allows you to recognize peaceful monsters without needing to farlook them. FIQ wanted that to be enabled by default without requiring an extrinsic, but there are reasons why I made it the way it is now. Ask me if you need to know the specifics. (Yes, you should really join the IRC channel, unless you deliberately want to play the game unspoiled!)"); break;
 			case CLOAK_OF_DIMNESS:
 				pline("If you put on this cloak, you are subjected to a status effect that halves your armor class and abuses your wisdom. And in order to fix that, you must take it off again, however these cloaks are usually generated cursed."); break;
+			case CLOAK_OF_CONTAMINATION_RESISTA:
+				pline("A cloak that provides maximum magic cancellation and tones down the effects of weeping angel contamination."); break;
 			case ICKY_SHIELD:
 				pline("It's a shield that offers great armor class, but due to the ickiness it's very hard to block projectiles with it."); break;
 			case HEAVY_SHIELD:
@@ -8106,6 +8108,8 @@ struct obj *obj;
 				pline("A helmet that grants magical breathing."); break;
 			case HELM_OF_JAMMING:
 				pline("This helmet generates a stealth field around you so to speak, by making it harder for monsters to sense your presence."); break;
+			case HELM_OF_DECONTAMINATION:
+				pline("A helmet that grants you contamination resistance, which reduces all incoming contamination by a factor 5."); break;
 			case FLACK_HELMET:
 				pline("Extra line of sight, good AC and low magic cancellation make this helmet worth using."); break;
 			case CRYSTAL_HELM:
@@ -9142,6 +9146,8 @@ struct obj *obj;
 				pline("Considering that this amulet conveys sleep resistance (which is rather mundane), it's quite rare."); break;
 			case AMULET_OF_MENTAL_STABILITY:
 				pline("Put on this amulet to get confusion resistance."); break;
+			case AMULET_OF_CONTAMINATION_RESIST:
+				pline("This rare amulet greatly reduces the effect of contamination on you."); break;
 
 			case AMULET_OF_INFINITY: 
 				pline("This is a special amulet, because nobody knows the effect in advance - but you now know that it is %s!", enchname(objects[AMULET_OF_INFINITY].oc_oprop) ); break;

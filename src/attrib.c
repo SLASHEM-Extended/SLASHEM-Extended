@@ -33,6 +33,7 @@ const struct innate {
 
 	ana_abil[] = { {   7, &(HFast), "quick", "slow" },  
 		     {	15, &(HWarning), "precognitive", "noncognitive" },  
+		     {	15, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
 		     {	 0, 0, 0, 0 } },  
 
 	pic_abil[] = { {	 1, &(HStealth), "", "" },
@@ -304,6 +305,7 @@ const struct innate {
 		     {	 0, 0, 0, 0 } },
 
 	sci_abil[] = { {	 1, &(HAcid_resistance), "", "" },
+		     {	25, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
 		     {	 0, 0, 0, 0 } },
 
 	mus_abil[] = { {	 7, &(HStealth), "stealthy", "noisy" },
@@ -395,6 +397,7 @@ const struct innate {
 		     {   19, &(HAcid_resistance), "warded", "endangered" },
 		     {   22, &(HTelepat), "telepathic", "nontelepathic" },
 		     {   25, &(HSick_resistance), "resistant", "non-resistant" },
+		     {   26, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
 		     {   28, &(HTeleport_control), "controlled", "uncontrolled" },
 		     {   30, &(HFlying), "airborne", "stalled" },
 		     {   0, 0, 0, 0 } },

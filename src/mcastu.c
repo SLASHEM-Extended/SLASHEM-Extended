@@ -1977,7 +1977,7 @@ newboss:
 	break;
     case CLC_VULN_YOU: /* inspired by Sporkhack but enhanced by Amy */
 	dmg *= 10;
-	switch (rnd(123)) {
+	switch (rnd(124)) {
 
 		case 1:
 		case 2:
@@ -2281,6 +2281,10 @@ newboss:
 		case 123:
 			u.uprops[DEAC_PEACEVISION].intrinsic += rnz(dmg);
 			pline("You are prevented from having peacevision!");
+			break;
+		case 124:
+			u.uprops[DEAC_CONT_RES].intrinsic += rnz(dmg);
+			pline("You are prevented from having contamination resistance!");
 			break;
 	}
 	dmg = 0;

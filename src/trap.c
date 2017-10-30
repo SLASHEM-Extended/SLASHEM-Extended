@@ -93,10 +93,11 @@ STATIC_VAR const char * const blindgas[6] =
 #define PN_SEARCHING		(-25)
 #define PN_SPIRITUALITY		(-26)
 #define PN_PETKEEPING		(-27)
-#define PN_MARTIAL_ARTS		(-28)
-#define PN_RIDING		(-29)
-#define PN_TWO_WEAPONS		(-30)
-#define PN_LIGHTSABER		(-31)
+#define PN_MISSILE_WEAPONS		(-28)
+#define PN_MARTIAL_ARTS		(-29)
+#define PN_RIDING		(-30)
+#define PN_TWO_WEAPONS		(-31)
+#define PN_LIGHTSABER		(-32)
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
@@ -129,7 +130,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS, PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -164,6 +165,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "searching",
     "spirituality",
     "petkeeping",
+    "missile weapons",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -3550,6 +3552,8 @@ newegomon:
 				    unrestrict_weapon_skill(P_SPIRITUALITY);	acquiredskill = 1; }
 			else if (P_RESTRICTED(P_PETKEEPING) && yn("Do you want to learn the petkeeping skill?")=='y') {
 				    unrestrict_weapon_skill(P_PETKEEPING);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_MISSILE_WEAPONS) && yn("Do you want to learn the missile weapons skill?")=='y') {
+				    unrestrict_weapon_skill(P_MISSILE_WEAPONS);	acquiredskill = 1; }
 			else if (yn("Do you want to learn no new skill at all?")=='y') {
 				    acquiredskill = 1; }
 			}
@@ -8517,7 +8521,7 @@ madnesseffect:
 
 			if (!rn2(5)) {
 
-				 switch (rnd(123)) {
+				 switch (rnd(124)) {
 
 					case 1:
 					case 2:
@@ -8822,6 +8826,10 @@ madnesseffect:
 						u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 						pline("You are prevented from having peacevision!");
 						break;
+					case 124:
+						u.uprops[DEAC_CONT_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+						pline("You are prevented from having contamination resistance!");
+						break;
 				}
 
 			}
@@ -9091,7 +9099,7 @@ madnesseffect:
 			seetrap(trap);
 			pline("You stepped on a trigger!");
 
-		 switch (rnd(123)) {
+		 switch (rnd(124)) {
 
 			case 1:
 			case 2:
@@ -9395,6 +9403,10 @@ madnesseffect:
 			case 123:
 				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
 				pline("You are prevented from having peacevision!");
+				break;
+			case 124:
+				u.uprops[DEAC_CONT_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
+				pline("You are prevented from having contamination resistance!");
 				break;
 			}
 

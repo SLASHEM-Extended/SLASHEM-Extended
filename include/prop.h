@@ -485,7 +485,10 @@
 #define AUTOMORE_BUG	443
 #define UNFAIR_ATTACK_BUG	444
 
-#define SECOND_CHANCE		445
+#define CONT_RES 445
+#define DEAC_CONT_RES 446
+
+#define SECOND_CHANCE		447
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

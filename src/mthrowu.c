@@ -467,6 +467,18 @@ int x,y;
 	    if (!obj->blessed && !obj->cursed && !rn2(3) && !rnl(6))
 		create = 1;
 
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_MISSILE_WEAPONS)) {
+				default: break;
+				case P_BASIC: if (rn2(10) < 1) create = 1; break;
+				case P_SKILLED: if (rn2(10) < 2) create = 1; break;
+				case P_EXPERT: if (rn2(10) < 3) create = 1; break;
+				case P_MASTER: if (rn2(10) < 4) create = 1; break;
+				case P_GRAND_MASTER: if (rn2(10) < 5) create = 1; break;
+				case P_SUPREME_MASTER: if (rn2(10) < 6) create = 1; break;
+			}
+		}
+
 	    if (objects[obj->otyp].oc_skill == -P_BOW && (P_SKILL(P_BOW) >= P_BASIC) && rn2(P_SKILL(P_BOW)) )
 		create = 1;
 	    if (objects[obj->otyp].oc_skill == -P_CROSSBOW && (P_SKILL(P_CROSSBOW) >= P_BASIC) && rn2(P_SKILL(P_CROSSBOW)) )

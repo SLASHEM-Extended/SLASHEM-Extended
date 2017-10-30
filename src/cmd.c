@@ -48,10 +48,11 @@
 #define PN_SEARCHING		(-25)
 #define PN_SPIRITUALITY		(-26)
 #define PN_PETKEEPING		(-27)
-#define PN_MARTIAL_ARTS		(-28)
-#define PN_RIDING		(-29)
-#define PN_TWO_WEAPONS		(-30)
-#define PN_LIGHTSABER		(-31)
+#define PN_MISSILE_WEAPONS		(-28)
+#define PN_MARTIAL_ARTS		(-29)
+#define PN_RIDING		(-30)
+#define PN_TWO_WEAPONS		(-31)
+#define PN_LIGHTSABER		(-32)
 
 #ifndef OVLB
 
@@ -82,7 +83,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS, PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -117,6 +118,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "searching",
     "spirituality",
     "petkeeping",
+    "missile weapons",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -314,6 +316,12 @@ STATIC_DCL boolean help_dir(CHAR_P,const char *);
 
 STATIC_PTR int domenusystem(void); /* WAC the menus*/
 
+#ifdef BORG
+/* in borg.c */
+extern char borg_on;
+extern char borg_line[80];
+char borg_input(void);
+#endif
 #ifdef OVL1
 
 STATIC_VAR NEARDATA const char *names[] = { 0,
@@ -1212,8 +1220,13 @@ doremoveimarkers()
 
 
 #ifdef BORG
-static int doborgtoggle(void) {
-	if (yn_function("Really enable cyborg?", ynqchars, 'n') == 'y') {
+STATIC_PTR int 
+doborgtoggle()
+{
+	char    qbuf[QBUFSZ];
+	char    c;
+	strcpy(qbuf,"Really enable cyborg?");
+	if ((c = yn_function(qbuf, ynqchars, 'n')) == 'y') {
 		borg_on = 1;
 		pline("The cyborg is enabled.... Good luck!");
 	}
@@ -4749,6 +4762,12 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && NoCont_resist && (final || u.uprops[DEAC_CONT_RES].intrinsic) ) {
+		sprintf(buf, "prevented from having contamination resistance");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.uprops[DEAC_CONT_RES].intrinsic);
+		you_are(buf);
+	}
+
 	int shieldblockrate = 0;
 
 	if ((guaranteed || !rn2(10)) && uarms) {
@@ -5141,6 +5160,7 @@ boolean guaranteed;
 
 	if ((guaranteed || !rn2(10)) && Stun_resist) you_have("stun resistance");
 	if ((guaranteed || !rn2(10)) && Conf_resist) you_have("confusion resistance");
+	if ((guaranteed || !rn2(10)) && Cont_resist) you_have("contamination resistance");
 	if ((guaranteed || !rn2(10)) && Psi_resist) you_have("psi resistance");
 	if ((guaranteed || !rn2(10)) && Extra_wpn_practice) enl_msg("You ", "can", "could", " train skills and attributes faster");
 	if ((guaranteed || !rn2(10)) && Death_resistance) you_have("resistance to death rays");
@@ -7682,6 +7702,11 @@ int final;
 	      sprintf(eos(buf), " (%d)", u.uprops[DEAC_THE_FORCE].intrinsic);
 		dump(youwere, buf);
 	}
+	if (NoCont_resist) {
+		sprintf(buf, "prevented from having contamination resistance");
+	      sprintf(eos(buf), " (%d)", u.uprops[DEAC_CONT_RES].intrinsic);
+		dump(youwere, buf);
+	}
 
 	int shieldblockrate = 0;
 
@@ -8035,6 +8060,7 @@ int final;
 
 	if (Stun_resist) dump(youhad, "stun resistance");
 	if (Conf_resist) dump(youhad, "confusion resistance");
+	if (Cont_resist) dump(youhad, "contamination resistance");
 	if (Psi_resist) dump(youhad, "psi resistance");
 	if (Extra_wpn_practice) dump("  ", "You could train skills and attributes faster");
 	if (Death_resistance) dump(youhad, "resistance to death rays");
@@ -8933,9 +8959,6 @@ struct ext_func_tab extcmdlist[] = {
 	{"2weapon", "toggle two-weapon combat", dotwoweapon, !IFBURIED, AUTOCOMPLETE},
 	{"adjust", "adjust inventory letters", doorganize, IFBURIED, AUTOCOMPLETE},
 	{"annotate", "name current level", donamelevel, TRUE, AUTOCOMPLETE},
-#ifdef BORG
-	{"borg", "enable borg mode", doborgtoggle, IFBURIED, AUTOCOMPLETE},
-#endif
 	{"borrow", "steal from monsters", playersteal, IFBURIED, AUTOCOMPLETE},  /* jla */        
 	{"chat", "talk to someone", dotalk, IFBURIED, AUTOCOMPLETE},    /* converse? */
 	{"conduct", "list which challenges you have adhered to", doconduct, IFBURIED, AUTOCOMPLETE},
@@ -10605,7 +10628,9 @@ parse()
 	static char in_line[COLNO];
 #endif
 	register int foo;
-
+#ifdef BORG
+	char junk_char;
+#endif
 	static char repeat_char;
 	boolean prezero = FALSE;
 
@@ -10615,12 +10640,12 @@ parse()
 
 #ifdef BORG
 	if (borg_on) {
-		// TODO: implement kbhit for other windowports --ELR
+	/* KMH -- Danger!  kbhit() is non-standard! */
 	   if (!kbhit()) {
 	       borg_input();
 	       return(borg_line);
 	   } else {
-		 nhgetch();
+		 junk_char = readchar();
 		 pline("Cyborg terminated.");
 		 borg_on = 0;
 	   }

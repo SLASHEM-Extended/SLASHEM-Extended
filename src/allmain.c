@@ -8715,6 +8715,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "slaying gloves")) OBJ_DESCR(objects[i]) = "ubiystvennyye perchatki";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "less helmet")) OBJ_DESCR(objects[i]) = "men'she shlem";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flier cloak")) OBJ_DESCR(objects[i]) = "plashch letchika";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "engraved helmet")) OBJ_DESCR(objects[i]) = "gravirovannyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ill cloak")) OBJ_DESCR(objects[i]) = "bol'noy plashch";
 
 	}
 	}
@@ -9590,6 +9592,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "slaying gloves")) OBJ_DESCR(objects[i]) = "o'ldirish qo'lqop";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "less helmet")) OBJ_DESCR(objects[i]) = "kam dubulg'a";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flier cloak")) OBJ_DESCR(objects[i]) = "uchuvchi plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "engraved helmet")) OBJ_DESCR(objects[i]) = "o'yilgan dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ill cloak")) OBJ_DESCR(objects[i]) = "kasal plash";
 
 	}
 	}

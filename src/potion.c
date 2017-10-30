@@ -1162,7 +1162,7 @@ badeffect()
 		case 276:
 		case 277:
 
-		switch (rnd(123)) {
+		switch (rnd(124)) {
 
 			case 1:
 			case 2:
@@ -1466,6 +1466,10 @@ badeffect()
 			case 123:
 				u.uprops[DEAC_PEACEVISION].intrinsic += rnz(200);
 				pline("You are prevented from having peacevision!");
+				break;
+			case 124:
+				u.uprops[DEAC_CONT_RES].intrinsic += rnz(200);
+				pline("You are prevented from having contamination resistance!");
 				break;
 			}
 		break;

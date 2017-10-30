@@ -863,4 +863,9 @@
 #define UseTheForce		(((HUseTheForce && !(u.nonintrinsicproperty == THE_FORCE)) || EUseTheForce || (uarm && uarm->oartifact == ART_LUKE_S_JEDI_POWER) ) && !NoUseTheForce)
 #define NoUseTheForce	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_THE_FORCE].intrinsic || RngeAids || (u.nonextrinsicproperty == THE_FORCE && !HUseTheForce) || (u.impossibleproperty == THE_FORCE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
+#define HCont_resist		u.uprops[CONT_RES].intrinsic
+#define ECont_resist		u.uprops[CONT_RES].extrinsic
+#define Cont_resist		(((HCont_resist && !(u.nonintrinsicproperty == CONT_RES)) || ECont_resist) && !NoCont_resist)
+#define NoCont_resist	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_CONT_RES].intrinsic || RngeAids || (u.nonextrinsicproperty == CONT_RES && !HCont_resist) || (u.impossibleproperty == CONT_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
 #endif /* YOUPROP_H */

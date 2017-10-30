@@ -4068,6 +4068,12 @@ register int amount;
 	if (Race_if(PM_HUMANOID_ANGEL)) amount *= 2;
 	/* It is also widely known that the angel race is teh uber pwnz0r and has almost no downsides, so I added one here */
 
+	/* Contamination resistance divides incoming contamination by 5, but not below 1 */
+	if (Cont_resist && amount > 1) {
+		amount /= 5;
+		if (amount < 1) amount = 1;
+	}
+
 	precheckamount = u.contamination;
 
 	u.contamination += amount;

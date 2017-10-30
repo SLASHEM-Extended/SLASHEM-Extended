@@ -3092,6 +3092,9 @@ doinvoke()
 					else if (P_ADVANCE(P_PETKEEPING) && yn("Do you want to train the petkeeping skill?")=='y') {
 						P_ADVANCE(P_PETKEEPING) *= 2;
 						acquiredskill = 1; }
+					else if (P_ADVANCE(P_MISSILE_WEAPONS) && yn("Do you want to train the missile weapons skill?")=='y') {
+						P_ADVANCE(P_MISSILE_WEAPONS) *= 2;
+						acquiredskill = 1; }
 					else if (yn("Do you want to train no skill at all?")=='y') {
 						acquiredskill = 1; }
 					}
@@ -4251,7 +4254,7 @@ intrinsicgainorloss()
 				break;
 
 		}
-	} else switch (rnd(34)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(35)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -4873,6 +4876,23 @@ intrinsicgainorloss()
 					if(!(HPeacevision & FROMOUTSIDE)) {
 						You_feel("a sense of peace.");
 						HPeacevision |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 35:
+				if (intloss) {
+					if (HCont_resist & INTRINSIC) {
+						HCont_resist &= ~INTRINSIC;
+						You_feel("less resistant to contamination!");
+					}
+					if (HCont_resist & TIMEOUT) {
+						HCont_resist &= ~TIMEOUT;
+						You_feel("less resistant to contamination!");
+					}
+				} else {
+					if(!(HCont_resist & FROMOUTSIDE)) {
+						You_feel("protected from contamination.");
+						HCont_resist |= FROMOUTSIDE;
 					}
 				}
 				break;
