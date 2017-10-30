@@ -897,6 +897,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 		    if (hitu && singleobj->otyp == EGG) {
 			if (!Stone_resistance && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+				else if (Stoned) pline("You are already stoned.");
 				else {
 					You("start turning to stone!");
 					Stoned = 7;

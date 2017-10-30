@@ -1534,7 +1534,7 @@ int x;
 	    if (otmp->otyp == x &&
 		    /* never select non-cockatrice corpses */
 		    !((x == CORPSE || x == EGG) &&
-			!touch_petrifies(&mons[otmp->corpsenm])) &&
+			(!touch_petrifies(&mons[otmp->corpsenm]) || Stoned) ) &&
                     (!is_lightsaber(otmp) || otmp->age) &&
 		    (!otmp->oartifact || touch_artifact(otmp,mtmp)))
 		return otmp;
