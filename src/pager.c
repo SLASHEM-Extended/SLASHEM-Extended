@@ -8059,6 +8059,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You have a message from Manuela.  'You have not paid your fine of 100 euros, which means that it increased to 200 now. Pay within one week or I'll send a lawyer to fuck you up.'",
 	"Whether it is true, or whether it is untrue, you cannot say; but surely this is what Anna is telling you:  'My fellow hussies will make sure you can never claim the Amulet of Yendor. Fear the power of Anna's Hussy Club!'",
 	"You feel less resistant to contamination!",
+	"Error, we have lag! Trying to sleep for -15 seconds! (Our delta is 48)",
+	"Warning: Skynethack will become self-aware and realise that Nethack works much better and bug-free if there are no human players.",
 
 };
 

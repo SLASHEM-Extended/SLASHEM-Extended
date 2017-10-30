@@ -936,7 +936,8 @@ static const char *random_mesg[] = {
 	"Oh, 'great warrior...' Wars not make one great!", /*Star Wars*/
 		"I've got a bad feeling about this...",
 		"Do, or Do Not.  There is no Try.",
-		"Never tell me the odds!"
+		"Never tell me the odds!",
+	"There's no replacement for displacement.",
 
 };
 
