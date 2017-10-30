@@ -1,5 +1,20 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.1.0
+- Added a M5_EVIL flag, and classified some monsters as such. Variant rooms can sometimes be filled with only monsters that have this flag.
+- Chatting to a nurse with enough money offers a decontamination service.
+- Valkyries can always throw Mjollnir, regardless of strength.
+- The menu_glyphs option works on Windows now.
+- Thoroughly eroded ranged weapons will always break when thrown.
+- Searching while blind will not fail to search every square when one of the squares contains a monster.
+- Fixed a bug where monsters would throw cockatrice eggs at a player who was already turning to stone.
+- Added a data delete attack that does very evil things if the player gets hit with it.
+- Any square on a newly-generated dungeon level has a minuscule chance of containing a trap.
+- Added new roles: Feminist, Nuclear Physicist, Tracer, Form Changer and Gang Scholar.
+- Added a missile weapons skill, a new technique (decontamination) and a new intrinsic (contamination resistance).
+- Prostitute and kurwa roles have a chance to not be paralyzed by a claw attack. The chance of chain-paralysis when already paralyzed has been reduced in particular.
+- Added new item materials: ether, eternium and brick.
+
 2.0.9
 - Added anoter possible negative effect to fountain quaffing.
 - A player standing on a crystal water tile was able to quaff from it, which was not intended. Fixed.
