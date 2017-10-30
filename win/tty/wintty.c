@@ -37,11 +37,7 @@ extern void msmsg(const char *,...);
 # endif
 #endif
 
-#include <sys/ioctl.h>
-
 extern char mapped_menu_cmds[]; /* from options.c */
-
-int tty_kbhit(void);
 
 /* Interface definition, for windows.c */
 struct window_procs tty_procs = {
@@ -112,7 +108,6 @@ struct window_procs tty_procs = {
 #else
     genl_preference_update,
 #endif
-    tty_kbhit,
 };
 
 static int maxwin = 0;			/* number of windows in use */
@@ -1988,7 +1983,6 @@ struct WinDesc *cw;
 			ttyDisplay->curx++;  
 			putchar(' '); ttyDisplay->curx++;  
 		    }  
-#ifndef WIN32CON
 		    if (curr->glyph != NO_GLYPH && iflags.use_menu_glyphs && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone()) ) {  
 			int glyph_color = NO_COLOR;  
 			int character;  
@@ -2001,10 +1995,11 @@ struct WinDesc *cw;
 			putchar(character);  
 			if (glyph_color != NO_COLOR) term_end_color();  
 /*			print_vt_code(AVTC_GLYPH_END, -1);  */
+			/* Amy edit: use the brain-dead implementation and SUDDENLY IT WORKS ON WINDOWS WOOHOO :D */
+			ttyDisplay->curx++;
 			putchar(' ');  
-			ttyDisplay->curx +=2;  
+			ttyDisplay->curx++;
 		    }  
-#endif
 #ifdef MENU_COLOR
 		   if (FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone() || (uarmh && uarmh->oartifact == ART_TELEVISION_WONDER) ) {
 			int fleececolor = rn2(CLR_MAX);
@@ -3481,15 +3476,6 @@ tty_nh_poskey(x, y, mod)
     return tty_nhgetch();
 # endif
 }
-
-
-// Thanks to https://stackoverflow.com/questions/29335758/using-kbhit-and-getch-on-linux and https://web.archive.org/web/20170713065718/www.flipcode.com/archives/_kbhit_for_Linux.shtml
-int tty_kbhit(void) {
-	int byteswaiting;
-	ioctl(0, FIONREAD, &byteswaiting);
-	return byteswaiting;
-}
-
 
 void
 win_tty_init()
