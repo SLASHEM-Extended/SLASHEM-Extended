@@ -5568,6 +5568,22 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_MADELEINE_S_CALF_LEATHER_SANDAL]) (void) mongets(mtmp, WEDGE_SANDALS);
 		if (mtmp->data == &mons[PM_ALIDA_S_HUGGING_BOOT]) (void) mongets(mtmp, HUGGING_BOOT);
 
+		if (mtmp->data == &mons[PM_HENATRICE]) {
+
+			struct obj *otmpH = mksobj(EGG,TRUE,FALSE);
+
+			if (otmpH) {
+
+				otmpH->spe = 0;
+				otmpH->quan = rnd(3);
+				otmpH->owt = weight(otmpH);
+				otmpH->corpsenm = egg_type_from_parent(PM_COCKATRICE, FALSE);
+				attach_egg_hatch_timeout(otmpH);
+				(void) mpickobj(mtmp,otmpH, TRUE);
+			}
+
+		}
+
 		break;
 
 	    case S_RUBMONST:
@@ -14809,7 +14825,7 @@ register int	mmflags;
 
 			if (rn2(5) && !u.uhave.amulet) mtmp->msleeping = 1;
 
-			if (mndx == PM_PIXIE || mndx == PM_PIXIE_ARCHER) {        
+			if (mndx == PM_PIXIE || mndx == PM_HIDING_PIXIE || mndx == PM_PIXIE_ARCHER) {        
   			    mtmp->perminvis = TRUE;
   			    mtmp->minvis = TRUE;
 			}

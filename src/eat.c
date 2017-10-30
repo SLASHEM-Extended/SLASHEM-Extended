@@ -944,6 +944,7 @@ register int pm;
 	    case PM_CLINGING_LIZARD:
 	    case PM_DEFORMED_LIZARD:
 	    case PM_MEDUSA:
+	    case PM_HENATRICE:
 	    case PM_HANH_S_BLOCK_HEELED_SANDAL:
 		if (Stoned) fix_petrification();
 		break;

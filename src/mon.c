@@ -306,6 +306,9 @@ register struct monst *mtmp;
 		if (rn2(2)) goto default_1;
 		/* fall through */
 	    case PM_WHITE_UNICORN:
+	    case PM_PROTECTED_WHITE_UNICORN:
+	    case PM_PROTECTED_GRAY_UNICORN:
+	    case PM_PROTECTED_BLACK_UNICORN:
 	    case PM_WINGED_WHITE_UNICORN:
 	    case PM_WINGED_GRAY_UNICORN:
 	    case PM_WINGED_BLACK_UNICORN:
@@ -1956,7 +1959,7 @@ mfndpos(mon, poss, info, flag)
 	y = mon->my;
 	nowtyp = levl[x][y].typ;
 
-	nodiag = (mdat == &mons[PM_GRID_BUG] || mdat == &mons[PM_WEREGRIDBUG] || mdat == &mons[PM_GRID_XORN] || mdat == &mons[PM_STONE_BUG] || mdat == &mons[PM_WEAPON_BUG] || mdat == &mons[PM_SPECIFIC_BUG] || mdat == &mons[PM_DELETERIOUS_BUG] || mdat == &mons[PM_CONTAMINATED_BUG] || mdat == &mons[PM_NATURAL_BUG] || mdat == &mons[PM_MELEE_BUG] || mdat == &mons[PM_VORPAL_GRID_BUG] || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) );
+	nodiag = (mdat == &mons[PM_GRID_BUG] || mdat == &mons[PM_WEREGRIDBUG] || mdat == &mons[PM_GRID_XORN] || mdat == &mons[PM_STONE_BUG] || mdat == &mons[PM_WEAPON_BUG] || mdat == &mons[PM_SPECIFIC_BUG] || mdat == &mons[PM_DELETERIOUS_BUG] || mdat == &mons[PM_FICTIONAL_BUG] || mdat == &mons[PM_CONTAMINATED_BUG] || mdat == &mons[PM_NATURAL_BUG] || mdat == &mons[PM_MELEE_BUG] || mdat == &mons[PM_VORPAL_GRID_BUG] || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) );
 	wantpool = mdat->mlet == S_EEL || mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREPIRANHA] || mdat == &mons[PM_HUMAN_WEREEEL] || mdat == &mons[PM_HUMAN_WEREKRAKEN] || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__] || mdat == &mons[PM_SWIMMER_TROLL] || mdat == &mons[PM_MISTER_SUBMARINE] || mdat == &mons[PM_EEL_GOLEM] || mdat == &mons[PM_WATER_TURRET] || mdat == &mons[PM_AQUA_TURRET] || mdat == &mons[PM_DIVER_TROLL] || mdat == &mons[PM_PUNT] || mdat == &mons[PM_LUXURY_YACHT] || mdat == &mons[PM_SUBMARINE_GOBLIN] ;
 	poolok = (is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) || mon->egotype_watersplasher ||
 		 (is_swimmer(mdat) && !wantpool)) && !(mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
@@ -2624,7 +2627,7 @@ register int x,y;
 /* Is the square close enough for the monster to move or attack into? */
 {
 	register int distance = dist2(mon->mx, mon->my, x, y);
-	if (distance==2 && ( mon->data==&mons[PM_GRID_BUG] || mon->data==&mons[PM_WEREGRIDBUG] || mon->data==&mons[PM_GRID_XORN] || mon->data==&mons[PM_STONE_BUG] || mon->data==&mons[PM_DELETERIOUS_BUG] || mon->data==&mons[PM_NATURAL_BUG] || mon->data==&mons[PM_MELEE_BUG] || mon->data==&mons[PM_VORPAL_GRID_BUG] || mon->data==&mons[PM_WEAPON_BUG] || mon->data==&mons[PM_SPECIFIC_BUG] || mon->data==&mons[PM_CONTAMINATED_BUG] || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) ) ) return 0;
+	if (distance==2 && ( mon->data==&mons[PM_GRID_BUG] || mon->data==&mons[PM_WEREGRIDBUG] || mon->data==&mons[PM_GRID_XORN] || mon->data==&mons[PM_STONE_BUG] || mon->data==&mons[PM_DELETERIOUS_BUG] || mon->data==&mons[PM_FICTIONAL_BUG] || mon->data==&mons[PM_NATURAL_BUG] || mon->data==&mons[PM_MELEE_BUG] || mon->data==&mons[PM_VORPAL_GRID_BUG] || mon->data==&mons[PM_WEAPON_BUG] || mon->data==&mons[PM_SPECIFIC_BUG] || mon->data==&mons[PM_CONTAMINATED_BUG] || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) ) ) return 0;
 	return((boolean)(distance < 3));
 }
 
