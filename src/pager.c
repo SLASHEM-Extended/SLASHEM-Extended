@@ -8107,6 +8107,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Sarah'. It reads: 'Feel free to pull down my pants!'",
 	"Incoming message for Player 1. The message is from 'Tobi'. It reads: 'Don't start a fight with Frongnir!'",
 	"Incoming message for Player 1. The message is from 'Ruth'. It reads: 'I'll give the talk, not you.'",
+	"Your items are cursed and disenchanted!",
 
 };
 

@@ -2169,7 +2169,7 @@ datadeleteattack()
 
 	Your("data is deleted!");
 
-	switch (rnd(16)) {
+	switch (rnd(17)) {
 
 
 		case 1:
@@ -2726,6 +2726,22 @@ datadeleteattack()
 					if (Has_contents(otmpD)) delete_contents(otmpD);
 					useup(otmpD);
 				}
+			}
+
+			}
+
+			break;
+		case 17:
+			pline("Your items are cursed and disenchanted!");
+			{
+			struct obj *otmpD, *otmpE;
+
+			for (otmpD = invent; otmpD; otmpD = otmpE) {
+			      otmpE = otmpD->nobj;
+
+				curse(otmpD);
+				if (otmpD->spe > -1) otmpD->spe = -1;
+
 			}
 
 			}
