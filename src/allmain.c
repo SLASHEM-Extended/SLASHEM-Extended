@@ -5757,6 +5757,7 @@ newboss:
 		}
 
 		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) flags.soundok = 0;
+		else if (!multi) flags.soundok = 1;
 
 		/* Let's throw a bone to permablind races. --Amy */
 		if (!Unidentify && !u.uprops[UNIDENTIFY].extrinsic && !have_unidentifystone() ) {
