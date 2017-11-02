@@ -8082,6 +8082,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your health and mana are severely damaged!",
 	"Some of your techniques no longer work...",
 	"Your items are randomly deleted!",
+	"You rapidly sink into the lava!",
 
 };
 

@@ -15846,6 +15846,18 @@ lava_effects()
 	    }
 	}
 
+	/* Amy edit: let's be nice for once, and change the behavior of lava so that it's not always an instakill.
+	 * Now, if you have more than 10 max HP, it reduces the maximum by half and puts you in the lava, so it's still
+	 * very dangerous, but at least your game doesn't necessarily end from a single misstep */
+	if (u.uhpmax > 10) {
+
+		pline_The("lava here burns you, and your health is severely damaged!");
+		losehp(rnd(36), lava_killer, KILLED_BY);
+		u.uhpmax /= 2;
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+
+	} else {
+
 	/* s/he died... */
 	u.youaredead = 1;
 	u.uhp = -1;
@@ -15861,14 +15873,19 @@ lava_effects()
 		done(BURNING);
 		u.youaredead = 0;
 	}
+
 	You("find yourself back on solid %s.", surface(u.ux, u.uy));
 	return(TRUE);
+
+	} /* player had less than 11 max HP */
+
     }
 
     if (!Wwalking) {
 	u.utrap = rn1(4, 4) + (rn1(4, 12) << 8);
 	u.utraptype = TT_LAVA;
-	You("sink into the lava, but it only burns slightly!");
+	if (Fire_resistance) You("sink into the lava, but it only burns slightly!");
+	else You("rapidly sink into the lava!");
 	if (u.uhp > 1)
 	    losehp(1, lava_killer, KILLED_BY);
     }
