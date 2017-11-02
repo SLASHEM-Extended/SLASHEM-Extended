@@ -976,6 +976,7 @@ learn()
 	    delay++;
 	if (delay < end_delay && ublindf && ublindf->otyp == BOSS_VISOR && rn2(2))
 	    delay++;
+
 	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && !Conf_resist && !rn2(Role_if(PM_LIBRARIAN) ? 100 : 10) ) {		/* became confused while learning */
 
 	    (void) confused_book(book);
@@ -993,7 +994,8 @@ learn()
 	}
 	if (delay < end_delay) {    /* not if (delay++), so at end delay == 0 */
 	    delay++;
-	    return(1); /* still busy */
+	    if (delay) return(1); /* still busy, Amy edit: to me it looks like the original code is not working correctly,
+					   * since "delay" can become 0 here and if you get interrupted, you lose a charge again! */
 	}
 	exercise(A_WIS, TRUE);		/* you're studying. */
 	booktype = book->otyp;
@@ -1083,6 +1085,7 @@ register struct obj *spellbook;
 		       have book become erased somehow, resume reading it */
 		    booktype != SPE_BLANK_PAPER) {
 		You("continue your efforts to memorize the spell.");
+		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone()) learn();
 	} else {
 		/* KMH -- Simplified this code */
 		if (booktype == SPE_BLANK_PAPER) {
