@@ -1683,7 +1683,10 @@ register int aflag;
 				    You("find %s.", a_monnam(mtmp));
 
 				/* No idea why finding a monster stops searching the other squares. Bullshit, I say! --Amy */
-				if (issoviet) return(1); /* soviet message to be added */
+				if (issoviet) {
+					pline("Komanda poiska neozhidanno ostanovilas' iz-za oshibki v ispolnyayemom fayle sovetskogo l'da. Potomu chto v Sovetskoy Rossii vy nikogda ne smozhete nayti material, dazhe yesli on nakhoditsya ryadom s vami, kha-kha.");
+					return(1);
+				}
 				else continue;
 			    }
 			    if(!canspotmon(mtmp)) {
