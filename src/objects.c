@@ -4466,6 +4466,9 @@ SCROLL((char *)0,               "THE THE GHOSTSES",  P_NONE,     1,   0, 300, CL
 SCROLL((char *)0,               "DARONG PLEYBECK HOT Q TU RITARN HIRI",  P_NONE,     1,   0, 300, CLR_GREEN),
 SCROLL((char *)0,               "KEJU HIRWI",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN),
 SCROLL((char *)0,               "ONE BELONGS BELONGED",  P_NONE,     1,   0, 300, CLR_BLACK),
+SCROLL((char *)0,               "FINGER OF DEATH SELFZAP",  P_NONE,     1,   0, 300, CLR_BLACK),
+SCROLL((char *)0,               "NOTARY SOJAC",  P_NONE,     1,   0, 300, CLR_MAGENTA),
+SCROLL((char *)0,               "BREATH WEAPON 1 USED",  P_NONE,     1,   0, 300, CLR_ORANGE),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE),

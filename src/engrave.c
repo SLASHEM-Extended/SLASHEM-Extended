@@ -4247,6 +4247,7 @@ static const char *epitaphs[] = {
 	"You can't play with the yellow spell trap. I decided to #(rage)quit upon triggering it, because I'm convinced that makes me a better player.",
 	"You can't play with the yellow spell trap. I decided to #(rage)quit upon triggering it, because I'm not touching SLASH'EM Extended again. I'll play casual games like Pac-Man or Minesweeper instead, since I need to polish my ego and that whole concept of 'difficult games' is too much for me to handle.",
 	"The counterclockwise spin trap screwed me over, without it I'd have hit the correct button and walked away from the monster instead of bumping into it!",
+	"ARRRRRRGH CURSE THE FUCKING FUCKED UP PROGRAMMER FUCKTARD WHO MADE IT SO THAT HITTING SPACEBAR AT THE FINGER OF DEATH DIRECTION PROMPT RELEASES IT IN THE PREVIOUS DIRECTION",
 
 };
 
