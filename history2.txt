@@ -1,6 +1,15 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.1.1
+- Added another possible data delete effect, which curses and disenchants the player's entire inventory.
+- Controlled levelporting does not work in the quest. If the player levelports in the quest, it will always be uncontrolled.
+- Fixed a bug where the deafness trap would never time out correctly. The player would no longer be under the trap's effect, but sound effects would still not display because the flags.soundok flag was never set to 1 again!
+- Hitting spacebar or otherwise a wrong key at the spell direction prompt will never direct the spell at the player themselves, even if that was the previously used direction; in such a case it will zap the spell in a random direction now. Also, self-zapping with finger of death is no longer an instadeath if the player is magic resistant; it reduces d20 max HP instead.
+
 2.1.0
+- Falling into lava without fire resistance is not an instakill anymore unless the player has very few max HP; otherwise, it will now reduce the max by half and put the player into lava, which is a delayed instadeath.
+- When under the effect of the auto destruct trap, the player can now successfully read spellbooks or dig with a pick-axe.
+- Some cloned quest levels (e.g. the Rogue quest goal level) could make the game almost impossible to win when they spawned in the regular dungeon; think sokosolver lostsoul, who cannot levelport past the level in question but also cannot phase through walls even when polymorphing into a form that can. Made sure all areas on those levels can be reached by walking.
 - Added a M5_EVIL flag, and classified some monsters as such. Variant rooms can sometimes be filled with only monsters that have this flag.
 - Chatting to a nurse with enough money offers a decontamination service.
 - Valkyries can always throw Mjollnir, regardless of strength.
