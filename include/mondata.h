@@ -182,6 +182,7 @@
 #define is_rider(ptr)		((ptr) == &mons[PM_DEATH] || \
 				 (ptr) == &mons[PM_FAMINE] || \
 				 (ptr) == &mons[PM_FRUSTRATION] || \
+				 (ptr) == &mons[PM_BASTARD_OPERATOR_FROM_HELL] || \
 				 (ptr) == &mons[PM_WAR] || \
 				 (ptr) == &mons[PM_PESTILENCE])
 #define is_deadlysin(ptr)		((ptr) == &mons[PM_GLUTTONY] || \
@@ -196,6 +197,7 @@
 				 (ptr) == &mons[PM_FAMINE] || \
 				 (ptr) == &mons[PM_BLACK_HOLE_BLOB] || \
 				 (ptr) == &mons[PM_LUST] || \
+				 (ptr) == &mons[PM_BASTARD_OPERATOR_FROM_HELL] || \
 				 (ptr) == &mons[PM_ENVY] || \
 				 (ptr) == &mons[PM_SLOTH] || \
 				 (ptr) == &mons[PM_DEPRESSION] || \
