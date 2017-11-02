@@ -992,7 +992,8 @@ level_tele()
 
 	    return;
 	}
-	if ((Teleport_control && !Stunned && rn2(10)) /* Teleport control might not always work. --Amy */
+	/* Skipping the quest via teleport control is lame. --Amy */
+	if ((Teleport_control && !(In_quest(&u.uz)) && !Stunned && rn2(10)) /* Teleport control might not always work. --Amy */
 #ifdef WIZARD
 	   || (wizard && yn_function("Invoke wizard-mode teleport control?", ynchars, 'y') == 'y')
 #endif
