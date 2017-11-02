@@ -2550,7 +2550,8 @@ register int pm;
 	    case PM_TRANSFORMER:
 	    case PM_CHAOS_SHAPECHANGER:
 	    case PM_WARPER:
-	 /* case PM_SANDESTIN: */
+	    case PM_PEANUT__BUTTER_AND_JELLY_SANDWICH:
+	    case PM_SANDESTIN:
 	    case PM_GIANT_CHAMELEON:
 	    case PM_MEDUQUASIT:
 

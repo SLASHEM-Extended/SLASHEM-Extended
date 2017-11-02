@@ -72,7 +72,7 @@ struct monst {
 	Bitfield(noegodisplay,1);	/* no egotype display --Amy */
 	Bitfield(invis_blkd,1); /* invisibility blocked */
 	Bitfield(perminvis,1);	/* intrinsic minvis value */
-	Bitfield(cham,5);	/* shape-changer */
+	Bitfield(cham,8);	/* shape-changer */
 /* note: lychanthropes are handled elsewhere */
 #define CHAM_ORDINARY		0	/* not a shapechanger */
 #define CHAM_CHAMELEON		1	/* animal */
@@ -83,7 +83,8 @@ struct monst {
 #define CHAM_TRANSFORMER		6	/* humanlike */
 #define CHAM_WARPER		7	/* humanlike */
 #define CHAM_CHAOS_SHAPECHANGER		8	/* humanlike */
-#define CHAM_GIANT_CHAMELEON		9	/* animal */
+#define CHAM_SANDWICH		9	/* blob-like things */
+#define CHAM_GIANT_CHAMELEON		10	/* animal */
 #define CHAM_MAX_INDX		CHAM_GIANT_CHAMELEON
 	Bitfield(mundetected,1);	/* not seen in present hiding place */
 				/* implies one of M1_CONCEAL or M1_HIDE,

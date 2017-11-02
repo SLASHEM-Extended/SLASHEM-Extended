@@ -211,6 +211,7 @@ int mndx;
 	case PM_TRANSFORMER:	mcham = CHAM_TRANSFORMER; break;
 	case PM_WARPER:	mcham = CHAM_WARPER; break;
 	case PM_CHAOS_SHAPECHANGER:	mcham = CHAM_CHAOS_SHAPECHANGER; break;
+	case PM_PEANUT__BUTTER_AND_JELLY_SANDWICH:	mcham = CHAM_SANDWICH; break;
 	case PM_GIANT_CHAMELEON:	mcham = CHAM_GIANT_CHAMELEON; break;
 	default: mcham = CHAM_ORDINARY; break;
 	}
@@ -228,6 +229,7 @@ STATIC_VAR short cham_to_pm[] = {
 		PM_TRANSFORMER,
 		PM_WARPER,
 		PM_CHAOS_SHAPECHANGER,
+		PM_PEANUT__BUTTER_AND_JELLY_SANDWICH,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -1959,7 +1961,7 @@ mfndpos(mon, poss, info, flag)
 	y = mon->my;
 	nowtyp = levl[x][y].typ;
 
-	nodiag = (mdat == &mons[PM_GRID_BUG] || mdat == &mons[PM_WEREGRIDBUG] || mdat == &mons[PM_GRID_XORN] || mdat == &mons[PM_STONE_BUG] || mdat == &mons[PM_WEAPON_BUG] || mdat == &mons[PM_SPECIFIC_BUG] || mdat == &mons[PM_DELETERIOUS_BUG] || mdat == &mons[PM_FICTIONAL_BUG] || mdat == &mons[PM_CONTAMINATED_BUG] || mdat == &mons[PM_NATURAL_BUG] || mdat == &mons[PM_MELEE_BUG] || mdat == &mons[PM_VORPAL_GRID_BUG] || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) );
+	nodiag = (isgridbug(mdat) || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) );
 	wantpool = mdat->mlet == S_EEL || mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREPIRANHA] || mdat == &mons[PM_HUMAN_WEREEEL] || mdat == &mons[PM_HUMAN_WEREKRAKEN] || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__] || mdat == &mons[PM_SWIMMER_TROLL] || mdat == &mons[PM_MISTER_SUBMARINE] || mdat == &mons[PM_EEL_GOLEM] || mdat == &mons[PM_WATER_TURRET] || mdat == &mons[PM_AQUA_TURRET] || mdat == &mons[PM_DIVER_TROLL] || mdat == &mons[PM_PUNT] || mdat == &mons[PM_LUXURY_YACHT] || mdat == &mons[PM_SUBMARINE_GOBLIN] ;
 	poolok = (is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) || mon->egotype_watersplasher ||
 		 (is_swimmer(mdat) && !wantpool)) && !(mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
@@ -2627,7 +2629,7 @@ register int x,y;
 /* Is the square close enough for the monster to move or attack into? */
 {
 	register int distance = dist2(mon->mx, mon->my, x, y);
-	if (distance==2 && ( mon->data==&mons[PM_GRID_BUG] || mon->data==&mons[PM_WEREGRIDBUG] || mon->data==&mons[PM_GRID_XORN] || mon->data==&mons[PM_STONE_BUG] || mon->data==&mons[PM_DELETERIOUS_BUG] || mon->data==&mons[PM_FICTIONAL_BUG] || mon->data==&mons[PM_NATURAL_BUG] || mon->data==&mons[PM_MELEE_BUG] || mon->data==&mons[PM_VORPAL_GRID_BUG] || mon->data==&mons[PM_WEAPON_BUG] || mon->data==&mons[PM_SPECIFIC_BUG] || mon->data==&mons[PM_CONTAMINATED_BUG] || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) ) ) return 0;
+	if (distance==2 && ( isgridbug(mon->data) || (uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chess boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shakhmatnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shaxmat chizilmasin") ) ) ) ) return 0;
 	return((boolean)(distance < 3));
 }
 
@@ -5183,6 +5185,18 @@ warperchoice:
 			if (uncommon7(pm) && rn2(3)) goto warperchoice;
 			if (uncommon10(pm) && rn2(5)) goto warperchoice;
 		}
+		break;
+	    case CHAM_SANDWICH:
+sandwichchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto sandwichchoice;
+			if (uncommon2(pm) && !rn2(4)) goto sandwichchoice;
+			if (uncommon3(pm) && !rn2(3)) goto sandwichchoice;
+			if (uncommon5(pm) && !rn2(2)) goto sandwichchoice;
+			if (uncommon7(pm) && rn2(3)) goto sandwichchoice;
+			if (uncommon10(pm) && rn2(5)) goto sandwichchoice;
+			if (rn2(10000) && !(pm->mlet == S_BLOB || pm->mlet == S_PUDDING || pm->mlet == S_JELLY) ) goto sandwichchoice;
 		break;
 	    case CHAM_DOPPELGANGER:
 	    case CHAM_MISSINGNO:

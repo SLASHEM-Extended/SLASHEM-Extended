@@ -242,6 +242,8 @@
 #define M4_MULTIHUED	0x00000020L		/* monster is fleecy-colored <3 */
 #define M4_TAME	0x00000040L		/* spawns tame; if also M2_HOSTILE, only tame with a 1 in 3 chance */
 #define M4_ORGANIVORE	0x00000080L		/* eats leather and other organic material (e.g. gelatinous cube) */
+#define M4_SHAPESHIFT	0x00000100L		/* chameleons and similar monsters */
+#define M4_GRIDBUG	0x00000200L		/* can only move in cardinal directions */
 
 #define M5_SPACEWARS	0x00000001L		/* Castle of the Winds monster */
 #define M5_JOKE	0x00000002L		/* joke monster */

@@ -110,6 +110,8 @@
 #define herbivorous(ptr)	(((ptr)->mflags1 & M1_HERBIVORE) != 0L)
 #define metallivorous(ptr)	(((ptr)->mflags1 & M1_METALLIVORE) != 0L)
 #define organivorous(ptr)	(((ptr)->mflags4 & M4_ORGANIVORE) != 0L)
+#define shapechanger(ptr)	(((ptr)->mflags4 & M4_SHAPESHIFT) != 0L)
+#define isgridbug(ptr)		(((ptr)->mflags4 & M4_GRIDBUG) != 0L)
 #define monpolyok(ptr)		(((ptr)->mflags2 & M2_NOPOLY) == 0L) /* monsters may poly into this */
 #define polyok(ptr)		(((ptr)->mflags2 & M2_NOPOLY) == 0L && ((ptr)->mflags3 & M3_NOPLRPOLY) == 0L && (ptr)->mlevel < 30 ) /* players may poly into this */
 #define is_undead(ptr)		(((ptr)->mflags2 & M2_UNDEAD) != 0L)
