@@ -2124,7 +2124,20 @@ boolean atme;
 			if (atme) u.dx = u.dy = u.dz = 0;
 			else if (!getdir((char *)0)) {
 			    /* getdir cancelled, re-use previous direction */
+
+				/* Amy edit: this is absolute bullshit behavior, because it's very easy to mistype. It should
+				 * NEVER direct the zap at yourself unless you specifically told it so, but the vanilla behavior
+				 * means that knowing finger of death means death to interface screw can happen at any time.
+				 * I've made magic resistance work too, see zap.c, but those that don't have magic resistance
+				 * shall not be screwed over either. Screw you, programmers. And while you're at it,
+				 * read up on game design and specifically interface design! :P --Amy */
+
 			    pline_The("magical energy is released!");
+			    if (u.dx == 0 && u.dy == 0) {
+				You("would have hit yourself, but to reduce YASD potential the blast goes in a random direction.");
+				u.dz = 0;
+				confdir();
+			    }
 			}
 			if(!u.dx && !u.dy && !u.dz) {
 			    if ((damage = zapyourself(pseudo, TRUE)) != 0) {
