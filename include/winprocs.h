@@ -70,7 +70,7 @@ struct window_procs {
     void (*win_outrip)(winid,int);
     void (*win_preference_update)(const char *);
 
-    int (*win_kbhit)(void);
+    int (*win_kbhit)(void); 
 };
 
 extern NEARDATA struct window_procs windowprocs;
@@ -132,7 +132,9 @@ extern NEARDATA struct window_procs windowprocs;
 #endif
 #define get_color_string (*windowprocs.win_get_color_string)
 #endif
+#ifdef BORG
 #define kbhit (*windowprocs.win_kbhit)
+#endif
 
 /* 3.4.2: There is a real yn_function() in the core now, which does
  *        some buffer length validation on the parameters prior to

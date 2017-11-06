@@ -37,11 +37,15 @@ extern void msmsg(const char *,...);
 # endif
 #endif
 
-#include <sys/ioctl.h>
+#ifdef BORG
+#include "sys/ioctl.h"
+#endif
 
 extern char mapped_menu_cmds[]; /* from options.c */
 
+#ifdef BORG
 int tty_kbhit(void);
+#endif
 
 /* Interface definition, for windows.c */
 struct window_procs tty_procs = {
@@ -112,7 +116,7 @@ struct window_procs tty_procs = {
 #else
     genl_preference_update,
 #endif
-    tty_kbhit,
+/*    tty_kbhit,*/
 };
 
 static int maxwin = 0;			/* number of windows in use */
@@ -3482,12 +3486,14 @@ tty_nh_poskey(x, y, mod)
 # endif
 }
 
-// Thanks to https://stackoverflow.com/questions/29335758/using-kbhit-and-getch-on-linux and https://web.archive.org/web/20170713065718/www.flipcode.com/archives/_kbhit_for_Linux.shtml
+/* Thanks to https://stackoverflow.com/questions/29335758/using-kbhit-and-getch-on-linux and https://web.archive.org/web/20170713065718/www.flipcode.com/archives/_kbhit_for_Linux.shtml */
+#ifdef BORG
 int tty_kbhit(void) {
 	int byteswaiting;
 	ioctl(0, FIONREAD, &byteswaiting);
 	return byteswaiting;
 }
+#endif
 
 void
 win_tty_init()
