@@ -116,8 +116,8 @@ curses_line_input_dialog(const char *prompt, char *answer, int buffer)
     maxwidth = term_cols - 2;
 
     if (iflags.window_inited) {
-        if (!iflags.wc_popup_dialog)
-            return curses_message_win_getline(prompt, answer, buffer);
+        /*if (!iflags.wc_popup_dialog)
+            return curses_message_win_getline(prompt, answer, buffer);*/
         curses_get_window_size(MAP_WIN, &map_height, &map_width);
         if ((prompt_width + 2) > map_width)
             maxwidth = map_width - 2;
@@ -265,7 +265,7 @@ curses_character_input_dialog(const char *prompt, const char *choices,
         prompt_width = map_width - 2;
     }
 
-    if (iflags.wc_popup_dialog) {
+    if (iflags.wc_popup_dialog || !iflags.wc_popup_dialog) {
         askwin = curses_create_window(prompt_width, prompt_height, UP);
         for (count = 0; count < prompt_height; count++) {
             linestr = curses_break_str(askstr, maxwidth, count + 1);
@@ -347,7 +347,7 @@ curses_character_input_dialog(const char *prompt, const char *choices,
         }
     }
 
-    if (iflags.wc_popup_dialog) {
+    if (iflags.wc_popup_dialog || !iflags.wc_popup_dialog) {
         /* Kludge to make prompt visible after window is dismissed
            when inputting a number */
         if (digit(answer)) {
@@ -385,7 +385,7 @@ curses_ext_cmd()
     
     startx = 0;
     starty = 0;
-    if (iflags.wc_popup_dialog) { /* Prompt in popup window */
+    if (iflags.wc_popup_dialog || !iflags.wc_popup_dialog) { /* Prompt in popup window */
         int x0, y0, w, h; /* bounding coords of popup */
         extwin2 = curses_create_window(25, 1, UP);
         wrefresh(extwin2);

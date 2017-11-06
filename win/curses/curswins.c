@@ -75,8 +75,12 @@ curses_create_window(int width, int height, orient orientation)
     width += 2;                 /* leave room for bounding box */
     height += 2;
 
-    if ((width > term_cols) || (height > term_rows))
-        panic("curses_create_window: Terminal too small for dialog window");
+    if ((width > term_cols) || (height > term_rows)) {
+        /*panic("curses_create_window: Terminal too small for dialog window");*/
+	  pline("Your terminal is too small, make it bigger or dialog windows will not work!");
+	  width = (term_cols - 2);
+	  height = (term_rows - 2);
+    }
     switch (orientation) {
     case CENTER:
         startx = (term_cols / 2) - (width / 2);

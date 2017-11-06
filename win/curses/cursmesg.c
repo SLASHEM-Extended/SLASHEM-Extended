@@ -329,7 +329,7 @@ curses_count_window(const char *count_text)
 
     counting = TRUE;
 
-    if (iflags.wc_popup_dialog) {       /* Display count in popup window */
+    if (iflags.wc_popup_dialog || !iflags.wc_popup_dialog) {       /* Display count in popup window */
         startx = 1;
         starty = 1;
 
