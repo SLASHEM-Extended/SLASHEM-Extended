@@ -2053,7 +2053,7 @@ register struct obj *obj;
 }
 
 
-void
+boolean
 use_unicorn_horn(obj)
 struct obj *obj;
 {
@@ -2078,7 +2078,7 @@ degradeagain:
 	    useup(obj);
 	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
 	    if (PlayerHearsSoundEffects) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
-		return;
+		return 1;
 	    } else {
 		obj->spe -= 1;
 		pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
@@ -2096,7 +2096,7 @@ degradeagain:
 	    useup(obj);
 	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
 	    if (PlayerHearsSoundEffects) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
-		return;
+		return 1;
 	    } else {
 		obj->spe -= 1;
 		pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
@@ -2140,7 +2140,7 @@ degradeagain:
 	    case 10: make_dimmed(HDimmed + lcount, TRUE);
 		    break;
 	    }
-	    return;
+	    return 0;
 	}
 
 /*
@@ -4255,6 +4255,7 @@ doapply()
 	register int res = 1;
 	register boolean can_use = FALSE;
 	char class_list[MAXOCLASSES+2];
+	boolean noartispeak = FALSE; /* if item was vaporized, don't call arti_speaks because segfaults despite fail safe */
 
 	if (u.powerfailure) {
 		pline("Your power's down, and therefore you cannot apply anything.");
@@ -4584,7 +4585,7 @@ doapply()
 		res = use_towel(obj);
 		break;
 	case CRYSTAL_BALL:
-		use_crystal_ball(obj);
+		if (use_crystal_ball(obj)) noartispeak = TRUE;
 		break;
 /* STEPHEN WHITE'S NEW CODE */
 /* KMH, balance patch -- source of abuse */
@@ -4658,7 +4659,7 @@ doapply()
 		use_figurine(&obj);
 		break;
 	case UNICORN_HORN:
-		use_unicorn_horn(obj);
+		if (use_unicorn_horn(obj)) noartispeak = TRUE;
 		break;
 	case WOODEN_FLUTE:
 	case MAGIC_FLUTE:
@@ -5105,6 +5106,7 @@ doapply()
 		}
 
 		delobj(obj);
+		noartispeak = TRUE;
 
 		use_skill(P_DEVICES,10);
 		if (Race_if(PM_FAWN)) {
@@ -5305,6 +5307,7 @@ doapply()
 			if (!ishaxor) u.ublesscnt += rn2(20);
 			else u.ublesscnt += rn2(10);
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			noartispeak = TRUE;
 			return 0;
 			}
 
@@ -5354,6 +5357,7 @@ doapply()
 	}
 	nomul(0, 0);
 	if (!obj) return res;
+	if (noartispeak) return res;
 	if (res && obj && obj->oartifact) arti_speak(obj);
 	return res;
 }

@@ -1039,7 +1039,7 @@ static const struct {
   { "the Wizard of Yendor's tower", &wiz1_level },
 };
 
-void
+boolean
 use_crystal_ball(obj)
 struct obj *obj;
 {
@@ -1048,7 +1048,7 @@ struct obj *obj;
 
     if (Blind) {
 	pline("Too bad you can't see %s.", the(xname(obj)));
-	return;
+	return 0;
     }
     oops = (rnd(20) > ACURR(A_INT) || obj->cursed);
     if (oops && (obj->spe > 0)) {
@@ -1074,11 +1074,11 @@ struct obj *obj;
 	    useup(obj);
 	    obj = 0;	/* it's gone */
 	    losehp(rnd(30), "exploding crystal ball", KILLED_BY_AN);
-	    return;
+	    return 1;
 	    break;
 	}
 	if (obj) consume_obj_charge(obj, TRUE);
-	return;
+	return 0;
     }
 
     if (Hallucination) {
@@ -1103,7 +1103,7 @@ struct obj *obj;
 	    }
 	    consume_obj_charge(obj, TRUE);
 	}
-	return;
+	return 0;
     }
 
     /* read a single character */
@@ -1112,7 +1112,7 @@ struct obj *obj;
     /* Don't filter out ' ' here; it has a use */
     if ((ch != def_monsyms[S_GHOST]) && index(quitchars,ch)) { 
 	if (flags.verbose) pline(Never_mind);
-	return;
+	return 0;
     }
     You("peer into %s...", the(xname(obj)));
     nomul(-rnd(10), "gazing into a crystal ball");
@@ -1158,7 +1158,7 @@ struct obj *obj;
 	    else pline_The("vision is unclear.");
 	}
     }
-    return;
+    return 0;
 }
 
 STATIC_OVL void
