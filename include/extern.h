@@ -2670,6 +2670,7 @@ E int fire_damage(struct obj *,BOOLEAN_P,BOOLEAN_P,XCHAR_P,XCHAR_P);
 E void water_damage(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E void doshittrap(struct obj *);
 E void lethe_damage(struct obj *,BOOLEAN_P,BOOLEAN_P);
+E void actual_lethe_damage(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E void withering_damage(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E void antimatter_damage(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E boolean drown(void);

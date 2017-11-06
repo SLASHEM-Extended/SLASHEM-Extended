@@ -13869,6 +13869,111 @@ register boolean force, here;
 	}
 }
 
+void
+actual_lethe_damage(obj, force, here)
+register struct obj *obj;
+register boolean force, here;
+{
+	struct obj *otmp;
+
+	/* Scrolls, spellbooks, potions, weapons and
+	   pieces of armor may get affected by the water */
+	for (; obj; obj = otmp) {
+		otmp = here ? obj->nexthere : obj->nobj;
+
+		(void) snuff_lit(obj);
+
+		if (stack_too_big(obj) && !issoviet) continue;
+
+		{
+			if (obj->otyp == POT_WATER) uncurse(obj);
+			unbless(obj);
+
+		    switch (obj->oclass) {
+		    case SCROLL_CLASS:
+			if  (!rn2(10) && obj->otyp != SCR_HEALING && obj->otyp != SCR_STANDARD_ID && obj->otyp != SCR_MANA && obj->otyp != SCR_CURE && obj->otyp != SCR_PHASE_DOOR
+#ifdef MAIL
+		    && obj->otyp != SCR_MAIL
+#endif
+			)
+		    {
+			obj->otyp = SCR_AMNESIA;
+			obj->spe = 0;
+		    }
+			break;
+		    case SPBOOK_CLASS:
+			break;
+		    case POTION_CLASS:
+			if (obj->otyp == POT_WATER || !rn2(10))
+				obj->otyp = POT_AMNESIA;
+			break;
+		    case GEM_CLASS:
+			if ((obj->otyp == LUCKSTONE
+					|| obj->otyp == HEALTHSTONE
+					|| obj->otyp == MANASTONE
+					|| obj->otyp == STONE_OF_MAGIC_RESISTANCE
+					|| obj->otyp == TOUCHSTONE))
+			    obj->otyp = FLINT;
+			break;
+		    case TOOL_CLASS:
+			    switch (obj->otyp) {
+			    case MAGIC_LAMP:
+				obj->otyp = OIL_LAMP;
+				break;
+			    case MAGIC_CANDLE:
+				obj->otyp = rn2(2)? WAX_CANDLE : TALLOW_CANDLE;
+				break;
+			    case MAGIC_WHISTLE:
+				obj->otyp = TIN_WHISTLE;
+				break;	
+			    case MAGIC_FLUTE:
+				obj->otyp = WOODEN_FLUTE;
+				obj->spe  = 0;
+				break;	
+			    case MAGIC_HARP:
+				obj->otyp = WOODEN_HARP;
+				obj->spe  = 0;
+				break;
+			    case FIRE_HORN:
+			    case FROST_HORN:
+			    case TEMPEST_HORN:
+			    case HORN_OF_PLENTY:
+				obj->otyp = TOOLED_HORN;
+				obj->spe  = 0;
+				break;
+			    case DRUM_OF_EARTHQUAKE:
+				obj->otyp = LEATHER_DRUM;
+				obj->spe  = 0;
+				break;
+			    }
+
+		    case WEAPON_CLASS:
+		    case ARMOR_CLASS:
+		    case WAND_CLASS:
+		    case RING_CLASS:
+			if (( obj->oclass == WEAPON_CLASS
+					|| obj->oclass == ARMOR_CLASS
+					|| obj->oclass == WAND_CLASS
+					|| obj->oclass == RING_CLASS
+					|| is_weptool(obj) )) {
+
+			    /* Shift enchantment one step closer to 0 */
+			    if (obj->spe > 0) drain_item(obj);
+			}
+
+			/* Magic markers run... */
+			if (obj->otyp == MAGIC_MARKER ) {
+			    obj->spe -= (3 + rn2(10));
+			    if (obj->spe < 0) obj->spe = 0;
+			}
+
+			if (obj->oerodeproof && !rn2(5))
+			    obj->oerodeproof = FALSE;
+		    }
+		}
+	}
+}
+
 /* A function that can damage all of the player's items. --Amy */
 void
 withering_damage(obj, force, here)

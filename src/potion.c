@@ -2660,6 +2660,11 @@ datadeleteattack()
 			lethe_damage(invent, FALSE, FALSE);
 			lethe_damage(invent, FALSE, FALSE);
 			lethe_damage(invent, FALSE, FALSE);
+			actual_lethe_damage(invent, FALSE, FALSE);
+			actual_lethe_damage(invent, FALSE, FALSE);
+			actual_lethe_damage(invent, FALSE, FALSE);
+			actual_lethe_damage(invent, FALSE, FALSE);
+			actual_lethe_damage(invent, FALSE, FALSE);
 			break;
 		case 13:
 			pline("You lose all of your armor!");
@@ -2741,6 +2746,8 @@ datadeleteattack()
 
 				curse(otmpD);
 				if (otmpD->spe > -1) otmpD->spe = -1;
+				/* bugsniper said this effect isn't evil enough; let's disenchant stuff down to -50 --Amy */
+				else if (otmpD->spe > -50) otmpD->spe--;
 
 			}
 

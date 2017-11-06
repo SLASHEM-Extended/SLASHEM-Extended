@@ -6988,6 +6988,7 @@ dopois:
 		if (!rn2(3)) {
 			pline("Sparkling water washes over you!");
 			lethe_damage(invent, FALSE, FALSE);
+			if (!rn2(3)) actual_lethe_damage(invent, FALSE, FALSE);
 			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
 			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 		}
@@ -10047,6 +10048,7 @@ do_stone2:
 		if (!rn2(10)) {
 			pline("You sparkle!");
 			lethe_damage(invent, FALSE, FALSE);
+			if (!rn2(3)) actual_lethe_damage(invent, FALSE, FALSE);
 			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
 			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 		}
@@ -12620,6 +12622,7 @@ common:
 
 		pline("Sparkling water washes over you!");
 		lethe_damage(invent, FALSE, FALSE);
+		if (!rn2(3)) actual_lethe_damage(invent, FALSE, FALSE);
 		if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
 		if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 		break;
@@ -14670,6 +14673,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!rn2(3)) {
 			pline("You sparkle!");
 			lethe_damage(invent, FALSE, FALSE);
+			if (!rn2(3)) actual_lethe_damage(invent, FALSE, FALSE);
 			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
 			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
 		}
