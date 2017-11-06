@@ -1,6 +1,11 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.1
+- Fix several errors with the cursed curses interface.
+- Lethe attacks can now turn the player's magical items into mundane ones. Also, the data delete attack that disenchants the player's inventory can affect items that are already at -1 or worse now.
+- The artifact potion of water correctly blesses itself upon being picked up now.
+- Tried for the umpteenth time to fix the savegame error; this time it apparently occured in obstructedX() for some reason...
+- Fixed a bug where applying a tool could occasionally segfault the game.
 - Added another possible data delete effect, which curses and disenchants the player's entire inventory.
 - Controlled levelporting does not work in the quest. If the player levelports in the quest, it will always be uncontrolled.
 - Fixed a bug where the deafness trap would never time out correctly. The player would no longer be under the trap's effect, but sound effects would still not display because the flags.soundok flag was never set to 1 again!
