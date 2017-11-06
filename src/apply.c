@@ -2197,7 +2197,7 @@ degradeagain:
 fixthings:
 	if (trouble_count == 0) {
 	    pline(nothing_happens);
-	    return;
+	    return 0;
 	} else if (trouble_count > 1) {		/* shuffle */
 	    int i, j, k;
 
