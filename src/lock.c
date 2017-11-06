@@ -1280,13 +1280,16 @@ boolean update;
 
 	if (levl[x][y].typ != SDOOR && levl[x][y].typ != DOOR) return FALSE;
 
-	    if (obstructedX(x,y)) return FALSE;
+		/* Amy edit: sigh. The obstructed check was *also* causing savegame errors. Anyway, there's no real reason
+		 * for doors to not close over monsters or objects, so we'll simply allow that to happen. */
+
+	    /*if (obstructedX(x,y)) return FALSE;*/
 	    /* Don't allow doors to close over traps.  This is for pits */
 	    /* & trap doors, but is it ever OK for anything else? */
-	    if (t_at(x,y)) {
+	    /*if (t_at(x,y)) {*/
 		/* maketrap() clears doormask, so it should be NODOOR */
-		return FALSE;
-	    }
+		/*return FALSE;
+	    }*/
 
 	    block_point(x, y);
 	    if (key)
