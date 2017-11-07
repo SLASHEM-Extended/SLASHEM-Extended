@@ -1,6 +1,7 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.1
+- Ether equipment contamination rate reduced greatly.
 - Fix several errors with the cursed curses interface.
 - Lethe attacks can now turn the player's magical items into mundane ones. Also, the data delete attack that disenchants the player's inventory can affect items that are already at -1 or worse now.
 - The artifact potion of water correctly blesses itself upon being picked up now.
