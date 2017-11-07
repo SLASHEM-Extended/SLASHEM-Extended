@@ -2865,12 +2865,12 @@ newbossA:
 
 			while (etherslow > 0) {
 				etherslow--;
-				if (!rn2(1000)) contaminate(rnd(20));
+				if (!rn2(1000)) contaminate(rnd(2));
 			}
 			while (etherquick > 0) {
 				etherquick--;
-				if (!rn2(50)) {
-					if (!rn2(10)) pline("Your ether equipment causes your contamination to deteriorate.");
+				if (!rn2(1000)) {
+					if (!rn2(5)) pline("Your ether equipment causes your contamination to deteriorate.");
 					contaminate(rnd(10));
 				}
 			}
@@ -7933,6 +7933,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (new_game) pline("Welcome to SLASH'EM Extended! For game discussion, bug reports etc. join the #slashemextended or #em.slashem.me IRC channel on Freenode. :-) --Amy");
 #else
 	if (new_game) pline("You are playing SLASH'EM Extended on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Freenode. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!");
+
 	if (new_game) pline("Message of the day: You can play in Game Master mode now, which allows me (Amy) to send you mail in-game to spawn monsters. Add OPTIONS=gmmode to your options file to enable it. You can turn off the gmmessages option if you want the identity of those monsters to be hidden until you run into them, otherwise the game will tell you directly what I spawned :-) --Amy");
 #endif /* PHANTOM_CRASH_BUG */
 
