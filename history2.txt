@@ -1,6 +1,9 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.1
+- Some improvements to the curses interface in an attempt to make the HUD no longer inferior to tty mode.
+- Fixed the bug where the starlit sky trap would fail to obscure the identities of minions and priests.
+- Fixed a long-standing bug where certain quest artifacts could generate randomly or be given as gifts.
 - Ether equipment contamination rate reduced greatly.
 - Fix several errors with the cursed curses interface.
 - Lethe attacks can now turn the player's magical items into mundane ones. Also, the data delete attack that disenchants the player's inventory can affect items that are already at -1 or worse now.
