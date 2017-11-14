@@ -59,9 +59,7 @@ static nhstat prevac;
 static nhstat prevexp;
 static nhstat prevtime;
 
-#ifdef SCORE_ON_BOTL
 static nhstat prevscore;
-#endif
 
 extern const char *hu_stat[];   /* from eat.c */
 extern const char *enc_stat[];  /* from botl.c */
@@ -464,8 +462,8 @@ curses_update_stats(void)
     if (horiz) {
         /* correct y */
         int cy = 3;
-        if (iflags.classic_status)
-            cy = 2;
+        /*if (iflags.classic_status)
+            cy = 2;*/
 
         /* actual y (and x) */
         int ax = 0;
@@ -559,22 +557,49 @@ draw_horizontal(int x, int y, int hp, int hpmax)
     draw_bar(TRUE, hp, hpmax, buf);
 
     /* Attributes */
-    print_statdiff(" St:", &prevstr, ACURR(A_STR), STAT_STR);
-    print_statdiff(" Dx:", &prevdex, ACURR(A_DEX), STAT_OTHER);
-    print_statdiff(" Co:", &prevcon, ACURR(A_CON), STAT_OTHER);
-    print_statdiff(" In:", &prevint, ACURR(A_INT), STAT_OTHER);
-    print_statdiff(" Wi:", &prevwis, ACURR(A_WIS), STAT_OTHER);
-    print_statdiff(" Ch:", &prevcha, ACURR(A_CHA), STAT_OTHER);
+    print_statdiff(" St", &prevstr, ACURR(A_STR), STAT_STR);
+    print_statdiff(" Dx", &prevdex, ACURR(A_DEX), STAT_OTHER);
+    print_statdiff(" Co", &prevcon, ACURR(A_CON), STAT_OTHER);
+    print_statdiff(" In", &prevint, ACURR(A_INT), STAT_OTHER);
+    print_statdiff(" Wi", &prevwis, ACURR(A_WIS), STAT_OTHER);
+    print_statdiff(" Ch", &prevcha, ACURR(A_CHA), STAT_OTHER);
 
-    if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) {
-	wprintw(win, (u.ualign.type == A_CHAOTIC ? " Chaotic" :
-      u.ualign.type == A_NEUTRAL ? " Neutral" : " Lawful"));
-    }
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) wprintw(win, " ");
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) wprintw(win, urole.filecode);
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) wprintw(win, urace.filecode);
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) wprintw(win, flags.female ? "Fem" : "Mal");
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) wprintw(win, (u.ualign.type == A_CHAOTIC) ? "Cha" : (u.ualign.type == A_NEUTRAL) ? "Neu" : "Law");
 
-#ifdef SCORE_ON_BOTL
+	if (flags.hybridization && !(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) ) {
+		wprintw(win, "+");
+		if (flags.hybridcurser) wprintw(win, "C");
+		if (flags.hybridhaxor) wprintw(win, "H");
+		if (flags.hybridangbander) wprintw(win, "A");
+		if (flags.hybridhomicider) wprintw(win, "O");
+		if (flags.hybridsuxxor) wprintw(win, "S");
+		if (flags.hybridaquarian) wprintw(win, "Q");
+		if (flags.hybridwarper) wprintw(win, "W");
+		if (flags.hybridrandomizer) wprintw(win, "R");
+		if (flags.hybridnullrace) wprintw(win, "N");
+		if (flags.hybridmazewalker) wprintw(win, "M");
+		if (flags.hybridsoviet) wprintw(win, "V");
+		if (flags.hybridxrace) wprintw(win, "X");
+		if (flags.hybridspecialist) wprintw(win, "P");
+		if (flags.hybridminimalist) wprintw(win, "L");
+		if (flags.hybridamerican) wprintw(win, "I");
+		if (flags.hybridsokosolver) wprintw(win, "K");
+		if (flags.hybridheretic) wprintw(win, "E");
+		if (flags.hybridnastinator) wprintw(win, "Y");
+		if (flags.hybridrougelike) wprintw(win, "U");
+		if (flags.hybridsegfaulter) wprintw(win, "F");
+		if (flags.hybridironman) wprintw(win, "J");
+		if (flags.hybridamnesiac) wprintw(win, "Z");
+		if (flags.hybridproblematic) wprintw(win, "B");
+		if (flags.hybridwindinhabitant) wprintw(win, "D");
+	}
+
     if (flags.showscore)
         print_statdiff(" S:", &prevscore, botl_score(), STAT_OTHER);
-#endif /* SCORE_ON_BOTL */
 
 linetwo:
     /* Line 2 */
@@ -633,22 +658,29 @@ linetwo:
     wprintw(win, "%d(%d)", u.uen, u.uenmax);
     wattroff(win, pwattr);
 
+	if (flags.showmc)
+		wprintw(win, " MC%d", magic_negationX(&youmonst));
+
+	if (flags.showmovement)
+		wprintw(win, " Mov%d", youmonst.data->mmove);
+
+
     print_statdiff(" AC:", &prevac, u.uac, STAT_AC);
 
     if (Upolyd) {
         print_statdiff(" HD:", &prevlevel, mons[u.umonnum].mlevel, STAT_OTHER);
     }
-#ifdef EXP_ON_BOTL
-    else if (flags.showexp) {
+    /*else*/ if (flags.showexp) {
         print_statdiff(" Xp:", &prevlevel, u.ulevel, STAT_OTHER);
         /* use waddch, we don't want to highlight the '/' */
         waddch(win, '/');
         print_statdiff("", &prevexp, u.uexp, STAT_OTHER);
     }
+
+#ifdef SHOW_WEIGHT
+	if (flags.showweight && !(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone()))
+		wprintw(win, " Wt%ld/%ld", (long)(inv_weight()+weight_cap()), (long)weight_cap());
 #endif
-    else {
-        print_statdiff(" Exp:", &prevlevel, u.ulevel, STAT_OTHER);
-    }
 
     if (flags.time)
         print_statdiff(" T:", &prevtime, moves, STAT_TIME);
@@ -718,10 +750,9 @@ linetwonew:
     wprintw(win, "HP:");
     draw_bar(TRUE, hp, hpmax, NULL);
     print_statdiff(" AC:", &prevac, u.uac, STAT_AC);
-    if (Upolyd) {
+    if (Upolyd)
         print_statdiff(" HD:", &prevlevel, mons[u.umonnum].mlevel, STAT_OTHER);
-#ifdef EXP_ON_BOTL
-    else if (flags.showexp) {
+    /*else*/ if (flags.showexp) {
         /* Ensure that Xp have proper highlight on level change. */
         int levelchange = 0;
         if (prevlevel.value != u.ulevel) {
@@ -746,9 +777,7 @@ linetwonew:
         }
         print_statdiff("", &prevexp, xp_left, STAT_AC);
         waddch(win, ')');
-#endif
-    } else
-        print_statdiff(" Exp:", &prevlevel, u.ulevel, STAT_OTHER);
+    }
 
     waddch(win, ' ');
     describe_level(buf, FALSE);
@@ -768,10 +797,8 @@ linetwonew:
     print_statdiff(" $", &prevau, money_cnt(invent), STAT_GOLD);
 #endif
 
-#ifdef SCORE_ON_BOTL
     if (flags.showscore)
         print_statdiff(" S:", &prevscore, botl_score(), STAT_OTHER);
-#endif /* SCORE_ON_BOTL */
 
     if (flags.time)
         print_statdiff(" T:", &prevtime, moves, STAT_TIME);
@@ -797,24 +824,24 @@ linetwonew:
     x -= stat_length;
     int orig_x = x;
     wmove(win, y, x);
-    print_statdiff(" Co:", &prevcon, ACURR(A_CON), STAT_OTHER);
+    print_statdiff(" Co", &prevcon, ACURR(A_CON), STAT_OTHER);
     x -= stat_length;
     wmove(win, y, x);
-    print_statdiff(" Dx:", &prevdex, ACURR(A_DEX), STAT_OTHER);
+    print_statdiff(" Dx", &prevdex, ACURR(A_DEX), STAT_OTHER);
     x -= str_length;
     wmove(win, y, x);
-    print_statdiff(" St:", &prevstr, ACURR(A_STR), STAT_STR);
+    print_statdiff(" St", &prevstr, ACURR(A_STR), STAT_STR);
 
     x = orig_x;
     y++;
     wmove(win, y, x);
-    print_statdiff(" Ch:", &prevcha, ACURR(A_CHA), STAT_OTHER);
+    print_statdiff(" Ch", &prevcha, ACURR(A_CHA), STAT_OTHER);
     x -= stat_length;
     wmove(win, y, x);
-    print_statdiff(" Wi:", &prevwis, ACURR(A_WIS), STAT_OTHER);
+    print_statdiff(" Wi", &prevwis, ACURR(A_WIS), STAT_OTHER);
     x -= str_length;
     wmove(win, y, x);
-    print_statdiff(" In:", &prevint, ACURR(A_INT), STAT_OTHER);
+    print_statdiff(" In", &prevint, ACURR(A_INT), STAT_OTHER);
 }
 
 /* Personally I never understood the point of a vertical status bar. But removing the
@@ -956,17 +983,14 @@ linetwovert:
     print_statdiff("Armor Class:   ", &prevac, u.uac, STAT_AC);
     wmove(win, y++, x);
 
-    if (Upolyd) {
+    if (Upolyd)
         print_statdiff("Hit Dice:      ", &prevlevel, mons[u.umonnum].mlevel, STAT_OTHER);
-#ifdef EXP_ON_BOTL
-    else if (flags.showexp) {
+    if (flags.showexp) {
         print_statdiff("Experience:    ", &prevlevel, u.ulevel, STAT_OTHER);
         /* use waddch, we don't want to highlight the '/' */
         waddch(win, '/');
         print_statdiff("", &prevexp, u.uexp, STAT_OTHER);
-#endif
-    } else
-        print_statdiff("Level:         ", &prevlevel, u.ulevel, STAT_OTHER);
+    }
     wmove(win, y++, x);
 
     if (flags.time) {
@@ -974,12 +998,10 @@ linetwovert:
         wmove(win, y++, x);
     }
 
-#ifdef SCORE_ON_BOTL
     if (flags.showscore) {
         print_statdiff("Score:         ", &prevscore, botl_score(), STAT_OTHER);
         wmove(win, y++, x);
     }
-#endif /* SCORE_ON_BOTL */
 
     curses_add_statuses(win, FALSE, TRUE, &x, &y);
 }
@@ -1108,13 +1130,9 @@ curses_decrement_highlights(boolean zero)
     unhighlight |= decrement_highlight(&prevau, zero);
     unhighlight |= decrement_highlight(&prevlevel, zero);
     unhighlight |= decrement_highlight(&prevac, zero);
-#ifdef EXP_ON_BOTL
     unhighlight |= decrement_highlight(&prevexp, zero);
-#endif
     unhighlight |= decrement_highlight(&prevtime, zero);
-#ifdef SCORE_ON_BOTL
     unhighlight |= decrement_highlight(&prevscore, zero);
-#endif
 
     if (unhighlight)
         curses_update_stats();
