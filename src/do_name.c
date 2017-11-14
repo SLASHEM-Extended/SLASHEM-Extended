@@ -653,6 +653,12 @@ boolean called;
 
 	/* priests and minions: don't even use this function */
 	if (mtmp->ispriest || mtmp->isminion) {
+
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) {
+		strcat(buf, "monster");
+		return buf;
+	    }
+
 	    char priestnambuf[BUFSZ];
 	    char *name;
 	    long save_prop = EHalluc_resistance;
