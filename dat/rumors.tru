@@ -1534,3 +1534,7 @@ If you keep encountering the same types of monsters that you already killed, you
 Captchas that you need to solve due to triggering the captcha trap will drain your maximum health if you fail to solve them, so don't screw them up.
 Falling into a shit pit is dangerous, since it will deal acid damage to you and your boots every turn until you finally manage to climb out.
 There is a farlook trap, which is the reason why peacevision is an intrinsic instead of defaulting to on. It means that farlooking a peaceful monster will anger it.
+Eating a cockatrice corpse gives you the stoned intrinsic.
+To deal with monsters with dangerous wands: make sure to stay at a knight's distance from them. That way, they will not be able to hit you without moving.
+Wands of speed monster can be identified by zapping yourself. Unless you are already fast.
+The Heart of Ahriman does double damage.
