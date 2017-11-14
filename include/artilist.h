@@ -5833,11 +5833,11 @@ A("Liontamer",                BULLWHIP,
 	PHYS(5,16),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, PM_ZOOKEEPER, NON_PM, 800L ),
 
 A("Dragonclan Sword",                KATANA,
-	(SPFX_RESTR|SPFX_BEHEAD|SPFX_INTEL), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_BEHEAD|SPFX_INTEL), 0, 0,
 	PHYS(3,20),      NO_DFNS,        NO_CARY,        0, A_LAWFUL, PM_NINJA, NON_PM, 5000L ),
 
 A("Killing Edge",                KATANA,
-	(SPFX_RESTR|SPFX_BEHEAD|SPFX_INTEL), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_BEHEAD|SPFX_INTEL), 0, 0,
 	PHYS(3,6),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_ASSASSIN, NON_PM, 5000L ),
 
 A("Black Death",                     HALBERD,
