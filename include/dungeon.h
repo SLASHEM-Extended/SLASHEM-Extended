@@ -16,7 +16,7 @@ typedef struct d_flags {	/* dungeon/level type flags */
 
 typedef struct d_level {	/* basic dungeon level element */
 	xchar	dnum;		/* dungeon number */
-	xchar	dlevel;		/* level number */
+	int	dlevel;		/* level number */
 } d_level;
 
 typedef struct s_level {	/* special dungeon level element */
@@ -55,9 +55,9 @@ typedef struct dungeon {	/* basic dungeon identifier */
 	char	proto[15];	/* name of prototype file (eg. "tower") */
 	char	boneid;		/* character to id dungeon in bones files */
 	d_flags	flags;		/* dungeon flags */
-	xchar	entry_lev;	/* entry level */
-	xchar	num_dunlevs;	/* number of levels in this dungeon */
-	xchar	dunlev_ureached; /* how deep you have been in this dungeon */
+	int	entry_lev;	/* entry level */
+	int	num_dunlevs;	/* number of levels in this dungeon */
+	int	dunlev_ureached; /* how deep you have been in this dungeon */
 	int	ledger_start,	/* the starting depth in "real" terms */
 		depth_start;	/* the starting depth in "logical" terms */
 } dungeon;

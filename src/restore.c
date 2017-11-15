@@ -28,7 +28,7 @@ STATIC_DCL void freefruitchn(struct fruit *);
 STATIC_DCL void ghostfruit(struct obj *);
 STATIC_DCL boolean restgamestate(int, unsigned int *, unsigned int *);
 STATIC_DCL void restlevelstate(unsigned int, unsigned int);
-STATIC_DCL int restlevelfile(int,XCHAR_P);
+STATIC_DCL int restlevelfile(int,int);
 STATIC_DCL void reset_oattached_mids(BOOLEAN_P);
 
 /*
@@ -1508,7 +1508,7 @@ unsigned int stuckid, steedid;	/* STEED */
 STATIC_OVL int
 restlevelfile(fd, ltmp)
 register int fd;
-xchar ltmp;
+int ltmp;
 {
 #ifdef MAC_MPW
 # pragma unused(fd)
@@ -1576,7 +1576,7 @@ dorecover(fd)
 register int fd;
 {
 	unsigned int stuckid = 0, steedid = 0;	/* not a register */
-	xchar ltmp;
+	int ltmp;
 	int rtmp;
 	struct obj *otmp;
 
@@ -1585,7 +1585,7 @@ register int fd;
 #endif
 
 	restoring = TRUE;
-	getlev(fd, 0, (xchar)0, FALSE);
+	getlev(fd, 0, (int)0, FALSE);
 	if (!restgamestate(fd, &stuckid, &steedid)) {
 		display_nhwindow(WIN_MESSAGE, TRUE);
 		savelev(-1, 0, FREE_SAVE);	/* discard current level */
@@ -1667,7 +1667,7 @@ register int fd;
 #ifdef STORE_PLNAME_IN_FILE
 	mread(fd, (void *) plname, PL_NSIZ);
 #endif
-	getlev(fd, 0, (xchar)0, FALSE);
+	getlev(fd, 0, (int)0, FALSE);
 	(void) close(fd);
 
 	if (!wizard && !discover)
@@ -1757,14 +1757,14 @@ char *reason;
 void
 getlev(fd, pid, lev, ghostly)
 int fd, pid;
-xchar lev;
+int lev;
 boolean ghostly;
 {
 	register struct trap *trap;
 	register struct monst *mtmp;
 	branch *br;
 	int hpid;
-	xchar dlvl;
+	int dlvl;
 	int x, y;
 #ifdef TOS
 	short tlev;

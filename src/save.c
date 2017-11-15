@@ -35,7 +35,7 @@ STATIC_DCL void savemonchn(int,struct monst *,int);
 STATIC_DCL void savetrapchn(int,struct trap *,int);
 STATIC_DCL void savegamestate(int,int);
 #ifdef MFLOPPY
-STATIC_DCL void savelev0(int,XCHAR_P,int);
+STATIC_DCL void savelev0(int,int,int);
 STATIC_DCL boolean swapout_oldest(void);
 STATIC_DCL void copyfile(char *,char *);
 #endif /* MFLOPPY */
@@ -185,7 +185,7 @@ dosave0()
 {
 	const char *fq_save;
 	register int fd, ofd;
-	xchar ltmp;
+	int ltmp;
 	d_level uz_save;
 	char whynot[BUFSZ];
 
@@ -314,7 +314,7 @@ dosave0()
 	setustuck((struct monst *)0);
 	u.usteed = (struct monst *)0;
 
-	for(ltmp = (xchar)1; ltmp <= maxledgerno(); ltmp++) {
+	for(ltmp = (int)1; ltmp <= maxledgerno(); ltmp++) {
 		if (ltmp == ledger_no(&uz_save)) continue;
 		if (!(level_info[ltmp].flags & LFILE_EXISTS)) continue;
 #if defined(MICRO) && defined(TTY_GRAPHICS)
@@ -819,7 +819,7 @@ savestateinlock()
 boolean
 savelev(fd, lev, mode)
 int fd;
-xchar lev;
+int lev;
 int mode;
 {
 	if (mode & COUNT_SAVE) {
@@ -853,7 +853,7 @@ void
 savelev(fd,lev,mode)
 #endif
 int fd;
-xchar lev;
+int lev;
 int mode;
 {
 #ifdef TOS

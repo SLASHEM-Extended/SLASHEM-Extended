@@ -1335,7 +1335,7 @@ d_level *newlevel;
 boolean at_stairs, falling, portal;
 {
 	int fd, l_idx;
-	xchar new_ledger;
+	int new_ledger;
 	boolean cant_go_back,
 		up = (depth(newlevel) < depth(&u.uz)),
 		newdungeon = (u.uz.dnum != newlevel->dnum),

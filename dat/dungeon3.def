@@ -203,10 +203,27 @@ RNDLEVEL:		"levgx" "T" @ (2, 29) 95
 ### Gnomish Mines ###
 # (The Mines of the Gnomes of Zurich.)
 #
-DUNGEON:	"The Gnomish Mines" "M" (9, 0)
+DUNGEON:	"The Gnomish Mines" "M" (70, 0)
 ALIGNMENT:	lawful
 DESCRIPTION:	mazelike
 RNDLEVEL:	"mintn" "T" @ (3, 2) 21
+RNDLEVEL:	"mintn" "T" @ (6, 0) 21
+RNDLEVEL:	"mintn" "T" @ (10, 0) 21
+RNDLEVEL:	"mintn" "T" @ (13, 0) 21
+RNDLEVEL:	"mintn" "T" @ (16, 0) 21
+RNDLEVEL:	"mintn" "T" @ (20, 0) 21
+RNDLEVEL:	"mintn" "T" @ (23, 0) 21
+RNDLEVEL:	"mintn" "T" @ (26, 0) 21
+RNDLEVEL:	"mintn" "T" @ (30, 0) 21
+RNDLEVEL:	"mintn" "T" @ (33, 0) 21
+RNDLEVEL:	"mintn" "T" @ (36, 0) 21
+RNDLEVEL:	"mintn" "T" @ (40, 0) 21
+RNDLEVEL:	"mintn" "T" @ (43, 0) 21
+RNDLEVEL:	"mintn" "T" @ (46, 0) 21
+RNDLEVEL:	"mintn" "T" @ (50, 0) 21
+RNDLEVEL:	"mintn" "T" @ (53, 0) 21
+RNDLEVEL:	"mintn" "T" @ (56, 0) 21
+RNDLEVEL:	"mintn" "T" @ (60, 0) 21
 LEVELDESC:	town
 RNDLEVEL:	"mnend" "E" @ (-2, 0) 10
 RNDLEVEL:		"mking" "M" @ (-1, 0) 18
@@ -264,10 +281,24 @@ LEVEL:		"schoolX" "C" @ (5, 0) 5
 LEVELDESC:      town
 
 ### Grund's Stronghold ###
-DUNGEON:        "Grund's Stronghold" "Z" (1, 0)
+DUNGEON:        "Grund's Stronghold" "Z" (15, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 RNDLEVEL:       "grund" "Z" @ (1, 0) 3
+RNDLEVEL:       "grund" "Z" @ (2, 0) 3
+RNDLEVEL:       "grund" "Z" @ (3, 0) 3
+RNDLEVEL:       "grund" "Z" @ (4, 0) 3
+RNDLEVEL:       "grund" "Z" @ (5, 0) 3
+RNDLEVEL:       "grund" "Z" @ (6, 0) 3
+RNDLEVEL:       "grund" "Z" @ (7, 0) 3
+RNDLEVEL:       "grund" "Z" @ (8, 0) 3
+RNDLEVEL:       "grund" "Z" @ (9, 0) 3
+RNDLEVEL:       "grund" "Z" @ (10, 0) 3
+RNDLEVEL:       "grund" "Z" @ (11, 0) 3
+RNDLEVEL:       "grund" "Z" @ (12, 0) 3
+RNDLEVEL:       "grund" "Z" @ (13, 0) 3
+RNDLEVEL:       "grund" "Z" @ (14, 0) 3
+RNDLEVEL:       "grund" "Z" @ (15, 0) 3
 
 ### Fort Ludios ###
 # (The Central Vault of Croesus.)
@@ -278,10 +309,24 @@ ALIGNMENT:      unaligned
 RNDLEVEL:          "knox" "K" @ (-1, 0) 3
 
 ### The Wyrm Caves ###
-DUNGEON:        "The Wyrm Caves" "W" (1, 0)
+DUNGEON:        "The Wyrm Caves" "W" (15, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "dragons" "D" @ (1, 0)
+LEVEL:          "dragons" "D" @ (2, 0)
+LEVEL:          "dragons" "D" @ (3, 0)
+LEVEL:          "dragons" "D" @ (4, 0)
+LEVEL:          "dragons" "D" @ (5, 0)
+LEVEL:          "dragons" "D" @ (6, 0)
+LEVEL:          "dragons" "D" @ (7, 0)
+LEVEL:          "dragons" "D" @ (8, 0)
+LEVEL:          "dragons" "D" @ (9, 0)
+LEVEL:          "dragons" "D" @ (10, 0)
+LEVEL:          "dragons" "D" @ (11, 0)
+LEVEL:          "dragons" "D" @ (12, 0)
+LEVEL:          "dragons" "D" @ (13, 0)
+LEVEL:          "dragons" "D" @ (14, 0)
+LEVEL:          "dragons" "D" @ (15, 0)
 
 ### The Black Market ###
 DUNGEON:        "One-eyed Sam's Market" "X" (1, 0)
@@ -290,43 +335,127 @@ DESCRIPTION:    mazelike
 LEVEL:          "blkmar" "D" @ (1, 0)
 
 ### The Lost Tomb ###
-DUNGEON:        "The Lost Tomb" "L" (1, 0)
+DUNGEON:        "The Lost Tomb" "L" (15, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "tomb" "L" @ (1, 0)
+LEVEL:          "tomb" "L" @ (2, 0)
+LEVEL:          "tomb" "L" @ (3, 0)
+LEVEL:          "tomb" "L" @ (4, 0)
+LEVEL:          "tomb" "L" @ (5, 0)
+LEVEL:          "tomb" "L" @ (6, 0)
+LEVEL:          "tomb" "L" @ (7, 0)
+LEVEL:          "tomb" "L" @ (8, 0)
+LEVEL:          "tomb" "L" @ (9, 0)
+LEVEL:          "tomb" "L" @ (10, 0)
+LEVEL:          "tomb" "L" @ (11, 0)
+LEVEL:          "tomb" "L" @ (12, 0)
+LEVEL:          "tomb" "L" @ (13, 0)
+LEVEL:          "tomb" "L" @ (14, 0)
+LEVEL:          "tomb" "L" @ (15, 0)
 
 ### The Spider Caves ###
-DUNGEON:        "The Spider Caves" "S" (1, 0)
+DUNGEON:        "The Spider Caves" "S" (15, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "spiders" "S" @ (1, 0)
+LEVEL:          "spiders" "S" @ (2, 0)
+LEVEL:          "spiders" "S" @ (3, 0)
+LEVEL:          "spiders" "S" @ (4, 0)
+LEVEL:          "spiders" "S" @ (5, 0)
+LEVEL:          "spiders" "S" @ (6, 0)
+LEVEL:          "spiders" "S" @ (7, 0)
+LEVEL:          "spiders" "S" @ (8, 0)
+LEVEL:          "spiders" "S" @ (9, 0)
+LEVEL:          "spiders" "S" @ (10, 0)
+LEVEL:          "spiders" "S" @ (11, 0)
+LEVEL:          "spiders" "S" @ (12, 0)
+LEVEL:          "spiders" "S" @ (13, 0)
+LEVEL:          "spiders" "S" @ (14, 0)
+LEVEL:          "spiders" "S" @ (15, 0)
 
 ### The Sunless Sea ###
-DUNGEON:        "The Sunless Sea" "U" (1, 0)
+DUNGEON:        "The Sunless Sea" "U" (15, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "sea" "S" @ (1, 0)
+LEVEL:          "sea" "S" @ (2, 0)
+LEVEL:          "sea" "S" @ (3, 0)
+LEVEL:          "sea" "S" @ (4, 0)
+LEVEL:          "sea" "S" @ (5, 0)
+LEVEL:          "sea" "S" @ (6, 0)
+LEVEL:          "sea" "S" @ (7, 0)
+LEVEL:          "sea" "S" @ (8, 0)
+LEVEL:          "sea" "S" @ (9, 0)
+LEVEL:          "sea" "S" @ (10, 0)
+LEVEL:          "sea" "S" @ (11, 0)
+LEVEL:          "sea" "S" @ (12, 0)
+LEVEL:          "sea" "S" @ (13, 0)
+LEVEL:          "sea" "S" @ (14, 0)
+LEVEL:          "sea" "S" @ (15, 0)
 
 ### The Temple of Moloch ###
-DUNGEON:        "The Temple of Moloch" "C" (1, 0)
+DUNGEON:        "The Temple of Moloch" "C" (15, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "mtemple" "T" @ (1, 0)
+LEVEL:          "mtemple" "T" @ (2, 0)
+LEVEL:          "mtemple" "T" @ (3, 0)
+LEVEL:          "mtemple" "T" @ (4, 0)
+LEVEL:          "mtemple" "T" @ (5, 0)
+LEVEL:          "mtemple" "T" @ (6, 0)
+LEVEL:          "mtemple" "T" @ (7, 0)
+LEVEL:          "mtemple" "T" @ (8, 0)
+LEVEL:          "mtemple" "T" @ (9, 0)
+LEVEL:          "mtemple" "T" @ (10, 0)
+LEVEL:          "mtemple" "T" @ (11, 0)
+LEVEL:          "mtemple" "T" @ (12, 0)
+LEVEL:          "mtemple" "T" @ (13, 0)
+LEVEL:          "mtemple" "T" @ (14, 0)
+LEVEL:          "mtemple" "T" @ (15, 0)
 
 ### The Giant Caverns ###
-DUNGEON:        "The Giant Caverns" "H" (1, 0)
+DUNGEON:        "The Giant Caverns" "H" (15, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "cav2fill" "H" @ (1, 0)
+LEVEL:          "cav2fill" "H" @ (2, 0)
+LEVEL:          "cav2fill" "H" @ (3, 0)
+LEVEL:          "cav2fill" "H" @ (4, 0)
+LEVEL:          "cav2fill" "H" @ (5, 0)
+LEVEL:          "cav2fill" "H" @ (6, 0)
+LEVEL:          "cav2fill" "H" @ (7, 0)
+LEVEL:          "cav2fill" "H" @ (8, 0)
+LEVEL:          "cav2fill" "H" @ (9, 0)
+LEVEL:          "cav2fill" "H" @ (10, 0)
+LEVEL:          "cav2fill" "H" @ (11, 0)
+LEVEL:          "cav2fill" "H" @ (12, 0)
+LEVEL:          "cav2fill" "H" @ (13, 0)
+LEVEL:          "cav2fill" "H" @ (14, 0)
+LEVEL:          "cav2fill" "H" @ (15, 0)
 
 ### Dr Frankenstein's Lab ###
-DUNGEON:        "Frankenstein's Lab" "F" (1, 0)
+DUNGEON:        "Frankenstein's Lab" "F" (15, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "frnknstn" "L" @ (1, 0)
+LEVEL:          "frnknstn" "L" @ (2, 0)
+LEVEL:          "frnknstn" "L" @ (3, 0)
+LEVEL:          "frnknstn" "L" @ (4, 0)
+LEVEL:          "frnknstn" "L" @ (5, 0)
+LEVEL:          "frnknstn" "L" @ (6, 0)
+LEVEL:          "frnknstn" "L" @ (7, 0)
+LEVEL:          "frnknstn" "L" @ (8, 0)
+LEVEL:          "frnknstn" "L" @ (9, 0)
+LEVEL:          "frnknstn" "L" @ (10, 0)
+LEVEL:          "frnknstn" "L" @ (11, 0)
+LEVEL:          "frnknstn" "L" @ (12, 0)
+LEVEL:          "frnknstn" "L" @ (13, 0)
+LEVEL:          "frnknstn" "L" @ (14, 0)
+LEVEL:          "frnknstn" "L" @ (15, 0)
 
 
-DUNGEON:        "Sheol" "V" (7, 0)
+DUNGEON:        "Sheol" "V" (37, 0)
 ALIGNMENT:      noalign
 DESCRIPTION:    hellish
 BRANCH:         "Vlad's Tower" @ (2, 6) up -1
@@ -339,7 +468,7 @@ LEVEL:          "palace_e" "U" @ (-1, 0)
 
 ### Vlad's Tower ###
 #   It has been removed from Gehennom, and it is surrounded by stone.
-DUNGEON:        "Vlad's Tower" "T" (3, 0)
+DUNGEON:        "Vlad's Tower" "T" (23, 0)
 PROTOFILE:      "tower"
 DESCRIPTION:    mazelike
 ALIGNMENT:      chaotic

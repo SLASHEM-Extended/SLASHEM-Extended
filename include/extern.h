@@ -578,15 +578,15 @@ E void init_dungeons(void);
 E s_level *find_level(const char *);
 E s_level *Is_special(d_level *);
 E branch *Is_branchlev(d_level *);
-E xchar ledger_no(d_level *);
-E xchar maxledgerno(void);
-E schar depth(d_level *);
-E xchar dunlev(d_level *);
-E xchar dunlevs_in_dungeon(d_level *);
-E xchar real_dunlevs_in_dungeon(d_level *);
-E xchar ledger_to_dnum(XCHAR_P);
-E xchar ledger_to_dlev(XCHAR_P);
-E xchar deepest_lev_reached(BOOLEAN_P);
+E int ledger_no(d_level *);
+E int maxledgerno(void);
+E int depth(d_level *);
+E int dunlev(d_level *);
+E int dunlevs_in_dungeon(d_level *);
+E int real_dunlevs_in_dungeon(d_level *);
+E int ledger_to_dnum(int);
+E int ledger_to_dlev(int);
+E int deepest_lev_reached(BOOLEAN_P);
 E boolean on_level(d_level *,d_level *);
 E void next_level(BOOLEAN_P);
 E void prev_level(BOOLEAN_P);
@@ -628,9 +628,9 @@ E int induced_align(int);
 E boolean Invocation_lev(d_level *);
 E xchar level_difficulty(void);
 E xchar monster_difficulty(void);
-E schar lev_by_name(const char *);
+E int lev_by_name(const char *);
 #ifdef WIZARD
-E schar print_dungeon(BOOLEAN_P,schar *,xchar *);
+E int print_dungeon(BOOLEAN_P,schar *,xchar *);
 #endif
 E int donamelevel(void);
 E int dooverview(void);
@@ -2219,7 +2219,7 @@ E NhRegion* create_cthulhu_death_cloud(XCHAR_P, XCHAR_P, int, int);
 E void inven_inuse(BOOLEAN_P);
 E int dorecover(int);
 E void trickery(char *);
-E void getlev(int,int,XCHAR_P,BOOLEAN_P);
+E void getlev(int,int,int,BOOLEAN_P);
 E void minit(void);
 E boolean lookup_id_mapping(unsigned, unsigned *);
 #ifdef ZEROCOMP
@@ -2330,11 +2330,11 @@ E int dosave0(void);
 E void savestateinlock(void);
 #endif
 #ifdef MFLOPPY
-E boolean savelev(int,XCHAR_P,int);
+E boolean savelev(int,int,int);
 E boolean swapin_file(int);
 E void co_false(void);
 #else
-E void savelev(int,XCHAR_P,int);
+E void savelev(int,int,int);
 #endif
 E void bufon(int);
 E void bufoff(int);
