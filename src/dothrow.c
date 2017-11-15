@@ -1635,6 +1635,8 @@ int thrown;
 	if (u.ulevel < 5 && rn2(2)) tmp += 1;
 	if (u.ulevel < 3 && rn2(2)) tmp += 1;
 
+	if (!issoviet && !rn2(3)) tmp += rno(u.ulevel);
+
 	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
 
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) tmp += 1;
@@ -1681,17 +1683,29 @@ int thrown;
 			case P_SUPREME_MASTER: tmp += rnd(12); skillpierce = 6; break;
 		}
 
+		if (!rn2(3)) {
+			switch (P_SKILL(P_MISSILE_WEAPONS)) {
+				default: break;
+				case P_BASIC: tmp += rn2(2); break;
+				case P_SKILLED: tmp += rn2(4); break;
+				case P_EXPERT: tmp += rn2(6); break;
+				case P_MASTER: tmp += rn2(8); break;
+				case P_GRAND_MASTER: tmp += rn2(10); break;
+				case P_SUPREME_MASTER: tmp += rn2(12); break;
+			}
+		}
+
 		/* polearms and such should get to-hit bonuses from general combat as well, because I want it :D --Amy */
 		if (pieks) {
 
 			switch (P_SKILL(P_GENERAL_COMBAT)) {
 				default: break;
-				case P_BASIC: tmp += rnd(2); skillpierce = 1; break;
-				case P_SKILLED: tmp += rnd(4); skillpierce = 2; break;
-				case P_EXPERT: tmp += rnd(6); skillpierce = 3; break;
-				case P_MASTER: tmp += rnd(8); skillpierce = 4; break;
-				case P_GRAND_MASTER: tmp += rnd(10); skillpierce = 5; break;
-				case P_SUPREME_MASTER: tmp += rnd(12); skillpierce = 6; break;
+				case P_BASIC: tmp += rnd(2); skillpierce += 1; break;
+				case P_SKILLED: tmp += rnd(4); skillpierce += 2; break;
+				case P_EXPERT: tmp += rnd(6); skillpierce += 3; break;
+				case P_MASTER: tmp += rnd(8); skillpierce += 4; break;
+				case P_GRAND_MASTER: tmp += rnd(10); skillpierce += 5; break;
+				case P_SUPREME_MASTER: tmp += rnd(12); skillpierce += 6; break;
 			}
 
 		}

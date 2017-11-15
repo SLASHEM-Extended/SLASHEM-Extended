@@ -412,6 +412,20 @@ register struct monst *mtmp;
 		}
 	}
 
+	if (!rn2(3)) {
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_GENERAL_COMBAT)) {
+				default: break;
+				case P_BASIC: tmp += rn2(2); break;
+				case P_SKILLED: tmp += rn2(4); break;
+				case P_EXPERT: tmp += rn2(6); break;
+				case P_MASTER: tmp += rn2(8); break;
+				case P_GRAND_MASTER: tmp += rn2(10); break;
+				case P_SUPREME_MASTER: tmp += rn2(12); break;
+			}
+		}
+	}
+
 	if (Upolyd && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_POLYMORPHING)) {
 
@@ -424,6 +438,20 @@ register struct monst *mtmp;
 	      	default: tmp += 0; break;
 	      }
 
+	}
+
+	if (!rn2(3)) {
+		if (Upolyd && !(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_POLYMORPHING)) {
+		      	case P_BASIC:	tmp +=  rn2(3); break;
+		      	case P_SKILLED:	tmp +=  rn2(6); break;
+		      	case P_EXPERT:	tmp +=  rn2(9); break;
+		      	case P_MASTER:	tmp +=  rn2(12); break;
+		      	case P_GRAND_MASTER:tmp +=  rn2(15); break;
+		      	case P_SUPREME_MASTER:tmp +=  rn2(18); break;
+		      	default: tmp += 0; break;
+		      }
+		}
 	}
 
 	check_caitiff(mtmp);
@@ -605,14 +633,16 @@ register struct monst *mtmp;
 
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapWendy) tmp -= rnd(20);
 
-	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
-	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
-
 	/* early-game bonuses to make starting characters not suck too badly --Amy */
 	if (u.ulevel < 6) tmp += 1;
 	if (u.ulevel < 2) tmp += 1;
 	if (u.ulevel < 5 && rn2(2)) tmp += 1;
 	if (u.ulevel < 3 && rn2(2)) tmp += 1;
+
+	if (!issoviet && !rn2(3)) tmp += rno(u.ulevel);
+
+	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
+	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
 
 	if (tmp < -127) tmp = -127; /* fail safe, and to ensure that the end result is a schar */
 	if (tmp > 127) tmp = 127; /* however, why is it a schar anyway??? --Amy */
@@ -6001,6 +6031,10 @@ uchar aatyp;
 	    if (bite_monster(mon))
 		return 2;			/* lifesaved */
 	}
+
+	/* constitution is a relatively useless attribute, so I decide to make it more useful: act as saving throw --Amy */
+	if (rnd(100) < ACURR(A_CON)) return(malive | mhit);
+
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return(malive | mhit);	/* no passive attacks */
 	    if(ptr->mattk[i].aatyp == AT_NONE ||

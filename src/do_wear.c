@@ -4816,27 +4816,20 @@ find_ac()
 	if (ACURR(A_DEX) < 4) uac += 3;
 	else if (ACURR(A_DEX) < 6) uac += 2;
 	else if (ACURR(A_DEX) < 8) uac += 1;
-	else if (ACURR(A_DEX) < 14) uac -= 0;
-	else if (ACURR(A_DEX) < 21) uac -= ACURR(A_DEX)-14;
-	else if (ACURR(A_DEX) < 22) uac -= 6;
-	else if (ACURR(A_DEX) < 24) uac -= 7;
-	else uac -= 8;
+	else if (ACURR(A_DEX) < 11) uac -= 0;
+	else if (ACURR(A_DEX) < 13) uac -= 1;
+	else if (ACURR(A_DEX) < 14) uac -= 2;
+	else if (ACURR(A_DEX) < 16) uac -= 3;
+	else if (ACURR(A_DEX) < 17) uac -= 4;
+	else if (ACURR(A_DEX) < 19) uac -= 5;
+	else if (ACURR(A_DEX) < 20) uac -= 6;
+	else if (ACURR(A_DEX) < 21) uac -= 7;
+	else if (ACURR(A_DEX) < 22) uac -= 8;
+	else if (ACURR(A_DEX) < 24) uac -= 9;
+	else uac -= 10;
 
 	if (Role_if(PM_MONK) && !uwep && (!uarm ||
-		uarm->otyp==ROBE ||
-		uarm->otyp==ROBE_OF_POWER ||
-		uarm->otyp==ROBE_OF_WEAKNESS ||
-		uarm->otyp==ROBE_OF_MAGIC_RESISTANCE ||
-		uarm->otyp==ROBE_OF_PERMANENCE ||
-		uarm->otyp==ROBE_OF_SPELL_POWER ||
-		uarm->otyp==ROBE_OF_FAST_CASTING ||
-		uarm->otyp==ROBE_OF_ENERGY_SUCTION ||
-		uarm->otyp==ROBE_OF_RANDOMNESS ||
-		uarm->otyp==ROBE_OF_DEFENSE ||
-		uarm->otyp==ROBE_OF_SPECIALTY ||
-		uarm->otyp==ROBE_OF_NASTINESS ||
-		uarm->otyp==ROBE_OF_PSIONICS ||
-		uarm->otyp==ROBE_OF_PROTECTION) && !uarms) {
+		(uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms) {
 /*WAC cap off the Monk's ac bonus to -11 */
             if (u.ulevel > 18) uac -= 11;
             else uac -= (u.ulevel / 2) + 2;
@@ -4924,12 +4917,12 @@ find_ac()
 
 	if (uarms && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_SHIELD)) {
-			case P_BASIC: uac -= 1; break;
-			case P_SKILLED: uac -= 2; break;
-			case P_EXPERT: uac -= 3; break;
-			case P_MASTER: uac -= 4; break;
-			case P_GRAND_MASTER: uac -= 5; break;
-			case P_SUPREME_MASTER: uac -= 6; break;
+			case P_BASIC: uac -= 2; break;
+			case P_SKILLED: uac -= 4; break;
+			case P_EXPERT: uac -= 6; break;
+			case P_MASTER: uac -= 8; break;
+			case P_GRAND_MASTER: uac -= 10; break;
+			case P_SUPREME_MASTER: uac -= 12; break;
 
 		}
 
@@ -4951,6 +4944,17 @@ find_ac()
 			case P_MASTER: uac -= armoramount; break;
 			case P_GRAND_MASTER: uac -= (armoramount * 5 / 4); break;
 			case P_SUPREME_MASTER: uac -= (armoramount * 6 / 4); break;
+
+		}
+
+		/* add another little bonus regardless of how much or little stuff you wear --Amy */
+		switch (P_SKILL(P_BODY_ARMOR)) {
+			case P_BASIC: uac -= 1; break;
+			case P_SKILLED: uac -= 2; break;
+			case P_EXPERT: uac -= 3; break;
+			case P_MASTER: uac -= 4; break;
+			case P_GRAND_MASTER: uac -= 5; break;
+			case P_SUPREME_MASTER: uac -= 6; break;
 
 		}
 

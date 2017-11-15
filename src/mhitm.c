@@ -389,6 +389,7 @@ meleeattack:
 		    break;
 		}
 		dieroll = rnd(20 + i);
+		if (!rn2(3) && magr->m_lev > 0) tmp += rno(magr->m_lev);
 		strike = (tmp > dieroll);
 		if (strike) {
 		    res[i] = hitmm(magr, mdef, mattk);
@@ -446,6 +447,8 @@ meleeattack:
 		if (u.uswallow && magr == u.ustuck)
 		    strike = 0;
 		else {
+		    if (!rn2(3) && magr->m_lev > 0) tmp += rno(magr->m_lev);
+
 		    if ((strike = (tmp > (dieroll = rnd(20+i)))))
 			res[i] = gulpmm(magr, mdef, mattk);
 		    else

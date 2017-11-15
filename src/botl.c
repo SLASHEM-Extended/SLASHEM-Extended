@@ -667,6 +667,7 @@ struct monst *mon;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
 	if (Race_if(PM_INKA)) armpro++;
+	if (ACURR(A_CHA) >= 18) armpro++;
 	if (armpro < 0) armpro = 0;
 
 	return armpro;

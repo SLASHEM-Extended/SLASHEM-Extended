@@ -2063,7 +2063,7 @@ mattacku(mtmp)
 
 			if (!range2 && mtmp->egotype_engulfer) {
 			    if(foundyou) {
-				if((u.uswallow || tmp > (j = rnd(20+i))) && (issoviet || rn2(10)) ) { /* 10% chance to miss --Amy */
+				if((u.uswallow || tmp > (j = rnd(20+i))) && (rnd(125) > ACURR(A_WIS)) && (issoviet || rn2(10)) ) { /* 10% chance to miss --Amy */
 				    /* Force swallowing monster to be
 				     * displayed even when player is
 				     * moving away */
@@ -4246,6 +4246,7 @@ struct monst *mon;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
 	if (Race_if(PM_INKA)) armpro++;
+	if (ACURR(A_CHA) >= 18) armpro++;
 	if (armpro < 0) armpro = 0;
 
 	return armpro;
@@ -4267,6 +4268,8 @@ hitmu(mtmp, mattk)
 	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) tmp = (int)mattk->damn * (int)mattk->damd * 10;
 	register boolean not_affected = defends((int)mattk->adtyp, uwep);
 	register int uncancelled, ptmp;
+	register boolean statsavingthrow = 0;
+	if (rnd(200) < (ACURR(A_WIS) + ACURR(A_CHA))) statsavingthrow = 1;
 	register struct engr *ep = engr_at(u.ux,u.uy);
 	int dmg, armpro, permdmg;
 	int armprolimit = 75;
@@ -4585,12 +4588,14 @@ hitmu(mtmp, mattk)
 		break;
 	    case AD_DISE:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (rn2(3)) break;
                 if (!diseasemu(mdat) || Invulnerable || (Stoned_chiller && Stoned)) dmg = 0;
 		break;
 
 	    case AD_VOMT:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (!rn2(10) || !Sick_resistance) {
 			if (!Vomiting) {
 				make_vomiting(Vomiting+d(10,4), TRUE);
@@ -4602,6 +4607,7 @@ hitmu(mtmp, mattk)
 
 	    case AD_NGRA:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		      if (ep && sengr_at("Elbereth", u.ux, u.uy) ) {
 		/* This attack can remove any Elbereth engraving, even burned ones. --Amy */
@@ -4613,6 +4619,7 @@ hitmu(mtmp, mattk)
 		break;
 	    case AD_GLIB:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		/* hurt the player's hands --Amy */
 		pline("Your hands got hit hard!");
@@ -4621,6 +4628,7 @@ hitmu(mtmp, mattk)
 		break;
 	    case AD_DARK:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		/* create darkness around the player --Amy */
 		pline("That felt evil and sinister!");
@@ -4631,6 +4639,7 @@ hitmu(mtmp, mattk)
 	    case AD_UVUU:{
 		int wdmg = (int)(dmg/6) + 1;
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		sprintf(buf, "%s %s", s_suffix(Monnam(mtmp)), mpoisons_subj(mtmp, mattk));
 		poisoned(buf, A_CON, mdat->mname, 60);
 		if(Poison_resistance) wdmg -= ACURR(A_CON)/2;
@@ -4674,6 +4683,7 @@ hitmu(mtmp, mattk)
 
 	    case AD_ICEB:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		pline("You are hit by ice blocks!");
 		if (issoviet) pline("KHA KHA KHA!");
 		if(!mtmp->mcan && !rn2(3)) {
@@ -4714,6 +4724,7 @@ hitmu(mtmp, mattk)
 
 	    case AD_LAVA:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		    pline("You're %s!", on_fire(youmonst.data, mattk));
 		    if (youmonst.data == &mons[PM_STRAW_GOLEM] ||
 		        youmonst.data == &mons[PM_PAPER_GOLEM]) {
@@ -4836,6 +4847,7 @@ hitmu(mtmp, mattk)
 		break;
 	    case AD_BLND:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (can_blnd(mtmp, &youmonst, mattk->aatyp, (struct obj*)0) && !rn2(3) ) {
 		    if (!Blind) pline("%s blinds you!", Monnam(mtmp));
 		    make_blinded(Blinded+(long)dmg,FALSE);
@@ -4846,6 +4858,7 @@ hitmu(mtmp, mattk)
 
 	    case AD_DREA:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		if (multi < 0) {
 			dmg *= 4;
@@ -4856,6 +4869,7 @@ hitmu(mtmp, mattk)
 
 	    case AD_BADE:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		badeffect();
 
@@ -4863,6 +4877,7 @@ hitmu(mtmp, mattk)
 
 	    case AD_FUMB:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		HFumbling = FROMOUTSIDE | rnd(5);
 		incr_itimeout(&HFumbling, rnd(20));
@@ -4872,6 +4887,7 @@ hitmu(mtmp, mattk)
 
 	    case AD_VULN:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		 switch (rnd(124)) {
 
@@ -5188,6 +5204,7 @@ hitmu(mtmp, mattk)
 
 	    case AD_ICUR:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		if (!rn2(5)) {
 			You_feel("as if you need some help.");
@@ -5199,6 +5216,7 @@ hitmu(mtmp, mattk)
 
 	    case AD_SLUD:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		{
 		    register struct obj *objX, *objX2;
@@ -5212,6 +5230,7 @@ hitmu(mtmp, mattk)
 
 	    case AD_NAST:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		if (!rn2(10)) {
 			pline("Nasty!");
@@ -5490,6 +5509,7 @@ dopois:
 
 	    case AD_DRIN:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (defends(AD_DRIN, uwep) || !has_head(youmonst.data) || Role_if(PM_COURIER)) {
 		    You("don't seem harmed.");
 		    /* Not clear what to do for green slimes */
@@ -5557,6 +5577,7 @@ dopois:
 		break;
 	    case AD_PLYS:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (uncancelled && multi >= 0 && !rn2(3)) {
 		    if (Free_action && rn2(20)) {
 			You("momentarily stiffen.");            
@@ -5573,6 +5594,7 @@ dopois:
 		break;
 	    case AD_TCKL:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (uncancelled && multi >= 0 && !rn2(3)) {
 		    if (Free_action && rn2(20))
 			You_feel("horrible tentacles probing your flesh!");
@@ -5674,6 +5696,7 @@ dopois:
 
 	    case AD_WEBS: 
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		{
 			struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
 			if (ttmp2) {
@@ -5691,6 +5714,7 @@ dopois:
 
 	    case AD_TRAP: 
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0);
 		else makerandomtrap();
@@ -5700,6 +5724,7 @@ dopois:
 	    case AD_STTP:
 
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (rn2(3)) break;
 		pline("You are surrounded by a purple glow!");
 		if (invent) {
@@ -5755,6 +5780,7 @@ dopois:
 
 	    case AD_DEPR:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (!rn2(3)) {
 
 		    switch(rnd(20)) {
@@ -5935,6 +5961,7 @@ dopois:
 		}
 
 	    case AD_HODS:
+		if (statsavingthrow) break;
 		 if(uwep){
 			if (uwep->otyp == CORPSE
 				&& touch_petrifies(&mons[uwep->corpsenm])) {
@@ -5963,6 +5990,7 @@ dopois:
 
 	    case AD_STON:	/* cockatrice */
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if(!rn2(3)) {
 		    if (mtmp->mcan) {
 			if (flags.soundok)
@@ -6008,6 +6036,7 @@ dopois:
 
 	    case AD_EDGE:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (!Stone_resistance || !rn2(20)) {
 			if (Upolyd) {u.mhmax--; if (u.mh > u.mhmax) u.mh = u.mhmax;}
 			else {u.uhpmax--; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
@@ -6066,7 +6095,7 @@ dopois:
 	    case AD_WRAP:
 		if ((!mtmp->mcan || u.ustuck == mtmp) && !sticks(youmonst.data)) {
 		    if (!u.ustuck && !rn2(10)) {
-			if (u_slip_free(mtmp, mattk)) {
+			if (u_slip_free(mtmp, mattk) || statsavingthrow) {
 			    dmg = 0;
 			} else {
 			    pline("%s swings itself around you!",
@@ -6347,6 +6376,7 @@ dopois:
 		break;
 	    case AD_SGLD:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (youmonst.data->mlet == mdat->mlet) break;
 		if(mtmp->mcan) break;
 		if (!issoviet && !rn2(3)) {
@@ -6360,6 +6390,7 @@ dopois:
 	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
 		if (mattk->aatyp == AT_KICK) hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (is_animal(mtmp->data)) {
 			hitmsg(mtmp, mattk);
 			if (mtmp->mcan) break;
@@ -6458,6 +6489,7 @@ dopois:
 	    case AD_SSEX:
 
 		if (flags.female && uarm && uarm->oartifact == ART_PRECIOUS_VIRGINITY) break;
+		if (statsavingthrow) break;
 
 		if(could_seduceX(mtmp, &youmonst, mattk) == 1
 			&& !mtmp->mcan && (issoviet || rn2(2) || (uarmf && uarmf->oartifact == ART_LORSKEL_S_INTEGRITY) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bosh ketish etigi") )) ) ) /* 50% chance --Amy */
@@ -6466,6 +6498,7 @@ dopois:
 		break;
 	    case AD_SAMU:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		/* when the Wiz hits, 1/20 steals the amulet */
 	      if (!rn2(20)) stealamulet(mtmp);
 		break;
@@ -6490,6 +6523,7 @@ dopois:
 
 	    case AD_WEEP:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		/* if vampire biting (and also a pet) */
 		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -6507,6 +6541,7 @@ dopois:
 
 	    case AD_BANI:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (!rn2(3)) {
 			if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 			if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) {
@@ -6523,11 +6558,13 @@ dopois:
 
 	    case AD_DISP:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		pushplayer();
 		break;
 
 	    case AD_RUST:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		if (u.umonnum == PM_IRON_GOLEM) {
 			You("rust!");
@@ -6543,17 +6580,20 @@ dopois:
 		break;
 	    case AD_CORR:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		if (rn2(3)) hurtarmor(AD_CORR);
 		break;
 	    case AD_WTHR:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		if (rn2(3)) witherarmor();
 		break;
 
 	    case AD_SHRD:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		struct obj *obj = some_armor(&youmonst);
 
 		if (obj && drain_item(obj)) {
@@ -6565,6 +6605,7 @@ dopois:
 
 	    case AD_NPRO:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		if (!rn2(3)) {
 			u.negativeprotection++;
@@ -6574,6 +6615,7 @@ dopois:
 
 	    case AD_CHKH:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		dmg += u.chokhmahdamage;
 		dmg += rnd(u.ualign.sins + 1);
@@ -6582,6 +6624,7 @@ dopois:
 
 	    case AD_THIR:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		pline("%s sucks your %s!", Monnam(mtmp), body_part(BLOOD) );
 		if (PlayerHearsSoundEffects) pline(issoviet ? "A u vas yest' dostatochno sil'nyye oruzhiye dlya preodoleniya zazhivleniyu monstra?" : "Fffffffff!");
@@ -6592,6 +6635,7 @@ dopois:
 
 	    case AD_NTHR:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		pline("%s sucks your %s!", Monnam(mtmp), body_part(BLOOD) );
 		if (PlayerHearsSoundEffects) pline(issoviet ? "A u vas yest' dostatochno sil'nyye oruzhiye dlya preodoleniya zazhivleniyu monstra?" : "Fffffffff!");
@@ -6610,6 +6654,7 @@ dopois:
 
 	    case AD_AGGR:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		incr_itimeout(&HAggravate_monster, dmg);
 		You_feel("that monsters are aware of your presence.");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
@@ -6636,6 +6681,7 @@ dopois:
 	    case AD_DATA:
 
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		datadeleteattack();
 
 		break;
@@ -6643,6 +6689,7 @@ dopois:
 	    case AD_MINA:
 
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		/* No messages for AD_MINA. This is intentional. It's a *nasty* attack. --Amy */
 
 		{
@@ -6860,6 +6907,7 @@ dopois:
 	    case AD_SIN:
 
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		You_feel("sinful!");
 		u.ualign.sins++;
 		u.alignlim--;
@@ -6880,12 +6928,14 @@ dopois:
 	    case AD_CONT:
 
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		Your("contamination increases.");
 		contaminate(dmg);
 
 		break;
 
 	    case AD_SUCK:
+			if (statsavingthrow) break;
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) dmg = 0;
 			else{
 				if( has_head(youmonst.data) && !(Role_if(PM_COURIER)) && !uarmh && !rn2(20) && 
@@ -6966,6 +7016,7 @@ dopois:
 
 	    case AD_WET:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		if (!rn2(3)) {
 			pline("Water washes over you!");
@@ -6977,6 +7028,7 @@ dopois:
 	    case AD_AMNE:
 
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		pline("You feel reminded of Maud.");
 		maprot();
@@ -6984,6 +7036,7 @@ dopois:
 
 	    case AD_LETH:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		if (!rn2(3)) {
 			pline("Sparkling water washes over you!");
@@ -6996,6 +7049,7 @@ dopois:
 
 	    case AD_CNCL:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		if (!rn2(3)) {
 			(void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
@@ -7004,6 +7058,7 @@ dopois:
 
 	    case AD_LUCK:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		if (!rn2(3)) {change_luck(-1);
 			You_feel("unlucky.");
@@ -7019,6 +7074,7 @@ dopois:
 
 	    case AD_NEXU:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 
 		if (level.flags.noteleport || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= (1 + rnd(2));
@@ -7066,6 +7122,7 @@ dopois:
 
 	    case AD_SOUN:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		pline("Your ears are blasted by hellish noise!");
 		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) dmg /= 2;
@@ -7079,6 +7136,7 @@ dopois:
 		if (level.flags.noteleport || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) dmg *= 2;
 
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		pline("Gravity warps around you...");
 		phase_door(0);
@@ -7089,6 +7147,7 @@ dopois:
 
 	    case AD_WGHT:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		pline("Your load feels heavier!");
 		IncreasedGravity += (1 + (dmg * rnd(20)));
@@ -7097,6 +7156,7 @@ dopois:
 
 	    case AD_INER:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 	      u_slow_down();
 		u.uprops[DEAC_FAST].intrinsic += ((dmg + 2) * 10);
@@ -7106,6 +7166,7 @@ dopois:
 
 	    case AD_TIME:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		switch (rnd(10)) {
 
@@ -7175,6 +7236,7 @@ dopois:
 
 	    case AD_PLAS:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 
 			pline("You're seared by %s hot plasma radiation!", Fire_resistance ? "very" : "extremely");
@@ -7199,12 +7261,14 @@ dopois:
 
 	    case AD_SKIL:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		if (!rn2(100)) skillcaploss();
 		break;
 
 	    case AD_HALU:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		not_affected |= Blind ||
 			(u.umonnum == PM_BLACK_LIGHT ||
 			 u.umonnum == PM_VIOLET_FUNGUS ||
@@ -7222,6 +7286,7 @@ dopois:
 		break;
 	    case AD_DISN:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		if (!rn2(10))  {
 		if (Disint_resistance && rn2(100)) {
@@ -7257,6 +7322,7 @@ dopois:
 
 	    case AD_VAPO:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		if (!rn2(10))  {
 		if (Disint_resistance && rn2(100)) {
@@ -7293,6 +7359,7 @@ dopois:
 
 	    case AD_DCAY:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
 		if (u.umonnum == PM_WOOD_GOLEM ||
 		    u.umonnum == PM_LEATHER_GOLEM) {
@@ -7362,6 +7429,7 @@ dopois:
 	    case AD_CURS:
 	    case AD_LITE:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		/* if(!night() && mdat == &mons[PM_GREMLIN]) break; */
 
 		/* Yeah I know, I just made gremlins and other AD_CURS using monsters a lot more dangerous.
@@ -7391,6 +7459,7 @@ dopois:
 
 	    case AD_SPC2:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if(!mtmp->mcan && !rn2(4) && (!Psi_resist || !rn2(20)) ) {
 
 			pline("Your mind is blasted by psionic energy.");
@@ -7446,6 +7515,7 @@ dopois:
 
 	    case AD_STUN:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if(!mtmp->mcan && !rn2(4)) {
 		    make_stunned(HStun + dmg, TRUE);
 		    dmg /= 2;
@@ -7453,6 +7523,7 @@ dopois:
 		break;
 	    case AD_NUMB:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if(!mtmp->mcan && !rn2(4)) {
 		    make_numbed(HNumbed + dmg, TRUE);
 		    dmg /= 2;
@@ -7460,6 +7531,7 @@ dopois:
 		break;
 	    case AD_FRZE:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if(!mtmp->mcan && !rn2(10)) {
 		    make_frozen(HFrozen + dmg, TRUE);
 		    dmg /= 2;
@@ -7467,6 +7539,7 @@ dopois:
 		break;
 	    case AD_BURN:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if(!mtmp->mcan && !rn2(5)) {
 		    make_burned(HBurned + dmg, TRUE);
 		    dmg /= 2;
@@ -7481,6 +7554,7 @@ dopois:
 		break;
 	    case AD_FEAR:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if(!mtmp->mcan && !rn2(3)) {
 		    make_feared(HFeared + dmg, TRUE);
 		    dmg /= 2;
@@ -7489,6 +7563,7 @@ dopois:
 
 	    case AD_INSA:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if(!mtmp->mcan) {
 		    make_feared(HFeared + dmg, TRUE);
 		    make_stunned(HStun + dmg, TRUE);
@@ -7500,6 +7575,7 @@ dopois:
 
 	    case AD_CHRN:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 
 		    switch (rn2(11)) {
 		    case 0: diseasemu(mdat);
@@ -7533,6 +7609,7 @@ dopois:
 
 	    case AD_ACID:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if(!mtmp->mcan && !rn2(3)) {
 		    if (Acid_resistance && rn2(20)) {
 			pline("You're covered in acid, but it seems harmless.");
@@ -7561,6 +7638,7 @@ dopois:
 		break;
 	    case AD_CONF:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		if(!mtmp->mcan && !rn2(4) && !mtmp->mspec_used) {
 		    mtmp->mspec_used = mtmp->mspec_used + (dmg + rn2(6));
 		    if(Confusion)
@@ -7638,7 +7716,7 @@ dopois:
 		break;
 
 	    case AD_LAZY: /* laziness attack; do lots of nasty things at random */
-		if(!rn2(2)) {
+		if(!rn2(2) || statsavingthrow) {
 		    pline("%s tries to touch you, but can't really be bothered.",
 			Monnam(mtmp));
 		    break;
@@ -7795,6 +7873,7 @@ dopois:
 		break;
 	    case AD_MAGM:
 		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
 		    if(Antimagic && rn2(5)) {
 			shieldeff(u.ux, u.uy);
 			dmg = 0;
@@ -13442,6 +13521,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!rn2(10)) pline("%s gazes at you, but your mirroring protects you from the effects!", Monnam(mtmp));
 		return 0;
 	}
+
+	/* charisma-based saving throw, because charisma should at least have some use --Amy */
+	if (rnd(100) < ACURR(A_CHA)) return 0; /* no message because it would get too spammy */
 
 	dmgplus = d((int)mattk->damn, (int)mattk->damd);	/* why the heck did gaze attacks have fixed damage??? --Amy */
 	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) dmgplus = (int)mattk->damn * (int)mattk->damd;

@@ -2177,19 +2177,20 @@ abon()		/* attack bonus for strength & dexterity */
 	if (dex < 5) sbon -= 1;
 	else if (dex < 7) sbon += 0;
 	else if (dex < 10) sbon += 1;
-	else if (dex < 12) sbon += 2;
-	else if (dex < 15) sbon += 3;
-	else if (dex == 15) sbon += 3;  /* 15 */
-	else if (dex == 16) sbon += 4;  /* 16 */
-	else if (dex == 17) sbon += 4;  /* 17 */
-	else if (dex == 18) sbon += 5;  /* 18 */
-	else if (dex == 19) sbon += 5;  /* 19 */
-	else if (dex == 20) sbon += 6;  /* 20 */
-	else if (dex == 21) sbon += 6;  /* 21 */
-	else if (dex == 22) sbon += 7;  /* 22 */
-	else if (dex == 23) sbon += 7;  /* 23 */
-	else if (dex == 24) sbon += 8;  /* 24 */
-	else sbon += 9;
+	else if (dex < 11) sbon += 2;
+	else if (dex < 13) sbon += 3;
+	else if (dex < 15) sbon += 4;
+	else if (dex == 15) sbon += 5;  /* 15 */
+	else if (dex == 16) sbon += 5;  /* 16 */
+	else if (dex == 17) sbon += 6;  /* 17 */
+	else if (dex == 18) sbon += 6;  /* 18 */
+	else if (dex == 19) sbon += 7;  /* 19 */
+	else if (dex == 20) sbon += 7;  /* 20 */
+	else if (dex == 21) sbon += 8;  /* 21 */
+	else if (dex == 22) sbon += 8;  /* 22 */
+	else if (dex == 23) sbon += 9;  /* 23 */
+	else if (dex == 24) sbon += 10;  /* 24 */
+	else sbon += 11;
 
 /* Game tuning kludge: make it a bit easier for a low level character to hit */
 	sbon += (u.ulevel < 3) ? 1 : 0;
@@ -2250,16 +2251,16 @@ dbon()		/* damage bonus for strength */
 		else if (str < 18) return(2);
 		else if (str == 18) return(3);		/* up to 18 */
 		else if (str < STR18(30)) return(4);          /* up to 18/99 */
-		else if (str < STR18(66)) return(4);          /* up to 18/99 */
-		else if (str < STR18(100)) return(5);          /* up to 18/99 */
-		else if (str == STR18(100)) return(6);         /* 18/00 */
-		else if (str == STR19(19)) return(7);         /* 19 */
-		else if (str == STR19(20)) return(7);         /* 20 */
-		else if (str == STR19(21)) return(7);         /* 21 */
-		else if (str == STR19(22)) return(8);         /* 22 */
-		else if (str == STR19(23)) return(8);         /* 23 */
-		else if (str == STR19(24)) return(8);        /* 24 */
-		else return(9);
+		else if (str < STR18(66)) return(5);          /* up to 18/99 */
+		else if (str < STR18(100)) return(6);          /* up to 18/99 */
+		else if (str == STR18(100)) return(7);         /* 18/00 */
+		else if (str == STR19(19)) return(8);         /* 19 */
+		else if (str == STR19(20)) return(8);         /* 20 */
+		else if (str == STR19(21)) return(9);         /* 21 */
+		else if (str == STR19(22)) return(9);         /* 22 */
+		else if (str == STR19(23)) return(10);         /* 23 */
+		else if (str == STR19(24)) return(10);        /* 24 */
+		else return(11);
 
 	} else {
 
@@ -3349,12 +3350,12 @@ struct obj *weapon;
 	    default: impossible(bad_skill, P_SKILL(type)); /* fall through */
 	    case P_ISRESTRICTED:
 	    case P_UNSKILLED:   bonus = -4; break;
-	    case P_BASIC:       bonus =  0; break;
-		    case P_SKILLED:     bonus =  1; break;
-		    case P_EXPERT:      bonus =  1 + rnd(2) ; break;
-		    case P_MASTER:	bonus =  2 + rnd(3); break;
-		    case P_GRAND_MASTER:	bonus =  3 + rnd(4); break;
-		    case P_SUPREME_MASTER:	bonus =  4 + rnd(6); break;
+	    case P_BASIC:       bonus =  rn2(2); break;
+		    case P_SKILLED:     bonus =  1 + rn2(4); break;
+		    case P_EXPERT:      bonus =  1 + rnd(8) ; break;
+		    case P_MASTER:	bonus =  2 + rnd(11); break;
+		    case P_GRAND_MASTER:	bonus =  3 + rnd(14); break;
+		    case P_SUPREME_MASTER:	bonus =  4 + rnd(18); break;
 	}
 /* WAC -- No longer needed here...  */
 #if 0
@@ -3390,6 +3391,10 @@ struct obj *weapon;
 	if (!(PlayerCannotUseSkills)) bonus = P_SKILL(type);
 	bonus = max(bonus,P_UNSKILLED) - 1;	/* unskilled => 0 */
 	bonus = ((bonus + 2) * (martial_bonus() ? 2 : 1)) / 2;
+	if (martial_bonus()) {
+		bonus *= 3;
+		bonus /= 2;
+	}
     }
 
 	/* KMH -- It's harder to hit while you are riding */
@@ -3443,11 +3448,11 @@ struct obj *weapon;
 	    case P_ISRESTRICTED:
 	    case P_UNSKILLED:	bonus = -2; break;
 	    case P_BASIC:	bonus =  0; break;
-	    case P_SKILLED:	bonus =  2; break;
-	    case P_EXPERT:	bonus =  4; break;
-	    case P_MASTER:	bonus =  6; break;
-	    case P_GRAND_MASTER:bonus =  8; break;
-	    case P_SUPREME_MASTER:bonus =  10; break;
+	    case P_SKILLED:	bonus =  2 + rn2(2); break;
+	    case P_EXPERT:	bonus =  4 + rn2(3); break;
+	    case P_MASTER:	bonus =  6 + rn2(4); break;
+	    case P_GRAND_MASTER:bonus =  8 + rn2(5); break;
+	    case P_SUPREME_MASTER:bonus =  10 + rn2(6); break;
 	}
 #if 0
     } else if (type == P_TWO_WEAPON_COMBAT) {
