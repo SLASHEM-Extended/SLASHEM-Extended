@@ -1477,7 +1477,7 @@ moveloop()
 				if (!rn2(3)) pline(fauxmessage());
 			}
 
-			if (ttmp && ttmp->ttyp == KOP_CUBE && !rn2(50) && !(m_at(ttmp->tx, ttmp->ty)) ) {
+			if (ttmp && ttmp->ttyp == KOP_CUBE && !rn2(2000) && !(m_at(ttmp->tx, ttmp->ty)) ) {
 
 				u.aggravation = 1;
 				reset_rndmonst(NON_PM);
@@ -1492,45 +1492,45 @@ moveloop()
 
 			if (ttmp && ttmp->ttyp == BOSS_SPAWNER) {
 
-				int bossfrequency = 50;
+				int bossfrequency = 1000;
 				switch (ttmp->launch_otyp) {
 
 					default: /* 1-10 */
 						break;
 					case 11:
-						bossfrequency = 100;
-						break;
-					case 12:
-						bossfrequency = 200;
-						break;
-					case 13:
-						bossfrequency = 300;
-						break;
-					case 14:
-						bossfrequency = 400;
-						break;
-					case 15:
-						bossfrequency = 500;
-						break;
-					case 16:
-						bossfrequency = 1000;
-						break;
-					case 17:
-						bossfrequency = 1500;
-						break;
-					case 18:
 						bossfrequency = 2000;
 						break;
+					case 12:
+						bossfrequency = 4000;
+						break;
+					case 13:
+						bossfrequency = 6000;
+						break;
+					case 14:
+						bossfrequency = 8000;
+						break;
+					case 15:
+						bossfrequency = 10000;
+						break;
+					case 16:
+						bossfrequency = 20000;
+						break;
+					case 17:
+						bossfrequency = 30000;
+						break;
+					case 18:
+						bossfrequency = 40000;
+						break;
 					case 19:
-						bossfrequency = 2500;
+						bossfrequency = 50000;
 						break;
 					case 20:
-						bossfrequency = 5000;
+						bossfrequency = 100000;
 						break;
 
 				}
 
-				if (bossfrequency < 50) bossfrequency = 50; /* fail safe */
+				if (bossfrequency < 1000) bossfrequency = 1000; /* fail safe */
 
 				if (!rn2(bossfrequency)) {
 
