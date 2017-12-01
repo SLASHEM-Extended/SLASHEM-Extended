@@ -341,7 +341,7 @@
 #ifdef AZTEC
 # define schar	char
 #else
-typedef int	schar;
+typedef signed char	schar;
 #endif
 
 /*
