@@ -594,18 +594,6 @@ int verbose;
 		sprintf(buf, "Lab:%d ", depth(&u.uz));
 	else if (!strcmp(dungeons[u.uz.dnum].dname, "Sheol"))
 		sprintf(buf, flags.showlongstats ? "Sheol:%d " : "She:%d ", depth(&u.uz));
-	else if (!strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower"))
-		sprintf(buf, flags.showlongstats ? "Yendor:%d " : "Yen:%d ", depth(&u.uz));
-	else if (!strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber"))
-		sprintf(buf, flags.showlongstats ? "Forging:%d " : "For:%d ", depth(&u.uz));
-	else if (!strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos"))
-		sprintf(buf, flags.showlongstats ? "Ordered:%d " : "Ord:%d ", depth(&u.uz));
-	else if (!strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds"))
-		sprintf(buf, flags.showlongstats ? "Deadground:%d " : "Ded:%d ", depth(&u.uz));
-	else if (!strcmp(dungeons[u.uz.dnum].dname, "Subquest"))
-		sprintf(buf, flags.showlongstats ? "Subquest:%d " : "Sub:%d ", depth(&u.uz));
-	else if (!strcmp(dungeons[u.uz.dnum].dname, "Bell Caves"))
-		sprintf(buf, flags.showlongstats ? "Bell Caves:%d " : "Bel:%d ", depth(&u.uz));
 	else {
 		if (verbose)
 			sprintf(buf, "%s, level %d ",

@@ -15628,9 +15628,6 @@ rndmonst()
       if (u.uz.dnum == quest_dnum && (!rn2(7)) && (ptr = qt_montype()) != 0)
 	    return ptr; 
 
-      if (u.uz.dnum == subquest_dnum && (!rn2(7)) && (ptr = qt_montype()) != 0)
-	    return ptr; 
-
 	if (rndmonst_state.choice_count < 0) {	/* need to recalculate */
 	    int zlevel, minmlev, maxmlev;
 	    boolean elemlevel;

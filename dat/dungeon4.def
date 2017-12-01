@@ -15,7 +15,6 @@
 #		number of choices for its branch level _first_.
 
 # Lots of changes, additions etc. by Amy.
-# Version 4: Increased level ranges for branch entrances and special levels.
 
 ### The Dungeons of Doom ###
 # The main dungeon is from 42 to 47 levels deep...
@@ -23,17 +22,17 @@
 # have more "normal" levels, because the special ones were more
 # frequent than normal ones!
 # fixed so it always has 40 levels due to that annoying hardcoded dungeon level limit --Amy
-DUNGEON:        "The Dungeons of Doom" "D" (50, 0)
+DUNGEON:        "The Dungeons of Doom" "D" (40, 0)
 ALIGNMENT:      unaligned
 
 # The quests, on levels 15 to 39 (changed by Amy, used to be 15 to 19).
 #   These levels should not be shared with other special levels
 #   or branches, else the quests may not be generated!
 #   But usually the game is smart enough to not place a branch on a level that already has a branch.
-BRANCH:	"The Quest" @ (2, 48) portal
-BRANCH:	"Lawful Quest" @ (2, 48) portal
-BRANCH:	"Neutral Quest" @ (2, 48) portal
-BRANCH:	"Chaotic Quest" @ (2, 48) portal
+BRANCH:	"The Quest" @ (2, 38) portal
+BRANCH:	"Lawful Quest" @ (2, 38) portal
+BRANCH:	"Neutral Quest" @ (2, 38) portal
+BRANCH:	"Chaotic Quest" @ (2, 38) portal
 
 # Early levels, to the Oracle
 #   KMH -- The Gnomish Mines are an important source of essential
@@ -41,7 +40,7 @@ BRANCH:	"Chaotic Quest" @ (2, 48) portal
 #   short stay in the mines pays off.  Slash moved the entrance
 #   deeper, penalizing many characters.  The balance patch restores
 #   the entrance to levels 2 to 4.
-BRANCH:		"The Gnomish Mines" @ (2, 48)
+BRANCH:		"The Gnomish Mines" @ (2, 38)
 RNDLEVEL:		"medus" "none" @ (36, 4) 12
 
 #
@@ -49,28 +48,28 @@ RNDLEVEL:		"medus" "none" @ (36, 4) 12
 #   There shouldn't be any other special levels down to the Oracle.
 #   This allows a weak character to plunge to the Oracle, then return
 #   to the Mines.
-RNDLEVEL:	"mall" "T" @ (2, 48) 75 6
+RNDLEVEL:	"mall" "T" @ (2, 38) 75 6
 LEVALIGN:	lawful
 LEVELDESC:	town
 #
 #   Oracle on levels 7 to 9.
-LEVEL:		"oracle" "O" @ (2, 48) 70
+LEVEL:		"oracle" "O" @ (2, 38) 70
 LEVALIGN:	neutral
-BRANCH:	"Sokoban" @ (5, 45) up -1
-BRANCH:	"Town" @ (6, 44) up -1
+BRANCH:	"Sokoban" @ (5, 35) up -1
+BRANCH:	"Town" @ (6, 34) up -1
 
 
 # Levels between the Oracle and the Quest.
 #   There's no guarantee that all will be created.
-RNDLEVEL:		"rats" "R" @ (2, 48) 20 3
-RNDLEVEL:	"kobold" "K" @ (2, 48) 20 6
-BRANCH: 	"Grund's Stronghold" @ (2, 48)
+RNDLEVEL:		"rats" "R" @ (2, 38) 20 3
+RNDLEVEL:	"kobold" "K" @ (2, 38) 20 6
+BRANCH: 	"Grund's Stronghold" @ (2, 38)
 
 
 # The rogue level (if required), on levels 15 to 19. The portal to one
 #   of the quest levels may also be on this level. The rogue level is not
 #   defined by default in Slash'EM. The dungeon is crowded enough already.
-%REINCARNATION LEVEL: "rogue" "U" @ (2, 48) 20
+%REINCARNATION LEVEL: "rogue" "U" @ (2, 38) 20
 
 
 
@@ -78,57 +77,57 @@ BRANCH: 	"Grund's Stronghold" @ (2, 48)
 # Post-quest levels
 #   Now all the branches... stretching all along the dungeon
 #   Put the branches with the least number of choices first
-BRANCH: 	"The Temple of Moloch" @ (2, 48)
-BRANCH: 	"The Giant Caverns" @ (2, 48)
-BRANCH:		"The Sunless Sea" @ (2, 48)
-BRANCH:		"The Spider Caves" @ (2, 48)
-BRANCH: 	"One-eyed Sam's Market" @ (2, 48) portal
-BRANCH: 	"The Lost Tomb" @ (2, 48)
-BRANCH: 	"The Wyrm Caves" @ (2, 48)
+BRANCH: 	"The Temple of Moloch" @ (2, 38)
+BRANCH: 	"The Giant Caverns" @ (2, 38)
+BRANCH:		"The Sunless Sea" @ (2, 38)
+BRANCH:		"The Spider Caves" @ (2, 38)
+BRANCH: 	"One-eyed Sam's Market" @ (2, 38) portal
+BRANCH: 	"The Lost Tomb" @ (2, 38)
+BRANCH: 	"The Wyrm Caves" @ (2, 38)
 
 #   And the levels...
-RNDLEVEL:		"nymph" "N" @ (2, 48) 25 5
-RNDLEVEL:	"bigrm" "B" @ (2, 48) 75 60
-RNDLEVEL:	"exmall" "Y" @ (2, 48) 75 9
+RNDLEVEL:		"nymph" "N" @ (2, 38) 25 5
+RNDLEVEL:	"bigrm" "B" @ (2, 38) 75 60
+RNDLEVEL:	"exmall" "Y" @ (2, 38) 75 9
 LEVALIGN:		chaotic
 LEVELDESC:	town
 #   Storage room (treasure) on levels 19-26, 66% of the time
 #   "Unused 'cause they suck"?
-RNDLEVEL:	"stor" "S" @ (2, 48) 30 9
+RNDLEVEL:	"stor" "S" @ (2, 38) 30 9
 #   Rounding out the bottom levels
-RNDLEVEL:		"guild" "G" @ (2, 48) 10 8
+RNDLEVEL:		"guild" "G" @ (2, 38) 10 8
 
 
 
 
-LEVEL:		"rndmaze" "Z" @ (2, 48) 30
-LEVEL:		"rndmazea" "Q" @ (2, 48) 30
-RNDLEVEL:	"intpla" "J" @ (2, 48) 30 5
-LEVEL:		"makemais" "C" @ (2, 48) 30
-LEVEL:		"makemase" "D" @ (2, 48) 30
-RNDLEVEL:          "unhck" "X" @ (2, 48) 30 96
-RNDLEVEL:          "unhck" "X" @ (2, 48) 30 96
-RNDLEVEL:          "unhck" "X" @ (2, 48) 30 96
-LEVEL:          "forge" "F" @ (2, 48) 20
-LEVEL:          "hitch" "H" @ (2, 48) 5
-LEVEL:		"compu" "P" @ (2, 48) 10 
-LEVEL:		"key" "L" @ (2, 48) 10
+LEVEL:		"rndmaze" "Z" @ (2, 38) 30
+LEVEL:		"rndmazea" "Q" @ (2, 38) 30
+RNDLEVEL:	"intpla" "J" @ (2, 38) 30 5
+LEVEL:		"makemais" "C" @ (2, 38) 30
+LEVEL:		"makemase" "D" @ (2, 38) 30
+RNDLEVEL:          "unhck" "X" @ (2, 38) 30 96
+RNDLEVEL:          "unhck" "X" @ (2, 38) 30 96
+RNDLEVEL:          "unhck" "X" @ (2, 38) 30 96
+LEVEL:          "forge" "F" @ (2, 38) 20
+LEVEL:          "hitch" "H" @ (2, 38) 5
+LEVEL:		"compu" "P" @ (2, 38) 10 
+LEVEL:		"key" "L" @ (2, 38) 10
 
-RNDLEVEL:		"levgn" "V" @ (2, 48) 80 95
-RNDLEVEL:		"levgn" "V" @ (2, 48) 80 95
-RNDLEVEL:		"levgn" "V" @ (2, 48) 10 95
-RNDLEVEL:		"emptb" "E" @ (2, 48) 20 60
-RNDLEVEL:		"mazes" "M" @ (2, 48) 33 46
-RNDLEVEL:		"mazes" "M" @ (2, 48) 33 46
-RNDLEVEL:		"mazes" "M" @ (2, 48) 33 46
+RNDLEVEL:		"levgn" "V" @ (2, 38) 80 95
+RNDLEVEL:		"levgn" "V" @ (2, 38) 80 95
+RNDLEVEL:		"levgn" "V" @ (2, 38) 10 95
+RNDLEVEL:		"emptb" "E" @ (2, 38) 20 60
+RNDLEVEL:		"mazes" "M" @ (2, 38) 33 46
+RNDLEVEL:		"mazes" "M" @ (2, 38) 33 46
+RNDLEVEL:		"mazes" "M" @ (2, 38) 33 46
 
 # The famous Fort Ludios...
-BRANCH:			"Fort Ludios" @ (2, 48) portal
+BRANCH:			"Fort Ludios" @ (2, 38) portal
 
 
 # Medusa and the castle.  There should be nothing in between.
 LEVALIGN:		chaotic
-RNDLEVEL:			"castl" "none" @ (50, 0) 15
+RNDLEVEL:			"castl" "none" @ (40, 0) 15
 CHAINBRANCH:	"Gehennom" "castl" + (0, 0) no_down
 
 
@@ -157,7 +156,7 @@ BRANCH:			"The Elemental Planes" @ (1, 0) no_down up -2
 # after.
 # made the Gehennom longer again and tried to apply the heck patch --Amy
 
-DUNGEON:        "Gehennom" "G" (50, 0)
+DUNGEON:        "Gehennom" "G" (32, 0)
 DESCRIPTION:    mazelike
 DESCRIPTION:    hellish
 ALIGNMENT:      noalign
@@ -165,43 +164,41 @@ RNDLEVEL:          "valley" "V" @ (1, 0) 2
 RNDLEVEL:          "sanct" "none" @ (-1, 0) 2
 # Tower before wiz, please
 # Dr. Frankenstein's Lab
-BRANCH:         "Frankenstein's Lab" @ (2, 47) up
+BRANCH:         "Frankenstein's Lab" @ (2, 29) up
 # Half-way down
-LEVEL:          "wizard1" "none" @ (25, 0)
+LEVEL:          "wizard1" "none" @ (15, 0)
 CHAINLEVEL:     "wizard2" "X" "wizard1" + (1, 0)
 CHAINLEVEL:     "wizard3" "Y" "wizard1" + (2, 0)
-LEVEL:          "fakewiz1" "F" @ (30, 15)
-LEVEL:          "fakewiz2" "G" @ (30, 15)
+LEVEL:          "fakewiz1" "F" @ (20, 8)
+LEVEL:          "fakewiz2" "G" @ (20, 8)
 # The demon levels
-RNDLEVEL:          "juibl" "J" @ (2, 47) 95 4
-RNDLEVEL:          "yeeno" "E" @ (2, 47) 95 12
-RNDLEVEL:          "orcus" "O" @ (2, 47) 95 6
-RNDLEVEL:          "demog" "D" @ (2, 47) 95 7
+RNDLEVEL:          "juibl" "J" @ (2, 29) 95 4
+RNDLEVEL:          "yeeno" "E" @ (2, 29) 95 12
+RNDLEVEL:          "orcus" "O" @ (2, 29) 95 6
+RNDLEVEL:          "demog" "D" @ (2, 29) 95 7
 # The devil levels
-RNDLEVEL:          "baalz" "B" @ (2, 47) 95 12
-RNDLEVEL:          "geryo" "R" @ (2, 47) 95 8
-RNDLEVEL:          "dispa" "S" @ (2, 47) 95 10
-RNDLEVEL:          "asmod" "A" @ (2, 47) 95 6
-RNDLEVEL:	"hllma" "H" @ (2, 47) 75 10
-BRANCH:         "Sheol" @ (2, 47) down
+RNDLEVEL:          "baalz" "B" @ (2, 29) 95 12
+RNDLEVEL:          "geryo" "R" @ (2, 29) 95 8
+RNDLEVEL:          "dispa" "S" @ (2, 29) 95 10
+RNDLEVEL:          "asmod" "A" @ (2, 29) 95 6
+RNDLEVEL:	"hllma" "H" @ (2, 29) 75 10
+BRANCH:         "Sheol" @ (2, 29) down
 
-RNDLEVEL:          "heck" "Q" @ (2, 47) 90 96
-RNDLEVEL:          "heck" "Q" @ (2, 47) 90 96
-RNDLEVEL:          "heck" "Q" @ (2, 47) 90 96
-RNDLEVEL:          "heck" "Q" @ (2, 47) 90 96
-RNDLEVEL:          "heck" "Q" @ (2, 47) 90 96
-RNDLEVEL:		"school" "C" @ (2, 47) 20 5
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 96
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 96
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 96
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 96
+RNDLEVEL:          "heck" "Q" @ (2, 29) 90 96
+RNDLEVEL:		"school" "C" @ (2, 29) 20 5
 
-RNDLEVEL:	"ghbgr" "I" @ (2, 47) 90 60
-RNDLEVEL:	"ghbgr" "I" @ (2, 47) 90 60
-RNDLEVEL:	"ghbgr" "I" @ (2, 47) 90 60
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 60
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 60
+RNDLEVEL:	"ghbgr" "I" @ (2, 29) 90 60
 
-LEVEL:	"rndmazeb" "K" @ (2, 47) 60
-RNDLEVEL:	"intplx" "L" @ (2, 47) 50 5
+LEVEL:	"rndmazeb" "K" @ (2, 29) 60
+RNDLEVEL:	"intplx" "L" @ (2, 29) 50 5
 
-RNDLEVEL:		"levgx" "T" @ (2, 47) 90 95
-
-BRANCH:         "Yendorian Tower" @ (50, 0) portal -1
+RNDLEVEL:		"levgx" "T" @ (2, 29) 90 95
 
 ### Gnomish Mines ###
 # (The Mines of the Gnomes of Zurich.)
@@ -225,22 +222,7 @@ DUNGEON:    "The Quest" "Q" (7, 0)
 LEVEL:  	"x-strt" "none" @ (1, 1)
 LEVEL:  	"x-loca" "L" @ (3, 3)
 LEVEL:  	"x-goal" "none" @ (-1, 0)
-BRANCH:     "The Subquest" @ (2, 5) portal
 
-DUNGEON:    "The Subquest" "B" (10, 0)
-LEVEL:  	"x-1" "A" @ (1, 0)
-LEVEL:  	"x-2" "B" @ (2, 0)
-LEVEL:  	"x-3" "C" @ (3, 0)
-LEVEL:  	"x-4" "D" @ (4, 0)
-LEVEL:  	"x-5" "E" @ (5, 0)
-LEVEL:  	"x-6" "F" @ (6, 0)
-LEVEL:  	"x-7" "G" @ (7, 0)
-LEVEL:  	"x-8" "H" @ (8, 0)
-LEVEL:  	"x-9" "I" @ (9, 0)
-LEVEL:  	"x-0" "J" @ (10, 0)
-BRANCH:     "Bell Caves" @ (6, 5)
-
-DUNGEON:    "Bell Caves" "N" (1, 0)
 
 ### The aligned key quests ###
 DUNGEON:		"Lawful Quest" "none" (1, 0)
@@ -344,10 +326,10 @@ DESCRIPTION:    mazelike
 LEVEL:          "frnknstn" "L" @ (1, 0) 50
 
 
-DUNGEON:        "Sheol" "V" (25, 0)
+DUNGEON:        "Sheol" "V" (7, 0)
 ALIGNMENT:      noalign
 DESCRIPTION:    hellish
-BRANCH:         "Vlad's Tower" @ (2, 24) up -1
+BRANCH:         "Vlad's Tower" @ (2, 6) up -1
 LEVEL:          "sheolfil" "A" @ (1, 0) 95
 LEVEL:          "sheolmid" "H" @ (2, 0) 95
 LEVEL:          "sheolfil" "B" @ (3, 0) 95
@@ -362,62 +344,7 @@ PROTOFILE:      "tower"
 DESCRIPTION:    mazelike
 ALIGNMENT:      chaotic
 
-# Yendorian Tower: bonus dungeon after getting the Amulet --Amy
-DUNGEON:        "Yendorian Tower" "Y" (100, 0)
-DESCRIPTION:    hellish
-BRANCH:         "Forging Chamber" @ (1, 99)
-BRANCH:         "Dead Grounds" @ (1, 99)
-BRANCH:         "Ordered Chaos" @ (1, 99)
-RNDLEVEL:	"bigrm" "B" @ (1, 99) 75 60
-RNDLEVEL:	"bigrm" "B" @ (1, 99) 75 60
-RNDLEVEL:	"bigrm" "B" @ (1, 99) 75 60
-RNDLEVEL:	"bigrm" "B" @ (1, 99) 75 60
-RNDLEVEL:	"bigrm" "B" @ (1, 99) 75 60
-RNDLEVEL:	"exmall" "Y" @ (1, 99) 75 9
-LEVEL:		"rndmaze" "Z" @ (1, 99) 30
-LEVEL:		"rndmazea" "T" @ (1, 99) 30
-RNDLEVEL:	"intpla" "J" @ (1, 99) 30 5
-RNDLEVEL:		"levgn" "V" @ (1, 99) 80 95
-RNDLEVEL:		"levgn" "V" @ (1, 99) 80 95
-RNDLEVEL:		"levgn" "V" @ (1, 99) 80 95
-RNDLEVEL:		"levgn" "V" @ (1, 99) 80 95
-RNDLEVEL:		"levgn" "V" @ (1, 99) 80 95
-RNDLEVEL:          "juibl" "K" @ (1, 99) 95 4
-RNDLEVEL:          "yeeno" "E" @ (1, 99) 95 12
-RNDLEVEL:          "orcus" "O" @ (1, 99) 95 6
-RNDLEVEL:          "demog" "D" @ (1, 99) 95 7
-RNDLEVEL:          "baalz" "C" @ (1, 99) 95 12
-RNDLEVEL:          "geryo" "R" @ (1, 99) 95 8
-RNDLEVEL:          "dispa" "S" @ (1, 99) 95 10
-RNDLEVEL:          "asmod" "A" @ (1, 99) 95 6
-RNDLEVEL:          "juibl" "K" @ (1, 99) 95 4
-RNDLEVEL:          "yeeno" "E" @ (1, 99) 95 12
-RNDLEVEL:          "orcus" "O" @ (1, 99) 95 6
-RNDLEVEL:          "demog" "D" @ (1, 99) 95 7
-RNDLEVEL:          "baalz" "C" @ (1, 99) 95 12
-RNDLEVEL:          "geryo" "R" @ (1, 99) 95 8
-RNDLEVEL:          "dispa" "S" @ (1, 99) 95 10
-RNDLEVEL:          "asmod" "A" @ (1, 99) 95 6
-RNDLEVEL:          "heck" "Q" @ (1, 99) 90 96
-RNDLEVEL:          "heck" "Q" @ (1, 99) 90 96
-RNDLEVEL:          "heck" "Q" @ (1, 99) 90 96
-RNDLEVEL:          "heck" "Q" @ (1, 99) 90 96
-RNDLEVEL:          "heck" "Q" @ (1, 99) 90 96
-RNDLEVEL:          "heck" "Q" @ (1, 99) 90 96
-RNDLEVEL:          "heck" "Q" @ (1, 99) 90 96
-RNDLEVEL:          "heck" "Q" @ (1, 99) 90 96
-RNDLEVEL:          "heck" "Q" @ (1, 99) 90 96
-RNDLEVEL:          "heck" "Q" @ (1, 99) 90 96
 
-# with 3 branches that you need to visit in order to imbue the amulet...
-DUNGEON:        "Forging Chamber" "J" (1, 0)
-DESCRIPTION:    hellish
-
-DUNGEON:        "Dead Grounds" "I" (1, 0)
-DESCRIPTION:    hellish
-
-DUNGEON:        "Ordered Chaos" "O" (1, 0)
-DESCRIPTION:    hellish
 
 ### The Endgame levels ###
 #

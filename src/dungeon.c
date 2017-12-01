@@ -21,16 +21,6 @@
 #define X_START		"x-strt"
 #define X_LOCATE	"x-loca"
 #define X_GOAL		"x-goal"
-#define X_XTONE		"x-1"
-#define X_XTTWO		"x-2"
-#define X_XTTHREE		"x-3"
-#define X_XTFOUR		"x-4"
-#define X_XTFIVE		"x-5"
-#define X_XTSIX		"x-6"
-#define X_XTSEVEN		"x-7"
-#define X_XTEIGHT		"x-8"
-#define X_XTNINE		"x-9"
-#define X_XTTEN		"x-0"
 
 struct proto_dungeon {
 	struct	tmpdungeon tmpdungeon[MAXDUNGEON];
@@ -694,16 +684,6 @@ struct level_map {
 	{ X_START,	&qstart_level },
 	{ X_LOCATE,	&qlocate_level },
 	{ X_GOAL,	&nemesis_level },
-	{ X_XTONE,	&qxone_level },
-	{ X_XTTWO,	&qxtwo_level },
-	{ X_XTTHREE,	&qxthree_level },
-	{ X_XTFOUR,	&qxfour_level },
-	{ X_XTFIVE,	&qxfive_level },
-	{ X_XTSIX,	&qxsix_level },
-	{ X_XTSEVEN,	&qxseven_level },
-	{ X_XTEIGHT,	&qxeight_level },
-	{ X_XTNINE,	&qxnine_level },
-	{ X_XTTEN,	&qxten_level },
 	{ "",		(d_level *)0 }
 };
 
@@ -839,7 +819,7 @@ init_dungeons()
 					      dungeons[i-1].num_dunlevs;
 		dungeons[i].dunlev_ureached = 0;
 
-		if (dungeons[i].ledger_start + dungeons[i].num_dunlevs > 2555)
+		if (dungeons[i].ledger_start + dungeons[i].num_dunlevs > 255)
 		    panic("init_dungeons: too many levels");
 	    }
 
@@ -983,12 +963,6 @@ init_dungeons()
 	sokoban_dnum = dname_to_dnum("Sokoban");
 	mines_dnum = dname_to_dnum("The Gnomish Mines");
 	sheol_dnum = dname_to_dnum("Sheol");
-	yendoriantower_dnum = dname_to_dnum("Yendorian Tower");
-	forgingchamber_dnum = dname_to_dnum("Forging Chamber");
-	orderedchaos_dnum = dname_to_dnum("Ordered Chaos");
-	deadgrounds_dnum = dname_to_dnum("Dead Grounds");
-	subquest_dnum = dname_to_dnum("The Subquest");
-	bellcaves_dnum = dname_to_dnum("Bell Caves");
 	spiders_dnum = dname_to_dnum("The Spider Caves");        
 	grund_dnum = dname_to_dnum("Grund's Stronghold");        
 	wyrm_dnum = dname_to_dnum("The Wyrm Caves");        
@@ -1558,48 +1532,6 @@ d_level	*lev;
 }
 
 boolean
-In_yendorian(lev)	/* are you in the yendorian tower dungeon? */
-d_level	*lev;
-{
-	return((boolean)(lev->dnum == yendoriantower_dnum));
-}
-
-boolean
-In_forging(lev)	/* are you in the forging chamber dungeon? */
-d_level	*lev;
-{
-	return((boolean)(lev->dnum == forgingchamber_dnum));
-}
-
-boolean
-In_ordered(lev)	/* are you in the ordered chaos dungeon? */
-d_level	*lev;
-{
-	return((boolean)(lev->dnum == orderedchaos_dnum));
-}
-
-boolean
-In_deadground(lev)	/* are you in the dead grounds dungeon? */
-d_level	*lev;
-{
-	return((boolean)(lev->dnum == deadgrounds_dnum));
-}
-
-boolean
-In_subquest(lev)	/* are you in the subquest dungeon? */
-d_level	*lev;
-{
-	return((boolean)(lev->dnum == subquest_dnum));
-}
-
-boolean
-In_bellcaves(lev)	/* are you in the bell caves dungeon? */
-d_level	*lev;
-{
-	return((boolean)(lev->dnum == bellcaves_dnum));
-}
-
-boolean
 In_gehennom(lev)	/* are you in the gehennom dungeon? */
 d_level	*lev;
 {
@@ -1969,8 +1901,7 @@ level_difficulty()
  * And I don't want to remove any branches just to make room for more gehennom levels. So the deepest level
  * will always be 65, and we'll have to arbitrarily increase the level difficulty for the endgame. --Amy */
 
-/* edit - well, actually we can; I decided to max out the amount of possible levels and put the sanctum at 72. --Amy
- * edit again: expanded it greatly, it's at 100 now */
+/* edit - well, actually we can; I decided to max out the amount of possible levels and put the sanctum at 72. --Amy */
 
 xchar /* 127 or lower */
 monster_difficulty()

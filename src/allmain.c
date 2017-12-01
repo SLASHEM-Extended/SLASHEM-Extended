@@ -242,7 +242,7 @@ moveloop()
 			if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) monclock /= 2;
 			if (issuxxor) monclock *= 2;
 
-			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 10000)) ) monclock /= 3;
+			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 5000)) ) monclock /= 3;
 
 			/* here, we really need a fail safe --Amy */
 			if (monclock < 2) monclock = 2;
@@ -285,7 +285,7 @@ moveloop()
 			if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) monclock /= 2;
 			if (issuxxor) xtraclock *= 2;
 
-			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 10000)) ) xtraclock /= 3;
+			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 5000)) ) xtraclock /= 3;
 
 			/* new group spawn system by Amy */
 			if (!rn2(xtraclock) && !rn2(2) && !issoviet ) {
@@ -763,23 +763,23 @@ moveloop()
 
 			nastyitemchance = 50000;
 
-			if (moves > 5000) nastyitemchance = 45000;
-			if (moves > 10000) nastyitemchance = 40000;
-			if (moves > 20000) nastyitemchance = 35000;
-			if (moves > 40000) nastyitemchance = 30000;
-			if (moves > 80000) nastyitemchance = 27500;
-			if (moves > 120000) nastyitemchance = 25000;
-			if (moves > 160000) nastyitemchance = 22500;
-			if (moves > 240000) nastyitemchance = 20000;
-			if (moves > 320000) nastyitemchance = 17500;
-			if (moves > 400000) nastyitemchance = 15000;
-			if (moves > 600000) nastyitemchance = 12500;
-			if (moves > 800000) nastyitemchance = 10000;
-			if (moves > 1000000) nastyitemchance = 7500;
-			if (moves > 2000000) nastyitemchance = 5000;
-			if (moves > 3000000) nastyitemchance = 2500;
-			if (moves > 4000000) nastyitemchance = 1500;
-			if (moves > 5000000) nastyitemchance = 1000;
+			if (moves > 2000) nastyitemchance = 45000;
+			if (moves > 4000) nastyitemchance = 40000;
+			if (moves > 10000) nastyitemchance = 35000;
+			if (moves > 20000) nastyitemchance = 30000;
+			if (moves > 40000) nastyitemchance = 27500;
+			if (moves > 60000) nastyitemchance = 25000;
+			if (moves > 80000) nastyitemchance = 22500;
+			if (moves > 120000) nastyitemchance = 20000;
+			if (moves > 160000) nastyitemchance = 17500;
+			if (moves > 200000) nastyitemchance = 15000;
+			if (moves > 300000) nastyitemchance = 12500;
+			if (moves > 400000) nastyitemchance = 10000;
+			if (moves > 500000) nastyitemchance = 7500;
+			if (moves > 1000000) nastyitemchance = 5000;
+			if (moves > 1500000) nastyitemchance = 2500;
+			if (moves > 2000000) nastyitemchance = 1500;
+			if (moves > 2500000) nastyitemchance = 1000;
 
 			if (ishaxor) nastyitemchance /= 2;
 
@@ -7177,8 +7177,8 @@ newboss:
 
 			}
 
-			/* For developer race, Rodney wakes up prematurely after 20000 turns! --Amy */
-			if (Race_if(PM_DEVELOPER) && !u.uevent.udemigod && moves > 20000) {
+			/* For developer race, Rodney wakes up prematurely after 10000 turns! --Amy */
+			if (Race_if(PM_DEVELOPER) && !u.uevent.udemigod && moves > 10000) {
 				u.uevent.udemigod = TRUE;
 				u.udg_cnt = rn1(250, 50);
 			}
@@ -9798,7 +9798,7 @@ boolean new_game;	/* false => restoring an old game */
 	goto_level((&sanctum_level - 1), TRUE, FALSE, FALSE);
 	pline("These are the halls of Mandos... err, Gehennom. Looks nice, huh?");
 
-			        register int newlev = 74;
+			        register int newlev = 71;
 				d_level newlevel;
 				get_level(&newlevel, newlev);
 				goto_level(&newlevel, TRUE, FALSE, FALSE);
