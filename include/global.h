@@ -365,7 +365,7 @@ struct version_info {
 				 * monsters, objects */
 
 #define MAXDUNGEON	200	/* current maximum number of dungeons */
-#define MAXLEVEL	500	/* max number of levels in one dungeon */
+#define MAXLEVEL	200	/* max number of levels in one dungeon */
 #define MAXSTAIRS	1	/* max # of special stairways in a dungeon */
 #define ALIGNWEIGHT	10	/* generation weight of alignment */
 
