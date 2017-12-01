@@ -94,10 +94,19 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar   d_dod_dnum;
     xchar   d_town_dnum;
     xchar   d_gehennom_dnum;
+    xchar   d_yendoriantower_dnum;
+    xchar   d_forgingchamber_dnum;
+    xchar   d_orderedchaos_dnum;
+    xchar   d_deadgrounds_dnum;
+    xchar   d_subquest_dnum;
+    xchar   d_bellcaves_dnum;
     d_level	d_lawful_quest_level;
     d_level	d_neutral_quest_level;
     d_level	d_chaotic_quest_level;
     d_level	d_qstart_level, d_qlocate_level, d_nemesis_level;
+
+    d_level d_qxone_level, d_qxtwo_level,  d_qxthree_level,  d_qxfour_level,  d_qxfive_level;
+    d_level d_qxsix_level, d_qxseven_level,  d_qxeight_level,  d_qxnine_level,  d_qxten_level;
     d_level	d_knox_level;
     d_level     d_blackmarket_level;
 #ifdef RECORD_ACHIEVE
@@ -143,6 +152,12 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define sokoban_dnum		(dungeon_topology.d_sokoban_dnum)
 #define mines_dnum		(dungeon_topology.d_mines_dnum)
 #define sheol_dnum		(dungeon_topology.d_sheol_dnum)
+#define yendoriantower_dnum		(dungeon_topology.d_yendoriantower_dnum)
+#define forgingchamber_dnum		(dungeon_topology.d_forgingchamber_dnum)
+#define orderedchaos_dnum		(dungeon_topology.d_orderedchaos_dnum)
+#define deadgrounds_dnum		(dungeon_topology.d_deadgrounds_dnum)
+#define subquest_dnum		(dungeon_topology.d_subquest_dnum)
+#define bellcaves_dnum		(dungeon_topology.d_bellcaves_dnum)
 #define dod_dnum			(dungeon_topology.d_dod_dnum)
 #define town_dnum			(dungeon_topology.d_town_dnum)
 #define gehennom_dnum		(dungeon_topology.d_gehennom_dnum)
@@ -150,6 +165,16 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define qstart_level		(dungeon_topology.d_qstart_level)
 #define qlocate_level		(dungeon_topology.d_qlocate_level)
 #define nemesis_level		(dungeon_topology.d_nemesis_level)
+#define qxone_level		(dungeon_topology.d_qxone_level)
+#define qxtwo_level		(dungeon_topology.d_qxtwo_level)
+#define qxthree_level		(dungeon_topology.d_qxthree_level)
+#define qxfour_level		(dungeon_topology.d_qxfour_level)
+#define qxfive_level		(dungeon_topology.d_qxfive_level)
+#define qxsix_level		(dungeon_topology.d_qxsix_level)
+#define qxseven_level		(dungeon_topology.d_qxseven_level)
+#define qxeight_level		(dungeon_topology.d_qxeight_level)
+#define qxnine_level		(dungeon_topology.d_qxnine_level)
+#define qxten_level		(dungeon_topology.d_qxten_level)
 #define knox_level		(dungeon_topology.d_knox_level)
 #define spiders_dnum		(dungeon_topology.d_spiders_dnum)
 #define grund_dnum		(dungeon_topology.d_grund_dnum)

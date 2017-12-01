@@ -68,9 +68,9 @@
  * although they are nonnegative they must not be declared unsigned
  * since otherwise comparisons with signed quantities are done incorrectly
  */
-typedef schar	xchar;
+typedef int	xchar;
 #ifndef SKIP_BOOLEAN
-typedef xchar	boolean;		/* 0 or 1 */
+typedef schar	boolean;		/* 0 or 1 */
 #endif
 
 #ifndef TRUE		/* defined in some systems' native include files */
@@ -365,7 +365,7 @@ struct version_info {
 				 * monsters, objects */
 
 #define MAXDUNGEON	200	/* current maximum number of dungeons */
-#define MAXLEVEL	200	/* max number of levels in one dungeon */
+#define MAXLEVEL	500	/* max number of levels in one dungeon */
 #define MAXSTAIRS	1	/* max # of special stairways in a dungeon */
 #define ALIGNWEIGHT	10	/* generation weight of alignment */
 

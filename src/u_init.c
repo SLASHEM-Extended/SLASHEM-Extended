@@ -6762,10 +6762,14 @@ u_init()
 
       u.monstertimeout = rnz(10000)+rnz(15000); /*This NEEDS to be set here, because otherwise saving/restoring will set*/
 	while (u.monstertimeout < 10) u.monstertimeout = rnz(10000)+rnz(15000);
-      u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout; /*a new value, allowing the player to cheat. --Amy*/
+
+	if (rn2(3)) u.monstertimeout += rnz(10000)+rnz(15000);
+
+      u.monstertimefinish = rnz(30000)+rnz(60000)+u.monstertimeout; /*a new value, allowing the player to cheat. --Amy*/
 	while (u.monstertimefinish < 20) u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout;
-	u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(9000)); /* if you still didn't ascend at this turn count, the game becomes much harder */
-	while (u.ascensiontimelimit < (issoviet ? 100000 : 50000)) u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(9000));
+
+	u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(30000)); /* if you still didn't ascend at this turn count, the game becomes much harder */
+	while (u.ascensiontimelimit < (issoviet ? 500000 : 250000)) u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(9000));
 	u.ascensionfirsthint = ( (u.ascensiontimelimit / 10) + rnd(u.ascensiontimelimit / 10)); 
 	u.ascensionsecondhint = ( u.ascensiontimelimit - rnd(u.ascensiontimelimit / 2)); 
 
@@ -26072,12 +26076,16 @@ alter_reality()
 
 	struct attack* attkptr;
 
-      u.monstertimeout = rnz(10000)+rnz(15000);
+      u.monstertimeout = rnz(10000)+rnz(15000); /*This NEEDS to be set here, because otherwise saving/restoring will set*/
 	while (u.monstertimeout < 10) u.monstertimeout = rnz(10000)+rnz(15000);
-      u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout;
+
+	if (rn2(3)) u.monstertimeout += rnz(10000)+rnz(15000);
+
+      u.monstertimefinish = rnz(30000)+rnz(60000)+u.monstertimeout; /*a new value, allowing the player to cheat. --Amy*/
 	while (u.monstertimefinish < 20) u.monstertimefinish = rnz(10000)+rnz(20000)+u.monstertimeout;
-	u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(9000));
-	while (u.ascensiontimelimit < (issoviet ? 100000 : 50000)) u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(9000));
+
+	u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(30000)); /* if you still didn't ascend at this turn count, the game becomes much harder */
+	while (u.ascensiontimelimit < (issoviet ? 500000 : 250000)) u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(9000));
 	u.ascensionfirsthint = ( (u.ascensiontimelimit / 10) + rnd(u.ascensiontimelimit / 10)); 
 	u.ascensionsecondhint = ( u.ascensiontimelimit - rnd(u.ascensiontimelimit / 2)); 
 
