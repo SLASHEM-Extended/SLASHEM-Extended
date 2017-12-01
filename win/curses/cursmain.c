@@ -157,7 +157,7 @@ curses_init_nhwindows(int *argcp, char **argv)
 
     curses_create_main_windows();
     curses_init_mesg_history();
-    curses_display_splash_window();
+    curses_display_splash_window(FALSE);
 }
 
 /* Do a window-port specific player type selection. If player_selection()
@@ -483,7 +483,7 @@ curses_select_menu(winid wid, int how, MENU_ITEM_P ** selected)
     if (inv_update)
         return 0;
 
-    return curses_display_nhmenu(wid, how, selected);
+    return curses_display_nhmenu(wid, how, selected, FALSE);
 }
 
 void

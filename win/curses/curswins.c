@@ -120,6 +120,17 @@ curses_create_window(int width, int height, orient orientation)
 
         starty = 0;
         break;
+    case -1:
+        /* centered below the splash screen */
+        startx = (term_cols / 2) - (width / 2);
+        starty = (term_rows / 2) - (height / 2);
+
+        int splash_size = curses_display_splash_window(TRUE);
+        splash_size++; /* add a small spacing */
+        while (starty < splash_size &&
+               ((starty + height + 2) < term_rows))
+            starty++;
+        break;
     default:
         panic("curses_create_window: Bad orientation");
         break;
@@ -381,7 +392,6 @@ curses_putch(winid wid, int x, int y, int ch, int color, int attr)
         write_char(mapwin, x - sx, y - sy, nch);
     }
 
-    wrefresh(mapwin);
 }
 
 

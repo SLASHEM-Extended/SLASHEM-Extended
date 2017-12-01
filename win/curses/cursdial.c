@@ -629,7 +629,7 @@ curses_finalize_nhmenu(winid wid, const char *prompt)
 /* Display a nethack menu, and return a selection, if applicable */
 
 int
-curses_display_nhmenu(winid wid, int how, MENU_ITEM_P ** _selected)
+curses_display_nhmenu(winid wid, int how, MENU_ITEM_P ** _selected, boolean avoid_splash_overlap)
 {
     nhmenu *current_menu = get_menu(wid);
     nhmenu_item *menu_item_ptr;
@@ -659,15 +659,18 @@ curses_display_nhmenu(winid wid, int how, MENU_ITEM_P ** _selected)
     menu_win_size(current_menu);
     menu_determine_pages(current_menu);
 
-    /* Display pre and post-game menus centered */
-    if (((moves <= 1) && !invent) || program_state.gameover) {
+    /* Display some pre-game menus below a potential splash screen */
+    if (avoid_splash_overlap)
+        win = curses_create_window(current_menu->width,
+                                   current_menu->height, -1);
+    /* Display (other) pre and post-game menus centered */
+    else if (program_state.gameover)
         win = curses_create_window(current_menu->width,
                                    current_menu->height, CENTER);
-    } else { /* Display during-game menus on the right out of the way */
+        else /* Display during-game menus on the right out of the way */
 
         win = curses_create_window(current_menu->width,
                                    current_menu->height, RIGHT);
-    }
 
     num_chosen = menu_get_selections(win, current_menu, how);
     curses_destroy_win(win);

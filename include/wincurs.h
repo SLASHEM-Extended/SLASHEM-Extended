@@ -51,8 +51,7 @@ boolean counting;   /* Count window is active */
 #endif
 
 
-typedef enum orient_type
-{
+typedef enum orient_type {
     CENTER,
     UP,
     DOWN,
@@ -61,6 +60,14 @@ typedef enum orient_type
     UNDEFINED
 } orient;
 
+enum roletyp {
+    CR_NONE,
+    CR_ROLE,
+    CR_RACE,
+    CR_GEND,
+    CR_ALIGN,
+    CR_SPECIAL,
+};
 
 /* cursmain.c */
 
@@ -264,7 +271,7 @@ extern void curses_add_nhmenu_item(winid wid, int glyph, const ANY_P *identifier
 
 extern void curses_finalize_nhmenu(winid wid, const char *prompt);
 
-extern int curses_display_nhmenu(winid wid, int how, MENU_ITEM_P **_selected);
+extern int curses_display_nhmenu(winid wid, int how, MENU_ITEM_P **_selected, boolean avoid_splash_overlap);
 
 extern boolean curses_menu_exists(winid wid);
 
@@ -294,7 +301,7 @@ extern int curses_character_dialog(const char** choices, const char *prompt);
 
 extern void curses_init_options(void);
 
-extern void curses_display_splash_window(void);
+extern int curses_display_splash_window(boolean count_only);
 
 extern void curses_cleanup(void);
 

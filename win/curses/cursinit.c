@@ -22,6 +22,7 @@
 static void set_window_position(int *, int *, int *, int *, int,
                                 int *, int *, int *, int *, int,
                                 int, int);
+static void curses_character_selection(void);
 
 /* array to save initial terminal colors for later restoration */
 
@@ -30,6 +31,11 @@ typedef struct nhrgb_type {
     short g;
     short b;
 } nhrgb;
+
+struct rolestat {
+    enum roletyp typ;
+    int desc;
+};
 
 nhrgb orig_yellow;
 nhrgb orig_white;
@@ -482,95 +488,763 @@ curses_init_nhcolors()
 #endif
 }
 
-
-/* Allow player to pick character's role, race, gender, and alignment.
-Borrowed from the Gnome window port. */
-
-void
-curses_choose_character()
+/* Returns the index into roles[]/races[]/genders[]/aligns[]
+   by permons (role/race) or by allow (gend/align).
+   Returns -1 on failure. */
+static int
+curses_get_roleid_by_desc(enum roletyp typ, int desc)
 {
-    int n, i, sel, count_off, pick4u;
-    int count = 0;
-    int cur_character = 0;
-    const char **choices;
-    int *pickmap;
-    char *prompt;
-    char pbuf[QBUFSZ];
-    char choice[QBUFSZ];
-    char tmpchoice[QBUFSZ];
+    int i;
 
-#ifdef TUTORIAL_MODE
+    switch (typ) {
+    case CR_ROLE:
+        for (i = 0; roles[i].name.m; i++)
+            if (roles[i].malenum == desc ||
+                roles[i].femalenum == desc)
+                return i;
+        break;
+    case CR_RACE:
+        for (i = 0; races[i].noun; i++)
+            if (races[i].malenum == desc ||
+                races[i].femalenum == desc)
+                return i;
+        break;
+    case CR_GEND:
+        for (i = 0; i < ROLE_GENDERS; i++)
+            if (genders[i].allow == desc)
+                return i;
+        break;
+    case CR_ALIGN:
+        for (i = 0; i < ROLE_ALIGNS; i++)
+            if (aligns[i].allow == desc)
+                return i;
+        break;
+    default:
+        break;
+    }
+
+    return -1;
+}
+
+/* Sets the selected rolestat to the given type. If by_id is
+   TRUE, sets desc directly. If not, look up the relevant
+   role/race/gender/alignment struct and set by permonst
+   (role/race) or by allow (gend/align). */
+static void
+curses_set_rolestat(struct rolestat *selection, int let,
+                    enum roletyp typ, int desc, boolean by_id)
+{
+    if (by_id)
+        selection[let].desc = desc;
+    else {
+        int id;
+        id = curses_get_roleid_by_desc(typ, desc);
+        if (id == -1)
+            return; /* invalid */
+
+        selection[let].desc = id;
+    }
+ 
+    selection[let].typ = typ;
+}
+
+/* Returns TRUE if the rolestate is the given type. */
+static boolean
+curses_rolestat_is(struct rolestat *selection, int let, enum roletyp typ, int desc, boolean by_id)
+{
+    int id = desc;
+    if (!by_id)
+        id = curses_get_roleid_by_desc(typ, desc);
+    if (selection[let].typ == typ && selection[let].desc == id)
+        return TRUE;
+
+    return FALSE;
+}
+
+/* Returns TRUE if the given accelerator is available. */
+static boolean
+curses_rolestat_free(struct rolestat *selection, int let)
+{
+    return !!(selection[let].typ == CR_NONE);
+}
+
+/* Returns TRUE if the given accelerator is selected. */
+static boolean
+curses_rolestat_selected(struct rolestat *selection, int let)
+{
+    switch (selection[let].typ) {
+    case CR_ROLE:
+        return !!(flags.initrole == selection[let].desc);
+    case CR_RACE:
+        return !!(flags.initrace == selection[let].desc);
+    case CR_GEND:
+        return !!(flags.initgend == selection[let].desc);
+    case CR_ALIGN:
+        return !!(flags.initalign == selection[let].desc);
+    default:
+        break;
+    }
+
+    return FALSE;
+}
+
+/* Returns TRUE if the given accelerator is valid given
+   the current role/race/gender/alignment selection. */
+static boolean
+curses_rolestat_valid(struct rolestat *selection, int let)
+{
+    switch (selection[let].typ) {
+    case CR_ROLE:
+        return ok_role(selection[let].desc, flags.initrace,
+                       flags.initgend, flags.initalign);
+    case CR_RACE:
+        return ok_race(flags.initrole, selection[let].desc,
+                       flags.initgend, flags.initalign);
+    case CR_GEND:
+        return ok_gend(flags.initrole, flags.initrace,
+                       selection[let].desc, flags.initalign);
+    case CR_ALIGN:
+        return ok_align(flags.initrole, flags.initrace,
+                       flags.initgend, selection[let].desc);
+    default:
+        break;
+    }
+
+    /* otherwise, return FALSE if *any* of our current
+       selections are invalid. */
+    if (ok_role(flags.initrole, flags.initrace,
+                flags.initgend, flags.initalign) &&
+        ok_race(flags.initrole, flags.initrace,
+                flags.initgend, flags.initalign) &&
+        ok_gend(flags.initrole, flags.initrace,
+                flags.initgend, flags.initalign) &&
+        ok_align(flags.initrole, flags.initrace,
+                flags.initgend, flags.initalign))
+        return TRUE;
+
+    return FALSE;
+}
+
+/* Returns a string description for a role/race/gender/align
+   by accelerator. */
+static const char *
+curses_rolestat_str(struct rolestat *selection, int let)
+{
+    int desc = selection[let].desc;
+
+    switch (selection[let].typ) {
+    case CR_ROLE:
+        return roles[desc].name.m;
+    case CR_RACE:
+        return races[desc].noun;
+    case CR_GEND:
+        return genders[desc].adj;
+    case CR_ALIGN:
+        return aligns[desc].adj;
+    case CR_SPECIAL:
+        return "play!"; /* the "play" accelerator */
+    default:
+        return "???";
+    }
+
+}
+
+/* Pick a random role/etc. If respect_config is TRUE, only randomize
+   missing entries. */
+static void
+curses_random_role(boolean respect_config)
+{
+    if (!respect_config) {
+        flags.initrole = ROLE_RANDOM;
+        flags.initrace = ROLE_RANDOM;
+        flags.initgend = ROLE_RANDOM;
+        flags.initalign = ROLE_RANDOM;
+    }
+
+    /* Free up invalid choices. */
+    if (!ok_align(flags.initrole, flags.initrace, flags.initgend,
+                  flags.initalign))
+        flags.initalign = ROLE_RANDOM;
+    if (!ok_gend(flags.initrole, flags.initrace, flags.initgend,
+                 flags.initalign))
+        flags.initgend = ROLE_RANDOM;
+    if (!ok_race(flags.initrole, flags.initrace, flags.initgend,
+                 flags.initalign))
+        flags.initrace = ROLE_RANDOM;
+    if (!ok_role(flags.initrole, flags.initrace, flags.initgend,
+                 flags.initalign))
+        flags.initrole = ROLE_RANDOM;
+
+    flags.initrole = pick_role(flags.initrole, flags.initrace,
+                               flags.initgend, flags.initalign);
+    flags.initrace = pick_race(flags.initrole, flags.initrace,
+                               flags.initgend, flags.initalign);
+    flags.initgend = pick_gend(flags.initrole, flags.initrace,
+                               flags.initgend, flags.initalign);
+    flags.initalign = pick_align(flags.initrole, flags.initrace,
+                                 flags.initgend, flags.initalign);
+
+    /* Don't let the role selector crash if this resulted in an invalid selection.
+       This should never happen unless the game engine is doing something stupid... */
+    if (flags.initrole < 0)
+        flags.initrole = 0;
+    if (flags.initrace < 0)
+        flags.initrace = 0;
+    if (flags.initgend < 0)
+        flags.initgend = 0;
+    if (flags.initalign < 0)
+        flags.initalign = 0;
+}
+
+static int
+role_accel(WINDOW *win, int y, int x, struct rolestat *selection,
+           int let)
+{
+    attr_t attr = curses_color_attr(CLR_GRAY, 0);
+    attr_t attrselected = curses_color_attr(CLR_WHITE, 0);
+    attr_t attrinvalid = curses_color_attr(CLR_BROWN, 0);
+    attr_t attrinvalid_selected = curses_color_attr(CLR_YELLOW, 0);
+    boolean selected = curses_rolestat_selected(selection, let);
+    boolean invalid = !curses_rolestat_valid(selection, let);
+    char selch = '-';
+    int ret = 0;
+    if (selected) {
+        attr = attrselected;
+        selch = '+';
+        if (invalid) {
+            attr = attrinvalid_selected;
+            selch = '!';
+            ret = 1;
+        }
+    } else if (invalid)
+        attr = attrinvalid;
+
+    /* Create a temporary char so we can make the initial
+       character always be in uppercase. */
+    char str[BUFSZ];
+    strcpy(str, curses_rolestat_str(selection, let));
+    str[0] = toupper(str[0]);
+
+    wattron(win, attr);
+    mvwprintw(win, y, x, "%c %c %s", let, selch, str);
+    wattroff(win, attr);
+    return ret;
+}
+
+/* Displays and handles the character selection window. */
+static void
+curses_character_selection(void)
+{
+    int let;
+    int i, j, pass;
+
+    /* First, set up valid choices. */
+    struct rolestat selection[256];
+    struct rolestat old_selection[256];
+    memset(&selection, 0, sizeof selection);
+
+    /* For scrollable, 1 means scrollable but w/o overlapping
+       choices, 2+ means scrollable where choice meaning
+       depends on current visible selection, in which it will
+       hold the amount of letters dedicated for it. */
+    int role_scrollable = 0;
+    int race_scrollable = 0;
+    boolean roles_done;
+    boolean races_done;
+    char rolestr[BUFSZ];
+
+    /* Reserve qMFLNC */
+    curses_set_rolestat(selection, '.', CR_SPECIAL, 0, TRUE);
+    curses_set_rolestat(selection, 'q', CR_SPECIAL, 0, TRUE);
+    curses_set_rolestat(selection, 'M', CR_GEND,
+                        ROLE_MALE, FALSE);
+    curses_set_rolestat(selection, 'F', CR_GEND,
+                        ROLE_FEMALE, FALSE);
+    curses_set_rolestat(selection, 'L', CR_ALIGN,
+                        ROLE_LAWFUL, FALSE);
+    curses_set_rolestat(selection, 'N', CR_ALIGN,
+                        ROLE_NEUTRAL, FALSE);
+    curses_set_rolestat(selection, 'C', CR_ALIGN,
+                        ROLE_CHAOTIC, FALSE);
+
+    /*
+     * Do 4 passes when trying to assign roles/races to letters.
+     * 1: Attempt first letter
+     * 2: Attempt other letters in the race name
+     * 3: Attempt any other free letter
+     * 4: Assign leftover letters (lowercase for role, uppercase for race) and create a
+     *    scrollable window part.
+     */
+    memcpy(&old_selection, &selection, sizeof selection);
+    pass = 0;
+    do {
+        pass++;
+        roles_done = TRUE;
+        if (pass == 4) {
+            /* Unreserve our failed unfinished race letter
+               reservations */
+            memcpy(&selection, &old_selection, sizeof selection);
+
+            /* Reserve all (free) lowercase letters for roles
+               and create a scrollable race selection. */
+            for (let = 'a'; let <= 'z'; let++) {
+                if (curses_rolestat_free(selection, let))
+                    role_scrollable++;
+            }
+
+            break;
+        }
+
+        for (i = 0; roles[i].name.m; i++) {
+            for (j = 0; roles[i].name.m[j]; j++) {
+                /* Only attempt first letter in pass 1 */
+                if (pass == 1 && j)
+                    break;
+
+                let = tolower(roles[i].name.m[j]);
+
+                /* Maybe this race has been assigned already. */
+                if (curses_rolestat_is(selection, let,
+                                       CR_ROLE, i, TRUE))
+                    break;
+
+                /* Is the letter free? */
+                if (curses_rolestat_free(selection, let)) {
+                    curses_set_rolestat(selection, let,
+                                        CR_ROLE, i, TRUE);
+                    break;
+                }
+
+                /* Now try uppercase */
+                let = toupper(let);
+
+                if (curses_rolestat_is(selection, let,
+                                       CR_ROLE, i, TRUE))
+                    break;
+
+                if (curses_rolestat_free(selection, let)) {
+                    curses_set_rolestat(selection, let,
+                                        CR_ROLE, i, TRUE);
+                    break;
+                }
+            }
+
+            /* For pass 3, try any letter. */
+            if (pass == 3 &&
+                !curses_rolestat_is(selection, let, CR_ROLE,
+                                    i, TRUE)) {
+                for (let = 'a'; let <= 'z'; let++) {
+                    if (curses_rolestat_free(selection,
+                                             let)) {
+                        curses_set_rolestat(selection, let,
+                                            CR_ROLE, i, TRUE);
+                        break;
+                    }
+                }
+            }
+
+            /* If we failed to find a letter for any role in
+               this pass, mark races as unfinished. */
+            if (!curses_rolestat_is(selection, let, CR_ROLE,
+                                    i, TRUE))
+                roles_done = FALSE;
+        }
+    } while (!roles_done);
+
+    /* Now do the same thing with races */
+    memcpy(&old_selection, &selection, sizeof selection);
+    pass = 0;
+    do {
+        pass++;
+        races_done = TRUE;
+        if (pass == 4) {
+            memcpy(&selection, &old_selection, sizeof selection);
+
+            for (let = 'A'; let <= 'Z'; let++) {
+                if (curses_rolestat_free(selection, let))
+                    race_scrollable++;
+            }
+
+            break;
+        }
+
+        for (i = 0; races[i].noun; i++) {
+            for (j = 0; races[i].noun[j]; j++) {
+                if (pass == 1 && j)
+                    break;
+
+                let = toupper(races[i].noun[j]);
+
+                if (curses_rolestat_is(selection, let,
+                                       CR_RACE, i, TRUE))
+                    break;
+ 
+                if (curses_rolestat_free(selection, let)) {
+                    curses_set_rolestat(selection, let,
+                                        CR_RACE, i, TRUE);
+                    break;
+                }
+
+                let = tolower(let);
+
+                if (curses_rolestat_is(selection, let,
+                                       CR_RACE, i, TRUE))
+                    break;
+
+                if (curses_rolestat_free(selection, let)) {
+                    curses_set_rolestat(selection, let,
+                                        CR_RACE, i, TRUE);
+                    break;
+                }
+            }
+
+            if (pass == 3 &&
+                !curses_rolestat_is(selection, let, CR_RACE,
+                                    i, TRUE)) {
+                for (let = 'A'; let <= 'Z'; let++) {
+                    if (curses_rolestat_free(selection,
+                                             let)) {
+                        curses_set_rolestat(selection, let,
+                                            CR_RACE, i, TRUE);
+                        break;
+                    }
+                }
+            }
+
+            if (!curses_rolestat_is(selection, let, CR_RACE,
+                                    i, TRUE))
+                races_done = FALSE;
+        }
+    } while (!races_done);
+
+    /* Done with letter assignments. Now figure out window
+       dimensions and positioning of things. */
+    int width = 0;
+    int height = 14; /* fits gender/alignment/quit/play */
+
+    int longest_role = 0;
+    int longest_race = 0;
+    int role_height = 0;
+    int race_height = 0;
+    int role_total = 0;
+    int race_total = 0;
+    int col2_start = 0;
+    int col3_start = 0;
+    int scroll_offset = 0;
+    int any_invalid = 0;
+    WINDOW *win, *bwin;
+    int winx, winy;
+    int x, y;
+
+    for (i = 0; roles[i].name.m; i++)
+        if (longest_role < strlen(roles[i].name.m))
+            longest_role = strlen(roles[i].name.m);
+    role_total = role_height = i;
+    if (role_scrollable)
+        role_height = role_scrollable;
+    if (height < (role_height + 1))
+        height = (role_height + 1); /* includes header */
+
+    for (i = 0; races[i].noun; i++)
+        if (longest_race < strlen(races[i].noun))
+            longest_race = strlen(races[i].noun);
+    race_total = race_height = i;
+    if (race_scrollable)
+        race_height = race_scrollable;
+    if (height < (race_height + 1))
+        height = (race_height + 1);
+
+    if (role_scrollable && race_scrollable)
+        height = min(role_scrollable + 1, race_scrollable + 1);
+
+    height += 2; /* for the role/race/... descriptor */
+
+    width += longest_role;
+    width += longest_race;
+    width += 8; /* 4*2 for accelerators ("a - ") */
+    width += 4; /* 2*2 for spacing between columns */
+    width += strlen("    Alignment"); /* 3rd column width */
+
+    col2_start = longest_role + 6;
+    col3_start = col2_start + longest_race + 6;
+
+    /* If the terminal is unreasonably small, just bail out.
+       (80x24 handles this fine, as do lower resolutions, up
+       to a point). */
+    if (width >= term_cols || term_rows < 16) {
+        curses_raw_print("Terminal too small to fit the role"
+                         "selection menu; picking randomly!");
+        return;
+    }
+
+    /* If height exceeds term_rows, role, race or both needs
+       to be made scrollable if it isn't already. */
+    if (height + 2 > term_rows) {
+        if ((role_height + 5) > term_rows) {
+            role_height = (term_rows - 5);
+            if (!role_scrollable)
+                role_scrollable = 1;
+        }
+        if ((race_height + 5) > term_rows) {
+            race_height = (term_rows - 5);
+            if (!race_scrollable)
+                race_scrollable = 1;
+        }
+
+        height = term_rows - 2;
+    }
+
+    memcpy(&old_selection, &selection, sizeof selection);
+    while (TRUE) {
+        any_invalid = 0;
+
+        /* Create the window border as its seperate window */
+        bwin = curses_create_window(width, height, -1);
+        wrefresh(bwin);
+        getbegyx(bwin, winy, winx);
+        werase(bwin);
+        delwin(bwin);
+        win = newwin(height, width, winy + 1, winx + 1);
+
+        /* 1st column (roles) */
+        x = 0;
+        y = 0;
+        mvwaddstr(win, y++, x, "    Role");
+        let = 'z';
+        for (i = 0; i < role_total; i++) {
+            /* Find letter for this role. */
+            if (role_scrollable <= 1) {
+                let = 'a';
+                while (TRUE) {
+                    if (curses_rolestat_is(selection, let,
+                                           CR_ROLE, i, TRUE))
+                        break;
+                    if (let == 'z')
+                        let = 'A';
+                    else if (let == 'Z')
+                        panic("No letter for role %d!", i);
+                    else
+                        let++;
+                }
+            } else {
+                do {
+                    if (let == 'z')
+                        let = 'a';
+                    else
+                        let++;
+                } while (!curses_rolestat_free(old_selection,
+                                               let));
+
+                /* (Temporarily) assign this role to this
+                   letter. */
+                curses_set_rolestat(selection, let, CR_ROLE,
+                                    i, TRUE);
+            }
+
+            if (role_scrollable && scroll_offset > i)
+                continue;
+
+            any_invalid |= role_accel(win, y++, x,
+                                      selection, let);
+
+            if (y == height - 2)
+                break;
+        }
+
+        /* 2st column (races) */
+        x = col2_start;
+        y = 0;
+        mvwaddstr(win, y++, x, "    Race");
+        let = 'Z';
+        for (i = 0; i < race_total; i++) {
+            if (race_scrollable <= 1) {
+                let = 'A';
+                while (TRUE) {
+                    if (curses_rolestat_is(selection, let,
+                                           CR_RACE, i, TRUE))
+                        break;
+                    if (let == 'Z')
+                        let = 'a';
+                    else if (let == 'z')
+                        panic("No letter for race %d!", i);
+                    else
+                        let++;
+                }
+            } else {
+                do {
+                    if (let == 'Z')
+                        let = 'A';
+                    else
+                        let++;
+                } while (!curses_rolestat_free(old_selection,
+                                               let));
+
+                curses_set_rolestat(selection, let, CR_RACE,
+                                    i, TRUE);
+            }
+
+            if (race_scrollable && scroll_offset > i)
+                continue;
+
+            any_invalid |= role_accel(win, y++, x,
+                                      selection, let);
+
+            if (y == height - 2)
+                break;
+        }
+
+        /* Potentially show scroll info */
+        int scroll_height = height - 3;
+        int scroll_total = max(role_total, race_total);
+        int curpage = (scroll_offset / scroll_height + 1);
+        int lastpage = ((scroll_total - 1) / scroll_height + 1);
+        boolean at_top = !!(curpage == 1);
+        boolean at_bottom = !!(curpage == lastpage);
+        if (lastpage > 1) {
+            mvwprintw(win, height - 2, 0,
+                      "%s (Page %d of %d) %s",
+                      !at_top ? "<=" : "  ", curpage, lastpage,
+                      !at_bottom ? "=>" : "  ");
+        }
+
+        /* 3rd column */
+        x = col3_start;
+        y = 0;
+        mvwaddstr(win, y++, x, "    Gender");
+        any_invalid |= role_accel(win, y++, x, selection, 'M');
+        any_invalid |= role_accel(win, y++, x, selection, 'F');
+        mvwaddstr(win, y++, x, "");
+        mvwaddstr(win, y++, x, "    Alignment");
+        any_invalid |= role_accel(win, y++, x, selection, 'L');
+        any_invalid |= role_accel(win, y++, x, selection, 'N');
+        any_invalid |= role_accel(win, y++, x, selection, 'C');
+        mvwaddstr(win, y++, x, "");
+        mvwaddstr(win, y++, x, "");
+        mvwaddstr(win, y++, x, "q - quit");
+        mvwaddstr(win, y++, x, "* - random");
+        any_invalid |= role_accel(win, y++, x, selection, '.');
+
+        /* Describe the current selection, or if it is
+           invalid. */
+        if (any_invalid)
+            mvwaddstr(win, height - 1, 0,
+                      "One or several choices are invalid.");
+        else {
+            sprintf(rolestr, "%s %s %s %s",
+                    aligns[flags.initalign].adj,
+                    genders[flags.initgend].adj,
+                    races[flags.initrace].adj,
+                    flags.initgend == ROLE_FEMALE &&
+                    roles[flags.initrole].name.f ?
+                    roles[flags.initrole].name.f :
+                    roles[flags.initrole].name.m);
+            mvwaddstr(win, height - 1, 0, rolestr);
+        }
+
+        /* Now do the input logic. */
+        let = wgetch(win);
+        if (let == 'q') {
+            clearlocks();
+            curses_bail(0);
+            return;
+        } else if ((let == '\r' || let == '\n' || let == '\0' ||
+                    let == '.') && !any_invalid) {
+            curses_destroy_win(win);
+            return;
+        }
+
+        int typ = selection[let].typ;
+        int desc = selection[let].desc;
+        if (let == '*')
+            curses_random_role(FALSE);
+        else if (let == KEY_PPAGE || let == '<') {
+            if (curpage > 1)
+                scroll_offset -= scroll_height;
+        } else if (let == KEY_NPAGE || let == '>') {
+            if (curpage < lastpage)
+                scroll_offset += scroll_height;
+        } else {
+            switch (typ) {
+            case CR_ROLE:
+                flags.initrole = desc;
+                break;
+            case CR_RACE:
+                flags.initrace = desc;
+                break;
+            case CR_GEND:
+                flags.initgend = desc;
+                break;
+            case CR_ALIGN:
+                flags.initalign = desc;
+                break;
+            default:
+                break;
+            }
+        }
+
+        curses_destroy_win(win);
+    }
+}
+
+/* Main menu. */
+void
+curses_choose_character(void)
+{
     winid win;
     anything any;
+    int n;
     menu_item *selected = 0;
+    int quitcnt = 3;
+
+    /* Prepare a random starting selection for 'y' or what 'n'
+       begins with. TRUE because we want to respect player
+       options here. */
+    curses_random_role(TRUE);
+    refresh();
+
+    /* Create "main" menu. */
+    win = curses_get_wid(NHW_MENU);
+    curses_create_nhmenu(win);
+    any.a_int = 1;
+    curses_add_menu(win, NO_GLYPH, &any, 'y', 0, ATR_NONE,
+                    "random start",
+                    MENU_UNSELECTED);
+    any.a_int = 2;
+    curses_add_menu(win, NO_GLYPH, &any, 'n', 0, ATR_NONE,
+                    "let me choose", MENU_UNSELECTED);
+    any.a_int = 3;
+#ifdef TUTORIAL_MODE
+    curses_add_menu(win, NO_GLYPH, &any, 't', 0, ATR_NONE,
+                    "tutorial mode", MENU_UNSELECTED);
+    quitcnt = 4;
 #endif
+    any.a_int = quitcnt;
+    curses_add_menu(win, NO_GLYPH, &any, 'q', 0, ATR_NONE,
+                    "quit", MENU_UNSELECTED);
+    curses_end_menu(win, "How do you want to start playing?");
+    n = curses_display_nhmenu(win, PICK_ONE, &selected, TRUE);
+    destroy_nhwindow(win);
 
-    prompt = build_plselection_prompt(pbuf, QBUFSZ, flags.initrole,
-                                      flags.initrace, flags.initgend,
-                                      flags.initalign);
+    int result = selected[0].item.a_int;
+    free(selected);
+    selected = 0;
+    refresh();
 
-    /* This part is irritating: we have to strip the choices off of
-       the string and put them in a separate string in order to use
-       curses_character_input_dialog for this prompt. */
-
-    while (cur_character != '[') {
-        cur_character = prompt[count];
-        count++;
-    }
-
-    count_off = count;
-
-    while (cur_character != ']') {
-        tmpchoice[count - count_off] = prompt[count];
-        count++;
-        cur_character = prompt[count];
-    }
-
-    tmpchoice[count - count_off] = '\0';
-    lcase(tmpchoice);
-
-    while (!isspace(prompt[count_off])) {
-        count_off--;
-    }
-
-    prompt[count_off] = '\0';
-    sprintf(choice, "%s%c", tmpchoice, '\033');
-    if (strchr(tmpchoice, 't')) {       /* Tutorial mode */
-        mvaddstr(0, 1, "New? Press t to enter a tutorial.");
-    }
-
-    /* Add capital letters as choices that aren't displayed */
-
-    for (count = 0; tmpchoice[count]; count++) {
-        tmpchoice[count] = toupper(tmpchoice[count]);
-    }
-
-    sprintf(choice, "%s%s", choice, tmpchoice);
-
-    /* prevent an unnecessary prompt */
-    rigid_role_checks();
-
-    if (!flags.randomall &&
-        (flags.initrole == ROLE_NONE || flags.initrace == ROLE_NONE ||
-         flags.initgend == ROLE_NONE || flags.initalign == ROLE_NONE)) {
-        pick4u = tolower(curses_character_input_dialog(prompt, choice, 'y'));
-    } else {
-        pick4u = 'y';
-    }
-
-    if (pick4u == 'q') {        /* Quit or cancelled */
+    /* Player choose to quit. */
+    if (n != 1 || result == quitcnt) {
         clearlocks();
         curses_bail(0);
     }
 
-    if (pick4u == 'y') {
-        flags.randomall = TRUE;
-    }
+    /* Other choices */
+    switch (result) {
+    case 1:
+        return; /* we already picked a valid random choice. */
+    case 2: /* let the player choose */
+        curses_character_selection();
+        return;
 #ifdef TUTORIAL_MODE
-    else if (pick4u == 't') {   /* Tutorial mode in UnNetHack */
-        clear();
-        mvaddstr(0, 1, "Choose a character");
-        refresh();
+    case 3:
         win = curses_get_wid(NHW_MENU);
         curses_create_nhmenu(win);
         any.a_int = 1;
@@ -589,7 +1263,7 @@ curses_choose_character()
         curses_add_menu(win, NO_GLYPH, &any, 'q', 0, ATR_NONE,
                         "quit", MENU_UNSELECTED);
         curses_end_menu(win, "What character do you want to try?");
-        n = curses_select_menu(win, PICK_ONE, &selected);
+        n = curses_display_nhmenu(win, PICK_ONE, &selected, TRUE);
         destroy_nhwindow(win);
         if (n != 1 || selected[0].item.a_int == 4) {
             clearlocks();
@@ -621,240 +1295,11 @@ curses_choose_character()
         free((void *) selected);
         selected = 0;
         flags.tutorial = 1;
-    }
+        return;
 #endif
-
-    clear();
-    refresh();
-
-    if (!flags.randomall && flags.initrole < 0) {
-        /* select a role */
-        for (n = 0; roles[n].name.m; n++)
-            continue;
-        choices = alloc(sizeof (char *) * (n + 1));
-        pickmap = alloc(sizeof (int) * (n + 1));
-        for (;;) {
-            for (n = 0, i = 0; roles[i].name.m; i++) {
-                if (ok_role(i, flags.initrace, flags.initgend, flags.initalign)) {
-                    if (flags.initgend >= 0 && flags.female && roles[i].name.f)
-                        choices[n] = roles[i].name.f;
-                    else
-                        choices[n] = roles[i].name.m;
-                    pickmap[n++] = i;
-                }
-            }
-            if (n > 0)
-                break;
-            else if (flags.initalign >= 0)
-                flags.initalign = -1;   /* reset */
-            else if (flags.initgend >= 0)
-                flags.initgend = -1;
-            else if (flags.initrace >= 0)
-                flags.initrace = -1;
-            else
-                panic("no available ROLE+race+gender+alignment combinations");
-        }
-        choices[n] = (const char *) 0;
-        if (n > 1)
-            sel =
-                curses_character_dialog(choices,
-                                        "Choose one of the following roles:");
-        else
-            sel = 0;
-        if (sel >= 0)
-            sel = pickmap[sel];
-        else if (sel == ROLE_NONE) {    /* Quit */
-            clearlocks();
-            curses_bail(0);
-        }
-        free(choices);
-        free(pickmap);
-    } else if (flags.initrole < 0)
-        sel = ROLE_RANDOM;
-    else
-        sel = flags.initrole;
-
-    if (sel == ROLE_RANDOM) {   /* Random role */
-        sel = pick_role(flags.initrace, flags.initgend,
-                        flags.initalign, PICK_RANDOM);
-        if (sel < 0)
-            sel = randrole();
-    }
-
-    flags.initrole = sel;
-
-    /* Select a race, if necessary */
-    /* force compatibility with role, try for compatibility with
-     * pre-selected gender/alignment */
-    if (flags.initrace < 0 || !validrace(flags.initrole, flags.initrace)) {
-        if (flags.initrace == ROLE_RANDOM || flags.randomall) {
-            flags.initrace = pick_race(flags.initrole, flags.initgend,
-                                       flags.initalign, PICK_RANDOM);
-            if (flags.initrace < 0)
-                flags.initrace = randrace(flags.initrole);
-        } else {
-            /* Count the number of valid races */
-            n = 0;              /* number valid */
-            for (i = 0; races[i].noun; i++) {
-                if (ok_race(flags.initrole, i, flags.initgend, flags.initalign))
-                    n++;
-            }
-            if (n == 0) {
-                for (i = 0; races[i].noun; i++) {
-                    if (validrace(flags.initrole, i))
-                        n++;
-                }
-            }
-
-            choices = alloc(sizeof (char *) * (n + 1));
-            pickmap = alloc(sizeof (int) * (n + 1));
-            for (n = 0, i = 0; races[i].noun; i++) {
-                if (ok_race(flags.initrole, i, flags.initgend, flags.initalign)) {
-                    choices[n] = races[i].noun;
-                    pickmap[n++] = i;
-                }
-            }
-            choices[n] = (const char *) 0;
-            /* Permit the user to pick, if there is more than one */
-            if (n > 1)
-                sel =
-                    curses_character_dialog(choices,
-                                            "Choose one of the following races:");
-            else
-                sel = 0;
-            if (sel >= 0)
-                sel = pickmap[sel];
-            else if (sel == ROLE_NONE) {        /* Quit */
-                clearlocks();
-                curses_bail(0);
-            }
-            flags.initrace = sel;
-            free(choices);
-            free(pickmap);
-        }
-        if (flags.initrace == ROLE_RANDOM) {    /* Random role */
-            sel = pick_race(flags.initrole, flags.initgend,
-                            flags.initalign, PICK_RANDOM);
-            if (sel < 0)
-                sel = randrace(flags.initrole);
-            flags.initrace = sel;
-        }
-    }
-
-    /* Select a gender, if necessary */
-    /* force compatibility with role/race, try for compatibility with
-     * pre-selected alignment */
-    if (flags.initgend < 0 ||
-        !validgend(flags.initrole, flags.initrace, flags.initgend)) {
-        if (flags.initgend == ROLE_RANDOM || flags.randomall) {
-            flags.initgend = pick_gend(flags.initrole, flags.initrace,
-                                       flags.initalign, PICK_RANDOM);
-            if (flags.initgend < 0)
-                flags.initgend = randgend(flags.initrole, flags.initrace);
-        } else {
-            /* Count the number of valid genders */
-            n = 0;              /* number valid */
-            for (i = 0; i < ROLE_GENDERS; i++) {
-                if (ok_gend(flags.initrole, flags.initrace, i, flags.initalign))
-                    n++;
-            }
-            if (n == 0) {
-                for (i = 0; i < ROLE_GENDERS; i++) {
-                    if (validgend(flags.initrole, flags.initrace, i))
-                        n++;
-                }
-            }
-
-            choices = alloc(sizeof (char *) * (n + 1));
-            pickmap = alloc(sizeof (int) * (n + 1));
-            for (n = 0, i = 0; i < ROLE_GENDERS; i++) {
-                if (ok_gend(flags.initrole, flags.initrace, i, flags.initalign)) {
-                    choices[n] = genders[i].adj;
-                    pickmap[n++] = i;
-                }
-            }
-            choices[n] = (const char *) 0;
-            /* Permit the user to pick, if there is more than one */
-            if (n > 1)
-                sel =
-                    curses_character_dialog(choices,
-                                            "Choose one of the following genders:");
-            else
-                sel = 0;
-            if (sel >= 0)
-                sel = pickmap[sel];
-            else if (sel == ROLE_NONE) {        /* Quit */
-                clearlocks();
-                curses_bail(0);
-            }
-            flags.initgend = sel;
-            free(choices);
-            free(pickmap);
-        }
-        if (flags.initgend == ROLE_RANDOM) {    /* Random gender */
-            sel = pick_gend(flags.initrole, flags.initrace,
-                            flags.initalign, PICK_RANDOM);
-            if (sel < 0)
-                sel = randgend(flags.initrole, flags.initrace);
-            flags.initgend = sel;
-        }
-    }
-
-    /* Select an alignment, if necessary */
-    /* force compatibility with role/race/gender */
-    if (flags.initalign < 0 ||
-        !validalign(flags.initrole, flags.initrace, flags.initalign)) {
-        if (flags.initalign == ROLE_RANDOM || flags.randomall) {
-            flags.initalign = pick_align(flags.initrole, flags.initrace,
-                                         flags.initgend, PICK_RANDOM);
-            if (flags.initalign < 0)
-                flags.initalign = randalign(flags.initrole, flags.initrace);
-        } else {
-            /* Count the number of valid alignments */
-            n = 0;              /* number valid */
-            for (i = 0; i < ROLE_ALIGNS; i++) {
-                if (ok_align(flags.initrole, flags.initrace, flags.initgend, i))
-                    n++;
-            }
-            if (n == 0) {
-                for (i = 0; i < ROLE_ALIGNS; i++)
-                    if (validalign(flags.initrole, flags.initrace, i))
-                        n++;
-            }
-
-            choices = alloc(sizeof (char *) * (n + 1));
-            pickmap = alloc(sizeof (int) * (n + 1));
-            for (n = 0, i = 0; i < ROLE_ALIGNS; i++) {
-                if (ok_align(flags.initrole, flags.initrace, flags.initgend, i)) {
-                    choices[n] = aligns[i].adj;
-                    pickmap[n++] = i;
-                }
-            }
-            choices[n] = (const char *) 0;
-            /* Permit the user to pick, if there is more than one */
-            if (n > 1)
-                sel =
-                    curses_character_dialog(choices,
-                                            "Choose one of the following alignments:");
-            else
-                sel = 0;
-            if (sel >= 0)
-                sel = pickmap[sel];
-            else if (sel == ROLE_NONE) {        /* Quit */
-                clearlocks();
-                curses_bail(0);
-            }
-            flags.initalign = sel;
-            free(choices);
-            free(pickmap);
-        }
-        if (flags.initalign == ROLE_RANDOM) {
-            sel = pick_align(flags.initrole, flags.initrace,
-                             flags.initgend, PICK_RANDOM);
-            if (sel < 0)
-                sel = randalign(flags.initrole, flags.initrace);
-            flags.initalign = sel;
-        }
+    default:
+        panic("Impossible menu selection");
+        /* NOTREACHED */ return;
     }
 }
 
@@ -982,19 +1427,21 @@ curses_init_options()
 }
 
 
-/* Display an ASCII splash screen if the splash_screen option is set */
-
-void
-curses_display_splash_window()
+/* Display an ASCII splash screen if the splash_screen option
+   is set. Returns how much area that ended up taking.
+   If count_only is set to TRUE, only count how much it would
+   take up. */
+int
+curses_display_splash_window(boolean count_only)
 {
-    int x_start;
-    int y_start;
+    int x_start = 0;
+    int y_start = 0;
     int which_variant = NETHACK_CURSES; /* Default to NetHack */
-    curses_get_window_xy(MAP_WIN, &x_start, &y_start);
+    boolean splash = TRUE;
 
-    if ((term_cols < 70) || (term_rows < 20)) {
-        iflags.wc_splash_screen = FALSE;        /* No room for s.s. */
-    }
+    if ((term_cols < 70) || (term_rows < 20))
+        splash = FALSE; /* No room for splash screen */
+
 #ifdef DEF_GAME_NAME
     if (strcmp(DEF_GAME_NAME, "SlashEM") == 0) {
         which_variant = SLASHEM_CURSES;
@@ -1019,93 +1466,89 @@ curses_display_splash_window()
         which_variant = DNETHACK_CURSES;
     }
 
+#define MVADDSTR(y, x, str) if (!count_only) mvaddstr(y, x, str); y++;
 
     curses_toggle_color_attr(stdscr, CLR_WHITE, A_NORMAL, ON);
-    if (iflags.wc_splash_screen) {
+    if (splash) {
         switch (which_variant) {
         case NETHACK_CURSES:
-            mvaddstr(y_start, x_start, NETHACK_SPLASH_A);
-            mvaddstr(y_start + 1, x_start, NETHACK_SPLASH_B);
-            mvaddstr(y_start + 2, x_start, NETHACK_SPLASH_C);
-            mvaddstr(y_start + 3, x_start, NETHACK_SPLASH_D);
-            mvaddstr(y_start + 4, x_start, NETHACK_SPLASH_E);
-            mvaddstr(y_start + 5, x_start, NETHACK_SPLASH_F);
-            y_start += 7;
+            MVADDSTR(y_start, x_start, NETHACK_SPLASH_A);
+            MVADDSTR(y_start, x_start, NETHACK_SPLASH_B);
+            MVADDSTR(y_start, x_start, NETHACK_SPLASH_C);
+            MVADDSTR(y_start, x_start, NETHACK_SPLASH_D);
+            MVADDSTR(y_start, x_start, NETHACK_SPLASH_E);
+            MVADDSTR(y_start, x_start, NETHACK_SPLASH_F);
             break;
         case SLASHEM_CURSES:
-            mvaddstr(y_start, x_start, SLASHEM_SPLASH_A);
-            mvaddstr(y_start + 1, x_start, SLASHEM_SPLASH_B);
-            mvaddstr(y_start + 2, x_start, SLASHEM_SPLASH_C);
-            mvaddstr(y_start + 3, x_start, SLASHEM_SPLASH_D);
-            mvaddstr(y_start + 4, x_start, SLASHEM_SPLASH_E);
-            mvaddstr(y_start + 5, x_start, SLASHEM_SPLASH_F);
-            y_start += 7;
+            MVADDSTR(y_start, x_start, SLASHEM_SPLASH_A);
+            MVADDSTR(y_start, x_start, SLASHEM_SPLASH_B);
+            MVADDSTR(y_start, x_start, SLASHEM_SPLASH_C);
+            MVADDSTR(y_start, x_start, SLASHEM_SPLASH_D);
+            MVADDSTR(y_start, x_start, SLASHEM_SPLASH_E);
+            MVADDSTR(y_start, x_start, SLASHEM_SPLASH_F);
             break;
         case UNNETHACK_CURSES:
-            mvaddstr(y_start, x_start, UNNETHACK_SPLASH_A);
-            mvaddstr(y_start + 1, x_start, UNNETHACK_SPLASH_B);
-            mvaddstr(y_start + 2, x_start, UNNETHACK_SPLASH_C);
-            mvaddstr(y_start + 3, x_start, UNNETHACK_SPLASH_D);
-            mvaddstr(y_start + 4, x_start, UNNETHACK_SPLASH_E);
-            mvaddstr(y_start + 5, x_start, UNNETHACK_SPLASH_F);
-            y_start += 7;
+            MVADDSTR(y_start, x_start, UNNETHACK_SPLASH_A);
+            MVADDSTR(y_start, x_start, UNNETHACK_SPLASH_B);
+            MVADDSTR(y_start, x_start, UNNETHACK_SPLASH_C);
+            MVADDSTR(y_start, x_start, UNNETHACK_SPLASH_D);
+            MVADDSTR(y_start, x_start, UNNETHACK_SPLASH_E);
+            MVADDSTR(y_start, x_start, UNNETHACK_SPLASH_F);
             break;
         case SPORKHACK_CURSES:
-            mvaddstr(y_start, x_start, SPORKHACK_SPLASH_A);
-            mvaddstr(y_start + 1, x_start, SPORKHACK_SPLASH_B);
-            mvaddstr(y_start + 2, x_start, SPORKHACK_SPLASH_C);
-            mvaddstr(y_start + 3, x_start, SPORKHACK_SPLASH_D);
-            mvaddstr(y_start + 4, x_start, SPORKHACK_SPLASH_E);
-            mvaddstr(y_start + 5, x_start, SPORKHACK_SPLASH_F);
-            mvaddstr(y_start + 6, x_start, SPORKHACK_SPLASH_G);
-            mvaddstr(y_start + 7, x_start, SPORKHACK_SPLASH_H);
-            y_start += 9;
+            MVADDSTR(y_start, x_start, SPORKHACK_SPLASH_A);
+            MVADDSTR(y_start, x_start, SPORKHACK_SPLASH_B);
+            MVADDSTR(y_start, x_start, SPORKHACK_SPLASH_C);
+            MVADDSTR(y_start, x_start, SPORKHACK_SPLASH_D);
+            MVADDSTR(y_start, x_start, SPORKHACK_SPLASH_E);
+            MVADDSTR(y_start, x_start, SPORKHACK_SPLASH_F);
+            MVADDSTR(y_start, x_start, SPORKHACK_SPLASH_G);
+            MVADDSTR(y_start, x_start, SPORKHACK_SPLASH_H);
             break;
         case GRUNTHACK_CURSES:
-            mvaddstr(y_start, x_start, GRUNTHACK_SPLASH_A);
-            mvaddstr(y_start + 1, x_start, GRUNTHACK_SPLASH_B);
-            mvaddstr(y_start + 2, x_start, GRUNTHACK_SPLASH_C);
-            mvaddstr(y_start + 3, x_start, GRUNTHACK_SPLASH_D);
-            mvaddstr(y_start + 4, x_start, GRUNTHACK_SPLASH_E);
-            mvaddstr(y_start + 5, x_start, GRUNTHACK_SPLASH_F);
-            y_start += 7;
+            MVADDSTR(y_start, x_start, GRUNTHACK_SPLASH_A);
+            MVADDSTR(y_start, x_start, GRUNTHACK_SPLASH_B);
+            MVADDSTR(y_start, x_start, GRUNTHACK_SPLASH_C);
+            MVADDSTR(y_start, x_start, GRUNTHACK_SPLASH_D);
+            MVADDSTR(y_start, x_start, GRUNTHACK_SPLASH_E);
+            MVADDSTR(y_start, x_start, GRUNTHACK_SPLASH_F);
             break;
         case DNETHACK_CURSES:
-            mvaddstr(y_start, x_start, DNETHACK_SPLASH_A);
-            mvaddstr(y_start + 1, x_start, DNETHACK_SPLASH_B);
-            mvaddstr(y_start + 2, x_start, DNETHACK_SPLASH_C);
-            mvaddstr(y_start + 3, x_start, DNETHACK_SPLASH_D);
-            mvaddstr(y_start + 4, x_start, DNETHACK_SPLASH_E);
-            mvaddstr(y_start + 5, x_start, DNETHACK_SPLASH_F);
-            y_start += 7;
+            MVADDSTR(y_start, x_start, DNETHACK_SPLASH_A);
+            MVADDSTR(y_start, x_start, DNETHACK_SPLASH_B);
+            MVADDSTR(y_start, x_start, DNETHACK_SPLASH_C);
+            MVADDSTR(y_start, x_start, DNETHACK_SPLASH_D);
+            MVADDSTR(y_start, x_start, DNETHACK_SPLASH_E);
+            MVADDSTR(y_start, x_start, DNETHACK_SPLASH_F);
             break;
         default:
             impossible("which_variant number %d out of range", which_variant);
         }
+        y_start++;
     }
 
     curses_toggle_color_attr(stdscr, CLR_WHITE, A_NORMAL, OFF);
 
 #ifdef COPYRIGHT_BANNER_A
-    mvaddstr(y_start, x_start, COPYRIGHT_BANNER_A);
-    y_start++;
+    MVADDSTR(y_start, x_start, COPYRIGHT_BANNER_A);
 #endif
 
 #ifdef COPYRIGHT_BANNER_B
-    mvaddstr(y_start, x_start, COPYRIGHT_BANNER_B);
-    y_start++;
+    MVADDSTR(y_start, x_start, COPYRIGHT_BANNER_B);
 #endif
 
 #ifdef COPYRIGHT_BANNER_C
-    mvaddstr(y_start, x_start, COPYRIGHT_BANNER_C);
-    y_start++;
+    MVADDSTR(y_start, x_start, COPYRIGHT_BANNER_C);
 #endif
 
 #ifdef COPYRIGHT_BANNER_D       /* Just in case */
-    mvaddstr(y_start, x_start, COPYRIGHT_BANNER_D);
-    y_start++;
+    MVADDSTR(y_start, x_start, COPYRIGHT_BANNER_D);
 #endif
-    refresh();
+    if (!count_only)
+        refresh();
+
+#undef MVADDSTR
+    return y_start;
 }
 
 

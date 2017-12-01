@@ -24,7 +24,7 @@ void curses_add_nhmenu_item(winid wid, int glyph, const ANY_P * identifier,
 boolean get_menu_coloring(char *, int *, int *);
 # endif
 void curses_finalize_nhmenu(winid wid, const char *prompt);
-int curses_display_nhmenu(winid wid, int how, MENU_ITEM_P ** _selected);
+int curses_display_nhmenu(winid wid, int how, MENU_ITEM_P ** _selected, boolean avoid_splash_overlap);
 boolean curses_menu_exists(winid wid);
 void curses_del_menu(winid wid);
 
