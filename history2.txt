@@ -1,13 +1,6 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
-2.1.2
-- Fixed the character selection prompt for the curses interface (thanks FIQ).
-- Tweaked the numbers for aggravate monster, kops being summoned by shoplifting etc. to make the game less insanely difficult.
-- Dungeon size increased. The main dungeon is 100 levels in length now, and the total amount of levels in the dungeon will be bigger than the 127 limit.
-
 2.1.1
-- Greatly reduced the rate at which kop cubes and boss spawners will spawn new stuff.
-- Improved some to-hit calculations to make the game easier.
 - Some improvements to the curses interface in an attempt to make the HUD no longer inferior to tty mode.
 - Fixed the bug where the starlit sky trap would fail to obscure the identities of minions and priests.
 - Fixed a long-standing bug where certain quest artifacts could generate randomly or be given as gifts.
