@@ -3168,7 +3168,7 @@ register struct monst *mtmp;
 	if (mtmp->data->mlet == S_KOP) {
 
 	    /* Dead Kops may come back. */
-	    switch(rnd( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) ? 20 : RngeAntiGovernment ? 20 : 10)) {
+	    switch(rnd( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) ? 50 : RngeAntiGovernment ? 50 : 25)) {
 		case 1:	     /* returns near the stairs */
 			(void) makemon(mtmp->data,xdnstair,ydnstair,MM_ADJACENTOK);
 			break;
@@ -3225,6 +3225,7 @@ register struct monst *mtmp;
 
 		pline("The twit quickly called the kops, and it seems they're out to get you!");
 		copcnt = rnd(monster_difficulty() ) + 1;
+		if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 		if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
@@ -3238,7 +3239,7 @@ register struct monst *mtmp;
 	      while(--copcnt >= 0) {
 			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
 
-			if (!rn2(10)) {
+			if (!rn2(100)) {
 
 				int koptryct = 0;
 				int kox, koy;
@@ -4858,7 +4859,7 @@ register struct monst *mtmp;
 	if(mtmp->mtame) return;
 	mtmp->mpeaceful = 0;
 
-	if (mtmp->isshk || mtmp->ispriest || mtmp->isgd || (mdat == &mons[PM_WATCHMAN]) || (mdat == &mons[PM_WATCH_CAPTAIN]) || (mdat == &mons[PM_WATCH_LEADER]) || (mdat == &mons[PM_WATCH_LIEUTENANT])) {
+	if ((mtmp->isshk || mtmp->ispriest || mtmp->isgd || (mdat == &mons[PM_WATCHMAN]) || (mdat == &mons[PM_WATCH_CAPTAIN]) || (mdat == &mons[PM_WATCH_LEADER]) || (mdat == &mons[PM_WATCH_LIEUTENANT])) && !rn2(20)) {
 
 
 		int koptryct;
@@ -5731,6 +5732,7 @@ register boolean silent;
 	    }
 
 		copcnt = rnd(monster_difficulty() ) + 1;
+		if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 		if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
@@ -5744,7 +5746,7 @@ register boolean silent;
 	      while(--copcnt >= 0) {
 			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
 
-			if (!rn2(10)) {
+			if (!rn2(100)) {
 
 				int koptryct = 0;
 				int kox, koy;

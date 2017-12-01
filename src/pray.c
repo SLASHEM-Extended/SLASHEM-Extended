@@ -646,6 +646,7 @@ aligntyp resp_god;
 
 	int copcnt; /* Angry gods will send in the police and sephirah! --Amy */
 	copcnt = rnd(monster_difficulty() ) + 1;
+	if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 
 	if (resp_god == A_NEUTRAL) copcnt += 1;
 	if (resp_god == A_CHAOTIC) copcnt += (1 + rnd(2));
@@ -671,7 +672,7 @@ aligntyp resp_god;
       while(--copcnt >= 0) {
 		(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
 
-		if (!rn2(10)) {
+		if (!rn2(200)) {
 
 			int koptryct = 0;
 			int kox, koy;

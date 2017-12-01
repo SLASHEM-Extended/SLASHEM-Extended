@@ -568,6 +568,7 @@ letknow:
 			    g_monnam(grd));
 
 			copcnt = rnd(monster_difficulty() ) + 1;
+			if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 			if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
 			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
@@ -581,7 +582,7 @@ letknow:
 		      while(--copcnt >= 0) {
 				(void) makemon(mkclass(S_KOP,0), grd->mx, grd->my, MM_ANGRY|MM_ADJACENTOK);
 
-				if (!rn2(10)) {
+				if (!rn2(100)) {
 
 					int koptryct = 0;
 					int kox, koy;

@@ -658,11 +658,12 @@ moveloop()
 
 			}
 
-			if (u.ualign.sins && (rn2(100000) < u.ualign.sins ) ) {
+			if (u.ualign.sins && !rn2(100) && (rn2(2000) < u.ualign.sins ) ) {
 
-				u.copwantedlevel += rnz((u.ualign.sins + 1) * 10);
+				if (!rn2(20)) u.copwantedlevel += rnz(u.ualign.sins + 1);
 
 				int copcnt = rnd(monster_difficulty() ) + 1;
+				if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 				if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
 				if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ) ) {
@@ -698,10 +699,10 @@ moveloop()
 				u.copwantedlevel--;
 				if (u.copwantedlevel < 0) u.copwantedlevel = 0; /* fail safe */
 
-				if ( !(rn2(2) && (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ))) && !(rn2(2) && RngeAntiGovernment) && !rn2(50)) {
+				if ( !(rn2(2) && (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "anti-government helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "antipravitel'stvennaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "aksil-hukumat dubulg'a") ))) && !(rn2(2) && RngeAntiGovernment) && !rn2(100)) {
 
 					(void) makemon(mkclass(S_KOP,0), 0, 0, MM_ANGRY|MM_ADJACENTOK);
-					if (!rn2(20)) {
+					if (!rn2(200)) {
 						switch (rnd(5)) {
 							case 1:
 								if (level_difficulty() > 39) (void) makemon(&mons[PM_EXMINATOR_KOP], 0, 0, MM_ANGRY|MM_ADJACENTOK);
@@ -2710,7 +2711,7 @@ trapsdone:
 
 		if (!rn2(Aggravate_monster ? 4 : 20)) reset_rndmonst(NON_PM);
 
-		if (Aggravate_monster && !rn2(Stealth ? 10000 : 2000)) {
+		if (Aggravate_monster && !rn2(Stealth ? 50000 : 5000)) {
 
 			int aggroamount = rnd(6);
 			u.aggravation = 1;
@@ -2726,7 +2727,7 @@ trapsdone:
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
-		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(Stealth ? 10000 : 2000)) {
+		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(Stealth ? 50000 : 5000)) {
 		/* feminist aggravation idea by bugsniper */
 
 			int aggroamount = rnd(6);

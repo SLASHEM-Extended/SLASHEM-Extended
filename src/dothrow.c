@@ -1635,6 +1635,13 @@ int thrown;
 	if (u.ulevel < 5 && rn2(2)) tmp += 1;
 	if (u.ulevel < 3 && rn2(2)) tmp += 1;
 
+	if (u.ulevel > 5) tmp += 1;
+	if (u.ulevel > 10) tmp += 1;
+	if (u.ulevel > 15) tmp += 1;
+	if (u.ulevel > 20) tmp += 1;
+	if (u.ulevel > 25) tmp += 1;
+	if (u.ulevel > 29) tmp += 1;
+
 	if (!issoviet && !rn2(3)) tmp += rno(u.ulevel);
 
 	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;

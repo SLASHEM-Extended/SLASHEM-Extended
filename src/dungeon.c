@@ -1912,10 +1912,10 @@ level_difficulty()
 	if (moves > 1000000 && retvalue < 125) retvalue = 125;
 
 	/* some variation - it's annoying if you always get max difficulty monsters --Amy */
-	if ((retvalue > 1) && !u.aggravation && !u.outtadepthtrap && !rn2(issoviet ? 3 : 2)) retvalue /= 2;
-	if ((retvalue > 1) && !u.aggravation && !u.outtadepthtrap && !rn2(issoviet ? 15 : 5)) retvalue /= 3;
-	if ((retvalue > 1) && !u.aggravation && !u.outtadepthtrap && !rn2(issoviet ? 200 : 50)) retvalue /= 5;
-	if ((retvalue > 1) && !u.aggravation && !u.outtadepthtrap && !rn2(issoviet ? 1250 : 250)) retvalue /= 10;
+	if ((retvalue > 1) && (!u.aggravation || !rn2(3)) && !u.outtadepthtrap && !rn2(issoviet ? 3 : 2)) retvalue /= 2;
+	if ((retvalue > 1) && (!u.aggravation || !rn2(5)) && !u.outtadepthtrap && !rn2(issoviet ? 15 : 5)) retvalue /= 3;
+	if ((retvalue > 1) && (!u.aggravation || !rn2(10)) && !u.outtadepthtrap && !rn2(issoviet ? 200 : 50)) retvalue /= 5;
+	if ((retvalue > 1) && (!u.aggravation || !rn2(20)) && !u.outtadepthtrap && !rn2(issoviet ? 1250 : 250)) retvalue /= 10;
 
 	if (retvalue < 1) retvalue = 1;
 
@@ -1928,8 +1928,26 @@ level_difficulty()
 	if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) retvalue += (6 + u.ulevel);
 
 	if (u.aggravation) {
-		retvalue *= 2;
-		retvalue += u.ulevel;
+
+		switch (rnd(10)) {
+			case 1:
+				retvalue *= 2;
+				if (!rn2(3)) retvalue += u.ulevel;
+				break;
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				retvalue *= 3;
+				retvalue /= 2;
+				break;
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+				break;
+		}
 	}
 
 	if (u.outtadepthtrap) {

@@ -705,7 +705,7 @@ struct mkroom *sroom;
 			break;
 
 		    case KOPSTATION:
-			if(!rn2(5) && !t_at(sx, sy))
+			if(!rn2(25) && !t_at(sx, sy))
 				(void) maketrap(sx, sy, KOP_CUBE, 100);
 			break;
 

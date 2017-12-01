@@ -308,8 +308,6 @@ struct monst *mtmp;
 	    (!mtmp->mcanmove || mtmp->msleeping ||
 	     (mtmp->mflee && !mtmp->mavenge)) &&
 	    u.ualign.record > -10) {
-		u.ualign.sins++;
-		u.alignlim--;
 	    You("caitiff!");
 	    adjalign(-5);
 
@@ -319,8 +317,6 @@ struct monst *mtmp;
 	    (!mtmp->mcanmove || mtmp->msleeping ||
 	     (mtmp->mflee && !mtmp->mavenge)) &&
 	    u.ualign.record > -10) {
-		u.ualign.sins++;
-		u.alignlim--;
 	    You("caitiff!");
 	    adjalign(-5);
 
@@ -330,8 +326,6 @@ struct monst *mtmp;
 	    (!mtmp->mcanmove || mtmp->msleeping ||
 	     (mtmp->mflee && !mtmp->mavenge)) &&
 	    u.ualign.record > -10) {
-		u.ualign.sins++;
-		u.alignlim--;
 	    You("crumple-horned snorkack!");
 	    adjalign(-5);
 		badeffect();
@@ -342,8 +336,6 @@ struct monst *mtmp;
 	    (!mtmp->mcanmove || mtmp->msleeping ||
 	     (mtmp->mflee && !mtmp->mavenge)) &&
 	    u.ualign.record > -10) {
-		u.ualign.sins++;
-		u.alignlim--;
 	    You("caitiff!");
 	    adjalign(-5);
 
@@ -352,7 +344,7 @@ struct monst *mtmp;
 	if ( Role_if(PM_LADIESMAN) && !flags.female && mtmp->female && humanoid(mtmp->data) ) {
 
 	    You_feel("bad for hitting a defenseless woman.");
-	    adjalign(-5);
+	    adjalign(-1);
 
 	}
 
@@ -360,14 +352,14 @@ struct monst *mtmp;
 	if ( Race_if(PM_BATMAN) && ((!flags.female && mtmp->female) || (flags.female && !mtmp->female)) && humanoid(mtmp->data) ) {
 
 	    You_feel("bad for hitting a defenseless %s.", flags.female ? "man" : "woman");
-	    adjalign(-5);
+	    adjalign(-1);
 
 	}
 
 	if (FemaleTrapNadja && mtmp->female && humanoid(mtmp->data)) {
 
 		pline("%s is really angry about the fact that you tried to hit her, and uses a pair of buckled shoes to scratch up and down your %s, ripping a lot of skin to shreds.", Monnam(mtmp), body_part(LEG));
-		u.legscratching++;
+		if (!rn2(10) || !(u.legscratching)) u.legscratching++;
 		losehp(rnd(u.legscratching), "the wrath of Nadja's buckled lady shoes", KILLED_BY);
 		if (u.legscratching > 20) {
 			pline("She notices that you're bleeding, which seems to make her even more angry as she continues slitting your %s full length with the metal buckle!", body_part(LEG));
@@ -638,6 +630,13 @@ register struct monst *mtmp;
 	if (u.ulevel < 2) tmp += 1;
 	if (u.ulevel < 5 && rn2(2)) tmp += 1;
 	if (u.ulevel < 3 && rn2(2)) tmp += 1;
+
+	if (u.ulevel > 5) tmp += 1;
+	if (u.ulevel > 10) tmp += 1;
+	if (u.ulevel > 15) tmp += 1;
+	if (u.ulevel > 20) tmp += 1;
+	if (u.ulevel > 25) tmp += 1;
+	if (u.ulevel > 29) tmp += 1;
 
 	if (!issoviet && !rn2(3)) tmp += rno(u.ulevel);
 

@@ -15663,10 +15663,10 @@ rndmonst()
 
 		/* In Soviet Russia, things can never be difficult enough. Don't bother the player with weak stuff like newts,
 		 * when we could spawn all kinds of barbazus, chthonians and great wyrms of the elements in Gehennom. --Amy */
-	    if (issoviet && maxmlev > 2) minmlev = (maxmlev / 2);
+	    if (issoviet && !rn2(2) && maxmlev > 2) minmlev = (maxmlev / 2);
 		if ((ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone()) && maxmlev > 2) minmlev += (maxmlev / 2);
 
-		if (u.aggravation && rn2(2)) {
+		if (u.aggravation && !rn2(3)) {
 			minmlev += u.ulevel;
 		}
 
@@ -16232,11 +16232,11 @@ int     spc;
 		uncommonten = rn2(5) ? 1 : 0;
 	}
 
-	if (u.aggravation && rn2(3)) uncommontwo = 0;
-	if (u.aggravation && !rn2(2)) uncommonthree = 0;
-	if (u.aggravation && !rn2(3)) uncommonfive = 0;
-	if (u.aggravation && !rn2(4)) uncommonseven = 0;
-	if (u.aggravation && !rn2(5)) uncommonten = 0;
+	if (u.aggravation && rn2(2)) uncommontwo = 0;
+	if (u.aggravation && !rn2(3)) uncommonthree = 0;
+	if (u.aggravation && !rn2(5)) uncommonfive = 0;
+	if (u.aggravation && !rn2(7)) uncommonseven = 0;
+	if (u.aggravation && !rn2(10)) uncommonten = 0;
 
 	if (EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) {
 		uncommontwo = 0;
@@ -16258,17 +16258,17 @@ int     spc;
 	int uncommonnewsixty = rn2(20) ? 1 : 0;
 	int uncommonnewseventy = rn2(50) ? 1 : 0;
 
-	if (u.aggravation && rn2(10)) uncommonnewten = 0;
-	if (u.aggravation && rn2(9)) uncommonnewfifteen = 0;
-	if (u.aggravation && rn2(8)) uncommonnewtwenty = 0;
-	if (u.aggravation && rn2(7)) uncommonnewtwentyfive = 0;
-	if (u.aggravation && rn2(6)) uncommonnewthirty = 0;
-	if (u.aggravation && rn2(5)) uncommonnewthirtyfive = 0;
-	if (u.aggravation && rn2(4)) uncommonnewforty = 0;
-	if (u.aggravation && rn2(3)) uncommonnewfortyfive = 0;
-	if (u.aggravation && rn2(2)) uncommonnewfifty = 0;
-	if (u.aggravation && !rn2(3)) uncommonnewsixty = 0;
-	if (u.aggravation && !rn2(4)) uncommonnewseventy = 0;
+	if (u.aggravation && rn2(5)) uncommonnewten = 0;
+	if (u.aggravation && rn2(4)) uncommonnewfifteen = 0;
+	if (u.aggravation && rn2(3)) uncommonnewtwenty = 0;
+	if (u.aggravation && rn2(2)) uncommonnewtwentyfive = 0;
+	if (u.aggravation && !rn2(3)) uncommonnewthirty = 0;
+	if (u.aggravation && !rn2(4)) uncommonnewthirtyfive = 0;
+	if (u.aggravation && !rn2(5)) uncommonnewforty = 0;
+	if (u.aggravation && !rn2(6)) uncommonnewfortyfive = 0;
+	if (u.aggravation && !rn2(7)) uncommonnewfifty = 0;
+	if (u.aggravation && !rn2(8)) uncommonnewsixty = 0;
+	if (u.aggravation && !rn2(9)) uncommonnewseventy = 0;
 
 	if (HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) {
 		uncommonnewten = 0;
@@ -16316,10 +16316,10 @@ int     spc;
 
 	minmlev = 0;
 
-	if (issoviet && maxmlev > 2) minmlev = (maxmlev / 2);
+	if (issoviet && rn2(2) && maxmlev > 2) minmlev = (maxmlev / 2);
 	if ((ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone()) && maxmlev > 2) minmlev += (maxmlev / 2);
 
-	if (u.aggravation && rn2(2)) {
+	if (u.aggravation && !rn2(3)) {
 		minmlev += u.ulevel;
 	}
 

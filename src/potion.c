@@ -1037,6 +1037,7 @@ badeffect()
 		case 222:
 		{int copcnt;
 		copcnt = rnd(monster_difficulty() ) + 1;
+		if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
 		if (rn2(5)) copcnt /= 2;
 		if (!rn2(5)) copcnt /= 2; /* don't make too many */
 		if (!rn2(10)) copcnt /= 3;
@@ -1058,7 +1059,7 @@ badeffect()
 	      while(--copcnt >= 0) {
 			(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, MM_ANGRY);
 
-			if (!rn2(10)) {
+			if (!rn2(500)) {
 
 				int koptryct = 0;
 				int kox, koy;
@@ -2312,8 +2313,8 @@ datadeleteattack()
 			break;
 		case 6:
 			pline("Your alignment is nuked.");
-			u.ualign.sins += 1000;
-			u.alignlim -= 1000;
+			u.ualign.sins += 100;
+			u.alignlim -= 100;
 		      adjalign(-1000);
 			break;
 		case 7:
