@@ -6765,8 +6765,8 @@ end_burn(obj, timer_attached)
 	boolean timer_attached;
 {
 	if (!obj->lamplit) {
-	    if (obj) impossible("end_burn: obj %s not lit", xname(obj));
-	    else impossible("end_burn: nondefined object not lit");
+	    /*if (obj) impossible("end_burn: obj %s not lit", xname(obj));
+	    else*/ impossible("end_burn: object not lit");
 	    return;
 	}
 
