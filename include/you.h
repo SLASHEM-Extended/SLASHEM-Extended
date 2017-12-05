@@ -979,6 +979,8 @@ struct you {
 	int umonteluck;		/* Chance of winning; lower is better */
 	char umontelast;	/* Last monte card picked */
 
+	int hangupamount;	/* amount of times you hanged up; used to weed out cheaters */
+
 	int	weapon_slots;		/* unused skill slots */
 	int	skills_advanced;		/* # of advances made so far */
 	xchar	skill_record[P_SKILL_LIMIT];	/* skill advancements */

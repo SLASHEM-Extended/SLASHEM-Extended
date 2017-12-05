@@ -341,7 +341,7 @@
 #ifdef AZTEC
 # define schar	char
 #else
-typedef int	schar;
+typedef /*signed char*/int	schar;
 #endif
 
 /*
@@ -569,6 +569,16 @@ typedef unsigned char	uchar;
  * So, only turn it on if poisoned weapons crash your game :) --Amy */
 
 /* #define STUPIDRANDOMMONSTERBUG */
+
+/* Hangup can be used to cheat. Unfortunately, the 3.6.0 implementation
+ * that handles hangup differently, which would make this cheat impossible,
+ * is a major restructure and can't easily be applied to this game; however,
+ * since the amount of players who actually hangup cheat is small, and it can be
+ * rather detrimental to get hit by the penalty when your connection is bad,
+ * this define can be used to control the hangup penalties. It defaults to off,
+ * and when turned on, hanging up will have a much more severe penalty. */
+
+/* #define HANGUPPENALTY */
 
 #define DUMPMSGS 20
 

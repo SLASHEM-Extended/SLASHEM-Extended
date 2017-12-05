@@ -4300,6 +4300,13 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if (u.hangupamount) {
+		sprintf(buf, "used the hangup function, which means you're either a FILTHY CHEAT0R or you have a shaky internet connection. Hopefully it's the latter so Amy doesn't have to reinstate the hangup penalty.");
+	    	sprintf(eos(buf), " (%d)", u.hangupamount);
+		you_have(buf);
+
+	}
+
 	if ((guaranteed || !rn2(10)) && u.contamination) {
 		if (u.contamination >= 1000) sprintf(buf, "suffering from fatal contamination. Health and mana regeneration are reduced.");
 		else if (u.contamination >= 800) sprintf(buf, "suffering from lethal contamination.");
@@ -7242,6 +7249,13 @@ int final;
 		sprintf(buf, "possessed by the ghost of Maurah.");
 	      sprintf(eos(buf), " (%d)", FemaleTrapMaurah);
 		dump(youwere, buf);
+	}
+
+	if (u.hangupamount) {
+		sprintf(buf, "used the hangup function, which means you're either a FILTHY CHEAT0R or you have a shaky internet connection. Hopefully it's the latter so Amy doesn't have to reinstate the hangup penalty.");
+	    	sprintf(eos(buf), " (%d)", u.hangupamount);
+		dump(youhad, buf);
+
 	}
 
 	if (u.contamination) {

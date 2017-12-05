@@ -7935,7 +7935,7 @@ boolean new_game;	/* false => restoring an old game */
 #else
 	if (new_game) pline("You are playing SLASH'EM Extended on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Freenode. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!");
 
-	if (new_game) pline("Message of the day: You can play in Game Master mode now, which allows me (Amy) to send you mail in-game to spawn monsters. Add OPTIONS=gmmode to your options file to enable it. You can turn off the gmmessages option if you want the identity of those monsters to be hidden until you run into them, otherwise the game will tell you directly what I spawned :-) --Amy");
+	if (new_game) pline("Important hint for newbies: Movement keys default to hjkl, also known as vi-keys, but you might want to use the number pad instead. If that is the case, hit shift-o to open the options and scroll down a few pages until you get to the compound options, find the one named number_pad and set it to 2. That will enable the number pad. --Amy");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */
@@ -9872,6 +9872,13 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
+	if (!new_game && u.hangupcheat) {
+
+		u.hangupamount++;
+
+	}
+
+#ifdef HANGUPPENALTY
 	if (!new_game && (u.hangupcheat > 2)) { /* filthy cheater! */
 
 		u.ublesscnt += rnz(2000);
@@ -9906,7 +9913,9 @@ boolean new_game;	/* false => restoring an old game */
 		u.hangupparalysis = 0;
 
 	}
+#endif /* HANGUPPENALTY */
 
+/* Hanging up at an instadeath should always kill you upon restore --Amy */
 	if (!new_game && u.youaredead) {
 
 		pline("Apparently you decided to be a wise-guy and hang up to prevent an instakill from affecting you. Unfortunately for you though, the Amy decided to fix that oversight, and since you should actually have died already, it's game over for you now.");
@@ -9924,6 +9933,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	if (!new_game && u.hangupcheat) {
 
+#ifdef HANGUPPENALTY
 		pline("You hanged up during your last session! Since I can't determine whether you did that to cheat, you will now be paralyzed, slowed and have your max HP/Pw reduced. Please save your game normally next time! --Amy");
 		if (multi >= 0) nomul(-(2 + u.hangupparalysis), "paralyzed by trying to hangup cheat");
 
@@ -9955,6 +9965,13 @@ boolean new_game;	/* false => restoring an old game */
 
 		u.hangupcheat = 0;
 		u.hangupparalysis = 0;
+#else
+		pline("You hanged up during your last session! As an anti-cheat measure, you're paralyzed for a few turns, and your act of hanging up is being tracked. Your dumplog file will show how many times you've hanged up and if your ascension dumplog shows 200 hangups, everyone will know what you've been up to... But as long as you didn't actually try to cheat, there will be no other consequences because I give you the benefit of the doubt (after all, your internet connection might just have died, and it would be unfair to penalize you for that).");
+		pline("But if I discover, by watching your ttyrec, that you were actually cheating, I can also recompile the game with the HANGUPPENALTY flag defined, and then you'll actually start getting severe penalties for every hangup. In really severe cases I might even put your username on a blacklist, meaning that specifically you would get penalties while others would not. So, better be a honest player and then I don't have to take such measures. Anyway, have fun playing!  --Amy");
+		if (multi >= 0) nomul(-(2 + u.hangupparalysis), "paralyzed by trying to hangup cheat");
+		u.hangupcheat = 0;
+		u.hangupparalysis = 0;
+#endif
 	}
 
 	#ifdef LIVELOGFILE

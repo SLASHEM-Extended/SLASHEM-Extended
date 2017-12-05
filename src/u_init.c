@@ -8074,6 +8074,8 @@ u_init()
 	u.trontrapdirection = -1;
 	u.trontrapturn = 1;
 
+	u.hangupamount = 0;
+
 	u.nataljetrapturns = 0;
 	u.nataljetrapx = 0;
 	u.nataljetrapy = 0;
