@@ -1,6 +1,8 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.2
+- The Bell of Opening has to be imbued in the Bell Caves, which is accessed by finding a portal on the Quest that leads to the Subquest, and finding the downstair to the Bell Caves there. Without imbuing it, none of the invocation tools work, so this is a mandatory step to complete the game. Also, the Amulet of Yendor has to be imbued by visiting three one-level branches in the Yendorian Tower, which is accessed by finding a portal on Moloch's Sanctum. As long as the Amulet is not fully imbued, ascension is impossible.
+- Hangup penalties are put in a define; the game now tracks how many times the player hangs up, but unless HANGUPPENALTY is enabled (it defaults to off), the only thing that happens upon hanging up is a few turns of paralysis. Hanging up at a pending instadeath like "You die from your illness" still greets you with a DYWYPI instadeath upon restoring, of course.
 - Fixed the character selection prompt for the curses interface (thanks FIQ).
 - Tweaked the numbers for aggravate monster, kops being summoned by shoplifting etc. to make the game less insanely difficult.
 - Dungeon size increased. The main dungeon is 100 levels in length now, and the total amount of levels in the dungeon will be bigger than the 127 limit.
