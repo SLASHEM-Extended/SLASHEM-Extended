@@ -987,6 +987,14 @@ struct you {
 	struct skills weapon_skills[P_NUM_SKILLS];
 	boolean twoweap;		/* KMH -- using two-weapon combat */
 
+	boolean bellimbued;	/* player reached Bell Caves */
+	boolean amuletimbued1;	/* player entered Forging Chamber */
+	boolean amuletimbued2;	/* player entered Dead Grounds */
+	boolean amuletimbued3;	/* player entered Ordered Chaos */
+	boolean amuletcompletelyimbued;	/* player completed imbuing the amulet */
+
+	boolean vibratingsquarefind;	/* player stepped on the VS for the first time */
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)

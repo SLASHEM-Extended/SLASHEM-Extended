@@ -979,6 +979,11 @@ struct obj **optr;
 	You("ring %s.", the(xname(obj)));
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Tip bloka l'da net doma pryamo seychas!" : "Bimmelimm!");
 
+	if (obj->otyp == BELL_OF_OPENING && !u.bellimbued) {
+		pline("But nothing happens because you didn't imbue the bell yet. Look for a magic portal in the Quest, which will lead to the Subquest. In that Subquest, find the staircase to the Bell Caves in order to imbue the bell.");
+		return;
+	}
+
 	if (obj && obj->oartifact == ART_BIMMEL_BIMMEL) {
 	    int i, j, bd = 1;
 		struct monst *bimmel;
@@ -1120,6 +1125,11 @@ use_candelabrum(obj)
 register struct obj *obj;
 {
 	const char *s = (obj->spe != 1) ? "candles" : "candle";
+
+	if (!u.bellimbued) {
+		pline("The menora will not do anything unless you find and imbue a 'silver bell'.");
+		return;
+	}
 
 	if(Underwater) {
 		You(Hallucination ? "don't even know what this thing is good for." : "cannot make fire under water.");

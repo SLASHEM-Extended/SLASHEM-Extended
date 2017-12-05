@@ -3,6 +3,7 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
+#include "qtext.h"
 
 /*#ifdef OVL1
 STATIC_DCL void maybe_wail(void);
@@ -2778,6 +2779,12 @@ invocation_message()
 		    Blind ? "throbs palpably" : "glows with a strange light");
 
 	    litroomlite(TRUE);
+
+		if (!u.vibratingsquarefind) {
+			u.vibratingsquarefind = 1;
+			qt_pager(QT_VIBRATINGSQUARE);
+		}
+
 	}
 }
 

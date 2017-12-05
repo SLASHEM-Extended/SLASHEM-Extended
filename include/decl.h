@@ -596,6 +596,8 @@ struct u_achieve {
         Bitfield(killed_croesus,1);   /* You defeated Croesus. */
         Bitfield(killed_dagon,1);   /* You defeated Father Dagon. */
         Bitfield(killed_hydra,1);   /* You defeated Mother Hydra. */
+	  Bitfield(imbued_bell,1);	/* You imbued the Bell of Opening */
+	  Bitfield(imbued_amulet,1);	/* You imbued the Amulet of Yendor */
 
 };
 

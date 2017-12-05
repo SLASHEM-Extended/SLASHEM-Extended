@@ -4,6 +4,7 @@
 
 #include "hack.h"
 #include "epri.h"
+#include "qtext.h"
 
 /*STATIC_PTR int prayer_done(void);*/
 STATIC_DCL struct obj *worst_cursed_item(void);
@@ -1382,7 +1383,7 @@ pleased(g_align)
 	}
 
 	if (!((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "storm coat") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "shtorm") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bo'ron palto") )) && !rn2(2))) u.ublesscnt = rnz(ishaxor ? 175 : 350);
-	kick_on_butt = u.uevent.udemigod ? 1 : 0;
+	kick_on_butt = (u.uevent.udemigod && u.amuletcompletelyimbued) ? 1 : 0;
 	if (u.uevent.uhand_of_elbereth) kick_on_butt++;
 	if (kick_on_butt) u.ublesscnt += kick_on_butt * rnz(ishaxor ? 500 : 1000);
 
@@ -1877,6 +1878,7 @@ dosacrifice()
 		/* And the opposing team picks you up and
 		   carries you off on their shoulders */
 		adjalign(-99);
+		qt_pager(QT_DISGRACE);
 		pline("%s accepts your gift, and gains dominion over %s...",
 		      a_gname(), u_gname());
 		pline("%s is enraged...", u_gname());
@@ -1904,6 +1906,7 @@ dosacrifice()
 		}
 
                 achieve.ascended = 1;
+			qt_pager(QT_ASCENSION);
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
 #endif

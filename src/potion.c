@@ -3828,7 +3828,7 @@ peffects(otmp)
 				d_level newlevel;
 
 				/* But using the new system to cheat the necessity to invoke would be even cheaper. */
-				if(ledger_no(&u.uz) == 71 && u.uevent.udemigod && !u.uevent.invoked) {
+				if(ledger_no(&u.uz) == 99 && u.uevent.udemigod && !u.uevent.invoked) {
 				    pline("You crash into the floor.");
 					nomul(-rnd(10), "lying on the floor, unable to get up");
 					nomovemsg = "You finally get up again.";
@@ -3884,7 +3884,7 @@ peffects(otmp)
 				d_level newlevel;
 
 				/* But using the new system to cheat the necessity to invoke would be even cheaper. */
-				if(ledger_no(&u.uz) == 71) {
+				if(ledger_no(&u.uz) == 99) {
 				    pline("You crash into the floor.");
 					nomul(-rnd(10), "lying on the floor, unable to get up");
 					nomovemsg = "You finally get up again.";

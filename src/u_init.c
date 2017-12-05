@@ -8076,6 +8076,14 @@ u_init()
 
 	u.hangupamount = 0;
 
+	u.bellimbued = 0;
+	u.amuletimbued1 = 0;
+	u.amuletimbued2 = 0;
+	u.amuletimbued3 = 0;
+	u.amuletcompletelyimbued = 0;
+
+	u.vibratingsquarefind = 0;
+
 	u.nataljetrapturns = 0;
 	u.nataljetrapx = 0;
 	u.nataljetrapy = 0;

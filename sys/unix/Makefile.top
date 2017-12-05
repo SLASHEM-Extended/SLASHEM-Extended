@@ -128,34 +128,8 @@ CHGRP = chgrp
 
 DATHELP = help hh cmdhelp history opthelp wizhelp gypsy.txt
 
-SPEC_LEVS = asmod-?.lev baalz-?.lev baalz-??.lev bigrm-?.lev castl-?.lev fakewiz?.lev \
-	bigrm-??.lev compu.lev exmall-?.lev forge.lev heck-?.lev heck-??.lev \
-	hllma-?.lev hitch.lev intpla-?.lev key.lev palace_e.lev palace_f.lev \
-	rndmaze.lev rndmazea.lev school-?.lev schoolX.lev sheolfil.lev \
-	sheolmid.lev soko?-??.lev town-?.lev unhck-?.lev unhck-??.lev \
-	juibl-?.lev knox-?.lev medus-?.lev mnend-?.lev minefil?.lev castl-??.lev \
-	mnend-??.lev hmnen-??.lev levgn-?.lev levgn-??.lev levgx-?.lev levgx-??.lev \
-	hellfil?.lev hmint-?.lev hmint-??.lev hmnen-?.lev hking-?.lev \
-	hking-??.lev oracleX.lev erats-?.lev hrats-?.lev hstor-?.lev \
-	mking-??.lev eking-??.lev mintn-??.lev intplx-?.lev rndmazeb.lev \
-	mintn-?.lev oracle.lev orcus-?.lev sanct-?.lev soko?-?.lev \
-	tower?.lev valley-?.lev wizard?.lev ghbgr-?.lev ghbgr-??.lev \
-	astral.lev air.lev earth.lev fire.lev water.lev eking-?.lev \
-	esheo-?.lev hsheo-?.lev ???-?.lev mazes-?.lev mazes-??.lev \
-	emtemple.lev hmtemple.lev ecav2.lev hcav2.lev efrnk.lev hfrnk.lev \
-	etomb.lev htomb.lev espiders.lev hspiders.lev esea.lev hsea.lev \
-	egrund-?.lev hgrund-?.lev eknox-?.lev hknox-?.lev hdragons.lev \
-	forgeX.lev hitchX.lev compuX.lev keyX.lev etown-?.lev htown-?.lev \
-	egehn-?.lev egehn-??.lev hgehn-?.lev hgehn-??.lev dispa-??.lev asmod-??.lev \
-	hitchE.lev compuE.lev keyE.lev emedu-?.lev emedu-??.lev \
-	hmedu-?.lev hmedu-??.lev ecstl-?.lev ecstl-??.lev hcstl-?.lev \
-	ekobol-?.lev hkobol-?.lev enymp-?.lev hnymp-?.lev hcstl-??.lev \
-	behol-?.lev blkmar.lev cav2fill.lev medus-??.lev emptb-?.lev emptb-??.lev \
-	grund-?.lev demog-?.lev dispa-?.lev dragons.lev geryo-?.lev \
-	guild-?.lev kobold-?.lev lich-?.lev mall-?.lev mall.lev mking-?.lev \
-	mtemple.lev nymph-?.lev rats-?.lev sea.lev spiders.lev stor-?.lev \
-	juibl-??.lev yeeno-??.lev orcus-??.lev demog-??.lev geryo-??.lev \
-	tomb.lev yeeno-?.lev frnknstn.lev night-?.lev hllma-??.lev 
+# according to FIQ, we can simply make SPEC_LEVS process all the .lev files
+SPEC_LEVS = *.lev 
 QUEST_LEVS = ???-goal.lev ???-fil?.lev ???-loca.lev ???-strt.lev
 
 SHARE_DATNODLB = $(CNF_SHARE_DATND)

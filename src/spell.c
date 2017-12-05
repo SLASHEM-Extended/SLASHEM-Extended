@@ -846,6 +846,12 @@ struct obj *book2;
 
     You("turn the pages of the Book of the Dead...");
     makeknown(SPE_BOOK_OF_THE_DEAD);
+
+    if (!u.bellimbued) {
+	pline("But nothing happens. You faintly recall that this book will be an enigma to you until you finally imbue a certain 'silver bell'.");
+	return;
+    }
+
     /* KMH -- Need ->known to avoid "_a_ Book of the Dead" */
     book2->known = 1;
     if(invocation_pos(u.ux, u.uy) && !On_stairs(u.ux, u.uy)) {
@@ -1833,7 +1839,9 @@ boolean atme;
 			 * casting anything else except detect food
 			 */
 
-	if (u.uhave.amulet) { /* casting while you have the amulet always causes extra hunger no matter what --Amy */
+	if (u.uhave.amulet && u.amuletcompletelyimbued) {
+		/* casting while you have the fully imbued amulet always causes extra hunger no matter what --Amy
+		 * but a non-imbued one doesn't increase hunger cost */
 		hungr += rnd(2*energy);
 	}
 
@@ -1988,14 +1996,14 @@ boolean atme;
 	/* Players could cheat if they had just barely enough mana for casting a spell without the increased drain.
 	 * They'd just need to keep trying until the extra mana costs are randomly very low.
 	 * Prevent players from abusing this by calculating the extra drain _after_ the other checks. --Amy */
-	if (u.uhave.amulet) {
+	if (u.uhave.amulet && u.amuletcompletelyimbued) {
 		You_feel("the amulet draining your energy away.");
 		energy += rnd(2*energy);
 	}
 
 	u.uen -= energy;
 	/* And if the amulet drained it below zero, set it to zero and just make the spell fail now. */
-	if (u.uhave.amulet && u.uen < 0) {
+	if (u.uhave.amulet && u.amuletcompletelyimbued && u.uen < 0) {
 		pline("You are exhausted, and fail to cast the spell due to the amulet draining all your energy away.");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		u.uen = 0;
@@ -4919,7 +4927,7 @@ boolean atme;
 		else TimeStopped += rnd(3 + spell_damage_bonus(spellid(spell)) );
 		break;
 	case SPE_LEVELPORT:
-	      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) {
+	      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz))) {
 			level_tele();
 			pline("From your strain of casting such a powerful spell, the magical energy backlashes on you.");
 			badeffect();
@@ -4930,7 +4938,7 @@ boolean atme;
 	case SPE_WARPING:
 		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); break;}
 
-		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
+		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) { 
 			pline("You're unable to warp!"); break;}
 
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -5527,7 +5535,7 @@ boolean atme;
 				break;
 			}
 
-			if ( (u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
+			if ( ( (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(3))) || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || On_W_tower_level(&u.uz) || (u.usteed && mon_has_amulet(u.usteed)) ) ) {
 				You_feel("disoriented for a moment.");
 				break;
 			}

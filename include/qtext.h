@@ -102,6 +102,22 @@ struct	qtlists {
 #define QT_NEXTQLEVEL	101	/* again sense the leader pleading for help */
 #define QT_SILVERBELL	102	/* you have the artifact but not the bell, and returned to the leader */
 
+#define QT_BELLIMBUED	103	/* you imbued the Bell of Opening */
+#define QT_AMULETIMBUED1	104	/* you visited the Forging Chamber with the Amulet */
+#define QT_AMULETIMBUED2	105	/* you visited the Dead Grounds with the Amulet */
+#define QT_AMULETIMBUED3	106	/* you visited the Ordered Chaos with the Amulet */
+#define QT_AMULETIMBUEDCOMPLETE	107	/* you completely imbued the Amulet */
+
+#define QT_LUCKSTONE	108	/* you got the luckstone from Mines End */
+#define QT_SOKOBAN	109	/* you claimed the Sokoban prize */
+#define QT_MEDUSA	110	/* you defeated Medusa */
+#define QT_VLAD	111	/* you defeated Vlad or otherwise got the menora */
+#define QT_RODNEY	112	/* you defeated Rodney or otherwise got the book */
+#define QT_PICKAMULET	113	/* you picked up the Amulet */
+#define QT_ASCENSION	114	/* you ascended!!!!!!!!!!!!!!!!!!!11111 */
+#define QT_DISGRACE	115	/* you were so stupid and offered the Amulet on the wrong altar, you noob! */
+
+#define QT_VIBRATINGSQUARE	116	/* you stepped on the vibrating square for the first time */
 
 /*
  *	Message defines for common text used in maledictions.
@@ -115,6 +131,11 @@ struct	qtlists {
 #define QTN_DEMONIC	285
 
 #define QT_BANISHED	60
+
+#define QT_YOUAREVERYSTUPID	197	/* you brought the amulet back up without imbuing it, you dummy! */
+#define QT_AMULETREMINDER	196	/* to remind you that the amulet needs to be imbued first */
+#define QT_BELLREMINDER	195	*/ to remind you that the bell needs to be imbued first */
+
 
 #define QT_GYPSY	100	/* KMH -- Gypsy fortunes */
 

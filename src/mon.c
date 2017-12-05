@@ -14,6 +14,7 @@
 #include "display.h"
 #include "global.h" 
 #include "quest.h"
+#include "qtext.h"
 
 #include <ctype.h>
 
@@ -3285,6 +3286,7 @@ register struct monst *mtmp;
 		}
 
             achieve.killed_medusa = 1;
+		qt_pager(QT_MEDUSA);
 	}
         if(mtmp->data == &mons[PM_NIGHTMARE]) {
 

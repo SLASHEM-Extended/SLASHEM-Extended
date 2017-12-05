@@ -10,6 +10,8 @@
 #endif
 #include "patchlevel.h"
 
+#include "qtext.h"
+
 #ifdef POSITIONBAR
 STATIC_DCL void do_positionbar(void);
 #endif
@@ -216,7 +218,7 @@ moveloop()
 
 			monclock = 70;
 
-			if (u.uevent.udemigod || u.uprops[STORM_HELM].extrinsic) {
+			if ((u.uevent.udemigod && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
 				monclock = 15;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
@@ -249,7 +251,7 @@ moveloop()
 
 			/* TODO: adj difficulty in makemon */
 			if (!rn2(monclock) && !ishomicider ) {
-				if ( (u.uevent.udemigod || u.uprops[STORM_HELM].extrinsic) && xupstair && rn2(10)) {
+				if ( ((u.uevent.udemigod && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) && xupstair && rn2(10)) {
 					(void) makemon((struct permonst *)0, xupstair, yupstair, MM_ADJACENTOK);
 				} else {
 					(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
@@ -259,7 +261,7 @@ moveloop()
 			if (!rn2(monclock) && ishomicider ) makerandomtrap();
 
 			xtraclock = 40000;
-			if (u.uevent.udemigod || u.uprops[STORM_HELM].extrinsic) {
+			if ((u.uevent.udemigod && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
 				xtraclock = 12000;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
@@ -947,7 +949,7 @@ moveloop()
 				make_feared(HFeared + rnd(10 + (monster_difficulty()) ),TRUE);
 				}
 
-		    if(!rn2( (u.uevent.udemigod || u.uprops[STORM_HELM].extrinsic) ? 125 :
+		    if(!rn2( ((u.uevent.udemigod && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) ? 125 :
 			    (depth(&u.uz) > depth(&stronghold_level)) ? 250 : 340)) {
 			if (!ishomicider) (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 			else makerandomtrap();
@@ -1062,7 +1064,6 @@ moveloop()
 			}
 
 			if (is_snow(u.ux, u.uy) && !Flying && !Levitation) {
-
 					static boolean canwalkonsnow = 0;
 				    static int skates = 0;
 				    if (!skates) skates = find_skates();
@@ -4336,6 +4337,111 @@ newbossX:
 			}
 		}
 
+		/* Imbuing the Bell of Opening must be done before any of the invocation tools work */
+
+		if (!u.bellimbued && u.uhave.bell && In_bellcaves(&u.uz)) {
+			u.bellimbued = 1;
+			u.uhpmax += rnd(10);
+			u.uenmax += rnd(10);
+			if (Upolyd) u.mhmax += rnd(10);
+		      (void) safe_teleds(FALSE);
+
+#ifdef RECORD_ACHIEVE
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+#ifdef LIVELOGFILE
+			livelog_achieve_update();
+#endif
+#endif
+
+			qt_pager(QT_BELLIMBUED);
+
+		}
+
+		/* Imbuing the amulet is done in three phases. ziratha had the idea that if you didn't defeat the
+		 * corresponding alignment key boss, a more powerful version of it spawns to take revenge. --Amy */
+
+		if (!u.amuletimbued1 && u.uhave.amulet && In_forging(&u.uz)) {
+			u.amuletimbued1 = 1;
+			qt_pager(QT_AMULETIMBUED1);
+		      (void) safe_teleds(FALSE);
+
+			if (!achieve.killed_beholder) {
+				pline("Suddenly, you get the feeling that a sinister presence is watching you intently...");
+				(void) makemon(&mons[PM_SUPERBEHOLDER], 0, 0, MM_ANGRY);
+			}
+
+		}
+
+		if (!u.amuletimbued2 && u.uhave.amulet && In_ordered(&u.uz)) {
+			u.amuletimbued2 = 1;
+			qt_pager(QT_AMULETIMBUED2);
+		      (void) safe_teleds(FALSE);
+
+			if (!achieve.killed_nightmare) {
+				pline("Suddenly, you get the feeling that a nightmarish creature is on the loose...");
+				(void) makemon(&mons[PM_UBERNIGHTMARE], 0, 0, MM_ANGRY);
+			}
+
+		}
+
+		if (!u.amuletimbued3 && u.uhave.amulet && In_deadground(&u.uz)) {
+			u.amuletimbued3 = 1;
+			qt_pager(QT_AMULETIMBUED3);
+		      (void) safe_teleds(FALSE);
+
+			if (!achieve.killed_vecna) {
+				pline("Suddenly, you get the feeling that an eerie lord of the dead is living here...");
+				(void) makemon(&mons[PM_GIGA_VECNA], 0, 0, MM_ANGRY);
+			}
+
+		}
+
+		if (u.amuletimbued1 && u.amuletimbued2 && u.amuletimbued3 && !u.amuletcompletelyimbued && u.uhave.amulet && In_yendorian(&u.uz)) {
+			u.amuletcompletelyimbued = 1;
+			u.uhpmax += rnd(25);
+			u.uenmax += rnd(25);
+			if (Upolyd) u.mhmax += rnd(25);
+
+#ifdef RECORD_ACHIEVE
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+#ifdef LIVELOGFILE
+			livelog_achieve_update();
+#endif
+#endif
+			qt_pager(QT_AMULETIMBUEDCOMPLETE);
+
+			if (u.umortality < 2) {
+				u.extralives++;
+				pline("Thanks to your flawless performance so far, you gain an extra life (1-UP)!");
+			}
+
+			register int newlev = 100;
+			d_level newlevel;
+			get_level(&newlevel, newlev);
+			goto_level(&newlevel, TRUE, FALSE, FALSE);
+
+		}
+
 		if (FemaleTrapFemmy && !rn2(500) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
@@ -6458,7 +6564,7 @@ newboss:
 			}
 		}
 
-		if (( (u.uhave.amulet && !rn2(5)) || Clairvoyant) &&
+		if (( (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5)) && !rn2(5)) || Clairvoyant) &&
 		    !In_endgame(&u.uz) && !BClairvoyant &&
 		    !(moves % 15) && !rn2(2))
 			do_vicinity_map();
@@ -7172,7 +7278,7 @@ newboss:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
+			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) ) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -7197,7 +7303,7 @@ newboss:
 					break;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
+				if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) { 
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
 					break;
@@ -7224,7 +7330,7 @@ newboss:
 					break;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
+				if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) { 
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
 					break;
@@ -7251,7 +7357,7 @@ newboss:
 					break;
 				}
 
-				if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
+				if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) { 
 					NastinessProblem += rnd(1000);
 					You("can hear Arabella announce: 'Sorry, but the time of your demise is drawing near.'");
 					break;
@@ -7302,7 +7408,7 @@ newboss:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
+			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz))) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -7311,7 +7417,7 @@ newboss:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
+			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz))) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -7320,7 +7426,7 @@ newboss:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
+			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz))) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -7329,7 +7435,7 @@ newboss:
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
-			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic)) level_tele();
+			      if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz))) level_tele();
 				else You_feel("very disoriented but decide to move on.");
 
 			}
@@ -7387,8 +7493,9 @@ newboss:
 		    invault();
 		    if (u.uhave.amulet) amulet();
 		if (!rn2(40+(int)(ACURR(A_DEX)*3))) u_wipe_engr(rnd(3));
-		    if (u.uevent.udemigod && !u.uinvulnerable) {
+		    if ((u.uevent.udemigod && (u.amuletcompletelyimbued || !rn2(10))) && !u.uinvulnerable) {
 			if (u.udg_cnt) u.udg_cnt--;
+			if (u.udg_cnt < 0) u.udg_cnt = 0; /* fail safe by Amy */
 			if (!u.udg_cnt) {
 			    intervene();
 			    u.udg_cnt = rn1(200, 50);
@@ -7655,7 +7762,7 @@ newboss:
 			You("shudder for a moment."); (void) safe_teleds(FALSE); u.banishmentbeam = 0; break;
 		}
 
-		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) { 
+		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) { 
 			pline("Somehow, the banishment beam doesn't do anything."); u.banishmentbeam = 0; break;
 		}
 
@@ -7671,7 +7778,7 @@ newboss:
 
 	if (u.levelporting) { /* something attacked you with nexus or weeping */
 
-		if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic) ) {
+		if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 			level_tele(); /* will take care of u.uhave.amulet and similar stuff --Amy */
 		}

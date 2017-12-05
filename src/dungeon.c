@@ -1849,7 +1849,7 @@ level_difficulty()
 
 	if (In_endgame(&u.uz))
 		retvalue = (110 + (u.ulevel/2) );
-	else if (u.uhave.amulet)
+	else if (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5)))
 		retvalue = 110;
 	else if (Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna)
 		retvalue = (depth(&u.uz) + rn2(u.ulevel) + 2 );

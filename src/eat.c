@@ -5483,7 +5483,7 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 			  (uright->spe || !objects[uright->otyp].oc_charged))
 			    u.uhunger--;
 		    break;
-	     case 16: if (u.uhave.amulet) u.uhunger--;
+	     case 16: if (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5))) u.uhunger--;
 		    break;
 	     default: break;
 	    }

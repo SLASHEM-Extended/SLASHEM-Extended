@@ -55,6 +55,8 @@ encodeachieve(void)
   if(achieve.killed_croesus)      r |= 1L << 23;
   if(achieve.killed_dagon)        r |= 1L << 24;
   if(achieve.killed_hydra)        r |= 1L << 25;
+  if(achieve.imbued_bell)         r |= 1L << 26;
+  if(achieve.imbued_amulet)       r |= 1L << 27;
 
   return r;
 }

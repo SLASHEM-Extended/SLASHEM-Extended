@@ -1244,6 +1244,13 @@ doup()
 		return(1);
 	}
 	if(ledger_no(&u.uz) == 1) {
+
+		if (u.uhave.amulet && !u.amuletcompletelyimbued) {
+			/* You were such a n00b and ignored all the messages telling you about the Yendorian Tower. */
+			com_pager(197);
+			return 0;
+		}
+
 		if (yn("Beware, there will be no return! Still climb?") != 'y')
 			return(0);
 	}
@@ -1254,6 +1261,14 @@ doup()
 	at_ladder = (boolean) (levl[u.ux][u.uy].typ == LADDER);
 	prev_level(TRUE);
 	at_ladder = FALSE;
+
+	/* Make it VERY CLEAR to the player that the amulet needs to be imbued. --Amy
+	 * Otherwise, those poor saps will go ahead and climb back up 100 floors in the regular dungeon,
+	 * only to discover that they cannot ascend, and then they will have to go all the way back with the amulet.
+	 * Of course, if you're still stupid enough to actually do that despite the numerous messages, you will get
+	 * a special scornful message calling you out on failing reading comprehension (see above) :P */
+	if (u.uhave.amulet && !(In_yendorian(&u.uz)) && !(In_forging(&u.uz)) && !(In_ordered(&u.uz)) && !(In_deadground(&u.uz)) && !u.amuletcompletelyimbued) com_pager(196);
+
 	return(1);
 }
 

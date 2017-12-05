@@ -5409,6 +5409,34 @@ char *prefix;
 		strcat(prefix, is_corrodeable(obj) ? "corroded " :
 			"rotted ");
 	}
+	if (obj->otyp == BELL_OF_OPENING) {
+		if (u.bellimbued) strcat(prefix, "imbued ");
+		else strcat(prefix, "non-imbued ");
+	}
+	if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR) {
+		if (u.amuletcompletelyimbued) strcat(prefix, "fully imbued ");
+		else {
+			int countimbues = 0;
+			if (u.amuletimbued1) countimbues++;
+			if (u.amuletimbued2) countimbues++;
+			if (u.amuletimbued3) countimbues++;
+			switch (countimbues) {
+				case 0:
+					strcat(prefix, "non-imbued ");
+					break;
+				case 1:
+					strcat(prefix, "partly imbued (1 of 3) ");
+					break;
+				case 2:
+					strcat(prefix, "partly imbued (2 of 3) ");
+					break;
+				case 3:
+					strcat(prefix, "fully imbued ");
+					break;
+			}
+		}
+	}
+
 	if (obj->rknown && obj->oerodeproof)
 		strcat(prefix,
 		       iscrys ? "fixed " :

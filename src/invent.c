@@ -3,6 +3,7 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
+#include "qtext.h"
 
 #define NOINVSYM	'#'
 #define CONTAINED_SYM	'>'	/* designator for inside a container */
@@ -329,6 +330,13 @@ struct obj *obj;
 		}
 
                 achieve.get_amulet = 1;
+			qt_pager(QT_PICKAMULET);
+			if (u.umortality < 1) {
+				u.extralives++;
+				pline("Thanks to your flawless performance so far, you gain an extra life (1-UP)!");
+			}
+			com_pager(196);
+
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
 #endif
@@ -359,6 +367,7 @@ struct obj *obj;
 		}
 
                 achieve.get_candelabrum = 1;
+			qt_pager(QT_VLAD);
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
 #endif
@@ -366,6 +375,7 @@ struct obj *obj;
 	} else if (obj->otyp == BELL_OF_OPENING) {
 		if (u.uhave.bell) impossible("already have silver bell?");
 		u.uhave.bell = 1;
+		com_pager(195);
 		if (!u.silverbellget) {
 			u.silverbellget = 1;
 			u.uhpmax += rnd(50);
@@ -419,6 +429,7 @@ struct obj *obj;
 		}
 
                 achieve.get_book = 1;
+			qt_pager(QT_RODNEY);
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
 #endif
@@ -474,6 +485,7 @@ struct obj *obj;
 		}
 
                 achieve.get_luckstone = 1;
+			qt_pager(QT_LUCKSTONE);
                 obj->record_achieve_special = 0;
 		    if (!u.luckstoneget) {
 			u.luckstoneget = 1;
@@ -503,6 +515,7 @@ struct obj *obj;
 		}
 
                 achieve.finish_sokoban = 1;
+			qt_pager(QT_SOKOBAN);
                 obj->record_achieve_special = 0;
 		    if (!u.sokobanfinished) {
 			u.sokobanfinished = 1;
@@ -9072,7 +9085,7 @@ struct obj *obj;
 
 
 		if (obj->otyp == FAKE_AMULET_OF_YENDOR || obj->otyp == AMULET_OF_YENDOR) {
-		pline("This is the amulet of Yendor, a very powerful talisman that radiates power."); break;
+		pline("This is the amulet of Yendor, a very powerful talisman that radiates power. In order to ascend with it, you need to fully imbue it, which is done in the Yendorian Tower, accessed by a portal from Moloch's Sanctum. Find and use all three special staircases in the Yendorian Tower to imbue the Amulet."); break;
 
 		} else {
 #ifdef PHANTOM_CRASH_BUG
@@ -9487,16 +9500,16 @@ struct obj *obj;
 				pline("It's a four-wired piece of metal. Nobody knows if it's good for anything."); break;
 			case BOTTLE: 
 				pline("An empty bottle that can be filled if you have a chemistry set."); break;
-			case CHEMISTRY_SET: 
+			case CHEMISTRY_SET:
 				pline("You can try to create your own potions with this. It requires an empty bottle to work; having the chemistry spell helps, too."); break;
-			case BANDAGE: 
+			case BANDAGE:
 				pline("A pseudo tool that actually can't exist outside of medical kits. It is used for the surgery technique."); break;
-			case PHIAL: 
+			case PHIAL:
 				pline("A pseudo tool that actually can't exist outside of medical kits. It is used for the draw blood technique."); break;
-			case CANDELABRUM_OF_INVOCATION: 
-				pline("Also called a menorah. This candelabrum can hold several candles."); break;
-			case BELL_OF_OPENING: 
-				pline("It's a silver bell that you can ring."); break;
+			case CANDELABRUM_OF_INVOCATION:
+				pline("Also called a menorah. This candelabrum can hold several candles. But without an imbued silver bell it doesn't work."); break;
+			case BELL_OF_OPENING:
+				pline("It's a silver bell that you can ring. But it only works if you imbued it, and for that you need to take it into the Bell Caves, the entrance to that is found in the Subquest, which itself is a branch accessed from the regular Quest."); break;
 
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 
@@ -10374,7 +10387,7 @@ struct obj *obj;
 			case SPE_BLANK_PAPER:
 				pline("This spellbook is blank. You may be able to write on it with a magic marker, turning it into another spellbook."); break;
 			case SPE_BOOK_OF_THE_DEAD:
-				pline("An arcane book that can be read. Reciting the eldritch formulas contained therein may raise the dead, so be careful."); break;
+				pline("An arcane book that can be read. Reciting the eldritch formulas contained therein may raise the dead, so be careful. Reading it without an imbued silver bell doesn't work at all, though."); break;
 			case SPE_DARKNESS:
 				pline("Cast this spell if you want to turn lit areas into unlit ones."); break;
 			case SPE_AMNESIA:
