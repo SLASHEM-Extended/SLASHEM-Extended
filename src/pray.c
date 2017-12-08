@@ -1924,6 +1924,10 @@ pline("An invisible Red Army choir sings, and you are bathed in Chernobyl radiat
 		godvoice(altaralign, "Haraso, tovari.");
 		display_nhwindow(WIN_MESSAGE, FALSE);
 verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
+
+		/* mocking message inspired by my roommate --Amy */
+		pline("Yesli by vy podumali, chto budet voznagrazhdeniye, vy porezayete sebya! Eto igra-ublyudok, KHAR KHAR KHAR KHAR KHAR KHAR KHAR!!!");
+
 		You("ascend to the status of Demigod%s...",
 		    flags.female ? "dess" : "");
 
