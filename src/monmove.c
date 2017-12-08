@@ -2048,6 +2048,14 @@ struct monst *mtmp;
 	struct obj *chain, *obj;
 
 	if (!amorphous(mtmp->data)) return FALSE;
+
+	/* If you carry really little stuff, you should be able to ooze even if the items are bulky. --Amy */
+
+	if (mtmp == &youmonst && ((inv_weight() + weight_cap()) < 100) ) return TRUE;
+
+	if (mtmp == &youmonst && ((inv_weight() + weight_cap()) < (weight_cap() / 10) ) ) return TRUE;
+
+
 	if (mtmp == &youmonst) {
 #ifndef GOLDOBJ
 		if (u.ugold > 100L) return FALSE;
