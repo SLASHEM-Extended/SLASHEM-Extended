@@ -10463,11 +10463,14 @@ mineralize()
 
 		if (!(In_sokoban(&u.uz)) || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM)) {
 
-		    	if (!rn2(5000)) makerandomtrap_at(x, y);
-		    	if (ishaxor && !rn2(5000)) makerandomtrap_at(x, y);
+			int reduceramount = (level_difficulty() / 5);
+			if (reduceramount < 1) reduceramount = 1;
 
-		    	if (ishomicider && !rn2(2000)) makerandomtrap_at(x, y);
-		    	if (Role_if(PM_GANG_SCHOLAR) && !rn2(2500)) makerandomtrap_at(x, y);
+		    	if (!rn2(5000 / reduceramount)) makerandomtrap_at(x, y);
+		    	if (ishaxor && !rn2(5000 / reduceramount)) makerandomtrap_at(x, y);
+
+		    	if (ishomicider && !rn2(2000 / reduceramount)) makerandomtrap_at(x, y);
+		    	if (Role_if(PM_GANG_SCHOLAR) && !rn2(2500 / reduceramount)) makerandomtrap_at(x, y);
 
 		}
 

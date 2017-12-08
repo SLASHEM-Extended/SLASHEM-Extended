@@ -12893,7 +12893,7 @@ register int	mmflags;
 
 	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
 
-	if (!rn2( ( (uarmg && uarmg->oartifact == ART_EXPERTENGAME_THE_ENTIRE_LE) ? 10 : (uarmg && uarmg->oartifact == ART_DIFFICULTY__) ? 10 : Race_if(PM_DEVELOPER) ? 25 : Race_if(PM_DROW) ? 100 : 500) ) && allow_special && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y))  ) {
+	if (!rn2( ( (uarmg && uarmg->oartifact == ART_EXPERTENGAME_THE_ENTIRE_LE) ? 10 : (uarmg && uarmg->oartifact == ART_DIFFICULTY__) ? 10 : Race_if(PM_DEVELOPER) ? 25 : Race_if(PM_DROW) ? 100 : 500) ) && allow_special && isok(x, y) && !(t_at(x, y))  ) {
 		int rtrap;
 
 		rtrap = randomtrap();
@@ -12902,7 +12902,20 @@ register int	mmflags;
 
 	}
 
-	if (isok(x, y) && !(t_at(x, y)) && allow_special && (levl[x][y].typ > DBWALL) && (HomicideEffect || u.uprops[HOMICIDE_EFFECT].extrinsic || have_homicidestone()) ) {
+	if (level_difficulty() > 10 && isok(x, y) && !(t_at(x, y)) && allow_special) {
+
+		int reduceramount = (level_difficulty() / 10);
+		if (reduceramount < 1) reduceramount = 1;
+
+		if (!rn2(200 / reduceramount)) {
+			int rtrap;
+			rtrap = randomtrap();
+			(void) maketrap(x, y, rtrap, 100);
+		}
+
+	}
+
+	if (isok(x, y) && !(t_at(x, y)) && allow_special && (HomicideEffect || u.uprops[HOMICIDE_EFFECT].extrinsic || have_homicidestone()) ) {
 
 		int rtrap;
 

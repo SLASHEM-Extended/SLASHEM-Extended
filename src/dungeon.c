@@ -1856,6 +1856,8 @@ level_difficulty()
 	else
 		retvalue = depth(&u.uz);
 
+	if (u.uhave.amulet && (retvalue < 50)) retvalue = 50;
+
 	if (Race_if(PM_EXPERT)) retvalue += u.ulevel;
 
 	if ( (!rn2(10) || Race_if(PM_GASTLY) || Race_if(PM_PHANTOM_GHOST) ) && (deepest_lev_reached(TRUE) > retvalue) ) retvalue = deepest_lev_reached(TRUE);
