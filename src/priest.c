@@ -550,9 +550,12 @@ register struct monst *priest;
 #else
 		if(money_cnt(invent) < (offer * 2L) && coaligned) {
 #endif
+			/* don't immediately lose all negative alignment --Amy */
 		    if(strayed && (moves - u.ucleansed) > 5000L) {
-			u.ualign.record = 0; /* cleanse thee */
+			u.ualign.record /= 2; /* cleanse thee */
+			adjalign(2);
 			u.ucleansed = moves;
+			verbalize("Thou hast been cleansed.");
 		    } else {
 			adjalign(2);
 		    }
