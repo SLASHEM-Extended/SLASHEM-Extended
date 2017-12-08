@@ -207,6 +207,8 @@ struct obj *obj;	/* quest artifact; possibly null if carrying Amulet */
 STATIC_OVL void
 chat_with_leader()
 {
+	register struct monst *mon;
+
 /*	Rule 0:	Cheater checks.					*/
 	if(u.uhave.questart && !Qstat(met_nemesis))
 	    Qstat(cheater) = TRUE;
@@ -254,6 +256,15 @@ chat_with_leader()
 	  } else if(is_pure(TRUE) < 0) {
 	    /*com_pager(QT_BANISHED);*/
 	    qt_pager(QT_HERETIC); /* gotta have realistic dialogue for all quest leaders! --Amy */
+
+		/* turn them all hostile --Amy */
+
+		for (mon = fmon; mon; mon = mon->nmon)
+		if (!DEADMONSTER(mon) && (mon->data->msound == MS_GUARDIAN || mon->data->msound == MS_LEADER) && mon->mpeaceful) {
+		    mon->mpeaceful = 0;
+		}
+		Qstat(pissed_off) = TRUE;
+
 	    /* expulsion(TRUE); */
 	    /* expulsion(FALSE); */ /* prevent infinite loops for converted heroes */
 	  } else if(is_pure(TRUE) == 0) {
