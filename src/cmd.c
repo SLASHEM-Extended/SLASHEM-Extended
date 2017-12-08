@@ -4433,6 +4433,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.dragonpolymorphtime) {
+		sprintf(buf, "to wait until you can polymorph into a dragon again.");
+	      sprintf(eos(buf), " (%d)", u.dragonpolymorphtime);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && UseTheForce) {
 		sprintf(buf, "able to use the force like a true jedi");
 		you_are(buf);
@@ -7381,6 +7387,12 @@ int final;
 	if (u.egglayingtimeout) {
 		sprintf(buf, "to wait until you can lay eggs again.");
 	      sprintf(eos(buf), " (%d)", u.egglayingtimeout);
+		dump(youhad, buf);
+	}
+
+	if (u.dragonpolymorphtime) {
+		sprintf(buf, "to wait until you can polymorph into a dragon again.");
+	      sprintf(eos(buf), " (%d)", u.dragonpolymorphtime);
 		dump(youhad, buf);
 	}
 

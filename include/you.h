@@ -843,6 +843,8 @@ struct you {
 
 	int egglayingtimeout;	/* otherwise you could just spam them, which would be unbalanced! */
 
+	int dragonpolymorphtime;	/* elemental mages shall not be able to polymorph indefinitely, sorry ziratha */
+
 	int dehydrationtime;
 
 	int fakeartifacts;	/* keeping track of how many fake artifacts got generated */

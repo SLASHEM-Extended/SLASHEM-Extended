@@ -2510,6 +2510,15 @@ mage_transform()	/* called each move during transformation process */
     if (draconic.merge)
 	merge_with_armor();
     polymon(draconic.mon);
+
+	/* put it on a timer, because it was just silly that you'd be able to shake off cursed items indefinitely. --Amy */
+
+    u.dragonpolymorphtime = rnz(2000);
+    pline("You have to wait %d turns until you can use the ability to polymorph into a dragon again.", u.dragonpolymorphtime);
+
+	/* If you need to get rid of cursed stuff more often than once every rnz(2000) turns, you should maybe consider
+	 * changing your playstyle and not putting every unidentified piece of equipment on :P */
+
     return 0;
 }
 
@@ -2571,7 +2580,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	    return 1;	    
 	}
 
-	if ((Role_if(PM_ICE_MAGE) || Role_if(PM_FLAME_MAGE) || Role_if(PM_ACID_MAGE) || Role_if(PM_ELECTRIC_MAGE) || Role_if(PM_POISON_MAGE)) && (yn("Transform into your draconic form?") == 'y') && 
+	if ((Role_if(PM_ICE_MAGE) || Role_if(PM_FLAME_MAGE) || Role_if(PM_ACID_MAGE) || Role_if(PM_ELECTRIC_MAGE) || Role_if(PM_POISON_MAGE)) && !u.dragonpolymorphtime && (yn("Transform into your draconic form?") == 'y') && 
 	    (u.ulevel > 6 || scale_mail)) {
 	    /* [ALI]
 	     * I've rewritten the logic here to fix the failure messages,

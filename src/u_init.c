@@ -7886,6 +7886,7 @@ u_init()
 	u.levelporting = 0;
 	u.inertia = 0;
 	u.egglayingtimeout = 0;
+	u.dragonpolymorphtime = 0;
 
 	u.impossibleproperty = randomdisableproperty();
 	u.nonextrinsicproperty = randomdisableproperty();

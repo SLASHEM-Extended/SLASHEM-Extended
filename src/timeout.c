@@ -248,6 +248,12 @@ nh_timeout()
 		if (!u.egglayingtimeout) pline("You are capable of laying eggs again.");
 	}
 
+	if (u.dragonpolymorphtime) {
+		u.dragonpolymorphtime--;
+		if (u.dragonpolymorphtime < 0) u.dragonpolymorphtime = 0; /* fail safe */
+		if (!u.dragonpolymorphtime) pline("You are capable of polymorphing into a dragon again.");
+	}
+
 	if ((Glib > 1) && uarmh && uarmh->oartifact == ART_TARI_FEFALAS) {
 		Glib = 1;
 	}
