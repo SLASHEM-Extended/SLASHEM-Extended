@@ -6765,8 +6765,9 @@ end_burn(obj, timer_attached)
 	boolean timer_attached;
 {
 	if (!obj->lamplit) {
-	    if (obj) impossible("end_burn: obj %s not lit", xname(obj));
-	    else impossible("end_burn: nondefined object not lit");
+		/* This shit was causing "heisensegfaults" (phantom crash bugs) on the server.
+		 * Apparently, even with obj defined, xname doesn't always work correctly. Trim the message then. --Amy */
+	    impossible("end_burn: object not lit");
 	    return;
 	}
 
@@ -6782,8 +6783,7 @@ end_burn(obj, timer_attached)
 	    if (obj->where == OBJ_INVENT)
 		update_inventory();
 	} else if (!stop_timer(BURN_OBJECT, (void *) obj))
-	    if (obj) impossible("end_burn: obj %s not timed!", xname(obj));
-	    else impossible("end_burn: nondefined object not timed!", xname(obj));
+	    impossible("end_burn: object not timed!");
 }
 
 #endif /* OVL1 */
@@ -6799,7 +6799,7 @@ cleanup_burn(arg, expire_time)
 {
     struct obj *obj = (struct obj *)arg;
     if (!obj->lamplit) {
-	impossible("cleanup_burn: obj %s not lit", xname(obj));
+	impossible("cleanup_burn: obj not lit");
 	return;
     }
 
@@ -6829,7 +6829,7 @@ long adj;
 {
 
   if (!obj->lamplit) {
-    impossible("burn_faster: obj %s not lit", xname(obj));
+    impossible("burn_faster: obj not lit");
     return;
   }
 
