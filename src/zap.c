@@ -5928,7 +5928,7 @@ boolean ordinary;
 			/*(void) safe_teleds(FALSE);
 
 			goto_level((&medusa_level), TRUE, FALSE, FALSE);*/
-			register int newlev = rnd(71);
+			register int newlev = rnd(99);
 			d_level newlevel;
 			get_level(&newlevel, newlev);
 			goto_level(&newlevel, TRUE, FALSE, FALSE);
@@ -6117,12 +6117,10 @@ struct obj *obj;	/* wand or spell */
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
-			/*if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); level_tele(); }
-			else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); level_tele(); }*/
-			(void) safe_teleds(FALSE);
+			if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+			else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
 
-			goto_level((&medusa_level), TRUE, FALSE, FALSE);
-			register int newlev = rnd(71);
+			register int newlev = rnd(99);
 			d_level newlevel;
 			get_level(&newlevel, newlev);
 			goto_level(&newlevel, TRUE, FALSE, FALSE);

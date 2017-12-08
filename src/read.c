@@ -5166,7 +5166,7 @@ retry:
 		/*(void) safe_teleds(FALSE);
 
 		goto_level((&medusa_level), TRUE, FALSE, FALSE);*/
-		register int newlev = rnd(71);
+		register int newlev = rnd(99);
 		d_level newlevel;
 		get_level(&newlevel, newlev);
 		goto_level(&newlevel, TRUE, FALSE, FALSE);
