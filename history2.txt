@@ -1,6 +1,14 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.2
+- Elemental mages can only use their dragon transformation once in a while.
+- When in a form that can ooze under doors, the player can now actually do so as long as the total weight of all items is below a certain threshold.
+- Cleansing bought from aligned priests no longer instantly removes all negative alignment.
+- The horn horse actually has a horn now.
+- If you talk to the quest leader after permanently converting yourself, the leader and guardians can become hostile.
+- Fixed an oversight that caused some of the new terrain types to not update on the screen when they changed into different terrains.
+- Fixed a potential segfault when encountering a bones level on which the previous player has died with a wielded, lit lightsaber.
+- Traps are more common when the player gets deeper down in the dungeon.
 - The Bell of Opening has to be imbued in the Bell Caves, which is accessed by finding a portal on the Quest that leads to the Subquest, and finding the downstair to the Bell Caves there. Without imbuing it, none of the invocation tools work, so this is a mandatory step to complete the game. Also, the Amulet of Yendor has to be imbued by visiting three one-level branches in the Yendorian Tower, which is accessed by finding a portal on Moloch's Sanctum. As long as the Amulet is not fully imbued, ascension is impossible.
 - Hangup penalties are put in a define; the game now tracks how many times the player hangs up, but unless HANGUPPENALTY is enabled (it defaults to off), the only thing that happens upon hanging up is a few turns of paralysis. Hanging up at a pending instadeath like "You die from your illness" still greets you with a DYWYPI instadeath upon restoring, of course.
 - Fixed the character selection prompt for the curses interface (thanks FIQ).
