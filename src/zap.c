@@ -8442,28 +8442,33 @@ boolean *shopdamage;
 		    rangemod -= 3;
 		    lev->typ = LAVAPOOL;
 		    if (cansee(x,y)) msgtxt = "The ash floor melts and turns into lava.";
+		    if (cansee(x,y)) newsym(x,y);
 		    Norep(msgtxt);
 	    } else if (is_farmland(x,y)) {
 		    const char *msgtxt = "You hear a burning sound.";
 		    rangemod -= 3;
 		    lev->typ = ASH;
 		    if (cansee(x,y)) msgtxt = "The farmland burns up!";
+		    if (cansee(x,y)) newsym(x,y);
 		    Norep(msgtxt);
 	    } else if (is_grassland(x,y)) {
 		    const char *msgtxt = "You hear a burning sound.";
 		    rangemod -= 3;
 		    lev->typ = ASH;
 		    if (cansee(x,y)) msgtxt = "The grass burns up!";
+		    if (cansee(x,y)) newsym(x,y);
 		    Norep(msgtxt);
 	    } else if (is_snow(x,y)) {
 		    rangemod -= 3;
 		    lev->typ = CORR;
 		    if (cansee(x,y)) Norep("The snow melts away.");
+		    if (cansee(x,y)) newsym(x,y);
 	    } else if (is_wagon(x,y)) {
 		    const char *msgtxt = "You hear a flaming sound.";
 		    rangemod -= 3;
 		    lev->typ = BURNINGWAGON;
 		    if (cansee(x,y)) msgtxt = "The wagon bursts into flames!";
+		    if (cansee(x,y)) newsym(x,y);
 		    Norep(msgtxt);
 	    } else if(is_ice(x, y)) {
 		melt_ice(x, y);
@@ -8493,6 +8498,7 @@ boolean *shopdamage;
 		rangemod -= 3;
 		lev->typ = ROOM;
 		if (cansee(x,y)) pline("The light ray completely destroys the burning wagon.");
+		if (cansee(x,y)) newsym(x,y);
 		/* The effects of solar beams and psybeams on burning wagons make no sense at all,
 		 * yet they are intentional (isn't it annoying how I always have to say this?)
 		 * After all, burning wagons should be possible to remove somehow, but it should be hard to do --Amy */
@@ -8501,6 +8507,7 @@ boolean *shopdamage;
 		rangemod -= 3;
 		lev->typ = RAINCLOUD;
 		if (cansee(x,y)) pline("As the psybeam hits the burning wagon, it mysteriously transforms into a rain cloud!");
+		if (cansee(x,y)) newsym(x,y);
 
 	}
 	else if(abstype == ZT_COLD && (is_pool(x,y) || is_crystalwater(x,y) || is_watertunnel(x,y) || is_lava(x,y))) {
