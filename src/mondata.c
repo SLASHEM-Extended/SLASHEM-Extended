@@ -406,6 +406,7 @@ struct permonst *ptr;
     case PM_HORN_MONSTER:
     case PM_MUD_RUNNER:
     case PM_SQUIRRELHORN:
+    case PM_HORN_HORSE:
 	return 1;
     default:
 	break;
