@@ -8042,7 +8042,10 @@ boolean new_game;	/* false => restoring an old game */
 #else
 	if (new_game) pline("You are playing SLASH'EM Extended on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Freenode. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!");
 
-	if (new_game) pline("Important hint for newbies: Movement keys default to hjkl, also known as vi-keys, but you might want to use the number pad instead. If that is the case, hit shift-o to open the options and scroll down a few pages until you get to the compound options, find the one named number_pad and set it to 2. That will enable the number pad. --Amy");
+	if (new_game && !(iflags.num_pad)) pline("Important hint for newbies: Movement keys default to hjklyubn, also known as vi-keys, but you might want to use the number pad instead. If that is the case, hit shift-o to open the options and scroll down a few pages until you get to the compound options, find the one named number_pad and set it to 2. That will enable the number pad. Do not hit escape in the options menu or it will discard any changes you made - advance pages with spacebar instead! --Amy");
+
+	if (new_game && !(iflags.num_pad)) pline("Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (this will probably require you to start a new game, but from that point on you'll always have the number pad enabled and won't have to set it up again every single time). If you still can't get it to work, join the #em.slashem.me IRC channel on Freenode and ask LarienTelrunya, Elronnd or other players for advice.");
+
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */

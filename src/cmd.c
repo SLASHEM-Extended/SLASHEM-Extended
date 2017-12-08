@@ -10205,6 +10205,15 @@ register char *cmd;
 	    if (!prefix_seen || !iflags.cmdassist ||
 		!help_dir(0, "Invalid direction key!"))
 	    Norep("Unknown command '%s'.", expcmd);
+
+		/* I've seen SO many newbies get stuck on trying to enable the number pad on the server; sadly, we can't make
+		 * it the default, because some players don't have a number pad. On the other hand, not everyone has hjklyubn
+		 * keys on their keyboard either :P and therefore it should be possible for them to switch the number pad on;
+		 * sadly, few players ever take the in-game advice and join the IRC, so we need in-game advice too...
+		 * and even that is often skipped by impatient players :( --Amy */
+
+	    if (moves < 50 && !(iflags.num_pad)) pline("You might want to turn on the number pad, which is done by opening the options with shift-O and navigating to the number_pad entry. Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 2. Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (probably requires you to start a new game).");
+
 	}
 	/* didn't move */
 	flags.move = FALSE;
@@ -10464,6 +10473,10 @@ const char *msg;
 	putstr(win, 0, "(Suppress this message with !cmdassist in config file.)");
 	putstr(win, 0, "Hint: Shift-O opens the options. To change between");
 	putstr(win, 0, "vi-like keys and the number pad, use the number_pad option.");
+	putstr(win, 0, "");
+	putstr(win, 0, "Add OPTIONS=number_pad:2 to your options file to turn the number pad on.");
+	putstr(win, 0, "Add OPTIONS=number_pad:0 to your options file to turn the number pad off.");
+	putstr(win, 0, "(Editing the options file might not take effect until you start a new game)");
 	display_nhwindow(win, FALSE);
 	destroy_nhwindow(win);
 	return TRUE;
