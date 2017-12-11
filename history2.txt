@@ -1,6 +1,10 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.2
+- The sustainer race is highly resistant to wisdom loss from contamination.
+- Dropping an item on an altar of Moloch can occasionally curse it if its BUC status was not known.
+- Fixed the exploit where genociding oneself could make monsters stop attacking.
+- Hydra bows and wildhild bows are two-handed now.
 - Elemental mages can only use their dragon transformation once in a while.
 - When in a form that can ooze under doors, the player can now actually do so as long as the total weight of all items is below a certain threshold.
 - Cleansing bought from aligned priests no longer instantly removes all negative alignment.
