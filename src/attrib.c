@@ -1279,15 +1279,20 @@ exerchk()
 
 		if (contaminated && i == A_WIS) {
 			pline(Hallucination ? "You have a severe coughing fit and an intense desire to vomit!" : "You are consumed by your contamination!");
-			ABASE(A_WIS) -= 1;
-			AMAX(A_WIS) -= 1;
-			if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {
-				u.youaredead = 1;
-				pline("The contamination consumes you completely...");
-				killer = "being consumed by the contamination";
-				killer_format = KILLED_BY;
-				done(DIED);
-				u.youaredead = 0;
+
+			/* Sustainer race has no way of improving wisdom and should therefore be resistant --Amy */
+			if (Race_if(PM_SUSTAINER) && rn2(10)) pline("But you resist the effects!");
+			else {
+				ABASE(A_WIS) -= 1;
+				AMAX(A_WIS) -= 1;
+				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {
+					u.youaredead = 1;
+					pline("The contamination consumes you completely...");
+					killer = "being consumed by the contamination";
+					killer_format = KILLED_BY;
+					done(DIED);
+					u.youaredead = 0;
+				}
 			}
 
 			/* contamination can now go down; if at least 100, only a chance of going down --Amy */
