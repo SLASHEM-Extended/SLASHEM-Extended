@@ -1021,7 +1021,10 @@ toofar:
 	    (Conflict && !resist(mtmp, RING_CLASS, 0, 0)
 		&& !Is_blackmarket(&u.uz)
 	)) {
-	    if(/*inrange && */ /* !noattacks(mdat) && */ u.uhp > 0 && !scared && tmp != 3)
+
+		/* FIQ found out that self-genocide while polymorphed can make monsters stop attacking entirely. Fixed. */
+
+	    if(/*inrange && */ /* !noattacks(mdat) && */ (Upolyd || u.uhp > 0) && !scared && tmp != 3)
 		/* noattacks check removed, since now there's things like egotype shriekers... --Amy */
 		if(mattacku(mtmp)) return(1); /* monster died (e.g. exploded) */
 
