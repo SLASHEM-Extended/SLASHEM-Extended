@@ -341,6 +341,11 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 	/* KMH, conduct */
 	u.uconduct.gnostic++;
 
+	/* evil patch idea by aosdict: Moloch's altars can occasionally curse the item. */
+	
+	if (!obj->cursed && !rn2(500) && !obj->bknown && levl[u.ux][u.uy].altarmask == AM_NONE) curse(obj);
+	if (!rn2(5) && !obj->bknown && (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone()) ) curse(obj);
+
 	if ((obj->blessed || obj->cursed) && obj->oclass != COIN_CLASS) {
 		There("is %s flash as %s %s the altar.",
 			an(hcolor(obj->blessed ? NH_AMBER : NH_BLACK)),
