@@ -41,7 +41,7 @@ struct attack {
 struct permonst {
 	const char	*mname;			/* full name */
 	char		mlet;			/* symbol */
-	schar		mlevel,			/* base monster level */
+	achar		mlevel,			/* base monster level */
 			mmove,			/* move speed */
 			ac,			/* (base) armor class */
 			mr;			/* (base) magic resistance */

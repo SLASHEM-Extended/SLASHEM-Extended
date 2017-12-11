@@ -69,6 +69,8 @@
  * since otherwise comparisons with signed quantities are done incorrectly
  */
 typedef int	xchar;
+typedef signed char	achar;
+
 #ifndef SKIP_BOOLEAN
 typedef schar	boolean;		/* 0 or 1 */
 #endif
