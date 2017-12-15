@@ -3000,7 +3000,7 @@ OBJECT(OBJ("Bell of Opening", "silver bell"),
 /* apple cures numbness, orange cures freezing, cream pie cures burn, lemon cures fear */
 
 /* Meat */
-FOOD("tripe ration",        1932, 2, 0, 0, FLESH, 250, CLR_BROWN),
+FOOD("tripe ration",        1922, 2, 0, 0, FLESH, 250, CLR_BROWN),
 FOOD("corpse",              500, 1,  0, 0, FLESH,   0, CLR_BROWN),
 FOOD("egg",                 700, 1,  0, 1, FLESH,  100, CLR_WHITE),
 FOOD("meatball",             10, 1,  0, 0, FLESH,   10, CLR_BROWN),
@@ -3078,6 +3078,9 @@ FOOD("wakame",               2, 1,  0, 0, VEGGY,  30, CLR_WHITE),
 FOOD("magic banana",         2, 1,  0, 0, VEGGY,  80, CLR_WHITE),
 FOOD("lunch of boiled egg",  2, 1,  0, 0, FLESH,  80, HI_ORGANIC),
 FOOD("pizza",                2, 4,  0, 0, VEGGY, 1200, CLR_WHITE),
+
+/* Because SLEX should have more Monty Python references - NC */
+FOOD("wafer-thin mint",      10, 1,  0, 0, VEGGY, 10, CLR_BROWN),
 
 /* [Tom] more food.... taken off pancake (25) */
 FOOD("cheese",              100, 2,  0, 0, FLESH, 250, CLR_YELLOW),

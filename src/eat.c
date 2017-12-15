@@ -4205,6 +4205,41 @@ struct obj *otmp;
 		    pline("Ulch - that was a contaminated egg!");
 		    make_sick(rn1(25,25), "Team Splat egg (Go Team Hardcore Autism!)", TRUE, SICK_VOMITABLE);
 		}
+		/* MC: Because I love bad jokes and this was too obvious */
+		if (otmp->otyp == WAFER_THIN_MINT) {
+			char buf[BUFSZ];
+			/* Because a joke is worth overdoing */
+
+			/* The original skit had Creosote as the character who exploded */
+			if (!strcmpi(plname, "Croesus")
+			|| !strcmpi(plname, "Kroisos")
+			|| !strcmpi(plname, "Creosote")) {
+				pline("You suddenly have a flashback to that horrid restaurant!");
+				u.youaredead = 1;
+				sprintf(buf, "fatal post-tramatic dining experience");
+				killer = buf;
+				killer_format = NO_KILLER_PREFIX;
+				done(DIED);
+			}
+
+			/* If we're saturated, we'll puke */
+			if (u.uhunger >= 1000) {
+				pline("You make some room to get it down!");
+				make_vomiting(Vomiting+d(10,4), TRUE);
+				pline("There we go ...");
+			}
+
+			/* If we're still oversaturated ... */
+			if (u.uhunger >= 2000) {
+				You_feel("like your chest is going to explode.");
+				losestr(rnd(4));
+				losehp(rnd(15), "gluttony", KILLED_BY);
+				pline("It did!");
+			}
+
+			/* The skit ended with Mr Creosote being presented with the check */
+			pline("Check please.");
+		}
 
 		break;
 	}
