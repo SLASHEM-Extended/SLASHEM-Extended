@@ -1093,11 +1093,15 @@ const char *str;
 {
     char ebuf[60];
 
+	/* let's silence this warning - this is slex, things in walls are not errors */
+	/*
     if (x >= 0 && y >= 0 && x <= (int)max_x_map && y <= (int)max_y_map &&
 	(IS_ROCK(tmpmap[y][x]) || IS_DOOR(tmpmap[y][x]))) {
 	sprintf(ebuf, "%s placed in wall at (%02d,%02d)?!", str, x, y);
 	yywarning(ebuf);
     }
+	*/
+
 }
 
 /*
