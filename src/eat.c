@@ -978,6 +978,7 @@ register int pm;
 			}
 		break;
 	    case PM_SALAMANDER:
+	    case PM_POISON_WHIP_SALAMANDER:
 	    case PM_FROST_SALAMANDER:
 	    case PM_KOMODO_DRAGON:
 	    case PM_PETTY_KOMODO_DRAGON:
@@ -1653,6 +1654,7 @@ register int pm;
 			lesshungry(160);
 		break;
 	    case PM_SALAMANDER:
+	    case PM_POISON_WHIP_SALAMANDER:
 	    case PM_FROST_SALAMANDER:
 	    case PM_KOMODO_DRAGON:
 	    case PM_PETTY_KOMODO_DRAGON:
@@ -1924,6 +1926,51 @@ register int pm;
 	    case PM_STONE_BUG:
 		You_feel("that was a bad idea.");
 		losexp("eating a stone bug corpse", FALSE, TRUE);
+
+		break;
+
+	    case PM_WAFER_THIN_MINT: /* by NCommander */
+			{
+		/* MC: Because I love bad jokes and this was too obvious */
+			char buf[BUFSZ];
+			/* Because a joke is worth overdoing */
+
+			/* The original skit had Creosote as the character who exploded */
+			if (!strcmpi(plname, "Croesus")
+			|| !strcmpi(plname, "Kroisos")
+			|| !strcmpi(plname, "Creosote")) {
+				pline("You suddenly have a flashback to that horrid restaurant!");
+				u.youaredead = 1;
+				sprintf(buf, "fatal post-tramatic dining experience");
+				killer = buf;
+				killer_format = NO_KILLER_PREFIX;
+				done(DIED);
+				/* note by Amy to NCommander: the 'youaredead' flag should only be set during a pending instadeath,
+				 * and be reset to 0 after the instadeath has happened, so the player doesn't get killed for
+				 * saving the game after lifesaving! */
+				u.youaredead = 0;
+			}
+
+			/* If we're saturated, we'll puke */
+			if (u.uhunger >= 3000) { /* values adjusted to slex values --Amy */
+				pline("You make some room to get it down!");
+				make_vomiting(Vomiting+d(10,4), TRUE);
+				if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+				pline("There we go ...");
+			}
+
+			/* If we're still oversaturated ... */
+			if (u.uhunger >= 4000) {
+				You_feel("like your chest is going to explode.");
+				losestr(rnd(4));
+				losehp(rnd(15), "gluttony", KILLED_BY);
+				pline("It did!");
+			}
+
+			/* The skit ended with Mr Creosote being presented with the check */
+			pline("Check please.");
+
+			}
 
 		break;
 

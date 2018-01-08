@@ -1943,6 +1943,10 @@ postmov:
 			(is_waterypool(mtmp->mx, mtmp->my) && !Is_waterlevel(&u.uz));
 		newsym(mtmp->mx, mtmp->my);
 	    }
+		if (ptr == &mons[PM_LAVA_SPIDER] && is_lava(mtmp->mx, mtmp->my)) {
+			mtmp->mundetected = 1;
+			newsym(mtmp->mx, mtmp->my);
+		}
 	    if (mtmp->isshk) {
 		after_shk_move(mtmp);
 	    }

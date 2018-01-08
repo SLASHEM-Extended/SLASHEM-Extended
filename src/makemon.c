@@ -4974,6 +4974,8 @@ register struct monst *mtmp;
 		if (mm == PM_SALAMANDER)
 			(void)mongets(mtmp, (rn2(7) ? SPEAR : rn2(3) ?
 					     TRIDENT : STILETTO));
+		if (mm == PM_POISON_WHIP_SALAMANDER) (void)mongets(mtmp, BULLWHIP);
+
 		break;
 	    case S_TROLL:
 
