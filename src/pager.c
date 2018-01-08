@@ -9842,6 +9842,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"do you want to play as A. a rogue who kills his foes with daggers or B. a jedi who shoots the place up with an assault rifle? if your answer was 'C. a pony transvestite kicking enemies to death with high heeled shoes' then play slex",
 	"Infinitely multiplying spellbooks fountain out from the pile, filling the room!  As you are crushed under the pressure of the books, you hear the dungeon starting to collapse.  Do you want your possessions identified?",
 	"A grue is a fictional predatory monster that dwells in the dark. The word was first used as a fictional predator in Jack Vance's Dying Earth universe (described as being part 'ocular bat', part 'unusual hoon', and part man).", 
+	"Chris says 'Players will say bad words if you make them drop their equipment.' Well, players will say even worse words if he makes them lose their equipment forever by creating a certain elder priest and giving him outerspace melee abilities.",
+	"Whoa, apparently Elona has a gigantic loophole where monsters with ranged attacks will not fire unless their distance is 5 squares or less, so you can cheese some of the most powerful foes very easily if you can outspeed them and keep the distance, because you can fire at them while they're standing 7 squares away. Did the developers PLAN to screw up like that???",
+	"Looking in the water (when you live inside a building) is stupid.",
+	"Whenever you split a pudding in Nethack Fourk, you always get a blood pudding without fail, and it will 0wn you. So you have to go out of your way if you want to kill a black/brown pudding without getting your butt kicked.",
+	"In Nethack Fourk, blood puddings are generated as a punishment for completely normal gameplay. I mean, you're a samurai and your main weapon happens to be edged. What is the developer expecting? That you pick up a quarterstaff that weighs 200 units and burdens you, and pound the black pudding to death with that?",
 
 };
 

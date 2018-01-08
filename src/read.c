@@ -757,6 +757,8 @@ doread()
 	"tfw you want to be a goomba underneath maria with high heels", /* by bugsniper */
 	"YOU DIED - Dark Souls",
 	"Ay have come ta answuurr thay ...uhh questions y'all may have about my decisions on thay ...uhh code, ayn' my answuurr is ay'm God ayn' y'all can't stop God!",
+	"ow! Who throws a show? Honestly?", /* -- from Austin Powers according to ziratha */
+	"Made in china, please recycle in bin number 4",
 
 	    };
 	    char buf[BUFSZ];
