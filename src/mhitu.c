@@ -17108,12 +17108,15 @@ register struct monst *mon;
 	register struct obj *ring, *nring;
 	boolean fem = /*(mon->data == &mons[PM_SUCCUBUS])*/ (mon->female); /* otherwise incubus */
 	char qbuf[QBUFSZ];
-	boolean birthing;
+	boolean birthing = 0;
+	boolean complications = 0;
 
 	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "birthcloth") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "rozhdeniye tkan'") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "tug'ilgan mato") )) birthing = 1;
 	else if (RngeChildbirth) birthing = 1;
 	else if (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) birthing = 1;
 	else birthing = 0;
+
+	if (uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) complications = 1;
 
 	if (mon->mcan || mon->mspec_used) {
 		pline("%s acts as though %s has got a %sheadache.",
@@ -17418,7 +17421,7 @@ register struct monst *mon;
 			pickup_object(uegg, 1, FALSE);
 		}
 
-		if (uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) {
+		if ((uarmc && uarmc->oartifact == ART_CATHERINE_S_SEXUALITY) || complications) {
 			u.youaredead = 1;
 			pline("Oh no... your heart... it's... getting... unsteady...");
 			pline("BEEPBEEP BEEPBEEP BEEP BEEP BEEEEEEEEEEEEEEEEEEEEP!");
