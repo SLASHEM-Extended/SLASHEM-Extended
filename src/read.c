@@ -2561,15 +2561,15 @@ register struct obj	*sobj;
 						otmp->otyp - GRAY_DRAGON_SCALES;
 
 			if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
-				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = 0;
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 			}
 			else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
-				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = 0;
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 			}
 			else if (!(otmp->prmcurse) && otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(3) ) {
-				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = 0;
+				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 			}
-			else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = 0;
+			else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 
 
 			if (sobj->blessed) {
@@ -6166,6 +6166,7 @@ newbossC:
 			    	createdscroll->morgcurse = sobj->morgcurse;
 			    	createdscroll->evilcurse = sobj->evilcurse;
 			    	createdscroll->bbrcurse = sobj->bbrcurse;
+			    	createdscroll->stckcurse = sobj->stckcurse;
 			}
 		}
 

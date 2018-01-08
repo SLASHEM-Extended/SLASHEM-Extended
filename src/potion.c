@@ -5772,7 +5772,7 @@ boolean amnesia;
 			obj->blessed = obj->cursed = FALSE;
 #endif
 			obj->hvycurse = obj->prmcurse = FALSE;
-			obj->morgcurse = obj->evilcurse = obj->bbrcurse = FALSE;
+			obj->morgcurse = obj->evilcurse = obj->bbrcurse = obj->stckcurse = FALSE;
 
 			obj->otyp = POT_WATER;
 		} else obj->odiluted++;
@@ -5849,7 +5849,7 @@ boolean amnesia;
 			useup(obj);
 			otmp = mksobj(POT_SALT_WATER,TRUE,FALSE);
 			if (otmp) {
-				otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = 0;
+				otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 				addinv(otmp);
 				update_inventory();
 			}

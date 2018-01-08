@@ -919,18 +919,23 @@ break_armor()
 		if (!(strcmp (buf, "yes"))) armorkeep = 1;
 
 	}
+	if (uarm && uarm->stckcurse) armorkeep = 1;
+
 	if (uarmc && (rnd(100) < controllingchance)) {
 		getlin ("Keep your cloak on? [yes/no]",buf);
 		(void) lcase (buf);
 		if (!(strcmp (buf, "yes"))) cloakkeep = 1;
 
 	}
+	if (uarmc && uarmc->stckcurse) cloakkeep = 1;
+
 	if (uarmu && (rnd(100) < controllingchance)) {
 		getlin ("Keep your shirt on? [yes/no]",buf);
 		(void) lcase (buf);
 		if (!(strcmp (buf, "yes"))) shirtkeep = 1;
 
 	}
+	if (uarmu && uarmu->stckcurse) shirtkeep = 1;
 
     if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	if (((otmp = uarm) != 0) && !armorkeep) {
@@ -1024,7 +1029,7 @@ break_armor()
 	}
     }
     if (has_horns(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
-	if ((otmp = uarmh) != 0) {
+	if (((otmp = uarmh) != 0) && !uarmh->stckcurse) {
 	    if (is_flimsy(otmp) && !donning(otmp)) {
 		char hornbuf[BUFSZ], yourbuf[BUFSZ];
 
@@ -1040,7 +1045,7 @@ break_armor()
 	    }
 	}
     }
-    if ((otmp = uarmh) != 0 && !Race_if(PM_TRANSFORMER) && (is_mind_flayer(youmonst.data))) {
+    if ((otmp = uarmh) != 0 && !uarmh->stckcurse && !Race_if(PM_TRANSFORMER) && (is_mind_flayer(youmonst.data))) {
 	    if (!otmp->cursed){
 	      pline_The("%s is pushed from your head by your tentacles.", xname(otmp));
 	      (void) Helmet_off();
@@ -1061,7 +1066,7 @@ break_armor()
 
 	/* It was really retarded that you would also drop the weapon, because drop_weapon() is already called
 	   someplace else and this was interfering with the "chance to keep stuff on" code. --Amy */
-	if ((otmp = uarmg) != 0) {
+	if ((otmp = uarmg) != 0 && !uarmg->stckcurse) {
 	    if (donning(otmp)) cancel_don();
 	    You("drop your gloves!");
 	    (void) Gloves_off();
@@ -1077,7 +1082,7 @@ glovesdone:
 
 	}
 
-	if ((otmp = uarms) != 0) {
+	if ((otmp = uarms) != 0 && !uarms->stckcurse) {
 	    You("can no longer hold your shield!");
 	    (void) Shield_off();
 	    dropx(otmp);
@@ -1092,7 +1097,7 @@ shielddone:
 
 	}
 
-	if ((otmp = uarmh) != 0) {
+	if ((otmp = uarmh) != 0 && !uarmh->stckcurse) {
 	    if (donning(otmp)) cancel_don();
 	    Your("helmet falls to the %s!", surface(u.ux, u.uy));
 	    (void) Helmet_off();
@@ -1111,7 +1116,7 @@ helmetdone:
 
 	}
 
-	if ((otmp = uarmf) != 0) {
+	if ((otmp = uarmf) != 0 && !uarmf->stckcurse) {
 	    if (donning(otmp)) cancel_don();
 	    if (is_whirly(youmonst.data))
 		Your("boots fall away!");
@@ -1157,7 +1162,7 @@ int alone;
 
 	}
 
-    if ((otmp = uwep) != 0) {
+    if ((otmp = uwep) != 0 && !uwep->stckcurse) {
 	/* !alone check below is currently superfluous but in the
 	 * future it might not be so if there are monsters which cannot
 	 * wear gloves but can wield weapons

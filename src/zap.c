@@ -2581,6 +2581,7 @@ poly_obj(obj, id)
 	otmp->morgcurse = obj->morgcurse;
 	otmp->evilcurse = obj->evilcurse;
 	otmp->bbrcurse = obj->bbrcurse;
+	otmp->stckcurse = obj->stckcurse;
 	otmp->blessed = obj->blessed;
 	otmp->oeroded = obj->oeroded;
 	otmp->oeroded2 = obj->oeroded2;
@@ -2611,7 +2612,7 @@ poly_obj(obj, id)
 		otmp->oeroded = 0;
 		otmp->oerodeproof = TRUE;
 		otmp->quan = 1L;
-		otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = FALSE;
+		otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = FALSE;
 	    }
 	}
 

@@ -2426,15 +2426,15 @@ register struct obj *otmp;
 	if (otmp->oclass == COIN_CLASS) return;
 #endif
 	if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
-		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 	}
 	else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
-		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 	}
 	else if (!(otmp->prmcurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && otmp->hvycurse && !rn2(3) ) {
-		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 	}
-	else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+	else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 
 	if (otmp->cursed == 0) {
 	otmp->blessed = 1;
@@ -2474,6 +2474,8 @@ register struct obj *otmp;
 	if (otmp->oclass == COIN_CLASS) return;
 #endif
 	otmp->blessed = 0;
+
+	if (!rn2(100)) otmp->stckcurse = 1;
 
 	if (otmp->cursed) {
 		if (!otmp->hvycurse && !rn2(5)) otmp->hvycurse = 1;
@@ -2526,6 +2528,8 @@ register struct obj *otmp;
 #endif
 	otmp->blessed = 0;
 
+	if (!rn2(100)) otmp->stckcurse = 1;
+
 	if (otmp->cursed) { /* should not happen, but oh well */
 		if (!otmp->hvycurse && !rn2(5)) otmp->hvycurse = 1;
 		else if (otmp->hvycurse && !otmp->prmcurse && !rn2(25)) otmp->prmcurse = 1;
@@ -2572,15 +2576,15 @@ uncurse(otmp)
 register struct obj *otmp;
 {
 	if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
-		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 	}
 	else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
-		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 	}
 	else if (!(otmp->prmcurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && otmp->hvycurse && !rn2(3) ) {
-		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 	}
-	else if (!(otmp->prmcurse) && !otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = 0;
+	else if (!(otmp->prmcurse) && !otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 	if (carried(otmp) && confers_luck(otmp))
 	    set_moreluck();
 	/* KMH, balance patch -- healthstones affect healing */

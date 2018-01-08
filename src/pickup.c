@@ -1435,7 +1435,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 
 	if (obj && obj->oartifact == ART_HAAAAAAAAAAAAA_LELUJA) {
 		obj->bknown = 1;
-		obj->cursed = obj->hvycurse = obj->prmcurse = obj->evilcurse = obj->morgcurse = obj->bbrcurse = 0;
+		obj->cursed = obj->hvycurse = obj->prmcurse = obj->evilcurse = obj->morgcurse = obj->bbrcurse = obj->stckcurse = 0;
 		obj->blessed = 1;
 	}
 

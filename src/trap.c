@@ -13774,7 +13774,7 @@ register boolean force, here;
 			    }
 			} else if (obj->odiluted || obj->otyp == POT_AMNESIA) {
 				obj->otyp = POT_WATER;
-				obj->blessed = obj->cursed = obj->hvycurse = obj->prmcurse = obj->morgcurse = obj->evilcurse = obj->bbrcurse = 0;
+				obj->blessed = obj->cursed = obj->hvycurse = obj->prmcurse = obj->morgcurse = obj->evilcurse = obj->bbrcurse = obj->stckcurse = 0;
 				obj->odiluted = 0;
 			} else if (obj->otyp != POT_WATER)
 				obj->odiluted++;

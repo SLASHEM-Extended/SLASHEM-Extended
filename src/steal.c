@@ -278,7 +278,7 @@ nothing_to_steal:
 	tmp = 0;
 	for(otmp = invent; otmp; otmp = otmp->nobj)
 	    if ((!uarm || otmp != uarmc) && otmp != uskin
-				&& ((!otmp->oinvis || perceives(mtmp->data)) && !otmp->oinvisreal)
+				&& ((!otmp->oinvis || perceives(mtmp->data)) && !otmp->stckcurse && !otmp->oinvisreal)
 				)
 		tmp += ((otmp->owornmask &
 			(W_ARMOR | W_RING | W_AMUL | W_TOOL)) ? 5 : 1);
@@ -286,7 +286,7 @@ nothing_to_steal:
 	tmp = rn2(tmp);
 	for(otmp = invent; otmp; otmp = otmp->nobj)
 	    if ((!uarm || otmp != uarmc) && otmp != uskin
-				&& ((!otmp->oinvis || perceives(mtmp->data)) && !otmp->oinvisreal)
+				&& ((!otmp->oinvis || perceives(mtmp->data)) && !otmp->stckcurse && !otmp->oinvisreal)
 			)
 		if((tmp -= ((otmp->owornmask &
 			(W_ARMOR | W_RING | W_AMUL | W_TOOL)) ? 5 : 1)) < 0)
@@ -296,12 +296,19 @@ nothing_to_steal:
 		return(0);
 	}
 	/* can't steal gloves while wielding - so steal the wielded item. */
-	if (otmp == uarmg && uwep)
+	if (otmp == uarmg && uwep && uwep->stckcurse) return(0);
+	if (otmp == uarm && uarmc && uarmc->stckcurse) return(0);
+	if (otmp == uarmu && uarmc && uarmc->stckcurse) return(0);
+	if (otmp == uarmu && uarm && uarm->stckcurse) return(0);
+
+	if (otmp == uarmg && uwep && !uwep->stckcurse)
 	    otmp = uwep;
+
 	/* can't steal armor while wearing cloak - so steal the cloak. */
-	else if(otmp == uarm && uarmc) otmp = uarmc;
-	else if(otmp == uarmu && uarmc) otmp = uarmc;
-	else if(otmp == uarmu && uarm) otmp = uarm;
+	else if(otmp == uarm && uarmc && !uarmc->stckcurse) otmp = uarmc;
+	else if(otmp == uarmu && uarmc && !uarmc->stckcurse) otmp = uarmc;
+	else if(otmp == uarmu && uarm && !uarm->stckcurse) otmp = uarm;
+
 
 gotobj:
 	if (stack_too_big(otmp) && !issoviet) {

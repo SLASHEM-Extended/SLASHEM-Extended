@@ -1065,15 +1065,15 @@ register int amount;
 		Your("weapon seems sharper now.");
 
 		if ((uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) && !rn2(100) ) {
-			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = 0;
+			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = uwep->stckcurse = 0;
 		}
 		else if (uwep->prmcurse && !(uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) && !rn2(10) ) {
-			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = 0;
+			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = uwep->stckcurse = 0;
 		}
 		else if (!(uwep->prmcurse) && !(uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) && uwep->hvycurse && !rn2(3) ) {
-			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = 0;
+			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = uwep->stckcurse = 0;
 		}
-		else if (!(uwep->prmcurse) && !(uwep->hvycurse) && !(uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) ) uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = 0;
+		else if (!(uwep->prmcurse) && !(uwep->hvycurse) && !(uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) ) uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = uwep->stckcurse = 0;
 
 		if (otyp != STRANGE_OBJECT) makeknown(otyp);
 		return(1);
@@ -1125,15 +1125,15 @@ register int amount;
 	if(amount > 0) {
 
 		if ((uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) && !rn2(100) ) {
-			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = 0;
+			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = uwep->stckcurse = 0;
 		}
 		else if (uwep->prmcurse && !(uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) && !rn2(10) ) {
-			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = 0;
+			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = uwep->stckcurse = 0;
 		}
 		else if (!(uwep->prmcurse) && !(uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) && uwep->hvycurse && !rn2(3) ) {
-			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = 0;
+			uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = uwep->stckcurse = 0;
 		}
-		else if (!(uwep->prmcurse) && !(uwep->hvycurse) && !(uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) ) uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = 0;
+		else if (!(uwep->prmcurse) && !(uwep->hvycurse) && !(uwep->morgcurse || uwep->evilcurse || uwep->bbrcurse) ) uwep->prmcurse = uwep->hvycurse = uwep->cursed = uwep->morgcurse = uwep->evilcurse = uwep->bbrcurse = uwep->stckcurse = 0;
 
 	}
 

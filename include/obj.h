@@ -68,6 +68,7 @@ struct obj {
 	Bitfield(morgcurse,1);	/* Ancient Morgothian curse */
 	Bitfield(evilcurse,1);	/* Topi Ylinen curse */
 	Bitfield(bbrcurse,1);	/* Black Breath curse */
+	Bitfield(stckcurse,1);	/* sticky curse - resists certain methods of getting the item off --Amy */
 	Bitfield(unpaid,1);	/* on some bill */
 	Bitfield(no_charge,1);	/* if shk shouldn't charge for this */
 	Bitfield(known,1);	/* exact nature known */

@@ -88,7 +88,7 @@ struct objclass {
 #define is_corrodeable(otmp)	(objects[otmp->otyp].oc_material == COPPER || objects[otmp->otyp].oc_material == IRON || objects[(otmp)->otyp].oc_material == VIVA || objects[(otmp)->otyp].oc_material == TAR || objects[(otmp)->otyp].oc_material == ARCANIUM || objects[(otmp)->otyp].oc_material == SECREE || objects[(otmp)->otyp].oc_material == POURPOOR || objects[(otmp)->otyp].oc_material == ETERNIUM || objects[(otmp)->otyp].oc_material == BRICK)
 
 #define is_unwitherable(otmp)	(objects[otmp->otyp].oc_material == BRICK)
-#define hard_to_destruct(otmp)	(objects[otmp->otyp].oc_material == ETERNIUM)
+#define hard_to_destruct(otmp)	(objects[otmp->otyp].oc_material == ETERNIUM || otmp->stckcurse)
 #define is_etheritem(otmp)	(objects[otmp->otyp].oc_material == ETHER)
 
 #define is_damageable(otmp) (is_rustprone(otmp) || is_flammable(otmp) || \

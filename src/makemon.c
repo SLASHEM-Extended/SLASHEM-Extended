@@ -4263,7 +4263,7 @@ register struct monst *mtmp;
 			otmp = mksobj(!rn2(4) || is_lord(ptr) ?
 				  SHIELD_OF_REFLECTION : LARGE_SHIELD,
 				  FALSE, FALSE);
-			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = FALSE;
+			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = FALSE;
 			otmp->oerodeproof = TRUE;
 			otmp->spe = 0;
 			(void) mpickobj(mtmp, otmp, TRUE);
@@ -14997,7 +14997,7 @@ register int	mmflags;
 		otmp = oname(mksobj(SKELETON_KEY, TRUE, FALSE),
 				artiname(ART_KEY_OF_LAW));
 		if (otmp) {
-			otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = 0;
+			otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 			mpickobj(mtmp, otmp, TRUE);
 		}
 	} else if (mndx == PM_BEHOLDER) {
@@ -15006,7 +15006,7 @@ register int	mmflags;
 		otmp = oname(mksobj(SKELETON_KEY, TRUE, FALSE),
 				artiname(ART_KEY_OF_NEUTRALITY));
 		if (otmp) {
-			otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = 0;
+			otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 			mpickobj(mtmp, otmp, TRUE);
 		}
 	} else if (mndx == PM_VECNA) {
@@ -15015,7 +15015,7 @@ register int	mmflags;
 		otmp = oname(mksobj(SKELETON_KEY, TRUE, FALSE),
 				artiname(ART_KEY_OF_CHAOS));
 		if (otmp) {
-			otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = 0;
+			otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 			mpickobj(mtmp, otmp, TRUE);
 		}
 	} else if (mndx == PM_GYPSY) {
@@ -17349,7 +17349,7 @@ register int otyp;
 		if (otmp->blessed) curse(otmp);
 	    } else if(is_lminion(mtmp)) {
 		/* lawful minions don't get cursed, bad, or rusting objects */
-		otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = FALSE;
+		otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = FALSE;
 		if(otmp->spe < 0) otmp->spe = 0;
 		otmp->oerodeproof = TRUE;
 	    } else if(In_endgame(&u.uz) && is_mplayer(mtmp->data) && is_sword(otmp)) {
@@ -17379,9 +17379,9 @@ register int otyp;
 		otmp->spe = 0;
 		otmp->age = 0L;
 		otmp->lamplit = FALSE;
-		otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = FALSE;
+		otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = FALSE;
 	    } else if (otmp->otyp == BELL_OF_OPENING) {
-		otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = FALSE;
+		otmp->blessed = otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = FALSE;
 	    } else if (otmp->otyp == SPE_BOOK_OF_THE_DEAD) {
 		otmp->blessed = FALSE;
 		otmp->cursed = TRUE;
