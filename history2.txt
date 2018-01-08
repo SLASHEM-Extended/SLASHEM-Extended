@@ -1,6 +1,16 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.2
+- Rain clouds no longer are valid teleport destinations.
+- The displacement property allows the player to displace peaceful monsters. Shopkeepers and temple priests are exempt.
+- Chatting to a priest and receiving zorkmids for an ale will say "bitcoins" while hallucinating.
+- The player's intelligence now slightly increases carry capacity. This increase is not subject to monster weight calculations when the player is polymorphed, making it especially useful when the player polymorphs into a very small monster.
+- Items can now have a "sticky curse", or get one when they become cursed. An item that has this type of curse cannot be stolen by nymphs, cannot be destroyed by rust or other types of erosion, and will never come off when the player polymorphs. Scrolls of remove curse and holy water can still uncurse such items, and if successful, will also remove the sticky curse.
+- The game no longer tries to delete armed grenades. This might fix a double free or corruption bug.
+- When the player loses wisdom due to contamination, the game now actually says that wisdom has been lost, and the status line correctly updates to reflect the player's reduced wisdom.
+- Fixed a bug that prevented the Catherine's Sexuality artifact cloak from instakilling you.
+- Reduced the odds that a random gem is a "nasty gray stone".
+- Silenced the level compiler warning about monsters/traps/items being in walls, as these are not level design errors, but intended behavior. They work just fine when they're placed in walls.
 - The sustainer race is highly resistant to wisdom loss from contamination.
 - Dropping an item on an altar of Moloch can occasionally curse it if its BUC status was not known.
 - Fixed the exploit where genociding oneself could make monsters stop attacking.
