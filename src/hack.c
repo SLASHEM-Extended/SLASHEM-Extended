@@ -4236,6 +4236,10 @@ weight_cap()
 	if (carrcap < 500) carrcap = 500;
 	}
 
+	/* Intelligence increases carrying capacity, because a smarter character is able to organize and balance their pack
+	 * more evenly. (I don't remember who had this idea, maybe aosdict? --Amy) */
+	carrcap += 10*(ACURR(A_INT));
+
 	if (u.menoraget) carrcap += 200;
 	if (u.bookofthedeadget) carrcap += 250;
 	if (u.silverbellget) carrcap += 150;
