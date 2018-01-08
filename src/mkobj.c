@@ -269,6 +269,19 @@ int artif;
 			panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
 	}
 
+	/* Gray stones are too common; have a chance to reroll them at least once --Amy */
+	if (i >= RIGHT_MOUSE_BUTTON_STONE && i <= NASTY_STONE && rn2(5)) {
+
+		prob = rnd(10000);
+		i = bases[(int)oclass];
+		while((prob -= objects[i].oc_prob) > 0) i++;
+
+		if(objects[i].oc_class != oclass)
+			panic("probtype error, oclass=%d i=%d", (int) oclass, i);
+		if(!OBJ_NAME(objects[i]))
+			panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+	}
+
 	if ((objects[u.veryobtainable].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost) ) return(mksobj(u.veryobtainable, TRUE, artif));
 
 	else if ((objects[u.veryobtainable2].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost2) ) return(mksobj(u.veryobtainable2, TRUE, artif));
