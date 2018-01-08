@@ -92,6 +92,8 @@ unsigned gpflags;
 	    return mdat && (nohands(mdat) || verysmall(mdat)) ? -1 : 1;
 	if (sobj_at(BOULDER, x, y) && (!mdat || !throws_rocks(mdat)))
 	    return mdat ? -1 : 1;
+	if (is_raincloud(x,y)) return -1;
+
 	return is_badpos;
 }
 
