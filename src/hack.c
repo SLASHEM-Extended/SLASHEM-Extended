@@ -2089,6 +2089,8 @@ domove()
 		if ( (mtmp->data == &mons[PM_DISPLACER_BEAST] || mtmp->data == &mons[PM_FLUTTERBUG] || mtmp->data == &mons[PM_SHIMMERING_DRACONIAN] || mtmp->data == &mons[PM_JUMPING_CHAMPION] || mtmp->data->mlet == S_GRUE || mtmp->data == &mons[PM_QUANTUM_MOLD] || mtmp->data == &mons[PM_QUANTUM_GROWTH] || mtmp->data == &mons[PM_QUANTUM_FUNGUS] || mtmp->data == &mons[PM_QUANTUM_PATCH] || mtmp->data == &mons[PM_QUANTUM_STALK] || mtmp->data == &mons[PM_QUANTUM_MUSHROOM] || mtmp->data == &mons[PM_QUANTUM_SPORE] || mtmp->data == &mons[PM_QUANTUM_COLONY] || mtmp->data == &mons[PM_QUANTUM_FORCE_FUNGUS] || mtmp->data == &mons[PM_QUANTUM_FORCE_PATCH] || mtmp->data == &mons[PM_QUANTUM_WARP_FUNGUS] || mtmp->data == &mons[PM_QUANTUM_WARP_PATCH] || mtmp->egotype_displacer) && !rn2(2))
 		    displacer = TRUE; /* grues can also displace the player to make them more annoying --Amy */
 		else if (tech_inuse(T_EDDY_WIND)) displacer = TRUE;
+		/* Displacement allows the player to displace peaceful things --Amy */
+		else if (Displaced && !mtmp->isshk && !mtmp->ispriest && mtmp->mpeaceful) displacer = TRUE;
 		else
 		/* try to attack; note that it might evade */
 		/* also, we don't attack tame when _safepet_ */

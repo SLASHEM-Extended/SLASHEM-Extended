@@ -131,7 +131,7 @@
  */
 #define is_safepet(mon) \
 	((mon) && (mon)->mtame && canspotmon(mon) && flags.safe_dog \
-		&& !Confusion && !Hallucination && !Stunned)
+		&& ((!Confusion && !Hallucination && !Stunned) || Displaced) )
 
 
 /*
