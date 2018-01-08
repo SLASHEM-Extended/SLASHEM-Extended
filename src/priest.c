@@ -478,6 +478,7 @@ register struct monst *priest;
 		if (priest->mgold > 0L) {
 		    /* Note: two bits is actually 25 cents.  Hmm. */
 		    pline("%s gives you %s for an ale.", Monnam(priest),
+			Hallucination ? ((priest->mgold == 1L) ? "one bitcoin" : "two bitcoins") :
 			(priest->mgold == 1L) ? "one bit" : "two bits");
 		    if (priest->mgold > 1L)
 			u.ugold = 2L;
