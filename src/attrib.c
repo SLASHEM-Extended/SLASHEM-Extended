@@ -1283,8 +1283,11 @@ exerchk()
 			/* Sustainer race has no way of improving wisdom and should therefore be resistant --Amy */
 			if (Race_if(PM_SUSTAINER) && rn2(10)) pline("But you resist the effects!");
 			else {
+				pline("You lose  Wisdom");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu vy ne sledite luchshe dlya vashikh atributov, tak ili inache?" : "Due-l-ue-l-ue-l!");
 				ABASE(A_WIS) -= 1;
 				AMAX(A_WIS) -= 1;
+				flags.botl = 1;
 				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {
 					u.youaredead = 1;
 					pline("The contamination consumes you completely...");
