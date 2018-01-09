@@ -4337,13 +4337,34 @@ newbossX:
 			}
 		}
 
-		/* Imbuing the Bell of Opening must be done before any of the invocation tools work */
+		/* Imbuing the Bell of Opening must be done before any of the invocation tools work
+		 * it will spawn a bunch of quest monsters around the entrance, forcing you to fight your way back out --Amy */
 
 		if (!u.bellimbued && u.uhave.bell && In_bellcaves(&u.uz)) {
 			u.bellimbued = 1;
 			u.uhpmax += rnd(10);
 			u.uenmax += rnd(10);
 			if (Upolyd) u.mhmax += rnd(10);
+
+			(void) makemon(&mons[urole.nemesnum], u.ux, u.uy, MM_ANGRY);
+
+			if (urole.enemy1num != NON_PM) {
+				(void) makemon(&mons[urole.enemy1num], u.ux, u.uy, MM_ANGRY);
+				(void) makemon(&mons[urole.enemy1num], u.ux, u.uy, MM_ANGRY);
+				(void) makemon(&mons[urole.enemy1num], u.ux, u.uy, MM_ANGRY);
+				(void) makemon(&mons[urole.enemy1num], u.ux, u.uy, MM_ANGRY);
+				(void) makemon(&mons[urole.enemy1num], u.ux, u.uy, MM_ANGRY);
+			}
+			if (urole.enemy2num != NON_PM) {
+				(void) makemon(&mons[urole.enemy2num], u.ux, u.uy, MM_ANGRY);
+				(void) makemon(&mons[urole.enemy2num], u.ux, u.uy, MM_ANGRY);
+			}
+
+			(void) makemon(mkclass(urole.enemy1sym,0), u.ux, u.uy, MM_ANGRY);
+			(void) makemon(mkclass(urole.enemy1sym,0), u.ux, u.uy, MM_ANGRY);
+
+			(void) makemon(mkclass(urole.enemy2sym,0), u.ux, u.uy, MM_ANGRY);
+
 		      (void) safe_teleds(FALSE);
 
 #ifdef RECORD_ACHIEVE
