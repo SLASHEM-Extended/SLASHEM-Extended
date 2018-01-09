@@ -104,6 +104,7 @@ typedef struct branch {
 #define Is_firelevel(x)		(on_level(x, &fire_level))
 #define Is_airlevel(x)		(on_level(x, &air_level))
 #define Is_medusa_level(x)	(on_level(x, &medusa_level))
+#define Is_elderpriest_level(x)	(on_level(x, &elderpriest_level))
 #define Is_oracle_level(x)	(on_level(x, &oracle_level))
 #define Is_valley(x)		(on_level(x, &valley_level))
 #define Is_juiblex_level(x)	(on_level(x, &juiblex_level))

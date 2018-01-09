@@ -667,6 +667,7 @@ struct level_map {
 	{ "knox",	&knox_level },
 	{ "blkmar",     &blackmarket_level },
 	{ "medus",	&medusa_level },
+	{ "elderp",	&elderpriest_level },
 	{ "mtemple",	&mtemple_level },
 	{ "nymph",   &nymph_level },        
 	{ "forge",   &forge_level },        

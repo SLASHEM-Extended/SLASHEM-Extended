@@ -8085,6 +8085,8 @@ u_init()
 
 	u.vibratingsquarefind = 0;
 
+	u.wonderlandescape = 0;
+
 	u.nataljetrapturns = 0;
 	u.nataljetrapx = 0;
 	u.nataljetrapy = 0;

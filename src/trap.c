@@ -5219,7 +5219,7 @@ rerollX:
 
 		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
-		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) { 
+		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) { 
 			pline("For some reason you resist the banishment!"); break;}
 
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -5240,7 +5240,7 @@ rerollX:
 
 		if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
 
-		if (flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) { 
+		if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) { 
 			pline("For some reason you resist the banishment!"); break;}
 
 		make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -6086,6 +6086,23 @@ madnesseffect:
 			break;
 		}
 
+		if (flags.wonderland && !(u.wonderlandescape) && In_yendorian(&u.uz) && depth(&u.uz) == 100) {
+			pline("Congratulations!!! You escaped the Yendorian Tower and regain the ability to level teleport!");
+
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+			(void) safe_teleds(FALSE);
+			goto_level(&medusa_level, TRUE, FALSE, FALSE);
+
+			register int newlevX = 1;
+			d_level newlevelX;
+			get_level(&newlevelX, newlevX);
+			goto_level(&newlevelX, TRUE, FALSE, FALSE);
+
+			u.wonderlandescape = 1;
+			break;
+		}
+
 		if (at_dgn_entrance("The Subquest") && !u.silverbellget) {
 			pline("The power of your nemesis is keeping this portal closed...");
 			break;
@@ -6781,7 +6798,7 @@ madnesseffect:
 				break;
 			case 6:
 
-				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) ) {
+				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 
 					if (!u.levelporting) {

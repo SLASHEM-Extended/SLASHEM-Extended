@@ -341,7 +341,7 @@ fortune (mtmp)
 			if (gypsy_offer(mtmp, 5000L,
 					"teleport you to a level of your choosing")) {
 				incr_itimeout(&HTeleport_control, 1);
-				    if (!flags.lostsoul && !flags.uberlostsoul && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz))) level_tele();
+				    if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz))) level_tele();
 				else pline("But unfortunately you aren't allowed to level teleport.");
 			}
 			break;

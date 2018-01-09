@@ -2250,6 +2250,7 @@ boolean guaranteed;
 	putstr(en_win, 0, final ? "Final Attributes:" : "Current Attributes:");
 	putstr(en_win, 0, "");
 
+	if (flags.wonderland) you_are("playing in wonderland mode");
 	if (flags.lostsoul && !flags.uberlostsoul) you_are("playing in lost soul mode");
 	if (flags.uberlostsoul) you_are("playing in uber lost soul mode");
 	if (flags.gehenna) you_are("playing in gehenna mode");
@@ -5400,6 +5401,7 @@ int final;
 
 	dump("", "Final attributes");
 
+	if (flags.wonderland) dump(youwere, "playing in wonderland mode");
 	if (flags.lostsoul && !flags.uberlostsoul) dump(youwere, "playing in lost soul mode");
 	if (flags.uberlostsoul) dump(youwere, "playing in uber lost soul mode");
 	if (flags.gehenna) dump(youwere, "playing in gehenna mode");

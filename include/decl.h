@@ -52,6 +52,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     d_level	d_rogue_level;
 #endif
     d_level	d_medusa_level;
+    d_level	d_elderpriest_level;
     d_level     d_mineend_level;
     d_level	d_stronghold_level;
     d_level	d_valley_level;
@@ -121,6 +122,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define rogue_level		(dungeon_topology.d_rogue_level)
 #endif
 #define medusa_level		(dungeon_topology.d_medusa_level)
+#define elderpriest_level	(dungeon_topology.d_elderpriest_level)
 #define stronghold_level	(dungeon_topology.d_stronghold_level)
 #define valley_level		(dungeon_topology.d_valley_level)
 #define mineend_level           (dungeon_topology.d_mineend_level)

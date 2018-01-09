@@ -997,6 +997,8 @@ struct you {
 
 	boolean vibratingsquarefind;	/* player stepped on the VS for the first time */
 
+	boolean wonderlandescape;	/* wonderland mode player made it to the portal */
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)
