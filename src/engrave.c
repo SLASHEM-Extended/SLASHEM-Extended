@@ -4249,6 +4249,19 @@ static const char *epitaphs[] = {
 	"The counterclockwise spin trap screwed me over, without it I'd have hit the correct button and walked away from the monster instead of bumping into it!",
 	"ARRRRRRGH CURSE THE FUCKING FUCKED UP PROGRAMMER FUCKTARD WHO MADE IT SO THAT HITTING SPACEBAR AT THE FINGER OF DEATH DIRECTION PROMPT RELEASES IT IN THE PREVIOUS DIRECTION",
 	"Here lies richard rag, who chose to zig when he should have zagged",
+	"Killed by playing Nethack Fourk completely normally, because some sadistic developer decided to always spawn a blood pudding whenever you split another type of pudding even once. Very good idea, 10/10!",
+	"Killed by Rodney in Sporkhack, because someone thought it was a good idea to limit the wand of death to one recharge while simultaneously buffing Rodney's stats out the wazoo.",
+	"Suicided after losing the cloak of magic resistance to a black dragon in Nethack4 despite having disintegration resistance. My last words? Hopefully the developer responsible for that shit will also be disintegrated one day :P",
+	"Here lies Chris_ANG, who tried to fight the elder priest and had his brain cored like an apple, losing 9 points of intelligence every turn and then dying of brainlessness. His own fault for making such an unbalanced monster in the first place!",
+	"Huh, didn't expect that the elder priest on slex's topmost Yendorian Tower level actually is an elder priest that can kill more or less any character within a few turns.",
+	"Got all confused in the Illusory Castle and then the glass golem blasted my mind 20000 times and then I died.",
+	"There are too many truck ghosts and express trains and idolans and memory leaks and spectral killers and swansdown microfilms and adrenaline stevens and sorbate bowereds and everything in the Void! How the hell are you supposed to get past them without dying???",
+	"Someone tell FIQ that it's simply shit if monsters can read scrolls of genocide and end your game...",
+	"Killed by too much streamlining in Nethack Fourk. I rather want to play a game that has a lot of randomness.",
+	"Shit! I thought I didn't have to fight Vecna, but when I entered that weird Dead Grounds dungeon, there was a motherfucking GIGA VECNA that ONE-SHOTTED ME DESPITE MY FULL ASCENSION KIT!!!",
+	"There were 200 cluster bomb rocks behind that closed door, all ready to draw me in and explode. Nuff said.",
+	"Some overpowered monster in dnethack killed me even though I had overpowered artifacts in 12 slots and overenchanted gear in 8 others and a naked AC of -50 and 2000 max HP.",
+	"Here lies someone who was so stupid and thought it was a good idea to ESC out of messages in slex.",
 
 };
 
