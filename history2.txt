@@ -1,5 +1,10 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.1.3
+- When the Bell of Opening is imbued, monsters are spawned around the exit of the Bell Caves and will try to prevent the player from getting out. Since the player cannot level/branchport while in the Bell Caves, combat with those monsters is very hard to avoid.
+- The player can play in wonderland mode via OPTIONS=wonderland now. This puts the player on level 1 of the Yendorian Tower, disables level/branchporting, and the goal is to get to the portal on level 100. If the player manages to do that, they are teleported to level 1 of the Dungeons of Doom and levelporting becomes possible again.
+- There is an elder priest on the topmost Yendorian Tower level now. He is by far the most dangerous monster in the game with bisection, decapitation, ragnarok and data delete melee attacks, and of course he can tentacle to tentacle you and cast spells and stuff. He holds a unique artifact that cannot be wished for: a robe that conveys magic resistance, reflection, +5 increase damage and accuracy, and 20% better spellcasting success chances when worn. Oh, and he resurrects a few turns after being killed and eating his corpse is instantly fatal.
+
 2.1.2
 - Rain clouds no longer are valid teleport destinations.
 - The displacement property allows the player to displace peaceful monsters. Shopkeepers and temple priests are exempt.
