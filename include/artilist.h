@@ -5763,6 +5763,11 @@ A("The Gauntlet Key", SKELETON_KEY,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	0,      A_LAWFUL, NON_PM, NON_PM, 1000L ),
 
+A("Motherfucker Trophy", ROBE, /* +5 increase damage and accuracy, 20% better spellcasting chances, fast skill training */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT), 0, 0,
+	NO_ATTK,        DFNS(AD_MAGM),        NO_CARY,
+	0,      A_NONE, NON_PM, NON_PM, 50000L ),
+
 
 /*** The artifacts for the quest dungeon, all self-willed ***/
 

@@ -7169,6 +7169,14 @@ int spell;
 		chance *= 5;
 		chance /= 6;
 	}
+
+	/* artifacts and other items that boost the chance after "hard" penalties are applied go here --Amy */
+
+	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) chance += 20;
+
+	/* REALLY clamp chance now */
+	if (chance > 100) chance = 100;
+
 	if (chance < (issoviet ? 0 : (spellev(spell) == 8) ? 0 : (spellev(spell) == 7) ? 1 : (spellev(spell) == 6) ? 2 : (spellev(spell) == 5) ? 5 : 10) ) chance = (issoviet ? 0 : (spellev(spell) == 8) ? 0 : (spellev(spell) == 7) ? 1 : (spellev(spell) == 6) ? 2 : (spellev(spell) == 5) ? 5 : 10); /* used to be 0, but that was just stupid in my opinion --Amy */
 
 	return chance;

@@ -12932,3 +12932,109 @@ MONSTER:'Z',"human zombie",(01,15)
 MONSTER:'Z',"human zombie",(01,16)
 MONSTER:'Z',"human zombie",(01,17)
 MONSTER:'Z',"skeleton",(01,18)
+
+# uppermost level of the yendorian tower by Amy - special code in priest.c makes an elder priest in the temple!
+MAZE: "elderp",' '
+FLAGS: hardfloor,noteleport,nommap
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                .........         }}...          -----  }}}}}}}}}---------}}
+  .......     ...............    ...}}}..        |...|...}}}}}}..|.......|.}
+ ....}}...###S................   ...}}.  .       |...+...........+.......+.}
+  .......     ...........   ...         .        |...|..}}}}}}}..|.......|.}
+                .......      ...  ----- .  ----- -----}}}}}}}}}..---------}}
+     ........   ++            ..  |...|-S--|...|    |}}}}}}}}}}..}}}}}}}}}}}
+    ... .. .......     ...... ..  |...|....|...|    |}}}}}}..............}}}
+   ..................      -S-++--|...|....|...|    |}}}}...........--------
+ }}... .}}. ... ... ....   |......|-+----+---+------|}}}............|}}....|
+ }.....}}}}............... |..}}..+.................................+......|
+ }.....}}}}............... |..}}..+.................................|......|
+ }}... .}}. ... ... ....   |......|S--+----+--+-----|}}}............|}}....|
+   ..................      -S-++---.|...|....|..|   |}}}}...........--------
+    ... .. .......     ...... ..   .|...|....|..|   |}}}}}}..............}}}
+     ........   ++            ..   .|...|----|..|   |}}}}}}}}}}..}}}}}}}}}}}
+                .......      ...   .-----    ---------}}}}}}}}}..---------}}
+  .......     ...........   ...    .      ...    |...|..}}}}}}}..|.......|.}
+ ....}}...###S................      ...  ..}..   |...+...........+.......+.}
+  .......     ...............          .. ...    |...|...}}}}}}..|.......|.}
+                .........                        -----  }}}}}}}}}---------}}
+ENDMAP
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7    7
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+
+ALTAR:(73,09),noalign,shrine
+REGION:(69,08,74,11),unlit,"temple"
+
+# Don't put the stair inside the temple
+STAIR:levregion(1,0,79,20),(68,07,75,12),down
+
+TELEPORT_REGION:levregion(01,00,20,20),(68,07,75,12),down
+TELEPORT_REGION:levregion(01,00,79,20),(68,07,75,12),up
+
+DOOR:closed,(68,09)
+DOOR:locked,(65,02)
+DOOR:locked,(73,02)
+DOOR:locked,(65,17)
+DOOR:locked,(73,17)
+DOOR:closed,(53,02)
+DOOR:closed,(53,17)
+DOOR:closed,(36,08)
+DOOR:closed,(41,08)
+DOOR:closed,(45,08)
+DOOR:closed,(38,11)
+DOOR:closed,(43,11)
+DOOR:closed,(46,11)
+DOOR:locked,(35,11)
+DOOR:locked,(40,05)
+DOOR:locked,(34,09)
+DOOR:locked,(34,10)
+DOOR:locked,(16,05)
+DOOR:locked,(17,05)
+DOOR:locked,(16,14)
+DOOR:locked,(17,14)
+DOOR:locked,(30,07)
+DOOR:locked,(31,07)
+DOOR:locked,(30,12)
+DOOR:locked,(31,12)
+DOOR:locked,(13,02)
+DOOR:locked,(13,17)
+DOOR:locked,(28,07)
+DOOR:locked,(28,12)
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+

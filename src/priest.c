@@ -198,7 +198,7 @@ boolean sanctum;   /* is it the seat of the high priest? */
 	if(MON_AT(sx+1, sy))
 		(void) rloc(m_at(sx+1, sy), FALSE); /* insurance */
 
-	priest = makemon(&mons[sanctum ? PM_HIGH_PRIEST : PM_ALIGNED_PRIEST],
+	priest = makemon(&mons[(In_yendorian(&u.uz) && depth(&u.uz) == 1) ? PM_DNETHACK_ELDER_PRIEST_TM_ : sanctum ? PM_HIGH_PRIEST : PM_ALIGNED_PRIEST],
 			 sx + 1, sy, NO_MM_FLAGS);
 
 	if (priest) {
@@ -223,7 +223,20 @@ boolean sanctum;   /* is it the seat of the high priest? */
 		    (void) mpickobj(priest, mkobj(SPBOOK_CLASS, FALSE), TRUE);
 		}
 		/* [ALI] Upgrade existing robe or aquire new */
-		if (rn2(2) || (otmp = which_armor(priest, W_ARM)) == 0) {
+
+		if (In_yendorian(&u.uz) && depth(&u.uz) == 1) {
+			struct obj *obj;
+			obj = mksobj(ROBE, TRUE, FALSE);
+			if (obj) {
+				obj = oname(obj, artiname(ART_MOTHERFUCKER_TROPHY));
+				if (obj) {
+					curse(obj);
+					(void) mpickobj(priest, obj, TRUE);
+				}
+				m_dowear(priest, TRUE);
+			}
+
+		} else if (rn2(2) || (otmp = which_armor(priest, W_ARM)) == 0) {
 		    struct obj *obj;
 		    obj = mksobj(rn2(p_coaligned(priest) ? 2 : 5) ?
 			    ROBE_OF_PROTECTION : ROBE_OF_POWER, TRUE, FALSE);
@@ -275,7 +288,7 @@ char *pname;		/* caller-supplied output buffer */
 		/* use epri */
 		if (mon->mtame && mon->data == &mons[PM_ANGEL])
 			strcat(pname, "guardian ");
-		if (mon->data != &mons[PM_ALIGNED_PRIEST] &&
+		if (mon->data != &mons[PM_ALIGNED_PRIEST] && mon->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] &&
 				mon->data != &mons[PM_HIGH_PRIEST]) {
 			strcat(pname, what);
 			strcat(pname, " ");
@@ -285,6 +298,8 @@ char *pname;		/* caller-supplied output buffer */
 				strcat(pname, "renegade ");
 			if (mon->data == &mons[PM_HIGH_PRIEST])
 				strcat(pname, "high ");
+			if (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])
+				strcat(pname, "elder ");
 			if (Hallucination)
 				strcat(pname, "poohbah ");
 			else if (mon->female)
@@ -353,7 +368,7 @@ register int roomno;
 	if(!temple_occupied(u.urooms0)) {
 	    if(tended) {
 		shrined = has_shrine(priest);
-		sanctum = (priest->data == &mons[PM_HIGH_PRIEST] &&
+		sanctum = ( (priest->data == &mons[PM_HIGH_PRIEST] || priest->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) &&
 			   (Is_sanctum(&u.uz) || In_endgame(&u.uz)));
 		can_speak = (priest->mcanmove && !priest->msleeping &&
 			     flags.soundok);

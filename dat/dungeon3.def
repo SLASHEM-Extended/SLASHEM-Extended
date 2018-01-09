@@ -368,6 +368,9 @@ DESCRIPTION:    hellish
 BRANCH:         "Forging Chamber" @ (1, 99)
 BRANCH:         "Dead Grounds" @ (1, 99)
 BRANCH:         "Ordered Chaos" @ (1, 99)
+
+LEVEL:		"elderp" "P" @ (1, 0)
+
 RNDLEVEL:	"bigrm" "B" @ (1, 99) 60
 RNDLEVEL:	"bigrm" "B" @ (1, 99) 60
 RNDLEVEL:	"bigrm" "B" @ (1, 99) 60

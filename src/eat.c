@@ -1009,6 +1009,8 @@ register int pm;
 	    case PM_WRATH:
 	    case PM_GREED:
 	    case PM_DEPRESSION:
+	    case PM_BASTARD_OPERATOR_FROM_HELL:
+	    case PM_DNETHACK_ELDER_PRIEST_TM_:
 		{ char buf[BUFSZ];
 		    u.youaredead = 1;
 		    pline("Eating that is instantly fatal.");
@@ -1106,6 +1108,8 @@ struct monst *mon;
 	case PM_WRATH:
 	case PM_GREED:
 	case PM_DEPRESSION:
+	case PM_BASTARD_OPERATOR_FROM_HELL:
+	case PM_DNETHACK_ELDER_PRIEST_TM_:
 	    pline("Unfortunately, eating any of it is fatal.");
 	    done_in_by(mon);
 	    return TRUE;		/* lifesaved */

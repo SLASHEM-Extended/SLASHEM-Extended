@@ -184,6 +184,7 @@
 				 (ptr) == &mons[PM_FRUSTRATION] || \
 				 (ptr) == &mons[PM_BASTARD_OPERATOR_FROM_HELL] || \
 				 (ptr) == &mons[PM_WAR] || \
+				 (ptr) == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || \
 				 (ptr) == &mons[PM_PESTILENCE])
 #define is_deadlysin(ptr)		((ptr) == &mons[PM_GLUTTONY] || \
 				 (ptr) == &mons[PM_LUST] || \

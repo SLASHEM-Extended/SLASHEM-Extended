@@ -275,7 +275,7 @@ do_mname()
 
 	if (Hallucination)
 	    pline("You wouldn't recognize it again anyway!");
-	else if ( mtmp->data == &mons[PM_HIGH_PRIEST] )
+	else if ( mtmp->data == &mons[PM_HIGH_PRIEST] || mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] )
 	    pline("Abusing the astral call bug, huh, cheater? That's not gonna work anymore! --Amy");
 	else if (mtmp->data->geno & G_UNIQ)
 	    pline("%s doesn't like being called names!", Monnam(mtmp));
@@ -1051,7 +1051,7 @@ char *outbuf;
     /* high priest(ess)'s identity is concealed on the Astral Plane,
        unless you're adjacent (overridden for hallucination which does
        its own obfuscation) */
-    if (mon->data == &mons[PM_HIGH_PRIEST] && !Hallucination &&
+    if ( (mon->data == &mons[PM_HIGH_PRIEST] || mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) && !Hallucination &&
 	    Is_astralevel(&u.uz) && distu(mon->mx, mon->my) > 2) {
 	strcpy(outbuf, article == ARTICLE_THE ? "the " : "");
 	strcat(outbuf, mon->female ? "high priestess" : "high priest");

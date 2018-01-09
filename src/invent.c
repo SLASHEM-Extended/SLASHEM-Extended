@@ -14696,6 +14696,8 @@ struct obj *obj;
 					pline("Artifact specs: +14 damage to fire-susceptible monsters, can be invoked for dragon breath, nuclear physicist quest artifact."); break;
 				case ART_SWORD_OF_GILGAMESH:
 					pline("Artifact specs: warning and reflection when wielded, +5 to-hit and +10 damage, tracer quest artifact."); break;
+				case ART_MOTHERFUCKER_TROPHY:
+					pline("Artifact specs: reflection, magic resistance, +5 increase damage and accuracy, 20%% better spellcasting chances and increased skill training when worn. Congratulations. You beat the motherfucking ELDER PRIEST to get this artifact, and he's the most dangerous monster that exists in any NetHack variant!!! Well done, you truly are a master at this game!");
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

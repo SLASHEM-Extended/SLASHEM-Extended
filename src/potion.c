@@ -2164,6 +2164,61 @@ badeffect()
 }
 
 void
+ragnarok()
+
+{
+	register int x,y;
+
+	if (rn2(64)) return;
+
+	u.aggravation = 1;
+	DifficultyIncreased += 1;
+	HighlevelStatus += 1;
+	EntireLevelMode += 1;
+	if (!rn2(5)) DifficultyIncreased += rnz(100);
+	if (!rn2(5)) HighlevelStatus += rnz(100);
+	if (!rn2(5)) EntireLevelMode += rnz(100);
+
+	pline("Let's Ragnarok!");
+
+	for (x = 0; x < COLNO; x++)
+	  for (y = 0; y < ROWNO; y++) {
+
+		if ( (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == LAVAPOOL || levl[x][y].typ == CORR) && levl[x][y].typ != SDOOR && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0) && !rn2(5) ) {
+
+			levl[x][y].typ = LAVAPOOL;
+			unblock_point(x,y);
+			if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
+			newsym(x, y);
+
+			if (!rn2(3)) switch (rnd(10)) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+					(void) makemon(mkclass(S_DRAGON,0), x, y, MM_ADJACENTOK|MM_ANGRY);
+					break;
+				case 6:
+				case 7:
+				case 8:
+					(void) makemon(mkclass(S_GIANT,0), x, y, MM_ADJACENTOK|MM_ANGRY);
+					break;
+				case 9:
+				case 10:
+					(void) makemon(mkclass(S_DEMON,0), x, y, MM_ADJACENTOK|MM_ANGRY);
+					break;
+			}
+
+		}
+
+	}
+
+	u.aggravation = 0;
+
+}
+
+void
 datadeleteattack()
 
 {

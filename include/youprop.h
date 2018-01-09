@@ -657,7 +657,7 @@
 
 #define HExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].intrinsic
 #define EExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].extrinsic
-#define Extra_wpn_practice	(HExtra_wpn_practice || EExtra_wpn_practice || (uarmc && uarmc->oartifact == ART_SKILLS_BEAT_STATS) )
+#define Extra_wpn_practice	(HExtra_wpn_practice || EExtra_wpn_practice || (uarmc && uarmc->oartifact == ART_SKILLS_BEAT_STATS) || (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) )
 
 #define HDeath_resistance	u.uprops[DTBEEM_RES].intrinsic
 #define EDeath_resistance	u.uprops[DTBEEM_RES].extrinsic

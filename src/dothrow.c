@@ -1069,6 +1069,7 @@ boolean hitsroof;
 	if (dmg > 1 && less_damage) dmg = 1;
 	if (dmg > 0) dmg += u.udaminc;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) dmg += 2;
+	if (dmg > 0 && uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) dmg += 5;
 
 	if (dmg > 0 && (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") ))) dmg += 1;
 	if (dmg > 0 && (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'ldirish qo'lqop") ))) dmg += 1;
@@ -1645,6 +1646,7 @@ int thrown;
 	if (!issoviet && !rn2(3)) tmp += rno(u.ulevel);
 
 	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
+	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) tmp += 5;
 
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) tmp += 1;
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'ldirish qo'lqop") )) tmp += 1;

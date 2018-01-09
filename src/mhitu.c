@@ -1717,6 +1717,7 @@ int
 mattacku(mtmp)
 	register struct monst *mtmp;
 {
+	char buf[BUFSZ];
 	struct	attack	*mattk, alt_attk;
       struct attack *a;
 	int	i, j, tmp, sum[NATTK];
@@ -1898,6 +1899,7 @@ mattacku(mtmp)
 	if (mtmp->data == &mons[PM_IVORY_COAST_STAR]) tmp += 30; /* this monster is aiming abnormally well */
 	if (mtmp->data == &mons[PM_HAND_OF_GOD]) tmp += 100; /* God personally is guiding this one's blows */
 	if (mtmp->data == &mons[PM_JOURHEA]) tmp -= 40;	/* has terribly bad aim */
+	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) tmp += rnd(100); /* the elder priest uses an aimbot and a wallhack */
 
 	/* farting monsters are simply more likely to hit you, except if you bash their sexy butts --Amy */
 	if (mtmp->data->msound == MS_FART_LOUD && !mtmp->butthurt) tmp += 5;
@@ -4001,6 +4003,367 @@ elena37:
 		if (!range2 && (!rn2(5)) ) {
 		    pline("%s multiplies!",Monnam(mtmp) );
 		    clone_mon(mtmp, 0, 0);
+		}
+
+	}
+
+	/* and now, the unholy satanic motherfucker from hell, aka the most evil monster in existence... --Amy
+	 * thanks Chris_ANG for creating it, you evil person :P */
+	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) {
+
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			if (!rn2(20) && !bigmonst(youmonst.data) && !Invulnerable && !(Stoned_chiller && Stoned) ) {
+				pline("Bad luck - the elder priest bisects you. Goodbye.");
+				losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "being bisected by the elder priest",KILLED_BY);
+			}
+		}
+
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			if (!rn2(20) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+				pline("Bad luck - the elder priest decapitates you. Goodbye.");
+				losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "being decapitated by the elder priest",KILLED_BY);
+			}
+
+		}
+
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			ragnarok();
+		}
+
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			datadeleteattack();
+		}
+
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			pline("The elder priest tentacles to tentacle you! OH NO!!!");
+
+			if(!uarmc && !uarm) {
+				if(uarmu) {
+					You_feel("the tentacles squirm under your shirt.");
+					if( rnd(100) > 15) {
+						pline("The tentacles begin to tear at your shirt!");
+						if(uarmu->spe > 1){
+							for(i=rn2(4); i>=0; i--)
+								drain_item(uarmu);
+								Your("%s less effective.", aobjnam(uarmu, "seem"));
+								if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+						}
+						else{
+							(void) destroy_arm(uarmu);
+						}
+					}
+					else{
+						pline("The tentacles pull your shirt off!");
+						otmp = uarmu;
+						if (donning(otmp)) cancel_don();
+						(void) Shirt_off();
+						freeinv(otmp);
+						(void) mpickobj(mtmp,otmp,FALSE);
+					}
+				}
+			}
+
+			if(!uarmc) {
+				if(uarm){
+					You_feel("the tentacles squirm under your armor.");
+					if( rnd(100) > 25){
+						pline("The tentacles begin to tear at your armor!");
+						if(uarm->spe > 1){
+							for(i=rn2(4); i>=0; i--)
+								drain_item(uarm);
+								Your("%s less effective.", aobjnam(uarm, "seem"));
+								if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+						 }
+						 else{
+							(void) destroy_arm(uarm);
+						 }
+					}
+					else{
+						pline("The tentacles shuck you out of your armor!");
+						otmp = uarm;
+						if (donning(otmp)) cancel_don();
+						(void) Armor_gone();
+						freeinv(otmp);
+						(void) mpickobj(mtmp,otmp,FALSE);
+					}
+				}
+			}
+
+			if(uarmc){
+				You_feel("the tentacles work their way under your cloak.");
+				if( rnd(100) > 66){
+					pline("The tentacles begin to tear at the cloak!");
+					if(uarmc->spe > 1){
+						for(i=rn2(4); i>=0; i--)
+							drain_item(uarmc);
+							Your("%s less effective.", aobjnam(uarmc, "seem"));
+							if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+				 	}
+					else{
+						(void) destroy_arm(uarmc);
+				 	}
+				}
+				else{
+					pline("The tentacles strip off your cloak!");
+					otmp = uarmc;
+					if (donning(otmp)) cancel_don();
+					(void) Cloak_off();
+					freeinv(otmp);
+					(void) mpickobj(mtmp,otmp,FALSE);
+				}
+			}
+
+			register int dmg = d(15,15);
+
+			switch(d(1,12)){
+			case 1:
+			if(uarmf){
+				You_feel("the tentacles squirm into your boots.");
+				if( rnd(100) > 66){
+					pline("The tentacles begin to tear at your boots!");
+					if(uarmf->spe > 1){
+						for(i=rn2(4); i>=0; i--)
+							drain_item(uarmf);
+							Your("%s less effective.", aobjnam(uarmf, "seem"));
+							if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+					}
+					else{
+						(void) destroy_arm(uarmf);
+					}
+				}
+				else{
+					pline("The tentacles suck off your boots!");
+					otmp = uarmf;
+					if (donning(otmp)) cancel_don();
+					(void) Boots_off();
+					freeinv(otmp);
+					(void) mpickobj(mtmp,otmp,FALSE);
+				}
+			}
+			break;
+			case 2:
+			if(uwep){
+				You_feel("the tentacles wrap around your weapon.");
+				if( rnd(130) > ACURR(A_STR)){
+					pline("The tentacles yank your weapon out of your grasp!");
+					otmp = uwep;
+					uwepgone();
+					freeinv(otmp);
+					(void) mpickobj(mtmp,otmp,FALSE);
+				 }
+				 else{
+					/* dnethack wouldn't do anything here, but this is the Evil Patch(TM) - disenchant weapon */
+
+					if (uwep->spe > -20) {
+						drain_item(uwep);
+						drain_item(uwep);
+						drain_item(uwep);
+						drain_item(uwep);
+						drain_item(uwep);
+						Your("%s less effective.", aobjnam(uwep, "seem"));
+						if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+					}
+				 }
+			}
+			break;
+			case 3:
+			if(uarmg){
+				You_feel("the tentacles squirm into your gloves.");
+				if( rnd(40) <= ACURR(A_STR) || uwep){
+					pline("The tentacles begin to tear at your gloves!");
+					if(uarmg->spe > 1){
+						for(i=rn2(4); i>=0; i--)
+							drain_item(uarmg);
+							Your("%s less effective.", aobjnam(uarmg, "seem"));
+							if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+					}
+					else{
+						(void) destroy_arm(uarmg);
+					}
+				}
+				else{
+					pline("The tentacles suck your gloves off!");
+					otmp = uarmg;
+					if (donning(otmp)) cancel_don();
+					(void) Gloves_off();
+					freeinv(otmp);
+					(void) mpickobj(mtmp,otmp,FALSE);
+				}
+			}
+			break;
+			case 4:
+			if(uarms){
+				You_feel("the tentacles wrap around your shield.");
+				if( rnd(150) > ACURR(A_STR)){
+					pline("The tentacles pull your shield out of your grasp!");
+					otmp = uarms;
+					if (donning(otmp)) cancel_don();
+					Shield_off();
+					freeinv(otmp);
+					(void) mpickobj(mtmp,otmp,FALSE);
+				 }
+				 else{
+
+					/* dnethack wouldn't do anything here, but this is the Evil Patch(TM) - disenchant shield */
+
+					if (uarms->spe > -20) {
+						drain_item(uarms);
+						drain_item(uarms);
+						drain_item(uarms);
+						drain_item(uarms);
+						drain_item(uarms);
+						Your("%s less effective.", aobjnam(uarms, "seem"));
+						if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+					}
+				 }
+			}
+			break;
+			case 5:
+			if(uarmh){
+				You_feel("the tentacles squirm under your helmet.");
+				if( rnd(100) > 90){
+					pline("The tentacles begin to tear at your helmet!");
+					if(uarmh->spe > 1){
+						for(i=rn2(4); i>=0; i--)
+							drain_item(uarmh);
+							Your("%s less effective.", aobjnam(uarmh, "seem"));
+							if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+					}
+					else{
+						(void) destroy_arm(uarmh);
+					}
+				}
+				else{
+					pline("The tentacles pull your helmet off!");
+					otmp = uarmh;
+					if (donning(otmp)) cancel_don();
+					(void) Helmet_off();
+					freeinv(otmp);
+					(void) mpickobj(mtmp,otmp,FALSE);
+				}
+			}
+			break;
+			case 6:
+				if(u.uenmax == 0) {
+					u.youaredead = 1;
+					/* dnethack wouldn't do anything here, but this is the Evil Patch(TM) - instadeath! */
+					You_feel("little mouths sucking on your exposed skin... and scream in agony as your body is sucked away completely.");
+
+					killer = "being sucked into the elder priest's belly and digested whole";
+					killer_format = KILLED_BY;
+					done(DIED);
+					u.youaredead = 0;
+
+				}
+				break;
+				if(uarmc || uarm || uarmu){
+					You_feel("the tentacles sucking on your %s", uarm ? "armor" : "clothes");
+				break;  //blocked
+				} //else
+				You_feel("little mouths sucking on your exposed %s.",body_part(STOMACH));
+				u.uen = 0;
+
+				/* replace screwy non-integer dnethack calculations with normal ones --Amy */
+				if(Half_physical_damage) u.uenmax -= (u.uenmax / 4);
+				else u.uenmax -= (u.uenmax / 2);
+				if (u.uenmax < 0) u.uenmax = 0;
+			break;
+			case 7:
+				if(uarmh){
+					You_feel("the tentacles squirm over your helmet this sentence is missing a dot");
+				break; //blocked
+				} //else
+				You_feel("the tentacles bore into your skull!");
+				i = d(1,6);
+				(void) adjattrib(A_INT, -i, 1);
+				while(i-- > 0){
+					if (!rn2(2)) losexp("brain damage",FALSE,TRUE);
+					forget(10);	/* lose 10% of memory per point lost*/
+					exercise(A_WIS, FALSE);
+				}
+				//begin moved brain removal messages
+				Your("brain is cored like an apple!");
+				if (ABASE(A_INT) <= 3) {
+					u.youaredead = 1;
+					Your("last thought fades away.");
+					killer = "destruction of the brain and spinal cord";
+					killer_format = KILLED_BY;
+					done(DIED);
+		
+					/* player still alive somehow? kill them again :P */
+		
+					pline("Unfortunately your brain is still gone.");
+					killer = "destruction of the brain and spinal cord";
+					killer_format = KILLED_BY;
+					done(DIED);
+					u.youaredead = 0;
+
+					ABASE(A_INT) = ATTRMIN(A_INT);
+					You_feel("like a scarecrow.");
+					AMAX(A_INT) = ABASE(A_INT);
+				}
+				losehp(Half_physical_damage ? dmg/2 + 1 : dmg, "head trauma", KILLED_BY);
+				
+			break;
+			case 8:
+				if(uarmc || uarm){
+					You_feel("a tentacle squirm over your %s.", uarmc ? "cloak" : "armor");
+				break;  //blocked
+				} //else
+				You_feel("the tentacles drill through your unprotected %s and into your soul!",body_part(HEAD));
+				if (!Drain_resistance || !rn2(5)) {
+					losexp("soul-shreding tentacles",FALSE,FALSE);
+					losexp("soul-shreding tentacles",FALSE,FALSE);
+					losexp("soul-shreding tentacles",FALSE,FALSE);
+					i = d(1,4);
+					while(i-- > 0){
+						losexp("soul-shreding tentacles",FALSE,TRUE);
+						exercise(A_WIS, FALSE);
+						exercise(A_WIS, FALSE);
+						exercise(A_WIS, FALSE);
+					}
+					(void) adjattrib(A_CON, -4, 1);
+					You_feel("violated and very fragile. Your soul seems a thin and tattered thing.");
+				} else {
+					(void) adjattrib(A_CON, -2, 1);
+					You_feel("a bit fragile, but strangly whole.");
+				}
+				losehp(Half_physical_damage ? dmg/4+1 : dmg/2+1, "drilling tentacles", KILLED_BY);
+			break;
+			case 9:
+				if(uarmc || uarm){
+					You_feel("the tentacles press into your %s once again someone forgot to close the sentence with a dot", uarmc ? "cloak" : "armor");
+				break; //blocked
+				} //else
+				You_feel("the tentacles spear into your unarmored body!");
+				losehp(Half_physical_damage ? dmg : 4*dmg, "impaled by tentacles", NO_KILLER_PREFIX);
+				(void) adjattrib(A_STR, -6, 1);
+				(void) adjattrib(A_CON, -3, 1);
+				You_feel("weak and helpless in their grip!");
+			break;
+			case 10:
+			case 11:
+			case 12:
+				if(uarmc) {
+					You_feel("the tentacles writhe over your cloak.");
+				} //else
+
+					/* dnethack would only steal things if you were wearing absolutely no armor and had no weapon
+					 * but this is the Evil Patch(TM), and players looooooove having their items stolen! --Amy */
+				if(invent){
+					You_feel("the tentacles pick through your remaining possessions.");
+					buf[0] = '\0';
+					steal(mtmp, buf);
+					buf[0] = '\0';
+					steal(mtmp, buf);
+					buf[0] = '\0';
+					steal(mtmp, buf);
+					buf[0] = '\0';
+					steal(mtmp, buf);
+				}
+			break;
+		}
+
 		}
 
 	}

@@ -15114,7 +15114,7 @@ register int	mmflags;
 		else if (rn2(10))        m_initsgrp(mtmp, mtmp->mx, mtmp->my);
 	    }
 		/* allow other monsters to spawn in groups too --Amy */
-	    else if (!rn2(500) && allow_special && mndx != PM_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_GUARD && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
+	    else if (!rn2(500) && allow_special && mndx != PM_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_DNETHACK_ELDER_PRIEST_TM_ && mndx != PM_GUARD && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
 		if (!rn2(500))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(100))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (!rn2(20)) m_initvlgrp(mtmp, mtmp->mx, mtmp->my);

@@ -599,6 +599,7 @@ register struct monst *mtmp;
 	if (uarmc && uarmc->oartifact == ART_DEATHCLAW_HIDE) tmp += 10;
 
 	if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
+	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) tmp += 5;
 
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) tmp += 1;
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'ldirish qo'lqop") )) tmp += 1;
@@ -2001,6 +2002,7 @@ int dieroll;
 	if (get_dmg_bonus && tmp > 0) {
 		tmp += u.udaminc;
 		if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
+		if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) tmp += 5;
 
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "uncanny gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "sverkh''yestestvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "dahshatli qo'lqop") )) tmp += 1;
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'ldirish qo'lqop") )) tmp += 1;

@@ -2079,6 +2079,7 @@ E void make_vomiting(long,BOOLEAN_P);
 E boolean make_hallucinated(long,BOOLEAN_P,long);
 E int dodrink(void);
 E void badeffect(void);
+E void ragnarok(void);
 E void datadeleteattack(void);
 E int dopotion(struct obj *);
 E int peffects(struct obj *);

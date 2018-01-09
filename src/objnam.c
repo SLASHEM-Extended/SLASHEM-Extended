@@ -8145,6 +8145,7 @@ typfnd:
 	        otmp->oartifact == ART_HAND_OF_VECNA ||
 	        otmp->oartifact == ART_EYE_OF_THE_BEHOLDER ||
 	        otmp->oartifact == ART_NIGHTHORN ||
+	        otmp->oartifact == ART_MOTHERFUCKER_TROPHY ||
 	        otmp->oartifact == ART_THIEFBANE)) ||
 # ifdef NOARTIFACTWISH
 /* Wishing for a "weak" artifact is easier than for a stronger one */
