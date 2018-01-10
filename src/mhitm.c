@@ -269,6 +269,11 @@ mattackm(magr, mdef)
 	mdef->msleeping = 0;
     }
 
+	if (mdef->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) {
+		mdef->isegotype = 1;
+		mdef->egotype_covetous = 1;
+	}
+
     /* undetect monsters become un-hidden if they are attacked */
     if (mdef->mundetected) {
 	mdef->mundetected = 0;

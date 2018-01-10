@@ -1763,6 +1763,12 @@ int thrown;
 		pline("%s's unsolid body lets the projectile pass through harmlessly!", Monnam(mon));
 	}
 
+	/* the elder priest uses cheats */
+	if (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && rn2(15) && tmp > -20) {
+		tmp -= 100;
+		pline("%s swats the projectile away!", Monnam(mon));
+	}
+
 	if (stupidrock && tmp > -20 && !(rn2(25) < skillpierce ) ) {
 		if (verysmall(mon->data) && !rn2(4)) {
 			tmp = -100;

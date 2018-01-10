@@ -341,6 +341,11 @@ struct monst *mtmp;
 
 	}
 
+	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_covetous = 1;
+	}
+
 	if ( Role_if(PM_LADIESMAN) && !flags.female && mtmp->female && humanoid(mtmp->data) ) {
 
 	    You_feel("bad for hitting a defenseless woman.");

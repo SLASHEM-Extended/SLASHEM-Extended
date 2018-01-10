@@ -4044,7 +4044,7 @@ elena37:
 						pline("The tentacles begin to tear at your shirt!");
 						if(uarmu->spe > 1){
 							for(i=rn2(4); i>=0; i--)
-								drain_item(uarmu);
+								drain_item_severely(uarmu);
 								Your("%s less effective.", aobjnam(uarmu, "seem"));
 								if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 						}
@@ -4070,7 +4070,7 @@ elena37:
 						pline("The tentacles begin to tear at your armor!");
 						if(uarm->spe > 1){
 							for(i=rn2(4); i>=0; i--)
-								drain_item(uarm);
+								drain_item_severely(uarm);
 								Your("%s less effective.", aobjnam(uarm, "seem"));
 								if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 						 }
@@ -4095,7 +4095,7 @@ elena37:
 					pline("The tentacles begin to tear at the cloak!");
 					if(uarmc->spe > 1){
 						for(i=rn2(4); i>=0; i--)
-							drain_item(uarmc);
+							drain_item_severely(uarmc);
 							Your("%s less effective.", aobjnam(uarmc, "seem"));
 							if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 				 	}
@@ -4123,7 +4123,7 @@ elena37:
 					pline("The tentacles begin to tear at your boots!");
 					if(uarmf->spe > 1){
 						for(i=rn2(4); i>=0; i--)
-							drain_item(uarmf);
+							drain_item_severely(uarmf);
 							Your("%s less effective.", aobjnam(uarmf, "seem"));
 							if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 					}
@@ -4155,11 +4155,11 @@ elena37:
 					/* dnethack wouldn't do anything here, but this is the Evil Patch(TM) - disenchant weapon */
 
 					if (uwep->spe > -20) {
-						drain_item(uwep);
-						drain_item(uwep);
-						drain_item(uwep);
-						drain_item(uwep);
-						drain_item(uwep);
+						drain_item_severely(uwep);
+						drain_item_severely(uwep);
+						drain_item_severely(uwep);
+						drain_item_severely(uwep);
+						drain_item_severely(uwep);
 						Your("%s less effective.", aobjnam(uwep, "seem"));
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 					}
@@ -4173,7 +4173,7 @@ elena37:
 					pline("The tentacles begin to tear at your gloves!");
 					if(uarmg->spe > 1){
 						for(i=rn2(4); i>=0; i--)
-							drain_item(uarmg);
+							drain_item_severely(uarmg);
 							Your("%s less effective.", aobjnam(uarmg, "seem"));
 							if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 					}
@@ -4207,11 +4207,11 @@ elena37:
 					/* dnethack wouldn't do anything here, but this is the Evil Patch(TM) - disenchant shield */
 
 					if (uarms->spe > -20) {
-						drain_item(uarms);
-						drain_item(uarms);
-						drain_item(uarms);
-						drain_item(uarms);
-						drain_item(uarms);
+						drain_item_severely(uarms);
+						drain_item_severely(uarms);
+						drain_item_severely(uarms);
+						drain_item_severely(uarms);
+						drain_item_severely(uarms);
 						Your("%s less effective.", aobjnam(uarms, "seem"));
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 					}
@@ -4225,7 +4225,7 @@ elena37:
 					pline("The tentacles begin to tear at your helmet!");
 					if(uarmh->spe > 1){
 						for(i=rn2(4); i>=0; i--)
-							drain_item(uarmh);
+							drain_item_severely(uarmh);
 							Your("%s less effective.", aobjnam(uarmh, "seem"));
 							if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 					}
