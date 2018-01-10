@@ -174,13 +174,13 @@ LEVEL:          "fakewiz1" "F" @ (30, 15)
 LEVEL:          "fakewiz2" "G" @ (30, 15)
 # The demon levels
 RNDLEVEL:          "juibl" "J" @ (2, 47) 4
-RNDLEVEL:          "yeeno" "E" @ (2, 47) 12
+RNDLEVEL:          "yeeno" "E" @ (2, 47) 13
 RNDLEVEL:          "orcus" "O" @ (2, 47) 6
-RNDLEVEL:          "demog" "D" @ (2, 47) 7
+RNDLEVEL:          "demog" "D" @ (2, 47) 9
 # The devil levels
 RNDLEVEL:          "baalz" "B" @ (2, 47) 12
-RNDLEVEL:          "geryo" "R" @ (2, 47) 8
-RNDLEVEL:          "dispa" "S" @ (2, 47) 10
+RNDLEVEL:          "geryo" "R" @ (2, 47) 9
+RNDLEVEL:          "dispa" "S" @ (2, 47) 11
 RNDLEVEL:          "asmod" "A" @ (2, 47) 6
 RNDLEVEL:	"hllma" "H" @ (2, 47) 10
 BRANCH:         "Sheol" @ (3, 46) down
@@ -386,20 +386,20 @@ RNDLEVEL:		"levgn" "V" @ (1, 99) 95
 RNDLEVEL:		"levgn" "V" @ (1, 99) 95
 RNDLEVEL:		"levgn" "V" @ (1, 99) 95
 RNDLEVEL:          "juibl" "K" @ (1, 99) 4
-RNDLEVEL:          "yeeno" "E" @ (1, 99) 12
+RNDLEVEL:          "yeeno" "E" @ (1, 99) 13
 RNDLEVEL:          "orcus" "O" @ (1, 99) 6
-RNDLEVEL:          "demog" "D" @ (1, 99) 7
+RNDLEVEL:          "demog" "D" @ (1, 99) 9
 RNDLEVEL:          "baalz" "C" @ (1, 99) 12
-RNDLEVEL:          "geryo" "R" @ (1, 99) 8
-RNDLEVEL:          "dispa" "S" @ (1, 99) 10
+RNDLEVEL:          "geryo" "R" @ (1, 99) 9
+RNDLEVEL:          "dispa" "S" @ (1, 99) 11
 RNDLEVEL:          "asmod" "A" @ (1, 99) 6
 RNDLEVEL:          "juibl" "K" @ (1, 99) 4
-RNDLEVEL:          "yeeno" "E" @ (1, 99) 12
+RNDLEVEL:          "yeeno" "E" @ (1, 99) 13
 RNDLEVEL:          "orcus" "O" @ (1, 99) 6
-RNDLEVEL:          "demog" "D" @ (1, 99) 7
+RNDLEVEL:          "demog" "D" @ (1, 99) 9
 RNDLEVEL:          "baalz" "C" @ (1, 99) 12
-RNDLEVEL:          "geryo" "R" @ (1, 99) 8
-RNDLEVEL:          "dispa" "S" @ (1, 99) 10
+RNDLEVEL:          "geryo" "R" @ (1, 99) 9
+RNDLEVEL:          "dispa" "S" @ (1, 99) 11
 RNDLEVEL:          "asmod" "A" @ (1, 99) 6
 RNDLEVEL:          "heck" "Q" @ (1, 99) 96
 RNDLEVEL:          "heck" "Q" @ (1, 99) 96

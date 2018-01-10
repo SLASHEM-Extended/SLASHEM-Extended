@@ -2775,7 +2775,7 @@ makelevel()
 	    case 60:
 	    case 61:
 
-		switch (rnd(69)) {
+		switch (rnd(74)) {
 
 			case 1: makemaz("egehn-1"); return;
 			case 2: makemaz("egehn-2"); return;
@@ -2846,6 +2846,11 @@ makelevel()
 			case 67: makemaz("egehn-67"); return;
 			case 68: makemaz("egehn-68"); return;
 			case 69: makemaz("egehn-69"); return;
+			case 70: makemaz("egehn-70"); return;
+			case 71: makemaz("egehn-71"); return;
+			case 72: makemaz("egehn-72"); return;
+			case 73: makemaz("egehn-73"); return;
+			case 74: makemaz("egehn-74"); return;
 
 		}
 		break;
@@ -4396,7 +4401,7 @@ makelevel()
 	    case 60:
 	    case 61:
 
-		switch (rnd(69)) {
+		switch (rnd(74)) {
 
 			case 1: makemaz("hgehn-1"); return;
 			case 2: makemaz("hgehn-2"); return;
@@ -4467,6 +4472,11 @@ makelevel()
 			case 67: makemaz("hgehn-67"); return;
 			case 68: makemaz("hgehn-68"); return;
 			case 69: makemaz("hgehn-69"); return;
+			case 70: makemaz("hgehn-70"); return;
+			case 71: makemaz("hgehn-71"); return;
+			case 72: makemaz("hgehn-72"); return;
+			case 73: makemaz("hgehn-73"); return;
+			case 74: makemaz("hgehn-74"); return;
 
 		}
 		break;
@@ -6434,7 +6444,7 @@ makelevel()
 	    case 60:
 	    case 61:
 
-		switch (rnd(69)) {
+		switch (rnd(74)) {
 
 			case 1: makemaz("egehn-1"); return;
 			case 2: makemaz("egehn-2"); return;
@@ -6505,6 +6515,11 @@ makelevel()
 			case 67: makemaz("egehn-67"); return;
 			case 68: makemaz("egehn-68"); return;
 			case 69: makemaz("egehn-69"); return;
+			case 70: makemaz("egehn-70"); return;
+			case 71: makemaz("egehn-71"); return;
+			case 72: makemaz("egehn-72"); return;
+			case 73: makemaz("egehn-73"); return;
+			case 74: makemaz("egehn-74"); return;
 
 		}
 		break;
@@ -8050,7 +8065,7 @@ makelevel()
 	    case 60:
 	    case 61:
 
-		switch (rnd(69)) {
+		switch (rnd(74)) {
 
 			case 1: makemaz("hgehn-1"); return;
 			case 2: makemaz("hgehn-2"); return;
@@ -8121,6 +8136,11 @@ makelevel()
 			case 67: makemaz("hgehn-67"); return;
 			case 68: makemaz("hgehn-68"); return;
 			case 69: makemaz("hgehn-69"); return;
+			case 70: makemaz("hgehn-70"); return;
+			case 71: makemaz("hgehn-71"); return;
+			case 72: makemaz("hgehn-72"); return;
+			case 73: makemaz("hgehn-73"); return;
+			case 74: makemaz("hgehn-74"); return;
 
 		}
 		break;

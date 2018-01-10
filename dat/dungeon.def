@@ -174,13 +174,13 @@ LEVEL:          "fakewiz1" "F" @ (30, 15)
 LEVEL:          "fakewiz2" "G" @ (30, 15)
 # The demon levels
 RNDLEVEL:          "juibl" "J" @ (2, 47) 95 4
-RNDLEVEL:          "yeeno" "E" @ (2, 47) 95 12
+RNDLEVEL:          "yeeno" "E" @ (2, 47) 95 13
 RNDLEVEL:          "orcus" "O" @ (2, 47) 95 6
-RNDLEVEL:          "demog" "D" @ (2, 47) 95 7
+RNDLEVEL:          "demog" "D" @ (2, 47) 95 9
 # The devil levels
 RNDLEVEL:          "baalz" "B" @ (2, 47) 95 12
-RNDLEVEL:          "geryo" "R" @ (2, 47) 95 8
-RNDLEVEL:          "dispa" "S" @ (2, 47) 95 10
+RNDLEVEL:          "geryo" "R" @ (2, 47) 95 9
+RNDLEVEL:          "dispa" "S" @ (2, 47) 95 11
 RNDLEVEL:          "asmod" "A" @ (2, 47) 95 6
 RNDLEVEL:	"hllma" "H" @ (2, 47) 75 10
 BRANCH:         "Sheol" @ (3, 46) down
@@ -386,20 +386,20 @@ RNDLEVEL:		"levgn" "V" @ (1, 99) 80 95
 RNDLEVEL:		"levgn" "V" @ (1, 99) 80 95
 RNDLEVEL:		"levgn" "V" @ (1, 99) 80 95
 RNDLEVEL:          "juibl" "K" @ (1, 99) 95 4
-RNDLEVEL:          "yeeno" "E" @ (1, 99) 95 12
+RNDLEVEL:          "yeeno" "E" @ (1, 99) 95 13
 RNDLEVEL:          "orcus" "O" @ (1, 99) 95 6
-RNDLEVEL:          "demog" "D" @ (1, 99) 95 7
+RNDLEVEL:          "demog" "D" @ (1, 99) 95 9
 RNDLEVEL:          "baalz" "C" @ (1, 99) 95 12
-RNDLEVEL:          "geryo" "R" @ (1, 99) 95 8
-RNDLEVEL:          "dispa" "S" @ (1, 99) 95 10
+RNDLEVEL:          "geryo" "R" @ (1, 99) 95 9
+RNDLEVEL:          "dispa" "S" @ (1, 99) 95 11
 RNDLEVEL:          "asmod" "A" @ (1, 99) 95 6
 RNDLEVEL:          "juibl" "K" @ (1, 99) 95 4
-RNDLEVEL:          "yeeno" "E" @ (1, 99) 95 12
+RNDLEVEL:          "yeeno" "E" @ (1, 99) 95 13
 RNDLEVEL:          "orcus" "O" @ (1, 99) 95 6
-RNDLEVEL:          "demog" "D" @ (1, 99) 95 7
+RNDLEVEL:          "demog" "D" @ (1, 99) 95 9
 RNDLEVEL:          "baalz" "C" @ (1, 99) 95 12
-RNDLEVEL:          "geryo" "R" @ (1, 99) 95 8
-RNDLEVEL:          "dispa" "S" @ (1, 99) 95 10
+RNDLEVEL:          "geryo" "R" @ (1, 99) 95 9
+RNDLEVEL:          "dispa" "S" @ (1, 99) 95 11
 RNDLEVEL:          "asmod" "A" @ (1, 99) 95 6
 RNDLEVEL:          "heck" "Q" @ (1, 99) 90 96
 RNDLEVEL:          "heck" "Q" @ (1, 99) 90 96

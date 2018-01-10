@@ -10407,6 +10407,1264 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 
 
+#
+# A Geryon level
+#
+MAZE:"egehn-70",random
+FLAGS: noteleport,lethe,hardfloor
+GEOMETRY:center,center
+MAP
+             }}}}}}}}                     }}      }}}}}    }}}}             
+  .... ....III}}}I}}        ....    ..   III}    }III}}}}}}}}}II}     ....  
+  ........III}}IIII}}}}II..+..... ....+.II}}II I}}}IIII}}I}}}III}..  .....  
+  ..  ...III}}IIIIII}II}II.    .....   .II}}III}}}IIIII}III}III}}I..  ....  
+     .III}}}}IIIIII}III}}II...  }..   III}}}IIII}}IIII}IIIII}}I}}II..   #   
+  ...IIIIII}}IIII}}}IIII}}}III  }}     }}}}}}II}IIIII}}IIII}}IIII}II..###   
+ ...}IIIIIIII}}II}}I}}}}III}}}}         }}III}}}}}}}}}IIII}}IIII}}}II. #    
+ ..I}IIIIIII}}}}}III}}II}}IIII}}I   -----}IIII}}III}}}}II}}}}IIII}}}I  ##   
+ ..II}IIIII}}}IIIII}}IIIII}}III}II  |...|}IIIII}}III}}}}}III}}}}}II}}   #   
+  IIII}}IIII}}IIII}}IIIII}}}}I}}}II |...| }}IIII}IIII}}IIII}}}IIII}}    #   
+   IIII}}}I}II}IIII}}IIIII}}}}I}}}I}--+--  I}}II}}IIIII}IIII}}}IIII}}.  ..  
+   }IIIIII}IIII}}}}II}}}III}}}}}}II}}|.|    II}}}IIIII}}}II}}}I}IIII}}. ... 
+  II}IIIII}IIIII}IIIII}}}}}I}}}}}}I}}F.|     III}}}}IIII}}}}III}}II}}}.#... 
+ III}}III}}}IIIII}IIIII}IIIII}}}II}} |.|      III}II}}}}}III}}II}}III}I  .. 
+ IIII}}II}II}III}}}}III}}IIII}III}}---S----  III}IIII}}IIIII}}}II}II}}}  #  
+ .IIIII}}IIII}}}}}}}}III}}IIII}}I} |......|    }}}IIII}}IIIII}}}}I}}}    #  
+ ...IIII}}}IIII}}}III}III}IIIII}}  |.\....|     .IIII}}IIIII}}}III}}. ....  
+ ....IIII}}}}II}}IIII}}II}IIIII    |......S## ##..IIII}}III}}}III}}. ...... 
+  ....IIII}}}}}}      }}}IIII      -------- ###  ....III}}}}}}}II}..#.....  
+           }}}}        }}}}                              }}}}}}}}}}}        
+ENDMAP
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7    7
+# Regions
+REGION:(00,00,34,19),unlit,"ordinary"
+REGION:(40,00,75,19),unlit,"ordinary"
+REGION:(24,00,39,05),unlit,"ordinary"
+REGION:(36,15,41,17),lit,"ordinary"
+REGION:(38,10,38,12),unlit,"ordinary"
+REGION:(37,08,39,09),lit,"ordinary"
+# Stairs
+STAIR:(02,17),up
+STAIR:(37,08),down
+BRANCH:(67,01,75,19),(00,00,00,00)
+TELEPORT_REGION:(67,01,75,19),(00,00,00,00)
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Doors
+DOOR:locked,(27,02)
+DOOR:locked,(38,02)
+DOOR:locked,(42,17)
+DOOR:locked,(38,14)
+DOOR:locked,(38,10)
+# The master
+MONSTER:'&',random,(37,16)
+OBJECT:'?',"root password detection",(37,16)
+OBJECT:'(',"frost horn",(37,16)
+# His court
+MONSTER:'&',random,(38,15)
+MONSTER:'&',random,(38,17)
+MONSTER:'&',random,(40,15)
+MONSTER:'&',random,(40,17)
+MONSTER:'&',"succubus",(36,15)
+MONSTER:'&',"succubus",(36,17)
+MONSTER:'b',"gelatinous cube",(41,15)
+MONSTER:'b',"gelatinous cube",(41,17)
+# His doorbell
+TRAP:"board",(43,17)
+# The final guardians
+MONSTER:'j',"blue jelly",(37,08)
+MONSTER:'j',"blue jelly",(37,09)
+MONSTER:'j',"blue jelly",(38,08)
+MONSTER:'j',"blue jelly",(38,09)
+MONSTER:'j',"blue jelly",(39,08)
+MONSTER:'j',"blue jelly",(39,09)
+# A family of Ice Trolls
+MONSTER:'T',"ice troll",(02,01)
+MONSTER[90%]:'T',random,(02,02)
+MONSTER[80%]:'T',random,(02,03)
+MONSTER[70%]:'T',random,(03,01)
+MONSTER[50%]:'T',random,(03,02)
+MONSTER[30%]:'T',random,(04,01)
+MONSTER[10%]:'T',random,(06,02)
+# This is fun with all that ice around here...
+OBJECT[50%]:'/',"fire",(03,02)
+# A few Yetis
+MONSTER:'Y',"yeti",(33,03)
+MONSTER:'Y',"yeti",(30,01)
+MONSTER:'Y',"yeti",(36,02)
+MONSTER[75%]:'Y',"yeti",(28,02)
+MONSTER[75%]:'Y',"yeti",(37,02)
+MONSTER[50%]:'Y',"yeti",(30,02)
+MONSTER[50%]:'Y',"yeti",(37,02)
+MONSTER[50%]:'Y',"yeti",(34,04)
+# Stray Frost giants
+MONSTER:'H',"frost giant",(20,13)
+MONSTER:'H',"frost giant",(20,12)
+MONSTER:'H',"frost giant",(20,14)
+MONSTER:'H',"frost giant",(21,14)
+# Dragons
+MONSTER:'D',random,(71,02),asleep
+OBJECT:'(',"chest",(69,02)
+GOLD:random,(73,01)
+MONSTER:'D',random,(73,11),asleep
+OBJECT:'(',"chest",(74,11)
+GOLD:random,(74,12)
+MONSTER:'D',random,(71,17),asleep
+OBJECT:'(',"chest",(74,17)
+GOLD:random,(70,16)
+# Finally some wolves
+MONSTER:'d',random,(57,10)
+MONSTER[90%]:'d',random,(58,08)
+MONSTER[60%]:'d',random,(53,10)
+MONSTER[30%]:'d',random,(57,05)
+
+# 
+# The Dispater level
+#
+# Based upon Tom Proudfoots Slash'em Dispater level
+#
+# Dispaters origins are in the Roman god of the underworld.
+# originally Dis Pater (rich father) he is associated with
+# wealth (naturally found underground).
+#
+MAZE:"egehn-71",random
+FLAGS: noteleport,hardfloor,lethe
+GEOMETRY:right,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+              }}}}                               
+---------       }}}}    ..        ....     ------
+|...|.S.|     ..}}}}. .....     .......----|.S..|
+|.|S|.|S|    ..}}}}..  ....    .. .... |...----.|
+|.|...|.|    .}}}}..      ..  ..       |...S..|.|
+|.-------..  .}}}}.     ........    ----S----.|.|
+|.|.....|......}}}}..........  -----|.....|.S.|.|
+|.|.--|.|.......}}}}...... .   |....+.....|.|.|.|
+|.|...|S|  ...  }}}}.....  .|---+-----S---|.|.S.|
+-S-S|.|.|....  }}}}   ... ..+............ |S---.|
+....|S--|S|....}}}}  ...... | .........\..F...|.|
+-S-S|...|.|.....}}}}....  ..+............ |----S|
+|.|.|.|.|S| ... }}}}.....  .|---+-----S---|..S..|
+|.|.|.|.|.| ..  }}}} ..... ..  |....+.....|-----|
+|.|...|...|  ..}}}}.... ..  .. -----|.....S....| 
+|.---------  .}}}}...    .. ..      -------....| 
+|.....|     .. }}}}...  .....  ...  .... .+....| 
+|----.|    ....}}}} .. .. ...... .... ....------ 
+|.S...|      .}}}}...   .....      .....         
+-------        }}}}
+ENDMAP
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7
+
+# Regions
+REGION:(00,00,48,19),unlit,"ordinary"
+
+# Branch and Teleport points
+BRANCH:levregion(01,00,74,19),levregion(26,00,74,19)
+TELEPORT_REGION:levregion(01,00,74,19),levregion(26,00,74,19)
+
+# Protect the walls
+NON_DIGGABLE:(00,00,48,19)
+
+# Maze the rest of the level
+MAZEWALK:(00,10),west
+
+# Stairs
+STAIR:levregion(01,00,74,19),levregion(26,00,74,19),up
+STAIR:(43,12),down
+
+# Doors
+DOOR:locked,(01,09)
+DOOR:locked,(03,09)
+DOOR:locked,(01,11)
+DOOR:locked,(03,11)
+DOOR:locked,(05,10)
+DOOR:locked,(07,08)
+DOOR:locked,(09,10)
+DOOR:locked,(09,12)
+DOOR:locked,(02,18)
+DOOR:locked,(03,03)
+DOOR:locked,(06,02)
+DOOR:locked,(07,03)
+
+DOOR:locked,(28,09)
+DOOR:locked,(28,11)
+DOOR:locked,(32,08)
+DOOR:locked,(32,12)
+DOOR:locked,(38,08)
+DOOR:locked,(38,12)
+DOOR:locked,(36,07)
+DOOR:locked,(36,13)
+DOOR:locked,(40,05)
+DOOR:locked,(43,04)
+DOOR:locked,(45,02)
+DOOR:locked,(44,06)
+DOOR:locked,(46,08)
+DOOR:locked,(43,09)
+DOOR:locked,(47,11)
+DOOR:locked,(45,12)
+DOOR:locked,(42,14)
+DOOR:locked,(42,16)
+
+# Some random money
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+
+# Some random gems
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+
+# Some random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+
+# Gold in the outer vaults
+MONSTER:''',"gold golem",(07,04)
+OBJECT:'*',random,(07,04)
+
+MONSTER:''',"gold golem",(07,02)
+OBJECT:'*',random,(07,02)
+
+MONSTER:''',"gold golem",(03,04)
+OBJECT:'*',random,(03,04)
+
+MONSTER:''',"gold golem",(07,09)
+OBJECT:'*',random,(07,09)
+
+MONSTER:''',"gold golem",(01,18)
+OBJECT:'*',random,(01,18)
+
+MONSTER:''',"gold golem",(09,11)
+OBJECT:'*',random,(09,11)
+
+# A river of gold?
+
+GOLD:random,(15,02)
+GOLD:random,(14,03)
+GOLD:random,(13,05)
+GOLD:random,(14,06)
+GOLD:random,(15,07)
+GOLD:random,(14,10)
+GOLD:random,(15,11)
+GOLD:random,(14,14)
+GOLD:random,(13,15)
+GOLD:random,(14,17)
+GOLD:random,(13,18)
+
+GOLD:random,(20,02)
+GOLD:random,(19,03)
+GOLD:random,(18,04)
+GOLD:random,(19,06)
+GOLD:random,(20,07)
+GOLD:random,(21,08)
+GOLD:random,(20,11)
+GOLD:random,(20,12)
+GOLD:random,(19,14)
+GOLD:random,(18,15)
+GOLD:random,(19,16)
+GOLD:random,(18,18)
+
+# Outer Guardians
+MONSTER:''',random,(11,06)
+MONSTER:''',random,(12,11)
+MONSTER:''',random,(13,04)
+MONSTER:''',random,(13,15)
+
+# Fishies in the river
+MONSTER:';',random,(17,02)
+MONSTER:';',random,(15,05)
+MONSTER:';',random,(18,08)
+MONSTER:';',random,(17,11)
+MONSTER:';',random,(16,14)
+MONSTER:';',random,(17,17)
+
+# Nearside Guardians
+MONSTER:''',random,(26,04)
+MONSTER:''',random,(25,15)
+MONSTER:''',random,(29,05)
+MONSTER:''',random,(27,13)
+MONSTER:''',random,(25,10)
+
+# The fellow in residence
+MONSTER:'&',random,(39,10)
+OBJECT:'?',"root password detection",(39,10)
+
+# His court
+MONSTER:'&',random,(38,09),asleep,hostile
+MONSTER:'&',random,(38,11),asleep,hostile
+
+MONSTER:'&',"succubus",(39,09),asleep,hostile
+MONSTER:'&',"incubus",(39,11),asleep,hostile
+
+MONSTER:''',random,(35,09),asleep,hostile
+MONSTER:''',random,(35,11),asleep,hostile
+
+# His guards
+MONSTER:'&',random,(31,09),asleep,hostile
+MONSTER:'&',random,(33,09),asleep,hostile
+MONSTER:'&',random,(31,11),asleep,hostile
+MONSTER:'&',random,(31,11),asleep,hostile
+MONSTER:'&',random,(30,10),asleep,hostile
+
+# Some doorbells
+TRAP:"board",(27,09)
+TRAP:"board",(27,11)
+TRAP:"board",(29,09)
+TRAP:"board",(29,09)
+TRAP:"board",(32,09)
+TRAP:"board",(32,11)
+
+# Traps for the unwary
+TRAP:"anti magic",(32,07)
+TRAP:"anti magic",(32,13)
+TRAP:"magic",(33,07)
+TRAP:"magic",(33,13)
+TRAP:"polymorph",(34,07)
+TRAP:"polymorph",(34,13)
+TRAP:"magic",(35,07)
+TRAP:"magic",(35,13)
+TRAP:"fire",(37,07)
+TRAP:"fire",(37,13)
+
+# Northern antichamber
+MONSTER:'&',random,(40,07)
+MONSTER:'&',random,(38,06)
+OBJECT:'(',"chest",(41,06)
+OBJECT:'(',"chest",(41,07)
+
+# Southern antichamber
+MONSTER:'&',random,(40,13)
+MONSTER:'&',random,(38,14)
+OBJECT:'(',"chest",(41,14)
+OBJECT:'(',"chest",(41,13)
+
+# Escape Room
+TRAP:"polymorph",(44,15)
+TRAP:"magic",(45,15)
+MONSTER:''',random,(43,15),asleep,hostile
+
+# Northern Vault
+TRAP:"board",(40,04)
+GOLD:random,(40,03)
+OBJECT:'*',random,(40,03)
+OBJECT:'*',random,(40,03)
+GOLD:random,(41,03)
+OBJECT:'*',random,(41,03)
+OBJECT:'*',random,(41,03)
+GOLD:random,(42,03)
+OBJECT:'*',random,(42,03)
+OBJECT:'*',random,(42,03)
+GOLD:random,(40,04)
+OBJECT:'*',random,(40,04)
+OBJECT:'*',random,(40,04)
+GOLD:random,(41,04)
+OBJECT:'*',random,(41,04)
+OBJECT:'*',random,(41,04)
+GOLD:random,(42,04)
+OBJECT:'*',random,(42,04)
+OBJECT:'*',random,(42,04)
+MONSTER:'m',random,(42,04)
+
+# Animate Gold
+MONSTER:''',"gold golem",(43,07)
+MONSTER:''',"gold golem",(45,06)
+MONSTER:''',"gold golem",(47,04)
+MONSTER:''',"gold golem",(47,12)
+
+# Exit chamber (and ref to old TV show - Saphire and Steel)
+MONSTER:''',random,(44,12)
+MONSTER:''',random,(43,12)
+GOLD:random,(43,12)
+GOLD:random,(44,12)
+GOLD:random,(46,12)
+GOLD:random,(47,12)
+
+# Barred Vault
+MONSTER:''',random,(43,10)
+MONSTER:''',random,(44,10)
+MONSTER:''',random,(45,10)
+GOLD:random,(43,10)
+GOLD:random,(44,10)
+GOLD:random,(45,10)
+OBJECT:'*',"diamond",(43,10)
+OBJECT:'*',"ruby",(43,10)
+OBJECT:'*',"loadstone",(43,10)
+OBJECT:'*',"emerald",(43,10)
+OBJECT:'*',"sapphire",(43,10)
+OBJECT:'*',"amethyst",(44,10)
+OBJECT:'*',"jade",(44,10)
+OBJECT:'*',"opal",(44,10)
+OBJECT:'*',"luckstone",(44,10)
+OBJECT:'*',"jacinth",(44,10)
+OBJECT:'*',"aquamarine",(45,10)
+OBJECT:'*',"fluorite",(45,10)
+OBJECT:'*',"loadstone",(45,10)
+OBJECT:'*',"jasper",(45,10)
+OBJECT:'*',"citrine",(45,10)
+
+# 
+# The Demogorgon level
+#
+# Based upon Tom Proudfoots Slash'em Demogorgon level
+#
+# Don't be fooled by Demogorgons apparently greek name, he was
+# created during the 12th century by a transcription error.
+# He is very loosly associated with power, might and dark
+# underground forces.
+#
+MAZE:"egehn-72",random
+FLAGS: noteleport,hardfloor,lethe
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                                  LLLL  ......   LLL    .LLLL  LLL          
+   ..        ......LLL           LLLL  ..... . LLLLLL  .LLLLLLLLLLLLLLLL    
+  ....    .....LLLL.....        LLLL     ... ..LLLLLLLLLLLLL .LLLLL LLLLL.  
+ ....      ...L      ...        LLLL  .-----  ...LLL    LLL   ..LL   LLL.   
+  ..        .      ....          LLLL..|...|------------FFF-         ....   
+   .     ....      .           ..LLLL..S...|...S...........|----------S---  
+   ..   ......   .....        ....LLLL.---+-FF.|....}}}....S...|L...L|...|  
+    ......LL... ..  ...      .....LLLL..L|...F.|....}}}....|--S|..\..S...|  
+   ..  ...LLL....  ......     ....LLLL..L|...F.|...........|...|.....|--+-  
+  ..    ......    ...L..     ....LLLL...L|FFFF.|------------...|.....|...|  
+ .....   ...    ....LL.... .....LLLL....L|.....|    |...S..S...|L...L|----  
+  ....   .        ...... ... ..LLLL....---+----- . |..-------|---S----      
+  ..   ...       ..          .LLLL.....S...|   LLL |.........|.......|      
+ ..   ..         .    ..      LLLL.....|...|  LL   |--FFF----|.......|      
+ .  ...       .....  ...L      LLLL....---S-   LLL    LLL    ----S----      
+ ....L..    ....  .....LL       LLLL      .     LLL  LLLLL     LL.LL        
+  ...LL......      ...LLLLL  LLLLLLL      ..   LLLLLLLLLLLLLL LLLL.LL       
+   ......           .LLL  LLLL  LLLL       ....LLLLL.....LLLLLL...LL        
+                                 LLLL         ......LLLLL......LLLL         
+ENDMAP
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7
+
+# Regions
+REGION:(00,00,75,18),unlit,"ordinary"
+
+# Branch and teleport points
+BRANCH:(00,00,24,18),(00,00,00,00)         
+TELEPORT_REGION:(00,00,24,18),(00,00,00,00)                 
+
+# Protect the walls
+NON_DIGGABLE:(35,00,75,18)
+
+# Stairs up and down
+STAIR:(02,03),up
+STAIR:(41,01),down
+
+# Doors
+DOOR:locked,(39,05)
+DOOR:locked,(39,12)
+DOOR:locked,(42,06)
+DOOR:locked,(42,11)
+DOOR:locked,(42,14)
+DOOR:locked,(47,05)
+DOOR:locked,(59,06)
+DOOR:locked,(62,07)
+DOOR:locked,(59,10)
+DOOR:locked,(56,10)
+DOOR:locked,(65,14)
+DOOR:locked,(65,11)
+DOOR:locked,(69,07)
+DOOR:locked,(72,08)
+DOOR:locked,(70,05)
+
+DRAWBRIDGE:(40,08),east,closed
+
+# A few random demons
+
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+
+# A few random traps
+
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+
+TRAP:"magic",random
+TRAP:"magic",random
+TRAP:"magic",random
+
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+
+# Outer defences
+
+MONSTER:'X',random,(10,05),asleep,hostile
+MONSTER:'X',random,(02,10),asleep,hostile
+MONSTER:'X',random,(11,09),asleep,hostile
+MONSTER:'X',random,(16,01),asleep,hostile
+MONSTER:'X',random,(22,08),asleep,hostile
+
+MONSTER:'H',random,(03,15),asleep,hostile
+MONSTER:'H',random,(04,17),asleep,hostile
+MONSTER:'H',random,(06,14),asleep,hostile
+MONSTER:'H',random,(06,17),asleep,hostile
+MONSTER:'H',random,(08,16),asleep,hostile
+
+MONSTER:'E',random,(11,08),asleep,hostile
+MONSTER:'E',random,(05,16),asleep,hostile
+MONSTER:'E',random,(17,02),asleep,hostile
+MONSTER:'E',random,(20,10),asleep,hostile
+MONSTER:'E',random,(22,17),asleep,hostile
+MONSTER:'E',random,(24,15),asleep,hostile
+
+MONSTER:'d',random,(21,08),asleep,hostile
+MONSTER:'d',random,(19,10),asleep,hostile
+MONSTER:'d',random,(23,09),asleep,hostile
+MONSTER:'d',random,(21,11),asleep,hostile
+
+MONSTER:'D',random,(21,15),asleep,hostile
+
+TRAP:"board",(06,07)
+TRAP:"board",(01,14)
+TRAP:"board",(09,11)
+TRAP:"board",(12,04)
+TRAP:"board",(18,06)
+TRAP:"board",(19,05)
+TRAP:"board",(11,16)
+TRAP:"board",(17,13)
+TRAP:"board",(19,15)
+
+# Guardians at the crossing
+
+MONSTER:'B',random,(32,05),asleep,hostile
+MONSTER:'B',random,(35,06),asleep,hostile
+MONSTER:'B',random,(30,12),asleep,hostile
+MONSTER:'B',random,(34,11),asleep,hostile
+ 
+MONSTER:'&',random,(31,08),asleep,hostile
+MONSTER:'&',random,(29,12),asleep,hostile
+MONSTER:'&',random,(33,08),asleep,hostile
+MONSTER:'&',random,(31,07),asleep,hostile
+
+MONSTER:'&',random,(37,09),asleep,hostile
+MONSTER:'&',random,(35,12),asleep,hostile
+MONSTER:'&',random,(39,10),asleep,hostile
+
+MONSTER:'E',random,(35,04),asleep,hostile
+MONSTER:'E',random,(32,14),asleep,hostile
+
+TRAP:"board",(28,10)
+TRAP:"board",(32,07)
+
+# The cage trap
+
+MONSTER:'D',random,(43,09)
+
+MONSTER:'&',random,(41,05)
+
+MONSTER:'&',random,(41,12)
+
+MONSTER:'&',random,(46,10)
+MONSTER:'&',random,(46,08)
+MONSTER:'&',random,(44,05)
+MONSTER:'&',random,(46,05)
+
+# The water room
+
+MONSTER:'&',random,(50,06)
+MONSTER:'&',random,(51,08)
+MONSTER:'&',random,(55,08)
+MONSTER:'&',random,(56,05)
+
+MONSTER:'n',"water nymph",(48,06)
+MONSTER:'n',"water nymph",(49,08)
+MONSTER:'n',"water nymph",(56,08)
+MONSTER:'n',"water nymph",(58,06)
+MONSTER:'n',"water nymph",(53,05)
+MONSTER:'n',"water nymph",(53,08)
+
+MONSTER:'&',random,(58,08)
+
+MONSTER:'g',"gremlin",(48,08)
+
+# Secret rooms and passages are empty
+
+# Gallery
+
+MONSTER:'L',random,(56,12),asleep,hostile
+
+MONSTER:'&',random,(55,12)
+MONSTER:'&',random,(54,12)
+MONSTER:'D',random,(59,12)
+
+TRAP:"board",(54,10)
+
+# Southern Lava Walk
+
+MONSTER:'E',random,(48,16)
+MONSTER:'E',random,(55,17)
+MONSTER:'E',random,(63,16)
+
+MONSTER:':',random,(52,17)
+MONSTER:':',random,(62,18)
+
+MONSTER:'V',random,(68,16)
+
+MONSTER:'D',random,(49,11)
+OBJECT:'(',"chest",(49,11)
+OBJECT:'*',"ruby",(49,11)
+OBJECT:'*',"ruby",(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+GOLD:random,(49,11)
+
+# Antichamber and throne room
+
+MONSTER:''',random,(65,12),asleep,hostile
+MONSTER:''',random,(64,12),asleep,hostile
+MONSTER:''',random,(66,12),asleep,hostile
+
+MONSTER:'&',random,(62,13)
+MONSTER:'&',random,(68,13)
+
+TRAP:"board",(65,13)
+TRAP:"magic",(64,13)
+TRAP:"magic",(66,13)
+
+# The fellow in residence
+
+MONSTER:'&',random,(66,07)
+OBJECT:'?',"root password detection",(66,07)
+
+MONSTER:'&',random,(65,08)
+MONSTER:'&',random,(67,08)
+MONSTER:'&',random,(64,09)
+MONSTER:'&',random,(68,09)
+MONSTER:'&',"succubus",(67,07)
+MONSTER:'&',"succubus",(65,07)
+
+MONSTER:'V',random,(66,18)
+
+OBJECT:'(',"chest",(66,06)
+OBJECT:'(',"chest",(64,08)
+OBJECT:'(',"chest",(68,08)
+
+# Fake stairs
+
+MONSTER:'m',random,(71,09),m_feature "staircase down"
+
+# Northern Lava Walk
+
+MONSTER:'E',random,(64,02)
+MONSTER:'E',random,(57,02)
+MONSTER:'E',random,(50,01)
+
+MONSTER:':',random,(54,02)
+MONSTER:':',random,(67,01)
+
+MONSTER:'V',random,(57,00)
+
+# Exit chamber
+
+MONSTER:'&',random,(42,01),asleep,hostile
+
+TRAP:"board",(45,01)
+
+# Fixed version by Amy that prevents you from cheating by avoiding Demogorgon altogether
+MAZE:"egehn-73",random
+FLAGS: noteleport,hardfloor,lethe
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                                  LLLL  ......   LLL    .LLLL  LLL          
+   ..        ......LLL           LLLL  ..... . LLLLLL  .LLLLLLLLLLLLLLLL    
+  ....    .....LLLL.....        LLLL     ... ..LLLLLLLLLLLLL .LLLLL LLLLL.  
+ ....      ...L      ...        LLLL  .-----  ...LLL    LLL   ..LL   LLL.   
+  ..        .      ....          LLLL..|...|------------FFF-         ....   
+   .     ....      .           ..LLLL..S...|...S...........|----------S---  
+   ..   ......   .....        ....LLLL.---+-FF.|....}}}....S...|L...L|...|  
+    ......LL... ..  ...      .....LLLL..L|...F.|....}}}....|--S|..\..S...|  
+   ..  ...LLL....  ......     ....LLLL..L|...F.|...........|...|.....|--+-  
+  ..    ......    ...L..     ....LLLL...L|FFFF.|------------...|.....|...|  
+ .....   ...    ....LL.... .....LLLL....L|.....|    |...S..S...|L...L|----  
+  ....   .        ...... ... ..LLLL....---+----- . |..-------|---S----      
+  ..   ...       ..          .LLLL.....S...|   LLL |.........|.......|      
+ ..   ..         .    ..      LLLL.....|...|  LL   |--FFF----|.......|      
+ .  ...       .....  ...L      LLLL....---S-   LLL    LLL    ----S----      
+ ....L..    ....  .....LL       LLLL      .     LLL  LLLLL     LL.LL        
+  ...LL......      ...LLLLL  LLLLLLL      ..   LLLLLLLLLLLLLL LLLL.LL       
+   ......           .LLL  LLLL  LLLL       ....LLLLL.....LLLLLL...LL        
+                                 LLLL         ......LLLLL......LLLL         
+ENDMAP
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7
+
+# Regions
+REGION:(00,00,75,18),unlit,"ordinary"
+
+# Branch and teleport points
+BRANCH:(00,00,24,18),(00,00,00,00)         
+TELEPORT_REGION:(00,00,24,18),(00,00,00,00)                 
+
+# Protect the walls
+NON_DIGGABLE:(35,00,75,18)
+
+# Stairs up and down
+STAIR:(02,03),up
+STAIR:(66,08),down
+
+# Doors
+DOOR:locked,(39,05)
+DOOR:locked,(39,12)
+DOOR:locked,(42,06)
+DOOR:locked,(42,11)
+DOOR:locked,(42,14)
+DOOR:locked,(47,05)
+DOOR:locked,(59,06)
+DOOR:locked,(62,07)
+DOOR:locked,(59,10)
+DOOR:locked,(56,10)
+DOOR:locked,(65,14)
+DOOR:locked,(65,11)
+DOOR:locked,(69,07)
+DOOR:locked,(72,08)
+DOOR:locked,(70,05)
+
+DRAWBRIDGE:(40,08),east,closed
+
+# A few random demons
+
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+
+# A few random traps
+
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+
+TRAP:"magic",random
+TRAP:"magic",random
+TRAP:"magic",random
+
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+
+# Outer defences
+
+MONSTER:'X',random,(10,05),asleep,hostile
+MONSTER:'X',random,(02,10),asleep,hostile
+MONSTER:'X',random,(11,09),asleep,hostile
+MONSTER:'X',random,(16,01),asleep,hostile
+MONSTER:'X',random,(22,08),asleep,hostile
+
+MONSTER:'H',random,(03,15),asleep,hostile
+MONSTER:'H',random,(04,17),asleep,hostile
+MONSTER:'H',random,(06,14),asleep,hostile
+MONSTER:'H',random,(06,17),asleep,hostile
+MONSTER:'H',random,(08,16),asleep,hostile
+
+MONSTER:'E',random,(11,08),asleep,hostile
+MONSTER:'E',random,(05,16),asleep,hostile
+MONSTER:'E',random,(17,02),asleep,hostile
+MONSTER:'E',random,(20,10),asleep,hostile
+MONSTER:'E',random,(22,17),asleep,hostile
+MONSTER:'E',random,(24,15),asleep,hostile
+
+MONSTER:'d',random,(21,08),asleep,hostile
+MONSTER:'d',random,(19,10),asleep,hostile
+MONSTER:'d',random,(23,09),asleep,hostile
+MONSTER:'d',random,(21,11),asleep,hostile
+
+MONSTER:'D',random,(21,15),asleep,hostile
+
+TRAP:"board",(06,07)
+TRAP:"board",(01,14)
+TRAP:"board",(09,11)
+TRAP:"board",(12,04)
+TRAP:"board",(18,06)
+TRAP:"board",(19,05)
+TRAP:"board",(11,16)
+TRAP:"board",(17,13)
+TRAP:"board",(19,15)
+
+# Guardians at the crossing
+
+MONSTER:'B',random,(32,05),asleep,hostile
+MONSTER:'B',random,(35,06),asleep,hostile
+MONSTER:'B',random,(30,12),asleep,hostile
+MONSTER:'B',random,(34,11),asleep,hostile
+ 
+MONSTER:'&',random,(31,08),asleep,hostile
+MONSTER:'&',random,(29,12),asleep,hostile
+MONSTER:'&',random,(33,08),asleep,hostile
+MONSTER:'&',random,(31,07),asleep,hostile
+
+MONSTER:'&',random,(37,09),asleep,hostile
+MONSTER:'&',random,(35,12),asleep,hostile
+MONSTER:'&',random,(39,10),asleep,hostile
+
+MONSTER:'E',random,(35,04),asleep,hostile
+MONSTER:'E',random,(32,14),asleep,hostile
+
+TRAP:"board",(28,10)
+TRAP:"board",(32,07)
+
+# The cage trap
+
+MONSTER:'D',random,(43,09)
+
+MONSTER:'&',random,(41,05)
+
+MONSTER:'&',random,(41,12)
+
+MONSTER:'&',random,(46,10)
+MONSTER:'&',random,(46,08)
+MONSTER:'&',random,(44,05)
+MONSTER:'&',random,(46,05)
+
+# The water room
+
+MONSTER:'&',random,(50,06)
+MONSTER:'&',random,(51,08)
+MONSTER:'&',random,(55,08)
+MONSTER:'&',random,(56,05)
+
+MONSTER:'n',"water nymph",(48,06)
+MONSTER:'n',"water nymph",(49,08)
+MONSTER:'n',"water nymph",(56,08)
+MONSTER:'n',"water nymph",(58,06)
+MONSTER:'n',"water nymph",(53,05)
+MONSTER:'n',"water nymph",(53,08)
+
+MONSTER:'&',random,(58,08)
+
+MONSTER:'g',"gremlin",(48,08)
+
+# Secret rooms and passages are empty
+
+# Gallery
+
+MONSTER:'L',random,(56,12),asleep,hostile
+
+MONSTER:'&',random,(55,12)
+MONSTER:'&',random,(54,12)
+MONSTER:'D',random,(59,12)
+
+TRAP:"board",(54,10)
+
+# Southern Lava Walk
+
+MONSTER:'E',random,(48,16)
+MONSTER:'E',random,(55,17)
+MONSTER:'E',random,(63,16)
+
+MONSTER:':',random,(52,17)
+MONSTER:':',random,(62,18)
+
+MONSTER:'V',random,(68,16)
+
+MONSTER:'D',random,(49,11)
+OBJECT:'(',"chest",(49,11)
+OBJECT:'*',"ruby",(49,11)
+OBJECT:'*',"ruby",(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+GOLD:random,(49,11)
+
+# Antichamber and throne room
+
+MONSTER:''',random,(65,12),asleep,hostile
+MONSTER:''',random,(64,12),asleep,hostile
+MONSTER:''',random,(66,12),asleep,hostile
+
+MONSTER:'&',random,(62,13)
+MONSTER:'&',random,(68,13)
+
+TRAP:"board",(65,13)
+TRAP:"magic",(64,13)
+TRAP:"magic",(66,13)
+
+# The fellow in residence
+
+MONSTER:'&',random,(66,07)
+OBJECT:'?',"root password detection",(66,07)
+
+MONSTER:'&',random,(65,08)
+MONSTER:'&',random,(67,08)
+MONSTER:'&',random,(64,09)
+MONSTER:'&',random,(68,09)
+MONSTER:'&',"succubus",(67,07)
+MONSTER:'&',"succubus",(65,07)
+
+MONSTER:'V',random,(66,18)
+
+OBJECT:'(',"chest",(66,06)
+OBJECT:'(',"chest",(64,08)
+OBJECT:'(',"chest",(68,08)
+
+# Fake stairs
+
+MONSTER:'m',random,(71,09),m_feature "staircase down"
+
+# Northern Lava Walk
+
+MONSTER:'E',random,(64,02)
+MONSTER:'E',random,(57,02)
+MONSTER:'E',random,(50,01)
+
+MONSTER:':',random,(54,02)
+MONSTER:':',random,(67,01)
+
+MONSTER:'V',random,(57,00)
+
+# Exit chamber
+
+MONSTER:'&',random,(42,01),asleep,hostile
+
+TRAP:"board",(45,01)
+
+# 
+# The Yeenoghu level
+#
+# Based upon Tom Proudfoots Slash'Em Yeenoghu level
+#
+# Yeenoghu is the demon lord of the Gnolls, a secretive, silent
+# race of mountain dwelling creatures.
+#
+MAZE:"egehn-74",random
+FLAGS: noteleport,hardfloor,lethe
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+       }}}}       .....  ..    ----------- ------------               ...   
+  ....  }}}}    ...   H ....  .|....|....| |......S...-------------- ..}... 
+ ......  }}}}   H   .H......H..|....|....| |FFFFFF|...S..........+.|  ... . 
+  ....  }}}}   ...H..  .....   |....|S--S---..........|...--------------  . 
+   . H }}}}  .....      ...  ---....|..F.......{......|S--|............|--S-
+   H ..}}}}H......H..    ..H........|..F......{.{.....F...+.........\..S...|
+ ...   }}}}  ....   ...      ---....|..F.......{......|---|............|----
+......  }}}}        .....  ..H.|....|---S---..........|...--------------  . 
+.......F}}}}   ..    ...  ... .|....|....| |FFFFFF|...S..........+.| .. ... 
+ ......FFFFF.....H..     ....H.|....S....| |......S...--------------  ......
+  ..   }}}}F.  .. .....H.. ..  ----------- ------------...   .... ..H.. ..  
+   .  }}}}  ..  . ...    H  ..     .....     ...H.....H. H .H.  ...   H  .H.
+   H   }}}}  .  .  .  .H..   .H.    .....   ...          ...   ...  ...    .
+   ..   }}}}  H H    .. ...    ...  ...... .....H. .H........   H  .....  ..
+ .....   }}}} .... .H.  ....  .. .H....... H ..  ... ...... .H. ..H....  ...
+  ....H..}.}.H...... ..  ...  H     ......H.    ..    ....    ...     .H... 
+ ....   }.}.   ....   .. ...H...     ..... .H......  ......H.H.....     ..  
+       }}}}            .H..    .....H...      ...     ....     ...          
+ENDMAP
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7
+#
+# Regions
+REGION:(00,00,67,17),unlit,"ordinary"
+REGION:(68,00,75,17),unlit,"ordinary"
+REGION:(59,04,70,06),lit,"ordinary"
+
+# Branch and teleport points
+BRANCH:(00,11,75,17),(00,00,00,00)         
+TELEPORT_REGION:(00,11,75,17),(00,00,00,00)                 
+
+# Protect the walls
+NON_DIGGABLE:(00,00,75,17)
+
+# Stairs up and down
+STAIR:(69,13),up
+STAIR:(73,05),down
+
+# Doors
+DOOR:locked,(36,09)
+DOOR:locked,(37,03)
+DOOR:locked,(40,03)
+DOOR:locked,(40,07)
+DOOR:locked,(50,01)
+DOOR:locked,(50,09)
+DOOR:locked,(54,08)
+DOOR:locked,(54,02)
+DOOR:locked,(55,04)
+DOOR:locked,(58,05)
+DOOR:locked,(65,02)
+DOOR:locked,(65,08)
+DOOR:locked,(71,05)
+DOOR:locked,(74,04)
+
+# A few random citizens
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+MONSTER:'G',random,random
+
+# A few random hazards
+MONSTER:'e',random,random
+MONSTER:'e',random,random
+MONSTER:'e',random,random
+MONSTER:'e',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# Some random junk
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:')',random,random,cursed,-1
+OBJECT:')',random,random,cursed,-1
+OBJECT:')',random,random,cursed,-1
+OBJECT:'[',random,random,cursed,-1
+OBJECT:'[',random,random,cursed,-1
+OBJECT:'[',random,random,cursed,-1
+OBJECT:'%',random,random,cursed,+0
+OBJECT:'%',random,random,cursed,+0
+OBJECT:'%',random,random,cursed,+0
+
+# Fishies in the river
+MONSTER:';',random,(10,02)
+MONSTER:';',random,(09,05)
+MONSTER:';',random,(09,08)
+MONSTER:';',random,(08,10)
+MONSTER:';',random,(10,13)
+MONSTER:';',random,(08,16)
+
+# Flying things
+MONSTER:'B',random,(12,02)
+MONSTER:'B',random,(06,11)
+MONSTER:'a',random,(11,07)
+MONSTER:'a',random,(11,13)
+
+# The first camp...
+MONSTER:'G',random,(54,13)
+MONSTER:'G',random,(57,15)
+MONSTER:'G',random,(56,17)
+MONSTER:'G',random,(55,14)
+
+# The second camp...
+MONSTER:'G',random,(41,14)
+MONSTER:'G',random,(41,16)
+MONSTER:'G',random,(38,17)
+MONSTER:'G',random,(36,13)
+MONSTER:'G',random,(38,14)
+MONSTER:'G',random,(39,12)
+MONSTER:'G',random,(37,12)
+OBJECT:'(',"chest",(35,11)
+
+# Third camp
+MONSTER:'G',random,(25,13)
+MONSTER:'G',random,(26,15)
+
+# Fourth camp
+MONSTER:'G',random,(15,14)
+MONSTER:'G',random,(17,14)
+MONSTER:'G',random,(18,16)
+MONSTER:'G',random,(15,16)
+
+# Fifth camp
+MONSTER:'G',random,(04,16)
+MONSTER:'G',random,(05,14)
+MONSTER:'G',random,(03,14)
+
+# Sixth Camp
+MONSTER:'G',random,(02,10)
+MONSTER:'G',random,(02,06)
+MONSTER:'G',random,(01,07)
+MONSTER:'G',random,(01,09)
+MONSTER:'G',random,(05,08)
+MONSTER:'G',random,(02,08)
+MONSTER:'G',random,(06,09)
+OBJECT:'(',"chest",(00,08)
+
+# Seventh Camp
+MONSTER:'G',random,(04,03)
+MONSTER:'G',random,(02,03)
+MONSTER:'G',random,(06,02)
+MONSTER:'G',random,(03,01)
+
+# Eighth Camp
+MONSTER:'G',random,(13,04)
+MONSTER:'G',random,(13,06)
+MONSTER:'G',random,(15,03)
+MONSTER:'G',random,(17,04)
+MONSTER:'G',random,(15,06)
+# Loot
+OBJECT:'%',random,(20,07)
+OBJECT:'%',random,(21,08)
+OBJECT:'%',random,(22,08)
+OBJECT:'%',random,(23,08)
+OBJECT:'*',random,(24,07)
+OBJECT:'*',random,(23,07)
+OBJECT:'*',random,(22,06)
+
+# Nineth Camp
+MONSTER:'G',random,(23,03)
+MONSTER:'G',random,(24,01)
+MONSTER:'G',random,(26,04)
+MONSTER:'G',random,(27,03)
+MONSTER:'G',random,(27,01)
+MONSTER:'G',random,(25,00)
+MONSTER:'G',random,(26,00)
+
+# Entrance Chamber
+MONSTER:'Z',random,(32,01),hostile,asleep
+MONSTER:'Z',random,(33,01),hostile,asleep
+MONSTER:'Z',random,(34,01),hostile,asleep
+MONSTER:'Z',random,(35,01),hostile,asleep
+MONSTER:'Z',random,(32,09),hostile,asleep
+MONSTER:'Z',random,(33,09),hostile,asleep
+MONSTER:'Z',random,(34,09),hostile,asleep
+MONSTER:'Z',random,(35,09),hostile,asleep
+TRAP:"board",(32,05)
+TRAP:"board",(32,06)
+TRAP:"magic",(34,05)
+TRAP:"magic",(35,05)
+
+# Southern Antiroom
+MONSTER:'G',random,(37,08),hostile
+MONSTER:'G',random,(40,09),hostile
+
+# Pool Room
+MONSTER:'D',random,(38,05),hostile
+MONSTER:'D',random,(46,01),hostile
+MONSTER:'D',random,(46,09),hostile
+MONSTER:'h',random,(56,05),hostile
+OBJECT:'/',"cancellation",(56,05)
+OBJECT:'/',"lightning",(56,05)
+OBJECT:'!',"full healing",(56,05)
+MONSTER:''',random,(47,05),hostile,asleep
+#
+MONSTER:'G',random,(41,06),hostile
+MONSTER:'G',random,(42,06),hostile
+MONSTER:'G',random,(41,04),hostile
+MONSTER:'G',random,(42,04),hostile
+MONSTER:'G',random,(51,02),hostile
+MONSTER:'G',random,(53,04),hostile
+MONSTER:'G',random,(53,06),hostile
+MONSTER:'G',random,(48,04),hostile
+MONSTER:'G',random,(48,06)
+
+# Northern Antiroom
+MONSTER:'&',random,(38,01),hostile
+MONSTER:'&',random,(39,02),hostile
+
+# Southern Entrance
+MONSTER:random,random,(56,07),hostile
+MONSTER:random,random,(57,08),hostile
+MONSTER:random,random,(60,08),hostile
+MONSTER:random,random,(63,08),hostile
+TRAP:"polymorph",(64,08)
+TRAP:"anti magic",(66,08)
+
+# Northern Entrance
+MONSTER:'G',random,(56,03),hostile
+MONSTER:'G',random,(57,02),hostile
+MONSTER:'G',random,(62,02),hostile
+TRAP:"web",(59,02)
+TRAP:"pit",(60,02)
+TRAP:"anti magic",(64,02)
+TRAP:"fire",(66,02)
+
+# Entrance Hall
+TRAP:"board",(57,05)
+
+# The throne room
+# The fellow in residence
+MONSTER:'&',random,(68,05)
+OBJECT:'?',"root password detection",(68,05)
+# A small hareem
+MONSTER:'&',"succubus",(65,04)
+MONSTER:'&',"succubus",(65,05)
+MONSTER:'&',"succubus",(65,06)
+MONSTER:'u',"pony",(64,05)
+# Some guards
+MONSTER:'G',random,(59,04),hostile
+MONSTER:'G',random,(59,06),hostile
+MONSTER:'&',random,(60,04)
+MONSTER:'&',random,(60,06)
+MONSTER:'&',random,(63,04)
+MONSTER:'&',random,(63,06)
+MONSTER:'&',random,(70,04)
+MONSTER:'&',random,(70,06)
+# And his advisors
+MONSTER:'G',random,(67,04),hostile
+MONSTER:'G',random,(67,06),hostile
+# A little loot
+OBJECT:'(',"chest",(70,05)
+
+# The stair well
+MONSTER:'P',"green slime",(74,05),asleep,hostile
+
+# The treasure room
+MONSTER:'Z',random,(71,02),asleep,hostile
+MONSTER:'Z',random,(71,00),asleep,hostile
+MONSTER:'L',random,(70,01),asleep,hostile
+OBJECT:'(',"chest",(69,01)
+OBJECT:'*',random,(69,01)
+OBJECT:'*',random,(69,01)
+OBJECT:'*',random,(69,01)
+OBJECT:'*',random,(69,01)
+
+
 
 MAZE: "hgehn-1", ' '
 FLAGS: hardfloor
@@ -23464,4 +24722,1450 @@ OBJECT[10%]:'/',"trap creation",random
 OBJECT[10%]:'/',"bad effect",random
 OBJECT[10%]:'/',"clone monster",random
 
+
+#
+# A Geryon level
+#
+MAZE:"hgehn-70",random
+FLAGS: noteleport,lethe,hardfloor
+GEOMETRY:center,center
+MAP
+             }}}}}}}}                     }}      }}}}}    }}}}             
+  .... ....III}}}I}}        ....    ..   III}    }III}}}}}}}}}II}     ....  
+  ........III}}IIII}}}}II..+..... ....+.II}}II I}}}IIII}}I}}}III}..  .....  
+  ..  ...III}}IIIIII}II}II.    .....   .II}}III}}}IIIII}III}III}}I..  ....  
+     .III}}}}IIIIII}III}}II...  }..   III}}}IIII}}IIII}IIIII}}I}}II..   #   
+  ...IIIIII}}IIII}}}IIII}}}III  }}     }}}}}}II}IIIII}}IIII}}IIII}II..###   
+ ...}IIIIIIII}}II}}I}}}}III}}}}         }}III}}}}}}}}}IIII}}IIII}}}II. #    
+ ..I}IIIIIII}}}}}III}}II}}IIII}}I   -----}IIII}}III}}}}II}}}}IIII}}}I  ##   
+ ..II}IIIII}}}IIIII}}IIIII}}III}II  |...|}IIIII}}III}}}}}III}}}}}II}}   #   
+  IIII}}IIII}}IIII}}IIIII}}}}I}}}II |...| }}IIII}IIII}}IIII}}}IIII}}    #   
+   IIII}}}I}II}IIII}}IIIII}}}}I}}}I}--+--  I}}II}}IIIII}IIII}}}IIII}}.  ..  
+   }IIIIII}IIII}}}}II}}}III}}}}}}II}}|.|    II}}}IIIII}}}II}}}I}IIII}}. ... 
+  II}IIIII}IIIII}IIIII}}}}}I}}}}}}I}}F.|     III}}}}IIII}}}}III}}II}}}.#... 
+ III}}III}}}IIIII}IIIII}IIIII}}}II}} |.|      III}II}}}}}III}}II}}III}I  .. 
+ IIII}}II}II}III}}}}III}}IIII}III}}---S----  III}IIII}}IIIII}}}II}II}}}  #  
+ .IIIII}}IIII}}}}}}}}III}}IIII}}I} |......|    }}}IIII}}IIIII}}}}I}}}    #  
+ ...IIII}}}IIII}}}III}III}IIIII}}  |.\....|     .IIII}}IIIII}}}III}}. ....  
+ ....IIII}}}}II}}IIII}}II}IIIII    |......S## ##..IIII}}III}}}III}}. ...... 
+  ....IIII}}}}}}      }}}IIII      -------- ###  ....III}}}}}}}II}..#.....  
+           }}}}        }}}}                              }}}}}}}}}}}        
+ENDMAP
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7    7
+# Regions
+REGION:(00,00,34,19),unlit,"ordinary"
+REGION:(40,00,75,19),unlit,"ordinary"
+REGION:(24,00,39,05),unlit,"ordinary"
+REGION:(36,15,41,17),lit,"ordinary"
+REGION:(38,10,38,12),unlit,"ordinary"
+REGION:(37,08,39,09),lit,"ordinary"
+# Stairs
+STAIR:(02,17),up
+STAIR:(37,08),down
+BRANCH:(67,01,75,19),(00,00,00,00)
+TELEPORT_REGION:(67,01,75,19),(00,00,00,00)
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+# Doors
+DOOR:locked,(27,02)
+DOOR:locked,(38,02)
+DOOR:locked,(42,17)
+DOOR:locked,(38,14)
+DOOR:locked,(38,10)
+# The master
+MONSTER:'&',random,(37,16)
+OBJECT:'?',"root password detection",(37,16)
+OBJECT:'(',"frost horn",(37,16)
+# His court
+MONSTER:'&',"ice devil",(38,15)
+MONSTER:'&',"ice devil",(38,17)
+MONSTER:'&',"bone devil",(40,15)
+MONSTER:'&',"bone devil",(40,17)
+MONSTER:'&',"succubus",(36,15)
+MONSTER:'&',"succubus",(36,17)
+MONSTER:'b',"gelatinous cube",(41,15)
+MONSTER:'b',"gelatinous cube",(41,17)
+# His doorbell
+TRAP:"board",(43,17)
+# The final guardians
+MONSTER:'j',"blue jelly",(37,08)
+MONSTER:'j',"blue jelly",(37,09)
+MONSTER:'j',"blue jelly",(38,08)
+MONSTER:'j',"blue jelly",(38,09)
+MONSTER:'j',"blue jelly",(39,08)
+MONSTER:'j',"blue jelly",(39,09)
+# A family of Ice Trolls
+MONSTER:'T',"ice troll",(02,01)
+MONSTER[90%]:'T',"ice troll",(02,02)
+MONSTER[80%]:'T',"ice troll",(02,03)
+MONSTER[70%]:'T',"ice troll",(03,01)
+MONSTER[50%]:'T',"ice troll",(03,02)
+MONSTER[30%]:'T',"ice troll",(04,01)
+MONSTER[10%]:'T',"ice troll",(06,02)
+# This is fun with all that ice around here...
+OBJECT[50%]:'/',"fire",(03,02)
+# A few Yetis
+MONSTER:'Y',"yeti",(33,03)
+MONSTER:'Y',"yeti",(30,01)
+MONSTER:'Y',"yeti",(36,02)
+MONSTER[75%]:'Y',"yeti",(28,02)
+MONSTER[75%]:'Y',"yeti",(37,02)
+MONSTER[50%]:'Y',"yeti",(30,02)
+MONSTER[50%]:'Y',"yeti",(37,02)
+MONSTER[50%]:'Y',"yeti",(34,04)
+# Stray Frost giants
+MONSTER:'H',"frost giant",(20,13)
+MONSTER:'H',"frost giant",(20,12)
+MONSTER:'H',"frost giant",(20,14)
+MONSTER:'H',"frost giant",(21,14)
+# Dragons
+MONSTER:'D',"white dragon",(71,02),asleep
+OBJECT:'(',"chest",(69,02)
+GOLD:random,(73,01)
+MONSTER:'D',"silver dragon",(73,11),asleep
+OBJECT:'(',"chest",(74,11)
+GOLD:random,(74,12)
+MONSTER:'D',"gray dragon",(71,17),asleep
+OBJECT:'(',"chest",(74,17)
+GOLD:random,(70,16)
+# Finally some wolves
+MONSTER:'d',"winter wolf",(57,10)
+MONSTER[90%]:'d',"winter wolf",(58,08)
+MONSTER[60%]:'d',"winter wolf",(53,10)
+MONSTER[30%]:'d',"winter wolf",(57,05)
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# 
+# The Dispater level
+#
+# Based upon Tom Proudfoots Slash'em Dispater level
+#
+# Dispaters origins are in the Roman god of the underworld.
+# originally Dis Pater (rich father) he is associated with
+# wealth (naturally found underground).
+#
+MAZE:"hgehn-71",random
+FLAGS: noteleport,hardfloor,lethe
+GEOMETRY:right,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+              }}}}                               
+---------       }}}}    ..        ....     ------
+|...|.S.|     ..}}}}. .....     .......----|.S..|
+|.|S|.|S|    ..}}}}..  ....    .. .... |...----.|
+|.|...|.|    .}}}}..      ..  ..       |...S..|.|
+|.-------..  .}}}}.     ........    ----S----.|.|
+|.|.....|......}}}}..........  -----|.....|.S.|.|
+|.|.--|.|.......}}}}...... .   |....+.....|.|.|.|
+|.|...|S|  ...  }}}}.....  .|---+-----S---|.|.S.|
+-S-S|.|.|....  }}}}   ... ..+............ |S---.|
+....|S--|S|....}}}}  ...... | .........\..F...|.|
+-S-S|...|.|.....}}}}....  ..+............ |----S|
+|.|.|.|.|S| ... }}}}.....  .|---+-----S---|..S..|
+|.|.|.|.|.| ..  }}}} ..... ..  |....+.....|-----|
+|.|...|...|  ..}}}}.... ..  .. -----|.....S....| 
+|.---------  .}}}}...    .. ..      -------....| 
+|.....|     .. }}}}...  .....  ...  .... .+....| 
+|----.|    ....}}}} .. .. ...... .... ....------ 
+|.S...|      .}}}}...   .....      .....         
+-------        }}}}
+ENDMAP
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7
+
+# Regions
+REGION:(00,00,48,19),unlit,"ordinary"
+
+# Branch and Teleport points
+BRANCH:levregion(01,00,74,19),levregion(26,00,74,19)
+TELEPORT_REGION:levregion(01,00,74,19),levregion(26,00,74,19)
+
+# Protect the walls
+NON_DIGGABLE:(00,00,48,19)
+
+# Maze the rest of the level
+MAZEWALK:(00,10),west
+
+# Stairs
+STAIR:levregion(01,00,74,19),levregion(26,00,74,19),up
+STAIR:(43,12),down
+
+# Doors
+DOOR:locked,(01,09)
+DOOR:locked,(03,09)
+DOOR:locked,(01,11)
+DOOR:locked,(03,11)
+DOOR:locked,(05,10)
+DOOR:locked,(07,08)
+DOOR:locked,(09,10)
+DOOR:locked,(09,12)
+DOOR:locked,(02,18)
+DOOR:locked,(03,03)
+DOOR:locked,(06,02)
+DOOR:locked,(07,03)
+
+DOOR:locked,(28,09)
+DOOR:locked,(28,11)
+DOOR:locked,(32,08)
+DOOR:locked,(32,12)
+DOOR:locked,(38,08)
+DOOR:locked,(38,12)
+DOOR:locked,(36,07)
+DOOR:locked,(36,13)
+DOOR:locked,(40,05)
+DOOR:locked,(43,04)
+DOOR:locked,(45,02)
+DOOR:locked,(44,06)
+DOOR:locked,(46,08)
+DOOR:locked,(43,09)
+DOOR:locked,(47,11)
+DOOR:locked,(45,12)
+DOOR:locked,(42,14)
+DOOR:locked,(42,16)
+
+# Some random money
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+GOLD:random,random
+
+# Some random gems
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+
+# Some random traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+
+# Gold in the outer vaults
+MONSTER:''',"gold golem",(07,04)
+OBJECT:'*',random,(07,04)
+
+MONSTER:''',"gold golem",(07,02)
+OBJECT:'*',random,(07,02)
+
+MONSTER:''',"gold golem",(03,04)
+OBJECT:'*',random,(03,04)
+
+MONSTER:''',"gold golem",(07,09)
+OBJECT:'*',random,(07,09)
+
+MONSTER:''',"gold golem",(01,18)
+OBJECT:'*',random,(01,18)
+
+MONSTER:''',"gold golem",(09,11)
+OBJECT:'*',random,(09,11)
+
+# A river of gold?
+
+GOLD:random,(15,02)
+GOLD:random,(14,03)
+GOLD:random,(13,05)
+GOLD:random,(14,06)
+GOLD:random,(15,07)
+GOLD:random,(14,10)
+GOLD:random,(15,11)
+GOLD:random,(14,14)
+GOLD:random,(13,15)
+GOLD:random,(14,17)
+GOLD:random,(13,18)
+
+GOLD:random,(20,02)
+GOLD:random,(19,03)
+GOLD:random,(18,04)
+GOLD:random,(19,06)
+GOLD:random,(20,07)
+GOLD:random,(21,08)
+GOLD:random,(20,11)
+GOLD:random,(20,12)
+GOLD:random,(19,14)
+GOLD:random,(18,15)
+GOLD:random,(19,16)
+GOLD:random,(18,18)
+
+# Outer Guardians
+MONSTER:''',"crystal golem",(11,06)
+MONSTER:''',"ruby golem",(12,11)
+MONSTER:''',"sapphire golem",(13,04)
+MONSTER:''',"diamond golem",(13,15)
+
+# Fishies in the river
+MONSTER:';',random,(17,02)
+MONSTER:';',random,(15,05)
+MONSTER:';',random,(18,08)
+MONSTER:';',random,(17,11)
+MONSTER:';',random,(16,14)
+MONSTER:';',random,(17,17)
+
+# Nearside Guardians
+MONSTER:''',"ruby golem",(26,04)
+MONSTER:''',"ruby golem",(25,15)
+MONSTER:''',"sapphire golem",(29,05)
+MONSTER:''',"sapphire golem",(27,13)
+MONSTER:''',"diamond golem",(25,10)
+
+# The fellow in residence
+MONSTER:'&',random,(39,10)
+OBJECT:'?',"root password detection",(39,10)
+
+# His court
+MONSTER:'&',"nalfeshnee",(38,09),asleep,hostile
+MONSTER:'&',"nalfeshnee",(38,11),asleep,hostile
+
+MONSTER:'&',"succubus",(39,09),asleep,hostile
+MONSTER:'&',"incubus",(39,11),asleep,hostile
+
+MONSTER:''',"diamond golem",(35,09),asleep,hostile
+MONSTER:''',"diamond golem",(35,11),asleep,hostile
+
+# His guards
+MONSTER:'&',"ice devil",(31,09),asleep,hostile
+MONSTER:'&',"ice devil",(33,09),asleep,hostile
+MONSTER:'&',"ice devil",(31,11),asleep,hostile
+MONSTER:'&',"ice devil",(31,11),asleep,hostile
+MONSTER:'&',"ice devil",(30,10),asleep,hostile
+
+# Some doorbells
+TRAP:"board",(27,09)
+TRAP:"board",(27,11)
+TRAP:"board",(29,09)
+TRAP:"board",(29,09)
+TRAP:"board",(32,09)
+TRAP:"board",(32,11)
+
+# Traps for the unwary
+TRAP:"anti magic",(32,07)
+TRAP:"anti magic",(32,13)
+TRAP:"magic",(33,07)
+TRAP:"magic",(33,13)
+TRAP:"polymorph",(34,07)
+TRAP:"polymorph",(34,13)
+TRAP:"magic",(35,07)
+TRAP:"magic",(35,13)
+TRAP:"fire",(37,07)
+TRAP:"fire",(37,13)
+
+# Northern antichamber
+MONSTER:'&',random,(40,07)
+MONSTER:'&',random,(38,06)
+OBJECT:'(',"chest",(41,06)
+OBJECT:'(',"chest",(41,07)
+
+# Southern antichamber
+MONSTER:'&',random,(40,13)
+MONSTER:'&',random,(38,14)
+OBJECT:'(',"chest",(41,14)
+OBJECT:'(',"chest",(41,13)
+
+# Escape Room
+TRAP:"polymorph",(44,15)
+TRAP:"magic",(45,15)
+MONSTER:''',"diamond golem",(43,15),asleep,hostile
+
+# Northern Vault
+TRAP:"board",(40,04)
+GOLD:random,(40,03)
+OBJECT:'*',random,(40,03)
+OBJECT:'*',random,(40,03)
+GOLD:random,(41,03)
+OBJECT:'*',random,(41,03)
+OBJECT:'*',random,(41,03)
+GOLD:random,(42,03)
+OBJECT:'*',random,(42,03)
+OBJECT:'*',random,(42,03)
+GOLD:random,(40,04)
+OBJECT:'*',random,(40,04)
+OBJECT:'*',random,(40,04)
+GOLD:random,(41,04)
+OBJECT:'*',random,(41,04)
+OBJECT:'*',random,(41,04)
+GOLD:random,(42,04)
+OBJECT:'*',random,(42,04)
+OBJECT:'*',random,(42,04)
+MONSTER:'m',"giant mimic",(42,04)
+
+# Animate Gold
+MONSTER:''',"gold golem",(43,07)
+MONSTER:''',"gold golem",(45,06)
+MONSTER:''',"gold golem",(47,04)
+MONSTER:''',"gold golem",(47,12)
+
+# Exit chamber (and ref to old TV show - Saphire and Steel)
+MONSTER:''',"sapphire golem",(44,12)
+MONSTER:''',"steel golem",(43,12)
+GOLD:random,(43,12)
+GOLD:random,(44,12)
+GOLD:random,(46,12)
+GOLD:random,(47,12)
+
+# Barred Vault
+MONSTER:''',"sapphire golem",(43,10)
+MONSTER:''',"sapphire golem",(44,10)
+MONSTER:''',"sapphire golem",(45,10)
+GOLD:random,(43,10)
+GOLD:random,(44,10)
+GOLD:random,(45,10)
+OBJECT:'*',"diamond",(43,10)
+OBJECT:'*',"ruby",(43,10)
+OBJECT:'*',"loadstone",(43,10)
+OBJECT:'*',"emerald",(43,10)
+OBJECT:'*',"sapphire",(43,10)
+OBJECT:'*',"amethyst",(44,10)
+OBJECT:'*',"jade",(44,10)
+OBJECT:'*',"opal",(44,10)
+OBJECT:'*',"luckstone",(44,10)
+OBJECT:'*',"jacinth",(44,10)
+OBJECT:'*',"aquamarine",(45,10)
+OBJECT:'*',"fluorite",(45,10)
+OBJECT:'*',"loadstone",(45,10)
+OBJECT:'*',"jasper",(45,10)
+OBJECT:'*',"citrine",(45,10)
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# 
+# The Demogorgon level
+#
+# Based upon Tom Proudfoots Slash'em Demogorgon level
+#
+# Don't be fooled by Demogorgons apparently greek name, he was
+# created during the 12th century by a transcription error.
+# He is very loosly associated with power, might and dark
+# underground forces.
+#
+MAZE:"hgehn-72",random
+FLAGS: noteleport,hardfloor,lethe
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                                  LLLL  ......   LLL    .LLLL  LLL          
+   ..        ......LLL           LLLL  ..... . LLLLLL  .LLLLLLLLLLLLLLLL    
+  ....    .....LLLL.....        LLLL     ... ..LLLLLLLLLLLLL .LLLLL LLLLL.  
+ ....      ...L      ...        LLLL  .-----  ...LLL    LLL   ..LL   LLL.   
+  ..        .      ....          LLLL..|...|------------FFF-         ....   
+   .     ....      .           ..LLLL..S...|...S...........|----------S---  
+   ..   ......   .....        ....LLLL.---+-FF.|....}}}....S...|L...L|...|  
+    ......LL... ..  ...      .....LLLL..L|...F.|....}}}....|--S|..\..S...|  
+   ..  ...LLL....  ......     ....LLLL..L|...F.|...........|...|.....|--+-  
+  ..    ......    ...L..     ....LLLL...L|FFFF.|------------...|.....|...|  
+ .....   ...    ....LL.... .....LLLL....L|.....|    |...S..S...|L...L|----  
+  ....   .        ...... ... ..LLLL....---+----- . |..-------|---S----      
+  ..   ...       ..          .LLLL.....S...|   LLL |.........|.......|      
+ ..   ..         .    ..      LLLL.....|...|  LL   |--FFF----|.......|      
+ .  ...       .....  ...L      LLLL....---S-   LLL    LLL    ----S----      
+ ....L..    ....  .....LL       LLLL      .     LLL  LLLLL     LL.LL        
+  ...LL......      ...LLLLL  LLLLLLL      ..   LLLLLLLLLLLLLL LLLL.LL       
+   ......           .LLL  LLLL  LLLL       ....LLLLL.....LLLLLL...LL        
+                                 LLLL         ......LLLLL......LLLL         
+ENDMAP
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7
+
+# Regions
+REGION:(00,00,75,18),unlit,"ordinary"
+
+# Branch and teleport points
+BRANCH:(00,00,24,18),(00,00,00,00)         
+TELEPORT_REGION:(00,00,24,18),(00,00,00,00)                 
+
+# Protect the walls
+NON_DIGGABLE:(35,00,75,18)
+
+# Stairs up and down
+STAIR:(02,03),up
+STAIR:(41,01),down
+
+# Doors
+DOOR:locked,(39,05)
+DOOR:locked,(39,12)
+DOOR:locked,(42,06)
+DOOR:locked,(42,11)
+DOOR:locked,(42,14)
+DOOR:locked,(47,05)
+DOOR:locked,(59,06)
+DOOR:locked,(62,07)
+DOOR:locked,(59,10)
+DOOR:locked,(56,10)
+DOOR:locked,(65,14)
+DOOR:locked,(65,11)
+DOOR:locked,(69,07)
+DOOR:locked,(72,08)
+DOOR:locked,(70,05)
+
+DRAWBRIDGE:(40,08),east,closed
+
+# A few random demons
+
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+
+# A few random traps
+
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+
+TRAP:"magic",random
+TRAP:"magic",random
+TRAP:"magic",random
+
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+
+# Outer defences
+
+MONSTER:'X',"xorn",(10,05),asleep,hostile
+MONSTER:'X',"xorn",(02,10),asleep,hostile
+MONSTER:'X',"xorn",(11,09),asleep,hostile
+MONSTER:'X',"xorn",(16,01),asleep,hostile
+MONSTER:'X',"xorn",(22,08),asleep,hostile
+
+MONSTER:'H',"fire giant",(03,15),asleep,hostile
+MONSTER:'H',"fire giant",(04,17),asleep,hostile
+MONSTER:'H',"fire giant",(06,14),asleep,hostile
+MONSTER:'H',"fire giant",(06,17),asleep,hostile
+MONSTER:'H',"fire giant",(08,16),asleep,hostile
+
+MONSTER:'E',"fire elemental",(11,08),asleep,hostile
+MONSTER:'E',"fire elemental",(05,16),asleep,hostile
+MONSTER:'E',"fire elemental",(17,02),asleep,hostile
+MONSTER:'E',"fire elemental",(20,10),asleep,hostile
+MONSTER:'E',"fire elemental",(22,17),asleep,hostile
+MONSTER:'E',"fire elemental",(24,15),asleep,hostile
+
+MONSTER:'d',"hell hound",(21,08),asleep,hostile
+MONSTER:'d',"hell hound",(19,10),asleep,hostile
+MONSTER:'d',"hell hound",(23,09),asleep,hostile
+MONSTER:'d',"hell hound",(21,11),asleep,hostile
+
+MONSTER:'D',"red dragon",(21,15),asleep,hostile
+
+TRAP:"board",(06,07)
+TRAP:"board",(01,14)
+TRAP:"board",(09,11)
+TRAP:"board",(12,04)
+TRAP:"board",(18,06)
+TRAP:"board",(19,05)
+TRAP:"board",(11,16)
+TRAP:"board",(17,13)
+TRAP:"board",(19,15)
+
+# Guardians at the crossing
+
+MONSTER:'B',random,(32,05),asleep,hostile
+MONSTER:'B',random,(35,06),asleep,hostile
+MONSTER:'B',random,(30,12),asleep,hostile
+MONSTER:'B',random,(34,11),asleep,hostile
+ 
+MONSTER:'&',"hezrou",(31,08),asleep,hostile
+MONSTER:'&',"hezrou",(29,12),asleep,hostile
+MONSTER:'&',"hezrou",(33,08),asleep,hostile
+MONSTER:'&',"hezrou",(31,07),asleep,hostile
+
+MONSTER:'&',"nalfeshnee",(37,09),asleep,hostile
+MONSTER:'&',"nalfeshnee",(35,12),asleep,hostile
+MONSTER:'&',"nalfeshnee",(39,10),asleep,hostile
+
+MONSTER:'E',"fire elemental",(35,04),asleep,hostile
+MONSTER:'E',"fire elemental",(32,14),asleep,hostile
+
+TRAP:"board",(28,10)
+TRAP:"board",(32,07)
+
+# The cage trap
+
+MONSTER:'D',"black dragon",(43,09)
+
+MONSTER:'&',"pit fiend",(41,05)
+
+MONSTER:'&',"pit fiend",(41,12)
+
+MONSTER:'&',"nalfeshnee",(46,10)
+MONSTER:'&',"bone devil",(46,08)
+MONSTER:'&',"bone devil",(44,05)
+MONSTER:'&',"bone devil",(46,05)
+
+# The water room
+
+MONSTER:'&',"water demon",(50,06)
+MONSTER:'&',"water demon",(51,08)
+MONSTER:'&',"water demon",(55,08)
+MONSTER:'&',"water demon",(56,05)
+
+MONSTER:'n',"water nymph",(48,06)
+MONSTER:'n',"water nymph",(49,08)
+MONSTER:'n',"water nymph",(56,08)
+MONSTER:'n',"water nymph",(58,06)
+MONSTER:'n',"water nymph",(53,05)
+MONSTER:'n',"water nymph",(53,08)
+
+MONSTER:'&',"nalfeshnee",(58,08)
+
+MONSTER:'g',"gremlin",(48,08)
+
+# Secret rooms and passages are empty
+
+# Gallery
+
+MONSTER:'L',"arch-lich",(56,12),asleep,hostile
+
+MONSTER:'&',"nalfeshnee",(55,12)
+MONSTER:'&',"nalfeshnee",(54,12)
+MONSTER:'D',"blue dragon",(59,12)
+
+TRAP:"board",(54,10)
+
+# Southern Lava Walk
+
+MONSTER:'E',"fire elemental",(48,16)
+MONSTER:'E',"fire elemental",(55,17)
+MONSTER:'E',"fire elemental",(63,16)
+
+MONSTER:':',"salamander",(52,17)
+MONSTER:':',"salamander",(62,18)
+
+MONSTER:'V',"fire vampire",(68,16)
+
+MONSTER:'D',"red dragon",(49,11)
+OBJECT:'(',"chest",(49,11)
+OBJECT:'*',"ruby",(49,11)
+OBJECT:'*',"ruby",(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+GOLD:random,(49,11)
+
+# Antichamber and throne room
+
+MONSTER:''',random,(65,12),asleep,hostile
+MONSTER:''',random,(64,12),asleep,hostile
+MONSTER:''',random,(66,12),asleep,hostile
+
+MONSTER:'&',"nalfeshnee",(62,13)
+MONSTER:'&',"nalfeshnee",(68,13)
+
+TRAP:"board",(65,13)
+TRAP:"magic",(64,13)
+TRAP:"magic",(66,13)
+
+# The fellow in residence
+
+MONSTER:'&',random,(66,07)
+OBJECT:'?',"root password detection",(66,07)
+
+MONSTER:'&',"pit fiend",(65,08)
+MONSTER:'&',"balrog",(67,08)
+MONSTER:'&',"marilith",(64,09)
+MONSTER:'&',"nalfeshnee",(68,09)
+MONSTER:'&',"succubus",(67,07)
+MONSTER:'&',"succubus",(65,07)
+
+MONSTER:'V',"fire vampire",(66,18)
+
+OBJECT:'(',"chest",(66,06)
+OBJECT:'(',"chest",(64,08)
+OBJECT:'(',"chest",(68,08)
+
+# Fake stairs
+
+MONSTER:'m',"giant mimic",(71,09),m_feature "staircase down"
+
+# Northern Lava Walk
+
+MONSTER:'E',"fire elemental",(64,02)
+MONSTER:'E',"fire elemental",(57,02)
+MONSTER:'E',"fire elemental",(50,01)
+
+MONSTER:':',"salamander",(54,02)
+MONSTER:':',"salamander",(67,01)
+
+MONSTER:'V',"fire vampire",(57,00)
+
+# Exit chamber
+
+MONSTER:'&',"pit fiend",(42,01),asleep,hostile
+
+TRAP:"board",(45,01)
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# Fixed version by Amy that prevents you from cheating by avoiding Demogorgon altogether
+MAZE:"hgehn-73",random
+FLAGS: noteleport,hardfloor,lethe
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                                  LLLL  ......   LLL    .LLLL  LLL          
+   ..        ......LLL           LLLL  ..... . LLLLLL  .LLLLLLLLLLLLLLLL    
+  ....    .....LLLL.....        LLLL     ... ..LLLLLLLLLLLLL .LLLLL LLLLL.  
+ ....      ...L      ...        LLLL  .-----  ...LLL    LLL   ..LL   LLL.   
+  ..        .      ....          LLLL..|...|------------FFF-         ....   
+   .     ....      .           ..LLLL..S...|...S...........|----------S---  
+   ..   ......   .....        ....LLLL.---+-FF.|....}}}....S...|L...L|...|  
+    ......LL... ..  ...      .....LLLL..L|...F.|....}}}....|--S|..\..S...|  
+   ..  ...LLL....  ......     ....LLLL..L|...F.|...........|...|.....|--+-  
+  ..    ......    ...L..     ....LLLL...L|FFFF.|------------...|.....|...|  
+ .....   ...    ....LL.... .....LLLL....L|.....|    |...S..S...|L...L|----  
+  ....   .        ...... ... ..LLLL....---+----- . |..-------|---S----      
+  ..   ...       ..          .LLLL.....S...|   LLL |.........|.......|      
+ ..   ..         .    ..      LLLL.....|...|  LL   |--FFF----|.......|      
+ .  ...       .....  ...L      LLLL....---S-   LLL    LLL    ----S----      
+ ....L..    ....  .....LL       LLLL      .     LLL  LLLLL     LL.LL        
+  ...LL......      ...LLLLL  LLLLLLL      ..   LLLLLLLLLLLLLL LLLL.LL       
+   ......           .LLL  LLLL  LLLL       ....LLLLL.....LLLLLL...LL        
+                                 LLLL         ......LLLLL......LLLL         
+ENDMAP
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7
+
+# Regions
+REGION:(00,00,75,18),unlit,"ordinary"
+
+# Branch and teleport points
+BRANCH:(00,00,24,18),(00,00,00,00)         
+TELEPORT_REGION:(00,00,24,18),(00,00,00,00)                 
+
+# Protect the walls
+NON_DIGGABLE:(35,00,75,18)
+
+# Stairs up and down
+STAIR:(02,03),up
+STAIR:(66,08),down
+
+# Doors
+DOOR:locked,(39,05)
+DOOR:locked,(39,12)
+DOOR:locked,(42,06)
+DOOR:locked,(42,11)
+DOOR:locked,(42,14)
+DOOR:locked,(47,05)
+DOOR:locked,(59,06)
+DOOR:locked,(62,07)
+DOOR:locked,(59,10)
+DOOR:locked,(56,10)
+DOOR:locked,(65,14)
+DOOR:locked,(65,11)
+DOOR:locked,(69,07)
+DOOR:locked,(72,08)
+DOOR:locked,(70,05)
+
+DRAWBRIDGE:(40,08),east,closed
+
+# A few random demons
+
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+MONSTER:'&',random,random
+
+# A few random traps
+
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+TRAP:"fire",random
+
+TRAP:"magic",random
+TRAP:"magic",random
+TRAP:"magic",random
+
+TRAP:"anti magic",random
+TRAP:"anti magic",random
+
+# Outer defences
+
+MONSTER:'X',"xorn",(10,05),asleep,hostile
+MONSTER:'X',"xorn",(02,10),asleep,hostile
+MONSTER:'X',"xorn",(11,09),asleep,hostile
+MONSTER:'X',"xorn",(16,01),asleep,hostile
+MONSTER:'X',"xorn",(22,08),asleep,hostile
+
+MONSTER:'H',"fire giant",(03,15),asleep,hostile
+MONSTER:'H',"fire giant",(04,17),asleep,hostile
+MONSTER:'H',"fire giant",(06,14),asleep,hostile
+MONSTER:'H',"fire giant",(06,17),asleep,hostile
+MONSTER:'H',"fire giant",(08,16),asleep,hostile
+
+MONSTER:'E',"fire elemental",(11,08),asleep,hostile
+MONSTER:'E',"fire elemental",(05,16),asleep,hostile
+MONSTER:'E',"fire elemental",(17,02),asleep,hostile
+MONSTER:'E',"fire elemental",(20,10),asleep,hostile
+MONSTER:'E',"fire elemental",(22,17),asleep,hostile
+MONSTER:'E',"fire elemental",(24,15),asleep,hostile
+
+MONSTER:'d',"hell hound",(21,08),asleep,hostile
+MONSTER:'d',"hell hound",(19,10),asleep,hostile
+MONSTER:'d',"hell hound",(23,09),asleep,hostile
+MONSTER:'d',"hell hound",(21,11),asleep,hostile
+
+MONSTER:'D',"red dragon",(21,15),asleep,hostile
+
+TRAP:"board",(06,07)
+TRAP:"board",(01,14)
+TRAP:"board",(09,11)
+TRAP:"board",(12,04)
+TRAP:"board",(18,06)
+TRAP:"board",(19,05)
+TRAP:"board",(11,16)
+TRAP:"board",(17,13)
+TRAP:"board",(19,15)
+
+# Guardians at the crossing
+
+MONSTER:'B',random,(32,05),asleep,hostile
+MONSTER:'B',random,(35,06),asleep,hostile
+MONSTER:'B',random,(30,12),asleep,hostile
+MONSTER:'B',random,(34,11),asleep,hostile
+ 
+MONSTER:'&',"hezrou",(31,08),asleep,hostile
+MONSTER:'&',"hezrou",(29,12),asleep,hostile
+MONSTER:'&',"hezrou",(33,08),asleep,hostile
+MONSTER:'&',"hezrou",(31,07),asleep,hostile
+
+MONSTER:'&',"nalfeshnee",(37,09),asleep,hostile
+MONSTER:'&',"nalfeshnee",(35,12),asleep,hostile
+MONSTER:'&',"nalfeshnee",(39,10),asleep,hostile
+
+MONSTER:'E',"fire elemental",(35,04),asleep,hostile
+MONSTER:'E',"fire elemental",(32,14),asleep,hostile
+
+TRAP:"board",(28,10)
+TRAP:"board",(32,07)
+
+# The cage trap
+
+MONSTER:'D',"black dragon",(43,09)
+
+MONSTER:'&',"pit fiend",(41,05)
+
+MONSTER:'&',"pit fiend",(41,12)
+
+MONSTER:'&',"nalfeshnee",(46,10)
+MONSTER:'&',"bone devil",(46,08)
+MONSTER:'&',"bone devil",(44,05)
+MONSTER:'&',"bone devil",(46,05)
+
+# The water room
+
+MONSTER:'&',"water demon",(50,06)
+MONSTER:'&',"water demon",(51,08)
+MONSTER:'&',"water demon",(55,08)
+MONSTER:'&',"water demon",(56,05)
+
+MONSTER:'n',"water nymph",(48,06)
+MONSTER:'n',"water nymph",(49,08)
+MONSTER:'n',"water nymph",(56,08)
+MONSTER:'n',"water nymph",(58,06)
+MONSTER:'n',"water nymph",(53,05)
+MONSTER:'n',"water nymph",(53,08)
+
+MONSTER:'&',"nalfeshnee",(58,08)
+
+MONSTER:'g',"gremlin",(48,08)
+
+# Secret rooms and passages are empty
+
+# Gallery
+
+MONSTER:'L',"arch-lich",(56,12),asleep,hostile
+
+MONSTER:'&',"nalfeshnee",(55,12)
+MONSTER:'&',"nalfeshnee",(54,12)
+MONSTER:'D',"blue dragon",(59,12)
+
+TRAP:"board",(54,10)
+
+# Southern Lava Walk
+
+MONSTER:'E',"fire elemental",(48,16)
+MONSTER:'E',"fire elemental",(55,17)
+MONSTER:'E',"fire elemental",(63,16)
+
+MONSTER:':',"salamander",(52,17)
+MONSTER:':',"salamander",(62,18)
+
+MONSTER:'V',"fire vampire",(68,16)
+
+MONSTER:'D',"red dragon",(49,11)
+OBJECT:'(',"chest",(49,11)
+OBJECT:'*',"ruby",(49,11)
+OBJECT:'*',"ruby",(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+OBJECT:'*',random,(49,11)
+GOLD:random,(49,11)
+
+# Antichamber and throne room
+
+MONSTER:''',random,(65,12),asleep,hostile
+MONSTER:''',random,(64,12),asleep,hostile
+MONSTER:''',random,(66,12),asleep,hostile
+
+MONSTER:'&',"nalfeshnee",(62,13)
+MONSTER:'&',"nalfeshnee",(68,13)
+
+TRAP:"board",(65,13)
+TRAP:"magic",(64,13)
+TRAP:"magic",(66,13)
+
+# The fellow in residence
+
+MONSTER:'&',random,(66,07)
+OBJECT:'?',"root password detection",(66,07)
+
+MONSTER:'&',"pit fiend",(65,08)
+MONSTER:'&',"balrog",(67,08)
+MONSTER:'&',"marilith",(64,09)
+MONSTER:'&',"nalfeshnee",(68,09)
+MONSTER:'&',"succubus",(67,07)
+MONSTER:'&',"succubus",(65,07)
+
+MONSTER:'V',"fire vampire",(66,18)
+
+OBJECT:'(',"chest",(66,06)
+OBJECT:'(',"chest",(64,08)
+OBJECT:'(',"chest",(68,08)
+
+# Fake stairs
+
+MONSTER:'m',"giant mimic",(71,09),m_feature "staircase down"
+
+# Northern Lava Walk
+
+MONSTER:'E',"fire elemental",(64,02)
+MONSTER:'E',"fire elemental",(57,02)
+MONSTER:'E',"fire elemental",(50,01)
+
+MONSTER:':',"salamander",(54,02)
+MONSTER:':',"salamander",(67,01)
+
+MONSTER:'V',"fire vampire",(57,00)
+
+# Exit chamber
+
+MONSTER:'&',"pit fiend",(42,01),asleep,hostile
+
+TRAP:"board",(45,01)
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# 
+# The Yeenoghu level
+#
+# Based upon Tom Proudfoots Slash'Em Yeenoghu level
+#
+# Yeenoghu is the demon lord of the Gnolls, a secretive, silent
+# race of mountain dwelling creatures.
+#
+MAZE:"hgehn-74",random
+FLAGS: noteleport,hardfloor,lethe
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+       }}}}       .....  ..    ----------- ------------               ...   
+  ....  }}}}    ...   H ....  .|....|....| |......S...-------------- ..}... 
+ ......  }}}}   H   .H......H..|....|....| |FFFFFF|...S..........+.|  ... . 
+  ....  }}}}   ...H..  .....   |....|S--S---..........|...--------------  . 
+   . H }}}}  .....      ...  ---....|..F.......{......|S--|............|--S-
+   H ..}}}}H......H..    ..H........|..F......{.{.....F...+.........\..S...|
+ ...   }}}}  ....   ...      ---....|..F.......{......|---|............|----
+......  }}}}        .....  ..H.|....|---S---..........|...--------------  . 
+.......F}}}}   ..    ...  ... .|....|....| |FFFFFF|...S..........+.| .. ... 
+ ......FFFFF.....H..     ....H.|....S....| |......S...--------------  ......
+  ..   }}}}F.  .. .....H.. ..  ----------- ------------...   .... ..H.. ..  
+   .  }}}}  ..  . ...    H  ..     .....     ...H.....H. H .H.  ...   H  .H.
+   H   }}}}  .  .  .  .H..   .H.    .....   ...          ...   ...  ...    .
+   ..   }}}}  H H    .. ...    ...  ...... .....H. .H........   H  .....  ..
+ .....   }}}} .... .H.  ....  .. .H....... H ..  ... ...... .H. ..H....  ...
+  ....H..}.}.H...... ..  ...  H     ......H.    ..    ....    ...     .H... 
+ ....   }.}.   ....   .. ...H...     ..... .H......  ......H.H.....     ..  
+       }}}}            .H..    .....H...      ...     ....     ...          
+ENDMAP
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+#         1         2         3         4         5         6         7
+#
+# Regions
+REGION:(00,00,67,17),unlit,"ordinary"
+REGION:(68,00,75,17),unlit,"ordinary"
+REGION:(59,04,70,06),lit,"ordinary"
+
+# Branch and teleport points
+BRANCH:(00,11,75,17),(00,00,00,00)         
+TELEPORT_REGION:(00,11,75,17),(00,00,00,00)                 
+
+# Protect the walls
+NON_DIGGABLE:(00,00,75,17)
+
+# Stairs up and down
+STAIR:(69,13),up
+STAIR:(73,05),down
+
+# Doors
+DOOR:locked,(36,09)
+DOOR:locked,(37,03)
+DOOR:locked,(40,03)
+DOOR:locked,(40,07)
+DOOR:locked,(50,01)
+DOOR:locked,(50,09)
+DOOR:locked,(54,08)
+DOOR:locked,(54,02)
+DOOR:locked,(55,04)
+DOOR:locked,(58,05)
+DOOR:locked,(65,02)
+DOOR:locked,(65,08)
+DOOR:locked,(71,05)
+DOOR:locked,(74,04)
+
+# A few random citizens
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll",random
+MONSTER:'G',"gnoll chieftain",random
+MONSTER:'G',"gnoll chieftain",random
+MONSTER:'G',"gnoll shaman",random
+
+# A few random hazards
+MONSTER:'e',random,random
+MONSTER:'e',random,random
+MONSTER:'e',random,random
+MONSTER:'e',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+# Some random junk
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:'*',random,random
+OBJECT:')',random,random,cursed,-1
+OBJECT:')',random,random,cursed,-1
+OBJECT:')',random,random,cursed,-1
+OBJECT:'[',random,random,cursed,-1
+OBJECT:'[',random,random,cursed,-1
+OBJECT:'[',random,random,cursed,-1
+OBJECT:'%',random,random,cursed,+0
+OBJECT:'%',random,random,cursed,+0
+OBJECT:'%',random,random,cursed,+0
+
+# Fishies in the river
+MONSTER:';',random,(10,02)
+MONSTER:';',random,(09,05)
+MONSTER:';',random,(09,08)
+MONSTER:';',random,(08,10)
+MONSTER:';',random,(10,13)
+MONSTER:';',random,(08,16)
+
+# Flying things
+MONSTER:'B',random,(12,02)
+MONSTER:'B',random,(06,11)
+MONSTER:'a',random,(11,07)
+MONSTER:'a',random,(11,13)
+
+# The first camp...
+MONSTER:'G',"gnoll",(54,13)
+MONSTER:'G',"gnoll",(57,15)
+MONSTER:'G',"gnoll",(56,17)
+MONSTER:'G',"gnoll chieftain",(55,14)
+
+# The second camp...
+MONSTER:'G',"gnoll",(41,14)
+MONSTER:'G',"gnoll",(41,16)
+MONSTER:'G',"gnoll",(38,17)
+MONSTER:'G',"gnoll",(36,13)
+MONSTER:'G',"gnoll chieftain",(38,14)
+MONSTER:'G',"gnoll warrior",(39,12)
+MONSTER:'G',"gnoll shaman",(37,12)
+OBJECT:'(',"chest",(35,11)
+
+# Third camp
+MONSTER:'G',"gnoll",(25,13)
+MONSTER:'G',"gnoll",(26,15)
+
+# Fourth camp
+MONSTER:'G',"gnoll warrior",(15,14)
+MONSTER:'G',"gnoll",(17,14)
+MONSTER:'G',"gnoll",(18,16)
+MONSTER:'G',"gnoll warrior",(15,16)
+
+# Fifth camp
+MONSTER:'G',"gnoll warrior",(04,16)
+MONSTER:'G',"gnoll warrior",(05,14)
+MONSTER:'G',"gnoll warrior",(03,14)
+
+# Sixth Camp
+MONSTER:'G',"gnoll warrior",(02,10)
+MONSTER:'G',"gnoll warrior",(02,06)
+MONSTER:'G',"gnoll",(01,07)
+MONSTER:'G',"gnoll",(01,09)
+MONSTER:'G',"gnoll",(05,08)
+MONSTER:'G',"gnoll chieftain",(02,08)
+MONSTER:'G',"gnoll shaman",(06,09)
+OBJECT:'(',"chest",(00,08)
+
+# Seventh Camp
+MONSTER:'G',"gnoll warrior",(04,03)
+MONSTER:'G',"gnoll warrior",(02,03)
+MONSTER:'G',"gnoll warrior",(06,02)
+MONSTER:'G',"gnoll warrior",(03,01)
+
+# Eighth Camp
+MONSTER:'G',"gnoll warrior",(13,04)
+MONSTER:'G',"gnoll warrior",(13,06)
+MONSTER:'G',"gnoll warrior",(15,03)
+MONSTER:'G',"gnoll warrior",(17,04)
+MONSTER:'G',"gnoll chieftain",(15,06)
+# Loot
+OBJECT:'%',random,(20,07)
+OBJECT:'%',random,(21,08)
+OBJECT:'%',random,(22,08)
+OBJECT:'%',random,(23,08)
+OBJECT:'*',random,(24,07)
+OBJECT:'*',random,(23,07)
+OBJECT:'*',random,(22,06)
+
+# Nineth Camp
+MONSTER:'G',"gnoll warrior",(23,03)
+MONSTER:'G',"gnoll warrior",(24,01)
+MONSTER:'G',"gnoll warrior",(26,04)
+MONSTER:'G',"gnoll warrior",(27,03)
+MONSTER:'G',"gnoll chieftain",(27,01)
+MONSTER:'G',"gnoll shaman",(25,00)
+MONSTER:'G',"gnoll shaman",(26,00)
+
+# Entrance Chamber
+MONSTER:'Z',"skeleton",(32,01),hostile,asleep
+MONSTER:'Z',"skeleton",(33,01),hostile,asleep
+MONSTER:'Z',"skeleton",(34,01),hostile,asleep
+MONSTER:'Z',"skeleton",(35,01),hostile,asleep
+MONSTER:'Z',"skeleton",(32,09),hostile,asleep
+MONSTER:'Z',"skeleton",(33,09),hostile,asleep
+MONSTER:'Z',"skeleton",(34,09),hostile,asleep
+MONSTER:'Z',"skeleton",(35,09),hostile,asleep
+TRAP:"board",(32,05)
+TRAP:"board",(32,06)
+TRAP:"magic",(34,05)
+TRAP:"magic",(35,05)
+
+# Southern Antiroom
+MONSTER:'G',"gnoll warrior",(37,08),hostile
+MONSTER:'G',"gnoll warrior",(40,09),hostile
+
+# Pool Room
+MONSTER:'D',"black dragon",(38,05),hostile
+MONSTER:'D',random,(46,01),hostile
+MONSTER:'D',random,(46,09),hostile
+MONSTER:'h',"master mind flayer",(56,05),hostile
+OBJECT:'/',"cancellation",(56,05)
+OBJECT:'/',"lightning",(56,05)
+OBJECT:'!',"full healing",(56,05)
+MONSTER:''',"iron golem",(47,05),hostile,asleep
+#
+MONSTER:'G',"gnoll warrior",(41,06),hostile
+MONSTER:'G',"gnoll warrior",(42,06),hostile
+MONSTER:'G',"gnoll warrior",(41,04),hostile
+MONSTER:'G',"gnoll warrior",(42,04),hostile
+MONSTER:'G',"gnoll warrior",(51,02),hostile
+MONSTER:'G',"gnoll warrior",(53,04),hostile
+MONSTER:'G',"gnoll warrior",(53,06),hostile
+MONSTER:'G',"gnoll shaman",(48,04),hostile
+MONSTER:'G',"gnoll shaman",(48,06)
+
+# Northern Antiroom
+MONSTER:'&',"nalfeshnee",(38,01),hostile
+MONSTER:'&',"vrock",(39,02),hostile
+
+# Southern Entrance
+MONSTER:random,random,(56,07),hostile
+MONSTER:random,random,(57,08),hostile
+MONSTER:random,random,(60,08),hostile
+MONSTER:random,random,(63,08),hostile
+TRAP:"polymorph",(64,08)
+TRAP:"anti magic",(66,08)
+
+# Northern Entrance
+MONSTER:'G',"gnoll warrior",(56,03),hostile
+MONSTER:'G',"gnoll warrior",(57,02),hostile
+MONSTER:'G',"gnoll shaman",(62,02),hostile
+TRAP:"web",(59,02)
+TRAP:"pit",(60,02)
+TRAP:"anti magic",(64,02)
+TRAP:"fire",(66,02)
+
+# Entrance Hall
+TRAP:"board",(57,05)
+
+# The throne room
+# The fellow in residence
+MONSTER:'&',random,(68,05)
+OBJECT:'?',"root password detection",(68,05)
+# A small hareem
+MONSTER:'&',"succubus",(65,04)
+MONSTER:'&',"succubus",(65,05)
+MONSTER:'&',"succubus",(65,06)
+MONSTER:'u',"pony",(64,05)
+# Some guards
+MONSTER:'G',"gnoll warrior",(59,04),hostile
+MONSTER:'G',"gnoll warrior",(59,06),hostile
+MONSTER:'&',"bone devil",(60,04)
+MONSTER:'&',"bone devil",(60,06)
+MONSTER:'&',"hezrou",(63,04)
+MONSTER:'&',"hezrou",(63,06)
+MONSTER:'&',"balrog",(70,04)
+MONSTER:'&',"balrog",(70,06)
+# And his advisors
+MONSTER:'G',"gnoll shaman",(67,04),hostile
+MONSTER:'G',"gnoll shaman",(67,06),hostile
+# A little loot
+OBJECT:'(',"chest",(70,05)
+
+# The stair well
+MONSTER:'P',"green slime",(74,05),asleep,hostile
+
+# The treasure room
+MONSTER:'Z',"skeleton",(71,02),asleep,hostile
+MONSTER:'Z',"skeleton",(71,00),asleep,hostile
+MONSTER:'L',"master lich",(70,01),asleep,hostile
+OBJECT:'(',"chest",(69,01)
+OBJECT:'*',random,(69,01)
+OBJECT:'*',random,(69,01)
+OBJECT:'*',random,(69,01)
+OBJECT:'*',random,(69,01)
+
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
 
