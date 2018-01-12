@@ -181,7 +181,7 @@ struct toptenentry *tt;
 #define TTFIELDS 13
 
 #ifdef RECORD_CONDUCT
-	tt->conduct = 4095;
+	tt->conduct = 8191;
 #endif
 
 	if(fscanf(rfile, fmt,
@@ -244,8 +244,8 @@ struct toptenentry *tt;
 			}
 
 			/* Sanity check */
-			if(tt->conduct < 0 || tt->conduct > 4095)
-				tt->conduct = 4095;
+			if(tt->conduct < 0 || tt->conduct > 8191)
+				tt->conduct = 8191;
 		}
 #endif
 
@@ -267,7 +267,7 @@ struct toptenentry *tt;
 	char *cp = eos(tt->death);
 
 	/* Add a trailing " Conduct=%d" to tt->death */
-	/*if(tt->conduct != 4095) {*/
+	/*if(tt->conduct != 8191) {*/
 		cp = tt->death + strlen(tt->death);
 		sprintf(cp, " Conduct=%d", tt->conduct);
 	/*}*/
