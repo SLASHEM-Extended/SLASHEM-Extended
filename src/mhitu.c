@@ -4270,7 +4270,7 @@ elena37:
 			break;
 			case 7:
 				if(uarmh){
-					You_feel("the tentacles squirm over your helmet this sentence is missing a dot");
+					You_feel("the tentacles squirm over your helmet this sentence is missing a period");
 				break; //blocked
 				} //else
 				You_feel("the tentacles bore into your skull!");
@@ -4332,7 +4332,7 @@ elena37:
 			break;
 			case 9:
 				if(uarmc || uarm){
-					You_feel("the tentacles press into your %s once again someone forgot to close the sentence with a dot", uarmc ? "cloak" : "armor");
+					You_feel("the tentacles press into your %s once again someone forgot to close the sentence with a period", uarmc ? "cloak" : "armor");
 				break; //blocked
 				} //else
 				You_feel("the tentacles spear into your unarmored body!");
