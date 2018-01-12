@@ -6648,7 +6648,7 @@ u_init()
 	struct permonst* randfweah = &mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER];
 	struct permonst* randfweai = &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT];
 	struct permonst* randfweaj = &mons[PM_ALIDA_S_HUGGING_BOOT];
-	struct permonst* randfweak = &mons[PM_BITCHY_LARA_S_HUGGING_BOOT];
+	struct permonst* randfweak = &mons[PM_BITCHY_LARA_S_BLOCK_HEELED_BOOT];
 	struct permonst* randfweal = &mons[PM_EMMA_S_SEXY_WEDGE_SANDAL];
 	struct permonst* randfweam = &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL];
 	struct permonst* randfwean = &mons[PM_FANNY_S_LOVELY_WINTER_BOOT];
@@ -26053,7 +26053,7 @@ alter_reality()
 	struct permonst* randfweah = &mons[PM_ROUGH_TERESA_S_GENTLE_SOFT_SNEAKER];
 	struct permonst* randfweai = &mons[PM_MARLEEN_S_BLOCK_HEELED_COMBAT_BOOT];
 	struct permonst* randfweaj = &mons[PM_ALIDA_S_HUGGING_BOOT];
-	struct permonst* randfweak = &mons[PM_BITCHY_LARA_S_HUGGING_BOOT];
+	struct permonst* randfweak = &mons[PM_BITCHY_LARA_S_BLOCK_HEELED_BOOT];
 	struct permonst* randfweal = &mons[PM_EMMA_S_SEXY_WEDGE_SANDAL];
 	struct permonst* randfweam = &mons[PM_THE_HIGH_HEEL_LOVING_ASIAN_GIRL_HER_SEXY_WEDGE_SANDAL];
 	struct permonst* randfwean = &mons[PM_FANNY_S_LOVELY_WINTER_BOOT];
