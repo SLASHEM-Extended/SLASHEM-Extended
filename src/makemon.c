@@ -17653,6 +17653,7 @@ int type;
 		case PM_CRYSTAL_GOLEM: return 300;
 		case PM_CRYSTAL_STATUE: return 300;
 		case PM_CRYSTAL_ICE_GOLEM: return 300;
+		case PM_MARIONETTE: return 400;
 		case PM_ANIMATED_COMBAT_STILETTO: return 300;
 		case PM_WERECOMBATSTILETTO: return 300;
 		case PM_ETERNIUM_GOLEM: return 350;

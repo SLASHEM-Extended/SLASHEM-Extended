@@ -2707,7 +2707,11 @@ register int pm;
 		/* fall through */
 
 	    case PM_INTELLIGENT_TROVE:
+	    case PM_NEOTHELID:
+	    case PM_VILLITHID:
+	    case PM_ULITHARID:
 	    case PM_MASTER_MIND_FLAYER:
+	    case PM_MISTRESS_MIND_FLAYER:
 	    case PM_FOOCUBUS_MIND_FLAYER:
 	    case PM_HUGE_MIND_FLAYER:
 	    case PM_MINOR_MIND_FLAYER:
