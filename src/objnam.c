@@ -8198,7 +8198,7 @@ typfnd:
 
 			if (!rn2(3)) {
 				bad_artifact();
-				return (struct obj *)0;
+				return (&zeroobj);
 			}
 
 			otmp = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
@@ -8211,7 +8211,7 @@ typfnd:
 		/* In Soviet Russia, consolation prizes don't exist. After all, only hard work counts in communism, and no one is ever allowed to get anything for free. --Amy */
 
 			pline("Kha kha kha KHAR KHAR zhelaniye ne udalas', poskol'ku Sovetskiy Pyat' Lo nenavidit vsekh zhivykh sushchestv i osobenno vas.");
-			return (struct obj *)0;
+			return (&zeroobj);
 		}
 	}
 
