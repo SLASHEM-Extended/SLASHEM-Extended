@@ -3796,6 +3796,15 @@ int tech_no;
 		  sprintf(buf, "Pick up %s?", the(xname(otmp)));
 		  if (yn(buf) == 'n')
 			return(0);
+
+			/* Shop items will interact incorrectly and maybe even segfault. Since I'm way too lazy to make it work
+			 * correctly, I'm simply 'sealing' this error by making such items off-limits for telekinesis --Amy */
+		  if (costly_spot(cc.x, cc.y)) {
+			pline("This item is inside a telekinesis-proof shop. Your attempt to pick it up fails.");
+			t_timeout = rnz(250);
+			return(1);			
+		  }
+
 		  You("pick up an object from the %s.", surface(cc.x,cc.y));
 		  (void) pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1L, TRUE);
 		  newsym(cc.x, cc.y);
