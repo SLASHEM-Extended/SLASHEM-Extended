@@ -2044,10 +2044,12 @@ makelevel()
 		    char        fillname[16];
 		    s_level	*loc_lev;
 
-		    sprintf(fillname, "%s-loca", urole.filecode);
+			/* This must be the player's starting role, even if recursion was triggered, to prevent a segfault. */
+
+		    sprintf(fillname, "%s-loca", ustartrole.filecode);
 		    loc_lev = find_level(fillname);
 
-		    sprintf(fillname, "%s-fil", urole.filecode);
+		    sprintf(fillname, "%s-fil", ustartrole.filecode);
 		    strcat(fillname,
 			   (u.uz.dlevel < loc_lev->dlevel.dlevel) ? "a" : "b");
 		    makemaz(fillname);
