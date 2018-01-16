@@ -764,6 +764,7 @@ doread()
 	"I beat the glass golem! I can identify everything without fail now!",
 	"I chopped my way through 30 levels worth of ghosts in the Void and defeated Tiksrvzllat and all I got was this lousy t-shirt!",
 	"I ascended a cavewoman in slex with the wishless, genocideless, polyselfless and polyobjectless conducts intact! Why don't you ascend too? It's really not that hard, you just need lots of patience and the will to try again no matter how many times you die!",
+	"I ascended FIQhack and didn't get FIQd over and all I got was made fun of.", /* thanks Demo */
 
 	    };
 	    char buf[BUFSZ];
