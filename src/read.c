@@ -765,6 +765,13 @@ doread()
 	"I chopped my way through 30 levels worth of ghosts in the Void and defeated Tiksrvzllat and all I got was this lousy t-shirt!",
 	"I ascended a cavewoman in slex with the wishless, genocideless, polyselfless and polyobjectless conducts intact! Why don't you ascend too? It's really not that hard, you just need lots of patience and the will to try again no matter how many times you die!",
 	"I ascended FIQhack and didn't get FIQd over and all I got was made fun of.", /* thanks Demo */
+	"i'm playing shitty meme fork simulator 2018", /* by some slex player on 4chan, probably Coolfrog */
+	"Did i give you permission to reply to my post you carpet munching bootlicking bugwoman cuck? Shut the fuck up Amy of course a womyn with eleventeen IQ will never be able to comprehend the grandeur of Tales of Maj'Eyal", /* ditto */
+	"It is better to light a candle than to curse the darkness",
+	"It is easier to curse the darkness than to light a candle",
+	"rock--paper--scissors--lizard--Spock!", /* expanded "rock--paper--scissors" featured in TV show "Big Bang Theory" although they didn't create it (and an actual T-shirt with pentagonal diagram showing which choices defeat which) */
+	"/Valar morghulis/ -- /Valar dohaeris/", /* "All men must die -- all men must serve" challange and response from book series _A_Song_of_Ice_and_Fire_ by George R.R. Martin, TV show "Game of Thrones" (probably an actual T-shirt too...) */  
+	"I <3 Humanity", /* No Game No Life */
 
 	    };
 	    char buf[BUFSZ];

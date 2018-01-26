@@ -4280,6 +4280,10 @@ static const char *epitaphs[] = {
 	"Ran into a panic error and I'm such a noob who doesn't know that in almost all cases, NetHack will make an emergency save. I simply thought my game was gone for good and started a new character.",
 	"Here lies a victim of Jubilex and the segfault spit attack he gets in Grunthack.",
 	"I died to some monster in slex and now I will proceed to tell Amy that her game is unbalanced, although by that logic many vanilla NetHack monsters would have to count as unbalanced too. After all, it's easy to die to a leocrotta or mumak in vanilla and they appear rather early.",
+	"Screw your meme fork.", /* by Coolfrog */
+	"Slex is a digital turd and just one of the many proofs that women will never achieve anything no matter how hard they try", /* ditto */
+	"I had a tron stone thrown into my inventory and didn't realize that if I wait for one turn after each move, I can still walk down a narrow corridor. Instead I made the mistake to ragequit the game.",
+	"slex is nothing but dicks in the butt, at least i think thats how amy described it once",
 
 };
 
