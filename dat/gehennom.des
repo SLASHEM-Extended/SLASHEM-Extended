@@ -827,6 +827,404 @@ OBJECT:random,random,random
 OBJECT:random,random,random
 OBJECT:'`',"boulder",random
 
+MAZE:"juibl-5",' '
+FLAGS:noteleport,shortsighted
+INIT_MAP:'.','O',true,true,unlit,false
+# guarantee at least one open spot to ensure successful stair placement
+GEOMETRY:left,bottom
+MAP
+OOOOOOOO
+OO...OOO
+OOO...OO
+OOOO.OOO
+OOOOOOOO
+ENDMAP
+OBJECT:'`',"boulder",random
+GEOMETRY:right,top
+MAP
+OOOOOOOO
+OOOO.OOO
+OOO...OO
+OO...OOO
+OOOOOOOO
+ENDMAP
+OBJECT:'`',"boulder",random
+# lair
+GEOMETRY:center,center
+MAP
+..OOOOO.OOOOO.OOOOO.OOOOO.OOOOO.OOOOO.OOOOO.OOOOO..
+.OOO.OOOOO..OOO..OOOOO..OOO..OOOOO..OOO..OOOOO.OOO.
+OOO...OO..OO.O.OO.OO.OOO...OOO.OOO..OOO..OOOO...OOO
+.OOO.OO.OOO.OO.OO.OO...OO.OO.....OO.....O....O.OOO.
+..OOO..OOO.OO.OO.OO..OO.....OO.OOO.OO.OOOOOOOOOOO..
+.OOO..OOOOO.OO.OO.OO...OOOOO.....OO.OOOOOO.....OOO.
+OOO..OO...OO..OO.OOO.OOO...OOO.OOO.O.OOOO..P.P..OOO
+OO.OOOO...OOOOO.O...OOO..P..OOO.O.OOO.OOOO.....OOOO
+O.OOOO.OO.O..O.OOOOOOO..P.P..OOO.OOO.OO..OO...OOOO.
+.OOOO.OOOO....OOOOO.OOO..P..OOO.OOOO.OO..OO...OOO.O
+OOOO..OO.OO..OOOO...OOOO...OOO.OOOOO.OOOO.OOOOOO.OO
+OOO...OO...OOO..OOOOOOOOOOOO.....OOOO.OO...O..O.OOO
+.OOO..OO.OOOO....OO..OOO..OO.....OOOO.OOO.O....OOO.
+..OOO.OOOO..OO..OO..OO..OO..OO.OOO..O.O..OOO..OOO..
+.OOO.OOOO....OOOO..OO....OOOOOOO...OOO....OOOO.OOO.
+OOO...OOO....OOO..OOO....OOO..OO...OOO....OOO...OOO
+.OOO.OOOOO..OOO..OOOOO..OOO..OOOOO..OOO..OOOOO.OOO.
+..OOOOO.OOOOO.OOOOO.OOOOO.OOOOO.OOOOO.OOOOO.OOOOO..
+ENDMAP
+# Random registers
+RANDOM_MONSTERS:'j','b','P','F'
+RANDOM_PLACES:(04,02),(46,02),(04,15),(46,15)
+# Dungeon description
+REGION:(00,00,50,17),unlit,"ordinary"
+MAZEWALK:(00,09),west
+MAZEWALK:(50,08),east
+STAIR:levregion(01,00,11,20),(0,0,50,17),down
+STAIR:levregion(69,00,79,20),(0,0,50,17),up
+BRANCH:levregion(01,00,11,20),(0,0,50,17)
+TELEPORT_REGION:levregion(01,00,11,20),(0,0,50,17),up
+TELEPORT_REGION:levregion(69,00,79,20),(0,0,50,17),down
+FOUNTAIN:place[0]
+MONSTER:'m',"giant mimic",place[1],m_feature "fountain"
+MONSTER:'m',"giant mimic",place[2],m_feature "fountain"
+MONSTER:'m',"giant mimic",place[3],m_feature "fountain"
+# The demon of the swamp
+MONSTER:'&',"Jubilex",(25,08)
+TRAP:"pestilence", random
+TRAP:"pestilence", random
+TRAP:"pestilence", random
+OBJECT:'?',"root password detection",(25,08)
+# And a couple demons
+MONSTER:'i',"lemure",(43,08)
+MONSTER:'i',"lemure",(44,08)
+MONSTER:'i',"lemure",(45,08)
+# Some liquids and gems
+OBJECT:'*',random,(43,06)
+OBJECT:'*',random,(45,06)
+OBJECT:'!',random,(43,09)
+OBJECT:'!',random,(44,09)
+OBJECT:'!',random,(45,09)
+# And lots of blobby monsters
+MONSTER:monster[0],random,(25,06)
+MONSTER:monster[1],random,(24,07)
+MONSTER:monster[2],random,(26,07)
+MONSTER:monster[3],random,(23,08)
+MONSTER:monster[3],random,(27,08)
+MONSTER:monster[2],random,(24,09)
+MONSTER:monster[1],random,(26,09)
+MONSTER:monster[0],random,(25,10)
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'m',random,random
+MONSTER:'m',random,random
+MONSTER:';',"jellyfish",random
+MONSTER:';',"jellyfish",random
+# Some random objects
+OBJECT:'!',random,random
+OBJECT:'!',random,random
+OBJECT:'!',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'%',random,random
+OBJECT:'`',"boulder",random
+# Some traps
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+MAZE:"juibl-6",' '
+FLAGS:noteleport,shortsighted
+GEOMETRY:center,center
+#          1         2   	 3	     4	   5		 6	     7
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+}}}}}..}.}}.}}.}}}}}.}}O}}O}}O}}}}.}}}|..|}}}}}OO}}}}}}}}}}}}}}}}}}O}}.}}.}}.
+}..}.}}} }} }}}}}}}}OO.}}}}}}}}}.}}}}}|..|..}}.}O}}}}}}O.}}.}}}O}}}}}}}}O}}}.
+}..}}}}}}}}O}}.}}}}.}}}}.}}}}}.}}}}.O}|..|..}}}}}}}O}}}}}}}}}}}}}}}}.}}}}}}}.
+}}}}}}}}....}}..}}}}}}O}}}}}O}}}}}}}}}|..|}}}O}}.}}}}}}.}OO}.}}}}}}}}}}}}}}}.
+}}}}}}O}}}}}}}}}}}}}}} }}.}}}}O.}}}}.O|..|}.}}}}}}} O}}}}}}}.}}}}}}}}}}}}O}}}
+}}}}}}}.}}}O}}}}}}}}}}}}}}}}}}}}}}}}}.|..|}.}O}}}}.}}}}}}}}O}}}}}}}}.}}}}}}}}
+}}}}O}}}}}}}}}O}}}}.O}}}}O.}}}}}.}}}O}+..|}}}}O}}}}}}}}.}}}}.}}}}}O}}}}}O}}}.
+}}}}}}.}}}}}}}}}}}}}}}}}}}}}}}}}.O}}}}|..|}}O}}}}}.}}}}}}}}}}}}}}}}O}}}}}}O}}
+}}}}}}}}}}}}.}}..}}}}}}}}}}}}}}}...}}}|..|}..}}}}}}}}O.}}}O}}}}}O}}}.}}}}}.}}
+}}O}}}.}}}}}}}}..}}.}}O}}}.}}}}}}}}}}}|..|}O}}}}}}O.}.}}}}}}.}}}}}}}.}}}}}}}}
+}}}}}O.}}}.}}}}O}}}}}}}}}}O}}}O}}}}.}}|..|}}}}.}}}}}}}}}}}}}}}}}}}}.}}}}.}O}}
+}}}}}}.}}}O}}}}}}}}}}} }}}}}..}}}}}}O}|..|}}}O}O}}}O}}}}}}}O}.}}}O}}}}}}}}}}}
+}}}}}}.}}}}.}}}}}}}}O}}}}}}}}}}O}}}}.}|..|}}}}.}}}}}}} }}}}}}}}}}.}}}}}}.}}}}
+}}}}}}}}}}}}}.O}}.}}}.}..}}}}..}}}}}}}|..|}}}}}}}}}}}}}}}}}}.}}}}}}}}}}O}}}}}
+}.}O}.}}}}}}}}}}}}}}}O}}.}}}O}}}}}}}..|..|}}}}}}.}}}}}}}}O}}}}}O}}}.}}}}}}.}}
+}}}.}}}}}}}}}}}}}}}}}}}}}}}}}}}.}}}}O}|..|}}O}}}O}}}}}}}}}}.}}}}}}}}}O }}}.}}
+.O}}}}}}O}}}}}}}}}}}}}}}}}}}O}}}}}}}}.|..+.}}}}}}.}}}}}}}}}}}}}O}.}}}} }}}}}}
+}}}}}}}}}}.}}}.O}..O}}}}.O}}}}}.}O}}}}|..|}.}}}}O}}}}}}}O}}}}}OO}}}}}}}}}}..}
+}}}}}}}}}O}}.}}}}}}}OO}}}}}}}}}}}.}.}}|..|}}}}}.O}}}}}}}}}}..}}.}}O}}} }}}..}
+..}..}}.}.}}}}}}}}}..}.}}}}}}}}}}}}}}}|..|}}}.}}O}}}}O}}}}}}}}}}}}}}}}}}}}}}}
+ENDMAP
+
+NON_DIGGABLE:(00,00,76,19)
+
+STAIR:(01,01),down
+STAIR:(75,18),up
+
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+
+MONSTER:'j',random,(39,00)
+MONSTER:'P',random,(40,01)
+MONSTER:'b',random,(39,02)
+MONSTER:'F',random,(40,03)
+MONSTER:'j',random,(39,04)
+MONSTER:'P',random,(40,05)
+MONSTER:'b',random,(39,06)
+MONSTER:'F',random,(40,07)
+MONSTER:'j',random,(39,08)
+MONSTER:'P',random,(40,09)
+MONSTER:'b',random,(39,10)
+MONSTER:'F',random,(40,11)
+MONSTER:'j',random,(39,12)
+MONSTER:'P',random,(40,13)
+MONSTER:'b',random,(39,14)
+MONSTER:'F',random,(40,15)
+MONSTER:'j',random,(39,16)
+MONSTER:'P',random,(40,17)
+MONSTER:'b',random,(39,18)
+MONSTER:'F',random,(40,19)
+
+MONSTER:'&',"Jubelex",(39,09)
+OBJECT:'?',"root password detection",(39,09)
+TRAP:"pestilence", random
+TRAP:"pestilence", random
+TRAP:"pestilence", random
+
+OBJECT:'/',random,random
+OBJECT:'/',random,random
+OBJECT:'/',random,random
+OBJECT:'/',random,random
+OBJECT:'/',random,random
+
+MAZE:"juibl-7",' '
+FLAGS:noteleport,shortsighted
+GEOMETRY:center,center
+#          1         2   	 3	     4	   5		 6	     7
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+...}.}X}X}X}X}X}X.X}X}X}X}X}X}X}X}MY}X}YM}X}X}X}X..}X}X}X}X}X}...}X}X}X}X}X.X
+}X...X}X}X}X}X}X.X.X}X}X}X}X}X}X}XMY}X}YMX}X}X}X.X}.}X}X}X....}X.X}X}X}X...X.
+X}X}X.X}X}X}X}X.X}X.X}X}X}X...X}X}MY}X}YM}X}X}X}.}X.X}X}X.X}X}X}.}X}X}X.X}X}.
+}X}X}X.X}X}X}X.X}X}X.X}X}X.X}.}X}XMY}X}YMX}X}X}.}X}.}X}X.X}X}X}X.X}X}X}.}X}X.
+X}X}X}.}X}.....}X}X}X.X...X}X.X}X}MY}X}YM}X.X}.}X}X}.}X.X}X}X}X}.}X}X}X.X}X}.
+}X}X...X}X.X}X....}X}.}.}X}X.X}X}XMY}X}YMX.X..}X}X}X.X}X...X}X}X.X}X}X.X}X}.}
+X}X}X}X.X}.}X}X}X.X}X...X}X}.}X}X}MY}X}YM.X}X}X}X}X}.}X}X}X.X}X}.}X}X.X}X}.}X
+}X}X}X}X..}X}X}X}.}X}.}X}X}X.X}X}X........}X}X}X}X}.}X}X}X.X}X}X.X}X.X}X}.}X}
+X}X}X}X}X}.}X}X}X...X.X}X}X.X}X}X}.......}X}X}X}X}.}X}X}X.X}X}X}.}X}X.X}X}.}X
+}X}X}X}X}X}X}X}X}X}X.X}X}X}X.X}X}X.......X}X}X}X}.}X}X}X.X}X}X}X.X}X.X}X}X}.}
+X}X}X}X}X}X}X}X}X}X}.}X}X}X}X............}X}X}X}.}X}X}X}.}X}X}X}.}X}X.X}X}X.X
+}X}X}X}X}X.X}X}X}...}X}X}X}X.X}X}X.......X}X}X}X.X}X}X}X.X}X}X}X.X}X.X}X...X}
+X}X}X}X}..X}X}X}X.X}X.X}X}X.X}X}X}MY}X}YM}X}X}X}.}X}X}X}.}X}X}X.X}X}.}X.X}X}X
+}X}X}X}.}X.X}X}X}.}X}.}X}X}X.X}X}XMY}X}YMX}X}X}.}X}X}X}X.X}X}X.X}X}X}.}X..}X}
+X}X}...}X}.}X}....X}X...X}X}.}X}X}MY}X}YM}X}X}.}X}X}X}X}.}X}X.X}X}X}X.X}X}.}X
+}X}X}X.X}X.....X}X}X}.}.}X}X.X}X}XMY}X}YMX}X}.}X}X}X}X}.}X}X}X.X}X}X}.}X}.}X}
+X}X}X}.}X}X}X}.}X}X}.}X...X}X.X}X}MY}X}YM}X}X}...}X}X}.}X}X}X}.}X}X}.}X}.}X}X
+}X}X}.}X}X}X}X}.}X}.}X}X}X.X}.}X}XMY}X}YMX}X}X}X}.}X}.}X}X}X}.}X}X}X}.}X}..X}
+X}...}X}X}X}X}X}.}.}X}X}X}X...X}X}MY}X}YM}X}X}X}.}X}.}X}X}X}.}X}X}X..}X}X}X.X
+...X.X}X}X}X}X}X}.}X}X}X}X}X}X}X}XMY}X}YMX}X}X}X}...}X}X}X}X}......X}X}X}X}X.
+ENDMAP
+
+STAIR:(00,00),up
+STAIR:(76,19),down
+
+MONSTER:'&',"Jueblex",(37,09)
+OBJECT:'?',"root password detection",(37,09)
+
+TRAP:"pestilence", random
+TRAP:"pestilence", random
+TRAP:"pestilence", random
+
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'N',random,random
+MONSTER:'N',random,random
+MONSTER:'N',random,random
+MONSTER:'N',random,random
+MONSTER:'N',random,random
+
+# The following map is stolen from ToME (Maeglin)
+MAZE:"juibl-8",' '
+FLAGS:noteleport,shortsighted
+GEOMETRY:center,center
+#          1         2   	 3	     4	   5		 6	     7
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+                                               
+ }}..}}}}}}}}}...}........}}}........}}}.....{ 
+ }....}}}}}}.......}...}..}}..}..}}}.....}.... 
+ }.....}}}}...}}}....}}...}...}}...}}}}.}}}}}. 
+ }....}}}}..}..}}}}}}.........}..}...}}.}..... 
+ }}...}....}}}....}}....}}..}}}}..}}..}...}}.. 
+ }}}}.......}}}}}.....}}}}...}}}}.}}}.}}}}}..} 
+ }}}....}}...}}}}}}...}..}}...}}}..}}..}....}} 
+ }}...}}}}}...}}}.....}...}}..}}}}..}}...}}}}} 
+ }}...}}}}}}..}}.....}}}.......}}}}.}}}..}}}}} 
+ ....}}}}}}}}.....}....}}...}...}}..}}}}..}}}} 
+ ...}}}}....}}...}}}}...}}}}}....}.}}}}}}..}}} 
+ }...}}..}}..}..}}}}}}.......}}.....}}}}}..}}} 
+ }}.....}}}}...}}}}}}...}.}....}.}..}}}}..}}}} 
+ }...}}}}..}}....}}}}}....}}}}.}..........}}}} 
+ ...}}}}......}}...}}}}}.....}}}..}}}}}...}}}} 
+ ..}}}}}..}}...}}}..}}........}}..}}}}}..}}}}} 
+ ...}}}}}}}.....}}}.......}}}..}}..}}}....}..} 
+ }....}......}............}}}}..}..}}......... 
+ ...}}......}}}...........}}}}}........}}}.... 
+ ......}}}}}}}}}}}}}}}...}}}}}}}}}}}}}}}}}}..} 
+                                               
+ENDMAP
+
+STAIR:(01,20),up
+STAIR:random,down
+
+MONSTER:'&',"Jueblex",random
+MONSTER:'&',"Jubelex",random
+MONSTER:'&',"Juiblex",random
+MONSTER:'&',"Jubilex",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"root password detection",random
+
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'F',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'P',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'b',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:'j',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:';',random,random
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+TRAP:"pestilence", random
+TRAP:"pestilence", random
+TRAP:"pestilence", random
+
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+TRAP:random, random
+
+
 #
 # The Orcus Level
 #

@@ -2130,7 +2130,7 @@ makelevel()
 	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4 : 40) : (iswarper ? 10 : 100))) || (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10 : 4) : (iswarper ? 5 : 2))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (rn2(5) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) ) {
 
 
-	    switch (rnd(105)) {
+	    switch (rnd(107)) {
 
 	    case 1:
 	    case 2:
@@ -2777,7 +2777,7 @@ makelevel()
 	    case 60:
 	    case 61:
 
-		switch (rnd(74)) {
+		switch (rnd(78)) {
 
 			case 1: makemaz("egehn-1"); return;
 			case 2: makemaz("egehn-2"); return;
@@ -2853,6 +2853,10 @@ makelevel()
 			case 72: makemaz("egehn-72"); return;
 			case 73: makemaz("egehn-73"); return;
 			case 74: makemaz("egehn-74"); return;
+			case 75: makemaz("egehn-75"); return;
+			case 76: makemaz("egehn-76"); return;
+			case 77: makemaz("egehn-77"); return;
+			case 78: makemaz("egehn-78"); return;
 
 		}
 		break;
@@ -2923,23 +2927,33 @@ makelevel()
 		break;
 
 	    case 71:
-
-		makemaz("ecav2"); return;
-		break;
-
 	    case 72:
-
-		makemaz("efrnk"); return;
-		break;
-
 	    case 73:
 
-		switch (rnd(4)) {
+		switch (rnd(22)) {
 
 			case 1: makemaz("esheo-1"); return;
 			case 2: makemaz("esheo-2"); return;
 			case 3: makemaz("esheo-3"); return;
 			case 4: makemaz("esheo-4"); return;
+			case 5: makemaz("esheo-5"); return;
+			case 6: makemaz("esheo-6"); return;
+			case 7: makemaz("esheo-7"); return;
+			case 8: makemaz("esheo-8"); return;
+			case 9: makemaz("esheo-9"); return;
+			case 10: makemaz("esheo-10"); return;
+			case 11: makemaz("esheo-11"); return;
+			case 12: makemaz("esheo-12"); return;
+			case 13: makemaz("esheo-13"); return;
+			case 14: makemaz("esheo-14"); return;
+			case 15: makemaz("esheo-15"); return;
+			case 16: makemaz("esheo-16"); return;
+			case 17: makemaz("esheo-17"); return;
+			case 18: makemaz("esheo-18"); return;
+			case 19: makemaz("esheo-19"); return;
+			case 20: makemaz("esheo-20"); return;
+			case 21: makemaz("esheo-21"); return;
+			case 22: makemaz("esheo-22"); return;
 
 		}
 		break;
@@ -3753,6 +3767,18 @@ makelevel()
 			case 95: makemaz("levgn-95"); return;
 
 		}
+
+	    case 106:
+
+		makemaz("ecav2"); return;
+		break;
+
+	    case 107:
+
+		makemaz("efrnk"); return;
+		break;
+
+
 		break;
 
           }
@@ -3761,7 +3787,7 @@ makelevel()
 
 	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4000 : 40000) : (iswarper ? 10000 : 100000))) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10000 : 4000) : (iswarper ? 5000 : 2000))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2000 : 10000) : (iswarper ? 3000 : 20000))) || (In_gehennom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) || (In_sheol(&u.uz) && (!(u.monstertimefinish % 235) ? (iswarper || !rn2(3)) : (!rn2(iswarper ? 2 : 5)) ) ) ) {
 
-	    switch (rnd(105)) {
+	    switch (rnd(107)) {
 
 	    case 1:
 	    case 2:
@@ -4403,7 +4429,7 @@ makelevel()
 	    case 60:
 	    case 61:
 
-		switch (rnd(74)) {
+		switch (rnd(78)) {
 
 			case 1: makemaz("hgehn-1"); return;
 			case 2: makemaz("hgehn-2"); return;
@@ -4479,6 +4505,10 @@ makelevel()
 			case 72: makemaz("hgehn-72"); return;
 			case 73: makemaz("hgehn-73"); return;
 			case 74: makemaz("hgehn-74"); return;
+			case 75: makemaz("hgehn-75"); return;
+			case 76: makemaz("hgehn-76"); return;
+			case 77: makemaz("hgehn-77"); return;
+			case 78: makemaz("hgehn-78"); return;
 
 		}
 		break;
@@ -4548,23 +4578,33 @@ makelevel()
 		break;
 
 	    case 71:
-
-		makemaz("hcav2"); return;
-		break;
-
 	    case 72:
-
-		makemaz("hfrnk"); return;
-		break;
-
 	    case 73:
 
-		switch (rnd(4)) {
+		switch (rnd(22)) {
 
 			case 1: makemaz("hsheo-1"); return;
 			case 2: makemaz("hsheo-2"); return;
 			case 3: makemaz("hsheo-3"); return;
 			case 4: makemaz("hsheo-4"); return;
+			case 5: makemaz("hsheo-5"); return;
+			case 6: makemaz("hsheo-6"); return;
+			case 7: makemaz("hsheo-7"); return;
+			case 8: makemaz("hsheo-8"); return;
+			case 9: makemaz("hsheo-9"); return;
+			case 10: makemaz("hsheo-10"); return;
+			case 11: makemaz("hsheo-11"); return;
+			case 12: makemaz("hsheo-12"); return;
+			case 13: makemaz("hsheo-13"); return;
+			case 14: makemaz("hsheo-14"); return;
+			case 15: makemaz("hsheo-15"); return;
+			case 16: makemaz("hsheo-16"); return;
+			case 17: makemaz("hsheo-17"); return;
+			case 18: makemaz("hsheo-18"); return;
+			case 19: makemaz("hsheo-19"); return;
+			case 20: makemaz("hsheo-20"); return;
+			case 21: makemaz("hsheo-21"); return;
+			case 22: makemaz("hsheo-22"); return;
 
 		}
 		break;
@@ -5377,6 +5417,16 @@ makelevel()
 			case 94: makemaz("levgx-94"); return;
 			case 95: makemaz("levgx-95"); return;
 		}
+	    case 106:
+
+		makemaz("hcav2"); return;
+		break;
+
+	    case 107:
+
+		makemaz("hfrnk"); return;
+		break;
+
 		break;
 
           }
@@ -5799,7 +5849,7 @@ makelevel()
 	if ((specialraceflag == 3) && (!rn2(100) || depth(&u.uz) > 1) ) { /* specialist */
 
 		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios")) {
-	    switch (rnd(105)) {
+	    switch (rnd(107)) {
 
 	    case 1:
 	    case 2:
@@ -6446,7 +6496,7 @@ makelevel()
 	    case 60:
 	    case 61:
 
-		switch (rnd(74)) {
+		switch (rnd(78)) {
 
 			case 1: makemaz("egehn-1"); return;
 			case 2: makemaz("egehn-2"); return;
@@ -6522,6 +6572,10 @@ makelevel()
 			case 72: makemaz("egehn-72"); return;
 			case 73: makemaz("egehn-73"); return;
 			case 74: makemaz("egehn-74"); return;
+			case 75: makemaz("egehn-75"); return;
+			case 76: makemaz("egehn-76"); return;
+			case 77: makemaz("egehn-77"); return;
+			case 78: makemaz("egehn-78"); return;
 
 		}
 		break;
@@ -6591,23 +6645,33 @@ makelevel()
 		break;
 
 	    case 71:
-
-		makemaz("ecav2"); return;
-		break;
-
 	    case 72:
-
-		makemaz("efrnk"); return;
-		break;
-
 	    case 73:
 
-		switch (rnd(4)) {
+		switch (rnd(22)) {
 
 			case 1: makemaz("esheo-1"); return;
 			case 2: makemaz("esheo-2"); return;
 			case 3: makemaz("esheo-3"); return;
 			case 4: makemaz("esheo-4"); return;
+			case 5: makemaz("esheo-5"); return;
+			case 6: makemaz("esheo-6"); return;
+			case 7: makemaz("esheo-7"); return;
+			case 8: makemaz("esheo-8"); return;
+			case 9: makemaz("esheo-9"); return;
+			case 10: makemaz("esheo-10"); return;
+			case 11: makemaz("esheo-11"); return;
+			case 12: makemaz("esheo-12"); return;
+			case 13: makemaz("esheo-13"); return;
+			case 14: makemaz("esheo-14"); return;
+			case 15: makemaz("esheo-15"); return;
+			case 16: makemaz("esheo-16"); return;
+			case 17: makemaz("esheo-17"); return;
+			case 18: makemaz("esheo-18"); return;
+			case 19: makemaz("esheo-19"); return;
+			case 20: makemaz("esheo-20"); return;
+			case 21: makemaz("esheo-21"); return;
+			case 22: makemaz("esheo-22"); return;
 
 		}
 		break;
@@ -7420,12 +7484,22 @@ makelevel()
 			case 95: makemaz("levgn-95"); return;
 
 		}
+	    case 106:
+
+		makemaz("ecav2"); return;
+		break;
+
+	    case 107:
+
+		makemaz("efrnk"); return;
+		break;
+
 		break;
 	
           }
 
 		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab")) {
-	    switch (rnd(105)) {
+	    switch (rnd(107)) {
 
 	    case 1:
 	    case 2:
@@ -8067,7 +8141,7 @@ makelevel()
 	    case 60:
 	    case 61:
 
-		switch (rnd(74)) {
+		switch (rnd(78)) {
 
 			case 1: makemaz("hgehn-1"); return;
 			case 2: makemaz("hgehn-2"); return;
@@ -8143,6 +8217,10 @@ makelevel()
 			case 72: makemaz("hgehn-72"); return;
 			case 73: makemaz("hgehn-73"); return;
 			case 74: makemaz("hgehn-74"); return;
+			case 75: makemaz("hgehn-75"); return;
+			case 76: makemaz("hgehn-76"); return;
+			case 77: makemaz("hgehn-77"); return;
+			case 78: makemaz("hgehn-78"); return;
 
 		}
 		break;
@@ -8212,23 +8290,33 @@ makelevel()
 		break;
 
 	    case 71:
-
-		makemaz("hcav2"); return;
-		break;
-
 	    case 72:
-
-		makemaz("hfrnk"); return;
-		break;
-
 	    case 73:
 
-		switch (rnd(4)) {
+		switch (rnd(22)) {
 
 			case 1: makemaz("hsheo-1"); return;
 			case 2: makemaz("hsheo-2"); return;
 			case 3: makemaz("hsheo-3"); return;
 			case 4: makemaz("hsheo-4"); return;
+			case 5: makemaz("hsheo-5"); return;
+			case 6: makemaz("hsheo-6"); return;
+			case 7: makemaz("hsheo-7"); return;
+			case 8: makemaz("hsheo-8"); return;
+			case 9: makemaz("hsheo-9"); return;
+			case 10: makemaz("hsheo-10"); return;
+			case 11: makemaz("hsheo-11"); return;
+			case 12: makemaz("hsheo-12"); return;
+			case 13: makemaz("hsheo-13"); return;
+			case 14: makemaz("hsheo-14"); return;
+			case 15: makemaz("hsheo-15"); return;
+			case 16: makemaz("hsheo-16"); return;
+			case 17: makemaz("hsheo-17"); return;
+			case 18: makemaz("hsheo-18"); return;
+			case 19: makemaz("hsheo-19"); return;
+			case 20: makemaz("hsheo-20"); return;
+			case 21: makemaz("hsheo-21"); return;
+			case 22: makemaz("hsheo-22"); return;
 
 		}
 		break;
@@ -9041,6 +9129,16 @@ makelevel()
 			case 94: makemaz("levgx-94"); return;
 			case 95: makemaz("levgx-95"); return;
 		}
+	    case 106:
+
+		makemaz("hcav2"); return;
+		break;
+
+	    case 107:
+
+		makemaz("hfrnk"); return;
+		break;
+
 		break;
 	
           }

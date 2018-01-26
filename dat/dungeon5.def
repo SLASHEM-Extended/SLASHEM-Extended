@@ -163,7 +163,7 @@ CHAINLEVEL:     "wizard3" "Y" "wizard1" + (2, 0)
 LEVEL:          "fakewiz1" "F" @ (30, 15)
 LEVEL:          "fakewiz2" "G" @ (30, 15)
 # The demon levels
-RNDLEVEL:          "juibl" "J" @ (2, 47) 4
+RNDLEVEL:          "juibl" "J" @ (2, 47) 8
 RNDLEVEL:          "yeeno" "E" @ (2, 47) 13
 RNDLEVEL:          "orcus" "O" @ (2, 47) 6
 RNDLEVEL:          "demog" "D" @ (2, 47) 9
@@ -347,12 +347,24 @@ DUNGEON:        "Sheol" "V" (25, 0)
 ALIGNMENT:      noalign
 DESCRIPTION:    hellish
 BRANCH:         "Vlad's Tower" @ (2, 24) up -1
-LEVEL:          "sheolfil" "A" @ (1, 0)
-LEVEL:          "sheolmid" "H" @ (2, 0)
-LEVEL:          "sheolfil" "B" @ (3, 0)
-LEVEL:          "sheolfil" "C" @ (4, 0)
-LEVEL:          "palace_f" "P" @ (-2, 0)
-LEVEL:          "palace_e" "U" @ (-1, 0)
+RNDLEVEL:          "shfil" "A" @ (1, 25) 10
+RNDLEVEL:          "shfil" "A" @ (1, 25) 10
+RNDLEVEL:          "shfil" "A" @ (1, 25) 10
+RNDLEVEL:          "shfil" "A" @ (1, 25) 10
+RNDLEVEL:          "shfil" "A" @ (1, 25) 10
+RNDLEVEL:          "shfil" "A" @ (1, 25) 10
+RNDLEVEL:          "shfil" "A" @ (1, 25) 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 10
+LEVEL:          "palace_f" "P" @ (20, 6)
+LEVEL:          "palace_e" "U" @ (20, 6)
 
 ### Vlad's Tower ###
 #   It has been removed from Gehennom, and it is surrounded by stone.
@@ -384,7 +396,7 @@ RNDLEVEL:		"levgn" "V" @ (1, 99) 95
 RNDLEVEL:		"levgn" "V" @ (1, 99) 95
 RNDLEVEL:		"levgn" "V" @ (1, 99) 95
 RNDLEVEL:		"levgn" "V" @ (1, 99) 95
-RNDLEVEL:          "juibl" "K" @ (1, 99) 4
+RNDLEVEL:          "juibl" "K" @ (1, 99) 8
 RNDLEVEL:          "yeeno" "E" @ (1, 99) 13
 RNDLEVEL:          "orcus" "O" @ (1, 99) 6
 RNDLEVEL:          "demog" "D" @ (1, 99) 9
@@ -392,7 +404,7 @@ RNDLEVEL:          "baalz" "C" @ (1, 99) 12
 RNDLEVEL:          "geryo" "R" @ (1, 99) 9
 RNDLEVEL:          "dispa" "S" @ (1, 99) 11
 RNDLEVEL:          "asmod" "A" @ (1, 99) 6
-RNDLEVEL:          "juibl" "K" @ (1, 99) 4
+RNDLEVEL:          "juibl" "K" @ (1, 99) 8
 RNDLEVEL:          "yeeno" "E" @ (1, 99) 13
 RNDLEVEL:          "orcus" "O" @ (1, 99) 6
 RNDLEVEL:          "demog" "D" @ (1, 99) 9
@@ -410,6 +422,8 @@ RNDLEVEL:          "heck" "Q" @ (1, 99) 96
 RNDLEVEL:          "heck" "Q" @ (1, 99) 96
 RNDLEVEL:          "heck" "Q" @ (1, 99) 96
 RNDLEVEL:          "heck" "Q" @ (1, 99) 96
+RNDLEVEL:          "shfil" "H" @ (1, 99) 10
+RNDLEVEL:          "shrnd" "G" @ (1, 99) 10
 
 # with 3 branches that you need to visit in order to imbue the amulet...
 DUNGEON:        "Forging Chamber" "J" (1, 0)

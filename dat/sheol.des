@@ -1,6 +1,6 @@
 
 # The fill level for Sheol
-MAZE: "sheolfil",' '
+MAZE: "shfil-1",' '
 FLAGS:hardfloor,noteleport
 INIT_MAP: '.' , ' ' , true , true , random , true
 NOMAP
@@ -54,8 +54,531 @@ TRAP: "ice", random
 TRAP: "ice", random
 TRAP: "ice", random
 
+# Ice version
+MAZE: "shfil-2",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: 'I' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"fire",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+# Snow and crystal water version
+MAZE: "shfil-3",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: 'n' , 'Y' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"fire",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+# Random stair placement, no guaranteed loot
+MAZE: "shfil-4",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+# Same, but not smoothed or joined
+MAZE: "shfil-5",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , false , random , false
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+
+MAZE: "shfil-6",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , false , random , false
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+MAZEWALK:(1,2),east
+MAZEWALK:(1,19),east
+MAZEWALK:(75,2),west
+MAZEWALK:(75,19),west
+
+MAZE: "shfil-7",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER:'P', "blue slime", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+MAZE: "shfil-8",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+
+MAZE: "shfil-9",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'?',"ice",random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"cold",random
+OBJECT: '/',"cold",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+
+MAZE: "shfil-10",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+GEOMETRY:center,center
+MAP
+                          l                     
+         l.....................................l
+                          l                     
+         l.....................................l
+                          l                     
+         l.....................................l
+                          l                     
+         l.....................................l
+                          l                     
+         l.....................................l
+                          l                     
+ENDMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'?',"ice",random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"cold",random
+OBJECT: '/',"cold",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+MAZEWALK:(09,01),west
+MAZEWALK:(09,03),west
+MAZEWALK:(09,05),west
+MAZEWALK:(09,07),west
+MAZEWALK:(09,09),west
+
+MAZEWALK:(26,00),north
+MAZEWALK:(26,10),south
+
+MAZEWALK:(47,01),east
+MAZEWALK:(47,03),east
+MAZEWALK:(47,05),east
+MAZEWALK:(47,07),east
+MAZEWALK:(47,09),east
+
+
+
 # Middle level
-MAZE: "sheolmid",' '
+MAZE: "shrnd-1",' '
 FLAGS: hardfloor,noteleport
 # INIT_MAP: sheollev
 
@@ -154,6 +677,797 @@ MONSTER: random, random,random
 
 MAZEWALK:(00,10),west
 MAZEWALK:(25,06),east
+
+MAZE: "shrnd-2",' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+#          1         2   	 3	     4	   5		 6	     7
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+------------------------------------------------------------------------------
+|..nn.....................................................................n..|
+|...nn..................nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn..............n..|
+|....nn.................n..................................n..............n..|
+|.....nnnnnnnnnnnnnnnnnnn..................................n..............n..|
+|.......................n..................................n.............nn..|
+|......................nn.......IIIIIIIIIIIIIIIII..........n............nn...|
+|...----..............nn........I               I..........n...........nn....|
+|...|..|.............nn.........I ............. I..........n..........nn.....|
+|...|..nnnnnnnn.....nn..........IS............. I..........nnnnnnnnnnnn......|
+|...|..|......nn...nn...........I ............. Inn........n.......n.........|
+|...----.......nn.nn............I               I.nn.......n.......n.........|
+|...............nnn.............IIIIIIIIIIIIIIIII..nn......n.......n.........|
+|................n................................nnnn.....n.......n.........|
+|................nnnnnnnnnnnn....................nn..nn....n.......n.........|
+|...........................n..........nnnnnnnnnnn....nn...n.......n.........|
+|...........................n....nnnnnnn...............nnnnn.......n.........|
+|........................nnnnnnnnn.................................n.........|
+------------------------------------------------------------------------------
+ENDMAP
+
+STAIR:(05,09),up
+STAIR:levregion(59,00,75,18), levregion(13,13,13,13), down
+DOOR:closed,(33,09)
+REGION:(34,08,46,10),lit,"tin shop"
+
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+MAZE: "shrnd-3",' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+#          1         2   	 3	     4	   5		 6	     7
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+YYYYYYYYYYYnn                   CCCCCCCCCCCCCCCCYYYYYYYYY  ..................
+ YYYYYYYYYn nn                  CCCCCCCCCCCCCCCCYYYYYYYY   ..................
+  YYYYYYYn   nn                 CCCCCCCCCCCCCCCCYYYYYYY    ..................
+   YYYYYn     nIIIII          nICCCCCCCCCCCCCCCCYYYYYY     ..................
+    YYYn        IIII          I   CCCCCCCCCCCCCCYYYYY      ..................
+     Yn          III          n       CCCCCCCCCCYYYY       ..................
+     nl           III         I          CCCCCCCYYY        ..................
+    nnll           II         n             CCCCYY         ..................
+   nnnllU          UI     InInI               CCY          H               H
+  nnnnllUUUUUUUUUUUUIIn   n                    H           .               Il
+.nnnnnllUUUUUUUUUUUUI I   I                    n                           Il
+  nnnnllUUUUUUUUUUUUI nIn n         nnnnnnnnnnnn                           Il
+   nnnllU         III   I I         n                                      Il
+    nnll         III  nIn n         nnnnn                                  Il
+     nl         IIII  I   I         nnnnn                                  Il
+     Yn        IIIII  nIn n         nnnnn                                  Il
+    YYYn      nIIIII    I I         nnnnnnnnnnnn                           Il
+   YYYYYn    nn         n n              I                                 Il
+  YYYYYYYn  nn          I I              I                                 Il
+ YYYYYYYYYnnn           nIn              IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ENDMAP
+
+STAIR:(00,10),up
+STAIR:(59,09),down
+NON_DIGGABLE:(00,00,76,19)
+
+REGION:(59,00,76,07),random,"randomroom"
+
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER:'P', "blue slime", random
+MONSTER:'P', "blue slime", random
+MONSTER:'P', "blue slime", random
+MONSTER:'P', "blue slime", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+# "Don't Die" level by Demo
+# originally had lava, but I changed it to ice and snow --Amy
+MAZE: "shrnd-4",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+MAP
+nnIIIIIIIIIIIInnnnnnnIInnnnnnnnnIInnnnnnnIIIIIIIIIIIIII
+nIIIInnnnnnnn nnnnnnn nnIIIIIIInn nnnnnnn nnnnnnnnIIIII
+IInnnnIIIIIIIInnnnnnnIIIIIIIIIIIIInnnnnnnIIIIIIIInnnnII
+nnnIIIInnnnnIIIII IIIIIIInnnnnIIIIIII IIIIInnnnnIIIInnn
+nIIIn nnnnnn nInnnnnIInn nnnnn nnIInnnnnIn nnnnn nnIIIn
+nIInnIInnnnnIn nnnnn nnIInnnnnIInn nnnnn nInnnnnIInnIIn
+nIInIIIII IIIIInnnnnIIIIIII IIIIIIInnnnnIIIII IIIIInIIn
+nIInIIInnnnnIIIIIIIIInn nnnnnnn nnIIIIIIIIInnnnnIIInIIn
+nIInIInnnnnn nnnnnnnnnIInnnnnnnIInnnnnnnnn nnnnnnIInIIn
+nIInIIInnnnnIIIIIIIIIIIInnnnnnnIIIIIIIIIIIInnnnnIIInIIn
+nIInIIIII IIIInnnnnnIIIIIIIIIIIIIIInnnnnnIIII IIIIInIIn
+nIInIIIIInnnn nnnnnnIII         IIInnnnnn nnnnIIIIInIIn
+nIInIIIIIIIIIInnnnnn nnnIIIIIIInnn nnnnnnIIIIIIIIIInIIn
+nIInnIInnnnnIIIII IIIIIIInnnnnIIIIIII IIIIInnnnnIInnIIn
+nIIInn nnnnn nInnnnnIInn nnnnn nnIInnnnnIn nnnnn nnIIIn
+nIIIIIInnnnnIn nnnnn nnIInnnnnIInn nnnnn nInnnnnIIIIIIn
+nIIIIIIII IIIIInnnnnIIIIIII IIIIIIInnnnnIIIII IIIIIIIIn
+nnnIIInnnnnnnIIIIIIIIIIInnnnnnnIIIIIIIIIIInnnnnnnIIInnn
+IInnn nnnnnnn nnIIIIInn nnnnnnn nnIIIIIn nnnnnnnn nnnII
+IIIIIInnnnnnnIInnnnnnnIInnnnnnnIInnnnnnnIInnnnnnnIIIIII
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+NON_DIGGABLE:(00,00,54,19)
+NON_PASSWALL:(00,00,54,19)
+
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+# "Alignment Void" level by Demo, with adjustments by Amy
+MAZE: "shrnd-5", ' '
+FLAGS: hardfloor,noteleport,nommap
+GEOMETRY:center,center
+#         1         2   	   3	     4	       5		 6	       7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+9llY}}}}}}}}}}}}}}}}}}}IIIIIIIIIIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTIIITTTTTTTTTT
+8l.U}}}}}}}}}}}}}}}}}}IIIIIIIIIIIIIIIIIIIIIIIIIIITIIIITTTTTTTTIIIIIIITTTTTTTT
+7YUl}}}}}}}}}}}}}}}}}}IIIIIIIIIIIIIIIIIIIIIIIIIIIIITIIIIIIIIIIIIIIIIIIIIIITTT
+6}}}}}}}}}}}}}}}}}}}}ITTTTTTTTTTTTTTTTSTTTTTTTTTTTTTTTTITTTTTTTTTTTTTTTTIITTT
+5}}}}}}}}}}}}}}}}}}}IIITTTTTTTTTTTTTTTITTTTTIIIIIIIIIITITTTTTTTTIIIIIITTTITTT
+4}}}}}}}}}}}}}}}}}}}}}IITTTTTTTTTTTTTTITTTTTTIIIIIITTIIITIIIIIIIIIIIIITTTITTT
+3}}}}}}}}}}}}}}}}}}}}}}IIITTTTTTTTTTTTSTTTTTTTIIIITTTTIIIITTTTIIIIIIIIIITITTT
+2}}}}}}}}}}}}}}}}}}}}}}}}IITTTTTTT.........TTTTTTTTTTTTIITTTTTTIIIIIITTTTITTT
+1}}}}}}}}}}}}}}}}TTIII}TTTSTTTTTTT.........TTTTTTTTTTTIITTTTTTIIIIITTTTTTITTT
+0}}}}}}}}}}}}}}}}TIIIIISISIIIIIIIS.........SIIIIIIIISITITTTTTTTTTTTTTTTTTITTT
+9}}}}}}}}}}}}}}}}TTIIITTITTTTTTTTT.........TTTTTTTTTTITITTTTTTTTTTTTTTTTTITTT
+8}}}}}}}}}}}}}}}}}}}}}}TITTTTTTTTT.........TTTISITTTTISIIIIIIIIIIIIIIITTTITTT
+7}}}}}}}}}IIIIIIIII}}}}TITTTIIIITTTTTTSTTTTTTTITIIITTITITTTTTTTTTTTTTIITTITTT
+6}}}}}}}IIIIIIIIIIIITTTTITTIIIIIITTTTTITTTTTTTITTTTTTITITTIIIIIIITTTIITTTITTT
+5}}}}}}IIIIIIIIIIIIIIIIIIIIIIIIIIIIITTITTTTTTTIIIIIIIITITIIIIIIIIIFIITTTTITTT
+4}}}}}}}}}}IIIIIIIIIIITTTTTIIIIIIITTTTITTTTTTTTTTTTTTTTITTIIIIIIITTTTTTTTITTT
+3}}}}}}}}}}}}}}}}}}}}}ITTTTTTTTTTTTTTTSTTTTTTTTTTTTTTTTITTTTTTTTTTTTTTTTIIITT
+2}}}}}}}}}}}}}}}}IIIIIIIIIIIIIIIIITITIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITT
+1}}}}}}}}}}}}}}}}}}}}}}IIIIIIIIIIIITIIITIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITTT
+0}}}}}}}}}}}}}}}}}}}}}}}}IIIIIIIIIIITIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITTTTT
+ENDMAP
+
+REGION:(00,00,75,19),lit,"ordinary"
+# Altar to ???
+ALTAR:(37,09),align[1],altar
+# Stairs
+STAIR:(01,01),up
+STAIR:(49,12),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+NON_PASSWALL:(00,00,75,19)
+
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+
+OBJECT:'+', random, random
+OBJECT:'+', random, random
+OBJECT:'+', random, random
+OBJECT:'+', random, random
+OBJECT:'+', random, random
+
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+# "Far Void" level by Demo, with adjustments by Amy
+MAZE: "shrnd-6",' '
+FLAGS: noteleport,hardfloor,nommap
+GEOMETRY: center, center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY------YY
+1|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY|####|YY
+2|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY|####|YY
+3|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY-----------------------------####-S-
+4|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY---.........+#############S####|####|
+5|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY--...----------------------|------###|
+6|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY---..---............---YYYYYY|####|####|
+7|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY||...--...----------...||YYYYY---#####-S-
+8|YYYYYYYYYYYYYY...YYYYYYYYYYYYYYYYY|..---..---........---..|YYYYYYY|#####|YY
+9|YYYYYYYYYYYYY.....YYYYYYYYYYYYYYYY|.--...--...------...--.|YYYYYYY|#####|YY
+0|YYYYYYYYYYYY.......YYYYYYYYYYYYYYY|.|..---..---....---..|.|YYYYYYY-------YY
+1|YYYYYYYYYYYY......................S.|.--...--........--.|.|YYYYYYYYYYYYYYYY
+2|YYYYYYYYYYYY.......YYYYYYYYYYYYYYY|.|.--....-........--.|.|YYYYYYYYYYYYYYYY
+3|YYYYYYYYYYYYY.....YYYYYYYYYYYYYYYY|.|..----.S.....----..|.|YYYYYYYYYYYYYYYY
+4|YYYYYYYYYYYYYY...YYYYYYYYYYYYYYYYY|.--....---...---....--.|YYYYYYYYYYYYYYYY
+5|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY|..----...-----...----..|YYYYYYYYYYYYYYYY
+6|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY||....---...|...---....||YYYYYYYYYYYYYYYY
+7|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY---|...---...---...|---YYYYYYYYYYYYYYYYY
+8|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY||....-----....||YYYYYYYYYYYYYYYYYYYY
+9|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY----.......----YYYYYYYYYYYYYYYYYYYYY
+0|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY-------------YYYYYYYYYYYYYYYYYYYYYY
+ENDMAP
+RANDOM_PLACES:(67,6),(14,11)
+
+STAIR: place[0], up
+STAIR: (53,11), down
+
+NON_DIGGABLE:(00,00,75,20)
+NON_PASSWALL:(00,00,75,20)
+
+DOOR:locked,(51,04)
+
+# This is slex, I added a possibility to get there... but the engraving is preserved just for the heck of it --Amy
+ENGRAVING:(16,11),burn,"If you got out here in a normal game without abusing magic whistle pet engulf or enexto I wanna hear about it."
+
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:''', "finnish explorer", place[1]
+
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+
+MAZE: "shrnd-7",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+-------                                    -------
+|.....|                                    |.....|
+|.....|                                    |.....|
+B.....BnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnB.....B
+|.....|I                                  I|.....|
+|.....|I                                  I|.....|
+-------I                                  I-------
+       IYYYYYYYYYYYYYYYB...   YYYYYYYYYYYYI
+       I            l   ...   l           I
+       I            l   ...   l           I
+       I            l   ...   l           I
+       IYYYYYYYYYYYYY   ...BYYYYYYYYYYYYYYI
+-------I                                  I-------
+|.....|I                                  I|.....|
+|.....|I                                  I|.....|
+B.....BnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnB.....B
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------                                    -------
+ENDMAP
+
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+
+REGION:(01,01,05,05),lit,"randomroom"
+
+REGION:(44,01,48,05),lit,"randomroom"
+
+REGION:(01,13,05,17),lit,"randomroom"
+
+REGION:(44,13,48,17),lit,"randomroom"
+
+MAZEWALK:(00,03),west
+
+MAZEWALK:(49,03),east
+
+MAZEWALK:(00,15),west
+
+MAZEWALK:(49,15),east
+
+MONSTER:''', "crystal ice golem", (24,07)
+MONSTER:''', "crystal ice golem", (24,09)
+MONSTER:''', "crystal ice golem", (24,11)
+MONSTER:''', "crystal ice golem", (25,07)
+MONSTER:''', "crystal ice golem", (25,09)
+MONSTER:''', "crystal ice golem", (25,11)
+MONSTER:''', "crystal ice golem", (26,07)
+MONSTER:''', "crystal ice golem", (26,09)
+MONSTER:''', "crystal ice golem", (26,11)
+MONSTER:random,random, (24,08)
+MONSTER:random,random, (24,10)
+MONSTER:random,random, (25,08)
+MONSTER:random,random, (25,10)
+MONSTER:random,random, (26,08)
+MONSTER:random,random, (26,10)
+
+MAZE: "shrnd-8",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+YInnnnnnnnn-------------------------------------------------------nnnnnnnnnIY
+YInnnnnnnnn.......................................................nnnnnnnnnIY
+YInnnnnnnnn..........----------------I------------------..........nnnnnnnnnIY
+YInnnnnnnnn..........|nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n-------------......------------n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...|....Y.|..|...|...|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........In|...|...|...|Y.....+..|...|...|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...|......|..|...|...|nI..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|-+--......-----+---+--n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n--+---+--.........Y............n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n...........................Y...n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n--+---+--..Y..---+---Y.........n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|----.|.....|.------+--n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...|.|.....|.|..|....|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...+.|.....|.+..|....|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...|.|.....|.|..|....|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n-------------.-------.---------n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnI..........nnnnnnnnnIY
+YInnnnnnnnn..........-----------I------------I----------..........nnnnnnnnnIY
+YInnnnnnnnn.......................................................nnnnnnnnnIY
+YInnnnnnnnn-------------------------------------------------------nnnnnnnnnIY
+ENDMAP
+
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+
+REGION:(00,00,76,20),lit,"ordinary"
+
+DOOR:closed,(25,09)
+DOOR:closed,(29,09)
+DOOR:closed,(33,08)
+DOOR:closed,(42,06)
+DOOR:closed,(47,08)
+DOOR:closed,(51,08)
+DOOR:closed,(25,11)
+DOOR:closed,(29,11)
+DOOR:closed,(35,14)
+DOOR:closed,(40,11)
+DOOR:closed,(45,14)
+DOOR:closed,(51,12)
+
+REGION:(24,05,26,08),lit,"random shop"
+REGION:(28,05,30,08),lit,"random shop"
+REGION:(32,05,34,07),lit,"random shop"
+REGION:(43,05,44,07),lit,"random shop"
+REGION:(46,05,48,07),lit,"random shop"
+REGION:(50,05,52,07),lit,"random shop"
+
+REGION:(24,12,26,15),lit,"randomroom"
+REGION:(28,12,30,15),lit,"randomroom"
+REGION:(32,13,34,15),lit,"randomroom"
+REGION:(38,12,42,15),lit,"randomroom"
+REGION:(46,13,47,15),lit,"randomroom"
+REGION:(49,13,52,15),lit,"randomroom"
+
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "shrnd-9",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+MAP
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIII U IIIIIIMMMMMM
+MMMMMMIIIIIIIIIIIIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII U IIIaIIMMMMMM
+MMMMMMIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII U IIIIIIIIIIII
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIaIIII U IIIIIIIIIIII
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII U IIIIIIIIIIaI
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnYYYnnnnnnannnnnnnnnnnnnnnnnnnannnnnYYYnnnnnnnnn
+.nnnnnnnnnnnnnnnnnannnnnnnnnnYYYnnnnnnnnnnnnb hnnnnnnnnnnnnnnnnnYYYnnnnnnnn.
+nnnnnnnnannnnnnnnnnnnnnnnnnnnYYYnnnnnnnnnnnsbbLnnnnnnnnnnnnnnnnnYYYannnnnnnn
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIIIII
+MMMMMMIIIIIIIIIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIMM
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIMIIIIIIIIIIIIIIIIIIIIIMM
+MMMMMMIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIaIIIIIIIIIIIIMMMIIIIIIIIIIIIIIIIIIaIMM
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIMMMMMIIIIIIIIIIIIIIIIIIIMM
+ENDMAP
+
+STAIR:(00,06),up
+STAIR:(75,06),down
+
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "red dragon", random
+MONSTER:'D', "red dragon", random
+MONSTER:'H', "frost giant", random
+MONSTER:'H', "frost giant", random
+MONSTER:'H', "frost giant", random
+MONSTER:'Z', "cryo archer", random
+MONSTER:'Z', "cryo archer", random
+MONSTER:'Z', "cryo archer", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '0', random, random
+OBJECT: '0', random, random
+OBJECT: '0', random, random
+OBJECT: '0', random, random
+OBJECT: '0', random, random
+OBJECT: '%', random, random
+OBJECT: '%', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+# this map is shamelessly stolen from ToME (Mount Doom) --Amy
+MAZE: "shrnd-10",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+YYYYYY YYYYYYYYYY.Y             MMMMMMMMMM                YY..........YY    M
+.....GGGGGGGG.....Y    GGGGGGGGGGGGYYYYYYM     YYYYYYYYYYYYYYY......Y.Y     M
+YYYY.YY     Y.....Y    G        MY......YM     Y..........Y  YYY....Y.Y     M
+ YY...YY    Y.....Y    G   MMMMMMY..pp..YMMMMMMY..........Y    YYY.YYYY     M
+YY.....YY   Y.....Y    G   MYYYYYY......YYYYYYMY..........Y      Y.Y        M
+Y.......YY  Y.....YYY  G   MY.......q........YMY..........Y     YY.Y        M
+.........Y  Y.......GGGG   MY.......q........YMY..........Y    YY..YYYYYY   M
+.........Y  YYYYYYYYY      MY.......q........YMY..........Y   YY..YY....Y   M
+Y.......YY                 MY.......q........YMYYYYYYYY.YYY   Y.YYYY....YY  M
+YY.....YY                  MY.......q........YM   Y.....Y     Y..........Y  M
+ YY...YY                   MYYYYYY......YYYYYYM   Y..YYYY     YYY........YY M
+  YY.YYYYYYYYYYYYYYYYY     MMMMMMY......YMMMMMM   Y..Y          Y.........Y M
+   Y.................Y          MY......YM        Y..YYYY       YYY.......YYM
+Y  YYYYYYYYYYYYYYYYY.Y          MY......YM        Y.....Y        Y..........M
+YYYYYYYYYYYYYYYYYYYY.Y          MY......YM        YYYYY.Y      YYY......YYY.M
+.....................Y          MY......YM            Y.Y      Y.......YY Y.M
+YY.YYY..YYY..YYY..YYYY          MY......YM            Y.Y      YYYYYYYYY  Y.M
+YY.Y YYYYYYYYYYYYYY             MY......YM       YYYYYY.YYYYYYYYYYYYYYYYYYY.M
+.Y.Y                            MY......GGGGGGGGGG..........................M
+YY.Y                            MY......YM       Y............YYYYYYYYYYYYYYM
+.Y.Y                            MMMM..MMMMYYYYYYYY............YYYY          M
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+NON_DIGGABLE:(00,00,76,20)
+# passwall is allowed
+
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'H', "frost giant", random
+MONSTER:'H', "frost giant", random
+MONSTER:'H', "frost giant", random
+MONSTER:'Z', "cryo archer", random
+MONSTER:'Z', "cryo archer", random
+MONSTER:'Z', "cryo archer", random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
 
 # From http://www.jewishencyclopedia.com/articles/13563-sheol):
 #
@@ -344,6 +1658,7 @@ MAP
 ENDMAP
 
 STAIR: (4,7),up
+STAIR: (66,7),down
 
 NON_DIGGABLE:(00,00,75,14)
 
@@ -832,6 +2147,1321 @@ MONSTER: random, random, random
 MONSTER: random, random, random
 MONSTER: random, random, random
 MONSTER: random, random, random
+
+# Ice version
+MAZE: "esheo-5",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: 'I' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:'P', random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"fire",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+# Snow and crystal water version
+MAZE: "esheo-6",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: 'n' , 'Y' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:'P', random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"fire",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+# Random stair placement, no guaranteed loot
+MAZE: "esheo-7",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:'P', random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+# Same, but not smoothed or joined
+MAZE: "esheo-8",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , false , random , false
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:'P', random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+
+MAZE: "esheo-9",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , false , random , false
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:'P', random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+MAZEWALK:(1,2),east
+MAZEWALK:(1,19),east
+MAZEWALK:(75,2),west
+MAZEWALK:(75,19),west
+
+MAZE: "esheo-10",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:'P', random, random
+MONSTER:'P', random, random
+MONSTER:'P', random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+MAZE: "esheo-11",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:'x', random, random
+MONSTER:'x', random, random
+MONSTER:'x', random, random
+MONSTER:'x', random, random
+MONSTER:'x', random, random
+MONSTER:'x', random, random
+MONSTER:'x', random, random
+MONSTER:'x', random, random
+MONSTER:'x', random, random
+MONSTER:'x', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+
+MAZE: "esheo-12",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:'P', random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'?',"ice",random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"cold",random
+OBJECT: '/',"cold",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+
+MAZE: "esheo-13",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+GEOMETRY:center,center
+MAP
+                          l                     
+         l.....................................l
+                          l                     
+         l.....................................l
+                          l                     
+         l.....................................l
+                          l                     
+         l.....................................l
+                          l                     
+         l.....................................l
+                          l                     
+ENDMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:'P', random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'?',"ice",random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"cold",random
+OBJECT: '/',"cold",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+MAZEWALK:(09,01),west
+MAZEWALK:(09,03),west
+MAZEWALK:(09,05),west
+MAZEWALK:(09,07),west
+MAZEWALK:(09,09),west
+
+MAZEWALK:(26,00),north
+MAZEWALK:(26,10),south
+
+MAZEWALK:(47,01),east
+MAZEWALK:(47,03),east
+MAZEWALK:(47,05),east
+MAZEWALK:(47,07),east
+MAZEWALK:(47,09),east
+
+
+
+MAZE: "esheo-14",' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+#          1         2   	 3	     4	   5		 6	     7
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+------------------------------------------------------------------------------
+|..nn.....................................................................n..|
+|...nn..................nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn..............n..|
+|....nn.................n..................................n..............n..|
+|.....nnnnnnnnnnnnnnnnnnn..................................n..............n..|
+|.......................n..................................n.............nn..|
+|......................nn.......IIIIIIIIIIIIIIIII..........n............nn...|
+|...----..............nn........I               I..........n...........nn....|
+|...|..|.............nn.........I ............. I..........n..........nn.....|
+|...|..nnnnnnnn.....nn..........IS............. I..........nnnnnnnnnnnn......|
+|...|..|......nn...nn...........I ............. Inn........n.......n.........|
+|...----.......nn.nn............I               I.nn.......n.......n.........|
+|...............nnn.............IIIIIIIIIIIIIIIII..nn......n.......n.........|
+|................n................................nnnn.....n.......n.........|
+|................nnnnnnnnnnnn....................nn..nn....n.......n.........|
+|...........................n..........nnnnnnnnnnn....nn...n.......n.........|
+|...........................n....nnnnnnn...............nnnnn.......n.........|
+|........................nnnnnnnnn.................................n.........|
+------------------------------------------------------------------------------
+ENDMAP
+
+STAIR:(05,09),up
+STAIR:levregion(59,00,75,18), levregion(13,13,13,13), down
+DOOR:closed,(33,09)
+REGION:(34,08,46,10),lit,"tin shop"
+
+MONSTER:''', random, random
+MONSTER:'P', random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+MAZE: "esheo-15",' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+#          1         2   	 3	     4	   5		 6	     7
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+YYYYYYYYYYYnn                   CCCCCCCCCCCCCCCCYYYYYYYYY  ..................
+ YYYYYYYYYn nn                  CCCCCCCCCCCCCCCCYYYYYYYY   ..................
+  YYYYYYYn   nn                 CCCCCCCCCCCCCCCCYYYYYYY    ..................
+   YYYYYn     nIIIII          nICCCCCCCCCCCCCCCCYYYYYY     ..................
+    YYYn        IIII          I   CCCCCCCCCCCCCCYYYYY      ..................
+     Yn          III          n       CCCCCCCCCCYYYY       ..................
+     nl           III         I          CCCCCCCYYY        ..................
+    nnll           II         n             CCCCYY         ..................
+   nnnllU          UI     InInI               CCY          H               H
+  nnnnllUUUUUUUUUUUUIIn   n                    H           .               Il
+.nnnnnllUUUUUUUUUUUUI I   I                    n                           Il
+  nnnnllUUUUUUUUUUUUI nIn n         nnnnnnnnnnnn                           Il
+   nnnllU         III   I I         n                                      Il
+    nnll         III  nIn n         nnnnn                                  Il
+     nl         IIII  I   I         nnnnn                                  Il
+     Yn        IIIII  nIn n         nnnnn                                  Il
+    YYYn      nIIIII    I I         nnnnnnnnnnnn                           Il
+   YYYYYn    nn         n n              I                                 Il
+  YYYYYYYn  nn          I I              I                                 Il
+ YYYYYYYYYnnn           nIn              IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ENDMAP
+
+STAIR:(00,10),up
+STAIR:(59,09),down
+NON_DIGGABLE:(00,00,76,19)
+
+REGION:(59,00,76,07),random,"randomroom"
+
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:'P', random, random
+MONSTER:'P', random, random
+MONSTER:'P', random, random
+MONSTER:'P', random, random
+MONSTER:'P', random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+# "Don't Die" level by Demo
+# originally had lava, but I changed it to ice and snow --Amy
+MAZE: "esheo-16",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+MAP
+nnIIIIIIIIIIIInnnnnnnIInnnnnnnnnIInnnnnnnIIIIIIIIIIIIII
+nIIIInnnnnnnn nnnnnnn nnIIIIIIInn nnnnnnn nnnnnnnnIIIII
+IInnnnIIIIIIIInnnnnnnIIIIIIIIIIIIInnnnnnnIIIIIIIInnnnII
+nnnIIIInnnnnIIIII IIIIIIInnnnnIIIIIII IIIIInnnnnIIIInnn
+nIIIn nnnnnn nInnnnnIInn nnnnn nnIInnnnnIn nnnnn nnIIIn
+nIInnIInnnnnIn nnnnn nnIInnnnnIInn nnnnn nInnnnnIInnIIn
+nIInIIIII IIIIInnnnnIIIIIII IIIIIIInnnnnIIIII IIIIInIIn
+nIInIIInnnnnIIIIIIIIInn nnnnnnn nnIIIIIIIIInnnnnIIInIIn
+nIInIInnnnnn nnnnnnnnnIInnnnnnnIInnnnnnnnn nnnnnnIInIIn
+nIInIIInnnnnIIIIIIIIIIIInnnnnnnIIIIIIIIIIIInnnnnIIInIIn
+nIInIIIII IIIInnnnnnIIIIIIIIIIIIIIInnnnnnIIII IIIIInIIn
+nIInIIIIInnnn nnnnnnIII         IIInnnnnn nnnnIIIIInIIn
+nIInIIIIIIIIIInnnnnn nnnIIIIIIInnn nnnnnnIIIIIIIIIInIIn
+nIInnIInnnnnIIIII IIIIIIInnnnnIIIIIII IIIIInnnnnIInnIIn
+nIIInn nnnnn nInnnnnIInn nnnnn nnIInnnnnIn nnnnn nnIIIn
+nIIIIIInnnnnIn nnnnn nnIInnnnnIInn nnnnn nInnnnnIIIIIIn
+nIIIIIIII IIIIInnnnnIIIIIII IIIIIIInnnnnIIIII IIIIIIIIn
+nnnIIInnnnnnnIIIIIIIIIIInnnnnnnIIIIIIIIIIInnnnnnnIIInnn
+IInnn nnnnnnn nnIIIIInn nnnnnnn nnIIIIIn nnnnnnnn nnnII
+IIIIIInnnnnnnIInnnnnnnIInnnnnnnIInnnnnnnIInnnnnnnIIIIII
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+NON_DIGGABLE:(00,00,54,19)
+NON_PASSWALL:(00,00,54,19)
+
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+# "Alignment Void" level by Demo, with adjustments by Amy
+MAZE: "esheo-17", ' '
+FLAGS: hardfloor,noteleport,nommap
+GEOMETRY:center,center
+#         1         2   	   3	     4	       5		 6	       7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+9llY}}}}}}}}}}}}}}}}}}}IIIIIIIIIIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTIIITTTTTTTTTT
+8l.U}}}}}}}}}}}}}}}}}}IIIIIIIIIIIIIIIIIIIIIIIIIIITIIIITTTTTTTTIIIIIIITTTTTTTT
+7YUl}}}}}}}}}}}}}}}}}}IIIIIIIIIIIIIIIIIIIIIIIIIIIIITIIIIIIIIIIIIIIIIIIIIIITTT
+6}}}}}}}}}}}}}}}}}}}}ITTTTTTTTTTTTTTTTSTTTTTTTTTTTTTTTTITTTTTTTTTTTTTTTTIITTT
+5}}}}}}}}}}}}}}}}}}}IIITTTTTTTTTTTTTTTITTTTTIIIIIIIIIITITTTTTTTTIIIIIITTTITTT
+4}}}}}}}}}}}}}}}}}}}}}IITTTTTTTTTTTTTTITTTTTTIIIIIITTIIITIIIIIIIIIIIIITTTITTT
+3}}}}}}}}}}}}}}}}}}}}}}IIITTTTTTTTTTTTSTTTTTTTIIIITTTTIIIITTTTIIIIIIIIIITITTT
+2}}}}}}}}}}}}}}}}}}}}}}}}IITTTTTTT.........TTTTTTTTTTTTIITTTTTTIIIIIITTTTITTT
+1}}}}}}}}}}}}}}}}TTIII}TTTSTTTTTTT.........TTTTTTTTTTTIITTTTTTIIIIITTTTTTITTT
+0}}}}}}}}}}}}}}}}TIIIIISISIIIIIIIS.........SIIIIIIIISITITTTTTTTTTTTTTTTTTITTT
+9}}}}}}}}}}}}}}}}TTIIITTITTTTTTTTT.........TTTTTTTTTTITITTTTTTTTTTTTTTTTTITTT
+8}}}}}}}}}}}}}}}}}}}}}}TITTTTTTTTT.........TTTISITTTTISIIIIIIIIIIIIIIITTTITTT
+7}}}}}}}}}IIIIIIIII}}}}TITTTIIIITTTTTTSTTTTTTTITIIITTITITTTTTTTTTTTTTIITTITTT
+6}}}}}}}IIIIIIIIIIIITTTTITTIIIIIITTTTTITTTTTTTITTTTTTITITTIIIIIIITTTIITTTITTT
+5}}}}}}IIIIIIIIIIIIIIIIIIIIIIIIIIIIITTITTTTTTTIIIIIIIITITIIIIIIIIIFIITTTTITTT
+4}}}}}}}}}}IIIIIIIIIIITTTTTIIIIIIITTTTITTTTTTTTTTTTTTTTITTIIIIIIITTTTTTTTITTT
+3}}}}}}}}}}}}}}}}}}}}}ITTTTTTTTTTTTTTTSTTTTTTTTTTTTTTTTITTTTTTTTTTTTTTTTIIITT
+2}}}}}}}}}}}}}}}}IIIIIIIIIIIIIIIIITITIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITT
+1}}}}}}}}}}}}}}}}}}}}}}IIIIIIIIIIIITIIITIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITTT
+0}}}}}}}}}}}}}}}}}}}}}}}}IIIIIIIIIIITIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITTTTT
+ENDMAP
+
+REGION:(00,00,75,19),lit,"ordinary"
+# Altar to ???
+ALTAR:(37,09),align[1],altar
+# Stairs
+STAIR:(01,01),up
+STAIR:(49,12),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+NON_PASSWALL:(00,00,75,19)
+
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+
+OBJECT:'+', random, random
+OBJECT:'+', random, random
+OBJECT:'+', random, random
+OBJECT:'+', random, random
+OBJECT:'+', random, random
+
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+# "Far Void" level by Demo, with adjustments by Amy
+MAZE: "esheo-18",' '
+FLAGS: noteleport,hardfloor,nommap
+GEOMETRY: center, center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY------YY
+1|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY|####|YY
+2|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY|####|YY
+3|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY-----------------------------####-S-
+4|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY---.........+#############S####|####|
+5|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY--...----------------------|------###|
+6|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY---..---............---YYYYYY|####|####|
+7|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY||...--...----------...||YYYYY---#####-S-
+8|YYYYYYYYYYYYYY...YYYYYYYYYYYYYYYYY|..---..---........---..|YYYYYYY|#####|YY
+9|YYYYYYYYYYYYY.....YYYYYYYYYYYYYYYY|.--...--...------...--.|YYYYYYY|#####|YY
+0|YYYYYYYYYYYY.......YYYYYYYYYYYYYYY|.|..---..---....---..|.|YYYYYYY-------YY
+1|YYYYYYYYYYYY......................S.|.--...--........--.|.|YYYYYYYYYYYYYYYY
+2|YYYYYYYYYYYY.......YYYYYYYYYYYYYYY|.|.--....-........--.|.|YYYYYYYYYYYYYYYY
+3|YYYYYYYYYYYYY.....YYYYYYYYYYYYYYYY|.|..----.S.....----..|.|YYYYYYYYYYYYYYYY
+4|YYYYYYYYYYYYYY...YYYYYYYYYYYYYYYYY|.--....---...---....--.|YYYYYYYYYYYYYYYY
+5|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY|..----...-----...----..|YYYYYYYYYYYYYYYY
+6|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY||....---...|...---....||YYYYYYYYYYYYYYYY
+7|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY---|...---...---...|---YYYYYYYYYYYYYYYYY
+8|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY||....-----....||YYYYYYYYYYYYYYYYYYYY
+9|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY----.......----YYYYYYYYYYYYYYYYYYYYY
+0|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY-------------YYYYYYYYYYYYYYYYYYYYYY
+ENDMAP
+RANDOM_PLACES:(67,6),(14,11)
+
+STAIR: place[0], up
+STAIR: (53,11), down
+
+NON_DIGGABLE:(00,00,75,20)
+NON_PASSWALL:(00,00,75,20)
+
+DOOR:locked,(51,04)
+
+# This is slex, I added a possibility to get there... but the engraving is preserved just for the heck of it --Amy
+ENGRAVING:(16,11),burn,"If you got out here in a normal game without abusing magic whistle pet engulf or enexto I wanna hear about it."
+
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:''', random, place[1]
+
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+
+MAZE: "esheo-19",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+-------                                    -------
+|.....|                                    |.....|
+|.....|                                    |.....|
+B.....BnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnB.....B
+|.....|I                                  I|.....|
+|.....|I                                  I|.....|
+-------I                                  I-------
+       IYYYYYYYYYYYYYYYB...   YYYYYYYYYYYYI
+       I            l   ...   l           I
+       I            l   ...   l           I
+       I            l   ...   l           I
+       IYYYYYYYYYYYYY   ...BYYYYYYYYYYYYYYI
+-------I                                  I-------
+|.....|I                                  I|.....|
+|.....|I                                  I|.....|
+B.....BnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnB.....B
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------                                    -------
+ENDMAP
+
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+
+REGION:(01,01,05,05),lit,"randomroom"
+
+REGION:(44,01,48,05),lit,"randomroom"
+
+REGION:(01,13,05,17),lit,"randomroom"
+
+REGION:(44,13,48,17),lit,"randomroom"
+
+MAZEWALK:(00,03),west
+
+MAZEWALK:(49,03),east
+
+MAZEWALK:(00,15),west
+
+MAZEWALK:(49,15),east
+
+MONSTER:''', random, (24,07)
+MONSTER:''', random, (24,09)
+MONSTER:''', random, (24,11)
+MONSTER:''', random, (25,07)
+MONSTER:''', random, (25,09)
+MONSTER:''', random, (25,11)
+MONSTER:''', random, (26,07)
+MONSTER:''', random, (26,09)
+MONSTER:''', random, (26,11)
+MONSTER:random,random, (24,08)
+MONSTER:random,random, (24,10)
+MONSTER:random,random, (25,08)
+MONSTER:random,random, (25,10)
+MONSTER:random,random, (26,08)
+MONSTER:random,random, (26,10)
+
+MAZE: "esheo-20",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+YInnnnnnnnn-------------------------------------------------------nnnnnnnnnIY
+YInnnnnnnnn.......................................................nnnnnnnnnIY
+YInnnnnnnnn..........----------------I------------------..........nnnnnnnnnIY
+YInnnnnnnnn..........|nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n-------------......------------n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...|....Y.|..|...|...|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........In|...|...|...|Y.....+..|...|...|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...|......|..|...|...|nI..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|-+--......-----+---+--n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n--+---+--.........Y............n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n...........................Y...n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n--+---+--..Y..---+---Y.........n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|----.|.....|.------+--n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...|.|.....|.|..|....|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...+.|.....|.+..|....|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...|.|.....|.|..|....|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n-------------.-------.---------n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnI..........nnnnnnnnnIY
+YInnnnnnnnn..........-----------I------------I----------..........nnnnnnnnnIY
+YInnnnnnnnn.......................................................nnnnnnnnnIY
+YInnnnnnnnn-------------------------------------------------------nnnnnnnnnIY
+ENDMAP
+
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+
+REGION:(00,00,76,20),lit,"ordinary"
+
+DOOR:closed,(25,09)
+DOOR:closed,(29,09)
+DOOR:closed,(33,08)
+DOOR:closed,(42,06)
+DOOR:closed,(47,08)
+DOOR:closed,(51,08)
+DOOR:closed,(25,11)
+DOOR:closed,(29,11)
+DOOR:closed,(35,14)
+DOOR:closed,(40,11)
+DOOR:closed,(45,14)
+DOOR:closed,(51,12)
+
+REGION:(24,05,26,08),lit,"random shop"
+REGION:(28,05,30,08),lit,"random shop"
+REGION:(32,05,34,07),lit,"random shop"
+REGION:(43,05,44,07),lit,"random shop"
+REGION:(46,05,48,07),lit,"random shop"
+REGION:(50,05,52,07),lit,"random shop"
+
+REGION:(24,12,26,15),lit,"randomroom"
+REGION:(28,12,30,15),lit,"randomroom"
+REGION:(32,13,34,15),lit,"randomroom"
+REGION:(38,12,42,15),lit,"randomroom"
+REGION:(46,13,47,15),lit,"randomroom"
+REGION:(49,13,52,15),lit,"randomroom"
+
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "esheo-21",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+MAP
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIII U IIIIIIMMMMMM
+MMMMMMIIIIIIIIIIIIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII U IIIaIIMMMMMM
+MMMMMMIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII U IIIIIIIIIIII
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIaIIII U IIIIIIIIIIII
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII U IIIIIIIIIIaI
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnYYYnnnnnnannnnnnnnnnnnnnnnnnnannnnnYYYnnnnnnnnn
+.nnnnnnnnnnnnnnnnnannnnnnnnnnYYYnnnnnnnnnnnnb hnnnnnnnnnnnnnnnnnYYYnnnnnnnn.
+nnnnnnnnannnnnnnnnnnnnnnnnnnnYYYnnnnnnnnnnnsbbLnnnnnnnnnnnnnnnnnYYYannnnnnnn
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIIIII
+MMMMMMIIIIIIIIIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIMM
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIMIIIIIIIIIIIIIIIIIIIIIMM
+MMMMMMIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIaIIIIIIIIIIIIMMMIIIIIIIIIIIIIIIIIIaIMM
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIMMMMMIIIIIIIIIIIIIIIIIIIMM
+ENDMAP
+
+STAIR:(00,06),up
+STAIR:(75,06),down
+
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'H', "frost giant", random
+MONSTER:'H', "frost giant", random
+MONSTER:'H', "frost giant", random
+MONSTER:'Z', random, random
+MONSTER:'Z', random, random
+MONSTER:'Z', random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '0', random, random
+OBJECT: '0', random, random
+OBJECT: '0', random, random
+OBJECT: '0', random, random
+OBJECT: '0', random, random
+OBJECT: '%', random, random
+OBJECT: '%', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+# this map is shamelessly stolen from ToME (Mount Doom) --Amy
+MAZE: "esheo-22",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+YYYYYY YYYYYYYYYY.Y             MMMMMMMMMM                YY..........YY    M
+.....GGGGGGGG.....Y    GGGGGGGGGGGGYYYYYYM     YYYYYYYYYYYYYYY......Y.Y     M
+YYYY.YY     Y.....Y    G        MY......YM     Y..........Y  YYY....Y.Y     M
+ YY...YY    Y.....Y    G   MMMMMMY..pp..YMMMMMMY..........Y    YYY.YYYY     M
+YY.....YY   Y.....Y    G   MYYYYYY......YYYYYYMY..........Y      Y.Y        M
+Y.......YY  Y.....YYY  G   MY.......q........YMY..........Y     YY.Y        M
+.........Y  Y.......GGGG   MY.......q........YMY..........Y    YY..YYYYYY   M
+.........Y  YYYYYYYYY      MY.......q........YMY..........Y   YY..YY....Y   M
+Y.......YY                 MY.......q........YMYYYYYYYY.YYY   Y.YYYY....YY  M
+YY.....YY                  MY.......q........YM   Y.....Y     Y..........Y  M
+ YY...YY                   MYYYYYY......YYYYYYM   Y..YYYY     YYY........YY M
+  YY.YYYYYYYYYYYYYYYYY     MMMMMMY......YMMMMMM   Y..Y          Y.........Y M
+   Y.................Y          MY......YM        Y..YYYY       YYY.......YYM
+Y  YYYYYYYYYYYYYYYYY.Y          MY......YM        Y.....Y        Y..........M
+YYYYYYYYYYYYYYYYYYYY.Y          MY......YM        YYYYY.Y      YYY......YYY.M
+.....................Y          MY......YM            Y.Y      Y.......YY Y.M
+YY.YYY..YYY..YYY..YYYY          MY......YM            Y.Y      YYYYYYYYY  Y.M
+YY.Y YYYYYYYYYYYYYY             MY......YM       YYYYYY.YYYYYYYYYYYYYYYYYYY.M
+.Y.Y                            MY......GGGGGGGGGG..........................M
+YY.Y                            MY......YM       Y............YYYYYYYYYYYYYYM
+.Y.Y                            MMMM..MMMMYYYYYYYY............YYYY          M
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+NON_DIGGABLE:(00,00,76,20)
+# passwall is allowed
+
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:'D', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:''', random, random
+MONSTER:'H', "frost giant", random
+MONSTER:'H', "frost giant", random
+MONSTER:'H', "frost giant", random
+MONSTER:'Z', random, random
+MONSTER:'Z', random, random
+MONSTER:'Z', random, random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
 
 
 # The fill level for Sheol
@@ -1468,6 +4098,2452 @@ MONSTER: random, random, random
 MONSTER: random, random, random
 MONSTER: random, random, random
 MONSTER: random, random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# Ice version
+MAZE: "hsheo-5",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: 'I' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"fire",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# Snow and crystal water version
+MAZE: "hsheo-6",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: 'n' , 'Y' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"fire",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# Random stair placement, no guaranteed loot
+MAZE: "hsheo-7",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# Same, but not smoothed or joined
+MAZE: "hsheo-8",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , false , random , false
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+
+MAZE: "hsheo-9",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , false , random , false
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+MAZEWALK:(1,2),east
+MAZEWALK:(1,19),east
+MAZEWALK:(75,2),west
+MAZEWALK:(75,19),west
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hsheo-10",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER:'P', "blue slime", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hsheo-11",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: levregion(1, 0, 15, 20), levregion(16, 0, 64, 20), up
+STAIR: levregion(65, 0, 79, 20), levregion(16, 0, 64, 20), down
+
+# Golems and random monsters
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'x', "chillbug", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hsheo-12",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+NOMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'?',"ice",random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"cold",random
+OBJECT: '/',"cold",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hsheo-13",' '
+FLAGS:hardfloor,noteleport
+INIT_MAP: '.' , ' ' , true , true , random , true
+GEOMETRY:center,center
+MAP
+                          l                     
+         l.....................................l
+                          l                     
+         l.....................................l
+                          l                     
+         l.....................................l
+                          l                     
+         l.....................................l
+                          l                     
+         l.....................................l
+                          l                     
+ENDMAP
+
+# Stairs at the ends of the level
+
+STAIR: random, up
+STAIR: random, down
+
+# Golems and random monsters
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+MONSTER: random, random, random
+
+# Some loot
+OBJECT:'*',random,random
+OBJECT:'!',random,random
+OBJECT:'"',random,random
+OBJECT:'?',random,random
+OBJECT:'?',"ice",random
+OBJECT:'/',random,random
+OBJECT:'=',random,random
+OBJECT:'+',random,random
+OBJECT:'(',random,random
+OBJECT:')',random,random
+
+OBJECT: '/',"cold",random
+OBJECT: '/',"cold",random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+MAZEWALK:(09,01),west
+MAZEWALK:(09,03),west
+MAZEWALK:(09,05),west
+MAZEWALK:(09,07),west
+MAZEWALK:(09,09),west
+
+MAZEWALK:(26,00),north
+MAZEWALK:(26,10),south
+
+MAZEWALK:(47,01),east
+MAZEWALK:(47,03),east
+MAZEWALK:(47,05),east
+MAZEWALK:(47,07),east
+MAZEWALK:(47,09),east
+
+
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hsheo-14",' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+#          1         2   	 3	     4	   5		 6	     7
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+------------------------------------------------------------------------------
+|..nn.....................................................................n..|
+|...nn..................nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn..............n..|
+|....nn.................n..................................n..............n..|
+|.....nnnnnnnnnnnnnnnnnnn..................................n..............n..|
+|.......................n..................................n.............nn..|
+|......................nn.......IIIIIIIIIIIIIIIII..........n............nn...|
+|...----..............nn........I               I..........n...........nn....|
+|...|..|.............nn.........I ............. I..........n..........nn.....|
+|...|..nnnnnnnn.....nn..........IS............. I..........nnnnnnnnnnnn......|
+|...|..|......nn...nn...........I ............. Inn........n.......n.........|
+|...----.......nn.nn............I               I.nn.......n.......n.........|
+|...............nnn.............IIIIIIIIIIIIIIIII..nn......n.......n.........|
+|................n................................nnnn.....n.......n.........|
+|................nnnnnnnnnnnn....................nn..nn....n.......n.........|
+|...........................n..........nnnnnnnnnnn....nn...n.......n.........|
+|...........................n....nnnnnnn...............nnnnn.......n.........|
+|........................nnnnnnnnn.................................n.........|
+------------------------------------------------------------------------------
+ENDMAP
+
+STAIR:(05,09),up
+STAIR:levregion(59,00,75,18), levregion(13,13,13,13), down
+DOOR:closed,(33,09)
+REGION:(34,08,46,10),lit,"tin shop"
+
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+MONSTER: random, random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hsheo-15",' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+#          1         2   	 3	     4	   5		 6	     7
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+YYYYYYYYYYYnn                   CCCCCCCCCCCCCCCCYYYYYYYYY  ..................
+ YYYYYYYYYn nn                  CCCCCCCCCCCCCCCCYYYYYYYY   ..................
+  YYYYYYYn   nn                 CCCCCCCCCCCCCCCCYYYYYYY    ..................
+   YYYYYn     nIIIII          nICCCCCCCCCCCCCCCCYYYYYY     ..................
+    YYYn        IIII          I   CCCCCCCCCCCCCCYYYYY      ..................
+     Yn          III          n       CCCCCCCCCCYYYY       ..................
+     nl           III         I          CCCCCCCYYY        ..................
+    nnll           II         n             CCCCYY         ..................
+   nnnllU          UI     InInI               CCY          H               H
+  nnnnllUUUUUUUUUUUUIIn   n                    H           .               Il
+.nnnnnllUUUUUUUUUUUUI I   I                    n                           Il
+  nnnnllUUUUUUUUUUUUI nIn n         nnnnnnnnnnnn                           Il
+   nnnllU         III   I I         n                                      Il
+    nnll         III  nIn n         nnnnn                                  Il
+     nl         IIII  I   I         nnnnn                                  Il
+     Yn        IIIII  nIn n         nnnnn                                  Il
+    YYYn      nIIIII    I I         nnnnnnnnnnnn                           Il
+   YYYYYn    nn         n n              I                                 Il
+  YYYYYYYn  nn          I I              I                                 Il
+ YYYYYYYYYnnn           nIn              IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+ENDMAP
+
+STAIR:(00,10),up
+STAIR:(59,09),down
+NON_DIGGABLE:(00,00,76,19)
+
+REGION:(59,00,76,07),random,"randomroom"
+
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'P', "blue slime", random
+MONSTER:'P', "blue slime", random
+MONSTER:'P', "blue slime", random
+MONSTER:'P', "blue slime", random
+MONSTER:'P', "blue slime", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# "Don't Die" level by Demo
+# originally had lava, but I changed it to ice and snow --Amy
+MAZE: "hsheo-16",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+MAP
+nnIIIIIIIIIIIInnnnnnnIInnnnnnnnnIInnnnnnnIIIIIIIIIIIIII
+nIIIInnnnnnnn nnnnnnn nnIIIIIIInn nnnnnnn nnnnnnnnIIIII
+IInnnnIIIIIIIInnnnnnnIIIIIIIIIIIIInnnnnnnIIIIIIIInnnnII
+nnnIIIInnnnnIIIII IIIIIIInnnnnIIIIIII IIIIInnnnnIIIInnn
+nIIIn nnnnnn nInnnnnIInn nnnnn nnIInnnnnIn nnnnn nnIIIn
+nIInnIInnnnnIn nnnnn nnIInnnnnIInn nnnnn nInnnnnIInnIIn
+nIInIIIII IIIIInnnnnIIIIIII IIIIIIInnnnnIIIII IIIIInIIn
+nIInIIInnnnnIIIIIIIIInn nnnnnnn nnIIIIIIIIInnnnnIIInIIn
+nIInIInnnnnn nnnnnnnnnIInnnnnnnIInnnnnnnnn nnnnnnIInIIn
+nIInIIInnnnnIIIIIIIIIIIInnnnnnnIIIIIIIIIIIInnnnnIIInIIn
+nIInIIIII IIIInnnnnnIIIIIIIIIIIIIIInnnnnnIIII IIIIInIIn
+nIInIIIIInnnn nnnnnnIII         IIInnnnnn nnnnIIIIInIIn
+nIInIIIIIIIIIInnnnnn nnnIIIIIIInnn nnnnnnIIIIIIIIIInIIn
+nIInnIInnnnnIIIII IIIIIIInnnnnIIIIIII IIIIInnnnnIInnIIn
+nIIInn nnnnn nInnnnnIInn nnnnn nnIInnnnnIn nnnnn nnIIIn
+nIIIIIInnnnnIn nnnnn nnIInnnnnIInn nnnnn nInnnnnIIIIIIn
+nIIIIIIII IIIIInnnnnIIIIIII IIIIIIInnnnnIIIII IIIIIIIIn
+nnnIIInnnnnnnIIIIIIIIIIInnnnnnnIIIIIIIIIIInnnnnnnIIInnn
+IInnn nnnnnnn nnIIIIInn nnnnnnn nnIIIIIn nnnnnnnn nnnII
+IIIIIInnnnnnnIInnnnnnnIInnnnnnnIInnnnnnnIInnnnnnnIIIIII
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+NON_DIGGABLE:(00,00,54,19)
+NON_PASSWALL:(00,00,54,19)
+
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+MONSTER:'&', random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:'?',random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# "Alignment Void" level by Demo, with adjustments by Amy
+MAZE: "hsheo-17", ' '
+FLAGS: hardfloor,noteleport,nommap
+GEOMETRY:center,center
+#         1         2   	   3	     4	       5		 6	       7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+9llY}}}}}}}}}}}}}}}}}}}IIIIIIIIIIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTIIITTTTTTTTTT
+8l.U}}}}}}}}}}}}}}}}}}IIIIIIIIIIIIIIIIIIIIIIIIIIITIIIITTTTTTTTIIIIIIITTTTTTTT
+7YUl}}}}}}}}}}}}}}}}}}IIIIIIIIIIIIIIIIIIIIIIIIIIIIITIIIIIIIIIIIIIIIIIIIIIITTT
+6}}}}}}}}}}}}}}}}}}}}ITTTTTTTTTTTTTTTTSTTTTTTTTTTTTTTTTITTTTTTTTTTTTTTTTIITTT
+5}}}}}}}}}}}}}}}}}}}IIITTTTTTTTTTTTTTTITTTTTIIIIIIIIIITITTTTTTTTIIIIIITTTITTT
+4}}}}}}}}}}}}}}}}}}}}}IITTTTTTTTTTTTTTITTTTTTIIIIIITTIIITIIIIIIIIIIIIITTTITTT
+3}}}}}}}}}}}}}}}}}}}}}}IIITTTTTTTTTTTTSTTTTTTTIIIITTTTIIIITTTTIIIIIIIIIITITTT
+2}}}}}}}}}}}}}}}}}}}}}}}}IITTTTTTT.........TTTTTTTTTTTTIITTTTTTIIIIIITTTTITTT
+1}}}}}}}}}}}}}}}}TTIII}TTTSTTTTTTT.........TTTTTTTTTTTIITTTTTTIIIIITTTTTTITTT
+0}}}}}}}}}}}}}}}}TIIIIISISIIIIIIIS.........SIIIIIIIISITITTTTTTTTTTTTTTTTTITTT
+9}}}}}}}}}}}}}}}}TTIIITTITTTTTTTTT.........TTTTTTTTTTITITTTTTTTTTTTTTTTTTITTT
+8}}}}}}}}}}}}}}}}}}}}}}TITTTTTTTTT.........TTTISITTTTISIIIIIIIIIIIIIIITTTITTT
+7}}}}}}}}}IIIIIIIII}}}}TITTTIIIITTTTTTSTTTTTTTITIIITTITITTTTTTTTTTTTTIITTITTT
+6}}}}}}}IIIIIIIIIIIITTTTITTIIIIIITTTTTITTTTTTTITTTTTTITITTIIIIIIITTTIITTTITTT
+5}}}}}}IIIIIIIIIIIIIIIIIIIIIIIIIIIIITTITTTTTTTIIIIIIIITITIIIIIIIIIFIITTTTITTT
+4}}}}}}}}}}IIIIIIIIIIITTTTTIIIIIIITTTTITTTTTTTTTTTTTTTTITTIIIIIIITTTTTTTTITTT
+3}}}}}}}}}}}}}}}}}}}}}ITTTTTTTTTTTTTTTSTTTTTTTTTTTTTTTTITTTTTTTTTTTTTTTTIIITT
+2}}}}}}}}}}}}}}}}IIIIIIIIIIIIIIIIITITIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITT
+1}}}}}}}}}}}}}}}}}}}}}}IIIIIIIIIIIITIIITIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITTT
+0}}}}}}}}}}}}}}}}}}}}}}}}IIIIIIIIIIITIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITTTTT
+ENDMAP
+
+REGION:(00,00,75,19),lit,"ordinary"
+# Altar to ???
+ALTAR:(37,09),align[1],altar
+# Stairs
+STAIR:(01,01),up
+STAIR:(49,12),down
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+NON_PASSWALL:(00,00,75,19)
+
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+
+OBJECT:'+', random, random
+OBJECT:'+', random, random
+OBJECT:'+', random, random
+OBJECT:'+', random, random
+OBJECT:'+', random, random
+
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# "Far Void" level by Demo, with adjustments by Amy
+MAZE: "hsheo-18",' '
+FLAGS: noteleport,hardfloor,nommap
+GEOMETRY: center, center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+0|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY------YY
+1|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY|####|YY
+2|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY|####|YY
+3|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY-----------------------------####-S-
+4|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY---.........+#############S####|####|
+5|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY--...----------------------|------###|
+6|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY---..---............---YYYYYY|####|####|
+7|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY||...--...----------...||YYYYY---#####-S-
+8|YYYYYYYYYYYYYY...YYYYYYYYYYYYYYYYY|..---..---........---..|YYYYYYY|#####|YY
+9|YYYYYYYYYYYYY.....YYYYYYYYYYYYYYYY|.--...--...------...--.|YYYYYYY|#####|YY
+0|YYYYYYYYYYYY.......YYYYYYYYYYYYYYY|.|..---..---....---..|.|YYYYYYY-------YY
+1|YYYYYYYYYYYY......................S.|.--...--........--.|.|YYYYYYYYYYYYYYYY
+2|YYYYYYYYYYYY.......YYYYYYYYYYYYYYY|.|.--....-........--.|.|YYYYYYYYYYYYYYYY
+3|YYYYYYYYYYYYY.....YYYYYYYYYYYYYYYY|.|..----.S.....----..|.|YYYYYYYYYYYYYYYY
+4|YYYYYYYYYYYYYY...YYYYYYYYYYYYYYYYY|.--....---...---....--.|YYYYYYYYYYYYYYYY
+5|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY|..----...-----...----..|YYYYYYYYYYYYYYYY
+6|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY||....---...|...---....||YYYYYYYYYYYYYYYY
+7|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY---|...---...---...|---YYYYYYYYYYYYYYYYY
+8|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY||....-----....||YYYYYYYYYYYYYYYYYYYY
+9|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY----.......----YYYYYYYYYYYYYYYYYYYYY
+0|YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY-------------YYYYYYYYYYYYYYYYYYYYYY
+ENDMAP
+RANDOM_PLACES:(67,6),(14,11)
+
+STAIR: place[0], up
+STAIR: (53,11), down
+
+NON_DIGGABLE:(00,00,75,20)
+NON_PASSWALL:(00,00,75,20)
+
+DOOR:locked,(51,04)
+
+# This is slex, I added a possibility to get there... but the engraving is preserved just for the heck of it --Amy
+ENGRAVING:(16,11),burn,"If you got out here in a normal game without abusing magic whistle pet engulf or enexto I wanna hear about it."
+
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:random, random, random
+MONSTER:''', "finnish explorer", place[1]
+
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:')',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+OBJECT:'(',random,random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hsheo-19",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+-------                                    -------
+|.....|                                    |.....|
+|.....|                                    |.....|
+B.....BnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnB.....B
+|.....|I                                  I|.....|
+|.....|I                                  I|.....|
+-------I                                  I-------
+       IYYYYYYYYYYYYYYYB...   YYYYYYYYYYYYI
+       I            l   ...   l           I
+       I            l   ...   l           I
+       I            l   ...   l           I
+       IYYYYYYYYYYYYY   ...BYYYYYYYYYYYYYYI
+-------I                                  I-------
+|.....|I                                  I|.....|
+|.....|I                                  I|.....|
+B.....BnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnB.....B
+|.....|                                    |.....|
+|.....|                                    |.....|
+-------                                    -------
+ENDMAP
+
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+
+REGION:(01,01,05,05),lit,"randomroom"
+
+REGION:(44,01,48,05),lit,"randomroom"
+
+REGION:(01,13,05,17),lit,"randomroom"
+
+REGION:(44,13,48,17),lit,"randomroom"
+
+MAZEWALK:(00,03),west
+
+MAZEWALK:(49,03),east
+
+MAZEWALK:(00,15),west
+
+MAZEWALK:(49,15),east
+
+MONSTER:''', "crystal ice golem", (24,07)
+MONSTER:''', "crystal ice golem", (24,09)
+MONSTER:''', "crystal ice golem", (24,11)
+MONSTER:''', "crystal ice golem", (25,07)
+MONSTER:''', "crystal ice golem", (25,09)
+MONSTER:''', "crystal ice golem", (25,11)
+MONSTER:''', "crystal ice golem", (26,07)
+MONSTER:''', "crystal ice golem", (26,09)
+MONSTER:''', "crystal ice golem", (26,11)
+MONSTER:random,random, (24,08)
+MONSTER:random,random, (24,10)
+MONSTER:random,random, (25,08)
+MONSTER:random,random, (25,10)
+MONSTER:random,random, (26,08)
+MONSTER:random,random, (26,10)
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hsheo-20",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+YInnnnnnnnn-------------------------------------------------------nnnnnnnnnIY
+YInnnnnnnnn.......................................................nnnnnnnnnIY
+YInnnnnnnnn..........----------------I------------------..........nnnnnnnnnIY
+YInnnnnnnnn..........|nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n-------------......------------n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...|....Y.|..|...|...|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........In|...|...|...|Y.....+..|...|...|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...|......|..|...|...|nI..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|-+--......-----+---+--n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n--+---+--.........Y............n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n...........................Y...n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n--+---+--..Y..---+---Y.........n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|----.|.....|.------+--n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...|.|.....|.|..|....|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...+.|.....|.+..|....|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n|...|...|...|.|.....|.|..|....|n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|n-------------.-------.---------n|..........nnnnnnnnnIY
+YInnnnnnnnn..........|nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnI..........nnnnnnnnnIY
+YInnnnnnnnn..........-----------I------------I----------..........nnnnnnnnnIY
+YInnnnnnnnn.......................................................nnnnnnnnnIY
+YInnnnnnnnn-------------------------------------------------------nnnnnnnnnIY
+ENDMAP
+
+STAIR:levregion(01,00,79,20),(0,0,0,0),up
+STAIR:levregion(01,00,79,20),(0,0,0,0),down
+
+REGION:(00,00,76,20),lit,"ordinary"
+
+DOOR:closed,(25,09)
+DOOR:closed,(29,09)
+DOOR:closed,(33,08)
+DOOR:closed,(42,06)
+DOOR:closed,(47,08)
+DOOR:closed,(51,08)
+DOOR:closed,(25,11)
+DOOR:closed,(29,11)
+DOOR:closed,(35,14)
+DOOR:closed,(40,11)
+DOOR:closed,(45,14)
+DOOR:closed,(51,12)
+
+REGION:(24,05,26,08),lit,"random shop"
+REGION:(28,05,30,08),lit,"random shop"
+REGION:(32,05,34,07),lit,"random shop"
+REGION:(43,05,44,07),lit,"random shop"
+REGION:(46,05,48,07),lit,"random shop"
+REGION:(50,05,52,07),lit,"random shop"
+
+REGION:(24,12,26,15),lit,"randomroom"
+REGION:(28,12,30,15),lit,"randomroom"
+REGION:(32,13,34,15),lit,"randomroom"
+REGION:(38,12,42,15),lit,"randomroom"
+REGION:(46,13,47,15),lit,"randomroom"
+REGION:(49,13,52,15),lit,"randomroom"
+
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:'&', "ice devil", random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hsheo-21",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+MAP
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIII U IIIIIIMMMMMM
+MMMMMMIIIIIIIIIIIIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII U IIIaIIMMMMMM
+MMMMMMIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII U IIIIIIIIIIII
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIaIIII U IIIIIIIIIIII
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII U IIIIIIIIIIaI
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnYYYnnnnnnannnnnnnnnnnnnnnnnnnannnnnYYYnnnnnnnnn
+.nnnnnnnnnnnnnnnnnannnnnnnnnnYYYnnnnnnnnnnnnb hnnnnnnnnnnnnnnnnnYYYnnnnnnnn.
+nnnnnnnnannnnnnnnnnnnnnnnnnnnYYYnnnnnnnnnnnsbbLnnnnnnnnnnnnnnnnnYYYannnnnnnn
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIIIII
+MMMMMMIIIIIIIIIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIMM
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIMIIIIIIIIIIIIIIIIIIIIIMM
+MMMMMMIIIIIIIIaIIIIIIIIIIIIIIIIIIIIIIIaIIIIIIIIIIIIMMMIIIIIIIIIIIIIIIIIIaIMM
+MMMMMMIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIMMMMMIIIIIIIIIIIIIIIIIIIMM
+ENDMAP
+
+STAIR:(00,06),up
+STAIR:(75,06),down
+
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "red dragon", random
+MONSTER:'D', "red dragon", random
+MONSTER:'H', "frost giant", random
+MONSTER:'H', "frost giant", random
+MONSTER:'H', "frost giant", random
+MONSTER:'Z', "cryo archer", random
+MONSTER:'Z', "cryo archer", random
+MONSTER:'Z', "cryo archer", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '_', random, random
+OBJECT: '0', random, random
+OBJECT: '0', random, random
+OBJECT: '0', random, random
+OBJECT: '0', random, random
+OBJECT: '0', random, random
+OBJECT: '%', random, random
+OBJECT: '%', random, random
+OBJECT: '*', random, random
+OBJECT: '*', random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# this map is shamelessly stolen from ToME (Mount Doom) --Amy
+MAZE: "hsheo-22",' '
+FLAGS: hardfloor,noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+YYYYYY YYYYYYYYYY.Y             MMMMMMMMMM                YY..........YY    M
+.....GGGGGGGG.....Y    GGGGGGGGGGGGYYYYYYM     YYYYYYYYYYYYYYY......Y.Y     M
+YYYY.YY     Y.....Y    G        MY......YM     Y..........Y  YYY....Y.Y     M
+ YY...YY    Y.....Y    G   MMMMMMY..pp..YMMMMMMY..........Y    YYY.YYYY     M
+YY.....YY   Y.....Y    G   MYYYYYY......YYYYYYMY..........Y      Y.Y        M
+Y.......YY  Y.....YYY  G   MY.......q........YMY..........Y     YY.Y        M
+.........Y  Y.......GGGG   MY.......q........YMY..........Y    YY..YYYYYY   M
+.........Y  YYYYYYYYY      MY.......q........YMY..........Y   YY..YY....Y   M
+Y.......YY                 MY.......q........YMYYYYYYYY.YYY   Y.YYYY....YY  M
+YY.....YY                  MY.......q........YM   Y.....Y     Y..........Y  M
+ YY...YY                   MYYYYYY......YYYYYYM   Y..YYYY     YYY........YY M
+  YY.YYYYYYYYYYYYYYYYY     MMMMMMY......YMMMMMM   Y..Y          Y.........Y M
+   Y.................Y          MY......YM        Y..YYYY       YYY.......YYM
+Y  YYYYYYYYYYYYYYYYY.Y          MY......YM        Y.....Y        Y..........M
+YYYYYYYYYYYYYYYYYYYY.Y          MY......YM        YYYYY.Y      YYY......YYY.M
+.....................Y          MY......YM            Y.Y      Y.......YY Y.M
+YY.YYY..YYY..YYY..YYYY          MY......YM            Y.Y      YYYYYYYYY  Y.M
+YY.Y YYYYYYYYYYYYYY             MY......YM       YYYYYY.YYYYYYYYYYYYYYYYYYY.M
+.Y.Y                            MY......GGGGGGGGGG..........................M
+YY.Y                            MY......YM       Y............YYYYYYYYYYYYYYM
+.Y.Y                            MMMM..MMMMYYYYYYYY............YYYY          M
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+NON_DIGGABLE:(00,00,76,20)
+# passwall is allowed
+
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:'D', "white dragon", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:''', "crystal ice golem", random
+MONSTER:'H', "frost giant", random
+MONSTER:'H', "frost giant", random
+MONSTER:'H', "frost giant", random
+MONSTER:'Z', "cryo archer", random
+MONSTER:'Z', "cryo archer", random
+MONSTER:'Z', "cryo archer", random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
 
 OBJECT:'`',"boulder",random
 OBJECT:'`',"boulder",random

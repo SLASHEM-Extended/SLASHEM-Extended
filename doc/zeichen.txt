@@ -27,3 +27,55 @@ zehn .
 |3456845789732532514345625446245562456145615612213214562545636675448982102|
 |4357457788511524561456145614351634452357896789347788446456324562165441101|
 ---------------------------------------------------------------------------
+
+		  case ' '  : return(STONE);
+		  case '#'  : return(CORR);
+		  case '.'  : return(ROOM);
+		  case '-'  : return(HWALL);
+		  case '|'  : return(VWALL);
+		  case '+'  : return(DOOR);
+		  case 'A'  : return(AIR);
+		  case 'B'  : return(CROSSWALL); /* hack: boundary location */
+		  case 'C'  : return(CLOUD);
+		  case 'S'  : return(SDOOR);
+		  case 'H'  : return(SCORR);
+		  case '{'  : return(FOUNTAIN);
+		  case '\\' : return(THRONE);
+		  case 'K'  : return(SINK);
+		  case '}'  : return(MOAT);
+		  case 'P'  : return(POOL);
+		  case 'L'  : return(LAVAPOOL);
+		  case 'I'  : return(ICE);
+		  case 'W'  : return(WATER);
+		  case 'T'	: return (TREE);
+		  case 'F'	: return (IRONBARS);	/* Fe = iron */
+		  case 'Z'  : return(TOILET);	/* Kazi */
+		  case 'G'	: return (GRAVEWALL);
+		  case 'U'	: return (TUNNELWALL);
+		  case 'J'	: return (FARMLAND);
+		  case 'M'	: return (MOUNTAIN);
+		  case 'X'	: return (WATERTUNNEL);
+		  case 'Y'	: return (CRYSTALWATER);
+		  case 'O'	: return (MOORLAND);
+		  case 'R'	: return (URINELAKE);
+		  case 's'	: return (SHIFTINGSAND);
+		  case 'y'	: return (STYXRIVER);
+		  case 'p'	: return (PENTAGRAM);
+		  case 'w'	: return (WELL);
+		  case 'o'	: return (POISONEDWELL);
+		  case 'a'	: return (WAGON);
+		  case 'b'	: return (BURNINGWAGON);
+		  case 't'	: return (WOODENTABLE);
+		  case 'c'	: return (CARVEDBED);
+		  case 'm'	: return (STRAWMATTRESS);
+		  case 'n'	: return (SNOW);
+		  case 'h'	: return (ASH);
+		  case 'd'	: return (SAND);
+		  case 'v'	: return (PAVEDFLOOR);
+		  case 'i'	: return (HIGHWAY);
+		  case 'g'	: return (GRASSLAND);
+		  case 'r'	: return (NETHERMIST);
+		  case 'l'	: return (STALACTITE);
+		  case 'f'	: return (CRYPTFLOOR);
+		  case 'u'	: return (BUBBLES);
+		  case 'q'	: return (RAINCLOUD);
