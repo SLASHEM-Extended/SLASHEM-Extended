@@ -182,6 +182,9 @@ static const char * const shktools[] = {
 	"Dexap", "Nogardlwarc", "Nacylg", "Nidrajsed Nouq",
 	"Omed", "Xniragag", "Evitcepsortni",
 	"Serolod", "Tehpmyn", "Irairam", "Ilol",
+	"Reppohssarg", "Aronumrat", "Nnyl", "Ylime", "Emilsrous",
+	"Gorflooc", "T0rm", "Suahnerri", "Grqerg", "Teuquob",
+	"Trqs Dedne Tsalb", "Leksrol", "Terger", "Urirat",
 
     0
 };
@@ -198,7 +201,7 @@ static const char * const shklight[] = {
 
 	"Habich", "Trong-Oul", "Dumont", "Dumas", "Vittel", "Hattrick",
 	"Pekriah", "Innocentia", "Diagna", "Castor", "Ronaldo", "Ganden",
-	"Jasmine", "Zora", "Burner",
+	"Jasmine", "Zora", "Burner", "Dobrindt",
     0
 };
 
@@ -220,7 +223,7 @@ static const char * const shkgeneral[] = {
 
 	"Miller", "Merkel", "Stone", "Bitchiya", "Pedas", "Garbage Houses",
 	"Kun-Kwei", "Persh", "Levart", "Gunnhild", "Gardener", "Boker",
-	"Tsurphu", "Luna", "Endurance", "Schiesskanista",
+	"Tsurphu", "Luna", "Endurance", "Schiesskanista", "Lindner",
     0
 };
 
