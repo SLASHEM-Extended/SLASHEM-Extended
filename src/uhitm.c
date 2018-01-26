@@ -596,10 +596,10 @@ register struct monst *mtmp;
 	if (RngeUnnethack) tmp -= 10;
 	if (u.twoweap && RngeNethackFourk) tmp -= rn1(10, 10);
 
-	if (!uwep && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boxing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plat'ye boks") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boks libosi") )) tmp += 4;
+	if (!uwep && !PlayerCannotUseSkills && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boxing gown") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "plat'ye boks") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "boks libosi") )) tmp += 4;
 	/* the P_UNSKILLED is not an error; it means that you have the skill, and are therefore eligible for a bonus --Amy */
 
-	if (!uwep && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && RngeMaritalArts) tmp += 5;
+	if (!uwep && !PlayerCannotUseSkills && (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED) && RngeMaritalArts) tmp += 5;
 
 	if (uarmc && uarmc->oartifact == ART_DEATHCLAW_HIDE) tmp += 10;
 
@@ -1326,22 +1326,29 @@ int dieroll;
 
 			if (!(PlayerCannotUseSkills) && !rn2(2)) {
 
-			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_SKILLED) tmp += rnd(2);
-			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_EXPERT) tmp += rnd(4);
-			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_MASTER) tmp += rnd(6);
-			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_GRAND_MASTER) tmp += rnd(8);
-			if ((wtype = uwep_skill_type()) != P_NONE && P_SKILL(wtype) == P_SUPREME_MASTER) tmp += rnd(10);
+				switch (P_SKILL(objects[obj->otyp].oc_skill)) {
+
+					case P_SKILLED: tmp += rnd(2); break;
+					case P_EXPERT: tmp += rnd(4); break;
+					case P_MASTER: tmp += rnd(6); break;
+					case P_GRAND_MASTER: tmp += rnd(8); break;
+					case P_SUPREME_MASTER: tmp += rnd(10); break;
+					default: break;
+
+				}
+
 			}
 
 			if (obj && obj->spe > 0) tmp += obj->spe;
 			valid_weapon_attack = (tmp > 0);
 			if (flags.bash_reminder && !rn2(20)) {
-				switch (rnd(4)) {
+				switch (rnd(5)) {
 
 					case 1: pline("A helpful reminder: your weapon could be used more effectively."); break;
 					case 2: pline("A helpful reminder: bashing with that weapon is not the most effective way of using it."); break;
 					case 3: pline("A helpful reminder: there is a different way of using your current weapon..."); break;
 					case 4: pline("A helpful reminder: did you try applying your weapon or firing projectiles from it yet?"); break;
+					case 5: pline("A helpful reminder: your current weapon is a lightsaber that is not lit, a polearm that's meant to be applied, or a ranged weapon! In any case it's not very effective to bash monsters with it!"); break;
 				}
 			}
 
@@ -1371,10 +1378,13 @@ int dieroll;
 		   }
 
 			/* Slings were more powerful in melee than war hammers, which clearly wasn't intended. --Amy */
-			if (tmp == 3) tmp = 2;
-			else if (tmp == 4) tmp = 3;
-			else if (tmp == 5) tmp = 3;
-			else if (tmp >= 6) tmp /= 2;
+
+			if (rn2(3)) {
+				if (tmp == 3) tmp = 2;
+				else if (tmp == 4) tmp = 3;
+				else if (tmp == 5) tmp = 3;
+				else if (tmp >= 6) tmp /= 2;
+			}
 
 		} else {
 		    tmp = dmgvalX(obj, mon);
@@ -2004,6 +2014,14 @@ int dieroll;
 		if (flags.bash_reminder && !rn2(10)) You("can't fire that weapon effectively while engulfed...");
 	}
 
+	if (thrown && is_ammo(obj) && launcher && !ammo_and_launcher(obj, launcher)) {
+		if (flags.bash_reminder && !rn2(10)) You("are throwing projectiles that are meant to be fired, which isn't very effective! Better wield an appropriate launcher in your main hand!");
+	}
+
+	if (thrown && is_ammo(obj) && !launcher) {
+		if (flags.bash_reminder && !rn2(10)) You("are throwing projectiles that are meant to be fired, which isn't very effective! Better wield an appropriate launcher in your main hand!");
+	}
+
 	if (get_dmg_bonus && tmp > 0) {
 		tmp += u.udaminc;
 		if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
@@ -2076,7 +2094,10 @@ int dieroll;
 
 	    /* to be valid a projectile must have had the correct projector */
 	    wep = PROJECTILE(obj) ? launcher : obj;
-	    tmp += weapon_dam_bonus(wep);
+
+		/* bashing with launchers or other "bad" weapons shouldn't give insane bonuses --Amy */
+		if (!((is_launcher(obj) || is_missile(obj) || is_pole(obj) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
+
 	    if (!thrown) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 	    if (thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
 
