@@ -1,6 +1,8 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.5
+- Some changes to ranged weapon generation and ammo mulch rates to make the player less likely to run out of ammo.
+- The nuclear chamber special room has a lower density of styx rivers and contamination traps.
 - Fixed errors with weapon attacks: Martial arts really doesn't work if the player triggered the trap that prevents skills from working, bashing with launchers or polearms no longer does excessive amounts of damage, and throwing arrows/bullets/etc. without wielding the corresponding launcher gives a message telling the player about it.
 
 2.1.4
