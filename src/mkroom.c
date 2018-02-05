@@ -690,10 +690,10 @@ struct mkroom *sroom;
 			break;
 
 		    case NUCLEARCHAMBER:
-			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(5)) {
+			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(2)) {
 				levl[sx][sy].typ = STYXRIVER;
 			}
-			if(!rn2(2) && !t_at(sx, sy))
+			if(!rn2(5) && !t_at(sx, sy))
 				(void) maketrap(sx, sy, CONTAMINATION_TRAP, 100);
 			break;
 
