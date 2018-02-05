@@ -2200,6 +2200,9 @@ int thrown;
 			}
 
 			/* allow skill to save ammo --Amy */
+
+			if (!(PlayerCannotUseSkills)) {
+
 		    if (objects[otyp].oc_skill == -P_BOW && (P_SKILL(P_BOW) >= P_BASIC) && rn2(P_SKILL(P_BOW)) )
 			broken = 0;
 		    if (objects[otyp].oc_skill == -P_CROSSBOW && (P_SKILL(P_CROSSBOW) >= P_BASIC) && rn2(P_SKILL(P_CROSSBOW)) )
@@ -2210,6 +2213,16 @@ int thrown;
 			broken = 0;
 		    if (objects[otyp].oc_skill == -P_SHURIKEN && (P_SKILL(P_SHURIKEN) >= P_BASIC) && rn2(P_SKILL(P_SHURIKEN)) )
 			broken = 0;
+		    if (objects[otyp].oc_skill == P_DAGGER && (P_SKILL(P_DAGGER) >= P_BASIC) && rn2(P_SKILL(P_DAGGER)) )
+			broken = 0;
+		    if (objects[otyp].oc_skill == P_SPEAR && (P_SKILL(P_SPEAR) >= P_BASIC) && rn2(P_SKILL(P_SPEAR)) )
+			broken = 0;
+		    if (objects[otyp].oc_skill == P_JAVELIN && (P_SKILL(P_JAVELIN) >= P_BASIC) && rn2(P_SKILL(P_JAVELIN)) )
+			broken = 0;
+		    if (objects[otyp].oc_skill == P_KNIFE && (P_SKILL(P_KNIFE) >= P_BASIC) && rn2(P_SKILL(P_KNIFE)) )
+			broken = 0;
+
+			}
 
 		    if (objects[otyp].oc_skill == -P_BOW && uarm && uarm->oartifact == ART_WOODSTOCK && broken && !rn2(2))
 			broken = 0;

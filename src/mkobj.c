@@ -1652,6 +1652,7 @@ int artif;
 			if (!rn2(5)) otmp->quan *= (1 + rnd(4));
 		}
 		if (is_lower_multigen(otmp) && !is_multigen(otmp) && !issoviet && !rn2(50) ) otmp->quan += rn2(6);
+		if (is_lower_multigen(otmp) && !is_multigen(otmp) && !issoviet && !rn2(10) ) otmp->quan += rn2(2);
 
 		/* occasionally make bigger stacks of stackable weapons --Amy */
 		if (!issoviet && !rn2(is_multigen(otmp) ? 20 : is_lower_multigen(otmp) ? 100 : 1000) ) {
@@ -1785,13 +1786,33 @@ int artif;
 		}
 		else if (otmp->otyp == ROCK) otmp->quan = (long) rn1(6,6);
 	/* Finding single flint stones is just useless. Let sling users have some fun! --Amy */
-		else if (otmp->otyp == FLINT && rn2(2) ) otmp->quan = (long) rn1(5,5);
-		else if (otmp->otyp == SMALL_PIECE_OF_UNREFINED_MITHR && rn2(2) ) otmp->quan = (long) rn1(6,6);
-		else if (otmp->otyp == SILVER_SLINGSTONE && rn2(2) ) otmp->quan = (long) rn1(10,10);
+		else if (otmp->otyp == FLINT && rn2(2) ) {
+			otmp->quan = (long) rn1(5,5);
+			if (!rn2(10)) otmp->quan *= 2;
+		}
+		else if (otmp->otyp == SMALL_PIECE_OF_UNREFINED_MITHR && rn2(2) ) {
+			otmp->quan = (long) rn1(6,6);
+			if (!rn2(10)) otmp->quan *= 2;
+		}
+		else if (otmp->otyp == SILVER_SLINGSTONE && rn2(2) ) {
+			otmp->quan = (long) rn1(10,10);
+			if (!rn2(10)) otmp->quan *= 2;
+		}
+
 	/* it's too easy to tell flint etc. apart from dangerous gray stones, so let's allow the latter to spawn
 	 * in bigger stacks occasionally just to troll players who expect stacks to always be flint. --Amy */
 		else if (!rn2(6)) otmp->quan = rn2(5) ? 2L : rn2(4) ? rn1(5,5) : rn1(10,10);
 		else otmp->quan = 1L;
+
+		/* random chance of getting a bigger stack --Amy */
+		if (!issoviet && !rn2(50) ) otmp->quan += rn2(6);
+		if (!issoviet && !rn2(10) ) otmp->quan += rn2(2);
+		if (!issoviet && !rn2(20) ) {
+			otmp->quan += rnd(otmp->quan);
+			if (!rn2(50)) otmp->quan += rnz(otmp->quan + 3);
+			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
+
 		if(!rn2(ishaxor ? 4 : 8)) {
 			otmp->spe = rne(2);
 			if (rn2(2)) otmp->blessed = rn2(2);

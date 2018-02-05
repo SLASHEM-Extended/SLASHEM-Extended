@@ -479,6 +479,8 @@ int x,y;
 			}
 		}
 
+		if (!(PlayerCannotUseSkills)) {
+
 	    if (objects[obj->otyp].oc_skill == -P_BOW && (P_SKILL(P_BOW) >= P_BASIC) && rn2(P_SKILL(P_BOW)) )
 		create = 1;
 	    if (objects[obj->otyp].oc_skill == -P_CROSSBOW && (P_SKILL(P_CROSSBOW) >= P_BASIC) && rn2(P_SKILL(P_CROSSBOW)) )
@@ -489,6 +491,8 @@ int x,y;
 		create = 1;
 	    if (objects[obj->otyp].oc_skill == -P_SHURIKEN && (P_SKILL(P_SHURIKEN) >= P_BASIC) && rn2(P_SKILL(P_SHURIKEN)) )
 		create = 1;
+
+		}
 
 	    if (objects[obj->otyp].oc_skill == -P_BOW && uarm && uarm->oartifact == ART_WOODSTOCK && !create && !rn2(2))
 		create = 1;
