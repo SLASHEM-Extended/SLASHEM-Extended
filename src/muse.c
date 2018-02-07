@@ -2977,6 +2977,7 @@ struct monst *mtmp;
 #define MUSE_WAN_GOOD_NIGHT 116
 #define MUSE_SCR_VILENESS 117
 #define MUSE_POT_DIMNESS 118
+#define MUSE_POT_SALT_WATER 119
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -3246,6 +3247,11 @@ struct monst *mtmp;
 		if(obj->otyp == POT_FIRE) {
 			m.offensive = obj;
 			m.has_offense = MUSE_POT_FIRE;
+		}
+		nomore(MUSE_POT_SALT_WATER);
+		if(obj->otyp == POT_SALT_WATER && Race_if(PM_ELONA_SNAIL) && !Upolyd) {
+			m.offensive = obj;
+			m.has_offense = MUSE_POT_SALT_WATER;
 		}
 		nomore(MUSE_POT_DIMNESS);
 		if(obj->otyp == POT_DIMNESS) {
@@ -6917,6 +6923,7 @@ newboss:
 	case MUSE_POT_ICE:
 	case MUSE_POT_FEAR:
 	case MUSE_POT_FIRE:
+	case MUSE_POT_SALT_WATER:
 	case MUSE_POT_DIMNESS:
 	case MUSE_POT_NUMBNESS:
 	case MUSE_POT_URINE:
@@ -8904,6 +8911,9 @@ struct obj *obj;
 		    typ == POT_ICE ||
 		    typ == POT_FEAR ||
 		    typ == POT_FIRE ||
+			/* Monsters will pick up potions of salt water even if your snail is polymorphed,
+			 * but they'll only throw them if you're actually in snail form --Amy */
+		    (typ == POT_SALT_WATER && Race_if(PM_ELONA_SNAIL)) ||
 		    typ == POT_DIMNESS ||
 		    typ == POT_CURE_WOUNDS ||
 		    typ == POT_CURE_SERIOUS_WOUNDS ||

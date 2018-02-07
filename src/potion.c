@@ -4150,6 +4150,13 @@ peffects(otmp)
 		if (!Unchanging) polyself(FALSE);
 		break;
 	case POT_SALT_WATER:
+
+		if (Race_if(PM_ELONA_SNAIL) && !Upolyd) {
+			pline("It's salt! you start to melt."); /* capitalization is NOT an error --Amy */
+			losehp(((u.uhpmax < 10) ? 9999 : (u.uhpmax - rnd(10))), "a potion of salt solution", KILLED_BY);
+			break;
+		}
+
 		pline("Yuck... this is salt water!");
 		exercise(A_WIS, FALSE);
 		make_vomiting(Vomiting + rnd(10) + 5,TRUE);
@@ -5367,6 +5374,16 @@ register struct obj *obj;
 		} else
 		    exercise(A_CON, FALSE);
 		break;
+	case POT_SALT_WATER:
+
+		/* supposed to be thrown by cleaner assholes if you're a snail --Amy */
+		if (Race_if(PM_ELONA_SNAIL) && !Upolyd) {
+			pline("It's salt! you start to melt."); /* capitalization is NOT an error --Amy */
+			losehp(((u.uhpmax < 10) ? 9999 : (u.uhpmax - rnd(10))), "a potion of salt solution", KILLED_BY);
+			break;
+		}
+		break;
+
 /*
 	case POT_GAIN_LEVEL:
 	case POT_LEVITATION:
