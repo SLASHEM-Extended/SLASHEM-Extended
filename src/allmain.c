@@ -4991,6 +4991,67 @@ newbossB:
 			}
 		}
 
+		/* Gang Scholar gods are really nice: unless you're in Gehennom, they will occasionally fix status effects --Amy */
+		if (Role_if(PM_GANG_SCHOLAR) && !((Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) ) {
+
+			if (HStun && !rn2(100)) {
+				verbalize("Thou shalt be relieved of that stun!");
+				make_stunned(0L,TRUE);
+			}
+
+			if (Hallucination && !rn2(100)) {
+				verbalize("Thou shalt not be addled by drugs!");
+				(void) make_hallucinated(0L,FALSE,0L);
+			}
+
+			if (HNumbed && !rn2(50)) {
+				verbalize("I cannot let thee be numbed forever.");
+				make_numbed(0L,FALSE);
+			}
+
+			if (HFrozen && !rn2(200)) {
+				verbalize("Thine ice shalt thaw!");
+				make_frozen(0L,FALSE);
+			}
+
+			if (HBurned && !rn2(100)) {
+				verbalize("Thine burning shalt stop!");
+				make_burned(0L,FALSE);
+			}
+
+			if (HDimmed && !rn2(100)) {
+				verbalize("Thy dimness ceases now!");
+				make_dimmed(0L,FALSE);
+			}
+
+			if (HFeared && !rn2(100)) {
+				verbalize("Shake off thine fear!");
+				make_feared(0L,FALSE);
+			}
+
+			if (Stoned && !rn2(10)) {
+				verbalize("Thou wouldst be of no use as a statue!");
+				You_feel("more limber.");
+				Stoned = 0;
+				flags.botl = 1;
+				delayed_killer = 0;
+			}
+
+			if (Slimed && !rn2(100)) {
+				verbalize("That foul green goo is to be devoured by holy fire!");
+				Hallucination ? pline("The rancid goo is gone! Yay!") : pline_The("slime disappears.");
+				Slimed = 0;
+				flags.botl = 1;
+				delayed_killer = 0;
+			}
+
+			if (Sick && !rn2(100)) {
+				verbalize("Begone, thou foul sickness, and don't dare affecting my precious scholar again!");
+				make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+			}
+
+		}
+
 		if (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE && !rn2(500) ) {
 			int tryct = 0;
 			int x, y;
