@@ -202,6 +202,7 @@ drinkfountain()
 {
 	int nastytrapdur;
 	int blackngdur;
+	int pm;
 
 	/* What happens when you drink from a fountain? */
 	register boolean mgkftn = (levl[u.ux][u.uy].blessedftn == 1);
@@ -249,6 +250,47 @@ drinkfountain()
 		if(mgkftn) return;
 	} else {
 	    switch (fate) {
+
+		case 12:
+			if (!Unchanging) { /* Serves you right for quaffing from fountains. --Amy */
+				You_feel("a change coming over you.");
+				polyself(FALSE);
+			}
+			break;
+
+		case 13:
+			pline("The water is bad!");
+			badeffect();
+			break;
+
+		case 14:
+			pline("Something comes out of the fountain!");
+
+			int aggroamount = rnd(6);
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			while (aggroamount) {
+
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+				aggroamount--;
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+
+			break;
+
+		case 15:
+			pline("Ulch - the water was radioactive!");
+			contaminate(rnd(10 + level_difficulty()));
+			break;
+
+		case 16:
+			pm = rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+			if (pm && (pm != NON_PM)) {
+				(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY);
+				pline("An angry demon climbs out of the fountain...");
+			}
+			break;
 
 		case 17: /* evil patch idea by Amy - give that fountain quaffer fool a long-lasting nasty trap effect */
 			pline("This tepid water is tasteless.");
@@ -631,6 +673,8 @@ void
 dipfountain(obj)
 register struct obj *obj;
 {
+	int pm;
+
 	if (Levitation) {
 		floating_above("fountain");
 		return;
@@ -698,6 +742,34 @@ register struct obj *obj;
 	}
 
 	switch (rnd(30)) {
+
+		case 8:
+			pline("Something comes out of the fountain!");
+
+			int aggroamount = rnd(6);
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			while (aggroamount) {
+
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+				aggroamount--;
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+			break;
+
+		case 9:
+		/* evil patch idea by rikersan: he wants demon lords to occasionally appear if you dip fountains.
+		 * I made it so that if you're foolish enough to QUAFF from them instead, it happens much more often --Amy */
+			if (!rn2(50)) {
+				pm = rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+				if (pm && (pm != NON_PM)) {
+					(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY);
+					pline("An angry demon climbs out of the fountain...");
+				}
+			}
+			break;
+
 		case 10: /* Curse the item */
 			if (!stack_too_big(obj)) curse(obj);
 			break;

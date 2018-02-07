@@ -3145,11 +3145,50 @@ newegomon:
 			case 1:
 			case 2:
 			case 3:
+				break;
 			case 4:
+				if (!Unchanging) {
+					You_feel("a change coming over you.");
+					polyself(FALSE);
+				}
+				break;
+
 			case 5:
+				pline("The water is bad!");
+				badeffect();
+				break;
+
 			case 6:
+				pline("Something comes out of the fountain!");
+
+				int aggroamount = rnd(6);
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+				while (aggroamount) {
+
+					makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+					aggroamount--;
+					if (aggroamount < 0) aggroamount = 0;
+				}
+				u.aggravation = 0;
+
+				break;
+
 			case 7:
+				pline("Ulch - the water was radioactive!");
+				contaminate(rnd(10 + level_difficulty()));
+				break;
+
 			case 8:
+				{
+				int pm = rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+				if (pm && (pm != NON_PM)) {
+					(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY);
+					pline("An angry demon climbs out of the fountain...");
+				}
+				}
+			break;
+
 			case 9:
 				pline_The("cool draught refreshes you.");
 				u.uhunger += rnd(10); /* don't choke on water */

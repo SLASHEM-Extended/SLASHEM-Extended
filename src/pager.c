@@ -11707,6 +11707,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"If it's possible for a sufficiently skilled player to reach a point where they can be pretty sure they'll win most of the time, we have to fix that by making a bunch of random game-ending things that can happen to them unpredictably and entirely without warning, so that they never know whether they can win or not, no matter how good at the game they are.",
 	"Amy is actually an anthropomorphised high heeled shoe.",
 	"What is slex? some sort of sex-modded nethack?",
+	"An angry demon climbs out of the fountain...",
 
 };
 
