@@ -1006,6 +1006,13 @@ makecorridors()
 	int a, b, i;
 	boolean any = TRUE;
 
+	int style = 1;
+	if (!rn2(5)) style = rnd(4);
+
+	/* sporkhack code to have different join mechanisms */
+	switch (style) {
+	default: /* vanilla style */
+
 	for(a = 0; a < nroom-1; a++) {
 		join(a, a+1, FALSE);
 		if(!rn2(50)) break; /* allow some randomness */
@@ -1028,6 +1035,41 @@ makecorridors()
 		if(b >= a) b += 2;
 		join(a, b, TRUE);
 	    }
+
+	break;
+	case 1: /* at least one corridor leaves from each room and goes to random room */
+	    if (nroom > 1) {
+		int cnt = 0;
+		for (a = 0; a < nroom; a++) {
+		    do {
+			b = rn2(nroom-1);
+		    } while (((a == b) || (rooms[b].doorct)) && cnt++ < 100);
+		    if (cnt >= 100) {
+			for (b = 0; b < nroom-1; b++)
+			    if (!rooms[b].doorct && (a != b)) break;
+		    }
+		    if (a == b) b++;
+		    join(a, b, FALSE);
+		}
+	    }
+	    break;
+	case 2: /* circular path: room1 -> room2 -> room3 -> ... -> room1  */
+	    if (nroom > 1) {
+		for (a = 0; a < nroom; a++) {
+		    b = (a + 1) % nroom;
+		    join(a, b, FALSE);
+		}
+	    }
+	    break;
+	case 3: /* all roads lead to rome. or to the first room. */
+	    if (nroom > 1) {
+		b = 0;
+		for (a = 1; a < nroom; a++) {
+		    join(a, b, FALSE);
+		}
+	    }
+	    break;
+	}
 
 }
 
@@ -9225,9 +9267,11 @@ makelevel()
 #endif
 	if (u_depth > 1 /*&&
 	    u_depth < depth(&medusa_level)*/ &&
-	    nroom >= room_threshold &&
-	    rn2(u_depth) < 3) mkroom(SHOPBASE);
+	    nroom >= room_threshold && /* shops were too uncommon; change by Amy */
+	    ((rn2(u_depth) < 3) || (rn2(u_depth) < 2)) ) mkroom(SHOPBASE);
  
+	if (!rn2(20)) mkroom(SHOPBASE);
+
 	/* [Tom] totally reorganized this into categories... used
 	   to be only one special room on a level... now allows
 	   one of each major type */
@@ -9453,6 +9497,13 @@ gehennomxtra:
 	    if ( u_depth > 13 && !rn2(7)) mkrandrivers();
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
 		}
+
+	/*create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
+	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);*/
 
 		if (isaquarian && (!rn2(100) || u_depth > 1) ) mkrandrivers();
 		if (RngeRivers && (!rn2(100) || u_depth > 1) ) mkrandrivers();
