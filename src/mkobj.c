@@ -2186,36 +2186,46 @@ int artif;
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */           
 	case WAND_CLASS:
-		if(otmp->otyp == WAN_WISHING) {                 
+		if(otmp->otyp == WAN_WISHING) {
 			if (rn2(50)) otmp->spe = rnd(ishaxor ? 3 : 2);
 			else otmp->spe = rnd(ishaxor ? 4 : 3); /* if you get really lucky... --Amy */
 			if (Is_stronghold(&u.uz)) otmp->oinvis = 1;
 			otmp->recharged = 0;
 			if(!rn2(2)) otmp->recharged = 1;
-		} else if(otmp->otyp == WAN_GENOCIDE) {                 
+		} else if(otmp->otyp == WAN_GENOCIDE) {
 			if (rn2(20)) otmp->spe = rnd(ishaxor ? 4 : 3);
 			else otmp->spe = rnd(ishaxor ? 6 : 4); /* sometimes you may get lucky --Amy */
 			otmp->recharged = 0;
 			if(!rn2(3)) otmp->recharged = rnd(7);
-		} else if(otmp->otyp == WAN_ACQUIREMENT) {                 
+		} else if(otmp->otyp == WAN_ACQUIREMENT) {
 			if (rn2(20)) otmp->spe = rnd(ishaxor ? 6 : 5);
 			else otmp->spe = rnd(ishaxor ? 10 : 8); /* sometimes you may get lucky --Amy */
 			otmp->recharged = 0;
 			if(!rn2(3)) otmp->recharged = 1;
-		} else if(otmp->otyp == WAN_GAIN_LEVEL) {                 
+		} else if(otmp->otyp == WAN_GAIN_LEVEL) {
 			if (rn2(20)) otmp->spe = rnd(ishaxor ? 5 : 4);
 			else otmp->spe = rnd(ishaxor ? 6 : 5); /* sometimes you may get lucky --Amy */
 			otmp->recharged = 0;
 			if(!rn2(2)) otmp->recharged = rnd(7);
-		} else if(otmp->otyp == WAN_INCREASE_MAX_HITPOINTS) {                 
+		} else if(otmp->otyp == WAN_VENOM_SCATTERING) {
+			if (rn2(20)) otmp->spe = rnd(ishaxor ? 40 : 20);
+			else otmp->spe = rnd(ishaxor ? 50 : 25); /* sometimes you may get lucky --Amy */
+			otmp->recharged = 0;
+			if(!rn2(10)) otmp->recharged = rnd(7);
+		} else if(otmp->otyp == WAN_INCREASE_MAX_HITPOINTS) {
 			if (rn2(20)) otmp->spe = rnd(ishaxor ? 6 : 5);
 			else otmp->spe = rnd(ishaxor ? 7 : 6); /* sometimes you may get lucky --Amy */
 			otmp->recharged = 0;
 			if(!rn2(2)) otmp->recharged = rnd(7);
+		} else if(otmp->otyp == WAN_PARALYSIS || otmp->otyp == WAN_DISINTEGRATION || otmp->otyp == WAN_STONING || otmp->otyp == WAN_INERTIA || otmp->otyp == WAN_TIME) {
+			if (rn2(20)) otmp->spe = rnd(ishaxor ? 20 : 10);
+			else otmp->spe = rnd(ishaxor ? 24 : 12); /* sometimes you may get lucky --Amy */
+			otmp->recharged = 0;
+			if(!rn2(10)) otmp->recharged = rnd(7);
 
-		} else if (rn2(10) && !ishaxor) otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 15 : 8);
-			else otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 30 : 16); /* low chance for extra charges --Amy */
-		if (rn2(2) && !issoviet) otmp->spe -= rnd(3); /* allow random useless wands to spawn --Amy */
+		} else if (rn2(10) && !ishaxor) otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 20 : (objects[otmp->otyp].oc_dir == IMMEDIATE) ? 12 : 10);
+			else otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 40 : (objects[otmp->otyp].oc_dir == IMMEDIATE) ? 24 : 20); /* low chance for extra charges --Amy */
+		if (!rn2(3) && !issoviet) otmp->spe -= rnd(3); /* allow random useless wands to spawn --Amy */
 		/* "Remove chance of non-charged wands spawning." In Soviet Russia, players don't realize that a lower chance of finding useful stuff makes the game more interesting. The pre-cancelled wands are actually there for a reason: that way, players trying to zap-identify can randomly vaporize their wands if they happen to be cancelled, making identification more useful! --Amy */
 
 		blessorcurse_on_creation(otmp, 17);
