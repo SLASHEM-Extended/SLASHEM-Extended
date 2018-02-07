@@ -643,7 +643,8 @@ aligntyp alignment;	/* target alignment, or A_NONE */
 make_artif: if (by_align) otmp = mksobj((int)a->otyp, TRUE, FALSE);
 	    otmp = oname(otmp, a->name);
 	    otmp->oartifact = m;
-	    artiexist[m] = TRUE;
+		/* usually mark artifact as existing... but not always :D --Amy */
+	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
 	    /* nothing appropriate could be found; return the original object */
 	    if (by_align) otmp = 0;	/* (there was no original object) */
@@ -675,7 +676,7 @@ bad_artifact()
 	    otmp = mksobj((int)a->otyp, TRUE, FALSE);
 	    otmp = oname(otmp, a->name);
 	    otmp->oartifact = m;
-	    artiexist[m] = TRUE;
+	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
 		return; /* aww, there are no evil artifacts left... so don't make one. Bummer. */
 	}
@@ -804,7 +805,7 @@ bad_artifact_xtra()
 	    otmp = mksobj((int)a->otyp, TRUE, FALSE);
 	    otmp = oname(otmp, a->name);
 	    otmp->oartifact = m;
-	    artiexist[m] = TRUE;
+	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
 		return; /* aww, there are no evil artifacts left... so don't make one. Bummer. */
 	}
@@ -1002,7 +1003,7 @@ register boolean mod;
 		    otmp->age = 0;
 		    if(otmp->otyp == RIN_INCREASE_DAMAGE)
 			otmp->spe = 0;
-		    artiexist[m] = mod;
+		    if ((mod == FALSE) || rn2(100)) artiexist[m] = mod;
 		    break;
 		}
 	return;
