@@ -10246,7 +10246,7 @@ skip0:
 			} while(levl[x][y].typ != ROOM && !rn2(40));
 			if (!(IS_POOL(levl[x][y].typ) ||
 			      IS_FURNITURE(levl[x][y].typ)))
-			    make_engr_at(x, y, mesg, 0L, MARK);
+			    make_engr_at(x, y, mesg, 0L, (xchar)0);
 		    }
 		}
 

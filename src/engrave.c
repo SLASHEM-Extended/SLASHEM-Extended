@@ -938,6 +938,19 @@ static const char *random_mesg[] = {
 		"Do, or Do Not.  There is no Try.",
 		"Never tell me the odds!",
 	"There's no replacement for displacement.",
+	"This ASCII tile was donated by Tariru.",
+	"Antediluvian arelgee message: Always do opposite of what Amy says.",
+	"lol you fag you're wasting time reading pointless messages",
+	"Entrance to Anna's Hussy Club, if you're male then bugger off or prepare to clean the dog shit off our shoes",
+	"Bang Gang Office main entrance, unauthorized trespassers will be killed",
+	"You are standing on a nasty trap, which don't give a message and don't reveal themselves when triggered.",
+	"You stepped on my fucking foot, ese!",
+	"Warning, this tile will transform into a trapdoor in 5 turns unless you step off.",
+	"Your fault for stepping on this particular tile - the game just became unwinnable because the Amulet of Yendor was removed from the game permanently.",
+	"Sorry, but our princess is in another dungeon.",
+	"Why are you here? You're supposed to go rescue the bitch that calls herself Princess Peach, and she's in another dungeon!",
+	"Go north from here if you want to find a room full of sexy girls.",
+	"Looking for the entrance to the brothel? One level down from here, northwest corner.",
 
 };
 
@@ -4284,6 +4297,14 @@ static const char *epitaphs[] = {
 	"Slex is a digital turd and just one of the many proofs that women will never achieve anything no matter how hard they try", /* ditto */
 	"I had a tron stone thrown into my inventory and didn't realize that if I wait for one turn after each move, I can still walk down a narrow corridor. Instead I made the mistake to ragequit the game.",
 	"slex is nothing but dicks in the butt, at least i think thats how amy described it once",
+	"I triggered a captcha trap and said 'screw this fucking game' instead of toughing it out and solving the captchas.",
+	"Held the wait key down to make the hallucination end. In curses mode.",
+	"Huh, quaffing from fountains can cause me to die of system shock???",
+	"Wait, what do you mean fountain quaffing ain't safe?",
+	"Crushed by a malfunctioning elevator.",
+	"it is stupid that nasty traps dont reveal themselves when triggered",
+	"It's a mumakill - a person killed by a mumak!",
+	"Why do I die when I get shot?",
 
 };
 

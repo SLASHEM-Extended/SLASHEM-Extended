@@ -1347,7 +1347,7 @@ register const char *s;
 		mazexy_all(&mm);
 			    char buf[BUFSZ];
 				const char *mesg = random_engraving(buf);
-			    make_engr_at(mm.x, mm.y, mesg, 0L, MARK);
+			    make_engr_at(mm.x, mm.y, mesg, 0L, (xchar)0);
 			}
 	for(x = rn1(10,2); x; x--) {
 		mazexy_all(&mm);
@@ -1381,7 +1381,7 @@ register const char *s;
 		mazexy_all(&mm);
 			    char buf[BUFSZ];
 				const char *mesg = random_engraving(buf);
-			    make_engr_at(mm.x, mm.y, mesg, 0L, MARK);
+			    make_engr_at(mm.x, mm.y, mesg, 0L, (xchar)0);
 			}
 	for(x = rn1(10,2); x; x--) {
 		mazexy_all(&mm);

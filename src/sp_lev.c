@@ -3185,7 +3185,7 @@ schar ftyp, btyp;
 			else if(/*nxcor &&*/ !rn2(ishaxor ? 50 : 100)){ 
 			    char buf[BUFSZ];
 				const char *mesg = random_engraving(buf);
-			    make_engr_at(xx, yy, mesg, 0L, MARK);
+			    make_engr_at(xx, yy, mesg, 0L, (xchar)0);
 			}
 			/* else (mktrap(0,1,(struct mkroom *) 0, (coord*) 0) ) ;*/
 		    else if(/*nxcor &&*/ !rn2(ishaxor ? 150 : 300)) 
@@ -5829,7 +5829,7 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 			    char buf[BUFSZ];
 				const char *mesg = random_engraving(buf);
-			    make_engr_at(mm.x, mm.y, mesg, 0L, MARK);
+			    make_engr_at(mm.x, mm.y, mesg, 0L, (xchar)0);
 			}
 	    for (x = rn2(2); x; x--) { if (depth(&u.uz) > depth(&medusa_level)) {
 		maze1xy(&mm, DRY);
@@ -5872,7 +5872,7 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 			    char buf[BUFSZ];
 				const char *mesg = random_engraving(buf);
-			    make_engr_at(mm.x, mm.y, mesg, 0L, MARK);
+			    make_engr_at(mm.x, mm.y, mesg, 0L, (xchar)0);
 			}
 	    for (x = rn2(2); x; x--) { if (depth(&u.uz) > depth(&medusa_level)) {
 		maze1xy(&mm, DRY);

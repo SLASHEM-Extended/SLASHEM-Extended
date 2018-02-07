@@ -772,6 +772,17 @@ doread()
 	"rock--paper--scissors--lizard--Spock!", /* expanded "rock--paper--scissors" featured in TV show "Big Bang Theory" although they didn't create it (and an actual T-shirt with pentagonal diagram showing which choices defeat which) */
 	"/Valar morghulis/ -- /Valar dohaeris/", /* "All men must die -- all men must serve" challange and response from book series _A_Song_of_Ice_and_Fire_ by George R.R. Martin, TV show "Game of Thrones" (probably an actual T-shirt too...) */  
 	"I <3 Humanity", /* No Game No Life */
+	"Ignore his posts. Nobody literally plays his game but him and nobody has ever tried to ascend except for him. It'd be sad to watch if he wasn't so annoying and spammed his screenshots everywhere here and on reddit.",
+	"Tuna Fish - expires Feb 6, 1989",
+	"Rare Meat of a Genocided Hallucinatory Monster",
+	"Water Chestnuts - be sure to eat while underwater",
+	"Yendorian Brand Applesauce",
+	"This Tin Is Not Booby-Trapped",
+	"This Shirt Is Not Booby-Trapped",
+	"This Shirt Is Not Booby-Trapped, Feel Free To Caress",
+	"Fresh Tinned Adventurer Meat",
+	"MumaKill",
+
 
 	    };
 	    char buf[BUFSZ];
