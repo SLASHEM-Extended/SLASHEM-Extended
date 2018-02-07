@@ -510,12 +510,16 @@ boolean forcecontrol;
 	 * we deliberately chose something illegal to force newman().
 	 */
         /* WAC Doppelgangers go through a 1/20 check rather than 1/5 */
+
+	  /* Amy edit: it's bullshit if you get newman() so often. If you polymorph, you should fucking polymorph
+	   * most of the time! I've greatly reduced the odds that newman() is called */
+
         if ( !u.wormpolymorph && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WARPER) && !Race_if(PM_DEATHMOLD) && (!polyok(&mons[mntmp]) ||
 			((Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER)) ? (
         			((u.ulevel < mons[mntmp].mlevel)
         			 || !mvitals[mntmp].eaten
-        			 ) && !rn2(20)) : (Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER)) ? !rn2(20) :
-				   !rn2(5)) || (your_race(&mons[mntmp]) && !Race_if(PM_MOULD) && !Race_if(PM_TRANSFORMER) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) && rn2(5) ) ) ) /* polymorphitis races can always polymorph into everything, others can sometimes poly into their own race --Amy */
+        			 ) && !rn2(50)) : (Race_if(PM_MOULD) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER)) ? !rn2(50) :
+				   !rn2(20)) || (your_race(&mons[mntmp]) && !Race_if(PM_MOULD) && !Race_if(PM_TRANSFORMER) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) && rn2(5) ) ) ) /* polymorphitis races can always polymorph into everything, others can sometimes poly into their own race --Amy */
 		newman();
 	else if(!polymon(mntmp)) { u.wormpolymorph = 0; return; }
 
