@@ -1,6 +1,17 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.5
+- The gang scholar role can have various negative status effects randomly fixed by their deity while not in Gehennom.
+- If the elder priest's tentacle attack destroys one of the player's pieces of equipment, he will mock the player with a scornful message.
+- If the player is wielding a quarterstaff, the penalties for wearing metallic equipment are reduced, making spells easier to cast.
+- Added some negative results when the player quaffs from a fountain, and a few less harmful (but still bad) ones when dipping stuff in a fountain.
+- If an artifact is generated, there is now a 1% chance that the artifact does not count as "already generated", meaning another copy of it can be found or wished for in the same game.
+- The random chance of "feeling like a new man" when polymorphing has been reduced.
+- When playing as the snail race, potions of salt water are very dangerous and can also be thrown by monsters.
+- Implemented the sporkhack room joining code for rooms-and-corridors levels, which can occasionally generate levels that look a little different.
+- Made shops more common.
+- Random engravings on dungeon levels aren't always graffiti but can also be dust engravings or burned ones.
+- Randomly generated wands have a higher average amount of charges in them.
 - Some changes to ranged weapon generation and ammo mulch rates to make the player less likely to run out of ammo.
 - The nuclear chamber special room has a lower density of styx rivers and contamination traps.
 - Fixed errors with weapon attacks: Martial arts really doesn't work if the player triggered the trap that prevents skills from working, bashing with launchers or polearms no longer does excessive amounts of damage, and throwing arrows/bullets/etc. without wielding the corresponding launcher gives a message telling the player about it.
