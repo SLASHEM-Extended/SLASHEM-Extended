@@ -294,7 +294,59 @@ Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chr
 - If the player polymorphs one of the riders, or also if they self-polymorph for any reason, a new rider is generated somewhere on the level. This is because it's possible to get rid of them permanently by turning the polymorphed rider to stone.
 
 1.9.7
-(insert content here)
+- Improved some of the timer-related error messages.
+- Dipping an item that can rust into a pool of water can result in destroying it if it gets rusty enough.
+- Fixed a bug where the fast metabolism trap effect could result in the player dying instantly.
+- Added a "scentful perfume" attack that can be used by monsters.
+
+1.9.5
+- If a monster steals an item from the player, there is no longer a random chance of deleting the item. This was meant to be a fix for a segfault but in reality that segfault was caused by hallucinated objects and got fixed in version 2.0.7. Since it was stupid that your gear could just randomly be erased by nymphs, I didn't put this feature back into the game.
+- Changed some timer-related error messages to reduce the odds of crashing while trying to display the error message.
+- Added new playable races: destabilizer, green slime, loli and polyinitor.
+- Wild talents can now learn random techniques when they level up.
+- Added a new technique: panic digging, which is available to all characters and digs out the eight surrounding squares, for use in situations where there is no way forward and the player has no other means of digging.
+- Artifacts that do extra damage do random bonus damage now. This includes ones that deal "double damage".
+
+1.9.4
+- At the start of the game, some monster traits will be picked that are more common in that particular game.
+- Deactivated intrinsics were displayed incorrectly in the enlightenment screen. Fixed.
+- Changed the peacevision highlighting color to green, and made it so that stairs obscured by monsters, traps or other stuff will be highlighted (they used to be highlighted only when obscured by an item).
+- Fixed a segfault that could occur when engraving with a wand of tele level.
+- Improved the "ascension kits" given to player monsters on the Astral Plane. They have a good chance of receiving artifact armor now.
+- Increased the amount of charges for the Bell of Opening.
+- Map amnesia now periodically redraws the screen.
+- The YSexymate role starts with a weaker pet now.
+- The teamsplat cloak now works correctly even if LIVELOGFILE is not defined.
+- The dumplog file now shows information about the game version.
+- Fixed a bug where heavy caster cloaks would trash the player's spellcasting chances more than they should.
+- Low-level characters get a small to-hit bonus to make the early game less deadly.
+
+1.9.3
+- Altars no longer disappear randomly when dropping an item whose BUC status is already known. They also don't disappear randomly when dropping potions of water or doing a water prayer.
+- Fixed the bug where centaur and dryad races didn't get the phase door technique.
+- Fixed the quirky formula that would increase the Riders' and Seven Deadly Sins' HP when they resurrect.
+- The mazke and aureal races are weaker if the player's gender is male.
+- Librarians deal extra damage when bashing with a spellbook, depending on the remaining amount of charges.
+- The "Greneuvenia's Hug" artifact pair of boots' negative effect can no longer be nullified via MSGTYPE settings.
+- Some random levels that could appear very early had no guaranteed path between the staircases, this has been corrected since it's stupid if the player has to hope for a random dwarf with a pick-axe to spawn.
+- Fixed some bug with turbo boots.
+- Burning fern spores were too strong and therefore got nerfed.
+- The player can now put on a shirt or torso armor without having to take off other pieces first. It is now also possible to put on gloves or rings while wielding cursed weapons.
+- When trying to loot something while polymorphed into a form without hands, the player no longer incorrectly gets double the intended risk of a bad effect.
+- Polymorphing skill allows the player to sometimes keep wearing their stuff even when polymorphing into something that would be unable to wear them. The player can still decide to drop the items anyway.
+- Improved the algorithm that randomly selects traps.
+- Murderer role now gets messages upon leveling up.
+- Tried once again to fix the savegame error.
+- Improved the algorithm for randomizing the player's starting equipment.
+- Gremlins no longer leave corpses because farming is just so lame.
+- Item materials can be randomized at the start of the game.
+- When using a scroll of proof armor, the proofed piece of armor now shows its erosionproof status.
+- Fixed the message spam that would occur when using the travelto command.
+- Albae monsters no longer spawn with bows, because they were too strong.
+- When the player has aggravate monster, the maximum monster level doesn't get randomly decreased.
+
+1.9.2
+(I would add content here but the only way to see the old changes is via Github and that is ultra laggy for some reason, I blame Windows 7 because that is such a stOOpid operating system and the developers should feel bad :P)
 
 :-) <3 *bundlebundlebundle* <3 :D
 
