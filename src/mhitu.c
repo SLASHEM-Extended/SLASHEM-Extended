@@ -4050,6 +4050,7 @@ elena37:
 						}
 						else{
 							(void) destroy_arm(uarmu);
+							verbalize("Harharhar you stupid player, you've been playing for long enough! Say goodbye!");
 						}
 					}
 					else{
@@ -4076,6 +4077,7 @@ elena37:
 						 }
 						 else{
 							(void) destroy_arm(uarm);
+							verbalize("Harharhar you stupid player, you've been playing for long enough! Say goodbye!");
 						 }
 					}
 					else{
@@ -4101,6 +4103,7 @@ elena37:
 				 	}
 					else{
 						(void) destroy_arm(uarmc);
+						verbalize("Harharhar you stupid player, you've been playing for long enough! Say goodbye!");
 				 	}
 				}
 				else{
@@ -4129,6 +4132,7 @@ elena37:
 					}
 					else{
 						(void) destroy_arm(uarmf);
+						verbalize("Harharhar you stupid player, you've been playing for long enough! Say goodbye!");
 					}
 				}
 				else{
@@ -4179,6 +4183,7 @@ elena37:
 					}
 					else{
 						(void) destroy_arm(uarmg);
+						verbalize("Harharhar you stupid player, you've been playing for long enough! Say goodbye!");
 					}
 				}
 				else{
@@ -4231,6 +4236,7 @@ elena37:
 					}
 					else{
 						(void) destroy_arm(uarmh);
+						verbalize("Harharhar you stupid player, you've been playing for long enough! Say goodbye!");
 					}
 				}
 				else{
