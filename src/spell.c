@@ -6789,6 +6789,11 @@ int spell;
 			case POURPOOR: armorpenalties = 20; break;
 		}
 
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			armorpenalties *= 4;
+			armorpenalties /= 5;
+		}
+
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 12);
@@ -6808,6 +6813,11 @@ int spell;
 			case POURPOOR: armorpenalties = 20; break;
 		}
 
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			armorpenalties *= 4;
+			armorpenalties /= 5;
+		}
+
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
 
 		splcaster += (urole.spelarmr * armorpenalties / 36);
@@ -6825,6 +6835,11 @@ int spell;
 			case MITHRIL: armorpenalties = 13; break;
 			case VIVA: armorpenalties = 12; break;
 			case POURPOOR: armorpenalties = 20; break;
+		}
+
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			armorpenalties *= 4;
+			armorpenalties /= 5;
 		}
 
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
@@ -6847,6 +6862,11 @@ int spell;
 			case POURPOOR: shieldpenalties = 20; break;
 		}
 
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			shieldpenalties *= 4;
+			shieldpenalties /= 5;
+		}
+
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) shieldpenalties /= 2;
 
 		splcaster += (urole.spelshld * shieldpenalties / 12);
@@ -6865,6 +6885,11 @@ int spell;
 			case MITHRIL: armorpenalties = 13; break;
 			case VIVA: armorpenalties = 12; break;
 			case POURPOOR: armorpenalties = 20; break;
+		}
+
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			armorpenalties *= 4;
+			armorpenalties /= 5;
 		}
 
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
@@ -6886,6 +6911,11 @@ int spell;
 			case POURPOOR: armorpenalties = 20; break;
 		}
 
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			armorpenalties *= 4;
+			armorpenalties /= 5;
+		}
+
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
 
 		splcaster += (uarmgbon * armorpenalties / 12);
@@ -6903,6 +6933,11 @@ int spell;
 			case MITHRIL: armorpenalties = 13; break;
 			case VIVA: armorpenalties = 12; break;
 			case POURPOOR: armorpenalties = 20; break;
+		}
+
+		if (uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) {
+			armorpenalties *= 4;
+			armorpenalties /= 5;
 		}
 
 		if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) armorpenalties /= 2;
