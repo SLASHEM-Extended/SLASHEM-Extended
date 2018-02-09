@@ -1051,7 +1051,7 @@ int curse_bless;
 	    if (is_cursed) {
 		stripspe(obj);
 	    } else {
-		int lim = (obj->otyp == WAN_WISHING) ? 2 : (obj->otyp == WAN_GENOCIDE) ? 4 : (obj->otyp == WAN_GAIN_LEVEL) ? 5 : (obj->otyp == WAN_INCREASE_MAX_HITPOINTS) ? 6 : ( (obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ) ) ? 3 : (objects[obj->otyp].oc_dir != NODIR) ? (8 + n) : (15 + n);
+		int lim = (obj->otyp == WAN_WISHING) ? 2 : (obj->otyp == WAN_GENOCIDE) ? 4 : (obj->otyp == WAN_GAIN_LEVEL) ? 5 : (obj->otyp == WAN_INCREASE_MAX_HITPOINTS) ? 6 : ( (obj->otyp == WAN_CHARGING || obj->otyp == WAN_ACQUIREMENT ) ) ? 3 : ( (obj->otyp == WAN_PARALYSIS || obj->otyp == WAN_DISINTEGRATION || obj->otyp == WAN_STONING || obj->otyp == WAN_INERTIA || obj->otyp == WAN_TIME ) ) ? 10 : (obj->otyp == WAN_VENOM_SCATTERING) ? 20 : (objects[obj->otyp].oc_dir == IMMEDIATE) ? (12 + n) : (objects[obj->otyp].oc_dir != NODIR) ? (10 + n) : (20 + n);
 
 		n = (lim == 2) ? 2 : (lim == 3) ? 3 : (is_blessed ? rn1(5, lim + 1 - 5) : rnd(lim) ) ;
 		/*if (!is_blessed) {enspe = rnd(n); n = enspe;}*/ /* no longer needed */
