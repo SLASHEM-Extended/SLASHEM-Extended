@@ -169,6 +169,8 @@ int artif;
 {
 	int tprob, i, j, prob = rnd(10000);
 
+	register int levscalediff;
+
 	if (oclass >= MAXOCLASSES) { /* failsafe --Amy */
 
 		impossible("Error: mkobj() called with invalid object class %d", (int) oclass);
@@ -249,6 +251,8 @@ int artif;
 
 	}
 
+levscalereroll:
+
 	i = bases[(int)oclass];
 	while((prob -= objects[i].oc_prob) > 0) i++;
 
@@ -256,6 +260,32 @@ int artif;
 		panic("probtype error, oclass=%d i=%d", (int) oclass, i);
 	if(!OBJ_NAME(objects[i]))
 		panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+
+	/* Levelscaler race: very unlikely to get "out of depth items" --Amy */
+	if (islevelscaler && i != GOLD_PIECE && (objects[i].oc_minlvl > 1)) {
+
+		levscalediff = level_difficulty();
+		if (levscalediff < 1) levscalediff = 1; /* fail safe */
+
+		/*pline("trying to make item %d with level %d (level difficulty is %d)", i, objects[i].oc_minlvl, levscalediff);*/
+
+		while ((levscalediff >= 1) && (objects[i].oc_minlvl > levscalediff)) {
+			if (!rn2(3)) {
+				/*pline("didn't make the roll! (level difficulty was %d)", levscalediff);*/
+
+				/* somehow there's a weird potential for infinite loops... let's prevent them --Amy */
+				if (!rn2(50)) {
+					i = GOLD_PIECE;
+					goto levscalerollpast;
+				}
+				prob = rnd(10000);
+				goto levscalereroll;
+			}
+			levscalediff += 1;
+		}
+
+	}
+levscalerollpast:
 
 	if ( (i == SCR_TELEPORTATION || i == POT_HEALING || i == POT_CURE_WOUNDS || i == POT_CURE_SERIOUS_WOUNDS || i == POT_CURE_CRITICAL_WOUNDS || i == POT_EXTRA_HEALING || i == WAN_DIGGING || i == WAN_CREATE_MONSTER || i == SCR_CREATE_MONSTER || i == SCR_CREATE_VICTIM || i == WAN_TELEPORTATION || i == POT_FULL_HEALING || i == WAN_HEALING || i == WAN_EXTRA_HEALING || i == WAN_CREATE_HORDE || i == POT_VAMPIRE_BLOOD || i == WAN_FULL_HEALING || i == SCR_TELE_LEVEL || i == WAN_TELE_LEVEL || i == SCR_ROOT_PASSWORD_DETECTION || i == RIN_TIMELY_BACKUP || i == SCR_SUMMON_UNDEAD || i == WAN_SUMMON_UNDEAD || i == SCR_HEALING || i == SCR_POWER_HEALING || i == SCR_WARPING || i == WAN_DEATH || i == WAN_SLEEP || i == WAN_FIREBALL || i == WAN_FIRE || i == WAN_COLD || i == WAN_LIGHTNING || i == WAN_MAGIC_MISSILE || i == WAN_STRIKING || i == SCR_FIRE || i == POT_PARALYSIS || i == POT_BLINDNESS || i == POT_CONFUSION || i == POT_SLEEPING || i == POT_ACID || i == FROST_HORN || i == FIRE_HORN || i == TEMPEST_HORN || i == WAN_DRAINING || i == WAN_INCREASE_MAX_HITPOINTS || i == WAN_REDUCE_MAX_HITPOINTS || i == SCR_EARTH || i == POT_AMNESIA || i == WAN_CANCELLATION || i == POT_CYANIDE || i == POT_RADIUM || i == WAN_ACID || i == SCR_TRAP_CREATION || i == SCR_CREATE_TRAP || i == WAN_TRAP_CREATION || i == SCR_FLOOD || i == SCR_LAVA || i == SCR_GROWTH || i == SCR_ICE || i == SCR_CLOUDS || i == SCR_BARRHING || i == WAN_SOLAR_BEAM || i == WAN_POISON || i == SCR_LOCKOUT || i == WAN_BANISHMENT || i == POT_HALLUCINATION || i == POT_ICE || i == POT_STUNNING || i == POT_NUMBNESS || i == POT_URINE || i == POT_CANCELLATION || i == POT_SLIME || i == SCR_BAD_EFFECT || i == WAN_BAD_EFFECT || i == POT_FIRE || i == POT_DIMNESS || i == WAN_SLOW_MONSTER || i == WAN_FEAR || i == POT_FEAR || i == POT_GAIN_LEVEL || i == WAN_GAIN_LEVEL || i == WAN_MAKE_INVISIBLE || i == POT_INVISIBILITY || i == WAN_POLYMORPH || i == WAN_MUTATION || i == POT_SPEED || i == WAN_SPEED_MONSTER || i == POT_POLYMORPH || i == POT_MUTATION || i == WAN_CLONE_MONSTER || i == SCR_DESTROY_ARMOR || i == SCR_DESTROY_WEAPON || i == SCR_STONING || i == SCR_AMNESIA || i == BAG_OF_TRICKS || i == WAN_STONING || i == WAN_DISINTEGRATION || i == WAN_PARALYSIS || i == WAN_CURSE_ITEMS || i == WAN_AMNESIA || i == WAN_LEVITATION || i == WAN_PSYBEAM || i == WAN_HYPER_BEAM || i == WAN_BAD_LUCK || i == WAN_REMOVE_RESISTANCE || i == WAN_CORROSION || i == WAN_STARVATION || i == WAN_CONFUSION || i == WAN_SLIMING || i == WAN_LYCANTHROPY || i == WAN_FUMBLING || i == WAN_PUNISHMENT || i == SCR_PUNISHMENT || i == WAN_MAKE_VISIBLE || i == SCR_SUMMON_BOSS || i == SCR_WOUNDS || i == SCR_BULLSHIT || i == SCR_CHAOS_TERRAIN || i == SCR_NASTINESS || i == SCR_DEMONOLOGY || i == SCR_ELEMENTALISM || i == SCR_GIRLINESS || i == WAN_SUMMON_SEXY_GIRL || i == WAN_DISINTEGRATION_BEAM || i == SCR_GROUP_SUMMONING || i == WAN_CHROMATIC_BEAM || i == WAN_STUN_MONSTER || i == SCR_SUMMON_GHOST || i == SCR_MEGALOAD || i == SCR_VILENESS || i == SCR_ENRAGE || i == WAN_TIDAL_WAVE || i == SCR_ANTIMATTER || i == SCR_SUMMON_ELM || i == WAN_SUMMON_ELM || i == SCR_RELOCATION || i == WAN_DRAIN_MANA || i == WAN_FINGER_BENDING || i == SCR_IMMOBILITY || i == WAN_IMMOBILITY || i == SCR_FLOODING || i == SCR_EGOISM || i == WAN_EGOISM || i == SCR_RUMOR || i == SCR_MESSAGE || i == SCR_SIN || i == WAN_SIN || i == WAN_INERTIA || i == WAN_TIME || i == WAN_DESLEXIFICATION || i == WAN_INFERNO || i == WAN_ICE_BEAM || i == WAN_THUNDER || i == WAN_SLUDGE || i == WAN_TOXIC || i == WAN_NETHER_BEAM || i == WAN_AURORA_BEAM || i == WAN_GRAVITY_BEAM || i == WAN_CHLOROFORM || i == WAN_DREAM_EATER || i == WAN_BUBBLEBEAM || i == WAN_GOOD_NIGHT || i == WAN_HASTE_MONSTER) && (u.antimusablebias > rn2(100) ) ) {
 
@@ -1665,18 +1695,23 @@ int artif;
 		 * 100 +8 arrows or something. The standard amount must be sufficient for everyone in communism! --Amy */
 
 		if(!rn2(ishaxor ? 3 : 6)) {
-			otmp->spe = rne(2);
+			otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse_on_creation(otmp, 3);
 		} else if(!rn2(ishaxor ? 4 : 8)) {
 			if (rn2(10)) curse_on_creation(otmp);
 			 else	blessorcurse_on_creation(otmp, 3);
-			otmp->spe = -rne(2);
+			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
+
+		if (Race_if(PM_LISTENER) && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+
 		if (is_poisonable(otmp) && !rn2(100))
 			otmp->opoisoned = 1;
-		if (artif && (artif != 2) && !rn2(20))
+		if (artif && (artif != 2) && !rn2(20)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 50)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
@@ -1753,8 +1788,10 @@ int artif;
 		otmp->otyp == KELP_FROND || otmp->otyp == PEAR || otmp->otyp == ASIAN_PEAR || otmp->otyp == BANANA
 	|| otmp->otyp == ORANGE || otmp->otyp == MELON || otmp->otyp == SLIME_MOLD)*/
 		blessorcurse_on_creation(otmp, 10);
-		if (artif && (artif != 2) && !rn2(200))
+		if (artif && (artif != 2) && !rn2(200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if (artif && !rn2(500)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
@@ -1774,8 +1811,10 @@ int artif;
 			if (!rn2(6)) otmp->quan = rn2(5) ? 2L : rn2(4) ? rn1(5,5) : rn1(10,10);
 			else otmp->quan = 1L;
 
-			if (artif && (artif != 2) && !rn2(50))
+			if (artif && (artif != 2) && !rn2(50)) {
 			    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+				if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+			}
 			else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
 			    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 				otmp->fakeartifact = 1;
@@ -1814,17 +1853,19 @@ int artif;
 		}
 
 		if(!rn2(ishaxor ? 4 : 8)) {
-			otmp->spe = rne(2);
+			otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse_on_creation(otmp, 3);
 		} else if(!rn2(ishaxor ? 5 : 10)) {
 			if (rn2(10)) curse_on_creation(otmp);
 			 else	blessorcurse_on_creation(otmp, 3);
-			otmp->spe = -rne(2);
+			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
-		if (artif && (artif != 2) && !rn2(50))
+		if (artif && (artif != 2) && !rn2(50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
@@ -1833,6 +1874,8 @@ int artif;
 
 	/* "Disable enchantable rocks. The racial + stregnth + sling enchantment bonus is more than enough." In Soviet Russia, people never use slings anyway so they never noticed that those retarded things never do enough damage. They also completely disregard the fact that higher enchantment means a lower chance for the projectiles to disappear too. Guess they never used a stack of blessed +7 rocks in their life, otherwise they'd know the benefits of having them. --Amy */
 		if (issoviet) otmp->spe = 0;
+
+		if (Race_if(PM_LISTENER) && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */
@@ -1898,14 +1941,16 @@ int artif;
 			if (ishaxor) otmp->age *= 2;
 
 			if(!rn2(ishaxor ? 3 : 6)) {
-				otmp->spe = rne(2);
+				otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 				if (rn2(2)) otmp->blessed = rn2(2);
 				 else	blessorcurse_on_creation(otmp, 3);
 			} else if(!rn2(ishaxor ? 4 : 8)) {
 				if (rn2(10)) curse_on_creation(otmp);
 				 else	blessorcurse_on_creation(otmp, 3);
-				otmp->spe = -rne(2);
+				otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 			} else	blessorcurse_on_creation(otmp, 10);
+
+			if (Race_if(PM_LISTENER) && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		break;
 		case TREASURE_CHEST:
@@ -2014,19 +2059,24 @@ int artif;
 					break;
 		default: /* all the other tools --Amy */
 		if(!rn2(ishaxor ? 3 : 6)) {
-			otmp->spe = rne(2);
+			otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse_on_creation(otmp, 3);
 		} else if(!rn2(ishaxor ? 4 : 8)) {
 			if (rn2(10)) curse_on_creation(otmp);
 			 else	blessorcurse_on_creation(otmp, 3);
-			otmp->spe = -rne(2);
+			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
+
+		if (Race_if(PM_LISTENER) && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+
 		break;
 	    }
 
-		if (artif && (artif != 2) && !rn2(40))
+		if (artif && (artif != 2) && !rn2(40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if ((artif && !rn2(100)) || (otmp->spe && is_weptool(otmp) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 20)) ) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
@@ -2046,8 +2096,10 @@ int artif;
 		} else {
 			blessorcurse_on_creation(otmp, 10);
 		}
-		if (artif && (artif != 2) && !rn2(60))
+		if (artif && (artif != 2) && !rn2(60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if (artif && !rn2(140)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
@@ -2057,8 +2109,10 @@ int artif;
 		break;
 	case VENOM_CLASS:
 		blessorcurse_on_creation(otmp, 10);
-		if (artif && (artif != 2) && !rn2(20))
+		if (artif && (artif != 2) && !rn2(20)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if (artif && !rn2(50)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
@@ -2068,19 +2122,23 @@ int artif;
 	case CHAIN_CLASS:
 	case BALL_CLASS:
 		if(!rn2(ishaxor ? 3 : 6)) {
-			otmp->spe = rne(2);
+			otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse_on_creation(otmp, 3);
 		} else if(!rn2(ishaxor ? 4 : 8)) {
 			if (rn2(10)) curse_on_creation(otmp);
 			 else	blessorcurse_on_creation(otmp, 3);
-			otmp->spe = -rne(2);
+			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
 		if (issoviet) otmp->spe = 0;
 
-		if (artif && (artif != 2) && !rn2(50))
+		if (Race_if(PM_LISTENER) && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+
+		if (artif && (artif != 2) && !rn2(50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
@@ -2098,8 +2156,10 @@ int artif;
 #endif
 			blessorcurse_on_creation(otmp, 4);
 
-		if (artif && (artif != 2) && !rn2(160))
+		if (artif && (artif != 2) && !rn2(160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if (artif && !rn2(400)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
@@ -2116,8 +2176,10 @@ int artif;
 		otmp->recharged = 0;
 		if(!rn2(3)) otmp->recharged = rnd(7);
 		blessorcurse_on_creation(otmp, 17);
-		if (artif && (artif != 2) && !rn2(100))
+		if (artif && (artif != 2) && !rn2(100)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if (artif && !rn2(250)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
@@ -2156,14 +2218,19 @@ int artif;
 		   !rn2(ishaxor ? 5 : 11))) {
 			if (rn2(10)) curse_on_creation(otmp);
 			 else	blessorcurse_on_creation(otmp, 3);
-			otmp->spe = -rne(2);
+			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else if(!rn2(ishaxor ? 5 : 8)) {
 			if (rn2(2)) otmp->blessed = rn2(2);
 			 else	blessorcurse_on_creation(otmp, 3);
-			otmp->spe = rne(2);
+			otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
-		if (artif && (artif != 2) && !rn2(40))                
+
+		if (Race_if(PM_LISTENER) && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+
+		if (artif && (artif != 2) && !rn2(40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 100)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
@@ -2232,8 +2299,10 @@ int artif;
 		if (otmp->otyp != WAN_WISHING && otmp->otyp != WAN_ACQUIREMENT && otmp->otyp != WAN_GENOCIDE && otmp->otyp != WAN_GAIN_LEVEL && otmp->otyp != WAN_INCREASE_MAX_HITPOINTS) otmp->recharged = 0; /* used to control recharging */
 		if (!rn2(10)) otmp->recharged = rnd(7); /* allow recharged wands to spawn --Amy */
 
-		if (artif && (artif != 2) && !rn2(160))
+		if (artif && (artif != 2) && !rn2(160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if (artif && !rn2(500)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
@@ -2246,8 +2315,8 @@ int artif;
 		    blessorcurse_on_creation(otmp, 3);
 		    if(rn2(10)) {
 			if(rn2(10) && bcsign(otmp))
-			    otmp->spe = bcsign(otmp) * rne(2);
-			else otmp->spe = rn2(2) ? rne(2) : -rne(2);
+			    otmp->spe = bcsign(otmp) * rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = rn2(2) ? rne(Race_if(PM_LISTENER) ? 3 : 2) : -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		    }
 		    /* make useless +0 rings much less common */
 		    if (otmp->spe == 0) {
@@ -2256,6 +2325,8 @@ int artif;
 		       if (rn2(3)) otmp->spe = rne(2)+1;
 		       else otmp->spe = -(rne(2)+1);
 		    }
+			if (Race_if(PM_LISTENER) && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+
 		    /* negative rings are usually cursed */
 		    if (otmp->spe < 0 && rn2(5)) curse_on_creation(otmp);
 		} else if(rn2(10) && (otmp->otyp == RIN_TELEPORTATION ||
@@ -2271,8 +2342,10 @@ int artif;
 			curse_on_creation(otmp);
 		}
 
-		if (artif && (artif != 2) && !rn2(50))
+		if (artif && (artif != 2) && !rn2(50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if (artif && !rn2(125)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
@@ -2292,8 +2365,10 @@ int artif;
 		}
 	      blessorcurse_on_creation(otmp, 7);
 
-		if (artif && (artif != 2) && !rn2(200))
+		if (artif && (artif != 2) && !rn2(200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
 		else if (artif && !rn2(500)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;

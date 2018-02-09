@@ -334,6 +334,9 @@ static struct Bool_Opt
 	{"hybridamnesiac", &flags.hybridamnesiac, FALSE, DISP_IN_GAME}, 
 	{"hybridproblematic", &flags.hybridproblematic, FALSE, DISP_IN_GAME}, 
 	{"hybridwindinhabitant", &flags.hybridwindinhabitant, FALSE, DISP_IN_GAME}, 
+	{"hybridaggravator", &flags.hybridaggravator, FALSE, DISP_IN_GAME}, 
+	{"hybridevilvariant", &flags.hybridevilvariant, FALSE, DISP_IN_GAME}, 
+	{"hybridlevelscaler", &flags.hybridlevelscaler, FALSE, DISP_IN_GAME}, 
 
 	{(char *)0, (boolean *)0, FALSE, 0}
 };
@@ -1597,6 +1600,15 @@ boolean tinitial, tfrom_file;
 		flags.hybridization++;
 	}
 	if (match_optname(opts, "hybridwindinhabitant", 20, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridaggravator", 16, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridevilvariant", 17, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridlevelscaler", 17, FALSE)) {
 		flags.hybridization++;
 	}
 

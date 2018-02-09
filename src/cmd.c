@@ -4308,6 +4308,12 @@ boolean guaranteed;
 
 	}
 
+	if (Race_if(PM_FELID)) {
+	    	sprintf(buf, "%d ", u.felidlives);
+		sprintf(eos(buf), "lives left");
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.contamination) {
 		if (u.contamination >= 1000) sprintf(buf, "suffering from fatal contamination. Health and mana regeneration are reduced.");
 		else if (u.contamination >= 800) sprintf(buf, "suffering from lethal contamination.");
@@ -7266,6 +7272,12 @@ int final;
 
 	}
 
+	if (Race_if(PM_FELID)) {
+	    	sprintf(buf, "%d ", u.felidlives);
+		sprintf(eos(buf), "lives left");
+		dump(youhad, buf);
+	}
+
 	if (u.contamination) {
 		if (u.contamination >= 1000) sprintf(buf, "suffering from fatal contamination. Health and mana regeneration were reduced.");
 		else if (u.contamination >= 800) sprintf(buf, "suffering from lethal contamination.");
@@ -8256,7 +8268,7 @@ minimal_enlightenment()
 		/* Yes I know, this is far from optimized. But it's a crutch for terminals with
 		 * less than 25 lines, where bot2() doesn't display everything if you have lots of status effects. --Amy */
 
-		sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s %s.", plname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), (flags.hybridrandomizer ? "randomizer " : ""), (flags.hybridnullrace ? "null " : ""), (flags.hybridmazewalker ? "mazewalker " : ""), (flags.hybridsoviet ? "soviet " : ""), (flags.hybridxrace ? "x-race " : ""), (flags.hybridheretic ? "heretic " : ""), (flags.hybridsokosolver ? "sokosolver " : ""), (flags.hybridspecialist ? "specialist " : ""), (flags.hybridamerican ? "american " : ""), (flags.hybridminimalist ? "minimalist " : ""), (flags.hybridnastinator ? "nastinator " : ""), (flags.hybridrougelike ? "rougelike " : ""), (flags.hybridsegfaulter ? "segfaulter " : ""), (flags.hybridironman ? "ironman " : ""), (flags.hybridamnesiac ? "amnesiac " : ""), (flags.hybridproblematic ? "problematic " : ""), (flags.hybridwindinhabitant ? "windinhabitant " : ""), urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
+		sprintf(eos(statline), "You are %s, a %s %s %s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s %s.", plname, align_str(u.ualign.type), (flags.female ? "female" : "male"), (flags.hybridangbander ? "angbander " : ""), (flags.hybridaquarian ? "aquarian " : ""), (flags.hybridcurser ? "curser " : ""), (flags.hybridhaxor ? "haxor " : ""), (flags.hybridhomicider ? "homicider " : ""), (flags.hybridsuxxor ? "suxxor " : ""), (flags.hybridwarper ? "warper " : ""), (flags.hybridrandomizer ? "randomizer " : ""), (flags.hybridnullrace ? "null " : ""), (flags.hybridmazewalker ? "mazewalker " : ""), (flags.hybridsoviet ? "soviet " : ""), (flags.hybridxrace ? "x-race " : ""), (flags.hybridheretic ? "heretic " : ""), (flags.hybridsokosolver ? "sokosolver " : ""), (flags.hybridspecialist ? "specialist " : ""), (flags.hybridamerican ? "american " : ""), (flags.hybridminimalist ? "minimalist " : ""), (flags.hybridnastinator ? "nastinator " : ""), (flags.hybridrougelike ? "rougelike " : ""), (flags.hybridsegfaulter ? "segfaulter " : ""), (flags.hybridironman ? "ironman " : ""), (flags.hybridamnesiac ? "amnesiac " : ""), (flags.hybridproblematic ? "problematic " : ""), (flags.hybridwindinhabitant ? "windinhabitant " : ""), (flags.hybridaggravator ? "aggravator " : ""), (flags.hybridevilvariant ? "evilvariant " : ""), (flags.hybridlevelscaler ? "levelscaler " : ""), urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 
 		if (!Upolyd) sprintf(eos(statline), " HP: %d (max %d)", u.uhp, u.uhpmax);
 		else sprintf(eos(statline), " HP: %d (max %d)", u.mh, u.mhmax);

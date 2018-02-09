@@ -3674,6 +3674,19 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
+{	"aggravator", "aggravator", "aggravation", "Agg",
+	{0, 0},
+	PM_AGGRAVATOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"ak Thief is dead!", "ak Thief is dead!", "vailable, exit anyway?", "Akt", /* garbled strings --Amy */
 	{0, 0},
 	PM_AK_THIEF_IS_DEAD_, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4208,6 +4221,19 @@ const struct Race races[] = {
 	{  3, 0,  0, 4,  5, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  4, 0 }		/* Energy */
 },
+{	"evilvariant", "evilvariant", "Evil Variant", "Evi",
+	{0, 0},
+	PM_EVILVARIANT, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"expert", "expert", "expertise", "Exp",
 	{0, 0},
 	PM_EXPERT, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4233,6 +4259,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
+},
+{	"felid", "felid", "felinity", "Fel",
+	{0, 0},
+	PM_FELID, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, 0,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  2, 0,  1, 0,  0, 0 }		/* Energy */
 },
 {	"fenek", "fenek", "fenekhood", "Fen",
 	{0, 0},
@@ -4641,6 +4680,19 @@ const struct Race races[] = {
 	{  2, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  3, 0 }		/* Energy */
 },
+{	"levelscaler", "levelscaler", "scaling system", "Lvl",
+	{0, 0},
+	PM_LEVELSCALER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"levitator", "levitating", "levitatorship", "Lev",
 	{0, 0},
 	PM_LEVITATOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -4666,6 +4718,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
+{	"listener", "listener", "listening outpost", "Lis",
+	{0, 0},
+	PM_LISTENER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
 {	"lizardman", "lizard", "lizardhood", "Liz",
 	{0, 0},
@@ -5101,6 +5166,19 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
+{	"salamander", "salamander", "salamanderhood", "Sal",
+	{0, 0},
+	PM_PLAYER_SALAMANDER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 3,  4, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
 {	"satre", "satre", "satredom", "Sat",
 	{0, 0},
 	PM_SATRE, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -5163,6 +5241,19 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
+{	"shoe", "shoe", "wonderful lady shoes", "Sho",
+	{0, 0},
+	PM_SHOE, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  4, 0,  0, 5,  6, 0 },	/* Hit points */
+	{  3, 0,  4, 0,  7, 0 }		/* Energy */
 },
 {	"sinner", "sinful", "sinnerhood", "Sin",
 	{0, 0},
@@ -6167,7 +6258,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(24)) {
+			switch (rnd(27)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -6217,12 +6308,18 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridproblematic = 1; break;
 				case 24:
 					flags.hybridwindinhabitant = 1; break;
+				case 25:
+					flags.hybridaggravator = 1; break;
+				case 26:
+					flags.hybridevilvariant = 1; break;
+				case 27:
+					flags.hybridlevelscaler = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(24)) {
+				switch (rnd(27)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -6295,6 +6392,15 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 24:
 						if (!(flags.hybridwindinhabitant)) {flags.hybridwindinhabitant = 1; flags.hybridization++; break;
+						}
+					case 25:
+						if (!(flags.hybridaggravator)) {flags.hybridaggravator = 1; flags.hybridization++; break;
+						}
+					case 26:
+						if (!(flags.hybridevilvariant)) {flags.hybridevilvariant = 1; flags.hybridization++; break;
+						}
+					case 27:
+						if (!(flags.hybridlevelscaler)) {flags.hybridlevelscaler = 1; flags.hybridization++; break;
 						}
 	
 				}
@@ -7010,6 +7116,8 @@ const char *
 Hello(mtmp)
 struct monst *mtmp;
 {
+	if (isevilvariant) return("Palim-Palim"); /* idea by bhaak */
+
 	switch (Role_switch) {
 	case PM_KNIGHT:
 	case PM_CHEVALIER:
@@ -7039,6 +7147,8 @@ struct monst *mtmp;
 const char *
 Goodbye()
 {
+	if (isevilvariant) return("Buh-Bye");
+
 	switch (Role_switch) {
 	case PM_KNIGHT:
 	case PM_CHEVALIER:

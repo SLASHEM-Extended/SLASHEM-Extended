@@ -579,8 +579,11 @@ hybrid_str()
 	if (flags.hybridamnesiac) sprintf(eos(string), "amnesiac ");
 	if (flags.hybridproblematic) sprintf(eos(string), "problematic ");
 	if (flags.hybridwindinhabitant) sprintf(eos(string), "windinhabitant ");
+	if (flags.hybridaggravator) sprintf(eos(string), "aggravator ");
+	if (flags.hybridevilvariant) sprintf(eos(string), "evilvariant ");
+	if (flags.hybridlevelscaler) sprintf(eos(string), "levelscaler ");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant)) sprintf(eos(string), "none ");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant) && !(flags.hybridaggravator) && !(flags.hybridevilvariant) && !(flags.hybridlevelscaler)) sprintf(eos(string), "none ");
 
     return (string);
 }
@@ -614,8 +617,11 @@ hybrid_strcode()
 	if (flags.hybridamnesiac) sprintf(eos(string), "Amn");
 	if (flags.hybridproblematic) sprintf(eos(string), "Pro");
 	if (flags.hybridwindinhabitant) sprintf(eos(string), "Win");
+	if (flags.hybridaggravator) sprintf(eos(string), "Agg");
+	if (flags.hybridevilvariant) sprintf(eos(string), "Evi");
+	if (flags.hybridlevelscaler) sprintf(eos(string), "Lvl");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant)) sprintf(eos(string), "none");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant) && !(flags.hybridaggravator) && !(flags.hybridevilvariant) && !(flags.hybridlevelscaler)) sprintf(eos(string), "none");
 
     return (string);
 }

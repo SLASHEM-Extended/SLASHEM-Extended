@@ -4346,6 +4346,31 @@ struct monst *mtmp;
 		else {
 */
 
+		if (isevilvariant) { /* wand destruction patch, YAY - reflection does jack diddly because of course it does */
+
+			/* monsters have no wand skill in SLEX, so they just generally pierce reflection
+			 * in Nethack Fourk they'd have to be at least skilled, but this is the Evil Variant(TM) --Amy */
+
+			switch (m.has_offense) {
+				default: break;
+				case MUSE_WAN_FIRE:
+				case MUSE_WAN_FIREBALL:
+					burnarmor(&youmonst);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					break;
+				case MUSE_WAN_COLD:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case MUSE_WAN_LIGHTNING:
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+			}
+		}
+
 		/* Monsters zapping wands will be more dangerous later in the game. --Amy */
 		buzz((int)(-30 - (otmp->otyp - WAN_MAGIC_MISSILE)),
 			(otmp->otyp == WAN_MAGIC_MISSILE) ? 2 + (rnd(monster_difficulty()) / 10) : (otmp->otyp == WAN_SOLAR_BEAM) ? 8 + (rnd(monster_difficulty()) / 4) : (otmp->otyp == WAN_PSYBEAM) ? 7 + (rnd(monster_difficulty()) / 5) : 6 + (rnd(monster_difficulty()) / 8),
@@ -4381,6 +4406,13 @@ struct monst *mtmp;
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 
+		if (isevilvariant) {
+			burnarmor(&youmonst);
+			destroy_item(POTION_CLASS, AD_FIRE);
+			destroy_item(SCROLL_CLASS, AD_FIRE);
+			destroy_item(SPBOOK_CLASS, AD_FIRE);
+		}
+
 		pline("Your %s is singed by searing flames!", body_part(FACE));
 		if (Upolyd && u.mhmax > 1) {
 			u.mhmax--;
@@ -4409,6 +4441,10 @@ struct monst *mtmp;
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 
+		if (isevilvariant) {
+			destroy_item(POTION_CLASS, AD_COLD);
+		}
+
 		u_slow_down();
 
 		buzz((int)(-22), 12 + (rnd(monster_difficulty()) / 4),
@@ -4427,6 +4463,12 @@ struct monst *mtmp;
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
+
+		if (isevilvariant) {
+			destroy_item(WAND_CLASS, AD_ELEC);
+			destroy_item(RING_CLASS, AD_ELEC);
+			destroy_item(AMULET_CLASS, AD_ELEC);
+		}
 
 		if (!rn2(3) && multi >= 0) nomul(-rnd(3), "paralyzed by thunder");
 		if (!rn2(2)) make_numbed(HNumbed + rnz(150), TRUE);
@@ -4615,6 +4657,28 @@ struct monst *mtmp;
 		}
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		m_using = TRUE;
+
+		if (isevilvariant) {
+			switch (m.has_offense) {
+				default: break;
+				case MUSE_FIRE_HORN:
+					burnarmor(&youmonst);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					break;
+				case MUSE_FROST_HORN:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case MUSE_TEMPEST_HORN:
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+			}
+		}
+
+
 		buzz(-30 - ((otmp->otyp==FROST_HORN) ? AD_COLD-1 : (otmp->otyp==TEMPEST_HORN) ? AD_ELEC-1 : AD_FIRE-1),
 			rn1(6,6), mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));

@@ -14,23 +14,23 @@
 /*
  * PATCHLEVEL is updated for each release.
  */
-#define PATCHLEVEL      5
+#define PATCHLEVEL      6
 /*
 #define EDITLEVEL	0
 #define FIXLEVEL        0
 */
 
 #define COPYRIGHT_BANNER_A \
-"This is SuperLotsoAddedStuffHack-Extended Magic Extended 1997-2018"
+"This is Sadistic Levels of Endless X-Citement (SLEX) 1997-2018 by Amy"
 
 #define COPYRIGHT_BANNER_B \
 "NetHack, Copyright 1985-2003 Stichting Mathematisch Centrum, M. Stephenson."
 
 #define COPYRIGHT_BANNER_C \
-"Slash'EM Extended version by Amy (user Bluescreenofdeath at Nethackwiki)."
+"Contact the dev team via the #em.slashem.me channel on Freenode IRC."
 
 #define COPYRIGHT_BANNER_D \
-"See license for details. Bug reports to Bluescreenofdeath's user talk page."
+"See license for details. Bug reports can also be posted on Nethackwiki."
 
 #if 0
 /*

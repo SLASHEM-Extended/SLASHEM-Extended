@@ -1063,6 +1063,11 @@ moveloop()
 				moveamt /= 2; /* frozen characters move at half speed --Amy */
 			}
 
+			/* salamander race by Kwahn, speeds up in lava */
+			if (is_lava(u.ux, u.uy) && Race_if(PM_PLAYER_SALAMANDER)) {
+				moveamt *= 3;
+			}
+
 			if (is_snow(u.ux, u.uy) && !Flying && !Levitation) {
 					static boolean canwalkonsnow = 0;
 				    static int skates = 0;
@@ -4866,14 +4871,14 @@ newbossB:
 			make_burned(HBurned + rnd(10 + level_difficulty()), FALSE);
 			if (!Fire_resistance || !rn2(20)) losehp(rnd(5 + (level_difficulty() / 3)), "a burning wagon", KILLED_BY);
 
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
-		    if (!rn2(10)) burnarmor(&youmonst);
+		    if (isevilvariant || !rn2(10)) burnarmor(&youmonst);
 
 		}
 
@@ -8086,6 +8091,9 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridamnesiac) sprintf(eos(xtrabuf), "amnesiac ");
 	if (flags.hybridproblematic) sprintf(eos(xtrabuf), "problematic ");
 	if (flags.hybridwindinhabitant) sprintf(eos(xtrabuf), "windinhabitant ");
+	if (flags.hybridaggravator) sprintf(eos(xtrabuf), "aggravator ");
+	if (flags.hybridevilvariant) sprintf(eos(xtrabuf), "evilvariant ");
+	if (flags.hybridlevelscaler) sprintf(eos(xtrabuf), "levelscaler ");
 
 	if (new_game) { /* for recursion trap */
 		ustartrace = urace;

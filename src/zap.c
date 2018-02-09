@@ -5101,9 +5101,9 @@ boolean ordinary;
 			You("zap yourself, but seem unharmed.");
 			ugolemeffects(AD_ELEC, d(12,6));
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
@@ -5123,9 +5123,9 @@ boolean ordinary;
 			You("zap yourself, but seem unharmed.");
 			ugolemeffects(AD_ELEC, d(24,6));
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
@@ -5160,15 +5160,15 @@ boolean ordinary;
 			Slimed = 0;
 		    }
 		    burn_away_slime();
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
 		    /*destroy_item(SCROLL_CLASS, AD_FIRE);
 		    destroy_item(POTION_CLASS, AD_FIRE);
 		    destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    break;
 
@@ -5188,15 +5188,15 @@ boolean ordinary;
 			Slimed = 0;
 		    }
 		    burn_away_slime();
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
 		    /*destroy_item(SCROLL_CLASS, AD_FIRE);
 		    destroy_item(POTION_CLASS, AD_FIRE);
 		    destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 			if (Upolyd && u.mhmax > 1) {
@@ -5222,9 +5222,9 @@ boolean ordinary;
 			You("zap yourself, but seem unharmed.");
 			ugolemeffects(AD_ELEC, d(12,6));
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
@@ -5244,15 +5244,15 @@ boolean ordinary;
 			Slimed = 0;
 		    }
 		    burn_away_slime();
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
 		    /*destroy_item(SCROLL_CLASS, AD_FIRE);
 		    destroy_item(POTION_CLASS, AD_FIRE);
 		    destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 		    if (Cold_resistance) {
@@ -5263,7 +5263,7 @@ boolean ordinary;
 			You("imitate a popsicle!");
 			damage = d(12,6);
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
 
 			break;
 
@@ -5278,9 +5278,9 @@ boolean ordinary;
 			You("zap yourself, but seem unharmed.");
 			ugolemeffects(AD_ELEC, d(12,12));
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
@@ -5303,15 +5303,15 @@ boolean ordinary;
 			Slimed = 0;
 		    }
 		    burn_away_slime();
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
 		    /*destroy_item(SCROLL_CLASS, AD_FIRE);
 		    destroy_item(POTION_CLASS, AD_FIRE);
 		    destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 			if (Upolyd && u.mhmax > 1) {
@@ -5332,7 +5332,7 @@ boolean ordinary;
 			You("imitate an ice block!");
 			damage = d(12,12);
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
 
 			u_slow_down();
 
@@ -5350,7 +5350,7 @@ boolean ordinary;
 			You("imitate a popsicle!");
 			damage = d(12,6);
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
 
 		    break;
 
@@ -5365,7 +5365,7 @@ boolean ordinary;
 			You("imitate an ice block!");
 			damage = d(24,6);
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
 
 			u_slow_down();
 
@@ -7539,10 +7539,10 @@ xchar sx, sy;
 		Slimed = 0;
 	    }
 	    burn_away_slime();
-	    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (burnarmor(&youmonst));	/* "body hit" */
-		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) destroy_item(POTION_CLASS, AD_FIRE);
-		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) destroy_item(SCROLL_CLASS, AD_FIRE);
-		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+	    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (burnarmor(&youmonst));	/* "body hit" */
+		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) destroy_item(POTION_CLASS, AD_FIRE);
+		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) destroy_item(SCROLL_CLASS, AD_FIRE);
+		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50)) destroy_item(SPBOOK_CLASS, AD_FIRE);
 	    break;
 	case ZT_COLD:
 	    if (Cold_resistance && rn2(20)) {
@@ -7552,7 +7552,7 @@ xchar sx, sy;
 	    } else {
 		dam = d(nd, 6);
 	    }
-	    if (!rn2(issoviet ? 15 : 75)) destroy_item(POTION_CLASS, AD_COLD);
+	    if (isevilvariant || !rn2(issoviet ? 15 : 75)) destroy_item(POTION_CLASS, AD_COLD);
 	    break;
 	case ZT_SLEEP:
 	    if (Sleep_resistance && rn2(20)) {
@@ -7633,9 +7633,9 @@ xchar sx, sy;
 		dam = d(nd, 6);
 		exercise(A_CON, FALSE);
 	    }
-	    if (!rn2(issoviet ? 20 : 100)) destroy_item(WAND_CLASS, AD_ELEC);
-	    if (!rn2(issoviet ? 20 : 100)) destroy_item(RING_CLASS, AD_ELEC);
-	    if (!rn2(issoviet ? 100 : 500)) destroy_item(AMULET_CLASS, AD_ELEC);
+	    if (isevilvariant || !rn2(issoviet ? 20 : 100)) destroy_item(WAND_CLASS, AD_ELEC);
+	    if (isevilvariant || !rn2(issoviet ? 20 : 100)) destroy_item(RING_CLASS, AD_ELEC);
+	    if (isevilvariant || !rn2(issoviet ? 100 : 500)) destroy_item(AMULET_CLASS, AD_ELEC);
 	    break;
 	case ZT_POISON_GAS:
 	    poisoned("blast", A_DEX, "poisoned blast", 15);

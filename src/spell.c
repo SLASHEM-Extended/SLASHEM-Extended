@@ -1796,6 +1796,10 @@ boolean atme;
 		pline("You're muted!");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
+	} else if (isevilvariant && (Strangled || is_silent(youmonst.data) || !has_head(youmonst.data) || youmonst.data->msound == MS_BUZZ || youmonst.data->msound == MS_BURBLE || youmonst.data->msound == MS_GURGLE)) {
+		pline("You're unable to chant any magical formula!");
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return (0);
 	}
 
 

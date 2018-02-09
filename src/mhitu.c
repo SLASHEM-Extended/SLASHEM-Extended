@@ -4007,6 +4007,44 @@ elena37:
 
 	}
 
+	if (isevilvariant && mtmp->data->mlet == S_ZOMBIE) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DISE;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+	}
+
+	if (isevilvariant && mtmp->data->mlet == S_MUMMY) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_ICUR;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+	}
+
 	/* and now, the unholy satanic motherfucker from hell, aka the most evil monster in existence... --Amy
 	 * thanks Chris_ANG for creating it, you evil person :P */
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) {
@@ -4914,18 +4952,18 @@ hitmu(mtmp, mattk)
 				(plural ? "" : "s"),
 				(water ? "part of " : ""));
 
-			  if (!rn2(2) && burnarmor(&youmonst)) {
+			  if ((isevilvariant || !rn2(2)) && burnarmor(&youmonst)) {
 			    dmg++;
 
 			    /* Torch flame is not hot enough to guarantee */
 			    /* burning away slime */
 
 			    if (!rn2(4)) burn_away_slime();
-			    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+			    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 			      (void)destroy_item(POTION_CLASS, AD_FIRE);
-			    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+			    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 			      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-			    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+			    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 			      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 			  }
 			  burn_faster(otmp, 1);
@@ -5059,7 +5097,7 @@ hitmu(mtmp, mattk)
 		    make_frozen(HFrozen + dmg, TRUE);
 		    dmg /= 2;
 		}
-		if (!mtmp->mcan && !rn2(issoviet ? 2 : 10)) {
+		if (!mtmp->mcan && (isevilvariant || !rn2(issoviet ? 2 : 10)) ) {
 			destroy_item(POTION_CLASS, AD_COLD);
 		}
 		if (Cold_resistance && rn2(20)) {
@@ -5082,11 +5120,11 @@ hitmu(mtmp, mattk)
 			pline_The("zap doesn't shock you!");
 			dmg = 0;
 		    }
-		    if (!rn2(issoviet ? 2 : 10)) /* high voltage - stronger than ordinary shock attack --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 2 : 10)) /* high voltage - stronger than ordinary shock attack --Amy */
 			destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 2 : 10))
+		    if (isevilvariant || !rn2(issoviet ? 2 : 10))
 			destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 10 : 50))
+		    if (isevilvariant || !rn2(issoviet ? 10 : 50))
 			destroy_item(AMULET_CLASS, AD_ELEC);
 		}
 		break;
@@ -5120,14 +5158,14 @@ hitmu(mtmp, mattk)
 				rehumanize();
 				break;
 		    }
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 4 : 20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 4 : 20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 4 : 20))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 4 : 20))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 30))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 30))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
-		    if (rn2(3)) hurtarmor(AD_LAVA);
+		    if (isevilvariant || rn2(3)) hurtarmor(AD_LAVA);
 		break;
 
 	    case AD_FIRE:
@@ -5165,11 +5203,11 @@ hitmu(mtmp, mattk)
 			destroy_item(POTION_CLASS, AD_FIRE);
 		    if((int) mtmp->m_lev > rn2(25))
 			destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 		} /*else dmg = 0;*/
@@ -5183,7 +5221,7 @@ hitmu(mtmp, mattk)
 			dmg = 0;
 		    }
 		    /*if((int) mtmp->m_lev > rn2(20))*/
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 		} /*else dmg = 0;*/
 		break;
@@ -5196,12 +5234,12 @@ hitmu(mtmp, mattk)
 			dmg = 0;
 		    }
 		    /*if((int) mtmp->m_lev > rn2(20))*/
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(WAND_CLASS, AD_ELEC);
 		    /*if((int) mtmp->m_lev > rn2(20))*/
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */
 			destroy_item(AMULET_CLASS, AD_ELEC);
 		} /*else dmg = 0;*/
 		break;
@@ -5821,8 +5859,8 @@ hitmu(mtmp, mattk)
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
 		ptmp = rn2(A_MAX);
 
-		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
-		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
+		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
+		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
 
 		goto dopois;
 
@@ -6008,11 +6046,11 @@ dopois:
 				rehumanize();
 				break;
 		    }
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 		}
@@ -6022,7 +6060,7 @@ dopois:
 			pline_The("frost doesn't seem cold!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 		}
 		if (uncancelled) {
@@ -6031,11 +6069,11 @@ dopois:
 			pline_The("zap doesn't shock you!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */
 			destroy_item(AMULET_CLASS, AD_ELEC);
 		}
 
@@ -6945,19 +6983,19 @@ dopois:
 			rehumanize();
 			break;
 		}
-		if (rn2(3)) hurtarmor(AD_RUST);
+		if (isevilvariant || rn2(3)) hurtarmor(AD_RUST);
 		break;
 	    case AD_CORR:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
-		if (rn2(3)) hurtarmor(AD_CORR);
+		if (isevilvariant || rn2(3)) hurtarmor(AD_CORR);
 		break;
 	    case AD_WTHR:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
-		if (rn2(3)) witherarmor();
+		if (isevilvariant || rn2(3)) witherarmor();
 		break;
 
 	    case AD_SHRD:
@@ -7496,7 +7534,7 @@ dopois:
 		pline("Your ears are blasted by hellish noise!");
 		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) dmg /= 2;
 		make_stunned(HStun + dmg, TRUE);
-		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
 		break;
 
@@ -7611,11 +7649,11 @@ dopois:
 			pline("You're seared by %s hot plasma radiation!", Fire_resistance ? "very" : "extremely");
 			if (!Fire_resistance) dmg *= 2;
 
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 			make_stunned(HStun + dmg, TRUE);
@@ -7741,7 +7779,7 @@ dopois:
 			rehumanize();
 			break;
 		}
-		if (rn2(3)) hurtarmor(AD_DCAY);
+		if (isevilvariant || rn2(3)) hurtarmor(AD_DCAY);
 		break;
 	    case AD_HEAL:
 		/* a cancelled nurse is just an ordinary monster */
@@ -8441,18 +8479,18 @@ dopois:
 				(plural ? "" : "s"),
 				(water ? "part of " : ""));
 
-			  if (!rn2(2) && burnarmor(&youmonst)) {
+			  if ((isevilvariant || !rn2(2)) && burnarmor(&youmonst)) {
 			    dmg++;
 
 			    /* Torch flame is not hot enough to guarantee */
 			    /* burning away slime */
 
 			    if (!rn2(4)) burn_away_slime();
-			    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+			    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 			      (void)destroy_item(POTION_CLASS, AD_FIRE);
-			    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+			    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 			      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-			    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+			    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 			      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 			  }
 			  burn_faster(otmp, 1);
@@ -9397,8 +9435,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			    poisoned("The attack", rn2(A_MAX), "extremely poisonous interior", 30);
 			}
 
-			if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
-			if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
+			if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
+			if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
 
 			break;
 
@@ -10274,12 +10312,12 @@ do_stone2:
 			rehumanize();
 			break;
 		}
-		if (rn2(3)) hurtarmor(AD_RUST);
+		if (isevilvariant || rn2(3)) hurtarmor(AD_RUST);
 		break;
 	    case AD_CORR:
 		pline("You are covered with acid!");
 		if (Stoned) fix_petrification();
-		if (rn2(3)) hurtarmor(AD_CORR);
+		if (isevilvariant || rn2(3)) hurtarmor(AD_CORR);
 		break;
 
 	    case AD_LAVA:
@@ -10295,7 +10333,7 @@ do_stone2:
 			burn_away_slime();
 		    } else tmp = 0;
 
-		if (rn2(3)) hurtarmor(AD_LAVA);
+		if (isevilvariant || rn2(3)) hurtarmor(AD_LAVA);
 		break;
 
 	    case AD_NEXU:
@@ -10349,7 +10387,7 @@ do_stone2:
 		pline("AUUUUUUGGGGGHHHHHGGHH - the noise in here is unbearable!");
 		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
-		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
 		break;
 
@@ -10453,11 +10491,11 @@ do_stone2:
 			pline("It's extremely hot in here!");
 			if (!Fire_resistance) tmp *= 2;
 
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 			make_stunned(HStun + tmp, TRUE);
@@ -10476,7 +10514,7 @@ do_stone2:
 
 	    case AD_WTHR:
 		pline("You are covered with some aggressive substance!");
-		if (rn2(3)) witherarmor();
+		if (isevilvariant || rn2(3)) witherarmor();
 		break;
 
 	    case AD_FAKE:
@@ -10650,7 +10688,7 @@ do_stone2:
 			rehumanize();
 			break;
 		}
-		if (rn2(3)) hurtarmor(AD_DCAY);
+		if (isevilvariant || rn2(3)) hurtarmor(AD_DCAY);
 		break;
 	    case AD_HALU:
 		    pline("You inhale some great stuff!");
@@ -11035,7 +11073,7 @@ do_stone2:
 		    } else tmp = 0;
 
 		    make_frozen(HFrozen + tmp, TRUE);
-		    if (!rn2(issoviet ? 2 : 10)) {
+		    if (isevilvariant || !rn2(issoviet ? 2 : 10)) {
 			destroy_item(POTION_CLASS, AD_COLD);
 		    }
 
@@ -11361,11 +11399,11 @@ boolean ufound;
 		goto common;
 	    case AD_LAVA:
 		hurtarmor(AD_LAVA);
-		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		burn_away_slime();
 		not_affected |= Fire_resistance;
@@ -11373,11 +11411,11 @@ boolean ufound;
 	    case AD_PLAS:
 		pline("You're seared by %s hot plasma radiation!", Fire_resistance ? "very" : "extremely");
 		if (!Fire_resistance) tmp *= 2;
-		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		burn_away_slime();
 		make_stunned(HStun + tmp, TRUE);
@@ -11388,11 +11426,11 @@ boolean ufound;
 		pline("%s grabs you!", Monnam(mtmp));
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		if (!rn2(issoviet ? 6 : 33))
+		if (isevilvariant || !rn2(issoviet ? 6 : 33))
 			destroy_item(WAND_CLASS, AD_ELEC);
-		if (!rn2(issoviet ? 6 : 33))
+		if (isevilvariant || !rn2(issoviet ? 6 : 33))
 			destroy_item(RING_CLASS, AD_ELEC);
-		if (!rn2(issoviet ? 30 : 165))
+		if (isevilvariant || !rn2(issoviet ? 30 : 165))
 			destroy_item(AMULET_CLASS, AD_ELEC);
 		not_affected |= Shock_resistance;
 		goto common;
@@ -11401,7 +11439,7 @@ boolean ufound;
 		if (issoviet) pline("KHA KHA KHA KHA KHA KHA KHA.");
 		not_affected |= Cold_resistance;
 		make_frozen(HFrozen + tmp, TRUE);
-		if (!rn2(issoviet ? 2 : 10)) {
+		if (isevilvariant || !rn2(issoviet ? 2 : 10)) {
 			destroy_item(POTION_CLASS, AD_COLD);
 		}
 		goto common;
@@ -13142,7 +13180,7 @@ common:
 		pline("Your ears are blasted by hellish noise!");
 		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
-		if (issoviet || !rn2(2)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		if (isevilvariant || issoviet || !rn2(2)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
 	      mdamageu(mtmp, tmp);
 		break;
@@ -13469,8 +13507,8 @@ common:
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
 
-		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
-		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
+		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
+		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
 
 	      mdamageu(mtmp, tmp); /* still does damage even if you resist the poison --Amy */
 		break;
@@ -15446,11 +15484,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			destroy_item(POTION_CLASS, AD_FIRE);
 		    if ((int) mtmp->m_lev > rn2(25))
 			destroy_item(SPBOOK_CLASS, AD_FIRE);*/
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 		    if (dmg) mdamageu(mtmp, dmg);
@@ -15517,7 +15555,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) dmgplus /= 2;
 		make_stunned(HStun + dmgplus, TRUE);
-		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
 		}
 		break;
@@ -15647,11 +15685,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    stop_occupation();
 			if (!Fire_resistance) dmg *= 2;
 
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 			make_stunned(HStun + dmg, TRUE);
@@ -15694,15 +15732,15 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			dmg = 0;
 		    }
 		    burn_away_slime();
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 4 : 20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 4 : 20)) /* hotter than ordinary fire attack, so more likely to burn items --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 4 : 20))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 4 : 20))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 		    if (dmg) mdamageu(mtmp, dmg);
-		    if (!rn2(5)) hurtarmor(AD_LAVA);
+		    if (isevilvariant || !rn2(5)) hurtarmor(AD_LAVA);
 		}
 		break;
 
@@ -15720,29 +15758,29 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
 		    burn_away_slime();
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculations --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 		    if (Cold_resistance && rn2(20)) {
 			pline_The("cold doesn't freeze you!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 
 		    if (Shock_resistance && rn2(20)) {
 			pline_The("gaze doesn't shock you!");
 			if (dmg >= 4) dmg -= (dmg / 4);
 		    }
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */
 			destroy_item(AMULET_CLASS, AD_ELEC);
 
 		    if (dmg) mdamageu(mtmp, dmg);
@@ -15769,7 +15807,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			dmg = 0;
 		    }
 		    /*if ((int) mtmp->m_lev > rn2(20))*/
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(POTION_CLASS, AD_COLD);
 		    if (dmg) mdamageu(mtmp, dmg);
 		}
@@ -15788,12 +15826,12 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			dmg = 0;
 		    }
 		    /*if((int) mtmp->m_lev > rn2(20))*/
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(WAND_CLASS, AD_ELEC);
 		    /*if((int) mtmp->m_lev > rn2(20))*/
-		    if (!rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) /* new calculations --Amy */
 			destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 30 : 165)) /* new calculations --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */
 			destroy_item(AMULET_CLASS, AD_ELEC);
 		    if (dmg) mdamageu(mtmp, dmg);
 		}
@@ -15817,11 +15855,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			pline_The("gaze doesn't shock you!");
 			dmg = 0;
 		    }
-		    if (!rn2(issoviet ? 2 : 10)) /* high voltage - stronger than ordinary shock attack --Amy */
+		    if (isevilvariant || !rn2(issoviet ? 2 : 10)) /* high voltage - stronger than ordinary shock attack --Amy */
 			destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 2 : 10))
+		    if (isevilvariant || !rn2(issoviet ? 2 : 10))
 			destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 10 : 50))
+		    if (isevilvariant || !rn2(issoviet ? 10 : 50))
 			destroy_item(AMULET_CLASS, AD_ELEC);
 		    if (dmg) mdamageu(mtmp, dmg);
 		}
@@ -15839,7 +15877,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    if(!rn2(3)) {
 			    make_frozen(HFrozen + dmg, TRUE);
 		    }
-		    if (!rn2(issoviet ? 2 : 10)) {
+		    if (isevilvariant || !rn2(issoviet ? 2 : 10)) {
 			destroy_item(POTION_CLASS, AD_COLD);
 		    }
 		    if (Cold_resistance && rn2(20)) {
@@ -17051,8 +17089,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
 			if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
 	                poisoned("The gaze", rn2(A_MAX), mtmp->data->mname, 30);
-			if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
-			if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
+			if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
+			if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
 		}
 		break; 
 

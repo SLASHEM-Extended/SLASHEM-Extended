@@ -15365,7 +15365,7 @@ uncommon(mndx)
 int mndx;
 {
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
-	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : u.aggravation ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : (u.aggravation || isaggravator) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
@@ -15681,7 +15681,7 @@ rndmonst()
 	    if (issoviet && !rn2(2) && maxmlev > 2) minmlev = (maxmlev / 2);
 		if ((ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone()) && maxmlev > 2) minmlev += (maxmlev / 2);
 
-		if (u.aggravation && !rn2(3)) {
+		if ((u.aggravation || isaggravator) && !rn2(3)) {
 			minmlev += u.ulevel;
 		}
 
@@ -16056,6 +16056,8 @@ loopback:
 		if (ct > 0 && (Role_if(PM_SHAPESHIFTER) && is_evilpatchmonster(ptr))) ct += 5;
 		if (ct > 0 && (Race_if(PM_RODNEYAN) && is_evilpatchmonster(ptr))) ct += 5;
 		if (ct > 0 && (Race_if(PM_RODNEYAN) && dmgtype(ptr, AD_DATA) )) ct += 1;
+		if (ct > 0 && (isevilvariant && dmgtype(ptr, AD_DATA) )) ct += 20;
+		if (ct > 0 && (isevilvariant && is_evilpatchmonster(ptr) )) ct += 100;
 
 		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
 
@@ -16224,7 +16226,7 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
-	if (!rn2(u.aggravation ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
+	if (!rn2((u.aggravation || isaggravator) ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
 
 	int uncommontwo = 0;
 	int uncommonthree = 0;
@@ -16247,11 +16249,11 @@ int     spc;
 		uncommonten = rn2(5) ? 1 : 0;
 	}
 
-	if (u.aggravation && rn2(2)) uncommontwo = 0;
-	if (u.aggravation && !rn2(3)) uncommonthree = 0;
-	if (u.aggravation && !rn2(5)) uncommonfive = 0;
-	if (u.aggravation && !rn2(7)) uncommonseven = 0;
-	if (u.aggravation && !rn2(10)) uncommonten = 0;
+	if ((u.aggravation || isaggravator) && rn2(2)) uncommontwo = 0;
+	if ((u.aggravation || isaggravator) && !rn2(3)) uncommonthree = 0;
+	if ((u.aggravation || isaggravator) && !rn2(5)) uncommonfive = 0;
+	if ((u.aggravation || isaggravator) && !rn2(7)) uncommonseven = 0;
+	if ((u.aggravation || isaggravator) && !rn2(10)) uncommonten = 0;
 
 	if (EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) {
 		uncommontwo = 0;
@@ -16273,17 +16275,17 @@ int     spc;
 	int uncommonnewsixty = rn2(20) ? 1 : 0;
 	int uncommonnewseventy = rn2(50) ? 1 : 0;
 
-	if (u.aggravation && rn2(5)) uncommonnewten = 0;
-	if (u.aggravation && rn2(4)) uncommonnewfifteen = 0;
-	if (u.aggravation && rn2(3)) uncommonnewtwenty = 0;
-	if (u.aggravation && rn2(2)) uncommonnewtwentyfive = 0;
-	if (u.aggravation && !rn2(3)) uncommonnewthirty = 0;
-	if (u.aggravation && !rn2(4)) uncommonnewthirtyfive = 0;
-	if (u.aggravation && !rn2(5)) uncommonnewforty = 0;
-	if (u.aggravation && !rn2(6)) uncommonnewfortyfive = 0;
-	if (u.aggravation && !rn2(7)) uncommonnewfifty = 0;
-	if (u.aggravation && !rn2(8)) uncommonnewsixty = 0;
-	if (u.aggravation && !rn2(9)) uncommonnewseventy = 0;
+	if ((u.aggravation || isaggravator) && rn2(5)) uncommonnewten = 0;
+	if ((u.aggravation || isaggravator) && rn2(4)) uncommonnewfifteen = 0;
+	if ((u.aggravation || isaggravator) && rn2(3)) uncommonnewtwenty = 0;
+	if ((u.aggravation || isaggravator) && rn2(2)) uncommonnewtwentyfive = 0;
+	if ((u.aggravation || isaggravator) && !rn2(3)) uncommonnewthirty = 0;
+	if ((u.aggravation || isaggravator) && !rn2(4)) uncommonnewthirtyfive = 0;
+	if ((u.aggravation || isaggravator) && !rn2(5)) uncommonnewforty = 0;
+	if ((u.aggravation || isaggravator) && !rn2(6)) uncommonnewfortyfive = 0;
+	if ((u.aggravation || isaggravator) && !rn2(7)) uncommonnewfifty = 0;
+	if ((u.aggravation || isaggravator) && !rn2(8)) uncommonnewsixty = 0;
+	if ((u.aggravation || isaggravator) && !rn2(9)) uncommonnewseventy = 0;
 
 	if (HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || (uwep && uwep->oartifact == ART_EXTREMELY_HARD_MODE) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXTREMELY_HARD_MODE)) {
 		uncommonnewten = 0;
@@ -16334,7 +16336,7 @@ int     spc;
 	if (issoviet && rn2(2) && maxmlev > 2) minmlev = (maxmlev / 2);
 	if ((ScalingBug || u.uprops[SCALING_BUG].extrinsic || have_scalingstone()) && maxmlev > 2) minmlev += (maxmlev / 2);
 
-	if (u.aggravation && !rn2(3)) {
+	if ((u.aggravation || isaggravator) && !rn2(3)) {
 		minmlev += u.ulevel;
 	}
 
@@ -16716,6 +16718,8 @@ int     spc;
 		if ((Role_if(PM_SHAPESHIFTER) && is_evilpatchmonster(&mons[last]))) num += 5;
 		if ((Race_if(PM_RODNEYAN) && is_evilpatchmonster(&mons[last]))) num += 5;
 		if ((Race_if(PM_RODNEYAN) && dmgtype(&mons[last], AD_DATA) )) num += 1;
+		if ((isevilvariant && dmgtype(&mons[last], AD_DATA) )) num += 20;
+		if ((isevilvariant && is_evilpatchmonster(&mons[last]) )) num += 100;
 		if (monster_with_trait(&mons[last], u.frequenttrait1)) num += u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[last], u.frequenttrait2)) num += u.freqtraitbonus2;
 		if (u.frequenttrait3 && monster_with_trait(&mons[last], u.frequenttrait3)) num += u.freqtraitbonus3;
@@ -17091,6 +17095,8 @@ int     spc;
 		if ((Role_if(PM_SHAPESHIFTER) && is_evilpatchmonster(&mons[first]))) num -= 5;
 		if ((Race_if(PM_RODNEYAN) && is_evilpatchmonster(&mons[first]))) num -= 5;
 		if ((Race_if(PM_RODNEYAN) && dmgtype(&mons[first], AD_DATA) )) num -= 1;
+		if ((isevilvariant && dmgtype(&mons[first], AD_DATA) )) num -= 20;
+		if ((isevilvariant && is_evilpatchmonster(&mons[first]) )) num -= 100;
 
 		if (monster_with_trait(&mons[first], u.frequenttrait1)) num -= u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[first], u.frequenttrait2)) num -= u.freqtraitbonus2;
@@ -17500,6 +17506,7 @@ int type;
 		case PM_DARK_SAILOR: return 103;
 		case PM_HYPERTYPE: return 103;
 		case PM_ANIMATED_WEDGE_SANDAL: return 100;
+		case PM_SHOE: return 100;
 		case PM_WEREWEDGESANDAL: return 100;
 		case PM_ANIMATED_IRON_STATUE: return 137;
 		case PM_ELTRA_VANISHING_POINT: return 137;
@@ -17768,6 +17775,8 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_DRAGON && Race_if(PM_HUMANLIKE_DRAGON) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 	if (ptr->mlet == S_NAGA && Race_if(PM_HUMANLIKE_NAGA) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
 
+	if (ptr->msound == MS_SHOE && Race_if(PM_SHOE) && rn2(100) ) return TRUE;
+
 	if (is_mercenary(ptr) && Role_if(PM_DOOM_MARINE) && rn2(100) ) return TRUE;
 
 	if (ptr->mlet == S_EEL && Race_if(PM_AQUATIC_MONSTER) && !Role_if(PM_CONVICT) && rn2(50)) return TRUE;
@@ -17905,6 +17914,8 @@ struct monst *mtmp;
 	if (mtmp->malign >= 1 && rn2(5))  mtmp->malign /= 3; /*rebuilding alignment should be harder --Amy*/
 
 	if (mtmp->malign >= 1 && Role_if(PM_POLITICIAN)) mtmp->malign = 0; /* politicians don't like getting their hands dirty */
+	if (mtmp->malign >= 1 && isevilvariant) mtmp->malign = 0; /* Nethack Fourk did this INGENIOUS change :P */
+
 }
 
 #endif /* OVL1 */

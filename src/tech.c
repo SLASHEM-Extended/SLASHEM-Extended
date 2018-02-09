@@ -756,6 +756,13 @@ static const struct innate_tech
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   20, T_IRON_SKIN, 1},
 		       {   0, 0, 0} },
+	sal_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_DAZZLE, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
 	din_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -4141,6 +4148,7 @@ race_tech()
 		case PM_THUNDERLORD:		return (thu_tech);
 		case PM_WISP:		return (wis_tech);
 		case PM_ROHIRRIM:		return (roh_tech);
+		case PM_PLAYER_SALAMANDER:		return (sal_tech);
 		case PM_SATRE:		return (sat_tech);
 		case PM_WEAPONIZED_DINOSAUR:		return (din_tech);
 		case PM_BURNINATOR:		return (bur_tech);

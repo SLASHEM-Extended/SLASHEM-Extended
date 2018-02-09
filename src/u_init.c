@@ -8087,6 +8087,8 @@ u_init()
 
 	u.wonderlandescape = 0;
 
+	u.felidlives = 9;
+
 	u.nataljetrapturns = 0;
 	u.nataljetrapx = 0;
 	u.nataljetrapy = 0;

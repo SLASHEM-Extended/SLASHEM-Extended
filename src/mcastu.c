@@ -1410,10 +1410,10 @@ int spellnum;
 	    dmg = d(8, 6);
 	if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	burn_away_slime();
-	if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SPBOOK_CLASS, AD_FIRE);
+	if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);
+	if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SCROLL_CLASS, AD_FIRE);
+	if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(POTION_CLASS, AD_FIRE);
+	if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SPBOOK_CLASS, AD_FIRE);
 	(void) burn_floor_paper(u.ux, u.uy, TRUE, FALSE);
 	break;
     case CLC_LIGHTNING:
@@ -1436,9 +1436,9 @@ int spellnum;
 	} else
 	    dmg = d(8, 6);
 	if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
-		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
-		    if (!rn2(issoviet ? 15 : 75)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
+		if (isevilvariant || !rn2(issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(WAND_CLASS, AD_ELEC);
+		if (isevilvariant || !rn2(issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(RING_CLASS, AD_ELEC);
+		if (isevilvariant || !rn2(issoviet ? 15 : 75)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
 	break;
     }
     case CLC_CURSE_ITEMS:

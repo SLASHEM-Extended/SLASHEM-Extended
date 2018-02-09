@@ -4827,7 +4827,7 @@ register struct monst *mtmp;
     if(mtmp->data->msound == MS_SOUND || mtmp->egotype_sounder) {
 		pline("%s lets out an ear-splitting scream!", Monnam(mtmp) );
 		make_stunned(HStun + (mtmp->m_lev + 2), TRUE);
-		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
     }
 

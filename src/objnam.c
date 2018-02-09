@@ -5083,10 +5083,15 @@ register struct obj *obj;
 
 		/* Armor can randomly be enchanted. I don't want players without the identify spell to have to guess
 		 * which armor items are enchanted, so I provide a little clue by default. --Amy */
-		if (obj->enchantment && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) )
+
+		/* Grunthack makes it so that you must identify them to know that they have an enchantment.
+		 * In the Evil Variant(TM), you must know the rustproofing, i.e. probably burn an ID scroll :P
+		 * Unlike Grunthack, there are no scrolls of detect magic and the wizard doesn't get free knowledge here. */
+
+		if (obj->enchantment && !(isevilvariant && !(obj->rknown)) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) )
 			strcat(buf, "enchanted ");
 
-		if(obj->enchantment && obj->known && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
+		if(obj->enchantment && !(isevilvariant && !(obj->rknown)) && obj->known && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
 			sprintf(eos(buf), "(of %s) ", enchname(obj->enchantment) );
 		}
 

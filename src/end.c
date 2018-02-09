@@ -901,9 +901,30 @@ int how;
 	/* Troll characters have a chance of reviving. --Amy */
 	if (Race_if(PM_TROLLOR) && how < GENOCIDED && u.ulevel > 2 && rn2(4) ) {
 		pline("But wait...");
-	    losexp("failed troll revival", TRUE, FALSE);
-	    losexp("failed troll revival", TRUE, FALSE);
+		losexp("failed troll revival", TRUE, FALSE);
+		losexp("failed troll revival", TRUE, FALSE);
 		pline("You come back to life!");
+		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+		savelife(how);
+		killer = 0;
+		killer_format = 0;
+
+#ifdef LIVELOGFILE
+		livelog_avert_death();
+#endif
+		u.youaredead = 0;
+
+		return;
+
+	}
+
+	/* Felids have 9 lives --Amy */
+	if (Race_if(PM_FELID) && how < GENOCIDED && u.ulevel > 2 && (u.felidlives > 1) ) {
+		u.felidlives--;
+		pline("But wait...");
+		losexp("failed felid revival", TRUE, FALSE);
+		losexp("failed felid revival", TRUE, FALSE);
+		pline("Thanks to being a felid, you only used up one of your lives, and have %d left!", u.felidlives);
 		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 		savelife(how);
 		killer = 0;

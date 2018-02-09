@@ -508,6 +508,9 @@ bot1()
 		if (flags.hybridamnesiac) sprintf(nb = eos(nb), "Z");
 		if (flags.hybridproblematic) sprintf(nb = eos(nb), "B");
 		if (flags.hybridwindinhabitant) sprintf(nb = eos(nb), "D");
+		if (flags.hybridaggravator) sprintf(nb = eos(nb), "G");
+		if (flags.hybridevilvariant) sprintf(nb = eos(nb), "T");
+		if (flags.hybridlevelscaler) sprintf(nb = eos(nb), "s");
 	}
 
 	if (flags.showscore)

@@ -11708,6 +11708,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Amy is actually an anthropomorphised high heeled shoe.",
 	"What is slex? some sort of sex-modded nethack?",
 	"An angry demon climbs out of the fountain...",
+	"You're unable to chant any magical formula!",
 
 };
 

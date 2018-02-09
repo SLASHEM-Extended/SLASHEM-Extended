@@ -7146,7 +7146,7 @@ uchar aatyp;
 		pline("%s screams terribly at your attack, and the noise seems to blow your ears!", Monnam(mon) );
 		if (Deafness || (uwep && uwep->oartifact == ART_MEMETAL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_MEMETAL) || (uwep && uwep->oartifact == ART_BANG_BANG) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BANG_BANG) || u.uprops[DEAFNESS].extrinsic || have_deafnessstone() ) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
-		if (!rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
+		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
 		break;
 
@@ -7245,11 +7245,11 @@ uchar aatyp;
 			pline("You are suddenly extremely hot!");
 			if (!Fire_resistance) tmp *= 2;
 
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) /* extremely hot - very high chance to burn items! --Amy */
 		      (void)destroy_item(POTION_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SCROLL_CLASS, AD_FIRE);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
 			make_stunned(HStun + tmp, TRUE);
@@ -8051,8 +8051,8 @@ uchar aatyp;
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE);
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE);
 		 poisoned("gas", rn2(A_MAX), "superpoisonous gas", 30);
-		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
-		if (!rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
+		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
+		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
 		}
 
 		break;
@@ -8597,7 +8597,7 @@ uchar aatyp;
 			You("are hit by a barrage of ice blocks!");
 			if (issoviet) pline("BWAR KHAR (gryaznyy smekh) on on on kha kha kha!");
 		    make_frozen(HFrozen + (long)tmp, TRUE);
-			if (!rn2(issoviet ? 2 : 10)) {
+			if (isevilvariant || !rn2(issoviet ? 2 : 10)) {
 				destroy_item(POTION_CLASS, AD_COLD);
 			}
 			if (!rn2(20) || !Cold_resistance) mdamageu(mon, tmp);

@@ -592,13 +592,13 @@ boolean yours; /* is it your fault (for killing monsters) */
 		    You("are unharmed!");
 		} else if (Half_physical_damage && adtyp == AD_PHYS && rn2(2) )
 		    damu = (damu+1) / 2;
-		if (adtyp == AD_FIRE) {if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);}
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SCROLL_CLASS, (int) adtyp);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SPBOOK_CLASS, (int) adtyp);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(POTION_CLASS, (int) adtyp);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(RING_CLASS, (int) adtyp);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 15 : 75)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, (int) adtyp);
-		    if (!rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(WAND_CLASS, (int) adtyp);
+		if (adtyp == AD_FIRE) {if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);}
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SCROLL_CLASS, (int) adtyp);
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(SPBOOK_CLASS, (int) adtyp);
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(POTION_CLASS, (int) adtyp);
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(RING_CLASS, (int) adtyp);
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 15 : 75)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, (int) adtyp);
+		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 3 : 15)) /* new calculations --Amy */	destroy_item(WAND_CLASS, (int) adtyp);
 
 		ugolemeffects((int) adtyp, damu);
 

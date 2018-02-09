@@ -999,6 +999,8 @@ struct you {
 
 	boolean wonderlandescape;	/* wonderland mode player made it to the portal */
 
+	int felidlives;	/* set to 9 at game start even if you're not a felid, because recursion is a thing */
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)

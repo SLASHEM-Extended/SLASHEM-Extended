@@ -1839,7 +1839,11 @@ boolean give_feedback;
 {
 	coord cc;
 
-	if (mtmp->ispriest && *in_rooms(mtmp->mx, mtmp->my, TEMPLE)) {
+	if (isevilvariant && level.flags.noteleport) {
+	    if (give_feedback)
+		pline("Ha ha ha, the wand destruction patch made it so that your wand of teleportation does jack diddly on a no-teleport level. You just wasted a charge, sucker!");
+		return FALSE;
+	} else if (mtmp->ispriest && *in_rooms(mtmp->mx, mtmp->my, TEMPLE)) {
 	    if (give_feedback)
 		pline("%s resists your magic!", Monnam(mtmp));
 	    return FALSE;
