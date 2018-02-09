@@ -1,5 +1,9 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.1.6
+- Wand recharging has been improved to reflect the new maximum # of charges that the wands can have upon generation.
+- Added new playable races: aggravator, evilvariant, felid, levelscaler, listener, salamander, shoe.
+
 2.1.5
 - The gang scholar role can have various negative status effects randomly fixed by their deity while not in Gehennom.
 - If the elder priest's tentacle attack destroys one of the player's pieces of equipment, he will mock the player with a scornful message.
@@ -346,7 +350,168 @@ Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chr
 - When the player has aggravate monster, the maximum monster level doesn't get randomly decreased.
 
 1.9.2
-(I would add content here but the only way to see the old changes is via Github and that is ultra laggy for some reason, I blame Windows 7 because that is such a stOOpid operating system and the developers should feel bad :P)
+- The undefined race no longer has the scrolls of healing, mana etc. replaced with random other scroll types.
+- Allowed hybrid races to be set directly via the options file.
+- Taking a staircase can push the player back, especially in conjunction with stair traps, to make it harder to escape them or otherwise do stairdancing.
+- Free action, like most other resistances do already, now also has a chance to fail.
+- Fixed a potential segfault that could happen when trying to display the name of the player's deities as a heretic wild talent.
+
+1.9.1
+- Fixed a bug that would suppress water/lava paranoid messages when playing as the amnesiac race and cause players to fall in with no warning.
+- When trying to cast a spell while confused, the player now prints a message to make it clear to the player that they're trying something that is likely to fail.
+- When walking into a wall, tree, set of iron bars etc., there is now a message. (Players who bitch about that can use MSGTYPE to suppress them.)
+- Got rid of the mtrapseen field, since it didn't really make sense that if a monster knew about one pit trap, it would mysteriously know about all other pit traps in the entire dungeon. The real reason was that it would cause the variable to overflow due to the large amount of traps in the game, and thus, since it's not really needed due to the aforementioned weirdness, it has been removed; monsters just have a random chance of avoiding traps instead now.
+
+1.9.0
+- Monsters affected by certain harmful potions now display messages in the correct order. This doubles as protection against potential segfaults.
+- Added four new playable roles: Wild Talent, Occult Master, Elementalist, Chaos Sorceror.
+
+1.8.9
+- Fixed an oversight that caused restore ability spell failures to not have the intended effect.
+- Added an extra warning message if a spell known by the player is down to 1% memory, and a message when the spell is completely forgotten.
+- Replaced the spaghetti function that selects traps for weird-looking rooms with a better function.
+- Aggravate monster will randomly spawn out of depth monsters around the player, and also allows summoned monsters to be out of depth sometimes.
+- Fixed a segfault that could occur when changing levels.
+- Tried to fix a segfault that could happen when loading a bones level on which the previous player had died with a lit lightsaber; it turned out that this commit didn't really fix the core problem.
+- Added some bullshit for soviet mode.
+- When playing the inka race, amulets and rings can be taken off normally even when they're made of elasthan, and wands made of it will train the device skill more quickly.
+- Added a map amnesia attack that monsters can use.
+- Chaotic minions summoned by angry gods can be any demons, and are no longer limited to the & glyph.
+- Maledictions uttered by Rodney, angels and the like always have a chance of dimming the player.
+
+1.8.7
+- Removed out of depth high priests from certain dungeon levels.
+- Added the dimness status condition and the peacevision in/extrinsic.
+- Added a bunch of new materials for items.
+
+1.8.6
+- The thunder wave spell no longer erroneously affects all monsters on the current dungeon level, but only the ones next to the player.
+- Enlightenment shows special game modes like lost soul or hippie.
+- Fixed an error that could cause vibrating squares to spawn in Sheol.
+- The penultimate Sheol level was ineligible to leave bones due to a bug, this has been corrected.
+- All levels on Vlad's tower prevent wallwalking.
+- Sea elves aren't affected by water turbulences while underwater.
+- "The Rest of Hypnos" sleep megaspell works correctly now.
+- Improved the rate at which body armor and general combat skills train.
+- Added a #twiz command for wizard mode, which sets the timeout on all techniques to zero.
+- Fixed a bug where stealing a monster's wielded weapon could result in errors.
+- The #mark command no longer works on unpaid shop items.
+- Fixed a bug where monsters with passive stealing attacks could cause a segfault if their attack triggered after the monster had already been killed.
+- Sacrificing a crossaligned unicorn to the own deity now improves maximum alignment record.
+- Certain techniques that used to have no timeout after using now have one.
+- Reading a scroll of resistance no longer segfaults.
+- (Almost) All damage types do something when the attack type is "explosion", and this includes polymorphed players exploding at monsters as well as monsters exploding at other monsters.
+- In each game, there is one property that the player cannot have at all, one that the player cannot have as an intrinsic, and one that the player cannot have as an extrinsic, selected randomly.
+
+1.8.5
+- Fixed an error caused by monsters trying to cast a spell type that has no defined effect.
+- Clones of the player's nemesis have a much higher chance to spawn randomly.
+- Added a #mark command that can be used on items to make pets not drop them.
+- Lowered the effect of constitution on the player's health regeneration rate.
+- The supermarket cashier role is now good at using tin openers in melee. They also benefit from some of the martial arts techniques.
+- Added an effect that creates a bad artifact, removes whatever the player is wearing in the slot that will be occupied by it, force-equips the generated bad artifact and curses it.
+- Tool shopkeepers can now recharge lamps.
+- The player can cast their role-specific special spell for a lowered mana cost.
+- Erosionproofing an item now protects it against certain effects on which it had no effect before.
+- If the player has the two-weapon combat skill, it will always be shown in the list - it used to be not shown if the player was in a form that's not able to use it, which made no sense.
+- The random chance of equipment dulling and losing enchantment is now lowered if the player improves the relevant skill (general combat for weapons, body armor for armor pieces).
+- If a demon "casts aspersions on your ancestry", there is now an actual random message, specifically a "your momma" joke, being displayed randomly.
+- Gray stones and gems can spawn in larger stacks.
+- If the player applied nail polish and is wearing fingerless gloves, the unarmed damage bonus will apply.
+- Having a very large amount of luckstones no longer causes the luck stat to overflow.
+- Greased items will lose their grease when they would have been dulled, and blessed items are less likely to dull.
+
+1.8.3
+- Added 26 new playable races.
+
+1.8.2
+- A certain maze level had empty rooms where shops should be. Added the shops.
+- Equipment can "dull" when used often, losing enchantment points.
+- The haxor race now correctly initializes starting spells based on the player's spellbooks.
+- When an artifact wish fails, the player now gets a random artifact instead of nothing.
+- Randomized the way corridors are generated.
+- Amnesia can no longer be abused to infinitely train the searching skill.
+- The boomshine artifact now really has the permanent effect when quaffed that it was always supposed to have.
+- Invisibility and displacement have a lower chance of fooling monsters.
+- Added three new spell schools: elemental, occult and chaos spells.
+- In every game, there's a bunch of skills that are harder to train, arbitrarily capped, or impossible to train altogether.
+
+1.8.1
+- Applied a couple nerfs to the player's ranged weapons.
+- Artifact blasts are weaker if the player's experience level is very low, to reduce the risk of dying instantly.
+- If a polymorphed player lays an egg, there is now a timeout until another egg can be laid.
+- Recursion immediately re-initializes the player character; it used to require saving and loading.
+- When the player gets acquirement or skill up effects, there is now a message telling the player that the prompt will loop until a choice is made.
+- Tried to fix the scroll of copying error (but it still exists).
+- The gravity beam spell/wand no longer causes error messages when used.
+- Fixed an error that could cause the vibrating square to not generate.
+- Lowered the average and maximum amount of stat points that a new character can start the game with.
+- Added a bunch of new combat skills.
+- The enrage effect can cause monsters to become frenzied.
+- Two-weapon combat does more damage but is inaccurate now.
+- Added code that prevents artifact shirts from being destroyed by bad polymorphs.
+- Finished implementing the tree kicking nerf.
+- Nerfed a couple of spells that were too powerful.
+- Shopkeeper services can run out, and the identify service is no longer guaranteed. Trying to put more than 200 items on the shop bill can now cause the shopkeeper to become hostile.
+- Reduced the large damage done by orcish spears by one point.
+- Closed a loophole that allowed the player to ignore captchas by pressing enter.
+- Sometimes, the game can decide that musable items are less common in any given game.
+- Some sources of wishes (water demons, djinni, thrones...) are much less likely to give a wish and can give other beneficial effects instead.
+- Trying to polymorph into an uncommon monster has a chance to fail, depending on how uncommon the monster is.
+- Hellrider's Saddle actually grants reflection to the steed now.
+- Reading the Book of the Dead no longer randomly fails.
+- Monsters using items that summon more monsters will summon less monsters on average.
+- Reduced the amount of royal jelly found in beehives.
+
+1.8.0
+- Made some armors that were supposed to be magical actually be magical.
+- Added some more dangerous types of curses than can appear on items.
+- Added a pickup_cursed option that determines whether cursed thrown items can be picked up automatically when walking over them.
+- Closed a loophole that allowed players to partly circumvent the effect of uninformation traps.
+- The player cannot name their starting pet "Glorious Dead".
+- Added some more things that food appraisal warns of.
+- Closed a loophole where the repair armor spell could be used to repair non-armor items too.
+
+1.7.9
+- If the game cannot open a level file, it now tells the player that this is a fatal bug.
+- Reading a cursed spellbook paralyzes the player for a random duration now.
+- Shortened the time for which the player will be blinded by lightning.
+- Closed a loophole that allowed wraith race players to apply tools to wield them without penalty.
+- The player cannot name a monster "Glorious Dead".
+- To prevent farming, long worms no longer have death drops.
+- Fixed the killed monster list display.
+- Fixed a segfault when the player was wearing korean sandals.
+- If the player can fly, there is no warning when stepping into a heap of shit because the player won't trigger it anyway.
+- Soldiers spawn with less rations on average, and there is less food randomly generated in antholes and fungus farms.
+- Discoveries are written to the dumplog file, and shown when the game ends.
+- Getting a sacrifice gift artifact can now increase the player's skill cap on an already known skill.
+- Sickopathy now periodically tells the deathly sick player how many turns they have to live.
+- Improved the duration of some techniques that used to expire too quickly.
+- Monsters are less likely to attack each other in conflict, and the player always gets the extra hunger no matter which way they're using to generate conflict.
+- Greatly lowered the risk of falling off a steed while causing conflict.
+- Fixed a segfault/infinite loop that could occur when the game tried to spawn an aligned priest but failed to create a robe for him.
+- A deathly sick player will periodically get a reminder that they are still deathly sick, to make it less likely to die when you could have saved yourself.
+- If the player ascends, their artifacts are now displayed correctly.
+- Added the pilesize option.
+- Added a bunch of failsafes for mkobj code to tone down potential segfaults.
+- Spellcasting monsters now have a larger selection of spells to choose from.
+- Zoos occasionally come with extra items.
+- Identified items now keep displaying names that the player gave them.
+- Added a saving throw to the destroy armor trap.
+- Spellcasting monsters are less likely to cast random spells and will cast psybolt/open wounds more often.
+- Nerfed bad item seedings.
+- Overhauled the odds of monster equipment not being dropped when the monster dies.
+
+1.7.8
+- Fixed some artifacts that didn't correctly get their drain life attack.
+- Tried to fix some crash bugs that occasionally happened for the minimalist race.
+- Made level difficulty more random.
+- Reduced the odds of high-level monsters being spawned.
+- Monsters that have musable items now select them more randomly.
+- Toned down the Seven Deadly Sins.
+- Monsters have slightly lower to-hit for their melee attacks.
+- Switched the badly designed dungeon regrowth algorithm for a better one.
+- Monsters don't always drop their equipment when they die.
 
 :-) <3 *bundlebundlebundle* <3 :D
 
