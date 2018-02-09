@@ -596,6 +596,9 @@ draw_horizontal(int x, int y, int hp, int hpmax)
 		if (flags.hybridamnesiac) wprintw(win, "Z");
 		if (flags.hybridproblematic) wprintw(win, "B");
 		if (flags.hybridwindinhabitant) wprintw(win, "D");
+		if (flags.hybridaggravator) wprintw(win, "G");
+		if (flags.hybridevilvariant) wprintw(win, "T");
+		if (flags.hybridlevelscaler) wprintw(win, "s");
 	}
 
     if (flags.showscore)
