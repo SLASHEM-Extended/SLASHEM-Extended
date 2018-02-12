@@ -3753,7 +3753,7 @@ register struct obj *otmp;
 			    exercise(A_DEX, FALSE);
 			} else You("stiffen momentarily.");
 
-		} else {
+		} else if (!(dmgtype(mtmp->data, AD_PLYS))) {
 
 		    if (canseemon(mtmp) ) {
 			pline("%s is frozen by the beam.", Monnam(mtmp) );

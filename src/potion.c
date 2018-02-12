@@ -4940,7 +4940,9 @@ boolean your_fault;
 		}
 		break;
 	case POT_PARALYSIS:
-		if (mon->mcanmove) {
+
+		/* monsters with paralysis attacks are immune now --Amy */
+		if (mon->mcanmove && !(dmgtype(mon->data, AD_PLYS))) {
 			mon->mcanmove = 0;
 			/* really should be rnd(5) for consistency with players
 			 * breathing potions, but...

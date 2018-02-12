@@ -338,7 +338,7 @@ struct obj *otmp;
 
 	case SPE_CALL_THE_ELEMENTS:
 
-		if (mtmp->mcanmove && !rn2(3) ) {
+		if (mtmp->mcanmove && !rn2(3) && !(dmgtype(mtmp->data, AD_PLYS)) ) {
 			mtmp->mcanmove = 0;
 			mtmp->mfrozen = rnd(2);
 		    if (canseemon(mtmp)) pline("%s is paralyzed!", Monnam(mtmp));
@@ -369,7 +369,7 @@ struct obj *otmp;
 
 	case WAN_THUNDER:
 	case SPE_THUNDER:
-		if (mtmp->mcanmove && !rn2(3) ) {
+		if (mtmp->mcanmove && !rn2(3) && !(dmgtype(mtmp->data, AD_PLYS)) ) {
 			mtmp->mcanmove = 0;
 			mtmp->mfrozen = rnd(3);
 		    if (canseemon(mtmp)) pline("%s is paralyzed!", Monnam(mtmp));
@@ -536,7 +536,7 @@ struct obj *otmp;
 					pline("%s suddenly seems weaker!", Monnam(mtmp));
 			}
 
-		} else {
+		} else if (!(dmgtype(mtmp->data, AD_PLYS))) {
 
 			if (canseemon(mtmp) ) {
 				pline("%s is frozen by the beam.", Monnam(mtmp) );
@@ -829,6 +829,8 @@ struct obj *otmp;
 		break;
 
 	case WAN_PARALYSIS:
+		if (dmgtype(mtmp->data, AD_PLYS)) break;
+
 		if (canseemon(mtmp) ) {
 			pline("%s is frozen by the beam.", Monnam(mtmp) );
 		}
@@ -838,6 +840,8 @@ struct obj *otmp;
 
 		break;
 	case SPE_PARALYSIS:
+		if (dmgtype(mtmp->data, AD_PLYS)) break;
+
 		if (canseemon(mtmp) ) {
 			pline("%s is frozen by the beam.", Monnam(mtmp) );
 		}

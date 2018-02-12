@@ -18576,6 +18576,9 @@ register struct attack *mattk;
 	    	}
 	    	break;
 	    case AD_PLYS: /* Floating eye */
+
+		if (dmgtype(mtmp->data, AD_PLYS)) return 1;
+
 		if (tmp > 127) tmp = 127;
 		if (u.umonnum == PM_FLOATING_EYE) {
 		    /*if (!rn2(4)) tmp = 127;*/
@@ -18689,7 +18692,7 @@ register struct attack *mattk;
 		    if (mtmp->mspeed != oldspeed)
 			pline("%s slows down.", Monnam(mtmp));
 		}
-		if(!rn2(3) && mtmp->mcanmove) {
+		if(!rn2(3) && mtmp->mcanmove && !(dmgtype(mtmp->data, AD_PLYS))) {
 		    pline("%s is paralyzed.", Monnam(mtmp));
 		    mtmp->mcanmove = 0;
 		    mtmp->mfrozen = rnd(10);

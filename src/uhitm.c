@@ -3980,14 +3980,14 @@ register struct attack *mattk;
 		} else tmp = 0;
 		break;
 	    case AD_PLYS:
-		if (!negated && mdef->mcanmove && !rn2(3) && tmp < mdef->mhp) {
+		if (!negated && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(3) && tmp < mdef->mhp) {
 		    if (!Blind) pline("%s is frozen by you!", Monnam(mdef));
 		    mdef->mcanmove = 0;
 		    mdef->mfrozen = rnd(10);
 		}
 		break;
 	    case AD_TCKL:
-		if (!negated && mdef->mcanmove && !rn2(3) && tmp < mdef->mhp) {
+		if (!negated && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(3) && tmp < mdef->mhp) {
 		    if (!Blind) You("mercilessly tickle %s!", mon_nam(mdef));
 		    mdef->mcanmove = 0;
 		    mdef->mfrozen = rnd(10);
@@ -4052,7 +4052,7 @@ register struct attack *mattk;
 		    if (mdef->mspeed != oldspeed && canseemon(mdef))
 			pline("%s slows down.", Monnam(mdef));
 		}
-		if (!negated && mdef->mcanmove && !rn2(3) && tmp < mdef->mhp) {
+		if (!negated && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS)) && !rn2(3) && tmp < mdef->mhp) {
 		    if (!Blind) pline("%s is frozen by you!", Monnam(mdef));
 		    mdef->mcanmove = 0;
 		    mdef->mfrozen = rnd(10);
@@ -4730,7 +4730,7 @@ register struct attack *mattk;
 
 	    case AD_PLYS:
 	    case AD_TCKL:
-		if (mdef->mcanmove) {
+		if (mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS))) {
 		    if (!Blind) pline("%s is frozen by you!", Monnam(mdef));
 		    mdef->mcanmove = 0;
 		    mdef->mfrozen = rnd(10);
@@ -4782,7 +4782,7 @@ register struct attack *mattk;
 		    if (mdef->mspeed != oldspeed && canseemon(mdef))
 			pline("%s slows down.", Monnam(mdef));
 		}
-		if (mdef->mcanmove) {
+		if (mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS))) {
 		    if (!Blind) pline("%s is frozen by you!", Monnam(mdef));
 		    mdef->mcanmove = 0;
 		    mdef->mfrozen = rnd(10);

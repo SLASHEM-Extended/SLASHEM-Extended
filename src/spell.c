@@ -2964,7 +2964,7 @@ boolean atme;
 			    if (DEADMONSTER(frostmon)) continue;
 			    if (!monnear(frostmon, u.ux, u.uy)) continue;
 
-			    if (!resists_elec(frostmon) && !resist(frostmon, SPBOOK_CLASS, 0, NOTELL) && !rn2(10)) {
+			    if (!resists_elec(frostmon) && !(dmgtype(frostmon->data, AD_PLYS)) && !resist(frostmon, SPBOOK_CLASS, 0, NOTELL) && !rn2(10)) {
 
 				if (canseemon(frostmon) ) {
 					pline("%s is paralyzed! It might be unable to move!", Monnam(frostmon) );

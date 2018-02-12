@@ -10924,6 +10924,8 @@ struct obj *otmp;
 			break;
 
 		case PARALYSIS_TRAP:
+
+			if (dmgtype(mtmp->data, AD_PLYS)) break;
 		      {
 			    mtmp->mcanmove = 0;
 			    mtmp->mfrozen = rnd(10);
@@ -11731,6 +11733,8 @@ register struct monst *mtmp;
 			break;
 
 		case PARALYSIS_TRAP:
+			if (dmgtype(mtmp->data, AD_PLYS)) break;
+
 		      {
 			    mtmp->mcanmove = 0;
 			    mtmp->mfrozen = rnd(10);

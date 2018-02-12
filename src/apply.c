@@ -919,7 +919,7 @@ struct obj *obj;
 			pline("%s is turned to stone!", Monnam(mtmp));
 		stoned = TRUE;
 		killed(mtmp);
-	} else if(!mtmp->mcan && !mtmp->minvis && !mtmp->minvisreal &&
+	} else if(!mtmp->mcan && !(dmgtype(mtmp->data, AD_PLYS)) && !mtmp->minvis && !mtmp->minvisreal &&
 					mtmp->data == &mons[PM_FLOATING_EYE]) {
 		int tmp = d((int)mtmp->m_lev, (int)mtmp->data->mattk[0].damd);
 		if (!rn2(4)) tmp = 120;

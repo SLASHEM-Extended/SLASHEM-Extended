@@ -1541,7 +1541,7 @@ physical:
 		break;
 	    case AD_PLYS:
 		if (nohit) break;                
-		if(!cancelled && mdef->mcanmove) {
+		if(!cancelled && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS))) {
 		    if (vis) {
 			strcpy(buf, Monnam(mdef));
 			pline("%s is frozen by %s.", buf, mon_nam(magr));
@@ -1552,7 +1552,7 @@ physical:
 		}
 		break;
 	    case AD_TCKL:
-		if(!cancelled && mdef->mcanmove) {
+		if(!cancelled && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS))) {
 		    if (vis) {
 			strcpy(buf, Monnam(magr));
 			pline("%s mercilessly tickles %s.", buf, mon_nam(mdef));
@@ -1585,7 +1585,7 @@ physical:
 		    if (mdef->mspeed != oldspeed && vis)
 			pline("%s slows down.", Monnam(mdef));
 		}
-		if(!cancelled && !rn2(3) && mdef->mcanmove) {
+		if(!cancelled && !rn2(3) && mdef->mcanmove && !(dmgtype(mdef->data, AD_PLYS))) {
 		    if (vis) {
 			strcpy(buf, Monnam(mdef));
 			pline("%s is frozen by %s.", buf, mon_nam(magr));
@@ -2409,6 +2409,9 @@ int mdead;
 	/* These affect the enemy only if defender is still alive */
 	if (rn2(3)) switch(mddat->mattk[i].adtyp) {
 	    case AD_PLYS: /* Floating eye */
+
+		if (dmgtype(magr->data, AD_PLYS)) return 1;
+
 		if (tmp > 127) tmp = 127;
 		if (mddat == &mons[PM_FLOATING_EYE]) {
 		    /*if (!rn2(4)) tmp = 127;*/
@@ -2532,7 +2535,7 @@ int mdead;
 		    if (magr->mspeed != oldspeed && canseemon(magr))
 			pline("%s slows down.", Monnam(magr));
 		}
-		if(!rn2(3) && magr->mcanmove) {
+		if(!rn2(3) && magr->mcanmove && !(dmgtype(magr->data, AD_PLYS))) {
 		    if (canseemon(magr)) {
 			pline("%s is paralyzed.", Monnam(magr));
 		    }
