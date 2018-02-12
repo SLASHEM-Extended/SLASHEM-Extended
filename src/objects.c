@@ -4641,6 +4641,11 @@ SCROLL((char *)0,               "NOTY AND THE AMY WERE MVPS 2017",  P_NONE,     
 SCROLL((char *)0,               "ONLY THE AMY WILL EVER ASCEND SLEX",  P_NONE,     1,   0, 300, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "DEMOGORGONHACK IS A GREAT NETHACK VARIANT",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "FIQSLEX WOULD BE GREAT OR MEDIOCRE DEPENDING ON WHO MAKES IT",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "CAR EMISSIONS ARE NOT NOXIOUS FOR APES OR HUMANS",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
+SCROLL((char *)0,               "TU SCRONIUM ES",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "ERAU QSSI DRLO WEHT",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
+SCROLL((char *)0,               "TOTALLY THE GIANT ERECTION",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "RIEN NE VA PLUS",  P_NONE,     1,   0, 300, CLR_RED, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

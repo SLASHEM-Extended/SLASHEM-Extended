@@ -4975,6 +4975,7 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, (rn2(7) ? SPEAR : rn2(3) ?
 					     TRIDENT : STILETTO));
 		if (mm == PM_POISON_WHIP_SALAMANDER) (void)mongets(mtmp, BULLWHIP);
+		if (mm == PM_PARALYSIS_WHIP_SALAMANDER) (void)mongets(mtmp, BULLWHIP);
 
 		break;
 	    case S_TROLL:
@@ -17507,6 +17508,7 @@ int type;
 		case PM_HYPERTYPE: return 103;
 		case PM_ANIMATED_WEDGE_SANDAL: return 100;
 		case PM_SHOE: return 100;
+		case PM_FUCK_SHOE: return 100;
 		case PM_WEREWEDGESANDAL: return 100;
 		case PM_ANIMATED_IRON_STATUE: return 137;
 		case PM_ELTRA_VANISHING_POINT: return 137;
@@ -17660,6 +17662,7 @@ int type;
 		case PM_CRYSTAL_GOLEM: return 300;
 		case PM_CRYSTAL_STATUE: return 300;
 		case PM_CRYSTAL_ICE_GOLEM: return 300;
+		case PM_KASA_OBAKE: return 15;
 		case PM_MARIONETTE: return 400;
 		case PM_ANIMATED_COMBAT_STILETTO: return 300;
 		case PM_WERECOMBATSTILETTO: return 300;

@@ -978,7 +978,9 @@ register int pm;
 			}
 		break;
 	    case PM_SALAMANDER:
+	    case PM_SALAMANDER_SHAMAN:
 	    case PM_POISON_WHIP_SALAMANDER:
+	    case PM_PARALYSIS_WHIP_SALAMANDER:
 	    case PM_FROST_SALAMANDER:
 	    case PM_KOMODO_DRAGON:
 	    case PM_PETTY_KOMODO_DRAGON:
@@ -1658,7 +1660,9 @@ register int pm;
 			lesshungry(160);
 		break;
 	    case PM_SALAMANDER:
+	    case PM_SALAMANDER_SHAMAN:
 	    case PM_POISON_WHIP_SALAMANDER:
+	    case PM_PARALYSIS_WHIP_SALAMANDER:
 	    case PM_FROST_SALAMANDER:
 	    case PM_KOMODO_DRAGON:
 	    case PM_PETTY_KOMODO_DRAGON:
@@ -1979,6 +1983,10 @@ register int pm;
 		break;
 
 	    case PM_WRAITH:
+	    case PM_BIG_WRAITH:
+	    case PM_HUGE_WRAITH:
+	    case PM_GIGANTIC_WRAITH:
+	    case PM_WRAITH_SHAMAN:
 	    case PM_NASTY_WRAITH:
 	    case PM_TURBO_CHICKEN:
 	    case PM_GREATER_BASILISK:
