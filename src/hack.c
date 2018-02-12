@@ -423,7 +423,7 @@ trap_of_walls:
 				doorlockX(randomx, randomy, update); /* let's hope this "update" will FINALLY fix things ARGH */
 				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
 			}
-			else {
+			else if ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) {
 				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
 				else levl[randomx][randomy].typ = CROSSWALL;
 				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
