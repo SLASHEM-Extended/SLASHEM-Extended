@@ -2015,9 +2015,11 @@ register int n;
 	if (Race_if(PM_UNALIGNMENT_THING) && n < 0) pline("You lost %d alignment points; your new value is %d.", abs(n), u.ualign.record);
 	if (Race_if(PM_UNALIGNMENT_THING) && n > 0) pline("You gained %d alignment points; your new value is %d.", n, u.ualign.record);
 
-	/* evil patch idea by jonadab: losing alignment points can result in punishment */
+	/* evil patch idea by jonadab: losing alignment points can result in punishment
+	 * immunizer can lose alignment during level changes, which would result in a panic; poison the player instead --Amy */
 	if (n < 0 && u.ualign.record < 0 && !rn2(500)) {
-		punishx();
+		if (Race_if(PM_IMMUNIZER)) poisoned("The alignment", rn2(A_MAX), "immunized alignment failure", 30);
+		else punishx();
 	}
 
 }
