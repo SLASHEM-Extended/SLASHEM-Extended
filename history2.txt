@@ -1,6 +1,18 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.1.7
+- Added special levels for the Dungeons of Doom and Gehennom.
+- Halved the chance for listener race player characters to find random artifacts.
+- Monsters with paralysis attacks have free action.
+
 2.1.6
+- Closed drawbridges no longer erroneously display "grayout" when farlooked.
+- Walls don't randomly spawn in undiggable locations to prevent the game from becoming nearly unwinnable.
+- Added lairs for 12 of the new demon lords.
+- Fixed a bug introduced by an earlier commit that caused the game to segfault when the player used unarmed combat.
+- Saddles of ridden steeds are now much less likely to be stolen by hostile item-stealers.
+- Fixed a panic that could occur when an immunizer character enters a new dungeon level.
+- All temple priests are elder priests in evil variant mode. Also added some wand destruction patch stuff to evil variant mode.
 - Wand recharging has been improved to reflect the new maximum # of charges that the wands can have upon generation.
 - Added new playable races: aggravator, evilvariant, felid, levelscaler, listener, salamander, shoe.
 
