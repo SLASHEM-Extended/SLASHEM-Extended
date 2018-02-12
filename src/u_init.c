@@ -14198,6 +14198,11 @@ u_init()
 	if (!issoviet) knows_class(VENOM_CLASS);
 	/* "Also venom class isn't discovered by default anymore." In Soviet Russia, people like to make changes to games because they can, not because they want to actually have the effect of their changes in the game. Case in point: venoms being discovered makes sure that the game won't say "you are hit by a splash of venom" if it's e.g. tail spikes or a faerie floss rhing, but that depends on the player knowing what the object is, so if they aren't discovered it doesn't work right! So, dear other people who happen to stumble upon this piece of code: Remove it, and you'll remove messages like "you are hit by a faerie floss rhing", which you hopefully don't want so by the love of whatever god you believe in, don't remove it! --Amy */
 
+	if (!issoviet) {
+		knows_object(SCR_EXTRA_HEALING);
+		knows_object(SCR_GREATER_MANA_RESTORATION);
+	}
+
 	if (discover)
 		ini_inv(Wishing);
 
@@ -25133,7 +25138,7 @@ register struct trobj *trop;
 	int otyp, i;
 
 	while (trop->trclass) {
-		if (trop->trotyp != UNDEF_TYP && ((trop->trotyp == SCR_PHASE_DOOR || trop->trotyp == SCR_HEALING || trop->trotyp == SCR_MANA || trop->trotyp == SCR_STANDARD_ID || trop->trotyp == SCR_CURE || (trop->trotyp == SCR_IDENTIFY && flags.lostsoul) || (trop->trotyp == TORCH && flags.lostsoul) || (trop->trotyp == FOOD_RATION && flags.lostsoul) || (trop->trotyp == SCR_IDENTIFY && flags.uberlostsoul) || (trop->trotyp == TORCH && flags.uberlostsoul) || (trop->trotyp == FOOD_RATION && flags.uberlostsoul) || (trop->trotyp == POT_FRUIT_JUICE && flags.uberlostsoul) || (trop->trotyp == TALLOW_CANDLE && flags.uberlostsoul) ) || !Race_if(PM_UNDEFINED_CREATURE) ) ) {
+		if (trop->trotyp != UNDEF_TYP && ((trop->trotyp == SCR_PHASE_DOOR || trop->trotyp == SCR_HEALING || trop->trotyp == SCR_EXTRA_HEALING || trop->trotyp == SCR_MANA || trop->trotyp == SCR_GREATER_MANA_RESTORATION || trop->trotyp == SCR_STANDARD_ID || trop->trotyp == SCR_CURE || (trop->trotyp == SCR_IDENTIFY && flags.lostsoul) || (trop->trotyp == TORCH && flags.lostsoul) || (trop->trotyp == FOOD_RATION && flags.lostsoul) || (trop->trotyp == SCR_IDENTIFY && flags.uberlostsoul) || (trop->trotyp == TORCH && flags.uberlostsoul) || (trop->trotyp == FOOD_RATION && flags.uberlostsoul) || (trop->trotyp == POT_FRUIT_JUICE && flags.uberlostsoul) || (trop->trotyp == TALLOW_CANDLE && flags.uberlostsoul) ) || !Race_if(PM_UNDEFINED_CREATURE) ) ) {
 			otyp = (int)trop->trotyp;
 			if (urace.malenum != PM_HUMAN) {
 			    /* substitute specific items for generic ones */

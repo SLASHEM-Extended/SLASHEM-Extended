@@ -2650,6 +2650,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ HELM_OF_DECONTAMINATION, "obezzarazhivaniye shlema" },
 	{ AMULET_OF_CONTAMINATION_RESIST, "amulet of ustoychivost' k zagryazneniyu" },
 	{ CLOAK_OF_CONTAMINATION_RESISTA, "plashch ustoychivost' k zagryazneniyu" },
+	{ SCR_EXTRA_HEALING, "dopolnitel'noye istseleniye" },
+	{ SCR_GREATER_MANA_RESTORATION, "bol'shaya regeneratsiya many" },
+	{ CHARGER, "zaryadnoye ustroystvo" },
 
 	{0, "" }
 };
@@ -4774,6 +4777,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ HELM_OF_DECONTAMINATION, "dekontaminatsiya dubulg'a" },
 	{ AMULET_OF_CONTAMINATION_RESIST, "amulet of ifloslanish qarshiligi" },
 	{ CLOAK_OF_CONTAMINATION_RESISTA, "ifloslanish qarshiligi plash" },
+	{ SCR_EXTRA_HEALING, "qo'shimcha shifo" },
+	{ SCR_GREATER_MANA_RESTORATION, "katta sehrli energiya tiklash" },
+	{ CHARGER, "zaryadlovchi qurilma" },
 
 	{0, "" }
 };

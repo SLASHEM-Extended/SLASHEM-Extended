@@ -9485,6 +9485,8 @@ struct obj *obj;
 				pline("A marker that is useful for writing graffiti on the floor."); break;
 			case SWITCHER:
 				pline("This metal box has a switch that can be pulled. What may happen if you do so?"); break;
+			case CHARGER:
+				pline("You can apply this tool to charge one item (wand, ring, chargeable tool). It always gives the uncursed charging effect, regardless of the charger's BUC, and can only be used once."); break;
 			case HITCHHIKER_S_GUIDE_TO_THE_GALA: 
 				pline("A very complicated-looking device. Better not mess around with it..."); break;
 			case DIODE: 
@@ -10012,10 +10014,14 @@ struct obj *obj;
 				pline("You will become temporarily resistant to spell damage when reading this scroll."); break;
 			case SCR_HEALING: 
 				pline("A standard healing scroll that behaves similar to healing potions in other role-playing games by restoring some lost hit points."); break;
+			case SCR_EXTRA_HEALING: 
+				pline("A powerful healing scroll that restores a large amount of lost hit points."); break;
 			case SCR_POWER_HEALING: 
 				pline("This scroll completely restores hit points."); break;
 			case SCR_MANA: 
 				pline("A standard mana scroll that behaves similar to mana potions in other role-playing games by restoring some of your mana."); break;
+			case SCR_GREATER_MANA_RESTORATION:
+				pline("A powerful mana scroll that restores a lot of your mana."); break;
 			case SCR_CURE: 
 				pline("A powerful curing scroll that will fix the following status effects: sickness, sliming, stoning, confusion, blindness, stun, numbness, freezing, burn, fear, dimness and hallucination."); break;
 			case SCR_PHASE_DOOR: 

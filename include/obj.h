@@ -305,6 +305,7 @@ struct obj {
 || (otmp)->otyp == SCR_SUMMON_UNDEAD\
 || (otmp)->otyp == WAN_SUMMON_UNDEAD\
 || (otmp)->otyp == SCR_HEALING\
+|| (otmp)->otyp == SCR_EXTRA_HEALING\
 || (otmp)->otyp == SCR_POWER_HEALING\
 || (otmp)->otyp == SCR_WARPING\
 || (otmp)->otyp == WAN_DEATH\

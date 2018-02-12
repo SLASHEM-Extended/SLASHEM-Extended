@@ -5284,6 +5284,13 @@ retry:
 			else if (!rn2(5)) healup(d(6,8) + rnz(u.ulevel), 0, FALSE, FALSE);
 			else healup(d(5,6) + rnz(u.ulevel), 0, FALSE, FALSE);
 		break;
+	case SCR_EXTRA_HEALING: /* better healing scroll --Amy */
+		makeknown(SCR_EXTRA_HEALING);
+		You_feel("healthier!");
+			if (!rn2(20)) healup(2000 + rnz(u.ulevel * 5), 0, FALSE, FALSE);
+			else if (!rn2(5)) healup(d(6,40) + rnz(u.ulevel * 5), 0, FALSE, FALSE);
+			else healup(d(5,30) + rnz(u.ulevel * 5), 0, FALSE, FALSE);
+		break;
 	case SCR_POWER_HEALING:
 		makeknown(SCR_POWER_HEALING);
 		You_feel("fully healed!");
@@ -5303,6 +5310,14 @@ retry:
 			if (!rn2(20)) u.uen += (400 + rnz(u.ulevel));
 			else if (!rn2(5)) u.uen += (d(6,8) + rnz(u.ulevel));
 			else u.uen += (d(5,6) + rnz(u.ulevel));
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+		break;
+	case SCR_GREATER_MANA_RESTORATION: /* restores more mana --Amy */
+		makeknown(SCR_GREATER_MANA_RESTORATION);
+		You_feel("full of mystic power!");
+			if (!rn2(20)) u.uen += (2000 + rnz(u.ulevel * 5));
+			else if (!rn2(5)) u.uen += (d(6,40) + rnz(u.ulevel * 5));
+			else u.uen += (d(5,30) + rnz(u.ulevel * 5));
 			if (u.uen > u.uenmax) u.uen = u.uenmax;
 		break;
 	case SCR_CURE: /* cures bad effects --Amy */

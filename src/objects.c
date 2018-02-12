@@ -2802,9 +2802,9 @@ CONTAINER("bag of tricks", "bag",       0, 1, 1, 0, 195, 5, 100, CLOTH, HI_CLOTH
 /* bag of tricks must be last */
 
 /* Unlocking tools */
-TOOL("skeleton key", "key",     0, 0, 0, 0, 700,  0,  10, IRON, HI_METAL, 1),
+TOOL("skeleton key", "key",     0, 0, 0, 0, 650,  0,  10, IRON, HI_METAL, 1),
 TOOL("secret key", (char *)0,   1, 0, 0, 0,  50,  0,  10, SECREE, CLR_BLACK, 1),
-TOOL("lock pick", (char *)0,    1, 0, 0, 0, 540,  0,  20, IRON, HI_METAL, 1),
+TOOL("lock pick", (char *)0,    1, 0, 0, 0, 490,  0,  20, IRON, HI_METAL, 1),
 TOOL("hairclip", (char *)0,     1, 0, 0, 0,  60,  0,  20, SILK, CLR_WHITE, 1),
 TOOL("credit card", (char *)0,  1, 0, 0, 0, 110,  0,  10, PLASTIC, CLR_WHITE, 1),
 TOOL("data chip", (char *)0,    1, 0, 0, 0,  40,  0,  10, PLATINUM, CLR_GRAY, 1),
@@ -2957,6 +2957,7 @@ TOOL("magic marker", (char *)0, 1, 0, 1, 1, 150,  0,  50, PLASTIC, CLR_RED, 25),
 TOOL("felt-tip marker", (char *)0, 1, 0, 1, 1, 10,  0,  50, PLASTIC, CLR_RED, 1),
 
 TOOL("switcher", (char *)0, 1, 0, 1, 0,  10,  0,  2000, METAL, CLR_BRIGHT_GREEN, 1),
+TOOL("charger", (char *)0, 1, 0, 1, 0,  100,  0,  200, VIVA, CLR_ORANGE, 1),
 
 TOOL("Hitchhiker's Guide To The Galaxy", "highly-complicated electronic device",
 				0, 0, 0, 0,   0, 42,  1000, IRON, HI_METAL, 42),
@@ -3324,8 +3325,10 @@ SCROLL("destroy armor",         "JUYED AWK YACC",       P_NONE, 1,  200, 300, CL
 SCROLL("amnesia",               "DUAM XNAHT",           P_NONE, 1,  40, 300, CLR_BRIGHT_BLUE, 4),
 SCROLL("instant amnesia",       "HAKUNA MATATA",           P_NONE, 1,  10, 300, CLR_BROWN, 35),
 SCROLL("bad effect",               "LITTLE STRAWBERRY ME BABY",           P_NONE, 1,  50, 300, CLR_ORANGE, 1),
-SCROLL("healing",               "LIFE RESTORATION",           P_NONE, 1,   10, 300, CLR_BRIGHT_CYAN, 1),
-SCROLL("mana",               "I WANT TO SEE URANUS TOO",           P_NONE, 1,   10, 300, CLR_BRIGHT_BLUE, 1),
+SCROLL("healing",               "LIFE RESTORATION",           P_NONE, 1,   9, 300, CLR_BRIGHT_CYAN, 1),
+SCROLL("extra healing",               "HEALHEALHEALHEAL",           P_NONE, 1,   1, 300, CLR_BRIGHT_GREEN, 1),
+SCROLL("mana",               "I WANT TO SEE URANUS TOO",           P_NONE, 1,   9, 300, CLR_BRIGHT_BLUE, 1),
+SCROLL("greater mana restoration",       "DIT DEDIDET DAET",           P_NONE, 1,   1, 300, CLR_BRIGHT_GREEN, 1),
 SCROLL("cure",               "SPARKLING EDWARD CULLEN",           P_NONE, 1,   10, 300, CLR_BRIGHT_BLUE, 1),
 SCROLL("phase door",               "LESBIANISM FOR EVERYONE",           P_NONE, 1,   10, 300, CLR_CYAN, 1),
 SCROLL("trap disarming",               "CHRISTIAN GREY KILLED ALL HIS SUBS",    P_NONE, 1,   50, 300, CLR_BRIGHT_MAGENTA, 20),

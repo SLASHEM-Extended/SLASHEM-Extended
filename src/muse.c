@@ -1069,6 +1069,7 @@ struct obj *otmp;
 #define MUSE_SCR_SUMMON_ELM 42
 #define MUSE_WAN_SUMMON_ELM 43
 #define MUSE_SCR_RELOCATION 44
+#define MUSE_SCR_EXTRA_HEALING 45
 /*
 #define MUSE_INNATE_TPT 9999
  * We cannot use this.  Since monsters get unlimited teleportation, if they
@@ -1175,6 +1176,11 @@ struct monst *mtmp;
 		m.has_defense = MUSE_SCR_HEALING;
 		return TRUE;
 	    }
+	    if ((obj = m_carrying(mtmp, SCR_EXTRA_HEALING)) != 0) {
+		m.defensive = obj;
+		m.has_defense = MUSE_SCR_EXTRA_HEALING;
+		return TRUE;
+	    }
 	    if ((obj = m_carrying(mtmp, SCR_POWER_HEALING)) != 0) {
 		m.defensive = obj;
 		m.has_defense = MUSE_SCR_POWER_HEALING;
@@ -1228,6 +1234,11 @@ struct monst *mtmp;
 		if ((obj = m_carrying(mtmp, SCR_HEALING)) != 0) {
 		    m.defensive = obj;
 		    m.has_defense = MUSE_SCR_HEALING;
+		    return TRUE;
+		}
+		if ((obj = m_carrying(mtmp, SCR_EXTRA_HEALING)) != 0) {
+		    m.defensive = obj;
+		    m.has_defense = MUSE_SCR_EXTRA_HEALING;
 		    return TRUE;
 		}
 		if ((obj = m_carrying(mtmp, SCR_POWER_HEALING)) != 0) {
@@ -1494,6 +1505,11 @@ struct monst *mtmp;
 		if(obj->otyp == SCR_HEALING) {
 			m.defensive = obj;
 			m.has_defense = MUSE_SCR_HEALING;
+		}
+		nomore(MUSE_SCR_EXTRA_HEALING);
+		if(obj->otyp == SCR_EXTRA_HEALING) {
+			m.defensive = obj;
+			m.has_defense = MUSE_SCR_EXTRA_HEALING;
 		}
 		nomore(MUSE_WAN_HEALING);
 		if(obj->otyp == WAN_HEALING && obj->spe > 0) {
@@ -2640,6 +2656,22 @@ newboss:
 		 * Actually there's the panic code for a reason! */
 		return 2;
 
+	case MUSE_SCR_EXTRA_HEALING:
+
+		mreadmsg(mtmp, otmp);
+
+		if (!rn2(20)) i = mtmp->mhpmax;
+		else if (!rn2(5)) i = d(8, 40);
+		else i = d(8, 20);
+		mtmp->mhp += i;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+
+		if (vismon) pline("%s looks much better.", Monnam(mtmp));
+		if (oseen) makeknown(SCR_EXTRA_HEALING);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
 	case MUSE_SCR_POWER_HEALING:
 
 		mreadmsg(mtmp, otmp);
@@ -2816,7 +2848,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(35)) {
+	switch (rn2(36)) {
 
 		case 0: return SCR_TELEPORTATION;
 		case 1: return POT_HEALING;
@@ -2853,6 +2885,7 @@ struct monst *mtmp;
 		case 32: return SCR_SUMMON_ELM;
 		case 33: return WAN_SUMMON_ELM;
 		case 34: return SCR_RELOCATION;
+		case 35: return SCR_EXTRA_HEALING;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -8997,7 +9030,7 @@ struct obj *obj;
 		return TRUE;
 	    break;
 	case SCROLL_CLASS:
-	    if (typ == SCR_TELEPORTATION || typ == SCR_RELOCATION || typ == SCR_HEALING || typ == SCR_POWER_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_CREATE_TRAP || typ == SCR_CREATE_VICTIM || typ == SCR_SUMMON_UNDEAD || typ == SCR_GROUP_SUMMONING || typ == SCR_FLOOD || typ == SCR_VILENESS || typ == SCR_MEGALOAD || typ == SCR_ANTIMATTER || typ == SCR_RUMOR || typ == SCR_MESSAGE || typ == SCR_SIN || typ == SCR_IMMOBILITY || typ == SCR_EGOISM || typ == SCR_ENRAGE || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_DESTROY_WEAPON || typ == SCR_LAVA || typ == SCR_FLOODING || typ == SCR_SUMMON_BOSS || typ == SCR_SUMMON_GHOST || typ == SCR_SUMMON_ELM || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
+	    if (typ == SCR_TELEPORTATION || typ == SCR_RELOCATION || typ == SCR_HEALING || typ == SCR_EXTRA_HEALING || typ == SCR_POWER_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_CREATE_TRAP || typ == SCR_CREATE_VICTIM || typ == SCR_SUMMON_UNDEAD || typ == SCR_GROUP_SUMMONING || typ == SCR_FLOOD || typ == SCR_VILENESS || typ == SCR_MEGALOAD || typ == SCR_ANTIMATTER || typ == SCR_RUMOR || typ == SCR_MESSAGE || typ == SCR_SIN || typ == SCR_IMMOBILITY || typ == SCR_EGOISM || typ == SCR_ENRAGE || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_DESTROY_WEAPON || typ == SCR_LAVA || typ == SCR_FLOODING || typ == SCR_SUMMON_BOSS || typ == SCR_SUMMON_GHOST || typ == SCR_SUMMON_ELM || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
 		return TRUE;
 	    break;
 	case AMULET_CLASS:

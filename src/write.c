@@ -107,6 +107,7 @@ register struct obj *otmp;
 	case SCR_GEOLYSIS:
 	case SCR_SECURE_IDENTIFY:
 	case SCR_REPAIR_ITEM:
+	case SCR_EXTRA_HEALING:
 		return(24);
 /*		break; */
 	case SCR_RESISTANCE:
@@ -123,6 +124,7 @@ register struct obj *otmp;
 	case SCR_EBB_TIDE:
 	case SCR_CREATE_FACILITY:
 	case SCR_SUMMON_GHOST:
+	case SCR_GREATER_MANA_RESTORATION:
 		return(30);
 /*		break; */
 	case SCR_GAIN_MANA:

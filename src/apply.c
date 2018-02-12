@@ -12,6 +12,7 @@ static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 static const char tools_too[] = { ALL_CLASSES, TOOL_CLASS, POTION_CLASS,
 				  WEAPON_CLASS, WAND_CLASS, GEM_CLASS, 0 };
 static const char tinnables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
+static NEARDATA const char recharge_type[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 STATIC_DCL int use_camera(struct obj *);
 STATIC_DCL int use_towel(struct obj *);
@@ -5096,6 +5097,38 @@ doapply()
 	case TRANSISTOR:
 	case IC:
 		pline(Hallucination ? "Hmm... is this stuff edible?" : "You don't understand anything about electronics !!!");
+		break;
+
+	case CHARGER:
+
+		delobj(obj);
+		noartispeak = TRUE;
+
+		pline("You may charge an object.");
+	    	{
+			struct obj *otmpC = getobj(recharge_type, "charge");
+			if (!otmpC) {
+				return(0);
+			}
+			recharge(otmpC, 0);
+		}
+
+		use_skill(P_DEVICES,10);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,10);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,10);
+		}
+		if (Role_if(PM_SPACEWARS_FIGHTER)) {
+			use_skill(P_DEVICES,10);
+		}
+		if (Role_if(PM_CAMPERSTRIKER)) {
+			use_skill(P_DEVICES,10);
+			use_skill(P_DEVICES,10);
+		}
+
 		break;
 
 	case SWITCHER:

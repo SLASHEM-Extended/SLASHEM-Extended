@@ -675,6 +675,10 @@ struct mkroom *sroom;
 			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !rn2(4)) {
 				levl[sx][sy].typ = rn2(2) ? WOODENTABLE : CARVEDBED;
 			}
+
+			if(!rn2(50))
+			    (void) mksobj_at(CHARGER,sx,sy,TRUE,FALSE);
+
 			break;
 
 		    case SLEEPINGROOM:
@@ -695,6 +699,10 @@ struct mkroom *sroom;
 			}
 			if(!rn2(5) && !t_at(sx, sy))
 				(void) maketrap(sx, sy, CONTAMINATION_TRAP, 100);
+
+			if(!rn2(20))
+			    (void) mksobj_at(CHARGER,sx,sy,TRUE,FALSE);
+
 			break;
 
 		    case PRISONCHAMBER:
