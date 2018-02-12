@@ -3198,7 +3198,7 @@ struct monst *mtmp;
 			m.has_offense = MUSE_WAN_INERTIA;
 		}
 		nomore(MUSE_WAN_SLOW_MONSTER);
-		if(obj->otyp == WAN_SLOW_MONSTER && obj->spe > 0 && (HFast & (TIMEOUT | INTRINSIC)) ) {
+		if(obj->otyp == WAN_SLOW_MONSTER && obj->spe > 0 && ((HFast & (TIMEOUT | INTRINSIC)) || isevilvariant) ) {
 			m.offensive = obj;
 			m.has_offense = MUSE_WAN_SLOW_MONSTER;
 		}
@@ -4144,6 +4144,15 @@ register struct obj *otmp;
 			u_slow_down();
 			if (zap_oseen)
 				makeknown(WAN_SLOW_MONSTER);
+
+			/* In FIQhack, monsters with wands of slow monster will 0wn you by making you super slow.
+			 * It's largely like the wand of inertia, so have it work like the wand of inertia in the evil variant */
+			if (isevilvariant) {
+				u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);
+				pline(u.inertia ? "You feel even slower." : "You become super slow thanks to the wand destruction patch.");
+				u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
+			}
+
 			break;
 		} else {
 

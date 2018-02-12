@@ -5702,7 +5702,18 @@ boolean ordinary;
 		    /* have to test before changing HInvis but must change
 		     * HInvis before doing newsym().
 		     */
+
 		    int msg = !Invis && !Blind && !BInvis;
+
+		    if (isevilvariant) {
+			incr_itimeout(&HInvis, rn1(25,25));
+			if (msg) {
+				makeknown(WAN_MAKE_INVISIBLE);
+				newsym(u.ux, u.uy);
+				self_invis_message();
+			}
+			break;
+		    }
 
 		    if (BInvis && uarmc->otyp == MUMMY_WRAPPING) {
 			/* A mummy wrapping absorbs it and protects you */
