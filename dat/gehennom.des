@@ -15728,3 +15728,1377 @@ TRAP: random, random
 MONSTER: random, random, random, hostile
 
 RANDOM_CORRIDORS
+
+# Extra special levels by Amy, put here since most of them are in Gehennom (but not all of them are)
+
+MAZE: "cowla-1",' '
+MESSAGE: "Ugh, it seems that this level is completely covered with walls. You'll probably have to dig!"
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#1234567890123456789012345678901234567890123456789012345678901234567890123456789
+MAP
+..                                                                             
+                                                                        .      
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                               .                                               
+               .                                                               
+                                                                               
+                                                                               
+                                                                               
+                .                                                              
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                       .                       
+                                                             .                 
+       .                                                                       
+                                                                              .
+ENDMAP
+RANDOM_PLACES: (61, 18), (7, 19), (31, 6), (16, 11), (15, 7), (72, 1), (55, 17)
+
+STAIR:(00,00),up
+STAIR:place[0],down
+
+OBJECT[10%]:'(',"pick-axe",(01,00)
+OBJECT[10%]:')',"dwarvish mattock",(01,00)
+OBJECT[20%]:'/',"digging",(01,00)
+OBJECT[5%]:'+',"dig",(01,00)
+
+MONSTER:random, random, place[0]
+MONSTER:random, random, place[1]
+MONSTER:random, random, place[2]
+MONSTER:random, random, place[3]
+MONSTER:random, random, place[4]
+MONSTER:random, random, place[5]
+MONSTER:random, random, place[6]
+
+MONSTER:random, random, (65, 14)
+MONSTER:random, random, (67, 7)
+MONSTER:random, random, (74, 19)
+MONSTER:random, random, (75, 1)
+MONSTER:random, random, (77, 11)
+MONSTER:random, random, (0, 10)
+MONSTER:random, random, (76, 15)
+MONSTER:random, random, (49, 18)
+MONSTER:random, random, (16, 18)
+MONSTER:random, random, (22, 4)
+MONSTER:random, random, (44, 19)
+MONSTER:random, random, (26, 18)
+MONSTER:random, random, (20, 2)
+MONSTER:random, random, (65, 6)
+MONSTER:random, random, (41, 6)
+MONSTER:random, random, (49, 13)
+MONSTER:random, random, (28, 18)
+MONSTER:random, random, (63, 11)
+MONSTER:random, random, (51, 8)
+MONSTER:random, random, (51, 20)
+MONSTER:random, random, (64, 4)
+MONSTER:random, random, (42, 12)
+MONSTER:random, random, (63, 17)
+MONSTER:random, random, (48, 3)
+MONSTER:random, random, (47, 15)
+MONSTER:random, random, (51, 15)
+MONSTER:random, random, (53, 8)
+MONSTER:random, random, (57, 14)
+MONSTER:random, random, (63, 5)
+MONSTER:random, random, (37, 0)
+
+TRAP: random, (61, 15)
+TRAP: random, (25, 0)
+TRAP: random, (26, 15)
+TRAP: random, (68, 8)
+TRAP: random, (65, 7)
+TRAP: random, (50, 14)
+TRAP: random, (53, 15)
+TRAP: random, (7, 5)
+TRAP: random, (5, 1)
+TRAP: random, (2, 14)
+TRAP: random, (4, 1)
+TRAP: random, (76, 5)
+TRAP: random, (6, 6)
+TRAP: random, (11, 6)
+TRAP: random, (70, 0)
+TRAP: random, (4, 8)
+TRAP: random, (65, 19)
+TRAP: random, (75, 5)
+TRAP: random, (51, 13)
+TRAP: random, (15, 19)
+TRAP: random, (30, 15)
+TRAP: random, (25, 0)
+TRAP: random, (33, 10)
+TRAP: random, (0, 5)
+TRAP: random, (0, 5)
+TRAP: random, (32, 11)
+TRAP: random, (18, 8)
+TRAP: random, (39, 16)
+TRAP: random, (42, 17)
+TRAP: random, (64, 14)
+TRAP: random, (15, 16)
+TRAP: random, (57, 2)
+TRAP: random, (29, 2)
+TRAP: random, (7, 13)
+TRAP: random, (62, 20)
+TRAP: random, (48, 5)
+TRAP: random, (78, 20)
+TRAP: random, (2, 16)
+TRAP: random, (25, 2)
+TRAP: random, (47, 8)
+TRAP: random, (35, 17)
+TRAP: random, (48, 16)
+TRAP: random, (41, 12)
+TRAP: random, (19, 5)
+TRAP: random, (31, 1)
+TRAP: random, (75, 16)
+TRAP: random, (54, 6)
+TRAP: random, (34, 12)
+TRAP: random, (23, 11)
+TRAP: random, (8, 16)
+
+MAZE: "cowla-2",' '
+MESSAGE: "Ugh, it seems that this level is completely covered with walls. You'll probably have to dig!"
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#1234567890123456789012345678901234567890123456789012345678901234567890123456789
+MAP
+..                                                       .                     
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                 .             
+                                                                 .             
+                                                                               
+              .                                                                
+                                    .                                          
+                           .                                                   
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                      .                                                       .
+ENDMAP
+RANDOM_PLACES: (65, 8), (22, 20), (36, 12), (27, 13), (14, 11), (65, 9), (57, 0)
+
+STAIR:(00,00),up
+STAIR:place[0],down
+
+OBJECT[10%]:'(',"pick-axe",(01,00)
+OBJECT[10%]:')',"dwarvish mattock",(01,00)
+OBJECT[20%]:'/',"digging",(01,00)
+OBJECT[5%]:'+',"dig",(01,00)
+
+MONSTER:random, random, place[0]
+MONSTER:random, random, place[1]
+MONSTER:random, random, place[2]
+MONSTER:random, random, place[3]
+MONSTER:random, random, place[4]
+MONSTER:random, random, place[5]
+MONSTER:random, random, place[6]
+
+MONSTER:random, random, (55, 14)
+MONSTER:random, random, (61, 19)
+MONSTER:random, random, (3, 12)
+MONSTER:random, random, (70, 9)
+MONSTER:random, random, (2, 3)
+MONSTER:random, random, (61, 15)
+MONSTER:random, random, (60, 13)
+MONSTER:random, random, (66, 4)
+MONSTER:random, random, (6, 4)
+MONSTER:random, random, (0, 10)
+MONSTER:random, random, (3, 7)
+MONSTER:random, random, (67, 18)
+MONSTER:random, random, (62, 2)
+MONSTER:random, random, (47, 3)
+MONSTER:random, random, (75, 10)
+MONSTER:random, random, (57, 10)
+MONSTER:random, random, (69, 8)
+MONSTER:random, random, (66, 1)
+MONSTER:random, random, (57, 4)
+MONSTER:random, random, (72, 20)
+MONSTER:random, random, (72, 15)
+MONSTER:random, random, (30, 9)
+MONSTER:random, random, (19, 16)
+MONSTER:random, random, (59, 10)
+MONSTER:random, random, (71, 14)
+MONSTER:random, random, (35, 1)
+MONSTER:random, random, (64, 4)
+MONSTER:random, random, (55, 10)
+MONSTER:random, random, (60, 12)
+MONSTER:random, random, (76, 5)
+
+TRAP: random, (11, 19)
+TRAP: random, (72, 9)
+TRAP: random, (19, 20)
+TRAP: random, (30, 18)
+TRAP: random, (43, 1)
+TRAP: random, (36, 13)
+TRAP: random, (43, 16)
+TRAP: random, (71, 15)
+TRAP: random, (54, 16)
+TRAP: random, (12, 8)
+TRAP: random, (38, 6)
+TRAP: random, (7, 10)
+TRAP: random, (65, 5)
+TRAP: random, (41, 9)
+TRAP: random, (51, 15)
+TRAP: random, (11, 14)
+TRAP: random, (43, 18)
+TRAP: random, (61, 20)
+TRAP: random, (30, 0)
+TRAP: random, (43, 12)
+TRAP: random, (36, 7)
+TRAP: random, (23, 13)
+TRAP: random, (66, 19)
+TRAP: random, (36, 4)
+TRAP: random, (2, 15)
+TRAP: random, (78, 20)
+TRAP: random, (8, 4)
+TRAP: random, (78, 8)
+TRAP: random, (6, 11)
+TRAP: random, (53, 20)
+TRAP: random, (21, 15)
+TRAP: random, (29, 0)
+TRAP: random, (71, 5)
+TRAP: random, (43, 13)
+TRAP: random, (66, 20)
+TRAP: random, (37, 2)
+TRAP: random, (43, 19)
+TRAP: random, (54, 18)
+TRAP: random, (52, 6)
+TRAP: random, (4, 8)
+TRAP: random, (48, 10)
+TRAP: random, (67, 19)
+TRAP: random, (52, 2)
+TRAP: random, (75, 14)
+TRAP: random, (20, 2)
+TRAP: random, (16, 2)
+TRAP: random, (50, 9)
+TRAP: random, (69, 1)
+TRAP: random, (63, 6)
+TRAP: random, (6, 19)
+
+MAZE: "cowla-3",' '
+MESSAGE: "Ugh, it seems that this level is completely covered with walls. You'll probably have to dig!"
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#1234567890123456789012345678901234567890123456789012345678901234567890123456789
+MAP
+..                                                                             
+                                                                               
+                                                                              .
+                                          .                                    
+                                                                               
+                                   .                                           
+                 .                                                             
+                                                                               
+                                                                .              
+                                            .                                  
+                                                                               
+ .                                                                             
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                              .
+ENDMAP
+RANDOM_PLACES: (64, 8), (35, 5), (44, 9), (17, 6), (1, 11), (42, 3), (78, 2)
+
+STAIR:(00,00),up
+STAIR:place[0],down
+
+OBJECT[10%]:'(',"pick-axe",(01,00)
+OBJECT[10%]:')',"dwarvish mattock",(01,00)
+OBJECT[20%]:'/',"digging",(01,00)
+OBJECT[5%]:'+',"dig",(01,00)
+
+MONSTER:random, random, place[0]
+MONSTER:random, random, place[1]
+MONSTER:random, random, place[2]
+MONSTER:random, random, place[3]
+MONSTER:random, random, place[4]
+MONSTER:random, random, place[5]
+MONSTER:random, random, place[6]
+
+MONSTER:random, random, (56, 19)
+MONSTER:random, random, (51, 10)
+MONSTER:random, random, (24, 13)
+MONSTER:random, random, (58, 6)
+MONSTER:random, random, (55, 1)
+MONSTER:random, random, (39, 16)
+MONSTER:random, random, (78, 8)
+MONSTER:random, random, (13, 0)
+MONSTER:random, random, (6, 4)
+MONSTER:random, random, (20, 12)
+MONSTER:random, random, (23, 9)
+MONSTER:random, random, (75, 12)
+MONSTER:random, random, (38, 15)
+MONSTER:random, random, (20, 16)
+MONSTER:random, random, (54, 13)
+MONSTER:random, random, (2, 10)
+MONSTER:random, random, (68, 19)
+MONSTER:random, random, (2, 18)
+MONSTER:random, random, (58, 15)
+MONSTER:random, random, (70, 3)
+MONSTER:random, random, (41, 20)
+MONSTER:random, random, (69, 13)
+MONSTER:random, random, (23, 5)
+MONSTER:random, random, (37, 17)
+MONSTER:random, random, (20, 17)
+MONSTER:random, random, (2, 6)
+MONSTER:random, random, (62, 13)
+MONSTER:random, random, (38, 19)
+MONSTER:random, random, (31, 1)
+MONSTER:random, random, (40, 11)
+
+TRAP: random, (78, 5)
+TRAP: random, (48, 1)
+TRAP: random, (36, 17)
+TRAP: random, (30, 8)
+TRAP: random, (66, 0)
+TRAP: random, (3, 15)
+TRAP: random, (29, 2)
+TRAP: random, (71, 3)
+TRAP: random, (64, 10)
+TRAP: random, (27, 12)
+TRAP: random, (53, 20)
+TRAP: random, (1, 2)
+TRAP: random, (77, 6)
+TRAP: random, (23, 0)
+TRAP: random, (19, 0)
+TRAP: random, (38, 8)
+TRAP: random, (3, 16)
+TRAP: random, (16, 5)
+TRAP: random, (38, 10)
+TRAP: random, (75, 0)
+TRAP: random, (78, 8)
+TRAP: random, (67, 5)
+TRAP: random, (72, 14)
+TRAP: random, (35, 14)
+TRAP: random, (24, 5)
+TRAP: random, (70, 7)
+TRAP: random, (41, 16)
+TRAP: random, (21, 3)
+TRAP: random, (3, 10)
+TRAP: random, (20, 15)
+TRAP: random, (78, 19)
+TRAP: random, (27, 3)
+TRAP: random, (64, 10)
+TRAP: random, (58, 12)
+TRAP: random, (10, 4)
+TRAP: random, (54, 20)
+TRAP: random, (17, 0)
+TRAP: random, (38, 16)
+TRAP: random, (75, 5)
+TRAP: random, (59, 7)
+TRAP: random, (19, 19)
+TRAP: random, (78, 14)
+TRAP: random, (48, 6)
+TRAP: random, (23, 0)
+TRAP: random, (65, 13)
+TRAP: random, (48, 6)
+TRAP: random, (46, 2)
+TRAP: random, (11, 14)
+TRAP: random, (61, 12)
+TRAP: random, (44, 7)
+
+MAZE: "cowla-4",' '
+MESSAGE: "Ugh, it seems that this level is completely covered with walls. You'll probably have to dig!"
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#1234567890123456789012345678901234567890123456789012345678901234567890123456789
+MAP
+..                                                                             
+                                                                               
+            .                                                                  
+                                                                               
+                                                                               
+                                                                  .            
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+    .                                                                          
+                                                                               
+                                                                  .            
+                                                                              .
+                                                                               
+                                                                               
+         .                                                                     
+                                                                   .          .
+ENDMAP
+RANDOM_PLACES: (66, 15), (4, 13), (9, 19), (66, 5), (12, 2), (67, 20), (78, 16)
+
+STAIR:(00,00),up
+STAIR:place[0],down
+
+OBJECT[10%]:'(',"pick-axe",(01,00)
+OBJECT[10%]:')',"dwarvish mattock",(01,00)
+OBJECT[20%]:'/',"digging",(01,00)
+OBJECT[5%]:'+',"dig",(01,00)
+
+MONSTER:random, random, place[0]
+MONSTER:random, random, place[1]
+MONSTER:random, random, place[2]
+MONSTER:random, random, place[3]
+MONSTER:random, random, place[4]
+MONSTER:random, random, place[5]
+MONSTER:random, random, place[6]
+
+MONSTER:random, random, (3, 18)
+MONSTER:random, random, (13, 0)
+MONSTER:random, random, (38, 11)
+MONSTER:random, random, (3, 3)
+MONSTER:random, random, (45, 17)
+MONSTER:random, random, (0, 14)
+MONSTER:random, random, (19, 12)
+MONSTER:random, random, (38, 18)
+MONSTER:random, random, (7, 5)
+MONSTER:random, random, (73, 11)
+MONSTER:random, random, (40, 8)
+MONSTER:random, random, (11, 8)
+MONSTER:random, random, (49, 20)
+MONSTER:random, random, (4, 20)
+MONSTER:random, random, (23, 18)
+MONSTER:random, random, (40, 18)
+MONSTER:random, random, (36, 11)
+MONSTER:random, random, (5, 18)
+MONSTER:random, random, (39, 12)
+MONSTER:random, random, (71, 16)
+MONSTER:random, random, (61, 13)
+MONSTER:random, random, (54, 1)
+MONSTER:random, random, (22, 15)
+MONSTER:random, random, (10, 2)
+MONSTER:random, random, (27, 7)
+MONSTER:random, random, (45, 4)
+MONSTER:random, random, (51, 4)
+MONSTER:random, random, (50, 11)
+MONSTER:random, random, (16, 15)
+MONSTER:random, random, (41, 9)
+
+TRAP: random, (15, 9)
+TRAP: random, (30, 13)
+TRAP: random, (78, 13)
+TRAP: random, (77, 9)
+TRAP: random, (50, 18)
+TRAP: random, (10, 10)
+TRAP: random, (60, 19)
+TRAP: random, (36, 1)
+TRAP: random, (25, 20)
+TRAP: random, (35, 17)
+TRAP: random, (24, 19)
+TRAP: random, (51, 1)
+TRAP: random, (62, 9)
+TRAP: random, (6, 2)
+TRAP: random, (70, 17)
+TRAP: random, (62, 4)
+TRAP: random, (78, 14)
+TRAP: random, (37, 4)
+TRAP: random, (20, 20)
+TRAP: random, (16, 13)
+TRAP: random, (62, 0)
+TRAP: random, (72, 7)
+TRAP: random, (56, 20)
+TRAP: random, (51, 19)
+TRAP: random, (73, 4)
+TRAP: random, (60, 15)
+TRAP: random, (37, 15)
+TRAP: random, (50, 18)
+TRAP: random, (3, 1)
+TRAP: random, (23, 12)
+TRAP: random, (15, 6)
+TRAP: random, (66, 5)
+TRAP: random, (32, 17)
+TRAP: random, (78, 0)
+TRAP: random, (32, 16)
+TRAP: random, (58, 16)
+TRAP: random, (71, 7)
+TRAP: random, (69, 16)
+TRAP: random, (72, 20)
+TRAP: random, (26, 8)
+TRAP: random, (21, 2)
+TRAP: random, (23, 8)
+TRAP: random, (15, 3)
+TRAP: random, (76, 20)
+TRAP: random, (68, 11)
+TRAP: random, (60, 1)
+TRAP: random, (10, 18)
+TRAP: random, (1, 1)
+TRAP: random, (3, 6)
+TRAP: random, (49, 10)
+
+MAZE: "cowla-5",' '
+MESSAGE: "Ugh, it seems that this level is completely covered with walls. You'll probably have to dig!"
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#1234567890123456789012345678901234567890123456789012345678901234567890123456789
+MAP
+..                                                                             
+          .                                                                    
+                                                                               
+                                                                               
+                                                                             . 
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                                               
+                                                       .                       
+                                                                               
+                                         .                                     
+                                                                               
+                                                                               
+                           .                                        .          
+              .                                   .                            
+                                                                               
+                                                                               
+                                                                               
+           .                                                .                 .
+ENDMAP
+RANDOM_PLACES: (68, 15), (41, 12), (14, 16), (10, 1), (77, 4), (50, 16), (11, 20), (27, 15), (55, 10), (60, 20)
+
+STAIR:(00,00),up
+STAIR:place[0],down
+
+OBJECT[10%]:'(',"pick-axe",(01,00)
+OBJECT[10%]:')',"dwarvish mattock",(01,00)
+OBJECT[20%]:'/',"digging",(01,00)
+OBJECT[5%]:'+',"dig",(01,00)
+
+MONSTER:random, random, place[0]
+MONSTER:random, random, place[1]
+MONSTER:random, random, place[2]
+MONSTER:random, random, place[3]
+MONSTER:random, random, place[4]
+MONSTER:random, random, place[5]
+MONSTER:random, random, place[6]
+MONSTER:random, random, place[7]
+MONSTER:random, random, place[8]
+MONSTER:random, random, place[9]
+
+MONSTER:random, random, (37, 4)
+MONSTER:random, random, (60, 10)
+MONSTER:random, random, (1, 16)
+MONSTER:random, random, (41, 0)
+MONSTER:random, random, (1, 15)
+MONSTER:random, random, (30, 6)
+MONSTER:random, random, (57, 18)
+MONSTER:random, random, (72, 18)
+MONSTER:random, random, (39, 20)
+MONSTER:random, random, (74, 14)
+MONSTER:random, random, (17, 12)
+MONSTER:random, random, (42, 19)
+MONSTER:random, random, (29, 14)
+MONSTER:random, random, (73, 11)
+MONSTER:random, random, (75, 1)
+MONSTER:random, random, (34, 8)
+MONSTER:random, random, (36, 10)
+MONSTER:random, random, (52, 12)
+MONSTER:random, random, (51, 3)
+MONSTER:random, random, (45, 1)
+MONSTER:random, random, (34, 11)
+MONSTER:random, random, (46, 7)
+MONSTER:random, random, (48, 2)
+MONSTER:random, random, (60, 0)
+MONSTER:random, random, (28, 12)
+MONSTER:random, random, (21, 1)
+MONSTER:random, random, (70, 19)
+MONSTER:random, random, (50, 15)
+MONSTER:random, random, (20, 18)
+MONSTER:random, random, (71, 7)
+MONSTER:random, random, (62, 14)
+MONSTER:random, random, (7, 9)
+MONSTER:random, random, (21, 8)
+MONSTER:random, random, (68, 5)
+MONSTER:random, random, (4, 13)
+MONSTER:random, random, (34, 2)
+MONSTER:random, random, (28, 12)
+MONSTER:random, random, (17, 4)
+MONSTER:random, random, (57, 20)
+MONSTER:random, random, (69, 7)
+MONSTER:random, random, (33, 13)
+MONSTER:random, random, (75, 5)
+MONSTER:random, random, (18, 11)
+MONSTER:random, random, (16, 8)
+MONSTER:random, random, (31, 16)
+MONSTER:random, random, (25, 20)
+MONSTER:random, random, (51, 19)
+MONSTER:random, random, (78, 8)
+MONSTER:random, random, (70, 10)
+MONSTER:random, random, (65, 5)
+
+TRAP: random, (46, 17)
+TRAP: random, (63, 8)
+TRAP: random, (36, 14)
+TRAP: random, (1, 4)
+TRAP: random, (49, 15)
+TRAP: random, (36, 3)
+TRAP: random, (38, 7)
+TRAP: random, (44, 15)
+TRAP: random, (18, 8)
+TRAP: random, (72, 3)
+TRAP: random, (60, 7)
+TRAP: random, (78, 17)
+TRAP: random, (56, 8)
+TRAP: random, (22, 15)
+TRAP: random, (60, 4)
+TRAP: random, (55, 6)
+TRAP: random, (36, 18)
+TRAP: random, (33, 17)
+TRAP: random, (34, 4)
+TRAP: random, (37, 15)
+TRAP: random, (5, 15)
+TRAP: random, (24, 20)
+TRAP: random, (21, 6)
+TRAP: random, (2, 7)
+TRAP: random, (17, 13)
+TRAP: random, (54, 0)
+TRAP: random, (13, 3)
+TRAP: random, (73, 17)
+TRAP: random, (59, 17)
+TRAP: random, (73, 10)
+TRAP: random, (54, 16)
+TRAP: random, (30, 11)
+TRAP: random, (10, 12)
+TRAP: random, (49, 16)
+TRAP: random, (39, 9)
+TRAP: random, (47, 16)
+TRAP: random, (17, 10)
+TRAP: random, (68, 13)
+TRAP: random, (40, 7)
+TRAP: random, (60, 11)
+TRAP: random, (32, 1)
+TRAP: random, (50, 6)
+TRAP: random, (24, 15)
+TRAP: random, (35, 12)
+TRAP: random, (7, 8)
+TRAP: random, (36, 9)
+TRAP: random, (67, 18)
+TRAP: random, (7, 4)
+TRAP: random, (5, 4)
+TRAP: random, (0, 2)
+TRAP: random, (16, 7)
+TRAP: random, (69, 11)
+TRAP: random, (23, 18)
+TRAP: random, (23, 0)
+TRAP: random, (42, 8)
+TRAP: random, (48, 5)
+TRAP: random, (19, 8)
+TRAP: random, (52, 13)
+TRAP: random, (29, 5)
+TRAP: random, (52, 8)
+TRAP: random, (50, 5)
+TRAP: random, (37, 20)
+TRAP: random, (59, 17)
+TRAP: random, (36, 17)
+TRAP: random, (55, 19)
+TRAP: random, (65, 1)
+TRAP: random, (72, 0)
+TRAP: random, (43, 15)
+TRAP: random, (66, 18)
+TRAP: random, (49, 8)
+TRAP: random, (2, 5)
+TRAP: random, (75, 17)
+TRAP: random, (38, 1)
+TRAP: random, (72, 16)
+TRAP: random, (15, 2)
+TRAP: random, (41, 16)
+TRAP: random, (64, 9)
+TRAP: random, (36, 5)
+TRAP: random, (23, 3)
+TRAP: random, (44, 4)
+TRAP: random, (65, 17)
+TRAP: random, (1, 17)
+TRAP: random, (65, 5)
+TRAP: random, (53, 15)
+TRAP: random, (20, 7)
+TRAP: random, (2, 8)
+TRAP: random, (13, 4)
+TRAP: random, (35, 10)
+TRAP: random, (45, 4)
+TRAP: random, (71, 14)
+TRAP: random, (65, 16)
+TRAP: random, (77, 10)
+TRAP: random, (29, 10)
+TRAP: random, (27, 15)
+TRAP: random, (47, 11)
+TRAP: random, (67, 10)
+TRAP: random, (41, 18)
+TRAP: random, (60, 7)
+TRAP: random, (59, 3)
+TRAP: random, (78, 10)
+
+MAZE: "cowlb",' '
+FLAGS:hardfloor
+MESSAGE: "You entered a mysterious hamlet!"
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+..JJJJJgggigggJJJJJJJJJJJJJJJJJMMMMMMMMMMMMMMMMMMMMJJJJJJJJJJJJJJJJJJJJJJJJJJJ. 
+J..JJJJgggigggJJJJJJJJJJJJJJJJJJMMMMMMMMMMMMMMMMMMJJJJ------JJJJTJJJJJJJJJJJJJ.
+JJ..JJJgggigggJJJJJJJJJJJJJJJJJJJMMMMMMMMMMMMMMMMJJJJJ|....|JJJJJJJJJJJJJJJJJJ.
+JJJ..JJgggigggJJJJJJJJJJJJJJJJJJJJMMMMMMMMMMMMMMJJJJJJ|....|JJJJTJJJJJJJJJJJJJ.
+JJJJ..JgggigggJJJJJJJJJJJJJJJJJJJJJMMMMMMMMMMMMJJJJJJJ|....|JJJJJJJJJJJJJJJJJJ}
+JJJJJ..gggigggJJJJJJJJJJJJJJJJJJJJJJMMMMMMMMMMJJJJJJJJ|....|JJJJTJJJJJJJJJJJJ}}
+JJJJJJJgggigggJJJJJJJJJJJJJJJJJJJJJJJMMMMMMMMJJJJJJJJJ---+--JJJJJJJJJJJJJJJJ}}}
+JJJJJJggggiggggJJJJJJJJJJJJJJJJJJJJJJJMMMMMMJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ}}}}
+JJJJJgbgggigggbgJJJJJJJJJJJJJJJJJJJJJJJMMMMJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ}}}}}
+JJJJggggggiggggggJJJJJJJJJJJJJJJJJJJJJJJMMJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ}}}}}}
+JJJgggggggigggggggJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ}}}}}}}
+JJggggg.ggigg.gggggJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ}}}}}}}}
+JgggggggggigggggggggJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ}}}}}}}}}
+ggggggggggogggggggggg iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+JgggggggggigggggggggJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+JJggggggggiggggggggJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+JJJgggg.ggigg.ggggJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJTTJJJJJJJJJJJJJJJ
+JJJJggggggiggggggJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJTTTTJJJJJJJJJJJJJJ
+JJJJJgbgggigggbgJJJJJJJJJJJJJJJJJJJJJJJJJJJJTTJJJJJJJJJJJJJJJTTTTJJJJJJJJJJJJJJ
+JJJJJJggggiggggJJJJJJJJJJJJJJJJJJJJJJJJJJJJTTTTJJJJJJJJJJJJJJJTTJJJJJJJJJJJJJJJ
+JJJJJJJgggigggJJJJJJJJJJJJJJJJJJJJJJJJJJJJTTTTTTJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+ENDMAP
+
+STAIR:(00,00),up
+STAIR:(78,00),down
+
+TRAP: "statue", (07,11)
+TRAP: "statue", (07,16)
+TRAP: "statue", (13,11)
+TRAP: "statue", (13,16)
+
+MONSTER: 'H', random, (02,13)
+MONSTER: 'H', random, (15,13)
+
+DOOR:locked,(57,06)
+
+REGION:(55,02,58,05),unlit,"shop"
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "cowlc",' '
+FLAGS:hardfloor
+MESSAGE: "This dungeon level seems to be inhabited by bees. But what is that weird structure?!"
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+............BBBBB..............................................................
+............B...B..........................................BBBBBBBBBBBB........
+............B...B..........................................B..........B........
+............B...B..........................................B..........B........
+............BBBBB..........................................BBBBBBBBBBBB........
+...............................................................................
+...............................................................................
+...............................................................................
+lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll
+...............................................................................
+...............................................................................
+................................BBBBB.............................BBBBBBBBB....
+................................B...B.............................B.......B....
+.......BBBBBBBBBB...............B...B.............................B.......B....
+.......B........B...............B...B.............................B.......B....
+.......B........B...............B...B.............................B.......B....
+.......BBBBBBBBBB...............B...B.............................BBBBBBBBB....
+................................B...B..........................................
+................................B...B..........................................
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+REGION:(00,00,78,20),lit,"ordinary"
+REGION:(14,02,14,02),lit,"beehive",filled,true
+REGION:(64,02,64,02),lit,"beehive",filled,true
+REGION:(11,17,11,17),lit,"beehive",filled,true
+REGION:(34,17,34,17),lit,"beehive",filled,true
+REGION:(70,16,70,16),lit,"beehive",filled,true
+
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+TRAP: "blade trap", random
+
+TRAP: "superthing", (00,09)
+TRAP: "superthing", (01,09)
+TRAP: "superthing", (02,09)
+TRAP: "superthing", (03,09)
+TRAP: "superthing", (04,09)
+TRAP: "superthing", (05,09)
+TRAP: "superthing", (06,09)
+TRAP: "superthing", (07,09)
+TRAP: "superthing", (08,09)
+TRAP: "superthing", (09,09)
+TRAP: "superthing", (10,09)
+TRAP: "superthing", (11,09)
+TRAP: "superthing", (12,09)
+TRAP: "superthing", (13,09)
+TRAP: "superthing", (14,09)
+TRAP: "superthing", (15,09)
+TRAP: "superthing", (16,09)
+TRAP: "superthing", (17,09)
+TRAP: "superthing", (18,09)
+TRAP: "superthing", (19,09)
+TRAP: "superthing", (20,09)
+TRAP: "superthing", (21,09)
+TRAP: "superthing", (22,09)
+TRAP: "superthing", (23,09)
+TRAP: "superthing", (24,09)
+TRAP: "superthing", (25,09)
+TRAP: "superthing", (26,09)
+TRAP: "superthing", (27,09)
+TRAP: "superthing", (28,09)
+TRAP: "superthing", (29,09)
+TRAP: "superthing", (30,09)
+TRAP: "superthing", (31,09)
+TRAP: "superthing", (32,09)
+TRAP: "superthing", (33,09)
+TRAP: "superthing", (34,09)
+TRAP: "superthing", (35,09)
+TRAP: "superthing", (36,09)
+TRAP: "superthing", (37,09)
+TRAP: "superthing", (38,09)
+TRAP: "superthing", (39,09)
+TRAP: "superthing", (40,09)
+TRAP: "superthing", (41,09)
+TRAP: "superthing", (42,09)
+TRAP: "superthing", (43,09)
+TRAP: "superthing", (44,09)
+TRAP: "superthing", (45,09)
+TRAP: "superthing", (46,09)
+TRAP: "superthing", (47,09)
+TRAP: "superthing", (48,09)
+TRAP: "superthing", (49,09)
+TRAP: "superthing", (50,09)
+TRAP: "superthing", (51,09)
+TRAP: "superthing", (52,09)
+TRAP: "superthing", (53,09)
+TRAP: "superthing", (54,09)
+TRAP: "superthing", (55,09)
+TRAP: "superthing", (56,09)
+TRAP: "superthing", (57,09)
+TRAP: "superthing", (58,09)
+TRAP: "superthing", (59,09)
+TRAP: "superthing", (60,09)
+TRAP: "superthing", (61,09)
+TRAP: "superthing", (62,09)
+TRAP: "superthing", (63,09)
+TRAP: "superthing", (64,09)
+TRAP: "superthing", (65,09)
+TRAP: "superthing", (66,09)
+TRAP: "superthing", (67,09)
+TRAP: "superthing", (68,09)
+TRAP: "superthing", (69,09)
+TRAP: "superthing", (70,09)
+TRAP: "superthing", (71,09)
+TRAP: "superthing", (72,09)
+TRAP: "superthing", (73,09)
+TRAP: "superthing", (74,09)
+TRAP: "superthing", (75,09)
+TRAP: "superthing", (76,09)
+TRAP: "superthing", (77,09)
+TRAP: "superthing", (78,09)
+
+MAZE: "cowld",' '
+FLAGS:hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+REGION:(00,00,77,18),lit,"insideroom",filled,true
+
+MAZE: "cowle",' '
+FLAGS:hardfloor
+MESSAGE: "Level 55 is waiting for you, oh yes it is."
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#12345678901234567890123456789012345678901234567890123456789012345678901234567
+MAP
+.JJJJJJgggigggJJJJJJJJ........................................................
+JJJJJJJgggigggJJJJJJJJ........................................................
+JJJJJJJgggigggJJJJJJJJ........................................................
+JJJJJJJgggigggJJJJJJJJ........................................................
+JJJJJJJgggigggJJJJJJJJ........................................................
+JJJJJJJgggigggJJJJJJJJ........................................................
+JJJJJJJgggigggJJJJJJJJ........................................................
+JJJJJJggggiggggJJJJJJJ........................................................
+JJJJJgbgggigggbgJJJJJJ........................................................
+JJJJggggggiggggggJJJJJ........................................................
+JJJggg----i----gggJJJJ........................................................
+JJgggg|gg|i|gg|ggggJJJ........................................................
+Jggggg|gg|i|gg|gggggJJ........................................................
+gggggg|gg+o+gg|gggggg iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiB
+Jggggg|gg|i|gg|gggggJJ........................................................
+JJgggg|gg|i|gg|ggggJJJ........................................................
+JJJggg----i----gggJJJJ........................................................
+JJJJggggggiggggggJJJJJ........................................................
+JJJJJgbgggigggbgJJJJJJ........................................................
+ENDMAP
+
+STAIR:(00,00),up
+STAIR:(77,13),down
+
+REGION:(22,00,77,12),unlit,"insideroom",filled
+REGION:(22,14,77,18),unlit,"insideroom",filled
+REGION:(07,11,08,15),unlit,"shop"
+REGION:(12,11,13,15),unlit,"armor shop"
+
+DOOR:locked,(09,13)
+DOOR:locked,(11,13)
+
+MONSTER: 'O', "huge ogre", (02,02)
+MONSTER: 'P', "slime", (03,02)
+MONSTER: 'P', "slime", (04,02)
+MONSTER: 'P', "slime", (04,03)
+MONSTER: 'P', "slime", (05,02)
+MONSTER: 'P', "slime", (05,03)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP[33%]: random, (24,13)
+TRAP[33%]: random, (25,13)
+TRAP[33%]: random, (26,13)
+TRAP[33%]: random, (27,13)
+TRAP[33%]: random, (28,13)
+TRAP[33%]: random, (29,13)
+TRAP[33%]: random, (30,13)
+TRAP[33%]: random, (31,13)
+TRAP[33%]: random, (32,13)
+TRAP[33%]: random, (33,13)
+TRAP[33%]: random, (34,13)
+TRAP[33%]: random, (35,13)
+TRAP[33%]: random, (36,13)
+TRAP[33%]: random, (37,13)
+TRAP[33%]: random, (38,13)
+TRAP[33%]: random, (39,13)
+TRAP[33%]: random, (40,13)
+TRAP[33%]: random, (41,13)
+TRAP[33%]: random, (42,13)
+TRAP[33%]: random, (43,13)
+TRAP[33%]: random, (44,13)
+TRAP[33%]: random, (45,13)
+TRAP[33%]: random, (46,13)
+TRAP[33%]: random, (47,13)
+TRAP[33%]: random, (48,13)
+TRAP[33%]: random, (49,13)
+TRAP[33%]: random, (50,13)
+TRAP[33%]: random, (51,13)
+TRAP[33%]: random, (52,13)
+TRAP[33%]: random, (53,13)
+TRAP[33%]: random, (54,13)
+TRAP[33%]: random, (55,13)
+TRAP[33%]: random, (56,13)
+TRAP[33%]: random, (57,13)
+TRAP[33%]: random, (58,13)
+TRAP[33%]: random, (59,13)
+TRAP[33%]: random, (60,13)
+TRAP[33%]: random, (61,13)
+TRAP[33%]: random, (62,13)
+TRAP[33%]: random, (63,13)
+TRAP[33%]: random, (64,13)
+TRAP[33%]: random, (65,13)
+TRAP[33%]: random, (66,13)
+TRAP[33%]: random, (67,13)
+TRAP[33%]: random, (68,13)
+TRAP[33%]: random, (69,13)
+TRAP[33%]: random, (70,13)
+TRAP[33%]: random, (71,13)
+TRAP[33%]: random, (72,13)
+TRAP[33%]: random, (73,13)
+TRAP[33%]: random, (74,13)
+TRAP[33%]: random, (75,13)
+TRAP[33%]: random, (76,13)
+TRAP[33%]: random, (77,13)
+
+MAZE: "cowlf",' '
+FLAGS:hardfloor
+MESSAGE: "Grave walls abound here. Gotta dig for the exit, but watch out, some grave walls have teleporters or cursed calleds hidden underneath them!"
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#12345678901234567890123456789012345678901234567890123456789012345678901234567
+MAP
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+ENDMAP
+
+STAIR:random,up
+STAIR:random,down
+
+REGION:(00,00,77,18),unlit,"levelseventyroom",filled,true
+
+MAZE: "cowlg",' '
+FLAGS:hardfloor,noteleport
+MESSAGE: "You entered Level 71, where somehow nothing will ever work..."
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7         
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+........B.....           ............................. ...................... .
+AAAAAAAAA.....           ............................. ...................... .
+         .....           ............................. ...................... .
+         .....           ............................. ...................... .
+         ..... .........H.............................H...................... .
+             B . . . . . ............................. ...................... .
+             . . . . . . ............................. ...................... .
+             . . . . . . ............................. ...................... .
+             . . . . . . ............................. ...................... .
+             ........... ............................. ...................... H
+               MORsnhdig                                                    HH.
+.............. CAFTyvirl ............................. ...................... .
+.............. uqfYXUIL} ............................. ...................... .
+.............. UdfYqOyTI ............................. ...................... .
+.............. iChMuFivR ............................. ...................... .
+.............. gnXlr}AsL ............................. ...................... .
+..............B......... .............................H...................... .
+.............. .         ............................. ...................... .
+.............. .         ............................. ...................... .
+.............. .         ............................. ...................... C
+.............. .........H............................. ...................... .
+ENDMAP
+
+STAIR:(00,00),up
+STAIR:(78,00),down
+
+NON_DIGGABLE:(00,00,78,20)
+
+REGION:(09,00,13,04),unlit,"insideroom",filled,true
+REGION:(00,11,13,20),unlit,"insideroom",filled,true
+REGION:(25,11,53,20),unlit,"cryptroom",filled,true
+REGION:(25,00,53,09),unlit,"troublezone",filled,true
+REGION:(55,11,76,20),unlit,"poolroom",filled,true
+REGION:(55,00,76,09),unlit,"emptydesert",filled,true
+REGION:(55,11,76,20),unlit,"hellpit",filled,true
+REGION:(55,00,76,09),unlit,"variantroom",filled,true
+
+TRAP: "invis", (00,01)
+TRAP: "invis", (01,01)
+TRAP: "invis", (02,01)
+TRAP: "invis", (03,01)
+TRAP: "invis", (04,01)
+TRAP: "invis", (05,01)
+TRAP: "invis", (06,01)
+TRAP: "invis", (07,01)
+TRAP: "invis", (08,01)
+
+TRAP: "unknown trap", (15,05)
+TRAP: "unknown trap", (15,06)
+TRAP: "unknown trap", (15,07)
+TRAP: "unknown trap", (15,08)
+TRAP: "unknown trap", (17,05)
+TRAP: "unknown trap", (17,06)
+TRAP: "unknown trap", (17,07)
+TRAP: "unknown trap", (17,08)
+TRAP: "unknown trap", (19,05)
+TRAP: "unknown trap", (19,06)
+TRAP: "unknown trap", (19,07)
+TRAP: "unknown trap", (19,08)
+TRAP: "unknown trap", (21,05)
+TRAP: "unknown trap", (21,06)
+TRAP: "unknown trap", (21,07)
+TRAP: "unknown trap", (21,08)
+TRAP: "unknown trap", (23,05)
+TRAP: "unknown trap", (23,06)
+TRAP: "unknown trap", (23,07)
+TRAP: "unknown trap", (23,08)
+
+TRAP: "adjacent", (78,12)
+TRAP: "adjacent", (78,15)
+TRAP: "adjacent", (78,18)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MONSTER: '&', "segmentary query", (78, 20), hostile, asleep
+
+MAZE: "cowlh",' '
+FLAGS: noteleport,hardfloor
+MESSAGE: "Oh no. It's a town! And not a very welcoming one!"
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+......vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.....                     
+......vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.....                     
+......vv........................................vv.....    + +       + +    
+......vv....--------------------------------....vv..... .... .... .... .....
+......vv....|..............................|....vv.....|....|....|....|.....
+......vv....|..............................|....vv.....|....|....|....|.....
+......vv....|..............................|....vv.....|+---|+---|+---|+----
+......vv....|..............................+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+......vv....|..............................+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+......vv....|..............................|....vv.....|+---|+---|+---|+----
+......vv....|..............................|....vv.....|....|....|....|.....
+......vv....|..............................|....vv.....|....|....|....|.....
+......vv....--------------------------------....vv..... .... .... .... .....
+......vv........................................vv.....    + +       + +    
+......vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.....                     
+......vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv.....                     
+                                                                            
+............................................................................
+............................................................................
+............................................................................
+                                                                            
+ENDMAP
+
+NON_DIGGABLE:(12,03,43,12)
+
+STAIR:(00,00),up
+STAIR:levregion(01,17,75,19),(0,0,0,0),down
+
+REGION:(00,17,75,19),unlit,"insideroom",filled,true
+
+# Amy note: actually I want those shops to have no shopkeepers, but Orcustown is special-cased...
+# Until I learn how to hijack the des-file format to allow me to specify "no shopkeeper", they'll have to stay
+REGION:(56,03,59,05),unlit,"random shop"
+REGION:(61,03,64,05),unlit,"random shop"
+REGION:(66,03,69,05),unlit,"random shop"
+REGION:(71,03,75,05),unlit,"random shop"
+REGION:(56,10,59,12),unlit,"random shop"
+REGION:(61,10,64,12),unlit,"random shop"
+REGION:(66,10,69,12),unlit,"random shop"
+REGION:(71,10,75,12),unlit,"random shop"
+REGION:(13,04,42,11),unlit,"randomroom",filled,true
+
+DOOR:locked,(59,02)
+DOOR:locked,(61,02)
+DOOR:locked,(69,02)
+DOOR:locked,(71,02)
+DOOR:locked,(59,13)
+DOOR:locked,(61,13)
+DOOR:locked,(69,13)
+DOOR:locked,(71,13)
+
+DOOR:locked,(43,07)
+DOOR:locked,(43,08)
+
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+

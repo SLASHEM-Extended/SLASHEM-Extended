@@ -2172,7 +2172,7 @@ makelevel()
 	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4 : 40) : (iswarper ? 10 : 100))) || (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10 : 4) : (iswarper ? 5 : 2))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (rn2(5) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) ) {
 
 
-	    switch (rnd(107)) {
+	    switch (rnd(110)) {
 
 	    case 1:
 	    case 2:
@@ -3830,6 +3830,35 @@ makelevel()
 		makemaz("efrnk"); return;
 		break;
 
+	    case 108:
+	    case 109:
+	    case 110:
+
+		switch (rnd(8)) {
+
+			case 1: {
+				switch (rnd(5)) {
+
+					case 1: makemaz("cowla-1"); return;
+					case 2: makemaz("cowla-2"); return;
+					case 3: makemaz("cowla-3"); return;
+					case 4: makemaz("cowla-4"); return;
+					case 5: makemaz("cowla-5"); return;
+
+				}
+				break;
+			}
+			case 2: makemaz("cowlb"); return;
+			case 3: makemaz("cowlc"); return;
+			case 4: makemaz("cowld"); return;
+			case 5: makemaz("cowle"); return;
+			case 6: makemaz("cowlf"); return;
+			case 7: makemaz("cowlg"); return;
+			case 8: makemaz("cowlh"); return;
+
+		}
+
+		break;
 
 		break;
 
@@ -3839,7 +3868,7 @@ makelevel()
 
 	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4000 : 40000) : (iswarper ? 10000 : 100000))) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10000 : 4000) : (iswarper ? 5000 : 2000))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2000 : 10000) : (iswarper ? 3000 : 20000))) || (In_gehennom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) || (In_sheol(&u.uz) && (!(u.monstertimefinish % 235) ? (iswarper || !rn2(3)) : (!rn2(iswarper ? 2 : 5)) ) ) ) {
 
-	    switch (rnd(107)) {
+	    switch (rnd(110)) {
 
 	    case 1:
 	    case 2:
@@ -5487,6 +5516,36 @@ makelevel()
 	    case 107:
 
 		makemaz("hfrnk"); return;
+		break;
+
+	    case 108:
+	    case 109:
+	    case 110:
+
+		switch (rnd(8)) {
+
+			case 1: {
+				switch (rnd(5)) {
+
+					case 1: makemaz("cowla-1"); return;
+					case 2: makemaz("cowla-2"); return;
+					case 3: makemaz("cowla-3"); return;
+					case 4: makemaz("cowla-4"); return;
+					case 5: makemaz("cowla-5"); return;
+
+				}
+				break;
+			}
+			case 2: makemaz("cowlb"); return;
+			case 3: makemaz("cowlc"); return;
+			case 4: makemaz("cowld"); return;
+			case 5: makemaz("cowle"); return;
+			case 6: makemaz("cowlf"); return;
+			case 7: makemaz("cowlg"); return;
+			case 8: makemaz("cowlh"); return;
+
+		}
+
 		break;
 
 		break;
@@ -5911,7 +5970,7 @@ makelevel()
 	if ((specialraceflag == 3) && (!rn2(100) || depth(&u.uz) > 1) ) { /* specialist */
 
 		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios")) {
-	    switch (rnd(107)) {
+	    switch (rnd(110)) {
 
 	    case 1:
 	    case 2:
@@ -7566,12 +7625,42 @@ makelevel()
 		makemaz("efrnk"); return;
 		break;
 
+	    case 108:
+	    case 109:
+	    case 110:
+
+		switch (rnd(8)) {
+
+			case 1: {
+				switch (rnd(5)) {
+
+					case 1: makemaz("cowla-1"); return;
+					case 2: makemaz("cowla-2"); return;
+					case 3: makemaz("cowla-3"); return;
+					case 4: makemaz("cowla-4"); return;
+					case 5: makemaz("cowla-5"); return;
+
+				}
+				break;
+			}
+			case 2: makemaz("cowlb"); return;
+			case 3: makemaz("cowlc"); return;
+			case 4: makemaz("cowld"); return;
+			case 5: makemaz("cowle"); return;
+			case 6: makemaz("cowlf"); return;
+			case 7: makemaz("cowlg"); return;
+			case 8: makemaz("cowlh"); return;
+
+		}
+
+		break;
+
 		break;
 	
           }
 
 		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab")) {
-	    switch (rnd(107)) {
+	    switch (rnd(110)) {
 
 	    case 1:
 	    case 2:
@@ -9219,6 +9308,36 @@ makelevel()
 	    case 107:
 
 		makemaz("hfrnk"); return;
+		break;
+
+	    case 108:
+	    case 109:
+	    case 110:
+
+		switch (rnd(8)) {
+
+			case 1: {
+				switch (rnd(5)) {
+
+					case 1: makemaz("cowla-1"); return;
+					case 2: makemaz("cowla-2"); return;
+					case 3: makemaz("cowla-3"); return;
+					case 4: makemaz("cowla-4"); return;
+					case 5: makemaz("cowla-5"); return;
+
+				}
+				break;
+			}
+			case 2: makemaz("cowlb"); return;
+			case 3: makemaz("cowlc"); return;
+			case 4: makemaz("cowld"); return;
+			case 5: makemaz("cowle"); return;
+			case 6: makemaz("cowlf"); return;
+			case 7: makemaz("cowlg"); return;
+			case 8: makemaz("cowlh"); return;
+
+		}
+
 		break;
 
 		break;

@@ -44,6 +44,9 @@ BRANCH:	"Chaotic Quest" @ (2, 48) portal
 BRANCH:		"The Gnomish Mines" @ (2, 48)
 RNDLEVEL:		"medus" "none" @ (36, 4) 12
 
+RNDLEVEL:		"cowla" "A" @ (13, 0) 5
+LEVEL:		"cowlb" "A" @ (31, 0)
+
 #
 #   New mall is on levels 5 to 6, 75% chance.
 #   There shouldn't be any other special levels down to the Oracle.
@@ -90,6 +93,8 @@ BRANCH: 	"The Wyrm Caves" @ (2, 48)
 RNDLEVEL:		"nymph" "N" @ (2, 48) 5
 RNDLEVEL:	"bigrm" "B" @ (2, 48) 60
 RNDLEVEL:	"exmall" "Y" @ (2, 48) 9
+LEVEL:		"cowlc" "A" @ (2, 48)
+LEVEL:		"cowld" "A" @ (2, 48)
 LEVALIGN:		chaotic
 LEVELDESC:	town
 #   Storage room (treasure) on levels 19-26, 66% of the time
@@ -163,6 +168,12 @@ DESCRIPTION:    hellish
 ALIGNMENT:      noalign
 RNDLEVEL:          "valley" "V" @ (1, 0) 2
 RNDLEVEL:          "sanct" "none" @ (-1, 0) 2
+
+LEVEL:		"cowle" "N" @ (5, 0)
+LEVEL:		"cowlf" "N" @ (20, 0)
+LEVEL:		"cowlg" "N" @ (21, 0)
+LEVEL:		"cowlh" "N" @ (38, 0)
+
 # Tower before wiz, please
 # Dr. Frankenstein's Lab
 BRANCH:         "Frankenstein's Lab" @ (2, 47) up
@@ -200,6 +211,7 @@ RNDLEVEL:	"ghbgr" "I" @ (2, 47) 60
 
 LEVEL:	"rndmazeb" "K" @ (2, 47)
 RNDLEVEL:	"intplx" "L" @ (2, 47) 5
+LEVEL:		"cowld" "N" @ (2, 47)
 
 RNDLEVEL:		"levgx" "T" @ (2, 47) 95
 
