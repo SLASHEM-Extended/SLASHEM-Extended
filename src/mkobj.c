@@ -1708,7 +1708,7 @@ int artif;
 
 		if (is_poisonable(otmp) && !rn2(100))
 			otmp->opoisoned = 1;
-		if (artif && (artif != 2) && !rn2(20)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 40 : 20)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -1788,7 +1788,7 @@ int artif;
 		otmp->otyp == KELP_FROND || otmp->otyp == PEAR || otmp->otyp == ASIAN_PEAR || otmp->otyp == BANANA
 	|| otmp->otyp == ORANGE || otmp->otyp == MELON || otmp->otyp == SLIME_MOLD)*/
 		blessorcurse_on_creation(otmp, 10);
-		if (artif && (artif != 2) && !rn2(200)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 400 : 200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -1811,7 +1811,7 @@ int artif;
 			if (!rn2(6)) otmp->quan = rn2(5) ? 2L : rn2(4) ? rn1(5,5) : rn1(10,10);
 			else otmp->quan = 1L;
 
-			if (artif && (artif != 2) && !rn2(50)) {
+			if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 			    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 				if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 			}
@@ -1862,7 +1862,7 @@ int artif;
 			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
-		if (artif && (artif != 2) && !rn2(50)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2073,7 +2073,7 @@ int artif;
 		break;
 	    }
 
-		if (artif && (artif != 2) && !rn2(40)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 80 : 40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2096,7 +2096,7 @@ int artif;
 		} else {
 			blessorcurse_on_creation(otmp, 10);
 		}
-		if (artif && (artif != 2) && !rn2(60)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 120 : 60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2109,7 +2109,7 @@ int artif;
 		break;
 	case VENOM_CLASS:
 		blessorcurse_on_creation(otmp, 10);
-		if (artif && (artif != 2) && !rn2(20)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 40 : 20)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2135,7 +2135,7 @@ int artif;
 
 		if (Race_if(PM_LISTENER) && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
-		if (artif && (artif != 2) && !rn2(50)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2156,7 +2156,7 @@ int artif;
 #endif
 			blessorcurse_on_creation(otmp, 4);
 
-		if (artif && (artif != 2) && !rn2(160)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 320 : 160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2176,7 +2176,7 @@ int artif;
 		otmp->recharged = 0;
 		if(!rn2(3)) otmp->recharged = rnd(7);
 		blessorcurse_on_creation(otmp, 17);
-		if (artif && (artif != 2) && !rn2(100)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 200 : 100)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2227,7 +2227,7 @@ int artif;
 
 		if (Race_if(PM_LISTENER) && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
-		if (artif && (artif != 2) && !rn2(40)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 80 : 40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2299,7 +2299,7 @@ int artif;
 		if (otmp->otyp != WAN_WISHING && otmp->otyp != WAN_ACQUIREMENT && otmp->otyp != WAN_GENOCIDE && otmp->otyp != WAN_GAIN_LEVEL && otmp->otyp != WAN_INCREASE_MAX_HITPOINTS) otmp->recharged = 0; /* used to control recharging */
 		if (!rn2(10)) otmp->recharged = rnd(7); /* allow recharged wands to spawn --Amy */
 
-		if (artif && (artif != 2) && !rn2(160)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 320 : 160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2342,7 +2342,7 @@ int artif;
 			curse_on_creation(otmp);
 		}
 
-		if (artif && (artif != 2) && !rn2(50)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2365,7 +2365,7 @@ int artif;
 		}
 	      blessorcurse_on_creation(otmp, 7);
 
-		if (artif && (artif != 2) && !rn2(200)) {
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 400 : 200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
