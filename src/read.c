@@ -782,6 +782,9 @@ doread()
 	"This Shirt Is Not Booby-Trapped, Feel Free To Caress",
 	"Fresh Tinned Adventurer Meat",
 	"MumaKill",
+	"Sarcastic Comment Loading - Please Wait",
+	"On a scale of 1 to 10, what is your favorite color of the alphabet?",
+	"Huge hung hero hunks hastily hump horny heaving hot whores.",
 
 
 	    };

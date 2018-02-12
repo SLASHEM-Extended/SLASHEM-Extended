@@ -12097,6 +12097,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'G-cheater'. It reads: 'You should attempt to play better than a little child.'",
 	"Incoming message for Player 1. The message is from 'G-cheater'. It reads: 'Something cannot tune here.'",
 	"Incoming message for Player 1. The message is from 'G-cheater'. It reads: 'Give up immediately or I beat you up!'",
+	"To the one who holds the book. Skeith is looking for me. There is no time. Please, help me.", /* .hack */
+	"You hear a monster behind the boulder. Perhaps that's why you're about to starve to death in Sokoban.",
+	"You become super slow thanks to the wand destruction patch.",
+	"You die of long-term overexposure to cumulative poisons.",
 
 };
 

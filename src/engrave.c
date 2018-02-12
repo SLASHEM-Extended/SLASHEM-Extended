@@ -951,6 +951,7 @@ static const char *random_mesg[] = {
 	"Why are you here? You're supposed to go rescue the bitch that calls herself Princess Peach, and she's in another dungeon!",
 	"Go north from here if you want to find a room full of sexy girls.",
 	"Looking for the entrance to the brothel? One level down from here, northwest corner.",
+	"Bank of RA - Gold Deposit", /* Scarab of Ra */
 
 };
 
@@ -4305,6 +4306,11 @@ static const char *epitaphs[] = {
 	"it is stupid that nasty traps dont reveal themselves when triggered",
 	"It's a mumakill - a person killed by a mumak!",
 	"Why do I die when I get shot?",
+	"I didn't lose! I was semi-victorious!", /* Azumanga Daioh */
+	"IT'S A GUNDAM!", /* Gundam Wing */
+	"Paul Eulmeyer, 1907-2000. With atomic terror, he brought us peace.", /* Mission Hill */
+	"Cunnus! Perite! Canis! Nothus! Futue te ipsuni! Mentula!",
+
 
 };
 

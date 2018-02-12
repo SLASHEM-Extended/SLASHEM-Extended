@@ -250,7 +250,7 @@ static const char *shkpet[] = {
 
 	"War Mountain", "Oro", "Pure", "King", "Funo", "Cuntrina",
 	"Tato", "Santana", "Dickmouth", "Mul", "White Logel", "Lhasa",
-	"Melody", "Moonbeam", "Whoopee",
+	"Melody", "Moonbeam", "Whoopee", "Sanuuicula",
     0
 };
 
