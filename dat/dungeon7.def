@@ -182,6 +182,8 @@ RNDLEVEL:          "baalz" "B" @ (2, 47) 12
 RNDLEVEL:          "geryo" "R" @ (2, 47) 9
 RNDLEVEL:          "dispa" "S" @ (2, 47) 11
 RNDLEVEL:          "asmod" "A" @ (2, 47) 6
+RNDLEVEL:          "slexd" "M" @ (2, 47) 12
+RNDLEVEL:          "slexd" "M" @ (2, 47) 12
 RNDLEVEL:	"hllma" "H" @ (2, 47) 10
 BRANCH:         "Sheol" @ (2, 47) down
 
@@ -414,6 +416,8 @@ RNDLEVEL:          "baalz" "C" @ (1, 99) 12
 RNDLEVEL:          "geryo" "R" @ (1, 99) 9
 RNDLEVEL:          "dispa" "S" @ (1, 99) 11
 RNDLEVEL:          "asmod" "A" @ (1, 99) 6
+RNDLEVEL:          "slexd" "M" @ (1, 99) 12
+RNDLEVEL:          "slexd" "M" @ (1, 99) 12
 RNDLEVEL:          "heck" "Q" @ (1, 99) 96
 RNDLEVEL:          "heck" "Q" @ (1, 99) 96
 RNDLEVEL:          "heck" "Q" @ (1, 99) 96

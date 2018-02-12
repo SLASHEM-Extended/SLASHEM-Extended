@@ -2819,7 +2819,7 @@ makelevel()
 	    case 60:
 	    case 61:
 
-		switch (rnd(78)) {
+		switch (rnd(88)) {
 
 			case 1: makemaz("egehn-1"); return;
 			case 2: makemaz("egehn-2"); return;
@@ -2899,6 +2899,16 @@ makelevel()
 			case 76: makemaz("egehn-76"); return;
 			case 77: makemaz("egehn-77"); return;
 			case 78: makemaz("egehn-78"); return;
+			case 79: makemaz("egehn-79"); return;
+			case 80: makemaz("egehn-80"); return;
+			case 81: makemaz("egehn-81"); return;
+			case 82: makemaz("egehn-82"); return;
+			case 83: makemaz("egehn-83"); return;
+			case 84: makemaz("egehn-84"); return;
+			case 85: makemaz("egehn-85"); return;
+			case 86: makemaz("egehn-86"); return;
+			case 87: makemaz("egehn-87"); return;
+			case 88: makemaz("egehn-88"); return;
 
 		}
 		break;
@@ -4471,7 +4481,7 @@ makelevel()
 	    case 60:
 	    case 61:
 
-		switch (rnd(78)) {
+		switch (rnd(88)) {
 
 			case 1: makemaz("hgehn-1"); return;
 			case 2: makemaz("hgehn-2"); return;
@@ -4551,6 +4561,16 @@ makelevel()
 			case 76: makemaz("hgehn-76"); return;
 			case 77: makemaz("hgehn-77"); return;
 			case 78: makemaz("hgehn-78"); return;
+			case 79: makemaz("hgehn-79"); return;
+			case 80: makemaz("hgehn-80"); return;
+			case 81: makemaz("hgehn-81"); return;
+			case 82: makemaz("hgehn-82"); return;
+			case 83: makemaz("hgehn-83"); return;
+			case 84: makemaz("hgehn-84"); return;
+			case 85: makemaz("hgehn-85"); return;
+			case 86: makemaz("hgehn-86"); return;
+			case 87: makemaz("hgehn-87"); return;
+			case 88: makemaz("hgehn-88"); return;
 
 		}
 		break;
@@ -6538,7 +6558,7 @@ makelevel()
 	    case 60:
 	    case 61:
 
-		switch (rnd(78)) {
+		switch (rnd(88)) {
 
 			case 1: makemaz("egehn-1"); return;
 			case 2: makemaz("egehn-2"); return;
@@ -6618,6 +6638,16 @@ makelevel()
 			case 76: makemaz("egehn-76"); return;
 			case 77: makemaz("egehn-77"); return;
 			case 78: makemaz("egehn-78"); return;
+			case 79: makemaz("egehn-79"); return;
+			case 80: makemaz("egehn-80"); return;
+			case 81: makemaz("egehn-81"); return;
+			case 82: makemaz("egehn-82"); return;
+			case 83: makemaz("egehn-83"); return;
+			case 84: makemaz("egehn-84"); return;
+			case 85: makemaz("egehn-85"); return;
+			case 86: makemaz("egehn-86"); return;
+			case 87: makemaz("egehn-87"); return;
+			case 88: makemaz("egehn-88"); return;
 
 		}
 		break;
@@ -8183,7 +8213,7 @@ makelevel()
 	    case 60:
 	    case 61:
 
-		switch (rnd(78)) {
+		switch (rnd(88)) {
 
 			case 1: makemaz("hgehn-1"); return;
 			case 2: makemaz("hgehn-2"); return;
@@ -8263,6 +8293,16 @@ makelevel()
 			case 76: makemaz("hgehn-76"); return;
 			case 77: makemaz("hgehn-77"); return;
 			case 78: makemaz("hgehn-78"); return;
+			case 79: makemaz("hgehn-79"); return;
+			case 80: makemaz("hgehn-80"); return;
+			case 81: makemaz("hgehn-81"); return;
+			case 82: makemaz("hgehn-82"); return;
+			case 83: makemaz("hgehn-83"); return;
+			case 84: makemaz("hgehn-84"); return;
+			case 85: makemaz("hgehn-85"); return;
+			case 86: makemaz("hgehn-86"); return;
+			case 87: makemaz("hgehn-87"); return;
+			case 88: makemaz("hgehn-88"); return;
 
 		}
 		break;

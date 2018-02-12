@@ -12061,6 +12061,962 @@ TRAP:random, random
 TRAP:random, random
 
 
+MAZE: "egehn-79",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+InInInInInInInInInInInI UnInInInInInInInInInInInInInInInInInInInInInInInInIn
+nInInInInInInInInInInIn U nInInInInInInInInInInInInInInInInInInInInInInInInI
+InInInInInInInInInInInI U InInInInInInInInInInInInInInInInInInInInInInInInIn
+nInInInInInInInInInInIn U nInInInInInInInInInInInInInInInInInInInInInInInInI
+InInInInInInInInInInInI U InInInInInInInInInInInInInInInInInInInInInInInInIn
+nInInInInInInInInInInIn U              InInInInInInInInInInInInInInInInInInI
+InInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInIn
+nInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInI
+InInInInInInInInInInInInInInInInInInInInInInInInInInInInITInInInInInInInInIn
+nInInInInInInInInInInIMInInInInInInInInInInInInInInInInITTnInInInInInInInInI
+InInInInInInInInInInIMMMInInInInInInInInInInInInInInInITTTInInInInInInInInIn
+nInInInInInInInInInIMMMMMInInInInInInInI                  nInInInInInInInInI
+InInInInInInInInInIMMMMMMMInInInInInInInUUUUUUUUUUUUUUUUUUInInInInInInInInIn
+nInInInInInInInInIMMMMMMMMMInInInInInInI                  nInInInInInInInInI
+InInInInInInInInIMMMMMMMMMMMInInInInInIn nInInInInInInInInInInInInInInInInIn
+nInInInInInInInInIMMMMMMMMMInInInInInInI InInInInInInInInInInInInInInInInInI
+InInInInInInInInInIMMMMMMMInInInInInInIn nInInInInInInInInInInInInInInInInIn
+nInInInInInInInInInIMMMMMInInInInInInInI InInInInInInInInInInInInInInInInInI
+InInInInInInInInInInIMMMInInInInInInInIn n.nInInInInInInInInInInInInInInInIn
+.InInInInInInInInInInIMInInInInInInInInI InInInInInInInInInInInInInInInInInI
+ENDMAP
+
+STAIR:(00,19),up
+STAIR:(42,18),down
+
+NON_DIGGABLE:(00,00,75,19)
+
+MONSTER:''', random, random,hostile
+MONSTER:''', random, random,hostile
+MONSTER:''', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'J', random, random,hostile
+MONSTER:'J', random, random,hostile
+MONSTER:'J', random, random,hostile
+MONSTER:'S', random, random,hostile
+MONSTER:'8', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+
+MONSTER:'&', random, (47,16)
+OBJECT:'?',"root password detection",(47,16)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+MAZE: "egehn-80",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+CCCCCAAAAAAAAAAAAAAAAACCCCCCCAAAAAAAAAAAAllAAAAAAAACCCCCCCCCAAAAAAAAAAAAAAAA
+CCCCAAAAAAAAAAAAAAAAAAACCCCCAAAAAAAAAAAAAllAAAAAAAAACCCCCCCAAAAAAAAAAAAAAAAA
+CCCAAAAAAAAAAAAAAAAAAAAACCCAAAAAAAAAAAAAAllAAAAAAAAAACCCCCAAAAAAAAAAAAAAAAAA
+CCAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAllAAAAAAAAAAACCCAAAAAAAAAAAAAAAAAAA
+CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAllAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAllAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAllAACCAAAAAAAAAAAAAAAAAAAAAAAA-AAAA
+AAAAAAA          AAAAAAA           AAAAAAllACCCCAAAAAAAAAAAAAAA        A    
+AAAAAAA          AAAAAAA           AAAAAAllACCCCAAAAAAAAAAAAAAA        A    
+AAAAAAAAAAA  AAAAAAAAAAAAAAA  AAAAAAAAAAAAAAACCAAAAAAAAAAAAAAAAAAA  AAA-AAAA
+AAAAAAAAAAA  AAAAAAAAAAAAAAA  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+AAAAAAAAAAA  AAAAAAAAAAAAAAA  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+AAAAAAAAAAA  AAAAAAAAAAAAAAA  AAAAAAAAAAAAAAAAA    AAA    AAAAAAAA  AAAAAAAA
+AAAAA  AAAA  AAAAAAAAAAAAAAA  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+AAAAA  AAAA  AAAAAAAAAAAAAAA  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+AAAAA  AAAA  AAAACCCCCCCAAAA  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+.AAAA  AAAA  AAAACCCCCCCAAAA  AAAAA          AAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+  AAA  AAAA  AAAAAAAAAAAAAAA  AAAAA          AAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+  AAA  AAAA  AAAAAAAAAAAAAAA  AAAAAAAAA  AAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+  AAA  AAAA  AAAAAAAAAAAAAAA  AAAAAAAAA  AAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAA.
+ENDMAP
+
+STAIR:(00,16),up
+STAIR:(75,19),down
+
+NON_DIGGABLE:(00,00,75,19)
+
+DRAWBRIDGE:(71,07),north,closed
+DRAWBRIDGE:(71,08),south,closed
+
+MONSTER:'&', random, (68,16)
+OBJECT:'?',"root password detection",(68,16)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "paralysis", random
+TRAP: "paralysis", random
+TRAP: "paralysis", random
+
+MONSTER:'.', "drowzee", random,hostile
+MONSTER:'.', "drowzee", random,hostile
+MONSTER:'.', "drowzee", random,hostile
+MONSTER:'.', "drowzee", random,hostile
+MONSTER:'.', "drowzee", random,hostile
+MONSTER:'.', random, random,hostile
+MONSTER:'.', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'8', "teacher shadow", random,hostile
+MONSTER:'8', "teacher shadow", random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+# Firingnir's lair is inspired by Bowser's castle from Super Mario Bros --Amy
+MAZE: "egehn-81",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                           L     hhhhhhhhhhhhh                              
+   hhhhhhhh hhhhLL        LL    hhhhh       hh                              
+hhhhhhhhhhhhhhhhLLhhhh   LLL   hhhhhhLL     hh  hhhhhhhhhhhhhhhhhhhhhh     .
+hhhhhhhhhhhhhhhhLLhhhh  LLLL  hhhhhhhLLL    hh  hhhhhhhhhhhhhhhhhhhhhh     h
+hhhhhhhhhhhhhhhhLL  hhhhhhhhhhhhhhhhhLLLL   hhhhhhLL            hhhhhhhhhhhh
+hhhhhhhhhhhhhhhhLL  hhhhhhhhhhhhhhhhhLLLLL  hhhhhhLL            hhhhhhhhhhhh
+hhhhhhLLLLLLLLhhLLhhhh      hhLLLLLLLLLLLLL hh  LLLL            ----------- 
+.hhLLLLLLLLLLLhhLLhhhh      hhLLLLLLLLLLLLL hh  LLLL            LLLLLLLLLLL 
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+ENDMAP
+
+STAIR:(00,07),up
+STAIR:(75,02),down
+
+NON_DIGGABLE:(00,00,75,08)
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "plasma", random
+TRAP: "plasma", random
+TRAP: "plasma", random
+
+MONSTER:'&', random, (73,05)
+OBJECT:'?',"root password detection",(73,05)
+
+DRAWBRIDGE:(64,07),north,closed
+DRAWBRIDGE:(65,07),north,closed
+DRAWBRIDGE:(66,07),north,closed
+DRAWBRIDGE:(67,07),north,closed
+DRAWBRIDGE:(68,07),north,closed
+DRAWBRIDGE:(69,07),north,closed
+DRAWBRIDGE:(70,07),north,closed
+DRAWBRIDGE:(71,07),north,closed
+DRAWBRIDGE:(72,07),north,closed
+DRAWBRIDGE:(73,07),north,closed
+DRAWBRIDGE:(74,07),north,closed
+
+MAZE: "egehn-82",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. ... . . ... . ... . . ... . ... . . ... . ... . . ... . ... . . ... . ... 
+.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..  
+ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. 
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+.... .... .... .... .... .... ......... .... .... .... .... .... .... .... .
+. ... . ... . ... . ... . ... . ... H ... . ... . ... . ... . ... . ... . ..
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+... ... ... ... ... ... ... ... ...H.H. ... ... ... ... ... ... ... ... ... 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. ... . . ... . ... . . ... . ... . H ... . ... . . ... . ... . . ... . ... 
+.. .. .. .. .. .. .. .. .. .. .. ........ .. .. .. .. .. .. .. .. .. .. ..  
+ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. 
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+.... .... .... .... .... .... .... .... .... .... .... .... .... .... .... .
+. ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . ..
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
+ENDMAP
+
+STAIR:levregion(01,00,75,20),(35,08,37,12),up
+STAIR:(36,10),down
+
+NON_DIGGABLE:(00,00,75,20)
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "volt", random
+TRAP: "volt", random
+TRAP: "volt", random
+
+MONSTER:'&', random, (36,10)
+OBJECT:'?',"root password detection",(36,10)
+
+MONSTER:random, random, random,hostile
+MONSTER:random, random, random,hostile
+MONSTER:random, random, random,hostile
+MONSTER:random, random, random,hostile
+MONSTER:random, random, random,hostile
+
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'.', "lightning grue", random,hostile
+MONSTER:'.', "lightning grue", random,hostile
+MONSTER:'.', "lightning grue", random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+
+MAZE: "egehn-83",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                                                                      
+ RRRRR...OO...O . ..RRRRRRRROOOOOO ..OO.... ...............RR........ 
+ RRRRR...OO...O . ..RRRRRRRROOOOOO .OOOO. .  ..............RR........ 
+ RRRRR...OO...O . ..R   RRRROO..OO OO..OO ..  .............RR........ 
+ RRRRR...OO...O . ..  a  RRROO..OO OO..OO ...  ............RR........ 
+ RRRRR...OO...O . .  ...  RROOOOOO .OOOO. . ..  ...........RR........ 
+ ........OO...O .   .....  ROOOOOO ..OO.. .  ..  ..........RR........ 
+ H ......OO...O . ........ H           .. ..  ..    H                 
+ .   ....OO...O . ..........   ...H... .. ...  ..   . . . . . . . . . 
+ ...   ..OO...OH. ..........H.H... ...H.. . ..  ..  ................. 
+ .....   OO...O . ..........           .. .  ..  ..  ................ 
+ .......   ...O . ..........       ...... ..  ..  ..  ............... 
+ .. ......   .  H  RRRRR ...       ...... ...  ..  ..  .............. 
+ ..  .......   RRR RRRRR ... TTTTT          ..  ..  ..            + . 
+ ..  ......... .\. RRRRR ... T     LLLLLLLL  ..  ..  ............ .   
+ ..   ........ RRR RRRRR ... T     .........  ..  ..              ..  
+ .. M ........     RRRRR ... TTTTT OOO.......  ..  ..............  .. 
+ .. M  ................  ...     T OOOO.......  ..                  + 
+ .. MM ................  ... TTTTT OOOOOO......  .OOOOOOOOOOOOO...... 
+ .. MM  ...............  ... T     ...OOOO......                    H 
+ .. MMM ...............  ... T         .OOOO....RRRRRRRRRRR.......... 
+ENDMAP
+
+RANDOM_PLACES:(01,20),(35,19),(68,01),(18,05)
+
+STAIR:place[0],up
+STAIR:(17,14),down
+
+NON_DIGGABLE:(00,00,69,20)
+
+DOOR:locked,(66,13)
+DOOR:locked,(68,17)
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+TRAP: "acidpool", random
+TRAP: "acidpool", random
+TRAP: "acidpool", random
+TRAP: "acidpool", random
+TRAP: "acidpool", random
+TRAP: "venom sprinkler", random
+TRAP: "venom sprinkler", random
+TRAP: "venom sprinkler", random
+TRAP: "venom sprinkler", random
+TRAP: "venom sprinkler", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MONSTER:'&', random, (16,14)
+OBJECT:'?',"root password detection",(16,14)
+
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'R', random, random,hostile
+MONSTER:'R', random, random,hostile
+MONSTER:'R', random, random,hostile
+MONSTER:'R', random, random,hostile
+MONSTER:'R', random, random,hostile
+MONSTER:'.', random, random,hostile
+MONSTER:'.', random, random,hostile
+MONSTER:'.', random, random,hostile
+MONSTER:'.', random, random,hostile
+MONSTER:'.', random, random,hostile
+MONSTER:'d', random, random,hostile
+MONSTER:'d', random, random,hostile
+MONSTER:'v', random, random,hostile
+MONSTER:'v', random, random,hostile
+MONSTER:'v', random, random,hostile
+
+MAZE: "egehn-84",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+ogggggggggggggggggggggggggggggg              ggggggggggggggggggggggggggggggo
+ggggggggggggggggggggggggggggggg              ggggggggggggggggggggggggggggggg
+ggggggggggggggggggggggggggggggg              ggggggggggggggggggggg    gggggg
+ggggggggggggggggggggggggggggggg              gggggggggggggggggggg  g. gggggg
+ggggggggggggggggggggggggggggggg              ggggggggggggggggggg  gg  gggggg
+gggggggg              ggggggggggggggggggggggggggggggggggggggggg  gg  ggggggg
+gggggggg gggggggggggg gggggggggggggggggggggggggggggggggggggggg  gg  gggggggg
+gggggggg gggggggggggg ggggggggggggggggggggggggggggggggggggggg  gg  ggggggggg
+gggggggg gggggggggggg gggggggggggggggggggggggggggggggggggggg  gg  gggggggggg
+gggggggg gggggggggggg ggggggggggggggggggggggggggggggggggggggHgg  ggggggggggg
+gggggggg .gggggggggggHgggggggggggggggooggggggggggggggggggggg    gggggggggggg
+gggggggg gggggggggggg gggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggg gggggggggggg gggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggg gggggggggggg gggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggg              gggggggggggggggggggggggggggggggggggggggggggggggggggggg
+ggggggggggggggggggggggggggggggg              ggggggggg                gggggg
+ggggggggggggggggggggggggggggggg              ggggggggg ggggggggggggggggggggg
+ggggggggggggggggggggggggggggggg              ggggggggg                gggggg
+ggggggggggggggggggggggggggggggg              ggggggggggggggggggggggggggggggg
+ogggggggggggggggggggggggggggggg              ggggggggggggggggggggggggggggggo
+ENDMAP
+
+STAIR:(68,03),up
+STAIR:(09,10),down
+
+NON_DIGGABLE:(00,00,75,19)
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "toxic venom", random
+TRAP: "toxic venom", random
+TRAP: "toxic venom", random
+TRAP: "toxic venom", random
+TRAP: "toxic venom", random
+TRAP: "cyanide", random
+TRAP: "cyanide", random
+TRAP: "cyanide", random
+TRAP: "cyanide", random
+TRAP: "cyanide", random
+
+MONSTER:'&', random, (15,10)
+OBJECT:'?',"root password detection",(15,10)
+
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'E', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'&', random, random,hostile
+MONSTER:'.', "poison grue", random,hostile
+MONSTER:'.', "poison grue", random,hostile
+MONSTER:'.', "poison grue", random,hostile
+MONSTER:'.', "poison grue", random,hostile
+MONSTER:'.', "poison grue", random,hostile
+MONSTER:'f', random, random,hostile
+MONSTER:'g', random, random,hostile
+MONSTER:'i', random, random,hostile
+MONSTER:'v', random, random,hostile
+MONSTER:'F', random, random,hostile
+
+MAZE: "egehn-85",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+     ----------                  ----------                  ----------     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     +........+                  +........+                  +........+     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     ----------                  ----------                  ----------     
+                                  ........                                  
+                                  .  p.  .                                  
+                                  ........                                  
+     ----------                  ----------                  ----------     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     +........+                  +........+                  +........+     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     ----------                  ----------                  ----------     
+ENDMAP
+
+STAIR:levregion(01,00,75,20),(33,00,42,20),up
+STAIR:(38,10),down
+
+NON_DIGGABLE:(00,00,75,20)
+
+DOOR:closed,(05,04)
+DOOR:closed,(14,04)
+DOOR:closed,(33,04)
+DOOR:closed,(42,04)
+DOOR:closed,(61,04)
+DOOR:closed,(70,04)
+DOOR:closed,(05,16)
+DOOR:closed,(14,16)
+DOOR:closed,(33,16)
+DOOR:closed,(42,16)
+DOOR:closed,(61,16)
+DOOR:closed,(70,16)
+
+MAZEWALK:(05,04),west
+MAZEWALK:(14,04),east
+MAZEWALK:(33,04),west
+MAZEWALK:(42,04),east
+MAZEWALK:(61,04),west
+MAZEWALK:(70,04),east
+MAZEWALK:(05,16),west
+MAZEWALK:(14,16),east
+MAZEWALK:(33,16),west
+MAZEWALK:(42,16),east
+MAZEWALK:(61,16),west
+MAZEWALK:(70,16),east
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MONSTER:'&', random, (37,10)
+OBJECT:'?',"root password detection",(37,10)
+
+MONSTER:'.', random, random, hostile
+MONSTER:'.', random, random, hostile
+MONSTER:'.', random, random, hostile
+MONSTER:'.', random, random, hostile
+MONSTER:'.', random, random, hostile
+MONSTER:'F', random, random, hostile
+MONSTER:'F', random, random, hostile
+MONSTER:'F', random, random, hostile
+MONSTER:'F', random, random, hostile
+MONSTER:'F', random, random, hostile
+
+REGION:(06,01,13,07),lit,"tenshall",filled,true
+REGION:(34,01,41,07),lit,"tenshall",filled,true
+REGION:(62,01,69,07),lit,"tenshall",filled,true
+REGION:(06,13,13,19),lit,"tenshall",filled,true
+REGION:(34,13,41,19),lit,"tenshall",filled,true
+REGION:(62,01,69,19),lit,"tenshall",filled,true
+
+MAZE: "egehn-86",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+--------------------     ----------                              -----------
+|..................|    .B........B..                            |.........|
+|..................B.....|........| .. |-------                  |.........|
+|..................|   . |........|  ..|......|                  |.........|
+|..................|   . |........|   .B......|       -------    |.........|
+--------------------   . |........|    |......|       |.....|    |.........|
+                       . |........|    |......|       |.....|    |.........|
+                 ....... ----------    |......|      .B.....|    |.........|
+                ..     .               |......|     ..|.....|    |.........|
+               ..      ..              |......|    .. |---.--    -----B----|
+   ------------B-----   ..             ----B---   ..    --B--        ..     
+   |................|    ..       ---------........     |...|       ..      
+   |................|     ..      |.......B.            |...|      ..       
+   |................|      ..     |.......|          ----...----  ..        
+   |................|       ..    |.......|          |.........| ..         
+   ------------------        ..   |.......|          |.........B..          
+             -----------------B-  |.......|          |.........|            
+             |.................|  |.......|          ----...----            
+             |.................|  |.......|             |...|               
+             |.................|  ---------             |...|               
+             |-----------------|                        -----               
+ENDMAP
+
+STAIR:(26,01),up
+STAIR:(74,01),down
+
+NON_DIGGABLE:(00,00,75,20)
+
+REGION:(01,01,18,04),lit,"ordinary",filled,true
+REGION:(04,11,19,14),lit,"ordinary",filled,true
+REGION:(14,17,30,19),lit,"ordinary",filled,true
+REGION:(26,01,33,06),lit,"ordinary",filled,true
+REGION:(40,04,45,10),lit,"ordinary",filled,true
+REGION:(55,06,59,09),lit,"ordinary",filled,true
+REGION:(66,01,74,09),lit,"ordinary",filled,true
+REGION:(35,13,41,18),lit,"riverroom",filled,true
+REGION:(58,15,58,15),lit,"giantcourt",filled,true
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+MONSTER:'&', random, (58,15)
+OBJECT:'?',"root password detection",(58,15)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MONSTER:'R', random, random, hostile
+MONSTER:'R', random, random, hostile
+MONSTER:'R', random, random, hostile
+MONSTER:'R', random, random, hostile
+MONSTER:'R', random, random, hostile
+MONSTER:'R', random, random, hostile
+MONSTER:'R', random, random, hostile
+MONSTER:'R', random, random, hostile
+MONSTER:'R', random, random, hostile
+MONSTER:'R', random, random, hostile
+MONSTER:'e', random, random, hostile
+MONSTER:'e', random, random, hostile
+MONSTER:'j', random, random, hostile
+MONSTER:'j', random, random, hostile
+MONSTER:'B', random, random, hostile
+
+MAZE: "egehn-87",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+-----------------------------------------------------------------|M        .|
+|  .............................  ...............................|M        .|
+|  ...                         .  . ...                         .|M         |
+|  ... .... .... .... .... ... .  . ... .... .... .... .... ... .|M         |
+|  ... .... .... .... .... ... .  . ... .... .... .... .... ... .|M         |
+|  ... .... .... .... .... ... .... ... .... .... .... .... ... .|M         |
+|  .   .    .    .    .    .            .    .    .    .    .   .|M         |
+|  .............................    .............................|M         |
+|                              .    .                            |M         |
+|.H..... ..... ..... ..... ... .  .H..... ..... ..... ..... ... .Bh.        |
+|. ..... ..... ..... ..... ... .  . ..... ..... ..... ..... ... .|M         |
+|. ..... ..... ..... ..... ... .  . ..... ..... ..... ..... ... .|M         |
+|. ..... ..... ..... ..... ... .  . ..... ..... ..... ..... ... .|M         |
+|. ..... ..... ..... ..... ... .  . ..... ..... ..... ..... ... .|M    MMMMM|
+|  .     .     .     .     .   .    .     .     .     .     .   .|M    M----|
+|  .............................    .............................|MMMMMM|...|
+|      r                                                         --------...|
+|      .....................................................................|
+----------------------------------------------------------------------------|
+ENDMAP
+
+STAIR:(75,01),up
+STAIR:(74,16),down
+
+NON_DIGGABLE:(00,00,76,18)
+
+MONSTER:'V', random, (07,16), hostile
+
+MAZEWALK:(75,00),west
+MAZEWALK:(75,01),south
+MAZEWALK:(67,09),east
+
+MONSTER:'&', random, (75,16)
+OBJECT:'?',"root password detection",(75,16)
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MONSTER:'D', random, random, hostile
+MONSTER:'D', random, random, hostile
+MONSTER:'D', random, random, hostile
+MONSTER:'D', random, random, hostile
+MONSTER:'D', random, random, hostile
+MONSTER:'D', random, random, hostile
+MONSTER:'D', random, random, hostile
+MONSTER:'D', random, random, hostile
+MONSTER:'D', random, random, hostile
+MONSTER:'D', random, random, hostile
+MONSTER:'a', random, random, hostile
+MONSTER:'a', random, random, hostile
+MONSTER:'i', random, random, hostile
+MONSTER:'i', random, random, hostile
+MONSTER:'k', random, random, hostile
+MONSTER:'k', random, random, hostile
+MONSTER:'k', random, random, hostile
+MONSTER:'k', random, random, hostile
+MONSTER:'v', random, random, hostile
+MONSTER:'v', random, random, hostile
+MONSTER:'x', random, random, hostile
+MONSTER:'J', random, random, hostile
+MONSTER:'R', random, random, hostile
+MONSTER:'R', random, random, hostile
+MONSTER:'R', random, random, hostile
+MONSTER:'V', random, random, hostile
+MONSTER:'&', random, random, hostile
+MONSTER:'.', random, random, hostile
+
+LEVEL: "egehn-88"
+
+ROOM: "randomroom", random, random, random, random
+OBJECT: random,random,random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+  
+ROOM: "randomroom", random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: random, random, random, hostile
+
+ROOM: "randomroom", random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+MONSTER:'&', random, random
+OBJECT:'?',"root password detection",random
+
+ROOM: "randomroom", random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: random, random, random, hostile
+
+ROOM: "randomroom", random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+
+ROOM: "randomroom", random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+
+RANDOM_CORRIDORS
+
+
 
 
 MAZE: "hgehn-1", ' '
@@ -27184,5 +28140,1301 @@ OBJECT:'%',"corpse",random
 OBJECT[10%]:'/',"trap creation",random
 OBJECT[10%]:'/',"bad effect",random
 OBJECT[10%]:'/',"clone monster",random
+
+
+MAZE: "hgehn-79",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+InInInInInInInInInInInI UnInInInInInInInInInInInInInInInInInInInInInInInInIn
+nInInInInInInInInInInIn U nInInInInInInInInInInInInInInInInInInInInInInInInI
+InInInInInInInInInInInI U InInInInInInInInInInInInInInInInInInInInInInInInIn
+nInInInInInInInInInInIn U nInInInInInInInInInInInInInInInInInInInInInInInInI
+InInInInInInInInInInInI U InInInInInInInInInInInInInInInInInInInInInInInInIn
+nInInInInInInInInInInIn U              InInInInInInInInInInInInInInInInInInI
+InInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInIn
+nInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInInI
+InInInInInInInInInInInInInInInInInInInInInInInInInInInInITInInInInInInInInIn
+nInInInInInInInInInInIMInInInInInInInInInInInInInInInInITTnInInInInInInInInI
+InInInInInInInInInInIMMMInInInInInInInInInInInInInInInITTTInInInInInInInInIn
+nInInInInInInInInInIMMMMMInInInInInInInI                  nInInInInInInInInI
+InInInInInInInInInIMMMMMMMInInInInInInInUUUUUUUUUUUUUUUUUUInInInInInInInInIn
+nInInInInInInInInIMMMMMMMMMInInInInInInI                  nInInInInInInInInI
+InInInInInInInInIMMMMMMMMMMMInInInInInIn nInInInInInInInInInInInInInInInInIn
+nInInInInInInInInIMMMMMMMMMInInInInInInI InInInInInInInInInInInInInInInInInI
+InInInInInInInInInIMMMMMMMInInInInInInIn nInInInInInInInInInInInInInInInInIn
+nInInInInInInInInInIMMMMMInInInInInInInI InInInInInInInInInInInInInInInInInI
+InInInInInInInInInInIMMMInInInInInInInIn n.nInInInInInInInInInInInInInInInIn
+.InInInInInInInInInInIMInInInInInInInInI InInInInInInInInInInInInInInInInInI
+ENDMAP
+
+STAIR:(00,19),up
+STAIR:(42,18),down
+
+NON_DIGGABLE:(00,00,75,19)
+
+MONSTER:''', "crystal ice golem", random,hostile
+MONSTER:''', "crystal ice golem", random,hostile
+MONSTER:''', "crystal ice golem", random,hostile
+MONSTER:'E', "ice elemental", random,hostile
+MONSTER:'E', "ice elemental", random,hostile
+MONSTER:'E', "ice elemental", random,hostile
+MONSTER:'E', "ice elemental", random,hostile
+MONSTER:'E', "ice elemental", random,hostile
+MONSTER:'E', "ice elemental", random,hostile
+MONSTER:'E', "ice elemental", random,hostile
+MONSTER:'E', "ice elemental", random,hostile
+MONSTER:'E', "ice elemental", random,hostile
+MONSTER:'E', "ice elemental", random,hostile
+MONSTER:'E', "ice spirit", random,hostile
+MONSTER:'E', "ice spirit", random,hostile
+MONSTER:'E', "ice spirit", random,hostile
+MONSTER:'E', "giant entity", random,hostile
+MONSTER:'J', "iceblock monster", random,hostile
+MONSTER:'J', "iceblock monster", random,hostile
+MONSTER:'J', "iceblock monster", random,hostile
+MONSTER:'S', "actual snowman", random,hostile
+MONSTER:'8', "freeze", random,hostile
+MONSTER:'&', "snow witch", random,hostile
+MONSTER:'&', "ice devil", random,hostile
+MONSTER:'&', "ice devil", random,hostile
+MONSTER:'&', "ice devil", random,hostile
+MONSTER:'&', "ice devil", random,hostile
+MONSTER:'&', "ice devil", random,hostile
+
+MONSTER:'&', random, (47,16)
+OBJECT:'?',"root password detection",(47,16)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+TRAP: "ice", random
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hgehn-80",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+CCCCCAAAAAAAAAAAAAAAAACCCCCCCAAAAAAAAAAAAllAAAAAAAACCCCCCCCCAAAAAAAAAAAAAAAA
+CCCCAAAAAAAAAAAAAAAAAAACCCCCAAAAAAAAAAAAAllAAAAAAAAACCCCCCCAAAAAAAAAAAAAAAAA
+CCCAAAAAAAAAAAAAAAAAAAAACCCAAAAAAAAAAAAAAllAAAAAAAAAACCCCCAAAAAAAAAAAAAAAAAA
+CCAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAllAAAAAAAAAAACCCAAAAAAAAAAAAAAAAAAA
+CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAllAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAllAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAllAACCAAAAAAAAAAAAAAAAAAAAAAAA-AAAA
+AAAAAAA          AAAAAAA           AAAAAAllACCCCAAAAAAAAAAAAAAA        A    
+AAAAAAA          AAAAAAA           AAAAAAllACCCCAAAAAAAAAAAAAAA        A    
+AAAAAAAAAAA  AAAAAAAAAAAAAAA  AAAAAAAAAAAAAAACCAAAAAAAAAAAAAAAAAAA  AAA-AAAA
+AAAAAAAAAAA  AAAAAAAAAAAAAAA  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+AAAAAAAAAAA  AAAAAAAAAAAAAAA  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+AAAAAAAAAAA  AAAAAAAAAAAAAAA  AAAAAAAAAAAAAAAAA    AAA    AAAAAAAA  AAAAAAAA
+AAAAA  AAAA  AAAAAAAAAAAAAAA  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+AAAAA  AAAA  AAAAAAAAAAAAAAA  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+AAAAA  AAAA  AAAACCCCCCCAAAA  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+.AAAA  AAAA  AAAACCCCCCCAAAA  AAAAA          AAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+  AAA  AAAA  AAAAAAAAAAAAAAA  AAAAA          AAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+  AAA  AAAA  AAAAAAAAAAAAAAA  AAAAAAAAA  AAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAAA
+  AAA  AAAA  AAAAAAAAAAAAAAA  AAAAAAAAA  AAAAAAAAAAAAAAAAAAAAAAAAA  AAAAAAA.
+ENDMAP
+
+STAIR:(00,16),up
+STAIR:(75,19),down
+
+NON_DIGGABLE:(00,00,75,19)
+
+DRAWBRIDGE:(71,07),north,closed
+DRAWBRIDGE:(71,08),south,closed
+
+MONSTER:'&', random, (68,16)
+OBJECT:'?',"root password detection",(68,16)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "sleep gas", random
+TRAP: "paralysis", random
+TRAP: "paralysis", random
+TRAP: "paralysis", random
+
+MONSTER:'.', "drowzee", random,hostile
+MONSTER:'.', "drowzee", random,hostile
+MONSTER:'.', "drowzee", random,hostile
+MONSTER:'.', "drowzee", random,hostile
+MONSTER:'.', "drowzee", random,hostile
+MONSTER:'.', "hypno", random,hostile
+MONSTER:'.', "hypno", random,hostile
+MONSTER:'E', "dream quasielemental", random,hostile
+MONSTER:'E', "dream quasielemental", random,hostile
+MONSTER:'E', "dream quasielemental", random,hostile
+MONSTER:'E', "dream quasielemental", random,hostile
+MONSTER:'E', "dream quasielemental", random,hostile
+MONSTER:'E', "dream quasielemental", random,hostile
+MONSTER:'E', "dream quasielemental", random,hostile
+MONSTER:'E', "space elf queen", random,hostile
+MONSTER:'8', "teacher shadow", random,hostile
+MONSTER:'8', "teacher shadow", random,hostile
+MONSTER:'&', "chasme", random,hostile
+MONSTER:'&', "chasme", random,hostile
+MONSTER:'&', "chasme", random,hostile
+MONSTER:'&', "chasme", random,hostile
+MONSTER:'&', "chasme", random,hostile
+MONSTER:'&', "chasme", random,hostile
+MONSTER:'&', "chasme", random,hostile
+MONSTER:'&', "chasme", random,hostile
+MONSTER:'&', "chasme", random,hostile
+MONSTER:'&', "chasme", random,hostile
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+# Firingnir's lair is inspired by Bowser's castle from Super Mario Bros --Amy
+MAZE: "hgehn-81",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                           L     hhhhhhhhhhhhh                              
+   hhhhhhhh hhhhLL        LL    hhhhh       hh                              
+hhhhhhhhhhhhhhhhLLhhhh   LLL   hhhhhhLL     hh  hhhhhhhhhhhhhhhhhhhhhh     .
+hhhhhhhhhhhhhhhhLLhhhh  LLLL  hhhhhhhLLL    hh  hhhhhhhhhhhhhhhhhhhhhh     h
+hhhhhhhhhhhhhhhhLL  hhhhhhhhhhhhhhhhhLLLL   hhhhhhLL            hhhhhhhhhhhh
+hhhhhhhhhhhhhhhhLL  hhhhhhhhhhhhhhhhhLLLLL  hhhhhhLL            hhhhhhhhhhhh
+hhhhhhLLLLLLLLhhLLhhhh      hhLLLLLLLLLLLLL hh  LLLL            ----------- 
+.hhLLLLLLLLLLLhhLLhhhh      hhLLLLLLLLLLLLL hh  LLLL            LLLLLLLLLLL 
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+ENDMAP
+
+STAIR:(00,07),up
+STAIR:(75,02),down
+
+NON_DIGGABLE:(00,00,75,08)
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "fire", random
+TRAP: "plasma", random
+TRAP: "plasma", random
+TRAP: "plasma", random
+
+MONSTER:'&', random, (73,05)
+OBJECT:'?',"root password detection",(73,05)
+
+DRAWBRIDGE:(64,07),north,closed
+DRAWBRIDGE:(65,07),north,closed
+DRAWBRIDGE:(66,07),north,closed
+DRAWBRIDGE:(67,07),north,closed
+DRAWBRIDGE:(68,07),north,closed
+DRAWBRIDGE:(69,07),north,closed
+DRAWBRIDGE:(70,07),north,closed
+DRAWBRIDGE:(71,07),north,closed
+DRAWBRIDGE:(72,07),north,closed
+DRAWBRIDGE:(73,07),north,closed
+DRAWBRIDGE:(74,07),north,closed
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hgehn-82",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. ... . . ... . ... . . ... . ... . . ... . ... . . ... . ... . . ... . ... 
+.. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. ..  
+ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. 
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+.... .... .... .... .... .... ......... .... .... .... .... .... .... .... .
+. ... . ... . ... . ... . ... . ... H ... . ... . ... . ... . ... . ... . ..
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+... ... ... ... ... ... ... ... ...H.H. ... ... ... ... ... ... ... ... ... 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. ... . . ... . ... . . ... . ... . H ... . ... . . ... . ... . . ... . ... 
+.. .. .. .. .. .. .. .. .. .. .. ........ .. .. .. .. .. .. .. .. .. .. ..  
+ .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. .. 
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+.... .... .... .... .... .... .... .... .... .... .... .... .... .... .... .
+. ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . ..
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... 
+ENDMAP
+
+STAIR:levregion(01,00,75,20),(35,08,37,12),up
+STAIR:(36,10),down
+
+NON_DIGGABLE:(00,00,75,20)
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "shock", random
+TRAP: "volt", random
+TRAP: "volt", random
+TRAP: "volt", random
+
+MONSTER:'&', random, (36,10)
+OBJECT:'?',"root password detection",(36,10)
+
+MONSTER:random, random, random,hostile
+MONSTER:random, random, random,hostile
+MONSTER:random, random, random,hostile
+MONSTER:random, random, random,hostile
+MONSTER:random, random, random,hostile
+
+MONSTER:'E', "lightning paraelemental", random,hostile
+MONSTER:'E', "lightning paraelemental", random,hostile
+MONSTER:'E', "lightning paraelemental", random,hostile
+MONSTER:'E', "lightning paraelemental", random,hostile
+MONSTER:'E', "lightning paraelemental", random,hostile
+MONSTER:'E', "time tempest", random,hostile
+MONSTER:'E', "filled energar", random,hostile
+MONSTER:'E', "filled energar", random,hostile
+MONSTER:'E', "static charge", random,hostile
+MONSTER:'E', "static charge", random,hostile
+MONSTER:'E', "voltaic storm", random,hostile
+MONSTER:'.', "lightning grue", random,hostile
+MONSTER:'.', "lightning grue", random,hostile
+MONSTER:'.', "lightning grue", random,hostile
+MONSTER:'&', "air demon", random,hostile
+MONSTER:'&', "air demon", random,hostile
+MONSTER:'&', "air demon", random,hostile
+MONSTER:'&', "air demon", random,hostile
+MONSTER:'&', "air demon", random,hostile
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hgehn-83",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+                                                                      
+ RRRRR...OO...O . ..RRRRRRRROOOOOO ..OO.... ...............RR........ 
+ RRRRR...OO...O . ..RRRRRRRROOOOOO .OOOO. .  ..............RR........ 
+ RRRRR...OO...O . ..R   RRRROO..OO OO..OO ..  .............RR........ 
+ RRRRR...OO...O . ..  a  RRROO..OO OO..OO ...  ............RR........ 
+ RRRRR...OO...O . .  ...  RROOOOOO .OOOO. . ..  ...........RR........ 
+ ........OO...O .   .....  ROOOOOO ..OO.. .  ..  ..........RR........ 
+ H ......OO...O . ........ H           .. ..  ..    H                 
+ .   ....OO...O . ..........   ...H... .. ...  ..   . . . . . . . . . 
+ ...   ..OO...OH. ..........H.H... ...H.. . ..  ..  ................. 
+ .....   OO...O . ..........           .. .  ..  ..  ................ 
+ .......   ...O . ..........       ...... ..  ..  ..  ............... 
+ .. ......   .  H  RRRRR ...       ...... ...  ..  ..  .............. 
+ ..  .......   RRR RRRRR ... TTTTT          ..  ..  ..            + . 
+ ..  ......... .\. RRRRR ... T     LLLLLLLL  ..  ..  ............ .   
+ ..   ........ RRR RRRRR ... T     .........  ..  ..              ..  
+ .. M ........     RRRRR ... TTTTT OOO.......  ..  ..............  .. 
+ .. M  ................  ...     T OOOO.......  ..                  + 
+ .. MM ................  ... TTTTT OOOOOO......  .OOOOOOOOOOOOO...... 
+ .. MM  ...............  ... T     ...OOOO......                    H 
+ .. MMM ...............  ... T         .OOOO....RRRRRRRRRRR.......... 
+ENDMAP
+
+RANDOM_PLACES:(01,20),(35,19),(68,01),(18,05)
+
+STAIR:place[0],up
+STAIR:(17,14),down
+
+NON_DIGGABLE:(00,00,69,20)
+
+DOOR:locked,(66,13)
+DOOR:locked,(68,17)
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+TRAP: "acidpool", random
+TRAP: "acidpool", random
+TRAP: "acidpool", random
+TRAP: "acidpool", random
+TRAP: "acidpool", random
+TRAP: "venom sprinkler", random
+TRAP: "venom sprinkler", random
+TRAP: "venom sprinkler", random
+TRAP: "venom sprinkler", random
+TRAP: "venom sprinkler", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MONSTER:'&', random, (16,14)
+OBJECT:'?',"root password detection",(16,14)
+
+MONSTER:'E', "acid paraelemental", random,hostile
+MONSTER:'E', "acid paraelemental", random,hostile
+MONSTER:'E', "acid paraelemental", random,hostile
+MONSTER:'E', "acid paraelemental", random,hostile
+MONSTER:'E', "acid paraelemental", random,hostile
+MONSTER:'R', "acid monster", random,hostile
+MONSTER:'R', "acid monster", random,hostile
+MONSTER:'R', "acid monster", random,hostile
+MONSTER:'R', "acid monster", random,hostile
+MONSTER:'R', "acid monster", random,hostile
+MONSTER:'.', "acid grue", random,hostile
+MONSTER:'.', "acid grue", random,hostile
+MONSTER:'.', "acid grue", random,hostile
+MONSTER:'.', "acid grue", random,hostile
+MONSTER:'.', "acid grue", random,hostile
+MONSTER:'d', "acidwater hound", random,hostile
+MONSTER:'d', "acidwater hound", random,hostile
+MONSTER:'v', "citric acid cloud", random,hostile
+MONSTER:'v', "citric acid cloud", random,hostile
+MONSTER:'v', "citric acid cloud", random,hostile
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hgehn-84",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+ogggggggggggggggggggggggggggggg              ggggggggggggggggggggggggggggggo
+ggggggggggggggggggggggggggggggg              ggggggggggggggggggggggggggggggg
+ggggggggggggggggggggggggggggggg              ggggggggggggggggggggg    gggggg
+ggggggggggggggggggggggggggggggg              gggggggggggggggggggg  g. gggggg
+ggggggggggggggggggggggggggggggg              ggggggggggggggggggg  gg  gggggg
+gggggggg              ggggggggggggggggggggggggggggggggggggggggg  gg  ggggggg
+gggggggg gggggggggggg gggggggggggggggggggggggggggggggggggggggg  gg  gggggggg
+gggggggg gggggggggggg ggggggggggggggggggggggggggggggggggggggg  gg  ggggggggg
+gggggggg gggggggggggg gggggggggggggggggggggggggggggggggggggg  gg  gggggggggg
+gggggggg gggggggggggg ggggggggggggggggggggggggggggggggggggggHgg  ggggggggggg
+gggggggg .gggggggggggHgggggggggggggggooggggggggggggggggggggg    gggggggggggg
+gggggggg gggggggggggg gggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggg gggggggggggg gggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggg gggggggggggg gggggggggggggggggggggggggggggggggggggggggggggggggggggg
+gggggggg              gggggggggggggggggggggggggggggggggggggggggggggggggggggg
+ggggggggggggggggggggggggggggggg              ggggggggg                gggggg
+ggggggggggggggggggggggggggggggg              ggggggggg ggggggggggggggggggggg
+ggggggggggggggggggggggggggggggg              ggggggggg                gggggg
+ggggggggggggggggggggggggggggggg              ggggggggggggggggggggggggggggggg
+ogggggggggggggggggggggggggggggg              ggggggggggggggggggggggggggggggo
+ENDMAP
+
+STAIR:(68,03),up
+STAIR:(09,10),down
+
+NON_DIGGABLE:(00,00,75,19)
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "poison gas", random
+TRAP: "toxic venom", random
+TRAP: "toxic venom", random
+TRAP: "toxic venom", random
+TRAP: "toxic venom", random
+TRAP: "toxic venom", random
+TRAP: "cyanide", random
+TRAP: "cyanide", random
+TRAP: "cyanide", random
+TRAP: "cyanide", random
+TRAP: "cyanide", random
+
+MONSTER:'&', random, (15,10)
+OBJECT:'?',"root password detection",(15,10)
+
+MONSTER:'E', "poison paraelemental", random,hostile
+MONSTER:'E', "poison paraelemental", random,hostile
+MONSTER:'E', "poison paraelemental", random,hostile
+MONSTER:'E', "poison paraelemental", random,hostile
+MONSTER:'E', "poison paraelemental", random,hostile
+MONSTER:'&', "hellrou", random,hostile
+MONSTER:'&', "hellrou", random,hostile
+MONSTER:'&', "hellrou", random,hostile
+MONSTER:'&', "hellrou", random,hostile
+MONSTER:'&', "hellrou", random,hostile
+MONSTER:'.', "poison grue", random,hostile
+MONSTER:'.', "poison grue", random,hostile
+MONSTER:'.', "poison grue", random,hostile
+MONSTER:'.', "poison grue", random,hostile
+MONSTER:'.', "poison grue", random,hostile
+MONSTER:'f', "toxic cat", random,hostile
+MONSTER:'g', "venom claw", random,hostile
+MONSTER:'i', "radscorpion", random,hostile
+MONSTER:'v', "venom vortex", random,hostile
+MONSTER:'F', "magenta lichen", random,hostile
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hgehn-85",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+     ----------                  ----------                  ----------     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     +........+                  +........+                  +........+     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     ----------                  ----------                  ----------     
+                                  ........                                  
+                                  .  p.  .                                  
+                                  ........                                  
+     ----------                  ----------                  ----------     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     +........+                  +........+                  +........+     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     |........|                  |........|                  |........|     
+     ----------                  ----------                  ----------     
+ENDMAP
+
+STAIR:levregion(01,00,75,20),(33,00,42,20),up
+STAIR:(38,10),down
+
+NON_DIGGABLE:(00,00,75,20)
+
+DOOR:closed,(05,04)
+DOOR:closed,(14,04)
+DOOR:closed,(33,04)
+DOOR:closed,(42,04)
+DOOR:closed,(61,04)
+DOOR:closed,(70,04)
+DOOR:closed,(05,16)
+DOOR:closed,(14,16)
+DOOR:closed,(33,16)
+DOOR:closed,(42,16)
+DOOR:closed,(61,16)
+DOOR:closed,(70,16)
+
+MAZEWALK:(05,04),west
+MAZEWALK:(14,04),east
+MAZEWALK:(33,04),west
+MAZEWALK:(42,04),east
+MAZEWALK:(61,04),west
+MAZEWALK:(70,04),east
+MAZEWALK:(05,16),west
+MAZEWALK:(14,16),east
+MAZEWALK:(33,16),west
+MAZEWALK:(42,16),east
+MAZEWALK:(61,16),west
+MAZEWALK:(70,16),east
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: "negative", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MONSTER:'&', random, (37,10)
+OBJECT:'?',"root password detection",(37,10)
+
+MONSTER:'.', "cursed grue", random, hostile
+MONSTER:'.', "cursed grue", random, hostile
+MONSTER:'.', "cursed grue", random, hostile
+MONSTER:'.', "cursed grue", random, hostile
+MONSTER:'.', "cursed grue", random, hostile
+MONSTER:'F', "ill stalk", random, hostile
+MONSTER:'F', "ill stalk", random, hostile
+MONSTER:'F', "ill stalk", random, hostile
+MONSTER:'F', "ill stalk", random, hostile
+MONSTER:'F', "ill stalk", random, hostile
+
+REGION:(06,01,13,07),lit,"tenshall",filled,true
+REGION:(34,01,41,07),lit,"tenshall",filled,true
+REGION:(62,01,69,07),lit,"tenshall",filled,true
+REGION:(06,13,13,19),lit,"tenshall",filled,true
+REGION:(34,13,41,19),lit,"tenshall",filled,true
+REGION:(62,01,69,19),lit,"tenshall",filled,true
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hgehn-86",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+--------------------     ----------                              -----------
+|..................|    .B........B..                            |.........|
+|..................B.....|........| .. |-------                  |.........|
+|..................|   . |........|  ..|......|                  |.........|
+|..................|   . |........|   .B......|       -------    |.........|
+--------------------   . |........|    |......|       |.....|    |.........|
+                       . |........|    |......|       |.....|    |.........|
+                 ....... ----------    |......|      .B.....|    |.........|
+                ..     .               |......|     ..|.....|    |.........|
+               ..      ..              |......|    .. |---.--    -----B----|
+   ------------B-----   ..             ----B---   ..    --B--        ..     
+   |................|    ..       ---------........     |...|       ..      
+   |................|     ..      |.......B.            |...|      ..       
+   |................|      ..     |.......|          ----...----  ..        
+   |................|       ..    |.......|          |.........| ..         
+   ------------------        ..   |.......|          |.........B..          
+             -----------------B-  |.......|          |.........|            
+             |.................|  |.......|          ----...----            
+             |.................|  |.......|             |...|               
+             |.................|  ---------             |...|               
+             |-----------------|                        -----               
+ENDMAP
+
+STAIR:(26,01),up
+STAIR:(74,01),down
+
+NON_DIGGABLE:(00,00,75,20)
+
+REGION:(01,01,18,04),lit,"ordinary",filled,true
+REGION:(04,11,19,14),lit,"ordinary",filled,true
+REGION:(14,17,30,19),lit,"ordinary",filled,true
+REGION:(26,01,33,06),lit,"ordinary",filled,true
+REGION:(40,04,45,10),lit,"ordinary",filled,true
+REGION:(55,06,59,09),lit,"ordinary",filled,true
+REGION:(66,01,74,09),lit,"ordinary",filled,true
+REGION:(35,13,41,18),lit,"riverroom",filled,true
+REGION:(58,15,58,15),lit,"giantcourt",filled,true
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+MONSTER:'&', random, (58,15)
+OBJECT:'?',"root password detection",(58,15)
+
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MONSTER:'R', "disenchanter", random, hostile
+MONSTER:'R', "disenchanter", random, hostile
+MONSTER:'R', "disenchanter", random, hostile
+MONSTER:'R', "disenchanter", random, hostile
+MONSTER:'R', "disenchanter", random, hostile
+MONSTER:'R', "disenchanter", random, hostile
+MONSTER:'R', "disenchanter", random, hostile
+MONSTER:'R', "disenchanter", random, hostile
+MONSTER:'R', "disenchanter", random, hostile
+MONSTER:'R', "disenchanter", random, hostile
+MONSTER:'e', "disenchanter eye", random, hostile
+MONSTER:'e', "disenchanter eye", random, hostile
+MONSTER:'j', "disenchanter ooze", random, hostile
+MONSTER:'j', "disenchanter ooze", random, hostile
+MONSTER:'B', "disenchanter bat", random, hostile
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "hgehn-87",' '
+FLAGS: noteleport
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7     
+#1234567890123456789012345678901234567890123456789012345678901234567890123456
+MAP
+-----------------------------------------------------------------|M        .|
+|  .............................  ...............................|M        .|
+|  ...                         .  . ...                         .|M         |
+|  ... .... .... .... .... ... .  . ... .... .... .... .... ... .|M         |
+|  ... .... .... .... .... ... .  . ... .... .... .... .... ... .|M         |
+|  ... .... .... .... .... ... .... ... .... .... .... .... ... .|M         |
+|  .   .    .    .    .    .            .    .    .    .    .   .|M         |
+|  .............................    .............................|M         |
+|                              .    .                            |M         |
+|.H..... ..... ..... ..... ... .  .H..... ..... ..... ..... ... .Bh.        |
+|. ..... ..... ..... ..... ... .  . ..... ..... ..... ..... ... .|M         |
+|. ..... ..... ..... ..... ... .  . ..... ..... ..... ..... ... .|M         |
+|. ..... ..... ..... ..... ... .  . ..... ..... ..... ..... ... .|M         |
+|. ..... ..... ..... ..... ... .  . ..... ..... ..... ..... ... .|M    MMMMM|
+|  .     .     .     .     .   .    .     .     .     .     .   .|M    M----|
+|  .............................    .............................|MMMMMM|...|
+|      r                                                         --------...|
+|      .....................................................................|
+----------------------------------------------------------------------------|
+ENDMAP
+
+STAIR:(75,01),up
+STAIR:(74,16),down
+
+NON_DIGGABLE:(00,00,76,18)
+
+MONSTER:'V', "mortally crossing anathematize", (07,16), hostile
+
+MAZEWALK:(75,00),west
+MAZEWALK:(75,01),south
+MAZEWALK:(67,09),east
+
+MONSTER:'&', random, (75,16)
+OBJECT:'?',"root password detection",(75,16)
+
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: "disintegration", random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MONSTER:'D', "undead dragon", random, hostile
+MONSTER:'D', "undead dragon", random, hostile
+MONSTER:'D', "undead dragon", random, hostile
+MONSTER:'D', "undead dragon", random, hostile
+MONSTER:'D', "undead dragon", random, hostile
+MONSTER:'D', "undead dragon", random, hostile
+MONSTER:'D', "undead dragon", random, hostile
+MONSTER:'D', "undead dragon", random, hostile
+MONSTER:'D', "undead dragon", random, hostile
+MONSTER:'D', "undead dragon", random, hostile
+MONSTER:'a', "disintegration ant", random, hostile
+MONSTER:'a', "disintegration ant", random, hostile
+MONSTER:'i', "plutonium imp", random, hostile
+MONSTER:'i', "plutonium imp", random, hostile
+MONSTER:'k', "disintegration master", random, hostile
+MONSTER:'k', "disintegration kobold", random, hostile
+MONSTER:'k', "disintegration kobold", random, hostile
+MONSTER:'k', "disintegration kobold", random, hostile
+MONSTER:'v', "antimatter vortex", random, hostile
+MONSTER:'v', "antimatter vortex", random, hostile
+MONSTER:'x', "bebelith", random, hostile
+MONSTER:'J', "black monster", random, hostile
+MONSTER:'R', "disintegrator", random, hostile
+MONSTER:'R', "disintegrator", random, hostile
+MONSTER:'R', "disintegrator", random, hostile
+MONSTER:'V', "antimatter vampire", random, hostile
+MONSTER:'&', "megademon", random, hostile
+MONSTER:'.', "antimatter grue", random, hostile
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+LEVEL: "hgehn-88"
+
+ROOM: "randomroom", random, random, random, random
+OBJECT: random,random,random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+  
+ROOM: "randomroom", random, random, random, random
+STAIR: random, up
+OBJECT: random,random,random
+MONSTER: random, random, random, hostile
+
+ROOM: "randomroom", random, random, random, random
+STAIR: random, down
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+MONSTER:'&', random, random
+OBJECT:'?',"root password detection",random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+ROOM: "randomroom", random, random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+MONSTER: random, random, random, hostile
+
+ROOM: "randomroom", random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+
+ROOM: "randomroom", random, random, random, random
+OBJECT: random, random, random
+TRAP: random, random
+MONSTER: random, random, random, hostile
+
+RANDOM_CORRIDORS
 
 
