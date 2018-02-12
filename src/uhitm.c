@@ -2096,7 +2096,7 @@ int dieroll;
 	    wep = PROJECTILE(obj) ? launcher : obj;
 
 		/* bashing with launchers or other "bad" weapons shouldn't give insane bonuses --Amy */
-		if (!((is_launcher(obj) || is_missile(obj) || is_pole(obj) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
+		if (wep && !((is_launcher(wep) || is_missile(wep) || is_pole(wep) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
 
 	    if (!thrown) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
 	    if (thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
