@@ -1977,9 +1977,16 @@ physical:
 
 			otmp = obj;
 			if (u.usteed == mdef &&
-					otmp == which_armor(mdef, W_SADDLE))
+					otmp == which_armor(mdef, W_SADDLE)) {
+
+	/* I took the liberty of making saddles less likely to be stolen, but for a long time that code was only in steal.c
+	 * and therefore never actually did anything. Now, your steed should no longer be super vulnerable
+	 * to those motherfucker item-stealers! --Amy */
+				if (rn2(5) && !issoviet) break;
+
 				/* "You can no longer ride <steed>." */
 				dismount_steed(DISMOUNT_POLY);
+			}
 			obj_extract_self(otmp);
 			if (otmp->owornmask) {
 				mdef->misc_worn_check &= ~otmp->owornmask;
