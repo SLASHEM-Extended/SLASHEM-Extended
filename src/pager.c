@@ -534,8 +534,8 @@ lookat(x, y, buf, monbuf)
 	strcpy(buf, defsyms[trap_to_defsym(tnum)].explanation);
     } else if(!glyph_is_cmap(glyph)) {
 	strcpy(buf,"unexplored area");
-    } else if( glyph == (GLYPH_CMAP_OFF + 44)) {
-	strcpy(buf,"grayout");
+/*    } else if( glyph == (GLYPH_CMAP_OFF + 44)) {
+	strcpy(buf,"grayout");*/
     } else switch(glyph_to_cmap(glyph)) {
     case S_altar:
 	if(!In_endgame(&u.uz))
