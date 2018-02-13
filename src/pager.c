@@ -2109,6 +2109,20 @@ dohistory()
 	return 0;
 }
 
+static const char * const hussynames[] = {
+"Sabrina", "Sandra", "Ludgera", "Jil", "Sofia", "Arabella", "Anastasia", "Henrietta", "Katrin", "Jana", "Anna", "Elena", "Katharina", "Mariya", "Wendy", "Tanja", "Vanessa", "Jeanetta", "Madeleine", "Anita", "Nina", "Natalje", "Sing", "Bianca", "Julietta", "Teresa", "Rosy", "Greneuvenia", "Arvogenia", "Miesieenia", 
+};
+static const char * const banggangguys[] = {
+"David", "Aee", "Nino", "Kastortransport",
+};
+static const char * const bangganggirls[] = {
+"Johanetta", "Mailie", "Klara", "Kristin", "Charlotte", "Friederike", "Sophia", "Sue Lyn", "Juen", "Ruea", "Anne", "Greta", "Jane", "Little Marie", "Tonja", "Mia", "Annemarie", "Caro", "Sonja",
+};
+
+static const char * const gangscholarverbs[] = {
+"laughs: ", "sneers: ", "bickers: ", "chortles: ", "giggles: ", "hisses: ", "shouts: ", "screams: ", "says: ", "grins: ", "bellows: ", "thunders: ", "booms: ", "snickers: ", "announces: ", "whispers: ", "barks: ", "snarls: ", "mutters: ", "threatens: ", "tells: ", "boasts: ", "messages: ", "grumbles: ", "states: ", "yells: ", "speaks: ", "gloats: ", "growls: ", "remarks: ",
+};
+
 static NEARDATA const char * const soviettaunts[] = {
 "Vy lamer, vy boites' detskikh lichey na rannikh urovnyakh podzemel'ya ili kak? Vernites' k igre vanili!",
 "Tip ledyanogo bloka nadeyetsya, chto vas ub'yut po-nastoyashchemu nespravedlivo. Khar Khar Khar.",
@@ -2230,6 +2244,99 @@ static NEARDATA const char * const soviettaunts[] = {
 "V sovetskom rezhime zaklinaniye 'Volshebnaya raketa' snova ul'tra moshchno. Potomu chto igrovoy balans nikogda ne byl bol'shoy chast'yu filosofii dizayna v Sovetskom Soyuze.",
 "Kto-to schitayet, chto eto sovershenno zdorovo, yesli vashi luchi smerti prodolzhayut propuskat' volshebnika yada. Lovkost' bonus shans popast'? Ili luchshe udarit', yesli vash uroven' vyshe? Net, eto nikomu ne nuzhno! Slesh ikh takoy dryannoy variant, ya chestno udivlen, chto kto-to igrayet yego voobshche.",
 "V svoyem stremlenii vernut' vse obratno k urovnyam vanili sovetskiy tip ledyanogo bloka sdelal eto tak, chto molniya snova oslepit vas kazhdyy raz, a prodolzhitel'nost' slepoty slishkom velika.",
+};
+
+static NEARDATA const char * const hussylines[] = {
+"I've set up a mean trap for that silly gang scholar to step into.",
+"I placed a heap of dog shit in a corridor that Player 1 will absolutely have to traverse, so they'll step into it at least once.",
+"My body odor will cause that stupid gang scholar to fall over unconscious, and then we'll defeat them.",
+"No gang scholar can resist my feminine charms. And once they're in my clutches, they'll be helpless.",
+"I'll let Player 1 inhale my worn socks for days on end.",
+"If any gang scholars trespass in our Hussy Club office, they will be captured and tortured.",
+"My socks don't stink at all! They emit a beguiling odor!",
+"I will use my butt to put heaps of shit on every dungeon level!",
+"Hey, I'm on the same level as that gang scholar! I'm sneaking after them and putting shit traps where they walked!",
+"The Hussy Club shall never be disbanded by anyone!",
+"Those teachers won't be able to stop our Hussy Power.",
+"They can do whatever they want to try to protect the diamonds. We'll steal them anyway.",
+"Player 1, if we capture you, you'll never be released. And you'll have to smell the worn socks of me and all the other hussies.",
+"Us Hussies don't kill our victims. We capture them alive so we can torture them for an unspecified amount of time.",
+};
+
+static NEARDATA const char * const bangganglines[] = {
+"We have to defend the outer perimeter!",
+"Guys, let's secure the bridge! Player 1 has no way to avoid it, and our concentrated firepower will kill them.",
+"All cool in Kabul!",
+"Boss, I'm hunting Player 1 right now!",
+"Anna will never succumb to a gang scholar!",
+"Did we not bully Player 1 enough? We'll need to take care of them now!",
+"We'll use rocket launchers to kill that retarded gang scholar!",
+"Guys, I'm chasing the gang scholar, and I got 200 rounds of ammo for my heavy machine gun! Cover me while I'm going in for the kill!",
+"Player 1 is in the crosshairs of my sniper rifle! I'm just waiting to get a good shot, would you mind blocking the exit in case they try to run for the hills?",
+"My gun is loaded and ready to shoot some gang scholars!",
+"Those who would mess with the Bang Gang will face death.",
+"We'll make sure that gang scholar never attends a school again!",
+"We'll make sure that the next time that gang scholar shows up at school, they'll be leaving in the ambulance!",
+"We're the Bang Gang and our mission is to defeat all enemies!",
+"The Bang Gang doesn't mess around! All those who would oppose us will be shot by our guns!",
+"Message to Player 1: all your fellow pupils will be terminated until you surrender.",
+"Message to Player 1: you will not escape this time.",
+"We will steal that gang scholar's lunch money.",
+"I'm going to steal Player 1's cape! They won't be able to stop me.",
+};
+
+static NEARDATA const char * const hussylines_specific[] = {
+"I've set up a mean trap on level %d. That silly gang scholar will definitely step into it.",
+"I placed a heap of dog shit in a corridor on level %d. Player 1 will definitely step into it at least once.",
+"Player 1, meet me on level %d if you are a man. Then I'll make you inhale the beguiling stench of my worn socks!",
+"Any gang scholar who enters level %d will immediately be confronted with my scentful perfume and fall over unconscious.",
+"I put a heap of shit on the downstair on level %d, making it impossible for Player 1 to avoid it.",
+"I will use my butt to put heaps of shit on dungeon level %d, where any trespassing gang scholars will have no choice but step into them!",
+"Maybe I'll set a paralysis trap on level %d.",
+"I'm spilling my perfume on level %d.",
+"If Player 1 shows up on level %d, they will face my scentful perfume attack.",
+"Level %d contains an entrance to one of the Hussy Club Branch Offices. Any trespassing gang scholars will be kidnapped.",
+"I'm waiting on level %d. Maybe Player 1 makes the mistake to show their face there, and then I'll bind and gag them.",
+"Level %d is the last level that gang scholar's ever going to see, for if they enter, we'll immediately knock them out and lock them in a closet.",
+"I'm reading scrolls of girliness on level %d, summoning girls that will stop the gang scholar in their tracks!",
+};
+
+static NEARDATA const char * const bangganglines_specific[] = {
+"We have to defend dungeon level %d!",
+"Guys, let's secure level %d! Player 1 will have to go through it, and our concentrated firepower will kill them.",
+"Level %d is a zone where no gang scholars are allowed! I'll set up some cannons there!",
+"Boss, player 1 is about to enter level %d! Request reinforcements!",
+"There's not enough presence on level %d! We must fortify our positions there to prevent any gang scholars from getting through!",
+"All bang gang members to level %d! No one except us may be able to get through, that way we'll secure our victory!",
+"Status report: sentry turrets have been set up on level %d!",
+"I've set up an impenetrable wall on level %d! If the gang scholar wants to get past, they need to teleport, hahaha!",
+"Guys, I'm gonna camp on level %d with my sniper rifle.",
+"Boss, as you requested, I'm in position on level %d! My rocket launcher is ready to fire in case Player 1 shows up!",
+"I've run into distress on level %d! Boss, send a few soldiers to clear that distraction!",
+"I set up a RMB loss trap on level %d!",
+"That gang scholar may never know that there's an inventorylessness trap on level %d now.",
+"Boss, I set up a checkerboard trap on the level %d downstair! That stupid Player 1 has no chance to avoid it!",
+"I just killed one of Player 1's fellow pupils on level %d!",
+"Let's put the corpses of that gang scholar's friends on sticks and display them on level %d as a deterrent.",
+"Hey, I got a wand of create horde! I'll just summon a huge bunch of monsters on level %d to impede Player 1's progress!",
+"I've put lots of summon monster traps on level %d. If we can stall that gang scholar for long enough, Anna herself will be able to intervene and ensure our victory!",
+};
+
+static NEARDATA const char * const bangganglines_femaleonly[] = {
+"I'll break that stupid gang scholar's legs!",
+"No gang scholar will survive the wrath of the Bang Gang Girls.",
+"Player 1 may think that I'd be weak because I'm a girl, but I'll show them that they're wrong!",
+"My hugging boots will finish off all gang scholars today!",
+"My thick winter boots are harder than Player 1's head, and will bonk it until they're knocked out!",
+"You spastic retard gang scholar freak, better accept that the Bang Gang owns you!",
+"I'm very sadistic, and I will enjoy killing you!",
+"My boots are capable of piercing armor. Even if you wear full plate mail, I can still bludgeon you and make you feel like you just got hit by a truck.",
+"I'll stomp your toes, Player 1!",
+"If I see you, I'm gonna slap you silly.",
+"I'll resole that gang scholar's ass!",
+"Player 1 shall be bludgeoned by me today!",
+"I'll use my female hugging boots to stomp any and all gang scholars.",
+"Good thing that the gang scholar's equipment is so much inferior to my female winter boots.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -12121,6 +12228,84 @@ const char *
 soviettaunt()
 {
 	return (soviettaunts[rn2(SIZE(soviettaunts))]);
+}
+
+const char *
+gangscholartaunt()
+{
+	return (hussylines[rn2(SIZE(hussylines))]);
+}
+
+const char *
+gangscholartaunt2()
+{
+	return (bangganglines[rn2(SIZE(bangganglines))]);
+}
+
+const char *
+gangscholartaunt3()
+{
+	return (bangganglines_femaleonly[rn2(SIZE(bangganglines_femaleonly))]);
+}
+
+const char *
+gangscholartaunt_specific()
+{
+	return (hussylines_specific[rn2(SIZE(hussylines_specific))]);
+}
+
+const char *
+gangscholartaunt_specific2()
+{
+	return (bangganglines_specific[rn2(SIZE(bangganglines_specific))]);
+}
+
+void
+gangscholarmessage()
+{
+	char buf[BUFSZ];
+
+	switch (rnd(5)) {
+
+		case 1:
+			sprintf(buf, "%s %s", hussynames[rn2(SIZE(hussynames))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
+			sprintf(eos(buf), "'");
+			sprintf(eos(buf), gangscholartaunt());
+			sprintf(eos(buf), "'");
+			pline(buf);
+			break;
+		case 2:
+			if (!rn2(5)) sprintf(buf, "%s %s", banggangguys[rn2(SIZE(banggangguys))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
+			else sprintf(buf, "%s %s", bangganggirls[rn2(SIZE(bangganggirls))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
+			sprintf(eos(buf), "'");
+			sprintf(eos(buf), gangscholartaunt2());
+			sprintf(eos(buf), "'");
+			pline(buf);
+			break;
+		case 3:
+			sprintf(buf, "%s %s", bangganggirls[rn2(SIZE(bangganggirls))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
+			sprintf(eos(buf), "'");
+			sprintf(eos(buf), gangscholartaunt3());
+			sprintf(eos(buf), "'");
+			pline(buf);
+			break;
+		case 4:
+			sprintf(buf, "%s %s", hussynames[rn2(SIZE(hussynames))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
+			sprintf(eos(buf), "'");
+			sprintf(eos(buf), gangscholartaunt_specific(), rnd(100));
+			sprintf(eos(buf), "'");
+			pline(buf);
+			break;
+		case 5:
+			if (!rn2(5)) sprintf(buf, "%s %s", banggangguys[rn2(SIZE(banggangguys))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
+			else sprintf(buf, "%s %s", bangganggirls[rn2(SIZE(bangganggirls))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
+			sprintf(eos(buf), "'");
+			sprintf(eos(buf), gangscholartaunt_specific2(), rnd(100));
+			sprintf(eos(buf), "'");
+			pline(buf);
+			break;
+
+	}
 }
 
 /*pager.c*/
