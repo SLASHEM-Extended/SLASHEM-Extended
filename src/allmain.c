@@ -1469,6 +1469,10 @@ moveloop()
 			pline(soviettaunt());
 		}
 
+		if (Role_if(PM_GANG_SCHOLAR) && !rn2(1000)) {
+			gangscholarmessage();
+		}
+
 		if (RngeLoudspeakers && !rn2(100)) {
 			pline(fauxmessage());
 			if (!rn2(3)) pline(fauxmessage());
