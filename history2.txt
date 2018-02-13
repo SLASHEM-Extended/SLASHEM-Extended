@@ -1,6 +1,7 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.7
+- Added flavor messages for the Gang Scholar role.
 - Added special levels for the Dungeons of Doom and Gehennom.
 - Halved the chance for listener race player characters to find random artifacts.
 - Monsters with paralysis attacks have free action.
