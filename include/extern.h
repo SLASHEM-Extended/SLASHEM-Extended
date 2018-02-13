@@ -1930,6 +1930,13 @@ E int dohistory(void);
 E const char *fauxmessage(void);
 E const char *bosstaunt(void);
 E const char *soviettaunt(void);
+E const char *gangscholartaunt(void);
+E const char *gangscholartaunt2(void);
+E const char *gangscholartaunt3(void);
+E const char *gangscholartaunt_specific(void);
+E const char *gangscholartaunt_specific2(void);
+　
+E void gangscholarmessage(void);
 
 /* ### pcmain.c ### */
 
