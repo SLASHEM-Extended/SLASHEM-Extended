@@ -10170,9 +10170,9 @@ struct obj *obj;
 
 		case SPBOOK_CLASS:
 #ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+		pline("%s - Color: %s. Material: %s. Appearance: %s. Spell level: %d.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", nn ? objects[obj->otyp].oc_level : 0);
 #else
-		pline("%s - This is a spellbook. Color: %s. Material: %s. Appearance: %s. Reading it allows you to learn a new spell permanently, or refresh your memory if you already know the spell.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+		pline("%s - This is a spellbook. Color: %s. Material: %s. Appearance: %s. Spell level: %d. Reading it allows you to learn a new spell permanently, or refresh your memory if you already know the spell.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", nn ? objects[obj->otyp].oc_level : 0);
 #endif
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
