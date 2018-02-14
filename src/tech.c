@@ -1351,6 +1351,8 @@ void * roomcnt;
 	if ((levl[x][y].wall_info & W_NONDIGGABLE) != 0)
 		return;
 
+	if (*in_rooms(x,y,SHOPBASE)) return;
+
 	(*(int *)roomcnt)++;
 
 	/* Get rid of stone at x, y */

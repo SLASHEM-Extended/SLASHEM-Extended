@@ -2883,7 +2883,7 @@ boolean atme;
 			    nextmon = nexusmon->nmon; /* trap might kill mon */
 			    if (DEADMONSTER(nexusmon)) continue;
 				if (levl[nexusmon->mx][nexusmon->my].typ >= STONE && levl[nexusmon->mx][nexusmon->my].typ <= DBWALL) {
-					if ((levl[nexusmon->mx][nexusmon->my].wall_info & W_NONDIGGABLE) == 0) {
+					if ((levl[nexusmon->mx][nexusmon->my].wall_info & W_NONDIGGABLE) == 0 && !(*in_rooms(nexusmon->mx,nexusmon->my,SHOPBASE))) {
 						levl[nexusmon->mx][nexusmon->my].typ = CORR;
 						unblock_point(nexusmon->mx,nexusmon->my);
 						if (!(levl[nexusmon->mx][nexusmon->my].wall_info & W_HARDGROWTH)) levl[nexusmon->mx][nexusmon->my].wall_info |= W_EASYGROWTH;
