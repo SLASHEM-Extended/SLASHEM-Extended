@@ -130,12 +130,11 @@ DATHELP = help hh cmdhelp history opthelp wizhelp gypsy.txt
 
 # according to FIQ, we can simply make SPEC_LEVS process all the .lev files
 SPEC_LEVS = *.lev 
-QUEST_LEVS = ???-goal.lev ???-fil?.lev ???-loca.lev ???-strt.lev
 
 SHARE_DATNODLB = $(CNF_SHARE_DATND)
 UNSHARE_DATNODLB =
 SHARE_DATDLB = $(DATHELP) $(CNF_SHARE_DATD)
-UNSHARE_DATDLB = dungeon dungeon2 dungeon3 dungeon4 dungeon5 dungeon6 dungeon7 dungeon8 $(SPEC_LEVS) $(QUEST_LEVS)
+UNSHARE_DATDLB = dungeon dungeon2 dungeon3 dungeon4 dungeon5 dungeon6 dungeon7 dungeon8 $(SPEC_LEVS)
 SHARE_DAT = $(SHARE_DATNODLB) $(SHARE_DATDLB)
 UNSHARE_DAT = $(UNSHARE_DATNODLB) $(UNSHARE_DATDLB)
 
@@ -173,7 +172,6 @@ quest.dat: $(GAME)
 spec_levs: $(GAME)
 	( cd util ; $(MAKE) lev_comp )
 	( cd dat ; $(MAKE) spec_levs )
-	( cd dat ; $(MAKE) quest_levs )
 
 dungeon: $(GAME)
 	( cd util ; $(MAKE) dgn_comp )
