@@ -7,7 +7,7 @@
 
 VARDAT = data rumors quest.dat oracles options
 
-all:	$(VARDAT) spec_levs quest_levs dungeon dungeon2 dungeon3 dungeon4 dungeon5 dungeon6 dungeon7 dungeon8
+all:	$(VARDAT) spec_levs dungeon dungeon2 dungeon3 dungeon4 dungeon5 dungeon6 dungeon7 dungeon8
 
 ../util/makedefs:
 	(cd ../util ; make makedefs)
@@ -320,9 +320,7 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp levgn.des
 	../util/lev_comp levgx.des
 	../util/lev_comp emptbgr.des
-	touch spec_levs
-
-quest_levs: ../util/lev_comp \
+	../util/lev_comp \
 	Abuser.des Acid.des Act.des Altmer.des Amazon.des Arch.des	\
 	Artist.des Assassin.des Augurer.des Barb.des Bard.des		\
 	Dwarf.des Dopp.des Gnome.des Hobbit.des Darkelf.des		\
@@ -474,7 +472,7 @@ quest_levs: ../util/lev_comp \
 	echo ../util/lev_comp Yeoman.des ; ../util/lev_comp Yeoman.des ; \
 	else rm -f Yeo-goal.lev Yeo-fil?.lev Yeo-loca.lev Yeo-strt.lev ; fi
 	../util/lev_comp Zooke.des
-	touch quest_levs
+	touch spec_levs
 
 dungeon: dungeon.def ../util/makedefs ../util/dgn_comp
 	../util/makedefs -e
@@ -502,7 +500,7 @@ dungeon8: dungeon8.def ../util/makedefs ../util/dgn_comp
 	../util/dgn_comp dungeon8.pdf
 
 spotless:
-	-rm -f spec_levs quest_levs *.lev $(VARDAT) dungeon dungeon2 dungeon3 dungeon4 dungeon.pdf dungeon2.pdf dungeon3.pdf dungeon4.pdf
+	-rm -f spec_levs *.lev $(VARDAT) dungeon dungeon2 dungeon3 dungeon4 dungeon.pdf dungeon2.pdf dungeon3.pdf dungeon4.pdf
 	-rm -f dungeon5 dungeon6 dungeon7 dungeon8 dungeon5.pdf dungeon6.pdf dungeon7.pdf dungeon8.pdf
 	-rm -f nhshare nhushare x11tiles x11bigtiles x11big3dtiles beostiles
 	-rm -f x11tiles.map x11bigtiles.map x11big3dtiles.map
