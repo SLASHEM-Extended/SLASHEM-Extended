@@ -5680,6 +5680,12 @@ shk_appraisal(slang, shkp)
 
 		    default:
 			verbalize(basic_damage, ascii_wsdam, ascii_wldam);
+			if (!issoviet) {
+				obj->known = TRUE;
+				verbalize("It is %s", doname(obj));
+			}
+			else pline("Sovetskiy khochet, chtoby vse bylo der'mo, dazhe izmeneniya, kotoryye, ochevidno, vygodny, schitayutsya im zlymi, potomu chto Emi sdelala ikh. Takim obrazom, plyus vashego oruzhiya ne oboznachen khar khar!");
+
 			break;
 			
 		}
@@ -5687,6 +5693,17 @@ shk_appraisal(slang, shkp)
 	else
 	{
 		verbalize(basic_damage, ascii_wsdam, ascii_wldam);
+
+		/* Appraisal was too useless for way too long, so I decided to make it more useful. After all,
+		 * the appraisal technique also identifies the + of a weapon, so the service should do so too. --Amy
+		 * In Soviet Russia, nothing is ever allowed to be different from regular SLASH'EM, because SLASHTHEM
+		 * basically is SLASH'EM with some very minor changes. */
+
+		if (!issoviet) {
+			obj->known = TRUE;
+			verbalize("It is %s", doname(obj));
+		}
+		else pline("Sovetskiy khochet, chtoby vse bylo der'mo, dazhe izmeneniya, kotoryye, ochevidno, vygodny, schitayutsya im zlymi, potomu chto Emi sdelala ikh. Takim obrazom, plyus vashego oruzhiya ne oboznachen khar khar!");
 	}
 }
 
