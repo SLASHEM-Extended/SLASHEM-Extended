@@ -1,6 +1,10 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.7
+- Shop walls can no longer be razed by panic digging, wands of opening, confused scrolls of lockout, tunnelization spells or ragnarok.
+- Spellbook descriptions include the level of the spell.
+- The appraisal service offered by shopkeepers will now identify the enchantment value of weapons.
+- Fixed an exploit in wonderland mode that allowed the player to get the Amulet of Yendor without having to do the invocation ritual.
 - Added flavor messages for the Gang Scholar role.
 - Added special levels for the Dungeons of Doom and Gehennom.
 - Halved the chance for listener race player characters to find random artifacts.
