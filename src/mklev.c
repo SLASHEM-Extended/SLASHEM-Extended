@@ -1006,7 +1006,7 @@ makecorridors()
 	int a, b, i;
 	boolean any = TRUE;
 
-	int style = 1;
+	int style = 0;
 	if (!rn2(5)) style = rnd(4);
 
 	/* sporkhack code to have different join mechanisms */

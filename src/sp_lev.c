@@ -3144,9 +3144,12 @@ schar ftyp, btyp;
 
 	xx = org->x;  yy = org->y;
 	tx = dest->x; ty = dest->y;
-	if (xx <= 0 || yy <= 0 || tx <= 0 || ty <= 0 ||
-	    xx > COLNO-1 || tx > COLNO-1 ||
-	    yy > ROWNO-1 || ty > ROWNO-1) {
+
+	/* there's no real reason to restrict corridors to tiles one square away from the edge...
+	 * in fact, that restriction causes disjointed levels with the new sporkhack code in mklev.c --Amy */
+	if (xx </*=*/ 0 || yy </*=*/ 0 || tx </*=*/ 0 || ty </*=*/ 0 ||
+	    xx > COLNO/*-1*/ || tx > COLNO/*-1*/ ||
+	    yy > ROWNO/*-1*/ || ty > ROWNO/*-1*/) {
 #ifdef DEBUG
 		debugpline("dig_corridor: bad coords : (%d,%d) (%d,%d).",
 			   xx,yy,tx,ty);
@@ -3169,7 +3172,7 @@ schar ftyp, btyp;
 	    xx += dx;
 	    yy += dy;
 
-	    if(xx >= COLNO-1 || xx <= 0 || yy <= 0 || yy >= ROWNO-1)
+	    if(xx >= COLNO/*-1*/ || xx </*=*/ 0 || yy </*=*/ 0 || yy >= ROWNO/*-1*/)
 		return FALSE;		/* impossible */
 
 	    crm = &levl[xx][yy];
