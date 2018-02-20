@@ -1,6 +1,13 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.7
+- Cannibalism in evilvariant mode will increase god anger.
+- Door and container traps in evilvariant mode will always surround the player with invisible traps.
+- If the player uses create familiar while hallucinating, there is an extra message displayed.
+- The elder priest now takes lots of extra damage when the player uses high heels on him.
+- Fixed an error that caused quiz traps to occasionally display non-rumors as questions, where the player could only guess what the right answer is.
+- Fixed an oversight that caused super stealth ants to not spawn invisible.
+- The room-joining code can now dig paths through edge tiles too.
 - Shop walls can no longer be razed by panic digging, wands of opening, confused scrolls of lockout, tunnelization spells or ragnarok.
 - Spellbook descriptions include the level of the spell.
 - The appraisal service offered by shopkeepers will now identify the enchantment value of weapons.
