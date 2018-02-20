@@ -785,6 +785,8 @@ doread()
 	"Sarcastic Comment Loading - Please Wait",
 	"On a scale of 1 to 10, what is your favorite color of the alphabet?",
 	"Huge hung hero hunks hastily hump horny heaving hot whores.",
+	"you can dig as much as you want and will find it eventually...", /* -- AmyBSOD Feb2018 */
+	"Sure, slex has standards. And the usual standard is, everyone else has to think it's a bad idea, or Amy won't implement it.", /* by jonadab */
 
 
 	    };

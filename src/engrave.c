@@ -4310,7 +4310,9 @@ static const char *epitaphs[] = {
 	"IT'S A GUNDAM!", /* Gundam Wing */
 	"Paul Eulmeyer, 1907-2000. With atomic terror, he brought us peace.", /* Mission Hill */
 	"Cunnus! Perite! Canis! Nothus! Futue te ipsuni! Mentula!",
-
+	"oh god, why can't I make it so that 'move in a direction until interrupted' in Nethack Fourk is interrupted by an intersection but quicktravel is not? I can only make it so that both are interrupted or none are! :(",
+	"oh god why does a pile of fucking rocks interrupt quicktravel in Nethack Fourk???",
+	"slex is the variant where you need an usb port with an external memory extension in your skull to have enough brain capacity to keep all the new ways of being killed in your brain ;-)",
 
 };
 
