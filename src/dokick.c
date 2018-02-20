@@ -199,6 +199,14 @@ register boolean clumsy;
 	if (thick_skinned(mon->data) && dmg) dmg = 1;
 	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) && dmg) dmg = 1;
 
+	/* high heels are the elder priest's kryptonite; he's thick-skinned so this must come after the above line */
+	if (PlayerInHighHeels && (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])) {
+
+		dmg += 50;
+		pline("Your high heels severely wound the elder priest's tentacles!");
+
+	}
+
 	/* attacking a shade is useless */
 	if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) )
 	    dmg = 0;
