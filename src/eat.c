@@ -838,6 +838,14 @@ boolean allowmsg;
 		    You("cannibal!  You will regret this!");
 		}
 		HAggravate_monster |= FROMOUTSIDE;
+
+		/* "Cannibalism angers your god instead of removing telepathy." In the Evil Variant, new bad effects are added,
+		 * they don't replace old bad effects but happen in addition to them. --Amy */
+		if (isevilvariant) {
+			u.ugangr++;
+		      You("get the feeling that %s is angry...", u_gname());
+		}
+
 		if (u.ualign.type == A_LAWFUL && !rn2(3) ) change_luck(-rnd(5));		/* -5..-1 */
 		else if (u.ualign.type == A_LAWFUL) change_luck(-rnd(4));		/* -4..-1 */
 		else if (u.ualign.type == A_NEUTRAL && !rn2(3) ) change_luck(-rnd(4));		/* -4..-1 */
