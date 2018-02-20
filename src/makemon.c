@@ -14837,6 +14837,7 @@ register int	mmflags;
 	      if (mndx == PM__S_____NIX) mtmp->msleeping = 1;
 			if (mndx == PM_IT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_INVISIBLE_HORROR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_SUPER_STEALTH_ANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
 			break;
 
