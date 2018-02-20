@@ -1616,7 +1616,7 @@ offer_oracle (mtmp, otmp)
 	feel_cockatrice(otmp, TRUE);
 
 	pline("%s looks at you %sfully.", Monnam(mtmp), woodchuck ? "scorn" : "thought");
-	outrumor(woodchuck ? -1 : 0, FALSE);
+	outrumor(woodchuck ? -1 : 0, FALSE, FALSE);
 	consume_offering(otmp);
 	adjalign(-5);	/* Your god is jealous */
 	if (woodchuck) {

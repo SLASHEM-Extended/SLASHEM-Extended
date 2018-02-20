@@ -5075,7 +5075,7 @@ doapply()
 	case HITCHHIKER_S_GUIDE_TO_THE_GALA:
 		if (HHallucination) {
 			pline("You carelessly push the buttons. On the screen is a text ... ");
-			outrumor(-1,42);	/* always false */
+			outrumor(-1,42,TRUE);	/* always false */
 		} else {
 			pline("So many knobs to turn! So many buttons to press!");
 			make_confused(HConfusion+rn2(10),TRUE);

@@ -135,9 +135,10 @@ boolean exclude_cookie;
 }
 
 void
-outrumor(truth, mechanism)
+outrumor(truth, mechanism, unchangeable)
 int truth; /* 1=true, -1=false, 0=either */
 int mechanism;
+boolean unchangeable; /* if true, no random chance of getting different messages */
 {
 	static const char fortune_msg[] =
 		"This cookie has a scrap of paper inside.";
@@ -157,7 +158,7 @@ int mechanism;
 	    	return;
 	    }
 	}
-	line = (rn2(20) ? getrumor(truth, buf, reading ? FALSE : TRUE) : random_mesgX() ) ;
+	line = ((rn2(20) || unchangeable) ? getrumor(truth, buf, reading ? FALSE : TRUE) : random_mesgX() ) ;
 	if (!*line)
 		line = "NetHack rumors file closed for renovation.";
 	switch (mechanism) {
@@ -358,7 +359,7 @@ register struct monst *oracl;
 	flags.botl = 1;
 	add_xpts = 0;	/* first oracle of each type gives experience points */
 	if (u_pay == minor_cost) {
-		outrumor(1, BY_ORACLE);
+		outrumor(1, BY_ORACLE, TRUE);
 		if (!u.uevent.minor_oracle)
 		    add_xpts = u_pay / (u.uevent.major_oracle ? 25 : 10);
 		    /* 5 pts if very 1st, or 2 pts if major already done */

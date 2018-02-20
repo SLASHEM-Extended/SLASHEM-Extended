@@ -287,8 +287,8 @@ fnd:
 		verbalize("I don't believe you. We will have to do a quiz to verify your identity.");
 		verbalize("You will now tell me whether the following rumor is true or not!");
 
-		if (rumoristrue) outrumor(1, BY_OTHER);
-		else outrumor(-1, BY_OTHER);
+		if (rumoristrue) outrumor(1, BY_OTHER, TRUE);
+		else outrumor(-1, BY_OTHER, TRUE);
 
 		if (yn("Now tell me if this rumor was true!") != 'y') { /* player said it's false */
 

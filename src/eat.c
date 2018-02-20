@@ -4788,7 +4788,7 @@ register struct obj *otmp;
 			else if (rn2(2) && bcsign(otmp) == 0) change_luck(1);
 			else if (bcsign(otmp) == 1) change_luck(1);
 
-			outrumor(bcsign(otmp), BY_COOKIE);
+			outrumor(bcsign(otmp), BY_COOKIE, FALSE);
 			if (!Blind) u.uconduct.literate++;
 		}
 		break;
@@ -4860,7 +4860,7 @@ register struct obj *otmp;
 		else if (rn2(2) && bcsign(otmp) == 0) change_luck(1);
 		else if (bcsign(otmp) == 1) change_luck(1);
 
-		outrumor(bcsign(otmp), BY_PAPER);
+		outrumor(bcsign(otmp), BY_PAPER, FALSE);
 		if (!Blind) u.uconduct.literate++;
 		}
 	}

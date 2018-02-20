@@ -245,7 +245,7 @@ doread()
 	    if(flags.verbose)
 		You("break up the cookie and throw away the pieces.");
 	    Blinded = cant_see;	/* Treat invisible fortunes as if blind */
-	    outrumor(bcsign(scroll), BY_COOKIE);
+	    outrumor(bcsign(scroll), BY_COOKIE, FALSE);
 	    Blinded = save_Blinded;
 	    if (!cant_see) u.uconduct.literate++;
 	    if (carried(scroll)) useup(scroll);

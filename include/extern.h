@@ -2327,7 +2327,7 @@ E void bindertransformation(void);
 /* ### rumors.c ### */
 
 E char *getrumor(int,char *, BOOLEAN_P);
-E void outrumor(int,int);
+E void outrumor(int,int,BOOLEAN_P);
 E void outoracle(BOOLEAN_P, BOOLEAN_P);
 E void save_oracles(int,int);
 E void restore_oracles(int);
