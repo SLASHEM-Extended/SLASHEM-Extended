@@ -15569,7 +15569,8 @@ boolean disarm;
 				   chest kills you and ends up in bones file */
 	You(disarm ? "set it off!" : "trigger a trap!");
 
-	if (!rn2(10)) {
+	/* in the Evil Variant, those traps are always created --Amy */
+	if (!rn2(10) || isevilvariant) {
 
 		if (isok(u.ux, u.uy) && !(t_at(u.ux, u.uy)) ) {
 			ttmp = maketrap(u.ux, u.uy, randomtrap(), 100);
@@ -15853,7 +15854,8 @@ register int bodypart;
 	if (bodypart) exercise(A_CON, FALSE);
 	make_stunned(HStun + dmg, TRUE);
 
-	if (!rn2(10)) {
+	/* Grunthack door traps are evil, so they have to be evil in the Evil Variant too --Amy */
+	if (!rn2(10) || isevilvariant) {
 
 		int i, j;
 
