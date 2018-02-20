@@ -189,6 +189,8 @@ boolean quietly;
 	set_malign(mtmp); /* more alignment changes */
 	newsym(mtmp->mx, mtmp->my);
 
+	if (mtmp && mtmp->mtame && Hallucination) verbalize("wassup fam");
+
 	/* must wield weapon immediately since pets will otherwise drop it */
 	if (mtmp->mtame && attacktype(mtmp->data, AT_WEAP)) {
 		mtmp->weapon_check = NEED_HTH_WEAPON;
