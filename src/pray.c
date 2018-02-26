@@ -1521,7 +1521,7 @@ register struct obj *otmp;
     if (carried(otmp)) useup(otmp);
     else useupf(otmp, 1L);
     exercise(A_WIS, TRUE);
-	use_skill(P_SPIRITUALITY,1);
+	use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 5 : 1);
 }
 
 void
@@ -2390,7 +2390,7 @@ dopray()
 	if (Sick) make_sick(0L, (char *)0, TRUE, SICK_ALL);
 	if (HConfusion) make_confused(0L, TRUE);
 	if (HStun) make_stunned(0L, TRUE);
-	use_skill(P_SPIRITUALITY,1);
+	use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 5 : 1);
 	return(1);
     }
 
@@ -2416,7 +2416,7 @@ dopray()
     if(p_type == 3 && !Inhell) {
 	if (!Blind) You("are surrounded by a shimmering light.");
 	u.uinvulnerable = TRUE;
-	use_skill(P_SPIRITUALITY, rnd(20) );
+	use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? rnd(100) : rnd(20) );
     }
     return(1);
 }
