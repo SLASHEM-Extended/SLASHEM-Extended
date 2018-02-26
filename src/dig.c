@@ -961,6 +961,7 @@ struct obj *obj;
 		  /* res==0 => no prior message;
 		     res==1 => just got "You now wield a pick-axe." message */
 		  !res ? "Unfortunately," : "But", verb);
+	    if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return res;
 	}
 
@@ -969,6 +970,7 @@ struct obj *obj;
 		  /* res==0 => no prior message;
 		     res==1 => just got "You now wield a pick-axe." message */
 		  !res ? "Unfortunately," : "But", verb);
+	    if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return res;
 	}
 
