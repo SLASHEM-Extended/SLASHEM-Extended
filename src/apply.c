@@ -2077,6 +2077,7 @@ struct obj *obj;
 	    trouble_count, unfixable_trbl, did_prop, did_attr, did_atno;
 	int trouble_list[PROP_COUNT + ATTR_COUNT];
 	int chance;	/* KMH */
+	int nochargechange = 0;
 
 	if (obj && obj->oartifact == ART_DARKENING_THING) {
 		if (!rn2(5)) pline("You produce an annoying sound.");
@@ -2084,8 +2085,21 @@ struct obj *obj;
 		aggravate();
 	}
 
+	/* higher unihorn skill makes it a bit less likely to break --Amy */
+	if (!(PlayerCannotUseSkills)) {
+		switch (P_SKILL(P_UNICORN_HORN)) {
+			default: break;
+			case P_BASIC: nochargechange = 1; break;
+			case P_SKILLED: nochargechange = 2; break;
+			case P_EXPERT: nochargechange = 3; break;
+			case P_MASTER: nochargechange = 4; break;
+			case P_GRAND_MASTER: nochargechange = 5; break;
+			case P_SUPREME_MASTER: nochargechange = 6; break;
+		}
+	}
+
 	/* higher chance for vaporizing the horn as a centaur --Amy */
-	if (obj && !obj->oartifact && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 10 : 100)) {
+	if (obj && !obj->oartifact && (rnd(8) > nochargechange) && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 10 : 100)) {
 
 degradeagain:
 	    if (obj->spe < 1) {
@@ -2105,7 +2119,7 @@ degradeagain:
 
 	    }
 		}
-	if (obj && obj->oartifact && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 100 : 10000)) {
+	if (obj && obj->oartifact && (rnd(8) > nochargechange) && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 100 : 10000)) {
 	    if (obj->spe < 1) {
 	    useup(obj);
 	    pline(Hallucination ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
@@ -2247,7 +2261,22 @@ fixthings:
 #endif
 
 	if (Race_if(PM_HUMANOID_CENTAUR)) chance += 6; /* to offset the fact that it vanishes more often for them */
+
+	/* unihorn skill should not be useless - make it improve the effectiveness --Amy */
+	if (!(PlayerCannotUseSkills)) {
+		switch (P_SKILL(P_UNICORN_HORN)) {
+			default: break;
+			case P_BASIC: chance += 1; break;
+			case P_SKILLED: chance += 2; break;
+			case P_EXPERT: chance += 3; break;
+			case P_MASTER: chance += 4; break;
+			case P_GRAND_MASTER: chance += 5; break;
+			case P_SUPREME_MASTER: chance += 6; break;
+		}
+	}
+
 	if (chance > 18) chance = 18;
+	if (issoviet && chance > 9) chance = 9;
 
 	/* fix [some of] the troubles */
 	for (val = 0; val < val_limit; val++) {
