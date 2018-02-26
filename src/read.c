@@ -5694,7 +5694,26 @@ retry:
 	    break;
 	case SCR_PUNISHMENT:
 		known = TRUE;
-		if(confused || sobj->blessed) {
+
+		if (confused) {
+
+			if (sobj->blessed) {
+				if (u.ugangr) {
+					u.ugangr--;
+					if (u.ugangr) pline("%s seems %s.", u_gname(), Hallucination ? "groovy" : "slightly mollified");
+					else pline("%s seems %s.", u_gname(), Hallucination ? "cosmic (not a new fact)" : "mollified");
+				} else pline("%s seems %s.", u_gname(), Hallucination ? "high above the clouds" : "content");
+			} else if (sobj->cursed) {
+				u.ugangr++;
+				prayer_done();
+			} else {
+				u.ugangr++;
+			      You("get the feeling that %s is angry...", u_gname());
+			}
+			break;
+		}
+
+		if(sobj->blessed) {
 			You_feel("guilty.");
 			break;
 		}
