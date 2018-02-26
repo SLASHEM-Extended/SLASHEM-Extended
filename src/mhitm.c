@@ -2296,11 +2296,21 @@ register struct obj *obj;
 
 	if (!magr || !mdef || !obj) return; /* just in case */
 
-	if (dmgtype(mdef->data, AD_CORR))
+	/* It is just teh uber cheat0r that non-passive rusting attacks still cause the attacking monster's shit to rust. */
+	if (attackdamagetype(mdef->data, AT_NONE, AD_CORR)) {
 	    is_acid = TRUE;
-	else if (dmgtype(mdef->data, AD_RUST))
+	} else if (attackdamagetype(mdef->data, AT_NONE, AD_RUST)) {
 	    is_acid = FALSE;
-	else
+
+	/* In Soviet Russia, the Amy is considered the antichrist and everything she does must be bad. She can go ahead and
+	 * do obvious bug fixes that every sane person would immediately recognize as such, but the type of ice block goes
+	 * ahead and says 'she made this change, therefore it must be bad REVERTREVERTREVERTREVERTREVERTREVERTREVERT'. */
+	} else if (issoviet) {
+		if (dmgtype(mdef->data, AD_CORR))
+		    is_acid = TRUE;
+		else if (dmgtype(mdef->data, AD_RUST))
+		    is_acid = FALSE;
+	} else
 	    return;
 
 	if (!mdef->mcan &&
