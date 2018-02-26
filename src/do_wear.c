@@ -5635,8 +5635,14 @@ destroy_arm(atmp)
 register struct obj *atmp;
 {
 	register struct obj *otmp;
+
+	/* Amy edit: erosionproof gear should have a saving throw */
+	/* In Soviet Russia, no item may ever be safe from destruction unless it was already resistant in vanilla.
+	 * After all, the government uses disintegration beams to destroy the gear of people with 'unwanted' opinions,
+	 * and those bastards shouldn't be able to take countermeasures :-P */
+
 #define DESTROY_ARM(o) ((otmp = (o)) != 0 && \
-			(!atmp || atmp == otmp) && \
+			(!atmp || atmp == otmp) && (!otmp->oerodeproof || issoviet || !rn2(3)) && \
 			(!obj_resists(otmp, 0, 90)))
 
 	if (DESTROY_ARM(uarmc)) {
