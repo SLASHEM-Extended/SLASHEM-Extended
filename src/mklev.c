@@ -10781,8 +10781,9 @@ mineralize()
 			maketrap(x, y, ARABELLA_SPEAKER, 0);
 		}
 
-		if ((levl[x][y].typ == POOL && !rn2(10)) ||
-			(levl[x][y].typ == MOAT && !rn2(30)))
+		/* Since you can now pick up items from the bottom with swimming, let's reduce the amount of kelp --Amy */
+		if ((levl[x][y].typ == POOL && !rn2(150)) ||
+			(levl[x][y].typ == MOAT && !rn2(50)))
 	    	    (void)mksobj_at(KELP_FROND, x, y, TRUE, FALSE);
 
 		/* locate level for camperstriker role should be filled end to end with traps on trees */
