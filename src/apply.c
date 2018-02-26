@@ -426,7 +426,10 @@ struct obj *obj;
 	register struct monst *mtmp;
 
 	You(whistle_str, obj->cursed ? "shrill" : "high");
+
 	if (obj->cursed) {
+				/* watchmen don't like that --Amy */
+				awaken_soldiers();
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse bodrstvuyet. Otlichno srabotano." : "KRIIIIIIIIII!");
 	} else {
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Arbitr svistnul, dazhe yesli on ne imeyet svistok." : "Pfiiiiiiet!");
