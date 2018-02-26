@@ -1824,6 +1824,10 @@ mpickstuff(mtmp, str)
 			otmp->corpsenm != PM_LIGHTNING_LIZARD &&
 			otmp->corpsenm != PM_GIANT_LIZARD &&
 			!acidic(&mons[otmp->corpsenm])) continue;
+
+		/* Giants used to pluck the statues off of statue traps, rendering the traps inoperative!
+		 * I'm just going to ban monsters from picking up statues, that oughta fix it. --Amy */
+		if (otmp->otyp == STATUE) continue;
 		if (!touch_artifact(otmp,mtmp)) continue;
 		if (!can_carry(mtmp,otmp)) continue;
 		if (is_waterypool(mtmp->mx,mtmp->my)) continue;
