@@ -901,7 +901,7 @@ struct monst *victim;
 		    otmp->oeroded2++;
 		update_inventory();
 	    }
-	} else /*if (!otmp->oartifact)*/ {
+	} else if (!hard_to_destruct(otmp)) {
 		    if (youdefend) {
 		    Your("%s got vaporized!", ostr);
 			remove_worn_item(otmp, FALSE);
