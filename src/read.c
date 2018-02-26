@@ -787,6 +787,8 @@ doread()
 	"Huge hung hero hunks hastily hump horny heaving hot whores.",
 	"you can dig as much as you want and will find it eventually...", /* -- AmyBSOD Feb2018 */
 	"Sure, slex has standards. And the usual standard is, everyone else has to think it's a bad idea, or Amy won't implement it.", /* by jonadab */
+	"The greatest value of Slex is existing as a surreal wide awake nightmare game that never makes sense to anyone.", /* someone who took my SLEX survey in Feb 2018 */
+	"This shirt scores very well on Amy's fleeciness scale!",
 
 
 	    };

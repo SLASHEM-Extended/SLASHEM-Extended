@@ -4313,6 +4313,8 @@ static const char *epitaphs[] = {
 	"oh god, why can't I make it so that 'move in a direction until interrupted' in Nethack Fourk is interrupted by an intersection but quicktravel is not? I can only make it so that both are interrupted or none are! :(",
 	"oh god why does a pile of fucking rocks interrupt quicktravel in Nethack Fourk???",
 	"slex is the variant where you need an usb port with an external memory extension in your skull to have enough brain capacity to keep all the new ways of being killed in your brain ;-)",
+	"if you want nethack than vanilla is the best, if you want a nice ux then nh4 is the best, if you want more burden of knowledge go with slashem, if you want to torture a prisoner then tell them you will release them if they ascend a bleeder on slex",
+	"The frog's dead. He Kermitted suicide.",
 
 };
 
