@@ -3725,10 +3725,10 @@ dopickup()
 	}
 	if((is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy) || is_moorland(u.ux, u.uy) || is_urinelake(u.ux, u.uy)) && !(is_crystalwater(u.ux, u.uy)) ) {
 	    if (Wwalking || is_floater(youmonst.data) || is_clinger(youmonst.data)
-			|| (Flying && !Breathless)) {
+			|| (Flying && !Breathless && !Swimming)) {
 		You("cannot dive into the water to pick things up.");
 		return(0);
-	    } else if (!Underwater) {
+	    } else if (!Underwater && !Swimming) {
 		You_cant("even see the bottom, let alone pick up %s.",
 				something);
 		return(0);
