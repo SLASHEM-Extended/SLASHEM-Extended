@@ -282,7 +282,23 @@ found:
 
 	/* see if there's enough ink */
 	basecost = cost(new_obj);
-	if(pen->spe < basecost/2)  {
+
+	if (!(objects[new_obj->otyp].oc_name_known)) {
+		pline("That item isn't type-identified. If it also isn't type-named, writing it may fail depending on your luck.");
+		if (yn("Try anyway?") != 'y') {
+			obfree(new_obj, (struct obj *) 0);
+			return(0);
+		}
+	} else {
+		pline("Writing that will cost up to %d ink.", basecost);
+		if (yn("Do you want to give it a try?") != 'y') {
+			obfree(new_obj, (struct obj *) 0);
+			return(0);
+		}
+
+	}
+
+	if(pen->spe < basecost/2 && (objects[new_obj->otyp].oc_name_known) )  {
 		Your("marker is too dry to write that!");
 		obfree(new_obj, (struct obj *) 0);
 		return(1);

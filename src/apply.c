@@ -4213,6 +4213,14 @@ use_chemistry_set(struct obj *chemset)
 	new_obj->hvycurse = new_obj->prmcurse = new_obj->morgcurse = new_obj->evilcurse = new_obj->bbrcurse = new_obj->stckcurse = FALSE;
 	cost = potion_charge_cost(new_obj);
 
+	if (objects[new_obj->otyp].oc_name_known) {
+		pline("Making this potion will use %d charges.", cost);
+		if (yn("Do you want to give it a try?") != 'y') {
+			obfree(new_obj, (struct obj *) 0);
+			return;
+		}
+	}
+
 	int nochargechange = 10;
 	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
