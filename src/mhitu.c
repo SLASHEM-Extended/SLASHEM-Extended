@@ -15453,8 +15453,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    int blnd = d((int)mattk->damn, (int)mattk->damd);
 		    if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone()) blnd = (int)mattk->damn * (int)mattk->damd;
 
-		    You("are blinded by %s radiance!",
-			              s_suffix(mon_nam(mtmp)));
+		    if (Hallucination) pline("The power of %s aurora overwhelms you!", s_suffix(mon_nam(mtmp)));
+		    else You("are blinded by %s radiance!", s_suffix(mon_nam(mtmp)));
+
 		    make_blinded((long)blnd,FALSE);
 		    stop_occupation();
 		    /* not blind at this point implies you're wearing

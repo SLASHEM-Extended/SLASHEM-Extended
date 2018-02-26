@@ -12950,6 +12950,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"The vulture interface for nethack is very cheater, since it allows you to see whether a gray stone is a loadstone without having to pick it up. Don't get caught using such a cheater interface of cheatingness.",
 	"if you play a stoopid variant with a too low weight cap where stuff weigh way too much, what happens can be summed up as 'oh damn the only wand of cold I had with me exploded, I have to go back to my stash and get another'",
 	"all that the weight cap in vanilla nethack really 'accomplishes' is 'oh damn I cleared another level full of loot and have to go back to my stash with it'",
+	"The power of the Aurora overwhelms you!",
 
 };
 
