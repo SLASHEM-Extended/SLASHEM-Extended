@@ -12953,6 +12953,18 @@ static NEARDATA const char * const fake_plines[] = {
 	"The power of the Aurora overwhelms you!",
 	"Something comes out of the toilet!",
 	"A thoroughly rusty amulet of life saving rusted away completely!",
+	"In Nethack Fourk, the game is so incredibly streamlined, placing certain guaranteed items on certain early dungeon levels. But they don't start out identified, so you have to be spoiled to recognize them, or waste identify scrolls on them, or (worst of all) discover the stupid hallu potion on the Oracle level by quaff-testing. GAH.",
+	"You are not really in the mood to play Nethack Fourk. Do it anyway?",
+	"ugh... seriously, jonadab??? my shuriken skill allows me to appraise the shuriken's enchantment in nethack fourk... BUT IT ONLY APPRAISES THE ONE I THREW AND NOT THE REMAINING STACK AND THEY DON'T STACK ANYMORE FOR CRYING OUT LOUD",
+	"I wish jonadab updated nethack fourk more regularly (say it with me now: katana skill proposed 20 months ago and still not in the game and will probably not be 'ready' for this year's Junethack either, meaning at least 6 more months of delay)",
+	"Samurai have been bad at what real-life samurai are good at for 20 months in nethack fourk and if jonadab can't be bothered to fix it 'correctly', I wish he'd at least fix it somehow at all (twoweaponing still only goes up to skilled on the server)",
+	"Apparently, when the vanilla nethack devteam made their variant, they changed the unnethack code to something stupid! yes, that's right, unnethack was there first, and vanilla nethack is a variant of unnethack that broke things! :P",
+	"Why the heck do nh4-based variants open the options menu if I hit ESC immediately followed by a direction?",
+	"The wand destruction patch makes it so that the player's wands suck, and some roles can't even reach enough skill to un-suckify them, but soldiers will absolutely fuck you up with their wands of lightning and death.",
+	"Why the heck is an acid blob a 'j' in Nethack Fourk? WHY IS IT A j??? Blobs are, have always been, and will always be 'b', as in 'b'lob!",
+	"The Nethack Fourk dev had the very bright idea to recolor all monsters to arbitrary other ones.",
+	"Why the heck can't I spacebar out of the direction prompt in nethack fourk?",
+	"In Nethack Fourk, the 'corridorbranch' option says 'branching corridors do not stop farmove'... and apparently that means that if it's set to false, 'branching corridors do not do not stop farmove', i.e. do stop it. *Very* bad wording on that option.",
 
 };
 

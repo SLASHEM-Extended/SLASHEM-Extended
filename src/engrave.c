@@ -4315,6 +4315,13 @@ static const char *epitaphs[] = {
 	"slex is the variant where you need an usb port with an external memory extension in your skull to have enough brain capacity to keep all the new ways of being killed in your brain ;-)",
 	"if you want nethack than vanilla is the best, if you want a nice ux then nh4 is the best, if you want more burden of knowledge go with slashem, if you want to torture a prisoner then tell them you will release them if they ascend a bleeder on slex",
 	"The frog's dead. He Kermitted suicide.",
+	"Who designed this sorry excuse of a travelto command in Nethack Fourk??? Seriously!",
+	"How To Kill Nethack And Erase It From The Popular Consciousness: a guide by LarienTelrunya",
+	"GUH, nethack fourk does this completely retarded thing with unihorns where every single stat point restore disenchants it",
+	"reminder to self: never use quicktravel on nethack4 soko or the game will screw you over, a hundred percent sure",
+	"at least fourk soko isn't dnethack's sleepoban, but the bullshit travelto command still pushing boulders into corners is some A-grade bullshit and the developer should have his or her programming license revoked",
+	"in slex I could so beautifully use travelto for sokoban, especially for repetitive levels, but if I try in nethack fourk it will, without fail, screw me over",
+	"wtf how many 200 wand zaps does it take to up that ridiculous wand skill in that stupid wand destruction patch nethack fourk?",
 
 };
 
