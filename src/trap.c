@@ -11719,6 +11719,7 @@ register struct monst *mtmp;
 			break;
 
 		case SLP_GAS_TRAP:
+		    if (!(mtmp->mtame) && rn2(3)) break;
 		    if (!resists_sleep(mtmp) && !breathless(mptr) && (!mtmp->egotype_undead) &&
 				!mtmp->msleeping && mtmp->mcanmove) {
 			    mtmp->mcanmove = 0;
@@ -11728,11 +11729,12 @@ register struct monst *mtmp;
 				      Monnam(mtmp));
 				seetrap(trap);
 			    }
-			if (!rn2(50)) deltrap(trap);
+			if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
 			}
 			break;
 
 		case PARALYSIS_TRAP:
+		    if (!(mtmp->mtame) && rn2(10)) break;
 			if (dmgtype(mtmp->data, AD_PLYS)) break;
 
 		      {
@@ -11742,11 +11744,12 @@ register struct monst *mtmp;
 				pline("%s is suddenly paralyzed!", Monnam(mtmp));
 				seetrap(trap);
 			    }
-			if (!rn2(50)) deltrap(trap);
+			if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
 			}
 			break;
 
 		case POISON_GAS_TRAP:
+		    if (!(mtmp->mtame) && rn2(3)) break;
 		    if (!resists_poison(mtmp) && !breathless(mptr) && (!mtmp->egotype_undead) ) {
 
 			    if (in_sight) {
@@ -11758,11 +11761,12 @@ register struct monst *mtmp;
 	               if (thitm(0, mtmp, (struct obj *)0, num, FALSE))
 	                 trapkilled = TRUE;
 
-			if (!rn2(50)) deltrap(trap);
+			if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
 			}
 			break;
 
 		case SLOW_GAS_TRAP:
+		    if (!(mtmp->mtame) && rn2(3)) break;
 		    if (!breathless(mptr) && (!mtmp->egotype_undead) ) {
 
 			    if (in_sight) {
@@ -11770,11 +11774,12 @@ register struct monst *mtmp;
 				seetrap(trap);
 			    }
 			mon_adjust_speed(mtmp, -1, (struct obj *)0);
-			if (!rn2(50)) deltrap(trap);
+			if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
 			}
 			break;
 
 		case RUST_TRAP:
+		    if (!(mtmp->mtame) && rn2(7)) break;
 		    {
 			struct obj *target;
 
@@ -11846,11 +11851,13 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			} else if (mptr == &mons[PM_GREMLIN] && rn2(3)) {
 				(void)split_mon(mtmp, (struct monst *)0);
 			}
-			if (!rn2(50)) deltrap(trap);
+			if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
 			break;
 		    }
 		case FIRE_TRAP:
  mfiretrap:
+		    if (!(mtmp->mtame) && rn2(5)) break;
+
 			if (in_sight)
 			    pline("A %s erupts from the %s under %s!",
 				  tower_of_flame,
@@ -11905,10 +11912,11 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			if (is_ice(mtmp->mx,mtmp->my))
 			    melt_ice(mtmp->mx,mtmp->my);
 			if (see_it) seetrap(trap);
-			if (!rn2(50)) deltrap(trap);
+			if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
 			break;
 
 		case PLASMA_TRAP:
+		    if (!(mtmp->mtame) && rn2(15)) break;
 			if (in_sight)
 			    pline("A plasma cloud encloses %s!", mon_nam(mtmp));
 			else if (see_it)  /* evidently `mtmp' is invisible */
@@ -11955,10 +11963,11 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			if (is_ice(mtmp->mx,mtmp->my))
 			    melt_ice(mtmp->mx,mtmp->my);
 			if (see_it) seetrap(trap);
-			if (!rn2(50)) deltrap(trap);
+			if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
 			break;
 
            case ICE_TRAP:
+		    if (!(mtmp->mtame) && rn2(5)) break;
            if (in_sight)
              pline("A freezing cloud shoots from the %s under %s!",
              surface(mtmp->mx, mtmp->my), mon_nam(mtmp));
@@ -11977,10 +11986,11 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
                 (void) destroy_mitem(mtmp, POTION_CLASS, AD_COLD);
                }
            if (see_it) seetrap(trap);
-		if (!rn2(50)) deltrap(trap);
+		if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
            break;
 
            case SHOCK_TRAP:
+		    if (!(mtmp->mtame) && rn2(5)) break;
            if (in_sight)
              pline("A lightning bolt strikes %s!", mon_nam(mtmp));
            else if (see_it)
@@ -12000,10 +12010,11 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			}
                }
            if (see_it) seetrap(trap);
-		if (!rn2(50)) deltrap(trap);
+		if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
            break;
 
            case ACID_POOL:
+		    if (!(mtmp->mtame) && rn2(10)) break;
 
 		if (is_floater(mtmp->data) || is_flyer(mtmp->data) || mtmp->egotype_flying) break;
 
@@ -12022,10 +12033,11 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
                  trapkilled = TRUE;
 		}
            if (see_it) seetrap(trap);
-		if (!rn2(50)) deltrap(trap);
+		if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
            break;
 
            case DEATH_TRAP:
+		    if (!(mtmp->mtame) && rn2(25)) break;
 
 		if (nonliving(mtmp->data) || is_demon(mtmp->data) || resists_death(mtmp) || mtmp->data->msound == MS_NEMESIS || resists_magm(mtmp)) break;
 
@@ -12040,11 +12052,12 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		}
 
 		if (see_it) seetrap(trap);
-		if (!rn2(50)) deltrap(trap);
+		if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
 
 		break;
 
            case DISINTEGRATION_TRAP:
+		    if (!(mtmp->mtame) && rn2(25)) break;
 
 		if (resists_disint(mtmp)) break;
 
@@ -12059,11 +12072,12 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		}
 
 		if (see_it) seetrap(trap);
-		if (!rn2(50)) deltrap(trap);
+		if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
 
 		break;
 
            case DRAIN_TRAP:
+		    if (!(mtmp->mtame) && rn2(25)) break;
 
 		if (resists_drli(mtmp)) break;
 
@@ -12078,11 +12092,12 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		}
 
 		if (see_it) seetrap(trap);
-		if (!rn2(50)) deltrap(trap);
+		if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
 
 		break;
 
            case WATER_POOL:
+		    if (!(mtmp->mtame) && rn2(10)) break;
 
 		if (is_floater(mtmp->data) || is_flyer(mtmp->data) || mtmp->egotype_flying || mtmp->egotype_watersplasher || is_swimmer(mtmp->data) || amphibious(mtmp->data) || breathless(mtmp->data) || mtmp->egotype_undead ) break;
 
@@ -12096,7 +12111,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
                  trapkilled = TRUE;
 
            if (see_it) seetrap(trap);
-		if (!rn2(50)) deltrap(trap);
+		if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
            break;
 
            case SHIT_TRAP:
@@ -12112,7 +12127,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			mon_adjust_speed(mtmp, 1, (struct obj *)0);
 
            if (see_it) seetrap(trap);
-		if (!rn2(20)) deltrap(trap);
+		if (!rn2(20) && !(mtmp && mtmp->mtame)) deltrap(trap);
            break;
 
 		case PIT:
@@ -12659,6 +12674,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			break;
 		case ANTI_MAGIC:
 		case OUT_OF_MAGIC_TRAP:
+		    if (!(mtmp->mtame) && rn2(10)) break;
 			if (in_sight) seetrap(trap);
 		    	if (resists_magm(mtmp)) {
 			    if (in_sight) {
@@ -12669,7 +12685,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		    	    mon_drain_en(mtmp, 
 				((mtmp->m_lev > 0) ? (rnd(mtmp->m_lev)) : 0) + 1);
 		    	}
-			if (!rn2(50)) deltrap(trap);
+			if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
 			break;
 		case LANDMINE:
 			if(rn2(3))
@@ -12756,11 +12772,12 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		    break;
 
 		case SPEAR_TRAP:
+		    if (!(mtmp->mtame) && rn2(10)) break;
 			if (in_sight) {
 				seetrap(trap);
 				pline("A spear stabs up from a hole in the ground!");
 			}
-			if (!rn2(5)) { /* Sorry, no infinite conga lines of death. --Amy */
+			if (!rn2(5) && !(mtmp && mtmp->mtame)) { /* Sorry, no infinite conga lines of death. --Amy */
 				if (in_sight) {
 					pline("But %s breaks it in two!",mon_nam(mtmp));
 				}
@@ -12788,10 +12805,11 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			 break;
 
 		case SCYTHING_BLADE:
+		    if (!(mtmp->mtame) && rn2(25)) break;
 			if (in_sight) {
 				seetrap(trap);
 			}
-			if (!rn2(15)) { /* Sorry, no infinite conga lines of death. --Amy */
+			if (!rn2(15) && !(mtmp && mtmp->mtame)) { /* Sorry, no infinite conga lines of death. --Amy */
 				if (in_sight) {
 					pline("You see %s smash a scything blade apart!",mon_nam(mtmp));
 				}
@@ -12821,6 +12839,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			 break;
 	    case MAGIC_BEAM_TRAP:
 	    case PIERCING_BEAM_TRAP:
+		    if (!(mtmp->mtame) && rn2(10)) break;
 		if (distu(trap->tx, trap->ty) < 4) You_hear("a faint click.");
 		if (in_sight) {
 		    seetrap(trap);
@@ -12836,7 +12855,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		    newsym(u.ux,u.uy);
 			break; /* otherwise the second deltrap could cause segfaults */
 		}
-		if (trap && !rn2(7)) deltrap(trap); /* making sure monsters don't get killed over and over --Amy */
+		if (trap && !rn2(7) && !(mtmp && mtmp->mtame)) deltrap(trap); /* making sure monsters don't get killed over and over --Amy */
 		break;
 
 		default:

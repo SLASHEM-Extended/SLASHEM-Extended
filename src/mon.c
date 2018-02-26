@@ -2519,8 +2519,12 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				    !webmaker(mdat) && !dmgtype(mdat, AD_WEBS) ))
 			) {
 			    if (!(flag & ALLOW_TRAPS)) {
-				/* No more mtrapseen weirdness - just have a random chance of avoiding the trap --Amy */
-				if (/*mon->mtrapseen & (1L << (ttmp->ttyp - 1))*/!rn2(3))
+				/* No more mtrapseen weirdness - just have a random chance of avoiding the trap --Amy
+				 * make sure they don't constantly fall into sokoban holes */
+				if (rn2(3) || (In_sokoban(&u.uz) && rn2(25) && (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT
+				    || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT
+				    || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == TRAPDOOR
+				    || ttmp->ttyp == HOLE) ) )
 				    continue;
 			    }
 			    info[cnt] |= ALLOW_TRAPS;
