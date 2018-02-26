@@ -1,6 +1,29 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.7
+- Reduced the amount of kelp frond being generated on watery levels.
+- Trying to use a pick-axe while stuck in a web and failing will now force a --More-- unless the corresponding option was turned off.
+- Monster-versus-monster passive rust attacks are limited to actual passive attacks; a pet attacking a gray ooze should no longer result in the pet's weapon being rusted, since the gray ooze's rusting attack is a bite attack and not a passive attack.
+- If the player can swim, they can now pick up items from the water even while flying.
+- Hostile giants will no longer pick up statues.
+- Eating a luckstone can change the player's luck, depending on the stone's BUC. Eating a shimmering dragon can give or remove a random intrinsic.
+- If the player's unicorn horn skill goes up, the horn effectively acts like it had an extra +1 per skill point, and also becomes less likely to turn to dust.
+- Amulets can be pseudo-identified by dropping them down a toilet. Every amulet has its own unique message. However, the amulet can be cursed or rusted, or it can also be consumed, in which case monsters will be summoned.
+- Sacrificing a high-value corpse has a much higher chance of the gods giving an artifact gift.
+- If the player is confused or stunned, and not playing a race that gets those status effects permanently, there is a chance of falling down stairs.
+- Being hit by an archon's blindness gaze gives a special message while hallucinating.
+- In evil variant mode, if a bag of holding or digestion deletes items, the player will not be told which items have been deleted.
+- Added a special message if the player starts or restores a game while hallucinating during a full moon.
+- Priests can train the spirituality skill 5 times faster.
+- Applying a cursed tin whistle on a town level will anger the watchmen.
+- Monsters are much better at avoiding traps, particularly holes in Sokoban.
+- Added some more ways for the elder priest to become covetous.
+- Droven bolts no longer weigh a whole weight unit.
+- Fixed (hopefully) some badly defined regions on the elder priest level that could cause the player or downstairs to spawn inside the temple.
+- Reading a scroll of punishment while confused angers the gods, or mollifies them if the scroll was blessed.
+- Cursed evil artifacts are very hard to destroy. Also, fixed an error where eternium or sticky cursed items could still sometimes be destroyed by rust.
+- Erosionproof items have a chance to resist disintegration or destroy armor.
+- If you try to create a potion or write a scroll that you have identified earlier, the game now tells you the cost and then asks whether you really want to create it. Also, it is no longer possible to have the game leak information about unidentified scrolls by using a marker that has just barely less than twice the required amount of ink.
 - Cannibalism in evilvariant mode will increase god anger.
 - Door and container traps in evilvariant mode will always surround the player with invisible traps.
 - If the player uses create familiar while hallucinating, there is an extra message displayed.
