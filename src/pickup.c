@@ -2307,7 +2307,10 @@ struct obj *item;
     struct monst *shkp;
     long loss = 0L;
 
-    if (item->dknown)
+	/* In the Evil Variant, you aren't told which items have been destroyed. --Amy */
+    if (isevilvariant)
+	Norep("Stuff has vanished!");
+    else if (item->dknown)
 	pline("%s %s vanished!", Doname2(item), otense(item, "have"));
     else
 	You("%s %s disappear!", Blind ? "notice" : "see", doname(item));
