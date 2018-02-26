@@ -12951,6 +12951,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"if you play a stoopid variant with a too low weight cap where stuff weigh way too much, what happens can be summed up as 'oh damn the only wand of cold I had with me exploded, I have to go back to my stash and get another'",
 	"all that the weight cap in vanilla nethack really 'accomplishes' is 'oh damn I cleared another level full of loot and have to go back to my stash with it'",
 	"The power of the Aurora overwhelms you!",
+	"Something comes out of the toilet!",
+	"A thoroughly rusty amulet of life saving rusted away completely!",
 
 };
 

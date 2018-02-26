@@ -13,6 +13,7 @@
 STATIC_DCL void trycall(struct obj *);
 # endif /* OVLB */
 STATIC_DCL void dosinkring(struct obj *);
+STATIC_DCL void dotoiletamulet(struct obj *);
 
 STATIC_PTR int drop(struct obj *);
 STATIC_PTR int wipeoff(void);
@@ -683,6 +684,286 @@ giveback:
 		useup(obj);
 }
 
+/* Dropping amulets down a toilet can help identify them, and most of the time you get the amulet back.
+ * But the amulet can be cursed or rusted in the process. If it doesn't come back, monsters are spawned. --Amy */
+STATIC_OVL
+void
+dotoiletamulet(obj)  /* obj is an amulet being dropped over a toilet */
+register struct obj *obj;
+{
+	register struct obj *otmp;
+	register boolean getitback = rn2(4);
+
+	/* you can't drop the Amulet of Yendor anyway, but in case this function is somehow called with it... */
+	if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR) return;
+
+	You("drop %s down the drain.", doname(obj));
+	obj->in_use = TRUE;	/* block free identification via interrupt */
+
+	/* I allow you to "observe" this even if you're blind --Amy */
+	switch(obj->otyp) {
+	case AMULET_OF_CHANGE:
+		pline("Suddenly the toilet seems to be made for the opposite gender!");
+		break;
+	case AMULET_OF_PEACE:
+		pline("It seems the toilet has found inner peace.");
+		break;
+	case AMULET_OF_POLYMORPH:
+		pline_The("toilet seems to be a fountain for a moment.");
+		break;
+	case AMULET_OF_DRAIN_RESISTANCE:
+		pline_The("toilet water no longer flows down the drain!");
+		break;
+	case AMULET_OF_ESP:
+		You("think you saw a rat in the toilet!");
+		break;
+	case AMULET_OF_UNDEAD_WARNING:
+		pline_The("toilet seems to be afraid of the walking dead!");
+		break;
+	case AMULET_OF_OWN_RACE_WARNING:
+		pline_The("toilet seems to be afraid of other toilets!");
+		break;
+	case AMULET_OF_POISON_WARNING:
+		pline_The("toilet seems to be afraid of venomous pee!");
+		break;
+	case AMULET_OF_COVETOUS_WARNING:
+		pline_The("toilet seems to be afraid of being used without a warning!");
+		break;
+	case AMULET_OF_FLYING:
+		pline_The("toilet soars to the %s, then lands again.", ceiling(u.ux, u.uy));
+		break;
+	case AMULET_OF_LIFE_SAVING:
+		pline_The("toilet gains an extra life!");
+		break;
+	case AMULET_OF_MAGICAL_BREATHING:
+		pline_The("toilet water flows down the drain without requiring the flushing to be operated!");
+		break;
+	case AMULET_OF_REFLECTION:
+		pline_The("toilet water seems to come back out of the drain!");
+		break;
+	case AMULET_OF_RESTFUL_SLEEP:
+		pline_The("toilet doesn't feel like operating.");
+		break;
+	case AMULET_OF_BLINDNESS:
+		You("can't see whether something is happening to the toilet!");
+		break;
+	case AMULET_OF_STRANGULATION:
+		pline_The("toilet seems to scream in agony silently.");
+		break;
+	case AMULET_OF_PREMATURE_DEATH:
+		pline_The("toilet suddenly seems to fall apart.");
+		break;
+	case AMULET_OF_UNCHANGING:
+		pline_The("toilet seems indestructible.");
+		break;
+	case AMULET_VERSUS_POISON:
+		pline_The("dirty toilet water turns clear.");
+		break;
+	case AMULET_OF_ANTI_TELEPORTATION:
+		pline_The("toilet seems to be anchored to the spot.");
+		break;
+	case AMULET_VERSUS_STONE:
+		pline_The("toilet doesn't turn to stone.");
+		break;
+	case AMULET_OF_DEPETRIFY:
+		pline_The("toilet is definitely made of porcelain. Not mineral.");
+		break;
+	case AMULET_OF_MAGIC_RESISTANCE:
+		pline_The("toilet is surrounded by a magical shield!");
+		break;
+	case AMULET_OF_SICKNESS_RESISTANCE:
+		pline_The("toilet no longer smells of urine and crap.");
+		break;
+	case AMULET_OF_SWIMMING:
+		pline("Some garbage floats up to the toilet water's surface.");
+		break;
+	case AMULET_OF_DISINTEGRATION_RESIS:
+		pline_The("toilet seems very firm.");
+		break;
+	case AMULET_OF_ACID_RESISTANCE:
+		pline_The("toilet seems resistant to cleaning vinegar solutions.");
+		break;
+	case AMULET_OF_REGENERATION:
+		pline_The("toilet seems to be self-repairing.");
+		break;
+	case AMULET_OF_CONFLICT:
+		pline_The("toilet drones loudly!");
+		break;
+	case AMULET_OF_FUMBLING:
+		You_feel("that your stream of pee missed the toilet!");
+		break;
+	case AMULET_OF_SECOND_CHANCE:
+		pline_The("toilet breaks apart and reintegrates!");
+		break;
+	case AMULET_OF_DATA_STORAGE:
+		pline_The("toilet seems absolutely safe.");
+		break;
+	case AMULET_OF_WATERWALKING:
+		pline_The("toilet paper swims on the water without getting wet!");
+		break;
+	case AMULET_OF_HUNGER:
+		pline_The("toilet flushes very quickly!");
+		break;
+	case AMULET_OF_POWER:
+		pline_The("flushing seems to create much more water than usual!");
+		break;
+	case AMULET_OF_LEECH:
+		pline_The("toilet seems to be drawing energy from the surroundings.");
+		break;
+	case AMULET_OF_DANGER:
+		You("suddenly develop a fear of toilets!");
+		break;
+	case AMULET_OF_INSOMNIA:
+		pline_The("toilet seems ready to operate forever.");
+		break;
+	case AMULET_OF_MENTAL_STABILITY:
+		pline_The("toilet seems to be operating steadily.");
+		break;
+	case AMULET_OF_CONTAMINATION_RESIST:
+		pline_The("toilet water cleans instantly!");
+		break;
+	case AMULET_OF_THE_RNG:
+	case AMULET_OF_INFINITY:
+		pline("Something strange is happening to the toilet.");
+		break;
+	case AMULET_OF_SPEED:
+		pline_The("toilet flow seems faster.");
+		break;
+	case AMULET_OF_POLYMORPH_CONTROL:
+		pline_The("toilet seems to be a regularly erupting geyser for a moment.");
+		break;
+	case AMULET_OF_TELEPORT_CONTROL:
+		pline_The("toilet seems to be beamed aboard somewhere.");
+		break;
+	case AMULET_OF_PRISM:
+		pline_The("toilet sparkles in rainbow colors!");
+		break;
+	case AMULET_OF_WARP_DIMENSION:
+		pline_The("toilet suddenly looks like something straight out of an acid trip!");
+		break;
+	case AMULET_OF_D_TYPE_EQUIPMENT:
+		pline_The("toilet water looks like lava for a moment!");
+		break;
+	case AMULET_VERSUS_DEATH_SPELL:
+		pline_The("toilet no longer fears death.");
+		break;
+	case AMULET_OF_QUICK_ATTACK:
+		pline_The("toilet flushes twice.");
+		break;
+	case AMULET_OF_QUADRUPLE_ATTACK:
+		pline_The("toilet flushes four times in quick succession.");
+		break;
+	case PENDANT:
+	case NECKLACE:
+		pline_The("toilet seems uselessly adorned.");
+		break;
+	case AMULET_VERSUS_CURSES:
+		pline("A malignant aura surrounds the toilet for a moment, but is repelled by a magical shield.");
+		break;
+	case AMULET_OF_RMB_LOSS:
+		pline_The("toilet no longer seems there... until you feel for it. Why can't you see it?");
+		break;
+	case AMULET_OF_ITEM_TELEPORTATION:
+		pline_The("dust particles and dirt inside the toilet suddenly change their positions!");
+		break;
+	case AMULET_OF_EXPLOSION:
+		pline_The("toilet seems to be engulfed in a massive explosion!");
+		break;
+	case AMULET_OF_WRONG_SEEING:
+		You("suddenly see a fat log of shit inside the toilet!");
+		break;
+	case AMULET_OF_WEAK_MAGIC:
+		pline_The("water flow is suddenly too weak to flush away anything.");
+		break;
+	case AMULET_OF_DIRECTIONAL_SWAP:
+		pline_The("water flows up instead of down!");
+		break;
+	case AMULET_OF_SUDDEN_CURSE:
+		pline_The("toilet is surrounded by a malignant aura.");
+		break;
+	case AMULET_OF_ANTI_EXPERIENCE:
+		pline_The("toilet seems to be impossible to improve.");
+		break;
+	case AMULET_OF_STONE:
+		pline_The("toilet seems to be made of stone.");
+		break;
+	case AMULET_OF_MAP_AMNESIA:
+		You("don't remember whether there was a toilet at all.");
+		if (Hallucination) You("also forgot that you have to take a crap, and shit your trousers by mistake.");
+		break;
+	case AMULET_OF_DEPRESSION:
+		You("feel like you lost an important part of yourself.");
+		break;
+	case AMULET_OF_SCREWY_INTERFACE:
+		pline_The("amulet seems to hang in mid-air, even though you heard it slide down the drain!");
+		break;
+	case AMULET_OF_BONES:
+		pline_The("toilet looks like a gravestone for a moment.");
+		break;
+	case AMULET_OF_SPELL_FORGETTING:
+		pline_The("toilet seems very non-magical.");
+		break;
+	case AMULET_OF_HOSTILITY:
+		pline_The("toilet suddenly threatens to attack you!");
+		break;
+	case AMULET_OF_EVIL_CRAFTING:
+		You("suddenly seem to see %s taking a crap!", rndplrmonnamefemale());
+		break;
+	case AMULET_OF_EDIBILITY:
+		pline_The("toilet looks delicious! You wonder whether you can eat it.");
+		if (Hallucination) pline("In fact, it seems to have turned into an edible bra! Mmmmmmmmmmmmm... candy!");
+		break;
+	case AMULET_OF_WAKING:
+		pline("Suddenly, a very loud flushing sound seems to jolt you back to your senses.");
+		break;
+	case AMULET_OF_TRASH:
+		pline("There's a ton of useless garbage in the toilet. Better flush it quickly.");
+		break;
+	case AMULET_OF_UNDRESSING:
+		You("are suddenly overcome with an urge to pull down your pants.");
+		break;
+	case AMULET_OF_STARLIGHT:
+		pline("A searing ray of light shines brightly at the toilet!");
+		break;
+	case AMULET_OF_VULNERABILITY:
+		pline_The("very air seems to erode the toilet.");
+		break;
+	default:
+		pline("Apparently, nothing happens.");
+		break;
+	}
+
+	trycall(obj);
+
+	if (!obj->oerodeproof && is_rustprone(obj) && !hard_to_destruct(obj) && obj->oeroded == MAX_ERODE) {
+		pline("%s rusted away completely!", doname(obj));
+		useup(obj);
+		return;
+	} else if (getitback) {
+		pline_The("toilet flushes, and %s reappears!", doname(obj));
+		obj->in_use = FALSE;
+		if (!rn2(3)) curse(obj);
+		if (!rn2(3)) (void) get_wet(obj, FALSE);
+
+		dropx(obj);
+	} else {
+		useup(obj);
+		int aggroamount = rnd(6);
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+		while (aggroamount) {
+			makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+			aggroamount--;
+			if (aggroamount < 0) aggroamount = 0;
+		}
+		u.aggravation = 0;
+		pline("Something comes out of the toilet!");
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	}
+
+}
+
+
 #endif /* OVLB */
 #ifdef OVL0
 
@@ -779,6 +1060,11 @@ register struct obj *obj;
 	    if((obj->oclass == RING_CLASS || obj->otyp == MEAT_RING) &&
 			IS_SINK(levl[u.ux][u.uy].typ)) {
 		dosinkring(obj);
+		if (issoviet && !rn2(10)) pline("Eto zanimayet ochered' potomu, chto sovetskiy khochet, chtoby igra byla der'mo.");
+		return(issoviet ? 1 : 0);
+	    }
+	    if((obj->oclass == AMULET_CLASS) && IS_TOILET(levl[u.ux][u.uy].typ)) {
+		dotoiletamulet(obj);
 		if (issoviet && !rn2(10)) pline("Eto zanimayet ochered' potomu, chto sovetskiy khochet, chtoby igra byla der'mo.");
 		return(issoviet ? 1 : 0);
 	    }
