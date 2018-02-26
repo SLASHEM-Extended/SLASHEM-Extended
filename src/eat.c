@@ -1713,6 +1713,17 @@ register int pm;
 		pushplayer();
 		break;
 
+	    case PM_ADULT_SHIMMERING_DRAGON:
+	    case PM_OLD_SHIMMERING_DRAGON:
+	    case PM_SHIMMERING_DRAGON:
+	    case PM_VERY_OLD_SHIMMERING_DRAGON:
+	    case PM_ANCIENT_SHIMMERING_DRAGON:
+	    case PM_GREAT_SHIMMERING_DRAGON:
+
+		Your("intrinsics seem to change!");
+		intrinsicgainorloss();
+		break;
+
 	    case PM_SMALL_CHICKATRICE:
 	    case PM_NEWT:
 	    case PM_ENERGY_TROVE:
@@ -4557,6 +4568,22 @@ eatspecial() /* called after eating non-food */
 	{
 		pline(Hallucination ? "Whoops, what's that grating sound? Was that a piece of your tooth?" : "Yabba-dabba delicious!");
 		exercise(A_CON, TRUE);
+	}
+
+	if (otmp->otyp == LUCKSTONE) {
+		if (otmp->cursed) {
+			change_luck(-1);
+			if (otmp->spe < 0) change_luck(otmp->spe);
+			You_feel("unlucky.");
+		} else if (otmp->blessed && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )) {
+			change_luck(2);
+			if (otmp->spe > 0) change_luck(otmp->spe);
+			You_feel("very lucky.");
+		} else if (!(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone()) ) {
+			change_luck(1);
+			if (otmp->spe > 0) change_luck(otmp->spe);
+			You_feel("lucky.");
+		}
 	}
 
 	if (Race_if(PM_WORM_THAT_WALKS) && otmp->otyp == FIGURINE) {/* chance to polymorph into the depicted monster --Amy */
