@@ -2202,7 +2202,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 		}
 	    }
 	/* neutrals get gifts most often, chaotics are most unlikely to get them --Amy */
-	} else if (!rn2((altaralign == A_CHAOTIC) ? 5 : (altaralign == A_LAWFUL) ? 4 : 3)) {
+	} else if (!rn2((altaralign == A_CHAOTIC) ? (value > 24 ? 3 : value > 10 ? 4 : 5) : (altaralign == A_LAWFUL) ? (value > 24 ? 2 : value > 10 ? 3 : 4) : (value > 24 ? 1 : value > 10 ? 2 : 3) )) {
 	    int nartifacts = nartifact_exist();
 
 	    /* you were already in pretty good standing */
