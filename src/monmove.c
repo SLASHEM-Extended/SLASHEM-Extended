@@ -1357,6 +1357,12 @@ register int after;
 
 	/* and for the priest */
 	if(mtmp->ispriest) {
+
+		/* if the elder priest is hurt below 75%, regardless of HOW, he becomes covetous --Amy */
+	    if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && (mtmp->mhp <= (mtmp->mhpmax * 3 / 4)) ) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_covetous = 1;
+	    }
 	    mmoved = pri_move(mtmp);
 	    if(mmoved == -2) return(2);
 	    if(mmoved >= 0) goto postmov;

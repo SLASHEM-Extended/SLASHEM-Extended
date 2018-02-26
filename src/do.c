@@ -3730,6 +3730,13 @@ boolean moldy;
 	 */
 	if (moldy)
 	    mtmp->mhp = mtmp->mhpmax;
+
+	/* if you killed the elder priest, he should always revive with the covetous egotype --Amy */
+	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_covetous = 1;
+	}
+
 	chewed = !moldy && (mtmp->mhp < mtmp->mhpmax);
 	if (chewed) cname = cname_buf;	/* include "bite-covered" prefix */
 	switch (where) {
