@@ -768,7 +768,7 @@ PROJECTILE("pin bolt", (char *)0,
 PROJECTILE("mineral bolt", (char *)0,
 	1, 10, 0, 2, 18, 18, 0, MINERAL, -P_CROSSBOW, CLR_GRAY, 4),
 PROJECTILE("droven bolt", "obsidian bolt",
-	0, 10, 1, 2, 24, 24, 2, GLASS, -P_CROSSBOW, CLR_BLACK, 20), 
+	0, 10, 0, 2, 24, 24, 2, GLASS, -P_CROSSBOW, CLR_BLACK, 20), 
 PROJECTILE("kokken", (char *)0,
 	1, 2, 0, 2, 20, 20, 1, SILVER, -P_CROSSBOW, HI_SILVER, 15),
 
