@@ -431,7 +431,7 @@ fortune (mtmp)
 					pline_The("moon is waxing tonight.");
 					break;
 				case FULL_MOON:
-					You("are lucky!  Full moon tonight.");
+					You(Hallucination ? "are on the moon tonight!" : "are lucky!  Full moon tonight.");
 					change_luck(1);
 					break;
 				case 5:	case 6:	case 7:

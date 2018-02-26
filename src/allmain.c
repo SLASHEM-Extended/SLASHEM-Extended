@@ -101,7 +101,7 @@ moveloop()
 
     flags.moonphase = phase_of_the_moon();
     if(flags.moonphase == FULL_MOON) {
-	You("are lucky!  Full moon tonight.");
+	You(Hallucination ? "are on the moon tonight!" : "are lucky!  Full moon tonight.");
 	change_luck(1);
     } else if(flags.moonphase == NEW_MOON) {
 	pline("Be careful!  New moon tonight.");
