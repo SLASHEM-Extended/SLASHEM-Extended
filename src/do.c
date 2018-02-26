@@ -3318,7 +3318,7 @@ rerollchaloc:
 		    (near_capacity() > UNENCUMBERED || (Punished &&
 		    ((uwep != uball) || PlayerCannotUseSkills || ((P_SKILL(P_FLAIL) < P_BASIC))
             || !Role_if(PM_CONVICT)))
-		     || Fumbling)) {
+		     || Fumbling || (Confusion && !Conf_resist && !rn2(20) && !Race_if(PM_ADDICT)) || (Stunned && !Stun_resist && !rn2(5) && !Race_if(PM_TUMBLRER) && !Race_if(PM_REDDITOR)) )) {
 		    You("fall down the %s.", at_ladder ? "ladder" : "stairs");
 
 		    if (!rn2(10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) { /* evil patch idea by jonadab: amnesia */
