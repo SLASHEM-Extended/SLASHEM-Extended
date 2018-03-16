@@ -10238,7 +10238,7 @@ register char *cmd;
 		 * sadly, few players ever take the in-game advice and join the IRC, so we need in-game advice too...
 		 * and even that is often skipped by impatient players :( --Amy */
 
-	    if (moves < 50 && !(iflags.num_pad)) pline("You might want to turn on the number pad, which is done by opening the options with shift-O and navigating to the number_pad entry. Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 2. Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (probably requires you to start a new game).");
+	    if (moves < 50 && !(iflags.num_pad) && !(iflags.no_numpad_message)) pline("You might want to turn on the number pad, which is done by opening the options with shift-O and navigating to the number_pad entry. Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 2. Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (probably requires you to start a new game).");
 
 	}
 	/* didn't move */
