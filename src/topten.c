@@ -27,7 +27,7 @@ static long final_fpos;
 #define newttentry() (struct toptenentry *) alloc(sizeof(struct toptenentry))
 #define dealloc_ttentry(ttent) free((void *) (ttent))
 #define NAMSZ	10
-#define DTHSZ	100
+#define DTHSZ	150
 #define ROLESZ   3
 #define PERSMAX	 10000		/* entries per name/uid per char. allowed */
 #define POINTSMIN	1	/* must be > 0 */
