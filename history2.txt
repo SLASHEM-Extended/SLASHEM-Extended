@@ -560,6 +560,189 @@ Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chr
 - Switched the badly designed dungeon regrowth algorithm for a better one.
 - Monsters don't always drop their equipment when they die.
 
+1.7.7
+- It is again possible to escape in celestial disgrace, which was previously made impossible due to a faulty commit.
+- Greatly reduced the average amount of musable items that monsters spawn with, based on their level.
+- Iron balls and chains have a to-hit penalty when used by the player as weapons.
+- Polymorphing an object doesn't needlessly erase its BUC or enchantment knowledge anymore; after all, it's clear that those stay the same so there's no need to re-obscure them for no apparent reason.
+- Firing polymorph beams at objects has a higher chance of causing the object to shudder and be removed from the game, and if there's a pile of same-material items in the path there's a higher chance of creating a golem.
+- Made some adjustments to the ammo breakage formula.
+- Nerfed the power of manaleech.
+- Kicking trees produces less fruit, and monsters digging through solid rock produce less rocks.
+- Fixed some attack types that weren't working right.
+- Increased the chance that a ring dropped down a rink reappears, from 5% up to 50%.
+- Zapping the polymorph or mutation spells at yourself can backfire.
+- Wand wresting happens 1 in 20 times when trying to use an empty wand (used to be 1 in 121 times).
+
+1.7.6
+- Fixed a fallthrough bug that sometimes caused error messages to appear when the player sits on a throne.
+- Prevented artifact wands of deslexification from spawning outside of soviet mode.
+- Fixed the bug that allowed unicorn horns to restore stats that were lowered by the nexus swap effect.
+- Added in-game descriptions to all the artifacts.
+- The spell loss nasty trap effect now prevents the player from getting reminders about a spell running low on memory.
+- Fixed an oversight that caused the player's prayer timeout to become negative when wearing comfortable gloves.
+- Banned the use of power surge in chained blitz because it was too overpowered.
+- Fixed a bug that caused mirrored gloves to trigger whenever there was a monster with gaze attacks anywhere on the level, even if the player couldn't see the monster.
+- Fixed a bug that caused the turn undead technique to not work.
+- Allowed artifact ammo (and other artifacts of stackable item types for that matter) to generate in stacks.
+- "Guaranteed" sacrifice gifts are no longer really guaranteed; instead, they're merely more likely to be selected as sacrifice gifts.
+- A non-knight lawful player character has greatly reduced odds of success when trying to dip for Excalibur.
+- Increased the average chance that an artifact wish succeeds.
+- The crowning gift given to the player can be a random artifact; vanilla's guaranteed artifacts are now merely relatively likely to be given.
+
+1.7.4
+- Very rarely, a monster that spawns with equipment may receive an artifact piece of equipment as its starting inventory.
+- Allowed artifacts with SPFX_SEEK to actually grant automatic searching.
+- Fixed a bug that could cause the game to crash when the hitpoint bar tried to display things.
+- When an armor piece worn by the player gains an enchantment, the enchantment now starts working immediately (it used to require saving and loading, or taking it off and putting it back on).
+- Fixed the bug that caused errors when the amount of artifacts in the game exceeds 255, e.g. crashes that used to occur when an artifact with index number > 255 was invoked or viewed in the discoveries list.
+
+1.7.3
+- Added new playable races: amnesiac, ironman, segfaulter, snail, sustainer, unicorn, unmagic.
+- Rodneyan race player characters deal excessive melee damage less often.
+- Hitting a monster with a weapon that doesn't affect it (e.g. if the monster needs a +X weapon to hit) no longer trains the associated weapon skill.
+- Choosing to wield "nothing" no longer consumes a turn.
+- Allowed tools to explode like wands when they're recharged too often.
+
+1.7.2
+- All passive attack types should also work when the one being damaged by them is a monster now.
+- Sokoban maps can now be forgotten if the player gets amnesia.
+- Some changes to artifacts, e.g. they're no longer immune to certain types of item destruction.
+- The "You have no free hand" message forces a --More-- prompt now.
+- If the player dual-wields without actually having the two-weapon combat skill, there is now a huge to-hit penalty.
+- Made the sleep duration from player-cast sleep spells sane, and also nerfed the damage output of the magic missile spell.
+- The wand of digging is no longer arbitrarily limited to one single tile on maze levels for no good reason.
+- The ladiesman can now seduce all whores and foocubuses by chatting.
+- Fixed a game freeze on startup that could occur when the dungeon generator could not find a place to put Medusa's island.
+- Beam attacks no longer completely ignore the player's AC.
+- Changed the way deathmold polymorph forms' stats are generated.
+- Players polymorphed into any type of mind flayer are now prevented from wearing a helmet.
+- Fixed a fallthrough bug that caused convict player monsters to get more stuff than they should.
+- Fixed the huge bug that caused healing effects to unconditionally heal the player back to full 50% of the time.
+- The amulet versus stone no longer unstones the player when putting it on.
+- Increased the mana cost for time stop and godmode spells.
+- Increased the power of energy regeneration, as it has been nerfed too harshly before.
+- Removed some arbitrary limitations on dual-wielding. Mainly, being able to do so no longer depends on the player's maximum dual-wielding skill.
+- Added a way for the RNG to make certain item classes more likely to generate in a given game.
+- Overhauled some death messages to fix the Junethack problem where everyone just tries to get killed by every single type of monster in the game, which was making actually unique deaths meaningless.
+- Increased the player's carry capacity and added bonuses to it when certain achievements are obtained, but containers also had their weight rebalanced.
+- A monster's actual level may now be slightly higher deeper down in the dungeon.
+- Drinking from a fountain can now rarely turn it into a pool, which can cause the player to fall in immediately.
+- There may be a monster glyph that's always generated "hidden", i.e. invisible in a way that see invisible can't reveal.
+- Armor, spellbooks, gems and tools may now be resistant to identification.
+- Monster-zapped wands of hyper beam can sometimes disable the player's reflection.
+- Antimagic fields and out of magic traps are more likely to affect magic-resistant players (though still less likely than affecting nonresistant players, of course).
+- In-game item descriptions now include the effects of randomized appearances.
+- Monster difficulty slowly increases as in-game time passes.
+- If an item type can resist identification attempts, the chance that it does is now much lower if the player is wearing the item at the time of the identification attempt.
+- The identify spell can backlash now.
+- Fixed the error that caused monsters with randomized names to not be read correctly.
+- Nerfed the rodneyan race's melee damage.
+- Fixed wrong description for purple dragon scale shields.
+- All melee attack types should also work when the one being damaged by them is a monster now.
+- Fixed bugs that caused certain items to not autoidentify when the player saw them in action.
+- Set the autosave frequency to prime numbers, to ensure that certain speed-altering effects don't cause the game to never autosave.
+- Greatly increased the duration of the chi healing technique.
+- Reduced the average duration of stairs traps.
+- The trap of walls no longer erroneously speeds up herb growth.
+- Fixed a bug that could cause monsters to appear stuck in walls.
+- If the player lies to a vault guard, there is a quiz and if the player gives the wrong answer, the guard attacks.
+- Casting a spell incorrectly can occasionally cause bad effects.
+- Temple altars are less likely to disappear. However, sacrificing monsters on coaligned ones can occasionally change their alignment.
+- Re-balanced the trap generation algorithm to make evil traps less likely to appear.
+- Re-balanced some RNG results, e.g. for random monster attacks or monsters spawning with musable items, to make the most dangerous results less common.
+- The player can gain permanent boosts from achievements.
+
+1.7.1
+- Fixed the bug where the effects of fire bolt and disintegration beam spells were swapped (sadly, players abused this for a while instead of reporting it).
+- Really fixed the bug where respawn traps weren't working correctly.
+- The hitpointbar patch was applied at this point.
+- Fixed a bug where certain nasty traps were suddenly appearing too frequently, caused by an earlier commit.
+- Fixed a bug where autosave caused the game to give the player a hangup penalty even though the player did nothing wrong.
+- Fixed a bug that would occasionally segfault upon trying to save bones.
+- Fixed a fallthrough bug that caused troll player characters to start with a club.
+- Increased the chance that random stackable weapons spawn in bigger stacks.
+- Added some potential bad effects to the create familiar spell.
+- Hallucination now forces the screen to redraw both when it starts and also when it ends.
+- Stairs traps only prevent movement in the "backwards" direction now, which is up when the player does not have the amulet yet and down when he does.
+- If the player's unicorn horn degrades, it can now lose more than one point of enchantment in a single incident.
+- Permamimics that somehow aren't cloaked will now automatically re-cloak.
+- Added some more results to gem alchemy and dipping items into potions of gain level.
+- Potions of acid thrown by monsters deal damage that scales with level difficulty now.
+- Fixed an exploit that allowed players to escape from paralysis via hangup.
+- Fixed the bug where a monster with passive thirsty attacks would erroneously gain HP after it had already died.
+- Added monster-versus-player effects to certain pairs of high heels.
+- Added garbage strings that can appear in various places.
+
+1.7.0
+- Amnesia can sometimes re-randomize item appearances.
+- Fixed bugs associated with levelporting on quests.
+- Nerfed some more spells.
+- Players with drain resistance are less likely to successfully resist level drain.
+- Improved charge saber formula that determines the amount of charge a player gets.
+
+1.6.9
+- Dumplogs give more skill information now.
+- Added a description for iron shoes, which was somehow missing.
+- Fixed some trap functions that were doing the entirely wrong things.
+
+1.6.8
+- Random appearances of armor pieces have various effects now.
+- The stone of magic resistance will gradually curse itself while in the player's inventory.
+- Added psybeams to the random breath selection.
+- If automatic recovery of a crashed game fails, there is now a message being displayed. The game also no longer illogically starts a new game if it fails to recover the old one, because that could otherwise result in overwriting or corrupting a game in progress!
+- The automatic recovery prompt now has an extra security check to prevent players from accidentally deleting their game.
+- Nerfed the effect of shit pits. Also, stepping into a heap of shit can now cause fumbling.
+- High-level pets will level up more slowly.
+- Increased the minimum ascension turn limit to 50000.
+- Gems, balls and chains can now be cancelled.
+
+1.6.7
+- Polymorphing is less likely to select uncommon monster species. Also, monsters are less likely to turn into species that are much higher in level compared to their previous form.
+
+1.6.6
+- The player can choose to kick normally when riding a steed now.
+
+1.6.5
+- The DQ Slime role now learns random skills upon leveling up.
+- Some changes to spellcasting, including mana cost, hunger, etc.
+- Added some effects when eating certain monster corpses.
+- Effects that teleport the player's items away were made more balanced.
+- Reduced the average amount of HP that boss monsters get.
+- Certain food monsters now drop the associated types of food upon death.
+- The player can now allow item-stealing monsters to remove cursed items.
+- Fixed a bug where detect monsters could segfault.
+- Grease protects against all types of erosion now.
+- Casting a forgotten spell uses up a turn now and can also backfire.
+- Full-inventory identify doesn't reveal everything about every object anymore.
+- The Eyes of the Overworld no longer allow the player to identify items by farlooking them.
+- Players can't perform exploits by hanging up at the explore mode prompt anymore.
+- Zapping monsters with a wand of inertia paralyzes them for a short period of time.
+- Fixed a fallthrough bug that caused wands of extra healing to be better than wands of full healing.
+- Fixed C343-424, the bug where lighting the candelabrum while it had exactly one turn left would make the game unwinnable.
+- Amulets no longer display their type if the player has not actually moved on their square yet.
+- Fixed a bug where two potion descriptions of "violet potion" existed.
+- Selfmade items no longer stack with non-selfmade ones.
+- The dumplog lists techniques now.
+- Certain musable items that didn't correctly identify themselves when the player saw them get used now do.
+- Changed (mostly nerfed) the effects of many spells to make them less overpowered. Some wands and other consumables were boosted to make them be more powerful than their corresponding spells.
+- Fixed a redundant water warning.
+- The gelatinous cube race has pseudo-identify now.
+- The disarm technique is more useful now, and fencers start with it.
+- Levitators no longer hook themselves with their starting tools, and are also better at snatching stuff with the bullwhip.
+- Fixed the bug where using a multi-turn wait command would only interrupt the player when a wandering monster already got the first hit.
+- The enchantment of fractured rocks is no longer automatically known.
+- Nerfed the effect of the random message trap to make the game less unplayable.
+- Updated some flag arrays with new monsters to make them work correctly.
+- Increased the nutrition threshold at which the player's engulfing attacks cease working.
+- Casting a forgotten spell now gives the correct duration to resulting status effects.
+- Added a timed autosave option that defaults to on, which automatically saves the game every once in a while. Without it, a segfault could result in losing thousands of turns of gameplay if the player never left the level they were on.
+- The player doesn't gain extra nutrition from eating certain things while already satiated.
+- Fixed a bug where poke balls and similar things sometimes tried to access monster pointers that no longer existed.
+- Being very satiated can slow down the player.
+- Fixed erroneous item generation chances that resulted in certain items spawning way too often while others that should have been common were spawning never at all.
+- Added new playable roles: Transsylvanian and Unbeliever.
+
 :-) <3 *bundlebundlebundle* <3 :D
 
 
