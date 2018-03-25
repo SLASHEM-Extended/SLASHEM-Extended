@@ -1653,7 +1653,7 @@ newbossS:
 				nomul(-rnd(5), "standing next to a superthing");
 			}
 
-			if (ttmp && ttmp->ttyp == CURSED_GRAVE && !rn2(50)) {
+			if (ttmp && ttmp->ttyp == CURSED_GRAVE && !rn2(500)) {
 				if (!enexto(&cc, ttmp->tx, ttmp->ty, (struct permonst *)0) ) continue;
 
 				if (Aggravate_monster) {
