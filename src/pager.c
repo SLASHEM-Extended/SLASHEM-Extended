@@ -12968,6 +12968,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"The background radiation in the Gamma Caves contaminates you.",
 	"You're discovering your sexuality...",
 	"Are you homosexual? If you answer no, you're heterosexual.",
+	"Did I ever state how completely retarded cone of cold and fireball are in vanilla nethack? They gain 'stronger' forms if you increase them to skilled, but it prevents you from firing them as a ray, and prevents you from using them at all on the plane of water! Whose brain-dead idea was THAT???",
+	"The wand destruction patch is just some complete and utter bullcrap. If you increase your skill high enough to get explosions with ray wands, your amulet of reflection stops working on them and you'll get a fat slap in the face if you're not ultra careful with that wand of lightning.",
+	"You deliver a massive kick with the fury of a million suns squarely on the door. Under the crushing force of your blow, the door is riven into thousands of splinters! The splinters shower the space behind the door, traveling at such monumental speed that they all spontaneously combust.",
+	"The goblin is startled. The goblin turns to flee!",
+	"The goblin is atomized.",
+	"and they combust so much such that they noxious gases left starts to choke you. You die...",
 
 };
 

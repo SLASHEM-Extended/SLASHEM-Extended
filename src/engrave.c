@@ -4322,6 +4322,7 @@ static const char *epitaphs[] = {
 	"at least fourk soko isn't dnethack's sleepoban, but the bullshit travelto command still pushing boulders into corners is some A-grade bullshit and the developer should have his or her programming license revoked",
 	"in slex I could so beautifully use travelto for sokoban, especially for repetitive levels, but if I try in nethack fourk it will, without fail, screw me over",
 	"wtf how many 200 wand zaps does it take to up that ridiculous wand skill in that stupid wand destruction patch nethack fourk?",
+	"I guess the design philosophy behind Nethack Fourk is 'How To Piss Off AmyBSOD Within 5 Minutes - A Tutorial'",
 
 };
 
