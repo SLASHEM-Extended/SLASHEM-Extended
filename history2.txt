@@ -1,6 +1,36 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.1.8
+- In evil variant mode, door explosions will burn the player's items.
+- Gang scholar gods are less likely to fix troubles when they are angry, or when the player's alignment/luck are negative. Also, stoning and sliming are less likely to be cured.
+- Ghosts (the plain "ghost" monster, because it can be infinitely farmed in haunted temples) no longer have death drops.
+- Addict race starts with 25 in all stats (the non-strength ones used to start at 125).
+- The mysterious force exists again when playing in evilvariant mode.
+- Added a wallglyph option that, when turned off, makes solid rock not shown as # anymore.
+- Playing on a public server during June will tell the player about options that are incompatible with the tournament.
+- When applying a stack of grenades, only one grenade is armed now.
+- Added a materialglyph option that causes items to display their material.
+- Added sit messages for more types of furniture.
+- If a monster throws a potion of radium, cyanide or urine at the player, the status line correctly updates now.
+- Item selection menus allow the player to select unidentified items specifically. Also, many of the options are now inaccessible while hallucinating because that was leaking info.
+- If the player kicks a tree that has already tried to drop fruit, a message is given telling them that there's no fruit on the tree.
+- Fixed a loophole/message bug with repeatedly dropping and picking back up certain macguffins.
+- Nerfed some overcrowded dungeon levels and special rooms to make them less unplayable (they just had too many monsters and/or annoying terrain).
+- Some spells now deal less damage to the player's maximum HP/Pw when cast.
+- The Bell Caves as well as the three branches from the Yendorian Tower cause relocatitis now, so if the initial relocation causes the player to spawn in a place from where there's no escape (think sokosolver nastinator with intrinsic anti-teleportation), the game doesn't become unwinnable. Also, there's a general 1 in 10000 chance of spontaneous relocation unless the player is on the planes, which allows the player to choose whether they really want to be relocated.
+- The message about the number pad is controlled by the numpadmessage option now. Also, the game will now ask the player whether they want to enable/disable the number pad.
+- Added a bunch of new intrinsics, techniques and skills, and the all-new "implants" item slot that counts as an accessory.
+- When the player's starting weapon skills start out good enough, the disarm technique will be known from the start.
+- In wonderland mode, the player will be instantly teleported out of the elder priest's temple if the game somehow spawns the player inside.
+- On the Nightmare's Gauntlet level, if the player somehow ends up to the west of the artifact door where they would be unable to unlock it since the key is on the other side, the door will automatically unlock.
+- The player can decide whether they want to be homosexual when they encounter a foocubus for the first time.
+- Monsters rattling their bones have a hallucination message.
+- Added a bunch of dungeon branches to the main Dungeons of Doom and Gehennom.
+- Bones files are named differently now, which allows them to work on all newly added subdungeons.
+
 2.1.7
+- Reduced the generation chance of cursed graves and their rate of undead creation. Also reduced the amount of monsters seeded on certain terrain types.
+- Fixed a bug that got introduced earlier, which caused cockatrice eggs thrown by the player to crash.
 - Reduced the amount of kelp frond being generated on watery levels.
 - Trying to use a pick-axe while stuck in a web and failing will now force a --More-- unless the corresponding option was turned off.
 - Monster-versus-monster passive rust attacks are limited to actual passive attacks; a pet attacking a gray ooze should no longer result in the pet's weapon being rusted, since the gray ooze's rusting attack is a bite attack and not a passive attack.
