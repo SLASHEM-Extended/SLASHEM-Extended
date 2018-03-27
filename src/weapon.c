@@ -4259,6 +4259,7 @@ const struct def_skill *class_skill;
 {
 	struct obj *obj;
 	int skmax, skill;
+	int i;
 
 	/* initialize skill array; by default, everything is restricted */
 	for (skill = 0; skill < P_NUM_SKILLS; skill++) {
@@ -4836,6 +4837,13 @@ const struct def_skill *class_skill;
 
 	}
 
+	/* If you somehow start with a skill at high enough proficiency, learn the associated techniques
+	 * otherwise you might be unable to get the tech at all --Amy */
+	for (i = P_FIRST_WEAPON; i <= P_LAST_WEAPON; i++) {
+		if (!tech_known(T_DISARM) && (P_SKILL(i) >= P_SKILLED) && i <= P_LAST_WEAPON && i != P_WHIP) {
+			learntech(T_DISARM, FROMOUTSIDE, 1);
+		}
+	}
 
 }
 
