@@ -155,6 +155,38 @@ unsigned *ospecial;
 				color = CLR_BRIGHT_GREEN;
 			}
 			else cmap_color(offset);
+		} else if(In_spacebase(&u.uz)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_BRIGHT_BLUE;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_BRIGHT_BLUE;
+			}
+			else cmap_color(offset);
+		} else if(In_sewerplant(&u.uz)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_BROWN;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_GRAY;
+			}
+			else cmap_color(offset);
+		} else if(In_gammacaves(&u.uz)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = rn2(2) ? CLR_CYAN : CLR_BRIGHT_CYAN;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = rn2(10) ? CLR_BRIGHT_CYAN : rn2(2) ? CLR_BRIGHT_GREEN : CLR_ORANGE;
+			}
+			else cmap_color(offset);
+		} else if(In_mainframe(&u.uz)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_BRIGHT_GREEN;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_BRIGHT_GREEN;
+			}
+			else cmap_color(offset);
 		} else if(Is_forge_level(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = CLR_ORANGE;

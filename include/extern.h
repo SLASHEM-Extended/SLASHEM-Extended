@@ -607,6 +607,17 @@ E boolean In_yendoriantower(d_level *);
 E boolean In_forgingchamber(d_level *);
 E boolean In_orderedchaos(d_level *);
 E boolean In_deadgrounds(d_level *);
+E boolean In_illusorycastle(d_level *);
+E boolean In_voiddungeon(d_level *);
+E boolean In_netherrealm(d_level *);
+E boolean In_deepmines(d_level *);
+E boolean In_angmar(d_level *);
+E boolean In_swimmingpool(d_level *);
+E boolean In_hellbathroom(d_level *);
+E boolean In_spacebase(d_level *);
+E boolean In_sewerplant(d_level *);
+E boolean In_gammacaves(d_level *);
+E boolean In_mainframe(d_level *);
 E boolean In_subquest(d_level *);
 E boolean In_bellcaves(d_level *);
 E boolean In_dod(d_level *);
@@ -623,6 +634,7 @@ E boolean In_mtemple(d_level *);
 E branch *dungeon_branch(const char *);
 E boolean at_dgn_entrance(const char *);
 E boolean In_hell(d_level *);
+E boolean In_ZAPM(d_level *);
 E boolean In_V_tower(d_level *);
 E boolean On_W_tower_level(d_level *);
 E boolean In_W_tower(int,int,d_level *);
@@ -1408,6 +1420,9 @@ E void dodoor(int,int,struct mkroom *);
 E void mktrap(int,int,struct mkroom *,coord*);
 E void mkstairs(XCHAR_P,XCHAR_P,CHAR_P,struct mkroom *);
 E void mkinvokearea(void);
+E void mkrivers(void);
+E void mkrandrivers(void);
+E void specdungeoninit(void);
 
 /* ### mkmap.c ### */
 

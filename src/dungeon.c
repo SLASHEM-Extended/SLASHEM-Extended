@@ -1002,6 +1002,17 @@ init_dungeons()
 	dod_dnum = dname_to_dnum("The Dungeons of Doom");
 	town_dnum = dname_to_dnum("Town");
 	gehennom_dnum = dname_to_dnum("Gehennom");
+	illusorycastle_dnum = dname_to_dnum("Illusory Castle");
+	voiddungeon_dnum = dname_to_dnum("Void");
+	netherrealm_dnum = dname_to_dnum("Nether Realm");
+	deepmines_dnum = dname_to_dnum("Deep Mines");
+	angmar_dnum = dname_to_dnum("Angmar");
+	swimmingpool_dnum = dname_to_dnum("Swimming Pool");
+	hellbathroom_dnum = dname_to_dnum("Hell's Bathroom");
+	spacebase_dnum = dname_to_dnum("Space Base");
+	sewerplant_dnum = dname_to_dnum("Sewer Plant");
+	gammacaves_dnum = dname_to_dnum("Gamma Caves");
+	mainframe_dnum = dname_to_dnum("Mainframe");
 /*
 	blackmarket_dnum = dname_to_dnum("The Black Market");
 */
@@ -1615,6 +1626,83 @@ d_level	*lev;
 }
 
 boolean
+In_illusorycastle(lev)	/* are you in the illusory castle dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == illusorycastle_dnum));
+}
+
+boolean
+In_voiddungeon(lev)	/* are you in the void dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == voiddungeon_dnum));
+}
+
+boolean
+In_netherrealm(lev)	/* are you in the nether realm dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == netherrealm_dnum));
+}
+
+boolean
+In_deepmines(lev)	/* are you in the deep mines dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == deepmines_dnum));
+}
+
+boolean
+In_angmar(lev)	/* are you in the angmar dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == angmar_dnum));
+}
+
+boolean
+In_swimmingpool(lev)	/* are you in the swimming pool of hell dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == swimmingpool_dnum));
+}
+
+boolean
+In_hellbathroom(lev)	/* are you in the hell's bathroom dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == hellbathroom_dnum));
+}
+
+boolean
+In_spacebase(lev)	/* are you in the space base dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == spacebase_dnum));
+}
+
+boolean
+In_sewerplant(lev)	/* are you in the sewer plant dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == sewerplant_dnum));
+}
+
+boolean
+In_gammacaves(lev)	/* are you in the gamma caves dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == gammacaves_dnum));
+}
+
+boolean
+In_mainframe(lev)	/* are you in the mainframe dungeon? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == mainframe_dnum));
+}
+
+boolean
 In_dod(lev)	/* are you in the dungeons of doom? */
 d_level	*lev;
 {
@@ -1675,6 +1763,13 @@ In_tomb(lev) /* are you in the lost tomb? */
 d_level *lev;
 {
 	return((boolean)(lev->dnum == tomb_dnum));
+}
+
+boolean
+In_ZAPM(lev)	/* are you in one of the ZAPM levels? */
+d_level	*lev;
+{
+	return((boolean)(lev->dnum == spacebase_dnum || lev->dnum == sewerplant_dnum || lev->dnum == gammacaves_dnum || lev->dnum == mainframe_dnum));
 }
 
 /*

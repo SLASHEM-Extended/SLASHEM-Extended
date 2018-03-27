@@ -2002,23 +2002,23 @@ int dieroll;
 
 	if (thrown && !stupidrock && !gunused && !pieks && rn2(2)) get_dmg_bonus = 0;
 
-	if (thrown && launcher && obj && ammo_and_launcher(obj, launcher) && !gunused && (distmin(u.ux, u.uy, mon->mx, mon->my) == 1)) {
+	if (thrown && launcher && ammo_and_launcher(obj, launcher) && !gunused && (distmin(u.ux, u.uy, mon->mx, mon->my) == 1)) {
 		get_dmg_bonus = 0;
 		if (tmp > 1) tmp /= 2;
 		if (flags.bash_reminder && !rn2(10)) pline("Firing that weapon at point blank range is not very effective...");
 	}
 
-	if (thrown && launcher && obj && ammo_and_launcher(obj, launcher) && !gunused && u.uswallow) {
+	if (thrown && launcher && ammo_and_launcher(obj, launcher) && !gunused && u.uswallow) {
 		get_dmg_bonus = 0;
 		if (tmp > 1) tmp /= 2;
 		if (flags.bash_reminder && !rn2(10)) You("can't fire that weapon effectively while engulfed...");
 	}
 
-	if (thrown && obj && is_ammo(obj) && launcher && !ammo_and_launcher(obj, launcher)) {
+	if (thrown && is_ammo(obj) && launcher && !ammo_and_launcher(obj, launcher)) {
 		if (flags.bash_reminder && !rn2(10)) You("are throwing projectiles that are meant to be fired, which isn't very effective! Better wield an appropriate launcher in your main hand!");
 	}
 
-	if (thrown && obj && is_ammo(obj) && !launcher) {
+	if (thrown && is_ammo(obj) && !launcher) {
 		if (flags.bash_reminder && !rn2(10)) You("are throwing projectiles that are meant to be fired, which isn't very effective! Better wield an appropriate launcher in your main hand!");
 	}
 
@@ -6794,7 +6794,7 @@ uchar aatyp;
 		break;
 
 	    case AD_WEEP:
-		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) ) {
+		if (!rn2(3) && !u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 			level_tele();
 			nomul(-2, "being levelwarped");
@@ -7118,7 +7118,7 @@ uchar aatyp;
 				break;
 			case 6:
 
-				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) ) {
+				if (!u.uevent.udemigod && !(flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) ) {
 					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 					level_tele();
 					nomul(-2, "being levelwarped");
@@ -7397,7 +7397,7 @@ uchar aatyp;
 	    case AD_BANI:
 		if (!rn2(3)) {
 			if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed))) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
-			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz)) {
+			if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
 			 pline("For some reason you resist the banishment!"); break;}
 
 			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */

@@ -149,6 +149,7 @@ typedef struct branch {
 #define In_sokoban(x)		(((x)->dnum == sokoban_dnum) || issokosolver)
 #define Inhell			In_hell(&u.uz)	/* now gehennom */
 #define In_endgame(x)		((x)->dnum == astral_level.dnum)
+#define InZAPM			In_ZAPM(&u.uz)	/* space base, sewer plant, gamma caves, mainframe */
 
 #define within_bounded_area(X,Y,LX,LY,HX,HY) \
 		((X) >= (LX) && (X) <= (HX) && (Y) >= (LY) && (Y) <= (HY))

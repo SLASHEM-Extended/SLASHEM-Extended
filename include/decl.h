@@ -101,6 +101,17 @@ E struct dgn_topology {		/* special dungeon levels for speed */
     xchar   d_deadgrounds_dnum;
     xchar   d_subquest_dnum;
     xchar   d_bellcaves_dnum;
+    xchar   d_illusorycastle_dnum;
+    xchar   d_voiddungeon_dnum;
+    xchar   d_netherrealm_dnum;
+    xchar   d_deepmines_dnum;
+    xchar   d_angmar_dnum;
+    xchar   d_swimmingpool_dnum;
+    xchar   d_hellbathroom_dnum;
+    xchar   d_spacebase_dnum;
+    xchar   d_sewerplant_dnum;
+    xchar   d_gammacaves_dnum;
+    xchar   d_mainframe_dnum;
     d_level	d_lawful_quest_level;
     d_level	d_neutral_quest_level;
     d_level	d_chaotic_quest_level;
@@ -158,6 +169,17 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #define forgingchamber_dnum		(dungeon_topology.d_forgingchamber_dnum)
 #define orderedchaos_dnum		(dungeon_topology.d_orderedchaos_dnum)
 #define deadgrounds_dnum		(dungeon_topology.d_deadgrounds_dnum)
+#define illusorycastle_dnum		(dungeon_topology.d_illusorycastle_dnum)
+#define voiddungeon_dnum		(dungeon_topology.d_voiddungeon_dnum)
+#define netherrealm_dnum		(dungeon_topology.d_netherrealm_dnum)
+#define deepmines_dnum		(dungeon_topology.d_deepmines_dnum)
+#define angmar_dnum		(dungeon_topology.d_angmar_dnum)
+#define swimmingpool_dnum		(dungeon_topology.d_swimmingpool_dnum)
+#define hellbathroom_dnum		(dungeon_topology.d_hellbathroom_dnum)
+#define spacebase_dnum		(dungeon_topology.d_spacebase_dnum)
+#define sewerplant_dnum		(dungeon_topology.d_sewerplant_dnum)
+#define gammacaves_dnum		(dungeon_topology.d_gammacaves_dnum)
+#define mainframe_dnum		(dungeon_topology.d_mainframe_dnum)
 #define subquest_dnum		(dungeon_topology.d_subquest_dnum)
 #define bellcaves_dnum		(dungeon_topology.d_bellcaves_dnum)
 #define dod_dnum			(dungeon_topology.d_dod_dnum)

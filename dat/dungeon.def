@@ -81,6 +81,9 @@ BRANCH:	"Chaotic Quest" @ (15, 35) portal
 # Post-quest levels
 #   Now all the branches... stretching all along the dungeon
 #   Put the branches with the least number of choices first
+
+BRANCH:	"Illusory Castle" @ (35, 15)
+BRANCH:	"Deep Mines" @ (30, 20)
 BRANCH: 	"The Temple of Moloch" @ (29, 21)
 BRANCH: 	"The Giant Caverns" @ (29, 21)
 BRANCH:		"The Sunless Sea" @ (27, 23)
@@ -88,6 +91,7 @@ BRANCH:		"The Spider Caves" @ (26, 24)
 BRANCH: 	"One-eyed Sam's Market" @ (22, 28) portal
 BRANCH: 	"The Lost Tomb" @ (21, 29)
 BRANCH: 	"The Wyrm Caves" @ (20, 30)
+BRANCH:	"Space Base" @ (2, 48)
 
 #   And the levels...
 RNDLEVEL:		"nymph" "N" @ (23, 27) 25 5
@@ -174,9 +178,14 @@ LEVEL:		"cowlf" "N" @ (20, 0) 80
 LEVEL:		"cowlg" "N" @ (21, 0) 80
 LEVEL:		"cowlh" "N" @ (38, 0) 80
 
+BRANCH:	"Void" @ (48, 0)
+
 # Tower before wiz, please
 # Dr. Frankenstein's Lab
 BRANCH:         "Frankenstein's Lab" @ (3, 42) up
+BRANCH:	"Angmar" @ (3, 42)
+BRANCH:	"Swimming Pool" @ (3, 42)
+BRANCH:	"Hell's Bathroom" @ (3, 42)
 # Half-way down
 LEVEL:          "wizard1" "none" @ (25, 0)
 CHAINLEVEL:     "wizard2" "X" "wizard1" + (1, 0)
@@ -346,6 +355,48 @@ DUNGEON:        "The Temple of Moloch" "C" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "mtemple" "T" @ (1, 0) 25
+
+DUNGEON:        "Illusory Castle" "C" (30, 0)
+ALIGNMENT:      neutral
+
+DUNGEON:        "Deep Mines" "C" (25, 0)
+ALIGNMENT:      chaotic
+
+DUNGEON:        "Space Base" "C" (12, 0)
+ALIGNMENT:      lawful
+BRANCH:         "Sewer Plant" @ (10, 0)
+BRANCH:         "Gamma Caves" @ (11, 0)
+BRANCH:         "Mainframe" @ (12, 0) up -1
+
+DUNGEON:        "Sewer Plant" "C" (5, 0)
+ALIGNMENT:      neutral
+
+DUNGEON:        "Gamma Caves" "C" (6, 0)
+ALIGNMENT:      chaotic
+
+DUNGEON:        "Mainframe" "C" (5, 0)
+ALIGNMENT:      lawful
+
+DUNGEON:        "Void" "C" (30, 0)
+ALIGNMENT:      neutral
+DESCRIPTION:    hellish
+BRANCH:	    "Nether Realm" @ (2, 27)
+
+DUNGEON:        "Nether Realm" "C" (30, 0)
+ALIGNMENT:      chaotic
+DESCRIPTION:    hellish
+
+DUNGEON:        "Angmar" "C" (15, 0)
+ALIGNMENT:      chaotic
+DESCRIPTION:    hellish
+
+DUNGEON:        "Swimming Pool" "C" (15, 0)
+ALIGNMENT:      lawful
+DESCRIPTION:    hellish
+
+DUNGEON:        "Hell's Bathroom" "C" (3, 0)
+ALIGNMENT:      chaotic
+DESCRIPTION:    hellish
 
 ### The Giant Caverns ###
 DUNGEON:        "The Giant Caverns" "H" (1, 0)

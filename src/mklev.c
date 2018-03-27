@@ -1337,6 +1337,64 @@ makevtele()
 	makeniche(TELEP_TRAP);
 }
 
+/* specdungeoninit by Amy: function that modifies terrain and other stuff when a new level in certain subdungeons is loaded */
+void
+specdungeoninit()
+{
+	register int x,y;
+
+	for (x = 0; x < COLNO; x++)
+	  for (y = 0; y < ROWNO; y++) {
+
+		if (isok(x,y) && In_illusorycastle(&u.uz) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(5)) {
+			levl[x][y].typ = randomwalltype();
+
+		}
+
+		if (isok(x,y) && (In_voiddungeon(&u.uz) && !rn2(10)) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(5)) {
+			levl[x][y].typ = NETHERMIST;
+			maketrap(x, y, GIANT_CHASM, 100);
+		}
+
+		if (isok(x,y) && In_netherrealm(&u.uz) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR || (IS_STWALL(levl[x][y].typ) && !rn2(5)) ) && !rn2(5)) {
+			levl[x][y].typ = NETHERMIST;
+			if (!rn2(5)) maketrap(x, y, GIANT_CHASM, 100);
+		}
+
+		if (isok(x,y) && In_angmar(&u.uz) && (IS_STWALL(levl[x][y].typ) && !rn2(5))) {
+			levl[x][y].typ = rn2(7) ? SAND : SHIFTINGSAND;
+
+		}
+
+		if (isok(x,y) && In_angmar(&u.uz) && ((levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && rn2(3))) {
+			levl[x][y].typ = rn2(7) ? SAND : SHIFTINGSAND;
+
+		}
+
+		if (isok(x,y) && In_swimmingpool(&u.uz) && (IS_STWALL(levl[x][y].typ) && rn2(10))) {
+			levl[x][y].typ = WATERTUNNEL;
+
+		}
+
+		if (isok(x,y) && In_swimmingpool(&u.uz) && ((levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(10))) {
+			levl[x][y].typ = WATERTUNNEL;
+
+		}
+
+		if (isok(x,y) && In_hellbathroom(&u.uz) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && rn2(2)) {
+			levl[x][y].typ = rn2(100) ? URINELAKE : TOILET;
+
+		}
+
+		if (isok(x,y) && In_sewerplant(&u.uz) && (IS_STWALL(levl[x][y].typ) || (levl[x][y].typ == ROOM || levl[x][y].typ == CORR)) && !rn2(3)) {
+			levl[x][y].typ = rn2(5) ? MOORLAND : MOAT;
+
+		}
+
+	}
+
+}
+
 STATIC_OVL void
 makeriver(x1,y1,x2,y2,lava,rndom)
 int x1,y1,x2,y2;
@@ -1770,7 +1828,7 @@ boolean lava,rndom;
 	}
 }
 
-STATIC_OVL void
+void
 mkrivers()
 {
     boolean lava;
@@ -1789,7 +1847,7 @@ mkrivers()
     }
 }
 
-STATIC_OVL void
+void
 mkrandrivers()
 {
     boolean lava;
@@ -1969,7 +2027,7 @@ makelevel()
 		    makemaz("");
 		    return;
 
-	    } else if (!rn2(u.randomquestlevels) && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) && (!rn2(10) || depth(&u.uz) > 1) && (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) {
+	    } else if (!rn2(u.randomquestlevels) && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) && (!rn2(10) || depth(&u.uz) > 1) && (In_dod(&u.uz) || In_mines(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) {
 
 		    char fillname[16];
 		    switch (rnd(5)) {
@@ -1989,7 +2047,7 @@ makelevel()
 		    makemaz(fillname);
 		    return;
 
-	    } else if (!rn2(u.randomquestlevels) && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) && (In_gehennom(&u.uz) || In_sheol(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) ) {
+	    } else if (!rn2(u.randomquestlevels) && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) && (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) ) {
 
 		    char fillname[16];
 		    switch (rnd(5)) {
@@ -2009,7 +2067,7 @@ makelevel()
 		    makemaz(fillname);
 		    return;
 
-	    } else if (dungeons[u.uz.dnum].proto[0] && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) && (rn2(2)) ) {
+	    } else if (dungeons[u.uz.dnum].proto[0] && !In_V_tower(&u.uz) && !In_angmar(&u.uz) && !In_hellbathroom(&u.uz) && !Invocation_lev(&u.uz) && (rn2(2)) ) {
 
 		    if (rn2(3)) {
 
@@ -2101,9 +2159,9 @@ makelevel()
 
 	/* "Revert change allowing Room/Corridors in Gehennom. Gehennom should only have mazes and the specified special levels again." In Soviet Russia, people actually like the endless boring mazes of the Gehennom for some inexplicable reason. Why don't they just turn Nethack into an 100-level dungeon that has only mazes??? --Amy */
 
-		 (In_hell(&u.uz) && (!rn2(2) && (In_sheol(&u.uz) ? rn2(iswarper ? 2 : 5) : rn2(iswarper ? 3 : 10) ) )  ) || /* allowing random rooms-and-corridors in Gehennom --Amy */
+		 (In_hell(&u.uz) && !In_angmar(&u.uz) && !In_hellbathroom(&u.uz) && (!rn2(2) && (In_sheol(&u.uz) ? rn2(iswarper ? 2 : 5) : rn2(iswarper ? 3 : 10) ) )  ) || /* allowing random rooms-and-corridors in Gehennom --Amy */
 		  (rn2(5) && u.uz.dnum == medusa_level.dnum
-			  && depth(&u.uz) > depth(&medusa_level))) {
+			  && depth(&u.uz) > depth(&medusa_level)) || (In_mainframe(&u.uz) && rn2(10) ) ) {
 
 		    if (rn2(3) && !In_V_tower(&u.uz) && !Invocation_lev(&u.uz) ) {
 
@@ -2169,7 +2227,7 @@ makelevel()
 
 	/* very random levels --Amy */
 
-	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4 : 40) : (iswarper ? 10 : 100))) || (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10 : 4) : (iswarper ? 5 : 2))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (rn2(5) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) ) {
+	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4 : 40) : (iswarper ? 10 : 100))) || (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10 : 4) : (iswarper ? 5 : 2))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (In_deepmines(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 20 : 100) : (iswarper ? 30 : 200))) || (In_illusorycastle(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (In_sewerplant(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_spacebase(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 3 : 15) : (iswarper ? 4 : 30))) || (In_gammacaves(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_mainframe(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (rn2(5) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) ) {
 
 
 	    switch (rnd(110)) {
@@ -3866,7 +3924,7 @@ makelevel()
 
 	}
 
-	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4000 : 40000) : (iswarper ? 10000 : 100000))) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10000 : 4000) : (iswarper ? 5000 : 2000))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2000 : 10000) : (iswarper ? 3000 : 20000))) || (In_gehennom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) || (In_sheol(&u.uz) && (!(u.monstertimefinish % 235) ? (iswarper || !rn2(3)) : (!rn2(iswarper ? 2 : 5)) ) ) ) {
+	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4000 : 40000) : (iswarper ? 10000 : 100000))) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10000 : 4000) : (iswarper ? 5000 : 2000))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2000 : 10000) : (iswarper ? 3000 : 20000))) ||  (In_deepmines(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 20 : 100) : (iswarper ? 30 : 200))) || (In_illusorycastle(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (In_sewerplant(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_spacebase(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 3 : 15) : (iswarper ? 4 : 30))) || (In_gammacaves(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_mainframe(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (In_gehennom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_voiddungeon(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_netherrealm(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_swimmingpool(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_hellbathroom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_angmar(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 4 : 10) : (iswarper ? 5 : 20))) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) || (In_sheol(&u.uz) && (!(u.monstertimefinish % 235) ? (iswarper || !rn2(3)) : (!rn2(iswarper ? 2 : 5)) ) ) ) {
 
 	    switch (rnd(110)) {
 
@@ -5631,7 +5689,7 @@ makelevel()
 
 	if ((specialraceflag == 2) && (!rn2(100) || depth(&u.uz) > 1) ) { /* sokosolver */
 
-		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) {
+		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) {
 		switch (rnd(154)) {
 
 			case 1: makemaz("soko2-1"); return;
@@ -5796,7 +5854,7 @@ makelevel()
 
 		}
 
-		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) {
+		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) {
 		switch (rnd(154)) {
 
 			case 1: makemaz("soko8-1"); return;
@@ -5969,7 +6027,7 @@ makelevel()
 
 	if ((specialraceflag == 3) && (!rn2(100) || depth(&u.uz) > 1) ) { /* specialist */
 
-		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios")) {
+		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios")) {
 	    switch (rnd(110)) {
 
 	    case 1:
@@ -7659,7 +7717,7 @@ makelevel()
 	
           }
 
-		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab")) {
+		} else if (In_gehennom(&u.uz) || In_sheol(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab")) {
 	    switch (rnd(110)) {
 
 	    case 1:
@@ -9530,6 +9588,36 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
+		if (In_voiddungeon(&u.uz)) {
+			mkroom(rn2(10) ? VOIDROOM : HELLPIT);
+			mkroom(rn2(10) ? VOIDROOM : HELLPIT);
+			mkroom(rn2(10) ? VOIDROOM : HELLPIT);
+			mkroom(rn2(10) ? VOIDROOM : HELLPIT);
+			mkroom(rn2(10) ? VOIDROOM : HELLPIT);
+			mkroom(rn2(10) ? VOIDROOM : HELLPIT);
+			mkroom(rn2(10) ? VOIDROOM : HELLPIT);
+			mkroom(rn2(10) ? VOIDROOM : HELLPIT);
+			mkroom(rn2(10) ? VOIDROOM : HELLPIT);
+			mkroom(rn2(10) ? VOIDROOM : HELLPIT);
+		}
+
+		if (In_gammacaves(&u.uz) && rn2(2)) {
+			mkroom(NUCLEARCHAMBER);
+		}
+
+		if (In_swimmingpool(&u.uz)) {
+			mkroom(rn2(10) ? DIVERPARADISE : SWAMP);
+			mkroom(rn2(10) ? DIVERPARADISE : SWAMP);
+			mkroom(rn2(10) ? DIVERPARADISE : SWAMP);
+			mkroom(rn2(10) ? DIVERPARADISE : SWAMP);
+			mkroom(rn2(10) ? DIVERPARADISE : SWAMP);
+			mkroom(rn2(10) ? DIVERPARADISE : SWAMP);
+			mkroom(rn2(10) ? DIVERPARADISE : SWAMP);
+			mkroom(rn2(10) ? DIVERPARADISE : SWAMP);
+			mkroom(rn2(10) ? DIVERPARADISE : SWAMP);
+			mkroom(rn2(10) ? DIVERPARADISE : SWAMP);
+		}
+
 		/* random rooms, which means a chance of getting several of the same type of room --Amy */
 		while ((u_depth > 10 || (rn2(u_depth) && !rn2(20 - u_depth) ) ) && !rn2(ishaxor ? 7 : 15)) mkroom(RANDOMROOM);
 
@@ -9537,7 +9625,7 @@ gehennomxtra:
 	 * we'll have a chance of more special rooms because this part of the game is supposed to be harder --Amy */
 	if (!rn2(2) && u_depth > 40) goto gehennomxtra;
 
-		if ((isironman || RngeIronmanMode) && (!rn2(10) || u_depth > 1) ) {
+		if ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (!rn2(10) || u_depth > 1) ) {
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
 			mkroom(RANDOMROOM);
@@ -9636,6 +9724,8 @@ gehennomxtra:
 			mkroom(randrmtyp);
 
 		}
+
+		specdungeoninit();
 
 	    /* Underground rivers */
 	    if ( u_depth > 13 && !rn2(7)) mkrivers();
@@ -10878,13 +10968,13 @@ mineralize()
 		if ((levl[x][y].typ == CORR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
+		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
+		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
+		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
@@ -11001,7 +11091,7 @@ mineralize()
 	    	    makemon(mkclass(S_PIERCER,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2((ishaxor && !issuxxor) ? 2 : (issuxxor && !ishaxor) ? 8 : 4)) )
 	    	    makemon(morguemonX(), x, y, MM_ADJACENTOK);
-		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
+		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
 			(void) maketrap(x, y, CURSED_GRAVE, 100);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
 			(void) maketrap(x, y, randomtrap(), 100);
@@ -11044,13 +11134,13 @@ mineralize()
 		if ((levl[x][y].typ == CORR && !((moves + u.monstertimefinish) % 4345 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == ICE && !((moves + u.monstertimefinish) % 4347 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
+		if ((levl[x][y].typ == ICE && !((moves + u.monstertimefinish) % 4347 ) && !rn2( ((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == AIR && !((moves + u.monstertimefinish) % 4349 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
+		if ((levl[x][y].typ == AIR && !((moves + u.monstertimefinish) % 4349 ) && !rn2( ((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == CLOUD && !((moves + u.monstertimefinish) % 4351 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
+		if ((levl[x][y].typ == CLOUD && !((moves + u.monstertimefinish) % 4351 ) && !rn2( ((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == CORR && !((moves + u.monstertimefinish) % 4353 ) && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
@@ -11205,13 +11295,13 @@ mineralize()
 		if ((levl[x][y].typ == CORR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
+		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
+		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
+		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
 		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
@@ -11326,7 +11416,7 @@ mineralize()
 	    	    makerandomtrap_at(x, y);
 		if ((levl[x][y].typ == STALACTITE && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
+		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
 			(void) maketrap(x, y, CURSED_GRAVE, 100);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
 			(void) maketrap(x, y, randomtrap(), 100);
@@ -11371,13 +11461,13 @@ mineralize()
 		if ((levl[x][y].typ == CORR && !((moves + u.monstertimefinish) % 4345 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == ICE && !((moves + u.monstertimefinish) % 4347 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
+		if ((levl[x][y].typ == ICE && !((moves + u.monstertimefinish) % 4347 ) && !rn2( ((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == AIR && !((moves + u.monstertimefinish) % 4349 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
+		if ((levl[x][y].typ == AIR && !((moves + u.monstertimefinish) % 4349 ) && !rn2( ((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == CLOUD && !((moves + u.monstertimefinish) % 4351 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
+		if ((levl[x][y].typ == CLOUD && !((moves + u.monstertimefinish) % 4351 ) && !rn2( ((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
 		if ((levl[x][y].typ == CORR && !((moves + u.monstertimefinish) % 4353 ) && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
@@ -11488,6 +11578,9 @@ mineralize()
 	if (In_mines(&u.uz)) {
 	    goldprob *= 2;
 	    gemprob *= 3;
+	} else if (In_deepmines(&u.uz)) {
+	    goldprob *= 4;
+	    gemprob *= 5;
 	} else if (In_quest(&u.uz)) {
 	    goldprob /= 4;
 	    gemprob /= 6;

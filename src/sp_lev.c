@@ -3379,7 +3379,7 @@ boolean prefilled;
 	register int tryct = 0;
 	register struct obj *otmp;
 
-	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
+	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 retryrandtype:
 		switch (rnd(83)) {
@@ -4326,7 +4326,7 @@ room *r, *pr;
 		 * DLC - this can fail if corridors are added to this room
 		 * at a later point.  Currently no good way to fix this.
 		 */
-		if( (aroom->rtype != OROOM || !rn2( ((isironman || RngeIronmanMode) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) && r->filled) fill_room(aroom, FALSE);
+		if( (aroom->rtype != OROOM || !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) && r->filled) fill_room(aroom, FALSE);
 	}
 }
 
@@ -4464,477 +4464,6 @@ engraving *e;
 	e->engr.str = (char *) alloc((unsigned)size+1);
 	Fread((void *) e->engr.str, 1, size, fd);
 	e->engr.str[size] = '\0';
-}
-
-STATIC_OVL void
-makeriverX(x1,y1,x2,y2,lava,rndom)
-int x1,y1,x2,y2;
-boolean lava,rndom;
-{
-    int cx,cy;
-    int dx, dy;
-    int chance;
-    int count = 0;
-    int trynmbr = 0;
-    int rndomizat = 0;
-    const char *str;
-    if (rndom) rndomizat = (rn2(5) ? 0 : 1);
-    if (rndom) trynmbr = rnd(20);
-
-	register struct obj *otmpX;
-	register int tryct = 0;
-
-    cx = x1;
-    cy = y1;
-
-    while (count++ < 2000) {
-	int rnum = levl[cx][cy].roomno - ROOMOFFSET;
-	chance = 0;
-	/*if (rnum >= 0 && rooms[rnum].rtype != OROOM) chance = 0;
-	else */if (levl[cx][cy].typ == CORR) chance = 15;
-	else if (levl[cx][cy].typ == ROOM) chance = 30;
-	else if (IS_ROCK(levl[cx][cy].typ)) chance = 100;
-	if (rndomizat) trynmbr = (rn2(5) ? rnd(80) : rnd(28));
-
-	if (rn2(100) < chance && !t_at(cx,cy)) {
-	    if (lava) {
-		if (rndom) { 
-
-			if (trynmbr == 1) levl[cx][cy].typ = POOL;
-			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
-			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
-			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
-			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
-			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
-			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
-			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
-			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
-			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
-			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
-			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
-			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
-			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
-			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
-			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
-			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
-			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
-			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
-			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
-			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
-			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
-			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
-			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
-			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
-			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
-			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
-			else levl[cx][cy].typ = LAVAPOOL;
-		}
-		else {levl[cx][cy].typ = LAVAPOOL;
-		levl[cx][cy].lit = 1;
-		}
-	    } else	if (rndom) { 
-
-			if (trynmbr == 1) levl[cx][cy].typ = LAVAPOOL;
-			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
-			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
-			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
-			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
-			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
-			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
-			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
-			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
-			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
-			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
-			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
-			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
-			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
-			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
-			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
-			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
-			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
-			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
-			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
-			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
-			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
-			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
-			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
-			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
-			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
-			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
-			else levl[cx][cy].typ = POOL;
-		}
-		else 
-		levl[cx][cy].typ = !rn2(3) ? POOL : MOAT;
-
-		if (!rn2(ishaxor ? 10000 : 20000))
-			levl[cx][cy].typ = THRONE;
-		else if (!((moves + u.monstertimefinish) % 857 ) && !rn2(ishaxor ? 1000 : 2000))
-			levl[cx][cy].typ = THRONE;
-		else if (!rn2(ishaxor ? 50000 : 100000))
-			levl[cx][cy].typ = PENTAGRAM;
-		else if (!rn2(ishaxor ? 25000 : 50000))
-			levl[cx][cy].typ = WELL;
-		else if (!rn2(ishaxor ? 25000 : 50000))
-			levl[cx][cy].typ = POISONEDWELL;
-		else if (!rn2(ishaxor ? 25000 : 50000))
-			levl[cx][cy].typ = WAGON;
-		else if (!rn2(ishaxor ? 25000 : 50000))
-			levl[cx][cy].typ = BURNINGWAGON;
-		else if (!rn2(ishaxor ? 20000 : 40000))
-			levl[cx][cy].typ = WOODENTABLE;
-		else if (!rn2(ishaxor ? 25000 : 50000))
-			levl[cx][cy].typ = CARVEDBED;
-		else if (!rn2(ishaxor ? 10000 : 20000))
-			levl[cx][cy].typ = STRAWMATTRESS;
-		else if (!rn2(ishaxor ? 2500 : 5000)) {
-			levl[cx][cy].typ = FOUNTAIN;
-			level.flags.nfountains++;
-			}
-		else if (!((moves + u.monstertimefinish) % 859 ) && !rn2(ishaxor ? 250 : 500)) {
-			levl[cx][cy].typ = FOUNTAIN;
-			level.flags.nfountains++;
-			}
-		else if (!rn2(ishaxor ? 2500 : 5000)) {
-			levl[cx][cy].typ = SINK;
-			level.flags.nsinks++;
-			}
-		else if (!((moves + u.monstertimefinish) % 861 ) && !rn2(ishaxor ? 250 : 500)) {
-			levl[cx][cy].typ = SINK;
-			level.flags.nsinks++;
-			}
-		else if (!rn2(ishaxor ? 5000 : 10000))
-			levl[cx][cy].typ = TOILET;
-		else if (!((moves + u.monstertimefinish) % 863 ) && !rn2(ishaxor ? 500 : 1000))
-			levl[cx][cy].typ = TOILET;
-		else if (!rn2(ishaxor ? 1000 : 2000)) {
-			levl[cx][cy].typ = GRAVE;
-			str = random_epitaph();
-			del_engr_at(cx, cy);
-			make_engr_at(cx, cy, str, 0L, HEADSTONE);
-	
-			if (!rn2(3)) (void) mkgold(0L, cx, cy);
-			for (tryct = rn2(5); tryct; tryct--) {
-				    otmpX = mkobj(RANDOM_CLASS, TRUE);
-				    if (!otmpX) return;
-				    curse(otmpX);
-				    otmpX->ox = cx;
-				    otmpX->oy = cy;
-				    add_to_buried(otmpX);
-				}
-			}
-		else if (!((moves + u.monstertimefinish) % 865 ) && !rn2(ishaxor ? 100 : 200)) {
-			levl[cx][cy].typ = GRAVE;
-			str = random_epitaph();
-			del_engr_at(cx, cy);
-			make_engr_at(cx, cy, str, 0L, HEADSTONE);
-
-			if (!rn2(3)) (void) mkgold(0L, cx, cy);
-			for (tryct = rn2(5); tryct; tryct--) {
-				    otmpX = mkobj(RANDOM_CLASS, TRUE);
-				    if (!otmpX) return;
-				    curse(otmpX);
-				    otmpX->ox = cx;
-				    otmpX->oy = cy;
-				    add_to_buried(otmpX);
-				}
-			}
-		else if (!rn2(ishaxor ? 10000 : 20000)) {
-			levl[cx][cy].typ = ALTAR;
-			if (rn2(10)) levl[cx][cy].altarmask = Align2amask( A_NONE );
-			else switch (rnd(3)) {
-	
-			case 1: levl[cx][cy].altarmask = Align2amask( A_LAWFUL ); break;
-			case 2: levl[cx][cy].altarmask = Align2amask( A_NEUTRAL ); break;
-			case 3: levl[cx][cy].altarmask = Align2amask( A_CHAOTIC ); break;
-	
-			}
-		}
-		else if (!((moves + u.monstertimefinish) % 867 ) && !rn2(ishaxor ? 1000 : 2000)) {
-			levl[cx][cy].typ = ALTAR;
-			if (rn2(10)) levl[cx][cy].altarmask = Align2amask( A_NONE );
-			else switch (rnd(3)) {
-	
-			case 1: levl[cx][cy].altarmask = Align2amask( A_LAWFUL ); break;
-			case 2: levl[cx][cy].altarmask = Align2amask( A_NEUTRAL ); break;
-			case 3: levl[cx][cy].altarmask = Align2amask( A_CHAOTIC ); break;
-	
-			}
-		}
-	}
-
-	if (cx == x2 && cy == y2) break;
-
-	if (cx < x2 && !rn2(3)) dx = 1;
-	else if (cx > x2 && !rn2(3)) dx = -1;
-	else dx = 0;
-
-	if (cy < y2 && !rn2(3)) dy = 1;
-	else if (cy > y2 && !rn2(3)) dy = -1;
-	else dy = 0;
-
-	switch (rn2(16)) {
-	default: break;
-	case 1: dx--; dy--; break;
-	case 2: dx++; dy--; break;
-	case 3: dx--; dy++; break;
-	case 4: dx++; dy++; break;
-	case 5: dy--; break;
-	case 6: dy++; break;
-	case 7: dx--; break;
-	case 8: dx++; break;
-	}
-
-	if (dx < -1) dx = -1;
-	else if (dx > 1) dx = 1;
-	if (dy < -1) dy = -1;
-	else if (dy > 1) dy = 1;
-
-	cx += dx;
-	cy += dy;
-
-	if (cx < 0) cx = 0;
-	else if (cx >= COLNO) cx = COLNO-1;
-	if (cy < 0) cy = 0;
-	else if (cy >= ROWNO) cy = ROWNO-1;
-
-    }
-}
-
-STATIC_OVL void
-makerandriverX(lava,rndom)
-boolean lava,rndom;
-
-{
-    int cx,cy;
-    int chance;
-    int count = 0;
-    int ammount = rnz(10 + rnd(40) + rnz(5) + (rn2(5) ? 0 : 50) + (rn2(25) ? 0 : 200) );
-    int trynmbr = 0;
-    int rndomizat = 0;
-    const char *str;
-    if (rndom) rndomizat = (rn2(3) ? 0 : 1);
-    if (rndom) trynmbr = rnd(12);
-
-	register int tryct = 0;
-	register struct obj *otmpX;
-
-    while (count++ < ammount) {
-
-      cx = rn2(COLNO);
-      cy = rn2(ROWNO);
-
-	chance = 0;
-	if (levl[cx][cy].typ == CORR) chance = 15;
-	else if (levl[cx][cy].typ == ROOM) chance = 30;
-	else if (IS_ROCK(levl[cx][cy].typ)) chance = 100;
-	if (rndomizat) trynmbr = (rn2(5) ? rnd(50) : rnd(28));
-
-	if (rn2(100) < chance && !t_at(cx,cy)) {
-	    if (lava) {
-		if (rndom) { 
-
-			if (trynmbr == 1) levl[cx][cy].typ = POOL;
-			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
-			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
-			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
-			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
-			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
-			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
-			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
-			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
-			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
-			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
-			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
-			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
-			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
-			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
-			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
-			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
-			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
-			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
-			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
-			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
-			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
-			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
-			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
-			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
-			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
-			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
-			else levl[cx][cy].typ = LAVAPOOL;
-		}
-		else {levl[cx][cy].typ = LAVAPOOL;
-		levl[cx][cy].lit = 1;
-		}
-	    } else	if (rndom) { 
-
-			if (trynmbr == 1) levl[cx][cy].typ = LAVAPOOL;
-			else if (trynmbr == 2) levl[cx][cy].typ = TREE;
-			else if (trynmbr == 3) levl[cx][cy].typ = IRONBARS;
-			else if (trynmbr == 4) levl[cx][cy].typ = ICE;
-			else if (trynmbr == 5) levl[cx][cy].typ = CLOUD;
-			else if (trynmbr == 6) levl[cx][cy].typ = CORR;
-			else if (trynmbr == 7) levl[cx][cy].typ = GRAVEWALL;
-			else if (trynmbr == 8) levl[cx][cy].typ = TUNNELWALL;
-			else if (trynmbr == 9) levl[cx][cy].typ = FARMLAND;
-			else if (trynmbr == 10) levl[cx][cy].typ = MOUNTAIN;
-			else if (trynmbr == 11) levl[cx][cy].typ = WATERTUNNEL;
-			else if (trynmbr == 12) levl[cx][cy].typ = CRYSTALWATER;
-			else if (trynmbr == 13) levl[cx][cy].typ = MOORLAND;
-			else if (trynmbr == 14) levl[cx][cy].typ = URINELAKE;
-			else if (trynmbr == 15) levl[cx][cy].typ = SHIFTINGSAND;
-			else if (trynmbr == 16) levl[cx][cy].typ = STYXRIVER;
-			else if (trynmbr == 17) levl[cx][cy].typ = SNOW;
-			else if (trynmbr == 18) levl[cx][cy].typ = ASH;
-			else if (trynmbr == 19) levl[cx][cy].typ = SAND;
-			else if (trynmbr == 20) levl[cx][cy].typ = PAVEDFLOOR;
-			else if (trynmbr == 21) levl[cx][cy].typ = HIGHWAY;
-			else if (trynmbr == 22) levl[cx][cy].typ = GRASSLAND;
-			else if (trynmbr == 23) levl[cx][cy].typ = NETHERMIST;
-			else if (trynmbr == 24) levl[cx][cy].typ = STALACTITE;
-			else if (trynmbr == 25) levl[cx][cy].typ = CRYPTFLOOR;
-			else if (trynmbr == 26) levl[cx][cy].typ = BUBBLES;
-			else if (trynmbr == 27) levl[cx][cy].typ = RAINCLOUD;
-			else levl[cx][cy].typ = POOL;
-		}
-		else 
-		levl[cx][cy].typ = !rn2(3) ? POOL : MOAT;
-
-		if (!rn2(ishaxor ? 10000 : 20000))
-			levl[cx][cy].typ = THRONE;
-		else if (!((moves + u.monstertimefinish) % 877 ) && !rn2(ishaxor ? 1000 : 2000))
-			levl[cx][cy].typ = THRONE;
-		else if (!rn2(ishaxor ? 50000 : 100000))
-			levl[cx][cy].typ = PENTAGRAM;
-		else if (!rn2(ishaxor ? 25000 : 50000))
-			levl[cx][cy].typ = WELL;
-		else if (!rn2(ishaxor ? 25000 : 50000))
-			levl[cx][cy].typ = POISONEDWELL;
-		else if (!rn2(ishaxor ? 25000 : 50000))
-			levl[cx][cy].typ = WAGON;
-		else if (!rn2(ishaxor ? 25000 : 50000))
-			levl[cx][cy].typ = BURNINGWAGON;
-		else if (!rn2(ishaxor ? 20000 : 40000))
-			levl[cx][cy].typ = WOODENTABLE;
-		else if (!rn2(ishaxor ? 25000 : 50000))
-			levl[cx][cy].typ = CARVEDBED;
-		else if (!rn2(ishaxor ? 10000 : 20000))
-			levl[cx][cy].typ = STRAWMATTRESS;
-		else if (!rn2(ishaxor ? 2500 : 5000)) {
-			levl[cx][cy].typ = FOUNTAIN;
-			level.flags.nfountains++;
-			}
-		else if (!((moves + u.monstertimefinish) % 879 ) && !rn2(ishaxor ? 250 : 500)) {
-			levl[cx][cy].typ = FOUNTAIN;
-			level.flags.nfountains++;
-			}
-		else if (!rn2(ishaxor ? 2500 : 5000)) {
-			levl[cx][cy].typ = SINK;
-			level.flags.nsinks++;
-			}
-		else if (!((moves + u.monstertimefinish) % 881 ) && !rn2(ishaxor ? 250 : 500)) {
-			levl[cx][cy].typ = SINK;
-			level.flags.nsinks++;
-			}
-		else if (!rn2(ishaxor ? 5000 : 10000))
-			levl[cx][cy].typ = TOILET;
-		else if (!((moves + u.monstertimefinish) % 883 ) && !rn2(ishaxor ? 500 : 1000))
-			levl[cx][cy].typ = TOILET;
-		else if (!rn2(ishaxor ? 1000 : 2000)) {
-			levl[cx][cy].typ = GRAVE;
-			str = random_epitaph();
-			del_engr_at(cx, cy);
-			make_engr_at(cx, cy, str, 0L, HEADSTONE);
-	
-			if (!rn2(3)) (void) mkgold(0L, cx, cy);
-			for (tryct = rn2(5); tryct; tryct--) {
-				    otmpX = mkobj(RANDOM_CLASS, TRUE);
-				    if (!otmpX) return;
-				    curse(otmpX);
-				    otmpX->ox = cx;
-				    otmpX->oy = cy;
-				    add_to_buried(otmpX);
-				}
-			}
-		else if (!((moves + u.monstertimefinish) % 885 ) && !rn2(ishaxor ? 100 : 200)) {
-			levl[cx][cy].typ = GRAVE;
-			str = random_epitaph();
-			del_engr_at(cx, cy);
-			make_engr_at(cx, cy, str, 0L, HEADSTONE);
-	
-			if (!rn2(3)) (void) mkgold(0L, cx, cy);
-			for (tryct = rn2(5); tryct; tryct--) {
-				    otmpX = mkobj(RANDOM_CLASS, TRUE);
-				    if (!otmpX) return;
-				    curse(otmpX);
-				    otmpX->ox = cx;
-				    otmpX->oy = cy;
-				    add_to_buried(otmpX);
-				}
-			}
-		else if (!rn2(ishaxor ? 10000 : 20000)) {
-			levl[cx][cy].typ = ALTAR;
-			if (rn2(10)) levl[cx][cy].altarmask = Align2amask( A_NONE );
-			else switch (rnd(3)) {
-	
-			case 1: levl[cx][cy].altarmask = Align2amask( A_LAWFUL ); break;
-			case 2: levl[cx][cy].altarmask = Align2amask( A_NEUTRAL ); break;
-			case 3: levl[cx][cy].altarmask = Align2amask( A_CHAOTIC ); break;
-	
-			}
-		}
-		else if (!((moves + u.monstertimefinish) % 887 ) && !rn2(ishaxor ? 1000 : 2000)) {
-			levl[cx][cy].typ = ALTAR;
-			if (rn2(10)) levl[cx][cy].altarmask = Align2amask( A_NONE );
-			else switch (rnd(3)) {
-	
-			case 1: levl[cx][cy].altarmask = Align2amask( A_LAWFUL ); break;
-			case 2: levl[cx][cy].altarmask = Align2amask( A_NEUTRAL ); break;
-			case 3: levl[cx][cy].altarmask = Align2amask( A_CHAOTIC ); break;
-	
-			}
-		}
-	}
-
-	}
-}
-
-STATIC_OVL void
-mkriversX()
-{
-    boolean lava;
-    boolean rndom;
-    int nriv = rn2(3) + 1;
-    if (!rn2(10)) nriv += rnd(3);
-    if (!rn2(100)) nriv += rnd(5);
-    if (!rn2(500)) nriv += rnd(7);
-    if (!rn2(2000)) nriv += rnd(10);
-    if (!rn2(10000)) nriv += rnd(15);
-    while (nriv--) {
-      lava = rn2(100) < depth(&u.uz);
-      rndom = (rn2(4) ? 0 : 1);
-	if (rn2(2)) makeriverX(0, rn2(ROWNO), COLNO-1, rn2(ROWNO), lava, rndom);
-	else makeriverX(rn2(COLNO), 0, rn2(COLNO), ROWNO-1, lava, rndom);
-    }
-}
-
-STATIC_OVL void
-mkrandriversX()
-{
-    boolean lava;
-    boolean rndom;
-    int nriv = 1;
-    if (!rn2(10)) nriv += rnd(2);
-    if (!rn2(100)) nriv += rnd(3);
-    if (!rn2(500)) nriv += rnd(5);
-    if (!rn2(2000)) nriv += rnd(7);
-    if (!rn2(10000)) nriv += rnd(10);
-
-    while (nriv--) {
-      lava = rn2(100) < depth(&u.uz);
-      rndom = (rn2(3) ? 0 : 1);
-	if (rn2(2)) makerandriverX(lava, rndom);
-	else makerandriverX(lava, rndom);
-    }
 }
 
 /*
@@ -5164,28 +4693,30 @@ dlb *fd;
 		create_corridor(&tmpcor);
 	}
 
+	specdungeoninit();
+
 	/* make rivers if possible --Amy */
-	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
-	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
+	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
 
 	if (ishaxor) {
-		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
-		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
+		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
 	}
 
-	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
-	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
+	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
 
-	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
-	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
+	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 
 	if (ishaxor) {
-		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
-		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
+		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 	}
 
-	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
-	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
+	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 
 	/*create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
 	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
@@ -5510,7 +5041,7 @@ dlb *fd;
 		troom = &rooms[nroom];
 
 		/* mark rooms that must be filled, but do it later */
-		if (tmpregion.rtype != OROOM || !rn2( ((isironman || RngeIronmanMode) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) )
+		if (tmpregion.rtype != OROOM || !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) )
 		    mustfill[nroom] = (prefilled ? 2 : 1);
 
 		if(tmpregion.rirreg) {
@@ -5907,28 +5438,30 @@ dlb *fd;
 
     }
 
+	specdungeoninit();
+
 	/* make rivers if possible --Amy */
-	if (!rn2(50) && !In_endgame(&u.uz) ) mkriversX();
-	if (!rn2(250) && !In_endgame(&u.uz) ) mkriversX();
+	if (!rn2(50) && !In_endgame(&u.uz) ) mkrivers();
+	if (!rn2(250) && !In_endgame(&u.uz) ) mkrivers();
 
 	if (ishaxor) {
-		if (!rn2(50) && !In_endgame(&u.uz) ) mkriversX();
-		if (!rn2(250) && !In_endgame(&u.uz) ) mkriversX();
+		if (!rn2(50) && !In_endgame(&u.uz) ) mkrivers();
+		if (!rn2(250) && !In_endgame(&u.uz) ) mkrivers();
 	}
 
-	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
-	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkriversX();
+	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
+	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrivers();
 
-	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
-	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+	if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
+	if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 
 	if (ishaxor) {
-		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
-		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+		if (!rn2(50) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
+		if (!rn2(250) && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 	}
 
-	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
-	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandriversX();
+	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
+	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 
 	/*create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
 	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
