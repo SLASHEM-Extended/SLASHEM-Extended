@@ -5117,8 +5117,9 @@ newbossB:
 			}
 		}
 
-		/* Gang Scholar gods are really nice: unless you're in Gehennom, they will occasionally fix status effects --Amy */
-		if (Role_if(PM_GANG_SCHOLAR) && !((Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) ) {
+		/* Gang Scholar gods are really nice: unless you're in Gehennom, they will occasionally fix status effects
+		 * negative alignment or luck lowers the chance, angry gods are very reluctant to help --Amy */
+		if (Role_if(PM_GANG_SCHOLAR) && !(u.ualign.record < 0 && rn2(3)) && !(u.ugangr && rn2(10 * u.ugangr)) && !(Luck < 0 && rn2(5)) && !((Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) ) {
 
 			if (HStun && !rn2(100)) {
 				verbalize("Thou shalt be relieved of that stun!");
@@ -5155,7 +5156,7 @@ newbossB:
 				make_feared(0L,FALSE);
 			}
 
-			if (Stoned && !rn2(10)) {
+			if (Stoned && !rn2(20)) {
 				verbalize("Thou wouldst be of no use as a statue!");
 				You_feel("more limber.");
 				Stoned = 0;
@@ -5163,7 +5164,7 @@ newbossB:
 				delayed_killer = 0;
 			}
 
-			if (Slimed && !rn2(100)) {
+			if (Slimed && !rn2(400)) {
 				verbalize("That foul green goo is to be devoured by holy fire!");
 				Hallucination ? pline("The rancid goo is gone! Yay!") : pline_The("slime disappears.");
 				Slimed = 0;
@@ -5175,6 +5176,8 @@ newbossB:
 				verbalize("Begone, thou foul sickness, and don't dare affecting my precious scholar again!");
 				make_sick(0L, (char *) 0, FALSE, SICK_ALL);
 			}
+
+			/* confusion is not cured, because the player may try to confuse themselves on purpose */
 
 		}
 
