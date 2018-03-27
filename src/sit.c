@@ -297,6 +297,21 @@ dosit()
 
 	    You(sit_message, "drawbridge");
 
+	} else if(IS_WOODENTABLE(typ)) {
+		pline("Sitting on a table isn't very fruitful.");
+
+	} else if(IS_PENTAGRAM(typ)) {
+		You(sit_message, "pentagram");
+		pline("Nothing happens. In order to interact with the pentagram, use #invoke.");
+
+	} else if(IS_WAGON(typ)) {
+		You("sit down beside the wagon and try to hide.");
+		u.uundetected = TRUE;
+
+	} else if(IS_STRAWMATTRESS(typ)) {
+		You(sit_message, "mattress");
+		pline("If for some weird reason you want to fall asleep, stay on the mattress tile for a while. But beware that this will not be a very pleasant sleep and monsters might try to mug you.");
+
 	} else if(IS_CARVEDBED(typ)) {
 
 		if (Sleep_resistance) {
