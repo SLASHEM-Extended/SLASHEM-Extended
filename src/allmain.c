@@ -4592,6 +4592,31 @@ newbossZ:
 
 		}
 
+		/* the automatic relocation on certain dungeons can make the game almost unwinnable if you end up in a place
+		 * surrounded by undiggable walls... so those places give relocatitis now :P --Amy */
+		if ((In_bellcaves(&u.uz) || In_deadground(&u.uz) || In_ordered(&u.uz) || In_forging(&u.uz)) && !rn2(1000)) {
+
+			pline("Suddenly, a void jumpgate appears and transports you away!");
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		      (void) safe_teleds(FALSE);
+		}
+
+		/* and just in case you end up stuck somewhere else... this lets the player decline, because it's only meant
+		 * as a last resort; can't have the player be relocated against their will on e.g. a Sokoban that has
+		 * corridor "rivers" from which there'd be no getting back to the regular map unless you wait for another
+		 * 10000 turns! Only teleport the player if they want to, with a full "yes" prompt because it may appear
+		 * completely out of the blue and the player shouldn't accidentally skip past it. --Amy */
+		if (!(In_endgame(&u.uz)) && !rn2(10000)) {
+
+			pline("Suddenly, a void jumpgate appears.");
+			getlin ("Do you want to enter the jumpgate and be teleported to a random location on this level? [yes/no]",buf);
+			(void) lcase (buf);
+			if (!(strcmp (buf, "yes"))) {
+				pline("Brrrr... it's deathly cold.");
+			      (void) safe_teleds(FALSE);
+			}
+		}
+
 		if (uarmc && uarmc->oartifact == ART_GREEB && !rn2(2000) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
@@ -8241,10 +8266,6 @@ boolean new_game;	/* false => restoring an old game */
 	if (new_game) pline("Welcome to SLASH'EM Extended! For game discussion, bug reports etc. join the #slashemextended or #em.slashem.me IRC channel on Freenode. :-) --Amy");
 #else
 	if (new_game) pline("You are playing SLASH'EM Extended on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Freenode. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!");
-
-	if (new_game && !(iflags.num_pad)) pline("Important hint for newbies: Movement keys default to hjklyubn, also known as vi-keys, but you might want to use the number pad instead. If that is the case, hit shift-o to open the options and scroll down a few pages until you get to the compound options, find the one named number_pad and set it to 2. That will enable the number pad. Do not hit escape in the options menu or it will discard any changes you made - advance pages with spacebar instead! --Amy");
-
-	if (new_game && !(iflags.num_pad)) pline("Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (this will probably require you to start a new game, but from that point on you'll always have the number pad enabled and won't have to set it up again every single time). If you still can't get it to work, join the #em.slashem.me IRC channel on Freenode and ask LarienTelrunya, Elronnd or other players for advice.");
 
 #endif /* PHANTOM_CRASH_BUG */
 
