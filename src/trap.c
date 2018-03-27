@@ -15275,6 +15275,14 @@ register int bodypart;
 	make_stunned(HStun + dmg, TRUE);
 
 	/* Grunthack door traps are evil, so they have to be evil in the Evil Variant too --Amy */
+
+	if (isevilvariant) {
+		(void) destroy_item(POTION_CLASS, AD_FIRE);
+		(void) destroy_item(SCROLL_CLASS, AD_FIRE);
+		(void) destroy_item(SPBOOK_CLASS, AD_FIRE);
+		burnarmor(&youmonst);
+	}
+
 	if (!rn2(10) || isevilvariant) {
 
 		int i, j;
