@@ -1364,7 +1364,10 @@ dokick()
 		    } else
 			goto ouch;
 		    }
-		    if (rn2(15) && !(maploc->looted & TREE_LOOTED) ) {
+		    if (rn2(15) && (maploc->looted & TREE_LOOTED) ) {
+				pline("The tree's branches are swinging, but there's no fruit on it.");
+				return(1);
+		    } else if (rn2(15) && !(maploc->looted & TREE_LOOTED) ) {
 
 			if (!issoviet && rn2(3)) { /* nerf by Amy, it was way too easy to accumulate tons of fruits. */
 				pline("The tree's branches are swinging, but apparently it doesn't bear any fruits.");
