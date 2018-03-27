@@ -214,6 +214,7 @@ static struct Bool_Opt
 #else
 	{"news", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
+	{"numpadmessage", &iflags.numpadmessage, TRUE, SET_IN_GAME},
 	{"null", &flags.null, TRUE, SET_IN_GAME},
 #ifdef MAC
 	{"page_wait", &flags.page_wait, TRUE, SET_IN_GAME},
@@ -3389,6 +3390,34 @@ doset()
 	int indexoffset, startpass, endpass;
 	boolean setinitial = FALSE, fromfile = FALSE;
 	int biggest_name = 0;
+
+	if (moves < 50 && iflags.numpadmessage) {
+
+		if (!(iflags.num_pad)) {
+			if (yn("Do you want to turn on the number pad?") == 'y') {
+				iflags.num_pad = 2;
+				iflags.num_pad_mode = 1;
+				iflags.numpadmessage = FALSE;
+			} else if (yn("Do you want to turn this annoying message off?") == 'y') {
+				iflags.numpadmessage = FALSE;
+				pline("In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
+			}
+			if (u.annoyingmessages++ > 5) iflags.numpadmessage = FALSE;
+		}
+
+		else if (iflags.num_pad) {
+			if (yn("Do you want to turn off the number pad?") == 'y') {
+				iflags.num_pad = 0;
+				iflags.num_pad_mode = 0;
+				iflags.numpadmessage = FALSE;
+			} else if (yn("Do you want to turn this annoying message off?") == 'y') {
+				iflags.numpadmessage = FALSE;
+				pline("In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
+			}
+			if (u.annoyingmessages++ > 5) iflags.numpadmessage = FALSE;
+		}
+
+	}
 
 	tmpwin = create_nhwindow(NHW_MENU);
 	start_menu(tmpwin);

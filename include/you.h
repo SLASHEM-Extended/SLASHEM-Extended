@@ -1011,6 +1011,8 @@ struct you {
 	boolean petcaneat;
 	boolean petcanfollow;
 
+	boolean annoyingmessages; /* don't show the annoying number pad message infinite times */
+
 	int combostrike;	/* for technique */
 	boolean comboactive;
 

@@ -256,9 +256,8 @@ struct instance_flags {
 	boolean  menu_tab_sep;	/* Use tabs to separate option menu fields */
 	boolean  menu_requested; /* Flag for overloaded use of 'm' prefix
 				  * on some non-move commands */
-	boolean no_numpad_message; /* don't show the annoying message telling
-				      you to use numpad if you press space
-				      within the first 50 turns */
+	boolean numpadmessage; /* because Elronnd is so weird and keeps inputting invalid commands, so we have to
+					    * make it possible to disable the message you're getting */
 	boolean bones;
 	boolean use_menu_glyphs;
 	uchar num_pad_mode;

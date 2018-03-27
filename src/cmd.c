@@ -10327,7 +10327,44 @@ register char *cmd;
 		 * sadly, few players ever take the in-game advice and join the IRC, so we need in-game advice too...
 		 * and even that is often skipped by impatient players :( --Amy */
 
-	    if (moves < 50 && !(iflags.num_pad)) pline("You might want to turn on the number pad, which is done by opening the options with shift-O and navigating to the number_pad entry. Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 2. Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (probably requires you to start a new game).");
+		/* Elronnd snuck in a commit that adds a way to disable this message, even though I wanted to code that myself.
+		 * The option he added will stay, although he apparently didn't know that 'no' is used as a prefix to disable
+		 * an option, so the option can't be named 'no_numpad_message' as he originally intended. But I also added a
+		 * way to either disable the message in-game or, even better, a prompt to turn the number pad on or off!
+		 * Because we really can't expect the average joe to fiddle around with complicated compound options that 99%
+		 * of them don't even find because they get stuck looking for it between the "null" and "perm_invent" boolean
+		 * options (no joke, I've seen it happen so many times). And even if they do find the number_pad option, they
+		 * probably don't know how to change it and end up escaping out of the options menu, which is
+		 * never a good idea because it discards all changes you made. So yeah. */
+
+		/* I also made the message display at most 5 times per game to make it not too intrusive --Amy */
+
+		if (moves < 50 && !(iflags.num_pad) && iflags.numpadmessage) {
+			if (yn("You might want to turn on the number pad, which is done by opening the options with shift-O and navigating to the number_pad entry (it's not between null and perm_invent, you have to scroll further down to the compound options). Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 2. Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (probably requires you to start a new game). (Press y to disable this message)") == 'y') {
+				iflags.numpadmessage = FALSE;
+				pline("In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
+			} else {
+				if (yn("Turn the number pad on?") == 'y') {
+					iflags.num_pad = 2;
+					iflags.num_pad_mode = 1;
+					iflags.numpadmessage = FALSE;
+				}
+			}
+			if (u.annoyingmessages++ > 5) iflags.numpadmessage = FALSE;
+		}
+		else if (moves < 50 && iflags.num_pad && iflags.numpadmessage) {
+			if (yn("The number pad is currently on. If for some reason you want to turn it off and use vikeys instead, open the options with shift-O and navigate to the number_pad entry (it's not between null and perm_invent, you have to scroll further down to the compound options). Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 0. Alternatively, you can also turn off the number pad by adding this line to your options file: OPTIONS=number_pad:0 (probably requires you to start a new game). (Press y to disable this message)") == 'y') {
+				iflags.numpadmessage = FALSE;
+				pline("In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
+			} else {
+				if (yn("Turn the number pad off?") == 'y') {
+					iflags.num_pad = 0;
+					iflags.num_pad_mode = 0;
+					iflags.numpadmessage = FALSE;
+				}
+			}
+			if (u.annoyingmessages++ > 5) iflags.numpadmessage = FALSE;
+		}
 
 	}
 	/* didn't move */
