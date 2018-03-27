@@ -1476,7 +1476,8 @@ init_attr(np)
 
 		for (i = 0; (i < A_MAX); i++) {
 
-			ABASE(i) = AMAX(i) = ATTRMAX(i);
+			if (i == A_STR) ABASE(i) = AMAX(i) = ATTRMAX(i);
+			else if (ABASE(i) < 25) ABASE(i) = AMAX(i) = 25;
 
 		}
 	}
