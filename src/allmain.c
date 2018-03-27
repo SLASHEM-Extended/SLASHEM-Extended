@@ -10020,6 +10020,16 @@ boolean new_game;	/* false => restoring an old game */
 		goto_level(&elderpriest_level, TRUE, FALSE, FALSE);
 		pline("Welcome to Wonderland. You have to get to the bottom of the Yendorian Tower to escape.");
 		pline("If you manage to do that, you regain your ability to levelport. Good luck, and don't get near the elder priest or he will tentacle to tentacle you!");
+
+		/* Apparently the game is so stupid and doesn't know what a teleport region is, and still occasionally
+		 * spawns you inside the temple! This should not be, and therefore you're teleported out if it happens. */
+		if (*in_rooms(u.ux, u.uy, TEMPLE)) {
+			pline("S'Wonderful!");
+			(void) safe_teleds(FALSE);
+			/* still in the temple? try again, but prevent infinite loops */
+			while (rn2(1000) && *in_rooms(u.ux, u.uy, TEMPLE)) (void) safe_teleds(FALSE);
+		}
+
 	}
 
 	if (flags.lostsoul && !flags.uberlostsoul && new_game) { 

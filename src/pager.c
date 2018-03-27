@@ -12976,6 +12976,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"and they combust so much such that they noxious gases left starts to choke you. You die...",
 	"Suddenly the door to the east is unlocked!",
 	"The Nightmare Gauntlet door fails to unlock and you're stuck forever unless you find a scroll of relocation.",
+	"B U G ! B U G !",
+	"S'Wonderful!",
 
 };
 
