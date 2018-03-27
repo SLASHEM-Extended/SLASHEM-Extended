@@ -1358,7 +1358,7 @@ dodown()
 	}
 
 	if (u.stairscumslowing && (stairs_down || ladder_down) ) {
-		pline("This stair is currently blocked and will reopen in %d turns.", u.stairscumslowing);
+		pline("This stair is currently blocked and will reopen in %d turn%s.", u.stairscumslowing, u.stairscumslowing > 1 ? "s" : "");
 		return(0);
 	}
 
@@ -1514,7 +1514,7 @@ doup()
 	}
 
 	if (u.stairscumslowing && !u.uhave.amulet) {
-		pline("This stair is currently blocked and will reopen in %d turns.", u.stairscumslowing);
+		pline("This stair is currently blocked and will reopen in %d turn%s.", u.stairscumslowing, u.stairscumslowing > 1 ? "s" : "");
 		return(0);
 	}
 
