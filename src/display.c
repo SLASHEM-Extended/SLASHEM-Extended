@@ -1977,6 +1977,8 @@ show_glyph(x,y,glyph)
 	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) || (glyph == (GLYPH_CMAP_OFF + 47) ) ) )
 	return;
 
+	if (!flags.wallglyph && glyph == (GLYPH_CMAP_OFF + 47)) return;
+
     if (glyph >= MAX_GLYPH) {
 	impossible("show_glyph:  bad glyph %d [max %d] at (%d,%d).",
 					glyph, MAX_GLYPH, x, y);
@@ -2053,6 +2055,8 @@ show_glyphX(x,y,glyph)
 
 	if ( (NotSeenBug || u.uprops[NOT_SEEN_BUG].extrinsic || have_nonseeingstone()) && ((glyph >= GLYPH_CMAP_OFF && glyph < (GLYPH_CMAP_OFF + 13) ) || (glyph == (GLYPH_CMAP_OFF + 47) ) ) )
 	return;
+
+	if (!flags.wallglyph && glyph == (GLYPH_CMAP_OFF + 47)) return;
 
     if (glyph >= MAX_GLYPH) {
 	impossible("show_glyph:  bad glyph %d [max %d] at (%d,%d).",
