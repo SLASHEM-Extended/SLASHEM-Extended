@@ -1848,7 +1848,7 @@ int x;
 
 		if (Race_if(PM_HUMAN_MONKEY) && tmp < 4) tmp = 4;
 
-		if (Upolyd && strongmonst(youmonst.data) ) tmp += 3;
+		if (Upolyd && youmonst.data && strongmonst(youmonst.data) ) tmp += 3;
 
 		if (Race_if(PM_WEAPONIZED_DINOSAUR)) tmp += 5;
 
@@ -1878,10 +1878,10 @@ int x;
 
 			 return((tmp >= 125) ? 125 : (tmp <= 3) ? 3 : tmp);
 	} else if (x == A_CHA) {
-		/*if (tmp < 18 && (youmonst.data->mlet == S_NYMPH ||
+		/*if (tmp < 18 && (youmonst.data && youmonst.data->mlet == S_NYMPH ||
 		    u.umonnum == PM_SUCCUBUS || u.umonnum == PM_INCUBUS))
 		    tmp = 18;*/
-		if (youmonst.data->mlet == S_NYMPH || u.umonnum == PM_SUCCUBUS || u.umonnum == PM_INCUBUS) tmp += 3;
+		if (youmonst.data && (youmonst.data->mlet == S_NYMPH || u.umonnum == PM_SUCCUBUS || u.umonnum == PM_INCUBUS)) tmp += 3;
 		if (uarmh && uarmh->otyp == FEDORA) tmp += 1;        
 		if (uarmf && uarmf->otyp == UGG_BOOTS) tmp -= 3;
 		if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fleecy-colored cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vorsistyye tsvetnoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "serjun rangli plash") )) tmp += 5;

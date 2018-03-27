@@ -664,7 +664,7 @@ linetwo:
 	if (flags.showmc)
 		wprintw(win, " MC%d", magic_negationX(&youmonst));
 
-	if (flags.showmovement)
+	if (flags.showmovement && youmonst.data)
 		wprintw(win, " Mov%d", youmonst.data->mmove);
 
 
@@ -681,14 +681,14 @@ linetwo:
     }
 
 #ifdef SHOW_WEIGHT
-	if (flags.showweight && !(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone()))
+	if (flags.showweight && youmonst.data && !(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone()))
 		wprintw(win, " Wt%ld/%ld", (long)(inv_weight()+weight_cap()), (long)weight_cap());
 #endif
 
     if (flags.time)
         print_statdiff(" T:", &prevtime, moves, STAT_TIME);
 
-    curses_add_statuses(win, FALSE, FALSE, NULL, NULL);
+    if (youmonst.data) curses_add_statuses(win, FALSE, FALSE, NULL, NULL);
 }
 
 static void
@@ -806,7 +806,7 @@ linetwonew:
     if (flags.time)
         print_statdiff(" T:", &prevtime, moves, STAT_TIME);
 
-    curses_add_statuses(win, TRUE, FALSE, &x, &y);
+    if (youmonst.data) curses_add_statuses(win, TRUE, FALSE, &x, &y);
 
     /* Right-aligned attributes */
     int stat_length = 6; /* " Dx:xx" */
@@ -1006,7 +1006,7 @@ linetwovert:
         wmove(win, y++, x);
     }
 
-    curses_add_statuses(win, FALSE, TRUE, &x, &y);
+    if (youmonst.data) curses_add_statuses(win, FALSE, TRUE, &x, &y);
 }
 
 static void
@@ -1055,7 +1055,7 @@ curses_add_statuses(WINDOW *win, boolean align_right,
     statprob("Burn",    Burned);
     statprob("Dim",    Dimmed);
     statprob("Stone",    Stoned);
-    statprob("Held",    u.ustuck && !u.uswallow && !sticks(youmonst.data));
+    statprob("Held",    u.ustuck && !u.uswallow && youmonst.data && !sticks(youmonst.data));
 
     /* Encumbrance */
     int enc = near_capacity();
