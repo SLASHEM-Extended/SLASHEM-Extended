@@ -10905,23 +10905,23 @@ struct obj *obj;
 			case SPE_FORGOTTEN_SPELL:
 				pline("Simulates the effects of casting a forgotten spell, so you might e.g. become confused or stunned."); break;
 			case SPE_FLOOD:
-				pline("Creates some water tiles around you, and reduces your maximum mana by up to 10 points."); break;
+				pline("Creates some water tiles around you, and reduces your maximum mana by up to 3 points."); break;
 			case SPE_LAVA:
-				pline("Casting this spell will create a few lava tiles close to you, and reduce your maximum mana by up to 10 points."); break;
+				pline("Casting this spell will create a few lava tiles close to you, and reduce your maximum mana by up to 3 points."); break;
 			case SPE_IRON_PRISON:
-				pline("This spell surrounds you with randomly placed iron bars, and reduces your maximum mana by up to 24 points."); break;
+				pline("This spell surrounds you with randomly placed iron bars, and reduces your maximum mana by up to 4 points."); break;
 			case SPE_LOCKOUT:
-				pline("A spell that generates walls and locks doors on random nearby squares, and reduces your maximum mana by up to 30 points."); break;
+				pline("A spell that generates walls and locks doors on random nearby squares, and reduces your maximum mana by up to 5 points."); break;
 			case SPE_CLOUDS:
-				pline("This spell creates some clouds near your current location, and reduces your maximum mana by up to 4 points."); break;
+				pline("This spell creates some clouds near your current location, and occasionally reduces your maximum mana by one point."); break;
 			case SPE_ICE:
-				pline("Generates some ice tiles in your proximity, and reduces your maximum mana by up to 7 points."); break;
+				pline("Generates some ice tiles in your proximity, and reduces your maximum mana by up to 2 points."); break;
 			case SPE_GROW_TREES:
-				pline("It's a powerful spell that lets trees grow near you, but it also reduces your maximum mana by up to 30 points."); break;
+				pline("It's a powerful spell that lets trees grow near you, but it also reduces your maximum mana by up to 4 points."); break;
 			case SPE_DRIPPING_TREAD:
-				pline("You can drip the elements for a while if you cast this, although it also costs up to 15 maximum HP. Walking around while the effect is active will generate water, lava, ice or cloud terrain underneath you; at higher skill levels you will be able to control the type of terrain created."); break;
+				pline("You can drip the elements for a while if you cast this, although it also costs up to 3 maximum HP. Walking around while the effect is active will generate water, lava, ice or cloud terrain underneath you; at higher skill levels you will be able to control the type of terrain created."); break;
 			case SPE_GEOLYSIS:
-				pline("This spell grants you the ability to eat through solid rock for a while, dealing up to 4 points of damage to your maximum health in the process. Eating a wall this way will occasionally turn it into ice, water or clouds."); break;
+				pline("This spell grants you the ability to eat through solid rock for a while, dealing up to 2 points of damage to your maximum health in the process. Eating a wall this way will occasionally turn it into ice, water or clouds."); break;
 			case SPE_ELEMENTAL_BEAM:
 				pline("Offensive spell that randomly shoots a beam of fire, cold, lightning or poison."); break;
 			case SPE_STERILIZE:

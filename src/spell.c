@@ -4751,7 +4751,7 @@ boolean atme;
 
 	case SPE_MELTDOWN:
 		You("melt!");
-		u.uhpmax -= rnd(10);
+		u.uhpmax -= rnd(3);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
 			u.youaredead = 1;
@@ -4761,11 +4761,11 @@ boolean atme;
 			u.youaredead = 0;
 		}
 		if (Upolyd) {
-			u.mhmax -= rnd(10);
+			u.mhmax -= rnd(3);
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
 		}
 
-		u.uenmax -= rnd(10);
+		u.uenmax -= rnd(3);
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 
 		int maderoom = 0;
@@ -4781,10 +4781,12 @@ boolean atme;
 		int madepoolX = 0;
 		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_floodg, (void *)&madepoolX);
 		if (madepoolX) pline("Watery pits appear in the dungeon!");
-		u.uenmax -= rnd(10);
-		if (u.uenmax < 0) u.uenmax = 0;
-		if (u.uen > u.uenmax) u.uen = u.uenmax;
-		pline("Casting this spell is straining for your maximum mana supply.");
+		if (rn2(2)) {
+			u.uenmax -= rnd(3);
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Casting this spell is straining for your maximum mana supply.");
+		}
 
 		}
 		break;
@@ -4794,10 +4796,13 @@ boolean atme;
 		int madepool = 0;
 		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lavafloodg, (void *)&madepool);
 		if (madepool) pline("Lava pools are created!");
-		u.uenmax -= rnd(10);
-		if (u.uenmax < 0) u.uenmax = 0;
-		if (u.uen > u.uenmax) u.uen = u.uenmax;
-		pline("Casting this spell is straining for your maximum mana supply.");
+		if (rn2(2)) {
+			u.uenmax -= rnd(3);
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Casting this spell is straining for your maximum mana supply.");
+		}
+
 		}
 
 		break;
@@ -4807,10 +4812,13 @@ boolean atme;
 		int madepoolQ = 0;
 		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_barfloodg, (void *)&madepoolQ);
 		if (madepoolQ) pline("Iron bars appear from thin air!");
-		u.uenmax -= rnd(24);
-		if (u.uenmax < 0) u.uenmax = 0;
-		if (u.uen > u.uenmax) u.uen = u.uenmax;
-		pline("Casting this spell is straining for your maximum mana supply.");
+		if (rn2(2)) {
+			u.uenmax -= rnd(4);
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Casting this spell is straining for your maximum mana supply.");
+		}
+
 		}
 
 		break;
@@ -4820,10 +4828,13 @@ boolean atme;
 		int madepoolQ = 0;
 		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_cloudfloodg, (void *)&madepoolQ);
 		if (madepoolQ) pline("Clouds everywhere!");
-		u.uenmax -= rnd(4);
-		if (u.uenmax < 0) u.uenmax = 0;
-		if (u.uen > u.uenmax) u.uen = u.uenmax;
-		pline("Casting this spell is straining for your maximum mana supply.");
+		if (!rn2(3)) {
+			u.uenmax -= 1;
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Casting this spell is straining for your maximum mana supply.");
+		}
+
 		}
 
 		break;
@@ -4833,10 +4844,13 @@ boolean atme;
 		int madepoolQ = 0;
 		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_icefloodg, (void *)&madepoolQ);
 		if (madepoolQ) pline("The landscape is winterized!");
-		u.uenmax -= rnd(7);
-		if (u.uenmax < 0) u.uenmax = 0;
-		if (u.uen > u.uenmax) u.uen = u.uenmax;
-		pline("Casting this spell is straining for your maximum mana supply.");
+		if (rn2(2)) {
+			u.uenmax -= rnd(2);
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Casting this spell is straining for your maximum mana supply.");
+		}
+
 		}
 
 		break;
@@ -4846,10 +4860,13 @@ boolean atme;
 		int madepoolQ = 0;
 		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lockfloodg, (void *)&madepoolQ);
 		if (madepoolQ) pline("The area is walled off!");
-		u.uenmax -= rnd(30);
-		if (u.uenmax < 0) u.uenmax = 0;
-		if (u.uen > u.uenmax) u.uen = u.uenmax;
-		pline("Casting this spell is straining for your maximum mana supply.");
+		if (rn2(2)) {
+			u.uenmax -= rnd(5);
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Casting this spell is straining for your maximum mana supply.");
+		}
+
 		}
 
 		break;
@@ -4859,10 +4876,13 @@ boolean atme;
 		int madepoolQ = 0;
 		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_treefloodg, (void *)&madepoolQ);
 		if (madepoolQ) pline("Trees start to grow rapidly!");
-		u.uenmax -= rnd(25);
-		if (u.uenmax < 0) u.uenmax = 0;
-		if (u.uen > u.uenmax) u.uen = u.uenmax;
-		pline("Casting this spell is straining for your maximum mana supply.");
+		if (rn2(2)) {
+			u.uenmax -= rnd(4);
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Casting this spell is straining for your maximum mana supply.");
+		}
+
 		}
 
 		break;
@@ -4873,10 +4893,13 @@ boolean atme;
 		int madepoolQ = 0;
 		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_terrainfloodg, (void *)&madepoolQ);
 		if (madepoolQ) pline("Chaotic terrain is generated!");
-		u.uenmax -= rnd(20);
-		if (u.uenmax < 0) u.uenmax = 0;
-		if (u.uen > u.uenmax) u.uen = u.uenmax;
-		pline("Casting this spell is straining for your maximum mana supply.");
+		if (rn2(2)) {
+			u.uenmax -= rnd(4);
+			if (u.uenmax < 0) u.uenmax = 0;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			pline("Casting this spell is straining for your maximum mana supply.");
+		}
+
 		}
 
 		break;
@@ -5100,7 +5123,7 @@ boolean atme;
 
 				pline("You are severely hurt and unable to move due to being buried!");
 
-				u.uhpmax -= rnd(10);
+				u.uhpmax -= rnd(5);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				if (u.uhp < 1) {
 					u.youaredead = 1;
@@ -5110,7 +5133,7 @@ boolean atme;
 					u.youaredead = 0;
 				}
 				if (Upolyd) {
-					u.mhmax -= rnd(10);
+					u.mhmax -= rnd(5);
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
 					if (u.mh < 1) {
 						u.youaredead = 1;
@@ -5120,7 +5143,7 @@ boolean atme;
 						u.youaredead = 0;
 					}
 				}
-				u.uenmax -= rnd(10);
+				u.uenmax -= rnd(5);
 				if (u.uenmax < 0) u.uenmax = 0;
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
 				if (Free_action) {
@@ -5293,7 +5316,7 @@ boolean atme;
 	case SPE_GEOLYSIS:
 
 		pline("You sacrifice some of your %s and become able to eat through solid rock.", body_part(BLOOD));
-		u.uhpmax -= rnd(4);
+		u.uhpmax -= rnd(2);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
 			u.youaredead = 1;
@@ -5303,7 +5326,7 @@ boolean atme;
 			u.youaredead = 0;
 		}
 		if (Upolyd) {
-			u.mhmax -= rnd(4);
+			u.mhmax -= rnd(2);
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
 		}
 
@@ -5315,7 +5338,7 @@ boolean atme;
 	case SPE_DRIPPING_TREAD:
 
 		pline("You sacrifice some of your %s and start dripping elements.", body_part(BLOOD));
-		u.uhpmax -= rnd(15);
+		u.uhpmax -= rnd(3);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		if (u.uhp < 1) {
 			u.youaredead = 1;
@@ -5325,7 +5348,7 @@ boolean atme;
 			u.youaredead = 0;
 		}
 		if (Upolyd) {
-			u.mhmax -= rnd(15);
+			u.mhmax -= rnd(3);
 			if (u.mh > u.mhmax) u.mh = u.mhmax;
 		}
 		u.drippingtreadtype = rnd(4);
