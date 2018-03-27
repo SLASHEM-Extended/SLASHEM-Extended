@@ -8609,6 +8609,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	/*int randattackA = 0;*/
 	int atttypA;
 	int hallutime;
+	struct obj *otmpi, *otmpii;
 	struct obj *optr;
 
 	if (!u.uswallow) {	/* swallows you */
@@ -10208,8 +10209,7 @@ do_stone2:
 	    case AD_SITM:	/* for now these are the same */
 	    case AD_SEDU:
 	    case AD_SSEX:
-	    case AD_STTP:
-		pline( (atttypA == AD_STTP) ? "You are surrounded by a purple glow!" : "It thrusts you!");
+		pline("It thrusts you!");
 
 		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
 			You_feel("a tug on your knapsack"); break;
@@ -10243,6 +10243,60 @@ do_stone2:
 			monflee(mtmp, rnd(10), FALSE, FALSE);
 			return 3;
 			};
+		}
+		break;
+
+	    case AD_STTP:
+
+		pline("You are surrounded by a purple glow!");
+		if (invent) {
+		    int itemportchance = 10 + rn2(21);
+		    for (otmpi = invent; otmpi; otmpi = otmpii) {
+
+		      otmpii = otmpi->nobj;
+
+			if (!rn2(itemportchance) && !stack_too_big(otmpi) ) {
+
+				if (otmpi->owornmask & W_ARMOR) {
+				    if (otmpi == uskin) {
+					skinback(TRUE);		/* uarm = uskin; uskin = 0; */
+				    }
+				    if (otmpi == uarm) (void) Armor_off();
+				    else if (otmpi == uarmc) (void) Cloak_off();
+				    else if (otmpi == uarmf) (void) Boots_off();
+				    else if (otmpi == uarmg) (void) Gloves_off();
+				    else if (otmpi == uarmh) (void) Helmet_off();
+				    else if (otmpi == uarms) (void) Shield_off();
+				    else if (otmpi == uarmu) (void) Shirt_off();
+				    /* catchall -- should never happen */
+				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
+				} else if (otmpi ->owornmask & W_AMUL) {
+				    Amulet_off();
+				} else if (otmpi ->owornmask & W_RING) {
+				    Ring_gone(otmpi);
+				} else if (otmpi ->owornmask & W_TOOL) {
+				    Blindf_off(otmpi);
+				} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+				    if (otmpi == uwep)
+					uwepgone();
+				    if (otmpi == uswapwep)
+					uswapwepgone();
+				    if (otmpi == uquiver)
+					uqwepgone();
+				}
+
+				if (otmpi->owornmask & (W_BALL|W_CHAIN)) {
+				    unpunish();
+				} else if (otmpi->owornmask) {
+				/* catchall */
+				    setnotworn(otmpi);
+				}
+
+				dropx(otmpi);
+			      if (otmpi->where == OBJ_FLOOR) rloco(otmpi);
+			}
+
+		    }
 		}
 		break;
 
@@ -17292,6 +17346,12 @@ register int n;
 	if (!rn2(20) && n >= 1 && u.ulevel >= 20) {n = n / 5; if (n < 1) n = 1;}
 	if (!rn2(50) && n >= 1 && u.ulevel >= 30) {n = n / 10; if (n < 1) n = 1;}
 	}
+
+	/* very early on, low-level characters should be more survivable
+	 * this can certainly be exploited in some way; if players start exploiting it I'll have to fix it
+	 * but it should fix the annoying problem where you often instadie to a trap while your max HP are bad --Amy */
+	if (depth(&u.uz) == 1 && u.ulevel == 1 && moves < 1000 && In_dod(&u.uz) && n > 1) { n /= 2; }
+	if (depth(&u.uz) == 1 && u.ulevel == 2 && moves < 1000 && In_dod(&u.uz) && n > 1) { n *= 2; n /= 3; }
 
 	if (n && Race_if(PM_YUKI_PLAYA)) n += rnd(5);
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */
