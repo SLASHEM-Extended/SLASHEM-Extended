@@ -124,7 +124,11 @@ moveloop()
 
 	if (getmonth() == 5) {
 #ifdef PUBLIC_SERVER
-		pline("Junethack is running! Please refer to junethack.net for more information. Give it your best shot, and try to score as many trophies as you can! Good luck!");
+		if (flags.uberlostsoul || flags.lostsoul || flags.gmmode || flags.wonderland) {
+			pline("Junethack is running - but you're using a playing mode that is incompatible with the tournament! The following modes are prohibited: lostsoul, uberlostsoul, gmmode and wonderland. If you want your games to count, quit this one now, disable all the forbidden options, and start a new game. Please refer to junethack.net for more information. Good luck!");
+		} else {
+			pline("Junethack is running! Please refer to junethack.net for more information. Give it your best shot, and try to score as many trophies as you can! Good luck!");
+		}
 #else
 		pline("It is June! Why are you not participating in the Junethack tournament which traditionally runs this month? Quick, go to junethack.net in your web browser where you can play SLASH'EM Extended and other NetHack variants online and compare your scores with other players! And what's more, certain achievements will net you trophies!");
 #endif
