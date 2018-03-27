@@ -17523,6 +17523,15 @@ struct attack *mattk;
 	register struct permonst *pagr;
 	boolean agrinvis, defperc;
 	xchar genagr, gendef;
+	char buf[BUFSZ];
+
+	if (u.homosexual == 0) {
+		pline("You're discovering your sexuality...");
+		getlin("Are you homosexual? [yes/no] (If you answer no, you're heterosexual.)", buf);
+		(void) lcase (buf);
+		if (!(strcmp (buf, "yes"))) u.homosexual = 2;
+		else u.homosexual = 1;
+	}
 
 	if (rn2(5) && is_animal(magr->data)) return (0); /* Oh come on. In Elona snails can have sex with humans too. --Amy */
 
@@ -17561,7 +17570,7 @@ struct attack *mattk;
 		return 1;
 	else
 		/* Not everyone is straight... --Amy */
-		return (!rn2(25)) ? 1 : (pagr->mlet == S_NYMPH) ? 2 : 0;
+		return (!rn2(25)) ? 1 : (u.homosexual == 2) ? 1 : (pagr->mlet == S_NYMPH) ? 2 : 0;
 }
 
 #endif /* OVL1 */
@@ -17712,7 +17721,10 @@ register struct monst *mon;
 
 	/* "Remove a stupid line of dialogue. This is not an adult visual novel.  The rest of the dialogue scattered around the source files like this will be cleaned up in due time." In Soviet Russia, people are filthy heretics who don't fully appreciate the beauty of Slash'EM Extended, which causes them to pick the best features of the game and remove them. :( --Amy */
 
-	if (rnd(ACURR(A_CHA)) < 3) { /* random chance of being betrayed by your love interest... */
+	if (u.homosexual == 2 && (flags.female && mon->female)) goto skiptreason;
+	if (u.homosexual == 2 && (!flags.female && !(mon->female))) goto skiptreason;
+
+	if (rnd(ACURR(A_CHA)) < ((u.homosexual == 2) ? 9 : 3) ) { /* random chance of being betrayed by your love interest... */
 
 	monsterlev = ((mon->m_lev) + 1);
 	if (monsterlev <= 0) monsterlev = 1;
@@ -17727,13 +17739,18 @@ register struct monst *mon;
 	return 1;
 	}
 
+skiptreason:
+
 	/* by this point you have discovered mon's identity, blind or not... */
 	pline("Time stands still while you and %s lie in each other's arms...",
 		noit_mon_nam(mon));
 	/* Well,  IT happened ... */
 	u.uconduct.celibacy++;
 	
-	if (rn2(135) > ACURR(A_CHA) + ACURR(A_INT)) /*much higher chance of negative outcome now --Amy */ {
+	if (u.homosexual == 2 && (flags.female && mon->female) && rn2(3)) goto enjoyable;
+	if (u.homosexual == 2 && (!flags.female && !(mon->female)) && rn2(3)) goto enjoyable;
+
+	if ((rn2(135) > ACURR(A_CHA) + ACURR(A_INT)) || (u.homosexual == 2 && flags.female && !(mon->female)) || (u.homosexual == 2 && !flags.female && mon->female) ) /*much higher chance of negative outcome now --Amy */ {
 		/* Don't bother with mspec_used here... it didn't get tired! */
 		pline("%s seems to have enjoyed it more than you...",
 			noit_Monnam(mon));
@@ -17772,7 +17789,9 @@ register struct monst *mon;
 				break;
 			}
 		}
+		if ((u.homosexual == 2 && flags.female && !(mon->female)) || (u.homosexual == 2 && !flags.female && mon->female)) badeffect();
 	} else {
+enjoyable:
 		mon->mspec_used = rnd(100); /* monster is worn out */
 		You("seem to have enjoyed it more than %s...",
 		    noit_mon_nam(mon));
@@ -17806,6 +17825,12 @@ register struct monst *mon;
 
 	if (Role_if(PM_PROSTITUTE) || Role_if(PM_KURWA)) {
 		verbalize(rn2(2) ? "You're great! Here, this money is for you." : "Oh my god... Here, take this money, it's all I have!");
+		u.ugold += rnz(100);
+	} else if (u.homosexual == 2 && !rn2(2) && (flags.female && mon->female)) {
+		verbalize("You're such a hot girl! I'll give you some money as a reward!");
+		u.ugold += rnz(100);
+	} else if (u.homosexual == 2 && !rn2(2) && (!flags.female && !(mon->female))) {
+		verbalize("Dude, that was awesome! Have some money, my dear!");
 		u.ugold += rnz(100);
 	} else if (mon->mtame) /* don't charge */ ;
 	else if (rn2(120) < ACURR(A_CHA)) {

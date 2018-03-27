@@ -12966,6 +12966,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Why the heck can't I spacebar out of the direction prompt in nethack fourk?",
 	"In Nethack Fourk, the 'corridorbranch' option says 'branching corridors do not stop farmove'... and apparently that means that if it's set to false, 'branching corridors do not do not stop farmove', i.e. do stop it. *Very* bad wording on that option.",
 	"The background radiation in the Gamma Caves contaminates you.",
+	"You're discovering your sexuality...",
+	"Are you homosexual? If you answer no, you're heterosexual.",
 
 };
 

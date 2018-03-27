@@ -971,6 +971,7 @@ register struct monst *mtmp;
 			*verbl_msg = 0;	/* verbalize() */
     struct permonst *ptr = mtmp->data;
     char verbuf[BUFSZ];
+	char buf[BUFSZ];
 
     if (mtmp->egotype_farter) {
 
@@ -1435,8 +1436,17 @@ register struct monst *mtmp;
 	    }
 	    break;
 	case MS_SEDUCE:
+		if (ptr->mlet != S_NYMPH && u.homosexual == 0) {
+
+			pline("You're discovering your sexuality...");
+			getlin("Are you homosexual? [yes/no] (If you answer no, you're heterosexual.)", buf);
+			(void) lcase (buf);
+			if (!(strcmp (buf, "yes"))) u.homosexual = 2;
+			else u.homosexual = 1;
+		}
+
 	    if (ptr->mlet != S_NYMPH &&
-		could_seduce(mtmp, &youmonst, (struct attack *)0) == 1) {
+		could_seduceX(mtmp, &youmonst, (struct attack *)0) == 1) {
 			(void) doseduce(mtmp);
 			break;
 	    }

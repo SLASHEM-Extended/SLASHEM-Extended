@@ -8089,6 +8089,8 @@ u_init()
 
 	u.felidlives = 9;
 
+	u.homosexual = 0;
+
 	u.nataljetrapturns = 0;
 	u.nataljetrapx = 0;
 	u.nataljetrapy = 0;

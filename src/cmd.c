@@ -4314,6 +4314,19 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if (u.homosexual == 0) {
+	    	sprintf(buf, "not decided on your sexuality yet");
+		you_have(buf);
+	}
+	if (u.homosexual == 1) {
+	    	sprintf(buf, "heterosexual");
+		you_are(buf);
+	}
+	if (u.homosexual == 2) {
+	    	sprintf(buf, "homosexual");
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.contamination) {
 		if (u.contamination >= 1000) sprintf(buf, "suffering from fatal contamination. Health and mana regeneration are reduced.");
 		else if (u.contamination >= 800) sprintf(buf, "suffering from lethal contamination.");
@@ -7277,6 +7290,18 @@ int final;
 		sprintf(eos(buf), "lives left");
 		dump(youhad, buf);
 	}
+	if (u.homosexual == 0) {
+	    	sprintf(buf, "not decided on your sexuality yet");
+		dump(youhad, buf);
+	}
+	if (u.homosexual == 1) {
+	    	sprintf(buf, "heterosexual");
+		dump(youwere, buf);
+	}
+	if (u.homosexual == 2) {
+	    	sprintf(buf, "homosexual");
+		dump(youwere, buf);
+	}
 
 	if (u.contamination) {
 		if (u.contamination >= 1000) sprintf(buf, "suffering from fatal contamination. Health and mana regeneration were reduced.");
@@ -10238,7 +10263,7 @@ register char *cmd;
 		 * sadly, few players ever take the in-game advice and join the IRC, so we need in-game advice too...
 		 * and even that is often skipped by impatient players :( --Amy */
 
-	    if (moves < 50 && !(iflags.num_pad) && !(iflags.no_numpad_message)) pline("You might want to turn on the number pad, which is done by opening the options with shift-O and navigating to the number_pad entry. Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 2. Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (probably requires you to start a new game).");
+	    if (moves < 50 && !(iflags.num_pad)) pline("You might want to turn on the number pad, which is done by opening the options with shift-O and navigating to the number_pad entry. Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 2. Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (probably requires you to start a new game).");
 
 	}
 	/* didn't move */

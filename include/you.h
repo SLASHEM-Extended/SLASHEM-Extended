@@ -1001,6 +1001,8 @@ struct you {
 
 	int felidlives;	/* set to 9 at game start even if you're not a felid, because recursion is a thing */
 
+	int homosexual;	/* starts at 0 = undefined; 1 = hetero, 2 = homo, defined when you have intercourse with a foocubus */
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)
