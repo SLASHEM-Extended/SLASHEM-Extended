@@ -1214,6 +1214,7 @@ E void reassign(void);
 E int doorganize(void);
 E int domarkforpet(void);
 E int count_unpaid(struct obj *);
+E int count_notfullyided(struct obj *);
 E int count_buc(struct obj *,int);
 E void carry_obj_effects(struct monst *, struct obj *);
 E const char *currency(long);

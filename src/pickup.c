@@ -331,20 +331,23 @@ allow_category(obj)
 struct obj *obj;
 {
     if (Role_if(PM_PRIEST)) obj->bknown = TRUE;
-    if (((index(valid_menu_classes,'u') != (char *)0) && obj->unpaid) ||
+    if (((index(valid_menu_classes,'u') != (char *)0) && obj->unpaid && !Hallucination ) ||
+	(index(valid_menu_classes, obj->oclass) != (char *)0))
+	return TRUE;
+    else if (((index(valid_menu_classes,'I') != (char *)0) && not_fully_identified(obj) && !Hallucination) ||
 	(index(valid_menu_classes, obj->oclass) != (char *)0))
 	return TRUE;
     else if (((index(valid_menu_classes,'U') != (char *)0) &&
-	(obj->oclass != COIN_CLASS && obj->bknown && !obj->blessed && !obj->cursed)))
+	(obj->oclass != COIN_CLASS && obj->bknown && !obj->blessed && !obj->cursed && !Hallucination)))
 	return TRUE;
     else if (((index(valid_menu_classes,'B') != (char *)0) &&
-	(obj->oclass != COIN_CLASS && obj->bknown && obj->blessed)))
+	(obj->oclass != COIN_CLASS && obj->bknown && obj->blessed && !Hallucination)))
 	return TRUE;
     else if (((index(valid_menu_classes,'C') != (char *)0) &&
-	(obj->oclass != COIN_CLASS && obj->bknown && obj->cursed)))
+	(obj->oclass != COIN_CLASS && obj->bknown && obj->cursed && !Hallucination)))
 	return TRUE;
     else if (((index(valid_menu_classes,'X') != (char *)0) &&
-	(obj->oclass != COIN_CLASS && !obj->bknown)))
+	(obj->oclass != COIN_CLASS && !obj->bknown && !Hallucination)))
 	return TRUE;
     else
 	return FALSE;
@@ -840,26 +843,28 @@ int how;			/* type of query */
 	char invlet;
 	int ccount;
 	boolean do_unpaid = FALSE;
+	boolean do_unided = FALSE;
 	boolean do_blessed = FALSE, do_cursed = FALSE, do_uncursed = FALSE,
 	    do_buc_unknown = FALSE;
 	int num_buc_types = 0;
 
 	*pick_list = (menu_item *) 0;
 	if (!olist) return 0;
-	if ((qflags & UNPAID_TYPES) && count_unpaid(olist)) do_unpaid = TRUE;
-	if ((qflags & BUC_BLESSED) && count_buc(olist, BUC_BLESSED) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
+	if ((qflags & UNPAID_TYPES) && count_unpaid(olist) && !Hallucination) do_unpaid = TRUE;
+	if ((qflags & NOTFULLYIDED) && count_notfullyided(olist) && !Hallucination) do_unided = TRUE;
+	if ((qflags & BUC_BLESSED) && count_buc(olist, BUC_BLESSED) && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
 	    do_blessed = TRUE;
 	    num_buc_types++;
 	}
-	if ((qflags & BUC_CURSED) && count_buc(olist, BUC_CURSED) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
+	if ((qflags & BUC_CURSED) && count_buc(olist, BUC_CURSED) && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
 	    do_cursed = TRUE;
 	    num_buc_types++;
 	}
-	if ((qflags & BUC_UNCURSED) && count_buc(olist, BUC_UNCURSED) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
+	if ((qflags & BUC_UNCURSED) && count_buc(olist, BUC_UNCURSED) && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
 	    do_uncursed = TRUE;
 	    num_buc_types++;
 	}
-	if ((qflags & BUC_UNKNOWN) && count_buc(olist, BUC_UNKNOWN) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
+	if ((qflags & BUC_UNKNOWN) && count_buc(olist, BUC_UNKNOWN) && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
 	    do_buc_unknown = TRUE;
 	    num_buc_types++;
 	}
@@ -923,6 +928,15 @@ int how;			/* type of query */
 		return 0;
 	    }
 	} while (*pack);
+
+	/* unidentified items */
+	if (do_unided) {
+		invlet = 'I';
+		any.a_void = 0;
+		any.a_int = 'I';
+		add_menu(win, NO_GLYPH, &any, invlet, 0, ATR_NONE,
+			"Unidentified items", MENU_UNSELECTED);
+	}
 	/* unpaid items if there are any */
 	if (do_unpaid) {
 		invlet = 'u';
@@ -2722,8 +2736,8 @@ boolean put_in;
     } else if (flags.menu_style == MENU_FULL) {
 	all_categories = FALSE;
 	sprintf(buf,"%s what type of objects?", put_in ? putin : takeout);
-	mflags = put_in ? ALL_TYPES | BUC_ALLBKNOWN | BUC_UNKNOWN :
-		          ALL_TYPES | CHOOSE_ALL | BUC_ALLBKNOWN | BUC_UNKNOWN;
+	mflags = put_in ? ALL_TYPES | NOTFULLYIDED | BUC_ALLBKNOWN | BUC_UNKNOWN :
+		          ALL_TYPES | NOTFULLYIDED | CHOOSE_ALL | BUC_ALLBKNOWN | BUC_UNKNOWN;
 	n = query_category(buf, put_in ? invent : container->cobj,
 			   mflags, &pick_list, PICK_ANY);
 	if (!n) return 0;

@@ -19,6 +19,7 @@ STATIC_DCL void compactify(char *);
 STATIC_DCL boolean taking_off(const char *);
 STATIC_DCL boolean putting_on(const char *);
 STATIC_PTR int ckunpaid(struct obj *);
+STATIC_PTR int ckunided(struct obj *);
 STATIC_PTR int ckvalidcat(struct obj *);
 #ifdef DUMP_LOG
 static char display_pickinv(const char *,BOOLEAN_P, long *, BOOLEAN_P);
@@ -4266,6 +4267,13 @@ register struct obj *otmp;
 	return((int)(otmp->unpaid));
 }
 
+STATIC_PTR int
+ckunided(otmp)
+register struct obj *otmp;
+{
+	return((int)(not_fully_identified(otmp)));
+}
+
 boolean
 wearing_armor()
 {
@@ -4301,9 +4309,9 @@ unsigned *resultflags;
 	boolean takeoff, ident, allflag, m_seen;
 	int itemcount;
 #ifndef GOLDOBJ
-	int oletct, iletct, allowgold, unpaid, oc_of_sym;
+	int oletct, iletct, allowgold, unpaid, unided, oc_of_sym;
 #else
-	int oletct, iletct, unpaid, oc_of_sym;
+	int oletct, iletct, unpaid, unided, oc_of_sym;
 #endif
 	char sym, *ip, olets[MAXOCLASSES+5], ilets[MAXOCLASSES+5];
 	char extra_removeables[3+1];	/* uwep,uswapwep,uquiver */
@@ -4338,16 +4346,18 @@ unsigned *resultflags;
 #endif
 					filter, &itemcount);
 	unpaid = count_unpaid(invent);
+	unided = count_notfullyided(invent);
 
 	if (ident && !iletct) {
 	    return -1;		/* no further identifications */
-	} else if (!takeoff && (unpaid || invent)) {
+	} else if (!takeoff && (unpaid || unided || invent)) {
 	    ilets[iletct++] = ' ';
-	    if (unpaid) ilets[iletct++] = 'u';
-	    if (count_buc(invent, BUC_BLESSED))  ilets[iletct++] = 'B';
-	    if (count_buc(invent, BUC_UNCURSED)) ilets[iletct++] = 'U';
-	    if (count_buc(invent, BUC_CURSED))   ilets[iletct++] = 'C';
-	    if (count_buc(invent, BUC_UNKNOWN))  ilets[iletct++] = 'X';
+	    if (unpaid && !Hallucination) ilets[iletct++] = 'u';
+	    if (unided && !Hallucination) ilets[iletct++] = 'I';
+	    if (count_buc(invent, BUC_BLESSED) && !Hallucination)  ilets[iletct++] = 'B';
+	    if (count_buc(invent, BUC_UNCURSED) && !Hallucination) ilets[iletct++] = 'U';
+	    if (count_buc(invent, BUC_CURSED) && !Hallucination)   ilets[iletct++] = 'C';
+	    if (count_buc(invent, BUC_UNKNOWN) && !Hallucination)  ilets[iletct++] = 'X';
 	    if (invent) ilets[iletct++] = 'a';
 	} else if (takeoff && invent) {
 	    ilets[iletct++] = ' ';
@@ -4424,6 +4434,9 @@ unsigned *resultflags;
 	    } else if (sym == 'u') {
 		add_valid_menu_class('u');
 		ckfn = ckunpaid;
+	    } else if (sym == 'I') {
+		add_valid_menu_class('I');
+		ckfn = ckunided;
 	    } else if (sym == 'B') {
 	    	add_valid_menu_class('B');
 	    	ckfn = ckvalidcat;
@@ -5144,6 +5157,19 @@ count_unpaid(list)
 	if (list->unpaid) count++;
 	if (Has_contents(list))
 	    count += count_unpaid(list->cobj);
+	list = list->nobj;
+    }
+    return count;
+}
+
+int
+count_notfullyided(list)
+    struct obj *list;
+{
+    int count = 0;
+
+    while (list) {
+	if (not_fully_identified(list)) count++;
 	list = list->nobj;
     }
     return count;
