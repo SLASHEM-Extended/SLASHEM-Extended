@@ -4604,6 +4604,7 @@ register struct obj *obj;
 			u.uhp /= 5;
 			if (u.uhp < 1) u.uhp = 1;		/* be generous */
 		}
+		flags.botl = 1;
 		You_feel("very, very sick!");
 		break;
 	case POT_URINE:
@@ -4614,11 +4615,13 @@ register struct obj *obj;
 			u.uhp /= 3;
 			if (u.uhp < 1) u.uhp = 1;		/* be generous */
 		}
+		flags.botl = 1;
 		You_feel("very poisoned!");
 		break;
 	case POT_RADIUM:
 		u.uhp /= 4;
 		if (u.uhp < 1) u.uhp = 1;		/* be generous */
+		flags.botl = 1;
 		You_feel("very sick!");
 		break;
 	case POT_HALLUCINATION:
