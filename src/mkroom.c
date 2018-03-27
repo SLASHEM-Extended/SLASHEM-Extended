@@ -517,11 +517,13 @@ struct mkroom *sroom;
 	}
 
 	moreorless = 100;
+	if (rn2(10)) moreorless -= 10;
 	if (rn2(10)) moreorless -= rnd(20);
 	if (!rn2(3)) {
 		moreorless -= rnd(30);
 		if (!rn2(5)) moreorless -= rnd(40);
 	}
+	if (moreorless < 10) moreorless = 10;
 
 	/* armories don't contain as many monsters; also, some other rooms and settings change the values */
 
@@ -665,7 +667,7 @@ struct mkroom *sroom;
 			break;
 
 		    case DIVERPARADISE:
-			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(10)) {
+			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(3)) {
 				levl[sx][sy].typ = rn2(4) ? WATERTUNNEL : MOAT;
 			}
 			if (!rn2(5)) (void) mkobj_at(RANDOM_CLASS, sx, sy, FALSE);
@@ -1824,7 +1826,7 @@ douglas_adams_mon()
 {
 	int     i = rn2(60);
 	if (i > 55) return(&mons[PM_RAVENOUS_BUGBLATTER_BEAST_OF_TRAAL]);
-	else if (i > 54)        return(&mons[PM_MARVIN]);
+	else if (i > 54 && !rn2(10))        return(&mons[PM_MARVIN]);
 	else if (i > 46)        return(&mons[PM_CREEPING___]);
 	else if (i > 26)        return(&mons[PM_MICROSCOPIC_SPACE_FLEET]);
 	else if (i > 20)        return(&mons[PM_VOGON]);
@@ -1905,7 +1907,7 @@ struct permonst *
 realzoomon()
 {
 	int     i = rn2(60) + rn2(3*level_difficulty());
-	if (i > 175)    return(&mons[PM_JUMBO_THE_ELEPHANT]);
+	if (i > 175 && !rn2(50))    return(&mons[PM_JUMBO_THE_ELEPHANT]);
 	else if (i > 115)       return(&mons[PM_MASTODON]);
 	else if (i > 85)        return(&mons[PM_PYTHON]);
 	else if (i > 70)        return(&mons[PM_MUMAK]);
