@@ -72,6 +72,7 @@ struct flag {
 	boolean  legacy;	/* print game entry "story" */
 	boolean  lit_corridor;	/* show a dark corr as lit if it is in sight */
 	boolean  made_amulet;
+	boolean  materialglyph;	/* always show glyph for item materials in inventory */
 	boolean  menu_on_esc;	/* show menu when hitting esc */
 	boolean  missing_safety;	/* don't show the player's polymorphed species as a missingno */
 	boolean  pokedex;		/* show pokedex (not on public servers) */

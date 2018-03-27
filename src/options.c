@@ -170,6 +170,9 @@ static struct Bool_Opt
 #else
 	{"mail", (boolean *)0, TRUE, SET_IN_FILE},
 #endif
+
+	{"materialglyph", &flags.materialglyph, FALSE, SET_IN_GAME},
+
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	{"statuscolors", &iflags.use_status_colors, TRUE, SET_IN_GAME},
 #else
