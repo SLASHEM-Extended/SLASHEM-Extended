@@ -590,7 +590,7 @@ giveback:
 		    pline("You are not sure if there is anything happening to the sink at all.");
 		    break;
 	      case RIN_MIND_SHIELDING:
-		    pline("A purple aura surrounds the sink.");
+		    pline("A %s aura surrounds the sink.", NH_PURPLE);
 		    break;
 
 	      case RIN_BLOOD_LOSS:
@@ -624,7 +624,7 @@ giveback:
 		    pline("Terrible things are happening to the sink...");
 		    break;
 		case RIN_INFRAVISION:
-		    pline("The sink seems to glow red for a moment!");
+		    pline("The sink seems to glow %s for a moment!", NH_RED);
 		    break;
 		case RIN_STEALTH:
 		pline_The("sink seems to blend into the floor for a moment.");
