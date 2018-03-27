@@ -1132,12 +1132,31 @@ void arm_bomb(obj, yours)
 struct obj *obj;
 boolean yours;
 {
-	if (is_grenade(obj)) {
+	struct obj *otmp = NULL;
+
+	if (!is_grenade(obj)) return;
+
+	if (obj->quan > 1L && yours) {
+		if (obj == uwep && welded(obj)) {
+			You("can only hold one armed grenade, but can't drop any to hold only one.");
+			return;
+		}
+		otmp = obj;
+		obj = splitobj(otmp, 1L);
+		attach_bomb_blow_timeout(obj, (obj->cursed ? rn2(5) + 2 : obj->blessed ? 4 : rn2(2) + 3), yours);
+		obj_extract_self(otmp);
+		if (otmp)
+			otmp = hold_another_object(otmp, "You drop %s!", doname(otmp), (const char *)0);
+		return;
+	} else 
+		attach_bomb_blow_timeout(obj, (obj->cursed ? rn2(5) + 2 : obj->blessed ? 4 : rn2(2) + 3), yours);
+
+/*	if (is_grenade(obj)) {
 		attach_bomb_blow_timeout(obj, 
 			    (obj->cursed ? rn2(5) + 2 : obj->blessed ? 4 : 
 			    	rn2(2) + 3)
 			     , yours);			
-	}
+	}*/
 	/* Otherwise, do nothing */
 }
 
