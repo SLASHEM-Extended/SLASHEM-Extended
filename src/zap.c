@@ -281,6 +281,18 @@ struct obj *otmp;
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 		break;
 
+	case SPE_BLANK_PAPER: /* placeholder for blade anger */
+
+		if (tech_inuse(T_BLADE_ANGER)) {
+			dmg = bigmonst(mtmp->data) ? 6 : 8;
+			dmg += otmp->spe;
+			if (dmg < 1) dmg = 1; /* fail safe for cursed ones */
+			if (canseemon(mtmp)) pline("%s is slit by your shuriken!", Monnam(mtmp));
+			else pline("It is slit by your shuriken!");
+			(void) resist(mtmp, WEAPON_CLASS, dmg, NOTELL);
+		}
+		break;
+
 	case SPE_ENERGY_BOLT:
 		dmg = d(8, 4);
 		if(dbldam) dmg *= 2;
@@ -2407,6 +2419,9 @@ struct obj *obj;
 	case AMULET_CLASS:
 	    Amulet_on();
 	    break;
+	case IMPLANT_CLASS:
+	    Implant_on();
+	    break;
 	case RING_CLASS:
 	case FOOD_CLASS: /* meat ring */
 	    Ring_on(obj);
@@ -3219,6 +3234,8 @@ smell:
 		newsym(refresh_x,refresh_y);
 		makeknown(otmp->otyp);
 		break;
+	case SPE_BLANK_PAPER: /* placeholder for T_BLADE_ANGER */
+		break;
 	default:
 		impossible("What an interesting effect (%d)", otmp->otyp);
 		break;
@@ -3536,7 +3553,7 @@ newboss:
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(10), "paralyzed by a wand of sin");
+						nomul(-rnd(10), "paralyzed by a wand of sin", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -3604,6 +3621,8 @@ newboss:
 						    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 						} else if (otmpi ->owornmask & W_AMUL) {
 						    Amulet_off();
+						} else if (otmpi ->owornmask & W_IMPLANT) {
+						    Implant_off();
 						} else if (otmpi ->owornmask & W_RING) {
 						    Ring_gone(otmpi);
 						} else if (otmpi ->owornmask & W_TOOL) {
@@ -3720,7 +3739,7 @@ newboss:
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(10), "paralyzed by a wand of sin");
+					nomul(-rnd(10), "paralyzed by a wand of sin", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -3989,6 +4008,8 @@ newboss:
 					    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire an amulet?")=='y') {
 					    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+				else if (yn("Do you want to acquire an implant?")=='y') {
+					    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire a tool?")=='y') {
 					    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 				else if (yn("Do you want to acquire some food?")=='y') {
@@ -4424,7 +4445,7 @@ dozap()
 	if(!obj) return(0);
 
 	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
-		nomul(-(rnd(5)), "zapping a wand");
+		nomul(-(rnd(5)), "zapping a wand", TRUE);
 	}
 
 	check_unpaid(obj);
@@ -5145,7 +5166,7 @@ boolean ordinary;
 			    make_blinded((long)rnd(40),FALSE);
 			    if (!Blind) Your(vision_clears);
 		    }
-			if (!rn2(3) && multi >= 0) nomul(-rnd(10), "paralyzed by a thunder self-zap");
+			if (!rn2(3) && multi >= 0) nomul(-rnd(10), "paralyzed by a thunder self-zap", TRUE);
 			if (!rn2(2)) make_numbed(HNumbed + rnz(150), TRUE);
 
 		    break;
@@ -5301,7 +5322,7 @@ boolean ordinary;
 			    if (!Blind) Your(vision_clears);
 		    }
 
-			if (!rn2(3) && multi >= 0) nomul(-rnd(10), "paralyzed by a thunder self-zap");
+			if (!rn2(3) && multi >= 0) nomul(-rnd(10), "paralyzed by a thunder self-zap", TRUE);
 			if (!rn2(2)) make_numbed(HNumbed + rnz(150), TRUE);
 
 		    if (Fire_resistance) {
@@ -5495,7 +5516,7 @@ boolean ordinary;
 			} else {
 				if (!Free_action || !rn2(5)) {
 				    pline("You are frozen in place!");
-				    nomul(-rnz(20), "frozen by their own spell");
+				    nomul(-rnz(20), "frozen by their own spell", TRUE);
 				    nomovemsg = You_can_move_again;
 				    exercise(A_DEX, FALSE);
 				} else You("stiffen momentarily.");
@@ -5532,7 +5553,7 @@ boolean ordinary;
 			if (!Free_action || !rn2(5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			    nomul(-rnz(20), "frozen by their own wand");
+			    nomul(-rnz(20), "frozen by their own wand", TRUE);
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
 			} else You("stiffen momentarily.");
@@ -5542,7 +5563,7 @@ boolean ordinary;
 			if (!Free_action || !rn2(5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			    nomul(-rnz(20), "frozen by their own spell");
+			    nomul(-rnz(20), "frozen by their own spell", TRUE);
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
 			} else You("stiffen momentarily.");
@@ -6567,12 +6588,19 @@ struct obj *obj;
 	    } else if (u.dz) {
 		zap_updown(obj);
 	    } else {
-		(void) bhit(u.dx,u.dy, obj->otyp == SPE_SNIPER_BEAM ? 70 : EnglandMode ? rn1(10,10) : rn1(8,6), ZAPPED_WAND, bhitm, bhito, &obj);
+		int beamrange = (EnglandMode ? rn1(10,10) : rn1(8,6));
+		if (tech_inuse(T_OVER_RAY)) {
+			beamrange *= 3;
+			beamrange /= 2;
+		}
+		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
+
+		(void) bhit(u.dx,u.dy, obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND, bhitm, bhito, &obj);
 	    }
 
 	}
 
-	if (objects[otyp].oc_dir == IMMEDIATE) {
+	if (objects[otyp].oc_dir == IMMEDIATE || (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) ) {
 	    obj_zapped = FALSE;
 
 		if (obj->otyp == WAN_WIND) {
@@ -6588,7 +6616,15 @@ struct obj *obj;
 	    } else if (u.dz) {
 		disclose = zap_updown(obj);
 	    } else {
-		(void) bhit(u.dx,u.dy, obj->otyp == SPE_SNIPER_BEAM ? 70 : EnglandMode ? rn1(10,10) : rn1(8,6), ZAPPED_WAND,
+		int beamrange = (EnglandMode ? rn1(10,10) : rn1(8,6));
+		if (tech_inuse(T_OVER_RAY)) {
+			beamrange *= 3;
+			beamrange /= 2;
+		}
+
+		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
+
+		(void) bhit(u.dx,u.dy, obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND,
 			    bhitm, bhito, &obj);
 	    }
 	    /* give a clue if obj_zapped */
@@ -7089,7 +7125,8 @@ struct obj **obj_p;			/* object tossed/used */
 			}
 			if (weapon != INVIS_BEAM) {
 			    (*fhitm)(mtmp, obj);
-			    range -= 3;
+			    if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) range -= 1;
+			    else range -= 3;
 			}
 		} else {
 		    /* FLASHED_LIGHT hitting invisible monster
@@ -7867,6 +7904,11 @@ int type;
     /* very high armor protection does not achieve invulnerability */
     ac = AC_VALUE(ac);
 
+    /* do you have the force field technique active? if yes, 3 out of 4 zaps miss you unconditionally --Amy */
+    if (tech_inuse(T_FORCE_FIELD) && rn2(4)) {
+	return FALSE;
+    }
+
     return (3 - chance) < ac+spell_bonus;
 }
 
@@ -7937,6 +7979,11 @@ register int dx,dy;
     }
     if(type < 0) newsym(u.ux,u.uy);
     range = EnglandMode ? rn1(10,10) : rn1(7,7);
+    if (tech_inuse(T_OVER_RAY)) {
+	range *= 3;
+	range /= 2;
+    }
+
     if(dx == 0 && dy == 0) range = 1;
     save_bhitpos = bhitpos;
 
@@ -8138,7 +8185,7 @@ register int dx,dy;
 		miss(fltxt,mon);
 	    }
 	} else if (sx == u.ux && sy == u.uy && range >= 0) {
-	    nomul(0, 0);
+	    nomul(0, 0, FALSE);
 	    if (u.usteed && !rn2(3) && !mon_reflects(u.usteed, (char *)0)) {
 		    mon = u.usteed;
 		    goto buzzmonst;
@@ -8307,7 +8354,7 @@ register int dx,dy;
 		if (!Blind) Your(vision_clears);
 	    }
 	    stop_occupation();
-	    nomul(0, 0);
+	    nomul(0, 0, FALSE);
 	}
 
 	if(!ZAP_POS(lev->typ) || (closed_door(sx, sy) && (range >= 0))) {
@@ -8326,6 +8373,9 @@ register int dx,dy;
 	    if(range && isok(lsx, lsy) && cansee(lsx,lsy))
 		pline("%s bounces!", The(fltxt));
 	    if(!dx || !dy || !rn2(20)) {
+
+		if (tech_inuse(T_OVER_RAY) && !rn2(2) && (!dx || !dy)) range--;
+
 		dx = -dx;
 		dy = -dy;
 		/* WAC clear the beam so you can see it bounce back ;B */
@@ -8335,6 +8385,14 @@ register int dx,dy;
                 }
                 delay_output();
 	    } else {
+
+		if (tech_inuse(T_OVER_RAY) && !rn2(2)) {
+			range++;
+			if (!rn2(10)) range++;
+			if (!rn2(50)) range += 5;
+			if (!rn2(500)) range += 25;
+		}
+
 		if(isok(sx,lsy) && ZAP_POS(rmn = levl[sx][lsy].typ) &&
 		   !closed_door(sx,lsy) &&
 		   (IS_ROOM(rmn) || (isok(sx+dx,lsy) &&
@@ -9325,6 +9383,8 @@ othergreateffect()
 				    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an amulet?")=='y') {
 				    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire an implant?")=='y') {
+				    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a tool?")=='y') {
 				    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire some food?")=='y') {

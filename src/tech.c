@@ -29,6 +29,7 @@ static int blitz_g_slam(void);
 static int blitz_dash(void);
 static int blitz_power_surge(void);
 static int blitz_spirit_bomb(void);
+static int blitz_combo_strike(void);
 static void maybe_tameX(struct monst *);
 
 static NEARDATA schar delay;            /* moves left for tinker/energy draw */
@@ -110,6 +111,48 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"lucky gamble",
 	"panic digging",
 	"decontaminate",
+	"wonderspell",
+	"reset technique",
+	"silent ocean",
+	"glowhorn",
+	"intrinsic roulette",
+	"spectral sword",
+	"reverse identify",
+	"detect traps",
+	"directive",
+	"remove implant",
+	"reroll implant",
+	"time stop",
+	"stat resist",
+	"swap weapon",
+	"milden curse",
+	"force field",
+	"pointiness",
+	"bug spray",
+	"whirlstaff",
+	"deliberate curse",
+	"acquire steed",
+	"saddling",
+	"shopping queen",
+	"beauty charm",
+	"asian kick",
+	"legscratch attack",
+	"ground stomp",
+	"athletic combat",
+	"praying success",
+	"over-ray",
+	"enchanterang",
+	"batman arsenal",
+	"jokerbane",
+	"call the police",
+	"dominate",
+	"incarnation",
+	"combo strike",
+	"fungoism",
+	"become undead",
+	"jiu-jitsu",
+	"blade anger",
+	"re-taming",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -156,6 +199,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	lib_tech[] = { {   1, T_RESEARCH, 1},
 		       {   20, T_RECHARGE, 1},
+		       {   20, T_WONDERSPELL, 1},
 		       {   0, 0, 0} },
 	med_tech[] = { {   1, T_TELEKINESIS, 1},
 		       {   10, T_POLYFORM, 1},
@@ -218,6 +262,7 @@ static const struct innate_tech
 		       {   1, T_POWER_SURGE, 1},
 		       {   10, T_E_FIST, 1},
 		       {   10, T_CHI_STRIKE, 1},
+		       {   15, T_WONDERSPELL, 1},
 		       {   20, T_BLITZ, 1},
 		       {   25, T_REVIVE, 1},
 		       {   0, 0, 0} },
@@ -257,6 +302,7 @@ static const struct innate_tech
 	gam_tech[] = { {   1, T_CONCENTRATING, 1},
 		       {   13, T_LUCKY_GAMBLE, 1},
 		       {   20, T_SUMMON_PET, 1},
+		       {   30, T_RESET_TECHNIQUE, 1},
 		       {   0, 0, 0} },
 	gla_tech[] = { {   5, T_SHIELD_BASH, 1},
 			 {   10, T_IRON_SKIN, 1},
@@ -558,6 +604,7 @@ static const struct innate_tech
 	ran_tech[] = { {   1, T_FLURRY, 1},
 		       {   0, 0, 0} },
 	aug_tech[] = { {   1, T_TELEKINESIS, 1},
+		       {   5, T_WONDERSPELL, 1},
 		       {   10, T_SPIRITUALITY_CHECK, 1},
 		       {   0, 0, 0} },
 	elp_tech[] = { {   1, T_FLURRY, 1},
@@ -705,6 +752,7 @@ static const struct innate_tech
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_RESET_TECHNIQUE, 1},
 			 {   5, T_RESEARCH, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 			 {   20, T_TURN_UNDEAD, 1},
@@ -746,6 +794,7 @@ static const struct innate_tech
 		       {   1, T_DOUBLE_THROWNAGE, 1},
 		       {   14, T_VANISH, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   15, T_WONDERSPELL, 1},
 		       {   22, T_POLYFORM, 1},
 		       {   0, 0, 0} },
 	roh_tech[] = { {   1, T_APPRAISAL, 1},
@@ -1103,6 +1152,8 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_DOUBLE_TROUBLE, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_WONDERSPELL, 1},
+		       {   30, T_RESET_TECHNIQUE, 1},
 		       {   0, 0, 0} },
 
 	jel_tech[] = { {   1, T_DRAW_ENERGY, 1},
@@ -1294,6 +1345,7 @@ static const struct innate_tech
 #define techt_inuse(tech)       tech_list[tech].t_inuse
 #define techtout(tech)        tech_list[tech].t_tout
 #define techlev(tech)         (u.ulevel - tech_list[tech].t_lev)
+#define techlevX(tech)         (Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
 #define techid(tech)          tech_list[tech].t_id
 #define techname(tech)        (tech_names[techid(tech)])
 #define techlet(tech)  \
@@ -1812,7 +1864,7 @@ dotech()
 			break;
 
 		case T_PHASE_DOOR:
-			pline("If you need to get out of trouble, you can use this tech for a short-range teleport. It will teleport you over an euclidean distance of at least 3 but no more than 100.");
+			pline("If you need to get out of trouble, you can use this tech for a short-range teleport. It will teleport you over an euclidean distance of at least 3 but no more than 100. Of course it doesn't work if teleportation is prohibited on the current dungeon level.");
 			break;
 
 		case T_PRACTICE:
@@ -2047,6 +2099,174 @@ dotech()
 			pline("Greatly reduces your contamination when used.");
 			break;
 
+		case T_SWAP_WEAPON:
+			pline("Allows you to set a different secondary weapon, but only if you're not currently dual-wielding. If you're a master at dual-wielding, this even lets you skip potential bad effects that wielding the weapon would give you.");
+			break;
+
+		case T_WONDERSPELL:
+			pline("Teaches a random spell when used.");
+			break;
+
+		case T_RESET_TECHNIQUE:
+			pline("Allows you to select a technique that's currently on timeout, which will become usable again.");
+			break;
+
+		case T_SILENT_OCEAN:
+			pline("Using this technique will try to cancel all ; and I monsters in a rather large area around you. Also, while the technique is active, you have swimming and magical breathing, plus your items are protected from water damage and drowning attacks cannot harm you. If the technique is about to run out, you get a message so you can get out of the water. However, you also cannot cast spells or chat while it's active.");
+			break;
+
+		case T_GLOWHORN:
+			pline("If you use this technique, you will get the effect of applying a noncursed unicorn horn every turn for a period of time, even if you don't actually have a unicorn horn.");
+			break;
+
+		case T_INTRINSIC_ROULETTE:
+			pline("This technique can give or remove a random intrinsic, which can be good or bad.");
+			break;
+
+		case T_SPECTRAL_SWORD:
+			pline("Adds elemental damage to your melee weapon for a period of time.");
+			break;
+
+		case T_REVERSE_IDENTIFY:
+			pline("Allows you to identify an item based on random appearance, or input the name of an unknown item which will then be identified. It can also randomly identify some other unknown items.");
+			break;
+
+		case T_DETECT_TRAPS:
+			pline("Reveals some of the traps on the current dungeon level when used.");
+			break;
+
+		case T_DIRECTIVE:
+			pline("Very useful for petmasters, this technique lets you give orders to your pets. The higher your petkeeping skill, the more things you can change about your pets' behavior.");
+			break;
+
+		case T_REMOVE_IMPLANT:
+			pline("Allows you to take off a worn implant, even if it's a cursed one.");
+			break;
+
+		case T_REROLL_IMPLANT:
+			pline("This technique targets a worn implant and will reroll its base stats.");
+			break;
+
+		case T_MILDEN_CURSE:
+			pline("Use this technique to turn a sticky/heavily/prime cursed item into a regularly cursed one. If you use it on an item that has the black breath, topi ylinen or ancient morgothian curses, there is only a 10%% chance of turning them into a regularly cursed one.");
+			break;
+
+		case T_FORCE_FIELD:
+			pline("Activates a temporary force field that makes monsters with ranged weapons or beam wands much less likely to hit you.");
+			break;
+
+		case T_POINTINESS:
+			pline("This technique requires you to wield a polearm or lance. If it's a negatively enchanted one, it will become +0, otherwise it can gain an additional point of enchantment, but the chance is lower the more enchantment your weapon has. Maximum that can be reached is +25.");
+			break;
+
+		case T_BUG_SPRAY:
+			pline("Allows you to place a stinking cloud that deals poison damage to enemies, and also to you should you happen to walk into it.");
+			break;
+
+		case T_WHIRLSTAFF:
+			pline("After using this technique, for a certain period of time your quarterstaff can attack several times in a single turn. The higher your quarterstaff skill, the more extra attacks you get.");
+			break;
+
+		case T_DELIBERATE_CURSE:
+			pline("This technique replicates the effect of a potion of unholy water, allowing you to curse an item. Take note that even blessed items go straight to cursed when using this technique, unlike unholy water which would only unbless them.");
+			break;
+
+		case T_ACQUIRE_STEED:
+			pline("Tries to tame an adjacent monster of a 'rideable' class. Of course this is SLEX, you can theoretically ride any monster, but this technique specifically tames the following glyphs: q, u, A, C, D, J, z. Only one monster can be tamed per use, however there's a chance for monsters to resist so if you surround yourself with several potential pets, there's a better chance that not all of them will resist.");
+			break;
+
+		case T_SADDLING:
+			pline("Creates a saddle out of thin air.");
+			break;
+
+		case T_SHOPPING_QUEEN:
+			pline("Every woman's wet dream, this technique lets you shop for shoes! Depending on your high heels skill, there's a certain amount of shoes that you can pick from. You can only pick one pair from the list, which will be placed on the floor. So choose wisely and become the prettiest woman in the dungeon by donning your favorite high heels! (Disclaimer: You don't need to pay money; the technique is basically the voucher that you redeem to get your shoes.)");
+			break;
+
+		case T_BEAUTY_CHARM:
+			pline("This technique requires you to be wearing high heels, and paralyzes you for 10 turns, so be careful when using it. During those turns, it repeatedly tries to pacify humanoids and animals in a 7x7 radius around you, hoping that they fall in love with your beautiful high heels and decide to stop fighting you. However, monsters may resist the attempt and attack you anyway.");
+			break;
+
+		case T_ASIAN_KICK:
+			pline("If you want to use this technique, you must be wearing stiletto heels. Then it lasts for 50 turns, and once you kick a male humanoid or animal, you will place a devastating kick between their legs. The enemy's nuts will be pushed out of their original position by your very tender stiletto heels, causing unbearable pain to the monster and knocking it out for possibly hundreds of turns, but this technique immediately ends once you successfully kick something with it. Take note that using this technique puts a timeout on all of the following techniques: asian kick, legscratch attack, ground stomp, athletic combat.");
+			break;
+
+		case T_LEGSCRATCH_ATTACK:
+			pline("Requires you to wear cone heels. If you use this technique, your kick attack will be able to scratch up and down the enemy's legs for a while, ripping their shins to shreds, and as a result they'll move more slowly. Do it often enough and their legs will be bleeding so badly that all your kicks deal double damage because your beautiful cone heels are so incredibly sharp-edged! Take note that using this technique puts a timeout on all of the following techniques: asian kick, legscratch attack, ground stomp, athletic combat.");
+			break;
+
+		case T_GROUND_STOMP:
+			pline("In order to use this technique, you must be wearing wedge heels. It will last for a while, and if you kick a paralyzed enemy while the technique is active, you'll not only deal double damage but also increase the time for which the enemy is paralyzed, so you can effectively chain-paralyze them. Gotta kick 'em while they're down, and stomp them with your very lovely, massive wedge heels! Take note that using this technique puts a timeout on all of the following techniques: asian kick, legscratch attack, ground stomp, athletic combat.");
+			break;
+
+		case T_ATHLETIC_COMBAT:
+			pline("Only characters in block heels can use this technique. It lasts for a generous amount of time, and while it's active, you can place a high kick with your block heels at the enemy's belly, shoulder or even their head. The elegance of your very feminine block heels will mesmerize them so much that they may spontaneously stop fighting back, allowing you to kick them again and again with your fleecy block heel. Take note that using this technique puts a timeout on all of the following techniques: asian kick, legscratch attack, ground stomp, athletic combat.");
+			break;
+
+		case T_PRAYING_SUCCESS:
+			pline("This very helpful technique allows you to pray when it would normally not be safe to pray. Please be aware of the fact that your deity is still inaccessible in Gehennom; the gods won't get angry if you use this technique in Gehennom, but they won't be able to help you anyway.");
+			break;
+
+		case T_OVER_RAY:
+			pline("After using this technique, your ray and beam wands and spells have a much greater range than usually. It lasts for a generous amount of time. Diagonally fired rays in particular will sometimes bounce for quite a long time!");
+			break;
+
+		case T_ENCHANTERANG:
+			pline("A technique that can only be used if you're wielding a boomerang, and which will try to enchant it so you'll be more capable of killing the little poison ivies. You can also wield an entire stack, and as long as it's 10 or less boomerangs in it, the entire stack will be enchanted. Trying to enchant greater stacks can fail, more often the bigger the stack is. Also, boomerangs that are already +25 or higher can not be further enchanted with this technique.");
+			break;
+
+		case T_BATMAN_ARSENAL:
+			pline("If you want to be able to fight Scarecrow, Clayface and the Penguin, you need a lot of batarangs. Using this technique will create one out of thin air!");
+			break;
+
+		case T_JOKERBANE:
+			pline("Yes, Batman is capable of defeating the Joker, even though he's the biggest villain in all of Gotham City and has three separate ways of instakilling Batman and is also very capable of killing Batman via normal damage. Use this technique and your batarang will be able to paralyze monsters for a while if you throw it!");
+			break;
+
+		case T_CALL_THE_POLICE:
+			pline("If you need help, use this technique and tame kops will appear to fight your enemies.");
+			break;
+
+		case T_DOMINATE:
+			pline("Tries to tame an adjacent animal. At low technique levels you'll usually only dominate a single one, while with higher levels it may occasionally tame several animals in one use.");
+			break;
+
+		case T_INCARNATION:
+			pline("Allows you to select an adjacent monster and try to polymorph into it. But beware, there's a one in three chance that you polymorph into something completely random instead.");
+			break;
+
+		case T_COMBO_STRIKE:
+			pline("This technique can be used with chained blitz if you have that, and if you do so, every hit deals 10 extra damage compared to the previous one. Using it 'normally' gives a different effect: for a period of time, every melee hit you land will deal one more point of damage compared to the previous one, but it instantly terminates if you try to use chained blitz while having combo strike active, and it also terminates if you spend a turn doing something other than hitting a monster in melee, so you have to keep attacking things to maximize the effect.");
+			break;
+
+		case T_FUNGOISM:
+			pline("With this technique, you will polymorph into a random F-class monster. Beware, polymorph control doesn't let you choose what you become. Since most fungi aren't capable of wearing armor or wielding weapons, this is a way to shake off cursed ones. However, most fungi also lack limbs and generally make poor fighting forms.");
+			break;
+
+		case T_BECOME_UNDEAD:
+			pline("Unlike the turn undead technique, this one actually allows you to become an undead creature! This is done by polymorphing you, but the one you turn into is random, even if you have polymorph control.");
+			break;
+
+		case T_JIU_JITSU:
+			pline("A bare-handed combat technique that lasts for a very long time. While it's active, your fists will deal more damage the better a monster's armor class is, but it doesn't increase your to-hit to match, so you'd better be good enough to actually hit the monsters :D");
+			break;
+
+		case T_BLADE_ANGER:
+			pline("A pain in the butt to code, this technique is supposed to temporarily allow your shuriken to pierce monsters and continue flying after hitting them, but with the downside that when they stop travelling they'll always be broken. The implementation is rather hacky but it kind of works.");
+			break;
+
+		case T_RE_TAMING:
+			pline("Use this technique while standing next to a monster that used to be your pet, and if the monster was peaceful it'll become tame again. Using it on a former pet that actually became hostile only has a 1 in 3 chance of working, and using it on a former pet that became frenzied will never work.");
+			break;
+
+		case T_TIME_STOP:
+			pline("Using this technique stops time for 6-11 turns.");
+			break;
+
+		case T_STAT_RESIST:
+			pline("Provides temporary resistance to sickness, stun, confusion, blindness, hallucination and fear.");
+			break;
+
 		case T_CHARGE_SABER:
 			pline("This technique will use up all of your current mana and convert it into lightsaber energy. If the techlevel is at least 10, you can also win the jackpot. However, monsters may interrupt you, preventing your lightsaber from actually being charged.");
 			break;
@@ -2178,7 +2398,7 @@ int tech_no;
 		    break;
 		} else if(invent) {
 			You("examine your possessions.");
-			identify_pack((int) ((techlev(tech_no) / 10) + 1), 0);
+			identify_pack((int) ((techlevX(tech_no) / 10) + 1), 0);
 		} else {
 			/* KMH -- fixed non-compliant string */
 		    You("are already quite familiar with the contents of your pack.");
@@ -2195,13 +2415,13 @@ int tech_no;
 		}
 		Your("fingernails extend into claws!");
 		aggravate();
-		techt_inuse(tech_no) = d(2,4) + techlev(tech_no)/2 + 2;
+		techt_inuse(tech_no) = d(2,4) + techlevX(tech_no)/2 + 2;
 		t_timeout = rnz(2000);
 		break;
             case T_BERSERK:
 		You("fly into a berserk rage!");
 		techt_inuse(tech_no) = d(2,8) +
-               		(techlev(tech_no)/2) + 2;
+               		(techlevX(tech_no)/2) + 2;
 		incr_itimeout(&HFast, techt_inuse(tech_no));
 		t_timeout = rnz(1500);
 		break;
@@ -2219,7 +2439,7 @@ int tech_no;
                 Your("%s %s become blurs as they reach for your quiver!",
 			uarmg ? "gloved" : "bare",      /* Del Lamb */
 			makeplural(body_part(HAND)));
-                techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/6 + 1)) + 2;
+                techt_inuse(tech_no) = rnd((int) (techlevX(tech_no)/6 + 1)) + 2;
                 t_timeout = rnz(1500);
 		break;
             case T_INVOKE_DEITY: /* ask for healing if your alignment record is positive --Amy */
@@ -2255,9 +2475,9 @@ int tech_no;
 
 			else if (u.ualign.record > 0) {
 				pline("%s commends your efforts and grants you a boon.",u_gname() );
-				u.ublesscnt -= rnz(u.ualign.record + techlev(tech_no) );
+				u.ublesscnt -= rnz(u.ualign.record + techlevX(tech_no) );
 				if(u.ublesscnt < 0) u.ublesscnt = 0;
-				healup( rnz(u.ualign.record + techlev(tech_no)) , 0, FALSE, FALSE);
+				healup( rnz(u.ualign.record + techlevX(tech_no)) , 0, FALSE, FALSE);
 /* If your deity is pleased with you, heal some damage and decrease your prayer timeout. */
 			}
 
@@ -2299,8 +2519,11 @@ int tech_no;
 			if (maderoom) pline("Some solid rock is pulverized!");
 			else pline("There was nothing to dig out...");
 
-    			nomul(-rn1(10, 10), "panic digging");
-                t_timeout = rnz(5000);
+    			nomul(-rn1(10, 10), "panic digging", TRUE);
+			if (!PlayerCannotUseSkills && P_SKILL(P_PICK_AXE) >= P_SUPREME_MASTER) t_timeout = rnz(500);
+			else if (!PlayerCannotUseSkills && P_SKILL(P_PICK_AXE) >= P_GRAND_MASTER) t_timeout = rnz(1500);
+			else if (!PlayerCannotUseSkills && P_SKILL(P_PICK_AXE) >= P_MASTER) t_timeout = rnz(2500);
+			else t_timeout = rnz(5000);
 		break;
 
             case T_SECURE_IDENTIFY:
@@ -2392,11 +2615,11 @@ int tech_no;
 			}
 
 			pline("Using %s, you dress your wounds.", yname(otmp));
-			healup(techlev(tech_no) * (rnd(2)+1) + (rn1(5,5) * techlev(tech_no)),
+			healup(techlevX(tech_no) * (rnd(2)+1) + (rn1(5,5) * techlevX(tech_no)),
 			  0, FALSE, FALSE);
 		    } else {
 			You("strap your wounds as best you can.");
-			healup(techlev(tech_no) + rn1(5,5), 0, FALSE, FALSE);
+			healup(techlevX(tech_no) + rn1(5,5), 0, FALSE, FALSE);
 		    }
                     t_timeout = rnz(1500);
 		    flags.botl = TRUE;
@@ -2413,7 +2636,7 @@ int tech_no;
 		    t_timeout = rnz(3000);
 		} else if (Upolyd ? u.mh < u.mhmax : u.uhp < u.uhpmax) {
 		    pline("A warm glow spreads through your body!");
-		    healup(techlev(tech_no) * 4, 0, FALSE, FALSE);
+		    healup(techlevX(tech_no) * 4, 0, FALSE, FALSE);
 		    t_timeout = rnz(3000);
 		} else
 		    pline(nothing_happens);
@@ -2421,7 +2644,7 @@ int tech_no;
             case T_KIII:
 		You("scream \"KIIILLL!\"");
 		aggravate();
-                techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/2 + 1)) + 2;
+                techt_inuse(tech_no) = rnd((int) (techlevX(tech_no)/2 + 1)) + 2;
                 t_timeout = rnz(1500);
 		break;
 	    case T_CALM_STEED:
@@ -2440,7 +2663,7 @@ int tech_no;
 
 				if (u.usteed->mtame < 20) u.usteed->mtame++;
 
-				if (techlev(tech_no) < rnd(50)) calmedX++; /* high level tech has high chance of extra tameness */
+				if (techlevX(tech_no) < rnd(50)) calmedX++; /* high level tech has high chance of extra tameness */
 
 				}
 
@@ -2454,7 +2677,7 @@ int tech_no;
 		if (Invisible && Fast) {
 			You("are already quite nimble and undetectable.");
 		}
-                techt_inuse(tech_no) = rn1(10,10) + (techlev(tech_no) * 2);
+                techt_inuse(tech_no) = rn1(10,10) + (techlevX(tech_no) * 2);
 		if (!Invisible) pline("In a puff of smoke,  you disappear!");
 		if (!Fast) You_feel("more nimble!");
 		incr_itimeout(&HInvis, techt_inuse(tech_no));
@@ -2492,7 +2715,7 @@ int tech_no;
 			    You("are hampered by the differences in anatomy.");
 			    tmp /= 2;
 			}
-			tmp += techlev(tech_no);
+			tmp += techlevX(tech_no);
 			t_timeout = rnz(1500);
 			hurtmon(mtmp, tmp);
 		    }
@@ -2523,14 +2746,14 @@ int tech_no;
 			else {
 			    int tmp = 0;
 
-			    if (rn2(5) < (techlev(tech_no)/10 + 1)) {
+			    if (rn2(5) < (techlevX(tech_no)/10 + 1)) {
 				You("sever %s head!", s_suffix(mon_nam(mtmp)));
 				tmp = mtmp->mhp;
 			    } else {
 				You("hurt %s badly!", s_suffix(mon_nam(mtmp)));
 				tmp = mtmp->mhp / 2;
 			    }
-			    tmp += techlev(tech_no);
+			    tmp += techlevX(tech_no);
 			    t_timeout = rn1(1000,500);
 			    hurtmon(mtmp, tmp);
 			}
@@ -2577,7 +2800,7 @@ int tech_no;
 #if 0
 		str = makeplural(body_part(HAND));
                 You("focus the powers of the elements into your %s", str);
-                techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/3 + 1)) + d(1,4) + 2;
+                techt_inuse(tech_no) = rnd((int) (techlevX(tech_no)/3 + 1)) + d(1,4) + 2;
 #endif
 		t_timeout = rnz(1500);
 	    	break;
@@ -2585,7 +2808,7 @@ int tech_no;
 	    	You("let out a bloodcurdling roar!");
 	    	aggravate();
 
-		techt_inuse(tech_no) = d(2,6) + (techlev(tech_no) * rnd(4)) + 2;
+		techt_inuse(tech_no) = d(2,6) + (techlevX(tech_no) * rnd(4)) + 2;
 
 		incr_itimeout(&HFast, techt_inuse(tech_no));
 
@@ -2627,7 +2850,7 @@ int tech_no;
 	    	if (dx && dy && dx != dy && dx != -dy) {
 		    You("can only leap in straight lines!");
 		    return 0;
-	    	} else if (distu(cc.x, cc.y) > 19 + techlev(tech_no)) {
+	    	} else if (distu(cc.x, cc.y) > 19 + techlevX(tech_no)) {
 		    pline("Too far!");
 		    return 0;
 		} else if (m_at(cc.x, cc.y) || !isok(cc.x, cc.y) ||
@@ -2695,7 +2918,7 @@ int tech_no;
 				int tmp = 1;
 				/* Need to add a to-hit */
 				tmp += d(2,4);
-				tmp += rn2((int) (techlev(tech_no) + 1));
+				tmp += rn2((int) (techlevX(tech_no) + 1));
 				if (!Blind) pline_The("acid burns %s!", mon_nam(mtmp));
 				hurtmon(mtmp, tmp);
 			    } else if (!Blind) pline_The("acid doesn't affect %s!", mon_nam(mtmp));
@@ -2712,7 +2935,7 @@ int tech_no;
 			}
 		    You("reform!");
 		    teleds(cc.x, cc.y, FALSE);
-		    nomul(-1, "liquid leaping");
+		    nomul(-1, "liquid leaping", TRUE);
 		    nomovemsg = "";
 	    	}
 		t_timeout = rnz(1500);
@@ -2720,7 +2943,7 @@ int tech_no;
 	    }
             case T_SIGIL_TEMPEST: 
 		/* Have enough power? */
-		num = 50 - techlev(tech_no);
+		num = 50 - techlevX(tech_no);
 		if (u.uen < num) {
 			You("don't have enough power to invoke the sigil! You need at least %d!",num);
 			return (0);
@@ -2729,14 +2952,14 @@ int tech_no;
 
 		/* Invoke */
 		You("invoke the sigil of tempest!");
-                techt_inuse(tech_no) = d(1,6) + rnd(techlev(tech_no)/2 + 1) + 2;
+                techt_inuse(tech_no) = d(1,6) + rnd(techlevX(tech_no)/2 + 1) + 2;
 		u_wipe_engr(2);
                 t_timeout = rnz(50);
 		return(0);
 		break;
             case T_SIGIL_CONTROL:
 		/* Have enough power? */
-		num = 30 - techlev(tech_no)/2;
+		num = 30 - techlevX(tech_no)/2;
 		if (u.uen < num) {
 			You("don't have enough power to invoke the sigil! You need at least %d!",num);
 			return (0);
@@ -2745,14 +2968,14 @@ int tech_no;
 
 		/* Invoke */
 		You("invoke the sigil of control!");
-                techt_inuse(tech_no) = d(1,4) + rnd(techlev(tech_no)/2 + 1) + 2;
+                techt_inuse(tech_no) = d(1,4) + rnd(techlevX(tech_no)/2 + 1) + 2;
 		u_wipe_engr(2);
                 t_timeout = rnz(50);
 		return(0);
 		break;
             case T_SIGIL_DISCHARGE:
 		/* Have enough power? */
-		num = 100 - techlev(tech_no)*2;
+		num = 100 - techlevX(tech_no)*2;
 		if (u.uen < num) {
 			You("don't have enough power to invoke the sigil! You need at least %d!",num);
 			return (0);
@@ -2761,7 +2984,7 @@ int tech_no;
 
 		/* Invoke */
 		You("invoke the sigil of discharge!");
-                techt_inuse(tech_no) = d(1,4) + rnd(techlev(tech_no)/2 + 1) + 2;
+                techt_inuse(tech_no) = d(1,4) + rnd(techlevX(tech_no)/2 + 1) + 2;
 		u_wipe_engr(2);
                 t_timeout = rnz(50);
 		return(0);
@@ -2798,7 +3021,7 @@ int tech_no;
 			}
 		    }
 		}
-		nomul(-2, "recovering from an attempt to raise zombies"); /* You need to recover */
+		nomul(-2, "recovering from an attempt to raise zombies", TRUE); /* You need to recover */
 		nomovemsg = 0;
 		t_timeout = rnz(1500);
 		break;
@@ -2807,7 +3030,7 @@ int tech_no;
 		    You(no_elbow_room);
 		    return 0;
 		}
-            	num = 100 - techlev(tech_no); /* WAC make this depend on mon? */
+            	num = 100 - techlevX(tech_no); /* WAC make this depend on mon? */
             	if ((Upolyd && u.mh <= num) || (!Upolyd && u.uhp <= num)){
 		    You("don't have the strength to perform revivification!");
 		    return 0;
@@ -2835,7 +3058,7 @@ int tech_no;
 
 		You("invoke the ward against flame!");
 		HFire_resistance += rn1(100,50);
-		HFire_resistance += techlev(tech_no);
+		HFire_resistance += techlevX(tech_no);
 		t_timeout = rnz(1500);
 
 	    	break;
@@ -2845,7 +3068,7 @@ int tech_no;
 
 		You("invoke the ward against ice!");
 		HCold_resistance += rn1(100,50);
-		HCold_resistance += techlev(tech_no);
+		HCold_resistance += techlevX(tech_no);
 		t_timeout = rnz(1500);
 
 	    	break;
@@ -2855,7 +3078,7 @@ int tech_no;
 
 		You("invoke the ward against lightning!");
 		HShock_resistance += rn1(100,50);
-		HShock_resistance += techlev(tech_no);
+		HShock_resistance += techlevX(tech_no);
 		t_timeout = rnz(1500);
 
 	    	break;
@@ -2871,7 +3094,7 @@ int tech_no;
 		You("are holding %s.", doname(uwep));
 		if (yn("Start tinkering on this?") != 'y') return(0);
 		You("start working on %s",doname(uwep));
-		delay=-150 + techlev(tech_no);
+		delay=-150 + techlevX(tech_no);
 		set_occupation(tinker, "tinkering", 0);
 		t_timeout = rnz(200);
 		break;
@@ -2881,7 +3104,7 @@ int tech_no;
 			return(0);
 		}*/
 	    	You_feel("the anger inside you erupt!");
-		num = 50 + (4 * techlev(tech_no));
+		num = 50 + (4 * techlevX(tech_no));
 	    	techt_inuse(tech_no) = num + 1;
 		if (Upolyd) {
 			u.mhmax += num;
@@ -2893,7 +3116,7 @@ int tech_no;
 		break;	    
 	    case T_BLINK:
 	    	You_feel("the flow of time slow down.");
-                techt_inuse(tech_no) = rnd(techlev(tech_no) + 1) + 2;
+                techt_inuse(tech_no) = rnd(techlevX(tech_no) + 1) + 2;
 		t_timeout = rnz(1500);
 	    	break;
             case T_CHI_STRIKE:
@@ -2917,7 +3140,7 @@ int tech_no;
             		return(0);
             	}
 		You("direct your internal energy to restoring your body!");
-                techt_inuse(tech_no) = techlev(tech_no)*10 + 4;
+                techt_inuse(tech_no) = techlevX(tech_no)*10 + 4;
                 t_timeout = rnz(1500);
 		break;	
 	    case T_DISARM:
@@ -2961,7 +3184,7 @@ int tech_no;
 	    		You_cant("see %s weapon!", s_suffix(mon_nam(mtmp)));
 	    		return(0);
 		}
-		num = ((rn2(techlev(tech_no) + 15)) 
+		num = ((rn2(techlevX(tech_no) + 15)) 
 			* (P_SKILL(weapon_type(uwep)) - P_SKILLED + 1)) / 10;
 
 		if (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) {
@@ -3064,7 +3287,7 @@ int tech_no;
 			You("can't see yourself!");
 			return(0);
 		}
-		for(i = 0; (i  <= ((techlev(tech_no) / 8) + 1) 
+		for(i = 0; (i  <= ((techlevX(tech_no) / 8) + 1) 
 			&& isok(u.ux + (i*u.dx), u.uy + (i*u.dy))); i++) {
 		    mtmp = m_at(u.ux + (i*u.dx), u.uy + (i*u.dy));
 		    if (mtmp && canseemon(mtmp)) break;
@@ -3078,7 +3301,7 @@ int tech_no;
                 	pline("..but %s has no eyes!", mon_nam(mtmp));
                 else if (!mtmp->mcansee)
                 	pline("..but %s cannot see you!", mon_nam(mtmp));
-                if ((rn2(6) + rn2(6) + (techlev(tech_no) - mtmp->m_lev)) > rnd(10)) {
+                if ((rn2(6) + rn2(6) + (techlevX(tech_no) - mtmp->m_lev)) > rnd(10)) {
 			You("dazzle %s!", mon_nam(mtmp));
 			mtmp->mcanmove = 0;
 			mtmp->mfrozen = rnd(10);
@@ -3096,7 +3319,8 @@ int tech_no;
 	    		return(0);
 	    	}
 	    	if (!doblitz()) return (0);		
-		
+		u.combostrike = 0;
+		u.comboactive = FALSE;
                 t_timeout = rnz(1500);
 	    	break;
             case T_PUMMEL:
@@ -3218,7 +3442,7 @@ int tech_no;
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return(0);
 		}
-		if (!jump((techlev(tech_no)/5)+1)) return 0;
+		if (!jump((techlevX(tech_no)/5)+1)) return 0;
 		u.uen -= 25;
 		t_timeout = rnz(50);
 		break;
@@ -3254,7 +3478,7 @@ int tech_no;
 				t_timeout = rnz(1000);
 				}
 
-			else if ( (mtmp->m_lev > (2 * techlev(tech_no)) || rn2(4) ) && mtmp->m_lev > techlev(tech_no) && caught == 0 && ( (!is_pokemon(mtmp->data) && (!mtmp->egotype_pokemon) ) || rn2(2) ) )
+			else if ( (mtmp->m_lev > (2 * techlevX(tech_no)) || rn2(4) ) && mtmp->m_lev > techlevX(tech_no) && caught == 0 && ( (!is_pokemon(mtmp->data) && (!mtmp->egotype_pokemon) ) || rn2(2) ) )
 				{
 				pline("You missed the Pokemon!");
 				}
@@ -3264,8 +3488,8 @@ int tech_no;
 				{
 				/* If catchrate is a higher numeric value, the chance of catching the monster is lower. */
 
-				catchrate = (60 + mtmp->m_lev - techlev(tech_no));
-				if (!rn2(4)) catchrate -= techlev(tech_no);
+				catchrate = (60 + mtmp->m_lev - techlevX(tech_no));
+				if (!rn2(4)) catchrate -= techlevX(tech_no);
 				if (is_pokemon(mtmp->data) || mtmp->egotype_pokemon) catchrate = (catchrate / 2);
 				if (catchrate < 3) catchrate = 3;
 				if (rnd(100) < catchrate) pline("Oh, no! The Pokemon broke free!");
@@ -3304,7 +3528,7 @@ int tech_no;
 		/*mtmp->mtame = 10;*/
 	      /*maybe_tameX(mtmp);*/
 		(void) tamedog(mtmp, (struct obj *) 0, TRUE);
-		if (techlev(tech_no) < rnd(50)) caughtY++;
+		if (techlevX(tech_no) < rnd(50)) caughtY++;
 		}
 
 		/* A high level Insectoid character can create quite the army of insects sometimes. --Amy */
@@ -3324,7 +3548,7 @@ int tech_no;
 		else mtmp = makemon(&mons[urole.malenum], u.ux, u.uy, NO_MM_FLAGS);
 		if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
 
-		if ((techlev(tech_no)) < rnd(50)) familiardone = 1;
+		if ((techlevX(tech_no)) < rnd(50)) familiardone = 1;
 		else pline("Sent in some familiars too.");
 
 		while (familiardone == 0) {
@@ -3332,7 +3556,7 @@ int tech_no;
 	 	      mtmp = makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
 			if (mtmp) (void) tamedog(mtmp, (struct obj *) 0, TRUE);
 
-			if ((techlev(tech_no)) < rnd(50)) familiardone = 1;
+			if ((techlevX(tech_no)) < rnd(50)) familiardone = 1;
 		}
 
 		t_timeout = rnz(5000);
@@ -3352,7 +3576,6 @@ int tech_no;
 
 		int k, l, caughtX;
 		struct monst *mtmp3;
-		register struct monst *mtmp4;
 		caughtX = 0;
 		pline("You strike a sexy pose with your heels!");
 
@@ -3370,7 +3593,7 @@ int tech_no;
 			      /*maybe_tameX(mtmp3);*/
 				pline("%s is charmed, and wants to be your friend!", mon_nam(mtmp3));
 				(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
-				if (techlev(tech_no) < rnd(100)) caughtX++;
+				if (techlevX(tech_no) < rnd(100)) caughtX++;
 				t_timeout = rnz(2000);
 				}
 
@@ -3393,7 +3616,7 @@ int tech_no;
 
 			    for (mtmp = fmon; mtmp; mtmp = mtmp2) {
 				mtmp2 = mtmp->nmon;
-				if ( ((mtmp->m_lev < techlev(tech_no)) || (!rn2(4) && mtmp->m_lev < (2 * techlev(tech_no)))) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) { mondead(mtmp);
+				if ( ((mtmp->m_lev < techlevX(tech_no)) || (!rn2(4) && mtmp->m_lev < (2 * techlevX(tech_no)))) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) { mondead(mtmp);
 						num++;
 						}
 			    }
@@ -3409,7 +3632,7 @@ int tech_no;
 		ammotype = 1; /* bullets */
 		if (Role_if(PM_DOOM_MARINE)) {
 
-			if (techlev(tech_no) >= 25) {
+			if (techlevX(tech_no) >= 25) {
 
 				pline("You can choose from these kinds of ammo: BFG ammo, rockets, shotgun shells, blaster bolts or bullets.");
 				if (yn("Do you want to create BFG ammo?") == 'y') ammotype = 5;
@@ -3419,7 +3642,7 @@ int tech_no;
 				else ammotype = 1;
 			}
 
-			else if (techlev(tech_no) >= 20) {
+			else if (techlevX(tech_no) >= 20) {
 
 				pline("You can choose from these kinds of ammo: rockets, shotgun shells, blaster bolts or bullets.");
 				if (yn("Do you want to create rockets?") == 'y') ammotype = 4;
@@ -3428,7 +3651,7 @@ int tech_no;
 				else ammotype = 1;
 			}
 
-			else if (techlev(tech_no) >= 15) {
+			else if (techlevX(tech_no) >= 15) {
 
 				pline("You can choose from these kinds of ammo: shotgun shells, blaster bolts or bullets.");
 				if (yn("Do you want to create shotgun shells?") == 'y') ammotype = 3;
@@ -3436,7 +3659,7 @@ int tech_no;
 				else ammotype = 1;
 			}
 
-			else if (techlev(tech_no) >= 10) {
+			else if (techlevX(tech_no) >= 10) {
 
 				pline("You can choose from these kinds of ammo: blaster bolts or bullets.");
 				if (yn("Do you want to create blaster bolts?") == 'y') ammotype = 2;
@@ -3455,7 +3678,7 @@ int tech_no;
 		else if (ammotype == 2) uammo = mksobj(BLASTER_BOLT, TRUE, FALSE);
 		else uammo = mksobj(BULLET, TRUE, FALSE);
 		if (uammo) {
-			uammo->quan = techlev(tech_no);
+			uammo->quan = techlevX(tech_no);
 			/* gunner really specializes in ranged weapons, so needs a big bonus --Amy */
 			if (Role_if(PM_GUNNER)) uammo->quan *= 1 + rnd(2);
 			if (uarmf && uarmf->oartifact == ART_ZERDROY_GUNNING) {
@@ -3498,7 +3721,7 @@ int tech_no;
 				dropy(uegg);
 				stackobj(uegg);
 			}
-			if (techlev(tech_no) < rnd(100)) caughtZ++;
+			if (techlevX(tech_no) < rnd(100)) caughtZ++;
 
 		}
 
@@ -3529,7 +3752,8 @@ int tech_no;
 				dropy(udrink);
 				stackobj(udrink);
 			}
-			if (techlev(tech_no) < rnd(40)) caughtW++;
+			if (techlevX(tech_no) < rnd(50)) caughtW++;
+			if (!rn2(10) && caughtW > 0) caughtW = 0;
 
 		}
 
@@ -3537,7 +3761,7 @@ int tech_no;
 	      break;
 
 	    case T_IRON_SKIN:
-		num = 1 + techlev(tech_no);
+		num = 1 + techlevX(tech_no);
 	    	techt_inuse(tech_no) = num + 1;
 		pline("Your skin becomes harder.");
 
@@ -3554,7 +3778,7 @@ int tech_no;
 	      break;
 
 	    case T_CONCENTRATING:
-		num = 1 + (techlev(tech_no) / 2);
+		num = 1 + (techlevX(tech_no) / 2);
 	    	techt_inuse(tech_no) = num + 1;
 
 		pline("You start concentrating.");
@@ -3571,7 +3795,7 @@ int tech_no;
 	    case T_DOUBLE_THROWNAGE:
 
             Your("%s %s become blurs as they reach for your throwing weapons!", uarmg ? "gloved" : "bare", makeplural(body_part(HAND)));
-            techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/6 + 1)) + 2;
+            techt_inuse(tech_no) = rnd((int) (techlevX(tech_no)/6 + 1)) + 2;
             t_timeout = rnz(1500);
 
 	      break;
@@ -3581,7 +3805,7 @@ int tech_no;
 			pline("You aren't wearing a shield!");
 			return(0);
 		}
-		num = 1 + techlev(tech_no);
+		num = 1 + techlevX(tech_no);
 	    	techt_inuse(tech_no) = num + 1;
 		pline("You ready your shield as an additional weapon.");
 
@@ -3675,7 +3899,7 @@ int tech_no;
 
 	    case T_ENT_S_POTION:
 		pline("You feel very good.");
-		healup(techlev(tech_no) * 10, 0, FALSE, FALSE);
+		healup(techlevX(tech_no) * 10, 0, FALSE, FALSE);
 		make_blinded(0L,FALSE);
 	      make_stunned(0L,TRUE);
 	      make_confused(0L,TRUE);
@@ -3685,7 +3909,7 @@ int tech_no;
 	      make_frozen(0L,TRUE);
 	      make_burned(0L,TRUE);
 	      make_dimmed(0L,TRUE);
-	      u.uhunger += techlev(tech_no) * 10;
+	      u.uhunger += techlevX(tech_no) * 10;
 
 	      t_timeout = rnz(10000);
 	      break;
@@ -3721,8 +3945,1191 @@ int tech_no;
 
 		break;
 
+	    case T_WONDERSPELL:
+		wonderspell();
+	      t_timeout = rnz(5000);
+		break;
+
+	    case T_SWAP_WEAPON:
+		if (u.twoweap) {
+			pline("Sorry, you can only swap your secondary weapon while not dual-wielding.");
+			return(0);
+		}
+		swaptech();
+	      t_timeout = rnz(500);
+		return(0);
+
+	    case T_RESET_TECHNIQUE:
+		{
+			int numtechs;
+			pline("Choose a technique to reset. The prompt will loop until you actually make a choice. You can also opt to reset no technique at all, in which case there will be no timeout.");
+resetretrying:
+			for (numtechs = 0; numtechs < MAXTECH && techid(numtechs) != NO_TECH; numtechs++) {
+				if (techid(numtechs) == T_RESET_TECHNIQUE) continue;
+				if (techtout(numtechs) > 0) {
+					pline("Your %s technique is currently on timeout.", techname(numtechs));
+					if (yn("Make this technique usable again?") == 'y') {
+						techtout(numtechs) = 0;
+						pline("The timeout on your %s technique has been set to zero.", techname(numtechs));
+						t_timeout = rnz(50000);
+						goto resettechdone;
+					}
+				}
+			}
+			pline("If you don't feel like resetting a technique right now, you can choose to reset none at all.");
+			if (yn("Do you want to reset no technique at all?") == 'y') {
+				goto resettechdone;
+			}
+			goto resetretrying;
+
+		}
+resettechdone:
+		return(0);
+
+	    case T_SILENT_OCEAN:
+
+		{
+
+		pline("The ocean becomes silent. You can freely swim in the water without your equipment becoming wet, and are protected from wrap attacks, but you're also silenced.");
+
+		register struct monst *nexusmon, *nextmon;
+		register int silentoceandist = 60 + (techlevX(tech_no) * 3);
+
+		for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			nextmon = nexusmon->nmon;
+			if (DEADMONSTER(nexusmon)) continue;
+			if (resist(nexusmon, SPBOOK_CLASS, 0, NOTELL)) continue;
+			if ((distu(nexusmon->mx, nexusmon->my)) > silentoceandist) continue;
+			nexusmon->mcan = 1;
+		}
+
+		num = 10 + (techlevX(tech_no) * 5);
+	    	techt_inuse(tech_no) = num + 1;
+		t_timeout = rnz(2000);
+
+		}
+
+		break;
+
+	    case T_GLOWHORN:
+		pline("Suddenly, a glowing unicorn horn appears above your %s!", body_part(HEAD));
+		num = 10 + (techlevX(tech_no) / 2);
+	    	techt_inuse(tech_no) = num + 1;
+		t_timeout = rnz(2000);
+		break;
+
+		case T_MILDEN_CURSE:
+
+			allowall[0] = ALL_CLASSES; allowall[1] = '\0';
+		
+			if ( !(obj = getobj(allowall, "milden"))) return(0);
+			if (!obj->cursed) {
+				if (obj->bknown) {
+					pline("That object wasn't cursed to begin with.");
+					return 0;
+				} else {
+					obj->bknown = TRUE;
+					pline("It seems that object wasn't cursed to begin with.");
+				}
+			} else if (obj->cursed && !obj->hvycurse && !obj->prmcurse && !obj->morgcurse && !obj->evilcurse && !obj->bbrcurse && !obj->stckcurse ) {
+				if (obj->bknown) {
+					pline("That object didn't have any kind of curse that could be mildened. It is still cursed.");
+					return 0;
+				} else {
+					obj->bknown = TRUE;
+					pline("It seems that object didn't have any kind of curse that could be mildened. It is still cursed.");
+				}
+			} else if (obj->cursed && !obj->morgcurse && !obj->evilcurse && !obj->bbrcurse) {
+				obj->bknown = TRUE;
+
+				if (stack_too_big(obj)) {
+					pline("The stack was too big! Nothing happens.");
+					t_timeout = rnz(7500);
+					break;
+				}
+
+				if (obj->stckcurse) {
+					obj->stckcurse = FALSE;
+					pline("The sticky curse is broken!");
+				}
+				if (obj->prmcurse) {
+					obj->prmcurse = obj->hvycurse = FALSE;
+					pline("The prime curse is broken!");
+				}
+				if (obj->hvycurse) {
+					obj->hvycurse = FALSE;
+					pline("The heavy curse is broken!");
+				}
+			} else if (obj->cursed && (obj->morgcurse || obj->evilcurse || obj->bbrcurse)) {
+				obj->bknown = TRUE;
+
+				if (stack_too_big(obj)) {
+					pline("The stack was too big! Nothing happens.");
+					t_timeout = rnz(7500);
+					break;
+				}
+
+				if (rn2(10)) {
+					pline("Unfortunately, you failed to break the curse.");
+					t_timeout = rnz(7500);
+					break;
+				}
+				if (obj->stckcurse) {
+					obj->stckcurse = FALSE;
+					pline("The sticky curse is broken!");
+				}
+				if (obj->morgcurse) {
+					obj->morgcurse = obj->prmcurse = obj->hvycurse = FALSE;
+					pline("The ancient morgothian curse is broken!");
+				}
+				if (obj->evilcurse) {
+					obj->evilcurse = obj->prmcurse = obj->hvycurse = FALSE;
+					pline("The topi ylinen curse is broken!");
+				}
+				if (obj->bbrcurse) {
+					obj->bbrcurse = obj->prmcurse = obj->hvycurse = FALSE;
+					pline("The black breath curse is broken!");
+				}
+			}
+			t_timeout = rnz(7500);
+		break;
+
+		case T_FORCE_FIELD:
+
+			pline("Force field activated!");
+			num = 50 + (techlevX(tech_no) * 3);
+		    	techt_inuse(tech_no) = num + 1;
+			t_timeout = rnz(4000);
+			break;
+
+		case T_POINTINESS:
+
+			if (!uwep) {
+				pline("That doesn't work without a weapon!");
+				return 0;
+			}
+			if (uwep && weapon_type(uwep) != P_POLEARMS && weapon_type(uwep) != P_LANCE) {
+				pline("That only works if your wielded weapon is a polearm or lance, and currently it's not!");
+				return 0;
+			}
+
+			if (uwep && uwep->spe < 0) {
+				uwep->spe = 0;
+				pline("Your stick seems slightly sharp now.");
+			} else if (uwep && uwep->spe < 2) {
+				uwep->spe++;
+				pline("Your stick seems sharper now.");
+			} else if (uwep && uwep->spe < 25 && !rn2(uwep->spe) ) {
+				uwep->spe++;
+				pline("Your stick seems very sharp now.");
+			} else pline("Your stick seems as sharp as it was before.");
+
+			t_timeout = rnz(4000);
+			break;
+
+		case T_BUG_SPRAY:
+			{
+			coord cc;
+
+			pline("You may place a stinking cloud on the map.");
+			pline("Where do you want to center the cloud?");
+			cc.x = u.ux;
+			cc.y = u.uy;
+			if (getpos(&cc, TRUE, "the desired position") < 0) {
+			    pline(Never_mind);
+			    return 0;
+			}
+			if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
+			    You("smell rotten eggs.");
+			    return 0;
+			}
+			if (!PlayerCannotUseSkills && P_SKILL(P_PADDLE) >= P_GRAND_MASTER)
+				(void) create_gas_cloud(cc.x, cc.y, 4, 12);
+			else
+				(void) create_gas_cloud(cc.x, cc.y, 3, 8);
+
+			}
+
+			t_timeout = rnz(2000);
+			break;
+
+		case T_WHIRLSTAFF:
+
+			if (!uwep) {
+				pline("That doesn't work without a weapon!");
+				return 0;
+			}
+			if (uwep && weapon_type(uwep) != P_QUARTERSTAFF) {
+				pline("That only works if your wielded weapon is a quarterstaff, and currently it's not!");
+				return 0;
+			}
+
+			You("start whirling like mad with your quarterstaff!");
+			num = 20 + techlevX(tech_no);
+		    	techt_inuse(tech_no) = num + 1;
+			t_timeout = rnz(2500);
+			break;
+
+		case T_DELIBERATE_CURSE:
+			allowall[0] = ALL_CLASSES; allowall[1] = '\0';
+			if ( !(obj = getobj(allowall, "curse"))) return(0);
+			obj->bknown = TRUE;
+
+			if (stack_too_big(obj)) {
+				pline("The stack was too big! Nothing happens.");
+				t_timeout = rnz(1500);
+				break;
+			}
+
+			curse(obj);
+			pline("Okay, that object is cursed now.");
+
+			t_timeout = rnz(1500);
+			break;
+
+		case T_ACQUIRE_STEED:
+
+			{
+
+			if (u.uswallow) {
+			    pline("Engulfing steeds can't see you, and therefore the taming attempt fails.");
+				return 0;
+			}
+
+			int k, l, caughtX;
+			struct monst *mtmp3;
+			caughtX = 0;
+			pline("You try to acquire a steed!");
+
+			    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+				if (!isok(u.ux + k, u.uy + l)) continue;
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
+&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD]
+			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) && caughtX == 0)
+
+				{
+
+					if (mtmp3->data->mlet == S_QUADRUPED || mtmp3->data->mlet == S_UNICORN || mtmp3->data->mlet == S_ANGEL || mtmp3->data->mlet == S_CENTAUR || mtmp3->data->mlet == S_DRAGON || mtmp3->data->mlet == S_JABBERWOCK || mtmp3->data->mlet == S_ZOUTHERN) {
+						if (!(resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL))) {
+							pline("%s is successfully tamed!", mon_nam(mtmp3));
+							(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
+							if (techlevX(tech_no) < rnd(100)) caughtX++;
+							t_timeout = rnz(3000);
+						} else {
+							pline("%s resists the taming attempt!", mon_nam(mtmp3));
+						}
+					} else pline("%s cannot be tamed by this method!", mon_nam(mtmp3));
+
+				} /* monster is catchable loop */
+			    } /* for loop */
+
+			}
+			t_timeout = rnz(3000);
+
+			break;
+
+		case T_SADDLING:
+
+			{
+				struct obj *usaddling;
+
+				pline("A saddle is created!");
+				usaddling = mksobj(rn2(2) ? LEATHER_SADDLE : INKA_SADDLE, TRUE, FALSE);
+				if (usaddling) {
+					usaddling->quan = 1;
+					usaddling->known = usaddling->dknown = usaddling->bknown = usaddling->rknown = 1;
+					usaddling->owt = weight(usaddling);
+					dropy(usaddling);
+					stackobj(usaddling);
+				}
+
+			}
+
+			t_timeout = rnz(10000);
+			break;
+
+		case T_SHOPPING_QUEEN:
+			{
+			register struct obj *heelses1, *heelses2, *heelses3, *heelses4, *heelses5, *heelses6, *heelses7, *heelses8, *heelses9, *heelses10;
+			register int heelsamount;
+			int heelidentity;
+			int trycnt = 0;
+			if (PlayerCannotUseSkills || (P_SKILL(P_HIGH_HEELS) <= P_EXPERT)) heelsamount = 1;
+			else if (P_SKILL(P_HIGH_HEELS) <= P_MASTER) heelsamount = 3;
+			else if (P_SKILL(P_HIGH_HEELS) <= P_GRAND_MASTER) heelsamount = 5;
+			else if (P_SKILL(P_HIGH_HEELS) <= P_SUPREME_MASTER) heelsamount = 10;
+			else heelsamount = 1; /* should never happen; fail safe */
+
+			pline("Wow! You can get a pair of shoes from a list!");
+
+			heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+			trycnt = 0;
+
+			while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+				trycnt++;
+			}
+			heelses1 = mksobj(heelidentity, TRUE, FALSE);
+			if (heelses1) {
+				heelses1->quan = 1;
+				heelses1->known = heelses1->dknown = heelses1->bknown = heelses1->rknown = 1;
+				heelses1->owt = weight(heelses1);
+			}
+
+			if (heelsamount >= 3) {
+
+				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+				trycnt = 0;
+
+				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+					trycnt++;
+				}
+				heelses2 = mksobj(heelidentity, TRUE, FALSE);
+				if (heelses2) {
+					heelses2->quan = 1;
+					heelses2->known = heelses2->dknown = heelses2->bknown = heelses2->rknown = 1;
+					heelses2->owt = weight(heelses2);
+				}
+
+				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+				trycnt = 0;
+
+				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+					trycnt++;
+				}
+				heelses3 = mksobj(heelidentity, TRUE, FALSE);
+				if (heelses3) {
+					heelses3->quan = 1;
+					heelses3->known = heelses3->dknown = heelses3->bknown = heelses3->rknown = 1;
+					heelses3->owt = weight(heelses3);
+				}
+
+			}
+
+			if (heelsamount >= 5) {
+
+				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+				trycnt = 0;
+
+				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+					trycnt++;
+				}
+				heelses4 = mksobj(heelidentity, TRUE, FALSE);
+				if (heelses4) {
+					heelses4->quan = 1;
+					heelses4->known = heelses4->dknown = heelses4->bknown = heelses4->rknown = 1;
+					heelses4->owt = weight(heelses4);
+				}
+
+				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+				trycnt = 0;
+
+				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+					trycnt++;
+				}
+				heelses5 = mksobj(heelidentity, TRUE, FALSE);
+				if (heelses5) {
+					heelses5->quan = 1;
+					heelses5->known = heelses5->dknown = heelses5->bknown = heelses5->rknown = 1;
+					heelses5->owt = weight(heelses5);
+				}
+
+			}
+
+			if (heelsamount >= 10) {
+
+				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+				trycnt = 0;
+
+				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+					trycnt++;
+				}
+				heelses6 = mksobj(heelidentity, TRUE, FALSE);
+				if (heelses6) {
+					heelses6->quan = 1;
+					heelses6->known = heelses6->dknown = heelses6->bknown = heelses6->rknown = 1;
+					heelses6->owt = weight(heelses6);
+				}
+
+				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+				trycnt = 0;
+
+				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+					trycnt++;
+				}
+				heelses7 = mksobj(heelidentity, TRUE, FALSE);
+				if (heelses7) {
+					heelses7->quan = 1;
+					heelses7->known = heelses7->dknown = heelses7->bknown = heelses7->rknown = 1;
+					heelses7->owt = weight(heelses7);
+				}
+
+				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+				trycnt = 0;
+
+				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+					trycnt++;
+				}
+				heelses8 = mksobj(heelidentity, TRUE, FALSE);
+				if (heelses8) {
+					heelses8->quan = 1;
+					heelses8->known = heelses8->dknown = heelses8->bknown = heelses8->rknown = 1;
+					heelses8->owt = weight(heelses8);
+				}
+
+				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+				trycnt = 0;
+
+				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+					trycnt++;
+				}
+				heelses9 = mksobj(heelidentity, TRUE, FALSE);
+				if (heelses9) {
+					heelses9->quan = 1;
+					heelses9->known = heelses9->dknown = heelses9->bknown = heelses9->rknown = 1;
+					heelses9->owt = weight(heelses9);
+				}
+
+				heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+				trycnt = 0;
+
+				while (trycnt < 5000 && !ishighheeledb(heelidentity) ) {
+					heelidentity = (PLASTEEL_BOOTS + rn2(LEVITATION_BOOTS - PLASTEEL_BOOTS + 1) );
+					trycnt++;
+				}
+				heelses10 = mksobj(heelidentity, TRUE, FALSE);
+				if (heelses10) {
+					heelses10->quan = 1;
+					heelses10->known = heelses10->dknown = heelses10->bknown = heelses10->rknown = 1;
+					heelses10->owt = weight(heelses10);
+				}
+
+			}
+
+			pline("Pick a pair of heels to acquire. The prompt will loop until you actually make a choice.");
+heelschoice:
+			if (heelses1) {
+				pline("You can get %s.", doname(heelses1));
+				if (yn("Do you want them?") == 'y') {
+					dropy(heelses1);
+					stackobj(heelses1);
+					if (heelses2 && heelsamount >= 3) dealloc_obj(heelses2);
+					if (heelses3 && heelsamount >= 3) dealloc_obj(heelses3);
+					if (heelses4 && heelsamount >= 5) dealloc_obj(heelses4);
+					if (heelses5 && heelsamount >= 5) dealloc_obj(heelses5);
+					if (heelses6 && heelsamount >= 10) dealloc_obj(heelses6);
+					if (heelses7 && heelsamount >= 10) dealloc_obj(heelses7);
+					if (heelses8 && heelsamount >= 10) dealloc_obj(heelses8);
+					if (heelses9 && heelsamount >= 10) dealloc_obj(heelses9);
+					if (heelses10 && heelsamount >= 10) dealloc_obj(heelses10);
+					goto heelschosen;
+				}
+			}
+
+			if (heelses2 && heelsamount >= 3) {
+				pline("You can get %s.", doname(heelses2));
+				if (yn("Do you want them?") == 'y') {
+					dropy(heelses2);
+					stackobj(heelses2);
+					if (heelses1) dealloc_obj(heelses1);
+					if (heelses3 && heelsamount >= 3) dealloc_obj(heelses3);
+					if (heelses4 && heelsamount >= 5) dealloc_obj(heelses4);
+					if (heelses5 && heelsamount >= 5) dealloc_obj(heelses5);
+					if (heelses6 && heelsamount >= 10) dealloc_obj(heelses6);
+					if (heelses7 && heelsamount >= 10) dealloc_obj(heelses7);
+					if (heelses8 && heelsamount >= 10) dealloc_obj(heelses8);
+					if (heelses9 && heelsamount >= 10) dealloc_obj(heelses9);
+					if (heelses10 && heelsamount >= 10) dealloc_obj(heelses10);
+					goto heelschosen;
+				}
+			}
+
+			if (heelses3 && heelsamount >= 3) {
+				pline("You can get %s.", doname(heelses3));
+				if (yn("Do you want them?") == 'y') {
+					dropy(heelses3);
+					stackobj(heelses3);
+					if (heelses1) dealloc_obj(heelses1);
+					if (heelses2 && heelsamount >= 3) dealloc_obj(heelses2);
+					if (heelses4 && heelsamount >= 5) dealloc_obj(heelses4);
+					if (heelses5 && heelsamount >= 5) dealloc_obj(heelses5);
+					if (heelses6 && heelsamount >= 10) dealloc_obj(heelses6);
+					if (heelses7 && heelsamount >= 10) dealloc_obj(heelses7);
+					if (heelses8 && heelsamount >= 10) dealloc_obj(heelses8);
+					if (heelses9 && heelsamount >= 10) dealloc_obj(heelses9);
+					if (heelses10 && heelsamount >= 10) dealloc_obj(heelses10);
+					goto heelschosen;
+				}
+			}
+
+			if (heelses4 && heelsamount >= 5) {
+				pline("You can get %s.", doname(heelses4));
+				if (yn("Do you want them?") == 'y') {
+					dropy(heelses4);
+					stackobj(heelses4);
+					if (heelses1) dealloc_obj(heelses1);
+					if (heelses2 && heelsamount >= 3) dealloc_obj(heelses2);
+					if (heelses3 && heelsamount >= 3) dealloc_obj(heelses3);
+					if (heelses5 && heelsamount >= 5) dealloc_obj(heelses5);
+					if (heelses6 && heelsamount >= 10) dealloc_obj(heelses6);
+					if (heelses7 && heelsamount >= 10) dealloc_obj(heelses7);
+					if (heelses8 && heelsamount >= 10) dealloc_obj(heelses8);
+					if (heelses9 && heelsamount >= 10) dealloc_obj(heelses9);
+					if (heelses10 && heelsamount >= 10) dealloc_obj(heelses10);
+					goto heelschosen;
+				}
+			}
+
+			if (heelses5 && heelsamount >= 5) {
+				pline("You can get %s.", doname(heelses5));
+				if (yn("Do you want them?") == 'y') {
+					dropy(heelses5);
+					stackobj(heelses5);
+					if (heelses1) dealloc_obj(heelses1);
+					if (heelses2 && heelsamount >= 3) dealloc_obj(heelses2);
+					if (heelses3 && heelsamount >= 3) dealloc_obj(heelses3);
+					if (heelses4 && heelsamount >= 5) dealloc_obj(heelses4);
+					if (heelses6 && heelsamount >= 10) dealloc_obj(heelses6);
+					if (heelses7 && heelsamount >= 10) dealloc_obj(heelses7);
+					if (heelses8 && heelsamount >= 10) dealloc_obj(heelses8);
+					if (heelses9 && heelsamount >= 10) dealloc_obj(heelses9);
+					if (heelses10 && heelsamount >= 10) dealloc_obj(heelses10);
+					goto heelschosen;
+				}
+			}
+
+			if (heelses6 && heelsamount >= 10) {
+				pline("You can get %s.", doname(heelses6));
+				if (yn("Do you want them?") == 'y') {
+					dropy(heelses6);
+					stackobj(heelses6);
+					if (heelses1) dealloc_obj(heelses1);
+					if (heelses2 && heelsamount >= 3) dealloc_obj(heelses2);
+					if (heelses3 && heelsamount >= 3) dealloc_obj(heelses3);
+					if (heelses4 && heelsamount >= 5) dealloc_obj(heelses4);
+					if (heelses5 && heelsamount >= 5) dealloc_obj(heelses5);
+					if (heelses7 && heelsamount >= 10) dealloc_obj(heelses7);
+					if (heelses8 && heelsamount >= 10) dealloc_obj(heelses8);
+					if (heelses9 && heelsamount >= 10) dealloc_obj(heelses9);
+					if (heelses10 && heelsamount >= 10) dealloc_obj(heelses10);
+					goto heelschosen;
+				}
+			}
+
+			if (heelses7 && heelsamount >= 10) {
+				pline("You can get %s.", doname(heelses7));
+				if (yn("Do you want them?") == 'y') {
+					dropy(heelses7);
+					stackobj(heelses7);
+					if (heelses1) dealloc_obj(heelses1);
+					if (heelses2 && heelsamount >= 3) dealloc_obj(heelses2);
+					if (heelses3 && heelsamount >= 3) dealloc_obj(heelses3);
+					if (heelses4 && heelsamount >= 5) dealloc_obj(heelses4);
+					if (heelses5 && heelsamount >= 5) dealloc_obj(heelses5);
+					if (heelses6 && heelsamount >= 10) dealloc_obj(heelses6);
+					if (heelses8 && heelsamount >= 10) dealloc_obj(heelses8);
+					if (heelses9 && heelsamount >= 10) dealloc_obj(heelses9);
+					if (heelses10 && heelsamount >= 10) dealloc_obj(heelses10);
+					goto heelschosen;
+				}
+			}
+
+			if (heelses8 && heelsamount >= 10) {
+				pline("You can get %s.", doname(heelses8));
+				if (yn("Do you want them?") == 'y') {
+					dropy(heelses8);
+					stackobj(heelses8);
+					if (heelses1) dealloc_obj(heelses1);
+					if (heelses2 && heelsamount >= 3) dealloc_obj(heelses2);
+					if (heelses3 && heelsamount >= 3) dealloc_obj(heelses3);
+					if (heelses4 && heelsamount >= 5) dealloc_obj(heelses4);
+					if (heelses5 && heelsamount >= 5) dealloc_obj(heelses5);
+					if (heelses6 && heelsamount >= 10) dealloc_obj(heelses6);
+					if (heelses7 && heelsamount >= 10) dealloc_obj(heelses7);
+					if (heelses9 && heelsamount >= 10) dealloc_obj(heelses9);
+					if (heelses10 && heelsamount >= 10) dealloc_obj(heelses10);
+					goto heelschosen;
+				}
+			}
+
+			if (heelses9 && heelsamount >= 10) {
+				pline("You can get %s.", doname(heelses9));
+				if (yn("Do you want them?") == 'y') {
+					dropy(heelses9);
+					stackobj(heelses9);
+					if (heelses1) dealloc_obj(heelses1);
+					if (heelses2 && heelsamount >= 3) dealloc_obj(heelses2);
+					if (heelses3 && heelsamount >= 3) dealloc_obj(heelses3);
+					if (heelses4 && heelsamount >= 5) dealloc_obj(heelses4);
+					if (heelses5 && heelsamount >= 5) dealloc_obj(heelses5);
+					if (heelses6 && heelsamount >= 10) dealloc_obj(heelses6);
+					if (heelses7 && heelsamount >= 10) dealloc_obj(heelses7);
+					if (heelses8 && heelsamount >= 10) dealloc_obj(heelses8);
+					if (heelses10 && heelsamount >= 10) dealloc_obj(heelses10);
+					goto heelschosen;
+				}
+			}
+
+			if (heelses10 && heelsamount >= 10) {
+				pline("You can get %s.", doname(heelses10));
+				if (yn("Do you want them?") == 'y') {
+					dropy(heelses10);
+					stackobj(heelses10);
+					if (heelses1) dealloc_obj(heelses1);
+					if (heelses2 && heelsamount >= 3) dealloc_obj(heelses2);
+					if (heelses3 && heelsamount >= 3) dealloc_obj(heelses3);
+					if (heelses4 && heelsamount >= 5) dealloc_obj(heelses4);
+					if (heelses5 && heelsamount >= 5) dealloc_obj(heelses5);
+					if (heelses6 && heelsamount >= 10) dealloc_obj(heelses6);
+					if (heelses7 && heelsamount >= 10) dealloc_obj(heelses7);
+					if (heelses8 && heelsamount >= 10) dealloc_obj(heelses8);
+					if (heelses9 && heelsamount >= 10) dealloc_obj(heelses9);
+					goto heelschosen;
+				}
+			}
+
+			pline("There's nothing else left on the list.");
+			if (yn("Do you choose to get no heels at all?") == 'y') {
+
+				if (heelses1) dealloc_obj(heelses1);
+				if (heelses2 && heelsamount >= 3) dealloc_obj(heelses2);
+				if (heelses3 && heelsamount >= 3) dealloc_obj(heelses3);
+				if (heelses4 && heelsamount >= 5) dealloc_obj(heelses4);
+				if (heelses5 && heelsamount >= 5) dealloc_obj(heelses5);
+				if (heelses6 && heelsamount >= 10) dealloc_obj(heelses6);
+				if (heelses7 && heelsamount >= 10) dealloc_obj(heelses7);
+				if (heelses8 && heelsamount >= 10) dealloc_obj(heelses8);
+				if (heelses9 && heelsamount >= 10) dealloc_obj(heelses9);
+				if (heelses10 && heelsamount >= 10) dealloc_obj(heelses10);
+				goto heelschosen;
+
+			}
+			goto heelschoice;
+
+			}
+heelschosen:
+			pline("There might be something waiting for you on the %s...", surface(u.ux, u.uy));
+			t_timeout = rnz(3000);
+			break;
+
+		case T_BEAUTY_CHARM:
+
+			if (!PlayerInHighHeels) {
+			    pline("You must be wearing high heels for that.");
+				return 0;
+			}
+
+		    	techt_inuse(tech_no) = 11;
+			nomul(-11, "posing sexily", FALSE);
+			pline("You start posing sexily with your high heels, hoping to charm the bystanders.");
+
+			t_timeout = rnz(2000);
+			break;
+
+		case T_ASIAN_KICK:
+
+			if (!PlayerInStilettoHeels) {
+			    pline("Only heroes wearing stiletto heels can use this technique!");
+				return 0;
+			}
+
+		    	techt_inuse(tech_no) = 51;
+			pline("Your stiletto heels are ready. Quick! Find someone with nuts and kick him for a devastating effect!");
+			t_timeout = rnz(2500);
+			break;
+
+		case T_LEGSCRATCH_ATTACK:
+
+			if (!PlayerInConeHeels) {
+			    pline("Only heroes wearing cone heels can use this technique!");
+				return 0;
+			}
+
+			num = 50 + (techlevX(tech_no) * 2);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your cone heels are eager to scratch up and down hostile legs. Make sure you kick everyone that crosses your path!");
+
+			t_timeout = rnz(3000);
+			break;
+
+		case T_GROUND_STOMP:
+
+			if (!PlayerInWedgeHeels) {
+			    pline("Only heroes wearing wedge heels can use this technique!");
+				return 0;
+			}
+
+			num = 25 + (techlevX(tech_no) * 2);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your wedge heels absolutely want to stomp enemies, so you should try to kick monsters with them now!");
+
+			t_timeout = rnz(4000);
+			break;
+
+		case T_ATHLETIC_COMBAT:
+
+			if (!PlayerInBlockHeels) {
+			    pline("Only heroes wearing block heels can use this technique!");
+				return 0;
+			}
+
+			num = 50 + (techlevX(tech_no) * 3);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your block heels expect you to repeatedly kick enemies now, hoping to bludgeon them.");
+
+			t_timeout = rnz(2500);
+			break;
+
+		case T_PRAYING_SUCCESS:
+
+		    	techt_inuse(tech_no) = 1;
+			dopray();
+			t_timeout = rnz(30000);
+			break;
+
+		case T_OVER_RAY:
+
+			num = 100 + (techlevX(tech_no) * 5);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("For a while, all your rays have extended range!");
+
+			t_timeout = rnz(5000);
+			break;
+
+		case T_ENCHANTERANG:
+
+			if (!uwep) {
+				pline("That doesn't work without a weapon!");
+				return 0;
+			}
+			if (uwep && weapon_type(uwep) != P_BOOMERANG && weapon_type(uwep) != -P_BOOMERANG) {
+				pline("That only works if your wielded weapon is a boomerang, and currently it's not!");
+				return 0;
+			}
+
+			if (uwep && stack_too_big(uwep)) {
+				pline("You were trying to enchant too many boomerangs at once and therefore they barely received any enchantment bonus.");
+			} else if (uwep && uwep->spe < 0) {
+				uwep->spe = 0;
+			} else if (uwep && uwep->spe < 2) {
+				uwep->spe++;
+			} else if (uwep && uwep->spe < 25 && !rn2(uwep->spe) ) {
+				uwep->spe++;
+			}
+
+			if (uwep && stack_too_big(uwep)) {
+				pline("You were trying to enchant too many boomerangs at once and therefore they barely received any enchantment bonus.");
+			} else if (uwep && uwep->spe < 2) {
+				uwep->spe++;
+			} else if (uwep && uwep->spe < 25 && !rn2(uwep->spe) ) {
+				uwep->spe++;
+			}
+
+			if (uwep && stack_too_big(uwep)) {
+				pline("You were trying to enchant too many boomerangs at once and therefore they barely received any enchantment bonus.");
+			} else if (uwep && uwep->spe < 2) {
+				uwep->spe++;
+				pline("Your boomerang is barely enchanted.");
+			} else if (uwep && uwep->spe < 25 && !rn2(uwep->spe) ) {
+				uwep->spe++;
+				pline("Your boomerang is well-enchanted.");
+			} else pline("Your boomerang is moderately enchanted.");
+
+			t_timeout = rnz(4000);
+			break;
+
+		case T_BATMAN_ARSENAL:
+
+			{
+				struct obj *uboomerang;
+
+				pline("A boomerang is created!");
+				uboomerang = mksobj(rn2(3) ? BOOMERANG : rn2(2) ? BATARANG : SILVER_CHAKRAM, TRUE, FALSE);
+				if (uboomerang) {
+					uboomerang->quan = 1;
+					uboomerang->known = uboomerang->dknown = uboomerang->bknown = uboomerang->rknown = 1;
+					uboomerang->owt = weight(uboomerang);
+					dropy(uboomerang);
+					stackobj(uboomerang);
+				}
+
+			}
+
+			t_timeout = rnz(2500);
+			break;
+
+		case T_JOKERBANE:
+
+			num = 100 + (techlevX(tech_no) * 5);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your batarang is capable of paralyzing monsters for a while.");
+			t_timeout = rnz(8000);
+
+			break;
+
+		case T_CALL_THE_POLICE:
+
+			pline("You call the kops!");
+
+			{
+
+			int caughtY;
+			caughtY = 0;
+
+			while (caughtY == 0) {
+		 	      mtmp = makemon(mkclass(S_KOP,0), u.ux, u.uy, NO_MM_FLAGS);
+				if (!mtmp) break;
+				(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+				if (techlevX(tech_no) < rnd(80)) caughtY++;
+			}
+
+			}
+
+			t_timeout = rnz(5000);
+			break;
+
+		case T_DOMINATE:
+
+			if (u.uswallow) {
+			    pline("Domination doesn't work while you're engulfed!");
+				return 0;
+			}
+
+			{
+
+			int k, l, caughtX;
+			struct monst *mtmp3;
+			caughtX = 0;
+			pline("You try to dominate monsters!");
+
+		    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
+&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD]
+			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) && caughtX == 0)
+
+			{
+
+				if ( is_animal(mtmp3->data)) {
+					pline("%s is dominated!", mon_nam(mtmp3));
+					(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
+					if (techlevX(tech_no) < rnd(100)) caughtX++;
+					t_timeout = rnz(2000);
+				}
+
+				else pline("%s can't be dominated with this method!", mon_nam(mtmp3));
+
+			} /* monster is catchable loop */
+		    } /* for loop */
+
+			t_timeout = rnz(2000);
+
+			}
+
+			break;
+
+		case T_INCARNATION:
+
+			{
+
+			int k, l, polymorphnumber;
+			struct monst *mtmp3;
+
+			pline("Pick a monster to incarnate into. The prompt will loop until you actually make a choice.");
+
+incarnationselect:
+			for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+				if (!isok(u.ux + k, u.uy + l)) continue;
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0)) {
+					polymorphnumber = mtmp3->mnum;
+					pline("You can incarnate into %s.", mtmp3->data->mname);
+					if (yn("Do it?") == 'y') {
+						u.wormpolymorph = polymorphnumber;
+						goto incarnationfinish;
+					}
+				}
+			}
+
+			pline("You can also choose to not incarnate at all, although that would be a waste.");
+			if (yn("Do it?") == 'y') {
+				pline("Well, if you really want to waste such a powerful technique...");
+				t_timeout = rnz(25000);
+				break;
+			}
+			goto incarnationselect;
+
+incarnationfinish:
+			if (!rn2(3)) {
+				u.wormpolymorph = rn2(NUMMONS);
+				pline("Your incarnation attempt goes out of control!");
+			}
+			polyself(FALSE);
+
+			}
+
+			t_timeout = rnz(25000);
+
+			break;
+
+		case T_COMBO_STRIKE:
+
+			num = 30 + (techlevX(tech_no) * 2);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You're starting your combo!");
+			u.combostrike = 1;
+			u.comboactive = TRUE;
+			t_timeout = rnz(5000);
+
+			break;
+
+		case T_FUNGOISM:
+
+			pline("You feel fungal.");
+		    	techt_inuse(tech_no) = 1;
+			polyself(FALSE);
+		    	techt_inuse(tech_no) = 0;
+		      t_timeout = rnz(8000);
+			break;
+
+		case T_BECOME_UNDEAD:
+
+			pline("You feel dead.");
+		    	techt_inuse(tech_no) = 1;
+			polyself(FALSE);
+		    	techt_inuse(tech_no) = 0;
+		      t_timeout = rnz(8000);
+			break;
+
+		case T_JIU_JITSU:
+
+			num = 1000 + (techlevX(tech_no) * 10);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You start doing jiu-jitsu!");
+			t_timeout = rnz(10000);
+			break;
+
+		case T_BLADE_ANGER:
+
+			num = 100 + (techlevX(tech_no) * 3);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your shuriken can fire beams now!");
+			t_timeout = rnz(3000);
+			break;
+
+		case T_RE_TAMING:
+
+			pline("You try to tame your former pet...");
+			{
+
+			int k, l;
+			struct monst *mtmp3;
+
+			for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+				if (!isok(u.ux + k, u.uy + l)) continue;
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !mtmp3->mfrenzied && (mtmp3->mpeaceful || !rn2(3)) && mtmp3->mtame == 0 && mtmp3->wastame) {
+
+					pline("%s wants to be your pet again!", mon_nam(mtmp3));
+					(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
+					t_timeout = rnz(1500);
+					break;
+				}
+
+			}
+
+			}
+
+			t_timeout = rnz(1500);
+
+			break;
+
+	    case T_INTRINSIC_ROULETTE:
+		You("spin the roulette wheel...");
+		intrinsicgainorloss();
+		t_timeout = rnz(10000);
+		break;
+
+	    case T_SPECTRAL_SWORD:
+		You("focus the powers of the elements into your weapon.");
+		techt_inuse(tech_no) = rnd((int) (techlevX(tech_no)/3 + 1)) + d(1,4) + 2;
+		t_timeout = rnz(1500);
+		break;
+
+	    case T_REVERSE_IDENTIFY:
+		{
+			int j;
+			long oldgold;
+			char buf[BUFSZ];
+
+			for (j = 0; j <= 5; j++) {
+				if (j >= 5) {
+					pline(thats_enough_tries);
+					goto revid_end;
+				}
+				getlin("What do you want to identify?", buf);
+				if (buf[0] == 0) continue;
+				oldgold = u.ugold;
+				otmp = readobjnam(buf, (struct obj *)0, TRUE);
+				if (u.ugold != oldgold) {
+					pline("Don't you date cheat me again! -- Your fault!");
+					/* Make them pay */
+					u.ugold = oldgold / 2;
+					continue;
+				}
+				if (otmp == &zeroobj || otmp == (struct obj *) 0) {
+					pline("That doesn't exist.");
+					continue;
+				}
+				break;
+			}
+			strcpy(buf,xname(otmp));
+			makeknown(otmp->otyp);
+			pline("The %s is a %s.",buf,xname(otmp));
+		}
+revid_end:
+		pline("You also learn the identity of some other objects:");
+		for (i = 0; i < 5; i++) {
+			j = rn2(NUM_OBJECTS);
+			while (objects[j].oc_prob < 1) j = rn2(NUM_OBJECTS);
+			makeknown(j);
+			pline("%s (%s).", obj_descr[j].oc_name, obj_descr[j].oc_descr);
+		}
+		t_timeout = rnz(10000);
+
+		break;
+
+	    case T_DETECT_TRAPS:
+		trap_detect((struct obj *)0);
+		t_timeout = rnz(5000);
+		break;
+
+	    case T_DIRECTIVE:
+		if (PlayerCannotUseSkills) {
+			pline("Unfortunately, no one seems to follow any directives you're giving.");
+			t_timeout = rnz(200);
+			return(0);
+		}
+		if (P_SKILL(P_PETKEEPING) < P_SKILLED) {
+			pline("Unfortunately, no one seems to follow any directives you're giving.");
+			t_timeout = rnz(200);
+			return(0);
+		}
+
+		if (P_SKILL(P_PETKEEPING) >= P_SKILLED) {
+			pline("Currently your pets can%s pick up items.", u.petcollectitems ? "" : "'t");
+			if (yn("Change it?") == 'y') {
+				if (u.petcollectitems) u.petcollectitems = 0;
+				else u.petcollectitems = 1;
+				pline("Your pets can%s pick up items now.", u.petcollectitems ? "" : "'t");
+			}
+		}
+
+		if (P_SKILL(P_PETKEEPING) >= P_EXPERT) {
+			pline("Currently your pets can%s attack monsters.", u.petattackenemies ? "" : "'t");
+			if (yn("Change it?") == 'y') {
+				if (u.petattackenemies) u.petattackenemies = 0;
+				else u.petattackenemies = 1;
+				pline("Your pets can%s attack monsters now.", u.petattackenemies ? "" : "'t");
+			}
+		}
+
+		if (P_SKILL(P_PETKEEPING) >= P_MASTER) {
+			pline("Currently your pets can%s eat food off the floor.", u.petcaneat ? "" : "'t");
+			if (yn("Change it?") == 'y') {
+				if (u.petcaneat) u.petcaneat = 0;
+				else u.petcaneat = 1;
+				pline("Your pets can%s eat food off the floor now.", u.petcaneat ? "" : "'t");
+			}
+		}
+
+		if (P_SKILL(P_PETKEEPING) >= P_GRAND_MASTER) {
+			pline("Currently your pets can%s try to follow you.", u.petcanfollow ? "" : "'t");
+			if (yn("Change it?") == 'y') {
+				if (u.petcanfollow) u.petcanfollow = 0;
+				else u.petcanfollow = 1;
+				pline("Your pets can%s try to follow you now.", u.petcanfollow ? "" : "'t");
+			}
+		}
+
+		t_timeout = rnz(P_SKILL(P_PETKEEPING) >= P_SUPREME_MASTER ? 50 : 200);
+		break;
+
+	    case T_REMOVE_IMPLANT:
+
+		if (!uimplant) {
+			pline("There is no implant that could be removed!");
+			return 0;
+		}
+		pline("Your implant is removed.");
+		Implant_off();
+
+		t_timeout = rnz(2000);
+		break;
+
+	    case T_REROLL_IMPLANT:
+
+		if (!uimplant) {
+			pline("You're not wearing any implant!");
+			return 0;
+		}
+
+		{
+			register struct obj *wearimplant;
+			long savewornmask;
+
+			wearimplant = uimplant;
+			if (!wearimplant) {
+				pline("Somehow the implant went missing...");
+				break;
+			}
+
+			savewornmask = wearimplant->owornmask;
+			setworn((struct obj *)0, wearimplant->owornmask);
+
+			if (wearimplant->otyp >= IMPLANT_OF_ABSORPTION && wearimplant->otyp <= IMPLANT_OF_PROSPERITY) {
+				objects[wearimplant->otyp].a_ac = rnd(10);
+			}
+
+			if (wearimplant->otyp >= IMPLANT_OF_QUICKENING && wearimplant->otyp <= IMPLANT_OF_BLITZEN) {
+				objects[wearimplant->otyp].a_ac = rnd(8);
+				objects[wearimplant->otyp].oc_oprop = randnastyenchantment();
+			}
+
+			if (wearimplant->otyp >= IMPLANT_OF_IRE && wearimplant->otyp <= IMPLANT_OF_FREEDOM) {
+				objects[wearimplant->otyp].a_ac = rnd(5);
+				objects[wearimplant->otyp].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+			}
+			wearimplant->shirtmessage = rnd(1000000);
+
+			setworn(wearimplant, savewornmask);
+			pline("All done - your implant got re-initialized! Its base AC value got rerolled, and if it was a type that had a random enchantment, that was re-randomized as well. The bonus you'll get from wearing it while in a form without hands has also been changed.");
+		}
+
+		t_timeout = rnz(5000);
+		break;
+
+	    case T_TIME_STOP:
+
+		pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+		TimeStopped += (5 + rnd(6));
+		t_timeout = rnz(15000);
+		break;
+
+	    case T_STAT_RESIST:
+		num = 50 + (techlevX(tech_no) * 10);
+	    	techt_inuse(tech_no) = num + 1;
+		t_timeout = rnz(3000);
+		break;
+
 	    case T_EDDY_WIND:
-		num = 1 + techlev(tech_no);
+		num = 1 + techlevX(tech_no);
 	    	techt_inuse(tech_no) = num + 1;
 		pline("You prepare a powerful axe-and-sword-mill!");
 
@@ -3842,19 +5249,96 @@ int tech_no;
 	    	pline ("Error!  No such effect (%i)", tech_no);
 		return(0);
         }
+	  if (t_timeout >= 1) {
+		register int timeoutamount = t_timeout;
+		while (timeoutamount >= 1000) {
+			timeoutamount -= 1000;
+			use_skill(P_TECHNIQUES, 1);
+		}
+		if (timeoutamount >= 1 && (timeoutamount > rn2(1000))) use_skill(P_TECHNIQUES, 1);
+	  }
+
+	  if (!PlayerCannotUseSkills) {
+
+		switch (P_SKILL(P_TECHNIQUES)) {
+			default: break;
+			case P_BASIC:
+				t_timeout *= 9;
+				t_timeout /= 10;
+				break;
+			case P_SKILLED:
+				t_timeout *= 8;
+				t_timeout /= 10;
+				break;
+			case P_EXPERT:
+				t_timeout *= 7;
+				t_timeout /= 10;
+				break;
+			case P_MASTER:
+				t_timeout *= 6;
+				t_timeout /= 10;
+				break;
+			case P_GRAND_MASTER:
+				t_timeout *= 5;
+				t_timeout /= 10;
+				break;
+			case P_SUPREME_MASTER:
+				t_timeout *= 4;
+				t_timeout /= 10;
+				break;
+		}
+	  }
+
         if (!can_limitbreak())
-	    techtout(tech_no) = (t_timeout * (100 - techlev(tech_no))/100);
+	    techtout(tech_no) = (t_timeout * (100 - techlevX(tech_no))/100);
 	  else if (!rn2(3))
-	    techtout(tech_no) = (t_timeout * (100 - techlev(tech_no))/300);
+	    techtout(tech_no) = (t_timeout * (100 - techlevX(tech_no))/300);
 	  else if (!rn2(2))
-	    techtout(tech_no) = (t_timeout * (100 - techlev(tech_no))/1000);
+	    techtout(tech_no) = (t_timeout * (100 - techlevX(tech_no))/1000);
 	/* limit break can be used for endless exploits, so this fix was urgently necessary... --Amy */
 
 		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
 
 		if (uamul && uamul->oartifact == ART_TYRANITAR_S_QUEST && !rn2(2)) techtout(tech_no) = 0;
 
+		if (techid(tech_no) == T_ASIAN_KICK) {
+
+			for (i = 0; i < MAXTECH; i++) {
+			    if (techid(i) == T_LEGSCRATCH_ATTACK || techid(i) == T_GROUND_STOMP || techid(i) == T_ATHLETIC_COMBAT )
+				if (techtout(tech_no) > 10) techtout(i) += rn2(3) ? rnz(techtout(tech_no)) : rnd(techtout(tech_no));
+			}
+
+		}
+
+		if (techid(tech_no) == T_LEGSCRATCH_ATTACK) {
+
+			for (i = 0; i < MAXTECH; i++) {
+			    if (techid(i) == T_ASIAN_KICK || techid(i) == T_GROUND_STOMP || techid(i) == T_ATHLETIC_COMBAT )
+				if (techtout(tech_no) > 10) techtout(i) += rn2(3) ? rnz(techtout(tech_no)) : rnd(techtout(tech_no));
+			}
+
+		}
+
+		if (techid(tech_no) == T_GROUND_STOMP) {
+
+			for (i = 0; i < MAXTECH; i++) {
+			    if (techid(i) == T_LEGSCRATCH_ATTACK || techid(i) == T_ASIAN_KICK || techid(i) == T_ATHLETIC_COMBAT )
+				if (techtout(tech_no) > 10) techtout(i) += rn2(3) ? rnz(techtout(tech_no)) : rnd(techtout(tech_no));
+			}
+
+		}
+
+		if (techid(tech_no) == T_ATHLETIC_COMBAT) {
+
+			for (i = 0; i < MAXTECH; i++) {
+			    if (techid(i) == T_LEGSCRATCH_ATTACK || techid(i) == T_GROUND_STOMP || techid(i) == T_ASIAN_KICK )
+				if (techtout(tech_no) > 10) techtout(i) += rn2(3) ? rnz(techtout(tech_no)) : rnd(techtout(tech_no));
+			}
+
+		}
+
 	/*By default,  action should take a turn*/
+	if (techid(tech_no) == T_DIRECTIVE) return 0;
 	return(1);
 }
 
@@ -3895,6 +5379,12 @@ tech_timeout()
         for (i = 0; i < MAXTECH; i++) {
 	    if (techid(i) == NO_TECH)
 		continue;
+
+	    if (techid(i) == T_SILENT_OCEAN) {
+		if (techt_inuse(i) == 10) pline("Attention: The effect of Silent Ocean will only last for 10 more turns. If you can't exist in water without it, consider heading to the nearest shore.");
+		if (techt_inuse(i) == 2) pline("Caution! Silent Ocean will end in 2 turns! If you're currently in the water and can't exist in water without the effect of Silent Ocean, you should get back on dry land quickly in order to prevent drowning!");
+	    }
+
 	    if (techt_inuse(i)) {
 	    	/* Check if technique is done */
 	        if (!(--techt_inuse(i)))
@@ -3920,6 +5410,9 @@ tech_timeout()
 			break;
 		    case T_E_FIST:
 			You_feel("the power dissipate.");
+			break;
+		    case T_SPECTRAL_SWORD:
+			You_feel("your weapon losing its elemental power.");
 			break;
 		    case T_SIGIL_TEMPEST:
 			pline_The("sigil of tempest fades.");
@@ -3956,6 +5449,51 @@ tech_timeout()
 			break;
 		    case T_CHI_HEALING:
 			You_feel("the healing power dissipate.");
+			break;
+		    case T_SILENT_OCEAN:
+			pline("The effect of Silent Ocean ends.");
+			break;
+		    case T_GLOWHORN:
+			pline("The glowing unicorn horn disappears.");
+			break;
+		    case T_STAT_RESIST:
+			pline("You no longer resist status effects.");
+			break;
+		    case T_FORCE_FIELD:
+			pline("The force field dissipates.");
+			break;
+		    case T_WHIRLSTAFF:
+			pline("Your staff no longer attacks as quickly as before.");
+			break;
+		    case T_BEAUTY_CHARM:
+			pline("You're done posing with your heels.");
+			break;
+		    case T_ASIAN_KICK:
+			pline("You waited too long and now the opportunity to smash an enemy's nuts with your stilettos is no longer there... :(");
+			break;
+		    case T_LEGSCRATCH_ATTACK:
+			pline("Your sexy cone heels are done scratching hostile shins. They sure drew a lot of blood, and you feel that they're very pleased!");
+			break;
+		    case T_GROUND_STOMP:
+			pline("Your wedge heels are done stomping defenseless enemies. It was a lot of fun, and your heels love you for using them as deadly weapons!");
+			break;
+		    case T_ATHLETIC_COMBAT:
+			pline("Wow, you're so athletic, it's amazing watching you aim high kicks at your enemies' heads with your block heels. But now it's time to relax. I'm fairly sure your fleecy block heels like you even more now!");
+			break;
+		    case T_OVER_RAY:
+			pline("Your rays have the normal range again.");
+			break;
+		    case T_JOKERBANE:
+			pline("Your boomerangs are no longer capable of paralyzing enemies.");
+			break;
+		    case T_COMBO_STRIKE:
+			pline("Your combo has ended.");
+			break;
+		    case T_JIU_JITSU:
+			pline("You stop using jiu-jitsu.");
+			break;
+		    case T_BLADE_ANGER:
+			pline("Your shuriken are no longer capable of piercing.");
 			break;
 	            default:
 	            	break;
@@ -4003,6 +5541,22 @@ docalm()
 	}
 	if (n)
 	    You("calm down.");
+}
+
+/* occasionally things will cause certain techs to end prematurely --Amy */
+void
+stopsingletechnique(whichtech)
+int whichtech;
+{
+	int i, tech;
+
+	for (i = 0; i < MAXTECH; i++) {
+	    tech = techid(i);
+	    if (tech != NO_TECH && techt_inuse(i) && tech == whichtech) {
+		aborttech(tech);
+	    }
+	}
+
 }
 
 static void
@@ -4272,7 +5826,7 @@ charge_saber()
 		continue;
 	    if (techid(i) != T_CHARGE_SABER)
 		continue;
-	    tlevel = techlev(i);
+	    tlevel = techlevX(i);
 	}
 	if (tlevel >= 10 && !rn2(5)){
 		You("manage to channel the force perfectly!");
@@ -4281,7 +5835,7 @@ charge_saber()
 		You("channel the force into %s.", the(xname(uwep)));
 
 	// yes no return above, it's a bonus :)
-	uwep->age+=u.uen*(( (techlev(T_CHARGE_SABER) + rnd(5 + techlev(T_CHARGE_SABER)) ) /rnd(10))+3); /* improved results by Amy */
+	uwep->age+=u.uen*(( (techlevX(T_CHARGE_SABER) + rnd(5 + techlevX(T_CHARGE_SABER)) ) /rnd(10))+3); /* improved results by Amy */
 	u.uen=0;
 	flags.botl=1;
 	return(0);
@@ -4433,9 +5987,8 @@ static const struct blitz_tab blitzes[] = {
 	{"LL",  2, blitz_dash, T_DASH, BLITZ_START},
 	{"UURRDDL", 7, blitz_e_fist, T_E_FIST, BLITZ_START},
 	{"URURRDDLDL", 10, blitz_e_fist, T_E_FIST, BLITZ_START},
-	/*{"DDRRDDRR", 8, blitz_power_surge, T_POWER_SURGE, BLITZ_START},
-	{"DRDRDRDR", 8, blitz_power_surge, T_POWER_SURGE, BLITZ_START},*/
-	/* removed because it's not balanced and also doesn't really affect the other blitz techs --Amy */
+	{"LDL", 3, blitz_combo_strike, T_COMBO_STRIKE, BLITZ_CHAIN},
+	{"RUR", 3, blitz_combo_strike, T_COMBO_STRIKE, BLITZ_CHAIN},
 	{"LRL", 3, blitz_pummel, T_PUMMEL, BLITZ_CHAIN},
 	{"RLR", 3, blitz_pummel, T_PUMMEL, BLITZ_CHAIN},
 	{"DDDD", 4, blitz_g_slam, T_G_SLAM, BLITZ_END},
@@ -4520,7 +6073,7 @@ doblitz()
 	    bdone = 0;
 	    for (j = 0; blitzes[j].blitz_len; j++) {
 	    	if (blitz_num >= MAX_CHAIN || 
-	    	    blitz_num >= (MIN_CHAIN + (techlev(tech_no) / 10)))
+	    	    blitz_num >= (MIN_CHAIN + (techlevX(tech_no) / 10)))
 	    		break; /* Trying to chain too many blitz commands */
 		else if (!strncmp(bp, blitzes[j].blitz_cmd, blitzes[j].blitz_len)) {
 	    		/* Trying to chain in a command you don't know yet */
@@ -4631,7 +6184,7 @@ blitz_chi_strike()
             	return(0);
 	}
 	You_feel("energy surge through your hands!");
-	techt_inuse(tech_no) = techlev(tech_no) + 4;
+	techt_inuse(tech_no) = techlevX(tech_no) + 4;
 	return(1);
 }
 
@@ -4649,8 +6202,34 @@ blitz_e_fist()
 	
 	str = makeplural(body_part(HAND));
 	You("focus the powers of the elements into your %s.", str);
-	techt_inuse(tech_no) = rnd((int) (techlev(tech_no)/3 + 1)) + d(1,4) + 2;
+	techt_inuse(tech_no) = rnd((int) (techlevX(tech_no)/3 + 1)) + d(1,4) + 2;
 	return 1;
+}
+
+static int
+blitz_combo_strike()
+{
+	struct monst *mtmp;
+
+	if (tech_inuse(T_COMBO_STRIKE)) {
+		u.combostrike = 0;
+		u.comboactive = FALSE;
+		stopsingletechnique(T_COMBO_STRIKE);
+	}
+
+	You("do a combo strike!");
+	if (u.uswallow)
+	    mtmp = u.ustuck;
+	else
+	    mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+
+	if (!mtmp) {
+		pline("But there was no target!");
+		return (0);
+	}
+	if (!attack(mtmp)) return (0);
+	else u.combostrike += 10;
+	return(1);
 }
 
 /* Assumes u.dx, u.dy already set up */
@@ -4681,7 +6260,7 @@ blitz_pummel()
 	/* Perform the extra attacks
 	 */
 	for (i = 0; (i < 4); i++) {
-	    if (rn2(70) > (techlev(tech_no) + 30)) break;
+	    if (rn2(90) > (techlevX(tech_no) + 30)) break;
 
 	    if (u.uswallow)
 		mtmp = u.ustuck;
@@ -4741,7 +6320,7 @@ blitz_g_slam()
 	} else
 	    objenchant = u.ulevel / 4;
 
-	tmp = (5 + rnd(6) + (techlev(tech_no) / 5));
+	tmp = (5 + rnd(6) + (techlevX(tech_no) / 5));
 	
 	chasm = maketrap(u.ux + u.dx, u.uy + u.dy, PIT, 0);
 	if (chasm) {
@@ -4809,7 +6388,7 @@ blitz_power_surge()
 		return(0);
 	}*/
     	You("tap into the full extent of your power!");
-	num = 50 + (2 * techlev(tech_no));
+	num = 50 + (2 * techlevX(tech_no));
     	techt_inuse(tech_no) = num + 1;
 	u.uenmax += num;
 	u.uen = u.uenmax;
@@ -4836,7 +6415,7 @@ blitz_spirit_bomb()
 		u.uen = 0;
 	}
 
-	num = 10 + techlev(tech_no);
+	num = 10 + techlevX(tech_no);
 	num = (u.uen < num ? u.uen : num);
 	
 	u.uen -= num;

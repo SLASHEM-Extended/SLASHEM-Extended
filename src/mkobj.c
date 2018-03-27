@@ -39,7 +39,7 @@ static const char * const fauxartinames[] = {
 /* [Tom] tried to fix this back up a little... */
 /* KMH, balance patch -- changed again */
 const struct icp mkobjprobs[] = {
-{130, WEAPON_CLASS},
+{129, WEAPON_CLASS},
 { 90, ARMOR_CLASS},
 {160, FOOD_CLASS},
 { 70, TOOL_CLASS},
@@ -54,14 +54,15 @@ const struct icp mkobjprobs[] = {
 {  1, VENOM_CLASS},
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
-{  1, CHAIN_CLASS}
+{  1, CHAIN_CLASS},
+{  1, IMPLANT_CLASS}
 
 /* KMH -- amulets now appear later in the game */
 /*{ 0, AMULET_CLASS}*/
 };
 
 const struct icp boxiprobs[] = {
-{100, WEAPON_CLASS},
+{ 99, WEAPON_CLASS},
 { 70, ARMOR_CLASS},
 { 20, GEM_CLASS},
 { 55, TOOL_CLASS},
@@ -76,13 +77,14 @@ const struct icp boxiprobs[] = {
 {  1, VENOM_CLASS},
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
-{  1, CHAIN_CLASS}
+{  1, CHAIN_CLASS},
+{  1, IMPLANT_CLASS}
 };
 
 const struct icp tchestprobs[] = {
 {160, WEAPON_CLASS},
 {150, ARMOR_CLASS},
-{ 75, GEM_CLASS},
+{ 74, GEM_CLASS},
 { 70, TOOL_CLASS},
 { 90, FOOD_CLASS},
 { 90, POTION_CLASS},
@@ -95,7 +97,8 @@ const struct icp tchestprobs[] = {
 {  1, VENOM_CLASS},
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
-{  1, CHAIN_CLASS}
+{  1, CHAIN_CLASS},
+{  1, IMPLANT_CLASS}
 };
 
 #ifdef REINCARNATION
@@ -111,7 +114,7 @@ const struct icp rogueprobs[] = {
 #endif
 
 const struct icp hellprobs[] = {
-{130, WEAPON_CLASS},
+{129, WEAPON_CLASS},
 { 80, ARMOR_CLASS},
 {150, FOOD_CLASS},
 { 70, TOOL_CLASS},
@@ -126,7 +129,8 @@ const struct icp hellprobs[] = {
 {  1, VENOM_CLASS},
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
-{  1, CHAIN_CLASS}
+{  1, CHAIN_CLASS},
+{  1, IMPLANT_CLASS}
 };
 
 struct obj *
@@ -215,6 +219,9 @@ int artif;
 			oclass = COIN_CLASS;
 		}
 		if ((oclass == AMULET_CLASS) && (rn2(100) < u.amuletspawnchance)) {
+			oclass = COIN_CLASS;
+		}
+		if ((oclass == IMPLANT_CLASS) && (rn2(100) < u.implantspawnchance)) {
 			oclass = COIN_CLASS;
 		}
 		if ((oclass == RING_CLASS) && (rn2(100) < u.ringspawnchance)) {
@@ -1552,7 +1559,7 @@ register struct obj *otmp;
 #ifdef OVLB
 
 static const char dknowns[] = {
-		WAND_CLASS, RING_CLASS, POTION_CLASS, SCROLL_CLASS, AMULET_CLASS, 
+		WAND_CLASS, RING_CLASS, POTION_CLASS, SCROLL_CLASS, AMULET_CLASS, IMPLANT_CLASS,
 		GEM_CLASS, SPBOOK_CLASS, WEAPON_CLASS, TOOL_CLASS, 0
 };
 
@@ -2109,6 +2116,20 @@ int artif;
 		}
 
 		break;
+	case IMPLANT_CLASS:
+		blessorcurse_on_creation(otmp, 5);
+
+		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 120 : 60)) {
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
+		}
+		else if (artif && !rn2(140)) {
+		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
+			otmp->fakeartifact = 1;
+			if (artif != 2) u.fakeartifacts++;
+		}
+
+		break;
 	case VENOM_CLASS:
 		blessorcurse_on_creation(otmp, 10);
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 40 : 20)) {
@@ -2615,7 +2636,7 @@ register struct obj *otmp;
 	if (otmp == uwep && bimanual(uwep)) reset_remarm();
 	/* rules at top of wield.c state that twoweapon cannot be done
 	   with cursed alternate weapon */
-	if (otmp == uswapwep && u.twoweap)
+	if (otmp == uswapwep && u.twoweap && (PlayerCannotUseSkills || (P_SKILL(P_TWO_WEAPON_COMBAT) < P_EXPERT) ) )
 	    drop_uswapwep();
 	/* some cursed items need immediate updating */
 	if (carried(otmp) && confers_luck(otmp))
@@ -2668,7 +2689,7 @@ register struct obj *otmp;
 	if (otmp == uwep && bimanual(uwep)) reset_remarm();
 	/* rules at top of wield.c state that twoweapon cannot be done
 	   with cursed alternate weapon */
-	if (otmp == uswapwep && u.twoweap)
+	if (otmp == uswapwep && u.twoweap && (PlayerCannotUseSkills || (P_SKILL(P_TWO_WEAPON_COMBAT) < P_EXPERT) ) )
 	    drop_uswapwep();
 	/* some cursed items need immediate updating */
 	if (carried(otmp) && confers_luck(otmp))

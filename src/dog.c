@@ -16,6 +16,7 @@ initedog(mtmp)
 register struct monst *mtmp;
 {
 	mtmp->mtame = is_domestic(mtmp->data) ? 10 : 5;
+	mtmp->wastame = 1;	/* this should stay even if the monster later becomes untamed */
 	mtmp->mpeaceful = 1;
 	mtmp->mavenge = 0;
 	set_malign(mtmp); /* recalc alignment now that it's tamed */

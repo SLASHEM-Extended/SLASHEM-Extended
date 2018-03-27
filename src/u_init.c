@@ -2871,6 +2871,7 @@ static const struct def_skill Skill_A[] = {
     { P_SEARCHING, P_GRAND_MASTER },
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     /*WAC- 'A' knows of all spells from studying,  but only really good
     at divination class*/
@@ -2894,6 +2895,8 @@ static const struct def_skill Skill_Ana[] = {
     { P_GENERAL_COMBAT, P_EXPERT },
     { P_SHIELD, P_EXPERT },
     { P_BODY_ARMOR, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
+    { P_IMPLANTS, P_EXPERT },
 
     { P_CHAOS_SPELL, P_EXPERT },
 
@@ -2918,6 +2921,7 @@ static const struct def_skill Skill_Art[] = {
     { P_POLYMORPHING, P_MASTER },
     { P_DEVICES, P_EXPERT },
     { P_SPIRITUALITY, P_MASTER },
+    { P_TECHNIQUES, P_MASTER },
 
 	{ P_FIREARM, P_MASTER },
 
@@ -2956,6 +2960,7 @@ static const struct def_skill Skill_Gam[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_MASTER },
     { P_MISSILE_WEAPONS, P_EXPERT },  
+    { P_TECHNIQUES, P_GRAND_MASTER },
 
     { P_CHAOS_SPELL, P_EXPERT },
 
@@ -2994,6 +2999,7 @@ static const struct def_skill Skill_Sup[] = {
     { P_DEVICES, P_EXPERT },
     { P_SEARCHING, P_EXPERT },
     { P_PETKEEPING, P_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -3029,6 +3035,7 @@ static const struct def_skill Skill_Aug[] = {
     { P_POLYMORPHING, P_EXPERT },
     { P_DEVICES, P_EXPERT },
     { P_SPIRITUALITY, P_GRAND_MASTER },
+    { P_TECHNIQUES, P_GRAND_MASTER },
 
     { P_OCCULT_SPELL, P_GRAND_MASTER },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -3078,6 +3085,7 @@ static const struct def_skill Skill_B[] = {
     { P_SEARCHING, P_EXPERT },
     { P_SPIRITUALITY, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },  
+    { P_TECHNIQUES, P_MASTER },
 
     { P_TWO_WEAPON_COMBAT, P_MASTER },
     { P_BARE_HANDED_COMBAT, P_MASTER },
@@ -3121,6 +3129,8 @@ static const struct def_skill Skill_Sta[] = {
     { P_DEVICES, P_GRAND_MASTER },
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
+    { P_TECHNIQUES, P_GRAND_MASTER },
+    { P_IMPLANTS, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -3148,6 +3158,7 @@ static const struct def_skill Skill_C[] = {
     { P_SPIRITUALITY, P_MASTER },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
 /*WAC - 'C' is at one with the elements - matter spells, as well as
         basic enchantments - removed attack spell basic skill as
@@ -3178,6 +3189,7 @@ static const struct def_skill Skill_Ass[] = {
     { P_DEVICES, P_EXPERT },
     { P_SEARCHING, P_GRAND_MASTER },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_MARTIAL_ARTS, P_MASTER },
     { P_OCCULT_SPELL, P_EXPERT },
@@ -3213,6 +3225,7 @@ static const struct def_skill Skill_Pic[] = {
     { P_DEVICES, P_MASTER },
     { P_SEARCHING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_GRAND_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -3317,6 +3330,7 @@ static struct def_skill Skill_Fen[] = {
     { P_TWO_WEAPON_COMBAT, P_MASTER },	{ P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_HEALING_SPELL, P_EXPERT },	
     { P_HIGH_HEELS, P_MASTER },
+    { P_TECHNIQUES, P_MASTER },
 
     { P_GENERAL_COMBAT, P_MASTER },
     { P_TWO_HANDED_WEAPON, P_MASTER },
@@ -3343,6 +3357,7 @@ static const struct def_skill Skill_Med[] = {
     { P_DEVICES, P_MASTER },
     { P_SEARCHING, P_EXPERT },
     { P_SPIRITUALITY, P_GRAND_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_OCCULT_SPELL, P_MASTER },
 
@@ -3419,6 +3434,7 @@ static const struct def_skill Skill_Fir[] = {
     { P_SEARCHING, P_EXPERT },
     { P_SPIRITUALITY, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_ELEMENTAL_SPELL, P_EXPERT },
 
@@ -3465,6 +3481,8 @@ static const struct def_skill Skill_Zyb[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
+    { P_IMPLANTS, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -3509,6 +3527,7 @@ static const struct def_skill Skill_Tha[] = {
     { P_SEARCHING, P_EXPERT },
     { P_SPIRITUALITY, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_OCCULT_SPELL, P_GRAND_MASTER },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -3557,6 +3576,8 @@ static const struct def_skill Skill_Lun[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_MASTER },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
+    { P_IMPLANTS, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -3597,6 +3618,7 @@ static const struct def_skill Skill_Erd[] = {
     { P_POLYMORPHING, P_EXPERT },
     { P_DEVICES, P_EXPERT },
     { P_SEARCHING, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -3639,6 +3661,8 @@ static const struct def_skill Skill_Bin[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
+    { P_IMPLANTS, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -3755,6 +3779,8 @@ static const struct def_skill Skill_Mys[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
+    { P_IMPLANTS, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -4163,6 +4189,7 @@ static const struct def_skill Skill_Pro[] = {
     { P_POLYMORPHING, P_EXPERT },		{ P_MARTIAL_ARTS, P_MASTER },
     { P_ATTACK_SPELL, P_EXPERT },		{ P_BODY_SPELL, P_EXPERT },
     { P_CHAOS_SPELL, P_EXPERT },		{ P_OCCULT_SPELL, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4175,6 +4202,7 @@ static const struct def_skill Skill_Kur[] = {
     { P_POLYMORPHING, P_EXPERT },		{ P_MARTIAL_ARTS, P_MASTER },
     { P_ATTACK_SPELL, P_EXPERT },		{ P_BODY_SPELL, P_EXPERT },
     { P_CHAOS_SPELL, P_EXPERT },		{ P_OCCULT_SPELL, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4251,6 +4279,7 @@ static const struct def_skill Skill_Top[] = {
     { P_SEARCHING, P_EXPERT },
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_GRAND_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4280,6 +4309,7 @@ static const struct def_skill Skill_Fai[] = {
     { P_SEARCHING, P_EXPERT },
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_GRAND_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4309,6 +4339,8 @@ static const struct def_skill Skill_Gun[] = {
     { P_BODY_ARMOR, P_EXPERT },
     { P_DEVICES, P_EXPERT },
     { P_MISSILE_WEAPONS, P_GRAND_MASTER },
+    { P_TECHNIQUES, P_MASTER },
+    { P_IMPLANTS, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4385,6 +4417,8 @@ static const struct def_skill Skill_Sci[] = {
     { P_SEARCHING, P_EXPERT },
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
+    { P_TECHNIQUES, P_MASTER },
+    { P_IMPLANTS, P_MASTER },
 
     { P_NONE, 0 }
 };
@@ -4409,6 +4443,7 @@ static const struct def_skill Skill_Nuc[] = {
     { P_SEARCHING, P_EXPERT },
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
+    { P_IMPLANTS, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4426,6 +4461,7 @@ static const struct def_skill Skill_For[] = {
     { P_SHIELD, P_MASTER },		{ P_DEVICES, P_MASTER },
     { P_PETKEEPING, P_EXPERT },		{ P_MISSILE_WEAPONS, P_EXPERT },
     { P_RIDING, P_EXPERT },
+    { P_IMPLANTS, P_EXPERT },
     { P_NONE, 0 }
 };
 
@@ -4478,6 +4514,7 @@ static const struct def_skill Skill_G[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_MASTER },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_CHAOS_SPELL, P_EXPERT },
@@ -4517,6 +4554,7 @@ static const struct def_skill Skill_Gra[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_MASTER },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_CHAOS_SPELL, P_EXPERT },
@@ -4604,6 +4642,7 @@ static const struct def_skill Skill_J[] = {
     { P_DEVICES, P_MASTER },
     { P_SEARCHING, P_EXPERT },
     { P_SPIRITUALITY, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT }, { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -4624,6 +4663,7 @@ static const struct def_skill Skill_Fox[] = {
     { P_DEVICES, P_EXPERT },
     { P_SEARCHING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4646,6 +4686,7 @@ static const struct def_skill Skill_Stu[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_GRAND_MASTER },
 
     { P_ELEMENTAL_SPELL, P_EXPERT },
     { P_CHAOS_SPELL, P_EXPERT },
@@ -4705,6 +4746,7 @@ static const struct def_skill Skill_Wan[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_MASTER },
 
     { P_OCCULT_SPELL, P_GRAND_MASTER },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -4744,6 +4786,7 @@ static const struct def_skill Skill_Occ[] = {
     { P_POLYMORPHING, P_EXPERT },		{ P_DEVICES, P_MASTER },
     { P_SPIRITUALITY, P_EXPERT },		{ P_MARTIAL_ARTS, P_EXPERT },
     { P_RIDING, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4759,6 +4802,7 @@ static const struct def_skill Skill_Cha[] = {
     { P_POLYMORPHING, P_MASTER },		{ P_DEVICES, P_EXPERT },
     { P_MARTIAL_ARTS, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_IMPLANTS, P_EXPERT },
     { P_NONE, 0 }
 };
 
@@ -4888,6 +4932,7 @@ static const struct def_skill Skill_Dol[] = {
     { P_DEVICES, P_EXPERT },
     { P_PETKEEPING, P_GRAND_MASTER },
     { P_MISSILE_WEAPONS, P_MASTER },
+    { P_IMPLANTS, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -5004,6 +5049,7 @@ static const struct def_skill Skill_Mon[] = {
     { P_DIVINATION_SPELL, P_EXPERT },	{ P_ENCHANTMENT_SPELL, P_EXPERT },
     { P_PROTECTION_SPELL, P_MASTER },	{ P_BODY_SPELL, P_EXPERT },
     { P_MATTER_SPELL, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_SPIRITUALITY, P_EXPERT },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -5038,6 +5084,7 @@ static const struct def_skill Skill_Sai[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_MASTER },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -5062,6 +5109,8 @@ static const struct def_skill Skill_Psi[] = {
     { P_POLYMORPHING, P_EXPERT },
     { P_DEVICES, P_EXPERT },
     { P_SPIRITUALITY, P_EXPERT },
+    { P_TECHNIQUES, P_GRAND_MASTER },
+    { P_IMPLANTS, P_GRAND_MASTER },
 
     { P_OCCULT_SPELL, P_GRAND_MASTER },
     { P_CHAOS_SPELL, P_EXPERT },
@@ -5252,6 +5301,7 @@ static const struct def_skill Skill_Div[] = {
     { P_DEVICES, P_GRAND_MASTER },
     { P_SPIRITUALITY, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_ELEMENTAL_SPELL, P_GRAND_MASTER },
 
@@ -5367,6 +5417,7 @@ static const struct def_skill Skill_R[] = {
     { P_DEVICES, P_EXPERT },
     { P_SEARCHING, P_GRAND_MASTER },
     { P_MISSILE_WEAPONS, P_GRAND_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
 
@@ -5425,6 +5476,7 @@ static const struct def_skill Skill_Loc[] = {
     { P_POLYMORPHING, P_EXPERT },
     { P_DEVICES, P_GRAND_MASTER },
     { P_SEARCHING, P_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT },  { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -5457,6 +5509,7 @@ static const struct def_skill Skill_Nin[] = {
     { P_DEVICES, P_EXPERT },
     { P_SEARCHING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT },  { P_MARTIAL_ARTS, P_GRAND_MASTER },
     { P_NONE, 0 }
@@ -5485,6 +5538,7 @@ static const struct def_skill Skill_Ran[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_ELEMENTAL_SPELL, P_EXPERT },
 
@@ -5678,6 +5732,7 @@ static const struct def_skill Skill_S[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT },
     { P_MARTIAL_ARTS, P_MASTER },
@@ -5707,6 +5762,7 @@ static const struct def_skill Skill_Ama[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_GRAND_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_PROTECTION_SPELL, P_EXPERT },      { P_BODY_SPELL, P_EXPERT },{ P_ATTACK_SPELL, P_EXPERT },
 
@@ -5851,6 +5907,7 @@ static const struct def_skill Skill_U[] = {
     { P_SEARCHING, P_EXPERT },
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
 
@@ -5883,6 +5940,7 @@ static const struct def_skill Skill_Unb[] = {
     { P_TWO_HANDED_WEAPON, P_EXPERT },
     { P_SEARCHING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_MASTER },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT },
     { P_MARTIAL_ARTS, P_MASTER },    { P_NONE, 0 }
@@ -5920,6 +5978,7 @@ static const struct def_skill Skill_Unt[] = {
     { P_SEARCHING, P_EXPERT },
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
 
@@ -5956,6 +6015,7 @@ static const struct def_skill Skill_V[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_MASTER },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT },
     { P_BARE_HANDED_COMBAT, P_EXPERT },
@@ -5981,6 +6041,7 @@ static const struct def_skill Skill_Sag[] = {
     { P_DEVICES, P_EXPERT },
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_OCCULT_SPELL, P_MASTER },
 
@@ -6060,6 +6121,8 @@ static const struct def_skill Skill_Pok[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_GRAND_MASTER },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_TECHNIQUES, P_EXPERT },
+    { P_IMPLANTS, P_MASTER },
 
     { P_OCCULT_SPELL, P_MASTER },
     { P_ELEMENTAL_SPELL, P_MASTER },
@@ -6157,6 +6220,7 @@ static const struct def_skill Skill_Y[] = {
     { P_SPIRITUALITY, P_MASTER },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_MASTER },
+    { P_TECHNIQUES, P_EXPERT },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT }, { P_MARTIAL_ARTS, P_MASTER },
     { P_NONE, 0 }
@@ -7802,7 +7866,7 @@ u_init()
 		else if (!rn2(2000)) u.veryobtainclass1 = CHAIN_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass1 = VENOM_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass1 = ROCK_CLASS;
-		else switch (rnd(11)) {
+		else switch (rnd(12)) {
 			case 1: u.veryobtainclass1 = WEAPON_CLASS; break;
 			case 2: u.veryobtainclass1 = ARMOR_CLASS; break;
 			case 3: u.veryobtainclass1 = RING_CLASS; break;
@@ -7814,6 +7878,7 @@ u_init()
 			case 9: u.veryobtainclass1 = TOOL_CLASS; break;
 			case 10: u.veryobtainclass1 = FOOD_CLASS; break;
 			case 11: u.veryobtainclass1 = GEM_CLASS; break;
+			case 12: u.veryobtainclass1 = IMPLANT_CLASS; break;
 		}
 		u.veryobtainclass1boost = rnd(100);
 	}
@@ -7824,7 +7889,7 @@ u_init()
 		else if (!rn2(2000)) u.veryobtainclass2 = CHAIN_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass2 = VENOM_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass2 = ROCK_CLASS;
-		else switch (rnd(11)) {
+		else switch (rnd(12)) {
 			case 1: u.veryobtainclass2 = WEAPON_CLASS; break;
 			case 2: u.veryobtainclass2 = ARMOR_CLASS; break;
 			case 3: u.veryobtainclass2 = RING_CLASS; break;
@@ -7836,6 +7901,7 @@ u_init()
 			case 9: u.veryobtainclass2 = TOOL_CLASS; break;
 			case 10: u.veryobtainclass2 = FOOD_CLASS; break;
 			case 11: u.veryobtainclass2 = GEM_CLASS; break;
+			case 12: u.veryobtainclass2 = IMPLANT_CLASS; break;
 		}
 		u.veryobtainclass2boost = rnd(100);
 	}
@@ -7846,7 +7912,7 @@ u_init()
 		else if (!rn2(2000)) u.veryobtainclass3 = CHAIN_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass3 = VENOM_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass3 = ROCK_CLASS;
-		else switch (rnd(11)) {
+		else switch (rnd(12)) {
 			case 1: u.veryobtainclass3 = WEAPON_CLASS; break;
 			case 2: u.veryobtainclass3 = ARMOR_CLASS; break;
 			case 3: u.veryobtainclass3 = RING_CLASS; break;
@@ -7858,6 +7924,7 @@ u_init()
 			case 9: u.veryobtainclass3 = TOOL_CLASS; break;
 			case 10: u.veryobtainclass3 = FOOD_CLASS; break;
 			case 11: u.veryobtainclass3 = GEM_CLASS; break;
+			case 12: u.veryobtainclass3 = IMPLANT_CLASS; break;
 		}
 		u.veryobtainclass3boost = rnd(100);
 	}
@@ -7901,9 +7968,12 @@ u_init()
 	u.idringpenalty = rnd(20); /* if rnd(this) is greater than 4, the ring isn't ided */
 	if (!rn2(7)) u.idringpenalty += rnz(10);
 	if (!rn2(50)) u.idringpenalty += rnz(20);
-	u.idamuletpenalty = rnd(20); /* if rnd(this) is greater than 15, the item isn't ided */
+	u.idamuletpenalty = rnd(20); /* if rnd(this) is greater than 15, the amulet isn't ided */
 	if (!rn2(7)) u.idamuletpenalty += rnz(10);
 	if (!rn2(50)) u.idamuletpenalty += rnz(20);
+	u.idimplantpenalty = rnd(50); /* if rnd(this) is greater than 1, the implant isn't ided */
+	if (!rn2(7)) u.idimplantpenalty += rnz(25);
+	if (!rn2(50)) u.idimplantpenalty += rnz(50);
 	u.idwandpenalty = rnd(12); /* if rnd(this) is greater than 3, the wand isn't ided */
 	if (!rn2(7)) u.idwandpenalty += rnz(6);
 	if (!rn2(50)) u.idwandpenalty += rnz(12);
@@ -7958,6 +8028,14 @@ u_init()
 	if (!rn2(20)) u.amuletspawnchance += rnd(90);
 	if (u.amuletspawnchance > 90) u.amuletspawnchance = 90;
 	if (u.amuletspawnchance < 0) u.amuletspawnchance = 0;
+
+	u.implantspawnchance = 0;
+	if (!rn2(10)) u.implantspawnchance += rnd(20);
+	if (!rn2(25)) u.implantspawnchance += rnd(20);
+	if (!rn2(200)) u.implantspawnchance += rnd(30);
+	if (!rn2(2000)) u.implantspawnchance += rnd(40);
+	if (u.implantspawnchance > 90) u.implantspawnchance = 90;
+	if (u.implantspawnchance < 0) u.implantspawnchance = 0;
 
 	u.potionspawnchance = 0;
 	if (!rn2(2)) u.potionspawnchance += rnd(15);
@@ -8108,6 +8186,14 @@ u_init()
 
 	u.aggravation = 0;
 	u.outtadepthtrap = 0;
+
+	u.petcollectitems = 1;
+	u.petattackenemies = 1;
+	u.petcaneat = 1;
+	u.petcanfollow = 1;
+
+	u.combostrike = 0;
+	u.comboactive = 0;
 
 	u.urmaxlvl = 1; /* will go up if an asgardian race player levels up */
 	u.urmaxlvlB = 1; /* will go up if a cyborg role player levels up */
@@ -27106,7 +27192,7 @@ alter_reality()
 		else if (!rn2(2000)) u.veryobtainclass1 = CHAIN_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass1 = VENOM_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass1 = ROCK_CLASS;
-		else switch (rnd(11)) {
+		else switch (rnd(12)) {
 			case 1: u.veryobtainclass1 = WEAPON_CLASS; break;
 			case 2: u.veryobtainclass1 = ARMOR_CLASS; break;
 			case 3: u.veryobtainclass1 = RING_CLASS; break;
@@ -27118,6 +27204,7 @@ alter_reality()
 			case 9: u.veryobtainclass1 = TOOL_CLASS; break;
 			case 10: u.veryobtainclass1 = FOOD_CLASS; break;
 			case 11: u.veryobtainclass1 = GEM_CLASS; break;
+			case 12: u.veryobtainclass1 = IMPLANT_CLASS; break;
 		}
 		u.veryobtainclass1boost = rnd(100);
 	}
@@ -27128,7 +27215,7 @@ alter_reality()
 		else if (!rn2(2000)) u.veryobtainclass2 = CHAIN_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass2 = VENOM_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass2 = ROCK_CLASS;
-		else switch (rnd(11)) {
+		else switch (rnd(12)) {
 			case 1: u.veryobtainclass2 = WEAPON_CLASS; break;
 			case 2: u.veryobtainclass2 = ARMOR_CLASS; break;
 			case 3: u.veryobtainclass2 = RING_CLASS; break;
@@ -27140,6 +27227,7 @@ alter_reality()
 			case 9: u.veryobtainclass2 = TOOL_CLASS; break;
 			case 10: u.veryobtainclass2 = FOOD_CLASS; break;
 			case 11: u.veryobtainclass2 = GEM_CLASS; break;
+			case 12: u.veryobtainclass2 = IMPLANT_CLASS; break;
 		}
 		u.veryobtainclass2boost = rnd(100);
 	}
@@ -27150,7 +27238,7 @@ alter_reality()
 		else if (!rn2(2000)) u.veryobtainclass3 = CHAIN_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass3 = VENOM_CLASS;
 		else if (!rn2(1000)) u.veryobtainclass3 = ROCK_CLASS;
-		else switch (rnd(11)) {
+		else switch (rnd(12)) {
 			case 1: u.veryobtainclass3 = WEAPON_CLASS; break;
 			case 2: u.veryobtainclass3 = ARMOR_CLASS; break;
 			case 3: u.veryobtainclass3 = RING_CLASS; break;
@@ -27162,6 +27250,7 @@ alter_reality()
 			case 9: u.veryobtainclass3 = TOOL_CLASS; break;
 			case 10: u.veryobtainclass3 = FOOD_CLASS; break;
 			case 11: u.veryobtainclass3 = GEM_CLASS; break;
+			case 12: u.veryobtainclass3 = IMPLANT_CLASS; break;
 		}
 		u.veryobtainclass3boost = rnd(100);
 	}
@@ -27185,9 +27274,12 @@ alter_reality()
 	u.idringpenalty = rnd(20); /* if rnd(this) is greater than 4, the ring isn't ided */
 	if (!rn2(7)) u.idringpenalty += rnz(10);
 	if (!rn2(50)) u.idringpenalty += rnz(20);
-	u.idamuletpenalty = rnd(20); /* if rnd(this) is greater than 15, the item isn't ided */
+	u.idamuletpenalty = rnd(20); /* if rnd(this) is greater than 15, the amulet isn't ided */
 	if (!rn2(7)) u.idamuletpenalty += rnz(10);
 	if (!rn2(50)) u.idamuletpenalty += rnz(20);
+	u.idimplantpenalty = rnd(50); /* if rnd(this) is greater than 1, the implant isn't ided */
+	if (!rn2(7)) u.idimplantpenalty += rnz(25);
+	if (!rn2(50)) u.idimplantpenalty += rnz(50);
 	u.idwandpenalty = rnd(12); /* if rnd(this) is greater than 3, the wand isn't ided */
 	if (!rn2(7)) u.idwandpenalty += rnz(6);
 	if (!rn2(50)) u.idwandpenalty += rnz(12);
@@ -27242,6 +27334,14 @@ alter_reality()
 	if (!rn2(20)) u.amuletspawnchance += rnd(90);
 	if (u.amuletspawnchance > 90) u.amuletspawnchance = 90;
 	if (u.amuletspawnchance < 0) u.amuletspawnchance = 0;
+
+	u.implantspawnchance = 0;
+	if (!rn2(10)) u.implantspawnchance += rnd(20);
+	if (!rn2(25)) u.implantspawnchance += rnd(20);
+	if (!rn2(200)) u.implantspawnchance += rnd(30);
+	if (!rn2(2000)) u.implantspawnchance += rnd(40);
+	if (u.implantspawnchance > 90) u.implantspawnchance = 90;
+	if (u.implantspawnchance < 0) u.implantspawnchance = 0;
 
 	u.potionspawnchance = 0;
 	if (!rn2(2)) u.potionspawnchance += rnd(15);

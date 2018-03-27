@@ -390,14 +390,14 @@ int udist;
 									){
 		int edible = dogfood(mtmp, obj);
 
-		if ((edible <= CADAVER ||
+		if (((edible <= CADAVER ||
 			/* starving pet is more aggressive about eating */
 			(edog->mhpmax_penalty && edible == ACCFOOD)) &&
-		    could_reach_item(mtmp, obj->ox, obj->oy))
+		    could_reach_item(mtmp, obj->ox, obj->oy)) && u.petcaneat)
 		    return dog_eat(mtmp, obj, omx, omy, FALSE);
 
 		/* [Tom] demonic & undead pets don't mind cursed items */                
-		if(can_carry(mtmp, obj) && (issoviet || !Has_contents(obj)) &&
+		if(can_carry(mtmp, obj) && u.petcollectitems && (issoviet || !Has_contents(obj)) &&
 		  !(obj == uchain) && !(obj == uball) &&
 		  could_reach_item(mtmp, obj->ox, obj->oy) &&
 		  (!obj->cursed || is_demon(mtmp->data) || is_undead(mtmp->data) || mtmp->egotype_undead) &&
@@ -539,7 +539,7 @@ int after, udist, whappr;
 			      !dog_has_minvent &&
 			      (!levl[omx][omy].lit || levl[u.ux][u.uy].lit) &&
 			      (otyp == MANFOOD || m_cansee(mtmp, nx, ny)) &&
-			      edog->apport > rn2(8) &&
+			      edog->apport > rn2(8) && u.petcollectitems &&
 			      can_carry(mtmp,obj)) {
 			gx = nx;
 			gy = ny;
@@ -614,6 +614,7 @@ int after, udist, whappr;
 	} else if(edog) {
 	    edog->ogoal.x = 0;
 	}
+	if (!u.petcanfollow && appr == 1) appr = 0;
 	return appr;
 }
 
@@ -744,8 +745,11 @@ register int after;	/* this is extra fast monster movement */
 	if (mtmp == u.usteed) {
 	    if (Conflict && (issoviet || !rn2(100)) && !resist(mtmp, RING_CLASS, 0, 0)) {
 		/* happens much less often now, so riding while causing conflict is no longer impossible --Amy */
-		dismount_steed(DISMOUNT_THROWN);
-		return (1);
+
+		if (!mayfalloffsteed()) {
+			dismount_steed(DISMOUNT_THROWN);
+			return (1);
+		}
 	    }
 	    udist = 1;
 	} else
@@ -907,6 +911,8 @@ register int after;	/* this is extra fast monster movement */
 		    register struct monst *mtmp2 = m_at(nx,ny);
 		    aligntyp align1, align2; /* For priests, minions etc. */
 
+			if (!u.petattackenemies) continue;
+
 		    if (mtmp->isminion) align1 = EMIN(mtmp)->min_align;
 		    else if (is_unicorn(mtmp->data))
 			align1 = sgn(mtmp->data->maligntyp);
@@ -1008,7 +1014,7 @@ register int after;	/* this is extra fast monster movement */
 		    && !is_undead(mtmp->data) && (!mtmp->egotype_undead) ) cursemsg[i] = TRUE;
 		    if (obj->blessed && has_edog && (is_demon(mtmp->data) 
 		    || is_undead(mtmp->data) || mtmp->egotype_undead)) cursemsg[i] = TRUE;
-		    else if ((otyp = dogfood(mtmp, obj)) < MANFOOD &&
+		    else if ((otyp = dogfood(mtmp, obj)) < MANFOOD && u.petcaneat &&
 			     (otyp < ACCFOOD || edog->hungrytime <= monstermoves)) {
 			/* Note: our dog likes the food so much that he
 			 * might eat it even when it conceals a cursed object */

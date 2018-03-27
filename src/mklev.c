@@ -10968,13 +10968,13 @@ mineralize()
 		if ((levl[x][y].typ == CORR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500) / level_difficulty() )) )
+		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) / level_difficulty() )) )
+		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400) / level_difficulty() )) )
+		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
@@ -11073,31 +11073,31 @@ mineralize()
 	    	    makemon(specialtensmon(45), x, y, MM_ADJACENTOK); /* resist sleep */
 		if ((levl[x][y].typ == STRAWMATTRESS && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
 	    	    makemon(specialtensmon(205), x, y, MM_ADJACENTOK); /* AD_PLYS */
-		if ((levl[x][y].typ == SNOW && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+		if ((levl[x][y].typ == SNOW && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(specialtensmon(44), x, y, MM_ADJACENTOK); /* resist cold */
-		if ((levl[x][y].typ == ASH && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+		if ((levl[x][y].typ == ASH && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(specialtensmon(43), x, y, MM_ADJACENTOK); /* resist fire */
-		if ((levl[x][y].typ == SAND && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+		if ((levl[x][y].typ == SAND && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(specialtensmon(90), x, y, MM_ADJACENTOK); /* carnivorous */
 		if ((levl[x][y].typ == PAVEDFLOOR && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(specialtensmon(332), x, y, MM_ADJACENTOK); /* MS_SHOE */
-		if ((levl[x][y].typ == HIGHWAY && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+		if ((levl[x][y].typ == HIGHWAY && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(speedymon(), x, y, MM_ADJACENTOK);
-		if ((levl[x][y].typ == GRASSLAND && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+		if ((levl[x][y].typ == GRASSLAND && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(specialtensmon(172), x, y, MM_ADJACENTOK); /* AT_BITE */
-		if ((levl[x][y].typ == NETHERMIST && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+		if ((levl[x][y].typ == NETHERMIST && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(specialtensmon(310), x, y, MM_ADJACENTOK); /* AD_NTHR */
-		if ((levl[x][y].typ == STALACTITE && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
+		if ((levl[x][y].typ == STALACTITE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(mkclass(S_PIERCER,0), x, y, MM_ADJACENTOK);
-		if ((levl[x][y].typ == CRYPTFLOOR && !rn2((ishaxor && !issuxxor) ? 2 : (issuxxor && !ishaxor) ? 8 : 4)) )
+		if ((levl[x][y].typ == CRYPTFLOOR && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(morguemonX(), x, y, MM_ADJACENTOK);
-		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
+		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
 			(void) maketrap(x, y, CURSED_GRAVE, 100);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
 			(void) maketrap(x, y, randomtrap(), 100);
-		if ((levl[x][y].typ == BUBBLES && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+		if ((levl[x][y].typ == BUBBLES && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(specialtensmon(203), x, y, MM_ADJACENTOK); /* AD_STUN
-		if ((levl[x][y].typ == RAINCLOUD && !rn2((ishaxor && !issuxxor) ? 4 : (issuxxor && !ishaxor) ? 16 : 8)) )
+		if ((levl[x][y].typ == RAINCLOUD && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == GRAVE && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
@@ -11134,13 +11134,13 @@ mineralize()
 		if ((levl[x][y].typ == CORR && !((moves + u.monstertimefinish) % 4345 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == ICE && !((moves + u.monstertimefinish) % 4347 ) && !rn2( ((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50) / level_difficulty() )) )
+		if ((levl[x][y].typ == ICE && !((moves + u.monstertimefinish) % 4347 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == AIR && !((moves + u.monstertimefinish) % 4349 ) && !rn2( ((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60) / level_difficulty() )) )
+		if ((levl[x][y].typ == AIR && !((moves + u.monstertimefinish) % 4349 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
-		if ((levl[x][y].typ == CLOUD && !((moves + u.monstertimefinish) % 4351 ) && !rn2( ((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40) / level_difficulty() )) )
+		if ((levl[x][y].typ == CLOUD && !((moves + u.monstertimefinish) % 4351 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
 			makemon((struct permonst *)0, x, y, MM_ADJACENTOK);
 
 		if ((levl[x][y].typ == CORR && !((moves + u.monstertimefinish) % 4353 ) && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
@@ -11295,13 +11295,13 @@ mineralize()
 		if ((levl[x][y].typ == CORR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 250 : (issuxxor && !ishaxor) ? 1000 : 500) / level_difficulty() )) )
+		if ((levl[x][y].typ == ICE && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 500 : (issuxxor && !ishaxor) ? 2000 : 1000) / level_difficulty() )) )
+		if ((levl[x][y].typ == AIR && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 200 : (issuxxor && !ishaxor) ? 800 : 400) / level_difficulty() )) )
+		if ((levl[x][y].typ == CLOUD && !rn2( ((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
 		if ((levl[x][y].typ == CORR && !rn2((ishaxor && !issuxxor) ? 1000 : (issuxxor && !ishaxor) ? 4000 : 2000)) )
@@ -11400,31 +11400,31 @@ mineralize()
 	    	    makerandomtrap_at(x, y);
 		if ((levl[x][y].typ == STRAWMATTRESS && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == SNOW && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+		if ((levl[x][y].typ == SNOW && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == ASH && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+		if ((levl[x][y].typ == ASH && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == SAND && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+		if ((levl[x][y].typ == SAND && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
 		if ((levl[x][y].typ == PAVEDFLOOR && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == HIGHWAY && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+		if ((levl[x][y].typ == HIGHWAY && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == GRASSLAND && !rn2((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60)) )
+		if ((levl[x][y].typ == GRASSLAND && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == NETHERMIST && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
+		if ((levl[x][y].typ == NETHERMIST && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == STALACTITE && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
+		if ((levl[x][y].typ == STALACTITE && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
+		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(50)) )
 			(void) maketrap(x, y, CURSED_GRAVE, 100);
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
 			(void) maketrap(x, y, randomtrap(), 100);
-		if ((levl[x][y].typ == CRYPTFLOOR && !rn2((ishaxor && !issuxxor) ? 2 : (issuxxor && !ishaxor) ? 8 : 4)) )
+		if ((levl[x][y].typ == CRYPTFLOOR && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == BUBBLES && !rn2((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40)) )
+		if ((levl[x][y].typ == BUBBLES && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
-		if ((levl[x][y].typ == RAINCLOUD && !rn2((ishaxor && !issuxxor) ? 4 : (issuxxor && !ishaxor) ? 16 : 8)) )
+		if ((levl[x][y].typ == RAINCLOUD && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makerandomtrap_at(x, y);
 
 		if ((levl[x][y].typ == GRAVE && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
@@ -11461,13 +11461,13 @@ mineralize()
 		if ((levl[x][y].typ == CORR && !((moves + u.monstertimefinish) % 4345 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == ICE && !((moves + u.monstertimefinish) % 4347 ) && !rn2( ((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50) / level_difficulty() )) )
+		if ((levl[x][y].typ == ICE && !((moves + u.monstertimefinish) % 4347 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == AIR && !((moves + u.monstertimefinish) % 4349 ) && !rn2( ((ishaxor && !issuxxor) ? 30 : (issuxxor && !ishaxor) ? 120 : 60) / level_difficulty() )) )
+		if ((levl[x][y].typ == AIR && !((moves + u.monstertimefinish) % 4349 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
-		if ((levl[x][y].typ == CLOUD && !((moves + u.monstertimefinish) % 4351 ) && !rn2( ((ishaxor && !issuxxor) ? 20 : (issuxxor && !ishaxor) ? 80 : 40) / level_difficulty() )) )
+		if ((levl[x][y].typ == CLOUD && !((moves + u.monstertimefinish) % 4351 ) && !rn2( ((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100) / level_difficulty() )) )
 			makerandomtrap_at(x, y);
 
 		if ((levl[x][y].typ == CORR && !((moves + u.monstertimefinish) % 4353 ) && !rn2((ishaxor && !issuxxor) ? 100 : (issuxxor && !ishaxor) ? 400 : 200)) )

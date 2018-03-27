@@ -25,6 +25,7 @@ register struct obj *otmp;
 		(otmp == uleft) ? "left ring" :
 		(otmp == uright) ? "right ring" :
 		(otmp == uamul) ? "amulet" :
+		(otmp == uimplant) ? "implant" :
 		(otmp == uarmh) ? "helmet" : "armor");
 }
 
@@ -207,6 +208,8 @@ boolean unchain_ball;	/* whether to unpunish or just unwield */
 	    else setworn((struct obj *)0, obj->owornmask & W_ARMOR);
 	} else if (obj->owornmask & W_AMUL) {
 	    Amulet_off();
+	} else if (obj->owornmask & W_IMPLANT) {
+	    Implant_off();
 	} else if (obj->owornmask & W_RING) {
 	    Ring_gone(obj);
 	} else if (obj->owornmask & W_TOOL) {
@@ -281,7 +284,7 @@ nothing_to_steal:
 				&& ((!otmp->oinvis || perceives(mtmp->data)) && !otmp->stckcurse && !otmp->oinvisreal)
 				)
 		tmp += ((otmp->owornmask &
-			(W_ARMOR | W_RING | W_AMUL | W_TOOL)) ? 5 : 1);
+			(W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL)) ? 5 : 1);
 	if (!tmp) goto nothing_to_steal;
 	tmp = rn2(tmp);
 	for(otmp = invent; otmp; otmp = otmp->nobj)
@@ -289,7 +292,7 @@ nothing_to_steal:
 				&& ((!otmp->oinvis || perceives(mtmp->data)) && !otmp->stckcurse && !otmp->oinvisreal)
 			)
 		if((tmp -= ((otmp->owornmask &
-			(W_ARMOR | W_RING | W_AMUL | W_TOOL)) ? 5 : 1)) < 0)
+			(W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL)) ? 5 : 1)) < 0)
 			break;
 	if(!otmp) {
 		impossible("Steal fails!");
@@ -328,7 +331,7 @@ gotobj:
 	 * have "fun" with a woman. Even if said "fun" means losing all that you have. And of course, Russian women are also
 	 * the absolute temptresses who will MAKE you undress whether you want it or not. --Amy */
 
-	if ( ((rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) ) && !issoviet && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))) {
+	if ( ((rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) ) && !issoviet && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL))) {
 		if (otmp->cursed) {
 			otmp->bknown = 1;
 			pline("%s tries to take off your %s, which appears to be cursed.", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp)); 
@@ -386,10 +389,11 @@ gotobj:
 	/* you're going to notice the theft... */
 	stop_occupation();
 
-	if((otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))){
+	if((otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL))){
 		switch(otmp->oclass) {
 		case TOOL_CLASS:
 		case AMULET_CLASS:
+		case IMPLANT_CLASS:
 		case RING_CLASS:
 		case FOOD_CLASS: /* meat ring */
 		    remove_worn_item(otmp, TRUE);
@@ -444,7 +448,7 @@ gotobj:
 				}
 			named++;
 			/* the following is to set multi for later on */
-			nomul(-armordelay, "being seduced into taking off your clothes");
+			nomul(-armordelay, "being seduced into taking off your clothes", TRUE);
 			nomovemsg = 0;
 			remove_worn_item(otmp, TRUE);
 			otmp->cursed = curssv;

@@ -311,7 +311,7 @@ boolean forcecontrol;
 	/* [Tom] I made the chance of dying from Con check only possible for
 		 really weak people (it was out of 20) */
 
-	if(!Polymorph_control && !forcecontrol && !draconian && !iswere &&
+	if(!Polymorph_control && !(tech_inuse(T_POLYFORM) || tech_inuse(T_FUNGOISM) || tech_inuse(T_BECOME_UNDEAD)) && !u.wormpolymorph && !forcecontrol && !draconian && !iswere &&
 			!isvamp && !Race_if(PM_DOPPELGANGER) && !Role_if(PM_SHAPESHIFTER) && !Race_if(PM_HEMI_DOPPELGANGER)) {
 		if ( (rn2(12) > ACURR(A_CON) || !rn2(50)) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) ) {
 
@@ -328,6 +328,36 @@ boolean forcecontrol;
 		do {
 			mntmp = rn2(NUMMONS);
 		} while(( (notake(&mons[mntmp]) && rn2(4) ) || ((mons[mntmp].mlet == S_BAT) && rn2(2)) || ((mons[mntmp].mlet == S_EYE) && rn2(2) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
+
+		if (polymon(mntmp)) u.polyformed = 1;
+
+		if (!uarmg || FingerlessGloves) selftouch("No longer petrify-resistant, you");
+
+		u.wormpolymorph = 0;
+
+		goto made_change;
+	}
+
+	if (tech_inuse(T_FUNGOISM)) {
+
+		do {
+			mntmp = rn2(NUMMONS);
+		} while(( (notake(&mons[mntmp]) && rn2(4) ) || (mons[mntmp].mlet != S_FUNGUS) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
+
+		if (polymon(mntmp)) u.polyformed = 1;
+
+		if (!uarmg || FingerlessGloves) selftouch("No longer petrify-resistant, you");
+
+		u.wormpolymorph = 0;
+
+		goto made_change;
+	}
+
+	if (tech_inuse(T_BECOME_UNDEAD)) {
+
+		do {
+			mntmp = rn2(NUMMONS);
+		} while(( (notake(&mons[mntmp]) && rn2(4) ) || (!(is_undead(&mons[mntmp])) ) || ((mons[mntmp].mmove == 1) && rn2(4) ) || ((mons[mntmp].mmove == 2) && rn2(3) ) || ((mons[mntmp].mmove == 3) && rn2(2) ) || ((mons[mntmp].mmove == 4) && !rn2(3) ) || ( (mons[mntmp].mlevel < 10) && ((mons[mntmp].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[mntmp]) && rn2(2) ) || ( is_nonmoving(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(5) ) || ( is_nonmoving(&mons[mntmp]) && rn2(20) ) || ( uncommon2(&mons[mntmp]) && !rn2(4) ) || ( uncommon3(&mons[mntmp]) && !rn2(3) ) || ( uncommon5(&mons[mntmp]) && !rn2(2) ) || ( uncommon7(&mons[mntmp]) && rn2(3) ) || ( uncommon10(&mons[mntmp]) && rn2(5) ) || ( is_eel(&mons[mntmp]) && rn2(20) ) ) );
 
 		if (polymon(mntmp)) u.polyformed = 1;
 
@@ -1248,7 +1278,7 @@ rehumanize()
 	}
 
 	if (!uarmg || FingerlessGloves) selftouch("No longer petrify-resistant, you");
-	nomul(0, 0);
+	nomul(0, 0, FALSE);
 
 	flags.botl = 1;
 	vision_full_recalc = 1;
@@ -2102,7 +2132,7 @@ dogaze()
 			if (!Free_action) {
 			    You("are frozen by %s gaze!",
 					     s_suffix(mon_nam(mtmp)));
-			    nomul(-d((int)mtmp->m_lev+1, (int)mtmp->data->mattk[0].damd), "frozen by stupidly gazing at a floating eye");
+			    nomul(-d((int)mtmp->m_lev+1, (int)mtmp->data->mattk[0].damd), "frozen by stupidly gazing at a floating eye", TRUE);
 			    return 1;
 			} else
 			    You("stiffen momentarily under %s gaze.",
@@ -2683,7 +2713,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 		u.uen -= EN_DOPP;
 		if (multi >= 0) {
 		    if (occupation) stop_occupation();
-		    else nomul(0, 0);
+		    else nomul(0, 0, FALSE);
 		}
 		polyself(FALSE);
 		if (Upolyd) { /* You actually polymorphed */
@@ -2714,7 +2744,7 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 		if (!Upolyd) {
 		    if (multi >= 0) {
 			if (occupation) stop_occupation();
-			else nomul(0, 0);
+			else nomul(0, 0, FALSE);
 		    }
 		    you_were();
 		} else {

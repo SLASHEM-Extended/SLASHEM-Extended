@@ -267,6 +267,8 @@ worst_cursed_item()
 	otmp = uarmu;
     } else if (uamul && uamul->cursed) {		/* amulet */
 	otmp = uamul;
+    } else if (uimplant && uimplant->cursed) {		/* implant */
+	otmp = uimplant;
     } else if (uleft && uleft->cursed) {		/* left ring */
 	otmp = uleft;
     } else if (uright && uright->cursed) {		/* right ring */
@@ -1785,14 +1787,14 @@ dosacrifice()
 			  case 2: 
 			  case 3:
 			       You("are terrified, and unable to move.");
-			       nomul(-3, "being terrified of a demon");
+			       nomul(-3, "being terrified of a demon", TRUE);
 			       nomovemsg = 0;
 				 if (dmon && !rn2(500) ) dmon = tamedog(dmon, (struct obj *) 0, TRUE);
 			       break;                
 			  case 11:
 			       dmon->mpeaceful = FALSE;
 			       You("are terrified, and unable to move.");
-			       nomul(-3, "being terrified of a hostile demon");
+			       nomul(-3, "being terrified of a hostile demon", TRUE);
 			       nomovemsg = 0;
 			       break;                
 			  case 4:
@@ -2408,7 +2410,16 @@ dopray()
 	}
     }
 #endif
-    nomul(-3, "praying unsuccessfully"); /* note by Amy: if successfully, you're invulnerable... */
+
+    if (tech_inuse(T_PRAYING_SUCCESS)) {
+	    u.ublesscnt = 0;
+	    if (u.uluck < 0) u.uluck = 0;
+	    if (u.ualign.record <= 0) u.ualign.record = 1;
+	    u.ugangr = 0;
+	    if(p_type < 2) p_type = 3;
+    }
+
+    nomul(-3, "praying unsuccessfully", TRUE); /* note by Amy: if successfully, you're invulnerable... */
     nomovemsg = "You finish your prayer.";
     afternmv = prayer_done;
 
@@ -2606,7 +2617,7 @@ turn_undead()
 		    }
 	    }
 	}
-	nomul(-(1 + rnd(4)), "trying to turn undead monsters"); /* used to always be -2 which felt a little overpowered --Amy */
+	nomul(-(1 + rnd(4)), "trying to turn undead monsters", TRUE); /* used to always be -2 which felt a little overpowered --Amy */
 	nomovemsg = 0;
 	return(1);
 }
@@ -2857,6 +2868,8 @@ aligntyp alignment;
 			    otmp = uright;
 		    else if (uamul && !uamul->blessed) /* amulet */
 			    otmp = uamul;
+		    else if (uimplant && !uimplant->blessed) /* implant */
+			    otmp = uimplant;
 		    else {
 			    for(otmp=invent; otmp; otmp=otmp->nobj)
 				if (!otmp->blessed)

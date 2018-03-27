@@ -42,10 +42,12 @@ STATIC_DCL int enhance_skill(boolean);
 #define PN_SPIRITUALITY		(-26)
 #define PN_PETKEEPING		(-27)
 #define PN_MISSILE_WEAPONS		(-28)
-#define PN_MARTIAL_ARTS		(-29)
-#define PN_RIDING		(-30)
-#define PN_TWO_WEAPONS		(-31)
-#define PN_LIGHTSABER		(-32)
+#define PN_TECHNIQUES		(-29)
+#define PN_IMPLANTS		(-30)
+#define PN_MARTIAL_ARTS		(-31)
+#define PN_RIDING		(-32)
+#define PN_TWO_WEAPONS		(-33)
+#define PN_LIGHTSABER		(-34)
 
 static void give_may_advance_msg(int);
 STATIC_PTR int practice(void);
@@ -88,7 +90,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS, PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -124,6 +126,8 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "spirituality",
     "petkeeping",
     "missile weapons",
+    "techniques",
+    "implants",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -2476,6 +2480,167 @@ int skill;
     	You("learn how to perform disarm!");
     }
 
+	if (skill == P_TRIDENT && P_SKILL(skill) == P_MASTER && !tech_known(T_SILENT_OCEAN)) {
+	    	learntech(T_SILENT_OCEAN, FROMOUTSIDE, 1);
+	    	You("learn how to perform silent ocean!");
+	}
+	if (skill == P_UNICORN_HORN && P_SKILL(skill) == P_EXPERT && !tech_known(T_GLOWHORN)) {
+	    	learntech(T_GLOWHORN, FROMOUTSIDE, 1);
+	    	You("learn how to perform glowhorn!");
+	}
+	if (skill == P_UNICORN_HORN && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_STAT_RESIST)) {
+	    	learntech(T_STAT_RESIST, FROMOUTSIDE, 1);
+	    	You("learn how to perform stat resist!");
+	}
+	if (skill == P_CHAOS_SPELL && P_SKILL(skill) == P_MASTER && !tech_known(T_INTRINSIC_ROULETTE)) {
+	    	learntech(T_INTRINSIC_ROULETTE, FROMOUTSIDE, 1);
+	    	You("learn how to perform intrinsic roulette!");
+	}
+	if (skill == P_ELEMENTAL_SPELL && P_SKILL(skill) == P_MASTER && !tech_known(T_SPECTRAL_SWORD)) {
+	    	learntech(T_SPECTRAL_SWORD, FROMOUTSIDE, 1);
+	    	You("learn how to perform spectral sword!");
+	}
+	if (skill == P_OCCULT_SPELL && P_SKILL(skill) == P_MASTER && !tech_known(T_REVERSE_IDENTIFY)) {
+	    	learntech(T_REVERSE_IDENTIFY, FROMOUTSIDE, 1);
+	    	You("learn how to perform reverse identify!");
+	}
+	if (skill == P_SEARCHING && P_SKILL(skill) == P_MASTER && !tech_known(T_DETECT_TRAPS)) {
+	    	learntech(T_DETECT_TRAPS, FROMOUTSIDE, 1);
+	    	You("learn how to perform detect traps!");
+	}
+	if (skill == P_PETKEEPING && P_SKILL(skill) == P_SKILLED && !tech_known(T_DIRECTIVE)) {
+	    	learntech(T_DIRECTIVE, FROMOUTSIDE, 1);
+	    	You("learn how to perform directive!");
+	}
+	if (skill == P_TWO_WEAPON_COMBAT && P_SKILL(skill) == P_EXPERT && !tech_known(T_SWAP_WEAPON)) {
+	    	learntech(T_SWAP_WEAPON, FROMOUTSIDE, 1);
+	    	You("learn how to perform swap weapon!");
+	}
+	if (skill == P_IMPLANTS && P_SKILL(skill) == P_MASTER && !tech_known(T_REMOVE_IMPLANT)) {
+	    	learntech(T_REMOVE_IMPLANT, FROMOUTSIDE, 1);
+	    	You("learn how to perform remove implant!");
+	}
+	if (skill == P_IMPLANTS && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_REROLL_IMPLANT)) {
+	    	learntech(T_REROLL_IMPLANT, FROMOUTSIDE, 1);
+	    	You("learn how to perform reroll implant!");
+	}
+	if (skill == P_TECHNIQUES && P_SKILL(skill) == P_MASTER && !tech_known(T_TIME_STOP)) {
+	    	learntech(T_TIME_STOP, FROMOUTSIDE, 1);
+	    	You("learn how to perform time stop!");
+	}
+	if (skill == P_LANCE && P_SKILL(skill) == P_MASTER && !tech_known(T_MILDEN_CURSE)) {
+	    	learntech(T_MILDEN_CURSE, FROMOUTSIDE, 1);
+	    	You("learn how to perform milden curse!");
+	}
+	if (skill == P_POLEARMS && P_SKILL(skill) == P_MASTER && !tech_known(T_FORCE_FIELD)) {
+	    	learntech(T_FORCE_FIELD, FROMOUTSIDE, 1);
+	    	You("learn how to perform force field!");
+	}
+	if (skill == P_POLEARMS && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_POINTINESS)) {
+	    	learntech(T_POINTINESS, FROMOUTSIDE, 1);
+	    	You("learn how to perform pointiness!");
+	}
+	if (skill == P_PADDLE && P_SKILL(skill) == P_MASTER && !tech_known(T_BUG_SPRAY)) {
+	    	learntech(T_BUG_SPRAY, FROMOUTSIDE, 1);
+	    	You("learn how to perform bug spray!");
+	}
+	if (skill == P_QUARTERSTAFF && P_SKILL(skill) == P_MASTER && !tech_known(T_WHIRLSTAFF)) {
+	    	learntech(T_WHIRLSTAFF, FROMOUTSIDE, 1);
+	    	You("learn how to perform whirlstaff!");
+	}
+	if (skill == P_CROSSBOW && P_SKILL(skill) == P_MASTER && !tech_known(T_DELIBERATE_CURSE)) {
+	    	learntech(T_DELIBERATE_CURSE, FROMOUTSIDE, 1);
+	    	You("learn how to perform deliberate curse!");
+	}
+	if (skill == P_RIDING && P_SKILL(skill) == P_MASTER && !tech_known(T_ACQUIRE_STEED)) {
+	    	learntech(T_ACQUIRE_STEED, FROMOUTSIDE, 1);
+	    	You("learn how to perform acquire steed!");
+	}
+	if (skill == P_RIDING && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_SADDLING)) {
+	    	learntech(T_SADDLING, FROMOUTSIDE, 1);
+	    	You("learn how to perform saddling!");
+	}
+	if (skill == P_HIGH_HEELS && P_SKILL(skill) == P_EXPERT && !tech_known(T_SHOPPING_QUEEN)) {
+	    	learntech(T_SHOPPING_QUEEN, FROMOUTSIDE, 1);
+	    	You("learn how to perform shopping queen!");
+	}
+	if (skill == P_HIGH_HEELS && P_SKILL(skill) == P_MASTER && !tech_known(T_BEAUTY_CHARM)) {
+	    	learntech(T_BEAUTY_CHARM, FROMOUTSIDE, 1);
+	    	You("learn how to perform beauty charm!");
+	}
+	if (skill == P_HIGH_HEELS && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_ASIAN_KICK)) {
+	    	learntech(T_ASIAN_KICK, FROMOUTSIDE, 1);
+	    	You("learn how to perform asian kick!");
+	}
+	if (skill == P_HIGH_HEELS && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_LEGSCRATCH_ATTACK)) {
+	    	learntech(T_LEGSCRATCH_ATTACK, FROMOUTSIDE, 1);
+	    	You("learn how to perform legscratch attack!");
+	}
+	if (skill == P_HIGH_HEELS && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_GROUND_STOMP)) {
+	    	learntech(T_GROUND_STOMP, FROMOUTSIDE, 1);
+	    	You("learn how to perform ground stomp!");
+	}
+	if (skill == P_HIGH_HEELS && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_ATHLETIC_COMBAT)) {
+	    	learntech(T_ATHLETIC_COMBAT, FROMOUTSIDE, 1);
+	    	You("learn how to perform athletic combat!");
+	}
+	if (skill == P_SPIRITUALITY && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_PRAYING_SUCCESS)) {
+	    	learntech(T_PRAYING_SUCCESS, FROMOUTSIDE, 1);
+	    	You("learn how to perform praying success!");
+	}
+	if (skill == P_DEVICES && P_SKILL(skill) == P_MASTER && !tech_known(T_OVER_RAY)) {
+	    	learntech(T_OVER_RAY, FROMOUTSIDE, 1);
+	    	You("learn how to perform over-ray!");
+	}
+	if (skill == P_BOOMERANG && P_SKILL(skill) == P_EXPERT && !tech_known(T_ENCHANTERANG)) {
+	    	learntech(T_ENCHANTERANG, FROMOUTSIDE, 1);
+	    	You("learn how to perform enchanterang!");
+	}
+	if (skill == P_BOOMERANG && P_SKILL(skill) == P_MASTER && !tech_known(T_BATMAN_ARSENAL)) {
+	    	learntech(T_BATMAN_ARSENAL, FROMOUTSIDE, 1);
+	    	You("learn how to perform batman arsenal!");
+	}
+	if (skill == P_BOOMERANG && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_JOKERBANE)) {
+	    	learntech(T_JOKERBANE, FROMOUTSIDE, 1);
+	    	You("learn how to perform jokerbane!");
+	}
+	if (skill == P_WHIP && P_SKILL(skill) == P_EXPERT && !tech_known(T_CALL_THE_POLICE)) {
+	    	learntech(T_CALL_THE_POLICE, FROMOUTSIDE, 1);
+	    	You("learn how to perform call the police!");
+	}
+	if (skill == P_WHIP && P_SKILL(skill) == P_MASTER && !tech_known(T_DOMINATE)) {
+	    	learntech(T_DOMINATE, FROMOUTSIDE, 1);
+	    	You("learn how to perform dominate!");
+	}
+	if (skill == P_WHIP && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_INCARNATION)) {
+	    	learntech(T_INCARNATION, FROMOUTSIDE, 1);
+	    	You("learn how to perform incarnation!");
+	}
+	if (skill == P_MARTIAL_ARTS && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_COMBO_STRIKE)) {
+	    	learntech(T_COMBO_STRIKE, FROMOUTSIDE, 1);
+	    	You("learn how to perform combo strike!");
+	}
+	if (skill == P_POLYMORPHING && P_SKILL(skill) == P_MASTER && !tech_known(T_FUNGOISM)) {
+	    	learntech(T_FUNGOISM, FROMOUTSIDE, 1);
+	    	You("learn how to perform fungoism!");
+	}
+	if (skill == P_POLYMORPHING && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_BECOME_UNDEAD)) {
+	    	learntech(T_BECOME_UNDEAD, FROMOUTSIDE, 1);
+	    	You("learn how to perform become undead!");
+	}
+	if (skill == P_BARE_HANDED_COMBAT && P_SKILL(skill) == P_MASTER && !tech_known(T_JIU_JITSU)) {
+	    	learntech(T_JIU_JITSU, FROMOUTSIDE, 1);
+	    	You("learn how to perform jiu-jitsu!");
+	}
+	if (skill == P_SHURIKEN && P_SKILL(skill) == P_MASTER && !tech_known(T_BLADE_ANGER)) {
+	    	learntech(T_BLADE_ANGER, FROMOUTSIDE, 1);
+	    	You("learn how to perform blade anger!");
+	}
+	if (skill == P_PETKEEPING && P_SKILL(skill) == P_EXPERT && !tech_known(T_RE_TAMING)) {
+	    	learntech(T_RE_TAMING, FROMOUTSIDE, 1);
+	    	You("learn how to perform re-taming!");
+	}
+
 	if (Role_if(PM_BINDER)) {
 
 		if (P_SKILL(skill) == P_SKILLED) switch (skill) {
@@ -2647,6 +2812,12 @@ int skill;
 		break;
 		case P_MISSILE_WEAPONS:
 			    HCont_resist |= FROMOUTSIDE; pline("Got contamination resistance!"); break;
+		break;
+		case P_IMPLANTS:
+			    HFull_nutrient |= FROMOUTSIDE; pline("Got full nutrients!"); break;
+		break;
+		case P_TECHNIQUES:
+			    HTechnicality |= FROMOUTSIDE; pline("Got technicality!"); break;
 		break;
 
 		default: break;
@@ -2933,6 +3104,16 @@ int skill;
 		case P_MISSILE_WEAPONS:
 				if (!tech_known(T_DECONTAMINATE)) {    	learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
 			    	You("learn how to perform decontaminate!");
+				}
+		break;
+		case P_IMPLANTS:
+				if (!tech_known(T_WONDERSPELL)) {    	learntech(T_WONDERSPELL, FROMOUTSIDE, 1);
+			    	You("learn how to perform wonderspell!");
+				}
+		break;
+		case P_TECHNIQUES:
+				if (!tech_known(T_RESET_TECHNIQUE)) {    	learntech(T_RESET_TECHNIQUE, FROMOUTSIDE, 1);
+			    	You("learn how to perform reset technique!");
 				}
 		break;
 
@@ -3487,6 +3668,9 @@ struct obj *weapon;
 	if (!(PlayerCannotUseSkills)) bonus = P_SKILL(type);
 	bonus = max(bonus,P_UNSKILLED) - 1;	/* unskilled => 0 */
 	bonus = ((bonus + 1) * (martial_bonus() ? 3 : 1)) / 2;
+
+	/* CAVEAT: martial arts seems to use its own martial_dmg() function in uhitm.c and does not run this code!!!
+	 * and speaking of which, bare-handed combat doesn't seem to do so either... */
 
 	if (!(PlayerCannotUseSkills) && type == P_MARTIAL_ARTS) {
 
@@ -4239,6 +4423,8 @@ struct obj *obj;
 	if (obj->otyp == SCR_CONSECRATION) skill = P_SPIRITUALITY;
 	if (obj->otyp == SCR_CREATE_ALTAR) skill = P_SPIRITUALITY;
 
+	if (obj->oclass == IMPLANT_CLASS) skill = P_IMPLANTS;
+
 	if (obj->otyp == WEDGE_SANDALS || obj->otyp == FEMININE_PUMPS || obj->otyp == LEATHER_PEEP_TOES || obj->otyp == HIPPIE_HEELS || obj->otyp == PET_STOMPING_PLATFORM_BOOTS || obj->otyp == SENTIENT_HIGH_HEELED_SHOES || obj->otyp == ATSUZOKO_BOOTS || obj->otyp == COMBAT_STILETTOS || obj->otyp == HIGH_STILETTOS || obj->otyp == UNFAIR_STILETTOS || obj->otyp == SKY_HIGH_HEELS) skill = P_HIGH_HEELS;
 
     	/* Negative skills == not a skill */
@@ -4260,6 +4446,7 @@ const struct def_skill *class_skill;
 	struct obj *obj;
 	int skmax, skill;
 	int i;
+	int implantbonus;
 
 	/* initialize skill array; by default, everything is restricted */
 	for (skill = 0; skill < P_NUM_SKILLS; skill++) {
@@ -4425,6 +4612,193 @@ const struct def_skill *class_skill;
 		unrestrict_weapon_skill(skilltochange);
 		P_MAX_SKILL(skilltochange) = P_EXPERT;
 
+	}
+
+	/* implant skill is rarely granted by the role, but many handicapped races get bonuses to it --Amy */
+	implantbonus = 0;
+	switch (Race_switch) {
+		default: break;
+		case PM_AK_THIEF_IS_DEAD_: implantbonus = 3; break;
+		case PM_BATMAN: implantbonus = 1; break;
+		case PM_BURNINATOR: implantbonus = 2; break;
+		case PM_CHIROPTERAN: implantbonus = 1; break;
+		case PM_CLOCKWORK_AUTOMATON: implantbonus = 2; break;
+		case PM_ARMED_COCKATRICE: implantbonus = 3; break;
+		case PM_CORTEX: implantbonus = 2; break;
+		case PM_DEATHMOLD: implantbonus = 4; break;
+		case PM_DESTABILIZER: implantbonus = 3; break;
+		case PM_WEAPONIZED_DINOSAUR: implantbonus = 1; break;
+		case PM_HUMANLIKE_DRAGON: implantbonus = 2; break;
+		case PM_FAWN: implantbonus = 1; break;
+		case PM_FELID: implantbonus = 1; break;
+		case PM_WEAPON_CUBE: implantbonus = 5; break;
+		case PM_PLAYER_SLIME: implantbonus = 6; break;
+		case PM_WEAPON_BUG: implantbonus = 3; break;
+		case PM_INSECTOID: implantbonus = 3; break;
+		case PM_JELLY: implantbonus = 5; break;
+		case PM_LEVITATOR: implantbonus = 3; break;
+		case PM_MISSINGNO: implantbonus = 6; break;
+		case PM_MOULD: implantbonus = 5; break;
+		case PM_OCTOPODE: implantbonus = 6; break;
+		case PM_POLYINITOR: implantbonus = 5; break;
+		case PM_SATRE: implantbonus = 5; break;
+		case PM_SHOE: implantbonus = 4; break;
+		case PM_SNAKEMAN: implantbonus = 1; break;
+		case PM_TRANSFORMER: implantbonus = 2; break;
+		case PM_TURTLE: implantbonus = 2; break;
+		case PM_UNALIGNMENT_THING: implantbonus = 5; break;
+		case PM_UNGENOMOLD: implantbonus = 3; break;
+		case PM_PLAYER_UNICORN: implantbonus = 1; break;
+		case PM_VORTEX: implantbonus = 5; break;
+		case PM_WISP: implantbonus = 4; break;
+		case PM_WORM_THAT_WALKS: implantbonus = 4; break;
+		case PM_HUMAN_WRAITH: implantbonus = 3; break;
+		case PM_WEAPON_XORN: implantbonus = 2; break;
+	}
+
+	if (implantbonus == 1) {
+
+		if (P_RESTRICTED(P_IMPLANTS)) {
+			P_SKILL(P_IMPLANTS) = P_UNSKILLED;
+			P_ADVANCE(P_IMPLANTS) = 0;
+			P_MAX_SKILL(P_IMPLANTS) = P_BASIC;
+		} else switch (P_MAX_SKILL(P_IMPLANTS)) {
+			case P_BASIC:
+				P_MAX_SKILL(P_IMPLANTS) = P_SKILLED;
+				break;
+			case P_SKILLED:
+				P_MAX_SKILL(P_IMPLANTS) = P_EXPERT;
+				break;
+			case P_EXPERT:
+				P_MAX_SKILL(P_IMPLANTS) = P_MASTER;
+				P_SKILL(P_IMPLANTS) = P_BASIC;
+				P_ADVANCE(P_IMPLANTS) = 20;
+				break;
+			case P_MASTER:
+				P_MAX_SKILL(P_IMPLANTS) = P_GRAND_MASTER;
+				P_SKILL(P_IMPLANTS) = P_BASIC;
+				P_ADVANCE(P_IMPLANTS) = 20;
+				break;
+			case P_GRAND_MASTER:
+				P_MAX_SKILL(P_IMPLANTS) = P_SUPREME_MASTER;
+				P_SKILL(P_IMPLANTS) = P_SKILLED;
+				P_ADVANCE(P_IMPLANTS) = 160;
+				break;
+		}
+	}
+
+	if (implantbonus == 2) {
+
+		if (P_RESTRICTED(P_IMPLANTS)) {
+			P_SKILL(P_IMPLANTS) = P_UNSKILLED;
+			P_ADVANCE(P_IMPLANTS) = 0;
+			P_MAX_SKILL(P_IMPLANTS) = P_SKILLED;
+		} else switch (P_MAX_SKILL(P_IMPLANTS)) {
+			case P_BASIC:
+				P_MAX_SKILL(P_IMPLANTS) = P_EXPERT;
+				break;
+			case P_SKILLED:
+			case P_EXPERT:
+				P_MAX_SKILL(P_IMPLANTS) = P_MASTER;
+				P_SKILL(P_IMPLANTS) = P_BASIC;
+				P_ADVANCE(P_IMPLANTS) = 20;
+				break;
+			case P_MASTER:
+				P_MAX_SKILL(P_IMPLANTS) = P_GRAND_MASTER;
+				P_SKILL(P_IMPLANTS) = P_BASIC;
+				P_ADVANCE(P_IMPLANTS) = 20;
+				break;
+			case P_GRAND_MASTER:
+				P_MAX_SKILL(P_IMPLANTS) = P_SUPREME_MASTER;
+				P_SKILL(P_IMPLANTS) = P_SKILLED;
+				P_ADVANCE(P_IMPLANTS) = 160;
+				break;
+		}
+	}
+
+	if (implantbonus == 3) {
+
+		if (P_RESTRICTED(P_IMPLANTS)) {
+			P_SKILL(P_IMPLANTS) = P_UNSKILLED;
+			P_ADVANCE(P_IMPLANTS) = 0;
+			P_MAX_SKILL(P_IMPLANTS) = P_EXPERT;
+		} else switch (P_MAX_SKILL(P_IMPLANTS)) {
+			case P_BASIC:
+				P_MAX_SKILL(P_IMPLANTS) = P_EXPERT;
+				break;
+			case P_SKILLED:
+				P_MAX_SKILL(P_IMPLANTS) = P_MASTER;
+				P_SKILL(P_IMPLANTS) = P_BASIC;
+				P_ADVANCE(P_IMPLANTS) = 20;
+				break;
+			case P_EXPERT:
+				P_MAX_SKILL(P_IMPLANTS) = P_GRAND_MASTER;
+				P_SKILL(P_IMPLANTS) = P_BASIC;
+				P_ADVANCE(P_IMPLANTS) = 20;
+				break;
+			case P_MASTER:
+			case P_GRAND_MASTER:
+				P_MAX_SKILL(P_IMPLANTS) = P_SUPREME_MASTER;
+				P_SKILL(P_IMPLANTS) = P_SKILLED;
+				P_ADVANCE(P_IMPLANTS) = 160;
+				break;
+		}
+	}
+
+	if (implantbonus == 4) {
+
+		if (P_RESTRICTED(P_IMPLANTS)) {
+			P_SKILL(P_IMPLANTS) = P_BASIC;
+			P_ADVANCE(P_IMPLANTS) = 20;
+			P_MAX_SKILL(P_IMPLANTS) = P_MASTER;
+		} else switch (P_MAX_SKILL(P_IMPLANTS)) {
+			case P_BASIC:
+				P_MAX_SKILL(P_IMPLANTS) = P_MASTER;
+				P_SKILL(P_IMPLANTS) = P_BASIC;
+				P_ADVANCE(P_IMPLANTS) = 20;
+				break;
+			case P_SKILLED:
+			case P_EXPERT:
+				P_MAX_SKILL(P_IMPLANTS) = P_GRAND_MASTER;
+				P_SKILL(P_IMPLANTS) = P_BASIC;
+				P_ADVANCE(P_IMPLANTS) = 20;
+				break;
+			case P_MASTER:
+			case P_GRAND_MASTER:
+				P_MAX_SKILL(P_IMPLANTS) = P_SUPREME_MASTER;
+				P_SKILL(P_IMPLANTS) = P_SKILLED;
+				P_ADVANCE(P_IMPLANTS) = 160;
+				break;
+		}
+	}
+
+	if (implantbonus == 5) {
+
+		if (P_RESTRICTED(P_IMPLANTS)) {
+			P_SKILL(P_IMPLANTS) = P_BASIC;
+			P_ADVANCE(P_IMPLANTS) = 20;
+			P_MAX_SKILL(P_IMPLANTS) = P_GRAND_MASTER;
+		} else switch (P_MAX_SKILL(P_IMPLANTS)) {
+			case P_BASIC:
+			case P_SKILLED:
+				P_MAX_SKILL(P_IMPLANTS) = P_GRAND_MASTER;
+				P_SKILL(P_IMPLANTS) = P_BASIC;
+				P_ADVANCE(P_IMPLANTS) = 20;
+				break;
+			case P_EXPERT:
+			case P_MASTER:
+			case P_GRAND_MASTER:
+				P_MAX_SKILL(P_IMPLANTS) = P_SUPREME_MASTER;
+				P_SKILL(P_IMPLANTS) = P_SKILLED;
+				P_ADVANCE(P_IMPLANTS) = 160;
+				break;
+		}
+	}
+
+	if (implantbonus == 6) {
+		P_MAX_SKILL(P_IMPLANTS) = P_SUPREME_MASTER;
+		P_SKILL(P_IMPLANTS) = P_SKILLED;
+		P_ADVANCE(P_IMPLANTS) = 160;
 	}
 
 	/* Batman obviously has legendary boomerang abilities --Amy */
@@ -4605,6 +4979,23 @@ const struct def_skill *class_skill;
 			P_SKILL(P_MISSILE_WEAPONS) = P_BASIC;
 			if (P_MAX_SKILL(P_MISSILE_WEAPONS) == P_EXPERT) P_MAX_SKILL(P_MISSILE_WEAPONS) = P_GRAND_MASTER;
 			else P_MAX_SKILL(P_MISSILE_WEAPONS) = P_SUPREME_MASTER;
+		}
+		if (P_RESTRICTED(P_TECHNIQUES)) {
+			P_SKILL(P_TECHNIQUES) = P_BASIC;
+			P_ADVANCE(P_TECHNIQUES) = 20;
+			P_MAX_SKILL(P_TECHNIQUES) = P_SKILLED;
+		} else {
+			P_SKILL(P_TECHNIQUES) = P_BASIC;
+			if (P_MAX_SKILL(P_TECHNIQUES) == P_EXPERT) P_MAX_SKILL(P_TECHNIQUES) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_TECHNIQUES) = P_SUPREME_MASTER;
+		}
+		if (P_RESTRICTED(P_IMPLANTS)) {
+			P_SKILL(P_IMPLANTS) = P_BASIC;
+			P_ADVANCE(P_IMPLANTS) = 20;
+			P_MAX_SKILL(P_IMPLANTS) = P_EXPERT;
+		} else {
+			P_SKILL(P_IMPLANTS) = P_SKILLED;
+			P_MAX_SKILL(P_IMPLANTS) = P_SUPREME_MASTER;
 		}
 		if (P_RESTRICTED(P_DEVICES)) {
 			P_SKILL(P_DEVICES) = P_BASIC;
@@ -4845,6 +5236,126 @@ const struct def_skill *class_skill;
 		}
 	}
 
+	if (P_SKILL(P_TRIDENT) >= P_MASTER && !tech_known(T_SILENT_OCEAN)) {
+	    	learntech(T_SILENT_OCEAN, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_UNICORN_HORN) >= P_EXPERT && !tech_known(T_GLOWHORN)) {
+	    	learntech(T_GLOWHORN, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_UNICORN_HORN) >= P_GRAND_MASTER && !tech_known(T_STAT_RESIST)) {
+	    	learntech(T_STAT_RESIST, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CHAOS_SPELL) >= P_MASTER && !tech_known(T_INTRINSIC_ROULETTE)) {
+	    	learntech(T_INTRINSIC_ROULETTE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_ELEMENTAL_SPELL) >= P_MASTER && !tech_known(T_SPECTRAL_SWORD)) {
+	    	learntech(T_SPECTRAL_SWORD, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_OCCULT_SPELL) >= P_MASTER && !tech_known(T_REVERSE_IDENTIFY)) {
+	    	learntech(T_REVERSE_IDENTIFY, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SEARCHING) >= P_MASTER && !tech_known(T_DETECT_TRAPS)) {
+	    	learntech(T_DETECT_TRAPS, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_PETKEEPING) >= P_SKILLED && !tech_known(T_DIRECTIVE)) {
+	    	learntech(T_DIRECTIVE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_TWO_WEAPON_COMBAT) >= P_EXPERT && !tech_known(T_SWAP_WEAPON)) {
+	    	learntech(T_SWAP_WEAPON, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_IMPLANTS) >= P_MASTER && !tech_known(T_REMOVE_IMPLANT)) {
+	    	learntech(T_REMOVE_IMPLANT, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER && !tech_known(T_REROLL_IMPLANT)) {
+	    	learntech(T_REROLL_IMPLANT, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_TECHNIQUES) >= P_MASTER && !tech_known(T_TIME_STOP)) {
+	    	learntech(T_TIME_STOP, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_LANCE) >= P_MASTER && !tech_known(T_MILDEN_CURSE)) {
+	    	learntech(T_MILDEN_CURSE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_POLEARMS) >= P_MASTER && !tech_known(T_FORCE_FIELD)) {
+	    	learntech(T_FORCE_FIELD, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_POLEARMS) >= P_GRAND_MASTER && !tech_known(T_POINTINESS)) {
+	    	learntech(T_POINTINESS, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_PADDLE) >= P_MASTER && !tech_known(T_BUG_SPRAY)) {
+	    	learntech(T_BUG_SPRAY, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_QUARTERSTAFF) >= P_MASTER && !tech_known(T_WHIRLSTAFF)) {
+	    	learntech(T_WHIRLSTAFF, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CROSSBOW) >= P_MASTER && !tech_known(T_DELIBERATE_CURSE)) {
+	    	learntech(T_DELIBERATE_CURSE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_RIDING) >= P_MASTER && !tech_known(T_ACQUIRE_STEED)) {
+	    	learntech(T_ACQUIRE_STEED, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_RIDING) >= P_GRAND_MASTER && !tech_known(T_SADDLING)) {
+	    	learntech(T_SADDLING, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_HIGH_HEELS) >= P_EXPERT && !tech_known(T_SHOPPING_QUEEN)) {
+	    	learntech(T_SHOPPING_QUEEN, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_HIGH_HEELS) >= P_MASTER && !tech_known(T_BEAUTY_CHARM)) {
+	    	learntech(T_BEAUTY_CHARM, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER && !tech_known(T_ASIAN_KICK)) {
+	    	learntech(T_ASIAN_KICK, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER && !tech_known(T_LEGSCRATCH_ATTACK)) {
+	    	learntech(T_LEGSCRATCH_ATTACK, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER && !tech_known(T_GROUND_STOMP)) {
+	    	learntech(T_GROUND_STOMP, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER && !tech_known(T_ATHLETIC_COMBAT)) {
+	    	learntech(T_ATHLETIC_COMBAT, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SPIRITUALITY) >= P_GRAND_MASTER && !tech_known(T_PRAYING_SUCCESS)) {
+	    	learntech(T_PRAYING_SUCCESS, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_DEVICES) >= P_MASTER && !tech_known(T_OVER_RAY)) {
+	    	learntech(T_OVER_RAY, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_BOOMERANG) >= P_EXPERT && !tech_known(T_ENCHANTERANG)) {
+	    	learntech(T_ENCHANTERANG, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_BOOMERANG) >= P_MASTER && !tech_known(T_BATMAN_ARSENAL)) {
+	    	learntech(T_BATMAN_ARSENAL, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_BOOMERANG) >= P_GRAND_MASTER && !tech_known(T_JOKERBANE)) {
+	    	learntech(T_JOKERBANE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_WHIP) >= P_EXPERT && !tech_known(T_CALL_THE_POLICE)) {
+	    	learntech(T_CALL_THE_POLICE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_WHIP) >= P_MASTER && !tech_known(T_DOMINATE)) {
+	    	learntech(T_DOMINATE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_WHIP) >= P_GRAND_MASTER && !tech_known(T_INCARNATION)) {
+	    	learntech(T_INCARNATION, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_MARTIAL_ARTS) >= P_GRAND_MASTER && !tech_known(T_COMBO_STRIKE)) {
+	    	learntech(T_COMBO_STRIKE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_POLYMORPHING) >= P_MASTER && !tech_known(T_FUNGOISM)) {
+	    	learntech(T_FUNGOISM, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_POLYMORPHING) >= P_GRAND_MASTER && !tech_known(T_BECOME_UNDEAD)) {
+	    	learntech(T_BECOME_UNDEAD, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_BARE_HANDED_COMBAT) >= P_MASTER && !tech_known(T_JIU_JITSU)) {
+	    	learntech(T_JIU_JITSU, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SHURIKEN) >= P_MASTER && !tech_known(T_BLADE_ANGER)) {
+	    	learntech(T_BLADE_ANGER, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_PETKEEPING) >= P_EXPERT && !tech_known(T_RE_TAMING)) {
+	    	learntech(T_RE_TAMING, FROMOUTSIDE, 1);
+	}
 }
 
 void

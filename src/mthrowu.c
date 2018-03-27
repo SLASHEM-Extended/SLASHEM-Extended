@@ -300,6 +300,12 @@ const char *name;	/* if null, then format `obj' */
 		You("dodge %s with %s.", onm, yname(uwep));
 		return(0);
 
+	} else if (tech_inuse(T_FORCE_FIELD) && rn2(4)) {
+
+			if(Blind || !flags.verbose) pline("Your force field causes a projectile to miss you.");
+			else pline("Your force field causes %s to miss you.", onm);
+			return(0);
+
 	} else if (!rn2(extrachance) && rnd(30) < (2 + (u.ulevel / 2) ) ) {
 
 			/* depending on your character level, you may be able to dodge --Amy */
@@ -804,7 +810,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 		    if (ohitmon(mon, mtmp, singleobj, range, TRUE))
 			break;
 		} else if (bhitpos.x == u.ux && bhitpos.y == u.uy) {
-		    if (multi) nomul(0, 0);
+		    if (multi) nomul(0, 0, FALSE);
 
 		    if (singleobj->oclass == GEM_CLASS &&
 			    singleobj->otyp <= LAST_GEM+9 /* 9 glass colors */
@@ -1174,7 +1180,7 @@ struct monst *mtmp;
 	m_shot.o = STRANGE_OBJECT;
 	m_shot.s = FALSE;
 
-	nomul(0, 0);
+	nomul(0, 0, FALSE);
 }
 
 #endif /* OVL1 */
@@ -1226,7 +1232,7 @@ register struct attack *mattk;
 		    else if (flags.soundok && !issoviet) You_hear("a spitting sound.");
 		    m_throw(mtmp, mtmp->mx, mtmp->my, sgn(tbx), sgn(tby),
 			distmin(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy), otmp);
-		    nomul(0, 0);
+		    nomul(0, 0, FALSE);
 		    return 0;
 		}
 	}
@@ -1312,7 +1318,7 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		    buzz((int) (-20 - (typ-1)), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ),
 			 mtmp->mx, mtmp->my, sgn(tbx), sgn(tby));
-		    nomul(0, 0);
+		    nomul(0, 0, FALSE);
 		    /* breath runs out sometimes. Also, give monster some
 		     * cunning; don't breath if the player fell asleep.
 		     */
@@ -1347,7 +1353,7 @@ xchar ax, ay;
 		zap_over_floor(mtmp->mx, mtmp->my, (int) (-20 - (typ-1)), NULL);
 		buzz((int) (-20 - (typ-1)), (rn2(2) ? (int)mattk->damn : (int)mattk->damd ), 
 				mtmp->mx, mtmp->my, ax, ay);
-		nomul(0, 0);
+		nomul(0, 0, FALSE);
 		/* breath runs out sometimes. */
 		if(!rn2(3))
 			mtmp->mspec_used = 10+rn2(20);

@@ -273,7 +273,7 @@ boolean picked_some;
 
 	/* If there are objects here, take a look. */
 	if (ct) {
-	    if (flags.run) nomul(0, 0);
+	    if (flags.run) nomul(0, 0, FALSE);
 	    flush_screen(1);
 	    (void) look_here(ct, picked_some);
 	} else {
@@ -371,7 +371,7 @@ is_worn_by_type(otmp)
 register struct obj *otmp;
 {
 	return((boolean)(!!(otmp->owornmask &
-			(W_ARMOR | W_RING | W_AMUL | W_TOOL | W_WEP | W_SWAPWEP | W_QUIVER)))
+			(W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL | W_WEP | W_SWAPWEP | W_QUIVER)))
 	        && (index(valid_menu_classes, otmp->oclass) != (char *)0));
 }
 
@@ -458,7 +458,7 @@ int what;		/* should be a long */
 		}
 
 		/* if there's anything here, stop running */
-		if (OBJ_AT(u.ux,u.uy) && flags.run && flags.run != 8 && !flags.nopick) nomul(0, 0);
+		if (OBJ_AT(u.ux,u.uy) && flags.run && flags.run != 8 && !flags.nopick) nomul(0, 0, FALSE);
 	}
 
 	add_valid_menu_class(0);	/* reset */
@@ -869,7 +869,7 @@ int how;			/* type of query */
 	if (ccount == 1 && !do_unpaid && num_buc_types <= 1 && !(qflags & BILLED_TYPES)) {
 	    for (curr = olist; curr; curr = FOLLOW(curr, qflags)) {
 		if ((qflags & WORN_TYPES) &&
-		    !(curr->owornmask & (W_ARMOR|W_RING|W_AMUL|W_TOOL|W_WEP|W_SWAPWEP|W_QUIVER)))
+		    !(curr->owornmask & (W_ARMOR|W_RING|W_AMUL|W_IMPLANT|W_TOOL|W_WEP|W_SWAPWEP|W_QUIVER)))
 		    continue;
 		break;
 	    }
@@ -903,7 +903,7 @@ int how;			/* type of query */
 	    for (curr = olist; curr; curr = FOLLOW(curr, qflags)) {
 		if (curr->oclass == *pack) {
 		   if ((qflags & WORN_TYPES) &&
-		   		!(curr->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL |
+		   		!(curr->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL |
 		    	W_WEP | W_SWAPWEP | W_QUIVER)))
 			 continue;
 		   if (!collected_type_name) {
@@ -1002,7 +1002,7 @@ int qflags;
 	    for (curr = olist; curr; curr = FOLLOW(curr, qflags)) {
 		if (curr->oclass == *pack) {
 		   if ((qflags & WORN_TYPES) &&
-		    	!(curr->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL |
+		    	!(curr->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL |
 		    	W_WEP | W_SWAPWEP | W_QUIVER)))
 			 continue;
 		   if (!counted_category) {
@@ -1348,7 +1348,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 		    obj->quan -= count;
 	    }
 	    flags.botl = 1;
-	    if (flags.run) nomul(0, 0);
+	    if (flags.run) nomul(0, 0, FALSE);
 	    return 1;
 #endif
 	} else if (obj->otyp == CORPSE) {
@@ -1588,7 +1588,7 @@ int x, y;
 		pline("Without limbs, you cannot loot anything.");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
-	} else if (!freehand()) {
+	} else if (!freehandX()) {
 		pline("Without a free %s, you cannot loot anything.",
 			body_part(HAND));
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -2007,7 +2007,7 @@ boolean invobj;
 	} else if (obj == current_container) {
 		pline(Hallucination ? "You try folding it with some ikebana technique but to no avail." : "That would be an interesting topological exercise.");
 		return 0;
-	} else if (obj->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL)) {
+	} else if (obj->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL)) {
 		Norep("You cannot %s %s you are wearing.",
 			Icebox ? "refrigerate" : "stash", something);
 		return 0;
@@ -2413,14 +2413,14 @@ int held;
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
 				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				flags.soundok = 0;
-				nomul(-rnd(10), "wrenched in a container");
+				nomul(-rnd(10), "wrenched in a container", TRUE);
 				nomovemsg = "You are conscious again.";
 				afternmv = Hear_again;
 		    return 1;}
 		}
 		else {return(0);}
 
-	} else if (!freehand()) {
+	} else if (!freehandX()) {
 		You("have no free %s.", body_part(HAND));
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
@@ -2434,7 +2434,7 @@ int held;
 	    (void) chest_trap(obj, HAND, FALSE);
 	    /* even if the trap fails, you've used up this turn */
 	    if (multi >= 0) {	/* in case we didn't become paralyzed */
-		nomul(-1, "opening a trapped container");
+		nomul(-1, "opening a trapped container", TRUE);
 		nomovemsg = "";
 	    }
 	    return 1;

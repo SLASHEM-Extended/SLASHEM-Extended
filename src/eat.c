@@ -41,10 +41,12 @@
 #define PN_SPIRITUALITY		(-26)
 #define PN_PETKEEPING		(-27)
 #define PN_MISSILE_WEAPONS		(-28)
-#define PN_MARTIAL_ARTS		(-29)
-#define PN_RIDING		(-30)
-#define PN_TWO_WEAPONS		(-31)
-#define PN_LIGHTSABER		(-32)
+#define PN_TECHNIQUES		(-29)
+#define PN_IMPLANTS		(-30)
+#define PN_MARTIAL_ARTS		(-31)
+#define PN_RIDING		(-32)
+#define PN_TWO_WEAPONS		(-33)
+#define PN_LIGHTSABER		(-34)
 
 #ifndef OVLB
 
@@ -75,7 +77,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS, PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -111,6 +113,8 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "spirituality",
     "petkeeping",
     "missile weapons",
+    "techniques",
+    "implants",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -188,7 +192,7 @@ STATIC_OVL NEARDATA const char comestibles[] = { FOOD_CLASS, 0 };
 /* Gold must come first for getobj(). */
 STATIC_OVL NEARDATA const char allobj[] = { COIN_CLASS, ALLOW_FLOOROBJ,
 	WEAPON_CLASS, ARMOR_CLASS, POTION_CLASS, SCROLL_CLASS,
-	WAND_CLASS, RING_CLASS, AMULET_CLASS, FOOD_CLASS, TOOL_CLASS,
+	WAND_CLASS, RING_CLASS, AMULET_CLASS, IMPLANT_CLASS, FOOD_CLASS, TOOL_CLASS,
 	GEM_CLASS, ROCK_CLASS, BALL_CLASS, CHAIN_CLASS, SPBOOK_CLASS, 0 };
 
 STATIC_OVL boolean force_save_hs = FALSE;
@@ -510,7 +514,7 @@ register struct obj *food;
 			   surface(u.ux,u.uy);
 		pline_The("world spins and %s %s.", what, where);
 		flags.soundok = 0;
-		nomul(-rnd(10), "unconscious from breaking anorexia conduct");
+		nomul(-rnd(10), "unconscious from breaking anorexia conduct", TRUE);
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		return;
@@ -538,7 +542,7 @@ register struct obj *food;
 			nomovemsg = "You recover your composure.";
 			You(Hallucination ? "spew bits of puke everywhere." : "choke over it.");
 			morehungry(100);	/* remove a bit of nutrition so you don't choke again instantly --Amy */
-			nomul(-2, "vomiting");
+			nomul(-2, "vomiting", TRUE);
 			return;
 		}
 		You(Hallucination ? "vomit all over the place. Shit, now your clothes are a huge mess!" : "stuff yourself and then vomit voluminously.");
@@ -2956,7 +2960,7 @@ register int pm;
 	/* Dream eaters, on the other hand, are bad to eat. --Amy */
 		if (dmgtype(ptr, AD_DREA) && !multi) {
 		    pline("Suddenly you have a nightmare!");
-		    nomul(-5, "scared by a nightmare");
+		    nomul(-5, "scared by a nightmare", TRUE);
 		    nomovemsg = 0;
 		}
 
@@ -3130,7 +3134,7 @@ register int pm;
 				Hallucination ? "an orange" : "a pile of gold");
 	                    /* A pile of gold can't ride. */
 			    if (u.usteed) dismount_steed(DISMOUNT_FELL);
-			    nomul(-(rnd(60)), "pretending to be a pile of gold");
+			    nomul(-(rnd(60)), "pretending to be a pile of gold", TRUE);
 			    sprintf(buf, Hallucination ?
 				"You suddenly dread being peeled and mimic %s again!" :
 				"You now prefer mimicking %s again.",
@@ -3258,7 +3262,7 @@ gluttonous()
 			   surface(u.ux,u.uy);
 		pline_The("world spins and %s %s.", what, where);
 		flags.soundok = 0;
-		nomul(-rnd(10), "unconscious from forgetting your anorexia conduct");
+		nomul(-rnd(10), "unconscious from forgetting your anorexia conduct", TRUE);
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		return;
@@ -3348,7 +3352,7 @@ violated_vegetarian()
 			   surface(u.ux,u.uy);
 		pline_The("world spins and %s %s.", what, where);
 		flags.soundok = 0;
-		nomul(-rnd(10), "unconscious from eating meat");
+		nomul(-rnd(10), "unconscious from eating meat", TRUE);
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		return;
@@ -3733,7 +3737,7 @@ struct obj *obj;
 			   surface(u.ux,u.uy);
 		pline_The("world spins and %s %s.", what, where);
 		flags.soundok = 0;
-		nomul(-rnd(10), "unconscious from rotten food");
+		nomul(-rnd(10), "unconscious from rotten food", TRUE);
 		nomovemsg = "You are conscious again.";
 		afternmv = Hear_again;
 		return(1);
@@ -4116,7 +4120,7 @@ struct obj *otmp;
 				pline("Hmm. Nothing happens.");
 			} else {
 				You_feel("drowsy...");
-				nomul(-rn2(50), "sleeping from a pink pill");
+				nomul(-rn2(50), "sleeping from a pink pill", TRUE);
 				u.usleep = 1;
 				nomovemsg = "You wake up.";
 			}
@@ -4299,7 +4303,7 @@ accessory_has_effect(otmp)
 struct obj *otmp;
 {
 	pline("Magic spreads through your body as you digest the %s.",
-	    otmp->oclass == RING_CLASS ? "ring" : "amulet");
+	    otmp->oclass == RING_CLASS ? "ring" : otmp->oclass == IMPLANT_CLASS ? "implant" : "amulet");
 }
 
 STATIC_OVL void
@@ -4318,7 +4322,7 @@ struct obj *otmp;
 	    if (u.uhp <= 0) return; /* died from sink fall */
 	}
 	otmp->known = otmp->dknown = 1; /* by taste */
-	if ((!rn2(otmp->oclass == RING_CLASS ? 5 : 10)) || (Race_if(PM_OCTOPODE) && otmp->oclass == RING_CLASS) || objects[(otmp)->otyp].oc_material == VIVA) { /* lower chance, due to existence of sickness resistance etc --Amy */
+	if ((!rn2(otmp->oclass == RING_CLASS ? 5 : otmp->oclass == IMPLANT_CLASS ? 2 : 10)) || (Race_if(PM_OCTOPODE) && otmp->oclass == RING_CLASS) || objects[(otmp)->otyp].oc_material == VIVA) { /* lower chance, due to existence of sickness resistance etc --Amy */
 	  switch (otmp->otyp) {
 	    default:
 	        if (!objects[typ].oc_oprop) break; /* should never happen */
@@ -4550,7 +4554,7 @@ eatspecial() /* called after eating non-food */
 		otmp->quan++; /* dopotion() does a useup() */
 		(void)dopotion(otmp);
 	}
-	if (otmp->oclass == RING_CLASS || otmp->oclass == AMULET_CLASS)
+	if (otmp->oclass == RING_CLASS || otmp->oclass == AMULET_CLASS || otmp->oclass == IMPLANT_CLASS)
 		eataccessory(otmp);
 	else if (otmp->otyp == LEATHER_LEASH && otmp->leashmon)
 		o_unleash(otmp);
@@ -5125,9 +5129,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	if (!is_edible(otmp)) {
 	    You("cannot eat that!");
 	    return 0;
-	} else if ((otmp->owornmask & (W_ARMOR|W_TOOL|W_AMUL
-			|W_SADDLE
-			)) != 0) {
+	} else if ((otmp->owornmask & (W_ARMOR|W_TOOL|W_AMUL|W_IMPLANT|W_SADDLE)) != 0) {
 	    /* let them eat rings */
 	    You_cant("eat %s you're wearing.", something);
 	    return 0;
@@ -5306,7 +5308,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 
 	    if (material == INKA) {
 			pline("Urgh... your %s is turning as it's having difficulties digesting inka leather.", body_part(STOMACH));
-			nomul(-20, "trying to digest an inka object");
+			nomul(-20, "trying to digest an inka object", TRUE);
 			/* This ignores free action. --Amy */
 	    }
 
@@ -5521,31 +5523,31 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 		&& (carnivorous(youmonst.data) || herbivorous(youmonst.data) || metallivorous(youmonst.data) || lithivorous(youmonst.data))
         /* Convicts can last twice as long at hungry and below */
         && (!Role_if(PM_CONVICT) || (moves % 2) || (u.uhs < HUNGRY))
-		&& !Slow_digestion)
+		&& !Slow_digestion && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) )
 	    u.uhunger--;		/* ordinary food consumption */
 
 	/* cloak of slow digestion is not supposed to be cloak of no digestion --Amy */
-	if (uarmc && uarmc->otyp == CLOAK_OF_SLOW_DIGESTION && !rn2(10)) u.uhunger--;
+	if (uarmc && uarmc->otyp == CLOAK_OF_SLOW_DIGESTION && !rn2(10) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 
-	if (u.uprops[FAST_METABOLISM].extrinsic) u.uhunger--;
-	if (have_metabolicstone()) u.uhunger--;
+	if (u.uprops[FAST_METABOLISM].extrinsic && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+	if (have_metabolicstone() && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 	if (FastMetabolismEffect) {
 
 		int extrahungerpoints;
 
-		u.uhunger--;
+		if (!(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 
 		extrahungerpoints = FastMetabolismEffect;
 		if (extrahungerpoints >= 67108864) extrahungerpoints -= 67108864;
 		if (extrahungerpoints >= 33554432) extrahungerpoints -= 33554432;
 		if (extrahungerpoints >= 16777216) extrahungerpoints -= 16777216;
 		extrahungerpoints /= 5000;
-		if (extrahungerpoints > 0) u.uhunger -= extrahungerpoints;
+		if (extrahungerpoints > 0 && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= extrahungerpoints;
 	}
-	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") )) u.uhunger -= 2;
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "avenger cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mstitel' plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "qasoskor plash") ) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 2;
 
 	/* ancipital's slow digestion is not supposed to be no digestion --Amy */
-	if (Race_if(PM_ANCIPITAL) && !(moves % 20)) u.uhunger--;
+	if (Race_if(PM_ANCIPITAL) && !(moves % 20) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 
 	if (moves % 2) {	/* odd turns */
 	    /* Regeneration uses up food, unless due to an artifact */
@@ -5554,36 +5556,36 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 			u.uhunger--;*/
 
 		/* rewrite by Amy */
-		if (Regeneration) u.uhunger--;
-		if (Energy_regeneration) { u.uhunger--; u.uhunger--;}
+		if (Regeneration && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+		if (Energy_regeneration && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--;}
 
-	    if (near_capacity() > SLT_ENCUMBER) u.uhunger--;
+	    if (near_capacity() > SLT_ENCUMBER && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 	} else {		/* even turns */
-	    if (Hunger) u.uhunger--;
-		if (Race_if(PM_CLOCKWORK_AUTOMATON)) u.uhunger--; /* to prevent =oSD from being overpowered --Amy */
+	    if (Hunger && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
+		if (Race_if(PM_CLOCKWORK_AUTOMATON) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--; /* to prevent =oSD from being overpowered --Amy */
 	    /* Conflict uses up food too */
 		/* and a lot of it because conflict is so overpowered --Amy */
-	    if (HConflict || EConflict) { u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; }
-	    if (uwep && uwep->oartifact == ART_TENSA_ZANGETSU) u.uhunger -= 10;
-	    if (uwep && uwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI) u.uhunger -= 10;
-	    if (uwep && uwep->oartifact == ART_GARNET_ROD) u.uhunger -= 3;
-	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TENSA_ZANGETSU) u.uhunger -= 10;
-	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI) u.uhunger -= 10;
-	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GARNET_ROD) u.uhunger -= 3;
+	    if (HConflict || EConflict && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; u.uhunger--; }
+	    if (uwep && uwep->oartifact == ART_TENSA_ZANGETSU && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 10;
+	    if (uwep && uwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 10;
+	    if (uwep && uwep->oartifact == ART_GARNET_ROD && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 3;
+	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TENSA_ZANGETSU && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 10;
+	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 10;
+	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GARNET_ROD && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger -= 3;
 	    /* +0 charged rings don't do anything, so don't affect hunger */
 	    /* Slow digestion still uses ring hunger */
 	    switch ((int)(moves % 20)) {	/* note: use even cases only */
 	     case  4: if (uleft &&
-			  (uleft->spe || !objects[uleft->otyp].oc_charged))
+			  (uleft->spe || !objects[uleft->otyp].oc_charged) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500))
 			    u.uhunger--;
 		    break;
-	     case  8: if (uamul) u.uhunger--;
+	     case  8: if (uamul && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 		    break;
 	     case 12: if (uright &&
-			  (uright->spe || !objects[uright->otyp].oc_charged))
+			  (uright->spe || !objects[uright->otyp].oc_charged) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500))
 			    u.uhunger--;
 		    break;
-	     case 16: if (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5))) u.uhunger--;
+	     case 16: if (u.uhave.amulet && (u.amuletcompletelyimbued || !rn2(5)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 		    break;
 	     default: break;
 	    }
@@ -5598,6 +5600,8 @@ void
 morehungry(num)	/* called after vomiting and after performing feats of magic */
 register int num;
 {
+	if (Full_nutrient && num == 1 && rn2(2) && u.uhunger < 2500) num = 0;
+	if (Full_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
 	u.uhunger -= num;
 	newuhs(TRUE);
 }
@@ -5690,7 +5694,7 @@ is_fainted()
 void
 reset_faint()	/* call when a faint must be prematurely terminated */
 {
-	if(is_fainted()) nomul(0, 0);
+	if(is_fainted()) nomul(0, 0, FALSE);
 }
 
 #if 0
@@ -5699,7 +5703,7 @@ sync_hunger()
 {
 	if(is_fainted()) {
 		flags.soundok = 0;
-		nomul(-10+(u.uhunger/10), "fainted from lack of food");
+		nomul(-10+(u.uhunger/10), "fainted from lack of food", TRUE);
 		nomovemsg = "You regain consciousness.";
 		afternmv = unfaint;
 	}
@@ -5769,7 +5773,7 @@ boolean incr;
 		if (Role_if(PM_TOPMODEL) || RngeAnorexia || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) adjalign(5);
 		}
 				flags.soundok = 0;
-				nomul(-3+(u.uhunger/200), "fainted from lack of food");
+				nomul(-3+(u.uhunger/200), "fainted from lack of food", TRUE);
 				nomovemsg = "You regain consciousness.";
 				afternmv = unfaint;
 				newhs = FAINTED;
@@ -5909,7 +5913,7 @@ void
 vomit()		/* A good idea from David Neves */
 {
 	make_sick(0L, (char *) 0, TRUE, SICK_VOMITABLE);
-	nomul(-2, "vomiting");
+	nomul(-2, "vomiting", TRUE);
 	nomovemsg = 0;
 }
 

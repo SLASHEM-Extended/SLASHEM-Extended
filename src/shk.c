@@ -2379,7 +2379,7 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 
 	/* KMH, balance patch -- healthstone replaces rotting/health */
 	if (Is_blackmarket(&u.uz)) {
-	  if (obj->oclass==RING_CLASS    || obj->oclass==AMULET_CLASS   ||
+	  if (obj->oclass==RING_CLASS    || obj->oclass==AMULET_CLASS || obj->oclass == IMPLANT_CLASS   ||
 	      obj->oclass==POTION_CLASS  || obj->oclass==SCROLL_CLASS   ||
 	      obj->oclass==SPBOOK_CLASS  || obj->oclass==WAND_CLASS     ||
 	      obj->otyp==LUCKSTONE       || obj->otyp==LOADSTONE        || 
@@ -4906,7 +4906,7 @@ long cost;
 		if (o == FOOD_CLASS) return ", gourmets' delight!";
 		if (objects[itm->otyp].oc_name_known
 		    ? objects[itm->otyp].oc_magic
-		    : (o == AMULET_CLASS || o == RING_CLASS   ||
+		    : (o == AMULET_CLASS || o == IMPLANT_CLASS || o == RING_CLASS   ||
 		       o == WAND_CLASS   || o == POTION_CLASS ||
 		       o == SCROLL_CLASS || o == SPBOOK_CLASS))
 		    return ", painstakingly developed!";
@@ -5391,6 +5391,8 @@ shk_identify(slang, shkp)
 	switch (obj->oclass) {        
 		case AMULET_CLASS:      charge = 375 * mult;
 					break;
+		case IMPLANT_CLASS:      charge = 500 * mult;
+					break;
 		case WEAPON_CLASS:      charge = 75 * mult;
 					break;
 		case ARMOR_CLASS:       charge = 100 * mult;
@@ -5465,6 +5467,7 @@ shk_identify(slang, shkp)
 		else if (obj->oclass == POTION_CLASS && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
 		else if (obj->oclass == RING_CLASS && (!(obj->owornmask & W_RING) || ((rnd(u.idringpenalty) > 4) && (rnd(u.idringpenalty) > 4)) ) && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
 		else if (obj->oclass == AMULET_CLASS && (!(obj->owornmask & W_AMUL) || ((rnd(u.idamuletpenalty) > 15) && (rnd(u.idamuletpenalty) > 15)) )&& rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
+		else if (obj->oclass == IMPLANT_CLASS && (!(obj->owornmask & W_IMPLANT) || ((rnd(u.idimplantpenalty) > 1) && (rnd(u.idimplantpenalty) > 1)) )&& rnd(u.idimplantpenalty) > 1) pline("The implant resisted your identification attempt!");
 		else if (obj->oclass == WAND_CLASS && rnd(u.idwandpenalty) > 3) pline("The wand resisted your identification attempt!");
 		else if (obj->oclass == ARMOR_CLASS && (!(obj->owornmask & W_ARMOR) || ((rnd(u.idarmorpenalty) > 15) && (rnd(u.idarmorpenalty) > 15)) ) && rnd(u.idarmorpenalty) > 15) pline("The armor resisted your identification attempt!");
 		else if (obj->oclass == SPBOOK_CLASS && rnd(u.idspellbookpenalty) > 2) pline("The spellbook resisted your identification attempt!");
@@ -5478,6 +5481,7 @@ shk_identify(slang, shkp)
 		else if (obj->oclass == POTION_CLASS && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
 		else if (obj->oclass == RING_CLASS && (!(obj->owornmask & W_RING) || ((rnd(u.idringpenalty) > 4) && (rnd(u.idringpenalty) > 4)) ) && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
 		else if (obj->oclass == AMULET_CLASS && (!(obj->owornmask & W_AMUL) || ((rnd(u.idamuletpenalty) > 15) && (rnd(u.idamuletpenalty) > 15)) )&& rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
+		else if (obj->oclass == IMPLANT_CLASS && (!(obj->owornmask & W_IMPLANT) || ((rnd(u.idimplantpenalty) > 1) && (rnd(u.idimplantpenalty) > 1)) )&& rnd(u.idimplantpenalty) > 1) pline("The implant resisted your identification attempt!");
 		else if (obj->oclass == WAND_CLASS && rnd(u.idwandpenalty) > 3) pline("The wand resisted your identification attempt!");
 		else if (obj->oclass == ARMOR_CLASS && (!(obj->owornmask & W_ARMOR) || ((rnd(u.idarmorpenalty) > 15) && (rnd(u.idarmorpenalty) > 15)) ) && rnd(u.idarmorpenalty) > 15) pline("The armor resisted your identification attempt!");
 		else if (obj->oclass == SPBOOK_CLASS && rnd(u.idspellbookpenalty) > 2) pline("The spellbook resisted your identification attempt!");

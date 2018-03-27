@@ -952,6 +952,12 @@ static const char *random_mesg[] = {
 	"Go north from here if you want to find a room full of sexy girls.",
 	"Looking for the entrance to the brothel? One level down from here, northwest corner.",
 	"Bank of RA - Gold Deposit", /* Scarab of Ra */
+	"If you play with the wand destruction patch active, this particular square renders its effects inactive while you stand on it!",
+	"The dimensional portal to FIQhack is one tile north of this location. Lasciate ogni speranza o voi ch'entrate.",
+	"Warning: Somewhere on this level, there's a dimensional portal to Nethack Fourk. If you trigger it, you have to ascend a tourist in Fourk within 3 real-time months or your SLEX character is deleted.",
+	"UNDER ME", /* apparently from Narnia, according to aosdict? */
+	"You have just won a goat", /* by elenmirie */
+	"Welcome to the party!",
 
 };
 
@@ -1299,7 +1305,7 @@ boolean read_it; /* Read any sensed engraving */
 
 		You("%s: \"%s\".",
 		      (Blind) ? "feel the words" : "read",  et);
-		if(flags.run > 1) nomul(0, 0);
+		if(flags.run > 1) nomul(0, 0, FALSE);
 		return TRUE;
 	    }
 	}
@@ -1357,6 +1363,22 @@ freehand()
 		return(0);
 	else
 		return(1);*/
+}
+
+/* function by Amy that also checks your skill; for prayer etc. purposes, you still count as not having a free hand
+ * because skills should not make things worse, i.e. it should still be possible to uncurse a two-hander by praying */
+int
+freehandX()
+{
+	if (!PlayerCannotUseSkills) {
+
+		if (uwep && bimanual(uwep) && P_SKILL(P_TWO_HANDED_WEAPON) >= P_EXPERT) return 1;
+		if (uwep && uarms && P_SKILL(P_SHIELD) >= P_EXPERT) return 1;
+
+	}
+
+	return(!uwep || !welded(uwep) ||
+	   (!bimanual(uwep) && (!uarms || !uarms->cursed)));
 }
 
 static NEARDATA const char styluses[] =
@@ -1495,7 +1517,7 @@ doengrave()
 	/* There's no reason you should be able to write with a wand
 	 * while both your hands are tied up.
 	 */
-	if (!freehand() && otmp != uwep && !otmp->owornmask) {
+	if (!freehandX() && otmp != uwep && !otmp->owornmask) {
 		You("have no free %s to write with!", body_part(HAND));
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
@@ -1539,6 +1561,7 @@ doengrave()
 	switch (otmp->oclass) {
 	    default:
 	    case AMULET_CLASS:
+	    case IMPLANT_CLASS:
 	    case CHAIN_CLASS:
 	    case POTION_CLASS:
 	    case COIN_CLASS:
@@ -4323,6 +4346,15 @@ static const char *epitaphs[] = {
 	"in slex I could so beautifully use travelto for sokoban, especially for repetitive levels, but if I try in nethack fourk it will, without fail, screw me over",
 	"wtf how many 200 wand zaps does it take to up that ridiculous wand skill in that stupid wand destruction patch nethack fourk?",
 	"I guess the design philosophy behind Nethack Fourk is 'How To Piss Off AmyBSOD Within 5 Minutes - A Tutorial'",
+	"good lord Amy really thinks her game is the best balanced fork, her delusion is off the charts", /* inspired by mtf */
+	"The elder black dragon in Nethack Fourk disintegrated my +4 silver dragon scale mail even though I had disintegration resistance. Since that's utter bullshit, I seeked the nearest deep ettin and let it summon monsters until one of the summoned ones finally put me out of my misery.",
+	"There are too many player monsters in FIQhack's Gehennom. It was a matter of time until one of them spawned with Vorpal Blade and instakilled me.",
+	"Autoexplored into lava. Thanks bhaak.", /* happened to Adeon in Unnethack */
+	"I died because I made the mistake to hit the autoexplore key. That key is the first thing on my list of things to genocide once I learn how to genocide things that you cannot genocide.", /* happens to me in DCSS every single time */
+	"wtf division thieves are bullshit!", /* happened to Winsalot */
+	"hopefully the dnethack elder priest chokes over some elderberries and dies",
+	"You gaze upon the ancient bones of Glen Wilkerson.",
+	"I forgot which wards my dnethack character knew, and the only way to find out which ones you do know seems to be to try to use one. I only wanted to know which ones my character knows, I didn't actually want to engrave one. But I was standing on an altar. This stupid variant better add a 'show known wards' command soon.",
 
 };
 

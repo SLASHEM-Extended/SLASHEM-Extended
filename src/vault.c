@@ -269,7 +269,7 @@ fnd:
 	}
 
 	stop_occupation();		/* if occupied, stop it *now* */
-	if (multi > 0) { nomul(0, 0); unmul((char *)0); }
+	if (multi > 0) { nomul(0, 0, FALSE); unmul((char *)0); }
 	trycount = 5;
 	do {
 	    getlin("\"Hello stranger, who are you?\" -", buf);

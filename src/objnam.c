@@ -353,6 +353,12 @@ int prop;
 			return "denastification";
 		case CONT_RES:
 			return "contamination resistance";
+		case DISCOUNT_ACTION:
+			return "discount action";
+		case FULL_NUTRIENT:
+			return "full nutrients";
+		case TECHNICALITY:
+			return "technicality";
 
 		default:
 			return "Team Nastytrap";
@@ -4872,6 +4878,16 @@ register int otyp;
 		if(dn)
 			sprintf(eos(buf)," (%s)",dn);
 		return(buf);
+	case IMPLANT_CLASS:
+		if(nn)
+			strcpy(buf,actualn);
+		else
+			strcpy(buf,"implant");
+		if(un)
+			sprintf(eos(buf)," called %s",un);
+		if(dn)
+			sprintf(eos(buf)," (%s)",dn);
+		return(buf);
 	default:
 		if(nn) {
 			strcpy(buf, actualn);
@@ -5054,6 +5070,20 @@ register struct obj *obj;
 			sprintf(buf,"amulet called %s", un);
 		else
 			sprintf(buf,"%s amulet", dn);
+		break;
+	    case IMPLANT_CLASS:
+		if (!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) )
+			strcpy(buf, "implant");
+		else if (nn) {
+			strcpy(buf, actualn);
+			if (un) {
+				strcat(buf," called ");
+				strcat(buf,un);
+			}
+		} else if (un)
+			sprintf(buf,"implant called %s", un);
+		else
+			sprintf(buf,"%s implant", dn);
 		break;
 	    case WEAPON_CLASS:
 	    case VENOM_CLASS:
@@ -5557,6 +5587,11 @@ register struct obj *obj;
 	case AMULET_CLASS:
 		if (!UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) add_erosion_words(obj, prefix);
 		if(obj->owornmask & W_AMUL)
+			strcat(bp, " (being worn)");
+		break;
+	case IMPLANT_CLASS:
+		if (!UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) add_erosion_words(obj, prefix);
+		if(obj->owornmask & W_IMPLANT)
 			strcat(bp, " (being worn)");
 		break;
 	case WEAPON_CLASS:
@@ -6281,14 +6316,14 @@ struct obj *obj;
 }
 
 static const char *wrp[] = {
-	"wand", "ring", "potion", "scroll", "gem", "amulet",
+	"wand", "ring", "potion", "scroll", "gem", "amulet", "implant",
 	"spellbook", "spell book",
 	/* for non-specific wishes */
 	"weapon", "armor", "armour", "tool", "food", "comestible",
 };
 static const char wrpsym[] = {
 	WAND_CLASS, RING_CLASS, POTION_CLASS, SCROLL_CLASS, GEM_CLASS,
-	AMULET_CLASS, SPBOOK_CLASS, SPBOOK_CLASS,
+	AMULET_CLASS, IMPLANT_CLASS, SPBOOK_CLASS, SPBOOK_CLASS,
 	WEAPON_CLASS, ARMOR_CLASS, ARMOR_CLASS, TOOL_CLASS, FOOD_CLASS,
 	FOOD_CLASS
 };

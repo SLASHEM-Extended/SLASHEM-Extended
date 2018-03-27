@@ -656,7 +656,7 @@ int
 randenchantment()
 {
 
-	switch (rnd(157)) {
+	switch (rnd(160)) {
 
 		case 1:
 		case 2:
@@ -1155,6 +1155,12 @@ randenchantment()
 			return FEARED;
 		case 157:
 			return CONT_RES;
+		case 158:
+			return DISCOUNT_ACTION;
+		case 159:
+			return FULL_NUTRIENT;
+		case 160:
+			return TECHNICALITY;
 
 		default:
 			return POISON_RES;
@@ -1346,7 +1352,7 @@ randnastyenchantment()
 int
 randomdisableproperty()
 {
-	switch (rnd(61)) {
+	switch (rnd(64)) {
 
 		case 1:
 			return FIRE_RES;
@@ -1470,6 +1476,12 @@ randomdisableproperty()
 			return PEACEVISION;
 		case 61:
 			return CONT_RES;
+		case 62:
+			return DISCOUNT_ACTION;
+		case 63:
+			return FULL_NUTRIENT;
+		case 64:
+			return TECHNICALITY;
 		default:
 			return POISON_RES;
 	}		
@@ -1930,6 +1942,451 @@ randartspellbookX()
 	int result;
 	result = SPE_FORCE_BOLT + rn2((SPE_PSYBEAM + 1) - SPE_FORCE_BOLT);
 	return result;
+}
+
+void
+deacrandomintrinsic(amount)
+register int amount;
+{
+
+	switch (rnd(127)) {
+
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+			u.uprops[DEAC_FIRE_RES].intrinsic += amount;
+			pline("You are prevented from having fire resistance!");
+			break;
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+			u.uprops[DEAC_COLD_RES].intrinsic += amount;
+			pline("You are prevented from having cold resistance!");
+			break;
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		case 15:
+			u.uprops[DEAC_SLEEP_RES].intrinsic += amount;
+			pline("You are prevented from having sleep resistance!");
+			break;
+		case 16:
+		case 17:
+			u.uprops[DEAC_DISINT_RES].intrinsic += amount;
+			pline("You are prevented from having disintegration resistance!");
+			break;
+		case 18:
+		case 19:
+		case 20:
+		case 21:
+		case 22:
+			u.uprops[DEAC_SHOCK_RES].intrinsic += amount;
+			pline("You are prevented from having shock resistance!");
+			break;
+		case 23:
+		case 24:
+		case 25:
+		case 26:
+		case 27:
+			u.uprops[DEAC_POISON_RES].intrinsic += amount;
+			pline("You are prevented from having poison resistance!");
+			break;
+		case 28:
+		case 29:
+		case 30:
+			u.uprops[DEAC_DRAIN_RES].intrinsic += amount;
+			pline("You are prevented from having drain resistance!");
+			break;
+		case 31:
+		case 32:
+			u.uprops[DEAC_SICK_RES].intrinsic += amount;
+			pline("You are prevented from having sickness resistance!");
+			break;
+		case 33:
+		case 34:
+			u.uprops[DEAC_ANTIMAGIC].intrinsic += amount;
+			pline("You are prevented from having magic resistance!");
+			break;
+		case 35:
+		case 36:
+		case 37:
+		case 38:
+			u.uprops[DEAC_ACID_RES].intrinsic += amount;
+			pline("You are prevented from having acid resistance!");
+			break;
+		case 39:
+		case 40:
+			u.uprops[DEAC_STONE_RES].intrinsic += amount;
+			pline("You are prevented from having petrification resistance!");
+			break;
+		case 41:
+			u.uprops[DEAC_FEAR_RES].intrinsic += amount;
+			pline("You are prevented from having fear resistance!");
+			break;
+		case 42:
+		case 43:
+		case 44:
+			u.uprops[DEAC_SEE_INVIS].intrinsic += amount;
+			pline("You are prevented from having see invisible!");
+			break;
+		case 45:
+		case 46:
+		case 47:
+			u.uprops[DEAC_TELEPAT].intrinsic += amount;
+			pline("You are prevented from having telepathy!");
+			break;
+		case 48:
+		case 49:
+		case 50:
+			u.uprops[DEAC_WARNING].intrinsic += amount;
+			pline("You are prevented from having warning!");
+			break;
+		case 51:
+		case 52:
+		case 53:
+			u.uprops[DEAC_SEARCHING].intrinsic += amount;
+			pline("You are prevented from having automatic searching!");
+			break;
+		case 54:
+			u.uprops[DEAC_CLAIRVOYANT].intrinsic += amount;
+			pline("You are prevented from having clairvoyance!");
+			break;
+		case 55:
+		case 56:
+		case 57:
+		case 58:
+		case 59:
+			u.uprops[DEAC_INFRAVISION].intrinsic += amount;
+			pline("You are prevented from having infravision!");
+			break;
+		case 60:
+			u.uprops[DEAC_DETECT_MONSTERS].intrinsic += amount;
+			pline("You are prevented from having detect monsters!");
+			break;
+		case 61:
+		case 62:
+		case 63:
+			u.uprops[DEAC_INVIS].intrinsic += amount;
+			pline("You are prevented from having invisibility!");
+			break;
+		case 64:
+			u.uprops[DEAC_DISPLACED].intrinsic += amount;
+			pline("You are prevented from having displacement!");
+			break;
+		case 65:
+		case 66:
+		case 67:
+			u.uprops[DEAC_STEALTH].intrinsic += amount;
+			pline("You are prevented from having stealth!");
+			break;
+		case 68:
+			u.uprops[DEAC_JUMPING].intrinsic += amount;
+			pline("You are prevented from having jumping!");
+			break;
+		case 69:
+		case 70:
+		case 71:
+			u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += amount;
+			pline("You are prevented from having teleport control!");
+			break;
+		case 72:
+			u.uprops[DEAC_FLYING].intrinsic += amount;
+			pline("You are prevented from having flying!");
+			break;
+		case 73:
+			u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += amount;
+			pline("You are prevented from having magical breathing!");
+			break;
+		case 74:
+			u.uprops[DEAC_PASSES_WALLS].intrinsic += amount;
+			pline("You are prevented from having phasing!");
+			break;
+		case 75:
+		case 76:
+			u.uprops[DEAC_SLOW_DIGESTION].intrinsic += amount;
+			pline("You are prevented from having slow digestion!");
+			break;
+		case 77:
+			u.uprops[DEAC_HALF_SPDAM].intrinsic += amount;
+			pline("You are prevented from having half spell damage!");
+			break;
+		case 78:
+			u.uprops[DEAC_HALF_PHDAM].intrinsic += amount;
+			pline("You are prevented from having half physical damage!");
+			break;
+		case 79:
+		case 80:
+		case 81:
+		case 82:
+		case 83:
+			u.uprops[DEAC_REGENERATION].intrinsic += amount;
+			pline("You are prevented from having regeneration!");
+			break;
+		case 84:
+		case 85:
+			u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += amount;
+			pline("You are prevented from having mana regeneration!");
+			break;
+		case 86:
+		case 87:
+		case 88:
+			u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += amount;
+			pline("You are prevented from having polymorph control!");
+			break;
+		case 89:
+		case 90:
+		case 91:
+		case 92:
+		case 93:
+			u.uprops[DEAC_FAST].intrinsic += amount;
+			pline("You are prevented from having speed!");
+			break;
+		case 94:
+		case 95:
+		case 96:
+			u.uprops[DEAC_REFLECTING].intrinsic += amount;
+			pline("You are prevented from having reflection!");
+			break;
+		case 97:
+		case 98:
+		case 99:
+			u.uprops[DEAC_FREE_ACTION].intrinsic += amount;
+			pline("You are prevented from having free action!");
+			break;
+		case 100:
+			u.uprops[DEAC_HALLU_PARTY].intrinsic += amount;
+			pline("You are prevented from hallu partying!");
+			break;
+		case 101:
+			u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += amount;
+			pline("You are prevented from drunken boxing!");
+			break;
+		case 102:
+			u.uprops[DEAC_STUNNOPATHY].intrinsic += amount;
+			pline("You are prevented from having stunnopathy!");
+			break;
+		case 103:
+			u.uprops[DEAC_NUMBOPATHY].intrinsic += amount;
+			pline("You are prevented from having numbopathy!");
+			break;
+		case 104:
+			u.uprops[DEAC_FREEZOPATHY].intrinsic += amount;
+			pline("You are prevented from having freezopathy!");
+			break;
+		case 105:
+			u.uprops[DEAC_STONED_CHILLER].intrinsic += amount;
+			pline("You are prevented from being a stoned chiller!");
+			break;
+		case 106:
+			u.uprops[DEAC_CORROSIVITY].intrinsic += amount;
+			pline("You are prevented from having corrosivity!");
+			break;
+		case 107:
+			u.uprops[DEAC_FEAR_FACTOR].intrinsic += amount;
+			pline("You are prevented from having an increased fear factor!");
+			break;
+		case 108:
+			u.uprops[DEAC_BURNOPATHY].intrinsic += amount;
+			pline("You are prevented from having burnopathy!");
+			break;
+		case 109:
+			u.uprops[DEAC_SICKOPATHY].intrinsic += amount;
+			pline("You are prevented from having sickopathy!");
+			break;
+		case 110:
+			u.uprops[DEAC_KEEN_MEMORY].intrinsic += amount;
+			pline("You are prevented from having keen memory!");
+			break;
+		case 111:
+			u.uprops[DEAC_THE_FORCE].intrinsic += amount;
+			pline("You are prevented from using the force like a real jedi!");
+			break;
+		case 112:
+			u.uprops[DEAC_SIGHT_BONUS].intrinsic += amount;
+			pline("You are prevented from having extra sight!");
+			break;
+		case 113:
+			u.uprops[DEAC_VERSUS_CURSES].intrinsic += amount;
+			pline("You are prevented from having curse resistance!");
+			break;
+		case 114:
+			u.uprops[DEAC_STUN_RES].intrinsic += amount;
+			pline("You are prevented from having stun resistance!");
+			break;
+		case 115:
+			u.uprops[DEAC_CONF_RES].intrinsic += amount;
+			pline("You are prevented from having confusion resistance!");
+			break;
+		case 116:
+			u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += amount;
+			pline("You are prevented from having double attacks!");
+			break;
+		case 117:
+			u.uprops[DEAC_QUAD_ATTACK].intrinsic += amount;
+			pline("You are prevented from having quad attacks!");
+			break;
+		case 118:
+			u.uprops[DEAC_PSI_RES].intrinsic += amount;
+			pline("You are prevented from having psi resistance!");
+			break;
+		case 119:
+			u.uprops[DEAC_WONDERLEGS].intrinsic += amount;
+			pline("You are prevented from having wonderlegs!");
+			break;
+		case 120:
+			u.uprops[DEAC_GLIB_COMBAT].intrinsic += amount;
+			pline("You are prevented from having glib combat!");
+			break;
+		case 121:
+			u.uprops[DEAC_MANALEECH].intrinsic += amount;
+			pline("You are prevented from having manaleech!");
+			break;
+		case 122:
+			u.uprops[DEAC_DIMMOPATHY].intrinsic += amount;
+			pline("You are prevented from having dimmopathy!");
+			break;
+		case 123:
+			u.uprops[DEAC_PEACEVISION].intrinsic += amount;
+			pline("You are prevented from having peacevision!");
+			break;
+		case 124:
+			u.uprops[DEAC_CONT_RES].intrinsic += amount;
+			pline("You are prevented from having contamination resistance!");
+			break;
+		case 125:
+			u.uprops[DEAC_DISCOUNT_ACTION].intrinsic += amount;
+			pline("You are prevented from having discount action!");
+			break;
+		case 126:
+			u.uprops[DEAC_FULL_NUTRIENT].intrinsic += amount;
+			pline("You are prevented from having full nutrients!");
+			break;
+		case 127:
+			u.uprops[DEAC_TECHNICALITY].intrinsic += amount;
+			pline("You are prevented from having technicality!");
+			break;
+	}
+
+}
+
+int
+goodimplanteffect(obj)
+struct obj *obj;
+{
+	switch (obj->shirtmessage % 51) {
+
+		case 0:
+			return DTBEEM_RES;
+		case 1:
+			return FIRE_RES;
+		case 2:
+			return COLD_RES;
+		case 3:
+			return SLEEP_RES;
+		case 4:
+			return DISINT_RES;
+		case 5:
+			return SHOCK_RES;
+		case 6:
+			return POISON_RES;
+		case 7:
+			return ACID_RES;
+		case 8:
+			return STONE_RES;
+		case 9:
+			return REGENERATION;
+		case 10:
+			return SEARCHING;
+		case 11:
+			return SEE_INVIS;
+		case 12:
+			return INVIS;
+		case 13:
+			return TELEPORT_CONTROL;
+		case 14:
+			return POLYMORPH_CONTROL;
+		case 15:
+			return STEALTH;
+		case 16:
+			return WARNING;
+		case 17:
+			return TELEPAT;
+		case 18:
+			return FAST;
+		case 19:
+			return PASSES_WALLS;
+		case 20:
+			return REFLECTING;
+		case 21:
+			return ANTIMAGIC;
+		case 22:
+			return ENERGY_REGENERATION;
+		case 23:
+			return MAGICAL_BREATHING;
+		case 24:
+			return HALF_SPDAM;
+		case 25:
+			return HALF_PHDAM;
+		case 26:
+			return SICK_RES;
+		case 27:
+			return DRAIN_RES;
+		case 28:
+			return FREE_ACTION;
+		case 29:
+			return FLYING;
+		case 30:
+			return SLOW_DIGESTION;
+		case 31:
+			return INFRAVISION;
+		case 32:
+			return FEAR_RES;
+		case 33:
+			return DISPLACED;
+		case 34:
+			return SWIMMING;
+		case 35:
+			return KEEN_MEMORY;
+		case 36:
+			return THE_FORCE;
+		case 37:
+			return TRAP_REVEALING;
+		case 38:
+			return CLAIRVOYANT;
+		case 39:
+			return SIGHT_BONUS;
+		case 40:
+			return VERSUS_CURSES;
+		case 41:
+			return STUN_RES;
+		case 42:
+			return CONF_RES;
+		case 43:
+			return EXTRA_WEAPON_PRACTICE;
+		case 44:
+			return PSI_RES;
+		case 45:
+			return MANALEECH;
+		case 46:
+			return PEACEVISION;
+		case 47:
+			return CONT_RES;
+		case 48:
+			return DISCOUNT_ACTION;
+		case 49:
+			return FULL_NUTRIENT;
+		case 50:
+			return TECHNICALITY;
+		default:
+			return POISON_RES;
+
+	}
+
 }
 
 

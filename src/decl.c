@@ -157,7 +157,7 @@ NEARDATA struct obj *invent = (struct obj *)0,
 	*uskin = (struct obj *)0, /* dragon armor, if a dragon */
 	*uarmc = (struct obj *)0, *uarmh = (struct obj *)0,
 	*uarms = (struct obj *)0, *uarmg = (struct obj *)0,
-	*uarmf = (struct obj *)0, *uamul = (struct obj *)0,
+	*uarmf = (struct obj *)0, *uamul = (struct obj *)0, *uimplant = (struct obj *)0,
 	*uright = (struct obj *)0,
 	*uleft = (struct obj *)0,
 	*ublindf = (struct obj *)0,

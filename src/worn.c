@@ -25,6 +25,7 @@ const struct worn {
 	{ W_SWAPWEP, &uswapwep },
 	{ W_QUIVER, &uquiver },
 	{ W_AMUL, &uamul },
+	{ W_IMPLANT, &uimplant },
 	{ W_TOOL, &ublindf },
 	{ W_BALL, &uball },
 	{ W_CHAIN, &uchain },

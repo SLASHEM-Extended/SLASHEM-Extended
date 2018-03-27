@@ -41,7 +41,7 @@ stoned_dialogue()
 	if (i == 7L)
 		HFast = 0L;
 	if (i == 1L) {
-		nomul(-3, "getting stoned");
+		nomul(-3, "getting stoned", FALSE);
 		nomovemsg = 0;
 	}
 	exercise(A_DEX, FALSE);
@@ -171,7 +171,7 @@ slime_dialogue()
 	if (i == 3L) {	/* limbs becoming oozy */
 	    HFast = 0L;	/* lose intrinsic speed */
 	    stop_occupation();
-	    if (multi > 0) nomul(0, 0);
+	    if (multi > 0) nomul(0, 0, FALSE);
 	}
 	exercise(A_DEX, FALSE);
 }
@@ -487,6 +487,86 @@ nh_timeout()
 
 	}
 
+	/* if you wear high heels without having the skill at all, bad stuff can happen --Amy */
+	if (u.umoved && PlayerInHighHeels && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
+
+		if (PlayerInStilettoHeels && !rn2(100) && multi >= 0) {
+			You("slip with your stiletto heels and crash into the floor. Ouch!");
+			nomul(-(rnd(10) ), "prone from wiping out with their stilettos", TRUE);
+			nomovemsg = "You get back up and curse at your stiletto heels for making you wipe out.";
+
+		    if (!rn2(10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+
+			if (rn2(50)) {
+				adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+			} else {
+				You_feel("dizzy!");
+				forget(1 + rn2(5));
+			}
+		    }
+
+		}
+		if (PlayerInConeHeels && !rn2(500)) {
+			/* This is the one that will make players 'female dog' at me. Because it's evil. --Amy */
+
+			register struct obj *otmpi, *otmpii;
+			register int numdroppeditems = 0;
+
+		    for (otmpi = invent; otmpi; otmpi = otmpii) {
+
+		      otmpii = otmpi->nobj;
+
+			if (!rn2(50) && !stack_too_big(otmpi) ) {
+
+				if (otmpi->owornmask & W_ARMOR) continue;
+				else if (otmpi->owornmask & W_AMUL) {
+					if (otmpi->cursed) continue;
+					else Amulet_off();
+				} else if (otmpi->owornmask & W_IMPLANT) {
+					if (otmpi->cursed) continue;
+					else Implant_off();
+				} else if (otmpi->owornmask & W_RING) {
+					if (otmpi->cursed) continue;
+					Ring_gone(otmpi);
+				} else if (otmpi->owornmask & W_TOOL) continue;
+				else if (otmpi->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
+				    if (otmpi == uwep)
+					uwepgone();
+				    if (otmpi == uswapwep)
+					uswapwepgone();
+				    if (otmpi == uquiver)
+					uqwepgone();
+				}
+
+				if (otmpi->owornmask & (W_BALL|W_CHAIN)) continue;
+				else if (otmpi->owornmask) {
+				/* catchall */
+				    setnotworn(otmpi);
+				}
+
+				dropx(otmpi);
+				numdroppeditems++;
+			}
+		    }
+		    pline("Uh-oh, you trip with your cone heels%s", numdroppeditems ? " and some of your possessions fall out of your knapsack!" : "! But you barely manage to avoid dropping your possessions.");
+		    if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		    if (numdroppeditems) scatter(u.ux,u.uy,10,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,0);
+
+		}
+		if (PlayerInBlockHeels && !rn2(250)) {
+			pline("Being unused to wearing block heels, you painfully sprain your ankle.");
+			set_wounded_legs(rn2(2) ? LEFT_SIDE : RIGHT_SIDE, HWounded_legs + rnd(20));
+
+		}
+		if (PlayerInWedgeHeels && !rn2(50) && multi >= 0) {
+			You("trip over your own wedge heels.");
+			nomul(-2, "stumbling with wedge heels", TRUE);
+			nomovemsg = "";
+		}
+
+	}
+
 	if (u.umoved && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tartibsizlik chizilmasin") ) ) && !rn2(100) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
@@ -500,7 +580,7 @@ nh_timeout()
 				}
 			    }
 
-			    nomul(-2, "fumbling");
+			    nomul(-2, "fumbling", TRUE);
 			    nomovemsg = "";
 			    /* The more you are carrying the more likely you
 			     * are to make noise when you fumble.  Adjustments
@@ -526,7 +606,7 @@ nh_timeout()
 				}
 			    }
 
-			    nomul(-2, "fumbling");
+			    nomul(-2, "fumbling", TRUE);
 			    nomovemsg = "";
 			    /* The more you are carrying the more likely you
 			     * are to make noise when you fumble.  Adjustments
@@ -552,7 +632,7 @@ nh_timeout()
 				}
 			    }
 
-			    nomul(-2, "fumbling");
+			    nomul(-2, "fumbling", TRUE);
 			    nomovemsg = "";
 			    /* The more you are carrying the more likely you
 			     * are to make noise when you fumble.  Adjustments
@@ -578,7 +658,7 @@ nh_timeout()
 				}
 			    }
 
-			    nomul(-2, "fumbling");
+			    nomul(-2, "fumbling", TRUE);
 			    nomovemsg = "";
 			    /* The more you are carrying the more likely you
 			     * are to make noise when you fumble.  Adjustments
@@ -786,7 +866,7 @@ nh_timeout()
 				    } else {
 					pline("It hurts like hell! You pass out from the intense pain.");            
 					nomovemsg = "You finally manage to get up again.";
-					nomul(-(rnd(monster_difficulty() + 1)), "knocked out by their own sentient footwear" );
+					nomul(-(rnd(monster_difficulty() + 1)), "knocked out by their own sentient footwear", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -895,7 +975,7 @@ nh_timeout()
 					    } else {
 						pline("You're knocked out and helplessly drop to the floor.");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(5), "knocked out by a hard piece of female footwear");
+						nomul(-rnd(5), "knocked out by a hard piece of female footwear", TRUE);
 						exercise(A_DEX, FALSE);
 						    }
 						}
@@ -960,944 +1040,17 @@ nh_timeout()
 
 	if (!rn2(250) && u.uprops[REPEATING_VULNERABILITY].extrinsic) {
 
-		switch (rnd(124)) {
-
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-				u.uprops[DEAC_FIRE_RES].intrinsic += rnz(200);
-				pline("You are prevented from having fire resistance!");
-				break;
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-			case 10:
-				u.uprops[DEAC_COLD_RES].intrinsic += rnz(200);
-				pline("You are prevented from having cold resistance!");
-				break;
-			case 11:
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				u.uprops[DEAC_SLEEP_RES].intrinsic += rnz(200);
-				pline("You are prevented from having sleep resistance!");
-				break;
-			case 16:
-			case 17:
-				u.uprops[DEAC_DISINT_RES].intrinsic += rnz(200);
-				pline("You are prevented from having disintegration resistance!");
-				break;
-			case 18:
-			case 19:
-			case 20:
-			case 21:
-			case 22:
-				u.uprops[DEAC_SHOCK_RES].intrinsic += rnz(200);
-				pline("You are prevented from having shock resistance!");
-				break;
-			case 23:
-			case 24:
-			case 25:
-			case 26:
-			case 27:
-				u.uprops[DEAC_POISON_RES].intrinsic += rnz(200);
-				pline("You are prevented from having poison resistance!");
-				break;
-			case 28:
-			case 29:
-			case 30:
-				u.uprops[DEAC_DRAIN_RES].intrinsic += rnz(200);
-				pline("You are prevented from having drain resistance!");
-				break;
-			case 31:
-			case 32:
-				u.uprops[DEAC_SICK_RES].intrinsic += rnz(200);
-				pline("You are prevented from having sickness resistance!");
-				break;
-			case 33:
-			case 34:
-				u.uprops[DEAC_ANTIMAGIC].intrinsic += rnz(200);
-				pline("You are prevented from having magic resistance!");
-				break;
-			case 35:
-			case 36:
-			case 37:
-			case 38:
-				u.uprops[DEAC_ACID_RES].intrinsic += rnz(200);
-				pline("You are prevented from having acid resistance!");
-				break;
-			case 39:
-			case 40:
-				u.uprops[DEAC_STONE_RES].intrinsic += rnz(200);
-				pline("You are prevented from having petrification resistance!");
-				break;
-			case 41:
-				u.uprops[DEAC_FEAR_RES].intrinsic += rnz(200);
-				pline("You are prevented from having fear resistance!");
-				break;
-			case 42:
-			case 43:
-			case 44:
-				u.uprops[DEAC_SEE_INVIS].intrinsic += rnz(200);
-				pline("You are prevented from having see invisible!");
-				break;
-			case 45:
-			case 46:
-			case 47:
-				u.uprops[DEAC_TELEPAT].intrinsic += rnz(200);
-				pline("You are prevented from having telepathy!");
-				break;
-			case 48:
-			case 49:
-			case 50:
-				u.uprops[DEAC_WARNING].intrinsic += rnz(200);
-				pline("You are prevented from having warning!");
-				break;
-			case 51:
-			case 52:
-			case 53:
-				u.uprops[DEAC_SEARCHING].intrinsic += rnz(200);
-				pline("You are prevented from having automatic searching!");
-				break;
-			case 54:
-				u.uprops[DEAC_CLAIRVOYANT].intrinsic += rnz(200);
-				pline("You are prevented from having clairvoyance!");
-				break;
-			case 55:
-			case 56:
-			case 57:
-			case 58:
-			case 59:
-				u.uprops[DEAC_INFRAVISION].intrinsic += rnz(200);
-				pline("You are prevented from having infravision!");
-				break;
-			case 60:
-				u.uprops[DEAC_DETECT_MONSTERS].intrinsic += rnz(200);
-				pline("You are prevented from having detect monsters!");
-				break;
-			case 61:
-			case 62:
-			case 63:
-				u.uprops[DEAC_INVIS].intrinsic += rnz(200);
-				pline("You are prevented from having invisibility!");
-				break;
-			case 64:
-				u.uprops[DEAC_DISPLACED].intrinsic += rnz(200);
-				pline("You are prevented from having displacement!");
-				break;
-			case 65:
-			case 66:
-			case 67:
-				u.uprops[DEAC_STEALTH].intrinsic += rnz(200);
-				pline("You are prevented from having stealth!");
-				break;
-			case 68:
-				u.uprops[DEAC_JUMPING].intrinsic += rnz(200);
-				pline("You are prevented from having jumping!");
-				break;
-			case 69:
-			case 70:
-			case 71:
-				u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += rnz(200);
-				pline("You are prevented from having teleport control!");
-				break;
-			case 72:
-				u.uprops[DEAC_FLYING].intrinsic += rnz(200);
-				pline("You are prevented from having flying!");
-				break;
-			case 73:
-				u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += rnz(200);
-				pline("You are prevented from having magical breathing!");
-				break;
-			case 74:
-				u.uprops[DEAC_PASSES_WALLS].intrinsic += rnz(200);
-				pline("You are prevented from having phasing!");
-				break;
-			case 75:
-			case 76:
-				u.uprops[DEAC_SLOW_DIGESTION].intrinsic += rnz(200);
-				pline("You are prevented from having slow digestion!");
-				break;
-			case 77:
-				u.uprops[DEAC_HALF_SPDAM].intrinsic += rnz(200);
-				pline("You are prevented from having half spell damage!");
-				break;
-			case 78:
-				u.uprops[DEAC_HALF_PHDAM].intrinsic += rnz(200);
-				pline("You are prevented from having half physical damage!");
-				break;
-			case 79:
-			case 80:
-			case 81:
-			case 82:
-			case 83:
-				u.uprops[DEAC_REGENERATION].intrinsic += rnz(200);
-				pline("You are prevented from having regeneration!");
-				break;
-			case 84:
-			case 85:
-				u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += rnz(200);
-				pline("You are prevented from having mana regeneration!");
-				break;
-			case 86:
-			case 87:
-			case 88:
-				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += rnz(200);
-				pline("You are prevented from having polymorph control!");
-				break;
-			case 89:
-			case 90:
-			case 91:
-			case 92:
-			case 93:
-				u.uprops[DEAC_FAST].intrinsic += rnz(200);
-				pline("You are prevented from having speed!");
-				break;
-			case 94:
-			case 95:
-			case 96:
-				u.uprops[DEAC_REFLECTING].intrinsic += rnz(200);
-				pline("You are prevented from having reflection!");
-				break;
-			case 97:
-			case 98:
-			case 99:
-				u.uprops[DEAC_FREE_ACTION].intrinsic += rnz(200);
-				pline("You are prevented from having free action!");
-				break;
-			case 100:
-				u.uprops[DEAC_HALLU_PARTY].intrinsic += rnz(200);
-				pline("You are prevented from hallu partying!");
-				break;
-			case 101:
-				u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz(200);
-				pline("You are prevented from drunken boxing!");
-				break;
-			case 102:
-				u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having stunnopathy!");
-				break;
-			case 103:
-				u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having numbopathy!");
-				break;
-			case 104:
-				u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having freezopathy!");
-				break;
-			case 105:
-				u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz(200);
-				pline("You are prevented from being a stoned chiller!");
-				break;
-			case 106:
-				u.uprops[DEAC_CORROSIVITY].intrinsic += rnz(200);
-				pline("You are prevented from having corrosivity!");
-				break;
-			case 107:
-				u.uprops[DEAC_FEAR_FACTOR].intrinsic += rnz(200);
-				pline("You are prevented from having an increased fear factor!");
-				break;
-			case 108:
-				u.uprops[DEAC_BURNOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having burnopathy!");
-				break;
-			case 109:
-				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having sickopathy!");
-				break;
-			case 110:
-				u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz(200);
-				pline("You are prevented from having keen memory!");
-				break;
-			case 111:
-				u.uprops[DEAC_THE_FORCE].intrinsic += rnz(200);
-				pline("You are prevented from using the force like a real jedi!");
-				break;
-			case 112:
-				u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz(200);
-				pline("You are prevented from having extra sight!");
-				break;
-			case 113:
-				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz(200);
-				pline("You are prevented from having curse resistance!");
-				break;
-			case 114:
-				u.uprops[DEAC_STUN_RES].intrinsic += rnz(200);
-				pline("You are prevented from having stun resistance!");
-				break;
-			case 115:
-				u.uprops[DEAC_CONF_RES].intrinsic += rnz(200);
-				pline("You are prevented from having confusion resistance!");
-				break;
-			case 116:
-				u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz(200);
-				pline("You are prevented from having double attacks!");
-				break;
-			case 117:
-				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(200);
-				pline("You are prevented from having quad attacks!");
-				break;
-			case 118:
-				u.uprops[DEAC_PSI_RES].intrinsic += rnz(200);
-				pline("You are prevented from having psi resistance!");
-				break;
-			case 119:
-				u.uprops[DEAC_WONDERLEGS].intrinsic += rnz(200);
-				pline("You are prevented from having wonderlegs!");
-				break;
-			case 120:
-				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(200);
-				pline("You are prevented from having glib combat!");
-				break;
-			case 121:
-				u.uprops[DEAC_MANALEECH].intrinsic += rnz(200);
-				pline("You are prevented from having manaleech!");
-				break;
-			case 122:
-				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having dimmopathy!");
-				break;
-			case 123:
-				u.uprops[DEAC_PEACEVISION].intrinsic += rnz(200);
-				pline("You are prevented from having peacevision!");
-				break;
-			case 124:
-				u.uprops[DEAC_CONT_RES].intrinsic += rnz(200);
-				pline("You are prevented from having contamination resistance!");
-				break;
-			}
+		deacrandomintrinsic(rnz(200));
 	}
 
 	if (!rn2(250) && AutomaticVulnerabilitiy) {
 
-		switch (rnd(124)) {
-
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-				u.uprops[DEAC_FIRE_RES].intrinsic += rnz(200);
-				pline("You are prevented from having fire resistance!");
-				break;
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-			case 10:
-				u.uprops[DEAC_COLD_RES].intrinsic += rnz(200);
-				pline("You are prevented from having cold resistance!");
-				break;
-			case 11:
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				u.uprops[DEAC_SLEEP_RES].intrinsic += rnz(200);
-				pline("You are prevented from having sleep resistance!");
-				break;
-			case 16:
-			case 17:
-				u.uprops[DEAC_DISINT_RES].intrinsic += rnz(200);
-				pline("You are prevented from having disintegration resistance!");
-				break;
-			case 18:
-			case 19:
-			case 20:
-			case 21:
-			case 22:
-				u.uprops[DEAC_SHOCK_RES].intrinsic += rnz(200);
-				pline("You are prevented from having shock resistance!");
-				break;
-			case 23:
-			case 24:
-			case 25:
-			case 26:
-			case 27:
-				u.uprops[DEAC_POISON_RES].intrinsic += rnz(200);
-				pline("You are prevented from having poison resistance!");
-				break;
-			case 28:
-			case 29:
-			case 30:
-				u.uprops[DEAC_DRAIN_RES].intrinsic += rnz(200);
-				pline("You are prevented from having drain resistance!");
-				break;
-			case 31:
-			case 32:
-				u.uprops[DEAC_SICK_RES].intrinsic += rnz(200);
-				pline("You are prevented from having sickness resistance!");
-				break;
-			case 33:
-			case 34:
-				u.uprops[DEAC_ANTIMAGIC].intrinsic += rnz(200);
-				pline("You are prevented from having magic resistance!");
-				break;
-			case 35:
-			case 36:
-			case 37:
-			case 38:
-				u.uprops[DEAC_ACID_RES].intrinsic += rnz(200);
-				pline("You are prevented from having acid resistance!");
-				break;
-			case 39:
-			case 40:
-				u.uprops[DEAC_STONE_RES].intrinsic += rnz(200);
-				pline("You are prevented from having petrification resistance!");
-				break;
-			case 41:
-				u.uprops[DEAC_FEAR_RES].intrinsic += rnz(200);
-				pline("You are prevented from having fear resistance!");
-				break;
-			case 42:
-			case 43:
-			case 44:
-				u.uprops[DEAC_SEE_INVIS].intrinsic += rnz(200);
-				pline("You are prevented from having see invisible!");
-				break;
-			case 45:
-			case 46:
-			case 47:
-				u.uprops[DEAC_TELEPAT].intrinsic += rnz(200);
-				pline("You are prevented from having telepathy!");
-				break;
-			case 48:
-			case 49:
-			case 50:
-				u.uprops[DEAC_WARNING].intrinsic += rnz(200);
-				pline("You are prevented from having warning!");
-				break;
-			case 51:
-			case 52:
-			case 53:
-				u.uprops[DEAC_SEARCHING].intrinsic += rnz(200);
-				pline("You are prevented from having automatic searching!");
-				break;
-			case 54:
-				u.uprops[DEAC_CLAIRVOYANT].intrinsic += rnz(200);
-				pline("You are prevented from having clairvoyance!");
-				break;
-			case 55:
-			case 56:
-			case 57:
-			case 58:
-			case 59:
-				u.uprops[DEAC_INFRAVISION].intrinsic += rnz(200);
-				pline("You are prevented from having infravision!");
-				break;
-			case 60:
-				u.uprops[DEAC_DETECT_MONSTERS].intrinsic += rnz(200);
-				pline("You are prevented from having detect monsters!");
-				break;
-			case 61:
-			case 62:
-			case 63:
-				u.uprops[DEAC_INVIS].intrinsic += rnz(200);
-				pline("You are prevented from having invisibility!");
-				break;
-			case 64:
-				u.uprops[DEAC_DISPLACED].intrinsic += rnz(200);
-				pline("You are prevented from having displacement!");
-				break;
-			case 65:
-			case 66:
-			case 67:
-				u.uprops[DEAC_STEALTH].intrinsic += rnz(200);
-				pline("You are prevented from having stealth!");
-				break;
-			case 68:
-				u.uprops[DEAC_JUMPING].intrinsic += rnz(200);
-				pline("You are prevented from having jumping!");
-				break;
-			case 69:
-			case 70:
-			case 71:
-				u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += rnz(200);
-				pline("You are prevented from having teleport control!");
-				break;
-			case 72:
-				u.uprops[DEAC_FLYING].intrinsic += rnz(200);
-				pline("You are prevented from having flying!");
-				break;
-			case 73:
-				u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += rnz(200);
-				pline("You are prevented from having magical breathing!");
-				break;
-			case 74:
-				u.uprops[DEAC_PASSES_WALLS].intrinsic += rnz(200);
-				pline("You are prevented from having phasing!");
-				break;
-			case 75:
-			case 76:
-				u.uprops[DEAC_SLOW_DIGESTION].intrinsic += rnz(200);
-				pline("You are prevented from having slow digestion!");
-				break;
-			case 77:
-				u.uprops[DEAC_HALF_SPDAM].intrinsic += rnz(200);
-				pline("You are prevented from having half spell damage!");
-				break;
-			case 78:
-				u.uprops[DEAC_HALF_PHDAM].intrinsic += rnz(200);
-				pline("You are prevented from having half physical damage!");
-				break;
-			case 79:
-			case 80:
-			case 81:
-			case 82:
-			case 83:
-				u.uprops[DEAC_REGENERATION].intrinsic += rnz(200);
-				pline("You are prevented from having regeneration!");
-				break;
-			case 84:
-			case 85:
-				u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += rnz(200);
-				pline("You are prevented from having mana regeneration!");
-				break;
-			case 86:
-			case 87:
-			case 88:
-				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += rnz(200);
-				pline("You are prevented from having polymorph control!");
-				break;
-			case 89:
-			case 90:
-			case 91:
-			case 92:
-			case 93:
-				u.uprops[DEAC_FAST].intrinsic += rnz(200);
-				pline("You are prevented from having speed!");
-				break;
-			case 94:
-			case 95:
-			case 96:
-				u.uprops[DEAC_REFLECTING].intrinsic += rnz(200);
-				pline("You are prevented from having reflection!");
-				break;
-			case 97:
-			case 98:
-			case 99:
-				u.uprops[DEAC_FREE_ACTION].intrinsic += rnz(200);
-				pline("You are prevented from having free action!");
-				break;
-			case 100:
-				u.uprops[DEAC_HALLU_PARTY].intrinsic += rnz(200);
-				pline("You are prevented from hallu partying!");
-				break;
-			case 101:
-				u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz(200);
-				pline("You are prevented from drunken boxing!");
-				break;
-			case 102:
-				u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having stunnopathy!");
-				break;
-			case 103:
-				u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having numbopathy!");
-				break;
-			case 104:
-				u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having freezopathy!");
-				break;
-			case 105:
-				u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz(200);
-				pline("You are prevented from being a stoned chiller!");
-				break;
-			case 106:
-				u.uprops[DEAC_CORROSIVITY].intrinsic += rnz(200);
-				pline("You are prevented from having corrosivity!");
-				break;
-			case 107:
-				u.uprops[DEAC_FEAR_FACTOR].intrinsic += rnz(200);
-				pline("You are prevented from having an increased fear factor!");
-				break;
-			case 108:
-				u.uprops[DEAC_BURNOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having burnopathy!");
-				break;
-			case 109:
-				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having sickopathy!");
-				break;
-			case 110:
-				u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz(200);
-				pline("You are prevented from having keen memory!");
-				break;
-			case 111:
-				u.uprops[DEAC_THE_FORCE].intrinsic += rnz(200);
-				pline("You are prevented from using the force like a real jedi!");
-				break;
-			case 112:
-				u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz(200);
-				pline("You are prevented from having extra sight!");
-				break;
-			case 113:
-				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz(200);
-				pline("You are prevented from having curse resistance!");
-				break;
-			case 114:
-				u.uprops[DEAC_STUN_RES].intrinsic += rnz(200);
-				pline("You are prevented from having stun resistance!");
-				break;
-			case 115:
-				u.uprops[DEAC_CONF_RES].intrinsic += rnz(200);
-				pline("You are prevented from having confusion resistance!");
-				break;
-			case 116:
-				u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz(200);
-				pline("You are prevented from having double attacks!");
-				break;
-			case 117:
-				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(200);
-				pline("You are prevented from having quad attacks!");
-				break;
-			case 118:
-				u.uprops[DEAC_PSI_RES].intrinsic += rnz(200);
-				pline("You are prevented from having psi resistance!");
-				break;
-			case 119:
-				u.uprops[DEAC_WONDERLEGS].intrinsic += rnz(200);
-				pline("You are prevented from having wonderlegs!");
-				break;
-			case 120:
-				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(200);
-				pline("You are prevented from having glib combat!");
-				break;
-			case 121:
-				u.uprops[DEAC_MANALEECH].intrinsic += rnz(200);
-				pline("You are prevented from having manaleech!");
-				break;
-			case 122:
-				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having dimmopathy!");
-				break;
-			case 123:
-				u.uprops[DEAC_PEACEVISION].intrinsic += rnz(200);
-				pline("You are prevented from having peacevision!");
-				break;
-			case 124:
-				u.uprops[DEAC_CONT_RES].intrinsic += rnz(200);
-				pline("You are prevented from having contamination resistance!");
-				break;
-			}
+		deacrandomintrinsic(rnz(200));
 	}
 
 	if (!rn2(250) && have_vulnerabilitystone() ) {
 
-		switch (rnd(124)) {
-
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-				u.uprops[DEAC_FIRE_RES].intrinsic += rnz(200);
-				pline("You are prevented from having fire resistance!");
-				break;
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-			case 10:
-				u.uprops[DEAC_COLD_RES].intrinsic += rnz(200);
-				pline("You are prevented from having cold resistance!");
-				break;
-			case 11:
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				u.uprops[DEAC_SLEEP_RES].intrinsic += rnz(200);
-				pline("You are prevented from having sleep resistance!");
-				break;
-			case 16:
-			case 17:
-				u.uprops[DEAC_DISINT_RES].intrinsic += rnz(200);
-				pline("You are prevented from having disintegration resistance!");
-				break;
-			case 18:
-			case 19:
-			case 20:
-			case 21:
-			case 22:
-				u.uprops[DEAC_SHOCK_RES].intrinsic += rnz(200);
-				pline("You are prevented from having shock resistance!");
-				break;
-			case 23:
-			case 24:
-			case 25:
-			case 26:
-			case 27:
-				u.uprops[DEAC_POISON_RES].intrinsic += rnz(200);
-				pline("You are prevented from having poison resistance!");
-				break;
-			case 28:
-			case 29:
-			case 30:
-				u.uprops[DEAC_DRAIN_RES].intrinsic += rnz(200);
-				pline("You are prevented from having drain resistance!");
-				break;
-			case 31:
-			case 32:
-				u.uprops[DEAC_SICK_RES].intrinsic += rnz(200);
-				pline("You are prevented from having sickness resistance!");
-				break;
-			case 33:
-			case 34:
-				u.uprops[DEAC_ANTIMAGIC].intrinsic += rnz(200);
-				pline("You are prevented from having magic resistance!");
-				break;
-			case 35:
-			case 36:
-			case 37:
-			case 38:
-				u.uprops[DEAC_ACID_RES].intrinsic += rnz(200);
-				pline("You are prevented from having acid resistance!");
-				break;
-			case 39:
-			case 40:
-				u.uprops[DEAC_STONE_RES].intrinsic += rnz(200);
-				pline("You are prevented from having petrification resistance!");
-				break;
-			case 41:
-				u.uprops[DEAC_FEAR_RES].intrinsic += rnz(200);
-				pline("You are prevented from having fear resistance!");
-				break;
-			case 42:
-			case 43:
-			case 44:
-				u.uprops[DEAC_SEE_INVIS].intrinsic += rnz(200);
-				pline("You are prevented from having see invisible!");
-				break;
-			case 45:
-			case 46:
-			case 47:
-				u.uprops[DEAC_TELEPAT].intrinsic += rnz(200);
-				pline("You are prevented from having telepathy!");
-				break;
-			case 48:
-			case 49:
-			case 50:
-				u.uprops[DEAC_WARNING].intrinsic += rnz(200);
-				pline("You are prevented from having warning!");
-				break;
-			case 51:
-			case 52:
-			case 53:
-				u.uprops[DEAC_SEARCHING].intrinsic += rnz(200);
-				pline("You are prevented from having automatic searching!");
-				break;
-			case 54:
-				u.uprops[DEAC_CLAIRVOYANT].intrinsic += rnz(200);
-				pline("You are prevented from having clairvoyance!");
-				break;
-			case 55:
-			case 56:
-			case 57:
-			case 58:
-			case 59:
-				u.uprops[DEAC_INFRAVISION].intrinsic += rnz(200);
-				pline("You are prevented from having infravision!");
-				break;
-			case 60:
-				u.uprops[DEAC_DETECT_MONSTERS].intrinsic += rnz(200);
-				pline("You are prevented from having detect monsters!");
-				break;
-			case 61:
-			case 62:
-			case 63:
-				u.uprops[DEAC_INVIS].intrinsic += rnz(200);
-				pline("You are prevented from having invisibility!");
-				break;
-			case 64:
-				u.uprops[DEAC_DISPLACED].intrinsic += rnz(200);
-				pline("You are prevented from having displacement!");
-				break;
-			case 65:
-			case 66:
-			case 67:
-				u.uprops[DEAC_STEALTH].intrinsic += rnz(200);
-				pline("You are prevented from having stealth!");
-				break;
-			case 68:
-				u.uprops[DEAC_JUMPING].intrinsic += rnz(200);
-				pline("You are prevented from having jumping!");
-				break;
-			case 69:
-			case 70:
-			case 71:
-				u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += rnz(200);
-				pline("You are prevented from having teleport control!");
-				break;
-			case 72:
-				u.uprops[DEAC_FLYING].intrinsic += rnz(200);
-				pline("You are prevented from having flying!");
-				break;
-			case 73:
-				u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += rnz(200);
-				pline("You are prevented from having magical breathing!");
-				break;
-			case 74:
-				u.uprops[DEAC_PASSES_WALLS].intrinsic += rnz(200);
-				pline("You are prevented from having phasing!");
-				break;
-			case 75:
-			case 76:
-				u.uprops[DEAC_SLOW_DIGESTION].intrinsic += rnz(200);
-				pline("You are prevented from having slow digestion!");
-				break;
-			case 77:
-				u.uprops[DEAC_HALF_SPDAM].intrinsic += rnz(200);
-				pline("You are prevented from having half spell damage!");
-				break;
-			case 78:
-				u.uprops[DEAC_HALF_PHDAM].intrinsic += rnz(200);
-				pline("You are prevented from having half physical damage!");
-				break;
-			case 79:
-			case 80:
-			case 81:
-			case 82:
-			case 83:
-				u.uprops[DEAC_REGENERATION].intrinsic += rnz(200);
-				pline("You are prevented from having regeneration!");
-				break;
-			case 84:
-			case 85:
-				u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += rnz(200);
-				pline("You are prevented from having mana regeneration!");
-				break;
-			case 86:
-			case 87:
-			case 88:
-				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += rnz(200);
-				pline("You are prevented from having polymorph control!");
-				break;
-			case 89:
-			case 90:
-			case 91:
-			case 92:
-			case 93:
-				u.uprops[DEAC_FAST].intrinsic += rnz(200);
-				pline("You are prevented from having speed!");
-				break;
-			case 94:
-			case 95:
-			case 96:
-				u.uprops[DEAC_REFLECTING].intrinsic += rnz(200);
-				pline("You are prevented from having reflection!");
-				break;
-			case 97:
-			case 98:
-			case 99:
-				u.uprops[DEAC_FREE_ACTION].intrinsic += rnz(200);
-				pline("You are prevented from having free action!");
-				break;
-			case 100:
-				u.uprops[DEAC_HALLU_PARTY].intrinsic += rnz(200);
-				pline("You are prevented from hallu partying!");
-				break;
-			case 101:
-				u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz(200);
-				pline("You are prevented from drunken boxing!");
-				break;
-			case 102:
-				u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having stunnopathy!");
-				break;
-			case 103:
-				u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having numbopathy!");
-				break;
-			case 104:
-				u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having freezopathy!");
-				break;
-			case 105:
-				u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz(200);
-				pline("You are prevented from being a stoned chiller!");
-				break;
-			case 106:
-				u.uprops[DEAC_CORROSIVITY].intrinsic += rnz(200);
-				pline("You are prevented from having corrosivity!");
-				break;
-			case 107:
-				u.uprops[DEAC_FEAR_FACTOR].intrinsic += rnz(200);
-				pline("You are prevented from having an increased fear factor!");
-				break;
-			case 108:
-				u.uprops[DEAC_BURNOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having burnopathy!");
-				break;
-			case 109:
-				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having sickopathy!");
-				break;
-			case 110:
-				u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz(200);
-				pline("You are prevented from having keen memory!");
-				break;
-			case 111:
-				u.uprops[DEAC_THE_FORCE].intrinsic += rnz(200);
-				pline("You are prevented from using the force like a real jedi!");
-				break;
-			case 112:
-				u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz(200);
-				pline("You are prevented from having extra sight!");
-				break;
-			case 113:
-				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz(200);
-				pline("You are prevented from having curse resistance!");
-				break;
-			case 114:
-				u.uprops[DEAC_STUN_RES].intrinsic += rnz(200);
-				pline("You are prevented from having stun resistance!");
-				break;
-			case 115:
-				u.uprops[DEAC_CONF_RES].intrinsic += rnz(200);
-				pline("You are prevented from having confusion resistance!");
-				break;
-			case 116:
-				u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz(200);
-				pline("You are prevented from having double attacks!");
-				break;
-			case 117:
-				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz(200);
-				pline("You are prevented from having quad attacks!");
-				break;
-			case 118:
-				u.uprops[DEAC_PSI_RES].intrinsic += rnz(200);
-				pline("You are prevented from having psi resistance!");
-				break;
-			case 119:
-				u.uprops[DEAC_WONDERLEGS].intrinsic += rnz(200);
-				pline("You are prevented from having wonderlegs!");
-				break;
-			case 120:
-				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz(200);
-				pline("You are prevented from having glib combat!");
-				break;
-			case 121:
-				u.uprops[DEAC_MANALEECH].intrinsic += rnz(200);
-				pline("You are prevented from having manaleech!");
-				break;
-			case 122:
-				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz(200);
-				pline("You are prevented from having dimmopathy!");
-				break;
-			case 123:
-				u.uprops[DEAC_PEACEVISION].intrinsic += rnz(200);
-				pline("You are prevented from having peacevision!");
-				break;
-			case 124:
-				u.uprops[DEAC_CONT_RES].intrinsic += rnz(200);
-				pline("You are prevented from having contamination resistance!");
-				break;
-			}
+		deacrandomintrinsic(rnz(200));
 	}
 
 	if (u.uprops[TELEPORTING_ITEMS].extrinsic) {
@@ -1923,6 +1076,8 @@ nh_timeout()
 				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 				} else if (otmpi ->owornmask & W_AMUL) {
 				    Amulet_off();
+				} else if (otmpi ->owornmask & W_IMPLANT) {
+				    Implant_off();
 				} else if (otmpi ->owornmask & W_RING) {
 				    Ring_gone(otmpi);
 				} else if (otmpi ->owornmask & W_TOOL) {
@@ -1974,6 +1129,8 @@ nh_timeout()
 				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 				} else if (otmpi ->owornmask & W_AMUL) {
 				    Amulet_off();
+				} else if (otmpi ->owornmask & W_IMPLANT) {
+				    Implant_off();
 				} else if (otmpi ->owornmask & W_RING) {
 				    Ring_gone(otmpi);
 				} else if (otmpi ->owornmask & W_TOOL) {
@@ -2025,6 +1182,8 @@ nh_timeout()
 				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 				} else if (otmpi ->owornmask & W_AMUL) {
 				    Amulet_off();
+				} else if (otmpi ->owornmask & W_IMPLANT) {
+				    Implant_off();
 				} else if (otmpi ->owornmask & W_RING) {
 				    Ring_gone(otmpi);
 				} else if (otmpi ->owornmask & W_TOOL) {
@@ -2076,6 +1235,8 @@ nh_timeout()
 				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 				} else if (otmpi ->owornmask & W_AMUL) {
 				    Amulet_off();
+				} else if (otmpi ->owornmask & W_IMPLANT) {
+				    Implant_off();
 				} else if (otmpi ->owornmask & W_RING) {
 				    Ring_gone(otmpi);
 				} else if (otmpi ->owornmask & W_TOOL) {
@@ -2105,6 +1266,19 @@ nh_timeout()
 	}
 
 	if (u.uprops[TRAP_REVEALING].extrinsic) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (!rn2(1000) && !t->tseen && !t->hiddentrap) {
+			t->tseen = 1;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && (goodimplanteffect(uimplant) == TRAP_REVEALING) ) {
 
 	    struct trap *t;
 
@@ -5211,6 +4385,18 @@ nh_timeout()
 			if (!Cont_resist)
 				pline("You no longer resist contamination.");
 			break;
+		case DISCOUNT_ACTION:
+			if (!Discount_action)
+				pline("You no longer resist paralysis.");
+			break;
+		case FULL_NUTRIENT:
+			if (!Full_nutrient)
+				pline("Your nutrition consumption speeds up again.");
+			break;
+		case TECHNICALITY:
+			if (!Technicality)
+				pline("Your techniques are weaker again.");
+			break;
 		case BLACK_NG_WALLS:
 
 			pline(Hallucination ? "Rien ne va plus... You seem to remember this slogan being printed on all official Pokemon games' box covers. It's like 'Rien ne va plus' is the official Pokemon slogan!" : "Rien ne va plus...");
@@ -5244,7 +4430,7 @@ nh_timeout()
 				}
 			    }
 
-			    nomul(-2, "fumbling");
+			    nomul(-2, "fumbling", TRUE);
 			    nomovemsg = "";
 			    /* The more you are carrying the more likely you
 			     * are to make noise when you fumble.  Adjustments
@@ -5452,6 +4638,15 @@ nh_timeout()
 		case DEAC_CONT_RES:
 			pline("You are no longer prevented from having contamination resistance.");
 			break;
+		case DEAC_DISCOUNT_ACTION:
+			pline("You are no longer prevented from having discount action.");
+			break;
+		case DEAC_FULL_NUTRIENT:
+			pline("You are no longer prevented from having full nutrients.");
+			break;
+		case DEAC_TECHNICALITY:
+			pline("You are no longer prevented from having technicality.");
+			break;
 
 		}
 	}
@@ -5468,7 +4663,7 @@ int how_long;
 boolean wakeup_msg;
 {
 	stop_occupation();
-	nomul(how_long, "sleeping");
+	nomul(how_long, "sleeping", TRUE);
 	/* generally don't notice sounds while sleeping */
 	if (wakeup_msg && multi == how_long) {
 	    /* caller can follow with a direct call to Hear_again() if
@@ -6154,7 +5349,7 @@ slip_or_trip()
 			break;
 		}
 	    }
-	    else {
+	    else if (!mayfalloffsteed()) {
 		switch (rn2(4)) {
 		  case 1:
 			Your("%s slip out of the stirrups.", makeplural(body_part(FOOT)));
@@ -6876,7 +6071,7 @@ do_storms()
 	pline("Kaboom!!!  Boom!!  Boom!!");
 	if(!u.uinvulnerable) {
 	    stop_occupation();
-	    nomul(-3, "hiding from thunderstorm");
+	    nomul(-3, "hiding from thunderstorm", TRUE);
 	    nomovemsg = 0;
 	}
     } else

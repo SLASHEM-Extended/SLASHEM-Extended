@@ -352,13 +352,16 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 			an(hcolor(obj->blessed ? NH_AMBER : NH_BLACK)),
 			doname(obj), otense(obj, "hit"));
 		if (!Hallucination) {
-			if (!obj->bknown)	use_skill(P_SPIRITUALITY,1);
+			/* prevent skill farming if the player drops individual rocks or stuff --Amy */
+			if (!obj->bknown && !objects[obj->otyp].oc_merge)
+				use_skill(P_SPIRITUALITY,3);
 			obj->bknown = 1;
 		}
 	} else {
 		pline("%s %s on the altar.", Doname2(obj),
 			otense(obj, "land"));
-		if (!obj->bknown)	use_skill(P_SPIRITUALITY,1);
+		if (!obj->bknown && !objects[obj->otyp].oc_merge)
+			use_skill(P_SPIRITUALITY,3);
 		obj->bknown = 1;
 	}
 }
@@ -973,7 +976,7 @@ canletgo(obj,word)
 register struct obj *obj;
 register const char *word;
 {
-	if(obj->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL)){
+	if(obj->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL)){
 		if (*word)
 			Norep("You cannot %s %s you are wearing.",word,
 				something);
@@ -3636,9 +3639,10 @@ rerollchaloc:
 			}
 		    }
 		    /* falling off steed has its own losehp() call */
-		    if (u.usteed)
-			dismount_steed(DISMOUNT_FELL);
-		    else
+		    if (u.usteed) {
+			if (!mayfalloffsteed())
+				dismount_steed(DISMOUNT_FELL);
+		    } else
 			losehp(rnd(3), "falling downstairs", KILLED_BY);
 		    selftouch("Falling, you");
 		} else if (u.dz && at_ladder)

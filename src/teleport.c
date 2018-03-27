@@ -646,7 +646,7 @@ boolean allow_drag;
 	newsym(u.ux0,u.uy0);
 	see_monsters();
 	vision_full_recalc = 1;
-	nomul(0, 0);
+	nomul(0, 0, FALSE);
 	vision_recalc(0);	/* vision before effects */
 	spoteffects(TRUE);
 	invocation_message();

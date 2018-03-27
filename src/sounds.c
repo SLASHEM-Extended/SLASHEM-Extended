@@ -828,7 +828,7 @@ int lev;
     if (verb) {
 	pline("%s %s%c", Monnam(mtmp), vtense((char *)0, verb),
 		lev>1?'!':'.');
-	if (flags.run) nomul(0, 0);
+	if (flags.run) nomul(0, 0, FALSE);
 	wake_nearto(mtmp->mx,mtmp->my,mtmp->data->mlevel*6*lev);
     }
 }
@@ -1269,9 +1269,9 @@ register struct monst *mtmp;
 	    pline_msg = "bellows.";
 	    break;
 	case MS_BONES:
-	    pline("%s rattles noisily.", Monnam(mtmp));
+	    pline(Hallucination ? "%s plays the xylophone!" : "%s rattles noisily.", Monnam(mtmp));
 	    You("freeze for a moment.");
-	    nomul(-2, "scared by rattling");
+	    nomul(-2, "scared by rattling", TRUE);
 	    nomovemsg = 0;
 	    break;
 	case MS_LAUGH:
@@ -1916,6 +1916,18 @@ dochat()
     register struct monst *mtmp;
     register int tx,ty;
     struct obj *otmp;
+
+    if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) {
+	pline("You're muted!");
+	if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return(0);
+    }
+
+    if (tech_inuse(T_SILENT_OCEAN)) {
+	pline("The silent ocean prevents you from talking.");
+	if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	return(0);
+    }
 
     if (is_silent(youmonst.data)) {
 	pline("As %s, you cannot speak.", !missingnoprotect ? an(youmonst.data->mname) : "this weird creature");

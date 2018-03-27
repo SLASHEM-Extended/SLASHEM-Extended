@@ -50,6 +50,7 @@
  */
 
 STATIC_DCL int ready_weapon(struct obj *, BOOLEAN_P);
+static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 /* used by will_weld() */
 /* probably should be renamed */
@@ -214,6 +215,129 @@ boolean put_away;
 	    unwield(olduwep, put_away);
 
 	update_inventory();
+}
+
+void
+swaptech()
+{
+	register struct obj *otmp;
+	struct obj *oldswapwep = uswapwep;
+
+	otmp = getobj(all_count, "put into your swap weapon slot");
+	if (!otmp) {
+		pline("Nothing selected.");
+		return;
+	}
+	if (otmp->owornmask) {
+		You("can't set an item as your secondary weapon that's already equipped in a different slot!");
+		return;
+	}
+
+	if (oldswapwep)
+	    unwield(oldswapwep, TRUE);
+
+	setworn(otmp, W_SWAPWEP);
+	update_inventory();
+
+	if (PlayerCannotUseSkills || (P_SKILL(P_TWO_WEAPON_COMBAT) < P_MASTER) ) {
+
+		if (uswapwep && uswapwep->oartifact == ART_ALASSEA_TELEMNAR && !uswapwep->hvycurse) {
+			curse(uswapwep);
+			uswapwep->hvycurse = 1;
+			pline("A terrible black aura surrounds your sickle...");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE && !uswapwep->hvycurse) {
+			curse(uswapwep);
+			uswapwep->hvycurse = 1;
+			if (!strncmpi(plname, "Henrietta", 9)) pline("Dear Henrietta, the dogs produced plenty of heaps of shit specially for you to step into! Please make sure you don't miss any of them.");
+			else pline("Apparently you want to repeat Henrietta's mistake. Oh well. Good luck avoiding all the heaps of shit now!");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_BLADE_OF_GOTHMOG && !uswapwep->hvycurse) {
+			curse(uswapwep);
+			uswapwep->hvycurse = 1;
+			pline("A terrible black aura surrounds your sword...");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_ARABELLA_S_MELEE_POWER) {
+		    (void) makemon(&mons[PM_GUNNHILD_S_GENERAL_STORE], 0, 0, NO_MM_FLAGS);
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_ARABELLA_S_WARDING_HOE) {
+			curse(uswapwep);
+			uswapwep->hvycurse = uswapwep->prmcurse = uswapwep->evilcurse = 1;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_ATOMIC_MISSING) {
+			curse(uswapwep);
+			pline("The ballista becomes cursed as you wield it.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_FADED_USELESSNESS) {
+			curse(uswapwep);
+			pline("In order to prevent it from falling off, your knife curses itself.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN && !uswapwep->hvycurse) {
+			curse(uswapwep);
+			uswapwep->hvycurse = 1;
+			pline("A terrible black aura surrounds your weapon...");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("The riding crop glows with an evil aura and forces you to terrorize innocent practicants!", body_part(HAND));
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Luisa's beautiful high-heeled lady boot refuses to be put away. Use it wisely!");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_AND_IT_KEEPS_ON_MOVING && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Your weapon is cursed now, and you will keep on moving.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_AMY_S_FIRST_GIRLFRIEND && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("You let out a deep sigh as the beautiful, soft girl shoe becomes cursed.", body_part(HAND));
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_BANG_BANG && uswapwep->spe < 2) uswapwep->spe = 2;
+
+		if (uswapwep && uswapwep->oartifact == ART_DEADLY_GAMBLING && !rn2(100) ) {
+			u.youaredead = 1;
+			pline("BANG! You die.");
+			killer_format = KILLED_BY;
+			killer = "deadly gambling";
+			done(DIED);
+			u.youaredead = 0;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_GUN_CONTROL_LAWS && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Oh no! Morgoth curses your gun as you wield it!");
+		}
+	
+		if (uswapwep && uswapwep->oartifact == ART_OVERHEATER && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Your weapon becomes cursed!");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) {
+			curse(uswapwep);
+			uswapwep->hvycurse = uswapwep->prmcurse = uswapwep->evilcurse = 1;
+			pline("You realize that you've made a horrible mistake.");
+		}
+
+		if (uswapwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uswapwep);
+	
+		if (uswapwep && uswapwep->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uswapwep->spe--;
+
+	}
+
 }
 
 STATIC_OVL int
@@ -438,7 +562,7 @@ dowield()
 	}
 	else if (wep == uquiver)
 		setuqwep((struct obj *) 0);
-	else if (wep->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL
+	else if (wep->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL
 			| W_SADDLE
 			)) {
 		You("cannot wield that!");
@@ -574,7 +698,7 @@ dowieldquiver()
 		pline("%s already being used as a weapon!",
 		      !is_plural(uwep) ? "That is" : "They are");
 		return(0);
-	} else if (newquiver->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL
+	} else if (newquiver->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL
 			| W_SADDLE
 			)) {
 		You("cannot ready that!");
@@ -620,7 +744,7 @@ const char *verb;	/* "rub",&c */
 		   strstri(what, "pair of ") != 0 ||
 		   strstri(what, "s of ") != 0);
 
-    if (obj->owornmask & (W_ARMOR|W_RING|W_AMUL|W_TOOL)) {
+    if (obj->owornmask & (W_ARMOR|W_RING|W_AMUL|W_IMPLANT|W_TOOL)) {
 	char yourbuf[BUFSZ];
 
 	You_cant("%s %s %s while wearing %s.",
@@ -786,7 +910,7 @@ can_twoweapon()
 	    sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
 	    instapetrify(kbuf);
         } 	else if ( (!uarmg || FingerlessGloves) && !Stone_resistance && 
-		(uswapwep && uswapwep->otyp == EGG &&                   
+		(uswapwep && uswapwep->otyp == EGG &&
                 (touch_petrifies(&mons[uswapwep->corpsenm])))) {
 	    char kbuf[BUFSZ];
 
@@ -794,7 +918,7 @@ can_twoweapon()
 		    mons[uswapwep->corpsenm].mname, body_part(HAND));
 	    sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
 	    instapetrify(kbuf);
-        } else if (uswapwep && (IsGlib || uswapwep->cursed)) {
+        } else if (uswapwep && (IsGlib || (uswapwep->cursed && (PlayerCannotUseSkills || (P_SKILL(P_TWO_WEAPON_COMBAT) < P_EXPERT) ) ) )) {
 	    if (!IsGlib)
 		uswapwep->bknown = TRUE;
 	    drop_uswapwep();

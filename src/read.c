@@ -46,10 +46,12 @@
 #define PN_SPIRITUALITY		(-26)
 #define PN_PETKEEPING		(-27)
 #define PN_MISSILE_WEAPONS		(-28)
-#define PN_MARTIAL_ARTS		(-29)
-#define PN_RIDING		(-30)
-#define PN_TWO_WEAPONS		(-31)
-#define PN_LIGHTSABER		(-32)
+#define PN_TECHNIQUES		(-29)
+#define PN_IMPLANTS		(-30)
+#define PN_MARTIAL_ARTS		(-31)
+#define PN_RIDING		(-32)
+#define PN_TWO_WEAPONS		(-33)
+#define PN_LIGHTSABER		(-34)
 
 #ifndef OVLB
 
@@ -80,7 +82,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS, PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -116,6 +118,8 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "spirituality",
     "petkeeping",
     "missile weapons",
+    "techniques",
+    "implants",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -182,7 +186,7 @@ doread()
 	if(!scroll) return(0);
 
 	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
-		nomul(-(rnd(5)), "reading a scroll");
+		nomul(-(rnd(5)), "reading a scroll", TRUE);
 	}
 
 	if (scroll == &thisplace) {
@@ -789,7 +793,12 @@ doread()
 	"Sure, slex has standards. And the usual standard is, everyone else has to think it's a bad idea, or Amy won't implement it.", /* by jonadab */
 	"The greatest value of Slex is existing as a surreal wide awake nightmare game that never makes sense to anyone.", /* someone who took my SLEX survey in Feb 2018 */
 	"This shirt scores very well on Amy's fleeciness scale!",
-
+	"I follow the No Cyanide Rule: No item should, if use-tested in reasonable circumstances, be game-ending! Also, here's an example of an item which directly violates it!", /* yeah aosdict, you are right that the cloak of death violates it, but no player complained about it yet so it can't be so bad! */
+	"I managed to ascend Nethack Fourk and only got screwed over by wands of lightning, elder black dragons, deep ettins and half a dozen other stupid things!",
+	"I absolutely HATE Nethack Fourk's elder black dragons",
+	"I refuse to play xnethack because it suddenly updates its versions and erases my savegame",
+	"I absolutely HATE Nethack Fourk's elder black dragons, and a certain other monster with 'elder' in its name from a certain other NetHack variant",
+	"Viva la Croissistance!", /* by Elronnd */
 
 	    };
 	    char buf[BUFSZ];
@@ -3242,7 +3251,7 @@ register struct obj	*sobj;
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(10), "paralyzed by a scroll of sin");
+						nomul(-rnd(10), "paralyzed by a scroll of sin", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -3310,6 +3319,8 @@ register struct obj	*sobj;
 						    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 						} else if (otmpi ->owornmask & W_AMUL) {
 						    Amulet_off();
+						} else if (otmpi ->owornmask & W_IMPLANT) {
+						    Implant_off();
 						} else if (otmpi ->owornmask & W_RING) {
 						    Ring_gone(otmpi);
 						} else if (otmpi ->owornmask & W_TOOL) {
@@ -3426,7 +3437,7 @@ register struct obj	*sobj;
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(10), "paralyzed by a scroll of sin");
+					nomul(-rnd(10), "paralyzed by a scroll of sin", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -5478,7 +5489,7 @@ retry:
 			if (u.ublesscnt > 0) {pline("The map reveals nothing."); break;}
 			if(sobj->age > monstermoves){
 				pline("The map %s hard to see.", vtense((char *)0,"are"));
-				nomul(-(rnd(3)), "reading an artifact map");
+				nomul(-(rnd(3)), "reading an artifact map", TRUE);
 				sobj->age += (long) d(3,10);
 			} else sobj->age = monstermoves + (long) d(3,10);
 			do_vicinity_map();
@@ -5910,6 +5921,9 @@ rerollX:
 			case AMULET_CLASS:
 				acqo->otyp = rnd_class(AMULET_OF_CHANGE,AMULET_OF_VULNERABILITY);
 				break;
+			case IMPLANT_CLASS:
+				acqo->otyp = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_FREEDOM);
+				break;
 		}
 
 		    dropy(acqo);
@@ -6050,6 +6064,8 @@ newbossC:
 				    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an amulet?")=='y') {
 				    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire an implant?")=='y') {
+				    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a tool?")=='y') {
 				    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire some food?")=='y') {

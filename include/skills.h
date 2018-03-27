@@ -79,9 +79,11 @@
 #define P_SPIRITUALITY	(P_LAST_SPELL + 10)
 #define P_PETKEEPING	(P_LAST_SPELL + 11)
 #define P_MISSILE_WEAPONS	(P_LAST_SPELL + 12)
-#define P_MARTIAL_ARTS		(P_LAST_SPELL + 13) /* WAC used to be role distinguishes */
-#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 14) /* Finally implemented */
-#define P_RIDING		(P_LAST_SPELL + 15) /* How well you control your steed */
+#define P_TECHNIQUES	(P_LAST_SPELL + 13)
+#define P_IMPLANTS	(P_LAST_SPELL + 14)
+#define P_MARTIAL_ARTS		(P_LAST_SPELL + 15) /* WAC used to be role distinguishes */
+#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 16) /* Finally implemented */
+#define P_RIDING		(P_LAST_SPELL + 17) /* How well you control your steed */
 #define P_LAST_H_TO_H		P_RIDING
 #define P_FIRST_H_TO_H		P_BARE_HANDED_COMBAT
 

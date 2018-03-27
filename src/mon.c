@@ -1006,9 +1006,9 @@ register struct monst *mtmp;
 	if (mtmp->data->msound == MS_FART_QUIET) pline("Because of the wonderfully soft noises, you briefly forget what you were doing and just stand there.");
 	else if (mtmp->data->msound == MS_FART_NORMAL) pline("You just can't believe that someone could produce such erotic noises, and are immobilized by your feelings.");
 	else pline("This is really disgusting. You resist the urge to vomit, but fail to pay attention to your surroundings for a moment...");
-      if (mtmp->data->msound == MS_FART_QUIET) nomul(-rnz(4 + mtmp->crapbonus), "listening to tender crapping noises");
-      else if (mtmp->data->msound == MS_FART_NORMAL) nomul(-rnz(5 + mtmp->crapbonus), "listening to beautiful crapping noises");
-      else nomul(-rnz(3 + mtmp->crapbonus), "listening to disgusting crapping noises");
+      if (mtmp->data->msound == MS_FART_QUIET) nomul(-rnz(4 + mtmp->crapbonus), "listening to tender crapping noises", TRUE);
+      else if (mtmp->data->msound == MS_FART_NORMAL) nomul(-rnz(5 + mtmp->crapbonus), "listening to beautiful crapping noises", TRUE);
+      else nomul(-rnz(3 + mtmp->crapbonus), "listening to disgusting crapping noises", TRUE);
       nomovemsg = "At last, you get yourself together, ready to move on.";
 
     }
@@ -1021,7 +1021,7 @@ register struct monst *mtmp;
 	}
 
 	pline("Because you are stupid, you stop to listen.");
-	nomul(-rnz(3 + mtmp->crapbonus), "listening to crapping noises");
+	nomul(-rnz(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
       nomovemsg = "At last, you get yourself together, ready to move on.";
     }
 
@@ -4081,6 +4081,7 @@ xkilled(mtmp, dest)
 		if (mdat == &mons[PM_ARMOR_TROVE]) otmp = mkobj_at(ARMOR_CLASS, x, y, TRUE);
 		if (mdat == &mons[PM_RING_TROVE]) otmp = mkobj_at(RING_CLASS, x, y, TRUE);
 		if (mdat == &mons[PM_AMULET_TROVE]) otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+		if (mdat == &mons[PM_IMPLANT_TROVE]) otmp = mkobj_at(IMPLANT_CLASS, x, y, TRUE);
 		if (mdat == &mons[PM_TOOL_TROVE]) otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
 		if (mdat == &mons[PM_FOOD_TROVE]) otmp = mkobj_at(FOOD_CLASS, x, y, TRUE);
 		if (mdat == &mons[PM_SCROLL_TROVE]) otmp = mkobj_at(SCROLL_CLASS, x, y, TRUE);
@@ -4107,6 +4108,10 @@ xkilled(mtmp, dest)
 		if (mdat == &mons[PM_LARGE_AMULET_TROVE]) {
 			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
 			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_LARGE_IMPLANT_TROVE]) {
+			otmp = mkobj_at(IMPLANT_CLASS, x, y, TRUE);
+			otmp = mkobj_at(IMPLANT_CLASS, x, y, TRUE);
 		}
 		if (mdat == &mons[PM_LARGE_TOOL_TROVE]) {
 			otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
@@ -4158,6 +4163,11 @@ xkilled(mtmp, dest)
 			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
 			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
 			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_BIG_IMPLANT_TROVE]) {
+			otmp = mkobj_at(IMPLANT_CLASS, x, y, TRUE);
+			otmp = mkobj_at(IMPLANT_CLASS, x, y, TRUE);
+			otmp = mkobj_at(IMPLANT_CLASS, x, y, TRUE);
 		}
 		if (mdat == &mons[PM_BIG_TOOL_TROVE]) {
 			otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);
@@ -4221,6 +4231,12 @@ xkilled(mtmp, dest)
 			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
 			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
 			otmp = mkobj_at(AMULET_CLASS, x, y, TRUE);
+		}
+		if (mdat == &mons[PM_GIANT_IMPLANT_TROVE]) {
+			otmp = mkobj_at(IMPLANT_CLASS, x, y, TRUE);
+			otmp = mkobj_at(IMPLANT_CLASS, x, y, TRUE);
+			otmp = mkobj_at(IMPLANT_CLASS, x, y, TRUE);
+			otmp = mkobj_at(IMPLANT_CLASS, x, y, TRUE);
 		}
 		if (mdat == &mons[PM_GIANT_TOOL_TROVE]) {
 			otmp = mkobj_at(TOOL_CLASS, x, y, TRUE);

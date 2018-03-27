@@ -94,10 +94,12 @@ STATIC_VAR const char * const blindgas[6] =
 #define PN_SPIRITUALITY		(-26)
 #define PN_PETKEEPING		(-27)
 #define PN_MISSILE_WEAPONS		(-28)
-#define PN_MARTIAL_ARTS		(-29)
-#define PN_RIDING		(-30)
-#define PN_TWO_WEAPONS		(-31)
-#define PN_LIGHTSABER		(-32)
+#define PN_TECHNIQUES		(-29)
+#define PN_IMPLANTS		(-30)
+#define PN_MARTIAL_ARTS		(-31)
+#define PN_RIDING		(-32)
+#define PN_TWO_WEAPONS		(-33)
+#define PN_LIGHTSABER		(-34)
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
@@ -130,7 +132,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS, PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -166,6 +168,8 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "spirituality",
     "petkeeping",
     "missile weapons",
+    "techniques",
+    "implants",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -1967,7 +1971,7 @@ unsigned trflags;
 	 * my butt. Nasty traps are supposed to be really difficult to spot! --Amy */
 	if (ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != LOOTCUT_TRAP && ttype != MONSTER_SPEED_TRAP && ttype != SCALING_TRAP && ttype != ENMITY_TRAP && ttype != WHITE_SPELL_TRAP && ttype != COMPLETE_GRAY_SPELL_TRAP && ttype != QUASAR_TRAP && ttype != MOMMA_TRAP && ttype != HORROR_TRAP && ttype != ARTIFICER_TRAP && ttype != WEREFORM_TRAP && ttype != NON_PRAYER_TRAP && ttype != EVIL_PATCH_TRAP && ttype != HARD_MODE_TRAP && ttype != SECRET_ATTACK_TRAP && ttype != EATER_TRAP && ttype != COVETOUSNESS_TRAP && ttype != NOT_SEEN_TRAP && ttype != DARK_MODE_TRAP && ttype != ANTISEARCH_TRAP && ttype != HOMICIDE_TRAP && ttype !=  NASTY_NATION_TRAP && ttype != WAKEUP_CALL_TRAP && ttype != GRAYOUT_TRAP && ttype != GRAY_CENTER_TRAP && ttype != CHECKERBOARD_TRAP && ttype != CLOCKWISE_SPIN_TRAP && ttype != COUNTERCLOCKWISE_SPIN_TRAP && ttype != LAG_TRAP && ttype != BLESSCURSE_TRAP && ttype != DE_LIGHT_TRAP && ttype != DISCHARGE_TRAP && ttype != TRASHING_TRAP && ttype != FILTERING_TRAP && ttype != DEFORMATTING_TRAP && ttype != FLICKER_STRIP_TRAP && ttype != UNDRESSING_TRAP && ttype != HYPERBLUEWALL_TRAP && ttype != NOLITE_TRAP && ttype != PARANOIA_TRAP && ttype != FLEECESCRIPT_TRAP && ttype != INTERRUPT_TRAP && ttype != DUSTBIN_TRAP && ttype != MANA_BATTERY_TRAP && ttype != MONSTERFINGERS_TRAP && ttype != MISCAST_TRAP && ttype != MESSAGE_SUPPRESSION_TRAP && ttype != STUCK_ANNOUNCEMENT_TRAP && ttype != BLOODTHIRSTY_TRAP && ttype != MAXIMUM_DAMAGE_TRAP && ttype != LATENCY_TRAP && ttype != STARLIT_TRAP && ttype != KNOWLEDGE_TRAP && ttype != HIGHSCORE_TRAP && ttype != PINK_SPELL_TRAP && ttype != GREEN_SPELL_TRAP && ttype != EVC_TRAP && ttype != UNDERLAYER_TRAP && ttype != DAMAGE_METER_TRAP && ttype != ARBITRARY_WEIGHT_TRAP && ttype != FUCKED_INFO_TRAP && ttype != BLACK_SPELL_TRAP && ttype != CYAN_SPELL_TRAP && ttype != HEAP_TRAP && ttype != BLUE_SPELL_TRAP && ttype != TRON_TRAP && ttype != RED_SPELL_TRAP && ttype != TOO_HEAVY_TRAP && ttype != ELONGATION_TRAP && ttype != WRAPOVER_TRAP && ttype != DESTRUCTION_TRAP && ttype != MELEE_PREFIX_TRAP && ttype != AUTOMORE_TRAP && ttype != UNFAIR_ATTACK_TRAP && ttype != UNINFORMATION_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != LASER_TRAP &&
 		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP && ttype != KOP_CUBE && ttype != BOSS_SPAWNER)
-		nomul(0, 0);
+		nomul(0, 0, FALSE);
 
 	if (u.uprops[INVIS_TRAPS_EFFECT].extrinsic || InvisibleTrapsEffect || have_invisostone() ) {
 		trap->tseen = 0;
@@ -2592,7 +2596,7 @@ unsigned trflags;
 		if (!Free_action || !rn2(10)) {
 		    pline("You are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-		    nomul(-rnz(10), "frozen by a paralysis trap");
+		    nomul(-rnz(10), "frozen by a paralysis trap", TRUE);
 		    nomovemsg = You_can_move_again;
 		    exercise(A_DEX, FALSE);
 		} else You("stiffen momentarily.");
@@ -3593,6 +3597,10 @@ newegomon:
 				    unrestrict_weapon_skill(P_PETKEEPING);	acquiredskill = 1; }
 			else if (P_RESTRICTED(P_MISSILE_WEAPONS) && yn("Do you want to learn the missile weapons skill?")=='y') {
 				    unrestrict_weapon_skill(P_MISSILE_WEAPONS);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_TECHNIQUES) && yn("Do you want to learn the techniques skill?")=='y') {
+				    unrestrict_weapon_skill(P_TECHNIQUES);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_IMPLANTS) && yn("Do you want to learn the implants skill?")=='y') {
+				    unrestrict_weapon_skill(P_IMPLANTS);	acquiredskill = 1; }
 			else if (yn("Do you want to learn no new skill at all?")=='y') {
 				    acquiredskill = 1; }
 			}
@@ -3781,6 +3789,9 @@ rerollX:
 				break;
 			case AMULET_CLASS:
 				acqo->otyp = rnd_class(AMULET_OF_CHANGE,AMULET_OF_VULNERABILITY);
+				break;
+			case IMPLANT_CLASS:
+				acqo->otyp = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_FREEDOM);
 				break;
 		}
 
@@ -4105,6 +4116,8 @@ rerollX:
 				    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 				} else if (otmpi ->owornmask & W_AMUL) {
 				    Amulet_off();
+				} else if (otmpi ->owornmask & W_IMPLANT) {
+				    Implant_off();
 				} else if (otmpi ->owornmask & W_RING) {
 				    Ring_gone(otmpi);
 				} else if (otmpi ->owornmask & W_TOOL) {
@@ -4505,7 +4518,7 @@ rerollX:
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(10), "paralyzed by a sin trap");
+						nomul(-rnd(10), "paralyzed by a sin trap", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -4573,6 +4586,8 @@ rerollX:
 						    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 						} else if (otmpi ->owornmask & W_AMUL) {
 						    Amulet_off();
+						} else if (otmpi ->owornmask & W_IMPLANT) {
+						    Implant_off();
 						} else if (otmpi ->owornmask & W_RING) {
 						    Ring_gone(otmpi);
 						} else if (otmpi ->owornmask & W_TOOL) {
@@ -4687,7 +4702,7 @@ rerollX:
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(10), "paralyzed by a sin trap");
+					nomul(-rnd(10), "paralyzed by a sin trap", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -5385,7 +5400,7 @@ rerollX:
 			if (!Free_action || !rn2(20)) {
 			pline("Suddenly you are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			nomul(-d(5, 6), "frozen by a lock trap");
+			nomul(-d(5, 6), "frozen by a lock trap", TRUE);
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
 			} else You("momentarily stiffen.");
@@ -6361,7 +6376,7 @@ madnesseffect:
 
 				} else {
 					You_feel("so relaxed that you decide to take a nap.");
-					nomul(-5, "relaxed with a smell");
+					nomul(-5, "relaxed with a smell", TRUE);
 					nomovemsg = "You are conscious again.";
 
 				}
@@ -6391,7 +6406,7 @@ madnesseffect:
 				if (uarmf) remove_worn_item(uarmf, TRUE);
 				if (uarmg) remove_worn_item(uarmg, TRUE);
 				if (uarmh) remove_worn_item(uarmh, TRUE);
-				nomul(-5, "dreaming of lovely girls");
+				nomul(-5, "dreaming of lovely girls", TRUE);
 				nomovemsg = "You wake up and discover you're naked.";
 
 				break;
@@ -6413,7 +6428,7 @@ madnesseffect:
 					You_feel("hungry%s.", (u.uhunger > 500) ? " a bit" : "");
 					if (u.uhunger > 500) u.uhunger = 500;
 					else if (u.uhunger > 200) u.uhunger = 200;
-					else u.uhunger -= rnd(400);
+					else u.uhunger -= rnd(Full_nutrient ? 200 : 400);
 
 				    }
 
@@ -6540,7 +6555,7 @@ madnesseffect:
 
 		if (rn2(4)) {
 			pline("You fall down.");
-		    nomul(-(2 + rnd( (monster_difficulty() / 10) + 1) ) , "helpless from tripping over a wire");
+		    nomul(-(2 + rnd( (monster_difficulty() / 10) + 1) ) , "helpless from tripping over a wire", TRUE);
 			nomovemsg = "You get up again.";
 		}
 		if (rn2(4)) {
@@ -6578,6 +6593,8 @@ madnesseffect:
 					    else setworn((struct obj *)0, otmp ->owornmask & W_ARMOR);
 					} else if (otmp ->owornmask & W_AMUL) {
 					    Amulet_off();
+					} else if (otmp ->owornmask & W_IMPLANT) {
+					    Implant_off();
 					} else if (otmp ->owornmask & W_RING) {
 					    Ring_gone(otmp);
 					} else if (otmp ->owornmask & W_TOOL) {
@@ -6668,6 +6685,8 @@ madnesseffect:
 					    else setworn((struct obj *)0, otmp ->owornmask & W_ARMOR);
 					} else if (otmp ->owornmask & W_AMUL) {
 					    Amulet_off();
+					} else if (otmp ->owornmask & W_IMPLANT) {
+					    Implant_off();
 					} else if (otmp ->owornmask & W_RING) {
 					    Ring_gone(otmp);
 					} else if (otmp ->owornmask & W_TOOL) {
@@ -6786,7 +6805,7 @@ madnesseffect:
 			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10);
 		} else {
 			pline("Suddenly your tummy aches terribly!");
-			nomul(-rnd(5), "having bowel cramps");
+			nomul(-rnd(5), "having bowel cramps", TRUE);
 		}
 
 		break;
@@ -6804,6 +6823,7 @@ madnesseffect:
 		if (uright) remove_worn_item(uright, TRUE);
 		if (uleft) remove_worn_item(uleft, TRUE);
 		if (uamul) remove_worn_item(uamul, TRUE);
+		if (uimplant) remove_worn_item(uimplant, TRUE);
 		if (uarmf) remove_worn_item(uarmf, TRUE);
 		if (uarmg) remove_worn_item(uarmg, TRUE);
 		if (uarmh) remove_worn_item(uarmh, TRUE);
@@ -6842,7 +6862,7 @@ madnesseffect:
 
 					if (!u.levelporting) {
 						u.levelporting = 1;
-						nomul(-2, "being levelported"); /* because it's not called until you get another turn... */
+						nomul(-2, "being levelported", FALSE); /* because it's not called until you get another turn... */
 					}
 				}
 				break;
@@ -7424,7 +7444,7 @@ madnesseffect:
 			char c;
 			strcpy(qbuf,"nt|| - Not a valid save file");
 			if ((c = yn_function(qbuf, ynqchars, 'y')) != 'n') {
-			    nomul(-rnd(127), "frozen by a ntll trap");
+			    nomul(-rnd(127), "frozen by a ntll trap", FALSE);
 			    nomovemsg = You_can_move_again;
 			}
 
@@ -8587,317 +8607,7 @@ madnesseffect:
 
 			if (!rn2(5)) {
 
-				 switch (rnd(124)) {
-
-					case 1:
-					case 2:
-					case 3:
-					case 4:
-					case 5:
-						u.uprops[DEAC_FIRE_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having fire resistance!");
-						break;
-					case 6:
-					case 7:
-					case 8:
-					case 9:
-					case 10:
-						u.uprops[DEAC_COLD_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having cold resistance!");
-						break;
-					case 11:
-					case 12:
-					case 13:
-					case 14:
-					case 15:
-						u.uprops[DEAC_SLEEP_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having sleep resistance!");
-						break;
-					case 16:
-					case 17:
-						u.uprops[DEAC_DISINT_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having disintegration resistance!");
-						break;
-					case 18:
-					case 19:
-					case 20:
-					case 21:
-					case 22:
-						u.uprops[DEAC_SHOCK_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having shock resistance!");
-						break;
-					case 23:
-					case 24:
-					case 25:
-					case 26:
-					case 27:
-						u.uprops[DEAC_POISON_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having poison resistance!");
-						break;
-					case 28:
-					case 29:
-					case 30:
-						u.uprops[DEAC_DRAIN_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having drain resistance!");
-						break;
-					case 31:
-					case 32:
-						u.uprops[DEAC_SICK_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having sickness resistance!");
-						break;
-					case 33:
-					case 34:
-						u.uprops[DEAC_ANTIMAGIC].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having magic resistance!");
-						break;
-					case 35:
-					case 36:
-					case 37:
-					case 38:
-						u.uprops[DEAC_ACID_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having acid resistance!");
-						break;
-					case 39:
-					case 40:
-						u.uprops[DEAC_STONE_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having petrification resistance!");
-						break;
-					case 41:
-						u.uprops[DEAC_FEAR_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having fear resistance!");
-						break;
-					case 42:
-					case 43:
-					case 44:
-						u.uprops[DEAC_SEE_INVIS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having see invisible!");
-						break;
-					case 45:
-					case 46:
-					case 47:
-						u.uprops[DEAC_TELEPAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having telepathy!");
-						break;
-					case 48:
-					case 49:
-					case 50:
-						u.uprops[DEAC_WARNING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having warning!");
-						break;
-					case 51:
-					case 52:
-					case 53:
-						u.uprops[DEAC_SEARCHING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having automatic searching!");
-						break;
-					case 54:
-						u.uprops[DEAC_CLAIRVOYANT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having clairvoyance!");
-						break;
-					case 55:
-					case 56:
-					case 57:
-					case 58:
-					case 59:
-						u.uprops[DEAC_INFRAVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having infravision!");
-						break;
-					case 60:
-						u.uprops[DEAC_DETECT_MONSTERS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having detect monsters!");
-						break;
-					case 61:
-					case 62:
-					case 63:
-						u.uprops[DEAC_INVIS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having invisibility!");
-						break;
-					case 64:
-						u.uprops[DEAC_DISPLACED].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having displacement!");
-						break;
-					case 65:
-					case 66:
-					case 67:
-						u.uprops[DEAC_STEALTH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having stealth!");
-						break;
-					case 68:
-						u.uprops[DEAC_JUMPING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having jumping!");
-						break;
-					case 69:
-					case 70:
-					case 71:
-						u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having teleport control!");
-						break;
-					case 72:
-						u.uprops[DEAC_FLYING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having flying!");
-						break;
-					case 73:
-						u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having magical breathing!");
-						break;
-					case 74:
-						u.uprops[DEAC_PASSES_WALLS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having phasing!");
-						break;
-					case 75:
-					case 76:
-						u.uprops[DEAC_SLOW_DIGESTION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having slow digestion!");
-						break;
-					case 77:
-						u.uprops[DEAC_HALF_SPDAM].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having half spell damage!");
-						break;
-					case 78:
-						u.uprops[DEAC_HALF_PHDAM].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having half physical damage!");
-						break;
-					case 79:
-					case 80:
-					case 81:
-					case 82:
-					case 83:
-						u.uprops[DEAC_REGENERATION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having regeneration!");
-						break;
-					case 84:
-					case 85:
-						u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having mana regeneration!");
-						break;
-					case 86:
-					case 87:
-					case 88:
-						u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having polymorph control!");
-						break;
-					case 89:
-					case 90:
-					case 91:
-					case 92:
-					case 93:
-						u.uprops[DEAC_FAST].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having speed!");
-						break;
-					case 94:
-					case 95:
-					case 96:
-						u.uprops[DEAC_REFLECTING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having reflection!");
-						break;
-					case 97:
-					case 98:
-					case 99:
-						u.uprops[DEAC_FREE_ACTION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having free action!");
-						break;
-					case 100:
-						u.uprops[DEAC_HALLU_PARTY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from hallu partying!");
-						break;
-					case 101:
-						u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from drunken boxing!");
-						break;
-					case 102:
-						u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having stunnopathy!");
-						break;
-					case 103:
-						u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having numbopathy!");
-						break;
-					case 104:
-						u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having freezopathy!");
-						break;
-					case 105:
-						u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from being a stoned chiller!");
-						break;
-					case 106:
-						u.uprops[DEAC_CORROSIVITY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having corrosivity!");
-						break;
-					case 107:
-						u.uprops[DEAC_FEAR_FACTOR].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having an increased fear factor!");
-						break;
-					case 108:
-						u.uprops[DEAC_BURNOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having burnopathy!");
-						break;
-					case 109:
-						u.uprops[DEAC_SICKOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having sickopathy!");
-						break;
-					case 110:
-						u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having keen memory!");
-						break;
-					case 111:
-						u.uprops[DEAC_THE_FORCE].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from using the force like a real jedi!");
-						break;
-					case 112:
-						u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having extra sight!");
-						break;
-					case 113:
-						u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having curse resistance!");
-						break;
-					case 114:
-						u.uprops[DEAC_STUN_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having stun resistance!");
-						break;
-					case 115:
-						u.uprops[DEAC_CONF_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having confusion resistance!");
-						break;
-					case 116:
-						u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having double attacks!");
-						break;
-					case 117:
-						u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having quad attacks!");
-						break;
-					case 118:
-						u.uprops[DEAC_PSI_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having psi resistance!");
-						break;
-					case 119:
-						u.uprops[DEAC_WONDERLEGS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having wonderlegs!");
-						break;
-					case 120:
-						u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having glib combat!");
-						break;
-					case 121:
-						u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having manaleech!");
-						break;
-					case 122:
-						u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having dimmopathy!");
-						break;
-					case 123:
-						u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having peacevision!");
-						break;
-					case 124:
-						u.uprops[DEAC_CONT_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having contamination resistance!");
-						break;
-				}
-
+				deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
 			}
 
 			if (AutomaticVulnerabilitiy) break;
@@ -9164,317 +8874,7 @@ madnesseffect:
 
 			seetrap(trap);
 			pline("You stepped on a trigger!");
-
-		 switch (rnd(124)) {
-
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-				u.uprops[DEAC_FIRE_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having fire resistance!");
-				break;
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-			case 10:
-				u.uprops[DEAC_COLD_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having cold resistance!");
-				break;
-			case 11:
-			case 12:
-			case 13:
-			case 14:
-			case 15:
-				u.uprops[DEAC_SLEEP_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having sleep resistance!");
-				break;
-			case 16:
-			case 17:
-				u.uprops[DEAC_DISINT_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having disintegration resistance!");
-				break;
-			case 18:
-			case 19:
-			case 20:
-			case 21:
-			case 22:
-				u.uprops[DEAC_SHOCK_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having shock resistance!");
-				break;
-			case 23:
-			case 24:
-			case 25:
-			case 26:
-			case 27:
-				u.uprops[DEAC_POISON_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having poison resistance!");
-				break;
-			case 28:
-			case 29:
-			case 30:
-				u.uprops[DEAC_DRAIN_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having drain resistance!");
-				break;
-			case 31:
-			case 32:
-				u.uprops[DEAC_SICK_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having sickness resistance!");
-				break;
-			case 33:
-			case 34:
-				u.uprops[DEAC_ANTIMAGIC].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having magic resistance!");
-				break;
-			case 35:
-			case 36:
-			case 37:
-			case 38:
-				u.uprops[DEAC_ACID_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having acid resistance!");
-				break;
-			case 39:
-			case 40:
-				u.uprops[DEAC_STONE_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having petrification resistance!");
-				break;
-			case 41:
-				u.uprops[DEAC_FEAR_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having fear resistance!");
-				break;
-			case 42:
-			case 43:
-			case 44:
-				u.uprops[DEAC_SEE_INVIS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having see invisible!");
-				break;
-			case 45:
-			case 46:
-			case 47:
-				u.uprops[DEAC_TELEPAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having telepathy!");
-				break;
-			case 48:
-			case 49:
-			case 50:
-				u.uprops[DEAC_WARNING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having warning!");
-				break;
-			case 51:
-			case 52:
-			case 53:
-				u.uprops[DEAC_SEARCHING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having automatic searching!");
-				break;
-			case 54:
-				u.uprops[DEAC_CLAIRVOYANT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having clairvoyance!");
-				break;
-			case 55:
-			case 56:
-			case 57:
-			case 58:
-			case 59:
-				u.uprops[DEAC_INFRAVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having infravision!");
-				break;
-			case 60:
-				u.uprops[DEAC_DETECT_MONSTERS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having detect monsters!");
-				break;
-			case 61:
-			case 62:
-			case 63:
-				u.uprops[DEAC_INVIS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having invisibility!");
-				break;
-			case 64:
-				u.uprops[DEAC_DISPLACED].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having displacement!");
-				break;
-			case 65:
-			case 66:
-			case 67:
-				u.uprops[DEAC_STEALTH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having stealth!");
-				break;
-			case 68:
-				u.uprops[DEAC_JUMPING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having jumping!");
-				break;
-			case 69:
-			case 70:
-			case 71:
-				u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having teleport control!");
-				break;
-			case 72:
-				u.uprops[DEAC_FLYING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having flying!");
-				break;
-			case 73:
-				u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having magical breathing!");
-				break;
-			case 74:
-				u.uprops[DEAC_PASSES_WALLS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having phasing!");
-				break;
-			case 75:
-			case 76:
-				u.uprops[DEAC_SLOW_DIGESTION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having slow digestion!");
-				break;
-			case 77:
-				u.uprops[DEAC_HALF_SPDAM].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having half spell damage!");
-				break;
-			case 78:
-				u.uprops[DEAC_HALF_PHDAM].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having half physical damage!");
-				break;
-			case 79:
-			case 80:
-			case 81:
-			case 82:
-			case 83:
-				u.uprops[DEAC_REGENERATION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having regeneration!");
-				break;
-			case 84:
-			case 85:
-				u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having mana regeneration!");
-				break;
-			case 86:
-			case 87:
-			case 88:
-				u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having polymorph control!");
-				break;
-			case 89:
-			case 90:
-			case 91:
-			case 92:
-			case 93:
-				u.uprops[DEAC_FAST].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having speed!");
-				break;
-			case 94:
-			case 95:
-			case 96:
-				u.uprops[DEAC_REFLECTING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having reflection!");
-				break;
-			case 97:
-			case 98:
-			case 99:
-				u.uprops[DEAC_FREE_ACTION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having free action!");
-				break;
-			case 100:
-				u.uprops[DEAC_HALLU_PARTY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from hallu partying!");
-				break;
-			case 101:
-				u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from drunken boxing!");
-				break;
-			case 102:
-				u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having stunnopathy!");
-				break;
-			case 103:
-				u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having numbopathy!");
-				break;
-			case 104:
-				u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having freezopathy!");
-				break;
-			case 105:
-				u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from being a stoned chiller!");
-				break;
-			case 106:
-				u.uprops[DEAC_CORROSIVITY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having corrosivity!");
-				break;
-			case 107:
-				u.uprops[DEAC_FEAR_FACTOR].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having an increased fear factor!");
-				break;
-			case 108:
-				u.uprops[DEAC_BURNOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having burnopathy!");
-				break;
-			case 109:
-				u.uprops[DEAC_SICKOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having sickopathy!");
-				break;
-			case 110:
-				u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having keen memory!");
-				break;
-			case 111:
-				u.uprops[DEAC_THE_FORCE].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from using the force like a real jedi!");
-				break;
-			case 112:
-				u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having extra sight!");
-				break;
-			case 113:
-				u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having curse resistance!");
-				break;
-			case 114:
-				u.uprops[DEAC_STUN_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having stun resistance!");
-				break;
-			case 115:
-				u.uprops[DEAC_CONF_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having confusion resistance!");
-				break;
-			case 116:
-				u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having double attacks!");
-				break;
-			case 117:
-				u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having quad attacks!");
-				break;
-			case 118:
-				u.uprops[DEAC_PSI_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having psi resistance!");
-				break;
-			case 119:
-				u.uprops[DEAC_WONDERLEGS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having wonderlegs!");
-				break;
-			case 120:
-				u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having glib combat!");
-				break;
-			case 121:
-				u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having manaleech!");
-				break;
-			case 122:
-				u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having dimmopathy!");
-				break;
-			case 123:
-				u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having peacevision!");
-				break;
-			case 124:
-				u.uprops[DEAC_CONT_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-				pline("You are prevented from having contamination resistance!");
-				break;
-			}
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
 
 		 break;
 
@@ -9524,7 +8924,7 @@ madnesseffect:
 				    } else {
 					pline("It hurts like hell! You pass out from the intense pain.");            
 					nomovemsg = "You finally manage to get up again.";
-					nomul(-(rnd(monster_difficulty() + 1)), "knocked out by a peep-toe trap" );
+					nomul(-(rnd(monster_difficulty() + 1)), "knocked out by a peep-toe trap", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -9633,7 +9033,7 @@ madnesseffect:
 					    } else {
 						pline("You're knocked out and helplessly drop to the floor.");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(5), "knocked out by a geta trap");
+						nomul(-rnd(5), "knocked out by a geta trap", TRUE);
 						exercise(A_DEX, FALSE);
 						    }
 						}
@@ -11158,7 +10558,7 @@ int style;
 				break;
 			}
 		} else if (bhitpos.x == u.ux && bhitpos.y == u.uy) {
-			if (multi) nomul(0, 0);
+			if (multi) nomul(0, 0, FALSE);
 			if (thitu(9 + singleobj->spe,
 				  dmgval(singleobj, &youmonst),
 				  singleobj, (char *)0))
@@ -13127,7 +12527,7 @@ long hmask, emask;     /* might cancel timeout */
 			     */
 			    You("fall over.");
 			    losehp(rnd(2), "dangerous winds", KILLED_BY);
-			    if (u.usteed) dismount_steed(DISMOUNT_FELL);
+			    if (u.usteed && !mayfalloffsteed()) dismount_steed(DISMOUNT_FELL);
 			    selftouch("As you fall, you");
 			}
 		    }
@@ -13244,7 +12644,7 @@ struct obj *box;        /* at the moment only for floor traps */
 				if (!Free_action || !rn2(5)) {
 				    pline("You are frozen in place!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-				    nomul(-rnz(10), "frozen by a volt trap");
+				    nomul(-rnz(10), "frozen by a volt trap", TRUE);
 				    nomovemsg = You_can_move_again;
 				    exercise(A_DEX, FALSE);
 				} else You("stiffen momentarily.");
@@ -13319,7 +12719,7 @@ struct obj *box;        /* at the moment only for floor traps */
 		if ( !rn2(100) || (!Free_action && !rn2(10)))	{
 			You("inhale the intense smell of shit! The world spins and goes dark.");
 			nomovemsg = "You are conscious again.";	/* default: "you can move again" */
-			nomul(-rnd(10), "unconscious from smelling dog shit");
+			nomul(-rnd(10), "unconscious from smelling dog shit", TRUE);
 			exercise(A_DEX, FALSE);
 		}
 
@@ -13742,7 +13142,7 @@ register boolean force, here;
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ) ) {
 	pline("Urgh, your yellow sneakers hate getting wet!");
-	nomul(-rnd(20), "getting their yellow sneakers wet");
+	nomul(-rnd(20), "getting their yellow sneakers wet", TRUE);
 	losehp(rnd(10), "endangering their yellow sneakers", KILLED_BY);
 	}
 
@@ -13773,6 +13173,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JANA_S_VAGINAL_FUN) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmu && uarmu->oartifact == ART_THERMAL_BATH) continue;
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_SEA_ELF)) continue;
+		if ((obj->where != OBJ_FLOOR) && tech_inuse(T_SILENT_OCEAN)) continue;
 
 		if (obj && obj->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The liquid destroys your footwear instantly.");
@@ -14199,7 +13600,7 @@ boolean *lostsome;
 		     * for obvious reasons.
 		     */
 		    if (!(( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || obj->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(obj) ) && obj->cursed) ||
-			  obj == uamul || obj == uleft || obj == uright ||
+			  obj == uamul || obj == uimplant || obj == uleft || obj == uright ||
 			  obj == ublindf || obj == uarm || obj == uarmc ||
 			  obj == uarmg || obj == uarmf ||
 			  obj == uarmu ||
@@ -14732,7 +14133,7 @@ boolean force_failure;
 				if (ttmp2) {
 				    pline_The("webbing sticks to you. You're caught too!");
 				    dotrap(ttmp2, NOWEBMSG);
-				    if (u.usteed && u.utrap) {
+				    if (u.usteed && u.utrap && !mayfalloffsteed()) {
 					/* you, not steed, are trapped */
 					dismount_steed(DISMOUNT_FELL);
 				    }
@@ -15747,7 +15148,7 @@ boolean disarm;
 			if (!Free_action || !rn2(20)) {                        
 			pline("Suddenly you are frozen in place!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			nomul(-d(5, 6), "frozen by a container trap");
+			nomul(-d(5, 6), "frozen by a container trap", TRUE);
 			exercise(A_DEX, FALSE);
 			nomovemsg = You_can_move_again;
 			} else You("momentarily stiffen.");
@@ -16035,6 +15436,7 @@ lava_effects()
 		    else if(obj == uright) Ring_gone(obj);
 		    else if(obj == ublindf) Blindf_off(obj);
 		    else if(obj == uamul) Amulet_off();
+		    else if(obj == uimplant) Implant_off();
 		    else if(obj == uwep) uwepgone();
 		    else if (obj == uquiver) uqwepgone();
 		    else if (obj == uswapwep) uswapwepgone();

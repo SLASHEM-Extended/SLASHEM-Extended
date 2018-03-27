@@ -317,7 +317,7 @@ const struct shclass shtypes[] = {
 	    {{83, FOOD_CLASS}, {5, -POT_FRUIT_JUICE}, {4, -POT_BOOZE},
 	     {5, -POT_WATER}, {3, -ICE_BOX}}, shkfoods},
 	{"jewelers", RING_CLASS, 3, D_SHOP,
-	    {{85, RING_CLASS}, {10, GEM_CLASS}, {5, AMULET_CLASS}, {0, 0}},
+	    {{85, RING_CLASS}, {9, GEM_CLASS}, {5, AMULET_CLASS}, {1, IMPLANT_CLASS}, {0, 0}},
 	    shkrings},
 	{"quality apparel and accessories", WAND_CLASS, 4, D_SHOP,
 	    {{90, WAND_CLASS}, {5, -LEATHER_GLOVES}, {5, -ELVEN_CLOAK}, {0, 0}},

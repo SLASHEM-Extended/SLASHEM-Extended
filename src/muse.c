@@ -3700,7 +3700,7 @@ register struct obj *otmp;
 			    losehp(tmp, "wand of striking", KILLED_BY_AN);
 			} else pline_The("wand misses you.");
 			stop_occupation();
-			nomul(0, 0);
+			nomul(0, 0, FALSE);
 		} else if (resists_magm(mtmp)) {
 			shieldeff(mtmp->mx, mtmp->my);
 			pline("Boing!");
@@ -3726,7 +3726,7 @@ register struct obj *otmp;
 			if(Half_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
 			losehp(tmp, "wand of gravity beam", KILLED_BY_AN);
 			stop_occupation();
-			nomul(0, 0);
+			nomul(0, 0, FALSE);
 			phase_door(0);
 			pushplayer();
 		} else {
@@ -3763,7 +3763,7 @@ register struct obj *otmp;
 
 		if (mtmp == &youmonst) {
 			u.banishmentbeam = 1;
-			nomul(-2, "being banished"); /* because it's not called until you get another turn... */
+			nomul(-2, "being banished", FALSE); /* because it's not called until you get another turn... */
 		}
 
 		break;
@@ -3781,7 +3781,7 @@ register struct obj *otmp;
 			if (!Free_action || !rn2(5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			    nomul(-rnz(5), "frozen by a wand");
+			    nomul(-rnz(5), "frozen by a wand", TRUE);
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
 			} else You("stiffen momentarily.");
@@ -3964,7 +3964,7 @@ register struct obj *otmp;
 			if (zap_oseen)
 				makeknown(WAN_DRAINING);
 			stop_occupation();
-			nomul(0, 0);
+			nomul(0, 0, FALSE);
 			break;
 		} else if (resists_drli(mtmp)) {
 			shieldeff(mtmp->mx, mtmp->my);
@@ -4087,7 +4087,7 @@ register struct obj *otmp;
 			if (zap_oseen)
 				makeknown(WAN_REDUCE_MAX_HITPOINTS);
 			stop_occupation();
-			nomul(0, 0);
+			nomul(0, 0, FALSE);
 			break;
 		} else {
 			mtmp->mhpmax -= rnd(8);
@@ -4512,7 +4512,7 @@ struct monst *mtmp;
 			destroy_item(AMULET_CLASS, AD_ELEC);
 		}
 
-		if (!rn2(3) && multi >= 0) nomul(-rnd(3), "paralyzed by thunder");
+		if (!rn2(3) && multi >= 0) nomul(-rnd(3), "paralyzed by thunder", TRUE);
 		if (!rn2(2)) make_numbed(HNumbed + rnz(150), TRUE);
 
 		buzz((int)(-25), 12 + (rnd(monster_difficulty()) / 4),
@@ -5335,7 +5335,7 @@ struct monst *mtmp;
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(10), "paralyzed by a scroll of sin");
+						nomul(-rnd(10), "paralyzed by a scroll of sin", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -5403,6 +5403,8 @@ struct monst *mtmp;
 						    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 						} else if (otmpi ->owornmask & W_AMUL) {
 						    Amulet_off();
+						} else if (otmpi ->owornmask & W_IMPLANT) {
+						    Implant_off();
 						} else if (otmpi ->owornmask & W_RING) {
 						    Ring_gone(otmpi);
 						} else if (otmpi ->owornmask & W_TOOL) {
@@ -5519,7 +5521,7 @@ struct monst *mtmp;
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(10), "paralyzed by a scroll of sin");
+					nomul(-rnd(10), "paralyzed by a scroll of sin", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}
@@ -6406,7 +6408,7 @@ newboss:
 						You("are frozen!");
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 						nomovemsg = 0;	/* default: "you can move again" */
-						nomul(-rnd(10), "paralyzed by a wand of sin");
+						nomul(-rnd(10), "paralyzed by a wand of sin", TRUE);
 						exercise(A_DEX, FALSE);
 					    }
 					}
@@ -6474,6 +6476,8 @@ newboss:
 						    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 						} else if (otmpi ->owornmask & W_AMUL) {
 						    Amulet_off();
+						} else if (otmpi ->owornmask & W_IMPLANT) {
+						    Implant_off();
 						} else if (otmpi ->owornmask & W_RING) {
 						    Ring_gone(otmpi);
 						} else if (otmpi ->owornmask & W_TOOL) {
@@ -6590,7 +6594,7 @@ newboss:
 					You("are frozen!");
 					if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					nomovemsg = 0;	/* default: "you can move again" */
-					nomul(-rnd(10), "paralyzed by a wand of sin");
+					nomul(-rnd(10), "paralyzed by a wand of sin", TRUE);
 					exercise(A_DEX, FALSE);
 				    }
 				}

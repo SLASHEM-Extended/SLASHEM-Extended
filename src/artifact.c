@@ -727,6 +727,13 @@ bad_artifact()
 			if (otmp) curse(otmp);
 		}
 
+		else if (otmp->oclass == IMPLANT_CLASS) {
+			if (uimplant) remove_worn_item(uimplant, TRUE);
+			setworn(otmp, W_IMPLANT);
+			Implant_on();
+			if (otmp) curse(otmp);
+		}
+
 		else if (is_boots(otmp)) {
 			if (uarmf) remove_worn_item(uarmf, TRUE);
 			setworn(otmp, W_ARMF);
@@ -871,6 +878,13 @@ bad_artifact_xtra()
 			if (uamul) remove_worn_item(uamul, TRUE);
 			setworn(otmp, W_AMUL);
 			Amulet_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (otmp->oclass == IMPLANT_CLASS) {
+			if (uimplant) remove_worn_item(uimplant, TRUE);
+			setworn(otmp, W_IMPLANT);
+			Implant_on();
 			if (otmp) curse(otmp);
 		}
 
@@ -1755,7 +1769,7 @@ char *hittee;			/* target's name: "you" or mon_nam(mdef) */
 	    if (Antimagic) {
 		resisted = TRUE;
 	    } else {
-		nomul(-3, "being scared stiff");
+		nomul(-3, "being scared stiff", TRUE);
 		nomovemsg = "";
 		if (magr && magr == u.ustuck && sticks(youmonst.data)) {
 		    setustuck((struct monst *)0);
@@ -2389,7 +2403,7 @@ doinvoke()
 					break;
 				case 9:
 					pline("Your body suddenly becomes all stiff!");
-					nomul(-rnd(15), "paralyzed by a pentagram");
+					nomul(-rnd(15), "paralyzed by a pentagram", TRUE);
 					break;
 				case 10:
 
@@ -3095,6 +3109,12 @@ doinvoke()
 						acquiredskill = 1; }
 					else if (P_ADVANCE(P_MISSILE_WEAPONS) && yn("Do you want to train the missile weapons skill?")=='y') {
 						P_ADVANCE(P_MISSILE_WEAPONS) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_TECHNIQUES) && yn("Do you want to train the techniques skill?")=='y') {
+						P_ADVANCE(P_TECHNIQUES) *= 2;
+						acquiredskill = 1; }
+					else if (P_ADVANCE(P_IMPLANTS) && yn("Do you want to train the implants skill?")=='y') {
+						P_ADVANCE(P_IMPLANTS) *= 2;
 						acquiredskill = 1; }
 					else if (yn("Do you want to train no skill at all?")=='y') {
 						acquiredskill = 1; }
@@ -4263,7 +4283,7 @@ intrinsicgainorloss()
 				break;
 
 		}
-	} else switch (rnd(35)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(38)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -4902,6 +4922,57 @@ intrinsicgainorloss()
 					if(!(HCont_resist & FROMOUTSIDE)) {
 						You_feel("protected from contamination.");
 						HCont_resist |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 36:
+				if (intloss) {
+					if (HDiscount_action & INTRINSIC) {
+						HDiscount_action &= ~INTRINSIC;
+						You_feel("less resistant to paralysis!");
+					}
+					if (HDiscount_action & TIMEOUT) {
+						HDiscount_action &= ~TIMEOUT;
+						You_feel("less resistant to paralysis!");
+					}
+				} else {
+					if(!(HDiscount_action & FROMOUTSIDE)) {
+						You_feel("more resistant to paralysis!");
+						HDiscount_action |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 37:
+				if (intloss) {
+					if (HFull_nutrient & INTRINSIC) {
+						HFull_nutrient &= ~INTRINSIC;
+						You_feel("a hole in your %s!", body_part(STOMACH));
+					}
+					if (HFull_nutrient & TIMEOUT) {
+						HFull_nutrient &= ~TIMEOUT;
+						You_feel("a hole in your %s!", body_part(STOMACH));
+					}
+				} else {
+					if(!(HFull_nutrient & FROMOUTSIDE)) {
+						You_feel("that your %s is now rather full.", body_part(STOMACH));
+						HFull_nutrient |= FROMOUTSIDE;
+					}
+				}
+				break;
+			case 38:
+				if (intloss) {
+					if (HTechnicality & INTRINSIC) {
+						HTechnicality &= ~INTRINSIC;
+						You_feel("less capable of using your techniques...");
+					}
+					if (HTechnicality & TIMEOUT) {
+						HTechnicality &= ~TIMEOUT;
+						You_feel("less capable of using your techniques...");
+					}
+				} else {
+					if(!(HTechnicality & FROMOUTSIDE)) {
+						You_feel("that your techniques are more powerful now!");
+						HTechnicality |= FROMOUTSIDE;
 					}
 				}
 				break;

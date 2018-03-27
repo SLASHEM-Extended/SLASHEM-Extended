@@ -31,16 +31,17 @@ const char def_oc_syms[MAXOCLASSES] = {
 	ARMOR_SYM,
 	RING_SYM,
 /* 5*/	AMULET_SYM,
+	IMPLANT_SYM,
 	TOOL_SYM,
 	FOOD_SYM,
 	POTION_SYM,
-	SCROLL_SYM,
-/*10*/	SPBOOK_SYM,
+/*10*/	SCROLL_SYM,
+	SPBOOK_SYM,
 	WAND_SYM,
 	GOLD_SYM,
 	GEM_SYM,
-	ROCK_SYM,
-/*15*/	BALL_SYM,
+/*15*/	ROCK_SYM,
+	BALL_SYM,
 	CHAIN_SYM,
 	VENOM_SYM
 };
@@ -55,16 +56,17 @@ const char * const objexplain[] = {	/* these match def_oc_syms, above */
 	"suit or piece of armor",
 	"ring",
 /* 5*/	"amulet",
+	"implant",
 	"useful item (pick-axe, key, lamp...)",
 	"piece of food",
 	"potion",
-	"scroll",
-/*10*/	"spell book",
+/*10*/	"scroll",
+	"spell book",
 	"wand",
 	"pile of coins",
 	"gem or rock",
-	"boulder or statue",
-/*15*/	"iron ball",
+/*15*/	"boulder or statue",
+	"iron ball",
 	"iron chain",
 	"splash of venom"
 };
@@ -77,16 +79,17 @@ const char * const oclass_names[] = {
 	"armor",
 	"rings",
 /* 5*/	"amulets",
+	"implants",
 	"tools",
 	"food",
 	"potions",
-	"scrolls",
-/*10*/	"spell books",
+/*10*/	"scrolls",
+	"spell books",
 	"wands",
 	"coins",
 	"rocks",
-	"large stones",
-/*15*/	"iron balls",
+/*15*/	"large stones",
+	"iron balls",
 	"chains",
 	"venoms"
 };
@@ -2410,16 +2413,17 @@ static const uchar r_oc_syms[MAXOCLASSES] = {
 	']',			/* armor */
 	RING_SYM,
 /* 5*/	',',			/* amulet */
+	IMPLANT_SYM,
 	TOOL_SYM,
 	':',			/* food */
 	POTION_SYM,
-	SCROLL_SYM,
-/*10*/	SPBOOK_SYM,
+/*10*/	SCROLL_SYM,
+	SPBOOK_SYM,
 	WAND_SYM,
 	GEM_SYM,		/* gold -- yes it's the same as gems */
 	GEM_SYM,
-	ROCK_SYM,
-/*15*/	BALL_SYM,
+/*15*/	ROCK_SYM,
+	BALL_SYM,
 	CHAIN_SYM,
 	VENOM_SYM
 };
@@ -2439,11 +2443,12 @@ static const uchar IBM_r_oc_syms[MAXOCLASSES] = {	/* a la EPYX Rogue */
 	0x0a, /* ARMOR_SYM,*/	/* armor:  Vert rect with o */
 	0x09, /* RING_SYM,*/	/* ring:   circle with arrow */
 /* 5*/	0x0c,			/* amulet: "female" symbol */
+	IMPLANT_SYM,
 	/*TOOL_SYM*/0x06,
 	0x05,			/* food:   club (as in cards) */
 	0xad,			/* potion: upside down '!' */
-	0x0e,			/* scroll: musical note */
-/*10*/	/*SPBOOK_SYM*/0x0d,
+/*10*/	0x0e,			/* scroll: musical note */
+	/*SPBOOK_SYM*/0x0d,
 	0xe7,			/* wand:   greek tau */
 	0x0f,			/* gold:   yes it's the same as gems */
 	0x0f,			/* gems:   fancy '*' */
@@ -2452,17 +2457,18 @@ static const uchar IBM_r_oc_syms[MAXOCLASSES] = {	/* a la EPYX Rogue */
 	ARMOR_SYM,		/* armor */
 	RING_SYM,		/* ring */
 /* 5*/	',',			/* amulet  */
+	IMPLANT_SYM,
 	TOOL_SYM,
 	':',			/* food    */
 	0xad,			/* potion: upside down '!' */
-	SCROLL_SYM,		/* scroll  */
-/*10*/	SPBOOK_SYM,
+/*10*/	SCROLL_SYM,		/* scroll  */
+	SPBOOK_SYM,
 	0xe7,			/* wand:   greek tau */
 	GEM_SYM,		/* gold:   yes it's the same as gems */
 	GEM_SYM,		/* gems    */
 #  endif
-	ROCK_SYM,
-/*15*/	BALL_SYM,
+/*15*/	ROCK_SYM,
+	BALL_SYM,
 	CHAIN_SYM,
 	VENOM_SYM
 };

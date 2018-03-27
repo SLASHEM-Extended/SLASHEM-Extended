@@ -89,10 +89,12 @@ static int spell_dash(void);
 #define PN_SPIRITUALITY		(-26)
 #define PN_PETKEEPING		(-27)
 #define PN_MISSILE_WEAPONS		(-28)
-#define PN_MARTIAL_ARTS		(-29)
-#define PN_RIDING		(-30)
-#define PN_TWO_WEAPONS		(-31)
-#define PN_LIGHTSABER		(-32)
+#define PN_TECHNIQUES		(-29)
+#define PN_IMPLANTS		(-30)
+#define PN_MARTIAL_ARTS		(-31)
+#define PN_RIDING		(-32)
+#define PN_TWO_WEAPONS		(-33)
+#define PN_LIGHTSABER		(-34)
 
 #ifndef OVLB
 
@@ -123,7 +125,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS, PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -159,6 +161,8 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "spirituality",
     "petkeeping",
     "missile weapons",
+    "techniques",
+    "implants",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -988,9 +992,9 @@ learn()
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
 	    if ((delay - end_delay) < 0) {
-			if (!issoviet) nomul((-(rno(-(delay - end_delay)))), "reading a confusing book");	/* remaining delay is uninterrupted */
+			if (!issoviet) nomul((-(rno(-(delay - end_delay)))), "reading a confusing book", TRUE); /* remaining delay is uninterrupted */
 			else {
-				nomul((delay - end_delay), "reading a confusing book");
+				nomul((delay - end_delay), "reading a confusing book", TRUE);
 				pline("Vy tol'ko chto podpisal svoy smertnyy prigovor, potomu chto sovetskaya ne zabotitsya o igrovoy balans. Ne dazhe nebol'shoye nemnogo.");
 
 			}
@@ -1193,9 +1197,9 @@ register struct obj *spellbook;
 		    boolean gone = cursed_book(spellbook);
 
 		    if (delay < 0) {
-				if (!issoviet) nomul(-(rno(-(delay))), "reading a cursed book");			/* study time */
+				if (!issoviet) nomul(-(rno(-(delay))), "reading a cursed book", TRUE); /* study time */
 				else {
-					nomul((delay), "reading a cursed book");
+					nomul((delay), "reading a cursed book", TRUE);
 					pline("Vy tol'ko chto podpisal svoy smertnyy prigovor, potomu chto sovetskaya ne zabotitsya o igrovoy balans. Ne dazhe nebol'shoye nemnogo.");
 				}
 
@@ -1216,9 +1220,9 @@ register struct obj *spellbook;
 			spellbook->in_use = FALSE;
 		    }
 		    if (delay < 0) {
-				if (!issoviet) nomul(-(rno(-(delay))), "reading a book while confused");
+				if (!issoviet) nomul(-(rno(-(delay))), "reading a book while confused", TRUE);
 				else {
-					nomul((delay), "reading a book while confused");
+					nomul((delay), "reading a book while confused", TRUE);
 					pline("Vy tol'ko chto podpisal svoy smertnyy prigovor, potomu chto sovetskaya ne zabotitsya o igrovoy balans. Ne dazhe nebol'shoye nemnogo.");
 				}
 		    }
@@ -1660,6 +1664,7 @@ boolean atme;
 	boolean confused = ((Confusion != 0) && !Conf_resist);
 	struct obj *pseudo;
 	struct obj *otmp;
+	int confusionchance = 0;
 
 	/*
 	 * Find the skill the hero has in a spell type category.
@@ -1788,12 +1793,16 @@ boolean atme;
 		"Your concentration falters while carrying so much stuff.")) {
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return (1);
-	} else if (!freehand()) {
+	} else if (!freehandX()) {
 		Your("arms are not free to cast!");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
 	} else if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) {
 		pline("You're muted!");
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return (0);
+	} else if (tech_inuse(T_SILENT_OCEAN)) {
+		pline("The silent ocean prevents you from spellcasting.");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
 	} else if (isevilvariant && (Strangled || is_silent(youmonst.data) || !has_head(youmonst.data) || youmonst.data->msound == MS_BUZZ || youmonst.data->msound == MS_BURBLE || youmonst.data->msound == MS_GURGLE)) {
@@ -1914,7 +1923,7 @@ boolean atme;
 	if (SpellColorGray) {
 
 		You("chant the magical formula...");
-		nomul(-2, "casting a completely gray spell");
+		nomul(-2, "casting a completely gray spell", TRUE);
 
 	}
 
@@ -1975,9 +1984,21 @@ boolean atme;
 	}
 
 	chance = percent_success(spell);
-	if (confused) pline("You try to cast a spell in confusion.");
+	if (confused) {
+		pline("You try to cast a spell in confusion.");
 
-	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && spellid(spell) != SPE_CURE_RANDOM_STATUS && rn2(10) ) || (rnd(100) > chance)) {
+		/* Amy addition: very high skill may allow you to get spells off even while confused */
+		if (!PlayerCannotUseSkills) {
+			confusionchance = 0;
+			if ( role_skill == P_SKILLED) confusionchance = 25;
+			if ( role_skill == P_EXPERT) confusionchance = 50;
+			if ( role_skill == P_MASTER) confusionchance = 75;
+			if ( role_skill == P_GRAND_MASTER) confusionchance = 90;
+			if ( role_skill == P_SUPREME_MASTER) confusionchance = 100;
+		}
+	}
+
+	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && spellid(spell) != SPE_CURE_RANDOM_STATUS && (confusionchance < rnd(100)) && rn2(Conf_resist ? 2 : 10) ) || (rnd(100) > chance)) {
 		if (!issoviet) pline("You fail to cast the spell correctly.");
 		else pline("HA HA HA HA HA, tip bloka l'da sdelal vy ne zaklinaniye!");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -2574,6 +2595,10 @@ boolean atme;
 				    unrestrict_weapon_skill(P_PETKEEPING);	acquiredskill = 1; }
 			else if (P_RESTRICTED(P_MISSILE_WEAPONS) && yn("Do you want to learn the missile weapons skill?")=='y') {
 				    unrestrict_weapon_skill(P_MISSILE_WEAPONS);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_TECHNIQUES) && yn("Do you want to learn the techniques skill?")=='y') {
+				    unrestrict_weapon_skill(P_TECHNIQUES);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_IMPLANTS) && yn("Do you want to learn the implants skill?")=='y') {
+				    unrestrict_weapon_skill(P_IMPLANTS);	acquiredskill = 1; }
 			else if (yn("Do you want to learn no new skill at all?")=='y') {
 				    acquiredskill = 1; }
 			}
@@ -2792,7 +2817,7 @@ boolean atme;
 	case SPE_TAKE_SELFIE:
 
 		pline("You take a selfie.");
-		nomul(-(2 + rn2(4)), "taking a selfie");
+		nomul(-(2 + rn2(4)), "taking a selfie", TRUE);
 
 		if (!rn2(5)) {
 			make_blinded(Blinded + rnd(50), FALSE);
@@ -2919,7 +2944,7 @@ boolean atme;
 		}
 		pline("You begin applying nail polish.");
 		u.nailpolish++;
-		nomul(-(rnd(4)), "applying nail polish");
+		nomul(-(rnd(4)), "applying nail polish", TRUE);
 		nomovemsg = "You finish polishing your nails.";
 
 		break;
@@ -3316,7 +3341,7 @@ boolean atme;
 	case SPE_STASIS:
 		u.stasistime = rnd(100);
 		pline("You freeze completely.");
-		nomul(-(u.stasistime), "frozen in stasis");
+		nomul(-(u.stasistime), "frozen in stasis", FALSE);
 
 		break;
 
@@ -4023,318 +4048,7 @@ boolean atme;
 		if (!rn2(3)) {
 			int disableamount = rnd(3);
 			while (disableamount) {
-
-				 switch (rnd(124)) {
-
-					case 1:
-					case 2:
-					case 3:
-					case 4:
-					case 5:
-						u.uprops[DEAC_FIRE_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having fire resistance!");
-						break;
-					case 6:
-					case 7:
-					case 8:
-					case 9:
-					case 10:
-						u.uprops[DEAC_COLD_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having cold resistance!");
-						break;
-					case 11:
-					case 12:
-					case 13:
-					case 14:
-					case 15:
-						u.uprops[DEAC_SLEEP_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having sleep resistance!");
-						break;
-					case 16:
-					case 17:
-						u.uprops[DEAC_DISINT_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having disintegration resistance!");
-						break;
-					case 18:
-					case 19:
-					case 20:
-					case 21:
-					case 22:
-						u.uprops[DEAC_SHOCK_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having shock resistance!");
-						break;
-					case 23:
-					case 24:
-					case 25:
-					case 26:
-					case 27:
-						u.uprops[DEAC_POISON_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having poison resistance!");
-						break;
-					case 28:
-					case 29:
-					case 30:
-						u.uprops[DEAC_DRAIN_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having drain resistance!");
-						break;
-					case 31:
-					case 32:
-						u.uprops[DEAC_SICK_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having sickness resistance!");
-						break;
-					case 33:
-					case 34:
-						u.uprops[DEAC_ANTIMAGIC].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having magic resistance!");
-						break;
-					case 35:
-					case 36:
-					case 37:
-					case 38:
-						u.uprops[DEAC_ACID_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having acid resistance!");
-						break;
-					case 39:
-					case 40:
-						u.uprops[DEAC_STONE_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having petrification resistance!");
-						break;
-					case 41:
-						u.uprops[DEAC_FEAR_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having fear resistance!");
-						break;
-					case 42:
-					case 43:
-					case 44:
-						u.uprops[DEAC_SEE_INVIS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having see invisible!");
-						break;
-					case 45:
-					case 46:
-					case 47:
-						u.uprops[DEAC_TELEPAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having telepathy!");
-						break;
-					case 48:
-					case 49:
-					case 50:
-						u.uprops[DEAC_WARNING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having warning!");
-						break;
-					case 51:
-					case 52:
-					case 53:
-						u.uprops[DEAC_SEARCHING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having automatic searching!");
-						break;
-					case 54:
-						u.uprops[DEAC_CLAIRVOYANT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having clairvoyance!");
-						break;
-					case 55:
-					case 56:
-					case 57:
-					case 58:
-					case 59:
-						u.uprops[DEAC_INFRAVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having infravision!");
-						break;
-					case 60:
-						u.uprops[DEAC_DETECT_MONSTERS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having detect monsters!");
-						break;
-					case 61:
-					case 62:
-					case 63:
-						u.uprops[DEAC_INVIS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having invisibility!");
-						break;
-					case 64:
-						u.uprops[DEAC_DISPLACED].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having displacement!");
-						break;
-					case 65:
-					case 66:
-					case 67:
-						u.uprops[DEAC_STEALTH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having stealth!");
-						break;
-					case 68:
-						u.uprops[DEAC_JUMPING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having jumping!");
-						break;
-					case 69:
-					case 70:
-					case 71:
-						u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having teleport control!");
-						break;
-					case 72:
-						u.uprops[DEAC_FLYING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having flying!");
-						break;
-					case 73:
-						u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having magical breathing!");
-						break;
-					case 74:
-						u.uprops[DEAC_PASSES_WALLS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having phasing!");
-						break;
-					case 75:
-					case 76:
-						u.uprops[DEAC_SLOW_DIGESTION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having slow digestion!");
-						break;
-					case 77:
-						u.uprops[DEAC_HALF_SPDAM].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having half spell damage!");
-						break;
-					case 78:
-						u.uprops[DEAC_HALF_PHDAM].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having half physical damage!");
-						break;
-					case 79:
-					case 80:
-					case 81:
-					case 82:
-					case 83:
-						u.uprops[DEAC_REGENERATION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having regeneration!");
-						break;
-					case 84:
-					case 85:
-						u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having mana regeneration!");
-						break;
-					case 86:
-					case 87:
-					case 88:
-						u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having polymorph control!");
-						break;
-					case 89:
-					case 90:
-					case 91:
-					case 92:
-					case 93:
-						u.uprops[DEAC_FAST].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having speed!");
-						break;
-					case 94:
-					case 95:
-					case 96:
-						u.uprops[DEAC_REFLECTING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having reflection!");
-						break;
-					case 97:
-					case 98:
-					case 99:
-						u.uprops[DEAC_FREE_ACTION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having free action!");
-						break;
-					case 100:
-						u.uprops[DEAC_HALLU_PARTY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from hallu partying!");
-						break;
-					case 101:
-						u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from drunken boxing!");
-						break;
-					case 102:
-						u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having stunnopathy!");
-						break;
-					case 103:
-						u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having numbopathy!");
-						break;
-					case 104:
-						u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having freezopathy!");
-						break;
-					case 105:
-						u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from being a stoned chiller!");
-						break;
-					case 106:
-						u.uprops[DEAC_CORROSIVITY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having corrosivity!");
-						break;
-					case 107:
-						u.uprops[DEAC_FEAR_FACTOR].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having an increased fear factor!");
-						break;
-					case 108:
-						u.uprops[DEAC_BURNOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having burnopathy!");
-						break;
-					case 109:
-						u.uprops[DEAC_SICKOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having sickopathy!");
-						break;
-					case 110:
-						u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having keen memory!");
-						break;
-					case 111:
-						u.uprops[DEAC_THE_FORCE].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from using the force like a real jedi!");
-						break;
-					case 112:
-						u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having extra sight!");
-						break;
-					case 113:
-						u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having curse resistance!");
-						break;
-					case 114:
-						u.uprops[DEAC_STUN_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having stun resistance!");
-						break;
-					case 115:
-						u.uprops[DEAC_CONF_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having confusion resistance!");
-						break;
-					case 116:
-						u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having double attacks!");
-						break;
-					case 117:
-						u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having quad attacks!");
-						break;
-					case 118:
-						u.uprops[DEAC_PSI_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having psi resistance!");
-						break;
-					case 119:
-						u.uprops[DEAC_WONDERLEGS].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having wonderlegs!");
-						break;
-					case 120:
-						u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having glib combat!");
-						break;
-					case 121:
-						u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having manaleech!");
-						break;
-					case 122:
-						u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having dimmopathy!");
-						break;
-					case 123:
-						u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having peacevision!");
-						break;
-					case 124:
-						u.uprops[DEAC_CONT_RES].intrinsic += rnz( (monster_difficulty() * 10) + 1);
-						pline("You are prevented from having contamination resistance!");
-						break;
-				}
-
+				deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
 				disableamount--;
 				if (disableamount < 0) disableamount = 0;
 			} 
@@ -4608,6 +4322,8 @@ boolean atme;
 				    acqo = mkobj_at(RING_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire an amulet?")=='y') {
 				    acqo = mkobj_at(AMULET_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
+			else if (yn("Do you want to acquire an implant?")=='y') {
+				    acqo = mkobj_at(IMPLANT_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire a tool?")=='y') {
 				    acqo = mkobj_at(TOOL_CLASS, u.ux, u.uy, FALSE);	acquireditem = 1; }
 			else if (yn("Do you want to acquire some food?")=='y') {
@@ -5408,10 +5124,10 @@ boolean atme;
 				if (u.uenmax < 0) u.uenmax = 0;
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
 				if (Free_action) {
-				    nomul(-(rnd(5)), "buried by an avalanche");
+				    nomul(-(rnd(5)), "buried by an avalanche", TRUE);
 					nomovemsg = "You finally dig yourself out of the debris.";
 				} else {
-				    nomul(-(rnd(10)), "buried by an avalanche");
+				    nomul(-(rnd(10)), "buried by an avalanche", TRUE);
 					nomovemsg = "You finally dig yourself out of the debris.";
 				}
 			}
@@ -6269,8 +5985,8 @@ boolean atme;
 			pline("You cannot reroll an artifact that you're wearing!");
 			break;
 		}
-		if (!(otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS || otmp->oclass == RING_CLASS || otmp->oclass == AMULET_CLASS)) {
-			pline("You can only reroll weapons, armors, rings or amulets!");
+		if (!(otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS || otmp->oclass == RING_CLASS || otmp->oclass == AMULET_CLASS || otmp->oclass == IMPLANT_CLASS)) {
+			pline("You can only reroll weapons, armors, rings, implants or amulets!");
 			break;
 		}
 
@@ -6321,6 +6037,9 @@ rerollX:
 				break;
 			case AMULET_CLASS:
 				otmp->otyp = rnd_class(AMULET_OF_CHANGE,AMULET_OF_VULNERABILITY);
+				break;
+			case IMPLANT_CLASS:
+				otmp->otyp = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_FREEDOM);
 				break;
 		}
 		pline("Your artifact was rerolled to another base item!");
@@ -7322,6 +7041,50 @@ dashrangefinish:
 	hurtle(u.dx, u.dy, dashrange, FALSE);
 	multi = 0;		/* No paralysis with dash */
 	return 1;
+}
+
+void
+wonderspell()
+{
+	register int randomspell = SPE_FORCE_BOLT + rn2((SPE_PSYBEAM + 1) - SPE_FORCE_BOLT);
+	char splname[BUFSZ];
+	int i;
+
+	sprintf(splname, OBJ_NAME(objects[randomspell]) );
+
+	for (i = 0; i < MAXSPELL; i++)  {
+		if (spellid(i) == randomspell)  {
+			if (spellknow(i) <= MAX_CAN_STUDY) {
+				Your("knowledge of the %s spell is keener.", splname);
+				incrnknow(i);
+				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
+				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
+
+			} else {
+			    You("know %s quite well already.", splname);
+			}
+			break;
+		} else if (spellid(i) == NO_SPELL)  {
+			spl_book[i].sp_id = randomspell;
+			spl_book[i].sp_lev = objects[randomspell].oc_level;
+			incrnknow(i);
+			if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runic gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runa rukovitsakh") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "runi qo'lqop") ) && !rn2(2) ) incrnknow(i);
+			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i);
+			You("gain knowledge of the %s spell.", splname);
+			if (randomspell == SPE_FORBIDDEN_KNOWLEDGE) {
+				u.ugangr += 15;
+				if (flags.soundok) You_hear("a thunderous growling and rumbling...");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Pozdravlyayu, teper' vashe bozhestvo ochen' zol. Pochemu ty ne molish'sya? Eto mozhet byt' prosto privesti svoyu zhizn' do kontsa, a zatem vy mozhete svernut' luchshe, nesovetskimi kharakter nakonets-to! SDELAY ETO SEYCHAS!" : "Grrrrrrr! Grummel! Wummmmmm!");
+			}
+
+			if (randomspell == SPE_AMNESIA) {
+				You_feel("dizzy!");
+				forget(ALL_MAP);
+			}
+			break;
+		}
+	}
+
 }
 
 /*spell.c*/

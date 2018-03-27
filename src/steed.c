@@ -38,6 +38,42 @@ can_saddle(mtmp)
 			!is_whirly(ptr) && !unsolid(ptr));
 }
 
+/* high skill should allow the player to have a saving throw against falling off --Amy
+ * not all instances of falling off the steed will allow you to do this though, and since I follow the rule that no skills
+ * may make things harder for you, you'll always have a chance of falling off anyway (hint: cursed saddle).
+ * returns 0 if the player failed the check and will fall off, 1 if the saving throw was successful and you stay mounted */
+boolean
+mayfalloffsteed()
+{
+	if (PlayerCannotUseSkills) return FALSE;
+	int ridesavingthrow = 0;
+	char buf[BUFSZ];
+
+	switch (P_SKILL(P_RIDING)) {
+		case P_SKILLED: ridesavingthrow = 11; break;
+		case P_EXPERT: ridesavingthrow = 34; break;
+		case P_MASTER: ridesavingthrow = 76; break;
+		case P_GRAND_MASTER: ridesavingthrow = 91; break;
+		case P_SUPREME_MASTER: ridesavingthrow = 101; break;
+	}
+
+	if (ridesavingthrow > 0) {
+		getlin ("Uh-oh! You're about to fall off your steed! Attempt a saving throw? [yes/no]",buf);
+		(void) lcase (buf);
+		if (!(strcmp (buf, "yes"))) {
+			if (ridesavingthrow > rnd(100)) {
+				pline("Success! You've managed to stay mounted.");
+				return TRUE;
+			} else {
+				pline("Unfortunately your saving throw failed...");
+				return FALSE;
+			}
+		}
+	}
+
+	return FALSE;
+
+}
 
 int
 use_saddle(otmp)
@@ -62,7 +98,7 @@ use_saddle(otmp)
 		}
 		else {return(0);}
 
-	} else if (!freehand()) {
+	} else if (!freehandX()) {
 		You("have no free %s.", body_part(HAND));
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
@@ -264,7 +300,17 @@ mount_steed(mtmp, force)
 		HWounded_legs = EWounded_legs = 0;
 	    else
 #endif
-	    return (FALSE);
+	    if (yn("But you can try to get on your steed anyway. Do it?") == 'y') {
+		if (rn2(3)) {
+			losehp(rn1(10,20), "trying an illegal ride", NO_KILLER_PREFIX);
+			pline("Ouch! You slip and hurt yourself a lot!");
+			if (rn2(3)) {
+				pline("Due to your leg injury, you don't manage to swing yourself onto your steed.");
+				return(FALSE);
+			}
+		}
+	    }
+	    else return (FALSE);
 	}
 
 	if (Upolyd && !Race_if(PM_TRANSFORMER) && (!humanoid(youmonst.data) || verysmall(youmonst.data) ||
@@ -292,13 +338,26 @@ mount_steed(mtmp, force)
 	    pline("I see nobody there.");
 	    return (FALSE);
 	}
-	if (u.uswallow || u.ustuck || u.utrap || Punished ||
+	if (u.uswallow || u.ustuck || u.utrap ||
 	    !test_move(u.ux, u.uy, mtmp->mx-u.ux, mtmp->my-u.uy, TEST_MOVE)) {
-	    if (Punished || !(u.uswallow || u.ustuck || u.utrap))
+	    if (!(u.uswallow || u.ustuck || u.utrap))
 		You("are unable to swing your %s over.", body_part(LEG)); 
 	    else
 		You("are stuck here for now.");
 	    return (FALSE);
+	}
+
+	if (Punished) {
+		You("are unable to swing your %s over.", body_part(LEG)); 
+		if (yn("But you can try to get on your steed anyway. Do it?") == 'y') {
+			if (rn2(3)) {
+				losehp(rn1(10,20), "trying an illegal ride", NO_KILLER_PREFIX);
+				pline("Ouch! You slip and hurt yourself a lot!");
+			}
+		}
+		else {
+			return(FALSE);
+		}
 	}
 
 	/* Is this a valid monster? */
@@ -469,6 +528,7 @@ void
 kick_steed()
 {
 	char He[4];
+	int gallopamount;
 	if (!u.usteed)
 	    return;
 
@@ -501,13 +561,30 @@ kick_steed()
 	if (u.usteed->mtame) u.usteed->mtame--;
 	if (!u.usteed->mtame && u.usteed->mleashed) m_unleash(u.usteed, TRUE);
 	if (!u.usteed->mtame || (u.ulevel+u.usteed->mtame < rnd(MAXULEV/2+5))) {
-	    newsym(u.usteed->mx, u.usteed->my);
-	    dismount_steed(DISMOUNT_THROWN);
-	    return;
+
+		if (!mayfalloffsteed()) {
+			newsym(u.usteed->mx, u.usteed->my);
+			dismount_steed(DISMOUNT_THROWN);
+			return;
+		}
 	}
 
 	pline("%s gallops!", Monnam(u.usteed));
-	u.ugallop += rn1(20, 30);
+	/* here's another thing that should IMHO be better if you have more skill; in vanilla, high riding skill is
+	 * borderline useless, but I decided that high skill will make your horse gallop for a loooooong time --Amy */
+
+	gallopamount = rn1(20, 30);
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_RIDING)) {
+			case P_SKILLED: gallopamount *= 2; break;
+			case P_EXPERT: gallopamount *= 4; break;
+			case P_MASTER: gallopamount *= 8; break;
+			case P_GRAND_MASTER: gallopamount *= 16; break;
+			case P_SUPREME_MASTER: gallopamount *= 32; break;
+		}
+	}
+
+	u.ugallop += gallopamount;
 	return;
 }
 

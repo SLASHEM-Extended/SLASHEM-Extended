@@ -162,6 +162,17 @@ moveloop()
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) didmove = TRUE;
 	if(didmove) {
 
+		if (tech_inuse(T_COMBO_STRIKE)) {
+			if (u.comboactive) u.comboactive = FALSE;
+			else {
+				u.comboactive = u.combostrike = 0;
+				stopsingletechnique(T_COMBO_STRIKE);
+				pline("Since you failed to hit something in your last action, your combo ends prematurely!");
+			}
+		} else { /* combo strike inactive - clear any combo strike flags that might still be present */
+			u.comboactive = u.combostrike = 0;
+		}
+
 		u.aggravation = 0;
 		/* note by Amy: It is not a bug that we're setting this variable to zero regardless of whether you currently
 		 * have aggravate monster. The variable is used in several other places to ensure that summoned monsters are
@@ -1360,11 +1371,56 @@ moveloop()
 
 		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone()) stop_occupation();
  
+		if (PlayerInBlockHeels) {
+
+			if (HConfusion > 10 && !rn2(10)) HConfusion--;
+
+			if (HStun > 10) {
+
+				register int dmgreductor = 11;
+				if (!(PlayerCannotUseSkills)) switch (P_SKILL(P_HIGH_HEELS)) {
+					case P_BASIC: dmgreductor = 16; break;
+					case P_SKILLED: dmgreductor = 21; break;
+					case P_EXPERT: dmgreductor = 26; break;
+					case P_MASTER: dmgreductor = 31; break;
+					case P_GRAND_MASTER: dmgreductor = 36; break;
+					case P_SUPREME_MASTER: dmgreductor = 41; break;
+				}
+				if (rnd(100) < dmgreductor) HStun--;
+
+			}
+
+		}
+
+		/* beauty charm: tries each turn to pacify monsters around you, but only humanoids or animals --Amy */
+		if (tech_inuse(T_BEAUTY_CHARM) && PlayerInHighHeels) {
+			struct monst *mtmp3;
+			int k, l;
+
+		    for (k = -3; k <= 3; k++) for(l = -3; l <= 3; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd 			== 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
+&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD]
+			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(rn2(5) && (mtmp3->data->geno & G_UNIQ))) {
+
+				if (mtmp3->mfrenzied) continue;
+				if (mtmp3->mpeaceful) continue;
+				if (!(humanoid(mtmp3->data) && !rn2(5)) && !(is_animal(mtmp3->data) && !rn2(10)) ) continue;
+				if (resist(mtmp3, RING_CLASS, 0, NOTELL)) continue;
+
+				pline("%s is charmed by your sexy pose!", mon_nam(mtmp3));
+				mtmp3->mpeaceful = TRUE;
+
+			} /* monster is catchable loop */
+		    } /* for loop */
+
+		}
+
 		if (FaintActive && !rn2(100) && multi >= 0) {
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion");
+			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -1374,7 +1430,7 @@ moveloop()
 
 			You("faint from the terrible sounds.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from terrible sounds");
+			nomul(-(rnz(5) ), "fainted from terrible sounds", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -1384,7 +1440,7 @@ moveloop()
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion");
+			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -1394,7 +1450,7 @@ moveloop()
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion");
+			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -1407,7 +1463,7 @@ moveloop()
 
 			Your("terrible eating disorder causes you to faint.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from anorexia");
+			nomul(-(rnz(5) ), "fainted from anorexia", TRUE);
 			nomovemsg = "Dear Ina, you need to eat!!! If you don't, you'll die!";
 			afternmv = unfaintX;
 
@@ -1415,7 +1471,7 @@ moveloop()
 
 			You("faint from anorexia.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from anorexia");
+			nomul(-(rnz(5) ), "fainted from anorexia", TRUE);
 			nomovemsg = "If you don't want to end like Ina did, eat!!!";
 			afternmv = unfaintX;
 
@@ -1430,7 +1486,7 @@ moveloop()
 
 			Your("terrible eating disorder causes you to faint.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from anorexia");
+			nomul(-(rnz(5) ), "fainted from anorexia", TRUE);
 			nomovemsg = "Dear Ina, you need to eat!!! If you don't, you'll die!";
 			afternmv = unfaintX;
 
@@ -1438,7 +1494,7 @@ moveloop()
 
 			You("faint from anorexia.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from anorexia");
+			nomul(-(rnz(5) ), "fainted from anorexia", TRUE);
 			nomovemsg = "If you don't want to end like Ina did, eat!!!";
 			afternmv = unfaintX;
 
@@ -1650,10 +1706,10 @@ newbossS:
 			}
 
 			if (ttmp && ttmp->ttyp == SUPERTHING_TRAP && (multi >= 0) && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
-				nomul(-rnd(5), "standing next to a superthing");
+				nomul(-rnd(5), "standing next to a superthing", FALSE);
 			}
 
-			if (ttmp && ttmp->ttyp == CURSED_GRAVE && !rn2(50)) {
+			if (ttmp && ttmp->ttyp == CURSED_GRAVE && !rn2(500)) {
 				if (!enexto(&cc, ttmp->tx, ttmp->ty, (struct permonst *)0) ) continue;
 
 				if (Aggravate_monster) {
@@ -1698,7 +1754,7 @@ trapsdone:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion");
+			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -1732,7 +1788,7 @@ trapsdone:
 			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
 			morehungry(rn2(400)+200);
 			nomovemsg = "You are done shitting.";
-			nomul(-crapduration, "while taking a shit");
+			nomul(-crapduration, "while taking a shit", TRUE);
 
 		}
 
@@ -1835,7 +1891,7 @@ trapsdone:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnd(10) ), "fainted from exertion");
+			nomul(-(rnd(10) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -1845,7 +1901,7 @@ trapsdone:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion");
+			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -1855,7 +1911,7 @@ trapsdone:
 
 			You("faint from exertion.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted from exertion");
+			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -1865,7 +1921,7 @@ trapsdone:
 
 			You("are clawed by your gauntlets and faint.");
 			flags.soundok = 0;
-			nomul(-(rnz(5) ), "fainted due to the revenancer");
+			nomul(-(rnz(5) ), "fainted due to the revenancer", TRUE);
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
@@ -1909,6 +1965,14 @@ trapsdone:
 					p_glow2(steeling, NH_PURPLE);
 				}
 			}
+		}
+
+		/* sustainer should have additional protection against contamination instadeath --Amy */
+		if (Race_if(PM_SUSTAINER) && !rn2(10000) && ABASE(A_WIS) < 5) {
+			ABASE(A_WIS) += 1;
+			AMAX(A_WIS) += 1;
+			flags.botl = 1;
+			pline("Suddenly, your wisdom increases.");
 		}
 
 		if (Prem_death && !rn2(10000)) { /* evil patch idea by jonadab */
@@ -4097,6 +4161,14 @@ newbossA:
 
 		}
 
+		if (uimplant) {
+			u.uimplantturns++;
+			if (u.uimplantturns >= 200) {
+				u.uimplantturns = 0;
+				use_skill(P_IMPLANTS, 1);
+			}
+		}
+
 		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone()) && isok(u.ux, u.uy)) {
 			levl[u.ux][u.uy].lit = FALSE;
 		}
@@ -4118,6 +4190,9 @@ newbossA:
 			}
 			if (!rn2(10000) && uamul && !(uamul->cursed)) {
 				remove_worn_item(uamul, TRUE);
+			}
+			if (!rn2(10000) && uimplant && !(uimplant->cursed)) {
+				remove_worn_item(uimplant, TRUE);
 			}
 			if (!rn2(10000) && uarmf && !(uarmf->cursed)) {
 				remove_worn_item(uarmf, TRUE);
@@ -4913,7 +4988,7 @@ newbossB:
 
 				pline("Kaboom!!!  Boom!!  Boom!!");
 				stop_occupation();
-				nomul(-3, "hiding from thunderstorm");
+				nomul(-3, "hiding from thunderstorm", TRUE);
 				nomovemsg = 0;
 
 			}
@@ -4968,7 +5043,7 @@ newbossB:
 			wake_nearby();
 
 			if (PlayerInHighHeels && !rn2(40) && ((rnd(4) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) )) {
-				nomul(-(1 + rnd(5)), "crashing into a paved floor");
+				nomul(-(1 + rnd(5)), "crashing into a paved floor", TRUE);
 				set_wounded_legs(rn2(2) ? RIGHT_SIDE : LEFT_SIDE, HWounded_legs + rnz(200));
 				pline("Since you're not proficient at walking in high heels, you sprain your %s very painfully and crash into the floor.", body_part(LEG));
 
@@ -5309,8 +5384,8 @@ newbossB:
 				case 17:
 				case 18: /* paralysis: up to 3 turns with free action, up to 13 without */
 					You_feel("like a statue!");
-					if (Free_action) nomul(-rnd(3), "paralyzed by the ancient morgotian curse");
-					else nomul(-rnd(13), "paralyzed by the ancient morgotian curse");
+					if (Free_action) nomul(-rnd(3), "paralyzed by the ancient morgotian curse", TRUE);
+					else nomul(-rnd(13), "paralyzed by the ancient morgotian curse", TRUE);
 					break;
 				case 19:
 				case 20: /* confusion */
@@ -5410,8 +5485,8 @@ newbossB:
 				case 19:
 				case 20: /* paralysis: up to 3 turns with free action, up to 13 without */
 					You_feel("like a statue!");
-					if (Free_action) nomul(-rnd(3), "paralyzed by topi ylinen's curse");
-					else nomul(-rnd(13), "paralyzed by topi ylinen's curse");
+					if (Free_action) nomul(-rnd(3), "paralyzed by topi ylinen's curse", TRUE);
+					else nomul(-rnd(13), "paralyzed by topi ylinen's curse", TRUE);
 					break;
 				case 21:
 				case 22:
@@ -5847,6 +5922,8 @@ newboss:
 					    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 					} else if (otmpi ->owornmask & W_AMUL) {
 					    Amulet_off();
+					} else if (otmpi ->owornmask & W_IMPLANT) {
+					    Implant_off();
 					} else if (otmpi ->owornmask & W_RING) {
 					    Ring_gone(otmpi);
 					} else if (otmpi ->owornmask & W_TOOL) {
@@ -5899,6 +5976,8 @@ newboss:
 					    else setworn((struct obj *)0, otmpi ->owornmask & W_ARMOR);
 					} else if (otmpi ->owornmask & W_AMUL) {
 					    Amulet_off();
+					} else if (otmpi ->owornmask & W_IMPLANT) {
+					    Implant_off();
 					} else if (otmpi ->owornmask & W_RING) {
 					    Ring_gone(otmpi);
 					} else if (otmpi ->owornmask & W_TOOL) {
@@ -6116,7 +6195,7 @@ newboss:
 			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
 				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
 
-				if (multi >= 0) nomul(-2, "paralyzed by a captcha");
+				if (multi >= 0) nomul(-2, "paralyzed by a captcha", FALSE);
 
 				u.ublesscnt += rnz(300);
 				change_luck(-1);
@@ -6316,7 +6395,7 @@ newboss:
 			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
 				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
 
-				if (multi >= 0) nomul(-2, "paralyzed by a captcha");
+				if (multi >= 0) nomul(-2, "paralyzed by a captcha", FALSE);
 
 				u.ublesscnt += rnz(300);
 				change_luck(-1);
@@ -6355,7 +6434,7 @@ newboss:
 			if (((int) strlen(ebuf) != (int) strlen(buf) ) || (strncmpi(buf, ebuf, (int) strlen(ebuf)) != 0)) {
 				pline("WRONG! You will be punished. I will paralyze you, slow you and reduce your max HP and Pw.");
 
-				if (multi >= 0) nomul(-2, "paralyzed by a captcha");
+				if (multi >= 0) nomul(-2, "paralyzed by a captcha", FALSE);
 
 				u.ublesscnt += rnz(300);
 				change_luck(-1);
@@ -6437,7 +6516,7 @@ newboss:
 			tt_mname(&mm, FALSE, 0);
 			pline("An enormous ghost appears next to you!");
 			You("are frightened to death, and unable to move.");
-		    nomul(-3, "frightened to death");
+		    nomul(-3, "frightened to death", TRUE);
 			make_feared(HFeared + rnd(30 + (monster_difficulty() * 3) ),TRUE);
 		    nomovemsg = "You regain your composure.";
 		}
@@ -6450,7 +6529,7 @@ newboss:
 			tt_mname(&mm, FALSE, 0);
 			pline("An enormous ghost appears next to you!");
 			You("are frightened to death, and unable to move.");
-		    nomul(-3, "frightened to death");
+		    nomul(-3, "frightened to death", TRUE);
 			make_feared(HFeared + rnd(30 + (monster_difficulty() * 3) ),TRUE);
 		    nomovemsg = "You regain your composure.";
 		}
@@ -6663,7 +6742,7 @@ newboss:
 			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
 			if (u.uhs == 0) morehungry(rn2(400)+200);
 			nomovemsg = "You are done shitting.";
-			nomul(-crapduration, "while taking a shit");
+			nomul(-crapduration, "while taking a shit", TRUE);
 
 			if (!rn2(5)) {
 				You("did not watch out, and stepped into your own shit.");
@@ -7388,6 +7467,10 @@ newboss:
 			    }
 			}
 
+			if (tech_inuse(T_GLOWHORN)) {
+				use_unicorn_horn((struct obj *)0);
+			}
+
 			if (Race_if(PM_RODNEYAN) && !rn2(1000)) {	/* levelteleportitis --Amy */
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
@@ -7590,7 +7673,7 @@ newboss:
 				if (occupation)
 				    stop_occupation();
 				else
-				    nomul(0, 0);
+				    nomul(0, 0, FALSE);
 				if (change == 1) polyself(FALSE);
 				else you_were();
 				change = 0;
@@ -7618,7 +7701,7 @@ newboss:
 		    restore_attrib();
 
 		    /* underwater and waterlevel vision are done here */
-		    if (Is_waterlevel(&u.uz))
+		    if (Is_waterlevel(&u.uz) && !(tech_inuse(T_SILENT_OCEAN)))
 			movebubbles();
 		    else if (Underwater)
 			under_water(0);
@@ -7861,7 +7944,7 @@ newboss:
 
 	if (u.riennevaplus) { /* delayed paralysis --Amy */
 
-		nomul(-rnd(u.riennevaplus), "nothing went anymore");
+		nomul(-rnd(u.riennevaplus), "nothing went anymore", FALSE);
 		u.riennevaplus = 0;
 
 	}
@@ -10134,7 +10217,7 @@ boolean new_game;	/* false => restoring an old game */
 		u.alignlim -= 5;
 	      adjalign(-100);
 
-		nomul(-(5 + u.hangupparalysis), "paralyzed by severe hangup cheating");
+		nomul(-(5 + u.hangupparalysis), "paralyzed by severe hangup cheating", FALSE);
 
 		u.uhpmax -= rnd(20);
 		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -10181,7 +10264,7 @@ boolean new_game;	/* false => restoring an old game */
 
 #ifdef HANGUPPENALTY
 		pline("You hanged up during your last session! Since I can't determine whether you did that to cheat, you will now be paralyzed, slowed and have your max HP/Pw reduced. Please save your game normally next time! --Amy");
-		if (multi >= 0) nomul(-(2 + u.hangupparalysis), "paralyzed by trying to hangup cheat");
+		if (multi >= 0) nomul(-(2 + u.hangupparalysis), "paralyzed by trying to hangup cheat", FALSE);
 
 		u.ublesscnt += rnz(300);
 		change_luck(-1);
@@ -10214,7 +10297,7 @@ boolean new_game;	/* false => restoring an old game */
 #else
 		pline("You hanged up during your last session! As an anti-cheat measure, you're paralyzed for a few turns, and your act of hanging up is being tracked. Your dumplog file will show how many times you've hanged up and if your ascension dumplog shows 200 hangups, everyone will know what you've been up to... But as long as you didn't actually try to cheat, there will be no other consequences because I give you the benefit of the doubt (after all, your internet connection might just have died, and it would be unfair to penalize you for that).");
 		pline("But if I discover, by watching your ttyrec, that you were actually cheating, I can also recompile the game with the HANGUPPENALTY flag defined, and then you'll actually start getting severe penalties for every hangup. In really severe cases I might even put your username on a blacklist, meaning that specifically you would get penalties while others would not. So, better be a honest player and then I don't have to take such measures. Anyway, have fun playing!  --Amy");
-		if (multi >= 0) nomul(-(2 + u.hangupparalysis), "paralyzed by trying to hangup cheat");
+		if (multi >= 0) nomul(-(2 + u.hangupparalysis), "paralyzed by trying to hangup cheat", FALSE);
 		u.hangupcheat = 0;
 		u.hangupparalysis = 0;
 #endif

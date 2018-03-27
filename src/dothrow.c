@@ -78,6 +78,7 @@ int thrown;
 	struct obj *launcher;
 	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? 3 : Race_if(PM_MANSTER) ? 2 : Race_if(PM_HAXOR) ? rnd(2) : 1;
 	boolean fullmultishot; /* depends on missile weapons skill --Amy */
+	int angeramount; /* for blade anger technique */
 
 	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;
 	if (uwep && uwep->oartifact == ART_LASER_PALADIN) multishot += 1;
@@ -375,6 +376,51 @@ int thrown;
 		multishot,	/* (might be 1 if player gave shotlimit) */
 		(multishot == 1) ? singular(obj, xname) :  xname(obj));
 	}
+
+	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
+		struct obj *pseudo;
+		pseudo = mksobj(SPE_BLANK_PAPER, FALSE, 2);
+		if (!pseudo) goto bladeangerdone;
+		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BLANK_PAPER; /* minimalist fix */
+		pseudo->blessed = pseudo->cursed = 0;
+		pseudo->quan = 20L;			/* do not let useup get it */
+		pseudo->spe = obj->spe;
+		angeramount = multishot;
+
+		/* we have to clone the entire remaining function because of eternal bugs...
+		 * defining pseudo in the function leads to obfree throwing an error if you didn't use blade anger,
+		 * and pseudo isn't used in any other way (yet), so let's do it like this --Amy */
+
+		wep_mask = obj->owornmask;
+		m_shot.o = obj->otyp;
+		m_shot.n = multishot;
+		for (m_shot.i = 1; m_shot.i <= m_shot.n; m_shot.i++) {
+		    twoweap = u.twoweap;
+		    /* split this object off from its slot if necessary */
+		    if (obj->quan > 1L) {
+			otmp = splitobj(obj, 1L);
+		    } else {
+			otmp = obj;
+			if (otmp->owornmask)
+			    remove_worn_item(otmp, FALSE);
+		    }
+		    freeinv(otmp);
+		    throwit(otmp, wep_mask, twoweap, thrown);
+		}
+		m_shot.n = m_shot.i = 0;
+		m_shot.o = STRANGE_OBJECT;
+		m_shot.s = FALSE;
+
+		/* now do blade anger damage (it usually has a higher range than the thrown shuriken) */
+		while (pseudo && angeramount >= 1) {
+			weffects(pseudo);
+			angeramount--;
+		}
+		if (pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+		return 1;
+
+	}
+bladeangerdone:
 
 	wep_mask = obj->owornmask;
 	m_shot.o = obj->otyp;
@@ -871,13 +917,13 @@ hurtle(dx, dy, range, verbose)
      */
     if(Punished && !carried(uball)) {
 	You_feel("a tug from the iron ball.");
-	nomul(0, 0);
+	nomul(0, 0, FALSE);
 	return;
     } else if (u.utrap) {
 	You("are anchored by the %s.",
 	    u.utraptype == TT_WEB ? "web" : u.utraptype == TT_GLUE ? "glue" : u.utraptype == TT_LAVA ? "lava" :
 		u.utraptype == TT_INFLOOR ? surface(u.ux,u.uy) : "trap");
-	nomul(0, 0);
+	nomul(0, 0, FALSE);
 	return;
     }
 
@@ -887,7 +933,7 @@ hurtle(dx, dy, range, verbose)
 
     if(!range || (!dx && !dy) || u.ustuck) return; /* paranoia */
 
-    nomul(-range, "moving through the air");
+    nomul(-range, "moving through the air", TRUE);
     nomovemsg = 0;
     if (verbose)
 	You("%s in the opposite direction.", range > 1 ? "hurtle" : "float");
@@ -1269,6 +1315,10 @@ int thrown;
 		check_shop_obj(obj, u.ux, u.uy, TRUE);
 		obfree(obj, (struct obj *)0);
 		return;
+	    } else if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
+		check_shop_obj(obj, u.ux, u.uy, TRUE);
+		obfree(obj, (struct obj *)0);
+		return;
 	    }
 	    if (u.dz < 0 && !Is_airlevel(&u.uz) &&
 		    !Underwater && !Is_waterlevel(&u.uz)) {
@@ -1398,6 +1448,12 @@ int thrown;
 	}
 	if (is_bullet(obj) && (ammo_and_launcher(obj, launcher) &&
 		!is_grenade(obj))) {
+	    check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
+	    obfree(obj, (struct obj *)0);
+	    return;
+	}
+
+	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
 	    check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
 	    obfree(obj, (struct obj *)0);
 	    return;

@@ -35,10 +35,12 @@ STATIC_DCL int enermod(int);
 #define PN_SPIRITUALITY		(-26)
 #define PN_PETKEEPING		(-27)
 #define PN_MISSILE_WEAPONS		(-28)
-#define PN_MARTIAL_ARTS		(-29)
-#define PN_RIDING		(-30)
-#define PN_TWO_WEAPONS		(-31)
-#define PN_LIGHTSABER		(-32)
+#define PN_TECHNIQUES		(-29)
+#define PN_IMPLANTS		(-30)
+#define PN_MARTIAL_ARTS		(-31)
+#define PN_RIDING		(-32)
+#define PN_TWO_WEAPONS		(-33)
+#define PN_LIGHTSABER		(-34)
 
 #ifndef OVLB
 
@@ -69,7 +71,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS, PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -105,6 +107,8 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "spirituality",
     "petkeeping",
     "missile weapons",
+    "techniques",
+    "implants",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -1607,7 +1611,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvl = u.ulevel;
 
-		if (!rn2(3)) { switch (rnd(174)) {
+		if (!rn2(3)) { switch (rnd(176)) {
 
 			case 1: 
 			case 2: 
@@ -2026,6 +2030,16 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 166: 
 				if (!tech_known(T_DECONTAMINATE)) {    	learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
 			    	You("learn how to perform decontaminate!");
+				}
+				break;
+			case 167: 
+				if (!tech_known(T_WONDERSPELL)) {    	learntech(T_WONDERSPELL, FROMOUTSIDE, 1);
+			    	You("learn how to perform wonderspell!");
+				}
+				break;
+			case 168: 
+				if (!tech_known(T_RESET_TECHNIQUE)) {    	learntech(T_RESET_TECHNIQUE, FROMOUTSIDE, 1);
+			    	You("learn how to perform reset technique!");
 				}
 				break;
 
@@ -2398,7 +2412,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvlB = u.ulevel;
 
-		if (!rn2(3)) { switch (rnd(174)) {
+		if (!rn2(3)) { switch (rnd(176)) {
 
 			case 1: 
 			case 2: 
@@ -2817,6 +2831,16 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 166: 
 				if (!tech_known(T_DECONTAMINATE)) {    	learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
 			    	You("learn how to perform decontaminate!");
+				}
+				break;
+			case 167: 
+				if (!tech_known(T_WONDERSPELL)) {    	learntech(T_WONDERSPELL, FROMOUTSIDE, 1);
+			    	You("learn how to perform wonderspell!");
+				}
+				break;
+			case 168: 
+				if (!tech_known(T_RESET_TECHNIQUE)) {    	learntech(T_RESET_TECHNIQUE, FROMOUTSIDE, 1);
+			    	You("learn how to perform reset technique!");
 				}
 				break;
 
@@ -2833,7 +2857,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvlH = u.ulevel;
 
-		if (!rn2(3)) { switch (rnd(174)) {
+		if (!rn2(3)) { switch (rnd(176)) {
 
 			case 1: 
 			case 2: 
@@ -3252,6 +3276,16 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 166: 
 				if (!tech_known(T_DECONTAMINATE)) {    	learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
 			    	You("learn how to perform decontaminate!");
+				}
+				break;
+			case 167: 
+				if (!tech_known(T_WONDERSPELL)) {    	learntech(T_WONDERSPELL, FROMOUTSIDE, 1);
+			    	You("learn how to perform wonderspell!");
+				}
+				break;
+			case 168: 
+				if (!tech_known(T_RESET_TECHNIQUE)) {    	learntech(T_RESET_TECHNIQUE, FROMOUTSIDE, 1);
+			    	You("learn how to perform reset technique!");
 				}
 				break;
 
@@ -3269,7 +3303,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvlG = u.ulevel;
 
-		if (!rn2(5)) { switch (rnd(174)) {
+		if (!rn2(5)) { switch (rnd(176)) {
 
 			case 1: 
 			case 2: 
@@ -3688,6 +3722,16 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 166: 
 				if (!tech_known(T_DECONTAMINATE)) {    	learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
 			    	You("learn how to perform decontaminate!");
+				}
+				break;
+			case 167: 
+				if (!tech_known(T_WONDERSPELL)) {    	learntech(T_WONDERSPELL, FROMOUTSIDE, 1);
+			    	You("learn how to perform wonderspell!");
+				}
+				break;
+			case 168: 
+				if (!tech_known(T_RESET_TECHNIQUE)) {    	learntech(T_RESET_TECHNIQUE, FROMOUTSIDE, 1);
+			    	You("learn how to perform reset technique!");
 				}
 				break;
 
@@ -3713,7 +3757,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvlE = u.ulevel;
 
-		if (!rn2(2)) { switch (rnd(174)) {
+		if (!rn2(2)) { switch (rnd(176)) {
 
 			case 1: 
 			case 2: 
@@ -4132,6 +4176,16 @@ boolean incr;	/* true iff via incremental experience growth */
 			case 166: 
 				if (!tech_known(T_DECONTAMINATE)) {    	learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
 			    	You("learn how to perform decontaminate!");
+				}
+				break;
+			case 167: 
+				if (!tech_known(T_WONDERSPELL)) {    	learntech(T_WONDERSPELL, FROMOUTSIDE, 1);
+			    	You("learn how to perform wonderspell!");
+				}
+				break;
+			case 168: 
+				if (!tech_known(T_RESET_TECHNIQUE)) {    	learntech(T_RESET_TECHNIQUE, FROMOUTSIDE, 1);
+			    	You("learn how to perform reset technique!");
 				}
 				break;
 

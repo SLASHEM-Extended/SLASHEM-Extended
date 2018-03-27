@@ -459,7 +459,7 @@ struct monst *mon;
 static NEARDATA const char practical[] = { 
 	WEAPON_CLASS, ARMOR_CLASS, GEM_CLASS, FOOD_CLASS, 0 };
 static NEARDATA const char magical[] = {
-	AMULET_CLASS, POTION_CLASS, SCROLL_CLASS, WAND_CLASS, RING_CLASS,
+	AMULET_CLASS, IMPLANT_CLASS, POTION_CLASS, SCROLL_CLASS, WAND_CLASS, RING_CLASS,
 	SPBOOK_CLASS, 0 };
 static NEARDATA const char indigestion[] = { BALL_CLASS, ROCK_CLASS, 0 };
 static NEARDATA const char boulder_class[] = { ROCK_CLASS, 0 };
@@ -784,7 +784,7 @@ register struct monst *mtmp;
 
 		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
 			You("freeze for a moment.");
-			nomul(-2, "scared by rattling");
+			nomul(-2, "scared by rattling", TRUE);
 			nomovemsg = 0;
 		}
 	}
@@ -840,7 +840,7 @@ register struct monst *mtmp;
 					(void) make_hallucinated(HHallucination + rnd(10) + rnd(monster_difficulty() + 1), TRUE, 0L);
 					if (!Free_action || !rn2(20)) {
 					    pline("You are frozen in place!");
-					    nomul(-rnz(10), "frozen by an eldritch blast");
+					    nomul(-rnz(10), "frozen by an eldritch blast", TRUE);
 						if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
 					    nomovemsg = You_can_move_again;
 					    exercise(A_DEX, FALSE);
@@ -2098,6 +2098,7 @@ struct monst *mtmp;
 		    typ != PANCAKE && typ != LEMBAS_WAFER &&
 		    typ != LUMP_OF_ROYAL_JELLY &&
 		    obj->oclass != AMULET_CLASS &&
+		    obj->oclass != IMPLANT_CLASS &&
 		    obj->oclass != RING_CLASS &&
 #ifdef WIZARD
 		    obj->oclass != VENOM_CLASS &&

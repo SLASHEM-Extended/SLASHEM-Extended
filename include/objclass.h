@@ -161,19 +161,20 @@ extern NEARDATA struct objdescr obj_descr[];
 #define ARMOR_CLASS	 3
 #define RING_CLASS	 4
 #define AMULET_CLASS	 5
-#define TOOL_CLASS	 6
-#define FOOD_CLASS	 7
-#define POTION_CLASS	 8
-#define SCROLL_CLASS	 9
-#define SPBOOK_CLASS	10	/* actually SPELL-book */
-#define WAND_CLASS	11
-#define COIN_CLASS	12
-#define GEM_CLASS	13
-#define ROCK_CLASS	14
-#define BALL_CLASS	15
-#define CHAIN_CLASS	16
-#define VENOM_CLASS	17
-#define MAXOCLASSES	18
+#define IMPLANT_CLASS	 6
+#define TOOL_CLASS	 7
+#define FOOD_CLASS	 8
+#define POTION_CLASS	 9
+#define SCROLL_CLASS	10
+#define SPBOOK_CLASS	11	/* actually SPELL-book */
+#define WAND_CLASS	12
+#define COIN_CLASS	13
+#define GEM_CLASS	14
+#define ROCK_CLASS	15
+#define BALL_CLASS	16
+#define CHAIN_CLASS	17
+#define VENOM_CLASS	18
+#define MAXOCLASSES	19
 
 #define ALLOW_COUNT	(MAXOCLASSES+1) /* Can be used in the object class */
 #define ALL_CLASSES	(MAXOCLASSES+2) /* input to getobj().		   */
@@ -196,6 +197,7 @@ extern uchar oc_syms[MAXOCLASSES];		/* current class symbols */
 #define ARMOR_SYM	'['
 #define RING_SYM	'='
 #define AMULET_SYM	'"'
+#define IMPLANT_SYM	']'
 #define TOOL_SYM	'('
 #define FOOD_SYM	'%'
 #define POTION_SYM	'!'

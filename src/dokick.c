@@ -389,6 +389,63 @@ register boolean clumsy;
 
 	}
 
+	if (PlayerInStilettoHeels && (humanoid(mon->data) || is_animal(mon->data)) && !(mon->female) && !is_neuter(mon->data) && tech_inuse(T_ASIAN_KICK)) {
+
+		pline("As you drive the stiletto heel up against %s's nuts, his %s gets a shocked expression. You kicked his nuts in such a way that they're forced out of their original position, and several internal blood vessels are lacerated in the process. He falls over unconscious and most certainly won't get up for a long while!", mon_nam(mon), mbodypart(mon, FACE) );
+		mon->mcanmove = 0;
+		mon->mfrozen = rnz(100);
+		mon->mstrategy &= ~STRAT_WAITFORU;
+
+		stopsingletechnique(T_ASIAN_KICK);
+
+	}
+
+	if (PlayerInConeHeels && tech_inuse(T_LEGSCRATCH_ATTACK)) {
+
+		pline("Your tender cone heels scratch up and down %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,LEG)) );
+		if (resist(mon, TOOL_CLASS, 0, NOTELL)) {
+			pline("But %s shows no indication that your attack did anything...", mon_nam(mon) );
+		} else if (mon->permspeed != MSLOW) {
+			mon_adjust_speed(mon, -1, (struct obj *)0);
+			pline("Your heel scrapes off a bit of skin from %s's %s.", mon_nam(mon), makeplural(mbodypart(mon,LEG)) );
+
+		} else {
+			pline("Your heel just doesn't stop scratching over %s's %s, and %s is squirting everywhere!", mon_nam(mon), makeplural(mbodypart(mon,LEG)), mbodypart(mon, BLOOD) );
+			mon->mhp -= dmg;
+
+		}
+
+	}
+
+	if (PlayerInWedgeHeels && tech_inuse(T_GROUND_STOMP) && !(mon->mcanmove)) {
+
+		pline("Your wedge heels stomp %s's defenseless body.", mon_nam(mon) );
+		mon->mhp -= rnd(10);
+		mon->mfrozen += 2;
+		mon->mcanmove = 0;
+		mon->mstrategy &= ~STRAT_WAITFORU;
+
+	}
+
+	if (PlayerInBlockHeels && tech_inuse(T_ATHLETIC_COMBAT) && !mon->msleeping) {
+
+		pline("Your block heels aim a high kick at %s.", mon_nam(mon) );
+
+		if (!resist(mon, TOOL_CLASS, 0, NOTELL)) {
+
+			sleep_monst(mon, rnd(10), -1);
+			if (resists_sleep(mon) && !rn2(10)) {
+				mon->mcanmove = 0;
+				mon->mfrozen = rnd(10);
+			}
+			if (mon->msleeping || !(mon->mcanmove))
+				pline("%s is amazed by your athletic combat and can't fight back!", Monnam(mon));
+			slept_monst(mon);
+
+		}
+
+	}
+
 	if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) {
 		pline("Your very lovely female 'Vera' sneakers clamp %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,TOE)) );
 		if (!resist(mon, RING_CLASS, 0, NOTELL)) {

@@ -580,6 +580,26 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (!rn2(20) && damu >= 1 && u.ulevel >= 20) {damu = damu / 5; if (damu < 1) damu = 1;}
 		if (!rn2(50) && damu >= 1 && u.ulevel >= 30) {damu = damu / 10; if (damu < 1) damu= 1;}
 
+		if (PlayerInConeHeels) {
+			register int dmgreductor = 95;
+			if (!(PlayerCannotUseSkills)) switch (P_SKILL(P_HIGH_HEELS)) {
+				case P_BASIC: dmgreductor = 92; break;
+				case P_SKILLED: dmgreductor = 89; break;
+				case P_EXPERT: dmgreductor = 86; break;
+				case P_MASTER: dmgreductor = 83; break;
+				case P_GRAND_MASTER: dmgreductor = 80; break;
+				case P_SUPREME_MASTER: dmgreductor = 77; break;
+			}
+			damu *= dmgreductor;
+			damu /= 100;
+		}
+
+		/* very early on, low-level characters should be more survivable
+		 * this can certainly be exploited in some way; if players start exploiting it I'll have to fix it
+		 * but it should fix the annoying problem where you often instadie to a trap while your max HP are bad --Amy */
+		if (depth(&u.uz) == 1 && u.ulevel == 1 && moves < 1000 && In_dod(&u.uz) && damu > 1) { damu /= 2; }
+		if (depth(&u.uz) == 1 && u.ulevel == 2 && moves < 1000 && In_dod(&u.uz) && damu > 1) { damu *= 2; damu /= 3; }
+
 		if (damu && Race_if(PM_YUKI_PLAYA)) damu += rnd(5);
 		if (Role_if(PM_BLEEDER)) damu = damu * 2; /* bleeders are harder than hard mode */
 		if (have_cursedmagicresstone()) damu = damu * 2;
@@ -814,7 +834,7 @@ struct obj *obj;			/* only scatter this obj        */
 				if (scflags & MAY_HITYOU) {
 				    int hitvalu, hitu;
 
-				    if (multi) nomul(0, 0);
+				    if (multi) nomul(0, 0, FALSE);
 				    hitvalu = 8 + stmp->obj->spe;
 				    if (bigmonst(youmonst.data)) hitvalu++;
 				    hitu = thitu(hitvalu,

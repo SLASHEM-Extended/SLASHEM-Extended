@@ -125,7 +125,7 @@ STATIC_OVL int
 use_towel(obj)
 	struct obj *obj;
 {
-	if(!freehand()) {
+	if(!freehandX()) {
 		You("have no free %s!", body_part(HAND));
 		return 0;
 	} else if (obj->owornmask) {
@@ -280,7 +280,7 @@ use_stethoscope(obj)
 		You("have no hands!");	/* not `body_part(HAND)' */
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
-	} else if (!freehand()) {
+	} else if (!freehandX()) {
 		You("have no free %s.", body_part(HAND));
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
@@ -845,7 +845,7 @@ struct obj *obj;
 			pline(Hallucination ?
 			      "Yow!  The mirror stares back!" :
 			      "Yikes!  You've frozen yourself!");
-			nomul(-rnd((MAXULEV+6) - u.ulevel), "gazing into a mirror");
+			nomul(-rnd((MAXULEV+6) - u.ulevel), "gazing into a mirror", TRUE);
 			nomovemsg = 0;
 			} else You("stiffen momentarily under your gaze.");
 		    } else if (is_vampire(youmonst.data))
@@ -1035,7 +1035,7 @@ struct obj **optr;
 				break;
 			case 2: /* no explanation; it just happens... */
 				nomovemsg = "";
-				nomul(-rnd(2), 0);
+				nomul(-rnd(2), 0, TRUE);
 				break;
 		}
 	    }
@@ -1797,7 +1797,7 @@ int magic; /* 0=Physical, otherwise skill level */
 
 	}
 
-	    nomul(-1, "jumping around");
+	    nomul(-1, "jumping around", TRUE);
 	    nomovemsg = "";
 	    morehungry(rnd(25));
 	    if (!magic) u.uen -= 10;
@@ -4075,7 +4075,7 @@ wand_explode(obj, hero_broke)
     current_wand = 0;
     if (obj)
 	delobj(obj);
-    nomul(0, 0);
+    nomul(0, 0, FALSE);
     return 1;
 }
 
@@ -4327,7 +4327,7 @@ doapply()
 	if(!obj) return 0;
 
 	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
-		nomul(-(rnd(5)), "applying a tool");
+		nomul(-(rnd(5)), "applying a tool", TRUE);
 	}
 
 	if (obj->oartifact && !touch_artifact(obj, &youmonst))
@@ -5435,10 +5435,10 @@ doapply()
 		pline("Sorry, I don't know how to use that.");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	xit:
-		nomul(0, 0);
+		nomul(0, 0, FALSE);
 		return 0;
 	}
-	nomul(0, 0);
+	nomul(0, 0, FALSE);
 	if (!obj) return res;
 	if (noartispeak) return res;
 	if (res && obj && obj->oartifact) arti_speak(obj);

@@ -1115,7 +1115,7 @@ struct obj *obj;
 	return 0;
     }
     You("peer into %s...", the(xname(obj)));
-    nomul(-rnd(10), "gazing into a crystal ball");
+    nomul(-rnd(10), "gazing into a crystal ball", TRUE);
     nomovemsg = "";
     if (obj->spe <= 0)
 	pline_The("vision is unclear.");
@@ -1644,7 +1644,7 @@ register int aflag;
 			use_skill(P_SEARCHING,1);
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
-			nomul(0, 0);
+			nomul(0, 0, FALSE);
 			if (Blind && (!aflag || !rn2(fundxtrachange) || !rn2(fundxtrachange)) )
 			    feel_location(x,y);	/* make sure it shows up */
 			else
@@ -1657,7 +1657,7 @@ register int aflag;
 			use_skill(P_SEARCHING,1);
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			exercise(A_WIS, TRUE);
-			nomul(0, 0);
+			nomul(0, 0, FALSE);
 			newsym(x,y);
 		    } else {
 		/* Be careful not to find anything in an SCORR or SDOOR */
@@ -1709,7 +1709,7 @@ register int aflag;
 
 			/* finding traps is much too hard. Let's increase the chance. --Amy */
 			if ((trap = t_at(x,y)) && !trap->tseen && !trap->hiddentrap && (!rnl(8-fund) || !rn2(fundxtrachange) ) ) {
-			    nomul(0, 0);
+			    nomul(0, 0, FALSE);
 
 			    if (trap->ttyp == STATUE_TRAP) {
  				mtmp = activate_statue_trap(trap, x, y, FALSE);

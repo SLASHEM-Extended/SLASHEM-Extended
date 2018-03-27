@@ -223,7 +223,7 @@ int sig_unused;
 		clear_nhwindow(WIN_MESSAGE);
 		curs_on_u();
 		wait_synch();
-		if(multi > 0) nomul(0, 0);
+		if(multi > 0) nomul(0, 0, FALSE);
 	} else {
 		(void)done2();
 	}
@@ -249,7 +249,7 @@ done2()
 		clear_nhwindow(WIN_MESSAGE);
 		curs_on_u();
 		wait_synch();
-		if(multi > 0) nomul(0, 0);
+		if(multi > 0) nomul(0, 0, FALSE);
 		if(multi == 0) {
 		    u.uinvulnerable = FALSE;	/* avoid ctrl-C bug -dlc */
 		    u.usleep = 0;

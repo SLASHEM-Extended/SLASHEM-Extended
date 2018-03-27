@@ -463,6 +463,7 @@ E int Gloves_on(void);
 E int Shield_on(void);
 E int Shirt_on(void);
 E void Amulet_on(void);
+E void Implant_on(void);
 #ifdef USE_TRAMPOLI
 E int select_off(struct obj *);
 E int take_off(void);
@@ -480,6 +481,7 @@ E int Cloak_off(void);
 E int Shield_off(void);
 E int Shirt_off(void);
 E void Amulet_off(void);
+E void Implant_off(void);
 E void Ring_on(struct obj *);
 E void Ring_off(struct obj *);
 E void Ring_gone(struct obj *);
@@ -727,6 +729,7 @@ E boolean sense_engr_at(int,int,BOOLEAN_P);
 E void make_engr_at(int,int,const char *,long,XCHAR_P);
 E void del_engr_at(int,int);
 E int freehand(void);
+E int freehandX(void);
 E int doengrave(void);
 E void save_engravings(int,int);
 E void rest_engravings(int);
@@ -878,7 +881,7 @@ E void check_special_room(BOOLEAN_P);
 E int dopickup(void);
 E void lookaround(void);
 E int monster_nearby(void);
-E void nomul(int, const char *);
+E void nomul(int, const char *, BOOLEAN_P);
 E void forcenomul(int, const char *);
 E void unmul(const char *);
 #ifdef SHOW_DMG
@@ -2304,6 +2307,8 @@ E int randartringX(void);
 E int randartamuletX(void);
 E int randartwandX(void);
 E int randartspellbookX(void);
+E void deacrandomintrinsic(int);
+E int goodimplanteffect(struct obj *);
 
 /* ### role.c ### */
 
@@ -2517,6 +2522,7 @@ E void learnspell(struct obj *);
 E boolean studyspell(void);
 E void initialspell(struct obj *);
 E void castinertiaspell(void);
+E void wonderspell(void);
 
 /* ### steal.c ### */
 
@@ -2551,6 +2557,7 @@ E void exercise_steed(void);
 E void kick_steed(void);
 E void dismount_steed(int);
 E void place_monster(struct monst *,int,int);
+E boolean mayfalloffsteed(void);
 
 /* ### tech.c ### */
 
@@ -2559,6 +2566,7 @@ E int dotech(void);
 E int dotechwiz(void);
 E void datadeletetechs(void);
 E void docalm(void);
+E void stopsingletechnique(int);
 E int tech_inuse(int);
 E void tech_timeout(void);
 E boolean tech_known(SHORT_P);
@@ -2972,6 +2980,7 @@ E void you_unwere(BOOLEAN_P);
 /* ### wield.c ### */
 
 E void setuwep(struct obj *,BOOLEAN_P);
+E void swaptech(void);
 E void setuqwep(struct obj *);
 E void setuswapwep(struct obj *,BOOLEAN_P);
 E int dowield(void);

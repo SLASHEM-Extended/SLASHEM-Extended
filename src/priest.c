@@ -435,7 +435,7 @@ register int roomno;
 		    set_malign(mtmp);
 		    if(flags.verbose)
 			You("are frightened to death, and unable to move.");
-		    nomul(-3, "frightened to death");
+		    nomul(-3, "frightened to death", TRUE);
 			make_feared(HFeared + rnd(30 + (monster_difficulty() * 3) ),TRUE);
 		    nomovemsg = "You regain your composure.";
 	       }

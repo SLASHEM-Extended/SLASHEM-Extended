@@ -491,6 +491,7 @@ struct you {
 	int idpotionpenalty;
 	int idringpenalty;
 	int idamuletpenalty;
+	int idimplantpenalty;
 	int idwandpenalty;
 	int idarmorpenalty;
 	int idspellbookpenalty;
@@ -597,6 +598,7 @@ struct you {
 	int ringspawnchance;
 	int wandspawnchance;
 	int amuletspawnchance;
+	int implantspawnchance;
 
 	int concealitemchance;	/* chance for concealing monsters to start with zorkmids instead */
 
@@ -889,6 +891,7 @@ struct you {
 	int utwohandedcombatturns;
 	int ubodyarmorturns;
 	int umissileweaponturns;
+	int uimplantturns;
 	int	umortality;		/* how many times you died */
 	int ugrave_arise; /* you die and become something aside from a ghost */
 	time_t	ubirthday;		/* real world time when game began */
@@ -1002,6 +1005,14 @@ struct you {
 	int felidlives;	/* set to 9 at game start even if you're not a felid, because recursion is a thing */
 
 	int homosexual;	/* starts at 0 = undefined; 1 = hetero, 2 = homo, defined when you have intercourse with a foocubus */
+
+	boolean petcollectitems; /* variables for directive technique */
+	boolean petattackenemies;
+	boolean petcaneat;
+	boolean petcanfollow;
+
+	int combostrike;	/* for technique */
+	boolean comboactive;
 
 };	/* end of `struct you' */
 

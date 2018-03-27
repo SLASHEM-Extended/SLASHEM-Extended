@@ -519,7 +519,7 @@ moverock()
 
 	rx = u.ux + 2 * u.dx;	/* boulder destination position */
 	ry = u.uy + 2 * u.dy;
-	nomul(0, 0);
+	nomul(0, 0, FALSE);
 	if (Levitation || Is_airlevel(&u.uz)) {
 		if (Blind) feel_location(sx,sy);
 	    You("don't have enough leverage to push %s.", the(xname(otmp)));
@@ -788,7 +788,7 @@ still_chewing(x,y)
     if (!boulder && IS_ROCK(lev->typ) && !may_dig(x,y)) {
 	You("hurt your teeth on the %s.",
 	    IS_TREE(lev->typ) ? "tree" : "hard stone");
-	nomul(0, 0);
+	nomul(0, 0, FALSE);
 	return 1;
     } else if (digging.pos.x != x || digging.pos.y != y ||
 		!on_level(&digging.level, &u.uz)) {
@@ -2012,7 +2012,7 @@ domove()
 				!Conflict && !u.ustuck->mconf)
 				goto pull_free;
 			    You("cannot escape from %s!", mon_nam(u.ustuck));
-			    nomul(0, 0);
+			    nomul(0, 0, FALSE);
 			    return;
 			}
 		    }
@@ -2227,7 +2227,7 @@ domove()
 				if ( !rn2(100) || (!Free_action && !rn2(10)))	{
 					You("inhale the intense smell of shit! The world spins and goes dark.");
 					nomovemsg = "You are conscious again.";	/* default: "you can move again" */
-					nomul(-rnd(10), "unconscious from smelling dog shit");
+					nomul(-rnd(10), "unconscious from smelling dog shit", TRUE);
 					exercise(A_DEX, FALSE);
 				}
 
@@ -2735,7 +2735,7 @@ domove()
 	/* delay next move because of ball dragging */
 	/* must come after we finished picking up, in spoteffects() */
 	if (cause_delay) {
-	    nomul(-2, "dragging an iron ball");
+	    nomul(-2, "dragging an iron ball", TRUE);
 	    nomovemsg = "";
 	}
 
@@ -2763,7 +2763,7 @@ invocation_message()
 	    char buf[BUFSZ];
 	    struct obj *otmp = carrying(CANDELABRUM_OF_INVOCATION);
 
-	    nomul(0, 0);		/* stop running or travelling */
+	    nomul(0, 0, FALSE);		/* stop running or travelling */
 	    if (Hallucination) {
 		pline("You're picking up good vibrations!");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -3869,7 +3869,7 @@ bcorr:
 	       continue;
 	}
 stop:
-	nomul(0, 0);
+	nomul(0, 0, FALSE);
 	return;
     } /* end for loops */
 
@@ -3965,9 +3965,10 @@ maybe_wail()
 }
 
 void
-nomul(nval, txt)
+nomul(nval, txt, discountpossible)
 	register int nval;
 	const char *txt;
+	boolean discountpossible;
 {
 	if (uarmc && uarmc->oartifact == ART_LIGHTSPEED_TRAVEL && nval == 0) return;
 
@@ -3976,6 +3977,23 @@ nomul(nval, txt)
 	if(multi < nval) return;	/* This is a bug fix by ab@unido */
 	u.uinvulnerable = FALSE;	/* Kludge to avoid ctrl-C bug -dlc */
 	u.usleep = 0;
+
+	if (PlayerInWedgeHeels && discountpossible && (nval < -1)) {
+		register int dmgreductor = 90;
+		if (!(PlayerCannotUseSkills)) switch (P_SKILL(P_HIGH_HEELS)) {
+			case P_BASIC: dmgreductor = 88; break;
+			case P_SKILLED: dmgreductor = 86; break;
+			case P_EXPERT: dmgreductor = 84; break;
+			case P_MASTER: dmgreductor = 82; break;
+			case P_GRAND_MASTER: dmgreductor = 80; break;
+			case P_SUPREME_MASTER: dmgreductor = 78; break;
+		}
+		nval *= dmgreductor;
+		nval /= 100;
+	}
+
+	/* Discount action will halve paralysis duration, but some paralysis sources ignore it --Amy */
+	if (Discount_action && discountpossible && (nval < -1)) nval /= 2;
 	multi = nval;
 	if (multi < 0) flags.botl = 1;
 	if (txt && txt[0])
@@ -4143,6 +4161,26 @@ int k_format; /* WAC k_format is an int */
 	if (!rn2(20) && n >= 1 && u.ulevel >= 20) {n = n / 5; if (n < 1) n = 1;}
 	if (!rn2(50) && n >= 1 && u.ulevel >= 30) {n = n / 10; if (n < 1) n = 1;}
 	}
+
+	if (PlayerInConeHeels) {
+		register int dmgreductor = 95;
+		if (!(PlayerCannotUseSkills)) switch (P_SKILL(P_HIGH_HEELS)) {
+			case P_BASIC: dmgreductor = 92; break;
+			case P_SKILLED: dmgreductor = 89; break;
+			case P_EXPERT: dmgreductor = 86; break;
+			case P_MASTER: dmgreductor = 83; break;
+			case P_GRAND_MASTER: dmgreductor = 80; break;
+			case P_SUPREME_MASTER: dmgreductor = 77; break;
+		}
+		n *= dmgreductor;
+		n /= 100;
+	}
+
+	/* very early on, low-level characters should be more survivable
+	 * this can certainly be exploited in some way; if players start exploiting it I'll have to fix it
+	 * but it should fix the annoying problem where you often instadie to a trap while your max HP are bad --Amy */
+	if (depth(&u.uz) == 1 && u.ulevel == 1 && moves < 1000 && In_dod(&u.uz) && n > 1) { n /= 2; }
+	if (depth(&u.uz) == 1 && u.ulevel == 2 && moves < 1000 && In_dod(&u.uz) && n > 1) { n *= 2; n /= 3; }
 
 	if (n && Race_if(PM_YUKI_PLAYA)) n += rnd(5);
 	if (Role_if(PM_BLEEDER)) n = n * 2; /* bleeders are harder than hard mode */

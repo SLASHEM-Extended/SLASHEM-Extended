@@ -985,6 +985,7 @@ register struct obj *obj;
 	if (uarmf && uarmf == obj) remove_worn_item(obj, TRUE);
 	if (uarmu && uarmu == obj) remove_worn_item(obj, TRUE);
 	if (uamul && uamul == obj) remove_worn_item(obj, TRUE);
+	if (uimplant && uimplant == obj) remove_worn_item(obj, TRUE);
 	if (uleft && uleft == obj) remove_worn_item(obj, TRUE);
 	if (uright && uright == obj) remove_worn_item(obj, TRUE);
 	if (ublindf && ublindf == obj) remove_worn_item(obj, TRUE);
@@ -3695,12 +3696,12 @@ struct obj *otmp;
 		register int otyp = otmp->otyp;
 		/* ugly check: remove inappropriate things */
 		if((taking_off(word) &&
-		    (!(otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))
+		    (!(otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL))
 		     || (otmp==uarm && uarmc)
 		     || (otmp==uarmu && (uarm || uarmc))
 		    ))
 		|| (putting_on(word) &&
-		     (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL)))
+		     (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL)))
 							/* already worn */
 #if 0	/* 3.4.1 -- include currently wielded weapon among the choices */
 		|| (!strcmp(word, "wield") &&
@@ -4225,7 +4226,7 @@ struct obj *otmp;
 	    else if (!strcmp(word, "remove"))
 		s1 = "T", s2 = "take", s3 = " off";
 	} else if ((ocls == RING_CLASS || otyp == MEAT_RING) ||
-		ocls == AMULET_CLASS ||
+		ocls == AMULET_CLASS || ocls == IMPLANT_CLASS ||
 		(otyp == BLINDFOLD || otyp == EYECLOSER || otyp == DRAGON_EYEPATCH || otyp == CONDOME || otyp == SOFT_CHASTITY_BELT || otyp == TOWEL || otyp == LENSES || otyp == RADIOGLASSES || otyp == BOSS_VISOR)) {
 	    if (!strcmp(word, "wear"))
 		s1 = "P", s2 = "put", s3 = " on";
@@ -4275,13 +4276,13 @@ boolean
 is_worn(otmp)
 register struct obj *otmp;
 {
-    return((boolean)(!!(otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL |
+    return((boolean)(!!(otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL |
 			W_SADDLE |
 			W_WEP | W_SWAPWEP | W_QUIVER))));
 }
 
 static NEARDATA const char removeables[] =
-	{ ARMOR_CLASS, WEAPON_CLASS, RING_CLASS, AMULET_CLASS, TOOL_CLASS, 0 };
+	{ ARMOR_CLASS, WEAPON_CLASS, RING_CLASS, AMULET_CLASS, IMPLANT_CLASS, TOOL_CLASS, 0 };
 
 /* interactive version of getobj - used for Drop, Identify and */
 /* Takeoff (A). Return the number of times fn was called successfully */
@@ -4600,6 +4601,7 @@ struct obj *otmp;
 	else if (otmp->oclass == POTION_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
 	else if (otmp->oclass == RING_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && (!(otmp->owornmask & W_RING) || ((rnd(u.idringpenalty) > 4) && (rnd(u.idringpenalty) > 4)) ) && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
 	else if (otmp->oclass == AMULET_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && (!(otmp->owornmask & W_AMUL) || ((rnd(u.idamuletpenalty) > 15) && (rnd(u.idamuletpenalty) > 15)) ) && rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
+	else if (otmp->oclass == IMPLANT_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && (!(otmp->owornmask & W_IMPLANT) || ((rnd(u.idimplantpenalty) > 1) && (rnd(u.idimplantpenalty) > 1)) ) && rnd(u.idimplantpenalty) > 1) pline("The implant resisted your identification attempt!");
 	else if (otmp->oclass == WAND_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idwandpenalty) > 3) pline("The wand resisted your identification attempt!");
 	else if (otmp->oclass == ARMOR_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && (!(otmp->owornmask & W_ARMOR) || ((rnd(u.idarmorpenalty) > 15) && (rnd(u.idarmorpenalty) > 15)) ) && rnd(u.idarmorpenalty) > 15) pline("The armor resisted your identification attempt!");
 	else if (otmp->oclass == SPBOOK_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idspellbookpenalty) > 2) pline("The spellbook resisted your identification attempt!");
@@ -4628,8 +4630,9 @@ struct obj *otmp;
 
 	if (otmp->oclass == SCROLL_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idscrollpenalty) > 100) pline("The scroll resisted your identification attempt!");
 	else if (otmp->oclass == POTION_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
-	else if (otmp->oclass == RING_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
-	else if (otmp->oclass == AMULET_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
+	else if (otmp->oclass == RING_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && (!(otmp->owornmask & W_RING) || ((rnd(u.idringpenalty) > 4) && (rnd(u.idringpenalty) > 4)) ) && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
+	else if (otmp->oclass == AMULET_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && (!(otmp->owornmask & W_AMUL) || ((rnd(u.idamuletpenalty) > 15) && (rnd(u.idamuletpenalty) > 15)) ) && rnd(u.idamuletpenalty) > 15) pline("The amulet resisted your identification attempt!");
+	else if (otmp->oclass == IMPLANT_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && (!(otmp->owornmask & W_IMPLANT) || ((rnd(u.idimplantpenalty) > 1) && (rnd(u.idimplantpenalty) > 1)) ) && rnd(u.idimplantpenalty) > 1) pline("The implant resisted your identification attempt!");
 	else if (otmp->oclass == WAND_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idwandpenalty) > 3) pline("The wand resisted your identification attempt!");
 	else if (otmp->oclass == ARMOR_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && (!(otmp->owornmask & W_ARMOR) || ((rnd(u.idarmorpenalty) > 15) && (rnd(u.idarmorpenalty) > 15)) ) && rnd(u.idarmorpenalty) > 15) pline("The armor resisted your identification attempt!");
 	else if (otmp->oclass == SPBOOK_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idspellbookpenalty) > 2) pline("The spellbook resisted your identification attempt!");
@@ -6054,7 +6057,7 @@ long numused;
  * This must match the object class order.
  */
 STATIC_VAR NEARDATA const char *names[] = { 0,
-	"Illegal objects", "Weapons", "Armor", "Rings", "Amulets",
+	"Illegal objects", "Weapons", "Armor", "Rings", "Amulets", "Implants",
 	"Tools", "Comestibles", "Potions", "Scrolls", "Spellbooks",
 	"Wands", "Coins", "Gems", "Boulders/Statues", "Iron balls",
 	"Chains", "Venoms"
@@ -6270,6 +6273,7 @@ struct obj *obj;
     return (obj->oclass == WEAPON_CLASS
 		|| obj->oclass == ARMOR_CLASS
 		|| obj->oclass == AMULET_CLASS
+		|| obj->oclass == IMPLANT_CLASS
 		|| obj->oclass == RING_CLASS
 		|| obj->oclass == TOOL_CLASS);
 }
@@ -7153,7 +7157,7 @@ struct obj *obj;
 		pline("%s - This is a piece of armor. Color: %s. Material: %s. Appearance: %s. It can be worn for protection (armor class, magic cancellation etc.).",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tartibsizlik chizilmasin"))))
-			pline("These boots have weird-shaped high heels, which can occasionally cause you to fumble. But while you're wearing them, the turn counter advances at half the normal speed.");
+			pline("These boots have weird-shaped high heels, which look a bit like a wedge heel with part of it cut out, which can occasionally cause you to fumble. But while you're wearing them, the turn counter advances at half the normal speed.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "keng dunyo veb-zarbdan"))))
 			pline("A special helmet that provides internet access. Watching the webcams can occasionally show you the movement of monsters on the current dungeon level.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "wedge boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "klin sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xanjar chizilmasin"))))
@@ -7161,9 +7165,9 @@ struct obj *obj;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "winter stilettos") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zima stilety") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qish sandal chizilmasin"))))
 			pline("The epitome of beauty and elegance, these very high stiletto boots even allow you to walk on ice without slipping.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "clunky heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "neuklyuzhiye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qisqa ko'chirish to'piqlarni"))))
-			pline("You notice that these boots are characterized by extra thick, clunky heels.");
+			pline("You notice that these boots are characterized by extra thick, clunky block heels.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "ankle boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "botil'ony") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bilagi zo'r chizilmasin"))))
-			pline("Ankle boots are a type of high-heeled footwear.");
+			pline("Ankle boots are a type of high-heeled footwear with cone heels.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "block-heeled boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "blok kablukakh sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "blok-o'tish chizilmasin"))))
 			pline("You love the fleecy block heels of this pair of boots, because they are very kind and gentle.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "vampiric cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "vampir plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sindirishi plash"))))
@@ -7287,7 +7291,7 @@ struct obj *obj;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fatal gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "fatal'nyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "halokatli qo'lqop"))))
 			pline("If you wear this pair of gloves, your magnetic items can occasionally experience a case of fatal attraction.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "beautiful heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "krasivyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chiroyli ko'chirish to'piqlarni"))))
-			pline("Such a lovely pair of high heels! <3 They will greatly increase your charisma when worn, so you should definitely allow them to gently enclose your sweet feet!");
+			pline("Such a lovely pair of high heels! <3 They will greatly increase your charisma when worn because the cone heels are incredibly cuuuuuute, so you should definitely allow them to gently enclose your sweet feet!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "electrostatic cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "elektrostaticheskoye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "elektrofizikaviy kompyuteringizda ornatilgan plash"))))
 			pline("It crackles with electricity, and will damage monsters that attack you in melee. However, sometimes you will be confused or numbed by the voltage.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "weeping helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "placha shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yig'lab dubulg'a"))))
@@ -7407,17 +7411,17 @@ struct obj *obj;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "guild cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gil'dii plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "birlik plash"))))
 			pline("Wearing this cloak puts you in the Mages Guild, so to speak - you will not forget your spells over time while you have it on.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "erotic boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "eroticheskiye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "erotik chizilmasin"))))
-			pline("You get all wet and horny when looking at this pair of high heels.");
+			pline("You get all wet and horny when looking at this pair of high heels. In particular, you almost have a spontaneous orgasm when you look at the fleecy block heels.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sputa boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "mokrota sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sputa chizilmasin"))))
 			pline("Think of the sweet block heels your sputa will flow down.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "radiant heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "izluchayushchiye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yorqin ko'chirish to'piqlarni"))))
-			pline("These high heels are very colorful!");
+			pline("These high heels are very colorful! Gotta love the beautiful wedge heels <3");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "turbo boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "turbo sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qidiruvi va turbo chizilmasin"))))
 			pline("It's a pair of boots with a built-in turbo that makes you move a bit faster, but certain actions that would usually interrupt you will no longer do so.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sexy heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "seksual'nyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "belgila sexy ko'chirish to'piqlarni"))))
-			pline("These high heels are very sexy!");
+			pline("These high heels are very sexy! In fact, just looking at the cone heels makes you wet!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "stroking boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "poglazhivaya sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "etiklar silay"))))
-			pline("You absolutely want to stroke these wonderful high heels.");
+			pline("You absolutely want to stroke these wonderful high heels. The block heels certainly feel soooooo incredibly soft!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "baxmal qo'lqop"))))
 			pline("Wearing this pair of gloves will halve your spellcasting penalty for wearing armor, so if you want to be able to cast in full plate mail, this is the ticket.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "racer gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "gonshchik perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "poygachi qo'lqop"))))
@@ -7432,7 +7436,7 @@ struct obj *obj;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "colorfade cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch tsveta") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ranglash plash"))))
 			pline("Wearing this cloak causes monsters to have no color.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "femmy boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zhenskiye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nazokat etigi"))))
-			pline("A high-heeled pair of boots that used to be worn by Femmy. If you let them enclose your feet, the dungeon will slowly become more feminine.");
+			pline("A high-heeled pair of boots that used to be worn by Femmy. She really likes cone heels, it seems. If you let them enclose your feet, the dungeon will slowly become more feminine.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "dream helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shlem mechty") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "dubulg'a orzu"))))
 			pline("Pleasant dreams will come to you while you have this helmet on - it allows you to regenerate hit points and mana more quickly while sleeping.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "red sneakers") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "krasnyye krossovki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qizil shippak"))))
@@ -7442,15 +7446,15 @@ struct obj *obj;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "pink sneakers") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "rozovyye krossovki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pushti shippak"))))
 			pline("This pair of sneakers looks very female and lovely! However, they also emit a beguiling stench that can affect both you and monsters.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sharp-edged sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ostrokonechnyye sandalii") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'tkir xanjarday kavushlari"))))
-			pline("The heels of this pair of female sandals are very sharp-edged.");
+			pline("The heels of this pair of female stiletto sandals are very sharp-edged.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "chang'i poshnalar"))))
-			pline("A special pair of high-heeled footwear that can walk over snow, which is now actually in the game and causes them to speed up. But they walk on ice just as well :-). However, they have a tendency to step into invisible heaps of shit and might also trigger other traps without you noticing.");
+			pline("A special pair of high-heeled footwear that can walk over snow, which is now actually in the game and causes them to speed up. But they walk on ice just as well :-). However, they have a tendency to step into invisible heaps of shit and might also trigger other traps without you noticing. Their heels aren't really wedge heels but they don't really fit into any other heel category.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "slowing gown") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "zamedlennoye plat'ye") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sekinlashuvi libos"))))
 			pline("It's very heavy and improves your armor class by an extra 3 points, but also slows you down to half speed.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "foundry cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "liteynyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "quyish plash"))))
 			pline("While wearing this cloak, if you quaff from a fountain you'll get extra nutrition. But quaffing from fountains is like playing russian roulette anyway. Are you foolish enough to do it?");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fetish heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "idol kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "but poshnalar"))))
-			pline("These high heels slow you down greatly, because seriously, they're not meant to be used for walking. They also increase your charisma and allow you to chat to nymphs or farting monsters to pacify them. However, monsters with claw attacks will try to rip you to pieces.");
+			pline("These high heels slow you down greatly, because seriously, they're not meant to be used for walking. After all, stiletto heels with a height of 15 cm are super cumbersome, try it in real life :P They also increase your charisma and allow you to chat to nymphs or farting monsters to pacify them. However, monsters with claw attacks will try to rip you to pieces.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "rubynus helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "rubinovyy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yoqut asosiy dubulg'a"))))
 			pline("The rubynus material is actually from Elona and increases 'life rating' there. But here, wearing this helmet will instead increase your constitution.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "fikr dubulg'a"))))
@@ -7460,7 +7464,7 @@ struct obj *obj;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "netradiation helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "obluchonnyy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sof radiatsiya dubulg'a"))))
 			pline("Made of radioactive material, wearing it for a prolonged time will slowly sap your maximum health. It also has a chance of protecting you from monsters' gaze attacks.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "velvet pumps") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "barkhatnyye nasosy") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "duxoba nasoslar"))))
-			pline("Such a lovely, soft pair of high-heeled female pumps! <3 (No, the Amy does not have a shoe fetish at all.)");
+			pline("Such a lovely, soft pair of high-heeled female pumps! <3 (No, the Amy does not have a shoe fetish at all. She just happens to love cone heels!)");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "hearing cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "plashch dlya slukha") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "eshitish plash"))))
 			pline("If you wear this cloak, listening to the dungeon becomes possible and very occasionally you'll notice a monster being spawned.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "buzoq-charm kavushlari"))))
@@ -7480,7 +7484,7 @@ struct obj *obj;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "storm coat") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shtorm") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bo'ron palto"))))
 			pline("With this cloak, praying to your deity will not always set a prayer timeout. Unfortunately, the game never tells you whether it did or not, though.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qo'tos botlarni"))))
-			pline("Thanks to the plateau soles, this pair of boots counts as high heels. Kicking a monster with them will push it back more often, but you will encounter more heaps of shit and you will fully step into them even if you're flying.");
+			pline("Thanks to the plateau soles, this pair of boots counts as high heels (technically one could consider them to be wedge heels). Kicking a monster with them will push it back more often, but you will encounter more heaps of shit and you will fully step into them even if you're flying.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fleeceling cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "pushistyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "serjunrangli plash"))))
 			pline("All glyphs have a 1 in 5 chance of being fleecy-colored while you wear this.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "heroine mocassins") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "mokasiny dlya geroini") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qahramoni mokasen"))))
@@ -7498,7 +7502,7 @@ struct obj *obj;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "bluy helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "siniy shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bluy dubulg'a"))))
 			pline("This helmet attracts blue monsters.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "bosh ketish etigi"))))
-			pline("While wearing these heels, monsters will want to have sex with you.");
+			pline("While wearing these heels, monsters will want to have sex with you. And the Amy will constantly swoon over your very beautiful block heels and want to marry you. <3");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "digger gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kopatel'skiye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kazici qo'lqop"))))
 			pline("This pair of gloves improves your digging speed with tools.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "long-range cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "dlinnyy plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uzoq masofaga plash"))))
@@ -7506,7 +7510,7 @@ struct obj *obj;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "inverse gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "obratnyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "teskari qo'lqop"))))
 			pline("Putting on these gloves will invert the enchantment value. If that causes it to become negative, they'll also become heavily cursed!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "weapon light boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "legkiye botinki dlya oruzhiya") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "qurol engil etigi"))))
-			pline("This fleecy-soft pair of leather boots can slit a person's leg full length in a matter of seconds because the tender combat boot heels can cause a lot of damage even though they look very cute. If you kick a monster with them, you deal a ton of extra damage but because you do not have the required weapon light to use them, it will increase your sin counter every time until the cops show up and try to arrest you!");
+			pline("This fleecy-soft pair of leather boots can slit a person's leg full length in a matter of seconds because the tender combat boot heels can cause a lot of damage even though they look very cute. If you kick a monster with them, you deal a ton of extra damage by scratching the enemy with the lovely stiletto heel, but because you do not have the required weapon light to use them, it will increase your sin counter every time until the cops show up and try to arrest you!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "slaying gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ubiystvennyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "o'ldirish qo'lqop"))))
 			pline("These gloves increase your accuracy and damage by one point each.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "less helmet") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "men'she shlem") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "kam dubulg'a"))))
@@ -8561,7 +8565,7 @@ struct obj *obj;
 			case SOFT_SNEAKERS:
 				pline("A valuable pair of lightweight leather sneakers that seems very comfortable."); break;
 			case FEMININE_PUMPS:
-				pline("These high heels look incredibly lovely and tender. You will surely look great if you wear them."); break;
+				pline("These high heels look incredibly lovely and tender with their cone heels. You will surely look great if you wear them."); break;
 			case LEATHER_PEEP_TOES:
 				pline("A pair of asian footwear with plateau soles and stiletto heels. They are made of beautifully soft black leather."); break;
 
@@ -8577,15 +8581,15 @@ struct obj *obj;
 			case QUASIMODULAR_BOOTS:
 				pline("This footwear causes you to see only a few tiles on the playing field. They provide incredibly great AC and 7 points of magic cancellation."); break;
 			case SINFUL_HEELS:
-				pline("This footwear is high-heeled and makes it unsafe to pray. They provide very good AC and 3 points of magic cancellation."); break;
+				pline("This footwear is block-heeled and makes it unsafe to pray. They provide very good AC and 3 points of magic cancellation."); break;
 			case BLOODSUCKING_SHOES:
 				pline("This footwear causes you to take double damage. They provide good AC and 9 points of magic cancellation."); break;
 			case COVETED_BOOTS:
-				pline("This footwear is high-heeled and improves the AI of covetous monsters. They provide medium AC and 4 points of magic cancellation."); break;
+				pline("This footwear is block-heeled and improves the AI of covetous monsters. They provide medium AC and 4 points of magic cancellation."); break;
 			case LIGHTLESS_BOOTS:
 				pline("This footwear prevents you from seeing lit squares if them being lit was the only reason you saw them. They provide mediocre AC and medium magic cancellation."); break;
 			case KILLER_HEELS:
-				pline("This footwear is high-heeled and allows monsters to create more traps. They provide very good AC and 7 points of magic cancellation."); break;
+				pline("This footwear is high-heeled (stilettos that can kill both the wearer and the one that's being kicked by them :D just kidding!) and allows monsters to create more traps. They provide very good AC and 7 points of magic cancellation."); break;
 			case CHECKER_BOOTS:
 				pline("This footwear causes checkerboard vision. They provide excellent AC and 3 points of magic cancellation."); break;
 			case ELVIS_SHOES:
@@ -8595,22 +8599,22 @@ struct obj *obj;
 			case BOOTS_OF_INTERRUPTION:
 				pline("This footwear causes consumables to take multiple turns to use. They provide good AC and no magic cancellation."); break;
 			case HIGH_HEELED_SKIERS:
-				pline("This footwear is high-heeled and causes artifical latency. They provide quite good AC and 6 points of magic cancellation."); break;
+				pline("This footwear is high-heeled (the shape is remotely similar to a wedge heel) and causes artifical latency. They provide quite good AC and 6 points of magic cancellation."); break;
 			case HIGH_SCORING_HEELS:
-				pline("This footwear is high-heeled and causes the highscore effect from SPACE WARS that the Amy her roommate invented. They provide excellent AC and 8 points of magic cancellation."); break;
+				pline("This footwear is block-heeled and causes the highscore effect from SPACE WARS that the Amy her roommate invented. They provide excellent AC and 8 points of magic cancellation."); break;
 			case REPEATABLE_BOOTS:
 				pline("This footwear repeats messages. They provide almost no AC and medium magic cancellation."); break;
 			case TRON_BOOTS:
 				pline("This footwear prevents you from moving into the same direction twice in a row. They provide quite good AC and 3 points of magic cancellation."); break;
 			case RED_SPELL_HEELS:
-				pline("This footwear is high-heeled and causes red spells. They provide excellent AC and 5 points of magic cancellation."); break;
+				pline("This footwear is high-heeled (stilettos, in fact) and causes red spells. They provide excellent AC and 5 points of magic cancellation."); break;
 			case DESTRUCTIVE_HEELS:
-				pline("This footwear is high-heeled and causes random destruction of your inventory items. They provide good AC and 7 points of magic cancellation."); break;
+				pline("This footwear is high-heeled and causes random destruction of your inventory items because the cone heels absolutely want to destroy your stuff. They provide good AC and 7 points of magic cancellation."); break;
 
 			case BOSS_BOOTS:
 				pline("This footwear causes boss monsters to spawn more often. They provide low AC and low magic cancellation."); break;
 			case SENTIENT_HIGH_HEELED_SHOES:
-				pline("This high-heeled footwear randomly tries to hurt the wearer. They provide very good AC and 8 points of magic cancellation."); break;
+				pline("This high-heeled footwear randomly tries to hurt the wearer with their stilettos. They provide very good AC and 8 points of magic cancellation."); break;
 			case BOOTS_OF_FAINTING:
 				pline("This footwear causes fainting. They provide very good AC."); break;
 			case DIFFICULT_BOOTS:
@@ -8638,14 +8642,14 @@ struct obj *obj;
 			case STAIRWELL_STOMPING_BOOTS:
 				pline("This footwear causes stairwells to be trapped. They provide very good AC and 6 points of magic cancellation."); break;
 			case PET_STOMPING_PLATFORM_BOOTS:
-				pline("This footwear causes cats and dogs to hate you, but they're high-heeled so you can kick the vermin to death. They provide mediocre AC and medium magic cancellation."); break;
+				pline("This footwear causes cats and dogs to hate you, but they're high-heeled so you can kick the vermin to death. In fact, they have kind of a wedge heel. They provide mediocre AC and medium magic cancellation."); break;
 			case ASS_KICKER_BOOTS:
 				pline("This footwear causes pets to spontaneously rebel. They provide low AC and low magic cancellation."); break;
 			case DEMENTIA_BOOTS:
 				pline("This footwear causes the dungeon to regrow rapidly. They provide good AC and no magic cancellation."); break;
 
 			case HIPPIE_HEELS:
-				pline("This pair of red leather plateau boots looks extraordinarily sexy. You get the feeling that they would love to be worn by you. Can you resist the temptation? :-)"); break;
+				pline("This pair of red leather plateau boots looks extraordinarily sexy. You get the feeling that they would love to be worn by you. Can you resist the temptation to put on these block-heeled beauties? :-)"); break;
 			case COMBAT_STILETTOS:
 				pline("This is a pair of high-heeled combat boots. Probably meant to be used by a kung-fu ninja woman or something like that."); break;
 			case SPEED_BOOTS:
@@ -8665,7 +8669,7 @@ struct obj *obj;
 			case KICKING_BOOTS:
 				pline("If you want to be a kung-fu fighter, wear these boots to power up your kicks."); break;
 			case ATSUZOKO_BOOTS:
-				pline("Don't put these boots on unless you want to fumble around. That said, at least they aren't usually generated cursed. And they're incredibly high-heeled too."); break;
+				pline("Don't put these boots on unless you want to fumble around. That said, at least they aren't usually generated cursed. And they're incredibly high-heeled stilettos too."); break;
 			case RUBBER_BOOTS:
 				pline("A normal pair of boots made of plastic."); break;
 			case LEATHER_SHOES:
@@ -8730,7 +8734,7 @@ struct obj *obj;
 			case ARCANE_GAUNTLETS: 
 				pline("These gauntlets have mysterious properties! Stats: %d points of AC and a MC of %d.", objects[ARCANE_GAUNTLETS].a_ac, objects[ARCANE_GAUNTLETS].a_can ); break;
 			case SKY_HIGH_HEELS: 
-				pline("There is something special about this pair of female footwear, apart from the fact that they're very high-heeled. Stats: %d points of AC and a MC of %d.", objects[SKY_HIGH_HEELS].a_ac, objects[SKY_HIGH_HEELS].a_can ); break;
+				pline("There is something special about this pair of female footwear, apart from the fact that they're very high-heeled stilettos. Stats: %d points of AC and a MC of %d.", objects[SKY_HIGH_HEELS].a_ac, objects[SKY_HIGH_HEELS].a_can ); break;
 			case PLAIN_CLOAK: 
 				pline("A rather boring cloak. Stats: %d points of AC and a MC of %d.", objects[PLAIN_CLOAK].a_ac, objects[PLAIN_CLOAK].a_can ); break;
 			case POINTED_HELMET: 
@@ -9080,6 +9084,362 @@ struct obj *obj;
 			}
 
 		}
+		break;
+
+		case IMPLANT_CLASS:
+
+		pline("%s - This is an implant. Color: %s. Material: %s. Appearance: %s. It can be worn for some magical effect and armor class, but they're hard to identify and may autocurse when worn. Also, unless your skill is high enough, you might not be able to take them off even when they're uncursed. If you don't have hands, you get extra bonus AC and intrinsics from wearing one.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+
+		if (nn && nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && (uimplant && obj == uimplant) ) pline("As long as you're in a form without hands, wearing this implant grants %s.", enchname(goodimplanteffect(uimplant)) );
+
+		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
+		else { switch (obj->otyp) {
+
+			case IMPLANT_OF_ABSORPTION:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_ABSORPTION].a_ac); break;
+
+			case IMPLANT_OF_PUNCTURING:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_PUNCTURING].a_ac); break;
+
+			case IMPLANT_OF_CRAFTSMANSHIP:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_CRAFTSMANSHIP].a_ac); break;
+
+			case IMPLANT_OF_PRECISION:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_PRECISION].a_ac); break;
+
+			case IMPLANT_OF_VILENESS:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_VILENESS].a_ac); break;
+
+			case IMPLANT_OF_REMEDY:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_REMEDY].a_ac); break;
+
+			case IMPLANT_OF_STOICISM:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_STOICISM].a_ac); break;
+
+			case IMPLANT_OF_AVARICE:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_AVARICE].a_ac); break;
+
+			case IMPLANT_OF_CREMATION:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_CREMATION].a_ac); break;
+
+			case IMPLANT_OF_SEARING:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_SEARING].a_ac); break;
+
+			case IMPLANT_OF_REDEMPTION:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_REDEMPTION].a_ac); break;
+
+			case IMPLANT_OF_EROSION:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_EROSION].a_ac); break;
+
+			case IMPLANT_OF_JOY:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_JOY].a_ac); break;
+
+			case IMPLANT_OF_CRUELTY:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_CRUELTY].a_ac); break;
+
+			case IMPLANT_OF_BADNESS:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_BADNESS].a_ac); break;
+
+			case IMPLANT_OF_PROPOGATION:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_PROPOGATION].a_ac); break;
+
+			case IMPLANT_OF_PASSION:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_PASSION].a_ac); break;
+
+			case IMPLANT_OF_WINTER:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_WINTER].a_ac); break;
+
+			case IMPLANT_OF_ACCELERATION:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_ACCELERATION].a_ac); break;
+
+			case IMPLANT_OF_PROSPERITY:
+				pline("An implant that gives %d points of AC.", objects[IMPLANT_OF_PROSPERITY].a_ac); break;
+
+			case IMPLANT_OF_QUICKENING:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_QUICKENING].a_ac); break;
+
+			case IMPLANT_OF_KARMA:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_KARMA].a_ac); break;
+
+			case IMPLANT_OF_FERVOR:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_FERVOR].a_ac); break;
+
+			case IMPLANT_OF_TRANSCENDENCE:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_TRANSCENDENCE].a_ac); break;
+
+			case IMPLANT_OF_ELUSION:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_ELUSION].a_ac); break;
+
+			case IMPLANT_OF_STATURE:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_STATURE].a_ac); break;
+
+			case IMPLANT_OF_SUFFERING:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_SUFFERING].a_ac); break;
+
+			case IMPLANT_OF_BADASS:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_BADASS].a_ac); break;
+
+			case IMPLANT_OF_FAST_REPAIR:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_FAST_REPAIR].a_ac); break;
+
+			case IMPLANT_OF_PILFERING:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_PILFERING].a_ac); break;
+
+			case IMPLANT_OF_REPLENISHING:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_REPLENISHING].a_ac); break;
+
+			case IMPLANT_OF_HONOR:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_HONOR].a_ac); break;
+
+			case IMPLANT_OF_CONTROL:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_CONTROL].a_ac); break;
+
+			case IMPLANT_OF_CLUMSINESS:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_CLUMSINESS].a_ac); break;
+
+			case IMPLANT_OF_INSULATION:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_INSULATION].a_ac); break;
+
+			case IMPLANT_OF_FRAILTY:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_FRAILTY].a_ac); break;
+
+			case IMPLANT_OF_KNOWLEDGE:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_KNOWLEDGE].a_ac); break;
+
+			case IMPLANT_OF_VENGEANCE:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_VENGEANCE].a_ac); break;
+
+			case IMPLANT_OF_BLISS:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_BLISS].a_ac); break;
+
+			case IMPLANT_OF_BLITZEN:
+				pline("An implant that gives %d points of AC and some unknown nasty trap effect.", objects[IMPLANT_OF_BLITZEN].a_ac); break;
+
+			case IMPLANT_OF_IRE:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_IRE].a_ac, enchname(objects[IMPLANT_OF_IRE].oc_oprop)); break;
+
+			case IMPLANT_OF_MALICE:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_MALICE].a_ac, enchname(objects[IMPLANT_OF_MALICE].oc_oprop)); break;
+
+			case IMPLANT_OF_AGES:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_AGES].a_ac, enchname(objects[IMPLANT_OF_AGES].oc_oprop)); break;
+
+			case IMPLANT_OF_SUSTENANCE:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_SUSTENANCE].a_ac, enchname(objects[IMPLANT_OF_SUSTENANCE].oc_oprop)); break;
+
+			case IMPLANT_OF_TRUTH:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_TRUTH].a_ac, enchname(objects[IMPLANT_OF_TRUTH].oc_oprop)); break;
+
+			case IMPLANT_OF_REMORSE:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_REMORSE].a_ac, enchname(objects[IMPLANT_OF_REMORSE].oc_oprop)); break;
+
+			case IMPLANT_OF_GRACE:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_GRACE].a_ac, enchname(objects[IMPLANT_OF_GRACE].oc_oprop)); break;
+
+			case IMPLANT_OF_WASTE:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_WASTE].a_ac, enchname(objects[IMPLANT_OF_WASTE].oc_oprop)); break;
+
+			case IMPLANT_OF_COMBAT:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_COMBAT].a_ac, enchname(objects[IMPLANT_OF_COMBAT].oc_oprop)); break;
+
+			case IMPLANT_OF_FAITH:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_FAITH].a_ac, enchname(objects[IMPLANT_OF_FAITH].oc_oprop)); break;
+
+			case IMPLANT_OF_DISPATCH:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_DISPATCH].a_ac, enchname(objects[IMPLANT_OF_DISPATCH].oc_oprop)); break;
+
+			case IMPLANT_OF_DREAD:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_DREAD].a_ac, enchname(objects[IMPLANT_OF_DREAD].oc_oprop)); break;
+
+			case IMPLANT_OF_VITA:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_VITA].a_ac, enchname(objects[IMPLANT_OF_VITA].oc_oprop)); break;
+
+			case IMPLANT_OF_MAGGOTS:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_MAGGOTS].a_ac, enchname(objects[IMPLANT_OF_MAGGOTS].oc_oprop)); break;
+
+			case IMPLANT_OF_BEAUTY:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_BEAUTY].a_ac, enchname(objects[IMPLANT_OF_BEAUTY].oc_oprop)); break;
+
+			case IMPLANT_OF_DUSK:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_DUSK].a_ac, enchname(objects[IMPLANT_OF_DUSK].oc_oprop)); break;
+
+			case IMPLANT_OF_TRIBUTE:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_TRIBUTE].a_ac, enchname(objects[IMPLANT_OF_TRIBUTE].oc_oprop)); break;
+
+			case IMPLANT_OF_INERTIA:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_INERTIA].a_ac, enchname(objects[IMPLANT_OF_INERTIA].oc_oprop)); break;
+
+			case IMPLANT_OF_SWEETNESS:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_SWEETNESS].a_ac, enchname(objects[IMPLANT_OF_SWEETNESS].oc_oprop)); break;
+
+			case IMPLANT_OF_IRRIGATION:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_IRRIGATION].a_ac, enchname(objects[IMPLANT_OF_IRRIGATION].oc_oprop)); break;
+
+			case IMPLANT_OF_TWILIGHT:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_TWILIGHT].a_ac, enchname(objects[IMPLANT_OF_TWILIGHT].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_TWILIGHT].a_ac); break;
+
+			case IMPLANT_OF_MEMORY:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_MEMORY].a_ac, enchname(objects[IMPLANT_OF_MEMORY].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_MEMORY].a_ac); break;
+
+			case IMPLANT_OF_LOVE:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_LOVE].a_ac, enchname(objects[IMPLANT_OF_LOVE].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_LOVE].a_ac); break;
+
+			case IMPLANT_OF_VINES:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_VINES].a_ac, enchname(objects[IMPLANT_OF_VINES].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_VINES].a_ac); break;
+
+			case IMPLANT_OF_ANIMA:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_ANIMA].a_ac, enchname(objects[IMPLANT_OF_ANIMA].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_ANIMA].a_ac); break;
+
+			case IMPLANT_OF_LINES:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_LINES].a_ac, enchname(objects[IMPLANT_OF_LINES].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_LINES].a_ac); break;
+
+			case IMPLANT_OF_THAWING:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_THAWING].a_ac, enchname(objects[IMPLANT_OF_THAWING].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_THAWING].a_ac); break;
+
+			case IMPLANT_OF_DESIRE:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_DESIRE].a_ac, enchname(objects[IMPLANT_OF_DESIRE].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_DESIRE].a_ac); break;
+
+			case IMPLANT_OF_PAIN:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_PAIN].a_ac, enchname(objects[IMPLANT_OF_PAIN].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_PAIN].a_ac); break;
+
+			case IMPLANT_OF_DARING:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_DARING].a_ac, enchname(objects[IMPLANT_OF_DARING].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_DARING].a_ac); break;
+
+			case IMPLANT_OF_CORRUPTION:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_CORRUPTION].a_ac, enchname(objects[IMPLANT_OF_CORRUPTION].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_CORRUPTION].a_ac); break;
+
+			case IMPLANT_OF_EVISCERATION:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_EVISCERATION].a_ac, enchname(objects[IMPLANT_OF_EVISCERATION].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_EVISCERATION].a_ac); break;
+
+			case IMPLANT_OF_TRAVELING:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_TRAVELING].a_ac, enchname(objects[IMPLANT_OF_TRAVELING].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_TRAVELING].a_ac); break;
+
+			case IMPLANT_OF_CHEATING:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_CHEATING].a_ac, enchname(objects[IMPLANT_OF_CHEATING].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_CHEATING].a_ac); break;
+
+			case IMPLANT_OF_ANTHRAX:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_ANTHRAX].a_ac, enchname(objects[IMPLANT_OF_ANTHRAX].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_ANTHRAX].a_ac); break;
+
+			case IMPLANT_OF_ATTRITION:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_ATTRITION].a_ac, enchname(objects[IMPLANT_OF_ATTRITION].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_ATTRITION].a_ac); break;
+
+			case IMPLANT_OF_HACKING:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_HACKING].a_ac, enchname(objects[IMPLANT_OF_HACKING].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_HACKING].a_ac); break;
+
+			case IMPLANT_OF_PROSPERING:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_PROSPERING].a_ac, enchname(objects[IMPLANT_OF_PROSPERING].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_PROSPERING].a_ac); break;
+
+			case IMPLANT_OF_VALHALLA:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_VALHALLA].a_ac, enchname(objects[IMPLANT_OF_VALHALLA].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_VALHALLA].a_ac); break;
+
+			case IMPLANT_OF_DECEPTION:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_DECEPTION].a_ac, enchname(objects[IMPLANT_OF_DECEPTION].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_DECEPTION].a_ac); break;
+
+			case IMPLANT_OF_BUTCHERY:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_BUTCHERY].a_ac, enchname(objects[IMPLANT_OF_BUTCHERY].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_BUTCHERY].a_ac); break;
+
+			case IMPLANT_OF_BLIZZARD:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_BLIZZARD].a_ac, enchname(objects[IMPLANT_OF_BLIZZARD].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_BLIZZARD].a_ac); break;
+
+			case IMPLANT_OF_TERROR:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_TERROR].a_ac, enchname(objects[IMPLANT_OF_TERROR].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_TERROR].a_ac); break;
+
+			case IMPLANT_OF_DAWN:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_DAWN].a_ac, enchname(objects[IMPLANT_OF_DAWN].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_DAWN].a_ac); break;
+
+			case IMPLANT_OF_BILE:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_BILE].a_ac, enchname(objects[IMPLANT_OF_BILE].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_BILE].a_ac); break;
+
+			case IMPLANT_OF_CREDIT:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_CREDIT].a_ac, enchname(objects[IMPLANT_OF_CREDIT].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_CREDIT].a_ac); break;
+
+			case IMPLANT_OF_QUOTA:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_QUOTA].a_ac, enchname(objects[IMPLANT_OF_QUOTA].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_QUOTA].a_ac); break;
+
+			case IMPLANT_OF_VIRILITY:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_VIRILITY].a_ac, enchname(objects[IMPLANT_OF_VIRILITY].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_VIRILITY].a_ac); break;
+
+			case IMPLANT_OF_VANILLA:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_VANILLA].a_ac, enchname(objects[IMPLANT_OF_VANILLA].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_VANILLA].a_ac); break;
+
+			case IMPLANT_OF_HOPE:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_HOPE].a_ac, enchname(objects[IMPLANT_OF_HOPE].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_HOPE].a_ac); break;
+
+			case IMPLANT_OF_ABRASION:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_ABRASION].a_ac, enchname(objects[IMPLANT_OF_ABRASION].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_ABRASION].a_ac); break;
+
+			case IMPLANT_OF_OSMOSIS:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_OSMOSIS].a_ac, enchname(objects[IMPLANT_OF_OSMOSIS].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_OSMOSIS].a_ac); break;
+
+			case IMPLANT_OF_NIRVANA:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_NIRVANA].a_ac, enchname(objects[IMPLANT_OF_NIRVANA].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_NIRVANA].a_ac); break;
+
+			case IMPLANT_OF_ENVY:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_ENVY].a_ac, enchname(objects[IMPLANT_OF_ENVY].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_ENVY].a_ac); break;
+
+			case IMPLANT_OF_ENNUI:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_ENNUI].a_ac, enchname(objects[IMPLANT_OF_ENNUI].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_ENNUI].a_ac); break;
+
+			case IMPLANT_OF_IMPOSSIBILITY:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_IMPOSSIBILITY].a_ac, enchname(objects[IMPLANT_OF_IMPOSSIBILITY].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_IMPOSSIBILITY].a_ac); break;
+
+			case IMPLANT_OF_ADMIRATION:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_ADMIRATION].a_ac, enchname(objects[IMPLANT_OF_ADMIRATION].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_ADMIRATION].a_ac); break;
+
+			case IMPLANT_OF_SUNLIGHT:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_SUNLIGHT].a_ac, enchname(objects[IMPLANT_OF_SUNLIGHT].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_SUNLIGHT].a_ac); break;
+
+			case IMPLANT_OF_TSUNAMI:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_TSUNAMI].a_ac, enchname(objects[IMPLANT_OF_TSUNAMI].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_TSUNAMI].a_ac); break;
+
+			case IMPLANT_OF_FREEDOM:
+				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_FREEDOM].a_ac, enchname(objects[IMPLANT_OF_FREEDOM].oc_oprop));
+				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_FREEDOM].a_ac); break;
+
+
+			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
+			}
+		}
+
 		break;
 
 		case AMULET_CLASS:
@@ -10012,33 +10372,33 @@ struct obj *obj;
 				pline("You will become temporarily resistant to physical damage when reading this scroll."); break;
 			case SCR_WARDING: 
 				pline("You will become temporarily resistant to spell damage when reading this scroll."); break;
-			case SCR_HEALING: 
-				pline("A standard healing scroll that behaves similar to healing potions in other role-playing games by restoring some lost hit points."); break;
-			case SCR_EXTRA_HEALING: 
-				pline("A powerful healing scroll that restores a large amount of lost hit points."); break;
-			case SCR_POWER_HEALING: 
+			case SCR_HEALING:
+				pline("A standard healing scroll that behaves similar to healing potions in other role-playing games by restoring some lost hit points. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
+			case SCR_EXTRA_HEALING:
+				pline("A powerful healing scroll that restores a large amount of lost hit points. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
+			case SCR_POWER_HEALING:
 				pline("This scroll completely restores hit points."); break;
-			case SCR_MANA: 
-				pline("A standard mana scroll that behaves similar to mana potions in other role-playing games by restoring some of your mana."); break;
+			case SCR_MANA:
+				pline("A standard mana scroll that behaves similar to mana potions in other role-playing games by restoring some of your mana. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
 			case SCR_GREATER_MANA_RESTORATION:
-				pline("A powerful mana scroll that restores a lot of your mana."); break;
-			case SCR_CURE: 
-				pline("A powerful curing scroll that will fix the following status effects: sickness, sliming, stoning, confusion, blindness, stun, numbness, freezing, burn, fear, dimness and hallucination."); break;
-			case SCR_PHASE_DOOR: 
-				pline("Using this scroll will teleport you over a short distance."); break;
-			case SCR_TRAP_DISARMING: 
+				pline("A powerful mana scroll that restores a lot of your mana. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
+			case SCR_CURE:
+				pline("A powerful curing scroll that will fix the following status effects: sickness, sliming, stoning, confusion, blindness, stun, numbness, freezing, burn, fear, dimness and hallucination. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
+			case SCR_PHASE_DOOR:
+				pline("Using this scroll will teleport you over a short distance. Of course it doesn't work if you're on a no-teleport level. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
+			case SCR_TRAP_DISARMING:
 				pline("If you read this scroll, all traps in a 3x3 radius centered on you will be removed."); break;
-			case SCR_STANDARD_ID: 
-				pline("Reading this scroll allows you to identify exactly one item in your main inventory."); break;
-			case SCR_GROUP_SUMMONING: 
+			case SCR_STANDARD_ID:
+				pline("Reading this scroll allows you to identify exactly one item in your main inventory. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
+			case SCR_GROUP_SUMMONING:
 				pline("Summons a group of themed monsters for you to fight."); break;
-			case SCR_WORLD_FALL: 
+			case SCR_WORLD_FALL:
 				pline("Also known as 'apocalypse' or 'cataclysm', this scroll wipes out all monsters on the level whose level is lower than yours, and ones with a higher level can sometimes be removed too."); break;
-			case SCR_RESURRECTION: 
+			case SCR_RESURRECTION:
 				pline("Reading this scroll grants you an extra life, i.e. you come back to life after death!"); break;
-			case SCR_SUMMON_GHOST: 
+			case SCR_SUMMON_GHOST:
 				pline("You will summon a player ghost by reading this, which can be extremely dangerous."); break;
-			case SCR_MEGALOAD: 
+			case SCR_MEGALOAD:
 				pline("A nasty scroll that puts a loadstone in your inventory if anyone reads it."); break;
 			case SCR_VILENESS: 
 				pline("If this is scroll is read, regardless of who is doing the reading, an evil artifact will be put into your inventory. You will then automatically equip it, and if the artifact didn't autocurse anyway, it will get cursed."); break;
@@ -11806,7 +12166,7 @@ struct obj *obj;
 				case ART_CLEAVER:
 					pline("Artifact specs: +3 to-hit and +6 damage, neutral, barbarian sacrifice gift."); break;
 				case ART_DOOMBLADE:
-					pline("Artifact specs: +5 damage, can sometimes do extra damage, chaotic."); break;
+					pline("Artifact specs: +10 damage, can sometimes do extra damage, chaotic."); break;
 				case ART_SEA_GULL:
 					pline("Artifact specs: +2 to-hit and +4 damage to fire-susceptible monsters."); break;
 				case ART_JUNGLE_GUARD:
@@ -12284,7 +12644,7 @@ struct obj *obj;
 				case ART_REAL_PSYCHOS_WEAR_PURPLE:
 					pline("Artifact specs: psi resistance, farlook bug and hate effect when worn, autocurses, chaotic."); break;
 				case ART_BINDER_CRASH:
-					pline("Artifact specs: count as high heels for binders, everyone else will anger their god and cause them to heavily curse themselves. Very rarely they transform a non-Binder into a Binder instead, but if they don't, then they don't, so do not try repeatedly!"); break;
+					pline("Artifact specs: count as stiletto heels for binders, everyone else will anger their god and cause them to heavily curse themselves. Very rarely they transform a non-Binder into a Binder instead, but if they don't, then they don't, so do not try repeatedly!"); break;
 				case ART_MEPHISTO_S_BROGUES:
 					pline("Artifact specs: poison and cold resistance and flying when worn, disables fire resistance and autocurses, chaotic."); break;
 				case ART_GNOMISH_BOOBS:
@@ -13490,13 +13850,13 @@ struct obj *obj;
 				case ART_DWARVEN_BONG:
 					pline("Artifact specs: no specialties."); break;
 				case ART_ABSURD_HEELED_TILESET:
-					pline("Artifact specs: count as high heels."); break;
+					pline("Artifact specs: count as stiletto heels."); break;
 				case ART_GRANDPA_S_BROGUES:
 					pline("Artifact specs: fear resistance when worn."); break;
 				case ART_VERA_S_FREEZER:
 					pline("Artifact specs: cold resistance and freezopathy when worn, kicking a monster with them can slow it down and cold attacks cannot shatter your potions. The 'freeze' status effect will slow you down less. However, your fire resistance is deactivated and the 'burn' status effect cannot be cured other by waiting it out. Lawful."); break;
 				case ART_HIGH_HEELED_HUG:
-					pline("Artifact specs: count as high heels, neutral."); break;
+					pline("Artifact specs: count as high heels (specifically, hugging boots with block heels, which also exist in real life), neutral."); break;
 				case ART_FREE_FOR_ENOUGH:
 					pline("Artifact specs: free action when worn, neutral."); break;
 				case ART_DOUBLE_SAFETY:
@@ -13856,7 +14216,7 @@ struct obj *obj;
 				case ART_AMYBSOD_S_NEW_FOOTWEAR:
 					pline("Artifact specs: drain resistance and blood loss when worn."); break;
 				case ART_MANUELA_S_UNKNOWN_HEELS:
-					pline("Artifact specs: magic resistance, ESP, aggravate monster and conflict when worn, heavily autocurses, count as high heels, chaotic."); break;
+					pline("Artifact specs: magic resistance, ESP, aggravate monster and conflict when worn, heavily autocurses, count as block heels, chaotic."); break;
 				case ART_HADES_THE_MEANIE:
 					pline("Artifact specs: aggravate monster and unbreathing when worn, newly spawned monsters are always hostile."); break;
 				case ART_AMY_LOVES_AUTOCURSING_ITEM:
@@ -13956,7 +14316,7 @@ struct obj *obj;
 				case ART_DIFFICULTY__:
 					pline("Artifact specs: shock resistance and flying when worn, but you will see more monsters and traps, and the monster difficulty will be increased."); break;
 				case ART_SWARM_SOFT_HIGH_HEELS:
-					pline("Artifact specs: They're high-heeled and incredibly soft! <3"); break;
+					pline("Artifact specs: They're high-heeled and incredibly soft! The block heels in particular are sooooo kind and gentle! <3"); break;
 				case ART_WEAK_FROM_HUNGER:
 					pline("Artifact specs: conflict and weakness effect when worn, chaotic."); break;
 				case ART_ARABELLA_S_RESIST_COLD:
@@ -14186,7 +14546,7 @@ struct obj *obj;
 				case ART_DEAD_SLAM_THE_TIME_SHUT:
 					pline("Artifact specs: wearing them while not having the device skill will unlock it and cap it at expert, but also prime curse the gloves."); break;
 				case ART_ANASTASIA_S_UNEXPECTED_ABI:
-					pline("Artifact specs: It's a pair of high heels that may do something very unexpected if you put them on."); break;
+					pline("Artifact specs: It's a pair of high heels that may do something very unexpected if you put them on. Did you know that Anastasia is capable of walking in cone heels?"); break;
 				case ART_ELIANE_S_SHIN_SMASH:
 					pline("Artifact specs: When AmyBSOD was little, she called them the 'most beautiful shoes in the world'. Anyway, if you kick a monster with them, it will do double damage and paralyze the monster. Also, you aren't affected by heaps of shit while wearing them and cannot have wounded legs. However, they will be vaporized instantly if they ever come into contact with water, and also if something farts. Lawful."); break;
 				case ART_MYSTERIOUS_MAGIC:
@@ -14512,7 +14872,7 @@ struct obj *obj;
 				case ART_MMMMMMMMMMMM_X____:
 					pline("Artifact specs: +20 to-hit and +2 damage."); break;
 				case ART_ARVOGENIA_S_HIGH_HEELSES:
-					pline("Artifact specs: This pair of cream-colored high heels used to be worn by a beautiful topmodel with long hair. Wearing them grants disintegration resistance and infravision."); break;
+					pline("Artifact specs: This pair of cream-colored high heels used to be worn by a beautiful topmodel with long hair. Wearing these cone-heeled lady pumps grants disintegration resistance and infravision."); break;
 				case ART_NOW_YOU_HAVE_LOST:
 					pline("Artifact specs: +10 increase damage when worn. Carries an ancient Morgothian curse."); break;
 				case ART_FINGERMASH:

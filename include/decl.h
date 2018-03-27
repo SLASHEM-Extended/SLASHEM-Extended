@@ -370,7 +370,7 @@ E const int shield_static[];
 E NEARDATA struct obj *invent, *uarm, *uarmc, *uarmh, *uarms, *uarmg, *uarmf,
 	*uarmu,				/* under-wear, so to speak */
 	*usaddle,
-	*uskin, *uamul, *uleft, *uright, *ublindf,
+	*uskin, *uamul, *uimplant, *uleft, *uright, *ublindf,
 	*uwep, *uswapwep, *uquiver;
 
 E NEARDATA struct obj *uchain;		/* defined only when punished */

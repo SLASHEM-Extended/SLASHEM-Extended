@@ -488,7 +488,15 @@
 #define CONT_RES 445
 #define DEAC_CONT_RES 446
 
-#define SECOND_CHANCE		447
+#define DISCOUNT_ACTION 447
+#define DEAC_DISCOUNT_ACTION 448
+#define FULL_NUTRIENT 449
+#define DEAC_FULL_NUTRIENT 450
+#define TECHNICALITY 451
+#define DEAC_TECHNICALITY 452
+
+
+#define SECOND_CHANCE		453
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/
@@ -520,6 +528,7 @@ struct prop {
 #	define W_SADDLE     0x00100000L	/* KMH -- For riding monsters */
 #	define W_BALL	    0x00200000L /* Punishment ball */
 #	define W_CHAIN	    0x00400000L /* Punishment chain */
+#	define W_IMPLANT	    0x00800000L /* Implant */
 
 	/*** Property is blocked by an object ***/
 	long blocked;					/* Same assignments as extrinsic */
@@ -553,5 +562,6 @@ struct prop {
 #define WORN_AMUL	W_AMUL
 #define WORN_BLINDF	W_TOOL
 #define WORN_SHIRT	W_ARMU
+#define WORN_IMPLANT	W_IMPLANT
 
 #endif /* PROP_H */

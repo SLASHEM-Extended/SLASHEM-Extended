@@ -31,7 +31,8 @@ const struct innate {
 		     {  10, &(HSearching), "perceptive", "unaware" },
 		     {	 0, 0, 0, 0 } },
 
-	ana_abil[] = { {   7, &(HFast), "quick", "slow" },  
+	ana_abil[] = { {	 1, &(HFull_nutrient), "", "" },
+		     {   7, &(HFast), "quick", "slow" },  
 		     {	15, &(HWarning), "precognitive", "noncognitive" },  
 		     {	15, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
 		     {	 0, 0, 0, 0 } },  
@@ -126,6 +127,9 @@ const struct innate {
 			{	1, &(AutomaticVulnerabilitiy), "", "" },
 		     {	 0, 0, 0, 0 } },
 
+	sta_abil[] = { {   1, &(HTechnicality), "", "" },
+		     {	 0, 0, 0, 0 } },
+
 	trs_abil[] = { {   5, &(LevelTrapEffect), "", "" },
 			{	10, &(CaptchaProblem), "", "" },
 			{	15, &(ChaosTerrain), "", "" },
@@ -175,6 +179,7 @@ const struct innate {
 			{	20, &(HSick_resistance), "immune to diseases", "no longer immune to diseases" },
 			{	22, &(Deafness), "", "" },
 			{	25, &(HDisint_resistance), "stable", "brittle" },
+			{	26, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis" },
 			{	28, &(ShadesOfGrey), "", "" },
 			{	30, &(HStone_resistance), "rock solid", "breakable" },
 		     {   0, 0, 0, 0 } },
@@ -195,6 +200,7 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 
 	coo_abil[] = { {   1, &(HFire_resistance), "", "" },
+		     {  1, &(HFull_nutrient), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	fnc_abil[] = { {	 7, &(HFast), "quick", "slow" },
@@ -205,6 +211,7 @@ const struct innate {
 
 	med_abil[] = { {	1, &(HStealth), "", "" },
 		       {	7, &(HSearching), "perceptive", "unaware" },
+		     {  10, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up" },
 			{   14, &(HSee_invisible), "your vision sharpen", "your vision blurring" },
 			{   20, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
@@ -244,9 +251,11 @@ const struct innate {
 			{   9, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
-	sag_abil[] = { {   5, &(HManaleech), "magically attuned", "no longer magically attuned" },
+	sag_abil[] = { {   1, &(HFull_nutrient), "", "" },
+		     {   5, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {  10, &(HSearching), "perceptive", "unaware" },
 		     {	17, &(HWarning), "sensitive", "careless" },
+		     {	20, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis" },
 		     {	 0, 0, 0, 0 } },
 
 	ota_abil[] = { {	8, &(HWarning), "sensitive", "careless" },
@@ -255,6 +264,7 @@ const struct innate {
 
 	aug_abil[] = { {   1, &(HTelepat), "", "" },
 		     {   1, &(HStealth), "", "" },
+		     {   1, &(HTechnicality), "", "" },
 			{   3, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {	12, &(HWarning), "sensitive", "careless" },
 		     {   0, 0, 0, 0 } },
@@ -305,6 +315,7 @@ const struct innate {
 		     {	 0, 0, 0, 0 } },
 
 	sci_abil[] = { {	 1, &(HAcid_resistance), "", "" },
+		     {   1, &(HTechnicality), "", "" },
 		     {	25, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
 		     {	 0, 0, 0, 0 } },
 
@@ -319,6 +330,7 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 
 	psn_abil[] = { {   1, &(HPoison_resistance), "", "" },
+		     {   1, &(HFull_nutrient), "", "" },
 			{   5, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
@@ -345,6 +357,7 @@ const struct innate {
 		     {	 0, 0, 0, 0 } },
 
 	nuc_abil[] = { {	 1, &(HCont_resist), "", "" },
+		     {   1, &(HTechnicality), "", "" },
 		     {	 0, 0, 0, 0 } },
 
 	for_abil[] = { {	 1, &(HPolymorph_control), "", "" },
@@ -403,6 +416,7 @@ const struct innate {
 		     {   16, &(HSleep_resistance), "awake", "tired" },
 		     {   19, &(HAcid_resistance), "warded", "endangered" },
 		     {   22, &(HTelepat), "telepathic", "nontelepathic" },
+		     {   24, &(HTechnicality), "evolved", "a loss of PP" },
 		     {   25, &(HSick_resistance), "resistant", "non-resistant" },
 		     {   26, &(HCont_resist), "protected from contamination", "vulnerable to contamination" },  
 		     {   28, &(HTeleport_control), "controlled", "uncontrolled" },
@@ -574,7 +588,10 @@ const struct innate {
 		     {	 1, &(HStone_resistance), "", "" },
 		     {	 5, &(HShock_resistance), "shock resistant", "less shock resistant" },
 		     {	 10, &(HCold_resistance), "cold resistant", "less cold resistant" },
+		     {  10, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up" },
 		     {	 15, &(HFire_resistance), "heat resistant", "less heat resistant" },
+		     {   20, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker" },
+			{	25, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis" },
 		     {	 0, 0, 0, 0 } },
 
 	vor_abil[] = { {	1, &(HFlying), "", "" },
@@ -602,6 +619,9 @@ const struct innate {
 		     {   0, 0, 0, 0 } },
 
 	alc_abil[] = { {	 1, &(HAcid_resistance), "", "" },
+		     {	 0, 0, 0, 0 } },
+
+	ent_abil[] = { {	 1, &(HFull_nutrient), "", "" },
 		     {	 0, 0, 0, 0 } },
 
 	ang_abil[] = { {   1, &(HAntimagic), "", "" },
@@ -683,9 +703,16 @@ const struct innate {
 	bat_abil[] = { {  1, &(HFlying), "", "" },
 		     {  1, &(HDrain_resistance), "", "" },
 		     {  1, &(HFear_resistance), "", "" },
+		     {  1, &(HTechnicality), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	nym_abil[] = { {  1, &(HTeleportation), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	dvp_abil[] = { {  1, &(HTechnicality), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	tur_abil[] = { {  1, &(HFull_nutrient), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	roh_abil[] = { {  1, &(HFast), "", "" },
@@ -753,9 +780,12 @@ const struct innate {
 		     {   1, &(HSleep_resistance), "", "" },
 		     {   1, &(HAcid_resistance), "", "" },
 		     {   1, &(HStone_resistance), "", "" },
+		     {   1, &(HFull_nutrient), "", "" },
+		     {   1, &(HDiscount_action), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	ins_abil[] = { {  1, &(HPoison_resistance), "", "" },
+		     {   1, &(HFull_nutrient), "", "" },
 			{   20, &(HManaleech), "magically attuned", "no longer magically attuned" },
 		     {   0, 0, 0, 0 } },
 
@@ -778,6 +808,9 @@ const struct innate {
 		     {   1, &(HSleep_resistance), "", "" },
 		     {   1, &(HPoison_resistance), "", "" },
 		     {   1, &(HUndead_warning), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	din_abil[] = { {  1, &(HDiscount_action), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	ske_abil[] = { {  1, &(HSick_resistance), "", "" },
@@ -826,6 +859,7 @@ const struct innate {
 	jel_abil[] = { {	 1, &(HPoison_resistance), "", "" },
 		     {   1, &(HSleep_resistance), "", "" },
 			{   1, &(HManaleech), "", "" },
+			{   1, &(HDiscount_action), "", "" },
 		     {	 0, 0, 0, 0 } },
 
 	wim_abil[] = { {	 1, &(HFire_resistance), "", "" },
@@ -865,7 +899,14 @@ const struct innate {
 	aur_abil[] = { {   1, &(HReflecting), "", "" },
 		     {   0, 0, 0, 0 } },
 
+	sat_abil[] = { {   1, &(HTechnicality), "", "" },
+		     {   0, 0, 0, 0 } },
+
+	sho_abil[] = { {   1, &(HDiscount_action), "", "" },
+		     {   0, 0, 0, 0 } },
+
 	ink_abil[] = { {   1, &(HPeacevision), "", "" },
+		     {   1, &(HTechnicality), "", "" },
 		     {   0, 0, 0, 0 } },
 
 	sed_abil[] = { {   1, &(HAntimagic), "", "" },
@@ -1484,6 +1525,7 @@ int oldlevel, newlevel;
 	case PM_COURIER:      abil = cou_abil;	break;
 	case PM_MAHOU_SHOUJO:      abil = mah_abil;	break;
 	case PM_PICKPOCKET:      abil = pic_abil;	break;
+	case PM_STAND_USER:      abil = sta_abil;	break;
 	case PM_JESTER:      abil = jes_abil;	break;
 	case PM_LADIESMAN:      abil = lad_abil;	break;
 	case PM_FENCER:      abil = fnc_abil;	break;
@@ -1604,10 +1646,13 @@ int oldlevel, newlevel;
 	case PM_GASTLY:            rabil = gas_abil;	break;
 	case PM_PHANTOM_GHOST:            rabil = gas_abil;	break;
 	case PM_MUMMY:            rabil = mum_abil;	break;
+	case PM_WEAPONIZED_DINOSAUR:            rabil = din_abil;	break;
 	case PM_PLAYER_SKELETON:            rabil = ske_abil;	break;
 	case PM_HUMAN_WRAITH:            rabil = wra_abil;	break;
 	case PM_LICH_WARRIOR:            rabil = lic_abil;	break;
 	case PM_SPIRIT:            rabil = esp_abil;	break;
+	case PM_SHOE:            rabil = sho_abil;	break;
+	case PM_SATRE:            rabil = sat_abil;	break;
 	case PM_BORG:            rabil = bor_abil;	break;
 	case PM_RODNEYAN:            rabil = rod_abil;	break;
 	case PM_JELLY:            rabil = jel_abil;	break;
@@ -1622,6 +1667,7 @@ int oldlevel, newlevel;
 	case PM_GNOME:		rabil = gno_abil;	break;
 	case PM_BATMAN:		rabil = bat_abil;	break;
 	case PM_HERBALIST:         rabil = hrb_abil;	break;
+	case PM_DEVELOPER:         rabil = dvp_abil;	break;
 	case PM_LIZARDMAN:         rabil = liz_abil;	break;
 	case PM_WEAPON_BUG:         rabil = grd_abil;	break;
 	case PM_HOBBIT:		rabil = hob_abil;	break;
@@ -1640,11 +1686,13 @@ int oldlevel, newlevel;
 	case PM_ALCHEMIST:           rabil = alc_abil;	break;
 	case PM_ALBAE:	rabil = alb_abil;	break;
 	case PM_VORTEX:	rabil = vor_abil;	break;
+	case PM_LOWER_ENT:	rabil = ent_abil;	break;
 	case PM_CORTEX:	rabil = cor_abil;	break;
 	case PM_LEVITATOR:	rabil = lev_abil;	break;
 	case PM_HUMANOID_ANGEL:	rabil = ang_abil;	break;
 	case PM_HUMANOID_DEVIL:	rabil = dev_abil;	break;
 	case PM_ANCIPITAL:	rabil = anc_abil;	break;
+	case PM_TURTLE:	rabil = tur_abil;	break;
 	case PM_HUMAN:
 	case PM_VAMPIRE:
 	default:                rabil = 0;		break;
@@ -1895,6 +1943,20 @@ int x;
 				case P_MASTER: tmp += 5; break;
 				case P_GRAND_MASTER: tmp += 7; break;
 				case P_SUPREME_MASTER: tmp += 10; break;
+
+			}
+
+		}
+
+		if (PlayerInStilettoHeels) {
+			tmp += 1;
+			if (!(PlayerCannotUseSkills)) switch (P_SKILL(P_HIGH_HEELS)) {
+				case P_BASIC: tmp += 1; break;
+				case P_SKILLED: tmp += 2; break;
+				case P_EXPERT: tmp += 3; break;
+				case P_MASTER: tmp += 4; break;
+				case P_GRAND_MASTER: tmp += 5; break;
+				case P_SUPREME_MASTER: tmp += 6; break;
 
 			}
 

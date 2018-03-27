@@ -49,10 +49,12 @@
 #define PN_SPIRITUALITY		(-26)
 #define PN_PETKEEPING		(-27)
 #define PN_MISSILE_WEAPONS		(-28)
-#define PN_MARTIAL_ARTS		(-29)
-#define PN_RIDING		(-30)
-#define PN_TWO_WEAPONS		(-31)
-#define PN_LIGHTSABER		(-32)
+#define PN_TECHNIQUES		(-29)
+#define PN_IMPLANTS		(-30)
+#define PN_MARTIAL_ARTS		(-31)
+#define PN_RIDING		(-32)
+#define PN_TWO_WEAPONS		(-33)
+#define PN_LIGHTSABER		(-34)
 
 #ifndef OVLB
 
@@ -83,7 +85,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS, PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -119,6 +121,8 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "spirituality",
     "petkeeping",
     "missile weapons",
+    "techniques",
+    "implants",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -319,7 +323,7 @@ STATIC_PTR int domenusystem(void); /* WAC the menus*/
 #ifdef OVL1
 
 STATIC_VAR NEARDATA const char *names[] = { 0,
-	"Illegal objects", "Weapons", "Armor", "Rings", "Amulets",
+	"Illegal objects", "Weapons", "Armor", "Rings", "Amulets", "Implants",
 	"Tools", "Comestibles", "Potions", "Scrolls", "Spellbooks",
 	"Wands", "Coins", "Gems", "Boulders/Statues", "Iron balls",
 	"Chains", "Venoms"
@@ -2331,6 +2335,11 @@ boolean guaranteed;
 		enl_msg("Amulet identification only ", "works 15 times out of", "worked 15 times out of", buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idimplantpenalty > 1)) {
+		sprintf(buf, " %d", u.idimplantpenalty);
+		enl_msg("Implant identification only ", "works 1 times out of", "worked 1 times out of", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.idwandpenalty > 3)) {
 		sprintf(buf, " %d", u.idwandpenalty);
 		enl_msg("Wand identification only ", "works 3 times out of", "worked 3 times out of", buf);
@@ -2389,6 +2398,11 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.amuletspawnchance)) {
 		sprintf(buf, " %d%%", 100 - u.amuletspawnchance);
 		enl_msg("Amulet drop chance ", "is reduced to", "was reduced to", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.implantspawnchance)) {
+		sprintf(buf, " %d%%", 100 - u.implantspawnchance);
+		enl_msg("Implant drop chance ", "is reduced to", "was reduced to", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.potionspawnchance)) {
@@ -4794,6 +4808,24 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && NoDiscount_action && (final || u.uprops[DEAC_DISCOUNT_ACTION].intrinsic) ) {
+		sprintf(buf, "prevented from having discount action");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.uprops[DEAC_DISCOUNT_ACTION].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && NoFull_nutrient && (final || u.uprops[DEAC_FULL_NUTRIENT].intrinsic) ) {
+		sprintf(buf, "prevented from having full nutrients");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.uprops[DEAC_FULL_NUTRIENT].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && NoTechnicality && (final || u.uprops[DEAC_TECHNICALITY].intrinsic) ) {
+		sprintf(buf, "prevented from having technicality");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.uprops[DEAC_TECHNICALITY].intrinsic);
+		you_are(buf);
+	}
+
 	int shieldblockrate = 0;
 
 	if ((guaranteed || !rn2(10)) && uarms) {
@@ -5187,6 +5219,9 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Stun_resist) you_have("stun resistance");
 	if ((guaranteed || !rn2(10)) && Conf_resist) you_have("confusion resistance");
 	if ((guaranteed || !rn2(10)) && Cont_resist) you_have("contamination resistance");
+	if ((guaranteed || !rn2(10)) && Discount_action) you_have("discount action");
+	if ((guaranteed || !rn2(10)) && Full_nutrient) you_have("full nutrients");
+	if ((guaranteed || !rn2(10)) && Technicality) you_have("improved technique levels");
 	if ((guaranteed || !rn2(10)) && Psi_resist) you_have("psi resistance");
 	if ((guaranteed || !rn2(10)) && Extra_wpn_practice) enl_msg("You ", "can", "could", " train skills and attributes faster");
 	if ((guaranteed || !rn2(10)) && Death_resistance) you_have("resistance to death rays");
@@ -5495,6 +5530,10 @@ int final;
 		sprintf(buf, " %d", u.idamuletpenalty);
 		dump("  Amulet identification only worked 15 times out of", buf);
 	}
+	if (u.idimplantpenalty > 15) {
+		sprintf(buf, " %d", u.idimplantpenalty);
+		dump("  Implant identification only worked 1 times out of", buf);
+	}
 
 	if (u.idwandpenalty > 3) {
 		sprintf(buf, " %d", u.idwandpenalty);
@@ -5559,6 +5598,11 @@ int final;
 	if (u.amuletspawnchance) {
 		sprintf(buf, " %d%%", 100 - u.amuletspawnchance);
 		dump("  Amulet drop chance was reduced to", buf);
+	}
+
+	if (u.implantspawnchance) {
+		sprintf(buf, " %d%%", 100 - u.implantspawnchance);
+		dump("  Implant drop chance was reduced to", buf);
 	}
 
 	if (u.potionspawnchance) {
@@ -7766,6 +7810,23 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (NoDiscount_action) {
+		sprintf(buf, "prevented from having discount action");
+	   	sprintf(eos(buf), " (%d)", u.uprops[DEAC_DISCOUNT_ACTION].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (NoFull_nutrient) {
+		sprintf(buf, "prevented from having full nutrients");
+	    	sprintf(eos(buf), " (%d)", u.uprops[DEAC_FULL_NUTRIENT].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (NoTechnicality) {
+		sprintf(buf, "prevented from having technicality");
+	    	sprintf(eos(buf), " (%d)", u.uprops[DEAC_TECHNICALITY].intrinsic);
+		dump(youwere, buf);
+	}
 	int shieldblockrate = 0;
 
 	if (uarms) {
@@ -8119,6 +8180,9 @@ int final;
 	if (Stun_resist) dump(youhad, "stun resistance");
 	if (Conf_resist) dump(youhad, "confusion resistance");
 	if (Cont_resist) dump(youhad, "contamination resistance");
+	if (Discount_action) dump(youhad, "discount action");
+	if (Full_nutrient) dump(youhad, "full nutrients");
+	if (Technicality) dump(youhad, "improved technique levels");
 	if (Psi_resist) dump(youhad, "psi resistance");
 	if (Extra_wpn_practice) dump("  ", "You could train skills and attributes faster");
 	if (Death_resistance) dump(youhad, "resistance to death rays");
