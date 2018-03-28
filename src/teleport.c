@@ -1365,9 +1365,10 @@ struct trap *trap;
 	    You_feel("a wrenching sensation.");
 	    return;
 	}
-	if (!Blind)
+	if (!Blind) {
 	    You("are momentarily blinded by a flash of light.");
-	else
+		if (isevilvariant) make_blinded(Blinded+rnz(100),FALSE);
+	} else
 	    You("are momentarily disoriented.");
 	deltrap(trap);
 	newsym(u.ux,u.uy);	/* get rid of trap symbol */
@@ -1387,9 +1388,10 @@ struct trap *trap;
 	    You_feel("a wrenching sensation.");
 	    return;
 	}
-	if (!Blind)
+	if (!Blind) {
 	    You("are momentarily blinded by a flash of light.");
-	else
+		if (isevilvariant) make_blinded(Blinded+rnz(100),FALSE);
+	} else
 	    You("are momentarily disoriented.");
 	deltrap(trap);
 	newsym(u.ux,u.uy);	/* get rid of trap symbol */
