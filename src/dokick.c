@@ -207,6 +207,14 @@ register boolean clumsy;
 
 	}
 
+	if (PlayerInHighHeels && attacktype(mon->data, AT_TENT)) {
+		dmg += 2;
+		if (uarmf && uarmf->spe > 0) dmg += uarmf->spe;
+
+		if (mon->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) pline("Your high heels hurt %s's tentacles!", mon_nam(mon));
+
+	}
+
 	/* attacking a shade is useless */
 	if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == SILVER || objects[uarmf->otyp].oc_material == ARCANIUM)) )
 	    dmg = 0;

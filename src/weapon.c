@@ -695,9 +695,15 @@ struct monst *mon;
 	    /* high heels will absolutely wreck the elder priest */
 	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == DOGSHIT_BOOT) && (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])) bonus += 50;
 
+	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == DOGSHIT_BOOT) && (attacktype(mon->data, AT_TENT))) {
+			bonus += 2;
+			if (otmp && otmp->spe > 0) bonus += otmp->spe;
+		}
+
 	    /* if the weapon is going to get a double damage bonus, adjust
-	       this bonus so that effectively it's added after the doubling */
-	    if (bonus > 1 && otmp->oartifact && spec_dbon(otmp, mon, 25) >= 25)
+	       this bonus so that effectively it's added after the doubling
+		 Amy edit: "double" damage is no longer double damage, and therefore we'll only halve it half of the time */
+	    if (bonus > 1 && otmp->oartifact && !rn2(2) && spec_dbon(otmp, mon, 25) >= 25)
 		bonus = (bonus + 1) / 2;
 
 	    tmp += bonus;
@@ -1497,9 +1503,15 @@ struct monst *mon;
 	    /* high heels will absolutely wreck the elder priest */
 	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == DOGSHIT_BOOT) && (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])) bonus += 50;
 
+	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == DOGSHIT_BOOT) && (attacktype(mon->data, AT_TENT))) {
+			bonus += 2;
+			if (otmp && otmp->spe > 0) bonus += otmp->spe;
+		}
+
 	    /* if the weapon is going to get a double damage bonus, adjust
-	       this bonus so that effectively it's added after the doubling */
-	    if (bonus > 1 && otmp->oartifact && spec_dbon(otmp, mon, 25) >= 25)
+	       this bonus so that effectively it's added after the doubling
+		 Amy edit: "double" damage is no longer double damage, and therefore we'll only halve it half of the time */
+	    if (bonus > 1 && otmp->oartifact && !rn2(2) && spec_dbon(otmp, mon, 25) >= 25)
 		bonus = (bonus + 1) / 2;
 
 	    tmp += bonus;
