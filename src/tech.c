@@ -3294,7 +3294,10 @@ int tech_no;
 		}
 		if (!mtmp || !canseemon(mtmp)) {
 			You("fail to make eye contact with anything!");
-			return (0);
+			/* regular SLASH'EM would allow you to scan for the presence of monsters until there is one...
+			 * But this isn't regular SLASH'EM. If you use the technique, you get a timeout, period. --Amy */
+               	t_timeout = rnz(75);
+			break;
 		}
                 You("stare at %s.", mon_nam(mtmp));
                 if (!haseyes(mtmp->data))
