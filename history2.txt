@@ -1,6 +1,11 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.8
+- Triggering a level teleporter in evilvariant mode now blinds the player.
+- Player characters that always recognize BUC of items can now train spirituality by identifying unknown item types, using turn undead or buying protection.
+- High heels do extra damage to monsters with tentacle attacks.
+- When the dazzle technique fails to make contact with any monster, it still gets a timeout and uses up a turn.
+- Fixed the vanilla 3.4.3 bug that caused level drain to not reduce the player's polymorphed HP even though gaining levels correctly increased them.
 - In evil variant mode, door explosions will burn the player's items.
 - Gang scholar gods are less likely to fix troubles when they are angry, or when the player's alignment/luck are negative. Also, stoning and sliming are less likely to be cured.
 - Ghosts (the plain "ghost" monster, because it can be infinitely farmed in haunted temples) no longer have death drops.
