@@ -388,6 +388,29 @@ boolean dresistance;	/* level drain resistance can protect you */
 	if (u.uhp < 1) u.uhp = 1;
 	else if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 
+	/* screwy vanilla programmers... they were so lazy and forgot to make it so that your polymorph form gets drained! */
+	if (Upolyd) {
+		u.mhmax -= num;
+		u.mhmax -= rn2(3);
+		u.mhmax -= rnz(2);
+		u.mhmax -= rnz(3); /* making the drain for gain exploit much harder to perform --Amy */
+		if (u.ulevel >= 19) u.mhmax -= rnd(2);
+		if (u.ulevel >= 24) u.mhmax -= rnd(2);
+		if (u.ulevel >= 27) u.mhmax -= rnd(3);
+		if (u.ulevel >= 29) u.mhmax -= rnd(10);
+		if (u.mhmax < 1) u.mhmax = 1;
+		u.mh -= num;
+		u.mh -= rn2(3);
+		u.mh -= rnz(3);
+		u.mh -= rnz(2);
+		if (u.ulevel >= 19) u.mh -= rnd(2);
+		if (u.ulevel >= 24) u.mh -= rnd(2);
+		if (u.ulevel >= 27) u.mh -= rnd(3);
+		if (u.ulevel >= 29) u.mh -= rnd(10);
+		if (u.mh < 1) u.mh = 1;
+		else if (u.mh > u.mhmax) u.mh = u.mhmax;
+	}
+
 	if (u.ulevel < urole.xlev)
 	    num = rn1((int)ACURR(A_WIS)/2 + urole.enadv.lornd + urace.enadv.lornd,
 			urole.enadv.lofix + urace.enadv.lofix);
