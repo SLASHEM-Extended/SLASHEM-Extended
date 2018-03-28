@@ -1792,7 +1792,7 @@ trapsdone:
 			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
 			morehungry(rn2(400)+200);
 			nomovemsg = "You are done shitting.";
-			nomul(-crapduration, "while taking a shit", TRUE);
+			nomul(-crapduration, "taking a shit", TRUE);
 
 		}
 
@@ -6774,7 +6774,7 @@ newboss:
 			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
 			if (u.uhs == 0) morehungry(rn2(400)+200);
 			nomovemsg = "You are done shitting.";
-			nomul(-crapduration, "while taking a shit", TRUE);
+			nomul(-crapduration, "taking a shit", TRUE);
 
 			if (!rn2(5)) {
 				You("did not watch out, and stepped into your own shit.");
