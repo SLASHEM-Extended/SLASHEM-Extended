@@ -2606,6 +2606,13 @@ turn_undead()
 				    set_malign(mtmp);
 				} else { /* damn them */
 				    killed(mtmp);
+
+					/* train spirituality... it will be harder for chaotics, because they can't damn the monster,
+					 * but oh well; chaotic is already the strongest alignment so this is okay --Amy */
+					if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) {
+						use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 5 : 1);
+					}
+
 				}
 				break;
 			    } /* else flee */

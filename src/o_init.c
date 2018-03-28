@@ -2677,6 +2677,12 @@ boolean credit_hero;
 	    if (credit_hero) exercise(A_WIS, TRUE);
 	}
 	if (moves > 1L) update_inventory();
+
+	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) {
+		use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 3 : 1);
+
+	}
+
     }
 }
 

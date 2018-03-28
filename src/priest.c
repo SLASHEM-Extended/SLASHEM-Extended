@@ -555,12 +555,18 @@ register struct monst *priest;
 		      u.ublessed < 20 &&
 		      (u.ublessed < 9 || !rn2(u.ublessed))) {
 		verbalize("Thy devotion has been rewarded.");
+		if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) {
+			use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 3 : 1);
+		}
 		if (!(HProtection & INTRINSIC))  {
 			HProtection |= FROMOUTSIDE;
 			if (!u.ublessed)  u.ublessed = rn1(3, 2);
 		} else u.ublessed++;
 	    } else {
 		verbalize("Thy selfless generosity is deeply appreciated.");
+		if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) {
+			use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 3 : 1);
+		}
 #ifndef GOLDOBJ
 		if(u.ugold < (offer * 2L) && coaligned) {
 #else
