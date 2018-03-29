@@ -367,9 +367,21 @@ register struct monst *oracl;
 	} else {
 		boolean cheapskate = u_pay < major_cost;
 		outoracle(cheapskate, TRUE);
-		if (!cheapskate && !u.uevent.major_oracle)
+		if (!cheapskate && !u.uevent.major_oracle) {
 		    add_xpts = u_pay / (u.uevent.minor_oracle ? 25 : 10);
+
+			u.uevent.major_oracle = TRUE; /* so you can't hangup cheat */
+			You_feel("very enlightened!"); /* idea by hothraxxa: +1 INT; I (Amy) decided to give +1 WIS too */
+			(void) adjattrib(A_INT, 1, FALSE);
+			(void) adjattrib(A_WIS, 1, FALSE);
+			/* what if your sustainer started with 3 wisdom? let's give you an extra point if you are one --Amy */
+			if (Race_if(PM_SUSTAINER) && ABASE(A_WIS) < 25) {
+				ABASE(A_WIS) += 1;
+				AMAX(A_WIS) += 1;
+				flags.botl = 1;
+			}
 		    /* ~100 pts if very 1st, ~40 pts if minor already done */
+		}
 		u.uevent.major_oracle = TRUE;
 		exercise(A_WIS, !cheapskate);
 	}
