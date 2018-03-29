@@ -237,14 +237,15 @@ moveloop()
 				monclock = 15;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
-					monclock = 50;
+					monclock = 60;
 				}
 				past_clock = moves - timeout_start;
 				if (past_clock > 0) {
-					monclock -= past_clock*55/clock_base;
+					monclock -= past_clock*40/clock_base;
 				}
 			}
 			/* make sure we don't fall off the bottom */
+			if (monclock < 30 && !(u.uevent.udemigod && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { monclock = 30; }
 			if (monclock < 15) { monclock = 15; }
 
 			if (u.sterilized) monclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
@@ -280,14 +281,15 @@ moveloop()
 				xtraclock = 12000;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
-					xtraclock = 28000;
+					xtraclock = 35000;
 				}
 				past_clock = moves - timeout_start;
 				if (past_clock > 0) {
-					xtraclock -= past_clock*28000/clock_base;
+					xtraclock -= past_clock*20000/clock_base;
 				}
 			}
 			/* make sure we don't fall off the bottom */
+			if (xtraclock < 20000 && !(u.uevent.udemigod && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { xtraclock = 20000; }
 			if (xtraclock < 12000) { xtraclock = 12000; }
 
 			if (u.sterilized) xtraclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
@@ -635,7 +637,7 @@ moveloop()
 
 	/* "Put AmyBSOD's extra spawn system into a define. Because some people aren't a fan of having liches on dlvl1." In Soviet Russia, some people aren't a fan of games where the player can actually lose. They want to win all the time, so they go through the entirety of the game's code and remove every little bit of possible difficulty. --Amy */
 
-			if (!rn2(ishaxor ? 1500 : 3000) && !issoviet) {
+			if (!rn2(ishaxor ? 1500 : 3000) && (moves < 10000 || rn2(3)) && !issoviet) {
 
 				randsp = (rn2(14) + 2);
 				if (!rn2(10)) randsp *= 2;
@@ -655,7 +657,7 @@ moveloop()
 
 			}
 
-			if (!rn2(ishaxor ? 50000 : 100000) && !issoviet) {
+			if (!rn2(ishaxor ? 50000 : 100000) && (moves < 10000 || rn2(3)) && (moves < 50000 || !rn2(3)) && !issoviet) {
 
 				randsp = (rn2(14) + 2);
 				if (!rn2(10)) randsp *= 2;
@@ -1689,7 +1691,7 @@ newbossS:
 				pushplayer();
 			}
 
-			if (ttmp && ttmp->ttyp == MONSTER_CUBE && !rn2(50)) {
+			if (ttmp && ttmp->ttyp == MONSTER_CUBE && !rn2(500)) {
 				if (!enexto(&cc, ttmp->tx, ttmp->ty, (struct permonst *)0) ) continue;
 				if (Aggravate_monster) {
 					u.aggravation = 1;
@@ -1701,7 +1703,7 @@ newbossS:
 				if (!rn2(50)) ttmp->ttyp = ANIMATION_TRAP;
 			}
 
-			if (ttmp && ttmp->ttyp == SPREADING_TRAP && !rn2(100)) {
+			if (ttmp && ttmp->ttyp == SPREADING_TRAP && !rn2(500)) {
 				makerandomtrap();
 			}
 
