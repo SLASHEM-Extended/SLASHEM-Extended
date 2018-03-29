@@ -1,8 +1,13 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.8
+- Monsters have death drops less often, and the player also generally receives less items as the game goes on.
+- Monster respawn speeds up a bit more slowly and reaches a lower maximum value. However, once the player has fully imbued the Amulet of Yendor, the old (higher) maximum will be used from that point on.
+- The first major oracle consultation increases the player's intelligence and wisdom by one.
+- Removed a pager.c random message that was suspected of screwing up terminal sessions.
+- Many prompts are now harder to accidentally skip: some y/n prompts now require a full "yes", directional and item selection prompts allow the player to retry when dismissed via the space bar, etc.
 - Triggering a level teleporter in evilvariant mode now blinds the player.
-- Player characters that always recognize BUC of items can now train spirituality by identifying unknown item types, using turn undead or buying protection.
+- Player characters that always recognize BUC of items can now train spirituality by identifying unknown item types or buying protection. Using turn undead can train spirituality for all non-chaotic characters if it outright kills an undead creature.
 - High heels do extra damage to monsters with tentacle attacks.
 - When the dazzle technique fails to make contact with any monster, it still gets a timeout and uses up a turn.
 - Fixed the vanilla 3.4.3 bug that caused level drain to not reduce the player's polymorphed HP even though gaining levels correctly increased them.
