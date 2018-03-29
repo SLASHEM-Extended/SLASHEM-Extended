@@ -445,8 +445,15 @@ struct obj *instr;
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musical helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "muzykal'nyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "musiqiy dubulg'a") ) )
 			use_skill(P_DEVICES,9);
 
+hornchoice:
 		if (!getdir((char *)0)) {
-		    pline("%s.", Tobjnam(instr, "vibrate"));
+
+			if (yn("Do you really want to input no direction?") == 'y') {
+				pline("%s.", Tobjnam(instr, "vibrate"));
+			} else {
+				goto hornchoice;
+			}
+
 		    break;
 		} else if (!u.dx && !u.dy && !u.dz) {
 		    if ((damage = zapyourself(instr, TRUE)) != 0) {
@@ -646,6 +653,8 @@ do_play_instrument(instr)
 struct obj *instr;
 {
     char buf[BUFSZ], c = 'y';
+    char bufX[BUFSZ];
+    boolean usebufx = FALSE;
     char *s;
     int x,y;
     boolean ok;
@@ -1001,9 +1010,13 @@ struct obj *instr;
     }
 
     if (instr->otyp != LEATHER_DRUM && instr->otyp != DRUM_OF_EARTHQUAKE) {
-	c = yn("Improvise?");
+
+		usebufx = TRUE;
+		getlin ("Improvise? [yes/no]",bufX);
+		(void) lcase (bufX);
+
     }
-    if (c == 'n') {
+    if (!usebufx || strcmp(bufX, "yes")) {
 	if (u.uevent.uheard_tune == 2 && yn("Play the passtune?") == 'y') {
 	    strcpy(buf, tune);
 	} else {

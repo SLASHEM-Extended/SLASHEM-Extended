@@ -2494,10 +2494,14 @@ register struct obj	*sobj;
 		boolean same_color;
 
 		pline("You may enchant a worn piece of armor.");
+enchantarmorchoice:
 		otmp = getobj(all_count, "magically enchant");
 		/*otmp = some_armor(&youmonst);*/
 
 		if(!otmp) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to enchant your armor.");
+			else goto enchantarmorchoice;
 			strange_feeling(sobj,
 					!Blind ? "Your skin glows then fades." :
 					"Your skin feels warm for a moment.");
@@ -2658,8 +2662,12 @@ register struct obj	*sobj;
 	case SCR_REPAIR_ITEM:
 	    {
 		pline("You may repair a damaged item.");
+repairitemchoice:
 		otmp = getobj(all_count, "magically repair");
 		if (!otmp) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to repair your items.");
+			else goto repairitemchoice;
 			pline("A feeling of loss comes over you.");
 			break;
 		}
@@ -2690,9 +2698,13 @@ register struct obj	*sobj;
 
 		if (sobj && sobj->otyp == SCR_DESTROY_ARMOR && sobj->blessed) { /* idea by bhaak */
 			pline("You may enchant a worn piece of armor.");
+destroyarmorchoice:
 			otmp = getobj(all_count, "magically enchant");
 
 			if (otmp && !(otmp->owornmask & W_ARMOR)) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to enchant your armor.");
+				else goto destroyarmorchoice;
 				strange_feeling(sobj,"Your skin itches.");
 				exercise(A_STR, FALSE);
 				exercise(A_CON, FALSE);
@@ -2783,9 +2795,13 @@ register struct obj	*sobj;
 	case SCR_PROOF_ARMOR: /*scroll added by Amy*/
 	      {
 		pline("You may enchant a worn piece of armor.");
+proofarmorchoice:
 		otmp = getobj(all_count, "magically enchant");
 		/*otmp = some_armor(&youmonst);*/
 			if(!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to enchant your armor.");
+				else goto proofarmorchoice;
 				strange_feeling(sobj,"Some weird things are happening to your equipment!");
 				exercise(A_STR, FALSE);
 				exercise(A_CON, FALSE);
@@ -5371,8 +5387,14 @@ retry:
 		}
 		known = TRUE;
 		pline("You may charge an object."); /* "this is a scroll of charging" is inappropriate for the spell --Amy */
+chargingchoice:
 		otmp = getobj(all_count, "charge");
-		if (!otmp) break;
+		if (!otmp) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to charge your items.");
+			else goto chargingchoice;
+			break;
+		}
 		recharge(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0));
 		break;
 
@@ -5380,12 +5402,24 @@ retry:
 		known = TRUE;
 		pline("You may randomly enchant an object.");
 		if (confused) {
+confusedrandenchchoice:
 			otmp = getobj(all_count, "randomly enchant");
-			if (!otmp) break;
+			if (!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to randomly enchant objects.");
+				else goto confusedrandenchchoice;
+				break;
+			}
 			randomenchant(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0), 1);
 		} else {
+randenchchoice:
 			otmp = getobj(all_count, "randomly enchant");
-			if (!otmp) break;
+			if (!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to randomly enchant objects.");
+				else goto randenchchoice;
+				break;
+			}
 			randomenchant(otmp, sobj->cursed ? -1 : (sobj->blessed ? 1 : 0), 0);
 		}
 		break;
@@ -5760,9 +5794,13 @@ retry:
 		} else {
 			pline("This is a secure identify scroll.");
 
+secureidchoice:
 			otmp = getobj(all_count, "secure identify");
 
 			if (!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to secure identify your objects.");
+				else goto secureidchoice;
 				pline("A feeling of loss comes over you.");
 				break;
 			}
@@ -5780,8 +5818,12 @@ retry:
 
 	case SCR_ARMOR_SPECIALIZATION:
 		pline("You may enchant a worn piece of armor.");
+armorspecchoice:
 		otmp = getobj(all_count, "magically enchant");
 		if(!otmp) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to enchant your armor.");
+			else goto armorspecchoice;
 			strange_feeling(sobj,"You feel magical for a moment, but the feeling passes.");
 			exercise(A_WIS, FALSE);
 			return(1);

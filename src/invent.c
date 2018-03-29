@@ -4695,8 +4695,15 @@ int id_limit;
     while (id_limit) {
 	sprintf(buf, "What would you like to identify %s?",
 		first ? "first" : "next");
+identifydialogue:
 	n = query_objlist(buf, invent, SIGNAL_NOMENU|USE_INVLET|INVORDER_SORT,
 		&pick_list, PICK_ANY, not_fully_identified);
+
+	if (n == 0) {
+		if (yn("Really exit with no object selected?") == 'y')
+			pline("You just wasted the opportunity to identify your items.");
+		else goto identifydialogue;
+	}
 
 	if (n > 0) {
 	    if (n > id_limit) n = id_limit;

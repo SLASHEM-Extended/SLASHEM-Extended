@@ -3235,11 +3235,16 @@ arti_invoke(obj)
 	    }
 	    break;
 	  }
-	case CHARGE_OBJ: {
+	case CHARGE_OBJ:
+chargingchoice:
+	    {
 	    struct obj *otmp = getobj(recharge_type, "charge");
 	    boolean b_effect;
 
 	    if (!otmp) {
+		if (yn("Really exit with no object selected?") == 'y')
+			pline("You just wasted the opportunity to charge your items.");
+		else goto chargingchoice;
 		obj->age = 0;
 		return 0;
 	    }

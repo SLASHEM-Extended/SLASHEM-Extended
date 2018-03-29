@@ -223,8 +223,12 @@ swaptech()
 	register struct obj *otmp;
 	struct obj *oldswapwep = uswapwep;
 
+swapweaponchoice:
 	otmp = getobj(all_count, "put into your swap weapon slot");
 	if (!otmp) {
+		if (yn("Really exit with no object selected?") == 'y')
+			pline("You just wasted the opportunity to put something into your swap weapon slot.");
+		else goto swapweaponchoice;
 		pline("Nothing selected.");
 		return;
 	}

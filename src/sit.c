@@ -707,9 +707,13 @@ dosit()
 			{
 			pline("You may fully identify an object!");
 
+secureidchoice:
 			otmp = getobj(all_count, "secure identify");
 
 			if (!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to secure identify your objects.");
+				else goto secureidchoice;
 				pline("A feeling of loss comes over you.");
 				break;
 			}

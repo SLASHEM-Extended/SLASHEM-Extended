@@ -5145,9 +5145,13 @@ doapply()
 		noartispeak = TRUE;
 
 		pline("You may charge an object.");
+chargingchoice:
 	    	{
 			struct obj *otmpC = getobj(recharge_type, "charge");
 			if (!otmpC) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to charge your items.");
+				else goto chargingchoice;
 				return(0);
 			}
 			recharge(otmpC, 0);

@@ -1934,8 +1934,12 @@ trapsdone:
 		if (uarmc && uarmc->oartifact == ART_LAST_STEELING && !rn2(5000) ) {
 			register struct obj *steeling;
 			pline("You may rustproof an iron object.");
+steelingchoice:
 			steeling = getobj(all_count, "rustproof");
 			if (!steeling) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to rustproof an item.");
+				else goto steelingchoice;
 				pline("Oh well, if you don't wanna...");
 			} else {
 				if (!(objects[(steeling)->otyp].oc_material == IRON) ) {
@@ -1950,8 +1954,12 @@ trapsdone:
 		if (uarmc && uarmc->oartifact == ART_PROTECT_WHAT_CANNOT_BE_PRO && !rn2(5000) ) {
 			register struct obj *steeling;
 			pline("You may erodeproof a nonerodable object.");
+protectwhatchoice:
 			steeling = getobj(all_count, "erosionproof");
 			if (!steeling) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to enchant your armor.");
+				else goto protectwhatchoice;
 				pline("Oh well, if you don't wanna...");
 			} else {
 				if (objects[(steeling)->otyp].oc_material >= WAX && objects[(steeling)->otyp].oc_material <= WOOD) 

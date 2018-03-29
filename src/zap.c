@@ -3449,9 +3449,13 @@ newboss:
 			struct obj *otmpSC;
 			pline("You may fully identify an object!");
 
+secureidchoice:
 			otmpSC = getobj(all_count, "secure identify");
 
 			if (!otmpSC) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to secure identify your objects.");
+				else goto secureidchoice;
 				pline("A feeling of loss comes over you.");
 				break;
 			}
@@ -4289,8 +4293,14 @@ newboss:
 		case WAN_CHARGING:
 			known = TRUE;
 			pline("This is a charging wand.");
+chargingchoice:
 			otmp = getobj(all_count, "charge");
-			if (!otmp) break;
+			if (!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to charge your items.");
+				else goto chargingchoice;
+				break;
+			}
 			recharge(otmp, 1);
 			break;
 		case WAN_WONDER: /* supposed to have a random effect, may be implemented in future */
@@ -4556,9 +4566,16 @@ dozap()
 		backfire(obj);	/* the wand blows up in your face! */
 		exercise(A_STR, FALSE);
 		return(1);
-	} else if(!(objects[obj->otyp].oc_dir == NODIR) && !getdir((char *)0)) {
-		if (!Blind)
-		    pline("%s glows and fades.", The(xname(obj)));
+	} else
+glowandfadechoice:
+	  if(!(objects[obj->otyp].oc_dir == NODIR) && !getdir((char *)0)) {
+
+		if (yn("Do you really want to input no direction?") == 'y') {
+			if (!Blind)
+			    pline("%s glows and fades.", The(xname(obj)));
+		} else {
+			goto glowandfadechoice;
+		}
 		/* make him pay for knowing !NODIR */
 	} else if(!u.dx && !u.dy && !u.dz && !(objects[obj->otyp].oc_dir == NODIR)) {
 	    if ((damage = zapyourself(obj, TRUE)) != 0) {
@@ -7997,7 +8014,14 @@ register int dx,dy;
 
 	/* Control sigil */
 	if ((away > 4 && !rn2(4)) && tech_inuse(T_SIGIL_CONTROL)) {
-		getdir((char *)0);
+sigilcontroldirection:
+		if (!getdir((char *)0)) {
+			if (yn("Do you really want to input no direction?") == 'y')
+				pline("Ah well. You could have controlled the direction of the beam but if you don't wanna...");
+			else {
+				goto sigilcontroldirection;
+			}
+		}
 		if(u.dx || u.dy) {
 			/* Change dir! */
 			dx = u.dx; dy = u.dy;
@@ -9221,7 +9245,16 @@ retry:
 #ifdef LIVELOGFILE
 	strcpy(rawbuf, buf);
 #endif
-	if(buf[0] == '\033') buf[0] = 0;
+	if(buf[0] == '\033') {
+
+		if (!wizard) {
+			if (yn("You escaped out of the prompt! Really throw the wish away and possibly get a random useless object?") == 'y')
+				pline("Man, there would have so many good items you could have wished for...");
+			else goto retry;
+		}
+
+		buf[0] = 0;
+	}
 	/*
 	 *  Note: if they wished for and got a non-object successfully,
 	 *  otmp == &zeroobj.  That includes gold, or an artifact that

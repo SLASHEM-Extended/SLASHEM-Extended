@@ -3691,9 +3691,13 @@ newegomon:
 			register struct obj *identotmp;
 			pline("You may fully identify an object!");
 
+secureidchoice:
 			identotmp = getobj(all_count, "secure identify");
 
 			if (!identotmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to secure identify your objects.");
+				else goto secureidchoice;
 				pline("A feeling of loss comes over you.");
 				break;
 			}

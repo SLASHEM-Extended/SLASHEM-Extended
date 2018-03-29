@@ -2155,7 +2155,9 @@ boolean atme;
 	case SPE_PARALYSIS:
 		if (!(objects[pseudo->otyp].oc_dir == NODIR)) {
 			if (atme) u.dx = u.dy = u.dz = 0;
-			else if (!getdir((char *)0)) {
+			else
+magicalenergychoice:
+			if (!getdir((char *)0)) {
 			    /* getdir cancelled, re-use previous direction */
 
 				/* Amy edit: this is absolute bullshit behavior, because it's very easy to mistype. It should
@@ -2165,7 +2167,12 @@ boolean atme;
 				 * shall not be screwed over either. Screw you, programmers. And while you're at it,
 				 * read up on game design and specifically interface design! :P --Amy */
 
-			    pline_The("magical energy is released!");
+				if (yn("Do you really want to input no direction?") == 'y')
+					pline_The("magical energy is released!");
+				else {
+					goto magicalenergychoice;
+				}
+
 			    if (u.dx == 0 && u.dy == 0) {
 				You("would have hit yourself, but to reduce YASD potential the blast goes in a random direction.");
 				u.dz = 0;
@@ -2689,9 +2696,13 @@ boolean atme;
 			pline("You may fully identify an object!");
 			register struct obj *idobj;
 
+secureidchoice:
 			idobj = getobj(all_count, "secure identify");
 
 			if (!idobj) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to secure identify your objects.");
+				else goto secureidchoice;
 				pline("A feeling of loss comes over you.");
 				break;
 			}
@@ -4739,7 +4750,15 @@ boolean atme;
 
 	case SPE_DASHING:
 
-		if (!getdir((char *)0)) break;
+dashingchoice:
+		if (!getdir((char *)0)) {
+			if (yn("Do you really want to input no direction?") == 'y')
+				break;
+			else {
+				goto dashingchoice;
+			}
+			break;
+		}
 		if (!u.dx && !u.dy) {
 			You("stretch.");
 			break;
@@ -4948,8 +4967,12 @@ boolean atme;
 	case SPE_POSSESSION:
 		{
 			register struct obj *poss;
+possessionchoice:
             	poss = getobj((const char *)revivables, "possess");
             	if (!poss) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to possess a corpse.");
+				else goto possessionchoice;
 				pline("Your possession attempt fails.");
 				break;
 			}
@@ -5049,8 +5072,12 @@ boolean atme;
 				break;
 			}
 
+totemsummonchoice:
             	poss = getobj((const char *)revivables, "revive");
             	if (!poss) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to summon from a totem.");
+				else goto totemsummonchoice;
 				pline("Your totem summoning attempt fails.");
 				break;
 			}
@@ -5969,6 +5996,7 @@ boolean atme;
 		break;
 	case SPE_REPAIR_ARMOR:
 		/* removes one level of erosion (both types) for a random piece of armor */
+repairarmorchoice:
 		otmp = getobj(all_count, "magically enchant");
 		/*otmp = some_armor(&youmonst);*/
 		if (otmp) {
@@ -5987,6 +6015,9 @@ boolean atme;
 				}
 			}
 		} else {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to enchant your armor.");
+			else goto repairarmorchoice;
 			/* the player can probably feel this, so no need for a !Blind check :) */
 			pline("Your embarrassing skin rash clears up slightly.");
 		}
@@ -5995,8 +6026,12 @@ boolean atme;
 	case SPE_REROLL_ARTIFACT:
 
 		pline("You may choose an artifact in your inventory to reroll. It may not be a worn one though.");
+rerollartifactchoice:
 		otmp = getobj(all_count, "reroll");
 		if (!otmp) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to reroll an artifact.");
+			else goto rerollartifactchoice;
 			pline("You decide not to reroll anything.");
 			break;
 		}

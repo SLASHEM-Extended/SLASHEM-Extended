@@ -2530,9 +2530,14 @@ int tech_no;
 
 			pline("Choose an item for secure identification.");
 
+secureidchoice:
+			{
 			otmp = getobj(all_count, "secure identify");
 
 			if (!otmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to secure identify your objects.");
+				else goto secureidchoice;
 				pline("A feeling of loss comes over you.");
 				break;
 			}
@@ -2543,6 +2548,8 @@ int tech_no;
 				if (otmp->otyp == EGG && otmp->corpsenm != NON_PM)
 				learn_egg_type(otmp->corpsenm);
 				prinv((char *)0, otmp, 0L);
+			}
+
 			}
 
                 t_timeout = rnz(10000);
@@ -3817,8 +3824,13 @@ int tech_no;
 	      break;
 
 	    case T_RECHARGE:
-	    	{struct obj *otmpC = getobj(recharge_type, "charge");
+chargingchoice:
+	    	{
+		struct obj *otmpC = getobj(recharge_type, "charge");
 		if (!otmpC) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to charge your items.");
+			else goto chargingchoice;
 			return(0);
 		}
 		recharge(otmpC, 0);

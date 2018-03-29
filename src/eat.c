@@ -3397,6 +3397,7 @@ opentin()		/* called during each move whilst opening a tin */
 	register int r;
 	const char *what;
 	int which;
+	char buf[BUFSZ];
 
 	if(!carried(tin.tin) && !obj_here(tin.tin, u.ux, u.uy))
 					/* perhaps it was stolen? */
@@ -3451,7 +3452,9 @@ opentin()		/* called during each move whilst opening a tin */
 	    } else
 	    pline("It smells like %s%s.", (which == 2) ? "the " : "", what);
 
-	    if (yn("Eat it?") == 'n') {
+	    getlin ("Eat it? [yes/no]",buf);
+	    (void) lcase (buf);
+	    if (strcmp (buf, "yes")) {
 	    	/* ALI - you know the tin iff you recognized the contents */
 		if (mvitals[tin.tin->corpsenm].eaten)
 		if (!Hallucination) tin.tin->dknown = tin.tin->known = TRUE;
@@ -3571,7 +3574,9 @@ opentin()		/* called during each move whilst opening a tin */
 	    else
 		pline(Hallucination ? "It contains potato tack or something like that." : "It contains spinach.");
 
-	    if (yn("Eat it?") == 'n') {
+	    getlin ("Eat it? [yes/no]",buf);
+	    (void) lcase (buf);
+	    if (strcmp (buf, "yes")) {
 		if (!Hallucination && !tin.tin->cursed)
 		    tin.tin->dknown = tin.tin->known = TRUE;
 		if (flags.verbose)
@@ -4663,6 +4668,8 @@ STATIC_OVL void
 fpostfx(otmp)		/* called after consuming (non-corpse) food */
 register struct obj *otmp;
 {
+	char buf[BUFSZ];
+
 	switch(otmp->otyp) {
 	    case SPRIG_OF_WOLFSBANE:
 		if (u.ulycn >= LOW_PM || is_were(youmonst.data) || Race_if(PM_HUMAN_WEREWOLF) || Race_if(PM_AK_THIEF_IS_DEAD_) || Role_if(PM_LUNATIC) )
@@ -4819,7 +4826,9 @@ register struct obj *otmp;
 
 		}
 
-	    	if (yn("Read the fortune?") == 'y') {
+		getlin ("Read the fortune? [yes/no]",buf);
+		(void) lcase (buf);
+		if (!strcmp (buf, "yes")) {
 
 			/* reading it might influence your luck --Amy */
 
@@ -4891,7 +4900,10 @@ register struct obj *otmp;
 	}
 
 	if (!rn2(25)) { /* more random fortunes --Amy */
-		if (yn("Somehow, a strip of paper appeared in your food! Read it?") == 'y') {
+
+		getlin ("Somehow, a strip of paper appeared in your food! Read it? [yes/no]",buf);
+		(void) lcase (buf);
+		if (!strcmp (buf, "yes")) {
 
 		/* reading it will influence the player's luck --Amy */
 
