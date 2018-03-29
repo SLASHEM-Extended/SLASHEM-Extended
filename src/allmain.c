@@ -10458,6 +10458,58 @@ timebasedlowerchance()
 	/* make sure we don't fall off the bottom */
 	if (chance < 15) chance = 15;
 
+	if (moves > 10000) {
+		chance *= 9;
+		chance /= 10;
+	}
+
+	if (moves > 20000) {
+		chance *= 9;
+		chance /= 10;
+	}
+
+	if (moves > 30000) {
+		chance *= 9;
+		chance /= 10;
+	}
+
+	if (moves > 40000) {
+		chance *= 9;
+		chance /= 10;
+	}
+
+	if (moves > 50000) {
+		chance *= 9;
+		chance /= 10;
+	}
+
+	if (moves > 60000) {
+		chance *= 9;
+		chance /= 10;
+	}
+
+	if (moves > 70000) {
+		chance *= 9;
+		chance /= 10;
+	}
+
+	if (moves > 80000) {
+		chance *= 9;
+		chance /= 10;
+	}
+
+	if (moves > 90000) {
+		chance *= 9;
+		chance /= 10;
+	}
+
+	if (moves > 100000) {
+		chance *= 9;
+		chance /= 10;
+	}
+
+	if (chance < 5) chance = 5;
+
 	if (chance > rnd(100)) return(TRUE);
 	else return(FALSE);
 }
