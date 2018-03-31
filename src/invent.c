@@ -336,7 +336,7 @@ struct obj *obj;
 			com_pager(196);
 
 		}
-		achieve.get_amulet = 1;/
+		achieve.get_amulet = 1;
 
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
