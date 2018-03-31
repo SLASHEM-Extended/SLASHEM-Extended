@@ -4971,6 +4971,7 @@ newbossB:
 		}
 
 		if (Blinded < 0) {
+			Blinded = 1;
 			u.ucreamed = 0;
 			make_blinded(0L,TRUE);
 			pline("Fixing a bug that gave you a negative blindness counter...");
