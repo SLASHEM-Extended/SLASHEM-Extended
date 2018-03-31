@@ -316,7 +316,8 @@ struct obj *obj;
 #ifdef RECORD_ACHIEVE
 
 		if (!achieve.get_amulet) {
-
+			achieve.get_amulet = 1; /* filthy hangup cheater bastard!!! --Amy */
+			
 			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
 			if (RngeTeamSplat) pline("TROPHY GET!");
 
@@ -327,15 +328,15 @@ struct obj *obj;
 				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
 			}
 
-		}
-
-                achieve.get_amulet = 1;
 			qt_pager(QT_PICKAMULET);
 			if (u.umortality < 1) {
 				u.extralives++;
 				pline("Thanks to your flawless performance so far, you gain an extra life (1-UP)!");
 			}
 			com_pager(196);
+
+		}
+		achieve.get_amulet = 1;/
 
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
@@ -375,8 +376,8 @@ struct obj *obj;
 	} else if (obj->otyp == BELL_OF_OPENING) {
 		if (u.uhave.bell) impossible("already have silver bell?");
 		u.uhave.bell = 1;
-		com_pager(195);
 		if (!u.silverbellget) {
+			com_pager(195);
 			u.silverbellget = 1;
 			u.uhpmax += rnd(50);
 			u.uenmax += rnd(50);
