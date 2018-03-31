@@ -4970,6 +4970,12 @@ newbossB:
 			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0);
 		}
 
+		if (Blinded < 0) {
+			Blinded = 0;
+			make_blinded(0L,TRUE);
+			pline("Fixing a bug that gave you a negative blindness counter...");
+		}
+			
 		if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS && !rn2(1000) ) {
 			int tryct = 0;
 			int x, y;
