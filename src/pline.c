@@ -640,8 +640,7 @@ generate_garbage_string()
 	while (stringlength --> 0) {
 #ifdef UNIX
 tmpstrglyph:
-		tmpstr[0] = 32 + rnd(222);
-		while (tmpstr[0] >= 127 && tmpstr[0] <= 159) tmpstr[0] = 32 + rnd(222);
+		tmpstr[0] = 32 + rnd(94);
 #else
 		tmpstr[0] = rnd(255);
 #endif
