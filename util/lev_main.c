@@ -1044,6 +1044,7 @@ char c;
 		  case 'f'	: return (CRYPTFLOOR);
 		  case 'u'	: return (BUBBLES);
 		  case 'q'	: return (RAINCLOUD);
+		  case 'e'	: return (ROCKWALL);
 	    }
 	return(INVALID_TYPE);
 }
