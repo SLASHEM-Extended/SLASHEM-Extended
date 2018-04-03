@@ -4371,7 +4371,7 @@ write_timer(fd, timer)
 			 * because if we don't, we produce a corrupted savegame --Amy
 			 * set the timeout to occur on the next turn to ensure the bugged timer is removed ASAP */
 			timer->timeout = (moves + 1);
-			if (!issegfaulter || !strncmpi(plname, "BSOD2", 5)) bwrite(fd, (void *)timer, sizeof(timer_element));
+			bwrite(fd, (void *)timer, sizeof(timer_element));
 			break;
 		}
 
@@ -4462,15 +4462,15 @@ obj_is_local(obj)
 	/*if (issegfaulter) && obj) pline("obj in question: %s", cxname(obj));*/
 	/* the above line was sometimes causing a segfault in xname2() even if obj existed... */
 
-      if (issegfaulter && strncmpi(plname, "BSOD2", 5)) panic("obj_is_local: %s, %d", cxname(obj), obj->where); /* improvement by Patric Mueller */
+      /*if (issegfaulter && strncmpi(plname, "BSOD2", 5)) panic("obj_is_local: %s, %d", cxname(obj), obj->where); */ /* improvement by Patric Mueller */
 
 	/* This is the "segfault panic", "hallucination bug" and "timed object bug" that has been plaguing SLEX for a while.
 	 * Due to some weirdness, the actual panic message almost never displays, making it next to impossible
 	 * to diagnose the bug - maybe because obj is undefined and the cxname() function thus causes a segfault?
 	 * I've removed the panic now, and write_timer is changed to try to salvage the bugged timer by making it time out
 	 * on the next turn. Wizmode testing with the segfaulter race shows that it does in fact work!
-	 * HOWEVER, the segfaulter race should actually cause segfault panics on purpose. Yeah, I know, I'm crazy.
-	 * Therefore, for the segfaulter race only, the bugged code will still be used. This also has the advantage
+	 * The segfaulter race should also no longer cause segfault panics on purpose. If for any reason we need to
+	 * do crash tests, the above line can be re-enabled to make it crash again. This has the advantage
 	 * of allowing me to test the game's behavior in the case of a segfault, similar to a missingno, except that the
 	 * latter usually leaves a recoverable savegame file. Producing segfaults on purpose is otherwise actually
 	 * not all that easy! --Amy */

@@ -4659,6 +4659,25 @@ newbossX:
 			pline("Get ready for the fight with Tiksrvzllat! Defeat her and you'll get a very useful reward!");
 		}
 
+		if (issegfaulter && u.segfaultpanic && !rn2(100)) {
+			u.youaredead = 1;
+			pline("Oops... Suddenly, the dungeon collapses.");
+			pline("Report error to 'flauschie' and it might be possible to rebuild.");
+			pline("obj_is_local:Segmentation fault -- core dumped.");
+			killer = "the dreaded segfault panic";
+			killer_format = KILLED_BY;
+			done(DIED);
+			/* lifesaved */
+			pline("Somebody is trying some trickery here... This game is void, because the trickery code fires only when the player didn't actually try to cheat (10/10 design, big thumbs up to whoever invented that).");
+			pline("EOF on file #5.");
+			pline("Error restoring old game.");
+			done(DIED);
+			/* lifesaved again */
+			pline("You cannot avoid this death! This is segfaulter mode, and your game crashed! Game over, man! Game over!");
+			done(ESCAPED);
+			u.youaredead = 0;
+		}
+
 		if (FemaleTrapFemmy && !rn2(500) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
@@ -8358,9 +8377,9 @@ boolean new_game;	/* false => restoring an old game */
 
 	if (issoviet) pline("Tip bloka l'da zhelayet udachi vam... on on on.");
 
-	if (Race_if(PM_MISSINGNO)) pline("Caution! The missingno might still be an unstable race. I tried to fix all the crashes but some may still remain. You can disable the missing_safety option if you deliberately want the game to be crashy. --Amy");
+	/*if (Race_if(PM_MISSINGNO)) pline("Caution! The missingno might still be an unstable race. I tried to fix all the crashes but some may still remain. You can disable the missing_safety option if you deliberately want the game to be crashy. --Amy");*/
 
-	if (issegfaulter) pline("ATTENTION!!! You are playing the segfaulter race, which is deliberately unstable by allowing certain actions to cause segfault panics. These can potentially corrupt your savegame. If you intend to go on playing, you do so at your own peril, and getting an ascension will basically be impossible! Consider using #quit if you rather want to play a stable game. --Amy");
+	if (issegfaulter) pline("ATTENTION!!! You are playing the segfaulter race, which can cause certain actions to produce a fake segfault panic that erases your character. If you intend to go on playing, you do so at your own peril, and getting an ascension will basically be impossible! Consider using #quit if you rather want to play a balanced game. (You can make fun of me now, because I know you will if you're from /rlg/. --Amy)");
 
 #ifdef PUBLIC_SERVER
 
@@ -10379,6 +10398,19 @@ boolean new_game;	/* false => restoring an old game */
 		You_feel("like a filthy cheater.");
 		/* I could add luck penalties or whatnot, but meh. You've hanged up anyway, and are thus most probably
 		 * gonna eat the hangup penalties below :P */
+		u.youaredead = 0;
+
+	}
+
+	if (issegfaulter && u.segfaultpanic) {
+		u.youaredead = 1;
+		pline("Stack corruption panic dumped to desktop SIGSEGV c0000005.");
+		killer = "the dreaded segfault panic";
+		killer_format = KILLED_BY;
+		done(DIED);
+
+		/* lifesaved */
+		pline("There's no escape - you'll just crash again!");
 		u.youaredead = 0;
 
 	}

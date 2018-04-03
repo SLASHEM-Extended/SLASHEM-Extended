@@ -1023,6 +1023,8 @@ struct you {
 	boolean petcaneat;
 	boolean petcanfollow;
 
+	boolean segfaultpanic;	/* for segfaulter race */
+
 	boolean annoyingmessages; /* don't show the annoying number pad message infinite times */
 
 	int combostrike;	/* for technique */

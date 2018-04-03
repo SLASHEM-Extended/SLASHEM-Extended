@@ -9986,7 +9986,7 @@ struct obj *obj;
 			case PANCAKE: 
 				pline("This vegetarian type of food provides relatively good nutrition."); break;
 			case UGH_MEMORY_TO_CREATE_INVENTORY: 
-				pline("An edible item with an unknown effect. If you disabled the missing_safety option (it defaults to on), eating it might crash the game."); break;
+				pline("An edible item with an unknown effect. It might not be a good idea to eat it."); break;
 			case TORTILLA: 
 				pline("A rarely seen vegetarian food item that provides relatively little nutrition."); break;
 			case TWELVE_COURSE_DINNER: 
@@ -12091,7 +12091,7 @@ struct obj *obj;
 			case ACID_VENOM: 
 				pline("Hitting a monster with this thing may deal some acid damage to it."); break;
 			case SEGFAULT_VENOM: 
-				pline("This item is not dangerous in and of itself, but if you're playing the segfaulter race, guess what can happen."); break;
+				pline("This item is not dangerous in and of itself, but if you're playing the segfaulter race, it can cause a 'segfault panic' that erases your character."); break;
 
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 
@@ -14007,7 +14007,7 @@ struct obj *obj;
 				case ART_KINGS_RANSOM_FOR_YOU:
 					pline("Artifact specs: +5 to-hit and +10 stun damage, protection and reflection when wielded but also halves your movement speed and gains a Topi Ylinen curse."); break;
 				case ART_DO_NOT_THROW_ME:
-					pline("Artifact specs: DO NOT throw it. If you do, your savegame will be corrupted beyond any chance of repair, and YOU WILL LOSE YOUR CHARACTER. This is not a joke."); break;
+					pline("Artifact specs: DO NOT throw it. If you do, YOU WILL LOSE YOUR CHARACTER. This is not a joke."); break;
 				case ART_WATERS_OF_OBLIVION:
 					pline("Artifact specs: swimming when worn, demons are almost always spawned peaceful and occasionally tame, but it will repeatedly cause amnesia."); break;
 				case ART_JONADAB_S_WINTER_WEAR:

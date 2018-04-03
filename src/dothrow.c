@@ -1044,10 +1044,10 @@ boolean hitsroof;
 	if (breaktest(obj)) {
 		pline("%s hits the %s.", Doname2(obj), ceiling(u.ux, u.uy));
 		breakmsg(obj, !Blind);
-		if (issegfaulter && obj->otyp == SEGFAULT_VENOM) { /* segfault panic! */
-			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (void *) obj);
+		if (issegfaulter && obj->otyp == SEGFAULT_VENOM && !rn2(5) ) { /* segfault panic! */
+			u.segfaultpanic = TRUE;
 		} else if (obj->oartifact == ART_DO_NOT_THROW_ME) { /* uh-oh... you really messed up big time there. */
-			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (void *) obj);
+			u.segfaultpanic = TRUE;
 		}
 		breakobj(obj, u.ux, u.uy, TRUE, TRUE);
 		return FALSE;
@@ -1524,10 +1524,10 @@ int thrown;
 		    delay_output();
 		    tmp_at(DISP_END, 0);
 		    breakmsg(obj, cansee(bhitpos.x, bhitpos.y));
-			if (issegfaulter && obj->otyp == SEGFAULT_VENOM) { /* segfault panic! */
- 			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (void *) obj);
+			if (issegfaulter && obj->otyp == SEGFAULT_VENOM && !rn2(5)) { /* segfault panic! */
+				u.segfaultpanic = TRUE;
 			} else if (obj->oartifact == ART_DO_NOT_THROW_ME) { /* uh-oh... you really messed up big time there. */
-			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (void *) obj);
+				u.segfaultpanic = TRUE;
 			}
 		    breakobj(obj, bhitpos.x, bhitpos.y, TRUE, TRUE);
 		    return;
@@ -2349,10 +2349,10 @@ int thrown;
 		    otyp == BLINDING_VENOM || otyp == FAERIE_FLOSS_RHING || otyp == ACID_VENOM || otyp == SEGFAULT_VENOM || otyp == TAIL_SPIKES) &&
 		(guaranteed_hit || ACURR(A_DEX) > rnd(25) || tmp >= rnd(20) )) { /* F this stupidity. Sorry. --Amy */
 	    (void) hmon(mon, obj, thrown?thrown:3,dieroll);
-		if (issegfaulter && otyp == SEGFAULT_VENOM) { /* segfault panic! */
- 			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (void *) obj);
+		if (issegfaulter && otyp == SEGFAULT_VENOM && !rn2(5)) { /* segfault panic! */
+			u.segfaultpanic = TRUE;
 		} else if (obj->oartifact == ART_DO_NOT_THROW_ME) { /* uh-oh... you really messed up big time there. */
-			    (void) start_timer(rnz(100), TIMER_OBJECT, UNPOLY_OBJ, (void *) obj);
+			u.segfaultpanic = TRUE;
 		}
 
 	    return 1;	/* hmon used it up */
