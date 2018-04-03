@@ -1152,6 +1152,9 @@ elena23:
 		case AT_BOOM:
 			pline("%s explodes!", Monnam(mtmp));
 			break;
+		case AT_MAGC:
+			pline("%s curses at you!", Monnam(mtmp));
+			break;
 		case AT_MULTIPLY:
 			/* No message. */
 		break;
@@ -1912,6 +1915,7 @@ mattacku(mtmp)
 		/* This has the side effect of AT_HUGS hitting from far away. I decided to declare this "bug" a feature. */
 			break;
 		case AT_BEAM:  /* ranged non-contact attack by Chris - only go off 40% of the time for balance reasons --Amy */
+cursesatyou:
 			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && (rnd(5) > 3) ) {  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
@@ -2311,6 +2315,12 @@ elena37:
 			}
 
 			}
+
+			/* random stats monsters and such can sometimes have weird damage types to go with this...
+			 * they should do something meaningful with that damage type --Amy */
+			if (mattk->adtyp != AD_SPEL && mattk->adtyp != AD_CAST && mattk->adtyp != AD_CLRC && mattk->adtyp != AD_FIRE && mattk->adtyp != AD_COLD && mattk->adtyp != AD_ACID && mattk->adtyp != AD_ELEC && mattk->adtyp != AD_DRST && mattk->adtyp != AD_LITE && mattk->adtyp != AD_SPC2 && mattk->adtyp != AD_DISN && mattk->adtyp != AD_MAGM) 
+				goto cursesatyou;
+
 			break;
 
 		default:		/* no attack */
