@@ -3719,7 +3719,7 @@ proofarmorchoice:
 							}
 						}
 
-						if (untamingchance > rnd(10)) {
+						if (untamingchance > rnd(10) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 
 							mtmp2->mtame = mtmp2->mpeaceful = 0;
 							if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }
@@ -4255,7 +4255,7 @@ newboss:
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0)
 			    if (!rn2(4) || ( (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && mtmp->data == &mons[PM_TOPMODEL]) ) maybe_tame(mtmp, sobj);
-			    else if (!rn2(10) && !mtmp->mfrenzied && !mtmp->mtame) {
+			    else if (!rn2(10) && !((rnd(30 - ACURR(A_CHA))) < 4) && !mtmp->mfrenzied && !mtmp->mtame) {
 				pline("Instead of being tamed, %s enters a state of frenzy!", mon_nam(mtmp));
 				mtmp->mpeaceful = 0;
 				mtmp->mfrenzied = 1;
@@ -4865,7 +4865,7 @@ newboss:
 				(is_undead(mtmp->data) || mtmp->egotype_undead) )
 			    if (!rn2(2)) maybe_tame(mtmp, sobj);
 
-			    else if (!rn2(25) && !mtmp->mfrenzied && !mtmp->mtame) {
+			    else if (!rn2(25) && !((rnd(30 - ACURR(A_CHA))) < 4) && !mtmp->mfrenzied && !mtmp->mtame) {
 				pline("Instead of being tamed, %s enters a state of frenzy!", mon_nam(mtmp));
 				mtmp->mpeaceful = 0;
 				mtmp->mfrenzied = 1;

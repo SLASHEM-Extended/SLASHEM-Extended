@@ -2621,7 +2621,7 @@ domove()
 	if (is_safepet(mtmp) && !( (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && mtmp->mundetected)) {
 	    /* if trapped, there's a chance the pet goes wild */
 	    if (mtmp->mtrapped) {
-		if (!rn2(mtmp->mtame)) {
+		if (!rn2(mtmp->mtame) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 		    mtmp->mtame = mtmp->mpeaceful = mtmp->msleeping = 0;
 		    if (mtmp->mleashed) m_unleash(mtmp, TRUE);
 		    growl(mtmp);

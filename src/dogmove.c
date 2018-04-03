@@ -672,6 +672,7 @@ register struct monst *mtmp;
 		    /*&& !mindless(mtmp->data)*/ /* mindless creatures may still decide to attack randomly --Amy */
 		    && (mtmp->mhp >= u.uhp || !rn2(5) || (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (is_jonadabmonster(mtmp->data)) || (mtmp->data->mlevel >= 50) || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) || (mtmp->data == &mons[PM_SUMMONED_FIRE_GOLEM]) || (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3) ) || Role_if(PM_FAILED_EXISTENCE))	/* Pet is buff enough */
 		    && rn2(22) > mtmp->mtame	/* Roll against tameness */
+		    && !((rnd(30 - ACURR(A_CHA))) < 4) /* Roll against charisma */
 		    && rn2(edog->abuse + rnd(2) )) {
 	/* Treason */
 	if (canseemon(mtmp))

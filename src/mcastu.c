@@ -918,7 +918,7 @@ int spellnum;
 							}
 						}
 
-						if (untamingchance > rnd(10)) {
+						if (untamingchance > rnd(10) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 
 							mtmp2->mtame = mtmp2->mpeaceful = 0;
 							if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }

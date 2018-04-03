@@ -1412,7 +1412,7 @@ moveloop()
 				if (mtmp3->mfrenzied) continue;
 				if (mtmp3->mpeaceful) continue;
 				if (!(humanoid(mtmp3->data) && !rn2(5)) && !(is_animal(mtmp3->data) && !rn2(10)) ) continue;
-				if (resist(mtmp3, RING_CLASS, 0, NOTELL)) continue;
+				if (resist(mtmp3, RING_CLASS, 0, NOTELL) && !(((rnd(30 - ACURR(A_CHA))) < 4) && !resist(mtmp3, RING_CLASS, 0, NOTELL)) ) continue;
 
 				pline("%s is charmed by your sexy pose!", mon_nam(mtmp3));
 				mtmp3->mpeaceful = TRUE;

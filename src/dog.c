@@ -173,6 +173,7 @@ boolean quietly;
 	    chance = rn2(5);	/* 0==tame, 1==peaceful, 2==hostile */
 	    if (chance > 2) chance = otmp->blessed ? 0 : !otmp->cursed ? 1 : 2;
 	    if (otmp && otmp->oartifact == ART_GUARANTEED_SPECIAL_PET) chance = 0;
+	    if ((rnd(30 - ACURR(A_CHA))) < 4) chance = 0;
 	    /* 0,1,2:  b=60%,20,20; nc=20%,60,20; c=20%,20,60 */
 	    if (chance > 0) {
 		mtmp->mtame = 0;	/* not tame after all */
@@ -730,6 +731,13 @@ long nmv;		/* number of moves */
 	    mtmp->mhp = mtmp->mhpmax;
 	else mtmp->mhp += imv;
 
+	/* recover more depending on charisma --Amy */
+	if ((rnd(30 - ACURR(A_CHA))) < 4) {
+		if (mtmp->mhp + 1 >= mtmp->mhpmax)
+		      mtmp->mhp = mtmp->mhpmax;
+		else mtmp->mhp++;
+	}
+
 	/* good riding skill gives extra regeneration to ridden monster --Amy */
 
 	if (!(PlayerCannotUseSkills)) {
@@ -1108,7 +1116,7 @@ boolean guaranteed;
 		return((struct monst *)0);
 		}
 
-	if (Aggravate_monster && !rn2(20)) {
+	if (Aggravate_monster && !rn2(20) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 		if (mtmp->mpeaceful && !mtmp->mtame) {
 	        	pline("%s is aggravated!", Monnam(mtmp));
 			mtmp->mpeaceful = 0;
@@ -1323,7 +1331,7 @@ boolean was_dead;
 	}
     } else {
 	/* chance it goes wild anyway - Pet Semetary */
-	if (!rn2(mtmp->mtame)) {
+	if (!rn2(mtmp->mtame) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 	    mtmp->mpeaceful = mtmp->mtame = 0;
 	}
     }

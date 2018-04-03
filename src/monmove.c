@@ -263,6 +263,13 @@ boolean digest_meal;
 		}
 
 		if (mon->mtame) {
+
+			if ((rnd(30 - ACURR(A_CHA))) < 4) {
+				if (mon->mhp + 1 >= mon->mhpmax)
+				      mon->mhp = mon->mhpmax;
+				else mon->mhp++;
+			}
+
 			switch (P_SKILL(P_PETKEEPING)) {
 				default: break;
 				case P_BASIC: 

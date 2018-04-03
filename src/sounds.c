@@ -1889,7 +1889,7 @@ dotalk()
 					}
 				}
 
-				if (untamingchance > rnd(10)) {
+				if (untamingchance > rnd(10) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
 
 					mtmp2->mtame = mtmp2->mpeaceful = 0;
 
@@ -2019,7 +2019,7 @@ dochat()
      !mtmp->mtame) {
         You("attempt to soothe the %s with chittering sounds.",
          l_monnam(mtmp));
-        if (rnl(10) < 2) {
+        if ((rnl(10) < 2) || ((rnd(30 - ACURR(A_CHA))) < 4)) {
             (void) tamedog(mtmp, (struct obj *) 0, FALSE);
         } else {
             if (rnl(10) > 8) {
@@ -2063,7 +2063,7 @@ dochat()
 		if (yn("Pacify this monster?") == 'y') {
 	      	pline("You attempt to pacify %s.",mon_nam(mtmp) );
 
-			if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && rn2(3) ) {
+			if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) {
 		            mtmp->mpeaceful = 1;
 				return 1;
 			}
@@ -2089,7 +2089,7 @@ dochat()
             mtmp->mpeaceful = 1; /* they will always become at least peaceful. --Amy */
             set_malign(mtmp);
 
-		if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && rn2(3) ) /* higher level monsters are less likely to be affected --Amy*/
+		if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) /* higher level monsters are less likely to be affected --Amy*/
 
 		(void) tamedog(mtmp, (struct obj *) 0, TRUE);
 
@@ -2105,7 +2105,7 @@ dochat()
 	      verbalize("%s", !rn2(3) ? "By the power of His Holiness Titus Medes, I beseech thee - stop thine combat actions!" : !rn2(2) ? "Long live Martin Septim! Thou shall surrender lest I smite thee!" : "The Emperor will spare thy life if thou stoppest fighting!");
 		morehungry(100);
 
-		if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && rn2(3) ) { /* higher level monsters are less likely to be affected --Amy*/
+		if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) { /* higher level monsters are less likely to be affected --Amy*/
 
             mtmp->mpeaceful = 1;
             set_malign(mtmp);
@@ -2125,7 +2125,7 @@ dochat()
 	      pline("You frantically chant at %s.",mon_nam(mtmp) );
 		morehungry(500);
 
-		if (mtmp->m_lev < rnd(100) && rn2(u.ulevel + 2) && rn2(3)) { /* higher level monsters are less likely to be affected --Amy*/
+		if (mtmp->m_lev < rnd(100) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) { /* higher level monsters are less likely to be affected --Amy*/
 
 	    /*maybe_tame(mtmp, sobj);*/
 		(void) tamedog(mtmp, (struct obj *) 0, FALSE);

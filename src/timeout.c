@@ -2930,7 +2930,7 @@ long timeout;
 	mon = mon2 = (struct monst *)0;
 	mnum = big_to_little(egg->corpsenm);
 	/* The identity of one's father is learned, not innate */
-	yours = (egg->spe || (!flags.female && carried(egg) && !rn2(2)));
+	yours = (egg->spe || (!flags.female && carried(egg) && !rn2(2)) || (((rnd(30 - ACURR(A_CHA))) < 4) && carried(egg)) );
 	silent = (timeout != monstermoves);	/* hatched while away */
 
 	/* only can hatch when in INVENT, FLOOR, MINVENT */

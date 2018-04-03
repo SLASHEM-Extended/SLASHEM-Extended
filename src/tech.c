@@ -3020,7 +3020,7 @@ secureidchoice:
 			    obj->corpsenm = corpsenm;
 			    mtmp = revive(obj);
 			    if (mtmp) {
-				if (!resist(mtmp, SPBOOK_CLASS, 0, TELL)) {
+				if (!resist(mtmp, SPBOOK_CLASS, 0, TELL) || ((rnd(30 - ACURR(A_CHA))) < 4) ) {
 				   mtmp = tamedog(mtmp, (struct obj *) 0, FALSE);
 				   You("dominate %s!", mon_nam(mtmp));
 				} else setmangry(mtmp);
@@ -3032,7 +3032,7 @@ secureidchoice:
 		nomovemsg = 0;
 		t_timeout = rnz(1500);
 		break;
-            case T_REVIVE: 
+            case T_REVIVE:
 		if (u.uswallow) {
 		    You(no_elbow_room);
 		    return 0;
@@ -3052,7 +3052,7 @@ secureidchoice:
 		    else
 		    if (mtmp->isshk)
 			make_happy_shk(mtmp, FALSE);
-		    else if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL))
+		    else if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL) || (((rnd(30 - ACURR(A_CHA))) < 4) && !resist(mtmp, SPBOOK_CLASS, 0, TELL) ) || (((rnd(30 - ACURR(A_CHA))) < 4) && !resist(mtmp, SPBOOK_CLASS, 0, TELL) ) )
 			(void) tamedog(mtmp, (struct obj *) 0, FALSE);
 		}
             	if (Upolyd) u.mh -= num;
@@ -3499,6 +3499,7 @@ secureidchoice:
 				/* If catchrate is a higher numeric value, the chance of catching the monster is lower. */
 
 				catchrate = (60 + mtmp->m_lev - techlevX(tech_no));
+				if (!rn2(4)) catchrate -= ACURR(A_CHA);
 				if (!rn2(4)) catchrate -= techlevX(tech_no);
 				if (is_pokemon(mtmp->data) || mtmp->egotype_pokemon) catchrate = (catchrate / 2);
 				if (catchrate < 3) catchrate = 3;
@@ -4225,7 +4226,7 @@ resettechdone:
 				{
 
 					if (mtmp3->data->mlet == S_QUADRUPED || mtmp3->data->mlet == S_UNICORN || mtmp3->data->mlet == S_ANGEL || mtmp3->data->mlet == S_CENTAUR || mtmp3->data->mlet == S_DRAGON || mtmp3->data->mlet == S_JABBERWOCK || mtmp3->data->mlet == S_ZOUTHERN) {
-						if (!(resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL))) {
+						if (!(resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL) && !(((rnd(30 - ACURR(A_CHA))) < 4) && resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL) && resist(mtmp3, RING_CLASS, 0, NOTELL)) )) {
 							pline("%s is successfully tamed!", mon_nam(mtmp3));
 							(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
 							if (techlevX(tech_no) < rnd(100)) caughtX++;
@@ -4949,7 +4950,7 @@ incarnationfinish:
 
 			for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
 				if (!isok(u.ux + k, u.uy + l)) continue;
-				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !mtmp3->mfrenzied && (mtmp3->mpeaceful || !rn2(3)) && mtmp3->mtame == 0 && mtmp3->wastame) {
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !mtmp3->mfrenzied && (mtmp3->mpeaceful || !rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4) ) && mtmp3->mtame == 0 && mtmp3->wastame) {
 
 					pline("%s wants to be your pet again!", mon_nam(mtmp3));
 					(void) tamedog(mtmp3, (struct obj *) 0, TRUE);

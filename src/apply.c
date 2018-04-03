@@ -792,7 +792,7 @@ register xchar x, y;
 		    } else {
 			pline("%s chokes on the leash!", Monnam(mtmp));
 			/* tameness eventually drops to 1 here (never 0) */
-			if (mtmp->mtame && rn2(mtmp->mtame)) mtmp->mtame--;
+			if (mtmp->mtame && rn2(mtmp->mtame) && !((rnd(30 - ACURR(A_CHA))) < 4) ) mtmp->mtame--;
 		    }
 		} else {
 		    if (um_dist(mtmp->mx, mtmp->my, 5)) {
@@ -995,7 +995,7 @@ struct obj **optr;
 	    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 		if (!isok(u.ux + i, u.uy + j)) continue;
 		if ((bimmel = m_at(u.ux + i, u.uy + j)) != 0 && bimmel->data->mlet == S_XAN)
-		    if (!resist(bimmel, RING_CLASS, 0, TELL)) (void) tamedog(bimmel, (struct obj *) 0, FALSE);
+		    if (!resist(bimmel, RING_CLASS, 0, TELL) || ((rnd(30 - ACURR(A_CHA))) < 4) ) (void) tamedog(bimmel, (struct obj *) 0, FALSE);
 	    }
 
 	}

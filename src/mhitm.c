@@ -2158,11 +2158,27 @@ physical:
 		break;
 
 	    case AD_CALM:	/* KMH -- koala attack */
+
+		{
+		int untamingchance = 10;
+
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_PETKEEPING)) {
+				default: untamingchance = 10; break;
+				case P_BASIC: untamingchance = 9; break;
+				case P_SKILLED: untamingchance = 8; break;
+				case P_EXPERT: untamingchance = 7; break;
+				case P_MASTER: untamingchance = 6; break;
+				case P_GRAND_MASTER: untamingchance = 5; break;
+				case P_SUPREME_MASTER: untamingchance = 4; break;
+			}
+		}
+
 		/* Certain monsters aren't even made peaceful. */
 		if (!mdef->iswiz && mdef->data != &mons[PM_MEDUSA] &&
 			!(mdef->data->mflags3 & M3_COVETOUS) &&
 			!(mdef->data->geno & G_UNIQ) &&
-			((magr->mtame && !rn2(10)) || mdef->mtame)) {
+			((magr->mtame && !rn2(10)) || (mdef->mtame && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4)) )) {
 		    if (vis) pline("%s looks calmer.", Monnam(mdef));
 		    if (mdef == u.usteed && !mayfalloffsteed())
 			dismount_steed(DISMOUNT_THROWN);
@@ -2170,14 +2186,35 @@ physical:
 		    mdef->mtame = 0;
 		    tmp = 0;
 		}
+
+		}
+
 		break;
 	    case AD_FREN:
 
-		if (!mdef->mfrenzied && (!mdef->mtame || (mdef->mtame <= rnd(21)) ) ) {
+		{
+		int untamingchance = 10;
+
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_PETKEEPING)) {
+				default: untamingchance = 10; break;
+				case P_BASIC: untamingchance = 9; break;
+				case P_SKILLED: untamingchance = 8; break;
+				case P_EXPERT: untamingchance = 7; break;
+				case P_MASTER: untamingchance = 6; break;
+				case P_GRAND_MASTER: untamingchance = 5; break;
+				case P_SUPREME_MASTER: untamingchance = 4; break;
+			}
+		}
+
+		if (!mdef->mfrenzied && (!mdef->mtame || (mdef->mtame <= rnd(21) && (untamingchance > rnd(10)) && !((rnd(30 - ACURR(A_CHA))) < 4) ) ) ) {
 			mdef->mpeaceful = mdef->mtame = 0;
 			mdef->mfrenzied = 1;
 		    if (vis) pline("%s enters a state of frenzy!", Monnam(mdef));
 		}
+
+		}
+
 		break;
 	    default:	/*tmp = 0;*/ 
 			if (mattk->aatyp == AT_EXPL && tmp > 1) tmp = 1; /* fail safe */
