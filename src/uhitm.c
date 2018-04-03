@@ -6953,7 +6953,7 @@ uchar aatyp;
 	    case AD_CONT:
 
 		You("are struck by several ether thorns.");
-		contaminate(tmp);
+		contaminate(tmp, TRUE);
 		mdamageu(mon, tmp);
 
 		break;

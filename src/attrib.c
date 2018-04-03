@@ -1335,8 +1335,15 @@ exerchk()
 					killer = "being consumed by the contamination";
 					killer_format = KILLED_BY;
 					done(DIED);
+					/* lifesaved */
 					u.youaredead = 0;
+					pline("WARNING: Your wisdom is still critically low and you may die from contamination again! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
+				} else if (ABASE(A_WIS) < 4) {
+					pline("DANGER!!! Your wisdom is critically low and you're very likely to die from the contamination! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
+				} else if (ABASE(A_WIS) < 6) {
+					pline("Warning! Your wisdom is low and if the contamination causes it to fall below 3, you die! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
 				}
+
 			}
 
 			/* contamination can now go down; if at least 100, only a chance of going down --Amy */

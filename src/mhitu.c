@@ -5891,7 +5891,7 @@ dopois:
 
 			if (is_styxriver(mtmp->mx,mtmp->my)) {
 				pline("%s pulls you into the styx river!", Monnam(mtmp));
-				contaminate(rnd(10));
+				contaminate(rnd(10), TRUE);
 			}
 
 			if (is_urinelake(mtmp->mx,mtmp->my) && !rn2(3)) {
@@ -5943,7 +5943,7 @@ dopois:
 
 			if (is_styxriver(mtmp->mx,mtmp->my) && !rn2(3)) {
 				pline("You're exposed to the styx river, and your contamination greatly increases.");
-				contaminate(rnd(100 + (level_difficulty() * 10)));
+				contaminate(rnd(100 + (level_difficulty() * 10)), TRUE);
 
 			}
 
@@ -6655,7 +6655,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		Your("contamination increases.");
-		contaminate(dmg);
+		contaminate(dmg, TRUE);
 
 		break;
 
@@ -8554,7 +8554,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	      case AD_CONT:
 
 			You("are being contaminated!");
-			contaminate(tmp);
+			contaminate(tmp, TRUE);
 
 			break;
 
@@ -10642,7 +10642,7 @@ common:
 	    case AD_CONT:
 
 			pline("The explosion greatly increases your contamination.");
-			contaminate(tmp);
+			contaminate(tmp, TRUE);
 
 		break;
 
@@ -14752,7 +14752,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
                   pline("%s's image will forever be in your mind...", Monnam(mtmp));
 
-			contaminate(5 + dmgplus);
+			contaminate(5 + dmgplus, TRUE);
 
 		}
 

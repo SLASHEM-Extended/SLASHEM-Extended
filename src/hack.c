@@ -4077,8 +4077,9 @@ showdmg(n)
  * don't call it "weeping angel" contamination; it's more like nuclear radiation or something. There will be certain
  * weeping angel types that use it as an attack, but the effect is just a generic "contamination". --Amy */
 void
-contaminate(amount)
+contaminate(amount, tellplayer)
 register int amount;
+boolean tellplayer;
 {
 	int precheckamount;
 
@@ -4111,6 +4112,15 @@ register int amount;
 	if (u.contamination >= 600 && u.contamination < 800 && precheckamount < 600) pline(Hallucination ? "You feel like your digestive tract started to digest itself." : "You are now afflicted with severe contamination.");
 	if (u.contamination >= 800 && u.contamination < 1000 && precheckamount < 800) pline(Hallucination ? "You feel that your body is consuming itself from within." : "You are now afflicted with lethal contamination.");
 	if (u.contamination >= 1000 && precheckamount < 1000) pline(Hallucination ? "You feel terminally ill. Something tells you that you only have three days to live." : "You are now afflicted with fatal contamination. Seek medical attention immediately.");
+
+	/* if you got told that you were contaminated, and wisdom is low, give a warning --Amy */
+	if (tellplayer) {
+		if (ABASE(A_WIS) < 4) {
+			pline("DANGER!!! Your wisdom is critically low and you're very likely to die from the contamination! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
+		} else if (ABASE(A_WIS) < 6) {
+			pline("Warning! Your wisdom is low and if the contamination causes it to fall below 3, you die! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
+		}
+	}
 
 	/* Actual contamination effects are handled in attrib.c */
 }

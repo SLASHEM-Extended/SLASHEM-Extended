@@ -3122,7 +3122,7 @@ register int pm;
 	/* Eating contaminating monsters increases your contamination --Amy */
 		if (dmgtype(ptr, AD_CONT) ) {
 			pline("The food was contaminated! Your contamination increases.");
-			contaminate(rnz((level_difficulty() + 40) * 5));
+			contaminate(rnz((level_difficulty() + 40) * 5), TRUE);
 		}
 
 	/* Mimics will always cause you to mimic something --Amy */
@@ -5794,7 +5794,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    }
 	    if (material == ETHER) {
 			pline("The contamination spreads through your body.");
-			contaminate(rnz((level_difficulty() + 40) * 5));
+			contaminate(rnz((level_difficulty() + 40) * 5), TRUE);
 	    }
 	    if (material == VIVA) {
 			pline("Eating radioactive metal is a bad idea.");

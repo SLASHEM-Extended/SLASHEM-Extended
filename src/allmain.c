@@ -2954,21 +2954,29 @@ newbossA:
 
 			while (etherslow > 0) {
 				etherslow--;
-				if (!rn2(1000)) contaminate(rnd(2));
+				if (!rn2(1000)) contaminate(rnd(2), FALSE);
 			}
 			while (etherquick > 0) {
 				etherquick--;
 				if (!rn2(1000)) {
-					if (!rn2(5)) pline("Your ether equipment causes your contamination to deteriorate.");
-					contaminate(rnd(10));
+					if (!rn2(5)) {
+						pline("Your ether equipment causes your contamination to deteriorate.");
+						contaminate(rnd(10), TRUE);
+					} else {
+						contaminate(rnd(10), FALSE);
+					}
 				}
 			}
 
 		}
 
 		if (In_gammacaves(&u.uz) && !rn2(100)) {
-			contaminate(rnz(25));
-			if (!rn2(5)) pline("The background radiation in the Gamma Caves contaminates you.");
+			if (!rn2(5)) {
+				pline("The background radiation in the Gamma Caves contaminates you.");
+				contaminate(rnz(25), TRUE);
+			} else {
+				contaminate(rnz(25), FALSE);
+			}
 		}
 
 		if (In_sewerplant(&u.uz) && !rn2(250) && !Breathless) {
@@ -5096,7 +5104,7 @@ newbossB:
 
 			if ((!Flying && !Levitation) || !rn2(5)) {
 				Norep("Continued exposure to the Styx River will cause contamination.");
-				contaminate(rnd(10 + level_difficulty()));
+				contaminate(rnd(10 + level_difficulty()), TRUE);
 			}
 
 		}

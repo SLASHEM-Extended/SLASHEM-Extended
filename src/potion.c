@@ -1643,10 +1643,10 @@ badeffect()
 		case 388:
 		case 389:
 		case 390:
-			contaminate(rnd(10 + level_difficulty()));
+			contaminate(rnd(10 + level_difficulty()), FALSE);
 		break;
 		case 391:
-			contaminate(rnz(100 + (level_difficulty() * 10)));
+			contaminate(rnz(100 + (level_difficulty() * 10)), FALSE);
 		break;
 
 		default:

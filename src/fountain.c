@@ -281,7 +281,7 @@ drinkfountain()
 
 		case 15:
 			pline("Ulch - the water was radioactive!");
-			contaminate(rnd(10 + level_difficulty()));
+			contaminate(rnd(10 + level_difficulty()), TRUE);
 			break;
 
 		case 16:

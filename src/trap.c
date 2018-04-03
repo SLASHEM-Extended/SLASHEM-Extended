@@ -3180,7 +3180,7 @@ newegomon:
 
 			case 7:
 				pline("Ulch - the water was radioactive!");
-				contaminate(rnd(10 + level_difficulty()));
+				contaminate(rnd(10 + level_difficulty()), TRUE);
 				break;
 
 			case 8:
@@ -5737,7 +5737,7 @@ madnesseffect:
 		pline("You stepped on a trigger!");
 		seetrap(trap);
 		pline("Suddenly you're exposed to the contamination.");
-		contaminate(rnd(10 + level_difficulty()));
+		contaminate(rnd(10 + level_difficulty()), TRUE);
 
 		break;
 
