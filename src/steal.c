@@ -317,6 +317,8 @@ gotobj:
 	if (stack_too_big(otmp) && !issoviet) {
 
 		pline("%s tries to steal your %s, but you quickly protect them!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), doname(otmp));
+		/* can't say "you may steal them anyway", because the stack resisted,
+		 * which means the stealing attempt just failed unconditionally --Amy */
 		return (0);
 	}
 
@@ -324,7 +326,11 @@ gotobj:
 	if (rn2(10) && (otmp->oartifact || (otmp->fakeartifact && !rn2(3))) && !issoviet) {
 
 		pline("%s tries to steal your %s, but you quickly protect it!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), doname(otmp));
-		return (0);
+
+		getlin ("Do you want to allow it to be stolen anyway? [yes/no]",buf);
+		(void) lcase (buf);
+		if (strcmp (buf, "yes")) return(0);
+
 	}
 
 	/* In Soviet Russia, you don't need no saving throw, since you're probably so naughty you'd jump at any chance to
@@ -340,8 +346,11 @@ gotobj:
 			(void) lcase (buf);
 			if (strcmp (buf, "yes")) return(0);
 		} else {
-		pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
-		return(0);
+			pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
+
+			getlin ("Do you want to allow it to be stolen anyway? [yes/no]",buf);
+			(void) lcase (buf);
+			if (strcmp (buf, "yes")) return(0);
 		}
 	}
 
