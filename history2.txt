@@ -1,6 +1,34 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.1.9
+- Added the WHEREIS compile flag that can allow the player to create whereis files, which can then be queried in IRC for public servers to get information about a player's whereabouts.
+- The livelog can report trophies now.
+- If the player resists a nymph's attempt to steal a worn item or artifact, the player can now opt to have the item get stolen anyway.
+- Magic portals on the Subquest and Yendorian Tower don't always work.
+- Added messages about contamination to warn the player that it can kill them.
+- The missingno and segfaulter races no longer crash. Segfaulter gives fake segfault messages instead and kills the player character.
+- Fixed an error that could cause garbage strings to screw up Unix terminals.
+- The mystic role starts with a random implant.
+- Added boss monsters, artifacts and other stuff to the new dungeon branches.
+- Higher charisma affects the chances of taming a pet and the resistance of pets to untaming effects.
+- Added more possible contents for randomly generated tins.
+- Spellcaster monsters whose spell "attacks" use non-standard damage types can actually use them against the player now.
+- Increased the maximum permissible amount of skill advancements to make sure there's no errors when the player has enhanced a lot of skills.
+- If the player loses skill points in evil variant mode, the loss can be permanent.
+- Added more effects when eating gray stones.
+- New birth option "supergmmode" that allows every watcher to generate monsters via sending mail with "genesis monstername" (replace "monstername" with the name of an actually existing monster species).
+- New option "graffitihilite" that will highlight engravings on the floor, defaults to on.
+- Changed the color of branch staircases to pink.
+- Fixed errors where blindness or wounded legs would sometimes never wear off.
+- Tried to make sure every special level can be completed without having to squeeze through diagonal gaps, and without needing to teleport or wallwalk, because the game should be winnable for sokosolver lostsouls too.
+- Shopkeeper weapon-works/appraisal services can be used on iron balls, chains and gems now.
+- Reduced the amount of items the player gets, especially later in the game.
+
 2.1.8
+- When ash and farmland burn up, they usually turn into regular floor now; they only rarely become ash. Also, rain clouds can be boiled with fire, turning them into normal clouds.
+- Randomly generated items may occasionally be erosionproof and/or eroded.
+- Crypt, trouble zone and feminism rooms will now often spawn with a container.
+- Graves have the "saved by the bell" inscription much less often.
 - Monsters have death drops less often, and the player also generally receives less items as the game goes on.
 - Monster respawn speeds up a bit more slowly and reaches a lower maximum value. However, once the player has fully imbued the Amulet of Yendor, the old (higher) maximum will be used from that point on.
 - The first major oracle consultation increases the player's intelligence and wisdom by one.
