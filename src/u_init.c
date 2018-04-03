@@ -560,6 +560,7 @@ static struct trobj Bloodseeker[] = {
 static struct trobj Mystic[] = {
 
 	{ UNDEF_TYP, UNDEF_SPE, AMULET_CLASS, 1, 0 },
+	{ UNDEF_TYP, UNDEF_SPE, IMPLANT_CLASS, 1, 0 },
 	{ UNDEF_TYP, UNDEF_SPE, WEAPON_CLASS, 1, 0 },
 	{ UNDEF_TYP, UNDEF_SPE, ARMOR_CLASS, 1, 0 },
 	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, 0 },
