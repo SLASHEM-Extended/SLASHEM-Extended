@@ -137,7 +137,7 @@ unsigned *ospecial;
 	    else if (iflags.use_color &&
 		     (offset == S_upstair || offset == S_dnstair) &&
 		     (x == sstairs.sx && y == sstairs.sy))
-		color = CLR_YELLOW;
+		color = CLR_BRIGHT_MAGENTA;
 		/* special level colors by Amy, code partly stolen from dnethack */
 	    else if(Is_lawful_quest(&u.uz)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
