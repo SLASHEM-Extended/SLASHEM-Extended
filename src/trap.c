@@ -1171,7 +1171,7 @@ register int x, y, typ, replacechance;
 
 		else if (!rn2(10) && !issoviet) (void) mkobj_at(COIN_CLASS, x, y, TRUE); /* hidden underneath a zorkmid */
 		else if (!rn2(10) && !issoviet) (void) mksobj_at(BOULDER, x, y, TRUE, FALSE); /* hidden underneath a boulder */
-		else if (!rn2(10) && !issoviet) (void) mkobj_at(0, x, y, TRUE); /* hidden underneath a random item */
+		else if (!rn2(10) && !issoviet) (void) mkobj_at(timebasedlowerchance() ? 0 : COIN_CLASS, x, y, TRUE); /* hidden underneath a random item */
 		else if (!rn2(12) && !issoviet) (void) makemon( mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS); /* hidden beneath a mimic */
 		else if (!rn2(7) && !issoviet) {
 				for (sessileattempts = 0; sessileattempts < 20; sessileattempts++) {

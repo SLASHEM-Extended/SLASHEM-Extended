@@ -8037,6 +8037,43 @@ u_init()
 	if (u.implantspawnchance > 90) u.implantspawnchance = 90;
 	if (u.implantspawnchance < 0) u.implantspawnchance = 0;
 
+	u.weaponspawnchance = 0;
+	if (!rn2(3)) u.weaponspawnchance += rnd(20);
+	if (!rn2(5)) u.weaponspawnchance += rnd(30);
+	if (!rn2(7)) u.weaponspawnchance += rnd(30);
+	if (!rn2(15)) u.weaponspawnchance += rnd(40);
+	if (!rn2(35)) u.weaponspawnchance += rnd(70);
+	if (u.weaponspawnchance > 90) u.weaponspawnchance = 90;
+	if (u.weaponspawnchance < 0) u.weaponspawnchance = 0;
+
+	u.armorspawnchance = 0;
+	if (!rn2(2)) u.armorspawnchance += rnd(25);
+	if (!rn2(4)) u.armorspawnchance += rnd(30);
+	if (!rn2(10)) u.armorspawnchance += rnd(40);
+	if (!rn2(20)) u.armorspawnchance += rnd(50);
+	if (!rn2(40)) u.armorspawnchance += rnd(80);
+	if (u.armorspawnchance > 90) u.armorspawnchance = 90;
+	if (u.armorspawnchance < 0) u.armorspawnchance = 0;
+
+	u.toolspawnchance = 0;
+	if (!rn2(3)) u.toolspawnchance += rnd(20);
+	if (!rn2(5)) u.toolspawnchance += rnd(30);
+	if (!rn2(7)) u.toolspawnchance += rnd(30);
+	if (!rn2(15)) u.toolspawnchance += rnd(40);
+	if (!rn2(35)) u.toolspawnchance += rnd(70);
+	if (u.toolspawnchance > 90) u.toolspawnchance = 90;
+	if (u.toolspawnchance < 0) u.toolspawnchance = 0;
+
+	u.foodspawnchance = 0;
+	if (!rn2(2)) u.foodspawnchance += rnd(10);
+	if (!rn2(3)) u.foodspawnchance += rnd(10);
+	if (!rn2(5)) u.foodspawnchance += rnd(20);
+	if (!rn2(20)) u.foodspawnchance += rnd(30);
+	if (!rn2(100)) u.foodspawnchance += rnd(40);
+	if (!rn2(500)) u.foodspawnchance += rnd(50);
+	if (u.foodspawnchance > 90) u.foodspawnchance = 90;
+	if (u.foodspawnchance < 0) u.foodspawnchance = 0;
+
 	u.potionspawnchance = 0;
 	if (!rn2(2)) u.potionspawnchance += rnd(15);
 	if (!rn2(3)) u.potionspawnchance += rnd(15);
@@ -27342,6 +27379,43 @@ alter_reality()
 	if (!rn2(2000)) u.implantspawnchance += rnd(40);
 	if (u.implantspawnchance > 90) u.implantspawnchance = 90;
 	if (u.implantspawnchance < 0) u.implantspawnchance = 0;
+
+	u.weaponspawnchance = 0;
+	if (!rn2(3)) u.weaponspawnchance += rnd(20);
+	if (!rn2(5)) u.weaponspawnchance += rnd(30);
+	if (!rn2(7)) u.weaponspawnchance += rnd(30);
+	if (!rn2(15)) u.weaponspawnchance += rnd(40);
+	if (!rn2(35)) u.weaponspawnchance += rnd(70);
+	if (u.weaponspawnchance > 90) u.weaponspawnchance = 90;
+	if (u.weaponspawnchance < 0) u.weaponspawnchance = 0;
+
+	u.armorspawnchance = 0;
+	if (!rn2(2)) u.armorspawnchance += rnd(25);
+	if (!rn2(4)) u.armorspawnchance += rnd(30);
+	if (!rn2(10)) u.armorspawnchance += rnd(40);
+	if (!rn2(20)) u.armorspawnchance += rnd(50);
+	if (!rn2(40)) u.armorspawnchance += rnd(80);
+	if (u.armorspawnchance > 90) u.armorspawnchance = 90;
+	if (u.armorspawnchance < 0) u.armorspawnchance = 0;
+
+	u.toolspawnchance = 0;
+	if (!rn2(3)) u.toolspawnchance += rnd(20);
+	if (!rn2(5)) u.toolspawnchance += rnd(30);
+	if (!rn2(7)) u.toolspawnchance += rnd(30);
+	if (!rn2(15)) u.toolspawnchance += rnd(40);
+	if (!rn2(35)) u.toolspawnchance += rnd(70);
+	if (u.toolspawnchance > 90) u.toolspawnchance = 90;
+	if (u.toolspawnchance < 0) u.toolspawnchance = 0;
+
+	u.foodspawnchance = 0;
+	if (!rn2(2)) u.foodspawnchance += rnd(10);
+	if (!rn2(3)) u.foodspawnchance += rnd(10);
+	if (!rn2(5)) u.foodspawnchance += rnd(20);
+	if (!rn2(20)) u.foodspawnchance += rnd(30);
+	if (!rn2(100)) u.foodspawnchance += rnd(40);
+	if (!rn2(500)) u.foodspawnchance += rnd(50);
+	if (u.foodspawnchance > 90) u.foodspawnchance = 90;
+	if (u.foodspawnchance < 0) u.foodspawnchance = 0;
 
 	u.potionspawnchance = 0;
 	if (!rn2(2)) u.potionspawnchance += rnd(15);

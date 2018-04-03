@@ -3183,7 +3183,7 @@ schar ftyp, btyp;
 
 			if(/*nxcor && */!rn2(ishaxor ? 38 : 75))
 				(void) mksobj_at(BOULDER, xx, yy, TRUE, FALSE);
-			else if(/*nxcor &&*/ !rn2(ishaxor ? 20 : 40))
+			else if(/*nxcor &&*/ !rn2(ishaxor ? 20 : 40) && timebasedlowerchance())
 				(void) mkobj_at(0, xx, yy, TRUE);
 			else if(/*nxcor &&*/ !rn2(ishaxor ? 50 : 100)){ 
 			    char buf[BUFSZ];
@@ -5351,9 +5351,10 @@ dlb *fd;
     if (nwalk_sav && (mapcount > (int) (mapcountmax / 10))) {
 	    mapfact = (int) ((mapcount * 100L) / mapcountmax);
 	    for(x = rnd((int) (20 * mapfact) / 100); x; x--) {
+		if (timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
-		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS,
-							mm.x, mm.y, TRUE);
+		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE);
+		}
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, DRY);
@@ -5394,9 +5395,10 @@ dlb *fd;
 
 		if (ishaxor) {
 	    for(x = rnd((int) (20 * mapfact) / 100); x; x--) {
+		if (timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
-		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS,
-							mm.x, mm.y, TRUE);
+		    (void) mkobj_at(rn2(2) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE);
+		}
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
 		    maze1xy(&mm, DRY);

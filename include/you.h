@@ -599,6 +599,10 @@ struct you {
 	int wandspawnchance;
 	int amuletspawnchance;
 	int implantspawnchance;
+	int weaponspawnchance;
+	int armorspawnchance;
+	int toolspawnchance;
+	int foodspawnchance;
 
 	int concealitemchance;	/* chance for concealing monsters to start with zorkmids instead */
 

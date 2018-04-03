@@ -1277,7 +1277,7 @@ int trap_type;
 		    if (!level.flags.noteleport)
 			(void) mksobj_at(SCR_TELEPORTATION,
 					 xx, yy+dy, TRUE, FALSE);
-		    if (!rn2(3)) (void) mkobj_at(0, xx, yy+dy, TRUE);
+		    if (!rn2(3) && !timebasedlowerchance()) (void) mkobj_at(0, xx, yy+dy, TRUE);
 		}
 	    }
 	    return;
@@ -10555,7 +10555,7 @@ skip0:
 #endif
 
 /* STEPHEN WHITE'S NEW CODE */
-		if(!rn2(4)) {
+		if(!rn2(4) && !timebasedlowerchance()) {
 		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE);
 		    tryct = 0;
 		    while(!rn2(3)) {
@@ -10567,7 +10567,7 @@ skip0:
 		    }
 		}
 
-		if(ishaxor && !rn2(4)) {
+		if(ishaxor && !timebasedlowerchance() && !rn2(4)) {
 		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE);
 		    tryct = 0;
 		    while(!rn2(3)) {

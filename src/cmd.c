@@ -2410,6 +2410,26 @@ boolean guaranteed;
 		enl_msg("Potion drop chance ", "is reduced to", "was reduced to", buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.weaponspawnchance)) {
+		sprintf(buf, " %d%%", 100 - u.weaponspawnchance);
+		enl_msg("Weapon drop chance ", "is reduced to", "was reduced to", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.armorspawnchance)) {
+		sprintf(buf, " %d%%", 100 - u.armorspawnchance);
+		enl_msg("Armor drop chance ", "is reduced to", "was reduced to", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.toolspawnchance)) {
+		sprintf(buf, " %d%%", 100 - u.toolspawnchance);
+		enl_msg("Tool drop chance ", "is reduced to", "was reduced to", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.foodspawnchance)) {
+		sprintf(buf, " %d%%", 100 - u.foodspawnchance);
+		enl_msg("Food drop chance ", "is reduced to", "was reduced to", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && ((wizard || (!rn2(10)) || final >= 1 ) && u.antimusablebias)) {
 		sprintf(buf, " %d%%", u.antimusablebias);
 		enl_msg("Musable item generation frequency ", "has a negative bias of", "had a negative bias of", buf);
@@ -5608,6 +5628,26 @@ int final;
 	if (u.potionspawnchance) {
 		sprintf(buf, " %d%%", 100 - u.potionspawnchance);
 		dump("  Potion drop chance was reduced to", buf);
+	}
+
+	if (u.weaponspawnchance) {
+		sprintf(buf, " %d%%", 100 - u.weaponspawnchance);
+		dump("  Weapon drop chance was reduced to", buf);
+	}
+
+	if (u.armorspawnchance) {
+		sprintf(buf, " %d%%", 100 - u.armorspawnchance);
+		dump("  Armor drop chance was reduced to", buf);
+	}
+
+	if (u.toolspawnchance) {
+		sprintf(buf, " %d%%", 100 - u.toolspawnchance);
+		dump("  Tool drop chance was reduced to", buf);
+	}
+
+	if (u.foodspawnchance) {
+		sprintf(buf, " %d%%", 100 - u.foodspawnchance);
+		dump("  Food drop chance was reduced to", buf);
 	}
 
 	if (u.concealitemchance) {

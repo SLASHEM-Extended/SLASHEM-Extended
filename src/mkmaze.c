@@ -869,8 +869,10 @@ register const char *s;
 	place_branch(Is_branchlev(&u.uz), 0, 0);
 
 	for(x = rn1(8,16); x; x--) {
-		mazexy_all(&mm);
-		(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE);
+		if (timebasedlowerchance()) {
+			mazexy_all(&mm);
+			(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE);
+		}
 	}
 	for (x = rn1(2,10); x; x--) 	{ 
 		mazexy_all(&mm);
@@ -903,8 +905,10 @@ register const char *s;
 
 	if (ishaxor) {
 	for(x = rn1(8,16); x; x--) {
-		mazexy_all(&mm);
-		(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE);
+		if (timebasedlowerchance()) {
+			mazexy_all(&mm);
+			(void) mkobj_at(!rn2(3) ? GEM_CLASS : 0, mm.x, mm.y, TRUE);
+		}
 	}
 	for (x = rn1(2,10); x; x--) 	{ 
 		mazexy_all(&mm);

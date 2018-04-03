@@ -12832,7 +12832,7 @@ register int	mmflags;
 	/* Everything that can hide under an object will now do so. --Amy */
       if(x && y && isok(x, y) && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) { /* low chance of getting an object even if nonhiding, too */
 
-	  if (rn2(3) && (rn2(100) > u.concealitemchance))
+	  if (rn2(3) && timebasedlowerchance() && (rn2(100) > u.concealitemchance))
 		(void) mkobj_at(0, x, y, TRUE);
 	  else
 		(void) mkobj_at(COIN_CLASS, x, y, TRUE);
@@ -12845,22 +12845,22 @@ register int	mmflags;
 	}
 
 		/* and even lower chance to get extra objects */
-	if (x && y && isok(x, y) && !rn2(200) && allow_special) {
+	if (x && y && isok(x, y) && timebasedlowerchance() && !rn2(200) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
 	}
-	if (x && y && isok(x, y) && !rn2(400) && allow_special) {
+	if (x && y && isok(x, y) && timebasedlowerchance() && !rn2(400) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE);
 	}
-	if (x && y && isok(x, y) && !rn2(800) && allow_special) {
+	if (x && y && isok(x, y) && timebasedlowerchance() && !rn2(800) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(27)) (void) mkobj_at(0, x, y, TRUE);
 	}
-	if (x && y && isok(x, y) && !rn2(1600) && allow_special) {
+	if (x && y && isok(x, y) && timebasedlowerchance() && !rn2(1600) && allow_special) {
 	  (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(3)) (void) mkobj_at(0, x, y, TRUE);
 	  if (!rn2(9)) (void) mkobj_at(0, x, y, TRUE);
@@ -14663,11 +14663,6 @@ register int	mmflags;
 
 			if (mndx == PM_CLEAR_CENTIPEDE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
-			/* if(in_mklev)
-			    if(x && y)
-				(void) mkobj_at(0, x, y, TRUE);
-			if(in_mklev && hides_under(ptr) && OBJ_AT(x, y))
-			    mtmp->mundetected = TRUE;*/
 			break;
 		case S_LIGHT:
 		case S_ELEMENTAL:
