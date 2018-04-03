@@ -2552,7 +2552,8 @@ secureidchoice:
 
 			}
 
-                t_timeout = rnz(10000);
+			if (u.glassgolemdown) t_timeout = rnz(5000);
+			else t_timeout = rnz(10000);
 		break;
 
             case T_PRACTICE:

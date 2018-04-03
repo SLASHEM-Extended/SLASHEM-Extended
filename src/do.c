@@ -1362,6 +1362,11 @@ dodown()
 		return(0);
 	}
 
+	if (stairs_down && u.ux == sstairs.sx && u.uy == sstairs.sy && at_dgn_entrance("Gamma Caves") && !u.sewerplantcomplete) {
+		pline("The Gamma Caves cannot be entered as long as you didn't make it to the bottom of the Sewer Plant yet.");
+		return(0);
+	}
+
 	if (Role_if(PM_GNOME) && on_level(&mineend_level,&u.uz)) {
 		pline("The staircase is filled with tons of rubble and debris.");
 		pline("Poor Ruggo!");
@@ -1515,6 +1520,11 @@ doup()
 
 	if (u.stairscumslowing && !u.uhave.amulet) {
 		pline("This stair is currently blocked and will reopen in %d turn%s.", u.stairscumslowing, u.stairscumslowing > 1 ? "s" : "");
+		return(0);
+	}
+
+	if (u.ux == sstairs.sx && u.uy == sstairs.sy && at_dgn_entrance("Mainframe") && !u.gammacavescomplete) {
+		pline("The Mainframe cannot be entered as long as you didn't make it to the bottom of the Gamma Caves yet.");
 		return(0);
 	}
 
@@ -1817,6 +1827,47 @@ boolean at_stairs, falling, portal;
 		}
 		mklev();
 		new = TRUE;	/* made the level */
+
+		if (In_illusorycastle(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* glass golem */
+			(void) makemon(&mons[PM_MOTHERFUCKER_GLASS_GOLEM], 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+		}
+
+		if (In_angmar(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* witch king */
+			(void) makemon(&mons[PM_THE_WITCH_KING_OF_ANGMAR], 0, 0, NO_MM_FLAGS);
+		}
+
+		if (In_swimmingpool(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* jewelry and stuff */
+			pline("Your %s tingles and you smell the presence of treasure hidden inside the water tunnels.", body_part(NOSE));
+		}
+
+		if (In_mainframe(&u.uz) && (dunlev(&u.uz) == 1) ) {
+			(void) makemon(&mons[PM_BOFH], 0, 0, NO_MM_FLAGS);
+		}
 
 		if (u.gottenbones) { /* evil patch idea by jonadab - spawn monsters if a bones file loads */
 
@@ -3519,6 +3570,256 @@ rerollchaloc:
 
 		}
 
+		if (In_netherrealm(&u.uz)) {
+
+		switch (rnd(4)) {
+
+			case 1:
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			randmnst = (rn2(187) + 1);
+			randmnsx = (rn2(100) + 1);
+			if (rn2(2)) {
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+			} else {
+			      cx = 0;
+			      cy = 0;
+			}
+
+			for (i = 0; i < randsp; i++) {
+			/* This function will fill the map with a random amount of monsters of one class. --Amy */
+
+			if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			if (randmnst < 6)
+		 	    (void) makemon(mkclass(S_ANT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 9)
+		 	    (void) makemon(mkclass(S_BLOB,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 11)
+		 	    (void) makemon(mkclass(S_COCKATRICE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 15)
+		 	    (void) makemon(mkclass(S_DOG,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 18)
+		 	    (void) makemon(mkclass(S_EYE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 22)
+		 	    (void) makemon(mkclass(S_FELINE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 24)
+		 	    (void) makemon(mkclass(S_GREMLIN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 29)
+		 	    (void) makemon(mkclass(S_HUMANOID,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 33)
+		 	    (void) makemon(mkclass(S_IMP,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 36)
+		 	    (void) makemon(mkclass(S_JELLY,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 41)
+		 	    (void) makemon(mkclass(S_KOBOLD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 44)
+		 	    (void) makemon(mkclass(S_LEPRECHAUN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 47)
+		 	    (void) makemon(mkclass(S_MIMIC,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 50)
+		 	    (void) makemon(mkclass(S_NYMPH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 54)
+		 	    (void) makemon(mkclass(S_ORC,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 55)
+		 	    (void) makemon(mkclass(S_PIERCER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 58)
+		 	    (void) makemon(mkclass(S_QUADRUPED,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 62)
+		 	    (void) makemon(mkclass(S_RODENT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 65)
+		 	    (void) makemon(mkclass(S_SPIDER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 66)
+		 	    (void) makemon(mkclass(S_TRAPPER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 69)
+		 	    (void) makemon(mkclass(S_UNICORN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 71)
+		 	    (void) makemon(mkclass(S_VORTEX,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 73)
+		 	    (void) makemon(mkclass(S_WORM,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 75)
+		 	    (void) makemon(mkclass(S_XAN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 76)
+		 	    (void) makemon(mkclass(S_LIGHT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 77)
+		 	    (void) makemon(mkclass(S_ZOUTHERN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 78)
+		 	    (void) makemon(mkclass(S_ANGEL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 81)
+		 	    (void) makemon(mkclass(S_BAT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 83)
+		 	    (void) makemon(mkclass(S_CENTAUR,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 86)
+		 	    (void) makemon(mkclass(S_DRAGON,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 89)
+		 	    (void) makemon(mkclass(S_ELEMENTAL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 94)
+		 	    (void) makemon(mkclass(S_FUNGUS,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 99)
+		 	    (void) makemon(mkclass(S_GNOME,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 102)
+		 	    (void) makemon(mkclass(S_GIANT,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 103)
+		 	    (void) makemon(mkclass(S_JABBERWOCK,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 104)
+		 	    (void) makemon(mkclass(S_KOP,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 105)
+		 	    (void) makemon(mkclass(S_LICH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 108)
+		 	    (void) makemon(mkclass(S_MUMMY,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 110)
+		 	    (void) makemon(mkclass(S_NAGA,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 113)
+		 	    (void) makemon(mkclass(S_OGRE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 115)
+		 	    (void) makemon(mkclass(S_PUDDING,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 116)
+		 	    (void) makemon(mkclass(S_QUANTMECH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 118)
+		 	    (void) makemon(mkclass(S_RUSTMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 121)
+		 	    (void) makemon(mkclass(S_SNAKE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 123)
+		 	    (void) makemon(mkclass(S_TROLL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 124)
+		 	    (void) makemon(mkclass(S_UMBER,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 125)
+		 	    (void) makemon(mkclass(S_VAMPIRE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 127)
+		 	    (void) makemon(mkclass(S_WRAITH,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 128)
+		 	    (void) makemon(mkclass(S_XORN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 130)
+		 	    (void) makemon(mkclass(S_YETI,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 135)
+		 	    (void) makemon(mkclass(S_ZOMBIE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 145)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 147)
+		 	    (void) makemon(mkclass(S_GHOST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 149)
+		 	    (void) makemon(mkclass(S_GOLEM,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 152)
+		 	    (void) makemon(mkclass(S_DEMON,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 155)
+		 	    (void) makemon(mkclass(S_EEL,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 160)
+		 	    (void) makemon(mkclass(S_LIZARD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 162)
+		 	    (void) makemon(mkclass(S_BAD_FOOD,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 165)
+		 	    (void) makemon(mkclass(S_BAD_COINS,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 166) {
+				if (randmnsx < 96)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+				else
+		 	    (void) makemon(mkclass(S_NEMESE,0), cx, cy, MM_ADJACENTOK);
+				}
+			else if (randmnst < 171)
+		 	    (void) makemon(mkclass(S_GRUE,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 176)
+		 	    (void) makemon(mkclass(S_WALLMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 180)
+		 	    (void) makemon(mkclass(S_RUBMONST,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 181) {
+				if (randmnsx < 99)
+		 	    (void) makemon(mkclass(S_HUMAN,0), cx, cy, MM_ADJACENTOK);
+				else
+		 	    (void) makemon(mkclass(S_ARCHFIEND,0), cx, cy, MM_ADJACENTOK);
+				}
+			else if (randmnst < 186)
+		 	    (void) makemon(mkclass(S_TURRET,0), cx, cy, MM_ADJACENTOK);
+			else if (randmnst < 187)
+		 	    (void) makemon(mkclass(S_FLYFISH,0), cx, cy, MM_ADJACENTOK);
+			else
+		 	    (void) makemon((struct permonst *)0, cx, cy, MM_ADJACENTOK);
+
+			}
+
+			break;
+
+			case 2:
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			randmonstforspawn = rndmonst();
+			if (rn2(2)) {
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+			} else {
+			      cx = 0;
+			      cy = 0;
+			}
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(randmonstforspawn, cx, cy, MM_ADJACENTOK);
+			}
+
+			break;
+
+			case 3:
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			monstercolor = rnd(15);
+			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
+			if (rn2(2)) {
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+			} else {
+			      cx = 0;
+			      cy = 0;
+			}
+
+			for (i = 0; i < randsp; i++) {
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(colormon(monstercolor), cx, cy, MM_ADJACENTOK);
+			}
+
+			break;
+
+			case 4:
+
+			randsp = (rn2(14) + 2);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			monstercolor = rnd(343);
+			if (rn2(2)) {
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+			} else {
+			      cx = 0;
+			      cy = 0;
+			}
+
+			for (i = 0; i < randsp; i++) {
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(monstercolor), cx, cy, MM_ADJACENTOK);
+			}
+
+			break;
+
+		} /* switch */
+
+		} /* in nether realm */
 
 		/* some levels are populated with a few undead player monsters --Amy */
 		if (on_level(&u.uz, &earth_level))

@@ -4448,6 +4448,18 @@ newbossX:
 			}
 		}
 
+		if (In_sewerplant(&u.uz) && !u.sewerplantcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
+			u.sewerplantcomplete = 1;
+			tele();
+			pline("Well done, you've reached the bottom of the Sewer Plant! The entrance to the Gamma Caves is now open.");
+		}
+
+		if (In_gammacaves(&u.uz) && !u.gammacavescomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
+			u.gammacavescomplete = 1;
+			tele();
+			pline("Well done, you've reached the bottom of the Gamma Caves! The entrance to the Mainframe is now open.");
+		}
+
 		/* Imbuing the Bell of Opening must be done before any of the invocation tools work
 		 * it will spawn a bunch of quest monsters around the entrance, forcing you to fight your way back out --Amy */
 
@@ -4576,53 +4588,75 @@ newbossX:
 
 		if (Blinded < 0) {
 			pline("Fixing a bug that gave you a negative blindness counter...");
+			Blinded = 1;
 			u.ucreamed = 0;
 			make_blinded(0L,TRUE);
 		}
 
-		if (Stunned < 0) {
+		if (HStun < 0) {
 			pline("Fixing a bug that gave you a negative stun counter...");
+			HStun = 1;
 			make_stunned(0L,TRUE);
 		}
 
-		if (Confusion < 0) {
+		if (HConfusion < 0) {
 			pline("Fixing a bug that gave you a negative confusion counter...");
+			HConfusion = 1;
 			make_confused(0L,TRUE);
 		}
 
-		if (Numbed < 0) {
+		if (HNumbed < 0) {
 			pline("Fixing a bug that gave you a negative numbness counter...");
+			HNumbed = 1;
 			make_numbed(0L,TRUE);
 		}
 
-		if (Feared < 0) {
+		if (HFeared < 0) {
 			pline("Fixing a bug that gave you a negative fear counter...");
+			HFeared = 1;
 			make_feared(0L,TRUE);
 		}
 
-		if (Frozen < 0) {
+		if (HFrozen < 0) {
 			pline("Fixing a bug that gave you a negative freeze counter...");
+			HFrozen = 1;
 			make_frozen(0L,TRUE);
 		}
 
-		if (Burned < 0) {
+		if (HBurned < 0) {
 			pline("Fixing a bug that gave you a negative burn counter...");
+			HBurned = 1;
 			make_burned(0L,TRUE);
 		}
 
-		if (Dimmed < 0) {
+		if (HDimmed < 0) {
 			pline("Fixing a bug that gave you a negative dimness counter...");
+			HDimmed = 1;
 			make_dimmed(0L,TRUE);
 		}
 
-		if (Hallucination < 0) {
+		if (HHallucination < 0) {
 			pline("Fixing a bug that gave you a negative hallucination counter...");
+			HHallucination = 1;
 			make_hallucinated(0L,TRUE,0L);
 		}
 
 		if (Wounded_legs && ((EWounded_legs & LEFT_SIDE) || (EWounded_legs & RIGHT_SIDE)) && (HWounded_legs < 1) ) {
 			pline("Fixing a bug that would prevent your legs from healing...");
 			heal_legs();
+		}
+
+		if (In_netherrealm(&u.uz) && !u.netherrealmcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
+			u.netherrealmcomplete = TRUE;
+			create_critters(rnd(25), (struct permonst *)0);
+		      (void) safe_teleds(FALSE);
+			pline("You've reached the bottom of the Nether Realm. Tiksrvzllat has noticed this, and was spawned on the bottom of the Void. Defeat her and you'll get a very useful reward!");
+		}
+
+		if (In_voiddungeon(&u.uz) && u.netherrealmcomplete && !u.tiksrvzllatspawn && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
+			u.tiksrvzllatspawn = TRUE;
+			(void) makemon(&mons[PM_TIKSRVZLLAT], 0, 0, NO_MM_FLAGS);
+			pline("Get ready for the fight with Tiksrvzllat! Defeat her and you'll get a very useful reward!");
 		}
 
 		if (FemaleTrapFemmy && !rn2(500) ) {
@@ -4659,7 +4693,7 @@ newbossZ:
 
 		/* the automatic relocation on certain dungeons can make the game almost unwinnable if you end up in a place
 		 * surrounded by undiggable walls... so those places give relocatitis now :P --Amy */
-		if ((In_bellcaves(&u.uz) || In_deadground(&u.uz) || In_ordered(&u.uz) || In_forging(&u.uz)) && !rn2(1000)) {
+		if ((In_bellcaves(&u.uz) || In_deadground(&u.uz) || In_ordered(&u.uz) || In_forging(&u.uz) || (In_netherrealm(&u.uz) && !u.netherrealmcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz))) ) && !rn2(1000)) {
 
 			pline("Suddenly, a void jumpgate appears and transports you away!");
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

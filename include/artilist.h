@@ -5763,10 +5763,35 @@ A("The Gauntlet Key", SKELETON_KEY,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	0,      A_LAWFUL, NON_PM, NON_PM, 1000L ),
 
+/* reward for defeating the elder priest */
 A("Motherfucker Trophy", ROBE, /* +5 increase damage and accuracy, 20% better spellcasting chances, fast skill training */
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT), 0, 0,
 	NO_ATTK,        DFNS(AD_MAGM),        NO_CARY,
 	0,      A_NONE, NON_PM, NON_PM, 50000L ),
+
+/* reward for finishing the Illusory Castle */
+A("The Helm of Knowledge", HELM_OF_TELEPATHY,
+	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,
+	IDENTIFY,	A_NONE, NON_PM, NON_PM, 10000L),
+
+/* artifact on the special level in the Illusory Castle */
+A("Boots of the Machine", SPEED_BOOTS, /* aggravate monster, confusion resistance, displays all golems and unliving monsters */
+	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,
+	0,	A_NONE, NON_PM, NON_PM, 10000L),
+
+/* artifact on the special level in the Deep Mines */
+A("The Arkenstone of Thrain", LUCKSTONE, /* invokes for perilous identify - curses the stone and gives 10 bad effects */
+	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,
+	IDENTIFY,	A_NONE, NON_PM, NON_PM, 10000L),
+
+/* reward for finishing the Mainframe */
+A("Bizarro Orgasmatron", HITCHHIKER_S_GUIDE_TO_THE_GALA,
+	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,
+	CREATE_PORTAL,	A_NONE, NON_PM, NON_PM, 10000L),
 
 
 /*** The artifacts for the quest dungeon, all self-willed ***/

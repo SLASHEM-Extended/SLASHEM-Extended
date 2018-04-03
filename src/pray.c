@@ -830,6 +830,7 @@ gcrownu()
     HShock_resistance |= FROMOUTSIDE;
     HSleep_resistance |= FROMOUTSIDE;
     HPoison_resistance |= FROMOUTSIDE;
+    u.weapon_slots += 5;
     godvoice(u.ualign.type, (char *)0);
 
     obj = ok_wep(uwep) ? uwep : 0;

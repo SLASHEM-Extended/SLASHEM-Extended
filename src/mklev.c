@@ -11053,6 +11053,9 @@ mineralize()
 		if ((levl[x][y].typ == FARMLAND && !rn2((ishaxor && !issuxxor) ? 40 : (issuxxor && !ishaxor) ? 160 : 80)) )
 	    	    makemon(mkclass(S_QUADRUPED,0), x, y, MM_ADJACENTOK);
 
+		if (levl[x][y].typ == WATERTUNNEL && In_swimmingpool(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) && !rn2(15) )
+		    mkobj_at(!rn2(100) ? IMPLANT_CLASS : !rn2(4) ? AMULET_CLASS : RING_CLASS, x, y, FALSE);
+
 		if ((levl[x][y].typ == MOUNTAIN && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
 	    	    makemon(specialtensmon(61), x, y, MM_ADJACENTOK); /* flying */
 		if ((levl[x][y].typ == WATERTUNNEL && !rn2((ishaxor && !issuxxor) ? 5 : (issuxxor && !ishaxor) ? 20 : 10)) )
@@ -11379,6 +11382,9 @@ mineralize()
 
 		if ((levl[x][y].typ == FARMLAND && !rn2((ishaxor && !issuxxor) ? 40 : (issuxxor && !ishaxor) ? 160 : 80)) )
 	    	    makerandomtrap_at(x, y);
+
+		if (levl[x][y].typ == WATERTUNNEL && In_swimmingpool(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) && !rn2(15) )
+		    mkobj_at(!rn2(100) ? IMPLANT_CLASS : !rn2(4) ? AMULET_CLASS : RING_CLASS, x, y, FALSE);
 
 		if ((levl[x][y].typ == MOUNTAIN && !rn2((ishaxor && !issuxxor) ? 25 : (issuxxor && !ishaxor) ? 100 : 50)) )
 	    	    makerandomtrap_at(x, y);

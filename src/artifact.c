@@ -2994,6 +2994,13 @@ arti_invoke(obj)
 		pseudo->quan = 42L;		/* do not let useup get it */
 		(void) seffects(pseudo);
 		obfree(pseudo, (struct obj *) 0);
+
+		if (obj && obj->oartifact == ART_ARKENSTONE_OF_THRAIN) {
+			curse(obj);
+			pline("The power of the Arkenstone is uncontrollable, but you knew that.");
+			badeffect(); badeffect(); badeffect(); badeffect(); badeffect(); badeffect(); badeffect(); badeffect(); badeffect(); badeffect();
+		}
+
 		break;
 	    }
 	case HEALING: {

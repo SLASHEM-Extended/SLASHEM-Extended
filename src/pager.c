@@ -287,6 +287,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mtmp->data->mlet == S_ANT || mtmp->data->mlet == S_XAN) )
 		    ways_seen++;
+		if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mtmp->data->mlet == S_GOLEM || nonliving(mtmp->data) ) )
+		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_FD_DETH && (mtmp->data->mlet == S_DOG || mtmp->data->mlet == S_FELINE) )
 		    ways_seen++;
 		if (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mtmp->data->mlet == S_NYMPH) )
@@ -446,6 +448,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mtmp->data->mlet == S_ANT || mtmp->data->mlet == S_XAN) ) {
 			strcat(monbuf, "bugnose");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mtmp->data->mlet == S_GOLEM || nonliving(mtmp->data) ) ) {
+			strcat(monbuf, "machinery vision");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmf && uarmf->oartifact == ART_FD_DETH && (mtmp->data->mlet == S_DOG || mtmp->data->mlet == S_FELINE) ) {
@@ -13824,6 +13830,24 @@ static NEARDATA const char * const fake_plines[] = {
 	"The xnethack author is planning to make healers useless, by (nonsensically) making every single role use INT as a spellcasting stat. This is pure actionism, changing things for the sake of changing them, rather than changing them because you actually want the effects of those changes in the game. But at least he didn't trash the samurai instead.",
 	"Wow, FIQhack trashes things that should be literally impossible to trash. Such as the protection spell. *Everyone* except the monk *always* wears body armor, specifically dragon scale mail. Why would you throw away an item slot that can give crucially important reflection or magic resistance, just to get a few useless points of AC that might not even be as many as the +5 DSM would give you???",
 	"This is the evil variant. Your skill point is lost forever.",
+	"The power of the Arkenstone is uncontrollable, but you knew that.",
+	"O great wise ass, how may I help defend us all against wicked adventurers who quest for the sacred Amulet?",
+	"You are in a mostly safe place, don't worry.",
+	"Game too hard? Try the new easy mode.",
+	"You hear complaints about developers pandering to casuals.",
+	"You hear things way too scary and hard for this mode.",
+	"You hear discussions about challenge.",
+	"You hear suggestions to try harder.",
+	"You hear AmyBSOD state that FIQhack is silly with its silly easy mode.",
+	"You feel sensitive to hardships.",
+	"You feel fit to take on any challenge!",
+	"You feel like a king!",
+	"Your sense of direction is perfected.",
+	"You feel extremly sensitive to difficulty.",
+	"You feel bored over the lack of challenge...",
+	"You die from lack of challenge!",
+	"A challenger appears! This should make things more interesting.",
+	"Disintegration resistance is kinda useless in FIQhack and Nethack Fourk, unless you plan on pissing off your god real bad. Because FIQ and jonadab want to piss *me* off real bad. The resistance has to work, dammit.",
 
 };
 

@@ -17851,6 +17851,7 @@ int type;
 		case PM_TIN_GOLEM: return 40;
 		case PM_RESIN_GOLEM: return 40;
 		case PM_PLASTIC_GOLEM: return 60;
+		case PM_MOTHERFUCKER_GLASS_GOLEM: return 1000;
 		default: return (mons[type].mlevel * 10); /* failsafe so undefined golems don't start with zero hp! --Amy */
 	}
 }

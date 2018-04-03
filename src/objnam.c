@@ -8275,6 +8275,10 @@ typfnd:
 	        otmp->oartifact == ART_EYE_OF_THE_BEHOLDER ||
 	        otmp->oartifact == ART_NIGHTHORN ||
 	        otmp->oartifact == ART_MOTHERFUCKER_TROPHY ||
+	        otmp->oartifact == ART_HELM_OF_KNOWLEDGE ||
+	        otmp->oartifact == ART_BOOTS_OF_THE_MACHINE ||
+	        otmp->oartifact == ART_ARKENSTONE_OF_THRAIN ||
+	        otmp->oartifact == ART_BIZARRO_ORGASMATRON ||
 	        otmp->oartifact == ART_THIEFBANE)) ||
 # ifdef NOARTIFACTWISH
 /* Wishing for a "weak" artifact is easier than for a stronger one */
@@ -8307,7 +8311,7 @@ typfnd:
 	     (otmp->oartifact && nartifact_exist() == 12 && !rn2(3) ) ||
 /* there should be a chance of an artifact wish failing even if none have been created yet --Amy 
  * but since there are so many more artifacts generated now, we increase the failure chance more slowly */
-	     (otmp->oartifact && rn2(nartifact_exist()) > 8) ||
+	     (otmp->oartifact && (nartifact_exist() > 12) && rn2(nartifact_exist()) > 8) ||
 		 (Role_if(PM_PIRATE) && otmp->oartifact == ART_REAVER))
 #ifdef WIZARD
 	    && !wizard

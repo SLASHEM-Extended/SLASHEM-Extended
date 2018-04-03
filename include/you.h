@@ -588,6 +588,14 @@ struct you {
 	int luckstoneget;
 	int sokobanfinished;
 	int medusaremoved;
+	int glassgolemdown;
+	int tiksrvzllatspawn;
+	int tiksrvzllatdown;
+	int netherrealmcomplete;
+	int angmarcomplete;
+	int sewerplantcomplete;
+	int gammacavescomplete;
+	int bofhremoved;
 
 	int musableremovechance;	/* extra chance for musable items to get removed */
 	int equipmentremovechance;

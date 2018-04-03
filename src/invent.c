@@ -15099,6 +15099,14 @@ struct obj *obj;
 					pline("Artifact specs: warning and reflection when wielded, +5 to-hit and +10 damage, tracer quest artifact."); break;
 				case ART_MOTHERFUCKER_TROPHY:
 					pline("Artifact specs: reflection, magic resistance, +5 increase damage and accuracy, 20%% better spellcasting chances and increased skill training when worn. Congratulations. You beat the motherfucking ELDER PRIEST to get this artifact, and he's the most dangerous monster that exists in any NetHack variant!!! Well done, you truly are a master at this game!");
+				case ART_HELM_OF_KNOWLEDGE:
+					pline("Artifact specs: can be invoked for identify. Congratulations, you finished the Illusory Castle boss!"); break;
+				case ART_BOOTS_OF_THE_MACHINE:
+					pline("Artifact specs: aggravate monster and confusion resistance when worn and displays all golems and unliving monsters on the level. This artifact is found on the special level 'Machine' in the Illusory Castle."); break;
+				case ART_ARKENSTONE_OF_THRAIN:
+					pline("Artifact specs: can be invoked for perilous identify. This artifact is found on the special level 'Orc Barracks' in the Deep Mines."); break;
+				case ART_BIZARRO_ORGASMATRON:
+					pline("Artifact specs: can be invoked for branchporting. Congratulations, you finished the Mainframe boss!"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

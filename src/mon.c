@@ -18,6 +18,119 @@
 
 #include <ctype.h>
 
+#define PN_POLEARMS		(-1)
+#define PN_SABER		(-2)
+#define PN_HAMMER		(-3)
+#define PN_WHIP			(-4)
+#define PN_PADDLE		(-5)
+#define PN_FIREARMS		(-6)
+#define PN_ATTACK_SPELL		(-7)
+#define PN_HEALING_SPELL	(-8)
+#define PN_DIVINATION_SPELL	(-9)
+#define PN_ENCHANTMENT_SPELL	(-10)
+#define PN_PROTECTION_SPELL	(-11)
+#define PN_BODY_SPELL		(-12)
+#define PN_OCCULT_SPELL		(-13)
+#define PN_ELEMENTAL_SPELL		(-14)
+#define PN_CHAOS_SPELL		(-15)
+#define PN_MATTER_SPELL		(-16)
+#define PN_BARE_HANDED		(-17)
+#define PN_HIGH_HEELS		(-18)
+#define PN_GENERAL_COMBAT		(-19)
+#define PN_SHIELD		(-20)
+#define PN_BODY_ARMOR		(-21)
+#define PN_TWO_HANDED_WEAPON		(-22)
+#define PN_POLYMORPHING		(-23)
+#define PN_DEVICES		(-24)
+#define PN_SEARCHING		(-25)
+#define PN_SPIRITUALITY		(-26)
+#define PN_PETKEEPING		(-27)
+#define PN_MISSILE_WEAPONS		(-28)
+#define PN_TECHNIQUES		(-29)
+#define PN_IMPLANTS		(-30)
+#define PN_MARTIAL_ARTS		(-31)
+#define PN_RIDING		(-32)
+#define PN_TWO_WEAPONS		(-33)
+#define PN_LIGHTSABER		(-34)
+
+#ifndef OVLB
+
+STATIC_DCL NEARDATA const short skill_names_indices[];
+STATIC_DCL NEARDATA const char *odd_skill_names[];
+
+#else	/* OVLB */
+
+/* KMH, balance patch -- updated */
+STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
+	0,                DAGGER,         KNIFE,        AXE,
+	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
+	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
+	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
+	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
+	JAVELIN,          TRIDENT,        LANCE,        BOW,
+	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
+	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
+	PN_LIGHTSABER,
+	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
+	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
+	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
+	PN_OCCULT_SPELL,
+	PN_ELEMENTAL_SPELL,
+	PN_CHAOS_SPELL,
+	PN_MATTER_SPELL,
+	PN_BARE_HANDED,	PN_HIGH_HEELS,
+	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
+	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
+	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_MARTIAL_ARTS, 
+	PN_TWO_WEAPONS,
+	PN_RIDING,
+};
+
+STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
+    "no skill",
+    "polearms",
+    "saber",
+    "hammer",
+    "whip",
+    "paddle",
+    "firearms",
+    "attack spells",
+    "healing spells",
+    "divination spells",
+    "enchantment spells",
+    "protection spells",
+    "body spells",
+    "occult spells",
+    "elemental spells",
+    "chaos spells",
+    "matter spells",
+    "bare-handed combat",
+    "high heels",
+    "general combat",
+    "shield",
+    "body armor",
+    "two-handed weapons",
+    "polymorphing",
+    "devices",
+    "searching",
+    "spirituality",
+    "petkeeping",
+    "missile weapons",
+    "techniques",
+    "implants",
+    "martial arts",
+    "riding",
+    "two-weapon combat",
+    "lightsaber"
+};
+
+#endif	/* OVLB */
+
+#define P_NAME(type) (skill_names_indices[type] > 0 ? \
+		      OBJ_NAME(objects[skill_names_indices[type]]) : \
+			odd_skill_names[-skill_names_indices[type]])
+
 void display_monster(XCHAR_P,XCHAR_P,struct monst *,int,XCHAR_P);
  
 STATIC_DCL boolean restrap(struct monst *);
@@ -2886,6 +2999,7 @@ register struct monst *mtmp;
 	int tryct = 0;
 	int x, y;
 	int rtrap;
+	register struct obj *trophy;
 
 	/* WAC just in case caller forgot to...*/
 	if (mtmp->mhp) mtmp->mhp = -1;
@@ -3274,6 +3388,258 @@ register struct monst *mtmp;
 		u.uhpmax += rnd(20);
 		u.uenmax += rnd(20);
 		if (Upolyd) u.mhmax += rnd(20);
+	}
+
+      if(mtmp->data == &mons[PM_MOTHERFUCKER_GLASS_GOLEM] && !u.glassgolemdown) {
+		u.glassgolemdown = 1;
+		pline("Congratulations, the glass golem is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
+		trophy = mksobj(HELM_OF_TELEPATHY, FALSE, FALSE);
+		if (trophy) {
+		    trophy = oname(trophy, artiname(ART_HELM_OF_KNOWLEDGE));
+		    dropy(trophy);
+		}
+
+		if (!tech_known(T_SECURE_IDENTIFY)) {
+		    	learntech(T_SECURE_IDENTIFY, FROMOUTSIDE, 1);
+		    	You("also learn the secure identify technique, and it can be used twice as often for the remaining game.");
+		} else pline("Also, the secure identify technique can now be used twice as often for the remaining game.");
+
+
+	}
+
+      if(mtmp->data == &mons[PM_THE_WITCH_KING_OF_ANGMAR] && !u.angmarcomplete) {
+		u.angmarcomplete = 1;
+		pline("Congratulations, the witch-king is defeated! As a reward, you gain 5 extra skill slots!");
+		u.weapon_slots += 5;
+	}
+
+      if(mtmp->data == &mons[PM_BOFH] && !u.bofhremoved) {
+		u.bofhremoved = 1;
+		pline("Congratulations, the Bastard Operator From Hell is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
+		trophy = mksobj(HITCHHIKER_S_GUIDE_TO_THE_GALA, FALSE, FALSE);
+		if (trophy) {
+		    trophy = oname(trophy, artiname(ART_BIZARRO_ORGASMATRON));
+		    dropy(trophy);
+		}
+
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy));
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_SUPREME_MASTER;
+			}
+			discover_artifact(trophy->oartifact);
+			if (!u.ugifts) u.ugifts = 1;
+		}
+
+		int skillimprove = rnd(P_NUM_SKILLS);
+
+		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(skillimprove);
+			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+			unrestrict_weapon_skill(skillimprove);
+			P_MAX_SKILL(skillimprove) = P_BASIC;
+			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+		} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+			P_MAX_SKILL(skillimprove) = P_SKILLED;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+			P_MAX_SKILL(skillimprove) = P_EXPERT;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+			P_MAX_SKILL(skillimprove) = P_MASTER;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		}
+
+		skillimprove = rnd(P_NUM_SKILLS);
+
+		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(skillimprove);
+			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+			unrestrict_weapon_skill(skillimprove);
+			P_MAX_SKILL(skillimprove) = P_BASIC;
+			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+		} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+			P_MAX_SKILL(skillimprove) = P_SKILLED;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+			P_MAX_SKILL(skillimprove) = P_EXPERT;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+			P_MAX_SKILL(skillimprove) = P_MASTER;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		}
+
+		skillimprove = rnd(P_NUM_SKILLS);
+
+		if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(skillimprove);
+			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+		} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+			unrestrict_weapon_skill(skillimprove);
+			P_MAX_SKILL(skillimprove) = P_BASIC;
+			pline("You can now learn the %s skill.", P_NAME(skillimprove));
+		} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+			P_MAX_SKILL(skillimprove) = P_SKILLED;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+			P_MAX_SKILL(skillimprove) = P_EXPERT;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+			P_MAX_SKILL(skillimprove) = P_MASTER;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+			P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+			pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
+		}
+
+	}
+
+      if(mtmp->data == &mons[PM_TIKSRVZLLAT] && !u.tiksrvzllatdown) {
+		u.tiksrvzllatdown = 1;
+		pline("Congratulations, Tiksrvzllat is defeated! Your reward was dropped at your %s. Also, you gain permanent bonuses to your chance to hit, damage and spellcasting success chances.", makeplural(body_part(FOOT)));
+
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy));
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_SUPREME_MASTER;
+			}
+			discover_artifact(trophy->oartifact);
+			if (!u.ugifts) u.ugifts = 1;
+		}
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy));
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_SUPREME_MASTER;
+			}
+			discover_artifact(trophy->oartifact);
+			if (!u.ugifts) u.ugifts = 1;
+		}
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy));
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_SUPREME_MASTER;
+			}
+			discover_artifact(trophy->oartifact);
+			if (!u.ugifts) u.ugifts = 1;
+		}
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy));
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_SUPREME_MASTER;
+			}
+			discover_artifact(trophy->oartifact);
+			if (!u.ugifts) u.ugifts = 1;
+		}
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		if (trophy) {
+			dropy(trophy);
+			if (P_MAX_SKILL(get_obj_skill(trophy)) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy));
+			} else if (P_MAX_SKILL(get_obj_skill(trophy)) == P_UNSKILLED) {
+				unrestrict_weapon_skill(get_obj_skill(trophy));
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_BASIC;
+			} else if (rn2(2) && P_MAX_SKILL(get_obj_skill(trophy)) == P_BASIC) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_SKILLED;
+			} else if (!rn2(4) && P_MAX_SKILL(get_obj_skill(trophy)) == P_SKILLED) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_EXPERT;
+			} else if (!rn2(10) && P_MAX_SKILL(get_obj_skill(trophy)) == P_EXPERT) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_MASTER;
+			} else if (!rn2(100) && P_MAX_SKILL(get_obj_skill(trophy)) == P_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_GRAND_MASTER;
+			} else if (!rn2(200) && P_MAX_SKILL(get_obj_skill(trophy)) == P_GRAND_MASTER) {
+				P_MAX_SKILL(get_obj_skill(trophy)) = P_SUPREME_MASTER;
+			}
+			discover_artifact(trophy->oartifact);
+			if (!u.ugifts) u.ugifts = 1;
+		}
+
 	}
 
 #ifdef RECORD_ACHIEVE
