@@ -4355,6 +4355,7 @@ static const char *epitaphs[] = {
 	"hopefully the dnethack elder priest chokes over some elderberries and dies",
 	"You gaze upon the ancient bones of Glen Wilkerson.",
 	"I forgot which wards my dnethack character knew, and the only way to find out which ones you do know seems to be to try to use one. I only wanted to know which ones my character knows, I didn't actually want to engrave one. But I was standing on an altar. This stupid variant better add a 'show known wards' command soon.",
+	"Don't you wish you prayed instead.",
 
 };
 

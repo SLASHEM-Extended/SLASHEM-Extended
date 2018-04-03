@@ -13822,6 +13822,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Lukas's bodyguard'. It reads: 'The shield exists to protect Lukas!'",
 	"Incoming message for Player 1. The message is from 'Lukas's bodyguard'. It reads: 'I have to warn Lukas! You're about to defeat me!'",
 	"The xnethack author is planning to make healers useless, by (nonsensically) making every single role use INT as a spellcasting stat. This is pure actionism, changing things for the sake of changing them, rather than changing them because you actually want the effects of those changes in the game. But at least he didn't trash the samurai instead.",
+	"Wow, FIQhack trashes things that should be literally impossible to trash. Such as the protection spell. *Everyone* except the monk *always* wears body armor, specifically dragon scale mail. Why would you throw away an item slot that can give crucially important reflection or magic resistance, just to get a few useless points of AC that might not even be as many as the +5 DSM would give you???",
+
 };
 
 const char *
