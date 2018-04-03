@@ -3648,7 +3648,7 @@ secureidchoice:
 			case 8: 
 			    MemoryLoss |= FROMOUTSIDE; break;
 			case 9: 
-			    DisplayLoss |= FROMOUTSIDE; break;
+			    InventoryLoss |= FROMOUTSIDE; break;
 			case 10: 
 			    BlackNgWalls |= FROMOUTSIDE; break;
 			case 11: 

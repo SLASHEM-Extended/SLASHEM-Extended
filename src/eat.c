@@ -4595,6 +4595,396 @@ eatspecial() /* called after eating non-food */
 		}
 	}
 
+	if (otmp->otyp == HEALTHSTONE) {
+		if (Upolyd) {
+			u.mh++;
+			u.mhmax++;
+		} else {
+			u.uhp++;
+			u.uhpmax++;
+		}
+		You_feel("vitalized.");
+		flags.botl = 1;
+	}
+
+	if (otmp->otyp == MANASTONE) {
+		u.uen++;
+		u.uenmax++;
+		You_feel("a mild buzz.");
+		flags.botl = 1;
+	}
+
+	if (otmp->otyp == STONE_OF_MAGIC_RESISTANCE && !rn2(10)) {
+		if(!(HAntimagic & FROMOUTSIDE)) {
+			You_feel("magic-protected.");
+			HAntimagic |= FROMOUTSIDE;
+		}
+	}
+
+	if (otmp->otyp == SLEEPSTONE) {
+		if(HSleep_resistance & INTRINSIC) {
+			HSleep_resistance &= ~INTRINSIC;
+		} 
+		if(HSleep_resistance & TIMEOUT) {
+			HSleep_resistance &= ~TIMEOUT;
+		} 
+		You_feel("like you could use a nap.");
+		fall_asleep(-rnd(10), TRUE);
+
+	}
+
+	if (otmp->otyp == LOADBOULDER || otmp->otyp == LOADSTONE || otmp->otyp == STARLIGHTSTONE) {
+		You_feel("much heavier!");
+		IncreasedGravity += otmp->owt;
+	}
+
+	if (otmp->otyp >= RIGHT_MOUSE_BUTTON_STONE && otmp->otyp <= NASTY_STONE) {
+		/* you were stupid and ate a nasty gray stone, so now you have its effect intrinsically. No message. --Amy */
+
+		switch (otmp->otyp) {
+
+			case RIGHT_MOUSE_BUTTON_STONE:
+				    RMBLoss |= FROMOUTSIDE; break;
+ 			case DISPLAY_LOSS_STONE:
+				    DisplayLoss |= FROMOUTSIDE; break;
+ 			case SPELL_LOSS_STONE:
+				    SpellLoss |= FROMOUTSIDE; break;
+ 			case YELLOW_SPELL_STONE:
+				    YellowSpells |= FROMOUTSIDE; break;
+ 			case AUTO_DESTRUCT_STONE:
+				    AutoDestruct |= FROMOUTSIDE; break;
+ 			case MEMORY_LOSS_STONE:
+				    MemoryLoss |= FROMOUTSIDE; break;
+ 			case INVENTORY_LOSS_STONE:
+				    InventoryLoss |= FROMOUTSIDE; break;
+ 			case BLACKY_STONE:
+				    BlackNgWalls |= FROMOUTSIDE; break;
+ 			case MENU_BUG_STONE:
+				    MenuBug |= FROMOUTSIDE; break;
+ 			case SPEEDBUG_STONE:
+				    SpeedBug |= FROMOUTSIDE; break;
+ 			case SUPERSCROLLER_STONE:
+				    Superscroller |= FROMOUTSIDE; break;
+ 			case FREE_HAND_BUG_STONE:
+				    FreeHandLoss |= FROMOUTSIDE; break;
+ 			case UNIDENTIFY_STONE:
+				    Unidentify |= FROMOUTSIDE; break;
+ 			case STONE_OF_THIRST:
+				    Thirst |= FROMOUTSIDE; break;
+ 			case UNLUCKY_STONE:
+				    LuckLoss |= FROMOUTSIDE; break;
+ 			case SHADES_OF_GREY_STONE:
+				    ShadesOfGrey |= FROMOUTSIDE; break;
+ 			case STONE_OF_FAINTING:
+				    FaintActive |= FROMOUTSIDE; break;
+ 			case STONE_OF_CURSING:
+				    Itemcursing |= FROMOUTSIDE; break;
+ 			case STONE_OF_DIFFICULTY:
+				    DifficultyIncreased |= FROMOUTSIDE; break;
+ 			case DEAFNESS_STONE:
+				    Deafness |= FROMOUTSIDE; break;
+ 			case ANTIMAGIC_STONE:
+				    CasterProblem |= FROMOUTSIDE; break;
+ 			case WEAKNESS_STONE:
+				    WeaknessProblem |= FROMOUTSIDE; break;
+ 			case ROT_THIRTEEN_STONE:
+				    RotThirteen |= FROMOUTSIDE; break;
+ 			case BISHOP_STONE:
+				    BishopGridbug |= FROMOUTSIDE; break;
+ 			case CONFUSION_STONE:
+				    ConfusionProblem |= FROMOUTSIDE; break;
+ 			case DROPBUG_STONE:
+				    NoDropProblem |= FROMOUTSIDE; break;
+ 			case DSTW_STONE:
+				    DSTWProblem |= FROMOUTSIDE; break;
+ 			case STATUS_STONE:
+				    StatusTrapProblem |= FROMOUTSIDE; break;
+ 			case ALIGNMENT_STONE:
+				    AlignmentProblem |= FROMOUTSIDE; break;
+ 			case STAIRSTRAP_STONE:
+				    StairsProblem |= FROMOUTSIDE; break;
+			case UNINFORMATION_STONE:
+				    UninformationProblem |= FROMOUTSIDE; break;
+			case CAPTCHA_STONE:
+				    CaptchaProblem |= FROMOUTSIDE; break;
+			case FARLOOK_STONE:
+				    FarlookProblem |= FROMOUTSIDE; break;
+			case RESPAWN_STONE:
+				    RespawnProblem |= FROMOUTSIDE; break;
+			case AMNESIA_STONE:
+				    RecurringAmnesia |= FROMOUTSIDE; break;
+			case BIGSCRIPT_STONE:
+				    BigscriptEffect |= FROMOUTSIDE; break;
+			case BANK_STONE:
+				    BankTrapEffect |= FROMOUTSIDE; break;
+			case MAP_STONE:
+				    MapTrapEffect |= FROMOUTSIDE; break;
+			case TECHNIQUE_STONE:
+				    TechTrapEffect |= FROMOUTSIDE; break;
+			case DISENCHANTMENT_STONE:
+				    RecurringDisenchant |= FROMOUTSIDE; break;
+			case VERISIERT_STONE:
+				    verisiertEffect |= FROMOUTSIDE; break;
+			case CHAOS_TERRAIN_STONE:
+				    ChaosTerrain |= FROMOUTSIDE; break;
+			case MUTENESS_STONE:
+				    Muteness |= FROMOUTSIDE; break;
+			case ENGRAVING_STONE:
+				    EngravingDoesntWork |= FROMOUTSIDE; break;
+			case MAGIC_DEVICE_STONE:
+				    MagicDeviceEffect |= FROMOUTSIDE; break;
+			case BOOK_STONE:
+				    BookTrapEffect |= FROMOUTSIDE; break;
+			case LEVEL_STONE:
+				    LevelTrapEffect |= FROMOUTSIDE; break;
+			case QUIZ_STONE:
+				    QuizTrapEffect |= FROMOUTSIDE; break;
+			case STONE_OF_INTRINSIC_LOSS:
+				    IntrinsicLossProblem |= FROMOUTSIDE; break;
+			case BLOOD_LOSS_STONE:
+				    BloodLossProblem |= FROMOUTSIDE; break;
+			case BAD_EFFECT_STONE:
+				    BadEffectProblem |= FROMOUTSIDE; break;
+			case TRAP_CREATION_STONE:
+				    TrapCreationProblem |= FROMOUTSIDE; break;
+			case STONE_OF_VULNERABILITY:
+				    AutomaticVulnerabilitiy |= FROMOUTSIDE; break;
+			case ITEM_TELEPORTING_STONE:
+				    TeleportingItems |= FROMOUTSIDE; break;
+			case NASTY_STONE:
+				    NastinessProblem |= FROMOUTSIDE; break;
+			case METABOLIC_STONE:
+				    FastMetabolismEffect |= FROMOUTSIDE; break;
+			case STONE_OF_NO_RETURN:
+				    NoReturnEffect |= FROMOUTSIDE; break;
+			case EGOSTONE:
+				    AlwaysEgotypeMonsters |= FROMOUTSIDE; break;
+			case FAST_FORWARD_STONE:
+				    TimeGoesByFaster |= FROMOUTSIDE; break;
+			case ROTTEN_STONE:
+				    FoodIsAlwaysRotten |= FROMOUTSIDE; break;
+			case UNSKILLED_STONE:
+				    AllSkillsUnskilled |= FROMOUTSIDE; break;
+			case LOW_STAT_STONE:
+				    AllStatsAreLower |= FROMOUTSIDE; break;
+			case TRAINING_STONE:
+				    PlayerCannotTrainSkills |= FROMOUTSIDE; break;
+			case EXERCISE_STONE:
+				    PlayerCannotExerciseStats |= FROMOUTSIDE; break;
+			case TURN_LIMIT_STONE:
+				    TurnLimitation |= FROMOUTSIDE; break;
+			case WEAK_SIGHT_STONE:
+				    WeakSight |= FROMOUTSIDE; break;
+			case CHATTER_STONE:
+				    RandomMessages |= FROMOUTSIDE; break;
+ 			case NONSACRED_STONE:
+				    Desecration |= FROMOUTSIDE; break;
+ 			case STARVATION_STONE:
+				    StarvationEffect |= FROMOUTSIDE; break;
+ 			case DROPLESS_STONE:
+				    NoDropsEffect |= FROMOUTSIDE; break;
+ 			case LOW_EFFECT_STONE:
+				    LowEffects |= FROMOUTSIDE; break;
+ 			case INVISO_STONE:
+				    InvisibleTrapsEffect |= FROMOUTSIDE; break;
+ 			case GHOSTLY_STONE:
+				    GhostWorld |= FROMOUTSIDE; break;
+ 			case DEHYDRATING_STONE:
+				    Dehydration |= FROMOUTSIDE; break;
+ 			case STONE_OF_HATE:
+				    HateTrapEffect |= FROMOUTSIDE; break;
+ 			case DIRECTIONAL_SWAP_STONE:
+				    TotterTrapEffect |= FROMOUTSIDE; break;
+ 			case NONINTRINSICAL_STONE:
+				    Nonintrinsics |= FROMOUTSIDE; break;
+ 			case DROPCURSE_STONE:
+				    Dropcurses |= FROMOUTSIDE; break;
+ 			case STONE_OF_NAKED_STRIPPING:
+				    Nakedness |= FROMOUTSIDE; break;
+ 			case ANTILEVEL_STONE:
+				    Antileveling |= FROMOUTSIDE; break;
+ 			case STEALER_STONE:
+				    ItemStealingEffect |= FROMOUTSIDE; break;
+ 			case REBEL_STONE:
+				    Rebellions |= FROMOUTSIDE; break;
+ 			case SHIT_STONE:
+				    CrapEffect |= FROMOUTSIDE; break;
+ 			case STONE_OF_MISFIRING:
+				    ProjectilesMisfire |= FROMOUTSIDE; break;
+ 			case STONE_OF_PERMANENCE:
+				    WallTrapping |= FROMOUTSIDE; break;
+			case DISCONNECT_STONE:
+				    DisconnectedStairs |= FROMOUTSIDE; break;
+			case SCREW_STONE:
+				    InterfaceScrewed |= FROMOUTSIDE; break;
+			case BOSSFIGHT_STONE:
+				    Bossfights |= FROMOUTSIDE; break;
+			case ENTIRE_LEVEL_STONE:
+				    EntireLevelMode |= FROMOUTSIDE; break;
+			case BONE_STONE:
+				    BonesLevelChange |= FROMOUTSIDE; break;
+			case AUTOCURSE_STONE:
+				    AutocursingEquipment |= FROMOUTSIDE; break;
+			case HIGHLEVEL_STONE:
+				    HighlevelStatus |= FROMOUTSIDE; break;
+			case SPELL_MEMORY_STONE:
+				    SpellForgetting |= FROMOUTSIDE; break;
+			case SOUND_EFFECT_STONE:
+				    SoundEffectBug |= FROMOUTSIDE; break;
+			case TIME_USE_STONE:
+				    TimerunBug |= FROMOUTSIDE; break;
+			case LOOTCUT_STONE:
+				    LootcutBug |= FROMOUTSIDE; break;
+			case MONSTER_SPEED_STONE:
+				    MonsterSpeedBug |= FROMOUTSIDE; break;
+			case SCALING_STONE:
+				    ScalingBug |= FROMOUTSIDE; break;
+			case INIMICAL_STONE:
+				    EnmityBug |= FROMOUTSIDE; break;
+			case WHITE_SPELL_STONE:
+				    WhiteSpells |= FROMOUTSIDE; break;
+			case GREYOUT_STONE:
+				    CompleteGraySpells |= FROMOUTSIDE; break;
+			case QUASAR_STONE:
+				    QuasarVision |= FROMOUTSIDE; break;
+			case MOMMY_STONE:
+				    MommaBugEffect |= FROMOUTSIDE; break;
+			case HORROR_STONE:
+				    HorrorBugEffect |= FROMOUTSIDE; break;
+			case ARTIFICIAL_STONE:
+				    ArtificerBug |= FROMOUTSIDE; break;
+			case WEREFORM_STONE:
+				    WereformBug |= FROMOUTSIDE; break;
+			case ANTIPRAYER_STONE:
+				    NonprayerBug |= FROMOUTSIDE; break;
+			case EVIL_PATCH_STONE:
+				    EvilPatchEffect |= FROMOUTSIDE; break;
+			case HARD_MODE_STONE:
+				    HardModeEffect |= FROMOUTSIDE; break;
+			case SECRET_ATTACK_STONE:
+				    SecretAttackBug |= FROMOUTSIDE; break;
+			case EATER_STONE:
+				    EaterBugEffect |= FROMOUTSIDE; break;
+			case COVETOUS_STONE:
+				    CovetousnessBug |= FROMOUTSIDE; break;
+			case NON_SEEING_STONE:
+				    NotSeenBug |= FROMOUTSIDE; break;
+			case DARKMODE_STONE:
+				    DarkModeBug |= FROMOUTSIDE; break;
+			case UNFINDABLE_STONE:
+				    AntisearchEffect |= FROMOUTSIDE; break;
+			case HOMICIDE_STONE:
+				    HomicideEffect |= FROMOUTSIDE; break;
+			case MULTITRAPPING_STONE:
+				    NastynationBug |= FROMOUTSIDE; break;
+			case WAKEUP_CALL_STONE:
+				    WakeupCallBug |= FROMOUTSIDE; break;
+			case GRAYOUT_STONE:
+				    GrayoutBug |= FROMOUTSIDE; break;
+			case GRAY_CENTER_STONE:
+				    GrayCenterBug |= FROMOUTSIDE; break;
+			case CHECKERBOARD_STONE:
+				    CheckerboardBug |= FROMOUTSIDE; break;
+			case CLOCKWISE_STONE:
+				    ClockwiseSpinBug |= FROMOUTSIDE; break;
+			case COUNTERCLOCKWISE_STONE:
+				    CounterclockwiseSpin |= FROMOUTSIDE; break;
+			case LAG_STONE:
+				    LagBugEffect |= FROMOUTSIDE; break;
+			case BLESSCURSE_STONE:
+				    BlesscurseEffect |= FROMOUTSIDE; break;
+			case DELIGHT_STONE:
+				    DeLightBug |= FROMOUTSIDE; break;
+			case DISCHARGE_STONE:
+				    DischargeBug |= FROMOUTSIDE; break;
+			case TRASH_STONE:
+				    TrashingBugEffect |= FROMOUTSIDE; break;
+			case FILTERING_STONE:
+				    FilteringBug |= FROMOUTSIDE; break;
+			case DEFORMATTING_STONE:
+				    DeformattingBug |= FROMOUTSIDE; break;
+			case FLICKER_STRIP_STONE:
+				    FlickerStripBug |= FROMOUTSIDE; break;
+			case UNDRESSING_STONE:
+				    UndressingEffect |= FROMOUTSIDE; break;
+			case HYPER_BLUE_STONE:
+				    Hyperbluewalls |= FROMOUTSIDE; break;
+			case NO_LIGHT_STONE:
+				    NoliteBug |= FROMOUTSIDE; break;
+			case PARANOIA_STONE:
+				    ParanoiaBugEffect |= FROMOUTSIDE; break;
+			case FLEECE_STONE:
+				    FleecescriptBug |= FROMOUTSIDE; break;
+			case INTERRUPTION_STONE:
+				    InterruptEffect |= FROMOUTSIDE; break;
+			case DUSTBIN_STONE:
+				    DustbinBug |= FROMOUTSIDE; break;
+			case BATTERY_STONE:
+				    ManaBatteryBug |= FROMOUTSIDE; break;
+			case BUTTERFINGER_STONE:
+				    Monsterfingers |= FROMOUTSIDE; break;
+			case MISCASTING_STONE:
+				    MiscastBug |= FROMOUTSIDE; break;
+			case MESSAGE_SUPPRESSION_STONE:
+				    MessageSuppression |= FROMOUTSIDE; break;
+			case STUCK_ANNOUNCEMENT_STONE:
+				    StuckAnnouncement |= FROMOUTSIDE; break;
+			case STORM_STONE:
+				    BloodthirstyEffect |= FROMOUTSIDE; break;
+			case MAXIMUM_DAMAGE_STONE:
+				    MaximumDamageBug |= FROMOUTSIDE; break;
+			case LATENCY_STONE:
+				    LatencyBugEffect |= FROMOUTSIDE; break;
+			case STARLIT_SKY_STONE:
+				    StarlitBug |= FROMOUTSIDE; break;
+			case TRAP_KNOWLEDGE_STONE:
+				    KnowledgeBug |= FROMOUTSIDE; break;
+			case HIGHSCORE_STONE:
+				    HighscoreBug |= FROMOUTSIDE; break;
+			case PINK_SPELL_STONE:
+				    PinkSpells |= FROMOUTSIDE; break;
+			case GREEN_SPELL_STONE:
+				    GreenSpells |= FROMOUTSIDE; break;
+			case EVC_STONE:
+				    EvencoreEffect |= FROMOUTSIDE; break;
+			case UNDERLAID_STONE:
+				    UnderlayerBug |= FROMOUTSIDE; break;
+			case DAMAGE_METER_STONE:
+				    DamageMeterBug |= FROMOUTSIDE; break;
+			case WEIGHT_STONE:
+				    ArbitraryWeightBug |= FROMOUTSIDE; break;
+			case INFOFUCK_STONE:
+				    FuckedInfoBug |= FROMOUTSIDE; break;
+			case BLACK_SPELL_STONE:
+				    BlackSpells |= FROMOUTSIDE; break;
+			case CYAN_SPELL_STONE:
+				    CyanSpells |= FROMOUTSIDE; break;
+			case HEAP_STONE:
+				    HeapEffectBug |= FROMOUTSIDE; break;
+			case BLUE_SPELL_STONE:
+				    BlueSpells |= FROMOUTSIDE; break;
+			case TRON_STONE:
+				    TronEffect |= FROMOUTSIDE; break;
+			case RED_SPELL_STONE:
+				    RedSpells |= FROMOUTSIDE; break;
+			case TOO_HEAVY_STONE:
+				    TooHeavyEffect |= FROMOUTSIDE; break;
+			case ELONGATED_STONE:
+				    ElongationBug |= FROMOUTSIDE; break;
+			case WRAPOVER_STONE:
+				    WrapoverEffect |= FROMOUTSIDE; break;
+			case DESTRUCTION_STONE:
+				    DestructionEffect |= FROMOUTSIDE; break;
+			case MELEE_PREFIX_STONE:
+				    MeleePrefixBug |= FROMOUTSIDE; break;
+			case AUTOMORE_STONE:
+				    AutomoreBug |= FROMOUTSIDE; break;
+			case UNFAIR_ATTACK_STONE:
+				    UnfairAttackBug |= FROMOUTSIDE; break;
+
+		}
+	}
+
 	if (Race_if(PM_WORM_THAT_WALKS) && otmp->otyp == FIGURINE) {/* chance to polymorph into the depicted monster --Amy */
 		if (rn2(5)) {
 
