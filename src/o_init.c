@@ -2739,7 +2739,7 @@ dodiscovered()				/* free after Robert Viduya */
     anything any;
     menu_item *selected;
 
-    if (UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) {
+    if (PlayerUninformation) {
 	    pline("You've discovered absolutely everything, yet you still don't know what do to with it.");
 	    return 0;
     }

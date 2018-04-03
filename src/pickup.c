@@ -675,10 +675,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 
 #ifndef AUTOPICKUP_EXCEPTIONS
 	    if (!*otypes || index(otypes, curr->oclass) ||
-		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) ) )
+		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(PlayerUninformation) ) ) )
 #else
 	    if ((!*otypes || index(otypes, curr->oclass) ||
-		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) ) ||
+		(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(PlayerUninformation) ) ) ||
 		is_autopickup_exception(curr, TRUE)) &&
 		!is_autopickup_exception(curr, FALSE))
 #endif
@@ -689,10 +689,10 @@ menu_item **pick_list;	/* list of objects and counts to pick up */
 	    for (n = 0, curr = olist; curr; curr = FOLLOW(curr, follow))
 #ifndef AUTOPICKUP_EXCEPTIONS
 		if (!*otypes || index(otypes, curr->oclass) ||
-			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) ) ) {
+			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(PlayerUninformation) ) ) ) {
 #else
 		if ((!*otypes || index(otypes, curr->oclass) ||
-			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) ) ||
+			(flags.pickup_thrown && curr->was_thrown && !(curr->cursed && curr->bknown && !flags.pickup_cursed && !Hallucination && !(PlayerUninformation) ) ) ||
 			is_autopickup_exception(curr, TRUE)) &&
 			!is_autopickup_exception(curr, FALSE)) {
 #endif
@@ -852,19 +852,19 @@ int how;			/* type of query */
 	if (!olist) return 0;
 	if ((qflags & UNPAID_TYPES) && count_unpaid(olist) && !Hallucination) do_unpaid = TRUE;
 	if ((qflags & NOTFULLYIDED) && count_notfullyided(olist) && !Hallucination) do_unided = TRUE;
-	if ((qflags & BUC_BLESSED) && count_buc(olist, BUC_BLESSED) && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
+	if ((qflags & BUC_BLESSED) && count_buc(olist, BUC_BLESSED) && !Hallucination && !(PlayerUninformation) ) {
 	    do_blessed = TRUE;
 	    num_buc_types++;
 	}
-	if ((qflags & BUC_CURSED) && count_buc(olist, BUC_CURSED) && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
+	if ((qflags & BUC_CURSED) && count_buc(olist, BUC_CURSED) && !Hallucination && !(PlayerUninformation) ) {
 	    do_cursed = TRUE;
 	    num_buc_types++;
 	}
-	if ((qflags & BUC_UNCURSED) && count_buc(olist, BUC_UNCURSED) && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
+	if ((qflags & BUC_UNCURSED) && count_buc(olist, BUC_UNCURSED) && !Hallucination && !(PlayerUninformation) ) {
 	    do_uncursed = TRUE;
 	    num_buc_types++;
 	}
-	if ((qflags & BUC_UNKNOWN) && count_buc(olist, BUC_UNKNOWN) && !Hallucination && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
+	if ((qflags & BUC_UNKNOWN) && count_buc(olist, BUC_UNKNOWN) && !Hallucination && !(PlayerUninformation) ) {
 	    do_buc_unknown = TRUE;
 	    num_buc_types++;
 	}

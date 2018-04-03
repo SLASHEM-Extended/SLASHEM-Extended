@@ -780,7 +780,7 @@ boolean called;
 	    article = ARTICLE_THE;
 	}
 
-	if (!do_hallu && mtmp->isegotype && !mtmp->noegodesc && !mtmp->noegodisplay && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) && !have_uninformationstone() ) {
+	if (!do_hallu && mtmp->isegotype && !mtmp->noegodesc && !mtmp->noegodisplay && !PlayerUninformation) {
 
 	    if (mtmp->egotype_thief) sprintf(eos(buf), " Thief");
 	    if (mtmp->egotype_wallwalk) sprintf(eos(buf), " Phazer");

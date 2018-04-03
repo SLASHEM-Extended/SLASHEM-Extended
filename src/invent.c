@@ -6494,7 +6494,7 @@ struct obj *obj;
 	return 0;
 	}
 
-	if (UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) {
+	if (PlayerUninformation) {
 
 	pline("%s - This is the best item in the game if you know how to use it. Good luck making it work!",xname(obj) );
 

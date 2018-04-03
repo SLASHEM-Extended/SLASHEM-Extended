@@ -5054,7 +5054,7 @@ register struct obj *obj;
 	    goto nameit;*/
 	switch (obj->oclass) {
 	    case AMULET_CLASS:
-		if (!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) )
+		if (!obj->dknown || PlayerUninformation)
 			strcpy(buf, "amulet");
 		else if (typ == AMULET_OF_YENDOR ||
 			 typ == FAKE_AMULET_OF_YENDOR)
@@ -5072,7 +5072,7 @@ register struct obj *obj;
 			sprintf(buf,"%s amulet", dn);
 		break;
 	    case IMPLANT_CLASS:
-		if (!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) )
+		if (!obj->dknown || PlayerUninformation)
 			strcpy(buf, "implant");
 		else if (nn) {
 			strcpy(buf, actualn);
@@ -5093,7 +5093,7 @@ register struct obj *obj;
 		if (typ == RADIOGLASSES)
 			strcpy(buf, "pair of ");
 
-		if (!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) )
+		if (!obj->dknown || PlayerUninformation)
 			strcat(buf, dn ? dn : actualn);
 		else if (nn) {
 			strcat(buf, actualn);
@@ -5109,7 +5109,7 @@ register struct obj *obj;
 			strcat(buf, dn ? dn : actualn);
 		/* If we use an() here we'd have to remember never to use */
 		/* it whenever calling doname() or xname(). */
-		if (typ == FIGURINE && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) )
+		if (typ == FIGURINE && !PlayerUninformation)
 		    sprintf(eos(buf), " of a%s %s",
 			index(vowels,*(mons[obj->corpsenm].mname)) ? "n" : "",
 			mons[obj->corpsenm].mname);
@@ -5124,10 +5124,10 @@ register struct obj *obj;
 		 * In the Evil Variant(TM), you must know the rustproofing, i.e. probably burn an ID scroll :P
 		 * Unlike Grunthack, there are no scrolls of detect magic and the wizard doesn't get free knowledge here. */
 
-		if (obj->enchantment && !(isevilvariant && !(obj->rknown)) && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) )
+		if (obj->enchantment && !(isevilvariant && !(obj->rknown)) && !(PlayerUninformation) )
 			strcat(buf, "enchanted ");
 
-		if(obj->enchantment && !(isevilvariant && !(obj->rknown)) && obj->known && !(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) {
+		if(obj->enchantment && !(isevilvariant && !(obj->rknown)) && obj->known && !(PlayerUninformation) ) {
 			sprintf(eos(buf), "(of %s) ", enchname(obj->enchantment) );
 		}
 
@@ -5147,7 +5147,7 @@ register struct obj *obj;
 			break;
 		}
 
-		if (dn && (UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) )
+		if (dn && (PlayerUninformation) )
 			strcat(buf, dn);
 		else if(nn)	{
 			strcat(buf, actualn);
@@ -5155,7 +5155,7 @@ register struct obj *obj;
 				strcat(buf," called ");
 				strcat(buf,un);
 			}
-		} else if(un && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) {
+		} else if(un && !PlayerUninformation) {
 			if(is_boots(obj))
 				strcpy(buf,"boots");
 			else if(is_gloves(obj))
@@ -5187,7 +5187,7 @@ register struct obj *obj;
 		}
 
 		strcpy(buf, actualn);
-		if (typ == TIN && obj->known && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) {
+		if (typ == TIN && obj->known && !PlayerUninformation) {
 		    if(obj->spe > 0)
 			strcat(buf, " of spinach");
 		    else if (obj->corpsenm == NON_PM)
@@ -5203,7 +5203,7 @@ register struct obj *obj;
 		strcpy(buf, actualn);
 		break;
 	    case ROCK_CLASS:
-		if (typ == STATUE && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) )
+		if (typ == STATUE && !PlayerUninformation)
 		    sprintf(buf, "%s%s of %s%s",
 			(Role_if(PM_ARCHEOLOGIST) && (obj->spe & STATUE_HISTORIC)) ? "historic " : "" ,
 			actualn,
@@ -5224,11 +5224,11 @@ register struct obj *obj;
 		else strcpy(buf, actualn);
 		break;
 	    case POTION_CLASS:
-		if (obj->dknown && obj->odiluted && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) )
+		if (obj->dknown && obj->odiluted && !PlayerUninformation)
 			strcpy(buf, "diluted ");
-		if(nn || un || !obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) {
+		if(nn || un || !obj->dknown || PlayerUninformation) {
 			strcat(buf, "potion");
-			if(!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) break;
+			if(!obj->dknown || PlayerUninformation) break;
 			if(nn) {
 			    strcat(buf, " of ");
 			    if (typ == POT_WATER &&
@@ -5251,7 +5251,7 @@ register struct obj *obj;
 		break;
 	case SCROLL_CLASS:
 		strcpy(buf, "scroll");
-		if(!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) break;
+		if(!obj->dknown || PlayerUninformation) break;
 		if(nn) {
 			strcat(buf, " of ");
 			strcat(buf, actualn);
@@ -5271,7 +5271,7 @@ register struct obj *obj;
 		}
 		break;
 	case WAND_CLASS:
-		if(!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) )
+		if(!obj->dknown || PlayerUninformation)
 			strcpy(buf, "wand");
 		else if(nn) {
 			sprintf(buf, "wand of %s", actualn);
@@ -5285,7 +5285,7 @@ register struct obj *obj;
 			sprintf(buf, "%s wand", dn);
 		break;
 	case SPBOOK_CLASS:
-		if (!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) {
+		if (!obj->dknown || PlayerUninformation) {
 			strcpy(buf, "spellbook");
 		} else if (nn) {
 			if (typ != SPE_BOOK_OF_THE_DEAD)
@@ -5301,7 +5301,7 @@ register struct obj *obj;
 			sprintf(buf, "%s spellbook", dn);
 		break;
 	case RING_CLASS:
-		if(!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) )
+		if(!obj->dknown || PlayerUninformation)
 			strcpy(buf, "ring");
 		else if(nn) {
 			/* KMH -- "mood ring" instead of "ring of mood" */
@@ -5323,7 +5323,7 @@ register struct obj *obj;
 	    {
 		const char *rock =
 			    (ocl->oc_material == MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == SILVER_SLINGSTONE) ? "stone" : "gem";
-		if (!obj->dknown || UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) {
+		if (!obj->dknown || PlayerUninformation) {
 		    strcpy(buf, rock);
 		} else if (!nn) {
 		    if (un) sprintf(buf,"%s called %s", rock, un);
@@ -5341,9 +5341,9 @@ register struct obj *obj;
 	default:
 		sprintf(buf,"glorkum %d %d %d", obj->oclass, typ, obj->spe);
 	}
-	if ((obj->quan != 1L) && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) strcpy(buf, makeplural(buf));
+	if ((obj->quan != 1L) && !PlayerUninformation) strcpy(buf, makeplural(buf));
 
-	if (obj->onamelth && obj->dknown && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) {
+	if (obj->onamelth && obj->dknown && !PlayerUninformation) {
 		strcat(buf, " named ");
 nameit:
 		strcat(buf, ONAME(obj));
@@ -5528,13 +5528,13 @@ register struct obj *obj;
 		strcpy(prefix, "the ");
 	} else strcpy(prefix, "a ");
 
-	if (obj->selfmade && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) {
+	if (obj->selfmade && !PlayerUninformation) {
 		strcat(prefix,"selfmade ");
 	}
 
-	if (obj->oinvisreal && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) strcat(prefix,"hidden ");
-	if (obj->oinvis && !obj->oinvisreal && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) strcat(prefix,"invisible ");
-	if (/*wizard && */is_hazy(obj) && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) strcat(prefix,"hazy ");
+	if (obj->oinvisreal && !PlayerUninformation) strcat(prefix,"hidden ");
+	if (obj->oinvis && !obj->oinvisreal && !PlayerUninformation) strcat(prefix,"invisible ");
+	if (/*wizard && */is_hazy(obj) && !PlayerUninformation) strcat(prefix,"hazy ");
 /* there is absolutely no reason to not display this outside of wizard mode! --Amy */
 
 	/* warn player if items are made of glass or ether --Amy */
@@ -5573,7 +5573,7 @@ register struct obj *obj;
 	if (obj->dknown && !Hallucination && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == BRICK) strcat(prefix,"B ");
 
 	if ((!Hallucination || Role_if(PM_PRIEST) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) || Role_if(PM_NECROMANCER)) &&
-	    obj->bknown && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY)  &&
+	    obj->bknown && !PlayerUninformation &&
 	    obj->oclass != COIN_CLASS &&
 	    (obj->otyp != POT_WATER || !objects[POT_WATER].oc_name_known
 		|| (!obj->cursed && !obj->blessed) || Hallucination)) {
@@ -5616,24 +5616,24 @@ register struct obj *obj;
 		strcat(prefix, "uncursed ");*/
 	}
 
-	if (Hallucination ? !rn2(100) : (obj->greased && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) ) strcat(prefix, (obj->greased == 3) ? "thoroughly greased " : (obj->greased == 2) ? "strongly greased " : "greased ");
+	if (Hallucination ? !rn2(100) : (obj->greased && !PlayerUninformation) ) strcat(prefix, (obj->greased == 3) ? "thoroughly greased " : (obj->greased == 2) ? "strongly greased " : "greased ");
 
 	switch(obj->oclass) {
 	case SCROLL_CLASS:
-		if (!UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) add_erosion_words(obj, prefix);
+		if (!PlayerUninformation) add_erosion_words(obj, prefix);
 		break;
 	case AMULET_CLASS:
-		if (!UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) add_erosion_words(obj, prefix);
+		if (!PlayerUninformation) add_erosion_words(obj, prefix);
 		if(obj->owornmask & W_AMUL)
 			strcat(bp, " (being worn)");
 		break;
 	case IMPLANT_CLASS:
-		if (!UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) add_erosion_words(obj, prefix);
+		if (!PlayerUninformation) add_erosion_words(obj, prefix);
 		if(obj->owornmask & W_IMPLANT)
 			strcat(bp, " (being worn)");
 		break;
 	case WEAPON_CLASS:
-		if(ispoisoned && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) )
+		if(ispoisoned && !PlayerUninformation)
 			strcat(prefix, "poisoned ");
 plus:
 		add_erosion_words(obj, prefix);
@@ -5749,7 +5749,7 @@ ring:
 		break;
 	case FOOD_CLASS:
 		add_erosion_words(obj, prefix);
-		if (obj->otyp == CORPSE && obj->odrained && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) {
+		if (obj->otyp == CORPSE && obj->odrained && !PlayerUninformation) {
 #ifdef WIZARD
 		    if (wizard && obj->oeaten < drainlevel(obj))
 			strcpy(tmpbuf, "over-drained ");
@@ -5758,12 +5758,12 @@ ring:
 		    sprintf(tmpbuf, "%sdrained ",
 		      (obj->oeaten > drainlevel(obj)) ? "partly " : "");
 		}
-		else if (obj->oeaten && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) )
+		else if (obj->oeaten && !PlayerUninformation)
 		    strcpy(tmpbuf, "partly eaten ");
 		else
 		    tmpbuf[0] = '\0';
 		strcat(prefix, tmpbuf);
-		if (obj->otyp == CORPSE && !Hallucination && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) {
+		if (obj->otyp == CORPSE && !Hallucination && !PlayerUninformation) {
 		    if (mons[obj->corpsenm].geno & G_UNIQ) {
 			sprintf(prefix, "%s%s ",
 				(type_is_pname(&mons[obj->corpsenm]) ?
@@ -5774,7 +5774,7 @@ ring:
 			strcat(prefix, mons[obj->corpsenm].mname);
 			strcat(prefix, " ");
 		    }
-		} else if (obj->otyp == EGG && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) {
+		} else if (obj->otyp == EGG && !PlayerUninformation) {
 #if 0	/* corpses don't tell if they're stale either */
 		    if (obj->known && stale_egg(obj))
 			strcat(prefix, "stale ");

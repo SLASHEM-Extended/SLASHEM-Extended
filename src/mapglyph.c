@@ -1261,7 +1261,7 @@ unsigned *ospecial;
 	ch = monsyms[(int)mons[glyph].mlet];
 
 		mtmp = m_at(x, y);
-		if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && !UninformationProblem && !u.uprops[UNINFORMATION].extrinsic && !have_uninformationstone() && !(uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) ) special |= MG_EGOTYPE;
+		if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && !PlayerUninformation) special |= MG_EGOTYPE;
 
 		if (mtmp && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && mtmp->mpeaceful && Peacevision && !Hallucination) special |= MG_PEACEFUL;
 

@@ -2389,6 +2389,215 @@ struct obj *obj;
 
 }
 
+void
+randomnastytrapeffect(duration, blackngvar)
+int duration, blackngvar;
+{
+
+		switch (rnd(169)) {
+
+			case 1: RMBLoss += rnz(duration); break;
+			case 2: NoDropProblem += rnz(duration); break;
+			case 3: DSTWProblem += rnz(duration); break;
+			case 4: StatusTrapProblem += rnz(duration); 
+				if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+				if (HStun) set_itimeout(&HeavyStunned, HStun);
+				if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+				if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+				if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+				if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+				if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
+				if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+				if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+				break;
+			case 5: Superscroller += rnz(duration * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10)); 
+				(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+				break;
+			case 6: MenuBug += rnz(duration); break;
+			case 7: FreeHandLoss += rnz(duration); break;
+			case 8: Unidentify += rnz(duration); break;
+			case 9: Thirst += rnz(duration); break;
+			case 10: LuckLoss += rnz(duration); break;
+			case 11: ShadesOfGrey += rnz(duration); break;
+			case 12: FaintActive += rnz(duration); break;
+			case 13: Itemcursing += rnz(duration); break;
+			case 14: DifficultyIncreased += rnz(duration); break;
+			case 15: Deafness += rnz(duration); flags.soundok = 0; break;
+			case 16: CasterProblem += rnz(duration); break;
+			case 17: WeaknessProblem += rnz(duration); break;
+			case 18: RotThirteen += rnz(duration); break;
+			case 19: BishopGridbug += rnz(duration); break;
+			case 20: UninformationProblem += rnz(duration); break;
+			case 21: StairsProblem += rnz(duration); break;
+			case 22: AlignmentProblem += rnz(duration); break;
+			case 23: ConfusionProblem += rnz(duration); break;
+			case 24: SpeedBug += rnz(duration); break;
+			case 25: DisplayLoss += rnz(duration); break;
+			case 26: SpellLoss += rnz(duration); break;
+			case 27: YellowSpells += rnz(duration); break;
+			case 28: AutoDestruct += rnz(duration); break;
+			case 29: MemoryLoss += rnz(duration); break;
+			case 30: InventoryLoss += rnz(duration); break;
+			case 31: {
+
+				if (BlackNgWalls) break;
+
+				BlackNgWalls = blackngvar;
+				if (BlackNgWalls < 100) BlackNgWalls = 100;
+				(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+				break;
+			}
+			case 32: IntrinsicLossProblem += rnz(duration); break;
+			case 33: BloodLossProblem += rnz(duration); break;
+			case 34: BadEffectProblem += rnz(duration); break;
+			case 35: TrapCreationProblem += rnz(duration); break;
+			case 36: AutomaticVulnerabilitiy += rnz(duration); break;
+			case 37: TeleportingItems += rnz(duration); break;
+			case 38: NastinessProblem += rnz(duration); break;
+			case 39: CaptchaProblem += rnz(duration); break;
+			case 40: FarlookProblem += rnz(duration); break;
+			case 41: RespawnProblem += rnz(duration); break;
+
+			case 42: RecurringAmnesia += rnz(duration); break;
+			case 43: BigscriptEffect += rnz(duration); break;
+			case 44: {
+				BankTrapEffect += rnz(duration);
+				if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+				u.bankcashamount += u.ugold;
+				u.ugold = 0;
+
+				break;
+			}
+			case 45: MapTrapEffect += rnz(duration); break;
+			case 46: TechTrapEffect += rnz(duration); break;
+			case 47: RecurringDisenchant += rnz(duration); break;
+			case 48: verisiertEffect += rnz(duration); break;
+			case 49: ChaosTerrain += rnz(duration); break;
+			case 50: Muteness += rnz(duration); break;
+			case 51: EngravingDoesntWork += rnz(duration); break;
+			case 52: MagicDeviceEffect += rnz(duration); break;
+			case 53: BookTrapEffect += rnz(duration); break;
+			case 54: LevelTrapEffect += rnz(duration); break;
+			case 55: QuizTrapEffect += rnz(duration); break;
+			case 56: FastMetabolismEffect += rnz(duration); break;
+			case 57: NoReturnEffect += rnz(duration); break;
+			case 58: AlwaysEgotypeMonsters += rnz(duration); break;
+			case 59: TimeGoesByFaster += rnz(duration); break;
+			case 60: FoodIsAlwaysRotten += rnz(duration); break;
+			case 61: AllSkillsUnskilled += rnz(duration); break;
+			case 62: AllStatsAreLower += rnz(duration); break;
+			case 63: PlayerCannotTrainSkills += rnz(duration); break;
+			case 64: PlayerCannotExerciseStats += rnz(duration); break;
+			case 65: TurnLimitation += rnz(duration); break;
+			case 66: WeakSight += rnz(duration); break;
+			case 67: RandomMessages += rnz(duration); break;
+
+			case 68: Desecration += rnz(duration); break;
+			case 69: StarvationEffect += rnz(duration); break;
+			case 70: NoDropsEffect += rnz(duration); break;
+			case 71: LowEffects += rnz(duration); break;
+			case 72: InvisibleTrapsEffect += rnz(duration); break;
+			case 73: GhostWorld += rnz(duration); break;
+			case 74: Dehydration += rnz(duration); break;
+			case 75: HateTrapEffect += rnz(duration); break;
+			case 76: TotterTrapEffect += rnz(duration); break;
+			case 77: Nonintrinsics += rnz(duration); break;
+			case 78: Dropcurses += rnz(duration); break;
+			case 79: Nakedness += rnz(duration); break;
+			case 80: Antileveling += rnz(duration); break;
+			case 81: ItemStealingEffect += rnz(duration); break;
+			case 82: Rebellions += rnz(duration); break;
+			case 83: CrapEffect += rnz(duration); break;
+			case 84: ProjectilesMisfire += rnz(duration); break;
+			case 85: WallTrapping += rnz(duration); break;
+			case 86: DisconnectedStairs += rnz(duration); break;
+			case 87: InterfaceScrewed += rnz(duration); break;
+			case 88: Bossfights += rnz(duration); break;
+			case 89: EntireLevelMode += rnz(duration); break;
+			case 90: BonesLevelChange += rnz(duration); break;
+			case 91: AutocursingEquipment += rnz(duration); break;
+			case 92: HighlevelStatus += rnz(duration); break;
+			case 93: SpellForgetting += rnz(duration); break;
+			case 94: SoundEffectBug += rnz(duration); break;
+			case 95: TimerunBug += rnz(duration); break;
+			case 96: LootcutBug += rnz(duration); break;
+			case 97: MonsterSpeedBug += rnz(duration); break;
+			case 98: ScalingBug += rnz(duration); break;
+			case 99: EnmityBug += rnz(duration); break;
+			case 100: WhiteSpells += rnz(duration); break;
+			case 101: CompleteGraySpells += rnz(duration); break;
+			case 102: QuasarVision += rnz(duration); break;
+			case 103: MommaBugEffect += rnz(duration); break;
+			case 104: HorrorBugEffect += rnz(duration); break;
+			case 105: ArtificerBug += rnz(duration); break;
+			case 106: WereformBug += rnz(duration); break;
+			case 107: NonprayerBug += rnz(duration); break;
+			case 108: EvilPatchEffect += rnz(duration); break;
+			case 109: HardModeEffect += rnz(duration); break;
+			case 110: SecretAttackBug += rnz(duration); break;
+			case 111: EaterBugEffect += rnz(duration); break;
+			case 112: CovetousnessBug += rnz(duration); break;
+			case 113: NotSeenBug += rnz(duration); break;
+			case 114: DarkModeBug += rnz(duration); break;
+			case 115: AntisearchEffect += rnz(duration); break;
+			case 116: HomicideEffect += rnz(duration); break;
+			case 117: NastynationBug += rnz(duration); break;
+			case 118: WakeupCallBug += rnz(duration); break;
+			case 119: GrayoutBug += rnz(duration); break;
+			case 120: GrayCenterBug += rnz(duration); break;
+			case 121: CheckerboardBug += rnz(duration); break;
+			case 122: ClockwiseSpinBug += rnz(duration); break;
+			case 123: CounterclockwiseSpin += rnz(duration); break;
+			case 124: LagBugEffect += rnz(duration); break;
+			case 125: BlesscurseEffect += rnz(duration); break;
+			case 126: DeLightBug += rnz(duration); break;
+			case 127: DischargeBug += rnz(duration); break;
+			case 128: TrashingBugEffect += rnz(duration); break;
+			case 129: FilteringBug += rnz(duration); break;
+			case 130: DeformattingBug += rnz(duration); break;
+			case 131: FlickerStripBug += rnz(duration); break;
+			case 132: UndressingEffect += rnz(duration); break;
+			case 133: Hyperbluewalls += rnz(duration); break;
+			case 134: NoliteBug += rnz(duration); break;
+			case 135: ParanoiaBugEffect += rnz(duration); break;
+			case 136: FleecescriptBug += rnz(duration); break;
+			case 137: InterruptEffect += rnz(duration); break;
+			case 138: DustbinBug += rnz(duration); break;
+			case 139: ManaBatteryBug += rnz(duration); break;
+			case 140: Monsterfingers += rnz(duration); break;
+			case 141: MiscastBug += rnz(duration); break;
+			case 142: MessageSuppression += rnz(duration); break;
+			case 143: StuckAnnouncement += rnz(duration); break;
+			case 144: BloodthirstyEffect += rnz(duration); break;
+			case 145: MaximumDamageBug += rnz(duration); break;
+			case 146: LatencyBugEffect += rnz(duration); break;
+			case 147: StarlitBug += rnz(duration); break;
+			case 148: KnowledgeBug += rnz(duration); break;
+			case 149: HighscoreBug += rnz(duration); break;
+			case 150: PinkSpells += rnz(duration); break;
+			case 151: GreenSpells += rnz(duration); break;
+			case 152: EvencoreEffect += rnz(duration); break;
+			case 153: UnderlayerBug += rnz(duration); break;
+			case 154: DamageMeterBug += rnz(duration); break;
+			case 155: ArbitraryWeightBug += rnz(duration); break;
+			case 156: FuckedInfoBug += rnz(duration); break;
+			case 157: BlackSpells += rnz(duration); break;
+			case 158: CyanSpells += rnz(duration); break;
+			case 159: HeapEffectBug += rnz(duration); break;
+			case 160: BlueSpells += rnz(duration); break;
+			case 161: TronEffect += rnz(duration); break;
+			case 162: RedSpells += rnz(duration); break;
+			case 163: TooHeavyEffect += rnz(duration); break;
+			case 164: ElongationBug += rnz(duration); break;
+			case 165: WrapoverEffect += rnz(duration); break;
+			case 166: DestructionEffect += rnz(duration); break;
+			case 167: MeleePrefixBug += rnz(duration); break;
+			case 168: AutomoreBug += rnz(duration); break;
+			case 169: UnfairAttackBug += rnz(duration); break;
+
+		}
+
+}
 
 #endif /* OVLB */
 

@@ -36,6 +36,7 @@
 #define EnglandMode	(RngeEngland || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "long-range cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dlinnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "uzoq masofaga plash") )) || (uarmu && uarmu->oartifact == ART_BEAM_MULTIPLIER) || (uwep && uwep->oartifact == ART_MINOLONG_ELBOW) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "english gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "angliyskiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ingliz tili qo'lqop") )) )
 
 #define NastyTrapNation		(NastynationBug || u.uprops[NASTY_NATION_BUG].extrinsic || have_multitrappingstone())
+#define PlayerUninformation	(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY))
 
 #define FingerlessGloves	(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "fingerless gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "mitenki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "kam qo'lqop barmoq") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "silk fingerlings") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "shelkovyye mal'ki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ipak va ling, barmoqlar") ))
 
