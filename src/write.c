@@ -104,6 +104,7 @@ register struct obj *otmp;
 	case SCR_ERASURE:
 	case SCR_ANTIMATTER:
 	case SCR_MEGALOAD:
+	case SCR_WONDER:
 	case SCR_GEOLYSIS:
 	case SCR_SECURE_IDENTIFY:
 	case SCR_REPAIR_ITEM:

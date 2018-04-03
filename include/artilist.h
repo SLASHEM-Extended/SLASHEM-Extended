@@ -3786,6 +3786,17 @@ A("Dikkin's Favorite Spell",				SPE_POLYMORPH, /* +8 INT and yellow spells when 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
+A("Anastasia's Perilous Gamble",			SCR_WONDER, /* teaches a random technique and gives intrinsic evilpatch effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Erase All Data",			SCR_ROOT_PASSWORD_DETECTION, /* data delete if you're stupid enough to read it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Garok's Hammer Kit",			MATERIAL_KIT, /* can be used several times */
+	(SPFX_RESTR|SPFX_SPEAK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50000L ),
 
 /* below are randarts: they're supposed to be a random base item
  * melee weapons will become some other melee weapon, launchers will become

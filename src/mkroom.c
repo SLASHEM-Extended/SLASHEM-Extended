@@ -1161,6 +1161,11 @@ struct mkroom *sroom;
 		break;
 	    case DIVERPARADISE:
 		level.flags.has_diverparadise = 1;
+		if (!rn2(5)) {
+			if (somexy(sroom, &mm)) {
+				(void) mksobj_at(MATERIAL_KIT, mm.x, mm.y, TRUE, FALSE);
+			}
+		}
 		break;
 	    case MENAGERIE:
 		level.flags.has_menagerie = 1;

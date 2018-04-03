@@ -1820,6 +1820,13 @@ mon_tele:
 		m_flee(mtmp);
 		mreadmsg(mtmp, otmp);
 
+		if (otmp && otmp->oartifact == ART_ERASE_ALL_DATA && isevilvariant) {
+			datadeleteattack();
+			verbalize("Ha ha ha ha ha ha ha, so you thought you could play in evil variant mode and somehow avoid all the evil variant bullshit? Well sucker, now your data has been deleted and you might as well give up.");
+			if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+			return 2;
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		how = SCR_ROOT_PASSWORD_DETECTION;

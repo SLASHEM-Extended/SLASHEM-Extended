@@ -4168,7 +4168,10 @@ potion_charge_cost(struct obj *pot)
 	case POT_GAIN_ABILITY: cost += 1; break;
 	case POT_GAIN_LEVEL: cost += 2; break;
 	case POT_CYANIDE: cost += 2; break;
+	case POT_RANDOM_INTRINSIC: cost += 2; break;
+	case POT_BENEFICIAL_EFFECT: cost += 2; break;
 	case POT_INVULNERABILITY: cost += 8; break;
+	case POT_TRAINING: cost += 8; break;
 	case POT_EXTREME_POWER: cost += 2; break;
 	case POT_WONDER: cost += 10; break;
 	case POT_TERCES_DLU: cost += 10; break;
@@ -5137,6 +5140,50 @@ doapply()
 	case TRANSISTOR:
 	case IC:
 		pline(Hallucination ? "Hmm... is this stuff edible?" : "You don't understand anything about electronics !!!");
+		break;
+
+	case MATERIAL_KIT:
+
+		pline("You may change the material of a base item type.");
+materialchoice:
+	    	{
+			struct obj *otmpC = getobj(all_count, "change the material of");
+			if (!otmpC) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to change an item's material.");
+				else goto materialchoice;
+				return(0);
+			}
+			if ((otmpC->otyp == GOLD_PIECE) || (otmpC->otyp == STRANGE_OBJECT) || (otmpC->otyp == AMULET_OF_YENDOR) || (otmpC->otyp == CANDELABRUM_OF_INVOCATION) || (otmpC->otyp == BELL_OF_OPENING) || (otmpC->otyp == SPE_BOOK_OF_THE_DEAD) || (objects[otmpC->otyp].oc_prob < 1)) {
+				pline("The material of that item cannot be changed!");
+				return(1);
+			} else {
+				objects[otmpC->otyp].oc_material = (obj->shirtmessage % LASTMATERIAL);
+				if (obj->oartifact == ART_GAROK_S_HAMMER_KIT && rn2(5)) {
+					pline("You use some material from the kit.");
+				} else {
+					delobj(obj);
+					noartispeak = TRUE;
+				}
+				pline("Success! The item's material got changed.");
+			}
+
+		}
+
+		break;
+
+	case INTELLIGENCE_PACK:
+
+		delobj(obj);
+		noartispeak = TRUE;
+		(void) adjattrib(A_INT, 1, FALSE);
+		if (Race_if(PM_SUSTAINER) && ABASE(A_WIS) < AMAX(A_WIS)) {
+			ABASE(A_WIS) += 1;
+			AMAX(A_WIS) += 1;
+			flags.botl = 1;
+			pline("Your wisdom increases.");
+		}
+
 		break;
 
 	case CHARGER:

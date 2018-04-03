@@ -76,7 +76,7 @@ struct objclass {
 #define ETERNIUM		30	/* inedible material that resists destruction */
 #define ETHER		31	/* like Elona, except that we have generic contamination instead of ether disease */
 #define BRICK		32	/* lithic material that resists withering */
-/* if the last material changes, update randommaterials() in o_init.c accordingly --Amy */
+#define LASTMATERIAL	BRICK
 
 #define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= WOOD || objects[(otmp)->otyp].oc_material == DRAGON_HIDE || objects[(otmp)->otyp].oc_material == INKA || objects[(otmp)->otyp].oc_material == SILK || objects[(otmp)->otyp].oc_material == SECREE || objects[(otmp)->otyp].oc_material == COMPOST)
 #define is_metallic(otmp)	((objects[(otmp)->otyp].oc_material >= IRON && \

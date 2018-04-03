@@ -1780,6 +1780,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ PIZZA, "pitstsa" },
 	{ POT_PORTER, "port'ye" },
 	{ POT_WONDER, "zadavat'sya voprosom" },
+	{ SCR_WONDER, "zadavat'sya voprosom" },
 	{ POT_TERCES_DLU, "polnaya sluchaynost'" },
 	{ POT_HIDING, "pryachetsya" },
 	{ POT_DECOY_MAKING, "primanka resheniy" },
@@ -2659,6 +2660,11 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SCR_EXTRA_HEALING, "dopolnitel'noye istseleniye" },
 	{ SCR_GREATER_MANA_RESTORATION, "bol'shaya regeneratsiya many" },
 	{ CHARGER, "zaryadnoye ustroystvo" },
+	{ MATERIAL_KIT, "nabor materialov" },
+	{ POT_BENEFICIAL_EFFECT, "blagopriyatnyy effekt" },
+	{ POT_TRAINING, "obucheniye" },
+	{ POT_RANDOM_INTRINSIC, "sluchaynyy vnutrenniy" },
+	{ INTELLIGENCE_PACK, "paket razvedki" },
 
 	{0, "" }
 };
@@ -3906,6 +3912,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ PIZZA, "pitstsa" },
 	{ POT_PORTER, "yuk tashuvchi" },
 	{ POT_WONDER, "hayron" },
+	{ SCR_WONDER, "hayron" },
 	{ POT_TERCES_DLU, "maxsus ta'siri" },
 	{ POT_HIDING, "yashirish" },
 	{ POT_DECOY_MAKING, "qarmoq qilish" },
@@ -4786,6 +4793,11 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SCR_EXTRA_HEALING, "qo'shimcha shifo" },
 	{ SCR_GREATER_MANA_RESTORATION, "katta sehrli energiya tiklash" },
 	{ CHARGER, "zaryadlovchi qurilma" },
+	{ MATERIAL_KIT, "materiallar to'plami" },
+	{ POT_BENEFICIAL_EFFECT, "foydali ta'sir" },
+	{ POT_TRAINING, "ta'lim" },
+	{ POT_RANDOM_INTRINSIC, "tasodifiy ichki" },
+	{ INTELLIGENCE_PACK, "razvedka to'plami" },
 
 	{0, "" }
 };
@@ -5088,6 +5100,9 @@ register struct obj *obj;
 	    case WEAPON_CLASS:
 	    case VENOM_CLASS:
 	    case TOOL_CLASS:
+		if (typ == MATERIAL_KIT) {
+			sprintf(buf, "%s ", materialnm[obj->shirtmessage % LASTMATERIAL]);
+		}
 		if (typ == LENSES)
 			strcpy(buf, "pair of ");
 		if (typ == RADIOGLASSES)

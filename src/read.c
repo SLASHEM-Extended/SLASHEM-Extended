@@ -5332,6 +5332,26 @@ randenchchoice:
 			u.ublesscnt += rnz(300);
 		}
 		break;
+	case SCR_WONDER:
+		known = TRUE;
+
+		if (sobj->oartifact == ART_ANASTASIA_S_PERILOUS_GAMBL) {
+		      u.uprops[EVIL_PATCH_EFFECT].intrinsic |= FROMOUTSIDE;
+			int wondertech = rnd(MAXTECH-1);
+			if (!tech_known(wondertech)) {
+			    	learntech(wondertech, FROMOUTSIDE, 1);
+				You("learn how to perform a new technique! But you also gained the intrinsic evilpatch effect...");
+			}
+		}
+
+		if (sobj->cursed) {
+			forget(ALL_SPELLS|ALL_MAP);
+			pline("The scroll was cursed! You lose a lot of knowledge...");
+			break;
+		}
+		wonderspell();
+
+		break;
 	case SCR_AMNESIA:
 		known = TRUE;
 		forget(	(!sobj->blessed ? ALL_SPELLS : 0) |
@@ -6159,6 +6179,13 @@ newbossC:
 		break;
 
 	case SCR_ROOT_PASSWORD_DETECTION:
+
+		if (sobj->oartifact == ART_ERASE_ALL_DATA) {
+			datadeleteattack();
+			pline("Congratulations, now all your data has been erased. Well done!");
+			break;
+		}
+
 		You("sense the computer's root password.");
 		pline("It is: %s.", sobj->cursed ? "jsdfljfdsh" : (sobj->blessed ? "memalezu" : "xyzzy"));
 		pline("(No warranty implied.)");

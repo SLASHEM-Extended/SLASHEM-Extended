@@ -9886,6 +9886,10 @@ struct obj *obj;
 				pline("A marker that is useful for writing graffiti on the floor."); break;
 			case SWITCHER:
 				pline("This metal box has a switch that can be pulled. What may happen if you do so?"); break;
+			case INTELLIGENCE_PACK:
+				pline("Using this tool will boost your intelligence by one point (make sure you're not wearing an item that gives sustain ability). If you're of the sustainer race, it boosts your wisdom instead."); break;
+			case MATERIAL_KIT:
+				pline("A tool that has a randomized material stored inside. Using it on an item will change the material of ALL instances of that base item, so if you e.g. use a leather material kit on a dagger, all daggers in the game will then be made of leather. Of course, using it on the 'dagger' base item only affects that particular item type and not e.g. the 'orcish dagger' base item. If it successfully changes an item's material, the kit is used up."); break;
 			case CHARGER:
 				pline("You can apply this tool to charge one item (wand, ring, chargeable tool). It always gives the uncursed charging effect, regardless of the charger's BUC, and can only be used once."); break;
 			case HITCHHIKER_S_GUIDE_TO_THE_GALA: 
@@ -10174,6 +10178,12 @@ struct obj *obj;
 				pline("You will become very fast and invulnerable for a few turns but also hallucinate for a while when quaffing this potion."); break;
 			case POT_MEHOHO_BURUSASAN_G:
 				pline("A poisonous japanese drink that probably contains tetrodotoxin. Only a fool would drink it."); break;
+			case POT_TRAINING:
+				pline("This very rare potion allows you to pick a skill and double the amount of training in it. It can even allow you to bypass the RNG-decreed limits, but it won't take you over the actual max of your skill (seen in the #enhance screen)."); break;
+			case POT_BENEFICIAL_EFFECT:
+				pline("Quaffing this potion gives a random good effect that can also be gotten from eating a corpse."); break;
+			case POT_RANDOM_INTRINSIC:
+				pline("If you quaff this potion, you will either gain or lose a random intrinsic, and the intrinsic in question can be good or bad. Unlike FIQhack's potion of wonder, this potion works the same regardless of bless/curse status, so you don't need to waste holy water on it."); break;
 			case POT_SEE_INVISIBLE:
 				pline("You can see invisible monsters and items if you quaff this."); break;
 			case POT_SICKNESS:
@@ -10413,6 +10423,8 @@ struct obj *obj;
 				pline("You will become temporarily resistant to physical damage when reading this scroll."); break;
 			case SCR_WARDING: 
 				pline("You will become temporarily resistant to spell damage when reading this scroll."); break;
+			case SCR_WONDER: 
+				pline("Reading this scroll teaches a random spell. If it rolls one that you already know, its spell memory is increased."); break;
 			case SCR_HEALING:
 				pline("A standard healing scroll that behaves similar to healing potions in other role-playing games by restoring some lost hit points. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
 			case SCR_EXTRA_HEALING:
@@ -15113,6 +15125,12 @@ struct obj *obj;
 					pline("Artifact specs: can be invoked for perilous identify. This artifact is found on the special level 'Orc Barracks' in the Deep Mines."); break;
 				case ART_BIZARRO_ORGASMATRON:
 					pline("Artifact specs: can be invoked for branchporting. Congratulations, you finished the Mainframe boss!"); break;
+				case ART_ANASTASIA_S_PERILOUS_GAMBL:
+					pline("Artifact specs: Reading it teaches you a random technique, unless you get really unlucky and it rolls one you already know. But you'll also start getting random nasty trap effects intrinsically."); break;
+				case ART_ERASE_ALL_DATA:
+					pline("Artifact specs: data delete if you make the mistake of reading it. Doing so would be a terrible idea. Thankfully it doesn't have that effect if it's read by a monster - unless you're playing in evil variant mode, har har har!"); break;
+				case ART_GAROK_S_HAMMER_KIT:
+					pline("This material kit may be used several times before it is used up. Hopefully it's of a useful material type!"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
