@@ -1086,6 +1086,9 @@ struct mkroom *sroom;
 
 	    case CRYPTROOM:
 		level.flags.has_cryptroom = 1;
+		if (somexy(sroom, &mm)) {
+			(void) mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE);
+		}
 		break;
 	    case TROUBLEZONE:
 		  if (!rn2(3)) {
@@ -1095,6 +1098,9 @@ struct mkroom *sroom;
 				}
 			}
 		  }
+		if (somexy(sroom, &mm)) {
+			(void) mksobj_at(CHEST, mm.x, mm.y, TRUE, FALSE);
+		}
 		level.flags.has_troublezone = 1;
 		break;
 	    case WEAPONCHAMBER:
@@ -1112,6 +1118,11 @@ struct mkroom *sroom;
 		break;
 	    case FEMINISMROOM:
 		level.flags.has_feminismroom = 1;
+
+		if (somexy(sroom, &mm)) {
+			(void) mksobj_at(SACK, mm.x, mm.y, TRUE, FALSE);
+		}
+
 		break;
 	    case MEADOWROOM:
 		level.flags.has_meadowroom = 1;
