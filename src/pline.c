@@ -639,7 +639,10 @@ generate_garbage_string()
 
 	while (stringlength --> 0) {
 #ifdef UNIX
-		tmpstr[0] = 31 + rnd(224);
+		/* Sadly, terminals can be screwed up if we use "unsafe" glyphs. Sure, this is SLEX, interface screws
+		 * are meant to be a part of the game, but we don't want to fuck up the player's actual terminal session.
+		 * After all, even SLEX has limits. Therefore we need to limit the strings to "safe" glyphs. --Amy */
+		tmpstr[0] = 32 + rnd(94);
 #else
 		tmpstr[0] = rnd(255);
 #endif
