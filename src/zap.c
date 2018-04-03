@@ -8555,14 +8555,21 @@ boolean *shopdamage;
 	    } else if (is_farmland(x,y)) {
 		    const char *msgtxt = "You hear a burning sound.";
 		    rangemod -= 3;
-		    lev->typ = ASH;
+		    lev->typ = rn2(10) ? CORR : ASH;
 		    if (cansee(x,y)) msgtxt = "The farmland burns up!";
+		    if (cansee(x,y)) newsym(x,y);
+		    Norep(msgtxt);
+	    } else if (is_raincloud(x,y) && !rn2(5)) {
+		    const char *msgtxt = "You hear a sizzling sound.";
+		    rangemod -= 3;
+		    lev->typ = CLOUD;
+		    if (cansee(x,y)) msgtxt = "The rain cloud boils!";
 		    if (cansee(x,y)) newsym(x,y);
 		    Norep(msgtxt);
 	    } else if (is_grassland(x,y)) {
 		    const char *msgtxt = "You hear a burning sound.";
 		    rangemod -= 3;
-		    lev->typ = ASH;
+		    lev->typ = rn2(25) ? CORR : ASH;
 		    if (cansee(x,y)) msgtxt = "The grass burns up!";
 		    if (cansee(x,y)) newsym(x,y);
 		    Norep(msgtxt);
