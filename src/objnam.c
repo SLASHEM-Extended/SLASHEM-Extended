@@ -5188,8 +5188,14 @@ register struct obj *obj;
 
 		strcpy(buf, actualn);
 		if (typ == TIN && obj->known && !PlayerUninformation) {
-		    if(obj->spe > 0)
+		    if(obj->spe == 1)
 			strcat(buf, " of spinach");
+		    else if(obj->spe == 2)
+			strcat(buf, " of beans");
+		    else if(obj->spe == 3)
+			strcat(buf, " of peaches");
+		    else if(obj->spe == 4)
+			strcat(buf, " of fish");
 		    else if (obj->corpsenm == NON_PM)
 		        strcpy(buf, "empty tin");
 		    else if (vegetarian(&mons[obj->corpsenm]))
@@ -7044,6 +7050,9 @@ boolean from_user;
 #define UNDEFINED 0
 #define EMPTY 1
 #define SPINACH 2
+#define BEANS 3
+#define PEACHES 4
+#define FISH 5
 	contents = UNDEFINED;
 	oclass = 0;
 	actualn = dn = un = 0;
@@ -7230,6 +7239,18 @@ boolean from_user;
 	if ((p = strstri(bp, " of spinach")) != 0) {
 		*p = 0;
 		contents = SPINACH;
+	}
+	if ((p = strstri(bp, " of beans")) != 0) {
+		*p = 0;
+		contents = BEANS;
+	}
+	if ((p = strstri(bp, " of peaches")) != 0) {
+		*p = 0;
+		contents = PEACHES;
+	}
+	if ((p = strstri(bp, " of fish")) != 0) {
+		*p = 0;
+		contents = FISH;
 	}
 
 	/*
@@ -7523,6 +7544,21 @@ srch:
 	}
 	if (!strcmpi(bp, "spinach")) {
 		contents = SPINACH;
+		typ = TIN;
+		goto typfnd;
+	}
+	if (!strcmpi(bp, "beans")) {
+		contents = BEANS;
+		typ = TIN;
+		goto typfnd;
+	}
+	if (!strcmpi(bp, "peaches")) {
+		contents = PEACHES;
+		typ = TIN;
+		goto typfnd;
+	}
+	if (!strcmpi(bp, "fish")) {
+		contents = FISH;
 		typ = TIN;
 		goto typfnd;
 	}
@@ -8006,6 +8042,15 @@ typfnd:
 			} else if (contents==SPINACH) {
 				otmp->corpsenm = NON_PM;
 				otmp->spe = 1;
+			} else if (contents==BEANS) {
+				otmp->corpsenm = NON_PM;
+				otmp->spe = 2;
+			} else if (contents==PEACHES) {
+				otmp->corpsenm = NON_PM;
+				otmp->spe = 3;
+			} else if (contents==FISH) {
+				otmp->corpsenm = NON_PM;
+				otmp->spe = 4;
 			}
 			break;
 		case SLIME_MOLD: otmp->spe = ftype;

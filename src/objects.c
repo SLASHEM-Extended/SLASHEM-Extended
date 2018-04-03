@@ -3199,6 +3199,9 @@ OBJECT(OBJ("Bell of Opening", "silver bell"),
 /* carrots improve your vision */
 /* +0 tins contain monster meat */
 /* +1 tins (of spinach) make you stronger (like Popeye) */
+/* +2 tins: beans, can increase random stats */
+/* +3 tins: peaches, increases constitution */
+/* +4 tins: fish, increases intelligence */
 /* food CORPSE is a cadaver of some type */
 /* meatballs/sticks/rings are only created from objects via stone to flesh */
 

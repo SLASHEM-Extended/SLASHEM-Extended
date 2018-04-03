@@ -1820,8 +1820,8 @@ int artif;
 		break;
 	    case TIN:
 		otmp->corpsenm = NON_PM;	/* empty (so far) */
-		if (!rn2(20)) /* a lot more rare now --Amy */
-		    otmp->spe = 1;		/* spinach */
+		if (!rn2(10)) /* more rare now --Amy */
+		    otmp->spe = rnd(4);		/* spinach, beans, peaches or fish */
 		else for (tryct = 200; tryct > 0; --tryct) {
 		    mndx = undead_to_corpse(rndmonnum());
 		    if (mons[mndx].cnutrit &&

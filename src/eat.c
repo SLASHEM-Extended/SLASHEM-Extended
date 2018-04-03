@@ -3415,7 +3415,7 @@ opentin()		/* called during each move whilst opening a tin */
 		goto use_me;
 	}
 	You(Hallucination ? "open it! Now let's see the contents, maybe it's some acid?" : "succeed in opening the tin.");
-	if(tin.tin->spe != 1) {
+	if(tin.tin->spe < 1) {
 	    if (tin.tin->corpsenm == NON_PM) {
 		pline(Hallucination ? "Nothing in there, might as well throw it in the trash can." : "It turns out to be empty.");
 		tin.tin->dknown = tin.tin->known = TRUE;
@@ -3567,7 +3567,7 @@ opentin()		/* called during each move whilst opening a tin */
 		pline("Eating deep fried food made your %s very slippery.",
 		      makeplural(body_part(FINGER)));
 	    }
-	} else {
+	} else if (tin.tin->spe == 1) {
 	    if (tin.tin->cursed)
 		pline("It contains some decaying%s%s substance.",
 			Blind ? "" : " ", Blind ? "" : hcolor(NH_GREEN));
@@ -3593,6 +3593,110 @@ opentin()		/* called during each move whilst opening a tin */
 		      Hallucination ? "Swee'pea" : "Popeye");
 	    lesshungry(600);
 	    gainstr(tin.tin, 0);
+	    u.uconduct.food++;
+	} else if (tin.tin->spe == 2) { /* canned beans, idea from /rlg/ on 4chan */
+	    if (tin.tin->cursed)
+		pline("It contains some decaying%s%s substance.",
+			Blind ? "" : " ", Blind ? "" : hcolor(NH_WHITE));
+	    else
+		pline(Hallucination ? "It contains french fries." : "It contains beans.");
+
+	    getlin ("Eat it? [yes/no]",buf);
+	    (void) lcase (buf);
+	    if (strcmp (buf, "yes")) {
+		if (!Hallucination && !tin.tin->cursed)
+		    tin.tin->dknown = tin.tin->known = TRUE;
+		if (flags.verbose)
+		    You("discard the open tin.");
+		costly_tin((const char*)0);
+		goto use_me;
+	    }
+
+	    tin.tin->dknown = tin.tin->known = TRUE;
+	    costly_tin((const char*)0);
+
+	    if (!tin.tin->cursed) {
+		if (!rn2(3)) (void) adjattrib(A_STR, 1, FALSE);
+		if (!rn2(3)) (void) adjattrib(A_DEX, 1, FALSE);
+		if (!rn2(3)) (void) adjattrib(A_CON, 1, FALSE);
+		if (!rn2(3)) (void) adjattrib(A_INT, 1, FALSE);
+		if (!rn2(3)) (void) adjattrib(A_WIS, 1, FALSE);
+		if (!rn2(3)) (void) adjattrib(A_CHA, 1, FALSE);
+
+	    } else {
+		(void) adjattrib(A_STR, -1, FALSE);
+		(void) adjattrib(A_DEX, -1, FALSE);
+		(void) adjattrib(A_CON, -1, FALSE);
+		(void) adjattrib(A_INT, -1, FALSE);
+		(void) adjattrib(A_WIS, -1, FALSE);
+		(void) adjattrib(A_CHA, -1, FALSE);
+
+	    }
+	    pline("You'll have incessant flatulence for a while now...");
+	    FemaleTrapMaurah += rnz(500);
+
+	    lesshungry(600);
+	    u.uconduct.food++;
+	} else if (tin.tin->spe == 3) {
+	    if (tin.tin->cursed)
+		pline("It contains some decaying%s%s substance.",
+			Blind ? "" : " ", Blind ? "" : hcolor(NH_PURPLE));
+	    else
+		pline(Hallucination ? "It contains mangos." : "It contains peaches.");
+
+	    getlin ("Eat it? [yes/no]",buf);
+	    (void) lcase (buf);
+	    if (strcmp (buf, "yes")) {
+		if (!Hallucination && !tin.tin->cursed)
+		    tin.tin->dknown = tin.tin->known = TRUE;
+		if (flags.verbose)
+		    You("discard the open tin.");
+		costly_tin((const char*)0);
+		goto use_me;
+	    }
+
+	    tin.tin->dknown = tin.tin->known = TRUE;
+	    costly_tin((const char*)0);
+
+	    if (!tin.tin->cursed) {
+		(void) adjattrib(A_CON, 1, FALSE);
+
+	    } else {
+		(void) adjattrib(A_CON, -1, FALSE);
+
+	    }
+
+	    lesshungry(600);
+	    u.uconduct.food++;
+	} else if (tin.tin->spe == 4) {
+	    if (tin.tin->cursed)
+		pline("It contains something extremely stinky.");
+	    else
+		pline(Hallucination ? "It contains submarines and tadpoles." : "It contains fish.");
+
+	    getlin ("Eat it? [yes/no]",buf);
+	    (void) lcase (buf);
+	    if (strcmp (buf, "yes")) {
+		if (!Hallucination && !tin.tin->cursed)
+		    tin.tin->dknown = tin.tin->known = TRUE;
+		if (flags.verbose)
+		    You("discard the open tin.");
+		costly_tin((const char*)0);
+		goto use_me;
+	    }
+
+	    tin.tin->dknown = tin.tin->known = TRUE;
+	    costly_tin((const char*)0);
+
+	    if (!tin.tin->cursed) {
+		(void) adjattrib(A_INT, 1, FALSE);
+
+	    } else {
+		(void) adjattrib(A_INT, -1, FALSE);
+
+	    }
+
+	    lesshungry(600);
 	    u.uconduct.food++;
 	}
 use_me:
