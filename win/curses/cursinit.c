@@ -407,9 +407,9 @@ curses_init_nhcolors()
 
             for (i = 0; i < (COLORS >= 16 ? 16 : 8); i++) {
                 init_pair(17 + (i * 2) + 0, clr_remap[i], COLOR_RED);
-                init_pair(17 + (i * 2) + 1, clr_remap[i], COLOR_BRIGHT_BLUE);
+                init_pair(17 + (i * 2) + 1, clr_remap[i], COLOR_BLUE);
                 init_pair(17 + (i * 2) + 2, clr_remap[i], COLOR_YELLOW);
-                init_pair(17 + (i * 2) + 3, clr_remap[i], COLOR_BRIGHT_GREEN);
+                init_pair(17 + (i * 2) + 3, clr_remap[i], COLOR_GREEN);
                 init_pair(17 + (i * 2) + 4, clr_remap[i], COLOR_CYAN);
             }
 
