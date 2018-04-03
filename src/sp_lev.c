@@ -262,12 +262,14 @@ register int x, y;
 	/* Possibly fill it with objects */
 	if (!rn2(3)) (void) mkgold(0L, x, y);
 	for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
-	    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
-	    if (!otmp) return;
-	    curse(otmp);
-	    otmp->ox = x;
-	    otmp->oy = y;
-	    add_to_buried(otmp);
+		if (timebasedlowerchance()) {
+		    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
+		    if (!otmp) return;
+		    curse(otmp);
+		    otmp->ox = x;
+		    otmp->oy = y;
+		    add_to_buried(otmp);
+		}
 	}
 	break;
 
@@ -3937,12 +3939,14 @@ retryrandtype:
 					/* Possibly fill it with objects */
 					if (!rn2(3)) (void) mkgold(0L, sx, sy);
 					for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
-					    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
-					    if (!otmp) return;
-					    curse(otmp);
-					    otmp->ox = sx;
-					    otmp->oy = sy;
-					    add_to_buried(otmp);
+						if (timebasedlowerchance()) {
+						    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
+						    if (!otmp) return;
+						    curse(otmp);
+						    otmp->ox = sx;
+						    otmp->oy = sy;
+						    add_to_buried(otmp);
+						}
 					}
 
 				}
@@ -4002,8 +4006,9 @@ retryrandtype:
 
 			    if (sobj && !rn2(3) ) {
 				for (i = rn2(2 + rn2(4)); i; i--)
-				    (void) add_to_container(sobj,
-						mkobj(RANDOM_CLASS, FALSE));
+					if (timebasedlowerchance()) {
+					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE));
+					}
 				sobj->owt = weight(sobj);
 			    }
 			    if (sobj) sobj->owt = weight(sobj);

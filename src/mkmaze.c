@@ -1064,12 +1064,14 @@ int x,y;
 
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
+					if (timebasedlowerchance()) {
 					    otmpX = mkobj(RANDOM_CLASS, TRUE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
 					    otmpX->oy = y;
 					    add_to_buried(otmpX);
+					    }
 					}
 				}
 			else if (!((moves + u.monstertimefinish) % 765 ) && !rn2(ishaxor ? 100 : 200) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
@@ -1080,12 +1082,14 @@ int x,y;
 	
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
+					if (timebasedlowerchance()) {
 					    otmpX = mkobj(RANDOM_CLASS, TRUE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
 					    otmpX->oy = y;
 					    add_to_buried(otmpX);
+					    }
 					}
 				}
 			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
@@ -1244,12 +1248,14 @@ int x,y;
 	
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
+					if (timebasedlowerchance()) {
 					    otmpX = mkobj(RANDOM_CLASS, TRUE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
 					    otmpX->oy = y;
 					    add_to_buried(otmpX);
+					    }
 					}
 				}
 			else if (!((moves + u.monstertimefinish) % 765 ) && !rn2(ishaxor ? 100 : 200) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
@@ -1260,12 +1266,14 @@ int x,y;
 	
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
+					if (timebasedlowerchance()) {
 					    otmpX = mkobj(RANDOM_CLASS, TRUE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
 					    otmpX->oy = y;
 					    add_to_buried(otmpX);
+					    }
 					}
 				}
 			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
@@ -1442,12 +1450,14 @@ int x,y;
 	
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
+					if (timebasedlowerchance()) {
 					    otmpX = mkobj(RANDOM_CLASS, TRUE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
 					    otmpX->oy = y;
 					    add_to_buried(otmpX);
+					    }
 					}
 				}
 			else if (!((moves + u.monstertimefinish) % 765 ) && !rn2(ishaxor ? 100 : 200) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
@@ -1458,12 +1468,14 @@ int x,y;
 	
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
+					if (timebasedlowerchance()) {
 					    otmpX = mkobj(RANDOM_CLASS, TRUE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
 					    otmpX->oy = y;
 					    add_to_buried(otmpX);
+					    }
 					}
 				}
 			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
@@ -1619,12 +1631,14 @@ int x,y;
 	
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
+					if (timebasedlowerchance()) {
 					    otmpX = mkobj(RANDOM_CLASS, TRUE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
 					    otmpX->oy = y;
 					    add_to_buried(otmpX);
+					    }
 					}
 				}
 			else if (!((moves + u.monstertimefinish) % 765 ) && !rn2(ishaxor ? 100 : 200) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {
@@ -1632,12 +1646,14 @@ int x,y;
 	
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
+					if (timebasedlowerchance()) {
 					    otmpX = mkobj(RANDOM_CLASS, TRUE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
 					    otmpX->oy = y;
 					    add_to_buried(otmpX);
+					    }
 					}
 				}
 			else if (!rn2(ishaxor ? 10000 : 20000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM))) {

@@ -496,6 +496,7 @@ struct obj *box;
 
 		for (tprob = rnd(1000); (tprob -= iprobs->iprob) > 0; iprobs++)
 		    ;
+		if (!timebasedlowerchance()) continue;
 		if (!(otmp = mkobj(iprobs->iclass, TRUE))) continue;
 
 		/* handle a couple of special cases */
@@ -526,6 +527,7 @@ struct obj *box;
 
 		for (tprob = rnd(1000); (tprob -= iprobs->iprob) > 0; iprobs++)
 		    ;
+		if (!timebasedlowerchance()) continue;
 		if (!(otmp = mkobj(iprobs->iclass, TRUE))) continue;
 
 		/* handle a couple of special cases */
@@ -2515,7 +2517,7 @@ int artif;
 		    case STATUE:
 			/* possibly overridden by mkcorpstat() */
 			otmp->corpsenm = rndmonnum();
-			if ( (!verysmall(&mons[otmp->corpsenm]) || !rn2(10) ) && (artif != 2) &&
+			if ( (!verysmall(&mons[otmp->corpsenm]) || !rn2(10) ) && timebasedlowerchance() && (artif != 2) &&
 				rn2(level_difficulty()/2 + 10) > 10)
 			    (void) add_to_container(otmp,
 						    mkobj(SPBOOK_CLASS,FALSE));

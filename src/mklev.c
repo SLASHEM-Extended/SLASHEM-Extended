@@ -1543,12 +1543,14 @@ boolean lava,rndom;
 	
 			if (!rn2(3)) (void) mkgold(0L, cx, cy);
 			for (tryct = rn2(5); tryct; tryct--) {
-				    otmpX = mkobj(RANDOM_CLASS, TRUE);
-				    if (!otmpX) return;
-				    curse(otmpX);
-				    otmpX->ox = cx;
-				    otmpX->oy = cy;
-				    add_to_buried(otmpX);
+					if (timebasedlowerchance()) {
+					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    if (!otmpX) return;
+					    curse(otmpX);
+					    otmpX->ox = cx;
+					    otmpX->oy = cy;
+					    add_to_buried(otmpX);
+					}
 				}
 			}
 		else if (!((moves + u.monstertimefinish) % 865 ) && !rn2(ishaxor ? 100 : 200)) {
@@ -1559,12 +1561,14 @@ boolean lava,rndom;
 	
 			if (!rn2(3)) (void) mkgold(0L, cx, cy);
 			for (tryct = rn2(5); tryct; tryct--) {
-				    otmpX = mkobj(RANDOM_CLASS, TRUE);
-				    if (!otmpX) return;
-				    curse(otmpX);
-				    otmpX->ox = cx;
-				    otmpX->oy = cy;
-				    add_to_buried(otmpX);
+					if (timebasedlowerchance()) {
+					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    if (!otmpX) return;
+					    curse(otmpX);
+					    otmpX->ox = cx;
+					    otmpX->oy = cy;
+					    add_to_buried(otmpX);
+					}
 				}
 			}
 		else if (!rn2(ishaxor ? 10000 : 20000)) {
@@ -1777,12 +1781,14 @@ boolean lava,rndom;
 	
 			if (!rn2(3)) (void) mkgold(0L, cx, cy);
 			for (tryct = rn2(5); tryct; tryct--) {
-				    otmpX = mkobj(RANDOM_CLASS, TRUE);
-				    if (!otmpX) return;
-				    curse(otmpX);
-				    otmpX->ox = cx;
-				    otmpX->oy = cy;
-				    add_to_buried(otmpX);
+					if (timebasedlowerchance()) {
+					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    if (!otmpX) return;
+					    curse(otmpX);
+					    otmpX->ox = cx;
+					    otmpX->oy = cy;
+					    add_to_buried(otmpX);
+					}
 				}
 			}
 		else if (!((moves + u.monstertimefinish) % 885 ) && !rn2(ishaxor ? 100 : 200)) {
@@ -1793,12 +1799,14 @@ boolean lava,rndom;
 	
 			if (!rn2(3)) (void) mkgold(0L, cx, cy);
 			for (tryct = rn2(5); tryct; tryct--) {
-				    otmpX = mkobj(RANDOM_CLASS, TRUE);
-				    if (!otmpX) return;
-				    curse(otmpX);
-				    otmpX->ox = cx;
-				    otmpX->oy = cy;
-				    add_to_buried(otmpX);
+					if (timebasedlowerchance()) {
+					    otmpX = mkobj(RANDOM_CLASS, TRUE);
+					    if (!otmpX) return;
+					    curse(otmpX);
+					    otmpX->ox = cx;
+					    otmpX->oy = cy;
+					    add_to_buried(otmpX);
+					}
 				}
 			}
 		else if (!rn2(ishaxor ? 10000 : 20000)) {
@@ -10798,12 +10806,14 @@ mineralize()
 		
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
+					if (timebasedlowerchance()) {
 					    otmpX = mkobj(RANDOM_CLASS, TRUE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
 					    otmpX->oy = y;
 					    add_to_buried(otmpX);
+					    }
 					}
 				}
 			else if (!((moves + u.monstertimefinish) % 905 ) && !rn2(ishaxor ? 100 : 200)) {
@@ -10814,12 +10824,14 @@ mineralize()
 		
 				if (!rn2(3)) (void) mkgold(0L, x, y);
 				for (tryct = rn2(5); tryct; tryct--) {
+					if (timebasedlowerchance()) {
 					    otmpX = mkobj(RANDOM_CLASS, TRUE);
 					    if (!otmpX) return;
 					    curse(otmpX);
 					    otmpX->ox = x;
 					    otmpX->oy = y;
 					    add_to_buried(otmpX);
+					    }
 					}
 				}
 			else if (!rn2(ishaxor ? 10000 : 20000)) {
@@ -11618,7 +11630,7 @@ mineralize()
 			else place_object(otmp, x, y);
 		    }
 		}
-		if (rn2(1000) < gemprob) {
+		if ((rn2(1000) < gemprob) && timebasedlowerchance()) {
 		    for (cnt = rnd(2 + dunlev(&u.uz) / 3); cnt > 0; cnt--)
 			if ((otmp = mkobj(GEM_CLASS, FALSE)) != 0) {
 			    if (otmp->otyp == ROCK) {
@@ -11630,7 +11642,7 @@ mineralize()
 			    }
 		    }
 		}
-		if (rn2(1500) < objprob) {
+		if ((rn2(1500) < objprob) && timebasedlowerchance()) {
 		    for (cnt = rnd(2 + dunlev(&u.uz) / 3); cnt > 0; cnt--)
 			if ((otmp = mkobj(RANDOM_CLASS, FALSE)) != 0) {
 			    if (otmp->otyp == ROCK) {
@@ -14321,12 +14333,14 @@ struct mkroom *croom;
 	/* Possibly fill it with objects */
 	if (!rn2(3)) (void) mkgold(0L, m.x, m.y);
 	for (tryct = rn2(2 + rn2(4)); tryct; tryct--) {
-	    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
-	    if (!otmp) return;
-	    curse(otmp);
-	    otmp->ox = m.x;
-	    otmp->oy = m.y;
-	    add_to_buried(otmp);
+		if (timebasedlowerchance()) {
+		    otmp = mkobj(rn2(3) ? COIN_CLASS : RANDOM_CLASS, TRUE);
+		    if (!otmp) return;
+		    curse(otmp);
+		    otmp->ox = m.x;
+		    otmp->oy = m.y;
+		    add_to_buried(otmp);
+		}
 	}
 
 	/* Leave a bell, in case we accidentally buried someone alive */
