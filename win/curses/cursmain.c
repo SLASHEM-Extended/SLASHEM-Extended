@@ -584,6 +584,12 @@ curses_print_glyph(winid wid, XCHAR_P x, XCHAR_P y, int glyph)
             color = 16 + (color * 2);
         } else if (special & MG_OBJPILE) {
             color = 16 + (color * 2) + 1;
+        } else if (special & MG_EGOTYPE) {
+            color = 16 + (color * 2) + 2;
+        } else if (special & MG_PEACEFUL) {
+            color = 16 + (color * 2) + 3;
+        } else if (special & MG_ENGRAVING) {
+            color = 16 + (color * 2) + 4;
         }
     }
 

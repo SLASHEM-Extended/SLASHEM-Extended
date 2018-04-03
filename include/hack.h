@@ -55,6 +55,7 @@
 #define MG_OBJPILE	0x040
 #define MG_EGOTYPE	0x080
 #define MG_PEACEFUL	0x100
+#define MG_ENGRAVING	0x200
 
 /* sellobj_state() states */
 #define SELL_NORMAL	(0)

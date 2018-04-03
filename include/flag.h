@@ -53,6 +53,7 @@ struct flag {
 
 	boolean  gmmessage;	/* if on, game master mode will tell you what monster got spawned */
 
+	boolean  graffitihilite;	/* graffiti is highlighted cyan */
 	boolean  groundhogday;	/* KMH -- February 2 */
 	boolean  help;		/* look in data file for info about stuff */
     boolean  hitpointbar; /* colourful hit point status bar */

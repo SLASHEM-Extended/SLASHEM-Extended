@@ -64,6 +64,7 @@ int glyph, *ocolor, x, y;
 int *ochar;
 unsigned *ospecial;
 {
+	register struct engr *ep = engr_at(x,y);
 	register int offset;
 #if defined(TEXTCOLOR) || defined(ROGUE_COLOR)
 	int color = NO_COLOR;
@@ -83,6 +84,7 @@ unsigned *ospecial;
      */
     if ((offset = (glyph - GLYPH_WARNING_OFF)) >= 0) {	/* a warning flash */
 	if (On_stairs(x,y) && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_STAIRS;
+	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
     	ch = warnsyms[offset];
 # ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -113,6 +115,7 @@ unsigned *ospecial;
 	explode_color(offset / MAXEXPCHARS);
     } else if ((offset = (glyph - GLYPH_CMAP_OFF)) >= 0) {	/* cmap */
 	if (On_stairs(x,y) && (ttmp = t_at(x,y)) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && (ttmp && ttmp->tseen) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
 	ch = showsyms[offset];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {
@@ -1157,6 +1160,7 @@ unsigned *ospecial;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN) color = rnd(15);
     } else if ((offset = (glyph - GLYPH_OBJ_OFF)) >= 0) {	/* object */
 	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
 	if (offset == BOULDER && iflags.bouldersym) ch = iflags.bouldersym;
 	else ch = oc_syms[(int)objects[offset].oc_class];
 #ifdef ROGUE_COLOR
@@ -1198,6 +1202,7 @@ unsigned *ospecial;
 	    special |= MG_RIDDEN;
     } else if ((offset = (glyph - GLYPH_BODY_OFF)) >= 0) {	/* a corpse */
 	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
 	ch = oc_syms[(int)objects[CORPSE].oc_class];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color)
@@ -1223,6 +1228,7 @@ unsigned *ospecial;
 
     } else if ((offset = (glyph - GLYPH_DETECT_OFF)) >= 0) {	/* mon detect */
 	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
 	ch = monsyms[(int)mons[offset].mlet];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1235,6 +1241,7 @@ unsigned *ospecial;
 	    special |= MG_DETECT;
     } else if ((offset = (glyph - GLYPH_INVIS_OFF)) >= 0) {	/* invisible */
 	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
 	ch = DEF_INVISIBLE;
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1245,6 +1252,7 @@ unsigned *ospecial;
 	    special |= MG_INVIS;
     } else if ((offset = (glyph - GLYPH_PET_OFF)) >= 0) {	/* a pet */
 	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
 	ch = monsyms[(int)mons[offset].mlet];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1255,6 +1263,7 @@ unsigned *ospecial;
 	    if (!(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone())) special |= MG_PET;
     } else {							/* a monster */
 	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
 
 	struct monst *mtmp;
 

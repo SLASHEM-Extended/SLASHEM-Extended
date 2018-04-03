@@ -3441,6 +3441,9 @@ tty_print_glyph(window, x, y, glyph)
 	reverse_on = TRUE;
     }
 
+    if (!reverse_on && (special & (MG_ENGRAVING)))
+		    term_start_bgcolor(CLR_CYAN);
+
 #ifdef TEXTCOLOR 
     if (!reverse_on && (special & (MG_STAIRS|MG_OBJPILE))) { 
 	    if ((special & MG_STAIRS)) 
@@ -3473,6 +3476,11 @@ tty_print_glyph(window, x, y, glyph)
 	}
 #endif
     }
+
+    if (!reverse_on && (special & (MG_ENGRAVING))) { 
+	    term_end_bgcolor(); 
+	    term_end_color(); 
+    } 
 
 #ifdef TEXTCOLOR 
     if (!reverse_on && (special & (MG_STAIRS|MG_OBJPILE))) { 
