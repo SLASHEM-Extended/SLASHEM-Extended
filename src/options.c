@@ -314,6 +314,7 @@ static struct Bool_Opt
 	{"lostsoul", &flags.lostsoul, FALSE, DISP_IN_GAME}, 
 	{"uberlostsoul", &flags.uberlostsoul, FALSE, DISP_IN_GAME}, 
 	{"gmmode", &flags.gmmode, FALSE, DISP_IN_GAME}, 
+	{"supergmmode", &flags.supergmmode, FALSE, DISP_IN_GAME}, 
 	{"wonderland", &flags.wonderland, FALSE, DISP_IN_GAME}, 
 
 	{"hybridangbander", &flags.hybridangbander, FALSE, DISP_IN_GAME}, 

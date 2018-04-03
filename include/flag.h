@@ -136,6 +136,7 @@ struct flag {
 	boolean lostsoul; 
 	boolean uberlostsoul; 
 	boolean gmmode;
+	boolean supergmmode;
 	boolean wonderland;
 
 #define NEW_MOON	0

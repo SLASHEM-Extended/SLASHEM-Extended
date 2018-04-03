@@ -13366,7 +13366,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You sit down beside the wagon and try to hide.",
 	"If for some weird reason you want to fall asleep, stay on the mattress tile for a while. But beware that this will not be a very pleasant sleep and monsters might try to mug you.",
 	"You can only hold one armed grenade, but can't drop any to hold only one.",
-	"Are you going to play SLEX during Junethack? Be aware that the following options are incompatible and you must turn them off if you want your games to count: lostsoul, uberlostsoul, gmmode and wonderland.",
+	"Are you going to play SLEX during Junethack? Be aware that the following options are incompatible and you must turn them off if you want your games to count: lostsoul, uberlostsoul, gmmode, supergmmode and wonderland.",
 	"A dirty mysterious dirt force full of dirt momentarily surrounds you...",
 	"No room for new technique?",
 	"No inate technique for role?",

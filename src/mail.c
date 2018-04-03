@@ -396,7 +396,7 @@ struct mail_info *info;
 	if (!obj) return;
 
 	/* In game master mode, mail from me will spawn monsters. Read it immediately, so you can't avoid them :P --Amy */
-	if (flags.gmmode) readmail(obj);
+	if (flags.gmmode || flags.supergmmode) readmail(obj);
 	if (distu(md->mx,md->my) > 2)
 	    verbalize("Catch!");
 	display_nhwindow(WIN_MESSAGE, FALSE);
@@ -553,7 +553,7 @@ struct obj *otmp;
 
 		  pline ("This message is from '%s'.", curline);
 
-		  if (flags.gmmode && !(flags.gmmessage)) goto dontread;
+		  if ( (flags.gmmode || flags.supergmmode) && !(flags.gmmessage)) goto dontread;
 
 		  msg[strlen(msg) - 1] = '\0'; /* kill newline */
 		  pline ("It reads: \"%s\".", msg);
@@ -562,7 +562,13 @@ dontread:
 
 		/* Game master mode: if active, I (Amy) can send you mail to spawn monsters!
 		 * If you turned off the gmmessage option, the monster I selected will be a surprise :) */
-		  if (flags.gmmode && strlen(curline) == 7 && !strncmpi(curline, "AmyBSOD", 7)) {
+		  if (flags.gmmode && !flags.supergmmode && strlen(curline) == 7 && !strncmpi(curline, "AmyBSOD", 7)) {
+			if (strlen(msg) > 9 && !strncmpi(msg, "genesis ", 8)) {
+				u.gmmailsreceived++;
+				gmmode_genesis(msg + 8);
+			}
+		  }
+		  if (flags.supergmmode) {
 			if (strlen(msg) > 9 && !strncmpi(msg, "genesis ", 8)) {
 				u.gmmailsreceived++;
 				gmmode_genesis(msg + 8);

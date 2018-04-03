@@ -7172,7 +7172,7 @@ const char *specifictype;
 		if (which >= LOW_PM) goto okay;		/* got one */
 	}
 	/* not a valid one... */
-	pline("The Amy tried to spawn an invalid monster (%s).", bufp);
+	pline(flags.supergmmode ? "Someone tried to spawn an invalid monster (%s)." : "The Amy tried to spawn an invalid monster (%s).", bufp);
 	return;
 
 okay:
