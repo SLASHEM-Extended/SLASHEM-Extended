@@ -1477,6 +1477,9 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	/* must come after all mons & objs are restored */
 	relink_timers(FALSE);
 	relink_light_sources(FALSE);
+#ifdef WHEREIS_FILE
+	touch_whereis();
+#endif
 	return(TRUE);
 }
 

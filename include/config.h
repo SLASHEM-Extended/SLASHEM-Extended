@@ -524,6 +524,10 @@ typedef unsigned char	uchar;
 #define DUMP_FN "dump_%n_%d.txt"    /* Fixed dumpfile name */
 #endif
 
+/* Write out player's current location to this file.
+   Can be left undefined, which will disable the feature. */
+#define WHEREIS_FILE "whereis/%n.whereis"
+
 /* Some public servers have a bug that I call "phantom crash bug". It is most
  * certainly caused by a buffer size being overrun, but so far I couldn't find
  * where that buffer size is set, and the bug does not appear on all public

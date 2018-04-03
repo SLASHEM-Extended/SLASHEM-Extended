@@ -101,6 +101,61 @@ static NEARDATA const char *ends[] = {		/* "when you..." */
 	"quit", "escaped", "ascended"
 };
 
+char *
+dump_format_str(char *str)
+{
+    static char buf[BUFSZ];
+    char *f, *p, *end;
+    int ispercent = 0;
+
+    buf[0] = '\0';
+
+    if (!str) return NULL;
+
+    f = str;
+    p = buf;
+    end = buf + sizeof(buf) - 10;
+
+    while (*f) {
+      if (ispercent) {
+	switch (*f) {
+	case 't':
+	  snprintf (p, end + 1 - p, "%ld", u.ubirthday);
+	  while (*p != '\0')
+	    p++;
+	  break;
+        case 'N':
+          *p = plname[0];
+	  p++;
+	  *p = '\0';
+	  break;
+	case 'n':
+	  snprintf (p, end + 1 - p, "%s", plname);
+	  while (*p != '\0')
+	    p++;
+	  break;
+	default:
+	  *p = *f;
+	  if (p < end)
+	    p++;
+	}
+	ispercent = 0;
+      } else {
+	if (*f == '%')
+	  ispercent = 1;
+	else {
+	  *p = *f;
+	  if (p < end)
+	    p++;
+	}
+      }
+      f++;
+    }
+    *p = '\0';
+
+    return buf;
+}
+
 #ifdef DUMP_LOG
 FILE *dump_fp = (FILE *)0;  /* file pointer for dumps */
 /* functions dump_init, dump_exit and dump are from the dump patch */
@@ -1196,6 +1251,10 @@ die:
 	(void)doredraw();
 
 #endif /* DUMP_LOG */
+
+#ifdef WHEREIS_FILE
+	delete_whereis();
+#endif
 
 	} /* if (!goexplore) */
 	/* render vision subsystem inoperative */

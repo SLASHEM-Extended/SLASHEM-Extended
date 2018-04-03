@@ -4147,6 +4147,10 @@ rerollchaloc:
 		pline("The entrance was disconnected!");
 	}
 
+#ifdef WHEREIS_FILE
+	touch_whereis();
+#endif
+
 }
 
 STATIC_OVL void

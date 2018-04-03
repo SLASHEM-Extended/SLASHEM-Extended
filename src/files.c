@@ -9,6 +9,10 @@
 #include "filename.h"
 /* needs to be after hack.h. Caused .slashemrc to never be read on UNIX */
 
+#if defined(WHEREIS_FILE) && defined(UNIX)
+#include <sys/types.h> /* whereis-file chmod() */
+#endif
+
 #ifdef TTY_GRAPHICS
 #include "wintty.h" /* more() */
 #endif
@@ -600,6 +604,9 @@ clearlocks()
 	int x;
 	for (x = (n_dgns ? maxledgerno() : 0); x >= 0; x--)
 		delete_levelfile(x);	/* not all levels need be present */
+#  ifdef WHEREIS_FILE
+	delete_whereis();
+#  endif
 /* #endif*/
 }
 
@@ -663,7 +670,74 @@ int fd;
 	return _close(fd);
 }
 #endif
-	
+
+#ifdef WHEREIS_FILE
+void
+touch_whereis()
+{
+  /* Write out our current level and branch to name.whereis
+   *
+   *      Could eventually bolt on all kinds of info, but this way
+   *      at least something which wants to can scan for the games.
+   *
+   * For now this only works on Win32 and UNIX.  I'm too lazy
+   * to sort out all the proper other-OS stuff.
+   */
+
+	/* certain nasty traps obscure the information - so we want to hide it from whereis too! --Amy */
+	if (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && (moves % 10 == 0) ) || FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone() ) {
+		delete_whereis();
+		return;
+	}
+
+  FILE* fp;
+  char whereis_file[255];
+  char whereis_work[255];
+
+  sprintf(whereis_file,"%s",dump_format_str(WHEREIS_FILE));
+  sprintf(whereis_work,
+	  "depth=%d:dnum=%d:turns=%d:score=%ld:role=%s:race=%s:gender=%s:align=%s\n",
+	  depth(&u.uz),
+	  u.uz.dnum,
+	  moves,
+	  botl_score(),
+	  urole.filecode,
+	  urace.filecode,
+	  genders[flags.female].filecode,
+	  aligns[1-u.ualign.type].filecode);
+  fp = fopen_datafile(whereis_file,"w",LEVELPREFIX);
+  if (fp) {
+#ifdef UNIX
+    mode_t whereismode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+    chmod(fqname(whereis_file, LEVELPREFIX, 2), whereismode);
+#endif
+    fwrite(whereis_work,strlen(whereis_work),1,fp);
+    fclose(fp);
+  }
+
+}
+
+
+/* Changed over to write out where the player last was when they
+ * left the game; including possibly 'dead' :) */
+void
+delete_whereis()
+{
+    /*FILE* fp;*/
+  char whereis_file[255];
+  /*char whereis_work[255];*/
+  sprintf(whereis_file,"%s",dump_format_str(WHEREIS_FILE));
+  (void) unlink(fqname(whereis_file, LEVELPREFIX, 2));
+  /*
+  fp = fopen_datafile(whereis_file,"w",LEVELPREFIX);
+  if (fp) {
+    fwrite(whereis_work,strlen(whereis_work),1,fp);
+    fclose(fp);
+  }
+  */
+}
+#endif /* WHEREIS_FILE */
+
 /* ----------  END LEVEL FILE HANDLING ----------- */
 
 

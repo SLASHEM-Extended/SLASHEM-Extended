@@ -231,6 +231,10 @@ dosave0()
 		return(0);
 	}
 
+#ifdef WHEREIS_FILE
+	touch_whereis();
+#endif
+
 	vision_recalc(2);	/* shut down vision to prevent problems
 				   in the event of an impossible() call */
 	
@@ -351,6 +355,9 @@ dosave0()
 
 	delete_levelfile(ledger_no(&u.uz));
 	delete_levelfile(0);
+#ifdef WHEREIS_FILE
+	delete_whereis();
+#endif
 	compress_area(FILE_AREA_SAVE, fq_save);
 	return(1);
 }

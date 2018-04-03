@@ -712,6 +712,7 @@ E int dolistvanq(void);
 E int num_genocides(void);
 /* KMH, ethics */
 E int doethics(void);
+E char *dump_format_str(char *);
 
 
 /* ### engrave.c ### */
@@ -825,6 +826,10 @@ E boolean recover_savefile(void);
 #endif
 #ifdef HOLD_LOCKFILE_OPEN
 E void really_close(void);
+#endif
+#ifdef WHEREIS_FILE
+E void touch_whereis(void);
+E void delete_whereis(void);
 #endif
 
 /* ### fountain.c ### */

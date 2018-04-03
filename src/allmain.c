@@ -8298,6 +8298,11 @@ newgame()
 
 	/* Success! */
 	welcome(TRUE);
+
+#ifdef WHEREIS_FILE
+	touch_whereis();
+#endif
+
 	return;
 }
 
