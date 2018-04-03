@@ -4289,8 +4289,12 @@ register int timex;
 	}
 
 	/* KMH, intrinsics patch */
-	if(!Wounded_legs || (HWounded_legs & TIMEOUT))
-		HWounded_legs = timex;
+
+	/*if(!Wounded_legs || (HWounded_legs & TIMEOUT))*/
+	/* This was interacting incorrectly with items that give wounded legs extrinsically, probably because the
+	 * original devteam never expected someone to actually make such items... --Amy */
+
+	HWounded_legs = timex;
 	EWounded_legs = side;
 	(void)encumber_msg();
 }

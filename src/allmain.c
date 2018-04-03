@@ -4574,6 +4574,57 @@ newbossX:
 
 		}
 
+		if (Blinded < 0) {
+			pline("Fixing a bug that gave you a negative blindness counter...");
+			u.ucreamed = 0;
+			make_blinded(0L,TRUE);
+		}
+
+		if (Stunned < 0) {
+			pline("Fixing a bug that gave you a negative stun counter...");
+			make_stunned(0L,TRUE);
+		}
+
+		if (Confusion < 0) {
+			pline("Fixing a bug that gave you a negative confusion counter...");
+			make_confused(0L,TRUE);
+		}
+
+		if (Numbed < 0) {
+			pline("Fixing a bug that gave you a negative numbness counter...");
+			make_numbed(0L,TRUE);
+		}
+
+		if (Feared < 0) {
+			pline("Fixing a bug that gave you a negative fear counter...");
+			make_feared(0L,TRUE);
+		}
+
+		if (Frozen < 0) {
+			pline("Fixing a bug that gave you a negative freeze counter...");
+			make_frozen(0L,TRUE);
+		}
+
+		if (Burned < 0) {
+			pline("Fixing a bug that gave you a negative burn counter...");
+			make_burned(0L,TRUE);
+		}
+
+		if (Dimmed < 0) {
+			pline("Fixing a bug that gave you a negative dimness counter...");
+			make_dimmed(0L,TRUE);
+		}
+
+		if (Hallucination < 0) {
+			pline("Fixing a bug that gave you a negative hallucination counter...");
+			make_hallucinated(0L,TRUE,0L);
+		}
+
+		if (Wounded_legs && ((EWounded_legs & LEFT_SIDE) || (EWounded_legs & RIGHT_SIDE)) && (HWounded_legs < 1) ) {
+			pline("Fixing a bug that would prevent your legs from healing...");
+			heal_legs();
+		}
+
 		if (FemaleTrapFemmy && !rn2(500) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
