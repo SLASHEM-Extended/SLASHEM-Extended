@@ -140,7 +140,22 @@ char *item;
 	livelog_write_string(strbuf);
 }
 
-/* Reports wishes */
+/* Reports achievements */
+void
+livelog_report_trophy(string)
+char *string;
+{
+	snprintf(strbuf, STRBUF_LEN,
+		"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:trophy=%s\n",
+		plname,
+		urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
+		hybrid_strcode(),
+		moves,
+		string);
+	livelog_write_string(strbuf);
+}
+
+/* Reports lifesaving */
 void
 livelog_avert_death()
 {

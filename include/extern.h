@@ -3119,6 +3119,7 @@ E boolean livelog_start(void);
 E void livelog_achieve_update(void);
 E void livelog_wish(char*);
 E void livelog_avert_death(void);
+E void livelog_report_trophy(char *);
 #ifdef LIVELOG_SHOUT
 E int doshout(void);
 #endif

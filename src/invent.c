@@ -342,6 +342,7 @@ struct obj *obj;
 
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
+		livelog_report_trophy("obtained the Amulet of Yendor");
 #endif
 #endif
 	} else if (obj->otyp == CANDELABRUM_OF_INVOCATION) {
@@ -373,6 +374,7 @@ struct obj *obj;
 			qt_pager(QT_VLAD);
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
+		livelog_report_trophy("obtained the Candelabrum of Invocation");
 #endif
 #endif
 	} else if (obj->otyp == BELL_OF_OPENING) {
@@ -404,6 +406,7 @@ struct obj *obj;
                 achieve.get_bell = 1;
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
+		livelog_report_trophy("obtained the Bell of Opening");
 #endif
 #endif
 	} else if (obj->otyp == SPE_BOOK_OF_THE_DEAD) {
@@ -435,6 +438,7 @@ struct obj *obj;
 			qt_pager(QT_RODNEY);
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
+		livelog_report_trophy("obtained the Book of the Dead");
 #endif
 #endif
 	} else if (obj->oartifact) {
@@ -498,6 +502,7 @@ struct obj *obj;
 		    }
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
+		livelog_report_trophy("obtained the luckstone from Mines End");
 #endif
         } else if((obj->otyp == AMULET_OF_REFLECTION || obj->otyp == GAUNTLETS_OF_REFLECTION || obj->otyp == RIN_POLYMORPH_CONTROL || obj->otyp == RIN_TELEPORT_CONTROL || obj->otyp == SHIELD_OF_MOBILITY || obj->otyp == HELM_OF_DRAIN_RESISTANCE || obj->otyp == CYAN_DRAGON_SCALE_MAIL || obj->otyp == FLYING_BOOTS ||
                    obj->otyp == BAG_OF_HOLDING) &&
@@ -528,6 +533,7 @@ struct obj *obj;
 		    }
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
+		livelog_report_trophy("obtained the Sokoban prize");
 #endif
         }
 #endif /* RECORD_ACHIEVE */

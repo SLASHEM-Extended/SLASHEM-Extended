@@ -4512,6 +4512,7 @@ newbossX:
 
 #ifdef LIVELOGFILE
 			livelog_achieve_update();
+			livelog_report_trophy("imbued the Bell of Opening");
 #endif
 #endif
 
@@ -4578,6 +4579,7 @@ newbossX:
 
 #ifdef LIVELOGFILE
 			livelog_achieve_update();
+			livelog_report_trophy("finished imbuing the Amulet of Yendor");
 #endif
 #endif
 			qt_pager(QT_AMULETIMBUEDCOMPLETE);

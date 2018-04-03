@@ -1475,6 +1475,7 @@ dodown()
             achieve.enter_gehennom = 1;
 #ifdef LIVELOGFILE
 	livelog_achieve_update();
+	livelog_report_trophy("entered Gehennom");
 #endif
 #endif
 

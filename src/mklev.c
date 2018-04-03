@@ -14425,6 +14425,7 @@ mkinvokearea()
     achieve.perform_invocation = 1;
 #ifdef LIVELOGFILE
     livelog_achieve_update();
+    livelog_report_trophy("performed the invocation");
 
 	/* let's spice things up a bit... --Amy */
     (void) makemon(&mons[PM_CHAOS_MONKEY], 0, 0, NO_MM_FLAGS);
