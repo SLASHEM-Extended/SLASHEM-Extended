@@ -2172,22 +2172,22 @@ MAZE:"ghbgr-14",' '
 GEOMETRY:center,center
 MAP
 ---------------------------------------------------------------------------
-|. L..L.CT.C.TI..}.. L} L.}C .T.CT..CT.L }LC}C F}C.L.C LT .TC..L}.CL.}.C.}|
-|I. TFL.IF TI.C TI.F. TI. F F.IF. IF...FL..FL. .TFL TILF .FI. T. .TF TLF..|
-|}IT.F.I.C I.TCFI.T .F..LFI..FC}LI.FTL.I.FT.TI.CLF.T. F CITCI. TLFCI. TFL}|
-|} .}L.TITTI.}..FCCFLCC.LC.CLF.F...TFIL..F ..T }I. I} ..CLI.TF}.L..F... } |
-|TI.C. FLF FF F.  F.}FL.F.LF. FF  F TFFFCF FC..F.F.}}C}.I.T TI.LT}C. .}}CL|
-|FCITI. FC.. FL FT.F}I.C}I..F}.F}}}. IL}.F.. LT}  .}I .C}.} ..} . }CLC }. |
-|LITF.C.F T}IF C}. FFLF}.. F}CLI .TT}I.I ..FI.. L FFLF.F}.}L.} C TF T.. }}|
-|FTI.LT.IF. . CL. T.}LT}..}.I} TFLLFLCL..FLF  TIC}TTC}}}. CL. . .F.FL}.L  |
-|}C.} }.T}I.IFLFC. LFCLT. F.C. I.F... F. FCL .CL. C}. F C.F} CL.FL. C}.CLL|
-|FITF}F.C}. .FC}F.IF}. ..FC}. F. FI T. .F. FLC}. FL. F. FFC .FFC.FCLLC.F.}|
-|}.CL}I LTI.TTI..I. F...F.FF..FT TII..F}CFCL.L.}. CL.. C F..FTF.CTF}C.}}.C|
-|}F .}}.CL }.}..ITF... FL}F.F. FFL .C}FCL FCLTFLCII.FLC..F.FL..TC}LFCF. TL|
-|..CL. F}.F.T. }. I}..}ILI.T}LF. F.F}F. .CL. }.}CL.  }C.  TTT C}T..C}. .T}|
-|F..IT...I..  TI}. IT}.}}. I.}CI..}I.CL}FL.C }.F.CLF.FLFC}}. FI.T}.}. T}..|
-|C}. I}.TI.TCL.CL.F}C}. L.}} L}.. L}. F}. F. FLLFCLF}. L.}. C  T.}}I.ILF.L|
-|}C.T}.TTII.FF.L}. F}. F}. F}C.F C}}.LC.TI. TI.C}TTII}} }. CL}. LF .}}FF.F|
+|.eL..L.CT.C.TI..}..eL}eL.}Ce.T.CT..CT.Le}LC}CeF}C.L.CeLTe.TC..L}.CL.}.C.}|
+|I.eTFL.IFeTI.CeTI.F.eTI.eFeF.IF.eIF...FL..FL.e.TFLeTILFe.FI.eT.e.TFeTLF..|
+|}IT.F.I.CeI.TCFI.Te.F..LFI..FC}LI.FTL.I.FT.TI.CLF.T.eFeCITCI.eTLFCI.eTFL}|
+|}e.}L.TITTI.}..FCCFLCC.LC.CLF.F...TFIL..Fe..Te}I.eI}e..CLI.TF}.L..F...e}e|
+|TI.C.eFLFeFFeF.eeF.}FL.F.LF.eFFeeFeTFFFCFeFC..F.F.}}C}.I.TeTI.LT}C.e.}}CL|
+|FCITI.eFC..eFLeFT.F}I.C}I..F}.F}}}.eIL}.F..eLT}ee.}Ie.C}.}e..}e.e}CLCe}.e|
+|LITF.C.FeT}IFeC}.eFFLF}..eF}CLIe.TT}I.Ie..FI..eLeFFLF.F}.}L.}eCeTFeT..e}}|
+|FTI.LT.IF.e.eCL.eT.}LT}..}.I}eTFLLFLCL..FLFeeTIC}TTC}}}.eCL.e.e.F.FL}.Lee|
+|}C.}e}.T}I.IFLFC.eLFCLT.eF.C.eI.F...eF.eFCLe.CL.eC}.eFeC.F}eCL.FL.eC}.CLL|
+|FITF}F.C}.e.FC}F.IF}.e..FC}.eF.eFIeT.e.F.eFLC}.eFL.eF.eFFCe.FFC.FCLLC.F.}|
+|}.CL}IeLTI.TTI..I.eF...F.FF..FTeTII..F}CFCL.L.}.eCL..eCeF..FTF.CTF}C.}}.C|
+|}Fe.}}.CLe}.}..ITF...eFL}F.F.eFFLe.C}FCLeFCLTFLCII.FLC..F.FL..TC}LFCF.eTL|
+|..CL.eF}.F.T.e}.eI}..}ILI.T}LF.eF.F}F.e.CL.e}.}CL.ee}C.eeTTTeC}T..C}.e.T}|
+|F..IT...I..eeTI}.eIT}.}}.eI.}CI..}I.CL}FL.Ce}.F.CLF.FLFC}}.eFI.T}.}.eT}..|
+|C}.eI}.TI.TCL.CL.F}C}.eL.}}eL}..eL}.eF}.eF.eFLLFCLF}.eL.}.eCeeT.}}I.ILF.L|
+|}C.T}.TTII.FF.L}.eF}.eF}.eF}C.FeC}}.LC.TI.eTI.C}TTII}}e}.eCL}.eLFe.}}FF.F|
 ---------------------------------------------------------------------------
 ENDMAP
 # Dungeon Description
@@ -2334,22 +2334,22 @@ MAZE:"ghbgr-15",' '
 GEOMETRY:center,center
 MAP
 ---------------------------------------------------------------------------
-|. L..L.CT.C.TI..}.. L} L.}C .T.CT..CT.L }LC}C F}C.L.C LT .TC..L}.CL.}.C.}|
-|I. TFL.IF TI.C TI.F. TI. F F.IF. IF...FL..FL. .TFL TILF .FI. T. .TF TLF..|
-|}IT.F.I.C I.TCFI.T .F..LFI..FC}LI.FTL.I.FT.TI.CLF.T. F CITCI. TLFCI. TFL}|
-|} .}L.TITTI.}..FCCFLCC.LC.CLF.F...TFIL..F ..T }I. I} ..CLI.TF}.L..F... } |
-|TI.C. FLF FF F.  F.}FL.F.LF. FF  F TFFFCF FC..F.F.}}C}.I.T TI.LT}C. .}}CL|
-|FCITI. FC.. FL FT.F}I.C}I..F}.F}}}. IL}.F.. LT}  .}I .C}.} ..} . }CLC }. |
-|LITF.C.F T}IF C}. FFLF}.. F}CLI .TT}I.I ..FI.. L FFLF.F}.}L.} C TF T.. }}|
-|FTI.LT.IF. . CL. T.}LT}..}.I} TFLLFLCL..FLF  TIC}TTC}}}. CL. . .F.FL}.L  |
-|}C.} }.T}I.IFLFC. LFCLT. F.C. I.F... F. FCL .CL. C}. F C.F} CL.FL. C}.CLL|
-|FITF}F.C}. .FC}F.IF}. ..FC}. F. FI T. .F. FLC}. FL. F. FFC .FFC.FCLLC.F.}|
-|}.CL}I LTI.TTI..I. F...F.FF..FT TII..F}CFCL.L.}. CL.. C F..FTF.CTF}C.}}.C|
-|}F .}}.CL }.}..ITF... FL}F.F. FFL .C}FCL FCLTFLCII.FLC..F.FL..TC}LFCF. TL|
-|..CL. F}.F.T. }. I}..}ILI.T}LF. F.F}F. .CL. }.}CL.  }C.  TTT C}T..C}. .T}|
-|F..IT...I..  TI}. IT}.}}. I.}CI..}I.CL}FL.C }.F.CLF.FLFC}}. FI.T}.}. T}..|
-|C}. I}.TI.TCL.CL.F}C}. L.}} L}.. L}. F}. F. FLLFCLF}. L.}. C  T.}}I.ILF.L|
-|}C.T}.TTII.FF.L}. F}. F}. F}C.F C}}.LC.TI. TI.C}TTII}} }. CL}. LF .}}FF.F|
+|.eL..L.CT.C.TI..}..eL}eL.}Ce.T.CT..CT.Le}LC}CeF}C.L.CeLTe.TC..L}.CL.}.C.}|
+|I.eTFL.IFeTI.CeTI.F.eTI.eFeF.IF.eIF...FL..FL.e.TFLeTILFe.FI.eT.e.TFeTLF..|
+|}IT.F.I.CeI.TCFI.Te.F..LFI..FC}LI.FTL.I.FT.TI.CLF.T.eFeCITCI.eTLFCI.eTFL}|
+|}e.}L.TITTI.}..FCCFLCC.LC.CLF.F...TFIL..Fe..Te}I.eI}e..CLI.TF}.L..F...e}e|
+|TI.C.eFLFeFFeF.eeF.}FL.F.LF.eFFeeFeTFFFCFeFC..F.F.}}C}.I.TeTI.LT}C.e.}}CL|
+|FCITI.eFC..eFLeFT.F}I.C}I..F}.F}}}.eIL}.F..eLT}ee.}Ie.C}.}e..}e.e}CLCe}.e|
+|LITF.C.FeT}IFeC}.eFFLF}..eF}CLIe.TT}I.Ie..FI..eLeFFLF.F}.}L.}eCeTFeT..e}}|
+|FTI.LT.IF.e.eCL.eT.}LT}..}.I}eTFLLFLCL..FLFeeTIC}TTC}}}.eCL.e.e.F.FL}.Lee|
+|}C.}e}.T}I.IFLFC.eLFCLT.eF.C.eI.F...eF.eFCLe.CL.eC}.eFeC.F}eCL.FL.eC}.CLL|
+|FITF}F.C}.e.FC}F.IF}.e..FC}.eF.eFIeT.e.F.eFLC}.eFL.eF.eFFCe.FFC.FCLLC.F.}|
+|}.CL}IeLTI.TTI..I.eF...F.FF..FTeTII..F}CFCL.L.}.eCL..eCeF..FTF.CTF}C.}}.C|
+|}Fe.}}.CLe}.}..ITF...eFL}F.F.eFFLe.C}FCLeFCLTFLCII.FLC..F.FL..TC}LFCF.eTL|
+|..CL.eF}.F.T.e}.eI}..}ILI.T}LF.eF.F}F.e.CL.e}.}CL.ee}C.eeTTTeC}T..C}.e.T}|
+|F..IT...I..eeTI}.eIT}.}}.eI.}CI..}I.CL}FL.Ce}.F.CLF.FLFC}}.eFI.T}.}.eT}..|
+|C}.eI}.TI.TCL.CL.F}C}.eL.}}eL}..eL}.eF}.eF.eFLLFCLF}.eL.}.eCeeT.}}I.ILF.L|
+|}C.T}.TTII.FF.L}.eF}.eF}.eF}C.FeC}}.LC.TI.eTI.C}TTII}}e}.eCL}.eLFe.}}FF.F|
 ---------------------------------------------------------------------------
 ENDMAP
 # Dungeon Description
@@ -4714,23 +4714,23 @@ MONSTER:random,random,random
 MAZE:"ghbgr-29",' '
 GEOMETRY:center,center
 MAP
- . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
- . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
- . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
- . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
- . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
- . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
- . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
- . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
- . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e.e
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 ENDMAP
 # Dungeon Description

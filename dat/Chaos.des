@@ -5,22 +5,22 @@ GEOMETRY:center,center
 #123456789012345678901234567890123456789012345678901234567890123456789012345
 MAP
 ---------------------------------------------------------------------------
-|TL.}T..C}LC} LF.}TCLCT.FL.TFC..C.LT.} CL}T C CT.L.}T LC.}T CL.T .C. .CT.C|
-|.I}T.I.T..T .T.C.T.C..CTLC}FL }T LT}F}L.C. .}C ..}T .C..T .C. .}.. C} .C.|
-|TI.}TI.LF}TI.L.}TIL.}TL.T} L.T. .. LC}F CL. CL} CL. C}T.C}.L.} CLF CT }.L|
-|F.F.LTLCTCL.} .L.}TC. CLF LCF LCT} C.} .C} ..T.} C..} ...} L.LFL..} T.C.T|
-|L T L.LTI..C..}L} . LC}T C..F CLT FC... CT} .LTL...LT .L}TLTF LL.F FT L}C|
-|.I.I}.TI.}.. L}TC.FC..FC.C  FCT..C.CC.} .C.} C..CT F.. CF CF. C C.C .F.T |
-|.IT.. T. .}CL.T}C...}T..}TF .F .. CT. ..T. C.} C. C C C.TC .} C.C}.. C}..|
-|....T...}F .L.}T ...} ....  ... .T .. TC.TC.TC.T .T .C.C.T}.C.}C .CTT.LTI|
-|.I.FTI. TC} C}F.ILF T}. TILF.I.LF.I.FLI..T..F.F.F..F.....F ..ICF TC..F.TI|
-| F L.T. T...T.CFC .CFC.F  CT} C} C LCF C TC FC. CT.. CTI .CTI C C} . TC.I|
-|.}..TC. }.C ..}C .CF . C} CF .CF C.T C.} C..} .C. .C.T. C.}F L.L..LT.LT.L|
-|LC} . C}C.}.C.}T C...T .C}C.L}.C.IT}.LFCLC.CILFFL.I.CILCFIC..IC}CI..CIT.C|
-| T }.TI. L. T.C.}.C. .} C..FCFC T. FL} L. CT. .C.T C. CT. . L}.}.. T. ..C|
-|C} L}T C.LCT} C. .FLC.F C.LF .CLTC  CT.C T .T C..C}T. .. CT..C T.C.} CL} |
-|I.F..}L. }. .CT C. .C.T C..L C}.. C} LC }LC .} LC.T.C..T .C C.T}.CL. C.TL|
-|CLT.CL.T .C} .CL}T CL}TLTL}L.F}LF FCT..LT .LCT ..LC L}F.L}..T. .T. TCCT  |
+|TL.}T..C}LC}eLF.}TCLCT.FL.TFC..C.LT.}eCL}TeCeCT.L.}TeLC.}TeCL.Te.C.e.CT.C|
+|.I}T.I.T..Te.T.C.T.C..CTLC}FLe}TeLT}F}L.C.e.}Ce..}Te.C..Te.C.e.}..eC}e.C.|
+|TI.}TI.LF}TI.L.}TIL.}TL.T}eL.T.e..eLC}FeCL.eCL}eCL.eC}T.C}.L.}eCLFeCTe}.L|
+|F.F.LTLCTCL.}e.L.}TC.eCLFeLCFeLCT}eC.}e.C}e..T.}eC..}e...}eL.LFL..}eT.C.T|
+|LeTeL.LTI..C..}L}e.eLC}TeC..FeCLTeFC...eCT}e.LTL...LTe.L}TLTFeLL.FeFTeL}C|
+|.I.I}.TI.}..eL}TC.FC..FC.CeeFCT..C.CC.}e.C.}eC..CTeF..eCFeCF.eCeC.Ce.F.Te|
+|.IT..eT.e.}CL.T}C...}T..}TFe.Fe..eCT.e..T.eC.}eC.eCeCeC.TCe.}eC.C}..eC}..|
+|....T...}Fe.L.}Te...}e....ee...e.Te..eTC.TC.TC.Te.Te.C.C.T}.C.}Ce.CTT.LTI|
+|.I.FTI.eTC}eC}F.ILFeT}.eTILF.I.LF.I.FLI..T..F.F.F..F.....Fe..ICFeTC..F.TI|
+|eFeL.T.eT...T.CFCe.CFC.FeeCT}eC}eCeLCFeCeTCeFC.eCT..eCTIe.CTIeCeC}e.eTC.I|
+|.}..TC.e}.Ce..}Ce.CFe.eC}eCFe.CFeC.TeC.}eC..}e.C.e.C.T.eC.}FeL.L..LT.LT.L|
+|LC}e.eC}C.}.C.}TeC...Te.C}C.L}.C.IT}.LFCLC.CILFFL.I.CILCFIC..IC}CI..CIT.C|
+|eTe}.TI.eL.eT.C.}.C.e.}eC..FCFCeT.eFL}eL.eCT.e.C.TeC.eCT.e.eL}.}..eT.e..C|
+|C}eL}TeC.LCT}eC.e.FLC.FeC.LFe.CLTCeeCT.CeTe.TeC..C}T.e..eCT..CeT.C.}eCL}e|
+|I.F..}L.e}.e.CTeC.e.C.TeC..LeC}..eC}eLCe}LCe.}eLC.T.C..Te.CeC.T}.CL.eC.TL|
+|CLT.CL.Te.C}e.CL}TeCL}TLTL}L.F}LFeFCT..LTe.LCTe..LCeL}F.L}..T.e.T.eTCCTee|
 ---------------------------------------------------------------------------
 ENDMAP
 
@@ -102,22 +102,22 @@ GEOMETRY:center,center
 #123456789012345678901234567890123456789012345678901234567890123456789012345
 MAP
 ---------------------------------------------------------------------------
-|}.}. T. C} CT .CLT .C.L C.FTL C.LC T. C}. LFL L T}LT..TIC. TC. C L}. LF T|
-|.}TL}TLC}TLC F CFC LFC LCTL}. CL}. C.LT. CL T.CLC TLTC LT .LC TCLC TLC .T|
-|CCF}.CLTIC..}T. .CLC}.C  .C.F .C.C.C.FCLC ..C .CLTC}L. C}T. CT.C.}.CT. .T|
-|FLTC. .C.T. .C} C.. C FC. FC. CF. C.}T C.T C. CT. CIT C.T C. .C.T C..} CL|
-|. FCTC.C.T..CT...C.T . C}.C .} } C. C}L. C} . C}. C. CT.. CT ..CT .C.T C}|
-|CFC.T..C}T..CTIC...  F}FCC.CT. .TI .. .CT.IC. }. CL}. C.T C..T .C.. CT. T|
-|C.T. ..C }. .LT ...T. C..T .CI. .C.} C.L.} C.L.}T. C.}LC}.C .C T. ..T. .C|
-|C  CT.} C..TI C..T ..T C.. .C}. .CF .CT .CT. CT C.}T C.T. LT.L. T} L.TL T|
-|}FCL.T C. CTI. CT .C.T ..C.T} ....TL.L}T.L}TL.CFLCTFLC T.}C LTL .TL. TICI|
-|.CTC.. .}T.. C}T.LC. FLC.}T C.T.C T C.T C. CT. .CT..} .LT .T.L.CT .CT.TC.|
-|LCL.T ..T .C.} .C. TC. C}TF. C}. ..CT ..} C}.C . C.T ..T .C..}T. C.} C} C|
-|} .T...C}T .C} C.. FC..C T. C.}T..LTL. TLF}T.LT. .}. .}T.C.T. CT C.LTLCT |
-|C T. C.T. .C.T .C.TIT LTL.C .T C.. .CT. .CF .CF .CL.}T C.}T .C.L}T .C.C T|
-|C C. C.}. C.L}T. .}T ..T.T .T. .T. .}.}.. T. ..T ..} .T..F.T.FIT..T TC.CC|
-|CFT.LTI.LFT.LCF.T.}L.L}L.}TCL .C.}T LC.T C. CTL.C T} LC.}CL .T C} ..CTT}F|
-|FLT.}TL..TLT CL}C .LF .FC L}F}TLF T .LTL...LT .L TCLF TC.T..T .CLC.F L.} |
+|}.}.eT.eC}eCTe.CLTe.C.LeC.FTLeC.LCeT.eC}.eLFLeLeT}LT..TIC.eTC.eCeL}.eLFeT|
+|.}TL}TLC}TLCeFeCFCeLFCeLCTL}.eCL}.eC.LT.eCLeT.CLCeTLTCeLTe.LCeTCLCeTLCe.T|
+|CCF}.CLTIC..}T.e.CLC}.Cee.C.Fe.C.C.C.FCLCe..Ce.CLTC}L.eC}T.eCT.C.}.CT.e.T|
+|FLTC.e.C.T.e.C}eC..eCeFC.eFC.eCF.eC.}TeC.TeC.eCT.eCITeC.TeC.e.C.TeC..}eCL|
+|.eFCTC.C.T..CT...C.Te.eC}.Ce.}e}eC.eC}L.eC}e.eC}.eC.eCT..eCTe..CTe.C.TeC}|
+|CFC.T..C}T..CTIC...eeF}FCC.CT.e.TIe..e.CT.IC.e}.eCL}.eC.TeC..Te.C..eCT.eT|
+|C.T.e..Ce}.e.LTe...T.eC..Te.CI.e.C.}eC.L.}eC.L.}T.eC.}LC}.Ce.CeT.e..T.e.C|
+|CeeCT.}eC..TIeC..Te..TeC..e.C}.e.CFe.CTe.CT.eCTeC.}TeC.T.eLT.L.eT}eL.TLeT|
+|}FCL.TeC.eCTI.eCTe.C.Te..C.T}e....TL.L}T.L}TL.CFLCTFLCeT.}CeLTLe.TL.eTICI|
+|.CTC..e.}T..eC}T.LC.eFLC.}TeC.T.CeTeC.TeC.eCT.e.CT..}e.LTe.T.L.CTe.CT.TC.|
+|LCL.Te..Te.C.}e.C.eTC.eC}TF.eC}.e..CTe..}eC}.Ce.eC.Te..Te.C..}T.eC.}eC}eC|
+|}e.T...C}Te.C}eC..eFC..CeT.eC.}T..LTL.eTLF}T.LT.e.}.e.}T.C.T.eCTeC.LTLCTe|
+|CeT.eC.T.e.C.Te.C.TITeLTL.Ce.TeC..e.CT.e.CFe.CFe.CL.}TeC.}Te.C.L}Te.C.CeT|
+|CeC.eC.}.eC.L}T.e.}Te..T.Te.T.e.T.e.}.}..eT.e..Te..}e.T..F.T.FIT..TeTC.CC|
+|CFT.LTI.LFT.LCF.T.}L.L}L.}TCLe.C.}TeLC.TeC.eCTL.CeT}eLC.}CLe.TeC}e..CTT}F|
+|FLT.}TL..TLTeCL}Ce.LFe.FCeL}F}TLFeTe.LTL...LTe.LeTCLFeTC.T..Te.CLC.FeL.}e|
 ---------------------------------------------------------------------------
 ENDMAP
 
@@ -188,22 +188,22 @@ GEOMETRY:center,center
 #123456789012345678901234567890123456789012345678901234567890123456789012345
 MAP
 ---------------------------------------------------------------------------
-|.CT..T. } C. C} C.T CCFT.L TL.T.L} L. LF.} . C} L C.T. CT C.T C. }C.C }C}|
-|}. .T .T.L.}...}...F..T. }F..F.T.} . T}... .}C.CT LC TCT. CTC.. CTC..T..C|
-|LFTC.FCLTF.LTCF.TI.FTL.FC}TF..T FLCT  C.F L.TLC .T} CF.T C.LTC .}L.}C TC |
-|FIT.I.}L.CTFL.T.FLTC}L .CT. L.T LC. CT.C LC .}T .C.T.C .}T C.} C.} CL}C T|
-|FCL.TLTTI F.C}.LC.FLC.T LC.TC L.} C}CLT}L.T}.ILI..TLC.T.CTL C.T C.TL.CTLC|
-|FCLTILCFT..CT.C. TCL.T}LF.}.LCTF.LCTFLCT.FLT.FLCTFI.L..F..IT}L.I.}LITLC} |
-| L T..} . FC..CT.LC..T.C..TLC C ..C }C L.T.C LC.} CL..CFT.C.T L..LT .TLC.|
-|FCTLIFCTT ..TL .}TC .CT..TF L.CT} C.T. C. CT C.}C. ..T. .. F}. FT}. FT}. |
-|..TI..T.}F.C}TCLC.TL.C.T L. CT. .CTI L  . CTI.. .CT .LC.TLC.TLC..T.}..T..|
-|FLCT..LT.C..TL.CTILC.TL.F}CC C.F C.TCT CT .C..T .C.. .CTCL C} .T. CT. .C.|
-| .T .T}.}T C.}C L FC CFL..T .FCT.CTL.T.L.TL..  }L.FTLC.FTLC.}CL.T}.LCT.TF|
-|I.T}. }T. }C.CF C. LFCF.. L C}FFT.FC C F C.T CTC T CT C.TC C T  .C}LC.}C |
-|FLFTC.F.CT.TLC.}TL.LCFTL.C.ITCLF.TF}T ..L. }TL..F C. LC.T .C.T C.LC}. FLF|
-|}T T.I.T}LCFTC.T.FC .CT .F.CT .C.T.T.C TC .T .C.C. . C}C L.}T CFT.C. LT T|
-|. T.TI..}..}LC.TFC.F C.F C.C .TC ..C. TC.  .TC.TC.C T C..TC.TC .T CTC. C |
-|I.}L.T .T.FC T.C . .FCT.C.T C..C L CT}...T .CL CTT .T CL. C}.LC .T .C.TC |
+|.CT..T.e}eC.eC}eC.TeCCFT.LeTL.T.L}eL.eLF.}e.eC}eLeC.T.eCTeC.TeC.e}C.Ce}C}|
+|}.e.Te.T.L.}...}...F..T.e}F..F.T.}e.eT}...e.}C.CTeLCeTCT.eCTC..eCTC..T..C|
+|LFTC.FCLTF.LTCF.TI.FTL.FC}TF..TeFLCTeeC.FeL.TLCe.T}eCF.TeC.LTCe.}L.}CeTCe|
+|FIT.I.}L.CTFL.T.FLTC}Le.CT.eL.TeLC.eCT.CeLCe.}Te.C.T.Ce.}TeC.}eC.}eCL}CeT|
+|FCL.TLTTIeF.C}.LC.FLC.TeLC.TCeL.}eC}CLT}L.T}.ILI..TLC.T.CTLeC.TeC.TL.CTLC|
+|FCLTILCFT..CT.C.eTCL.T}LF.}.LCTF.LCTFLCT.FLT.FLCTFI.L..F..IT}L.I.}LITLC}e|
+|eLeT..}e.eFC..CT.LC..T.C..TLCeCe..Ce}CeL.T.CeLC.}eCL..CFT.C.TeL..LTe.TLC.|
+|FCTLIFCTTe..TLe.}TCe.CT..TFeL.CT}eC.T.eC.eCTeC.}C.e..T.e..eF}.eFT}.eFT}.e|
+|..TI..T.}F.C}TCLC.TL.C.TeL.eCT.e.CTIeLee.eCTI..e.CTe.LC.TLC.TLC..T.}..T..|
+|FLCT..LT.C..TL.CTILC.TL.F}CCeC.FeC.TCTeCTe.C..Te.C..e.CTCLeC}e.T.eCT.e.C.|
+|e.Te.T}.}TeC.}CeLeFCeCFL..Te.FCT.CTL.T.L.TL..ee}L.FTLC.FTLC.}CL.T}.LCT.TF|
+|I.T}.e}T.e}C.CFeC.eLFCF..eLeC}FFT.FCeCeFeC.TeCTCeTeCTeC.TCeCeTee.C}LC.}Ce|
+|FLFTC.F.CT.TLC.}TL.LCFTL.C.ITCLF.TF}Te..L.e}TL..FeC.eLC.Te.C.TeC.LC}.eFLF|
+|}TeT.I.T}LCFTC.T.FCe.CTe.F.CTe.C.T.T.CeTCe.Te.C.C.e.eC}CeL.}TeCFT.C.eLTeT|
+|.eT.TI..}..}LC.TFC.FeC.FeC.Ce.TCe..C.eTC.ee.TC.TC.CeTeC..TC.TCe.TeCTC.eCe|
+|I.}L.Te.T.FCeT.Ce.e.FCT.C.TeC..CeLeCT}...Te.CLeCTTe.TeCL.eC}.LCe.Te.C.TCe|
 ---------------------------------------------------------------------------
 ENDMAP
 
@@ -276,22 +276,22 @@ GEOMETRY:center,center
 #123456789012345678901234567890123456789012345678901234567890123456789012345
 MAP
 ---------------------------------------------------------------------------
-|.I.T......CTC. .C.F C}F C.CT L.T CLC T.C. } CFTC }T .C.LT CLT ..CT.C.  CT|
-|TFCT.. T. C.TC.L.C}.LT. CF CFC . FCT. CTLC.TC..CTLTC.TC.CT .CL.C TL.CT C |
-| T L}C .C.FTFC.}T. C.T .C.C. TL LT.C.C L.TCL.TC L.T CL .C.TC LF CTFLC TLC|
-| CFCF.FCT. CTLTL CTLC..CT.TL.TL.. .CTLCT C.LCT.CLT.CL.T.CL..CTLC..CT.LCT.|
-|FL FC. CF C.LTLCT.CF } LTL ..TL.TL...LT LT .C.}CF.TCFCT.CTLCTLC TC TLCF..|
-|FLCFLCL.T. L.}L}TL.L.T.L.}. .L.} .L}.TL. .FF.F C.T LC. LCCTL.CT .L. CTL.C|
-|I.T....C.}T . CF CLC.FC L.T C.C.CLT .C }CT LF LLF T LFT.LF.L FLFTFC }LCTC|
-|} T. }. T. }...TLFTL}.FL .}T. C} .C.C .FC. .T.C. TLCLCTI .TF .}T .}FLTIF.|
-|}.F.T.F.T}.L}T LCTCLT.C.L C}FL.TC.C.C }T.LC..TCLL .}FLC } LCCT T.CL}. }.L|
-|I.}.}T..} C L.FL}LC}LCFL}TC FLT}F.TC.T. CT. .CL CT .C.}C L.} CL C}TF CFT |
-|}..}}.. .CTC.T .C}. .CC..T.C.LTC ..} CFC}F .CT.C}T.}T C. CL }C.L. C.T C.T|
-|..IFTF}TC.. T. LCT.C..LC.TLC.TCL T..CT CT .TLC.T..CC...T CC TLC} CLCFT CT|
-|.LF T. .. F.FTC..T .. CTL. .CTL C..TL CT..CLC T. CLT C.T L.TL .L} .FT CTL|
-|}.TF T FC}CL..CTLC.LC..T C.T CLCT.T .C L.T.LTL.} .}TFC TCC }T.L}T.CT.C.CT|
-|TI.T}C TLC.TCLTLC..C.TL. C}TF L}L FTL..CF.TFC.T..CTL.. TL F..FT.LIT.LTFCC|
-|. T .TL.TFT.CTLT .L.F LFT}F.F.CTLC.TCL.TLCTCLTFCTFCTCLTC.FCTFCT.FCTLC TF}|
+|.I.T......CTC.e.C.FeC}FeC.CTeL.TeCLCeT.C.e}eCFTCe}Te.C.LTeCLTe..CT.C.eeCT|
+|TFCT..eT.eC.TC.L.C}.LT.eCFeCFCe.eFCT.eCTLC.TC..CTLTC.TC.CTe.CL.CeTL.CTeCe|
+|eTeL}Ce.C.FTFC.}T.eC.Te.C.C.eTLeLT.C.CeL.TCL.TCeL.TeCLe.C.TCeLFeCTFLCeTLC|
+|eCFCF.FCT.eCTLTLeCTLC..CT.TL.TL..e.CTLCTeC.LCT.CLT.CL.T.CL..CTLC..CT.LCT.|
+|FLeFC.eCFeC.LTLCT.CFe}eLTLe..TL.TL...LTeLTe.C.}CF.TCFCT.CTLCTLCeTCeTLCF..|
+|FLCFLCL.T.eL.}L}TL.L.T.L.}.e.L.}e.L}.TL.e.FF.FeC.TeLC.eLCCTL.CTe.L.eCTL.C|
+|I.T....C.}Te.eCFeCLC.FCeL.TeC.C.CLTe.Ce}CTeLFeLLFeTeLFT.LF.LeFLFTFCe}LCTC|
+|}eT.e}.eT.e}...TLFTL}.FLe.}T.eC}e.C.Ce.FC.e.T.C.eTLCLCTIe.TFe.}Te.}FLTIF.|
+|}.F.T.F.T}.L}TeLCTCLT.C.LeC}FL.TC.C.Ce}T.LC..TCLLe.}FLCe}eLCCTeT.CL}.e}.L|
+|I.}.}T..}eCeL.FL}LC}LCFL}TCeFLT}F.TC.T.eCT.e.CLeCTe.C.}CeL.}eCLeC}TFeCFTe|
+|}..}}..e.CTC.Te.C}.e.CC..T.C.LTCe..}eCFC}Fe.CT.C}T.}TeC.eCLe}C.L.eC.TeC.T|
+|..IFTF}TC..eT.eLCT.C..LC.TLC.TCLeT..CTeCTe.TLC.T..CC...TeCCeTLC}eCLCFTeCT|
+|.LFeT.e..eF.FTC..Te..eCTL.e.CTLeC..TLeCT..CLCeT.eCLTeC.TeL.TLe.L}e.FTeCTL|
+|}.TFeTeFC}CL..CTLC.LC..TeC.TeCLCT.Te.CeL.T.LTL.}e.}TFCeTCCe}T.L}T.CT.C.CT|
+|TI.T}CeTLC.TCLTLC..C.TL.eC}TFeL}LeFTL..CF.TFC.T..CTL..eTLeF..FT.LIT.LTFCC|
+|.eTe.TL.TFT.CTLTe.L.FeLFT}F.F.CTLC.TCL.TLCTCLTFCTFCTCLTC.FCTFCT.FCTLCeTF}|
 ---------------------------------------------------------------------------
 ENDMAP
 
@@ -362,22 +362,22 @@ GEOMETRY:center,center
 #123456789012345678901234567890123456789012345678901234567890123456789012345
 MAP
 ---------------------------------------------------------------------------
-|} T.LT.LTL}T .C. .C.}L .C} .CL .C.T CF.T CFL C..LT .C.LT.T .CLT CL.T .CCL|
-| LTC.} CT.T .CL CTL. .CTLT. LF.L F}TLFLT L C.T FC .FCL CTLC T.LC } LFT T.|
-| FT CLC} . C.TL .T LC.T .LF}TL } .CT L T LF.T C. CT C.T. C. .CT.CTL. CTCL|
-| L}T T L CT}. C. .CT.. LF} FT} LCTC. .T.C. L.L.LFTLFC}LCT .LCTLC TLCT  }}|
-|FT FFLT}LFC.T CLC.TL.T L. L} LTFL. .T}FC.TC.}T C.L TLT LLF }TL F.TCCT .CT|
-|C TL C}TLC T..T CTL. TLT.F L.CT.C.T.L .TL.C T C.FC}.CT.L. T.LLT.L.TFL T.}|
-| TLT CLC . C.CL T..LTLFTL...TFC.TLCTLF }TFTL} L.C..LCT.I..T.L} C}C L.}C }|
-|LCLFL..C.CTT.LC}LC.FLCL.C.F.CTLCTLC .T. LC.TL LFTL  LFTL.T L.L TF LFTC .T|
-|LCL.T LFCLTF..T. C.. CT. CTL. CTLC .C}LC. }FL .L T.FT. CC.TC .. C.TLLCTC |
-|.IC}C CCCF.TL.L.L .LT  LF.TFC.T LCLC}..FL .TC.T}CL}T. LL}TFLTL.FT.L CLCT.|
-|. . L. ..F.TL F.C} C.}T CL. .CL .L }T.LT C.L.} LFL}F.FL T.. C CLLC T.T .T|
-|. F CTFC. T.C..CTL. C}LC FLC  CFT C.L T.CL CT .CL C.T.LC L.T CL. CT C.TC}|
-|L  CCF TC.L CTL T.CLTLCTF.L .L .LTL..T.CFCL.C.T . .C.TLTIIIT ...LFT LFL.F|
-|LCLFTC.ILC.LCTLTL.F.}...CLFC.LITI.T.CLTL.T..CC L LF. T.I.T.I..L }L FC} C.|
-|.L TFLTL FT L.T CLCTL..IT.L.TCLI.C..CLT C}C FCF. CTFF ..L. .}. T.. T}LC }|
-| TFLT..CL..CTL..T. LT CLT.C LTC.LF.LFITLIT.LT..FL..T.LTL.TIC.CL.T.CFC..FT|
+|}eT.LT.LTL}Te.C.e.C.}Le.C}e.CLe.C.TeCF.TeCFLeC..LTe.C.LT.Te.CLTeCL.Te.CCL|
+|eLTC.}eCT.Te.CLeCTL.e.CTLT.eLF.LeF}TLFLTeLeC.TeFCe.FCLeCTLCeT.LCe}eLFTeT.|
+|eFTeCLC}e.eC.TLe.TeLC.Te.LF}TLe}e.CTeLeTeLF.TeC.eCTeC.T.eC.e.CT.CTL.eCTCL|
+|eL}TeTeLeCT}.eC.e.CT..eLF}eFT}eLCTC.e.T.C.eL.L.LFTLFC}LCTe.LCTLCeTLCTee}}|
+|FTeFFLT}LFC.TeCLC.TL.TeL.eL}eLTFL.e.T}FC.TC.}TeC.LeTLTeLLFe}TLeF.TCCTe.CT|
+|CeTLeC}TLCeT..TeCTL.eTLT.FeL.CT.C.T.Le.TL.CeTeC.FC}.CT.L.eT.LLT.L.TFLeT.}|
+|eTLTeCLCe.eC.CLeT..LTLFTL...TFC.TLCTLFe}TFTL}eL.C..LCT.I..T.L}eC}CeL.}Ce}|
+|LCLFL..C.CTT.LC}LC.FLCL.C.F.CTLCTLCe.T.eLC.TLeLFTLeeLFTL.TeL.LeTFeLFTCe.T|
+|LCL.TeLFCLTF..T.eC..eCT.eCTL.eCTLCe.C}LC.e}FLe.LeT.FT.eCC.TCe..eC.TLLCTCe|
+|.IC}CeCCCF.TL.L.Le.LTeeLF.TFC.TeLCLC}..FLe.TC.T}CL}T.eLL}TFLTL.FT.LeCLCT.|
+|.e.eL.e..F.TLeF.C}eC.}TeCL.e.CLe.Le}T.LTeC.L.}eLFL}F.FLeT..eCeCLLCeT.Te.T|
+|.eFeCTFC.eT.C..CTL.eC}LCeFLCeeCFTeC.LeT.CLeCTe.CLeC.T.LCeL.TeCL.eCTeC.TC}|
+|LeeCCFeTC.LeCTLeT.CLTLCTF.Le.Le.LTL..T.CFCL.C.Te.e.C.TLTIIITe...LFTeLFL.F|
+|LCLFTC.ILC.LCTLTL.F.}...CLFC.LITI.T.CLTL.T..CCeLeLF.eT.I.T.I..Le}LeFC}eC.|
+|.LeTFLTLeFTeL.TeCLCTL..IT.L.TCLI.C..CLTeC}CeFCF.eCTFFe..L.e.}.eT..eT}LCe}|
+|eTFLT..CL..CTL..T.eLTeCLT.CeLTC.LF.LFITLIT.LT..FL..T.LTL.TIC.CL.T.CFC..FT|
 ---------------------------------------------------------------------------
 ENDMAP
 
