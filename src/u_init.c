@@ -8230,6 +8230,8 @@ u_init()
 	u.petcaneat = 1;
 	u.petcanfollow = 1;
 
+	u.segfaultpanic = 0;
+
 	u.combostrike = 0;
 	u.comboactive = 0;
 
