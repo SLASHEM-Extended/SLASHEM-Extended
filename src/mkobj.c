@@ -1717,6 +1717,12 @@ int artif;
 
 		if (is_poisonable(otmp) && !rn2(100))
 			otmp->opoisoned = 1;
+		if (!rn2(400)) otmp->oerodeproof = 1;
+		if (!rn2(400)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
+
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 40 : 20)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
@@ -1797,6 +1803,11 @@ int artif;
 		otmp->otyp == KELP_FROND || otmp->otyp == PEAR || otmp->otyp == ASIAN_PEAR || otmp->otyp == BANANA
 	|| otmp->otyp == ORANGE || otmp->otyp == MELON || otmp->otyp == SLIME_MOLD)*/
 		blessorcurse_on_creation(otmp, 10);
+		if (!rn2(4000)) otmp->oerodeproof = 1;
+		if (!rn2(4000)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 400 : 200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
@@ -1819,6 +1830,12 @@ int artif;
 			curse_on_creation(otmp);
 			if (!rn2(6)) otmp->quan = rn2(5) ? 2L : rn2(4) ? rn1(5,5) : rn1(10,10);
 			else otmp->quan = 1L;
+
+			if (!rn2(1000)) otmp->oerodeproof = 1;
+			if (!rn2(1000)) {
+				if (!rn2(3)) otmp->oeroded = rnd(3);
+				if (!rn2(3)) otmp->oeroded2 = rnd(3);
+			}
 
 			if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 			    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -1870,6 +1887,12 @@ int artif;
 			 else	blessorcurse_on_creation(otmp, 3);
 			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
+
+		if (!rn2(1000)) otmp->oerodeproof = 1;
+		if (!rn2(1000)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2082,6 +2105,12 @@ int artif;
 		break;
 	    }
 
+		if (!rn2(800)) otmp->oerodeproof = 1;
+		if (!rn2(800)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
+
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 80 : 40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
@@ -2105,6 +2134,12 @@ int artif;
 		} else {
 			blessorcurse_on_creation(otmp, 10);
 		}
+		if (!rn2(1200)) otmp->oerodeproof = 1;
+		if (!rn2(1200)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
+
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 120 : 60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
@@ -2119,6 +2154,12 @@ int artif;
 	case IMPLANT_CLASS:
 		blessorcurse_on_creation(otmp, 5);
 
+		if (!rn2(1200)) otmp->oerodeproof = 1;
+		if (!rn2(1200)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
+
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 120 : 60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
@@ -2132,6 +2173,13 @@ int artif;
 		break;
 	case VENOM_CLASS:
 		blessorcurse_on_creation(otmp, 10);
+
+		if (!rn2(400)) otmp->oerodeproof = 1;
+		if (!rn2(400)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
+
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 40 : 20)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
@@ -2158,6 +2206,12 @@ int artif;
 
 		if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
+		if (!rn2(1000)) otmp->oerodeproof = 1;
+		if (!rn2(1000)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
+
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
@@ -2179,6 +2233,12 @@ int artif;
 #endif
 			blessorcurse_on_creation(otmp, 4);
 
+		if (!rn2(320)) otmp->oerodeproof = 1;
+		if (!rn2(320)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
+
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 320 : 160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
@@ -2199,6 +2259,13 @@ int artif;
 		otmp->recharged = 0;
 		if(!rn2(3)) otmp->recharged = rnd(7);
 		blessorcurse_on_creation(otmp, 17);
+
+		if (!rn2(200)) otmp->oerodeproof = 1;
+		if (!rn2(200)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
+
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 200 : 100)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
@@ -2249,6 +2316,12 @@ int artif;
 		} else	blessorcurse_on_creation(otmp, 10);
 
 		if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+
+		if (!rn2(80)) otmp->oerodeproof = 1;
+		if (!rn2(80)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 80 : 40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2322,6 +2395,12 @@ int artif;
 		if (otmp->otyp != WAN_WISHING && otmp->otyp != WAN_ACQUIREMENT && otmp->otyp != WAN_GENOCIDE && otmp->otyp != WAN_GAIN_LEVEL && otmp->otyp != WAN_INCREASE_MAX_HITPOINTS) otmp->recharged = 0; /* used to control recharging */
 		if (!rn2(10)) otmp->recharged = rnd(7); /* allow recharged wands to spawn --Amy */
 
+		if (!rn2(3200)) otmp->oerodeproof = 1;
+		if (!rn2(3200)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
+
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 320 : 160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
@@ -2365,6 +2444,12 @@ int artif;
 			curse_on_creation(otmp);
 		}
 
+		if (!rn2(1000)) otmp->oerodeproof = 1;
+		if (!rn2(1000)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
+
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
@@ -2387,6 +2472,12 @@ int artif;
 						    mkobj(SPBOOK_CLASS,FALSE));
 		}
 	      blessorcurse_on_creation(otmp, 7);
+
+		if (!rn2(4000)) otmp->oerodeproof = 1;
+		if (!rn2(4000)) {
+			if (!rn2(3)) otmp->oeroded = rnd(3);
+			if (!rn2(3)) otmp->oeroded2 = rnd(3);
+		}
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 400 : 200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
