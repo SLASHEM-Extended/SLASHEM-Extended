@@ -105,7 +105,7 @@ register struct monst *mtmp;
 register int x, y, n;
 {
 	coord mm;
-	register int cnt = rnd(n);
+	register int cnt = rno(n);
 	int kindred = rn2(20) ? 0 : 1;
 	if (!(u.monstertimefinish % 137) ) kindred = rn2(5) ? 0 : 1;
 	if (!(u.monstertimefinish % 837) ) kindred = rn2(2) ? 0 : 1;
