@@ -5101,7 +5101,7 @@ register struct obj *obj;
 	    case VENOM_CLASS:
 	    case TOOL_CLASS:
 		if (typ == MATERIAL_KIT) {
-			sprintf(buf, "%s ", materialnm[obj->shirtmessage % LASTMATERIAL]);
+			sprintf(buf, "%s ", materialnm[obj->shirtmessage % (LASTMATERIAL + 1)]);
 		}
 		if (typ == LENSES)
 			strcpy(buf, "pair of ");

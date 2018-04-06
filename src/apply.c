@@ -5158,7 +5158,7 @@ materialchoice:
 				pline("The material of that item cannot be changed!");
 				return(1);
 			} else {
-				objects[otmpC->otyp].oc_material = (obj->shirtmessage % LASTMATERIAL);
+				objects[otmpC->otyp].oc_material = (obj->shirtmessage % (LASTMATERIAL + 1));
 				if (obj->oartifact == ART_GAROK_S_HAMMER_KIT && rn2(5)) {
 					pline("You use some material from the kit.");
 				} else {
