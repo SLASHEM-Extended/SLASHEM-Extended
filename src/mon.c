@@ -468,8 +468,8 @@ register struct monst *mtmp;
 		} else
 			(void) mksobj_at(UNICORN_HORN, x, y, TRUE, FALSE);
 		goto default_1;
-	    case PM_LONG_WORM:
-		(void) mksobj_at(WORM_TOOTH, x, y, TRUE, FALSE);
+	    case PM_LONG_WORM: /* crysknives are too powerful, they should be rare --Amy */
+		if (!rn2(20)) (void) mksobj_at(WORM_TOOTH, x, y, TRUE, FALSE);
 		goto default_1;
 	    case PM_KILLER_TRIPE_RATION:
 	    case PM_PERSONALIZED_KILLER_TRIPE_RATION:
@@ -930,12 +930,14 @@ register struct monst *mtmp;
 		break;
 	    case PM_WOOD_GOLEM:
 		num = d(2,4);
+		if (num > 1 && rn2(2)) num /= 2;
 		while(num--)
 			obj = mksobj_at(QUARTERSTAFF, x, y, TRUE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_LEATHER_GOLEM:
 		num = d(2,4);
+		if (num > 1 && rn2(2)) num /= 2;
 		while(num--)
 			obj = mksobj_at(LEATHER_ARMOR, x, y, TRUE, FALSE);
 		mtmp->mnamelth = 0;
@@ -973,6 +975,7 @@ register struct monst *mtmp;
 	    case PM_PLASTIC_GOLEM:
 		/* KMH -- Credit cards are #ifdef TOURIST */
 		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
 		while (num--)
 			obj = mksobj_at(
 				CREDIT_CARD,
