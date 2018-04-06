@@ -198,6 +198,110 @@ randommaterials()
 }
 
 void
+initobjectsamnesia()
+{
+	/* discovered by Tariru: when the randomized objects are being re-initialized, and you're wearing someting
+	 * like a ring of random effects, you don't lose the property that it used to give, even if you save and load.
+	 * Therefore we'll use this ugly hack that takes the item off, re-initializes its effects, and puts it back on --Amy */
+
+	register struct obj *otmp, *otmp2, *otmp3, *otmp4, *otmp5, *otmp6, *otmp7, *otmp8, *otmp9, *otmp10, *otmp11;
+	boolean hasamulet, hasleftring, hasrightring, hasshirt, hascloak, hasarmor, hasboots, hasgloves, hashelmet, hasshield, hasimplant;
+
+	if (uamul) {
+		hasamulet = TRUE;
+		otmp = uamul;
+		setworn((struct obj *)0, W_AMUL);
+	} else hasamulet = FALSE;
+	if (uleft) {
+		hasleftring = TRUE;
+		otmp2 = uleft;
+		setworn((struct obj *)0, W_RINGL);
+	} else hasleftring = FALSE;
+	if (uright) {
+		hasrightring = TRUE;
+		otmp3 = uright;
+		setworn((struct obj *)0, W_RINGR);
+	} else hasrightring = FALSE;
+	if (uarmu) {
+		hasshirt = TRUE;
+		otmp4 = uarmu;
+		setworn((struct obj *)0, W_ARMU);
+	} else hasshirt = FALSE;
+	if (uarmc) {
+		hascloak = TRUE;
+		otmp5 = uarmc;
+		setworn((struct obj *)0, W_ARMC);
+	} else hascloak = FALSE;
+	if (uarm) {
+		hasarmor = TRUE;
+		otmp6 = uarm;
+		setworn((struct obj *)0, W_ARM);
+	} else hasarmor = FALSE;
+	if (uarmf) {
+		hasboots = TRUE;
+		otmp7 = uarmf;
+		setworn((struct obj *)0, W_ARMF);
+	} else hasboots = FALSE;
+	if (uarmg) {
+		hasgloves = TRUE;
+		otmp8 = uarmg;
+		setworn((struct obj *)0, W_ARMG);
+	} else hasgloves = FALSE;
+	if (uarmh) {
+		hashelmet = TRUE;
+		otmp9 = uarmh;
+		setworn((struct obj *)0, W_ARMH);
+	} else hashelmet = FALSE;
+	if (uarms) {
+		hasshield = TRUE;
+		otmp10 = uarms;
+		setworn((struct obj *)0, W_ARMS);
+	} else hasshield = FALSE;
+	if (uimplant) {
+		hasimplant = TRUE;
+		otmp11 = uimplant;
+		setworn((struct obj *)0, W_IMPLANT);
+	} else hasimplant = FALSE;
+
+	init_objects();
+
+	if (hasamulet) {
+		setworn(otmp, W_AMUL);
+	}
+	if (hasleftring) {
+		setworn(otmp2, W_RINGL);
+	}
+	if (hasrightring) {
+		setworn(otmp3, W_RINGR);
+	}
+	if (hasshirt) {
+		setworn(otmp4, W_ARMU);
+	}
+	if (hascloak) {
+		setworn(otmp5, W_ARMC);
+	}
+	if (hasarmor) {
+		setworn(otmp6, W_ARM);
+	}
+	if (hasboots) {
+		setworn(otmp7, W_ARMF);
+	}
+	if (hasgloves) {
+		setworn(otmp8, W_ARMG);
+	}
+	if (hashelmet) {
+		setworn(otmp9, W_ARMH);
+	}
+	if (hasshield) {
+		setworn(otmp10, W_ARMS);
+	}
+	if (hasimplant) {
+		setworn(otmp11, W_IMPLANT);
+	}
+
+}
+
+void
 init_objects()
 {
 register int i, first, last, sum;

@@ -4328,7 +4328,7 @@ newbossA:
 		}
 
 		if (Role_if(PM_KURWA) && !rn2(2000)) { /* re-randomize object appearances */
-			init_objects();
+			initobjectsamnesia();
 		}
 
 		if (uarmf && uarmf->oartifact == ART_GRENEUVENIA_S_HUG) {

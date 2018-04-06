@@ -1784,6 +1784,7 @@ E void synch_cursor(void);
 
 /* ### o_init.c ### */
 
+E void initobjectsamnesia(void);
 E void init_objects(void);
 E void randommaterials(void);
 E int find_skates(void);

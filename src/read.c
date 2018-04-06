@@ -1517,7 +1517,7 @@ forget_objects(percent)
 
 	if (!rn2(issoviet ? 25 : 5)) {
 
-		init_objects();
+		initobjectsamnesia();
 		if (wizard) pline("init_objects done!");
 		if (issoviet) pline("Tip bloka l'da reshil randomizirovat' vse! Khi khi!");
 
