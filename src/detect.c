@@ -1607,12 +1607,12 @@ register int aflag;
 	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_SEARCHING)) {
 			default: break;
-			case P_BASIC: fundxtrachange = 9; break;
-			case P_SKILLED: fundxtrachange = 8; break;
-			case P_EXPERT: fundxtrachange = 7; break;
-			case P_MASTER: fundxtrachange = 6; break;
-			case P_GRAND_MASTER: fundxtrachange = 5; break;
-			case P_SUPREME_MASTER: fundxtrachange = 4; break;
+			case P_BASIC: fundxtrachange = 8; break;
+			case P_SKILLED: fundxtrachange = 6; break;
+			case P_EXPERT: fundxtrachange = 5; break;
+			case P_MASTER: fundxtrachange = 4; break;
+			case P_GRAND_MASTER: fundxtrachange = 3; break;
+			case P_SUPREME_MASTER: fundxtrachange = 2; break;
 		}
 	}
 
@@ -1638,7 +1638,7 @@ register int aflag;
 		if(x != u.ux || y != u.uy) {
 		    if (Blind && (!aflag || !rn2(fundxtrachange) || !rn2(fundxtrachange)) ) feel_location(x,y);
 		    if(levl[x][y].typ == SDOOR) {
-			if(rnl(7-fund) && rn2(fundxtrachange) ) continue; /* better chance --Amy */
+			if(rnl(7-fund) && rn2(fundxtrachange) && (rn2(fundxtrachange) || !rn2(2)) ) continue; /* better chance --Amy */
 			cvt_sdoor_to_door(&levl[x][y]);	/* .typ = DOOR */
 			You("find a secret door!");
 			use_skill(P_SEARCHING,1);
@@ -1650,7 +1650,7 @@ register int aflag;
 			else
 			    newsym(x,y);
 		    } else if(levl[x][y].typ == SCORR) {
-			if(rnl(7-fund) && rn2(fundxtrachange) ) continue; /* better chance --Amy */
+			if(rnl(7-fund) && rn2(fundxtrachange) && (rn2(fundxtrachange) || !rn2(2)) ) continue; /* better chance --Amy */
 			levl[x][y].typ = CORR;
 			unblock_point(x,y);	/* vision */
 			You("find a secret passage!");
@@ -1708,7 +1708,7 @@ register int aflag;
 			}
 
 			/* finding traps is much too hard. Let's increase the chance. --Amy */
-			if ((trap = t_at(x,y)) && !trap->tseen && !trap->hiddentrap && (!rnl(8-fund) || !rn2(fundxtrachange) ) ) {
+			if ((trap = t_at(x,y)) && !trap->tseen && !trap->hiddentrap && (!rnl(8-fund) || !rn2(fundxtrachange) || (!rn2(fundxtrachange) && !rn2(2)) ) ) {
 			    nomul(0, 0, FALSE);
 
 			    if (trap->ttyp == STATUE_TRAP) {
