@@ -350,8 +350,8 @@ const char *name;	/* if null, then format `obj' */
 				if (Stoned) fix_petrification();
 				}
 			else if (is_tailspike && (tlev > 0) ) dam += rnd(tlev * 2);
-			else if (is_polearm && !rn2(2) && (tlev > 0) ) dam += rnd(tlev);
-			else if (!is_bulletammo && (tlev > 0) && !rn2(3)) dam += rnd(tlev);
+			else if (is_polearm && !rn2(2) && (tlev > 10) ) dam += rnd(tlev - 10);
+			else if (!is_bulletammo && (tlev > 10) && !rn2(3)) dam += rnd(tlev - 10);
 
 			if (Half_physical_damage && rn2(2) ) dam = (dam+1) / 2;
 
@@ -846,7 +846,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			    break;
 			default:
 			    dam = dmgval(singleobj, &youmonst);
-			    if (singleobj->otyp == BOULDER) dam += (2 * (mon->m_lev));
+			    if (singleobj->otyp == BOULDER && !rn2(2)) dam += (2 * (mon->m_lev));
 			    hitv = 3 - distmin(u.ux,u.uy, mon->mx,mon->my);
 			    if (hitv < -4) hitv = -4;
 			    if (is_elf(mon->data) &&
@@ -858,7 +858,12 @@ m_throw(mon, x, y, dx, dy, range, obj)
 				if(singleobj->otyp == ELVEN_ARROW) dam++;
 			    }
 			    if (bigmonst(youmonst.data)) hitv++;
-			    hitv += 8 + singleobj->spe + (mon->m_lev / 2);
+				/* high-level monsters sometimes deal extra damage --Amy */
+				if (mon->m_lev >= 10 && !rn2(2)) {
+					hitv += 8 + singleobj->spe + ((mon->m_lev - 9) / 2);
+				} else {
+					hitv += 8 + singleobj->spe;
+				}
 			    if (dam < 1) dam = 1;
 			    hitu = thitu(hitv, dam, singleobj, (char *)0);
 		    }
@@ -1060,24 +1065,24 @@ struct monst *mtmp;
 	    else if (is_lord(mtmp->data)) multishot++;
 
 		/* strong, nasty or high-level monsters can also shoot more --Amy */
-		if (strongmonst(mtmp->data) && !rn2(3)) multishot++;
-		if (strongmonst(mtmp->data) && !rn2(9)) multishot++;
-		if (strongmonst(mtmp->data) && !rn2(27)) multishot++;
+		if (mtmp->m_lev >= 10 && strongmonst(mtmp->data) && !rn2(3)) multishot++;
+		if (mtmp->m_lev >= 10 && strongmonst(mtmp->data) && !rn2(9)) multishot++;
+		if (mtmp->m_lev >= 10 && strongmonst(mtmp->data) && !rn2(27)) multishot++;
 
-		if (extra_nasty(mtmp->data) && !rn2(2)) multishot++;
-		if (extra_nasty(mtmp->data) && !rn2(4)) multishot++;
-		if (extra_nasty(mtmp->data) && !rn2(8)) multishot++;
+		if (mtmp->m_lev >= 10 && extra_nasty(mtmp->data) && !rn2(2)) multishot++;
+		if (mtmp->m_lev >= 10 && extra_nasty(mtmp->data) && !rn2(4)) multishot++;
+		if (mtmp->m_lev >= 10 && extra_nasty(mtmp->data) && !rn2(8)) multishot++;
 
 		if (mtmp->m_lev >= 10 && mtmp->m_lev < 20) multishot += 1;
-		if (mtmp->m_lev >= 20 && mtmp->m_lev < 30) multishot += 2;
-		if (mtmp->m_lev >= 30 && mtmp->m_lev < 40) multishot += 3;
-		if (mtmp->m_lev >= 40 && mtmp->m_lev < 50) multishot += 4;
-		if (mtmp->m_lev >= 50 && mtmp->m_lev < 60) multishot += 5;
-		if (mtmp->m_lev >= 60 && mtmp->m_lev < 70) multishot += 6;
-		if (mtmp->m_lev >= 70 && mtmp->m_lev < 80) multishot += 7;
-		if (mtmp->m_lev >= 80 && mtmp->m_lev < 90) multishot += 8;
-		if (mtmp->m_lev >= 90 && mtmp->m_lev < 100) multishot += 9;
-		if (mtmp->m_lev >= 100) multishot += 10;
+		if (mtmp->m_lev >= 20 && mtmp->m_lev < 30) multishot += rnd(2);
+		if (mtmp->m_lev >= 30 && mtmp->m_lev < 40) multishot += rnd(3);
+		if (mtmp->m_lev >= 40 && mtmp->m_lev < 50) multishot += rnd(4);
+		if (mtmp->m_lev >= 50 && mtmp->m_lev < 60) multishot += rnd(5);
+		if (mtmp->m_lev >= 60 && mtmp->m_lev < 70) multishot += rnd(6);
+		if (mtmp->m_lev >= 70 && mtmp->m_lev < 80) multishot += rnd(7);
+		if (mtmp->m_lev >= 80 && mtmp->m_lev < 90) multishot += rnd(8);
+		if (mtmp->m_lev >= 90 && mtmp->m_lev < 100) multishot += rnd(9);
+		if (mtmp->m_lev >= 100) multishot += rnd(10);
 
 	    /*  Elven Craftsmanship makes for light,  quick bows */
 	    if (otmp->otyp == ELVEN_ARROW && !otmp->cursed)
