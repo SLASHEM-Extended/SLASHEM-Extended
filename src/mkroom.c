@@ -622,7 +622,7 @@ struct mkroom *sroom;
 		    	(!rn2(20) ? &mons[PM_HORNED_DEVIL] : !rn2(20) ? mkclass(S_DEMON,0) : !rn2(50) ? &mons[ndemon(A_NONE)] : rn2(2) ? mkclass(S_IMP,0) : &mons[PM_LEMURE]) :
 		    (type == MIGOHIVE) ? (sx == tx && sy == ty ? &mons[PM_MIGO_QUEEN] : migohivemon()) :
 		    (type == BADFOODSHOP) ? mkclass(S_BAD_FOOD,0) :
-		    (type == REALZOO) ? (rn2(5) ? realzoomon() : rn2(3) ? mkclass(S_QUADRUPED,0) : rn2(3) ? mkclass(S_FELINE,0) : rn2(3) ? mkclass(S_YETI,0) : mkclass(S_SNAKE,0) ) :
+		    (type == REALZOO) ? (rn2(3) ? realzoomon() : rn2(3) ? mkclass(S_QUADRUPED,0) : rn2(3) ? mkclass(S_FELINE,0) : rn2(3) ? mkclass(S_YETI,0) : mkclass(S_SNAKE,0) ) :
 		    (type == GIANTCOURT) ? mkclass(S_GIANT,0) :
 		    (struct permonst *) 0,
 		   sx, sy, /*NO_MM_FLAGS*/MM_ADJACENTOK);
@@ -631,7 +631,9 @@ struct mkroom *sroom;
 		if(mon) {
 			if ((sleepchance > 1) && !(In_netherrealm(&u.uz)) && !issoviet && !(uarmf && uarmf->oartifact == ART_VERY_NICE_PERSON) && rn2(sleepchance)) mon->msleeping = 1; /*random chance of them not being asleep --Amy*/
 		/* In Soviet Russia, monsters are always awake harharharharhar harharhar harhar! --Amy */
-			if (/*type==COURT && */mon->mpeaceful) { /*enemies in these rooms will always be hostile now --Amy*/
+
+			/*enemies in these rooms will almost always be hostile now --Amy*/
+			if (mon->mpeaceful && rn2(20)) {
 				mon->mpeaceful = 0;
 				set_malign(mon);
 			}
