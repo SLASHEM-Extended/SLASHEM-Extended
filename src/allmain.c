@@ -4669,7 +4669,7 @@ newbossX:
 			pline("Get ready for the fight with Tiksrvzllat! Defeat her and you'll get a very useful reward!");
 		}
 
-		if (issegfaulter && u.segfaultpanic && !rn2(100)) {
+		if (u.segfaultpanic && !rn2(100)) {
 			u.youaredead = 1;
 			pline("Oops... Suddenly, the dungeon collapses.");
 			pline("Report error to 'flauschie' and it might be possible to rebuild.");
@@ -10417,7 +10417,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
-	if (issegfaulter && u.segfaultpanic) {
+	if (u.segfaultpanic) {
 		u.youaredead = 1;
 		pline("Stack corruption panic dumped to desktop SIGSEGV c0000005.");
 		killer = "the dreaded segfault panic";
