@@ -634,14 +634,14 @@ On polymorph, the ratio HP / max HP is preserved, perhaps this bug refers to rou
 Dismounting and kicking a monster that jumps may result in landing on the wrong side of a wall.
 Kicking a monster makes them mnexto() you, then tries to flavour the resulting movement.
 In very confined spaces, mnexto() may not be able to find a space next to you after all.
-The interface isnt clear that wielding 6 daggers, or whatever, nevertheless means that you only attack with one.
+The interface isn't clear that wielding 6 daggers, or whatever, nevertheless means that you only attack with one.
 For example, if you break a wand of digging on the entrance square, the shopkeeper will usually remove only some of the pits.
 Several beneficial events are most likely with Luck=7, not maximum Luck. See rnl for details.
 Eating a zombie of your race: "Ulch - that meat was tainted cannibal! You feel deathly sick."
 In a similar vein, #praying on a cross-aligned altar also works.
 "Difficult" attacks it possesses make a monster worth more experience, but the way these bonus points are calculated underrates physical damage.
 "You float gently to the lava." is probably the silliest variant. The messages don't consider the fact that you're flying.
-polyself.c lists claws as a horses manipulatory appendages.
+polyself.c lists claws as a horse's manipulatory appendages.
 Polymorph into vampire, wish for a pick-axe, apply said pick-axe down repeatedly.
 Alternatively, trigger a hangup-save after you finish digging and before you fall though.
 In death messages, all shopkeepers will have an honorific, even if the shopkeeper's name is clearly a given name, not a surname (e.g. Dirk, Lucrezia, Izchak).

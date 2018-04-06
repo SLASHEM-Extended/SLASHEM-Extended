@@ -958,6 +958,7 @@ static const char *random_mesg[] = {
 	"UNDER ME", /* apparently from Narnia, according to aosdict? */
 	"You have just won a goat", /* by elenmirie */
 	"Welcome to the party!",
+	"Quantify this egghead!",
 
 };
 
@@ -4356,7 +4357,7 @@ static const char *epitaphs[] = {
 	"You gaze upon the ancient bones of Glen Wilkerson.",
 	"I forgot which wards my dnethack character knew, and the only way to find out which ones you do know seems to be to try to use one. I only wanted to know which ones my character knows, I didn't actually want to engrave one. But I was standing on an altar. This stupid variant better add a 'show known wards' command soon.",
 	"Don't you wish you prayed instead.",
-
+	"The guard captain stole my lightsaber, I fell through a hole and got gang banged by invisible scary things all the time being brought back from the dead so I could get pounded again.", /* happened to tubs */
 };
 
 const char *
