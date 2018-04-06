@@ -17316,19 +17316,22 @@ register struct permonst *ptr;
 
 	/* adjustments by Amy */
 	/* jonadab wants monsters to spawn with up to 8x their base level, but that's really excessive. */
-	if (!rn2(2) && (tmp2 < 6) && (level_difficulty() > 9)) { tmp++; tmp2++;}
-	if (!rn2(2) && (tmp2 < 6) && (level_difficulty() > 19)) { tmp++; tmp2++;}
-	if (!rn2(3) && (tmp2 < 11) && (level_difficulty() > 19)) { tmp++; tmp2++;}
-	if (!rn2(2) && (tmp2 < 8) && (level_difficulty() > 29)) { tmp++; tmp2++;}
-	if (!rn2(3) && (tmp2 < 16) && (level_difficulty() > 29)) { tmp++; tmp2++;}
-	if (!rn2(2) && (tmp2 < 10) && (level_difficulty() > 39)) { tmp++; tmp2++;}
-	if (!rn2(3) && (tmp2 < 21) && (level_difficulty() > 39)) { tmp++; tmp2++;}
-	if (!rn2(2) && (tmp2 < 12) && (level_difficulty() > 49)) { tmp++; tmp2++;}
-	if (!rn2(3) && (tmp2 < 24) && (level_difficulty() > 49)) { tmp++; tmp2++;}
-	if (!rn2(2) && (tmp2 < 14) && (level_difficulty() > 74)) { tmp++; tmp2++;}
-	if (!rn2(3) && (tmp2 < 27) && (level_difficulty() > 74)) { tmp++; tmp2++;}
-	if (!rn2(2) && (tmp2 < 16) && (level_difficulty() > 99)) { tmp++; tmp2++;}
-	if (!rn2(3) && (tmp2 < 30) && (level_difficulty() > 99)) { tmp++; tmp2++;}
+
+	if (rn2(2)) {
+		if (!rn2(2) && (tmp2 < 6) && (level_difficulty() > 9)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+		if (!rn2(2) && (tmp2 < 6) && (level_difficulty() > 19)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+		if (!rn2(3) && (tmp2 < 11) && (level_difficulty() > 19)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+		if (!rn2(2) && (tmp2 < 8) && (level_difficulty() > 29)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+		if (!rn2(3) && (tmp2 < 16) && (level_difficulty() > 29)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+		if (!rn2(2) && (tmp2 < 10) && (level_difficulty() > 39)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+		if (!rn2(3) && (tmp2 < 21) && (level_difficulty() > 39)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+		if (!rn2(2) && (tmp2 < 12) && (level_difficulty() > 49)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+		if (!rn2(3) && (tmp2 < 24) && (level_difficulty() > 49)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+		if (!rn2(2) && (tmp2 < 14) && (level_difficulty() > 74)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+		if (!rn2(3) && (tmp2 < 27) && (level_difficulty() > 74)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+		if (!rn2(2) && (tmp2 < 16) && (level_difficulty() > 99)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+		if (!rn2(3) && (tmp2 < 30) && (level_difficulty() > 99)) { if (rn2(3)) tmp++; if (rn2(3)) tmp2++; }
+	}
 
 	/* Another adjustment for rodneyans, because they're too strong. Junethack 2016 showed how much too strong, so let's
 	 * give higher levels to monsters which will hopefully enable them to sometimes survive the rodneyan's stronger
