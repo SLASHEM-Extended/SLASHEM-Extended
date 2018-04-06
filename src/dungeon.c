@@ -77,7 +77,7 @@ mapseen *mapseenchn = (struct mapseen *)0;
 STATIC_DCL mapseen *load_mapseen(int);
 STATIC_DCL void save_mapseen(int, mapseen *);
 STATIC_DCL mapseen *find_mapseen(d_level *);
-STATIC_DCL void print_mapseen(winid,mapseen *,boolean);
+STATIC_DCL void print_mapseen(winid,mapseen *,boolean,boolean);
 STATIC_DCL boolean interest_mapseen(mapseen *);
 
 #if defined(DEBUG) || defined(DEBUG_420942)
@@ -2522,7 +2522,7 @@ dooverview()
 		if (interest_mapseen(mptr)) {
 			printdun = (first || lastdun != mptr->lev.dnum);
 			/* if (!first) putstr(win, 0, ""); */
-			print_mapseen(win, mptr, printdun);
+			print_mapseen(win, mptr, printdun, FALSE);
 
 			if (printdun) {
 				first = FALSE;
@@ -2537,11 +2537,51 @@ dooverview()
 	return 0;
 }
 
+#ifdef DUMP_LOG
+void 
+dump_overview()
+{
+	winid win;
+	mapseen *mptr;
+	boolean first;
+	boolean printdun;
+	int lastdun;
+
+	first = TRUE;
+
+	for (mptr = mapseenchn; mptr; mptr = mptr->next) {
+
+		/* only print out info for a level or a dungeon if interest */
+		if (interest_mapseen(mptr)) {
+			printdun = (first || lastdun != mptr->lev.dnum);
+
+			if (first) {
+				/* Always print header as there will at least
+				 * be the output of the current level */
+				dump("", "Dungeon overview");
+			}
+			print_mapseen(win, mptr, printdun, TRUE);
+
+			if (printdun) {
+				first = FALSE;
+				lastdun = mptr->lev.dnum;
+			}
+		}
+	}
+
+	dump("", "");
+
+	return;
+
+}
+#endif
+
 STATIC_OVL void
-print_mapseen(win, mptr, printdun)
+print_mapseen(win, mptr, printdun, wantdump)
 winid win;
 mapseen *mptr;
 boolean printdun;
+boolean wantdump;
 {
 	char buf[BUFSZ];
 	int i, depthstart;
@@ -2567,7 +2607,13 @@ boolean printdun;
 				dungeons[mptr->lev.dnum].dname,
 				depthstart, depthstart + 
 				dungeons[mptr->lev.dnum].dunlev_ureached - 1);
-		putstr(win, ATR_INVERSE, buf);
+		if (!wantdump) {
+			putstr(win, ATR_INVERSE, buf);
+		} else {
+#ifdef DUMP_LOG
+			dump("  ", buf);
+#endif
+		}
 	}
 
 	/* calculate level number */
@@ -2601,7 +2647,13 @@ boolean printdun;
 	/* print out glyph or something more interesting? */
 	sprintf(eos(buf), "%s", on_level(&u.uz, &mptr->lev) ? 
 		" <- You are here" : "");
-	putstr(win, ATR_BOLD, buf);
+	if (!wantdump) {
+		putstr(win, ATR_BOLD, buf);
+	} else {
+#ifdef DUMP_LOG
+			dump("  ", buf);
+#endif
+	}
 
 }
 

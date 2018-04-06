@@ -52,6 +52,7 @@ STATIC_DCL boolean list_vanquished(CHAR_P, BOOLEAN_P);
 #ifdef DUMP_LOG
 extern void dump_spells(void);
 extern void dump_techniques(void);
+extern void dump_overview(void);
 extern void dump_discoveries(void);
 void do_vanquished(int, BOOLEAN_P, BOOLEAN_P);
 STATIC_DCL void list_genocided(int, BOOLEAN_P, BOOLEAN_P);
@@ -641,6 +642,7 @@ boolean taken;
 	  dump_spells();
 	  dump_techniques();
 	  dump_discoveries();
+	  dump_overview();
 	}
 #endif
 
