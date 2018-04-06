@@ -9507,6 +9507,9 @@ makelevel()
 gehennomxtra:
 
 	    /* courtrooms & barracks */
+
+	if (rn2(4)) {
+
 	    if(depth(&u.uz) > (issoviet ? 4 : 3) && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(COURT);
 		else if (depth(&u.uz) > (issoviet ? 5 : 4) && (ishaxor ? !rn2(5) : !rn2(9))) mkroom(LEPREHALL);
 	    else if(depth(&u.uz) > (issoviet ? 14 : 10) && (ishaxor ? !rn2(10) : !rn2(20))) mkroom(GIANTCOURT);
@@ -9520,7 +9523,12 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
+	}
+
 	    /* hives */
+
+	if (rn2(4)) {
+
 	    if(depth(&u.uz) > (issoviet ? 9 : 5) && (ishaxor ? !rn2(11) : !rn2(22))) mkroom(BEEHIVE);
 	    else if(depth(&u.uz) > (issoviet ? 12 : 4) && (ishaxor ? !rn2(19) : !rn2(37))) mkroom(PRISONCHAMBER);
 	else if (u_depth > (issoviet ? 12 : 8) && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(ANTHOLE);
@@ -9536,8 +9544,12 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
+	}
 
 	    /* zoos */
+
+	if (rn2(4)) {
+
 	    if(depth(&u.uz) > (issoviet ? 6 : 5) && (ishaxor ? !rn2(6) : !rn2(12))) mkroom(ZOO);
 	    /* fungus farms are rare... */
 	    else if (u_depth > (issoviet ? 7 : 3) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(FUNGUSFARM);
@@ -9556,13 +9568,18 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
+	}
+
 	    /* neat rooms */
-	    if(depth(&u.uz) > (issoviet ? 8 : 1) && (ishaxor ? !rn2(7) : !rn2(13))) mkroom(TEMPLE);
+
+	if (rn2(4)) {
+
+	    if(depth(&u.uz) > (issoviet ? 8 : 1) && (ishaxor ? !rn2(5) : !rn2(10))) mkroom(TEMPLE);
 	    else if(depth(&u.uz) > (issoviet ? 11 : 4) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(MORGUE);
 	    else if(depth(&u.uz) > (issoviet ? 17 : 6) && (ishaxor ? !rn2(14) : !rn2(28))) mkroom(CRYPTROOM);
 	    else if(depth(&u.uz) > (issoviet ? 13 : 1) && (ishaxor ? !rn2(8) : !rn2(15))) mkroom(BADFOODSHOP);
 	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(15) : !rn2(30))) mkroom(SWAMP);
-	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(23) : !rn2(45))) mkroom(DIVERPARADISE);
+	    else if(depth(&u.uz) > (issoviet ? 18 : 1) && (ishaxor ? !rn2(30) : !rn2(60))) mkroom(DIVERPARADISE);
         else if (depth(&u.uz) > (issoviet ? 20 : 10) && (ishaxor ? !rn2(30) : !rn2(60))) mkroom(CLINIC); /*supposed to be very rare --Amy*/
         else if (depth(&u.uz) > (issoviet ? 13 : 5) && (ishaxor ? !rn2(20) : !rn2(40))) mkroom(COOLINGCHAMBER);
         else if (depth(&u.uz) > (issoviet ? 5 : 1) && (ishaxor ? !rn2(30) : !rn2(60))) mkroom(EMPTYNEST);
@@ -9576,7 +9593,12 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
 
+	}
+
 	    /* dangerous ones */
+
+	if (rn2(4)) {
+
 	    if (u_depth > (issoviet ? 16 : 10) && (ishaxor ? !rn2(17) : !rn2(33))) mkroom(COCKNEST);
 	    else if(depth(&u.uz) > (issoviet ? 20 : 2) && (ishaxor ? !rn2(18) : !rn2(36))) mkroom(DRAGONLAIR);
 	    else if(depth(&u.uz) > (issoviet ? 10 : 1) && (ishaxor ? !rn2(24) : !rn2(47))) mkroom(LEVELSEVENTYROOM);
@@ -9595,6 +9617,8 @@ gehennomxtra:
 	else if (u_depth > (issoviet ? 8 : 1) && (ishaxor ? !rn2(13) : !rn2(25))) mkroom(TENSHALL);
 	else if (u_depth > (issoviet ? 25 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(INSIDEROOM);
 	else if (u_depth > (issoviet ? 15 : 1) && (Role_if(PM_CAMPERSTRIKER) ? !rn2(10) : Role_if(PM_GANG_SCHOLAR) ? !rn2(10) : (ishaxor && Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(25) : (ishaxor || Role_if(PM_SPACEWARS_FIGHTER)) ? !rn2(50) : !rn2(100))) mkroom(RIVERROOM);
+
+	}
 
 		if (In_voiddungeon(&u.uz)) {
 			mkroom(rn2(10) ? VOIDROOM : HELLPIT);
@@ -9631,7 +9655,7 @@ gehennomxtra:
 
 	/* If we make a rooms-and-corridors level in Gehennom, or generally anywhere with a depth greater than castle,
 	 * we'll have a chance of more special rooms because this part of the game is supposed to be harder --Amy */
-	if (!rn2(2) && u_depth > 40) goto gehennomxtra;
+	if (!rn2(3) && u_depth > 40) goto gehennomxtra;
 
 		if ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (!rn2(10) || u_depth > 1) ) {
 			mkroom(RANDOMROOM);
