@@ -276,21 +276,21 @@ moveloop()
 
 			if (!rn2(monclock) && ishomicider ) makerandomtrap();
 
-			xtraclock = 40000;
+			xtraclock = 100000;
 			if ((u.uevent.udemigod && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
-				xtraclock = 12000;
+				xtraclock = 30000;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
-					xtraclock = 35000;
+					xtraclock = 80000;
 				}
 				past_clock = moves - timeout_start;
 				if (past_clock > 0) {
-					xtraclock -= past_clock*20000/clock_base;
+					xtraclock -= past_clock*50000/clock_base;
 				}
 			}
 			/* make sure we don't fall off the bottom */
-			if (xtraclock < 20000 && !(u.uevent.udemigod && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { xtraclock = 20000; }
-			if (xtraclock < 12000) { xtraclock = 12000; }
+			if (xtraclock < 50000 && !(u.uevent.udemigod && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { xtraclock = 50000; }
+			if (xtraclock < 30000) { xtraclock = 30000; }
 
 			if (u.sterilized) xtraclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
@@ -637,7 +637,7 @@ moveloop()
 
 	/* "Put AmyBSOD's extra spawn system into a define. Because some people aren't a fan of having liches on dlvl1." In Soviet Russia, some people aren't a fan of games where the player can actually lose. They want to win all the time, so they go through the entirety of the game's code and remove every little bit of possible difficulty. --Amy */
 
-			if (!rn2(ishaxor ? 1500 : 3000) && (moves < 10000 || rn2(3)) && !issoviet) {
+			if (!rn2(ishaxor ? 5000 : 10000) && (moves < 10000 || rn2(3)) && !issoviet) {
 
 				randsp = (rn2(14) + 2);
 				if (!rn2(10)) randsp *= 2;
@@ -657,7 +657,7 @@ moveloop()
 
 			}
 
-			if (!rn2(ishaxor ? 50000 : 100000) && (moves < 10000 || rn2(3)) && (moves < 50000 || !rn2(3)) && !issoviet) {
+			if (!rn2(ishaxor ? 125000 : 250000) && (moves < 10000 || rn2(3)) && (moves < 50000 || !rn2(3)) && !issoviet) {
 
 				randsp = (rn2(14) + 2);
 				if (!rn2(10)) randsp *= 2;
@@ -672,7 +672,7 @@ moveloop()
 
 					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
 
-					if (timebasedlowerchance()) (void) makemon(&mons[PM_GOOD_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+					if (timebasedlowerchance() && timebasedlowerchance()) (void) makemon(&mons[PM_GOOD_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
 				}
 
 			}
@@ -780,25 +780,25 @@ moveloop()
 
 			}
 
-			nastyitemchance = 50000;
+			nastyitemchance = 250000;
 
-			if (moves > 5000) nastyitemchance = 45000;
-			if (moves > 10000) nastyitemchance = 40000;
-			if (moves > 20000) nastyitemchance = 35000;
-			if (moves > 40000) nastyitemchance = 30000;
-			if (moves > 80000) nastyitemchance = 27500;
-			if (moves > 120000) nastyitemchance = 25000;
-			if (moves > 160000) nastyitemchance = 22500;
-			if (moves > 240000) nastyitemchance = 20000;
-			if (moves > 320000) nastyitemchance = 17500;
-			if (moves > 400000) nastyitemchance = 15000;
-			if (moves > 600000) nastyitemchance = 12500;
-			if (moves > 800000) nastyitemchance = 10000;
-			if (moves > 1000000) nastyitemchance = 7500;
-			if (moves > 2000000) nastyitemchance = 5000;
-			if (moves > 3000000) nastyitemchance = 2500;
-			if (moves > 4000000) nastyitemchance = 1500;
-			if (moves > 5000000) nastyitemchance = 1000;
+			if (moves > 5000) nastyitemchance = 225000;
+			if (moves > 10000) nastyitemchance = 200000;
+			if (moves > 20000) nastyitemchance = 175000;
+			if (moves > 40000) nastyitemchance = 150000;
+			if (moves > 80000) nastyitemchance = 135000;
+			if (moves > 120000) nastyitemchance = 125000;
+			if (moves > 160000) nastyitemchance = 110000;
+			if (moves > 240000) nastyitemchance = 100000;
+			if (moves > 320000) nastyitemchance = 87500;
+			if (moves > 400000) nastyitemchance = 75000;
+			if (moves > 600000) nastyitemchance = 62500;
+			if (moves > 800000) nastyitemchance = 50000;
+			if (moves > 1000000) nastyitemchance = 37500;
+			if (moves > 2000000) nastyitemchance = 25000;
+			if (moves > 3000000) nastyitemchance = 10000;
+			if (moves > 4000000) nastyitemchance = 7500;
+			if (moves > 5000000) nastyitemchance = 5000;
 
 			if (ishaxor) nastyitemchance /= 2;
 
@@ -966,8 +966,8 @@ moveloop()
 				make_feared(HFeared + rnd(10 + (monster_difficulty()) ),TRUE);
 				}
 
-		    if(!rn2( ((u.uevent.udemigod && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) ? 125 :
-			    (depth(&u.uz) > depth(&stronghold_level)) ? 250 : 340)) {
+		    if(!rn2( ((u.uevent.udemigod && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) ? 250 :
+			    (depth(&u.uz) > depth(&stronghold_level)) ? 450 : 500)) {
 			if (!ishomicider) (void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 			else makerandomtrap();
 			}
