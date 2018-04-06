@@ -1,6 +1,18 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.1.9
+- Added the dungeon overview to the dumplog.
+- When amnesia or similar effects re-randomize objects, the game should now correctly change the player's extrinsics if a worn item's random enchantment changes.
+- Traps generate less often on the first two levels of the Dungeons of Doom.
+- The actual level of randomly generated monsters is lower on average.
+- Monsters' ranged weapons deal less damage to the player now. They also get lower multishot bonuses on average.
+- Long worms have a significantly lower chance of dropping a worm tooth now.
+- The searching skill works better now by giving bigger boosts to the chance of finding something.
+- Removed the possibility of saving a buglog when obfree() was called on a non-empty container, because it was causing lots of issues and had no actual benefit.
+- Monsters in special rooms can occasionally be peaceful now.
+- Toned down the chance of getting extra hard levels in Gehennom.
+- Monster groups are smaller on average.
+- Density of special rooms in rooms-and-corridors levels reduced, especially for Gehennom.
 - Added the WHEREIS compile flag that can allow the player to create whereis files, which can then be queried in IRC for public servers to get information about a player's whereabouts.
 - The livelog can report trophies now.
 - If the player resists a nymph's attempt to steal a worn item or artifact, the player can now opt to have the item get stolen anyway.
