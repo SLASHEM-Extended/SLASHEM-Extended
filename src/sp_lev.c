@@ -3193,7 +3193,7 @@ schar ftyp, btyp;
 			    make_engr_at(xx, yy, mesg, 0L, (xchar)0);
 			}
 			/* else (mktrap(0,1,(struct mkroom *) 0, (coord*) 0) ) ;*/
-		    else if(/*nxcor &&*/ !rn2(ishaxor ? 150 : 300)) 
+		    else if(/*nxcor &&*/ !rn2(ishaxor ? 150 : 300) && !(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) 
 				(void) maketrap(xx, yy, rndtrap(), 100);
 		    else if(/*nxcor &&*/ !rn2(ishaxor ? 100 : 200)) {
 				if (!ishomicider) (void) makemon((struct permonst *)0, xx, yy, NO_MM_FLAGS);

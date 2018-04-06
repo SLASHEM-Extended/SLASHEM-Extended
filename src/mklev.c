@@ -9845,11 +9845,15 @@ skip0:
 		goldseen = FALSE;
 		x = 7 - (level_difficulty()/5);
 		if (x <= 1) x = 2;
-		while (!rn2(x))
-		    mktrap(0,0,croom,(coord*)0);
 
-		if(ishaxor) {while (!rn2(x))
-		    mktrap(0,0,croom,(coord*)0); }
+		/* less traps in the very early game --Amy */
+		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
+			while (!rn2(x))
+				mktrap(0,0,croom,(coord*)0);
+
+			if(ishaxor) {while (!rn2(x))
+			mktrap(0,0,croom,(coord*)0); }
+		}
 
 		if (!goldseen && !rn2(3))
 		    (void) mkgold(0L, somex(croom), somey(croom));
@@ -10935,7 +10939,7 @@ mineralize()
 
 		/* give a random, low, chance that any given square has a trap --Amy */
 
-		if (!(In_sokoban(&u.uz)) || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM)) {
+		if ((!(In_sokoban(&u.uz)) || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM)) && !(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
 
 			int reduceramount = (level_difficulty() / 5);
 			if (reduceramount < 1) reduceramount = 1;

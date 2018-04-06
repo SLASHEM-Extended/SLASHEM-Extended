@@ -12896,7 +12896,7 @@ register int	mmflags;
 
 	/* maybe make a random trap underneath the monster, higher chance for drow to make it harder for them --Amy */
 
-	if (!rn2( ( (uarmg && uarmg->oartifact == ART_EXPERTENGAME_THE_ENTIRE_LE) ? 10 : (uarmg && uarmg->oartifact == ART_DIFFICULTY__) ? 10 : Race_if(PM_DEVELOPER) ? 25 : Race_if(PM_DROW) ? 100 : 500) ) && allow_special && isok(x, y) && !(t_at(x, y))  ) {
+	if (!rn2( ( (uarmg && uarmg->oartifact == ART_EXPERTENGAME_THE_ENTIRE_LE) ? 10 : (uarmg && uarmg->oartifact == ART_DIFFICULTY__) ? 10 : Race_if(PM_DEVELOPER) ? 25 : Race_if(PM_DROW) ? 100 : 500) ) && allow_special && isok(x, y) && !(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) && !(t_at(x, y))  ) {
 		int rtrap;
 
 		rtrap = randomtrap();

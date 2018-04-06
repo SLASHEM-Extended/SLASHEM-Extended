@@ -901,7 +901,9 @@ register const char *s;
 		(void) mkgold(0L,mm.x,mm.y);
 	}
 	for(x = rn1(6,7); x; x--)
-		mktrap(0,1,(struct mkroom *) 0, (coord*) 0);
+		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
+			mktrap(0,1,(struct mkroom *) 0, (coord*) 0);
+		}
 
 	if (ishaxor) {
 	for(x = rn1(8,16); x; x--) {
@@ -937,7 +939,9 @@ register const char *s;
 		(void) mkgold(0L,mm.x,mm.y);
 	}
 	for(x = rn1(6,7); x; x--)
-		mktrap(0,1,(struct mkroom *) 0, (coord*) 0);
+		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
+			mktrap(0,1,(struct mkroom *) 0, (coord*) 0);
+		}
 
 	}
 
