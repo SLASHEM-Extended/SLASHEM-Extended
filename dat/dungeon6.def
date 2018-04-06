@@ -214,8 +214,8 @@ RNDLEVEL:          "heck" "Q" @ (2, 47) 90 96
 RNDLEVEL:          "heck" "Q" @ (2, 47) 90 96
 RNDLEVEL:		"school" "C" @ (2, 47) 20 5
 
-RNDLEVEL:	"ghbgr" "I" @ (2, 47) 90 60
-RNDLEVEL:	"ghbgr" "I" @ (2, 47) 90 60
+RNDLEVEL:	"bigrm" "I" @ (2, 47) 90 60
+RNDLEVEL:	"bigrm" "I" @ (2, 47) 90 60
 RNDLEVEL:	"ghbgr" "I" @ (2, 47) 90 60
 
 LEVEL:	"rndmazeb" "K" @ (2, 47) 60
