@@ -311,11 +311,7 @@ const char *directory;
 	set_levelfile_name(0);
 	(void) unlink(lock);
 
-	for (lev = 1; lev < 5000; lev++) {
-		/* level numbers are kept in xchars in save.c, so the
-		 * maximum level number (for the endlevel) must be < 256
-		 * Amy edit: that is no longer the case
-		 */
+	for (lev = 1; lev < 256; lev++) {
 		if (lev != savelev) {
 			lfd = open_levelfile(lev, directory);
 			if (lfd >= 0) {
