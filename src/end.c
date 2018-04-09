@@ -903,6 +903,23 @@ int how;
 
 	}
 
+	if (uarmh && uarmh->oartifact == ART_LUXIDREAM_S_ASCENSION && !rn2(10)) {
+		pline("But wait...");
+		pline("You come back to life!");
+		if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+		savelife(how);
+		killer = 0;
+		killer_format = 0;
+
+#ifdef LIVELOGFILE
+		livelog_avert_death();
+#endif
+		u.youaredead = 0;
+
+		return;
+
+	}
+
 	if (uwep && uwep->oartifact == ART_ERU_ILUVATAR_S_BIBLE && !rn2(5)) {
 		pline("But wait...");
 		pline("Eru Iluvatar saves your life!");

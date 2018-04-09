@@ -3961,6 +3961,7 @@ register const char *let,*word;
 			|| otmp->otyp == PETA_COMPLIANT_SHIRT
 			|| otmp->otyp == RADIOACTIVE_UNDERGARMENT
 			|| otmp->otyp == KYRT_SHIRT
+			|| otmp->otyp == WOOLEN_SHIRT
 			|| otmp->otyp == RUFFLED_SHIRT
 			|| otmp->otyp == VICTORIAN_UNDERWEAR
 		    )))
@@ -7570,6 +7571,8 @@ struct obj *obj;
 				pline("A shirt that can be worn under a suit of armor. It can be read."); break;
 			case PRINTED_SHIRT: 
 				pline("It's an extra piece of armor that goes in the shirt slot. It can be read."); break;
+			case WOOLEN_SHIRT: 
+				pline("A shirt that provides cold resistance when worn. It can be read."); break;
 			case SWIMSUIT: 
 				pline("A plastic shirt that allows you to swim in water. It can be read."); break;
 			case BEAUTIFUL_SHIRT: 
@@ -8112,6 +8115,12 @@ struct obj *obj;
 				pline("It's the best cloak in existence! Putting it on will reveal the locations of all undead monsters, and of course it has to have MC3 as well!"); break;
 			case CLOAK_OF_FREEDOM:
 				pline("A cloak of free action. You probably expect it to have 3 points of magic cancellation, and of course it does."); break;
+			case CLOAK_OF_DISCOUNT_ACTION:
+				pline("This cloak reduces the time for which you're paralyzed, and also provides 3 points of magic cancellation."); break;
+			case CLOAK_OF_TECHNICALITY:
+				pline("A cloak that makes your techniques more effective while worn. It grants 3 points of magic cancellation."); break;
+			case CLOAK_OF_FULL_NUTRITION:
+				pline("With this cloak, actions that use up nutrition will use up less than usual. Also, it provides 3 points of magic cancellation."); break;
 			case BIKINI:
 				pline("A cloak that allows you to swim in water, but unfortunately it only provides medium magic cancellation."); break;
 			case CLOAK_OF_PERMANENCE:
@@ -8234,8 +8243,14 @@ struct obj *obj;
 				pline("This hat doesn't do anything special other than looking like a dunce cap if unidentified."); break;
 			case MINING_HELM:
 				pline("A helmet with an integrated magic candle that increases your field of view."); break;
+			case HELM_VERSUS_DEATH:
+				pline("A helmet that protects you from death rays, touch of death and similar stuff."); break;
+			case HELM_OF_FULL_NUTRITION:
+				pline("This helmet provides full nutrients, which means that your nutrition decreases more slowly when you perform actions that reduce it."); break;
 			case FIELD_HELM:
 				pline("A moderately good iron helmet."); break;
+			case HELM_OF_BEGINNER_S_LUCK:
+				pline("A helmet that sets your luck to +13 as long as the game still considers you a beginner."); break;
 			case HELM_OF_SAFEGUARD:
 				pline("This helmet allows you to swim."); break;
 			case HELM_OF_CHAOTIC:
@@ -8970,21 +8985,23 @@ struct obj *obj;
 				pline("This ring can cause intrinsic loss."); break;
 			case RIN_TRAP_REVEALING: 
 				pline("A very rare ring that grants its wearer the ability to randomly detect traps on the current dungeon level."); break;
-			case RIN_BLOOD_LOSS: 
+			case RIN_BLOOD_LOSS:
 				pline("This ring causes bleedout."); break;
-			case RIN_NASTINESS: 
+			case RIN_IMMUNITY_TO_DRAWBRIDGES:
+				pline("The only thing this ring does it to prevent you from being instakilled by drawbridges."); break;
+			case RIN_NASTINESS:
 				pline("This ring has nasty effects."); break;
-			case RIN_BAD_EFFECT: 
+			case RIN_BAD_EFFECT:
 				pline("This ring has bad effects."); break;
-			case RIN_SUPERSCROLLING: 
+			case RIN_SUPERSCROLLING:
 				pline("This ring causes the superscroller effect."); break;
-			case RIN_ANTI_DROP: 
+			case RIN_ANTI_DROP:
 				pline("This ring causes items to not drop."); break;
-			case RIN_ENSNARING: 
+			case RIN_ENSNARING:
 				pline("This ring causes traps to become invisible."); break;
-			case RIN_DIARRHEA: 
+			case RIN_DIARRHEA:
 				pline("This ring causes diarrhea. It was invented by bhaak, who is also known as 'Schwebaeugler' and wants to kill Amy Bluescreenofdeath. :-)"); break;
-			case RIN_DISENGRAVING: 
+			case RIN_DISENGRAVING:
 				pline("This ring causes engravings to fail."); break;
 			case RIN_AUTOCURSING: 
 				pline("If you wear this ring, everything that you put on or wield will curse itself!"); break;
@@ -9082,35 +9099,37 @@ struct obj *obj;
 				pline("You can resist fire if you wear this ring."); break;
 			case RIN_FREE_ACTION: 
 				pline("This ring protects you from paralysis and similar effects."); break;
-			case RIN_LEVITATION: 
+			case RIN_DISCOUNT_ACTION:
+				pline("This ring shortens the duration of paralysis effects. It also works on some kinds of paralysis that free action doesn't protect against."); break;
+			case RIN_LEVITATION:
 				pline("Wearing this ring allows you to float into the air. This prevents you from performing certain actions, e.g. picking up items or using a set of downstairs."); break;
-			case RIN_REGENERATION: 
+			case RIN_REGENERATION:
 				pline("Wear this ring to increase your HP regneration rate. It increases your food consumption rate."); break;
-			case RIN_SEARCHING: 
+			case RIN_SEARCHING:
 				pline("If you want automatic searching so you don't have to continuously press the S key, wear this."); break;
-			case RIN_TELEPORTATION: 
+			case RIN_TELEPORTATION:
 				pline("A ring that grants teleportitis when worn. It is usually generated cursed."); break;
-			case RIN_CONFLICT: 
+			case RIN_CONFLICT:
 				pline("Monsters will attack each other if you wear a ring of conflict. It greatly increases your food consumption rate."); break;
-			case RIN_POLYMORPH: 
+			case RIN_POLYMORPH:
 				pline("A ring that grants polymorphitis when worn. It is usually generated cursed."); break;
-			case RIN_POLYMORPH_CONTROL: 
+			case RIN_POLYMORPH_CONTROL:
 				pline("While wearing this ring, you can control your polymorphs and specify what monster you would like to become."); break;
-			case RIN_TELEPORT_CONTROL: 
+			case RIN_TELEPORT_CONTROL:
 				pline("While wearing this ring, you can control your teleports and specify where you want to go."); break;
-			case RIN_DOOM: 
+			case RIN_DOOM:
 				pline("This ring sets your luck to -13. It will autocurse when worn."); break;
-			case RIN_ELEMENTS: 
+			case RIN_ELEMENTS:
 				pline("A rare ring that grants you the fire, cold and shock resistances."); break;
-			case RIN_LIGHT: 
+			case RIN_LIGHT:
 				pline("Improve your sight by wearing this ring!"); break;
-			case RIN_MAGIC_RESISTANCE: 
+			case RIN_MAGIC_RESISTANCE:
 				pline("If you want magic resistance, this is one way of getting it."); break;
-			case RIN_MATERIAL_STABILITY: 
+			case RIN_MATERIAL_STABILITY:
 				pline("Disintegration resistance is what this ring grants to the wearer."); break;
-			case RIN_MIND_SHIELDING: 
+			case RIN_MIND_SHIELDING:
 				pline("One of very few ways to get psi resistance is putting this baby on one of your fingers."); break;
-			case RIN_RANDOM_EFFECTS: 
+			case RIN_RANDOM_EFFECTS:
 				pline("A ring that grants the magical effect of %s.", enchname(objects[RIN_RANDOM_EFFECTS].oc_oprop) ); break;
 			case RIN_SPECIAL_EFFECTS: 
 				pline("A ring that grants the magical effect of %s.", enchname(objects[RIN_SPECIAL_EFFECTS].oc_oprop) ); break;
@@ -9504,6 +9523,8 @@ struct obj *obj;
 				pline("Wearing this amulet causes you to become female if you were male, and in reverse. The amulet will then disintegrate."); break;
 			case AMULET_OF_POLYMORPH:
 				pline("Wearing this amulet causes you to polymorph. The amulet will then disintegrate."); break;
+			case AMULET_OF_TECHNICALITY:
+				pline("While this amulet is worn, your effective technique levels will be 33%% higher and +3, making them much more powerful."); break;
 			case AMULET_OF_STONE:
 				pline("This amulet turns you to stone if you wear it."); break;
 			case AMULET_OF_MAP_AMNESIA:
@@ -9554,6 +9575,8 @@ struct obj *obj;
 				pline("A plain amulet that doesn't have any special use."); break;
 			case AMULET_OF_RESTFUL_SLEEP:
 				pline("You will fall asleep if you wear this amulet. It is usually generated cursed."); break;
+			case AMULET_OF_NECK_BRACE:
+				pline("Wearing this amulet protects you from Vorpal Blade and other decapitating artifacts."); break;
 			case AMULET_OF_BLINDNESS:
 				pline("Wearing this amulet prevents you from seeing. It is usually generated cursed."); break;
 			case AMULET_OF_STRANGULATION:
@@ -15211,6 +15234,10 @@ struct obj *obj;
 					pline("Artifact specs: teleportitis when worn. If you lack hands, it also gives teleport control, full nutrients, technicality, contamination resistance and 20 extra points of AC. This artifact is definitely not a trap, it's awesome! Polymorph into something without hands and wear it!!!"); break;
 				case ART_NEWFOUND_AND_USEFUL:
 					pline("Artifact specs: free action when worn. If you wear it while in a form without hands, it also grants swimming and magical breathing, plus it will protect your items from becoming wet."); break;
+				case ART_MAGICAL_PURPOSE:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_LUXIDREAM_S_ASCENSION:
+					pline("Artifact specs: 10%% chance of life saving and 10%% increased speed when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

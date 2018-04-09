@@ -256,7 +256,7 @@ doread()
 	    else useupf(scroll, 1L);
 	    return(1);
 	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
-	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == BAD_SHIRT || scroll->otyp == CHANTER_SHIRT || scroll->otyp == KYRT_SHIRT
+	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == BAD_SHIRT || scroll->otyp == CHANTER_SHIRT || scroll->otyp == KYRT_SHIRT || scroll->otyp == WOOLEN_SHIRT
 	|| scroll->otyp == BEAUTIFUL_SHIRT || scroll->otyp == PETA_COMPLIANT_SHIRT || scroll->otyp == RADIOACTIVE_UNDERGARMENT
 	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == BATH_TOWEL
 	|| scroll->otyp == PLUGSUIT || scroll->otyp == SWIMSUIT || scroll->otyp == MEN_S_UNDERWEAR
@@ -799,6 +799,7 @@ doread()
 	"I refuse to play xnethack because it suddenly updates its versions and erases my savegame",
 	"I absolutely HATE Nethack Fourk's elder black dragons, and a certain other monster with 'elder' in its name from a certain other NetHack variant",
 	"Viva la Croissistance!", /* by Elronnd */
+	"I wanna boh", /* inspired by Demo */
 
 	    };
 	    char buf[BUFSZ];

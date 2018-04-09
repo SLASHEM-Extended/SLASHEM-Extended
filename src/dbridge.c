@@ -714,6 +714,10 @@ int dest, how;
 		} else if (how == BURNING) {
 			killer = 0;	/* lava_effects() sets its own killer */
 			(void) lava_effects();
+		} else if (uleft && uleft->otyp == RIN_IMMUNITY_TO_DRAWBRIDGES) {
+			pline("Somehow, the drawbridge fails to kill you!");
+		} else if (uright && uright->otyp == RIN_IMMUNITY_TO_DRAWBRIDGES) {
+			pline("Somehow, the drawbridge fails to kill you!");
 		} else {
 			coord xy;
 			u.youaredead = 1;

@@ -617,6 +617,12 @@ giveback:
 		case RIN_FREE_ACTION:
 		    You("see the ring slide right down the drain!");
 		    break;
+		case RIN_IMMUNITY_TO_DRAWBRIDGES:
+		    pline("A portcullis crashes onto the sink, but the sink is unharmed!");
+		    break;
+		case RIN_DISCOUNT_ACTION:
+		    pline("Waterdrops are quickly running down the drain.");
+		    break;
 		case RIN_SEE_INVISIBLE:
 		    You("see some air in the sink.");
 		    break;
@@ -855,6 +861,12 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_QUADRUPLE_ATTACK:
 		pline_The("toilet flushes four times in quick succession.");
+		break;
+	case AMULET_OF_NECK_BRACE:
+		pline("A sword tries to smash the upper part of the toilet, but somehow misses wildly!");
+		break;
+	case AMULET_OF_TECHNICALITY:
+		pline_The("toilet momentarily looks like a space station.");
 		break;
 	case PENDANT:
 	case NECKLACE:

@@ -2665,6 +2665,17 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ POT_TRAINING, "obucheniye" },
 	{ POT_RANDOM_INTRINSIC, "sluchaynyy vnutrenniy" },
 	{ INTELLIGENCE_PACK, "paket razvedki" },
+	{ HELM_VERSUS_DEATH, "shlem protiv smerti" },
+	{ RIN_IMMUNITY_TO_DRAWBRIDGES, "immunitet k razvodyam" },
+	{ AMULET_OF_NECK_BRACE, "amulet of sheynyy korset" },
+	{ HELM_OF_BEGINNER_S_LUCK, "shlem pobedy novichka" },
+	{ WOOLEN_SHIRT, "sherstyanaya rubashka" },
+	{ RIN_DISCOUNT_ACTION, "deystviye skidok" },
+	{ CLOAK_OF_DISCOUNT_ACTION, "plashch so skidkoy" },
+	{ CLOAK_OF_TECHNICALITY, "plashch tekhnichnosti" },
+	{ CLOAK_OF_FULL_NUTRITION, "plashch polnogo pitaniya" },
+	{ AMULET_OF_TECHNICALITY, "formal'nost'" },
+	{ HELM_OF_FULL_NUTRITION, "rud polnogo pitaniya" },
 
 	{0, "" }
 };
@@ -4798,6 +4809,17 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ POT_TRAINING, "ta'lim" },
 	{ POT_RANDOM_INTRINSIC, "tasodifiy ichki" },
 	{ INTELLIGENCE_PACK, "razvedka to'plami" },
+	{ HELM_VERSUS_DEATH, "o'limga qarshi boshqaruvchi" },
+	{ RIN_IMMUNITY_TO_DRAWBRIDGES, "cho'kmalar uchun immunitet" },
+	{ AMULET_OF_NECK_BRACE, "amulet of bo'yin aloqa" },
+	{ HELM_OF_BEGINNER_S_LUCK, "boshlang'ich muvaffaqiyati boshlig'i" },
+	{ WOOLEN_SHIRT, "jun ko'ylak" },
+	{ RIN_DISCOUNT_ACTION, "chegirmali ish" },
+	{ CLOAK_OF_DISCOUNT_ACTION, "chegirmali aktsiyaning plashi" },
+	{ CLOAK_OF_TECHNICALITY, "texnikaviy plash" },
+	{ CLOAK_OF_FULL_NUTRITION, "to'liq ovqatlanish pardasi" },
+	{ AMULET_OF_TECHNICALITY, "texniklik" },
+	{ HELM_OF_FULL_NUTRITION, "to'liq oziqlanish boshlig'i" },
 
 	{0, "" }
 };

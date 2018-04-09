@@ -3958,6 +3958,14 @@ A("Newfound And Useful",				IMPLANT_OF_FREEDOM, /* free action; if in a form wit
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
+A("Magical Purpose",				RIN_IMMUNITY_TO_DRAWBRIDGES,
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Luxidream's Ascension",				HELM_OF_BEGINNER_S_LUCK, /* 10% chance of life saving and 10% increased speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /* below are randarts: they're supposed to be a random base item
  * melee weapons will become some other melee weapon, launchers will become
  * some other launcher, body armors will become some other body armor etc. --Amy */

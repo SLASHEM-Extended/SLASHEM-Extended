@@ -13978,6 +13978,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'People like you shall be permabanned!'",
 	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'FULL IDIOT TYPE! Woe to you if you camp one more time...'",
 	"Public Service Announcement: DNetHack SLEX updated. I fixed the long-standing bug that caused the recovery tool to trash saves. If my name doesn't appear in the official dnethack commit message at least three times together with words like 'savior' or 'most renowned and sacred' I'll take it as a personal insult. :P",
+	"You are falling down an unbelievably deep shaft! While falling you wonder how unlikely it is to find such a deep shaft.",
+	"How do you do the r'lyeh branch in dnethack (which is far too long and filled with repetitive boring crap) without falling asleep in front of the monitor? Listen to hothraxxa. He knows how it's done: you close your eyes and think of Amy.",
+	"The Iron Spoon of Liberation is ineffective against it.  You strike the trapped it!  You destroy it!", /* by Demo */
 
 };
 

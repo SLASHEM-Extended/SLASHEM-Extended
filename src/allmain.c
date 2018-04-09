@@ -1269,6 +1269,11 @@ moveloop()
 				moveamt *= 2;
 			}
 
+			if (uarmh && uarmh->oartifact == ART_LUXIDREAM_S_ASCENSION) {
+				moveamt *= 11;
+				moveamt /= 10;
+			}
+
 			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_ETHERATORGARDEN) {
 				moveamt *= 6;
 				moveamt /= 5;
@@ -9409,6 +9414,12 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flier cloak")) OBJ_DESCR(objects[i]) = "plashch letchika";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "engraved helmet")) OBJ_DESCR(objects[i]) = "gravirovannyy shlem";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ill cloak")) OBJ_DESCR(objects[i]) = "bol'noy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "etheric helmet")) OBJ_DESCR(objects[i]) = "efirnyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "eternal helmet")) OBJ_DESCR(objects[i]) = "vechnyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "eternal cloak")) OBJ_DESCR(objects[i]) = "vechnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brick cloak")) OBJ_DESCR(objects[i]) = "kirpichnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "etheric cloak")) OBJ_DESCR(objects[i]) = "efirnyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brick helmet")) OBJ_DESCR(objects[i]) = "kirpichnyy shlem";
 
 	}
 	}
@@ -10286,6 +10297,12 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flier cloak")) OBJ_DESCR(objects[i]) = "uchuvchi plash";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "engraved helmet")) OBJ_DESCR(objects[i]) = "o'yilgan dubulg'a";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ill cloak")) OBJ_DESCR(objects[i]) = "kasal plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "etheric helmet")) OBJ_DESCR(objects[i]) = "eter kaskasi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "eternal helmet")) OBJ_DESCR(objects[i]) = "abadiy dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "eternal cloak")) OBJ_DESCR(objects[i]) = "abadiy plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brick cloak")) OBJ_DESCR(objects[i]) = "g'isht plashi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "etheric cloak")) OBJ_DESCR(objects[i]) = "eterik plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brick helmet")) OBJ_DESCR(objects[i]) = "g'isht kaskasi";
 
 	}
 	}
