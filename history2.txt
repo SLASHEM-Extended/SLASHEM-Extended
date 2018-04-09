@@ -1,6 +1,11 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.2.0
+- Skills that the player is restricted in cannot be trained by potions of training and similar effects.
+
 2.1.9
+- Artifact gifts are livelogged.
+- The recover tool should now be able to correctly handle the increased amount of dungeon levels in the game.
 - Added the dungeon overview to the dumplog.
 - When amnesia or similar effects re-randomize objects, the game should now correctly change the player's extrinsics if a worn item's random enchantment changes.
 - Traps generate less often on the first two levels of the Dungeons of Doom.
