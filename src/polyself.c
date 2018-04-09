@@ -355,8 +355,7 @@ boolean forcecontrol;
 		goto made_change;
 	}
 
-	if (Race_if(PM_MISSINGNO)) mntmp = (NUMMONS + rnd(MISSINGNORANGE));
-	else if (Race_if(PM_WARPER) && !u.wormpolymorph) {
+	if (Race_if(PM_WARPER) && !u.wormpolymorph) {
 		do {
 			/* randomly pick any monster, but reroll if it sucks too much --Amy */
 			mntmp = rn2(NUMMONS);

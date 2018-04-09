@@ -7354,7 +7354,7 @@ write_timer(fd, timer)
 			 * because if we don't, we produce a corrupted savegame --Amy
 			 * set the timeout to occur on the next turn to ensure the bugged timer is removed ASAP */
 			timer->timeout = (moves + 1);
-			if (!issegfaulter || !strncmpi(plname, "BSOD2", 5)) bwrite(fd, (void *)timer, sizeof(timer_element));
+			bwrite(fd, (void *)timer, sizeof(timer_element));
 			break;
 		}
 
@@ -7444,8 +7444,6 @@ obj_is_local(obj)
 	/*pline("obj location %d", obj->where);*/
 	/*if (issegfaulter) && obj) pline("obj in question: %s", cxname(obj));*/
 	/* the above line was sometimes causing a segfault in xname2() even if obj existed... */
-
-      if (issegfaulter && strncmpi(plname, "BSOD2", 5)) panic("obj_is_local: %s, %d", cxname(obj), obj->where); /* improvement by Patric Mueller */
 
 	/* This is the "segfault panic", "hallucination bug" and "timed object bug" that has been plaguing SLEX for a while.
 	 * Due to some weirdness, the actual panic message almost never displays, making it next to impossible
