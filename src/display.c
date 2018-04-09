@@ -1026,7 +1026,60 @@ newsym(x,y)
 	    worm_tail = is_worm_tail(mon);
 	    see_it = mon && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING && !mon_visible(mon) ) && (worm_tail
 		? ((!mon->minvis || See_invisible) && !mon->minvisreal)
-		: (mon_visible(mon)) || tp_sensemon(mon) || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) /*|| (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) ) || (uarmh && uarmh->otyp == HELMET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) )*/ || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (Race_if(PM_CORTEX) && unsolid(mon->data) ) || (Race_if(PM_CORTEX) && nolimbs(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) || (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) || (Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) || ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) || (RngeInternetAccess && (mon)->mhp % 9 == 0) || (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) || (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) || (Sickopathy && Sick && extra_nasty(mon->data) ) || (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) || (Burnopathy && Burned && infravision(mon->data) ) || (Dimmopathy && Dimmed && mon->m_lev > u.ulevel) || (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) || (Race_if(PM_RODNEYAN) && mon_has_special(mon)) || (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) || (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) || (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) || (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) || (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) || (uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) || (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) || (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) || (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) || (uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) || (uwep && uwep->oartifact == ART_VAMPIREBANE && mon->data->mlet == S_VAMPIRE) || (uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) || (uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) || (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) || (uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) || (uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) || (uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) || (uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) || (uwep && uwep->oartifact == ART_MINI_PEOPLE_EATER && humanoid(mon->data)) || (uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) || (uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) || (uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) || (isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) )  );
+		: (mon_visible(mon)) ||
+		tp_sensemon(mon) ||
+		MATCH_WARN_OF_MON(mon) ||
+		(Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) ||
+		(Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) ||
+		(Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) ||
+		(uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) ||
+		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
+		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
+		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
+		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
+		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
+		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
+		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
+		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) ||
+		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) ||
+		(RngeInternetAccess && (mon)->mhp % 9 == 0) ||
+		(uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) ||
+		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
+		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
+		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
+		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
+		(Burnopathy && Burned && infravision(mon->data) ) ||
+		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
+		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
+		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
+		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
+		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
+		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
+		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
+		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
+		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
+		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
+		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
+		(uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) ||
+		(uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) ||
+		(uwep && uwep->oartifact == ART_VAMPIREBANE && mon->data->mlet == S_VAMPIRE) ||
+		(uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) ||
+		(uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) ||
+		(uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) ||
+		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
+		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
+		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
+		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
+		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
+		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
+		(uwep && uwep->oartifact == ART_MINI_PEOPLE_EATER && humanoid(mon->data)) ||
+		(uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) ||
+		(uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) ||
+		(uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) ||
+		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) )  );
 	    if (mon && (see_it || (!worm_tail && Detect_monsters))) {
 		if (mon->mtrapped) {
 		    struct trap *trap = t_at(x, y);
@@ -1059,7 +1112,60 @@ newsym(x,y)
 	    if (senseself()) display_self();
 	}
 	else if ((mon = m_at(x,y)) && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING)
-		&& ((see_it = (tp_sensemon(mon) || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) 	/*|| (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) ) || (uarmh && uarmh->otyp == HELMET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) )*/ || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (Race_if(PM_CORTEX) && unsolid(mon->data) ) || (Race_if(PM_CORTEX) && nolimbs(mon->data) ) || (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) || (Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) || ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) || (RngeInternetAccess && (mon)->mhp % 9 == 0) || (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) || (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) || (Sickopathy && Sick && extra_nasty(mon->data) ) || (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) || (Burnopathy && Burned && infravision(mon->data) ) || (Dimmopathy && Dimmed && mon->m_lev > u.ulevel) || (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) || (Race_if(PM_RODNEYAN) && mon_has_special(mon)) || (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) || (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) || (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) || (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) || (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) || (uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) || (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) || (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) || (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) || (uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) || (uwep && uwep->oartifact == ART_VAMPIREBANE && mon->data->mlet == S_VAMPIRE) || (uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) || (uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) || (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) || (uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) || (uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) || (uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) || (uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) || (uwep && uwep->oartifact == ART_MINI_PEOPLE_EATER && humanoid(mon->data)) || (uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) || (uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) || (uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) || (isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) ) 	    		|| (see_with_infrared(mon) && mon_visible(mon))))
+		&& ((see_it = (tp_sensemon(mon) ||
+		MATCH_WARN_OF_MON(mon) ||
+		(Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) ||
+		(Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) ||
+		(Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) ||
+		(uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) ||
+		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
+		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
+		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
+		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
+		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
+		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
+		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
+		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) ||
+		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) ||
+		(RngeInternetAccess && (mon)->mhp % 9 == 0) ||
+		(uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) ||
+		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
+		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
+		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
+		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
+		(Burnopathy && Burned && infravision(mon->data) ) ||
+		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
+		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
+		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
+		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
+		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
+		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
+		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
+		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
+		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
+		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
+		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
+		(uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) ||
+		(uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) ||
+		(uwep && uwep->oartifact == ART_VAMPIREBANE && mon->data->mlet == S_VAMPIRE) ||
+		(uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) ||
+		(uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) ||
+		(uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) ||
+		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
+		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
+		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
+		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
+		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
+		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
+		(uwep && uwep->oartifact == ART_MINI_PEOPLE_EATER && humanoid(mon->data)) ||
+		(uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) ||
+		(uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) ||
+		(uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) ||
+		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) ) ||
+		(see_with_infrared(mon) && mon_visible(mon))))
 		    || Detect_monsters)
 		&& !is_worm_tail(mon)) {
 	    /* Monsters are printed every time. */
@@ -1200,7 +1306,60 @@ newsymX(x,y)
 	    worm_tail = is_worm_tail(mon);
 	    see_it = mon && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING && !mon_visible(mon) ) && (worm_tail
 		? ((!mon->minvis || See_invisible) && !mon->minvisreal)
-		: (mon_visible(mon)) || tp_sensemon(mon) || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) /*|| (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) ) || (uarmh && uarmh->otyp == HELMET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) )*/ || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (Race_if(PM_CORTEX) && unsolid(mon->data) ) || (Race_if(PM_CORTEX) && nolimbs(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) || (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) || (Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) || ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) || (RngeInternetAccess && (mon)->mhp % 9 == 0) || (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) || (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) || (Sickopathy && Sick && extra_nasty(mon->data) ) || (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) || (Burnopathy && Burned && infravision(mon->data) ) || (Dimmopathy && Dimmed && mon->m_lev > u.ulevel) || (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) || (Race_if(PM_RODNEYAN) && mon_has_special(mon)) || (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) || (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) || (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) || (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) || (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) || (uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) || (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) || (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) || (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) || (uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) || (uwep && uwep->oartifact == ART_VAMPIREBANE && mon->data->mlet == S_VAMPIRE) || (uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) || (uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) || (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) || (uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) || (uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) || (uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) || (uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) || (uwep && uwep->oartifact == ART_MINI_PEOPLE_EATER && humanoid(mon->data)) || (uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) || (uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) || (uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) || (isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) )  );
+		: (mon_visible(mon)) ||
+		tp_sensemon(mon) ||
+		MATCH_WARN_OF_MON(mon) ||
+		(Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) ||
+		(Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) ||
+		(Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) ||
+		(uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) ||
+		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
+		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
+		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
+		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
+		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
+		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
+		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
+		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) ||
+		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) ||
+		(RngeInternetAccess && (mon)->mhp % 9 == 0) ||
+		(uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) ||
+		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
+		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
+		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
+		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
+		(Burnopathy && Burned && infravision(mon->data) ) ||
+		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
+		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
+		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
+		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
+		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
+		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
+		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
+		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
+		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
+		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
+		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
+		(uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) ||
+		(uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) ||
+		(uwep && uwep->oartifact == ART_VAMPIREBANE && mon->data->mlet == S_VAMPIRE) ||
+		(uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) ||
+		(uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) ||
+		(uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) ||
+		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
+		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
+		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
+		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
+		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
+		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
+		(uwep && uwep->oartifact == ART_MINI_PEOPLE_EATER && humanoid(mon->data)) ||
+		(uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) ||
+		(uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) ||
+		(uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) ||
+		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) )  );
 	    if (mon && (see_it || (!worm_tail && Detect_monsters))) {
 		if (mon->mtrapped) {
 		    struct trap *trap = t_at(x, y);
@@ -1233,7 +1392,60 @@ newsymX(x,y)
 	    if (senseself()) display_self();
 	}
 	else if ((mon = m_at(x,y)) && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING)
-		&& ((see_it = (tp_sensemon(mon) || MATCH_WARN_OF_MON(mon) || (Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) || (Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) || (Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) 	/*|| (uamul && uamul->otyp == AMULET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) ) || (uarmh && uarmh->otyp == HELMET_OF_UNDEAD_WARNING && (is_undead(mon->data) || mon->egotype_undead) )*/ || (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) || (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) || (Role_if(PM_PALADIN) && is_demon(mon->data) ) || (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) || (Race_if(PM_VORTEX) && unsolid(mon->data) ) || (Race_if(PM_VORTEX) && nolimbs(mon->data) ) || (Race_if(PM_CORTEX) && unsolid(mon->data) ) || (Race_if(PM_CORTEX) && nolimbs(mon->data) ) || (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) || (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) || (Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) || ( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) || (RngeInternetAccess && (mon)->mhp % 9 == 0) || (uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) || (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) || (Sickopathy && Sick && extra_nasty(mon->data) ) || (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) || (Burnopathy && Burned && infravision(mon->data) ) || (Dimmopathy && Dimmed && mon->m_lev > u.ulevel) || (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) || (Race_if(PM_RODNEYAN) && mon_has_special(mon)) || (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) || (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) || (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) || (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) || (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) || (uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) || (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) || (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) || (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) || (uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) || (uwep && uwep->oartifact == ART_VAMPIREBANE && mon->data->mlet == S_VAMPIRE) || (uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) || (uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) || (uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) || (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) || (uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) || (uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) || (uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) || (uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) || (uwep && uwep->oartifact == ART_MINI_PEOPLE_EATER && humanoid(mon->data)) || (uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) || (uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) || (uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) || (isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) ) 	    		|| (see_with_infrared(mon) && mon_visible(mon))))
+		&& ((see_it = (tp_sensemon(mon) ||
+		MATCH_WARN_OF_MON(mon) ||
+		(Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) ||
+		(Race_if(PM_PEACEMAKER) && mon->data == &mons[PM_TOPMODEL]) ||
+		(Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) ||
+		(uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) ||
+		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
+		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
+		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
+		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
+		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
+		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
+		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
+		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(Stunnopathy && Stunned && always_hostile(mon->data) && (mon)->mhp % 4 != 0) ||
+		( (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "internet helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "vsemirnaya pautina shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "keng dunyo veb-zarbdan") ) ) && (mon)->mhp % 9 == 0) ||
+		(RngeInternetAccess && (mon)->mhp % 9 == 0) ||
+		(uarmh && uarmh->oartifact == ART_WEB_RADIO && (mon)->mhp % 9 == 0) ||
+		(Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) ) ||
+		(Sickopathy && Sick && extra_nasty(mon->data) ) ||
+		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE ) ||
+		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
+		(Burnopathy && Burned && infravision(mon->data) ) ||
+		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel) ||
+		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
+		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
+		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
+		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
+		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
+		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
+		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
+		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
+		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
+		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
+		(uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) ||
+		(uwep && uwep->oartifact == ART_PEOPLE_EATING_TRIDENT && mon->data->mlet == S_HUMAN) ||
+		(uwep && uwep->oartifact == ART_VAMPIREBANE && mon->data->mlet == S_VAMPIRE) ||
+		(uwep && uwep->oartifact == ART_GOLEMBANE && mon->data->mlet == S_GOLEM) ||
+		(uwep && uwep->oartifact == ART_EELBANE && mon->data->mlet == S_EEL) ||
+		(uwep && uwep->oartifact == ART_MAUI_S_FISHHOOK && mon->data->mlet == S_EEL) ||
+		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
+		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
+		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
+		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
+		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
+		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
+		(uwep && uwep->oartifact == ART_MINI_PEOPLE_EATER && humanoid(mon->data)) ||
+		(uwep && uwep->oartifact == ART_INDIGENOUS_FUN && humanoid(mon->data)) ||
+		(uwep && uwep->oartifact == ART_ANIMALBANE && is_animal(mon->data)) ||
+		(uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) ||
+		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || ((mon)->mhp % 2 != 0) ) ) ||
+		(see_with_infrared(mon) && mon_visible(mon))))
 		    || Detect_monsters)
 		&& !is_worm_tail(mon)) {
 	    /* Monsters are printed every time. */
