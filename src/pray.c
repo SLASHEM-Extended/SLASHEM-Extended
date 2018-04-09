@@ -880,6 +880,11 @@ gcrownu()
 		    dropy(obj);
 		    at_your_feet("An object");
 		    godvoice(u.ualign.type, "Use my gift wisely!");
+#ifdef LIVELOGFILE
+			char	 reportbuf[BUFSZ];
+			sprintf (reportbuf, "received %s by %s", ONAME(obj), u_gname());
+			livelog_report_trophy(reportbuf);
+#endif
 		    u.ugifts++;
 		    u.ublesscnt = rnz(300 + (50 * nartifact_exist() ));
 			if (ishaxor) u.ublesscnt /= 2;
@@ -954,6 +959,11 @@ gcrownu()
 				obj->spe = 1;
 				at_your_feet("A sword");
 				dropy(obj);
+#ifdef LIVELOGFILE
+				char	 reportbuf[BUFSZ];
+				sprintf (reportbuf, "received %s by %s", ONAME(obj), u_gname());
+				livelog_report_trophy(reportbuf);
+#endif
 				u.ugifts++;
 			}
 		}
@@ -1024,6 +1034,11 @@ gcrownu()
 		    obj->spe = 1;
 		    at_your_feet("A sword");
 		    dropy(obj);
+#ifdef LIVELOGFILE
+			char	 reportbuf[BUFSZ];
+			sprintf (reportbuf, "received %s by %s", ONAME(obj), u_gname());
+			livelog_report_trophy(reportbuf);
+#endif
 		    u.ugifts++;
 	    }
 	}
@@ -1066,6 +1081,11 @@ gcrownu()
 		    at_your_feet(An(swordbuf));
 		    obj->spe = 1;
 		    dropy(obj);
+#ifdef LIVELOGFILE
+			char	 reportbuf[BUFSZ];
+			sprintf (reportbuf, "received %s by %s", ONAME(obj), u_gname());
+			livelog_report_trophy(reportbuf);
+#endif
 		    u.ugifts++;
 	    }
 	}
@@ -2221,6 +2241,11 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 		    dropy(otmp);
 		    at_your_feet("An object");
 		    godvoice(u.ualign.type, "Use my gift wisely!");
+#ifdef LIVELOGFILE
+			char	 reportbuf[BUFSZ];
+			sprintf (reportbuf, "received %s by %s", ONAME(otmp), u_gname());
+			livelog_report_trophy(reportbuf);
+#endif
 		    u.ugifts++;
 		    u.ublesscnt = rnz(300 + (50 * nartifacts));
 			if (ishaxor) u.ublesscnt /= 2;

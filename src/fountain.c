@@ -516,6 +516,9 @@ register struct obj *obj;
 			obj->oeroded = obj->oeroded2 = 0;
 			obj->oerodeproof = TRUE;
 			exercise(A_WIS, TRUE);
+#ifdef LIVELOGFILE
+			livelog_report_trophy("had Excalibur thrown to them by some watery tart");
+#endif
 		}
 		update_inventory();
 		levl[u.ux][u.uy].typ = ROOM;
