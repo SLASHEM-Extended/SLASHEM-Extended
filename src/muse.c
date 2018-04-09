@@ -3993,7 +3993,7 @@ register struct obj *otmp;
 		break;
 	case WAN_TIME:
 		tmp = d(2,6);
-		if (mtmp == &youmonst) {
+		if (mtmp == &youmonst && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) ) {
 
 		int dmg;
 		dmg = (rnd(10) + rnd( (monster_difficulty() * 2) + 1));

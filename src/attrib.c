@@ -1882,6 +1882,7 @@ int x;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
+		if (uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
 
 			 return((tmp >= 125) ? 125 : (tmp <= 3) ? 3 : tmp);
 	} else if (x == A_CHA) {
@@ -1932,6 +1933,9 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_JULIA_S_REAL_LOVE) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) tmp += 20;
 		if (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) tmp += 10;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WONDERLOVELINESS) tmp += 5;
+		if (uimplant && uimplant->oartifact == ART_WONDERLOVELINESS) tmp += 5;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemaleTrapSolvejg) tmp += 5;
@@ -1992,6 +1996,7 @@ int x;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
 
 		if (uarmh && uarmh->otyp == HELM_OF_BRILLIANCE) tmp += uarmh->spe;
 		if (uarmh && uarmh->otyp == DUNCE_CAP) return(Role_if(PM_JESTER) ? 9 : 6);
@@ -2017,6 +2022,7 @@ int x;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 10;
 
 	} else { /* A_CON */
 
@@ -2029,6 +2035,7 @@ int x;
 		if (uarmh && uarmh->oartifact == ART_ELONA_S_SNAIL_TRAIL && Race_if(PM_SNAIL)) tmp += 10;
 
 		if (FemaleTrapJessica) tmp -= 5;
+		if (uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp -= 10;
 
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
@@ -2068,6 +2075,13 @@ register int n;
 		n *= 10;
 		u.ualign.sins += 1; 
 		u.alignlim -= 1;
+	}
+
+	if (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER && n > 0) {
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) n *= 5;
+		else n *= 2;
+
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) u.alignlim += 1;
 	}
 
 	register int newalign = u.ualign.record + n;

@@ -21,6 +21,7 @@ STATIC_PTR int unfaintX(void);
 #define decrnknow(spell)	spl_book[spell].sp_know--
 #define spellid(spell)		spl_book[spell].sp_id
 #define spellknow(spell)	spl_book[spell].sp_know
+#define spellname(spell)	OBJ_NAME(objects[spellid(spell)])
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
@@ -251,6 +252,7 @@ moveloop()
 			if (u.sterilized) monclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) monclock /= 5;
+			if (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) monclock /= 5;
 			if (uarms && uarms->oartifact == ART_GOLDEN_DAWN) monclock /= 5;
 			if (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) monclock /= 5;
 			if (uarmf && uarmf->oartifact == ART_BLACK_DIAMOND_ICON) monclock /= 4;
@@ -295,6 +297,7 @@ moveloop()
 			if (u.sterilized) xtraclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || have_verisiertstone()) xtraclock /= 5;
+			if (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) xtraclock /= 5;
 			if (uarms && uarms->oartifact == ART_GOLDEN_DAWN) xtraclock /= 5;
 			if (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) xtraclock /= 5;
 			if (uarmf && uarmf->oartifact == ART_BLACK_DIAMOND_ICON) xtraclock /= 4;
@@ -996,6 +999,11 @@ moveloop()
 
 			}
 
+			if (uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+				moveamt *= 6;
+				moveamt /= 5;
+			}
+
 			if (moveamt > 24) {
 				speedreduction = (moveamt - 24);
 				speedreduction *= steedmultiplier;
@@ -1101,6 +1109,8 @@ moveloop()
 					    || (uarmf && uarmf->otyp == skates4)
 					    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
 					    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
+
+				if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
 
 				if ((youmonst.data->mmove > 1 || !rn2(2)) && !canwalkonsnow)
 				moveamt /= 4;
@@ -1257,6 +1267,22 @@ moveloop()
 
 			if (is_highway(u.ux, u.uy)) {
 				moveamt *= 2;
+			}
+
+			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_ETHERATORGARDEN) {
+				moveamt *= 6;
+				moveamt /= 5;
+			}
+
+			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) {
+				moveamt *= 3;
+				moveamt /= 2;
+			}
+
+			if (uimplant && uimplant->oartifact == ART_BRRRRRRRRRRRRRMMMMMM) {
+				if (is_highway(u.ux, u.uy) || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER))) {
+					moveamt *= 2;
+				}
 			}
 
 			if (uarmg && uarmg->oartifact == ART_LINE_CAN_PLAY_BY_YOURSELF) moveamt *= 2;
@@ -1423,6 +1449,16 @@ moveloop()
 		}
 
 		if (FaintActive && !rn2(100) && multi >= 0) {
+
+			You("faint from exertion.");
+			flags.soundok = 0;
+			nomul(-(rnz(5) ), "fainted from exertion", TRUE);
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
+		if (uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE && !rn2(100) && multi >= 0) {
 
 			You("faint from exertion.");
 			flags.soundok = 0;
@@ -1946,10 +1982,10 @@ steelingchoice:
 			} else {
 				if (!(objects[(steeling)->otyp].oc_material == IRON) ) {
 					pline("That is not made of iron!");
-				} else {
+				} else if (!stack_too_big(steeling)) {
 					steeling->oerodeproof = 1;
 					p_glow2(steeling, NH_PURPLE);
-				}
+				} else pline("The stack was too big and therefore nothing happens...");
 			}
 		}
 
@@ -1960,7 +1996,7 @@ protectwhatchoice:
 			steeling = getobj(all_count, "erosionproof");
 			if (!steeling) {
 				if (yn("Really exit with no object selected?") == 'y')
-					pline("You just wasted the opportunity to enchant your armor.");
+					pline("You just wasted the opportunity to erosionproof an item.");
 				else goto protectwhatchoice;
 				pline("Oh well, if you don't wanna...");
 			} else {
@@ -1974,11 +2010,53 @@ protectwhatchoice:
 					pline("That is erodable, and therefore it doesn't work!");
 				else if (objects[(steeling)->otyp].oc_material >= VIVA && objects[(steeling)->otyp].oc_material <= BRICK) 
 					pline("That is erodable, and therefore it doesn't work!");
-				else {
+				else if (!stack_too_big(steeling)) {
 					steeling->oerodeproof = 1;
 					p_glow2(steeling, NH_PURPLE);
-				}
+				} else pline("The stack was too big and therefore nothing happens...");
 			}
+		}
+
+		if (uimplant && uimplant->oartifact == ART_FUKROSION && !rn2(2500) ) {
+			register struct obj *steeling;
+			pline("You may repair a nonerodable object. If you're in a form without hands, the object you pick will also become erosionproof.");
+fukrosionchoice:
+			steeling = getobj(all_count, "repair");
+			if (!steeling) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to repair/erosionproof an item.");
+				else goto fukrosionchoice;
+				pline("Oh well, if you don't wanna...");
+			} else if (!stack_too_big(steeling)) {
+				steeling->oeroded = steeling->oeroded2 = 0;
+				if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) steeling->oerodeproof = 1;
+				p_glow2(steeling, NH_PURPLE);
+			} else pline("The stack was too big and therefore nothing happens...");
+
+		}
+
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_YES_YOU_CAN && !rn2(500)) {
+			if (spellid(0) != NO_SPELL)  {
+				int numspells;
+
+				getlin ("You may use inertia control to choose a spell of your choice, which will automatically be cast every turn. Do it? [yes/no]",buf);
+				(void) lcase (buf);
+				if (!(strcmp (buf, "yes"))) {
+
+					for (numspells = 0; numspells < MAXSPELL && spellid(numspells) != NO_SPELL; numspells++) {
+						if (spellid(numspells) == SPE_INERTIA_CONTROL) continue;
+
+						pline("You know the %s spell.", spellname(numspells));
+						if (yn("Control the flow of this spell?") == 'y') {
+							u.inertiacontrolspell = spellid(numspells);
+							u.inertiacontrolspellno = numspells;
+							u.inertiacontrol = 50;
+							break;
+						}
+					}
+				}	
+			}
+
 		}
 
 		/* sustainer should have additional protection against contamination instadeath --Amy */
@@ -3032,6 +3110,10 @@ newbossA:
 		}
 
 		if (!rn2(2000) && ArtificerBug) {
+			bad_artifact();
+		}
+
+		if (!rn2(2000) && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) {
 			bad_artifact();
 		}
 
@@ -4436,6 +4518,14 @@ newbossX:
 			u.uhunger += 100;
 		}
 
+		if (uimplant && uimplant->oartifact == ART_BRRRRRRRRRRRRRMMMMMM) {
+			if (!rn2(2) || !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER))) {
+				if (u.uen > 0) u.uen--;
+				else if (u.uenmax > 0) u.uenmax--;
+				flags.botl = TRUE;
+			}
+		}
+
 		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pink sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rozovyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pushti shippak") )) && !rn2(1000)) {
 			pline("The beguiling stench emanating from your pink sneakers fills the area...");
 			badeffect();
@@ -4858,7 +4948,7 @@ newbossB:
 			NastinessProblem |= FROMOUTSIDE; /* no message */
 		}
 
-		if (uwep && uwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) ) {
+		if (uwep && uwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) ) {
 
 		Your("morning star takes you back in time...");
 
@@ -4935,7 +5025,7 @@ newbossB:
 
 		}
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) ) {
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_YESTERDAY_ASTERISK && !rn2(5000) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) ) {
 
 		Your("morning star takes you back in time...");
 
@@ -5096,7 +5186,7 @@ newbossB:
 
 		}
 
-		if (is_snow(u.ux, u.uy) && !rn2(20) && (Flying || Levitation)) {
+		if (is_snow(u.ux, u.uy) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !rn2(20) && (Flying || Levitation)) {
 			You("are caught in a snowstorm!");
 			make_stunned(Stunned + rnd(5),FALSE);
 			    stop_occupation();
@@ -5239,6 +5329,17 @@ newbossB:
 					break;
 					}
 			}
+		}
+
+		if (uimplant && uimplant->oartifact == ART_DUBAI_TOWER_BREAK && HFrozen && !rn2(5) ) {
+			verbalize("Mighty fire magic thaws your ice!");
+			make_frozen(0L,FALSE);
+		}
+
+		if (uimplant && uimplant->oartifact == ART_ARRGH_OUCH && !rn2(10) ) {
+			losehp(10, "pain", KILLED_BY);
+			if (u.uhp < 20 || (u.uhp < 50 && !rn2(3)) || !rn2(10)) You("scream in pain.");
+			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) use_skill(P_HEALING_SPELL, 1);
 		}
 
 		/* Gang Scholar gods are really nice: unless you're in Gehennom, they will occasionally fix status effects
@@ -5862,6 +5963,33 @@ newboss:
 			chaosy = rn2(ROWNO);
 			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
 				levl[chaosx][chaosy].typ = TOILET;
+			}
+
+		}
+
+		if (uimplant && uimplant->oartifact == ART_RUBBER_SHOALS && !rn2(200)) {
+
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
+				levl[chaosx][chaosy].typ = ASH;
+			}
+
+		}
+
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_MIGHTY_MOLASS && !rn2(500)) {
+			struct monst *mtmp3;
+			int k, l;
+
+			for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+				if (!isok(u.ux + k, u.uy + l)) continue;
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mpeaceful == 0) {
+					if (!resist(mtmp3, RING_CLASS, 0, NOTELL)) {
+						mon_adjust_speed(mtmp3, -1, (struct obj *)0);
+						m_dowear(mtmp3, FALSE); /* might want speed boots */
+					}
+				}
 			}
 
 		}
@@ -7624,6 +7752,10 @@ newboss:
 			}
 
 			if (tech_inuse(T_GLOWHORN)) {
+				use_unicorn_horn((struct obj *)0);
+			}
+
+			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HEALENERATION) {
 				use_unicorn_horn((struct obj *)0);
 			}
 

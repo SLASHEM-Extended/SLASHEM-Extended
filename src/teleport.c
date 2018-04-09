@@ -916,6 +916,7 @@ dotele()
 	    }
 
 	    energy = objects[SPE_TELEPORT_AWAY].oc_level * 5;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) energy /= 2;
 	    if (u.uen < energy) {
 #ifdef WIZARD
 		if (wizard)

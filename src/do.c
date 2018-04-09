@@ -1357,6 +1357,15 @@ dodown()
 
 	}
 
+	if (!(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) && uimplant && uimplant->oartifact == ART_JANA_S_MAKE_UP_PUTTY && (stairs_down || ladder_down) && !rn2(100)) {
+		u.youaredead = 1;
+		pline("NETHACK caused a Kernel error at address 0001:A9EE.");
+		killer_format = KILLED_BY;
+		killer = "Jana's make-up putty";
+		done(DIED);
+		u.youaredead = 0;
+	}
+
 	if (u.stairscumslowing && (stairs_down || ladder_down) ) {
 		pline("This stair is currently blocked and will reopen in %d turn%s.", u.stairscumslowing, u.stairscumslowing > 1 ? "s" : "");
 		return(0);
@@ -1517,6 +1526,15 @@ doup()
 		pline(Hallucination ? "An anomalous energy field prevents you from taking the stairs!" : "The staircase is temporarily blocked! Try again later!");
 		return(0);
 
+	}
+
+	if (!(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) && uimplant && uimplant->oartifact == ART_JANA_S_MAKE_UP_PUTTY && !rn2(100)) {
+		u.youaredead = 1;
+		pline("NETHACK caused a Kernel error at address 0001:A9EE.");
+		killer_format = KILLED_BY;
+		killer = "Jana's make-up putty";
+		done(DIED);
+		u.youaredead = 0;
 	}
 
 	if (u.stairscumslowing && !u.uhave.amulet) {

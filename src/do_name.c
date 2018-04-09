@@ -654,7 +654,7 @@ boolean called;
 	/* priests and minions: don't even use this function */
 	if (mtmp->ispriest || mtmp->isminion) {
 
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) {
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) {
 		strcat(buf, "monster");
 		return buf;
 	    }
@@ -695,7 +695,7 @@ boolean called;
 	    strcat(buf, " the ");
 	    if (do_invis)
 		strcat(buf, "invisible ");
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) strcat(buf, "monster");
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) strcat(buf, "monster");
 	    else strcat(buf, mdat->mname);
 	    return buf;
 	}
@@ -721,7 +721,7 @@ boolean called;
 	} else if (mtmp->mnamelth) {
 	    char *name = NAME(mtmp);
 
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) {
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) {
 		strcat(buf, "monster");
 		name_at_start = TRUE;
 	    } else {
@@ -759,14 +759,14 @@ boolean called;
 
 	} else if (is_mplayer(mdat) /*&& !In_endgame(&u.uz)*/) {
 	    char pbuf[BUFSZ];
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) strcat(buf, "monster");
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) strcat(buf, "monster");
 	    else {
 		    strcpy(pbuf, rank_of((int)mtmp->m_lev, monsndx(mdat), (boolean)mtmp->female));
 		    strcat(buf, lcase(pbuf));
 	    }
 	    name_at_start = FALSE;
 	} else {
-	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) strcat(buf, "monster");
+	    if (StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) strcat(buf, "monster");
 	    else strcat(buf, mdat->mname);
 	    name_at_start = (boolean)type_is_pname(mdat);
 	}

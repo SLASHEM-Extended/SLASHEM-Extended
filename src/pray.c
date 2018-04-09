@@ -188,8 +188,8 @@ in_trouble()
 	    /* for bag/box access [cf use_container()]...
 	       make sure it's a case that we know how to handle;
 	       otherwise "fix all troubles" would get stuck in a loop */
-	    if (welded(uwep)) return TROUBLE_UNUSEABLE_HANDS;
-	    if (Upolyd && !Race_if(PM_TRANSFORMER) && nohands(youmonst.data) && (!Unchanging ||
+	    if (welded(uwep) && !(uimplant && uimplant->oartifact == ART_HO_YOO_YOYO) ) return TROUBLE_UNUSEABLE_HANDS;
+	    if (Upolyd && !Race_if(PM_TRANSFORMER) && nohands(youmonst.data) && !(uimplant && uimplant->oartifact == ART_HO_YOO_YOYO) && (!Unchanging ||
 		    ((otmp = unchanger()) != 0 && otmp->cursed)))
 		return TROUBLE_UNUSEABLE_HANDS;
 	}
@@ -2389,6 +2389,9 @@ dopray()
 		if (Inhell || flags.gehenna) godvoice(u.ualign.type, "My scholar, I cannot help thee in the Under World!");
 	}
 
+    } else if (uimplant && uimplant->oartifact == ART_HO_YOO_YOYO) {
+		if (can_pray(FALSE) && !u.ugangr) pline("You can safely pray.");
+		else pline("You can not safely pray.");
     }
 
     if (flags.prayconfirm)

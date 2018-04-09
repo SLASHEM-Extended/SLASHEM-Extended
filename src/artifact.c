@@ -2191,13 +2191,27 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			return TRUE;
 		} else {
 
+			if (!has_head(youmonst.data) || Role_if(PM_COURIER)) {
+				pline("Somehow, %s misses you wildly.",
+				      magr ? mon_nam(magr) : wepdesc);
+				*dmgptr = 0;
+				return TRUE;
+			}
+
+			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_DECAPITATION_UP) {
+				pline("Somehow, %s misses you wildly.",
+				      magr ? mon_nam(magr) : wepdesc);
+				*dmgptr = 0;
+				return TRUE;
+
+			}
+
 			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "complete helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "polnaya shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "to'liq dubulg'a") ) ) {
 				pline("%s slices into your %s.",
 				      wepdesc, body_part(NECK));
 				return TRUE;
 
 			}
-
 			if (RngeAntiBeheading) {
 				pline("%s slices into your %s.",
 				      wepdesc, body_part(NECK));
@@ -2205,12 +2219,6 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 
 			}
 
-			if (!has_head(youmonst.data) || Role_if(PM_COURIER)) {
-				pline("Somehow, %s misses you wildly.",
-				      magr ? mon_nam(magr) : wepdesc);
-				*dmgptr = 0;
-				return TRUE;
-			}
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
 				pline("%s slices through your %s.",
 				      wepdesc, body_part(NECK));

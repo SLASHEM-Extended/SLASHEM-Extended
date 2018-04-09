@@ -3312,7 +3312,7 @@ register struct monst *mtmp;
 	    }
 	}
 
-	if ( (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_respawnstone() ) && tmp != PM_UNFORTUNATE_VICTIM && tmp != PM_SCROLLER_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_TRAP_MASTER && !(mtmp->data->geno & G_UNIQ) ) {
+	if ( (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_respawnstone() ) && tmp != PM_UNFORTUNATE_VICTIM && tmp != PM_SCROLLER_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_TRAP_MASTER && !(mtmp->data->geno & G_UNIQ) ) {
 	    switch(rnd(10)) {
 		case 1:
 		case 2:
@@ -4300,6 +4300,12 @@ xkilled(mtmp, dest)
 	u.uconduct.killer++;
 
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
+
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_BURN_BABY_BURN) {
+		healup(mtmp->m_lev, 0, FALSE, FALSE);
+		u.uen += mtmp->m_lev;
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+	}
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "red sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "krasnyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qizil shippak") )) healup( (mtmp->m_lev / 3), 0, FALSE, FALSE);
 

@@ -720,7 +720,7 @@ moverock()
 		 if (Blind) feel_location(sx,sy);
 	cannot_push:
 	    if (throws_rocks(youmonst.data)) {
-		if (u.usteed && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
+		if (u.usteed && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 		    You("aren't skilled enough to %s %s from %s.",
 			(flags.pickup && !In_sokoban(&u.uz))
 			    ? "pick up" : "push aside",
@@ -1046,7 +1046,7 @@ int mode;
     if (IS_ROCK(tmpr->typ) || tmpr->typ == IRONBARS || tmpr->typ == WOODENTABLE || tmpr->typ == WATERTUNNEL) {
 	if (Blind && mode == DO_MOVE) feel_location(x,y);
 	if (tmpr->typ == IRONBARS) {
-	    if (!(Passes_walls || passes_bars(youmonst.data) )) {
+	    if (!(Passes_walls || passes_bars(youmonst.data) || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) )) {
 		if (mode == DO_MOVE) {
 			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
 				You("crash into a set of iron bars! Ouch!");
@@ -1087,7 +1087,7 @@ int mode;
 
 	} else if (tmpr->typ == MOUNTAIN) {
 		if (mode != DO_MOVE) return FALSE;
-		if (mode == DO_MOVE && !Passes_walls) {
+		if (mode == DO_MOVE && !Passes_walls && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER)) {
 			if (!(u.usteed) && rn2(100)) {
 				TimerunBug += 1; /* ugly hack --Amy */
 				Norep("You try to scale the mountain. This may take many attempts to succeed.");
@@ -1105,7 +1105,7 @@ int mode;
 	} else if (tmpr->typ == FARMLAND) {
 		if (mode != DO_MOVE && !Levitation && !Flying && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
 
-		if (mode == DO_MOVE && !Levitation && !Flying && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) {
+		if (mode == DO_MOVE && !Levitation && !Flying && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
 
 			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
 				You("crash into a farmland! Ouch!");
@@ -1281,7 +1281,7 @@ int mode;
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
-		    else if (!Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone() || u.totter || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() ) ) {
+		    else if (!Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone() || u.totter || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() ) ) {
 			    door_opened = flags.move = doopen_indir(x, y);
 			    opentry = 1;
 		    }
@@ -1902,6 +1902,7 @@ domove()
 		    static int skates4 = 0;
 		    if (!skates4) skates4 = find_skates4();
 		    if ((uarmf && uarmf->otyp == skates)
+			    || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME)
 			    || (uarmf && uarmf->otyp == skates2)
 			    || (uarmf && uarmf->otyp == skates3)
 			    || (uarmf && uarmf->otyp == skates4)
@@ -3739,7 +3740,7 @@ dopickup()
 			|| (Flying && !Breathless)) {
 		You_cant("reach the bottom to pick things up.");
 		return(0);
-	    } else if (!likes_lava(youmonst.data) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) && !(uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) && !Race_if(PM_PLAYER_SALAMANDER) && !(uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) && !(uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) && !(uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) ) {
+	    } else if (!likes_lava(youmonst.data) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hot boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "goryachiye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "issiq chizilmasin") ) ) && !(uwep && uwep->oartifact == ART_EVERYTHING_MUST_BURN) && !(uamul && uamul->otyp == AMULET_OF_D_TYPE_EQUIPMENT) && !Race_if(PM_PLAYER_SALAMANDER) && !(uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_RUBBER_SHOALS) && !(uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) && !(uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) ) {
 		You("would burn to a crisp trying to pick things up.");
 		return(0);
 	    }
@@ -3749,7 +3750,7 @@ dopickup()
 		return(0);
 	}
 	if (!can_reach_floor()) {
-		if (u.usteed && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 		    You("aren't skilled enough to reach from %s.",
 			y_monnam(u.usteed));
 		else

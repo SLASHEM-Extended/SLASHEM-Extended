@@ -1069,7 +1069,7 @@ learn()
 	}
 	if (i == MAXSPELL) impossible("Too many spells memorized!");
 
-	if ( (book->cursed || book->spe < 1) && !Role_if(PM_LIBRARIAN) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) {	/* maybe a demon cursed it */
+	if ( (book->cursed || book->spe < 1) && !(uimplant && uimplant->oartifact == ART_DOMPFINATION) && !Role_if(PM_LIBRARIAN) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) {	/* maybe a demon cursed it */
 	    if (cursed_book(book)) {
 		if (carried(book)) useup(book);
 		else useupf(book, 1L);
@@ -1777,6 +1777,11 @@ boolean atme;
 	if (Race_if(PM_MANSTER) && energy > 1) {
 		energy *= 2;
 		energy /= 3;
+	}
+
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_DOMPFINATION) {
+		energy *= 9;
+		energy /= 10;
 	}
 
 	if (Role_if(PM_MAHOU_SHOUJO) && (energy > 1) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "weeb cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zese plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yaponiya ucube rido") ) ) { energy *= 9; energy /= 10;}

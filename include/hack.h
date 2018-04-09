@@ -291,7 +291,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define onlineu(xx,yy)	online2((int)(xx),(int)(yy),(int)u.ux,(int)u.uy)
 #define setustuck(v)	(flags.botl = 1, u.ustuck = (v))
 
-#define missingnoprotect	(((Race_if(PM_MISSINGNO) || u.ughmemory) && flags.missing_safety) || strncmpi(plname, "AmyBSOD", 7) )
+#define missingnoprotect	(((Race_if(PM_MISSINGNO) || u.ughmemory) && (flags.missing_safety || strncmpi(plname, "AmyBSOD", 7) ) ) )
 
 #define isangbander (Race_if(PM_ANGBANDER) || flags.hybridangbander)
 #define isaquarian (Race_if(PM_AQUATIC_MONSTER) || flags.hybridaquarian)
@@ -303,7 +303,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define israndomizer (Race_if(PM_RANDOMIZER) || flags.hybridrandomizer)
 #define isnullrace (Race_if(PM_NULL) || flags.hybridnullrace)
 #define ismazewalker (Race_if(PM_MAZEWALKER) || flags.hybridmazewalker)
-#define issoviet (Race_if(PM_SOVIET) || flags.hybridsoviet)
+#define issoviet (Race_if(PM_SOVIET) || flags.hybridsoviet || (uimplant && uimplant->oartifact == ART_GELMER_KELANA_TWIN && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) ) )
 #define isxrace (Race_if(PM_RACE_X) || flags.hybridxrace)
 #define isheretic (Race_if(PM_HERETIC) || flags.hybridheretic)
 #define issokosolver (Race_if(PM_SOKOSOLVER) || flags.hybridsokosolver)

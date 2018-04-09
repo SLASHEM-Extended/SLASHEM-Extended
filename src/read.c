@@ -1495,6 +1495,7 @@ forget_objects(percent)
 	int indices[NUM_OBJECTS];
 
 	if (Keen_memory && rn2(20)) return;
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
 
 	if (percent == 0) return;
 	if (percent <= 0 || percent > 100) {
@@ -1537,6 +1538,7 @@ forget_map(howmuch)
 	    return;*/
 
 	if (Keen_memory && rn2(20)) return;
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
 
 	known = TRUE;
 	for(zx = 0; zx < COLNO; zx++) for(zy = 0; zy < ROWNO; zy++)
@@ -1577,6 +1579,7 @@ forget_traps()
 	register struct trap *trap;
 
 	if (Keen_memory && rn2(20)) return;
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
 
 	/* forget all traps (except the one the hero is in :-) */
 	for (trap = ftrap; trap; trap = trap->ntrap)
@@ -1599,6 +1602,7 @@ forget_levels(percent)
 	if (percent == 0) return;
 
 	if (Keen_memory && rn2(20)) return;
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
 
 	if (percent <= 0 || percent > 100) {
 	    impossible("forget_levels: bad percent %d", percent);

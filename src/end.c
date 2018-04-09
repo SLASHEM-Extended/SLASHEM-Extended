@@ -1023,7 +1023,7 @@ int how;
 		You_feel("much better!");
 		pline_The("medallion crumbles to dust!");
 		/* KMH -- Bullet-proofing */
-		if (uamul)
+		/*if (uamul)*/
 			/*useup(uamul);*/
 
 		(void) adjattrib(A_CON, -1, TRUE);
@@ -1045,6 +1045,31 @@ int how;
 
 			return;
 		}
+	}
+
+	if (uimplant && uimplant->oartifact == ART_DECAPITATION_UP && how <= GENOCIDED) {
+		pline("But wait...");
+		Your("implant %s!", !Blind ? "begins to glow" : "feels warm");
+		You_feel("much better!");
+		pline_The("implant crumbles to dust!");
+		useup(uimplant);
+		(void) adjattrib(A_CON, -1, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+		savelife(how);
+		if (how == GENOCIDED)
+			pline("Unfortunately you are still genocided...");
+		else {
+
+			killer = 0;
+			killer_format = 0;
+#ifdef LIVELOGFILE
+			livelog_avert_death();
+#endif
+			u.youaredead = 0;
+
+			return;
+		}
+
 	}
 
 	if ( (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) && how < GENOCIDED) {

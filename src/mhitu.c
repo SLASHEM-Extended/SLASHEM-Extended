@@ -1727,6 +1727,8 @@ mattacku(mtmp)
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && FemaleTrapMadeleine) tmp += 100;
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapWendy) tmp += rnd(20);
 
+	if (uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(5)) tmp -= 100;
+
 	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && attacktype(mtmp->data, AT_CLAW)) tmp += 100;
 
 	if (Conflict) tmp += rnd(1 + mtmp->m_lev);
@@ -3864,6 +3866,10 @@ elena37:
 		}
 	}
 
+	if (uimplant && uimplant->oartifact == ART_POTATOROK && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
+		ragnarok();
+	}
+
 	/* and now, the unholy satanic motherfucker from hell, aka the most evil monster in existence... --Amy
 	 * thanks Chris_ANG for creating it, you evil person :P */
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) {
@@ -4471,6 +4477,7 @@ struct monst *mon;
 	if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 	if (Race_if(PM_INKA)) armpro++;
 	if (ACURR(A_CHA) >= 18) armpro++;
 	if (armpro < 0) armpro = 0;
@@ -6893,6 +6900,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
 		switch (rnd(10)) {
 
 			case 1:
@@ -9285,6 +9293,7 @@ do_stone2:
 
 	    case AD_TIME:
 		if (mtmp->mcan) break;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
 		switch (rnd(10)) {
 
 			case 1:
@@ -11241,6 +11250,8 @@ common:
 		break;
 
 	    case AD_TIME: /* timebomb */
+
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) break;
 		switch (rnd(10)) {
 
 			case 1:
@@ -13966,7 +13977,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_TIME:
 		if (!mtmp->mcan && canseemon(mtmp) &&
-			couldsee(mtmp->mx, mtmp->my) &&
+			couldsee(mtmp->mx, mtmp->my) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) &&
 			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(50))) {
 		    pline("%s gazes at you, and sucks the essence of life out of you...", Monnam(mtmp));
 		    stop_occupation();
@@ -15133,6 +15144,11 @@ register int n;
 		pline("GAME OVER - press R to try again");
 		done_in_by(mtmp);
 
+	}
+
+	if (uimplant && uimplant->oartifact == ART_NO_ABNORMAL_FUTURE) {
+		if (!rn2(20)) witherarmor();
+		if (!rn2(500)) antimatter_damage(invent, FALSE, FALSE);
 	}
 
 	/* sometimes you take less damage. The game is deadly enough already. High constitution helps. --Amy */

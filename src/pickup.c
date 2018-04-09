@@ -1585,7 +1585,7 @@ able_to_loot(x, y)
 int x, y;
 {
 	if (!can_reach_floor()) {
-		if (u.usteed && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
+		if (u.usteed && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) )
 			rider_cant_reach(); /* not skilled enough to reach */
 		else
 			You("cannot reach the %s.", surface(x, y));

@@ -5665,6 +5665,11 @@ boolean ordinary;
 			makeknown(obj->otyp);
 		case SPE_TIME:
 
+			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) {
+				You_feel("not as powerful than you used to be, but the feeling passes.");
+				break;
+			}
+
 		{
 		int dmg;
 		dmg = (rnd(10) + rnd( (monster_difficulty() * 2) + 1));
@@ -8934,6 +8939,12 @@ register int osym, dmgtyp;
 		case AD_COLD:
 
 		    if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fleecy boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "flis sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "tozalamoq chizilmasin") ) ) {skip++; break;
+			}
+
+		    if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) {skip++; break;
+			}
+
+		    if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_DUBAI_TOWER_BREAK) {skip++; break;
 			}
 
 		    if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) {skip++; break;

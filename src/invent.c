@@ -15130,7 +15130,87 @@ struct obj *obj;
 				case ART_ERASE_ALL_DATA:
 					pline("Artifact specs: data delete if you make the mistake of reading it. Doing so would be a terrible idea. Thankfully it doesn't have that effect if it's read by a monster - unless you're playing in evil variant mode, har har har!"); break;
 				case ART_GAROK_S_HAMMER_KIT:
-					pline("This material kit may be used several times before it is used up. Hopefully it's of a useful material type!"); break;
+					pline("Artifact specs: This material kit may be used several times before it is used up. Hopefully it's of a useful material type!"); break;
+				case ART_ACTUAL_PRECISION:
+					pline("Artifact specs: +5 increase accuracy when worn, and an additional +5 if you're in a form that lacks hands."); break;
+				case ART_HENRIETTA_S_TENACIOUSNESS:
+					pline("Artifact specs: acid resistance and prevents your gear from being destroyed by erosion when worn. If you're in a form that lacks hands, it makes you extra tenacious by adding 10 points of AC and 1 point of MC. But somehow you get the feeling that there are massive drawbacks to using it..."); break;
+				case ART_HEALENERATION:
+					pline("Artifact specs: regeneration when worn, wearing it while in a form that lacks hands applies an uncursed unicorn horn effect every turn, even if you don't actually have a unicorn horn."); break;
+				case ART_CAN_T_BRING_US_DOWN:
+					pline("Artifact specs: free action when worn, and discount action if you are in a form without hands."); break;
+				case ART_SCROOGE_S_MONEY_MEMORY:
+					pline("Artifact specs: lets you find more gold, especially if you wear it while in a form without hands. Chaotic."); break;
+				case ART_WHITE_WHALE_HATH_COME:
+					pline("Artifact specs: cold resistance when worn. If you wear it while in a form that lacks hands, your potions cannot be destroyed by cold and you cannot slip on ice and are unaffected by snowstorms. Neutral."); break;
+				case ART_BRRRRRRRRRRRRRMMMMMM:
+					pline("Artifact specs: adds 50%% movement speed if you're on a highway. If you're in a form without hands, it adds the movement speed bonus regardless of the terrain you're on. However, it also constantly drains your mana while worn."); break;
+				case ART_KATRIN_S_SUDDEN_APPEARANCE:
+					pline("Artifact specs: teleport control, very fast speed and fainting when worn, disables free action and discount action. Wearing it without hands reduces the mana cost of controlled teleports (usually invoked via Ctrl-T) by half."); break;
+				case ART_SINFUL_REPENTER:
+					pline("Artifact specs: bad alignment when worn, but if you do something that increases your alignment, it will be increased more than usual. If you wear it while in a form without hands, the alignment bonus will be extra big and also increase your maximum alignment."); break;
+				case ART_GYMNASTIC_LOVE:
+					pline("Artifact specs: allows you to occasionally avoid melee attacks. If you wear it while not having hands, you can also sometimes avoid missile attacks."); break;
+				case ART_SLEX_WANTS_YOU_TO_DIE_A_PA:
+					pline("Artifact specs: It is probably not a good idea to put this on. But if you do it while not having hands, you will be magic resistant and reflecting."); break;
+				case ART_FUKROSION:
+					pline("Artifact specs: While wearing it, you occasionally get a prompt that allows you to repair a damaged item in your open inventory. If you are in a form without hands, the item you select will also be erosionproofed. Yes, you can select something that isn't eroded! Of course! :-)"); break;
+				case ART_YES_YOU_CAN:
+					pline("Artifact specs: teleport control and polymorph control while worn, and if you wear it while in a form without hands, you may sometimes use inertia control. Lawful."); break;
+				case ART_RHEA_S_MISSING_EYESIGHT:
+					pline("Artifact specs: greatly reduces your to-hit when worn. If you wear it while not having hands, your attacks will do more damage (at least if you manage to hit despite the penalty) and you will also have poison resistance. Neutral."); break;
+				case ART_RUBBER_SHOALS:
+					pline("Artifact specs: Randomly turns floor tiles into ash when worn, and grants shock resistance. If you wear it in a form without hands, it also grants fire resistance and allows you to swim in lava unharmed."); break;
+				case ART_THAI_S_EROTIC_BITCH_FU:
+					pline("Artifact specs: -10 constitution and +5 strength when worn. If you are in a form without hands, you also get +5 charisma, intelligence and wisdom and +10 dexterity. Neutral."); break;
+				case ART_DOMPFINATION:
+					pline("Artifact specs: While wearing it, you can successfully read cursed spellbooks. If in a form without hands, it also reduces the mana cost of all spells. Chaotic."); break;
+				case ART_BURN_BABY_BURN:
+					pline("Artifact specs: Burns you when worn, so you can't regenerate HP and Pw. While in a form without hands, it allows you to regenerate some HP and Pw whenever you kill a monster."); break;
+				case ART_TIMEAGE_OF_REALMS:
+					pline("Artifact specs: drain resistance when worn. If you lack hands, it also grants time resistance."); break;
+				case ART_WARY_PROTECTORATE:
+					pline("Artifact specs: half physical damage when worn, and if you are in a form without hands, it also grants half spell damage."); break;
+				case ART_SOME_LITTLE_AID:
+					pline("Artifact specs: +1 increase accuracy when worn, and if you are in a form without hands it also grants +1 increase damage."); break;
+				case ART_HO_YOO_YOYO:
+					pline("Artifact specs: If you try to pray while wearing it, the game will tell you whether it's safe to do so. Lack of hands is not considered a trouble if you pray while wearing it."); break;
+				case ART_DECAPITATION_UP:
+					pline("Artifact specs: your life will be saved while wearing it, but if it actually saves your life it will be destroyed. If you're in a form without hands, it also protects you from the beheading attacks of Vorpal Blade and similar weapons."); break;
+				case ART_WONDERLOVELINESS:
+					pline("Artifact specs: +5 charisma, and an additional +5 if you're in a form without hands."); break;
+				case ART_MIGHTY_MOLASS:
+					pline("Artifact specs: freezes you while worn. If you're in a form without hands, adjacent monsters will occasionally be slowed down."); break;
+				case ART_UNFORGETTABLE_EVENT:
+					pline("Artifact specs: keen memory when worn. If you lack hands, it also grants extra saving throws against amnesia effects."); break;
+				case ART_DUBAI_TOWER_BREAK:
+					pline("Artifact specs: causes the 'freeze' status effect to end more quickly when worn. If you wear it while not having hands, you also gain cold resistance and your potions cannot be destroyed by cold."); break;
+				case ART_ARRGH_OUCH:
+					pline("Artifact specs: Wearing it will continuously damage you. If you don't have hands, each of these damaging incidents will train your healing spell skill."); break;
+				case ART_ETHERATORGARDEN:
+					pline("Artifact specs: nastiness effect and magic resistance when worn. Wearing it while in a form without hands gives a 20%% speed boost. Chaotic."); break;
+				case ART_READY_FOR_A_RIDE:
+					pline("Artifact specs: increases your movement speed while riding when worn. If you're in a form without hands, your steed will also regenerate hit points faster depending on your riding skill, and you can pick up things while riding even if you're unskilled."); break;
+				case ART_JANA_S_MAKE_UP_PUTTY:
+					pline("Artifact specs: flying and unbreathing when worn. It might do something else too, probably depending on whether you are in a form that has hands because all implants seem to behave differently depending on whether you do..."); break;
+				case ART_POTATOROK:
+					pline("Artifact specs: fire and contamination resistance, see invisible and teleportitis when worn, and all monsters can cause Ragnarok with their melee attacks. If you have hands, it disables teleport control. But if you don't have hands, it gives half physical and spell damage instead. Lawful."); break;
+				case ART_THEY_RE_ALL_YELLOW:
+					pline("Artifact specs: acid resistance when worn, and regeneration if you're in a form without hands."); break;
+				case ART_GELMER_KELANA_TWIN:
+					pline("Artifact specs: monsters from vanilla NetHack spawn more often when you wear it, which means that all non-vanilla monsters become more rare. But if you're in a form with hands, it also makes the game behave like SLASHTHEM, which will fuck you up. The type of ice block laughs, 'Harharharharhar HARR-HARR!'"); break;
+				case ART_NO_ABNORMAL_FUTURE:
+					pline("Artifact specs: whenever a monster hits you in melee while you wear this, there's a slight chance that your items are randomly damaged. The individual chance of this happening may be small but consider how many hits you're going to take over the course of a single game... If you wear it while in a form without hands, it also allows you to use your techniques 4 times as often."); break;
+				case ART_SIGNIFICANT_RNG_JITTER:
+					pline("Artifact specs: polymorphitis and regeneration when worn. If you are in a form without hands, it also grants swimming, magical breathing and polymorph control, plus allows you to walk through iron bars, mountains and farmland."); break;
+				case ART_LAUGHING_AT_MIDNIGHT:
+					pline("Artifact specs: intrinsic loss when worn. If you're in a form without hands, it also grants poison and acid resistance and boosts your AC by 5 points."); break;
+				case ART_YOU_SHOULD_SURRENDER:
+					pline("Artifact specs: multiplies monster spawn frequency by a factor 5 and all monsters can respawn when killed, making the game almost impossible because you'll be bombarded with endless streams of monsters. If you wear it while in a form without hands, your speed is increased significantly and you can attack twice per turn, but that probably won't be enough to handle those hordes either."); break;
+				case ART_ARABELLA_S_SEXY_CHARM:
+					pline("Artifact specs: teleportitis when worn. If you lack hands, it also gives teleport control, full nutrients, technicality, contamination resistance and 20 extra points of AC. This artifact is definitely not a trap, it's awesome! Polymorph into something without hands and wear it!!!"); break;
+				case ART_NEWFOUND_AND_USEFUL:
+					pline("Artifact specs: free action when worn. If you wear it while in a form without hands, it also grants swimming and magical breathing, plus it will protect your items from becoming wet."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

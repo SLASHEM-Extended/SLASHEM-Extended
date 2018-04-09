@@ -3798,6 +3798,166 @@ A("Garok's Hammer Kit",			MATERIAL_KIT, /* can be used several times */
 	(SPFX_RESTR|SPFX_SPEAK), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50000L ),
 
+A("Actual Precision",				IMPLANT_OF_PRECISION, /* +5 increase accuracy, and an additional +5 if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Henrietta's Tenaciousness",				IMPLANT_OF_VILENESS, /* autocurses, evil artifact effect, resist acid, prevents your gear from being destroyed by erosion, 10 extra points of AC and 1 extra point of MC if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Healeneration",				IMPLANT_OF_REMEDY, /* if in a form without hands, applies an uncursed unicorn effect every turn */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Can't Bring Us Down",				IMPLANT_OF_STOICISM, /* free action, and discount action if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Scrooge's Money Memory",				IMPLANT_OF_AVARICE, /* doubles randomly generated gold, or quadruples if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("The White Whale Hath Come",				IMPLANT_OF_WINTER, /* if in a form without hands, your potions cannot be destroyed by cold and you cannot slip on ice and are unaffected by snowstorms */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("Brrrrrrrrrrrrrmmmmmm",				IMPLANT_OF_ACCELERATION, /* +50% movement speed if you're on a highway, or always if in a form without hands; drains 1 Pw every odd turn while in a form without hands, or every turn otherwise */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Katrin's Sudden Appearance",				IMPLANT_OF_QUICKENING, /* very fast speed, fainting effect, disables free action and discount action, halves the cost for Ctrl-T if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Sinful Repenter",				IMPLANT_OF_KARMA, /* bad alignment effect, things that increase your alignment record increase it by 2x the usual amount or 5x if in a form without hands, and if in a form without hands there's also a 20% chance of getting +1 to the maximum */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Gymnastic Love",				IMPLANT_OF_ELUSION, /* 20% chance of avoiding melee attacks, and 33% chance of avoiding missile attacks if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("SLEX Wants You To Die A Painful Death",				IMPLANT_OF_SUFFERING, /* putting it on gives +1 max HP but also a random nasty trap effect as an intrinsic; magic resistance and reflection if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Fukrosion",				IMPLANT_OF_FAST_REPAIR, /* allows you to repair an eroded item 1 in 2500 turns, and will also erosionproof the item in question if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Yes You Can",				IMPLANT_OF_CONTROL, /* polymorph control, allows you to get an inertia control-like effect 1 in 500 turns if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2000L ),
+
+A("Rhea's Missing Eyesight",				IMPLANT_OF_CLUMSINESS, /* -rnd(20) to-hit; +rnd(5) increase damage and poison resistance if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
+
+A("Rubber Shoals",				IMPLANT_OF_INSULATION, /* randomly turns floor terrain into ash, fire resistance and lava swimming if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Thai's Erotic Bitch-Fu",				IMPLANT_OF_FRAILTY, /* -10 constitution, +5 strength; if in a form without hands, also +5 CHA/INT/WIS and +10 DEX */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2000L ),
+
+A("Dompfination",				IMPLANT_OF_KNOWLEDGE, /* you can read spellbooks successfully even if they're cursed; if in a form without hands, spells cost 10% less mana to cast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
+A("Burn Baby Burn",				IMPLANT_OF_MALICE, /* gives you the burn status; if in a form without hands, killing a monster recovers some HP and Pw */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Timeage of realms",				IMPLANT_OF_AGES, /* time resistance if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Wary Protectorate",				IMPLANT_OF_SUSTENANCE, /* half spell damage if in a form without hands */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Some Little Aid",				IMPLANT_OF_COMBAT, /* +1 increase accuracy; +1 increase damage if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Ho yoo-yoyo",				IMPLANT_OF_FAITH, /* gives you a message whether it's safe to pray, lack of hands is not considered a trouble while wearing this */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Decapitation Up",				IMPLANT_OF_VITA, /* life saving (and is used up if you die), prevents beheading if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Wonderloveliness",				IMPLANT_OF_BEAUTY, /* +5 charisma, and an additional +5 if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Mighty Molass",				IMPLANT_OF_INERTIA, /* freeze status effect; if in a form without hands, 1 in 500 chance per turn that hostile monsters adjacent to you are hit with slow monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Unforgettable Event",				IMPLANT_OF_MEMORY, /* keen memory; if in a form without hands, 90% chance to resist the effects of amnesia */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Dubai Tower Break",				IMPLANT_OF_THAWING, /* 20% chance per turn that the freeze status effect is cured; if in a form without hands, cold resistance and your potions cannot be destroyed by cold */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Arrgh Ouch",				IMPLANT_OF_PAIN, /* 20% chance per turn to take 10 points of damage; if in a form without hands, every such incident trains your healing spell skill */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Etheratorgarden",				IMPLANT_OF_CORRUPTION, /* nastiness effect, +20% speed if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Ready For A Ride",				IMPLANT_OF_TRAVELING, /* +20% speed when riding, but only for movement; if in a form without hands, can pick up stuff while riding even when unskilled and increases the HP regeneration rate of a ridden mount even more when the skill is high */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Jana's Make-Up Putty",				IMPLANT_OF_CHEATING, /* flying and unbreathing, but if you use a staircase and are not in a form without hands, 1 in 100 chance to die instantly (no joke). */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Potatorok",				IMPLANT_OF_VALHALLA, /* resist fire and contamination, see invisible, teleportitis, and every monster can cause Ragnarok if it hits you in melee. Disables teleport control unless you are in a form without hands. If in a form without hands, also gives half physical and spell damage. */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 10000L ),
+
+A("They're All Yellow",				IMPLANT_OF_BILE, /* acid resistance, regeneration if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Gelmer-Kelana Twin",				IMPLANT_OF_VANILLA, /* +10 spawn frequency for M5_VANILLA monsters, game behaves as if it were soviet mode unless you're in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("No Abnormal Future",				IMPLANT_OF_ABRASION, /* whenever you take a hit via mhitu.c, 1 in 20 chance that a random armor piece you're wearing is withered and 1 in 500 chance that you're hit with antimatter; if you use a technique while in a form without hands, the timeout is 4 times faster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Significant RNG Jitter",				IMPLANT_OF_OSMOSIS, /* polymorphitis, regeneration; if in a form without hands, it also grants swimming, magical breathing, polymorph control and the ability to walk straight through iron bars, farmland, mountains and potentially other terrain */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Laughing At Midnight",				IMPLANT_OF_ENVY, /* random intrinsic loss; if in a form without hands, resist poison/acid and 5 extra points of AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("You Should Surrender",				IMPLANT_OF_IMPOSSIBILITY, /* monster spawn frequency becomes 5x faster and respawn effect when they're killed; when in a form without hands, 50% extra speed and double attacks */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Arabella's Sexy Charm",				IMPLANT_OF_ADMIRATION, /* starlit and RMB loss effect, teleportitis; if in a form without hands, also gives teleport control, full nutrients, technicality, contamination resistance and 20 extra points of AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Newfound And Useful",				IMPLANT_OF_FREEDOM, /* free action; if in a form without hands, also gives swimming, magical breathing and protects items from becoming wet */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 /* below are randarts: they're supposed to be a random base item
  * melee weapons will become some other melee weapon, launchers will become
  * some other launcher, body armors will become some other body armor etc. --Amy */

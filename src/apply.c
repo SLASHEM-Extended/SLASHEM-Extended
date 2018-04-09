@@ -2224,7 +2224,7 @@ degradeagain:
 
 fixthings:
 	if (trouble_count == 0) {
-	    pline(nothing_happens);
+	    if (!(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HEALENERATION)) pline(nothing_happens);
 	    return 0;
 	} else if (trouble_count > 1) {		/* shuffle */
 	    int i, j, k;

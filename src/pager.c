@@ -1075,7 +1075,7 @@ do_look(quick)
 	}
 
 	/* Finally, print out our explanation. */
-	if (found && !RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !have_rmbstone()) {
+	if (found && !RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !(uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) && !have_rmbstone()) {
 
 	    pline("%s", out_str);
 	/*winid datawin = create_nhwindow(NHW_MENU);
@@ -1094,7 +1094,7 @@ do_look(quick)
 		checkfile(temp_buf, pm, FALSE, (boolean)(ans == LOOK_VERBOSE));
 	    }
 	} else {
-	    if (!RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !have_rmbstone()) pline("I've never heard of such things.");
+	    if (!RMBLoss && !u.uprops[RMB_LOST].extrinsic && !(uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) && !(uarmh && uarmh->oartifact == ART_WOLF_KING) && !(uamul && uamul->oartifact == ART_BUEING) && !(uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) && !have_rmbstone()) pline("I've never heard of such things.");
 	}
 
     } while (from_screen && !quick && ans != LOOK_ONCE);
@@ -8466,7 +8466,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Test orthogonal spaces.",
 	"One wall is enough.",
 	"Can always 'see' self even if blind.",
-	"Invisible heroes have 50% to be sensed when adjacent.",
+	"Invisible heroes have 50%% to be sensed when adjacent.",
 	"Naked eye sight test.",
 	"You always see everyone next to you unless invisible.",
 	"You always see everyone next to you unless you are invisible. This doesn't really make sense, but it's intentional because that way the invisibility intrinsic isn't so godawfully overpowered.",
@@ -8514,7 +8514,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Hard to be certain in this case. After all, this is SLEX, nothing is guaranteed except the fact that you will not win the game.",
 	"Phase 2: Special attack effects.",
 	"The green slime revitalized by the sludge spill.",
-	"Some is money is permanently lost so the attack actually is harmful instead of being 100% joke.",
+	"Some is money is permanently lost so the attack actually is harmful instead of being 100%% joke.",
 	"You hear the program bugs craving for your gray matter.",
 	"The mi-go extracts your brain!",
 	"You are now brain in a jar.",
@@ -8558,7 +8558,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Skin was not pierced.",
 	"Bad for the sword and no enhancement increase.",
 	"At full potency already.",
-	"Enhancement is increased on kills and 50% if it was negative.",
+	"Enhancement is increased on kills and 50%% if it was negative.",
 	"Hero needs to witness both attacker and victim.",
 	"Pain may wake up asleep creatures.",
 	"Pain may wake up asleep creatures. But if *you* are hurt in your sleep, e.g. because Karin repeatedly slams her sexy knee into your nuts, you will not wake up prematurely.",
@@ -8861,8 +8861,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Please contact Amy on the IRC channel! She can answer everything, at least as long as it's questions about this game. Do you want to continue suffering or are you gonna take advice from someone who knows how this game works?",
 	"You kick the map boundary.  That was weird feeling.",
 	"You kick the map boundary.  That was weird feeling and ungrammatical to boot. (Geddit, 'boot'. Because you used a boot to kick.)",
-	"Find a kick.  Chance to replace with tail slap 20% if available.",
-	"Find a kick.  Chance to replace with tail slap 20% if available. However, it would be even more sexy if you used a pair of plateau boots to slap the enemy's... I know I should say 'tail' here, but I'm kinda tempted to write 'butt' instead...",
+	"Find a kick.  Chance to replace with tail slap 20%% if available.",
+	"Find a kick.  Chance to replace with tail slap 20%% if available. However, it would be even more sexy if you used a pair of plateau boots to slap the enemy's... I know I should say 'tail' here, but I'm kinda tempted to write 'butt' instead...",
 	"Oddly, you seem to have nothing to kick with.",
 	"Oddly, you seem to have nothing to kick with. Please go to a clothing shop right now and buy a pair of high heels.",
 	"You look tired. Go directly to bed, do not pass go, do not collect 200 zorkmids.",
@@ -8998,7 +8998,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Send 50000 buckazoids to Venus Planetary Clinic?"
 	"Thank you!  Here, have this picture of adorable Darth Vader baby.",
 	"Thank you for your most generous donation.",
-	"Your selfless gesture has helped save -1 lives."
+	"Your selfless gesture has helped save -1 lives.",
 	"Run this disk again when you've got some more buckazoids.",
 	"Transmitting 100000 buckazoids through Zero-Click purchase plan...",
 	"Message and money receiver will not match.",
@@ -9721,7 +9721,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Welcome to PRIME!     (hit esc to quit now)",
 	"What is your name?",
 	"Build the maze.  First, remove some nodes to prevent long hallways",
-	"Post process: add flavor to 20% of walls.",
+	"Post process: add flavor to 20%% of walls.",
 	"Put a red pill somewhere.",
 	"Exception: berserk doors are drawn as plain doors.",
 	"Do not use return 'master' unless it has been indentified already.",
@@ -9781,7 +9781,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Don't permanently remove act 1 void lords from the list once the player reaches act 2. How many players would enter the void before offing Zeome, anyway? It just seems very silly to limit a bunch of bosses like that, since few players would ever encounter them.",
 	"All monsters can always use gauge attacks, even when not playing in No Future mode (am I the only one who thinks the name changes they made to the modes are really bullshit? 'Loss' or 'Abnormal' just sound stupid, sorry!).",
 	"Acid damage can always destroy equipment if it gets damaged enough, even when not playing in No Future mode. After all, you'd have to be quite the noob to let your kickass artifact get hit by acid that many times, so if you do, you deserve to lose it.",
-	"Spellcasting success chance can always reach 100%, no matter how heavy the player's equipment is and no matter what kind of equipment is in the second hand slot. Because I really HATE HATE HATE that bloody cap that basically forced me into using light armor and only a single melee weapon without a shield.",
+	"Spellcasting success chance can always reach 100%%, no matter how heavy the player's equipment is and no matter what kind of equipment is in the second hand slot. Because I really HATE HATE HATE that bloody cap that basically forced me into using light armor and only a single melee weapon without a shield.",
 	"The player no longer loses their equipment upon death. That always ticked me off to no end! Whose ingenious idea was it to make it so that you could just randomly lose that sentient weapon you spent hundreds of hours to level, or that precious item that would require you to farm 10 big daddies to get back? And why didn't they make it possible to turn that bullshit off???",
 	"Rare drops by certain enemies actually are rare again. I remember a version where it used to be something special to get an unknown shell, a happy bed, or a secret experience of Kumiromi. But somehow the devs decided to make those drops ultra common. Should it really be that everyone has an unknown shell by XL5 and half a dozen happy beds by XL20? Nope, I say!",
 	"Reverted some of the bloody 'fixes' to certain 'spelling errors'. The curased coffin shall forever be spelled 'curased coffin', and everyone who disagrees with me shall be put in a curased coffin as well! Just kidding :P Also reinstated the 'yerles conbat plane' spelling.",
@@ -9830,7 +9830,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Returns ilk name and kNoFeature in kind or NULL and feature type in kind.",
 	"Assumes creature calling is under player control.",
 	"Do not place header unless an object needs it.",
-	"Give first (random) pick and others 80% of the time if other conditions are fulfilled.",
+	"Give first (random) pick and others 80%% of the time if other conditions are fulfilled.",
 	"Offer features only if place is available.",
 	"Hero gets or wants random item?",
 	"Choose fully randomly.",
@@ -11545,7 +11545,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Mi-go specialty, also used by docbot.",
 	"Facehugger obviously.",
 	"Common for bullet based guns.",
-	"Changes damage amount to 50% of target's HP.",
+	"Changes damage amount to 50%% of target's HP.",
 	"football, improvised thrown weapon",
 	"Some bots can spill oil to blind.",
 	"Pea shooter.  Like kGun but different animation.",
@@ -12931,7 +12931,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"There are no 'irrelevant' monsters or items in SLEX and they certainly don't 'spoil the nethack atmosphere', after all, this is a variant, if you want something true to the original nethack then maybe play Nethack Fourk instead :P",
 	"Someone said on my survey that I'm supposed to 'tighten it up' and there was 'too much stuff going on'. Does he mean you run into annoying monsters, traps etc. too often? Welcome to SLEX, dude :P If you rather want a barren dungeon instead where you meet maybe a single monster once every 100 turns and at most one special room per level (and fall asleep in Gehennom with those endless boooooooring mazes), play vanilla.",
 	"Do you want a shorter game that's easier to win? If the answer is 'yes', I'm sorry but that is not in stock in this variant. If you're new to SLEX and immediately set 'ascension' as your first goal, it's like you were some untrained, scrawny half-pint attempting to run a marathon. You should set some short-term goals in SLEX instead, e.g. 'reach the quest/castle/Gehennom/whatever', and once you can consistently fulfill those, then you might start forging actual ascension plans.",
-	"Demo finds it funny that SLEX takes itself seriously. Well, despite all the mocking messages and ridiculous attempts at 'humor', it's still one of the best-balanced nethack variants out there, at least as long as your definition of balance doesn't say 'if perfect play doesn't guarantee a 100% win rate then the game's unbalanced'.",
+	"Demo finds it funny that SLEX takes itself seriously. Well, despite all the mocking messages and ridiculous attempts at 'humor', it's still one of the best-balanced nethack variants out there, at least as long as your definition of balance doesn't say 'if perfect play doesn't guarantee a 100%% win rate then the game's unbalanced'.",
 	"According to Demo, SLEX is a containment zone for bad ideas that are still tempting to do. Well, the fun thing is, those ideas actually work out well in-game :)",
 	"As long as wands of teleportation don't always work on no-teleport levels, the wand destruction patch will always be baaaaaaaaaaaaaaaaaaaaad.",
 	"Clearly, samurai alignment should be more realistic in Nethack Fourk: if you hit the same enemy several times, you should lose alignment because the samurai way dictates you kill your enemies quickly, which is to say in one swing. Of course the nonexistence of a way to actually GAIN alignment will stay because hey, Nethack Fourk did take some pages from the 'How To Create The Evil Variant In NetHack' textbook after all.",
@@ -13926,7 +13926,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'It's cool to see you get mowed down.'",
 	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'Stop running away from me all the time. I'll get you anyway.'",
 	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'Soon I'll get you, you coward of a 'player'. And that will be your end.'",
-	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'What the fuck???'",
+	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'What the fuck??? '",
 	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'What an old camper...'",
 	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'Maaaaaaaaan... what kind of nonsense are you doing...'",
 	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'did you not realize that nobody plays the way you do?'",
@@ -13977,6 +13977,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'You accursed camper! You shall be shot in the head!'",
 	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'People like you shall be permabanned!'",
 	"Incoming message for Player 1. The message is from 'Robat'. It reads: 'FULL IDIOT TYPE! Woe to you if you camp one more time...'",
+	"Public Service Announcement: DNetHack SLEX updated. I fixed the long-standing bug that caused the recovery tool to trash saves. If my name doesn't appear in the official dnethack commit message at least three times together with words like 'savior' or 'most renowned and sacred' I'll take it as a personal insult. :P",
 
 };
 

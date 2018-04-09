@@ -738,35 +738,73 @@ long nmv;		/* number of moves */
 		else mtmp->mhp++;
 	}
 
+	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE && u.usteed && (mtmp == u.usteed)) {
+		if (mtmp->mhp + 1 >= mtmp->mhpmax)
+		      mtmp->mhp = mtmp->mhpmax;
+		else mtmp->mhp++;
+	}
+
 	/* good riding skill gives extra regeneration to ridden monster --Amy */
 
 	if (!(PlayerCannotUseSkills)) {
 
+	if (P_SKILL(P_RIDING) == P_BASIC && u.usteed && (mtmp == u.usteed) && !rn2(10) ) {
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+			if (mtmp->mhp + 1 >= mtmp->mhpmax)
+			      mtmp->mhp = mtmp->mhpmax;
+			else mtmp->mhp++;
+		}
+	}
 	if (P_SKILL(P_RIDING) == P_SKILLED && u.usteed && (mtmp == u.usteed) && !rn2(10) ) {
 		if (mtmp->mhp + 1 >= mtmp->mhpmax)
 		      mtmp->mhp = mtmp->mhpmax;
 		else mtmp->mhp++;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+			if (mtmp->mhp + 2 >= mtmp->mhpmax)
+			      mtmp->mhp = mtmp->mhpmax;
+			else mtmp->mhp++;
+		}
 	}
 	if (P_SKILL(P_RIDING) == P_EXPERT && u.usteed && (mtmp == u.usteed) && !rn2(5) ) {
 		if (mtmp->mhp + 1 >= mtmp->mhpmax)
 		      mtmp->mhp = mtmp->mhpmax;
 		else mtmp->mhp++;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+			if (mtmp->mhp + 3 >= mtmp->mhpmax)
+			      mtmp->mhp = mtmp->mhpmax;
+			else mtmp->mhp++;
+		}
 	}
 	if (P_SKILL(P_RIDING) == P_MASTER && u.usteed && (mtmp == u.usteed) && !rn2(3) ) {
 		if (mtmp->mhp + 1 >= mtmp->mhpmax)
 		      mtmp->mhp = mtmp->mhpmax;
 		else mtmp->mhp++;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+			if (mtmp->mhp + 4 >= mtmp->mhpmax)
+			      mtmp->mhp = mtmp->mhpmax;
+			else mtmp->mhp++;
+		}
 	}
 	if (P_SKILL(P_RIDING) == P_GRAND_MASTER && u.usteed && (mtmp == u.usteed) ) {
 		if (mtmp->mhp + 1 >= mtmp->mhpmax)
 		      mtmp->mhp = mtmp->mhpmax;
 		else mtmp->mhp++;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+			if (mtmp->mhp + 5 >= mtmp->mhpmax)
+			      mtmp->mhp = mtmp->mhpmax;
+			else mtmp->mhp++;
+		}
 	}
 
 	if (P_SKILL(P_RIDING) == P_SUPREME_MASTER && u.usteed && (mtmp == u.usteed) ) {
 		if (mtmp->mhp + 1 >= mtmp->mhpmax)
 		      mtmp->mhp = mtmp->mhpmax;
 		else mtmp->mhp++;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) {
+			if (mtmp->mhp + 6 >= mtmp->mhpmax)
+			      mtmp->mhp = mtmp->mhpmax;
+			else mtmp->mhp++;
+		}
 	}
 
 	}

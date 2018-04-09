@@ -516,6 +516,11 @@ struct obj *box;
 
 			}
 
+			if (uimplant && uimplant->oartifact == ART_SCROOGE_S_MONEY_MEMORY) {
+				otmp->quan *= 2;
+				if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) otmp->quan *= 2;
+			}
+
 			if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) otmp->quan *= 2;
 			if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) otmp->quan *= 3;
 

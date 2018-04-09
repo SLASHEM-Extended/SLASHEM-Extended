@@ -309,6 +309,12 @@ nh_timeout()
 	    attrcurse();
 	}
 
+	if (!rn2(1000) && (uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
+		You_hear("maniacal laughter!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+	    attrcurse();
+	}
+
 	if (!rn2(1000) && IntrinsicLossProblem && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
@@ -1343,6 +1349,19 @@ nh_timeout()
 
 	}
 
+	if (!rn2(1000) && uimplant && uimplant->oartifact == ART_ETHERATORGARDEN) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+	}
+
 	if (!rn2(1000) && uarmf && uarmf->oartifact == ART_NASTIST) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
@@ -1455,10 +1474,10 @@ nh_timeout()
 
 	/* Max alignment record moved from align.h, so we can make it into a dynamic function --Amy */
 
-	if (!AlignmentProblem && !u.uprops[ALIGNMENT_FAILURE].extrinsic && !have_alignmentstone() && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
+	if (!AlignmentProblem && !u.uprops[ALIGNMENT_FAILURE].extrinsic && !have_alignmentstone() && !(uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
 		u.alignlim++;
 
-	if ( (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || have_alignmentstone() ) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
+	if ( (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || have_alignmentstone() || (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) ) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
 		u.alignlim--;
 		if(u.ualign.record > u.alignlim)
 			u.ualign.record = u.alignlim;

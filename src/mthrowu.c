@@ -300,6 +300,12 @@ const char *name;	/* if null, then format `obj' */
 		You("dodge %s with %s.", onm, yname(uwep));
 		return(0);
 
+	} else if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(3)) {
+
+			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
+			else You("skillfully evade %s.", onm);
+			return(0);
+
 	} else if (tech_inuse(T_FORCE_FIELD) && rn2(4)) {
 
 			if(Blind || !flags.verbose) pline("Your force field causes a projectile to miss you.");
