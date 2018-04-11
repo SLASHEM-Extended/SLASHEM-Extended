@@ -311,7 +311,7 @@ const char *directory;
 	set_levelfile_name(0);
 	(void) unlink(lock);
 
-	for (lev = 1; lev < 256; lev++) {
+	for (lev = 1; lev < 5000; lev++) {
 		if (lev != savelev) {
 			lfd = open_levelfile(lev, directory);
 			if (lfd >= 0) {
