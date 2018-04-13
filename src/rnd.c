@@ -18,6 +18,36 @@ extern int rand(void);
 
 #ifdef OVL0
 
+static int reseed_period = 0;
+static int reseed_count = 0;
+
+/* We need a cryptographically secure RNG. This is mainly for junethack, even though its rules already state that
+ * exploiting flaws in a weak random number generator is forbidden, but apparently most other variants made it secure,
+ * and one example of such a variant is dnethack which seems to have the easiest to implement method available.
+ * Therefore I ported the dnethack code. It really is mainly meant to ensure that you can't exploit mechanics to get
+ * specific RNG results during tournaments --Amy */
+
+void
+check_reseed()
+{
+	reseed_count++;
+	if (reseed_count > reseed_period) {
+		FILE *fptr = NULL;
+		int rnd[2];
+
+#ifdef PUBLIC_SERVER
+		fptr = fopen("/dev/urandom","r");
+		if (fptr) {
+			fread((void *)rnd, sizeof(int),2,fptr);
+			fclose(fptr);
+			srandom((int) (time((time_t *)0)) + rnd[0]);
+			reseed_period = (rnd[1] % 700) + 10;
+		}
+#endif
+		reseed_count = 0;
+	}
+}
+
 /* edit by Amy - since DEBUG isn't defined by default, we're printing impossible messages and returning a default value
  * because we don't want any of that segfaulting crap. Yes, RND(x) segfaults with a non-positive value for x.
  * And tracking down segfaults is NO fun, let me tell you. The game just closes with no message. */
@@ -26,6 +56,7 @@ int
 rn2(x)		/* 0 <= rn2(x) < x */
 register int x;
 {
+	check_reseed();
 #ifdef DEBUG
 	if (x <= 0) {
 		impossible("rn2(%d) attempted", x);
@@ -47,6 +78,7 @@ rn3(x)		/* like rn2, but the result is more likely to be a lower number --Amy */
 register int x;
 {
 	int y;
+	check_reseed();
 	if (x <= 0) {
 		impossible("rn3(%d) attempted - returning zero", x);
 		return(0);
@@ -66,6 +98,7 @@ rnl(x)		/* 0 <= rnl(x) < x; sometimes subtracting Luck */
 register int x;	/* good luck approaches 0, bad luck approaches (x-1) */
 {
 	register int i;
+	check_reseed();
 
 #ifdef DEBUG
 	if (x <= 0) {
@@ -98,6 +131,7 @@ int
 rnd(x)		/* 1 <= rnd(x) <= x */
 register int x;
 {
+	check_reseed();
 #ifdef DEBUG
 	if (x <= 0) {
 		impossible("rnd(%d) attempted", x);
@@ -119,6 +153,7 @@ rno(x)		/* like rnd, but the result is more likely to be a lower number --Amy */
 register int x;
 {
 	int y;
+	check_reseed();
 	if (x <= 0) {
 		impossible("rno(%d) attempted - returning 1", x);
 		return(1);
@@ -137,6 +172,7 @@ d(n,x)		/* n <= d(n,x) <= (n*x) */
 register int n, x;
 {
 	register int tmp = n;
+	check_reseed();
 
 #ifdef DEBUG
 	if (x < 0 || n < 0 || (x == 0 && n != 0)) {
