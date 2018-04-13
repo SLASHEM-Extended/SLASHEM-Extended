@@ -71,6 +71,89 @@ char *nam;
 	boolean fmlkind = is_female(mtmp->data);
 	const char *devnam;
 
+	/* Amy edit: more names, mainly ones of active players and variant developers */
+	if (!rn2(2)) {
+
+		if (fmlkind) { /* awwwwww there's way too few female players :( */
+
+			switch (rnd(9)) {
+
+				case 1: strcpy(nam, "GoldenIvy"); break;
+				case 2: strcpy(nam, "AmyBSOD"); break;
+				case 3: strcpy(nam, "Dolores"); break;
+				case 4: strcpy(nam, "Mariari"); break;
+				case 5: strcpy(nam, "Lynn"); break;
+				case 6: strcpy(nam, "Emily"); break;
+				case 7: strcpy(nam, "Elenmirie"); break;
+				case 8: strcpy(nam, "Raisse"); break;
+				case 9: strcpy(nam, "MiseryMyra"); break;
+				default: strcpy(nam, "BugFemName"); break;
+			}
+
+		} else {
+
+			switch (rnd(51)) {
+
+				case 1: strcpy(nam, "Bhaak"); break;
+				case 2: strcpy(nam, "Jonadab"); break;
+				case 3: strcpy(nam, "Ais523"); break;
+				case 4: strcpy(nam, "Chris_ANG"); break;
+				case 5: strcpy(nam, "Tungtn"); break;
+				case 6: strcpy(nam, "SGrunt"); break;
+				case 7: strcpy(nam, "Lorimer"); break;
+				case 8: strcpy(nam, "Adeon"); break;
+				case 9: strcpy(nam, "FIQ"); break;
+				case 10: strcpy(nam, "Mandevil"); break;
+				case 11: strcpy(nam, "Luxidream"); break;
+				case 12: strcpy(nam, "Noty"); break;
+				case 13: strcpy(nam, "Psymar"); break;
+				case 14: strcpy(nam, "ProzacElf"); break;
+				case 15: strcpy(nam, "Tangles"); break;
+				case 16: strcpy(nam, "Yasdorian"); break;
+				case 17: strcpy(nam, "Bugsniper"); break;
+				case 18: strcpy(nam, "Heliokopis"); break;
+				case 19: strcpy(nam, "ShivanHunter"); break;
+				case 20: strcpy(nam, "Khor"); break;
+				case 21: strcpy(nam, "Kerio"); break;
+				case 22: strcpy(nam, "Stenno"); break;
+				case 23: strcpy(nam, "Deepy"); break;
+				case 24: strcpy(nam, "Damerell"); break;
+				case 25: strcpy(nam, "Elronnd"); break;
+				case 26: strcpy(nam, "Blindcoder"); break;
+				case 27: strcpy(nam, "Ilbelkyr"); break;
+				case 28: strcpy(nam, "GreyKnight"); break;
+				case 29: strcpy(nam, "Paxed"); break;
+				case 30: strcpy(nam, "Crawldragon"); break;
+				case 31: strcpy(nam, "Glycan"); break;
+				case 32: strcpy(nam, "QDesjardin"); break;
+				case 33: strcpy(nam, "Demo"); break;
+				case 34: strcpy(nam, "GagarinX"); break;
+				case 35: strcpy(nam, "Introspective"); break;
+				case 36: strcpy(nam, "Grasshopper"); break;
+				case 37: strcpy(nam, "Tarmunora"); break;
+				case 38: strcpy(nam, "SourSlime"); break;
+				case 39: strcpy(nam, "Mr0t"); break;
+				case 40: strcpy(nam, "Irrenhaus"); break;
+				case 41: strcpy(nam, "Greqrg"); break;
+				case 42: strcpy(nam, "Bouquet"); break;
+				case 43: strcpy(nam, "Lorskel"); break;
+				case 44: strcpy(nam, "Regret"); break;
+				case 45: strcpy(nam, "Tariru"); break;
+				case 46: strcpy(nam, "Goreval"); break;
+				case 47: strcpy(nam, "Winter"); break;
+				case 48: strcpy(nam, "StatueSurfer"); break;
+				case 49: strcpy(nam, "Yer Mivvagah"); break;
+				case 50: strcpy(nam, "Arrhythmia"); break;
+				case 51: strcpy(nam, "Tubs"); break;
+				default: strcpy(nam, "BugMalName"); break;
+
+			}
+
+		}
+
+		goto namedecided;
+	}
+
 	devnam = dev_name();
 	if (!devnam)
 	    strcpy(nam, fmlkind ? "Eve" : "Adam");
@@ -78,6 +161,7 @@ char *nam;
 	    strcpy(nam, rn2(2) ? "Maud" : "Eve");
 	else strcpy(nam, devnam);
 
+namedecided:
 	if (fmlkind || !strcmp(nam, "Janet"))
 	    mtmp->female = 1;
 	else
@@ -123,7 +207,7 @@ xchar x, y;
 register boolean special;
 {
 	register struct monst *mtmp;
-	char nam[PL_NSIZ];
+	char nam[PL_PSIZ];
 
 	if(!is_mplayer(ptr))
 		return((struct monst *)0);

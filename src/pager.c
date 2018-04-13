@@ -13981,6 +13981,21 @@ static NEARDATA const char * const fake_plines[] = {
 	"You are falling down an unbelievably deep shaft! While falling you wonder how unlikely it is to find such a deep shaft.",
 	"How do you do the r'lyeh branch in dnethack (which is far too long and filled with repetitive boring crap) without falling asleep in front of the monitor? Listen to hothraxxa. He knows how it's done: you close your eyes and think of Amy.",
 	"The Iron Spoon of Liberation is ineffective against it.  You strike the trapped it!  You destroy it!", /* by Demo */
+	"So, on Linux, you can get random entropy from /dev/urandom. Windows, you can get an entire CSPRNG from LarienTelrunya, she's really good at programming RNGs.", /* from NCommander (the LarienTelrunya part was a typo :D) */
+	"what does the flak helmet do again? fire anti-aircraft missiles at flying enemies?",
+	"You open a door into the House Xorlarrin drow, releasing her vital organs!",
+	"You open a door into the House Xorlarrin drow, releasing her vital organs! (DNethack is really weird and bizarre, even more so than SLEX.)",
+	"I've watched someone play a dnhslex binder who tried to bind a spirit by engraving with a knife, and the seal was not scuffed despite the stupid cat walking over it (which it always seems to do, I'm certain Chris coded it specifically so active seals are prime spots for your pets to step on)!",
+	"It explodes! You can't see. You are blinded.",
+	"A newfound drive wells up from inside you!",
+	"You have been gifted Stormbringer! As long as there is at least one peaceful creature somewhere in the dungeon, you must kill a peaceful monster once every 2000 turns or your god will become angry.",
+	"You are now surging with power!",
+	"The water nymph stole the cursed rustproof runed broadsword named Stormbringer, then immediately vanished into thin air!",
+	"But 'fore all that, or those, of entwitch these, er, beflore bly, be rujh, blah - urgh...",
+	"The lich lenses.",
+	"The lich lenses. (How is 'lense' even a verb?)",
+	"The sink shrugs and doesn't know what to tell you.",
+	"Beholder used Message Storm! It's super effective!",
 
 };
 
