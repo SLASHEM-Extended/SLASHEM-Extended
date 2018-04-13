@@ -1,6 +1,10 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.2.0
+- Adding hybrid races to the player character no longer reduces stats or HP/Pw growth.
+- Improved dumplog handling when the player has a lot of spells memorized.
+- Fixed a segfault that could happen when a player monster with a long rank title was made on the Astral Plane.
+- The RNG should now be cryptographically secure when playing on a public server.
 - Skills that the player is restricted in cannot be trained by potions of training and similar effects.
 
 2.1.9
