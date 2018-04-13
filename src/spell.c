@@ -42,7 +42,10 @@ static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 #define spellet(spell)	\
 	((char)((spell < 26) ? ('a' + spell) : \
 	        (spell < 52) ? ('A' + spell - 26) : \
-		(spell < 78) ? ('0' + spell - 52) : 0 ))
+		(spell < 78) ? ('0' + spell - 52) : \
+		(spell < 104) ? ('a' + spell - 78) : \
+		(spell < 130) ? ('A' + spell - 104) : \
+		(spell < 156) ? ('0' + spell - 130) : 0 ))
 
 STATIC_DCL int spell_let_to_idx(CHAR_P);
 STATIC_DCL boolean cursed_book(struct obj *bp);
