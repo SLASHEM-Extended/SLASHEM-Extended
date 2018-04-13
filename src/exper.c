@@ -539,7 +539,6 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	num = newhp();
 	num += rnz(2);
-	if (flags.hybridization) num -= rn2(flags.hybridization + 1);
 	if (num < 0) num = 0;
 	if (Race_if(PM_SPRIGGAN) && !rn2(2)) num = 0;
 	num += rn2(3);
@@ -562,7 +561,6 @@ boolean incr;	/* true iff via incremental experience growth */
 	/* In Soviet Russia, you don't get full health on leveling up because seriously, who needs that? --Amy */
 	if (Upolyd) {
 	    num = rnz(8); /* unfortunately will be lost upon unpolymorphing --Amy */
-	    if (flags.hybridization) num -= rn2(flags.hybridization + 1);
 	    if (num < 0) num = 0;
 	    num += rn2(3);
 
@@ -585,7 +583,6 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	num = enermod(num);	/* M. Stephenson */
 	num += (rn2(3) ? rnz(1) : rnz(2));
-	if (flags.hybridization) num -= rn2(flags.hybridization + 1);
 	if (num < 0) num = 0;
 	num += rn2(3);
 
@@ -602,7 +599,6 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	num = newhp();
 	num += rnz(2);
-	if (flags.hybridization) num -= rn2(flags.hybridization + 1);
 	if (num < 0) num = 0;
 	if (num > 1) num /= rnd(12);
 	if (Race_if(PM_SPRIGGAN) && !rn2(2)) num = 0;
@@ -619,7 +615,6 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	if (Upolyd) {
 	    num = rnz(8); /* unfortunately will be lost upon unpolymorphing --Amy */
-	    if (flags.hybridization) num -= rn2(flags.hybridization + 1);
 	    if (num < 0) num = 0;
 	    if (num > 1) num /= rnd(12);
 	    num += rn2(2);
@@ -642,7 +637,6 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	num = enermod(num);	/* M. Stephenson */
 	num += (rn2(3) ? rnz(1) : rnz(2));
-	if (flags.hybridization) num -= rn2(flags.hybridization + 1);
 	if (num < 0) num = 0;
 	if (num > 1) num /= rnd(12);
 	num += rn2(2);

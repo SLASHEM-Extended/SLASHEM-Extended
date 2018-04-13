@@ -14457,8 +14457,6 @@ u_init()
 	if (Race_if(PM_AUREAL) && !flags.female) temp -= 10;
 	if (Race_if(PM_MAZKE) && !flags.female) temp -= 10;
 
-	temp -= (flags.hybridization * 3);
-
 	if (temp > maxbounus) temp = maxbounus; /* prevent value from randomly becoming too high */
 	/*temp = rn1(10,70);*/
 	init_attr(temp);		/* init attribute values */
