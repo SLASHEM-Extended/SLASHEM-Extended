@@ -2180,6 +2180,15 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 
 	/* OK, you get brownie points. */
 	if(u.ugangr) {
+
+		/* In the Evil Variant, gods are much harder to mollify if they're very angry. There's no upper limit,
+		 * meaning that extremely angry gods might require sacrifices whose levels are higher than the
+		 * maximum possible monster level, making them impossible to mollify. Yes, this is intentional --Amy */
+		if (isevilvariant && value > 0) {
+			value -= u.ugangr;
+			if (value < 0) value = 0;
+		}
+
 	    u.ugangr -=
 		((value * (u.ualign.type == A_CHAOTIC ? rnd(2) : rnd(3) )) / MAXVALUE); /* harder --Amy */
 	    if(u.ugangr < 0) u.ugangr = 0;
