@@ -1,6 +1,12 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.2.1
+- Added lightsaber forms as new skills.
+
 2.2.0
+- Early dungeon levels occasionally have additional chests placed randomly.
+- Being engulfed in evilvariant mode can confuse the player.
+- Gods in evilvariant mode are harder to mollify the angrier they are.
 - Adding hybrid races to the player character no longer reduces stats or HP/Pw growth.
 - Improved dumplog handling when the player has a lot of spells memorized.
 - Fixed a segfault that could happen when a player monster with a long rank title was made on the Astral Plane.
