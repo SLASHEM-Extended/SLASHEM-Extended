@@ -1885,6 +1885,10 @@ mattacku(mtmp)
 				     * moving away */
 				    flush_screen(1);
 				    sum[i] = gulpmu(mtmp, mattk);
+				    if (isevilvariant && !rn2(2)) {
+					if(!Confusion) You("are getting confused from spinning around.");
+					make_confused(HConfusion + (mtmp->m_lev + 5), FALSE);
+				    }
 				} else {
 		                                missmu(mtmp, tmp, j, mattk);
 				}
@@ -1921,7 +1925,7 @@ cursesatyou:
 			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && (rnd(5) > 3) ) {  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
-			}  
+			}
 			break;
 		case AT_GAZE:	/* can affect you either ranged or not */
 			/* Medusa gaze already operated through m_respond in
@@ -1942,6 +1946,10 @@ cursesatyou:
 				     * moving away */
 				    flush_screen(1);
 				    sum[i] = gulpmu(mtmp, mattk);
+				    if (isevilvariant && !rn2(2)) {
+					if(!Confusion) You("are getting confused from spinning around.");
+					make_confused(HConfusion + (mtmp->m_lev + 5), FALSE);
+				    }
 				} else {
 		                                missmu(mtmp, tmp, j, mattk);
 				}

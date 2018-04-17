@@ -13996,6 +13996,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"The lich lenses. (How is 'lense' even a verb?)",
 	"The sink shrugs and doesn't know what to tell you.",
 	"Beholder used Message Storm! It's super effective!",
+	"You are getting confused from spinning around.",
 
 };
 
