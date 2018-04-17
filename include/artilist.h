@@ -3968,7 +3968,7 @@ A("Luxidream's Ascension",				HELM_OF_BEGINNER_S_LUCK, /* 10% chance of life sav
 
 A("Good Guys Always Win", 		GREEN_LIGHTSABER,
 	(SPFX_RESTR), 0, 0,
-	PHYS(7,6),	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L), 
+	PHYS(7,6),	NO_DFNS,	NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1000L), 
 
 A("Nex-Xus", 		VIOLET_LIGHTSABER, /* teleportitis */
 	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
