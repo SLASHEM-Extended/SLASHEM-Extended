@@ -1921,6 +1921,13 @@ boolean at_stairs, falling, portal;
 
 		}
 
+		/* some help for beginning characters because not having a container is just sucky --Amy */
+		if (depth(&u.uz) >= 1 && depth(&u.uz) <= 5 && !issoviet && !rn2(5)) {
+			angbandx = rn1(COLNO-3,2);
+			angbandy = rn2(ROWNO);
+			(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE);
+		}
+
 		if (uarmc && uarmc->oartifact == ART_T_O_M_E) {
 
 		      cx = rn2(COLNO);
