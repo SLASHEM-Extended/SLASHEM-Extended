@@ -4305,6 +4305,20 @@ weight_cap()
 	if (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;
 
+	if (!PlayerCannotUseSkills && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+
+		switch (P_SKILL(P_SORESU)) {
+			case P_BASIC: carrcap += 200; break;
+			case P_SKILLED: carrcap += 400; break;
+			case P_EXPERT: carrcap += 600; break;
+			case P_MASTER: carrcap += 800; break;
+			case P_GRAND_MASTER: carrcap += 1000; break;
+			case P_SUPREME_MASTER: carrcap += 1200; break;
+
+		}
+
+	}
+
 	if (Race_if(PM_HAXOR)) carrcap *= 2;
 	if (Race_if(PM_HUMANOID_CENTAUR)) carrcap /= 2;
 	if (Race_if(PM_CHIROPTERAN)) carrcap += 2000;

@@ -4711,6 +4711,34 @@ find_ac()
 	if (u.artifactprotection) uac -= 2;
 	if (have_mothrelay() ) uac -= 2;
 
+	if (!PlayerCannotUseSkills && !uarms && !u.twoweap) {
+
+		switch (P_SKILL(P_MAKASHI)) {
+			case P_BASIC: uac -= 1; break;
+			case P_SKILLED: uac -= 2; break;
+			case P_EXPERT: uac -= 3; break;
+			case P_MASTER: uac -= 4; break;
+			case P_GRAND_MASTER: uac -= 5; break;
+			case P_SUPREME_MASTER: uac -= 6; break;
+
+		}
+
+	}
+
+	if (!PlayerCannotUseSkills && uwep && uarm && is_lightsaber(uwep) && uwep->lamplit && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+
+		switch (P_SKILL(P_SORESU)) {
+			case P_BASIC: uac -= 1; break;
+			case P_SKILLED: uac -= 2; break;
+			case P_EXPERT: uac -= 3; break;
+			case P_MASTER: uac -= 4; break;
+			case P_GRAND_MASTER: uac -= 5; break;
+			case P_SUPREME_MASTER: uac -= 6; break;
+
+		}
+
+	}
+
 	if (PlayerInHighHeels && !(PlayerCannotUseSkills)) { /* extra AC --Amy */
 
 		switch (P_SKILL(P_HIGH_HEELS)) {

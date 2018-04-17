@@ -3262,6 +3262,7 @@ long timeout;
 	boolean canseeit, many, menorah, need_newsym;
 	xchar x, y;
 	char whose[BUFSZ];
+	int lightsaberchance;
 
 	menorah = obj->otyp == CANDELABRUM_OF_INVOCATION;
 	many = menorah ? obj->spe > 1 : obj->quan > 1L;
@@ -3287,7 +3288,18 @@ long timeout;
 		}
 
 	    } else {
-		obj->age -= how_long;
+
+		if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION) && obj && is_lightsaber(obj)) {
+			switch (P_SKILL(P_MAKASHI)) {
+				case P_BASIC: lightsaberchance = 1; break;
+				case P_SKILLED: lightsaberchance = 3; break;
+				case P_EXPERT: lightsaberchance = 4; break;
+				case P_MASTER: lightsaberchance = 5; break;
+				case P_GRAND_MASTER: lightsaberchance = 7; break;
+				case P_SUPREME_MASTER: lightsaberchance = 8; break;
+			}
+			if (rnd(10) > lightsaberchance) obj->age -= how_long;
+		} else obj->age -= how_long;
 		begin_burn(obj, TRUE);
 	    }
 	    return;
@@ -3537,6 +3549,7 @@ long timeout;
 		break;
 
 	    case RED_DOUBLE_LIGHTSABER:
+	    case WHITE_DOUBLE_LIGHTSABER:
 	    	if (obj->altmode && obj->cursed && !rn2(25)) {
 		    obj->altmode = FALSE;
 		    pline("%s %s reverts to single blade mode!",
@@ -3544,11 +3557,9 @@ long timeout;
 	    	}
 	    case GREEN_LIGHTSABER: 
 	    case BLUE_LIGHTSABER:
-#if 0
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
 	    case YELLOW_LIGHTSABER:
-#endif
 	    case RED_LIGHTSABER:
 	    case LASER_SWATTER:
 	        /* Callback is checked every 5 turns - 
@@ -3633,7 +3644,7 @@ lightsaber_deactivate (obj, timer_attached)
 		You("hear a lightsaber deactivate.");
 	    }
 	}
-	if (obj->otyp == RED_DOUBLE_LIGHTSABER) obj->altmode = FALSE;
+	if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) obj->altmode = FALSE;
 	if ((obj == uwep) || (u.twoweap && obj != uswapwep)) unweapon = TRUE;
 	end_burn(obj, timer_attached);
 }
@@ -3681,6 +3692,7 @@ begin_burn(obj, already_lit)
 	int radius = 3;
 	long turns = 0;
 	boolean do_timer = TRUE;
+	int lightsaberchance;
 
 	if (obj->age == 0 && obj->otyp != MAGIC_LAMP &&
 		obj->otyp != MAGIC_CANDLE && !artifact_light(obj))
@@ -3694,16 +3706,27 @@ begin_burn(obj, already_lit)
 		if (obj->otyp == MAGIC_CANDLE) obj->age = 300L;
 		break;
 	    case RED_DOUBLE_LIGHTSABER:
-	    	if (obj->altmode && obj->age > 1) 
-		    obj->age--; /* Double power usage */
+	    case WHITE_DOUBLE_LIGHTSABER:
+		lightsaberchance = 0;
+	    	if (obj->altmode && obj->age > 1) {
+			if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION)) {
+				switch (P_SKILL(P_MAKASHI)) {
+					case P_BASIC: lightsaberchance = 1; break;
+					case P_SKILLED: lightsaberchance = 3; break;
+					case P_EXPERT: lightsaberchance = 4; break;
+					case P_MASTER: lightsaberchance = 5; break;
+					case P_GRAND_MASTER: lightsaberchance = 7; break;
+					case P_SUPREME_MASTER: lightsaberchance = 8; break;
+				}
+			}
+			if (rnd(10) > lightsaberchance) obj->age--; /* Double power usage */
+		}
 	    case RED_LIGHTSABER:
 	    case LASER_SWATTER:
 	    case BLUE_LIGHTSABER:
-#if 0
 	    case VIOLET_LIGHTSABER:
 	    case WHITE_LIGHTSABER:
 	    case YELLOW_LIGHTSABER:
-#endif
 	    case GREEN_LIGHTSABER:
 	    	turns = 1;
     	    	radius = 1;
@@ -3776,7 +3799,18 @@ begin_burn(obj, already_lit)
 	    if (start_timer(turns, TIMER_OBJECT,
 					BURN_OBJECT, (void *)obj)) {
 		obj->lamplit = 1;
-		obj->age -= turns;
+		lightsaberchance = 0;
+		if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION) && obj && is_lightsaber(obj)) {
+			switch (P_SKILL(P_MAKASHI)) {
+				case P_BASIC: lightsaberchance = 1; break;
+				case P_SKILLED: lightsaberchance = 3; break;
+				case P_EXPERT: lightsaberchance = 4; break;
+				case P_MASTER: lightsaberchance = 5; break;
+				case P_GRAND_MASTER: lightsaberchance = 7; break;
+				case P_SUPREME_MASTER: lightsaberchance = 8; break;
+			}
+		}
+		if (rnd(10) > lightsaberchance) obj->age -= turns;
 		if (carried(obj) && !already_lit)
 		    update_inventory();
 	    } else {

@@ -573,6 +573,25 @@ badeffect()
 		return;
 	}
 
+	if (!(PlayerCannotUseSkills)) {
+		int shiichochance = 0;
+		switch (P_SKILL(P_SHII_CHO)) {
+
+			case P_BASIC:	shiichochance =  1; break;
+			case P_SKILLED:	shiichochance =  2; break;
+			case P_EXPERT:	shiichochance =  3; break;
+			case P_MASTER:	shiichochance =  4; break;
+			case P_GRAND_MASTER:	shiichochance =  5; break;
+			case P_SUPREME_MASTER:	shiichochance =  6; break;
+			default: shiichochance += 0; break;
+		}
+
+		if (shiichochance > rn2(100)) {
+			/* avoid bad effect --Amy */
+			return;
+		}
+	}
+
 	switch (rnd(391)) {
 
 		case 1:
@@ -2991,6 +3010,33 @@ peffects(otmp)
 				acquiredskill = 1; }
 			else if (P_ADVANCE(P_IMPLANTS) && !(P_RESTRICTED(P_IMPLANTS)) && yn("Do you want to train the implants skill?")=='y') {
 				P_ADVANCE(P_IMPLANTS) *= 2;
+				acquiredskill = 1; }
+			else if (P_ADVANCE(P_SHII_CHO) && !(P_RESTRICTED(P_SHII_CHO)) && yn("Do you want to train the form I (Shii-Cho) skill?")=='y') {
+				P_ADVANCE(P_SHII_CHO) *= 2;
+				acquiredskill = 1; }
+			else if (P_ADVANCE(P_MAKASHI) && !(P_RESTRICTED(P_MAKASHI)) && yn("Do you want to train the form II (Makashi) skill?")=='y') {
+				P_ADVANCE(P_MAKASHI) *= 2;
+				acquiredskill = 1; }
+			else if (P_ADVANCE(P_SORESU) && !(P_RESTRICTED(P_SORESU)) && yn("Do you want to train the form III (Soresu) skill?")=='y') {
+				P_ADVANCE(P_SORESU) *= 2;
+				acquiredskill = 1; }
+			else if (P_ADVANCE(P_ATARU) && !(P_RESTRICTED(P_ATARU)) && yn("Do you want to train the form IV (Ataru) skill?")=='y') {
+				P_ADVANCE(P_ATARU) *= 2;
+				acquiredskill = 1; }
+			else if (P_ADVANCE(P_SHIEN) && !(P_RESTRICTED(P_SHIEN)) && yn("Do you want to train the form V (Shien) skill?")=='y') {
+				P_ADVANCE(P_SHIEN) *= 2;
+				acquiredskill = 1; }
+			else if (P_ADVANCE(P_DJEM_SO) && !(P_RESTRICTED(P_DJEM_SO)) && yn("Do you want to train the form V (Djem So) skill?")=='y') {
+				P_ADVANCE(P_DJEM_SO) *= 2;
+				acquiredskill = 1; }
+			else if (P_ADVANCE(P_NIMAN) && !(P_RESTRICTED(P_NIMAN)) && yn("Do you want to train the form VI (Niman) skill?")=='y') {
+				P_ADVANCE(P_NIMAN) *= 2;
+				acquiredskill = 1; }
+			else if (P_ADVANCE(P_JUYO) && !(P_RESTRICTED(P_JUYO)) && yn("Do you want to train the form VII (Juyo) skill?")=='y') {
+				P_ADVANCE(P_JUYO) *= 2;
+				acquiredskill = 1; }
+			else if (P_ADVANCE(P_VAAPAD) && !(P_RESTRICTED(P_VAAPAD)) && yn("Do you want to train the form VII (Vaapad) skill?")=='y') {
+				P_ADVANCE(P_VAAPAD) *= 2;
 				acquiredskill = 1; }
 			else if (yn("Do you want to train no skill at all?")=='y') {
 				acquiredskill = 1;

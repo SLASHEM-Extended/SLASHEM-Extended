@@ -2676,6 +2676,10 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ CLOAK_OF_FULL_NUTRITION, "plashch polnogo pitaniya" },
 	{ AMULET_OF_TECHNICALITY, "formal'nost'" },
 	{ HELM_OF_FULL_NUTRITION, "rud polnogo pitaniya" },
+	{ YELLOW_LIGHTSABER, "zheltyy svetovoy mech" },
+	{ WHITE_LIGHTSABER, "belyy svetovoy mech" },
+	{ VIOLET_LIGHTSABER, "fioletovyy svetovoy mech" },
+	{ WHITE_DOUBLE_LIGHTSABER, "belyy dvoynoy svetovoy mech" },
 
 	{0, "" }
 };
@@ -4820,6 +4824,10 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ CLOAK_OF_FULL_NUTRITION, "to'liq ovqatlanish pardasi" },
 	{ AMULET_OF_TECHNICALITY, "texniklik" },
 	{ HELM_OF_FULL_NUTRITION, "to'liq oziqlanish boshlig'i" },
+	{ YELLOW_LIGHTSABER, "sariq chiroqlar" },
+	{ WHITE_LIGHTSABER, "oq rangli chiroqlar" },
+	{ VIOLET_LIGHTSABER, "binafsha rangli chiroqlar" },
+	{ WHITE_DOUBLE_LIGHTSABER, "oq juft nurli" },
 
 	{0, "" }
 };
@@ -6688,7 +6696,7 @@ STATIC_OVL NEARDATA const struct o_range o_ranges[] = {
 			ARMOR_CLASS,  GRAY_DRAGON_SCALE_MAIL, YELLOW_DRAGON_SCALE_MAIL },
 	{ "sword",      WEAPON_CLASS, ORCISH_SHORT_SWORD,    TSURUGI },
 	{ "polearm",    WEAPON_CLASS, PARTISAN, LANCE },
-	{ "lightsaber", WEAPON_CLASS, GREEN_LIGHTSABER, RED_DOUBLE_LIGHTSABER },
+	{ "lightsaber", WEAPON_CLASS, GREEN_LIGHTSABER, WHITE_DOUBLE_LIGHTSABER },
 	{ "firearm", 	WEAPON_CLASS, PISTOL, AUTO_SHOTGUN },
 	{ "gun", 	WEAPON_CLASS, PISTOL, AUTO_SHOTGUN },
 	{ "grenade", 	WEAPON_CLASS, FRAG_GRENADE, GAS_GRENADE },

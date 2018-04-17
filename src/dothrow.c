@@ -1284,7 +1284,7 @@ int thrown;
             else setuqwep(obj);*/
 		return;
 	    }
-	    if (u.dz < 0 && Role_if(PM_JEDI) &&
+	    if (u.dz < 0 && (Role_if(PM_JEDI) || !rn2(2)) &&
 		    is_lightsaber(obj) && obj->lamplit && !impaired &&
 			!(PlayerCannotUseSkills) && rn2(2) &&
 		    P_SKILL(weapon_type(obj)) >= P_SKILLED) {
@@ -1469,7 +1469,7 @@ int thrown;
 		/* the code following might become part of dropy() */
 		if ((obj->oartifact == ART_MJOLLNIR &&
 			Role_if(PM_VALKYRIE) && rn2(100)) ||
-		    (is_lightsaber(obj) && obj->lamplit && rn2(2) && Role_if(PM_JEDI) &&
+		    (is_lightsaber(obj) && obj->lamplit && rn2(2) && (Role_if(PM_JEDI) || !rn2(2)) &&
 			!(PlayerCannotUseSkills) &&
 		     P_SKILL(weapon_type(obj)) >= P_SKILLED)){
 		    /* we must be wearing Gauntlets of Power to get here */
@@ -1766,6 +1766,16 @@ int thrown;
 				case P_GRAND_MASTER: tmp += rn2(10); break;
 				case P_SUPREME_MASTER: tmp += rn2(12); break;
 			}
+		}
+
+		switch (P_SKILL(P_DJEM_SO)) {
+			default: break;
+			case P_BASIC: tmp += 1; break;
+			case P_SKILLED: tmp += 2; break;
+			case P_EXPERT: tmp += 3; break;
+			case P_MASTER: tmp += 4; break;
+			case P_GRAND_MASTER: tmp += 5; break;
+			case P_SUPREME_MASTER: tmp += 6; break;
 		}
 
 		/* polearms and such should get to-hit bonuses from general combat as well, because I want it :D --Amy */

@@ -94,10 +94,19 @@ static int spell_dash(void);
 #define PN_MISSILE_WEAPONS		(-28)
 #define PN_TECHNIQUES		(-29)
 #define PN_IMPLANTS		(-30)
-#define PN_MARTIAL_ARTS		(-31)
-#define PN_RIDING		(-32)
-#define PN_TWO_WEAPONS		(-33)
-#define PN_LIGHTSABER		(-34)
+#define PN_SHII_CHO		(-31)
+#define PN_MAKASHI		(-32)
+#define PN_SORESU		(-33)
+#define PN_ATARU		(-34)
+#define PN_SHIEN		(-35)
+#define PN_DJEM_SO		(-36)
+#define PN_NIMAN		(-37)
+#define PN_JUYO		(-38)
+#define PN_VAAPAD		(-39)
+#define PN_MARTIAL_ARTS		(-40)
+#define PN_RIDING		(-41)
+#define PN_TWO_WEAPONS		(-42)
+#define PN_LIGHTSABER		(-43)
 
 #ifndef OVLB
 
@@ -128,7 +137,11 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,
+	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
+	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
+	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,
+	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -166,6 +179,15 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "missile weapons",
     "techniques",
     "implants",
+    "form I (Shii-Cho)",
+    "form II (Makashi)",
+    "form III (Soresu)",
+    "form IV (Ataru)",
+    "form V (Shien)",
+    "form V (Djem So)",
+    "form VI (Niman)",
+    "form VII (Juyo)",
+    "form VII (Vaapad)",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -2043,6 +2065,14 @@ boolean atme;
 		return(1);
 	}
 
+	if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+		u.unimanturns++;
+		if (u.unimanturns >= 5) {
+			u.unimanturns = 0;
+			use_skill(P_NIMAN, 1);
+		}
+	}
+
 	if (Role_if(PM_MAHOU_SHOUJO)) { /* Casting any sort of magic causes all monsters on a level to 
       become alert of your location, due to mahou shoujo always announcing their attacks. */
 
@@ -2614,6 +2644,24 @@ magicalenergychoice:
 				    unrestrict_weapon_skill(P_TECHNIQUES);	acquiredskill = 1; }
 			else if (P_RESTRICTED(P_IMPLANTS) && yn("Do you want to learn the implants skill?")=='y') {
 				    unrestrict_weapon_skill(P_IMPLANTS);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SHII_CHO) && yn("Do you want to learn the form I (Shii-Cho) skill?")=='y') {
+				    unrestrict_weapon_skill(P_SHII_CHO);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_MAKASHI) && yn("Do you want to learn the form II (Makashi) skill?")=='y') {
+				    unrestrict_weapon_skill(P_MAKASHI);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SORESU) && yn("Do you want to learn the form III (Soresu) skill?")=='y') {
+				    unrestrict_weapon_skill(P_SORESU);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_ATARU) && yn("Do you want to learn the form IV (Ataru) skill?")=='y') {
+				    unrestrict_weapon_skill(P_ATARU);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_SHIEN) && yn("Do you want to learn the form V (Shien) skill?")=='y') {
+				    unrestrict_weapon_skill(P_SHIEN);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_DJEM_SO) && yn("Do you want to learn the form V (Djem So) skill?")=='y') {
+				    unrestrict_weapon_skill(P_DJEM_SO);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_NIMAN) && yn("Do you want to learn the form VI (Niman) skill?")=='y') {
+				    unrestrict_weapon_skill(P_NIMAN);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_JUYO) && yn("Do you want to learn the form VII (Juyo) skill?")=='y') {
+				    unrestrict_weapon_skill(P_JUYO);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_VAAPAD) && yn("Do you want to learn the form VII (Vaapad) skill?")=='y') {
+				    unrestrict_weapon_skill(P_VAAPAD);	acquiredskill = 1; }
 			else if (yn("Do you want to learn no new skill at all?")=='y') {
 				    acquiredskill = 1; }
 			}
@@ -2633,7 +2681,7 @@ magicalenergychoice:
 		    case 17:
 			You_feel("like someone has touched your forehead...");
 
-			int skillimprove = rnd(P_NUM_SKILLS);
+			int skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
@@ -6995,6 +7043,31 @@ int spell;
 		chance += 10;
 	}
 
+	if (!PlayerCannotUseSkills && uwep && is_lightsaber(uwep) && uwep->lamplit) {
+		switch (P_SKILL(P_NIMAN)) {
+			default: break;
+			case P_BASIC: chance += 5; break;
+			case P_SKILLED: chance += 10; break;
+			case P_EXPERT: chance += 15; break;
+			case P_MASTER: chance += 20; break;
+			case P_GRAND_MASTER: chance += 25; break;
+			case P_SUPREME_MASTER: chance += 30; break;
+		}
+
+	}
+
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_NIMAN)) {
+			default: break;
+			case P_BASIC: chance += 1; break;
+			case P_SKILLED: chance += 2; break;
+			case P_EXPERT: chance += 3; break;
+			case P_MASTER: chance += 4; break;
+			case P_GRAND_MASTER: chance += 5; break;
+			case P_SUPREME_MASTER: chance += 6; break;
+		}
+
+	}
 
 	if (Race_if(PM_INKA) && spellid(spell) == SPE_NATURE_BEAM)
 		chance += 100;

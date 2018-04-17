@@ -566,6 +566,11 @@ register struct monst *mtmp;
 		    tmp-=20; // sorry
 		}
 	}
+
+	if (uwep && is_lightsaber(uwep) && uwep->lamplit && u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit && tech_inuse(T_WILD_SLASHING)) {
+		tmp -= 10;
+	}
+
 	/* special class effect uses... */
 	if (tech_inuse(T_KIII)) tmp += 4;
 	if (tech_inuse(T_BERSERK)) tmp += 2;
@@ -586,6 +591,19 @@ register struct monst *mtmp;
 */
 	if (u.twoweap && (P_RESTRICTED(P_TWO_WEAPON_COMBAT) )) tmp -= (issoviet ? 20 : rnd(20) );
 	/* In Soviet Russia, you're absolutely not supposed to be able to use twoweaponing if you can't learn the skill. --Amy */
+
+	if (u.twoweap && !PlayerCannotUseSkills) {
+		switch (P_SKILL(P_ATARU)) {
+
+			case P_BASIC:	tmp +=  1; break;
+			case P_SKILLED:	tmp +=  2; break;
+			case P_EXPERT:	tmp +=  3; break;
+			case P_MASTER:	tmp +=  4; break;
+			case P_GRAND_MASTER:	tmp +=  5; break;
+			case P_SUPREME_MASTER:	tmp +=  6; break;
+			default: tmp += 0; break;
+		}
+	}
 
 	if (uarmh && uarmh->oartifact == ART_DARK_NADIR) tmp += 5;
 	if (uarmh && uarmh->oartifact == ART_RUTH_S_DARK_FORCE) tmp += 5;
@@ -681,6 +699,10 @@ register struct monst *mtmp;
 		attackamount++;
 		if (!PlayerCannotUseSkills && P_SKILL(P_QUARTERSTAFF) >= P_GRAND_MASTER) attackamount++;
 		if (!PlayerCannotUseSkills && P_SKILL(P_QUARTERSTAFF) >= P_SUPREME_MASTER) attackamount++;
+	}
+
+	if (uwep && is_lightsaber(uwep) && uwep->lamplit && u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit && tech_inuse(T_WILD_SLASHING)) {
+		attackamount++;
 	}
 
 	/* This section of code provides protection against accidentally
@@ -866,7 +888,24 @@ struct attack *uattk;
 	    }
 	    if (malive) {
 		/* monster still alive */
-		if(!rn2(25) && mon->mhp < mon->mhpmax/2
+
+		int juyofleechance = 25;
+
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_JUYO)) {
+
+				case P_BASIC:	juyofleechance =  20; break;
+				case P_SKILLED:	juyofleechance =  15; break;
+				case P_EXPERT:	juyofleechance =  10; break;
+				case P_MASTER:	juyofleechance =  5; break;
+				case P_GRAND_MASTER:	juyofleechance =  3; break;
+				case P_SUPREME_MASTER:	juyofleechance =  2; break;
+				default: juyofleechance = 25; break;
+			}
+
+		}
+
+		if(!rn2(juyofleechance) && mon->mhp < mon->mhpmax/2
 			    && !(u.uswallow && mon == u.ustuck)) {
 		    /* maybe should regurgitate if swallowed? */
 		    if(!rn2(3)) {
@@ -1126,6 +1165,7 @@ int dieroll;
 	char yourbuf[BUFSZ];
 	char unconventional[BUFSZ];	/* substituted for word "attack" in msg */
 	char saved_oname[BUFSZ];
+	char cutbuf[BUFSZ];
 
 	boolean stupidrock = 0;
 	if (thrown && obj->otyp == ROCK) stupidrock = 1;
@@ -1566,8 +1606,7 @@ int dieroll;
 			    P_SKILL(wtype) >= P_SKILLED) &&
 			  ((monwep = MON_WEP(mon)) != 0 &&
 			   !is_flimsy(monwep) && !stack_too_big(monwep) &&
-			   !obj_resists(monwep,
-				 50 + 15 * greatest_erosionX(obj), 100))) {
+			   !obj_resists(monwep, 50 + 15 * greatest_erosionX(obj), 100))) {
 			/*
 			 * 2.5% chance of shattering defender's weapon when
 			 * using a two-handed weapon; less if uwep is rusted.
@@ -1577,50 +1616,122 @@ int dieroll;
 			 * WAC.	Bimanual, or samurai and Katana without shield.
 			 *	No twoweapon.
 			 */
-			setmnotwielded(mon,monwep);
-			MON_NOWEP(mon);
-			mon->weapon_check = NEED_WEAPON;
-			pline("%s %s %s from the force of your blow!",
-			      s_suffix(Monnam(mon)), xname(monwep),
-			      otense(monwep, "shatter"));
-			m_useup(mon, monwep);
-			/* If someone just shattered MY weapon, I'd flee! */
-			if (rn2(4)) {
-			    monflee(mon, d(2,3), TRUE, TRUE);
+
+			getlin ("Smash the opponent's weapon? [yes/no]",cutbuf);
+			(void) lcase (cutbuf);
+			if (!(strcmp (cutbuf, "yes"))) {
+
+				setmnotwielded(mon,monwep);
+				MON_NOWEP(mon);
+				mon->weapon_check = NEED_WEAPON;
+				pline("%s %s %s from the force of your blow!",
+				      s_suffix(Monnam(mon)), xname(monwep),
+				      otense(monwep, "shatter"));
+				m_useup(mon, monwep);
+				/* If someone just shattered MY weapon, I'd flee! */
+				if (rn2(4)) {
+				    monflee(mon, d(2,3), TRUE, TRUE);
+				}
+				hittxt = TRUE;
 			}
-			hittxt = TRUE;
+
 		    }
 
-		    else if (obj == uwep &&
-			  ( (Role_if(PM_JEDI) || Race_if(PM_BORG)) && is_lightsaber(obj)) &&
-			  ((wtype = uwep_skill_type()) != P_NONE &&
-				!(PlayerCannotUseSkills) &&
-			    P_SKILL(wtype) >= P_SKILLED) &&
-			  ((monwep = MON_WEP(mon)) != 0 &&
-			   !is_lightsaber(monwep) && // no cutting other lightsabers :)
+		    else if (obj == uwep && is_lightsaber(obj) &&
+			   ((wtype = uwep_skill_type()) != P_NONE) &&
+			   ((monwep = MON_WEP(mon)) != 0 && !is_lightsaber(monwep) && // no cutting other lightsabers :)
 			   !monwep->oartifact && !stack_too_big(monwep) && // no cutting artifacts either
-			   !obj_resists(monwep,
-				 50 + 15 * greatest_erosionX(obj), 100))) {
-			setmnotwielded(mon,monwep);
-			MON_NOWEP(mon);
-			mon->weapon_check = NEED_WEAPON;
-			Your("%s cuts %s %s in half!",
-			      xname(obj),
-			      s_suffix(mon_nam(mon)), xname(monwep));
-			m_useup(mon, monwep);
-			/* If someone just shattered MY weapon, I'd flee! */
-			if (rn2(4)) {
-			    monflee(mon, d(2,3), TRUE, TRUE);
+			   !obj_resists(monwep, 50 + 15 * greatest_erosionX(obj), 100))) {
+
+				int juyochance = 5;
+
+				if (!PlayerCannotUseSkills) {
+					switch (P_SKILL(P_JUYO)) {
+
+						case P_BASIC:	juyochance +=  10; break;
+						case P_SKILLED:	juyochance +=  20; break;
+						case P_EXPERT:	juyochance +=  30; break;
+						case P_MASTER:	juyochance +=  40; break;
+						case P_GRAND_MASTER:	juyochance +=  50; break;
+						case P_SUPREME_MASTER:	juyochance +=  60; break;
+						default: juyochance += 0; break;
+					}
+
+				}
+				if (P_SKILL(weapon_type(uwep)) >= P_SKILLED && !(PlayerCannotUseSkills) ) {
+					juyochance += 30;
+					if (Role_if(PM_JEDI)) {
+						juyochance += ((100 - juyochance) / 2);
+					}
+					if (Race_if(PM_BORG)) {
+						juyochance += ((100 - juyochance) / 5);
+					}
+				}
+
+				if (juyochance > rn2(100)) {
+
+					getlin ("Cut the opponent's weapon in half? [yes/no]",cutbuf);
+					(void) lcase (cutbuf);
+					if (!(strcmp (cutbuf, "yes"))) {
+
+						setmnotwielded(mon,monwep);
+						MON_NOWEP(mon);
+						mon->weapon_check = NEED_WEAPON;
+						Your("%s cuts %s %s in half!", xname(obj), s_suffix(mon_nam(mon)), xname(monwep));
+						m_useup(mon, monwep);
+						/* If someone just shattered MY weapon, I'd flee! */
+						if (rn2(4)) {
+						    monflee(mon, d(2,3), TRUE, TRUE);
+						}
+						hittxt = TRUE;
+						use_skill(P_JUYO, 1);
+
+						if (tech_inuse(T_SURRENDER_OR_DIE)) {
+							if (!mon->mfrenzied && !resist(mon, WEAPON_CLASS, 0, NOTELL) ) {
+								mon->mpeaceful = TRUE;
+								pline("%s surrenders!", Monnam(mon));
+								return FALSE;
+							} else if (obj && obj->spe < 0) {
+								obj->spe = 0;
+								pline("Your lightsaber is no longer negatively enchanted!");
+							} else if (obj && obj->spe < 2) {
+								obj->spe++;
+								pline("Your lightsaber gains a point of enchantment!");
+							} else if (obj && obj->spe < 7 && !rn2(obj->spe)) {
+								obj->spe++;
+								pline("Your lightsaber vibrates and is highly enchanted now!");
+							} else {
+								obj->age += 100;
+								pline("Your lightsaber gains additional energy!");
+							}
+						}
+
+					}
+
+				}
 			}
-			hittxt = TRUE;
-		    }
-		    if (obj->oartifact &&
+
+			if (obj == uwep && is_lightsaber(obj) && obj->lamplit && tech_inuse(T_PERILOUS_WHIRL) && !rn2(10) && !resists_drli(mon) && !resist(mon, WEAPON_CLASS, 0, NOTELL) ) {
+				pline("%s suddenly seems weaker!", Monnam(mon));
+				mon->mhpmax -= rnd(8);
+				if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
+				if (mon->mhp <= 0 || !mon->m_lev) {
+					pline("%s dies!", Monnam(mon));
+					xkilled(mon,0);
+					return FALSE;
+				} else {
+					mon->m_lev--;
+				}
+
+			}
+
+			if (obj->oartifact &&
 			artifact_hit(&youmonst, mon, obj, &tmp, dieroll)) {
-			if(mon->mhp <= 0) /* artifact killed monster */
-			    return FALSE;
-			if (tmp == 0) return TRUE;
-			hittxt = TRUE;
-		    }
+				if(mon->mhp <= 0) /* artifact killed monster */
+					return FALSE;
+				if (tmp == 0) return TRUE;
+				hittxt = TRUE;
+			}
 		    if (objects[obj->otyp].oc_material == SILVER
 				&& hates_silver(mdat)) {
 			silvermsg = TRUE; silverobj = TRUE;
@@ -2292,6 +2403,43 @@ int dieroll;
 					u.ugeneralcombatturns = 0;
 					use_skill(P_GENERAL_COMBAT, 1);
 				}
+
+				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+
+					if (!u.twoweap || !rn2(2)) {
+						u.ushiichoturns++;
+						if (u.ushiichoturns >= 5) {
+							u.ushiichoturns = 0;
+							use_skill(P_SHII_CHO, 1);
+						}
+					}
+
+					if (!uarms && !u.twoweap && uwep && !bimanual(uwep)) {
+						u.umakashiturns++;
+						if (u.umakashiturns >= 10) {
+							u.umakashiturns = 0;
+							use_skill(P_MAKASHI, 1);
+						}
+					}
+
+					if (u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit) {
+						u.uataruturns++;
+						if (u.uataruturns >= 10) {
+							u.uataruturns = 0;
+							use_skill(P_ATARU, 1);
+						}
+					}
+
+					if (uwep && bimanual(uwep) && uwep->altmode) {
+						u.uvaapadturns++;
+						if (u.uvaapadturns >= 10) {
+							u.uvaapadturns = 0;
+							use_skill(P_VAAPAD, 1);
+						}
+					}
+
+				}
+
 				/* For some reason, "wep" isn't always defined, yet the checks above don't crash... --Amy */
 				if (wep && !is_missile(wep) && !is_ammo(wep) && !is_launcher(wep) && !(is_pole(wep) && !u.usteed) && bimanual(wep)) {
 					u.utwohandedcombatturns++;
@@ -2315,6 +2463,9 @@ int dieroll;
 				if (u.umissileweaponturns >= 3) {
 					u.umissileweaponturns = 0;
 					use_skill(P_MISSILE_WEAPONS, 1);
+				}
+				if (wep && is_lightsaber(wep) && wep->lamplit) {
+					use_skill(P_DJEM_SO, 1);
 				}
 
 			}

@@ -81,9 +81,20 @@
 #define P_MISSILE_WEAPONS	(P_LAST_SPELL + 12)
 #define P_TECHNIQUES	(P_LAST_SPELL + 13)
 #define P_IMPLANTS	(P_LAST_SPELL + 14)
-#define P_MARTIAL_ARTS		(P_LAST_SPELL + 15) /* WAC used to be role distinguishes */
-#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 16) /* Finally implemented */
-#define P_RIDING		(P_LAST_SPELL + 17) /* How well you control your steed */
+
+#define P_SHII_CHO	(P_LAST_SPELL + 15)
+#define P_MAKASHI	(P_LAST_SPELL + 16)
+#define P_SORESU	(P_LAST_SPELL + 17)
+#define P_ATARU	(P_LAST_SPELL + 18)
+#define P_SHIEN	(P_LAST_SPELL + 19)
+#define P_DJEM_SO	(P_LAST_SPELL + 20)
+#define P_NIMAN	(P_LAST_SPELL + 21)
+#define P_JUYO	(P_LAST_SPELL + 22)
+#define P_VAAPAD	(P_LAST_SPELL + 23)
+
+#define P_MARTIAL_ARTS		(P_LAST_SPELL + 24) /* WAC used to be role distinguishes */
+#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 25) /* Finally implemented */
+#define P_RIDING		(P_LAST_SPELL + 26) /* How well you control your steed */
 #define P_LAST_H_TO_H		P_RIDING
 #define P_FIRST_H_TO_H		P_BARE_HANDED_COMBAT
 

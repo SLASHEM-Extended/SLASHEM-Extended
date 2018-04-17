@@ -1249,8 +1249,9 @@ register struct attack *mattk;
 			rn2(2) ? "block" : "deflect",
 			(blocker == uarmg || blocker == uarmf) ? "" : "s",
 			s_suffix(mon_nam(mtmp)));
-		if (blocker == uarms) use_skill(P_SHIELD, 1);
-		if (blocker == uimplant) use_skill(P_IMPLANTS, 1);
+		if (uarms && (blocker == uarms)) use_skill(P_SHIELD, 1);
+		if (uimplant && (blocker == uimplant)) use_skill(P_IMPLANTS, 1);
+		if (uarm && (blocker == uarm) && uwep && is_lightsaber(uwep) && uwep->lamplit && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) use_skill(P_SORESU, 1);
 		u.ubodyarmorturns++;
 		if (u.ubodyarmorturns >= 5) {
 			u.ubodyarmorturns = 0;

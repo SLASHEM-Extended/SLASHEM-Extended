@@ -3966,6 +3966,22 @@ A("Luxidream's Ascension",				HELM_OF_BEGINNER_S_LUCK, /* 10% chance of life sav
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Good Guys Always Win", 		GREEN_LIGHTSABER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(7,6),	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L), 
+
+A("Nex-Xus", 		VIOLET_LIGHTSABER, /* teleportitis */
+	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
+	PHYS(5,2),	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L), 
+
+A("Litebane", 		WHITE_LIGHTSABER,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	STUN(3,4),	DFNS(AD_MAGM),	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L),
+
+A("Juupad Style", 		WHITE_DOUBLE_LIGHTSABER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(1,0),	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L), 
+
 /* below are randarts: they're supposed to be a random base item
  * melee weapons will become some other melee weapon, launchers will become
  * some other launcher, body armors will become some other body armor etc. --Amy */

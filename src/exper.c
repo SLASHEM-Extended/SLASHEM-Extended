@@ -37,10 +37,19 @@ STATIC_DCL int enermod(int);
 #define PN_MISSILE_WEAPONS		(-28)
 #define PN_TECHNIQUES		(-29)
 #define PN_IMPLANTS		(-30)
-#define PN_MARTIAL_ARTS		(-31)
-#define PN_RIDING		(-32)
-#define PN_TWO_WEAPONS		(-33)
-#define PN_LIGHTSABER		(-34)
+#define PN_SHII_CHO		(-31)
+#define PN_MAKASHI		(-32)
+#define PN_SORESU		(-33)
+#define PN_ATARU		(-34)
+#define PN_SHIEN		(-35)
+#define PN_DJEM_SO		(-36)
+#define PN_NIMAN		(-37)
+#define PN_JUYO		(-38)
+#define PN_VAAPAD		(-39)
+#define PN_MARTIAL_ARTS		(-40)
+#define PN_RIDING		(-41)
+#define PN_TWO_WEAPONS		(-42)
+#define PN_LIGHTSABER		(-43)
 
 #ifndef OVLB
 
@@ -71,7 +80,11 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_MARTIAL_ARTS, 
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,
+	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
+	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
+	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,
+	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
 };
@@ -109,6 +122,15 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "missile weapons",
     "techniques",
     "implants",
+    "form I (Shii-Cho)",
+    "form II (Makashi)",
+    "form III (Soresu)",
+    "form IV (Ataru)",
+    "form V (Shien)",
+    "form V (Djem So)",
+    "form VI (Niman)",
+    "form VII (Juyo)",
+    "form VII (Vaapad)",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -2072,7 +2094,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		u.urmaxlvlC = u.ulevel;
 
-			int skillimprove = rnd(P_NUM_SKILLS);
+			int skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
@@ -2100,7 +2122,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		if (u.urmaxlvlC >= 10) {
 
-			int skillimprove = rnd(P_NUM_SKILLS);
+			int skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
@@ -2130,7 +2152,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		if (u.urmaxlvlC >= 20) {
 
-			int skillimprove = rnd(P_NUM_SKILLS);
+			int skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
@@ -2160,7 +2182,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		if (u.urmaxlvlC >= 30) {
 
-			int skillimprove = rnd(P_NUM_SKILLS);
+			int skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
@@ -2186,7 +2208,7 @@ boolean incr;	/* true iff via incremental experience growth */
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
-			skillimprove = rnd(P_NUM_SKILLS);
+			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
@@ -2212,7 +2234,7 @@ boolean incr;	/* true iff via incremental experience growth */
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
-			skillimprove = rnd(P_NUM_SKILLS);
+			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
@@ -2238,7 +2260,7 @@ boolean incr;	/* true iff via incremental experience growth */
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
-			skillimprove = rnd(P_NUM_SKILLS);
+			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
@@ -2264,7 +2286,7 @@ boolean incr;	/* true iff via incremental experience growth */
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
-			skillimprove = rnd(P_NUM_SKILLS);
+			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
@@ -2290,7 +2312,7 @@ boolean incr;	/* true iff via incremental experience growth */
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
-			skillimprove = rnd(P_NUM_SKILLS);
+			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);
@@ -2316,7 +2338,7 @@ boolean incr;	/* true iff via incremental experience growth */
 				pline("Your knowledge of the %s skill increases.", P_NAME(skillimprove));
 			} else pline("Unfortunately, you feel no different than before.");
 
-			skillimprove = rnd(P_NUM_SKILLS);
+			skillimprove = randomgoodskill();
 
 			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
 				unrestrict_weapon_skill(skillimprove);

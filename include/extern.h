@@ -2317,6 +2317,7 @@ E int randartspellbookX(void);
 E void deacrandomintrinsic(int);
 E int goodimplanteffect(struct obj *);
 E void randomnastytrapeffect(int, int);
+E int randomgoodskill(void);
 
 /* ### role.c ### */
 

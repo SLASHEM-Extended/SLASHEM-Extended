@@ -153,6 +153,16 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"jiu-jitsu",
 	"blade anger",
 	"re-taming",
+	"uncurse saber",
+	"energy conservation",
+	"enchant robe",
+	"wild slashing",
+	"absorber shield",
+	"psycho force",
+	"intensive training",
+	"surrender or die",
+	"perilous whirl",
+	"summon shoe",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -2269,6 +2279,46 @@ dotech()
 
 		case T_CHARGE_SABER:
 			pline("This technique will use up all of your current mana and convert it into lightsaber energy. If the techlevel is at least 10, you can also win the jackpot. However, monsters may interrupt you, preventing your lightsaber from actually being charged.");
+			break;
+
+		case T_UNCURSE_SABER:
+			pline("Use this technique while wielding a cursed lightsaber and it will be uncursed! If it's heavily cursed or worse, it gets the usual chance of resisting, of course.");
+			break;
+
+		case T_ENERGY_CONSERVATION:
+			pline("It lasts for a very long time, and reduces the rate at which your lightsaber will use up power. The higher your Makashi skill, the better the reduction.");
+			break;
+
+		case T_ENCHANT_ROBE:
+			pline("This technique requires you to wear a robe, which will receive a random enchantment. If your robe already has an enchantment, it will lose the one it has and get a new random one. And if your Soresu skill is at Grand Master or better, the technique can also occasionally increase the enchantment of your robe up to a maximum of +7; this will never vaporize the robe because SLEX adheres to the 'enhancing your skills should never have detrimental side effects' principle.");
+			break;
+
+		case T_WILD_SLASHING:
+			pline("While this technique is active, your dual-wielded lightsabers will attack more quickly but have reduced to-hit.");
+			break;
+
+		case T_ABSORBER_SHIELD:
+			pline("A technique that will last for a while, and as long as it's active, blocking a projectile with your lightsaber will add some saber power.");
+			break;
+
+		case T_PSYCHO_FORCE:
+			pline("Allows you to select a monster that you can see, which will take damage and be paralyzed for a while.");
+			break;
+
+		case T_INTENSIVE_TRAINING:
+			pline("Every time you use this technique, a random stat will be increased by 1.");
+			break;
+
+		case T_SURRENDER_OR_DIE:
+			pline("This technique lasts for a few hundred turns and allows your lightsaber attacks to occasionally pacify the opponent, or sometimes your lightsaber will gain enchantment, or the lightsaber gains additional power. But it only triggers if you manage to smash apart an enemy's held weapon.");
+			break;
+
+		case T_PERILOUS_WHIRL:
+			pline("If you use a lit double lightsaber while having this technique active, your attacks may occasionally drain the enemy's levels.");
+			break;
+
+		case T_SUMMON_SHOE:
+			pline("Well, guess :D It summons a tame shoe that will kick monsters!");
 			break;
 
 		default:
@@ -5145,6 +5195,207 @@ revid_end:
 		t_timeout = rnz(3000);
 		break;
 
+	    case T_UNCURSE_SABER:
+		if (!uwep) {
+			pline("That doesn't work without a weapon!");
+			break;
+		}
+		if (uwep && !(is_lightsaber(uwep))) {
+			pline("Trying to cheat, huh? Nope. This technique can only uncurse lightsabers.");
+			break;
+		}
+		if (uwep && !(uwep->cursed)) {
+			uwep->bknown = TRUE;
+			pline("Your lightsaber wasn't cursed to begin with, and therefore nothing happens.");
+			t_timeout = rnz(500);
+			break;
+		}
+		t_timeout = rnz(500);
+		if (uwep) {
+			pline("Your lightsaber is surrounded by a holy aura.");
+			uncurse(uwep);
+		}
+		break;
+
+	    case T_ENERGY_CONSERVATION:
+		if (!uwep || (uwep && !is_lightsaber(uwep))) {
+			pline("You're not holding a lightsaber!");
+			break;
+		}
+		num = 1000 + (techlevX(tech_no) * 10);
+	    	techt_inuse(tech_no) = num + 1;
+		pline("The energy consumption rate of your lightsaber slows down!");
+		t_timeout = rnz(6000);
+		break;
+
+	    case T_ENCHANT_ROBE:
+		{
+			register struct obj *wearrobe;
+			long savewornmask;
+
+			if (!uarm) {
+				pline("Without armor, that technique won't do anything.");
+				break;
+			}
+			if (uarm && !(uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+				pline("Nope, that won't work. Wear a robe!");
+				break;
+			}
+			wearrobe = uarm;
+			if (!wearrobe) {
+				pline("Somehow the robe is missing...");
+				break;
+			}
+			savewornmask = wearrobe->owornmask;
+			setworn((struct obj *)0, wearrobe->owornmask);
+			t_timeout = rnz(5000);
+
+			wearrobe->enchantment = randenchantment();
+			pline("Your robe's special enchantment was randomized.");
+			if (!PlayerCannotUseSkills && P_SKILL(P_SORESU) >= P_GRAND_MASTER) {
+				if (wearrobe && wearrobe->spe < 0) {
+					wearrobe->spe = 0;
+					pline("Your robe is no longer negatively enchanted.");
+				} else if (wearrobe && wearrobe->spe < 2) {
+					wearrobe->spe++;
+					pline("Your robe gained a positive enchantment value.");
+				} else if (wearrobe && wearrobe->spe < 7 && !rn2(wearrobe->spe) ) {
+					wearrobe->spe++;
+					pline("Your robe has a high positive enchantment value now.");
+				} else pline("Your robe's enchantment value unfortunately didn't increase.");
+
+			}
+			setworn(wearrobe, savewornmask);
+		}
+		break;
+
+	    case T_WILD_SLASHING:
+		if (!(uwep && is_lightsaber(uwep) && uwep->lamplit && u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit)) {
+			pline("You must be dual-wielding lit lightsabers for that!");
+			break;
+		}
+		num = 20 + (techlevX(tech_no) * 3);
+	    	techt_inuse(tech_no) = num + 1;
+		t_timeout = rnz(2000);
+		pline("Your lightsabers start attacking rapidly at the cost of accuracy.");
+		break;
+
+	    case T_ABSORBER_SHIELD:
+		if (!uwep || (uwep && !is_lightsaber(uwep))) {
+			pline("You're not holding a lightsaber!");
+			break;
+		}
+		num = 100 + (techlevX(tech_no) * 5);
+	    	techt_inuse(tech_no) = num + 1;
+		t_timeout = rnz(2500);
+		pline("Your lightsaber becomes capable of absorbing enemy projectiles to gain energy.");
+		break;
+
+	    case T_PSYCHO_FORCE:
+		{
+			int forcedamage;
+			coord cc;
+			struct monst *psychmonst;
+			pline("Select a monster to use psycho force");
+			cc.x = u.ux;
+			cc.y = u.uy;
+			getpos(&cc, TRUE, "the spot to attack");
+			if (cc.x == -10) return (0); /* user pressed esc */
+			psychmonst = m_at(cc.x, cc.y);
+
+			if (!psychmonst || (!canseemon(psychmonst) && !canspotmon(psychmonst))) {
+				You("don't see a monster there!");
+				return (0);
+			}
+
+			if (psychmonst) {
+
+				forcedamage = u.ulevel + techlevX(tech_no);
+				if (!PlayerCannotUseSkills) {
+
+					switch (P_SKILL(P_DJEM_SO)) {
+						case P_MASTER: forcedamage *= 3; forcedamage /= 2; break;
+						case P_GRAND_MASTER: forcedamage *= 2; break;
+						case P_SUPREME_MASTER: forcedamage *= 5; forcedamage /= 2; break;
+					}
+
+				}
+				psychmonst->mcanmove = 0;
+				psychmonst->mstrategy &= ~STRAT_WAITFORU;
+
+				if (forcedamage < 31) psychmonst->mfrozen = 3;
+				else psychmonst->mfrozen = (forcedamage / 10);
+
+				pline("%s sputters at the forced hold!", Monnam(psychmonst));
+				psychmonst->mhp -= forcedamage;
+				if (psychmonst->mhp < 1) {
+					pline("%s dies!", Monnam(psychmonst));
+					xkilled(psychmonst,0);
+				}
+
+			}
+
+		}
+		t_timeout = rnz(2000);
+		break;
+
+	    case T_INTENSIVE_TRAINING:
+
+		pline("You train your attributes...");
+		adjattrib(rn2(A_MAX), 1, -1);
+		t_timeout = rnz(7500);
+		break;
+
+	    case T_SURRENDER_OR_DIE:
+		if (!uwep || (uwep && !is_lightsaber(uwep))) {
+			pline("You're not holding a lightsaber!");
+			break;
+		}
+		num = 200 + (techlevX(tech_no) * 20);
+	    	techt_inuse(tech_no) = num + 1;
+		t_timeout = rnz(5000);
+		pline("Your lightsaber gains the ability to pacify monsters when breaking their weapon!");
+		break;
+
+	    case T_PERILOUS_WHIRL:
+		if (!uwep || (uwep && !is_lightsaber(uwep)) || (uwep && !bimanual(uwep)) ) {
+			pline("You're not holding a double lightsaber!");
+			break;
+		}
+		num = 100 + (techlevX(tech_no) * 6);
+	    	techt_inuse(tech_no) = num + 1;
+		t_timeout = rnz(2500);
+		pline("Your lightsaber can drain the life of opponents for a while!");
+		break;
+
+	    case T_SUMMON_SHOE:
+		t_timeout = rnz(10000);
+
+		{
+			struct permonst *shoe = 0;
+			int attempts = 0;
+			struct monst *shoemonst;
+
+			do {
+				shoe = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!shoe || (shoe && !(shoe->msound == MS_SHOE))) && attempts < 50000);
+
+			if (shoe && (shoe->msound == MS_SHOE) ) {
+				pline("A shoe appears from nowhere!");
+				shoemonst = makemon(shoe, u.ux, u.uy, NO_MM_FLAGS);
+				if (shoemonst) (void) tamedog(shoemonst, (struct obj *) 0, TRUE);
+			} else if (shoe) {
+				pline("Hmm... you expected a shoe, but some other monster appeared instead!");
+				shoemonst = makemon(shoe, u.ux, u.uy, NO_MM_FLAGS);
+				if (shoemonst) (void) tamedog(shoemonst, (struct obj *) 0, TRUE);
+			} else pline("Somehow, it failed... :(");
+		}
+
+		break;
+
 	    case T_EDDY_WIND:
 		num = 1 + techlevX(tech_no);
 	    	techt_inuse(tech_no) = num + 1;
@@ -5474,6 +5725,21 @@ tech_timeout()
 			break;
 		    case T_GLOWHORN:
 			pline("The glowing unicorn horn disappears.");
+			break;
+		    case T_ENERGY_CONSERVATION:
+			pline("Your lightsaber consumes energy at the normal rate again.");
+			break;
+		    case T_WILD_SLASHING:
+			pline("You stop your wild slashing.");
+			break;
+		    case T_ABSORBER_SHIELD:
+			pline("The absorber shield dissipates.");
+			break;
+		    case T_SURRENDER_OR_DIE:
+			pline("Cutting an opponent's weapon no longer has special effects.");
+			break;
+		    case T_PERILOUS_WHIRL:
+			pline("Your double lightsaber no longer drains life.");
 			break;
 		    case T_STAT_RESIST:
 			pline("You no longer resist status effects.");

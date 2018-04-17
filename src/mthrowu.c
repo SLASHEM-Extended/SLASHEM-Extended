@@ -213,6 +213,17 @@ const char *name;	/* if null, then format `obj' */
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
 
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_SHIEN)) {
+				case P_BASIC: shieldblockrate += 1; break;
+				case P_SKILLED: shieldblockrate += 2; break;
+				case P_EXPERT: shieldblockrate += 3; break;
+				case P_MASTER: shieldblockrate += 4; break;
+				case P_GRAND_MASTER: shieldblockrate += 5; break;
+				case P_SUPREME_MASTER: shieldblockrate += 6; break;
+			}
+		}
+
 		if (Conflict && shieldblockrate > 0) {
 			shieldblockrate *= 2;
 			shieldblockrate /= 3;
@@ -285,20 +296,44 @@ const char *name;	/* if null, then format `obj' */
 
 			return(0);
 
-	} else if (Role_if(PM_JEDI) && uwep && is_lightsaber(uwep) &&
-		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
-		!(PlayerCannotUseSkills) &&
-		rn2(5)){ /* dodge four of five missiles, even when blind
-			 see "A new hope" for blindness reference */
-		You("dodge %s with %s.", onm, yname(uwep));
-		return(0);
-	} else if (Race_if(PM_BORG) && uwep && is_lightsaber(uwep) &&
-		uwep->lamplit && P_SKILL(weapon_type(uwep)) >= P_SKILLED &&
-		!(PlayerCannotUseSkills) &&
-		rn2(2)){ /* dodge half of all missiles, even when blind
-			 see "A new hope" for blindness reference */
-		You("dodge %s with %s.", onm, yname(uwep));
-		return(0);
+	} else if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+
+		int saberblockrate = 5;
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_SHIEN)) {
+
+				case P_BASIC:	saberblockrate +=  10; break;
+				case P_SKILLED:	saberblockrate +=  20; break;
+				case P_EXPERT:	saberblockrate +=  30; break;
+				case P_MASTER:	saberblockrate +=  40; break;
+				case P_GRAND_MASTER:	saberblockrate +=  50; break;
+				case P_SUPREME_MASTER:	saberblockrate +=  60; break;
+				default: saberblockrate += 0; break;
+			}
+
+		}
+		if (P_SKILL(weapon_type(uwep)) >= P_SKILLED && !(PlayerCannotUseSkills) ) {
+			saberblockrate += 30;
+			if (Role_if(PM_JEDI)) {
+				saberblockrate += ((100 - saberblockrate) / 2);
+			}
+			if (Race_if(PM_BORG)) {
+				saberblockrate += ((100 - saberblockrate) / 5);
+			}
+		}
+
+		if (saberblockrate > rn2(100)) {
+			/* dodge missiles, even when blind; see "A new hope" for blindness reference */
+			You("dodge %s with %s.", onm, yname(uwep));
+			use_skill(P_SHIEN, 1);
+
+			if (tech_inuse(T_ABSORBER_SHIELD) && uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				pline("Energy surges into the lightsaber as the projectile is blocked.");
+				uwep->age += 25;
+			}
+
+			return(0);
+		}
 
 	} else if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(3)) {
 

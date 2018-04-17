@@ -2016,14 +2016,13 @@ int artif;
 					blessorcurse_on_creation(otmp, 2);
 					break;
 		case RED_DOUBLE_LIGHTSABER:
+		case WHITE_DOUBLE_LIGHTSABER:
 					otmp->altmode = FALSE;
 		case GREEN_LIGHTSABER:
 		case BLUE_LIGHTSABER:
-#if 0
 		case VIOLET_LIGHTSABER:
 		case WHITE_LIGHTSABER:
 		case YELLOW_LIGHTSABER:
-#endif
 		case RED_LIGHTSABER:
 		case LASER_SWATTER:
 			otmp->recharged = 0;

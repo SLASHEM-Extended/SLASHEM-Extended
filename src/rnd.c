@@ -2635,6 +2635,20 @@ int duration, blackngvar;
 
 }
 
+int
+randomgoodskill()
+{
+	int result;
+
+skillreroll:
+	result = rnd(P_NUM_SKILLS);
+
+	if (result >= P_SHII_CHO && result <= P_VAAPAD && rn2(10)) goto skillreroll;
+
+	return result;
+}
+
+
 #endif /* OVLB */
 
 /*rnd.c*/

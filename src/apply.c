@@ -1366,7 +1366,7 @@ struct obj *obj;
 				obj->otyp == BRASS_LANTERN) {
 		    pline("%s lamp is now off.", Shk_Your(buf, obj));
 		} else if(is_lightsaber(obj)) {
-		    if (obj->otyp == RED_DOUBLE_LIGHTSABER) {
+		    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
 			/* Do we want to activate dual bladed mode? */
 			if (!obj->altmode && (!obj->cursed || rn2(4))) {
 			    You("ignite the second blade of %s.", yname(obj));
@@ -4610,14 +4610,13 @@ doapply()
 		break;
 	case GREEN_LIGHTSABER:
   	case BLUE_LIGHTSABER:
-#if 0
 	case VIOLET_LIGHTSABER:
 	case WHITE_LIGHTSABER:
 	case YELLOW_LIGHTSABER:
-#endif
 	case RED_LIGHTSABER:
 	case LASER_SWATTER:
 	case RED_DOUBLE_LIGHTSABER:
+	case WHITE_DOUBLE_LIGHTSABER:
 		if (!(uswapwep == obj && u.twoweap))
 		  if (uwep != obj && !wield_tool(obj, (const char *)0)) break;
 		/* Fall through - activate via use_lamp */

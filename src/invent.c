@@ -9844,7 +9844,15 @@ struct obj *obj;
 			case RED_LIGHTSABER: 
 				pline("This lightsaber does random damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case RED_DOUBLE_LIGHTSABER: 
-				pline("A two-handed lightsaber that can be set to double mode in order to do even more damage. It needs to be turned on in order to work, and while activated it is also useful for engraving."); break;
+				pline("A two-handed lightsaber that can be set to double mode in order to do even more damage. It needs to be turned on in order to work, and while activated it is also useful for engraving. It's especially effective against large monsters."); break;
+			case YELLOW_LIGHTSABER: 
+				pline("This lightsaber does randomized damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
+			case VIOLET_LIGHTSABER: 
+				pline("This lightsaber does steady damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
+			case WHITE_LIGHTSABER: 
+				pline("This lightsaber does RNG-determined damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
+			case WHITE_DOUBLE_LIGHTSABER: 
+				pline("A two-handed lightsaber that can be set to double mode in order to do even more damage. It needs to be turned on in order to work, and while activated it is also useful for engraving. It's especially effective against small monsters."); break;
 			case LASER_SWATTER: 
 				pline("A laser-based fly swatter that uses the paddle skill. If you turn it on, it will do great damage to small monsters."); break;
 			case EXPENSIVE_CAMERA: 
@@ -15238,6 +15246,14 @@ struct obj *obj;
 					pline("Artifact specs: magic resistance when worn."); break;
 				case ART_LUXIDREAM_S_ASCENSION:
 					pline("Artifact specs: 10%% chance of life saving and 10%% increased speed when worn."); break;
+				case ART_GOOD_GUYS_ALWAYS_WIN:
+					pline("Artifact specs: +7 to-hit and +6 damage, lawful."); break;
+				case ART_NEX_XUS:
+					pline("Artifact specs: +5 to-hit and +2 damage, teleportitis and teleport control when wielded."); break;
+				case ART_LITEBANE:
+					pline("Artifact specs: +3 to-hit and +4 stun damage, magic resistance when wielded."); break;
+				case ART_JUUPAD_STYLE:
+					pline("Artifact specs: +1 to-hit and double damage. For some reason, Chris refuses to add a Vaapad style to dnethack, which would be an alternate form 7; he says it's the same as Juyo, yet he has both Shien and Djem So as form 5... *headscratch*"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

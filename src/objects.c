@@ -3035,7 +3035,7 @@ TOOL("magic lamp", "lamp",      0, 0, 1, 0,  100, 0,100, COPPER, CLR_YELLOW, 25)
 
 /* Instruments */
 /* KMH -- made less common */
-TOOL("tin whistle", "whistle",  0, 0, 0, 0, 460,  0,  10, METAL, HI_METAL, 1),
+TOOL("tin whistle", "whistle",  0, 0, 0, 0, 420,  0,  10, METAL, HI_METAL, 1),
 TOOL("grass whistle", "whistle",  0, 0, 0, 0, 60,  0,  10, WOOD, HI_METAL, 1),
 TOOL("magic whistle", "whistle",0, 0, 1, 0, 240,  0,  10, METAL, HI_METAL, 10),
 TOOL("dark magic whistle", "whistle",0, 0, 1, 0, 10,  0,  10, METAL, HI_METAL, 20),
@@ -3111,14 +3111,14 @@ WEPTOOL("red double lightsaber",  "double lightsaber",
 WEPTOOL("laser swatter",  (char *)0,
 	0, 0, 1, 0,  20, 24, 500, 40,  10, 5, WHACK, P_PADDLE, PLATINUM, CLR_BRIGHT_MAGENTA, 1),
 
-#if 0 // just an idea...
 WEPTOOL("yellow lightsaber",  "lightsaber",
-	0, 0, 1, 0,  0, 60, 500, 5,  7, 0, SLASH, P_LIGHTSABER, PLATINUM, HI_METAL),
+	0, 0, 1, 0,  10, 24, 500, 6,  6, 0, SLASH, P_LIGHTSABER, PLATINUM, HI_METAL, 5),
 WEPTOOL("violet lightsaber",  "lightsaber",
-	0, 0, 1, 0,  0, 60, 500, 5,  7, 0, SLASH, P_LIGHTSABER, PLATINUM, HI_METAL),
+	0, 0, 1, 0,  10, 24, 500, 12,  12, 0, SLASH, P_LIGHTSABER, PLATINUM, HI_METAL, 20),
 WEPTOOL("white lightsaber",  "lightsaber",
-	0, 0, 1, 0,  0, 60, 500, 5,  7, 0, SLASH, P_LIGHTSABER, PLATINUM, HI_METAL),
-#endif
+	0, 0, 1, 0,  10, 24, 500, 3,  3, 0, SLASH, P_LIGHTSABER, PLATINUM, HI_METAL, 10),
+WEPTOOL("white double lightsaber",  "double lightsaber",
+	0, 0, 1, 1,  10, 24,1000, 20, 15, 0, SLASH, P_LIGHTSABER, PLATINUM, HI_METAL, 30),
 
 /* Other tools */
 TOOL("expensive camera", (char *)0,
