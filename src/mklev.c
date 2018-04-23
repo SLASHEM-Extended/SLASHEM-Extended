@@ -2829,12 +2829,16 @@ ghnhom2:
 
 	    case 52:
 
-		switch (rnd(4)) {
+		switch (rnd(8)) {
 
 			case 1: makemaz("forge"); return;
 			case 2: makemaz("hitchE"); return;
 			case 3: makemaz("compuE"); return;
 			case 4: makemaz("keyE"); return;
+			case 5: makemaz("robtn"); return;
+			case 6: makemaz("rabhoE"); return;
+			case 7: makemaz("machnE"); return;
+			case 8: makemaz("orcbaE"); return;
 
 		}
 		break;
@@ -4522,12 +4526,16 @@ ghnhom2:
 
 	    case 52:
 
-		switch (rnd(4)) {
+		switch (rnd(8)) {
 
 			case 1: makemaz("forgeX"); return;
 			case 2: makemaz("hitchX"); return;
 			case 3: makemaz("compuX"); return;
 			case 4: makemaz("keyX"); return;
+			case 5: makemaz("robtnX"); return;
+			case 6: makemaz("rabhoX"); return;
+			case 7: makemaz("machnX"); return;
+			case 8: makemaz("orcbaX"); return;
 
 		}
 		break;
@@ -6636,12 +6644,16 @@ ghnhom4:
 
 	    case 52:
 
-		switch (rnd(4)) {
+		switch (rnd(8)) {
 
 			case 1: makemaz("forge"); return;
 			case 2: makemaz("hitchE"); return;
 			case 3: makemaz("compuE"); return;
 			case 4: makemaz("keyE"); return;
+			case 5: makemaz("robtn"); return;
+			case 6: makemaz("rabhoE"); return;
+			case 7: makemaz("machnE"); return;
+			case 8: makemaz("orcbaE"); return;
 
 		}
 		break;
@@ -8324,12 +8336,16 @@ ghnhom4:
 
 	    case 52:
 
-		switch (rnd(4)) {
+		switch (rnd(8)) {
 
 			case 1: makemaz("forgeX"); return;
 			case 2: makemaz("hitchX"); return;
 			case 3: makemaz("compuX"); return;
 			case 4: makemaz("keyX"); return;
+			case 5: makemaz("robtnX"); return;
+			case 6: makemaz("rabhoX"); return;
+			case 7: makemaz("machnX"); return;
+			case 8: makemaz("orcbaX"); return;
 
 		}
 		break;

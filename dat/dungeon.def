@@ -358,15 +358,18 @@ LEVEL:          "mtemple" "T" @ (1, 0) 25
 
 DUNGEON:        "Illusory Castle" "C" (30, 0)
 ALIGNMENT:      neutral
+LEVEL:	    "machn" "D" @ (15, 14) 50
 
 DUNGEON:        "Deep Mines" "C" (25, 0)
 ALIGNMENT:      chaotic
+LEVEL:	    "orcba" "D" @ (10, 6) 80
 
 DUNGEON:        "Space Base" "C" (12, 0)
 ALIGNMENT:      lawful
 BRANCH:         "Sewer Plant" @ (10, 0)
 BRANCH:         "Gamma Caves" @ (11, 0)
 BRANCH:         "Mainframe" @ (12, 0) up -1
+LEVEL:	    "robtn" "D" @ (8, 0) 95
 
 DUNGEON:        "Sewer Plant" "C" (5, 0)
 ALIGNMENT:      neutral
@@ -375,6 +378,7 @@ DUNGEON:        "Gamma Caves" "C" (6, 0)
 ALIGNMENT:      chaotic
 
 DUNGEON:        "Mainframe" "C" (5, 0)
+LEVEL:	    "rabho" "D" @ (5, 0) 95
 ALIGNMENT:      lawful
 
 DUNGEON:        "Void" "C" (30, 0)

@@ -195,3 +195,1030 @@ OBJECT[10%]:'/',"trap creation",random
 OBJECT[10%]:'/',"bad effect",random
 OBJECT[10%]:'/',"clone monster",random
 
+MAZE: "robtn",' '
+INIT_MAP:'.',' ',true,true,lit,false
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+ ........                 . . .                        
+ ........          .....  + + +  ...... .....          
+ ........          ..... ....... ...... .....          
+   +               ..... ....... ...... +              
+   .                 +      +       +   .+...          
+   .               ....................+. ...          
+   .    ......     .................... .              
+   ....+......     ........       ..... . .....        
+   .    ......     ........ ..... ..... . .....    ....
+   .    ......+...+........ ..... ..... .   +      ....
+   .    ......     ........ ..... .....................
+   .               ........   +   .....    +       ....
+   .               .................... .....      ....
+   +               ....................+.....      ....
+........                     ...        .....          
+........           ......... ... ......                
+........           .........+...+......                
+ENDMAP
+
+STAIR:(06,01),up
+STAIR:(05,15),up
+
+REGION:(00,00,54,16),lit,"ordinary"
+
+FOUNTAIN:(42,07)
+FOUNTAIN:(44,07)
+FOUNTAIN:(46,07)
+
+REGION:(19,01,23,03),lit,"scroll shop"
+REGION:(33,01,38,03),lit,"shop"
+REGION:(33,15,38,16),lit,"tool shop"
+REGION:(19,15,23,16),lit,"clinic"
+
+DOOR: closed, (03,03)
+DOOR: closed, (03,13)
+DOOR: closed, (07,07)
+DOOR: closed, (14,09)
+DOOR: closed, (18,09)
+DOOR: closed, (21,04)
+DOOR: closed, (28,04)
+DOOR: closed, (36,04)
+DOOR: locked, (26,01)
+DOOR: locked, (28,01)
+DOOR: locked, (30,01)
+DOOR: closed, (40,03)
+DOOR: closed, (41,04)
+DOOR: closed, (39,05)
+DOOR: closed, (44,09)
+DOOR: closed, (43,11)
+DOOR: closed, (39,13)
+DOOR: closed, (30,11)
+DOOR: locked, (28,16)
+DOOR: closed, (32,16)
+
+MAZE: "rabho", ' '
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--------------------------------------------------------------------------|
+|....|.....................................................................|
+|-+--|.....................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|.....................................................................|--+-|
+|.....................................................................|....|
+|--------------------------------------------------------------------------|
+ENDMAP
+RANDOM_PLACES: (01,01), (74,18)
+
+DOOR:locked,(02,02)
+STAIR:place[0],up
+DOOR:locked,(73,17)
+STAIR:place[1],down
+
+MONSTER:'q',"lunatic rabbit",random
+MONSTER:'q',"lunatic rabbit",random
+MONSTER:'q',"lunatic rabbit",random
+MONSTER:'r',"rabbit",random
+MONSTER:'r',"rabbit",random
+MONSTER:'r',"rabbit",random
+MONSTER:'r',"snow rabbit",random
+MONSTER:'r',"rabid rabbit",random
+MONSTER:'r',"rabid rabbit",random
+MONSTER:'r',"moon rabbit",random
+MONSTER:'r',"eastern rabbit",random
+MONSTER:'r',"killer rabbit",random
+MONSTER:'r',"killer rabbit",random
+MONSTER:'r',"killer rabbit",random
+
+MAZE: "machn", ' '
+FLAGS:noteleport,hardfloor,nommap
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+ ........u....... ........................... hssssssssssssss...X .. .....L..L 
+ .   ...   .....   .....   FF  FF    . . . ss hsshssh          .. X. .    LLLL 
+ .   ..  }  ...  }  ...  }}}}}}OOOO  ..... hhhhLshssh .. uu. . ....  F    LLLL 
+ .....  }}}  .  }.}  .. }}}}O}OOOOOO . . . hssssshssh  F..  .. X .. X. .. F  F 
+ .     .}}}}F.F}}}}} ..  }}}}O}OOOO  ..... hLhhhhhsLh. .X. ... .  . ..  .......
+ .....  }}.  .  }}}  ...   FF  FF    . . . hLh.   LLL    .  .  .. . . .  . ....
+  . ...  }  ...  .     .............       LLL  .  L  ....u . .X... u... ......
+ . . ...   .....   h..           ..  X...X  L  ..uF  .... ...X.  u .X  . . ....
+ ........ ........................  .X...X.   u. ........  ...u. .F. .   ......
+ .......          .h.h..  F  ....  ..X...X..  X.. . ......  .X. .F . ..  . ....
+ ......  . hhh.h.h..h..  MeM  ..  ...X...X...   X.     ...u   .  . ..... ......
+ .      .. hhhhhhhhhhh  M..eM    vv   ...   vv  ..  F       .u.. F . X   . ....
+ O.O.F....  hrhhh.hrh.FM.e.e.M  vvv   ...   vvv  .. u u.uu...  F. .. .         
+ .O.OF.....  s  .  s .  M..eM  vv     ...     vv  .X.  . F F  uX.  uu.. .......
+ ..O.F...... s F.F s .   M.M  vvvX....LLL....Xvvv . ..  F .X. . .u  ...    ... 
+ MMMM ...... s F.F s ...      vvvX....L.L....Xvvv .F X. .  .. F ..  ... LsXF.FX
+ ....F...... s F.F s ........ vvvX....LLL....Xvvv .uu . ...u  . . X ... LsXF.FX
+ ....F.....  s     s  .......  vv     ...     vv    .F. X .  ..F..  ...    ... 
+          u LLL   LLL ........  vvv   ...   vvv  .... .  ...... . . ... .......
+ .... ... u LLL   LLL     FF     vv   ...   vv      u .. X  X  X F. ...       u
+ .. ... ...  F     F     .....L...... ... ...  ..u...F.   ...u..u.  ...u.XuXuXu
+ENDMAP
+
+STAIR:(49,18),up
+STAIR:(39,15),down
+OBJECT:'[',"speed boots",(39,15),uncursed,0,"Boots of the Machine"
+
+# Non diggable walls - everywhere!
+NON_DIGGABLE:(00,00,78,20)
+
+TRAP:random, (01,20)
+TRAP:random, (02,20)
+TRAP:random, (04,20)
+TRAP:random, (06,20)
+TRAP:random, (08,20)
+TRAP:random, (10,20)
+TRAP:random, (11,07)
+TRAP:random, (12,07)
+TRAP:random, (13,07)
+TRAP:random, (14,07)
+TRAP:random, (15,07)
+TRAP:random, (11,08)
+TRAP:random, (12,08)
+TRAP:random, (14,08)
+TRAP:random, (15,08)
+TRAP:random, (25,06)
+TRAP:random, (26,06)
+TRAP:random, (29,06)
+TRAP:random, (30,06)
+
+MAZE: "orcba", ' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+                                                             
+                                                             
+  .O.                         .          .              .O.  
+  .O. .......... . .......... . ........ . ............ .O.  
+  .O.................................    . ............ .O.  
+  .O. .......... . .......... . ........ . ............ .O.  
+  .O.      .............      . .....    . ............ .O.  
+  .O. ....   ... . ...   .... .......... . ............ .O.  
+  .O........   . . .   ........ .....    . ............ .O.  
+  .O. ........   .   ........ . ........ . ............ .O.  
+  .O. ....................... .......    . ............ .O.  
+  .O. ....................... . .....    . ............ .O.  
+  .O. ........ ..... ........ .......... . ............ .O.  
+  .O.........  .....   ........ .....    .............. .O.  
+  .O. .....   ........   .... . ........ .  ........... .O.  
+  .O. ..... ............ .... . .....  .... ........... .O.  
+  .O.        .        .       .                         .O.  
+  .O.....................................................O.  
+  .O.                         .                         .O.  
+                                                             
+                                                             
+ENDMAP
+
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+.............................................................
+.                             .                             .
+. .O.                         .          .              .O. .
+. .O. .......... . .......... . ........ . ............ .O. .
+. .O.................................    . ............ .O. .
+. .O. .......... . .......... . ........ . ............ .O. .
+. .O.      .............      . .....    . ............ .O. .
+. .O. ....   ... . ...   .... .......... . ............ .O. .
+. .O........   . . .   ........ .....    . ............ .O. .
+. .O. ........   .   ........ . ........ . ............ .O. .
+. .O. ....................... .......    . ............ .O. .
+. .O. ....................... . .....    . ............ .O. .
+. .O. ........ ..... ........ .......... . ............ .O. .
+. .O.........  .....   ........ .....    .............. .O. .
+. .O. .....   ........   .... . ........ .  ........... .O. .
+. .O. ..... ............ .... . .....  .... ........... .O. .
+. .O.        .        .       .                         .O. .
+. .O.....................................................O. .
+. .O.                         .                         .O. .
+.                             .                             .
+.............................................................
+ENDMAP
+
+STAIR:(60,20),up
+STAIR:(17,03),down
+OBJECT:'*',"luckstone",(17,03),uncursed,0,"The Arkenstone of Thrain"
+
+NON_DIGGABLE:(00,00,60,20)
+
+MAZE: "rabhoE", ' '
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--------------------------------------------------------------------------|
+|....|.....................................................................|
+|-+--|.....................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|.....................................................................|--+-|
+|.....................................................................|....|
+|--------------------------------------------------------------------------|
+ENDMAP
+RANDOM_PLACES: (01,01), (74,18)
+
+DOOR:locked,(02,02)
+STAIR:place[0],up
+DOOR:locked,(73,17)
+STAIR:place[1],down
+
+MONSTER:'q',"lunatic rabbit",random
+MONSTER:'q',"lunatic rabbit",random
+MONSTER:'q',"lunatic rabbit",random
+MONSTER:'r',"rabbit",random
+MONSTER:'r',"rabbit",random
+MONSTER:'r',"rabbit",random
+MONSTER:'r',"snow rabbit",random
+MONSTER:'r',"rabid rabbit",random
+MONSTER:'r',"rabid rabbit",random
+MONSTER:'r',"moon rabbit",random
+MONSTER:'r',"eastern rabbit",random
+MONSTER:'r',random,random
+MONSTER:'r',random,random
+MONSTER:'r',random,random
+
+MAZE: "machnE", ' '
+FLAGS:noteleport,hardfloor,nommap
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+ ........u....... ........................... hssssssssssssss...X .. .....L..L 
+ .   ...   .....   .....   FF  FF    . . . ss hsshssh          .. X. .    LLLL 
+ .   ..  }  ...  }  ...  }}}}}}OOOO  ..... hhhhLshssh .. uu. . ....  F    LLLL 
+ .....  }}}  .  }.}  .. }}}}O}OOOOOO . . . hssssshssh  F..  .. X .. X. .. F  F 
+ .     .}}}}F.F}}}}} ..  }}}}O}OOOO  ..... hLhhhhhsLh. .X. ... .  . ..  .......
+ .....  }}.  .  }}}  ...   FF  FF    . . . hLh.   LLL    .  .  .. . . .  . ....
+  . ...  }  ...  .     .............       LLL  .  L  ....u . .X... u... ......
+ . . ...   .....   h..           ..  X...X  L  ..uF  .... ...X.  u .X  . . ....
+ ........ ........................  .X...X.   u. ........  ...u. .F. .   ......
+ .......          .h.h..  F  ....  ..X...X..  X.. . ......  .X. .F . ..  . ....
+ ......  . hhh.h.h..h..  MeM  ..  ...X...X...   X.     ...u   .  . ..... ......
+ .      .. hhhhhhhhhhh  M..eM    vv   ...   vv  ..  F       .u.. F . X   . ....
+ O.O.F....  hrhhh.hrh.FM.e.e.M  vvv   ...   vvv  .. u u.uu...  F. .. .         
+ .O.OF.....  s  .  s .  M..eM  vv     ...     vv  .X.  . F F  uX.  uu.. .......
+ ..O.F...... s F.F s .   M.M  vvvX....LLL....Xvvv . ..  F .X. . .u  ...    ... 
+ MMMM ...... s F.F s ...      vvvX....L.L....Xvvv .F X. .  .. F ..  ... LsXF.FX
+ ....F...... s F.F s ........ vvvX....LLL....Xvvv .uu . ...u  . . X ... LsXF.FX
+ ....F.....  s     s  .......  vv     ...     vv    .F. X .  ..F..  ...    ... 
+          u LLL   LLL ........  vvv   ...   vvv  .... .  ...... . . ... .......
+ .... ... u LLL   LLL     FF     vv   ...   vv      u .. X  X  X F. ...       u
+ .. ... ...  F     F     .....L...... ... ...  ..u...F.   ...u..u.  ...u.XuXuXu
+ENDMAP
+
+STAIR:(49,18),up
+STAIR:(39,15),down
+OBJECT:'[',random,(39,15)
+
+# Non diggable walls - everywhere!
+NON_DIGGABLE:(00,00,78,20)
+
+TRAP:random, (01,20)
+TRAP:random, (02,20)
+TRAP:random, (04,20)
+TRAP:random, (06,20)
+TRAP:random, (08,20)
+TRAP:random, (10,20)
+TRAP:random, (11,07)
+TRAP:random, (12,07)
+TRAP:random, (13,07)
+TRAP:random, (14,07)
+TRAP:random, (15,07)
+TRAP:random, (11,08)
+TRAP:random, (12,08)
+TRAP:random, (14,08)
+TRAP:random, (15,08)
+TRAP:random, (25,06)
+TRAP:random, (26,06)
+TRAP:random, (29,06)
+TRAP:random, (30,06)
+
+MAZE: "orcbaE", ' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+                                                             
+                                                             
+  .O.                         .          .              .O.  
+  .O. .......... . .......... . ........ . ............ .O.  
+  .O.................................    . ............ .O.  
+  .O. .......... . .......... . ........ . ............ .O.  
+  .O.      .............      . .....    . ............ .O.  
+  .O. ....   ... . ...   .... .......... . ............ .O.  
+  .O........   . . .   ........ .....    . ............ .O.  
+  .O. ........   .   ........ . ........ . ............ .O.  
+  .O. ....................... .......    . ............ .O.  
+  .O. ....................... . .....    . ............ .O.  
+  .O. ........ ..... ........ .......... . ............ .O.  
+  .O.........  .....   ........ .....    .............. .O.  
+  .O. .....   ........   .... . ........ .  ........... .O.  
+  .O. ..... ............ .... . .....  .... ........... .O.  
+  .O.        .        .       .                         .O.  
+  .O.....................................................O.  
+  .O.                         .                         .O.  
+                                                             
+                                                             
+ENDMAP
+
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+.............................................................
+.                             .                             .
+. .O.                         .          .              .O. .
+. .O. .......... . .......... . ........ . ............ .O. .
+. .O.................................    . ............ .O. .
+. .O. .......... . .......... . ........ . ............ .O. .
+. .O.      .............      . .....    . ............ .O. .
+. .O. ....   ... . ...   .... .......... . ............ .O. .
+. .O........   . . .   ........ .....    . ............ .O. .
+. .O. ........   .   ........ . ........ . ............ .O. .
+. .O. ....................... .......    . ............ .O. .
+. .O. ....................... . .....    . ............ .O. .
+. .O. ........ ..... ........ .......... . ............ .O. .
+. .O.........  .....   ........ .....    .............. .O. .
+. .O. .....   ........   .... . ........ .  ........... .O. .
+. .O. ..... ............ .... . .....  .... ........... .O. .
+. .O.        .        .       .                         .O. .
+. .O.....................................................O. .
+. .O.                         .                         .O. .
+.                             .                             .
+.............................................................
+ENDMAP
+
+STAIR:(60,20),up
+STAIR:(17,03),down
+OBJECT:'*',random,(17,03)
+
+NON_DIGGABLE:(00,00,60,20)
+
+MAZE: "robtnH",' '
+INIT_MAP:'.',' ',true,true,lit,false
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+ ........                 . . .                        
+ ........          .....  + + +  ...... .....          
+ ........          ..... ....... ...... .....          
+   +               ..... ....... ...... +              
+   .                 +      +       +   .+...          
+   .               ....................+. ...          
+   .    ......     .................... .              
+   ....+......     ........       ..... . .....        
+   .    ......     ........ ..... ..... . .....    ....
+   .    ......+...+........ ..... ..... .   +      ....
+   .    ......     ........ ..... .....................
+   .               ........   +   .....    +       ....
+   .               .................... .....      ....
+   +               ....................+.....      ....
+........                     ...        .....          
+........           ......... ... ......                
+........           .........+...+......                
+ENDMAP
+
+STAIR:(06,01),up
+STAIR:(05,15),up
+
+REGION:(00,00,54,16),lit,"ordinary"
+
+FOUNTAIN:(42,07)
+FOUNTAIN:(44,07)
+FOUNTAIN:(46,07)
+
+REGION:(19,01,23,03),lit,"scroll shop"
+REGION:(33,01,38,03),lit,"shop"
+REGION:(33,15,38,16),lit,"tool shop"
+REGION:(19,15,23,16),lit,"clinic"
+
+DOOR: closed, (03,03)
+DOOR: closed, (03,13)
+DOOR: closed, (07,07)
+DOOR: closed, (14,09)
+DOOR: closed, (18,09)
+DOOR: closed, (21,04)
+DOOR: closed, (28,04)
+DOOR: closed, (36,04)
+DOOR: locked, (26,01)
+DOOR: locked, (28,01)
+DOOR: locked, (30,01)
+DOOR: closed, (40,03)
+DOOR: closed, (41,04)
+DOOR: closed, (39,05)
+DOOR: closed, (44,09)
+DOOR: closed, (43,11)
+DOOR: closed, (39,13)
+DOOR: closed, (30,11)
+DOOR: locked, (28,16)
+DOOR: closed, (32,16)
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "rabhoH", ' '
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7
+# 23456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+|--------------------------------------------------------------------------|
+|....|.....................................................................|
+|-+--|.....................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|..........................................................................|
+|.....................................................................|--+-|
+|.....................................................................|....|
+|--------------------------------------------------------------------------|
+ENDMAP
+RANDOM_PLACES: (01,01), (74,18)
+
+DOOR:locked,(02,02)
+STAIR:place[0],up
+DOOR:locked,(73,17)
+STAIR:place[1],down
+
+MONSTER:'q',"lunatic rabbit",random
+MONSTER:'q',"lunatic rabbit",random
+MONSTER:'q',"lunatic rabbit",random
+MONSTER:'r',"rabbit",random
+MONSTER:'r',"rabbit",random
+MONSTER:'r',"rabbit",random
+MONSTER:'r',"snow rabbit",random
+MONSTER:'r',"rabid rabbit",random
+MONSTER:'r',"rabid rabbit",random
+MONSTER:'r',"moon rabbit",random
+MONSTER:'r',"eastern rabbit",random
+MONSTER:'r',"killer rabbit",random
+MONSTER:'r',"killer rabbit",random
+MONSTER:'r',"killer rabbit",random
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "machnH", ' '
+FLAGS:noteleport,hardfloor,nommap
+GEOMETRY: center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+ ........u....... ........................... hssssssssssssss...X .. .....L..L 
+ .   ...   .....   .....   FF  FF    . . . ss hsshssh          .. X. .    LLLL 
+ .   ..  }  ...  }  ...  }}}}}}OOOO  ..... hhhhLshssh .. uu. . ....  F    LLLL 
+ .....  }}}  .  }.}  .. }}}}O}OOOOOO . . . hssssshssh  F..  .. X .. X. .. F  F 
+ .     .}}}}F.F}}}}} ..  }}}}O}OOOO  ..... hLhhhhhsLh. .X. ... .  . ..  .......
+ .....  }}.  .  }}}  ...   FF  FF    . . . hLh.   LLL    .  .  .. . . .  . ....
+  . ...  }  ...  .     .............       LLL  .  L  ....u . .X... u... ......
+ . . ...   .....   h..           ..  X...X  L  ..uF  .... ...X.  u .X  . . ....
+ ........ ........................  .X...X.   u. ........  ...u. .F. .   ......
+ .......          .h.h..  F  ....  ..X...X..  X.. . ......  .X. .F . ..  . ....
+ ......  . hhh.h.h..h..  MeM  ..  ...X...X...   X.     ...u   .  . ..... ......
+ .      .. hhhhhhhhhhh  M..eM    vv   ...   vv  ..  F       .u.. F . X   . ....
+ O.O.F....  hrhhh.hrh.FM.e.e.M  vvv   ...   vvv  .. u u.uu...  F. .. .         
+ .O.OF.....  s  .  s .  M..eM  vv     ...     vv  .X.  . F F  uX.  uu.. .......
+ ..O.F...... s F.F s .   M.M  vvvX....LLL....Xvvv . ..  F .X. . .u  ...    ... 
+ MMMM ...... s F.F s ...      vvvX....L.L....Xvvv .F X. .  .. F ..  ... LsXF.FX
+ ....F...... s F.F s ........ vvvX....LLL....Xvvv .uu . ...u  . . X ... LsXF.FX
+ ....F.....  s     s  .......  vv     ...     vv    .F. X .  ..F..  ...    ... 
+          u LLL   LLL ........  vvv   ...   vvv  .... .  ...... . . ... .......
+ .... ... u LLL   LLL     FF     vv   ...   vv      u .. X  X  X F. ...       u
+ .. ... ...  F     F     .....L...... ... ...  ..u...F.   ...u..u.  ...u.XuXuXu
+ENDMAP
+
+STAIR:(49,18),up
+STAIR:(39,15),down
+OBJECT:'[',random,(39,15)
+
+# Non diggable walls - everywhere!
+NON_DIGGABLE:(00,00,78,20)
+
+TRAP:random, (01,20)
+TRAP:random, (02,20)
+TRAP:random, (04,20)
+TRAP:random, (06,20)
+TRAP:random, (08,20)
+TRAP:random, (10,20)
+TRAP:random, (11,07)
+TRAP:random, (12,07)
+TRAP:random, (13,07)
+TRAP:random, (14,07)
+TRAP:random, (15,07)
+TRAP:random, (11,08)
+TRAP:random, (12,08)
+TRAP:random, (14,08)
+TRAP:random, (15,08)
+TRAP:random, (25,06)
+TRAP:random, (26,06)
+TRAP:random, (29,06)
+TRAP:random, (30,06)
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
+MAZE: "orcbaH", ' '
+FLAGS:noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+                                                             
+                                                             
+  .O.                         .          .              .O.  
+  .O. .......... . .......... . ........ . ............ .O.  
+  .O.................................    . ............ .O.  
+  .O. .......... . .......... . ........ . ............ .O.  
+  .O.      .............      . .....    . ............ .O.  
+  .O. ....   ... . ...   .... .......... . ............ .O.  
+  .O........   . . .   ........ .....    . ............ .O.  
+  .O. ........   .   ........ . ........ . ............ .O.  
+  .O. ....................... .......    . ............ .O.  
+  .O. ....................... . .....    . ............ .O.  
+  .O. ........ ..... ........ .......... . ............ .O.  
+  .O.........  .....   ........ .....    .............. .O.  
+  .O. .....   ........   .... . ........ .  ........... .O.  
+  .O. ..... ............ .... . .....  .... ........... .O.  
+  .O.        .        .       .                         .O.  
+  .O.....................................................O.  
+  .O.                         .                         .O.  
+                                                             
+                                                             
+ENDMAP
+
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:'o',random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+MONSTER:random,random,random
+
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#123456789012345678901234567890123456789012345678901234567890123456789012345678
+MAP
+.............................................................
+.                             .                             .
+. .O.                         .          .              .O. .
+. .O. .......... . .......... . ........ . ............ .O. .
+. .O.................................    . ............ .O. .
+. .O. .......... . .......... . ........ . ............ .O. .
+. .O.      .............      . .....    . ............ .O. .
+. .O. ....   ... . ...   .... .......... . ............ .O. .
+. .O........   . . .   ........ .....    . ............ .O. .
+. .O. ........   .   ........ . ........ . ............ .O. .
+. .O. ....................... .......    . ............ .O. .
+. .O. ....................... . .....    . ............ .O. .
+. .O. ........ ..... ........ .......... . ............ .O. .
+. .O.........  .....   ........ .....    .............. .O. .
+. .O. .....   ........   .... . ........ .  ........... .O. .
+. .O. ..... ............ .... . .....  .... ........... .O. .
+. .O.        .        .       .                         .O. .
+. .O.....................................................O. .
+. .O.                         .                         .O. .
+.                             .                             .
+.............................................................
+ENDMAP
+
+STAIR:(60,20),up
+STAIR:(17,03),down
+OBJECT:'*',random,(17,03)
+
+NON_DIGGABLE:(00,00,60,20)
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random
+
