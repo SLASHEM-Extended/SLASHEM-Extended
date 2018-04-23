@@ -1,6 +1,8 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.2.1
+- Ragnarok can instakill the player and/or pets in evilvariant mode.
+- Fixed the buffer overrun that could happen if the player accesses the pokedex on a very large terminal. The entries might look weird now due to the new way of formatting, though.
 - Added lightsaber forms as new skills.
 
 2.2.0
