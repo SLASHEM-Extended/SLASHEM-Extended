@@ -1183,6 +1183,7 @@ append_newline_to_pline_string(char * buf)
 		/* there is limited amount of lines available for message and wide text field. Adding enters would make text hard to read */
 		return;
 	#endif
+	if (addditional_required > 80) addditional_required = 80;
 	while(addditional_required--) {
 		strcat(buf, " ");
 	}
