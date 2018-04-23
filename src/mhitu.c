@@ -3877,6 +3877,7 @@ elena37:
 
 	if (uimplant && uimplant->oartifact == ART_POTATOROK && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
 		ragnarok();
+		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(mtmp->m_lev);
 	}
 
 	/* and now, the unholy satanic motherfucker from hell, aka the most evil monster in existence... --Amy
@@ -3900,6 +3901,7 @@ elena37:
 
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
 			ragnarok();
+			if (isevilvariant && mtmp->m_lev > 1) evilragnarok(mtmp->m_lev);
 		}
 
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {

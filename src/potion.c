@@ -1732,6 +1732,32 @@ ragnarok()
 }
 
 void
+evilragnarok(wflevel)
+int wflevel;
+{
+	register struct monst *mtmp, *mtmp2;
+
+	for (mtmp = fmon; mtmp; mtmp = mtmp2) {
+		mtmp2 = mtmp->nmon;
+		if ((mtmp->m_lev < wflevel) && mtmp->mtame) {
+			if (u.usteed && mtmp == u.usteed) dismount_steed(DISMOUNT_GENERIC);
+			mondead(mtmp);
+			pline("One of your pets has died.");
+		}
+	}
+	if (wflevel > u.ulevel) {
+		u.youaredead = 1;
+		pline("The world ends and you are dead. Goodbye.");
+		killer_format = NO_KILLER_PREFIX;
+		killer = "world fall";
+		done(DIED);
+		u.youaredead = 0;
+
+	}
+
+}
+
+void
 datadeleteattack()
 
 {

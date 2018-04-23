@@ -14043,6 +14043,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel especially favored.",
 	"Hagen is rooting for you.",
 	"The reconciliation message is used in place of the regular one when your favor goes from negative to positive.",
+	"One of your pets has died.",
+	"The world ends and you are dead. Goodbye.",
 
 };
 
