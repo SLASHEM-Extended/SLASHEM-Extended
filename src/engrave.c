@@ -959,6 +959,7 @@ static const char *random_mesg[] = {
 	"You have just won a goat", /* by elenmirie */
 	"Welcome to the party!",
 	"Quantify this egghead!",
+	"Everything in Demo's shop will cause a segfault when picked up.",
 
 };
 
@@ -973,9 +974,12 @@ random_engraving(outbuf)
 char *outbuf;
 {
 	const char *rumor;
+	register int itemnumber;
+	char buf[BUFSZ];
 
 	/* a random engraving may come from the "rumors" file,
 	   or from the list above */
+
 	if (!rn2(5)) strcpy(outbuf, fauxmessage()); /* sometimes have faux messages --Amy */
 	else if (!rn2(3) || !(rumor = getrumor(0, outbuf, TRUE)) || !*rumor) /* increased random rumor chance --Amy */
 	    strcpy(outbuf, random_mesg[rn2(SIZE(random_mesg))]);
