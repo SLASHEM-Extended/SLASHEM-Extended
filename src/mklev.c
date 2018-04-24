@@ -2153,6 +2153,25 @@ ghnhom1:
 			case 7: makemaz("minefilg"); break;
 		    }
 		    return;
+	    } else if (In_deepmines(&u.uz) && rn2(!(u.monstertimefinish % 247) ? (iswarper ? 2 : 20) : (iswarper ? 5 : 50) )) {
+		    switch (rnd(15)) {
+			case 1: makemaz("deepfila"); break;
+			case 2: makemaz("deepfilb"); break;
+			case 3: makemaz("deepfilc"); break;
+			case 4: makemaz("deepfild"); break;
+			case 5: makemaz("deepfile"); break;
+			case 6: makemaz("deepfilf"); break;
+			case 7: makemaz("deepfilg"); break;
+			case 8: makemaz("deepfilh"); break;
+			case 9: makemaz("deepfili"); break;
+			case 10: makemaz("deepfilj"); break;
+			case 11: makemaz("deepfilk"); break;
+			case 12: makemaz("deepfill"); break;
+			case 13: makemaz("deepfilm"); break;
+			case 14: makemaz("deepfiln"); break;
+			case 15: makemaz("deepfilo"); break;
+		    }
+		    return;
 	    } else if (In_quest(&u.uz)) {
 		    char        fillname[16];
 		    s_level	*loc_lev;
@@ -2240,10 +2259,10 @@ ghnhom1:
 
 	/* very random levels --Amy */
 
-	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4 : 40) : (iswarper ? 10 : 100))) || (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10 : 4) : (iswarper ? 5 : 2))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (In_deepmines(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 20 : 100) : (iswarper ? 30 : 200))) || (In_illusorycastle(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (In_sewerplant(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_spacebase(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 3 : 15) : (iswarper ? 4 : 30))) || (In_gammacaves(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_mainframe(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (rn2(5) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) ) {
+	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4 : 40) : (iswarper ? 10 : 100))) || (In_mines(&u.uz) && rn2(1000) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10 : 4) : (iswarper ? 5 : 2))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (In_deepmines(&u.uz) && rn2(2)) || (In_illusorycastle(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (In_sewerplant(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_spacebase(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 3 : 15) : (iswarper ? 4 : 30))) || (In_gammacaves(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_mainframe(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (rn2(5) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) ) {
 
 ghnhom2:
-	    switch (rnd(110)) {
+	    switch (rnd(113)) {
 
 	    case 1:
 	    case 2:
@@ -2829,7 +2848,7 @@ ghnhom2:
 
 	    case 52:
 
-		switch (rnd(8)) {
+		switch (rnd(9)) {
 
 			case 1: makemaz("forge"); return;
 			case 2: makemaz("hitchE"); return;
@@ -2839,6 +2858,7 @@ ghnhom2:
 			case 6: makemaz("rabhoE"); return;
 			case 7: makemaz("machnE"); return;
 			case 8: makemaz("orcbaE"); return;
+			case 9: makemaz("sewpl"); return;
 
 		}
 		break;
@@ -3935,17 +3955,69 @@ ghnhom2:
 
 		break;
 
+	    case 111:
+		switch (rnd(15)) {
+			case 1: makemaz("deepfila"); return;
+			case 2: makemaz("deepfilb"); return;
+			case 3: makemaz("deepfilc"); return;
+			case 4: makemaz("deepfild"); return;
+			case 5: makemaz("deepfile"); return;
+			case 6: makemaz("deepfilf"); return;
+			case 7: makemaz("deepfilg"); return;
+			case 8: makemaz("deepfilh"); return;
+			case 9: makemaz("deepfili"); return;
+			case 10: makemaz("deepfilj"); return;
+			case 11: makemaz("deepfilk"); return;
+			case 12: makemaz("deepfill"); return;
+			case 13: makemaz("deepfilm"); return;
+			case 14: makemaz("deepfiln"); return;
+			case 15: makemaz("deepfilo"); return;
+
+		}
+
+		break;
+
+	    case 112:
+		switch (rnd(10)) {
+			case 1: makemaz("deptn-1"); return;
+			case 2: makemaz("deptn-2"); return;
+			case 3: makemaz("deptn-3"); return;
+			case 4: makemaz("deptn-4"); return;
+			case 5: makemaz("deptn-5"); return;
+			case 6: makemaz("deptn-6"); return;
+			case 7: makemaz("deptn-7"); return;
+			case 8: makemaz("deptn-8"); return;
+			case 9: makemaz("deptn-9"); return;
+			case 10: makemaz("deptn-10"); return;
+
+		}
+
+		break;
+
+	    case 113:
+		switch (rnd(6)) {
+			case 1: makemaz("depeE-1"); return;
+			case 2: makemaz("depeE-2"); return;
+			case 3: makemaz("depeE-3"); return;
+			case 4: makemaz("depeE-4"); return;
+			case 5: makemaz("depeE-5"); return;
+			case 6: makemaz("depeE-6"); return;
+
+		}
+
+		break;
+
 		break;
 
           }
 
 	}
 
-	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4000 : 40000) : (iswarper ? 10000 : 100000))) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10000 : 4000) : (iswarper ? 5000 : 2000))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2000 : 10000) : (iswarper ? 3000 : 20000))) ||  (In_deepmines(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 20 : 100) : (iswarper ? 30 : 200))) || (In_illusorycastle(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (In_sewerplant(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_spacebase(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 3 : 15) : (iswarper ? 4 : 30))) || (In_gammacaves(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_mainframe(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (In_gehennom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_voiddungeon(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_netherrealm(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_swimmingpool(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_hellbathroom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_angmar(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 4 : 10) : (iswarper ? 5 : 20))) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) || (In_sheol(&u.uz) && (!(u.monstertimefinish % 235) ? (iswarper || !rn2(3)) : (!rn2(iswarper ? 2 : 5)) ) ) ) {
+	if ( (In_dod(&u.uz) && (!rn2(100) || depth(&u.uz) > 1) && !rn2(!(u.monstertimefinish % 245) ? (iswarper ? 4000 : 40000) : (iswarper ? 10000 : 100000))) || (In_mines(&u.uz) /* check moved upwards */ ) || (In_sokoban(&u.uz) && !issokosolver && rn2(!(u.monstertimefinish % 241) ? (iswarper ? 10000 : 4000) : (iswarper ? 5000 : 2000))) || (In_towndungeon(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2000 : 10000) : (iswarper ? 3000 : 20000))) ||  (In_deepmines(&u.uz)) || (In_illusorycastle(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (In_sewerplant(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_spacebase(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 3 : 15) : (iswarper ? 4 : 30))) || (In_gammacaves(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_mainframe(&u.uz) && !rn2(!(u.monstertimefinish % 243) ? (iswarper ? 2 : 10) : (iswarper ? 3 : 20))) || (In_gehennom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_voiddungeon(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_netherrealm(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_swimmingpool(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 2 : 5) : (iswarper ? 3 : 10))) || (In_hellbathroom(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 10 : 25) : (iswarper ? 20 : 50))) || (In_angmar(&u.uz) && !rn2(!(u.monstertimefinish % 237) ? (iswarper ? 4 : 10) : (iswarper ? 5 : 20))) || (rn2(5) && !strcmp(dungeons[u.uz.dnum].dname, "Frankenstein's Lab") ) || (!rn2(1000) && (!strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") ) ) || (In_sheol(&u.uz) && (!(u.monstertimefinish % 235) ? (iswarper || !rn2(3)) : (!rn2(iswarper ? 2 : 5)) ) ) ) {
 
 		if (rn2(3)) goto ghnhom2;
 
-	    switch (rnd(110)) {
+	    switch (rnd(113)) {
 
 	    case 1:
 	    case 2:
@@ -4526,16 +4598,17 @@ ghnhom2:
 
 	    case 52:
 
-		switch (rnd(8)) {
+		switch (rnd(9)) {
 
 			case 1: makemaz("forgeX"); return;
 			case 2: makemaz("hitchX"); return;
 			case 3: makemaz("compuX"); return;
 			case 4: makemaz("keyX"); return;
-			case 5: makemaz("robtnX"); return;
-			case 6: makemaz("rabhoX"); return;
-			case 7: makemaz("machnX"); return;
-			case 8: makemaz("orcbaX"); return;
+			case 5: makemaz("robtnH"); return;
+			case 6: makemaz("rabhoH"); return;
+			case 7: makemaz("machnH"); return;
+			case 8: makemaz("orcbaH"); return;
+			case 9: makemaz("sewplH"); return;
 
 		}
 		break;
@@ -5624,6 +5697,58 @@ ghnhom2:
 			case 6: makemaz("cowlf"); return;
 			case 7: makemaz("cowlg"); return;
 			case 8: makemaz("cowlh"); return;
+
+		}
+
+		break;
+
+	    case 111:
+		switch (rnd(15)) {
+			case 1: makemaz("deehfila"); return;
+			case 2: makemaz("deehfilb"); return;
+			case 3: makemaz("deehfilc"); return;
+			case 4: makemaz("deehfild"); return;
+			case 5: makemaz("deehfile"); return;
+			case 6: makemaz("deehfilf"); return;
+			case 7: makemaz("deehfilg"); return;
+			case 8: makemaz("deehfilh"); return;
+			case 9: makemaz("deehfili"); return;
+			case 10: makemaz("deehfilj"); return;
+			case 11: makemaz("deehfilk"); return;
+			case 12: makemaz("deehfill"); return;
+			case 13: makemaz("deehfilm"); return;
+			case 14: makemaz("deehfiln"); return;
+			case 15: makemaz("deehfilo"); return;
+
+		}
+
+		break;
+
+	    case 112:
+		switch (rnd(10)) {
+			case 1: makemaz("deptX-1"); return;
+			case 2: makemaz("deptX-2"); return;
+			case 3: makemaz("deptX-3"); return;
+			case 4: makemaz("deptX-4"); return;
+			case 5: makemaz("deptX-5"); return;
+			case 6: makemaz("deptX-6"); return;
+			case 7: makemaz("deptX-7"); return;
+			case 8: makemaz("deptX-8"); return;
+			case 9: makemaz("deptX-9"); return;
+			case 10: makemaz("deptX-10"); return;
+
+		}
+
+		break;
+
+	    case 113:
+		switch (rnd(6)) {
+			case 1: makemaz("depeX-1"); return;
+			case 2: makemaz("depeX-2"); return;
+			case 3: makemaz("depeX-3"); return;
+			case 4: makemaz("depeX-4"); return;
+			case 5: makemaz("depeX-5"); return;
+			case 6: makemaz("depeX-6"); return;
 
 		}
 
@@ -6058,7 +6183,7 @@ ghnhom3:
 		if (In_dod(&u.uz) || In_mines(&u.uz) || In_sokoban(&u.uz) || In_towndungeon(&u.uz) || In_illusorycastle(&u.uz) || In_deepmines(&u.uz) || In_ZAPM(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Grund's Stronghold") || !strcmp(dungeons[u.uz.dnum].dname, "The Temple of Moloch") || !strcmp(dungeons[u.uz.dnum].dname, "The Giant Caverns") || !strcmp(dungeons[u.uz.dnum].dname, "The Sunless Sea") || !strcmp(dungeons[u.uz.dnum].dname, "The Spider Caves") || !strcmp(dungeons[u.uz.dnum].dname, "The Lost Tomb") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "Bell Caves") || !strcmp(dungeons[u.uz.dnum].dname, "Forging Chamber") || !strcmp(dungeons[u.uz.dnum].dname, "Dead Grounds") || !strcmp(dungeons[u.uz.dnum].dname, "Ordered Chaos") || !strcmp(dungeons[u.uz.dnum].dname, "The Wyrm Caves") || !strcmp(dungeons[u.uz.dnum].dname, "One-eyed Sam's Market") || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios")) {
 
 ghnhom4:
-	    switch (rnd(110)) {
+	    switch (rnd(113)) {
 
 	    case 1:
 	    case 2:
@@ -6644,7 +6769,7 @@ ghnhom4:
 
 	    case 52:
 
-		switch (rnd(8)) {
+		switch (rnd(9)) {
 
 			case 1: makemaz("forge"); return;
 			case 2: makemaz("hitchE"); return;
@@ -6654,6 +6779,7 @@ ghnhom4:
 			case 6: makemaz("rabhoE"); return;
 			case 7: makemaz("machnE"); return;
 			case 8: makemaz("orcbaE"); return;
+			case 9: makemaz("sewpl"); return;
 
 		}
 		break;
@@ -7747,6 +7873,58 @@ ghnhom4:
 
 		break;
 
+	    case 111:
+		switch (rnd(15)) {
+			case 1: makemaz("deepfila"); return;
+			case 2: makemaz("deepfilb"); return;
+			case 3: makemaz("deepfilc"); return;
+			case 4: makemaz("deepfild"); return;
+			case 5: makemaz("deepfile"); return;
+			case 6: makemaz("deepfilf"); return;
+			case 7: makemaz("deepfilg"); return;
+			case 8: makemaz("deepfilh"); return;
+			case 9: makemaz("deepfili"); return;
+			case 10: makemaz("deepfilj"); return;
+			case 11: makemaz("deepfilk"); return;
+			case 12: makemaz("deepfill"); return;
+			case 13: makemaz("deepfilm"); return;
+			case 14: makemaz("deepfiln"); return;
+			case 15: makemaz("deepfilo"); return;
+
+		}
+
+		break;
+
+	    case 112:
+		switch (rnd(10)) {
+			case 1: makemaz("deptn-1"); return;
+			case 2: makemaz("deptn-2"); return;
+			case 3: makemaz("deptn-3"); return;
+			case 4: makemaz("deptn-4"); return;
+			case 5: makemaz("deptn-5"); return;
+			case 6: makemaz("deptn-6"); return;
+			case 7: makemaz("deptn-7"); return;
+			case 8: makemaz("deptn-8"); return;
+			case 9: makemaz("deptn-9"); return;
+			case 10: makemaz("deptn-10"); return;
+
+		}
+
+		break;
+
+	    case 113:
+		switch (rnd(6)) {
+			case 1: makemaz("depeE-1"); return;
+			case 2: makemaz("depeE-2"); return;
+			case 3: makemaz("depeE-3"); return;
+			case 4: makemaz("depeE-4"); return;
+			case 5: makemaz("depeE-5"); return;
+			case 6: makemaz("depeE-6"); return;
+
+		}
+
+		break;
+
 		break;
 	
           }
@@ -7755,7 +7933,7 @@ ghnhom4:
 
 		if (rn2(3)) goto ghnhom4;
 
-	    switch (rnd(110)) {
+	    switch (rnd(113)) {
 
 	    case 1:
 	    case 2:
@@ -8336,16 +8514,17 @@ ghnhom4:
 
 	    case 52:
 
-		switch (rnd(8)) {
+		switch (rnd(9)) {
 
 			case 1: makemaz("forgeX"); return;
 			case 2: makemaz("hitchX"); return;
 			case 3: makemaz("compuX"); return;
 			case 4: makemaz("keyX"); return;
-			case 5: makemaz("robtnX"); return;
-			case 6: makemaz("rabhoX"); return;
-			case 7: makemaz("machnX"); return;
-			case 8: makemaz("orcbaX"); return;
+			case 5: makemaz("robtnH"); return;
+			case 6: makemaz("rabhoH"); return;
+			case 7: makemaz("machnH"); return;
+			case 8: makemaz("orcbaH"); return;
+			case 9: makemaz("sewplH"); return;
 
 		}
 		break;
@@ -9434,6 +9613,58 @@ ghnhom4:
 			case 6: makemaz("cowlf"); return;
 			case 7: makemaz("cowlg"); return;
 			case 8: makemaz("cowlh"); return;
+
+		}
+
+		break;
+
+	    case 111:
+		switch (rnd(15)) {
+			case 1: makemaz("deehfila"); return;
+			case 2: makemaz("deehfilb"); return;
+			case 3: makemaz("deehfilc"); return;
+			case 4: makemaz("deehfild"); return;
+			case 5: makemaz("deehfile"); return;
+			case 6: makemaz("deehfilf"); return;
+			case 7: makemaz("deehfilg"); return;
+			case 8: makemaz("deehfilh"); return;
+			case 9: makemaz("deehfili"); return;
+			case 10: makemaz("deehfilj"); return;
+			case 11: makemaz("deehfilk"); return;
+			case 12: makemaz("deehfill"); return;
+			case 13: makemaz("deehfilm"); return;
+			case 14: makemaz("deehfiln"); return;
+			case 15: makemaz("deehfilo"); return;
+
+		}
+
+		break;
+
+	    case 112:
+		switch (rnd(10)) {
+			case 1: makemaz("deptX-1"); return;
+			case 2: makemaz("deptX-2"); return;
+			case 3: makemaz("deptX-3"); return;
+			case 4: makemaz("deptX-4"); return;
+			case 5: makemaz("deptX-5"); return;
+			case 6: makemaz("deptX-6"); return;
+			case 7: makemaz("deptX-7"); return;
+			case 8: makemaz("deptX-8"); return;
+			case 9: makemaz("deptX-9"); return;
+			case 10: makemaz("deptX-10"); return;
+
+		}
+
+		break;
+
+	    case 113:
+		switch (rnd(6)) {
+			case 1: makemaz("depeX-1"); return;
+			case 2: makemaz("depeX-2"); return;
+			case 3: makemaz("depeX-3"); return;
+			case 4: makemaz("depeX-4"); return;
+			case 5: makemaz("depeX-5"); return;
+			case 6: makemaz("depeX-6"); return;
 
 		}
 

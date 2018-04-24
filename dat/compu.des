@@ -221,7 +221,7 @@ MAP
 ENDMAP
 
 STAIR:(06,01),up
-STAIR:(05,15),up
+STAIR:(05,15),down
 
 REGION:(00,00,54,16),lit,"ordinary"
 
@@ -795,7 +795,7 @@ MAP
 ENDMAP
 
 STAIR:(06,01),up
-STAIR:(05,15),up
+STAIR:(05,15),down
 
 REGION:(00,00,54,16),lit,"ordinary"
 
@@ -1222,3 +1222,126 @@ OBJECT[10%]:'/',"trap creation",random
 OBJECT[10%]:'/',"bad effect",random
 OBJECT[10%]:'/',"clone monster",random
 
+MAZE: "sewpl" , ' '
+INIT_MAP:'.',' ',true,true,lit,false
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+  ....   ....        OOOO   OOOO         YYYYYY ............... 
+  ....   ....   ....+OOOO   OOOO+....    OOOOOO .OOOOOOOOOOOOOOO
+  ....   ....   ..   OOOO   OOOO   ..    OOOOOO .OOOOOOOOOOOOOOO
+   ..     ..    ..                 .....+OOOOOO+.OOOOOOOOOOOOOOO
+   ..     ..    ..                 ..    OOOOOO .OOOOOOOOOOOOOOO
+   ..     ..    ..                 ..    OOOOOO .OOOOOOOOOOOOOOO
+   ..     ..    ..   ....   OOOO   ..    YYYYYY ............OOO 
+   .........    ....+....   OOOO+....           ............OOO 
+          ..    ..   ....   OOOO   ..           ............OOO 
+          ..    ..                 ..           ........... OOO 
+          ..    ..                 ............+........... OOO 
+   OOOO   ..    ..                 ..             +     +   OOO 
+   OOOO   ...........................           ..... ..... OOO 
+   OOOO                                         ..... ..... OOO 
+    OO                                          ..... ..... OOO 
+    OO                                                      OOO 
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 
+ENDMAP
+
+STAIR:(03,01),up
+STAIR:(05,12),down
+
+# Non diggable walls - everywhere!
+NON_DIGGABLE:(00,00,63,17)
+
+OBJECT:'[',random,(50,13)
+OBJECT:'[',random,(56,13)
+
+DOOR:locked,(20,01)
+DOOR:locked,(32,01)
+DOOR:locked,(20,07)
+DOOR:locked,(32,07)
+DOOR:locked,(40,03)
+DOOR:locked,(47,03)
+DOOR:locked,(47,10)
+DOOR:locked,(50,11)
+DOOR:locked,(56,11)
+
+MAZE: "sewplH" , ' '
+INIT_MAP:'.',' ',true,true,lit,false
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7
+#1234567890123456789012345678901234567890123456789012345678901234567890
+MAP
+  ....   ....        OOOO   OOOO         YYYYYY ............... 
+  ....   ....   ....+OOOO   OOOO+....    OOOOOO .OOOOOOOOOOOOOOO
+  ....   ....   ..   OOOO   OOOO   ..    OOOOOO .OOOOOOOOOOOOOOO
+   ..     ..    ..                 .....+OOOOOO+.OOOOOOOOOOOOOOO
+   ..     ..    ..                 ..    OOOOOO .OOOOOOOOOOOOOOO
+   ..     ..    ..                 ..    OOOOOO .OOOOOOOOOOOOOOO
+   ..     ..    ..   ....   OOOO   ..    YYYYYY ............OOO 
+   .........    ....+....   OOOO+....           ............OOO 
+          ..    ..   ....   OOOO   ..           ............OOO 
+          ..    ..                 ..           ........... OOO 
+          ..    ..                 ............+........... OOO 
+   OOOO   ..    ..                 ..             +     +   OOO 
+   OOOO   ...........................           ..... ..... OOO 
+   OOOO                                         ..... ..... OOO 
+    OO                                          ..... ..... OOO 
+    OO                                                      OOO 
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 
+ENDMAP
+
+STAIR:(03,01),up
+STAIR:(05,12),down
+
+# Non diggable walls - everywhere!
+NON_DIGGABLE:(00,00,63,17)
+
+OBJECT:'[',random,(50,13)
+OBJECT:'[',random,(56,13)
+
+DOOR:locked,(20,01)
+DOOR:locked,(32,01)
+DOOR:locked,(20,07)
+DOOR:locked,(32,07)
+DOOR:locked,(40,03)
+DOOR:locked,(47,03)
+DOOR:locked,(47,10)
+DOOR:locked,(50,11)
+DOOR:locked,(56,11)
+
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'`',"boulder",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'%',"egg",random
+OBJECT:'(',"figurine",random,cursed,0
+
+OBJECT:'?',"bad effect",random
+OBJECT:'?',"root password detection",random
+OBJECT:'?',"flood",random
+OBJECT:'?',"lava",random
+OBJECT:'?',"trap creation",random
+OBJECT:'"',"amulet of data storage",random
+OBJECT:'=',"timely backup",random
+MONSTER:';',random,random
+MONSTER:';',random,random
+MONSTER:'I',random,random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT:'%',"corpse",random
+OBJECT[10%]:'/',"trap creation",random
+OBJECT[10%]:'/',"bad effect",random
+OBJECT[10%]:'/',"clone monster",random

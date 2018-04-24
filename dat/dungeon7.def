@@ -361,6 +361,8 @@ LEVEL:	    "machn" "D" @ (15, 14)
 DUNGEON:        "Deep Mines" "C" (25, 0)
 ALIGNMENT:      chaotic
 LEVEL:	    "orcba" "D" @ (10, 6)
+RNDLEVEL:	    "deptn" "E" @ (5, 10) 10
+RNDLEVEL:	    "depen" "F" @ (25, 0) 6
 
 DUNGEON:        "Space Base" "C" (12, 0)
 ALIGNMENT:      lawful
@@ -371,13 +373,14 @@ LEVEL:	    "robtn" "D" @ (8, 0)
 
 DUNGEON:        "Sewer Plant" "C" (5, 0)
 ALIGNMENT:      neutral
+LEVEL:	    "sewpl" "D" @ (5, 0)
 
 DUNGEON:        "Gamma Caves" "C" (6, 0)
 ALIGNMENT:      chaotic
 
 DUNGEON:        "Mainframe" "C" (5, 0)
-LEVEL:	    "rabho" "D" @ (5, 0)
 ALIGNMENT:      lawful
+LEVEL:	    "rabho" "D" @ (5, 0)
 
 DUNGEON:        "Void" "C" (30, 0)
 ALIGNMENT:      neutral

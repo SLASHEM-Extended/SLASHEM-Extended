@@ -2443,7 +2443,7 @@ static const uchar IBM_r_oc_syms[MAXOCLASSES] = {	/* a la EPYX Rogue */
 	0x0a, /* ARMOR_SYM,*/	/* armor:  Vert rect with o */
 	0x09, /* RING_SYM,*/	/* ring:   circle with arrow */
 /* 5*/	0x0c,			/* amulet: "female" symbol */
-	IMPLANT_SYM,
+	/*IMPLANT_SYM,*/0x03,
 	/*TOOL_SYM*/0x06,
 	0x05,			/* food:   club (as in cards) */
 	0xad,			/* potion: upside down '!' */
