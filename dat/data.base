@@ -110,6 +110,40 @@ agate*
 	An agate's banding forms as silica from solution is slowly deposited
 	into cavities and veins in older rock.
 		[ The Columbia Encyclopedia, Sixth Edition ]
+ais*
+	The Emperor of the kingdom dolorous / From his mid-breast forth
+	issued from the ice; /And better with a giant I compare / Than do
+	the giants with those arms of his; / Consider now how great must be
+	that whole, / Which unto such a part conforms itself. / Were he as
+	fair once, as he now is foul, / And lifted up his brow against his
+	Maker, / Well may proceed from him all tribulation. / O, what a
+	marvel it appeared to me, / When I beheld three faces on his head!
+	/ The one in front, and that vermilion was;
+		[ The Inferno, from The Divine Comedy of Dante
+			Alighieri, translated by H.F. Cary ]
+
+	He maintains Nethack4, and together with bhaak joined the vanilla
+	NetHack devteam. His variant is easy to ascend (Amy managed to do
+	it several times), but despite appearing to do no gameplay-related
+	changes apart from giving candles to gnomes, it actually snuck in
+	the evil patch idea of making disintegration resistance do nothing.
+	Oh sure, you won't die, but you might as well because you just lost
+	your +4 cloak of magic resistance with no way to get another one.
+
+	On another note, ais523 did a speedrun of vanilla NetHack that
+	includes showing off various glitches, such as the infinite gold
+	(or antigold) glitch, successfully wishing for a wand of wishing,
+	using a throne or fountain as an infinite wish engine, and
+	doing various telewarps to skip the entire ascension run and pass
+	through the elemental planes in zero game time. No one knows the
+	internal mechanics of NetHack better than he does. If you want to
+	do your own NetHack speedrun or need to know internal code-related
+	stuff about the game, ais523 is the man to talk to. Last but not
+	least, he invented the "evil variant", although he never actually
+	released it and most of it has not even been coded. SLEX includes
+	several of his Sokoban levels, which are variants of the infamous
+	"vanilla nightmare" level that look almost the same but have
+	completely different, much more difficult solutions.
 *leax
 	An Aleax,  according to the  AD&D Fiend Folio,  is a  creature that
 	looks exactly  like the character, and  is sent  by the character's
@@ -200,6 +234,16 @@ amulet of yendor
 	immortality to the adventurer who can deliver it from the
 	depths of Moloch's Sanctum and offer it on the appropriate high
 	altar on the Astral Plane.
+anachronist
+anachrononaut
+	Originally called anachronist in dnethack, but the heretical players
+	were actually able to spell that word correctly, so Chris_ANG went ahead
+	and changed it to the weird anachrononono-nononono word it is now.
+	Here in the land of SLEX, they're still called anachronist. It's a guy
+	from the future, and apparently that "future" isn't very fun to live in,
+	since the anachrononono-nononono can't eat normally in dnethack and has
+	a bunch of other restrictions. SLEX anachronists, on the other hand,
+	aren't all that special apart from having unusual starting equipment.
 ~fallen angel
 angel*
 	He answered and said unto them, he that soweth the good seed
@@ -650,6 +694,13 @@ bandersnatch
 	And the Bellman remarked "It is just as I feared!"
 		And solemnly tolled on his bell.
 			[ The Hunting of the Snark, by Lewis Carroll ]
+bang gang
+	The worst class of the entire "superschool" houses these criminals.
+	They bully everyone who isn't part of their gang, stealing their
+	victims' clothes and money, and doing other evil deeds. Some have
+	asserted that this is Amy's attempt to fight her childhood bullies in
+	her own game, although whether that is so will probably never really
+	be known.
 banshee
 	In Irish folklore and that of the Western Highlands of Scotland,
 	a female fairy who announces her presence by shrieking and wailing
@@ -853,6 +904,11 @@ hooked polearm
 	    |  |
 	    | /
 	    ||
+bhaak
+	He invented the wonderful "Schwebaeugler" translation of the
+	floating eye monster. Also hosts Junethack and the Unnethack
+	variant.
+	bhaak wants to "kill" LarienTelrunya, but she loves him anyway <3
 black light
 	Ultraviolet (UV) radiation is electromagnetic radiation of a wavelength
 	shorter than that of the visible region, but longer than that of soft
@@ -1577,6 +1633,28 @@ pyrolisk
 	the bravest adventurer to burst into flames, their flesh withering
 	and blackening and curling beneath the creature's baleful gaze.
 		[ The New Bestiary, Wizard Endlebrook ]
+contamination
+	Caused by weeping angels and certain other monsters' attacks,
+	but you can also be contaminated by triggering certain traps or by
+	having items made of ether out in the open. Wearing ether items will
+	give particularly high rates of contamination. Don't eat monsters that
+	have contamination attacks lest you be fatally contaminated.
+
+	While contaminated, your wisdom will slowly decrease, and there is no
+	magical way of restoring it. If wisdom drops below 3, you die.
+	Being sufficiently contaminated will also prevent you from exercising
+	wisdom, or any other stat for that matter. While a little contamination
+	isn't too dangerous, get contaminated enough and you're in trouble.
+	High amounts of contamination additionally slow down your hit point and
+	mana recovery rates, eventually to a point where you have next to no
+	regeneration whatsoever.
+
+	It can be cured by reading the scroll of remove curse (which may not be
+	cursed itself), or you can also zap the wand of remove curse if you
+	happen to find one of those. Praying on an altar to your own deity
+	will fix it if the prayer is successful. And a few obscure ways of
+	curing contamination exist as well; amnesia might also fix it in a
+	pinch, though I forgot whether the source can be trusted.
 # not "stethoscope"
 cope
 * cope
@@ -1996,6 +2074,15 @@ djinn*
 	in a flask or lamp.  Once in a while, such a tool is found by
 	a lucky rogue, and some djinn are known to be so grateful
 	when released that they might grant their rescuer a wish.
+dnhslex
+	DNetHack SLEX is a variant of the popular dnethack variant of NetHack.
+	Originally created by Chris_ANG, Amy went ahead and made a joke variant
+	of it, which doesn't actually change all that much but makes the game
+	more fun to play. And also less balanced, but it's a joke variant so
+	who cares? Features include a higher carry capacity, more skill slots
+	for you to use, being able to play any race/role/align/gender combo,
+	and of course a greatly increased bestiary including shooooooooooes <3.
+	And before you ask: yes, you can play a lawful anachrononono-nononono :D
 ~hachi
 ~slasher
 ~sirius
@@ -2036,14 +2123,6 @@ dread pirate roberts
 	Pirate Roberts either. His name was Cummerbund. The real 
 	Roberts has been retired 15 years and living like a king in 
 	Patagonia.' 
-*drum*
-	Many travelers have seen the drums of the great apes, and
-	some have heard the sounds of their beating and the noise of
-	the wild, weird revelry of these first lords of the jungle,
-	but Tarzan, Lord Greystoke, is, doubtless, the only human
-	being who ever joined in the fierce, mad, intoxicating revel
-	of the Dum-Dum.
-		[ Tarzan of the Apes, by Edgar Rice Burroughs ]
 ~trap*door
 *door
 doorway
@@ -2312,6 +2391,7 @@ dwar* cave*man
 	they like, and a dwarvish gift is likely to turn to gold in
 	the hand.  But on the whole they are a snappish lot.
 		[ The Immortals, by Derek and Julia Parker ]
+~drum stint reluctance
 *drum*
 	Many travelers have seen the drums of the great apes, and
 	some have heard the sounds of their beating and the noise of
@@ -2556,6 +2636,40 @@ figurine*
 	years by private owners and dealers too stupid to see what
 	it was under the skin.
 		[ The Maltese Falcon, by Dashiell Hammett ]
+FIQ*
+	FIQhack is a NH4-based NetHack variant that seems to have two main
+	design goals: adding the wand "balance" patch, and making players
+	and monsters fully symmetrical.
+
+	Let's just assume for a moment that those concepts are good in
+	theory. You have a wand skill, it goes up as you use wands more
+	often, and wands get better and more powerful as a result. Sounds
+	not too bad, right? Sure, but then you play the actual game and
+	realize that the only role that matters (samurai) gets a rather low
+	wand skill cap, so the stronger effects are permanently locked out
+	for you. And what's worse, monsters will also benefit from the
+	stronger effects - particularly soldiers! Their wands of lightning
+	will now cause an explosion when they hit you, and there is
+	absolutely no way to prevent that. Reflection does nothing at all.
+	Your own wands WILL explode if you have them out in the open,
+	unless you go out of your way and waste an equipment slot for
+	something that grants extrinsic shock resistance, locking you out
+	of wearing something more useful in said slot. And due to the
+	samurai's low wand skill cap, your wands of death, make invisible,
+	cold etc. will forever be weaker than they are in vanilla. Worst
+	of all, though, is a spiteful change to the wand of teleportation,
+	which just flat out DOESN'T WORK ANYMORE on no-teleport levels,
+	so the one panic button that still works on those levels in vanilla
+	is suddenly gone.
+
+	And the symmetry stuff? Well, you don't even want to know what
+	happens if monsters can read scrolls of stinking cloud or genocide.
+	Some of the results from monsters suddenly being able to read
+	scrolls they shouldn't ever be able to read were due to bugs, but
+	some other results are intentional according to the dev and will
+	never be fixed. You know, stuff like permanently losing your pet
+	and being locked out of using the same base monster type as a pet
+	ever again, just because some shitter goblin decided to genocide it.
 fire vampire
 	A swirling cloud of bright, burning motes, the fire vampire
 	descends upon its victim and easily burns them to death once
@@ -2644,6 +2758,36 @@ fountain
 	Erotas, bade the Naiad fall,
 	And thank the great god Pan for all!
 		[ For a Fountain, by Bryan Waller Procter ]
+*fourk*
+jonadab
+	Nethack Fourk is one of the NH4-based NetHack variants, created by
+	jonadab, the master of evil patch ideas. It does some questionable
+	things, such as making it very difficult to gain alignment,
+	restricting the skill set of the only role that matters (samurai),
+	and worst of all, implementing the wand "balance" patch that makes
+	it so that you can never have your wands out in the open unless you
+	want to risk them being randomly destroyed by soldiers with wands of
+	lightning. Also, your wand of teleportation will just plain not work
+	on no-teleport levels, thereby robbing you of one of the few panic
+	buttons that you can use on those levels.
+
+	Still, the fo(u)rk has some redeeming qualities. Ranged combat was
+	improved by greatly reducing the odds of your shuriken mulching,
+	and you have magic chests that ease the carry capacity problem
+	present in all non-slex variants. Plus it adds a few new monsters
+	and other interesting features. As of the time of writing, Amy
+	considers it one of the best non-slex variants, the other two
+	being Grunthack and dnethack.
+
+	Sadly, the apocalypse will come when Nethack Fourk eventually adds
+	achievement unlockables (one can only hope that there will be a
+	way to disable them, because otherwise you can never play the
+	archeologist unless you fucking ASCEND some other role first), and
+	merges FIQhack's "nice in theory, but terrible in practice" attempt
+	to make monsters and players fully symmetrical. Amy is glad that she
+	ascended Fourk before that happened, and contemplates creating a
+	SLEXhack Fourk based on the last version before the unspeakable
+	changes will be made.
 fox
 	One hot summer's day a Fox was strolling through an orchard till he
 	came to a bunch of Grapes just ripening on a vine which had been
@@ -2738,6 +2882,7 @@ geryon
 	Geryon is an arch-devil sometimes called the Wild Beast,
 	attacking with his claws and poison sting.  His ranking in
 	Hell is rumored to be quite low.
+~truck ghost
 *ghost
 	And now the souls of the dead who had gone below came swarming
 	up from Erebus -- fresh brides, unmarried youths, old men
@@ -3005,6 +3150,16 @@ arc bug
 spark bug
 	"What was that?" cried Buck, rubbing his numb and tingling arm.
 	"Nature's revenge for bug zappers," replied his companion.
+grunthack*
+	Made by a guy named SGrunt, probably while he was going through a
+	particularly bad breakup, Grunthack is officially the Evil Variant.
+	You'll just love the beholder's cancellation gaze, the gelatinous
+	cube's technical instadeath engulfing attack, and the water
+	elemental's inventory-wetting attack. To top it off, Demogorgon is
+	guaranteed in Gehennom and has been buffed considerably.
+	There's also a couple nice things such as the magical properties
+	on weapons and armor. Amy considers it one of the best non-slex
+	variants, together with dnethack and Nethack Fourk.
 gug
 	These foul creatures dwell in the endless darkness of the 
 	Gulf of N'Kai, scavenging the bones of whatever luckless
@@ -3356,6 +3511,27 @@ hunter
 	Where is the haste that ye hurry by?
 	Brother, I go to my lair to die.
 		[ The Jungle Book, by Rudyard Kipling ]
+*hussy
+*hussies
+Anna
+drum stint reluctance
+	Led by their supreme chairwoman Anna, the Hussy Club is an organization
+	of girls who will fulfill almost any request as long as the price is
+	right. They especially love requests of making someone's life hard.
+	And usually, the Bang Gang is the highest bidder and one of the first
+	groups to hire the hussies. Gang Scholars in particular are their
+	arch-enemies and will be bullied endlessly by the hussies.
+	It is said that the hussies possess a couple special abilities that
+	allow them to annoy their victims. For example, they're capable of
+	producing dog shit with their butts, which they will place in the path
+	of their victim who will then step into it and ruin their shoes. But
+	the hussies also love to wear their socks for days or even weeks
+	without washing them, and will then use them as weapons by forcing the
+	victim to smell the worn socks, often for a prolonged time until
+	unconsciousness sets in. And finally, the hussies developed their own
+	brand of perfume called "drum stint reluctance", which is very
+	powerful and can cause non-hussies to be intoxicated from the scent,
+	making them completely unable to fight back.
 ice devil
 	Ice devils are large semi-insectoid creatures, who are
 	equally at home in the fires of Hell and the cold of Limbo,
@@ -5456,6 +5632,37 @@ slasher
 	shall pay for this, and seven heads for the dog, who was a
 	better warrior than many a man."
 		[ Conan The Warrior, by Robert E Howard ]
+slashthem
+soviet*
+	Wanna hear the tale of a NetHack variant gone awry?
+	Well, how about someone taking a fork of SLASH'EM, building his own
+	fork on top of it, and not communicating with the author of that fork
+	but instead just reverting everything she did without second thought?
+	That's SLASHTHEM, and the way its author Soviet5lo (also known as
+	the type of ice block) operates. He literally went ahead and seeked out
+	all parts of code that were written by Amy, including obvious bugfixes
+	like the monster spawn increase timer bugfix and the martial arts melee
+	damage bugfix, and said "REVERTREVERTREVERT IT IN SLASHTHEM" because
+	he obviously didn't really read the code and therefore failed to
+	realize that it was fixing bugs.
+
+	The entire design philosophy behind SLASHTHEM can be summed up like
+	this. Oh sure, he didn't outright remove all of SLEX's new roles and
+	races. But he took away everything that made them unique. Kobold? Giant?
+	Ogre? Troll? They may just as well be called "human2", "human3" etc.
+	because there's literally zero gameplay-relevant difference anymore.
+	99%% of SLEX's original content had been axed outright, and 90%% of the
+	remaining stuff has been mangled beyond recognization in SLASHTHEM.
+	It really is the hardly extended, but much removed mod.
+
+	If for some strange reason you still intend to play SLASHTHEM, you have
+	a clear choice: pick the soviet (hybrid) race in SLEX, which causes you
+	to play SLASHTHEM Extended. That way, many aspects of the game will
+	behave like they do in SLASHTHEM, but you'll be able to enjoy the bug
+	fixes and additional content of SLEX while doing so, and therefore will
+	be spared from the fate of being bored to tears after 5 minutes of
+	playing. Because that's what would happen to you if you were to play
+	the actual SLASHTHEM.
 slave master
       The Slave Masters of icy Prassia decided to send one of their 
       representatives down to the Dungeons of Doom to retrieve the Amulet of 
@@ -5600,6 +5807,44 @@ giant spider
 	don't I?"
 	"Why, yes, of course," said Wilbur.
 		[ Charlotte's Web, by E.B. White ]
+spork*
+	Its stated purpose was to "try to make the game more interesting
+	for experienced/skilled players, while making it no harder...
+	for the newbie."
+		[ Nethackwiki introduction on the Sporkhack page ]
+
+	Sadly, it fails gloriously in its attempt to fulfill that purpose,
+	by changing a couple of game mechanics that strictly make it harder
+	in a very aggravating way. Yes, SLEX also strives to be harder than
+	regular SLASH'EM, but SLEX's difficulty is refreshing while Spork
+	just tries its damnedest to stack the deck against the player's
+	favor in every conceivable way. It is part of the "terrible trio"
+	that also includes Unnethack and Dynahack, but Spork definitely did
+	the worst implementation of everything.
+	Unskilled weapons will forever suck because of a very misguided
+	attempt at nerfing the cockatrice corpse, because the devs are too
+	lazy to nerf the cockatrice corpse specifically and instead decided
+	to use the sledgehammer method on everything that the player
+	character is restricted or unskilled in. Unicorn horns of course no
+	longer restore lost stats. And a couple other annoyance factors are
+	added for good measure. Sporkhack-specific ones include percentage
+	based resistances that are all but useless in the case of poison
+	(only 5%% resistance per corpse regardless of level and you will
+	lose strength every single time you eat one unless you're 100%%
+	resistant) and sleep (you can be 84%% resistant and the orange
+	dragon will still knock you out long enough to technically
+	instakill you because you won't wake up before you're dead),
+	giving absurd amounts of AC to late-game monsters which, coupled
+	with greatly increased spawn rates, makes it very arduous and
+	straining to play the later parts of the game, and illogically
+	preventing magic markers from being randomly generated, thereby
+	practically forcing you to wish for them because everything else can
+	be found randomly or obtained by polypiling. WHYYYYYYYYYYY
+
+	Conclusion: If Amy had to pick between FIQhack and Sporkhack and
+	play the one she picked for the rest of her life, she'd absolutely
+	pick FIQhack, even though she dislikes FIQhack too, for different
+	reasons.
 shelob
 	...Great horns she had,  and behind her short stalk-like neck
 	was her huge swollen body, a vast bloated bag, swaying  and
@@ -5765,6 +6010,22 @@ stormbringer
 	fully to life, black fire flickering up and down its length, its
 	strange runes glowing."
 		[ The Sailor On the Seas of Fate, by Michael Moorcock ]
+strong kanegou
+	Strong is one of Takeshi's best and, as his name suggests,
+	strongest guards. Nearly always paired with Kibaji,
+	they form a powerful team.
+		[ Takeshi's Castle Wiki ]
+
+	He's a relatively low-level monster, meaning he can appear early,
+	and he hits like a truck in melee. Fight him at range if possible.
+superman
+	"FEAR ME!!!"
+
+	Invincible supermans (sic) are terrible creatures. They look a bit
+	like a ladybug, but bigger and with a mean facial expression. They're
+	not cute at all. Their warcries will strike terror in the heart of
+	their enemies, allowing the superman to catch the helpless victim
+	and rend their flesh and bones with their super-sharp pincers.
 susano*o
 	The Shinto chthonic and weather god and brother of the sun
 	goddess Amaterasu, he was born from the nose of the
@@ -5782,6 +6043,23 @@ tengu
 	belligerent tengu were supposed to have been man's first
 	instructors in the use of arms.
 	[ Mythical Beasts, by Deirdre Headon (The Leprechaun Library) ]
+thick farting girl
+	the thick farting girl while i was Fea Nmb Dim Hal made me wear this
+	a heavily cursed blinking cloak named Disbelieving Powerlord (being worn)
+	she's like some sort of boss of the fucking game sometimes
+	there are _really_ strong monsters in low lvls
+	its really unfair
+	one monster... after aaaaaaaaaallll those mine-lvls
+	imagine prozac, she just comes in, poke you in the 4 head
+	and you die
+		[ GoldenIvy encountering a thick farting girl in the mines. ]
+
+	Her name is Sandra. She has very sexy, thick butt cheeks. And she loves
+	to produce beautiful, squeaky farting noises that are a pleasure to
+	listen to. No one can withstand her beauty, elegance, or feminine charm.
+	Her powerful farting gas will intoxicate you, making you completely
+	unable to fight back, and ultimately you're going to become her slave.
+	Don't try to defeat her unless you REALLY know what you're doing.
 thorin
 	Known as 'Thorin Oakenshield' because in the Battle of Azanulbizar
 	he used an oak-branch as a shield and club.  He is the King of
@@ -6021,6 +6299,18 @@ tripe ration
 	He clambered back on his feet and grinned at them.  The
 	waning faggot cast red light over his fangs.
 		[ Three Hearts and Three Lions, by Poul Anderson ]
+*truck ghost
+	they are insane, did you see that bones file bug sniper linked
+	there were like 6
+	did you see that
+	6 spawened 2 died, all on this floor, it was bullshit
+	they swarmed me
+		[ Dolores encountering a bunch of truck ghosts ]
+
+	The name says it all: It's a ghost that hits like a truck.
+	They're also really fast, so you better kill them quickly; fire works
+	very well against them. Be especially careful about radioactive
+	versions of them which will contaminate you with every single hit.
 *tsurugi of muramasa
 	This most ancient of swords has been passed down through the
 	leadership of the Samurai legions for hundreds of years.  It
@@ -6081,6 +6371,16 @@ tyr
 	search of prey.  They are tremendously strong; muscles bulge
 	beneath their thick, scaly hides and their powerful arms and
 	legs all end in great claws.
+*ugod
+	a newer version of slex! with new bullshit enemies!
+	fuck ugods
+		[ Dolores, after dying to an ugod. ]
+
+	If you're reasonably well equipped and have a bunch of character levels
+	under your belt, you'll easily flatten them. But if you encounter the
+	ugod at its natural depth, prepare for a hard fight that can easily
+	get you killed. That said, later on you can meet greater ugods.
+	Kill them as quickly as you can, for they hit like trucks and are fast.
 *unicorn
 unicorn horn
 	Men have always sought the elusive unicorn, for the single
@@ -6126,6 +6426,29 @@ unicorn horn
  		see {UNIX weenie} and {UNIX conspiracy} for an opposing point
  		of view).  See {Version 7}, {BSD}, {USG UNIX}.
  		[ The Jargon File, version 3.0.0 ]
+unnethack*
+	"the bestest nethack variant written by the most handsome
+	nethack variant developer"
+		[ bhaak talking about his own variant ]
+
+	One of the better NetHack variants, although it unfortunately also
+	is part of the "terrible trio" that includes Sporkhack and Dynahack.
+	Unskilled weapons will forever suck because of a very misguided
+	attempt at nerfing the cockatrice corpse, because the devs are too
+	lazy to nerf the cockatrice corpse specifically and instead decided
+	to use the sledgehammer method on everything that the player
+	character is restricted or unskilled in. Unicorn horns of course no
+	longer restore lost stats. And a couple other annoyance factors are
+	added for good measure. Unnethack-specific ones include some goddamn
+	"fook yoo" barrier when trying to levelport too deep, forcing you
+	to take notes of the vibrating square location, and Cthulhu being
+	able to royally fuck you up culminating in automatic confusion that
+	costs you a couple turns to fix when you try to stethoscope him,
+	and of course the absolutely bullshit placement of the Aphrodite
+	level coupled with general nymph overpoweredness driving you insane.
+	Still, if Amy had to decide between FIQhack and Unnethack, she'd
+	probably play Unnethack. And she'd certainly pick Unnethack over
+	the mess that is Sporkhack any day of the week.
 uruk*hai
 	"Aye, we must stick together," growled Ugluk. "I don't trust you 
 	little swine. You've got no guts outside your own sties. But for 
