@@ -65,6 +65,13 @@ suit or piece of armor
 	Lying there on the mud mortally wounded, I learned what true armor 
 	class was that day."
 	 	[ When Help Collides, by J. D. Berry ]
+adom*
+ancient domain*
+	A roguelike. If you intend to play it, you should reconsider and
+	play Elona instead, which is a non-sucky ADOM whose developers
+	don't pester you into paying money for a full version. Also, Elona
+	is open source so you can make a variant that fixes all the
+	broken stuff.
 aerdrie faenya
 	Aerdrie  Faenya is the elven goddess of air and weather. As a rain-
 	bringer, she is revered as a source of fertility.  She is, however,
@@ -952,6 +959,7 @@ blue jelly
 		[ Hypothermia, Frostbite, and Other Cold Injuries: 
 			Prevention, Survival, Rescue and Treatment
 			by Gordon G. Giesbrecht, James A. Wilkerson ]
+~blob of preserved organs
 blob
 * blob
 ooze
@@ -1230,6 +1238,21 @@ brigit
 	Bring me my cross of gold,
 	As a talisman.
 		[ "Broadsword" (refrain) by Ian Anderson ]
+*bundle*
+	Play SLEX! *bundlebundlebundle* <3
+		[ Amy trying to make someone play her game. ]
+
+	"Bundle" is supposed to mean long hair,
+	as in "wow that girl has a very long bundle!". Amy absolutely loves
+	long hair and will always want to bundle other women's long hair or
+	get brushed in the face by it, because it just feels so soft and
+	lovely and wonderful and (insert other nice-sounding adjectives).
+	If Amy wants to incentivize someone to do something, especially if
+	it's something that the person in question probably doesn't actually
+	want to do at that moment, she will say *bundlebundlebundle* for
+	emphasis. Which basically means "I'm hanging my long bundle into
+	your face, giving you a nice feeling that subsequently causes you
+	to do the thing I'm trying to bundle you into, hahaha!"
 bugbear
 	Bugbears are relatives of goblins, although they tend to be
 	larger and more hairy.  They are aggressive carnivores and
@@ -2503,6 +2526,13 @@ Eddie
 	water, and earth.  Some mystics have postulated the necessity
 	for a fifth type, the spirit elemental, but none have ever
 	been encountered, at least on this plane of existence.
+elona*
+eternal league*
+	Elona is a beautiful roguelike(?) that is inspired by ADOM,
+	but is free and open source and has spawned numerous variants.
+	You should probably look for Elona+ Custom, or even better,
+	Amylona (which requires E+Custom). Play a snail tourist
+	for maximum fun.
 ~elf ??m*
 ~elf* cl*
 *elf*
@@ -2636,7 +2666,7 @@ figurine*
 	years by private owners and dealers too stupid to see what
 	it was under the skin.
 		[ The Maltese Falcon, by Dashiell Hammett ]
-FIQ*
+fiq*
 	FIQhack is a NH4-based NetHack variant that seems to have two main
 	design goals: adding the wand "balance" patch, and making players
 	and monsters fully symmetrical.
@@ -2670,10 +2700,40 @@ FIQ*
 	never be fixed. You know, stuff like permanently losing your pet
 	and being locked out of using the same base monster type as a pet
 	ever again, just because some shitter goblin decided to genocide it.
+fire trap
+	'Let him be for a while,' said Cohen. 'I reckon the fish disagreed
+	with him.'
+	'Don't see why,' said Truckle. 'I pulled him out before it'd hardly
+	chewed him. And he must've dried out nicely in that corridor. You know,
+	the one where the flames shot up out of the floor unexpectedly.'
+	'I reckon our bard wasn't expecting flames to shoot out of the floor
+	unexpectedly,' said Cohen.
+	Truckle shrugged theatrically. '_Well_, if you're not going to expect
+	unexpected flames, what's the point of going _anywhere_?'
+		[ The Last Hero, by Terry Pratchett ]
 fire vampire
 	A swirling cloud of bright, burning motes, the fire vampire
 	descends upon its victim and easily burns them to death once
 	they are in its deadly embrace.
+fleec*
+	"Die-Far-ben-sind-sehr-flau-schel-bau-schig!"
+		[ Greeting message on the #em.slashem.me IRC channel,
+			shown whenever LarienTelrunya joins the chat. ]
+
+	Such a fleecy pair of leather boots!
+	Such a fleecy t-shirt!
+	Such fleecy raindrops!
+	Such fleecy-colored ASCII glyphs!
+	Such fleecy scratching wounds caused by fleecy high heels!
+
+	According to Amy, almost everything can be fleecy. According
+	to Crawldragon, "fleecy" is Amy-speak for "eeeeeeeeeeeeee!"
+	Although Amy herself would rather translate it as "mmmmmmmm!"
+	She uses the word "fleecy" for something that she particularly
+	likes, but mostly when the thing in question actually feels
+	soft to the touch, such as the aforementioned pair of leather
+	boots or t-shirt. Randomly changing rainbow colors are also
+	officially named "fleecy colors" by her.
 floating eye
 	Floating eyes, not surprisingly, are large, floating eyeballs
 	which drift about the dungeon.  Though not dangerous in and
@@ -2811,6 +2871,7 @@ fox
 	then fastened a torch to every pair of tails, lit the torches and
 	let the foxes loose in the standing grain of the Philistines.
 		[ Judges 15:1-5, NIV ]
+~phantom fungus
 *fung*
 	Fungi, division of simple plants that lack chlorophyll, true
 	stems, roots, and leaves.  Unlike algae, fungi cannot
@@ -2848,6 +2909,14 @@ fox
 	his most ancient adversary, the gargoyles.
 	[ Excerpt from the opening narration to the movie
 		_Gargoyles_, written by Stephen and Elinor Karpf ]
+garo*
+	"That is the ghost of a ninja. Its scientific name is Garo 
+	 Robe. They are merely shells that are empty on the inside. 
+	 They're the shells of spies from an enemy nation sent to 
+	 investigate Ikana. They have been unable to forget their 
+	 living days. Even now their spirits--emptiness cloaked in 
+	 darkness--continue to spy."
+		[ Pamela's Father, Majora's Mask ]
 gas spore*
 		Gas spores are a vaguely intelligent fungal growth that has
 	evolved to strongly resemble the Beholder.  If they are struck 
@@ -2878,11 +2947,49 @@ gas spore*
 	escaped their suspicions.
 		[ Dracula, by Bram Stoker ]
 # gas spore -- see *spore
+*genocide
+	A word invented by Professor Raphael Lemkin of Duke University,
+	U.S.A., and used in the drafting of the official indictment of war
+	criminals in 1945. It is a combination of Gr. _genos_, race; and
+	Lat. _caedere_, to kill. It is defined as acts intended to destroy,
+	in whole or in part, national, ethnical, racial, or religious
+	groups, and in 1948 was declared by the United Nations General
+	Assembly to be a crime of international law.
+		[ Brewer's Concise Dictionary of Phrase and Fable ]
 geryon
 	Geryon is an arch-devil sometimes called the Wild Beast,
 	attacking with his claws and poison sting.  His ranking in
 	Hell is rumored to be quite low.
-~truck ghost
+githyanki*
+	Githyanki are an ancient race descended from humans. They dwell 
+	upon the Astral plane but will often leave that plane to make war 
+	on other races. They are engaged in a lengthy war with the 
+	githzerai.
+
+	Githyanki are strongly humanoid in appearance. They are 
+	approximately of human height but tend to be much more gaunt and 
+	long of limb. They have rough, yellow skin and gleaming black 
+	eyes that instantly betray their inhumanness. Like many demihuman 
+	races, their ears have sharp points and are serrated at the back. 
+	Dress for the githyanki is always an elaborate affair. Their 
+	baroque armor and weapons of war are decorated with feathers, 
+	beads, and precious metals and gems.
+
+	History provides some information on the githyanki - their race 
+	is both ancient and reclusive. Sages believe they once were 
+	humans that were captured by mind flayers to serve as slaves and 
+	cattle. The mind flayers treated their human slaves cruelly and 
+	the people harbored a deep resentment toward the illithids. For 
+	centuries these humans increased their hatred but could not 
+	summon the strength necessary to break free. So they waited for 
+	many years, developing their power in secret, waiting for an 
+	opportunity to strike out against their masters. Finally, a woman 
+	of power came forth among them, a deliverer by the name of Gith. 
+	She convinced the people to rise up against their cruel masters. 
+	The struggle was long and vicious, but eventually the people 
+	freed themselves. They had earned their freedom and become the 
+	githyanki, (which, in their tongue, means sons of Gith).
+~*truck ghost
 *ghost
 	And now the souls of the dead who had gone below came swarming
 	up from Erebus -- fresh brides, unmarried youths, old men
@@ -2959,6 +3066,21 @@ glaive
 	well as a cleaving attack. As with a spear or fauchard, however, 
 	it is not overly effective at holding opponents back, nor does 
 	it have the piercing or dismounting capabilities.
+	    |\
+	    I |
+	    I |
+	    I |
+	    I |
+	    I |
+	    I_|
+	    H
+glasya
+	Adorned in priceless jewelry, silks, and other finery, this
+	humanlike creature is the vision of beauty -- though her
+	copper skin, batlike wings, forked tail, and pointed horns
+	betray her true nature.
+		[ Tyrants of the Nine Hells,
+			by Robin Laws and Robert Schwalb ]
 deep gnome
 	Far beneath the surface of the earth dwell the Svirfneblin, or Deep
 	Gnomes. Small parties of these demihumans roam the Underdark's mazes
@@ -3090,6 +3212,13 @@ grayswandir
 	need the extra edge his weapon could provide?  I wanted to
 	think so, to believe that he had been more than a Pattern-ghost.
 		[ Knight of Shadows, by Roger Zelazny ]
+graz*zt
+	The figure standing before the throne is darkly handsome,
+	an ebon-skinned man nearly 9 feet tall. His slightly
+	pointed ears, yellow fangs, and six-fingered hands mark
+	him for the demon he is.
+		[ Hordes of the Abyss,
+			by Ed Stark, James Jacobs, and Erik Mona ]
 *grease
 	ANOINT, v.t.  To grease a king or other great functionary
 	already sufficiently slippery.
@@ -3150,6 +3279,18 @@ arc bug
 spark bug
 	"What was that?" cried Buck, rubbing his numb and tingling arm.
 	"Nature's revenge for bug zappers," replied his companion.
+grimlock
+	Grimlocks have thick, scaly, grey skin and long, black, 
+	filthy hair. Their teeth are white and extremely sharp. 
+	Their eyes are blank white orbs.
+
+	Grimlocks are totally blind, but have highly developed 
+	senses of smell and hearing. Their sensitive ears and noses 
+	combine to allow them to distinguish objects and creatures 
+	just as well as if they were able to see.  Those same ears
+	render them extremely vulnerable to loud noises, however.
+		[ Adapted from Dungeons and Dragons 2nd Edition 
+			Complete Monstrous Manual ]
 grunthack*
 	Made by a guy named SGrunt, probably while he was going through a
 	particularly bad breakup, Grunthack is officially the Evil Variant.
@@ -3176,6 +3317,14 @@ guisarme
 gunyoki
 	The samurai's last meal before battle.  It was usually made
 	up of cooked chestnuts, dried seaweed, and sake.
+gwynharwyf
+furious whirlwind
+	A short, stocky elf stands ready for battle.  Her hair is
+	a wild silver-white mane, and her eyes are as green as jade.
+	She has a tanned complexion and clutches a pair of gleaming
+	scimitars that seem to reflect every color of the rainbow.
+		[ The Book of Exalted Deeds, by James Wyatt,
+			Christopher Perkins, and Darrin Drader ]
 hachi
 	Hachi was a dog that went with his master, a professor, to
 	the Shibuya train station every morning.  In the afternoon,
@@ -3221,6 +3370,16 @@ halberd
 	opposing mounted knights armed with lances). The opposing spike was 
 	for penetration of heavy plate armor, with a secondary function as a 
 	hook for dismounting opponents. 
+
+	    |
+	    I
+	    H     >\ 
+	    H_--~~  >
+	   _H      /
+	 _- H     /
+	----H__  /
+	    H  \/
+	    H    
 healer
 * healer
 attendant
@@ -3501,6 +3660,15 @@ player
 	resent the intrusion of such beasts.  They are capable of
 	using weapons and magic, and it is even rumored that the
 	Wizard of Yendor is a member of this species.
+hungry dead
+blob of preserved organs
+	"Hm, obviously the ghoul-women would be naked, but I don't 
+	want to make things too NSFW since I know for a fact that 
+	over half my audience reads this from work. How can I...
+	oh, I know, I'll just rip out all their guts from the 
+	genitals up to the lungs and leave an enormous scoop mark 
+	there. That'll keep things tasteful."
+		[ Kyle Marquis ]
 hunter
 	What of the hunting, hunter bold?
 	Brother, the watch was long and cold.
@@ -3537,6 +3705,34 @@ ice devil
 	equally at home in the fires of Hell and the cold of Limbo,
 	and who can cause the traveller to feel the latter with just
 	a touch of their tail.
+idefix
+	Another clever translation [of the _Asterix_ character names]
+	is that of Idefix.  An _idee fixe_ is a "fixed idea", i.e.
+	an obsession, a dogma.  The translation, Dogmatix, manages to
+	conserve the "fixed idea" meaning and also include the syllable
+	dog -- perfect, given that the character is a dog who has very
+	strong views on the environment (he howls whenever he sees an
+	uprooted tree).
+		[ Wikipedia, the free encyclopedia ]
+i*lona s*
+	We do know that Vlad later married Ilona Szilagy, who was 
+	related to Matthias Corvinus, the king of Hungary who had 
+	placed Vlad under arrest following his escape from Wallachia 
+	in 1462. It appears that Corvinus made an arrangement with 
+	Vlad to restore him to his throne. To strengthen the bond, 
+	Vlad was offered a royal bride. 
+		[ Dracula's Homepage, by Dr. Elizabeth Miller ]
+illurien of the myriad glimpses
+	A strange woman composed of tears and raindrops, Illurien 
+	of the Myriad Glimpses is a collector of information and 
+	a keeper of secrets. She appears as a dancing array of 
+	countless swirling droplets. This storm of stolen moments 
+	surrounds and creates a slender, but extremely tall, 
+	feminine form clad in gray robes.
+	
+	She has no facial features other than her vivid blue eyes.
+		[ Adapted from Dungeons and Dragons 3.5 Edition 
+			Monster Manual V ]
 ice mag*
 	Found mainly near the frozen wastes of the north, the Ice Mages
 	are a mysterious group of individuals who are rumored to be 
@@ -3547,6 +3743,7 @@ ice mag*
 	creatures. Although they command of two of the four elements, Ice Mages 
 	have difficulty affecting undead, who are immune to cold.
 		[ by Drew Curtis ]
+~implant
 imp
 	 ... imps ... little creatures of two feet high that could
 	gambol and jump prodigiously; ...
@@ -3561,12 +3758,55 @@ imp
 	The fairies of tradition often hover uneasily between the
 	ghostly and the diabolic state.
 		[ A Dictionary of Fairies, by Katharine Briggs ]
+implant
+	These weird constructions are designed to be worn by those
+	who lack the hands and limbs required to wear more
+	traditional equipment. While still wearable by humanoids, the
+	implants will show their true power if an adventurer without
+	hands wears it.
+
+	Implants are notoriously difficult to identify or remove,
+	although being skilled at their use will always help.
+incantifier
+	Several centuries ago, there existed a faction, now almost 
+	entirely extinct, called nowadays 'The Incantifers', then 
+	simply as The Magicians or The Wanters. They believed that 
+	magic, specifically arcane magic, was the key to power, 
+	indeed the only power that mattered in the multiverse. Gain 
+	enough knowledge of magic and skill in it and you could do 
+	anything. Even challenge The Lady....
+	
+	According to legend, at least two members of the Wanters 
+	tried just that. They died, horribly and spectacularly. 
+	Legend also says that one of them almost succeeded.
+	
+	Then one day, they vanished. Cutters looked up one 
+	morning and the Tower Sorcerous, the faction headquarters 
+	of the Wanters was simply gone. Nearly all of their 
+	members vanished with it, though a scant few remain to 
+	wander the planes.
+		[ Shemeska's Story Hour, by Todd Stewart ]
+	
+	"They all ate magic. They ate other people's magic. 
+	Spells, items, anything they could buy, steal, or otherwise
+	get a hold of. This place is sealed off from everything. 
+	There's no way out and you've got an entire faction of 
+	magic eating wizard suddenly bottled up with each other and
+	no food source... except each other."
+		[ Shemeska's Story Hour, by Todd Stewart ]
 incubus
 succubus
 	The incubus and succubus are male and female versions of the
 	same demon, one who lies with a human for its own purposes,
 	usually to the detriment of the mortals who are unwise in
 	their dealings with them.
+intoner
+	People who can use the power of song to wield vast 
+	attacking force. Six of them, all female, have been 
+	recorded throughout history. The Intoners freed each land 
+	from the despotic rulers that once terrorized their 
+	people, and are now worshipped as saviors.
+		[ Drakengard III ]
 *iron ball
 *iron chain
 	"You are fettered, " said Scrooge, trembling.  "Tell me why?"
@@ -3977,6 +4217,31 @@ sparkling water
 	the mortal world to the forbidden lands of Gehennom.  It is
 	said that a single sip of its sparkling waters is enough to
 	wash a man's memories away, never to return.
+leviathan
+	Phaeton felt a rushing then, as if he were being pulled
+	quickly through many waters. After a time he realized
+	that he did indeed feel wet - soaking wet - but the blackness
+	here was absolute, and the pressure on him immense.
+	Something swam by him, and the elf recognized
+	the creature again, grown somehow into immensity, and
+	glowing eerily. It peered at him and spoke in his mind;
+	the foundations of his sanity trembled. Somehow Phaeton
+	could perceive that this was just an image, a shadow
+	of something far greater; he saw in his mind's eye a
+	creature encased in ice, frozen and unable to touch the
+	world.
+	
+	Here you will forget. The creature seemed to swim
+	lazily about him. But there is something you must yet do.
+	
+	What? Phaeton thought back.
+	
+	Don't you remember?
+	
+	A strange sensation burned in the elf's lungs, and
+	recognition dawned.
+	Oh, yes, he thought. I must breathe.
+		[ Dicefreaks: The Gates of Hell ]
 *lich
 	But on its heels ere the sunset faded, there came a second
 	apparition, striding with incredible strides and halting when
@@ -4009,6 +4274,92 @@ lichen
 	Strange creatures formed from energy rather than matter,
 	lights are given to self-destructive behavior when battling
 	foes.
+lillend
+	A lillend has the torso, arms, and head of a comely man or woman, 
+	but also has broad, powerful, feathered wings and a stout 
+	serpentine body from the waist downwards. Though the humanlike 
+	portions of a lillend are of unremarkable hue, the feathered and 
+	scaled parts of its anatomy are brightly colored and strikingly 
+	patterned. Each individual has its own unique color combination 
+	and is quite proud of it. A lillend wears no clothing but 
+	sometimes wears jewelry. It always carries weapons and musical 
+	instruments.
+	
+	Lillendi social status depends on a simple system of initiations 
+	into mysteries and the ownership of certain totem masks. The 
+	mysteries are akin to secret societies, and each mystery is a 
+	specific kernel of wisdom passed on from one generation to the 
+	next. The more societies a lillend is a member of, the greater 
+	her status. Each society is devoted to particular musical forms, 
+	songs, instruments, and weapons, so a group of lillendi usually 
+	uses the same instruments, weaponry, and spells.
+
+	The masks are tangentially related to the societies, since each 
+	mask design belongs to a specific family, and long ago each 
+	family lived in a single lodge and wore a single type of mask. 
+	Things have gotten a little more complicated since then, but the 
+	masks still roughly indicate status and family affiliations.
+		[ Dungeons and Dragons 2nd Edition 
+			Complete Monstrous Manual ]
+crone lilith
+	It seems as if Euryale has always dwelt in the Hells. 
+	Beelzebub named his present city (Malegard) after her in 
+	ancient times, when she was the mistress of discipline there.
+	She customarily takes the form of an old arthritic-looking 
+	hag with the strength of a titan and serpentine hair. In 
+	various forms she visits the copper citidels of her plane; 
+	if the inhabitants do not respond appropriately the burg is 
+	destroyed in a vast inferno and servants are dispatched to 
+	build another. 
+	Euryale is the third ruler of Malebolge. Euryale replaced 
+	Moloch, who in turn replaced Count Beherit, who was 
+	destroyed by the Dark Lord for disobeying restrictions on 
+	the elevation of devils. Lilith and Tartach convinced her 
+	to stage a coup during the mad cycles of the last Reckoning, 
+	and as a result she is no longer considered a subordinate 
+	of Baalzebul.
+		[ Rip Van Wormer ]
+mother lilith
+	Lilith was crafted by the Lords of Baator to haunt Prime 
+	Material deserts, stealing children, corrupting men, and 
+	recruiting witches to their cause. Thought to be older 
+	than humanity, Lilith fulfilled her role across the 
+	ages until it was feared she might become a goddess. 
+	To prevent this from happening, she was bound to Count 
+	Moloch, who became the Horned King to her Great Goddess.
+	She viewed him with hatred, and thought fondly of the 
+	kiss of the desert wind and her throngs of adoring 
+	consorts and covens. 
+	
+	During the last Great Upheaval, while Beelzebub and his
+	camp were busy with the war, she made her move. She 
+	whispered to her lover that his greatest opportunities
+	lay with supporting the Lord of the Flies. Asmodeus cast 
+	him down, and made his consort ruler in his place.
+	
+	Moloch was sent away in disgrace, but Lilith was still 
+	unsatisfied. She knew Asmodeus was watching her progress
+	and feared that he had allowed her to retain the sixth 
+	layer of Baator only because she was being groomed to be
+	his bride. Knowing well what had happened to Bensozia, 
+	Asmodeus' previous choice, she maneuvered to prevent this
+	from happening.
+	
+	Secretly, she corrupted certain officials in Malsheem and
+	managed to smuggle out a small quantity of the essence of
+	Asmodeus and Benzozia to the yugoloths, with Glasya the 
+	result. She hoped that a daughter would satisfy whatever 
+	schemes Asmodus had in mind, and as a result he considers
+	Lilith to be the princess' honorary mother.
+		[ Rip Van Wormer ]
+Daughter Lilith
+	Even in the light, the girl was difficult to see. Her 
+	long, glossy black hair concealed most of her pale face, 
+	and her dark clothing seemed to draw on shadows. Her 
+	amber eyes, somehow serpentine, reflected in the light.
+	Yet there was something familiar about her... Somehow, he
+	knew her to be cause of this madness.
+		[ Dicefreaks: The Gates of Hell ]
 gecko
 iguana
 lizard
@@ -4078,6 +4429,43 @@ lord surt*
 	and harry, and overcome all the gods, and burn all the
 	world with fire.
 			[ The Prose Edda, by Snorri Sturluson ]
+lucern?hammer
+pronged polearm
+	Like many polearms, this weapon has several spikes.  But
+	while many others have a blade or axe, this one has a 
+	three-pronged hammer at the end of a seven foot (2 meter)
+	pole.
+	
+	     I
+	     H
+	     H
+	     H______ 
+	  __-H    [_
+	-----H____[_
+	     H
+	     H   
+lucifer
+	I have haunted the tombs of the ages,
+	  I have flown on the pinions of fear,
+	Where the smoke-belching Erebus rages;
+	  Where the jokulls loom snow-clad and drear:
+	And in realms where the sun of the desert
+	  consumes what it never can cheer.
+	
+	I was old when the pharaohs first mounted
+	  The jewel-decked throne by the Nile;
+	I was old in those epochs uncounted
+	  When I, and I only, was vile;
+	And Man, yet untainted and happy, 
+	  dwelt in bliss on the far Arctic isle.
+	
+	Oh, great was the sin of my spirit,
+	  And great is the reach of its doom;
+	Not the pity of Heaven can cheer it,
+	  Nor can respite be found in the tomb:
+	Down the infinite aeons come beating 
+	  the wings of unmerciful gloom.
+		[ Nemesis, HP Lovecraft ]
 lug
 lugh
 	Lugh, or Lug, was the sun god of the Irish Celts.  One of his
@@ -4140,6 +4528,59 @@ magic mirror of merlin
 mail d*emon
 	It is rumoured that these strange creatures can be harmed by
 	domesticated canines only.
+malcanthet
+	This statuesque beauty wears a sardonic smile on her ruby lips.
+	Curved horns jut from her brow and hold back her long dark hair
+	-and her eyes smolder with dangerous red sensuality. Large
+	leathery wings stretch from her back, the joints of which are
+	laced with razorlike claws, and a sinuous tail ending in a thin
+	curved spike completes the image of demonic beauty. She wears a
+	revealing gown of diaphanous silk and razor studded leather
+	straps.
+		[ Hordes of the Abyss,
+			by Ed Stark, James Jacobs, and Erik Mona ]
+mammon
+	The Viscount bowed low again as he accepted the
+	silver piece. He beamed another huge smile at the Lord
+	Minister and turned to leave. Almost as an afterthought,
+	he turned back. "Tell me truly, Lord Minister. Will this
+	gold you have gathered go to the one you serve?"
+	
+	The old man glared at the impertinence of the question,
+	then seemed to think the better of it. "Yes, Viscount.
+	It will go to His work. The aspects of His work which I
+	see fit to place it towards."
+	
+	The Viscount beamed and bowed yet again. "One
+	more indulgence, Gracious Father of Salvation. Could
+	you read to me a page from your Holy Writ? I have
+	always had a passion for hearing it spoken aloud. Any
+	passage will do..."
+	
+	Almost snarling, the Lord Minister yanked the book
+	from its chain and angrily opened it, tearing several
+	pages in the process.
+	
+	"No man can serve two masters. Either he will hate
+	the one and love the other, or he will be enslaved to one
+	and betray the other. One cannot serve both God and
+	Mammon."
+	
+	As the Lord Minister concluded the passage, the
+	sound of a thousand golden coins falling to the ground
+	resounded throughout the temple. The Viscount's smile,
+	now framed by a red moustache and forked beard, became
+	ugly as his teeth lengthened into golden fangs.
+		[ Dicefreaks: The Gates of Hell ]
+	
+	This massive fiend has the lower body of a brown-spotted serpent
+	and the upper body of a muscular humanoid with two large arms.
+	The creature's bestial head is terrifically monstrous, with a 
+	black-lipped maw filled with pointed teeth and a pair of serpent's
+	fangs. His eyes are pale white, without irises or pupils, yet he
+	seems to see perfectly.
+		[ Tyrants of the Nine Hells,
+			by Robin Laws and Robert Schwalb ]
 ma*annan*
 	Normally called Manannan, Ler's son was the patron of
 	merchants and sailors.  Manannan had a sword which never
@@ -4160,6 +4601,23 @@ mangler
 	 ludicrous plot, acting, and prefer bloody gore to genuine scares.
 	Runtime: 106 minutes
 		[ www.reel.com ]
+manticore
+	The manticore is a true monster, with a leonine torso and legs,
+	batlike wings, a man's head, a tail tipped with iron spikes, and
+	an appetite for human flesh.
+
+	The manticore stands 6 feet tall at the shoulder and measures 15
+	feet in length. It has a 25-foot wingspan. Each section of the 
+	manticore closely resembles the creature it imitates. The leonine 
+	torso has a tawny hide, the mane is a lion's brown-black color,
+	and the batlike wings are a dark brown with sparse hair. All 
+	manticores have heads that resemble human males; the mane
+	resembles a heavy beard and long hair.
+	
+	In combat, the manticore fires volleys of 1-6 tail spikes.
+	The spikes are coated in a paralyzing venom.
+		[ Dungeons and Dragons 2nd Edition 
+			Complete Monstrous Manual ]
 marduk
 	First insisting on recognition as supreme commander, Marduk
 	defeated the Dragon, cut her body in two, and from it created
@@ -4300,10 +4758,29 @@ melon
 	I think we ate about six each before we had done, and, poor
 	fruit as they were, I doubt if I ever thought anything nicer.
 		[ King Solomon's Mines, by H. Rider Haggard ]
+mephisto*
+	This diabolical fiend has crimson skin, massive red leathery
+	wings, curling horns, white eyes, and long, straight black
+	hair. Swathed in a flowing black cape, he is the vision of
+	evil.
+		[ Tyrants of the Nine Hells,
+			by Robin Laws and Robert Schwalb ]
 mercury
 	Roman god of commerce, trade and travellers.  He is commonly
 	depicted carrying a caduceus (a staff with two snakes
 	intertwining around it) and a purse.
+*metroid*
+	Metroids appear to be able to sense the life energy of their 
+	prey as they have no visible sensory organs.
+	
+	In their natural life cycle, Metroids gradually metamorphose
+	to take a somewhat reptilian form, growing a hard organic 
+	shell, a head, and limbs, eventually shedding their gelatinous
+	membrane completely. The shell removes their weakness to cold
+	temperatures.  The egg-laying Metroid Queen appears to be the
+	only form in which Metroids can normally reproduce, although 
+	many Metroid bioforms can divide almost instantaneously
+	when exposed to certain kinds of high-energy radiation.
 migo*
 mi-go*
 	These strange beings are visitors from another realm.  An 
@@ -4320,6 +4797,35 @@ mi-go*
 	chameleon though, which assumes the shape of another creature
 	and goes in hunt of food, the mimic waits patiently for its
 	meals to come in search of it.
+mina harker
+	I thought that I was asleep, and waiting for Jonathan to 
+	come back. I was very anxious about him, and I was powerless 
+	to act, my feet, and my hands, and my brain were weighted, 
+	so that nothing could proceed at the usual pace. And so I 
+	slept uneasily and thought. Then it began to dawn upon me 
+	that the air was heavy, and dank, and cold. I put back the 
+	clothes from my face, and found, to my surprise, that all was 
+	dim around. The gaslight which I had left lit for Jonathan, 
+	but turned down, came only like a tiny red spark through 
+	the fog, which had evidently grown thicker and poured into 
+	the room. Then it occurred to me that I had shut the window 
+	before I had come to bed. I would have got out to make certain 
+	on the point, but some leaden lethargy seemed to chain my limbs 
+	and even my will. I lay still and endured, that was all. I 
+	closed my eyes, but could still see through my eyelids. (It 
+	is wonderful what tricks our dreams play us, and how 
+	conveniently we can imagine.) The mist grew thicker and thicker 
+	and I could see now how it came in, for I could see it like 
+	smoke, or with the white energy of boiling water, pouring in, 
+	not through the window, but through the joinings of the door. 
+	It got thicker and thicker, till it seemed as if it became 
+	concentrated into a sort of pillar of cloud in the room, 
+	through the top of which I could see the light of the gas shining 
+	like a red eye.
+	[...] 
+	The last conscious effort which imagination made was to show me 
+	a livid white face bending over me out of the mist. 
+		[ Dracula, by Bram Stoker ]
 *mind flayer
 	This creature has a humanoid body, tentacles around its
 	covered mouth, and three long fingers on each hand.  Mind
@@ -4497,6 +5003,24 @@ monkey
 	where the monkeys drink; we do not go where the monkeys go;
 	we do not hunt where they hunt; we do not die where they die...."
 		[ The Jungle Book, by Rudyard Kipling ]
+mortai
+	Mortai are a mystery of the Beastlands, enigmatic creatures
+	of immense intelligence and power.  Also known as the 
+	"faces in the clouds", mortai are creatures of the air. 
+	They appear as great clouds spanning the horizon, covering 
+	miles from side to side and towering thousands of feet in 
+	the air. In fact, a basher who doesn'tknow what he's looking
+	for'll walk right under a mortai wihout even realizing that 
+	the creature is just drifting along a half mile or so over 
+	his head. Most of the time, mortai are happy to remain 
+	unnoticed, and can imitate a natural cloud perfectly. But 
+	when they want a basher to know they're present, the mortai
+	begin to pulsate with a golden glow, crackling with immense
+	power like a lightning storm. When a mortai reveals itself
+	this way, great faces of wisdom and beauty begin to appear
+	on the surface of its clouds.
+		[ Adapted from Dungeons and Dragons 2nd Edition 
+			Complete Monstrous Manual ]
 mumak*
 	... the Mumak of Harad was indeed a beast of vast bulk, and
 	the like of him does not walk now in Middle-Earth; his kin
@@ -4586,6 +5110,15 @@ neferet the green
 	translocation.  It is further rumored that when she was an
 	apprentice herself, she accidentally turned her skin green, and
 	has kept it that way ever since.
+neverwas
+	You weren't there. In the final days of the war. You never saw 
+	what was born. But if the time lock's broken then everything is 
+	coming through. Not just the Daleks, but the Star of 
+	Degradations. The Horde of Travesties. The Nightmare Child. The 
+	Could-Have-Been King with his army of Meanwhiles and Neverweres. 
+	The war turned into hell! And that's what you've opened. Right 
+	above the Earth. Hell is descending.
+		[ Dr. Who, The End of Time (Part Two) ]
 newt
 	(kinds of) small animal, like a lizard, which spends most of
 	its time in the water.
@@ -4624,6 +5157,29 @@ ninja-to
 		[ The Encyclopedia of Myths and Legends of All
 			Nations by Herbert Spencer Robinson and Knox
 			Wilson ]
+nightgaunt
+night*gaunt
+	Suddenly, without a warning sound in the dark, Carter felt 
+	his curved scimitar drawn stealthily out of his belt by some
+	unseen hand. Then he heard it clatter down over the rocks 
+	below. And between him and the Milky Way he thought he saw 
+	a very terrible outline of something noxiously thin and horned
+	and tailed and bat-winged. Then a sort of cold rubbery arm 
+	seized his neck and something else seized his feet, and he was 
+	lifted inconsiderately up and swung about in space. Another 
+	minute and the stars were gone, and Carter knew that the 
+	night-gaunts had got him. 
+	
+	[They] were indeed shocking and uncouth black things with smooth,
+	oily, whale-like surfaces, unpleasant horns that curved inward 
+	toward each other, bat wings whose beating made no sound, ugly 
+	prehensile paws, and barbed tails that lashed needlessly and 
+	disquietingly. And worst of all, they never spoke or laughed, 
+	and never smiled because they had no faces at all to smile with, 
+	but only a suggestive blankness where a face ought to be. All 
+	they ever did was clutch and fly and tickle; that was the way 
+	of night-gaunts. 
+		[ The Dream Quest of Unknown Kadath by HP Lovecraft ]
 nunchaku
 	A Japanese flail.
 *nymph
@@ -4724,6 +5280,10 @@ olog-hai
 	Twilight they could endure the Sun....  They spoke little,
 	and the only tongue they knew was the Black Speech of Barad-dur.
 		[ The Return of the King, by J.R.R. Tolkien ]
+oona
+	The Morwel is the queen of the Eladrin.
+	The Morwel has always been queen.
+	The Eladrin took no side in the war of Law and Chaos.
 oracle
 delphi
 p*thia
@@ -4749,6 +5309,32 @@ pear
 	can't find out what it is like unless you can get to that
 	country and taste it for yourself.
 		[ The Last Battle, by C.S. Lewis ]
+phantom fungus
+	A phantom fungus is a tripedal carnivorous plant that roams the
+	vast and deep underground caverns of the world. It wanders in
+	search of food, using its rootlike feet to detect movement along
+	the cavern floors and the sensitive tendrils surrounding its
+	mouth to pinpoint prey.
+	
+	The maw with which a phantom fungus attacks prey is lined with
+	row upon row of sharp, jagged teeth that resemble pointed rocks
+	more than actual fangs. This "mouth" is not used to feed, however,
+	and does not attach to a digestive tract-it is nothing more than
+	a gaping natural weapon. When a phantom fungus feeds, it does so
+	by squatting down on its prey and infesting the corpse with
+	thousands of feeding filaments that burrow through dead flesh to
+	siphon away nutrients.
+		[ Pathfinder RPG ]
+polymorph trap
+	One morning, as Gregor Samsa was waking up from anxious dreams,
+	he discovered that in bed he had been changed into a monstrous 
+	verminous bug. He lay on his armour-hard back and saw, as he 
+	lifted his head up a little, his brown, arched abdomen divided 
+	up into rigid bow-like sections. From this height the blanket, 
+	just about ready to slide off completely, could hardly stay in 
+	place. His numerous legs, pitifully thin in comparison to the 
+	rest of his circumference, flickered helplessly before his eyes.
+		[ The Metamorphosis, by Franz Kafka, translated by Ian Johnston ]
 pyrolisk
 	At first glance around the corner, I thought it was another 
 	cockatrice. I had encountered the wretched creatures two or
@@ -4813,6 +5399,17 @@ orc*
 	hunting for them.  There is nothing a horde of orcs cannot
 	use.
 		[ het Boek van de Regels; Het Oog des Meesters ]
+orihalcyon gauntlet*
+orihalcyon bracer*
+orichalcum gauntlet*
+	"I'm sick of fighting mages on this job. First I get frizzed
+	by the Shak'nai's boyfriend. Then a ditzy brunette knocks me
+	about with wards half a day. She didn't even have the book
+	anymore!
+	
+	"This time I'm prepared! These orihalcyon bracers will absorb
+	any spell you throw at me!"
+		[ Bookwyrms, by Charles Crawford ]
 orion
 sirius
 	Orion was the son of Neptune. He was a handsome giant and a
@@ -4870,6 +5467,15 @@ owlbear
 	the name might already suggest, owlbears are a cross between
 	a giant owl and a bear.  They are covered with fur and
 	feathers.
+pale night
+	A strange shimmering in the air announces the arrival of a
+	shape, little more than a billowing white diaphanous sheet.
+	Closer inspection reveals a writhing, seductive form beneath
+	the sheet, indistinct and hazy. Now and then the edges of 
+	the sheet rise a little too high on the netherwind, yet
+	never enough to reveal the details that lie beyond.
+		[ Adapted from Hordes of the Abyss,
+			by Ed Stark, James Jacobs, and Erik Mona ]
 panther
 	And lo! almost where the ascent began,
 	A panther light and swift exceedingly,
@@ -4880,6 +5486,25 @@ panther
 	That many times I to return had turned.
 		[ Dante's Inferno, as translated
 			by Henry Wadsworth Longfellow ]
+partisan
+vulg?r polearm
+	Originally this weapon was a spear with small double
+	axe blades added below it. While the main blade retains
+	the same shape as a wide spearhead, the side blades 
+	bare only a passing similarity to the axe blaes they
+	were in ages past. Frequently merely ceremonial now,
+	these weapons are from nine to ten feet long (2.7 to
+	3 meters).       
+	   
+	   ,^.
+	   | |
+	   | |
+	   | | 
+	 . | | .
+	< ~   ~ >
+	 \     /
+	  \_ _/
+	    H
 PDP-*
  		:PDP-10:
  		[Programmed Data Processor model 10] n. The machine that
@@ -5131,6 +5756,7 @@ poseido*n
 	preservative instinct of the race is to be unscientific --
 	and without science we are as the snakes and toads.
 		[ The Devil's Dictionary, by Ambrose Bierce ]
+~elder*
 priest*
 * priest*
 acolyte
@@ -5150,6 +5776,28 @@ acolyte
 	there may well be wonderful universes above us where reason is
 	utterly unreasonable?"
 		[ The Innocence of Father Brown, by G.K. Chesterton ]
+elder priest
+	From Leng, where rocky peaks climb bleak and bare
+	Under cold stars obscure to human sight,
+	There shoots at dusk a single beam of light
+	Whose far blue rays make shepherds whine in prayer.
+	They say (though none has been there) that it comes
+	Out of a pharos in a tower of stone,
+	Where the last Elder One lives on alone,
+	Talking to Chaos with the beat of drums.
+	
+	The Thing, they whisper, wears a silken mask
+	Of yellow, whose queer folds appear to hide
+	A face not of this earth, though none dares ask
+	Just what those features are, which bulge inside.
+	Many, in man's first youth, sought out that glow,
+	But what they found, no one will ever know.
+		[ H. P. Lovecraft, Fungi from Yuggoth XXVII. ]
+
+	'the elder priest of Moloch is a contender for the title of second
+	most dangerous monster in dnethack' my ass, he's the SINGLE MOST
+	DANGEROUS MONSTER THAT HAS EVER GRACED A PC SCREEN
+		[ Amy after her legendary death on dnethack's sanctum. ]
 prisoner
 	Where am I?
 		In the Village.
@@ -5237,6 +5885,12 @@ quetzalcoatl
 	he had to leave his empire. ...  But all the legends of
 	Quetzalcoatl unanimously agree that he promised to come again.
 		[ Gods, Graves, and Scholars, by C. W. Ceram ]
+quickling
+	A blur of color and a hint of movement are the only clues most 
+	people have of the existence of the quickling. Great speed and 
+	small size make it difficult to find and focus on these swift 
+	beings.
+		[ ADOM, by Thomas Biskup ]
 quit*
 	Maltar: [...]  I remembered a little saying I learned my first
 	day at the academy.
@@ -5246,6 +5900,15 @@ quit*
 	cast into the flaming pit of death.
 		[ Snow Day, directed by Chris Koch,
 		  written by Will McRobb and Chris Viscardi ]
+ragnarok
+	Let's Ragnarok!
+		[ Elona, when Whom Dwell In The Vanity's sword attacks. ]
+
+	Ragnarok is a rare event indeed, but when it happens, floor and
+	walls alike are turned to lava, and the world is overrun by
+	giants, dragons, devils and other terrible beasts. Etherwind will
+	also start to blow, gradually weakening any adventurers foolish
+	enough to stay around and try to fight the savage hordes.
 raijin
 raiden
 	The god of thunder.
@@ -5276,6 +5939,14 @@ ranseur
 	caught weapon or disarm its wielder. Additionally, the side 
 	projections provide both a means of holding an opponent at long 
 	range or of pulling mounted opponents off their steed.
+	   
+	    A
+	    H
+	    H
+	    H
+	    T
+	 -=ZZZ=- 
+	    H
 rat
 * rat
 	Rats are long-tailed rodents.  They are aggressive,
@@ -5299,6 +5970,26 @@ raven
 	On the morrow *he* will leave me, as my hopes have flown before.'
 		Then the bird said, 'Nevermore.'
 				[ The Raven - Edgar Allan Poe ]
+razorvine
+razor vine
+	Razorvine's a fact of life in Sigil and on some of the Lower
+	Planes. It's a black-leaved creeper or ivy with an exceptionally
+	sharp-edged stem hidden under the lush foliage. The plant's
+	capable of surviving almost any conditions, and flourishes in
+	most environments - regardless of the quality of the soil, atmos-
+	phere, rainfall, or light. Razorvine can grow several feet in a 
+	single day, and can cover a small building or untended wall in
+	a week. There are few creatures as can stomach razorvine, so
+	its growth is often unimpeded by natural means.
+	
+	Merchants and other cutters interested in extra security have 
+	been bringing razorvine cuttings with them to the Outlands,
+	planting the vines on whatever they wanted kept safe, and then
+	learning just how virulent ravorvine growth really is. Chant is
+	they recently had a sod drawn and quartered in Ribcage for trying
+	to smuggle cuttings in after they'd just finished clearing the
+	town of the stuff.
+		[ Planescape Monstrous Compendium II, by Rich Baker ]
 *ring
 ring of *
 	Three Rings for the Elven-kings under the sky,
@@ -5576,6 +6267,41 @@ shark
  		[ Close to Shore, by Michael Capuzzo ]
 shito
 	A Japanese stabbing knife.
+*shoe*
+*heel*
+	"I love high heels because they empower me. All of a sudden
+	my posture is perfect and I feel on top of the world.
+	Ain't no heel high enough!"
+	Standing 5-foot-4, her highest heel is 7 inches.
+	"But they have a platform and a wedge heel
+	so my feet are balanced."
+		[ Crissi Giamos, a self-confessed heelaholic ]
+
+	No, Amy certainly doesn't have a foot fetish, she just likes
+	high heels and therefore puts dozens upon dozens of them into
+	SLEX :D There is a high heels skill in the game. It is trained
+	by moving around wearing high heels, and will add armor class
+	and charisma while also making it harder to fumble. Very
+	skilled characters will even receive a nice speed boost.
+
+	Shoe monsters also exist; after all, female shoes aren't just
+	mere objects, but self-willed sentient beings that can move
+	around on their own, talk, and kick people. Hostile ones can
+	be rather dangerous. Tame ones are just awesome and can also
+	be ridden. And some adventurers even manage to polymorph into
+	a shoe, lay eggs, and thereby obtain a couple tame shoes after
+	unpolymorphing!
+
+	SLEX divides wearable shoes into several categories: flats,
+	wedge heels, block heels, cone heels and stilettos. Usually
+	the item description will say which kind it is. If both the
+	random appearance and the base item type are of different types
+	of high heel, the one later in the above list will be used; e.g.
+	if the pair is reported as both wedge heels and stilettos, the
+	game will count it as stilettos. Wearing any pair of heels while
+	restricted in the skill can give a nasty side effect depending
+	on the type of heels, while being very skilled gives a specific
+	benefit instead.
 *shoggoth
 *shuggoth
 	"... in the place of utter blasphemy, the unholy pit where 
@@ -5795,6 +6521,22 @@ javelin
 	hands," he advised.  "Otherwise, I shouldn't be surprised if
 	they blistered."
 		[ The Book of Three, by Lloyd Alexander ]
+spetum
+forked polearm
+	This polearm has a thin spearhead with two angled dagger-
+	type blades at about 45 degrees. They can be used to attack, 
+	block, or hold an oppenent at bay. Unfortunately, they can't
+	do any of those tasks excedingly well. This weapon is
+	nine to ten feet long (2.7 to 3 meters).
+	   
+	    A
+	    H
+	    H
+	    H
+	 \  H  /
+	  \\H// 
+	   \H/
+	    H
 giant spider
 *spider
 	Eight legged creature capable of spinning webs to trap prey.
@@ -5845,6 +6587,16 @@ spork*
 	play the one she picked for the rest of her life, she'd absolutely
 	pick FIQhack, even though she dislikes FIQhack too, for different
 	reasons.
+sprow
+	A droven punishment form combining the worst aspects of humanoids 
+	and spiders. Sprow combine the head and torso of a drow with the 
+	limbs of a spider. This form is typically inflicted on drow 
+	novices who see spiders as holy creatures worthy of worship, 
+	rather than as allegories and useful tools. It may also be 
+	inflicted on young drow who boast about their cunning to others.
+	Unlike driders, sprow are too weak to survive alone and are not 
+	driven out of the droven cities, instead being used as 
+	slave-laborers or beasts of burden.
 shelob
 	...Great horns she had,  and behind her short stalk-like neck
 	was her huge swollen body, a vast bloated bag, swaying  and
@@ -5875,6 +6627,15 @@ spell
 	against which you cannot prepare a perfect defense.
 					--Human aphorism
 		[ The Dosadi Experiment, by Frank Herbert ]
+squeaky board
+	A floorboard creaked. Galder had spent many hours tuning them,
+	always a wise precaution with an ambitious assistant who walked
+	like a cat.
+	D flat. That meant he was just to the right of the door.
+	"Ah, Trymon," he said, without turning, and noted with some
+	satisfaction the faint indrawing of breath behind him. "Good
+	of you to come. Shut the door, will you?"
+		[ The Light Fantastic, by Terry Pratchett ]
 ~*aesculapius
 *staff
 	So they stood, each in his place, neither moving a finger's
@@ -5928,6 +6689,15 @@ star vampire
 	life energy and blood into itself.  It is said that they
 	become briefly visible just after they have eaten and that
 	this is such a terrible sight it can drive a mortal insane.
+*stalker
+	The invisible stalker is a creature from the elemental plane of
+	Air. Those encountered on the Prime Material plane have almost
+	always been summoned by wizards to fulfill a specific task. 
+	The true form of the invisible stalker is unknown. On the Material,
+	Astral, or Ethereal planes, the invisible stalker can only be
+	perceived as a shimmering air mass which looks much like the
+	refraction effect caused by hot air passing in front of cold.
+		[ Monstrous Manual, by TSR inc. ]
 ~statue trap
 statue*
 	Then at last he began to wonder why the lion was standing so
@@ -6018,7 +6788,27 @@ strong kanegou
 
 	He's a relatively low-level monster, meaning he can appear early,
 	and he hits like a truck in melee. Fight him at range if possible.
-superman
+sunflower
+	A single species of plant evenly dispersed across the land, 
+	from here to the infinity-horizon. Each plant had a single blossom,
+	and each blossom turned to follow Louis Wu as he dropped. A 
+	tremendous audience, silent and attentive.
+	
+	He landed and dismounted beside one of the plants. The plant stood
+	a foot high on a knobbly green stalk. Its single blossom was as big
+	as a large man's face. The back of that blossom was stringy, as if
+	laced with veins or tendons; and the inner surface was a smooth
+	concave mirror. From its center protruded a short stalk ending in
+	a dark green bulb.
+	
+	All the flowers in sight watched him. He was bathed in the glare.
+	Louis knew they were trying to kill him, and he looked up somewhat
+	uneasily; but the cloud cover held.
+	
+	"You were right," he said, speaking into the intercom. "They're 
+	Slaver sunflowers. If the cloud cover hadn't come up, we'd have
+	been dead the instant we rose over the mountains."
+*superman
 	"FEAR ME!!!"
 
 	Invincible supermans (sic) are terrible creatures. They look a bit
@@ -6035,6 +6825,12 @@ susano*o
 		[ Encyclopedia of Gods, by Michael Jordan ]
 tanko
 	Samurai plate armor of the Yamato period (AD 300 - 710).
+tariru
+	He's the official SLEX world champion. He played a single game on the
+	hardfought server and ascended right away. Some people have suspected
+	him to be an alternate identity of Amy, but that's just speculation.
+	Tariru also did a 61-win streak in vanilla NetHack and various streaks
+	in other variants including dnethack.
 tengu
 	The tengu was the most troublesome creature of Japanese
 	legend.  Part bird and part man, with red beak for a nose
@@ -6187,6 +6983,17 @@ tourist
 	Twoflower was a tourist, the first ever seen on the discworld.
 	Tourist, Rincewind had decided, meant "idiot".
 		[ The Colour of Magic, by Terry Pratchett ]
+tove
+	'Twas brillig, and the slithy toves
+	Did gyre and gimble in the wabe;
+	All mimsy were the borogoves,
+	And the mome raths outgrabe.
+		[ Jabberwocky, by Lewis Carroll ]
+		
+	Something like badgers - 
+	they're something like lizards - 
+	and they are something like corkscrews.
+		[ Through the Looking Glass, by Lewis Carroll ]
 towel
 Ravenous Bugblatter Beast Of Traal
 	The Hitchhiker's Guide to the Galaxy has a few things to say
@@ -6460,6 +7267,17 @@ uruk*hai
 	Ugluk. I have spoken."
 
 	[ The Return of the King, by J.R.R. Tolkien ]
+uvuudaum
+	Strange creatures with long, claw-tipped tentacles in place
+	of heads, Uvuudaums hail from a far realm beyond the known
+	planes. It is said that they are the lords of those realms,
+	although evidence for this is thin at best. As with all
+	supposed facts about that place, that claim is more likely
+	a gross anthropomorphism, if not an outright falsehood.
+	The merest glipse of their form drives men mad, and they 
+	are capable of crushing a man's head with a single flick 
+	of their headspikes. Even if the victim escapes this fate,
+	their long spikes run with strange venoms. 
 valkyrie
 * valkyrie
 	The Valkyries were the thirteen choosers of the slain, the
@@ -6493,6 +7311,20 @@ VAX
  		noted for its large,assembler-programmer-friendly instruction set
  		--- an asset that became a liability after the RISC revolution.
  		[ The Jargon File, version 3.0.0 ]
+victorian underwear
+	The Victorian woman wore an extraordinary amount of 
+	underwear. The basic items consisted of chemise, drawers, 
+	corset and several petticoats. In general, these main 
+	garments remained throughout the period, but new ones were
+	added (and taken away, too), including crinolines, bustles,
+	corset covers and combinations.
+		[ An Overview of Underwear,  Ladies Treasury 2003 ]
+	
+	-Elizabeth, how's it coming?
+	-It's difficult *gasps* to say.
+	-I'm told it's the latest fashion in London.
+	-Well, women in London must have learnt to not breathe.
+		[ Pirates of the Caribbean ]
 vogon
 vogon lord
  		                                     [...] Billions of years ago
@@ -6554,6 +7386,15 @@ voulge
 	the enemy at a distance in its basic model, but with the top 
 	front or back edge is ground down so as to provide a pointed, 
 	dagger-like tip, the weapon assumes a more complete form.
+	      /\
+	     /  \
+	     |   \
+	    Z[   |
+	    H|   |
+	    H|   |
+	    H|   |
+	    Z[__-'
+	    H
 vrock
 	The vrock is one of the weaker forms of demon.  It resembles
 	a cross between a human being and a vulture and does physical
@@ -6647,7 +7488,46 @@ web
 	Oh what a tangled web we weave,
 	When first we practise to deceive!
 		[ Marmion, by Sir Walter Scott ]
+weeping *angel
+	Lonely assassins they used to be called. No one quite knows
+	where they came from, but they're as old as the universe. Or
+	very nearly, and they have survived this long because they
+	have the most perfect defense system ever evolved. They're
+	quantum locked. They don't exist when they're being observed,
+	in the moment they are seen by any other living creature
+	they freeze into rock. No choice, it's a fact that their
+	biology, in the sight of any other living thing they literally
+	turn to stone. And you can't kill a stone. 'Course a stone
+	can't kill you either, but then you turn your head away.
+	Then you blink. And oh yes it can.
+		[ Doctor Who, "Blink" ]
+	
+	"This whole book, it's a warning about the weeping angels, so
+	why no pictures? Why not show us what to look out for?"
+	"There was a bit about images. What was that?"
+	"Yes. Hang on.... 'That which holds the image of an angel
+	becomes itself an angel.'"
+		[ Doctor Who, "The Time of Angels" ]
+
+	"The weeping angel is zapping wand of digging!"
+		[ Unnethack ]
 # werecritter -- see "lycanthrope"
+*whistle
+	There were legends both on the front and on the back of the 
+	whistle. The one read thus:
+
+	FLA FUR BIS FLE The other: QUIS EST ISTE QUI VENIT 
+	'I ought to be able to make it out,' he thought; 
+	'but I suppose I am a little rusty in my Latin. 
+	When I come to think of it, I don't believe I even 
+	know the word for a whistle. The long one does seem 
+	simple enough. It ought to mean, "Who is this who is coming?" 
+
+	Well, the best way to find out is evidently to whistle 
+	for him.'
+
+		[Ghost Stories of an Antiquary, by Montague Rhodes James
+		 'Oh, Whistle, and I'll Come to You My Lad']
 *wight
 	When he came to himself again, for a moment he could recall
 	nothing except a sense of dread.  Then suddenly he knew that
@@ -6757,6 +7637,25 @@ xan
 	he flew along the row stinging all the seated men until he
 	knew the names of all twelve.
 			[ Popul Vuh, as translated by Ralph Nelson ]
+xnethack*
+aosdict
+	XNETHACK SPONTANEOUSLY UPDATES ITS VERSIONS AND BREAKS YOUR SAVE
+		[ aosdict, after Amy lost a far-progressed game ]
+
+	Yet another NetHack variant, this time one based upon 3.6.0.
+	Which is itself a variant :D Anyway, xnethack could be renamed
+	to doorhack, because it adds "funny" door traps of many flavors,
+	including one that makes your stuff wet and with laser-point
+	accuracy will blank the scroll of genocide and dilute the potion
+	of full healing. It also does the terrible thing of changing the
+	colors and glyphs of a bunch of monsters, as well as the ones of
+	certain other things, because its goal is to confuse the player.
+
+	When looking at the xnethack to-do list or aosdict's development
+	blog, it becomes obvious that this is quite the ambitious
+	variant. But Amy will forever be annoyed that on the first
+	officially released version, her post-Medusa save was suddenly
+	wiped when an unnecessary version update happened.
 xorn
 	A distant cousin of the earth elemental, the xorn has the
 	ability to shift the cells of its body around in such a way
@@ -6806,3 +7705,23 @@ yumi
 zruty
 	The zruty are wild and gigantic beings, living in the
 	wildernesses of the Tatra mountains.
+zuggtmoy
+	This foul demoness resembles a human only from the torso
+	up. This portion of her body is composed of thick rancid
+	sheets and coils of fungus that just happens to have grown
+	into the shape of what would otherwise be an attractive
+	woman. Four fibrous antlers grow from her brow, and her
+	hands bear cruel talons. Her lower torso is a coiling
+	pillar of lashing ropy tendrals and other fungus growths.
+	Her skin is a nauseating swirl of grays, blues, purples,
+	and blacks.
+		[ Hordes of the Abyss,
+			by Ed Stark, James Jacobs, and Erik Mona ]
+3.6*
+	A variant of NetHack, which is called "NetHack 3.6.0"
+	(or 3.6.1 or <insert other number here>), and which plays quite
+	differently from vanilla. It was released after 3.4.3 had been the
+	official version for over a decade, and thus it was no wonder that
+	it led to a broken base. Amy is firmly in the 3.4.3 camp,
+	of course - after all, SLASH'EM is a 3.4.3 variant. Yet, she did
+	manage to ascend 3.6.0.
