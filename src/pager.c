@@ -2268,6 +2268,19 @@ static NEARDATA const char * const hussylines[] = {
 "They can do whatever they want to try to protect the diamonds. We'll steal them anyway.",
 "Player 1, if we capture you, you'll never be released. And you'll have to smell the worn socks of me and all the other hussies.",
 "Us Hussies don't kill our victims. We capture them alive so we can torture them for an unspecified amount of time.",
+"What? Intruders in the branch office? We'll dispatch a team to take care of them!",
+"Hahaha, look at that puny gang scholar struggling against the bang gangers.",
+"I always use drum stint reluctance brand perfume. It's very powerful, Player 1 will definitely become unconscious from smelling it! Hahaha!",
+"Oh, I found Player 1's stash. I'll put a particularly large log of shit on it.",
+"We need more perfume! That gang scholar must definitely be knocked out by the scent!",
+"Maybe we can hire some additional hussies? After all, there's a gang scholar on the loose who wants to steal our source of power...",
+"I'll ruin that stupid wall that the damn superschool speaker set up to 'protect' his diamonds. No one's looking, and I'll just kick the wall repeatedly until it breaks down.",
+"Hans Walt the 'superschool speaker' can suck it! He's only one man, and we're a lot of hussies! We'll steal all of his diamonds!",
+"Hahaha, I found another one of Walt's 'diamond protection' walls. I'll produce very beautiful farting noises and direct the gas at the wall, which will probably destroy it. And then the diamonds are mine.",
+"I just got done putting heaps of shit in particularly devious places on various dungeon levels. That silly gang scholar will definitely step into every other one. Ha ha ha...",
+"Oh, one of Hans Walt's 'guards' just crossed my path! That stupid guy will get to smell my wonderful female socks now and be knocked out by the lovely odor.",
+"Player 1, prepare to get your butt kicked by me.",
+"I'll kick your ass in a very female way.",
 };
 
 static NEARDATA const char * const bangganglines[] = {
@@ -2290,6 +2303,13 @@ static NEARDATA const char * const bangganglines[] = {
 "Message to Player 1: you will not escape this time.",
 "We will steal that gang scholar's lunch money.",
 "I'm going to steal Player 1's cape! They won't be able to stop me.",
+"We are under attack! Quick, everyone, get your guns ready!",
+"Anna will help us by making sure no gang scholars will get far!",
+"That gang scholar will never make it to level 100. Anna's source of power is absolutely safe.",
+"Player 1, I know where you are, and I'm coming to kill you with my assault rifle!",
+"Ah, perfect. Player 1 is on the same dungeon level that I'm on. I'll camp behind a wall with my shotgun and shoot them when they appear.",
+"Player 1, you know that you're a single person fucking with an entire gang. You don't stand a chance in hell, you moron!",
+"Listen up, player 1. It's going on your grave: The Bang Gang kills you.",
 };
 
 static NEARDATA const char * const hussylines_specific[] = {
@@ -2306,6 +2326,18 @@ static NEARDATA const char * const hussylines_specific[] = {
 "I'm waiting on level %d. Maybe Player 1 makes the mistake to show their face there, and then I'll bind and gag them.",
 "Level %d is the last level that gang scholar's ever going to see, for if they enter, we'll immediately knock them out and lock them in a closet.",
 "I'm reading scrolls of girliness on level %d, summoning girls that will stop the gang scholar in their tracks!",
+"Our branch office on level %d is under attack! Let's go girls, we'll use our scentful perfume to repel the attackers!",
+"Good thing the bang gang secured level %d, so us hussies can fortify other dungeon levels.",
+"If the gang scholar wants to tackle our source of power, they'll have to get past level %d and our concentrated perfume attacks will put Player 1 out of business for good.",
+"Let's spawn a couple dozen drum stint reluctances on level %d, then Player 1 will be knocked out instantly upon going there!",
+"Hahaha, there's one of that Walt guy's diamond hiding places on level %d, and it's completely unguarded! I'll kick that pinata repeatedly with my female footwear until it breaks open, and then I'll steal everything!",
+"Hey girls, that smartass Hans Walt set up some of his no-good guards on level %d. Let's perform a concentrated attack on them and steal all the diamonds that we can get.",
+"I triggered an alarm on level %d! That can only mean one thing: the superschool speaker has hid some diamonds there, and they're waiting to be stolen by me! Now I just have to break this stupid wall by kicking it with my female shoes...",
+"Hey, I've found what is probably diamonds on level %d. I'll test whether Walt's silly wall can be destroyed with farting gas.",
+"Some gang scholar apparently left behind a couple possessions on level %d, and in order to deter any other gang scholars that might want to grab it, I'll crap a huge log of shit on the stuff.",
+"I just produced a dozen heaps of shit on level %d! That gang scholar's shoes will be so totally ruined from stepping into them, hahahahahahaha...",
+"Yay, I just incapacitated one of the superschool speaker Walt's 'guard' dudes on level %d! The idiot just couldn't resist inhaling my worn, odorous girl socks for over half an hour, and finally he fell down unconscious!",
+"If Player 1 shows up on level %d, they will be humiliated in a very female way by receiving ass kicks from my soft footwear.",
 };
 
 static NEARDATA const char * const bangganglines_specific[] = {
@@ -2327,6 +2359,12 @@ static NEARDATA const char * const bangganglines_specific[] = {
 "Let's put the corpses of that gang scholar's friends on sticks and display them on level %d as a deterrent.",
 "Hey, I got a wand of create horde! I'll just summon a huge bunch of monsters on level %d to impede Player 1's progress!",
 "I've put lots of summon monster traps on level %d. If we can stall that gang scholar for long enough, Anna herself will be able to intervene and ensure our victory!",
+"Distress on level %d! Boss, send all available troops or we'll have to surrender our positions!",
+"Level %d is too insecure! What if Player 1 shows up there? Our positions must be fortified before it's too late!",
+"Intruder sighted on level %d! I'll open fire with my gun!",
+"Guys, look on the radar! The gang scholar will enter level %d shortly, and we must be ready to kill them!",
+"Okay, player 1, level %d will be your grave. You have no chance to survive the death trap we've set up.",
+"You're fated to die on level %d, puny 'gang scholar'. Our trap is insidious, yet devastating, and your death will be swift and painful!",
 };
 
 static NEARDATA const char * const bangganglines_femaleonly[] = {
@@ -2344,6 +2382,20 @@ static NEARDATA const char * const bangganglines_femaleonly[] = {
 "Player 1 shall be bludgeoned by me today!",
 "I'll use my female hugging boots to stomp any and all gang scholars.",
 "Good thing that the gang scholar's equipment is so much inferior to my female winter boots.",
+"Some no-good bastard is attacking me! I'll break that asshole's leg!",
+"I've found Player 1's stash. Come over girls, let's break that stupid chest by repeatedly kicking it with our winter boots.",
+"Stupid gang scholar, your legs can't endure my female kicks!",
+"Message to Player 1: my female girl boots will be the last thing you see, because I'll kick you to death with them.",
+"You complete idiot, Player 1! You can't defeat all the Bang Gang Girls!",
+"That Player 1 idiot probably thinks just because I'm a girl, I can't fight. They'll eat their own words once I crush their body underneath my boots!",
+"No gang scholar can survive the attacks of my female hugging boots!",
+"In the case of doubt I'll knee you in the nuts and then stomp your face with my female winter boots when you're down!",
+"I can kick very painfully with my cute-looking girl boots, and will use them to knock you out!",
+"My high heels will scratch that gang scholar's legs!",
+"Player 1, now I'm really angry at you! I'll split your damn skull with my high heels!",
+"It will be fun to stomp you with my high-heeled lady shoes.",
+"All of your body parts will successively be crushed underneath my high heels.",
+"The blood will flow like rivers from your legs once my very sharp-edged high heels are done scratching them open.",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
