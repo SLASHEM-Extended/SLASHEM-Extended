@@ -2505,6 +2505,12 @@ boolean wakeup_msg;
 {
 	stop_occupation();
 	nomul(how_long, "sleeping", TRUE);
+
+	if (isevilvariant) {
+		pline("Ouch! You crash into the %s.", surface(u.ux,u.uy));
+		losehp(rn1(3,3), "slapping to the floor", KILLED_BY);
+	}
+
 	/* generally don't notice sounds while sleeping */
 	if (wakeup_msg && multi == how_long) {
 	    /* caller can follow with a direct call to Hear_again() if

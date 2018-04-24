@@ -4450,6 +4450,12 @@ dozap()
 		return 0;
 	}
 
+	if (isevilvariant && !freehandX()) {
+		You("have no free %s and therefore cannot zap wands!", body_part(HAND));
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
+
 	if(check_capacity((char *)0)) return(0);
 	obj = getobj(zap_syms, "zap");
 	if(!obj) return(0);

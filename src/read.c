@@ -2489,6 +2489,13 @@ register struct obj	*sobj;
 
 	}
 
+	if (isevilvariant && (ABASE(A_INT) < rnd(8))) {
+	    pline("Due to your stupidity, you fail to read the scroll correctly!");
+	    make_confused(HConfusion + 2, FALSE);
+	    confused = 1;
+
+	}
+
 	if (sobj->otyp == SCR_COPYING) {
 
 		struct obj *wonderscroll;
