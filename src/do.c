@@ -1894,10 +1894,37 @@ boolean at_stairs, falling, portal;
 
 		if (In_swimmingpool(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* jewelry and stuff */
 			pline("Your %s tingles and you smell the presence of treasure hidden inside the water tunnels.", body_part(NOSE));
+
+#ifdef RECORD_ACHIEVE
+
+			if (!achieveX.swimmingpool_cleared) {
+
+				achieveX.swimmingpool_cleared = TRUE;
+				if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+				if (RngeTeamSplat) pline("TROPHY GET!");
+
+				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+					u.uhpmax += 10;
+					u.uenmax += 10;
+					if (Upolyd) u.mhmax += 10;
+					pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+				}
+			}
+
+#ifdef LIVELOGFILE
+			livelog_achieve_update();
+			livelog_report_trophy("reached the bottom of the Swimming Pools");
+#endif
+#endif
+
 		}
 
 		if (In_mainframe(&u.uz) && (dunlev(&u.uz) == 1) ) {
 			(void) makemon(&mons[PM_BOFH], 0, 0, NO_MM_FLAGS);
+		}
+
+		if (In_hellbathroom(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
+			(void) makemon(&mons[PM_EROGENOUS_KATIA], 0, 0, NO_MM_FLAGS);
 		}
 
 		if (u.gottenbones) { /* evil patch idea by jonadab - spawn monsters if a bones file loads */

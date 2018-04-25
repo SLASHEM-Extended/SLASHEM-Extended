@@ -14179,6 +14179,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"leave the f-Kotz-Rotz in peace! It allied itself straight with me and us an army of 200000 soldiers gave!",
 	"that was the Chronobombe! Now the atom bombs of stones are and the enemy its soldiers are stupid homines erecti!",
 	"Hae? I have none. And if I one haett, wuerd they in the steinzeit do not live. The Sumeerer makes you now however cold, you!",
+	"LarienTelrunya thinks that playing shimo style means participating in junethack and playing only samurai.",
+	"When I asked bhaak about adding new slex trophies to junethack, he said: give me some simple bits to check, give me some trophy pics and I'll add a trophy for getting Trump's dick to rise.",
 
 };
 

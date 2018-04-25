@@ -9326,6 +9326,12 @@ register struct	monst	*mtmp;
 		(void) mongets(mtmp, SCR_ENRAGE);
 	}
 
+	if (ptr == &mons[PM_EROGENOUS_KATIA]) {
+
+		mtmp->crapbonus = 50;
+
+	}
+
 	if (ptr == &mons[PM_SIMONE]) {
 
 		mtmp->fartbonus = 2;

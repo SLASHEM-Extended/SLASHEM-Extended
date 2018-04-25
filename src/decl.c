@@ -347,6 +347,7 @@ char *fqn_prefix_names[PREFIX_COUNT] = { "hackdir", "leveldir", "savedir",
 
 #ifdef RECORD_ACHIEVE
 struct u_achieve achieve = DUMMY;
+struct u_achieveX achieveX = DUMMY;
 #endif
 
 #if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)

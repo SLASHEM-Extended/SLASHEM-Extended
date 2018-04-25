@@ -2281,6 +2281,7 @@ abon()		/* attack bonus for strength & dexterity */
 	if (!rn2(2) && u.medusaremoved) sbon += 1;
 	if (!rn2(5) && u.luckstoneget) sbon += 1;
 	if (!rn2(5) && u.sokobanfinished) sbon += 1;
+	if (!rn2(5) && u.deepminefinished) sbon += 1;
 	if (!rn2(5) && u.ulevel > 10) sbon += 1;
 	if (!rn2(5) && u.ulevel > 17) sbon += 1;
 	if (!rn2(5) && u.ulevel > 23) sbon += 1;
@@ -3995,6 +3996,7 @@ struct obj *weapon;
 	if (!rn2(4) && u.medusaremoved) bonus += 1;
 	if (!rn2(15) && u.luckstoneget) bonus  += 1;
 	if (!rn2(15) && u.sokobanfinished) bonus += 1;
+	if (!rn2(15) && u.deepminefinished) bonus += 1;
 
 	/* damage bonus for using racial equipment */
 

@@ -1814,6 +1814,11 @@ trapsdone:
 			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
 			morehungry(rn2(400)+200);
 
+			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
+				You("produce very erotic noises.");
+				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1);
+			}
+
 			pline("But in your haste, you forgot to open the lid!");
 			adjalign(-20);
 
@@ -1834,6 +1839,12 @@ trapsdone:
 			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);
 			else if (Sick && !rn2(10) ) make_sick(0L, (char *)0, TRUE, SICK_ALL);
 			morehungry(rn2(400)+200);
+
+			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
+				You("produce very erotic noises.");
+				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1);
+			}
+
 			nomovemsg = "You are done shitting.";
 			nomul(-crapduration, "taking a shit", TRUE);
 
@@ -4595,14 +4606,18 @@ newbossX:
 
 #ifdef RECORD_ACHIEVE
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (!achieve.imbued_bell) {
 
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+				achieve.imbued_bell = TRUE;
+				if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+				if (RngeTeamSplat) pline("TROPHY GET!");
+
+				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+					u.uhpmax += 10;
+					u.uenmax += 10;
+					if (Upolyd) u.mhmax += 10;
+					pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+				}
 			}
 
 #ifdef LIVELOGFILE
@@ -4662,14 +4677,18 @@ newbossX:
 
 #ifdef RECORD_ACHIEVE
 
-			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
-			if (RngeTeamSplat) pline("TROPHY GET!");
+			if (!achieve.imbued_amulet) {
 
-			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
-				u.uhpmax += 10;
-				u.uenmax += 10;
-				if (Upolyd) u.mhmax += 10;
-				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+				achieve.imbued_amulet = TRUE;
+				if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+				if (RngeTeamSplat) pline("TROPHY GET!");
+
+				if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+					u.uhpmax += 10;
+					u.uenmax += 10;
+					if (Upolyd) u.mhmax += 10;
+					pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+				}
 			}
 
 #ifdef LIVELOGFILE
@@ -7373,6 +7392,7 @@ newboss:
 			(u.lawfulkeyget && !rn2(500)) ||
 			(u.medusaremoved && !rn2(250)) ||
 			(u.luckstoneget && !rn2(1000)) ||
+			(u.deepminefinished && !rn2(1000)) ||
 			(u.sokobanfinished && !rn2(1000))
 			)
 			)

@@ -269,7 +269,11 @@ dosit()
 	    You(sit_message, defsyms[S_toilet].explanation);
 	    if ((!Sick) && (u.uhs > 0)) You("don't have to go...");
 	    else {
-			if (Role_if(PM_BARBARIAN) || Role_if(PM_CAVEMAN)) You("miss...");
+			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
+				You("produce very erotic noises.");
+				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1);
+			}
+			else if (Role_if(PM_BARBARIAN) || Role_if(PM_CAVEMAN)) You("miss...");
 			else You("grunt.");
 			/* Based on real life experience (urgh) this doesn't always instantly cure sickness. --Amy */
 			if (Sick && !rn2(3) ) make_sick(0L, (char *)0, TRUE, SICK_VOMITABLE);

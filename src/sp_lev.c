@@ -2883,7 +2883,9 @@ struct mkroom	*croom;
                    otmp->otyp == BAG_OF_HOLDING) && 
                   Is_sokoend_level(&u.uz)) {
                 otmp->record_achieve_special = 1;
-        }
+        } else if (otmp->otyp == STONE_OF_MAGIC_RESISTANCE && Is_deepend_level(&u.uz)) {
+                otmp->record_achieve_special = 1;
+	  }
 #endif
 
 	stackobj(otmp);

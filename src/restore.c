@@ -1468,6 +1468,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 
 #ifdef RECORD_ACHIEVE
         mread(fd, (void *) &achieve, sizeof achieve);
+        mread(fd, (void *) &achieveX, sizeof achieveX);
 #endif
 #if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)
         mread(fd, (void *) &realtime_data.realtime, 

@@ -144,6 +144,7 @@ typedef struct branch {
 #ifdef RECORD_ACHIEVE
 #define Is_mineend_level(x)     (on_level(x, &mineend_level))
 #define Is_sokoend_level(x)     (on_level(x, &sokoend_level))
+#define Is_deepend_level(x)     (on_level(x, &deepend_level))
 #endif
 
 #define In_sokoban(x)		(((x)->dnum == sokoban_dnum) || issokosolver)

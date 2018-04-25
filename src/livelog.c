@@ -23,6 +23,22 @@ encodeachieve(void)
    *  9   obtained the luckstone from the Mines
    *  10  obtained the sokoban prize
    *  11  killed medusa
+   *  12  killed Nightmare
+   *  13  killed Vecna
+   *  14  killed Beholder
+   *  15  killed Ruggo
+   *  16  killed Kroo
+   *  17  killed Grund
+   *  18  killed The Largest Giant
+   *  19  killed Shelob
+   *  20  killed Girtab
+   *  21  killed Aphrodite
+   *  22  killed Frankenstein
+   *  23  killed Croesus
+   *  24  killed Dagon
+   *  25  killed Hydra
+   *  26  imbued the Bell of Opening
+   *  27  imbued the Amulet of Yendor
    */
 
   long r;
@@ -61,8 +77,41 @@ encodeachieve(void)
   return r;
 }
 
+/* Encodes the current xlog "achieveX" status to an integer */
+long
+encodeachieveX(void)
+{
+  /* Achievement bitfield:
+   * bit  meaning
+   *  0   killed an elder priest
+   *  1   killed the Motherfucker Glass Golem
+   *  2   killed Tiksrvzllat
+   *  3   killed the BOFH
+   *  4   reached the bottom of the Swimming Pools
+   *  5   killed Erogenous Katia
+   *  6   killed the Witch King of Angmar
+   *  7   obtained the stone of magic resistance from the Deep Mines
+   */
+
+  long r;
+
+  r = 0;
+
+  if(achieveX.killed_elderpriest)   r |= 1L << 0;
+  if(achieveX.killed_glassgolem)    r |= 1L << 1;
+  if(achieveX.killed_tiksrvzllat)   r |= 1L << 2;
+  if(achieveX.killed_bofh)          r |= 1L << 3;
+  if(achieveX.swimmingpool_cleared) r |= 1L << 4;
+  if(achieveX.killed_katia)         r |= 1L << 5;
+  if(achieveX.killed_witchking)     r |= 1L << 6;
+  if(achieveX.get_magresstone)      r |= 1L << 7;
+
+  return r;
+}
+
 /* Keep the last xlog "achieve" value to be able to compare */
 long last_achieve_int;
+long last_achieveX_int;
 
 /* Generic buffer for snprintf */
 #define STRBUF_LEN (4096)
@@ -73,6 +122,7 @@ boolean livelog_start() {
 
 
 	last_achieve_int = encodeachieve();
+	last_achieveX_int = encodeachieveX();
 
 	return TRUE;
 }
@@ -100,28 +150,34 @@ void livelog_write_string(char* buffer) {
  * Called from various places in the NetHack source,
  * usually where xlog's achieve is set. */
 void livelog_achieve_update() {
-	long achieve_int, achieve_diff;
+	long achieve_int, achieve_diff, achieveX_int, achieveX_diff;
 
 	achieve_int = encodeachieve();
 	achieve_diff = last_achieve_int ^ achieve_int;
 
+	achieveX_int = encodeachieveX();
+	achieveX_diff = last_achieveX_int ^ achieveX_int;
+
 	/* livelog_achieve_update is sometimes called when there's
 	 * no actual change. */
-	if(achieve_diff == 0) {
+	if(achieve_diff == 0 && achieveX_diff == 0) {
 		return;
 	}
 
 	snprintf(strbuf, STRBUF_LEN,
-		"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:achieve=0x%lx:achieve_diff=0x%lx\n",
+		"player=%s:role=%s:race=%s:gender=%s:align=%s:hybrid=%s:turns=%ld:achieve=0x%lx:achieve_diff=0x%lx:achieveX=0x%lx:achieveX_diff=0x%lx\n",
 		plname, 
 		urole.filecode, urace.filecode, genders[flags.female].filecode, aligns[1-u.ualign.type].filecode,
 		hybrid_strcode(),
 		moves, 
 		achieve_int,
-		achieve_diff);
+		achieve_diff,
+		achieveX_int,
+		achieveX_diff);
 	livelog_write_string(strbuf);
 
 	last_achieve_int = achieve_int;
+	last_achieveX_int = achieveX_int;
 
 }
 

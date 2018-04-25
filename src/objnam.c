@@ -8324,6 +8324,7 @@ typfnd:
 	        otmp->oartifact == ART_BOOTS_OF_THE_MACHINE ||
 	        otmp->oartifact == ART_ARKENSTONE_OF_THRAIN ||
 	        otmp->oartifact == ART_BIZARRO_ORGASMATRON ||
+	        otmp->oartifact == ART_KATIA_S_SOFT_COTTON ||
 	        otmp->oartifact == ART_THIEFBANE)) ||
 # ifdef NOARTIFACTWISH
 /* Wishing for a "weak" artifact is easier than for a stronger one */

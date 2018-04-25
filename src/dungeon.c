@@ -691,6 +691,7 @@ struct level_map {
 #ifdef RECORD_ACHIEVE
         { "mnend",     &mineend_level },
         { "soko1",      &sokoend_level },
+        { "depen",      &deepend_level },
 #endif
 	{ X_START,	&qstart_level },
 	{ X_LOCATE,	&qlocate_level },

@@ -5988,6 +5988,13 @@ A("Bizarro Orgasmatron", HITCHHIKER_S_GUIDE_TO_THE_GALA,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	CREATE_PORTAL,	A_NONE, NON_PM, NON_PM, 10000L),
 
+/* reward for finishing Hell's Bathroom */
+A("Katia's Soft Cotton", BATH_TOWEL, /* if you take a crap while wearing it, you may gain charisma */
+	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,
+	0,	A_NONE, NON_PM, NON_PM, 25000L),
+
+
 
 /*** The artifacts for the quest dungeon, all self-willed ***/
 

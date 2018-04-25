@@ -124,6 +124,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #ifdef RECORD_ACHIEVE
     /*d_level     d_mineend_level;*/ /* already added above */
     d_level     d_sokoend_level;
+    d_level     d_deepend_level;
 #endif
 } dungeon_topology;
 /* macros for accesing the dungeon levels by their old names */
@@ -215,6 +216,7 @@ E struct dgn_topology {		/* special dungeon levels for speed */
 #ifdef RECORD_ACHIEVE
 #define mineend_level           (dungeon_topology.d_mineend_level)
 #define sokoend_level           (dungeon_topology.d_sokoend_level)
+#define deepend_level           (dungeon_topology.d_deepend_level)
 #endif
 
 E NEARDATA stairway dnstair, upstair;		/* stairs up and down */
@@ -626,6 +628,21 @@ struct u_achieve {
 };
 
 E struct u_achieve achieve;
+
+struct u_achieveX {
+	  Bitfield(killed_elderpriest,1);	/* You killed at least one elder priest */
+	  Bitfield(killed_glassgolem,1);	/* You killed the Illusory Castle glass golem boss */
+	  Bitfield(killed_tiksrvzllat,1);	/* You killed Tiksrvzllat */
+	  Bitfield(killed_bofh,1);	/* You killed the BOFH */
+	  Bitfield(swimmingpool_cleared,1);	/* You reached the bottom of the Swimming Pool branch */
+	  Bitfield(killed_katia,1);	/* You killed Erogenous Katia */
+	  Bitfield(killed_witchking,1);	/* You killed the Witch King of Angmar */
+	  Bitfield(get_magresstone,1);	/* You obtained the stone of magic resistance from the Deep Mines */
+
+};
+
+E struct u_achieveX achieveX;
+
 #endif
 
 #if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)

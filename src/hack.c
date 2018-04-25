@@ -4300,6 +4300,7 @@ weight_cap()
 	if (u.medusaremoved) carrcap += 150;
 	if (u.luckstoneget) carrcap += 50;
 	if (u.sokobanfinished) carrcap += 50;
+	if (u.deepminefinished) carrcap += 50;
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) carrcap -= 250;
 	if (uarmg && uarmg->oartifact == ART_HANDBOXED) carrcap += 1000;
 	if (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;

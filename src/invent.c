@@ -535,6 +535,35 @@ struct obj *obj;
 		livelog_achieve_update();
 		livelog_report_trophy("obtained the Sokoban prize");
 #endif
+        } else if((obj->otyp == STONE_OF_MAGIC_RESISTANCE) && obj->record_achieve_special) {
+
+		if (!achieveX.get_magresstone) {
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+            achieveX.get_magresstone = 1;
+		/*qt_pager(QT_DEEPMINES);*/
+		obj->record_achieve_special = 0;
+		if (!u.deepminefinished) {
+			u.deepminefinished = 1;
+			u.uhpmax += rnd(5);
+			u.uenmax += rnd(5);
+			if (Upolyd) u.mhmax += rnd(5);
+		}
+#ifdef LIVELOGFILE
+		livelog_achieve_update();
+		livelog_report_trophy("obtained the stone of magic resistance from the Deep Mines");
+#endif
         }
 #endif /* RECORD_ACHIEVE */
 
@@ -15156,6 +15185,8 @@ struct obj *obj;
 					pline("Artifact specs: can be invoked for perilous identify. This artifact is found on the special level 'Orc Barracks' in the Deep Mines."); break;
 				case ART_BIZARRO_ORGASMATRON:
 					pline("Artifact specs: can be invoked for branchporting. Congratulations, you finished the Mainframe boss!"); break;
+				case ART_KATIA_S_SOFT_COTTON:
+					pline("Artifact specs: taking a crap while wearing it can occasionally increase your charisma. Congratulations, you finished the Hell's Bathroom boss! And fighting her was probably not disgusting at all!"); break;
 				case ART_ANASTASIA_S_PERILOUS_GAMBL:
 					pline("Artifact specs: Reading it teaches you a random technique, unless you get really unlucky and it rolls one you already know. But you'll also start getting random nasty trap effects intrinsically."); break;
 				case ART_ERASE_ALL_DATA:

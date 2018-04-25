@@ -740,6 +740,7 @@ register int fd, mode;
 	save_waterlevel(fd, mode);
 #ifdef RECORD_ACHIEVE
         bwrite(fd, (void *) &achieve, sizeof achieve);
+        bwrite(fd, (void *) &achieveX, sizeof achieveX);
 #endif
 #if defined(RECORD_REALTIME) || defined(REALTIME_ON_BOTL)
         realtime = get_realtime();

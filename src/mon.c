@@ -3438,6 +3438,16 @@ register struct monst *mtmp;
 		u.weapon_slots += 5;
 	}
 
+      if(mtmp->data == &mons[PM_EROGENOUS_KATIA] && !u.katiaremoved) {
+		u.katiaremoved = 1;
+		pline("Congratulations, Erogenous Katia is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
+		trophy = mksobj(BATH_TOWEL, FALSE, FALSE);
+		if (trophy) {
+		    trophy = oname(trophy, artiname(ART_KATIA_S_SOFT_COTTON));
+		    dropy(trophy);
+		}
+	}
+
       if(mtmp->data == &mons[PM_BOFH] && !u.bofhremoved) {
 		u.bofhremoved = 1;
 		pline("Congratulations, the Bastard Operator From Hell is defeated! Your reward was dropped at your %s.", makeplural(body_part(FOOT)));
@@ -3940,6 +3950,127 @@ register struct monst *mtmp;
 
             achieve.killed_hydra = 1;
 	}
+
+	if(mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) {
+
+		if (!achieveX.killed_elderpriest) {
+
+	            achieveX.killed_elderpriest = 1;
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+	if(mtmp->data == &mons[PM_MOTHERFUCKER_GLASS_GOLEM]) {
+
+		if (!achieveX.killed_glassgolem) {
+
+	            achieveX.killed_glassgolem = 1;
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+	if(mtmp->data == &mons[PM_TIKSRVZLLAT]) {
+
+		if (!achieveX.killed_tiksrvzllat) {
+
+	            achieveX.killed_tiksrvzllat = 1;
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+	if(mtmp->data == &mons[PM_BOFH]) {
+
+		if (!achieveX.killed_bofh) {
+
+	            achieveX.killed_bofh = 1;
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+	if(mtmp->data == &mons[PM_EROGENOUS_KATIA]) {
+
+		if (!achieveX.killed_katia) {
+
+	            achieveX.killed_katia = 1;
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
+	if(mtmp->data == &mons[PM_THE_WITCH_KING_OF_ANGMAR]) {
+
+		if (!achieveX.killed_witchking) {
+
+	            achieveX.killed_witchking = 1;
+
+			if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "team splat cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "vosklitsatel'nyy znak plashch komanda") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "jamoasi xavfsizlik plash") )) pline("TROPHY GET!");
+			if (RngeTeamSplat) pline("TROPHY GET!");
+
+			if (uarmc && uarmc->oartifact == ART_JUNETHACK______WINNER) {
+				u.uhpmax += 10;
+				u.uenmax += 10;
+				if (Upolyd) u.mhmax += 10;
+				pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
+			}
+
+		}
+
+	}
+
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
 #endif

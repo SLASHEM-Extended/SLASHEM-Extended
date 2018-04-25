@@ -587,12 +587,14 @@ struct you {
 	int lawfulkeyget;
 	int luckstoneget;
 	int sokobanfinished;
+	int deepminefinished;
 	int medusaremoved;
 	int glassgolemdown;
 	int tiksrvzllatspawn;
 	int tiksrvzllatdown;
 	int netherrealmcomplete;
 	int angmarcomplete;
+	int katiaremoved;
 	int sewerplantcomplete;
 	int gammacavescomplete;
 	int bofhremoved;
