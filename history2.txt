@@ -1,6 +1,7 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.2.1
+- Implants skill can allow the player to take off items from underneath cursed other items, with the skill level determining what can and can't be removed.
 - Changes to evilvariant mode: player cannot engrave while being held by a monster, reading scrolls with low intelligence can occasionally give the confused effect, falling asleep causes the player to slap to the floor and lose a few HP, and zapping a wand doesn't work if the player's hands are unusable.
 - Fixed an old segfault with roles that get random pantheons, which was introduced accidentally when the Medium role was added.
 - Ragnarok can instakill the player and/or pets in evilvariant mode.
