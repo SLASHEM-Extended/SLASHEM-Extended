@@ -822,6 +822,8 @@ doread()
 	"I absolutely HATE Nethack Fourk's elder black dragons, and a certain other monster with 'elder' in its name from a certain other NetHack variant",
 	"Viva la Croissistance!", /* by Elronnd */
 	"I wanna boh", /* inspired by Demo */
+	"Amy is the insane dev of slex. She adds literally anything she can think of to the game, has no idea what the concept of balance is, and i'm pretty sure is actually terrible at playing roguelikes.",
+	"Because of all of this, her games are extremely fun to play generally to see the utterly ridiculous ways you can die in them, though not fun at all to play if you're trying to win or understand wtf is even going on.",
 
 	    };
 	    char buf[BUFSZ];
