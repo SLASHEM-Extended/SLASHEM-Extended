@@ -5231,10 +5231,10 @@ register struct obj *otmp;
 		return 0;
 	    }
 	    why = 0;	/* the item which prevents ring removal */
-	    if (welded(uwep) && (otmp == uright || bimanual(uwep))) {
+	    if (welded(uwep) && !(!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_EXPERT) && (otmp == uright || bimanual(uwep))) {
 		sprintf(buf, "free a weapon %s", body_part(HAND));
 		why = uwep;
-	    } else if (uarmg && !FingerlessGloves && uarmg->cursed) {
+	    } else if (uarmg && !(!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_EXPERT) && !FingerlessGloves && uarmg->cursed) {
 		sprintf(buf, "take off your %s", c_gloves);
 		why = uarmg;
 	    }
@@ -5246,7 +5246,7 @@ register struct obj *otmp;
 	}
 	/* special glove checks */
 	if (otmp == uarmg) {
-	    if (welded(uwep)) {
+	    if (welded(uwep) && !(!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_SKILLED) ) {
 		You("are unable to take off your %s while wielding that %s.",
 		    c_gloves, is_sword(uwep) ? c_sword : c_weapon);
 		uwep->bknown = TRUE;
@@ -5274,13 +5274,13 @@ register struct obj *otmp;
 			|| otmp == uarmu
 		) {
 	    why = 0;	/* the item which prevents disrobing */
-	    if (uarmc && uarmc->cursed && (!updowninversion || otmp == uarmu) ) {
+	    if (uarmc && !(!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_MASTER) && uarmc->cursed && (!updowninversion || otmp == uarmu) ) {
 		sprintf(buf, "remove your %s", cloak_simple_name(uarmc));
 		why = uarmc;
-	    } else if (otmp == uarmu && uarm && uarm->cursed ) {
+	    } else if (otmp == uarmu && !(!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) && uarm && uarm->cursed ) {
 		sprintf(buf, "remove your %s", c_suit);
 		why = uarm;
-	    } else if (welded(uwep) && bimanual(uwep)) {
+	    } else if (welded(uwep) && !(!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_EXPERT) && bimanual(uwep)) {
 		sprintf(buf, "release your %s",
 			is_sword(uwep) ? c_sword :
 			(uwep->otyp == BATTLE_AXE) ? c_axe : (uwep->otyp == DWARVISH_BATTLE_AXE) ? c_axe : c_weapon);
@@ -5292,7 +5292,7 @@ register struct obj *otmp;
 		return 0;
 	    }
 	}
-	if (updowninversion && (otmp == uarmc) && uarm && uarm->cursed) {
+	if (updowninversion && !(!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_MASTER) && (otmp == uarmc) && uarm && uarm->cursed) {
 		You("cannot remove your suit to take off that up-down cloak.");
 		if (uarm) uarm->bknown = TRUE;
 		return 0;
