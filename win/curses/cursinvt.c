@@ -17,7 +17,7 @@ curses_update_inv(void)
     if (!win) {
         /* It's not. Re-initialize the main windows if the
            option was enabled. */
-        if (flags.perm_invent && !(youmonst.data && (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone()) && !program_state.gameover)) {
+        if (flags.perm_invent && !restoring && !(youmonst.data && (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone()) && !program_state.gameover)) {
             curses_create_main_windows();
             curses_last_messages();
             doredraw();
