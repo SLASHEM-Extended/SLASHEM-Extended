@@ -1253,6 +1253,7 @@ int how;
      */
 
 die:
+	if(u.uhpmax <= 0) u.uhpmax = 1; /* fixing a VERY annoying dump_techniques SIGFPE */
 	u.hangupcheat = 0;
 	if (!goexplore) {
 	program_state.gameover = 1;
