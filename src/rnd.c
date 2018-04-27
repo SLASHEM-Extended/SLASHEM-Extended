@@ -56,7 +56,7 @@ int
 rn2(x)		/* 0 <= rn2(x) < x */
 register int x;
 {
-	check_reseed();
+	/*check_reseed();*/
 #ifdef DEBUG
 	if (x <= 0) {
 		impossible("rn2(%d) attempted", x);
@@ -78,7 +78,7 @@ rn3(x)		/* like rn2, but the result is more likely to be a lower number --Amy */
 register int x;
 {
 	int y;
-	check_reseed();
+	/*check_reseed();*/
 	if (x <= 0) {
 		impossible("rn3(%d) attempted - returning zero", x);
 		return(0);
@@ -98,7 +98,7 @@ rnl(x)		/* 0 <= rnl(x) < x; sometimes subtracting Luck */
 register int x;	/* good luck approaches 0, bad luck approaches (x-1) */
 {
 	register int i;
-	check_reseed();
+	/*check_reseed();*/
 
 #ifdef DEBUG
 	if (x <= 0) {
@@ -131,7 +131,7 @@ int
 rnd(x)		/* 1 <= rnd(x) <= x */
 register int x;
 {
-	check_reseed();
+	/*check_reseed();*/
 #ifdef DEBUG
 	if (x <= 0) {
 		impossible("rnd(%d) attempted", x);
@@ -153,7 +153,7 @@ rno(x)		/* like rnd, but the result is more likely to be a lower number --Amy */
 register int x;
 {
 	int y;
-	check_reseed();
+	/*check_reseed();*/
 	if (x <= 0) {
 		impossible("rno(%d) attempted - returning 1", x);
 		return(1);
