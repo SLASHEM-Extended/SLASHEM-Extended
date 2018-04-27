@@ -76,7 +76,7 @@ STATIC_DCL int score_wanted(BOOLEAN_P, int,struct toptenentry *,int,const char *
 STATIC_DCL long encodeconduct(void);
 #endif
 #ifdef RECORD_ACHIEVE
-STATIC_DCL char* encodeachieve(void);
+STATIC_DCL long encodeachieve(void);
 STATIC_DCL char* encodeachieveX(void);
 #endif
 #ifdef NO_SCAN_BRACK
@@ -368,7 +368,7 @@ struct toptenentry *tt;
 #endif
 
 #ifdef RECORD_ACHIEVE
-  (void)fprintf(rfile, XLOG_SEP "achieve=%s", encodeachieve());
+  (void)fprintf(rfile, XLOG_SEP "achieve=0x%lx", encodeachieve());
   (void)fprintf(rfile, XLOG_SEP "achieveX=%s", encodeachieveX());
 #endif
 
@@ -1076,8 +1076,8 @@ int uid;
 }
 
 #ifdef RECORD_ACHIEVE
-char encoded_achievements[BUFSZ];
-char* encodeachieve(void)
+long
+encodeachieve(void)
 {
   /* Achievement bitfield:
    * bit  meaning
@@ -1111,42 +1111,44 @@ char* encodeachieve(void)
    *  27  imbued the Amulet of Yendor
    */
 
-  encoded_achievements[0] = '\0';
-  if(achieve.get_bell)            sprintf(eos(encoded_achievements), "%s,", "get_bell");
-  if(achieve.enter_gehennom)      sprintf(eos(encoded_achievements), "%s,", "enter_gehennom");
-  if(achieve.get_candelabrum)     sprintf(eos(encoded_achievements), "%s,", "get_candelabrum");
-  if(achieve.get_book)            sprintf(eos(encoded_achievements), "%s,", "get_book");
-  if(achieve.perform_invocation)  sprintf(eos(encoded_achievements), "%s,", "perform_invocation");
-  if(achieve.get_amulet)          sprintf(eos(encoded_achievements), "%s,", "get_amulet");
-  if(In_endgame(&u.uz))           sprintf(eos(encoded_achievements), "%s,", "in_endgame");
-  if(Is_astralevel(&u.uz))        sprintf(eos(encoded_achievements), "%s,", "in_astralevel");
-  if(achieve.ascended)            sprintf(eos(encoded_achievements), "%s,", "ascended");
-  if(achieve.get_luckstone)       sprintf(eos(encoded_achievements), "%s,", "get_luckstone");
-  if(achieve.finish_sokoban)      sprintf(eos(encoded_achievements), "%s,", "finish_sokoban");
-  if(achieve.killed_medusa)       sprintf(eos(encoded_achievements), "%s,", "killed_medusa");
-  if(achieve.killed_nightmare)    sprintf(eos(encoded_achievements), "%s,", "killed_nightmare");
-  if(achieve.killed_vecna)        sprintf(eos(encoded_achievements), "%s,", "killed_vecna");
-  if(achieve.killed_beholder)     sprintf(eos(encoded_achievements), "%s,", "killed_beholder");
-  if(achieve.killed_ruggo)        sprintf(eos(encoded_achievements), "%s,", "killed_ruggo");
-  if(achieve.killed_kroo)         sprintf(eos(encoded_achievements), "%s,", "killed_kroo");
-  if(achieve.killed_grund)        sprintf(eos(encoded_achievements), "%s,", "killed_grund");
-  if(achieve.killed_largestgiant) sprintf(eos(encoded_achievements), "%s,", "killed_largestgiant");
-  if(achieve.killed_shelob)       sprintf(eos(encoded_achievements), "%s,", "killed_shelob");
-  if(achieve.killed_girtab)       sprintf(eos(encoded_achievements), "%s,", "killed_girtab");
-  if(achieve.killed_aphrodite)    sprintf(eos(encoded_achievements), "%s,", "killed_aphrodite");
-  if(achieve.killed_frankenstein) sprintf(eos(encoded_achievements), "%s,", "killed_frankenstein");
-  if(achieve.killed_croesus)      sprintf(eos(encoded_achievements), "%s,", "killed_croesus");
-  if(achieve.killed_dagon)        sprintf(eos(encoded_achievements), "%s,", "killed_dagon");
-  if(achieve.killed_hydra)        sprintf(eos(encoded_achievements), "%s,", "killed_hydra");
-  if(achieve.imbued_bell)         sprintf(eos(encoded_achievements), "%s,", "imbued_bell");
-  if(achieve.imbued_amulet)       sprintf(eos(encoded_achievements), "%s,", "imbued_amulet");
+  long r;
 
-  int len;
-  if ((len=strlen(encoded_achievements))) { encoded_achievements[len-1] = '\0'; }
-  return encoded_achievements;
+  r = 0;
+
+  if(achieve.get_bell)            r |= 1L << 0;
+  if(achieve.enter_gehennom)      r |= 1L << 1;
+  if(achieve.get_candelabrum)     r |= 1L << 2;
+  if(achieve.get_book)            r |= 1L << 3;
+  if(achieve.perform_invocation)  r |= 1L << 4;
+  if(achieve.get_amulet)          r |= 1L << 5;
+  if(In_endgame(&u.uz))           r |= 1L << 6;
+  if(Is_astralevel(&u.uz))        r |= 1L << 7;
+  if(achieve.ascended)            r |= 1L << 8;
+  if(achieve.get_luckstone)       r |= 1L << 9;
+  if(achieve.finish_sokoban)      r |= 1L << 10;
+  if(achieve.killed_medusa)       r |= 1L << 11;
+  if(achieve.killed_nightmare)    r |= 1L << 12;
+  if(achieve.killed_vecna)        r |= 1L << 13;
+  if(achieve.killed_beholder)     r |= 1L << 14;
+  if(achieve.killed_ruggo)        r |= 1L << 15;
+  if(achieve.killed_kroo)         r |= 1L << 16;
+  if(achieve.killed_grund)        r |= 1L << 17;
+  if(achieve.killed_largestgiant) r |= 1L << 18;
+  if(achieve.killed_shelob)       r |= 1L << 19;
+  if(achieve.killed_girtab)       r |= 1L << 20;
+  if(achieve.killed_aphrodite)    r |= 1L << 21;
+  if(achieve.killed_frankenstein) r |= 1L << 22;
+  if(achieve.killed_croesus)      r |= 1L << 23;
+  if(achieve.killed_dagon)        r |= 1L << 24;
+  if(achieve.killed_hydra)        r |= 1L << 25;
+  if(achieve.imbued_bell)         r |= 1L << 26;
+  if(achieve.imbued_amulet)       r |= 1L << 27;
+
+  return r;
 
 }
 
+char encoded_achievements[BUFSZ];
 char* encodeachieveX(void)
 {
   /* Achievement bitfield:
@@ -1159,6 +1161,7 @@ char* encodeachieveX(void)
    *  5   killed Erogenous Katia
    *  6   killed the Witch King of Angmar
    *  7   obtained the stone of magic resistance from the Deep Mines
+   * but this isn't a bitfield, it's a string...
    */
 
   encoded_achievements[0] = '\0';
