@@ -738,6 +738,7 @@ Cloak_on()
 			u.youaredead = 0;
 		    } else {
 			u.uhpmax -= d(4, 4);
+			if (u.uhpmax < 1) u.uhpmax = 1;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			You_feel("a loss of life.");
 			losehp(d(4, 4),"cloak of death",KILLED_BY_AN);
@@ -5196,7 +5197,7 @@ register struct obj *otmp;
 				if (!(strcmp (buf, "yes"))) {
 					pline("As you try to rip the implant out of your body, you are severely hurt.");
 					u.uhpmax -= rnd(10);
-					if (u.uhpmax < 0) u.uhpmax = 0;
+					if (u.uhpmax < 1) u.uhpmax = 1;
 					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 					losehp(rnd(25), "trying to remove an implant", KILLED_BY);
 					badeffect();
@@ -5212,7 +5213,7 @@ register struct obj *otmp;
 				if (!(strcmp (buf, "yes"))) {
 					pline("As you try to rip the implant out of your body, you are severely hurt.");
 					u.uhpmax -= rnd(10);
-					if (u.uhpmax < 0) u.uhpmax = 0;
+					if (u.uhpmax < 1) u.uhpmax = 1;
 					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 					losehp(rnd(25), "trying to remove an implant", KILLED_BY);
 					badeffect();
