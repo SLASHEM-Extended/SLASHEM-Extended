@@ -3514,6 +3514,25 @@ int degree;
 			return;
 		}
 	}
+	if (skill == u.frtrainingskill) {
+		if (u.frtrainingblown) return;
+		if (moves < u.frtrainingtimer) {
+			u.frtrainingblown = TRUE;
+			return;
+		}
+	}
+
+	if (skill == u.latetrainingskill) {
+		if (moves > u.latetrainingtimer) {
+			return;
+		}
+	}
+
+	if (skill == u.lavtrainingskill) {
+		if (moves < u.lavtrainingtimer) {
+			return;
+		}
+	}
 
 	if (Race_if(PM_DUNADAN) && !rn2(2)) return;
 	if (Race_if(PM_PLAYER_SKELETON) && rn2(3)) return;

@@ -2507,6 +2507,24 @@ boolean guaranteed;
 		}
 	}
 
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+		sprintf(buf, " %s (turn %d)", P_NAME(u.frtrainingskill), u.frtrainingtimer);
+		enl_msg("The following skill ", "becomes untrainable if you try to train it too early:", "became untrainable if you tried to train it too early:", buf);
+		if (u.frtrainingblown) {
+			sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.frtrainingskill));
+			you_have(buf);
+		}
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+		sprintf(buf, " %s (turn %d)", P_NAME(u.latetrainingskill), u.latetrainingtimer);
+		enl_msg("The following skill ", "becomes untrainable after a while:", "became untrainable after a while:", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 ) ) {
+		sprintf(buf, " %s (turn %d)", P_NAME(u.lavtrainingskill), u.lavtrainingtimer);
+		enl_msg("The following skill ", "can't be trained before a certain turn number is reached:", "couldn't be trained before a certain turn number is reached:", buf);
+	}
 
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) { sprintf(buf, " %d", nartifact_exist() );
 		enl_msg("Number of artifacts generated ", "is", "was", buf);
@@ -5720,6 +5738,20 @@ int final;
 		sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.earlytrainingskill));
 		dump(youhad, buf);
 	}
+
+		sprintf(buf, " %s (turn %d)", P_NAME(u.frtrainingskill), u.frtrainingtimer);
+		dump("  The following skill became untrainable if you tried to train it too early:", buf);
+
+	if (u.frtrainingblown) {
+		sprintf(buf, "blown your chance of training the %s skill", P_NAME(u.frtrainingskill));
+		dump(youhad, buf);
+	}
+
+		sprintf(buf, " %s (turn %d)", P_NAME(u.latetrainingskill), u.latetrainingtimer);
+		dump("  The following skill became untrainable after a while:", buf);
+
+		sprintf(buf, " %s (turn %d)", P_NAME(u.lavtrainingskill), u.lavtrainingtimer);
+		dump("  The following skill couldn't be trained before a certain turn number is reached:", buf);
 
 	sprintf(buf, " %d", nartifact_exist() );
 	dump("  Number of artifacts generated was ", buf);

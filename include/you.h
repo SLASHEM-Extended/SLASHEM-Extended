@@ -921,9 +921,16 @@ struct you {
 	int basiclimitskill;
 	int skilledlimitskill;
 	int expertlimitskill;
-	int earlytrainingskill;
+	int earlytrainingskill; /* becomes untrainable if you try to train it too early */
 	int earlytrainingtimer;
 	boolean earlytrainingblown;
+	int frtrainingskill; /* becomes untrainable if you try to train it too early */
+	int frtrainingtimer;
+	boolean frtrainingblown;
+	int latetrainingskill; /* becomes untrainable as soon as X turns have passed */
+	int latetrainingtimer;
+	int lavtrainingskill; /* is untrainable unless at least X turns have passed */
+	int lavtrainingtimer;
 
 	int drippingtread;
 	int drippingtreadtype;

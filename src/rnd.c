@@ -2648,6 +2648,17 @@ skillreroll:
 	return result;
 }
 
+int
+randomgoodcombatskill()
+{
+	int result;
+
+combatreroll:
+	result = P_BARE_HANDED_COMBAT + rn2(( P_RIDING - P_BARE_HANDED_COMBAT) + 1);
+	if (result >= P_SHII_CHO && result <= P_VAAPAD && rn2(10)) goto combatreroll;
+
+	return result;
+}
 
 #endif /* OVLB */
 
