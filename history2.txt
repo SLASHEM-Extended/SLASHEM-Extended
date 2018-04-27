@@ -1,5 +1,15 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.2.2
+- Added more ways in which skills can be untrainable, and fixed the logic in the random selection code.
+- Aggravate monster works differently now depending on whether the player has it intrinsically, extrinsically or both. The extrinsic has more detrimental effects.
+- New option "eatingconfirm" that gives a y/n prompt when trying to eat a non-comestible, to make it less likely for the player to accidentally eat their weapon when polymorphed into e.g. a metallivore.
+- The castle and Sokoban have fake engravings in certain places now.
+- Restoring a game in curses mode while hallucinating should no longer corrupt the save.
+- Feeling like a new man can re-initialize intelligence and wisdom.
+- Made it less likely for buffer overruns to occur when the bones file ID is checked.
+- Added a new possible pentagram effect that can remove intrinsic aggravate monster.
+
 2.2.1
 - Implants skill can allow the player to take off items from underneath cursed other items, with the skill level determining what can and can't be removed.
 - Changes to evilvariant mode: player cannot engrave while being held by a monster, reading scrolls with low intelligence can occasionally give the confused effect, falling asleep causes the player to slap to the floor and lose a few HP, and zapping a wand doesn't work if the player's hands are unusable.
