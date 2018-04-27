@@ -1496,8 +1496,11 @@ redist_attr()
 	register int i, tmp;
 
 	for(i = 0; i < A_MAX; i++) {
-	    if (i==A_INT || i==A_WIS) continue;
-		/* Polymorphing doesn't change your mind */
+	    if ((i==A_INT || i==A_WIS) && issoviet) continue; /* wuot? --Amy */
+		/* Polymorphing doesn't change your mind - wtf??? of course it does! */
+		/* In Soviet Russia, nothing will ever change from vanilla and therefore soviet mode might in fact
+		 * just be vanilla, but noooooo, the SLASHTHEM developer decided to fork a variant that he apparently
+		 * doesn't like at all, and reverted everything. */
 	    tmp = AMAX(i);
 	    AMAX(i) += (rn2(5)-2);
 	    if (AMAX(i) > ATTRMAX(i)) AMAX(i) = ATTRMAX(i);
