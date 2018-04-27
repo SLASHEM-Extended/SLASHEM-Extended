@@ -758,8 +758,9 @@ d_level *lev;
 	/* We need more than 26 different IDs, and the yacc scanner is being stupid. If I try to use bison to generate
 	 * an updated one, it's somehow lacking a lot of stuff because the dgn_comp.y simply doesn't have many of the
 	 * functions present in dgn_yacc.c, what the hell? So I can't just make a second bones id to increase the amount
-	 * of ones we can have. But, apparently we can just put the dungeon branch name in the file name instead! --Amy */
-	sprintf(bonesid, "%s%s", /*dungeons[lev->dnum].boneid*/dungeons[lev->dnum].dname,
+	 * of ones we can have. But, apparently we can just put the dungeon branch name in the file name instead! --Amy
+	 * ... but then the bones level fails to link correctly :( */
+	sprintf(bonesid, "%s%s", dungeons[lev->dnum].boneid
 			In_quest(lev) ? urole.filecode : "0");
 	dptr = eos(bonesid);
 	if ((sptr = Is_special(lev)) != 0)

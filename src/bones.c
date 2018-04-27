@@ -25,7 +25,7 @@ d_level *lev;
 	if (ledger_no(&save_dlevel)) assign_level(lev, &save_dlevel);
 
 	return (boolean)(((sptr = Is_special(lev)) != 0 && !sptr->boneid)
-		/*|| !dungeons[lev->dnum].boneid*/
+		|| !dungeons[lev->dnum].boneid
 		   /* no bones on the last or multiway branch levels */
 		   /* in any dungeon (level 1 isn't multiway).       */
 		|| (Is_botlevel(lev) && In_V_tower(lev) ) || (Is_branchlev(lev) && lev->dlevel > 1 && !In_sokoban(lev) && !In_towndungeon(lev) )
