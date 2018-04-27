@@ -41,6 +41,7 @@ struct flag {
 	boolean  confirm;	/* confirm before hitting tame monsters */
 	boolean  debug;		/* in debugging mode */
 #define wizard	 flags.debug
+	boolean  eatingconfirm;	/* confirm when eating non-comestibles */
 	boolean  end_own;	/* list all own scores */
 	boolean  explore;	/* in exploration mode */
 #ifdef OPT_DISPMAP

@@ -5692,6 +5692,10 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    strcpy(qbuf,"Did you read this item's description? Do you really want to eat it?");
 	    if ((c = yn_function(qbuf, ynqchars, 'n')) != 'y') return 0;
 	}
+	if ((otmp->oclass != FOOD_CLASS || (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY))) && flags.eatingconfirm) {
+	    strcpy(qbuf,"Really eat that item?");
+	    if ((c = yn_function(qbuf, ynqchars, 'n')) != 'y') return 0;
+	}
 
 	/* KMH -- Slow digestion is... indigestible */
 	if (otmp->otyp == RIN_SLOW_DIGESTION) {
