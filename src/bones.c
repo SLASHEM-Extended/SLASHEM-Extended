@@ -466,7 +466,7 @@ getbones()
 {
 	register int fd;
 	register int ok;
-	char c, *bonesid, oldbonesid[10];
+	char c, *bonesid, oldbonesid[50];
 
 #ifdef NO_BONES
 	return(0);
