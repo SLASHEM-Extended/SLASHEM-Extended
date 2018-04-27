@@ -148,6 +148,9 @@ CONTAINER:'(',"chest",place[0]
 OBJECT:'/',"wishing",contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(37,08)
 # Traps
@@ -385,6 +388,10 @@ OBJECT:object[1],random,(11,15)
 CONTAINER:'(',"chest",place[0]
   OBJECT:'/',"wishing",contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
+ENGRAVING:place[4],burn,"Elberelh"
 
 CONTAINER:'(',"chest",place[1]
   OBJECT:'?',random,contained
@@ -623,6 +630,9 @@ MONSTER:'j',"ochre jelly",(43,01),asleep
 CONTAINER:'(',"chest",place[0]
   OBJECT:'/',"wishing",contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 
 OBJECT:'(',"chest",place[1]
 OBJECT:'(',"chest",place[2]
@@ -836,6 +846,9 @@ OBJECT:'/',"wishing",contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(37,09)
 # Traps
@@ -1052,6 +1065,9 @@ OBJECT:'/',"wishing",contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # Storecave number 1
 OBJECT:object[0],random,(27,00)
 OBJECT:object[0],random,(28,00)
@@ -1365,6 +1381,9 @@ OBJECT:'/',"wishing",contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(45,12)
 # Traps
@@ -1606,6 +1625,9 @@ OBJECT:'/',"wishing",contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(37,08)
 # Traps
@@ -1834,6 +1856,9 @@ OBJECT:'/',"wishing",contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(45,12)
 # Traps
@@ -2089,6 +2114,10 @@ OBJECT:object[1],random,(11,15)
 CONTAINER:'(',"chest",place[0]
   OBJECT:'/',"wishing",contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
+ENGRAVING:place[4],burn,"Elberelh"
 
 CONTAINER:'(',"chest",place[1]
   OBJECT:'?',random,contained
@@ -2441,6 +2470,11 @@ OBJECT:random,random,contained
 OBJECT:random,random,contained
 OBJECT:random,random,contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
+ENGRAVING:place[4],burn,"Elberelh"
+ENGRAVING:place[5],burn,"Elbe2eth"
 # Decoy Treasures:
 OBJECT:'(',"chest",place[1]
 OBJECT:'(',"chest",place[2]
@@ -2685,6 +2719,11 @@ OBJECT:random,random,contained
 OBJECT:random,random,contained
 OBJECT:random,random,contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
+ENGRAVING:place[4],burn,"Elberelh"
+ENGRAVING:place[5],burn,"Elbe2eth"
 # Decoy Treasures:
 OBJECT:'(',"chest",place[1]
 OBJECT:'(',"chest",place[2]
@@ -3758,6 +3797,9 @@ CONTAINER:'(',"chest",place[0]
 OBJECT:'/',random,contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(37,08)
 # Traps
@@ -3995,6 +4037,10 @@ OBJECT:object[1],random,(11,15)
 CONTAINER:'(',"chest",place[0]
   OBJECT:'/',random,contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
+ENGRAVING:place[4],burn,"Elberelh"
 
 CONTAINER:'(',"chest",place[1]
   OBJECT:'?',random,contained
@@ -4233,6 +4279,9 @@ MONSTER:'j',"ochre jelly",(43,01),asleep
 CONTAINER:'(',"chest",place[0]
   OBJECT:'/',random,contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 
 OBJECT:'(',"chest",place[1]
 OBJECT:'(',"chest",place[2]
@@ -4446,6 +4495,9 @@ OBJECT:'/',random,contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(37,09)
 # Traps
@@ -4662,6 +4714,9 @@ OBJECT:'/',random,contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # Storecave number 1
 OBJECT:object[0],random,(27,00)
 OBJECT:object[0],random,(28,00)
@@ -4975,6 +5030,9 @@ OBJECT:'/',random,contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(45,12)
 # Traps
@@ -5216,6 +5274,9 @@ OBJECT:'/',random,contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(37,08)
 # Traps
@@ -5444,6 +5505,9 @@ OBJECT:'/',random,contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(45,12)
 # Traps
@@ -5699,6 +5763,10 @@ OBJECT:object[1],random,(11,15)
 CONTAINER:'(',"chest",place[0]
   OBJECT:'/',random,contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
+ENGRAVING:place[4],burn,"Elberelh"
 
 CONTAINER:'(',"chest",place[1]
   OBJECT:'?',random,contained
@@ -6051,6 +6119,11 @@ OBJECT:random,random,contained
 OBJECT:random,random,contained
 OBJECT:random,random,contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
+ENGRAVING:place[4],burn,"Elberelh"
+ENGRAVING:place[5],burn,"Elbe2eth"
 # Decoy Treasures:
 OBJECT:'(',"chest",place[1]
 OBJECT:'(',"chest",place[2]
@@ -6295,6 +6368,11 @@ OBJECT:random,random,contained
 OBJECT:random,random,contained
 OBJECT:random,random,contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
+ENGRAVING:place[4],burn,"Elberelh"
+ENGRAVING:place[5],burn,"Elbe2eth"
 # Decoy Treasures:
 OBJECT:'(',"chest",place[1]
 OBJECT:'(',"chest",place[2]
@@ -7369,6 +7447,9 @@ CONTAINER:'(',"chest",place[0]
 OBJECT:'/',random,contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(37,08)
 # Traps
@@ -7640,6 +7721,10 @@ OBJECT:object[1],random,(11,15)
 CONTAINER:'(',"chest",place[0]
   OBJECT:'/',random,contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
+ENGRAVING:place[4],burn,"Elberelh"
 
 CONTAINER:'(',"chest",place[1]
   OBJECT:'?',random,contained
@@ -7912,6 +7997,9 @@ MONSTER:'j',"ochre jelly",(43,01),asleep
 CONTAINER:'(',"chest",place[0]
   OBJECT:'/',random,contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 
 OBJECT:'(',"chest",place[1]
 OBJECT:'(',"chest",place[2]
@@ -8160,6 +8248,9 @@ OBJECT:'/',random,contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(37,09)
 # Traps
@@ -8410,6 +8501,9 @@ OBJECT:'/',random,contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # Storecave number 1
 OBJECT:object[0],random,(27,00)
 OBJECT:object[0],random,(28,00)
@@ -8757,6 +8851,9 @@ OBJECT:'/',random,contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(45,12)
 # Traps
@@ -9033,6 +9130,9 @@ OBJECT:'/',random,contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(37,08)
 # Traps
@@ -9295,6 +9395,9 @@ OBJECT:'/',random,contained
 # Prevent monsters from eating it.  (@'s never eat objects)
 OBJECT:'?',"scare monster",place[0]
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
 # The treasure of the lord
 OBJECT:'(',"chest",(45,12)
 # Traps
@@ -9584,6 +9687,10 @@ OBJECT:object[1],random,(11,15)
 CONTAINER:'(',"chest",place[0]
   OBJECT:'/',random,contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
+ENGRAVING:place[4],burn,"Elberelh"
 
 CONTAINER:'(',"chest",place[1]
   OBJECT:'?',random,contained
@@ -9970,6 +10077,11 @@ OBJECT:random,random,contained
 OBJECT:random,random,contained
 OBJECT:random,random,contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
+ENGRAVING:place[4],burn,"Elberelh"
+ENGRAVING:place[5],burn,"Elbe2eth"
 # Decoy Treasures:
 OBJECT:'(',"chest",place[1]
 OBJECT:'(',"chest",place[2]
@@ -10259,6 +10371,11 @@ OBJECT:random,random,contained
 OBJECT:random,random,contained
 OBJECT:random,random,contained
 ENGRAVING:place[0],burn,"Elbereth"
+ENGRAVING:place[1],burn,"Ylbereth"
+ENGRAVING:place[2],burn,"Elcereth"
+ENGRAVING:place[3],burn,"Elberet|"
+ENGRAVING:place[4],burn,"Elberelh"
+ENGRAVING:place[5],burn,"Elbe2eth"
 # Decoy Treasures:
 OBJECT:'(',"chest",place[1]
 OBJECT:'(',"chest",place[2]
