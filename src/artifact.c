@@ -2336,7 +2336,7 @@ doinvoke()
 			if (rn2(3)) {
 				pline("Your mana increases.");
 				u.uenmax++;
-			} else switch (rnd(20)) {
+			} else switch (rnd(21)) {
 
 				case 1:
 					HTeleport_control += 2;
@@ -2961,6 +2961,21 @@ doinvoke()
 					}
 					pline("Training complete!");
 
+					break;
+				case 21:
+					if (!(HAggravate_monster & INTRINSIC) && !(HAggravate_monster & TIMEOUT)) {
+						pline("A familiar is summoned!");
+						(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+					}
+
+					if (HAggravate_monster & INTRINSIC) {
+						HAggravate_monster &= ~INTRINSIC;
+						You_feel("more acceptable!");
+					}
+					if (HAggravate_monster & TIMEOUT) {
+						HAggravate_monster &= ~TIMEOUT;
+						You_feel("more acceptable!");
+					}
 					break;
 				default:
 					impossible("undefined pentagram effect");
