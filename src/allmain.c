@@ -2893,7 +2893,23 @@ fukrosionchoice:
 
 		if (!rn2(Aggravate_monster ? 4 : 20)) reset_rndmonst(NON_PM);
 
-		if (Aggravate_monster && !rn2(Stealth ? 50000 : 5000)) {
+		if (IntAggravate_monster && !rn2(Stealth ? 50000 : 5000)) {
+
+			int aggroamount = rnd(6);
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			while (aggroamount) {
+
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+				aggroamount--;
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+			pline("Several monsters come out of a portal.");
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		}
+
+		if (ExtAggravate_monster && !rn2(Stealth ? 5000 : 1000)) {
 
 			int aggroamount = rnd(6);
 			u.aggravation = 1;
