@@ -5195,9 +5195,10 @@ register struct obj *otmp;
 				(void) lcase (buf);
 				if (!(strcmp (buf, "yes"))) {
 					pline("As you try to rip the implant out of your body, you are severely hurt.");
-					losehp(rnd(25), "trying to remove an implant", KILLED_BY);
 					u.uhpmax -= rnd(10);
+					if (u.uhpmax < 0) u.uhpmax = 0;
 					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					losehp(rnd(25), "trying to remove an implant", KILLED_BY);
 					badeffect();
 				} else return 0;
 			}
@@ -5210,9 +5211,10 @@ register struct obj *otmp;
 				(void) lcase (buf);
 				if (!(strcmp (buf, "yes"))) {
 					pline("As you try to rip the implant out of your body, you are severely hurt.");
-					losehp(rnd(25), "trying to remove an implant", KILLED_BY);
 					u.uhpmax -= rnd(10);
+					if (u.uhpmax < 0) u.uhpmax = 0;
 					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					losehp(rnd(25), "trying to remove an implant", KILLED_BY);
 					badeffect();
 				} else return 0;
 			}
