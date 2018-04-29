@@ -4173,7 +4173,7 @@ int k_format; /* WAC k_format is an int */
 	if (!rn2(50) && n >= 1 && u.ulevel >= 30) {n = n / 10; if (n < 1) n = 1;}
 	}
 
-	if (PlayerInConeHeels) {
+	if (PlayerInConeHeels && n > 0) {
 		register int dmgreductor = 95;
 		if (!(PlayerCannotUseSkills)) switch (P_SKILL(P_HIGH_HEELS)) {
 			case P_BASIC: dmgreductor = 92; break;
@@ -4185,6 +4185,7 @@ int k_format; /* WAC k_format is an int */
 		}
 		n *= dmgreductor;
 		n /= 100;
+		if (n < 1) n = 1;
 	}
 
 	/* very early on, low-level characters should be more survivable
