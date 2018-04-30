@@ -696,9 +696,11 @@ touch_whereis()
 
   sprintf(whereis_file,"%s",dump_format_str(WHEREIS_FILE));
   sprintf(whereis_work,
-	  "depth=%d:dnum=%d:turns=%d:score=%ld:role=%s:race=%s:gender=%s:align=%s\n",
+	  "player=%s:depth=%d:dnum=%d:dname=%s:turns=%d:score=%ld:role=%s:race=%s:gender=%s:align=%s\n",
+	  plname,
 	  depth(&u.uz),
 	  u.uz.dnum,
+	  dungeons[u.uz.dnum].dname,
 	  moves,
 	  botl_score(),
 	  urole.filecode,
