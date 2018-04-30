@@ -696,7 +696,7 @@ touch_whereis()
 
   sprintf(whereis_file,"%s",dump_format_str(WHEREIS_FILE));
   sprintf(whereis_work,
-	  "player=%s:depth=%d:dnum=%d:dname=%s:turns=%d:score=%ld:role=%s:race=%s:gender=%s:align=%s\n",
+	  "player=%s:depth=%d:dnum=%d:dname=%s:turns=%d:score=%ld:role=%s:race=%s:gender=%s:align=%s:amulet=0\n",
 	  plname,
 	  depth(&u.uz),
 	  u.uz.dnum,
