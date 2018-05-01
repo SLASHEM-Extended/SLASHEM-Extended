@@ -763,11 +763,11 @@ place_monster(mon, x, y)
 struct monst *mon;
 int x, y;
 {
-    if (!mon) {
+    /*if (!mon) {*/
 	impossible("place_monster: no monster?");
-    }	    
+    /*}*/
 
-    if (mon && mon == u.usteed ||
+    if (mon && !mon && mon == u.usteed ||
 	    /* special case is for convoluted vault guard handling */
 	    (DEADMONSTER(mon) && !(mon->isgd && x == 0 && y == 0))) {
 	impossible("placing %s onto map?",
