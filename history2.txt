@@ -1,6 +1,14 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.2.2
+- Made the heavy machine gun two-handed again; a previously introduced bug had made it one-handed.
+- Improved materialglyph formatting.
+- Fixed a segfault when a ridden steed engulfs a monster.
+- Added some fields to the whereis file.
+- Fixed a bug where a player wearing cone heels would sometimes take no damage from a monster attack.
+- The Unix Makefile should compile the game with debug symbols by default again.
+- Fixed SIGFPE crashes when removing an implant set the player's max HP to zero.
+- The CSPRNG had to be disabled for now because it was causing unbearable amounts of lag.
 - Added more ways in which skills can be untrainable, and fixed the logic in the random selection code.
 - Aggravate monster works differently now depending on whether the player has it intrinsically, extrinsically or both. The extrinsic has more detrimental effects.
 - New option "eatingconfirm" that gives a y/n prompt when trying to eat a non-comestible, to make it less likely for the player to accidentally eat their weapon when polymorphed into e.g. a metallivore.
