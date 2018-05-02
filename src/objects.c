@@ -706,7 +706,7 @@ BOW("catapult", (char *)0,	1, 0,  10,  2, 250, 5, METAL, P_SLING, CLR_BLACK, 40)
 GUN("pistol", (char *)0,	   1,  0, 40,  8,  100, 15,  0,  4, WP_BULLET, IRON, P_FIREARM, HI_METAL, 1),
 GUN("flintlock", (char *)0,	    1,  0, 50,  10,   50,  8, -2,  0, WP_BULLET, IRON, P_FIREARM, HI_METAL, 1),
 GUN("submachine gun", (char *)0,   1,  0, 15,  8,  250, 10,  3, 3, WP_BULLET, IRON, P_FIREARM, HI_METAL, 5),
-GUN("heavy machine gun", (char *)0,1,  2, 5, 200, 2000, 14,  8, 0, WP_BULLET, IRON, P_FIREARM, HI_METAL, 40),
+GUN("heavy machine gun", (char *)0,1,  1, 5, 200, 2000, 14,  8, 0, WP_BULLET, IRON, P_FIREARM, HI_METAL, 40),
 GUN("rifle", (char *)0,		   1,  1, 13,  12,  150, 25, -1,  5, WP_BULLET, IRON, P_FIREARM, HI_METAL, 10),
 GUN("hunting rifle", (char *)0,  1,  1, 2,  12,  150, 30, -1,  5, WP_BULLET, VIVA, P_FIREARM, CLR_ORANGE, 15),
 GUN("assault rifle", (char *)0,	   1,  0, 10,  16, 1000, 12,  5, 2, WP_BULLET, IRON, P_FIREARM, HI_METAL, 12),
