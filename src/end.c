@@ -2030,72 +2030,105 @@ mk_dgl_extrainfo()
     if (!extrai) {
     } else {
         char tmpdng[16];
+	  int sortval = 0;
         if (Is_knox(&u.uz)) {
-            sprintf(tmpdng, "%s", "Knx");
+		sortval = 1000;
+            sprintf(tmpdng, "%i|%s", sortval, "Knx");
         } else if (In_quest(&u.uz)) {
-            sprintf(tmpdng, "%s%i", "Q", dunlev(&u.uz));
+		sortval = 1500 + depth(&u.uz);
+            sprintf(tmpdng, "%i|%s%i", sortval, "Q", dunlev(&u.uz));
         } else if (In_endgame(&u.uz)) {
-            sprintf(tmpdng, "%s", "End");
+            sprintf(tmpdng, "%i|%s", sortval, "End");
+		sortval = 10000;
         } else if (In_sokoban(&u.uz)) {
-            sprintf(tmpdng, "Sok%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Sok%i", sortval, depth(&u.uz));
+		sortval = 200 + depth(&u.uz);
         } else if (In_mines(&u.uz)) {
-            sprintf(tmpdng, "Min%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Min%i", sortval, depth(&u.uz));
+		sortval = 150 + depth(&u.uz);
         } else if (In_sheol(&u.uz)) {
-            sprintf(tmpdng, "She%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|She%i", sortval, depth(&u.uz));
+		sortval = 4000 + depth(&u.uz);
         } else if (In_yendorian(&u.uz)) {
-            sprintf(tmpdng, "Yen%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Yen%i", sortval, depth(&u.uz));
+		sortval = 6000 + depth(&u.uz);
         } else if (In_forging(&u.uz)) {
-            sprintf(tmpdng, "%s", "For");
+            sprintf(tmpdng, "%i|%s", sortval, "For");
+		sortval = 7500 + depth(&u.uz);
         } else if (In_ordered(&u.uz)) {
-            sprintf(tmpdng, "%s", "Ord");
+            sprintf(tmpdng, "%i|%s", sortval, "Ord");
+		sortval = 7500 + depth(&u.uz);
         } else if (In_deadground(&u.uz)) {
-            sprintf(tmpdng, "%s", "Dea");
+            sprintf(tmpdng, "%i|%s", sortval, "Dea");
+		sortval = 7500 + depth(&u.uz);
         } else if (In_illusorycastle(&u.uz)) {
-            sprintf(tmpdng, "Ill%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Ill%i", sortval, depth(&u.uz));
+		sortval = 3000 + depth(&u.uz);
         } else if (In_voiddungeon(&u.uz)) {
-            sprintf(tmpdng, "Voi%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Voi%i", sortval, depth(&u.uz));
+		sortval = 5000 + depth(&u.uz);
         } else if (In_netherrealm(&u.uz)) {
-            sprintf(tmpdng, "Net%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Net%i", sortval, depth(&u.uz));
+		sortval = 5500 + depth(&u.uz);
         } else if (In_deepmines(&u.uz)) {
-            sprintf(tmpdng, "Dee%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Dee%i", sortval, depth(&u.uz));
+		sortval = 1200 + depth(&u.uz);
         } else if (In_angmar(&u.uz)) {
-            sprintf(tmpdng, "Ang%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Ang%i", sortval, depth(&u.uz));
+		sortval = 3200 + depth(&u.uz);
         } else if (In_swimmingpool(&u.uz)) {
-            sprintf(tmpdng, "Swi%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Swi%i", sortval, depth(&u.uz));
+		sortval = 3300 + depth(&u.uz);
         } else if (In_hellbathroom(&u.uz)) {
-            sprintf(tmpdng, "Bat%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Bat%i", sortval, depth(&u.uz));
+		sortval = 3100 + depth(&u.uz);
         } else if (In_spacebase(&u.uz)) {
-            sprintf(tmpdng, "Spa%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Spa%i", sortval, depth(&u.uz));
+		sortval = 500 + depth(&u.uz);
         } else if (In_sewerplant(&u.uz)) {
-            sprintf(tmpdng, "Sew%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Sew%i", sortval, depth(&u.uz));
+		sortval = 700 + depth(&u.uz);
         } else if (In_gammacaves(&u.uz)) {
-            sprintf(tmpdng, "Gam%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Gam%i", sortval, depth(&u.uz));
+		sortval = 900 + depth(&u.uz);
         } else if (In_mainframe(&u.uz)) {
-            sprintf(tmpdng, "Mai%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Mai%i", sortval, depth(&u.uz));
+		sortval = 1100 + depth(&u.uz);
         } else if (In_subquest(&u.uz)) {
-            sprintf(tmpdng, "Sub%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Sub%i", sortval, depth(&u.uz));
+		sortval = 1800 + depth(&u.uz);
         } else if (In_bellcaves(&u.uz)) {
-            sprintf(tmpdng, "%s", "Bel");
+            sprintf(tmpdng, "%i|%s", sortval, "Bel");
+		sortval = 1900 + depth(&u.uz);
         } else if (In_towndungeon(&u.uz)) {
-            sprintf(tmpdng, "Tow%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|Tow%i", sortval, depth(&u.uz));
+		sortval = 400 + depth(&u.uz);
         } else if (In_spiders(&u.uz)) {
-            sprintf(tmpdng, "%s", "Spi");
+            sprintf(tmpdng, "%i|%s", sortval, "Spi");
+		sortval = 1500 + depth(&u.uz);
         } else if (In_grund(&u.uz)) {
-            sprintf(tmpdng, "%s", "Gru");
+            sprintf(tmpdng, "%i|%s", sortval, "Gru");
+		sortval = 1200 + depth(&u.uz);
         } else if (In_wyrm(&u.uz)) {
-            sprintf(tmpdng, "%s", "Wyr");
+            sprintf(tmpdng, "%i|%s", sortval, "Wyr");
+		sortval = 1600 + depth(&u.uz);
         } else if (In_tomb(&u.uz)) {
-            sprintf(tmpdng, "%s", "Tom");
+            sprintf(tmpdng, "%i|%s", sortval, "Tom");
+		sortval = 1000 + depth(&u.uz);
         } else if (In_slsea(&u.uz)) {
-            sprintf(tmpdng, "%s", "Sun");
+            sprintf(tmpdng, "%i|%s", sortval, "Sun");
+		sortval = 1600 + depth(&u.uz);
         } else if (In_gcavern(&u.uz)) {
-            sprintf(tmpdng, "%s", "Gia");
+            sprintf(tmpdng, "%i|%s", sortval, "Gia");
+		sortval = 1600 + depth(&u.uz);
         } else if (In_frnkn(&u.uz)) {
-            sprintf(tmpdng, "%s", "Frn");
+            sprintf(tmpdng, "%i|%s", sortval, "Frn");
+		sortval = 3500 + depth(&u.uz);
         } else if (In_mtemple(&u.uz)) {
-            sprintf(tmpdng, "%s", "Mol");
+            sprintf(tmpdng, "%i|%s", sortval, "Mol");
+		sortval = 1000 + depth(&u.uz);
         } else {
-            sprintf(tmpdng, "D%i", depth(&u.uz));
+            sprintf(tmpdng, "%i|D%i", sortval, depth(&u.uz));
         }
 
 #ifdef UNIX
