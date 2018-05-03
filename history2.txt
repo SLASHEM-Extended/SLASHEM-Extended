@@ -1,7 +1,5 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
-test message goes here
-
 2.2.2
 - Added extrainfo to display the player's in-game location in the dgamelaunch watch menu.
 - Made the heavy machine gun two-handed again; a previously introduced bug had made it one-handed.
