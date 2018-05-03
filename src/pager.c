@@ -15352,7 +15352,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"We want to know whether a wall (or a door) is the portcullis (passageway) of an eventual drawbridge.",
 	"We want to know whether a wall (or a door) is the portcullis (passageway) of an eventual drawbridge. But every sane player instantly zaps every drawbridge on sight with a wand of striking, anyway.",
 	"If you don't destroy a drawbridge, you can be sure that a monster with a wand of striking will suddenly appear while you're walking across.",
-	"Use is_db_wall where you want to verify that a drawbridge "wall" is UP in the location x, y (instead of UP or DOWN, as with is_drawbridge_wall).",
+	"Use is_db_wall where you want to verify that a drawbridge 'wall' is UP in the location x, y (instead of UP or DOWN, as with is_drawbridge_wall).",
 	"Find the drawbridge wall associated with a drawbridge.",
 	"Find the drawbridge wall associated with a drawbridge. Stand on it and wait for the soldier to zap you with his wand of striking.",
 	"Creation of a drawbridge at pos x,y. dir is the direction. flag must be put to TRUE if we want the drawbridge to be opened.",
