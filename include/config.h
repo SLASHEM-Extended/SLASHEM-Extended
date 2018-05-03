@@ -592,6 +592,11 @@ typedef unsigned char	uchar;
  * On Windows you can probably use 10000 without any ill effects. --Amy */
 #define MISSINGNORANGE 2000
 
+/* Filename for dgamelaunch extra info field.
+   Can be left undefined for not writing extrainfo. */
+#define EXTRAINFO_FN "/extrainfo/%n.extrainfo"
+
+
 /* End of Section 5 */
 
 #define BONES_POOL /* Multiple bones files per level */ 

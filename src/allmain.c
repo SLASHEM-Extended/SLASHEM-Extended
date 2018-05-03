@@ -59,6 +59,7 @@ register const char *color;
 		Blind ? nul : hcolor(color));
 }
 
+static long prev_dgl_extrainfo = 0;
 void
 moveloop()
 {
@@ -7176,6 +7177,11 @@ newboss:
 					update_inventory();
 				}
 			}
+
+                    if ((prev_dgl_extrainfo == 0) || (prev_dgl_extrainfo < (moves + 250))) {
+                        prev_dgl_extrainfo = moves;
+                        mk_dgl_extrainfo();
+                    }
 
 		    /* One possible result of prayer is healing.  Whether or
 		     * not you get healed depends on your current hit points.

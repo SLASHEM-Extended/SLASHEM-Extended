@@ -2009,4 +2009,103 @@ boolean ask;
     }
 }
 
+void
+mk_dgl_extrainfo()
+{
+#ifdef EXTRAINFO_FN
+    FILE *extrai = (FILE *)0;
+#ifdef UNIX
+    mode_t eimode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
+#endif
+    char new_fn[512];
+
+	/* certain nasty traps obscure the information - so we want to hide it from whereis too! --Amy */
+	if (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && (moves % 10 == 0) ) || FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone() ) {
+		return;
+	}
+
+    sprintf(new_fn, "%s", dump_format_str(EXTRAINFO_FN));
+
+    extrai = fopen_datafile(new_fn, "w", LEVELPREFIX);
+    if (!extrai) {
+    } else {
+        char tmpdng[16];
+        if (Is_knox(&u.uz)) {
+            sprintf(tmpdng, "%s", "Knx");
+        } else if (In_quest(&u.uz)) {
+            sprintf(tmpdng, "%s%i", "Q", dunlev(&u.uz));
+        } else if (In_endgame(&u.uz)) {
+            sprintf(tmpdng, "%s", "End");
+        } else if (In_sokoban(&u.uz)) {
+            sprintf(tmpdng, "Sok%i", depth(&u.uz));
+        } else if (In_mines(&u.uz)) {
+            sprintf(tmpdng, "Min%i", depth(&u.uz));
+        } else if (In_sheol(&u.uz)) {
+            sprintf(tmpdng, "She%i", depth(&u.uz));
+        } else if (In_yendorian(&u.uz)) {
+            sprintf(tmpdng, "Yen%i", depth(&u.uz));
+        } else if (In_forging(&u.uz)) {
+            sprintf(tmpdng, "%s", "For");
+        } else if (In_ordered(&u.uz)) {
+            sprintf(tmpdng, "%s", "Ord");
+        } else if (In_deadground(&u.uz)) {
+            sprintf(tmpdng, "%s", "Dea");
+        } else if (In_illusorycastle(&u.uz)) {
+            sprintf(tmpdng, "Ill%i", depth(&u.uz));
+        } else if (In_voiddungeon(&u.uz)) {
+            sprintf(tmpdng, "Voi%i", depth(&u.uz));
+        } else if (In_netherrealm(&u.uz)) {
+            sprintf(tmpdng, "Net%i", depth(&u.uz));
+        } else if (In_deepmines(&u.uz)) {
+            sprintf(tmpdng, "Dee%i", depth(&u.uz));
+        } else if (In_angmar(&u.uz)) {
+            sprintf(tmpdng, "Ang%i", depth(&u.uz));
+        } else if (In_swimmingpool(&u.uz)) {
+            sprintf(tmpdng, "Swi%i", depth(&u.uz));
+        } else if (In_hellbathroom(&u.uz)) {
+            sprintf(tmpdng, "Bat%i", depth(&u.uz));
+        } else if (In_spacebase(&u.uz)) {
+            sprintf(tmpdng, "Spa%i", depth(&u.uz));
+        } else if (In_sewerplant(&u.uz)) {
+            sprintf(tmpdng, "Sew%i", depth(&u.uz));
+        } else if (In_gammacaves(&u.uz)) {
+            sprintf(tmpdng, "Gam%i", depth(&u.uz));
+        } else if (In_mainframe(&u.uz)) {
+            sprintf(tmpdng, "Mai%i", depth(&u.uz));
+        } else if (In_subquest(&u.uz)) {
+            sprintf(tmpdng, "Sub%i", depth(&u.uz));
+        } else if (In_bellcaves(&u.uz)) {
+            sprintf(tmpdng, "%s", "Bel");
+        } else if (In_towndungeon(&u.uz)) {
+            sprintf(tmpdng, "Tow%i", depth(&u.uz));
+        } else if (In_spiders(&u.uz)) {
+            sprintf(tmpdng, "%s", "Spi");
+        } else if (In_grund(&u.uz)) {
+            sprintf(tmpdng, "%s", "Gru");
+        } else if (In_wyrm(&u.uz)) {
+            sprintf(tmpdng, "%s", "Wyr");
+        } else if (In_tomb(&u.uz)) {
+            sprintf(tmpdng, "%s", "Tom");
+        } else if (In_slsea(&u.uz)) {
+            sprintf(tmpdng, "%s", "Sun");
+        } else if (In_gcavern(&u.uz)) {
+            sprintf(tmpdng, "%s", "Gia");
+        } else if (In_frnkn(&u.uz)) {
+            sprintf(tmpdng, "%s", "Frn");
+        } else if (In_mtemple(&u.uz)) {
+            sprintf(tmpdng, "%s", "Mol");
+        } else {
+            sprintf(tmpdng, "D%i", depth(&u.uz));
+        }
+
+#ifdef UNIX
+        chmod(new_fn, eimode);
+#endif
+	  fwrite(tmpdng,strlen(tmpdng),1,extrai);
+        fclose(extrai);
+    }
+#endif /* EXTRAINFO_FN */
+}
+
+
 /*end.c*/
