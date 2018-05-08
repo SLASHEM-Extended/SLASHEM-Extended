@@ -331,80 +331,80 @@ DESCRIPTION:    mazelike
 LEVEL:          "blkmar" "D" @ (1, 0)
 
 ### The Lost Tomb ###
-DUNGEON:        "The Lost Tomb" "L" (1, 0)
+DUNGEON:        "The Lost Tomb" "W" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "tomb" "L" @ (1, 0)
 
 ### The Spider Caves ###
-DUNGEON:        "The Spider Caves" "S" (1, 0)
+DUNGEON:        "The Spider Caves" "W" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "spiders" "S" @ (1, 0)
 
 ### The Sunless Sea ###
-DUNGEON:        "The Sunless Sea" "U" (1, 0)
+DUNGEON:        "The Sunless Sea" "W" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "sea" "S" @ (1, 0)
 
 ### The Temple of Moloch ###
-DUNGEON:        "The Temple of Moloch" "C" (1, 0)
+DUNGEON:        "The Temple of Moloch" "W" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "mtemple" "T" @ (1, 0)
 
-DUNGEON:        "Illusory Castle" "C" (30, 0)
+DUNGEON:        "Illusory Castle" "S" (30, 0)
 ALIGNMENT:      neutral
 LEVEL:	    "machn" "D" @ (15, 14)
 
-DUNGEON:        "Deep Mines" "C" (25, 0)
+DUNGEON:        "Deep Mines" "L" (25, 0)
 ALIGNMENT:      chaotic
 LEVEL:	    "orcba" "D" @ (10, 6)
 RNDLEVEL:	    "deptn" "E" @ (5, 10) 10
 RNDLEVEL:	    "depen" "F" @ (25, 0) 6
 
-DUNGEON:        "Space Base" "C" (12, 0)
+DUNGEON:        "Space Base" "P" (12, 0)
 ALIGNMENT:      lawful
 BRANCH:         "Sewer Plant" @ (10, 0)
 BRANCH:         "Gamma Caves" @ (11, 0)
 BRANCH:         "Mainframe" @ (12, 0) up -1
 LEVEL:	    "robtn" "D" @ (8, 0)
 
-DUNGEON:        "Sewer Plant" "C" (5, 0)
+DUNGEON:        "Sewer Plant" "P" (5, 0)
 ALIGNMENT:      neutral
 LEVEL:	    "sewpl" "D" @ (5, 0)
 
-DUNGEON:        "Gamma Caves" "C" (6, 0)
+DUNGEON:        "Gamma Caves" "P" (6, 0)
 ALIGNMENT:      chaotic
 
-DUNGEON:        "Mainframe" "C" (5, 0)
+DUNGEON:        "Mainframe" "P" (5, 0)
 ALIGNMENT:      lawful
 LEVEL:	    "rabho" "D" @ (5, 0)
 
-DUNGEON:        "Void" "C" (30, 0)
+DUNGEON:        "Void" "H" (30, 0)
 ALIGNMENT:      neutral
 DESCRIPTION:    hellish
 BRANCH:	    "Nether Realm" @ (2, 27)
 
-DUNGEON:        "Nether Realm" "C" (30, 0)
+DUNGEON:        "Nether Realm" "H" (30, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    hellish
 
-DUNGEON:        "Angmar" "C" (15, 0)
+DUNGEON:        "Angmar" "F" (15, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    hellish
 
-DUNGEON:        "Swimming Pool" "C" (15, 0)
+DUNGEON:        "Swimming Pool" "F" (15, 0)
 ALIGNMENT:      lawful
 DESCRIPTION:    hellish
 
-DUNGEON:        "Hell's Bathroom" "C" (3, 0)
+DUNGEON:        "Hell's Bathroom" "F" (3, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    hellish
 
 ### The Giant Caverns ###
-DUNGEON:        "The Giant Caverns" "H" (1, 0)
+DUNGEON:        "The Giant Caverns" "W" (1, 0)
 ALIGNMENT:      chaotic
 DESCRIPTION:    mazelike
 LEVEL:          "cav2fill" "H" @ (1, 0)
@@ -502,13 +502,13 @@ RNDLEVEL:          "shfil" "H" @ (1, 99) 10
 RNDLEVEL:          "shrnd" "G" @ (1, 99) 10
 
 # with 3 branches that you need to visit in order to imbue the amulet...
-DUNGEON:        "Forging Chamber" "J" (1, 0)
+DUNGEON:        "Forging Chamber" "R" (1, 0)
 DESCRIPTION:    hellish
 
-DUNGEON:        "Dead Grounds" "I" (1, 0)
+DUNGEON:        "Dead Grounds" "R" (1, 0)
 DESCRIPTION:    hellish
 
-DUNGEON:        "Ordered Chaos" "O" (1, 0)
+DUNGEON:        "Ordered Chaos" "R" (1, 0)
 DESCRIPTION:    hellish
 
 ### The Endgame levels ###
