@@ -7225,7 +7225,7 @@ struct obj *obj;
 #ifdef PHANTOM_CRASH_BUG
 		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #else
-		pline("%s - This is a piece of armor. Color: %s. Material: %s. Appearance: %s. It can be worn for protection (armor class, magic cancellation etc.).",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+		pline("%s - This is a piece of armor. Color: %s. Material: %s. Appearance: %s. Slot: %s. It can be worn for protection (armor class, magic cancellation etc.).",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", is_shield(obj) ? "shield" : is_helmet(obj) ? "helmet" : is_boots(obj) ? "boots" : is_gloves(obj) ? "gloves" : is_cloak(obj) ? "cloak" : is_shirt(obj) ? "shirt" : is_suit(obj) ? "suit" : "weird slot (this may be a bug)");
 #endif
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "irregular boots") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "neregulyarnyye sapogi") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "tartibsizlik chizilmasin"))))
 			pline("These boots have weird-shaped high heels, which look a bit like a wedge heel with part of it cut out, which can occasionally cause you to fumble. But while you're wearing them, the turn counter advances at half the normal speed.");
