@@ -1,6 +1,12 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.2.2
+- Regrouped bones files since the previous method of changing their file names didn't work. Dungeon branches with similar difficulty levels now share bones files because sadly, there is a limit of 26 different bones characters.
+- In evilvariant mode, the game will not tell the player what item got stolen by a nymph.
+- Fixed a couple errors that allowed the player's maximum HP to be set to zero.
+- Armor pieces will now tell the player what slot they use when accessing their description.
+- Spirit bomb technique's damage scales better with higher technique levels.
+- When the player gets the chance to break an enemy's weapon, the game will now tell the player what the weapon is before asking if they really want to break it.
 - Added extrainfo to display the player's in-game location in the dgamelaunch watch menu.
 - Made the heavy machine gun two-handed again; a previously introduced bug had made it one-handed.
 - Improved materialglyph formatting.
