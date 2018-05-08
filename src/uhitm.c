@@ -1617,6 +1617,7 @@ int dieroll;
 			 *	No twoweapon.
 			 */
 
+			pline("Your blow is powerful enough to destroy %s %s!", s_suffix(Monnam(mon)), xname(monwep));
 			getlin ("Smash the opponent's weapon? [yes/no]",cutbuf);
 			(void) lcase (cutbuf);
 			if (!(strcmp (cutbuf, "yes"))) {
@@ -1670,6 +1671,7 @@ int dieroll;
 
 				if (juyochance > rn2(100)) {
 
+					pline("Your lightsaber is capable of cutting %s %s!", s_suffix(Monnam(mon)), xname(monwep));
 					getlin ("Cut the opponent's weapon in half? [yes/no]",cutbuf);
 					(void) lcase (cutbuf);
 					if (!(strcmp (cutbuf, "yes"))) {
