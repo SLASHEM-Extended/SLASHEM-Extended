@@ -3598,7 +3598,7 @@ peffects(otmp)
 			num2 = rnd(2) + 2 * otmp->blessed + 1;
 			u.uhpmax += (otmp->cursed) ? -num2 : num2;
 			u.uhp += (otmp->cursed) ? -num : num;
-			if(u.uhpmax <= 0) u.uhpmax = 0;
+			if(u.uhpmax < 1) u.uhpmax = 1;
 			if(u.uhp <= 0) u.uhp = 0;
 			if(u.uhp > u.uhpmax) {
 				u.uhpmax += ((u.uhp - u.uhpmax) / 2);

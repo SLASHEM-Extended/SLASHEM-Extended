@@ -3415,7 +3415,7 @@ proofarmorchoice:
 				if (!rn2(4)) {
 					You_feel("drained...");
 					u.uhpmax -= rn1(10,10);
-					if (u.uhpmax < 0) u.uhpmax = 0;
+					if (u.uhpmax < 1) u.uhpmax = 1;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				}
 				if (!rn2(4)) {

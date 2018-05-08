@@ -1437,7 +1437,7 @@ int tech;
 		case T_RAGE:
 		    u.uhpmax -= tech_list[i].t_inuse - 1;
 		    if (u.uhpmax < 1)
-			u.uhpmax = 0;
+			u.uhpmax = 1;
 		    u.uhp -= tech_list[i].t_inuse - 1;
 		    if (u.uhp < 1)
 			u.uhp = 1;
