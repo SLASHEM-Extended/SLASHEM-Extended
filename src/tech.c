@@ -2014,7 +2014,7 @@ dotech()
 			break;
 
 		case T_SPIRIT_BOMB:
-			pline("This technique allows you to do a 'kamehameha' attack against a monster, causing it to explode while also damaging other monsters nearby. You can't hit yourself or your pets with this attack either.");
+			pline("This technique allows you to do a 'kamehameha' attack against a monster, causing it to explode while also damaging other monsters nearby. According to Nethackwiki, you can't hit yourself or your pets with this attack either. But in-game experience says otherwise, i.e. pets can very well still be hit, sadly.");
 			break;
 
 		case T_DRAW_BLOOD:
@@ -6700,7 +6700,9 @@ blitz_spirit_bomb()
 		u.uen = 0;
 	}
 
-	num = 10 + techlevX(tech_no);
+	/* the damage was way too low... no wonder players never use finishers as the last chained blitz move,
+	 * because pummel is all-powerful! Therefore I increased the damage --Amy */
+	num = 10 + (techlevX(tech_no) * 3);
 	num = (u.uen < num ? u.uen : num);
 	
 	u.uen -= num;
