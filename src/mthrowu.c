@@ -54,6 +54,7 @@ const char *name;	/* if null, then format `obj' */
 	char onmbuf[BUFSZ], knmbuf[BUFSZ];
 
 	int shieldblockrate = 0;
+	int saberblockrate = 0;
 
 	int extrachance = 1;
 
@@ -264,6 +265,33 @@ const char *name;	/* if null, then format `obj' */
 	else if (is_thrown_weapon) extrachance = 3;
 	else extrachance = 2;
 
+	if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+		saberblockrate = 5;
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_SHIEN)) {
+
+				case P_BASIC:	saberblockrate +=  10; break;
+				case P_SKILLED:	saberblockrate +=  20; break;
+				case P_EXPERT:	saberblockrate +=  30; break;
+				case P_MASTER:	saberblockrate +=  40; break;
+				case P_GRAND_MASTER:	saberblockrate +=  50; break;
+				case P_SUPREME_MASTER:	saberblockrate +=  60; break;
+				default: saberblockrate += 0; break;
+			}
+
+		}
+		if (P_SKILL(weapon_type(uwep)) >= P_SKILLED && !(PlayerCannotUseSkills) ) {
+			saberblockrate += 30;
+			if (Role_if(PM_JEDI)) {
+				saberblockrate += ((100 - saberblockrate) / 2);
+			}
+			if (Race_if(PM_BORG)) {
+				saberblockrate += ((100 - saberblockrate) / 5);
+			}
+		}
+
+	}
+
 	if((u.uac + tlev <= rnd(20)) && (!rn2(Conflict ? 4 : 3))) {
 		if(Blind || !flags.verbose) pline("It misses.");
 		else You("are almost hit by %s.", onm);
@@ -296,44 +324,18 @@ const char *name;	/* if null, then format `obj' */
 
 			return(0);
 
-	} else if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+	} else if (uwep && is_lightsaber(uwep) && uwep->lamplit && (saberblockrate > rn2(100))) {
 
-		int saberblockrate = 5;
-		if (!PlayerCannotUseSkills) {
-			switch (P_SKILL(P_SHIEN)) {
+		/* dodge missiles, even when blind; see "A new hope" for blindness reference */
+		You("dodge %s with %s.", onm, yname(uwep));
+		use_skill(P_SHIEN, 1);
 
-				case P_BASIC:	saberblockrate +=  10; break;
-				case P_SKILLED:	saberblockrate +=  20; break;
-				case P_EXPERT:	saberblockrate +=  30; break;
-				case P_MASTER:	saberblockrate +=  40; break;
-				case P_GRAND_MASTER:	saberblockrate +=  50; break;
-				case P_SUPREME_MASTER:	saberblockrate +=  60; break;
-				default: saberblockrate += 0; break;
-			}
-
-		}
-		if (P_SKILL(weapon_type(uwep)) >= P_SKILLED && !(PlayerCannotUseSkills) ) {
-			saberblockrate += 30;
-			if (Role_if(PM_JEDI)) {
-				saberblockrate += ((100 - saberblockrate) / 2);
-			}
-			if (Race_if(PM_BORG)) {
-				saberblockrate += ((100 - saberblockrate) / 5);
-			}
+		if (tech_inuse(T_ABSORBER_SHIELD) && uwep && is_lightsaber(uwep) && uwep->lamplit) {
+			pline("Energy surges into the lightsaber as the projectile is blocked.");
+			uwep->age += 25;
 		}
 
-		if (saberblockrate > rn2(100)) {
-			/* dodge missiles, even when blind; see "A new hope" for blindness reference */
-			You("dodge %s with %s.", onm, yname(uwep));
-			use_skill(P_SHIEN, 1);
-
-			if (tech_inuse(T_ABSORBER_SHIELD) && uwep && is_lightsaber(uwep) && uwep->lamplit) {
-				pline("Energy surges into the lightsaber as the projectile is blocked.");
-				uwep->age += 25;
-			}
-
-			return(0);
-		}
+		return(0);
 
 	} else if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(3)) {
 
