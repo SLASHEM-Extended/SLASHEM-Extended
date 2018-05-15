@@ -5697,7 +5697,10 @@ plus:
 		if (
 			is_lightsaber(obj) ||
 			obj->otyp == STICK_OF_DYNAMITE) {
-		    if (obj->lamplit) strcat(bp, " (lit)");
+		    if (obj->lamplit) {
+			if ((obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) && obj->altmode) strcat(bp, " (2xlit)");
+			else strcat(bp, " (lit)");
+		    }
 #  ifdef DEBUG
 		    sprintf(eos(bp), " (%d)", obj->age);		
 #  endif

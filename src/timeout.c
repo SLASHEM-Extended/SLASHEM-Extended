@@ -3821,6 +3821,10 @@ begin_burn(obj, already_lit)
 		    update_inventory();
 	    } else {
 		obj->lamplit = 0;
+		/* double lightsaber should have its second blade turned off too! --Amy */
+		if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+			obj->altmode = FALSE;
+		}
 	    }
 	} else {
 	    if (carried(obj) && !already_lit)
@@ -3853,15 +3857,17 @@ end_burn(obj, timer_attached)
 	    return;
 	}
 
-	if (obj->otyp == MAGIC_LAMP || obj->otyp == MAGIC_CANDLE ||
-		obj->oartifact == ART_LIGHTSABER_PROTOTYPE ||
-		artifact_light(obj))
+	if (obj->otyp == MAGIC_LAMP || obj->otyp == MAGIC_CANDLE || obj->oartifact == ART_LIGHTSABER_PROTOTYPE || artifact_light(obj))
 	    timer_attached = FALSE;
 
 	if (!timer_attached) {
 	    /* [DS] Cleanup explicitly, since timer cleanup won't happen */
 	    del_light_source(LS_OBJECT, (void *)obj);
 	    obj->lamplit = 0;
+	    /* caller doesn't always make sure that double lightsabers are turned off properly; do so here */
+	    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+			obj->altmode = FALSE;
+		}
 	    if (obj->where == OBJ_INVENT)
 		update_inventory();
 	} else if (!stop_timer(BURN_OBJECT, (void *) obj))
@@ -3891,6 +3897,9 @@ cleanup_burn(arg, expire_time)
     obj->age += expire_time - monstermoves;
 
     obj->lamplit = 0;
+    if (obj->otyp == RED_DOUBLE_LIGHTSABER || obj->otyp == WHITE_DOUBLE_LIGHTSABER) {
+	obj->altmode = FALSE;
+    }
 
     if (obj->where == OBJ_INVENT)
 	update_inventory();
