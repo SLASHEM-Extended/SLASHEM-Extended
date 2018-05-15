@@ -1,6 +1,9 @@
 Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.2.2
+- Some dungeon branches, especially the subquest but also Gehennom and the Yendorian Tower, will provide less loot.
+- The turn undead technique is now less effective and has a timeout. #turn will no longer work, but give a message to use the technique instead.
+- Fixed a SLASH'EM bug that caused double lightsabers to not deactivate properly if you switched to a different weapon while both blades were lit.
 - Fixed an oversight that caused monsters' ranged attacks to never hit the player if the player was wielding a lit lightsaber.
 - Regrouped bones files since the previous method of changing their file names didn't work. Dungeon branches with similar difficulty levels now share bones files because sadly, there is a limit of 26 different bones characters.
 - In evilvariant mode, the game will not tell the player what item got stolen by a nymph.
