@@ -2730,7 +2730,9 @@ secureidchoice:
                         Your("technique is only effective when riding a monster.");
                 break;
             case T_TURN_UNDEAD:
-                return(turn_undead());
+			if (!turn_undead()) t_timeout = rnz(10);
+			else t_timeout = rnz(50);
+			break;
 	    case T_VANISH:
 		if (Invisible && Fast) {
 			You("are already quite nimble and undetectable.");

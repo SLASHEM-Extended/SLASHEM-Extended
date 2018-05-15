@@ -2575,6 +2575,10 @@ doturn()
 		You("don't know how to turn undead!");
 		return(0);
 	}
+	if (!wizard) {
+		pline("In order to turn undead, use #technique or cast the turn undead spell.");
+		return(0);
+	}
 	return(turn_undead());
 }
 
@@ -2615,6 +2619,8 @@ turn_undead()
 	    if (!cansee(mtmp->mx,mtmp->my) ||
 		distu(mtmp->mx,mtmp->my) > range) continue;
 
+	    if (distu(mtmp->mx,mtmp->my) > rnd(150)) continue;
+
 	    if (!mtmp->mpeaceful && (is_undead(mtmp->data) || mtmp->egotype_undead ||
 		   (is_demon(mtmp->data) && (u.ulevel > (MAXULEV/2))))) {
 
@@ -2637,7 +2643,7 @@ turn_undead()
 			case S_WRAITH:  xlev += 2;  /*FALLTHRU*/
 			case S_MUMMY:   xlev += 2;  /*FALLTHRU*/
 			case S_ZOMBIE:
-			    if (u.ulevel >= xlev &&
+			    if ((u.ulevel >= xlev) && (rnd(30) >= xlev) &&
 				    !resist(mtmp, '\0', 0, NOTELL)) {
 				if (u.ualign.type == A_CHAOTIC) {
 				    mtmp->mpeaceful = 1;
@@ -2660,7 +2666,7 @@ turn_undead()
 		    }
 	    }
 	}
-	nomul(-(1 + rnd(4)), "trying to turn undead monsters", TRUE); /* used to always be -2 which felt a little overpowered --Amy */
+	nomul(-(2 + rnd(3)), "trying to turn undead monsters", TRUE); /* used to always be -2 which felt a little overpowered --Amy */
 	nomovemsg = 0;
 	return(1);
 }
