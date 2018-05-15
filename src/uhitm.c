@@ -3612,11 +3612,11 @@ struct attack *mattk;
 	    }
 	    /* give the object to the character, new function by Amy - see invent.c */
 
-	    if (otmp && otmp->mstartinvent && !(otmp->enchantment) && !(otmp->oartifact) && !(otmp->fakeartifact) && (!rn2(3) || (rn2(100) < u.musableremovechance) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() ) && !stack_too_big(otmp) ) {
+	    if (otmp && otmp->mstartinvent && !(otmp->enchantment) && !(otmp->oartifact) && !(otmp->fakeartifact) && (!rn2(3) || (rn2(100) < u.musableremovechance) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() ) ) {
 			delobj(otmp);
 			return;
 	    }
-	    if (otmp && otmp->mstartinventB && !(otmp->enchantment) && !(otmp->oartifact) && !(otmp->fakeartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(otmp)) {
+	    if (otmp && otmp->mstartinventB && !(otmp->enchantment) && !(otmp->oartifact) && !(otmp->fakeartifact) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) {
 			delobj(otmp);
 			return;
 	    }

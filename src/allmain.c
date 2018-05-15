@@ -10831,6 +10831,22 @@ timebasedlowerchance()
 		chance /= 10;
 	}
 
+	if (In_quest(&u.uz) || In_sheol(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || In_gehennom(&u.uz) || In_frnkn(&u.uz)) {
+		chance /= 2;
+	}
+
+	if (In_yendorian(&u.uz) && !(flags.wonderland && !(u.wonderlandescape)) ) {
+		chance /= 3;
+	}
+
+	if (In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz) ) {
+		chance /= 3;
+	}
+
+	if (In_subquest(&u.uz) || In_bellcaves(&u.uz)) {
+		chance /= 5;
+	}
+
 	if (chance < 5) chance = 5;
 
 	if (chance > rnd(100)) return(TRUE);
