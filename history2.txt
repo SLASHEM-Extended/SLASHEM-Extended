@@ -1,4 +1,4 @@
-Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
+Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.2.2
 - Some dungeon branches, especially the subquest but also Gehennom and the Yendorian Tower, will provide less loot.
@@ -871,6 +871,68 @@ Incomplete changelog for SLASH'EM Extended, written by Amy, given in reverse chr
 - Being very satiated can slow down the player.
 - Fixed erroneous item generation chances that resulted in certain items spawning way too often while others that should have been common were spawning never at all.
 - Added new playable roles: Transsylvanian and Unbeliever.
+
+1.6.4
+- Made wands of wishing less common.
+- Tried to fix the bug with respawn traps causing the game to freeze.
+- Thrown cockatrice eggs are once again guaranteed to petrify monsters.
+- Monsters seen via telepathy correctly disappear and reappear when their state changes.
+- The full-inventory identify effect can now identify items inside the player's containers too.
+- Changed some RNG-dependant item generation calculations.
+- Hangup paralysis time is limited to only a few turns.
+- The gunner role gets more bullets from using create ammo.
+- Really fixed the teleporting items effect that incorrectly dropped the player's worn items without making them not worn.
+- Added new Gehennom levels from dnethack.
+- Reduced some of the loot the player can get, especially from mimic/statue rooms.
+- Sometimes, the spawn chances for items on concealing monsters or misc useful items can be lower. Also, the spawn chance for specific item types may be set to a lower value at game start.
+
+1.6.3
+- Fixed bugs where the player could get petrified despite being stoning resistant, as well as the possibility of the game entering an infinite loop.
+- Slippery fingers will give a message when they wear off.
+- Added a failsafe that triggers when the item generation routine tries to make an invalid object class.
+- Monsters with amulet-stealing attacks can also steal any artifact, not just the player's specific quest artifact.
+- The C command is once again the command to call monsters.
+- Improved monster body part handling.
+- Giant, ogre, kobold and troll races no longer have misspelled names.
+- Prevented the player from turning off the bones option mid-game. It now has to be set in the config file.
+
+1.6.2
+- Added an option to disable the loading of bones files.
+- Fixed the error where monsters with the resurrector egotype almost never left corpses and almost never resurrected even if they did.
+- Tension rooms can now be "themed", and have monsters that share a specific trait.
+- Fixed the error where saving the game on Friday the 13th didn't correctly adjust the luck and alignment penalties.
+- Added playable races: redditor and sinner.
+
+1.6.1
+- Undead warning works correctly now.
+- Pets no longer eat zero-nutrition corpses.
+- Mind flayer psychic blasts can now cause a wider variety of bad effects.
+- Having a high sin counter can cause kops to spawn.
+- Sexual intercourse can afflict the player with diseases.
+- The player can no longer fire an automatic firearm if there's not enough ammo.
+- Really fixed the bug where tame monsters would drop their starting inventory.
+- The fast forward effect correctly advances player timeouts now.
+- Restored a bunch of commands that were no longer working correctly when key rebinding was introduced.
+- The missingno range can now be configured at compile time.
+
+1.6.0
+- Fixed a 100% CPU usage problem when the terminal was lost or other things happened.
+- MSGTYPE option added.
+- Fixed the bug where monsters with shredding attacks could segfault.
+- quiver_fired option added.
+- Keybindings can be remapped now.
+- Limited the amount of boomerangs a player can wish for.
+- The dungeon may occasionally be generated with all special levels present, or with levels and branches appearing in a wider range of random locations, or the quests being in Gehennom, or a combination of two or all three of these.
+
+1.5.9
+- The player's pantheon is displayed in the dumplog now.
+- Made the spellbook of identify much more rare. Scrolls of standard id are also a bit less common.
+- Gems, balls and chains no longer spawn with their enchantment value known.
+- Trying to steal a monster's starting items can fail now, deleting the item with no message.
+- Tame monsters aren't supposed to drop their starting items.
+- Greased items can have up to 3 layers of grease.
+
+(older stuff still needs to be added here)
 
 :-) <3 *bundlebundlebundle* <3 :D
 
