@@ -2325,8 +2325,8 @@ RING("practice", EXTRA_WEAPON_PRACTICE,           "insulating", 300, 2, 1, 0, 4,
 RING("confusion resistance", CONF_RES, "signet", 300, 2, 1, 0, 5, IRON,     HI_METAL, 20),
 RING("restration", STUN_RES,   "enamel", 300, 2, 1, 0, 6, IRON,     CLR_WHITE, 20),
 RING("heavy attack", 0,        "grindstone", 300, 2, 1, 1, 8, MINERAL,  HI_MINERAL, 25), /* increase accuracy and damage */
-RING("immunity to drawbridges", 0,        "drawn", 300, 10, 1, 1, 4, PAPER,  CLR_WHITE, 1),
-RING("discount action", DISCOUNT_ACTION,        "cashed", 300, 50, 1, 1, 7, MINERAL,  CLR_WHITE, 1),
+RING("immunity to drawbridges", 0,        "drawn", 300, 10, 1, 0, 4, PAPER,  CLR_WHITE, 1),
+RING("discount action", DISCOUNT_ACTION,        "cashed", 300, 50, 1, 0, 7, MINERAL,  CLR_WHITE, 1),
 
 RING("alacrity", FAST, "black signet", 300, 10, 1, 0, 5, MITHRIL, CLR_BLACK, 40),
 RING("fire resistance", FIRE_RES, "iron",   300, 228, 1, 0, 5, IRON, HI_METAL, 1),
