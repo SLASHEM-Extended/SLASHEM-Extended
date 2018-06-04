@@ -824,6 +824,10 @@ doread()
 	"I wanna boh", /* inspired by Demo */
 	"Amy is the insane dev of slex. She adds literally anything she can think of to the game, has no idea what the concept of balance is, and i'm pretty sure is actually terrible at playing roguelikes.",
 	"Because of all of this, her games are extremely fun to play generally to see the utterly ridiculous ways you can die in them, though not fun at all to play if you're trying to win or understand wtf is even going on.",
+	"I played SLEX exactly three times and ascended all three of those games.",
+	"Amy do u have a bundle and heart key on ur keyboard?", /* by Demo */
+	"I've always known that chicks will inherit the Earth, I just didn't know it'd be this much fun.", /* don't remember who said that, maybe Grasshopper? */
+	"oh wait, I got it now: all those who are complaining about the allegedly 'awful polearms interface' are using vikeys! no wonder! with vikeys, everything is awful :P number pad ftw!",
 
 	    };
 	    char buf[BUFSZ];

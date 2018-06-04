@@ -206,7 +206,8 @@ static const char * const shktools[] = {
 	"Trqs Dedne Tsalb", "Leksrol", "Terger", "Urirat", "Laverog",
 	"Retniw", "Refrus Eutats", "Hagavvim Rey", "Eralfralos",
 	"Aimhtyhrra", "Essiar", "Sbut", "Arym Yresim", "Eirimnele",
-	"Tolasniw",
+	"Tolasniw", "Aimyl", "Axxarhtoh", "Tcidsoa", "Redloheb", "Ycnuonna",
+	"Ahtariz", "Tlov", "Sohtilixitirk", "Nasrekir",
 
     0
 };

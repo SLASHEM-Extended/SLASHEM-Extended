@@ -15504,6 +15504,27 @@ static NEARDATA const char * const fake_plines[] = {
 	"The serbian thief laughs fiendishly, and snatches your weapon!",
 	"Your towel glows black.",
 	"Due to overexertion and too many orgasms, you feel very lethargic...",
+	"In Grunthack, monsters zap you with cancellation and polymorph and fuck you up. In FIQhack, monsters zap you with slow monster and fuck you up. FIQhack confirmed Grunthack 2.",
+	"Apparently Menche spent all of 2017 and the first half of 2018 in a freezer or something, because in May 2018 he basically asked whether slex unique deaths were fixed for Junethack. They were already fixed in 2017's tournament. If he had as much as played a single slex game back then he'd have noticed :P",
+	"You must have gained polymorphitis.  It must be a potion of wonder.",
+	"As you rotate the doorknob, an evil, hideous-sounding spell goes off! You feel as if you need some help.",
+	"Since aosdict is basically making doorhack (officially called xnethack), he should definitely add a door trap that causes the curse items effect when triggered.",
+	"The splicehack author claims to be making a kitchen sink variant similar to SLASH'EM, but sadly he removeremoveremoves tons of actually well-designed stuff. #notakitchensink",
+	"Scarab beetles are supposed to have an AC of -20. Yes, they probably suck in Splicehack because Elbereth has been nerfed, but hey! At least there is some form of challenge in the game :)",
+	"Do you want to know the prime reason why dnethack is so much harder than vanilla nethack? You can't use Elbereth. So if the soldier ants are attacking you, good luck. You'll need it.",
+	"Splicehack has the Void, a one-level no-purpose dungeon that only exists to off unsuspecting player characters. Because there are void dragons in there, who are supposedly uber powerful. If I were the developer I'd at least put some useful reward on that level to give players an incentive to brave its dangers :D",
+	"Did you know that the Amy not only reached #1 on the official Splicehack scoreboard with her first game but even managed to keep that first place for many weeks to come, because all the other players were busy playing xnethack and FIQhack and Nethack 3.6.1?",
+	"Did you know that the Amy managed to score #1 on the official Splicehack scoreboard with her first game even though she's a complete n00b?",
+	"Did you know that the Amy her comments can be hellishly annoying sometimes? :-P",
+	"Wouwou.",
+	"The HC alien makes a frightening 'Wouwou' sound.",
+	"The full veil HC alien's hideous body odor makes you dizzy.",
+	"SLEX will add new playable races that will totally not get people up in arms.",
+	"Wanna hear a fun YASI by jonadab? YASI: a spellbook of Giant Foot, which causes an enormous foot to fall from above, crushing the target.",
+	"I still think jonadab should make a serious attempt at ascending SLEX, and then port over some of its features to Nethack Fourk. Contrary to his belief, contact with SLEX will not give you cancer.",
+	"I still think all the other variant developers should stop treating SLEX like it was the plague. It has so many features, surely some of them would fit into other variants too? Chris_ANG is the only developer who's enlightened enough to actually pull SLEX features on occasion :) (well, and maybe FIQ, don't remember whether he got the skill cap menu stuff from SLEX or somewhere else)",
+	"If you have sex, your god will immediately become angry.",
+	"The orc throws fiery ammonic primitive pseudomorphed reconstituted dissolved undead mouldy salted potatoes at you!", /* by kritixilithos */
 
 };
 
