@@ -1,6 +1,53 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.2.3
+- If a blind player tries to search and causes a statue trap to animate, it no longer illogically stops the searching from finding stuff on the other adjacent tiles.
+- Fixed an error where shopkeepers would sometimes not reduce the amount of money they have when giving money to the player.
+- Eating a human wraith corpse can give an experience level now.
+- Fixed the long-standing rnd() call error when certain monsters got spawned.
+- New playable roles: Anachronounbinder, Hussy and Mason.
+- New skill: sexy flats. Trained by wearing certain pieces of footwear.
+- The nexus stat swap effect can damage the player's attributes or maximum HP.
+- Turn undead works less well with low alignment, and not at all if it's too low.
+- Potions of blood can be removed from the loot, and hostile vampires can actually use them now.
+- Changed the experience chart for experience level 14-30 so that it takes much longer to reach higher levels.
+- Fixed the bug where engravings were shown on grayout tiles.
+- New option randomhybrids that can be turned off to prevent random hybrid races when playing in curses mode.
+- Improved the gang scholar quest levels.
+- Fixed the bug where material glyphs would still be displayed while under the uninformation trap effect.
+- New monster attacks: destroy weapon/armor, trembling, and ragnarok.
+- Traps have a difficulty value now, which determines how hard it is to find/detect them. In some games, a value is rolled at game start that gets added to this difficulty.
+- Using #annotate when the current level already has an annotation will tell the player what the annotation is.
+- There's a 1 in X chance, with X randomly determined at game start, for a randomly generated trap to be completely random, ignoring the rarity numbers on the nastier trap types.
+- Twoweaponing can occasionally have greatly reduced to-hit, and deals less damage on average.
+- 1 in 8192 monsters are "shiny" and randomly change color.
+- The wand of magic mapping no longer maps the entire level.
+- If the player is causing conflict, monsters are much more likely to ignore Elbereth squares.
+- The Bizarro Orgasmatron will give long-lasting inertia if the player uses it too often.
+- Trying to use a cursed instrument at the castle makes the drawbridge lie to you.
+- Player's displacement and invisibility are less likely to fool monsters.
+- Monsters with AD_SEDU are better at stealing stuff compared to AD_SITM ones now.
+- Some of the lightsaber forms train faster now.
+- Lots of nerfs, including bonuses from achievements, damage bonuses for highly skilled weapons, and other boosts for highly skilled players.
+- Items can be "finalized", which prevents them from being cancelled, polymorphed, blanked etc. Cancelling a negatively enchanted item will now only remove one point of negative enchantment, and cursed items will only be uncursed if they no longer have a negative enchantment value. The cancellation spell in particular can require many zaps to remove negative enchantment from an item and can also occasionally make the item finalized.
+- Towels can degrade when used, and are only reliable when blessed.
+- Magic markers are less common as randomly generated loot.
+- If the player is wearing positively enchanted gloves, it will allow them to hit monsters that require +X weapons to hit if the gloves' enchantment is high enough.
+- Monsters' AC is now less likely to get reduced.
+- Numbness should have noticeable effects now.
+- Players polymorphed into fast monsters (speed 18 or higher) now gives a lower average polymorph time, and the player's polymorph in such a form can time out even if the player is unchanging.
+- Riding a fast steed will reduce the speed (based upon player's riding skill) starting at a speed of 18 now (was 25).
+- The detect armor enchantment and know enchantment spells only work on some items now. Passwall spell can backfire.
+- Fake artifacts can now be deleted from the loot, reducing the # that the player will get.
+- Polearms may erode when used, or frenzy the monster, or speed up the monster. Monsters that can use weapons have a chance of snatching the polearm.
+- Polypiling has a greater chance of shuddering the object, especially if it's a scroll, potion, spellbook, or stackable weapon, and even if the item survives, it may become cursed and lose enchantment.
+- Reduced the amount of charges that certain wands spawn with.
+- Riding a very fast steed may cause the player to walk randomly.
+- Exploding monsters whose base types can resurrect will now be able to do so after exploding (previously they wouldn't ever leave corpses).
+- Self-hybrid player characters can't apply tools or zap wands on turns divisible by 3, and will not see monsters via warning, telepathy etc. on such turns either.
+
 2.2.2
+- Fixed a bug where certain rings were chargeable even though their charge had no effect.
 - Some dungeon branches, especially the subquest but also Gehennom and the Yendorian Tower, will provide less loot.
 - The turn undead technique is now less effective and has a timeout. #turn will no longer work, but give a message to use the technique instead.
 - Fixed a SLASH'EM bug that caused double lightsabers to not deactivate properly if you switched to a different weapon while both blades were lit.
