@@ -2590,6 +2590,8 @@ turn_undead()
 
 	u.uconduct.gnostic++;
 
+	int alignmentlimit;
+
 	if ((u.ualign.type != A_CHAOTIC &&
 		    (is_demon(youmonst.data) || is_undead(youmonst.data))) ||
 				u.ugangr > 6 /* "Die, mortal!" */) {
@@ -2605,6 +2607,18 @@ turn_undead()
 	    aggravate();
 	    return(0);
 	}
+
+	if (u.ualign.record < -20) {
+		pline("For some reason, %s seems to ignore you.", u_gname());
+		aggravate();
+		exercise(A_WIS, FALSE);
+		adjalign(-rnd(20));
+		return(0);
+
+	}
+
+	alignmentlimit = (u.ualign.record < -10) ? 10 : (u.ualign.record < -15) ? 15 : (u.ualign.record + 15);
+
 	pline("Calling upon %s, you chant an arcane formula.", u_gname());
 	exercise(A_WIS, TRUE);
 
@@ -2620,6 +2634,8 @@ turn_undead()
 		distu(mtmp->mx,mtmp->my) > range) continue;
 
 	    if (distu(mtmp->mx,mtmp->my) > rnd(150)) continue;
+
+	    if (distu(mtmp->mx,mtmp->my) > alignmentlimit) continue;
 
 	    if (!mtmp->mpeaceful && (is_undead(mtmp->data) || mtmp->egotype_undead ||
 		   (is_demon(mtmp->data) && (u.ulevel > (MAXULEV/2))))) {
@@ -2667,6 +2683,7 @@ turn_undead()
 	    }
 	}
 	nomul(-(2 + rnd(3)), "trying to turn undead monsters", TRUE); /* used to always be -2 which felt a little overpowered --Amy */
+	adjalign(-rnd(20)); /* a little cost for using the ability... but if you kill a bunch by using it, you'll probably gain more alignment than it costs --Amy */
 	nomovemsg = 0;
 	return(1);
 }
