@@ -1808,6 +1808,16 @@ trapsdone:
 
 		}
 
+		if (Numbed && !rn2(100) && multi >= 0) {
+
+			pline("You're fully paralyzed!");
+			flags.soundok = 0;
+			nomul(-2, "fully paralyzed", FALSE);
+			nomovemsg = 0;
+			afternmv = unfaintX;
+
+		}
+
 		if (FemaleTrapThai && IS_TOILET(levl[u.ux][u.uy].typ) && u.uhs < HUNGRY ) {
 			pline("For some reason, you have to take a shit right now.");
 

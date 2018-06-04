@@ -669,6 +669,14 @@ register struct monst *mtmp;
 
 	if (!issoviet && !rn2(3)) tmp += rno(u.ulevel);
 
+	if (Numbed) {
+		if (tmp > 1) {
+			tmp *= 9;
+			tmp /= 10;
+		}
+		tmp -= 2;
+	}
+
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
 

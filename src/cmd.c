@@ -5046,6 +5046,7 @@ boolean guaranteed;
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (Numbed) shieldblockrate -= 10;
 
 		if (!PlayerCannotUseSkills) {
 			switch (P_SKILL(P_SHIEN)) {
@@ -8093,6 +8094,7 @@ int final;
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (Numbed) shieldblockrate -= 10;
 
 		if (!PlayerCannotUseSkills) {
 			switch (P_SKILL(P_SHIEN)) {

@@ -4893,6 +4893,8 @@ find_ac()
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) uac -= 5;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) uac -= 20;
 
+	if (Numbed) uac += 5;
+
 	if (uarms && uarms->oartifact == ART_ARMOR_CLASS_WALL) {
 		uac -= 5;
 		if (uarms && !(PlayerCannotUseSkills)) {
