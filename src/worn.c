@@ -387,7 +387,7 @@ register struct monst *mon;
 	if (!rn2(20)) {
 		int absoluteac = (-(base - 10));
 		if (absoluteac < 0) absoluteac *= -1;
-		base += (absoluteac / 2);
+		base += rnd(absoluteac / 2);
 		if (base > 10) base = 10;
 	}
 

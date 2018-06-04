@@ -244,6 +244,7 @@ mattackm(magr, mdef)
 		    attk,	/* attack attempted this time */
 		    struck = 0,	/* hit at least once */
 		    res[NATTK];	/* results of all attacks */
+    int magrlev, magrhih; /* for to-hit calculations */
     struct attack   *mattk, alt_attk;
     struct permonst *pa, *pd;
     /*
@@ -263,7 +264,21 @@ mattackm(magr, mdef)
     range = !magr->mtame && !monnear(magr, mdef->mx, mdef->my);
 
     /* Calculate the armour class differential. */
-    tmp = find_mac(mdef) + magr->m_lev;
+    tmp = find_mac(mdef);
+
+    /* To-hit based on the monster's level. Nerf by Amy: high-level monsters shouldn't autohit. */
+    magrlev = magr->m_lev;
+    if (magrlev > 19) {
+	magrhih = magrlev - 19;
+	magrlev -= rnd(magrhih);
+    if (magrlev > 29) {
+	magrhih = magrlev - 19;
+		if (magrhih > 1) magrhih /= 2;
+		magrlev -= magrhih;
+	}
+    }
+    tmp += magrlev;
+
     if (mdef->mconf || !mdef->mcanmove || mdef->msleeping) {
 	tmp += 4;
 	mdef->msleeping = 0;
@@ -394,7 +409,20 @@ meleeattack:
 		    break;
 		}
 		dieroll = rnd(20 + i);
-		if (!rn2(3) && magr->m_lev > 0) tmp += rno(magr->m_lev);
+		if (!rn2(3) && magr->m_lev > 0) {
+			magrlev = magr->m_lev;
+			if (magrlev > 19) {
+				magrhih = magrlev - 19;
+				magrlev -= rnd(magrhih);
+
+				if (magrlev > 29) {
+					magrhih = magrlev - 19;
+					if (magrhih > 1) magrhih /= 2;
+					magrlev -= magrhih;
+				}
+			}
+			tmp += rno(magrlev);
+		}
 		strike = (tmp > dieroll);
 		if (strike) {
 		    res[i] = hitmm(magr, mdef, mattk);
