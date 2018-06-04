@@ -3060,6 +3060,11 @@ boolean guaranteed;
 		enl_msg("The RNG hath decreed that this trap ", "is ", "was ", buf );
 	}
 
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		sprintf(buf, "for 1 in %d traps", u.traprandomizing);
+		enl_msg("Trap randomization ", "happens ", "happened ", buf );
+	}
+
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {sprintf(buf, " turn %d", u.next_check);
 		enl_msg("Next attribute increase check ", "comes at", "would have come at", buf);
 	}
@@ -6136,6 +6141,9 @@ int final;
 
 	sprintf(buf, "generated more often: %s (freq bonus %d)", defsyms[trap_to_defsym(u.frequenttrap)].explanation, u.freqtrapbonus);
 	dump("  The RNG hath decreed that this trap was ", buf );
+
+	sprintf(buf, "for 1 in %d traps", u.traprandomizing);
+	dump("  Trap randomization happened ", buf );
 
 	sprintf(buf, " turn %d", u.next_check);
 	dump("  Next attribute increase check would have come at", buf);

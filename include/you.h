@@ -625,6 +625,8 @@ struct you {
 	int frequenttrap;		/* evil patch idea by Amy - trap that is generated more often */
 	int freqtrapbonus;	/* frequency bonus - the actual formula of how this affects generation odds is complicated */
 
+	int traprandomizing;	/* chance that a random trap is "completely random" */
+
 	int shaperoomchance;	/* to control the chance of irregular rooms */
 
 	int fumbleduration;	/* for wand of fumbling */
