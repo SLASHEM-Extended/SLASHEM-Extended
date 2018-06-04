@@ -1036,7 +1036,7 @@ register struct monst *shkp;
 
 #ifndef GOLDOBJ
 	u.ugold -= balance;
-	if (rn2(2)) shkp->mgold += balance;
+	if (rn2(2) || balance < 0) shkp->mgold += balance;
 #else
 	if (balance > 0) money2mon(shkp, balance);
 	else if (balance < 0) money2u(shkp, -balance);
@@ -1578,7 +1578,7 @@ proceed:
 		    } else if (!eshkp->credit) {
 #ifndef GOLDOBJ
 			u.ugold -= dtmp;
- 			if (rn2(2)) shkp->mgold += dtmp;
+ 			if (rn2(2) || dtmp < 0) shkp->mgold += dtmp;
 #else
                         money2mon(shkp, dtmp);
 #endif
@@ -1591,7 +1591,7 @@ proceed:
 			eshkp->credit = 0L;
 #ifndef GOLDOBJ
 			u.ugold -= dtmp;
-			if (rn2(2)) shkp->mgold += dtmp;
+			if (rn2(2) || dtmp < 0) shkp->mgold += dtmp;
 #else
                         money2mon(shkp, dtmp);
 #endif
@@ -2077,7 +2077,7 @@ int croaked;
 			set_repo_loc(eshkp);
 		} else {
 #ifndef GOLDOBJ
-			if (rn2(2)) shkp->mgold += loss;
+			if (rn2(2) || loss < 0) shkp->mgold += loss;
 			u.ugold -= loss;
 #else
                         money2mon(shkp, loss);
@@ -4710,7 +4710,7 @@ getcad:
 		cost_of_damage = check_credit(cost_of_damage, shkp);
 #ifndef GOLDOBJ
 		u.ugold -= cost_of_damage;
-		if (rn2(2)) shkp->mgold += cost_of_damage;
+		if (rn2(2) || cost_of_damage < 0) shkp->mgold += cost_of_damage;
 #else
                 money2mon(shkp, cost_of_damage);
 #endif
@@ -6165,7 +6165,7 @@ shk_offer_price(slang, charge, shkp)
 
 #ifndef GOLDOBJ
 	u.ugold -= charge;
-	if (rn2(2)) shkp->mgold += charge;
+	if (rn2(2) || charge < 0) shkp->mgold += charge;
 #else
 	money2mon(shkp, charge);
 #endif
