@@ -2584,6 +2584,12 @@ domove()
 	    use_skill(P_HIGH_HEELS, 1);
 	}
 
+	/* exercising sexy flats does too, especially if you're male */
+	if (PlayerInSexyFlats && (flags.female || !rn2(5)) && (u.usexyflatturns++ >= 50)) {
+	    u.usexyflatturns = 0;
+	    use_skill(P_SEXY_FLATS, 1);
+	}
+
 	if (displacer) {
 	    char pnambuf[BUFSZ];
 

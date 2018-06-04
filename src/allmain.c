@@ -2920,6 +2920,25 @@ fukrosionchoice:
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
+		if (flags.female && PlayerInSexyFlats && !rn2(10000)) {
+			int aggroamount = rnd(6);
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+			while (aggroamount) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				makemon((struct permonst *)0, cx, cy, MM_ANGRY);
+				aggroamount--;
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+			pline("Your sexiness seems to have attracted some monsters...");
+
+		}
+
 		if (ExtAggravate_monster && !rn2(Stealth ? 5000 : 1000)) {
 
 			int aggroamount = rnd(6);
@@ -5391,6 +5410,38 @@ newbossB:
 			losehp(10, "pain", KILLED_BY);
 			if (u.uhp < 20 || (u.uhp < 50 && !rn2(3)) || !rn2(10)) You("scream in pain.");
 			if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) use_skill(P_HEALING_SPELL, 1);
+		}
+
+		if (!PlayerCannotUseSkills && PlayerInSexyFlats && HStun) {
+
+			int sexyflatchance = 0;
+			switch (P_SKILL(P_SEXY_FLATS)) {
+				case P_BASIC: sexyflatchance = 1; break;
+				case P_SKILLED: sexyflatchance = 2; break;
+				case P_EXPERT: sexyflatchance = 3; break;
+				case P_MASTER: sexyflatchance = 4; break;
+				case P_GRAND_MASTER: sexyflatchance = 5; break;
+				case P_SUPREME_MASTER: sexyflatchance = 6; break;
+
+			}
+			if (sexyflatchance > rn2(100)) make_stunned(0L,TRUE);
+
+		}
+
+		if (!PlayerCannotUseSkills && PlayerInSexyFlats && HDimmed) {
+
+			int sexyflatchance = 0;
+			switch (P_SKILL(P_SEXY_FLATS)) {
+				case P_BASIC: sexyflatchance = 1; break;
+				case P_SKILLED: sexyflatchance = 2; break;
+				case P_EXPERT: sexyflatchance = 3; break;
+				case P_MASTER: sexyflatchance = 4; break;
+				case P_GRAND_MASTER: sexyflatchance = 5; break;
+				case P_SUPREME_MASTER: sexyflatchance = 6; break;
+
+			}
+			if (sexyflatchance > rn2(100)) make_dimmed(0L,TRUE);
+
 		}
 
 		/* Gang Scholar gods are really nice: unless you're in Gehennom, they will occasionally fix status effects

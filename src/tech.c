@@ -163,6 +163,10 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"surrender or die",
 	"perilous whirl",
 	"summon shoe",
+	"kick in the nuts",
+	"disarming kick",
+	"inlay warfare",
+	"diamond barrier",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -227,7 +231,8 @@ static const struct innate_tech
 		       {   18, T_CONCENTRATING, 1},
 		       {   25, T_ATTIRE_CHARM, 1},
 		       {   0, 0, 0} },
-	art_tech[] = { {   18, T_POLYFORM, 1},
+	art_tech[] = { {   10, T_DIAMOND_BARRIER, 1},
+		       {   18, T_POLYFORM, 1},
 		       {   20, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
 	rin_tech[] = { {   1, T_BLINK, 1},
@@ -246,6 +251,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 
 	sta_tech[] = { {   12, T_DECONTAMINATE, 1},
+		       {   16, T_DIAMOND_BARRIER, 1},
 		       {   0, 0, 0} },
 
 	ord_tech[] = { {   1, T_PRACTICE, 1},
@@ -354,6 +360,10 @@ static const struct innate_tech
 		       {   1, T_LUCKY_GAMBLE, 1},
 		       {   0, 0, 0} },
 	nuc_tech[] = { {   1, T_DECONTAMINATE, 1},
+		       {   0, 0, 0} },
+	sco_tech[] = { {   25, T_DIAMOND_BARRIER, 1},
+		       {   0, 0, 0} },
+	loc_tech[] = { {   15, T_DIAMOND_BARRIER, 1},
 		       {   0, 0, 0} },
 	roc_tech[] = { {   1, T_EGG_BOMB, 1},
 		       {   1, T_FLURRY, 1},
@@ -616,6 +626,7 @@ static const struct innate_tech
 	aug_tech[] = { {   1, T_TELEKINESIS, 1},
 		       {   5, T_WONDERSPELL, 1},
 		       {   10, T_SPIRITUALITY_CHECK, 1},
+		       {   20, T_DIAMOND_BARRIER, 1},
 		       {   0, 0, 0} },
 	elp_tech[] = { {   1, T_FLURRY, 1},
 		       {   0, 0, 0} },
@@ -764,6 +775,7 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_RESET_TECHNIQUE, 1},
 			 {   5, T_RESEARCH, 1},
+			 {   10, T_DIAMOND_BARRIER, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 			 {   20, T_TURN_UNDEAD, 1},
 			 {   20, T_WORLD_FALL, 1},
@@ -2321,6 +2333,22 @@ dotech()
 			pline("Well, guess :D It summons a tame shoe that will kick monsters!");
 			break;
 
+		case T_KICK_IN_THE_NUTS:
+			pline("Requires you to wear sexy flats, and can only be used on a male monster, which will deal a lot of damage to it and also prevent the target from fighting back for a while.");
+			break;
+
+		case T_DISARMING_KICK:
+			pline("This technique can only be used if you wear sexy flats, and will disarm an adjacent monster. If successful, its weapon will land at your feet. Unlike the disarm technique, this works even if the target is holding a cursed weapon.");
+			break;
+
+		case T_INLAY_WARFARE:
+			pline("Using this technique requires sexy flats to be worn, and if you do use it, you'll create a stinking cloud at your position and may confuse and paralyze nearby monsters. You will also be confused for a while and need to wait for 2 turns before you can act again, meaning you'll probably be affected by the cloud too.");
+			break;
+
+		case T_DIAMOND_BARRIER:
+			pline("Creates grave walls on the eight squares surrounding you, as long as those squares are open floor tiles.");
+			break;
+
 		default:
 			pline("This technique doesn't have a description yet, but it might get one in future. --Amy");
 			break;
@@ -2754,8 +2782,8 @@ secureidchoice:
 		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp) {
-		    You("perform a flashy twirl!");
-		    return (0);
+			You("perform a flashy twirl!");
+			t_timeout = rnz(1500);
 		} else {
 		    int oldhp = mtmp->mhp;
 		    int tmp;
@@ -2794,8 +2822,8 @@ secureidchoice:
 		}
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp) {
-		    You("attack...nothing!");
-		    return 0;
+			You("attack...nothing!");
+			t_timeout = rn1(1000,500);
 		} else {
 		    int oldhp = mtmp->mhp;
 
@@ -5406,6 +5434,172 @@ revid_end:
 	      t_timeout = rnz(3500);
 	      break;
 
+	    case T_KICK_IN_THE_NUTS:
+
+		if (!PlayerInSexyFlats) {
+			pline("You must be wearing sexy flats for that!");
+			return 0;
+		}
+
+	    	if (!getdir((char *)0)) return 0;
+		if (!u.dx && !u.dy) {
+		    /* Hopefully a mistake ;B */
+		    pline(flags.female ? "Since you don't have nuts, you cannot try to smash them with your feet either." : "For a moment, you feel the itch to ram your footwear into your own nuts, but then remember that you have a task to complete, and therefore decide against the idea.");
+		    return 0;
+		}
+		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+		if (!mtmp) {
+			You("perform a powerful kick, and listen to very sexy air current noises as your %s whirls through thin air.", body_part(FOOT));
+		} else if (mtmp->female || is_neuter(mtmp->data)) {
+			pline("%s has no nuts to kick and is therefore unaffected!", Monnam(mtmp));
+		} else {
+			pline("%s moans in agony as his nuts are squashed by your sexy footwear!", Monnam(mtmp));
+			mtmp->mcanmove = 0;
+			mtmp->mfrozen = 10 + rnd(techlevX(tech_no));
+			mtmp->mstrategy &= ~STRAT_WAITFORU;
+			int tmp = 50 + rnd(techlevX(tech_no) * 4);
+			hurtmon(mtmp, tmp);
+		}
+
+	      t_timeout = rnz(1500);
+
+	      break;
+
+	    case T_DISARMING_KICK:
+
+		if (!PlayerInSexyFlats) {
+			pline("You must be wearing sexy flats for that!");
+			return 0;
+		}
+
+		if (u.uswallow) {
+	    		pline("Kicking an engulfer's weapon from the inside would be quite the feat.");
+	    		return(0);
+		}
+
+	    	if (!getdir((char *)0)) return(0);
+		if (!u.dx && !u.dy) {
+			/* Hopefully a mistake ;B */
+			pline("Why don't you try wielding something else instead.");
+			return(0);
+		}
+		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+		if (!mtmp || !canspotmon(mtmp)) {
+			if (memory_is_invisible(u.ux + u.dx, u.uy + u.dy))
+			    You("don't know where to aim for!");
+			else
+			    You("don't see anything there!");
+			return (0);
+		}
+	    	obj = MON_WEP(mtmp);   /* can be null */
+	    	if (!obj) {
+	    		You_cant("disarm an unarmed foe!");
+	    		return(0);
+	    	}
+
+		You("kick %s in the %s with your sexy footwear...", mon_nam(mtmp), mbodypart(mtmp, HAND));
+
+		obj_extract_self(obj);
+		possibly_unwield(mtmp, FALSE);
+		setmnotwielded(mtmp, obj);
+
+		if (obj && obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(obj) ) {
+			You("vaporize %s %s!", s_suffix(mon_nam(mtmp)), xname(obj));
+			delobj(obj);
+			t_timeout = rnz(1000);
+			break;
+		}
+		else if (obj) {
+			You("knock %s %s to the %s!", s_suffix(mon_nam(mtmp)), xname(obj), surface(u.ux, u.uy));
+			if (obj->otyp == CRYSKNIFE && (!obj->oerodeproof || !rn2(10))) {
+				obj->otyp = WORM_TOOTH;
+				obj->oerodeproof = 0;
+			}
+			place_object(obj, u.ux, u.uy);
+			stackobj(obj);
+		}
+		t_timeout = rnz(1000);
+
+	      break;
+
+	    case T_INLAY_WARFARE:
+
+		if (!PlayerInSexyFlats) {
+			pline("You must be wearing sexy flats for that!");
+			return 0;
+		}
+
+		nomul(-2, "inhaling their own smelly inlay", FALSE);
+		make_confused(HConfusion + rnz(10), FALSE);
+		set_itimeout(&HeavyConfusion, HConfusion);
+
+		{
+
+			int inlayradius = rnd(5);
+			int mondistance = 0;
+			struct monst *mtmp3;
+			int k, l;
+
+			for (k = -inlayradius; k <= inlayradius; k++) for(l = -inlayradius; l <= inlayradius; l++) {
+				if (!isok(u.ux + k, u.uy + l)) continue;
+
+				mondistance = 1;
+				if (k > 1) mondistance = k;
+				if (k < -1) mondistance = -k;
+
+				if (l > 1 && l > mondistance) mondistance = l;
+				if (l < -1 && (-l > mondistance)) mondistance = -l;
+
+				if ( (mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) {
+					mtmp3->mcanmove = 0;
+					mtmp3->mfrozen = (16 - (mondistance * 2));
+					mtmp3->mstrategy &= ~STRAT_WAITFORU;
+					mtmp3->mconf = TRUE;
+					pline("%s becomes dizzy from the smell!", Monnam(mtmp3), mtmp3->mfrozen);
+				}
+		}
+
+		if (!PlayerCannotUseSkills && P_SKILL(P_SEXY_FLATS) >= P_SUPREME_MASTER)
+			(void) create_gas_cloud(u.ux, u.uy, 4, 12);
+		else
+			(void) create_gas_cloud(u.ux, u.uy, 3, 8);
+		}
+
+	      t_timeout = rnz(4000);
+
+	      break;
+
+	    case T_DIAMOND_BARRIER:
+
+		pline("You try to erect barriers!");
+
+		{
+
+			int diamondradius = 1;
+			int k, l;
+
+			for (k = -diamondradius; k <= diamondradius; k++) for(l = -diamondradius; l <= diamondradius; l++) {
+				if (!isok(u.ux + k, u.uy + l)) continue;
+				if (k == 0 && l == 0) continue; /* don't place wall on your own position --Amy */
+
+				if (isok(u.ux + k, u.uy + l) && (levl[u.ux + k][u.uy + l].typ == ROOM || levl[u.ux + k][u.uy + l].typ == CORR || (levl[u.ux + k][u.uy + l].typ == DOOR && levl[u.ux + k][u.uy + l].doormask == D_NODOOR) ) ) {
+
+					if (levl[u.ux + k][u.uy + l].typ != DOOR) levl[u.ux + k][u.uy + l].typ = GRAVEWALL;
+					else doorlockX(u.ux + k, u.uy + l, TRUE);
+					block_point(u.ux + k, u.uy + l);
+					newsym(u.ux + k, u.uy + l);
+
+				}
+
+			}
+
+		}
+		vision_recalc(0);
+
+	      t_timeout = rnz(5000);
+
+	      break;
+
 	    case T_TELEKINESIS:
 	      {
 		coord cc;
@@ -5946,6 +6140,8 @@ role_tech()
 		case PM_ELPH:		return (elp_tech);
 		case PM_SPACEWARS_FIGHTER:		return (spa_tech);
 		case PM_CAMPERSTRIKER:		return (cam_tech);
+		case PM_LOCKSMITH:		return (loc_tech);
+		case PM_GANG_SCHOLAR:		return (sco_tech);
 		case PM_ROGUE:		return (rog_tech);
 		case PM_SAMURAI:	return (sam_tech);
 		case PM_NINJA:	return (nin_tech);

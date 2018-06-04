@@ -906,6 +906,7 @@ struct you {
 	long ugallop;
 	int urideturns;
 	int uhighheelturns;
+	int usexyflatturns;
 	int ugeneralcombatturns;
 	int utwohandedcombatturns;
 	int ubodyarmorturns;

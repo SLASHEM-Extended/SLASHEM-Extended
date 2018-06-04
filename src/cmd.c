@@ -51,19 +51,20 @@
 #define PN_MISSILE_WEAPONS		(-28)
 #define PN_TECHNIQUES		(-29)
 #define PN_IMPLANTS		(-30)
-#define PN_SHII_CHO		(-31)
-#define PN_MAKASHI		(-32)
-#define PN_SORESU		(-33)
-#define PN_ATARU		(-34)
-#define PN_SHIEN		(-35)
-#define PN_DJEM_SO		(-36)
-#define PN_NIMAN		(-37)
-#define PN_JUYO		(-38)
-#define PN_VAAPAD		(-39)
-#define PN_MARTIAL_ARTS		(-40)
-#define PN_RIDING		(-41)
-#define PN_TWO_WEAPONS		(-42)
-#define PN_LIGHTSABER		(-43)
+#define PN_SEXY_FLATS		(-31)
+#define PN_SHII_CHO		(-32)
+#define PN_MAKASHI		(-33)
+#define PN_SORESU		(-34)
+#define PN_ATARU		(-35)
+#define PN_SHIEN		(-36)
+#define PN_DJEM_SO		(-37)
+#define PN_NIMAN		(-38)
+#define PN_JUYO		(-39)
+#define PN_VAAPAD		(-40)
+#define PN_MARTIAL_ARTS		(-41)
+#define PN_RIDING		(-42)
+#define PN_TWO_WEAPONS		(-43)
+#define PN_LIGHTSABER		(-44)
 
 #ifndef OVLB
 
@@ -94,7 +95,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
 	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,
@@ -136,6 +137,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "missile weapons",
     "techniques",
     "implants",
+    "sexy flats",
     "form I (Shii-Cho)",
     "form II (Makashi)",
     "form III (Soresu)",

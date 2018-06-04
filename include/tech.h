@@ -176,11 +176,15 @@ struct blitz_tab {
 #define T_SURRENDER_OR_DIE	117
 #define T_PERILOUS_WHIRL	118
 #define T_SUMMON_SHOE	119
+#define T_KICK_IN_THE_NUTS	120
+#define T_DISARMING_KICK	121
+#define T_INLAY_WARFARE	122
+#define T_DIAMOND_BARRIER	123
 
-#define T_JEDI_JUMP	120
-#define T_CHARGE_SABER	121
-#define T_TELEKINESIS	122
+#define T_JEDI_JUMP	124
+#define T_CHARGE_SABER	125
+#define T_TELEKINESIS	126
  
-#define MAXTECH 123
+#define MAXTECH 127
 
 #endif /* TECH_H */

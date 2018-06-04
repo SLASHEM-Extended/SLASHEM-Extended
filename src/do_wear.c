@@ -4751,6 +4751,20 @@ find_ac()
 
 	}
 
+	if (PlayerInSexyFlats && !(PlayerCannotUseSkills)) { /* extra AC --Amy */
+
+		switch (P_SKILL(P_SEXY_FLATS)) {
+			case P_BASIC: uac -= 1; break;
+			case P_SKILLED: uac -= 2; break;
+			case P_EXPERT: uac -= 3; break;
+			case P_MASTER: uac -= 4; break;
+			case P_GRAND_MASTER: uac -= 5; break;
+			case P_SUPREME_MASTER: uac -= 7; break;
+
+		}
+
+	}
+
 	if (uarms && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_SHIELD)) {
 			case P_BASIC: uac -= 1; break;

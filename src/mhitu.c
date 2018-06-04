@@ -4579,6 +4579,19 @@ hitmu(mtmp, mattk)
 	register int uncancelled, ptmp;
 	register boolean statsavingthrow = 0;
 	if (rnd(200) < (ACURR(A_WIS) + ACURR(A_CHA))) statsavingthrow = 1;
+	if (!PlayerCannotUseSkills && PlayerInSexyFlats) {
+		int sexyflatchance = 0;
+		switch (P_SKILL(P_SEXY_FLATS)) {
+			case P_BASIC: sexyflatchance = 1; break;
+			case P_SKILLED: sexyflatchance = 2; break;
+			case P_EXPERT: sexyflatchance = 3; break;
+			case P_MASTER: sexyflatchance = 4; break;
+			case P_GRAND_MASTER: sexyflatchance = 5; break;
+			case P_SUPREME_MASTER: sexyflatchance = 6; break;
+			}
+		if (sexyflatchance > rn2(100)) statsavingthrow = 1;
+	}
+
 	register struct engr *ep = engr_at(u.ux,u.uy);
 	int dmg, armpro, permdmg;
 	int armprolimit = 75;

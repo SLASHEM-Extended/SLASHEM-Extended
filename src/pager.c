@@ -15546,6 +15546,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"FIQhack has so many scrolls that can absolutely screw you over, especially if monsters read them. Earth, genocide, stinking cloud, summoning... three of those have instakilled players already, and the latter could theoretically do so too if it summons a minotaur, because no matter how far away the reading monster is, the minotaur will appear next to you and instagib you unless you're really buffed up.",
 	"Your attributes were damaged!",
 	"FIQ, the old heretic, actually went ahead and made it so that you don't have to ascend SLEX to become 'king' of the world in Junethack. This is of course something to go under the hashtag #notreallykingoftheworld because if you're not capable of ascending all variants you don't deserve the crown. Git gud scrub.",
+	"Your sexiness seems to have attracted some monsters...",
+	"Kicking an engulfer's weapon from the inside would be quite the feat."
+	"Since you don't have nuts, you cannot try to smash them with your feet either.",
+	"For a moment, you feel the itch to ram your footwear into your own nuts, but then remember that you have a task to complete, and therefore decide against the idea.",
+	"You perform a powerful kick, and listen to very sexy air current noises as your foot whirls through thin air.",
 
 };
 

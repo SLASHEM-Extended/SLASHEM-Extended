@@ -3094,6 +3094,9 @@ peffects(otmp)
 			else if (P_ADVANCE(P_IMPLANTS) && !(P_RESTRICTED(P_IMPLANTS)) && yn("Do you want to train the implants skill?")=='y') {
 				P_ADVANCE(P_IMPLANTS) *= 2;
 				acquiredskill = 1; }
+			else if (P_ADVANCE(P_SEXY_FLATS) && !(P_RESTRICTED(P_SEXY_FLATS)) && yn("Do you want to train the sexy flats skill?")=='y') {
+				P_ADVANCE(P_SEXY_FLATS) *= 2;
+				acquiredskill = 1; }
 			else if (P_ADVANCE(P_SHII_CHO) && !(P_RESTRICTED(P_SHII_CHO)) && yn("Do you want to train the form I (Shii-Cho) skill?")=='y') {
 				P_ADVANCE(P_SHII_CHO) *= 2;
 				acquiredskill = 1; }

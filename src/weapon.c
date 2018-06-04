@@ -44,19 +44,20 @@ STATIC_DCL int enhance_skill(boolean);
 #define PN_MISSILE_WEAPONS		(-28)
 #define PN_TECHNIQUES		(-29)
 #define PN_IMPLANTS		(-30)
-#define PN_SHII_CHO		(-31)
-#define PN_MAKASHI		(-32)
-#define PN_SORESU		(-33)
-#define PN_ATARU		(-34)
-#define PN_SHIEN		(-35)
-#define PN_DJEM_SO		(-36)
-#define PN_NIMAN		(-37)
-#define PN_JUYO		(-38)
-#define PN_VAAPAD		(-39)
-#define PN_MARTIAL_ARTS		(-40)
-#define PN_RIDING		(-41)
-#define PN_TWO_WEAPONS		(-42)
-#define PN_LIGHTSABER		(-43)
+#define PN_SEXY_FLATS		(-31)
+#define PN_SHII_CHO		(-32)
+#define PN_MAKASHI		(-33)
+#define PN_SORESU		(-34)
+#define PN_ATARU		(-35)
+#define PN_SHIEN		(-36)
+#define PN_DJEM_SO		(-37)
+#define PN_NIMAN		(-38)
+#define PN_JUYO		(-39)
+#define PN_VAAPAD		(-40)
+#define PN_MARTIAL_ARTS		(-41)
+#define PN_RIDING		(-42)
+#define PN_TWO_WEAPONS		(-43)
+#define PN_LIGHTSABER		(-44)
 
 static void give_may_advance_msg(int);
 STATIC_PTR int practice(void);
@@ -99,7 +100,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
 	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
 	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
-	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
 	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,
@@ -141,6 +142,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "missile weapons",
     "techniques",
     "implants",
+    "sexy flats",
     "form I (Shii-Cho)",
     "form II (Makashi)",
     "form III (Soresu)",
@@ -2739,6 +2741,18 @@ int skill;
 	    	learntech(T_SUMMON_SHOE, FROMOUTSIDE, 1);
 	    	You("learn how to perform summon shoe!");
 	}
+	if (skill == P_SEXY_FLATS && P_SKILL(skill) == P_EXPERT && !tech_known(T_KICK_IN_THE_NUTS)) {
+	    	learntech(T_KICK_IN_THE_NUTS, FROMOUTSIDE, 1);
+	    	You("learn how to perform kick in the nuts!");
+	}
+	if (skill == P_SEXY_FLATS && P_SKILL(skill) == P_MASTER && !tech_known(T_DISARMING_KICK)) {
+	    	learntech(T_DISARMING_KICK, FROMOUTSIDE, 1);
+	    	You("learn how to perform disarming kick!");
+	}
+	if (skill == P_SEXY_FLATS && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_INLAY_WARFARE)) {
+	    	learntech(T_INLAY_WARFARE, FROMOUTSIDE, 1);
+	    	You("learn how to perform inlay warfare!");
+	}
 
 	if (Role_if(PM_BINDER)) {
 
@@ -2917,6 +2931,9 @@ int skill;
 		break;
 		case P_TECHNIQUES:
 			    HTechnicality |= FROMOUTSIDE; pline("Got technicality!"); break;
+		break;
+		case P_SEXY_FLATS:
+			    HRegeneration |= FROMOUTSIDE; pline("Got regeneration!"); break;
 		break;
 
 		default: break;
@@ -3213,6 +3230,11 @@ int skill;
 		case P_TECHNIQUES:
 				if (!tech_known(T_RESET_TECHNIQUE)) {    	learntech(T_RESET_TECHNIQUE, FROMOUTSIDE, 1);
 			    	You("learn how to perform reset technique!");
+				}
+		break;
+		case P_SEXY_FLATS:
+				if (!tech_known(T_DIAMOND_BARRIER)) {    	learntech(T_DIAMOND_BARRIER, FROMOUTSIDE, 1);
+			    	You("learn how to perform diamond barrier!");
 				}
 		break;
 
@@ -4606,6 +4628,8 @@ struct obj *obj;
 
 	if (obj->otyp == WEDGE_SANDALS || obj->otyp == FEMININE_PUMPS || obj->otyp == LEATHER_PEEP_TOES || obj->otyp == HIPPIE_HEELS || obj->otyp == PET_STOMPING_PLATFORM_BOOTS || obj->otyp == SENTIENT_HIGH_HEELED_SHOES || obj->otyp == ATSUZOKO_BOOTS || obj->otyp == COMBAT_STILETTOS || obj->otyp == HIGH_STILETTOS || obj->otyp == UNFAIR_STILETTOS || obj->otyp == SKY_HIGH_HEELS) skill = P_HIGH_HEELS;
 
+	if (obj->otyp == RUBBER_BOOTS || obj->otyp == SNEAKERS || obj->otyp == DANCING_SHOES || obj->otyp == SWEET_MOCASSINS || obj->otyp == SOFT_SNEAKERS || obj->otyp == ROLLER_BLADE || obj->otyp == DIFFICULT_BOOTS || obj->otyp == AIRSTEP_BOOTS || obj->otyp == SYNTHETIC_SANDALS) skill = P_SEXY_FLATS;
+
     	/* Negative skills == not a skill */
 	if (skill < P_NONE) skill = P_NONE;
 
@@ -5573,6 +5597,15 @@ rerollthree:
 	}
 	if (P_SKILL(P_HIGH_HEELS) >= P_MASTER && P_SKILL(P_PETKEEPING) >= P_EXPERT && !tech_known(T_SUMMON_SHOE)) {
 	    	learntech(T_SUMMON_SHOE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SEXY_FLATS) == P_EXPERT && !tech_known(T_KICK_IN_THE_NUTS)) {
+	    	learntech(T_KICK_IN_THE_NUTS, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SEXY_FLATS) == P_MASTER && !tech_known(T_DISARMING_KICK)) {
+	    	learntech(T_DISARMING_KICK, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SEXY_FLATS) == P_GRAND_MASTER && !tech_known(T_INLAY_WARFARE)) {
+	    	learntech(T_INLAY_WARFARE, FROMOUTSIDE, 1);
 	}
 }
 

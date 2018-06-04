@@ -1963,6 +1963,20 @@ int x;
 
 		}
 
+		if (PlayerInSexyFlats && !(PlayerCannotUseSkills)) {
+
+			switch (P_SKILL(P_SEXY_FLATS)) {
+				case P_BASIC: tmp += 1; break;
+				case P_SKILLED: tmp += 2; break;
+				case P_EXPERT: tmp += 3; break;
+				case P_MASTER: tmp += 4; break;
+				case P_GRAND_MASTER: tmp += 5; break;
+				case P_SUPREME_MASTER: tmp += 6; break;
+
+			}
+
+		}
+
 		if (PlayerInStilettoHeels) {
 			tmp += 1;
 			if (!(PlayerCannotUseSkills)) switch (P_SKILL(P_HIGH_HEELS)) {
