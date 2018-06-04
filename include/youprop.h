@@ -640,7 +640,7 @@
 #define HDetect_monsters	u.uprops[DETECT_MONSTERS].intrinsic
 #define EDetect_monsters	u.uprops[DETECT_MONSTERS].extrinsic
 #define Detect_monsters		(((HDetect_monsters && !(u.nonintrinsicproperty == DETECT_MONSTERS)) || (uleft && uleft->oartifact == ART_ARABELLA_S_RADAR) || (uright && uright->oartifact == ART_ARABELLA_S_RADAR) || (uamul && uamul->oartifact == ART_SURTERSTAFF && uwep && (weapon_type(uwep) == P_QUARTERSTAFF) ) || EDetect_monsters || u.uprops[STORM_HELM].extrinsic) && !u.powerfailure && !NoDetect_monsters)
-#define NoDetect_monsters	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DETECT_MONSTERS].intrinsic || RngeAids || (u.nonextrinsicproperty == DETECT_MONSTERS && !HDetect_monsters) || (u.impossibleproperty == DETECT_MONSTERS) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoDetect_monsters	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DETECT_MONSTERS].intrinsic || RngeAids || (u.nonextrinsicproperty == DETECT_MONSTERS && !HDetect_monsters) || (u.impossibleproperty == DETECT_MONSTERS) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (isselfhybrid && (moves % 3 == 0) ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 
 /*** Appearance and behavior ***/

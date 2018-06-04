@@ -4444,7 +4444,7 @@ dozap()
 	register struct obj *obj;
 	int	damage;
 
-	if (u.powerfailure) {
+	if (u.powerfailure || (isselfhybrid && (moves % 3 == 0) )) {
 		pline("Your power's down, and therefore you cannot zap anything.");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;

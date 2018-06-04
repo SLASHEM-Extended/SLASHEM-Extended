@@ -1024,7 +1024,7 @@ newsym(x,y)
 	else {
 	    mon = m_at(x,y);
 	    worm_tail = is_worm_tail(mon);
-	    see_it = mon && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING && !mon_visible(mon) ) && (worm_tail
+	    see_it = mon && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING && !mon_visible(mon) ) && !(isselfhybrid && (moves % 3 == 0) ) && (worm_tail
 		? ((!mon->minvis || See_invisible) && !mon->minvisreal)
 		: (mon_visible(mon)) ||
 		tp_sensemon(mon) ||
@@ -1111,7 +1111,7 @@ newsym(x,y)
 
 	    if (senseself()) display_self();
 	}
-	else if ((mon = m_at(x,y)) && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING)
+	else if ((mon = m_at(x,y)) && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) && !(isselfhybrid && (moves % 3 == 0) )
 		&& ((see_it = (tp_sensemon(mon) ||
 		MATCH_WARN_OF_MON(mon) ||
 		(Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) ||
@@ -1304,7 +1304,7 @@ newsymX(x,y)
 	else {
 	    mon = m_at(x,y);
 	    worm_tail = is_worm_tail(mon);
-	    see_it = mon && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING && !mon_visible(mon) ) && (worm_tail
+	    see_it = mon && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING && !mon_visible(mon) ) && !(isselfhybrid && (moves % 3 == 0) ) && (worm_tail
 		? ((!mon->minvis || See_invisible) && !mon->minvisreal)
 		: (mon_visible(mon)) ||
 		tp_sensemon(mon) ||
@@ -1391,7 +1391,7 @@ newsymX(x,y)
 
 	    if (senseself()) display_self();
 	}
-	else if ((mon = m_at(x,y)) && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING)
+	else if ((mon = m_at(x,y)) && !(uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) && !(isselfhybrid && (moves % 3 == 0) )
 		&& ((see_it = (tp_sensemon(mon) ||
 		MATCH_WARN_OF_MON(mon) ||
 		(Role_if(PM_ACTIVISTOR) && mon->data == &mons[PM_TOPMODEL]) ||
