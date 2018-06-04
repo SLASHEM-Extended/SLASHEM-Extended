@@ -1460,13 +1460,13 @@ not_special:
 		boolean should_see = (couldsee(omx, omy) &&
 				      (levl[gx][gy].lit ||
 				       !levl[omx][omy].lit) &&
-				      (dist2(omx, omy, gx, gy) <= 36));
+				      (dist2(omx, omy, gx, gy) <= (level.flags.shortsighted ? 36 : 100) ));
 
 		if (!mtmp->mcansee ||
 		/* monsters no longer automatically know where you are. That was just incredibly annoying. --Amy */
-		( (!Aggravate_monster || !rn2(5)) && !should_see && distu(mtmp->mx,mtmp->my) > 10 && (Stealth ? (can_track(ptr) ? rn2(4) : rn2(5) ) : (can_track(ptr) ? rn2(2) : rn2(3) ) ) ) ||
-			 ( (!Aggravate_monster || !rn2(5)) && is_wanderer(mtmp->data) ? (Stealth ? !rn2(3) : !rn2(5) ) : (Stealth ? !rn2(5) : !rn2(8) ) ) ||
-		    (should_see && Invis && !perceives(ptr) && rn2(11)) ||
+		( (!Aggravate_monster || !rn2(5)) && !should_see && distu(mtmp->mx,mtmp->my) > 10 && (Stealth ? (can_track(ptr) ? !rn2(4) : rn2(2) ) : (can_track(ptr) ? !rn2(10) : !rn2(4) ) ) ) ||
+			 ( (!Aggravate_monster || !rn2(20)) && is_wanderer(mtmp->data) ? (Stealth ? !rn2(3) : !rn2(5) ) : (Stealth ? !rn2(5) : !rn2(25) ) ) ||
+		    (should_see && Invis && haseyes(ptr) && !perceives(ptr) && rn2(3)) ||
 		    (youmonst.m_ap_type == M_AP_OBJECT && youmonst.mappearance == STRANGE_OBJECT) || u.uundetected ||
 		    (youmonst.m_ap_type == M_AP_OBJECT && youmonst.mappearance == GOLD_PIECE && !likes_gold(ptr)) ||
 		    (mtmp->mpeaceful && !mtmp->isshk) ||  /* allow shks to follow */
@@ -1494,9 +1494,9 @@ not_special:
 		}
 	}
 
-	if (appr == 1 && !rn2(3) && (uarm && OBJ_DESCR(objects[uarm->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarm->otyp]), "camo robe") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "kamuflyazhnaya roba") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "kamuflaj to'n") )) ) appr = 0;
+	if (appr == 1 && !rn2(5) && (uarm && OBJ_DESCR(objects[uarm->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarm->otyp]), "camo robe") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "kamuflyazhnaya roba") || !strcmp(OBJ_DESCR(objects[uarm->otyp]), "kamuflaj to'n") )) ) appr = 0;
 
-	if (appr == 1 && !rn2(3) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pink cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bakh-rozovyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "portlash-pushti plash") ) )) appr = 0;
+	if (appr == 1 && !rn2(5) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pink cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bakh-rozovyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "portlash-pushti plash") ) )) appr = 0;
 
 	if (ptr == &mons[PM_ANCIENT_BIBLICAL_DRAGON]) appr = -1;
 	if (ptr == &mons[PM_BOGUXORN]) appr = -1;
@@ -2050,7 +2050,7 @@ register struct monst *mtmp;
 	   if you haven't moved away */
 	if (mx == u.ux && my == u.uy) goto found_you;
 
-	notseen = (!mtmp->mcansee || (Invis && !perceives(mtmp->data)));
+	notseen = (!mtmp->mcansee || (Invis && haseyes(mtmp->data) && !perceives(mtmp->data)));
 	/* add cases as required.  eg. Displacement ... */
 	if (notseen || Underwater) {
 	    /* Xorns can smell valuable metal like gold, treat as seen */
@@ -2064,7 +2064,8 @@ register struct monst *mtmp;
 		disp = 0;
 	    else
 		disp = 1;
-	} else if (Displaced) {
+	} else if (Displaced && !(dmgtype(mtmp->data, AD_DISP) ) && !(dmgtype(mtmp->data, AD_MAGM) ) && mtmp->data != &mons[PM_BABY_GRAY_DRAGON] && mtmp->data != &mons[PM_YOUNG_GRAY_DRAGON] && mtmp->data != &mons[PM_YOUNG_ADULT_GRAY_DRAGON] &&
+		!(dmgtype(mtmp->data, AD_RBRE) ) ) {
 	    disp = couldsee(mx, my) ? 2 : 1;
 	} else disp = 0;
 	if (!disp) goto found_you;
