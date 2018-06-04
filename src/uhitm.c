@@ -3634,7 +3634,7 @@ struct attack *mattk;
 	    }
 	    /* give the object to the character, new function by Amy - see invent.c */
 
-	    if (otmp && otmp->mstartinvent && !(otmp->oartifact) && !(otmp->fakeartifact && timebasedlowerchance()) && (!rn2(3) || (rn2(100) < u.musableremovechance) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() ) ) {
+	    if (otmp && otmp->mstartinvent && !(otmp->oartifact) && !(otmp->fakeartifact && timebasedlowerchance()) && (!rn2(3) || (rn2(100) < u.musableremovechance) || (rn2(4) && (otmp->otyp == POT_BLOOD || otmp->otyp == POT_VAMPIRE_BLOOD) ) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() ) ) {
 			delobj(otmp);
 			return;
 	    }

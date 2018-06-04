@@ -1070,6 +1070,7 @@ struct obj *otmp;
 #define MUSE_WAN_SUMMON_ELM 43
 #define MUSE_SCR_RELOCATION 44
 #define MUSE_SCR_EXTRA_HEALING 45
+#define MUSE_POT_BLOOD 46
 /*
 #define MUSE_INNATE_TPT 9999
  * We cannot use this.  Since monsters get unlimited teleportation, if they
@@ -1250,6 +1251,12 @@ struct monst *mtmp;
 		  (obj = m_carrying(mtmp, POT_VAMPIRE_BLOOD)) !=0) {
 		    m.defensive = obj;
 		    m.has_defense = MUSE_POT_VAMPIRE_BLOOD;
+		    return TRUE;
+		}
+		if (is_vampire(mtmp->data) &&
+		  (obj = m_carrying(mtmp, POT_BLOOD)) !=0) {
+		    m.defensive = obj;
+		    m.has_defense = MUSE_POT_BLOOD;
 		    return TRUE;
 		}
 	    /*}*/
@@ -1530,6 +1537,11 @@ struct monst *mtmp;
 		if(is_vampire(mtmp->data) && obj->otyp == POT_VAMPIRE_BLOOD) {
 			m.defensive = obj;
 			m.has_defense = MUSE_POT_VAMPIRE_BLOOD;
+		}
+		nomore(MUSE_POT_BLOOD);
+		if(is_vampire(mtmp->data) && obj->otyp == POT_BLOOD) {
+			m.defensive = obj;
+			m.has_defense = MUSE_POT_BLOOD;
 		}
 	    } else {	/* Pestilence */
 		nomore(MUSE_POT_FULL_HEALING);
@@ -2781,6 +2793,20 @@ newboss:
 	case MUSE_POT_VAMPIRE_BLOOD:
 		mquaffmsg(mtmp, otmp);
 		if (!otmp->cursed) {
+		    i = rnd(50) + rnd(5); /* boosted by Amy */
+		    mtmp->mhp += i;
+		    mtmp->mhpmax += rnd(5);
+		    if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+		    if (vismon) pline("%s looks full of life.", Monnam(mtmp));
+		}
+		else if (vismon)
+		    pline("%s discards the congealed blood in disgust.", Monnam(mtmp));
+		if (oseen) makeknown(POT_VAMPIRE_BLOOD);
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	case MUSE_POT_BLOOD:
+		mquaffmsg(mtmp, otmp);
+		if (!otmp->cursed) {
 		    i = rnd(8) + rnd(2);
 		    mtmp->mhp += i;
 		    mtmp->mhpmax += i;
@@ -2788,7 +2814,7 @@ newboss:
 		}
 		else if (vismon)
 		    pline("%s discards the congealed blood in disgust.", Monnam(mtmp));
-		if (oseen) makeknown(POT_VAMPIRE_BLOOD);
+		if (oseen) makeknown(POT_BLOOD);
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_LIZARD_CORPSE:
@@ -2855,7 +2881,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(36)) {
+	switch (rn2(37)) {
 
 		case 0: return SCR_TELEPORTATION;
 		case 1: return POT_HEALING;
@@ -2893,6 +2919,7 @@ struct monst *mtmp;
 		case 33: return WAN_SUMMON_ELM;
 		case 34: return SCR_RELOCATION;
 		case 35: return SCR_EXTRA_HEALING;
+		case 36: return POT_BLOOD;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -8817,6 +8844,8 @@ struct obj *obj;
 	    break;
 	case POTION_CLASS:
 	    if (typ == POT_VAMPIRE_BLOOD)
+		return is_vampire(mon->data);
+	    if (typ == POT_BLOOD)
 		return is_vampire(mon->data);
 	    if (typ == POT_HEALING ||
 		    typ == POT_EXTRA_HEALING ||
