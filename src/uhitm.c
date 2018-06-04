@@ -592,6 +592,8 @@ register struct monst *mtmp;
 	if (u.twoweap && (P_RESTRICTED(P_TWO_WEAPON_COMBAT) )) tmp -= (issoviet ? 20 : rnd(20) );
 	/* In Soviet Russia, you're absolutely not supposed to be able to use twoweaponing if you can't learn the skill. --Amy */
 
+	if (u.twoweap && !rn2(10)) tmp -= rnd(20);
+
 	if (u.twoweap && !PlayerCannotUseSkills) {
 		switch (P_SKILL(P_ATARU)) {
 
@@ -2375,6 +2377,9 @@ int dieroll;
 			hittxt = TRUE;
 		}
 	}
+
+	/* yet another twoweaponing nerf --Amy */
+	if (u.twoweap && !thrown && !rn2(3) && tmp > 1) tmp /= 2;
 
 	if (valid_weapon_attack) {
 	    struct obj *wep;
