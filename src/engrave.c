@@ -4375,6 +4375,12 @@ static const char *epitaphs[] = {
 	"Sometimes the game just doesn't feel like giving you a source of reflection or magic resistance. So I decided to brave the castle, but the first lieutenant had a wand of death because of course he did.", /* happened to me in Splicehack */
 	"Personally, apart from maybe a handful of games in Junethack to get some cross-variant trophies (walk in the park and such), I mostly would not recommend trying the variants with a lot of added content (Slash'EM, dnethack, or even UnNetHack), nor the ones intended for advanced players (SporkHack, GruntHack) until you are already pretty familiar with the basic game.", /* by jonadab */
 	"Slash'EM Extended combines both of these traits into one variant and cranks them both up to eleven and then some, so starting with that one would definitely be jumping in at the deep end of the lava pool, with a heavy iron ball shackled to each ankle.", /* ditto */
+	"Tried to polymorph into a yellow mold in Grunthack to cure the zombification disease and got a SIGFPE.",
+	"Died from whacking a wall in FIQhack with my katana. What the hell?",
+	"GAH the CURSED resistance change in FIQhack made it so that I lost strength from eating a poisonous corpse even though I was resistant from eating a killer bee earlier! And as a result, my strength was so trashy that I died when a lone soldier ant appeared!"
+	"Tried to play the newest version of FIQhack and got annoyed to death by all the annoyance factors.",
+	"Tried to do Sokoban in FIQhack, using autotravel to skip past boring walking segments, and OF COURSE it pushed a boulder into a corner. I then committed sudoku because I don't want to play a variant where the travelto command is trashed. In vanilla 3.4.3 it would work!",
+	"Something in FIQhack used a scroll of summoning, and even though the monster reading it was standing very far away, the minotaur appeared right next to me and owned me. Yet another scroll that can randomly end your game in FIQhack! Genius!",
 
 };
 
