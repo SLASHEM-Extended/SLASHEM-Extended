@@ -1113,7 +1113,10 @@ boolean hitsroof;
 		dmg = 0;
 	}
 	if (dmg > 1 && less_damage) dmg = 1;
-	if (dmg > 0) dmg += u.udaminc;
+	if (dmg > 0) {
+		if (u.udaminc > 1) dmg += rnd(u.udaminc);
+		else dmg += u.udaminc;
+	}
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) dmg += 2;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) dmg += 5;
 	if (dmg > 0 && u.tiksrvzllatdown) dmg += 1;
@@ -1685,7 +1688,7 @@ int thrown;
 	boolean gunused = 0;
 	if (launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_FIREARM) gunused = 1;
 
-	tmp = -1 + ( (!rn2(3) && Luck > 0) ? rnd(Luck) : Luck) + find_mac(mon) + u.uhitinc +
+	tmp = -1 + ( (!rn2(3) && Luck > 0) ? rnd(Luck) : Luck) + find_mac(mon) + ((u.uhitinc > 1) ? rnd(u.uhitinc) : u.uhitinc) +
 			(!rn2(3) ? (maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(u.ulevel))) : (maybe_polyd(youmonst.data->mlevel + 1, u.ulevel)) );
 
 	/* early-game bonuses to make starting characters not suck too badly --Amy */
@@ -1749,22 +1752,22 @@ int thrown;
 		switch (P_SKILL(P_MISSILE_WEAPONS)) {
 			default: break;
 			case P_BASIC: tmp += rnd(2); skillpierce = 1; break;
-			case P_SKILLED: tmp += rnd(4); skillpierce = 2; break;
-			case P_EXPERT: tmp += rnd(6); skillpierce = 3; break;
-			case P_MASTER: tmp += rnd(8); skillpierce = 4; break;
-			case P_GRAND_MASTER: tmp += rnd(10); skillpierce = 5; break;
-			case P_SUPREME_MASTER: tmp += rnd(12); skillpierce = 6; break;
+			case P_SKILLED: tmp += rnd(3); skillpierce = 2; break;
+			case P_EXPERT: tmp += rnd(5); skillpierce = 3; break;
+			case P_MASTER: tmp += rnd(6); skillpierce = 4; break;
+			case P_GRAND_MASTER: tmp += rnd(8); skillpierce = 5; break;
+			case P_SUPREME_MASTER: tmp += rnd(10); skillpierce = 6; break;
 		}
 
 		if (!rn2(3)) {
 			switch (P_SKILL(P_MISSILE_WEAPONS)) {
 				default: break;
-				case P_BASIC: tmp += rn2(2); break;
-				case P_SKILLED: tmp += rn2(4); break;
-				case P_EXPERT: tmp += rn2(6); break;
-				case P_MASTER: tmp += rn2(8); break;
-				case P_GRAND_MASTER: tmp += rn2(10); break;
-				case P_SUPREME_MASTER: tmp += rn2(12); break;
+				case P_BASIC: tmp += 1; break;
+				case P_SKILLED: tmp += rn2(2); break;
+				case P_EXPERT: tmp += rn2(3); break;
+				case P_MASTER: tmp += rn2(4); break;
+				case P_GRAND_MASTER: tmp += rn2(5); break;
+				case P_SUPREME_MASTER: tmp += rn2(6); break;
 			}
 		}
 
@@ -1783,12 +1786,12 @@ int thrown;
 
 			switch (P_SKILL(P_GENERAL_COMBAT)) {
 				default: break;
-				case P_BASIC: tmp += rnd(2); skillpierce += 1; break;
-				case P_SKILLED: tmp += rnd(4); skillpierce += 2; break;
-				case P_EXPERT: tmp += rnd(6); skillpierce += 3; break;
-				case P_MASTER: tmp += rnd(8); skillpierce += 4; break;
-				case P_GRAND_MASTER: tmp += rnd(10); skillpierce += 5; break;
-				case P_SUPREME_MASTER: tmp += rnd(12); skillpierce += 6; break;
+				case P_BASIC: tmp += 1; skillpierce += 1; break;
+				case P_SKILLED: tmp += rnd(2); skillpierce += 2; break;
+				case P_EXPERT: tmp += rnd(3); skillpierce += 3; break;
+				case P_MASTER: tmp += rnd(4); skillpierce += 4; break;
+				case P_GRAND_MASTER: tmp += rnd(5); skillpierce += 5; break;
+				case P_SUPREME_MASTER: tmp += rnd(6); skillpierce += 6; break;
 			}
 
 		}
@@ -1802,6 +1805,8 @@ int thrown;
 		}
 		tmp -= 2;
 	}
+
+	if (!rn2(20)) tmp -= 20; /* catastrophic failure on a "natural 20", similar to D&D --Amy */
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
@@ -1819,11 +1824,11 @@ int thrown;
 			pline("%s avoids the projectile!", Monnam(mon));
 		}
 		if (hugemonst(mon->data) && !rn2(2) && (mon->m_lev > rnd(u.ulevel) ) ) {
-			tmp -= 100;
+			tmp = -100;
 			pline("%s shrugs off the projectile!", Monnam(mon));
 		}
 		if (bigmonst(mon->data) && !(hugemonst(mon->data)) && !rn2(5) && (mon->m_lev > rnd(u.ulevel) ) ) {
-			tmp -= 100;
+			tmp = -100;
 			pline("%s shrugs off the projectile!", Monnam(mon));
 		}
 
@@ -1832,21 +1837,21 @@ int thrown;
 	/* certain traits also allow monsters to avoid getting hit */
 
 	if (amorphous(mon->data) && !rn2(5) && tmp > -20 && !(rn2(20) < skillpierce ) ) {
-		tmp -= 100;
+		tmp = -100;
 		pline("%s's amorphous body skillfully dodges the projectile!", Monnam(mon));
 	}
 	if (noncorporeal(mon->data) && rn2(3) && tmp > -20 && !(rn2(40) < skillpierce ) ) {
-		tmp -= 100;
+		tmp = -100;
 		pline("%s easily avoids the projectile due to being noncorporeal!", Monnam(mon));
 	}
 	if (unsolid(mon->data) && !rn2(4) && tmp > -20 && !(rn2(20) < skillpierce ) ) {
-		tmp -= 100;
+		tmp = -100;
 		pline("%s's unsolid body lets the projectile pass through harmlessly!", Monnam(mon));
 	}
 
 	/* the elder priest uses cheats */
 	if (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && rn2(15) && tmp > -20) {
-		tmp -= 100;
+		tmp = -100;
 		pline("%s swats the projectile away!", Monnam(mon));
 	}
 
@@ -1860,23 +1865,23 @@ int thrown;
 			pline("%s avoids the projectile!", Monnam(mon));
 		}
 		if (hugemonst(mon->data) && !rn2(2) && (mon->m_lev > rnd(u.ulevel) ) ) {
-			tmp -= 100;
+			tmp = -100;
 			pline("%s shrugs off the projectile!", Monnam(mon));
 		}
 		if (bigmonst(mon->data) && !(hugemonst(mon->data)) && !rn2(5) && (mon->m_lev > rnd(u.ulevel) ) ) {
-			tmp -= 100;
+			tmp = -100;
 			pline("%s shrugs off the projectile!", Monnam(mon));
 		}
 		if (amorphous(mon->data) && !rn2(5) && tmp > -20) {
-			tmp -= 100;
+			tmp = -100;
 			pline("%s's amorphous body skillfully dodges the projectile!", Monnam(mon));
 		}
 		if (noncorporeal(mon->data) && rn2(3) && tmp > -20) {
-			tmp -= 100;
+			tmp = -100;
 			pline("%s easily avoids the projectile due to being noncorporeal!", Monnam(mon));
 		}
 		if (unsolid(mon->data) && !rn2(4) && tmp > -20) {
-			tmp -= 100;
+			tmp = -100;
 			pline("%s's unsolid body lets the projectile pass through harmlessly!", Monnam(mon));
 		}
 

@@ -4661,12 +4661,9 @@ find_ac()
 		uac += 2; //flat penalty. Something in the code "corrects" ac values >10, this is a kludge.
 	}
 
-	if (u.menoraget) uac -= 1;
-	if (u.bookofthedeadget) uac -= 1;
-	if (u.silverbellget) uac -= 1;
+	if (u.menoraget && u.bookofthedeadget && u.silverbellget) uac -= 1;
 	if (u.chaoskeyget && u.neutralkeyget && u.lawfulkeyget) uac -= 1;
-	if (u.medusaremoved) uac -= 1;
-	if (u.luckstoneget && u.sokobanfinished) uac -= 1;
+	if (u.medusaremoved && u.luckstoneget && u.sokobanfinished) uac -= 1;
 
 	/* bonus for wearing racial armor */
 
@@ -4756,12 +4753,12 @@ find_ac()
 
 	if (uarms && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_SHIELD)) {
-			case P_BASIC: uac -= 2; break;
-			case P_SKILLED: uac -= 4; break;
-			case P_EXPERT: uac -= 6; break;
-			case P_MASTER: uac -= 8; break;
-			case P_GRAND_MASTER: uac -= 10; break;
-			case P_SUPREME_MASTER: uac -= 12; break;
+			case P_BASIC: uac -= 1; break;
+			case P_SKILLED: uac -= 3; break;
+			case P_EXPERT: uac -= 5; break;
+			case P_MASTER: uac -= 6; break;
+			case P_GRAND_MASTER: uac -= 8; break;
+			case P_SUPREME_MASTER: uac -= 10; break;
 
 		}
 
@@ -4824,12 +4821,11 @@ find_ac()
 
 		/* add another little bonus regardless of how much or little stuff you wear --Amy */
 		switch (P_SKILL(P_BODY_ARMOR)) {
-			case P_BASIC: uac -= 1; break;
-			case P_SKILLED: uac -= 2; break;
-			case P_EXPERT: uac -= 3; break;
-			case P_MASTER: uac -= 4; break;
-			case P_GRAND_MASTER: uac -= 5; break;
-			case P_SUPREME_MASTER: uac -= 6; break;
+			case P_SKILLED: uac -= 1; break;
+			case P_EXPERT: uac -= 1; break;
+			case P_MASTER: uac -= 2; break;
+			case P_GRAND_MASTER: uac -= 3; break;
+			case P_SUPREME_MASTER: uac -= 4; break;
 
 		}
 

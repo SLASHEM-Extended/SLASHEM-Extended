@@ -578,9 +578,9 @@ kick_steed()
 		switch (P_SKILL(P_RIDING)) {
 			case P_SKILLED: gallopamount *= 2; break;
 			case P_EXPERT: gallopamount *= 4; break;
-			case P_MASTER: gallopamount *= 8; break;
-			case P_GRAND_MASTER: gallopamount *= 16; break;
-			case P_SUPREME_MASTER: gallopamount *= 32; break;
+			case P_MASTER: gallopamount *= 6; break;
+			case P_GRAND_MASTER: gallopamount *= 8; break;
+			case P_SUPREME_MASTER: gallopamount *= 10; break;
 		}
 	}
 

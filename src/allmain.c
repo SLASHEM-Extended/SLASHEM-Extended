@@ -4606,9 +4606,9 @@ newbossX:
 
 		if (!u.bellimbued && u.uhave.bell && In_bellcaves(&u.uz)) {
 			u.bellimbued = 1;
-			u.uhpmax += rnd(10);
-			u.uenmax += rnd(10);
-			if (Upolyd) u.mhmax += rnd(10);
+			u.uhpmax += rnd(3);
+			u.uenmax += rnd(3);
+			if (Upolyd) u.mhmax += rnd(3);
 
 			(void) makemon(&mons[urole.nemesnum], u.ux, u.uy, MM_ANGRY);
 
@@ -4698,9 +4698,9 @@ newbossX:
 
 		if (u.amuletimbued1 && u.amuletimbued2 && u.amuletimbued3 && !u.amuletcompletelyimbued && u.uhave.amulet && In_yendorian(&u.uz)) {
 			u.amuletcompletelyimbued = 1;
-			u.uhpmax += rnd(25);
-			u.uenmax += rnd(25);
-			if (Upolyd) u.mhmax += rnd(25);
+			u.uhpmax += rnd(5);
+			u.uenmax += rnd(5);
+			if (Upolyd) u.mhmax += rnd(5);
 
 #ifdef RECORD_ACHIEVE
 

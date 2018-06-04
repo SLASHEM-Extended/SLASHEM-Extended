@@ -387,7 +387,7 @@ register struct monst *mtmp;
 
 	/* idea gotten from watching Chris's to-hit discussion: high luck gave too big boosts --Amy */
 
-	tmp = 1 + ( (rn2(2) && Luck > 0) ? rnd(Luck) : Luck) + abon() + find_mac(mtmp) + u.uhitinc +
+	tmp = 1 + ( (rn2(2) && Luck > 0) ? rnd(Luck) : Luck) + abon() + find_mac(mtmp) + ((u.uhitinc > 1) ? rnd(u.uhitinc) : u.uhitinc) +
 		(rn2(2) ? (maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(u.ulevel))) : (maybe_polyd(youmonst.data->mlevel + 1, u.ulevel)) );
 
 	/* another extra boost --Amy */
@@ -401,11 +401,11 @@ register struct monst *mtmp;
 		switch (P_SKILL(P_GENERAL_COMBAT)) {
 			default: break;
 			case P_BASIC: tmp += 1; break;
-			case P_SKILLED: tmp += 2; break;
-			case P_EXPERT: tmp += 3; break;
-			case P_MASTER: tmp += 4; break;
-			case P_GRAND_MASTER: tmp += 5; break;
-			case P_SUPREME_MASTER: tmp += 6; break;
+			case P_SKILLED: tmp += rnd(2); break;
+			case P_EXPERT: tmp += rnd(3); break;
+			case P_MASTER: tmp += rnd(4); break;
+			case P_GRAND_MASTER: tmp += rnd(5); break;
+			case P_SUPREME_MASTER: tmp += rnd(6); break;
 		}
 	}
 
@@ -413,12 +413,12 @@ register struct monst *mtmp;
 		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_GENERAL_COMBAT)) {
 				default: break;
-				case P_BASIC: tmp += rn2(2); break;
-				case P_SKILLED: tmp += rn2(4); break;
-				case P_EXPERT: tmp += rn2(6); break;
-				case P_MASTER: tmp += rn2(8); break;
-				case P_GRAND_MASTER: tmp += rn2(10); break;
-				case P_SUPREME_MASTER: tmp += rn2(12); break;
+				case P_BASIC: tmp += 1; break;
+				case P_SKILLED: tmp += rn2(2); break;
+				case P_EXPERT: tmp += rn2(3); break;
+				case P_MASTER: tmp += rn2(4); break;
+				case P_GRAND_MASTER: tmp += rn2(5); break;
+				case P_SUPREME_MASTER: tmp += rn2(6); break;
 			}
 		}
 	}
@@ -676,6 +676,8 @@ register struct monst *mtmp;
 		}
 		tmp -= 2;
 	}
+
+	if (!rn2(20)) tmp -= 20; /* catastrophic failure on a "natural 20", similar to D&D --Amy */
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
@@ -1465,11 +1467,11 @@ int dieroll;
 
 				switch (P_SKILL(objects[obj->otyp].oc_skill)) {
 
-					case P_SKILLED: tmp += rnd(2); break;
-					case P_EXPERT: tmp += rnd(4); break;
-					case P_MASTER: tmp += rnd(6); break;
-					case P_GRAND_MASTER: tmp += rnd(8); break;
-					case P_SUPREME_MASTER: tmp += rnd(10); break;
+					case P_SKILLED: tmp += 1; break;
+					case P_EXPERT: tmp += rno(2); break;
+					case P_MASTER: tmp += rno(3); break;
+					case P_GRAND_MASTER: tmp += rno(4); break;
+					case P_SUPREME_MASTER: tmp += rno(5); break;
 					default: break;
 
 				}
@@ -2302,7 +2304,10 @@ int dieroll;
 	}
 
 	if (get_dmg_bonus && tmp > 0) {
-		tmp += u.udaminc;
+
+		if (u.udaminc > 1) tmp += rnd(u.udaminc);
+		else tmp += u.udaminc;
+
 		if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
 		if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) tmp += 5;
 		if (u.tiksrvzllatdown) tmp += 1;
@@ -2428,7 +2433,7 @@ int dieroll;
 
 					if (!uarms && !u.twoweap && uwep && !bimanual(uwep)) {
 						u.umakashiturns++;
-						if (u.umakashiturns >= 10) {
+						if (u.umakashiturns >= 4) {
 							u.umakashiturns = 0;
 							use_skill(P_MAKASHI, 1);
 						}
@@ -2436,7 +2441,7 @@ int dieroll;
 
 					if (u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit) {
 						u.uataruturns++;
-						if (u.uataruturns >= 10) {
+						if (u.uataruturns >= 4) {
 							u.uataruturns = 0;
 							use_skill(P_ATARU, 1);
 						}
@@ -2444,7 +2449,7 @@ int dieroll;
 
 					if (uwep && bimanual(uwep) && uwep->altmode) {
 						u.uvaapadturns++;
-						if (u.uvaapadturns >= 10) {
+						if (u.uvaapadturns >= 4) {
 							u.uvaapadturns = 0;
 							use_skill(P_VAAPAD, 1);
 						}
@@ -4550,11 +4555,11 @@ register struct attack *mattk;
 		switch (P_SKILL(P_POLYMORPHING)) {
 
 	      	case P_BASIC:	tmp +=  1; break;
-	      	case P_SKILLED:	tmp +=  2; break;
-	      	case P_EXPERT:	tmp +=  3; break;
-	      	case P_MASTER:	tmp +=  4; break;
-	      	case P_GRAND_MASTER:tmp +=  5; break;
-	      	case P_SUPREME_MASTER:tmp +=  6; break;
+	      	case P_SKILLED:	tmp +=  rnd(2); break;
+	      	case P_EXPERT:	tmp +=  rnd(3); break;
+	      	case P_MASTER:	tmp +=  rnd(4); break;
+	      	case P_GRAND_MASTER:tmp +=  rnd(5); break;
+	      	case P_SUPREME_MASTER:tmp +=  rnd(6); break;
 	      	default: tmp += 0; break;
 	      }
 

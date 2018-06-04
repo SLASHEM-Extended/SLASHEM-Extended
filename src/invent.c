@@ -350,9 +350,9 @@ struct obj *obj;
 		u.uhave.menorah = 1;
 		if (!u.menoraget) {
 			u.menoraget = 1;
-			u.uhpmax += rnd(50);
-			u.uenmax += rnd(50);
-			if (Upolyd) u.mhmax += rnd(50);
+			u.uhpmax += rnd(3);
+			u.uenmax += rnd(3);
+			if (Upolyd) u.mhmax += rnd(3);
 		}
 #ifdef RECORD_ACHIEVE
 
@@ -383,9 +383,9 @@ struct obj *obj;
 		if (!u.silverbellget) {
 			com_pager(195);
 			u.silverbellget = 1;
-			u.uhpmax += rnd(50);
-			u.uenmax += rnd(50);
-			if (Upolyd) u.mhmax += rnd(50);
+			u.uhpmax += rnd(3);
+			u.uenmax += rnd(3);
+			if (Upolyd) u.mhmax += rnd(3);
 		}
 #ifdef RECORD_ACHIEVE
 
@@ -414,9 +414,9 @@ struct obj *obj;
 		u.uhave.book = 1;
 		if (!u.bookofthedeadget) {
 			u.bookofthedeadget = 1;
-			u.uhpmax += rnd(50);
-			u.uenmax += rnd(50);
-			if (Upolyd) u.mhmax += rnd(50);
+			u.uhpmax += rnd(3);
+			u.uenmax += rnd(3);
+			if (Upolyd) u.mhmax += rnd(3);
 		}
 #ifdef RECORD_ACHIEVE
 
@@ -453,21 +453,21 @@ struct obj *obj;
 		}
 		if((obj->oartifact == ART_KEY_OF_CHAOS) && !u.chaoskeyget) {
 			u.chaoskeyget = 1;
-			u.uhpmax += rnd(10);
-			u.uenmax += rnd(10);
-			if (Upolyd) u.mhmax += rnd(10);
+			u.uhpmax += rnd(2);
+			u.uenmax += rnd(2);
+			if (Upolyd) u.mhmax += rnd(2);
 		}
 		if((obj->oartifact == ART_KEY_OF_NEUTRALITY) && !u.neutralkeyget) {
 			u.neutralkeyget = 1;
-			u.uhpmax += rnd(10);
-			u.uenmax += rnd(10);
-			if (Upolyd) u.mhmax += rnd(10);
+			u.uhpmax += rnd(2);
+			u.uenmax += rnd(2);
+			if (Upolyd) u.mhmax += rnd(2);
 		}
 		if((obj->oartifact == ART_KEY_OF_LAW) && !u.lawfulkeyget) {
 			u.lawfulkeyget = 1;
-			u.uhpmax += rnd(10);
-			u.uenmax += rnd(10);
-			if (Upolyd) u.mhmax += rnd(10);
+			u.uhpmax += rnd(2);
+			u.uenmax += rnd(2);
+			if (Upolyd) u.mhmax += rnd(2);
 		}
 
 		set_artifact_intrinsic(obj, 1, W_ART);
@@ -496,9 +496,9 @@ struct obj *obj;
                 obj->record_achieve_special = 0;
 		    if (!u.luckstoneget) {
 			u.luckstoneget = 1;
-			u.uhpmax += rnd(5);
-			u.uenmax += rnd(5);
-			if (Upolyd) u.mhmax += rnd(5);
+			u.uhpmax += rnd(2);
+			u.uenmax += rnd(2);
+			if (Upolyd) u.mhmax += rnd(2);
 		    }
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
@@ -527,9 +527,9 @@ struct obj *obj;
                 obj->record_achieve_special = 0;
 		    if (!u.sokobanfinished) {
 			u.sokobanfinished = 1;
-			u.uhpmax += rnd(5);
-			u.uenmax += rnd(5);
-			if (Upolyd) u.mhmax += rnd(5);
+			u.uhpmax += rnd(2);
+			u.uenmax += rnd(2);
+			if (Upolyd) u.mhmax += rnd(2);
 		    }
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
@@ -556,9 +556,9 @@ struct obj *obj;
 		obj->record_achieve_special = 0;
 		if (!u.deepminefinished) {
 			u.deepminefinished = 1;
-			u.uhpmax += rnd(5);
-			u.uenmax += rnd(5);
-			if (Upolyd) u.mhmax += rnd(5);
+			u.uhpmax += rnd(2);
+			u.uenmax += rnd(2);
+			if (Upolyd) u.mhmax += rnd(2);
 		}
 #ifdef LIVELOGFILE
 		livelog_achieve_update();

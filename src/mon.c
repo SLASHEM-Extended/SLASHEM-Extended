@@ -3410,9 +3410,9 @@ register struct monst *mtmp;
 
       if(mtmp->data == &mons[PM_MEDUSA] && !u.medusaremoved) {
 		u.medusaremoved = 1;
-		u.uhpmax += rnd(20);
-		u.uenmax += rnd(20);
-		if (Upolyd) u.mhmax += rnd(20);
+		u.uhpmax += rnd(3);
+		u.uenmax += rnd(3);
+		if (Upolyd) u.mhmax += rnd(3);
 	}
 
       if(mtmp->data == &mons[PM_MOTHERFUCKER_GLASS_GOLEM] && !u.glassgolemdown) {
