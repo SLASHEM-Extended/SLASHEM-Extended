@@ -2220,6 +2220,12 @@ struct obj *obj;
 	/* adjust for "large" quantities of identical things */
 	if(obj->quan > 4L) zap_odds /= 2;
 
+	/* Amy edit: polypiling is so OP that it desperately needs nerfing :P */
+	if (rn2(2)) return TRUE;
+	if ((obj->oclass == SCROLL_CLASS || obj->oclass == POTION_CLASS) && rn2(2) ) return TRUE;
+	if ((obj->oclass == SPBOOK_CLASS) && rn2(5) ) return TRUE;
+	if ((obj->oclass == WEAPON_CLASS) && objects[obj->otyp].oc_merge && rn2(10) ) return TRUE;
+
 	return((boolean)(! rn2(zap_odds)));
 }
 #endif /*OVL0*/
@@ -2722,6 +2728,14 @@ poly_obj(obj, id)
 	    }
 	    break;
 	}
+
+	/* degrade the object because polypiling is too powerful --Amy */
+	if (otmp->spe > 2) otmp->spe /= 2;
+	else if (otmp->spe > -20) otmp->spe--;
+	if (otmp->cursed) curse(otmp);
+	else if (!otmp->blessed && rn2(3)) curse(otmp);
+	else if (!rn2(3)) curse(otmp);
+	else if (rn2(3)) unbless(otmp);
 
 	/* update the weight */
 	otmp->owt = weight(otmp);
