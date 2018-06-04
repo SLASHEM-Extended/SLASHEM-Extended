@@ -3550,6 +3550,37 @@ use_pole (obj)
 		}
 	    }
 
+	    if ((!rn2(1000) && !obj->oartifact) || (!rn2(10000) && obj->oartifact)) {
+
+		if (obj->oeroded >= 3 || obj->oeroded2 >= 3) {
+			uwepgone();              /* set unweapon */
+			pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu u vas takoy malen'kiy polovogo chlena v lyubom sluchaye?" : "Krrrrrrrtsch!");
+			useup(obj);
+			return (1);
+		}
+
+		(void)wither_dmg(obj, xname(obj), rn2(4), TRUE, &youmonst);
+
+	    }
+
+	    if (!rn2(100) && !mtmp->mpeaceful && !mtmp->mtame && !mtmp->mfrenzied && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
+		mtmp->mfrenzied = 1;
+		pline("%s is frenzied!", Monnam(mtmp));
+	    }
+
+	    if (!rn2(100) && !mtmp->mpeaceful && !mtmp->mtame && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
+		mon_adjust_speed(mtmp, 1, (struct obj *)0);
+	    }
+
+	    if (!rn2(200) && attacktype(mtmp->data, AT_WEAP)) {
+		pline("%s laughs fiendishly, and snatches your weapon!", Monnam(mtmp));
+		setnotworn(obj);
+		freeinv(obj);
+		(void) mpickobj(mtmp,obj,FALSE);
+		return (1);
+	    }
+
 	    int oldhp = mtmp->mhp;
 
 	    bhitpos = cc;

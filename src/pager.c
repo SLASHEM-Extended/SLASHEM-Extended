@@ -15500,6 +15500,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Lbh qba'g arrq gb chg rirel zrffntr va gur ebg13 genafyngbe.",
 	"Lbh'er ernyyl jnfgvat lbhe gvzr genafyngvat gurfr frafryrff zrffntrf onpx sebz ebg13 gb ratyvfu.",
 	"Pnrnhjnrfu Gfpunrnhjvrnhj Gfpuvrnhjvpx Xanyycrat Cfpuvhqvgg Qnrqryqvqnrg",
+	"The serbian thief laughs fiendishly, and snatches your weapon!",
 
 };
 
