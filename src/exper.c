@@ -179,23 +179,23 @@ int lev;
 	if (lev == 11) return (20000L);  /* need 10000         */
 	if (lev == 12) return (40000L);  /* need 20000         */
 	if (lev == 13) return (80000L);  /* need 40000         */
-	if (lev == 14) return (120000L);  /* need 40000         */
-	if (lev == 15) return (170000L);  /* need 50000         */
-	if (lev == 16) return (220000L);  /* need 50000         */
-	if (lev == 17) return (270000L);  /* need 50000         */
-	if (lev == 18) return (320000L);  /* need 50000        */
-	if (lev == 19) return (380000L);  /* need 60000        */
-	if (lev == 20) return (440000L);  /* need 60000        */
-	if (lev == 21) return (500000L); /* need 60000        */
-	if (lev == 22) return (560000L); /* need 60000        */
-	if (lev == 23) return (620000L); /* need 60000        */
-	if (lev == 24) return (680000L); /* need 60000        */
-	if (lev == 25) return (740000L); /* need 60000       */
-	if (lev == 26) return (800000L); /* need 60000       */
-	if (lev == 27) return (860000L); /* need 60000       */
-	if (lev == 28) return (930000L); /* need 70000       */
-	if (lev == 29) return (1000000L); /* need 70000      */
-	return (1500000L);
+	if (lev == 14) return (130000L);  /* need 50000         */
+	if (lev == 15) return (200000L);  /* need 70000         */
+	if (lev == 16) return (280000L);  /* need 80000         */
+	if (lev == 17) return (380000L);  /* need 100000         */
+	if (lev == 18) return (500000L);  /* need 120000        */
+	if (lev == 19) return (650000L);  /* need 150000        */
+	if (lev == 20) return (850000L);  /* need 200000        */
+	if (lev == 21) return (1100000L); /* need 250000        */
+	if (lev == 22) return (1400000L); /* need 300000        */
+	if (lev == 23) return (1800000L); /* need 400000        */
+	if (lev == 24) return (2300000L); /* need 500000        */
+	if (lev == 25) return (3000000L); /* need 700000       */
+	if (lev == 26) return (3800000L); /* need 800000       */
+	if (lev == 27) return (4800000L); /* need 1000000       */
+	if (lev == 28) return (6000000L); /* need 1200000       */
+	if (lev == 29) return (8000000L); /* need 2000000      */
+	return (15000000L);
 
 	} else {
 
@@ -211,24 +211,24 @@ int lev;
 	if (lev == 10) return (20000L);
 	if (lev == 11) return (40000L);
 	if (lev == 12) return (80000L);
-	if (lev == 13) return (150000L);
-	if (lev == 14) return (250000L);
-	if (lev == 15) return (300000L);
-	if (lev == 16) return (350000L);
-	if (lev == 17) return (400000L);
-	if (lev == 18) return (450000L);
-	if (lev == 19) return (500000L);
-	if (lev == 20) return (550000L);
-	if (lev == 21) return (600000L);
-	if (lev == 22) return (650000L);
-	if (lev == 23) return (700000L);
-	if (lev == 24) return (750000L);
-	if (lev == 25) return (800000L);
-	if (lev == 26) return (850000L);
-	if (lev == 27) return (900000L);
-	if (lev == 28) return (950000L);
-	if (lev == 29) return (1000000L);
-	return (1500000L);
+	if (lev == 13) return (130000L);
+	if (lev == 14) return (200000L);
+	if (lev == 15) return (280000L);
+	if (lev == 16) return (380000L);
+	if (lev == 17) return (480000L);
+	if (lev == 18) return (580000L);
+	if (lev == 19) return (680000L);
+	if (lev == 20) return (850000L);
+	if (lev == 21) return (1100000L);
+	if (lev == 22) return (1400000L);
+	if (lev == 23) return (1800000L);
+	if (lev == 24) return (2300000L);
+	if (lev == 25) return (3000000L);
+	if (lev == 26) return (3800000L);
+	if (lev == 27) return (4800000L);
+	if (lev == 28) return (6000000L);
+	if (lev == 29) return (8000000L);
+	return (15000000L);
 
 	}
 
@@ -467,9 +467,9 @@ newexplevel()
 {
 	if (u.ulevel < MAXULEV && u.uexp >= newuexp(u.ulevel))
 	    pluslvl(TRUE);
-	else if (u.uexp >= (1000000 + (100000 * u.xtralevelmult))) {
+	else if (u.uexp >= (10000000 + (2000000 * u.xtralevelmult))) {
 	    u.xtralevelmult++;
-	    u.uexp = 1000000;
+	    u.uexp = 10000000;
 	    You_feel("more experienced.");
 	    pluslvl(TRUE);
 	}
