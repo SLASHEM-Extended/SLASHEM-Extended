@@ -2439,9 +2439,14 @@ int artif;
 			else otmp->spe = rnd(ishaxor ? 7 : 6); /* sometimes you may get lucky --Amy */
 			otmp->recharged = 0;
 			if(!rn2(2)) otmp->recharged = rnd(7);
-		} else if(otmp->otyp == WAN_PARALYSIS || otmp->otyp == WAN_DISINTEGRATION || otmp->otyp == WAN_STONING || otmp->otyp == WAN_INERTIA || otmp->otyp == WAN_TIME) {
-			if (rn2(20)) otmp->spe = rnd(ishaxor ? 20 : 10);
-			else otmp->spe = rnd(ishaxor ? 24 : 12); /* sometimes you may get lucky --Amy */
+		} else if(otmp->otyp == WAN_PARALYSIS || otmp->otyp == WAN_DISINTEGRATION || otmp->otyp == WAN_DISINTEGRATION_BEAM || otmp->otyp == WAN_STONING || otmp->otyp == WAN_INERTIA || otmp->otyp == WAN_TIME || otmp->otyp == WAN_IDENTIFY || otmp->otyp == WAN_REMOVE_CURSE || otmp->otyp == WAN_TIME_STOP || otmp->otyp == WAN_TELE_LEVEL || otmp->otyp == WAN_ENTRAPPING || otmp->otyp == WAN_MAGIC_MAPPING || otmp->otyp == WAN_CREATE_FAMILIAR) {
+			if (rn2(20)) otmp->spe = rnd(ishaxor ? 6 : 5);
+			else otmp->spe = rnd(ishaxor ? 10 : 8); /* sometimes you may get lucky --Amy */
+			otmp->recharged = 0;
+			if(!rn2(10)) otmp->recharged = rnd(7);
+		} else if(otmp->otyp == WAN_ENLIGHTENMENT || otmp->otyp == WAN_TRAP_DISARMING || otmp->otyp == WAN_CANCELLATION || otmp->otyp == WAN_POLYMORPH || otmp->otyp == WAN_MUTATION || otmp->otyp == WAN_CHARGING) {
+			if (rn2(20)) otmp->spe = rnd(ishaxor ? 10 : 7);
+			else otmp->spe = rnd(ishaxor ? 15 : 10); /* sometimes you may get lucky --Amy */
 			otmp->recharged = 0;
 			if(!rn2(10)) otmp->recharged = rnd(7);
 
