@@ -8114,7 +8114,7 @@ uchar aatyp;
 			if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
 				You_feel("a tug on your backpack!");
 				buf[0] = '\0';
-				switch (steal(mon, buf)) {
+				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE)) {
 			  case -1:
 				return 2;
 			  case 0:
@@ -8132,7 +8132,7 @@ uchar aatyp;
 			) 		{
 			You_feel("a tug on your backpack!");
 			buf[0] = '\0';
-				switch (steal(mon, buf)) {
+				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE)) {
 			  case -1:
 				return 2;
 			  case 0:

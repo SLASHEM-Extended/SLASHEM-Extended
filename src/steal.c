@@ -237,14 +237,18 @@ boolean unchain_ball;	/* whether to unpunish or just unwield */
  * Avoid stealing the object stealoid
  */
 int
-steal(mtmp, objnambuf)
+steal(mtmp, objnambuf, powersteal)
 struct monst *mtmp;
 char *objnambuf;
+boolean powersteal;
 {
 	struct obj *otmp;
 	int tmp, could_petrify, named = 0, armordelay;
 	boolean monkey_business; /* true iff an animal is doing the thievery */
 	int do_charm = is_neuter(mtmp->data) || flags.female == mtmp->female;
+
+	int invisstealroll = 0;
+	if (powersteal) invisstealroll = rnd(40);
 
 	char buf[BUFSZ];
 
@@ -282,7 +286,7 @@ nothing_to_steal:
 	tmp = 0;
 	for(otmp = invent; otmp; otmp = otmp->nobj)
 	    if ((!uarm || otmp != uarmc) && otmp != uskin
-				&& ((!otmp->oinvis || perceives(mtmp->data)) && !otmp->stckcurse && !otmp->oinvisreal)
+				&& ((!otmp->oinvis || perceives(mtmp->data) || (invisstealroll > 10) ) && !otmp->stckcurse && (!otmp->oinvisreal || (invisstealroll > 36)) )
 				)
 		tmp += ((otmp->owornmask &
 			(W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL)) ? 5 : 1);
@@ -290,7 +294,7 @@ nothing_to_steal:
 	tmp = rn2(tmp);
 	for(otmp = invent; otmp; otmp = otmp->nobj)
 	    if ((!uarm || otmp != uarmc) && otmp != uskin
-				&& ((!otmp->oinvis || perceives(mtmp->data)) && !otmp->stckcurse && !otmp->oinvisreal)
+				&& ((!otmp->oinvis || perceives(mtmp->data) || (invisstealroll > 10)) && !otmp->stckcurse && (!otmp->oinvisreal || (invisstealroll > 36)) )
 			)
 		if((tmp -= ((otmp->owornmask &
 			(W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL)) ? 5 : 1)) < 0)
@@ -324,7 +328,7 @@ gotobj:
 	}
 
 	/* artifacts resist stealing because I'm nice --Amy */
-	if (rn2(10) && (otmp->oartifact || (otmp->fakeartifact && !rn2(3))) && !issoviet) {
+	if (rn2(10) && (!powersteal || !rn2(2)) && (otmp->oartifact || (otmp->fakeartifact && !rn2(3))) && !issoviet) {
 
 		pline("%s tries to steal your %s, but you quickly protect it!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), doname(otmp));
 
@@ -338,7 +342,7 @@ gotobj:
 	 * have "fun" with a woman. Even if said "fun" means losing all that you have. And of course, Russian women are also
 	 * the absolute temptresses who will MAKE you undress whether you want it or not. --Amy */
 
-	if ( ((rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) ) && !issoviet && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL))) {
+	if ( ((rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) || (rnd(50) < ACURR(A_CHA)) ) && !powersteal && !issoviet && (otmp->owornmask & (W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL))) {
 		if (otmp->cursed) {
 			otmp->bknown = 1;
 			pline("%s tries to take off your %s, which appears to be cursed.", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp)); 

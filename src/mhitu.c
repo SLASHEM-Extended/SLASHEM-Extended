@@ -4233,13 +4233,13 @@ elena37:
 				if(invent){
 					You_feel("the tentacles pick through your remaining possessions.");
 					buf[0] = '\0';
-					steal(mtmp, buf);
+					steal(mtmp, buf, TRUE);
 					buf[0] = '\0';
-					steal(mtmp, buf);
+					steal(mtmp, buf, TRUE);
 					buf[0] = '\0';
-					steal(mtmp, buf);
+					steal(mtmp, buf, TRUE);
 					buf[0] = '\0';
-					steal(mtmp, buf);
+					steal(mtmp, buf, TRUE);
 				}
 			break;
 		}
@@ -6167,7 +6167,7 @@ dopois:
 		    break;
 		}
 
-		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
+		if (!rn2(3) && atttyp != AD_SEDU && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
 			You_feel("a tug on your knapsack"); break;
 		}
 
@@ -6187,13 +6187,13 @@ dopois:
 		buf[0] = '\0';
 
 		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
-			switch (steal(mtmp, buf)) {
+			switch (steal(mtmp, buf, atttyp == AD_SEDU ? TRUE : FALSE)) {
 		  case -1:
 			return 2;
 		  case 0:
 			break;
 		  default:
-			if (!is_animal(mtmp->data) && !tele_restrict(mtmp) && (issoviet || !rn2(4)) )
+			if (!is_animal(mtmp->data) && !tele_restrict(mtmp) && (issoviet || atttyp == AD_SEDU || !rn2(4)) )
 			    (void) rloc(mtmp, FALSE);
 			if (is_animal(mtmp->data) && *buf) {
 			    if (canseemon(mtmp))
@@ -6209,7 +6209,7 @@ dopois:
 		} else if (issoviet || (  (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
 			((mtmp->female) && flags.female && rn2(2) ) || ((!mtmp->female) && !flags.female && rn2(2) ) ) )
 /* male characters are more susceptible to nymphs --Amy */
-			{ switch (steal(mtmp, buf)) {
+			{ switch (steal(mtmp, buf, atttyp == AD_SEDU ? TRUE : FALSE)) {
 		  case -1:
 			return 2;
 		  case 0:
@@ -9040,20 +9040,20 @@ do_stone2:
 	    case AD_SSEX:
 		pline("It thrusts you!");
 
-		if (!rn2(3) && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
+		if (!rn2(3) && atttypA != AD_SEDU && !issoviet && !(u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) ) {
 			You_feel("a tug on your knapsack"); break;
 		}
 
 			buf[0] = '\0';
 
 		if (u.uprops[ITEM_STEALING_EFFECT].extrinsic || ItemStealingEffect || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stealerstone() || (uarmf && uarmf->oartifact == ART_ALISEH_S_RED_COLOR) ) {
-			switch (steal(mtmp, buf)) {
+			switch (steal(mtmp, buf, atttypA == AD_SEDU ? TRUE : FALSE)) {
 		  case -1:
 			return 2;
 		  case 0:
 			break;
 		  default:
-			if ( !tele_restrict(mtmp) && (issoviet || !rn2(4) ) )
+			if ( !tele_restrict(mtmp) && (issoviet || atttypA == AD_SEDU || !rn2(4) ) )
 			    (void) rloc(mtmp, FALSE);
 			monflee(mtmp, rnd(10), FALSE, FALSE);
 			return 3;
@@ -9061,13 +9061,13 @@ do_stone2:
 		} else if (issoviet || ( (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
 			((mtmp->female) && flags.female && rn2(2) ) || ((!mtmp->female) && !flags.female && rn2(2) ) ) )
 			{ 
-			switch (steal(mtmp, buf)) {
+			switch (steal(mtmp, buf, atttypA == AD_SEDU ? TRUE : FALSE)) {
 		  case -1:
 			return 2;
 		  case 0:
 			break;
 		  default:
-			if ( !tele_restrict(mtmp) && (issoviet || !rn2(4) ) )
+			if ( !tele_restrict(mtmp) && (issoviet || atttypA == AD_SEDU || !rn2(4) ) )
 			    (void) rloc(mtmp, FALSE);
 			monflee(mtmp, rnd(10), FALSE, FALSE);
 			return 3;
@@ -13453,7 +13453,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			((mtmp->female) && flags.female && !rn2(25) ) || ((!mtmp->female) && !flags.female && !rn2(25) ) ) )
 			{
 				buf[0] = '\0';
-				switch (steal(mtmp, buf)) {
+				switch (steal(mtmp, buf, FALSE)) {
 			  case -1:
 				return 2;
 			  case 0:
@@ -13478,13 +13478,13 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
 		    stop_occupation();
 		buf[0] = '\0';
-			switch (steal(mtmp, buf)) {
+			switch (steal(mtmp, buf, atttypB == AD_SEDU ? TRUE : FALSE)) {
 		  case -1:
 			return 2;
 		  case 0:
 			break;
 		  default:
-			if ( !tele_restrict(mtmp) && (issoviet || !rn2(4)) )
+			if ( !tele_restrict(mtmp) && (issoviet || atttypB == AD_SEDU || !rn2(4)) )
 			    (void) rloc(mtmp, FALSE);
 			monflee(mtmp, rnd(10), FALSE, FALSE);
 			return 3;
@@ -13498,13 +13498,13 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
 		    stop_occupation();
 		buf[0] = '\0';
-			switch (steal(mtmp, buf)) {
+			switch (steal(mtmp, buf, atttypB == AD_SEDU ? TRUE : FALSE)) {
 		  case -1:
 			return 2;
 		  case 0:
 			break;
 		  default:
-			if ( !tele_restrict(mtmp) && (issoviet || !rn2(4)) )
+			if ( !tele_restrict(mtmp) && (issoviet || atttypB == AD_SEDU || !rn2(4)) )
 			    (void) rloc(mtmp, FALSE);
 			monflee(mtmp, rnd(10), FALSE, FALSE);
 			return 3;

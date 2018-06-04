@@ -2548,7 +2548,7 @@ E long somegold(void);
 #endif
 E void stealgold(struct monst *);
 E void remove_worn_item(struct obj *,BOOLEAN_P);
-E int steal(struct monst *, char *);
+E int steal(struct monst *, char *,BOOLEAN_P);
 E int mpickobj(struct monst *,struct obj *,BOOLEAN_P);
 E void stealamulet(struct monst *);
 E void mdrop_special_objs(struct monst *);
