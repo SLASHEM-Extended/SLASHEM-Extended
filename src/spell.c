@@ -2401,7 +2401,7 @@ magicalenergychoice:
 		    for (obj = invent; obj; obj = obj2) {
 		      obj2 = obj->nobj;
 
-			if (obj->oclass == ARMOR_CLASS) obj->known = TRUE;
+			if (obj->oclass == ARMOR_CLASS && (obj->shirtmessage % 3 == 0) ) obj->known = TRUE;
 
 		    }
 		}
@@ -3332,7 +3332,7 @@ secureidchoice:
 		    for (obj = invent; obj; obj = obj2) {
 		      obj2 = obj->nobj;
 
-			obj->known = TRUE;
+			if (obj->shirtmessage % 4 == 0) obj->known = TRUE;
 
 		    }
 		}
@@ -6053,6 +6053,10 @@ totemsummonchoice:
 		if (!Passes_walls)
 			You_feel("ethereal.");
 		incr_itimeout(&HPasses_walls, rn1(10, 5));
+
+		/* way too uber, needs nerf --Amy */
+		if (!rn2(5)) badeffect();
+
 		break;
 
 	case SPE_DETECT_FOOT:
@@ -6334,6 +6338,13 @@ rerollX:
 	if (pseudo && ((pseudo->otyp == SPE_REPAIR_WEAPON) || (pseudo->otyp == SPE_REPAIR_ARMOR)) && !rn2(role_skill == P_SUPREME_MASTER ? 30 : role_skill == P_GRAND_MASTER ? 25 : role_skill == P_MASTER ? 24 : role_skill == P_EXPERT ? 23 : role_skill == P_SKILLED ? 22 : 20) ) {
 
 		boostknow(spell, -(rnd(25000)));
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+
+	}
+
+	if (pseudo && (pseudo->otyp == SPE_PASSWALL) && !rn2(role_skill == P_SUPREME_MASTER ? 30 : role_skill == P_GRAND_MASTER ? 25 : role_skill == P_MASTER ? 24 : role_skill == P_EXPERT ? 23 : role_skill == P_SKILLED ? 22 : 20) ) {
+
+		boostknow(spell, -(rnd(10000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}

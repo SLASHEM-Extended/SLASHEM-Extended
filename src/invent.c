@@ -10815,7 +10815,7 @@ struct obj *obj;
 			case SPE_TELEPORT_AWAY:
 				pline("A spell that can be used to fire teleport beams at yourself, monsters and objects. It occasionally backfires though, causing nasty side effects."); break;
 			case SPE_PASSWALL:
-				pline("Casting this spell allows you to walk through walls for a limited amount of time. Beware, certain special levels have walls that resist this ability."); break;
+				pline("Casting this spell allows you to walk through walls for a limited amount of time. Beware, certain special levels have walls that resist this ability. Also, casting it can sometimes backfire."); break;
 			case SPE_POLYMORPH:
 				pline("A spell that can be cast at stuff to polymorph it. It occasionally backfires though, causing nasty side effects."); break;
 			case SPE_MUTATION:
@@ -10873,7 +10873,7 @@ struct obj *obj;
 			case SPE_AMNESIA:
 				pline("This spellbook causes you to forget stuff."); break;
 			case SPE_KNOW_ENCHANTMENT:
-				pline("Your entire inventory will have their enchantment revealed, so pack as much stuff as you can before casting this spell."); break;
+				pline("Your entire inventory may have their enchantment revealed, so pack as much stuff as you can before casting this spell. However, only 1 in 4 items will actually be affected, and it's predetermined which ones they are, so don't bother trying repeatedly."); break;
 			case SPE_MAGICTORCH:
 				pline("A spell that increases your field of view for a period of time."); break;
 			case SPE_DISPLACEMENT:
@@ -10885,7 +10885,7 @@ struct obj *obj;
 			case SPE_TIME_SHIFT:
 				pline("Casting this spell increases the turn counter by 5. Don't do it if you're doing a speedrun."); break;
 			case SPE_DETECT_ARMOR_ENCHANTMENT:
-				pline("This spell detects the enchantment value of all armor items in your main inventory."); break;
+				pline("This spell tries to detect the enchantment value of all armor items in your main inventory. It only affects roughly one third of all items though, and repeated casting won't change which ones they are. Either they're revealed on the first cast or this spell doesn't reveal them at all."); break;
 			case SPE_CONFUSE_SELF:
 				pline("Want to confuse yourself? Cast this spell!"); break;
 			case SPE_STUN_SELF:
