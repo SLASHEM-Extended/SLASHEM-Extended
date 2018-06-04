@@ -1934,8 +1934,9 @@ domove()
 	 * any chance while stunned, because seriously, players having a chance? That's a no-go! --Amy */
 
 		if ((Stunned && !rn2(issoviet ? 1 : Stun_resist ? 8 : 2)) || (Confusion && !rn2(issoviet ? 2 : Conf_resist ? 40 : 8) || ((uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) && !rn2(8) ) )
-			/* toned down so it's less crippling --Amy */
-			|| (u.usteed && u.usteed->mconf)
+			/* toned down so it's less crippling --Amy
+			 * nerf for extremely fast steeds: they cause you to sometimes walk randomly */
+			|| (u.usteed && (u.usteed->mconf || (rnd(u.usteed->data->mmove) > 36) ) )
 		   ) {
 			register int tries = 0;
 
