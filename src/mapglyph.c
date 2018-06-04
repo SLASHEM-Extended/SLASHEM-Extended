@@ -114,8 +114,8 @@ unsigned *ospecial;
 	ch = showsyms[(offset % MAXEXPCHARS) + S_explode1];
 	explode_color(offset / MAXEXPCHARS);
     } else if ((offset = (glyph - GLYPH_CMAP_OFF)) >= 0) {	/* cmap */
-	if (On_stairs(x,y) && (ttmp = t_at(x,y)) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && (ttmp && ttmp->tseen) && levl[x][y].seenv) special |= MG_STAIRS;
-	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
+	if (On_stairs(x,y) && (ttmp = t_at(x,y)) && offset != S_grayglyph && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && (ttmp && ttmp->tseen) && levl[x][y].seenv) special |= MG_STAIRS;
+	if (flags.graffitihilite && offset != S_grayglyph && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
 	ch = showsyms[offset];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS && iflags.use_color) {
