@@ -1791,8 +1791,12 @@ nh_timeout()
 	}
 	if(u.mtimedone && !--u.mtimedone) {
 		if (!Race_if(PM_UNGENOMOLD) && u.polyformed) rehumanize();
-		else if (Unchanging || (uarmc && uarmc->oartifact == ART_PERMANENTITIS) || (uarmc && uarmc->oartifact == ART_SHAPETAKE_NUMBER_FIVE) || Race_if(PM_UNGENOMOLD) )
-			u.mtimedone = rnd(100*youmonst.data->mlevel + 1);
+		/* Amy evilness: if you're polymorphed into something very fast, you may occasionally be forced out of your
+		 * polymorph form even with unchanging, because otherwise it could get real unbalanced.
+		 * Also, if you do stay in the form, you only get 100 more turns so you can't get an extremely long polymorph
+		 * duration via unchanging if it's a form that normally doesn't last that long */
+		else if ( (Unchanging || (uarmc && uarmc->oartifact == ART_PERMANENTITIS) || (uarmc && uarmc->oartifact == ART_SHAPETAKE_NUMBER_FIVE) && ((youmonst.data->mmove < 18) || (rnd(youmonst.data->mmove) < 18) ) ) || Race_if(PM_UNGENOMOLD) )
+			u.mtimedone = 100;
 		else
 			rehumanize();
 	}

@@ -985,8 +985,8 @@ moveloop()
 			register int steedmultiplier = 5;
 			register int speedreduction;
 
-			/* Riding a really fast (speed higher than 24) steed does not necessarily allow you to ride it at
-			 * full speed, but depends on your riding skill. The actual speed will never be lower than 24, but
+			/* Riding a really fast (speed higher than 17) steed does not necessarily allow you to ride it at
+			 * full speed, but depends on your riding skill. The actual speed will never be lower than 17, but
 			 * now you need grand master riding skill to ride the steed at its actual speed. --Amy */
 
 			if (!(PlayerCannotUseSkills)) {
@@ -1005,11 +1005,11 @@ moveloop()
 				moveamt /= 5;
 			}
 
-			if (moveamt > 24) {
-				speedreduction = (moveamt - 24);
+			if (moveamt > 17) {
+				speedreduction = (moveamt - 17);
 				speedreduction *= steedmultiplier;
 				speedreduction /= 15;
-				moveamt = 24 + speedreduction;
+				moveamt = 17 + speedreduction;
 			}
 
 		    } else

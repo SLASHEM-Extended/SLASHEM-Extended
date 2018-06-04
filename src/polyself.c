@@ -768,6 +768,30 @@ int	mntmp;
 #endif
 	}
 
+	/* very fast polymorph forms last for a shorter amount of time (nerf :P) --Amy */
+	if (youmonst.data->mmove > 17) {
+		u.mtimedone *= 17;
+		u.mtimedone /= youmonst.data->mmove;
+
+		boolean morereduction = 1;
+		if (!PlayerCannotUseSkills) switch (P_SKILL(P_POLYMORPHING)) {
+
+	      	case P_BASIC: if (!rn2(10)) morereduction = 0; break;
+	      	case P_SKILLED: if (!rn2(8)) morereduction = 0; break;
+	      	case P_EXPERT: if (!rn2(5)) morereduction = 0; break;
+	      	case P_MASTER: if (!rn2(3)) morereduction = 0; break;
+	      	case P_GRAND_MASTER: if (!rn2(2)) morereduction = 0; break;
+	      	case P_SUPREME_MASTER: morereduction = 0; break;
+	      	default: morereduction = 1; break;
+		
+		}
+		if (morereduction) {
+			u.mtimedone *= 17;
+			u.mtimedone /= youmonst.data->mmove;
+		}
+
+	}
+
 	/* Moulds suck way too much. Let's allow them to stay polymorphed for a longer time. --Amy */
 	/* Worms too. Their polymorph time depends on the monster's level though. */
 
