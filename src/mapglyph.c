@@ -1285,6 +1285,7 @@ unsigned *ospecial;
 #endif
 	{
 	    mon_color(glyph);
+	    if (mtmp && mtmp->shinymonst) color = rnd(15);
 	    /* special case the hero for `showrace' option */
 #ifdef TEXTCOLOR
 	    if (iflags.use_color && x == u.ux && y == u.uy &&

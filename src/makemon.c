@@ -12939,6 +12939,8 @@ register int	mmflags;
 
 	}
 
+	if (!rn2(8192)) mtmp->shinymonst = 1;
+
 	if (!rn2(100) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eldritch cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sverkh'yestestvennyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "aql bovar qilmaydigan plash") ))) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_abomination = 1;

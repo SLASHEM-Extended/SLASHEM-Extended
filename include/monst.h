@@ -288,6 +288,8 @@ struct monst {
 	Bitfield(fartbonus,6); /* actually, max should be 9 */
 	Bitfield(crapbonus,6);
 
+	Bitfield(shinymonst,1);	/* 1 in 8192 chance, by aosdict */
+
 	Bitfield(wastame,1);	/* for re-taming technique */
 
 	struct obj *mw;
