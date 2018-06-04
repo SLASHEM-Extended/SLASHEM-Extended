@@ -171,20 +171,46 @@ use_towel(obj)
 	}
 
 	if (Glib) {
-		Glib = 0;
-		You("wipe off your %s.", makeplural(body_part(HAND)));
+		if ((obj && obj->blessed) || rn2(2)) {
+			Glib = 0;
+			You("wipe off your %s.", makeplural(body_part(HAND)));
+		} else You("wipe off your %s, but there's still gunk on it.", makeplural(body_part(HAND)));
+
+		if (!rn2(100) && obj) {
+			if (obj->blessed)
+				unbless(obj);
+			else
+				curse(obj);
+			pline("Your towel glows %s.", hcolor(obj->cursed ? "black" : "brown"));
+			obj->bknown = 1;
+
+		}
+
 		return 1;
 	} else if(u.ucreamed) {
-		Blinded -= u.ucreamed;
-		u.ucreamed = 0;
+		if ((obj && obj->blessed) || rn2(2)) {
+			Blinded -= u.ucreamed;
+			u.ucreamed = 0;
 
-		if (!Blinded) {
-			pline("You've got the glop off.");
-			Blinded = 1;
-			make_blinded(0L,TRUE);
-		} else {
-			Your("%s feels clean now.", body_part(FACE));
+			if (!Blinded) {
+				pline("You've got the glop off.");
+				Blinded = 1;
+				make_blinded(0L,TRUE);
+			} else {
+				Your("%s feels clean now.", body_part(FACE));
+			}
+		} else Your("%s still has glop on it.", body_part(FACE));
+
+		if (!rn2(100) && obj) {
+			if (obj->blessed)
+				unbless(obj);
+			else
+				curse(obj);
+			pline("Your towel glows %s.", hcolor(obj->cursed ? "black" : "brown"));
+			obj->bknown = 1;
+
 		}
+
 		return 1;
 	}
 
