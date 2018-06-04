@@ -3083,7 +3083,7 @@ E struct monst *get_container_location(struct obj *obj, int *, int *);
 E struct monst *montraits(struct obj *,coord *);
 E struct monst *revive(struct obj *);
 E int unturn_dead(struct monst *);
-E void cancel_item(struct obj *);
+E void cancel_item(struct obj *,BOOLEAN_P);
 E boolean drain_item(struct obj *);	/* KMH */
 E boolean drain_item_reverse(struct obj *);	/* KMH */
 E boolean drain_item_severely(struct obj *);	/* KMH */

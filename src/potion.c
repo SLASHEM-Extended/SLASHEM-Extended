@@ -5320,6 +5320,9 @@ boolean amnesia;
 		return(FALSE);
 	}
 	(void) Shk_Your(Your_buf, obj);
+
+	if (obj->finalcancel) return(FALSE);
+
 	/* (Rusting shop goods ought to be charged for.) */
 	switch (obj->oclass) {
 	    case POTION_CLASS:

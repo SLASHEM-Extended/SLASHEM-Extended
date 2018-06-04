@@ -13268,6 +13268,7 @@ register boolean force, here;
 
 		    switch (obj->oclass) {
 		    case SCROLL_CLASS:
+			if (obj->finalcancel) break;
 			if  (obj->otyp != SCR_HEALING && obj->otyp != SCR_EXTRA_HEALING && obj->otyp != SCR_STANDARD_ID && obj->otyp != SCR_MANA && obj->otyp != SCR_GREATER_MANA_RESTORATION && obj->otyp != SCR_CURE && obj->otyp != SCR_PHASE_DOOR
 #ifdef MAIL
 		    && obj->otyp != SCR_MAIL
@@ -13281,12 +13282,14 @@ register boolean force, here;
 		    }
 			break;
 		    case SPBOOK_CLASS:
+			if (obj->finalcancel) break;
 			/* Spell books get blanked... */
 			if (obj->otyp == SPE_BOOK_OF_THE_DEAD)
 				pline("Steam rises from %s.", the(xname(obj)));
 			else obj->otyp = SPE_BLANK_PAPER;
 			break;
 		    case POTION_CLASS:
+			if (obj->finalcancel) break;
 			if (obj->otyp == POT_ACID) {
 				/* damage player/monster? */
 				pline("A potion explodes!");
@@ -13430,6 +13433,7 @@ register boolean force, here;
 
 		    switch (obj->oclass) {
 		    case SCROLL_CLASS:
+			if (obj->finalcancel) break;
 			if  (!rn2(10) && obj->otyp != SCR_HEALING && obj->otyp != SCR_EXTRA_HEALING && obj->otyp != SCR_STANDARD_ID && obj->otyp != SCR_MANA && obj->otyp != SCR_GREATER_MANA_RESTORATION && obj->otyp != SCR_CURE && obj->otyp != SCR_PHASE_DOOR
 #ifdef MAIL
 		    && obj->otyp != SCR_MAIL
@@ -13443,6 +13447,7 @@ register boolean force, here;
 		    case SPBOOK_CLASS:
 			break;
 		    case POTION_CLASS:
+			if (obj->finalcancel) break;
 			if (obj->otyp == POT_WATER || !rn2(10))
 				obj->otyp = POT_AMNESIA;
 			break;

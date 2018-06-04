@@ -130,6 +130,8 @@ struct obj {
 
 	int shirtmessage;	/* o_id is not random enough for me. --Amy */
 
+	boolean finalcancel;	/* can't be cancelled, polymorphed etc. --Amy */
+
 	uchar onamelth;		/* length of name (following oxlth) */
 	Bitfield(selfmade,1);	/* made with chemistry set or magic marker */
 	/*short*/long oxlth;		/* length of following data */

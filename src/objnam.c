@@ -5669,6 +5669,8 @@ register struct obj *obj;
 
 	if (Hallucination ? !rn2(100) : (obj->greased && !PlayerUninformation) ) strcat(prefix, (obj->greased == 3) ? "thoroughly greased " : (obj->greased == 2) ? "strongly greased " : "greased ");
 
+	if (Hallucination ? !rn2(100) : obj->finalcancel) strcat(prefix, "finalized ");
+
 	switch(obj->oclass) {
 	case SCROLL_CLASS:
 		if (!PlayerUninformation) add_erosion_words(obj, prefix);

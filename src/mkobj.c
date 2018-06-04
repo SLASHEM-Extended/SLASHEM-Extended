@@ -1705,6 +1705,7 @@ int artif;
 	otmp->altmode = WP_MODE_AUTO;
 	otmp->fakeartifact = 0;
 	otmp->enchantment = 0;
+	otmp->finalcancel = 0;
 
 	otmp->shirtmessage = rnd(1000000);
 	/* for use in read.c (shirts only) - since items can be polymorphed, set it for everything, including non-shirts */
@@ -2307,6 +2308,11 @@ int artif;
 			otmp->fakeartifact = 1;
 			if (artif != 2) u.fakeartifacts++;
 		}
+		if (!rn2(3) && !(otmp->otyp == SCR_HEALING || otmp->otyp == SCR_EXTRA_HEALING || otmp->otyp == SCR_STANDARD_ID || otmp->otyp == SCR_MANA || otmp->otyp == SCR_GREATER_MANA_RESTORATION
+#ifdef MAIL
+		|| otmp->otyp == SCR_MAIL
+#endif
+		|| otmp->otyp == SCR_CURE || otmp->otyp == SCR_PHASE_DOOR) ) otmp->finalcancel = TRUE;
 
 		break;
 	case SPBOOK_CLASS:
@@ -2334,6 +2340,7 @@ int artif;
 			otmp->fakeartifact = 1;
 			if (artif != 2) u.fakeartifacts++;
 		}
+		if (!rn2(4)) otmp->finalcancel = TRUE;
 
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */           

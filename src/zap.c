@@ -1770,11 +1770,19 @@ register struct obj *obj;
 
 /* cancel obj, possibly carried by you or a monster */
 void
-cancel_item(obj)
+cancel_item(obj,weakeffect)
 register struct obj *obj;
+boolean weakeffect;
 {
 	boolean	u_ring = (obj == uleft) || (obj == uright);
 	register boolean holy = (obj->otyp == POT_WATER && obj->blessed);
+
+	int chancetoresist = 0;
+	boolean willresist = FALSE;
+	if (weakeffect && obj->spe < -1) chancetoresist = (obj->spe) * -1;
+	if (chancetoresist && rn2(chancetoresist)) willresist = TRUE;
+
+	if (obj->finalcancel) return;
 
 	if (stack_too_big(obj)) return;
 
@@ -1787,52 +1795,68 @@ register struct obj *obj;
 	switch(obj->otyp) {
 		case RIN_GAIN_STRENGTH:
 			if ((obj->owornmask & W_RING) && u_ring) {
-				ABON(A_STR) -= obj->spe;
+				if (obj->spe < 0 && !willresist) ABON(A_STR) += 1;
+				else if (!willresist) ABON(A_STR) -= obj->spe;
 				flags.botl = 1;
 			}
 			break;
 		case RIN_GAIN_DEXTERITY:
 			if ((obj->owornmask & W_RING) && u_ring) {
-				ABON(A_DEX) -= obj->spe;
+				if (obj->spe < 0 && !willresist) ABON(A_DEX) += 1;
+				else if (!willresist) ABON(A_DEX) -= obj->spe;
 				flags.botl = 1;
 			}
 			break;
 		case RIN_GAIN_CONSTITUTION:
 			if ((obj->owornmask & W_RING) && u_ring) {
-				ABON(A_CON) -= obj->spe;
+				if (obj->spe < 0 && !willresist) ABON(A_CON) += 1;
+				else if (!willresist) ABON(A_CON) -= obj->spe;
 				flags.botl = 1;
 			}
 			break;
 		case RIN_GAIN_INTELLIGENCE:
 			if ((obj->owornmask & W_RING) && u_ring) {
-				ABON(A_INT) -= obj->spe;
+				if (obj->spe < 0 && !willresist) ABON(A_INT) += 1;
+				else if (!willresist) ABON(A_INT) -= obj->spe;
 				flags.botl = 1;
 			}
 			break;
 		case RIN_GAIN_WISDOM:
 			if ((obj->owornmask & W_RING) && u_ring) {
-				ABON(A_WIS) -= obj->spe;
+				if (obj->spe < 0 && !willresist) ABON(A_WIS) += 1;
+				else if (!willresist) ABON(A_WIS) -= obj->spe;
 				flags.botl = 1;
 			}
 			break;
 		case RIN_ADORNMENT:
 			if ((obj->owornmask & W_RING) && u_ring) {
-				ABON(A_CHA) -= obj->spe;
+				if (obj->spe < 0 && !willresist) ABON(A_CHA) += 1;
+				else if (!willresist) ABON(A_CHA) -= obj->spe;
 				flags.botl = 1;
 			}
 			break;
 		case RIN_INCREASE_ACCURACY:
-			if ((obj->owornmask & W_RING) && u_ring)
-				u.uhitinc -= obj->spe;
+			if ((obj->owornmask & W_RING) && u_ring) {
+				if (obj->spe < 0 && !willresist) u.uhitinc += 1;
+				else if (!willresist) u.uhitinc -= obj->spe;
+			}
 			break;
 		case RIN_INCREASE_DAMAGE:
-			if ((obj->owornmask & W_RING) && u_ring)
-				u.udaminc -= obj->spe;
+			if ((obj->owornmask & W_RING) && u_ring) {
+				if (obj->spe < 0 && !willresist) u.udaminc += 1;
+				else if (!willresist) u.udaminc -= obj->spe;
+			}
 			break;
 		case RIN_HEAVY_ATTACK:
 			if ((obj->owornmask & W_RING) && u_ring) {
-				u.udaminc -= obj->spe;
-				u.uhitinc -= obj->spe;
+				if (obj->spe < 0 && !willresist) {
+					u.udaminc += 1;
+					u.uhitinc += 1;
+				}
+				else if (!willresist) {
+					u.udaminc -= obj->spe;
+					u.uhitinc -= obj->spe;
+				}
 			}
 			break;
 		/* case RIN_PROTECTION:  not needed */
@@ -1848,7 +1872,10 @@ register struct obj *obj;
 		 obj->otyp != MAGIC_CANDLE &&
 		 obj->otyp != CANDELABRUM_OF_INVOCATION) {
 		costly_cancel(obj);
-		obj->spe = (obj->oclass == WAND_CLASS) ? -1 : 0;
+		if (!willresist) {
+			if (obj->spe < 0 && !(obj->oclass == WAND_CLASS) ) obj->spe++;
+			else obj->spe = (obj->oclass == WAND_CLASS) ? -1 : 0;
+		}
 	    }
 	    switch (obj->oclass) {
 	      case SCROLL_CLASS:
@@ -1889,9 +1916,12 @@ obj->otyp == SCR_CURE || obj->otyp == SCR_MANA || obj->otyp == SCR_GREATER_MANA_
 	}
 	if (holy) costly_cancel(obj);
 	unbless(obj);
-	uncurse(obj);
+	if (obj->oclass == WAND_CLASS || obj->spe >= 0) uncurse(obj);
 	if (obj->oinvis) obj->oinvis = 0;
 	if (obj->oinvisreal) obj->oinvisreal = 0;
+
+	if (weakeffect && !rn2(100)) obj->finalcancel = TRUE;
+
 	return;
 }
 
@@ -2469,6 +2499,8 @@ poly_obj(obj, id)
 
 	if (stack_too_big(obj)) return obj;
 
+	if (obj->finalcancel) return obj;
+
 	/* WAC Amulets of Unchanging shouldn't change */
 	if (obj->otyp == AMULET_OF_UNCHANGING)
 	    return obj;
@@ -3008,8 +3040,13 @@ struct obj *obj, *otmp;
 		makeknown(otmp->otyp);
 		break;
 	case WAN_CANCELLATION:
+		cancel_item(obj, FALSE);
+#ifdef TEXTCOLOR
+		newsym(obj->ox,obj->oy);	/* might change color */
+#endif
+		break;
 	case SPE_CANCELLATION:
-		cancel_item(obj);
+		cancel_item(obj, TRUE);
 #ifdef TEXTCOLOR
 		newsym(obj->ox,obj->oy);	/* might change color */
 #endif
@@ -6334,7 +6371,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 			    otmp; otmp = otmp->nobj)
 		/* extra saving throw for blessed objects --Amy */
 		if (self_cancel || !rn2(issoviet ? 24 : otmp->blessed ? 100 : 24)) {
-		    cancel_item(otmp);
+		    cancel_item(otmp, FALSE);
 		    did_cancel = TRUE;
 		}
 	    if (youdefend && did_cancel) {
