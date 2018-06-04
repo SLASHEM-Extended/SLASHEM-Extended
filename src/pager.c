@@ -2314,6 +2314,11 @@ static NEARDATA const char * const bangganglines[] = {
 "Ah, perfect. Player 1 is on the same dungeon level that I'm on. I'll camp behind a wall with my shotgun and shoot them when they appear.",
 "Player 1, you know that you're a single person fucking with an entire gang. You don't stand a chance in hell, you moron!",
 "Listen up, player 1. It's going on your grave: The Bang Gang kills you.",
+"The Bang Gang has defeated more dangerous bastards than you!",
+"You will not escape the Bang Gang. We'll bully you however we like and the stupid teachers won't protect you.",
+"What are you gonna do, run to your teacher and whine about the 'unfair' Bang Gang? Ha ha ha!",
+"Player 1, you failed to pay your protection of 2000 zorkmids to the Bang Gang. Now, you will be flogged.",
+"Player 1, you have 1000 turns to pay a bunch of zorkmids to me, or I and the other Bang Gang members will give you a beating.",
 };
 
 static NEARDATA const char * const hussylines_specific[] = {
@@ -2369,6 +2374,12 @@ static NEARDATA const char * const bangganglines_specific[] = {
 "Guys, look on the radar! The gang scholar will enter level %d shortly, and we must be ready to kill them!",
 "Okay, player 1, level %d will be your grave. You have no chance to survive the death trap we've set up.",
 "You're fated to die on level %d, puny 'gang scholar'. Our trap is insidious, yet devastating, and your death will be swift and painful!",
+"We've eradicated all the teachers on level %d. No one will protect the gang scholar if they show up there.",
+"I've erected sentry turrets on %d. They're set to automatically open fire if a gang scholar is sighted.",
+"Level %d shall be the early defense. If the redshirts we've stationed there should fall, we'll know that the gang scholar is coming.",
+"No amount of defense is going to let the gang scholar live through our giant army on level %d.",
+"I summoned a couple of black dragons and created piercing beam traps on level %d!",
+"We're gonna do the protection racket! Player 1 will have to pay 2000 zorkmids once they enter level %d or else we'll break their bones.",
 };
 
 static NEARDATA const char * const bangganglines_femaleonly[] = {
@@ -2400,6 +2411,10 @@ static NEARDATA const char * const bangganglines_femaleonly[] = {
 "It will be fun to stomp you with my high-heeled lady shoes.",
 "All of your body parts will successively be crushed underneath my high heels.",
 "The blood will flow like rivers from your legs once my very sharp-edged high heels are done scratching them open.",
+"You will lose to a girl - me, to be exact - and I'll laugh at you if you cry!",
+"You will lose to me, and then you'll lick my female boots.",
+"I've got a black belt in karate. Player 1, you will be knocked down by me, that's for sure.",
+"My women's shoes will defeat you, gang scholar!",
 };
 
 static NEARDATA const char * const bosstaunts[] = {
@@ -15556,6 +15571,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"Reminder: As a hussy, you must hit a guy once every 1000 turns or be punished for neglecting your obligations! You have 500 turns left!",
 	"Hey, you hussy! Listen! You didn't hit a guy in 900 turns now, and you only have 100 turns left to fulfill your obligations or else you face a penalty!",
 	"You joyously inhale Tanja's scentful perfume. It's very soothing.",
+	"In NetHack, if you're playing unspoiled, you gain a better understanding of the game over time as you die and figure out what you did wrong and learn from your mistakes.", /* this and the next couple messages are by ais523 */
+	"In slex, though, the focus is on variety so learning what you did wrong is not helpful as the situation probably won't come up again in the forseeable future. Not only that, but the correct answer is often utterly arbitrary and impossible to reason out.",
+	"There are traps that do things like make you solve captchas or ask you questions and the only answer that doesn't screw over your character is one that isn't included in the list of possible answers.",
+	"I guess in slex it's more or less impossible to create a bug sufficiently large to be amusing because it'd be hard to distinguish it from intended behaviour.",
+
 };
 
 const char *
