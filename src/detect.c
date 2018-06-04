@@ -1743,8 +1743,6 @@ register int aflag;
 			if ((trap = t_at(x,y)) && !trap->tseen && !trap->hiddentrap && (trap->trapdiff < rn2(100 + trapdiffbonus) ) && (trap->trapdiff < rn2(100 + trapdiffbonus + trapdiffbonus) ) && (!rnl(8-fund) || !rn2(fundxtrachange) || (!rn2(fundxtrachange) && !rn2(2)) ) ) {
 			    nomul(0, 0, FALSE);
 
-				pline("trap difficulty was %d", trap->trapdiff);
-
 			    if (trap->ttyp == STATUE_TRAP) {
  				mtmp = activate_statue_trap(trap, x, y, FALSE);
  				if (mtmp != (struct monst *)0) 

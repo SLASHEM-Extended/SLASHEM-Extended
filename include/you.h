@@ -627,6 +627,8 @@ struct you {
 
 	int traprandomizing;	/* chance that a random trap is "completely random" */
 
+	int trapxtradiff;	/* additional difficulty for finding a trap */
+
 	int shaperoomchance;	/* to control the chance of irregular rooms */
 
 	int fumbleduration;	/* for wand of fumbling */

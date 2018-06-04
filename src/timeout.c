@@ -420,7 +420,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (t && !rn2(1000) && !t->tseen && !t->hiddentrap) {
+		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}
@@ -433,7 +433,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (t && !rn2(10000) && !t->tseen && !t->hiddentrap) {
+		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}
@@ -446,7 +446,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (t && !rn2(10000) && !t->tseen && !t->hiddentrap) {
+		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}
@@ -459,7 +459,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (t && !rn2(10000) && !t->tseen && !t->hiddentrap) {
+		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}
@@ -472,7 +472,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (t && !rn2(10000) && !t->tseen && !t->hiddentrap) {
+		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}
@@ -485,7 +485,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (t && !rn2(10000) && !t->tseen && !t->hiddentrap) {
+		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}
@@ -1276,7 +1276,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (!rn2(1000) && !t->tseen && !t->hiddentrap) {
+		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}
@@ -1289,7 +1289,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (!rn2(1000) && !t->tseen && !t->hiddentrap) {
+		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}
@@ -1302,7 +1302,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (!rn2(1000) && !t->tseen && !t->hiddentrap) {
+		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}
@@ -1315,7 +1315,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (!rn2(1000) && !t->tseen && !t->hiddentrap) {
+		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			map_trap(t, TRUE);
 		}

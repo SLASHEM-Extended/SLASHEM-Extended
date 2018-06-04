@@ -8271,6 +8271,9 @@ u_init()
 
 	u.traprandomizing = rnd(1000);
 
+	u.trapxtradiff = 0;
+	if (!rn2(10)) u.trapxtradiff = rno(100);
+
 	if (Race_if(PM_WARPER)) u.youpolyamount = 5;
 	else if (Race_if(PM_DOPPELGANGER)) u.youpolyamount = 10;
 	else if (Race_if(PM_HEMI_DOPPELGANGER)) u.youpolyamount = 20;
@@ -27670,6 +27673,9 @@ alter_reality()
 	u.freqtrapbonus = rnz(3) * rne(3);
 
 	u.traprandomizing = rnd(1000);
+
+	u.trapxtradiff = 0;
+	if (!rn2(10)) u.trapxtradiff = rno(100);
 
 	u.impossibleproperty = randomdisableproperty();
 	u.nonextrinsicproperty = randomdisableproperty();

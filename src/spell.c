@@ -5809,7 +5809,7 @@ totemsummonchoice:
 		    HConfusion = HHallucination = 0L;
 		    for (t = ftrap; t != 0; t = t->ntrap) {
 			if (!rn2(15)) continue;
-			if (!t->hiddentrap) t->tseen = 1;
+			if (!t->hiddentrap) t->tseen = 1; /* ignores trap difficulty because map level is powerful --Amy */
 			map_trap(t, TRUE);
 		    }
 		    do_mappingY();

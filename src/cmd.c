@@ -3065,6 +3065,11 @@ boolean guaranteed;
 		enl_msg("Trap randomization ", "happens ", "happened ", buf );
 	}
 
+	if ((guaranteed || !rn2(10)) && u.trapxtradiff && (wizard || (!rn2(10)) || final >= 1 )) {
+		sprintf(buf, "increased by %d", u.trapxtradiff);
+		enl_msg("Trap difficulty ", "is ", "was ", buf );
+	}
+
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {sprintf(buf, " turn %d", u.next_check);
 		enl_msg("Next attribute increase check ", "comes at", "would have come at", buf);
 	}
@@ -6144,6 +6149,11 @@ int final;
 
 	sprintf(buf, "for 1 in %d traps", u.traprandomizing);
 	dump("  Trap randomization happened ", buf );
+
+	if (u.trapxtradiff) {
+		sprintf(buf, "increased by %d", u.trapxtradiff);
+		dump("  Trap difficulty was ", buf );
+	}
 
 	sprintf(buf, " turn %d", u.next_check);
 	dump("  Next attribute increase check would have come at", buf);
