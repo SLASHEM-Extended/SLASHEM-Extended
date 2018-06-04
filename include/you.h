@@ -1041,6 +1041,8 @@ struct you {
 
 	boolean annoyingmessages; /* don't show the annoying number pad message infinite times */
 
+	int bizarrotries;	/* used to nerf the bizarro orgasmatron */
+
 	int combostrike;	/* for technique */
 	boolean comboactive;
 

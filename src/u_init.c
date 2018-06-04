@@ -8579,6 +8579,7 @@ u_init()
 	u.segfaultpanic = 0;
 
 	u.combostrike = 0;
+	u.bizarrotries = 0;
 	u.comboactive = 0;
 
 	u.urmaxlvl = 1; /* will go up if an asgardian race player levels up */

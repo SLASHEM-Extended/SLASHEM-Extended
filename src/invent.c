@@ -15185,7 +15185,7 @@ struct obj *obj;
 				case ART_ARKENSTONE_OF_THRAIN:
 					pline("Artifact specs: can be invoked for perilous identify. This artifact is found on the special level 'Orc Barracks' in the Deep Mines."); break;
 				case ART_BIZARRO_ORGASMATRON:
-					pline("Artifact specs: can be invoked for branchporting. Congratulations, you finished the Mainframe boss!"); break;
+					pline("Artifact specs: can be invoked for branchporting, but if you use it too often it will inflict long-lasting inertia on you. Congratulations, you finished the Mainframe boss!"); break;
 				case ART_KATIA_S_SOFT_COTTON:
 					pline("Artifact specs: taking a crap while wearing it can occasionally increase your charisma. Congratulations, you finished the Hell's Bathroom boss! And fighting her was probably not disgusting at all!"); break;
 				case ART_ANASTASIA_S_PERILOUS_GAMBL:

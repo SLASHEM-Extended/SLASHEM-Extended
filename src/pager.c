@@ -15502,6 +15502,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Pnrnhjnrfu Gfpunrnhjvrnhj Gfpuvrnhjvpx Xanyycrat Cfpuvhqvgg Qnrqryqvqnrg",
 	"The serbian thief laughs fiendishly, and snatches your weapon!",
 	"Your towel glows black.",
+	"Due to overexertion and too many orgasms, you feel very lethargic...",
 
 };
 
