@@ -173,6 +173,32 @@ const struct Role roles[] = {
 	10, 5, 0, 2, 10, A_INT, SPE_SLOW_MONSTER,   -9
 },
 
+{	{"Anachronounbinder", 		 0}, {
+	{"Hexorcist",        0},
+	{"Anachrononono-nononono",      0},
+	{"Vestige Vanquisher",      0},
+	{"Spirit Killer",       0},
+	{"Mind Player", 0},
+	{"Psionaut", 0},
+	{"Void Voider",       0},
+	{"Telekinetic",     0},
+	{"Keeper of the Gate",    0} },
+	"Tariru", "FIQ", "Demo",	/* dnethack players */
+	"Acu", "The Elder Pool", "The Far Reach",
+	PM_ANACHRONOUNBINDER, NON_PM, PM_UNDEAD_ANACHRONOUNBINDER, NON_PM, PM_BRAIN_GOLEM,
+	PM_MASTER_ULITHARID, PM_VERY_MINDLESS_THRALL, /*PM_MENZOBERRANZAN*/PM_DNETHACK_MASTER_DEV, PM_DNETHACK_PLAYER,
+	PM_DOPPELGANGER, PM_MIND_FLAYER, S_TRAPPER, S_UMBER,
+	ART_ELDER_CEREBRAL_FLUID,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	{   3,  3,  3,  3,  3,  3 },
+	{  17, 18, 17, 13, 19, 16 },
+	/* Init   Lower  Higher */
+	{ 14, 0,  0, 4,  2, 0 },	/* Hit points */
+	{  4, 0,  0, 2,  0, 3 },12,	/* Energy */
+	10, 5, 0, 2, 10, A_INT, SPE_DETECT_MONSTERS,   -9
+},
+
 {	{"Archeologist", 0}, {
 	{"Digger",      0},
 	{"Field Worker",0},
@@ -1616,6 +1642,34 @@ const struct Role roles[] = {
 	10, 3,-3, 2, 10, A_WIS, SPE_CURE_SICKNESS,   -4
 },
 
+{	{"Hussy", 0}, {
+	{"Annoying Guy",    "Annoying Girl",},
+	{"Nasty Fucker",    "Nasty Bitch",},
+	{"Teaser Displeaser",    0},
+	{"Perfume Bomb",    0},
+	{"Stinking Socks Wearer",    0},
+	{"Drum Stint Reluctant",    0},
+	{"Odorous Uncle",    "Odorous Aunt"},
+	{"Clicker Money Thief",    0},
+	{"Anna's Personal Bodyguard",      0} },
+	"_Madeleine", "_Sofia", "_Wendy", /* hussy names from pager.c */
+	"Hus", "Hussy Club Secret Office", "Walt's Crib",
+	PM_HUSSY, NON_PM, PM_UNDEAD_HUSSY, NON_PM, PM_ARVOGENIC_TOPMODEL,
+	PM_HUSSY_LARISSA, PM_MODEL, PM_GREAT_CORNER_HARD, PM_POLITICALLY_LEFT_GUENTER,
+	PM_SUPERSCHOOL_SPEAKER, PM_TIE_FIGHTER, S_HUMAN, S_DEMON,
+	ART_CERULEAN_SMASH,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  15, 15, 10, 15, 25, 20 },
+	/* Init   Lower  Higher */
+	{ 10, 0, 0, 5,  4, 0 },	/* Hit points */
+	{  6, 0, 0, 3,  0, 4 }, 12,	/* Energy */
+	0, 5, 4, 5, 8, A_INT, SPE_DETECT_FOOT,   -4
+},
+
 {	{"Ice Mage", 0}, {
 	{"Cooler",        0},   /* WAC was Chiller */
 	{"Condenser",     0},   /* WAC was Chiller */
@@ -1989,6 +2043,34 @@ const struct Role roles[] = {
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
 	10, 9, 2, 1, 10, A_INT, SPE_LEVITATION,   -4
+},
+
+{	{"Mason", 0}, {
+	{"Bricklayer",    0},
+	{"Wall Construction Worker",    0},
+	{"Granite Cementer",    0},
+	{"Pavement Optimizer",    0},
+	{"Housebuilding Apprentice",    0},
+	{"Slate Slabber",    0},
+	{"Clay Smelter",    0},
+	{"Minecraft Master",    0},
+	{"World Trade Center Architect",      0} },
+	"The Battlehorse", "The Wild Boar", "The Dire Wolf", /* big mean animals */
+	"Mas", "Sport-resounded", "Dangerous Ruin",
+	PM_MASON, NON_PM, PM_UNDEAD_MASON, NON_PM, NON_PM,
+	PM_BLEDA_S_IRON_BOAR, PM_ATTENDANT, PM_DESTRUCTION_DOZER, PM_SIEGE_CATERPILLAR,
+	PM_ARBORACHUCK, PM_CHAOS_HULK, S_RODENT, S_UMBER,
+	ART_ULTIMATE_PICK,
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	/*{  13, 13, 13,  9, 13,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{  30, 15, 15, 20, 15, 5 },
+	/* Init   Lower  Higher */
+	{ 14, 0, 0, 6,  3, 0 },	/* Hit points */
+	{  1, 0, 0, 2,  0, 2 }, 15,	/* Energy */
+	10, 12, 0, 10, 20, A_INT, SPE_LOCKOUT,   -4
 },
 
 {	{"Medium", 0}, {

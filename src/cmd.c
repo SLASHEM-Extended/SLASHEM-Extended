@@ -1488,6 +1488,49 @@ domonability()
 			badeffect();
 			return 1;
 		}
+	} else if (Role_if(PM_HUSSY) && !u.hussyperfume && ((!Upolyd && flags.female) || (Upolyd && youmonst.data->msound == MS_STENCH)) && yn("Do you want to spread your scentful perfume?") == 'y') {
+		You("spread the lovely feminine drum stint reluctance brand perfume to intoxicate monsters around you!");
+		int mondistance = 0;
+		struct monst *mtmp3;
+		int k, l;
+		for (k = -5; k <= 5; k++) for(l = -5; l <= 5; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+
+			mondistance = 1;
+			if (k > 1) mondistance = k;
+			if (k < -1) mondistance = -k;
+			if (l > 1 && l > mondistance) mondistance = l;
+			if (l < -1 && (-l > mondistance)) mondistance = -l;
+
+			if ( (mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) {
+				mtmp3->mcanmove = 0;
+				mtmp3->mfrozen = (rnd(16 - (mondistance * 2)));
+				mtmp3->mstrategy &= ~STRAT_WAITFORU;
+				mtmp3->mconf = TRUE;
+				pline("%s becomes dizzy from the scent!", Monnam(mtmp3), mtmp3->mfrozen);
+			}
+		}
+		u.hussyperfume = rnz(4000);
+
+	} else if (Role_if(PM_HUSSY) && flags.female && u.uhs <= 0 && isok(u.ux, u.uy) && yn("Do you want to take a crap?") == 'y') {
+
+		if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
+			You("produce very erotic noises.");
+			if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1);
+		} else You("grunt.");
+		morehungry(rn2(400)+200);
+
+		register struct trap *shittrap;
+
+		if (!(t_at(u.ux, u.uy))) {
+
+			shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0);
+			if (shittrap && !(shittrap->hiddentrap)) {
+				shittrap->tseen = 1;
+			}
+
+		}
+
 	} else if (Upolyd)
 		pline("Any (other) special ability you may have is purely reflexive.");
 	else You("don't have another special ability in your normal form!");
@@ -4428,6 +4471,15 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if (Role_if(PM_HUSSY)) {
+	    	sprintf(buf, "%d ", (u.hussyhurtturn - moves));
+		sprintf(eos(buf), "turns left to hit a guy.");
+		you_have(buf);
+	    	sprintf(buf, "%d ", (u.hussykillturn - moves));
+		sprintf(eos(buf), "turns left to defeat a guy.");
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.contamination) {
 		if (u.contamination >= 1000) sprintf(buf, "suffering from fatal contamination. Health and mana regeneration are reduced.");
 		else if (u.contamination >= 800) sprintf(buf, "suffering from lethal contamination.");
@@ -4551,6 +4603,18 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && u.egglayingtimeout) {
 		sprintf(buf, "to wait until you can lay eggs again.");
 	      sprintf(eos(buf), " (%d)", u.egglayingtimeout);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.hussyperfume) {
+		sprintf(buf, "to wait until you can spread the perfume again.");
+	      sprintf(eos(buf), " (%d)", u.hussyperfume);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.acutraining) {
+		sprintf(buf, "double skill training.");
+	      sprintf(eos(buf), " (%d)", u.acutraining);
 		you_have(buf);
 	}
 
@@ -7494,6 +7558,15 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (Role_if(PM_HUSSY)) {
+	    	sprintf(buf, "%d ", (u.hussyhurtturn - moves));
+		sprintf(eos(buf), "turns left to hit a guy.");
+		dump(youhad, buf);
+	    	sprintf(buf, "%d ", (u.hussykillturn - moves));
+		sprintf(eos(buf), "turns left to defeat a guy.");
+		dump(youhad, buf);
+	}
+
 	if (u.contamination) {
 		if (u.contamination >= 1000) sprintf(buf, "suffering from fatal contamination. Health and mana regeneration were reduced.");
 		else if (u.contamination >= 800) sprintf(buf, "suffering from lethal contamination.");
@@ -7617,6 +7690,18 @@ int final;
 	if (u.egglayingtimeout) {
 		sprintf(buf, "to wait until you can lay eggs again.");
 	      sprintf(eos(buf), " (%d)", u.egglayingtimeout);
+		dump(youhad, buf);
+	}
+
+	if (u.hussyperfume) {
+		sprintf(buf, "to wait until you can spread the perfume again.");
+	      sprintf(eos(buf), " (%d)", u.hussyperfume);
+		dump(youhad, buf);
+	}
+
+	if (u.acutraining) {
+		sprintf(buf, "double skill training.");
+	      sprintf(eos(buf), " (%d)", u.acutraining);
 		dump(youhad, buf);
 	}
 

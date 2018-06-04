@@ -1818,6 +1818,45 @@ trapsdone:
 
 		}
 
+		if (Role_if(PM_HUSSY)) {
+
+			if (u.hussyhurtturn < 1) u.hussyhurtturn = (moves + 1000);
+			if (u.hussykillturn < 1) u.hussykillturn = (moves + 1000);
+
+			if (moves > u.hussyhurtturn) {
+				pline("You neglected your hussy obligations by failing to hit a guy in 1000 turns, and are therefore being punished!");
+				badeffect();
+				if (!rn2(2)) badeffect();
+				if (!rn2(3)) badeffect();
+				u.hussyhurtturn = (moves + 1000);
+			}
+
+			if (moves > u.hussykillturn) {
+				pline("You neglected your hussy obligations by failing to defeat a guy in 1000 turns, and are therefore being punished!");
+				badeffect();
+				if (!rn2(2)) badeffect();
+				if (!rn2(3)) badeffect();
+				u.hussykillturn = (moves + 1000);
+			}
+
+			if (u.hussyhurtturn == (moves + 500)) {
+				pline("Reminder: As a hussy, you must hit a guy once every 1000 turns or be punished for neglecting your obligations! You have 500 turns left!");
+			}
+
+			if (u.hussykillturn == (moves + 500)) {
+				pline("Reminder: As a hussy, you must defeat a guy once every 1000 turns or be punished for neglecting your obligations! You have 500 turns left!");
+			}
+
+			if (u.hussyhurtturn == (moves + 100)) {
+				pline("Hey, you hussy! Listen! You didn't hit a guy in 900 turns now, and you only have 100 turns left to fulfill your obligations or else you face a penalty!");
+			}
+
+			if (u.hussykillturn == (moves + 100)) {
+				pline("Hey, you hussy! Listen! You didn't defeat a guy in 900 turns now, and you only have 100 turns left to fulfill your obligations or else you face a penalty!");
+			}
+
+		}
+
 		if (FemaleTrapThai && IS_TOILET(levl[u.ux][u.uy].typ) && u.uhs < HUNGRY ) {
 			pline("For some reason, you have to take a shit right now.");
 
@@ -5384,6 +5423,40 @@ newbossB:
 					break;
 					}
 			}
+		}
+
+		if (Role_if(PM_HUSSY) && !rn2(500)) {
+			int tryct = 0;
+			int x, y;
+
+			int hussytraptype;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && !(t_at(x, y)) ) {
+
+					hussytraptype = rnd(TRAPNUM-1);
+					if (hussytraptype == MAGIC_PORTAL) hussytraptype = ROCKTRAP;
+					if (hussytraptype == WISHING_TRAP) hussytraptype = BLINDNESS_TRAP;
+					if (hussytraptype == ARTIFACT_JACKPOT_TRAP) hussytraptype = MAGIC_TRAP;
+					if (hussytraptype == GOOD_ARTIFACT_TRAP) hussytraptype = WEB;
+					if (hussytraptype == BOON_TRAP) hussytraptype = MAGIC_BEAM_TRAP;
+					if (hussytraptype == LEVEL_TELEP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) hussytraptype = ANTI_MAGIC;
+					if (hussytraptype == LEVEL_BEAMER && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) hussytraptype = ANTI_MAGIC;
+					if (hussytraptype == NEXUS_TRAP && (level.flags.noteleport || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) hussytraptype = ANTI_MAGIC;
+					if (hussytraptype == TELEP_TRAP && level.flags.noteleport) hussytraptype = SQKY_BOARD;
+					if (hussytraptype == BEAMER_TRAP && level.flags.noteleport) hussytraptype = SQKY_BOARD;
+					if ((hussytraptype == TRAPDOOR || hussytraptype == HOLE || hussytraptype == SHAFT_TRAP || hussytraptype == CURRENT_SHAFT) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) hussytraptype = ROCKTRAP;
+					if (hussytraptype == ACTIVE_SUPERSCROLLER_TRAP) hussytraptype = SUPERSCROLLER_TRAP;
+					if (hussytraptype == AUTOMATIC_SWITCHER) hussytraptype = UNKNOWN_TRAP;
+
+					(void) maketrap(x, y, hussytraptype, 100);
+					break;
+					}
+			}
+
 		}
 
 		if (Role_if(PM_GANG_SCHOLAR) && !rn2(500) ) {
@@ -10570,6 +10643,14 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
 	if (Role_if(PM_DOLL_MISTRESS) && new_game && !flags.female) {
+		    makeknown(AMULET_OF_CHANGE);
+		    You("don't feel like being male!");
+			change_sex();
+		    flags.botl = 1;
+
+	}
+
+	if (Role_if(PM_HUSSY) && new_game && !flags.female) {
 		    makeknown(AMULET_OF_CHANGE);
 		    You("don't feel like being male!");
 			change_sex();

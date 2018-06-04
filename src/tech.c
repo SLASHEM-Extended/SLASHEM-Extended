@@ -649,6 +649,8 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	kur_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   0, 0, 0} },
+	mas_tech[] = { {   1, T_DIAMOND_BARRIER, 1},
+		       {   0, 0, 0} },
 	trs_tech[] = { {   1, T_ATTIRE_CHARM, 1},
 		       {   17, T_SUMMON_PET, 1},
 		       {   0, 0, 0} },
@@ -5576,6 +5578,25 @@ revid_end:
 		{
 
 			int diamondradius = 1;
+
+			if (Role_if(PM_MASON)) {
+
+				diamondradius = (techlevX(tech_no) / 5);
+				if (diamondradius < 1) diamondradius = 1;
+
+				if (diamondradius > 1) pline("The maximum possible radius for the diamond barrier is %d, but you may opt to choose a smaller radius if you want.", diamondradius);
+
+				while (diamondradius > 1) {
+					pline("Current diamond barrier radius is %d.", diamondradius);
+
+					if (yn("Reduce the radius by one?") == 'y') diamondradius--;
+					else break;
+				}
+
+				pline("Using radius %d for the diamond barrier.", diamondradius);
+
+			}
+
 			int k, l;
 
 			for (k = -diamondradius; k <= diamondradius; k++) for(l = -diamondradius; l <= diamondradius; l++) {
@@ -5596,7 +5617,7 @@ revid_end:
 		}
 		vision_recalc(0);
 
-	      t_timeout = rnz(5000);
+	      t_timeout = Role_if(PM_MASON) ? rnz(1000) : rnz(5000);
 
 	      break;
 
@@ -6084,6 +6105,7 @@ role_tech()
 		case PM_TRANSVESTITE:	return (tra_tech);
 		case PM_PROSTITUTE:	return (kur_tech);
 		case PM_KURWA:	return (kur_tech);
+		case PM_MASON:	return (mas_tech);
 		case PM_TRANSSYLVANIAN:	return (trs_tech);
 		case PM_TOPMODEL:	return (top_tech);
 		case PM_FAILED_EXISTENCE:	return (fai_tech);

@@ -15551,7 +15551,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"Since you don't have nuts, you cannot try to smash them with your feet either.",
 	"For a moment, you feel the itch to ram your footwear into your own nuts, but then remember that you have a task to complete, and therefore decide against the idea.",
 	"You perform a powerful kick, and listen to very sexy air current noises as your foot whirls through thin air.",
-
+	"You've trained no unknown skills since your last level up and therefore you unfortunately don't learn anything new.",
+	"You neglected your hussy obligations by failing to hit a guy in 1000 turns, and are therefore being punished!",
+	"Reminder: As a hussy, you must hit a guy once every 1000 turns or be punished for neglecting your obligations! You have 500 turns left!",
+	"Hey, you hussy! Listen! You didn't hit a guy in 900 turns now, and you only have 100 turns left to fulfill your obligations or else you face a penalty!",
+	"You joyously inhale Tanja's scentful perfume. It's very soothing.",
 };
 
 const char *

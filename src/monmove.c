@@ -775,7 +775,7 @@ register struct monst *mtmp;
         }
     }
 
-	if (mdat->msound == MS_STENCH && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
+	if (mdat->msound == MS_STENCH && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
 		switch (rnd(9)) {
 
 			case 1:

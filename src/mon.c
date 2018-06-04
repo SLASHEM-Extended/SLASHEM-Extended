@@ -758,6 +758,9 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_MYSTIC:
 	    case PM_UNDEAD_FORM_CHANGER:
 	    case PM_UNDEAD_TRACER:
+	    case PM_UNDEAD_MASON:
+	    case PM_UNDEAD_HUSSY:
+	    case PM_UNDEAD_ANACHRONOUNBINDER:
 	    case PM_UNDEAD_NUCLEAR_PHYSICIST:
 	    case PM_UNDEAD_GANG_SCHOLAR:
 	    case PM_UNDEAD_FEMINIST:
@@ -5094,6 +5097,11 @@ newbossA:
 
 	/* malign was already adjusted for u.ualign.type and randomization */
 	adjalign(mtmp->malign);
+
+	if (Role_if(PM_ANACHRONOUNBINDER) && (mtmp->data->geno & G_UNIQ)) {
+		pline("As a reward for killing a boss monster, your skill training is temporarily doubled!");
+		u.acutraining += rnz(200 + (mtmp->m_lev * 20));
+	}
 
 #ifdef LIVELOG_BONES_KILLER 
 	livelog_bones_killed(mtmp); 

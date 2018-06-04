@@ -344,7 +344,8 @@ spec_levs: ../util/lev_comp \
 	Slime.des Erdrick.des Anachr.des Druid.des Marine.des \
 	Occult.des Element.des Chaos.des Wildtal.des \
 	Medium.des Poison.des Transs.des Unbel.des Kurwa.des Prost.des \
-	Form.des Feminist.des Tracer.des Nuclear.des Scholar.des
+	Form.des Feminist.des Tracer.des Nuclear.des Scholar.des \
+	Acu.des Hussy.des Mason.des
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
 	../util/lev_comp Act.des
@@ -364,6 +365,9 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp Barb.des
 	../util/lev_comp Bard.des
 	../util/lev_comp Binder.des
+	../util/lev_comp Acu.des
+	../util/lev_comp Mason.des
+	../util/lev_comp Hussy.des
 	../util/lev_comp Bleeder.des
 	../util/lev_comp Bloodsee.des
 	../util/lev_comp Bosmer.des

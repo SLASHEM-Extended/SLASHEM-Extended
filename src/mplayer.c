@@ -261,6 +261,16 @@ register boolean special;
 		case PM_BLEEDER:
 			weapon = KNIFE;
 		    break;
+		case PM_ANACHRONOUNBINDER:
+			weapon = SILVER_SHORT_SWORD;
+		    break;
+		case PM_HUSSY:
+			weapon = HIGH_HEELED_SANDAL;
+		    break;
+		case PM_MASON:
+			weapon = DWARVISH_MATTOCK;
+			armor = FULL_PLATE_MAIL;
+		    break;
 		case PM_BINDER:
 			weapon = RANSEUR;
 			armor = ELVEN_MITHRIL_COAT;
@@ -642,7 +652,7 @@ register boolean special;
 		    shield = STRANGE_OBJECT;
 		    break;
 		default: impossible("bad mplayer monster");
-		    weapon = 0;
+		    weapon = /*0*/LONG_SWORD;
 		    break;
 	    }
 

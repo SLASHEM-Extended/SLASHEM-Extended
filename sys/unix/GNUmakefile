@@ -205,7 +205,8 @@ QUEST_DES = Abuser.des Acid.des Act.des Altmer.des Amazon.des		\
  Anachr.des Druid.des Marine.des Poison.des Transs.des Unbel.des		\
  Zooke.des Murderer.des Failed.des Camper.des Slime.des Erdrick.des	\
  Feminist.des Form.des Nuclear.des Scholar.des Tracer.des	\
- Element.des Chaos.des Occult.des Wildtal.des Kurwa.des Prost.des
+ Element.des Chaos.des Occult.des Wildtal.des Kurwa.des Prost.des	\
+ Acu.des Hussy.des Mason.des
 
 SPEC_DES = beholder.des bigroom.des blkmar.des castle.des compu.des	\
  dragons.des endgame.des exmall.des forge.des frnknstn.des levgn.des		\

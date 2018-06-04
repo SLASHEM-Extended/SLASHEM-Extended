@@ -389,6 +389,7 @@ struct you {
 	int urmaxlvlG;		/* for wild talent role */
 	int urmaxlvlH;		/* for mystic role */
 	int urmaxlvlI;		/* for DQ slime combined with green slime race */
+	int urmaxlvlJ;		/* for anachronounbinder role */
 	int urmaxlvlUP;		/* for determining whether levelups refill your HP and Pw */
 	int xtralevelmult;	/* multiplier that determines how much EXP you need to advance again if at XL30 */
 	int uhereticgodinit;
@@ -1048,6 +1049,12 @@ struct you {
 	boolean annoyingmessages; /* don't show the annoying number pad message infinite times */
 
 	int bizarrotries;	/* used to nerf the bizarro orgasmatron */
+
+	int hussyhurtturn;
+	int hussykillturn;
+	int hussyperfume;
+
+	int acutraining;
 
 	int combostrike;	/* for technique */
 	boolean comboactive;

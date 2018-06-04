@@ -2754,7 +2754,7 @@ int skill;
 	    	You("learn how to perform inlay warfare!");
 	}
 
-	if (Role_if(PM_BINDER)) {
+	if (Role_if(PM_BINDER) || Role_if(PM_ANACHRONOUNBINDER)) {
 
 		if (P_SKILL(skill) == P_SKILLED) switch (skill) {
 
@@ -3515,6 +3515,9 @@ int degree;
     if (skill != P_NONE) {
 	advance_before = can_advance(skill, FALSE);
 	if (Extra_wpn_practice) degree *= 2;
+
+	if (Role_if(PM_ANACHRONOUNBINDER) && u.acutraining > 0) degree *= 2;
+
 	if (Race_if(PM_ELONA_SNAIL)) degree *= (1 + rnd(2)); /* snail trains skills 2.5 times as fast --Amy */
 
 	if (skill == u.untrainableskill) return; /* cannot train this skill at all, no matter what */
@@ -4659,6 +4662,7 @@ const struct def_skill *class_skill;
 	}
 
 	if (isamerican) return; /* all skills start out restricted --Amy */
+	if (Role_if(PM_ANACHRONOUNBINDER)) return;
 
 	/* Walk through array to set skill maximums */
 	for (; class_skill->skill != P_NONE; class_skill++) {
@@ -5617,7 +5621,7 @@ xtraskillinit()
 	int skill;
 
 	/* Set skill for all objects in inventory to be basic */
-	if (!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !isamerican && !Role_if(PM_MURDERER) ) for (obj = invent; obj; obj = obj->nobj) {
+	if (!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !isamerican && !Role_if(PM_ANACHRONOUNBINDER) && !Role_if(PM_MURDERER) ) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj);
 	    if (skill != P_NONE) {
 		if(!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;

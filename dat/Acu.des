@@ -1,0 +1,397 @@
+#	SCCS Id: @(#)Arch.des	3.4	1997/01/31
+#	Copyright (c) 1989 by Jean-Christophe Collet
+#	Copyright (c) 1991 by M. Stephenson
+# NetHack may be freely redistributed.  See license for details.
+#
+#	The "start" level for the quest.
+#
+#	Here you meet your (besieged) class leader, Lord Carnarvon
+#	and receive your quest assignment.
+#
+MAZE: "Acu-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+MAP
+  }.    }.}                    }}     }}    ##########                      
+ }.... ......   ...}  CCC    }}}}}}  }}}}   #       #   ##################. 
+   .}...}}}}.. ..}..CCC CC  }}}}}}   } }}}  # ------.-- #                   
+  ..}}}}}. }}...}..  CC    }}}}}}}}    }}}  # |.......| #                   
+ }.}}}}.}}}}}}}}}.  }}CC  }}}}}}}}}} }}}}}  # |.......| #                   
+ ... }}. } } } .}.. }}}CCC}}}}}}}}}}}}}}}   # |.......| #      .     .      
+  .}}}}}}}}}}}}}}}.  }}}}CCC}}}}}}}}}}}     # --.--...| #                   
+  .} } } } }}. } }.. }}}}}}CC-.-}}}}}}  }   #   # |...| #                   
+ ..}}}}}}}}}}}}}}}}.}}}}}}CC--.--}}}}} }}}}}##### |...| #   .  }-}-}-}  .   
+}.}} }}} }.} } . }.. }}}}CCC-.{.-}}}}  }}   #   # |...| #      -}}}}}-      
+ .}}}}.}}}}}}}}}}}.  }}CCCCC--.--}}}} }}}   # ### |...| #      }}}}}}}      
+..}} } } } } } }}..}}}CC}}}CC---C}}}}}}}    #   # |...| #      -}}}}}-      
+.}}}}}}}.}}}}}.}..  CCC }}}}CCCCCC}}}}}}}}  ##### |...| #      }}}}}}}      
+.} } . }}} . }}}.. CC   }}}}}}C}}CCC}}}}}         |...| #      -}}}}}-      
+.}}}}}}}}}}}}}}}}.CCC. }}}}}}CC}}}}CCC}}}}}}}-------.-| #   .  }-}-}-}  .   
+.}}. } } } } } }}..C    }}}CCC}}}}}}}CC}  -...........| #                   
+ .}}}}}}}}}}}}..}}.. . }}CCC}}}}}}}}}}C}}}.............##                   
+ ...}} } .}} }}}}}}... CCC}}}}}}}}} }}C}  -...........| #      .     .      
+  }..}}}}}}....}.}}. .CC  }}}}}}}}   CC}} -------------                     
+    ....}}..  .....  CC    }}}}}}   CC }}               ##                  
+       ....     }.  CC       }}     C   }################                   
+ENDMAP
+
+RANDOM_PLACES:(48,04),(52,04),(52,08),(52,12),(44,16),(52,16)
+BRANCH:(48,16,48,16),(00,00,00,00)
+TELEPORT_REGION:(47,15,49,17),(00,00,00,00)
+NON_DIGGABLE:(00,00,75,20)
+
+NON_PASSWALL:(43,00,43,12)
+NON_PASSWALL:(40,13,49,13)
+NON_PASSWALL:(49,07,49,12)
+NON_PASSWALL:(45,07,48,07)
+NON_PASSWALL:(45,01,45,06)
+NON_PASSWALL:(46,01,54,01)
+NON_PASSWALL:(55,00,55,19)
+NON_PASSWALL:(42,19,54,19)
+NON_PASSWALL:(41,13,41,20)
+
+NON_PASSWALL:(64,08,68,08)
+NON_PASSWALL:(64,14,68,14)
+NON_PASSWALL:(63,09,63,13)
+NON_PASSWALL:(69,09,69,13)
+
+MAZEWALK:(74,01),south
+MAZEWALK:(10,09),south
+
+STAIR:(10,9),down
+# entrance
+REGION:(47,15,49,17),lit,"ordinary"
+ENGRAVING:(47,3),burn,"Ahazu will hunger you but carries food."
+ENGRAVING:(48,3),burn,"Amon is capable of dealing rapid damage!"
+ENGRAVING:(49,3),burn,"Protect your eyes from the gaze of Andrealphus and covet his loot."
+ENGRAVING:(50,3),burn,"Andromalius will teleport away your armor, but carries good weapons for training."
+ENGRAVING:(51,3),burn,"Astaroth's creations will shine bright."
+ENGRAVING:(52,3),burn,"Balam's frost can be deadly."
+ENGRAVING:(53,3),burn,"Berith's bloody crown is slippery."
+ENGRAVING:(47,4),burn,"Buer dies twice, as can you."
+ENGRAVING:(48,4),burn,"Chupoclops carries quite the package."
+ENGRAVING:(49,4),burn,"Dantalion wields a dangerous sword and a dangerous mind."
+ENGRAVING:(50,4),burn,"Shiro's Stone mask is elusive. "
+ENGRAVING:(51,4),burn,"Echidna is a thief."
+ENGRAVING:(52,4),burn,"Eden's scales are a transportation utility."
+ENGRAVING:(53,4),burn,"Enki is a moisture master. Protect your inventory."
+ENGRAVING:(47,5),burn,"Finishing Eurynome's dance will earn you her shoes."
+ENGRAVING:(48,5),burn,"Eve is a master of the bow."
+ENGRAVING:(49,5),burn,"Fafnir is out for gold."
+ENGRAVING:(50,5),burn,"Huginn and Muninn bear twin blades that can be wielded together."
+ENGRAVING:(51,5),burn,"Iris's rainbow is deadly."
+ENGRAVING:(52,5),burn,"Jack is forever. Beware his blast. A fool who cannot withstand fire will likely die to it."
+ENGRAVING:(53,5),burn,"Malphas never leaves his flock."
+ENGRAVING:(51,6),burn,"Marionette will grab you from a distance and bring you in."
+ENGRAVING:(52,6),burn,"Do not look Mother in the eye. Fear her magic."
+ENGRAVING:(53,6),burn,"Naberius's many heads bite hard."
+ENGRAVING:(51,7),burn,"Orthos moves at the speed of darkness with its same nimbleness."
+ENGRAVING:(52,7),burn,"Otiax is a whispy fellow."
+ENGRAVING:(53,7),burn,"Paimon's fights nearly require magic resistance. Her staff is powerful."
+ENGRAVING:(51,8),burn,"Simurgh's bright light will blind you and her talon's tear but her feather brings help."
+ENGRAVING:(52,8),burn,"Tenebrous will take you down a level."
+ENGRAVING:(53,8),burn,"Fear Ymir. When you do him in name his staff 'The Illithid Staff'"
+
+MONSTER:';',"illithid larva",(66,10),peaceful
+MONSTER:';',"illithid larva",(66,12),peaceful
+MONSTER:';',"illithid larva",(65,11),peaceful
+MONSTER:';',"illithid larva",(67,11),peaceful
+MONSTER[50%]:';',"illithid larva",(64,11),peaceful
+MONSTER[50%]:';',"illithid larva",(68,11),peaceful
+
+# cloud
+MONSTER:'@',"very mindless thrall",random,peaceful
+MONSTER[60%]:'@',"very mindless thrall",random,peaceful
+MONSTER:'@',"very mindless thrall",random,peaceful
+MONSTER[60%]:'@',"very mindless thrall",random,peaceful
+MONSTER:'@',"very mindless thrall",random,peaceful
+MONSTER[60%]:'@',"very mindless thrall",random,peaceful
+MONSTER:'@',"very mindless thrall",random,peaceful
+MONSTER:'@',"very mindless thrall",random,peaceful
+MONSTER:'@',"very mindless thrall",random,peaceful
+MONSTER[60%]:'@',"very mindless thrall",random,peaceful
+
+CONTAINER:'(',"chest",(30,10)
+OBJECT:'?',"resistance",contained
+OBJECT:'?',"resistance",contained
+OBJECT:'?',"resistance",contained
+
+MONSTER:'h',"Master Ulitharid",(30,09),peaceful
+ENGRAVING:(66,11),burn,"A god time has forgotten lurks in the sacristy of the voided temple."
+MONSTER:'h',"master mind flayer",(51,7),"The Vestitoligist",peaceful
+
+MONSTER:'w',"neothelid",random
+MONSTER:'w',"neothelid",random
+MONSTER:'w',"neothelid",random
+MONSTER:'w',"neothelid",random
+MONSTER:'V',random,random
+MONSTER:'w',random,random
+MONSTER:'V',random,random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'V',random,random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',random,random
+#
+#	The "locate" level for the quest.
+#
+#	Bad, bad place.
+#
+#
+
+MAZE: "Acu-loca",' '
+FLAGS: hardfloor, lethe
+GEOMETRY:center,center
+MAP
+                                 }}}}                                       
+  ....   ...   ........ ....    }}} }}      .......              .......    
+  ..       .  ......  ... ..   }} }} }}    . ........          ....    ..   
+   ......  .... ..         ...}} }..}.}}. ..  ....  ...       ...     ....  
+     }  ....     ......     .}.}}.}}.}}.}..           ......}...  .  .....  
+    ..}}..            ......}.}..}..}. }.}.        .......}}...  ...  ...   
+   ..  .}}}....      ..  .}}..} }.}}.}  } }...  .......}}}  ..}   ......    
+   ...    .}}}}}... ..}}}}...}..}.}}..} }  }}.....}}}}} ..}}}}         .    
+     ...      ..}}}}}}.    }}..}..}}.}. }.   }}}}}          ..}}   ....     
+    .. ..  ..}}}.     ...}}  .}   }}...  }. .     }}.        ...}.....      
+   ..   ...}}.   .}}..}}}   .}    }}     .}}}... ...}...    ..  ....        
+  ...   ..}..     ..}}.     }.   }}}}     .}.} ... .} .}   ....  ......     
+   ..    ...     ..}....   }.}. }}}}}}   ..}..   .   }}.  .....    ......   
+    .  ...      ..}..   .    }. }}}}}}   .}.}   ....  .}   ..    ..         
+    . ....      ....   ...  }. .}}}}}}   . .}  ....    .}      .....        
+     ..  ..      ..   ..... .    }}}}.     ..           .   .....}}......   
+    ...   .. .. ..   .....  .     .....     .    .... ..........}}}}......  
+   .....   ......     .... .... ..... ...  .... .......    ....}}}......    
+   ....      ...         ...  ......    ....   ......         .......       
+                                                                            
+ENDMAP
+# Regions
+# The whole gulf is dark and quiet
+REGION:(01,01,75,19),unlit,"morgue",unfilled
+# Stairs
+STAIR:(03,2),up
+STAIR:(68,16),down
+# Altars - three types.  All are unattended.
+# Non diggable walls
+NON_DIGGABLE:(00,00,75,19)
+
+#free knowledge
+ENGRAVING:random,burn,"The Alignment Thing will realign you should you get near."
+ENGRAVING:random,burn,"Watch out for Miska's many arms!"
+ENGRAVING:random,burn,"Nudziarth will blast you with obsidian mirrors."
+ENGRAVING:random,burn,"Cosmos will reflect your past."
+
+# Objects
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+OBJECT:random,random,random
+# Random traps
+TRAP:"magic",random
+TRAP:"statue",random
+TRAP:"statue",random
+TRAP:"statue",random
+TRAP:"anti magic",random
+TRAP:"sleep gas",random
+TRAP:"sleep gas",random
+TRAP:"dart",random
+TRAP:"dart",random
+TRAP:"dart",random
+TRAP:"rust",random
+TRAP:"rust",random
+# Random monsters.
+MONSTER:'w',random,random
+MONSTER:'w',random,random
+MONSTER:'w',"neothelid",random
+MONSTER:'w',"neothelid",random
+MONSTER:'w',"neothelid",random
+MONSTER:'w',"neothelid",random
+MONSTER:'V',random,random
+MONSTER:'w',random,random
+MONSTER:'V',random,random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'V',random,random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',random,random
+
+#
+#	The "goal" level for the quest.
+#
+#	Here you meet Minion of Huhetotl your nemesis monster.  You have to
+#	defeat Minion of Huhetotl in combat to gain the artifact you have
+#	been assigned to retrieve.
+#
+
+MAZE: "Acu-goal", ' '
+FLAGS: hardfloor,noteleport
+GEOMETRY:center,center
+MAP
+                                 }}}}       }}                              
+ ..  ..   .     .. ....  .... ....}}}}..  .}}}}}}}     .......     ....     
+  .. .   ...   .  ......... ... .}}}}.}  .}}-----}  ....  .. ..   .   .   . 
+   .... ..  . .     ....        }.}}}}...}}}|.S.|}}..  ..    ......      .. 
+ ...  ...    ...             ... }.}}}. }}---.---}}.    ... ...   ...  ..   
+  .    ....  .  ...    .........}.} }.}}.}|.....|}.       ...       ...     
+ ..  ...  ....   .   .... .....} }.} }..}}---.---}}...     ..      ... .    
+ ......  ..  .........      ... } }.}.}.}}}}|.|}}} . ..   ....     ..   ... 
+  ... ....    ........ ...  .....}}}...}}}}}---}}     ...... ..  ...     .  
+  ..    ...  .....   ... .......}.}}}.}}}.} ......      ...   ....  ...  .. 
+   ..  .  .... ...   .    .. . } }.}.}}}.}  ...  ...    ..    .....    ...  
+    ...    ..  ..  ..  }}     ..}...}.}.} }.....   ... ..    .   ... ...    
+   ....   ..   ....  .}}}}}    }.... }.}...}  ...   .....   ..  .. ... .    
+ .... ..  .   ...   .}}---}}  } }.. }.}...}.   ...  ..  ..     ...     ..   
+ ....  .. ......   .}}}|.|}}}} } } }.} }.}.   .......    ..   ......    .   
+ ...    ... ...   . }---.---}}    }.} }.}      ......     .....    ..  ..   
+   ......    ..    .}|.....|}..    }}..}}  ...  ..  ..     ...  ..  ....    
+  ...   .......  .. }---.---}}.. ...}}}}  .......    ...  ..   ......  .. . 
+   .       ...   .. }|.S.|}}} .... }}}}    ....        ....   .....     ... 
+                    }-----}}       }}}}                                     
+ENDMAP
+# Regions
+# The whole gulf is dark and quiet
+REGION:(01,01,75,19),unlit,"morgue",unfilled
+# Stairs, Branches and the wizards portal
+STAIR:(03,17),up
+#free knowledge
+ENGRAVING:random,burn,"Numina's whispers will punish those with broken conducts."
+#ENGRAVING:random,burn,"The Council of Elements is unpredictable."
+# The alhoon gets a drawbridge...
+DRAWBRIDGE:(28,16),west,closed
+DRAWBRIDGE:(41,05),east,closed
+# One secret door
+DOOR:locked,(23,18)
+MONSTER:'L',"DNethack Master Dev",(47,03),asleep,hostile
+OBJECT:')',"icky blade",(47,03), uncursed,0,"The Elder Cerebral Fluid"
+#ENGRAVING:(22,18),burn,""
+# One sneaky trap
+TRAP:"magic",(24,16)
+TRAP:"magic",(45,05)
+# The alhoon has some guards
+MONSTER:'U',"uvuudaum",(22,16)
+MONSTER:'V',"villithid",(24,14),hostile,asleep
+MONSTER:'w',"neothelid",(24,18),hostile,asleep
+MONSTER:'h',"adversary",(26,16),hostile,asleep
+# And a door bell...
+TRAP:"board",(29,16)
+TRAP:"board",(40,05)
+MONSTER:'w',random,random
+MONSTER:'w',random,random
+MONSTER:'w',"neothelid",random
+MONSTER:'w',"neothelid",random
+MONSTER:'w',"neothelid",random
+MONSTER:'w',"neothelid",random
+MONSTER:'V',random,random
+MONSTER:'w',random,random
+MONSTER:'V',random,random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'V',random,random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',random,random
+
+#
+#	The "fill" levels for the quest.
+#
+#	These levels are used to fill out any levels not occupied by specific
+#	levels as defined above. "filla" is the upper filler, between the
+#	start and locate levels, and "fillb" the lower between the locate
+#	and goal levels.
+#
+
+MAZE: "Acu-fila" , '}'
+INIT_MAP: 'C' , '}' , false , false , unlit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:'w',"neothelid",random
+MONSTER:'w',"neothelid",random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',random,random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+MAZE: "Acu-filb" , '}'
+INIT_MAP: 'C' , '}' , false , false , unlit , false
+NOMAP
+#
+STAIR: random, up
+STAIR: random, down
+#
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+OBJECT: random, random, random
+#
+MONSTER:'w',"neothelid",random
+MONSTER:'w',"neothelid",random
+MONSTER:'h',"adversary",random
+MONSTER:'w',"neothelid",random
+MONSTER:'w',"neothelid",random
+MONSTER:'h',"adversary",random
+MONSTER:'h',"adversary",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',"villithid",random
+MONSTER:'V',random,random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+TRAP: random, random
+
+

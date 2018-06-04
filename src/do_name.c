@@ -4981,8 +4981,42 @@ static const char * const bogusmons[] = {
 	"Evasive Switcher",
 	"Random Ascension Kit Wearer",
 	"Nastiness Survivor",
+	"Hexorcist",
+	"Anachrononono-nononono",
+	"Vestige Vanquisher",
+	"Spirit Killer",
+	"Mind Player",
+	"Psionaut",
+	"Void Voider",
+	"Telekinetic",
+	"Keeper of the Gate",
+	"Tariru", "FIQ", "Demo",	/* dnethack players */
+	"Annoying Guy",    "Annoying Girl",
+	"Nasty Fucker",    "Nasty Bitch",
+	"Teaser Displeaser",
+	"Perfume Bomb",
+	"Stinking Socks Wearer",
+	"Drum Stint Reluctant",
+	"Odorous Uncle",    "Odorous Aunt",
+	"Clicker Money Thief",
+	"Anna's Personal Bodyguard",
+	"Madeleine", "Sofia", "Wendy", /* hussy names from pager.c */
+	"Bricklayer",
+	"Wall Construction Worker",
+	"Granite Cementer",
+	"Pavement Optimizer",
+	"Housebuilding Apprentice",
+	"Slate Slabber",
+	"Clay Smelter",
+	"Minecraft Master",
+	"World Trade Center Architect",
+	"The Battlehorse", "The Wild Boar", "The Dire Wolf", /* big mean animals */
 
 };
+
+/* Amy note: it is not a bug that the rank titles are in here; they normally cannot be chosen as hallucinated monsters,
+ * because those are taken either from this list or from monst.c. The rank titles are in role.c though. Because we want
+ * variety (unlike Soviet5lo), we added all those names here so they can actually be picked. */
 
 /* Return a random monster name, for hallucination.
  * KNOWN BUG: May be a proper name (Godzilla, Barney), may not

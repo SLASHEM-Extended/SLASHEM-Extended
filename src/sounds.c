@@ -1314,8 +1314,14 @@ register struct monst *mtmp;
 	    }
 	    break;
 	case MS_STENCH:
-		pline("Inhaling %s's scentful perfume is not the brightest idea.", mon_nam(mtmp));
-		badeffect();
+
+		if (Role_if(PM_HUSSY)) {
+			You("joyously inhale %s's scentful perfume. It's very soothing.", mon_nam(mtmp));
+		} else {
+			pline("Inhaling %s's scentful perfume is not the brightest idea.", mon_nam(mtmp));
+			badeffect();
+		}
+
 	    break;
 
 	case MS_BOAST:	/* giants */

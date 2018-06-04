@@ -1,0 +1,427 @@
+#	SCCS Id: @(#)Spacew.des	3.4	1998/09/10
+#	Copyright (c) 2014 by Amy Bluescreenofdeath
+# NetHack may be freely redistributed.  See license for details.
+
+
+# Based on some obscure old roguelike game that nobody knows.
+# It's called "Castle of the Winds".
+# Also partly based on the Yeoman quest. Everything else is my own quest design. --Amy
+
+
+### The quest "start" level ###
+#
+# Hussy Club secret office - similar in design to the gang scholar goal level, yet different
+#
+MAZE: "Hus-strt",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+..............................gggggggggggggggvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+...--------------------------.TgggggTggggggggvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+g..|.....|......|.|.|.|.|...|.gggTggggggTggggvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+gg.|.....|............|.|.\.|.gggggggggggggggvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+gg.|.....-----..-----...|...|.gggggggggggggggvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+gT.|............F.....--|--.|.ggggTgggggggTggvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+gg.|.....-----..-------Z|...|.gTggggggTggggggvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+gg.|.....|..............|...|.gggggggggggggggvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+gg.|------.---..--------|...|.gggggggggggggggvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+gg.|........................|.gggTgggggggTgggvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+gg.|----------++------------|.gggggggTgggggggvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+Tg............vv..............gggggggggggggggvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+ggggggggggggggvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+ggggggggggggggvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+gggggTgggggggggggggggggggggggggggTgggggggggggggg GGGGGGGGGGGGGGGGGGGGGGGGGGG
+
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG GGGGGGGGGGGGGGGGGGGGGGGGGGG
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG GGGGGGGGGGGGGGGGGGGGGGGGGGG
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG GGGGGGGGGGGGGGGGGGGGGGGGGGG
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG GGGGGGGGGGGGGGGGGGGGGGGGGGG
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG GGGGGGGGGGGGGGGGGGGGGGGGGGG
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+BRANCH:(44,11,44,11),(0,0,0,0)
+STAIR:(00,00),down
+
+MONSTER:'w',"Hussy Larissa",(26,03),peaceful
+MONSTER:'@',"model",(05,03),peaceful
+MONSTER:'@',"model",(06,03),peaceful
+MONSTER:'@',"model",(07,03),peaceful
+MONSTER:'@',"model",(05,04),peaceful
+MONSTER:'@',"model",(06,04),peaceful
+MONSTER:'@',"model",(07,04),peaceful
+MONSTER:'@',"model",(05,05),peaceful
+MONSTER:'@',"model",(06,05),peaceful
+MONSTER:'@',"model",(07,05),peaceful
+
+# No random starting monsters. This won't stop the game from spawning some if the player lingers around, of course.
+
+### Upper filler levels ###
+#
+#	Hidden Diamond Path
+#	Very similar to the gang scholar version, yet different
+#
+MAZE: "Hus-fila", ' '
+FLAGS: noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+         GGG.GGG     GGG.GGG     GGG.GGG     GGG.GGG     GGG.GGG            
+        GGGGGGGGG   GGGGGGGGG   GGGGGGGGG   GGGGGGGGG   GGGGGGGGG           
+      .GGGGGGGGGGG.GGGGGGGGGGG.GGGGGGGGGGG.GGGGGGGGGGG.GGGGGGGGGGG.         
+     ...GGGGGGGGG...GGGGGGGGG...GGGGGGGGG...GGGGGGGGG...GGGGGGGGG...        
+    .....GGGGGGG.....GGGGGGG.....GGGGGGG.....GGGGGGG.....GGGGGGG.....       
+   .......GGGGG.......GGGGG.......GGGGG.......GGGGG.......GGGGG.......      
+  .........GGG.........GGG.........GGG.........GGG.........GGG.........     
+ ...........+...........+...........+...........+...........+...........    
+  .........GGG.........GGG.........GGG.........GGG.........GGG.........     
+   .......GGGGG.......GGGGG.......GGGGG.......GGGGG.......GGGGG.......      
+    .....GGGGGGG.....GGGGGGG.....GGGGGGG.....GGGGGGG.....GGGGGGG.....       
+     ...GGGGGGGGG...GGGGGGGGG...GGGGGGGGG...GGGGGGGGG...GGGGGGGGG...        
+      .GGGGGGGGGGG.GGGGGGGGGGG.GGGGGGGGGGG.GGGGGGGGGGG.GGGGGGGGGGG.         
+        GGGGGGGGG   GGGGGGGGG   GGGGGGGGG   GGGGGGGGG   GGGGGGGGG           
+         GGG.GGG     GGG.GGG     GGG.GGG     GGG.GGG     GGG.GGG            
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+
+STAIR:(06,07),up
+STAIR:(66,07),down
+
+DOOR:closed,(12,07)
+DOOR:closed,(24,07)
+DOOR:closed,(36,07)
+DOOR:closed,(48,07)
+DOOR:closed,(60,07)
+
+REGION:(06,07,06,07),lit,"ordinary",filled,true
+REGION:(18,07,18,07),lit,"randomroom",filled,true
+REGION:(54,07,54,07),lit,"randomroom",filled,true
+REGION:(30,07,30,07),lit,"randomroom",filled,true
+REGION:(42,07,42,07),lit,"randomroom",filled,true
+REGION:(66,07,66,07),lit,"ordinary",filled,true
+
+REGION:(12,00,12,00),lit,"randomroom"
+REGION:(24,00,24,00),lit,"randomroom"
+REGION:(36,00,36,00),lit,"randomroom"
+REGION:(48,00,48,00),lit,"randomroom"
+REGION:(60,00,60,00),lit,"randomroom"
+REGION:(12,14,12,14),lit,"randomroom"
+REGION:(24,14,24,14),lit,"randomroom"
+REGION:(36,14,36,14),lit,"randomroom"
+REGION:(48,14,48,14),lit,"randomroom"
+REGION:(60,14,60,14),lit,"randomroom"
+
+OBJECT:'$',random,(12,00)
+OBJECT:'$',random,(24,00)
+OBJECT:'$',random,(36,00)
+OBJECT:'$',random,(48,00)
+OBJECT:'$',random,(60,00)
+OBJECT:'$',random,(12,14)
+OBJECT:'$',random,(24,14)
+OBJECT:'$',random,(36,14)
+OBJECT:'$',random,(48,14)
+OBJECT:'$',random,(60,14)
+OBJECT:'*',"diamond",(12,00)
+OBJECT:'*',"diamond",(24,00)
+OBJECT:'*',"diamond",(36,00)
+OBJECT:'*',"diamond",(48,00)
+OBJECT:'*',"diamond",(60,00)
+OBJECT:'*',"diamond",(12,14)
+OBJECT:'*',"diamond",(24,14)
+OBJECT:'*',"diamond",(36,14)
+OBJECT:'*',"diamond",(48,14)
+OBJECT:'*',"diamond",(60,14)
+
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+TRAP:random,random
+
+### The quest "locate" level ###
+#
+#	Walt's Grave Walls
+#
+MAZE: "Hus-loca",' '
+FLAGS: noteleport,hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+# Specifications for the whole level
+
+STAIR:random,up
+STAIR:random,down
+
+REGION:(00,00,77,18),unlit,"levelseventyroom",filled,true
+
+### Lower fill levels ###
+#
+#	Statue Breath Run
+#	Small, but challenging!
+#
+MAZE: "Hus-filb", ' '
+FLAGS: noteleport, hardfloor
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+---------------------------------------------------------------------------
+|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|
+|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|
+...........................................................................
+|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|l|r|
+|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|.|
+---------------------------------------------------------------------------
+ENDMAP
+
+STAIR:(00,03),up
+STAIR:(74,03),down
+
+TRAP:"statue", (04,03)
+TRAP:"statue", (06,03)
+TRAP:"statue", (08,03)
+TRAP:"statue", (10,03)
+TRAP:"statue", (12,03)
+TRAP:"statue", (14,03)
+TRAP:"statue", (16,03)
+TRAP:"statue", (18,03)
+TRAP:"statue", (20,03)
+TRAP:"statue", (22,03)
+TRAP:"statue", (24,03)
+TRAP:"statue", (26,03)
+TRAP:"statue", (28,03)
+TRAP:"statue", (30,03)
+TRAP:"statue", (32,03)
+TRAP:"statue", (34,03)
+TRAP:"statue", (36,03)
+TRAP:"statue", (38,03)
+TRAP:"statue", (40,03)
+TRAP:"statue", (42,03)
+TRAP:"statue", (44,03)
+TRAP:"statue", (46,03)
+TRAP:"statue", (48,03)
+TRAP:"statue", (50,03)
+TRAP:"statue", (52,03)
+TRAP:"statue", (54,03)
+TRAP:"statue", (56,03)
+TRAP:"statue", (58,03)
+TRAP:"statue", (60,03)
+TRAP:"statue", (62,03)
+TRAP:"statue", (64,03)
+TRAP:"statue", (66,03)
+TRAP:"statue", (68,03)
+TRAP:"statue", (70,03)
+
+TRAP:"piercing beam", (03,03)
+TRAP:"piercing beam", (05,03)
+TRAP:"piercing beam", (07,03)
+TRAP:"piercing beam", (09,03)
+TRAP:"piercing beam", (11,03)
+TRAP:"piercing beam", (13,03)
+TRAP:"piercing beam", (15,03)
+TRAP:"piercing beam", (17,03)
+TRAP:"piercing beam", (19,03)
+TRAP:"piercing beam", (21,03)
+TRAP:"piercing beam", (23,03)
+TRAP:"piercing beam", (25,03)
+TRAP:"piercing beam", (27,03)
+TRAP:"piercing beam", (29,03)
+TRAP:"piercing beam", (31,03)
+TRAP:"piercing beam", (33,03)
+TRAP:"piercing beam", (35,03)
+TRAP:"piercing beam", (37,03)
+TRAP:"piercing beam", (39,03)
+TRAP:"piercing beam", (41,03)
+TRAP:"piercing beam", (43,03)
+TRAP:"piercing beam", (45,03)
+TRAP:"piercing beam", (47,03)
+TRAP:"piercing beam", (49,03)
+TRAP:"piercing beam", (51,03)
+TRAP:"piercing beam", (53,03)
+TRAP:"piercing beam", (55,03)
+TRAP:"piercing beam", (57,03)
+TRAP:"piercing beam", (59,03)
+TRAP:"piercing beam", (61,03)
+TRAP:"piercing beam", (63,03)
+TRAP:"piercing beam", (65,03)
+TRAP:"piercing beam", (67,03)
+TRAP:"piercing beam", (69,03)
+TRAP:"piercing beam", (71,03)
+
+MONSTER[10%]:'D',random,(03,01),asleep,hostile
+MONSTER[10%]:'D',random,(05,01),asleep,hostile
+MONSTER[10%]:'D',random,(07,01),asleep,hostile
+MONSTER[10%]:'D',random,(09,01),asleep,hostile
+MONSTER[10%]:'D',random,(11,01),asleep,hostile
+MONSTER[10%]:'D',random,(13,01),asleep,hostile
+MONSTER[10%]:'D',random,(15,01),asleep,hostile
+MONSTER[10%]:'D',random,(17,01),asleep,hostile
+MONSTER[10%]:'D',random,(19,01),asleep,hostile
+MONSTER[10%]:'D',random,(21,01),asleep,hostile
+MONSTER[10%]:'D',random,(23,01),asleep,hostile
+MONSTER[10%]:'D',random,(25,01),asleep,hostile
+MONSTER[10%]:'D',random,(27,01),asleep,hostile
+MONSTER[10%]:'D',random,(29,01),asleep,hostile
+MONSTER[10%]:'D',random,(31,01),asleep,hostile
+MONSTER[10%]:'D',random,(33,01),asleep,hostile
+MONSTER[10%]:'D',random,(35,01),asleep,hostile
+MONSTER[10%]:'D',random,(37,01),asleep,hostile
+MONSTER[10%]:'D',random,(39,01),asleep,hostile
+MONSTER[10%]:'D',random,(41,01),asleep,hostile
+MONSTER[10%]:'D',random,(43,01),asleep,hostile
+MONSTER[10%]:'D',random,(45,01),asleep,hostile
+MONSTER[10%]:'D',random,(47,01),asleep,hostile
+MONSTER[10%]:'D',random,(49,01),asleep,hostile
+MONSTER[10%]:'D',random,(51,01),asleep,hostile
+MONSTER[10%]:'D',random,(53,01),asleep,hostile
+MONSTER[10%]:'D',random,(55,01),asleep,hostile
+MONSTER[10%]:'D',random,(57,01),asleep,hostile
+MONSTER[10%]:'D',random,(59,01),asleep,hostile
+MONSTER[10%]:'D',random,(61,01),asleep,hostile
+MONSTER[10%]:'D',random,(63,01),asleep,hostile
+MONSTER[10%]:'D',random,(65,01),asleep,hostile
+MONSTER[10%]:'D',random,(67,01),asleep,hostile
+MONSTER[10%]:'D',random,(69,01),asleep,hostile
+MONSTER[10%]:'D',random,(71,01),asleep,hostile
+
+MONSTER[10%]:'D',random,(03,05),asleep,hostile
+MONSTER[10%]:'D',random,(05,05),asleep,hostile
+MONSTER[10%]:'D',random,(07,05),asleep,hostile
+MONSTER[10%]:'D',random,(09,05),asleep,hostile
+MONSTER[10%]:'D',random,(11,05),asleep,hostile
+MONSTER[10%]:'D',random,(13,05),asleep,hostile
+MONSTER[10%]:'D',random,(15,05),asleep,hostile
+MONSTER[10%]:'D',random,(17,05),asleep,hostile
+MONSTER[10%]:'D',random,(19,05),asleep,hostile
+MONSTER[10%]:'D',random,(21,05),asleep,hostile
+MONSTER[10%]:'D',random,(23,05),asleep,hostile
+MONSTER[10%]:'D',random,(25,05),asleep,hostile
+MONSTER[10%]:'D',random,(27,05),asleep,hostile
+MONSTER[10%]:'D',random,(29,05),asleep,hostile
+MONSTER[10%]:'D',random,(31,05),asleep,hostile
+MONSTER[10%]:'D',random,(33,05),asleep,hostile
+MONSTER[10%]:'D',random,(35,05),asleep,hostile
+MONSTER[10%]:'D',random,(37,05),asleep,hostile
+MONSTER[10%]:'D',random,(39,05),asleep,hostile
+MONSTER[10%]:'D',random,(41,05),asleep,hostile
+MONSTER[10%]:'D',random,(43,05),asleep,hostile
+MONSTER[10%]:'D',random,(45,05),asleep,hostile
+MONSTER[10%]:'D',random,(47,05),asleep,hostile
+MONSTER[10%]:'D',random,(49,05),asleep,hostile
+MONSTER[10%]:'D',random,(51,05),asleep,hostile
+MONSTER[10%]:'D',random,(53,05),asleep,hostile
+MONSTER[10%]:'D',random,(55,05),asleep,hostile
+MONSTER[10%]:'D',random,(57,05),asleep,hostile
+MONSTER[10%]:'D',random,(59,05),asleep,hostile
+MONSTER[10%]:'D',random,(61,05),asleep,hostile
+MONSTER[10%]:'D',random,(63,05),asleep,hostile
+MONSTER[10%]:'D',random,(65,05),asleep,hostile
+MONSTER[10%]:'D',random,(67,05),asleep,hostile
+MONSTER[10%]:'D',random,(69,05),asleep,hostile
+MONSTER[10%]:'D',random,(71,05),asleep,hostile
+
+### The quest "goal" level ###
+#
+#	Walt's Crib
+#
+MAZE: "Hus-goal", ' '
+FLAGS: lethe, noteleport
+GEOMETRY:center,center
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+MAP
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+..............................................................................
+ENDMAP
+#         1         2         3         4         5         6         7    7
+#123456789012345678901234567890123456789012345678901234567890123456789012345
+
+STAIR:random,up
+REGION:(00,00,77,18),unlit,"insideroom",filled,true
+
+OBJECT:')',"high-heeled sandal",random,blessed,0,"Cerulean Smash"
+MONSTER:'&',"Great Corner-Hard",random,hostile
+
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,hostile
+MONSTER:'&',random,random,asleep,hostile
+MONSTER:'&',random,random,asleep,hostile
+MONSTER:'&',random,random,asleep,hostile
+MONSTER:'&',random,random,asleep,hostile
+MONSTER:'&',random,random,asleep,hostile
+MONSTER:'&',random,random,asleep,hostile
+MONSTER:'&',random,random,asleep,hostile
+MONSTER:'&',random,random,asleep,hostile
+MONSTER:'&',random,random,asleep,hostile
+MONSTER:'&',random,random,asleep,hostile
+MONSTER:'&',random,random,asleep,hostile
+MONSTER:'&',random,random,asleep,hostile

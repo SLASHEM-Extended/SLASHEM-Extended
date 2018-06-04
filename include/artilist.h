@@ -6620,6 +6620,21 @@ A("The Lightsaber Prototype", RED_LIGHTSABER,
 	PHYS(5, 10),	NO_DFNS, NO_CARY,
 	ENERGY_BOOST,	A_LAWFUL, PM_JEDI, NON_PM, 3500L ),
 
+A("The Elder Cerebral Fluid", ICKY_BLADE,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_ATTK), (SPFX_EREGEN|SPFX_HSPDAM), 0,
+	DRLI(10, 2),	NO_DFNS, NO_CARY,
+	ENERGY_BOOST,	A_LAWFUL, PM_ANACHRONOUNBINDER, NON_PM, 2500L ),
+
+A("Cerulean Smash", HIGH_HEELED_SANDAL, /* +10 charisma when wielded, can dig through grave walls in one turn, wielding it as a non-hussy will set it to -10 and heavily curse it (in case you're a smartass and wish for it) */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	COLD(10, 14),	NO_DFNS, NO_CARY,
+	PHASING,	A_CHAOTIC, PM_HUSSY, NON_PM, 8000L ),
+
+A("The Ultimate Pick", DWARVISH_MATTOCK,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	PHYS(0, 20),	NO_DFNS, NO_CARY,
+	0,	A_NEUTRAL, PM_MASON, NON_PM, 2500L ),
+
 /*
  *  terminator; otyp must be zero
  */

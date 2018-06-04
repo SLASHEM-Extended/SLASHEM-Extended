@@ -3126,7 +3126,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(615)) {
+		switch (rnd(630)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -3743,6 +3743,21 @@ ghnhom2:
 			case 613: makemaz("Fem-3"); return;
 			case 614: makemaz("Fem-4"); return;
 			case 615: makemaz("Fem-5"); return;
+			case 616: makemaz("Hus-1"); return;
+			case 617: makemaz("Hus-2"); return;
+			case 618: makemaz("Hus-3"); return;
+			case 619: makemaz("Hus-4"); return;
+			case 620: makemaz("Hus-5"); return;
+			case 621: makemaz("Acu-1"); return;
+			case 622: makemaz("Acu-2"); return;
+			case 623: makemaz("Acu-3"); return;
+			case 624: makemaz("Acu-4"); return;
+			case 625: makemaz("Acu-5"); return;
+			case 626: makemaz("Mas-1"); return;
+			case 627: makemaz("Mas-2"); return;
+			case 628: makemaz("Mas-3"); return;
+			case 629: makemaz("Mas-4"); return;
+			case 630: makemaz("Mas-5"); return;
 
 		}
 		break;
@@ -4875,7 +4890,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(615)) {
+		switch (rnd(630)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -5492,6 +5507,21 @@ ghnhom2:
 			case 613: makemaz("Fem-8"); return;
 			case 614: makemaz("Fem-9"); return;
 			case 615: makemaz("Fem-0"); return;
+			case 616: makemaz("Hus-6"); return;
+			case 617: makemaz("Hus-7"); return;
+			case 618: makemaz("Hus-8"); return;
+			case 619: makemaz("Hus-9"); return;
+			case 620: makemaz("Hus-0"); return;
+			case 621: makemaz("Acu-6"); return;
+			case 622: makemaz("Acu-7"); return;
+			case 623: makemaz("Acu-8"); return;
+			case 624: makemaz("Acu-9"); return;
+			case 625: makemaz("Acu-0"); return;
+			case 626: makemaz("Mas-6"); return;
+			case 627: makemaz("Mas-7"); return;
+			case 628: makemaz("Mas-8"); return;
+			case 629: makemaz("Mas-9"); return;
+			case 630: makemaz("Mas-0"); return;
 		}
 		break;
 
@@ -7046,7 +7076,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(615)) {
+		switch (rnd(630)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -7663,6 +7693,21 @@ ghnhom4:
 			case 613: makemaz("Fem-3"); return;
 			case 614: makemaz("Fem-4"); return;
 			case 615: makemaz("Fem-5"); return;
+			case 616: makemaz("Hus-1"); return;
+			case 617: makemaz("Hus-2"); return;
+			case 618: makemaz("Hus-3"); return;
+			case 619: makemaz("Hus-4"); return;
+			case 620: makemaz("Hus-5"); return;
+			case 621: makemaz("Acu-1"); return;
+			case 622: makemaz("Acu-2"); return;
+			case 623: makemaz("Acu-3"); return;
+			case 624: makemaz("Acu-4"); return;
+			case 625: makemaz("Acu-5"); return;
+			case 626: makemaz("Mas-1"); return;
+			case 627: makemaz("Mas-2"); return;
+			case 628: makemaz("Mas-3"); return;
+			case 629: makemaz("Mas-4"); return;
+			case 630: makemaz("Mas-5"); return;
 		}
 		break;
 
@@ -8791,7 +8836,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(615)) {
+		switch (rnd(630)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -9408,6 +9453,21 @@ ghnhom4:
 			case 613: makemaz("Fem-8"); return;
 			case 614: makemaz("Fem-9"); return;
 			case 615: makemaz("Fem-0"); return;
+			case 616: makemaz("Hus-6"); return;
+			case 617: makemaz("Hus-7"); return;
+			case 618: makemaz("Hus-8"); return;
+			case 619: makemaz("Hus-9"); return;
+			case 620: makemaz("Hus-0"); return;
+			case 621: makemaz("Acu-6"); return;
+			case 622: makemaz("Acu-7"); return;
+			case 623: makemaz("Acu-8"); return;
+			case 624: makemaz("Acu-9"); return;
+			case 625: makemaz("Acu-0"); return;
+			case 626: makemaz("Mas-6"); return;
+			case 627: makemaz("Mas-7"); return;
+			case 628: makemaz("Mas-8"); return;
+			case 629: makemaz("Mas-9"); return;
+			case 630: makemaz("Mas-0"); return;
 		}
 		break;
 

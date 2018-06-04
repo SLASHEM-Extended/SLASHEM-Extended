@@ -1168,6 +1168,43 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, LEATHER_CLOAK);
 		   break;
 
+		   case PM_ANACHRONOUNBINDER:
+		   case PM_UNDEAD_ANACHRONOUNBINDER:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+		     (void)mongets(mtmp, SHORT_SWORD);
+		     (void)mongets(mtmp, LEATHER_ARMOR);
+		   break;
+
 		   case PM_BLEEDER:
 		   case PM_UNDEAD_BLEEDER:
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -1179,6 +1216,43 @@ register struct monst *mtmp;
 
 		     (void)mongets(mtmp, KNIFE);
 		     (void)mongets(mtmp, LAB_COAT);
+		   break;
+
+		   case PM_MASON:
+		   case PM_UNDEAD_MASON:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_misc_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
+
+		     (void)mongets(mtmp, PICK_AXE);
+		     (void)mongets(mtmp, WAR_HAMMER);
+		     (void)mongets(mtmp, CHAIN_MAIL);
+		     (void)mongets(mtmp, HELMET);
+		     (void)mongets(mtmp, SCR_LOCKOUT);
+		   break;
+
+		   case PM_HUSSY:
+		   case PM_UNDEAD_HUSSY:
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+
+		     (void)mongets(mtmp, SOFT_GIRL_SNEAKER);
+		     (void)mongets(mtmp, SOFT_SNEAKERS);
+		     (void)mongets(mtmp, SCR_BAD_EFFECT);
+		     (void)mongets(mtmp, SCR_BAD_EFFECT);
 		   break;
 
 		   case PM_BARD: case PM_UNDEAD_BARD:
@@ -11424,6 +11498,14 @@ register struct	monst	*mtmp;
 		(void) mongets(mtmp, GOLD_CHAIN);
 	}
 
+	if (ptr == &mons[PM_GREAT_CORNER_HARD]) {
+		(void) mongets(mtmp, WAN_DRAINING);
+		(void) mongets(mtmp, SCR_MEGALOAD);
+		(void) mongets(mtmp, WAN_STARVATION);
+		(void) mongets(mtmp, WAN_REDUCE_MAX_HITPOINTS);
+		(void) mongets(mtmp, GOLD_CHAIN);
+	}
+
 	if (ptr == &mons[PM_MISTER_STRIP_MINE]) {
 		(void) mongets(mtmp, WAN_DIGGING);
 		(void) mongets(mtmp, DWARVISH_MATTOCK);
@@ -15898,6 +15980,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_BARBARIAN) && is_vanillamonster(ptr))) ct += 1;
 		if (ct > 0 && (Role_if(PM_BARBARIAN) && is_diablomonster(ptr))) ct += 1;
 		if (ct > 0 && (Role_if(PM_BINDER) && is_dnethackmonster(ptr))) ct += 10;
+		if (ct > 0 && (Role_if(PM_ANACHRONOUNBINDER) && is_dnethackmonster(ptr))) ct += 10;
 		if (ct > 0 && (Role_if(PM_BINDER) && extra_nasty(ptr))) ct += 2;
 		if (ct > 0 && (Role_if(PM_BINDER) && is_undead(ptr))) ct += 2;
 		if (ct > 0 && (Role_if(PM_BLEEDER) && (ptr->msound == MS_SHOE))) ct += 10;
@@ -16168,6 +16251,8 @@ loopback:
 		if (ct > 0 && (isevilvariant && is_evilpatchmonster(ptr) )) ct += 100;
 		if (ct > 0 && (isevilvariant && dmgtype(ptr, AD_RAGN) )) ct += 20;
 		if (ct > 0 && (isevilvariant && dmgtype(ptr, AD_DEST) )) ct += 5;
+		if (ct > 0 && (Role_if(PM_HUSSY) && is_demon(ptr) )) ct += 30;
+		if (ct > 0 && (Role_if(PM_HUSSY) && is_demon(ptr) && (ptr)->geno & G_UNIQ)) ct += 100;
 
 		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
 
@@ -16613,6 +16698,7 @@ int     spc;
 		if ((Role_if(PM_BARBARIAN) && is_vanillamonster(&mons[last]))) num += 1;
 		if ((Role_if(PM_BARBARIAN) && is_diablomonster(&mons[last]))) num += 1;
 		if ((Role_if(PM_BINDER) && is_dnethackmonster(&mons[last]))) num += 10;
+		if ((Role_if(PM_ANACHRONOUNBINDER) && is_dnethackmonster(&mons[last]))) num += 10;
 		if ((Role_if(PM_BINDER) && extra_nasty(&mons[last]))) num += 2;
 		if ((Role_if(PM_BINDER) && is_undead(&mons[last]))) num += 2;
 		if ((Role_if(PM_BLEEDER) && (mons[last].msound == MS_SHOE))) num += 10;
@@ -16881,6 +16967,8 @@ int     spc;
 		if ((isevilvariant && is_evilpatchmonster(&mons[last]) )) num += 100;
 		if ((isevilvariant && dmgtype(&mons[last], AD_RAGN) )) num += 20;
 		if ((isevilvariant && dmgtype(&mons[last], AD_DEST) )) num += 5;
+		if ((Role_if(PM_HUSSY) && is_demon(&mons[last]) )) num += 30;
+		if ((Role_if(PM_HUSSY) && is_demon(&mons[last]) && (mons[last].geno & G_UNIQ) )) num += 100;
 
 		if (monster_with_trait(&mons[last], u.frequenttrait1)) num += u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[last], u.frequenttrait2)) num += u.freqtraitbonus2;
@@ -17042,6 +17130,7 @@ int     spc;
 		if ((Role_if(PM_BARBARIAN) && is_vanillamonster(&mons[first]))) num -= 1;
 		if ((Role_if(PM_BARBARIAN) && is_diablomonster(&mons[first]))) num -= 1;
 		if ((Role_if(PM_BINDER) && is_dnethackmonster(&mons[first]))) num -= 10;
+		if ((Role_if(PM_ANACHRONOUNBINDER) && is_dnethackmonster(&mons[first]))) num -= 10;
 		if ((Role_if(PM_BINDER) && extra_nasty(&mons[first]))) num -= 2;
 		if ((Role_if(PM_BINDER) && is_undead(&mons[first]))) num -= 2;
 		if ((Role_if(PM_BLEEDER) && (mons[first].msound == MS_SHOE))) num -= 10;
@@ -17310,6 +17399,8 @@ int     spc;
 		if ((isevilvariant && is_evilpatchmonster(&mons[first]) )) num -= 100;
 		if ((isevilvariant && dmgtype(&mons[first], AD_RAGN) )) num -= 20;
 		if ((isevilvariant && dmgtype(&mons[first], AD_DEST) )) num -= 5;
+		if ((Role_if(PM_HUSSY) && is_demon(&mons[first]) )) num -= 30;
+		if ((Role_if(PM_HUSSY) && is_demon(&mons[first]) && (mons[first].geno & G_UNIQ) )) num -= 100;
 
 		if (monster_with_trait(&mons[first], u.frequenttrait1)) num -= u.freqtraitbonus1;
 		if (u.frequenttrait2 && monster_with_trait(&mons[first], u.frequenttrait2)) num -= u.freqtraitbonus2;

@@ -12788,7 +12788,7 @@ struct obj *box;        /* at the moment only for floor traps */
 
 		}
 
-		if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) {
+		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profiled boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilirovannyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "profilli chizilmasin") ) ) || Role_if(PM_HUSSY) ) {
 		    if (!(HFast & INTRINSIC)) {
 			if (!Fast)
 			    You("speed up.");

@@ -121,6 +121,12 @@ boolean put_away;
 		pline("A terrible black aura surrounds your sickle...");
 	}
 
+	if (uwep && uwep->oartifact == ART_CERULEAN_SMASH && !Role_if(PM_HUSSY) && !uwep->hvycurse) {
+		curse(uwep);
+		uwep->hvycurse = 1;
+		if (uwep->spe > -10) uwep->spe = -10;
+	}
+
 	if (uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
@@ -249,6 +255,12 @@ swapweaponchoice:
 			curse(uswapwep);
 			uswapwep->hvycurse = 1;
 			pline("A terrible black aura surrounds your sickle...");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_CERULEAN_SMASH && !Role_if(PM_HUSSY) && !uswapwep->hvycurse) {
+			curse(uswapwep);
+			uswapwep->hvycurse = 1;
+			if (uswapwep->spe > -10) uswapwep->spe = -10;
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE && !uswapwep->hvycurse) {

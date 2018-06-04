@@ -2715,12 +2715,17 @@ int dieroll;
 		}
 	}
 
-	if ((!hittxt || (Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) ) &&			/*( thrown => obj exists )*/
+	if ((!hittxt || (Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) ) &&			/*( thrown => obj exists )*/
 	  (!destroyed || (thrown && m_shot.n > 1 && m_shot.o == obj->otyp))) {
+
+		if (!thrown && Role_if(PM_HUSSY) && !mon->female && !is_neuter(mon->data)) {
+			u.hussyhurtturn = (moves + 1000);
+		}
+
 		if (thrown) hit(mshot_xname(obj), mon, exclam(tmp));
 		else if (!flags.verbose) You("hit it.");
 
-		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) && !rn2(20) && (PlayerHearsSoundEffects) ) {
+		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) && !rn2(20) && (PlayerHearsSoundEffects) ) {
 
 			switch (rnd(15)) {
 	
@@ -2744,7 +2749,7 @@ int dieroll;
 
 		}
 
-		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) && !rn2(5)) {
+		else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) && !rn2(5)) {
 
 			switch (rnd(274)) {
 	
@@ -3112,7 +3117,11 @@ int dieroll;
 	} else if (destroyed) {
 		if (!already_killed) {
 
-			if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) && !thrown && !rn2(20) && (PlayerHearsSoundEffects) ) {
+			if (Role_if(PM_HUSSY) && !mon->female && !is_neuter(mon->data)) {
+				u.hussykillturn = (moves + 1000);
+			}
+
+			if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) && !thrown && !rn2(20) && (PlayerHearsSoundEffects) ) {
 
 				switch (rnd(8)) {
 	
@@ -3128,7 +3137,7 @@ int dieroll;
 
 			}
 
-			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) && !rn2(5) && !thrown) {
+			else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) && !rn2(5) && !thrown) {
 
 				switch (rnd(281)) {
 
@@ -5439,7 +5448,7 @@ register int roll;
 	
 	if (could_seduce(&youmonst, mdef, mattk) && rn2(5) ) {
 		You("pretend to be friendly to %s.", mon_nam(mdef));
-	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) && !rn2(20) && canspotmon(mdef) && flags.verbose && (PlayerHearsSoundEffects) ) {
+	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) && !rn2(20) && canspotmon(mdef) && flags.verbose && (PlayerHearsSoundEffects) ) {
 
 		switch (rnd(6)) {
 	
@@ -5451,7 +5460,7 @@ register int roll;
 		case 6: pline("Bimmselimmelimm!"); break;
 		}
 
-	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
+	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || ishaxor || Hallucination) && !rn2(5) && canspotmon(mdef) && flags.verbose) {
 
 		switch (rnd(438)) {
 

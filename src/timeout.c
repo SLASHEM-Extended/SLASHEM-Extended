@@ -244,6 +244,18 @@ nh_timeout()
 		if (!u.powerfailure) pline("Your power comes back online.");
 	}
 
+	if (u.hussyperfume) {
+		u.hussyperfume--;
+		if (u.hussyperfume < 0) u.hussyperfume = 0; /* fail safe */
+		if (!u.hussyperfume) pline("You are capable of spreading the perfume again.");
+	}
+
+	if (u.acutraining) {
+		u.acutraining--;
+		if (u.acutraining < 0) u.acutraining = 0; /* fail safe */
+		if (!u.acutraining) pline("Your extra skill training ends.");
+	}
+
 	if (u.egglayingtimeout) {
 		u.egglayingtimeout--;
 		if (u.egglayingtimeout < 0) u.egglayingtimeout = 0; /* fail safe */

@@ -310,6 +310,9 @@ makedog()
 	if (pettype == PM_DARK_NIGHTMARE) petname = "Opel Manta";
 	if (pettype == PM_SUPERSCHOOL_SPEAKER) petname = "Walt";
 	if (pettype == PM_BRAIN_EATING_GHOUL) petname = "Barnotis";
+	if (pettype == PM_BRAIN_GOLEM) petname = "Roald Amundsen";
+
+	if (pettype == PM_ARVOGENIC_TOPMODEL) petname = "Cara";
 
 	if (pettype == PM_VENOM_FUNGUS) petname = "This Is A BioHazard";
 	if (pettype == PM_MARTTI_IHRASAARI) petname = "Martti Ihrasaari";

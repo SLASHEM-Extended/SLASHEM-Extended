@@ -16,6 +16,144 @@ STATIC_DCL struct artifact artilist[];
  *	  the contents, just the total size.
  */
 
+#define PN_POLEARMS		(-1)
+#define PN_SABER		(-2)
+#define PN_HAMMER		(-3)
+#define PN_WHIP			(-4)
+#define PN_PADDLE		(-5)
+#define PN_FIREARMS		(-6)
+#define PN_ATTACK_SPELL		(-7)
+#define PN_HEALING_SPELL	(-8)
+#define PN_DIVINATION_SPELL	(-9)
+#define PN_ENCHANTMENT_SPELL	(-10)
+#define PN_PROTECTION_SPELL	(-11)
+#define PN_BODY_SPELL		(-12)
+#define PN_OCCULT_SPELL		(-13)
+#define PN_ELEMENTAL_SPELL		(-14)
+#define PN_CHAOS_SPELL		(-15)
+#define PN_MATTER_SPELL		(-16)
+#define PN_BARE_HANDED		(-17)
+#define PN_HIGH_HEELS		(-18)
+#define PN_GENERAL_COMBAT		(-19)
+#define PN_SHIELD		(-20)
+#define PN_BODY_ARMOR		(-21)
+#define PN_TWO_HANDED_WEAPON		(-22)
+#define PN_POLYMORPHING		(-23)
+#define PN_DEVICES		(-24)
+#define PN_SEARCHING		(-25)
+#define PN_SPIRITUALITY		(-26)
+#define PN_PETKEEPING		(-27)
+#define PN_MISSILE_WEAPONS		(-28)
+#define PN_TECHNIQUES		(-29)
+#define PN_IMPLANTS		(-30)
+#define PN_SEXY_FLATS		(-31)
+#define PN_SHII_CHO		(-32)
+#define PN_MAKASHI		(-33)
+#define PN_SORESU		(-34)
+#define PN_ATARU		(-35)
+#define PN_SHIEN		(-36)
+#define PN_DJEM_SO		(-37)
+#define PN_NIMAN		(-38)
+#define PN_JUYO		(-39)
+#define PN_VAAPAD		(-40)
+#define PN_MARTIAL_ARTS		(-41)
+#define PN_RIDING		(-42)
+#define PN_TWO_WEAPONS		(-43)
+#define PN_LIGHTSABER		(-44)
+
+#ifndef OVLB
+
+STATIC_DCL NEARDATA const short skill_names_indices[];
+STATIC_DCL NEARDATA const char *odd_skill_names[];
+
+#else	/* OVLB */
+
+/* KMH, balance patch -- updated */
+STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
+	0,                DAGGER,         KNIFE,        AXE,
+	PICK_AXE,         SHORT_SWORD,    BROADSWORD,   LONG_SWORD,
+	TWO_HANDED_SWORD, SCIMITAR,       PN_SABER,     CLUB,
+	PN_PADDLE,        MACE,           MORNING_STAR,   FLAIL,
+	PN_HAMMER,        QUARTERSTAFF,   PN_POLEARMS,  SPEAR,
+	JAVELIN,          TRIDENT,        LANCE,        BOW,
+	SLING,            PN_FIREARMS,    CROSSBOW,       DART,
+	SHURIKEN,         BOOMERANG,      PN_WHIP,      UNICORN_HORN,
+	PN_LIGHTSABER,
+	PN_ATTACK_SPELL,     PN_HEALING_SPELL,
+	PN_DIVINATION_SPELL, PN_ENCHANTMENT_SPELL,
+	PN_PROTECTION_SPELL,            PN_BODY_SPELL,
+	PN_OCCULT_SPELL,
+	PN_ELEMENTAL_SPELL,
+	PN_CHAOS_SPELL,
+	PN_MATTER_SPELL,
+	PN_BARE_HANDED,	PN_HIGH_HEELS,
+	PN_GENERAL_COMBAT,	PN_SHIELD,	PN_BODY_ARMOR,
+	PN_TWO_HANDED_WEAPON,	PN_POLYMORPHING,	PN_DEVICES,
+	PN_SEARCHING,	PN_SPIRITUALITY,	PN_PETKEEPING,
+	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
+	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
+	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
+	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,
+	PN_MARTIAL_ARTS, 
+	PN_TWO_WEAPONS,
+	PN_RIDING,
+};
+
+
+STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
+    "no skill",
+    "polearms",
+    "saber",
+    "hammer",
+    "whip",
+    "paddle",
+    "firearms",
+    "attack spells",
+    "healing spells",
+    "divination spells",
+    "enchantment spells",
+    "protection spells",
+    "body spells",
+    "occult spells",
+    "elemental spells",
+    "chaos spells",
+    "matter spells",
+    "bare-handed combat",
+    "high heels",
+    "general combat",
+    "shield",
+    "body armor",
+    "two-handed weapons",
+    "polymorphing",
+    "devices",
+    "searching",
+    "spirituality",
+    "petkeeping",
+    "missile weapons",
+    "techniques",
+    "implants",
+    "sexy flats",
+    "form I (Shii-Cho)",
+    "form II (Makashi)",
+    "form III (Soresu)",
+    "form IV (Ataru)",
+    "form V (Shien)",
+    "form V (Djem So)",
+    "form VI (Niman)",
+    "form VII (Juyo)",
+    "form VII (Vaapad)",
+    "martial arts",
+    "riding",
+    "two-weapon combat",
+    "lightsaber"
+};
+
+#endif	/* OVLB */
+
+#define P_NAME(type) (skill_names_indices[type] > 0 ? \
+		      OBJ_NAME(objects[skill_names_indices[type]]) : \
+			odd_skill_names[-skill_names_indices[type]])
+
 extern boolean notonhead;	/* for long worms */
 
 #define get_artifact(o) \
@@ -511,7 +649,7 @@ init_artifacts1()
     }
 #endif 
     /* KMH -- Should be expert in quest artifact */
-    if (urole.questarti &&
+    if (urole.questarti && !isamerican && !Role_if(PM_ANACHRONOUNBINDER) &&
 	    (objects[artilist[urole.questarti].otyp].oc_class == WEAPON_CLASS ||
 	     objects[artilist[urole.questarti].otyp].oc_class == TOOL_CLASS)) {
 	int skill = objects[artilist[urole.questarti].otyp].oc_skill;
@@ -2967,8 +3105,38 @@ doinvoke()
 					break;
 				case 21:
 					if (!(HAggravate_monster & INTRINSIC) && !(HAggravate_monster & TIMEOUT)) {
-						pline("A familiar is summoned!");
-						(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE);
+
+						int maxtrainingamount = 0;
+						int skillnumber = 0;
+						int actualskillselection = 0;
+						int amountofpossibleskills = 1;
+						int i;
+
+						for (i = 0; i < P_NUM_SKILLS; i++) {
+							if (P_SKILL(i) != P_ISRESTRICTED) continue;
+
+							if (P_ADVANCE(i) > 0 && P_ADVANCE(i) >= maxtrainingamount) {
+								if (P_ADVANCE(i) > maxtrainingamount) {
+									amountofpossibleskills = 1;
+									skillnumber = i;
+									maxtrainingamount = P_ADVANCE(i);
+								} else if (!rn2(amountofpossibleskills + 1)) {
+									amountofpossibleskills++;
+									skillnumber = i;
+								} else {
+									amountofpossibleskills++;
+								}
+							}
+						}
+
+						if (skillnumber > 0 && maxtrainingamount > 0) {
+							unrestrict_weapon_skill(skillnumber);
+							P_MAX_SKILL(skillnumber) = (maxtrainingamount >= 540 ? P_SUPREME_MASTER : maxtrainingamount >= 160 ? P_GRAND_MASTER : maxtrainingamount >= 20 ? P_MASTER : P_EXPERT);
+							pline("You can now learn the %s skill, with a new cap of %s.", P_NAME(skillnumber), maxtrainingamount >= 540 ? "supreme master" : maxtrainingamount >= 160 ? "grand master" : maxtrainingamount >= 20 ? "master" : "expert");
+						} else {
+							pline("Nothing happens...");
+						}
+
 					}
 
 					if (HAggravate_monster & INTRINSIC) {

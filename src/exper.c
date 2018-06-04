@@ -2904,6 +2904,43 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		}
 
+		if (Role_if(PM_ANACHRONOUNBINDER) && u.ulevel > u.urmaxlvlJ) {
+
+			u.urmaxlvlJ = u.ulevel;
+
+			int maxtrainingamount = 0;
+			int skillnumber = 0;
+			int actualskillselection = 0;
+			int amountofpossibleskills = 1;
+			int i;
+
+			for (i = 0; i < P_NUM_SKILLS; i++) {
+				if (P_SKILL(i) != P_ISRESTRICTED) continue;
+
+				if (P_ADVANCE(i) > 0 && P_ADVANCE(i) >= maxtrainingamount) {
+					if (P_ADVANCE(i) > maxtrainingamount) {
+						amountofpossibleskills = 1;
+						skillnumber = i;
+						maxtrainingamount = P_ADVANCE(i);
+					} else if (!rn2(amountofpossibleskills + 1)) {
+						amountofpossibleskills++;
+						skillnumber = i;
+					} else {
+						amountofpossibleskills++;
+					}
+				}
+			}
+
+			if (skillnumber > 0 && maxtrainingamount > 0) {
+				unrestrict_weapon_skill(skillnumber);
+				P_MAX_SKILL(skillnumber) = (maxtrainingamount >= 5000 ? P_SUPREME_MASTER : maxtrainingamount >= 500 ? P_GRAND_MASTER : maxtrainingamount >= 50 ? P_MASTER : P_EXPERT);
+				pline("You can now learn the %s skill, with a new cap of %s.", P_NAME(skillnumber), maxtrainingamount >= 5000 ? "supreme master" : maxtrainingamount >= 500 ? "grand master" : maxtrainingamount >= 50 ? "master" : "expert");
+			} else {
+				pline("You've trained no unknown skills since your last level up and therefore you unfortunately don't learn anything new.");
+			}
+
+		}
+
 		if (Role_if(PM_MYSTIC) && u.ulevel > u.urmaxlvlH) {
 
 		u.urmaxlvlH = u.ulevel;

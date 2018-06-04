@@ -15292,6 +15292,12 @@ struct obj *obj;
 					pline("Artifact specs: +3 to-hit and +4 stun damage, magic resistance when wielded."); break;
 				case ART_JUUPAD_STYLE:
 					pline("Artifact specs: +1 to-hit and double damage. For some reason, Chris refuses to add a Vaapad style to dnethack, which would be an alternate form 7; he says it's the same as Juyo, yet he has both Shien and Djem So as form 5... *headscratch*"); break;
+				case ART_ELDER_CEREBRAL_FLUID:
+					pline("Artifact specs: +10 to-hit and +2 level drain damage, energy regeneration and half spell damage when carried, can be invoked for energy boost, lawful, anachronounbinder quest artifact. This artifact was designed by Demo and is a dilithium crystal in demogorgonhack, but I (Amy) decided to make it a weapon instead."); break;
+				case ART_CERULEAN_SMASH:
+					pline("Artifact specs: +10 to-hit and +14 damage to cold-susceptible monsters, +10 charisma when wielded, allows you to dig through grave walls in one turn and can be invoked for phasing, chaotic, hussy quest artifact."); break; /* no mention of the evil effect for non-hussy players, this is on purpose */
+				case ART_ULTIMATE_PICK:
+					pline("Artifact specs: +20 damage, neutral, mason quest artifact."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

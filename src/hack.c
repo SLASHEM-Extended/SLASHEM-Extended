@@ -1156,7 +1156,7 @@ int mode;
 	} else if (tmpr->typ == GRAVEWALL) {
 		/* Once again, passwall intentionally does not help --Amy */
 		if (mode != DO_MOVE) return FALSE;
-		if (rn2(5)) {
+		if (rn2(5) && !(uwep && uwep->oartifact == ART_CERULEAN_SMASH) ) {
 			Norep("You dig into the grave wall.");
 			TimerunBug += 1; /* ugly hack --Amy */
 			return FALSE;
@@ -4145,8 +4145,8 @@ register int amount;
 	if (u.contamination < 0) u.contamination = 0;
 
 	if (u.contamination == 0 && precheckamount >= 1) pline(Hallucination ? "Your body feels completely normal again." : "Your contamination has faded away completely.");
-	if (u.contamination < 100 && u.contamination >= 1 && precheckamount >= 100) pline(Hallucination ? "Your body no longer itches." : "Your contamination decreased to a low level.");
-	if (u.contamination < 200 && u.contamination >= 100 && precheckamount >= 200) pline(Hallucination ? "The itching on your body decreases." : "You are only very slightly contaminated now.");
+	if (u.contamination < 100 && u.contamination >= 1 && precheckamount >= 100) pline(Hallucination ? "Your body no longer itches." : "You are only very slightly contaminated now.");
+	if (u.contamination < 200 && u.contamination >= 100 && precheckamount >= 200) pline(Hallucination ? "The itching on your body decreases." : "Your contamination decreased to a low level.");
 	if (u.contamination < 400 && u.contamination >= 200 && precheckamount >= 400) pline(Hallucination ? "Your ulcers disappear." : "You are only lightly contaminated now.");
 	if (u.contamination < 600 && u.contamination >= 400 && precheckamount >= 600) pline(Hallucination ? "Your digestive tract seems okay now." : "Your contamination is no longer severe.");
 	if (u.contamination < 800 && u.contamination >= 600 && precheckamount >= 800) pline(Hallucination ? "Your body no longer tries to consume itself." : "You are only severely contaminated now.");

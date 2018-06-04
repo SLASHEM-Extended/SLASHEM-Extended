@@ -1939,6 +1939,7 @@ int x;
 		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
 		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WONDERLOVELINESS) tmp += 5;
 		if (uimplant && uimplant->oartifact == ART_WONDERLOVELINESS) tmp += 5;
+		if (uwep && uwep->oartifact == ART_CERULEAN_SMASH) tmp += 10;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemaleTrapSolvejg) tmp += 5;
