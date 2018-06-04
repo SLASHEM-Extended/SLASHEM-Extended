@@ -2035,6 +2035,7 @@ register int pm;
 		break;
 
 	    case PM_WRAITH:
+	    case PM_HUMAN_WRAITH:
 	    case PM_BIG_WRAITH:
 	    case PM_HUGE_WRAITH:
 	    case PM_GIGANTIC_WRAITH:
