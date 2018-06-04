@@ -1115,6 +1115,10 @@ struct obj *instr;
 					break;
 				    }
 			}
+			if (instr && instr->cursed) { /* evil patch idea: cursed instruments make the drawbridge lie to you */
+				tumblers = rn2(6);
+				gears = rn2(6);
+			}
 			 if(tumblers) {
 			if(gears)
 			    You_hear("%d tumbler%s click and %d gear%s turn.",
