@@ -202,8 +202,8 @@ struct monst *mtmp;
 	mresists = rn2(100) < resist_percentage;
 	scmresists = rn2(100) < resist_percentage;
 
-	return (boolean)((sobj_at(SCR_SCARE_MONSTER, x, y) && !scmresists)
-			 || (sengr_at("Elbereth", x, y) && !mresists && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone()) )
+	return (boolean)((sobj_at(SCR_SCARE_MONSTER, x, y) && !(Conflict && rn2(2)) && !scmresists)
+			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone()) )
 			 || (is_vampire(mtmp->data)
 			     && IS_ALTAR(levl[x][y].typ)));
 }
