@@ -298,6 +298,7 @@ E void water_detectX(void);
 E void do_mapping(void);
 E void do_mappingX(void);
 E void do_mappingY(void);
+E void do_mappingZ(void);
 E void do_vicinity_map(void);
 E void do_vicinity_mapX(void);
 E void cvt_sdoor_to_door(struct rm *);

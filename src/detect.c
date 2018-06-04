@@ -1289,6 +1289,25 @@ do_mappingY()
 }
 
 void
+do_mappingZ()
+{
+    register int zx, zy;
+    int uw = u.uinwater;
+
+    u.uinwater = 0;
+    for (zx = 1; zx < COLNO; zx++)
+	for (zy = 0; zy < ROWNO; zy++)
+	    if (rn2(2)) show_map_spot(zx, zy);
+    exercise(A_WIS, TRUE);
+    u.uinwater = uw;
+    if (!level.flags.hero_memory || Underwater) {
+	flush_screen(1);			/* flush temp screen */
+	display_nhwindow(WIN_MAP, TRUE);	/* wait */
+	docrt();
+    }
+}
+
+void
 do_vicinity_map()
 {
     register int zx, zy;

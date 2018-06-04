@@ -4157,7 +4157,7 @@ secureidchoice:
 		case WAN_MAGIC_MAPPING:
 			known = TRUE;
 			pline("A map coalesces in your mind!");
-			do_mapping();
+			do_mappingZ();
 			break;
 		case WAN_STINKING_CLOUD:
 		      {  coord cc;
