@@ -899,7 +899,7 @@ outtrapmap:
 	/* nerf by Amy - only detect 50% of all traps, because trap detection is very powerful if you think about it... */
     u.uinwater = 0;
     for (ttmp = ftrap; ttmp; ttmp = ttmp->ntrap)
-	if (rn2(2)) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
+	if (rn2(2) && (ttmp->trapdiff < rnd(150)) && (ttmp->trapdiff < rnd(150)) ) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
 
     for (obj = fobj; obj; obj = obj->nobj)
 	if ((obj->otyp==LARGE_BOX || obj->otyp==TREASURE_CHEST || obj->otyp==CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
@@ -970,7 +970,7 @@ outtrapmap:
 	/* nerf by Amy - only detect 50% of all traps, because trap detection is very powerful if you think about it... */
     u.uinwater = 0;
     for (ttmp = ftrap; ttmp; ttmp = ttmp->ntrap)
-	if (!rn2(4)) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
+	if (!rn2(4) && (ttmp->trapdiff < rnd(150)) && (ttmp->trapdiff < rnd(150)) ) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
 
     for (obj = fobj; obj; obj = obj->nobj)
 	if ((obj->otyp==LARGE_BOX || obj->otyp==CHEST || obj->otyp==TREASURE_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
@@ -1393,7 +1393,7 @@ void * num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if ((ttmp = t_at(zx, zy)) != 0) {
-		if(!ttmp->tseen && !ttmp->hiddentrap && ttmp->ttyp != STATUE_TRAP) {
+		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP) {
 			ttmp->tseen = 1;
 			newsym(zx,zy);
 			(*(int*)num)++;
@@ -1445,7 +1445,7 @@ void * num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if (!rn2(3) && (ttmp = t_at(zx, zy)) != 0) {
-		if(!ttmp->tseen && !ttmp->hiddentrap && ttmp->ttyp != STATUE_TRAP) {
+		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP) {
 			ttmp->tseen = 1;
 			newsym(zx,zy);
 			(*(int*)num)++;
@@ -1512,7 +1512,7 @@ void * num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if ((ttmp = t_at(zx, zy)) != 0) {
-		if (!ttmp->tseen && !ttmp->hiddentrap && ttmp->ttyp != STATUE_TRAP) {
+		if (!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP) {
 		    ttmp->tseen = 1;
 		    newsym(zx,zy);
 		    (*(int*)num)++;
@@ -1635,6 +1635,19 @@ register int aflag;
 		}
 	}
 
+	int trapdiffbonus = 0;
+	if (!(PlayerCannotUseSkills)) {
+		switch (P_SKILL(P_SEARCHING)) {
+			default: break;
+			case P_BASIC: trapdiffbonus = rnd(10); break;
+			case P_SKILLED: trapdiffbonus = rnd(20); break;
+			case P_EXPERT: trapdiffbonus = rnd(35); break;
+			case P_MASTER: trapdiffbonus = rnd(50); break;
+			case P_GRAND_MASTER: trapdiffbonus = rnd(75); break;
+			case P_SUPREME_MASTER: trapdiffbonus = rnd(100); break;
+		}
+	}
+
 	if(u.uswallow) {
 		if (!aflag)
 			pline(Hallucination ? "There must be some door here, allowing you to get out..." : "What are you looking for?  The exit?");
@@ -1727,8 +1740,10 @@ register int aflag;
 			}
 
 			/* finding traps is much too hard. Let's increase the chance. --Amy */
-			if ((trap = t_at(x,y)) && !trap->tseen && !trap->hiddentrap && (!rnl(8-fund) || !rn2(fundxtrachange) || (!rn2(fundxtrachange) && !rn2(2)) ) ) {
+			if ((trap = t_at(x,y)) && !trap->tseen && !trap->hiddentrap && (trap->trapdiff < rn2(100 + trapdiffbonus) ) && (trap->trapdiff < rn2(100 + trapdiffbonus + trapdiffbonus) ) && (!rnl(8-fund) || !rn2(fundxtrachange) || (!rn2(fundxtrachange) && !rn2(2)) ) ) {
 			    nomul(0, 0, FALSE);
+
+				pline("trap difficulty was %d", trap->trapdiff);
 
 			    if (trap->ttyp == STATUE_TRAP) {
  				mtmp = activate_statue_trap(trap, x, y, FALSE);

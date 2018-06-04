@@ -1523,6 +1523,8 @@ register int x, y, typ, replacechance;
 	else ttmp->tseen = 0;
 	ttmp->once = 0;
 	ttmp->tdetected = 0;
+	ttmp->trapdiff = 0; /* difficulty: higher values make it less likely for you to find it */
+	if (ttmp->ttyp != MAGIC_PORTAL) ttmp->trapdiff = level_difficulty();
 	ttmp->madeby_u = 0;
 	ttmp->dst.dnum = -1;
 	ttmp->dst.dlevel = -1;

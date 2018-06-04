@@ -18,6 +18,7 @@ struct trap {
 	d_level dst;	/* destination for portals */
 	coord launch;
 	int ttyp; /* are you kidding me? You only make room for 32 traps? That's not nearly enough for me! --Amy */
+	int trapdiff; /* difficulty - this affects your chance of finding it via search command */
 	Bitfield(tseen,1);
 	Bitfield(hiddentrap,1); /* invisible, and I mean really invisible, even if you have see invis --Amy */
 	Bitfield(once,1);
