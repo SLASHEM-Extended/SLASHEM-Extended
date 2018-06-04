@@ -2381,6 +2381,12 @@ donamelevel()
 
 	if (!(mptr = find_mapseen(&u.uz))) return 0;
 
+	if (!(DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT)) && mptr->custom) {
+
+		pline("This level is currently annotated as %s.", mptr->custom);
+
+	}
+
 	sprintf(qbuf,"What do you want to call this dungeon level? ");
 	getlin(qbuf, nbuf);
 
