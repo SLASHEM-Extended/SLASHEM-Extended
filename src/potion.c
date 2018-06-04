@@ -1758,6 +1758,63 @@ int wflevel;
 }
 
 void
+destroyarmorattack()
+{
+
+	struct obj *otmp2;
+
+	if (Antimagic && rn2(20)) {
+		shieldeff(u.ux, u.uy);
+		pline("A field of force surrounds you!");
+		return;
+	}
+
+	if (!rn2(4)) {
+
+		otmp2 = uwep;
+		if (!otmp2) {
+			pline("Your %s twitch.", makeplural(body_part(HAND)));
+			return;
+		} else if (stack_too_big(otmp2)) return; /* nothing happens, no message */
+		else if (otmp2 && otmp2->blessed && rn2(5)) pline("Your weapon shakes violently!");
+		else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your weapon shakes violently!");
+		else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your weapon shakes violently!");
+		else if (otmp2 && otmp2->greased) {
+			pline("Your weapon shakes violently!");
+			if (!rn2(2)) {
+				pline_The("grease wears off.");
+				otmp2->greased -= 1;
+				update_inventory();
+			}
+		} else {
+			useupall(otmp2);
+			pline("Your weapon evaporates!");
+		}
+
+	} else {
+
+		otmp2 = some_armor(&youmonst);
+
+		if (otmp2 && otmp2->blessed && rn2(5)) pline("Your body shakes violently!");
+		else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your body shakes violently!");
+		else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your body shakes violently!");
+		else if (otmp2 && otmp2->greased) {
+			pline("Your body shakes violently!");
+			if (!rn2(2)) {
+				pline_The("grease wears off.");
+				otmp2->greased -= 1;
+				update_inventory();
+			}
+		}
+
+		else if (!otmp2) pline("Your skin itches.");
+	      else if(!destroy_arm(otmp2)) pline("Your skin itches.");
+
+	}
+
+}
+
+void
 datadeleteattack()
 
 {
@@ -4276,7 +4333,7 @@ boolean your_fault;
 	case POT_MUTATION:
 
 		mon->isegotype = 1;
-		switch (rnd(174)) {
+		switch (rnd(176)) {
 			case 1:
 			case 2:
 			case 3: mon->egotype_thief = 1; break;
@@ -4451,6 +4508,11 @@ boolean your_fault;
 			case 172: mon->egotype_contaminator = 1; break;
 			case 173: mon->egotype_contaminator = 1; break;
 			case 174: mon->egotype_contaminator = 1; break;
+			case 175: mon->egotype_trembler = 1; break;
+			case 176:
+				if (rn2(100)) mon->egotype_destructor = 1;
+				else mon->egotype_worldender = 1;
+			break;
 		}
 
   		break;

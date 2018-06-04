@@ -175,8 +175,12 @@
 #define AD_SIN		115	/* increase sin counter */
 #define AD_CONT		116	/* contamination (similar to weeping angels in dnethack) */
 #define AD_AGGR		117	/* aggravate monster (gives the intrinsic temporarily, may spawn monsters) */
+#define AD_DEST		118	/* destroy weapon/armor - subject to saving throws */
+#define AD_TREM		119	/* trembling - temporarily decreases your to-hit and spellcasting chances */
 
-#define AD_ENDS		118	/* placeholder */
+#define AD_ENDS		120	/* placeholder */
+
+#define AD_RAGN		234	/* ragnarok - creates lava tiles and lots of hostile giants, dragons, demons etc. */
 
 #define AD_DATA		235	/* data delete - probably one of the most evil attacks in the game */
 

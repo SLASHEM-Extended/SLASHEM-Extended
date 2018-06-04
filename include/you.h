@@ -850,6 +850,7 @@ struct you {
 	int youaredead;		/* if you hang up at a prompt before an instadeath, i.e. sickness */
 
 	int negativeprotection;	/* AD_NPRO - deduct this amount from the player's AC */
+	int tremblingamount;	/* AD_TREM - reduces player's to-hit and spellcasting chances */
 	int chokhmahdamage;	/* AD_CHKH - damage increases by 1 with every hit */
 	int extralives;		/* for scroll of resurrection */
 

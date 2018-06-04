@@ -926,6 +926,11 @@ register int pm;
 	    HAggravate_monster |= FROMOUTSIDE;
 	}
 
+	if (dmgtype(&mons[pm], AD_RAGN) ) {
+		ragnarok();
+		if (isevilvariant) evilragnarok(level_difficulty());
+	}
+
 	switch(pm) {
 	    case PM_LITTLE_DOG:
 	    case PM_DOG:

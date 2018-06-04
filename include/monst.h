@@ -284,6 +284,10 @@ struct monst {
 	Bitfield(egotype_weeper,1); /* AD_CONT gaze */
 	Bitfield(egotype_reactor,1); /* AD_CONT hug */
 
+	Bitfield(egotype_destructor,1); /* AD_DEST */
+	Bitfield(egotype_trembler,1); /* AD_TREM */
+	Bitfield(egotype_worldender,1); /* AD_RAGN */
+
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */
 	Bitfield(crapbonus,6);

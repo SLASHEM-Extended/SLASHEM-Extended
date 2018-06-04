@@ -1053,6 +1053,16 @@ int traitno;
 			return "monsters whose attacks delete your data";
 		case 341:
 			return "monsters from the Evil Variant";
+		case 342:
+			return "shapeshifting monsters";
+		case 343:
+			return "monsters that move like grid bugs";
+		case 344:
+			return "monsters whose attacks destroy your armor and weapons";
+		case 345:
+			return "monsters whose attacks cause you to tremble";
+		case 346:
+			return "monsters who can cause Ragnarok";
 
 		default:
 			return "unknown";
@@ -3093,6 +3103,10 @@ boolean guaranteed;
 
 	if ((guaranteed || !rn2(10)) && u.negativeprotection) {sprintf(buf, " %d", u.negativeprotection);
 		enl_msg("Your protection was reduced. The amount ", "is", "was", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.tremblingamount) {sprintf(buf, " %d", u.tremblingamount);
+		enl_msg("You're trembling, which reduces your to-hit and spellcasting chances. The amount ", "is", "was", buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && u.extralives == 1) {
@@ -6173,6 +6187,11 @@ int final;
 	if (u.negativeprotection) {
 		sprintf(buf, " %d", u.negativeprotection);
 		dump("  Your protection was reduced by", buf);
+	}
+
+	if (u.tremblingamount) {
+		sprintf(buf, " %d", u.tremblingamount);
+		dump("  You were tremling, reducing your to-hit and spellcasting chances. Amount:", buf);
 	}
 
 	if (u.extralives == 1) {

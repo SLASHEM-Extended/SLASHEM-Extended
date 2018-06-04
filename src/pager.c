@@ -1749,6 +1749,9 @@ get_description_of_damage_type(uchar id)
 		case AD_AGGR: return "aggravate monster";
 		case AD_CONT: return "contamination";
 		case AD_DATA: return "data delete";
+		case AD_DEST: return "destroy armor or weapon";
+		case AD_TREM: return "trembling";
+		case AD_RAGN: return "ragnarok";
 
 		case AD_ENDS: return "placeholder attack";
 		default:

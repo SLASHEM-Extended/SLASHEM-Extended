@@ -1806,6 +1806,8 @@ int thrown;
 		tmp -= 2;
 	}
 
+	if (u.tremblingamount) tmp -= rnd(u.tremblingamount);
+
 	if (!rn2(20)) tmp -= 20; /* catastrophic failure on a "natural 20", similar to D&D --Amy */
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */

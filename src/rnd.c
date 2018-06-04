@@ -251,7 +251,7 @@ int
 randattack()
 {
 
-	switch (rnd(314)) {
+	switch (rnd(316)) {
 
 		case 1:
 		case 2:
@@ -681,6 +681,10 @@ randattack()
 		case 313:
 		case 314:
 			return AD_AGGR;
+		case 315:
+			return (rn2(100) ? AD_DEST : AD_RAGN);
+		case 316:
+			return AD_TREM;
 		default:
 			return AD_PHYS;
 

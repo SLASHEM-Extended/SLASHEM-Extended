@@ -1147,6 +1147,7 @@ mdamagem(magr, mdef, mattk)
 		break;
 	    case AD_STUN:
 	    case AD_FUMB:
+	    case AD_TREM:
 	    case AD_SOUN:
 		if (magr->mcan) break;
 		if (canseemon(mdef))
@@ -1648,6 +1649,12 @@ physical:
 		if (vis) pline("%s feeds on the lifeblood!", Monnam(magr) );
 		}
 
+		break;
+
+	    case AD_RAGN:
+
+		ragnarok();
+		if (isevilvariant && magr->m_lev > 1) evilragnarok(magr->m_lev);
 		break;
 
 	    case AD_AGGR:
@@ -2533,6 +2540,7 @@ int mdead;
 	    case AD_STUN:
 		tmp = 0; /* fall through */
 	    case AD_FUMB:
+	    case AD_TREM:
 	    case AD_SOUN:
 		if (!magr->mstun) {
 		    magr->mstun = 1;
@@ -2643,6 +2651,11 @@ int mdead;
 		if (mdef->mhp > mdef->mhpmax) mdef->mhp = mdef->mhpmax;
 		if (canseemon(mdef)) pline("%s looks healthier!", Monnam(mdef) );
 		}
+		break;
+
+	    case AD_RAGN:		
+		ragnarok();
+		if (isevilvariant && mdef->m_lev > 1) evilragnarok(mdef->m_lev);
 		break;
 
 	    case AD_AGGR:

@@ -679,6 +679,8 @@ register struct monst *mtmp;
 		tmp -= 2;
 	}
 
+	if (u.tremblingamount) tmp -= rnd(u.tremblingamount);
+
 	if (!rn2(20)) tmp -= 20; /* catastrophic failure on a "natural 20", similar to D&D --Amy */
 
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
@@ -3713,6 +3715,7 @@ register struct attack *mattk;
 	switch(mattk->adtyp) {
 	    case AD_STUN:
 	    case AD_FUMB:
+	    case AD_TREM:
 	    case AD_SOUN:
 		if(!Blind && !rn2(3))
 		    pline("%s %s for a moment.", Monnam(mdef),
@@ -4026,6 +4029,11 @@ register struct attack *mattk;
 			u.uen += (tmp + (u.ulevel / 2));
 			if (u.uen > u.uenmax) u.uen = u.uenmax;
 		}
+		break;
+
+	    case AD_RAGN:
+		ragnarok();
+		if (isevilvariant && u.ulevel > 1) evilragnarok(u.ulevel);
 		break;
 
 	    case AD_AGGR:
@@ -4631,6 +4639,7 @@ register struct attack *mattk;
 		break;
 	    case AD_STUN:
 	    case AD_FUMB:
+	    case AD_TREM:
 		if (haseyes(mdef->data) && mdef->mcansee) {
 		    pline("%s is stunned by your flash of light!", Monnam(mdef));
 		    mdef->mstun = 1;
@@ -4878,6 +4887,11 @@ register struct attack *mattk;
 			mdef->mhpmax--;
 			pline("%s feels bad!", Monnam(mdef));
 		}
+		break;
+
+	    case AD_RAGN:
+		ragnarok();
+		if (isevilvariant && u.ulevel > 1) evilragnarok(u.ulevel);
 		break;
 
 	    case AD_AGGR:
@@ -6484,7 +6498,7 @@ uchar aatyp;
 	    exercise(A_STR, FALSE);
 	    break;
 	  case AD_TCKL:
-		if(mhit && rn2(2)) {You("get hurt by %s spikes!", s_suffix(mon_nam(mon)));	
+		if(mhit) {You("get hurt by %s spikes!", s_suffix(mon_nam(mon)));	
 			mdamageu(mon, tmp);
 		}
 		break;
@@ -6509,6 +6523,13 @@ uchar aatyp;
 		HFumbling = FROMOUTSIDE | rnd(5);
 		incr_itimeout(&HFumbling, rnd(20));
 		u.fumbleduration += rnz(10 * (tmp + 1) );
+
+		break;
+
+	  case AD_TREM:
+
+		pline("You tremble!");
+		u.tremblingamount++;
 
 		break;
 
@@ -6867,6 +6888,12 @@ uchar aatyp;
 		}
 		break;
 
+	    case AD_RAGN:
+
+		ragnarok();
+		if (isevilvariant && mon->m_lev > 1) evilragnarok(mon->m_lev);
+		break;
+
 	    case AD_AGGR:
 
 		incr_itimeout(&HAggravate_monster, tmp);
@@ -6895,6 +6922,11 @@ uchar aatyp;
 	    case AD_DATA:
 
 		datadeleteattack();
+		break;
+
+	    case AD_DEST:
+
+		destroyarmorattack();
 		break;
 
 	    case AD_MINA:

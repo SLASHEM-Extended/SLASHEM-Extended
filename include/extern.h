@@ -2116,6 +2116,7 @@ E void badeffect(void);
 E void ragnarok(void);
 E void evilragnarok(int);
 E void datadeleteattack(void);
+E void destroyarmorattack(void);
 E int dopotion(struct obj *);
 E int peffects(struct obj *);
 E void healup(int,int,BOOLEAN_P,BOOLEAN_P);

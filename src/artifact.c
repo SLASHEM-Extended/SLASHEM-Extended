@@ -2668,7 +2668,7 @@ doinvoke()
 					if (!rn2(100)) randsp *= 3;
 					if (!rn2(1000)) randsp *= 5;
 					if (!rn2(10000)) randsp *= 10;
-					monstercolor = rnd(343);
+					monstercolor = rnd(346);
 
 					You_feel("that a group has arrived!");
 

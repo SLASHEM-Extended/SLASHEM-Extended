@@ -1728,6 +1728,8 @@ mattacku(mtmp)
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && FemaleTrapMadeleine) tmp += 100;
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemaleTrapWendy) tmp += rnd(20);
 
+	if (!rn2(20)) tmp += 20; /* "natural 20" like in D&D --Amy */
+
 	if (uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(5)) tmp -= 100;
 
 	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && attacktype(mtmp->data, AT_CLAW)) tmp += 100;
@@ -3376,6 +3378,69 @@ elena37:
 		a->adtyp = AD_ALIN;
 		a->damn = 2;
 		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_destructor) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DEST;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_trembler) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_TREM;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_worldender) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_RAGN;
+		a->damn = 0;
+		a->damd = 0;
 
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
 				!touch_petrifies(youmonst.data))) {
@@ -5129,6 +5194,15 @@ hitmu(mtmp, mattk)
 
 		break;
 
+	    case AD_TREM:
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+
+		pline("Your %s are trembling!", makeplural(body_part(HAND)));
+		u.tremblingamount++;
+
+		break;
+
 	    case AD_VULN:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
@@ -6426,6 +6500,22 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		datadeleteattack();
+
+		break;
+
+	    case AD_RAGN:
+
+		hitmsg(mtmp, mattk);
+		ragnarok();
+		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(mtmp->m_lev);
+
+		break;
+
+	    case AD_DEST:
+
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		destroyarmorattack();
 
 		break;
 
@@ -8151,38 +8241,38 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			}
 			break;
 		case AD_DRST:
-				You_feel("your strength drain away!");
+			You_feel("your strength drain away!");
 			if (!rn2(8)) {
 			    poisoned("The attack", A_STR, "strength drain", 30);
 			}
 			break;
 		case AD_DRDX:
-				You_feel("your muscles cramping!");
+			You_feel("your muscles cramping!");
 			if (!rn2(8)) {
 			    poisoned("The attack", A_DEX, "dexterity drain", 30);
 			}
 			break;
 		case AD_DRCO:
-				You_feel("a lack of force!");
+			You_feel("a lack of force!");
 			if (!rn2(8)) {
 			    poisoned("The attack", A_CON, "constitution drain", 30);
 			}
 			break;
 		case AD_WISD:
-				You_feel("naive!");
+			You_feel("naive!");
 			if (!rn2(8)) {
 			    poisoned("The attack", A_WIS, "wisdom drain", 30);
 			}
 			break;
 		case AD_DRCH:
-				You_feel("ugly!");
+			You_feel("ugly!");
 			if (!rn2(8)) {
 			    poisoned("The attack", A_CHA, "charisma drain", 30);
 			}
 			break;
 
 	      case AD_DREA:
-				pline("You have a nightmare!");
+			pline("You have a nightmare!");
 	
 			if (multi < 0) {
 				tmp *= 4;
@@ -8192,18 +8282,25 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 
 	      case AD_BADE:
-				pline("Bad things are happening to you!");
+			pline("Bad things are happening to you!");
 
 			badeffect();
 
 			break;
 
 	      case AD_FUMB:
-				pline("Mary-Sue alert!");
+			pline("Mary-Sue alert!");
 
 			HFumbling = FROMOUTSIDE | rnd(5);
 			incr_itimeout(&HFumbling, rnd(20));
 			u.fumbleduration += rnz(10 * (tmp + 1) );
+
+			break;
+
+	      case AD_TREM:
+			Your("%s are trembling uncontrollably!", makeplural(body_part(HAND)));
+
+			u.tremblingamount++;
 
 			break;
 
@@ -8336,6 +8433,17 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		case AD_DATA:
 
 			datadeleteattack();
+			break;
+
+		case AD_RAGN:
+
+			ragnarok();
+			if (isevilvariant && mtmp->m_lev > 1) evilragnarok(mtmp->m_lev);
+			break;
+
+		case AD_DEST:
+
+			destroyarmorattack();
 			break;
 
 		case AD_MINA:
@@ -10427,6 +10535,19 @@ common:
 		datadeleteattack();
 		break;
 
+	    case AD_RAGN:
+
+		mdamageu(mtmp, tmp);
+		ragnarok();
+		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(mtmp->m_lev);
+		break;
+
+	    case AD_DEST:
+
+		mdamageu(mtmp, tmp);
+		destroyarmorattack();
+		break;
+
 	    case AD_MINA:
 
 		{
@@ -11230,6 +11351,13 @@ common:
 		HFumbling = FROMOUTSIDE | rnd(5);
 		incr_itimeout(&HFumbling, rnd(20));
 		u.fumbleduration += rnz(10 * (tmp + 1) );
+
+		break;
+
+	    case AD_TREM:
+
+		u.tremblingamount++;
+		pline("Suddenly, your entire body trembles.");
 
 		break;
 
@@ -14532,6 +14660,25 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		break;
 
+	    case AD_RAGN:
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
+			pline("%s mumbles an eldritch incantation!", Monnam(mtmp));
+			ragnarok();
+			if (isevilvariant && mtmp->m_lev > 1) evilragnarok(mtmp->m_lev);
+		}
+
+		break;
+
+	    case AD_DEST:
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(25))) {
+			pline("%s fires the special cannon!", Monnam(mtmp));
+			destroyarmorattack();
+		}
+
+		break;
+
 	    case AD_MINA:
 
 		/* The fact that the gaze does not give a message is extra evil *and intentional*. --Amy */
@@ -14863,6 +15010,15 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			HFumbling = FROMOUTSIDE | rnd(5);
 			incr_itimeout(&HFumbling, rnd(20));
 			u.fumbleduration += rnz(10 * (dmgplus + 1) );
+		}
+
+		break;
+
+	    case AD_TREM:
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
+                pline("%s's gaze causes you to tremble!", Monnam(mtmp));
+
+			u.tremblingamount++;
 		}
 
 		break;
@@ -16549,6 +16705,7 @@ register struct attack *mattk;
 	    case AD_STUN: /* Yellow mold */
 		tmp = 0; /* fall through */
 	    case AD_FUMB:
+	    case AD_TREM:
 	    case AD_SOUN:
 		if (!mtmp->mstun) {
 		    mtmp->mstun = 1;
@@ -16648,6 +16805,11 @@ register struct attack *mattk;
 	    case AD_NTHR:
 		healup(tmp, 0, FALSE, FALSE);
 		You_feel("healthier!");
+		break;
+
+	    case AD_RAGN:
+		ragnarok();
+		if (isevilvariant && u.ulevel > 1) evilragnarok(u.ulevel);
 		break;
 
 	    case AD_AGGR:

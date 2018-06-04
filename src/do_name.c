@@ -902,6 +902,9 @@ boolean called;
 	    if (mtmp->egotype_radiator) sprintf(eos(buf), " Radiator");
 	    if (mtmp->egotype_weeper) sprintf(eos(buf), " Weeper");
 	    if (mtmp->egotype_reactor) sprintf(eos(buf), " Reactor");
+	    if (mtmp->egotype_destructor) sprintf(eos(buf), " Destructor");
+	    if (mtmp->egotype_trembler) sprintf(eos(buf), " Trembler");
+	    if (mtmp->egotype_worldender) sprintf(eos(buf), " World-ender");
 
 	}
 

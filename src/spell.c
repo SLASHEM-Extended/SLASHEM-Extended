@@ -2043,9 +2043,27 @@ boolean atme;
 
 		/* Higher spellcasting skills mean failure takes less mana. --Amy */
 
-		u.uen -= ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1) ;
+		u.uen -= ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
 		flags.botl = 1;
 		return(1);
+	}
+
+	if (u.tremblingamount) {
+		int tremblechance = (u.tremblingamount * 5 / 2);
+		if (rn2(100) < rnd(tremblechance)) {
+			You("screw up while casting the spell...");
+			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+			if (!rn2(10)) {
+				pline("In fact, you screwed up so badly that bad stuff happens...");
+				badeffect();
+			}
+
+			u.uen -= ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
+			flags.botl = 1;
+			return(1);
+		}
+
 	}
 
 	/* Players could cheat if they had just barely enough mana for casting a spell without the increased drain.

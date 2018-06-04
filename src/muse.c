@@ -2215,7 +2215,7 @@ mon_tele:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(343);
+			monstercolor = rnd(346);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
@@ -7574,7 +7574,7 @@ skipmsg:
 		mquaffmsg(mtmp, otmp);
 
 		mtmp->isegotype = 1;
-		switch (rnd(174)) {
+		switch (rnd(176)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7749,6 +7749,11 @@ skipmsg:
 			case 172: mtmp->egotype_contaminator = 1; break;
 			case 173: mtmp->egotype_contaminator = 1; break;
 			case 174: mtmp->egotype_contaminator = 1; break;
+			case 175: mtmp->egotype_trembler = 1; break;
+			case 176:
+				if (rn2(100)) mtmp->egotype_destructor = 1;
+				else mtmp->egotype_worldender = 1;
+			break;
 		}
 
 		if (oseen) makeknown(POT_MUTATION);
@@ -7760,7 +7765,7 @@ skipmsg:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		mtmp->isegotype = 1;
-		switch (rnd(174)) {
+		switch (rnd(176)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7935,6 +7940,11 @@ skipmsg:
 			case 172: mtmp->egotype_contaminator = 1; break;
 			case 173: mtmp->egotype_contaminator = 1; break;
 			case 174: mtmp->egotype_contaminator = 1; break;
+			case 175: mtmp->egotype_trembler = 1; break;
+			case 176:
+				if (rn2(100)) mtmp->egotype_destructor = 1;
+				else mtmp->egotype_worldender = 1;
+			break;
 		}
 
 		if (oseen) makeknown(WAN_MUTATION);
@@ -8296,7 +8306,7 @@ newboss:
 			monstercolor = rnd(15);
 			do { monstercolor = rnd(15); } while (monstercolor == CLR_BLUE);
 		} else {
-			monstercolor = rnd(343);
+			monstercolor = rnd(346);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
