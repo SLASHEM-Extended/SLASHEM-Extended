@@ -2819,6 +2819,7 @@ register int pm;
 		case PM_CHIEF_MIND_FLAYER:
 		case PM_PASSIVE_MIND_FLAYER:
 		case PM_MINDFLAY_WRAITH:
+		case PM_MIND_FLAYER_TELEPATH:
 	    case PM_MIND_FLAYER: {
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 #if 0
