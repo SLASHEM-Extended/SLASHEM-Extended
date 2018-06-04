@@ -1745,9 +1745,16 @@ register int aflag;
 
 			    if (trap->ttyp == STATUE_TRAP) {
  				mtmp = activate_statue_trap(trap, x, y, FALSE);
- 				if (mtmp != (struct monst *)0) 
+ 				if (mtmp != (struct monst *)0) {
 				    exercise(A_WIS, TRUE);
-				return(1);
+				    use_skill(P_SEARCHING,1); /* you found a trap, so the skill should train --Amy */
+				}
+
+				/* bah, so they made an extra bullshit return for statue traps... --Amy */
+				if (issoviet) {
+					pline("Komanda poiska neozhidanno ostanovilas' iz-za oshibki v ispolnyayemom fayle sovetskogo l'da. Potomu chto v Sovetskoy Rossii vy nikogda ne smozhete nayti material, dazhe yesli on nakhoditsya ryadom s vami, kha-kha.");
+					return(1);
+				}
 			    } else {
 				find_trap(trap);
 			    }
