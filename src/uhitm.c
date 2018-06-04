@@ -1223,7 +1223,9 @@ int dieroll;
 	if(!thrown && no_obj) {      /* attack with bare hands */
 	    if (Role_if(PM_MONK) && !Upolyd && u.ulevel/4 > objenchant)
 		objenchant = u.ulevel/4;
-	    noeffect = objenchant < canhitmon && (issoviet || rn2(3)) ;
+	    /* if you have gloves and they have enough enchantment, you should be able to hit the monster --Amy */
+	    noeffect = objenchant < canhitmon && !(uarmg && uarmg->spe >= canhitmon) && (issoviet || rn2(3));
+
 	    if (martial_bonus()) {
 		if (is_shade(mdat) || mon->egotype_shader) {
 		    tmp = rn2(3);
