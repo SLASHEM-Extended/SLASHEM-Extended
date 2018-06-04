@@ -15544,6 +15544,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"FIQhack 'nerfed' create monster summonstorms by making it so that the monster appears right next to you, even if the monster reading the scroll is standing very far away. Have fun if a minotaur is created adjacent to you!",
 	"There should be a monster named 'annoyance factor' in FIQhack, and its attacks should be non-lethal, doing stuff like trashing your stats, stealing your items, or transforming them into cursed -9 ones.",
 	"FIQhack has so many scrolls that can absolutely screw you over, especially if monsters read them. Earth, genocide, stinking cloud, summoning... three of those have instakilled players already, and the latter could theoretically do so too if it summons a minotaur, because no matter how far away the reading monster is, the minotaur will appear next to you and instagib you unless you're really buffed up.",
+	"Your attributes were damaged!",
+	"FIQ, the old heretic, actually went ahead and made it so that you don't have to ascend SLEX to become 'king' of the world in Junethack. This is of course something to go under the hashtag #notreallykingoftheworld because if you're not capable of ascending all variants you don't deserve the crown. Git gud scrub.",
 
 };
 

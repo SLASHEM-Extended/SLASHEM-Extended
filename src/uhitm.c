@@ -7206,6 +7206,29 @@ uchar aatyp;
 					AMAX(secondstat) = ABASE(secondstat);
 					AMAX(firststat) = ABASE(firststat);
 					pline("Your stats got scrambled!");
+
+					if (!rn2(3)) {
+
+						int reducedstat = rn2(A_MAX);
+						if(ABASE(reducedstat) <= ATTRMIN(reducedstat)) {
+							pline("Your health was damaged!");
+							u.uhpmax -= rnd(5);
+							if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+							if (u.uhp < 1) {
+								u.youaredead = 1;
+								killer = "nexus scrambling";
+								killer_format = KILLED_BY;
+								done(DIED);
+								u.youaredead = 0;
+							}
+
+						} else {
+							ABASE(reducedstat) -= 1;
+							AMAX(reducedstat) -= 1;
+							flags.botl = 1;
+							pline("Your attributes were damaged!");
+						}
+					}
 				}
 				break;
 		}
