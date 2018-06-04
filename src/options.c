@@ -346,6 +346,8 @@ static struct Bool_Opt
 	{"hybridevilvariant", &flags.hybridevilvariant, FALSE, DISP_IN_GAME}, 
 	{"hybridlevelscaler", &flags.hybridlevelscaler, FALSE, DISP_IN_GAME}, 
 
+	{"randomhybrids", &flags.randomhybrids, TRUE, DISP_IN_GAME},
+
 	{(char *)0, (boolean *)0, FALSE, 0}
 };
 

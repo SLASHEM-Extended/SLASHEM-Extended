@@ -6255,7 +6255,7 @@ int rolenum, gendnum, alignnum, pickhow;
 	if (ok_race(rolenum, i, gendnum, alignnum)) {
 	    if (races_ok == 0) {
 
-		    if (!rn2(10) && !flags.hybridcancel) {	/* hybrid races --Amy */
+		    if (!rn2(10) && !flags.hybridcancel && flags.randomhybrids) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
 			switch (rnd(27)) {
