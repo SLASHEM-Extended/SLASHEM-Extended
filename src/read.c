@@ -830,6 +830,16 @@ doread()
 	"Amy do u have a bundle and heart key on ur keyboard?", /* by Demo */
 	"I've always known that chicks will inherit the Earth, I just didn't know it'd be this much fun.", /* don't remember who said that, maybe Grasshopper? */
 	"oh wait, I got it now: all those who are complaining about the allegedly 'awful polearms interface' are using vikeys! no wonder! with vikeys, everything is awful :P number pad ftw!",
+	"i am the slex master, i ascend 500 times a clock cycle, i have a master guardian gmx3 vest and shoot the phasergons with my skooble gun that fires like 40 rocks a turn", /* by Demo */
+	"Nubere volunt et omnino hedera aureum, quod est pulchra puella tam mirabilis!",
+	"Unguibus et etiam habet pulchra!",
+	"sporkhack you are so stupid! why do you present me the prompt again if I cancel it with space? in vanilla, space removes the prompt completely!",
+	"I consider Nethack 3.6.1 a variant of vanilla NetHack",
+	"I'm the ultimate girl gamer!",
+	"My favorite SLEX role? Why, feminist, of course!",
+	"I participate in slutwalking",
+	"Yes, I look very sexy and it is not my fault if someone gropes me. Men have to learn to control their instincts, or else!",
+	"Genocide Nethack Fourk's tab confirmation",
 
 	    };
 	    char buf[BUFSZ];

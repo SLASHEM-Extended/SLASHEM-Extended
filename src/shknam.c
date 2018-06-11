@@ -208,6 +208,7 @@ static const char * const shktools[] = {
 	"Aimhtyhrra", "Essiar", "Sbut", "Arym Yresim", "Eirimnele",
 	"Tolasniw", "Aimyl", "Axxarhtoh", "Tcidsoa", "Redloheb", "Ycnuonna",
 	"Ahtariz", "Tlov", "Sohtilixitirk", "Nasrekir", "Owthtiek",
+	"Ledanagan",
 
     0
 };

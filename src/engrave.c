@@ -960,6 +960,7 @@ static const char *random_mesg[] = {
 	"Welcome to the party!",
 	"Quantify this egghead!",
 	"Everything in Demo's shop will cause a segfault when picked up.",
+	"THIS ROOM IS AN ILLUSION AND IS A TRAP DEVISUT BY SATAN. GO AHEAD DAUNTLESSLY! MAKE RAPID PROGRES!",
 
 };
 
@@ -4381,6 +4382,20 @@ static const char *epitaphs[] = {
 	"Tried to play the newest version of FIQhack and got annoyed to death by all the annoyance factors.",
 	"Tried to do Sokoban in FIQhack, using autotravel to skip past boring walking segments, and OF COURSE it pushed a boulder into a corner. I then committed sudoku because I don't want to play a variant where the travelto command is trashed. In vanilla 3.4.3 it would work!",
 	"Something in FIQhack used a scroll of summoning, and even though the monster reading it was standing very far away, the minotaur appeared right next to me and owned me. Yet another scroll that can randomly end your game in FIQhack! Genius!",
+	"These stupid fake earlygame bones piles in 3.6.x... now I'm wearing a cursed blindfold! why is everyone considering them to be a good idea? I think they're really silly!",
+	"maaaaaaaan shitty lag! it's absolute shit if, when you're walking down a winding corridor, it takes a split second after each turn you make, because you have to wait until the screen updates to see in which direction the corridor will continue!",
+	"Demo said that sporkhack was cancer, so I went to check it out and my death was so ridiculous that I can't help but agree with Demo's assertion. That trainwreck is literally unplayable.",
+	"Made the mistake to play Sporkhack. My samurai had 15 strength and maxxed long sword skill, yet the katana was still doing scratch damage, taking 5 hits for a BUGBEAR. Then an actually difficult monster appeared - a stone golem in this case - and simply owned me because you can never kill anything in that variant.",
+	"If Chris does not finally go ahead and fix the dnethack savegame corruption bug that I fixed in dnhslex ages ago and told him about how to fix, I will borrow Demo's words and start referring to him as 'a huge penis and a half'.",
+	"I played one game of slex, understood precisely nothing, and died to being poisoned when I thought I was immune to poison", /* by zid */
+	"Welcome to Sporkhack, where your samurai with 14 strength and expert long sword skill needs 5 hits with a katana for a wimpy gnome lord.",
+	"omg FIQhack is absolute shit, it still kills you by way of monsters using items that have player-hostile side effects! dwarves can apparently zap wands of cold that explode and make the shopkeeper angry at YOU!",
+	"Pressed R while levitating over open water in Sporkhack and someone made it so that there is no confirmation if the ring of levitation is the only accessory you're wearing.",
+	"The downstair once again refused to generate in Sporkhack, so I had to suicide.",
+	"Sporkhack must be a secret governmental torture machine. They probably invented it because waterboarding was banned and they needed a way to continue torturing their victims.",
+	"Ascended on the wrong high altar, was permitted to live but eventually died of old age.",
+	"Tried to eat something on the tile that Medusa died on and because the variant I played doesn't use the exemplary SLASH'EM interface, of course I ended up eating Medusa's corpse by mistake. Fix plz.",
+	"Tried to play a neutral atheist in Nethack Fourk. Eventually it became clear that the developer absolutely did not create any way to increase your alignment record, making it forever impossible to unlock the quest, so I suicided.",
 
 };
 
