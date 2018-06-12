@@ -83,8 +83,8 @@ unsigned *ospecial;
      *		  offsets.  The order is set in display.h.
      */
     if ((offset = (glyph - GLYPH_WARNING_OFF)) >= 0) {	/* a warning flash */
-	if (On_stairs(x,y) && levl[x][y].seenv && offset != S_GRAYGLYPH && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_STAIRS;
-	if (flags.graffitihilite && offset != S_GRAYGLYPH && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
+	if (On_stairs(x,y) && levl[x][y].seenv && offset != S_grayglyph && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_STAIRS;
+	if (flags.graffitihilite && offset != S_grayglyph && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
     	ch = warnsyms[offset];
 # ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
