@@ -248,6 +248,19 @@ boolean powersteal;
 	int do_charm = is_neuter(mtmp->data) || flags.female == mtmp->female;
 
 	int invisstealroll = 0;
+
+	int amountofstealings = 1;
+	int nobjtempvar = 0;
+	if (inv_cnt() > 50) {
+		nobjtempvar = inv_cnt();
+		while (nobjtempvar > 50) {
+			amountofstealings++;
+			nobjtempvar -= 40;
+		}
+	}
+stealagain:
+
+	invisstealroll = 0;
 	if (powersteal) invisstealroll = rnd(40);
 
 	char buf[BUFSZ];
@@ -267,8 +280,7 @@ nothing_to_steal:
 	    if(Blind)
 	      pline("Somebody tries to rob you, but finds nothing to steal.");
 	    else
-	      pline("%s tries to rob you, but there is nothing to steal!",
-		Monnam(mtmp));
+	      pline("%s tries to rob you, but there is nothing to steal!", Monnam(mtmp));
 	    return(1);  /* let thief flee */
 	}
 
@@ -304,10 +316,30 @@ nothing_to_steal:
 		return(0);
 	}
 	/* can't steal gloves while wielding - so steal the wielded item. */
-	if (otmp == uarmg && uwep && uwep->stckcurse) return(0);
-	if (otmp == uarm && uarmc && uarmc->stckcurse) return(0);
-	if (otmp == uarmu && uarmc && uarmc->stckcurse) return(0);
-	if (otmp == uarmu && uarm && uarm->stckcurse) return(0);
+	if (otmp == uarmg && uwep && uwep->stckcurse) {
+		if (amountofstealings > 1) {
+			amountofstealings--;
+			goto stealagain;
+		} else return(0);
+	}
+	if (otmp == uarm && uarmc && uarmc->stckcurse) {
+		if (amountofstealings > 1) {
+			amountofstealings--;
+			goto stealagain;
+		} else return(0);
+	}
+	if (otmp == uarmu && uarmc && uarmc->stckcurse) {
+		if (amountofstealings > 1) {
+			amountofstealings--;
+			goto stealagain;
+		} else return(0);
+	}
+	if (otmp == uarmu && uarm && uarm->stckcurse) {
+		if (amountofstealings > 1) {
+			amountofstealings--;
+			goto stealagain;
+		} else return(0);
+	}
 
 	if (otmp == uarmg && uwep && !uwep->stckcurse)
 	    otmp = uwep;
@@ -324,7 +356,11 @@ gotobj:
 		pline("%s tries to steal your %s, but you quickly protect them!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), doname(otmp));
 		/* can't say "you may steal them anyway", because the stack resisted,
 		 * which means the stealing attempt just failed unconditionally --Amy */
-		return (0);
+
+		if (amountofstealings > 1) {
+			amountofstealings--;
+			goto stealagain;
+		} else return(0);
 	}
 
 	/* artifacts resist stealing because I'm nice --Amy */
@@ -334,7 +370,14 @@ gotobj:
 
 		getlin ("Do you want to allow it to be stolen anyway? [yes/no]",buf);
 		(void) lcase (buf);
-		if (strcmp (buf, "yes")) return(0);
+		if (strcmp (buf, "yes")) {
+
+			if (amountofstealings > 1) {
+				amountofstealings--;
+				goto stealagain;
+			} else return(0);
+
+		}
 
 	}
 
@@ -349,20 +392,44 @@ gotobj:
 
 			getlin ("Allow it to be taken? [yes/no]",buf);
 			(void) lcase (buf);
-			if (strcmp (buf, "yes")) return(0);
+			if (strcmp (buf, "yes")) {
+
+				if (amountofstealings > 1) {
+					amountofstealings--;
+					goto stealagain;
+				} else return(0);
+
+			}
 		} else {
 			pline("%s tries to take off your %s, but you resist!", !canspotmon(mtmp) ? "It" : Monnam(mtmp), equipname(otmp));
 
 			getlin ("Do you want to allow it to be stolen anyway? [yes/no]",buf);
 			(void) lcase (buf);
-			if (strcmp (buf, "yes")) return(0);
+			if (strcmp (buf, "yes")) {
+
+				if (amountofstealings > 1) {
+					amountofstealings--;
+					goto stealagain;
+				} else return(0);
+
+			}
 		}
 	}
 
-	if(otmp->o_id == stealoid) return(0);
+	if(otmp->o_id == stealoid) {
+		if (amountofstealings > 1) {
+			amountofstealings--;
+			goto stealagain;
+		} else return(0);
+	}
 
 	/* I took the liberty of making saddles less likely to be stolen, because riding sucks enough as it is. --Amy */
-	if (rn2(5) && !issoviet && otmp == usaddle) return (0);
+	if (rn2(5) && !issoviet && otmp == usaddle) {
+		if (amountofstealings > 1) {
+			amountofstealings--;
+			goto stealagain;
+		} else return(0);
+	}
 	if (otmp == usaddle) dismount_steed(DISMOUNT_FELL);
 
 	/* animals can't overcome curse stickiness nor unlock chains */
@@ -387,7 +454,12 @@ gotobj:
 		/* the fewer items you have, the less likely the thief
 		   is going to stick around to try again (0) instead of
 		   running away (1) */
-		return !rn2(inv_cnt() / 5 + 2);
+
+		if (amountofstealings > 1) {
+			amountofstealings--;
+			goto stealagain;
+		} else return !rn2(inv_cnt() / 5 + 2);
+		
 	    }
 	}
 
@@ -475,7 +547,12 @@ gotobj:
 				stealoid = otmp->o_id;
 				stealmid = mtmp->m_id;
 				afternmv = stealarm;
-				return(0);
+
+				if (amountofstealings > 1) {
+					amountofstealings--;
+					goto stealagain;
+				} else return(0);
+
 			}
 		    }
 		    break;
@@ -510,7 +587,12 @@ gotobj:
 	    minstapetrify(mtmp, TRUE);
 	    return -1;
 	}
-	return((multi < 0) ? 0 : 1);
+
+	if (amountofstealings > 1) {
+		amountofstealings--;
+		goto stealagain;
+	} else return((multi < 0) ? 0 : 1);
+	
 }
 
 #endif /* OVLB */

@@ -894,6 +894,9 @@ rndcurse()			/* curse a few inventory items at random! */
 	struct	obj	*otmp;
 	static const char mal_aura[] = "feel a malignant aura surround %s.";
 
+	int verymanyitems;
+	int nobjtempvar;
+
 	if (uwep && (uwep->oartifact == ART_MAGICBANE) && rn2(20)) {
 	    You(mal_aura, "the magic-absorbing blade");
 	    return;
@@ -931,8 +934,20 @@ rndcurse()			/* curse a few inventory items at random! */
 #endif
 	    nobj++;
 	}
+
+	/* it's lame if you split 200 rocks to catch curses... gotta put a stop to that --Amy */
+	verymanyitems = 6;
+	nobjtempvar = 0;
+	if (nobj > 50) {
+		nobjtempvar = nobj;
+		while (nobjtempvar > 50) {
+			verymanyitems++;
+			nobjtempvar -= 10;
+		}
+	}
+
 	if (nobj) {
-	    for (cnt = rnd(6/((!!Antimagic) + (!!Half_spell_damage) + 1));
+	    for (cnt = rnd(verymanyitems/((!!Antimagic) + (!!Half_spell_damage) + 1));
 		 cnt > 0; cnt--)  {
 		onum = rnd(nobj);
 		for (otmp = invent; otmp; otmp = otmp->nobj) {
