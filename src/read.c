@@ -1289,13 +1289,19 @@ int curse_bless;
 		    }
 		} else if (is_blessed) {
 		    obj->spe = 1;
-		    if (issoviet) obj->age = 1500;
+		    if (issoviet) {
+				obj->age = 1500;
+				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
+		    }
 		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
 		} else {
 		    obj->spe = 1;
 		    obj->age += 750;
-		    if (issoviet && obj->age > 1500) obj->age = 1500;
+		    if (issoviet && obj->age > 1500) {
+				obj->age = 1500;
+				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
+		    }
 		    p_glow1(obj);
 		}
 		break;
