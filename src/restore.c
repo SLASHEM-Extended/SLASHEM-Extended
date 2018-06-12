@@ -473,31 +473,37 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_SUIKUN_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_SUIKUN_X], sizeof(struct permonst));
+	mons[PM_SUIKUN_X].mname = u.strpokshamblert;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_SUIKUN_X].mname = tname;
 	tname = mons[PM_HOUOU_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_HOUOU_X], sizeof(struct permonst));
+	mons[PM_HOUOU_X].mname = u.strpokshamblertp;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_HOUOU_X].mname = tname;
 	tname = mons[PM_INTERHACK_HORROR_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_INTERHACK_HORROR_X], sizeof(struct permonst));
+	mons[PM_INTERHACK_HORROR_X].mname = u.strshamblerx;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_INTERHACK_HORROR_X].mname = tname;
 	tname = mons[PM_NHTNG_HORROR_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_NHTNG_HORROR_X], sizeof(struct permonst));
+	mons[PM_NHTNG_HORROR_X].mname = u.strshamblerxa;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_NHTNG_HORROR_X].mname = tname;
 	tname = mons[PM_PETROGRAPHY_HORROR_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_PETROGRAPHY_HORROR_X], sizeof(struct permonst));
+	mons[PM_PETROGRAPHY_HORROR_X].mname = u.strshamblerza;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_PETROGRAPHY_HORROR_X].mname = tname;
 	tname = mons[PM_STONE_COLD_HORROR_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_STONE_COLD_HORROR_X], sizeof(struct permonst));
+	mons[PM_STONE_COLD_HORROR_X].mname = u.strshamblerz;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_STONE_COLD_HORROR_X].mname = tname;
 #endif
@@ -540,16 +546,19 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_MISNAMED_STARLIT_SKY].mname;
 #endif
 	mread(fd, (void *) &mons[PM_MISNAMED_STARLIT_SKY], sizeof(struct permonst));
+	mons[PM_MISNAMED_STARLIT_SKY].mname = u.starlit1;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_MISNAMED_STARLIT_SKY].mname = tname;
 	tname = mons[PM_WRONG_NAMED_STARLIT_SKY].mname;
 #endif
 	mread(fd, (void *) &mons[PM_WRONG_NAMED_STARLIT_SKY], sizeof(struct permonst));
+	mons[PM_WRONG_NAMED_STARLIT_SKY].mname = u.starlit2;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_WRONG_NAMED_STARLIT_SKY].mname = tname;
 	tname = mons[PM_ERRONEOUS_STARLIT_SKY].mname;
 #endif
 	mread(fd, (void *) &mons[PM_ERRONEOUS_STARLIT_SKY], sizeof(struct permonst));
+	mons[PM_ERRONEOUS_STARLIT_SKY].mname = u.starlit3;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_ERRONEOUS_STARLIT_SKY].mname = tname;
 #endif
@@ -693,11 +702,13 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_UNKNOWN_MIMIC_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_UNKNOWN_MIMIC_X], sizeof(struct permonst));
+	mons[PM_UNKNOWN_MIMIC_X].mname = u.strandommimic;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_UNKNOWN_MIMIC_X].mname = tname;
 	tname = mons[PM_UNKNOWN_PERMAMIMIC_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_UNKNOWN_PERMAMIMIC_X], sizeof(struct permonst));
+	mons[PM_UNKNOWN_MIMIC_X].mname = u.strandommimicb;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_UNKNOWN_PERMAMIMIC_X].mname = tname;
 #endif
@@ -755,61 +766,73 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_COLORLESS_MOLD_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_COLORLESS_MOLD_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_MOLD_X].mname = u.strandomfungus;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_MOLD_X].mname = tname;
 	tname = mons[PM_COLORLESS_FUNGUS_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_COLORLESS_FUNGUS_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_FUNGUS_X].mname = u.strandomfungusb;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_FUNGUS_X].mname = tname;
 	tname = mons[PM_COLORLESS_PATCH_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_COLORLESS_PATCH_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_PATCH_X].mname = u.strandomfungusc;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_PATCH_X].mname = tname;
 	tname = mons[PM_COLORLESS_FORCE_FUNGUS_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_COLORLESS_FORCE_FUNGUS_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_FORCE_FUNGUS_X].mname = u.strandomfungusd;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_FORCE_FUNGUS_X].mname = tname;
 	tname = mons[PM_COLORLESS_FORCE_PATCH_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_COLORLESS_FORCE_PATCH_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_FORCE_PATCH_X].mname = u.strandomfunguse;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_FORCE_PATCH_X].mname = tname;
 	tname = mons[PM_COLORLESS_WARP_FUNGUS_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_COLORLESS_WARP_FUNGUS_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_WARP_FUNGUS_X].mname = u.strandomfungusf;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_WARP_FUNGUS_X].mname = tname;
 	tname = mons[PM_COLORLESS_WARP_PATCH_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_COLORLESS_WARP_PATCH_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_WARP_PATCH_X].mname = u.strandomfungusg;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_WARP_PATCH_X].mname = tname;
 	tname = mons[PM_COLORLESS_STALK_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_COLORLESS_STALK_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_STALK_X].mname = u.strandomfungush;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_STALK_X].mname = tname;
 	tname = mons[PM_COLORLESS_SPORE_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_COLORLESS_SPORE_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_SPORE_X].mname = u.strandomfungusi;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_SPORE_X].mname = tname;
 	tname = mons[PM_COLORLESS_MUSHROOM_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_COLORLESS_MUSHROOM_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_MUSHROOM_X].mname = u.strandomfungusj;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_MUSHROOM_X].mname = tname;
 	tname = mons[PM_COLORLESS_GROWTH_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_COLORLESS_GROWTH_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_GROWTH_X].mname = u.strandomfungusk;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_GROWTH_X].mname = tname;
 	tname = mons[PM_COLORLESS_COLONY_X].mname;
 #endif
       mread(fd, (void *) &mons[PM_COLORLESS_COLONY_X], sizeof(struct permonst));
+	mons[PM_COLORLESS_COLONY_X].mname = u.strandomfungusl;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_COLORLESS_COLONY_X].mname = tname;
 #endif
@@ -861,6 +884,7 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_KRONG_SEPHIRAH_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_KRONG_SEPHIRAH_X], sizeof(struct permonst));
+	mons[PM_KRONG_SEPHIRAH_X].mname = u.strandomkopb;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_KRONG_SEPHIRAH_X].mname = tname;
 #endif
@@ -966,21 +990,25 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_ADULT_TATZELWORM_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_ADULT_TATZELWORM_X], sizeof(struct permonst));
+	mons[PM_ADULT_TATZELWORM_X].mname = u.strandomdragonb;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_ADULT_TATZELWORM_X].mname = tname;
 	tname = mons[PM_ADULT_AMPHITERE_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_ADULT_AMPHITERE_X], sizeof(struct permonst));
+	mons[PM_ADULT_AMPHITERE_X].mname = u.strandomdragonc;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_ADULT_AMPHITERE_X].mname = tname;
 	tname = mons[PM_BABY_TATZELWORM_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_BABY_TATZELWORM_X], sizeof(struct permonst));
+	mons[PM_BABY_TATZELWORM_X].mname = u.strandombdragonb;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_BABY_TATZELWORM_X].mname = tname;
 	tname = mons[PM_BABY_AMPHITERE_X].mname;
 #endif
 	mread(fd, (void *) &mons[PM_BABY_AMPHITERE_X], sizeof(struct permonst));
+	mons[PM_BABY_AMPHITERE_X].mname = u.strandombdragonc;
 #ifdef STUPIDRANDOMMONSTERBUG
 	mons[PM_BABY_AMPHITERE_X].mname = tname;
 #endif
