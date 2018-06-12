@@ -2382,6 +2382,7 @@ register struct obj *obj;
 		    is_acid = TRUE;
 		else if (dmgtype(mdef->data, AD_RUST))
 		    is_acid = FALSE;
+		else return;
 	} else
 	    return;
 
