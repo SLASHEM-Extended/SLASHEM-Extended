@@ -1,5 +1,22 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.2.4
+- Fixed bugs where yellow sneakers didn't work the way they should.
+- Changed the restore logic to hopefully prevent the crashes seen on some systems when the game goes through the list of monsters.
+- If the player has very many items in open inventory, curse items and item-stealing monsters can target more items at once.
+- Added a boolean option "knapsacklimit" that defaults to off, and if turned on, prevents the player from picking up items when having 52 or more items in inventory already.
+- Improved the way the game handles certain watery terrains. In particular, eels will hide in water tunnels now instead of being clearly visible.
+- Fixed the error where turning the autoopen option off would still result in doors autoopening.
+- Higher Djem So skill increases the chance that a thrown lightsaber comes back, and higher Juyo skill increases the chance to smash an enemy's weapon when using a two-handed weapon or katana.
+- Recharging a lightsaber no longer caps the total amount of power at 1500. Also, lightsabers and light sources now show how much energy they have left if they're fully identified.
+- A message is given if the player uses up a tool owned by a shopkeeper.
+- The ancient race is once again capable of getting any random technique at game start, except those learned from training skills.
+- In evilvariant mode, the prompt given by a cursed scroll of identify is more realistic.
+- Toned down the message spam when searching in soviet mode.
+- Fixed the bug where monsters attacking each other in soviet mode would always cause their weapons to rust.
+- The uncurse service offered by shopkeepers works now even if the shopkeeper doesn't handle the item. Also improved the message given when using the identify service.
+- Fixed the bug where dying from quaffing a poisoned well would give a "glorkum 0 0 0" death message.
+
 2.2.3
 - If a blind player tries to search and causes a statue trap to animate, it no longer illogically stops the searching from finding stuff on the other adjacent tiles.
 - Fixed an error where shopkeepers would sometimes not reduce the amount of money they have when giving money to the player.
