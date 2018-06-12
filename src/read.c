@@ -840,6 +840,7 @@ doread()
 	"I participate in slutwalking",
 	"Yes, I look very sexy and it is not my fault if someone gropes me. Men have to learn to control their instincts, or else!",
 	"Genocide Nethack Fourk's tab confirmation",
+	"I ascended Splicehack in June 2018 and at that time it was the fastest turncount ascension ever in that variant!",
 
 	    };
 	    char buf[BUFSZ];

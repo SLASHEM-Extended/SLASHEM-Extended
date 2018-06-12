@@ -15580,7 +15580,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Man xnethack and all other 3.6.x variants are sooooooooo annoying, whose brilliant idea was to make it so that statues look like monsters? now I have to farlook every white b to see if it's an alive quivering blob or just a statue!"
 	"The Nethack 3.6.x devteam should absolutely add a boolean option that makes statues look like statues again, because until then those variants are #notvanillanethack. Imagine what a new player who starts with 3.6.1 will think - they'll assume that statues looking like monsters is 'intended' and 'vanilla behavior' which it most definitely isn't!",
 	"Nethack 3.6.x is the cause of many holy wars among the playerbase, because those of us who grew up with 3.4.3 rightfully claim that it's variantish if statues no longer look like statues. Why make it so retarded that you have to farlook every white A to tell whether it's a statue of an aleax or an alive angel?",
-	"Of COURSE xnethack is yet another one of the "lol nope you can't restore stats via unihorn" variants!",
+	"Of COURSE xnethack is yet another one of the 'lol nope you can't restore stats via unihorn' variants!",
 	"LOL Sporkhack really made it so that bugles aren't tonal instruments anymore. Literally everyone on the hardfought channel told lorimer that they are tonal in real life, yet he refuses to change that. It has 'piss off the player' written all over it.",
 	"If Loki sends a succubus to make you 'pay for your indiscretion', it means he basically says fuck you.",
 	"You tp on top of a tree. You see Croesus in the distance. 'hey! that bastard owes me money!'",
@@ -15619,6 +15619,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"The Lord of the Foocubi is notable for their thieving ability which is completely broken in vanilla. Sure, put such an overpowered ability on a really high-level monster and make it covetous to boot, that's certainly not going to be unbalanced at all!",
 	"Wands of poison gas create error messages in Splicehack when the soldier zapping one also has a knife, because somehow the soldier will be zapping the knife.",
 	"Did you know? Noty was the first known player to ascend SpliceHack.",
+	"The Amy managed to ascend Splicehack in June 2018, but holy hell is that variant a motherfucker. Not only do you suffer from the changes made by the 3.6.x variant, the author also added marjids and other really annoying monsters.",
+	"Whaaaaaaaaaaaaaaat dnethack made it so that female samurai (and only female ones) start with the absolute crap weapons? I shall now accuse the developer of genderism, sexism, transmisogyny etc. and start a tumblr blog about how this is absolutely unacceptable in 2018. Just kidding! :P",
+	"Nethack 3.6.x 'improved' the ultra-boring Gehennom with its always-the-same mazes by adding a different kind of always-the-same maze that is literally exactly the same type of maze except *with invisible walls*. Like, what were they thinking???",
 
 };
 
