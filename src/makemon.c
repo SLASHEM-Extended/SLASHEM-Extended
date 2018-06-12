@@ -207,7 +207,11 @@ register struct monst *mtmp;
 	int bias;
 
 	bias = (is_lord(ptr) * 2) + (is_prince(ptr) * 5) + (extra_nasty(ptr) * 3) + strongmonst(ptr);
-	switch(rnd(25 - (3 * bias))) {
+
+	if (bias > 0) bias += rnd(bias);  
+	if (bias > 24) bias = 24; /* preventing those eternal rnd() error messages at last --Amy */  
+
+	switch(rnd(25 - bias)) {
 	    case 1:
 		if(strongmonst(ptr)) (void) mongets(mtmp, rn2(20) ? BATTLE_AXE : TRIDENT);
 		else if (rn2(2)) m_initthrow(mtmp, rn2(200) ? DART : SPIKE, 25);
