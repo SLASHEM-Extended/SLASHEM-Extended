@@ -1465,6 +1465,21 @@ int thrown;
 	    return;
 	}
 
+	int djemsochance = 0;
+
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_DJEM_SO)) {
+
+			case P_BASIC:	djemsochance =  1; break;
+			case P_SKILLED:	djemsochance =  2; break;
+			case P_EXPERT:	djemsochance =  4; break;
+			case P_MASTER:	djemsochance =  6; break;
+			case P_GRAND_MASTER:	djemsochance =  8; break;
+			case P_SUPREME_MASTER:	djemsochance =  10; break;
+			default: djemsochance = 0; break;
+		}
+	}
+
 	if (u.uswallow) {
 		/* ball is not picked up by monster */
 		if (obj != uball) (void) mpickobj(u.ustuck,obj,FALSE);
@@ -1472,7 +1487,7 @@ int thrown;
 		/* the code following might become part of dropy() */
 		if ((obj->oartifact == ART_MJOLLNIR &&
 			Role_if(PM_VALKYRIE) && rn2(100)) ||
-		    (is_lightsaber(obj) && obj->lamplit && rn2(2) && (Role_if(PM_JEDI) || !rn2(2)) &&
+		    (is_lightsaber(obj) && obj->lamplit && (rn2(2) || (djemsochance >= rnd(11)) ) && (Role_if(PM_JEDI) || !rn2(2) || (djemsochance >= rnd(11)) ) &&
 			!(PlayerCannotUseSkills) &&
 		     P_SKILL(weapon_type(obj)) >= P_SKILLED)){
 		    /* we must be wearing Gauntlets of Power to get here */

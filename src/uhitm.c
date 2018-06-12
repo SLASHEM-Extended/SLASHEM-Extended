@@ -1605,6 +1605,22 @@ int dieroll;
 			    tmp += dmgbonus;
 		    } /* Techinuse Spectral Sword */
 
+			int juyohelpchance = 0;
+
+			if (!PlayerCannotUseSkills) {
+				switch (P_SKILL(P_JUYO)) {
+
+					case P_BASIC:	juyohelpchance =  1; break;
+					case P_SKILLED:	juyohelpchance =  2; break;
+					case P_EXPERT:	juyohelpchance =  3; break;
+					case P_MASTER:	juyohelpchance =  4; break;
+					case P_GRAND_MASTER:	juyohelpchance =  5; break;
+					case P_SUPREME_MASTER:	juyohelpchance =  6; break;
+					default: juyohelpchance = 0; break;
+				}
+
+			}
+
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
 		    } else if (mon->mflee && (Role_if(PM_ROGUE) || Role_if(PM_MURDERER) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
@@ -1612,15 +1628,11 @@ int dieroll;
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
 			tmp += issoviet ? u.ulevel : rno(u.ulevel); /* nerf by Amy */
 			hittxt = TRUE;
-		    } else if (dieroll == 2 && obj == uwep &&
-			  !u.twoweap &&
-			  obj->oclass == WEAPON_CLASS &&
-			  (bimanual(obj) ||
+		    } else if ((dieroll == 2 || (juyohelpchance >= rnd(100))) && obj == uwep &&
+			  !u.twoweap && obj->oclass == WEAPON_CLASS && (bimanual(obj) ||
 			    (Role_if(PM_SAMURAI) && obj->otyp == KATANA && !uarms)) &&
-			  ((wtype = uwep_skill_type()) != P_NONE && 
-				!(PlayerCannotUseSkills) &&
-			    P_SKILL(wtype) >= P_SKILLED) &&
-			  ((monwep = MON_WEP(mon)) != 0 &&
+			  ((wtype = uwep_skill_type()) != P_NONE && !(PlayerCannotUseSkills) &&
+			    P_SKILL(wtype) >= P_SKILLED) && ((monwep = MON_WEP(mon)) != 0 &&
 			   !is_flimsy(monwep) && !stack_too_big(monwep) &&
 			   !obj_resists(monwep, 50 + 15 * greatest_erosionX(obj), 100))) {
 			/*
