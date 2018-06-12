@@ -235,7 +235,7 @@ const char *verb;
 		return TRUE;
 	} else if (is_lava(x, y)) {
 		return fire_damage(obj, FALSE, FALSE, x, y);
-	} else if (is_waterypool(x, y)) {
+	} else if (is_waterypool(x, y) || is_watertunnel(x, y)) {
 		/* Reasonably bulky objects (arbitrary) splash when dropped.
 		 * If you're floating above the water even small things make noise.
 		 * Stuff dropped near fountains always misses */
@@ -4536,7 +4536,7 @@ long timeout;
      * check for iceboxes here as well.
      */
     if ((body->where == OBJ_FLOOR || body->where==OBJ_BURIED) &&
-      (is_waterypool(body->ox, body->oy) || is_lava(body->ox, body->oy) ||
+      (is_waterypool(body->ox, body->oy) || is_watertunnel(body->ox, body->oy) || is_lava(body->ox, body->oy) ||
       is_ice(body->ox, body->oy)))
 	pmtype = -1;
 

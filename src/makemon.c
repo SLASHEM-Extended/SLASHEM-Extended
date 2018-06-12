@@ -14760,7 +14760,7 @@ register int	mmflags;
 			if (mndx == PM_SUPER_STEALTH_ANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			break;
 		case S_HUMAN:
-			if (is_waterypool(x, y) && (mndx == PM_HUMAN_WEREPIRANHA || mndx == PM_HUMAN_WEREEEL || mndx == PM_HUMAN_WEREKRAKEN) )
+			if ((is_waterypool(x, y) || is_watertunnel(x, y) || is_shiftingsand(x, y)) && (mndx == PM_HUMAN_WEREPIRANHA || mndx == PM_HUMAN_WEREEEL || mndx == PM_HUMAN_WEREKRAKEN) )
 			    mtmp->mundetected = TRUE;
 			if ( (is_waterypool(x, y) || is_lava(x, y) ) && (mndx == PM_HUMAN_WEREFLYFISH) )
 			    mtmp->mundetected = TRUE;
@@ -14835,7 +14835,7 @@ register int	mmflags;
 			if (mndx == PM_SECLUDED_COLONY) set_mimic_sym(mtmp);
 			break;
 		case S_EEL:
-			if (is_waterypool(x, y))
+			if (is_waterypool(x, y) || is_watertunnel(x, y) || is_shiftingsand(x, y))
 			    mtmp->mundetected = TRUE;
 			if (mtmp->data == &mons[PM_CAMO_FISH] || mtmp->data == &mons[PM_DEFORMED_FISH] || mtmp->data == &mons[PM_AMORPHOUS_FISH]) set_mimic_sym(mtmp);
 
@@ -14846,7 +14846,7 @@ register int	mmflags;
 
 			break;
 		case S_FLYFISH:
-			if (is_waterypool(x, y) || is_lava(x, y) )
+			if (is_waterypool(x, y) || is_lava(x, y) || is_watertunnel(x, y) || is_shiftingsand(x, y) )
 			    mtmp->mundetected = TRUE;
 			if (mtmp->data == &mons[PM_FLYING_CAMO_FISH]) set_mimic_sym(mtmp);
 			if (ptr == &mons[PM_STALKISH]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}

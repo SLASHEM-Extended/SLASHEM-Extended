@@ -227,7 +227,7 @@ boolean barehanded;
 	    if (!((Blind ? Blind_telepat : Unblind_telepat) || Detect_monsters)) {
 		struct obj *obj;
 
-		if (Blind || (is_waterypool(mtmp->mx,mtmp->my) && !Underwater))
+		if (Blind || ((is_waterypool(mtmp->mx,mtmp->my) || is_watertunnel(mtmp->mx, mtmp->my) || is_shiftingsand(mtmp->mx, mtmp->my) ) && !Underwater))
 		    pline("Wait!  There's a hidden monster there!");
 		else if ((obj = level.objects[mtmp->mx][mtmp->my]) != 0) {
 			if (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE && !rn2(100) ) {

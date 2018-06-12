@@ -4624,6 +4624,10 @@ hitmu(mtmp, mattk)
 			what = something;
 		    else if (is_waterypool(mtmp->mx, mtmp->my) && !Underwater)
 			what = "the water";
+		    else if (is_watertunnel(mtmp->mx, mtmp->my) && !Underwater)
+			what = "a water tunnel";
+		    else if (is_shiftingsand(mtmp->mx, mtmp->my) && !Underwater)
+			what = "the shifting sand";
 		    else
 			what = doname(obj);
 

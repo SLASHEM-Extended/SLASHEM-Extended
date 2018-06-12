@@ -2193,7 +2193,9 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 	       ( lavaok || wantlava || !is_lava(nx,ny))) {*/
 
 	    if(( ( ( (is_waterypool(nx,ny) && !(is_crystalwater(nx,ny))) || is_watertunnel(nx,ny)) == wantpool) ||
-		 (is_crystalwater(nx,ny) && wantpool) || (is_shiftingsand(nx,ny) && wantpool) ||
+		 (is_crystalwater(nx,ny) && wantpool) ||
+		 ((is_moorland(nx,ny)) || (is_urinelake(nx,ny)) && rn2(2)) ||
+		 (is_shiftingsand(nx,ny) && wantpool) ||
 		 (is_lava(nx,ny) && wantlava) || (is_styxriver(nx,ny) && wantlava) || poolok) &&
 	       (lavaok || wantlava || (!is_lava(nx,ny) && !is_styxriver(nx,ny)) )) {
 		int dispx, dispy;
@@ -5979,7 +5981,7 @@ boolean msg;
 	    mtmp->perminvis = pm_invisible(mdat);
 	mtmp->minvis = mtmp->invis_blkd ? 0 : mtmp->perminvis;
 	if (!(hides_under(mdat) && OBJ_AT(mtmp->mx, mtmp->my)) &&
-			!(mdat->mlet == S_EEL && is_waterypool(mtmp->mx, mtmp->my)))
+			!(mdat->mlet == S_EEL && (is_waterypool(mtmp->mx, mtmp->my) || is_watertunnel(mtmp->mx, mtmp->my) || is_shiftingsand(mtmp->mx, mtmp->my) ) ))
 		mtmp->mundetected = 0;
 	if (u.usteed) {
 	    if (touch_petrifies(u.usteed->data) &&
