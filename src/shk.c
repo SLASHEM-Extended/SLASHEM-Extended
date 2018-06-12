@@ -5378,8 +5378,10 @@ shk_identify(slang, shkp)
 		** Identify successful if rn2() < #.  
 		*/
 		if (!rn2(ident_type == 'b' ? 4 : 2)) {
-			verbalize("Success!");
-			/* Rest of msg will come from identify(); */
+			verbalize("Success! Let's try to identify your item...");
+			/* Rest of msg will come from identify();
+			 * known quirk: the item may resist the identification attempt, this is not a bug
+			 * I added some extra message to make it clear that success isn't really guaranteed --Amy */
 		} else {
 			verbalize("Sorry.  I guess it's not your lucky day.");
 			return;
@@ -5503,6 +5505,8 @@ shk_uncurse(slang, shkp)
 		*/
 		if (!rn2(5)) {
 			verbalize("Success!");
+			if (!stack_too_big(obj)) uncurse(obj);
+			else pline("Whoops, sorry, actually no success because the stack was too big!");
 		} else {
 			verbalize("Sorry.  I guess it's not your lucky day.");
 			return;
