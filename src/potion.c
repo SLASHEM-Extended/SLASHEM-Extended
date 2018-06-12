@@ -5368,6 +5368,12 @@ boolean amnesia;
 	struct obj* otmp;
 	boolean used = FALSE;
 
+	if (uarmf && obj == uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ) ) {
+		pline("Urgh, your yellow sneakers hate getting wet!");
+		nomul(-rnd(20), "getting their yellow sneakers wet", TRUE);
+		losehp(rnd(10), "endangering their yellow sneakers", KILLED_BY);
+	}
+
 	if (stack_too_big(obj)) {
 		return(FALSE);
 	}

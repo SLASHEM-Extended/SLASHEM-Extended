@@ -13224,25 +13224,25 @@ register boolean force, here;
 	int luckpenalty = level.flags.lethe? 7 : 0;
 	struct obj *otmp;
 
-	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ) ) {
-	pline("Urgh, your yellow sneakers hate getting wet!");
-	nomul(-rnd(20), "getting their yellow sneakers wet", TRUE);
-	losehp(rnd(10), "endangering their yellow sneakers", KILLED_BY);
-	}
-
-	if (uarmf && uarmf->oartifact == ART_JANA_S_VAGINAL_FUN && !rn2(100)) {
-		u.youaredead = 1;
-		pline("Jana suddenly appears and pees on you, and you melt instantly.");
-		killer_format = KILLED_BY;
-		killer = "Jana's vaginal fun";
-		done(DIED);
-		u.youaredead = 0;
-	}
-
 	/* Scrolls, spellbooks, potions, weapons and
 	   pieces of armor may get affected by the water */
 	for (; obj; obj = otmp) {
 		otmp = here ? obj->nexthere : obj->nobj;
+
+		if (uarmf && obj == uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ) ) {
+			pline("Urgh, your yellow sneakers hate getting wet!");
+			nomul(-rnd(20), "getting their yellow sneakers wet", TRUE);
+			losehp(rnd(10), "endangering their yellow sneakers", KILLED_BY);
+		}
+
+		if (uarmf && obj == uarmf && uarmf->oartifact == ART_JANA_S_VAGINAL_FUN && !rn2(100)) {
+			u.youaredead = 1;
+			pline("Jana suddenly appears and pees on you, and you melt instantly.");
+			killer_format = KILLED_BY;
+			killer = "Jana's vaginal fun";
+			done(DIED);
+			u.youaredead = 0;
+		}
 
 		(void) snuff_lit(obj);
 
