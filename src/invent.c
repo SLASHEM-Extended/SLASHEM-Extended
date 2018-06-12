@@ -15169,7 +15169,7 @@ struct obj *obj;
 				case ART_ALISEH_S_RED_COLOR:
 					pline("Artifact specs: fire resistance and +10 charisma when worn, but increases the chance of monsters stealing your items, and if you have sex, the chance of having children is higher."); break;
 				case ART_KATIE_MELUA_S_FLEECINESS:
-					pline("Artifact specs: prevents your potions from being destroyed by cold and also gives cold resistance, increases the effect of healing potions and spells, but you cannot tame new pets and existing ones can spontaneously rebel. Lawful."); break;
+					pline("Artifact specs: prevents your potions from being destroyed by cold and also gives cold resistance and regeneration, plus it increases the effect of healing potions and spells, but you cannot tame new pets and existing ones can spontaneously rebel. Lawful."); break;
 				case ART_ELONA_S_SNAIL_TRAIL:
 					pline("Artifact specs: Wearing it as a snail will give +10 constitution and make you very fast, but if you're not a snail, it slows you down to half speed instead."); break;
 				case ART_GENDER_INSPECIFIC_WHIP:
