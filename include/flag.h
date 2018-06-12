@@ -71,6 +71,7 @@ struct flag {
 #ifdef KEEP_SAVE
 	boolean  keep_savefile; /* Keep Old Save files*/
 #endif
+	boolean  knapsacklimit;	/* re-activates the 52 item limit */
 	boolean  legacy;	/* print game entry "story" */
 	boolean  lit_corridor;	/* show a dark corr as lit if it is in sight */
 	boolean  made_amulet;

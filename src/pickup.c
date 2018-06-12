@@ -1216,16 +1216,17 @@ boolean telekinesis;
     if (*cnt_p < 1L) {
 	result = -1;	/* nothing lifted */
 
-/* Trying to allow the player to pick up as much as they want. --Amy */
+/* Trying to allow the player to pick up as much as they want. --Amy
+ * If you REALLY want the limit to come back for some weird reason, enable the knapsacklimit option */
 
-/* #ifndef GOLDOBJ
-    } else if (obj->oclass != COIN_CLASS && inv_cnt() >= 52 &&
+#ifndef GOLDOBJ
+    } else if (flags.knapsacklimit && obj->oclass != COIN_CLASS && inv_cnt() >= 52 &&
 		!merge_choice(invent, obj)) {
 #else
-    } else if (inv_cnt() >= 52 && !merge_choice(invent, obj)) {
+    } else if (flags.knapsacklimit && inv_cnt() >= 52 && !merge_choice(invent, obj)) {
 #endif
 	Your("knapsack cannot accommodate any more items.");
-	result = -1;*/	/* nothing lifted */
+	result = -1;	/* nothing lifted */
     } else {
 	result = 1;
 	prev_encumbr = near_capacity();

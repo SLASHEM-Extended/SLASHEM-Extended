@@ -158,6 +158,8 @@ static struct Bool_Opt
 #else
 	{"keep_savefile", (boolean *)0, FALSE, DISP_IN_GAME},
 #endif
+	{"knapsacklimit", &flags.knapsacklimit, FALSE, SET_IN_GAME},
+
 	{"large_font", &iflags.obsolete, FALSE, SET_IN_FILE},	/* OBSOLETE */
 	{"legacy", &flags.legacy, TRUE, DISP_IN_GAME},
 	{"lit_corridor", &flags.lit_corridor, TRUE, SET_IN_GAME},
