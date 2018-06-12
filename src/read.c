@@ -5113,7 +5113,11 @@ retry:
 		/* known = TRUE; */
 		if (sobj->cursed) { /* Credits go to TvTropes for creating this joke. The player doesn't actually die. --Amy */
 			pline("You fall below the bottom of the page! You die...");
-			pline("Do you want your possessions identified? DYWYPI? [ynq] (n) _");
+			if (isevilvariant) {
+				char qbuf[QBUFSZ];
+				sprintf(qbuf, "Do you want your possessions identified? DYWYPI?");
+				yn_function(qbuf, ynqchars, 'y');
+			} else pline("Do you want your possessions identified? DYWYPI? [ynq] (n) _");
 		}
 		if(confused)
 			You("identify this as an identify scroll.");
