@@ -2187,7 +2187,7 @@ dodrink()
 		pline(Hallucination ? "Urgh - that tastes like cactus juice with full-length thorns in it!" : "Ecch - that must have been poisonous!");
 		if(!Poison_resistance) {
 		    losestr(rnd(4));
-		    losehp(rnd(15), xname(otmp), KILLED_BY_AN);
+		    losehp(rnd(15), "quaffing from a poisoned well", KILLED_BY);
 		} else You("resist the effects but still don't feel so good.");
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE);
 		if (!rn2( (Poison_resistance && rn2(20) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE);
