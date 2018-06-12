@@ -1289,12 +1289,13 @@ int curse_bless;
 		    }
 		} else if (is_blessed) {
 		    obj->spe = 1;
-		    obj->age = 1500;
+		    if (issoviet) obj->age = 1500;
+		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
 		} else {
 		    obj->spe = 1;
 		    obj->age += 750;
-		    if (obj->age > 1500) obj->age = 1500;
+		    if (issoviet && obj->age > 1500) obj->age = 1500;
 		    p_glow1(obj);
 		}
 		break;

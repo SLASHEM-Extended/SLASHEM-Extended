@@ -6731,7 +6731,7 @@ dodip()
                 You("fill your %s with oil.", yname(obj));
 		check_unpaid(potion);	/* Yendorian Fuel Tax */
 		obj->age += 2*potion->age;	/* burns more efficiently */
-		if (obj->age > 1500L) obj->age = 1500L;
+		if (issoviet && obj->age > 1500L) obj->age = 1500L;
 		useup(potion);
 		exercise(A_WIS, TRUE);
 	    }

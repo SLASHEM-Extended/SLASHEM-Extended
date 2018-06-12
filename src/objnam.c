@@ -5158,6 +5158,10 @@ register struct obj *obj;
 		    sprintf(eos(buf), " of a%s %s",
 			index(vowels,*(mons[obj->corpsenm].mname)) ? "n" : "",
 			mons[obj->corpsenm].mname);
+
+		if (is_lightsaber(obj) && nn && obj->known) sprintf(eos(buf), " (%d)", obj->age);
+		if (age_is_relative(obj) && nn && obj->known) sprintf(eos(buf), " (%d)", obj->age);
+
 		break;
 	    case ARMOR_CLASS:
 		/* depends on order of the dragon scales objects */
@@ -5299,6 +5303,7 @@ register struct obj *obj;
 			strcat(buf, dn);
 			strcat(buf, " potion");
 		}
+		if (age_is_relative(obj) && nn && obj->known) sprintf(eos(buf), " (%d)", obj->age);
 		break;
 	case SCROLL_CLASS:
 		strcpy(buf, "scroll");
