@@ -5218,7 +5218,16 @@ materialchoice:
 				if (obj->oartifact == ART_GAROK_S_HAMMER_KIT && rn2(5)) {
 					pline("You use some material from the kit.");
 				} else {
+					if (obj->unpaid) {
+						struct monst *shkp = shop_keeper(*u.ushops);
+						if (shkp) {
+							You("use it, you pay for it!");
+							bill_dummy_object(obj);
+						}
+					}
+
 					delobj(obj);
+
 					noartispeak = TRUE;
 				}
 				pline("Success! The item's material got changed.");
@@ -5229,6 +5238,14 @@ materialchoice:
 		break;
 
 	case INTELLIGENCE_PACK:
+
+		if (obj->unpaid) {
+			struct monst *shkp = shop_keeper(*u.ushops);
+			if (shkp) {
+				You("use it, you pay for it!");
+				bill_dummy_object(obj);
+			}
+		}
 
 		delobj(obj);
 		noartispeak = TRUE;
@@ -5244,7 +5261,16 @@ materialchoice:
 
 	case CHARGER:
 
+		if (obj->unpaid) {
+			struct monst *shkp = shop_keeper(*u.ushops);
+			if (shkp) {
+				You("use it, you pay for it!");
+				bill_dummy_object(obj);
+			}
+		}
+
 		delobj(obj);
+
 		noartispeak = TRUE;
 
 		pline("You may charge an object.");
@@ -5286,6 +5312,14 @@ chargingchoice:
 
 		if (obj->oartifact == ART_I_THE_SAGE) {
 		    (void) makemon(&mons[PM_GUNNHILD_S_GENERAL_STORE], 0, 0, NO_MM_FLAGS);
+		}
+
+		if (obj->unpaid) {
+			struct monst *shkp = shop_keeper(*u.ushops);
+			if (shkp) {
+				You("use it, you pay for it!");
+				bill_dummy_object(obj);
+			}
 		}
 
 		if (obj->cursed && rn2(2)) {
