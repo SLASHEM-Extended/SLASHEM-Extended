@@ -1716,7 +1716,7 @@ register int aflag;
 
 				/* No idea why finding a monster stops searching the other squares. Bullshit, I say! --Amy */
 				if (issoviet) {
-					pline("Komanda poiska neozhidanno ostanovilas' iz-za oshibki v ispolnyayemom fayle sovetskogo l'da. Potomu chto v Sovetskoy Rossii vy nikogda ne smozhete nayti material, dazhe yesli on nakhoditsya ryadom s vami, kha-kha.");
+					if (!rn2(20)) pline("Komanda poiska neozhidanno ostanovilas' iz-za oshibki v ispolnyayemom fayle sovetskogo l'da. Potomu chto v Sovetskoy Rossii vy nikogda ne smozhete nayti material, dazhe yesli on nakhoditsya ryadom s vami, kha-kha.");
 					return(1);
 				}
 				else continue;
@@ -1752,7 +1752,7 @@ register int aflag;
 
 				/* bah, so they made an extra bullshit return for statue traps... --Amy */
 				if (issoviet) {
-					pline("Komanda poiska neozhidanno ostanovilas' iz-za oshibki v ispolnyayemom fayle sovetskogo l'da. Potomu chto v Sovetskoy Rossii vy nikogda ne smozhete nayti material, dazhe yesli on nakhoditsya ryadom s vami, kha-kha.");
+					if (!rn2(20)) pline("Komanda poiska neozhidanno ostanovilas' iz-za oshibki v ispolnyayemom fayle sovetskogo l'da. Potomu chto v Sovetskoy Rossii vy nikogda ne smozhete nayti material, dazhe yesli on nakhoditsya ryadom s vami, kha-kha.");
 					return(1);
 				}
 			    } else {
