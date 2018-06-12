@@ -14490,7 +14490,7 @@ u_init()
 
 	case PM_ANCIENT: /* random technique --Amy */
 
-		switch (rnd(142)) {
+		switch (rnd(169)) {
 
 			case 1: 
 			case 2: 
@@ -14734,6 +14734,66 @@ u_init()
 			case 142: 
 				if (!tech_known(T_BOOZE)) learntech(T_BOOZE, FROMOUTSIDE, 1);
 				break;
+			case 143: 
+			case 144: 
+			case 145: 
+				if (!tech_known(T_IRON_SKIN)) learntech(T_IRON_SKIN, FROMOUTSIDE, 1);
+				break;
+			case 146: 
+				if (!tech_known(T_POLYFORM)) learntech(T_POLYFORM, FROMOUTSIDE, 1);
+				break;
+			case 147: 
+			case 148: 
+			case 149: 
+				if (!tech_known(T_CONCENTRATING)) learntech(T_CONCENTRATING, FROMOUTSIDE, 1);
+				break;
+			case 150: 
+				if (!tech_known(T_SUMMON_PET)) learntech(T_SUMMON_PET, FROMOUTSIDE, 1);
+				break;
+			case 151: 
+			case 152: 
+				if (!tech_known(T_DOUBLE_THROWNAGE)) learntech(T_DOUBLE_THROWNAGE, FROMOUTSIDE, 1);
+				break;
+			case 153: 
+			case 154: 
+			case 155: 
+				if (!tech_known(T_SHIELD_BASH)) learntech(T_SHIELD_BASH, FROMOUTSIDE, 1);
+				break;
+			case 156: 
+			case 157: 
+				if (!tech_known(T_RECHARGE)) learntech(T_RECHARGE, FROMOUTSIDE, 1);
+				break;
+			case 158: 
+			case 159: 
+			case 160: 
+				if (!tech_known(T_SPIRITUALITY_CHECK)) learntech(T_SPIRITUALITY_CHECK, FROMOUTSIDE, 1);
+				break;
+			case 161: 
+				if (!tech_known(T_EDDY_WIND)) learntech(T_EDDY_WIND, FROMOUTSIDE, 1);
+				break;
+			case 162: 
+				if (!tech_known(T_BLOOD_RITUAL)) learntech(T_BLOOD_RITUAL, FROMOUTSIDE, 1);
+				break;
+			case 163: 
+				if (!tech_known(T_ENT_S_POTION)) learntech(T_ENT_S_POTION, FROMOUTSIDE, 1);
+				break;
+			case 164: 
+			case 165: 
+				if (!tech_known(T_LUCKY_GAMBLE)) learntech(T_LUCKY_GAMBLE, FROMOUTSIDE, 1);
+				break;
+			case 166: 
+				if (!tech_known(T_DECONTAMINATE)) learntech(T_DECONTAMINATE, FROMOUTSIDE, 1);
+				break;
+			case 167: 
+				if (!tech_known(T_WONDERSPELL)) learntech(T_WONDERSPELL, FROMOUTSIDE, 1);
+				break;
+			case 168: 
+				if (!tech_known(T_RESET_TECHNIQUE)) learntech(T_RESET_TECHNIQUE, FROMOUTSIDE, 1);
+				break;
+			case 169: 
+				if (!tech_known(T_DIAMOND_BARRIER)) learntech(T_DIAMOND_BARRIER, FROMOUTSIDE, 1);
+				break;
+
 
 			default:
 				break;
