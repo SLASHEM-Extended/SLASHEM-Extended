@@ -5503,6 +5503,8 @@ shk_uncurse(slang, shkp)
 		*/
 		if (!rn2(5)) {
 			verbalize("Success!");
+			if (!stack_too_big(obj)) uncurse(obj);  
+			else pline("Whoops, sorry, actually no success because the stack was too big!");
 		} else {
 			verbalize("Sorry.  I guess it's not your lucky day.");
 			return;
