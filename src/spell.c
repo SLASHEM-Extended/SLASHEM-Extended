@@ -1722,7 +1722,7 @@ boolean atme;
 
 	/* only being easier to cast is not good enough for the "special spell", since you can't have a failure rate
 	 * lower than 0%. Reduce cost of casting the special spell to 80%! --Amy */
-	if (spellid(spell) == urole.spelspec) { energy *= 4; energy /= 5; }
+	if (spellid(spell) == urole.spelspec) { if (rn2(10)) energy += 1; energy *= 4; energy /= 5; }
 
 	/* Some spells are just plain too powerful, and need to be nerfed. Sorry. --Amy */
 	if (spellid(spell) == SPE_FINGER_OF_DEATH) energy *= 2;
@@ -1748,14 +1748,15 @@ boolean atme;
 	if (spellid(spell) == SPE_NATURE_BEAM) { energy *= 5; energy /= 4;}
 
 	/* slight mana cost decrease if you're very skilled, to make skill matter more --Amy */
-	if (role_skill == P_SKILLED) { energy *= 19; energy /= 20;}
-	if (role_skill == P_EXPERT) { energy *= 18; energy /= 20;}
-	if (role_skill == P_MASTER) { energy *= 17; energy /= 20;}
-	if (role_skill == P_GRAND_MASTER) { energy *= 16; energy /= 20;}
-	if (role_skill == P_SUPREME_MASTER) { energy *= 15; energy /= 20;}
+	if (role_skill == P_SKILLED) { if (rn2(10)) energy += 1; energy *= 19; energy /= 20;}
+	if (role_skill == P_EXPERT) { if (rn2(10)) energy += 1; energy *= 18; energy /= 20;}
+	if (role_skill == P_MASTER) { if (rn2(10)) energy += 1; energy *= 17; energy /= 20;}
+	if (role_skill == P_GRAND_MASTER) { if (rn2(10)) energy += 1; energy *= 16; energy /= 20;}
+	if (role_skill == P_SUPREME_MASTER) { if (rn2(10)) energy += 1; energy *= 15; energy /= 20;}
 
-	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) energy /= 2; /* Casting any sort of magic uses half power for them */
+	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) { if (rn2(10)) energy += 1; energy /= 2; } /* Casting any sort of magic uses half power for them */
 	if (uwep && uwep->oartifact == ART_MANA_METER_BOOSTER) {
+		if (rn2(10)) energy += 1; 
 		energy *= 9;
 		energy /= 10;
 	}
@@ -1766,6 +1767,7 @@ boolean atme;
 	}
 
 	if (uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID) {
+		if (rn2(10)) energy += 1; 
 		energy *= 4;
 		energy /= 5;
 	}
@@ -1775,42 +1777,51 @@ boolean atme;
 		energy /= 20;
 	}
 	if (Upolyd && dmgtype(youmonst.data, AD_CLRC) ) {
+		if (rn2(10)) energy += 1; 
 		energy *= 19;
 		energy /= 20;
 	}
 	if (Upolyd && dmgtype(youmonst.data, AD_CAST) ) {
+		if (rn2(10)) energy += 1; 
 		energy *= 9;
 		energy /= 10;
 	}
 
 	if (uarmc && uarmc->oartifact == ART_GAGARIN_S_TRANSLATOR) {
+		if (rn2(10)) energy += 1; 
 		energy *= 9;
 		energy /= 10;
 	}
 
 	if (uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID) {
+		if (rn2(10)) energy += 1; 
 		energy *= 4;
 		energy /= 5;
 	}
-	if (Role_if(PM_ELEMENTALIST) && skill == P_ELEMENTAL_SPELL) {energy *= 3; energy /= 4;}
+	if (Role_if(PM_ELEMENTALIST) && skill == P_ELEMENTAL_SPELL) {if (rn2(10)) energy += 1; energy *= 3; energy /= 4;}
 
 	if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "occultism gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki okkul'tizma") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "folbinlik qo'lqop") )) && skill == P_OCCULT_SPELL) {
+		if (rn2(10)) energy += 1; 
 		energy *= 4;
 		energy /= 5;
 	}
 
 	if (Race_if(PM_MANSTER) && energy > 1) {
+		if (rn2(10)) energy += 1; 
 		energy *= 2;
 		energy /= 3;
 	}
 
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_DOMPFINATION) {
+		if (rn2(10)) energy += 1; 
 		energy *= 9;
 		energy /= 10;
 	}
 
-	if (Role_if(PM_MAHOU_SHOUJO) && (energy > 1) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "weeb cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zese plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yaponiya ucube rido") ) ) { energy *= 9; energy /= 10;}
+	if (Role_if(PM_MAHOU_SHOUJO) && (energy > 1) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "weeb cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "zese plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yaponiya ucube rido") ) ) { if (rn2(10)) energy += 1; energy *= 9; energy /= 10;}
 
+	if (energy < 2) energy = rn2(10) ? 2 : 1;
+	
 	if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD && spellid(spell) != SPE_SATISFY_HUNGER) {
 		You("are too hungry to cast that spell.");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
