@@ -1,6 +1,21 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.2.5
+- New monster sounds that allow monsters to try to convert the player character or cause a variety of harmful effects.
+
 2.2.4
+- Clearing a harmful potion by dipping it in a unicorn horn can sometimes curse and disenchant the horn, or if the horn is already cursed it will make the potion explode.
+- Fixed an oversight that allowed the player to have 0 current HP without dying when a cursed potion of gain health is quaffed.
+- Applying a polearm can scuff engravings underneath the player. Occasionally the same can happen if the player casts a spell.
+- Fixed a bug that caused toxic venom attacks to give a message when a monster was hit with it by another monster outside of your line of sight.
+- Fixed a bug in evilvariant mode where ragnarok attacks would constantly instakill you and your pets.
+- Monsters with contamination attacks will give contamination egotypes to other monsters much less often.
+- Certain poison-based engulfing attacks are more dangerous now.
+- Fixed an error where monsters with the bomber egotype would explode and then continue to get attacks in the same turn even though they're already dead.
+- Watchmen no longer have a spawn frequency; this should prevent them from being randomly generated on certain special levels. Tilde-class monsters can now generate randomly.
+- Reduced the chance of jousting with a lance, and artifact lances have a low chance of breaking now (they used to be unbreakable).
+- Nerfed the damage done by the player's force bolt and magic missile spells.
+- The calculations for spellcasting cost reduction have been changed to make sure spells don't become too cheap to cast.
 - Fixed bugs where yellow sneakers didn't work the way they should.
 - Changed the restore logic to hopefully prevent the crashes seen on some systems when the game goes through the list of monsters.
 - If the player has very many items in open inventory, curse items and item-stealing monsters can target more items at once.
