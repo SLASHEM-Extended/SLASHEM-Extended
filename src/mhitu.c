@@ -1721,6 +1721,8 @@ mattacku(mtmp)
 	if (mtmp->data->msound == MS_WHORE && !mtmp->butthurt) tmp += rnd(20);
 	if (mtmp->data->msound == MS_SHOE) tmp += rnd(20);
 	if (mtmp->data->msound == MS_STENCH) tmp += rnd(20);
+	if (mtmp->data->msound == MS_CONVERT) tmp += rnd(10);
+	if (mtmp->data->msound == MS_HCALIEN) tmp += rnd(25);
 	if (mtmp->egotype_farter) tmp += 15;
 	if (mtmp->fartbonus) tmp += mtmp->fartbonus;
 	if (mtmp->crapbonus) tmp += mtmp->crapbonus;
@@ -8414,7 +8416,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 		case AD_POIS:
 				You("are covered with poison!");
-			if (!rn2(8)) {
+			if (!rn2(3)) {
 			    poisoned("The attack", rn2(A_MAX), "poisonous interior", 30);
 			}
 			break;

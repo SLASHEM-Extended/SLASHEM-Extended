@@ -775,6 +775,223 @@ register struct monst *mtmp;
         }
     }
 
+	if (mdat->msound == MS_CONVERT && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
+
+		static const char *conversion_msgs[] = {
+			"Kafir! Yuece Tanri sizi sevmez, ve sonra doenuestuermek yoksa cezalandirilacaktir!",
+			"Kafir, Allah'a doenuestuermek ya da oel!",
+			"Kafir, kutsal Tanri bu boelgede emanetler en kadirdir. Ve bunu degistirmek olmaz!",
+			"Kafir, sizin yollariniz sapkin vardir! Islam sizi doenuestuermek zamanidir.",
+			"Kafir, sen domuz pirzola yeme suc islemis! Allah sana cok kizgin!",
+			"Allahu Akbar! Allahu Akbar!",
+			"Kafir, Allah bueyuektuer ve seni yok eder!",
+			"Kafir! Kac kere zaten gavur dedin? Sen inanc degistirmek icin ya da Tanri ilahi ceza kesin olacak var!",
+			"Allah senin gibi kafirler sevmez ve cok zalim bir sekilde sizi cezalandiracaktir!",
+			"Bizim kutsal cami kafirler tarafindan yerle bir olma tehlikesiyle karsi karsiya! Bueyuek Tanri bize yardim ve ilahi asker goendermesi gerekir!",
+			"Kafir, Allah bueyuek ve gueclue oldugunu! Ona inanmaya baslarlar yoksa, aci olacak!",
+			"Allah onlari oelduererek ve kutsal ateste kendi cesetlerini yakarak buetuen kafirleri cezalandiracaktir.",
+			"Kafir, Allah beni tuvalete bok sesleri ueretmek icin izin! Eger o saygi yoksa sonsuza aci olacaktir!",
+			"Tek bir gercek dindir ve Tuerkiye cumhurbaskani, onu buetuen duenyaya yayacak bilge bir adamdir! Allah bueyuek!",
+			"Kafir! Kutsal topraklarda hicbir sey kaybetmedin! ABD'ye ya da nereye giderseniz gidin!",
+			"Inanilmaz olan, senin evin benim tarafimdan yere serilecek.",
+			"Inanilmaz, nihayet askerlerini uelkemden mi cekiyorsun yoksa sinirlenmek zorunda miyim?",
+			"Inanmasiz, silahim seni vurmak uezere! Sana daha iyi bakarim!",
+			"Haha, sen inandin, saldirmami kaldiramazsin!",
+			"Inanli olmayan, sana simdi pusu kurup seni uyariyorum. Yani beni yine de durdurma sansin yok.",
+			"Kafir! Hemen buradan cik, buguen camiye gitmem ve dua etmeliyim!",
+			"Kafir! seni ve iman eden askerlerinizi yok edecegiz!",
+			"Inanilmazsin, benden uzak dur yoksa bir talihsizlik olur!",
+			"Inkar edenler sadece korkaklar, asla kendinizi adil bir doevuese sokmazsiniz! Simdi sikici el bombalari kullanmaliyim!",
+			"Gercekten sadece buguen sinirlenmek istiyor musun, inandin mi? Sanirim simdi agir topcuyla gelecegim.",
+			"Inanilmaz olan, Islam'in tek gercek din oldugunu itiraf etme zamani.",
+			"Inancsiz, pes et! Islam'in kutsal askerleri simdi sehrinizi istila edecek!",
+			"Inanilmaz, yavas yavas oelmesi gerektigini duesuenmueyor musun? Vuecudun yine de degersiz!",
+			"Bu bir hacli seferi olacak mi, inandin mi? Kutsal Allah'in gazabini zorla cagirir misin?",
+			"Kafirlerin sizin talihsizlikleriniz icin yiyeceksiniz ve Allah sahsen sizi atesin uezerinde bas asagi kizdiracak!",
+			"Lanet olasi inanmayan koepekler, kutsal topraklardan disari cik! Hepiniz inkar ediyorsunuz ve Allah sizi sevmiyor, duyuyor musunuz?",
+			"Tamam, inandin. Yeterli olan yeter! Herkese, kafirleri hemen yok edin!",
+			"Ben cihad, kutsal savas icin cagiriyorum! Kafirler, oelueme savasiyoruz!",
+			"Hepinizi inatci koepekler yapacagiz!",
+			"Inanilmaz, ama simdi yeterli! Simdi Allah'in gazabi sana vuracak!",
+			"Inkar edenler iki seceneginiz var. Hemen Islam'a itiraf edin ya da yueksek savas botlarim ciddi yaralar acacak.",
+			"Oyuncu bir guevensiz! Onu Islam’a doenuestuerme zamani.",
+			"Inkar edenler yenilir. Derhal Islam'in tek gercek din oldugunu ya da kutsal Allah'in gazabini hissettirdigini itiraf edin!",
+			"Oyuncu ve adamlari... pah. Buetuen inanmayanlar. Sadece askerlerim kimin dine inanmalari gerektigini biliyor!",
+			"Hahahaha Hahahaha! Tuerk savas botlari bedeninizi yok etti, siz kafirler!",
+			"Nihayet uelkemi terk ediyor musun, inanmiyor musun?",
+			"Kafir! Ha ha! Simdi ya Islam'a ya da oeluersuen.",
+			"Kafirler, senin kokulu fabrikalarin simdi yikilacak!",
+			"Inanli olmayan, Allah size uecuencueluek eder ve sonra sizi tehlikede yakar.",
+			"Kafir! Simdi kac kere seni guevensiz aradim?",
+			"Sonunda inanclarinizi degistirmelisiniz, siz kafirler, aksi takdirde bir firtina olacak!",
+			"Gizli silahimi nerede sakladigimi hatirladim! Hehehe, simdi size goesteriyorum, siz kafirler.",
+			"Kutsal cami kafirlerin tehdidi altindadir! Allah, bize yardim et ve onlari yuvarlamalarini engelle!",
+			"Tuem erkekler ve kadinlar saldirmak icin! Kafirleri derhal uzaklastirin!",
+			"Buetuen kafirlere goere kutsal Islam, bu topraklarin kalintilarinin cogunda hakimdir.",
+			"Kafirler buguen emanetlerimizi tekrar yakalamayacaklar!",
+			"Yalanci medyanin fikri yok! Islam tek gercek din ve kafirler bunu degistirmeyecek!",
+			"Inkar edenler beni kandirdi, ama sizi Islam'in tek gercek din olduguna inandiricam.",
+			"Aaaaaaaaaaaah! Hayir! Kafirlerimiz camimizi gercekten yok etti! Simdi kim Islam'i yaymali?",
+			"Oh hayir, simdi vazgecebilirim, sadece bu kafirler yuezuenden...",
+			"Inkar edenler, engizisyonumdan kacamaz, itiraf edemez veya oelebilirler.",
+			"Allah seni yok edecek, inandin!",
+			"Neden oyuna daha fazla inanmayan asker getiriyorsun?",
+			"Siz kafirsiniz, dininiz bos ve gecersizdir!",
+			"Kafir, bas oertuesue baskinin bir sembolue degil! Onu kucaklamali ve bir tane de giymelisin yoksa Allah seni cezalandiracak!",
+			"Kafir, bir kadinin tuem kafasini kamuya goestermemesi gerektigini asla anlamayacaksiniz. Bueyuek Allah, bir bas oertuesue her zaman giyilmesi gerektigini oegretir.",
+			"Kafirlerin beni tuvalete kadar takip etmelerine izin vermeyecegim ve kicimin uerettigi erotik kirma seslerini dinleyemem. Yine de yaparsan, doevues botu topuklari bacaklarini kemige cizecek ve seni oelduerecek.",
+			"Benim siyah bayan sandaletler senin gibi bir kafir tarafindan asla hasar goermeyecek!",
+			"Senin yayla botlarimin altindaki kafirleri ezecegim!",
+			"Bir kafirle evlenmeyecegim, Allah'a iman eden birisini sececegim ve ic camasirlarimi, coraplarimi ve sandaletlerimle savasirken disi catlak seslerimi dinlemesine izin vererek onu memnun edecegim.",
+			"Cogu zaman tuvalette saatlerce catlak sesler ueretiyorum, ama sadece Allah'in inanclilari onlari dinleyebilir. Gizlice iceri girerlerse kafirler oelecek.",
+			"Hic kafir bir kadini cok guezel bulabilir! Her zaman kafa oertueleri giymeliyiz!",
+			"Allah kafa bezinin bize oezguerluek verdigini soeyler, cuenkue saf olmayan kafirlerin pis bakislarini uzak tutar!",
+			"Ben seksi yueksek topuklu botlar giyiyorum cuenkue ben bir harlotum, ama ben sadece aydinlanmis olanlar icin calisiyorum, bu yuezden de bir bas kumasina ihtiyacim var! Hic kafir beni beceremez!",
+			"Eger herhangi bir aldatmaca kafamin uestuenue cikarmaya calisirsa, onu oelduermek icin erkekleri ise alirim!",
+			"Bueyuek Allah, kadinlara basoertuesue takmayan firmalarin ateste oelecegini soeylueyor!",
+			"Tabii ki kuecuek okul kizlari da bir bas oertuesue giymelidir! Cok fazla kendilerini goesterirlerse, bazi iyi olmayan cocuklar da onlara bakar ve Allah her ne pahasina olursa olsun bunu engellemelidir!",
+			"Kendimizi kafir toplumlara entegre etmek zorunda degiliz, onlari Allah adina sollamak zorundayiz! Cuenkue bu heretiklerin Islam'a doenuesmesi gerekiyor!",
+			"Hic kimse kirli domuz eti yiyemez! Allah onu dizanteri ile yemeye cueret eden herkesi cezalandiracak.",
+			"Bir kafir adamin Mueslueman bir bayanla konusmasi tamamen duesuenuelemez. Bu, kafa bezine sahip olmamizin nedenlerinden biri, cuenkue Yuece Allah, bizi zarardan koruyor.",
+			"Biz, buezguelue ailelerin barok kalelerde yer bulduklari icin bez giyiyoruz, cuenkue kafir aileler ilk geldiler bile beklemek zorundalar. Bueyuek Allah, degersiz bir Alman azinligi bekler!",
+			"Biz bez harbots basimiza yueksek topuklularimizla asyali tekmeyi oegrendik, bu sayede kutsal Allah adina kafirlerin ezmelerini ve parcalarini kirabiliriz.",
+			"Cok fazla kafir adam var ve bu yuezden kafamizi hicbir zaman halka acik goesteremiyoruz. Ancak, sadece kadinlara yoenelik spor merkezine girersek, bas bezini cikaririz cuenkue Allah, kadinlarin asla tecavuez etmeyecegini bilir. Lezbiyenlik yoktur.",
+			"Allah, basoertuesue takmayan kafir Avrupali kadinlardan nefret eder. Muesluemanlarin ayri bir banyosunun yapilmasini istiyoruz cuenkue bizi o boktan fahiselerin tuvalete gitmesini istemiyoruz.",
+			"Kafamizi takmiyorken bizi goeren kafir adama vay canina. Yuece Allah, ona asiri oenyargi ile yaklasir.",
+			"Bazen inatci erkekleri kandirmak icin paragraf botlari giyerim. Benimle sevisebileceklerini duesuenuerlerse, kiralik suikastcilar onu Allah'in adiyla sessizce kaldiracaklar.",
+			"Domuz cocuk bahcesinde servis edilirse yanlistir! Buetuen bu kafir egitmenler yakinda Allah'a iman eden insanlarla degistirilecek.",
+			"Evet, kafirler bize yuezuemuezue oerten kiyafetler vermedikce yuezme ya da spora katilmak zorunda olmadigimiz dogrudur. Allah bize, inkarcilarin yaptigi kurallarin bizim kurallarimiz olmadigini ve takip edilmesine gerek olmadigini oegretir.",
+			"Aptal Alman uelkesi kendisini yok edecek ve bu kafirleri yavasca kaldirarak Allah'a yardim edecegiz. Daha sonra Berlin, Yeni Istanbul'a yeniden adlandirilacaktir.",
+			"Neden kizlari kizdirmaya calisiyorsun? Sizi durdurmak icin herkesi basoertuesue takmaya zorlayacagiz!",
+			"Ne, sen kafir, cinsel popoyu ihale popomun tuvalete yaptigi kadin sesine cekti mi? Delirmis olmalisin!",
+			"Ne, sen kafir kafami sadece beni kizdirmak mi istiyorsun? Allah, senin icin oeluem cezasi olacagini soeyler!",
+			"Sen kafir doenuestueruelecek, ve eger bir kadin iseniz de bir kafa bezi giymek zorunda kalacaksiniz!",
+			};
+
+		verbalize(conversion_msgs[rn2(SIZE(conversion_msgs))]);
+
+		armpro = magic_negation(&youmonst);
+		armprolimit = 75;
+		if (!(PlayerCannotUseSkills)) {
+
+			switch (P_SKILL(P_SPIRITUALITY)) {
+				default: armprolimit = 75; break;
+				case P_BASIC: armprolimit = 78; break;
+				case P_SKILLED: armprolimit = 81; break;
+				case P_EXPERT: armprolimit = 84; break;
+				case P_MASTER: armprolimit = 87; break;
+				case P_GRAND_MASTER: armprolimit = 90; break;
+				case P_SUPREME_MASTER: armprolimit = 93; break;
+			}
+		}
+
+		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
+
+			You_feel("less faithful!");
+
+			if (u.ualign.record < -20 && !rn2(100) && (mtmp->data->maligntyp != u.ualign.type) ) { /* You have been converted! */
+
+				if(u.ualignbase[A_CURRENT] == u.ualignbase[A_ORIGINAL] && mtmp->data->maligntyp != A_NONE) {
+					You("have a strong feeling that %s is angry...", u_gname());
+					pline("%s accepts your allegiance.", align_gname(mtmp->data->maligntyp));
+
+					/* The player wears a helm of opposite alignment? */
+					if (uarmh && uarmh->otyp == HELM_OF_OPPOSITE_ALIGNMENT)
+						u.ualignbase[A_CURRENT] = mtmp->data->maligntyp;
+					else
+						u.ualign.type = u.ualignbase[A_CURRENT] = mtmp->data->maligntyp;
+					u.ublessed = 0;
+					flags.botl = 1;
+
+					You("have a sudden sense of a new direction.");
+					/* Beware, Conversion is costly */
+					change_luck(-3);
+					u.ublesscnt += (ishaxor ? 150 : 300);
+					adjalign((int)(u.ualignbase[A_ORIGINAL] * (u.alignlim / 2)));
+
+				} else {
+					u.ugangr += 3;
+					adjalign(-25);
+					godvoice(mtmp->data->maligntyp, "Suffer, infidel!");
+					change_luck(-5);
+					(void) adjattrib(A_WIS, -2, TRUE);
+					angrygods(mtmp->data->maligntyp);
+
+				}
+			}
+			adjalign(-(mtmp->m_lev + 1));
+
+		}
+
+	}
+
+	if (mdat->msound == MS_HCALIEN && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(5)) {
+
+		static const char *hcalien_msgs[] = {
+			"Wouwou.",
+			"Wouuu.",
+			"Www-wouwou.",
+			"Wwouwwouww.",
+			"Wowou.",
+			"Wwwouu.",
+		};
+		verbalize(hcalien_msgs[rn2(SIZE(hcalien_msgs))]);
+
+		armpro = magic_negation(&youmonst);
+		armprolimit = 75;
+		if (!(PlayerCannotUseSkills)) {
+
+			switch (P_SKILL(P_SPIRITUALITY)) {
+				default: armprolimit = 75; break;
+				case P_BASIC: armprolimit = 78; break;
+				case P_SKILLED: armprolimit = 81; break;
+				case P_EXPERT: armprolimit = 84; break;
+				case P_MASTER: armprolimit = 87; break;
+				case P_GRAND_MASTER: armprolimit = 90; break;
+				case P_SUPREME_MASTER: armprolimit = 93; break;
+			}
+		}
+
+		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
+
+			badeffect();
+		    switch (rn2(17)) {
+		    case 0:
+		    case 1:
+		    case 2:
+		    case 3: make_confused(HConfusion + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 40% */
+			    break;
+		    case 4:
+		    case 5:
+		    case 6: make_confused(HConfusion + (2L * rnd(100 + (mtmp->m_lev * 5) ) / 3L), FALSE);		/* 30% */
+			    make_stunned(HStun + (rnd(100 + (mtmp->m_lev * 5) ) / 3L), FALSE);
+			    break;
+		    case 7:
+		    case 8: make_stunned(HStun + (2L * rnd(100 + (mtmp->m_lev * 5) ) / 3L), FALSE);		/* 20% */
+			    make_confused(HConfusion + (rnd(100 + (mtmp->m_lev * 5) ) / 3L), FALSE);
+			    break;
+		    case 9: make_stunned(HStun + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+			    break;
+		    case 10: make_numbed(HNumbed + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+			    break;
+		    case 11: make_frozen(HFrozen + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+			    break;
+		    case 12: make_burned(HBurned + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+			    break;
+		    case 13: make_feared(HFeared + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+			    break;
+		    case 14: make_blinded(Blinded + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+			    break;
+		    case 15: make_hallucinated(HHallucination + rnd(100 + (mtmp->m_lev * 5) ), FALSE, 0L);			/* 10% */
+			    break;
+		    case 16: make_dimmed(HDimmed + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+			    break;
+		    }
+
+		}
+
+	}
+
 	if (mdat->msound == MS_STENCH && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
 		switch (rnd(9)) {
 

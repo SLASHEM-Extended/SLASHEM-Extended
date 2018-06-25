@@ -15675,12 +15675,12 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Kafir! seni ve iman eden askerlerinizi yok edecegiz!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Inanilmazsin, benden uzak dur yoksa bir talihsizlik olur!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Inkar edenler sadece korkaklar, asla kendinizi adil bir doevuese sokmazsiniz! Simdi sikici el bombalari kullanmaliyim!'",
-	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Gercekten sadece buguen sinirlenmek istiyor musun, inandin mi? Sanirim simdi ag?r topcuyla gelecegim.'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Gercekten sadece buguen sinirlenmek istiyor musun, inandin mi? Sanirim simdi agir topcuyla gelecegim.'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Inanilmaz olan, Islam'in tek gercek din oldugunu itiraf etme zamani.'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Inancsiz, pes et! Islam'in kutsal askerleri simdi sehrinizi istila edecek!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Inanilmaz, yavas yavas oelmesi gerektigini duesuenmueyor musun? Vuecudun yine de degersiz!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Bu bir hacli seferi olacak mi, inandin mi? Kutsal Allah'in gazabini zorla cagirir misin?'",
-	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Kafirlerin sizin talihsizlikleriniz icin yiyeceksiniz ve Allah sahsen sizi atesin uezerinde bas asag? kizdiracak!'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Kafirlerin sizin talihsizlikleriniz icin yiyeceksiniz ve Allah sahsen sizi atesin uezerinde bas asagi kizdiracak!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Lanet olasi inanmayan koepekler, kutsal topraklardan disari cik! Hepiniz inkar ediyorsunuz ve Allah sizi sevmiyor, duyuyor musunuz?'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Tamam, inandin. Yeterli olan yeter! Herkese, kafirleri hemen yok edin!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Ben cihad, kutsal savas icin cagiriyorum! Kafirler, oelueme savasiyoruz!'",
@@ -15988,6 +15988,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Egas'. It reads: 'SoHvaD law' Hol vISov!'",
 	"Incoming message for Player 1. The message is from 'Egas'. It reads: 'Je'el u paajtal in t'aan le t'aano'ob ti' le uuchben Meso Amerika. Fluidamente.'",
 	"Incoming message for Player 1. The message is from 'Lisa'. It reads: 'I'm wearing my ultimate black high-heeled sandals of destruction today, and I plan to completely rip both of your legs to shreds. My sharp-edged heels will scratch everything and you'll bleed like a slaughtered pig.'",
+	"You feel less faithful!",
 
 };
 

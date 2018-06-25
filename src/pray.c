@@ -10,11 +10,11 @@
 STATIC_DCL struct obj *worst_cursed_item(void);
 STATIC_DCL int in_trouble(void);
 STATIC_DCL void fix_worst_trouble(int);
-STATIC_DCL void angrygods(ALIGNTYP_P);
+/*STATIC_DCL void angrygods(ALIGNTYP_P);*/
 STATIC_DCL void at_your_feet(const char *);
 STATIC_DCL void gcrownu(void);
 STATIC_DCL void pleased(ALIGNTYP_P);
-STATIC_DCL void godvoice(ALIGNTYP_P,const char*);
+/*STATIC_DCL void godvoice(ALIGNTYP_P,const char*);*/
 /*STATIC_DCL void god_zaps_you(ALIGNTYP_P);*/
 STATIC_DCL void god_summons_minions(ALIGNTYP_P);
 STATIC_DCL void fry_by_god(ALIGNTYP_P);
@@ -518,7 +518,7 @@ decurse:
  * bathroom walls, but who is foiled by bathrobes." --Bertrand Russell, 1943
  * Divine wrath, dungeon walls, and armor follow the same principle.
  */
-/*STATIC_OVL */void
+void
 god_zaps_you(resp_god)
 aligntyp resp_god;
 {
@@ -641,7 +641,7 @@ aligntyp resp_god;
 	u.youaredead = 0;
 }
 
-STATIC_OVL void
+void
 angrygods(resp_god)
 aligntyp resp_god;
 {
@@ -1485,7 +1485,7 @@ water_prayer(bless_water)
     return((boolean)(changed > 0L));
 }
 
-STATIC_OVL void
+void
 godvoice(g_align, words)
     aligntyp g_align;
     const char *words;

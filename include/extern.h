@@ -2137,6 +2137,8 @@ E const char *bottlename(void);
 E int prayer_done(void);
 
 E void god_zaps_you(ALIGNTYP_P);
+E void godvoice(ALIGNTYP_P, const char*);
+E void angrygods(ALIGNTYP_P);
 /*#endif*/
 E int dosacrifice(void);
 E boolean can_pray(BOOLEAN_P);

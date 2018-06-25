@@ -2995,6 +2995,13 @@ register int pm;
 		    nomovemsg = 0;
 		}
 
+	/* HC aliens carry evil diseases. Do not eat them! --Amy */
+		if (ptr->msound == MS_HCALIEN) {
+			pline("Yeech - that must have been infectious!");
+			make_sick(rn1(25,25), "tasting infectious hc aliens", TRUE, SICK_VOMITABLE);
+			badeffect();
+		}
+
 		if (dmgtype(ptr, AD_EDGE) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
 			int edgeeffect;
 			if (touch_petrifies(ptr)) {

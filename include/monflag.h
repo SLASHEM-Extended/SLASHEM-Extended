@@ -61,6 +61,8 @@
 #define MS_SOUND 52	/* soundwave "attack" */
 #define MS_SHOE 53	/* they have been silent for too long, now they talk :D */
 #define MS_STENCH 54	/* evil patch idea :D causes bad effects if you are reasonably close and the monster is hostile */
+#define MS_CONVERT 55	/* reduces your alignment, can permaconvert you if it gets too low! */
+#define MS_HCALIEN 56	/* similar to MS_STENCH */
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */

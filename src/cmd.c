@@ -1065,8 +1065,13 @@ int traitno;
 			return "monsters whose attacks cause you to tremble";
 		case 346:
 			return "monsters who can cause Ragnarok";
+		case 347:
+			return "monsters who try to convert you to their religion";
+		case 348:
+			return "HC aliens";
 
 		default:
+			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);
 			return "unknown";
 
 	}
