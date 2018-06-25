@@ -1275,13 +1275,6 @@ int curse_bless;
 	    case OIL_LAMP:
 	    case BRASS_LANTERN:
 
-		n = (int)obj->recharged;
-		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
-			Your("%s glows violently and evaporates!", xname(obj));
-			useup(obj);
-		    return;
-		}
-
 		if (is_cursed) {
 		    stripspe(obj);
 		    if (obj->lamplit) {
@@ -1317,13 +1310,6 @@ int curse_bless;
 	    case WHITE_DOUBLE_LIGHTSABER:
 	    case LASER_SWATTER:
 
-		n = (int)obj->recharged;
-		if (n > 0 && rn2(2) && (n * n * n > rn2(9*9*9))) {
-			Your("%s glows violently and evaporates!", xname(obj));
-			useup(obj);
-		    return;
-		}
-
 		if (is_cursed) {
 		    if (obj->lamplit) {
 			end_burn(obj, TRUE);
@@ -1333,11 +1319,18 @@ int curse_bless;
 		    } else
 			obj->age = 0;
 		} else if (is_blessed) {
-		    obj->age = 1500;
+		    if (issoviet) {
+				obj->age = 1500;
+				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
+		    }
+		    else obj->age += 1500;
 		    p_glow2(obj, NH_BLUE);
 		} else {
 		    obj->age += 750;
-		    if (obj->age > 1500) obj->age = 1500;
+		    if (issoviet && obj->age > 1500) {
+				obj->age = 1500;
+				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
+		    }
 		    p_glow1(obj);
 		}
 		break;
