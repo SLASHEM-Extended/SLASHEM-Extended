@@ -423,6 +423,8 @@ struct obj *otmp;
 		reveal_invis = TRUE;
 		if (u.uswallow || rnd(20) < 10 + find_mac(mtmp) + rnz(u.ulevel) ) {
 			dmg = d(4,12) + rnz(u.ulevel);
+			if (otyp == SPE_GRAVITY_BEAM && !rn2(3)) dmg = d(4,12) + rnd(u.ulevel);
+			if (otyp == SPE_GRAVITY_BEAM && !rn2(3) && dmg > 1) dmg = rnd(dmg);
 			if (bigmonst(mtmp->data)) dmg += rnd(6);
 			if (mtmp->data->msize >= MZ_HUGE) dmg += rnd(12);
 			if (mtmp->data->msize >= MZ_GIGANTIC) dmg += rnd(18);
@@ -446,6 +448,9 @@ struct obj *otmp;
 		} else if (u.uswallow || rnd(20) < 10 + find_mac(mtmp) + rnz(u.ulevel) ) {
 			dmg = d(2,12) + rnz(u.ulevel);
 			if (otyp == WAN_STRIKING) dmg += rnz(u.ulevel);
+			/* teh hardcore nerf by Amy - force bolt is just plain too strong */
+			if (otyp == SPE_FORCE_BOLT && rn2(3)) dmg = d(2,12) + rnd(u.ulevel);
+			if (otyp == SPE_FORCE_BOLT && rn2(2) && dmg > 1) dmg = rnd(dmg);
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
 			hit(zap_type_text, mtmp, exclam(dmg));
@@ -7626,12 +7631,21 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	    tmp /= 2;
 
 	/* magic missile spell, which is too strong relative to all others --Amy */
-	if (tmp > 0 && !issoviet && type == 10 && resist(mon, '\0', 0, NOTELL) )
+	if (tmp > 1 && !issoviet && type == 10 && resist(mon, '\0', 0, NOTELL) ) {
 	/* In Soviet Russia, people have no consideration for game balance. They insist that the magic missile spell,
 	 * despite being a lower level than all other attack spells that shoot damaging beams, absolutely has to do the same
 	 * amount of damage, even though it's already better for another reason and that is the fact that few monsters have
 	 * magic resistance while the elemental resistances (fire, cold etc.) are ubiquitous! --Amy */
-	    tmp /= 2;
+		tmp /= 2;
+	}
+
+	/* but it's still too strong, so we'll nerf it some more --Amy */
+	if (tmp > 1 && !rn2(2) && !issoviet && type == 10) {
+
+		tmp /= 2;
+		if (tmp > 1 && !rn2(5)) tmp /= 2;
+
+	}
 
 	if (tmp < 0) tmp = 0;		/* don't allow negative damage */
 #ifdef WIZ_PATCH_DEBUG
