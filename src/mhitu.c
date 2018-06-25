@@ -2859,19 +2859,6 @@ elena37:
 
 	}
 
-	if (mtmp->egotype_bomber ) {
-
-		mdat2 = &mons[PM_CAST_DUMMY];
-		a = &mdat2->mattk[3];
-		a->aatyp = AT_EXPL;
-		a->adtyp = AD_PHYS;
-		a->damn = 2;
-		a->damd = (1 + (mtmp->m_lev * 5));
-
-		if(!range2) sum[i] = explmu(mtmp, a, foundyou);
-
-	}
-
 	if (mtmp->egotype_nexus ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -4309,6 +4296,23 @@ elena37:
 			break;
 		}
 
+		}
+
+	}
+
+	/* Bomber egotype must come last, because the monster dies and should no longer get attacks after exploding. --Amy */
+	if (mtmp->egotype_bomber ) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_EXPL;
+		a->adtyp = AD_PHYS;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev * 5));
+
+		if(!range2) {
+			sum[i] = explmu(mtmp, a, foundyou);
+			return(0);
 		}
 
 	}
@@ -8283,31 +8287,31 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 		case AD_DRST:
 			You_feel("your strength drain away!");
-			if (!rn2(8)) {
+			if (!rn2(3)) {
 			    poisoned("The attack", A_STR, "strength drain", 30);
 			}
 			break;
 		case AD_DRDX:
 			You_feel("your muscles cramping!");
-			if (!rn2(8)) {
+			if (!rn2(3)) {
 			    poisoned("The attack", A_DEX, "dexterity drain", 30);
 			}
 			break;
 		case AD_DRCO:
 			You_feel("a lack of force!");
-			if (!rn2(8)) {
+			if (!rn2(3)) {
 			    poisoned("The attack", A_CON, "constitution drain", 30);
 			}
 			break;
 		case AD_WISD:
 			You_feel("naive!");
-			if (!rn2(8)) {
+			if (!rn2(3)) {
 			    poisoned("The attack", A_WIS, "wisdom drain", 30);
 			}
 			break;
 		case AD_DRCH:
 			You_feel("ugly!");
-			if (!rn2(8)) {
+			if (!rn2(3)) {
 			    poisoned("The attack", A_CHA, "charisma drain", 30);
 			}
 			break;
