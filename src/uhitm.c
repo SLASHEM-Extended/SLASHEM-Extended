@@ -4094,19 +4094,19 @@ register struct attack *mattk;
 
 	    case AD_CONT:
 
-		if (!rn2(3)) {
+		if (!rn2(30)) {
 			mdef->isegotype = 1;
 			mdef->egotype_contaminator = 1;
 		}
-		if (!rn2(10)) {
+		if (!rn2(100)) {
 			mdef->isegotype = 1;
 			mdef->egotype_weeper = 1;
 		}
-		if (!rn2(25)) {
+		if (!rn2(250)) {
 			mdef->isegotype = 1;
 			mdef->egotype_radiator = 1;
 		}
-		if (!rn2(25)) {
+		if (!rn2(250)) {
 			mdef->isegotype = 1;
 			mdef->egotype_reactor = 1;
 		}
@@ -4954,19 +4954,19 @@ register struct attack *mattk;
 
 	    case AD_CONT:
 
-		if (!rn2(3)) {
+		if (!rn2(30)) {
 			mdef->isegotype = 1;
 			mdef->egotype_contaminator = 1;
 		}
-		if (!rn2(10)) {
+		if (!rn2(100)) {
 			mdef->isegotype = 1;
 			mdef->egotype_weeper = 1;
 		}
-		if (!rn2(25)) {
+		if (!rn2(250)) {
 			mdef->isegotype = 1;
 			mdef->egotype_radiator = 1;
 		}
-		if (!rn2(25)) {
+		if (!rn2(250)) {
 			mdef->isegotype = 1;
 			mdef->egotype_reactor = 1;
 		}

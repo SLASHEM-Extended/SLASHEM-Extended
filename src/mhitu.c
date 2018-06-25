@@ -16951,19 +16951,19 @@ register struct attack *mattk;
 
 	    case AD_CONT:
 
-		if (!rn2(3)) {
+		if (!rn2(30)) {
 			mtmp->isegotype = 1;
 			mtmp->egotype_contaminator = 1;
 		}
-		if (!rn2(10)) {
+		if (!rn2(100)) {
 			mtmp->isegotype = 1;
 			mtmp->egotype_weeper = 1;
 		}
-		if (!rn2(25)) {
+		if (!rn2(250)) {
 			mtmp->isegotype = 1;
 			mtmp->egotype_radiator = 1;
 		}
-		if (!rn2(25)) {
+		if (!rn2(250)) {
 			mtmp->isegotype = 1;
 			mtmp->egotype_reactor = 1;
 		}

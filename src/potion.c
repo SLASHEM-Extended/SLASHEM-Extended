@@ -1737,6 +1737,8 @@ int wflevel;
 {
 	register struct monst *mtmp, *mtmp2;
 
+	if (rn2(64)) return;
+
 	for (mtmp = fmon; mtmp; mtmp = mtmp2) {
 		mtmp2 = mtmp->nmon;
 		if ((mtmp->m_lev < wflevel) && mtmp->mtame) {

@@ -1670,19 +1670,19 @@ physical:
 
 	    case AD_CONT:
 
-		if (!rn2(3)) {
+		if (!rn2(30)) {
 			mdef->isegotype = 1;
 			mdef->egotype_contaminator = 1;
 		}
-		if (!rn2(10)) {
+		if (!rn2(100)) {
 			mdef->isegotype = 1;
 			mdef->egotype_weeper = 1;
 		}
-		if (!rn2(25)) {
+		if (!rn2(250)) {
 			mdef->isegotype = 1;
 			mdef->egotype_radiator = 1;
 		}
-		if (!rn2(25)) {
+		if (!rn2(250)) {
 			mdef->isegotype = 1;
 			mdef->egotype_reactor = 1;
 		}
@@ -2088,7 +2088,7 @@ physical:
 			    pline_The("poison doesn't seem to affect %s.",
 				mon_nam(mdef));
 		    } else {
-			pline("%s is badly poisoned!", Monnam(mdef));
+			if (vis) pline("%s is badly poisoned!", Monnam(mdef));
 			if (rn2(10)) tmp += rn1(20,12);
 			else {
 			    if (vis) pline_The("poison was deadly...");
@@ -2673,19 +2673,19 @@ int mdead;
 
 	    case AD_CONT:
 
-		if (!rn2(3)) {
+		if (!rn2(30)) {
 			magr->isegotype = 1;
 			magr->egotype_contaminator = 1;
 		}
-		if (!rn2(10)) {
+		if (!rn2(100)) {
 			magr->isegotype = 1;
 			magr->egotype_weeper = 1;
 		}
-		if (!rn2(25)) {
+		if (!rn2(250)) {
 			magr->isegotype = 1;
 			magr->egotype_radiator = 1;
 		}
-		if (!rn2(25)) {
+		if (!rn2(250)) {
 			magr->isegotype = 1;
 			magr->egotype_reactor = 1;
 		}
@@ -2870,7 +2870,7 @@ int mdead;
 			    pline_The("poison doesn't seem to affect %s.",
 				mon_nam(magr));
 		} else {
-			pline("%s is badly poisoned!", Monnam(magr));
+			if (canseemon(magr)) pline("%s is badly poisoned!", Monnam(magr));
 			if (rn2(10)) tmp += rn1(20,12);
 			else {
 			    if (canseemon(magr)) pline_The("poison was deadly...");
