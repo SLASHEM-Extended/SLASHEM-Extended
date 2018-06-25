@@ -841,6 +841,8 @@ doread()
 	"Yes, I look very sexy and it is not my fault if someone gropes me. Men have to learn to control their instincts, or else!",
 	"Genocide Nethack Fourk's tab confirmation",
 	"I ascended Splicehack in June 2018 and at that time it was the fastest turncount ascension ever in that variant!",
+	"I ascended Unnethack and only had to kill Cthulhu thrice and search the entire sanctum for the amulet while constantly being afraid of him respawning, grabbing the amulet, and it being teleported away again when he dies!",
+	"I'm the bitch who got the 'die to 9 specific monsters' trophy (introduced while Junethack 2018 was already running) before anyone else did and it didn't take me hundreds of lame scurrier scum games!",
 
 	    };
 	    char buf[BUFSZ];

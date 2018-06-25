@@ -4396,6 +4396,15 @@ static const char *epitaphs[] = {
 	"Ascended on the wrong high altar, was permitted to live but eventually died of old age.",
 	"Tried to eat something on the tile that Medusa died on and because the variant I played doesn't use the exemplary SLASH'EM interface, of course I ended up eating Medusa's corpse by mistake. Fix plz.",
 	"Tried to play a neutral atheist in Nethack Fourk. Eventually it became clear that the developer absolutely did not create any way to increase your alignment record, making it forever impossible to unlock the quest, so I suicided.",
+	"how is one-eyed sam 'simple'??? bhaak buffed him something fierce, made it so that iron bars are generated if you attack him, and to top it off, bhaak even changed his gender and made him female without changing his name to 'Samantha'! arson, murder and jaywalking!",
+	"A fire giant threw a boulder off the map in Sporkhack's valkyrie quest causing the game to crash, and due to some gigantic screwup, crashed games in that bullshit variant cannot be recovered no matter what.",
+	"god bhaak are there no quicktravel settings that allow me to set what does and doesn't interrupt me? like, do you even play this game? ever noticed how annoying that is if you have ESP :P",
+	"Unnethack is a bullshit variant! What the hell are you supposed to do about the FUCKING amulet teleporting away whenever you kill Cthulhu? It literally teleports away every time! And he respawns again and again and is way too hard to kill, so I eventually ran out of full healing potions and died to this UTTER BULLSHIT!",
+	"okay this is absolute bullshit and unplayable... killed Cthulhu for the third time in unnethack, of course he ignores the elbereth and OF COURSE the amulet is also gone again, why would anyone in their right mind program it like this, really",
+	"Man, weeping archangels are the anti-fun squad of Unnethack.",
+	"Seriously, item destruction in vanilla is insane, and some variants actively make it worse.",
+	"what if SLEX is just a complex survival method that the amy uses to find intelligent, healthy new mates for the year to ensure the survival of the kr*ut race",
+	"I hope whoever invented instapetrification that can't be stopped even if you have a lizard corpse gets instapetrified in real life.",
 
 };
 
