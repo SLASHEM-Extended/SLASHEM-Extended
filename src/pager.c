@@ -15989,6 +15989,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Egas'. It reads: 'Je'el u paajtal in t'aan le t'aano'ob ti' le uuchben Meso Amerika. Fluidamente.'",
 	"Incoming message for Player 1. The message is from 'Lisa'. It reads: 'I'm wearing my ultimate black high-heeled sandals of destruction today, and I plan to completely rip both of your legs to shreds. My sharp-edged heels will scratch everything and you'll bleed like a slaughtered pig.'",
 	"You feel less faithful!",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Bueyuek Allah, bu kadar genisletilmis egrinin, en iyi varyant oldugunu kabul etmeyen herkesi cezalandiracak! Eger sporkun daha iyi oldugunu duesuenueyorsaniz, sen lanet bir kafirsin ve diri diri diri yakilacaksin!'",
+	"Oh no, your life force has run out...",
 
 };
 
