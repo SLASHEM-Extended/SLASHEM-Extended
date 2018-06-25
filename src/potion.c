@@ -6765,6 +6765,15 @@ dodip()
 		boolean old_dknown = FALSE;
 		boolean more_than_one = potion->quan > 1;
 
+		if (obj->otyp == UNICORN_HORN && obj->cursed) { /* uh-oh */
+			pline("BOOM! The potion explodes!");
+			potion->in_use = TRUE;
+			if (!breathless(youmonst.data) || haseyes(youmonst.data)) potionbreathe(potion);
+			useup(potion);
+			losehp(Acid_resistance ? rnd(5) : rnd(10), "a cursed explosion", KILLED_BY);
+			return(1);
+		}
+
 		oldbuf[0] = '\0';
 		if (potion->dknown) {
 		    old_dknown = TRUE;
@@ -6859,6 +6868,17 @@ dodip()
 					"You juggle and drop %s!",
 					doname(singlepotion), (const char *)0);
 		update_inventory();
+		}
+
+		if (obj && obj->otyp == UNICORN_HORN && !rn2(10)) {
+
+			if (obj->spe > -20) obj->spe--;
+			if(obj->blessed) unbless(obj);
+			else if (!obj->blessed) curse(obj);
+
+			pline(Hallucination ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+
 		}
 
 		return(1);
