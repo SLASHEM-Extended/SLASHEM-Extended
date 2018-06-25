@@ -3471,6 +3471,9 @@ use_pole (obj)
 	    return res;
 	}
 
+	/* So you did successfully apply your pole. If you try to camp on an Elbereth, it should be scuffed now --Amy */
+	u_wipe_engr(rnd(5));
+
 	/* What is there? */
 	mtmp = m_at(cc.x, cc.y);
 

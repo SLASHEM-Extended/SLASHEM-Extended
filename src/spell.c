@@ -2117,7 +2117,11 @@ boolean atme;
 	verbalize("%s!",spellname(spell) );
 
 	}
-	
+
+	/* you can't hold perfectly still while performing the casting motion; occasionally scuff engraving --Amy
+	 * but less than if you tried to use melee attacks */
+	if (!rn2(5)) u_wipe_engr(1);
+
 	flags.botl = 1;
 	exercise(A_WIS, TRUE);
 
