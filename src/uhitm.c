@@ -3530,6 +3530,7 @@ struct monst *mon;	/* target */
 struct obj *obj;	/* weapon */
 {
     int skill_rating, joust_dieroll;
+    int bypassrating = 0;
 
     if (Fumbling || (Stunned && !Stun_resist) ) return 0;
     /* sanity check; lance must be wielded in order to joust */
@@ -3542,10 +3543,19 @@ struct obj *obj;	/* weapon */
 	if (PlayerCannotUseSkills) skill_rating = P_UNSKILLED;
     if (skill_rating == P_ISRESTRICTED) skill_rating = P_UNSKILLED; /* 0=>1 */
 
-    /* odds to joust are expert:80%, skilled:60%, basic:40%, unskilled:20% */
-    if ((joust_dieroll = rn2(5)) < skill_rating) {
+    if (!PlayerCannotUseSkills) {
+
+	if (skill_rating == P_MASTER) bypassrating = 1;
+	if (skill_rating == P_GRAND_MASTER) bypassrating = 2;
+	if (skill_rating == P_SUPREME_MASTER) bypassrating = 3;
+
+    }
+
+    /* odds to joust are expert:80%, skilled:60%, basic:40%, unskilled:20%
+     * but Amy edit: too easy to achieve high values... after all, expert isn't the max now */
+    if (((joust_dieroll = rn2(5)) < skill_rating) && (rn2(3) && (bypassrating >= rnd(4)) ) ) {
 	if (joust_dieroll == 0 && rnl(50) == (50-1) &&
-		!unsolid(mon->data) && !obj_resists(obj, 0, 100))
+		!unsolid(mon->data) && !obj_resists(obj, 0, 95)) /* Amy edit: artifacts no longer immune, only highly resistant */
 	    return -1;	/* hit that breaks lance */
 	return 1;	/* successful joust */
     }
