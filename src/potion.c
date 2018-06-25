@@ -3661,7 +3661,15 @@ peffects(otmp)
 			u.uhpmax += (otmp->cursed) ? -num2 : num2;
 			u.uhp += (otmp->cursed) ? -num : num;
 			if(u.uhpmax < 1) u.uhpmax = 1;
-			if(u.uhp <= 0) u.uhp = 0;
+			if(u.uhp <= 0) {
+				u.youaredead = 1;
+				u.uhp = 0;
+				pline("Oh no, your life force has run out...");
+				killer_format = KILLED_BY;
+				killer = "quaffing a cursed potion of gain health";
+				done(DIED);
+				u.youaredead = 0;
+			}
 			if(u.uhp > u.uhpmax) {
 				u.uhpmax += ((u.uhp - u.uhpmax) / 2);
 				u.uhp = u.uhpmax;
