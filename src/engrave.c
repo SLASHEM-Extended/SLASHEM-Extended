@@ -2349,6 +2349,50 @@ doengrave()
 	if (len != 1 || (!index(ebuf, 'x') && !index(ebuf, 'X')))
 	    u.uconduct.literate++;
 
+	/* Evil Variant by ais523: the first Elbereth will always misengrave */
+	if (isevilvariant && strlen(ebuf) > 7) for (sp = ebuf; *sp; sp++) {
+
+		if (*sp == 'e' || *sp == 'E') {
+			sp++;
+			if (*sp && (*sp == 'l' || *sp == 'L')) {
+				sp++;
+				if (*sp && (*sp == 'b' || *sp == 'B')) {
+					sp++;
+					if (*sp && (*sp == 'e' || *sp == 'E')) {
+						sp++;
+						if (*sp && (*sp == 'r' || *sp == 'R')) {
+							sp++;
+							if (*sp && (*sp == 'e' || *sp == 'E')) {
+								sp++;
+								if (*sp && (*sp == 't' || *sp == 'T')) {
+									sp++;
+									if (*sp && (*sp == 'h' || *sp == 'H')) {
+										*sp = 's';
+										sp--;
+										*sp = 'e';
+										sp--;
+										*sp = 'l';
+										sp--;
+										*sp = 'o';
+										sp--;
+										*sp = 'h';
+										sp--;
+										*sp = 's';
+										sp--;
+										*sp = 's';
+										sp--;
+										*sp = 'A';
+										break;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	/* Mix up engraving if surface or state of mind is unsound.
 	   Note: this won't add or remove any spaces. */
 
