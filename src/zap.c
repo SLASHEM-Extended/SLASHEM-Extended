@@ -6732,7 +6732,6 @@ struct obj *obj;
 		zap_dig(TRUE);
 	    else if (otyp == SPE_DIG)
 		zap_dig(FALSE);
-/*		else if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_FINGER_OF_DEATH)*/
 		else if (otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_PSYBEAM)
 			/* WAC --
 			 * Include effect for Mega Large Fireball/Cones of Cold.
@@ -6740,13 +6739,11 @@ struct obj *obj;
 			 * Include Yell...atmospheric.
 			 * Added slight delay before fireworks. */
 
-			if (((otyp >= SPE_MAGIC_MISSILE /*&& otyp <= SPE_CONE_OF_COLD)
-		            || (otyp >= SPE_LIGHTNING*/ && otyp <= SPE_PSYBEAM))
+			if (((otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_PSYBEAM))
 		            && (tech_inuse(T_SIGIL_TEMPEST))) {
 				/* sigil of tempest */                     
 				throwstorm(obj, skilldmg, 2 , 2);
-			} else if (((otyp >= SPE_MAGIC_MISSILE /*&& otyp <= SPE_CONE_OF_COLD)
-		            || (otyp >= SPE_LIGHTNING*/ && otyp <= SPE_PSYBEAM))
+			} else if (((otyp >= SPE_MAGIC_MISSILE && otyp <= SPE_PSYBEAM))
 					/*WAC - use sigil of discharge */
 		            && (tech_inuse(T_SIGIL_DISCHARGE))) {
 				You("yell \"%s\"",yell_types[otyp - SPE_MAGIC_MISSILE]);
@@ -6754,18 +6751,23 @@ struct obj *obj;
 				buzz(ZT_MEGA(otyp - SPE_MAGIC_MISSILE),
 						u.ulevel/2 + 1 + skilldmg,
 						u.ux, u.uy, u.dx, u.dy);
-			} else buzz(ZT_SPELL(otyp - SPE_MAGIC_MISSILE),
-					u.ulevel / 2 + 1 + skilldmg,
-		     u.ux, u.uy, u.dx, u.dy);
+			} else if (otyp == SPE_SLEEP) { /* way too uber, needs nerf badly --Amy */
+				int sleepnerfamount = (u.ulevel / 2 + 1 + skilldmg);
+				if (sleepnerfamount > 1) sleepnerfamount /= 2;
+				if (sleepnerfamount > 1 && !rn2(2)) {
+					sleepnerfamount /= 2;
+					if (sleepnerfamount > 1 && !rn2(5)) sleepnerfamount /= 2;
+				}
+				buzz(ZT_SPELL(otyp - SPE_MAGIC_MISSILE), sleepnerfamount, u.ux, u.uy, u.dx, u.dy);
+			} else { /* zap a "normal" spell */
+				buzz(ZT_SPELL(otyp - SPE_MAGIC_MISSILE), u.ulevel / 2 + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+			}
 
-	    else if (otyp >= WAN_MAGIC_MISSILE && otyp <= WAN_PSYBEAM)
-        {
-		buzz(otyp - WAN_MAGIC_MISSILE,
+		else if (otyp >= WAN_MAGIC_MISSILE && otyp <= WAN_PSYBEAM) {
+			buzz(otyp - WAN_MAGIC_MISSILE,
 		     (otyp == WAN_MAGIC_MISSILE) ? 4 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) : (otyp == WAN_SOLAR_BEAM) ? 8 + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) : (otyp == WAN_PSYBEAM) ? 7 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) : 6 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5),
 		     u.ux, u.uy, u.dx, u.dy);
-			/*} else if (obj->otyp == WAN_ACID) {
-			    buzz(ZT_ACID,6,u.ux,u.uy,u.dx,u.dy); */ /* obsolete --Amy */
-        }
+	    }
 
 	    else if (otyp == WAN_POISON) {
 		buzz((int)(26), 7 + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
