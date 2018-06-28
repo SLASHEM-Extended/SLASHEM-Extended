@@ -12172,6 +12172,8 @@ xchar x, y;	/* location */
 	boolean	      make_stairs;
 	struct mkroom *br_room;
 
+	int stairtryct = 0;
+
 	/*
 	 * Return immediately if there is no branch to make or we have
 	 * already made one.  This routine can be called twice when
@@ -12184,6 +12186,15 @@ xchar x, y;	/* location */
 	    br_room = find_branch_room(&m);
 	    x = m.x;
 	    y = m.y;
+
+	    /* somehow this genius code can place the branch staircase on an existing branch!!! we can't have that --Amy */
+	    if (On_stairs(x, y) && stairtryct++ < 50000) {
+			impossible("placing branch on existing staircase?");
+			br_room = find_branch_room(&m);
+			x = m.x;
+			y = m.y;
+	    }
+
 	} else {
 	    br_room = pos_to_room(x, y);
 	}
