@@ -1808,6 +1808,7 @@ int magic; /* 0=Physical, otherwise skill level */
 	    if (In_sokoban(&u.uz))
 		{change_luck(-1);
 		pline("You cheater!");
+		if (isevilvariant) u.ugangr++;
 		}
 
 	    teleds(cc.x, cc.y, TRUE);

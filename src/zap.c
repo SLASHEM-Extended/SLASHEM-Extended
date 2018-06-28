@@ -2518,6 +2518,7 @@ poly_obj(obj, id)
 	if (obj->otyp == BOULDER && In_sokoban(&u.uz))
 		{change_luck(-1);
 		pline("You cheater!");
+		if (isevilvariant) u.ugangr++;
 		}
 	    /* Sokoban guilt */
 #ifdef WIZARD
@@ -8889,6 +8890,7 @@ register struct obj *obj;		   /* no texts here! */
 	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !flags.mon_moving)
 		{change_luck(-1);
 		pline("You cheater!");
+		if (isevilvariant) u.ugangr++;
 		}
 
 	obj->otyp = ROCK;

@@ -5492,6 +5492,7 @@ randenchchoice:
 	    	if (In_sokoban(&u.uz))
 			{change_luck(-1);
 			pline("You cheater!");
+			if (isevilvariant) u.ugangr++;
 			}
 			/* Sokoban guilt */
 
