@@ -4449,6 +4449,11 @@ static const char *epitaphs[] = {
 	"Seriously, item destruction in vanilla is insane, and some variants actively make it worse.",
 	"what if SLEX is just a complex survival method that the amy uses to find intelligent, healthy new mates for the year to ensure the survival of the kr*ut race",
 	"I hope whoever invented instapetrification that can't be stopped even if you have a lizard corpse gets instapetrified in real life.",
+	"Not surprising... SLEX, the variant where no means yes.", /* by Mandevil */
+	"I asked Mandevil how he got in here, and he responded: 'I used my Ana-Elf-Mal-Cha raygun to disintegrate your defences.' And at that time I hadn't eaten a black dragon corpse yet.",
+	"bhaak: you and your weeping angel anti-fun squad! why did you make them so annoying :P",
+	"WUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUT BHAAK WHAT THE HELL I thought turning paranoid water off means I just don't get the unnecessary 'yes/no' but a simple 'y/n' instead! FIX PLZ",
+	"Nethack4 even made it so that if quaffing from a fountain gives a water nymph, she will then get a turn! In vanilla it would be your turn after she got generated!",
 
 };
 

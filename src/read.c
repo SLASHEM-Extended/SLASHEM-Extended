@@ -843,6 +843,18 @@ doread()
 	"I ascended Splicehack in June 2018 and at that time it was the fastest turncount ascension ever in that variant!",
 	"I ascended Unnethack and only had to kill Cthulhu thrice and search the entire sanctum for the amulet while constantly being afraid of him respawning, grabbing the amulet, and it being teleported away again when he dies!",
 	"I'm the bitch who got the 'die to 9 specific monsters' trophy (introduced while Junethack 2018 was already running) before anyone else did and it didn't take me hundreds of lame scurrier scum games!",
+	"Hahahahahahahahahahahahahahahahahahahahahahahahahahaha Germany lost 0:2 to South Korea in 2018 and finished dead last in the first round :D",
+	"Wands don't kill people - I do.",
+	"Variant developers should be forced by law to make sure players on all platforms with all supported control schemes have a good playing experience, not only the ones that use the same one the dev is using.",
+	"I can bitch about badly designed Junethack trophies and I will not shut up about them even if you kick me from the IRC channel!",
+	"Can't deal with me bitching about shitty Junethack scumfests? Deal with it, bitch!",
+	"Unnethack's yes/no confirmation when stepping on water should be genocided",
+	"FIQhack's tab confirmation should be genocided",
+	"Half a dozen scroll types in FIQhack should be genocided because monsters will screw you over when they read those",
+	"Unnethack's yes/no confirmation when stepping on water is as useful as a hole in the head",
+	"Nethack Fourk's tab confirmation when overeating is an ulcerous chancre that should be cut from the game with a rusty knife",
+	"#blacklightsmatter", /* by Demo */
+	"Think about obsessive players in your community 'What is the worst/most stupid/most obsessive thing a player could do?'.  You will probably be wrong", /* by bhaak */
 
 	    };
 	    char buf[BUFSZ];
