@@ -627,7 +627,7 @@ aligntyp resp_god;
 	    }
 }
 STATIC_OVL void
-fry_by_god(resp_god)
+fry_by_god(resp_god) /* Amy note: this instakills you even if you have many HP, unlike other disintegration sources */
 aligntyp resp_god;
 {
 	char killerbuf[64];

@@ -4840,9 +4840,16 @@ rerollX:
 			    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 			    break;
 			} else {
-				u.youaredead = 1;
-				done(DIED);
-				u.youaredead = 0;
+				if (u.uhpmax > 20) {
+					u.uhpmax -= rnd(20);
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					losehp(rnz(100 + level_difficulty()), "lol you died because you stepped on the wrong trap", KILLED_BY);
+					break;
+				} else {
+					u.youaredead = 1;
+					done(DIED);
+					u.youaredead = 0;
+				}
 			}
 
 		}

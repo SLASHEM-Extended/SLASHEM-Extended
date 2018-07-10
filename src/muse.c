@@ -3892,12 +3892,19 @@ register struct obj *otmp;
 			    break;
 			}
 
-			u.youaredead = 1;
-			killer_format = KILLED_BY_AN;
-			killer = "wand of disintegration";
-		      done(DIED);
-			u.youaredead = 0;
-			return 0;
+			if (u.uhpmax > 20) {
+				u.uhpmax -= rnd(20);
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				losehp(rnz(100 + level_difficulty()), "zap you died", KILLED_BY);
+				break;
+			} else {
+				u.youaredead = 1;
+				killer_format = KILLED_BY_AN;
+				killer = "wand of disintegration";
+			      done(DIED);
+				u.youaredead = 0;
+				return 0;
+			}
 
 		} else {
 

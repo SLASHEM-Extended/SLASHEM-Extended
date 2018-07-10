@@ -438,9 +438,16 @@ const char *name;	/* if null, then format `obj' */
 				    /* destroy shirt */
 				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 				} else {
-					u.youaredead = 1;
-					done(DIED);
-					u.youaredead = 0;
+					if (u.uhpmax > 20) {
+						u.uhpmax -= rnd(20);
+						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+						losehp(rnz(100 + level_difficulty()), "click click click click click you died", KILLED_BY);
+
+					} else {
+						u.youaredead = 1;
+						done(DIED);
+						u.youaredead = 0;
+					}
 				}
 	
 			}

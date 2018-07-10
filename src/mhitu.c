@@ -7193,15 +7193,24 @@ dopois:
 		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
 		}
-		u.youaredead = 1;
-	    done(DIED);
-		u.youaredead = 0;
+
+		if (u.uhpmax > 20) {
+			u.uhpmax -= rnd(20);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			losehp(rnz(100 + level_difficulty()), "monster-induced died", KILLED_BY);
+			break;
+		} else {
+			u.youaredead = 1;
+			done(DIED);
+			u.youaredead = 0;
+		}
 	    return 1; /* lifesaved */
 
 	}
 	      break;
 
 	    case AD_VAPO:
+		if (!Disint_resistance) dmg *= 3;
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 
@@ -7229,13 +7238,19 @@ dopois:
 		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
 		}
-		u.youaredead = 1;
-	    done(DIED);
-		u.youaredead = 0;
+		if (u.uhpmax > 20) {
+			u.uhpmax -= rnd(20);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			losehp(rnz(100 + level_difficulty()), "monster-induced vapor died", KILLED_BY);
+			break;
+		} else {
+			u.youaredead = 1;
+			done(DIED);
+			u.youaredead = 0;
+		}
 	    return 1; /* lifesaved */
 
 	}
-		if (!Disint_resistance) dmg *= 3;
 	      break;
 
 	    case AD_DCAY:
@@ -10297,9 +10312,16 @@ do_stone2:
 		    break;
 		}
 
-		u.youaredead = 1;
-	    done(DIED);
-		u.youaredead = 0;
+		if (u.uhpmax > 20) {
+			u.uhpmax -= rnd(20);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			losehp(rnz(100 + level_difficulty()), "a drill died", KILLED_BY);
+			break;
+		} else {
+			u.youaredead = 1;
+			done(DIED);
+			u.youaredead = 0;
+		}
 	    return 1; /* lifesaved */
 
 	}
@@ -10337,9 +10359,16 @@ do_stone2:
 		    break;
 		}
 
-		u.youaredead = 1;
-	    done(DIED);
-		u.youaredead = 0;
+		if (u.uhpmax > 20) {
+			u.uhpmax -= rnd(20);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			losehp(rnz(100 + level_difficulty()), "vaporization died", KILLED_BY);
+			break;
+		} else {
+			u.youaredead = 1;
+			done(DIED);
+			u.youaredead = 0;
+		}
 	    return 1; /* lifesaved */
 
 	}
@@ -11557,9 +11586,16 @@ common:
 		    break;
 		}
 
-		u.youaredead = 1;
-	      done(DIED);
-		u.youaredead = 0;
+		if (u.uhpmax > 20) {
+			u.uhpmax -= rnd(20);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			losehp(rnz(100 + level_difficulty()), "KABOOM you died", KILLED_BY);
+			break;
+		} else {
+			u.youaredead = 1;
+			done(DIED);
+			u.youaredead = 0;
+		}
 
 		break;
 
@@ -11594,9 +11630,16 @@ common:
 		    break;
 		}
 
-		u.youaredead = 1;
-	      done(DIED);
-		u.youaredead = 0;
+		if (u.uhpmax > 20) {
+			u.uhpmax -= rnd(20);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			losehp(rnz(100 + level_difficulty()), "vaporization kaboom you died", KILLED_BY);
+			break;
+		} else {
+			u.youaredead = 1;
+			done(DIED);
+			u.youaredead = 0;
+		}
 
 		break;
 
@@ -12944,9 +12987,16 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    break;
 		}
 
-		u.youaredead = 1;
-	    done(DIED);
-		u.youaredead = 0;
+		if (u.uhpmax > 20) {
+			u.uhpmax -= rnd(20);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			losehp(rnz(100 + level_difficulty()), "a died gaze", KILLED_BY);
+			break;
+		} else {
+			u.youaredead = 1;
+			done(DIED);
+			u.youaredead = 0;
+		}
 	    return 1; /* lifesaved */
 
 		}
@@ -12990,9 +13040,16 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    break;
 		}
 
-		u.youaredead = 1;
-	    done(DIED);
-		u.youaredead = 0;
+		if (u.uhpmax > 20) {
+			u.uhpmax -= rnd(20);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			losehp(rnz(100 + level_difficulty()), "vaporgaze died", KILLED_BY);
+			break;
+		} else {
+			u.youaredead = 1;
+			done(DIED);
+			u.youaredead = 0;
+		}
 	    return 1; /* lifesaved */
 
 		}

@@ -5682,12 +5682,19 @@ boolean ordinary;
 			    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 			    break;
 			}
-			u.youaredead = 1;
-			killer_format = KILLED_BY;
-			killer = "self-disintegration";
-		      done(DIED);
-			u.youaredead = 0;
-			return 0;
+			if (u.uhpmax > 20) {
+				u.uhpmax -= rnd(20);
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				losehp(rnz(100 + level_difficulty()), "selfzap died", KILLED_BY);
+				break;
+			} else {
+				u.youaredead = 1;
+				killer_format = KILLED_BY;
+				killer = "self-disintegration";
+			      done(DIED);
+				u.youaredead = 0;
+				return 0;
+			}
 
 		    break;
 		case WAN_STONING:
@@ -7754,7 +7761,13 @@ xchar sx, sy;
 		    /* destroy shirt */
 		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
 		    break;
+		} else if (u.uhpmax > 20) {
+			u.uhpmax -= rnd(20);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			losehp(rnz(100 + level_difficulty()), "a termination beam", KILLED_BY);
+			break;
 		}
+
 	    } else if (nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance) {
 		shieldeff(sx, sy);
 		You("seem unaffected.");
