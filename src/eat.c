@@ -376,6 +376,7 @@ static const struct { const char *txt; int nut; } tintxts[] = {
 	{"ice-cold", 350},
 	{"icy", 340},
 	{"delicious", 400},
+	{"gourmet", 350},
 	{"", 0}
 };
 #define TTSZ	SIZE(tintxts)
