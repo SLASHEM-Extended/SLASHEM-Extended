@@ -6472,6 +6472,13 @@ vomit()		/* A good idea from David Neves */
 	nomul(-2, "vomiting", TRUE);
 	u_wipe_engr(100);
 	nomovemsg = 0;
+
+	if (IS_ALTAR(levl[u.ux][u.uy].typ)) { /* whoops... --Amy */
+		u.ugangr++;
+		if (!rn2(5)) u.ugangr++;
+		if (!rn2(25)) u.ugangr++;
+		prayer_done();
+	}
 }
 
 int
