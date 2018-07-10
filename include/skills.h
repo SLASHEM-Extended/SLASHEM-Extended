@@ -124,6 +124,10 @@
     P_SKILL(skill) >= P_MAX_SKILL(skill) ? (level)*(level)*(level)*200 : \
     (level)*(level)*(level)*20)
 
+/* for AD_TRAI attack: calculate it without the 10x cap */
+#define practice_needed_to_advance_nonmax(level,skill) \
+   (P_SKILL(skill) == P_ISRESTRICTED ? 500 : (level)*(level)*(level)*20)
+
 /* The hero's skill in various weapons. */
 struct skills {
 	xchar skill;

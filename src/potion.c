@@ -4355,7 +4355,7 @@ boolean your_fault;
 	case POT_MUTATION:
 
 		mon->isegotype = 1;
-		switch (rnd(176)) {
+		switch (rnd(188)) {
 			case 1:
 			case 2:
 			case 3: mon->egotype_thief = 1; break;
@@ -4535,6 +4535,18 @@ boolean your_fault;
 				if (rn2(100)) mon->egotype_destructor = 1;
 				else mon->egotype_worldender = 1;
 			break;
+			case 177: mon->egotype_damager = 1; break;
+			case 178: mon->egotype_antitype = 1; break;
+			case 179:
+			case 180: mon->egotype_painlord = 1; break;
+			case 181: mon->egotype_empmaster = 1; break;
+			case 182: mon->egotype_spellsucker = 1; break;
+			case 183: mon->egotype_eviltrainer = 1; break;
+			case 184: mon->egotype_statdamager = 1; break;
+			case 185: mon->egotype_damagedisher = 1; break;
+			case 186: mon->egotype_thiefguildmember = 1; break;
+			case 187:
+			case 188: mon->egotype_rogue = 1; break;
 		}
 
   		break;

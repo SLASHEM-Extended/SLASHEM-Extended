@@ -1753,6 +1753,16 @@ get_description_of_damage_type(uchar id)
 		case AD_TREM: return "trembling";
 		case AD_RAGN: return "ragnarok";
 
+		case AD_IDAM: return "random item damage";
+		case AD_ANTI: return "antimatter";
+		case AD_PAIN: return "extra pain";
+		case AD_TECH: return "technique timeout";
+		case AD_MEMO: return "reduce spell memory";
+		case AD_TRAI: return "reduce skill training";
+		case AD_STAT: return "permanent stat damage";
+		case AD_DAMA: return "random damage screwup";
+		case AD_THIE: return "thieving";
+
 		case AD_ENDS: return "placeholder attack";
 		default:
 		if (!missingnoprotect) {
@@ -16482,6 +16492,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Ouch! You burnt your finger!",
 	"You have too many spells memorized!",
 	"You have too many spells memorized! Your mind can't keep so many spells in memory, and as a result, some of them are erased.",
+	"Your intelligence falls off!",
+	"Your intelligence falls off! Now you're at risk of mind flayer instadeath!",
+	"Some of your spells got erased!",
 
 };
 

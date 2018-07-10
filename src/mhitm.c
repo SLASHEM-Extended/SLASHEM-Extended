@@ -1864,6 +1864,9 @@ physical:
 		break;
 	    case AD_WRAT:
 	    case AD_MANA:
+	    case AD_TECH:
+	    case AD_MEMO:
+	    case AD_TRAI:
 	    	    mon_drain_en(mdef, ((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1 + tmp);
 		break;
 
@@ -1970,6 +1973,12 @@ physical:
 			pline("%s suddenly disappears!", buf);
 		}
 		break;
+
+	    case AD_PAIN:
+		if (mdef->mhp > 9) tmp += (mdef->mhp / 10);
+		if (vis) pline("%s shrieks in pain!", Monnam(mdef));
+		break;
+
 	    case AD_DRLI:
 	    case AD_TIME:
 	    case AD_DFOO:
@@ -2058,6 +2067,7 @@ physical:
 	    case AD_DRDX:
 	    case AD_DRCO:
 	    case AD_POIS:
+	    case AD_STAT:
 	    case AD_WISD:
 	    case AD_DRCH:
 		if (nohit) break;
@@ -2834,6 +2844,9 @@ int mdead;
 		break;
 	    case AD_WRAT:
 	    case AD_MANA:
+	    case AD_TECH:
+	    case AD_MEMO:
+	    case AD_TRAI:
 	    	    mon_drain_en(magr, ((magr->m_lev > 0) ? (rnd(magr->m_lev)) : 0) + 1 + tmp);
 		break;
 	    case AD_DREN:
@@ -2850,6 +2863,12 @@ int mdead;
 		    magr->mstrategy &= ~STRAT_WAITFORU;
 		tmp = 0;
 		break;
+
+	    case AD_PAIN:
+		if (magr->mhp > 9) tmp += (magr->mhp / 10);
+		if (canseemon(magr)) pline("%s shrieks in pain!", Monnam(magr));
+		break;
+
 	    case AD_DRLI:
 	    case AD_TIME:
 	    case AD_DFOO:

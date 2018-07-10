@@ -2553,6 +2553,7 @@ register int pm;
 	    case PM_STONE_STALKER:
 	    case PM_ILLUSION_WEAVER:
 	    case PM_PAIN_MASTER:
+	    case PM_PAIN_MISTER:
 	    case PM_COCKTAUR:
 	    case PM_MIMIC_CHICKEN:
 	    case PM_PETRO_MIMIC:
@@ -2738,6 +2739,7 @@ register int pm;
 	    case PM_GREATER_DIMMER:
 	    case PM_TERRIBLE_ORB:
 	    case PM_PSYCH_ORB:
+	    case PM_KURROE:
 	    case PM_MIND_IMP:
 	    case PM_MASTER_BLASTER:
 	    case PM_NECROMORB:

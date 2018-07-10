@@ -1069,6 +1069,24 @@ int traitno;
 			return "monsters who try to convert you to their religion";
 		case 348:
 			return "HC aliens";
+		case 349:
+			return "monsters whose attacks randomly damage your items";
+		case 350:
+			return "monsters who attack with antimatter";
+		case 351:
+			return "monsters with extra painful attacks";
+		case 352:
+			return "monsters whose attacks increase your technique timeouts";
+		case 353:
+			return "monsters whose attacks reduce your spell memory";
+		case 354:
+			return "monsters whose attacks reduce your skill training";
+		case 355:
+			return "monsters whose attacks permanently damage your stats";
+		case 356:
+			return "monsters who deal random screwup damage";
+		case 357:
+			return "monsters with random thieving attacks";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);

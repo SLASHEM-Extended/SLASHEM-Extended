@@ -288,6 +288,17 @@ struct monst {
 	Bitfield(egotype_trembler,1); /* AD_TREM */
 	Bitfield(egotype_worldender,1); /* AD_RAGN */
 
+	Bitfield(egotype_damager,1); /* AD_IDAM */
+	Bitfield(egotype_antitype,1); /* AD_ANTI */
+	Bitfield(egotype_painlord,1); /* AD_PAIN */
+	Bitfield(egotype_empmaster,1); /* AD_TECH */
+	Bitfield(egotype_spellsucker,1); /* AD_MEMO */
+	Bitfield(egotype_eviltrainer,1); /* AD_TRAI */
+	Bitfield(egotype_statdamager,1); /* AD_STAT */
+	Bitfield(egotype_damagedisher,1); /* AD_DAMA */
+	Bitfield(egotype_thiefguildmember,1); /* AD_THIE */
+	Bitfield(egotype_rogue,1); /* AD_SEDU */
+
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */
 	Bitfield(crapbonus,6);

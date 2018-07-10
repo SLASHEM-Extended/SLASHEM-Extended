@@ -234,7 +234,18 @@ extern char *attk_dname(Attk);
 #define AD_DEST		118	/* destroy weapon/armor - subject to saving throws */
 #define AD_TREM		119	/* trembling - temporarily decreases your to-hit and spellcasting chances */
 
-#define AD_ENDS		120	/* placeholder */
+#define AD_IDAM		120	/* can damage items in the player's inventory */
+#define AD_ANTI		121	/* antimatter - like AD_IDAM but the item cannot be resistant */
+#define AD_PAIN		122	/* adds 10% of your current health to the damage done */
+#define AD_TECH		123	/* increases timeout of your techniques */
+#define AD_MEMO		124	/* reduces memory of your spells */
+#define AD_TRAI		125	/* reduces skill training */
+#define AD_STAT		126	/* permanently damages stats */
+
+#define AD_ENDS		127	/* placeholder */
+
+#define AD_DAMA		232	/* random effect that damages your gear or otherwise screws you up */
+#define AD_THIE		233	/* random effect that steals your gear or otherwise screws you up */
 
 #define AD_RAGN		234	/* ragnarok - creates lava tiles and lots of hostile giants, dragons, demons etc. */
 

@@ -3443,6 +3443,216 @@ elena37:
 
 	}
 
+	if (mtmp->egotype_damager) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_IDAM;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_antitype) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_ANTI;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_statdamager) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_STAT;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_damagedisher) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_DAMA;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_thiefguildmember) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_THIE;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_rogue) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_SEDU;
+		a->damn = 0;
+		a->damd = 0;
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_painlord) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_PAIN;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_empmaster) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_TECH;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_spellsucker) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_MEMO;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (mtmp->egotype_eviltrainer) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_TRAI;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				sum[i] = hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
 	if (mtmp->egotype_contaminator) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -4704,6 +4914,14 @@ hitmu(mtmp, mattk)
 		/*randattack = 1;*/
 	}
 
+	if (atttyp == AD_DAMA) {
+		atttyp = randomdamageattack();
+	}
+
+	if (atttyp == AD_THIE) {
+		atttyp = randomthievingattack();
+	}
+
 	if (atttyp == AD_RNG) {
 		while (atttyp == AD_ENDS || atttyp == AD_RNG || atttyp == AD_WERE) {
 			atttyp = rn2(AD_ENDS); }
@@ -5223,6 +5441,111 @@ hitmu(mtmp, mattk)
 
 		pline("Your %s are trembling!", makeplural(body_part(HAND)));
 		u.tremblingamount++;
+
+		break;
+
+	    case AD_IDAM:
+
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+
+		{
+		    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(20)) rust_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
+	    case AD_ANTI:
+
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+
+		{
+		    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(20)) wither_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
+	    case AD_PAIN:
+
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+
+		pline("It's painful!");
+		losehp(Upolyd ? ((u.mh / 10) + 1) : ((u.uhp / 10) + 1), "a painful attack", KILLED_BY);
+
+		break;
+
+	    case AD_TECH:
+
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+
+		techcapincrease(dmg * rnd(50));
+
+		break;
+
+	    case AD_MEMO:
+
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+
+		spellmemoryloss(dmg);
+
+		break;
+
+	    case AD_TRAI:
+
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+
+		skilltrainingdecrease(dmg);
+
+		break;
+
+	    case AD_STAT:
+
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+
+		if (uncancelled && !rn2(3)) {
+			int statdrained = rn2(A_MAX);
+			if (ABASE(statdrained) < 4) break;
+			if (ABASE(statdrained) < (3 + rnd(8)) ) break;
+
+			if (Race_if(PM_SUSTAINER) && rn2(50)) {
+				pline("The stat drain doesn't seem to affect you.");
+				break;
+			}
+
+			ABASE(statdrained) -= 1;
+			AMAX(statdrained) -= 1;
+			flags.botl = 1;
+			switch (statdrained) {
+
+				case A_STR:
+					pline("Your strength falls off!"); break;
+				case A_DEX:
+					pline("Your dexterity falls off!"); break;
+				case A_CON:
+					pline("Your constitution falls off!"); break;
+				case A_CHA:
+					pline("Your charisma falls off!"); break;
+				case A_INT:
+					pline("Your intelligence falls off!"); break;
+				case A_WIS:
+					pline("Your wisdom falls off!"); break;
+
+			}
+		}
 
 		break;
 
@@ -8186,6 +8509,14 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		/*randattack = 1;*/
 	}
 
+	if (atttypA == AD_DAMA) {
+		atttypA = randomdamageattack();
+	}
+
+	if (atttypA == AD_THIE) {
+		atttypA = randomthievingattack();
+	}
+
 	if (atttypA == AD_RNG) {
 		while (atttypA == AD_ENDS || atttypA == AD_RNG || atttypA == AD_WERE) {
 			atttypA = rn2(AD_ENDS); }
@@ -8365,6 +8696,98 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			u.tremblingamount++;
 
 			break;
+
+	    case AD_IDAM:
+
+		pline("This environment isn't healthy for your gear...");
+
+		{
+		    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(20)) rust_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
+	    case AD_ANTI:
+
+		pline("Your equipment is falling apart!");
+
+		{
+		    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(20)) wither_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
+	    case AD_PAIN:
+
+		pline("Pain shoots into your body!");
+		losehp(Upolyd ? ((u.mh / 10) + 1) : ((u.uhp / 10) + 1), "painful engulfing", KILLED_BY);
+
+		break;
+
+	    case AD_TECH:
+
+		pline("An EMP wave hits you!");
+		techcapincrease(tmp * rnd(50));
+
+		break;
+
+	    case AD_MEMO:
+
+		You_feel("forgetful!");
+		spellmemoryloss(tmp);
+
+		break;
+
+	    case AD_TRAI:
+
+		You_feel("very exhausted!");
+		skilltrainingdecrease(tmp);
+
+		break;
+
+	    case AD_STAT:
+
+		pline("The very essence of you seems to be sapped!");
+		if (!rn2(3)) {
+			int statdrained = rn2(A_MAX);
+			if (ABASE(statdrained) < 4) break;
+			if (ABASE(statdrained) < (3 + rnd(8)) ) break;
+
+			if (Race_if(PM_SUSTAINER) && rn2(50)) {
+				pline("The stat drain doesn't seem to affect you.");
+				break;
+			}
+
+			ABASE(statdrained) -= 1;
+			AMAX(statdrained) -= 1;
+			flags.botl = 1;
+			switch (statdrained) {
+
+				case A_STR:
+					pline("Your strength falls off!"); break;
+				case A_DEX:
+					pline("Your dexterity falls off!"); break;
+				case A_CON:
+					pline("Your constitution falls off!"); break;
+				case A_CHA:
+					pline("Your charisma falls off!"); break;
+				case A_INT:
+					pline("Your intelligence falls off!"); break;
+				case A_WIS:
+					pline("Your wisdom falls off!"); break;
+
+			}
+		}
+
+		break;
 
 	      case AD_VULN:
 			pline("You are covered with aggressive bacteria!");
@@ -10455,6 +10878,14 @@ boolean ufound;
 			atttypC = randattack(); }
 	}
 
+	if (atttypC == AD_DAMA) {
+		atttypC = randomdamageattack();
+	}
+
+	if (atttypC == AD_THIE) {
+		atttypC = randomthievingattack();
+	}
+
 	if (atttypC == AD_RNG) {
 		while (atttypC == AD_ENDS || atttypC == AD_RNG || atttypC == AD_WERE) {
 			atttypC = rn2(AD_ENDS); }
@@ -11459,6 +11890,94 @@ common:
 
 		u.tremblingamount++;
 		pline("Suddenly, your entire body trembles.");
+
+		break;
+
+	    case AD_IDAM:
+
+		{
+		    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(20)) rust_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
+	    case AD_ANTI:
+
+		{
+		    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(20)) wither_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
+	    case AD_PAIN:
+
+		pline("OUCH!");
+		losehp(Upolyd ? ((u.mh / 4) + 1) : ((u.uhp / 4) + 1), "a painful explosion", KILLED_BY);
+
+		break;
+
+	    case AD_TECH:
+
+		techcapincrease(tmp * rnd(50));
+
+		break;
+
+	    case AD_MEMO:
+
+		hitmsg(mtmp, mattk);
+
+		spellmemoryloss(tmp);
+
+		break;
+
+	    case AD_TRAI:
+
+		hitmsg(mtmp, mattk);
+
+		skilltrainingdecrease(tmp);
+
+		break;
+
+	    case AD_STAT:
+
+		{
+			int statdrained = rn2(A_MAX);
+			if (ABASE(statdrained) < 4) break;
+			if (ABASE(statdrained) < (3 + rnd(8)) ) break;
+
+			if (Race_if(PM_SUSTAINER) && rn2(50)) {
+				pline("The stat drain doesn't seem to affect you.");
+				break;
+			}
+
+			ABASE(statdrained) -= 1;
+			AMAX(statdrained) -= 1;
+			flags.botl = 1;
+			switch (statdrained) {
+
+				case A_STR:
+					pline("Your strength falls off!"); break;
+				case A_DEX:
+					pline("Your dexterity falls off!"); break;
+				case A_CON:
+					pline("Your constitution falls off!"); break;
+				case A_CHA:
+					pline("Your charisma falls off!"); break;
+				case A_INT:
+					pline("Your intelligence falls off!"); break;
+				case A_WIS:
+					pline("Your wisdom falls off!"); break;
+
+			}
+		}
 
 		break;
 
@@ -12545,6 +13064,14 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE) {
 			atttypB = randattack(); }
 		/*randattack = 1;*/
+	}
+
+	if (atttypB == AD_DAMA) {
+		atttypB = randomdamageattack();
+	}
+
+	if (atttypB == AD_THIE) {
+		atttypB = randomthievingattack();
 	}
 
 	if (atttypB == AD_RNG) {
@@ -15196,6 +15723,114 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		break;
 
+	    case AD_IDAM:
+
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
+                pline("%s throws a wrench into your gears!", Monnam(mtmp));
+
+			{
+			    register struct obj *objX, *objX2;
+			    for (objX = invent; objX; objX = objX2) {
+			      objX2 = objX->nobj;
+				if (!rn2(20)) rust_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+			    }
+			}
+		}
+
+		break;
+
+	    case AD_ANTI:
+
+	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
+                pline("%s uses %s acu phaser to breach your defenses!", Monnam(mtmp), mhis(mtmp));
+			if (Hallucination) You_feel("reminded of Mandevil's Junethack 2018 feat.");
+
+			{
+			    register struct obj *objX, *objX2;
+			    for (objX = invent; objX; objX = objX2) {
+			      objX2 = objX->nobj;
+				if (!rn2(20)) wither_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+			    }
+			}
+		}
+
+		break;
+
+	    case AD_PAIN:
+
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(3))) {
+            	pline("%s spikes you!", Monnam(mtmp));
+			losehp(Upolyd ? ((u.mh / 10) + 1) : ((u.uhp / 10) + 1), "a painful gaze", KILLED_BY);
+		}
+
+		break;
+
+	    case AD_TECH:
+
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(7))) {
+            	pline("%s hacks your account!", Monnam(mtmp));
+			techcapincrease(dmgplus * rnd(50));
+		}
+
+		break;
+
+	    case AD_MEMO:
+
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(7))) {
+            	pline("%s shoots mind waves at you!", Monnam(mtmp));
+			spellmemoryloss(dmgplus);
+		}
+
+		break;
+
+	    case AD_TRAI:
+
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(7))) {
+            	pline("%s steals your training effort!", Monnam(mtmp));
+			skilltrainingdecrease(dmgplus);
+		}
+
+		break;
+
+	    case AD_STAT:
+
+		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
+            	pline("%s tries to drain your very soul!", Monnam(mtmp));
+
+		if (!rn2(3)) {
+			int statdrained = rn2(A_MAX);
+			if (ABASE(statdrained) < 4) break;
+			if (ABASE(statdrained) < (3 + rnd(8)) ) break;
+
+			if (Race_if(PM_SUSTAINER) && rn2(50)) {
+				pline("The stat drain doesn't seem to affect you.");
+				break;
+			}
+
+			ABASE(statdrained) -= 1;
+			AMAX(statdrained) -= 1;
+			flags.botl = 1;
+			switch (statdrained) {
+
+				case A_STR:
+					pline("Your strength falls off!"); break;
+				case A_DEX:
+					pline("Your dexterity falls off!"); break;
+				case A_CON:
+					pline("Your constitution falls off!"); break;
+				case A_CHA:
+					pline("Your charisma falls off!"); break;
+				case A_INT:
+					pline("Your intelligence falls off!"); break;
+				case A_WIS:
+					pline("Your wisdom falls off!"); break;
+
+			}
+		}
+		}
+
+		break;
+
 	    case AD_VULN:
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
             	pline("%s laughs devilishly!", Monnam(mtmp));
@@ -17171,6 +17806,9 @@ register struct attack *mattk;
 		break;
 	    case AD_WRAT:
 	    case AD_MANA:
+	    case AD_TECH:
+	    case AD_MEMO:
+	    case AD_TRAI:
 	    	    mon_drain_en(mtmp, ((mtmp->m_lev > 0) ? (rnd(mtmp->m_lev)) : 0) + 1 + tmp);
 		break;
 	    case AD_DREN:
@@ -17186,6 +17824,10 @@ register struct attack *mattk;
 		    mtmp->mcansee = 0;
 		    mtmp->mstrategy &= ~STRAT_WAITFORU;
 		tmp = 0;
+		break;
+	    case AD_PAIN:
+		if (mtmp->mhp > 9) tmp += (mtmp->mhp / 10);
+		pline("%s shrieks in pain!", Monnam(mtmp));
 		break;
 	    case AD_DRLI:
 	    case AD_TIME:

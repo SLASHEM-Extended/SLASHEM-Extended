@@ -2288,6 +2288,9 @@ E int d(int,int);
 E int rne(int);
 E int rnz(int);
 E int randattack(void);
+E int randomdamageattack(void);
+E int randomthievingattack(void);
+E int randmonsound(void);
 E int randenchantment(void);
 E int randnastyenchantment(void);
 E int randomdisableproperty(void);
@@ -2533,6 +2536,7 @@ E int docast(void);
 E int spell_skilltype(int);
 E int spelleffects(int,BOOLEAN_P);
 E void losespells(void);
+E void spellmemoryloss(int);
 E int dovspell(void);
 E void learnspell(struct obj *);
 E boolean studyspell(void);
@@ -2593,6 +2597,7 @@ E int disarm_fire_trap(struct trap *);
 E int disarm_landmine(struct trap *);
 E int disarm_squeaky_board(struct trap *);
 E int disarm_shooting_trap(struct trap *, int);
+E void techcapincrease(int);
 
 
 /* ### teleport.c ### */
@@ -2983,6 +2988,7 @@ E void skill_init(const struct def_skill *);
 E void practice_weapon(void);
 E void xtraskillinit(void);
 E int get_obj_skill(struct obj *);
+E void skilltrainingdecrease(int);
 
 /* ### were.c ### */
 

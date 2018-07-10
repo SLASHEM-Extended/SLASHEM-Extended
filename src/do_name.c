@@ -782,6 +782,10 @@ boolean called;
 
 	if (!do_hallu && mtmp->isegotype && !mtmp->noegodesc && !mtmp->noegodisplay && !PlayerUninformation) {
 
+		/* Some of these use - or other weird ways to combine two words, which is actually against the rules
+		 * of the English grammar, but it's intentional to mark words that belong to a single egotype, because
+		 * a monster may have several egotypes at the same time. --Amy */
+
 	    if (mtmp->egotype_thief) sprintf(eos(buf), " Thief");
 	    if (mtmp->egotype_wallwalk) sprintf(eos(buf), " Phazer");
 	    if (mtmp->egotype_disenchant) sprintf(eos(buf), " Disenchanter");
@@ -905,6 +909,16 @@ boolean called;
 	    if (mtmp->egotype_destructor) sprintf(eos(buf), " Destructor");
 	    if (mtmp->egotype_trembler) sprintf(eos(buf), " Trembler");
 	    if (mtmp->egotype_worldender) sprintf(eos(buf), " World-ender");
+	    if (mtmp->egotype_damager) sprintf(eos(buf), " Damager");
+	    if (mtmp->egotype_antitype) sprintf(eos(buf), " Antitype");
+	    if (mtmp->egotype_painlord) sprintf(eos(buf), " Painlord");
+	    if (mtmp->egotype_empmaster) sprintf(eos(buf), " EMP-Master");
+	    if (mtmp->egotype_spellsucker) sprintf(eos(buf), " Spellsucker");
+	    if (mtmp->egotype_eviltrainer) sprintf(eos(buf), " EvilTrainer");
+	    if (mtmp->egotype_statdamager) sprintf(eos(buf), " StatDamager");
+	    if (mtmp->egotype_damagedisher) sprintf(eos(buf), " Damage-Disher");
+	    if (mtmp->egotype_thiefguildmember) sprintf(eos(buf), " ThiefGuildMember");
+	    if (mtmp->egotype_rogue) sprintf(eos(buf), " Rogue");
 
 	}
 

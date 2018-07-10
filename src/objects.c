@@ -5088,6 +5088,12 @@ SCROLL((char *)0,               "GERMANY WAS DEAD LAST AGAINST MEXICO SWEDEN AND
 SCROLL((char *)0,               "THE PLAY GOES 90 MINUTES",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 SCROLL((char *)0,               "THE ROUND MUST IN THE ANGULAR",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 SCROLL((char *)0,               "DEPENDS UNDERGARMENT PROTECTION SPONSORSHIP",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "YOU GOTTA TALK TO THE AMYFICATION",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "FRAUSCH",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
+SCROLL((char *)0,               "IN THE BUTT KIDNEYS",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "HANDS HIGHLY OR I SHOOTS",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "DRIVING IT THEIR CART AWAY",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "STILL 5 SECONDS AND I IMPACT TOO",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

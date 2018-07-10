@@ -297,6 +297,7 @@
 				 (ptr) == &mons[PM_STONE_STALKER] || \
 				 (ptr) == &mons[PM_ILLUSION_WEAVER] || \
 				 (ptr) == &mons[PM_PAIN_MASTER] || \
+				 (ptr) == &mons[PM_PAIN_MISTER] || \
 				 (ptr) == &mons[PM_CAMOUFLAGED_WATCHER] || \
 				 (ptr) == &mons[PM_HIDDEN_TRACKER] || \
 				 (ptr) == &mons[PM_SILENT_KILLER] || \
