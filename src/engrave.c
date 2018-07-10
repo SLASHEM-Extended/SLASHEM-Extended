@@ -2409,6 +2409,7 @@ doengrave()
 			(Feared && (ishaxor ? !rn2(40) : !rn2(30)) ) ||
 		    (Stunned && (ishaxor ? !rn2(25) : !rn2(15)) ) ||
 			(Frozen && (ishaxor ? !rn2(20) : !rn2(10)) ) ||
+			(Glib && (ishaxor ? !rn2(10) : !rn2(5)) ) ||
 			(Hallucination && (ishaxor ? !rn2(28) : !rn2(18))) )
 		*sp = ' ' + rnd(96 - 2);	/* ASCII '!' thru '~'
 						   (excludes ' ' and DEL) */
