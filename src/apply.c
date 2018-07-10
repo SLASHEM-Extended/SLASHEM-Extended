@@ -1174,10 +1174,16 @@ register struct obj *obj;
 		pline("This %s has no %s.", xname(obj), s);
 		return;
 	}
+
+	if (isevilvariant && obj->cursed) {
+		pline("Ouch! You burnt your %s!", body_part(FINGER));
+		losehp(rnd(2), "igniting a cursed light source", KILLED_BY);
+	}
+
 	if(u.uswallow || (obj->cursed && !rn2(2))) {
-		if (!Blind)
-		    pline_The("%s %s for a moment, then %s.",
-			      s, vtense(s, "flicker"), vtense(s, "die"));
+		if (!Blind) {
+		    pline_The("%s %s for a moment, then %s.", s, vtense(s, "flicker"), vtense(s, "die"));
+		}
 		return;
 	}
 	if(obj->spe < 7) {
@@ -1428,6 +1434,12 @@ struct obj *obj;
 		else pline("This %s has no oil.", xname(obj));
 		return;
 	}
+
+	if (isevilvariant && obj->cursed) {
+		pline("Ouch! You burnt your %s!", body_part(FINGER));
+		losehp(rnd(2), "igniting a cursed light source", KILLED_BY);
+	}
+
 	if (obj->cursed && !rn2(2)) {
 		pline("%s for a moment, then %s.",
 		      Tobjnam(obj, "flicker"), otense(obj, "die"));
