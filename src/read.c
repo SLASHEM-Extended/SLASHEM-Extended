@@ -302,96 +302,19 @@ doread()
     "Don't Panic",				/* HHGTTG */
     "Furinkan High School Athletic Dept.",	/* Ranma 1/2 */
     "Hel-LOOO, Nurse!",			/* Animaniacs */
-			"I explored the Dungeons of Doom and all I got was this lousy T-shirt!",
-			"Is that Mjollnir in your pocket or are you just happy to see me?",
-			"It's not the size of your sword, it's how #enhance'd you are with it.",
-			"Madame Elvira's House O' Succubi Lifetime Customer",
-			"Madame Elvira's House O' Succubi Employee of the Month",
-			"Ludios Vault Guards Do It In Small, Dark Rooms",
-			"Yendor Military Soldiers Do It In Large Groups",
-			"I survived Yendor Military Boot Camp",
-			"Ludios Accounting School Intra-Mural Lacrosse Team",
-			"Oracle(TM) Fountains 10th Annual Wet T-Shirt Contest",
-			"Hey, black dragon!  Disintegrate THIS!",
-			"I'm With Stupid -->",
-			"Don't blame me, I voted for Izchak!",
 			"Frodo Lives!",
 			"Actually, I AM a quantum mechanic.",
 			"I beat the Sword Master",			/* Monkey Island */
-			"Don't Panic",				/* HHGTTG */
-			"Furinkan High School Athletic Dept.",	/* Ranma 1/2 */
-			"Hel-LOOO, Nurse!",			/* Animaniacs */
 			
-			/* NAO */
-			"=^.^=",
-			"100% goblin hair - do not wash",
-			"Aim >>> <<< here",
-			"cK -- Cockatrice touches the Kop",
-			"Croesus for President 2008 - Campaign Finance Reform Now (for the other guy)",
 			"Don't ask me, I only adventure here",
-			"Down With Pants!",
-			"Gehennoms Angels",
-			"Glutton For Punishment",
-			"Go Team Ant!",
-			"Got Newt?",
-			"Heading for Godhead",
 			"Hello, my darlings!", /* Charlie Drake */
-			"Hey! Nymphs! Steal This T-Shirt!",
-			"I <3 Dungeon of Doom",
-			"I am a Valkyrie. If you see me running, try to keep up.",
-			"I Am Not a Pack Rat - I Am a Collector",
-			"I bounced off a rubber tree",
-			"If you can read this, I can hit you with my polearm",
-			"I'm Confused!",
-			"I met Carl, the swordmaster of Jambalaya island and all I got was this lousy t-shirt",
-			"I scored with the princess",
-			"I Support Single Succubi",
-			"I want to live forever or die in the attempt.",
-			"Kop Killaz",
-			"Lichen Park",
-			"LOST IN THOUGHT - please send search party",
-			"Meat Is Mordor",
-			"Minetown Better Business Bureau",
-			"Minetown Watch",
-			"Ms. Palm's House of Negotiable Affection -- A Very Reputable House Of Disrepute",
 			"^^  My eyes are up there!  ^^",
-			"Next time you wave at me, use more than one finger, please.",
-			"Objects In This Shirt Are Closer Than They Appear",
-			"Protection Racketeer",
-			"P Happens",
-			"Real men love Crom",
-			"Sokoban Gym -- Get Strong or Die Trying",
-			"Somebody stole my Mojo!",
-			"The Hellhound Gang",
-			"The Werewolves",
-			"They Might Be Storm Giants",
-			"Up with miniskirts!",
-			"Weapons don't kill people, I kill people",
-			"Where's the beef?",
-			"White Zombie",
-			"Worship me",
-			"You laugh because I'm different, I laugh because you're about to die",
-			"You should hear what the voices in my head are saying about you.",
 			"Anhur State University - Home of the Fighting Fire Ants!",
-			"FREE HUGS",
-			"Serial Ascender",
 			"Plunder Island Brimstone Beach Club",
-			"Real Men Are Valkyries",
-			"Young Men's Cavedigging Association",
-			"Occupy Fort Ludios",
-			"I couldn't afford this T-shirt so I stole it!",
-			"End Mercantile Opacity Discrimination Now: Let Invisible Customers Shop!",
-			"Elvira's House O'Succubi, granting the gift of immorality!",
 
 			/* http://www.alt.org/nethack/addmsgs/viewmsgs.php */
 			"That is not dead which can eternal lie, and in successful ascensions even Death may die.",
-			"Yet Another Stupid T-Shirt",
-			"Xorn ate my +7 Stormbringer and +6 Grayswandir",
-			"Overcharge me!",
-			"Mind flayers suck!",
-			"Funny message goes here",
 			"3,14159 26535 89793 23846 26433 83279 50288 41971 69399 37510 58209 74944 59230 78164 06286 20899...",
-			"+<<*giant cave spider silk T-shirt*>>+",
 
 			/* UnNetHack */
 			"I made a NetHack fork and all I got was this lousy T-shirt!",	/* galehar */
@@ -401,7 +324,6 @@ doread()
 			"ingredients: oxygen 65%, Carbon 18%, Hydrogen 10%, Nitrogen 3%, Calcium 1,5%, Phosphorus 1%",
 			"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 			"I made a UnNetHack fork and all I got was this lousy T-shirt!",	/* see UnNetHack section */
-"I captured the t-shirt factory, anyone who kill every last caveman gets 9 +9 t-shirts",
 "I captured the t-shirt factory, anyone who kill every last caveman gets 9 +9 t-shirts",
 "Kill, Maim, Burn...",
 "$playername IS THE BOSS!",
@@ -423,8 +345,6 @@ doread()
 "9/11",
 "9/11, I'm In Heaven!",
 "90% cotton, 10% polyester.",
-":-)",
-":-)",
 ":-)",
 "<tits> </tits>",
 "=^.^=",
@@ -540,7 +460,6 @@ doread()
 "I'm selling these fine leather jackets",
 "I'm with Stupid -->",
 "I'm with a pet",
-"I'm with stupid ->",
 "I'm with stupid ->",
 "If you can read this, I can hit you with my polearm",
 "If you can read this, you are too close.",
@@ -663,7 +582,6 @@ doread()
 "cK -- Cockatrice touches the Kop",
 "d, your dog or a killer?",
 "lol",
-"mde.tv",
 "mde.tv",
 "nWo",
 "noitcelfer fo trihs-T 5+ desselB",
@@ -855,6 +773,12 @@ doread()
 	"Nethack Fourk's tab confirmation when overeating is an ulcerous chancre that should be cut from the game with a rusty knife",
 	"#blacklightsmatter", /* by Demo */
 	"Think about obsessive players in your community 'What is the worst/most stupid/most obsessive thing a player could do?'.  You will probably be wrong", /* by bhaak */
+	"Defund slex development", /* by Demo */
+	"The nymphets would have won junethack 2018 if it weren't for the medusa kill scumming, most ascensions in 24 hours hardcore autism parking, and healer startscum dumbshit trophy :P",
+	"2018 Medusa Kill Scummer",
+	"Wielder of Weaponized Autism",
+	"Healer Startscummer Who Wishes For Asmodeus Statues",
+	"Don't mind me, I'm busy parking a tarot card deck of Dynahack ascensions. This is my 21st one, 20 others are already waiting on the Astral Plane and will ascend on June 30.",
 
 	    };
 	    char buf[BUFSZ];

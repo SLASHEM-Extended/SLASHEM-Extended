@@ -14796,6 +14796,13 @@ register int	mmflags;
 			if (mndx == PM_THE_INVISIBLE_MAN) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_LAG_MONSTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 
+			if (mtmp->data == &mons[PM_PACK_LORD]) {
+				(void) makemon(&mons[PM_ALPHA_WHO_WOLF], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				(void) makemon(&mons[PM_ALPHA_WHO_WOLF], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(3)) (void) makemon(&mons[PM_ALPHA_WHO_WOLF], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				if (!rn2(5)) (void) makemon(&mons[PM_ALPHA_WHO_WOLF], mtmp->mx, mtmp->my, MM_ADJACENTOK);
+			}
+
 			break;
 		case S_EYE:
 			if (mtmp->data == &mons[PM_VOLTORB]) set_mimic_sym(mtmp);
