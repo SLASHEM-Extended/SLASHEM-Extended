@@ -10542,6 +10542,8 @@ boolean ufound;
 	    case AD_PHYS: /* just do some plain physical damage, for golem's selfdestruct attack et. al. --Amy */
 common:
 
+		if (atttypC == AD_PHYS) not_affected = FALSE;
+
 		if (!not_affected || !rn2(10) ) {
 		    if (ACURR(A_DEX) > rnd(200)) {
 			You("duck some of the blast.");
