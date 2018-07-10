@@ -1,5 +1,21 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.2.6
+- Added a bunch of new attacks that monsters can use.
+- All roles now have a "spell retention" value, which determines how many spells can be memorized before amnesia effects start erasing more spell knowledge per incident. If the player has more than twice this value of spells memorized, ones at the bottom of the list can spontaneously be removed. Melee roles have a much lower spell retention than casters.
+- Turn undead and stone to flesh can occasionally destroy corpses or statues, thereby removing the possibility of endless farming.
+- If the player is on the receiving end of a disintegration effect, and is wearing no armor, there's now a chance to survive it, but the player loses some max HP.
+- Fixed a potential bug that caused the player to sometimes resist physical explosion attacks.
+- In evilvariant mode, eating worms, blobs and similar things gives slippery fingers.
+- Vomiting on an altar will anger the gods.
+- If the player has slippery fingers, engraving is much more likely to result in misengraving.
+- Kicking a tree can occasionally summon hostile nymphs.
+- Eating a cursed C- or K-ration while hallucinating gives YAFM.
+- In evilvariant mode, attempting to light a cursed light source will burn the player's finger.
+- Vomiting will wipe the engraving on the player's location.
+- In evilvariant mode, certain item materials (including silver and dragonhide) are subject to some types of erosion now.
+- Added a random tin preparation method.
+
 2.2.5
 - Fixed a bug that could cause a regular staircase and a branch staircase to be on the same tile, which would always give precedence to the branch staircase when the player was trying to use it and possibly result in unwinnable games.
 - Nerfed the duration of player-versus-monster sleep spells.
