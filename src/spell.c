@@ -6491,6 +6491,81 @@ losespells()
 	}
 }
 
+void
+spellmemoryloss(lossamount)
+int lossamount;
+{
+	int n, thisone, choicenumber, spell, nzap;
+
+	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+		continue;
+	if (n) {
+		thisone = -1;
+		choicenumber = 0;
+		for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+			if ((spellknow(n) > 0) && (!choicenumber || (!rn2(choicenumber + 1))) ) {
+				thisone = n;
+			}
+			if (spellknow(n) > 0) choicenumber++;
+		}
+
+		if (choicenumber > 0 && thisone >= 0) {
+			boostknow(thisone, -(lossamount * 100));
+			if (spellknow(thisone) < 0) {
+				spl_book[thisone].sp_know = 0;
+				pline("You lose all knowledge of the %s spell!", spellname(thisone));
+			}
+			else pline("Your knowledge of the %s spell is reduced!", spellname(thisone));
+		}
+
+	}
+
+	book = 0;
+	nzap = 0;
+	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+		continue;
+
+	if (n > urole.spelrete) {
+		int retention = urole.spelrete;
+		if (retention < 1) {
+			impossible("player's spell retention isn't positive??");
+			retention = 1;
+		}
+		int highamount = n;
+		while (highamount > retention) {
+			nzap++;
+			highamount -= rnd(retention);
+		}
+	}
+
+	if (n && nzap > 0) pline("Some of your spells got erased!");
+
+morezapping:
+
+	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+		continue;
+
+	if (n >= 0 && spellid(n) == NO_SPELL) n--;
+
+	if (nzap > n) nzap = n;
+	if (n && nzap > 0) {
+
+		while (spellknow(n) > 0 && nzap > 0) {
+			boostknow(n, -10000);
+
+			if (spellknow(n) <= 0) {
+				spl_book[n].sp_know = 0;
+				spellid(n) = NO_SPELL;
+				exercise(A_WIS, FALSE);	/* ouch! */
+				nzap--;
+				n--;
+				goto morezapping;
+			}
+			nzap--;
+		}
+	}
+
+}
 
 /* the '+' command -- view known spells */
 int

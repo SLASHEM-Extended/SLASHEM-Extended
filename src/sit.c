@@ -861,7 +861,7 @@ skillcaploss()
 		pline("You lose some knowledge of the %s skill!", P_NAME(skilltoreduce));
 	}
 
-	tryct = 400;
+	tryct = 2000;
 
 	while (u.skills_advanced && tryct && (P_SKILL(skilltoreduce) > P_MAX_SKILL(skilltoreduce)) ) {
 		lose_weapon_skill(1);

@@ -251,7 +251,7 @@ int
 randattack()
 {
 
-	switch (rnd(316)) {
+	switch (rnd(326)) {
 
 		case 1:
 		case 2:
@@ -685,11 +685,253 @@ randattack()
 			return (rn2(100) ? AD_DEST : AD_RAGN);
 		case 316:
 			return AD_TREM;
+		case 317:
+			return AD_IDAM;
+		case 318:
+			return AD_ANTI;
+		case 319:
+			return AD_PAIN;
+		case 320:
+		case 321:
+			return AD_TECH;
+		case 322:
+		case 323:
+		case 324:
+			return AD_MEMO;
+		case 325:
+			return AD_TRAI;
+		case 326:
+			return AD_STAT;
 		default:
 			return AD_PHYS;
 
 	}
 
+}
+
+int
+randomdamageattack()
+{
+	switch (rnd(24)) {
+		case 1:
+			return AD_ACID;
+		case 2:
+			return AD_DRLI;
+		case 3:
+			return AD_RUST;
+		case 4:
+			return AD_DCAY;
+		case 5:
+			return AD_CORR;
+		case 6:
+			return AD_WTHR;
+		case 7:
+			return AD_NPRO;
+		case 8:
+			return AD_POIS;
+		case 9:
+			return AD_LAVA;
+		case 10:
+			return AD_LETH;
+		case 11:
+			return AD_CNCL;
+		case 12:
+			return AD_SHRD;
+		case 13:
+			return AD_WET;
+		case 14:
+			return AD_UVUU;
+		case 15:
+			return AD_VAMP;
+		case 16:
+			return AD_VENO;
+		case 17:
+			return AD_NAST;
+		case 18:
+			return AD_SLUD;
+		case 19:
+			return AD_ICUR;
+		case 20:
+			return AD_SIN;
+		case 21:
+			return AD_CONT;
+		case 22:
+			return AD_DEST;
+		case 23:
+			return AD_IDAM;
+		case 24:
+			return AD_ANTI;
+		default:
+			return AD_PHYS;
+	}
+}
+
+int
+randomthievingattack()
+{
+	switch (rnd(24)) {
+		case 1:
+			return AD_SLOW;
+		case 2:
+			return AD_DREN;
+		case 3:
+			return AD_SGLD;
+		case 4:
+			return AD_SITM;
+		case 5:
+			return AD_SEDU;
+		case 6:
+			return AD_ENCH;
+		case 7:
+			return AD_LUCK;
+		case 8:
+			return AD_SUCK;
+		case 9:
+			return AD_MALK;
+		case 10:
+			return AD_STTP;
+		case 11:
+			return AD_TIME;
+		case 12:
+			return AD_PLAS;
+		case 13:
+			return AD_SKIL;
+		case 14:
+			return AD_VULN;
+		case 15:
+			return AD_AMNE;
+		case 16:
+			return AD_ICEB;
+		case 17:
+			return AD_LITT;
+		case 18:
+			return AD_NGEN;
+		case 19:
+			return AD_ALIN;
+		case 20:
+			return AD_TREM;
+		case 21:
+			return AD_TECH;
+		case 22:
+			return AD_MEMO;
+		case 23:
+			return AD_TRAI;
+		case 24:
+			return AD_STAT;
+		default:
+			return AD_PHYS;
+	}
+}
+
+int
+randmonsound()
+{
+	switch (rnd(51)) {
+		case 1:
+			return MS_SILENT;
+		case 2:
+			return MS_BARK;
+		case 3:
+			return MS_MEW;
+		case 4:
+			return MS_ROAR;
+		case 5:
+			return MS_GROWL;
+		case 6:
+			return MS_SQEEK;
+		case 7:
+			return MS_SQAWK;
+		case 8:
+			return MS_HISS;
+		case 9:
+			return MS_BUZZ;
+		case 10:
+			return MS_GRUNT;
+		case 11:
+			return MS_NEIGH;
+		case 12:
+			return MS_WAIL;
+		case 13:
+			return MS_GURGLE;
+		case 14:
+			return MS_BURBLE;
+		case 15:
+			return MS_ANIMAL;
+		case 16:
+			return MS_SHRIEK;
+		case 17:
+			return MS_BONES;
+		case 18:
+			return MS_LAUGH;
+		case 19:
+			return MS_MUMBLE;
+		case 20:
+			return MS_IMITATE;
+		case 21:
+			return MS_ORC;
+		case 22:
+			return MS_HUMANOID;
+		case 23:
+			return MS_SOLDIER;
+		case 24:
+			return MS_DJINNI;
+		case 25:
+			return MS_NURSE;
+		case 26:
+			return MS_SEDUCE;
+		case 27:
+			return MS_VAMPIRE;
+		case 28:
+			return MS_CUSS;
+		case 29:
+			return MS_SPELL;
+		case 30:
+			return MS_WERE;
+		case 31:
+			return MS_BOAST;
+		case 32:
+			return MS_GYPSY;
+		case 33:
+			return MS_SHEEP;
+		case 34:
+			return MS_CHICKEN;
+		case 35:
+			return MS_COW;
+		case 36:
+			return MS_PARROT;
+		case 37:
+			return MS_WHORE;
+		case 38:
+			return MS_SUPERMAN;
+		case 39:
+			return MS_FART_QUIET;
+		case 40:
+			return MS_FART_NORMAL;
+		case 41:
+			return MS_FART_LOUD;
+		case 42:
+			return MS_SOUND;
+		case 43:
+			return MS_SHOE;
+		case 44:
+			return MS_STENCH;
+		case 45:
+			return MS_CONVERT;
+		case 46:
+			return MS_HCALIEN;
+		case 47:
+			return MS_DOUGLAS_ADAMS;
+		case 48:
+			return MS_PUPIL;
+		case 49:
+			return MS_TEACHER;
+		case 50:
+			return MS_PRINCIPAL;
+		case 51:
+			return MS_SMITH;
+		default:
+			return MS_HUMANOID;
+	}
 }
 
 int

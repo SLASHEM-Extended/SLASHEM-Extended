@@ -3942,6 +3942,11 @@ register struct attack *mattk;
 		}
 		tmp = 0;
 		break;
+	    case AD_PAIN:
+		if (mdef->mhp > 9) tmp += (mdef->mhp / 10);
+		pline("%s shrieks in pain!", Monnam(mdef));
+		break;
+
 	    case AD_DRLI:
 	    case AD_TIME:
 	    case AD_DFOO:
@@ -4013,6 +4018,7 @@ register struct attack *mattk;
 	    case AD_DRDX:
 	    case AD_DRCO:
 	    case AD_POIS:
+	    case AD_STAT:
 	    case AD_WISD:
 	    case AD_DRCH:
 		if (!negated && !rn2(8)) {
@@ -4551,6 +4557,9 @@ register struct attack *mattk;
 		break;
 	    case AD_WRAT:
 	    case AD_MANA:
+	    case AD_TECH:
+	    case AD_MEMO:
+	    case AD_TRAI:
 	    	    mon_drain_en(mdef, ((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1 + tmp);
 		break;
 	    case AD_DREN:
@@ -4741,6 +4750,9 @@ register struct attack *mattk;
 		goto common;
 	    case AD_WRAT:
 	    case AD_MANA:
+	    case AD_TECH:
+	    case AD_MEMO:
+	    case AD_TRAI:
 	    	mon_drain_en(mdef, ((mdef->m_lev > 0) ? (rnd(mdef->m_lev)) : 0) + 1 + tmp);
     	      mon_drain_en(mdef, tmp);
 		goto common;
@@ -6489,6 +6501,14 @@ uchar aatyp;
 		/*randattack = 1;*/
 	}
 
+	if (atttypC == AD_DAMA) {
+		atttypC = randomdamageattack();
+	}
+
+	if (atttypC == AD_THIE) {
+		atttypC = randomthievingattack();
+	}
+
 	if (atttypC == AD_RNG) {
 		while (atttypC == AD_ENDS || atttypC == AD_RNG || atttypC == AD_WERE) {
 			atttypC = rn2(AD_ENDS); }
@@ -6561,6 +6581,92 @@ uchar aatyp;
 
 		pline("You tremble!");
 		u.tremblingamount++;
+
+		break;
+
+	    case AD_IDAM:
+
+		pline("Attacking this monster causes damage to your inventory...");
+		{
+		    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(20)) rust_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
+	    case AD_ANTI:
+
+		pline("Attacking this monster causes severe damage to your inventory...");
+		{
+		    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(20)) wither_dmg(objX, xname(objX), rn2(4), TRUE, &youmonst);
+		    }
+		}
+
+		break;
+
+	    case AD_PAIN:
+
+		pline("Ouch - you've hurt yourself!");
+		losehp(Upolyd ? ((u.mh / 10) + 1) : ((u.uhp / 10) + 1), "a painful attack", KILLED_BY);
+
+		break;
+
+	    case AD_TECH:
+
+		techcapincrease(tmp * rnd(50));
+
+		break;
+
+	    case AD_MEMO:
+
+		spellmemoryloss(tmp);
+
+		break;
+
+	    case AD_TRAI:
+
+		skilltrainingdecrease(tmp);
+
+		break;
+
+	    case AD_STAT:
+
+		if (!rn2(3)) {
+			int statdrained = rn2(A_MAX);
+			if (ABASE(statdrained) < 4) break;
+			if (ABASE(statdrained) < (3 + rnd(8)) ) break;
+
+			if (Race_if(PM_SUSTAINER) && rn2(50)) {
+				pline("The stat drain doesn't seem to affect you.");
+				break;
+			}
+
+			ABASE(statdrained) -= 1;
+			AMAX(statdrained) -= 1;
+			flags.botl = 1;
+			switch (statdrained) {
+
+				case A_STR:
+					pline("Your strength falls off!"); break;
+				case A_DEX:
+					pline("Your dexterity falls off!"); break;
+				case A_CON:
+					pline("Your constitution falls off!"); break;
+				case A_CHA:
+					pline("Your charisma falls off!"); break;
+				case A_INT:
+					pline("Your intelligence falls off!"); break;
+				case A_WIS:
+					pline("Your wisdom falls off!"); break;
+
+			}
+		}
 
 		break;
 

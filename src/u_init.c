@@ -7381,7 +7381,7 @@ u_init()
 
 	register int traitamount = rnd(10); /* pick an # of monster traits that are more common --Amy */
 
-	u.frequenttrait1 = rnd(348); /* same as monstercolor function */
+	u.frequenttrait1 = rnd(357); /* same as monstercolor function */
 	u.freqtraitbonus1 = rne(4);
 	if (!rn2(5)) u.freqtraitbonus1 += rne(3);
 	if (!rn2(3)) u.freqtraitbonus1 *= 2;
@@ -7420,7 +7420,7 @@ u_init()
 
 	if (traitamount >= 2) {
 
-		u.frequenttrait2 = rnd(348);
+		u.frequenttrait2 = rnd(357);
 		u.freqtraitbonus2 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus2 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus2 *= 2;
@@ -7442,7 +7442,7 @@ u_init()
 
 	if (traitamount >= 3) {
 
-		u.frequenttrait3 = rnd(348);
+		u.frequenttrait3 = rnd(357);
 		u.freqtraitbonus3 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus3 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus3 *= 2;
@@ -7464,7 +7464,7 @@ u_init()
 
 	if (traitamount >= 4) {
 
-		u.frequenttrait4 = rnd(348);
+		u.frequenttrait4 = rnd(357);
 		u.freqtraitbonus4 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus4 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus4 *= 2;
@@ -7486,7 +7486,7 @@ u_init()
 
 	if (traitamount >= 5) {
 
-		u.frequenttrait5 = rnd(348);
+		u.frequenttrait5 = rnd(357);
 		u.freqtraitbonus5 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus5 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus5 *= 2;
@@ -7508,7 +7508,7 @@ u_init()
 
 	if (traitamount >= 6) {
 
-		u.frequenttrait6 = rnd(348);
+		u.frequenttrait6 = rnd(357);
 		u.freqtraitbonus6 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus6 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus6 *= 2;
@@ -7530,7 +7530,7 @@ u_init()
 
 	if (traitamount >= 7) {
 
-		u.frequenttrait7 = rnd(348);
+		u.frequenttrait7 = rnd(357);
 		u.freqtraitbonus7 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus7 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus7 *= 2;
@@ -7552,7 +7552,7 @@ u_init()
 
 	if (traitamount >= 8) {
 
-		u.frequenttrait8 = rnd(348);
+		u.frequenttrait8 = rnd(357);
 		u.freqtraitbonus8 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus8 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus8 *= 2;
@@ -7574,7 +7574,7 @@ u_init()
 
 	if (traitamount >= 9) {
 
-		u.frequenttrait9 = rnd(348);
+		u.frequenttrait9 = rnd(357);
 		u.freqtraitbonus9 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus9 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus9 *= 2;
@@ -7596,7 +7596,7 @@ u_init()
 
 	if (traitamount >= 10) {
 
-		u.frequenttrait10 = rnd(348);
+		u.frequenttrait10 = rnd(357);
 		u.freqtraitbonus10 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus10 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus10 *= 2;
@@ -15188,7 +15188,7 @@ u_init()
 	shambler->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shambler->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shambler->cnutrit = rnd(2000);					/* see above */
-	shambler->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shambler->msound = randmonsound();			/* any but the specials */
 	shambler->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shambler->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15248,7 +15248,7 @@ u_init()
 	shamblerp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerp->cnutrit = rnd(2000);					/* see above */
-	shamblerp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerp->msound = randmonsound();			/* any but the specials */
 	shamblerp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15308,7 +15308,7 @@ u_init()
 	pokshambler->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshambler->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshambler->cnutrit = rnd(2000);					/* see above */
-	pokshambler->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshambler->msound = randmonsound();			/* any but the specials */
 	pokshambler->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshambler->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15368,7 +15368,7 @@ u_init()
 	pokshamblerp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerp->cnutrit = rnd(2000);					/* see above */
-	pokshamblerp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerp->msound = randmonsound();			/* any but the specials */
 	pokshamblerp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15430,7 +15430,7 @@ u_init()
 	shamblera->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblera->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblera->cnutrit = rnd(2000);					/* see above */
-	shamblera->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblera->msound = randmonsound();			/* any but the specials */
 	shamblera->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblera->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15490,7 +15490,7 @@ u_init()
 	shamblerap->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerap->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerap->cnutrit = rnd(2000);					/* see above */
-	shamblerap->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerap->msound = randmonsound();			/* any but the specials */
 	shamblerap->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerap->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15550,7 +15550,7 @@ u_init()
 	shamblerb->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerb->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerb->cnutrit = rnd(2000);					/* see above */
-	shamblerb->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerb->msound = randmonsound();			/* any but the specials */
 	shamblerb->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerb->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15609,7 +15609,7 @@ u_init()
 	shamblerbp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerbp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerbp->cnutrit = rnd(2000);					/* see above */
-	shamblerbp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerbp->msound = randmonsound();			/* any but the specials */
 	shamblerbp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerbp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15671,7 +15671,7 @@ u_init()
 	shamblers->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblers->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblers->cnutrit = rnd(2000);					/* see above */
-	shamblers->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblers->msound = randmonsound();			/* any but the specials */
 	shamblers->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblers->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15731,7 +15731,7 @@ u_init()
 	shamblersp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblersp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblersp->cnutrit = rnd(2000);					/* see above */
-	shamblersp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblersp->msound = randmonsound();			/* any but the specials */
 	shamblersp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblersp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15791,7 +15791,7 @@ u_init()
 	pokshamblers->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblers->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblers->cnutrit = rnd(2000);					/* see above */
-	pokshamblers->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblers->msound = randmonsound();			/* any but the specials */
 	pokshamblers->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblers->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15851,7 +15851,7 @@ u_init()
 	pokshamblersp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblersp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblersp->cnutrit = rnd(2000);					/* see above */
-	pokshamblersp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblersp->msound = randmonsound();			/* any but the specials */
 	pokshamblersp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblersp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15912,7 +15912,7 @@ u_init()
 	pokshamblerxts->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerxts->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerxts->cnutrit = rnd(2000);					/* see above */
-	pokshamblerxts->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerxts->msound = randmonsound();			/* any but the specials */
 	pokshamblerxts->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerxts->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -15972,7 +15972,7 @@ u_init()
 	pokshamblerxtsp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerxtsp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerxtsp->cnutrit = rnd(2000);					/* see above */
-	pokshamblerxtsp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerxtsp->msound = randmonsound();			/* any but the specials */
 	pokshamblerxtsp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerxtsp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16032,7 +16032,7 @@ u_init()
 	shamblerz->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerz->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerz->cnutrit = rnd(2000);					/* see above */
-	shamblerz->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerz->msound = randmonsound();			/* any but the specials */
 	shamblerz->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerz->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16092,7 +16092,7 @@ u_init()
 	shamblerza->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerza->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerza->cnutrit = rnd(2000);					/* see above */
-	shamblerza->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerza->msound = randmonsound();			/* any but the specials */
 	shamblerza->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerza->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16152,7 +16152,7 @@ u_init()
 	rshamblerz->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	rshamblerz->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	rshamblerz->cnutrit = rnd(2000);					/* see above */
-	rshamblerz->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerz->msound = randmonsound();			/* any but the specials */
 	rshamblerz->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		rshamblerz->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16216,7 +16216,7 @@ u_init()
 	rshamblerza->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	rshamblerza->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	rshamblerza->cnutrit = rnd(2000);					/* see above */
-	rshamblerza->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerza->msound = randmonsound();			/* any but the specials */
 	rshamblerza->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		rshamblerza->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16281,7 +16281,7 @@ u_init()
 	shamblerr->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerr->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerr->cnutrit = rnd(2000);					/* see above */
-	shamblerr->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerr->msound = randmonsound();			/* any but the specials */
 	shamblerr->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerr->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16341,7 +16341,7 @@ u_init()
 	shamblerrp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerrp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerrp->cnutrit = rnd(2000);					/* see above */
-	shamblerrp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerrp->msound = randmonsound();			/* any but the specials */
 	shamblerrp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerrp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16402,7 +16402,7 @@ u_init()
 	shamblert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblert->cnutrit = rnd(2000);					/* see above */
-	shamblert->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblert->msound = randmonsound();			/* any but the specials */
 	shamblert->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblert->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16460,7 +16460,7 @@ u_init()
 	shamblery->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblery->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblery->cnutrit = rnd(2000);					/* see above */
-	shamblery->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblery->msound = randmonsound();			/* any but the specials */
 	shamblery->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblery->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16521,7 +16521,7 @@ u_init()
 	shamblertp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblertp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblertp->cnutrit = rnd(2000);					/* see above */
-	shamblertp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblertp->msound = randmonsound();			/* any but the specials */
 	shamblertp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblertp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16580,7 +16580,7 @@ u_init()
 	pokshamblert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblert->cnutrit = rnd(2000);					/* see above */
-	pokshamblert->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblert->msound = randmonsound();			/* any but the specials */
 	pokshamblert->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblert->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16638,7 +16638,7 @@ u_init()
 	pokshamblertp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblertp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblertp->cnutrit = rnd(2000);					/* see above */
-	pokshamblertp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblertp->msound = randmonsound();			/* any but the specials */
 	pokshamblertp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblertp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16697,7 +16697,7 @@ u_init()
 	rpokshamblert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	rpokshamblert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	rpokshamblert->cnutrit = rnd(2000);					/* see above */
-	rpokshamblert->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rpokshamblert->msound = randmonsound();			/* any but the specials */
 	rpokshamblert->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		rpokshamblert->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16759,7 +16759,7 @@ u_init()
 	rpokshamblertp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	rpokshamblertp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	rpokshamblertp->cnutrit = rnd(2000);					/* see above */
-	rpokshamblertp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rpokshamblertp->msound = randmonsound();			/* any but the specials */
 	rpokshamblertp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		rpokshamblertp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16822,7 +16822,7 @@ u_init()
 	shamblerta->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerta->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerta->cnutrit = rnd(2000);					/* see above */
-	shamblerta->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerta->msound = randmonsound();			/* any but the specials */
 	shamblerta->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerta->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16880,7 +16880,7 @@ u_init()
 	shamblerya->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerya->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerya->cnutrit = rnd(2000);					/* see above */
-	shamblerya->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerya->msound = randmonsound();			/* any but the specials */
 	shamblerya->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerya->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16939,7 +16939,7 @@ u_init()
 	shamblertpa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblertpa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblertpa->cnutrit = rnd(2000);					/* see above */
-	shamblertpa->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblertpa->msound = randmonsound();			/* any but the specials */
 	shamblertpa->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblertpa->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -16998,7 +16998,7 @@ u_init()
 	shamblerl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerl->cnutrit = rnd(2000);					/* see above */
-	shamblerl->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerl->msound = randmonsound();			/* any but the specials */
 	shamblerl->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerl->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17058,7 +17058,7 @@ u_init()
 	shamblerla->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerla->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerla->cnutrit = rnd(2000);					/* see above */
-	shamblerla->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerla->msound = randmonsound();			/* any but the specials */
 	shamblerla->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerla->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17118,7 +17118,7 @@ u_init()
 	pokshamblerl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerl->cnutrit = rnd(2000);					/* see above */
-	pokshamblerl->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerl->msound = randmonsound();			/* any but the specials */
 	pokshamblerl->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerl->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17178,7 +17178,7 @@ u_init()
 	pokshamblerla->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerla->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerla->cnutrit = rnd(2000);					/* see above */
-	pokshamblerla->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerla->msound = randmonsound();			/* any but the specials */
 	pokshamblerla->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerla->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17240,7 +17240,7 @@ u_init()
 	shamblerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerx->cnutrit = rnd(2000);					/* see above */
-	shamblerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerx->msound = randmonsound();			/* any but the specials */
 	shamblerx->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerx->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17300,7 +17300,7 @@ u_init()
 	shamblerxa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerxa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerxa->cnutrit = rnd(2000);					/* see above */
-	shamblerxa->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerxa->msound = randmonsound();			/* any but the specials */
 	shamblerxa->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerxa->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17360,7 +17360,7 @@ u_init()
 	rshamblerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	rshamblerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	rshamblerx->cnutrit = rnd(2000);					/* see above */
-	rshamblerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerx->msound = randmonsound();			/* any but the specials */
 	rshamblerx->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		rshamblerx->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17424,7 +17424,7 @@ u_init()
 	rshamblerxa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	rshamblerxa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	rshamblerxa->cnutrit = rnd(2000);					/* see above */
-	rshamblerxa->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerxa->msound = randmonsound();			/* any but the specials */
 	rshamblerxa->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		rshamblerxa->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17488,7 +17488,7 @@ u_init()
 	pokshamblerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerx->cnutrit = rnd(2000);					/* see above */
-	pokshamblerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerx->msound = randmonsound();			/* any but the specials */
 	pokshamblerx->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerx->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17548,7 +17548,7 @@ u_init()
 	pokshamblerxa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerxa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerxa->cnutrit = rnd(2000);					/* see above */
-	pokshamblerxa->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerxa->msound = randmonsound();			/* any but the specials */
 	pokshamblerxa->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerxa->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17609,7 +17609,7 @@ u_init()
 	shamblerm->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerm->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerm->cnutrit = rnd(2000);					/* see above */
-	shamblerm->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerm->msound = randmonsound();			/* any but the specials */
 	shamblerm->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerm->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17669,7 +17669,7 @@ u_init()
 	shamblerma->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerma->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerma->cnutrit = rnd(2000);					/* see above */
-	shamblerma->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerma->msound = randmonsound();			/* any but the specials */
 	shamblerma->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerma->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17729,7 +17729,7 @@ u_init()
 	shamblern->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblern->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblern->cnutrit = rnd(2000);					/* see above */
-	shamblern->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblern->msound = randmonsound();			/* any but the specials */
 	shamblern->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblern->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17789,7 +17789,7 @@ u_init()
 	shamblerna->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerna->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerna->cnutrit = rnd(2000);					/* see above */
-	shamblerna->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerna->msound = randmonsound();			/* any but the specials */
 	shamblerna->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerna->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17851,7 +17851,7 @@ u_init()
 	pokshamblerm->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerm->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerm->cnutrit = rnd(2000);					/* see above */
-	pokshamblerm->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerm->msound = randmonsound();			/* any but the specials */
 	pokshamblerm->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerm->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17911,7 +17911,7 @@ u_init()
 	pokshamblerma->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerma->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerma->cnutrit = rnd(2000);					/* see above */
-	pokshamblerma->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerma->msound = randmonsound();			/* any but the specials */
 	pokshamblerma->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerma->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -17971,7 +17971,7 @@ u_init()
 	shamblerplayer->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayer->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayer->cnutrit = rnd(2000);					/* see above */
-	shamblerplayer->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayer->msound = randmonsound();			/* any but the specials */
 	shamblerplayer->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayer->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18030,7 +18030,7 @@ u_init()
 	shamblerplayerb->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerb->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerb->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerb->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerb->msound = randmonsound();			/* any but the specials */
 	shamblerplayerb->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerb->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18088,7 +18088,7 @@ u_init()
 	shamblerplayerc->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerc->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerc->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerc->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerc->msound = randmonsound();			/* any but the specials */
 	shamblerplayerc->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerc->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18149,7 +18149,7 @@ u_init()
 	shamblerplayerd->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerd->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerd->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerd->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerd->msound = randmonsound();			/* any but the specials */
 	shamblerplayerd->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerd->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18210,7 +18210,7 @@ u_init()
 	shamblerplayere->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayere->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayere->cnutrit = rnd(2000);					/* see above */
-	shamblerplayere->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayere->msound = randmonsound();			/* any but the specials */
 	shamblerplayere->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayere->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18271,7 +18271,7 @@ u_init()
 	shamblerplayerf->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerf->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerf->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerf->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerf->msound = randmonsound();			/* any but the specials */
 	shamblerplayerf->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerf->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18332,7 +18332,7 @@ u_init()
 	shamblerplayerg->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerg->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerg->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerg->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerg->msound = randmonsound();			/* any but the specials */
 	shamblerplayerg->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerg->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18393,7 +18393,7 @@ u_init()
 	shamblerplayerh->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerh->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerh->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerh->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerh->msound = randmonsound();			/* any but the specials */
 	shamblerplayerh->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerh->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18454,7 +18454,7 @@ u_init()
 	shamblerplayeri->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayeri->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayeri->cnutrit = rnd(2000);					/* see above */
-	shamblerplayeri->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayeri->msound = randmonsound();			/* any but the specials */
 	shamblerplayeri->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayeri->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18515,7 +18515,7 @@ u_init()
 	shamblerplayerj->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerj->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerj->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerj->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerj->msound = randmonsound();			/* any but the specials */
 	shamblerplayerj->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerj->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18576,7 +18576,7 @@ u_init()
 	shamblerplayerk->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerk->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerk->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerk->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerk->msound = randmonsound();			/* any but the specials */
 	shamblerplayerk->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerk->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18635,7 +18635,7 @@ u_init()
 	shamblerplayerl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerl->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerl->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerl->msound = randmonsound();			/* any but the specials */
 	shamblerplayerl->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerl->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18694,7 +18694,7 @@ u_init()
 	shamblerplayerm->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerm->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerm->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerm->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerm->msound = randmonsound();			/* any but the specials */
 	shamblerplayerm->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerm->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18753,7 +18753,7 @@ u_init()
 	shamblerplayern->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayern->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayern->cnutrit = rnd(2000);					/* see above */
-	shamblerplayern->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayern->msound = randmonsound();			/* any but the specials */
 	shamblerplayern->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayern->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18812,7 +18812,7 @@ u_init()
 	shamblerplayero->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayero->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayero->cnutrit = rnd(2000);					/* see above */
-	shamblerplayero->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayero->msound = randmonsound();			/* any but the specials */
 	shamblerplayero->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayero->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18873,7 +18873,7 @@ u_init()
 	shamblerplayerp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerp->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerp->msound = randmonsound();			/* any but the specials */
 	shamblerplayerp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18934,7 +18934,7 @@ u_init()
 	shamblerplayerq->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerq->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerq->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerq->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerq->msound = randmonsound();			/* any but the specials */
 	shamblerplayerq->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerq->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -18997,7 +18997,7 @@ u_init()
 	shamblerplayerr->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerr->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerr->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerr->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerr->msound = randmonsound();			/* any but the specials */
 	shamblerplayerr->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerr->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19060,7 +19060,7 @@ u_init()
 	shamblerplayers->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayers->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayers->cnutrit = rnd(2000);					/* see above */
-	shamblerplayers->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayers->msound = randmonsound();			/* any but the specials */
 	shamblerplayers->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayers->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19122,7 +19122,7 @@ u_init()
 	shamblerplayert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayert->cnutrit = rnd(2000);					/* see above */
-	shamblerplayert->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayert->msound = randmonsound();			/* any but the specials */
 	shamblerplayert->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayert->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19183,7 +19183,7 @@ u_init()
 	shamblerplayeru->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayeru->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayeru->cnutrit = rnd(2000);					/* see above */
-	shamblerplayeru->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayeru->msound = randmonsound();			/* any but the specials */
 	shamblerplayeru->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayeru->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19244,7 +19244,7 @@ u_init()
 	shamblerplayerv->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerv->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerv->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerv->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerv->msound = randmonsound();			/* any but the specials */
 	shamblerplayerv->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerv->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19305,7 +19305,7 @@ u_init()
 	shamblerplayerw->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerw->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerw->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerw->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerw->msound = randmonsound();			/* any but the specials */
 	shamblerplayerw->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerw->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19366,7 +19366,7 @@ u_init()
 	shamblerplayerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerx->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerx->msound = randmonsound();			/* any but the specials */
 	shamblerplayerx->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerx->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19427,7 +19427,7 @@ u_init()
 	shamblerplayery->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayery->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayery->cnutrit = rnd(2000);					/* see above */
-	shamblerplayery->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayery->msound = randmonsound();			/* any but the specials */
 	shamblerplayery->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayery->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19488,7 +19488,7 @@ u_init()
 	shamblerplayerz->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerz->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerz->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerz->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerz->msound = randmonsound();			/* any but the specials */
 	shamblerplayerz->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
 		shamblerplayerz->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19549,7 +19549,7 @@ u_init()
 	shamblerplayeraa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayeraa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayeraa->cnutrit = rnd(2000);					/* see above */
-	shamblerplayeraa->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayeraa->msound = randmonsound();			/* any but the specials */
 	shamblerplayeraa->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
 		shamblerplayeraa->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19610,7 +19610,7 @@ u_init()
 	shamblerplayerab->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerab->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerab->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerab->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerab->msound = randmonsound();			/* any but the specials */
 	shamblerplayerab->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
 		shamblerplayerab->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19671,7 +19671,7 @@ u_init()
 	shamblerplayerac->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerac->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerac->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerac->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerac->msound = randmonsound();			/* any but the specials */
 	shamblerplayerac->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
 		shamblerplayerac->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19732,7 +19732,7 @@ u_init()
 	shamblerplayerad->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerad->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerad->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerad->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerad->msound = randmonsound();			/* any but the specials */
 	shamblerplayerad->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
 		shamblerplayerad->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -19793,7 +19793,7 @@ u_init()
 	shamblerplayerae->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerae->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerae->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerae->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerae->msound = randmonsound();			/* any but the specials */
 	shamblerplayerae->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
 		shamblerplayerae->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -26977,7 +26977,7 @@ alter_reality()
 
 	register int traitamount = rnd(10); /* pick an # of monster traits that are more common --Amy */
 
-	u.frequenttrait1 = rnd(348); /* same as monstercolor function */
+	u.frequenttrait1 = rnd(357); /* same as monstercolor function */
 	u.freqtraitbonus1 = rne(4);
 	if (!rn2(5)) u.freqtraitbonus1 += rne(3);
 	if (!rn2(3)) u.freqtraitbonus1 *= 2;
@@ -27016,7 +27016,7 @@ alter_reality()
 
 	if (traitamount >= 2) {
 
-		u.frequenttrait2 = rnd(348);
+		u.frequenttrait2 = rnd(357);
 		u.freqtraitbonus2 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus2 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus2 *= 2;
@@ -27038,7 +27038,7 @@ alter_reality()
 
 	if (traitamount >= 3) {
 
-		u.frequenttrait3 = rnd(348);
+		u.frequenttrait3 = rnd(357);
 		u.freqtraitbonus3 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus3 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus3 *= 2;
@@ -27060,7 +27060,7 @@ alter_reality()
 
 	if (traitamount >= 4) {
 
-		u.frequenttrait4 = rnd(348);
+		u.frequenttrait4 = rnd(357);
 		u.freqtraitbonus4 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus4 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus4 *= 2;
@@ -27082,7 +27082,7 @@ alter_reality()
 
 	if (traitamount >= 5) {
 
-		u.frequenttrait5 = rnd(348);
+		u.frequenttrait5 = rnd(357);
 		u.freqtraitbonus5 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus5 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus5 *= 2;
@@ -27104,7 +27104,7 @@ alter_reality()
 
 	if (traitamount >= 6) {
 
-		u.frequenttrait6 = rnd(348);
+		u.frequenttrait6 = rnd(357);
 		u.freqtraitbonus6 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus6 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus6 *= 2;
@@ -27126,7 +27126,7 @@ alter_reality()
 
 	if (traitamount >= 7) {
 
-		u.frequenttrait7 = rnd(348);
+		u.frequenttrait7 = rnd(357);
 		u.freqtraitbonus7 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus7 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus7 *= 2;
@@ -27148,7 +27148,7 @@ alter_reality()
 
 	if (traitamount >= 8) {
 
-		u.frequenttrait8 = rnd(348);
+		u.frequenttrait8 = rnd(357);
 		u.freqtraitbonus8 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus8 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus8 *= 2;
@@ -27170,7 +27170,7 @@ alter_reality()
 
 	if (traitamount >= 9) {
 
-		u.frequenttrait9 = rnd(348);
+		u.frequenttrait9 = rnd(357);
 		u.freqtraitbonus9 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus9 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus9 *= 2;
@@ -27192,7 +27192,7 @@ alter_reality()
 
 	if (traitamount >= 10) {
 
-		u.frequenttrait10 = rnd(348);
+		u.frequenttrait10 = rnd(357);
 		u.freqtraitbonus10 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus10 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus10 *= 2;
@@ -28933,7 +28933,7 @@ alter_reality()
 	shambler->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shambler->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shambler->cnutrit = rnd(2000);					/* see above */
-	shambler->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shambler->msound = randmonsound();			/* any but the specials */
 	shambler->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shambler->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -28993,7 +28993,7 @@ alter_reality()
 	shamblerp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerp->cnutrit = rnd(2000);					/* see above */
-	shamblerp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerp->msound = randmonsound();			/* any but the specials */
 	shamblerp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29053,7 +29053,7 @@ alter_reality()
 	pokshambler->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshambler->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshambler->cnutrit = rnd(2000);					/* see above */
-	pokshambler->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshambler->msound = randmonsound();			/* any but the specials */
 	pokshambler->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshambler->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29113,7 +29113,7 @@ alter_reality()
 	pokshamblerp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerp->cnutrit = rnd(2000);					/* see above */
-	pokshamblerp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerp->msound = randmonsound();			/* any but the specials */
 	pokshamblerp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29175,7 +29175,7 @@ alter_reality()
 	shamblera->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblera->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblera->cnutrit = rnd(2000);					/* see above */
-	shamblera->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblera->msound = randmonsound();			/* any but the specials */
 	shamblera->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblera->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29235,7 +29235,7 @@ alter_reality()
 	shamblerap->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerap->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerap->cnutrit = rnd(2000);					/* see above */
-	shamblerap->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerap->msound = randmonsound();			/* any but the specials */
 	shamblerap->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerap->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29295,7 +29295,7 @@ alter_reality()
 	shamblerb->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerb->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerb->cnutrit = rnd(2000);					/* see above */
-	shamblerb->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerb->msound = randmonsound();			/* any but the specials */
 	shamblerb->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerb->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29354,7 +29354,7 @@ alter_reality()
 	shamblerbp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerbp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerbp->cnutrit = rnd(2000);					/* see above */
-	shamblerbp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerbp->msound = randmonsound();			/* any but the specials */
 	shamblerbp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerbp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29416,7 +29416,7 @@ alter_reality()
 	shamblers->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblers->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblers->cnutrit = rnd(2000);					/* see above */
-	shamblers->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblers->msound = randmonsound();			/* any but the specials */
 	shamblers->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblers->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29476,7 +29476,7 @@ alter_reality()
 	shamblersp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblersp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblersp->cnutrit = rnd(2000);					/* see above */
-	shamblersp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblersp->msound = randmonsound();			/* any but the specials */
 	shamblersp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblersp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29536,7 +29536,7 @@ alter_reality()
 	pokshamblers->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblers->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblers->cnutrit = rnd(2000);					/* see above */
-	pokshamblers->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblers->msound = randmonsound();			/* any but the specials */
 	pokshamblers->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblers->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29596,7 +29596,7 @@ alter_reality()
 	pokshamblersp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblersp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblersp->cnutrit = rnd(2000);					/* see above */
-	pokshamblersp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblersp->msound = randmonsound();			/* any but the specials */
 	pokshamblersp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblersp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29657,7 +29657,7 @@ alter_reality()
 	pokshamblerxts->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerxts->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerxts->cnutrit = rnd(2000);					/* see above */
-	pokshamblerxts->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerxts->msound = randmonsound();			/* any but the specials */
 	pokshamblerxts->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerxts->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29717,7 +29717,7 @@ alter_reality()
 	pokshamblerxtsp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerxtsp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerxtsp->cnutrit = rnd(2000);					/* see above */
-	pokshamblerxtsp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerxtsp->msound = randmonsound();			/* any but the specials */
 	pokshamblerxtsp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerxtsp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29777,7 +29777,7 @@ alter_reality()
 	shamblerz->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerz->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerz->cnutrit = rnd(2000);					/* see above */
-	shamblerz->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerz->msound = randmonsound();			/* any but the specials */
 	shamblerz->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerz->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29837,7 +29837,7 @@ alter_reality()
 	shamblerza->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerza->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerza->cnutrit = rnd(2000);					/* see above */
-	shamblerza->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerza->msound = randmonsound();			/* any but the specials */
 	shamblerza->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerza->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29897,7 +29897,7 @@ alter_reality()
 	rshamblerz->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	rshamblerz->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	rshamblerz->cnutrit = rnd(2000);					/* see above */
-	rshamblerz->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerz->msound = randmonsound();			/* any but the specials */
 	rshamblerz->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		rshamblerz->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -29961,7 +29961,7 @@ alter_reality()
 	rshamblerza->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	rshamblerza->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	rshamblerza->cnutrit = rnd(2000);					/* see above */
-	rshamblerza->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerza->msound = randmonsound();			/* any but the specials */
 	rshamblerza->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		rshamblerza->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30026,7 +30026,7 @@ alter_reality()
 	shamblerr->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerr->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerr->cnutrit = rnd(2000);					/* see above */
-	shamblerr->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerr->msound = randmonsound();			/* any but the specials */
 	shamblerr->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerr->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30086,7 +30086,7 @@ alter_reality()
 	shamblerrp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerrp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerrp->cnutrit = rnd(2000);					/* see above */
-	shamblerrp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerrp->msound = randmonsound();			/* any but the specials */
 	shamblerrp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerrp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30147,7 +30147,7 @@ alter_reality()
 	shamblert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblert->cnutrit = rnd(2000);					/* see above */
-	shamblert->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblert->msound = randmonsound();			/* any but the specials */
 	shamblert->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblert->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30205,7 +30205,7 @@ alter_reality()
 	shamblery->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblery->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblery->cnutrit = rnd(2000);					/* see above */
-	shamblery->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblery->msound = randmonsound();			/* any but the specials */
 	shamblery->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblery->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30266,7 +30266,7 @@ alter_reality()
 	shamblertp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblertp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblertp->cnutrit = rnd(2000);					/* see above */
-	shamblertp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblertp->msound = randmonsound();			/* any but the specials */
 	shamblertp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblertp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30325,7 +30325,7 @@ alter_reality()
 	pokshamblert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblert->cnutrit = rnd(2000);					/* see above */
-	pokshamblert->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblert->msound = randmonsound();			/* any but the specials */
 	pokshamblert->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblert->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30383,7 +30383,7 @@ alter_reality()
 	pokshamblertp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblertp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblertp->cnutrit = rnd(2000);					/* see above */
-	pokshamblertp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblertp->msound = randmonsound();			/* any but the specials */
 	pokshamblertp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblertp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30442,7 +30442,7 @@ alter_reality()
 	rpokshamblert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	rpokshamblert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	rpokshamblert->cnutrit = rnd(2000);					/* see above */
-	rpokshamblert->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rpokshamblert->msound = randmonsound();			/* any but the specials */
 	rpokshamblert->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		rpokshamblert->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30504,7 +30504,7 @@ alter_reality()
 	rpokshamblertp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	rpokshamblertp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	rpokshamblertp->cnutrit = rnd(2000);					/* see above */
-	rpokshamblertp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rpokshamblertp->msound = randmonsound();			/* any but the specials */
 	rpokshamblertp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		rpokshamblertp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30567,7 +30567,7 @@ alter_reality()
 	shamblerta->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerta->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerta->cnutrit = rnd(2000);					/* see above */
-	shamblerta->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerta->msound = randmonsound();			/* any but the specials */
 	shamblerta->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerta->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30625,7 +30625,7 @@ alter_reality()
 	shamblerya->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerya->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerya->cnutrit = rnd(2000);					/* see above */
-	shamblerya->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerya->msound = randmonsound();			/* any but the specials */
 	shamblerya->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerya->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30684,7 +30684,7 @@ alter_reality()
 	shamblertpa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblertpa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblertpa->cnutrit = rnd(2000);					/* see above */
-	shamblertpa->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblertpa->msound = randmonsound();			/* any but the specials */
 	shamblertpa->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblertpa->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30743,7 +30743,7 @@ alter_reality()
 	shamblerl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerl->cnutrit = rnd(2000);					/* see above */
-	shamblerl->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerl->msound = randmonsound();			/* any but the specials */
 	shamblerl->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerl->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30803,7 +30803,7 @@ alter_reality()
 	shamblerla->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerla->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerla->cnutrit = rnd(2000);					/* see above */
-	shamblerla->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerla->msound = randmonsound();			/* any but the specials */
 	shamblerla->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerla->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30863,7 +30863,7 @@ alter_reality()
 	pokshamblerl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerl->cnutrit = rnd(2000);					/* see above */
-	pokshamblerl->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerl->msound = randmonsound();			/* any but the specials */
 	pokshamblerl->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerl->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30923,7 +30923,7 @@ alter_reality()
 	pokshamblerla->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerla->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerla->cnutrit = rnd(2000);					/* see above */
-	pokshamblerla->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerla->msound = randmonsound();			/* any but the specials */
 	pokshamblerla->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerla->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -30985,7 +30985,7 @@ alter_reality()
 	shamblerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerx->cnutrit = rnd(2000);					/* see above */
-	shamblerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerx->msound = randmonsound();			/* any but the specials */
 	shamblerx->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerx->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31045,7 +31045,7 @@ alter_reality()
 	shamblerxa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerxa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerxa->cnutrit = rnd(2000);					/* see above */
-	shamblerxa->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerxa->msound = randmonsound();			/* any but the specials */
 	shamblerxa->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerxa->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31105,7 +31105,7 @@ alter_reality()
 	rshamblerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	rshamblerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	rshamblerx->cnutrit = rnd(2000);					/* see above */
-	rshamblerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerx->msound = randmonsound();			/* any but the specials */
 	rshamblerx->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		rshamblerx->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31169,7 +31169,7 @@ alter_reality()
 	rshamblerxa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	rshamblerxa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	rshamblerxa->cnutrit = rnd(2000);					/* see above */
-	rshamblerxa->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	rshamblerxa->msound = randmonsound();			/* any but the specials */
 	rshamblerxa->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		rshamblerxa->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31233,7 +31233,7 @@ alter_reality()
 	pokshamblerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerx->cnutrit = rnd(2000);					/* see above */
-	pokshamblerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerx->msound = randmonsound();			/* any but the specials */
 	pokshamblerx->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerx->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31293,7 +31293,7 @@ alter_reality()
 	pokshamblerxa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerxa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerxa->cnutrit = rnd(2000);					/* see above */
-	pokshamblerxa->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerxa->msound = randmonsound();			/* any but the specials */
 	pokshamblerxa->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerxa->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31354,7 +31354,7 @@ alter_reality()
 	shamblerm->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerm->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerm->cnutrit = rnd(2000);					/* see above */
-	shamblerm->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerm->msound = randmonsound();			/* any but the specials */
 	shamblerm->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerm->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31414,7 +31414,7 @@ alter_reality()
 	shamblerma->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerma->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerma->cnutrit = rnd(2000);					/* see above */
-	shamblerma->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerma->msound = randmonsound();			/* any but the specials */
 	shamblerma->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerma->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31474,7 +31474,7 @@ alter_reality()
 	shamblern->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblern->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblern->cnutrit = rnd(2000);					/* see above */
-	shamblern->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblern->msound = randmonsound();			/* any but the specials */
 	shamblern->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblern->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31534,7 +31534,7 @@ alter_reality()
 	shamblerna->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerna->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerna->cnutrit = rnd(2000);					/* see above */
-	shamblerna->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerna->msound = randmonsound();			/* any but the specials */
 	shamblerna->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerna->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31596,7 +31596,7 @@ alter_reality()
 	pokshamblerm->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerm->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerm->cnutrit = rnd(2000);					/* see above */
-	pokshamblerm->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerm->msound = randmonsound();			/* any but the specials */
 	pokshamblerm->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerm->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31656,7 +31656,7 @@ alter_reality()
 	pokshamblerma->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	pokshamblerma->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	pokshamblerma->cnutrit = rnd(2000);					/* see above */
-	pokshamblerma->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	pokshamblerma->msound = randmonsound();			/* any but the specials */
 	pokshamblerma->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		pokshamblerma->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31716,7 +31716,7 @@ alter_reality()
 	shamblerplayer->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayer->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayer->cnutrit = rnd(2000);					/* see above */
-	shamblerplayer->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayer->msound = randmonsound();			/* any but the specials */
 	shamblerplayer->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayer->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31775,7 +31775,7 @@ alter_reality()
 	shamblerplayerb->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerb->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerb->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerb->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerb->msound = randmonsound();			/* any but the specials */
 	shamblerplayerb->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerb->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31833,7 +31833,7 @@ alter_reality()
 	shamblerplayerc->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerc->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerc->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerc->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerc->msound = randmonsound();			/* any but the specials */
 	shamblerplayerc->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerc->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31894,7 +31894,7 @@ alter_reality()
 	shamblerplayerd->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerd->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerd->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerd->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerd->msound = randmonsound();			/* any but the specials */
 	shamblerplayerd->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerd->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -31955,7 +31955,7 @@ alter_reality()
 	shamblerplayere->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayere->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayere->cnutrit = rnd(2000);					/* see above */
-	shamblerplayere->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayere->msound = randmonsound();			/* any but the specials */
 	shamblerplayere->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayere->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32016,7 +32016,7 @@ alter_reality()
 	shamblerplayerf->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerf->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerf->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerf->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerf->msound = randmonsound();			/* any but the specials */
 	shamblerplayerf->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerf->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32077,7 +32077,7 @@ alter_reality()
 	shamblerplayerg->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerg->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerg->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerg->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerg->msound = randmonsound();			/* any but the specials */
 	shamblerplayerg->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerg->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32138,7 +32138,7 @@ alter_reality()
 	shamblerplayerh->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerh->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerh->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerh->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerh->msound = randmonsound();			/* any but the specials */
 	shamblerplayerh->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerh->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32199,7 +32199,7 @@ alter_reality()
 	shamblerplayeri->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayeri->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayeri->cnutrit = rnd(2000);					/* see above */
-	shamblerplayeri->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayeri->msound = randmonsound();			/* any but the specials */
 	shamblerplayeri->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayeri->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32260,7 +32260,7 @@ alter_reality()
 	shamblerplayerj->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerj->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerj->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerj->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerj->msound = randmonsound();			/* any but the specials */
 	shamblerplayerj->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerj->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32321,7 +32321,7 @@ alter_reality()
 	shamblerplayerk->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerk->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerk->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerk->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerk->msound = randmonsound();			/* any but the specials */
 	shamblerplayerk->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerk->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32380,7 +32380,7 @@ alter_reality()
 	shamblerplayerl->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerl->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerl->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerl->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerl->msound = randmonsound();			/* any but the specials */
 	shamblerplayerl->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerl->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32439,7 +32439,7 @@ alter_reality()
 	shamblerplayerm->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerm->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerm->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerm->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerm->msound = randmonsound();			/* any but the specials */
 	shamblerplayerm->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerm->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32498,7 +32498,7 @@ alter_reality()
 	shamblerplayern->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayern->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayern->cnutrit = rnd(2000);					/* see above */
-	shamblerplayern->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayern->msound = randmonsound();			/* any but the specials */
 	shamblerplayern->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayern->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32557,7 +32557,7 @@ alter_reality()
 	shamblerplayero->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayero->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayero->cnutrit = rnd(2000);					/* see above */
-	shamblerplayero->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayero->msound = randmonsound();			/* any but the specials */
 	shamblerplayero->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayero->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32618,7 +32618,7 @@ alter_reality()
 	shamblerplayerp->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerp->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerp->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerp->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerp->msound = randmonsound();			/* any but the specials */
 	shamblerplayerp->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerp->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32679,7 +32679,7 @@ alter_reality()
 	shamblerplayerq->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerq->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerq->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerq->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerq->msound = randmonsound();			/* any but the specials */
 	shamblerplayerq->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerq->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32742,7 +32742,7 @@ alter_reality()
 	shamblerplayerr->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerr->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerr->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerr->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerr->msound = randmonsound();			/* any but the specials */
 	shamblerplayerr->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerr->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32805,7 +32805,7 @@ alter_reality()
 	shamblerplayers->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayers->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayers->cnutrit = rnd(2000);					/* see above */
-	shamblerplayers->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayers->msound = randmonsound();			/* any but the specials */
 	shamblerplayers->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayers->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32867,7 +32867,7 @@ alter_reality()
 	shamblerplayert->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayert->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayert->cnutrit = rnd(2000);					/* see above */
-	shamblerplayert->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayert->msound = randmonsound();			/* any but the specials */
 	shamblerplayert->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayert->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32928,7 +32928,7 @@ alter_reality()
 	shamblerplayeru->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayeru->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayeru->cnutrit = rnd(2000);					/* see above */
-	shamblerplayeru->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayeru->msound = randmonsound();			/* any but the specials */
 	shamblerplayeru->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayeru->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -32989,7 +32989,7 @@ alter_reality()
 	shamblerplayerv->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerv->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerv->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerv->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerv->msound = randmonsound();			/* any but the specials */
 	shamblerplayerv->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerv->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -33050,7 +33050,7 @@ alter_reality()
 	shamblerplayerw->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerw->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerw->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerw->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerw->msound = randmonsound();			/* any but the specials */
 	shamblerplayerw->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerw->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -33111,7 +33111,7 @@ alter_reality()
 	shamblerplayerx->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerx->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerx->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerx->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerx->msound = randmonsound();			/* any but the specials */
 	shamblerplayerx->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayerx->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -33172,7 +33172,7 @@ alter_reality()
 	shamblerplayery->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayery->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayery->cnutrit = rnd(2000);					/* see above */
-	shamblerplayery->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayery->msound = randmonsound();			/* any but the specials */
 	shamblerplayery->mresists = 0;
 	for (i = 0; i < rnd(6); i++) {
 		shamblerplayery->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -33233,7 +33233,7 @@ alter_reality()
 	shamblerplayerz->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerz->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerz->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerz->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerz->msound = randmonsound();			/* any but the specials */
 	shamblerplayerz->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
 		shamblerplayerz->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -33294,7 +33294,7 @@ alter_reality()
 	shamblerplayeraa->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayeraa->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayeraa->cnutrit = rnd(2000);					/* see above */
-	shamblerplayeraa->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayeraa->msound = randmonsound();			/* any but the specials */
 	shamblerplayeraa->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
 		shamblerplayeraa->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -33355,7 +33355,7 @@ alter_reality()
 	shamblerplayerab->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerab->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerab->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerab->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerab->msound = randmonsound();			/* any but the specials */
 	shamblerplayerab->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
 		shamblerplayerab->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -33416,7 +33416,7 @@ alter_reality()
 	shamblerplayerac->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerac->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerac->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerac->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerac->msound = randmonsound();			/* any but the specials */
 	shamblerplayerac->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
 		shamblerplayerac->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -33477,7 +33477,7 @@ alter_reality()
 	shamblerplayerad->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerad->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerad->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerad->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerad->msound = randmonsound();			/* any but the specials */
 	shamblerplayerad->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
 		shamblerplayerad->mresists |= (1 << rn2(8));		/* physical resistances... */
@@ -33538,7 +33538,7 @@ alter_reality()
 	shamblerplayerae->msize = rn2(MZ_GIGANTIC+1);			/* any size */
 	shamblerplayerae->cwt = rnd(2000);					/* fortunately moot as it's flagged NOCORPSE */
 	shamblerplayerae->cnutrit = rnd(2000);					/* see above */
-	shamblerplayerae->msound = rn2(MS_HUMANOID);			/* any but the specials */
+	shamblerplayerae->msound = randmonsound();			/* any but the specials */
 	shamblerplayerae->mresists = 0;
 	for (i = 0; i < rnd(7); i++) {
 		shamblerplayerae->mresists |= (1 << rn2(8));		/* physical resistances... */

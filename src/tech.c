@@ -6947,6 +6947,33 @@ blitz_spirit_bomb()
 	return 1;
 }
 
+void
+techcapincrease(increaseamount)
+int increaseamount;
+{
+	int i, thisone, choicenumber;
+
+	thisone = -1;
+	choicenumber = 0;
+
+	for (i = 0; i < MAXTECH; i++) {
+
+		if (tech_list[i].t_id == NO_TECH) break;
+
+		if (!choicenumber || (!rn2(choicenumber + 1))) {
+			thisone = i;
+		}
+		choicenumber++;
+
+	}
+
+	if (choicenumber > 0 && thisone >= 0) {
+		techtout(thisone) += increaseamount;
+		pline("Your %s technique's timeout increases!", techname(thisone));
+	}
+
+}
+
 #ifdef DEBUG
 void
 wiz_debug_cmd() /* in this case, allow controlled loss of techniques */
