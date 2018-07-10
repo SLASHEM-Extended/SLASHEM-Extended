@@ -1423,12 +1423,25 @@ dokick()
 			int made = 0;
 		    	coord mm;
 		    	mm.x = x; mm.y = y;
-			while (cnt--) {
-			    if (enexto(&mm, mm.x, mm.y, &mons[PM_KILLER_BEE])
-				&& makemon(&mons[PM_KILLER_BEE],
-					       mm.x, mm.y, MM_ANGRY))
-				made++;
+
+			if (!rn2(20)) {
+
+				while (cnt--) {
+					if (enexto(&mm, mm.x, mm.y, &mons[PM_WOOD_NYMPH]) &&
+					makemon(&mons[PM_WOOD_NYMPH], mm.x, mm.y, MM_ANGRY))
+					made++;
+				}
+				wake_nearby(); /* make sure they're awake --Amy */
+
+			} else {
+
+				while (cnt--) {
+					if (enexto(&mm, mm.x, mm.y, &mons[PM_KILLER_BEE]) &&
+					makemon(&mons[PM_KILLER_BEE], mm.x, mm.y, MM_ANGRY))
+					made++;
+				}
 			}
+
 			if ( made )
 			    pline("You've attracted the tree's former occupants!");
 			else
