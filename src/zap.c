@@ -1713,6 +1713,7 @@ struct monst *mon;
 	char owner[BUFSZ], corpse[BUFSZ];
 	boolean youseeit;
 	int once = 0, res = 0;
+	int x, y;
 
 	youseeit = (mon == &youmonst) ? TRUE : canseemon(mon);
 	otmp2 = (mon == &youmonst) ? invent : mon->minvent;
@@ -1726,6 +1727,36 @@ struct monst *mon;
 	    if (youseeit) strcpy(corpse, corpse_xname(otmp, TRUE));
 
 	    /* for a merged group, only one is revived; should this be fixed? */
+
+	    /* Amy edit: farming via undead turning is lame, give a chance to vaporize the corpse instead */
+	    if (otmp->otyp == CORPSE && !rn2(10)) {
+
+			switch (otmp->where) {
+			    case OBJ_INVENT:
+				useup(otmp);
+				break;
+			    case OBJ_FLOOR:
+				/* in case MON_AT+enexto for invisible mon */
+				x = otmp->ox,  y = otmp->oy;
+				/* not useupf(), which charges */
+				if (otmp->quan > 1L)
+				    otmp = splitobj(otmp, 1);
+				delobj(otmp);
+				newsym(x, y);
+				break;
+			    case OBJ_MINVENT:
+				m_useup(otmp->ocarry, otmp);
+				break;
+			    case OBJ_CONTAINED:
+				obj_extract_self(otmp);
+				obfree(otmp, (struct obj *) 0);
+				break;
+			    default:
+				panic("unturn_dead corpse in weird place!");
+			}
+
+	    }
+
 	    if ((mtmp2 = revive(otmp)) != 0) {
 		++res;
 		if (youseeit) {
@@ -3094,8 +3125,39 @@ struct obj *obj, *otmp;
 	case SPE_TURN_UNDEAD:
 		if (obj->otyp == EGG)
 			revive_egg(obj);
-		else
+		else {
+
+			/* Anti-farming measure by Amy */
+		    if (obj->otyp == CORPSE && !rn2(10)) {
+
+				int x, y;
+				switch (obj->where) {
+				    case OBJ_INVENT:
+					useup(obj);
+					break;
+				    case OBJ_FLOOR:
+					/* in case MON_AT+enexto for invisible mon */
+					x = obj->ox,  y = obj->oy;
+					/* not useupf(), which charges */
+					if (obj->quan > 1L)
+					    obj = splitobj(obj, 1);
+					delobj(obj);
+					newsym(x, y);
+					break;
+				    case OBJ_MINVENT:
+					m_useup(obj->ocarry, obj);
+					break;
+				    case OBJ_CONTAINED:
+					obj_extract_self(obj);
+					obfree(obj, (struct obj *) 0);
+					break;
+				    default:
+					panic("unturn_dead corpse in weird place!");
+				}
+
+		    }
 			res = !!revive(obj);
+		}
 		break;
 	case WAN_OPENING:
 	case SPE_KNOCK:
@@ -3204,6 +3266,13 @@ struct obj *obj, *otmp;
 			    obj = poly_obj(obj, rnd(20) ? MEATBALL : HUGE_CHUNK_OF_MEAT);
 			    goto smell;
 			} else if (obj->otyp == STATUE) {
+
+				/* endless stone to flesh farming shouldn't be possible --Amy */
+			    if (!rn2(10)) {
+			      obj = poly_obj(obj, MEATBALL);
+			      goto smell;
+			    }
+
 			    xchar oox, ooy;
 
 			    (void) get_obj_location(obj, &oox, &ooy, 0);
