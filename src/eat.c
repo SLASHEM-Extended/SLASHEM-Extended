@@ -568,12 +568,14 @@ register struct obj *food;
 			You(Hallucination ? "spew bits of puke everywhere." : "choke over it.");
 			morehungry(100);	/* remove a bit of nutrition so you don't choke again instantly --Amy */
 			nomul(-2, "vomiting", TRUE);
+			u_wipe_engr(100);
 			return;
 		}
 		You(Hallucination ? "vomit all over the place. Shit, now your clothes are a huge mess!" : "stuff yourself and then vomit voluminously.");
 		if (Role_if(PM_TOPMODEL) || RngeAnorexia || Role_if(PM_FAILED_EXISTENCE) || Role_if(PM_GOFF) || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "anorexia cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "yedyat plashch rasstroystvo") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "eb buzilishi plash") )) ) {adjalign(-20);	/* overeating doesn't befit a topmodel */
 		pline(Hallucination ? "Uaargh - maybe you should order some smaller meals next time?" : "Bleeargh! You feel very bad for trying to overeat."); }
 		morehungry(2000);	/* you just got *very* sick! */
+		u_wipe_engr(100);
 		nomovemsg = 0;
 		vomit();
 	} else {
@@ -6463,6 +6465,7 @@ vomit()		/* A good idea from David Neves */
 {
 	make_sick(0L, (char *) 0, TRUE, SICK_VOMITABLE);
 	nomul(-2, "vomiting", TRUE);
+	u_wipe_engr(100);
 	nomovemsg = 0;
 }
 
