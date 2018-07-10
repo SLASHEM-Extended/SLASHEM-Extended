@@ -1818,6 +1818,22 @@ trapsdone:
 
 		}
 
+		if (!rn2(5000)) {
+
+			int spellammount = 0;
+			for (spellammount = 0; spellammount < MAXSPELL && spellid(spellammount) != NO_SPELL; spellammount++)
+				continue;
+			if (spellammount > (urole.spelrete * 2)) {
+
+				You("have too many spells memorized!");
+				if (Keen_memory) Your("mind struggles to keep all the spells in memory.");
+				else Your("mind can't keep so many spells in memory, and as a result, some of them are erased.");
+				losespells();
+
+			}
+
+		}
+
 		if (Role_if(PM_HUSSY)) {
 
 			if (u.hussyhurtturn < 1) u.hussyhurtturn = (moves + 1000);

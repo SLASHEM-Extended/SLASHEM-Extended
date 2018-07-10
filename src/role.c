@@ -58,7 +58,7 @@ const struct Role roles[] = {
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 
-	2, 10, A_INT, SPE_ACID_STREAM,        -4 /* From old role.c */
+	2, 10, A_INT, SPE_ACID_STREAM,        -4, 100 /* From old role.c */
 },
 
 {	{"Activistor", 0}, {
@@ -86,7 +86,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 3,  1, 0 },	/* Hit points */
 	{ 20, 0,  0, 4,  0, 4 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_TELEPORT_AWAY,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_TELEPORT_AWAY,   -4, 50
 },
 
 {	{"Altmer", 0}, {
@@ -116,7 +116,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 4,  2, 0 },	/* Hit points */
 	{ 40, 0,  0, 12,  0, 15 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_FINGER_OF_DEATH,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_FINGER_OF_DEATH,   -4, 250
 },
 
 {	{"Amazon", 0}, {
@@ -144,7 +144,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 5,  4, 0 },	/* Hit points */
 	{ 10, 0,  0, 2,  0, 3 },11,	/* Energy */
-	10, 10, 0, 0,  8, A_INT, SPE_ENTRAPPING,    -4
+	10, 10, 0, 0,  8, A_INT, SPE_ENTRAPPING,    -4, 40
 },
 {	{"Anachronist", 0}, {
 	{"Survivor",   0},
@@ -170,7 +170,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 11, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  2, 0,  0, 2,  0, 2 },14,	/* Energy */
-	10, 5, 0, 2, 10, A_INT, SPE_SLOW_MONSTER,   -9
+	10, 5, 0, 2, 10, A_INT, SPE_SLOW_MONSTER,   -9, 20
 },
 
 {	{"Anachronounbinder", 		 0}, {
@@ -196,7 +196,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  4, 0,  0, 2,  0, 3 },12,	/* Energy */
-	10, 5, 0, 2, 10, A_INT, SPE_DETECT_MONSTERS,   -9
+	10, 5, 0, 2, 10, A_INT, SPE_DETECT_MONSTERS,   -9, 20
 },
 
 {	{"Archeologist", 0}, {
@@ -227,7 +227,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 10, 0,  0, 1,  0, 1 },14,	/* Energy */
-	10, 5, 0, 2, 10, A_INT, SPE_MAGIC_MAPPING,   -4
+	10, 5, 0, 2, 10, A_INT, SPE_MAGIC_MAPPING,   -4, 40
 },
 
 {	{"Artist", 0}, {
@@ -255,7 +255,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 8,  0, 0 },	/* Hit points */
 	{ 12, 0,  0, 1,  0, 1 },14,	/* Energy */
-	0, 5, 1, 2, 10, A_INT, SPE_INVISIBILITY,   -4
+	0, 5, 1, 2, 10, A_INT, SPE_INVISIBILITY,   -4, 70
 
 },
 
@@ -285,7 +285,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },11,	/* Energy */
-	10, 8, 0, 1,  9, A_INT, SPE_INVISIBILITY, -4
+	10, 8, 0, 1,  9, A_INT, SPE_INVISIBILITY, -4, 40
 },
 
 {	{"Augurer", 0}, {
@@ -315,7 +315,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 9, 0,  0, 0,  1, 0 },	/* Hit points */
 	{ 18, 4,  0, 4,  0, 8 },10,	/* Energy */
-	10, 8,-2, 2, 20, A_WIS, SPE_PASSWALL, -4
+	10, 8,-2, 2, 20, A_WIS, SPE_PASSWALL, -4, 200
 },
 
 {	{"Barbarian", 0}, {
@@ -346,7 +346,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 20, 0,  0,10,  2, 0 },	/* Hit points */
 	{  5, 0,  0, 1,  0, 1 },10,	/* Energy */
-	10, 14, 0, 0,  8, A_INT, SPE_HASTE_SELF,      -4
+	10, 14, 0, 0,  8, A_INT, SPE_HASTE_SELF,      -4, 15
 },
 
 {	{"Bard", 0}, {
@@ -374,7 +374,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 11, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  4, 3,  0, 1,  0, 2 },10,	/* Energy */
-	10, 3,-3, 2, 9, A_INT, SPE_SLEEP, -4
+	10, 3,-3, 2, 9, A_INT, SPE_SLEEP, -4, 40
 },
 
 
@@ -403,7 +403,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 11, 0,  0, 10,  2, 0 },	/* Hit points */
 	{  5, 0,  1, 0,  1, 0 },15,	/* Energy */
-	-5, 10, 5, 10,  25, A_INT, SPE_SLEEP,             -14
+	-5, 10, 5, 10,  25, A_INT, SPE_SLEEP,             -14, 30
 },
 
 {	{"Bleeder", 		 0}, {
@@ -431,7 +431,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 20, 0,  0, 16,  12, 0 },	/* Hit points */
 	{  8, 0,  4, 0,  4, 0 },15,	/* Energy */
-	0, 10, 5, 10,  25, A_INT, SPE_FULL_HEALING,             -4
+	0, 10, 5, 10,  25, A_INT, SPE_FULL_HEALING,             -4, 35
 },
 
 {	{"Bloodseeker", 0}, {
@@ -460,7 +460,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 20, 0,  0,10,  2, 0 },	/* Hit points */
 	{  5, 0,  0, 1,  0, 1 },10,	/* Energy */
-	10, 14, 0, 0,  8, A_INT, SPE_DRAIN_LIFE,      -4
+	10, 14, 0, 0,  8, A_INT, SPE_DRAIN_LIFE,      -4, 20
 },
 {	{"Bosmer", 0}, {
 	{"Treehut Dweller",      0},
@@ -489,7 +489,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  8, 0,  0, 2,  0, 2 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4, 40
 },
 
 {	{"Bully", 0}, {
@@ -517,7 +517,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  10, 0,  0, 5,  0, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },10,	/* Energy */
-	-10, 5, 0, 2, 10, A_INT, SPE_FINGER,   -4
+	-10, 5, 0, 2, 10, A_INT, SPE_FINGER,   -4, 30
 },
 
 {	{"Camperstriker", 0}, {
@@ -543,7 +543,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 4,  1, 0 },	/* Hit points */
 	{ 7, 2,  0, 1,  0, 1 },10,	/* Energy */
-	0, 12,-2, 0,  10, A_INT, SPE_REMOVE_CURSE,     -4
+	0, 12,-2, 0,  10, A_INT, SPE_REMOVE_CURSE,     -4, 100
 },
 
 {	{"Caveman", "Cavewoman"}, {
@@ -574,7 +574,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  2, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
-	0, 12, 0, 1,  8, A_INT, SPE_DIG,             -4
+	0, 12, 0, 1,  8, A_INT, SPE_DIG,             -4, 20
 },
 
 {	{"Chaos Sorceror", 0}, {
@@ -602,7 +602,7 @@ const struct Role roles[] = {
 	{ 12, 0,  0, 1,  10, 0 },	/* Hit points */
 	{ 17, 4,  0, 6,  0, 1 }, 16,	/* Energy */
 	-10, 0, 2, 
-	3, 12, A_INT, SPE_HELLISH_BOLT,        -4 /* From old role.c */
+	3, 12, A_INT, SPE_HELLISH_BOLT,        -4, 100 /* From old role.c */
 },
 
 {	{"Chevalier", 0}, {
@@ -630,7 +630,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 20, 0,  0, 9,  1, 0 },	/* Hit points */
 	{ 17, 3,  0, 2,  0, 2 },10,	/* Energy */
-	0, 3,-2, 2, 10, A_WIS, SPE_REMOVE_CURSE,    -4
+	0, 3,-2, 2, 10, A_WIS, SPE_REMOVE_CURSE,    -4, 70
 },
 
 
@@ -659,7 +659,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
-	-50, 5, 0, 2, 10, A_INT, SPE_TELEPORT_AWAY,   -4
+	-50, 5, 0, 2, 10, A_INT, SPE_TELEPORT_AWAY,   -4, 20
 },
 
 {	{"Cook", 0}, {
@@ -688,7 +688,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 9, 0,  0, 3,  1, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },11,	/* Energy */
-	10, 8, 0, 1,  9, A_INT, SPE_FIREBALL, -4
+	10, 8, 0, 1,  9, A_INT, SPE_FIREBALL, -4, 30
 },
 
 
@@ -717,7 +717,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  10, 0,  0, 5,  0, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },10,	/* Energy */
-	-10, 5, 0, 2, 10, A_INT, SPE_ENDURE_HEAT,   -4
+	-10, 5, 0, 2, 10, A_INT, SPE_ENDURE_HEAT,   -4, 20
 },
 
 {	{"Cruel Abuser", 0}, { /* too many role names starting with A, so I added that adjective --Amy */
@@ -745,7 +745,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
-	-10, 5, 0, 2, 10, A_INT, SPE_FORCE_BOLT,   -4
+	-10, 5, 0, 2, 10, A_INT, SPE_FORCE_BOLT,   -4, 40
 },
 
 
@@ -774,7 +774,7 @@ const struct Role roles[] = {
 	{ 17, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 
-	2, 10, A_INT, SPE_FINGER_OF_DEATH,   -4
+	2, 10, A_INT, SPE_FINGER_OF_DEATH,   -4, 200
 },
 
 {	{"Diver", 0}, {
@@ -802,7 +802,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },12,	/* Energy */
-	10, 8, 0, 2,  9, A_INT, SPE_DETECT_MONSTERS,    -4
+	10, 8, 0, 2,  9, A_INT, SPE_DETECT_MONSTERS,    -4, 40
 },
 
 {	{"Doll Mistress", 0}, {
@@ -830,7 +830,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_STONE_TO_FLESH,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_STONE_TO_FLESH,   -4, 50
 },
 
 {	{"Doom Marine", 0}, {
@@ -858,7 +858,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  15, 0,  0, 10,  0, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },15,	/* Energy */
-	10, 10, -4, 6, 18, A_INT, SPE_TELEPORT_AWAY,   -4
+	10, 10, -4, 6, 18, A_INT, SPE_TELEPORT_AWAY,   -4, 10
 },
 
 
@@ -888,7 +888,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  5, 0,  0, 2,  8, 0 },	/* Hit points */
 	{  1, 0,  0, 2,  0, 8 },15,	/* Energy */
-	-20, 8, 0, 6,  14, A_INT, SPE_ACID_STREAM, -4
+	-20, 8, 0, 6,  14, A_INT, SPE_ACID_STREAM, -4, 60
 },
 
 {	{"Druid", 0}, {
@@ -916,7 +916,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 8, 0,  0, 1,  1, 0 },	/* Hit points */
 	{ 12, 0,  0, 3,  0, 4 },11,	/* Energy */
-	10, 7, -3, 2,  9, A_INT, SPE_CREATE_FAMILIAR,    -4
+	10, 7, -3, 2,  9, A_INT, SPE_CREATE_FAMILIAR,    -4, 90
 },
 
 {	{"Drunk", 0}, {
@@ -944,7 +944,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
-	0, 5, 0, 2, 10, A_INT, SPE_DETECT_FOOD,   -4
+	0, 5, 0, 2, 10, A_INT, SPE_DETECT_FOOD,   -4, 30
 },
 
 {	{"Dunmer", 0}, {
@@ -974,7 +974,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  8, 0,  0, 2,  0, 2 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_CANCELLATION,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_CANCELLATION,   -4, 40
 },
 
 {	{"Electric Mage", 0}, {
@@ -1003,7 +1003,7 @@ const struct Role roles[] = {
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 
-	2, 10, A_INT, SPE_LIGHTNING,        -4 /* From old role.c */
+	2, 10, A_INT, SPE_LIGHTNING,        -4, 100 /* From old role.c */
 },
 
 {	{"Elementalist", 0}, {
@@ -1032,7 +1032,7 @@ const struct Role roles[] = {
 	{ 10, 0,  0, 4,  2, 0 },	/* Hit points */
 	{ 20, 5,  0, 3,  0, 1 },13,	/* Energy */
 	10, 0, -2, 
-	5, 20, A_INT, SPE_CALL_THE_ELEMENTS,        -4 /* From old role.c */
+	5, 20, A_INT, SPE_CALL_THE_ELEMENTS,        -4, 100 /* From old role.c */
 },
 
 {	{"Elph", 0}, {
@@ -1064,7 +1064,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  8, 0,  0, 2,  0, 2 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4, 60
 },
 
 {	{"Erdrick", 0}, {
@@ -1093,7 +1093,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  7, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  2, 0,  0, 2,  0, 1 },16,	/* Energy */
-	0, 8, 0, 3,  11, A_INT, SPE_LIGHTNING, -4
+	0, 8, 0, 3,  11, A_INT, SPE_LIGHTNING, -4, 30
 },
 
 {	{"Failed Existence", 0}, {
@@ -1121,7 +1121,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  8, 0,  0, 1,  0, 2 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_FORBIDDEN_KNOWLEDGE,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_FORBIDDEN_KNOWLEDGE,   -4, 90
 },
 
 {	{"Feat Master", 0}, { /* stunt master, but there were too many role names beginning with S */
@@ -1149,7 +1149,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  2, 0 },	/* Hit points */
 	{ 10, 4,  0, 1,  0, 2 },10,	/* Energy */
-	10, 8,-2, 0,  9, A_WIS, SPE_JUMPING,     -4
+	10, 8,-2, 0,  9, A_WIS, SPE_JUMPING,     -4, 50
 },
 
 {	{"Feminist", 0}, {
@@ -1177,7 +1177,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 4,  4, 0 },	/* Hit points */
 	{ 10, 0,  0, 7,  0, 0 }, 15,	/* Energy */
-	0, 6, -4, 2, 7, A_INT, SPE_HORRIFY,   -4
+	0, 6, -4, 2, 7, A_INT, SPE_HORRIFY,   -4, 100
 },
 
 {	{"Fencer", 0}, {
@@ -1205,7 +1205,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 9,  2, 0 },	/* Hit points */
 	{ 13, 2,  0, 2,  0, 2 },12,	/* Energy */
-	0, 3, -2, 2, 6, A_INT, SPE_ENCHANT_WEAPON,        -4
+	0, 3, -2, 2, 6, A_INT, SPE_ENCHANT_WEAPON,        -4, 25
 },
 
 {	{"Fighter", 0}, {
@@ -1233,7 +1233,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 13, 0,  0, 10,  4, 0 },	/* Hit points */
 	{ 4,  0,  0, 1,  0, 1 },16,	/* Energy */
-	10, 5, -2, 4, 10, A_INT, SPE_HASTE_SELF,        -4
+	10, 5, -2, 4, 10, A_INT, SPE_HASTE_SELF,        -4, 25
 },
 
 {	{"Firefighter", 0}, {
@@ -1263,7 +1263,7 @@ const struct Role roles[] = {
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 
-	2, 10, A_INT, SPE_TELEPORT_AWAY,        -4 /* From old role.c */
+	2, 10, A_INT, SPE_TELEPORT_AWAY,        -4, 30 /* From old role.c */
 },
 
 {	{"Flame Mage", 0}, {
@@ -1295,7 +1295,7 @@ const struct Role roles[] = {
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 
-	2, 10, A_INT, SPE_FIREBALL,        -4 /* From old role.c */
+	2, 10, A_INT, SPE_FIREBALL,        -4, 100 /* From old role.c */
 },
 
 {	{"Form Changer", 0}, {
@@ -1323,7 +1323,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 2,  2, 0 },	/* Hit points */
 	{ 30, 0,  0, 10,  0, 5 }, 16,	/* Energy */
-	10, 8, 0, 5, 13, A_INT, SPE_POLYMORPH,   -4
+	10, 8, 0, 5, 13, A_INT, SPE_POLYMORPH,   -4, 100
 },
 
 {	{"Foxhound Agent", 0}, {
@@ -1351,7 +1351,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 20, 0,  0, 8,  2, 0 },	/* Hit points */
 	{  2, 0,  0, 1,  0, 1 },10,	/* Energy */
-	0, 10,-2, 0,  9, A_WIS, SPE_RESTORE_ABILITY,    -4
+	0, 10,-2, 0,  9, A_WIS, SPE_RESTORE_ABILITY,    -4, 20
 },
 {	{"Gamer", 0}, {
 	{"Tetris Player",    0},
@@ -1379,7 +1379,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 20, 4,  0, 1,  0, 2 },20,	/* Energy */
-	10, 3,-3, 2, 10, A_WIS, SPE_GODMODE,   -4
+	10, 3,-3, 2, 10, A_WIS, SPE_GODMODE,   -4, 75
 },
 
 {	{"Gang Scholar", 0}, {
@@ -1407,7 +1407,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 5,  5, 0 },	/* Hit points */
 	{ 7, 0,  0, 3,  0, 3 }, 14,	/* Energy */
-	10, 6, -4, 4, 6, A_INT, SPE_MANA_BOLT,   -4
+	10, 6, -4, 4, 6, A_INT, SPE_MANA_BOLT,   -4, 100
 },
 
 {	{"Gangster", 0}, {
@@ -1435,7 +1435,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
-	-10, 5, 0, 2, 10, A_INT, SPE_CONFUSE_MONSTER,   -4
+	-10, 5, 0, 2, 10, A_INT, SPE_CONFUSE_MONSTER,   -4, 30
 },
 
 {	{"Geek", 0}, {
@@ -1466,7 +1466,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 20, 4,  0, 1,  0, 2 },20,	/* Energy */
-	10, 3,-3, 2, 10, A_WIS, SPE_CURE_SICKNESS,   -4
+	10, 3,-3, 2, 10, A_WIS, SPE_CURE_SICKNESS,   -4, 50
 },
 
 {	{"Gladiator", 0}, {
@@ -1494,7 +1494,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 8,  4, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },12,	/* Energy */
-	10, 8, 0, 2,  9, A_INT, SPE_CAUSE_FEAR,    -4
+	10, 8, 0, 2,  9, A_INT, SPE_CAUSE_FEAR,    -4, 20
 },
 
 {	{"Goff", 0}, {
@@ -1522,7 +1522,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  8, 0,  0, 1,  0, 2 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_CURE_HALLUCINATION,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_CURE_HALLUCINATION,   -4, 100
 },
 
 {	{"Goldminer", 0}, {
@@ -1550,7 +1550,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 4,  1, 0 },	/* Hit points */
 	{ 6, 0,  0, 1,  0, 1 },14,	/* Energy */
-	10, 5, 0, 2, 10, A_INT, SPE_DIG,   -4
+	10, 5, 0, 2, 10, A_INT, SPE_DIG,   -4, 20
 },
 
 {	{"Graduate", 0}, {
@@ -1579,7 +1579,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 20, 4,  0, 1,  0, 2 },20,	/* Energy */
-	10, 3,-3, 2, 10, A_WIS, SPE_CURE_HALLUCINATION,   -4
+	10, 3,-3, 2, 10, A_WIS, SPE_CURE_HALLUCINATION,   -4, 50
 },
 
 {	{"Gunner", 0}, {
@@ -1607,7 +1607,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
-	-10, 5, 0, 2, 10, A_INT, SPE_ANTI_DISINTEGRATION,   -4
+	-10, 5, 0, 2, 10, A_INT, SPE_ANTI_DISINTEGRATION,   -4, 10
 },
 
 
@@ -1639,7 +1639,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 20, 4,  0, 1,  0, 2 },20,	/* Energy */
-	10, 3,-3, 2, 10, A_WIS, SPE_CURE_SICKNESS,   -4
+	10, 3,-3, 2, 10, A_WIS, SPE_CURE_SICKNESS,   -4, 50
 },
 
 {	{"Hussy", 0}, {
@@ -1667,7 +1667,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 10, 0, 0, 5,  4, 0 },	/* Hit points */
 	{  6, 0, 0, 3,  0, 4 }, 12,	/* Energy */
-	0, 5, 4, 5, 8, A_INT, SPE_DETECT_FOOT,   -4
+	0, 5, 4, 5, 8, A_INT, SPE_DETECT_FOOT,   -4, 100
 },
 
 {	{"Ice Mage", 0}, {
@@ -1699,7 +1699,7 @@ const struct Role roles[] = {
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 
-	2, 10, A_INT, SPE_CONE_OF_COLD,    -4 /* From old role.c */
+	2, 10, A_INT, SPE_CONE_OF_COLD,    -4, 100 /* From old role.c */
 },
 
 {	{"Intel Scribe", 0}, { /* scribe, but there were too many role names beginning with S */
@@ -1729,7 +1729,7 @@ const struct Role roles[] = {
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 
-	2, 10, A_INT, SPE_CHARGING,        -4 /* From old role.c */
+	2, 10, A_INT, SPE_CHARGING,        -4, 100 /* From old role.c */
 },
 
 {	{"Jedi", 0}, {
@@ -1758,7 +1758,7 @@ const struct Role roles[] = {
 	{ 20, 4,  0, 8,  2, 4 },	/* Hit points */
 	{  5, 4,  0, 1,  0, 4 },10,	/* Energy */
 	0, 12 , -1, 
-	2, 10, A_INT, SPE_CHARM_MONSTER,    -4
+	2, 10, A_INT, SPE_CHARM_MONSTER,    -4, 40
 },
 
 {	{"Jester", 0}, {
@@ -1786,7 +1786,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
-	0, 5, 0, 2, 10, A_INT, SPE_DETECT_UNSEEN,   -4
+	0, 5, 0, 2, 10, A_INT, SPE_DETECT_UNSEEN,   -4, 40
 },
 
 {	{"Justice Keeper", 0}, {
@@ -1814,7 +1814,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 4,  4, 0 },	/* Hit points */
 	{ 7, 5,  0, 3,  0, 2 },18,	/* Energy */
-	10, 1, -4, 1,  7, A_WIS, SPE_SOLAR_BEAM,     -4
+	10, 1, -4, 1,  7, A_WIS, SPE_SOLAR_BEAM,     -4, 50
 },
 
 {	{"Knight", 0}, {
@@ -1844,7 +1844,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  2, 0 },	/* Hit points */
 	{ 10, 4,  0, 1,  0, 2 },10,	/* Energy */
-	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4
+	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4, 40
 },
 
 {	{"Korsair", 0}, {
@@ -1872,7 +1872,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },12,	/* Energy */
-	10, 8, 0, 2,  9, A_INT, SPE_CAUSE_FEAR,    -4
+	10, 8, 0, 2,  9, A_INT, SPE_CAUSE_FEAR,    -4, 30
 },
 
 {	{"Kurwa", 0}, {
@@ -1900,7 +1900,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  7, 0,  0, 2,  0, 2 },12,	/* Energy */
-	10, 5, -3, 2, 4, A_INT, SPE_MAKE_VISIBLE,   -4
+	10, 5, -3, 2, 4, A_INT, SPE_MAKE_VISIBLE,   -4, 100
 },
 
 {	{"Ladiesman", 0}, {
@@ -1928,7 +1928,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  8, 0,  0, 1,  0, 2 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_CHARM_MONSTER,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_CHARM_MONSTER,   -4, 40
 },
 
 {	{"Librarian", 0}, {
@@ -1957,7 +1957,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 20, 4,  0, 1,  0, 2 },20,	/* Energy */
-	10, 3,-3, 2, 10, A_WIS, SPE_CURE_HALLUCINATION,   -4
+	10, 3,-3, 2, 10, A_WIS, SPE_CURE_HALLUCINATION,   -4, 200
 },
 
 {	{"Locksmith", 0}, {
@@ -1986,7 +1986,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },11,	/* Energy */
-	10, 8, 0, 1,  9, A_INT, SPE_KNOCK, -4
+	10, 8, 0, 1,  9, A_INT, SPE_KNOCK, -4, 40
 },
 
 {	{"Lunatic", 0}, {
@@ -2014,7 +2014,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  18, 0,  0, 8,  6, 0 },	/* Hit points */
 	{  5, 0,  0, 3,  0, 3 },10,	/* Energy */
-	-10, 5, 0, 2, 10, A_INT, SPE_GODMODE,   -4
+	-10, 5, 0, 2, 10, A_INT, SPE_GODMODE,   -4, 30
 },
 
 {	{"Mahou Shoujo", 0}, {
@@ -2042,7 +2042,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_LEVITATION,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_LEVITATION,   -4, 100
 },
 
 {	{"Mason", 0}, {
@@ -2070,7 +2070,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 14, 0, 0, 6,  3, 0 },	/* Hit points */
 	{  1, 0, 0, 2,  0, 2 }, 15,	/* Energy */
-	10, 12, 0, 10, 20, A_INT, SPE_LOCKOUT,   -4
+	10, 12, 0, 10, 20, A_INT, SPE_LOCKOUT,   -4, 25
 },
 
 {	{"Medium", 0}, {
@@ -2099,7 +2099,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  9, 0,  0, 4,  1, 0 },	/* Hit points */
 	{ 25, 4,  0, 5,  0, 7 }, 8,	/* Energy */
-	10, 0, -5, 1, 4, A_WIS, SPE_MAP_LEVEL,   -4
+	10, 0, -5, 1, 4, A_WIS, SPE_MAP_LEVEL,   -4, 150
 },
 
 {	{"Midget", 0}, {
@@ -2126,7 +2126,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 7,  2, 0 },	/* Hit points */
 	{  2, 0,  0, 2,  0, 3 },10,	/* Energy */
-	0, 9, 0, 0,  6, A_INT, SPE_DIG,    -4
+	0, 9, 0, 0,  6, A_INT, SPE_DIG,    -4, 20
 },
 
 {	{"Monk", 0}, {
@@ -2158,7 +2158,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 17, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  8, 2,  0, 2,  0, 2 },10,	/* Energy */
-	10, 8,-2, 2, 20, A_WIS, SPE_RESTORE_ABILITY, -4
+	10, 8,-2, 2, 20, A_WIS, SPE_RESTORE_ABILITY, -4, 50
 },
 
 {	{"Murderer", 0}, {
@@ -2186,7 +2186,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
-	-50, 5, 0, 2, 10, A_INT, SPE_DISSOLVE_FOOD,   -4
+	-50, 5, 0, 2, 10, A_INT, SPE_DISSOLVE_FOOD,   -4, 20
 },
 
 {	{"Musician", 0}, {
@@ -2216,7 +2216,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  8, 0,  0, 2,  0, 2 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_CAUSE_FEAR,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_CAUSE_FEAR,   -4, 40
 },
 
 {	{"Mystic", 		 0}, {
@@ -2244,7 +2244,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 11, 0,  0, 10,  2, 0 },	/* Hit points */
 	{  5, 0,  1, 0,  1, 0 },15,	/* Energy */
-	5, 10, 5, 10,  25, A_INT, SPE_DETECT_FOOT,             -4
+	5, 10, 5, 10,  25, A_INT, SPE_DETECT_FOOT,             -4, 50
 },
 
 
@@ -2276,7 +2276,7 @@ const struct Role roles[] = {
 	{ 17, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 
-	2, 10, A_INT, SPE_SUMMON_UNDEAD,   -4
+	2, 10, A_INT, SPE_SUMMON_UNDEAD,   -4, 100
 },
 
 {	{"Ninja", 0}, {
@@ -2304,7 +2304,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  7, 0,  0, 1,  0, 1 },11,	/* Energy */
-	10, 10, 0, 0,  8, A_INT, SPE_ENCHANT_WEAPON,    -4
+	10, 10, 0, 0,  8, A_INT, SPE_ENCHANT_WEAPON,    -4, 25
 },
 
 {	{"Nobleman", "Noblewoman"}, {
@@ -2332,7 +2332,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  2, 2,  0, 2,  0, 2 },10,	/* Energy */
-	10, 4,-4, 4, 8, A_INT, SPE_PROTECTION, -24
+	10, 4,-4, 4, 8, A_INT, SPE_PROTECTION, -24, 40
 },
 
 {	{"Nuclear Physicist", 0}, {
@@ -2360,7 +2360,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 9,  0, 0, 4,  1, 0 },	/* Hit points */
 	{ 16, 0, 0, 5,  0, 3 }, 10,	/* Energy */
-	-10, 8, -1, 8, 20, A_INT, SPE_ACIDSHIELD,   -4
+	-10, 8, -1, 8, 20, A_INT, SPE_ACIDSHIELD,   -4, 50
 },
 
 {	{"Occult Master", 0}, {
@@ -2388,7 +2388,7 @@ const struct Role roles[] = {
 	{  6, 0,  0, 2,  2, 0 },	/* Hit points */
 	{ 30, 5,  0, 6,  0, 8 }, 8,	/* Energy */
 	0, 0, 0, 
-	1, 6, A_INT, SPE_GOOD_NIGHT,        -4 /* From old role.c */
+	1, 6, A_INT, SPE_GOOD_NIGHT,        -4, 100 /* From old role.c */
 },
 
 {	{"Officer", 0}, {
@@ -2416,7 +2416,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
-	10, 5, 0, 2, 10, A_INT, SPE_RESIST_PETRIFICATION,   -4
+	10, 5, 0, 2, 10, A_INT, SPE_RESIST_PETRIFICATION,   -4, 40
 },
 
 {	{"Ordinator", 0}, {
@@ -2446,7 +2446,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 5,  1, 0 },	/* Hit points */
 	{ 10, 0,  0, 2,  0, 2 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_ENCHANT_WEAPON,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_ENCHANT_WEAPON,   -4, 30
 },
 
 {	{"Otaku", 0}, {
@@ -2476,7 +2476,7 @@ const struct Role roles[] = {
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 
-	2, 10, A_INT, SPE_ENTRAPPING,        -4 /* From old role.c */
+	2, 10, A_INT, SPE_ENTRAPPING,        -4, 50 /* From old role.c */
 },
 
 {	{"Paladin", 0}, {
@@ -2504,7 +2504,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 20, 0,  0, 9,  1, 0 },	/* Hit points */
 	{ 17, 3,  0, 2,  0, 2 },10,	/* Energy */
-	0, 3,-2, 2, 10, A_WIS, SPE_REMOVE_CURSE,    -4
+	0, 3,-2, 2, 10, A_WIS, SPE_REMOVE_CURSE,    -4, 50
 },
 
 {	{"Pickpocket", 0}, {
@@ -2533,7 +2533,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },11,	/* Energy */
-	10, 8, 0, 1,  9, A_INT, SPE_DETECT_TREASURE, -4
+	10, 8, 0, 1,  9, A_INT, SPE_DETECT_TREASURE, -4, 30
 },
 
 
@@ -2562,7 +2562,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },12,	/* Energy */
-	10, 8, 0, 2,  9, A_INT, SPE_CAUSE_FEAR,    -4
+	10, 8, 0, 2,  9, A_INT, SPE_CAUSE_FEAR,    -4, 30
 },
 
 {	{"Poison Mage", 0}, {
@@ -2591,7 +2591,7 @@ const struct Role roles[] = {
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
 	0, 1, 0, 
-	2, 10, A_INT, SPE_POISON_BLAST,        -4 /* From old role.c */
+	2, 10, A_INT, SPE_POISON_BLAST,        -4, 100 /* From old role.c */
 },
 
 {	{"Pokemon", 0}, {
@@ -2619,7 +2619,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4, 120
 },
 
 {	{"Politician", 0}, {
@@ -2647,7 +2647,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 6,  0, 0 },	/* Hit points */
 	{ 10, 0,  0, 1,  0, 1 },14,	/* Energy */
-	0, 5, 1, 2, 10, A_INT, SPE_CHARM_MONSTER,   -4
+	0, 5, 1, 2, 10, A_INT, SPE_CHARM_MONSTER,   -4, 100
 },
 
 {	{"Priest", "Priestess"}, {
@@ -2678,7 +2678,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 17, 3,  0, 2,  0, 2 },10,	/* Energy */
-	0, 3,-2, 2, 10, A_WIS, SPE_REMOVE_CURSE,    -4
+	0, 3,-2, 2, 10, A_WIS, SPE_REMOVE_CURSE,    -4, 75
 },
 
 {	{"Prostitute", 0}, {
@@ -2706,7 +2706,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  7, 0,  0, 2,  0, 2 },12,	/* Energy */
-	10, 5, -3, 2, 4, A_INT, SPE_TAKE_SELFIE,   -4
+	10, 5, -3, 2, 4, A_INT, SPE_TAKE_SELFIE,   -4, 100
 },
 
 {	{"Psion", 0}, {
@@ -2738,7 +2738,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 5, 0,  0, 0,  0, 0 },	/* Hit points */
 	{ 20, 4,  0, 4,  0, 8 },10,	/* Energy */
-	10, 8,-2, 2, 20, A_WIS, SPE_WIZARD_LOCK, -4
+	10, 8,-2, 2, 20, A_WIS, SPE_WIZARD_LOCK, -4, 200
 },
 
 
@@ -2788,7 +2788,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4, 40
 },
 
 {	{"Ringseeker", 0}, {
@@ -2816,7 +2816,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 6,  1, 0 },	/* Hit points */
 	{ 15, 4,  0, 2,  0, 2 },12,	/* Energy */
-	0, 0, -2, 4, 12, A_INT, SPE_INVISIBILITY,   -4
+	0, 0, -2, 4, 12, A_INT, SPE_INVISIBILITY,   -4, 30
 },
 
 {	{"Rocker", 0}, {
@@ -2844,7 +2844,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
-	-10, 5, 0, 2, 10, A_INT, SPE_FORCE_BOLT,   -4
+	-10, 5, 0, 2, 10, A_INT, SPE_FORCE_BOLT,   -4, 30
 },
 
 {	{"Rogue", 0}, {
@@ -2875,7 +2875,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },11,	/* Energy */
-	10, 8, 0, 1,  9, A_INT, SPE_DETECT_TREASURE, -4
+	10, 8, 0, 1,  9, A_INT, SPE_DETECT_TREASURE, -4, 30
 },
 
 {	{"Sage", 0}, {
@@ -2904,7 +2904,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 25, 3,  0, 2,  0, 3 },12,	/* Energy */
-	0, 1, 0, 3, 10, A_INT, SPE_CREATE_FAMILIAR,   -4
+	0, 1, 0, 3, 10, A_INT, SPE_CREATE_FAMILIAR,   -4, 200
 },
 
 {	{"Saiyan", 0}, {
@@ -2933,7 +2933,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 17, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  8, 2,  0, 2,  0, 2 },10,	/* Energy */
-	10, 8,-2, 2, 20, A_WIS, SPE_FINGER_OF_DEATH, -4
+	10, 8,-2, 2, 20, A_WIS, SPE_FINGER_OF_DEATH, -4, 40
 },
 
 
@@ -2964,7 +2964,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  7, 0,  0, 1,  0, 1 },11,	/* Energy */
-	10, 10, 0, 0,  8, A_INT, SPE_CLAIRVOYANCE,    -4
+	10, 10, 0, 0,  8, A_INT, SPE_CLAIRVOYANCE,    -4, 20
 },
 
 {	{"Scientist", 0}, {
@@ -2993,7 +2993,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 3,  1, 0 },	/* Hit points */
 	{ 20, 5,  0, 1,  0, 2 },20,	/* Energy */
-	10, 3,-3, 2, 10, A_WIS, SPE_IDENTIFY,   -4
+	10, 3,-3, 2, 10, A_WIS, SPE_IDENTIFY,   -4, 35
 },
 
 {	{"Shapeshifter", 0}, {
@@ -3021,7 +3021,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 3,  1, 0 },	/* Hit points */
 	{ 20, 0,  0, 4,  0, 4 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_POLYMORPH,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_POLYMORPH,   -4, 30
 },
 
 {	{"Slave Master", 0}, {
@@ -3050,7 +3050,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 10, 0,  0, 1,  0, 1 },14,	/* Energy */
-	10, 5, 0, 2, 10, A_INT, SPE_COMMAND_UNDEAD,   -4
+	10, 5, 0, 2, 10, A_INT, SPE_COMMAND_UNDEAD,   -4, 40
 },
 
 {	{"Spacewars Fighter", 0}, {
@@ -3076,7 +3076,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  2, 0 },	/* Hit points */
 	{ 10, 4,  0, 1,  0, 2 },10,	/* Energy */
-	10, 8,-2, 0,  9, A_INT, SPE_DETECT_MONSTERS,     -4
+	10, 8,-2, 0,  9, A_INT, SPE_DETECT_MONSTERS,     -4, 100
 },
 
 {	{"Supermarket Cashier", 0}, {
@@ -3104,7 +3104,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 8,  0, 0 },	/* Hit points */
 	{ 12, 0,  0, 1,  0, 1 },14,	/* Energy */
-	0, 5, 1, 2, 10, A_INT, SPE_TELEPORT_AWAY,   -4
+	0, 5, 1, 2, 10, A_INT, SPE_TELEPORT_AWAY,   -4, 40
 },
 
 {	{"Thalmor", 0}, {
@@ -3134,7 +3134,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 4,  4, 0 },	/* Hit points */
 	{ 10, 0,  0, 4,  0, 4 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_FULL_HEALING,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_FULL_HEALING,   -4, 50
 },
 
 {	{"Topmodel", 0}, {
@@ -3162,7 +3162,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  8, 0,  0, 1,  0, 2 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_CHARM_MONSTER,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_CHARM_MONSTER,   -4, 90
 },
 
 {	{"Tourist", 0}, {
@@ -3192,7 +3192,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 8,  0, 0 },	/* Hit points */
 	{ 12, 0,  0, 1,  0, 1 },14,	/* Energy */
-	0, 5, 1, 2, 10, A_INT, SPE_CHARM_MONSTER,   -4
+	0, 5, 1, 2, 10, A_INT, SPE_CHARM_MONSTER,   -4, 40
 },
 
 {	{"Tracer", 0}, {
@@ -3220,7 +3220,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 8,  0,  0, 1,  7, 0 },	/* Hit points */
 	{ 35, 0,  0, 1,  0, 1 }, 20,	/* Energy */
-	0, 12, -6, 2, 4, A_INT, SPE_POLYFORM,   -4
+	0, 12, -6, 2, 4, A_INT, SPE_POLYFORM,   -4, 50
 },
 
 {	{"Transsylvanian", 0}, {
@@ -3248,7 +3248,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_LEVELPORT,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_LEVELPORT,   -4, 50
 },
 
 
@@ -3277,7 +3277,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_INVISIBILITY,   -4, 50
 },
 
 {	{"Twelph", 0}, {
@@ -3309,7 +3309,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 4,  1, 0 },	/* Hit points */
 	{ 12, 0,  0, 4,  0, 3 },12,	/* Energy */
-	10, 0, 0, 4, 25, A_INT, SPE_DRAIN_LIFE,   -4
+	10, 0, 0, 4, 25, A_INT, SPE_DRAIN_LIFE,   -4, 30
 },
 
 {	{"Unbeliever", 0}, {
@@ -3337,7 +3337,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 24, 0,  0,12,  4, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 },10,	/* Energy */
-	10, 30, 0, 10,  20, A_INT, SPE_BLANK_PAPER,      -4
+	10, 30, 0, 10,  20, A_INT, SPE_BLANK_PAPER,      -4, 5
 },
 
 {	{"Undead Slayer", 0}, {
@@ -3368,7 +3368,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 22, 0,  0, 8,  2, 0 },	/* Hit points */
 	{ 16, 4,  0, 1,  0, 2 },10,	/* Energy */
-	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4
+	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4, 20
 },
 
 {	{"Undertaker", 0}, {
@@ -3397,7 +3397,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 22, 0,  0, 8,  2, 0 },	/* Hit points */
 	{ 16, 4,  0, 1,  0, 2 },10,	/* Energy */
-	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4
+	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4, 25
 },
 
 {	{"User of Stand", 0}, {
@@ -3427,7 +3427,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 11, 0,  0, 4,  1, 0 },	/* Hit points */
 	{  8, 2,  0, 0,  0, 1 },10,	/* Energy */
-	10, 4,-2, 0,  9, A_INT, SPE_AGGRAVATE_MONSTER,     -4
+	10, 4,-2, 0,  9, A_INT, SPE_AGGRAVATE_MONSTER,     -4, 200
 },
 
 {	{"Valkyrie", 0}, {
@@ -3457,7 +3457,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 20, 0,  0, 8,  2, 0 },	/* Hit points */
 	{  2, 0,  0, 1,  0, 1 },10,	/* Energy */
-	0, 10,-2, 0,  9, A_WIS, SPE_LIGHTNING,    -4
+	0, 10,-2, 0,  9, A_WIS, SPE_LIGHTNING,    -4, 20
 },
 
 {	{"Wandkeeper", 0}, {
@@ -3486,7 +3486,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 20, 0,  0, 6,  2, 0 },	/* Hit points */
 	{ 10, 4,  0, 2,  0, 3 },10,	/* Energy */
-	5, 2,-2, 10,  9, A_WIS, SPE_POLYMORPH,     -4
+	5, 2,-2, 10,  9, A_WIS, SPE_POLYMORPH,     -4, 75
 },
 {	{"Warrior", 0}, {
 	{"Swordsman",     0},
@@ -3515,7 +3515,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 15,  5, 0 },	/* Hit points */
 	{ 10, 0,  0, 1,  0, 1 },10,	/* Energy */
-	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4
+	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4, 20
 },
 
 {	{"Wild Talent", 		 0}, {
@@ -3543,7 +3543,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  8, 0,  4, 0,  4, 0 }, 12,	/* Energy */
-	5, 8, 0,  5, 10, A_WIS, SPE_RUSSIAN_ROULETTE,             -4
+	5, 8, 0,  5, 10, A_WIS, SPE_RUSSIAN_ROULETTE,             -4, 80
 },
 
 {	{"Wizard", 0}, {
@@ -3574,7 +3574,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 25, 3,  0, 2,  0, 3 },12,	/* Energy */
-	0, 1, 0, 3, 10, A_INT, SPE_MAGIC_MISSILE,   -4
+	0, 1, 0, 3, 10, A_INT, SPE_MAGIC_MISSILE,   -4, 200
 },
 
 {	{"Yeoman", 0}, {
@@ -3606,7 +3606,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  2, 0 },	/* Hit points */
 	{  3, 4,  0, 1,  0, 2 },10,	/* Energy */
-	10, 8,-2, 0,  9, A_WIS, SPE_KNOCK,     -4
+	10, 8,-2, 0,  9, A_WIS, SPE_KNOCK,     -4, 20
 },
 
 {	{"YSexymate", 0}, {
@@ -3635,7 +3635,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  8, 0,  0, 1,  0, 2 },12,	/* Energy */
-	10, 9, 2, 1, 10, A_INT, SPE_REPAIR_ARMOR,   -4
+	10, 9, 2, 1, 10, A_INT, SPE_REPAIR_ARMOR,   -4, 30
 },
 
 {	{"Zookeeper", 0}, {
@@ -3664,7 +3664,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 10, 0,  0, 1,  0, 1 },14,	/* Energy */
-	10, 5, 0, 2, 10, A_INT, SPE_CHARM_MONSTER,   -4
+	10, 5, 0, 2, 10, A_INT, SPE_CHARM_MONSTER,   -4, 40
 },
 
 {	{"Zyborg", 0}, {
@@ -3692,7 +3692,7 @@ const struct Role roles[] = {
 	/* Init   Lower  Higher */
 	{  20, 0,  0, 5,  2, 0 },	/* Hit points */
 	{  4, 2,  0, 4,  0, 4 },10,	/* Energy */
-	0, 5, 0, 2, 10, A_INT, SPE_SOLAR_BEAM,   -4
+	0, 5, 0, 2, 10, A_INT, SPE_SOLAR_BEAM,   -4, 75
 },
 
 /* Array terminator */

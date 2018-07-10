@@ -16480,6 +16480,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'HermiOne Granger'. It reads: 'Raisins are bullshit! I hate raisins! They're nothing but rotted grapes!'",
 	"You ate the wrong thing and therefore your hands are slippery now.",
 	"Ouch! You burnt your finger!",
+	"You have too many spells memorized!",
+	"You have too many spells memorized! Your mind can't keep so many spells in memory, and as a result, some of them are erased.",
 
 };
 

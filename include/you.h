@@ -134,6 +134,7 @@ struct Role {
 	int spelstat;		/* which stat (A_) is used */
 	int spelspec;		/* spell (SPE_) the class excels at */
 	int spelsbon;		/* penalty (-bonus) for that spell */
+	int spelrete;		/* spell retention - how many spells you can memorize before forgetting them is faster */
 
 	/*** Properties in variable-length arrays ***/
 	/* intrinsics (see attrib.c) */

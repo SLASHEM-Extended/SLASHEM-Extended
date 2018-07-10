@@ -6469,6 +6469,20 @@ losespells()
 		continue;
 	if (n) {
 		nzap = rn2(50) ? 1 : (rnd(n) + confused);
+
+		if (n > urole.spelrete) {
+			int retention = urole.spelrete;
+			if (retention < 1) {
+				impossible("player's spell retention isn't positive??");
+				retention = 1;
+			}
+			int highamount = n;
+			while (highamount > retention) {
+				nzap++;
+				highamount -= rnd(retention);
+			}
+		}
+
 		if (nzap > n) nzap = n;
 		for (i = n - nzap; i < n; i++) {
 		    spellid(i) = NO_SPELL;
