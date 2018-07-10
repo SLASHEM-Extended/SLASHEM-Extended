@@ -2998,6 +2998,13 @@ register int pm;
 		    nomovemsg = 0;
 		}
 
+		/* Eating slimy or oily corpses makes your fingers slippery in unnethack because harharhar harhar har. */
+		if (isevilvariant && (amorphous(&mons[pm]) || slithy(&mons[pm]) || mons[pm].mlet == S_BLOB || mons[pm].mlet == S_JELLY || mons[pm].mlet == S_FUNGUS || mons[pm].mlet == S_WORM || mons[pm].mlet == S_PUDDING)) {
+			pline("Harharhar harhar har, you ate the wrong thing and therefore your %s are slippery now.", makeplural(body_part(HAND)));
+			incr_itimeout(&Glib, rnd(15 + level_difficulty()));
+
+		}
+
 	/* HC aliens carry evil diseases. Do not eat them! --Amy */
 		if (ptr->msound == MS_HCALIEN) {
 			pline("Yeech - that must have been infectious!");

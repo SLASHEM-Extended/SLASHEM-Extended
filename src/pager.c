@@ -16478,6 +16478,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'HermiOne Granger'. It reads: 'Fuck you, man. F-u-c-k you!'",
 	"Incoming message for Player 1. The message is from 'HermiOne Granger'. It reads: 'You stink like dog shit.'",
 	"Incoming message for Player 1. The message is from 'HermiOne Granger'. It reads: 'Raisins are bullshit! I hate raisins! They're nothing but rotted grapes!'",
+	"You ate the wrong thing and therefore your hands are slippery now.",
+	"Ouch! You burnt your finger!",
 
 };
 
