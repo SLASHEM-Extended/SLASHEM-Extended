@@ -3252,6 +3252,10 @@ register struct obj *otmp;
 	if (objects[otyp].oc_oprop == FIRE_RES || otyp == WAN_FIRE)
 		return FALSE;
 
+	if (objects[otyp].oc_material == DRAGON_HIDE && isevilvariant) return TRUE;
+	if (objects[otyp].oc_material == COMPOST && isevilvariant) return TRUE;
+	if (objects[otyp].oc_material == INKA && isevilvariant) return TRUE;
+
 	return((boolean)((omat <= WOOD && omat != LIQUID) || omat == PLASTIC || omat == VIVA || omat == SILK || omat == ARCANIUM || omat == POURPOOR || omat == ETHER || omat == BRICK));
 }
 
@@ -3266,6 +3270,8 @@ register struct obj *otmp;
 	if (objects[otyp].oc_material == SECREE) return TRUE;
 	if (objects[otyp].oc_material == COMPOST) return TRUE;
 	if (objects[otyp].oc_material == BRICK) return TRUE;
+	if (objects[otyp].oc_material == BONE && isevilvariant) return TRUE;
+	if (objects[otyp].oc_material == DRAGON_HIDE && isevilvariant) return TRUE;
 
 	return((boolean)(objects[otyp].oc_material <= WOOD &&
 			objects[otyp].oc_material != LIQUID));
