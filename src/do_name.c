@@ -919,6 +919,7 @@ boolean called;
 	    if (mtmp->egotype_damagedisher) sprintf(eos(buf), " Damage-Disher");
 	    if (mtmp->egotype_thiefguildmember) sprintf(eos(buf), " ThiefGuildMember");
 	    if (mtmp->egotype_rogue) sprintf(eos(buf), " Rogue");
+	    if (mtmp->egotype_steed) sprintf(eos(buf), " Steed");
 
 	}
 

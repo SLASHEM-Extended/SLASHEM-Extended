@@ -155,7 +155,10 @@ use_saddle(otmp)
 	/* Calculate your chance */
 	chance = ACURR(A_DEX) + ACURR(A_CHA)/2 + 2*mtmp->mtame;
 	chance += u.ulevel * (mtmp->mtame ? 20 : 5);
-	if (!mtmp->mtame) chance -= 10*mtmp->m_lev;
+	if (!mtmp->mtame) {
+		if (mtmp->mpeaceful) chance -= 5*mtmp->m_lev;
+		else chance -= 10*mtmp->m_lev;
+	}
 	if (Role_if(PM_KNIGHT) || Role_if(PM_CHEVALIER))
 	    chance += 20;
 	if (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL))
@@ -231,11 +234,9 @@ boolean
 can_ride(mtmp)
 	struct monst *mtmp;
 {
-	if (!issoviet) return (mtmp->mtame /*&& humanoid(youmonst.data) &&
-			!verysmall(youmonst.data) && !bigmonst(youmonst.data) &&
-			(!Underwater || is_swimmer(mtmp->data)) */);
+	if (!issoviet) return (mtmp->mtame || mtmp->egotype_steed);
 
-	return (mtmp->mtame && humanoid(youmonst.data) &&
+	return ((mtmp->mtame || mtmp->egotype_steed) && humanoid(youmonst.data) &&
 			!verysmall(youmonst.data) && !bigmonst(youmonst.data) &&
 			(!Underwater || is_swimmer(mtmp->data)) );
 
@@ -374,7 +375,7 @@ mount_steed(mtmp, force)
 	    sprintf(kbuf, "attempting to ride %s", an(mtmp->data->mname));
 	    instapetrify(kbuf);
 	}
-	if (!mtmp->mtame || mtmp->isminion) {
+	if (!(mtmp->mtame || mtmp->egotype_steed) || mtmp->isminion) {
 	    pline("I think %s would mind.", mon_nam(mtmp));
 	    return (FALSE);
 	}
@@ -387,7 +388,7 @@ mount_steed(mtmp, force)
 	    return (FALSE);
 	}
 
-	if (!force && !(otmp && otmp->otyp == INKA_SADDLE) && !Role_if(PM_KNIGHT) && !Role_if(PM_CHEVALIER) && !(--mtmp->mtame)) {
+	if (!force && !(otmp && otmp->otyp == INKA_SADDLE) && !Role_if(PM_KNIGHT) && !Role_if(PM_CHEVALIER) && mtmp->mtame && !(--mtmp->mtame)) {
 	    /* no longer tame */
 	    newsym(mtmp->mx, mtmp->my);
 	    pline("%s resists%s!", Monnam(mtmp),
@@ -770,7 +771,7 @@ int x, y;
     if (mon && mon == u.usteed ||
 	    /* special case is for convoluted vault guard handling */
 	    (DEADMONSTER(mon) && !(mon->isgd && x == 0 && y == 0))) {
-	impossible("placing bugged monster onto map?");
+	/*impossible("placing bugged monster onto map?");*/
 	return;
     }
     mon->mx = x, mon->my = y;

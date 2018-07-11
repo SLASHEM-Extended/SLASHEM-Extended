@@ -299,6 +299,8 @@ struct monst {
 	Bitfield(egotype_thiefguildmember,1); /* AD_THIE */
 	Bitfield(egotype_rogue,1); /* AD_SEDU */
 
+	Bitfield(egotype_steed,1); /* monster can be ridden */
+
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */
 	Bitfield(crapbonus,6);

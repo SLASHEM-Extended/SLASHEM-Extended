@@ -7608,7 +7608,7 @@ skipmsg:
 		mquaffmsg(mtmp, otmp);
 
 		mtmp->isegotype = 1;
-		switch (rnd(188)) {
+		switch (rnd(189)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -7800,6 +7800,7 @@ skipmsg:
 			case 186: mtmp->egotype_thiefguildmember = 1; break;
 			case 187:
 			case 188: mtmp->egotype_rogue = 1; break;
+			case 189: mtmp->egotype_steed = 1; break;
 		}
 
 		if (oseen) makeknown(POT_MUTATION);
@@ -7811,7 +7812,7 @@ skipmsg:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		mtmp->isegotype = 1;
-		switch (rnd(188)) {
+		switch (rnd(189)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -8003,6 +8004,7 @@ skipmsg:
 			case 186: mtmp->egotype_thiefguildmember = 1; break;
 			case 187:
 			case 188: mtmp->egotype_rogue = 1; break;
+			case 189: mtmp->egotype_steed = 1; break;
 		}
 
 		if (oseen) makeknown(WAN_MUTATION);

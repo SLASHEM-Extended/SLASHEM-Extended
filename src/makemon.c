@@ -13059,6 +13059,31 @@ register int	mmflags;
 		mtmp->egotype_sounder = 1;
 	}
 
+	if (!rn2(50) && mtmp->data->msound == MS_SHOE) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_steed = 1;
+	}
+
+	if (!rn2(200) && mtmp->data->msound == MS_STENCH) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_steed = 1;
+	}
+
+	if (!rn2(200) && mtmp->data->msound == MS_FART_NORMAL) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_steed = 1;
+	}
+
+	if (!rn2(100) && mtmp->data->msound == MS_FART_QUIET) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_steed = 1;
+	}
+
+	if (!rn2(1000) && mtmp->data->msound == MS_FART_LOUD) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_steed = 1;
+	}
+
 	if (!rn2(100) && RngeAbominations) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_abomination = 1;
@@ -13078,7 +13103,7 @@ register int	mmflags;
 	if (((!rn2(isxrace ? 30 : 100) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 10 : 40) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 4 : 15) ) ) || always_egotype(mtmp->data) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(188)) {
+		switch (rnd(189)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -13270,11 +13295,12 @@ register int	mmflags;
 			case 186: mtmp->egotype_thiefguildmember = 1; break;
 			case 187:
 			case 188: mtmp->egotype_rogue = 1; break;
+			case 189: mtmp->egotype_steed = 1; break;
 
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(188)) {
+		switch (rnd(189)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -13466,6 +13492,7 @@ register int	mmflags;
 			case 186: mtmp->egotype_thiefguildmember = 1; break;
 			case 187:
 			case 188: mtmp->egotype_rogue = 1; break;
+			case 189: mtmp->egotype_steed = 1; break;
 		}
 		}
 
@@ -13474,7 +13501,7 @@ register int	mmflags;
 	if (ptr->mlet == S_FUNGUS && ( (!rn2(isxrace ? 20 : 66) ) || (!(u.monstertimefinish % 337) && !rn2(isxrace ? 6 : 24) ) || (!(u.monstertimefinish % 3217) && !rn2(isxrace ? 3 : 10) ) ) ) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(188)) {
+		switch (rnd(189)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -13666,10 +13693,11 @@ register int	mmflags;
 			case 186: mtmp->egotype_thiefguildmember = 1; break;
 			case 187:
 			case 188: mtmp->egotype_rogue = 1; break;
+			case 189: mtmp->egotype_steed = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(188)) {
+		switch (rnd(189)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -13861,6 +13889,7 @@ register int	mmflags;
 			case 186: mtmp->egotype_thiefguildmember = 1; break;
 			case 187:
 			case 188: mtmp->egotype_rogue = 1; break;
+			case 189: mtmp->egotype_steed = 1; break;
 		}
 		}
 
@@ -13869,7 +13898,7 @@ register int	mmflags;
 	if (AlwaysEgotypeMonsters || u.uprops[ALWAYS_EGOTYPES].extrinsic || have_egostone()) {
 
 		mtmp->isegotype = 1;
-		switch (rnd(188)) {
+		switch (rnd(189)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -14061,10 +14090,11 @@ register int	mmflags;
 			case 186: mtmp->egotype_thiefguildmember = 1; break;
 			case 187:
 			case 188: mtmp->egotype_rogue = 1; break;
+			case 189: mtmp->egotype_steed = 1; break;
 		}
 
 		while (!rn2(iswarper ? 4 : 10)) {
-		switch (rnd(188)) {
+		switch (rnd(189)) {
 			case 1:
 			case 2:
 			case 3: mtmp->egotype_thief = 1; break;
@@ -14256,6 +14286,7 @@ register int	mmflags;
 			case 186: mtmp->egotype_thiefguildmember = 1; break;
 			case 187:
 			case 188: mtmp->egotype_rogue = 1; break;
+			case 189: mtmp->egotype_steed = 1; break;
 		}
 		}
 
