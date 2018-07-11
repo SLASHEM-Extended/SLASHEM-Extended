@@ -42,6 +42,7 @@ struct flag {
 	boolean  debug;		/* in debugging mode */
 #define wizard	 flags.debug
 	boolean  eatingconfirm;	/* confirm when eating non-comestibles */
+	boolean  eatingwalls; /* being a scurrier or similar will eat walls by moving into them */
 	boolean  end_own;	/* list all own scores */
 	boolean  explore;	/* in exploration mode */
 #ifdef OPT_DISPMAP

@@ -112,6 +112,7 @@ static struct Bool_Opt
 	{"DECgraphics", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
 	{"eatingconfirm", &flags.eatingconfirm, FALSE, SET_IN_GAME},
+	{"eatingwalls", &flags.eatingwalls, TRUE, SET_IN_GAME},
 	{"eight_bit_tty", &iflags.wc_eight_bit_input, FALSE, SET_IN_GAME},	/*WC*/
 #if defined(TTY_GRAPHICS) || defined(CURSES_GRAPIHCS)
 	{"extmenu", &iflags.extmenu, FALSE, SET_IN_GAME},
