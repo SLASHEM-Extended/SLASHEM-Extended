@@ -1444,6 +1444,19 @@ register struct monst *mtmp;
 				"Bana ne diyorsun seytan kadin? Ben oeyle degilim! Ben Islam'in bueyuek sorusturmacisiyim ve kutsal Allah adina seni kafir edecegim!",
 				"Plato kiz botlarimin uezerinden gecmemelisin! Senin gibi bir kafir asla evlenmeyecegi icin adanmislikla diz coekmen gerekiyor!",
 				"Benim gri spor ayakkabim hicbir sekilde oezel degil, seksi bulursaniz sizi havaya ucurur. Beni cekici buldugum kafirler bas barimla bogulurlar.",
+				"Ben farkli degilim cuenkue bir bas oertuesue giyiyorum! Beni ayrimcilik yapmamalisin, kafir demek istiyorsun!",
+				"Siz kafirler bizi kabul etmeli ve dininize uygun olmali! Kapsayici olmak istiyorsaniz, oegretmenlerin ve polis kadinlarinin ve digerlerinin halka acik bir bez kullanmasina izin veriyorsunuz!",
+				"Beni 'basoertuesue kiz' sluruna duesuerme, seni lanet olasi kafir! Bu benim kimligimin bir parcasi ve bunu kabullenmek icin kanunla zorlanacaksin!",
+				"Kafa bezi bize fransiz sigaralari gibi oezguerluek veriyor! Siz kafirler asla anlayamayacaksiniz cuenkue Tanri'ya inanmiyorsunuz!",
+				"Yeme tabagim sacmalik degil! Sen pis kafir sadece domuz eti kirli oldugunu ve hic kimsenin tarafindan yenilmeyecegini anlamiyorum! Cuenkue yaparsan kansersin!",
+				"Imam, kafir kueltueruenuen hicbir seyin degersiz oldugunu soeylueyor. Bu nedenle aptal kurallariniza uymak zorunda degiliz ve okul da ise yaramiyor, cuenkue birkac yil icinde hepiniz asimile olacaksiniz.",
+				"Yuezmeye katilmak zorunda degilim! Kafir guecuen beni zorlamak istiyor ama kutsal Islam her zaman bir bas oertuesue giymem gerektigini soeylueyor ve bu da aptal yuezme derslerine uymuyor! Politikacilarina bogma tilsimindan bogulmalarini soeyle!",
+				"Acil bir durum varsa, oence Allah'ta muesluemanlar ve inananlar kurtarilmalidir! Kafirler daha bueyuek iyilik icin kurban edilebilir!",
+				"Inanilmaz lanet olasi guezel Islam'in duenyayi yoenetecegini anlamazsin.",
+				"Ne, Almanya'nin alternatifi mueslueman avlamak mi istiyor? Yuece Allah adina, bu kafirleri dogrudan cehenneme goenderecek, cocuklarini oelduerecek ve kadinlarini koele tueccarlarina satacagiz.",
+				"Kafa bezi sadece bir bez parcasi degildir! Onu takariz cuenkue bizi Allah'in kutsal mueminleri olarak tanimlar! Sadece kafirlerin anlamadigi icin hicbir anlam ifade etmez!",
+				"Bir Yahudi dini semboluenue giydigi icin saldiriya ugrarsa, kendi hatasidir. Biz mueslueman bir kafa bezi giymek icin bize saldiran kimseyi asla kabul etmeyecegiz, cuenkue biz kafir topuklularimizla bir asyali tekmelemizi dogrudan kafir somunlarina yerlestirecegiz.",
+				"Siz kafirsiniz, Allah'a doenmelisiniz cuenkue o zaman cennette doksan dokuz genc kadin var! Eger yapmazsan, cehennemin kirmizi seytanlari acimasizca iskence edecek!",
 			};
 			verbalize(conversion_msgs[rn2(SIZE(conversion_msgs))]);
 
