@@ -4573,7 +4573,7 @@ boolean your_fault;
 	case POT_MUTATION:
 
 		mon->isegotype = 1;
-		switch (rnd(188)) {
+		switch (rnd(189)) {
 			case 1:
 			case 2:
 			case 3: mon->egotype_thief = 1; break;
@@ -4765,6 +4765,7 @@ boolean your_fault;
 			case 186: mon->egotype_thiefguildmember = 1; break;
 			case 187:
 			case 188: mon->egotype_rogue = 1; break;
+			case 189: mon->egotype_steed = 1; break;
 		}
 
   		break;
@@ -6301,7 +6302,7 @@ register struct obj *obj;
 			break;
 		case TIN_OPENER:
 			obj->otyp = TINNING_KIT;
-			obj->spe = rn1(30,70);
+			obj->spe = rn1(20,20);
 			obj->known = 0;
 			break;
 		case TINNING_KIT:

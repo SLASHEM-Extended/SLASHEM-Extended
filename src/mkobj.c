@@ -2068,8 +2068,6 @@ int artif;
 		blessorcurse_on_creation(otmp, 8);
 					break;
 		case EXPENSIVE_CAMERA:
-		case TINNING_KIT:
-		case BINNING_KIT:
 		case FELT_TIP_MARKER:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
@@ -2077,6 +2075,18 @@ int artif;
 			otmp->spe -= rn2(3);
 			blessorcurse_on_creation(otmp, 5);
 					break;
+		case TINNING_KIT:
+		case BINNING_KIT:
+			otmp->recharged = 0;
+			if(!rn2(5)) otmp->recharged = rnd(7);
+			otmp->spe = rnd(ishaxor ? 120 : 100);
+			if (rn2(10)) otmp->spe = rnd(ishaxor ? 100 : 50);
+			if (!rn2(3)) otmp->spe = rnd(ishaxor ? 60 : 30);
+			if (!rn2(5)) otmp->spe = rnd(ishaxor ? 40 : 20);
+			otmp->spe -= rn2(3);
+			blessorcurse_on_creation(otmp, 5);
+					break;
+			break;
 		case MAGIC_MARKER:
 			otmp->recharged = 0;
 			if(!rn2(2)) otmp->recharged = 1;
