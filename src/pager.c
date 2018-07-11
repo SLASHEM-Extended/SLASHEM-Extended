@@ -16584,6 +16584,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"The fake bones piles on shallow dungeon levels in Nethack 3.6.x are stupid! No one will ever die to a falling rock trap because by definition you do not walk around if you're low on health early on!",
 	"Did you know that political correctness has no place in SLASH'EM Extended? It is already annoying enough having to cope with those restrictions in real life, and I play video games to escape from the shackles that real life puts on me. Therefore, SLEX will always be politically incorrect.",
 	"Yes, I admit that SLEX includes quite a bit of sexism. It is not meant to be a safe space after all. But then again, almost everything can be viewed as 'sexism' by SJWs...",
+	"You feel a painful sensation!",
+	"You feel a painful sensation! Apparently Anastasia fully kicked into your shins with her soft dancing shoes, and it's very soothing!",
 
 };
 

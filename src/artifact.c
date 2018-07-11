@@ -812,7 +812,13 @@ bad_artifact()
 
 	    /* make an appropriate object if necessary, then christen it */
 	    otmp = mksobj((int)a->otyp, TRUE, FALSE);
+
+		if (!otmp) return;
+
 	    otmp = oname(otmp, a->name);
+
+		if (!otmp) return;
+
 	    otmp->oartifact = m;
 	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
@@ -837,7 +843,7 @@ bad_artifact()
 			if (otmp) curse(otmp);
 		}
 
-		else if (otmp->otyp == BLINDFOLD) {
+		else if (is_blindfold_slot(otmp)) {
 			if (ublindf) remove_worn_item(ublindf, TRUE);
 			Blindf_on(otmp);
 			if (otmp) curse(otmp);
@@ -948,7 +954,13 @@ bad_artifact_xtra()
 
 	    /* make an appropriate object if necessary, then christen it */
 	    otmp = mksobj((int)a->otyp, TRUE, FALSE);
+
+		if (!otmp) return;
+
 	    otmp = oname(otmp, a->name);
+
+		if (!otmp) return;
+
 	    otmp->oartifact = m;
 	    if (rn2(100)) artiexist[m] = TRUE;
 	} else {
@@ -991,7 +1003,7 @@ bad_artifact_xtra()
 			if (otmp) curse(otmp);
 		}
 
-		else if (otmp->otyp == BLINDFOLD) {
+		else if (is_blindfold_slot(otmp)) {
 			if (ublindf) remove_worn_item(ublindf, TRUE);
 			Blindf_on(otmp);
 			if (otmp) curse(otmp);

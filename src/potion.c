@@ -592,7 +592,7 @@ badeffect()
 		}
 	}
 
-	switch (rnd(391)) {
+	switch (rnd(411)) {
 
 		case 1:
 		case 2:
@@ -1644,7 +1644,6 @@ badeffect()
 		break;
 
 		case 374:
-
 			if (!rn2(1000)) skillcaploss();
 
 		break;
@@ -1677,6 +1676,85 @@ badeffect()
 		break;
 		case 391:
 			contaminate(rnz(100 + (level_difficulty() * 10)), FALSE);
+		break;
+
+		case 392:
+		case 393:
+		case 394:
+		case 395:
+		case 396:
+			You_feel("a painful sensation!");
+			losehp(Upolyd ? ((u.mh / 10) + 1) : ((u.uhp / 10) + 1), "a painful attack", KILLED_BY);
+		break;
+
+		case 397:
+			pline("Your %s are trembling!", makeplural(body_part(HAND)));
+			u.tremblingamount++;
+		break;
+
+		case 398:
+		case 399:
+		case 400:
+			techcapincrease((level_difficulty() + 1) * rnd(50));
+		break;
+
+		case 401:
+		case 402:
+		case 403:
+		case 404:
+		case 405:
+			spellmemoryloss(level_difficulty() + 1);
+		break;
+
+		case 406:
+		case 407:
+		case 408:
+		case 409:
+		case 410:
+			skilltrainingdecrease(level_difficulty() + 1);
+		break;
+
+		case 411:
+
+		{
+			int statdrained = rn2(A_MAX);
+			if (ABASE(statdrained) < 4) break;
+			if (ABASE(statdrained) < (3 + rnd(8)) ) break;
+
+			if (Race_if(PM_SUSTAINER) && rn2(50)) {
+				pline("The stat drain doesn't seem to affect you.");
+				break;
+			}
+
+			ABASE(statdrained) -= 1;
+			AMAX(statdrained) -= 1;
+			flags.botl = 1;
+			switch (statdrained) {
+
+				case A_STR:
+					pline("Your strength falls off!"); break;
+				case A_DEX:
+					pline("Your dexterity falls off!"); break;
+				case A_CON:
+					pline("Your constitution falls off!"); break;
+				case A_CHA:
+					pline("Your charisma falls off!"); break;
+				case A_INT:
+					pline("Your intelligence falls off!"); break;
+				case A_WIS:
+					pline("Your wisdom falls off!"); break;
+
+			}
+		}
+
+		break;
+
+		case 412:
+		case 413:
+		case 414:
+
+			bad_equipment();
+
 		break;
 
 		default:
@@ -2107,6 +2185,146 @@ datadeleteattack()
 			}
 
 			break;
+
+	}
+
+}
+
+/* Make a negatively enchanted or cursed item and automatically equip it for the player --Amy
+ * Please ensure that this effect isn't too common, because it might also result in good stuff */
+void
+bad_equipment()
+{
+	register struct obj *otmp;
+	int objtyp = 0;
+	int tryct = 0;
+
+newbadtry:
+	objtyp = rn2(NUM_OBJECTS);
+	if (objects[objtyp].oc_prob < 1) {
+		tryct++;
+		if (tryct < 5000) goto newbadtry;
+		else return;
+	}
+
+	/* no gems, chains or iron balls --Amy */
+	if (!(objects[objtyp].oc_class == WEAPON_CLASS || is_weptoolbase(objtyp) || is_blindfoldbase(objtyp) || objects[objtyp].oc_class == RING_CLASS || objects[objtyp].oc_class == AMULET_CLASS || objects[objtyp].oc_class == IMPLANT_CLASS || objects[objtyp].oc_class == ARMOR_CLASS) ) {
+		tryct++;
+		if (tryct < 5000) goto newbadtry;
+		else return;
+	}
+
+	/* we should have an eligible item now (if not, the above code called return) */
+	otmp = mksobj(objtyp, TRUE, FALSE);
+	if (!otmp) return; /* fail safe */
+
+	if (objects[otmp->otyp].oc_charged) {
+		if (otmp->spe > 0) otmp->spe *= -1;
+		if (otmp->spe == 0) otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+	}
+
+	if (otmp) {
+		(void) pickup_object(otmp, 1L, TRUE);
+	}
+
+	/* try to equip it! */
+
+	if (otmp) {
+
+		if (otmp->oclass == WEAPON_CLASS || is_weptool(otmp)) {
+			if (uwep) setnotworn(uwep);
+			if (bimanual(otmp)) {
+				if (uswapwep) uswapwepgone();
+				if (uarms) remove_worn_item(uarms, TRUE);
+			}
+			if (!uwep) setuwep(otmp, FALSE);
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_blindfold_slot(otmp)) {
+			if (ublindf) remove_worn_item(ublindf, TRUE);
+			Blindf_on(otmp);
+			if (otmp) curse(otmp);
+		}
+
+		else if (otmp->oclass == RING_CLASS) {
+			boolean righthand = rn2(2);
+			if (righthand) {
+				if (uright) remove_worn_item(uright, TRUE);
+				setworn(otmp, RIGHT_RING);
+				Ring_on(otmp);
+				if (otmp) curse(otmp);
+			} else {
+				if (uleft) remove_worn_item(uleft, TRUE);
+				setworn(otmp, LEFT_RING);
+				Ring_on(otmp);
+				if (otmp) curse(otmp);
+			}
+		}
+
+		else if (otmp->oclass == AMULET_CLASS) {
+			if (uamul) remove_worn_item(uamul, TRUE);
+			setworn(otmp, W_AMUL);
+			Amulet_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (otmp->oclass == IMPLANT_CLASS) {
+			if (uimplant) remove_worn_item(uimplant, TRUE);
+			setworn(otmp, W_IMPLANT);
+			Implant_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_boots(otmp)) {
+			if (uarmf) remove_worn_item(uarmf, TRUE);
+			setworn(otmp, W_ARMF);
+			Boots_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_gloves(otmp)) {
+			if (uarmg) remove_worn_item(uarmg, TRUE);
+			setworn(otmp, W_ARMG);
+			Gloves_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_helmet(otmp)) {
+			if (uarmh) remove_worn_item(uarmh, TRUE);
+			setworn(otmp, W_ARMH);
+			Helmet_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_cloak(otmp)) {
+			if (uarmc) remove_worn_item(uarmc, TRUE);
+			setworn(otmp, W_ARMC);
+			Cloak_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_shield(otmp)) {
+			if (uarms) remove_worn_item(uarms, TRUE);
+			setworn(otmp, W_ARMS);
+			Shield_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_shirt(otmp)) {
+			if (uarmu) remove_worn_item(uarmu, TRUE);
+			setworn(otmp, W_ARMU);
+			Shirt_on();
+			if (otmp) curse(otmp);
+		}
+
+		else if (is_suit(otmp)) {
+			if (uskin) skinback(FALSE);
+			if (uarm) remove_worn_item(uarm, TRUE);
+			setworn(otmp, W_ARM);
+			Armor_on();
+			if (otmp) curse(otmp);
+		}
 
 	}
 

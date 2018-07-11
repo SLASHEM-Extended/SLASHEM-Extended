@@ -4576,7 +4576,7 @@ doputon()
 				already_wearing(something); /* ??? */
 			return(0);
 		}
-		if (otmp->otyp != BLINDFOLD && otmp->otyp != EYECLOSER && otmp->otyp != DRAGON_EYEPATCH && otmp->otyp != TOWEL && otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != BOSS_VISOR && otmp->otyp != CONDOME && otmp->otyp != SOFT_CHASTITY_BELT) {
+		if (!(is_blindfold_slot(otmp))) {
 			You_cant("wear that!");
 			return(0);
 		}

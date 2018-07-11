@@ -220,6 +220,10 @@ struct obj {
 #define uslinging()	(uwep && objects[uwep->otyp].oc_skill == P_SLING)
 #define is_weptool(o)	((o)->oclass == TOOL_CLASS && \
 			 objects[(o)->otyp].oc_skill != P_NONE)
+
+#define is_weptoolbase(o)	(objects[o].oc_class == TOOL_CLASS && \
+			 objects[o].oc_skill != P_NONE)
+
 #define is_pick(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			 (otmp)->oclass == TOOL_CLASS) && \
 			 objects[(otmp)->otyp].oc_skill == P_PICK_AXE)
@@ -282,6 +286,24 @@ struct obj {
 				|| (otmp)->otyp == DWARVISH_CLOAK\
 				|| (otmp)->otyp == DWARVISH_ROUNDSHIELD)
 #define is_gnomish_armor(otmp)	(FALSE)
+
+#define is_blindfold_slot(otmp)	((otmp)->otyp == BLINDFOLD\
+				|| (otmp)->otyp == CONDOME\
+				|| (otmp)->otyp == SOFT_CHASTITY_BELT\
+				|| (otmp)->otyp == EYECLOSER\
+				|| (otmp)->otyp == DRAGON_EYEPATCH\
+				|| (otmp)->otyp == LENSES\
+				|| (otmp)->otyp == BOSS_VISOR\
+				|| (otmp)->otyp == RADIOGLASSES)
+
+#define is_blindfoldbase(o)	(o == BLINDFOLD\
+				|| o == CONDOME\
+				|| o == SOFT_CHASTITY_BELT\
+				|| o == EYECLOSER\
+				|| o == DRAGON_EYEPATCH\
+				|| o == LENSES\
+				|| o == BOSS_VISOR\
+				|| o == RADIOGLASSES)
 
 #define is_musable(otmp)	((otmp)->otyp == SCR_TELEPORTATION\
 || (otmp)->otyp == POT_HEALING\
