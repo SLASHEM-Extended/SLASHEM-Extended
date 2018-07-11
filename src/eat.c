@@ -1022,6 +1022,9 @@ register int pm;
 			}
 		break;
 	    case PM_SALAMANDER:
+	    case PM_SALAMANDER_PRISONER:
+	    case PM_SALAMANDER_SLAVE:
+	    case PM_SALAMANDER_MAGE:
 	    case PM_SALAMANDER_SHAMAN:
 	    case PM_POISON_WHIP_SALAMANDER:
 	    case PM_PARALYSIS_WHIP_SALAMANDER:
@@ -1705,6 +1708,9 @@ register int pm;
 		break;
 	    case PM_SALAMANDER:
 	    case PM_SALAMANDER_SHAMAN:
+	    case PM_SALAMANDER_PRISONER:
+	    case PM_SALAMANDER_SLAVE:
+	    case PM_SALAMANDER_MAGE:
 	    case PM_POISON_WHIP_SALAMANDER:
 	    case PM_PARALYSIS_WHIP_SALAMANDER:
 	    case PM_FROST_SALAMANDER:
