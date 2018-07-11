@@ -528,7 +528,7 @@ int x, y;
     register int x1, y1;
     int lo_x = max(1,x-1), hi_x = min(x+1,COLNO-1),
 	lo_y = max(0,y-1), hi_y = min(y+1,ROWNO-1);
-    int pool_cnt = 0, moat_cnt = 0, lava_cnt = 0;
+    int pool_cnt = 0, moat_cnt = 0, lava_cnt = 0, urine_cnt = 0, styx_cnt = 0, shifting_cnt = 0;
 
     for (x1 = lo_x; x1 <= hi_x; x1++)
 	for (y1 = lo_y; y1 <= hi_y; y1++)
@@ -542,6 +542,12 @@ int x, y;
 		    (levl[x1][y1].typ == DRAWBRIDGE_UP &&
 			(levl[x1][y1].drawbridgemask & DB_UNDER) == DB_LAVA))
 		lava_cnt++;
+	    else if (levl[x1][y1].typ == URINELAKE)
+		urine_cnt++;
+	    else if (levl[x1][y1].typ == STYXRIVER)
+		styx_cnt++;
+	    else if (levl[x1][y1].typ == SHIFTINGSAND)
+		shifting_cnt++;
     pool_cnt /= 3;		/* not as much liquid as the others */
 
     if (lava_cnt > moat_cnt + pool_cnt && rn2(lava_cnt + 1))
@@ -550,6 +556,12 @@ int x, y;
 	return MOAT;
     else if (pool_cnt > 0 && rn2(pool_cnt + 1))
 	return POOL;
+    else if (urine_cnt > 0 && rn2(urine_cnt + 1))
+	return URINELAKE;
+    else if (styx_cnt > 0 && rn2(styx_cnt + 1))
+	return STYXRIVER;
+    else if (shifting_cnt > 0 && rn2(shifting_cnt + 1))
+	return SHIFTINGSAND;
     else
 	return ROOM;
 }
@@ -819,9 +831,9 @@ boolean pit_only;
 		unearth_objs(u.ux, u.uy);
 
 		pline("As you dig, the hole fills with %s!",
-		      typ == LAVAPOOL ? "lava" : "water");
+		      typ == LAVAPOOL ? "lava" : typ == STYXRIVER ? "an icky green liquid" : typ == URINELAKE ? "urine" : typ == SHIFTINGSAND ? "quicksand" : "water");
 		/* KMH, balance patch -- new intrinsic */
-		if (!Levitation && !Flying) {
+		if (!Levitation && !Flying && typ != STYXRIVER && typ != URINELAKE && typ != SHIFTINGSAND) {
 		    if (typ == LAVAPOOL)
 			(void) lava_effects();
 		    else if (!Wwalking && !Swimming)
