@@ -562,7 +562,7 @@ dontread:
 
 		/* Game master mode: if active, I (Amy) can send you mail to spawn monsters!
 		 * If you turned off the gmmessage option, the monster I selected will be a surprise :) */
-		  if (flags.gmmode && !flags.supergmmode && strlen(curline) == 7 && !strncmpi(curline, "AmyBSOD", 7)) {
+		  if (flags.gmmode && !flags.supergmmode && strlen(curline) == 7 && !strncmpi(curline, "AmyBSOD", 8)) {
 			if (strlen(msg) > 9 && !strncmpi(msg, "genesis ", 8)) {
 				u.gmmailsreceived++;
 				gmmode_genesis(msg + 8);

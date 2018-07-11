@@ -309,7 +309,7 @@ Boots_on()
     if (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) {
 		if (!uarmf->cursed) {
 			curse(uarmf);
-			if (!strncmpi(plname, "Ella", 4)) pline("You finally got your bloodthirsty footwear back! They immediately make sure they won't get separated from you.");
+			if (!strncmpi(plname, "Ella", 5)) pline("You finally got your bloodthirsty footwear back! They immediately make sure they won't get separated from you.");
 			else pline("You decided to pretend to be Ella? Now prove it!");
 		}
     }

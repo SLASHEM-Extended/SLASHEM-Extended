@@ -1506,7 +1506,7 @@ moveloop()
 
 		if (uarmc && (uarmc->oartifact == ART_INA_S_LAB_COAT) && !rn2(100) && multi >= 0) {
 
-			if (!strncmpi(plname, "Ina", 3)) {
+			if (!strncmpi(plname, "Ina", 4)) {
 			/* There is of course no corresponding real-life Ina. --Amy */
 
 			Your("terrible eating disorder causes you to faint.");
@@ -1529,7 +1529,7 @@ moveloop()
 
 		if (uarmc && (uarmc->oartifact == ART_INA_S_OVERCOAT) && !rn2(100) && multi >= 0) {
 
-			if (!strncmpi(plname, "Ina", 3)) {
+			if (!strncmpi(plname, "Ina", 4)) {
 			/* There is of course no corresponding real-life Ina. --Amy */
 
 			Your("terrible eating disorder causes you to faint.");
@@ -1994,7 +1994,7 @@ trapsdone:
 			}
 
 			if (moves > (u.nataljetrapturns + 3)) {
-				if (!strncmpi(plname, "Natalje", 7)) {
+				if (!strncmpi(plname, "Natalje", 8)) {
 					pline("Keep dancing, Natalje...");
 				} else {
 					You("gotta keep dancing...");
@@ -2002,7 +2002,7 @@ trapsdone:
 			}
 
 			if (moves > (u.nataljetrapturns + 5)) {
-				if (!strncmpi(plname, "Natalje", 7)) {
+				if (!strncmpi(plname, "Natalje", 8)) {
 					pline("Careful, Natalje! You gotta dance or you'll get hurt!");
 				} else {
 					You("missed the beat! Continue dancing or suffer!");
