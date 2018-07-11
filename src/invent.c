@@ -15171,7 +15171,7 @@ struct obj *obj;
 				case ART_KATIE_MELUA_S_FLEECINESS:
 					pline("Artifact specs: prevents your potions from being destroyed by cold and also gives cold resistance and regeneration, plus it increases the effect of healing potions and spells, but you cannot tame new pets and existing ones can spontaneously rebel. Lawful."); break;
 				case ART_ELONA_S_SNAIL_TRAIL:
-					pline("Artifact specs: Wearing it as a snail will give +10 constitution and make you very fast, but if you're not a snail, it slows you down to half speed instead."); break;
+					pline("Artifact specs: Wearing it as a snail (which will work, even though snails cannot wear helmets normally) will give +10 constitution and make you very fast, but if you're not a snail, it slows you down to half speed instead."); break;
 				case ART_GENDER_INSPECIFIC_WHIP:
 					pline("Artifact specs: +8 to-hit and +20 damage to monsters that are either always male or always female, feminist quest artifact."); break;
 				case ART_EXTRA_CONTROL:

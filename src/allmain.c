@@ -1150,7 +1150,7 @@ moveloop()
 				moveamt /= 2;
 			}
 
-			if (uarmh && uarmh->oartifact == ART_ELONA_S_SNAIL_TRAIL && !Race_if(PM_SNAIL) && moveamt > 1) {
+			if (uarmh && uarmh->oartifact == ART_ELONA_S_SNAIL_TRAIL && !Race_if(PM_ELONA_SNAIL) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}

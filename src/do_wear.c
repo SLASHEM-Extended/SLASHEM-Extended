@@ -4134,7 +4134,7 @@ boolean noisy;
 		return 0;
 	}
 
-	if (!is_cloak(otmp) && !is_boots(otmp) && Race_if(PM_ELONA_SNAIL) && !Upolyd) {
+	if (!is_cloak(otmp) && !is_boots(otmp) && !(otmp->oartifact == ART_ELONA_S_SNAIL_TRAIL) && Race_if(PM_ELONA_SNAIL) && !Upolyd) {
 		if (noisy) pline("As a snail, the only types of armor you can wear are cloaks and boots.");
 		return 0;
 	}
