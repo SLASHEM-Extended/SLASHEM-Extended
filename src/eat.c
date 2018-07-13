@@ -2595,6 +2595,7 @@ register int pm;
 	    case PM_MINI_CHICKATRICE:
 	    case PM_SPEEDOTRICE:
 	    case PM_UNCERTAINTY_DEMON:
+	    case PM_HISPEED_CHICKEN:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		Your("velocity suddenly seems very uncertain!");
 		if (HFast & INTRINSIC) {
@@ -2605,6 +2606,17 @@ register int pm;
 			You("seem faster.");
 		}
 		break;
+
+	    case PM_RACEY_CHICKEN:
+
+		if (!Very_fast)
+			You("are suddenly moving %sfaster.", Fast ? "" : "much ");
+		else {
+			Your("%s get new energy.", makeplural(body_part(LEG)));
+		}
+		incr_itimeout(&HFast, rn1(1000, 1000));
+		break;
+
 	    case PM_PREHISTORIC_CAVE_LIZARD:
 	    case PM_LIZARD_OF_YENDOR:
 			lesshungry(500); /* fall thru */
@@ -2695,6 +2707,7 @@ register int pm;
 		}
 		break;
 	    case PM_HENRIETTA_S_THICK_BLOCK_HEELED_BOOT:
+	    case PM_VERY_STEAL_MIND_FLAYER:
 
 		if(!(HPolymorph & FROMOUTSIDE)) {
 			You_feel(Hallucination ?
@@ -2729,6 +2742,13 @@ register int pm;
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
 		gainstr((struct obj *)0, 0);
 		pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!");
+		break;
+
+	    case PM_STEALATRICE:
+		if (u.contamination && u.contamination < 1000) {
+			decontaminate(100);
+		}
+
 		break;
 
 	    case PM_NEXUS_CHICKEN:
@@ -2802,8 +2822,14 @@ register int pm;
 	    case PM_NASTY_MASTER_MIND_FLAYER:
 	    case PM_UNSEXY_MASTER_MIND_FLAYER:
 	    case PM_ILLITHID:
+	    case PM_FLAYMIND_CAT:
+	    case PM_DEADLY_GAZER:
 	    case PM_MIND_BEAMER:
 	    case PM_MINT_FLAYER:
+	    case PM_UBER_MIND_FLAYER:
+	    case PM_SNARE_FLAYER:
+	    case PM_SANITY_FLAYER:
+	    case PM_BEAMBEAM_FLAYER:
 		case PM_COCKATRICE:
 		case PM_DISENTITRICE:
 		case PM_PETTY_COCKATRICE:
@@ -3023,9 +3049,9 @@ register int pm;
 		if (dmgtype(ptr, AD_EDGE) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
 			int edgeeffect;
 			if (touch_petrifies(ptr)) {
-				edgeeffect = rnd(10); /* petrifying corpses are dangerous - only give positive effects --Amy */
+				edgeeffect = rnd(12); /* petrifying corpses are dangerous - only give positive effects --Amy */
 			} else {
-				edgeeffect = rnd(18); /* others are safe - give either positive or negative effects --Amy */
+				edgeeffect = rnd(20); /* others are safe - give either positive or negative effects --Amy */
 			}
 			switch (rnd(edgeeffect)) {
 
@@ -3107,13 +3133,18 @@ register int pm;
 					pline(Hallucination ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
 				}
 			break;
-
 			case 11:
-				pushplayer();
+				if (u.contamination && u.contamination < 1000) {
+				decontaminate(100);
+				}
 			break;
 			case 12:
-				You_feel("that was a bad idea.");
-				losexp("eating an edgy corpse", FALSE, TRUE);
+				if (!Very_fast)
+					You("are suddenly moving %sfaster.", Fast ? "" : "much ");
+				else {
+					Your("%s get new energy.", makeplural(body_part(LEG)));
+				}
+				incr_itimeout(&HFast, rn1(1000, 1000));
 			break;
 			case 13:
 				Your("velocity suddenly seems very uncertain!");
@@ -3147,6 +3178,13 @@ register int pm;
 			case 18:
 				pline ("Oh wow!  Great stuff!");
 				make_hallucinated(HHallucination + rnz(200),FALSE,0L);
+			break;
+			case 19:
+				pushplayer();
+			break;
+			case 20:
+				You_feel("that was a bad idea.");
+				losexp("eating an edgy corpse", FALSE, TRUE);
 			break;
 
 			}

@@ -6459,6 +6459,15 @@ register struct	monst	*mtmp;
 			 m_initthrow(mtmp, LASER_BEAM, 50);
 		}
 
+		if (ptr == &mons[PM_ONANOCTER___O]) {
+			 (void) mongets(mtmp, TSURUGI);
+			 (void) mongets(mtmp, CATAPULT);
+			 m_initthrow(mtmp, FLINT, 50);
+			 m_initthrow(mtmp, FLINT, 50);
+			 m_initthrow(mtmp, FLINT, 50);
+
+		}
+
 		break;
 
 	    case S_RUSTMONST:
@@ -18222,6 +18231,7 @@ int type;
 		case PM_COAL_GOLEM: return 400;
 		case PM_COPPER_GOLEM: return 400;
 		case PM_LEAD_GOLEM: return 400;
+		case PM_LUSTER_GOLEM: return 400;
 		case PM_BLADE_OF_SLAUGHTER: return 450;
 		case PM_DIFFICULT_LEAD_GOLEM: return 400;
 		case PM_ANIMATED_PROSTITUTE_SHOE: return 400;

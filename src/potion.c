@@ -3365,7 +3365,7 @@ peffects(otmp)
 
 	case POT_BENEFICIAL_EFFECT:
 
-		switch (rnd(10)) {
+		switch (rnd(12)) {
 
 			case 1:
 				if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
@@ -3429,6 +3429,19 @@ peffects(otmp)
 				else {
 					pline(Hallucination ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
 				}
+			break;
+			case 11:
+				if (u.contamination && u.contamination < 1000) {
+				decontaminate(100);
+				}
+			break;
+			case 12:
+				if (!Very_fast)
+					You("are suddenly moving %sfaster.", Fast ? "" : "much ");
+				else {
+					Your("%s get new energy.", makeplural(body_part(LEG)));
+				}
+				incr_itimeout(&HFast, rn1(1000, 1000));
 			break;
 
 		}

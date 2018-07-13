@@ -5094,6 +5094,10 @@ SCROLL((char *)0,               "IN THE BUTT KIDNEYS",  P_NONE,     1,   0, 300,
 SCROLL((char *)0,               "HANDS HIGHLY OR I SHOOTS",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
 SCROLL((char *)0,               "DRIVING IT THEIR CART AWAY",  P_NONE,     1,   0, 300, CLR_RED, 1),
 SCROLL((char *)0,               "STILL 5 SECONDS AND I IMPACT TOO",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
+SCROLL((char *)0,               "GENE FFS",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "CITY OF EDIBLE BRAS",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "HONNI SOIT QUI MAL Y PENSE",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "SPATZELSPATZELSPATZELSPATZELSPAAAAATZEL",  P_NONE,     1,   0, 300, CLR_RED, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
