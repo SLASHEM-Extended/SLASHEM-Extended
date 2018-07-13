@@ -6210,14 +6210,14 @@ boolean ordinary;
 
 		case SPE_HEALING:
 		case SPE_EXTRA_HEALING:
-		    healup(obj->otyp == SPE_HEALING ? rnd(10) + 4 + rnz(u.ulevel) : d(3,8)+6 + rnz(u.ulevel),
+		    healup(obj->otyp == SPE_HEALING ? rnd(10) + 4 + rnd(rnz(u.ulevel)) : d(3,8)+6 + rnz(u.ulevel),
 			   0, FALSE, FALSE);
 		    You_feel("%sbetter.",
 			obj->otyp == SPE_EXTRA_HEALING ? "much " : "");
 		    break;
 
 		case SPE_FULL_HEALING:
-		    healup(d(10,10) + rnz(u.ulevel),
+		    healup(d(10,10) + rnz(u.ulevel) + rnz(u.ulevel),
 			   0, FALSE, FALSE);
 		    You_feel("restored to health.");
 		    break;
