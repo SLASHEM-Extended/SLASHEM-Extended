@@ -16586,6 +16586,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Yes, I admit that SLEX includes quite a bit of sexism. It is not meant to be a safe space after all. But then again, almost everything can be viewed as 'sexism' by SJWs...",
 	"You feel a painful sensation!",
 	"You feel a painful sensation! Apparently Anastasia fully kicked into your shins with her soft dancing shoes, and it's very soothing!",
+	"That tornado's carrying a car!",
+	"Digging down while next to certain liquids causes them to fill your hole. (That's what she said.)",
+	"Did you know that Nethack 3.6.x didn't actually add anything significant to the game? It only made lots of mechanical changes, most of which make the game more annoying by adding fake difficulty.",
 
 };
 
