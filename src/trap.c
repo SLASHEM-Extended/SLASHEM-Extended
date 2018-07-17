@@ -106,10 +106,11 @@ STATIC_VAR const char * const blindgas[6] =
 #define PN_NIMAN		(-38)
 #define PN_JUYO		(-39)
 #define PN_VAAPAD		(-40)
-#define PN_MARTIAL_ARTS		(-41)
-#define PN_RIDING		(-42)
-#define PN_TWO_WEAPONS		(-43)
-#define PN_LIGHTSABER		(-44)
+#define PN_WEDI		(-41)
+#define PN_MARTIAL_ARTS		(-42)
+#define PN_RIDING		(-43)
+#define PN_TWO_WEAPONS		(-44)
+#define PN_LIGHTSABER		(-45)
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
@@ -145,7 +146,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,
+	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
 	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
@@ -194,6 +195,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "form VI (Niman)",
     "form VII (Juyo)",
     "form VII (Vaapad)",
+    "form VIII (Wedi)",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -3654,6 +3656,8 @@ newegomon:
 				    unrestrict_weapon_skill(P_JUYO);	acquiredskill = 1; }
 			else if (P_RESTRICTED(P_VAAPAD) && yn("Do you want to learn the form VII (Vaapad) skill?")=='y') {
 				    unrestrict_weapon_skill(P_VAAPAD);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_WEDI) && yn("Do you want to learn the form VIII (Wedi) skill?")=='y') {
+				    unrestrict_weapon_skill(P_WEDI);	acquiredskill = 1; }
 			else if (yn("Do you want to learn no new skill at all?")=='y') {
 				    acquiredskill = 1; }
 			}

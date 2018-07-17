@@ -312,6 +312,19 @@ dig()
 	if (uarms && uarms->oartifact == ART_TEH_BASH_R) bonus += 2;
 	if (uarmh && uarmh->oartifact == ART_HELMET_OF_DIGGING) bonus += 5;
 	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "digger gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "kopatel'skiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "kazici qo'lqop") )) bonus += 5;
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_WEDI)) {
+
+			case P_BASIC:	bonus += 3; break;
+			case P_SKILLED:	bonus += 6; break;
+			case P_EXPERT:	bonus += 10; break;
+			case P_MASTER:	bonus += 13; break;
+			case P_GRAND_MASTER:	bonus += 16; break;
+			case P_SUPREME_MASTER:	bonus += 20; break;
+			default: break;
+		}
+	}
+
 	if (Race_if(PM_DWARF) || Role_if(PM_MIDGET) )
 	    bonus *= 2;
 	if (is_lightsaber(uwep))
@@ -353,9 +366,12 @@ dig()
 		register boolean shopedge = *in_rooms(dpx, dpy, SHOPBASE);
 
 		if ((obj = sobj_at(STATUE, dpx, dpy)) != 0) {
-			if (break_statue(obj))
+			if (break_statue(obj)) {
 				digtxt = "The statue shatters.";
-			else
+				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+					use_skill(P_WEDI, 1);
+				}
+			} else
 				/* it was a statue trap; break_statue()
 				 * printed a message and updated the screen
 				 */
@@ -370,6 +386,9 @@ dig()
 			    place_object(bobj, dpx, dpy);
 			}
 			digtxt = "The boulder falls apart.";
+			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				use_skill(P_WEDI, 1);
+			}
 		} else if (lev->typ == STONE || lev->typ == WATERTUNNEL || lev->typ == SCORR || IS_IRONBAR(lev->typ) ||
 				IS_TREE(lev->typ)) {
 			if(Is_earthlevel(&u.uz)) {
@@ -386,9 +405,15 @@ dig()
 			    digtxt = "You cut down the tree.";
 			    lev->typ = ROOM;
 			    if (!rn2(5)) (void) rnd_treefruit_at(dpx, dpy);
+				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+					use_skill(P_WEDI, 1);
+				}
 			} else if (IS_WATERTUNNEL(lev->typ)) {
 			    digtxt = "You smash the solid part of the tunnel apart.  Now it's a moat!";
 			    lev->typ = MOAT;
+				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+					use_skill(P_WEDI, 1);
+				}
 			} else if (uwep && IS_IRONBAR(lev->typ) && is_antibar(uwep) ) {
 			    digtxt = "You smash the bars to the ground.";
 
@@ -413,6 +438,9 @@ dig()
 			} else {
 			    digtxt = "You succeed in cutting away some rock.";
 			    lev->typ = CORR;
+				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+					use_skill(P_WEDI, 1);
+				}
 			}
 		} else if(IS_WALL(lev->typ)) {
 			if(shopedge) {
@@ -433,13 +461,24 @@ dig()
 			    lev->doormask = D_NODOOR;
 			}
 			digtxt = "You make an opening in the wall.";
+
+			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				use_skill(P_WEDI, 1);
+			}
+
 		} else if(lev->typ == SDOOR) {
 			cvt_sdoor_to_door(lev);	/* ->typ = DOOR */
 			digtxt = "You break through a secret door!";
+			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				use_skill(P_WEDI, 1);
+			}
 			if(!(lev->doormask & D_TRAPPED))
 				lev->doormask = D_BROKEN;
 		} else if(closed_door(dpx, dpy)) {
 			digtxt = "You break through the door.";
+			if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+				use_skill(P_WEDI, 1);
+			}
 			if(shopedge) {
 			    add_damage(dpx, dpy, 400L);
 			    dmgtxt = "break";

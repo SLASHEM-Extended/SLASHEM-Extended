@@ -92,10 +92,11 @@
 #define P_NIMAN	(P_LAST_SPELL + 22)
 #define P_JUYO	(P_LAST_SPELL + 23)
 #define P_VAAPAD	(P_LAST_SPELL + 24)
+#define P_WEDI	(P_LAST_SPELL + 25)
 
-#define P_MARTIAL_ARTS		(P_LAST_SPELL + 25) /* WAC used to be role distinguishes */
-#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 26) /* Finally implemented */
-#define P_RIDING		(P_LAST_SPELL + 27) /* How well you control your steed */
+#define P_MARTIAL_ARTS		(P_LAST_SPELL + 26) /* WAC used to be role distinguishes */
+#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 27) /* Finally implemented */
+#define P_RIDING		(P_LAST_SPELL + 28) /* How well you control your steed */
 #define P_LAST_H_TO_H		P_RIDING
 #define P_FIRST_H_TO_H		P_BARE_HANDED_COMBAT
 

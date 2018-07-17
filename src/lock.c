@@ -168,6 +168,11 @@ forcelock()	/* try to force a locked chest */
 	if(rn2(100) >= xlock.chance) return(1);		/* still busy */
 
 	You("succeed in forcing the lock.");
+
+	if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+		use_skill(P_WEDI, 1);
+	}
+
 	xlock.box->olocked = 0;
 	xlock.box->obroken = 1;
 	if((xlock.picktyp == 0 && !rn2(3)) || (xlock.picktyp == 2 && !rn2(5))) {
@@ -778,11 +783,33 @@ doforce()		/* try to force a chest with your weapon */
 				if (uarmg && uarmg->oartifact == ART_USE_THE_FORCE_LUKE) dmg += 10;
 				if (Role_if(PM_JEDI) && UseTheForce) dmg += u.ulevel;
 				else if (Race_if(PM_BORG) && UseTheForce) dmg += rnd(u.ulevel);
+
+				if (!PlayerCannotUseSkills) {
+					switch (P_SKILL(P_WEDI)) {
+
+						case P_BASIC:	dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(2) : 1; break;
+						case P_SKILLED:	dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(4) : rnd(2); break;
+						case P_EXPERT:	dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(6) : rnd(3); break;
+						case P_MASTER:	dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(8) : rnd(4); break;
+						case P_GRAND_MASTER:	dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(10) : rnd(5); break;
+						case P_SUPREME_MASTER:	dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(12) : rnd(6); break;
+						default: break;
+					}
+				}
+
 				boolean trapkilled = FALSE;
 
 				pline("You use the force on %s.", mon_nam(mtmp));
 
 				setmangry(mtmp);
+
+				if (uwep && is_lightsaber(uwep) && uwep->lamplit) {
+					u.uwediturns++;
+					if (u.uwediturns >= 5) {
+						u.uwediturns = 0;
+						use_skill(P_WEDI, 1);
+					}
+				}
 
 				if(mtmp->mtame) {
 				    abuse_dog(mtmp);

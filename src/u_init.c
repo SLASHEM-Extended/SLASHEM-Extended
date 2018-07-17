@@ -2916,6 +2916,7 @@ static const struct def_skill Skill_A[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_TECHNIQUES, P_EXPERT },
+    { P_WEDI, P_GRAND_MASTER },
 
     /*WAC- 'A' knows of all spells from studying,  but only really good
     at divination class*/
@@ -2953,6 +2954,7 @@ static const struct def_skill Skill_Ana[] = {
     { P_NIMAN, P_MASTER },
     { P_JUYO, P_MASTER },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_MASTER },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT },  
     { P_BARE_HANDED_COMBAT, P_EXPERT },  
@@ -3020,6 +3022,7 @@ static const struct def_skill Skill_Gam[] = {
     { P_TECHNIQUES, P_GRAND_MASTER },
     { P_SHII_CHO, P_EXPERT },
     { P_SHIEN, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_CHAOS_SPELL, P_EXPERT },
 
@@ -3202,6 +3205,7 @@ static const struct def_skill Skill_Sta[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -3300,6 +3304,7 @@ static const struct def_skill Skill_Pic[] = {
     { P_SEARCHING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_GRAND_MASTER },
     { P_TECHNIQUES, P_EXPERT },
+    { P_WEDI, P_MASTER },
 
     { P_NONE, 0 }
 };
@@ -3328,6 +3333,7 @@ static const struct def_skill Skill_Roc[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_MASTER },
     { P_MISSILE_WEAPONS, P_MASTER },
+    { P_WEDI, P_EXPERT },
 
     { P_BARE_HANDED_COMBAT, P_MASTER },
     { P_RIDING, P_EXPERT },
@@ -3423,6 +3429,7 @@ static struct def_skill Skill_Fen[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_GRAND_MASTER },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_MASTER },
 
     { P_NONE, 0 }
 };
@@ -3531,6 +3538,7 @@ static const struct def_skill Skill_Fir[] = {
 
     { P_ELEMENTAL_SPELL, P_EXPERT },
     { P_JUYO, P_EXPERT },
+    { P_WEDI, P_MASTER },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT }, { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -3587,6 +3595,7 @@ static const struct def_skill Skill_Zyb[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -3697,6 +3706,7 @@ static const struct def_skill Skill_Lun[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -3793,6 +3803,7 @@ static const struct def_skill Skill_Bin[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -3877,6 +3888,7 @@ static const struct def_skill Skill_Blo[] = {
     { P_ATARU, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_MASTER },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -3935,6 +3947,7 @@ static const struct def_skill Skill_Mys[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -4031,6 +4044,7 @@ static const struct def_skill Skill_Spa[] = {
     { P_NIMAN, P_MASTER },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_GRAND_MASTER },
+    { P_WEDI, P_GRAND_MASTER },
 
     { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -4081,6 +4095,7 @@ static const struct def_skill Skill_Cam[] = {
     { P_NIMAN, P_MASTER },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_GRAND_MASTER },
+    { P_WEDI, P_GRAND_MASTER },
 
     { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -4131,6 +4146,7 @@ static const struct def_skill Skill_Sco[] = {
     { P_NIMAN, P_MASTER },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_GRAND_MASTER },
+    { P_WEDI, P_GRAND_MASTER },
 
     { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -4266,6 +4282,7 @@ static const struct def_skill Skill_Con[] = {
     { P_SEARCHING, P_MASTER },
     { P_PETKEEPING, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4288,6 +4305,7 @@ static const struct def_skill Skill_Mur[] = {
     { P_SEARCHING, P_MASTER },
     { P_PETKEEPING, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4333,6 +4351,7 @@ static const struct def_skill Skill_Abu[] = {
     { P_CHAOS_SPELL, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
     { P_ATARU, P_EXPERT },
+    { P_WEDI, P_MASTER },
 
     { P_NONE, 0 }
 };
@@ -4402,6 +4421,7 @@ static const struct def_skill Skill_Hus[] = { /* quite restricted - meant to be 
     { P_MARTIAL_ARTS, P_MASTER },	{ P_HAMMER, P_GRAND_MASTER },
     { P_HIGH_HEELS, P_EXPERT },	{ P_SEXY_FLATS, P_EXPERT },
     { P_BODY_SPELL, P_EXPERT },
+    { P_WEDI, P_MASTER },
 
     { P_NONE, 0 }
 };
@@ -4427,6 +4447,7 @@ static const struct def_skill Skill_Mas[] = {
     { P_SEARCHING, P_MASTER },	{ P_TECHNIQUES, P_MASTER },
     { P_MAKASHI, P_EXPERT },	{ P_TWO_WEAPON_COMBAT, P_EXPERT },
     { P_RIDING, P_EXPERT },
+    { P_WEDI, P_GRAND_MASTER },
 
     { P_NONE, 0 }
 };
@@ -4494,6 +4515,7 @@ static const struct def_skill Skill_Act[] = {
     { P_PETKEEPING, P_EXPERT },
     { P_SHIEN, P_MASTER },
     { P_JUYO, P_GRAND_MASTER },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4635,6 +4657,7 @@ static const struct def_skill Skill_Mar[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_BARE_HANDED_COMBAT, P_EXPERT },
 
@@ -4697,6 +4720,7 @@ static const struct def_skill Skill_Sci[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4731,6 +4755,7 @@ static const struct def_skill Skill_Nuc[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -4778,6 +4803,7 @@ static const struct def_skill Skill_Fem[] = {
     { P_NIMAN, P_MASTER },
     { P_JUYO, P_MASTER },
     { P_SEXY_FLATS, P_MASTER },
+    { P_WEDI, P_MASTER },
 
     { P_NONE, 0 }
 };
@@ -4824,6 +4850,7 @@ static const struct def_skill Skill_G[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -4874,6 +4901,7 @@ static const struct def_skill Skill_Gra[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT },
     { P_MARTIAL_ARTS, P_MASTER },
@@ -4970,6 +4998,7 @@ static const struct def_skill Skill_J[] = {
     { P_NIMAN, P_MASTER },
     { P_JUYO, P_GRAND_MASTER },
     { P_VAAPAD, P_MASTER },
+    { P_WEDI, P_GRAND_MASTER },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT }, { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -5087,6 +5116,7 @@ static const struct def_skill Skill_Wan[] = {
     { P_CHAOS_SPELL, P_MASTER },
     { P_MAKASHI, P_MASTER },
     { P_SHIEN, P_MASTER },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -5105,6 +5135,7 @@ static const struct def_skill Skill_Elm[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
     { P_SEXY_FLATS, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -5129,6 +5160,7 @@ static const struct def_skill Skill_Occ[] = {
     { P_VAAPAD, P_MASTER },
     { P_ATARU, P_EXPERT },
     { P_NIMAN, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -5193,6 +5225,7 @@ static const struct def_skill Skill_K[] = {
     { P_PETKEEPING, P_EXPERT },
     { P_SHII_CHO, P_EXPERT },
     { P_SEXY_FLATS, P_MASTER },
+    { P_WEDI, P_EXPERT },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT }, { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -5225,6 +5258,7 @@ static const struct def_skill Skill_Jus[] = {
     { P_SPIRITUALITY, P_EXPERT },
     { P_PETKEEPING, P_EXPERT },
     { P_SEXY_FLATS, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT }, { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -5256,6 +5290,7 @@ static const struct def_skill Skill_Mah[] = {
     { P_ATARU, P_MASTER },
     { P_NIMAN, P_EXPERT },
     { P_VAAPAD, P_MASTER },
+    { P_WEDI, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -5288,6 +5323,7 @@ static const struct def_skill Skill_Dol[] = {
     { P_IMPLANTS, P_EXPERT },
     { P_MAKASHI, P_MASTER },
     { P_NIMAN, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_OCCULT_SPELL, P_EXPERT },
     { P_ELEMENTAL_SPELL, P_EXPERT },
@@ -5329,6 +5365,7 @@ static const struct def_skill Skill_War[] = { /*master of all weapons*/
     { P_ATARU, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
     { P_SEXY_FLATS, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -5358,6 +5395,7 @@ static const struct def_skill Skill_Ord[] = { /*master of all weapons*/
     { P_DJEM_SO, P_GRAND_MASTER },
     { P_JUYO, P_GRAND_MASTER },
     { P_VAAPAD, P_GRAND_MASTER },
+    { P_WEDI, P_GRAND_MASTER },
 
     { P_GENERAL_COMBAT, P_GRAND_MASTER },
     { P_TWO_HANDED_WEAPON, P_GRAND_MASTER },
@@ -5400,6 +5438,7 @@ static const struct def_skill Skill_Off[] = { /*master of all weapons*/
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
     { P_SEXY_FLATS, P_MASTER },
+    { P_WEDI, P_EXPERT },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT }, { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -5467,6 +5506,7 @@ static const struct def_skill Skill_Sai[] = {
     { P_ELEMENTAL_SPELL, P_EXPERT },
     { P_CHAOS_SPELL, P_EXPERT },
     { P_SEXY_FLATS, P_GRAND_MASTER },
+    { P_WEDI, P_GRAND_MASTER },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -5493,6 +5533,7 @@ static const struct def_skill Skill_Psi[] = {
     { P_SORESU, P_GRAND_MASTER },
     { P_DJEM_SO, P_EXPERT },
     { P_SEXY_FLATS, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_OCCULT_SPELL, P_GRAND_MASTER },
     { P_CHAOS_SPELL, P_EXPERT },
@@ -5599,6 +5640,7 @@ static struct def_skill Skill_P[] = {
     { P_PETKEEPING, P_EXPERT },
     { P_SORESU, P_GRAND_MASTER },
     { P_SEXY_FLATS, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_BARE_HANDED_COMBAT, P_EXPERT },  /* the monk is added in slash */ 
     { P_NONE, 0 }
@@ -5667,6 +5709,7 @@ static const struct def_skill Skill_Pir[] = {
     { P_ATARU, P_MASTER },
     { P_DJEM_SO, P_EXPERT },
     { P_JUYO, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_CHAOS_SPELL, P_EXPERT },
 
@@ -5694,6 +5737,7 @@ static const struct def_skill Skill_Div[] = {
     { P_MISSILE_WEAPONS, P_EXPERT },
     { P_TECHNIQUES, P_EXPERT },
     { P_SORESU, P_EXPERT },
+    { P_WEDI, P_GRAND_MASTER },
 
     { P_ELEMENTAL_SPELL, P_GRAND_MASTER },
 
@@ -5727,6 +5771,7 @@ static const struct def_skill Skill_Kor[] = {
     { P_MISSILE_WEAPONS, P_MASTER },
     { P_ATARU, P_EXPERT },
     { P_DJEM_SO, P_EXPERT },
+    { P_WEDI, P_MASTER },
 
     { P_ELEMENTAL_SPELL, P_EXPERT },
 
@@ -5769,6 +5814,7 @@ static const struct def_skill Skill_Gla[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -5887,6 +5933,7 @@ static const struct def_skill Skill_Loc[] = {
     { P_DEVICES, P_GRAND_MASTER },
     { P_SEARCHING, P_MASTER },
     { P_TECHNIQUES, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT },  { P_BARE_HANDED_COMBAT, P_EXPERT },
     { P_NONE, 0 }
@@ -6022,6 +6069,7 @@ static const struct def_skill Skill_Mid[] = {
     { P_DEVICES, P_EXPERT },
     { P_SEARCHING, P_GRAND_MASTER },
     { P_PETKEEPING, P_EXPERT },
+    { P_WEDI, P_GRAND_MASTER },
 
     { P_NONE, 0 }
 };
@@ -6040,6 +6088,7 @@ static const struct def_skill Skill_Rin[] = {
     { P_SPIRITUALITY, P_MASTER },
     { P_PETKEEPING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
+    { P_WEDI, P_EXPERT },
 
     { P_NONE, 0 }
 };
@@ -6052,6 +6101,7 @@ static const struct def_skill Skill_Gol[] = {
     { P_BODY_ARMOR, P_EXPERT },
     { P_SEARCHING, P_MASTER },
     { P_SPIRITUALITY, P_EXPERT },
+    { P_WEDI, P_MASTER },
 
     { P_NONE, 0 }
 };
@@ -6246,6 +6296,7 @@ static const struct def_skill Skill_Ota[] = {
     { P_NIMAN, P_EXPERT },
     { P_JUYO, P_EXPERT },
     { P_VAAPAD, P_EXPERT },
+    { P_WEDI, P_MASTER },
 
     { P_BODY_ARMOR, P_EXPERT },
     { P_TWO_HANDED_WEAPON, P_EXPERT },
@@ -6374,6 +6425,7 @@ static const struct def_skill Skill_Unb[] = {
     { P_SEARCHING, P_EXPERT },
     { P_MISSILE_WEAPONS, P_EXPERT },
     { P_TECHNIQUES, P_MASTER },
+    { P_WEDI, P_EXPERT },
 
     { P_TWO_WEAPON_COMBAT, P_EXPERT },
     { P_MARTIAL_ARTS, P_MASTER },    { P_NONE, 0 }
@@ -6574,6 +6626,7 @@ static const struct def_skill Skill_Pok[] = {
     { P_NIMAN, P_MASTER },
     { P_JUYO, P_MASTER },
     { P_VAAPAD, P_MASTER },
+    { P_WEDI, P_MASTER },
 
     { P_OCCULT_SPELL, P_MASTER },
     { P_ELEMENTAL_SPELL, P_MASTER },
