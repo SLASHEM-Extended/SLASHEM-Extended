@@ -1,5 +1,7 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.2.7
+
 2.2.6
 - Added a bunch of new attacks that monsters can use.
 - All roles now have a "spell retention" value, which determines how many spells can be memorized before amnesia effects start erasing more spell knowledge per incident. If the player has more than twice this value of spells memorized, ones at the bottom of the list can spontaneously be removed. Melee roles have a much lower spell retention than casters.
