@@ -16589,6 +16589,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"That tornado's carrying a car!",
 	"Digging down while next to certain liquids causes them to fill your hole. (That's what she said.)",
 	"Did you know that Nethack 3.6.x didn't actually add anything significant to the game? It only made lots of mechanical changes, most of which make the game more annoying by adding fake difficulty.",
+	"Did you know that Amy participated in a 10km race and finished in 1 hour, 24 minutes, while wearing a pair of Lindsay Phillips wedge sandals?",
+	"Did you know that Amy participated in a 10km race wearing Lindsay Phillips wedge sandals, and she didn't finish in last place? There were quite a bunch of others who were slower than her.",
+	"The A in SLASH'EM is especially important, because SLEX adds a lot of things. It doesn't remove stuff. No, it adds stuff. And then it adds some more on top of that.",
+	"Hola-hola!",
+	"Ewwet. Idelinjo. Saldu. Hola-hola!",
 
 };
 

@@ -722,6 +722,12 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_SHINING_SMASHER].mname;
 	mread(fd, (void *) &mons[PM_SHINING_SMASHER], sizeof(struct permonst));
 	mons[PM_SHINING_SMASHER].mname = tname;
+	tname = mons[PM_SHINING_RIPPER].mname;
+	mread(fd, (void *) &mons[PM_SHINING_RIPPER], sizeof(struct permonst));
+	mons[PM_SHINING_RIPPER].mname = tname;
+	tname = mons[PM_SHINING_CRASHER].mname;
+	mread(fd, (void *) &mons[PM_SHINING_CRASHER], sizeof(struct permonst));
+	mons[PM_SHINING_CRASHER].mname = tname;
 	tname = mons[PM_SIZZLING_VORTEX].mname;
 	mread(fd, (void *) &mons[PM_SIZZLING_VORTEX], sizeof(struct permonst));
 	mons[PM_SIZZLING_VORTEX].mname = tname;
@@ -917,6 +923,21 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_RNG_LASER].mname;
 	mread(fd, (void *) &mons[PM_RNG_LASER], sizeof(struct permonst));
 	mons[PM_RNG_LASER].mname = tname;
+	tname = mons[PM_RNG_BEAM].mname;
+	mread(fd, (void *) &mons[PM_RNG_BEAM], sizeof(struct permonst));
+	mons[PM_RNG_BEAM].mname = tname;
+	tname = mons[PM_RNG_RAY].mname;
+	mread(fd, (void *) &mons[PM_RNG_RAY], sizeof(struct permonst));
+	mons[PM_RNG_RAY].mname = tname;
+	tname = mons[PM_RNG_BULB].mname;
+	mread(fd, (void *) &mons[PM_RNG_BULB], sizeof(struct permonst));
+	mons[PM_RNG_BULB].mname = tname;
+	tname = mons[PM_RNG_STAR].mname;
+	mread(fd, (void *) &mons[PM_RNG_STAR], sizeof(struct permonst));
+	mons[PM_RNG_STAR].mname = tname;
+	tname = mons[PM_RNG_BOOMER].mname;
+	mread(fd, (void *) &mons[PM_RNG_BOOMER], sizeof(struct permonst));
+	mons[PM_RNG_BOOMER].mname = tname;
 
 	tname = mons[PM_SHADOW_WARRIOR].mname;
 	mread(fd, (void *) &mons[PM_SHADOW_WARRIOR], sizeof(struct permonst));

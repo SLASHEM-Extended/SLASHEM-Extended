@@ -5098,6 +5098,8 @@ SCROLL((char *)0,               "GENE FFS",  P_NONE,     1,   0, 300, CLR_BROWN,
 SCROLL((char *)0,               "CITY OF EDIBLE BRAS",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "HONNI SOIT QUI MAL Y PENSE",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
 SCROLL((char *)0,               "SPATZELSPATZELSPATZELSPATZELSPAAAAATZEL",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "AMY RAN 10 KM IN HIGH HEELS IN 1H 24MIN",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "THE AMY IS IN 84 MINUTES IN THE GOAL COAGULATED",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

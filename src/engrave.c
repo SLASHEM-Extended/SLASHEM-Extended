@@ -961,6 +961,29 @@ static const char *random_mesg[] = {
 	"Quantify this egghead!",
 	"Everything in Demo's shop will cause a segfault when picked up.",
 	"THIS ROOM IS AN ILLUSION AND IS A TRAP DEVISUT BY SATAN. GO AHEAD DAUNTLESSLY! MAKE RAPID PROGRES!",
+	"Murat's Doener Kebap Place - entrance 3 tiles to the north",
+	"This tile has some residual hussy perfume on it. If you're not a hussy yourself, staying here for more than 5 turns will make you fall over unconscious.",
+	"Welcome to Luigi's Pizza Parlor!",
+	"Naechste Station: Schlaefelheim-Fluegelingen (bei Bueschelhausen).",
+	"Good things will happen to those who wait for 2000 turns on this tile.",
+	"There used to be one of Hans Walt's diamond barriers on this tile but we, the hussies, smashed it with our high heels.",
+	"There used to be one of Hans Walt's hidden diamonds on this tile but I, Rita, stole it in the name of the hussies.",
+	"There used to be an unconscious bodyguard of Hans Walt lying on this tile. If you didn't find him here, report it to Anna immediately so she can sic her hussies on the bastard again.",
+	"Welcome to the Dungeons of Doom(TM) Fitness Center! You've definitely come to the right place - we have lots of boulders that you can use to train your strength!",
+	"This area is under video surveillance.",
+	"Minetown Kop Station <--- You are here",
+	"Stay on this tile and smell the roses.",
+	"Hint: You can eat some BDSM one dungeon level below. Yes, you read that right, there's a Burger King, a Doener Kebab place, a Shawarma restaurant and a McDonalds!",
+	"This maze has no exit, so you don't even need to bother looking for one.",
+	"Looking for the exit? Too bad, it was sealed as a result of you stepping on this particular tile.",
+	"You've triggered the xnethack switch that was hidden on this tile, and now the game will erase your save by spontaneously updating its versions.",
+	"Error: graffiti not found. Please phone Amy for a fix, her tel number: 0190666373737-FIXME.", /* don't bother, I made up the number and it doesn't really exist :P */
+	"Help! I'm being held captive in a SLEX graffiti-writing factory!",
+	"My, just look at those peculiar markings! Ugly little bugger.",
+	"This tile was borrowed from dnhslex.",
+	"Hahaha, you are reading my graffiti!",
+	"Only those who wear high heels may step on this tile! Everyone else gets hit by a permanent nasty trap effect.",
+	"You stepped on a levelscaler trap, which is a nasty trap that gives no message and doesn't reveal itself even if you trigger it.",
 
 };
 
@@ -4455,6 +4478,16 @@ static const char *epitaphs[] = {
 	"bhaak: you and your weeping angel anti-fun squad! why did you make them so annoying :P",
 	"WUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUT BHAAK WHAT THE HELL I thought turning paranoid water off means I just don't get the unnecessary 'yes/no' but a simple 'y/n' instead! FIX PLZ",
 	"Nethack4 even made it so that if quaffing from a fountain gives a water nymph, she will then get a turn! In vanilla it would be your turn after she got generated!",
+	"did I make it so that evil variant monsters spawn more often on friday the 13th by mistake?",
+	"is my vehicle broken?",
+	"God, I got to cry harder.",
+	"Forget about it.",
+	"So ein Mist!",
+	"The downstair and the branch staircase spawned on the same tile and the game would give precedence to the branch when pressing > on it, so my lostsoul sokosolver had no way to proceed and ended up suiciding instead.",
+	"Somehow there was a second vibrating square level in Sheol and it had the seven deadly sins again and they killed me.",
+	"This fellow was too n00b to use the panic digging technique correctly and ended up quitting even though he could have waited until it became available again.",
+	"This fellow didn't read the description on the panic digging technique and used it without engraving Elbereth, so he ended up getting killed by a newt.",
+	"This fellow played during Junethack and forgot to read the message telling him about the lostsoul mode not being eligible, so he died in vain and his Medusa kill didn't count.", /* sorry Elronnd, I guess I should make the message stand out more */
 
 };
 

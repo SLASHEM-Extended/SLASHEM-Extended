@@ -6959,6 +6959,8 @@ u_init()
 	struct permonst* randompiercer = &mons[PM_SHINING_PIERCER];
 	struct permonst* randompiercerb = &mons[PM_SHINING_PENETRATOR];
 	struct permonst* randompiercerc = &mons[PM_SHINING_SMASHER];
+	struct permonst* randompiercerd = &mons[PM_SHINING_RIPPER];
+	struct permonst* randompiercere = &mons[PM_SHINING_CRASHER];
 	struct permonst* randomvortex = &mons[PM_SIZZLING_VORTEX];
 	struct permonst* randomfungus = &mons[PM_COLORLESS_MOLD];
 	struct permonst* randomfungusb = &mons[PM_COLORLESS_FUNGUS];
@@ -7011,6 +7013,11 @@ u_init()
 	struct permonst* randomsphere = &mons[PM_RNG_SPHERE];
 	struct permonst* randomlight = &mons[PM_RNG_LIGHT];
 	struct permonst* randomlightB = &mons[PM_RNG_LASER];
+	struct permonst* randomlightC = &mons[PM_RNG_BEAM];
+	struct permonst* randomlightD = &mons[PM_RNG_RAY];
+	struct permonst* randomlightE = &mons[PM_RNG_BULB];
+	struct permonst* randomlightF = &mons[PM_RNG_STAR];
+	struct permonst* randomlightG = &mons[PM_RNG_BOOMER];
 
 	struct permonst* shadowwarrior = &mons[PM_SHADOW_WARRIOR];
 	struct permonst* shadowwarriorX = &mons[PM_ROBOT];
@@ -19934,6 +19941,24 @@ u_init()
 		}
 
 	}
+	for (i = 0; i < 2; i++) {
+		attkptr = &randompiercerd->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+	for (i = 0; i < 2; i++) {
+		attkptr = &randompiercere->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
 
 	randomvortex->mmove = rnd(10)+6;
 	randomvortex->ac = 0-rnd(16);
@@ -20777,6 +20802,56 @@ u_init()
 
 	for (i = 0; i < 1; i++) {
 		attkptr = &randomlightB->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randomlightC->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randomlightD->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randomlightE->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randomlightF->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomlightG->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
@@ -26662,6 +26737,8 @@ alter_reality()
 	struct permonst* randompiercer = &mons[PM_SHINING_PIERCER];
 	struct permonst* randompiercerb = &mons[PM_SHINING_PENETRATOR];
 	struct permonst* randompiercerc = &mons[PM_SHINING_SMASHER];
+	struct permonst* randompiercerd = &mons[PM_SHINING_RIPPER];
+	struct permonst* randompiercere = &mons[PM_SHINING_CRASHER];
 	struct permonst* randomvortex = &mons[PM_SIZZLING_VORTEX];
 	struct permonst* randomfungus = &mons[PM_COLORLESS_MOLD];
 	struct permonst* randomfungusb = &mons[PM_COLORLESS_FUNGUS];
@@ -26713,6 +26790,11 @@ alter_reality()
 	struct permonst* randomsphere = &mons[PM_RNG_SPHERE];
 	struct permonst* randomlight = &mons[PM_RNG_LIGHT];
 	struct permonst* randomlightB = &mons[PM_RNG_LASER];
+	struct permonst* randomlightC = &mons[PM_RNG_BEAM];
+	struct permonst* randomlightD = &mons[PM_RNG_RAY];
+	struct permonst* randomlightE = &mons[PM_RNG_BULB];
+	struct permonst* randomlightF = &mons[PM_RNG_STAR];
+	struct permonst* randomlightG = &mons[PM_RNG_BOOMER];
 
 	struct permonst* shadowwarrior = &mons[PM_SHADOW_WARRIOR];
 	struct permonst* shadowwarriorX = &mons[PM_ROBOT];
@@ -33679,6 +33761,24 @@ alter_reality()
 		}
 
 	}
+	for (i = 0; i < 2; i++) {
+		attkptr = &randompiercerd->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+	for (i = 0; i < 2; i++) {
+		attkptr = &randompiercere->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
 
 	randomvortex->mmove = rnd(10)+6;
 	randomvortex->ac = 0-rnd(16);
@@ -34522,6 +34622,56 @@ alter_reality()
 
 	for (i = 0; i < 1; i++) {
 		attkptr = &randomlightB->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randomlightC->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randomlightD->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randomlightE->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 2; i++) {
+		attkptr = &randomlightF->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 3; i++) {
+		attkptr = &randomlightG->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
