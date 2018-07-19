@@ -5075,6 +5075,7 @@ register struct monst *mtmp;
 		if(ptr == &mons[PM_WAR_TROLL]) (void) mongets(mtmp, IRON_CHAIN);
 		if(ptr == &mons[PM_TROLL_GIANT]) (void) mongets(mtmp, ROTATING_CHAIN);
 		if(ptr == &mons[PM_OLOG_HAI_BERSERKER]) (void) mongets(mtmp, SCR_ENRAGE);
+		if(ptr == &mons[PM_HOLA_HOLA_LANCER]) (void) mongets(mtmp, LANCE);
 
 		if(ptr == &mons[PM_USENET_TROLL]) {
 			(void) mongets(mtmp, SCR_TELEPORTATION);
@@ -6150,6 +6151,7 @@ register struct	monst	*mtmp;
 		}
 
 		if (mtmp->data == &mons[PM_HC_LADY]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if(ptr == &mons[PM_HC_LANCE_CARRIER]) (void) mongets(mtmp, LANCE);
 
 		break;
 
