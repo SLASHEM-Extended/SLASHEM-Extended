@@ -3481,6 +3481,12 @@ int dieroll;
 #ifdef SHOW_DMG
 	if (!destroyed) showdmg(tmp);
 #endif
+
+	if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uwep->lamplit && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap && obj && obj == uswapwep) {
+		uwep->age += tmp;
+		pline("Your lightsaber is recharged a bit!");
+	}
+
 	return((boolean)(destroyed ? FALSE : TRUE));
 }
 
