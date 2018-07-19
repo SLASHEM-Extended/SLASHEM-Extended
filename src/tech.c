@@ -167,6 +167,29 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"disarming kick",
 	"inlay warfare",
 	"diamond barrier",
+	"steady hand",
+	"force filling",
+	"jedi tailoring",
+	"intrinsic sacrifice",
+	"beamsword",
+	"energy transfer",
+	"soften target",
+	"protect weapon",
+	"powerful aura",
+	"boostaff",
+	"clone javelin",
+	"refuge",
+	"draining punch",
+	"escrobism",
+	"pirate brothering",
+	"nuts and bolts",
+	"decapability",
+	"no-hands curse",
+	"high-heeled sneakers",
+	"form choice",
+	"star digging",
+	"starwars friends",
+	"use the force luke",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -2349,6 +2372,98 @@ dotech()
 
 		case T_DIAMOND_BARRIER:
 			pline("Creates grave walls on the eight squares surrounding you, as long as those squares are open floor tiles.");
+			break;
+
+		case T_STEADY_HAND:
+			pline("This technique increases your to-hit by a flat 5 points for a period of time.");
+			break;
+
+		case T_FORCE_FILLING:
+			pline("If you use this technique, you restore a bit of mana.");
+			break;
+
+		case T_JEDI_TAILORING:
+			pline("Creates a random robe that you can use.");
+			break;
+
+		case T_INTRINSIC_SACRIFICE:
+			pline("If you use this technique, you may lose an intrinsic. But it will add a lot of energy to both of your lightsabers. Oh, almost forgot to mention this: it can only be used if you're wielding two lightsabers at once.");
+			break;
+
+		case T_BEAMSWORD:
+			pline("When using this technique, your thrown lightsaber will be able to fire invisible beams for a while.");
+			break;
+
+		case T_ENERGY_TRANSFER:
+			pline("While this technique is active, casting spells while wielding a lit lightsaber will add energy to the saber.");
+			break;
+
+		case T_SOFTEN_TARGET:
+			pline("Allows you to target a single monster next to you, which will lose an experience level even if it resists level drain.");
+			break;
+
+		case T_PROTECT_WEAPON:
+			pline("Can only be used while wielding a two-handed weapon, which will be erosionproofed.");
+			break;
+
+		case T_POWERFUL_AURA:
+			pline("This technique temporarily grants magic resistance, reflection and free action.");
+			break;
+
+		case T_BOOSTAFF:
+			pline("Using this technique requires you to wield a staff, and will try to enchant it. Can also uncurse a cursed staff.");
+			break;
+
+		case T_CLONE_JAVELIN:
+			pline("Requires you to wield a javelin, which will receive an extra ammo. Yes, you can multiply artifact javelins that way; this is not a bug.");
+			break;
+
+		case T_REFUGE:
+			pline("While having this technique active, undead creatures that are near you will continuously take damage and may also be scared.");
+			break;
+
+		case T_DRAINING_PUNCH:
+			pline("This martial arts move can be chained, and it may drain levels from monsters if they fail to resist. It requires you to be bare-handed.");
+			break;
+
+		case T_ESCROBISM:
+			pline("A technique that lasts for a period of time and requires a robe to be worn, in which case it increases your bare-handed or lightsaber melee damage.");
+			break;
+
+		case T_PIRATE_BROTHERING:
+			pline("Requires you to dual-wield with a lightsaber in your primary hand and a scimitar in your off-hand, and the lightsaber must be lit. While the technique is active, the lightsaber will not consume energy, and every time the scimitar hits something your lightsaber is recharged a bit.");
+			break;
+
+		case T_NUTS_AND_BOLTS:
+			pline("Using this technique creates some crossbow bolts and increases your nutrition.");
+			break;
+
+		case T_DECAPABILITY:
+			pline("While this technique is active, your polearm may sometimes put monsters to sleep if you apply it at them, and if your lightsaber destroys an enemy's weapon, the enemy in question is also put to sleep.");
+			break;
+
+		case T_NO_HANDS_CURSE:
+			pline("Only works if you are wielding a two-handed weapon that is not cursed. The weapon in question will become heavily cursed and get a negative enchantment value, but you gain +1 luck, +100 alignment record, -1 divine anger and -500 prayer timeout. Also, hostile monsters that are next to you have a chance of becoming peaceful.");
+			break;
+
+		case T_HIGH_HEELED_SNEAKERS:
+			pline("If you use this technique, you can use the high heels and sexy flats skills simultaneously for a while. But this only works if you actually have a pair that qualifies, which means it has to be one that has both a high-heeled randomized appearance and a sexy flats base item type or the other way around.");
+			break;
+
+		case T_FORM_CHOICE:
+			pline("Requires you to be wielding a lightsaber, and will transform it into a different type of lightsaber that you can choose.");
+			break;
+
+		case T_STAR_DIGGING:
+			pline("Fires digging rays in all eight directions.");
+			break;
+
+		case T_STARWARS_FRIENDS:
+			pline("A technique that tries to tame all adjacent monsters which are from Castle of the Winds or joke monsters, but they get a resistance roll. Also, one tame such monster is generated from thin air.");
+			break;
+
+		case T_USE_THE_FORCE_LUKE:
+			pline("This technique lasts for a period of time and increases the damage of the #force command while active.");
 			break;
 
 		default:
@@ -5622,6 +5737,121 @@ revid_end:
 
 	      break;
 
+		case T_STEADY_HAND:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_FORCE_FILLING:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_JEDI_TAILORING:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_INTRINSIC_SACRIFICE:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_BEAMSWORD:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_ENERGY_TRANSFER:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_SOFTEN_TARGET:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_PROTECT_WEAPON:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_POWERFUL_AURA:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_BOOSTAFF:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_CLONE_JAVELIN:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_REFUGE:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_DRAINING_PUNCH:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_ESCROBISM:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_PIRATE_BROTHERING:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_NUTS_AND_BOLTS:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_DECAPABILITY:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_NO_HANDS_CURSE:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_HIGH_HEELED_SNEAKERS:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_FORM_CHOICE:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_STAR_DIGGING:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_STARWARS_FRIENDS:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
+		case T_USE_THE_FORCE_LUKE:
+			pline("Not yet implemented.");
+			t_timeout = 0; /* change it! */
+			break;
+
 	    case T_TELEKINESIS:
 	      {
 		coord cc;
@@ -5952,6 +6182,36 @@ tech_timeout()
 			break;
 		    case T_ABSORBER_SHIELD:
 			pline("The absorber shield dissipates.");
+			break;
+		    case T_STEADY_HAND:
+			pline("Your %s are less steady.", makeplural(body_part(HAND)));
+			break;
+		    case T_BEAMSWORD:
+			pline("Your lightsaber can no longer fire beams.");
+			break;
+		    case T_ENERGY_TRANSFER:
+			pline("The energy transfer has stopped.");
+			break;
+		    case T_POWERFUL_AURA:
+			pline("You're no longer surrounded by the powerful aura.");
+			break;
+		    case T_REFUGE:
+			pline("The refuge effect has ended.");
+			break;
+		    case T_ESCROBISM:
+			pline("Escrobism is no longer active.");
+			break;
+		    case T_PIRATE_BROTHERING:
+			pline("Your pirate brothering ability deactivates.");
+			break;
+		    case T_DECAPABILITY:
+			pline("Your weapons are no longer capable of decapability.");
+			break;
+		    case T_HIGH_HEELED_SNEAKERS:
+			pline("You can no longer use the sexy flats skill while wearing high heels.");
+			break;
+		    case T_USE_THE_FORCE_LUKE:
+			pline("Sorry Luke, but you can no longer use the force with extra effectivity.");
 			break;
 		    case T_SURRENDER_OR_DIE:
 			pline("Cutting an opponent's weapon no longer has special effects.");

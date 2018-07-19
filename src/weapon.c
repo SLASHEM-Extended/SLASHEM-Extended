@@ -54,10 +54,11 @@ STATIC_DCL int enhance_skill(boolean);
 #define PN_NIMAN		(-38)
 #define PN_JUYO		(-39)
 #define PN_VAAPAD		(-40)
-#define PN_MARTIAL_ARTS		(-41)
-#define PN_RIDING		(-42)
-#define PN_TWO_WEAPONS		(-43)
-#define PN_LIGHTSABER		(-44)
+#define PN_WEDI		(-41)
+#define PN_MARTIAL_ARTS		(-42)
+#define PN_RIDING		(-43)
+#define PN_TWO_WEAPONS		(-44)
+#define PN_LIGHTSABER		(-45)
 
 static void give_may_advance_msg(int);
 STATIC_PTR int practice(void);
@@ -103,7 +104,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,
+	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
 	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
@@ -152,6 +153,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "form VI (Niman)",
     "form VII (Juyo)",
     "form VII (Vaapad)",
+    "form VIII (Wedi)",
     "martial arts",
     "riding",
     "two-weapon combat",
@@ -2754,6 +2756,192 @@ int skill;
 	    	You("learn how to perform inlay warfare!");
 	}
 
+	if (skill == P_SHII_CHO && P_SKILL(skill) == P_EXPERT && !tech_known(T_STEADY_HAND)) {
+	    	learntech(T_STEADY_HAND, FROMOUTSIDE, 1);
+	    	You("learn how to perform steady hand!");
+	}
+	if (skill == P_MAKASHI && P_SKILL(skill) == P_MASTER && !tech_known(T_FORCE_FILLING)) {
+	    	learntech(T_FORCE_FILLING, FROMOUTSIDE, 1);
+	    	You("learn how to perform force filling!");
+	}
+	if (skill == P_SORESU && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_JEDI_TAILORING)) {
+	    	learntech(T_JEDI_TAILORING, FROMOUTSIDE, 1);
+	    	You("learn how to perform jedi tailoring!");
+	}
+	if (skill == P_ATARU && P_SKILL(skill) == P_SKILLED && !tech_known(T_INTRINSIC_SACRIFICE)) {
+	    	learntech(T_INTRINSIC_SACRIFICE, FROMOUTSIDE, 1);
+	    	You("learn how to perform intrinsic sacrifice!");
+	}
+	if (skill == P_DJEM_SO && P_SKILL(skill) == P_MASTER && !tech_known(T_BEAMSWORD)) {
+	    	learntech(T_BEAMSWORD, FROMOUTSIDE, 1);
+	    	You("learn how to perform beamsword!");
+	}
+	if (skill == P_NIMAN && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_ENERGY_TRANSFER)) {
+	    	learntech(T_ENERGY_TRANSFER, FROMOUTSIDE, 1);
+	    	You("learn how to perform energy transfer!");
+	}
+	if (skill == P_JUYO && P_SKILL(skill) == P_MASTER && !tech_known(T_SOFTEN_TARGET)) {
+	    	learntech(T_SOFTEN_TARGET, FROMOUTSIDE, 1);
+	    	You("learn how to perform soften target!");
+	}
+	if (skill == P_VAAPAD && P_SKILL(skill) == P_MASTER && !tech_known(T_PROTECT_WEAPON)) {
+	    	learntech(T_PROTECT_WEAPON, FROMOUTSIDE, 1);
+	    	You("learn how to perform protect weapon!");
+	}
+	if (skill == P_SHIEN && P_SKILL(skill) == P_MASTER && !tech_known(T_POWERFUL_AURA)) {
+	    	learntech(T_POWERFUL_AURA, FROMOUTSIDE, 1);
+	    	You("learn how to perform powerful aura!");
+	}
+
+	if (skill == P_NIMAN && P_SKILL(skill) == P_EXPERT && P_SKILL(P_QUARTERSTAFF) >= P_EXPERT && !tech_known(T_BOOSTAFF)) {
+	    	learntech(T_BOOSTAFF, FROMOUTSIDE, 1);
+	    	You("learn how to perform boostaff!");
+	}
+	if (skill == P_QUARTERSTAFF && P_SKILL(skill) == P_EXPERT && P_SKILL(P_NIMAN) >= P_EXPERT && !tech_known(T_BOOSTAFF)) {
+	    	learntech(T_BOOSTAFF, FROMOUTSIDE, 1);
+	    	You("learn how to perform boostaff!");
+	}
+
+	if (skill == P_MAKASHI && P_SKILL(skill) == P_MASTER && P_SKILL(P_JAVELIN) >= P_MASTER && !tech_known(T_CLONE_JAVELIN)) {
+	    	learntech(T_CLONE_JAVELIN, FROMOUTSIDE, 1);
+	    	You("learn how to perform clone javelin!");
+	}
+	if (skill == P_JAVELIN && P_SKILL(skill) == P_MASTER && P_SKILL(P_MAKASHI) >= P_MASTER && !tech_known(T_CLONE_JAVELIN)) {
+	    	learntech(T_CLONE_JAVELIN, FROMOUTSIDE, 1);
+	    	You("learn how to perform clone javelin!");
+	}
+
+	if (skill == P_MACE && P_SKILL(skill) == P_EXPERT && P_SKILL(P_SHII_CHO) >= P_EXPERT && !tech_known(T_REFUGE)) {
+	    	learntech(T_REFUGE, FROMOUTSIDE, 1);
+	    	You("learn how to perform refuge!");
+	}
+	if (skill == P_SHII_CHO && P_SKILL(skill) == P_EXPERT && P_SKILL(P_MACE) >= P_EXPERT && !tech_known(T_REFUGE)) {
+	    	learntech(T_REFUGE, FROMOUTSIDE, 1);
+	    	You("learn how to perform refuge!");
+	}
+
+	if (skill == P_SORESU && P_SKILL(skill) == P_EXPERT && P_SKILL(P_MARTIAL_ARTS) >= P_MASTER && !tech_known(T_DRAINING_PUNCH)) {
+	    	learntech(T_DRAINING_PUNCH, FROMOUTSIDE, 1);
+	    	You("learn how to perform draining punch!");
+	}
+	if (skill == P_MARTIAL_ARTS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_SORESU) >= P_MASTER && !tech_known(T_DRAINING_PUNCH)) {
+	    	learntech(T_DRAINING_PUNCH, FROMOUTSIDE, 1);
+	    	You("learn how to perform draining punch!");
+	}
+	if (skill == P_SORESU && P_SKILL(skill) == P_MASTER && P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT && !tech_known(T_DRAINING_PUNCH)) {
+	    	learntech(T_DRAINING_PUNCH, FROMOUTSIDE, 1);
+	    	You("learn how to perform draining punch!");
+	}
+	if (skill == P_MARTIAL_ARTS && P_SKILL(skill) == P_MASTER && P_SKILL(P_SORESU) >= P_EXPERT && !tech_known(T_DRAINING_PUNCH)) {
+	    	learntech(T_DRAINING_PUNCH, FROMOUTSIDE, 1);
+	    	You("learn how to perform draining punch!");
+	}
+
+	if (skill == P_SORESU && P_SKILL(skill) == P_EXPERT && P_SKILL(P_BARE_HANDED_COMBAT) >= P_EXPERT && !tech_known(T_ESCROBISM)) {
+	    	learntech(T_ESCROBISM, FROMOUTSIDE, 1);
+	    	You("learn how to perform escrobism!");
+	}
+	if (skill == P_BARE_HANDED_COMBAT && P_SKILL(skill) == P_EXPERT && P_SKILL(P_SORESU) >= P_EXPERT && !tech_known(T_ESCROBISM)) {
+	    	learntech(T_ESCROBISM, FROMOUTSIDE, 1);
+	    	You("learn how to perform escrobism!");
+	}
+
+	if (skill == P_ATARU && P_SKILL(skill) == P_SKILLED && P_SKILL(P_SCIMITAR) >= P_SKILLED && !tech_known(T_PIRATE_BROTHERING)) {
+	    	learntech(T_PIRATE_BROTHERING, FROMOUTSIDE, 1);
+	    	You("learn how to perform pirate brothering!");
+	}
+	if (skill == P_SCIMITAR && P_SKILL(skill) == P_SKILLED && P_SKILL(P_ATARU) >= P_SKILLED && !tech_known(T_PIRATE_BROTHERING)) {
+	    	learntech(T_PIRATE_BROTHERING, FROMOUTSIDE, 1);
+	    	You("learn how to perform pirate brothering!");
+	}
+
+	if (skill == P_DJEM_SO && P_SKILL(skill) == P_SKILLED && P_SKILL(P_CROSSBOW) >= P_EXPERT && !tech_known(T_NUTS_AND_BOLTS)) {
+	    	learntech(T_NUTS_AND_BOLTS, FROMOUTSIDE, 1);
+	    	You("learn how to perform nuts and bolts!");
+	}
+	if (skill == P_CROSSBOW && P_SKILL(skill) == P_SKILLED && P_SKILL(P_DJEM_SO) >= P_EXPERT && !tech_known(T_NUTS_AND_BOLTS)) {
+	    	learntech(T_NUTS_AND_BOLTS, FROMOUTSIDE, 1);
+	    	You("learn how to perform nuts and bolts!");
+	}
+	if (skill == P_DJEM_SO && P_SKILL(skill) == P_EXPERT && P_SKILL(P_CROSSBOW) >= P_SKILLED && !tech_known(T_NUTS_AND_BOLTS)) {
+	    	learntech(T_NUTS_AND_BOLTS, FROMOUTSIDE, 1);
+	    	You("learn how to perform nuts and bolts!");
+	}
+	if (skill == P_CROSSBOW && P_SKILL(skill) == P_EXPERT && P_SKILL(P_DJEM_SO) >= P_SKILLED && !tech_known(T_NUTS_AND_BOLTS)) {
+	    	learntech(T_NUTS_AND_BOLTS, FROMOUTSIDE, 1);
+	    	You("learn how to perform nuts and bolts!");
+	}
+
+	if (skill == P_JUYO && P_SKILL(skill) == P_EXPERT && P_SKILL(P_POLEARMS) >= P_MASTER && !tech_known(T_DECAPABILITY)) {
+	    	learntech(T_DECAPABILITY, FROMOUTSIDE, 1);
+	    	You("learn how to perform decapability!");
+	}
+	if (skill == P_POLEARMS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_JUYO) >= P_MASTER && !tech_known(T_DECAPABILITY)) {
+	    	learntech(T_DECAPABILITY, FROMOUTSIDE, 1);
+	    	You("learn how to perform decapability!");
+	}
+	if (skill == P_JUYO && P_SKILL(skill) == P_MASTER && P_SKILL(P_POLEARMS) >= P_EXPERT && !tech_known(T_DECAPABILITY)) {
+	    	learntech(T_DECAPABILITY, FROMOUTSIDE, 1);
+	    	You("learn how to perform decapability!");
+	}
+	if (skill == P_POLEARMS && P_SKILL(skill) == P_MASTER && P_SKILL(P_JUYO) >= P_EXPERT && !tech_known(T_DECAPABILITY)) {
+	    	learntech(T_DECAPABILITY, FROMOUTSIDE, 1);
+	    	You("learn how to perform decapability!");
+	}
+
+	if (skill == P_VAAPAD && P_SKILL(skill) == P_EXPERT && P_SKILL(P_TWO_HANDED_SWORD) >= P_EXPERT && !tech_known(T_NO_HANDS_CURSE)) {
+	    	learntech(T_NO_HANDS_CURSE, FROMOUTSIDE, 1);
+	    	You("learn how to perform no-hands curse!");
+	}
+	if (skill == P_TWO_HANDED_SWORD && P_SKILL(skill) == P_EXPERT && P_SKILL(P_VAAPAD) >= P_EXPERT && !tech_known(T_NO_HANDS_CURSE)) {
+	    	learntech(T_NO_HANDS_CURSE, FROMOUTSIDE, 1);
+	    	You("learn how to perform no-hands curse!");
+	}
+
+	if (skill == P_SEXY_FLATS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_HIGH_HEELS) >= P_EXPERT && !tech_known(T_HIGH_HEELED_SNEAKERS)) {
+	    	learntech(T_HIGH_HEELED_SNEAKERS, FROMOUTSIDE, 1);
+	    	You("learn how to perform high-heeled sneakers!");
+	}
+	if (skill == P_HIGH_HEELS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_SEXY_FLATS) >= P_EXPERT && !tech_known(T_HIGH_HEELED_SNEAKERS)) {
+	    	learntech(T_HIGH_HEELED_SNEAKERS, FROMOUTSIDE, 1);
+	    	You("learn how to perform high-heeled sneakers!");
+	}
+
+	if (skill == P_MAKASHI && P_SKILL(skill) == P_EXPERT && P_SKILL(P_ATARU) >= P_EXPERT && P_SKILL(P_VAAPAD) >= P_EXPERT && !tech_known(T_FORM_CHOICE)) {
+	    	learntech(T_FORM_CHOICE, FROMOUTSIDE, 1);
+	    	You("learn how to perform form choice!");
+	}
+	if (skill == P_VAAPAD && P_SKILL(skill) == P_EXPERT && P_SKILL(P_MAKASHI) >= P_EXPERT && P_SKILL(P_ATARU) >= P_EXPERT && !tech_known(T_FORM_CHOICE)) {
+	    	learntech(T_FORM_CHOICE, FROMOUTSIDE, 1);
+	    	You("learn how to perform form choice!");
+	}
+	if (skill == P_ATARU && P_SKILL(skill) == P_EXPERT && P_SKILL(P_VAAPAD) >= P_EXPERT && P_SKILL(P_MAKASHI) >= P_EXPERT && !tech_known(T_FORM_CHOICE)) {
+	    	learntech(T_FORM_CHOICE, FROMOUTSIDE, 1);
+	    	You("learn how to perform form choice!");
+	}
+
+	if (skill == P_WEDI && P_SKILL(skill) == P_EXPERT && !tech_known(T_STAR_DIGGING)) {
+	    	learntech(T_STAR_DIGGING, FROMOUTSIDE, 1);
+	    	You("learn how to perform star digging!");
+	}
+	if (skill == P_WEDI && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_STARWARS_FRIENDS)) {
+	    	learntech(T_STARWARS_FRIENDS, FROMOUTSIDE, 1);
+	    	You("learn how to perform starwars friends!");
+	}
+	if (skill == P_WEDI && P_SKILL(skill) == P_MASTER && (Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR)) && !tech_known(T_STARWARS_FRIENDS)) {
+	    	learntech(T_STARWARS_FRIENDS, FROMOUTSIDE, 1);
+	    	You("learn how to perform starwars friends!");
+	}
+
+	if (skill == P_WEDI && P_SKILL(skill) == P_EXPERT && P_SKILL(P_PICK_AXE) >= P_EXPERT && !tech_known(T_USE_THE_FORCE_LUKE)) {
+	    	learntech(T_USE_THE_FORCE_LUKE, FROMOUTSIDE, 1);
+	    	You("learn how to perform use the force luke!");
+	}
+	if (skill == P_PICK_AXE && P_SKILL(skill) == P_EXPERT && P_SKILL(P_WEDI) >= P_EXPERT && !tech_known(T_USE_THE_FORCE_LUKE)) {
+	    	learntech(T_USE_THE_FORCE_LUKE, FROMOUTSIDE, 1);
+	    	You("learn how to perform use the force luke!");
+	}
+
 	if (Role_if(PM_BINDER) || Role_if(PM_ANACHRONOUNBINDER)) {
 
 		if (P_SKILL(skill) == P_SKILLED) switch (skill) {
@@ -4811,17 +4999,17 @@ const struct def_skill *class_skill;
 
 rerollone:
 		skilltochange = P_FIRST_H_TO_H + rn2((P_LAST_H_TO_H - P_FIRST_H_TO_H) + 1);
-		if (skilltochange >= P_SHII_CHO && skilltochange <= P_VAAPAD && rn2(10)) goto rerollone;
+		if (skilltochange >= P_SHII_CHO && skilltochange <= P_WEDI && rn2(10)) goto rerollone;
 		unrestrict_weapon_skill(skilltochange);
 		P_MAX_SKILL(skilltochange) = P_BASIC;
 rerolltwo:
 		skilltochange = P_FIRST_H_TO_H + rn2((P_LAST_H_TO_H - P_FIRST_H_TO_H) + 1);
-		if (skilltochange >= P_SHII_CHO && skilltochange <= P_VAAPAD && rn2(10)) goto rerolltwo;
+		if (skilltochange >= P_SHII_CHO && skilltochange <= P_WEDI && rn2(10)) goto rerolltwo;
 		unrestrict_weapon_skill(skilltochange);
 		P_MAX_SKILL(skilltochange) = P_SKILLED;
 rerollthree:
 		skilltochange = P_FIRST_H_TO_H + rn2((P_LAST_H_TO_H - P_FIRST_H_TO_H) + 1);
-		if (skilltochange >= P_SHII_CHO && skilltochange <= P_VAAPAD && rn2(10)) goto rerollthree;
+		if (skilltochange >= P_SHII_CHO && skilltochange <= P_WEDI && rn2(10)) goto rerollthree;
 		unrestrict_weapon_skill(skilltochange);
 		P_MAX_SKILL(skilltochange) = P_EXPERT;
 
@@ -5602,15 +5790,111 @@ rerollthree:
 	if (P_SKILL(P_HIGH_HEELS) >= P_MASTER && P_SKILL(P_PETKEEPING) >= P_EXPERT && !tech_known(T_SUMMON_SHOE)) {
 	    	learntech(T_SUMMON_SHOE, FROMOUTSIDE, 1);
 	}
-	if (P_SKILL(P_SEXY_FLATS) == P_EXPERT && !tech_known(T_KICK_IN_THE_NUTS)) {
+	if (P_SKILL(P_SEXY_FLATS) >= P_EXPERT && !tech_known(T_KICK_IN_THE_NUTS)) {
 	    	learntech(T_KICK_IN_THE_NUTS, FROMOUTSIDE, 1);
 	}
-	if (P_SKILL(P_SEXY_FLATS) == P_MASTER && !tech_known(T_DISARMING_KICK)) {
+	if (P_SKILL(P_SEXY_FLATS) >= P_MASTER && !tech_known(T_DISARMING_KICK)) {
 	    	learntech(T_DISARMING_KICK, FROMOUTSIDE, 1);
 	}
-	if (P_SKILL(P_SEXY_FLATS) == P_GRAND_MASTER && !tech_known(T_INLAY_WARFARE)) {
+	if (P_SKILL(P_SEXY_FLATS) >= P_GRAND_MASTER && !tech_known(T_INLAY_WARFARE)) {
 	    	learntech(T_INLAY_WARFARE, FROMOUTSIDE, 1);
 	}
+
+	if (P_SKILL(P_SHII_CHO) >= P_EXPERT && !tech_known(T_STEADY_HAND)) {
+	    	learntech(T_STEADY_HAND, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_MAKASHI) >= P_MASTER && !tech_known(T_FORCE_FILLING)) {
+	    	learntech(T_FORCE_FILLING, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SORESU) >= P_GRAND_MASTER && !tech_known(T_JEDI_TAILORING)) {
+	    	learntech(T_JEDI_TAILORING, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_ATARU) >= P_SKILLED && !tech_known(T_INTRINSIC_SACRIFICE)) {
+	    	learntech(T_INTRINSIC_SACRIFICE, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_DJEM_SO) >= P_MASTER && !tech_known(T_BEAMSWORD)) {
+	    	learntech(T_BEAMSWORD, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_NIMAN) >= P_GRAND_MASTER && !tech_known(T_ENERGY_TRANSFER)) {
+	    	learntech(T_ENERGY_TRANSFER, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_JUYO) >= P_MASTER && !tech_known(T_SOFTEN_TARGET)) {
+	    	learntech(T_SOFTEN_TARGET, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_VAAPAD) >= P_MASTER && !tech_known(T_PROTECT_WEAPON)) {
+	    	learntech(T_PROTECT_WEAPON, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_SHIEN) >= P_MASTER && !tech_known(T_POWERFUL_AURA)) {
+	    	learntech(T_POWERFUL_AURA, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_NIMAN) >= P_EXPERT && P_SKILL(P_QUARTERSTAFF) >= P_EXPERT && !tech_known(T_BOOSTAFF)) {
+	    	learntech(T_BOOSTAFF, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_MAKASHI) >= P_MASTER && P_SKILL(P_JAVELIN) >= P_MASTER && !tech_known(T_CLONE_JAVELIN)) {
+	    	learntech(T_CLONE_JAVELIN, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_MACE) >= P_EXPERT && P_SKILL(P_SHII_CHO) >= P_EXPERT && !tech_known(T_REFUGE)) {
+	    	learntech(T_REFUGE, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_SORESU) >= P_EXPERT && P_SKILL(P_MARTIAL_ARTS) >= P_MASTER && !tech_known(T_DRAINING_PUNCH)) {
+	    	learntech(T_DRAINING_PUNCH, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT && P_SKILL(P_SORESU) >= P_MASTER && !tech_known(T_DRAINING_PUNCH)) {
+	    	learntech(T_DRAINING_PUNCH, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_SORESU) >= P_EXPERT && P_SKILL(P_BARE_HANDED_COMBAT) >= P_EXPERT && !tech_known(T_ESCROBISM)) {
+	    	learntech(T_ESCROBISM, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_ATARU) >= P_SKILLED && P_SKILL(P_SCIMITAR) >= P_SKILLED && !tech_known(T_PIRATE_BROTHERING)) {
+	    	learntech(T_PIRATE_BROTHERING, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_DJEM_SO) >= P_SKILLED && P_SKILL(P_CROSSBOW) >= P_EXPERT && !tech_known(T_NUTS_AND_BOLTS)) {
+	    	learntech(T_NUTS_AND_BOLTS, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CROSSBOW) >= P_SKILLED && P_SKILL(P_DJEM_SO) >= P_EXPERT && !tech_known(T_NUTS_AND_BOLTS)) {
+	    	learntech(T_NUTS_AND_BOLTS, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_JUYO) >= P_EXPERT && P_SKILL(P_POLEARMS) >= P_MASTER && !tech_known(T_DECAPABILITY)) {
+	    	learntech(T_DECAPABILITY, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_POLEARMS) >= P_EXPERT && P_SKILL(P_JUYO) >= P_MASTER && !tech_known(T_DECAPABILITY)) {
+	    	learntech(T_DECAPABILITY, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_VAAPAD) >= P_EXPERT && P_SKILL(P_TWO_HANDED_SWORD) >= P_EXPERT && !tech_known(T_NO_HANDS_CURSE)) {
+	    	learntech(T_NO_HANDS_CURSE, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_SEXY_FLATS) >= P_EXPERT && P_SKILL(P_HIGH_HEELS) >= P_EXPERT && !tech_known(T_HIGH_HEELED_SNEAKERS)) {
+	    	learntech(T_HIGH_HEELED_SNEAKERS, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_MAKASHI) >= P_EXPERT && P_SKILL(P_ATARU) >= P_EXPERT && P_SKILL(P_VAAPAD) >= P_EXPERT && !tech_known(T_FORM_CHOICE)) {
+	    	learntech(T_FORM_CHOICE, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_WEDI) >= P_EXPERT && !tech_known(T_STAR_DIGGING)) {
+	    	learntech(T_STAR_DIGGING, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_WEDI) >= P_GRAND_MASTER && !tech_known(T_STARWARS_FRIENDS)) {
+	    	learntech(T_STARWARS_FRIENDS, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_WEDI) >= P_MASTER && (Role_if(PM_SPACEWARS_FIGHTER) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_GANG_SCHOLAR)) && !tech_known(T_STARWARS_FRIENDS)) {
+	    	learntech(T_STARWARS_FRIENDS, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_WEDI) >= P_EXPERT && P_SKILL(P_PICK_AXE) >= P_EXPERT && !tech_known(T_USE_THE_FORCE_LUKE)) {
+	    	learntech(T_USE_THE_FORCE_LUKE, FROMOUTSIDE, 1);
+	}
+
 }
 
 void

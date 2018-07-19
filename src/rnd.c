@@ -2889,7 +2889,7 @@ randomgoodskill()
 skillreroll:
 	result = rnd(P_NUM_SKILLS);
 
-	if (result >= P_SHII_CHO && result <= P_VAAPAD && rn2(10)) goto skillreroll;
+	if (result >= P_SHII_CHO && result <= P_WEDI && rn2(10)) goto skillreroll;
 
 	return result;
 }
@@ -2901,7 +2901,7 @@ randomgoodcombatskill()
 
 combatreroll:
 	result = P_BARE_HANDED_COMBAT + rn2(( P_RIDING - P_BARE_HANDED_COMBAT) + 1);
-	if (result >= P_SHII_CHO && result <= P_VAAPAD && rn2(10)) goto combatreroll;
+	if (result >= P_SHII_CHO && result <= P_WEDI && rn2(10)) goto combatreroll;
 
 	return result;
 }

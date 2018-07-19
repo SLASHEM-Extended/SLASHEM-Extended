@@ -58,10 +58,11 @@
 #define PN_NIMAN		(-38)
 #define PN_JUYO		(-39)
 #define PN_VAAPAD		(-40)
-#define PN_MARTIAL_ARTS		(-41)
-#define PN_RIDING		(-42)
-#define PN_TWO_WEAPONS		(-43)
-#define PN_LIGHTSABER		(-44)
+#define PN_WEDI		(-41)
+#define PN_MARTIAL_ARTS		(-42)
+#define PN_RIDING		(-43)
+#define PN_TWO_WEAPONS		(-44)
+#define PN_LIGHTSABER		(-45)
 
 #ifndef OVLB
 
@@ -95,7 +96,7 @@ STATIC_OVL NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 	PN_MISSILE_WEAPONS,	PN_TECHNIQUES,	PN_IMPLANTS,	PN_SEXY_FLATS,
 	PN_SHII_CHO,	PN_MAKASHI,	PN_SORESU,
 	PN_ATARU,	PN_SHIEN,	PN_DJEM_SO,
-	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,
+	PN_NIMAN,	PN_JUYO,	PN_VAAPAD,	PN_WEDI,
 	PN_MARTIAL_ARTS, 
 	PN_TWO_WEAPONS,
 	PN_RIDING,
@@ -143,6 +144,7 @@ STATIC_OVL NEARDATA const char * const odd_skill_names[] = {
     "form VI (Niman)",
     "form VII (Juyo)",
     "form VII (Vaapad)",
+    "form VIII (Wedi)",
     "martial arts",
     "riding",
     "two-weapon combat",

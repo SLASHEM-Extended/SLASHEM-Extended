@@ -3353,6 +3353,9 @@ peffects(otmp)
 			else if (P_ADVANCE(P_VAAPAD) && !(P_RESTRICTED(P_VAAPAD)) && yn("Do you want to train the form VII (Vaapad) skill?")=='y') {
 				P_ADVANCE(P_VAAPAD) *= 2;
 				acquiredskill = 1; }
+			else if (P_ADVANCE(P_WEDI) && !(P_RESTRICTED(P_WEDI)) && yn("Do you want to train the form VIII (Wedi) skill?")=='y') {
+				P_ADVANCE(P_WEDI) *= 2;
+				acquiredskill = 1; }
 			else if (yn("Do you want to train no skill at all?")=='y') {
 				acquiredskill = 1;
 			}
