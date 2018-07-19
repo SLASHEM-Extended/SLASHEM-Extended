@@ -127,7 +127,7 @@ moveloop()
 	if (getmonth() == 5) {
 #ifdef PUBLIC_SERVER
 		if (flags.uberlostsoul || flags.lostsoul || flags.gmmode || flags.supergmmode || flags.wonderland) {
-			pline("Junethack is running - but you're using a playing mode that is incompatible with the tournament! The following modes are prohibited: lostsoul, uberlostsoul, gmmode and wonderland. If you want your games to count, quit this one now, disable all the forbidden options, and start a new game. Please refer to junethack.net for more information. Good luck!");
+			pline("WARNING (PLEASE READ): Junethack is running - but you're using a playing mode that is incompatible with the tournament! The following modes are prohibited: lostsoul, uberlostsoul, gmmode and wonderland. If you want your games to count, quit this one now, disable all the forbidden options, and start a new game. Please refer to junethack.net for more information. Good luck!");
 		} else {
 			pline("Junethack is running! Please refer to junethack.net for more information. Give it your best shot, and try to score as many trophies as you can! Good luck!");
 		}
@@ -8731,7 +8731,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (new_game) pline("Welcome to SLASH'EM Extended! For game discussion, bug reports etc. join the #slashemextended or #em.slashem.me IRC channel on Freenode. :-) --Amy");
 #else
 	if (new_game) pline("You are playing SLASH'EM Extended on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Freenode. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!");
-
+	if (new_game) pline("Attention: This is a bleeding-edge beta version of SLASH'EM Extended that may have bugs and incomplete features. On the whole, it should be playable, but it will probably be replaced with a more polished version soon, and that will break saves. You can play an old version by selecting the 'SLASH'EM Extended - old version' option on the launch menu. If your savegame seems to be gone completely, get on the IRC and pester Amy, she can probably bring it back.");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */
