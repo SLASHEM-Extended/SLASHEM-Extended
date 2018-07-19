@@ -1376,6 +1376,215 @@ register struct monst *mtmp;
 	return FALSE;
 }
 
+void
+stardigging()
+{
+	struct rm *room;
+	struct monst *mtmp;
+        register struct obj *otmp, *next_obj;
+	int zx, zy, digdepth;
+	boolean shopdoor, shopwall, maze_dig;
+
+	int diggingiteration = 0;
+
+nextiteration:
+
+	switch (diggingiteration) {
+
+		case 0:
+			u.dx = -1;
+			u.dy = 0;
+			break;
+		case 1:
+			u.dx = 1;
+			u.dy = -1;
+			break;
+		case 2:
+			u.dx = 1;
+			u.dy = 0;
+			break;
+		case 3:
+			u.dx = 1;
+			u.dy = 1;
+			break;
+		case 4:
+			u.dx = 0;
+			u.dy = 1;
+			break;
+		case 5:
+			u.dx = -1;
+			u.dy = 1;
+			break;
+		case 6:
+			u.dx = -1;
+			u.dy = -1;
+			break;
+		case 7:
+			u.dx = 0;
+			u.dy = -1;
+			break;
+
+	}
+
+	/* normal case: digging across the level */
+	shopdoor = shopwall = FALSE;
+	maze_dig = level.flags.is_maze_lev && !Is_earthlevel(&u.uz);
+	zx = u.ux + u.dx;
+	zy = u.uy + u.dy;
+	digdepth = rn1(18, 8);
+	tmp_at(DISP_BEAM, cmap_to_glyph(S_digbeam));
+	while (--digdepth >= 0) {
+	    if (!isok(zx,zy)) break;
+	    room = &levl[zx][zy];
+	    tmp_at(zx,zy);
+	    delay_output();	/* wait a little bit */
+
+            /* WAC check for monster, boulder */
+            if ((mtmp = m_at(zx, zy)) != 0) {
+                if (made_of_rock(mtmp->data)) {
+                    You("gouge a hole in %s!", mon_nam(mtmp));
+                    mtmp->mhp /= 2;
+                    if (mtmp->mhp < 1) mtmp->mhp = 1;
+		    setmangry(mtmp);
+                } else pline("%s is unaffected!", Monnam(mtmp));
+            }
+            for(otmp = level.objects[zx][zy]; otmp; otmp = next_obj) {
+                next_obj = otmp->nexthere;
+		/* vaporize boulders */
+                if (otmp->otyp == BOULDER) {
+		    delobj(otmp);
+		    /* A little Sokoban guilt... */
+		    if (In_sokoban(&u.uz))
+			{change_luck(-1);
+			pline("You cheater!");
+			if (isevilvariant) u.ugangr++;
+			}
+		    unblock_point(zx, zy);
+		    newsym(zx, zy);
+		    pline_The("boulder is vaporized!");
+		}
+		break;
+            }
+
+	    if (closed_door(zx, zy) || room->typ == SDOOR) {
+		/* ALI - Artifact doors */
+		if (artifact_door(zx, zy)) {
+		    if (cansee(zx, zy))
+			pline_The("door glows then fades.");
+		    break;
+		}
+		if (*in_rooms(zx,zy,SHOPBASE)) {
+		    add_damage(zx, zy, 400L);
+		    shopdoor = TRUE;
+		}
+		if (room->typ == SDOOR)
+		    room->typ = DOOR;
+		else if (cansee(zx, zy))
+		    pline_The("door is razed!");
+		watch_dig((struct monst *)0, zx, zy, TRUE);
+		room->doormask = D_NODOOR;
+		unblock_point(zx,zy); /* vision */
+		digdepth -= 2;
+		if (issoviet && maze_dig) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
+		if (issoviet && maze_dig) break;
+	    } else if (maze_dig) {
+		if (IS_WATERTUNNEL(room->typ)) {
+			room->typ = MOAT;
+			unblock_point(zx,zy); /* vision */
+			digdepth -= 2; /* fix stupidity --Amy */
+			if (issoviet) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
+			if (issoviet) break;
+
+		} if (IS_WALL(room->typ) && !(IS_FARMLAND(room->typ)) && !(IS_MOUNTAIN(room->typ)) && !(IS_GRAVEWALL(room->typ)) ) {
+		    if (!(room->wall_info & W_NONDIGGABLE)) {
+			if (*in_rooms(zx,zy,SHOPBASE)) {
+			    add_damage(zx, zy, 200L);
+			    shopwall = TRUE;
+			}
+			room->typ = /*ROOM*/CORR;
+			unblock_point(zx,zy); /* vision */
+			if (!(levl[zx][zy].wall_info & W_HARDGROWTH)) levl[zx][zy].wall_info |= W_EASYGROWTH;
+			digdepth -= 2; /* fix stupidity --Amy */
+			if (issoviet) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
+			if (issoviet) break;
+		    } else if (!Blind) {
+			pline_The("wall glows then fades.");
+			break;
+		    }
+		} else if (IS_TREE(room->typ)) { /* check trees before stone */
+		    if (!(room->wall_info & W_NONDIGGABLE)) {
+			room->typ = ROOM;
+			unblock_point(zx,zy); /* vision */
+			if (!(levl[zx][zy].wall_info & W_HARDGROWTH)) levl[zx][zy].wall_info |= W_EASYGROWTH;
+			digdepth -= 2; /* fix stupidity --Amy */
+			if (issoviet) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
+			if (issoviet) break;
+		    } else if (!Blind) {
+			pline_The("tree shudders but is unharmed.");
+			break;
+		    }
+		} else if (room->typ == STONE || room->typ == SCORR) {
+		    if (!(room->wall_info & W_NONDIGGABLE)) {
+			room->typ = CORR;
+			unblock_point(zx,zy); /* vision */
+			if (!(levl[zx][zy].wall_info & W_HARDGROWTH)) levl[zx][zy].wall_info |= W_EASYGROWTH;
+			digdepth--; /* fix stupidity --Amy */
+		/* In Soviet Russia, digging has to be done one block at a time. Faster digging methods are capitalistic
+		 * and evil, so they're not allowed. I wonder how long until they decide to make mazes undiggable... --Amy */
+			if (issoviet) pline("Vy ne mozhete kopat'! Poskol'ku Sovetskiy Pyat' Lo nenavidit vashi kishki!");
+			if (issoviet) break;
+		    } else if (!Blind) {
+			pline_The("rock glows then fades.");
+			break;
+		    }
+		}
+	    } else if (IS_ROCK(room->typ) || IS_WATERTUNNEL(room->typ)) {
+		if (!may_dig(zx,zy)) break;
+		if (IS_WALL(room->typ) || room->typ == SDOOR) {
+		    if (*in_rooms(zx,zy,SHOPBASE)) {
+			add_damage(zx, zy, 200L);
+			shopwall = TRUE;
+		    }
+		    watch_dig((struct monst *)0, zx, zy, TRUE);
+		    if (level.flags.is_cavernous_lev && !in_town(zx, zy)) {
+			room->typ = CORR;
+		    } else if (IS_WATERTUNNEL(room->typ)) {
+			room->typ = MOAT;
+		    } else if (IS_DIGGABLEWALL(room->typ)) {
+			room->typ = CORR;
+		    } else {
+			room->typ = DOOR;
+			room->doormask = D_NODOOR;
+		    }
+		    digdepth -= 2;
+		} else if (IS_TREE(room->typ)) {
+		    room->typ = ROOM;
+		    digdepth -= 2;
+		} else if (IS_WATERTUNNEL(room->typ)) {
+		    room->typ = MOAT;
+		    digdepth -= 2;
+		} else {	/* IS_ROCK but not IS_WALL or SDOOR */
+		    room->typ = CORR;
+		    digdepth--;
+		}
+		unblock_point(zx,zy); /* vision */
+		if (!(levl[zx][zy].wall_info & W_HARDGROWTH)) levl[zx][zy].wall_info |= W_EASYGROWTH;
+	    }
+	    zx += u.dx;
+	    zy += u.dy;
+	} /* while */
+	tmp_at(DISP_END,0);	/* closing call */
+	if (shopdoor || shopwall)
+	    pay_for_damage(shopdoor ? "destroy" : "dig into", FALSE);
+
+	diggingiteration++;
+
+	if (diggingiteration < 8) goto nextiteration;
+
+	return;
+
+}
+
 #endif /* OVL0 */
 #ifdef OVL3
 

@@ -331,6 +331,7 @@ E int use_pick_axe2(struct obj *);
 E boolean mdig_tunnel(struct monst *);
 E void watch_dig(struct monst *,XCHAR_P,XCHAR_P,BOOLEAN_P);
 E void zap_dig(BOOLEAN_P);
+E void stardigging(void);
 E struct obj *bury_an_obj(struct obj *);
 E void bury_objs(int,int);
 E void unearth_objs(int,int);
@@ -2599,7 +2600,7 @@ E int disarm_landmine(struct trap *);
 E int disarm_squeaky_board(struct trap *);
 E int disarm_shooting_trap(struct trap *, int);
 E void techcapincrease(int);
-
+E int get_tech_no(int);
 
 /* ### teleport.c ### */
 

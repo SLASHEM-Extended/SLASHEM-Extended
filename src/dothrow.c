@@ -420,6 +420,48 @@ int thrown;
 		return 1;
 
 	}
+
+	if (tech_inuse(T_BEAMSWORD) && objects[obj->otyp].oc_skill == P_LIGHTSABER && obj->lamplit ) {
+		struct obj *pseudo;
+		pseudo = mksobj(SPE_BLANK_PAPER, FALSE, 2);
+		if (!pseudo) goto bladeangerdone;
+		if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_BLANK_PAPER; /* minimalist fix */
+		pseudo->blessed = pseudo->cursed = 0;
+		pseudo->quan = 20L;			/* do not let useup get it */
+		pseudo->spe = obj->spe;
+
+		/* we have to clone the entire remaining function because of eternal bugs...
+		 * defining pseudo in the function leads to obfree throwing an error if you didn't use blade anger,
+		 * and pseudo isn't used in any other way (yet), so let's do it like this --Amy */
+
+		wep_mask = obj->owornmask;
+		m_shot.o = obj->otyp;
+		m_shot.n = multishot;
+		for (m_shot.i = 1; m_shot.i <= m_shot.n; m_shot.i++) {
+		    twoweap = u.twoweap;
+		    /* split this object off from its slot if necessary */
+		    if (obj->quan > 1L) {
+			otmp = splitobj(obj, 1L);
+		    } else {
+			otmp = obj;
+			if (otmp->owornmask)
+			    remove_worn_item(otmp, FALSE);
+		    }
+		    freeinv(otmp);
+		    throwit(otmp, wep_mask, twoweap, thrown);
+		}
+		m_shot.n = m_shot.i = 0;
+		m_shot.o = STRANGE_OBJECT;
+		m_shot.s = FALSE;
+
+		/* now do beamsword damage (it usually has a higher range than the thrown lightsaber) */
+		weffects(pseudo);
+
+		if (pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+		return 1;
+
+	}
+
 bladeangerdone:
 
 	wep_mask = obj->owornmask;
@@ -1750,6 +1792,8 @@ int thrown;
 	else if (ACURR(A_DEX) < 6) tmp -= 2;
 	else if (ACURR(A_DEX) < 8) tmp -= 1;
 	else if (ACURR(A_DEX) >= 14) tmp += (ACURR(A_DEX) - 14);
+
+	if (tech_inuse(T_STEADY_HAND)) tmp += 5;
 
 	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) tmp += 5;
 

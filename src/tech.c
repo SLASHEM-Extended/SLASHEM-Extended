@@ -12,7 +12,6 @@
 static boolean gettech(int *);
 static boolean dotechmenu(int, int *);
 static void doblitzlist(void);
-static int get_tech_no(int);
 static int techeffects(int);
 static void hurtmon(struct monst *,int);
 static int mon_to_zombie(int);
@@ -30,6 +29,7 @@ static int blitz_dash(void);
 static int blitz_power_surge(void);
 static int blitz_spirit_bomb(void);
 static int blitz_combo_strike(void);
+static int blitz_draining_punch(void);
 static void maybe_tameX(struct monst *);
 
 static NEARDATA schar delay;            /* moves left for tinker/energy draw */
@@ -1469,6 +1469,7 @@ int tech;
 	int i;
 
 	i = get_tech_no(tech);
+
 	if (tech_list[i].t_inuse) {
 	    switch (tech_list[i].t_id) {
 		case T_RAGE:
@@ -1815,7 +1816,7 @@ dump_techniques()
 } /* dump_techniques */
 #endif
 
-static int
+int
 get_tech_no(tech)
 int tech;
 {
@@ -2411,7 +2412,7 @@ dotech()
 			break;
 
 		case T_BOOSTAFF:
-			pline("Using this technique requires you to wield a staff, and will try to enchant it. Can also uncurse a cursed staff.");
+			pline("Using this technique requires you to wield a staff, and will try to enchant it (up to a maximum of +8, although the chance of enchanting it decreases with higher enchantment). Can also uncurse a cursed staff.");
 			break;
 
 		case T_CLONE_JAVELIN:
@@ -2940,7 +2941,7 @@ secureidchoice:
 		mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 		if (!mtmp) {
 			You("attack...nothing!");
-			t_timeout = rn1(1000,500);
+			t_timeout = rnz(1500);
 		} else {
 		    int oldhp = mtmp->mhp;
 
@@ -2959,7 +2960,7 @@ secureidchoice:
 				tmp = mtmp->mhp / 2;
 			    }
 			    tmp += techlevX(tech_no);
-			    t_timeout = rn1(1000,500);
+			    t_timeout = rnz(1500);
 			    hurtmon(mtmp, tmp);
 			}
 		    }
@@ -4172,7 +4173,7 @@ chargingchoice:
 		}
 		swaptech();
 	      t_timeout = rnz(500);
-		return(0);
+		break;
 
 	    case T_RESET_TECHNIQUE:
 		{
@@ -4199,7 +4200,7 @@ resetretrying:
 
 		}
 resettechdone:
-		return(0);
+		break;
 
 	    case T_SILENT_OCEAN:
 
@@ -5136,6 +5137,9 @@ incarnationfinish:
 			num = 100 + (techlevX(tech_no) * 3);
 		    	techt_inuse(tech_no) = num + 1;
 			pline("Your shuriken can fire beams now!");
+
+			aborttech(T_BEAMSWORD);
+
 			t_timeout = rnz(3000);
 			break;
 
@@ -5229,12 +5233,12 @@ revid_end:
 		if (PlayerCannotUseSkills) {
 			pline("Unfortunately, no one seems to follow any directives you're giving.");
 			t_timeout = rnz(200);
-			return(0);
+			break;
 		}
 		if (P_SKILL(P_PETKEEPING) < P_SKILLED) {
 			pline("Unfortunately, no one seems to follow any directives you're giving.");
 			t_timeout = rnz(200);
-			return(0);
+			break;
 		}
 
 		if (P_SKILL(P_PETKEEPING) >= P_SKILLED) {
@@ -5738,118 +5742,428 @@ revid_end:
 	      break;
 
 		case T_STEADY_HAND:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+			num = 100 + (techlevX(tech_no) * 5);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your %s become steady.", makeplural(body_part(HAND)));
+
+			t_timeout = rnz(2000);
 			break;
 
 		case T_FORCE_FILLING:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+
+			You_feel("full of mystic power!");
+
+			if (!rn2(20)) u.uen += (400 + rnz(techlevX(tech_no)));
+			else if (!rn2(5)) u.uen += (d(6,8) + rnz(techlevX(tech_no)));
+			else u.uen += (d(5,6) + rnz(techlevX(tech_no)));
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+
+			t_timeout = rnz(1000);
 			break;
 
 		case T_JEDI_TAILORING:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+
+			{
+
+			struct obj *uroub;
+
+			uroub = mksobj(rnd_class(ROBE, ROBE_OF_WEAKNESS), TRUE, FALSE);
+
+			if (uroub) {
+				dropy(uroub);
+				stackobj(uroub);
+				pline("A robe appeared at your %s!", makeplural(body_part(FOOT)));
+			} else pline("For some unknown reason, the tailoring attempt failed.");
+
+			}
+
+			t_timeout = rnz(7500);
 			break;
 
 		case T_INTRINSIC_SACRIFICE:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+
+			if (!(uwep && is_lightsaber(uwep) && u.twoweap && uswapwep && is_lightsaber(uswapwep))) {
+				pline("That only works if you are dual-wielding lightsabers!");
+				break;
+			}
+
+			attrcurse();
+
+			if (uwep && is_lightsaber(uwep)) uwep->age += 1000;
+			if (uswapwep && is_lightsaber(uswapwep)) uswapwep->age += 1000;
+
+			pline("Lightsaber energy replenished. Did it cost you an important intrinsic?");
+
+			t_timeout = rnz(10000);
 			break;
 
 		case T_BEAMSWORD:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+			num = 100 + (techlevX(tech_no) * 3);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your lightsaber can fire beams now!");
+
+			aborttech(T_BLADE_ANGER);
+
+			t_timeout = rnz(2500);
 			break;
 
 		case T_ENERGY_TRANSFER:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+			num = 100 + (techlevX(tech_no) * 3);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("For a while, casting spells will recharge your lightsaber (but it must be lit).");
+
+			t_timeout = rnz(5000);
 			break;
 
 		case T_SOFTEN_TARGET:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+
+			if (u.uswallow) {
+		    		pline("Softening an engulfer unfortunately doesn't work.");
+		    		return(0);
+			}
+
+		    	if (!getdir((char *)0)) return(0);
+			if (!u.dx && !u.dy) {
+				/* Hopefully a mistake ;B */
+				pline("You can't soften yourself!");
+				return(0);
+			}
+			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+			if (!mtmp || !canspotmon(mtmp)) {
+				if (memory_is_invisible(u.ux + u.dx, u.uy + u.dy))
+					pline("Can't soften what you can't see!");
+				else
+					You("don't see anything there!");
+				return (0);
+			}
+
+			{
+				int xtmp = d(2,6);
+				pline("%s suddenly seems weaker!", Monnam(mtmp));
+				mtmp->mhpmax -= xtmp;
+#ifdef SHOW_DMG
+				if (xtmp < mtmp->mhp) showdmg(xtmp);
+#endif
+				if ((mtmp->mhp -= xtmp) <= 0 || !mtmp->m_lev) {
+					pline("%s dies!", Monnam(mtmp));
+					xkilled(mtmp,0);
+				} else
+					mtmp->m_lev--;
+			}
+
+			t_timeout = rnz(10000);
 			break;
 
 		case T_PROTECT_WEAPON:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+			if (!uwep || !bimanual(uwep)) {
+				pline("This requires you to wield a bimanual weapon, which you currently don't.");
+				break;
+			}
+			uwep->oerodeproof = 1;
+			uwep->rknown = 1;
+			pline("Alright - your weapon is erosionproof now.");
+
+			t_timeout = rnz(5000);
 			break;
 
 		case T_POWERFUL_AURA:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+			num = 40 + (techlevX(tech_no) * 3);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("A powerful aura surrounds you!");
+
+			t_timeout = rnz(3000);
 			break;
 
 		case T_BOOSTAFF:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+			if (!uwep || weapon_type(uwep) != P_QUARTERSTAFF) {
+				pline("How are you going to boost your staff if you don't wield it?");
+				break;
+			}
+			pline("Your staff is surrounded by a shimmering aura.");
+			uncurse(uwep);
+
+			if (uwep && uwep->spe < 2) {
+				uwep->spe++;
+			} else if (uwep && uwep->spe < 8 && !rn2(uwep->spe) ) {
+				uwep->spe++;
+			}
+
+			t_timeout = rnz(3000);
 			break;
 
 		case T_CLONE_JAVELIN:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+			if (!uwep || weapon_type(uwep) != P_JAVELIN) {
+				pline("This requires you to actually wield the javelin that you want to clone.");
+				break;
+			}
+			uwep->quan++;
+			pline("A new javelin is created out of thin air!");
+			t_timeout = rnz(7000);
 			break;
 
 		case T_REFUGE:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+			num = 20 + techlevX(tech_no);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Refuge activated!");
+
+			t_timeout = rnz(2400);
 			break;
 
 		case T_DRAINING_PUNCH:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+
+	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
+			You("can't do this while wielding a weapon!");
+	    		return(0);
+	    	} else if (uarms) {
+			You("can't do this while holding a shield!");
+	    		return(0);
+	    	}
+		if (!getdir((char *)0)) return(0);
+		if (!u.dx && !u.dy) {
+			You("flex your muscles.");
+			return(0);
+		}
+
+            	if (!blitz_draining_punch()) return(0);
+
+			t_timeout = rnz(2000);
 			break;
 
 		case T_ESCROBISM:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+
+			if (!uarm) {
+				pline("Without armor, that technique won't do anything.");
+				break;
+			}
+			if (uarm && !(uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+				pline("That technique won't work if your worn armor isn't a robe!");
+				break;
+			}
+
+			num = 200 + (techlevX(tech_no) * 10);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Escrobism started - your bare hands or lightsaber will temporarily deal extra damage while you are wearing a robe.");
+
+			t_timeout = rnz(4000);
 			break;
 
 		case T_PIRATE_BROTHERING:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+
+			if (!u.twoweap) {
+				pline("This won't work if you don't dual-wield!");
+				break;
+			}
+			if (uwep && !is_lightsaber(uwep)) {
+				pline("Your primary weapon isn't a lightsaber, and therefore this technique won't work!");
+				break;
+			}
+			if (uswapwep && weapon_type(uswapwep) != P_SCIMITAR) {
+				pline("Your secondary weapon isn't a scimitar, and therefore this technique won't work!");
+				break;
+			}
+			if (!uwep || !uswapwep) {
+				pline("At least one of your hands isn't wielding any weapon, and therefore this technique won't work!");
+				break;
+			}
+
+			num = 250 + (techlevX(tech_no) * 10);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Alright, your lightsaber loses no energy and can be recharged by hitting things with the scimitar.");
+
+			t_timeout = rnz(5000);
 			break;
 
 		case T_NUTS_AND_BOLTS:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+
+			You("make crossbow ammo and increase your satiation.");
+
+			struct obj *uammo;
+
+			uammo = mksobj(CROSSBOW_BOLT, TRUE, FALSE);
+			if (uammo) {
+				uammo->quan = rnd(20 + (2 * techlevX(tech_no)));
+				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+				uammo->owt = weight(uammo);
+				dropy(uammo);
+				stackobj(uammo);
+			}
+
+			lesshungry(200);
+
+			t_timeout = rnz(4000);
 			break;
 
 		case T_DECAPABILITY:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+			num = 50 + (techlevX(tech_no) * 3);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Polearms and lightsabers can temporarily put monsters to sleep.");
+
+			t_timeout = rnz(2500);
 			break;
 
 		case T_NO_HANDS_CURSE:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+
+			if (!uwep || !bimanual(uwep)) {
+				pline("That requires you to wield a two-handed weapon.");
+				break;
+			}
+
+			if (uwep && uwep->cursed) {
+				pline("Your weapon is already cursed, and therefore nothing happens!");
+				uwep->bknown = TRUE;
+				t_timeout = rnz(600);
+				break;
+			}
+
+			if (uwep && uwep->spe < -20) {
+				pline("Your weapon is in such a bad condition that this technique doesn't work!");
+				t_timeout = rnz(600);
+				break;
+			}
+
+			if (uwep) {
+				curse(uwep);
+				uwep->hvycurse = TRUE;
+				uwep->spe = -rne(2);
+				uwep->bknown = TRUE;
+
+				pline("Your weapon is heavily cursed, but you receive some benefits.");
+				change_luck(1);
+				adjalign(100);
+				if (u.ugangr > 0) u.ugangr--;
+				u.ublesscnt -= 500;
+				if (u.ublesscnt < 0) u.ublesscnt = 0;
+			}
+
+			t_timeout = rnz(6000);
 			break;
 
 		case T_HIGH_HEELED_SNEAKERS:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+			num = 1000 + (techlevX(tech_no) * 20);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("For a while, you can use high heels and sexy flats at the same time.");
+
+			t_timeout = rnz(5000);
 			break;
 
 		case T_FORM_CHOICE:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+
+			if (!uwep || !is_lightsaber(uwep)) {
+				pline("You can only change the form of a wielded lightsaber.");
+				break;
+			}
+
+			{
+				boolean madechoice = 0;
+				int sabertype = -1;
+
+				pline("Pick the desired lightsaber form. The prompt will loop until you actually make a choice.");
+
+				while (madechoice == 0 || sabertype < 0) {
+
+					if (yn("Do you want to switch to a one-handed lightsaber?")=='y') {
+						    madechoice = 1; sabertype = 1; }
+					else if (yn("Do you want to switch to a two-handed lightsaber?")=='y') {
+						    madechoice = 1; sabertype = 2; }
+					else if (yn("Do you want to switch to a laser swatter?")=='y') {
+						    madechoice = 1; sabertype = 3; }
+
+				}
+
+				if (sabertype == 2 && (uarms || u.twoweap)) {
+					pline("Something is blocking your second %s!", body_part(HAND));
+					break;
+				}
+
+				if (sabertype == 1) {
+					switch (rnd(6)) {
+						case 1: uwep->otyp = GREEN_LIGHTSABER; break;
+						case 2: uwep->otyp = BLUE_LIGHTSABER; break;
+						case 3: uwep->otyp = RED_LIGHTSABER; break;
+						case 4: uwep->otyp = YELLOW_LIGHTSABER; break;
+						case 5: uwep->otyp = VIOLET_LIGHTSABER; break;
+						case 6: uwep->otyp = WHITE_LIGHTSABER; break;
+					}
+				} else if (sabertype == 2) {
+					uwep->otyp = rn2(2) ? RED_DOUBLE_LIGHTSABER : WHITE_DOUBLE_LIGHTSABER;
+				} else uwep->otyp = LASER_SWATTER;
+
+				pline("Your lightsaber warps, and changes into a different one!");
+				/* known problem: you can pick the form that your lightsaber already has */
+			}
+
+			t_timeout = rnz(2000);
 			break;
 
 		case T_STAR_DIGGING:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+			stardigging();
+			pline("Digging complete!");
+
+			t_timeout = rnz(10000);
 			break;
 
 		case T_STARWARS_FRIENDS:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+
+			{
+
+			if (u.uswallow) {
+				pline("That won't work while engulfed.");
+				return 0;
+			}
+
+			int k, l, caughtX;
+			struct monst *mtmp3;
+			pline("You try to tame monsters!");
+
+			    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+				if (!isok(u.ux + k, u.uy + l)) continue;
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
+&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD]
+			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) )
+
+				{
+
+					if (mtmp3->data->mflags5 & M5_SPACEWARS || mtmp3->data->mflags5 & M5_JOKE) {
+						if (!(resist(mtmp3, RING_CLASS, 0, NOTELL) && !(((rnd(30 - ACURR(A_CHA))) < 4) ) )) {
+							pline("%s is successfully tamed!", mon_nam(mtmp3));
+							(void) tamedog(mtmp3, (struct obj *) 0, TRUE);
+						} else {
+							pline("%s resists the taming attempt!", mon_nam(mtmp3));
+						}
+					} else pline("%s cannot be tamed by this method!", mon_nam(mtmp3));
+
+				} /* monster is catchable loop */
+			    } /* for loop */
+
+			}
+
+			{
+				struct permonst *shoe = 0;
+				int attempts = 0;
+				struct monst *shoemonst;
+
+				do {
+					shoe = rndmonst();
+					attempts++;
+					if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+				} while ( (!shoe || (shoe && !(shoe->mflags5 & M5_SPACEWARS) && !(shoe->mflags5 & M5_JOKE))) && attempts < 50000);
+
+				if (shoe) {
+					shoemonst = makemon(shoe, u.ux, u.uy, NO_MM_FLAGS);
+					if (shoemonst) (void) tamedog(shoemonst, (struct obj *) 0, TRUE);
+				}
+			}
+
+			t_timeout = rnz(5000);
 			break;
 
 		case T_USE_THE_FORCE_LUKE:
-			pline("Not yet implemented.");
-			t_timeout = 0; /* change it! */
+			num = 200 + (techlevX(tech_no) * 5);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Alright Luke, you can use the force powerfully for a while now!");
+
+			t_timeout = rnz(2500);
 			break;
 
 	    case T_TELEKINESIS:
@@ -6755,6 +7069,8 @@ static const struct blitz_tab blitzes[] = {
 	{"URURRDDLDL", 10, blitz_e_fist, T_E_FIST, BLITZ_START},
 	{"LDL", 3, blitz_combo_strike, T_COMBO_STRIKE, BLITZ_CHAIN},
 	{"RUR", 3, blitz_combo_strike, T_COMBO_STRIKE, BLITZ_CHAIN},
+	{"LDDL", 4, blitz_draining_punch, T_DRAINING_PUNCH, BLITZ_CHAIN},
+	{"RUUR", 4, blitz_draining_punch, T_DRAINING_PUNCH, BLITZ_CHAIN},
 	{"LRL", 3, blitz_pummel, T_PUMMEL, BLITZ_CHAIN},
 	{"RLR", 3, blitz_pummel, T_PUMMEL, BLITZ_CHAIN},
 	{"DDDD", 4, blitz_g_slam, T_G_SLAM, BLITZ_END},
@@ -6996,6 +7312,40 @@ blitz_combo_strike()
 	if (!attack(mtmp)) return (0);
 	else u.combostrike += 10;
 	return(1);
+}
+
+static int
+blitz_draining_punch()
+{
+	struct monst *mtmp;
+
+	if (u.uswallow)
+	    mtmp = u.ustuck;
+	else
+	    mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
+	if (!mtmp) {
+		You("strike nothing.");
+		return (0);
+	}
+	if (!attack(mtmp)) return (0);
+
+	if (!mtmp) return(0);
+
+	if (mtmp && !(DEADMONSTER(mtmp)) && mtmp->mhp > 0 && !resists_drli(mtmp) && !resist(mtmp, WEAPON_CLASS, 0, NOTELL) ) {
+
+		int xtmp = d(2,6);
+		pline("%s suddenly seems weaker!", Monnam(mtmp));
+		mtmp->mhpmax -= xtmp;
+#ifdef SHOW_DMG
+		if (xtmp < mtmp->mhp) showdmg(xtmp);
+#endif
+		if ((mtmp->mhp -= xtmp) <= 0 || !mtmp->m_lev) {
+			pline("%s dies!", Monnam(mtmp));
+			xkilled(mtmp,0);
+		} else
+			mtmp->m_lev--;
+	}
+
 }
 
 /* Assumes u.dx, u.dy already set up */

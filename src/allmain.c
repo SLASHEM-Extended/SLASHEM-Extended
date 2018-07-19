@@ -27,6 +27,8 @@ static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 static void p_glow2(struct obj *,const char *);
 
+#define techlevX(tech)         (Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
+
 /* hunger texts used on bottom line (each 8 chars long) */
 #define SATIATED	0
 #define NOT_HUNGRY	1
@@ -7946,6 +7948,29 @@ newboss:
 				pushch(0);
 				savech(0);
 			    }
+			}
+
+			if (tech_inuse(T_REFUGE)) {
+
+				register struct monst *refmon, *refmon2;
+
+				for(refmon = fmon; refmon; refmon = refmon2) {
+				    refmon2 = refmon->nmon;
+				if (DEADMONSTER(refmon)) continue;
+				if (distu(refmon->mx,refmon->my) > 25) continue;
+
+				if (!refmon->mpeaceful && (is_undead(refmon->data) || refmon->egotype_undead)) {
+					if (!rn2(10) && !refmon->mflee) {
+						refmon->mflee = 1;
+						if (cansee(refmon->mx,refmon->my)) pline("%s turns to flee!", Monnam(refmon));
+					}
+					refmon->mhp -= rnd(6 + techlevX(get_tech_no(T_REFUGE))); /* ideally this should be made to scale with techlevel --Amy */
+					if (cansee(refmon->mx,refmon->my)) pline("%s is affected by your refuge!", Monnam(refmon));
+					if (refmon->mhp < 1) killed(refmon);
+				} /* monster can be affected check */
+
+				} /* for check */
+
 			}
 
 			if (tech_inuse(T_GLOWHORN)) {

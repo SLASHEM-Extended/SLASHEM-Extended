@@ -4300,6 +4300,14 @@ struct obj *weapon;
 
 	}
 
+	if (weapon && is_lightsaber(weapon) && weapon->lamplit) {
+		if (tech_inuse(T_ESCROBISM) && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+			if (uarm && uarm->spe > 0) bonus += ((uarm->spe * 2) + rnd(5));
+			else bonus += rnd(5);
+		}
+
+	}
+
 	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && weapon->lamplit) {
 		switch (P_SKILL(P_SHII_CHO)) {
 

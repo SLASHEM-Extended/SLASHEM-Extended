@@ -669,6 +669,8 @@ register struct monst *mtmp;
 	if (u.ulevel > 25) tmp += 1;
 	if (u.ulevel > 29) tmp += 1;
 
+	if (tech_inuse(T_STEADY_HAND)) tmp += 5;
+
 	if (!issoviet && !rn2(3)) tmp += rno(u.ulevel);
 
 	if (Numbed) {
@@ -1298,6 +1300,10 @@ int dieroll;
 				if (jiuextradmg) pline("You deal %d extra points of damage!", jiuextradmg);
 				tmp += jiuextradmg;
 			}
+			if (tech_inuse(T_ESCROBISM) && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+				if (uarm && uarm->spe > 0) tmp += (uarm->spe + rnd(5));
+				else tmp += rnd(5);
+			}
 
 		}
 
@@ -1713,6 +1719,16 @@ int dieroll;
 						if (rn2(4)) {
 						    monflee(mon, d(2,3), TRUE, TRUE);
 						}
+
+						if (tech_inuse(T_DECAPABILITY)) {
+
+							if (!mon->msleeping && sleep_monst(mon, rnd(10), -1)) {
+								if (!Blind) pline("%s is put to sleep by you!", Monnam(mon));
+								slept_monst(mon);
+							}
+
+						}
+
 						hittxt = TRUE;
 						use_skill(P_JUYO, 1);
 
@@ -2303,6 +2319,14 @@ int dieroll;
 		get_dmg_bonus = 0;
 		if (tmp > 1) tmp /= 2;
 		if (flags.bash_reminder && !rn2(10)) pline("Firing that weapon at point blank range is not very effective...");
+	}
+
+	if (tech_inuse(T_DECAPABILITY) && mon && pieks && obj && objects[obj->otyp].oc_skill == P_POLEARMS && !rn2(3)) {
+
+		if (!mon->msleeping && sleep_monst(mon, rnd(10), -1)) {
+			if (!Blind) pline("%s is put to sleep by you!", Monnam(mon));
+			slept_monst(mon);
+		}
 	}
 
 	if (thrown && launcher && obj && ammo_and_launcher(obj, launcher) && !gunused && u.uswallow) {

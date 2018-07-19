@@ -291,6 +291,14 @@ struct obj *otmp;
 			else pline("It is slit by your shuriken!");
 			(void) resist(mtmp, WEAPON_CLASS, dmg, NOTELL);
 		}
+
+		if (tech_inuse(T_BEAMSWORD)) {
+			dmg = 10;
+			if (canseemon(mtmp)) pline("%s is hit by your lightsaber beam!", Monnam(mtmp));
+			else pline("It is hit by your lightsaber beam!");
+			(void) resist(mtmp, WEAPON_CLASS, dmg, NOTELL);
+		}
+
 		break;
 
 	case SPE_ENERGY_BOLT:
@@ -6773,13 +6781,14 @@ struct obj *obj;
 			beamrange /= 2;
 		}
 		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
+		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
 
 		(void) bhit(u.dx,u.dy, obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND, bhitm, bhito, &obj);
 	    }
 
 	}
 
-	if (objects[otyp].oc_dir == IMMEDIATE || (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) ) {
+	if (objects[otyp].oc_dir == IMMEDIATE || (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) || (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) ) {
 	    obj_zapped = FALSE;
 
 		if (obj->otyp == WAN_WIND) {
@@ -6802,6 +6811,7 @@ struct obj *obj;
 		}
 
 		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
+		if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) beamrange += rnd(6);
 
 		(void) bhit(u.dx,u.dy, obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND,
 			    bhitm, bhito, &obj);
@@ -7307,6 +7317,7 @@ struct obj **obj_p;			/* object tossed/used */
 			if (weapon != INVIS_BEAM) {
 			    (*fhitm)(mtmp, obj);
 			    if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) range -= 1;
+			    else if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) range -= 1;
 			    else range -= 3;
 			}
 		} else {

@@ -2110,6 +2110,12 @@ boolean atme;
 			u.unimanturns = 0;
 			use_skill(P_NIMAN, 1);
 		}
+
+		if (uwep && tech_inuse(T_ENERGY_TRANSFER)) {
+			uwep->age += energy;
+			pline("Your lightsaber is charged a bit.");
+		}
+
 	}
 
 	if (Role_if(PM_MAHOU_SHOUJO)) { /* Casting any sort of magic causes all monsters on a level to 

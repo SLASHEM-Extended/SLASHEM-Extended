@@ -23,6 +23,8 @@ STATIC_DCL const char *lock_action(void);
 STATIC_DCL boolean obstructed(int,int);
 STATIC_DCL void chest_shatter_msg(struct obj *);
 
+#define techlevX(tech)         (Technicality ? (((u.ulevel - tech_list[tech].t_lev) * 4 / 3) + 3) : (u.ulevel - tech_list[tech].t_lev))
+
 boolean
 picking_lock(x, y)
 	int *x, *y;
@@ -780,6 +782,7 @@ doforce()		/* try to force a chest with your weapon */
 				int mdx, mdy;
 				dmg = rnd(2) + dbon() + uwep->spe;
 				if (UseTheForce) dmg += 5;
+				if (tech_inuse(T_USE_THE_FORCE_LUKE)) dmg += techlevX(get_tech_no(T_USE_THE_FORCE_LUKE));
 				if (uarmg && uarmg->oartifact == ART_USE_THE_FORCE_LUKE) dmg += 10;
 				if (Role_if(PM_JEDI) && UseTheForce) dmg += u.ulevel;
 				else if (Race_if(PM_BORG) && UseTheForce) dmg += rnd(u.ulevel);

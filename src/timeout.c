@@ -3313,7 +3313,9 @@ long timeout;
 
 	    } else {
 
-		if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION) && obj && is_lightsaber(obj)) {
+		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) {
+			; /* do nothing */
+		} else if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION) && obj && is_lightsaber(obj)) {
 			switch (P_SKILL(P_MAKASHI)) {
 				case P_BASIC: lightsaberchance = 1; break;
 				case P_SKILLED: lightsaberchance = 3; break;
@@ -3834,6 +3836,8 @@ begin_burn(obj, already_lit)
 				case P_SUPREME_MASTER: lightsaberchance = 8; break;
 			}
 		}
+		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) lightsaberchance = 9999; /* don't lose lightsaber energy */
+
 		if (rnd(10) > lightsaberchance) obj->age -= turns;
 		if (carried(obj) && !already_lit)
 		    update_inventory();
