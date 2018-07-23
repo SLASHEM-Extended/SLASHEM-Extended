@@ -7345,6 +7345,7 @@ blitz_draining_punch()
 		} else
 			mtmp->m_lev--;
 	}
+	return(1);
 
 }
 
