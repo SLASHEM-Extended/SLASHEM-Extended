@@ -1,6 +1,16 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.2.7
+- The sexy flats skill now adds damage to certain hammer shoes that are not high-heeled, and the ones in question are no longer affected by the high heels skill.
+- Added a new lightsaber form skill named "Wedi".
+- Nerfed the healing spell and boosted the full healing spell.
+- Monsters can have a "steed" egotype which allows them to be ridden even if not tame, at least if the player manages to saddle them in the first place.
+- Tinning kits generate with fewer charges on average.
+- Some checks that expected a certain player name would incorrectly return TRUE even if the player had additional characters in their name, e.g. "AmyBSOD2" would return TRUE when testing for "AmyBSOD", which was not intentional.
+- New option "eatingwalls" that, when disabled, prevents a scurrier or ent player from eating walls.
+- If the player digs down while next to a urine lake, styx river or shifting sand, it can fill the newly created hole.
+- Added some random bad effects that can hit the player, including one that force-equips cursed equipment.
+- The "Elona's Snail Trail" artifact now works correctly if the player is a snail.
 
 2.2.6
 - Added a bunch of new attacks that monsters can use.
