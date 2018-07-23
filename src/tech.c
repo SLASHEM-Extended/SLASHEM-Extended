@@ -6024,7 +6024,9 @@ revid_end:
 			if (uwep) {
 				curse(uwep);
 				uwep->hvycurse = TRUE;
-				uwep->spe = -rne(2);
+				if (uwep->spe > 0) uwep->spe = 0;
+				uwep->spe -= rne(2);
+				if (uwep->spe < -120) uwep->spe = -120;
 				uwep->bknown = TRUE;
 
 				pline("Your weapon is heavily cursed, but you receive some benefits.");
@@ -6033,6 +6035,28 @@ revid_end:
 				if (u.ugangr > 0) u.ugangr--;
 				u.ublesscnt -= 500;
 				if (u.ublesscnt < 0) u.ublesscnt = 0;
+			}
+
+			{
+			struct monst *mtmp3;
+			int k, l;
+
+			for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+				if (!isok(u.ux + k, u.uy + l)) continue;
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
+&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD]
+			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(rn2(5) && (mtmp3->data->geno & G_UNIQ))) {
+
+				if (mtmp3->mfrenzied) continue;
+				if (mtmp3->mpeaceful) continue;
+				if (resist(mtmp3, RING_CLASS, 0, NOTELL) && !(((rnd(30 - ACURR(A_CHA))) < 4) && !resist(mtmp3, RING_CLASS, 0, NOTELL)) ) continue;
+
+				pline("%s is pacified!", mon_nam(mtmp3));
+				mtmp3->mpeaceful = TRUE;
+
+				} /* monster is catchable loop */
+			}
+
 			}
 
 			t_timeout = rnz(6000);
