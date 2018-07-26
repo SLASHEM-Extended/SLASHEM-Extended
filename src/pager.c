@@ -16877,7 +16877,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"The high priest of Crom doesn't like to be called names! Whoops, you have triggered the Grunthack 'you die now' mechanism which kills you five times and if you're still somehow alive it counts as escaping the dungeon, which is technically a loss.",
 	"The novel already has a published name.",
 	"The novel is a very weird item in Nethack 3.6.x that apparently exists only because it's a tribute to whoever the author of Twoflower was. I forgot his name. Douglas Adams? Nah, I think it was Pratchwood or something?",
-	"We don't violate illiteracy conduct here, although it is arguable that we should for anything other than "X".  Doing so would make attaching player's notes to hero's inventory have an in-game effect, which may or may not be the correct thing to do.",
+	"We don't violate illiteracy conduct here, although it is arguable that we should for anything other than 'X'.  Doing so would make attaching player's notes to hero's inventory have an in-game effect, which may or may not be the correct thing to do.",
 	"If you're using the #annotate command with an illiterate character, is it cheating?",
 	"We do violate illiteracy in oname() if player creates Sting or Orcrist, clearly being literate (no pun intended...).",
 	"Why can you name Sting and Orcrist but nothing else? And in particular, why did they make a SPFX_RESTR flag for all the tons of other artifacts, instead of a SPFX_NAMEABLE flag for the few artifacts that can be named?",
