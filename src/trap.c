@@ -13806,7 +13806,7 @@ drown()
 			if (flags.verbose)
 				pline("But you aren't drowning.");
 			if (!Is_waterlevel(&u.uz)) {
-				if (Hallucination)
+				if (Hallucination || (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ))
 					Your("keel hits the bottom.");
 				else
 					You("touch bottom.");
@@ -13897,7 +13897,9 @@ drown()
 	return(FALSE);
 	}
 
-	You("drown.");
+	if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) You("go to Davy Jones' locker.");
+	else You("drown.");
+
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Nikto ne znayet, pochemu ty byl nastol'ko glup, chtoby upast' v vodu, no eto ne imeyet nikakogo znacheniya, v lyubom sluchaye, potomu chto vy mozhete svernut' novogo personazha pryamo seychas." : "HUAAAAAAA-A-AAAAHHHHHH!");
 
 	/* [ALI] Vampires return to vampiric form on drowning.
