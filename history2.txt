@@ -1,6 +1,10 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.2.7
+- If the player is polymorphed into a monster that can breathe psybeams, they now have psi resistance.
+- Polymorphing and implants skill can increase the damage a player does while polymorphed, and petkeeping skill can increase pet-versus-monster damage.
+- Nerfed the effectiveness of the weapon practice technique.
+- In evilvariant mode, monkeys would leak information when stealing the player's items; this has been corrected.
 - The sexy flats skill now adds damage to certain hammer shoes that are not high-heeled, and the ones in question are no longer affected by the high heels skill.
 - Added a new lightsaber form skill named "Wedi".
 - Nerfed the healing spell and boosted the full healing spell.
