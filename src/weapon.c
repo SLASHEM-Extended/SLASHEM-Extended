@@ -2228,35 +2228,37 @@ abon()		/* attack bonus for strength & dexterity */
 	/* [Tom] lowered these a little */        
 	if (str < 6) sbon = -1;
 	else if (str < 8) sbon = 0;
-	else if (str < 17) sbon = 1;
-	else if (str <= STR18(50)) sbon = 2;	/* up to 18/50 */
-	else if (str < STR18(100)) sbon = 2;
-	else if (str == STR18(100)) sbon = 3;  /* 18/00 */
-	else if (str == STR19(19)) sbon = 3;  /* 19 */
-	else if (str == STR19(20)) sbon = 4;  /* 20 */
-	else if (str == STR19(21)) sbon = 4;  /* 21 */
-	else if (str == STR19(22)) sbon = 5;  /* 22 */
-	else if (str == STR19(23)) sbon = 5;  /* 23 */
-	else if (str == STR19(24)) sbon = 6;  /* 24 */
-	else sbon = 7;
+	else if (str < 13) sbon = 1;
+	else if (str < 17) sbon = 2;
+	else if (str <= STR18(50)) sbon = 3;	/* up to 18/50 */
+	else if (str < STR18(100)) sbon = 4;
+	else if (str == STR18(100)) sbon = 5;  /* 18/00 */
+	else if (str == STR19(19)) sbon = 6;  /* 19 */
+	else if (str == STR19(20)) sbon = 6;  /* 20 */
+	else if (str == STR19(21)) sbon = 7;  /* 21 */
+	else if (str == STR19(22)) sbon = 7;  /* 22 */
+	else if (str == STR19(23)) sbon = 8;  /* 23 */
+	else if (str == STR19(24)) sbon = 9;  /* 24 */
+	else sbon = 10;
   
 	if (dex < 5) sbon -= 1;
 	else if (dex < 7) sbon += 0;
 	else if (dex < 10) sbon += 1;
 	else if (dex < 11) sbon += 2;
-	else if (dex < 13) sbon += 3;
-	else if (dex < 15) sbon += 4;
-	else if (dex == 15) sbon += 5;  /* 15 */
-	else if (dex == 16) sbon += 5;  /* 16 */
-	else if (dex == 17) sbon += 6;  /* 17 */
-	else if (dex == 18) sbon += 6;  /* 18 */
-	else if (dex == 19) sbon += 7;  /* 19 */
-	else if (dex == 20) sbon += 7;  /* 20 */
-	else if (dex == 21) sbon += 8;  /* 21 */
-	else if (dex == 22) sbon += 8;  /* 22 */
-	else if (dex == 23) sbon += 9;  /* 23 */
-	else if (dex == 24) sbon += 10;  /* 24 */
-	else sbon += 11;
+	else if (dex < 12) sbon += 3;
+	else if (dex < 13) sbon += 4;
+	else if (dex < 15) sbon += 5;
+	else if (dex == 15) sbon += 6;  /* 15 */
+	else if (dex == 16) sbon += 7;  /* 16 */
+	else if (dex == 17) sbon += 7;  /* 17 */
+	else if (dex == 18) sbon += 8;  /* 18 */
+	else if (dex == 19) sbon += 9;  /* 19 */
+	else if (dex == 20) sbon += 10;  /* 20 */
+	else if (dex == 21) sbon += 11;  /* 21 */
+	else if (dex == 22) sbon += 11;  /* 22 */
+	else if (dex == 23) sbon += 12;  /* 23 */
+	else if (dex == 24) sbon += 12;  /* 24 */
+	else sbon += 13;
 
 /* Game tuning kludge: make it a bit easier for a low level character to hit */
 	sbon += (u.ulevel < 3) ? 1 : 0;

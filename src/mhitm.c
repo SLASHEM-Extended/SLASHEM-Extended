@@ -1090,6 +1090,36 @@ mdamagem(magr, mdef, mattk)
 	if (mdef->data->mr >= 99) armpro++;
 	cancelled = magr->mcan || !((rn2(3) >= armpro) || !rn2(50));
 
+	if (magr->mtame && !PlayerCannotUseSkills && tmp > 1) { /* bonus damage to make pets more viable --Amy */
+		switch (P_SKILL(P_PETKEEPING)) {
+
+	      	case P_BASIC:	tmp *= 6; tmp /= 5; break;
+	      	case P_SKILLED:	tmp *= 4; tmp /= 3; break;
+	      	case P_EXPERT:	tmp *= 3; tmp /= 2; break;
+	      	case P_MASTER:	tmp *= 7; tmp /= 4; break;
+	      	case P_GRAND_MASTER:	tmp *= 2; break;
+	      	case P_SUPREME_MASTER:	tmp *= 5; tmp /= 2; break;
+			default: break;
+		
+		}
+
+	}
+
+	if (magr->mtame && tmp > 1) {
+		/* and a little help if pet's experience level is very high, to make large cats etc. more useful --Amy */
+		int overlevelled = 0;
+		if (magr->m_lev > magr->data->mlevel) overlevelled = ((magr->data->mlevel - magr->m_lev) * 3 / 2);
+		if (overlevelled > 0) {
+			overlevelled += 100;
+			tmp *= overlevelled;
+			tmp /= 100;
+		}
+
+		/* it is not a bug that uhitm.c multiplies the level difference by two and this function only gives a
+		 * 50% boost, because your max level is only 30, while pets can reach 49 --Amy */
+
+	}
+
 	switch(mattk->adtyp) {
 	    case AD_DGST:
 

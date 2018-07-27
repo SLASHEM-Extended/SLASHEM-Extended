@@ -1757,10 +1757,12 @@ int thrown;
 	if (u.ulevel < 3 && rn2(2)) tmp += 1;
 
 	if (u.ulevel > 5) tmp += 1;
-	if (u.ulevel > 10) tmp += 1;
+	if (u.ulevel > 9) tmp += 1;
+	if (u.ulevel > 12) tmp += 1;
 	if (u.ulevel > 15) tmp += 1;
-	if (u.ulevel > 20) tmp += 1;
-	if (u.ulevel > 25) tmp += 1;
+	if (u.ulevel > 19) tmp += 1;
+	if (u.ulevel > 23) tmp += 1;
+	if (u.ulevel > 26) tmp += 1;
 	if (u.ulevel > 29) tmp += 1;
 
 	if (!issoviet && !rn2(3)) tmp += rno(u.ulevel);
@@ -1791,7 +1793,7 @@ int thrown;
 	if (ACURR(A_DEX) < 4) tmp -= 3;
 	else if (ACURR(A_DEX) < 6) tmp -= 2;
 	else if (ACURR(A_DEX) < 8) tmp -= 1;
-	else if (ACURR(A_DEX) >= 14) tmp += (ACURR(A_DEX) - 14);
+	else if (ACURR(A_DEX) >= 12) tmp += (ACURR(A_DEX) - 11);
 
 	if (tech_inuse(T_STEADY_HAND)) tmp += 5;
 

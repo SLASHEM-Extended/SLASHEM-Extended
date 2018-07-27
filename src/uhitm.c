@@ -663,10 +663,12 @@ register struct monst *mtmp;
 	if (u.ulevel < 3 && rn2(2)) tmp += 1;
 
 	if (u.ulevel > 5) tmp += 1;
-	if (u.ulevel > 10) tmp += 1;
+	if (u.ulevel > 9) tmp += 1;
+	if (u.ulevel > 12) tmp += 1;
 	if (u.ulevel > 15) tmp += 1;
-	if (u.ulevel > 20) tmp += 1;
-	if (u.ulevel > 25) tmp += 1;
+	if (u.ulevel > 19) tmp += 1;
+	if (u.ulevel > 23) tmp += 1;
+	if (u.ulevel > 26) tmp += 1;
 	if (u.ulevel > 29) tmp += 1;
 
 	if (tech_inuse(T_STEADY_HAND)) tmp += 5;
@@ -3752,10 +3754,10 @@ register struct attack *mattk;
 	if (hit_as_three(&youmonst))  enchantlvl = 3; 
 	if (hit_as_four(&youmonst))   enchantlvl = 4;         
 
-	if (need_one(mdef)   && enchantlvl < 1 && rn2(3)) noeffect = TRUE; 
-	if (need_two(mdef)   && enchantlvl < 2 && rn2(3)) noeffect = TRUE;      
-	if (need_three(mdef) && enchantlvl < 3 && rn2(3)) noeffect = TRUE;  
-	if (need_four(mdef)  && enchantlvl < 4 && rn2(3)) noeffect = TRUE;  
+	if (need_one(mdef)   && enchantlvl < 1 && rn2(3)) noeffect = TRUE;
+	if (need_two(mdef)   && enchantlvl < 2 && rn2(3)) noeffect = TRUE;
+	if (need_three(mdef) && enchantlvl < 3 && rn2(3)) noeffect = TRUE;
+	if (need_four(mdef)  && enchantlvl < 4 && rn2(3)) noeffect = TRUE;
 
 	if (is_demon(youmonst.data) && !rn2(23) && !uwep && !(Race_if(PM_BORG) && !Upolyd)
 		&& u.umonnum != PM_SUCCUBUS && u.umonnum != PM_INCUBUS
@@ -3770,6 +3772,61 @@ register struct attack *mattk;
 		if (rnd(10) <= u.nailpolish) {
 			u.nailpolish--;
 			pline(u.nailpolish ? "One of your nails loses its polish." : "Your nail loses its polish.");
+		}
+	}
+
+	if (Upolyd && !PlayerCannotUseSkills && tmp > 1) { /* bonus damage for chars who are good at polymorphing --Amy */
+		switch (P_SKILL(P_POLYMORPHING)) {
+
+	      	case P_BASIC:	tmp *= 6; tmp /= 5; break;
+	      	case P_SKILLED:	tmp *= 4; tmp /= 3; break;
+	      	case P_EXPERT:	tmp *= 3; tmp /= 2; break;
+	      	case P_MASTER:	tmp *= 7; tmp /= 4; break;
+	      	case P_GRAND_MASTER:	tmp *= 2; break;
+	      	case P_SUPREME_MASTER:	tmp *= 5; tmp /= 2; break;
+			default: break;
+
+		}
+
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant) {
+			switch (P_SKILL(P_IMPLANTS)) { /* more bonus when using a good implant without hands --Amy */
+
+		      	case P_BASIC:	tmp *= 6; tmp /= 5; break;
+		      	case P_SKILLED:	tmp *= 4; tmp /= 3; break;
+		      	case P_EXPERT:	tmp *= 3; tmp /= 2; break;
+		      	case P_MASTER:	tmp *= 7; tmp /= 4; break;
+		      	case P_GRAND_MASTER:	tmp *= 2; break;
+		      	case P_SUPREME_MASTER:	tmp *= 5; tmp /= 2; break;
+				default: break;
+
+			}
+
+		} else if (uimplant) {
+
+			switch (P_SKILL(P_IMPLANTS)) { /* less bonus when using implant with hands --Amy */
+
+		      	case P_BASIC:	tmp *= 11; tmp /= 10; break;
+		      	case P_SKILLED:	tmp *= 6; tmp /= 5; break;
+		      	case P_EXPERT:	tmp *= 13; tmp /= 10; break;
+		      	case P_MASTER:	tmp *= 7; tmp /= 5; break;
+		      	case P_GRAND_MASTER:	tmp *= 3; tmp /= 2; break;
+		      	case P_SUPREME_MASTER:	tmp *= 8; tmp /= 5; break;
+				default: break;
+
+			}
+
+		}
+
+	}
+
+	if (Upolyd && tmp > 1) {
+		/* and a little help if your experience level is very high, to not make polyselfing obsolete later on --Amy */
+		int overlevelled = 0;
+		if (u.ulevel > mons[u.umonnum].mlevel) overlevelled = (u.ulevel - mons[u.umonnum].mlevel) * 2;
+		if (overlevelled > 0) {
+			overlevelled += 100;
+			tmp *= overlevelled;
+			tmp /= 100;
 		}
 	}
 
