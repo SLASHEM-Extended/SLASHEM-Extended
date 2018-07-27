@@ -6616,7 +6616,7 @@ dopois:
 			if (!is_animal(mtmp->data) && !tele_restrict(mtmp) && (issoviet || atttyp == AD_SEDU || !rn2(4)) )
 			    (void) rloc(mtmp, FALSE);
 			if (is_animal(mtmp->data) && *buf) {
-			    if (canseemon(mtmp))
+			    if (!isevilvariant && canseemon(mtmp))
 				pline("%s tries to %s away with %s.",
 				      Monnam(mtmp),
 				      locomotion(mtmp->data, "run"),
@@ -6638,7 +6638,7 @@ dopois:
 			if (!is_animal(mtmp->data) && !tele_restrict(mtmp) && (issoviet || !rn2(4) ) )
 			    (void) rloc(mtmp, FALSE);
 			if (is_animal(mtmp->data) && *buf) {
-			    if (canseemon(mtmp))
+			    if (!isevilvariant && canseemon(mtmp))
 				pline("%s tries to %s away with %s.",
 				      Monnam(mtmp),
 				      locomotion(mtmp->data, "run"),
