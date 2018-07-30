@@ -783,6 +783,10 @@ doread()
 	"Don't mind me, I'm busy parking a tarot card deck of Dynahack ascensions. This is my 21st one, 20 others are already waiting on the Astral Plane and will ascend on June 30.",
 	"When is the ETA for Chinese world domination? I prefer a cruel master to a crazy one.",
 	"I ran 10 km in wedge sandals and it only took me 1 hour and 24 minutes!",
+	"I don't like poofy coffee, and I don't like SJWs invading my beloved videogames either.",
+	"I'm a gay man and I want you to stop getting offended on my behalf. Seriously, 'poofy' is not an insult. Now take your SJW bullshit somewhere else kthxbai.", /* thanks Crawldragon (inspiration is his, actual wording mine --Amy) */
+	"High heels are very comfortable and I'll never wear flats again!",
+	"Plants Have Rights Too - Ban Lawnmowers And Combine Harvesters Now!",
 
 	    };
 	    char buf[BUFSZ];
