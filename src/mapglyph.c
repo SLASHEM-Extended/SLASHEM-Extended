@@ -1228,7 +1228,7 @@ unsigned *ospecial;
 
     } else if ((offset = (glyph - GLYPH_DETECT_OFF)) >= 0) {	/* mon detect */
 	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
-	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
+	/*if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;*/
 	ch = monsyms[(int)mons[offset].mlet];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1252,7 +1252,7 @@ unsigned *ospecial;
 	    special |= MG_INVIS;
     } else if ((offset = (glyph - GLYPH_PET_OFF)) >= 0) {	/* a pet */
 	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
-	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
+	/*if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;*/
 	ch = monsyms[(int)mons[offset].mlet];
 #ifdef ROGUE_COLOR
 	if (HAS_ROGUE_IBM_GRAPHICS)
@@ -1263,7 +1263,7 @@ unsigned *ospecial;
 	    if (!(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone())) special |= MG_PET;
     } else {							/* a monster */
 	if (On_stairs(x,y) && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) && levl[x][y].seenv) special |= MG_STAIRS;
-	if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;
+	/*if (flags.graffitihilite && ep && ep->engr_txt[0] && !Blind && levl[x][y].seenv && !(NoliteBug || u.uprops[NOLITE_BUG].extrinsic || have_nolightstone()) ) special |= MG_ENGRAVING;*/
 
 	struct monst *mtmp;
 
