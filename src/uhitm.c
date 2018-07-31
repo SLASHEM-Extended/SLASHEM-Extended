@@ -3742,6 +3742,8 @@ register struct attack *mattk;
 	register int    enchantlvl = 0;
 	boolean noeffect = FALSE;
 
+	int youdamagebonus;
+
 	armpro = magic_negation(mdef);
 	if (mdef->data->mr >= 49) armpro++; /* highly magic resistant monsters should have magic cancellation --Amy */
 	if (mdef->data->mr >= 69) armpro++;
@@ -3775,15 +3777,17 @@ register struct attack *mattk;
 		}
 	}
 
-	if (Upolyd && !PlayerCannotUseSkills && tmp > 1) { /* bonus damage for chars who are good at polymorphing --Amy */
+	youdamagebonus = 100;
+
+	if (Upolyd && !PlayerCannotUseSkills) { /* bonus damage for chars who are good at polymorphing --Amy */
 		switch (P_SKILL(P_POLYMORPHING)) {
 
-	      	case P_BASIC:	tmp *= 6; tmp /= 5; break;
-	      	case P_SKILLED:	tmp *= 4; tmp /= 3; break;
-	      	case P_EXPERT:	tmp *= 3; tmp /= 2; break;
-	      	case P_MASTER:	tmp *= 7; tmp /= 4; break;
-	      	case P_GRAND_MASTER:	tmp *= 2; break;
-	      	case P_SUPREME_MASTER:	tmp *= 5; tmp /= 2; break;
+	      	case P_BASIC:	youdamagebonus += 16; break;
+	      	case P_SKILLED:	youdamagebonus += 32; break;
+	      	case P_EXPERT:	youdamagebonus += 50; break;
+	      	case P_MASTER:	youdamagebonus += 75; break;
+	      	case P_GRAND_MASTER:	youdamagebonus += 100; break;
+	      	case P_SUPREME_MASTER:	youdamagebonus += 150; break;
 			default: break;
 
 		}
@@ -3791,12 +3795,12 @@ register struct attack *mattk;
 		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant) {
 			switch (P_SKILL(P_IMPLANTS)) { /* more bonus when using a good implant without hands --Amy */
 
-		      	case P_BASIC:	tmp *= 6; tmp /= 5; break;
-		      	case P_SKILLED:	tmp *= 4; tmp /= 3; break;
-		      	case P_EXPERT:	tmp *= 3; tmp /= 2; break;
-		      	case P_MASTER:	tmp *= 7; tmp /= 4; break;
-		      	case P_GRAND_MASTER:	tmp *= 2; break;
-		      	case P_SUPREME_MASTER:	tmp *= 5; tmp /= 2; break;
+		      	case P_BASIC:	youdamagebonus += 16; break;
+		      	case P_SKILLED:	youdamagebonus += 32; break;
+		      	case P_EXPERT:	youdamagebonus += 50; break;
+		      	case P_MASTER:	youdamagebonus += 75; break;
+		      	case P_GRAND_MASTER:	youdamagebonus += 100; break;
+		      	case P_SUPREME_MASTER:	youdamagebonus += 150; break;
 				default: break;
 
 			}
@@ -3805,12 +3809,12 @@ register struct attack *mattk;
 
 			switch (P_SKILL(P_IMPLANTS)) { /* less bonus when using implant with hands --Amy */
 
-		      	case P_BASIC:	tmp *= 11; tmp /= 10; break;
-		      	case P_SKILLED:	tmp *= 6; tmp /= 5; break;
-		      	case P_EXPERT:	tmp *= 13; tmp /= 10; break;
-		      	case P_MASTER:	tmp *= 7; tmp /= 5; break;
-		      	case P_GRAND_MASTER:	tmp *= 3; tmp /= 2; break;
-		      	case P_SUPREME_MASTER:	tmp *= 8; tmp /= 5; break;
+		      	case P_BASIC:	youdamagebonus += 10; break;
+		      	case P_SKILLED:	youdamagebonus += 20; break;
+		      	case P_EXPERT:	youdamagebonus += 30; break;
+		      	case P_MASTER:	youdamagebonus += 40; break;
+		      	case P_GRAND_MASTER:	youdamagebonus += 50; break;
+		      	case P_SUPREME_MASTER:	youdamagebonus += 60; break;
 				default: break;
 
 			}
@@ -3819,15 +3823,43 @@ register struct attack *mattk;
 
 	}
 
-	if (Upolyd && tmp > 1) {
+	if (Upolyd) {
 		/* and a little help if your experience level is very high, to not make polyselfing obsolete later on --Amy */
 		int overlevelled = 0;
 		if (u.ulevel > mons[u.umonnum].mlevel) overlevelled = (u.ulevel - mons[u.umonnum].mlevel) * 2;
 		if (overlevelled > 0) {
-			overlevelled += 100;
-			tmp *= overlevelled;
-			tmp /= 100;
+			youdamagebonus += overlevelled;
 		}
+
+		if (ACURR(A_STR) > 12) { /* strength shouldn't be completely irrelevant for non-weapon attacks! --Amy */
+			if (ACURR(A_STR) == 13) youdamagebonus += 1;
+			else if (ACURR(A_STR) == 14) youdamagebonus += 2;
+			else if (ACURR(A_STR) == 15) youdamagebonus += 3;
+			else if (ACURR(A_STR) == 16) youdamagebonus += 4;
+			else if (ACURR(A_STR) == 17) youdamagebonus += 5;
+			else if (ACURR(A_STR) == 18) youdamagebonus += 6;
+			else if (ACURR(A_STR) <= STR18(20)) youdamagebonus += 8;
+			else if (ACURR(A_STR) <= STR18(40)) youdamagebonus += 10;
+			else if (ACURR(A_STR) <= STR18(60)) youdamagebonus += 12;
+			else if (ACURR(A_STR) <= STR18(80)) youdamagebonus += 14;
+			else if (ACURR(A_STR) <= STR18(100)) youdamagebonus += 16;
+			else if (ACURR(A_STR) == STR18(100)) youdamagebonus += 18;
+			else if (ACURR(A_STR) == STR19(19)) youdamagebonus += 20;
+			else if (ACURR(A_STR) == STR19(20)) youdamagebonus += 22;
+			else if (ACURR(A_STR) == STR19(21)) youdamagebonus += 24;
+			else if (ACURR(A_STR) == STR19(22)) youdamagebonus += 26;
+			else if (ACURR(A_STR) == STR19(23)) youdamagebonus += 28;
+			else if (ACURR(A_STR) == STR19(24)) youdamagebonus += 30;
+			else if (ACURR(A_STR) >= STR19(25)) youdamagebonus += 33;
+		}
+
+	}
+
+	if (youdamagebonus > 100 && (tmp > 1 || (tmp == 1 && youdamagebonus >= 150) )) {
+
+		tmp *= youdamagebonus;
+		tmp /= 100;
+
 	}
 
 	switch(mattk->adtyp) {

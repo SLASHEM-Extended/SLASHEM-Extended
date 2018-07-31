@@ -16113,6 +16113,8 @@ mdamageu(mtmp, n)	/* mtmp hits you for n points damage */
 register struct monst *mtmp;
 register int n;
 {
+	int monsterdamagebonus;
+
 	if (flags.iwbtg) {
 
 		You("explode in a fountain of red pixels!");
@@ -16177,6 +16179,27 @@ register int n;
 	/* WAC For consistency...DO be careful using techniques ;B */
 	if (mtmp->mtame != 0 && tech_inuse(T_PRIMAL_ROAR)) {
 		n *= 2; /* Double Damage! */
+	}
+
+	monsterdamagebonus = 100;
+
+	{
+
+		int overlevelled = 0;
+		if (mtmp->m_lev > mtmp->data->mlevel) overlevelled = ((mtmp->m_lev - mtmp->data->mlevel) * 5);
+		if (overlevelled > 0) {
+			monsterdamagebonus += overlevelled;
+		}
+	}
+
+	/* high-level monsters gain much more damage bonus versus you than high-level pets get damage bonus versus
+	 * other monsters; this isn't FIQhack after all, full symmetry is not the focus of this game. --Amy */
+
+	if (monsterdamagebonus > 100 && (n > 1 || (n == 1 && monsterdamagebonus >= 150) )) {
+
+		n *= monsterdamagebonus;
+		n /= 100;
+
 	}
 
 	flags.botl = 1; /* This needs to be AFTER the pline for botl to be 

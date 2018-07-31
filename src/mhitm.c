@@ -1032,6 +1032,8 @@ mdamagem(magr, mdef, mattk)
 	int canhitmon, objenchant;        
         boolean nohit = FALSE;
 
+	int petdamagebonus;
+
 	if (touch_petrifies(pd) && !rn2(4) && !resists_ston(magr)) {
 	    long protector = attk_protection((int)mattk->aatyp),
 		 wornitems = magr->misc_worn_check;
@@ -1090,33 +1092,56 @@ mdamagem(magr, mdef, mattk)
 	if (mdef->data->mr >= 99) armpro++;
 	cancelled = magr->mcan || !((rn2(3) >= armpro) || !rn2(50));
 
-	if (magr->mtame && !PlayerCannotUseSkills && tmp > 1) { /* bonus damage to make pets more viable --Amy */
+	petdamagebonus = 100;
+
+	if (magr->mtame && !mdef->mtame && !PlayerCannotUseSkills) { /* bonus damage to make pets more viable --Amy */
 		switch (P_SKILL(P_PETKEEPING)) {
 
-	      	case P_BASIC:	tmp *= 6; tmp /= 5; break;
-	      	case P_SKILLED:	tmp *= 4; tmp /= 3; break;
-	      	case P_EXPERT:	tmp *= 3; tmp /= 2; break;
-	      	case P_MASTER:	tmp *= 7; tmp /= 4; break;
-	      	case P_GRAND_MASTER:	tmp *= 2; break;
-	      	case P_SUPREME_MASTER:	tmp *= 5; tmp /= 2; break;
+	      	case P_BASIC:	petdamagebonus += 16; break;
+	      	case P_SKILLED:	petdamagebonus += 32; break;
+	      	case P_EXPERT:	petdamagebonus += 50; break;
+	      	case P_MASTER:	petdamagebonus += 75; break;
+	      	case P_GRAND_MASTER:	petdamagebonus += 100; break;
+	      	case P_SUPREME_MASTER:	petdamagebonus += 150; break;
 			default: break;
 		
 		}
 
 	}
 
-	if (magr->mtame && tmp > 1) {
+	if (magr->mtame && !mdef->mtame) {
 		/* and a little help if pet's experience level is very high, to make large cats etc. more useful --Amy */
 		int overlevelled = 0;
-		if (magr->m_lev > magr->data->mlevel) overlevelled = ((magr->data->mlevel - magr->m_lev) * 3 / 2);
+		if (magr->m_lev > magr->data->mlevel) overlevelled = ((magr->m_lev - magr->data->mlevel) * 3 / 2);
 		if (overlevelled > 0) {
-			overlevelled += 100;
-			tmp *= overlevelled;
-			tmp /= 100;
+			petdamagebonus += overlevelled;
 		}
 
 		/* it is not a bug that uhitm.c multiplies the level difference by two and this function only gives a
 		 * 50% boost, because your max level is only 30, while pets can reach 49 --Amy */
+
+	}
+
+	/* riding skill is now finally useful too, as it boosts steed damage --Amy */
+	if (u.usteed && magr == u.usteed && !mdef->mtame && !PlayerCannotUseSkills) {
+		switch (P_SKILL(P_RIDING)) {
+
+	      	case P_BASIC:	petdamagebonus += 16; break;
+	      	case P_SKILLED:	petdamagebonus += 32; break;
+	      	case P_EXPERT:	petdamagebonus += 50; break;
+	      	case P_MASTER:	petdamagebonus += 75; break;
+	      	case P_GRAND_MASTER:	petdamagebonus += 100; break;
+	      	case P_SUPREME_MASTER:	petdamagebonus += 150; break;
+			default: break;
+		
+		}
+
+	}
+
+	if (petdamagebonus > 100 && (tmp > 1 || (tmp == 1 && petdamagebonus >= 150) )) {
+
+		tmp *= petdamagebonus;
+		tmp /= 100;
 
 	}
 
