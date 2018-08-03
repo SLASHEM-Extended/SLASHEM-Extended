@@ -787,6 +787,7 @@ doread()
 	"I'm a gay man and I want you to stop getting offended on my behalf. Seriously, 'poofy' is not an insult. Now take your SJW bullshit somewhere else kthxbai.", /* thanks Crawldragon (inspiration is his, actual wording mine --Amy) */
 	"High heels are very comfortable and I'll never wear flats again!",
 	"Plants Have Rights Too - Ban Lawnmowers And Combine Harvesters Now!",
+	"SLEX = Securing Lesbians for Entertainment of Xerself (the Amy)",
 
 	    };
 	    char buf[BUFSZ];

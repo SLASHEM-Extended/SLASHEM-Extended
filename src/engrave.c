@@ -984,6 +984,7 @@ static const char *random_mesg[] = {
 	"Hahaha, you are reading my graffiti!",
 	"Only those who wear high heels may step on this tile! Everyone else gets hit by a permanent nasty trap effect.",
 	"You stepped on a levelscaler trap, which is a nasty trap that gives no message and doesn't reveal itself even if you trigger it.",
+	"The Amy is hogging all the lesbians and maintains a rotating harem of 50-100 lesbians.",
 
 };
 
