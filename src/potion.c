@@ -2510,7 +2510,7 @@ dodrink()
 	}
 
 	if (potion_descr) {
-	    if ( (!strcmp(potion_descr, "milky") || !strcmp(potion_descr, "ghostly") || !strcmp(potion_descr, "hallowed") || !strcmp(potion_descr, "spiritual")) &&
+	    if ( (!strcmp(potion_descr, "milky") || !strcmp(potion_descr, "ghostly") || !strcmp(potion_descr, "hallowed") || !strcmp(potion_descr, "camping") || !strcmp(potion_descr, "spiritual")) &&
 		    flags.ghost_count < MAXMONNO &&
 		    !rn2(POTION_OCCUPANT_CHANCE(flags.ghost_count))) {
 		ghost_from_bottle();
@@ -2542,6 +2542,58 @@ dodrink()
 		    (flags.marid_count < MAXMONNO) &&
 		    !rn2(POTION_OCCUPANT_CHANCE(flags.marid_count))) {
 		djinni_from_bottle(otmp, 4);
+		if (carried(otmp)) useup(otmp);
+		else useupf(otmp, 1L);
+		return(1);
+	    } else if (!strcmp(potion_descr, "whisky") &&
+		    (flags.wineghost_count < MAXMONNO) &&
+		    !rn2(POTION_OCCUPANT_CHANCE(flags.wineghost_count))) {
+		djinni_from_bottle(otmp, 5);
+		if (carried(otmp)) useup(otmp);
+		else useupf(otmp, 1L);
+		return(1);
+	    } else if (!strcmp(potion_descr, "dimly-shining") && !rn2(10)) {
+
+		int summondemon = ndemon(A_CHAOTIC);
+		if (summondemon == NON_PM) {
+			pline("Somehow, the potion evaporates with no effect.");
+			return(1);
+		}
+
+		pline("%s", Blind ? "You hear an evil chuckle!" : "A miasma of stinking vapors coalesces around you!");
+		make_pet_minion(summondemon, A_CHAOTIC);
+		godvoice(A_CHAOTIC, "My minion shall serve thee!");
+
+		if (carried(otmp)) useup(otmp);
+		else useupf(otmp, 1L);
+		return(1);
+	    } else if (!strcmp(potion_descr, "gaseous") && !rn2(10)) {
+
+		int summondemon = ntrminion();
+		if (summondemon == NON_PM) {
+			pline("Somehow, the potion evaporates with no effect.");
+			return(1);
+		}
+
+		pline("%s", Blind ? "You hear the earth rumble..." : "A cloud of gray smoke gathers around you!");
+		make_pet_minion(summondemon, A_NEUTRAL);
+		godvoice(A_NEUTRAL, "My minion shall serve thee!");
+
+		if (carried(otmp)) useup(otmp);
+		else useupf(otmp, 1L);
+		return(1);
+	    } else if (!strcmp(potion_descr, "starlight") && !rn2(10)) {
+
+		int summondemon = lminion();
+		if (summondemon == NON_PM) {
+			pline("Somehow, the potion evaporates with no effect.");
+			return(1);
+		}
+
+		pline("%s", Blind ? "You feel the presence of goodness." : "There is a puff of white fog!");
+		make_pet_minion(summondemon, A_LAWFUL);
+		godvoice(A_LAWFUL, "My minion shall serve thee!");
+
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
@@ -7167,7 +7219,8 @@ int kind;
 	if (kind == 1) genie_type = PM_DJINNI;
 	else if (kind == 2) genie_type = PM_DAO;
 	else if (kind == 3) genie_type = PM_EFREETI;
-	else genie_type = PM_MARID;
+	else if (kind == 4) genie_type = PM_MARID;
+	else genie_type = PM_WINE_GHOST;
 #endif
 	if(!(mtmp = makemon(&mons[genie_type], u.ux, u.uy, NO_MM_FLAGS))){
 		pline("It turns out to be empty.");

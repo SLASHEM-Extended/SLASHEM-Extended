@@ -10179,7 +10179,7 @@ struct obj *obj;
 #else
 		pline("%s - This is a potion. Color: %s. Material: %s. Appearance: %s. You can quaff it to experience its effects, but it's also possible to throw potions at monsters or bash them with it in melee.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
 #endif
-		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "milky") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ghostly") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "hallowed") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "spiritual"))))
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "milky") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ghostly") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "hallowed") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "camping") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "spiritual"))))
 			pline("Careful, sometimes a ghost may come out if you quaff this potion.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "smoky")))
 			pline("A djinni may live in this potion.");
@@ -10187,8 +10187,16 @@ struct obj *obj;
 			pline("A dao may live in this potion.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "sizzling")))
 			pline("An efreeti may live in this potion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "whisky")))
+			pline("A wine ghost may live in this potion.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "fuming")))
 			pline("A marid may live in this potion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "dimly-shining")))
+			pline("A demon may live in this potion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gaseous")))
+			pline("An elemental may live in this potion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "starlight")))
+			pline("An angel may live in this potion.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {

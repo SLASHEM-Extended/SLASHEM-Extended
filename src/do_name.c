@@ -542,7 +542,21 @@ static const char * const ghostnames[] = {
 	"Frans", "Fred", "Greg", "Hether", "Jay", "John", "Jon", "Karnov",
 	"Kay", "Kenny", "Kevin", "Maud", "Michiel", "Mike", "Peter", "Robert",
 	"Ron", "Tom", "Wilmar", "Nick Danger", "Phoenix", "Jiro", "Mizue",
-	"Stephan", "Lance Braccus", "Shadowhawk"
+	"Stephan", "Lance Braccus", "Shadowhawk", "GoldenIvy", "AmyBSOD",
+	"Dolores", "Mariari", "Lynn", "Emily", "Elenmirie", "Raisse",
+	"MiseryMyra", "Lymia", "Naganadel", "Bhaak", "Jonadab", "Ais523",
+	"Chris_ANG", "Tungtn", "SGrunt", "Lorimer", "Adeon", "FIQ",
+	"Mandevil", "Luxidream", "Noty", "Psymar", "ProzacElf", "Tangles",
+	"Yasdorian", "Bugsniper", "Heliokopis", "ShivanHunter", "Khor",
+	"Kerio", "Stenno", "Deepy", "Damerell", "Elronnd", "Blindcoder",
+	"Ilbelkyr", "GreyKnight", "Paxed", "Crawldragon", "Glycan",
+	"QDesjardin", "Demo", "GagarinX", "Introspective", "Grasshopper",
+	"Tarmunora", "SourSlime", "Mr0t", "Irrenhaus", "Greqrg", "Bouquet",
+	"Lorskel", "Regret", "Tariru", "Goreval", "Winter", "StatueSurfer",
+	"Yer Mivvagah", "Arrhythmia", "Tubs", "Winsalot", "Hothraxxa",
+	"Aosdict", "Ziratha", "Volt", "Kritixilithos", "Rikersan", "K2",
+	"Leeroy", "Hypnotist", "Anerag", "Icerose", "Madotsuki",
+
 };
 
 /* ghost names formerly set by x_monnam(), now by makemon() instead */

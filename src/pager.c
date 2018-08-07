@@ -17786,6 +17786,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'H.'. It reads: 'My name is spelled 'H-point'.'",
 	"Incoming message for Player 1. The message is from 'H.'. It reads: 'Well now you've really got a serious death verdict on you.'",
 	"The Amy routinely uses SLEX servers to meet lesbians and promises updates/game secrets in return for 'favors' from lesbian players.",
+	"Somehow, the potion evaporates with no effect.",
 
 };
 

@@ -686,7 +686,7 @@ struct obj *obj;
 #define POTION_OCCUPANT_CHANCE(n) (13 + 2*(n))	/* also in potion.c */
 
 	    potion_descr = OBJ_DESCR(objects[obj->otyp]);
-	    if (potion_descr && (!strcmp(potion_descr, "milky") || !strcmp(potion_descr, "ghostly") || !strcmp(potion_descr, "hallowed") || !strcmp(potion_descr, "spiritual")) ) {
+	    if (potion_descr && (!strcmp(potion_descr, "milky") || !strcmp(potion_descr, "ghostly") || !strcmp(potion_descr, "hallowed") || !strcmp(potion_descr, "camping") || !strcmp(potion_descr, "spiritual")) ) {
 	        if ( flags.ghost_count < MAXMONNO &&
 		    !rn2(POTION_OCCUPANT_CHANCE(flags.ghost_count))) {
 		    if (!enexto(&cc, mon->mx, mon->my, &mons[PM_GHOST])) return 0;
@@ -922,6 +922,98 @@ struct obj *obj;
 			if (vis) pline("%s vanishes.", Monnam(mtmp));
 			mongone(mtmp);
 		    }
+		}
+		return 2;
+	    }
+	    if (potion_descr && !strcmp(potion_descr, "whisky") &&
+		    flags.wineghost_count < MAXMONNO &&
+		    !rn2(POTION_OCCUPANT_CHANCE(flags.wineghost_count))) {
+		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_WINE_GHOST])) return 0;
+		mquaffmsg(mon, obj);
+		m_useup(mon, obj);
+		mtmp = makemon(&mons[PM_WINE_GHOST], cc.x, cc.y, NO_MM_FLAGS);
+		if (!mtmp) {
+		    if (vis) pline(empty);
+		} else {
+		    if (vis)
+			pline("In a cloud of smoke, %s emerges!",
+							a_monnam(mtmp));
+		    pline("%s speaks.", vis ? Monnam(mtmp) : Something);
+		/* I suspect few players will be upset that monsters */
+		/* can't wish for wands of death here.... */
+		    if (rn2(3)) {
+			verbalize("I am in your debt. I will grant one wish!");
+			pline("%s wishes for an object.", Monnam(mon) );
+			switch (rnd(6)) {
+				case 1:
+					(void) mongets(mon, rnd_defensive_item(mon));
+					break;
+				case 2:
+					(void) mongets(mon, rnd_offensive_item(mon));
+					break;
+				case 3:
+					(void) mongets(mon, rnd_misc_item(mon));
+					break;
+				case 4:
+					(void) mongets(mon, rnd_defensive_item_new(mon));
+					break;
+				case 5:
+					(void) mongets(mon, rnd_offensive_item_new(mon));
+					break;
+				case 6:
+					(void) mongets(mon, rnd_misc_item_new(mon));
+					break;
+			}
+			if (vis) pline("%s vanishes.", Monnam(mtmp));
+			mongone(mtmp);
+		    } else if (rn2(2)) {
+			verbalize("You freed me!");
+			mtmp->mpeaceful = 1;
+			set_malign(mtmp);
+		    } else {
+			verbalize("It is about time.");
+			if (vis) pline("%s vanishes.", Monnam(mtmp));
+			mongone(mtmp);
+		    }
+		}
+		return 2;
+	    }
+	    if (potion_descr && !strcmp(potion_descr, "dimly-shining") && !rn2(10)) {
+		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_INFERNAL_POTATO])) return 0;
+		mquaffmsg(mon, obj);
+		m_useup(mon, obj);
+		mtmp = makemon(mkclass(S_DEMON,0), cc.x, cc.y, MM_ANGRY);
+		if (!mtmp) {
+		    if (vis) pline(empty);
+		} else {
+		    if (vis)
+			pline("In a cloud of smoke, %s emerges!", a_monnam(mtmp));
+		}
+		return 2;
+	    }
+	    if (potion_descr && !strcmp(potion_descr, "gaseous") && !rn2(10)) {
+		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_AIR_ELEMENTAL])) return 0;
+		mquaffmsg(mon, obj);
+		m_useup(mon, obj);
+		mtmp = makemon(mkclass(S_ELEMENTAL,0), cc.x, cc.y, MM_ANGRY);
+		if (!mtmp) {
+		    if (vis) pline(empty);
+		} else {
+		    if (vis)
+			pline("In a cloud of smoke, %s emerges!", a_monnam(mtmp));
+		}
+		return 2;
+	    }
+	    if (potion_descr && !strcmp(potion_descr, "starlight") && !rn2(10)) {
+		if (!enexto(&cc, mon->mx, mon->my, &mons[PM_ANGEL])) return 0;
+		mquaffmsg(mon, obj);
+		m_useup(mon, obj);
+		mtmp = makemon(mkclass(S_ANGEL,0), cc.x, cc.y, MM_ANGRY);
+		if (!mtmp) {
+		    if (vis) pline(empty);
+		} else {
+		    if (vis)
+			pline("In a cloud of smoke, %s emerges!", a_monnam(mtmp));
 		}
 		return 2;
 	    }
