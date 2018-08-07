@@ -4927,6 +4927,8 @@ hitmu(mtmp, mattk)
 			atttyp = rn2(AD_ENDS); }
 	}
 
+	if (atttyp == AD_PART) atttyp = u.adpartattack;
+
 	if (atttyp == AD_MIDI) {
 		atttyp = mtmp->m_id;
 		if (atttyp < 0) atttyp *= -1;
@@ -7083,6 +7085,220 @@ dopois:
 
 		break;
 
+	    case AD_RUNS:
+
+		hitmsg(mtmp, mattk);
+		if (statsavingthrow) break;
+		/* No messages for AD_RUNS. This is intentional. It's a *nasty* attack. --Amy */
+
+		{
+			switch (u.adrunsattack) {
+
+				case 1: RMBLoss += rnz( (dmg + 2) * rnd(10) ); break;
+				case 2: NoDropProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 3: DSTWProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 4: StatusTrapProblem += rnz( (dmg + 2) * rnd(10) ); 
+					if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+					if (HStun) set_itimeout(&HeavyStunned, HStun);
+					if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+					if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+					if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+					if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+					if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
+					if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+					if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+					break;
+				case 5: Superscroller += rnz( (dmg + 2) * rnd(10) * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) ); 
+					(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+					break;
+				case 6: MenuBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 7: FreeHandLoss += rnz( (dmg + 2) * rnd(10) ); break;
+				case 8: Unidentify += rnz( (dmg + 2) * rnd(10) ); break;
+				case 9: Thirst += rnz( (dmg + 2) * rnd(10) ); break;
+				case 10: LuckLoss += rnz( (dmg + 2) * rnd(10) ); break;
+				case 11: ShadesOfGrey += rnz( (dmg + 2) * rnd(10) ); break;
+				case 12: FaintActive += rnz( (dmg + 2) * rnd(10) ); break;
+				case 13: Itemcursing += rnz( (dmg + 2) * rnd(10) ); break;
+				case 14: DifficultyIncreased += rnz( (dmg + 2) * rnd(10) ); break;
+				case 15: Deafness += rnz( (dmg + 2) * rnd(10) ); flags.soundok = 0; break;
+				case 16: CasterProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 17: WeaknessProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 18: RotThirteen += rnz( (dmg + 2) * rnd(10) ); break;
+				case 19: BishopGridbug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 20: UninformationProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 21: StairsProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 22: AlignmentProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 23: ConfusionProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 24: SpeedBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 25: DisplayLoss += rnz( (dmg + 2) * rnd(10) ); break;
+				case 26: SpellLoss += rnz( (dmg + 2) * rnd(10) ); break;
+				case 27: YellowSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 28: AutoDestruct += rnz( (dmg + 2) * rnd(10) ); break;
+				case 29: MemoryLoss += rnz( (dmg + 2) * rnd(10) ); break;
+				case 30: InventoryLoss += rnz( (dmg + 2) * rnd(10) ); break;
+				case 31: {
+	
+					if (BlackNgWalls) break;
+	
+					BlackNgWalls = 1000 - (dmg * 3);
+					if (BlackNgWalls < 100) BlackNgWalls = 100;
+					(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+					break;
+				}
+				case 32: IntrinsicLossProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 33: BloodLossProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 34: BadEffectProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 35: TrapCreationProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 36: AutomaticVulnerabilitiy += rnz( (dmg + 2) * rnd(10) ); break;
+				case 37: TeleportingItems += rnz( (dmg + 2) * rnd(10) ); break;
+				case 38: NastinessProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 39: CaptchaProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 40: FarlookProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 41: RespawnProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 42: RecurringAmnesia += rnz( (dmg + 2) * rnd(10) ); break;
+				case 43: BigscriptEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 44: {
+					BankTrapEffect += rnz( (dmg + 2) * rnd(10) );
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					u.bankcashamount += u.ugold;
+					u.ugold = 0;
+	
+					break;
+				}
+				case 45: MapTrapEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 46: TechTrapEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 47: RecurringDisenchant += rnz( (dmg + 2) * rnd(10) ); break;
+				case 48: verisiertEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 49: ChaosTerrain += rnz( (dmg + 2) * rnd(10) ); break;
+				case 50: Muteness += rnz( (dmg + 2) * rnd(10) ); break;
+				case 51: EngravingDoesntWork += rnz( (dmg + 2) * rnd(10) ); break;
+				case 52: MagicDeviceEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 53: BookTrapEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 54: LevelTrapEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 55: QuizTrapEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 56: FastMetabolismEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 57: NoReturnEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 58: AlwaysEgotypeMonsters += rnz( (dmg + 2) * rnd(10) ); break;
+				case 59: TimeGoesByFaster += rnz( (dmg + 2) * rnd(10) ); break;
+				case 60: FoodIsAlwaysRotten += rnz( (dmg + 2) * rnd(10) ); break;
+				case 61: AllSkillsUnskilled += rnz( (dmg + 2) * rnd(10) ); break;
+				case 62: AllStatsAreLower += rnz( (dmg + 2) * rnd(10) ); break;
+				case 63: PlayerCannotTrainSkills += rnz( (dmg + 2) * rnd(10) ); break;
+				case 64: PlayerCannotExerciseStats += rnz( (dmg + 2) * rnd(10) ); break;
+				case 65: TurnLimitation += rnz( (dmg + 2) * rnd(10) ); break;
+				case 66: WeakSight += rnz( (dmg + 2) * rnd(10) ); break;
+				case 67: RandomMessages += rnz( (dmg + 2) * rnd(10) ); break;
+
+				case 68: Desecration += rnz( (dmg + 2) * rnd(10) ); break;
+				case 69: StarvationEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 70: NoDropsEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 71: LowEffects += rnz( (dmg + 2) * rnd(10) ); break;
+				case 72: InvisibleTrapsEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 73: GhostWorld += rnz( (dmg + 2) * rnd(10) ); break;
+				case 74: Dehydration += rnz( (dmg + 2) * rnd(10) ); break;
+				case 75: HateTrapEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 76: TotterTrapEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 77: Nonintrinsics += rnz( (dmg + 2) * rnd(10) ); break;
+				case 78: Dropcurses += rnz( (dmg + 2) * rnd(10) ); break;
+				case 79: Nakedness += rnz( (dmg + 2) * rnd(10) ); break;
+				case 80: Antileveling += rnz( (dmg + 2) * rnd(10) ); break;
+				case 81: ItemStealingEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 82: Rebellions += rnz( (dmg + 2) * rnd(10) ); break;
+				case 83: CrapEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 84: ProjectilesMisfire += rnz( (dmg + 2) * rnd(10) ); break;
+				case 85: WallTrapping += rnz( (dmg + 2) * rnd(10) ); break;
+				case 86: DisconnectedStairs += rnz( (dmg + 2) * rnd(10) ); break;
+				case 87: InterfaceScrewed += rnz( (dmg + 2) * rnd(10) ); break;
+				case 88: Bossfights += rnz( (dmg + 2) * rnd(10) ); break;
+				case 89: EntireLevelMode += rnz( (dmg + 2) * rnd(10) ); break;
+				case 90: BonesLevelChange += rnz( (dmg + 2) * rnd(10) ); break;
+				case 91: AutocursingEquipment += rnz( (dmg + 2) * rnd(10) ); break;
+				case 92: HighlevelStatus += rnz( (dmg + 2) * rnd(10) ); break;
+				case 93: SpellForgetting += rnz( (dmg + 2) * rnd(10) ); break;
+				case 94: SoundEffectBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 95: TimerunBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 96: LootcutBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 97: MonsterSpeedBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 98: ScalingBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 99: EnmityBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 100: WhiteSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 101: CompleteGraySpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 102: QuasarVision += rnz( (dmg + 2) * rnd(10) ); break;
+				case 103: MommaBugEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 104: HorrorBugEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 105: ArtificerBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 106: WereformBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 107: NonprayerBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 108: EvilPatchEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 109: HardModeEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 110: SecretAttackBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 111: EaterBugEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 112: CovetousnessBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 113: NotSeenBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 114: DarkModeBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 115: AntisearchEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 116: HomicideEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 117: NastynationBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 118: WakeupCallBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 119: GrayoutBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 120: GrayCenterBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 121: CheckerboardBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 122: ClockwiseSpinBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 123: CounterclockwiseSpin += rnz( (dmg + 2) * rnd(10) ); break;
+				case 124: LagBugEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 125: BlesscurseEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 126: DeLightBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 127: DischargeBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 128: TrashingBugEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 129: FilteringBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 130: DeformattingBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 131: FlickerStripBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 132: UndressingEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 133: Hyperbluewalls += rnz( (dmg + 2) * rnd(10) ); break;
+				case 134: NoliteBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 135: ParanoiaBugEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 136: FleecescriptBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 137: InterruptEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 138: DustbinBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 139: ManaBatteryBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 140: Monsterfingers += rnz( (dmg + 2) * rnd(10) ); break;
+				case 141: MiscastBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 142: MessageSuppression += rnz( (dmg + 2) * rnd(10) ); break;
+				case 143: StuckAnnouncement += rnz( (dmg + 2) * rnd(10) ); break;
+				case 144: BloodthirstyEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 145: MaximumDamageBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 146: LatencyBugEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 147: StarlitBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 148: KnowledgeBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 149: HighscoreBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 150: PinkSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 151: GreenSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 152: EvencoreEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 153: UnderlayerBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 154: DamageMeterBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 155: ArbitraryWeightBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 156: FuckedInfoBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 157: BlackSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 158: CyanSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 159: HeapEffectBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 160: BlueSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 161: TronEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 162: RedSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 163: TooHeavyEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 164: ElongationBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 165: WrapoverEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 166: DestructionEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 167: MeleePrefixBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 168: AutomoreBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 169: UnfairAttackBug += rnz( (dmg + 2) * rnd(10) ); break;
+
+				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
+			}
+
+		}
+
+		break;
+
 	    case AD_SIN:
 
 		hitmsg(mtmp, mattk);
@@ -8522,6 +8738,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			atttypA = rn2(AD_ENDS); }
 	}
 
+	if (atttypA == AD_PART) atttypA = u.adpartattack;
+
 	if (atttypA == AD_MIDI) {
 		atttypA = mtmp->m_id;
 		if (atttypA < 0) atttypA *= -1;
@@ -9139,6 +9357,216 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(10) ); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
+			}
+
+		}
+
+		break;
+
+		case AD_RUNS:
+
+		{
+			switch (u.adrunsattack) {
+
+				case 1: RMBLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 2: NoDropProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 3: DSTWProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 4: StatusTrapProblem += rnz( (tmp + 2) * rnd(10) ); 
+					if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+					if (HStun) set_itimeout(&HeavyStunned, HStun);
+					if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+					if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+					if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+					if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+					if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
+					if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+					if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+					break;
+				case 5: Superscroller += rnz( (tmp + 2) * rnd(10) * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) ); 
+					(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+					break;
+				case 6: MenuBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 7: FreeHandLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 8: Unidentify += rnz( (tmp + 2) * rnd(10) ); break;
+				case 9: Thirst += rnz( (tmp + 2) * rnd(10) ); break;
+				case 10: LuckLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 11: ShadesOfGrey += rnz( (tmp + 2) * rnd(10) ); break;
+				case 12: FaintActive += rnz( (tmp + 2) * rnd(10) ); break;
+				case 13: Itemcursing += rnz( (tmp + 2) * rnd(10) ); break;
+				case 14: DifficultyIncreased += rnz( (tmp + 2) * rnd(10) ); break;
+				case 15: Deafness += rnz( (tmp + 2) * rnd(10) ); flags.soundok = 0; break;
+				case 16: CasterProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 17: WeaknessProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 18: RotThirteen += rnz( (tmp + 2) * rnd(10) ); break;
+				case 19: BishopGridbug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 20: UninformationProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 21: StairsProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 22: AlignmentProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 23: ConfusionProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 24: SpeedBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 25: DisplayLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 26: SpellLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 27: YellowSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 28: AutoDestruct += rnz( (tmp + 2) * rnd(10) ); break;
+				case 29: MemoryLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 30: InventoryLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 31: {
+	
+					if (BlackNgWalls) break;
+	
+					BlackNgWalls = 1000 - (tmp * 3);
+					if (BlackNgWalls < 100) BlackNgWalls = 100;
+					(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+					break;
+				}
+				case 32: IntrinsicLossProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 33: BloodLossProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 34: BadEffectProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 35: TrapCreationProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 36: AutomaticVulnerabilitiy += rnz( (tmp + 2) * rnd(10) ); break;
+				case 37: TeleportingItems += rnz( (tmp + 2) * rnd(10) ); break;
+				case 38: NastinessProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 39: CaptchaProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 40: FarlookProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 41: RespawnProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 42: RecurringAmnesia += rnz( (tmp + 2) * rnd(10) ); break;
+				case 43: BigscriptEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 44: {
+					BankTrapEffect += rnz( (tmp + 2) * rnd(10) );
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					u.bankcashamount += u.ugold;
+					u.ugold = 0;
+	
+					break;
+				}
+				case 45: MapTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 46: TechTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 47: RecurringDisenchant += rnz( (tmp + 2) * rnd(10) ); break;
+				case 48: verisiertEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 49: ChaosTerrain += rnz( (tmp + 2) * rnd(10) ); break;
+				case 50: Muteness += rnz( (tmp + 2) * rnd(10) ); break;
+				case 51: EngravingDoesntWork += rnz( (tmp + 2) * rnd(10) ); break;
+				case 52: MagicDeviceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 53: BookTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 54: LevelTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 55: QuizTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 56: FastMetabolismEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 57: NoReturnEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 58: AlwaysEgotypeMonsters += rnz( (tmp + 2) * rnd(10) ); break;
+				case 59: TimeGoesByFaster += rnz( (tmp + 2) * rnd(10) ); break;
+				case 60: FoodIsAlwaysRotten += rnz( (tmp + 2) * rnd(10) ); break;
+				case 61: AllSkillsUnskilled += rnz( (tmp + 2) * rnd(10) ); break;
+				case 62: AllStatsAreLower += rnz( (tmp + 2) * rnd(10) ); break;
+				case 63: PlayerCannotTrainSkills += rnz( (tmp + 2) * rnd(10) ); break;
+				case 64: PlayerCannotExerciseStats += rnz( (tmp + 2) * rnd(10) ); break;
+				case 65: TurnLimitation += rnz( (tmp + 2) * rnd(10) ); break;
+				case 66: WeakSight += rnz( (tmp + 2) * rnd(10) ); break;
+				case 67: RandomMessages += rnz( (tmp + 2) * rnd(10) ); break;
+
+				case 68: Desecration += rnz( (tmp + 2) * rnd(10) ); break;
+				case 69: StarvationEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 70: NoDropsEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 71: LowEffects += rnz( (tmp + 2) * rnd(10) ); break;
+				case 72: InvisibleTrapsEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 73: GhostWorld += rnz( (tmp + 2) * rnd(10) ); break;
+				case 74: Dehydration += rnz( (tmp + 2) * rnd(10) ); break;
+				case 75: HateTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 76: TotterTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 77: Nonintrinsics += rnz( (tmp + 2) * rnd(10) ); break;
+				case 78: Dropcurses += rnz( (tmp + 2) * rnd(10) ); break;
+				case 79: Nakedness += rnz( (tmp + 2) * rnd(10) ); break;
+				case 80: Antileveling += rnz( (tmp + 2) * rnd(10) ); break;
+				case 81: ItemStealingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 82: Rebellions += rnz( (tmp + 2) * rnd(10) ); break;
+				case 83: CrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 84: ProjectilesMisfire += rnz( (tmp + 2) * rnd(10) ); break;
+				case 85: WallTrapping += rnz( (tmp + 2) * rnd(10) ); break;
+				case 86: DisconnectedStairs += rnz( (tmp + 2) * rnd(10) ); break;
+				case 87: InterfaceScrewed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 88: Bossfights += rnz( (tmp + 2) * rnd(10) ); break;
+				case 89: EntireLevelMode += rnz( (tmp + 2) * rnd(10) ); break;
+				case 90: BonesLevelChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 91: AutocursingEquipment += rnz( (tmp + 2) * rnd(10) ); break;
+				case 92: HighlevelStatus += rnz( (tmp + 2) * rnd(10) ); break;
+				case 93: SpellForgetting += rnz( (tmp + 2) * rnd(10) ); break;
+				case 94: SoundEffectBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 95: TimerunBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 96: LootcutBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 97: MonsterSpeedBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 98: ScalingBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 99: EnmityBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 100: WhiteSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 101: CompleteGraySpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 102: QuasarVision += rnz( (tmp + 2) * rnd(10) ); break;
+				case 103: MommaBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 104: HorrorBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 105: ArtificerBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 106: WereformBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 107: NonprayerBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 108: EvilPatchEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 109: HardModeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 110: SecretAttackBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 111: EaterBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 112: CovetousnessBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 113: NotSeenBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 114: DarkModeBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 115: AntisearchEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 116: HomicideEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 117: NastynationBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 118: WakeupCallBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 119: GrayoutBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 120: GrayCenterBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 121: CheckerboardBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 122: ClockwiseSpinBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 123: CounterclockwiseSpin += rnz( (tmp + 2) * rnd(10) ); break;
+				case 124: LagBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 125: BlesscurseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 126: DeLightBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 127: DischargeBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 128: TrashingBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 129: FilteringBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 130: DeformattingBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 131: FlickerStripBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 132: UndressingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 133: Hyperbluewalls += rnz( (tmp + 2) * rnd(10) ); break;
+				case 134: NoliteBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 135: ParanoiaBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 136: FleecescriptBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 137: InterruptEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 138: DustbinBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 139: ManaBatteryBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 140: Monsterfingers += rnz( (tmp + 2) * rnd(10) ); break;
+				case 141: MiscastBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 142: MessageSuppression += rnz( (tmp + 2) * rnd(10) ); break;
+				case 143: StuckAnnouncement += rnz( (tmp + 2) * rnd(10) ); break;
+				case 144: BloodthirstyEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 145: MaximumDamageBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 146: LatencyBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 147: StarlitBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 148: KnowledgeBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 149: HighscoreBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 150: PinkSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 151: GreenSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 152: EvencoreEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 153: UnderlayerBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 154: DamageMeterBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 155: ArbitraryWeightBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 156: FuckedInfoBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 157: BlackSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 158: CyanSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 159: HeapEffectBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 160: BlueSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 161: TronEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 162: RedSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 163: TooHeavyEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 164: ElongationBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 165: WrapoverEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 166: DestructionEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 167: MeleePrefixBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 168: AutomoreBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(10) ); break;
+
+				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
 
 		}
@@ -10891,6 +11319,8 @@ boolean ufound;
 			atttypC = rn2(AD_ENDS); }
 	}
 
+	if (atttypC == AD_PART) atttypC = u.adpartattack;
+
 	if (atttypC == AD_MIDI) {
 		atttypC = mtmp->m_id;
 		if (atttypC < 0) atttypC *= -1;
@@ -11288,6 +11718,216 @@ common:
 				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(100) ); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
+			}
+
+		}
+
+		break;
+
+	    case AD_RUNS:
+
+		{
+			switch (u.adrunsattack) {
+
+				case 1: RMBLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 2: NoDropProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 3: DSTWProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 4: StatusTrapProblem += rnz( (tmp + 2) * rnd(10) ); 
+					if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+					if (HStun) set_itimeout(&HeavyStunned, HStun);
+					if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+					if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+					if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+					if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+					if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
+					if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+					if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+					break;
+				case 5: Superscroller += rnz( (tmp + 2) * rnd(10) * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) ); 
+					(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+					break;
+				case 6: MenuBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 7: FreeHandLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 8: Unidentify += rnz( (tmp + 2) * rnd(10) ); break;
+				case 9: Thirst += rnz( (tmp + 2) * rnd(10) ); break;
+				case 10: LuckLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 11: ShadesOfGrey += rnz( (tmp + 2) * rnd(10) ); break;
+				case 12: FaintActive += rnz( (tmp + 2) * rnd(10) ); break;
+				case 13: Itemcursing += rnz( (tmp + 2) * rnd(10) ); break;
+				case 14: DifficultyIncreased += rnz( (tmp + 2) * rnd(10) ); break;
+				case 15: Deafness += rnz( (tmp + 2) * rnd(10) ); flags.soundok = 0; break;
+				case 16: CasterProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 17: WeaknessProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 18: RotThirteen += rnz( (tmp + 2) * rnd(10) ); break;
+				case 19: BishopGridbug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 20: UninformationProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 21: StairsProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 22: AlignmentProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 23: ConfusionProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 24: SpeedBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 25: DisplayLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 26: SpellLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 27: YellowSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 28: AutoDestruct += rnz( (tmp + 2) * rnd(10) ); break;
+				case 29: MemoryLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 30: InventoryLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 31: {
+	
+					if (BlackNgWalls) break;
+	
+					BlackNgWalls = 1000 - (tmp * 3);
+					if (BlackNgWalls < 100) BlackNgWalls = 100;
+					(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+					break;
+				}
+				case 32: IntrinsicLossProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 33: BloodLossProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 34: BadEffectProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 35: TrapCreationProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 36: AutomaticVulnerabilitiy += rnz( (tmp + 2) * rnd(10) ); break;
+				case 37: TeleportingItems += rnz( (tmp + 2) * rnd(10) ); break;
+				case 38: NastinessProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 39: CaptchaProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 40: FarlookProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 41: RespawnProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 42: RecurringAmnesia += rnz( (tmp + 2) * rnd(10) ); break;
+				case 43: BigscriptEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 44: {
+					BankTrapEffect += rnz( (tmp + 2) * rnd(10) );
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					u.bankcashamount += u.ugold;
+					u.ugold = 0;
+	
+					break;
+				}
+				case 45: MapTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 46: TechTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 47: RecurringDisenchant += rnz( (tmp + 2) * rnd(10) ); break;
+				case 48: verisiertEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 49: ChaosTerrain += rnz( (tmp + 2) * rnd(10) ); break;
+				case 50: Muteness += rnz( (tmp + 2) * rnd(10) ); break;
+				case 51: EngravingDoesntWork += rnz( (tmp + 2) * rnd(10) ); break;
+				case 52: MagicDeviceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 53: BookTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 54: LevelTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 55: QuizTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 56: FastMetabolismEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 57: NoReturnEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 58: AlwaysEgotypeMonsters += rnz( (tmp + 2) * rnd(10) ); break;
+				case 59: TimeGoesByFaster += rnz( (tmp + 2) * rnd(10) ); break;
+				case 60: FoodIsAlwaysRotten += rnz( (tmp + 2) * rnd(10) ); break;
+				case 61: AllSkillsUnskilled += rnz( (tmp + 2) * rnd(10) ); break;
+				case 62: AllStatsAreLower += rnz( (tmp + 2) * rnd(10) ); break;
+				case 63: PlayerCannotTrainSkills += rnz( (tmp + 2) * rnd(10) ); break;
+				case 64: PlayerCannotExerciseStats += rnz( (tmp + 2) * rnd(10) ); break;
+				case 65: TurnLimitation += rnz( (tmp + 2) * rnd(10) ); break;
+				case 66: WeakSight += rnz( (tmp + 2) * rnd(10) ); break;
+				case 67: RandomMessages += rnz( (tmp + 2) * rnd(10) ); break;
+
+				case 68: Desecration += rnz( (tmp + 2) * rnd(10) ); break;
+				case 69: StarvationEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 70: NoDropsEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 71: LowEffects += rnz( (tmp + 2) * rnd(10) ); break;
+				case 72: InvisibleTrapsEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 73: GhostWorld += rnz( (tmp + 2) * rnd(10) ); break;
+				case 74: Dehydration += rnz( (tmp + 2) * rnd(10) ); break;
+				case 75: HateTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 76: TotterTrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 77: Nonintrinsics += rnz( (tmp + 2) * rnd(10) ); break;
+				case 78: Dropcurses += rnz( (tmp + 2) * rnd(10) ); break;
+				case 79: Nakedness += rnz( (tmp + 2) * rnd(10) ); break;
+				case 80: Antileveling += rnz( (tmp + 2) * rnd(10) ); break;
+				case 81: ItemStealingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 82: Rebellions += rnz( (tmp + 2) * rnd(10) ); break;
+				case 83: CrapEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 84: ProjectilesMisfire += rnz( (tmp + 2) * rnd(10) ); break;
+				case 85: WallTrapping += rnz( (tmp + 2) * rnd(10) ); break;
+				case 86: DisconnectedStairs += rnz( (tmp + 2) * rnd(10) ); break;
+				case 87: InterfaceScrewed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 88: Bossfights += rnz( (tmp + 2) * rnd(10) ); break;
+				case 89: EntireLevelMode += rnz( (tmp + 2) * rnd(10) ); break;
+				case 90: BonesLevelChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 91: AutocursingEquipment += rnz( (tmp + 2) * rnd(10) ); break;
+				case 92: HighlevelStatus += rnz( (tmp + 2) * rnd(10) ); break;
+				case 93: SpellForgetting += rnz( (tmp + 2) * rnd(10) ); break;
+				case 94: SoundEffectBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 95: TimerunBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 96: LootcutBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 97: MonsterSpeedBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 98: ScalingBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 99: EnmityBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 100: WhiteSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 101: CompleteGraySpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 102: QuasarVision += rnz( (tmp + 2) * rnd(10) ); break;
+				case 103: MommaBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 104: HorrorBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 105: ArtificerBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 106: WereformBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 107: NonprayerBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 108: EvilPatchEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 109: HardModeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 110: SecretAttackBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 111: EaterBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 112: CovetousnessBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 113: NotSeenBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 114: DarkModeBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 115: AntisearchEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 116: HomicideEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 117: NastynationBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 118: WakeupCallBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 119: GrayoutBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 120: GrayCenterBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 121: CheckerboardBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 122: ClockwiseSpinBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 123: CounterclockwiseSpin += rnz( (tmp + 2) * rnd(10) ); break;
+				case 124: LagBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 125: BlesscurseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 126: DeLightBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 127: DischargeBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 128: TrashingBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 129: FilteringBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 130: DeformattingBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 131: FlickerStripBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 132: UndressingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 133: Hyperbluewalls += rnz( (tmp + 2) * rnd(10) ); break;
+				case 134: NoliteBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 135: ParanoiaBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 136: FleecescriptBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 137: InterruptEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 138: DustbinBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 139: ManaBatteryBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 140: Monsterfingers += rnz( (tmp + 2) * rnd(10) ); break;
+				case 141: MiscastBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 142: MessageSuppression += rnz( (tmp + 2) * rnd(10) ); break;
+				case 143: StuckAnnouncement += rnz( (tmp + 2) * rnd(10) ); break;
+				case 144: BloodthirstyEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 145: MaximumDamageBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 146: LatencyBugEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 147: StarlitBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 148: KnowledgeBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 149: HighscoreBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 150: PinkSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 151: GreenSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 152: EvencoreEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 153: UnderlayerBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 154: DamageMeterBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 155: ArbitraryWeightBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 156: FuckedInfoBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 157: BlackSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 158: CyanSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 159: HeapEffectBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 160: BlueSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 161: TronEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 162: RedSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 163: TooHeavyEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 164: ElongationBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 165: WrapoverEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 166: DestructionEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 167: MeleePrefixBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 168: AutomoreBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(10) ); break;
+
+				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
 
 		}
@@ -13078,6 +13718,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		while (atttypB == AD_ENDS || atttypB == AD_RNG || atttypB == AD_WERE) {
 			atttypB = rn2(AD_ENDS); }
 	}
+
+	if (atttypB == AD_PART) atttypB = u.adpartattack;
 
 	if (atttypB == AD_MIDI) {
 		atttypB = mtmp->m_id;
@@ -15590,6 +16232,219 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				case 169: UnfairAttackBug += rnz( (dmgplus + 2) * rnd(10) ); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
+			}
+
+		}
+
+		break;
+
+	    case AD_RUNS:
+
+		/* The fact that the gaze does not give a message is extra evil *and intentional*. --Amy */
+
+	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
+
+			switch (u.adrunsattack) {
+
+				case 1: RMBLoss += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 2: NoDropProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 3: DSTWProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 4: StatusTrapProblem += rnz( (dmgplus + 2) * rnd(10) ); 
+					if (HConfusion) set_itimeout(&HeavyConfusion, HConfusion);
+					if (HStun) set_itimeout(&HeavyStunned, HStun);
+					if (HNumbed) set_itimeout(&HeavyNumbed, HNumbed);
+					if (HFeared) set_itimeout(&HeavyFeared, HFeared);
+					if (HFrozen) set_itimeout(&HeavyFrozen, HFrozen);
+					if (HBurned) set_itimeout(&HeavyBurned, HBurned);
+					if (HDimmed) set_itimeout(&HeavyDimmed, HDimmed);
+					if (Blinded) set_itimeout(&HeavyBlind, Blinded);
+					if (HHallucination) set_itimeout(&HeavyHallu, HHallucination);
+					break;
+				case 5: Superscroller += rnz( (dmgplus + 2) * rnd(10) * (Role_if(PM_GRADUATE) ? 2 : Role_if(PM_GEEK) ? 5 : 10) ); 
+					(void) makemon(&mons[PM_SCROLLER_MASTER], 0, 0, NO_MINVENT);
+					break;
+				case 6: MenuBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 7: FreeHandLoss += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 8: Unidentify += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 9: Thirst += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 10: LuckLoss += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 11: ShadesOfGrey += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 12: FaintActive += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 13: Itemcursing += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 14: DifficultyIncreased += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 15: Deafness += rnz( (dmgplus + 2) * rnd(10) ); flags.soundok = 0; break;
+				case 16: CasterProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 17: WeaknessProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 18: RotThirteen += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 19: BishopGridbug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 20: UninformationProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 21: StairsProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 22: AlignmentProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 23: ConfusionProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 24: SpeedBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 25: DisplayLoss += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 26: SpellLoss += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 27: YellowSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 28: AutoDestruct += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 29: MemoryLoss += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 30: InventoryLoss += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 31: {
+	
+					if (BlackNgWalls) break;
+	
+					BlackNgWalls = 1000 - (dmgplus * 3);
+					if (BlackNgWalls < 100) BlackNgWalls = 100;
+					(void) makemon(&mons[PM_BLACKY], 0, 0, NO_MM_FLAGS);
+					break;
+				}
+				case 32: IntrinsicLossProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 33: BloodLossProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 34: BadEffectProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 35: TrapCreationProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 36: AutomaticVulnerabilitiy += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 37: TeleportingItems += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 38: NastinessProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 39: CaptchaProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 40: FarlookProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 41: RespawnProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 42: RecurringAmnesia += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 43: BigscriptEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 44: {
+					BankTrapEffect += rnz( (dmgplus + 2) * rnd(10) );
+					if (u.bankcashlimit == 0) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1));
+					u.bankcashamount += u.ugold;
+					u.ugold = 0;
+	
+					break;
+				}
+				case 45: MapTrapEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 46: TechTrapEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 47: RecurringDisenchant += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 48: verisiertEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 49: ChaosTerrain += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 50: Muteness += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 51: EngravingDoesntWork += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 52: MagicDeviceEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 53: BookTrapEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 54: LevelTrapEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 55: QuizTrapEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 56: FastMetabolismEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 57: NoReturnEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 58: AlwaysEgotypeMonsters += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 59: TimeGoesByFaster += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 60: FoodIsAlwaysRotten += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 61: AllSkillsUnskilled += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 62: AllStatsAreLower += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 63: PlayerCannotTrainSkills += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 64: PlayerCannotExerciseStats += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 65: TurnLimitation += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 66: WeakSight += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 67: RandomMessages += rnz( (dmgplus + 2) * rnd(10) ); break;
+
+				case 68: Desecration += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 69: StarvationEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 70: NoDropsEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 71: LowEffects += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 72: InvisibleTrapsEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 73: GhostWorld += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 74: Dehydration += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 75: HateTrapEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 76: TotterTrapEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 77: Nonintrinsics += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 78: Dropcurses += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 79: Nakedness += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 80: Antileveling += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 81: ItemStealingEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 82: Rebellions += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 83: CrapEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 84: ProjectilesMisfire += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 85: WallTrapping += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 86: DisconnectedStairs += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 87: InterfaceScrewed += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 88: Bossfights += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 89: EntireLevelMode += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 90: BonesLevelChange += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 91: AutocursingEquipment += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 92: HighlevelStatus += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 93: SpellForgetting += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 94: SoundEffectBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 95: TimerunBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 96: LootcutBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 97: MonsterSpeedBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 98: ScalingBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 99: EnmityBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 100: WhiteSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 101: CompleteGraySpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 102: QuasarVision += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 103: MommaBugEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 104: HorrorBugEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 105: ArtificerBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 106: WereformBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 107: NonprayerBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 108: EvilPatchEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 109: HardModeEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 110: SecretAttackBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 111: EaterBugEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 112: CovetousnessBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 113: NotSeenBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 114: DarkModeBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 115: AntisearchEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 116: HomicideEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 117: NastynationBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 118: WakeupCallBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 119: GrayoutBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 120: GrayCenterBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 121: CheckerboardBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 122: ClockwiseSpinBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 123: CounterclockwiseSpin += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 124: LagBugEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 125: BlesscurseEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 126: DeLightBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 127: DischargeBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 128: TrashingBugEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 129: FilteringBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 130: DeformattingBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 131: FlickerStripBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 132: UndressingEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 133: Hyperbluewalls += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 134: NoliteBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 135: ParanoiaBugEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 136: FleecescriptBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 137: InterruptEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 138: DustbinBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 139: ManaBatteryBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 140: Monsterfingers += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 141: MiscastBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 142: MessageSuppression += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 143: StuckAnnouncement += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 144: BloodthirstyEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 145: MaximumDamageBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 146: LatencyBugEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 147: StarlitBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 148: KnowledgeBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 149: HighscoreBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 150: PinkSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 151: GreenSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 152: EvencoreEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 153: UnderlayerBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 154: DamageMeterBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 155: ArbitraryWeightBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 156: FuckedInfoBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 157: BlackSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 158: CyanSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 159: HeapEffectBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 160: BlueSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 161: TronEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 162: RedSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 163: TooHeavyEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 164: ElongationBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 165: WrapoverEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 166: DestructionEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 167: MeleePrefixBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 168: AutomoreBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 169: UnfairAttackBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+
+				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
 
 		}

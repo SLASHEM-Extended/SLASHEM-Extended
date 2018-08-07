@@ -2314,7 +2314,7 @@ register struct monst *mtmp;
 	    else
 		disp = 1;
 	} else if (Displaced && !(dmgtype(mtmp->data, AD_DISP) ) && !(dmgtype(mtmp->data, AD_MAGM) ) && mtmp->data != &mons[PM_BABY_GRAY_DRAGON] && mtmp->data != &mons[PM_YOUNG_GRAY_DRAGON] && mtmp->data != &mons[PM_YOUNG_ADULT_GRAY_DRAGON] &&
-		!(dmgtype(mtmp->data, AD_RBRE) ) ) {
+		!(dmgtype(mtmp->data, AD_RBRE)) && !(dmgtype(mtmp->data, AD_RNG)) ) {
 	    disp = couldsee(mx, my) ? 2 : 1;
 	} else disp = 0;
 	if (!disp) goto found_you;

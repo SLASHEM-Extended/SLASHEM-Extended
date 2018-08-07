@@ -1427,7 +1427,7 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 		strcat(description, " Is a nemesis (immune to death rays).");
 	}
 	if (dmgtype(ptr, AD_MAGM) || ptr == &mons[PM_BABY_GRAY_DRAGON] || ptr == &mons[PM_YOUNG_GRAY_DRAGON] || ptr == &mons[PM_YOUNG_ADULT_GRAY_DRAGON] ||
-		dmgtype(ptr, AD_RBRE) ) {
+		dmgtype(ptr, AD_RBRE) || dmgtype(ptr, AD_RNG) ) {
 		strcat(description, " Magic resistant.");
 	}
 	if (is_giant(ptr)) {
@@ -1762,6 +1762,9 @@ get_description_of_damage_type(uchar id)
 		case AD_STAT: return "permanent stat damage";
 		case AD_DAMA: return "random damage screwup";
 		case AD_THIE: return "thieving";
+
+		case AD_PART: return "specific regular attack";
+		case AD_RUNS: return "specific nastytrap effect";
 
 		case AD_ENDS: return "placeholder attack";
 		default:

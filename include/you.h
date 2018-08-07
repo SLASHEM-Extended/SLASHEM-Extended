@@ -1058,6 +1058,9 @@ struct you {
 
 	int acutraining;
 
+	int adpartattack;	/* what AD_PART does in the given game */
+	int adrunsattack;	/* what AD_RUNS does in the given game */
+
 	int combostrike;	/* for technique */
 	boolean comboactive;
 

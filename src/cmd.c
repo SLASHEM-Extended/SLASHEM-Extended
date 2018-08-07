@@ -1089,6 +1089,10 @@ int traitno;
 			return "monsters who deal random screwup damage";
 		case 357:
 			return "monsters with random thieving attacks";
+		case 358:
+			return "monsters with a game-specific regular attack";
+		case 359:
+			return "monsters with a game-specific nastiness attack";
 
 		default:
 			impossible("bad trait no %d, please update montraitname() in cmd.c", traitno);

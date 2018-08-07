@@ -7441,7 +7441,7 @@ u_init()
 
 	register int traitamount = rnd(10); /* pick an # of monster traits that are more common --Amy */
 
-	u.frequenttrait1 = rnd(357); /* same as monstercolor function */
+	u.frequenttrait1 = rnd(359); /* same as monstercolor function */
 	u.freqtraitbonus1 = rne(4);
 	if (!rn2(5)) u.freqtraitbonus1 += rne(3);
 	if (!rn2(3)) u.freqtraitbonus1 *= 2;
@@ -7480,7 +7480,7 @@ u_init()
 
 	if (traitamount >= 2) {
 
-		u.frequenttrait2 = rnd(357);
+		u.frequenttrait2 = rnd(359);
 		u.freqtraitbonus2 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus2 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus2 *= 2;
@@ -7502,7 +7502,7 @@ u_init()
 
 	if (traitamount >= 3) {
 
-		u.frequenttrait3 = rnd(357);
+		u.frequenttrait3 = rnd(359);
 		u.freqtraitbonus3 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus3 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus3 *= 2;
@@ -7524,7 +7524,7 @@ u_init()
 
 	if (traitamount >= 4) {
 
-		u.frequenttrait4 = rnd(357);
+		u.frequenttrait4 = rnd(359);
 		u.freqtraitbonus4 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus4 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus4 *= 2;
@@ -7546,7 +7546,7 @@ u_init()
 
 	if (traitamount >= 5) {
 
-		u.frequenttrait5 = rnd(357);
+		u.frequenttrait5 = rnd(359);
 		u.freqtraitbonus5 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus5 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus5 *= 2;
@@ -7568,7 +7568,7 @@ u_init()
 
 	if (traitamount >= 6) {
 
-		u.frequenttrait6 = rnd(357);
+		u.frequenttrait6 = rnd(359);
 		u.freqtraitbonus6 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus6 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus6 *= 2;
@@ -7590,7 +7590,7 @@ u_init()
 
 	if (traitamount >= 7) {
 
-		u.frequenttrait7 = rnd(357);
+		u.frequenttrait7 = rnd(359);
 		u.freqtraitbonus7 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus7 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus7 *= 2;
@@ -7612,7 +7612,7 @@ u_init()
 
 	if (traitamount >= 8) {
 
-		u.frequenttrait8 = rnd(357);
+		u.frequenttrait8 = rnd(359);
 		u.freqtraitbonus8 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus8 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus8 *= 2;
@@ -7634,7 +7634,7 @@ u_init()
 
 	if (traitamount >= 9) {
 
-		u.frequenttrait9 = rnd(357);
+		u.frequenttrait9 = rnd(359);
 		u.freqtraitbonus9 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus9 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus9 *= 2;
@@ -7656,7 +7656,7 @@ u_init()
 
 	if (traitamount >= 10) {
 
-		u.frequenttrait10 = rnd(357);
+		u.frequenttrait10 = rnd(359);
 		u.freqtraitbonus10 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus10 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus10 *= 2;
@@ -8169,6 +8169,10 @@ u_init()
 	u.femauspices25 = rnd(5);
 	u.femauspices28 = rnd(8);
 	u.femauspices30 = rnd(8);
+
+	u.adpartattack = rn2(AD_ENDS);
+	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);
+	u.adrunsattack = rnd(169); /* timerun etc. */
 
 	u.scholarturns = 0;
 
@@ -27112,7 +27116,7 @@ alter_reality()
 
 	register int traitamount = rnd(10); /* pick an # of monster traits that are more common --Amy */
 
-	u.frequenttrait1 = rnd(357); /* same as monstercolor function */
+	u.frequenttrait1 = rnd(359); /* same as monstercolor function */
 	u.freqtraitbonus1 = rne(4);
 	if (!rn2(5)) u.freqtraitbonus1 += rne(3);
 	if (!rn2(3)) u.freqtraitbonus1 *= 2;
@@ -27151,7 +27155,7 @@ alter_reality()
 
 	if (traitamount >= 2) {
 
-		u.frequenttrait2 = rnd(357);
+		u.frequenttrait2 = rnd(359);
 		u.freqtraitbonus2 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus2 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus2 *= 2;
@@ -27173,7 +27177,7 @@ alter_reality()
 
 	if (traitamount >= 3) {
 
-		u.frequenttrait3 = rnd(357);
+		u.frequenttrait3 = rnd(359);
 		u.freqtraitbonus3 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus3 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus3 *= 2;
@@ -27195,7 +27199,7 @@ alter_reality()
 
 	if (traitamount >= 4) {
 
-		u.frequenttrait4 = rnd(357);
+		u.frequenttrait4 = rnd(359);
 		u.freqtraitbonus4 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus4 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus4 *= 2;
@@ -27217,7 +27221,7 @@ alter_reality()
 
 	if (traitamount >= 5) {
 
-		u.frequenttrait5 = rnd(357);
+		u.frequenttrait5 = rnd(359);
 		u.freqtraitbonus5 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus5 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus5 *= 2;
@@ -27239,7 +27243,7 @@ alter_reality()
 
 	if (traitamount >= 6) {
 
-		u.frequenttrait6 = rnd(357);
+		u.frequenttrait6 = rnd(359);
 		u.freqtraitbonus6 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus6 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus6 *= 2;
@@ -27261,7 +27265,7 @@ alter_reality()
 
 	if (traitamount >= 7) {
 
-		u.frequenttrait7 = rnd(357);
+		u.frequenttrait7 = rnd(359);
 		u.freqtraitbonus7 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus7 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus7 *= 2;
@@ -27283,7 +27287,7 @@ alter_reality()
 
 	if (traitamount >= 8) {
 
-		u.frequenttrait8 = rnd(357);
+		u.frequenttrait8 = rnd(359);
 		u.freqtraitbonus8 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus8 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus8 *= 2;
@@ -27305,7 +27309,7 @@ alter_reality()
 
 	if (traitamount >= 9) {
 
-		u.frequenttrait9 = rnd(357);
+		u.frequenttrait9 = rnd(359);
 		u.freqtraitbonus9 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus9 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus9 *= 2;
@@ -27327,7 +27331,7 @@ alter_reality()
 
 	if (traitamount >= 10) {
 
-		u.frequenttrait10 = rnd(357);
+		u.frequenttrait10 = rnd(359);
 		u.freqtraitbonus10 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus10 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus10 *= 2;
@@ -27840,6 +27844,10 @@ alter_reality()
 	u.femauspices25 = rnd(5);
 	u.femauspices28 = rnd(8);
 	u.femauspices30 = rnd(8);
+
+	u.adpartattack = rn2(AD_ENDS);
+	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);
+	u.adrunsattack = rnd(169); /* timerun etc. */
 
 	u.unobtainable = -1;
 	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == STRANGE_OBJECT) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable].oc_prob < 1) ) u.unobtainable = rn2(NUM_OBJECTS);

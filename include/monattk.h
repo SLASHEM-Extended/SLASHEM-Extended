@@ -188,6 +188,9 @@
 
 #define AD_ENDS		127	/* placeholder */
 
+#define AD_PART		230	/* specific regular attack (rolled at game start) */
+#define AD_RUNS		231	/* specific nastytrap effect (rolled at game start) */
+
 #define AD_DAMA		232	/* random effect that damages your gear or otherwise screws you up */
 #define AD_THIE		233	/* random effect that steals your gear or otherwise screws you up */
 
