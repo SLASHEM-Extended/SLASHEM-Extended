@@ -1058,6 +1058,29 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Tame monsters aren't supposed to drop their starting items.
 - Greased items can have up to 3 layers of grease.
 
+1.5.8
+- Quest monsters (specific for the player's role) are more likely to appear outside the quest too.
+- Artifact keys can no longer be used to open chests.
+- Eating a monster with an AD_FAKE attack will now give a message.
+- Bones levels no longer invalidate scrolls of mail.
+- Monsters won't throw away their only melee weapon just because it can be thrown, and they can throw nasty gray stones without requiring a sling.
+- Portals leading back to the main dungeon can fail to activate, thereby making portaldancing a less viable tactic.
+- Corridors are fleecy-colored now.
+
+1.5.7
+- Branches can sometimes have random special levels in them.
+- Rooms have fleecy colors.
+- Fixed the bug where confused scrolls of lockout were able to dig out undiggable squares.
+- Fixed the bug where unskilled martial arts wasn't working correctly.
+- There is a time limit for ascension. If it's exceeded, random bad stuff starts to happen.
+- Fixed the bug where some roles' starting items weren't initialized correctly.
+- Bad item seedings are possible, where the game makes items the monsters can use against the player.
+- Added a new bash_reminder option that alerts the player if they use items in melee that aren't meant to be used as melee weapons.
+- Occasionally, monsters can use defensive or misc items even while far away from the player.
+- Fixed a bug where a blessed unicorn horn would often go straight to cursed.
+- The charging spell can occasionally backfire.
+- Eating an amulet of life saving can give a 1-UP.
+
 (older stuff still needs to be added here)
 
 :-) <3 *bundlebundlebundle* <3 :D
