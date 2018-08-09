@@ -5162,6 +5162,14 @@ SCROLL((char *)0,               "SPLICEHACK HAS LOTS OF RANDOM CONTENT",  P_NONE
 SCROLL((char *)0,               "PAINT A BUTTERFLY TO PREVENT SELFHARM",  P_NONE,     1,   0, 300, CLR_WHITE, 1),
 SCROLL((char *)0,               "LEG TATTOO",  P_NONE,     1,   0, 300, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "I TRAVEL FROM LINDAB TO LINAU",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "TOMSOD SAYS SLEX IS A GELATINOUS CUBE",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "POOFY IS NOT AN INSULT",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "DER AFFE MACHT 4 SCHADEN",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "THAI MASSAGE IS BETTER THAN SEX",  P_NONE,     1,   0, 300, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "LINKIN PARK COMPOSED THE OFFICIAL NETHACK ANTHEM",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "PALOMITA IS SPANISH FOR PARROT",  P_NONE,     1,   0, 300, CLR_GREEN, 1),
+SCROLL((char *)0,               "THE SJW VIRUS HAS TAKEN OVER DNETHACK",  P_NONE,     1,   0, 300, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "DELICATE SENSIBILITIES",  P_NONE,     1,   0, 300, CLR_BRIGHT_CYAN, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
