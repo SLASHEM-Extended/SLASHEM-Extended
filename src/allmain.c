@@ -1055,6 +1055,34 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
 				moveamt /= 2;
 
+			/* nasty equipment generally makes you slower because it needs a guaranteed downside, even if the
+			 * randomized nastytrap effect is something relatively benign - this equipment is supposed to be
+			 * nasty and something that you don't wanna wear casually! --Amy */
+			if (uarmc && uarmc->otyp == NASTY_CLOAK && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+			if (uarm && uarm->otyp == ROBE_OF_NASTINESS && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+			if (uarmh && uarmh->otyp == UNWANTED_HELMET && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+			if (uarmg && uarmg->otyp == EVIL_GLOVES && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+			if (uarmf && uarmf->otyp == UNFAIR_STILETTOS && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+			if (uarm && uarm->otyp == EVIL_DRAGON_SCALE_MAIL && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+			if (uarm && uarm->otyp == EVIL_DRAGON_SCALES && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+			if (uarms && uarms->otyp == EVIL_DRAGON_SCALE_SHIELD && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+			if (uarms && uarms->otyp == DIFFICULT_SHIELD && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+			if (uarmu && uarmu->otyp == BAD_SHIRT && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+			if (uarm && uarm->otyp == EVIL_PLATE_MAIL && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+			if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
 			if (is_sand(u.ux,u.uy) && !Flying && !Levitation && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
@@ -11047,6 +11075,20 @@ contaminationcheck()
 		else if (u.contamination >= 400 && u.contamination < 600 && (rnd(10) > 7)) return 1;
 		else if (u.contamination >= 200 && u.contamination < 400 && !rn2(10)) return 1;
 	}
+
+	/* "nasty" equipment also reduces regeneration, more if you have several pieces equipped --Amy */
+	if (uarmc && uarmc->otyp == NASTY_CLOAK && !rn2(5)) return 1;
+	if (uarm && uarm->otyp == ROBE_OF_NASTINESS && !rn2(5)) return 1;
+	if (uarmh && uarmh->otyp == UNWANTED_HELMET && !rn2(5)) return 1;
+	if (uarmg && uarmg->otyp == EVIL_GLOVES && !rn2(5)) return 1;
+	if (uarmf && uarmf->otyp == UNFAIR_STILETTOS && !rn2(5)) return 1;
+	if (uarm && uarm->otyp == EVIL_DRAGON_SCALE_MAIL && !rn2(5)) return 1;
+	if (uarm && uarm->otyp == EVIL_DRAGON_SCALES && !rn2(5)) return 1;
+	if (uarms && uarms->otyp == EVIL_DRAGON_SCALE_SHIELD && !rn2(5)) return 1;
+	if (uarms && uarms->otyp == DIFFICULT_SHIELD && !rn2(5)) return 1;
+	if (uarmu && uarmu->otyp == BAD_SHIRT && !rn2(5)) return 1;
+	if (uarm && uarm->otyp == EVIL_PLATE_MAIL && !rn2(5)) return 1;
+	if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(5)) return 1;
 
 	/* if you're in the Sewer Plant and have to breathe, your regeneration is also reduced */
 	if (In_sewerplant(&u.uz) && rn2(2) && !Breathless) return 1;
