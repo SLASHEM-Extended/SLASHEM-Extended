@@ -1032,6 +1032,36 @@ register struct monst *mtmp;
 			obj = mksobj_at(SCR_BLANK_PAPER, x, y, TRUE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
+
+	    case PM_POTION_GOLEM:
+	    case PM_ALCHEMY_GOLEM:
+		num = rnd(4);
+		while (num--)
+			obj = mksobj_at(rnd_class(POT_BOOZE, POT_AMNESIA), x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+
+	    case PM_SCROLL_GOLEM:
+		num = rnd(4);
+		while (num--)
+			obj = mksobj_at(rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER), x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+
+	    case PM_WAND_GOLEM:
+		num = rnd(3);
+		while (num--)
+			obj = mksobj_at(rnd_class(WAN_LIGHT, WAN_PSYBEAM), x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+
+	    case PM_GIANT_PENIS_GOLEM:
+		num = rnd(5);
+		while (num--)
+			obj = mksobj_at(rnd_class(WAN_LIGHT, WAN_PSYBEAM), x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+
 	    default_1:
 	    default: /* worm that walks has a chance to get a corpse even from G_NOCORPSE monsters --Amy */
 

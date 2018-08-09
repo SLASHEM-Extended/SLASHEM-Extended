@@ -434,7 +434,7 @@ boolean creation;
 	  if (is_animal(mon->data)) return;
 
 	/* can't put on shirt if already wearing suit */
-	if (!cantweararm(mon->data) || (mon->misc_worn_check & W_ARM))
+	if (!cantweararm(mon->data) || (mon->misc_worn_check & W_ARM) || mon->data->msize == MZ_SMALL)
 	    m_dowear_type(mon, W_ARMU, creation, FALSE);
 	/* treating small as a special case allows
 	   hobbits, gnomes, and kobolds to wear cloaks */
@@ -444,7 +444,7 @@ boolean creation;
 	if (!MON_WEP(mon) || !bimanual(MON_WEP(mon)))
 	    m_dowear_type(mon, W_ARMS, creation, FALSE);
 	m_dowear_type(mon, W_ARMG, creation, FALSE);
-	if (!slithy(mon->data) && mon->data->mlet != S_CENTAUR)
+	if ((!slithy(mon->data) && mon->data->mlet != S_CENTAUR) || !issoviet)
 	    m_dowear_type(mon, W_ARMF, creation, FALSE);
 	if (!cantweararm(mon->data))
 	    m_dowear_type(mon, W_ARM, creation, FALSE);
@@ -842,8 +842,13 @@ struct obj *obj;
 
     /* Acceptable Exceptions: */
     /* Allow hobbits to wear elven armor - LoTR */
-    if (ptr == &mons[PM_HOBBIT] && is_elven_armor(obj))
+    if (is_hobbit(ptr) && is_elven_armor(obj))
 	return 1;
+
+    /* sporkhack gnomish suit - somehow never got worn by actual gnomes... --Amy */
+    if (is_gnome(ptr) && is_gnomish_armor(obj))
+	return 1;
+
     /* Unacceptable Exceptions: */
     /* Checks for object that certain races should never use go here */
     /*	return -1; */

@@ -3327,6 +3327,8 @@ FOOD("tin",                1000, 0, 0, 1, METAL,   0, HI_METAL, 1),
 #define POTION(name,desc,mgc,power,prob,cost,color,minlvl) OBJECT( \
 		OBJ(name,desc), BITS(0,1,0,0,mgc,0,0,0,0,0,0,0,GLASS), power, \
 		POTION_CLASS, prob, 0, 0, cost, 0, 0, 0, 0, 10, color, minlvl )
+
+/* Amy note: booze must be first, for makemon.c */
 POTION("booze", "brown",                0, 0,          280, 300, CLR_BROWN, 1),
 POTION("fruit juice", "dark",           0, 0,          340, 300, CLR_BLACK, 1),
 POTION("see invisible", "magenta",      1, SEE_INVIS,  322, 300, CLR_MAGENTA, 5),
@@ -3540,6 +3542,8 @@ POTION("water", "clear",                0, 0,          550, 300, CLR_CYAN, 1),
 POTION("blood", "blood-red",            0, 0,          50, 300, CLR_RED, 1),
 POTION("vampire blood", "blood-red",    1, 0,          50, 300, CLR_RED, 5),
 POTION("amnesia", "sparkling",          1, 0,          160, 300, CLR_CYAN, 1),
+/* Amy note: amnesia must be last, for makemon.c */
+
 #undef POTION
 
 /* scrolls ... */
@@ -3547,6 +3551,7 @@ POTION("amnesia", "sparkling",          1, 0,          160, 300, CLR_CYAN, 1),
 		OBJ(name,text), BITS(0,1,0,0,mgc,0,0,0,0,0,0,sub,PAPER), 0, \
 		SCROLL_CLASS, prob, 0, 0, cost, 0, 0, 0, 0, 6, color, minlvl )
 /* Attack */
+/* create monster must be first --Amy */
 SCROLL("create monster",        "LEP GEX VEN ZEA",      P_ATTACK_SPELL, 1, 230, 300, CLR_RED, 1),
 SCROLL("create familiar", "THERE ARE NOT ENOUGH MONSTERS IN SLASHEM EXTENDED", P_OCCULT_SPELL, 1, 10, 300, CLR_BRIGHT_CYAN, 15),
 SCROLL("summon undead",        "NO SPACE",      P_ATTACK_SPELL, 1,   50, 300, CLR_WHITE, 10),
@@ -5175,6 +5180,8 @@ SCROLL((char *)0,               "DELICATE SENSIBILITIES",  P_NONE,     1,   0, 3
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
 #endif
 SCROLL("blank paper",           "unlabeled",            P_NONE, 0, 280, 300, CLR_GRAY, 1),
+/* blank paper must be last --Amy */
+
 #undef SCROLL
 
 /* spell books ... */
@@ -5592,6 +5599,7 @@ OBJECT(OBJ("Book of the Dead", "papyrus"),
 #define WAND(name,typ,prob,cost,mgc,dir,metal,color,minlvl) OBJECT( \
 		OBJ(name,typ), BITS(0,0,1,0,mgc,1,0,0,0,0,dir,0,metal), 0, \
 		WAND_CLASS, prob, 0, 0, cost, 0, 0, 0, 0, 30, color, minlvl )
+/* light must be first --Amy */
 WAND("light",          "glass",    302, 500, 1, NODIR,     GLASS,    HI_GLASS, 1),
 WAND("nothing",        "oak",      50, 500, 0, IMMEDIATE, WOOD,     HI_WOOD, 1),
 WAND("enlightenment",  "crystal",  300, 500, 1, NODIR,     GLASS,    HI_GLASS, 5),
@@ -5718,7 +5726,7 @@ WAND("fireball",       "octagonal", 50, 500, 1, RAY,       IRON,     HI_METAL, 2
 WAND("acid",		"measured",	40, 500, 1, RAY,       METAL,	 HI_METAL, 1),
 WAND("solar beam",	"beaming",	40, 500, 1, RAY,       METAL,	 CLR_BRIGHT_CYAN, 1),
 WAND("psybeam",		"avada kedavra",	8, 500, 1, RAY,  WOOD,	 CLR_MAGENTA, 1),
-/* if the last wand changes, update wand mimics in makemon.c accordingly --Amy */
+/* if the last wand changes, update wand mimics in makemon.c and golems in mon.c accordingly --Amy */
 WAND((char *)0,        "forked",    0, 500, 1, 0,         WOOD,     HI_WOOD, 1),
 WAND((char *)0,        "spiked",    0, 500, 1, 0,         IRON,     HI_METAL, 1),
 WAND((char *)0,        "jeweled",   0, 500, 1, 0,         IRON,     HI_MINERAL, 1),

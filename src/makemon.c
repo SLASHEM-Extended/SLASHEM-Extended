@@ -30,6 +30,7 @@ STATIC_DCL void m_initthrow(struct monst *,int,int);
 STATIC_DCL void m_initweap(struct monst *);
 STATIC_DCL void m_initxtraitem(struct monst *);
 STATIC_DCL void m_initweap_normal(struct monst *);
+STATIC_DCL void m_initarmorpieces(struct monst *);
 #ifdef OVL1
 STATIC_DCL void m_initinv(struct monst *);
 #endif /* OVL1 */
@@ -198,6 +199,284 @@ int otyp,oquan;
 
 #endif /* OVLB */
 #ifdef OVL2
+
+/* function by Amy: sometimes give armor pieces to the monster */
+STATIC_OVL void
+m_initarmorpieces(mtmp)
+register struct monst *mtmp;
+{
+	if ((!cantweararm(mtmp->data) || mtmp->data->msize == MZ_SMALL) && !rn2(100)) { /* shirt */
+		(void) mongets(mtmp, T_SHIRT);
+	}
+
+	if ((!cantweararm(mtmp->data) || mtmp->data->msize == MZ_SMALL) && !rn2(10)) { /* cloak */
+		switch (rnd(17)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4: (void) mongets(mtmp, MUMMY_WRAPPING); break;
+			case 5:
+			case 6:
+			case 7:
+			case 8: (void) mongets(mtmp, ORCISH_CLOAK); break;
+			case 9:
+			case 10:
+			case 11: (void) mongets(mtmp, DWARVISH_CLOAK); break;
+			case 12: (void) mongets(mtmp, ELVEN_CLOAK); break;
+			case 13:
+			case 14:
+			case 15:
+			case 16: (void) mongets(mtmp, LEATHER_CLOAK); break;
+			case 17: (void) mongets(mtmp, FUR); break;
+
+		}
+	}
+
+	if (!rn2(3)) { /* helmet */
+		switch (rnd(22)) {
+			case 1: (void) mongets(mtmp, ELVEN_LEATHER_HELM); break;
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6: (void) mongets(mtmp, GNOMISH_HELM); break;
+			case 7:
+			case 8:
+			case 9:
+			case 10: (void) mongets(mtmp, ORCISH_HELM); break;
+			case 11: (void) mongets(mtmp, DWARVISH_IRON_HELM); break;
+			case 12:
+			case 13: (void) mongets(mtmp, DENTED_POT); break;
+			case 14:
+			case 15: (void) mongets(mtmp, ELVEN_HELM); break;
+			case 16: (void) mongets(mtmp, BUNNY_EAR); break;
+			case 17: (void) mongets(mtmp, STRAW_HAT); break;
+			case 18: (void) mongets(mtmp, MECHA_IRAZU); break;
+			case 19: (void) mongets(mtmp, SCHOOL_CAP); break;
+			case 20:
+			case 21: (void) mongets(mtmp, HELMET); break;
+			case 22: (void) mongets(mtmp, SKULLCAP); break;
+		}
+
+	}
+
+	if (!rn2(8)) { /* shield */
+		switch (rnd(25)) {
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5: (void) mongets(mtmp, SMALL_SHIELD); break;
+			case 6:
+			case 7:
+			case 8:
+			case 9: (void) mongets(mtmp, HEAVY_SHIELD); break;
+			case 10: (void) mongets(mtmp, BARRIER_SHIELD); break;
+			case 11: (void) mongets(mtmp, TARRIER); break;
+			case 12:
+			case 13: (void) mongets(mtmp, ELVEN_SHIELD); break;
+			case 14: (void) mongets(mtmp, ORCISH_SHIELD); break;
+			case 15: (void) mongets(mtmp, LARGE_SHIELD); break;
+			case 16:
+			case 17:
+			case 18:
+			case 19:
+			case 20: (void) mongets(mtmp, PAPER_SHIELD); break;
+			case 21: (void) mongets(mtmp, DWARVISH_ROUNDSHIELD); break;
+			case 22: (void) mongets(mtmp, ORCISH_GUARD_SHIELD); break;
+			case 23: (void) mongets(mtmp, SHIELD); break;
+			case 24: (void) mongets(mtmp, SILVER_SHIELD); break;
+			case 25: (void) mongets(mtmp, RAPIRAPI); break;
+		}
+	}
+
+	if (!rn2(12)) { /* gauntlets */
+		switch (rnd(13)) {
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5: (void) mongets(mtmp, LEATHER_GLOVES); break;
+			case 6: (void) mongets(mtmp, GAUNTLETS_OF_TYPING); break;
+			case 7: (void) mongets(mtmp, GAUNTLETS_OF_PLUGSUIT); break;
+			case 8: (void) mongets(mtmp, COMMANDER_GLOVES); break;
+			case 9: (void) mongets(mtmp, FIELD_GLOVES); break;
+			case 10:
+			case 11:
+			case 12: (void) mongets(mtmp, GAUNTLETS); break;
+			case 13: (void) mongets(mtmp, SILVER_GAUNTLETS); break;
+
+		}
+
+	}
+
+	if (((!slithy(mtmp->data) && mtmp->data->mlet != S_CENTAUR) || !issoviet) && !rn2(10)) { /* boots */
+		switch (rnd(26)) {
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5: (void) mongets(mtmp, LOW_BOOTS); break;
+			case 6:
+			case 7:
+			case 8: (void) mongets(mtmp, IRON_SHOES); break;
+			case 9:
+			case 10:
+			case 11:
+			case 12:
+			case 13: (void) mongets(mtmp, GNOMISH_BOOTS); break;
+			case 14:
+			case 15: (void) mongets(mtmp, HIGH_BOOTS); break;
+			case 16:
+			case 17: (void) mongets(mtmp, RUBBER_BOOTS); break;
+			case 18:
+			case 19:
+			case 20: (void) mongets(mtmp, LEATHER_SHOES); break;
+			case 21:
+			case 22:
+			case 23: (void) mongets(mtmp, SNEAKERS); break;
+			case 24: switch (rnd(8)) {
+				case 1: (void) mongets(mtmp, WEDGE_SANDALS); break;
+				case 2: (void) mongets(mtmp, DANCING_SHOES); break;
+				case 3: (void) mongets(mtmp, SWEET_MOCASSINS); break;
+				case 4: (void) mongets(mtmp, SOFT_SNEAKERS); break;
+				case 5: (void) mongets(mtmp, FEMININE_PUMPS); break;
+				case 6: (void) mongets(mtmp, LEATHER_PEEP_TOES); break;
+				case 7: (void) mongets(mtmp, HIPPIE_HEELS); break;
+				case 8: (void) mongets(mtmp, COMBAT_STILETTOS); break;
+				}
+			case 25: (void) mongets(mtmp, BOOTS_OF_PLUGSUIT); break;
+			case 26: (void) mongets(mtmp, FIELD_BOOTS); break;
+
+		}
+
+	}
+
+	if (!cantweararm(mtmp->data) && !rn2(3)) { /* body armor */
+		switch (rnd(112)) {
+			case 1: (void) mongets(mtmp, PLATE_MAIL); break;
+			case 2: (void) mongets(mtmp, RIBBED_PLATE_MAIL); break;
+			case 3: (void) mongets(mtmp, PARTIAL_PLATE_MAIL); break;
+			case 4: (void) mongets(mtmp, rn2(10) ? LEATHER_ARMOR : FULL_PLATE_MAIL); break;
+			case 5: (void) mongets(mtmp, CRYSTAL_PLATE_MAIL); break;
+			case 6: (void) mongets(mtmp, BRONZE_PLATE_MAIL); break;
+			case 7:
+			case 8: (void) mongets(mtmp, SPLINT_MAIL); break;
+			case 9:
+			case 10: (void) mongets(mtmp, METAL_LAMELLAR_ARMOR); break;
+			case 11:
+			case 12: (void) mongets(mtmp, BANDED_MAIL); break;
+			case 13: (void) mongets(mtmp, DWARVISH_MITHRIL_COAT); break;
+			case 14: (void) mongets(mtmp, ELVEN_MITHRIL_COAT); break;
+			case 15:
+			case 16:
+			case 17:
+			case 18:
+			case 19:
+			case 20:
+			case 21:
+			case 22:
+			case 23:
+			case 24: (void) mongets(mtmp, GNOMISH_SUIT); break;
+			case 25:
+			case 26:
+			case 27: (void) mongets(mtmp, CHAIN_MAIL); break;
+			case 28:
+			case 29:
+			case 30: (void) mongets(mtmp, BAR_CHAIN_MAIL); break;
+			case 31:
+			case 32:
+			case 33: (void) mongets(mtmp, TAR_CHAIN_MAIL); break;
+			case 34: (void) mongets(mtmp, SAILOR_BLOUSE); break;
+			case 35: (void) mongets(mtmp, FEATHER_ARMOR); break;
+			case 36:
+			case 37: (void) mongets(mtmp, SCHOOL_UNIFORM); break;
+			case 38: (void) mongets(mtmp, BUNNY_UNIFORM); break;
+			case 39:
+			case 40: (void) mongets(mtmp, MAID_DRESS); break;
+			case 41: (void) mongets(mtmp, NURSE_UNIFORM); break;
+			case 42: (void) mongets(mtmp, COMMANDER_SUIT); break;
+			case 43: (void) mongets(mtmp, CAMOUFLAGED_CLOTHES); break;
+			case 44: (void) mongets(mtmp, SHOULDER_RINGS); break;
+			case 45:
+			case 46:
+			case 47:
+			case 48:
+			case 49: (void) mongets(mtmp, BAMBOO_MAIL); break;
+			case 50:
+			case 51:
+			case 52:
+			case 53:
+			case 54: (void) mongets(mtmp, SILK_MAIL); break;
+			case 55:
+			case 56:
+			case 57: (void) mongets(mtmp, ORCISH_CHAIN_MAIL); break;
+			case 58:
+			case 59:
+			case 60: (void) mongets(mtmp, SCALE_MAIL); break;
+			case 61:
+			case 62:
+			case 63:
+			case 64:
+			case 65: (void) mongets(mtmp, STUDDED_LEATHER_ARMOR); break;
+			case 66:
+			case 67:
+			case 68: (void) mongets(mtmp, RING_MAIL); break;
+			case 69:
+			case 70:
+			case 71:
+			case 72:
+			case 73: (void) mongets(mtmp, HEAVY_MAIL); break;
+			case 74:
+			case 75:
+			case 76: (void) mongets(mtmp, ORCISH_RING_MAIL); break;
+			case 77:
+			case 78:
+			case 79:
+			case 80:
+			case 81:
+			case 82:
+			case 83:
+			case 84:
+			case 85:
+			case 86: (void) mongets(mtmp, LEATHER_ARMOR); break;
+			case 87: (void) mongets(mtmp, ELVEN_TOGA); break;
+			case 88: (void) mongets(mtmp, HEALER_UNIFORM); break;
+			case 89: (void) mongets(mtmp, GENTLEMAN_S_SUIT); break;
+			case 90: (void) mongets(mtmp, GENTLEWOMAN_S_DRESS); break;
+			case 91: (void) mongets(mtmp, STRAITJACKET); break;
+			case 92:
+			case 93:
+			case 94:
+			case 95: (void) mongets(mtmp, HAWAIIAN_SHORTS); break;
+			case 96:
+			case 97:
+			case 98:
+			case 99:
+			case 100:
+			case 101:
+			case 102: (void) mongets(mtmp, LEATHER_JACKET); break;
+			case 103:
+			case 104:
+			case 105:
+			case 106:
+			case 107:
+			case 108:
+			case 109:
+			case 110:
+			case 111:
+			case 112: (void) mongets(mtmp, ROBE); break;
+
+		}
+
+	} else if (is_hobbit(mtmp->data) && !rn2(30)) { /* elven mithril-coat */
+		(void) mongets(mtmp, ELVEN_MITHRIL_COAT);
+	} else if (is_gnome(mtmp->data) && !rn2(10)) { /* gnomish suit */
+		(void) mongets(mtmp, GNOMISH_SUIT);
+	}
+
+}
 
 STATIC_OVL void
 m_initweap_normal(mtmp)
@@ -5209,7 +5488,7 @@ register struct monst *mtmp;
 
 	if (!rn2(3)) m_initweap_normal(mtmp);
 
-/*    if ((int) mtmp->m_lev > rn2(120)) */        
+	if (!rn2(10)) m_initarmorpieces(mtmp);
 
 	if (!rn2(ishaxor ? 20 : 40) ) (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
 	if (!rn2(ishaxor ? 50 : 100) ) (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
@@ -5333,6 +5612,28 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_GIRLY_GIRL]) (void) mongets(mtmp, SCR_GIRLINESS);
 		if (ptr == &mons[PM_FEMALE_GIRL]) (void) mongets(mtmp, WAN_SUMMON_SEXY_GIRL);
+
+		if (ptr == &mons[PM_BOWAZON]) {
+			(void) mongets(mtmp, BOW);
+			m_initthrow(mtmp, ARROW, 25);
+		}
+		if (ptr == &mons[PM_JAVAZON]) {
+			(void) mongets(mtmp, JAVELIN);
+			(void) mongets(mtmp, SMALL_SHIELD);
+		}
+		if (ptr == &mons[PM_SPEARAZON]) {
+			(void) mongets(mtmp, SPEAR);
+			(void) mongets(mtmp, SMALL_SHIELD);
+		}
+		if (ptr == &mons[PM_FORKAZON]) {
+			(void) mongets(mtmp, TRIDENT);
+			(void) mongets(mtmp, SMALL_SHIELD);
+		}
+		if (ptr == &mons[PM_FLASHING_MISCHIEF_ZON]) {
+			(void) mongets(mtmp, COURSE_JAVELIN);
+			(void) mongets(mtmp, LARGE_SHIELD);
+			m_initthrow(mtmp, JAVELIN, 8);
+		}
 
 		if (ptr == &mons[PM_DIVINE_SUMMONER]) (void) mongets(mtmp, SCR_SUMMON_ELM);
 		if (ptr == &mons[PM_CELESTIAL_SUMMONER]) (void) mongets(mtmp, WAN_SUMMON_ELM);
@@ -5559,6 +5860,155 @@ register struct	monst	*mtmp;
 		}
 		if (mtmp->data == &mons[PM_DILDO_GOLEM]) {
 			 (void) mongets(mtmp, VIBROBLADE);
+		}
+
+		if (mtmp->data == &mons[PM_CHEMISTRY_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+		}
+
+		if (mtmp->data == &mons[PM_ZAP_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+		}
+
+		if (mtmp->data == &mons[PM_READER_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER) );
+			 (void) mongets(mtmp, rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER) );
+			 (void) mongets(mtmp, rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER) );
+			 (void) mongets(mtmp, rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER) );
+			 (void) mongets(mtmp, rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER) );
+		}
+
+		if (mtmp->data == &mons[PM_GIANT_PENIS_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+			 (void) mongets(mtmp, rnd_class(WAN_LIGHT, WAN_PSYBEAM) );
+		}
+
+		if (mtmp->data == &mons[PM_ALCHEMY_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+			 (void) mongets(mtmp, rnd_class(POT_BOOZE, POT_AMNESIA) );
+		}
+
+		if (mtmp->data == &mons[PM_WEAPON_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+		}
+
+		if (mtmp->data == &mons[PM_ARMOR_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+		}
+
+		if (mtmp->data == &mons[PM_FIGHTER_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+		}
+
+		if (mtmp->data == &mons[PM_PROTECTER_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+		}
+
+		if (mtmp->data == &mons[PM_SWINGER_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+		}
+
+		if (mtmp->data == &mons[PM_TANKER_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+		}
+
+		if (mtmp->data == &mons[PM_HEAVILY_ARMED_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+		}
+
+		if (mtmp->data == &mons[PM_TANK_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+		}
+
+		if (mtmp->data == &mons[PM_MILITARY_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+			 (void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
+		}
+
+		if (mtmp->data == &mons[PM_INDUSTRY_GOLEM]) {
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
+			 (void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS) );
 		}
 
 		break;
@@ -5981,6 +6431,7 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_QUIVER_SLOT]) { (void) mongets(mtmp, BOW); m_initthrow(mtmp, ARROW, 35);}
 
 		if (mtmp->data == &mons[PM_MACHIEVALLIAN_MOSS]) (void) mongets(mtmp, SCR_TRAP_CREATION);
+		if (mtmp->data == &mons[PM_SWEET_ASIAN_POISON_IVY]) (void) mongets(mtmp, HUGGING_BOOT);
 
 		if (mtmp->data == &mons[PM_ROSY_S_LEATHER_PUMP]) { (void) mongets(mtmp, FEMININE_PUMPS); (void) mongets(mtmp, SEXY_LEATHER_PUMP); }
 
@@ -14245,6 +14696,10 @@ register int	mmflags;
 	if (allow_minvent) {
 	    if(is_armed(ptr))
 		m_initweap(mtmp);	/* equip with weapons / armor */
+
+	    if (!is_armed(ptr) && !is_animal(ptr) && !cantweararm(mtmp->data) && !rn2(25))
+		m_initarmorpieces(mtmp); /* chance to have armor; monsters that are armed already had a bigger chance earlier */
+
 	    m_initinv(mtmp);  /* add on a few special items incl. more armor */
 		m_initxtraitem(mtmp);
 
@@ -16869,6 +17324,27 @@ int type;
 		case PM_PLUSH_BEAR_GOLEM: return 50;
 		case PM_INTERCEPTOR_DOLL: return 50;
 		case PM_DILDO_GOLEM: return 100;
+		case PM_CHEMISTRY_GOLEM: return 180;
+		case PM_ALCHEMY_GOLEM: return 500;
+		case PM_GIANT_PENIS_GOLEM: return 800;
+		case PM_POTION_GOLEM: return 100;
+		case PM_SCROLL_GOLEM: return 100;
+		case PM_READER_GOLEM: return 190;
+
+		case PM_WEAPON_GOLEM: return 50;
+		case PM_ARMOR_GOLEM: return 50;
+		case PM_FIGHTER_GOLEM: return 120;
+		case PM_PROTECTER_GOLEM: return 120;
+		case PM_SWINGER_GOLEM: return 220;
+		case PM_TANKER_GOLEM: return 220;
+		case PM_HEAVILY_ARMED_GOLEM: return 400;
+		case PM_TANK_GOLEM: return 400;
+		case PM_MILITARY_GOLEM: return 800;
+		case PM_INDUSTRY_GOLEM: return 800;
+
+		case PM_WAND_GOLEM: return 120;
+
+		case PM_ZAP_GOLEM: return 250;
 
 		case PM_FLAME_ATRONACH: return 50;
 		case PM_FROST_ATRONACH: return 100;
