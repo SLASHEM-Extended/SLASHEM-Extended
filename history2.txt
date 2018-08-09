@@ -1081,6 +1081,151 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - The charging spell can occasionally backfire.
 - Eating an amulet of life saving can give a 1-UP.
 
+1.5.6
+- Items that convey disintegration resistance are correctly disintegration resistant themselves now.
+- If you try to write a scroll/book while having enough marker charges that it could theoretically work, but not enough for it to be guaranteed, the amount of charges is reduced by a random amount instead of being set to zero unconditionally.
+- The wand of fumbling now has a more significant effect.
+
+1.5.5
+- Monsters can occasionally use ranged weapons, breath and spit attacks at point blank.
+- Monsters will always be resistant to their own breath attacks. Those that have random breath attacks also get reflection.
+- If the player's memory of a spell gets low, there is a message reminding them.
+- Branch staircases have been colored yellow.
+- If the player starts turning to stone or slime or becomes deathly sick, the current occupation is stopped.
+- Fixed the bug where the force command would not wake up pets correctly.
+- Fixed a missingno crash.
+- Removed a couple of pet name options; if popular demand exists, they may be put back in.
+
+1.5.4
+- Slight change to pet betrayal code.
+- Nerfed slings and boosted bows.
+- Reduced the damage a player could do when bashing with a launcher.
+- Fixed some exploits with player-summoned demons and werefoo.
+- Fixed the bug that caused dumplog generation to make part of the status line invisible, by forcing it to be redrawn.
+
+1.5.2
+- Dumplog patch added.
+- Fixed a bug where some "You hear" messages were still displayed if the player was deaf.
+- The game will no longer unconditionally replace traps.
+- Added a message when putting on armor that can be abbreviated as "BDSM".
+- New playable poison mage role and gelatinous cube race, as well as a couple other roles.
+- Doom marines can create BFG ammo at XL25.
+- Blessed stethoscopes work better than uncursed ones.
+- If the player casts spells from hit points, the HP maximum can be reduced.
+- Stacks of darts and shuriken now also correctly resist manipulation.
+- Fixed a panic when a bag of holding containing gold explodes.
+- Bank trap cash amount is always showed in the enlightenment screen after the game has ended.
+
+1.5.1
+- If a monster reads a scroll of destroy armor/weapon, the player's items get saving throws now.
+- Items made of flesh or veggy can always be eaten by the player (as long as the player is not specifically prevented from eating comestibles).
+
+1.5.0
+- Fixed a missingno crash.
+- The vibrating square message forces a --More-- now.
+- Projectiles fired by monsters no longer break unconditionally.
+- Gems that the player throws to a unicorn can now be deleted from the game.
+- Lots of new random bad effects.
+- Fixed segfaults with disenchantment effects.
+- Ungenomolds should no longer be killed by various effects that would force them to polymorph back to their natural form.
+- Added the menuglyph patch.
+- Fixed an error with the glyph used for grue monsters.
+
+1.4.9
+- Completed the translations for soviet and ancient race characters.
+- If the player knows a spellbook's base item type, the book in question can be read even while blind.
+- Nerfed the create monster and summon undead spells.
+- Certain terrain types that could not spawn with traps on them now can.
+- Reading spellbooks that don't have charges left is dangerous now.
+- Fixed a bug with detect food.
+- A player with burnopathy will now do fire damage in melee while under the burn status effect.
+- Hanging up while paralyzed will save the paralysis counter.
+- The pokedex as well as the descriptions for techniques can now be turned off via options.
+- Ctrl-U is a new command that removes all "I" markers for unseen monsters on the current level.
+
+1.4.8
+- Vampires draining low-nutrition corpses should no longer behave strangely.
+- If the player is polymorphed, the top status line will now keep showing damage done.
+- Pets can no longer pick up containers that aren't empty.
+- Fixed a bug that caused prime cursed items to be too common.
+- Added a saving throw if something other than the player tries to cause a destroy armor effect on the player.
+- Nerfed the clerical paralysis monster spell.
+- Fixed a previously introduced crash bug when the player was hallucinating.
+
+1.4.7
+- The shopkeeper-provided identify service can fail now, just like other means of identification.
+- Fixed the issue where random walls could spawn underneath Sokoban boulders.
+- Only monsters capable of using them have a chance to spawn with cockatrice corpses/eggs now.
+- Elven and droven items can reach higher enchantment values: elven weapons and droven armor can safely reach +9, droven weapons can reach +11.
+- Changed the calculations for the RNG that decides which boss to summon.
+
+1.4.6
+- Metallivorous and lithivorous monsters need less turns to eat items.
+- Ghosts in graveyards are more varied now.
+- Fixed the unbalanced duration of sleep rays.
+- Fixed the bug that caused toilets to spawn with gravestone inscriptions.
+- Farting monsters can now have certain bonuses that makes them even more dangerous.
+
+1.4.5
+- All monsters with intelligence-draining attacks now have a (bigger) chance of granting intelligence bonuses when eaten.
+- Monsters can fire gray stones at the player, causing them to automatically land in the player's inventory.
+- Added a playable Druid role and scurrier race.
+
+1.4.4
+- Ditched the restrictions that disallowed some monsters from wearing two-handed or silver weapons.
+- Fixed a critical bug that would cause items teleported by item teleporters to still be equipped by the player even though they were now outside of the player's inventory.
+- 1 in 10 games, a randomly selected color of monsters is more common.
+- In every game, one random trap type is picked that appears more often.
+
+1.4.3
+- Falling down a staircase can cause the player to break their legs.
+- If unseen monsters use spit attacks or spells, there is a message now.
+- Made some changes that reduce the likeliness for the player to overeat.
+- Monsters that are killed in wall tiles are no longer prevented from dropping their items.
+- Improved the monster sorting mechanism.
+- Chest traps are harder to find.
+- Nerfed the duration of sleep rays.
+- Fixed a bug where a player polymorphed into a unicorn would crash upon trying to use their horn.
+- Added the anachrononononononaut role and a few other roles, as well as a bunch of playable races.
+- Certain weapons now do extra damage if the player is highly skilled.
+- Fixed a bugged rnd(2) call.
+- Sometimes, a randomly selected monster class may be faster than usual or more likely to generate with musable items.
+- Toned down the usefulness of the identify spell.
+- Occasionally, the game may not disclose the fact that a monster has an egotype.
+- Trying to identify an item's base type can randomly fail now.
+- Fixed the bug that caused fire traps to sometimes deal astronomical amounts of damage.
+- Fixed trap placement on the Astral Plane.
+- Fixed the bug that would cause fear effects to fail making monsters flee.
+- Enlightenment now shows paralysis duration if the player was paralyzed.
+
+1.4.2
+- Some to-hit bonuses that only applied to the player's melee attacks now also work for ranged weapons.
+- The Failed Existence has 50% automiss with ranged attacks now.
+- Slightly increased the player's overall to-hit.
+- Some effects that reduce the player's maximum HP or Pw now reduce it by less.
+- The Bleeder role is much less likely to bleed out.
+- Fixed the bug where starlit skies impersonating nemesis monsters would get a Bell of Opening.
+- Wands of draining are much less likely to appear in monsters' hands.
+- If the player runs out of HP while polymorphed and returns to their natural form, their max HP is no longer reduced.
+
+1.4.1
+- Fixed the error message flood caused by chokhmah attacks.
+- Fixed an oversight that caused peaceful monsters to use items that summon hostile monsters.
+- A player with unbreathing is no longer completely immune to passive poison attacks.
+- If a monster reads a scroll of fire, the player now learns that it is a scroll of fire.
+- Higher difficulty monsters are now less likely to spawn.
+- Some races (mainly permablind ones) now have pseudo-identification similar to the way it works in Angband.
+- Buffed the player's natural regeneration rate.
+- Fixed a loophole that allowed the player to gain more information about items than intended while blind.
+- Effects that create random traps are now capable of making holes on the castle level.
+- The create ammo technique now creates nicer stacks.
+- If the player bashes with an item not intended to be used as a melee weapon, there is a reminder now.
+- Lightning beams hitting the player don't always cause blindness.
+- Certain traps could be farmed when they were invisible, this has been fixed now.
+- The monster kill list no longer shows bosses as being killed when they were really still alive.
+- Some items are always generated cursed in a given game.
+- One trap type is always generated invisible in a given game.
+
 (older stuff still needs to be added here)
 
 :-) <3 *bundlebundlebundle* <3 :D
