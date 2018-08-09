@@ -1599,6 +1599,12 @@ dorub()
 	return 0;
 	}
 
+	if (isevilvariant && (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) ) {
+		pline("Well, you obviously don't have hands. How do you expect to be able to rub things???");
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
+
 	struct obj *obj = getobj(cuddly, "rub");
 
 	if (obj && obj->oclass == GEM_CLASS) {

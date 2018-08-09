@@ -17872,6 +17872,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Curse ye soot-arsed donkey-plowing squid-wife mop-swilling goats!",
 	"Her lesbian harem women are dubbed her 'loves' and they show a cultlike devotion to her. Further intelligence shows she has ranks for her loves, describing the most devoted as 'fleecy', while the least devoted are 'feminist chiropractors'." /* from 4chan */
 	"SLEX = Securing Lesbians for Entertainment of Xerself (the Amy)",
+	"A static discharge shoots through your entire body!",
 
 };
 

@@ -15386,6 +15386,54 @@ register int bodypart;
 		burnarmor(&youmonst);
 	}
 
+	if (isevilvariant && !rn2(10)) {
+		pline("SCREEEEEECH!");
+		aggravate();
+	}
+
+	if (isevilvariant && !rn2(10)) {
+		pline("A static discharge shoots through your entire body!");
+		destroy_item(WAND_CLASS, AD_ELEC);
+		destroy_item(RING_CLASS, AD_ELEC);
+		destroy_item(AMULET_CLASS, AD_ELEC);
+	}
+
+	if (isevilvariant && !rn2(10)) {
+		pline("Hahaha, a water bucket falls on top of you and all your shit gets wet! LOL!");
+		water_damage(invent, FALSE, FALSE);
+		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
+	}
+
+	if (isevilvariant && !rn2(10)) {
+		register struct obj *otmp3;
+		otmp3 = mksobj(BOULDER, FALSE, FALSE);
+		if (!otmp3) goto boulderdone;
+		otmp3->quan = 1;
+		otmp3->owt = weight(otmp3);
+		pline("A boulder slams on top of you!");
+		if (amorphous(youmonst.data) || Passes_walls || noncorporeal(youmonst.data) || unsolid(youmonst.data)) pline("Even though you should be immune to it, the boulder damages you anyway, and you hear a voice announce: 'Harharharharharharhar!'");
+
+		/* Must be before the losehp(), for bones files */
+		if (!flooreffects(otmp3, u.ux, u.uy, "fall")) {
+			place_object(otmp3, u.ux, u.uy);
+			stackobj(otmp3);
+			newsym(u.ux, u.uy);
+		}
+
+		losehp(24, "boulder doortrap", KILLED_BY_AN);
+
+	}
+
+boulderdone:
+
+	if (isevilvariant && !rn2(10)) {
+		badeffect();
+		if (!rn2(5)) {
+			badeffect();
+			while (!rn2(3)) badeffect();
+		}
+	}
+
 	if (!rn2(10) || isevilvariant) {
 
 		int i, j;
