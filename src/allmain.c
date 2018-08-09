@@ -167,7 +167,13 @@ moveloop()
 #endif
 
 	didmove = flags.move;
-	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) didmove = TRUE;
+	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
+		didmove = TRUE;
+		/* some places in the code use an ugly hack to give you a turn of timerun, which will then not disappear if
+		 * your movement speed is faster than normal and you happen to get a double turn, but we assume that the
+		 * timerun variable is 1 in this case so since it did what it was supposed to, it now becomes 0 again --Amy */
+		if (TimerunBug == 1) TimerunBug = 0;
+	}
 	if(didmove) {
 
 		if (tech_inuse(T_COMBO_STRIKE)) {
