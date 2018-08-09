@@ -556,7 +556,11 @@ struct obj *box;
 			if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) otmp->quan *= 3;
 
 		    otmp->owt = weight(otmp);
-		} else while (otmp->otyp == ROCK) {
+
+		/* no reason not to allow stones... but in Soviet Russia, everything is a weird mix of special cases
+		 * held together by special cases, and woe to you if you remove any of them because that will make the entire
+		 * house of cards that is communism come down in a mighty crash. --Amy */
+		} else while (issoviet && otmp->otyp == ROCK) {
 		    otmp->otyp = rnd_class(DILITHIUM_CRYSTAL, FLINT);
 		    if (otmp->quan > 2L) otmp->quan = 1L;
 		    otmp->owt = weight(otmp);
