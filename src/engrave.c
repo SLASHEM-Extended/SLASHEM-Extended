@@ -985,6 +985,9 @@ static const char *random_mesg[] = {
 	"Only those who wear high heels may step on this tile! Everyone else gets hit by a permanent nasty trap effect.",
 	"You stepped on a levelscaler trap, which is a nasty trap that gives no message and doesn't reveal itself even if you trigger it.",
 	"The Amy is hogging all the lesbians and maintains a rotating harem of 50-100 lesbians.",
+	"The Amy believes, unironically, in the pantheon of Nethack and engages in 'fleecy' sexual rituals with her harem loves in which she hopes to immunize the eschaton to prevent diseases so that the demiurge may contain infinite control over the world.", /* from 4chan */
+	"The Amy is hogging all the lesbians and maintains a rotating harem of 50-100 lesbians.",
+	"The Amy routinely uses SLEX servers to meet lesbians and promises updates/game secrets in return for 'favors' from lesbian players.",
 
 };
 
@@ -4657,6 +4660,20 @@ static const char *epitaphs[] = {
 	"Here lies the world peace, murdered by power-hungry politicians.",
 	"Here lies the Earth's climate, killed by industrial pollution.",
 	"Here lies the Pacific Ocean, transformed into an area inhospitable for all life due to the huge amounts of plastic waste.",
+	"If you are a lesbian: Do not respond to the Amy, do not play SLEX - you can and WILL be indoctrinated into the 6th Order of the Black Sun. You WILL end up becoming one of the Amy's many harem women. Men may safely play her game, although straight women have been 'turned' by her before.",
+	"This fellow came to a thai massage studio to have fun... but then he refused to pay and the sweet asian woman slit his throat with a knife.",
+	"Well great, the Nethack 3.6.x vampire bat became unkillable because apparently I triggered a bug by genociding the wrong monster.",
+	"Stupid variant, one should really be able to levitate on the Plane of Water. I'll only play variants that allow me to do that from now on.",
+	"Stupid variant!!! Nethack 3.6.x isn't vanilla, because in vanilla there's no monster movement energy randomization! Who invents such bullshit anyway?",
+	"Well great, the top Sokoban level was 2 but it behaved as if it were level difficulty 10. God, this 3.6.1 variant sucks, I want to play vanilla again.",
+	"Died in FIQhack because the genius of a developer thought it was a good idea to port the Elbereth butchering from the variant that calls itself 3.6.1. Why didn't he instead use the much better Sporkhack implementation?",
+	"Thought I could tame peaceful carnivores by throwing food to them. Well, this particular one turned hostile instead...",
+	"Collapsed underneath my load because stuff weigh way too much in vanilla Nethack. To quote Linkin Park: Why is everything so heavy? This is so much more than I can carry!",
+	"Found out what the truth behind 'bundlebundlebundle' is but then Amy removed me because I knew too much.", /* don't worry, I wouldn't really do that :D */
+	"A corpse found at the bottom of the purple poison lake was buried here.",
+	"The corpse in this grave is very sticky. Poor guy entered the desolate chocolate manufactury and, well, drowned in a pool of hot chocolate.",
+	"Impaled by Death's sickle.",
+	"THE MONKEY DOES 4 DAMAGE! HE JUST JUMPS AROUND! WHAT - IS - DOING - SO - MUCH - DAMAGE - TO - ME - THERE???",
 
 };
 
