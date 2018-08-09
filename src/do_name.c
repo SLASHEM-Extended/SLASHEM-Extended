@@ -934,6 +934,13 @@ boolean called;
 	    if (mtmp->egotype_thiefguildmember) sprintf(eos(buf), " ThiefGuildMember");
 	    if (mtmp->egotype_rogue) sprintf(eos(buf), " Rogue");
 	    if (mtmp->egotype_steed) sprintf(eos(buf), " Steed");
+	    if (mtmp->egotype_champion) sprintf(eos(buf), " Champion");
+	    if (mtmp->egotype_boss) sprintf(eos(buf), " Boss");
+	    if (mtmp->egotype_atomizer) sprintf(eos(buf), " Atomizer");
+	    if (mtmp->egotype_perfumespreader) sprintf(eos(buf), " Perfume-Spreader");
+	    if (mtmp->egotype_converter) sprintf(eos(buf), " Converter");
+	    if (mtmp->egotype_wouwouer) sprintf(eos(buf), " Wouwouer");
+	    if (mtmp->egotype_allivore) sprintf(eos(buf), " Allivore");
 
 	}
 

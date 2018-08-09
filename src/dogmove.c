@@ -305,7 +305,7 @@ register struct monst *mtmp;
 register struct edog *edog;
 {
 	if (monstermoves > edog->hungrytime + 500) {
-	    if (!carnivorous(mtmp->data) && !herbivorous(mtmp->data) && !metallivorous(mtmp->data) && !mtmp->egotype_lithivore && !mtmp->egotype_metallivore && !lithivorous(mtmp->data)) {
+	    if (!carnivorous(mtmp->data) && !herbivorous(mtmp->data) && !metallivorous(mtmp->data) && !mtmp->egotype_lithivore && !mtmp->egotype_metallivore && !mtmp->egotype_allivore && !lithivorous(mtmp->data)) {
 		edog->hungrytime = monstermoves + 500;
 		/* but not too high; it might polymorph */
 	    } else if (!edog->mhpmax_penalty) {

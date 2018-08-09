@@ -301,6 +301,15 @@ struct monst {
 
 	Bitfield(egotype_steed,1); /* monster can be ridden */
 
+	Bitfield(egotype_champion,1); /* deals 25% more damage */
+	Bitfield(egotype_boss,1); /* deals 75% more damage */
+	Bitfield(egotype_atomizer,1); /* deals 200% more damage */
+	Bitfield(egotype_perfumespreader,1); /* MS_STENCH */
+	Bitfield(egotype_converter,1); /* MS_CONVERT */
+	Bitfield(egotype_wouwouer,1); /* MS_HCALIEN */
+
+	Bitfield(egotype_allivore,1); /* eats every item it comes across */
+
 	Bitfield(butthurt,6);
 	Bitfield(fartbonus,6); /* actually, max should be 9 */
 	Bitfield(crapbonus,6);

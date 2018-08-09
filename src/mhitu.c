@@ -17047,6 +17047,10 @@ register int n;
 		}
 	}
 
+	if (mtmp->egotype_champion) monsterdamagebonus += 25;
+	if (mtmp->egotype_boss) monsterdamagebonus += 75;
+	if (mtmp->egotype_atomizer) monsterdamagebonus += 200;
+
 	/* high-level monsters gain much more damage bonus versus you than high-level pets get damage bonus versus
 	 * other monsters; this isn't FIQhack after all, full symmetry is not the focus of this game. --Amy */
 

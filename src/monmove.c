@@ -775,7 +775,7 @@ register struct monst *mtmp;
         }
     }
 
-	if (mdat->msound == MS_CONVERT && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
+	if ((mdat->msound == MS_CONVERT || mtmp->egotype_converter) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
 
 		static const char *conversion_msgs[] = {
 			"Kafir! Yuece Tanri sizi sevmez, ve sonra doenuestuermek yoksa cezalandirilacaktir!",
@@ -957,7 +957,7 @@ register struct monst *mtmp;
 
 	}
 
-	if (mdat->msound == MS_HCALIEN && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(5)) {
+	if ((mdat->msound == MS_HCALIEN || mtmp->egotype_wouwouer) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(5)) {
 
 		static const char *hcalien_msgs[] = {
 			"Wouwou.",
@@ -1024,7 +1024,7 @@ register struct monst *mtmp;
 
 	}
 
-	if (mdat->msound == MS_STENCH && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
+	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
 		switch (rnd(9)) {
 
 			case 1:
@@ -2193,7 +2193,7 @@ postmov:
 		    conceals = hides_under(ptr);
 		}
 
-		if ((EaterBugEffect || u.uprops[EATER_BUG].extrinsic || have_eaterstone())) {
+		if ((EaterBugEffect || u.uprops[EATER_BUG].extrinsic || have_eaterstone() || mtmp->egotype_allivore)) {
 		    if (meatanything(mtmp) == 2) return 2;	/* it died */
 		}
 

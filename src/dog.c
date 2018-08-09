@@ -708,7 +708,7 @@ long nmv;		/* number of moves */
 	 * of dying the next time we call dog_move()
 	 */
 	if (mtmp->mtame && !mtmp->isminion &&
-			(carnivorous(mtmp->data) || herbivorous(mtmp->data) || metallivorous(mtmp->data) || lithivorous(mtmp->data) || mtmp->egotype_lithivore || mtmp->egotype_metallivore )) {
+			(carnivorous(mtmp->data) || herbivorous(mtmp->data) || metallivorous(mtmp->data) || lithivorous(mtmp->data) || mtmp->egotype_lithivore || mtmp->egotype_metallivore || mtmp->egotype_allivore )) {
 
 	    if ((monstermoves > edog->hungrytime + 500 && mtmp->mhp < 3) ||
 		    (monstermoves > edog->hungrytime + 750)) {

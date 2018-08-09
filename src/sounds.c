@@ -950,7 +950,7 @@ beg(mtmp)
 register struct monst *mtmp;
 {
     if (mtmp->msleeping || !mtmp->mcanmove ||
-	    !(carnivorous(mtmp->data) || herbivorous(mtmp->data) || metallivorous(mtmp->data) || mtmp->egotype_lithivore || mtmp->egotype_metallivore || lithivorous(mtmp->data)))
+	    !(carnivorous(mtmp->data) || herbivorous(mtmp->data) || metallivorous(mtmp->data) || mtmp->egotype_lithivore || mtmp->egotype_metallivore || mtmp->egotype_allivore || lithivorous(mtmp->data)))
 	return;
 
     /* presumably nearness and soundok checks have already been made */
@@ -1830,6 +1830,12 @@ register struct monst *mtmp;
 		verbl_msg = "Please follow me.";
 	    break;
 	case MS_SOLDIER:
+
+	    if (mtmp->mtame && moves > EDOG(mtmp)->hungrytime) {
+		verbl_msg = "We gotta stop by the next canteen.";
+		break;
+		}
+
 	    {
 		static const char * const soldier_foe_msg[3] = {
 		    "Resistance is useless!",

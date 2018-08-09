@@ -2114,6 +2114,7 @@ E void make_vomiting(long,BOOLEAN_P);
 E boolean make_hallucinated(long,BOOLEAN_P,long);
 E int dodrink(void);
 E void badeffect(void);
+E void add_monster_egotype(struct monst *);
 E void ragnarok(void);
 E void evilragnarok(int);
 E void datadeleteattack(void);

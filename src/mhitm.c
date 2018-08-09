@@ -1138,6 +1138,13 @@ mdamagem(magr, mdef, mattk)
 
 	}
 
+	if (magr->egotype_champion) petdamagebonus += 10; /* smaller bonuses than mhitu, intentional --Amy */
+	if (magr->egotype_boss) petdamagebonus += 25;
+	if (magr->egotype_atomizer) petdamagebonus += 50;
+
+	/* tame bosses are simply better --Amy */
+	if (magr->mtame && !mdef->mtame && (magr->data->geno & G_UNIQ)) petdamagebonus += 25;
+
 	if (petdamagebonus > 100 && (tmp > 1 || (tmp == 1 && petdamagebonus >= 150) )) {
 
 		tmp *= petdamagebonus;
