@@ -4754,6 +4754,18 @@ register struct attack *mattk;
 	      return 1;
 	}
 
+	if (mdef->data == &mons[PM_LITTLE_POISON_IVY] || mdef->data == &mons[PM_SWEET_ASIAN_POISON_IVY]) {
+
+		pline("%s is IMMUNE to the attack!", Monnam(mon));
+		if (Hallucination) You("curse at Konami for designing it like that.");
+		if (!rn2(30)) pline("Reminder: you must use something else in order to damage this monster!");
+		else if (!rn2(30)) pline("You read that right: your attacks are doing no damage at all!");
+		else if (!rn2(30)) pline("Hint: try offensive wands or spells.");
+
+	      tmp = 0;
+		return 1;
+	}
+
 	if (RngeWeakness && tmp > 1) tmp /= 2;
 
 #ifdef SHOW_DMG

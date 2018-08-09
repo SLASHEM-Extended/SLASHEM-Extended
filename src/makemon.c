@@ -5967,6 +5967,11 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_HARROWBARK_WALKER]) m_initthrow(mtmp, JAVELIN, 5);
 		if (mtmp->data == &mons[PM_HARROWBARK_WANDLE]) m_initthrow(mtmp, SPEAR, 5);
 
+		if (mtmp->data == &mons[PM_CYBER_FLOWER]) {
+			(void)mongets(mtmp, ROCKET_LAUNCHER);
+			m_initthrow(mtmp, ROCKET, 25);
+		}
+
 		if (mtmp->data == &mons[PM_GUARDIAN_O__THE_FOREST]) m_initthrow(mtmp, SPIRIT_THROWER, 5);
 		if (mtmp->data == &mons[PM_BASTARD_OF_THE_FOREST]) m_initthrow(mtmp, TORPEDO, 5);
 
@@ -6012,6 +6017,11 @@ register struct	monst	*mtmp;
 		if (mtmp->data == &mons[PM_ARMOR_GNOME]) (void) mongets(mtmp, PLATE_MAIL);
 		if (mtmp->data == &mons[PM_UNDERPANTS_GNOME]) (void) mongets(mtmp, VICTORIAN_UNDERWEAR);
 		if (mtmp->data == &mons[PM_HC_BEARDFREAK]) m_initthrow(mtmp, FRAG_GRENADE, 8);
+
+		if (mtmp->data == &mons[PM_SAMURAI_GNOME]) {
+			(void) mongets(mtmp, KATANA);
+			(void) mongets(mtmp, SPLINT_MAIL);
+		}
 
 		if (mtmp->data == &mons[PM_GNOMISH_GUNMAN]) {
 		  	(void) mongets(mtmp, FLINTLOCK);
@@ -7542,6 +7552,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_PSEUDO_MERMAID]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
 		if (ptr == &mons[PM_DIZZY_BLONDE]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
 		if (ptr == &mons[PM_FARTING_ASIAN_GIRL]) (void) mongets(mtmp, HUGGING_BOOT);
+		if (ptr == &mons[PM_PICK_DWARF]) (void) mongets(mtmp, PICK_AXE);
 		if (ptr == &mons[PM_LOVELY_GIRL]) {
 			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 			(void) mongets(mtmp, HIGH_STILETTOS);
@@ -16863,6 +16874,8 @@ int type;
 		case PM_FROST_ATRONACH: return 100;
 		case PM_STORM_ATRONACH: return 150;
 		case PM_VENOM_ATRONACH: return 200;
+
+		case PM_SPROOK: return 90;
 
 		case PM_HULL_ALIEN: return 255;
 
