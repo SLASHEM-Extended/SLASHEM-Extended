@@ -1,6 +1,17 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.2.9
+- One-turn timerun effects should dissipate when the player performs an action.
+- Exploding doors in evilvariant mode can have a variety of other detrimental effects now.
+- In evilvariant mode, a player character who is in a form without hands cannot use the rub command.
+- The randomized nasty equipment, e.g. evil plate mail, now gives more downsides when worn. Fixed nasty equipment like disenchanting boots or greyout cloaks are unchanged.
+
+2.2.8
+- Randomly generated containers can now have rocks inside.
+- Added some new potion appearances that can cause certain monsters to be summoned when quaffed.
+
 2.2.7
+- Graffiti underneath monsters no longer causes the tile in question to be highlighted.
 - If the player is polymorphed into a monster that can breathe psybeams, they now have psi resistance.
 - Polymorphing and implants skill can increase the damage a player does while polymorphed, and petkeeping skill can increase pet-versus-monster damage.
 - Nerfed the effectiveness of the weapon practice technique.
