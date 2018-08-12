@@ -665,6 +665,32 @@ nh_timeout()
 
 	}
 
+	if (u.umoved && isevilvariant && !rn2(20) && (rnd(10) > ACURR(A_DEX)) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) ) {
+			    slip_or_trip();
+
+			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+
+				if (rn2(50)) {
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rnd(5), FALSE);
+				} else {
+					You_feel("dizzy!");
+					forget(1 + rn2(5));
+				}
+			    }
+
+			    nomul(-2, "fumbling", TRUE);
+			    nomovemsg = "";
+			    /* The more you are carrying the more likely you
+			     * are to make noise when you fumble.  Adjustments
+			     * to this number must be thoroughly play tested.
+			     */
+			    if ((inv_weight() > -500)) {
+				You("make a lot of noise!");
+				wake_nearby();
+			    }
+
+	}
+
 	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
