@@ -2194,7 +2194,7 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 	for(nx = max(1,x-1); nx <= maxx; nx++)
 	  for(ny = max(0,y-1); ny <= maxy; ny++) {
 	    if(nx == x && ny == y) continue;
-	    if(IS_ROCK(ntyp = levl[nx][ny].typ) && ntyp != FARMLAND &&
+	    if(IS_ROCK(ntyp = levl[nx][ny].typ) && ntyp != FARMLAND && !(ntyp == GRAVEWALL && tunnels(mdat)) &&
 		 !(ntyp == TUNNELWALL && !is_flyer(mdat) && !is_floater(mdat) && !(mon->egotype_flying)) &&
 		 !(ntyp == MOUNTAIN && (is_flyer(mdat) || is_floater(mdat) || (mon->egotype_flying))) &&
 	       !((flag & ALLOW_WALL) && may_passwall(nx,ny)) &&
