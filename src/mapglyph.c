@@ -702,6 +702,142 @@ unsigned *ospecial;
 				color = rnd(15);
 			}
 			else cmap_color(offset);
+		} else if(*in_rooms(x,y,EVILROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = rn2(2) ? CLR_MAGENTA : CLR_BRIGHT_MAGENTA;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = rn2(2) ? CLR_MAGENTA : CLR_BRIGHT_MAGENTA;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,RELIGIONCENTER)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_BLACK;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_BLACK;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,CHAOSROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = rnd(15);
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = rnd(15);
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,CURSEDMUMMYROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_CYAN;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_CYAN;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,MIXEDPOOL)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = rn2(2) ? CLR_BRIGHT_BLUE : CLR_BRIGHT_CYAN;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = rn2(2) ? CLR_BRIGHT_BLUE : CLR_BRIGHT_CYAN;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,ARDUOUSMOUNTAIN)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_WHITE;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_WHITE;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,LEVELFFROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_GRAY;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_GRAY;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,VERMINROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_BROWN;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_BROWN;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,MIRASPA)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_YELLOW;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_YELLOW;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,MACHINEROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_GRAY;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_GRAY;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,SHOWERROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_BRIGHT_BLUE;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_BRIGHT_BLUE;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,GREENCROSSROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_BRIGHT_GREEN;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_BRIGHT_GREEN;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,CENTRALTEDIUM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_GREEN;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_GREEN;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,RUINEDCHURCH)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_BLACK;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_BLACK;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,RAMPAGEROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_GRAY;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_GRAY;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,GAMECORNER)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = CLR_BRIGHT_BLUE;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = CLR_BRIGHT_BLUE;
+			}
+			else cmap_color(offset);
+		} else if(*in_rooms(x,y,ILLUSIONROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = !rn2(3) ? CLR_WHITE : !rn2(2) ? CLR_GRAY : CLR_CYAN;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = !rn2(3) ? CLR_WHITE : !rn2(2) ? CLR_GRAY : CLR_CYAN;
+			}
+			else cmap_color(offset);
 		} else if(*in_rooms(x,y,INSIDEROOM)) {
 			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
 				color = rnd(15);
@@ -844,6 +980,30 @@ unsigned *ospecial;
 			}
 			else if(offset >= S_corr && offset <= S_litcorr){
 				color = rnd(15);
+			}
+			else cmap_color(offset);
+		} else if(*in_roomscolouur(x,y,21) && *in_rooms(x,y,OROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = rn2(2) ? CLR_MAGENTA : CLR_BRIGHT_MAGENTA;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = rn2(2) ? CLR_MAGENTA : CLR_BRIGHT_MAGENTA;
+			}
+			else cmap_color(offset);
+		} else if(*in_roomscolouur(x,y,22) && *in_rooms(x,y,OROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = rn2(2) ? CLR_BRIGHT_CYAN : CLR_BRIGHT_BLUE;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = rn2(2) ? CLR_BRIGHT_CYAN : CLR_BRIGHT_BLUE;
+			}
+			else cmap_color(offset);
+		} else if(*in_roomscolouur(x,y,23) && *in_rooms(x,y,OROOM)) {
+			if(offset >= S_vwall && offset <= S_hcdoor && !(offset >= S_rockwall && offset <= S_tunnelwall)){
+				color = !rn2(3) ? CLR_WHITE : !rn2(2) ? CLR_GRAY : CLR_CYAN;
+			}
+			else if(offset >= S_corr && offset <= S_litcorr){
+				color = !rn2(3) ? CLR_WHITE : !rn2(2) ? CLR_GRAY : CLR_CYAN;
 			}
 			else cmap_color(offset);
 		}

@@ -639,6 +639,155 @@ dosounds()
 		You(elemhall_msg[rn2(4+hallu)]);
 		return;
 	    }
+
+	    if (level.flags.has_evilroom && !rn2(200)) {
+		static const char *evilroom_msg[5] = {
+			"are very afraid for some reason.",
+			"listen to a really evil sound.",
+			"hear a very deep grunt.",
+			"sense a great danger.",
+			"know that you won't make it through this level alive...",
+		};
+		You(evilroom_msg[rn2(4+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_religioncenter && !rn2(200)) {
+		static const char *religioncenter_msg[6] = {
+			"hear religious chants.",
+			"hear the sound of a preacher.",
+			"listen to some gibberish talk.",
+			"hear voices chanting a prayer.",
+			"hear a frightening 'Hola-hola!' call!",
+			"hear someone shout 'Allahu Akbar!'",
+		};
+		You(religioncenter_msg[rn2(4+hallu*2)]);
+		return;
+	    }
+	    if (level.flags.has_cursedmummyroom && !rn2(200)) {
+		static const char *cursedmummyroom_msg[5] = {
+			"sense the eerie silence.",
+			"feel the presence of ancient beings.",
+			"have a primordial feeling.",
+			"are struck with awe at the sight of these structures.",
+			"hear the frightening sounds of something you do NOT, EVER, want to anger.",
+		};
+		You(cursedmummyroom_msg[rn2(4+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_arduousmountain && !rn2(200)) {
+		static const char *arduousmountain_msg[5] = {
+			"feel that this will be rather difficult.",
+			"know that until the very end, you have to give it your best.",
+			"sense a great deal of variety.",
+			"seem to sense the weather changing.",
+			"must contest the harder part of the Adventurer Zone!",
+		};
+		You(arduousmountain_msg[rn2(4+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_levelffroom && !rn2(200)) {
+		static const char *levelffroom_msg[5] = {
+			"hear laughing sounds.",
+			"listen to dissonant beeps.",
+			"have the feeling that there will be errors.",
+			"have the urge to click on that gray tile!",
+			"get a NTLL - Not a valid save file!",
+		};
+		You(levelffroom_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+	    if (level.flags.has_verminroom && !rn2(200)) {
+		static const char *verminroom_msg[5] = {
+			"hear chittering sounds.",
+			"hear hissing noises.",
+			"feel as if there's rats in the walls.",
+			"notice a foul stench in the air.",
+			"fell into an open sewer hole!",
+		};
+		You(verminroom_msg[rn2(4+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_miraspa && !rn2(200)) {
+		static const char *miraspa_msg[5] = {
+			"hear a female voice praising her spa.",
+			"notice an overwhelming stench of urine.",
+			"hear a distorted splash.",
+			"encounter Mira, and she asks: 'Do you want to bathe in my urine? Only 20 zorkmids for one hour of pure fun!'",
+			"suddenly see the skeletons of people who died in a most painful way!",
+		};
+		You(miraspa_msg[rn2(3+hallu*2)]);
+		return;
+	    }
+	    if (level.flags.has_machineroom && !rn2(200)) {
+		static const char *machineroom_msg[4] = {
+			"hear clatter.",
+			"hear the grinding gears of industry.",
+			"hear busy, hectic noises.",
+			"hear the taunts of the motherfucking Glass Golem!",
+		};
+		You(machineroom_msg[rn2(3+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_showerroom && !rn2(200)) {
+		static const char *showerroom_msg[5] = {
+			"hear water currents.",
+			"listen to a mix of splashes.",
+			"inhale the smell of brine.",
+			"hear a thunderous rumble.",
+			"listen to the emergency service trying to repair a broken water pipe.",
+		};
+		You(showerroom_msg[rn2(4+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_greencrossroom && !rn2(200)) {
+		static const char *greencrossroom_msg[5] = {
+			"hear some mundane talk.",
+			"listen to the cackle of poultry.",
+			"feel like reaching the next town.",
+			"seem to be in a nice atmosphere.",
+			"inhale the sharp smell of burning thatch!",
+		};
+		You(greencrossroom_msg[rn2(4+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_ruinedchurch && !rn2(200)) {
+		static const char *ruinedchurch_msg[5] = {
+			"feel a haunting presence.",
+			"hear a chiming bell.",
+			"feel that all sanctity of this place has been lost.",
+			"are sure that the dead are floating around here.",
+			"hear an orchestral melody that goes 'Daaaaa... daaaaaa... DAAAAAAAAAAAAAAA!!!'",
+		};
+		You(ruinedchurch_msg[rn2(4+hallu)]);
+		return;
+	    }
+	    if (level.flags.has_gamecorner && !rn2(200)) {
+		static const char *gamecorner_msg[9] = {
+			"hear the Tetris melody.",
+			"listen to someone playing Diablo 2.",
+			"seem to catch earshot of people playing Dungeons and Dragons.",
+			"hear the familiar melody of Mario Kart 64.",
+			"listen to the typical Electronic Arts games slogan.",
+			"seem to catch earshot of a dragon shout from Skyrim.",
+			"hear a speedrunner curse at Super Kaizo Mario because the game is too damn hard!",
+			"suddenly feel that you're really playing GTA! A cop car appears! The cop wields a shotgun! The cop fires a shotgun shell!--More--",
+			"lost your last hitpoint and jump out of the picture!",
+		};
+		You(gamecorner_msg[rn2(6+hallu*3)]);
+		return;
+	    }
+	    if (level.flags.has_illusionroom && !rn2(200)) {
+		static const char *illusionroom_msg[5] = {
+			"feel a little confused about this place.",
+			"feel that things aren't necessarily really there just because you can see them.",
+			"are sure that some strange presences are on this floor.",
+			"need to stay alert for anything out of the ordinary.",
+			"notice that your weapon has no effect! Get a shield!",
+		};
+		You(illusionroom_msg[rn2(4+hallu)]);
+		return;
+	    }
+
 	    if (level.flags.has_terrorhall && !rn2(200)) {
 		static const char *terrorhall_msg[5] = {
 			"feel weirded out.",

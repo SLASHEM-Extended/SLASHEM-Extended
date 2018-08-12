@@ -1023,6 +1023,20 @@ struct levelflags {
 	Bitfield(has_levelseventyroom, 1);
 	Bitfield(has_variantroom, 1);
 
+	Bitfield(has_evilroom, 1);
+	Bitfield(has_religioncenter, 1);
+	Bitfield(has_cursedmummyroom, 1);
+	Bitfield(has_arduousmountain, 1);
+	Bitfield(has_levelffroom, 1);
+	Bitfield(has_verminroom, 1);
+	Bitfield(has_miraspa, 1);
+	Bitfield(has_machineroom, 1);
+	Bitfield(has_showerroom, 1);
+	Bitfield(has_greencrossroom, 1);
+	Bitfield(has_ruinedchurch, 1);
+	Bitfield(has_gamecorner, 1);
+	Bitfield(has_illusionroom, 1);
+
 	Bitfield(has_swamp, 1);
 	Bitfield(noteleport,1);
 	Bitfield(hardfloor,1);

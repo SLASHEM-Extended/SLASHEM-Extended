@@ -123,9 +123,27 @@ extern NEARDATA struct door doors[DOORMAX];
 #define LEVELSEVENTYROOM 65	/* grave walls, traps, monsters */
 #define VARIANTROOM 66	/* monsters from a specific variant */
 
-#define RANDOMROOM 67	/* supposed to select one from an array of other special rooms, for use in .des files */
+#define EVILROOM 67	/* evilvariant monsters */
+#define RELIGIONCENTER 68	/* MS_CONVERT and MS_ALIEN */
+#define CHAOSROOM 69	/* chaotic terrain */
+#define CURSEDMUMMYROOM 70	/* M and AD_ICUR, one L */
+#define MIXEDPOOL 71	/* water and crystal water */
+#define ARDUOUSMOUNTAIN 72	/* mountains and tunnels, a few uncommon monsters */
+#define LEVELFFROOM 73	/* level 55 room - farmland, a few highways and grassland tiles, joke monsters */
+#define VERMINROOM 74	/* rats, snakes and stuff */
+#define MIRASPA 75	/* urine lake, acid-based monsters */
+#define MACHINEROOM 76	/* tunnels, stalactites and crystal water, nonliving monsters */
+#define SHOWERROOM 77	/* bubbles and rain clouds */
+#define GREENCROSSROOM 78	/* paved floors and grassland, shoes and humans that should often be peaceful */
+#define CENTRALTEDIUM 79	/* highway, grassland, teleporters */
+#define RUINEDCHURCH 80	/* ghosts, pieces of glass, altar with spellbook, maybe some scrolls */
+#define RAMPAGEROOM 81	/* rockwalls, boulders, traps */
+#define GAMECORNER 82	/* monsters from another game */
+#define ILLUSIONROOM 83	/* monsters from the Illusory Castle */
 
-#define SHOPBASE        68     	/* everything above this is a shop */
+#define RANDOMROOM 84	/* supposed to select one from an array of other special rooms, for use in .des files */
+
+#define SHOPBASE        85     	/* everything above this is a shop */
 #define ARMORSHOP       (SHOPBASE+ 1)   /* specific shop defines for level compiler */
 #define SCROLLSHOP      (SHOPBASE+ 2)
 #define POTIONSHOP      (SHOPBASE+ 3)

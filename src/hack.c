@@ -3524,6 +3524,68 @@ register boolean newlev;
 		    You_feel("42.");
 		    if (!issoviet) wake_nearby();
 		    break;
+		case EVILROOM:
+			pline(Hallucination ? "Eek, you've stumbled into a SJW meeting!" : "The feel of this room is giving you the creeps.");
+		    if (!issoviet) wake_nearby();
+		    break;
+		case RELIGIONCENTER:
+			pline(Hallucination ? "Ugh, an overwhelming cancerous stench floods your nostrils as you enter this room!" : "This room smells like rotten holy water.");
+		    if (!issoviet) wake_nearby();
+		    break;
+		case CURSEDMUMMYROOM:
+			pline(Hallucination ? "You entered the Pharao's chambers!" : "Things that should be dead are walking this room.");
+		    if (!issoviet) wake_nearby();
+		    break;
+		case ARDUOUSMOUNTAIN:
+			pline(Hallucination ? "You encounter an underground mountain. Wait, why the hell is there a mountain in the dungeon???" : "You encounter an underground mountain.");
+		    if (!issoviet) wake_nearby();
+		    break;
+		case LEVELFFROOM:
+			pline(Hallucination ? "Hey, this room looks just like your own living room!" : "This room looks familiar, but somehow different too.");
+		    if (!issoviet) wake_nearby();
+		    break;
+		case VERMINROOM:
+			pline(Hallucination ? "Oh great, you entered a room full of shit." : "The air in this room is rank with mildew.");
+		    if (!issoviet) wake_nearby();
+		    break;
+		case CHAOSROOM:
+			if (wizard) pline("You enter a chaos room!");
+		    break;
+		case RAMPAGEROOM:
+			if (wizard) pline("You enter a rampage room!");
+		    break;
+		case MIXEDPOOL:
+			if (wizard) pline("You enter a mixed pool!");
+		    break;
+		case MIRASPA:
+			pline(Hallucination ? "Whoa, this room totally smells of ammonia!" : "As you enter the room, you can hear Mira inviting you for a swim.");
+		    if (!issoviet) wake_nearby();
+		    break;
+		case MACHINEROOM:
+			pline(Hallucination ? "It's the inside of the Space Shuttle!" : "You enter a machinery room.");
+		    if (!issoviet) wake_nearby();
+		    break;
+		case SHOWERROOM:
+			pline(Hallucination ? "Wow! You seem to have found the Niagara Falls!" : "You enter the shower.");
+		    break;
+		case GREENCROSSROOM:
+			pline(Hallucination ? "Entering this room feels like being put in headlock by your wonderful fleecy roommate!" : "This room has a very peaceful atmosphere.");
+		    break;
+		case RUINEDCHURCH:
+			pline(Hallucination ? "You enter Satan's chamber! Quick, ask him why Nethack 4 is inferior to SLEX!" : "You enter a desecrated church.");
+		    if (!issoviet) wake_nearby();
+		    break;
+		case GAMECORNER:
+			pline(Hallucination ? "You've entered the local Game Stop store! The storeclerk says: 'Hello sir or miss, what can I do for you? I have GTA 5, the newest Call of Duty and of course also the latest Pokemon generation games available!'" : "You encounter a game corner!");
+		    if (!issoviet) wake_nearby();
+		    break;
+		case ILLUSIONROOM:
+			pline(Hallucination ? "This room is an illusion and a trap devisut by Satan. Go ahead dauntlessly! Make rapid progres!" : "Somehow, this room doesn't seem to be what it looks like.");
+		    if (!issoviet) wake_nearby();
+		    break;
+		case CENTRALTEDIUM:
+			pline(Hallucination ? "It's the Straight Road! In order to get through this room, you need to stay on the road at all times and be fast or the Straight Road will weaken and ultimately be destroyed!" : "You encounter a highway to the left.");
+		    break;
 		case TEMPLE:
 		    intemple(roomno + ROOMOFFSET);
 		    /* fall through */
@@ -3696,6 +3758,45 @@ register boolean newlev;
 				break;
 			    case FUNGUSFARM:
 				level.flags.has_fungusfarm = 0;
+				break;
+			    case EVILROOM:
+				level.flags.has_evilroom = 0;
+				break;
+			    case RELIGIONCENTER:
+				level.flags.has_religioncenter = 0;
+				break;
+			    case CURSEDMUMMYROOM:
+				level.flags.has_cursedmummyroom = 0;
+				break;
+			    case ARDUOUSMOUNTAIN:
+				level.flags.has_arduousmountain = 0;
+				break;
+			    case LEVELFFROOM:
+				level.flags.has_levelffroom = 0;
+				break;
+			    case VERMINROOM:
+				level.flags.has_verminroom = 0;
+				break;
+			    case MIRASPA:
+				level.flags.has_miraspa = 0;
+				break;
+			    case MACHINEROOM:
+				level.flags.has_machineroom = 0;
+				break;
+			    case SHOWERROOM:
+				level.flags.has_showerroom = 0;
+				break;
+			    case GREENCROSSROOM:
+				level.flags.has_greencrossroom = 0;
+				break;
+			    case RUINEDCHURCH:
+				level.flags.has_ruinedchurch = 0;
+				break;
+			    case GAMECORNER:
+				level.flags.has_gamecorner = 0;
+				break;
+			    case ILLUSIONROOM:
+				level.flags.has_illusionroom = 0;
 				break;
 			}
 		}*/

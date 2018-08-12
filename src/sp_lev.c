@@ -3399,7 +3399,7 @@ boolean prefilled;
 	if (croom && croom->rtype == OROOM && !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) > 1) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) {
 
 retryrandtype:
-		switch (rnd(83)) {
+		switch (rnd(100)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -3488,6 +3488,23 @@ retryrandtype:
 			case 81: croom->rtype = NUCLEARCHAMBER; break;
 			case 82: croom->rtype = LEVELSEVENTYROOM; break;
 			case 83: croom->rtype = VARIANTROOM; break;
+			case 84: croom->rtype = EVILROOM; break;
+			case 85: croom->rtype = RELIGIONCENTER; break;
+			case 86: croom->rtype = CHAOSROOM; break;
+			case 87: croom->rtype = CURSEDMUMMYROOM; break;
+			case 88: croom->rtype = MIXEDPOOL; break;
+			case 89: croom->rtype = ARDUOUSMOUNTAIN; break;
+			case 90: croom->rtype = LEVELFFROOM; break;
+			case 91: croom->rtype = VERMINROOM; break;
+			case 92: croom->rtype = MIRASPA; break;
+			case 93: croom->rtype = MACHINEROOM; break;
+			case 94: croom->rtype = SHOWERROOM; break;
+			case 95: croom->rtype = GREENCROSSROOM; break;
+			case 96: croom->rtype = CENTRALTEDIUM; break;
+			case 97: croom->rtype = RUINEDCHURCH; break;
+			case 98: croom->rtype = RAMPAGEROOM; break;
+			case 99: croom->rtype = GAMECORNER; break;
+			case 100: croom->rtype = ILLUSIONROOM; break;
 
 		}
 
@@ -3627,7 +3644,7 @@ retryrandtype:
 
 	if (croom->rtype == RANDOMROOM) {
 
-		switch (rnd(63)) {
+		switch (rnd(80)) {
 
 			case 1: croom->rtype = COURT; break;
 			case 2: croom->rtype = SWAMP; break;
@@ -3692,6 +3709,23 @@ retryrandtype:
 			case 61: croom->rtype = NUCLEARCHAMBER; break;
 			case 62: croom->rtype = LEVELSEVENTYROOM; break;
 			case 63: croom->rtype = VARIANTROOM; break;
+			case 64: croom->rtype = EVILROOM; break;
+			case 65: croom->rtype = RELIGIONCENTER; break;
+			case 66: croom->rtype = CHAOSROOM; break;
+			case 67: croom->rtype = CURSEDMUMMYROOM; break;
+			case 68: croom->rtype = MIXEDPOOL; break;
+			case 69: croom->rtype = ARDUOUSMOUNTAIN; break;
+			case 70: croom->rtype = LEVELFFROOM; break;
+			case 71: croom->rtype = VERMINROOM; break;
+			case 72: croom->rtype = MIRASPA; break;
+			case 73: croom->rtype = MACHINEROOM; break;
+			case 74: croom->rtype = SHOWERROOM; break;
+			case 75: croom->rtype = GREENCROSSROOM; break;
+			case 76: croom->rtype = CENTRALTEDIUM; break;
+			case 77: croom->rtype = RUINEDCHURCH; break;
+			case 78: croom->rtype = RAMPAGEROOM; break;
+			case 79: croom->rtype = GAMECORNER; break;
+			case 80: croom->rtype = ILLUSIONROOM; break;
 
 		}
 
@@ -3806,6 +3840,19 @@ retryrandtype:
 	    case LEVELSEVENTYROOM:
 	    case VARIANTROOM:
 
+	case EVILROOM:
+	case RELIGIONCENTER:
+	case CURSEDMUMMYROOM:
+	case ARDUOUSMOUNTAIN:
+	case LEVELFFROOM:
+	case VERMINROOM:
+	case MIRASPA:
+	case MACHINEROOM:
+	case GREENCROSSROOM:
+	case RUINEDCHURCH:
+	case GAMECORNER:
+	case ILLUSIONROOM:
+
 		    fill_zoo(croom);
 		    break;
 	    }
@@ -3867,7 +3914,7 @@ retryrandtype:
 
 		for(sx = croom->lx; sx <= croom->hx; sx++)
 		for(sy = croom->ly; sy <= croom->hy; sy++)
-		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !t_at(sx,sy) ) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) ) {
 		    if(rn2(5)) {
 			levl[sx][sy].typ = typ;
 			if (typ == FOUNTAIN) 	level.flags.nfountains++;
@@ -3876,6 +3923,133 @@ retryrandtype:
 			}
 
 		}
+
+	}
+
+	if (croom->rtype == CHAOSROOM) {
+
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++)
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) ) {
+		    if(rn2(10)) {
+			levl[sx][sy].typ = randomwalltype();
+
+			}
+
+		}
+
+	}
+
+	if (croom->rtype == RAMPAGEROOM) {
+
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) ) {
+		    if(!rn2(10)) {
+			levl[sx][sy].typ = ROCKWALL;
+
+			}
+
+		}
+
+		if (!rn2(3)) (void) mksobj_at(BOULDER, sx, sy, TRUE, FALSE);
+		if (!rn2(3)) (void) maketrap(sx, sy, rndtrap(), 100);
+
+		} /* for loop */
+
+	}
+
+	if (croom->rtype == MIXEDPOOL) {
+
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) ) {
+		    if(rn2(4)) {
+			levl[sx][sy].typ = rn2(2) ? MOAT : CRYSTALWATER;
+
+			}
+
+		}
+
+		} /* for loop */
+
+		if (somexy(croom, &mm)) {
+			  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+		}
+
+	}
+
+	if (croom->rtype == SHOWERROOM) {
+
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) ) {
+		    if(rn2(3)) {
+			levl[sx][sy].typ = rn2(2) ? BUBBLES : RAINCLOUD;
+
+			}
+
+		}
+
+		} /* for loop */
+
+	}
+
+	if (croom->rtype == CENTRALTEDIUM) {
+
+		if (croom->ly == 20 && croom->hy == 19) croom->ly = croom->hy = 20;
+		if (croom->ly == 1 && croom->hy == 0) croom->ly = croom->hy = 0;
+
+		for(sx = croom->lx; sx <= croom->hx; sx++)
+		for(sy = croom->ly; sy <= croom->hy; sy++) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) ) {
+
+			switch (rnd(10)) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+				case 7:
+					levl[sx][sy].typ = HIGHWAY;
+					break;
+				case 8:
+				case 9:
+					levl[sx][sy].typ = GRASSLAND;
+					break;
+				case 10:
+					break;
+			}
+
+		}
+
+		if((levl[sx][sy].typ > DBWALL) && !t_at(sx,sy) ) {
+			if(!rn2(10)) {
+				if(!rn2(10)) {
+					if(!rn2(10)) {
+						(void) maketrap(sx, sy, randominsidetrap(), 100);
+					}
+					else (void) maketrap(sx, sy, LEVEL_TELEP, 100);
+				}
+				else (void) maketrap(sx, sy, TELEP_TRAP, 100);
+			}
+
+		}
+
+		} /* for loop */
 
 	}
 
@@ -4194,6 +4368,45 @@ retryrandtype:
 		break;
 	    case SWAMP:
 		level.flags.has_swamp = TRUE;
+		break;
+	    case EVILROOM:
+		level.flags.has_evilroom = TRUE;
+		break;
+	    case RELIGIONCENTER:
+		level.flags.has_religioncenter = TRUE;
+		break;
+	    case CURSEDMUMMYROOM:
+		level.flags.has_cursedmummyroom = TRUE;
+		break;
+	    case ARDUOUSMOUNTAIN:
+		level.flags.has_arduousmountain = TRUE;
+		break;
+	    case LEVELFFROOM:
+		level.flags.has_levelffroom = TRUE;
+		break;
+	    case VERMINROOM:
+		level.flags.has_verminroom = TRUE;
+		break;
+	    case MIRASPA:
+		level.flags.has_miraspa = TRUE;
+		break;
+	    case MACHINEROOM:
+		level.flags.has_machineroom = TRUE;
+		break;
+	    case SHOWERROOM:
+		level.flags.has_showerroom = TRUE;
+		break;
+	    case GREENCROSSROOM:
+		level.flags.has_greencrossroom = TRUE;
+		break;
+	    case RUINEDCHURCH:
+		level.flags.has_ruinedchurch = TRUE;
+		break;
+	    case GAMECORNER:
+		level.flags.has_gamecorner = TRUE;
+		break;
+	    case ILLUSIONROOM:
+		level.flags.has_illusionroom = TRUE;
 		break;
 	}
 }

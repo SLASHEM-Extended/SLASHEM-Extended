@@ -28,6 +28,9 @@ STATIC_DCL struct permonst * tenshallmon(void);
 STATIC_DCL struct permonst * tenshallmonB(void);
 STATIC_DCL struct permonst * squadmon(void);
 STATIC_DCL struct permonst * doomsquadmon(void);
+STATIC_DCL struct permonst * illusionmon(void);
+STATIC_DCL struct permonst * evilroommon(void);
+STATIC_DCL struct permonst * machineroommon(void);
 STATIC_DCL struct permonst * fungus(void);
 STATIC_DCL struct permonst * beehivemon(void);
 STATIC_DCL struct permonst * migohivemon(void);
@@ -42,6 +45,11 @@ STATIC_DCL void mkemptydesert(void);
 STATIC_DCL void mkstatueroom(void);
 STATIC_DCL void mkinsideroom(void);
 STATIC_DCL void mkriverroom(void);
+STATIC_DCL void mkchaosroom(void);
+STATIC_DCL void mkmixedpool(void);
+STATIC_DCL void mkshowerroom(void);
+STATIC_DCL void mkcentraltedium(void);
+STATIC_DCL void mkrampageroom(void);
 STATIC_DCL void save_room(int,struct mkroom *);
 STATIC_DCL void rest_room(int,struct mkroom *);
 #endif /* OVLB */
@@ -134,11 +142,29 @@ int	roomtype;
 	case LEVELSEVENTYROOM: mkzoo(LEVELSEVENTYROOM); break;
 	case VARIANTROOM: mkzoo(VARIANTROOM); break;
 
+	case EVILROOM: mkzoo(EVILROOM); break;
+	case RELIGIONCENTER: mkzoo(RELIGIONCENTER); break;
+	case CHAOSROOM: mkchaosroom(); break;
+	case CURSEDMUMMYROOM: mkzoo(CURSEDMUMMYROOM); break;
+	case MIXEDPOOL: mkmixedpool(); break;
+	case ARDUOUSMOUNTAIN: mkzoo(ARDUOUSMOUNTAIN); break;
+	case LEVELFFROOM: mkzoo(LEVELFFROOM); break;
+	case VERMINROOM: mkzoo(VERMINROOM); break;
+	case MIRASPA: mkzoo(MIRASPA); break;
+	case MACHINEROOM: mkzoo(MACHINEROOM); break;
+	case SHOWERROOM: mkshowerroom(); break;
+	case GREENCROSSROOM: mkzoo(GREENCROSSROOM); break;
+	case CENTRALTEDIUM: mkcentraltedium(); break;
+	case RUINEDCHURCH: mkzoo(RUINEDCHURCH); break;
+	case RAMPAGEROOM: mkrampageroom(); break;
+	case GAMECORNER: mkzoo(GAMECORNER); break;
+	case ILLUSIONROOM: mkzoo(ILLUSIONROOM); break;
+
 
 	case RANDOMROOM: {
 
 retryrandtype:
-		switch (rnd(63)) {
+		switch (rnd(80)) {
 
 			case 1: mkzoo(COURT); break;
 			case 2: mkswamp(); break;
@@ -207,6 +233,23 @@ retryrandtype:
 			case 61: mkzoo(NUCLEARCHAMBER); break;
 			case 62: mkzoo(LEVELSEVENTYROOM); break;
 			case 63: mkzoo(VARIANTROOM); break;
+			case 64: mkzoo(EVILROOM); break;
+			case 65: mkzoo(RELIGIONCENTER); break;
+			case 66: mkchaosroom(); break;
+			case 67: mkzoo(CURSEDMUMMYROOM); break;
+			case 68: mkmixedpool(); break;
+			case 69: mkzoo(ARDUOUSMOUNTAIN); break;
+			case 70: mkzoo(LEVELFFROOM); break;
+			case 71: mkzoo(VERMINROOM); break;
+			case 72: mkzoo(MIRASPA); break;
+			case 73: mkzoo(MACHINEROOM); break;
+			case 74: mkshowerroom(); break;
+			case 75: mkzoo(GREENCROSSROOM); break;
+			case 76: mkcentraltedium(); break;
+			case 77: mkzoo(RUINEDCHURCH); break;
+			case 78: mkrampageroom(); break;
+			case 79: mkzoo(GAMECORNER); break;
+			case 80: mkzoo(ILLUSIONROOM); break;
 
 		}
 		break;
@@ -453,6 +496,7 @@ struct mkroom *sroom;
 		break;
 	    case BEEHIVE:
 	    case PRISONCHAMBER:
+	    case CURSEDMUMMYROOM:
 	    case MIGOHIVE:
 		tx = sroom->lx + (sroom->hx - sroom->lx + 1)/2;
 		ty = sroom->ly + (sroom->hy - sroom->ly + 1)/2;
@@ -484,8 +528,13 @@ struct mkroom *sroom;
 		    break;
 		case VARIANTROOM:
 			u.specialtensionmonster = !rn2(5) ? 341 : !rn2(4) ? 324 : !rn2(3) ? 325 : !rn2(2) ? 326 : 330;
-			/* evil variant, angband, animeband, steamband or dnethack; one day elona shall be added */
+			/* evil variant, angband, animeband, steamband or dnethack */
 		    break;
+		case GAMECORNER:
+			u.specialtensionmonster = !rn2(4) ? 322 : !rn2(3) ? 323 : !rn2(2) ? 327 : 328;
+			/* cow, joke, diablo, dlords, one day elona, aoe and elderscrolls should be added */
+		    break;
+
 		case TENSHALL:
 			u.tensionmonster = (rn2(187) + 1);
 			u.tensionmonsteX = (rn2(100) + 1);
@@ -534,6 +583,12 @@ struct mkroom *sroom;
 	}
 	if (type == ARMORY) moreorless /= 2;
 	if (type == DIVERPARADISE) moreorless /= 5;
+	if (type == LEVELFFROOM) moreorless /= 3;
+	if (type == MACHINEROOM) moreorless /= 3;
+	if (type == ARDUOUSMOUNTAIN) moreorless /= 5;
+	if (type == RUINEDCHURCH) moreorless /= 5;
+	if (type == GREENCROSSROOM) moreorless /= 10;
+	if (type == MIRASPA) moreorless /= 5;
 	if (type == LEVELSEVENTYROOM) moreorless /= 2;
 	if (type == NUCLEARCHAMBER) moreorless /= 2;
 	if (type == HAMLETROOM && moreorless > 5) moreorless = 5;
@@ -568,6 +623,14 @@ struct mkroom *sroom;
 		/* don't place monster on explicitly placed throne */
 		if(type == COURT && IS_THRONE(levl[sx][sy].typ))
 		    continue;
+
+		if (type == CURSEDMUMMYROOM) { /* ugly hack to make the lich into an OOD monster but not the remaining stuff */
+			if (sx == tx && sy == ty) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			} else u.aggravation = 0;
+		}
+
 		if ( (rnd(100) <= moreorless) && (type != EMPTYNEST) ) mon = makemon(
 		    (type == COURT) ? (rn2(5) ? courtmon() : mkclass(S_ORC,0) ) :
 
@@ -575,9 +638,21 @@ struct mkroom *sroom;
 
 		    (type == BARRACKS) ? squadmon() :
 		    (type == DOOMEDBARRACKS) ? doomsquadmon() :
+		    (type == EVILROOM) ? evilroommon() :
+		    (type == RUINEDCHURCH) ? mkclass(S_GHOST,0) :
+		    (type == GREENCROSSROOM) ? (rn2(5) ? mkclass(S_HUMAN,0) : specialtensmon(332) /* MS_SHOE */ ) :
+		    (type == MACHINEROOM) ? machineroommon() :
+		    (type == MIRASPA) ? (!rn2(4) ? specialtensmon(49) /* MR_ACID */ : !rn2(3) ? specialtensmon(200) /* AD_ACID */ : !rn2(2) ? specialtensmon(88) /* M1_ACID */ : specialtensmon(235) /* AD_CORR */ ) :
+		    (type == VERMINROOM) ? (!rn2(3) ? mkclass(S_RODENT,0) : !rn2(2) ? mkclass(S_SNAKE,0) : mkclass(S_WORM,0) ) :
+		    (type == LEVELFFROOM) ? (!rn2(100) ? &mons[PM_SHOPKEEPER] : specialtensmon(323) /* M5_JOKE */ ) :
+		    (type == ARDUOUSMOUNTAIN) ? (rn2(2) ? specialtensmon(156) /* UNCOMMON10 */ : rn2(2) ? specialtensmon(155) /* UNCOMMON7 */ : rn2(2) ? specialtensmon(154) /* UNCOMMON5 */ : rn2(2) ? specialtensmon(153) /* UNCOMMON3 */ : specialtensmon(152) /* UNCOMMON2 */ ) :
+		    (type == CURSEDMUMMYROOM) ? (sx == tx && sy == ty ? mkclass(S_LICH,0) : mkclass(S_MUMMY,0) ) :
+		    (type == RELIGIONCENTER) ? (rn2(2) ? specialtensmon(347) /* MS_CONVERT */ : specialtensmon(348) /* MS_ALIEN */ ) :
 			(type == CLINIC) ? specialtensmon(218) /* AD_HEAL */ :
 			(type == TERRORHALL) ? mkclass(S_UMBER,0) :
 			(type == VARIANTROOM) ? specialtensmon(u.specialtensionmonster) :
+			(type == ILLUSIONROOM) ? illusionmon() :
+			(type == GAMECORNER) ? specialtensmon(u.specialtensionmonster) :
 			(type == TENSHALL) ? (u.specialtensionmonsterB ? (rn2(2) ? specialtensmon(u.specialtensionmonsterB) : specialtensmon(u.specialtensionmonster) ) : u.specialtensionmonster ? specialtensmon(u.specialtensionmonster) : u.tensionmonsterspecB ? (rn2(2) ? u.tensionmonsterspecB : u.tensionmonsterspec ) : u.tensionmonsterspec ? u.tensionmonsterspec : u.colormonsterB ? (rn2(2) ? colormon(u.colormonsterB) : colormon(u.colormonster) ) : u.colormonster ? colormon(u.colormonster) : u.tensionmonsterB ? (rn2(2) ? tenshallmon() : tenshallmonB() ) : tenshallmon()) :
 			(type == ELEMHALL) ? mkclass(S_ELEMENTAL,0) :
 			(type == ANGELHALL) ? mkclass(S_ANGEL,0) :
@@ -637,12 +712,54 @@ struct mkroom *sroom;
 				mon->mpeaceful = 0;
 				set_malign(mon);
 			}
+
+			/* green cross rooms are supposed to be very peaceful if you behave well --Amy */
+			if (type == GREENCROSSROOM && (rnd(20) < u.ualign.record)) {
+				mon->mpeaceful = 1;
+				set_malign(mon);
+			}
+
 		}
 		switch(type) {
 
 		    case CRYPTROOM:
 			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(10)) {
 				levl[sx][sy].typ = CRYPTFLOOR;
+			}
+			break;
+
+		    case GREENCROSSROOM:
+			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(10)) {
+				levl[sx][sy].typ = rn2(3) ? PAVEDFLOOR : GRASSLAND;
+			}
+			break;
+
+		    case MIRASPA:
+			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(10)) {
+				levl[sx][sy].typ = URINELAKE;
+			}
+			break;
+
+		    case MACHINEROOM:
+			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(4)) {
+				levl[sx][sy].typ = !rn2(3) ? TUNNELWALL : !rn2(2) ? STALACTITE : CRYSTALWATER;
+			}
+			break;
+
+		    case ARDUOUSMOUNTAIN:
+			if(levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) {
+
+				if (rn2(2)) levl[sx][sy].typ = MOUNTAIN;
+				else if (!rn2(5)) levl[sx][sy].typ = TUNNELWALL;
+			}
+			break;
+
+		    case LEVELFFROOM:
+			if(levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) {
+
+				if (rn2(2)) levl[sx][sy].typ = FARMLAND;
+				else if (!rn2(3)) levl[sx][sy].typ = HIGHWAY;
+				else if (!rn2(4)) levl[sx][sy].typ = GRASSLAND;
 			}
 			break;
 
@@ -922,6 +1039,34 @@ struct mkroom *sroom;
 			if(!rn2(10))
 			    (void) mkobj_at(GEM_CLASS, sx, sy, FALSE);
 			break;
+
+		    case CURSEDMUMMYROOM:
+			if(!rn2(10))
+			    (void) mksobj_at(STATUE, sx, sy, TRUE, FALSE);
+
+			if(!rn2(10) && !t_at(sx, sy))
+				(void) maketrap(sx, sy, STATUE_TRAP, 100);
+
+			if(!rn2(10)) {
+				struct obj *enchantedgear;
+				enchantedgear = mkobj_at(rn2(2) ? WEAPON_CLASS : ARMOR_CLASS, sx, sy, FALSE);
+
+				if (enchantedgear && enchantedgear->spe == 0) {
+					enchantedgear->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+				}
+
+				if (enchantedgear) curse(enchantedgear);
+			}
+
+			break;
+
+		    case RUINEDCHURCH:
+
+			if(!rn2(5))
+			    (void) mksobj_at(rnd_class(JADE+1, LUCKSTONE-1), sx, sy, TRUE, FALSE); /* worthless glass */
+			if(!rn2(20))
+			    (void) mkobj_at(SCROLL_CLASS, sx, sy, FALSE);
+			break;
 		    case MIMICHALL: /* lower overall amount of items --Amy */
 			if(!rn2(10))
 			    (void) mkobj_at(rn2(5) ? COIN_CLASS : RANDOM_CLASS, sx, sy, FALSE);
@@ -961,6 +1106,26 @@ struct mkroom *sroom;
 			  if (somexy(sroom, &mm))
 				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
 		  }
+
+		  break;
+
+	      case RUINEDCHURCH:
+
+		  if (somexy(sroom, &mm)) {
+			levl[mm.x][mm.y].typ = ALTAR;
+			switch (rnd(4)) {
+	
+				case 1: levl[mm.x][mm.y].altarmask = Align2amask( A_LAWFUL ); break;
+				case 2: levl[mm.x][mm.y].altarmask = Align2amask( A_NEUTRAL ); break;
+				case 3: levl[mm.x][mm.y].altarmask = Align2amask( A_CHAOTIC ); break;
+				case 4: levl[mm.x][mm.y].altarmask = Align2amask( A_NONE ); break;
+
+			}
+
+			(void) mkobj_at(SPBOOK_CLASS, sx, sy, FALSE);
+
+		  }
+              level.flags.has_ruinedchurch = 1;
 
 		  break;
 
@@ -1040,6 +1205,42 @@ struct mkroom *sroom;
 				  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
 		  }
               level.flags.has_tenshall = 1;
+              break;
+            case EVILROOM:
+              level.flags.has_evilroom = 1;
+              break;
+            case RELIGIONCENTER:
+              level.flags.has_religioncenter = 1;
+              break;
+            case CURSEDMUMMYROOM:
+              level.flags.has_cursedmummyroom = 1;
+              break;
+            case ARDUOUSMOUNTAIN:
+              level.flags.has_arduousmountain = 1;
+              break;
+            case LEVELFFROOM:
+              level.flags.has_levelffroom = 1;
+              break;
+            case VERMINROOM:
+              level.flags.has_verminroom = 1;
+              break;
+            case MIRASPA:
+              level.flags.has_miraspa = 1;
+              break;
+            case MACHINEROOM:
+              level.flags.has_machineroom = 1;
+              break;
+            case SHOWERROOM:
+              level.flags.has_showerroom = 1;
+              break;
+            case GREENCROSSROOM:
+              level.flags.has_greencrossroom = 1;
+              break;
+            case GAMECORNER:
+              level.flags.has_gamecorner = 1;
+              break;
+            case ILLUSIONROOM:
+              level.flags.has_illusionroom = 1;
               break;
             case ELEMHALL:
 		  if (!rn2(50)) {
@@ -1987,6 +2188,101 @@ doomsquadmon()
 	else return(&mons[PM_ZOMBIEMAN]);
 }
 
+STATIC_OVL struct permonst *
+illusionmon()
+{
+
+	switch (rnd(23)) {
+		case 1:
+			return specialtensmon(288); break; /* AD_SPC2 */
+		case 2:
+			return specialtensmon(203); break; /* AD_STUN */
+		case 3:
+			return specialtensmon(223); break; /* AD_DRIN */
+		case 4:
+			return specialtensmon(227); break; /* AD_HALU */
+		case 5:
+			return specialtensmon(239); break; /* AD_DARK */
+		case 6:
+			return specialtensmon(246); break; /* AD_FEAR */
+		case 7:
+			return specialtensmon(251); break; /* AD_FAKE */
+		case 8:
+			return specialtensmon(252); break; /* AD_LETH */
+		case 9:
+			return specialtensmon(253); break; /* AD_CNCL */
+		case 10:
+			return specialtensmon(254); break; /* AD_BANI */
+		case 11:
+			return specialtensmon(255); break; /* AD_WISD */
+		case 12:
+			return specialtensmon(264); break; /* AD_HODS */
+		case 13:
+			return specialtensmon(265); break; /* AD_CHRN */
+		case 14:
+			return specialtensmon(266); break; /* AD_WEEP */
+		case 15:
+			return specialtensmon(269); break; /* AD_STTP */
+		case 16:
+			return specialtensmon(270); break; /* AD_DEPR */
+		case 17:
+			return specialtensmon(272); break; /* AD_LAZY */
+		case 18:
+			return specialtensmon(278); break; /* AD_INER */
+		case 19:
+			return specialtensmon(295); break; /* AD_VULN */
+		case 20:
+			return specialtensmon(298); break; /* AD_AMNE */
+		case 21:
+			return specialtensmon(307); break; /* AD_INSA */
+		case 22:
+			return specialtensmon(308); break; /* AD_TRAP */
+		case 23:
+			return specialtensmon(342); break; /* M4_SHAPESHIFT */
+	}
+
+}
+
+STATIC_OVL struct permonst *
+evilroommon()
+{
+	register struct permonst *ptr;
+	register int ct = 0;
+
+	ptr = rndmonst();
+
+	do {
+
+		ptr = rndmonst();
+		ct++;
+		if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+	} while ( !ptr || ( (!dmgtype(ptr, AD_DISN) && !dmgtype(ptr, AD_STON) && !dmgtype(ptr, AD_DETH) && !dmgtype(ptr, AD_PEST) && !dmgtype(ptr, AD_FAMN) && !dmgtype(ptr, AD_SLIM) && !dmgtype(ptr, AD_WTHR) && !dmgtype(ptr, AD_NPRO) && !dmgtype(ptr, AD_LAVA) && !dmgtype(ptr, AD_LETH) && !dmgtype(ptr, AD_CNCL) && !dmgtype(ptr, AD_BANI) && !dmgtype(ptr, AD_SHRD) && !dmgtype(ptr, AD_WET) && !dmgtype(ptr, AD_SUCK) && !dmgtype(ptr, AD_UVUU) && !dmgtype(ptr, AD_STTP) && !dmgtype(ptr, AD_DEPR) && !dmgtype(ptr, AD_WRAT) && !dmgtype(ptr, AD_DFOO) && !dmgtype(ptr, AD_TIME) && !dmgtype(ptr, AD_VENO) && !dmgtype(ptr, AD_VAPO) && !dmgtype(ptr, AD_EDGE) && !dmgtype(ptr, AD_LITT) && !dmgtype(ptr, AD_FREN) && !dmgtype(ptr, AD_NGEN) && !dmgtype(ptr, AD_CHAO) && !dmgtype(ptr, AD_DEST) && !dmgtype(ptr, AD_ANTI) && !dmgtype(ptr, AD_STAT) && !dmgtype(ptr, AD_RUNS) && !dmgtype(ptr, AD_DAMA) && !dmgtype(ptr, AD_THIE) && !dmgtype(ptr, AD_RAGN) && !dmgtype(ptr, AD_DATA) && !dmgtype(ptr, AD_MINA) ) && (ct < 250000) ));
+
+	return ptr;
+
+}
+
+STATIC_OVL struct permonst *
+machineroommon()
+{
+	register struct permonst *ptr;
+	register int ct = 0;
+
+	ptr = rndmonst();
+
+	do {
+
+		ptr = rndmonst();
+		ct++;
+		if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+	} while ( !ptr || (!nonliving(ptr) && (ct < 250000) ));
+
+	return ptr;
+
+}
+
 /*
  * save_room : A recursive function that saves a room and its subrooms
  * (if any).
@@ -2106,6 +2402,157 @@ mkemptydesert()
 	}
 
 	level.flags.has_emptydesert = 1;
+
+}
+
+void
+mkchaosroom()
+{
+
+    struct mkroom *sroom;
+	register int sx,sy = 0;
+
+    if (!(sroom = pick_room(FALSE))) return;
+
+	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
+
+    sroom->rtype = CHAOSROOM;
+
+	for(sx = sroom->lx; sx <= sroom->hx; sx++)
+	for(sy = sroom->ly; sy <= sroom->hy; sy++) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(10)) {
+			levl[sx][sy].typ = randomwalltype();
+		}
+	}
+
+}
+
+void
+mkmixedpool()
+{
+
+    struct mkroom *sroom;
+	register int sx,sy = 0;
+	coord mm;
+
+    if (!(sroom = pick_room(FALSE))) return;
+
+	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
+
+    sroom->rtype = MIXEDPOOL;
+
+	for(sx = sroom->lx; sx <= sroom->hx; sx++)
+	for(sy = sroom->ly; sy <= sroom->hy; sy++) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(4)) {
+			levl[sx][sy].typ = rn2(2) ? MOAT : CRYSTALWATER;
+		}
+	}
+
+	if (somexy(sroom, &mm)) {
+		  (void) mksobj_at(TREASURE_CHEST, mm.x, mm.y, TRUE, FALSE);
+	}
+
+}
+
+void
+mkshowerroom()
+{
+
+    struct mkroom *sroom;
+	register int sx,sy = 0;
+
+    if (!(sroom = pick_room(FALSE))) return;
+
+	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
+
+    sroom->rtype = SHOWERROOM;
+
+	level.flags.has_showerroom = 1;
+
+	for(sx = sroom->lx; sx <= sroom->hx; sx++)
+	for(sy = sroom->ly; sy <= sroom->hy; sy++) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(3)) {
+			levl[sx][sy].typ = rn2(2) ? BUBBLES : RAINCLOUD;
+		}
+	}
+
+}
+
+void
+mkcentraltedium()
+{
+
+    struct mkroom *sroom;
+	register int sx,sy = 0;
+
+    if (!(sroom = pick_room(FALSE))) return;
+
+	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
+
+    sroom->rtype = CENTRALTEDIUM;
+
+	for(sx = sroom->lx; sx <= sroom->hx; sx++)
+	for(sy = sroom->ly; sy <= sroom->hy; sy++) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) ) {
+			switch (rnd(10)) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+				case 7:
+					levl[sx][sy].typ = HIGHWAY;
+					break;
+				case 8:
+				case 9:
+					levl[sx][sy].typ = GRASSLAND;
+					break;
+				case 10:
+					break;
+			}
+		}
+
+		if((levl[sx][sy].typ > DBWALL) && !t_at(sx,sy) ) {
+			if(!rn2(10)) {
+				if(!rn2(10)) {
+					if(!rn2(10)) {
+						(void) maketrap(sx, sy, randominsidetrap(), 100);
+					}
+					else (void) maketrap(sx, sy, LEVEL_TELEP, 100);
+				}
+				else (void) maketrap(sx, sy, TELEP_TRAP, 100);
+			}
+
+		}
+
+	}
+
+}
+
+void
+mkrampageroom()
+{
+
+    struct mkroom *sroom;
+	register int sx,sy = 0;
+
+    if (!(sroom = pick_room(FALSE))) return;
+
+	if(sroom->rtype != OROOM || (has_upstairs(sroom) && rn2(iswarper ? 10 : 100)) ) return;
+
+    sroom->rtype = RAMPAGEROOM;
+
+	for(sx = sroom->lx; sx <= sroom->hx; sx++)
+	for(sy = sroom->ly; sy <= sroom->hy; sy++) {
+		if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && !rn2(10)) {
+			levl[sx][sy].typ = ROCKWALL;
+		}
+
+		if (!rn2(3)) (void) mksobj_at(BOULDER, sx, sy, TRUE, FALSE);
+		if (!rn2(3)) (void) maketrap(sx, sy, randomtrap(), 100);
+	}
+
 
 }
 
