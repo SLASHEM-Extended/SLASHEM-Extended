@@ -694,6 +694,8 @@ register int fd, mode;
 	bwrite(fd, (void *) &mons[PM_RNG_KCHIEF], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_RNG_KATCHER], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_RNG_KRIMINOLOGIST], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_KEELHAULER], sizeof(struct permonst));
+	bwrite(fd, (void *) &mons[PM_RNG_KLEEVER], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_GENERATOR_LICH], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_WHIMLICH], sizeof(struct permonst));
 	bwrite(fd, (void *) &mons[PM_RAINBOW_OGRE], sizeof(struct permonst));

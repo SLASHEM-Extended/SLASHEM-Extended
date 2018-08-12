@@ -7251,6 +7251,8 @@ u_init()
 	struct permonst* randxyr = &mons[PM_RNG_KCHIEF];
 	struct permonst* randxys = &mons[PM_RNG_KATCHER];
 	struct permonst* randxyt = &mons[PM_RNG_KRIMINOLOGIST];
+	struct permonst* randxytX = &mons[PM_RNG_KEELHAULER];
+	struct permonst* randxytY = &mons[PM_RNG_KLEEVER];
 	struct permonst* randxyu = &mons[PM_GENERATOR_LICH];
 	struct permonst* randxyv = &mons[PM_WHIMLICH];
 	struct permonst* randxyw = &mons[PM_RAINBOW_OGRE];
@@ -20778,6 +20780,26 @@ u_init()
 	}
 
 	for (i = 0; i < 1; i++) {
+		attkptr = &randxytX->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxytY->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
 		attkptr = &randxyu->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
@@ -27032,6 +27054,8 @@ alter_reality()
 	struct permonst* randxyr = &mons[PM_RNG_KCHIEF];
 	struct permonst* randxys = &mons[PM_RNG_KATCHER];
 	struct permonst* randxyt = &mons[PM_RNG_KRIMINOLOGIST];
+	struct permonst* randxytX = &mons[PM_RNG_KEELHAULER];
+	struct permonst* randxytY = &mons[PM_RNG_KLEEVER];
 	struct permonst* randxyu = &mons[PM_GENERATOR_LICH];
 	struct permonst* randxyv = &mons[PM_WHIMLICH];
 	struct permonst* randxyw = &mons[PM_RAINBOW_OGRE];
@@ -34593,6 +34617,26 @@ alter_reality()
 
 	for (i = 0; i < 1; i++) {
 		attkptr = &randxyt->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxytX->mattk[i];
+
+		attkptr->adtyp = AD_ENDS;
+		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {
+			attkptr->adtyp = randattack();
+		}
+
+	}
+
+	for (i = 0; i < 1; i++) {
+		attkptr = &randxytY->mattk[i];
 
 		attkptr->adtyp = AD_ENDS;
 		while (attkptr->adtyp == AD_ENDS || attkptr->adtyp == AD_WERE) {

@@ -4754,7 +4754,7 @@ register struct attack *mattk;
 	      return 1;
 	}
 
-	if (mdef->data == &mons[PM_LITTLE_POISON_IVY] || mdef->data == &mons[PM_SWEET_ASIAN_POISON_IVY]) {
+	if (mdef->data == &mons[PM_LITTLE_POISON_IVY] || mdef->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mdef->data == &mons[PM_FIRST_DUNVEGAN] || mdef->data == &mons[PM_PERCENTI_HAS_LOST___] || mdef->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) {
 
 		pline("%s is IMMUNE to the attack!", Monnam(mdef));
 		if (Hallucination) You("curse at Konami for designing it like that.");

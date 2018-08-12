@@ -2814,6 +2814,7 @@ register int pm;
 	    case PM_EVIL_MIND_FLAYER:
 	    case PM_TELEMINDFLAYER:
 	    case PM_GIANT_MIND_FLAYER:
+	    case PM_PEW_PEW_MIND_FLAYER:
 	    case PM_ARCH_MIND_FLAYER:
 	    case PM_ARMY_MIND_FLAYER:
 	    case PM_UNDEAD_MIND_FLAYER:

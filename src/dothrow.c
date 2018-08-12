@@ -1925,6 +1925,11 @@ int thrown;
 		pline("%s swats the projectile away!", Monnam(mon));
 	}
 
+	if (mon->data == &mons[PM_GREEN] && rn2(15) && tmp > -20) {
+		tmp = -100;
+		pline("%s uses an ECM system to divert the projectile!", Monnam(mon));
+	}
+
 	if (stupidrock && tmp > -20 && !(rn2(25) < skillpierce ) ) {
 		if (verysmall(mon->data) && !rn2(4)) {
 			tmp = -100;

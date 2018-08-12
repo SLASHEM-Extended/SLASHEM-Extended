@@ -2191,13 +2191,34 @@ create_polymon(obj, okind)
 	switch(okind) {
 	case IRON:
 	case METAL:
-	case MITHRIL:
+	case POURPOOR:
 	    pm_index = PM_IRON_GOLEM;
 	    material = "metal ";
 	    break;
+	case MITHRIL:
+	    pm_index = PM_MITHRIL_GOLEM;
+	    material = "mithril ";
+	    break;
+	case TAR:
+	    pm_index = PM_TAR_GOLEM;
+	    material = "tar ";
+	    break;
+	case SECREE:
+	    pm_index = PM_SECRETION_GOLEM;
+	    material = "secree ";
+	    break;
 	case COPPER:
+		pm_index = PM_COPPER_GOLEM;
+		material = "copper ";
+		break;
 	case SILVER:
+		pm_index = PM_SILVER_GOLEM;
+		material = "silver ";
+		break;
 	case PLATINUM:
+		pm_index = PM_PLATINUM_GOLEM;
+		material = "silver ";
+		break;
 	case GEMSTONE:
 	case MINERAL:
 	    pm_index = rn2(2) ? PM_STONE_GOLEM : PM_CLAY_GOLEM;
@@ -2205,6 +2226,8 @@ create_polymon(obj, okind)
 	    break;
 	case 0:
 	case FLESH:
+	case VEGGY:
+	case COMPOST:
 	    /* there is no flesh type, but all food is type 0, so we use it */
 	    pm_index = PM_FLESH_GOLEM;
 	    material = "organic ";
@@ -2213,9 +2236,29 @@ create_polymon(obj, okind)
 		pm_index = PM_WAX_GOLEM;
 		material = "wax ";
 		break;
+	case ETERNIUM:
+		pm_index = PM_ETERNIUM_GOLEM;
+		material = "eternium ";
+		break;
+	case VIVA:
+		pm_index = PM_VIVA_GOLEM;
+		material = "viva ";
+		break;
+	case ARCANIUM:
+		pm_index = PM_ARCANIUM_GOLEM;
+		material = "arcanium ";
+		break;
 	case WOOD:
 	    pm_index = PM_WOOD_GOLEM;
 	    material = "wood ";
+	    break;
+	case LIQUID:
+	    pm_index = PM_LIQUID_GOLEM;
+	    material = "liquid ";
+	    break;
+	case INKA:
+	    pm_index = PM_INKA_GOLEM;
+	    material = "inka ";
 	    break;
 	case LEATHER:
 	    pm_index = PM_LEATHER_GOLEM;

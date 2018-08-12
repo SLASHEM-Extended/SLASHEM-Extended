@@ -1398,6 +1398,12 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	tname = mons[PM_RNG_KRIMINOLOGIST].mname;
 	mread(fd, (void *) &mons[PM_RNG_KRIMINOLOGIST], sizeof(struct permonst));
 	mons[PM_RNG_KRIMINOLOGIST].mname = tname;
+	tname = mons[PM_RNG_KEELHAULER].mname;
+	mread(fd, (void *) &mons[PM_RNG_KEELHAULER], sizeof(struct permonst));
+	mons[PM_RNG_KEELHAULER].mname = tname;
+	tname = mons[PM_RNG_KLEEVER].mname;
+	mread(fd, (void *) &mons[PM_RNG_KLEEVER], sizeof(struct permonst));
+	mons[PM_RNG_KLEEVER].mname = tname;
 	tname = mons[PM_GENERATOR_LICH].mname;
 	mread(fd, (void *) &mons[PM_GENERATOR_LICH], sizeof(struct permonst));
 	mons[PM_GENERATOR_LICH].mname = tname;

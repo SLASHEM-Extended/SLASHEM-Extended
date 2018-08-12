@@ -692,6 +692,8 @@ register struct monst *mtmp;
 	    case PM_UNDEAD_KCHIEF:
 	    case PM_UNDEAD_KATCHER:
 	    case PM_UNDEAD_KRIMINOLOGIST:
+	    case PM_UNDEAD_KEELHAULER:
+	    case PM_UNDEAD_KLEEVER:
 	    case PM_UNDEAD_SNAKE:
 	    case PM_UNDEAD_EGO_SNAKE:
 	    case PM_UNDEAD_NAGA:
@@ -967,11 +969,333 @@ register struct monst *mtmp;
 			obj = mksobj_at(QUARTERSTAFF, x, y, TRUE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
+	    case PM_AXLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(AXE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_UNICORN_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(UNICORN_HORN, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_MINTERM_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(ETERNIUM_BLADE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_LONG_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(LONG_SWORD, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_SLASH_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(IRON_SABER, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_MAYLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(MACE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_FLATOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(FLAIL, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_WULSCHLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(VOULGE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_RANSOEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(RANSEUR, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_BARDIIM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(BARDICHE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_FORKLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(GARDEN_FORK, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_HAMLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(WAR_HAMMER, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_GISLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(GUISARME, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_BEARD_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(HELMET_BEARD, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_PIX_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(PICK_AXE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_FLEECY_LEATHER_GOLEM:
+		num = d(2,3);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(BULLWHIP, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_RETARDED_GOLEM:
+		num = d(2,4);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(SLING, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_LANCE_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(LANCE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_DENT_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(TRIDENT, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_FLY_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(FLY_SWATTER, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_STAR_GOLEM:
+		num = d(2,6);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(MORNING_STAR, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_TIMBER_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(CLUB, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_RAPIER_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(RAPIER, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_SCIM_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(SCIMITAR, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_PURPUR_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(BIDENHANDER, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_BALL_GOLEM:
+		num = d(2,5);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(HEAVY_IRON_BALL, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_PAGER_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(PAPER_SWORD, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_LIQUID_GOLEM:
+		num = d(2,4);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(ASTERISK, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_TAR_GOLEM:
+		num = d(2,4);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(BITUKNIFE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_SECRETION_GOLEM:
+		num = d(2,4);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(rn2(10) ? SECRETION_DAGGER : POKER_STICK, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_ARCANIUM_GOLEM:
+		num = d(2,4);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(COLLUSION_KNIFE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_INKA_GOLEM:
+		num = d(2,4);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(INKA_BLADE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_VIVA_GOLEM:
+		num = d(2,4);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(HUNTING_RIFLE, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
 	    case PM_LEATHER_GOLEM:
 		num = d(2,4);
 		if (num > 1 && rn2(2)) num /= 2;
 		while(num--)
 			obj = mksobj_at(LEATHER_ARMOR, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_STUDDED_GOLEM:
+		num = d(2,3);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(STUDDED_LEATHER_ARMOR, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_RING_GOLEM:
+		num = d(2,3);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(RING_MAIL, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_SCALE_GOLEM:
+		num = d(2,3);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(SCALE_MAIL, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_CHAIN_GOLEM:
+		num = d(2,3);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(CHAIN_MAIL, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_BANDED_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(BANDED_MAIL, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_VOLUME_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(SPLINT_MAIL, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_LAMEL_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(METAL_LAMELLAR_ARMOR, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_BRATE_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(BRONZE_PLATE_MAIL, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_CRYLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(CRYSTAL_PLATE_MAIL, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_PARTIAL_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(PARTIAL_PLATE_MAIL, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_RIB_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(RIBBED_PLATE_MAIL, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_PLATE_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(PLATE_MAIL, x, y, TRUE, FALSE);
+		mtmp->mnamelth = 0;
+		break;
+	    case PM_FULL_PLATE_GOLEM:
+		num = d(2,2);
+		if (num > 1 && rn2(2)) num /= 2;
+		while(num--)
+			obj = mksobj_at(FULL_PLATE_MAIL, x, y, TRUE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
 	    case PM_BUG:
