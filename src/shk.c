@@ -3600,6 +3600,26 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != AIR_TRAP
 				&& ttmp->ttyp != TERRAIN_TRAP
 
+				&& ttmp->ttyp != EVIL_HEEL_TRAP
+				&& ttmp->ttyp != BAD_EQUIPMENT_TRAP
+				&& ttmp->ttyp != TEMPOCONFLICT_TRAP
+				&& ttmp->ttyp != TEMPOHUNGER_TRAP
+				&& ttmp->ttyp != TELEPORTITIS_TRAP
+				&& ttmp->ttyp != POLYMORPHITIS_TRAP
+				&& ttmp->ttyp != PREMATURE_DEATH_TRAP
+				&& ttmp->ttyp != LASTING_AMNESIA_TRAP
+				&& ttmp->ttyp != RAGNAROK_TRAP
+				&& ttmp->ttyp != SINGLE_DISENCHANT_TRAP
+
+				&& ttmp->ttyp != SEVERE_DISENCHANT_TRAP
+				&& ttmp->ttyp != PAIN_TRAP
+				&& ttmp->ttyp != TREMBLING_TRAP
+				&& ttmp->ttyp != TECHCAP_TRAP
+				&& ttmp->ttyp != SPELL_MEMORY_TRAP
+				&& ttmp->ttyp != SKILL_REDUCTION_TRAP
+				&& ttmp->ttyp != SKILLCAP_TRAP
+				&& ttmp->ttyp != PERMANENT_STAT_DAMAGE_TRAP
+
 				&& ttmp->ttyp != LOOTCUT_TRAP
 				&& ttmp->ttyp != MONSTER_SPEED_TRAP
 				&& ttmp->ttyp != SCALING_TRAP

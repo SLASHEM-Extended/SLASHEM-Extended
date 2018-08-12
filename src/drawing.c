@@ -699,6 +699,27 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "boss spawner", C(CLR_MAGENTA)},	/* trap */
 	{'^', "contamination trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 
+	{'^', "evil heel trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "bad equipment trap", C(CLR_BLACK)},	/* trap */
+	{'^', "tempoconflict trap", C(CLR_CYAN)},	/* trap */
+	{'^', "tempohunger trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "teleportitis trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "polymorphitis trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "premature death trap", C(CLR_BLACK)},	/* trap */
+	{'^', "lasting amnesia trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "ragnarok trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "single disenchant trap", C(CLR_BLACK)},	/* trap */
+	{'^', "acid pit", C(CLR_GREEN)},	/* trap */
+
+	{'^', "severe disenchant trap", C(CLR_BLACK)},	/* trap */
+	{'^', "pain trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "trembling trap", C(CLR_BROWN)},	/* trap */
+	{'^', "techcap trap", C(CLR_BROWN)},	/* trap */
+	{'^', "spell memory trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "skill reduction trap", C(CLR_CYAN)},	/* trap */
+	{'^', "skillcap trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "permanent stat damage trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1226,6 +1247,27 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_boss_spawner),
 	g_FILLER(S_contamination_trap),
 
+	g_FILLER(S_evil_heel_trap),
+	g_FILLER(S_bad_equipment_trap),
+	g_FILLER(S_tempoconflict_trap),
+	g_FILLER(S_tempohunger_trap),
+	g_FILLER(S_teleportitis_trap),
+	g_FILLER(S_polymorphitis_trap),
+	g_FILLER(S_premature_death_trap),
+	g_FILLER(S_lasting_amnesia_trap),
+	g_FILLER(S_ragnarok_trap),
+	g_FILLER(S_single_disenchant_trap),
+	g_FILLER(S_acid_pit),
+
+	g_FILLER(S_severe_disenchant_trap),
+	g_FILLER(S_pain_trap),
+	g_FILLER(S_trembling_trap),
+	g_FILLER(S_techcap_trap),
+	g_FILLER(S_spell_memory_trap),
+	g_FILLER(S_skill_reduction_trap),
+	g_FILLER(S_skillcap_trap),
+	g_FILLER(S_permanent_stat_damage_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -1741,6 +1783,27 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_boss_spawner),
 	g_FILLER(S_contamination_trap),
 
+	g_FILLER(S_evil_heel_trap),
+	g_FILLER(S_bad_equipment_trap),
+	g_FILLER(S_tempoconflict_trap),
+	g_FILLER(S_tempohunger_trap),
+	g_FILLER(S_teleportitis_trap),
+	g_FILLER(S_polymorphitis_trap),
+	g_FILLER(S_premature_death_trap),
+	g_FILLER(S_lasting_amnesia_trap),
+	g_FILLER(S_ragnarok_trap),
+	g_FILLER(S_single_disenchant_trap),
+	g_FILLER(S_acid_pit),
+
+	g_FILLER(S_severe_disenchant_trap),
+	g_FILLER(S_pain_trap),
+	g_FILLER(S_trembling_trap),
+	g_FILLER(S_techcap_trap),
+	g_FILLER(S_spell_memory_trap),
+	g_FILLER(S_skill_reduction_trap),
+	g_FILLER(S_skillcap_trap),
+	g_FILLER(S_permanent_stat_damage_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -2254,6 +2317,27 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_kop_cube),
 	g_FILLER(S_boss_spawner),
 	g_FILLER(S_contamination_trap),
+
+	g_FILLER(S_evil_heel_trap),
+	g_FILLER(S_bad_equipment_trap),
+	g_FILLER(S_tempoconflict_trap),
+	g_FILLER(S_tempohunger_trap),
+	g_FILLER(S_teleportitis_trap),
+	g_FILLER(S_polymorphitis_trap),
+	g_FILLER(S_premature_death_trap),
+	g_FILLER(S_lasting_amnesia_trap),
+	g_FILLER(S_ragnarok_trap),
+	g_FILLER(S_single_disenchant_trap),
+	g_FILLER(S_acid_pit),
+
+	g_FILLER(S_severe_disenchant_trap),
+	g_FILLER(S_pain_trap),
+	g_FILLER(S_trembling_trap),
+	g_FILLER(S_techcap_trap),
+	g_FILLER(S_spell_memory_trap),
+	g_FILLER(S_skill_reduction_trap),
+	g_FILLER(S_skillcap_trap),
+	g_FILLER(S_permanent_stat_damage_trap),
 
 	g_FILLER(S_timerun_trap),
 	g_FILLER(S_vbeam),
@@ -2943,6 +3027,27 @@ boolean is_rlevel;
 	    showsyms[S_kop_cube] = 0x04;
 	    showsyms[S_boss_spawner] = 0x04;
 	    showsyms[S_contamination_trap] = 0x04;
+
+	    showsyms[S_evil_heel_trap] = 0x04;
+	    showsyms[S_bad_equipment_trap] = 0x04;
+	    showsyms[S_tempoconflict_trap] = 0x04;
+	    showsyms[S_tempohunger_trap] = 0x04;
+	    showsyms[S_teleportitis_trap] = 0x04;
+	    showsyms[S_polymorphitis_trap] = 0x04;
+	    showsyms[S_premature_death_trap] = 0x04;
+	    showsyms[S_lasting_amnesia_trap] = 0x04;
+	    showsyms[S_ragnarok_trap] = 0x04;
+	    showsyms[S_single_disenchant_trap] = 0x04;
+	    showsyms[S_acid_pit] = 0x04;
+
+	    showsyms[S_severe_disenchant_trap] = 0x04;
+	    showsyms[S_pain_trap] = 0x04;
+	    showsyms[S_trembling_trap] = 0x04;
+	    showsyms[S_techcap_trap] = 0x04;
+	    showsyms[S_spell_memory_trap] = 0x04;
+	    showsyms[S_skill_reduction_trap] = 0x04;
+	    showsyms[S_skillcap_trap] = 0x04;
+	    showsyms[S_permanent_stat_damage_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif

@@ -2154,6 +2154,14 @@ nh_timeout()
 			if (!HConflict)
 				pline("You stop generating conflict.");
 			break;
+		case PREMDEATH:
+			if (!HPrem_death)
+				pline("You no longer have to fear that you might die prematurely.");
+			break;
+		case MAP_AMNESIA:
+			if (!HMap_amnesia)
+				pline("Your memory seems to be coming back.");
+			break;
 		case STEALTH:
 			if (!HStealth)
 				pline("Your movements are a little less silent.");

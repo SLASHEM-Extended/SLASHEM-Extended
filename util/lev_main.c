@@ -518,6 +518,27 @@ static struct {
 	{ "boss spawner", BOSS_SPAWNER },
 	{ "contamination", CONTAMINATION_TRAP },
 
+	{ "evil heel", EVIL_HEEL_TRAP },
+	{ "bad equipment", BAD_EQUIPMENT_TRAP },
+	{ "tempoconflict", TEMPOCONFLICT_TRAP },
+	{ "tempohunger", TEMPOHUNGER_TRAP },
+	{ "teleportitis", TELEPORTITIS_TRAP },
+	{ "polymorphitis", POLYMORPHITIS_TRAP },
+	{ "premature death", PREMATURE_DEATH_TRAP },
+	{ "lasting amnesia", LASTING_AMNESIA_TRAP },
+	{ "ragnarok", RAGNAROK_TRAP },
+	{ "single disenchant", SINGLE_DISENCHANT_TRAP },
+	{ "acid pit", ACID_PIT },
+
+	{ "severe disenchant", SEVERE_DISENCHANT_TRAP },
+	{ "pain", PAIN_TRAP },
+	{ "trembling", TREMBLING_TRAP },
+	{ "techcap", TECHCAP_TRAP },
+	{ "spell memory", SPELL_MEMORY_TRAP },
+	{ "skill reduction", SKILL_REDUCTION_TRAP },
+	{ "skillcap", SKILLCAP_TRAP },
+	{ "permanent stat damage", PERMANENT_STAT_DAMAGE_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

@@ -8642,7 +8642,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	if (!u.uswallow) {	/* swallows you */
 		if (youmonst.data->msize >= MZ_HUGE) return(0);
-		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT))) &&
+		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT) || (t->ttyp == ACID_PIT) )) &&
 		    sobj_at(BOULDER, u.ux, u.uy))
 			return(0);
 

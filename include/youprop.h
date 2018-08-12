@@ -194,7 +194,11 @@
 #define Sick			u.uprops[SICK].intrinsic
 #define Stoned			u.uprops[STONED].intrinsic
 #define Strangled		u.uprops[STRANGLED].intrinsic
+
 #define Prem_death		(u.uprops[PREMDEATH].intrinsic || u.uprops[PREMDEATH].extrinsic)
+#define HPrem_death	u.uprops[PREMDEATH].intrinsic
+#define EPrem_death	u.uprops[PREMDEATH].extrinsic
+
 #define Vomiting		u.uprops[VOMITING].intrinsic
 #define Glib			u.uprops[GLIB].intrinsic
 #define EGlib			u.uprops[GLIB].extrinsic

@@ -2133,6 +2133,7 @@ E int upgrade_obj(struct obj *);
 E struct monst *split_mon(struct monst *,struct monst *);
 E const char *bottlename(void);
 E void bad_equipment(void);
+E void bad_equipment_heel(void);
 
 /* ### pray.c ### */
 

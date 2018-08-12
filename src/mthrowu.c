@@ -591,7 +591,7 @@ int x,y;
 	}
 
 	if (create && !((mtmp = m_at(x, y)) && (mtmp->mtrapped) &&
-			(t = t_at(x, y)) && ((t->ttyp == PIT) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT) || (t->ttyp == GIANT_CHASM) ||
+			(t = t_at(x, y)) && ((t->ttyp == PIT) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == ACID_PIT) ||
 			(t->ttyp == SPIKED_PIT)))) {
 		int objgone = 0;
 		obj->mstartinventB = 0;

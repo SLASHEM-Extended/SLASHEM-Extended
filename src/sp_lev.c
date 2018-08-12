@@ -1299,6 +1299,16 @@ selecttrap:
 			if (!Role_if(PM_FEMINIST) && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 
+		    case PREMATURE_DEATH_TRAP:
+			if (rn2(200) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case RAGNAROK_TRAP:
+			if (rn2(640) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case SEVERE_DISENCHANT_TRAP:
+			if (rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+
 	    case SIN_TRAP:
 		if (rn2(50) && !NastyTrapNation) goto selecttrap;
 			break;
@@ -1634,6 +1644,9 @@ selecttrap:
 	      if (rtrap == YVONNE_TRAP && !Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
 	      if (rtrap == MAURAH_TRAP && !Role_if(PM_FEMINIST) && rn2(10) && !NastyTrapNation) goto selecttrap;
 
+	      if (rtrap == PREMATURE_DEATH_TRAP && rn2(200) && !NastyTrapNation) goto selecttrap;
+	      if (rtrap == RAGNAROK_TRAP && rn2(640) && !NastyTrapNation) goto selecttrap;
+		if (rtrap == SEVERE_DISENCHANT_TRAP && rn2(5) && !NastyTrapNation) goto selecttrap;
 	      if (rtrap == SIN_TRAP && rn2(50) && !NastyTrapNation) goto selecttrap;
 	      if (rtrap == DESTROY_ARMOR_TRAP && rn2(15) && !NastyTrapNation) goto selecttrap;
 	      if (rtrap == DIVINE_ANGER_TRAP && rn2(40) && !NastyTrapNation) goto selecttrap;
@@ -5394,7 +5407,7 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    trytrap = rndtrap();
 		    if (sobj_at(BOULDER, mm.x, mm.y))
-			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
+			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == ACID_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
 				trytrap == TRAPDOOR || trytrap == HOLE)
 			    trytrap = rndtrap();
 		    (void) maketrap(mm.x, mm.y, trytrap, 100);
@@ -5438,7 +5451,7 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    trytrap = rndtrap();
 		    if (sobj_at(BOULDER, mm.x, mm.y))
-			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
+			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == ACID_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
 				trytrap == TRAPDOOR || trytrap == HOLE)
 			    trytrap = rndtrap();
 		    (void) maketrap(mm.x, mm.y, trytrap, 100);

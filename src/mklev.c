@@ -13079,6 +13079,16 @@ selecttrap:
 			if (!Role_if(PM_FEMINIST) && rn2(10) && !NastyTrapNation) goto selecttrap;
 			break;
 
+		    case PREMATURE_DEATH_TRAP:
+			if (rn2(200) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case RAGNAROK_TRAP:
+			if (rn2(640) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case SEVERE_DISENCHANT_TRAP:
+			if (rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+
 		    case SIN_TRAP:
 			if (rn2(50) && !NastyTrapNation) goto selecttrap;
 			break;
@@ -13150,7 +13160,7 @@ selecttrap:
 	    m = *tm;
 	else {
 	    register int tryct = 0;
-	    boolean avoid_boulder = (kind == PIT || kind == SPIKED_PIT || kind == GIANT_CHASM || kind == SHIT_PIT || kind == MANA_PIT || kind == ANOXIC_PIT || kind == SHAFT_TRAP || kind == CURRENT_SHAFT ||
+	    boolean avoid_boulder = (kind == PIT || kind == SPIKED_PIT || kind == GIANT_CHASM || kind == SHIT_PIT || kind == MANA_PIT || kind == ANOXIC_PIT || kind == ACID_PIT || kind == SHAFT_TRAP || kind == CURRENT_SHAFT ||
 				     kind == TRAPDOOR || kind == HOLE);
 
 	    do {

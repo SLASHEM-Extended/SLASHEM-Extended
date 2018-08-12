@@ -1572,6 +1572,7 @@ dospinweb()
 		case SHIT_PIT:
 		case MANA_PIT:
 		case ANOXIC_PIT:
+		case ACID_PIT:
 		case SPIKED_PIT: You("spin a web, covering up the pit.");
 			deltrap(ttmp);
 			bury_objs(u.ux, u.uy);
@@ -1779,6 +1780,26 @@ dospinweb()
 		case EVIL_ARTIFACT_TRAP:
 		case RODNEY_TRAP:
 		case CONTAMINATION_TRAP:
+
+		case EVIL_HEEL_TRAP:
+		case BAD_EQUIPMENT_TRAP:
+		case TEMPOCONFLICT_TRAP:
+		case TEMPOHUNGER_TRAP:
+		case TELEPORTITIS_TRAP:
+		case POLYMORPHITIS_TRAP:
+		case PREMATURE_DEATH_TRAP:
+		case LASTING_AMNESIA_TRAP:
+		case RAGNAROK_TRAP:
+		case SINGLE_DISENCHANT_TRAP:
+
+		case SEVERE_DISENCHANT_TRAP:
+		case PAIN_TRAP:
+		case TECHCAP_TRAP:
+		case TREMBLING_TRAP:
+		case SPELL_MEMORY_TRAP:
+		case SKILL_REDUCTION_TRAP:
+		case SKILLCAP_TRAP:
+		case PERMANENT_STAT_DAMAGE_TRAP:
 
 			You("have triggered a trap!");
 			dotrap(ttmp, 0);

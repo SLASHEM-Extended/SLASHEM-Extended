@@ -561,7 +561,7 @@ moverock()
 	    if (mtmp && !noncorporeal(mtmp->data) &&
 		    (!mtmp->mtrapped ||
 			 !(ttmp && ((ttmp->ttyp == PIT) || (ttmp->ttyp == SHIT_PIT) || (ttmp->ttyp == MANA_PIT)
-			|| (ttmp->ttyp == ANOXIC_PIT) || (ttmp->ttyp == SPIKED_PIT) || (ttmp->ttyp == GIANT_CHASM))))) {
+			|| (ttmp->ttyp == ANOXIC_PIT) || (ttmp->ttyp == ACID_PIT) || (ttmp->ttyp == SPIKED_PIT) || (ttmp->ttyp == GIANT_CHASM))))) {
 
 		if (Blind) feel_location(sx,sy);
 		if (canspotmon(mtmp)) {
@@ -604,6 +604,7 @@ moverock()
 		case SHIT_PIT:
 		case MANA_PIT:
 		case ANOXIC_PIT:
+		case ACID_PIT:
 		case PIT:
 		case GIANT_CHASM:
 		    obj_extract_self(otmp);
@@ -1643,6 +1644,9 @@ ask_about_trap(int x, int y)
 			if (!In_sokoban(&u.uz) && traphere->ttyp == ANOXIC_PIT) {
 				return FALSE;
 			}
+			if (!In_sokoban(&u.uz) && traphere->ttyp == ACID_PIT) {
+				return FALSE;
+			}
 			if (!In_sokoban(&u.uz) && traphere->ttyp == HOLE) {
 				return FALSE;
 			}
@@ -2645,7 +2649,7 @@ domove()
 
 	    if (mtmp->mtrapped &&
 		    (trap = t_at(mtmp->mx, mtmp->my)) != 0 &&
-		    (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT) &&
+		    (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == ACID_PIT) &&
 		    sobj_at(BOULDER, trap->tx, trap->ty)) {
 		/* can't swap places with pet pinned in a pit by a boulder */
 		u.ux = u.ux0,  u.uy = u.uy0;	/* didn't move after all */
@@ -2959,7 +2963,7 @@ stillinwater:;
 	if (!in_steed_dismounting) { /* if dismounting, we'll check again later */
 		struct trap *trap = t_at(u.ux, u.uy);
 		boolean pit;
-		pit = (trap && (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT));
+		pit = (trap && (trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == ACID_PIT));
 		if (trap && pit)
 			dotrap(trap, 0);	/* fall into pit */
 		if (pick) (void) pickup(1);
@@ -3774,7 +3778,7 @@ dopickup()
 		 * in pits.
 		 */
 		/* [BarclayII] phasing or flying players can phase/fly into the pit */
-		if ((traphere->ttyp == PIT || traphere->ttyp == SPIKED_PIT || traphere->ttyp == GIANT_CHASM || traphere->ttyp == SHIT_PIT || traphere->ttyp == MANA_PIT || traphere->ttyp == ANOXIC_PIT) &&
+		if ((traphere->ttyp == PIT || traphere->ttyp == SPIKED_PIT || traphere->ttyp == GIANT_CHASM || traphere->ttyp == SHIT_PIT || traphere->ttyp == MANA_PIT || traphere->ttyp == ANOXIC_PIT || traphere->ttyp == ACID_PIT) &&
 		     (!u.utrap || (u.utrap && u.utraptype != TT_PIT)) && !Passes_walls && !Flying) {
 			You("cannot reach the bottom of the pit.");
 			return(0);

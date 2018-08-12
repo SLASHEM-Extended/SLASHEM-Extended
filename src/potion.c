@@ -592,7 +592,7 @@ badeffect()
 		}
 	}
 
-	switch (rnd(411)) {
+	switch (rnd(415)) {
 
 		case 1:
 		case 2:
@@ -1757,6 +1757,12 @@ badeffect()
 
 		break;
 
+		case 415:
+
+			bad_equipment_heel();
+
+		break;
+
 		default:
 		break;
 	}
@@ -2544,6 +2550,60 @@ newbadtry:
 			setworn(otmp, W_ARM);
 			Armor_on();
 			if (otmp) curse(otmp);
+		}
+
+	}
+
+}
+
+/* Make a pair of cursed heels and force-equip it, suggested by Malena */
+void
+bad_equipment_heel()
+{
+	register struct obj *otmp;
+	int objtyp = 0;
+	int tryct = 0;
+
+newbadheeltry:
+	objtyp = rn2(NUM_OBJECTS);
+	if (objects[objtyp].oc_prob < 1) {
+		tryct++;
+		if (tryct < 50000) goto newbadheeltry;
+		else return;
+	}
+
+	/* no gems, chains or iron balls --Amy */
+	if (objects[objtyp].oc_class != ARMOR_CLASS || !ishighheeledb(objtyp) ) {
+		tryct++;
+		if (tryct < 50000) goto newbadheeltry;
+		else return;
+	}
+
+	/* we should have an eligible item now (if not, the above code called return) */
+	otmp = mksobj(objtyp, TRUE, FALSE);
+	if (!otmp) return; /* fail safe */
+
+	if (objects[otmp->otyp].oc_charged) {
+		if (otmp->spe > 0) otmp->spe *= -1;
+		if (otmp->spe == 0) otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+	}
+
+	if (otmp) {
+		(void) pickup_object(otmp, 1L, TRUE);
+	}
+
+	/* try to equip it! */
+
+	if (otmp) {
+
+		if (is_boots(otmp)) {
+			if (uarmf) remove_worn_item(uarmf, TRUE);
+			setworn(otmp, W_ARMF);
+			Boots_on();
+			if (otmp) curse(otmp);
+		} else {
+			impossible("bad_equipment_heel() made non-boot item");
+			return;
 		}
 
 	}

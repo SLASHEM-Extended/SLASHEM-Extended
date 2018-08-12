@@ -2573,6 +2573,26 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != VENOM_SPRINKLER
 				&& ttmp->ttyp != FUMAROLE
 
+				&& ttmp->ttyp != EVIL_HEEL_TRAP
+				&& ttmp->ttyp != BAD_EQUIPMENT_TRAP
+				&& ttmp->ttyp != TEMPOCONFLICT_TRAP
+				&& ttmp->ttyp != TEMPOHUNGER_TRAP
+				&& ttmp->ttyp != TELEPORTITIS_TRAP
+				&& ttmp->ttyp != POLYMORPHITIS_TRAP
+				&& ttmp->ttyp != PREMATURE_DEATH_TRAP
+				&& ttmp->ttyp != LASTING_AMNESIA_TRAP
+				&& ttmp->ttyp != RAGNAROK_TRAP
+				&& ttmp->ttyp != SINGLE_DISENCHANT_TRAP
+
+				&& ttmp->ttyp != SEVERE_DISENCHANT_TRAP
+				&& ttmp->ttyp != PAIN_TRAP
+				&& ttmp->ttyp != TREMBLING_TRAP
+				&& ttmp->ttyp != TECHCAP_TRAP
+				&& ttmp->ttyp != SPELL_MEMORY_TRAP
+				&& ttmp->ttyp != SKILL_REDUCTION_TRAP
+				&& ttmp->ttyp != SKILLCAP_TRAP
+				&& ttmp->ttyp != PERMANENT_STAT_DAMAGE_TRAP
+
 				&& ttmp->ttyp != NEXUS_TRAP
 				&& ttmp->ttyp != LEG_TRAP
 				&& ttmp->ttyp != ARTIFACT_JACKPOT_TRAP
@@ -2664,6 +2684,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				    && ttmp->ttyp != SHIT_PIT
 				    && ttmp->ttyp != MANA_PIT
 				    && ttmp->ttyp != ANOXIC_PIT
+				    && ttmp->ttyp != ACID_PIT
 				    && ttmp->ttyp != SHAFT_TRAP
 				    && ttmp->ttyp != TRAPDOOR
 				    && ttmp->ttyp != HOLE)
@@ -2707,7 +2728,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				 * make sure they don't constantly fall into sokoban holes */
 				if (rn2(3) || (In_sokoban(&u.uz) && rn2(25) && (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT
 				    || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT
-				    || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == TRAPDOOR
+				    || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == ACID_PIT || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == TRAPDOOR
 				    || ttmp->ttyp == HOLE) ) )
 				    continue;
 			    }
@@ -4535,7 +4556,7 @@ xkilled(mtmp, dest)
 	}
 
 	if (mtmp->mtrapped && (t = t_at(x, y)) != 0 &&
-		(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT) &&
+		(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT || t->ttyp == ACID_PIT) &&
 		sobj_at(BOULDER, x, y))
 	    dest |= 2;     /*
 			    * Prevent corpses/treasure being created "on top"

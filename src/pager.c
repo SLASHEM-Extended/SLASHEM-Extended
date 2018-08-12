@@ -195,7 +195,7 @@ lookat(x, y, buf, monbuf)
 		int tt = t ? t->ttyp : NO_TRAP;
 
 		/* newsym lets you know of the trap, so mention it here */
-		if (tt == BEAR_TRAP || tt == PIT || tt == SHIT_PIT || tt == MANA_PIT || tt == ANOXIC_PIT ||
+		if (tt == BEAR_TRAP || tt == PIT || tt == SHIT_PIT || tt == MANA_PIT || tt == ANOXIC_PIT || tt == ACID_PIT ||
 			tt == SPIKED_PIT || tt == GIANT_CHASM || tt == WEB)
 		    sprintf(eos(buf), ", trapped in %s",
 			    an(defsyms[trap_to_defsym(tt)].explanation));
@@ -17897,6 +17897,16 @@ static NEARDATA const char * const fake_plines[] = {
 	"Hello shitterface, welcome to SlashEmExtended! You are a fucked up fag 4chan Thread Creator. Do you want to: Jump off a bridge, Put yourself in front of a train, Delete your OP or Whine like a little girl? [jpdw*?]",
 	"Any outlandish hyperbole criticism of slex? Thanks! I'll add that!",
 	"Bhaak found out the truth about slex: the scroll labels are part of a quote database. But the majority of the quotes is in pager.c in form of the messages of which you're reading one right now. There's also some stuff in engrave.c and read.c.",
+	"You stepped on a trap, and a heavily cursed -5 pair of disenchantment boots welds itself to your feet!",
+	"You stepped on a trap, and a prime cursed -10 enchanted (of premature death) partial plate mail welds itself to your body!",
+	"Suddenly, you fear that you might die soon...",
+	"You can't seem to fall asleep because of that lone bastard mosquito in your sleeping room.",
+	"Somehow, your memory is lost...",
+	"You stepped on a trigger! Your invoke deity technique's timeout increases by 10000.",
+	"You stepped on a trigger! You lose all knowledge of the healing spell.",
+	"You stepped on a trigger! Your long sword skill deteriorates. You are no longer expert in long sword.",
+	"You stepped on a trigger! You no longer know the attack spell skill!",
+	"Your strength falls off!",
 
 };
 

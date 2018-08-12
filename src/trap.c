@@ -1160,7 +1160,7 @@ register int x, y, typ, replacechance;
 	    if (u.utrap && (x == u.ux) && (y == u.uy) &&
 	      ((u.utraptype == TT_BEARTRAP && typ != BEAR_TRAP && typ != LEG_TRAP) ||
 	      (u.utraptype == TT_WEB && typ != WEB) ||
-	      (u.utraptype == TT_PIT && typ != PIT && typ != SPIKED_PIT && typ != GIANT_CHASM && typ != SHIT_PIT && typ != MANA_PIT && typ != ANOXIC_PIT)))
+	      (u.utraptype == TT_PIT && typ != PIT && typ != SPIKED_PIT && typ != GIANT_CHASM && typ != SHIT_PIT && typ != MANA_PIT && typ != ANOXIC_PIT && typ != ACID_PIT)))
 		    u.utrap = 0;
 	} else {
 	    oldplace = FALSE;
@@ -1485,6 +1485,7 @@ register int x, y, typ, replacechance;
 	    case SHIT_PIT:
 	    case MANA_PIT:
 	    case ANOXIC_PIT:
+	    case ACID_PIT:
 	    case SHAFT_TRAP:
 	    case CURRENT_SHAFT:
 	    case TRAPDOOR:
@@ -2015,7 +2016,7 @@ unsigned trflags;
 
 	/* KMH -- You can't escape the Sokoban level traps */
 	if (In_sokoban(&u.uz) &&
-			(ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == ANOXIC_PIT || ttype == SHAFT_TRAP || ttype == HOLE || ttype == CURRENT_SHAFT ||
+			(ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == ANOXIC_PIT || ttype == SHAFT_TRAP || ttype == ACID_PIT || ttype == HOLE || ttype == CURRENT_SHAFT ||
 			ttype == TRAPDOOR)) {
 	    /* The "air currents" message is still appropriate -- even when
 	     * the hero isn't flying or levitating -- because it conveys the
@@ -2039,7 +2040,7 @@ unsigned trflags;
 	    if(!Fumbling && ttype != MAGIC_PORTAL && ttype != RMB_LOSS_TRAP && ttype != AUTOMATIC_SWITCHER && ttype != MENU_TRAP && ttype != SPEED_TRAP && ttype != DISPLAY_TRAP && ttype != SPELL_LOSS_TRAP && ttype != YELLOW_SPELL_TRAP && ttype != AUTO_DESTRUCT_TRAP && ttype != MEMORY_TRAP && ttype != INVENTORY_TRAP && ttype != SUPERSCROLLER_TRAP && ttype != NUPESELL_TRAP && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != BLACK_NG_WALL_TRAP && ttype != FREE_HAND_TRAP && ttype != UNIDENTIFY_TRAP && ttype != THIRST_TRAP && ttype != LUCK_TRAP && ttype != SHADES_OF_GREY_TRAP && ttype != FAINT_TRAP && ttype != CURSE_TRAP && ttype != DIFFICULTY_TRAP && ttype != SOUND_TRAP && ttype != DROP_TRAP && ttype != CASTER_TRAP && ttype != WEAKNESS_TRAP && ttype != ROT_THIRTEEN_TRAP && ttype != ALIGNMENT_TRAP && ttype != BISHOP_TRAP && ttype != STAIRS_TRAP && ttype != DSTW_TRAP && ttype != STATUS_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != LOOTCUT_TRAP && ttype != MONSTER_SPEED_TRAP && ttype != SCALING_TRAP && ttype != ENMITY_TRAP && ttype != WHITE_SPELL_TRAP && ttype != COMPLETE_GRAY_SPELL_TRAP && ttype != QUASAR_TRAP && ttype != MOMMA_TRAP && ttype != HORROR_TRAP && ttype != ARTIFICER_TRAP && ttype != WEREFORM_TRAP && ttype != NON_PRAYER_TRAP && ttype != EVIL_PATCH_TRAP && ttype != HARD_MODE_TRAP && ttype != SECRET_ATTACK_TRAP && ttype != EATER_TRAP && ttype != COVETOUSNESS_TRAP && ttype != NOT_SEEN_TRAP && ttype != DARK_MODE_TRAP && ttype != ANTISEARCH_TRAP && ttype != HOMICIDE_TRAP && ttype !=  NASTY_NATION_TRAP && ttype != WAKEUP_CALL_TRAP && ttype != GRAYOUT_TRAP && ttype != GRAY_CENTER_TRAP && ttype != CHECKERBOARD_TRAP && ttype != CLOCKWISE_SPIN_TRAP && ttype != COUNTERCLOCKWISE_SPIN_TRAP && ttype != LAG_TRAP && ttype != BLESSCURSE_TRAP && ttype != DE_LIGHT_TRAP && ttype != DISCHARGE_TRAP && ttype != TRASHING_TRAP && ttype != FILTERING_TRAP && ttype != DEFORMATTING_TRAP && ttype != FLICKER_STRIP_TRAP && ttype != UNDRESSING_TRAP && ttype != HYPERBLUEWALL_TRAP && ttype != NOLITE_TRAP && ttype != PARANOIA_TRAP && ttype != FLEECESCRIPT_TRAP && ttype != INTERRUPT_TRAP && ttype != DUSTBIN_TRAP && ttype != MANA_BATTERY_TRAP && ttype != MONSTERFINGERS_TRAP && ttype != MISCAST_TRAP && ttype != MESSAGE_SUPPRESSION_TRAP && ttype != STUCK_ANNOUNCEMENT_TRAP && ttype != BLOODTHIRSTY_TRAP && ttype != MAXIMUM_DAMAGE_TRAP && ttype != LATENCY_TRAP && ttype != STARLIT_TRAP && ttype != KNOWLEDGE_TRAP && ttype != HIGHSCORE_TRAP && ttype != PINK_SPELL_TRAP && ttype != GREEN_SPELL_TRAP && ttype != EVC_TRAP && ttype != UNDERLAYER_TRAP && ttype != DAMAGE_METER_TRAP && ttype != ARBITRARY_WEIGHT_TRAP && ttype != FUCKED_INFO_TRAP && ttype != BLACK_SPELL_TRAP && ttype != CYAN_SPELL_TRAP && ttype != HEAP_TRAP && ttype != BLUE_SPELL_TRAP && ttype != TRON_TRAP && ttype != RED_SPELL_TRAP && ttype != TOO_HEAVY_TRAP && ttype != ELONGATION_TRAP && ttype != WRAPOVER_TRAP && ttype != DESTRUCTION_TRAP && ttype != MELEE_PREFIX_TRAP && ttype != AUTOMORE_TRAP && ttype != UNFAIR_ATTACK_TRAP && ttype != UNINFORMATION_TRAP && ttype != TIMERUN_TRAP && ttype != CONFUSION_TRAP && ttype != INTRINSIC_LOSS_TRAP && ttype != BLOOD_LOSS_TRAP && ttype != BAD_EFFECT_TRAP && ttype != MULTIPLY_TRAP && ttype != AUTO_VULN_TRAP && ttype != TELE_ITEMS_TRAP && ttype != NASTINESS_TRAP && ttype != FARLOOK_TRAP && ttype != CAPTCHA_TRAP && ttype != RESPAWN_TRAP && ttype != RECURRING_AMNESIA_TRAP && ttype != BIGSCRIPT_TRAP && ttype != BANK_TRAP && ttype != ONLY_TRAP && ttype != MAP_TRAP && ttype != TECH_TRAP && ttype != DISENCHANT_TRAP && ttype != VERISIERT && ttype != CHAOS_TRAP && ttype != MUTENESS_TRAP && ttype != NTLL_TRAP && ttype != ENGRAVING_TRAP && ttype != MAGIC_DEVICE_TRAP && ttype != BOOK_TRAP && ttype != LEVEL_TRAP && ttype != QUIZ_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != LASER_TRAP &&
 		ttype != ANTI_MAGIC && ttype != OUT_OF_MAGIC_TRAP && ttype != METABOLIC_TRAP && ttype != TRAP_OF_NO_RETURN && ttype != EGOTRAP && ttype != FAST_FORWARD_TRAP && ttype != TRAP_OF_ROTTENNESS && ttype != UNSKILLED_TRAP && ttype != LOW_STATS_TRAP && ttype != EXERCISE_TRAP && ttype != TRAINING_TRAP && ttype != LIMITATION_TRAP && ttype != WEAK_SIGHT_TRAP && ttype != RANDOM_MESSAGE_TRAP && ttype != DESECRATION_TRAP && ttype != STARVATION_TRAP && ttype != DROPLESS_TRAP && ttype != LOW_EFFECT_TRAP && ttype != INVISIBLE_TRAP && ttype != GHOST_WORLD_TRAP && ttype != DEHYDRATION_TRAP && ttype != HATE_TRAP && ttype != TOTTER_TRAP && ttype != NONINTRINSICAL_TRAP && ttype != DROPCURSE_TRAP && ttype != NAKEDNESS_TRAP && ttype != ANTILEVEL_TRAP && ttype != STEALER_TRAP && ttype != REBELLION_TRAP && ttype != CRAP_TRAP && ttype != MISFIRE_TRAP && ttype != TRAP_OF_WALLS && ttype != DISCONNECT_TRAP && ttype != INTERFACE_SCREW_TRAP && ttype != BOSSFIGHT_TRAP && ttype != ENTIRE_LEVEL_TRAP && ttype != BONES_TRAP && ttype != AUTOCURSE_TRAP && ttype != HIGHLEVEL_TRAP && ttype != SPELL_FORGETTING_TRAP && ttype != SOUND_EFFECT_TRAP && !forcebungle &&
 		(!rn2(5) ||
-	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == ANOXIC_PIT) && is_clinger(youmonst.data)))) {
+	    ((ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == SHIT_PIT || ttype == MANA_PIT || ttype == ANOXIC_PIT || ttype == ACID_PIT) && is_clinger(youmonst.data)))) {
 		You("escape %s %s.",
 		    (ttype == ARROW_TRAP && !trap->madeby_u) ? "an" :
 			a_your[trap->madeby_u],
@@ -5210,6 +5211,7 @@ rerollX:
 	    case SHIT_PIT:
 	    case MANA_PIT:
 	    case ANOXIC_PIT:
+	    case ACID_PIT:
 		/* KMH -- You can't escape the Sokoban level traps */
 		if (!In_sokoban(&u.uz) && (Levitation || Flying)) break;
 
@@ -8598,6 +8600,234 @@ madnesseffect:
 
 		 break;
 
+		 case EVIL_HEEL_TRAP:
+
+			pline("Uh-oh, should have watched your step...");
+			deltrap(trap);
+			bad_equipment_heel();
+
+		 break;
+
+		 case BAD_EQUIPMENT_TRAP:
+
+			pline("Uh-oh, should have watched your step...");
+			deltrap(trap);
+			bad_equipment();
+
+		 break;
+
+		 case TEMPOCONFLICT_TRAP:
+
+			seetrap(trap);
+
+		    pline("You stepped on a trigger!");
+
+			if(!(HConflict & INTRINSIC) && !(HConflict & TIMEOUT)) {
+				pline("You start generating conflict!");
+				incr_itimeout(&HConflict, rnz(20 * (monster_difficulty() + 1) ) );
+
+			} else pline("But nothing happens...");
+
+		 break;
+
+		 case TEMPOHUNGER_TRAP:
+
+			seetrap(trap);
+
+		    pline("You stepped on a trigger!");
+
+			if(!(HHunger & INTRINSIC) && !(HHunger & TIMEOUT)) {
+				pline("You start hungering rapidly!");
+				incr_itimeout(&HHunger, rnz(20 * (monster_difficulty() + 1) ) );
+
+			} else pline("But nothing happens...");
+
+		 break;
+
+		 case TELEPORTITIS_TRAP:
+
+			seetrap(trap);
+
+		    pline("You stepped on a trigger!");
+
+			if(!(HTeleportation & INTRINSIC) && !(HTeleportation & TIMEOUT)) {
+				pline("You feel very jumpy!");
+				incr_itimeout(&HTeleportation, rnz(20 * (monster_difficulty() + 1) ) );
+
+			} else pline("But nothing happens...");
+
+		 break;
+
+		 case POLYMORPHITIS_TRAP:
+
+			seetrap(trap);
+
+		    pline("You stepped on a trigger!");
+
+			if(!(HPolymorph & INTRINSIC) && !(HPolymorph & TIMEOUT)) {
+				pline("You feel unstable!");
+				incr_itimeout(&HPolymorph, rnz(20 * (monster_difficulty() + 1) ) );
+
+			} else pline("But nothing happens...");
+
+
+		 break;
+
+		 case PREMATURE_DEATH_TRAP:
+
+			seetrap(trap);
+			pline("CLICK! You have triggered a trap!");
+			pline("Suddenly, you fear that you might die soon...");
+			incr_itimeout(&HPrem_death, rnz(100 * (monster_difficulty() + 1) ) );
+
+		 break;
+
+		 case LASTING_AMNESIA_TRAP:
+
+			seetrap(trap);
+			pline("You stepped on a trigger!");
+			pline("Somehow, your memory is lost...");
+			incr_itimeout(&HMap_amnesia, rnz(100 * (monster_difficulty() + 1) ) );
+
+		 break;
+
+		 case RAGNAROK_TRAP:
+
+			seetrap(trap);
+			pline("CLICK! You have triggered a trap!");
+			ragnarok();
+			if (isevilvariant) evilragnarok(level_difficulty());
+
+		 break;
+
+		 case SINGLE_DISENCHANT_TRAP:
+
+			pline("CLICK! You have triggered a trap!");
+			deltrap(trap);
+
+			{
+				struct obj *otmpE;
+			      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+					if (otmpE && !rn2(10)) (void) drain_item(otmpE);
+				}
+				Your("equipment seems less effective.");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+
+			}
+
+		 break;
+
+		case SEVERE_DISENCHANT_TRAP:
+
+			pline("CLICK! You have triggered a trap!");
+			deltrap(trap);
+
+			{
+				struct obj *otmpE;
+			      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+					if (otmpE && !rn2(10)) (void) drain_item_severely(otmpE);
+				}
+				Your("equipment seems less effective.");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+
+			}
+
+		 break;
+
+		case PAIN_TRAP:
+
+			seetrap(trap);
+			pline("You stepped on a trigger!");
+			You_feel("a painful sensation!");
+			losehp(Upolyd ? ((u.mh / 10) + 1) : ((u.uhp / 10) + 1), "a pain trap", KILLED_BY);
+
+		 break;
+
+		case TECHCAP_TRAP:
+
+			seetrap(trap);
+			pline("You stepped on a trigger!");
+			techcapincrease((level_difficulty() + 1) * rnd(50));
+
+		 break;
+
+		case TREMBLING_TRAP:
+
+			seetrap(trap);
+			pline("Uh-oh, should have watched your step...");
+			pline("Your %s are trembling!", makeplural(body_part(HAND)));
+			u.tremblingamount++;
+
+		 break;
+
+		case SPELL_MEMORY_TRAP:
+
+			seetrap(trap);
+			pline("You stepped on a trigger!");
+			spellmemoryloss(level_difficulty() + 1);
+
+		 break;
+
+		case SKILL_REDUCTION_TRAP:
+
+			seetrap(trap);
+			pline("You stepped on a trigger!");
+			skilltrainingdecrease(level_difficulty() + 1);
+
+		 break;
+
+		case SKILLCAP_TRAP:
+
+			seetrap(trap);
+			pline("CLICK! You have triggered a trap!");
+			skillcaploss();
+
+		 break;
+
+		case PERMANENT_STAT_DAMAGE_TRAP:
+
+			seetrap(trap);
+		{
+			pline("CLICK! You have triggered a trap!");
+
+			int statdrained = rn2(A_MAX);
+			if (ABASE(statdrained) < 4) {
+				pline("But you resist the effects.");
+				break;
+			}
+			if (ABASE(statdrained) < (3 + rnd(8)) ) {
+				pline("But you resist the effects.");
+				break;
+			}
+
+			if (Race_if(PM_SUSTAINER) && rn2(50)) {
+				pline("The stat drain doesn't seem to affect you.");
+				break;
+			}
+
+			ABASE(statdrained) -= 1;
+			AMAX(statdrained) -= 1;
+			flags.botl = 1;
+			switch (statdrained) {
+
+				case A_STR:
+					pline("Your strength falls off!"); break;
+				case A_DEX:
+					pline("Your dexterity falls off!"); break;
+				case A_CON:
+					pline("Your constitution falls off!"); break;
+				case A_CHA:
+					pline("Your charisma falls off!"); break;
+				case A_INT:
+					pline("Your intelligence falls off!"); break;
+				case A_WIS:
+					pline("Your wisdom falls off!"); break;
+
+			}
+		}
+
+		 break;
+
 		 case DIMNESS_TRAP:
 
 			pline("A dim glow surrounds you...");
@@ -10476,6 +10706,7 @@ struct obj *otmp;
 		case SHIT_PIT:
 		case MANA_PIT:
 		case ANOXIC_PIT:
+		case ACID_PIT:
 			if (mtmp->mhp <= 0 ||
 				thitm(0, mtmp, (struct obj *)0,
 				      rnd((tt == PIT) ? 6 : (tt == GIANT_CHASM) ? 15 : 10), FALSE))
@@ -10721,6 +10952,7 @@ int style;
 			case SHIT_PIT:
 			case MANA_PIT:
 			case ANOXIC_PIT:
+			case ACID_PIT:
 			case SHAFT_TRAP:
 			case CURRENT_SHAFT:
 			case HOLE:
@@ -10926,7 +11158,7 @@ register struct monst *mtmp;
 	} else if (mtmp->mtrapped) {	/* is currently in the trap */
 	    if (!trap->tseen && !trap->hiddentrap && 
 		cansee(mtmp->mx, mtmp->my) && canseemon(mtmp) &&
-		(trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == BEAR_TRAP ||
+		(trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == BEAR_TRAP || trap->ttyp == ACID_PIT ||
 		 trap->ttyp == HOLE || trap->ttyp == PIT ||
 		 trap->ttyp == WEB)) {
 		/* If you come upon an obviously trapped monster, then
@@ -10937,7 +11169,7 @@ register struct monst *mtmp;
 		
 	    if (!rn2(40)) {
 		if (sobj_at(BOULDER, mtmp->mx, mtmp->my) &&
-			(trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT)) {
+			(trap->ttyp == PIT || trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == ACID_PIT)) {
 		    if (!rn2(2)) {
 			mtmp->mtrapped = 0;
 			if (canseemon(mtmp))
@@ -11631,6 +11863,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case SHIT_PIT:
 		case MANA_PIT:
 		case ANOXIC_PIT:
+		case ACID_PIT:
 			fallverb = "falls";
 			if (is_flyer(mptr) || mtmp->egotype_flying || is_floater(mptr) ||
 				(mtmp->wormno && count_wsegs(mtmp) > 5) ||
@@ -11962,6 +12195,26 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case JEANETTA_TRAP:
 		case YVONNE_TRAP:
 		case MAURAH_TRAP:
+
+		case EVIL_HEEL_TRAP:
+		case BAD_EQUIPMENT_TRAP:
+		case TEMPOCONFLICT_TRAP:
+		case TEMPOHUNGER_TRAP:
+		case TELEPORTITIS_TRAP:
+		case POLYMORPHITIS_TRAP:
+		case PREMATURE_DEATH_TRAP:
+		case LASTING_AMNESIA_TRAP:
+		case RAGNAROK_TRAP:
+		case SINGLE_DISENCHANT_TRAP:
+
+		case SEVERE_DISENCHANT_TRAP:
+		case PAIN_TRAP:
+		case TECHCAP_TRAP:
+		case TREMBLING_TRAP:
+		case SPELL_MEMORY_TRAP:
+		case SKILL_REDUCTION_TRAP:
+		case SKILLCAP_TRAP:
+		case PERMANENT_STAT_DAMAGE_TRAP:
 
 		case DISCONNECT_TRAP:
 		case INTERFACE_SCREW_TRAP:
@@ -12528,7 +12781,7 @@ int x, y;
 	struct trap *t;
 
 	if ((t = t_at(x, y)) &&
-	    ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT)) &&
+	    ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT) || (t->ttyp == ACID_PIT) ) &&
 	    (otmp = sobj_at(BOULDER, x, y))) {
 		obj_extract_self(otmp);
 		(void) flooreffects(otmp, x, y, "settle");
@@ -12555,7 +12808,7 @@ long hmask, emask;     /* might cancel timeout */
 	if (Punished && !carried(uball) &&
 	    (is_waterypool(uball->ox, uball->oy) ||
 	     ((trap = t_at(uball->ox, uball->oy)) &&
-	      ((trap->ttyp == PIT) || (trap->ttyp == SPIKED_PIT) || (trap->ttyp == GIANT_CHASM) || (trap->ttyp == SHIT_PIT) || (trap->ttyp == MANA_PIT) || (trap->ttyp == ANOXIC_PIT) || (trap->ttyp == SHAFT_TRAP) || (trap->ttyp == CURRENT_SHAFT) ||
+	      ((trap->ttyp == PIT) || (trap->ttyp == SPIKED_PIT) || (trap->ttyp == GIANT_CHASM) || (trap->ttyp == SHIT_PIT) || (trap->ttyp == MANA_PIT) || (trap->ttyp == ANOXIC_PIT) || (trap->ttyp == ACID_PIT) || (trap->ttyp == SHAFT_TRAP) || (trap->ttyp == CURRENT_SHAFT) ||
 	       (trap->ttyp == TRAPDOOR) || (trap->ttyp == HOLE))))) {
 			u.ux0 = u.ux;
 			u.uy0 = u.uy;
@@ -14848,7 +15101,7 @@ boolean force;
 		deal_with_floor_trap = TRUE;
 		strcpy(the_trap, the(defsyms[trap_to_defsym(ttmp->ttyp)].explanation));
 		if (box_here) {
-			if (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT) {
+			if (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == ACID_PIT) {
 			    You_cant("do much about %s%s.",
 					the_trap, u.utrap ?
 					" that you're stuck in" :
@@ -14942,6 +15195,7 @@ boolean force;
 			case SHIT_PIT:
 			case MANA_PIT:
 			case ANOXIC_PIT:
+			case ACID_PIT:
 				if (!u.dx && !u.dy) {
 				    You("are already on the edge of the pit.");
 				    return 0;
@@ -15339,6 +15593,7 @@ register struct trap *ttmp;
 		     (ttmp->ttyp == SHIT_PIT) ||
 		     (ttmp->ttyp == MANA_PIT) ||
 		     (ttmp->ttyp == ANOXIC_PIT) ||
+		     (ttmp->ttyp == ACID_PIT) ||
 		     (ttmp->ttyp == TELEP_TRAP) ||
 		     (ttmp->ttyp == BEAMER_TRAP) ||
 		     (ttmp->ttyp == LEVEL_TELEP) ||

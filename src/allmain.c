@@ -7283,6 +7283,20 @@ newboss:
 		 * hypoxic only means "contains a little less oxygen than regular air". While that will still suffocate you
 		 * after a while (I seem to recall humans need about 15% oxygen content in air to breathe), it certainly
 		 * makes the trap sound less powerful and dangerous than it really is, so I'll call it anoxic pit. */
+
+		if (u.utrap && (ttmp = t_at(u.ux, u.uy)) && ttmp && ttmp->ttyp == ACID_PIT) {
+			You("are covered with acid!");
+		    register struct obj *objX, *objX2;
+		    for (objX = invent; objX; objX = objX2) {
+		      objX2 = objX->nobj;
+			if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
+		    }
+
+			if (!Acid_resistance || !rn2(20)) {
+				pline_The("acid inside the pit burns you!");
+				losehp((rnd(10) + rnd(monster_difficulty() + 1)), "being stuck in an acid pit", KILLED_BY);
+			}
+		}
 	
 		if(u.utrap && u.utraptype == TT_LAVA) {
 		    if(!is_lava(u.ux,u.uy))
