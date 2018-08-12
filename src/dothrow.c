@@ -514,10 +514,13 @@ dothrow()
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("But you can try to throw anyway. Okay?") == 'y') {
-			if (rn2(3)) { 		morehungry(10);
-			pline("The darn thing doesn't seem to fly very far.");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		    return 1;}
+			if (rn2(3)) {
+		 		morehungry(10);
+				pline("The darn thing doesn't seem to fly very far.");
+				if (!rn2(20)) badeffect();
+				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				return 1;
+			}
 		}
 		else {return(0);}
 	}
@@ -620,10 +623,13 @@ dofire()
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("But you can try to fire anyway. Okay?") == 'y') {
-			if (rn2(3)) { 		morehungry(10);
+			if (rn2(3)) {
+	 		morehungry(10);
 			pline("The darn thing doesn't seem to fly very far.");
+			if (!rn2(20)) badeffect();
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		    return 1;}
+			return 1;
+			}
 		}
 		else {return(0);}
 	}

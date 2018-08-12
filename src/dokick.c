@@ -1100,7 +1100,9 @@ dokick()
 		if (yn("Try a full-body tackle instead?") == 'y') {
 			if (rn2(3)) {set_wounded_legs(LEFT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			pline("Argh! That didn't work!");
-		    return 1;}
+			if (!rn2(20)) badeffect();
+			return 1;
+			}
 		}
 		else {no_kick = TRUE;}
 	} else if (verysmall(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
@@ -1108,7 +1110,9 @@ dokick()
 		if (yn("Try it anyway?") == 'y') {
 			if (rn2(3)) {set_wounded_legs(LEFT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			pline("You hurt your muscles!");
-		    return 1;}
+			if (!rn2(20)) badeffect();
+		 	return 1;
+			}
 		}
 		else {no_kick = TRUE;}
 	} else if (u.usteed) {

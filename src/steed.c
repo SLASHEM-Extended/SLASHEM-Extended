@@ -91,10 +91,13 @@ use_saddle(otmp)
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("Try to use the saddle with another part of your body instead?") == 'y') {
-			if (rn2(3)) { 			make_blinded(Blinded + rnd(50),TRUE);
-			pline("You got something in your face!");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		    return 1;}
+			if (rn2(3)) {
+	 			make_blinded(Blinded + rnd(50),TRUE);
+				pline("You got something in your face!");
+				if (!rn2(20)) badeffect();
+				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				return 1;
+			}
 		}
 		else {return(0);}
 
@@ -321,6 +324,7 @@ mount_steed(mtmp, force)
 		if (yn("But you can try to get on your steed anyway. Do it?") == 'y') {
 			if (rn2(3)) { losehp(rn1(10,20), "trying an illegal ride", NO_KILLER_PREFIX);
 			pline("Ouch! You slip and hurt yourself a lot!");
+			if (!rn2(20)) badeffect();
 		    /*return 1;*/}
 		}
 		else {return(FALSE);}

@@ -522,9 +522,12 @@ dowield()
 		pline("Don't be ridiculous! Your current form cannot realistically wield a weapon!");
 
 		if (yn("Try anyway?") == 'y') {
-			if (rn2(3)) { 		make_confused(HConfusion + rnd(40),FALSE);
-			pline("Uhh... that didn't seem to work.");
-		    return 1;}
+			if (rn2(3)) {
+		 		make_confused(HConfusion + rnd(40),FALSE);
+				pline("Uhh... that didn't seem to work.");
+				if (!rn2(20)) badeffect();
+				return 1;
+			}
 		}
 		else {return(0);}
 
@@ -610,9 +613,12 @@ doswapweapon()
 		pline("Don't be ridiculous! Your current form cannot realistically wield a weapon!");
 
 		if (yn("Try anyway?") == 'y') {
-			if (rn2(3)) { 		make_confused(HConfusion + rnd(40),FALSE);
-			pline("Uhh... that didn't seem to work.");
-		    return 1;}
+			if (rn2(3)) {
+		 		make_confused(HConfusion + rnd(40),FALSE);
+				pline("Uhh... that didn't seem to work.");
+				if (!rn2(20)) badeffect();
+				return 1;
+			}
 		}
 		else {return(0);}
 	}

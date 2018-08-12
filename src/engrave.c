@@ -1527,8 +1527,10 @@ doengrave()
 
 		if (yn("Do you want to try engraving anyway?") == 'y') {
 			if (rn2(3)) { 		
-			pline("You failed to engrave anything.");
-		    return 1;}
+				pline("You failed to engrave anything.");
+				if (!rn2(20)) badeffect();
+				return 1;
+			}
 		}
 
 		/* Just make them lose that turn. If they're surrounded by 20 killer bees and 10 large cats,

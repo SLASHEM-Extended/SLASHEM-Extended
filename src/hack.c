@@ -526,9 +526,7 @@ moverock()
 	    /* Give them a chance to climb over it? */
 	    return -1;
 	}
-	if (verysmall(youmonst.data) && !Race_if(PM_TRANSFORMER) 
-		 && !u.usteed
-				    ) {
+	if (verysmall(youmonst.data) && !Race_if(PM_TRANSFORMER) && !u.usteed ) {
 		if (Blind) feel_location(sx,sy);
 	    pline("You're too small to push that %s.", xname(otmp));
 	    goto cannot_push;
