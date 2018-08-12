@@ -790,6 +790,11 @@ doread()
 	"SLEX = Securing Lesbians for Entertainment of Xerself (the Amy)",
 	"It's offensive to presume that LGBT players can't handle a quaint word like 'poofy' in a computer game. Not all of us are shrieking narcissists whose delicate sensibilities are shredded by words.", /* thanks Crawldragon (this is a literal quote from him) */
 	"DATA: a lesbian occultist who leads a harem of up to 70-200 lesbians she met from SLEX. At one time this harem was smaller, consisting of around 20 lesbians. She has since expanded her dating pool by developing mods for Elona, Goldfish RL and other more popular roguelikes.",
+	"I've noticed you around, I find you gay and happy. Would you go to bed with me?",
+	"I've noticed you around, I find you quite attractive. Would you, uhh...",
+	"play slex 2.2.8 now on esm!!! fleecier than ever!!!! *bundlebundlebundle*",
+	"An ascension a day keeps Rodney away!", /* by Demo */
+	"An apple a day keeps anyone away, if thrown hard enough!",
 
 	    };
 	    char buf[BUFSZ];

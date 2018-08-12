@@ -986,8 +986,8 @@ static const char *random_mesg[] = {
 	"You stepped on a levelscaler trap, which is a nasty trap that gives no message and doesn't reveal itself even if you trigger it.",
 	"The Amy is hogging all the lesbians and maintains a rotating harem of 50-100 lesbians.",
 	"The Amy believes, unironically, in the pantheon of Nethack and engages in 'fleecy' sexual rituals with her harem loves in which she hopes to immunize the eschaton to prevent diseases so that the demiurge may contain infinite control over the world.", /* from 4chan */
-	"The Amy is hogging all the lesbians and maintains a rotating harem of 50-100 lesbians.",
 	"The Amy routinely uses SLEX servers to meet lesbians and promises updates/game secrets in return for 'favors' from lesbian players.",
+	"Vanilla Nethack getting BORING? Doing soko mazes in your sleep and while sitting on the train? Want a CHANGE? Try.... LAGOBAN! Do Sokoban from a server halfway around the planet, and bounce your signal off a server in yet another country while you're doing it! Make sure your wifi router is no closer than 40m from your current position for the full experience!",
 
 };
 

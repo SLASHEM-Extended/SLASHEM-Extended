@@ -17873,6 +17873,30 @@ static NEARDATA const char * const fake_plines[] = {
 	"Her lesbian harem women are dubbed her 'loves' and they show a cultlike devotion to her. Further intelligence shows she has ranks for her loves, describing the most devoted as 'fleecy', while the least devoted are 'feminist chiropractors'." /* from 4chan */
 	"SLEX = Securing Lesbians for Entertainment of Xerself (the Amy)",
 	"A static discharge shoots through your entire body!",
+	"Need to get clean? Go to the clinic. Or should I say 'cleanic'? :D",
+	"As time goes on, the probability of LarienTelrunya mentioning the dnethack elder priest approaches 1.", /* by aosdict */
+	"SLEX 2.2.7 beta has gone live. Report any bugs, incomplete features or BSODs to AmyBSOD. She actually got a BSOD from installing it, even though the install was done remotely.",
+	"Let's make it official, aosdict and jonadab are contemplating doing petty downvote brigades against https://nhqdb.alt.org/?2376 even though it's a great quote. 1000 zorkmids that if there was a similar quote about xnethack, aosdict would love and adore it like a precious treasure.",
+	"It's not a secret that the xnethack author specifically hates SLEX and therefore tries to get all the SLEX quotes removed from nhqdb while keeping the ones about all other variants. And the Nethack Fourk author joined in, too. I'd bet actual money that if someone were to try getting quotes about THEIR variants removed, they'd scream bloody murder.",
+	"This server will shut down shortly and have all its stored saves deleted, so completion of the current game is highly advised. To this effect, please use the Amulet of Yendor that came with this scroll. K - the Amulet of Yendor.",
+	"Really read this unidentified scroll? [yn]",
+	"Really engage this monster while you're under 80%% HP? [yn]",
+	"Really attack this hostile monster who has a 12.8%% chance to beat you to death before you kill it, given 1000 trials?",
+	"You realise you misspelled Elbereth. Try again? [yn] (y)",
+	"I'm going to generate Orctown in 2 more levels. Really enter the mines at all?",
+	"'Vanilla' Nethack will generate Orctown because it's not really vanilla anymore. 3.6.1 is a variant and only 3.4.3 is vanilla.",
+	"A soldier ant is going to kill you in 40 turns. Really genocide L instead of a?",
+	"*robbelrobbel*",
+	"You hear a voice announce: 'The right title to address this guy is 'robber', not 'motherfucker'!'",
+	"Pick the gender of your 4chan thread creator: male, gay, random [mgr*?]",
+	"Pick the alignment of your gay 4chan thread creator: fucked up, retarded, idiotic [fri*?]",
+	"The 4chan rlg thread creator (also known as OP) who removed slex is a complete fag.",
+	"It will forever remain a mystery why Chris_ANG changed Sokoban into Boroban, but he did manage to actually make it more boring than it is in vanilla. And vanilla Nethack's Sokoban is very boring, so that's BAD.",
+	"DNethack might just implement a button that automatically solves Sokoban levels, because there's literally no way to not complete it, the reason being that no monsters spawn at all. And unlike other variants, Chris didn't add any new soko levels either, so it's just the same old 8 levels from vanilla that everyone can do in their sleep.",
+	"Jonadab is officially a member of the anti-fun squad with his 'amy/slex quotes don't belong on nhqdb' campaign.",
+	"Hello shitterface, welcome to SlashEmExtended! You are a fucked up fag 4chan Thread Creator. Do you want to: Jump off a bridge, Put yourself in front of a train, Delete your OP or Whine like a little girl? [jpdw*?]",
+	"Any outlandish hyperbole criticism of slex? Thanks! I'll add that!",
+	"Bhaak found out the truth about slex: the scroll labels are part of a quote database. But the majority of the quotes is in pager.c in form of the messages of which you're reading one right now. There's also some stuff in engrave.c and read.c.",
 
 };
 
