@@ -1,5 +1,12 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.3.0
+- Some traps are more common in evilvariant mode.
+- Tunneling monsters are capable of phasing through grave walls without actually digging them out.
+- Added a bunch of special rooms.
+- Trying to perform actions without hands and failing can now cause bad effects.
+- In evilvariant mode, player characters with low dexterity will fumble intermittently.
+
 2.2.9
 - One-turn timerun effects should dissipate when the player performs an action.
 - Exploding doors in evilvariant mode can have a variety of other detrimental effects now.
