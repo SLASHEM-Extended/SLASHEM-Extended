@@ -604,8 +604,8 @@ doread()
 "I punched a black dragon to death with my bare hands!",
 "This shirt is unique! Well, until you go to a shop that prints shirts, and order them to print this exact message on it.",
 "XOR ME HSALS!",
-"XUS MODA!",
-"ais is literally satan and dnethack and nethack4 and fiqhack are absolute shit and all the opposing team are autists", /* inspired by Elronnd; of course when I (Amy) say similar-sounding things (Elronnd was obviously exaggerating) they should be taken with a grain of salt :-) */
+"LUXUS MODA!",
+"man there's literally satanists and everything else is absolute shit and there's autists everywhere",
 "I got a trophy in every variant in last year's Junethack!",
 "Play slex! *bundlebundlebundle*",
 "Geht nicht. Es ist verflucht.",
@@ -625,7 +625,7 @@ doread()
 	"I'm not wearing any pants",
 	"Down with the living!",
 	"Vegetarian",
-	"Vegan and Proud and Soon To Be Starved", /* sorry jonadab but I don't support eating disorders --Amy */
+	"Vegan and Proud and Soon To Be Starved", /* sorry but I don't support eating disorders --Amy */
 	"Hello, I'm War",
 	"Sredni Vashtar went forth.  " /* Saki short story */
 	"His thoughts were red and his teeth were white.",
@@ -707,8 +707,8 @@ doread()
 	"Ay have come ta answuurr thay ...uhh questions y'all may have about my decisions on thay ...uhh code, ayn' my answuurr is ay'm God ayn' y'all can't stop God!",
 	"ow! Who throws a show? Honestly?", /* -- from Austin Powers according to ziratha */
 	"Made in china, please recycle in bin number 4",
-	"I like disintegration resistance and therefore refrain from playing Nethack4",
-	"I'll genocide all the fuckers in Sporkhack that cast destroy armor. Curse the developer who made that spell way too overpowered!",
+	"I like disintegration resistance and therefore refrain from playing Satanchop",
+	"I'll genocide all the fuckers in kneelhack that cast destroy armor. Curse the fact that this spell is way too overpowered!",
 	"I beat the glass golem! I can identify everything without fail now!",
 	"I chopped my way through 30 levels worth of ghosts in the Void and defeated Tiksrvzllat and all I got was this lousy t-shirt!",
 	"I ascended a cavewoman in slex with the wishless, genocideless, polyselfless and polyobjectless conducts intact! Why don't you ascend too? It's really not that hard, you just need lots of patience and the will to try again no matter how many times you die!",
@@ -738,10 +738,10 @@ doread()
 	"The greatest value of Slex is existing as a surreal wide awake nightmare game that never makes sense to anyone.", /* someone who took my SLEX survey in Feb 2018 */
 	"This shirt scores very well on Amy's fleeciness scale!",
 	"I follow the No Cyanide Rule: No item should, if use-tested in reasonable circumstances, be game-ending! Also, here's an example of an item which directly violates it!", /* yeah aosdict, you are right that the cloak of death violates it, but no player complained about it yet so it can't be so bad! */
-	"I managed to ascend Nethack Fourk and only got screwed over by wands of lightning, elder black dragons, deep ettins and half a dozen other stupid things!",
-	"I absolutely HATE Nethack Fourk's elder black dragons",
-	"I refuse to play xnethack because it suddenly updates its versions and erases my savegame",
-	"I absolutely HATE Nethack Fourk's elder black dragons, and a certain other monster with 'elder' in its name from a certain other NetHack variant",
+	"I managed to ascend Nethack Fourk and only got screwed over by wands of lightning, elder black dragons, deep ettins and half a dozen other things!",
+	"I absolutely HATE K-Measurer's elder black dragons",
+	"I refuse to play doormash because it suddenly updates its versions and erases my savegame",
+	"I absolutely HATE K-Measurer's elder black dragons, and a certain other monster with 'elder' in its name",
 	"Viva la Croissistance!", /* by Elronnd */
 	"I wanna boh", /* inspired by Demo */
 	"Amy is the insane dev of slex. She adds literally anything she can think of to the game, has no idea what the concept of balance is, and i'm pretty sure is actually terrible at playing roguelikes.",
@@ -753,38 +753,38 @@ doread()
 	"i am the slex master, i ascend 500 times a clock cycle, i have a master guardian gmx3 vest and shoot the phasergons with my skooble gun that fires like 40 rocks a turn", /* by Demo */
 	"Nubere volunt et omnino hedera aureum, quod est pulchra puella tam mirabilis!",
 	"Unguibus et etiam habet pulchra!",
-	"sporkhack you are so stupid! why do you present me the prompt again if I cancel it with space? in vanilla, space removes the prompt completely!",
-	"I consider Nethack 3.6.1 a variant of vanilla NetHack",
+	"kneelhack you are so stupid! why do you present me the prompt again if I cancel it with space? space should remove the prompt completely!",
+	"I consider TSX a variant of vanilla NetHack",
 	"I'm the ultimate girl gamer!",
 	"My favorite SLEX role? Why, feminist, of course!",
 	"I participate in slutwalking",
 	"Yes, I look very sexy and it is not my fault if someone gropes me. Men have to learn to control their instincts, or else!",
-	"Genocide Nethack Fourk's tab confirmation",
+	"Genocide K-Measurer's tab confirmation",
 	"I ascended Splicehack in June 2018 and at that time it was the fastest turncount ascension ever in that variant!",
 	"I ascended Unnethack and only had to kill Cthulhu thrice and search the entire sanctum for the amulet while constantly being afraid of him respawning, grabbing the amulet, and it being teleported away again when he dies!",
-	"I'm the bitch who got the 'die to 9 specific monsters' trophy (introduced while Junethack 2018 was already running) before anyone else did and it didn't take me hundreds of lame scurrier scum games!",
+	"I'm the bitch who got the 'die to 9 specific monsters' trophy (introduced while Junethack 2018 was already running) before anyone else did and it didn't take me hundreds of scurrier scum games!",
 	"Hahahahahahahahahahahahahahahahahahahahahahahahahahaha Germany lost 0:2 to South Korea in 2018 and finished dead last in the first round :D",
 	"Wands don't kill people - I do.",
-	"Variant developers should be forced by law to make sure players on all platforms with all supported control schemes have a good playing experience, not only the ones that use the same one the dev is using.",
+	"Variant developers should make sure players on all platforms with all supported control schemes have a good playing experience, not only the ones that use the same one the dev is using.",
 	"I can bitch about badly designed Junethack trophies and I will not shut up about them even if you kick me from the IRC channel!",
-	"Can't deal with me bitching about shitty Junethack scumfests? Deal with it, bitch!",
-	"Unnethack's yes/no confirmation when stepping on water should be genocided",
-	"FIQhack's tab confirmation should be genocided",
-	"Half a dozen scroll types in FIQhack should be genocided because monsters will screw you over when they read those",
-	"Unnethack's yes/no confirmation when stepping on water is as useful as a hole in the head",
-	"Nethack Fourk's tab confirmation when overeating is an ulcerous chancre that should be cut from the game with a rusty knife",
+	"Can't deal with me bitching about shitty scumfests? Deal with it, bitch!",
+	"Eyehack's yes/no confirmation when stepping on water should be genocided",
+	"Rodney's Tower's tab confirmation should be genocided",
+	"Half a dozen scroll types in Rodney's Tower should be genocided because monsters will screw you over when they read those",
+	"Eyehack's yes/no confirmation when stepping on water is as useful as a hole in the head",
+	"K-Measurer's tab confirmation when overeating is an ulcerous chancre that should be cut from the game with a rusty knife",
 	"#blacklightsmatter", /* by Demo */
 	"Think about obsessive players in your community 'What is the worst/most stupid/most obsessive thing a player could do?'.  You will probably be wrong", /* by bhaak */
 	"Defund slex development", /* by Demo */
-	"The nymphets would have won junethack 2018 if it weren't for the medusa kill scumming, most ascensions in 24 hours hardcore autism parking, and healer startscum dumbshit trophy :P",
+	"The nymphets would have won junethack 2018 but they couldn't score enough medusa kills, ascensions in 24 hours and good specific monster kill times.",
 	"2018 Medusa Kill Scummer",
 	"Wielder of Weaponized Autism",
 	"Healer Startscummer Who Wishes For Asmodeus Statues",
 	"Don't mind me, I'm busy parking a tarot card deck of Dynahack ascensions. This is my 21st one, 20 others are already waiting on the Astral Plane and will ascend on June 30.",
 	"When is the ETA for Chinese world domination? I prefer a cruel master to a crazy one.",
 	"I ran 10 km in wedge sandals and it only took me 1 hour and 24 minutes!",
-	"I don't like poofy coffee, and I don't like SJWs invading my beloved videogames either.",
-	"I'm a gay man and I want you to stop getting offended on my behalf. Seriously, 'poofy' is not an insult. Now take your SJW bullshit somewhere else kthxbai.", /* thanks Crawldragon (inspiration is his, actual wording mine --Amy) */
+	"I don't like poofy coffee, and I don't like making changes to vanilla messages either.",
+	"I'm a gay man and I want you to stop getting offended on my behalf. I don't consider 'poofy' an insult.", /* thanks Crawldragon (inspiration is his, actual wording mine --Amy) */
 	"High heels are very comfortable and I'll never wear flats again!",
 	"Plants Have Rights Too - Ban Lawnmowers And Combine Harvesters Now!",
 	"SLEX = Securing Lesbians for Entertainment of Xerself (the Amy)",
