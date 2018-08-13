@@ -67,11 +67,11 @@ suit or piece of armor
 	 	[ When Help Collides, by J. D. Berry ]
 adom*
 ancient domain*
-	A roguelike. If you intend to play it, you should reconsider and
-	play Elona instead, which is a non-sucky ADOM whose developers
-	don't pester you into paying money for a full version. Also, Elona
-	is open source so you can make a variant that fixes all the
-	broken stuff.
+	A roguelike. It's closed source and the full version costs money,
+	but maybe you'll like it. There is also Elona, which is kinda
+	similar but open source and free. Some ADOM versions have a bug
+	that can crash the game and erase your save; you might want to
+	backup your saves regularly to remedy that.
 aerdrie faenya
 	Aerdrie  Faenya is the elven goddess of air and weather. As a rain-
 	bringer, she is revered as a source of fertility.  She is, however,
@@ -118,24 +118,9 @@ agate*
 	into cavities and veins in older rock.
 		[ The Columbia Encyclopedia, Sixth Edition ]
 ais*
-	The Emperor of the kingdom dolorous / From his mid-breast forth
-	issued from the ice; /And better with a giant I compare / Than do
-	the giants with those arms of his; / Consider now how great must be
-	that whole, / Which unto such a part conforms itself. / Were he as
-	fair once, as he now is foul, / And lifted up his brow against his
-	Maker, / Well may proceed from him all tribulation. / O, what a
-	marvel it appeared to me, / When I beheld three faces on his head!
-	/ The one in front, and that vermilion was;
-		[ The Inferno, from The Divine Comedy of Dante
-			Alighieri, translated by H.F. Cary ]
-
-	He maintains Nethack4, and together with bhaak joined the vanilla
-	NetHack devteam. His variant is easy to ascend (Amy managed to do
-	it several times), but despite appearing to do no gameplay-related
-	changes apart from giving candles to gnomes, it actually snuck in
-	the evil patch idea of making disintegration resistance do nothing.
-	Oh sure, you won't die, but you might as well because you just lost
-	your +4 cloak of magic resistance with no way to get another one.
+	ais523 maintains the variant Nethack 4. It's rather similar to
+	vanilla NetHack, but with a curses-like interface. Amy ascended it
+	several times.
 
 	On another note, ais523 did a speedrun of vanilla NetHack that
 	includes showing off various glitches, such as the infinite gold
@@ -243,14 +228,14 @@ amulet of yendor
 	altar on the Astral Plane.
 anachronist
 anachrononaut
-	Originally called anachronist in dnethack, but the heretical players
-	were actually able to spell that word correctly, so Chris_ANG went ahead
-	and changed it to the weird anachrononono-nononono word it is now.
+	Originally called anachronist in dnethack, but it got changed
+	to anachrononono-nononono (that word is really hard to spell).
 	Here in the land of SLEX, they're still called anachronist. It's a guy
-	from the future, and apparently that "future" isn't very fun to live in,
-	since the anachrononono-nononono can't eat normally in dnethack and has
-	a bunch of other restrictions. SLEX anachronists, on the other hand,
-	aren't all that special apart from having unusual starting equipment.
+	from the future, and apparently that "future" is rather different
+	from ours, since the anachrononono-nononono can't eat normally in
+	dnethack and has a bunch of other restrictions. SLEX anachronists,
+	on the other hand, aren't all that special apart from having unusual
+	starting equipment.
 anastasia*
 	A beautiful, innocuous-looking blonde girl, Anastasia is actually rather
 	powerful and can break other people's shins with her white sneakers.
@@ -316,6 +301,12 @@ anthemoessa
 	name no longer exists, varying accounts attribute 
 	Anthemoessa to either the island of Ischia or Capri.
 		[ http://en.wikipedia.org/wiki/Anthemoessa ]
+antigulp
+	AntiGulp made the Splicehack variant. It's an attempt to
+	build a kitchen sink variant of NetHack 3.6.1, and it's
+	fun to play as it adds a bunch of new features including
+	monsters, traps, items and more.
+	Play Splicehack! *bundlebundlebundle*
 anu
 	Anu was the Babylonian god of the heavens, the monarch of
 	the north star.  He was the oldest of the Babylonian gods,
@@ -362,6 +353,12 @@ Aoa*
 	large amount of magical energy. Eventually, a droplet
 	will grow to become a full-sized sphere.
 		[ DnD 3.0, Fiend Folio ]
+aosdict
+	He's the first variant developer who made a big fork of
+	NetHack 3.6.0 (AntiGulp then made one too). His variant
+	does quite a bunch of interesting mechanical changes.
+	You should give it a try if you have time.
+	*bundlebundlebundle* <3
 ape
 * ape
 	The most highly evolved of all the primates, as shown by
@@ -667,7 +664,7 @@ b*lzebub
 	game-ending things that can happen to them unpredictably and
 	entirely without warning, so that they never know whether
 	they can win or not, no matter how good at the game they are.
-		[ Jonadab summarizing the SLEX design philosophy. ]
+		[ A wise man summarizing the SLEX design philosophy. ]
 balrog
 	...  It came to the edge of the fire and the light faded as
 	if a cloud had bent over it.  Then with a rush it leaped
@@ -942,7 +939,10 @@ bhaak
 	He invented the wonderful "Schwebaeugler" translation of the
 	floating eye monster. Also hosts Junethack and the Unnethack
 	variant.
-	bhaak wants to "kill" LarienTelrunya, but she loves him anyway <3
+	bhaak wants to "kill" LarienTelrunya (but that was obviously
+	a joke), but she loves him anyway <3 You should definitely
+	play NetHack and its variants during June, because the
+	wonderful Junethack tournament hosted by bhaak is lots of fun!
 black light
 	Ultraviolet (UV) radiation is electromagnetic radiation of a wavelength
 	shorter than that of the visible region, but longer than that of soft
@@ -2127,9 +2127,9 @@ djinn*
 dnhslex
 	DNetHack SLEX is a variant of the popular dnethack variant of NetHack.
 	Originally created by Chris_ANG, Amy went ahead and made a joke variant
-	of it, which doesn't actually change all that much but makes the game
-	more fun to play. And also less balanced, but it's a joke variant so
-	who cares? Features include a higher carry capacity, more skill slots
+	of it, which doesn't actually change all that much but adds a couple
+	joke monsters and stuff. It's also less balanced, but it's a joke variant
+	so who cares? Features include a higher carry capacity, more skill slots
 	for you to use, being able to play any race/role/align/gender combo,
 	and of course a greatly increased bestiary including shooooooooooes <3.
 	And before you ask: yes, you can play a lawful anachrononono-nononono :D
@@ -2693,8 +2693,7 @@ eyes of the overworld
 	much like looking on a map.  Why anyone would want to ...
 feminist
 	"nymphet is an inacceptable word and you have to leave"
-		[ Some uberfeminists thinking they're making the world
-			 a better place. ]
+		[ Feminist quote. ]
 
 	I've already decided that in my next life I'll become a feminist.
 		[ AmyBSOD joking about her future ]
@@ -2720,38 +2719,10 @@ figurine*
 		[ The Maltese Falcon, by Dashiell Hammett ]
 fiq*
 	FIQhack is a NH4-based NetHack variant that seems to have two main
-	design goals: adding the wand "balance" patch, and making players
-	and monsters fully symmetrical.
-
-	Let's just assume for a moment that those concepts are good in
-	theory. You have a wand skill, it goes up as you use wands more
-	often, and wands get better and more powerful as a result. Sounds
-	not too bad, right? Sure, but then you play the actual game and
-	realize that the only role that matters (samurai) gets a rather low
-	wand skill cap, so the stronger effects are permanently locked out
-	for you. And what's worse, monsters will also benefit from the
-	stronger effects - particularly soldiers! Their wands of lightning
-	will now cause an explosion when they hit you, and there is
-	absolutely no way to prevent that. Reflection does nothing at all.
-	Your own wands WILL explode if you have them out in the open,
-	unless you go out of your way and waste an equipment slot for
-	something that grants extrinsic shock resistance, locking you out
-	of wearing something more useful in said slot. And due to the
-	samurai's low wand skill cap, your wands of death, make invisible,
-	cold etc. will forever be weaker than they are in vanilla. Worst
-	of all, though, is a spiteful change to the wand of teleportation,
-	which just flat out DOESN'T WORK ANYMORE on no-teleport levels,
-	so the one panic button that still works on those levels in vanilla
-	is suddenly gone.
-
-	And the symmetry stuff? Well, you don't even want to know what
-	happens if monsters can read scrolls of stinking cloud or genocide.
-	Some of the results from monsters suddenly being able to read
-	scrolls they shouldn't ever be able to read were due to bugs, but
-	some other results are intentional according to the dev and will
-	never be fixed. You know, stuff like permanently losing your pet
-	and being locked out of using the same base monster type as a pet
-	ever again, just because some shitter goblin decided to genocide it.
+	design goals: adding the wand balance patch, and making players
+	and monsters fully symmetrical. This has a bunch of gameplay
+	implications. If that sounds interesting to you, it can be played
+	on various public NetHack servers.
 fire trap
 	'Let him be for a while,' said Cohen. 'I reckon the fish disagreed
 	with him.'
@@ -2873,33 +2844,19 @@ fountain
 *fourk*
 jonadab
 	Nethack Fourk is one of the NH4-based NetHack variants, created by
-	jonadab, the master of evil patch ideas. It does some questionable
-	things, such as making it very difficult to gain alignment,
-	restricting the skill set of the only role that matters (samurai),
-	and worst of all, implementing the wand "balance" patch that makes
-	it so that you can never have your wands out in the open unless you
-	want to risk them being randomly destroyed by soldiers with wands of
-	lightning. Also, your wand of teleportation will just plain not work
-	on no-teleport levels, thereby robbing you of one of the few panic
-	buttons that you can use on those levels.
+	jonadab. Amy has had a bit of trouble with it at first but then
+	managed to ascend it several times. Fourk implements the wand
+	balance patch that changes the way wands work, and it makes ranged
+	combat much more feasible by greatly reducing the odds of your
+	shuriken mulching, plus you have magic chests that ease the carry
+	capacity problem. Plus it adds a few new monsters and other
+	interesting features. You should definitely give it a try.
+	As of the time of writing, Amy considers it one of the best
+	NetHack variants, along with Grunthack and dnethack.
 
-	Still, the fo(u)rk has some redeeming qualities. Ranged combat was
-	improved by greatly reducing the odds of your shuriken mulching,
-	and you have magic chests that ease the carry capacity problem
-	present in all non-slex variants. Plus it adds a few new monsters
-	and other interesting features. As of the time of writing, Amy
-	considers it one of the best non-slex variants, the other two
-	being Grunthack and dnethack.
-
-	Sadly, the apocalypse will come when Nethack Fourk eventually adds
-	achievement unlockables (one can only hope that there will be a
-	way to disable them, because otherwise you can never play the
-	archeologist unless you fucking ASCEND some other role first), and
-	merges FIQhack's "nice in theory, but terrible in practice" attempt
-	to make monsters and players fully symmetrical. Amy is glad that she
-	ascended Fourk before that happened, and contemplates creating a
-	SLEXhack Fourk based on the last version before the unspeakable
-	changes will be made.
+	There might be achievement unlockables in a future Nethack Fourk
+	version. Also, maybe it will merge FIQhack's player-monster
+	symmetry changes.
 fox
 	One hot summer's day a Fox was strolling through an orchard till he
 	came to a bunch of Grapes just ripening on a vine which had been
@@ -3389,15 +3346,16 @@ grimlock
 		[ Adapted from Dungeons and Dragons 2nd Edition 
 			Complete Monstrous Manual ]
 grunthack*
-	Made by a guy named SGrunt, probably while he was going through a
-	particularly bad breakup, Grunthack is officially the Evil Variant.
-	You'll just love the beholder's cancellation gaze, the gelatinous
-	cube's technical instadeath engulfing attack, and the water
-	elemental's inventory-wetting attack. To top it off, Demogorgon is
-	guaranteed in Gehennom and has been buffed considerably.
-	There's also a couple nice things such as the magical properties
-	on weapons and armor. Amy considers it one of the best non-slex
-	variants, together with dnethack and Nethack Fourk.
+	Made by a guy named SGrunt, Grunthack is sometimes considered
+	the Evil Variant. It does a bunch of changes that make the game
+	much more challenging, but there's also a couple nice things
+	such as the magical properties on weapons and armor. However,
+	you're guaranteed to encounter Demogorgon in Gehennom and he's
+	also more difficult than in vanilla.
+
+	Amy considers it one of the best NetHack variants, together
+	with dnethack and Nethack Fourk. If you haven't played Grunthack
+	yet, you should definitely try it out :)
 gug
 	These foul creatures dwell in the endless darkness of the 
 	Gulf of N'Kai, scavenging the bones of whatever luckless
@@ -6438,7 +6396,7 @@ shito
 	Standing 5-foot-4, her highest heel is 7 inches.
 	"But they have a platform and a wedge heel
 	so my feet are balanced."
-		[ Crissi Giamos, a self-confessed heelaholic ]
+		[ A self-confessed heelaholic ]
 
 	No, Amy certainly doesn't have a foot fetish, she just likes
 	high heels and therefore puts dozens upon dozens of them into
@@ -6523,35 +6481,10 @@ slasher
 		[ Conan The Warrior, by Robert E Howard ]
 slashthem
 soviet*
-	Wanna hear the tale of a NetHack variant gone awry?
-	Well, how about someone taking a fork of SLASH'EM, building his own
-	fork on top of it, and not communicating with the author of that fork
-	but instead just reverting everything she did without second thought?
-	That's SLASHTHEM, and the way its author Soviet5lo (also known as
-	the type of ice block) operates. He literally went ahead and seeked out
-	all parts of code that were written by Amy, including obvious bugfixes
-	like the monster spawn increase timer bugfix and the martial arts melee
-	damage bugfix, and said "REVERTREVERTREVERT IT IN SLASHTHEM" because
-	he obviously didn't really read the code and therefore failed to
-	realize that it was fixing bugs.
-
-	The entire design philosophy behind SLASHTHEM can be summed up like
-	this. Oh sure, he didn't outright remove all of SLEX's new roles and
-	races. But he took away everything that made them unique. Kobold? Giant?
-	Ogre? Troll? They may just as well be called "human2", "human3" etc.
-	because there's literally zero gameplay-relevant difference anymore.
-	99%% of SLEX's original content had been axed outright, and 90%% of the
-	remaining stuff has been mangled beyond recognization in SLASHTHEM.
-	It really is the hardly extended, but much removed mod.
-
-	If for some strange reason you still intend to play SLASHTHEM, you have
-	a clear choice: pick the soviet (hybrid) race in SLEX, which causes you
-	to play SLASHTHEM Extended. That way, many aspects of the game will
-	behave like they do in SLASHTHEM, but you'll be able to enjoy the bug
-	fixes and additional content of SLEX while doing so, and therefore will
-	be spared from the fate of being bored to tears after 5 minutes of
-	playing. Because that's what would happen to you if you were to play
-	the actual SLASHTHEM.
+	Someone took a fork of SLASH'EM and built his own fork on top of it.
+	That's SLASHTHEM. It reverted many of the changes SLASH'EM Extended
+	did. There's a public server that hosts it, but you can also play
+	SLASHTHEM Extended by picking the soviet hybrid race in SLEX.
 slave master
       The Slave Masters of icy Prassia decided to send one of their 
       representatives down to the Dungeons of Doom to retrieve the Amulet of 
@@ -6718,38 +6651,9 @@ spork*
 	for the newbie."
 		[ Nethackwiki introduction on the Sporkhack page ]
 
-	Sadly, it fails gloriously in its attempt to fulfill that purpose,
-	by changing a couple of game mechanics that strictly make it harder
-	in a very aggravating way. Yes, SLEX also strives to be harder than
-	regular SLASH'EM, but SLEX's difficulty is refreshing while Spork
-	just tries its damnedest to stack the deck against the player's
-	favor in every conceivable way. It is part of the "terrible trio"
-	that also includes Unnethack and Dynahack, but Spork definitely did
-	the worst implementation of everything.
-	Unskilled weapons will forever suck because of a very misguided
-	attempt at nerfing the cockatrice corpse, because the devs are too
-	lazy to nerf the cockatrice corpse specifically and instead decided
-	to use the sledgehammer method on everything that the player
-	character is restricted or unskilled in. Unicorn horns of course no
-	longer restore lost stats. And a couple other annoyance factors are
-	added for good measure. Sporkhack-specific ones include percentage
-	based resistances that are all but useless in the case of poison
-	(only 5%% resistance per corpse regardless of level and you will
-	lose strength every single time you eat one unless you're 100%%
-	resistant) and sleep (you can be 84%% resistant and the orange
-	dragon will still knock you out long enough to technically
-	instakill you because you won't wake up before you're dead),
-	giving absurd amounts of AC to late-game monsters which, coupled
-	with greatly increased spawn rates, makes it very arduous and
-	straining to play the later parts of the game, and illogically
-	preventing magic markers from being randomly generated, thereby
-	practically forcing you to wish for them because everything else can
-	be found randomly or obtained by polypiling. WHYYYYYYYYYYY
-
-	Conclusion: If Amy had to pick between FIQhack and Sporkhack and
-	play the one she picked for the rest of her life, she'd absolutely
-	pick FIQhack, even though she dislikes FIQhack too, for different
-	reasons.
+	Sporkhack is a variant by lorimer. It's fairly hard, but makes
+	a bunch of interesting mechanical changes, some of which are also
+	in SLEX. You can play it on several public NetHack servers.
 sprow
 	A droven punishment form combining the worst aspects of humanoids 
 	and spiders. Sprow combine the head and torso of a drow with the 
@@ -7412,24 +7316,10 @@ unnethack*
 	nethack variant developer"
 		[ bhaak talking about his own variant ]
 
-	One of the better NetHack variants, although it unfortunately also
-	is part of the "terrible trio" that includes Sporkhack and Dynahack.
-	Unskilled weapons will forever suck because of a very misguided
-	attempt at nerfing the cockatrice corpse, because the devs are too
-	lazy to nerf the cockatrice corpse specifically and instead decided
-	to use the sledgehammer method on everything that the player
-	character is restricted or unskilled in. Unicorn horns of course no
-	longer restore lost stats. And a couple other annoyance factors are
-	added for good measure. Unnethack-specific ones include some goddamn
-	"fook yoo" barrier when trying to levelport too deep, forcing you
-	to take notes of the vibrating square location, and Cthulhu being
-	able to royally fuck you up culminating in automatic confusion that
-	costs you a couple turns to fix when you try to stethoscope him,
-	and of course the absolutely bullshit placement of the Aphrodite
-	level coupled with general nymph overpoweredness driving you insane.
-	Still, if Amy had to decide between FIQhack and Unnethack, she'd
-	probably play Unnethack. And she'd certainly pick Unnethack over
-	the mess that is Sporkhack any day of the week.
+	A NetHack variant by bhaak. It's still being updated despite being
+	one of the first variants ever created. Adds new monsters,
+	dungeon branches and more, while also doing mechanical changes.
+	Play it on one of the public NetHack servers that host it.
 uruk*hai
 	"Aye, we must stick together," growled Ugluk. "I don't trust you 
 	little swine. You've got no guts outside your own sties. But for 
@@ -7812,24 +7702,15 @@ xan
 	knew the names of all twelve.
 			[ Popul Vuh, as translated by Ralph Nelson ]
 xnethack*
-aosdict
 	XNETHACK SPONTANEOUSLY UPDATES ITS VERSIONS AND BREAKS YOUR SAVE
 		[ aosdict, after Amy lost a far-progressed game ]
 
 	Yet another NetHack variant, this time one based upon 3.6.0.
-	Which is itself a variant :D Anyway, xnethack could be renamed
-	to doorhack, because it adds "funny" door traps of many flavors,
-	including one that makes your stuff wet and with laser-point
-	accuracy will blank the scroll of genocide and dilute the potion
-	of full healing. It also does the terrible thing of changing the
-	colors and glyphs of a bunch of monsters, as well as the ones of
-	certain other things, because its goal is to confuse the player.
-
-	When looking at the xnethack to-do list or aosdict's development
-	blog, it becomes obvious that this is quite the ambitious
-	variant. But Amy will forever be annoyed that on the first
-	officially released version, her post-Medusa save was suddenly
-	wiped when an unnecessary version update happened.
+	Which is itself a variant :D Anyway, xnethack adds funny
+	door traps of many flavors and also does other gameplay
+	changes. Sadly, Amy lost her savegame to a version update
+	once, but she got over it and played it in Junethack too.
+	You should play xnethack too *bundlebundlebundle!*
 xorn
 	A distant cousin of the earth elemental, the xorn has the
 	ability to shift the cells of its body around in such a way

@@ -4870,13 +4870,13 @@ long cost;
 #ifdef OVLB
 
 /* First 4 supplied by Ronen and Tamar, remainder by development team
- * Amy edit: added two lines mocking the ubersjws who somehow have a problem with the harmless word "poofy" */
+ * Amy edit: added two lines about poofy coffee */
 const char *Izchak_speaks[]={
     "%s says: 'These shopping malls give me a headache.'",
     "%s says: 'Slow down.  Think clearly.'",
     "%s says: 'You need to take things one at a time.'",
     "%s says: 'I don't like poofy coffee... give me Columbian Supremo.'",
-    "%s says: 'I don't like SJWs changing my lines willy-nilly, and Crawldragon agrees that poofy is not an insult!'",
+    "%s says: 'I don't like it if the 'poofy' word in my original line is changed to something else.'",
     "%s says: 'If I were still alive, seeing the 'poofy' from my original quote changed would cause me to turn over in my grave.'",
     "%s says that getting the devteam's agreement on anything is difficult.",
     "%s says that he has noticed those who serve their deity will prosper.",
