@@ -1055,7 +1055,15 @@ struct mkroom *sroom;
 					enchantedgear->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 				}
 
-				if (enchantedgear) curse(enchantedgear);
+				/* the items are supposed to be cursed... --Amy */
+				if (enchantedgear) {
+					curse(enchantedgear);
+					curse(enchantedgear);
+					if (enchantedgear->hvycurse) { /* ... with a good chance of nastier curses */
+						curse(enchantedgear);
+						curse(enchantedgear);
+					}
+				}
 			}
 
 			break;
