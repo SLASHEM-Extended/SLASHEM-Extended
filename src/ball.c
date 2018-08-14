@@ -106,6 +106,11 @@ placebc()
 {
     if (!uchain || !uball) {
 	impossible("Where are your ball and chain?");
+
+	if (uchain) obj_extract_self(uchain);
+
+	setworn((struct obj *)0, W_CHAIN);
+	setworn((struct obj *)0, W_BALL);
 	return;
     }
 
