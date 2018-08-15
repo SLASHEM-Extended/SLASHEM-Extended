@@ -3572,7 +3572,7 @@ register boolean newlev;
 			pline(Hallucination ? "Entering this room feels like being put in headlock by your wonderful fleecy roommate!" : "This room has a very peaceful atmosphere.");
 		    break;
 		case RUINEDCHURCH:
-			pline(Hallucination ? "You enter Satan's chamber! Quick, ask him why Nethack 4 is inferior to SLEX!" : "You enter a desecrated church.");
+			pline(Hallucination ? "You enter Satan's chamber! Quick, ask him what is inferior to SLEX!" : "You enter a desecrated church.");
 		    if (!issoviet) wake_nearby();
 		    break;
 		case GAMECORNER:
