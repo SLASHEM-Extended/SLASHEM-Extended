@@ -18562,6 +18562,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Depressed Player'. It reads: 'It's all going to be over soon. No more pain. No more abuse. No more hate. I'll be going ahead to a better place. A happier place. A place where none of the bad people can hurt me. A place where I can't hurt me. So there's nothing to be sad about. This is a happy day. It's the happiest day of my life.'", /* meme on 4chan */
 	"Incoming message for Player 1. The message is from 'Depressed Player'. It reads: 'It's so unfair that I was born male and therefore cannot wear heels in public without everyone making fun of me. I'll create a fantasy world where men can wear heels with no repercussions.'",
 	"Ever asked yourself why there is an elder priest? He used to be the younger priest but a lot of time has passed.",
+	"The elder priest uses his new 'stealstealsteal' attack to remove any equipment that would protect you from his tentacles.",
 
 };
 

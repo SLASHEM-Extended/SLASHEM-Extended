@@ -4399,11 +4399,38 @@ elena37:
 					killer_format = KILLED_BY;
 					done(DIED);
 					u.youaredead = 0;
-
+					break;
 				}
-				break;
 				if(uarmc || uarm || uarmu){
 					You_feel("the tentacles sucking on your %s", uarm ? "armor" : "clothes");
+
+					if (!rn2(5)) { /* stealstealsteal :P */
+
+						if (uarmc) {
+							pline("The tentacles strip off your cloak!");
+							otmp = uarmc;
+							if (donning(otmp)) cancel_don();
+							(void) Cloak_off();
+							freeinv(otmp);
+							(void) mpickobj(mtmp,otmp,FALSE);
+						} else if (uarm) {
+							pline("The tentacles shuck you out of your armor!");
+							otmp = uarm;
+							if (donning(otmp)) cancel_don();
+							(void) Armor_gone();
+							freeinv(otmp);
+							(void) mpickobj(mtmp,otmp,FALSE);
+						} else if (uarmu) {
+							pline("The tentacles pull your shirt off!");
+							otmp = uarmu;
+							if (donning(otmp)) cancel_don();
+							(void) Shirt_off();
+							freeinv(otmp);
+							(void) mpickobj(mtmp,otmp,FALSE);
+						}
+
+					}
+
 				break;  //blocked
 				} //else
 				You_feel("little mouths sucking on your exposed %s.",body_part(STOMACH));
@@ -4415,8 +4442,18 @@ elena37:
 				if (u.uenmax < 0) u.uenmax = 0;
 			break;
 			case 7:
-				if(uarmh){
+				if(uarmh) {
 					You_feel("the tentacles squirm over your helmet this sentence is missing a period");
+
+					if (!rn2(5)) { /* stealstealsteal :P */
+						pline("The tentacles pull your helmet off!");
+						otmp = uarmh;
+						if (donning(otmp)) cancel_don();
+						(void) Helmet_off();
+						freeinv(otmp);
+						(void) mpickobj(mtmp,otmp,FALSE);
+					}
+
 				break; //blocked
 				} //else
 				You_feel("the tentacles bore into your skull!");
@@ -4454,6 +4491,27 @@ elena37:
 			case 8:
 				if(uarmc || uarm){
 					You_feel("a tentacle squirm over your %s.", uarmc ? "cloak" : "armor");
+
+					if (!rn2(5)) { /* stealstealsteal :P */
+
+						if (uarmc) {
+							pline("The tentacles strip off your cloak!");
+							otmp = uarmc;
+							if (donning(otmp)) cancel_don();
+							(void) Cloak_off();
+							freeinv(otmp);
+							(void) mpickobj(mtmp,otmp,FALSE);
+						} else if (uarm) {
+							pline("The tentacles shuck you out of your armor!");
+							otmp = uarm;
+							if (donning(otmp)) cancel_don();
+							(void) Armor_gone();
+							freeinv(otmp);
+							(void) mpickobj(mtmp,otmp,FALSE);
+						}
+
+					}
+
 				break;  //blocked
 				} //else
 				You_feel("the tentacles drill through your unprotected %s and into your soul!",body_part(HEAD));
@@ -4477,8 +4535,29 @@ elena37:
 				losehp(Half_physical_damage ? dmg/4+1 : dmg/2+1, "drilling tentacles", KILLED_BY);
 			break;
 			case 9:
-				if(uarmc || uarm){
+				if(uarmc || uarm) {
 					You_feel("the tentacles press into your %s once again someone forgot to close the sentence with a period", uarmc ? "cloak" : "armor");
+
+					if (!rn2(5)) { /* stealstealsteal :P */
+
+						if (uarmc) {
+							pline("The tentacles strip off your cloak!");
+							otmp = uarmc;
+							if (donning(otmp)) cancel_don();
+							(void) Cloak_off();
+							freeinv(otmp);
+							(void) mpickobj(mtmp,otmp,FALSE);
+						} else if (uarm) {
+							pline("The tentacles shuck you out of your armor!");
+							otmp = uarm;
+							if (donning(otmp)) cancel_don();
+							(void) Armor_gone();
+							freeinv(otmp);
+							(void) mpickobj(mtmp,otmp,FALSE);
+						}
+
+					}
+
 				break; //blocked
 				} //else
 				You_feel("the tentacles spear into your unarmored body!");
@@ -4492,6 +4571,19 @@ elena37:
 			case 12:
 				if(uarmc) {
 					You_feel("the tentacles writhe over your cloak.");
+
+					if (!rn2(5)) { /* stealstealsteal :P */
+
+						pline("The tentacles strip off your cloak!");
+						otmp = uarmc;
+						if (donning(otmp)) cancel_don();
+						(void) Cloak_off();
+						freeinv(otmp);
+						(void) mpickobj(mtmp,otmp,FALSE);
+
+					}
+
+					break; /* blocked */
 				} //else
 
 					/* dnethack would only steal things if you were wearing absolutely no armor and had no weapon
