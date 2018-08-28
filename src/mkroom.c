@@ -2133,6 +2133,8 @@ migohivemon()
 			else return &mons[PM_MIGO_WARRIOR];
 		case 15:
 			return &mons[PM_MI_GO_OPERATOR];
+		default:
+			return &mons[PM_MIGO_DRONE];
 
 	}
 }
@@ -2247,6 +2249,8 @@ illusionmon()
 			return specialtensmon(308); break; /* AD_TRAP */
 		case 23:
 			return specialtensmon(342); break; /* M4_SHAPESHIFT */
+		default:
+			return specialtensmon(288); break; /* AD_SPC2 */
 	}
 
 }
