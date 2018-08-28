@@ -18563,6 +18563,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Depressed Player'. It reads: 'It's so unfair that I was born male and therefore cannot wear heels in public without everyone making fun of me. I'll create a fantasy world where men can wear heels with no repercussions.'",
 	"Ever asked yourself why there is an elder priest? He used to be the younger priest but a lot of time has passed.",
 	"The elder priest uses his new 'stealstealsteal' attack to remove any equipment that would protect you from his tentacles.",
+	"Your backpack is crushing you!",
 
 };
 

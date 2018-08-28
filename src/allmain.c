@@ -1540,6 +1540,19 @@ moveloop()
 
 		}
 
+		/* from Elona: being too overloaded will periodically cause damage --Amy */
+		if (near_capacity() >= OVERLOADED && !rn2(10)) {
+			int howmuchistoomuch = 0;
+			howmuchistoomuch = ((inv_weight() + weight_cap()) - (weight_cap() * 3));
+			if (howmuchistoomuch < 0) howmuchistoomuch = 0;
+			howmuchistoomuch /= 100;
+			if (howmuchistoomuch > 0) {
+				Your("backpack is crushing you!");
+				losehp(howmuchistoomuch, "crushed underneath the backpack's load", NO_KILLER_PREFIX);
+
+			}
+		}
+
 		if (uarmc && (uarmc->oartifact == ART_INA_S_LAB_COAT) && !rn2(100) && multi >= 0) {
 
 			if (!strncmpi(plname, "Ina", 4)) {
