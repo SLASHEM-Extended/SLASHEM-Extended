@@ -128,7 +128,7 @@ struct	qtlists {
 #define QTN_ANGELIC	253
 
 #define QT_DEMONIC	2000
-#define QTN_DEMONIC	285
+#define QTN_DEMONIC	286
 
 #define QT_BANISHED	60
 

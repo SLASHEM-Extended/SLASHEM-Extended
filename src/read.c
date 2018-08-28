@@ -795,6 +795,17 @@ doread()
 	"play slex 2.2.8 now on esm!!! fleecier than ever!!!! *bundlebundlebundle*",
 	"An ascension a day keeps Rodney away!", /* by Demo */
 	"An apple a day keeps anyone away, if thrown hard enough!",
+	"My first wish: uncursed historic partly eaten magic marker named amy is a voyeur", /* by hothraxxa */
+	"I asked for luck of the grasshopper, but all I got was this lousy slex update message",
+	"Because I'm playing as a Feminist, I have these shoes on that cause random traps to appear every time a monster is spawned, and for some reason I keep getting the trap that causes my character to take damage every time I hit a female monster because my poofy goddess gets mad at me.", /* by Crawldragon */
+	"SAVE THE ZRUTYS",
+	"SpliceHack Beta Tester",
+	"#NerfTheLoTF",
+	"Got ASCII?",
+	"Don't @ me!",
+	"I <3 Sokoban",
+	"I digested the lord of the foocubi whole! Fear my mad polyselfing skills!",
+	"Void dragons cannot disintegrate me. I disintegrate void dragons. Regularly.",
 
 	    };
 	    char buf[BUFSZ];

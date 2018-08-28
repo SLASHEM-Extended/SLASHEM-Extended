@@ -57565,6 +57565,9 @@ essential in locating the Amulet of Yendor."
 %Cp - 02284
 "%c NUMBED YER"
 %E
+%Cp - 02285
+"You dirty traitor! Die, you dirty traitor! Go to hell and suck the cock of Satan!"
+%E
 
 #
 #	Banishment message (for converted hero)
