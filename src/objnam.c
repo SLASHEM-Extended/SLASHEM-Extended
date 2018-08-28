@@ -2681,15 +2681,14 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ VIOLET_LIGHTSABER, "fioletovyy svetovoy mech" },
 	{ WHITE_DOUBLE_LIGHTSABER, "belyy dvoynoy svetovoy mech" },
 
-	/* todo area */
-	{ SCR_ASTRALCENSION, "astralcension" },
-	{ SCR_RAGNAROK, "ragnarok" },
-	{ SCR_MATERIAL_CHANGE, "material change" },
-	{ SCR_OFFLEVEL_ITEM, "offlevel item" },
-	{ STICKSHOE, "stickshoe" },
-	{ NOOB_POLLAX, "noob pollax" },
-	{ GREAT_POLLAX, "great pollax" },
-	{ WOODEN_BAR, "wooden bar" },
+	{ SCR_ASTRALCENSION, "astral'noye voskhozhdeniye" },
+	{ SCR_RAGNAROK, "bogi sumerki" },
+	{ SCR_MATERIAL_CHANGE, "izmeneniye materiala" },
+	{ SCR_OFFLEVEL_ITEM, "tovar ot urovnya" },
+	{ STICKSHOE, "palochka" },
+	{ NOOB_POLLAX, "novichok polyusnyy topor" },
+	{ GREAT_POLLAX, "bol'shoy topor" },
+	{ WOODEN_BAR, "derevyannyy brus" },
 
 	{0, "" }
 };
@@ -4839,15 +4838,14 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ VIOLET_LIGHTSABER, "binafsha rangli chiroqlar" },
 	{ WHITE_DOUBLE_LIGHTSABER, "oq juft nurli" },
 
-	/* todo area */
-	{ SCR_ASTRALCENSION, "astralcension" },
-	{ SCR_RAGNAROK, "ragnarok" },
-	{ SCR_MATERIAL_CHANGE, "material change" },
-	{ SCR_OFFLEVEL_ITEM, "offlevel item" },
-	{ STICKSHOE, "stickshoe" },
-	{ NOOB_POLLAX, "noob pollax" },
-	{ GREAT_POLLAX, "great pollax" },
-	{ WOODEN_BAR, "wooden bar" },
+	{ SCR_ASTRALCENSION, "ajralish" },
+	{ SCR_RAGNAROK, "xudo timsoli" },
+	{ SCR_MATERIAL_CHANGE, "moddiy o'zgarish" },
+	{ SCR_OFFLEVEL_ITEM, "o'chirmoq darajasi darajasida" },
+	{ STICKSHOE, "poyafzal tayoqchasi" },
+	{ NOOB_POLLAX, "yangi ustun bolta" },
+	{ GREAT_POLLAX, "katta qutb bolta" },
+	{ WOODEN_BAR, "yog'och paneli" },
 
 	{0, "" }
 };
