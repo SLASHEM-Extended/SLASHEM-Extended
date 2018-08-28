@@ -1,6 +1,23 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.3.1
+- Scrolls of world fall cost 100 ink to write with the magic marker now (was 50).
+- Ragnarok can now occasionally summon hostile player monsters in full ascension kits. Also, certain sources of Ragnarok now trigger the event always, as opposed to the previous 1 in 64 chance. Random bad effects can now be ragnarok or data delete.
+- Random bad effects, Ragnarok, data delete etc. now interrupt the player when they happen.
+- Monsters can now use polearms at a 2 square diagonal distance, just like the player can.
+- Liches in the cursed mummy room and those in IVAN vaults are much more dangerous.
+- The sucking attack that some monsters have is now more likely to suck off the player's gloves.
+- Improved player monster generation routines, especially on the planes to make sure they get the correct equipment.
+- Fixed the bug that made the game unplayably annoying when the player equipped Arabella's Bank of Crossroads or Arabella's Great Banisher.
+- Added a message when a leprechaun moves in response to the player's attempt to melee them, and in evilvariant mode that will cause paralysis.
+- In evilvariant mode, quaffing a potion can fail when the player is a barbarian or has at least 16 constitution.
+- The bundle, cuddle and fleece monsters now actually give their special attack messages in melee.
+- Engraving with a wand in evilvariant mode can cause the player to break it if strength is at least 18.
+- If the player is so overloaded that they cannot move at all, they will frequently take damage that depends on how many weight units over the limit they are.
+- The elder priest now has additional equipment-stealing attacks.
+
 2.3.0
+- Tentatively fixed a crash bug that could occur when the game could no longer find a punished player's ball or chain; however, the bug that they can get lost at all still remains.
 - Some traps are more common in evilvariant mode.
 - Tunneling monsters are capable of phasing through grave walls without actually digging them out.
 - Added a bunch of special rooms.
