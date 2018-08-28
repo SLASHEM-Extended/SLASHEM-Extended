@@ -1017,6 +1017,23 @@ struct obj *obj;
 		}
 		return 2;
 	    }
+
+	    if (potion_descr && !strcmp(potion_descr, "endbringer") && !rn2(64)) {
+		ragnarok();
+		if (isevilvariant) evilragnarok(level_difficulty());
+	    }
+	    if (potion_descr && !strcmp(potion_descr, "deadweight") && !rn2(10)) {
+		pline("Some sinister force causes you to wear an item!");
+		bad_equipment();
+	    }
+	    if (potion_descr && !strcmp(potion_descr, "present") && !rn2(10)) {
+		pline("Some sinister force causes you to wear an artifact!");
+		bad_artifact();
+	    }
+	    if (potion_descr && !strcmp(potion_descr, "maleen") && !rn2(10)) {
+		pline("Some sinister force causes you to wear a pair of heels!");
+		bad_equipment_heel();
+	    }
 	}
 	if (obj->oclass == WAND_CLASS && obj->cursed && !rn2(100)) {
 	    int dam = d(obj->spe+2, 6);

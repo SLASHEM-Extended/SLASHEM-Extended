@@ -2877,6 +2877,18 @@ dodrink()
 		if (carried(otmp)) useup(otmp);
 		else useupf(otmp, 1L);
 		return(1);
+	    } else if (!strcmp(potion_descr, "endbringer") && !rn2(64)) {
+		ragnarok();
+		if (isevilvariant) evilragnarok(level_difficulty());
+	    } else if (!strcmp(potion_descr, "deadweight") && !rn2(10)) {
+		pline("Some sinister force causes you to wear an item!");
+		bad_equipment();
+	    } else if (!strcmp(potion_descr, "present") && !rn2(10)) {
+		pline("Some sinister force causes you to wear an artifact!");
+		bad_artifact();
+	    } else if (!strcmp(potion_descr, "maleen") && !rn2(10)) {
+		pline("Some sinister force causes you to wear a pair of heels!");
+		bad_equipment_heel();
 	    }
 	}
 	return dopotion(otmp);

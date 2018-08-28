@@ -10197,6 +10197,14 @@ struct obj *obj;
 			pline("An elemental may live in this potion.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "starlight")))
 			pline("An angel may live in this potion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "endbringer")))
+			pline("DANGER: This potion brings an end. Quaff at your own peril.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "deadweight")))
+			pline("Occasionally, the act of quaffing this potion forces you to wear some cursed crap.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "present")))
+			pline("Occasionally, the act of quaffing this potion forces you to wear a cursed artifact.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (!strcmp(OBJ_DESCR(objects[obj->otyp]), "maleen")))
+			pline("Occasionally, the act of quaffing this potion forces you to wear a cursed pair of high heels. (Thanks Malena for the inspiration.)");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
