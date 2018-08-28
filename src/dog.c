@@ -747,6 +747,16 @@ long nmv;		/* number of moves */
 		else mtmp->mhp++;
 	}
 
+	if (u.usteed && mtmp == u.usteed) {
+		struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
+
+		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_CURE_HASSIA_COURSE) {
+			if (mtmp->mhp + 1 >= mtmp->mhpmax)
+			      mtmp->mhp = mtmp->mhpmax;
+			else mtmp->mhp++;
+		}
+	}
+
 	/* good riding skill gives extra regeneration to ridden monster --Amy */
 
 	if (!(PlayerCannotUseSkills)) {

@@ -1019,8 +1019,8 @@ struct obj *obj;
 	    }
 
 	    if (potion_descr && !strcmp(potion_descr, "endbringer") && !rn2(64)) {
-		ragnarok();
-		if (isevilvariant) evilragnarok(level_difficulty());
+		ragnarok(TRUE);
+		if (isevilvariant) evilragnarok(TRUE,level_difficulty());
 	    }
 	    if (potion_descr && !strcmp(potion_descr, "deadweight") && !rn2(10)) {
 		pline("Some sinister force causes you to wear an item!");
@@ -3154,6 +3154,8 @@ struct monst *mtmp;
 #define MUSE_SCR_VILENESS 117
 #define MUSE_POT_DIMNESS 118
 #define MUSE_POT_SALT_WATER 119
+#define MUSE_SCR_OFFLEVEL_ITEM 120
+#define MUSE_SCR_RAGNAROK 121
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -3623,6 +3625,16 @@ struct monst *mtmp;
 		if(obj->otyp == SCR_DESTROY_ARMOR) {
 			m.offensive = obj;
 			m.has_offense = MUSE_SCR_DESTROY_ARMOR;
+		}
+		nomore(MUSE_SCR_RAGNAROK);
+		if(obj->otyp == SCR_RAGNAROK) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_RAGNAROK;
+		}
+		nomore(MUSE_SCR_OFFLEVEL_ITEM);
+		if(obj->otyp == SCR_OFFLEVEL_ITEM) {
+			m.offensive = obj;
+			m.has_offense = MUSE_SCR_OFFLEVEL_ITEM;
 		}
 		nomore(MUSE_SCR_MEGALOAD);
 		if(obj->otyp == SCR_MEGALOAD) {
@@ -5192,6 +5204,51 @@ struct monst *mtmp;
 		bad_artifact();
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		return 2;
+
+	case MUSE_SCR_OFFLEVEL_ITEM:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		{
+
+			register int inventcount = inv_cnt();
+
+			if (inventcount > 0) {
+				inventcount /= 8;
+				if (inventcount < 1) inventcount = 1;
+
+				while (inv_cnt() && inventcount) {
+					char bufof[BUFSZ];
+					bufof[0] = '\0';
+					steal(mtmp, bufof, TRUE);
+					inventcount--;
+				}
+
+			}
+
+			mdrop_special_objs(mtmp); /* make sure it doesn't tele to an unreachable place with the book of the dead or something */
+			if (u.uevent.udemigod) break;
+			else u_teleport_monB(mtmp, TRUE);
+			pline("Some of your possessions have been stolen!");
+
+		}
+
+		return 2;
+
+	case MUSE_SCR_RAGNAROK:
+
+		mreadmsg(mtmp, otmp);
+		makeknown(otmp->otyp);
+
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		ragnarok(TRUE);
+		if (isevilvariant) evilragnarok(TRUE,level_difficulty());
 
 		return 2;
 
@@ -7064,7 +7121,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(222)) {
+	switch (rn2(223)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -7288,6 +7345,7 @@ struct monst *mtmp;
 		case 219: return POT_DIMNESS;
 		case 220: return POT_DIMNESS;
 		case 221: return POT_DIMNESS;
+		case 222: return SCR_OFFLEVEL_ITEM;
 
 	}
 	/*NOTREACHED*/
@@ -8635,7 +8693,7 @@ struct obj *obj;
 		return TRUE;
 	    break;
 	case SCROLL_CLASS:
-	    if (typ == SCR_TELEPORTATION || typ == SCR_RELOCATION || typ == SCR_HEALING || typ == SCR_EXTRA_HEALING || typ == SCR_POWER_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_CREATE_TRAP || typ == SCR_CREATE_VICTIM || typ == SCR_SUMMON_UNDEAD || typ == SCR_GROUP_SUMMONING || typ == SCR_FLOOD || typ == SCR_VILENESS || typ == SCR_MEGALOAD || typ == SCR_ANTIMATTER || typ == SCR_RUMOR || typ == SCR_MESSAGE || typ == SCR_SIN || typ == SCR_IMMOBILITY || typ == SCR_EGOISM || typ == SCR_ENRAGE || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_DESTROY_WEAPON || typ == SCR_LAVA || typ == SCR_FLOODING || typ == SCR_SUMMON_BOSS || typ == SCR_SUMMON_GHOST || typ == SCR_SUMMON_ELM || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
+	    if (typ == SCR_TELEPORTATION || typ == SCR_RELOCATION || typ == SCR_HEALING || typ == SCR_EXTRA_HEALING || typ == SCR_POWER_HEALING || typ == SCR_TELE_LEVEL || typ == SCR_WARPING || typ == SCR_ROOT_PASSWORD_DETECTION || typ == SCR_CREATE_MONSTER || typ == SCR_CREATE_TRAP || typ == SCR_CREATE_VICTIM || typ == SCR_SUMMON_UNDEAD || typ == SCR_GROUP_SUMMONING || typ == SCR_FLOOD || typ == SCR_VILENESS || typ == SCR_MEGALOAD || typ == SCR_ANTIMATTER || typ == SCR_RUMOR || typ == SCR_MESSAGE || typ == SCR_SIN || typ == SCR_IMMOBILITY || typ == SCR_EGOISM || typ == SCR_ENRAGE || typ == SCR_BULLSHIT || typ == SCR_DESTROY_ARMOR || typ == SCR_DESTROY_WEAPON || typ == SCR_LAVA || typ == SCR_OFFLEVEL_ITEM || typ == SCR_RAGNAROK || typ == SCR_FLOODING || typ == SCR_SUMMON_BOSS || typ == SCR_SUMMON_GHOST || typ == SCR_SUMMON_ELM || typ == SCR_STONING || typ == SCR_AMNESIA || typ == SCR_LOCKOUT || typ == SCR_GROWTH || typ == SCR_ICE || typ == SCR_BAD_EFFECT || typ == SCR_CLOUDS || typ == SCR_BARRHING || typ == SCR_CHAOS_TERRAIN || typ == SCR_PUNISHMENT || typ == SCR_EARTH || typ == SCR_TRAP_CREATION || typ == SCR_FIRE || typ == SCR_WOUNDS || typ == SCR_DEMONOLOGY || typ == SCR_ELEMENTALISM || typ == SCR_GIRLINESS || typ == SCR_NASTINESS )
 		return TRUE;
 	    break;
 	case AMULET_CLASS:

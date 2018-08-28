@@ -981,6 +981,7 @@ struct you {
 	boolean kyliemode;
 
 	boolean aggravation;
+	boolean heavyaggravation;
 
 	boolean outtadepthtrap;
 

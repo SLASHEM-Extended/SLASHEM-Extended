@@ -188,6 +188,7 @@ moveloop()
 		}
 
 		u.aggravation = 0;
+		u.heavyaggravation = 0;
 		/* note by Amy: It is not a bug that we're setting this variable to zero regardless of whether you currently
 		 * have aggravate monster. The variable is used in several other places to ensure that summoned monsters are
 		 * more dangerous, but we do not want aggravate monster to become a crippling status effect, and therefore
@@ -3214,6 +3215,9 @@ newbossA:
 
 		}
 
+		if (uwep && uwep->oartifact == ART_ETHER_PENETRATOR && !rn2(100)) contaminate(rnd(10), FALSE);
+		if (uswapwep && uswapwep->oartifact == ART_ETHER_PENETRATOR && !rn2(100)) contaminate(rnd(10), FALSE);
+
 		if (In_gammacaves(&u.uz) && !rn2(100)) {
 			if (!rn2(5)) {
 				pline("The background radiation in the Gamma Caves contaminates you.");
@@ -3285,6 +3289,698 @@ newbossA:
 
 		if (!rn2(2000) && EvilPatchEffect) {
 			
+			switch (rnd(169)) {
+
+				case 1: 
+				    SpeedBug |= FROMOUTSIDE; break;
+				case 2: 
+				    MenuBug |= FROMOUTSIDE; break;
+				case 3: 
+				    RMBLoss |= FROMOUTSIDE; break;
+				case 4: 
+				    DisplayLoss |= FROMOUTSIDE; break;
+				case 5: 
+				    SpellLoss |= FROMOUTSIDE; break;
+				case 6: 
+				    YellowSpells |= FROMOUTSIDE; break;
+				case 7: 
+				    AutoDestruct |= FROMOUTSIDE; break;
+				case 8: 
+				    MemoryLoss |= FROMOUTSIDE; break;
+				case 9: 
+				    InventoryLoss |= FROMOUTSIDE; break;
+				case 10: 
+				    BlackNgWalls |= FROMOUTSIDE; break;
+				case 11: 
+				    Superscroller |= FROMOUTSIDE; break;
+				case 12: 
+				    FreeHandLoss |= FROMOUTSIDE; break;
+				case 13: 
+				    Unidentify |= FROMOUTSIDE; break;
+				case 14: 
+				    Thirst |= FROMOUTSIDE; break;
+				case 15: 
+				    LuckLoss |= FROMOUTSIDE; break;
+				case 16: 
+				    ShadesOfGrey |= FROMOUTSIDE; break;
+				case 17: 
+				    FaintActive |= FROMOUTSIDE; break;
+				case 18: 
+				    Itemcursing |= FROMOUTSIDE; break;
+				case 19: 
+				    DifficultyIncreased |= FROMOUTSIDE; break;
+				case 20: 
+				    Deafness |= FROMOUTSIDE; break;
+				case 21: 
+				    CasterProblem |= FROMOUTSIDE; break;
+				case 22: 
+				    WeaknessProblem |= FROMOUTSIDE; break;
+				case 23: 
+				    RotThirteen |= FROMOUTSIDE; break;
+				case 24: 
+				    BishopGridbug |= FROMOUTSIDE; break;
+				case 25: 
+				    ConfusionProblem |= FROMOUTSIDE; break;
+				case 26: 
+				    NoDropProblem |= FROMOUTSIDE; break;
+				case 27: 
+				    DSTWProblem |= FROMOUTSIDE; break;
+				case 28: 
+				    StatusTrapProblem |= FROMOUTSIDE; break;
+				case 29: 
+				    AlignmentProblem |= FROMOUTSIDE; break;
+				case 30: 
+				    StairsProblem |= FROMOUTSIDE; break;
+				case 31: 
+				    UninformationProblem |= FROMOUTSIDE; break;
+				case 32: 
+				    IntrinsicLossProblem |= FROMOUTSIDE; break;
+				case 33: 
+				    BloodLossProblem |= FROMOUTSIDE; break;
+				case 34: 
+				    BadEffectProblem |= FROMOUTSIDE; break;
+				case 35: 
+				    TrapCreationProblem |= FROMOUTSIDE; break;
+				case 36: 
+				    AutomaticVulnerabilitiy |= FROMOUTSIDE; break;
+				case 37: 
+				    TeleportingItems |= FROMOUTSIDE; break;
+				case 38: 
+				    NastinessProblem |= FROMOUTSIDE; break;
+				case 39: 
+				    RecurringAmnesia |= FROMOUTSIDE; break;
+				case 40: 
+				    BigscriptEffect |= FROMOUTSIDE; break;
+				case 41: 
+				    BankTrapEffect |= FROMOUTSIDE; break;
+				case 42: 
+				    MapTrapEffect |= FROMOUTSIDE; break;
+				case 43: 
+				    TechTrapEffect |= FROMOUTSIDE; break;
+				case 44: 
+				    RecurringDisenchant |= FROMOUTSIDE; break;
+				case 45: 
+				    verisiertEffect |= FROMOUTSIDE; break;
+				case 46: 
+				    ChaosTerrain |= FROMOUTSIDE; break;
+				case 47: 
+				    Muteness |= FROMOUTSIDE; break;
+				case 48: 
+				    EngravingDoesntWork |= FROMOUTSIDE; break;
+				case 49: 
+				    MagicDeviceEffect |= FROMOUTSIDE; break;
+				case 50: 
+				    BookTrapEffect |= FROMOUTSIDE; break;
+				case 51: 
+				    LevelTrapEffect |= FROMOUTSIDE; break;
+				case 52: 
+				    QuizTrapEffect |= FROMOUTSIDE; break;
+				case 53: 
+				    CaptchaProblem |= FROMOUTSIDE; break;
+				case 54: 
+				    FarlookProblem |= FROMOUTSIDE; break;
+				case 55: 
+				    RespawnProblem |= FROMOUTSIDE; break;
+				case 56: 
+				    FastMetabolismEffect |= FROMOUTSIDE; break;
+				case 57: 
+				    NoReturnEffect |= FROMOUTSIDE; break;
+				case 58: 
+				    AlwaysEgotypeMonsters |= FROMOUTSIDE; break;
+				case 59: 
+				    TimeGoesByFaster |= FROMOUTSIDE; break;
+				case 60: 
+				    FoodIsAlwaysRotten |= FROMOUTSIDE; break;
+				case 61: 
+				    AllSkillsUnskilled |= FROMOUTSIDE; break;
+				case 62: 
+				    AllStatsAreLower |= FROMOUTSIDE; break;
+				case 63: 
+				    PlayerCannotTrainSkills |= FROMOUTSIDE; break;
+				case 64: 
+				    PlayerCannotExerciseStats |= FROMOUTSIDE; break;
+				case 65: 
+				    TurnLimitation |= FROMOUTSIDE; break;
+				case 66: 
+				    WeakSight |= FROMOUTSIDE; break;
+				case 67: 
+				    RandomMessages |= FROMOUTSIDE; break;
+				case 68: 
+				    Desecration |= FROMOUTSIDE; break;
+				case 69: 
+				    StarvationEffect |= FROMOUTSIDE; break;
+				case 70: 
+				    NoDropsEffect |= FROMOUTSIDE; break;
+				case 71: 
+				    LowEffects |= FROMOUTSIDE; break;
+				case 72: 
+				    InvisibleTrapsEffect |= FROMOUTSIDE; break;
+				case 73: 
+				    GhostWorld |= FROMOUTSIDE; break;
+				case 74: 
+				    Dehydration |= FROMOUTSIDE; break;
+				case 75: 
+				    HateTrapEffect |= FROMOUTSIDE; break;
+				case 76: 
+				    TotterTrapEffect |= FROMOUTSIDE; break;
+				case 77: 
+				    Nonintrinsics |= FROMOUTSIDE; break;
+				case 78: 
+				    Dropcurses |= FROMOUTSIDE; break;
+				case 79: 
+				    Nakedness |= FROMOUTSIDE; break;
+				case 80: 
+				    Antileveling |= FROMOUTSIDE; break;
+				case 81: 
+				    ItemStealingEffect |= FROMOUTSIDE; break;
+				case 82: 
+				    Rebellions |= FROMOUTSIDE; break;
+				case 83: 
+				    CrapEffect |= FROMOUTSIDE; break;
+				case 84: 
+				    ProjectilesMisfire |= FROMOUTSIDE; break;
+				case 85: 
+				    WallTrapping |= FROMOUTSIDE; break;
+				case 86: 
+				    DisconnectedStairs |= FROMOUTSIDE; break;
+				case 87: 
+				    InterfaceScrewed |= FROMOUTSIDE; break;
+				case 88: 
+				    Bossfights |= FROMOUTSIDE; break;
+				case 89: 
+				    EntireLevelMode |= FROMOUTSIDE; break;
+				case 90: 
+				    BonesLevelChange |= FROMOUTSIDE; break;
+				case 91: 
+				    AutocursingEquipment |= FROMOUTSIDE; break;
+				case 92: 
+				    HighlevelStatus |= FROMOUTSIDE; break;
+				case 93: 
+				    SpellForgetting |= FROMOUTSIDE; break;
+				case 94: 
+				    SoundEffectBug |= FROMOUTSIDE; break;
+				case 95: 
+				    TimerunBug |= FROMOUTSIDE; break;
+				case 96:
+				    LootcutBug |= FROMOUTSIDE; break;
+				case 97:
+				    MonsterSpeedBug |= FROMOUTSIDE; break;
+				case 98:
+				    ScalingBug |= FROMOUTSIDE; break;
+				case 99:
+				    EnmityBug |= FROMOUTSIDE; break;
+				case 100:
+				    WhiteSpells |= FROMOUTSIDE; break;
+				case 101:
+				    CompleteGraySpells |= FROMOUTSIDE; break;
+				case 102:
+				    QuasarVision |= FROMOUTSIDE; break;
+				case 103:
+				    MommaBugEffect |= FROMOUTSIDE; break;
+				case 104:
+				    HorrorBugEffect |= FROMOUTSIDE; break;
+				case 105:
+				    ArtificerBug |= FROMOUTSIDE; break;
+				case 106:
+				    WereformBug |= FROMOUTSIDE; break;
+				case 107:
+				    NonprayerBug |= FROMOUTSIDE; break;
+				case 108:
+				    EvilPatchEffect |= FROMOUTSIDE; break;
+				case 109:
+				    HardModeEffect |= FROMOUTSIDE; break;
+				case 110:
+				    SecretAttackBug |= FROMOUTSIDE; break;
+				case 111:
+				    EaterBugEffect |= FROMOUTSIDE; break;
+				case 112:
+				    CovetousnessBug |= FROMOUTSIDE; break;
+				case 113:
+				    NotSeenBug |= FROMOUTSIDE; break;
+				case 114:
+				    DarkModeBug |= FROMOUTSIDE; break;
+				case 115:
+				    AntisearchEffect |= FROMOUTSIDE; break;
+				case 116:
+				    HomicideEffect |= FROMOUTSIDE; break;
+				case 117:
+				    NastynationBug |= FROMOUTSIDE; break;
+				case 118:
+				    WakeupCallBug |= FROMOUTSIDE; break;
+				case 119:
+				    GrayoutBug |= FROMOUTSIDE; break;
+				case 120:
+				    GrayCenterBug |= FROMOUTSIDE; break;
+				case 121:
+				    CheckerboardBug |= FROMOUTSIDE; break;
+				case 122:
+				    ClockwiseSpinBug |= FROMOUTSIDE; break;
+				case 123:
+				    CounterclockwiseSpin |= FROMOUTSIDE; break;
+				case 124:
+				    LagBugEffect |= FROMOUTSIDE; break;
+				case 125:
+				    BlesscurseEffect |= FROMOUTSIDE; break;
+				case 126:
+				    DeLightBug |= FROMOUTSIDE; break;
+				case 127:
+				    DischargeBug |= FROMOUTSIDE; break;
+				case 128:
+				    TrashingBugEffect |= FROMOUTSIDE; break;
+				case 129:
+				    FilteringBug |= FROMOUTSIDE; break;
+				case 130:
+				    DeformattingBug |= FROMOUTSIDE; break;
+				case 131:
+				    FlickerStripBug |= FROMOUTSIDE; break;
+				case 132:
+				    UndressingEffect |= FROMOUTSIDE; break;
+				case 133:
+				    Hyperbluewalls |= FROMOUTSIDE; break;
+				case 134:
+				    NoliteBug |= FROMOUTSIDE; break;
+				case 135:
+				    ParanoiaBugEffect |= FROMOUTSIDE; break;
+				case 136:
+				    FleecescriptBug |= FROMOUTSIDE; break;
+				case 137:
+				    InterruptEffect |= FROMOUTSIDE; break;
+				case 138:
+				    DustbinBug |= FROMOUTSIDE; break;
+				case 139:
+				    ManaBatteryBug |= FROMOUTSIDE; break;
+				case 140:
+				    Monsterfingers |= FROMOUTSIDE; break;
+				case 141:
+				    MiscastBug |= FROMOUTSIDE; break;
+				case 142:
+				    MessageSuppression |= FROMOUTSIDE; break;
+				case 143:
+				    StuckAnnouncement |= FROMOUTSIDE; break;
+				case 144:
+				    BloodthirstyEffect |= FROMOUTSIDE; break;
+				case 145:
+				    MaximumDamageBug |= FROMOUTSIDE; break;
+				case 146:
+				    LatencyBugEffect |= FROMOUTSIDE; break;
+				case 147:
+				    StarlitBug |= FROMOUTSIDE; break;
+				case 148:
+				    KnowledgeBug |= FROMOUTSIDE; break;
+				case 149:
+				    HighscoreBug |= FROMOUTSIDE; break;
+				case 150:
+				    PinkSpells |= FROMOUTSIDE; break;
+				case 151:
+				    GreenSpells |= FROMOUTSIDE; break;
+				case 152:
+				    EvencoreEffect |= FROMOUTSIDE; break;
+				case 153:
+				    UnderlayerBug |= FROMOUTSIDE; break;
+				case 154:
+				    DamageMeterBug |= FROMOUTSIDE; break;
+				case 155:
+				    ArbitraryWeightBug |= FROMOUTSIDE; break;
+				case 156:
+				    FuckedInfoBug |= FROMOUTSIDE; break;
+				case 157:
+				    BlackSpells |= FROMOUTSIDE; break;
+				case 158:
+				    CyanSpells |= FROMOUTSIDE; break;
+				case 159:
+				    HeapEffectBug |= FROMOUTSIDE; break;
+				case 160:
+				    BlueSpells |= FROMOUTSIDE; break;
+				case 161:
+				    TronEffect |= FROMOUTSIDE; break;
+				case 162:
+				    RedSpells |= FROMOUTSIDE; break;
+				case 163:
+				    TooHeavyEffect |= FROMOUTSIDE; break;
+				case 164:
+				    ElongationBug |= FROMOUTSIDE; break;
+				case 165:
+				    WrapoverEffect |= FROMOUTSIDE; break;
+				case 166:
+				    DestructionEffect |= FROMOUTSIDE; break;
+				case 167:
+				    MeleePrefixBug |= FROMOUTSIDE; break;
+				case 168:
+				    AutomoreBug |= FROMOUTSIDE; break;
+				case 169:
+				    UnfairAttackBug |= FROMOUTSIDE; break;
+			}
+
+		}
+
+		if (!rn2(2000) && uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) {
+			
+			switch (rnd(169)) {
+
+				case 1: 
+				    SpeedBug |= FROMOUTSIDE; break;
+				case 2: 
+				    MenuBug |= FROMOUTSIDE; break;
+				case 3: 
+				    RMBLoss |= FROMOUTSIDE; break;
+				case 4: 
+				    DisplayLoss |= FROMOUTSIDE; break;
+				case 5: 
+				    SpellLoss |= FROMOUTSIDE; break;
+				case 6: 
+				    YellowSpells |= FROMOUTSIDE; break;
+				case 7: 
+				    AutoDestruct |= FROMOUTSIDE; break;
+				case 8: 
+				    MemoryLoss |= FROMOUTSIDE; break;
+				case 9: 
+				    InventoryLoss |= FROMOUTSIDE; break;
+				case 10: 
+				    BlackNgWalls |= FROMOUTSIDE; break;
+				case 11: 
+				    Superscroller |= FROMOUTSIDE; break;
+				case 12: 
+				    FreeHandLoss |= FROMOUTSIDE; break;
+				case 13: 
+				    Unidentify |= FROMOUTSIDE; break;
+				case 14: 
+				    Thirst |= FROMOUTSIDE; break;
+				case 15: 
+				    LuckLoss |= FROMOUTSIDE; break;
+				case 16: 
+				    ShadesOfGrey |= FROMOUTSIDE; break;
+				case 17: 
+				    FaintActive |= FROMOUTSIDE; break;
+				case 18: 
+				    Itemcursing |= FROMOUTSIDE; break;
+				case 19: 
+				    DifficultyIncreased |= FROMOUTSIDE; break;
+				case 20: 
+				    Deafness |= FROMOUTSIDE; break;
+				case 21: 
+				    CasterProblem |= FROMOUTSIDE; break;
+				case 22: 
+				    WeaknessProblem |= FROMOUTSIDE; break;
+				case 23: 
+				    RotThirteen |= FROMOUTSIDE; break;
+				case 24: 
+				    BishopGridbug |= FROMOUTSIDE; break;
+				case 25: 
+				    ConfusionProblem |= FROMOUTSIDE; break;
+				case 26: 
+				    NoDropProblem |= FROMOUTSIDE; break;
+				case 27: 
+				    DSTWProblem |= FROMOUTSIDE; break;
+				case 28: 
+				    StatusTrapProblem |= FROMOUTSIDE; break;
+				case 29: 
+				    AlignmentProblem |= FROMOUTSIDE; break;
+				case 30: 
+				    StairsProblem |= FROMOUTSIDE; break;
+				case 31: 
+				    UninformationProblem |= FROMOUTSIDE; break;
+				case 32: 
+				    IntrinsicLossProblem |= FROMOUTSIDE; break;
+				case 33: 
+				    BloodLossProblem |= FROMOUTSIDE; break;
+				case 34: 
+				    BadEffectProblem |= FROMOUTSIDE; break;
+				case 35: 
+				    TrapCreationProblem |= FROMOUTSIDE; break;
+				case 36: 
+				    AutomaticVulnerabilitiy |= FROMOUTSIDE; break;
+				case 37: 
+				    TeleportingItems |= FROMOUTSIDE; break;
+				case 38: 
+				    NastinessProblem |= FROMOUTSIDE; break;
+				case 39: 
+				    RecurringAmnesia |= FROMOUTSIDE; break;
+				case 40: 
+				    BigscriptEffect |= FROMOUTSIDE; break;
+				case 41: 
+				    BankTrapEffect |= FROMOUTSIDE; break;
+				case 42: 
+				    MapTrapEffect |= FROMOUTSIDE; break;
+				case 43: 
+				    TechTrapEffect |= FROMOUTSIDE; break;
+				case 44: 
+				    RecurringDisenchant |= FROMOUTSIDE; break;
+				case 45: 
+				    verisiertEffect |= FROMOUTSIDE; break;
+				case 46: 
+				    ChaosTerrain |= FROMOUTSIDE; break;
+				case 47: 
+				    Muteness |= FROMOUTSIDE; break;
+				case 48: 
+				    EngravingDoesntWork |= FROMOUTSIDE; break;
+				case 49: 
+				    MagicDeviceEffect |= FROMOUTSIDE; break;
+				case 50: 
+				    BookTrapEffect |= FROMOUTSIDE; break;
+				case 51: 
+				    LevelTrapEffect |= FROMOUTSIDE; break;
+				case 52: 
+				    QuizTrapEffect |= FROMOUTSIDE; break;
+				case 53: 
+				    CaptchaProblem |= FROMOUTSIDE; break;
+				case 54: 
+				    FarlookProblem |= FROMOUTSIDE; break;
+				case 55: 
+				    RespawnProblem |= FROMOUTSIDE; break;
+				case 56: 
+				    FastMetabolismEffect |= FROMOUTSIDE; break;
+				case 57: 
+				    NoReturnEffect |= FROMOUTSIDE; break;
+				case 58: 
+				    AlwaysEgotypeMonsters |= FROMOUTSIDE; break;
+				case 59: 
+				    TimeGoesByFaster |= FROMOUTSIDE; break;
+				case 60: 
+				    FoodIsAlwaysRotten |= FROMOUTSIDE; break;
+				case 61: 
+				    AllSkillsUnskilled |= FROMOUTSIDE; break;
+				case 62: 
+				    AllStatsAreLower |= FROMOUTSIDE; break;
+				case 63: 
+				    PlayerCannotTrainSkills |= FROMOUTSIDE; break;
+				case 64: 
+				    PlayerCannotExerciseStats |= FROMOUTSIDE; break;
+				case 65: 
+				    TurnLimitation |= FROMOUTSIDE; break;
+				case 66: 
+				    WeakSight |= FROMOUTSIDE; break;
+				case 67: 
+				    RandomMessages |= FROMOUTSIDE; break;
+				case 68: 
+				    Desecration |= FROMOUTSIDE; break;
+				case 69: 
+				    StarvationEffect |= FROMOUTSIDE; break;
+				case 70: 
+				    NoDropsEffect |= FROMOUTSIDE; break;
+				case 71: 
+				    LowEffects |= FROMOUTSIDE; break;
+				case 72: 
+				    InvisibleTrapsEffect |= FROMOUTSIDE; break;
+				case 73: 
+				    GhostWorld |= FROMOUTSIDE; break;
+				case 74: 
+				    Dehydration |= FROMOUTSIDE; break;
+				case 75: 
+				    HateTrapEffect |= FROMOUTSIDE; break;
+				case 76: 
+				    TotterTrapEffect |= FROMOUTSIDE; break;
+				case 77: 
+				    Nonintrinsics |= FROMOUTSIDE; break;
+				case 78: 
+				    Dropcurses |= FROMOUTSIDE; break;
+				case 79: 
+				    Nakedness |= FROMOUTSIDE; break;
+				case 80: 
+				    Antileveling |= FROMOUTSIDE; break;
+				case 81: 
+				    ItemStealingEffect |= FROMOUTSIDE; break;
+				case 82: 
+				    Rebellions |= FROMOUTSIDE; break;
+				case 83: 
+				    CrapEffect |= FROMOUTSIDE; break;
+				case 84: 
+				    ProjectilesMisfire |= FROMOUTSIDE; break;
+				case 85: 
+				    WallTrapping |= FROMOUTSIDE; break;
+				case 86: 
+				    DisconnectedStairs |= FROMOUTSIDE; break;
+				case 87: 
+				    InterfaceScrewed |= FROMOUTSIDE; break;
+				case 88: 
+				    Bossfights |= FROMOUTSIDE; break;
+				case 89: 
+				    EntireLevelMode |= FROMOUTSIDE; break;
+				case 90: 
+				    BonesLevelChange |= FROMOUTSIDE; break;
+				case 91: 
+				    AutocursingEquipment |= FROMOUTSIDE; break;
+				case 92: 
+				    HighlevelStatus |= FROMOUTSIDE; break;
+				case 93: 
+				    SpellForgetting |= FROMOUTSIDE; break;
+				case 94: 
+				    SoundEffectBug |= FROMOUTSIDE; break;
+				case 95: 
+				    TimerunBug |= FROMOUTSIDE; break;
+				case 96:
+				    LootcutBug |= FROMOUTSIDE; break;
+				case 97:
+				    MonsterSpeedBug |= FROMOUTSIDE; break;
+				case 98:
+				    ScalingBug |= FROMOUTSIDE; break;
+				case 99:
+				    EnmityBug |= FROMOUTSIDE; break;
+				case 100:
+				    WhiteSpells |= FROMOUTSIDE; break;
+				case 101:
+				    CompleteGraySpells |= FROMOUTSIDE; break;
+				case 102:
+				    QuasarVision |= FROMOUTSIDE; break;
+				case 103:
+				    MommaBugEffect |= FROMOUTSIDE; break;
+				case 104:
+				    HorrorBugEffect |= FROMOUTSIDE; break;
+				case 105:
+				    ArtificerBug |= FROMOUTSIDE; break;
+				case 106:
+				    WereformBug |= FROMOUTSIDE; break;
+				case 107:
+				    NonprayerBug |= FROMOUTSIDE; break;
+				case 108:
+				    EvilPatchEffect |= FROMOUTSIDE; break;
+				case 109:
+				    HardModeEffect |= FROMOUTSIDE; break;
+				case 110:
+				    SecretAttackBug |= FROMOUTSIDE; break;
+				case 111:
+				    EaterBugEffect |= FROMOUTSIDE; break;
+				case 112:
+				    CovetousnessBug |= FROMOUTSIDE; break;
+				case 113:
+				    NotSeenBug |= FROMOUTSIDE; break;
+				case 114:
+				    DarkModeBug |= FROMOUTSIDE; break;
+				case 115:
+				    AntisearchEffect |= FROMOUTSIDE; break;
+				case 116:
+				    HomicideEffect |= FROMOUTSIDE; break;
+				case 117:
+				    NastynationBug |= FROMOUTSIDE; break;
+				case 118:
+				    WakeupCallBug |= FROMOUTSIDE; break;
+				case 119:
+				    GrayoutBug |= FROMOUTSIDE; break;
+				case 120:
+				    GrayCenterBug |= FROMOUTSIDE; break;
+				case 121:
+				    CheckerboardBug |= FROMOUTSIDE; break;
+				case 122:
+				    ClockwiseSpinBug |= FROMOUTSIDE; break;
+				case 123:
+				    CounterclockwiseSpin |= FROMOUTSIDE; break;
+				case 124:
+				    LagBugEffect |= FROMOUTSIDE; break;
+				case 125:
+				    BlesscurseEffect |= FROMOUTSIDE; break;
+				case 126:
+				    DeLightBug |= FROMOUTSIDE; break;
+				case 127:
+				    DischargeBug |= FROMOUTSIDE; break;
+				case 128:
+				    TrashingBugEffect |= FROMOUTSIDE; break;
+				case 129:
+				    FilteringBug |= FROMOUTSIDE; break;
+				case 130:
+				    DeformattingBug |= FROMOUTSIDE; break;
+				case 131:
+				    FlickerStripBug |= FROMOUTSIDE; break;
+				case 132:
+				    UndressingEffect |= FROMOUTSIDE; break;
+				case 133:
+				    Hyperbluewalls |= FROMOUTSIDE; break;
+				case 134:
+				    NoliteBug |= FROMOUTSIDE; break;
+				case 135:
+				    ParanoiaBugEffect |= FROMOUTSIDE; break;
+				case 136:
+				    FleecescriptBug |= FROMOUTSIDE; break;
+				case 137:
+				    InterruptEffect |= FROMOUTSIDE; break;
+				case 138:
+				    DustbinBug |= FROMOUTSIDE; break;
+				case 139:
+				    ManaBatteryBug |= FROMOUTSIDE; break;
+				case 140:
+				    Monsterfingers |= FROMOUTSIDE; break;
+				case 141:
+				    MiscastBug |= FROMOUTSIDE; break;
+				case 142:
+				    MessageSuppression |= FROMOUTSIDE; break;
+				case 143:
+				    StuckAnnouncement |= FROMOUTSIDE; break;
+				case 144:
+				    BloodthirstyEffect |= FROMOUTSIDE; break;
+				case 145:
+				    MaximumDamageBug |= FROMOUTSIDE; break;
+				case 146:
+				    LatencyBugEffect |= FROMOUTSIDE; break;
+				case 147:
+				    StarlitBug |= FROMOUTSIDE; break;
+				case 148:
+				    KnowledgeBug |= FROMOUTSIDE; break;
+				case 149:
+				    HighscoreBug |= FROMOUTSIDE; break;
+				case 150:
+				    PinkSpells |= FROMOUTSIDE; break;
+				case 151:
+				    GreenSpells |= FROMOUTSIDE; break;
+				case 152:
+				    EvencoreEffect |= FROMOUTSIDE; break;
+				case 153:
+				    UnderlayerBug |= FROMOUTSIDE; break;
+				case 154:
+				    DamageMeterBug |= FROMOUTSIDE; break;
+				case 155:
+				    ArbitraryWeightBug |= FROMOUTSIDE; break;
+				case 156:
+				    FuckedInfoBug |= FROMOUTSIDE; break;
+				case 157:
+				    BlackSpells |= FROMOUTSIDE; break;
+				case 158:
+				    CyanSpells |= FROMOUTSIDE; break;
+				case 159:
+				    HeapEffectBug |= FROMOUTSIDE; break;
+				case 160:
+				    BlueSpells |= FROMOUTSIDE; break;
+				case 161:
+				    TronEffect |= FROMOUTSIDE; break;
+				case 162:
+				    RedSpells |= FROMOUTSIDE; break;
+				case 163:
+				    TooHeavyEffect |= FROMOUTSIDE; break;
+				case 164:
+				    ElongationBug |= FROMOUTSIDE; break;
+				case 165:
+				    WrapoverEffect |= FROMOUTSIDE; break;
+				case 166:
+				    DestructionEffect |= FROMOUTSIDE; break;
+				case 167:
+				    MeleePrefixBug |= FROMOUTSIDE; break;
+				case 168:
+				    AutomoreBug |= FROMOUTSIDE; break;
+				case 169:
+				    UnfairAttackBug |= FROMOUTSIDE; break;
+			}
+
+		}
+
+		if (!rn2(2000) && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) {
+
 			switch (rnd(169)) {
 
 				case 1: 
@@ -7470,6 +8166,16 @@ newboss:
 				if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) effcon -= 12;
 			}
 
+			} /* player cannot use skills */
+
+			if (u.usteed) {
+				struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
+
+				if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_CURE_HASSIA_COURSE) {
+					effcon += 5;
+					efflev += 5;
+				}
+
 			}
 
 	/* Yeah I know this makes no sense at all, but it improves the usefulness of the riding skill. --Amy */
@@ -8190,7 +8896,7 @@ newboss:
 
 			}
 
-			if (uarmg && uarmg->oartifact == ART_ARABELLA_S_BANK_OF_CROSSRO) {
+			if (uarmg && uarmg->oartifact == ART_ARABELLA_S_BANK_OF_CROSSRO && !rn2(2000) ) {
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
@@ -8199,12 +8905,97 @@ newboss:
 
 			}
 
-			if (uarmg && uarmg->oartifact == ART_ARABELLA_S_GREAT_BANISHER) {
+			if (uarmg && uarmg->oartifact == ART_ARABELLA_S_GREAT_BANISHER && !rn2(2000) ) {
 
 				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
 				pline("A mysterious force surrounds you...");
 			      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
 				else You_feel("very disoriented but decide to move on.");
+
+			}
+
+			if (u.usteed && !rn2(5000) ) {
+
+				struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
+
+				if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_WESTERN_FRANKISH_COURSE) {
+					pline("A mysterious force surrounds you...");
+					HTeleport_control++;
+				      if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) level_tele();
+					else You_feel("very disoriented but decide to move on.");
+				}
+
+			}
+
+			if (u.usteed && !rn2(200) ) {
+
+				struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
+
+				if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_WESTERN_FRANKISH_COURSE) {
+					xchar old_ux = u.ux, old_uy = u.uy;
+					You(Hallucination ? "open a warp gate!" : "suddenly get teleported!");
+					HTeleport_control++;
+					tele();
+					if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+					if (u.ux != old_ux || u.uy != old_uy) {
+					if (!next_to_u()) {
+						check_leash(old_ux, old_uy);
+					}
+					/* clear doagain keystrokes */
+					pushch(0);
+					savech(0);
+					}
+
+				}
+
+			}
+
+			if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !rn2(2000) ) {
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+				pline("A mysterious force surrounds you...");
+
+				if ((u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) datadeleteattack();
+				else if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
+
+					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+					if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+					else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+
+					register int newlev = rnd(99);
+					d_level newlevel;
+					get_level(&newlevel, newlev);
+					goto_level(&newlevel, TRUE, FALSE, FALSE);
+					You("were banished!");
+
+				}
+				else datadeleteattack();
+
+			}
+
+			if (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !rn2(2000) ) {
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+				pline("A mysterious force surrounds you...");
+
+				if ((u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) ) ) datadeleteattack();
+				else if (!flags.lostsoul && !flags.uberlostsoul && !(flags.wonderland && !(u.wonderlandescape)) && !(u.uprops[STORM_HELM].extrinsic) && !(In_bellcaves(&u.uz)) && !(In_subquest(&u.uz)) && !(In_voiddungeon(&u.uz)) && !(In_netherrealm(&u.uz))) {
+
+					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+					if (rn2(2)) {(void) safe_teleds(FALSE); goto_level(&medusa_level, TRUE, FALSE, FALSE); }
+					else {(void) safe_teleds(FALSE); goto_level(&portal_level, TRUE, FALSE, FALSE); }
+
+					register int newlev = rnd(99);
+					d_level newlevel;
+					get_level(&newlevel, newlev);
+					goto_level(&newlevel, TRUE, FALSE, FALSE);
+					You("were banished!");
+
+				}
+
+				else datadeleteattack();
 
 			}
 

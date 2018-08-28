@@ -181,10 +181,10 @@ namedecided:
 	    mtmp->female = 1;
 	else
 	    mtmp->female = 0;
-	strcat(nam, " the ");
-	strcat(nam, rank_of((int)mtmp->m_lev,
-			    monsndx(mtmp->data),
-			    (boolean)mtmp->female));
+	if (is_mplayer(mtmp->data)) {
+		strcat(nam, " the ");
+		strcat(nam, rank_of((int)mtmp->m_lev, monsndx(mtmp->data), (boolean)mtmp->female));
+	}
 }
 
 STATIC_OVL void
@@ -224,13 +224,14 @@ register boolean special;
 	register struct monst *mtmp;
 	char nam[PL_PSIZ];
 
-	if(!is_mplayer(ptr))
+	if(!is_mplayer(ptr) && !is_umplayer(ptr))
 		return((struct monst *)0);
 
 	if(MON_AT(x, y))
 		(void) rloc(m_at(x, y), FALSE); /* insurance */
 
-	if(!In_endgame(&u.uz)) special = FALSE;
+	/* seriously why is this here? we already set "special" in the calling function... --Amy */
+	/* if(!In_endgame(&u.uz)) special = FALSE; */
 
 	if ((mtmp = makemon(ptr, x, y, NO_MM_FLAGS)) != 0) {
 	    short weapon = rn2(2) ? LONG_SWORD : rnd_class(SPEAR, BULLWHIP);
@@ -260,12 +261,15 @@ register boolean special;
 
 	    switch(monsndx(ptr)) {
 		case PM_ARCHEOLOGIST:
+		case PM_UNDEAD_ARCHEOLOGIST:
 		    if (rn2(2)) weapon = BULLWHIP;
 		    break;
 		case PM_ANACHRONIST:
+		case PM_UNDEAD_ANACHRONIST:
 		    weapon = FORCE_PIKE;
 		    break;
 		case PM_BARBARIAN:
+		case PM_UNDEAD_BARBARIAN:
 		    if (rn2(2)) {
 		    	weapon = rn2(2) ? TWO_HANDED_SWORD : BATTLE_AXE;
 		    	shield = STRANGE_OBJECT;
@@ -274,210 +278,280 @@ register boolean special;
 		    if (helm == HELM_OF_BRILLIANCE) helm = STRANGE_OBJECT;
 		    break;
 		case PM_BLEEDER:
+		case PM_UNDEAD_BLEEDER:
 			weapon = KNIFE;
 		    break;
 		case PM_ANACHRONOUNBINDER:
+		case PM_UNDEAD_ANACHRONOUNBINDER:
 			weapon = SILVER_SHORT_SWORD;
 		    break;
 		case PM_HUSSY:
+		case PM_UNDEAD_HUSSY:
 			weapon = HIGH_HEELED_SANDAL;
 		    break;
 		case PM_MASON:
+		case PM_UNDEAD_MASON:
 			weapon = DWARVISH_MATTOCK;
 			armor = FULL_PLATE_MAIL;
 		    break;
 		case PM_BINDER:
+		case PM_UNDEAD_BINDER:
 			weapon = RANSEUR;
 			armor = ELVEN_MITHRIL_COAT;
 			cloak = LEATHER_CLOAK;
 		    break;
 		case PM_CAVEMAN:
 		case PM_CAVEWOMAN:
+		case PM_UNDEAD_CAVEMAN:
+		case PM_UNDEAD_CAVEWOMAN:
 		    if (rn2(4)) weapon = MACE;
 		    else if (rn2(2)) weapon = CLUB;
 		    if (helm == HELM_OF_BRILLIANCE) helm = STRANGE_OBJECT;
 		    break;
 		case PM_CONVICT:
+		case PM_UNDEAD_CONVICT:
 		    weapon = HEAVY_IRON_BALL;
 		    break;
 		case PM_MURDERER:
+		case PM_UNDEAD_MURDERER:
 		    weapon = HEAVY_IRON_BALL;
 		    break;
 		case PM_TRACER:
+		case PM_UNDEAD_TRACER:
 		    weapon = SHORT_SWORD;
 		    break;
 		case PM_FEMINIST:
+		case PM_UNDEAD_FEMINIST:
 		    weapon = HIGH_HEELED_SANDAL;
 		    break;
 		case PM_FORM_CHANGER:
+		case PM_UNDEAD_FORM_CHANGER:
 		    weapon = CLUB;
 		    break;
 		case PM_NUCLEAR_PHYSICIST:
+		case PM_UNDEAD_NUCLEAR_PHYSICIST:
 		    weapon = INKA_SPEAR;
 		    break;
 		case PM_GANG_SCHOLAR:
+		case PM_UNDEAD_GANG_SCHOLAR:
 		    weapon = TWO_HANDED_SWORD;
 		    break;
 		case PM_GEEK:
+		case PM_UNDEAD_GEEK:
 		    weapon = ELECTRIC_SWORD;
 		    break;
 		case PM_GRADUATE:
+		case PM_UNDEAD_GRADUATE:
 		    weapon = FLY_SWATTER;
 		    break;
 		case PM_GANGSTER:
+		case PM_UNDEAD_GANGSTER:
 		    weapon = SCOURGE;
 		    break;
 		case PM_PIRATE:
+		case PM_UNDEAD_PIRATE:
 		    weapon = SCIMITAR;
 		    break;
 		case PM_DRUNK:
+		case PM_UNDEAD_DRUNK:
 		    weapon = RUBBER_HOSE;
 		    break;
 		case PM_OFFICER:
+		case PM_UNDEAD_OFFICER:
 		    weapon = CLUB;
 		    break;
 		case PM_KORSAIR:
+		case PM_UNDEAD_KORSAIR:
 		    weapon = SCIMITAR;
 		    break;
 		case PM_DIVER:
+		case PM_UNDEAD_DIVER:
 		    weapon = TRIDENT;
 		    break;
 		case PM_BARD:
+		case PM_UNDEAD_BARD:
 		    weapon = WAR_HAMMER;
 		    break;
 		case PM_GLADIATOR:
+		case PM_UNDEAD_GLADIATOR:
 		    weapon = SILVER_SABER;
 		    break;
 		case PM_GOFF:
+		case PM_UNDEAD_GOFF:
 		    weapon = QUARTERSTAFF;
 		    break;
 		case PM_AMAZON:
+		case PM_UNDEAD_AMAZON:
 		    weapon = JAVELIN;
 		    break;
 		case PM_ALTMER:
+		case PM_UNDEAD_ALTMER:
 		    weapon = QUARTERSTAFF;
 		    break;
 		case PM_BOSMER:
+		case PM_UNDEAD_BOSMER:
 		    weapon = ELVEN_DAGGER;
 		    break;
 		case PM_INTEL_SCRIBE:
+		case PM_UNDEAD_INTEL_SCRIBE:
 		    weapon = DAGGER;
 		    break;
 		case PM_DUNMER:
+		case PM_UNDEAD_DUNMER:
 		    weapon = DARK_ELVEN_DAGGER;
 		    break;
 		case PM_THALMOR:
+		case PM_UNDEAD_THALMOR:
 		    weapon = ELVEN_BROADSWORD;
 		    break;
 		case PM_ORDINATOR:
+		case PM_UNDEAD_ORDINATOR:
 		    weapon = TSURUGI;
 		    break;
 		case PM_ARTIST:
+		case PM_UNDEAD_ARTIST:
 		    weapon = MALLET;
 		    break;
 		case PM_GAMER:
+		case PM_UNDEAD_GAMER:
 		    weapon = CLUB;
 		    break;
 		case PM_LIBRARIAN:
+		case PM_UNDEAD_LIBRARIAN:
 		    weapon = KNIFE;
 		    break;
 		case PM_COOK:
+		case PM_UNDEAD_COOK:
 		    weapon = KNIFE;
 		    break;
 		case PM_JESTER:
+		case PM_UNDEAD_JESTER:
 		    weapon = HEAVY_IRON_BALL;
 		    break;
 		case PM_CRUEL_ABUSER:
+		case PM_UNDEAD_CRUEL_ABUSER:
 		    weapon = KNOUT;
 		    break;
 		case PM_SUPERMARKET_CASHIER:
+		case PM_UNDEAD_SUPERMARKET_CASHIER:
 		    weapon = KNIFE;
 		    break;
 		case PM_LADIESMAN:
+		case PM_UNDEAD_LADIESMAN:
 		    weapon = KNIFE;
 		    break;
 		case PM_FIGHTER:
+		case PM_UNDEAD_FIGHTER:
 		    weapon = LONG_SWORD;
 		    break;
 		case PM_FENCER:
+		case PM_UNDEAD_FENCER:
 		    weapon = BLACK_AESTIVALIS;
 		    break;
 		case PM_MEDIUM:
+		case PM_UNDEAD_MEDIUM:
 		    weapon = QUARTERSTAFF;
 		    break;
 		case PM_STAND_USER:
+		case PM_UNDEAD_STAND_USER:
 		    weapon = LOG;
 		    break;
 		case PM_JUSTICE_KEEPER:
+		case PM_UNDEAD_JUSTICE_KEEPER:
 		    weapon = SLEDGE_HAMMER;
 		    break;
 		case PM_SEXYMATE:
+		case PM_UNDEAD_SEXYMATE:
 		    weapon = STURDY_PLATEAU_BOOT_FOR_GIRLS;
 		    break;
 		case PM_GUNNER:
+		case PM_UNDEAD_GUNNER:
 		    weapon = KNIFE;
 		    break;
 		case PM_DOOM_MARINE:
+		case PM_UNDEAD_DOOM_MARINE:
 		    weapon = CHAINSWORD;
 		    break;
 		case PM_WANDKEEPER:
+		case PM_UNDEAD_WANDKEEPER:
 		    weapon = KNIFE;
 		    break;
 		case PM_FOXHOUND_AGENT:
+		case PM_UNDEAD_FOXHOUND_AGENT:
 		    weapon = KNIFE;
 		    break;
 		case PM_FEAT_MASTER:
+		case PM_UNDEAD_FEAT_MASTER:
 		    weapon = FLAIL;
 		    break;
 		case PM_MAHOU_SHOUJO:
+		case PM_UNDEAD_MAHOU_SHOUJO:
 		    weapon = WEDGED_LITTLE_GIRL_SANDAL;
 		    break;
 		case PM_BLOODSEEKER:
+		case PM_UNDEAD_BLOODSEEKER:
 		    weapon = SHORT_SWORD;
 		    break;
 		case PM_SAIYAN:
+		case PM_UNDEAD_SAIYAN:
 		    weapon = BROADSWORD;
 		    break;
 		case PM_DOLL_MISTRESS:
+		case PM_UNDEAD_DOLL_MISTRESS:
 		    weapon = CRYSKNIFE;
 		    break;
 		case PM_MYSTIC:
+		case PM_UNDEAD_MYSTIC:
 		    weapon = TORPEDO;
 		    break;
 		case PM_ASSASSIN:
+		case PM_UNDEAD_ASSASSIN:
 		    weapon = GREAT_DAGGER;
 		    break;
 		case PM_BULLY:
+		case PM_UNDEAD_BULLY:
 		    weapon = KNIFE;
 		    break;
 		case PM_PICKPOCKET:
+		case PM_UNDEAD_PICKPOCKET:
 		    weapon = STILETTO;
 		    break;
 		case PM_OTAKU:
+		case PM_UNDEAD_OTAKU:
 		    weapon = KATANA;
 		    break;
 		case PM_PALADIN:
+		case PM_UNDEAD_PALADIN:
 		    weapon = LONG_SWORD;
 		    break;
 		case PM_SAGE:
+		case PM_UNDEAD_SAGE:
 		    weapon = SILVER_MACE;
 		    break;
 		case PM_SLAVE_MASTER:
+		case PM_UNDEAD_SLAVE_MASTER:
 		    weapon = STEEL_WHIP;
 		    break;
 		case PM_NOBLEMAN:
 		case PM_NOBLEWOMAN:
+		case PM_UNDEAD_NOBLEMAN:
+		case PM_UNDEAD_NOBLEWOMAN:
 		    weapon = RAPIER;
 		    break;
 		case PM_POKEMON:
+		case PM_UNDEAD_POKEMON:
 		case PM_MUSICIAN:
+		case PM_UNDEAD_MUSICIAN:
 		    weapon = CLUB;
 		    break;
 		case PM_DEATH_EATER:
+		case PM_UNDEAD_DEATH_EATER:
 		    weapon = QUARTERSTAFF;
 		    break;
 		case PM_HEALER:
 		case PM_SCIENTIST:
+		case PM_UNDEAD_HEALER:
+		case PM_UNDEAD_SCIENTIST:
 		    if (rn2(4)) weapon = QUARTERSTAFF;
 		    else if (rn2(2)) weapon = rn2(2) ? UNICORN_HORN : SCALPEL;
 		    if (rn2(4)) helm = rn2(2) ? HELM_OF_BRILLIANCE : HELM_OF_TELEPATHY;
@@ -485,55 +559,74 @@ register boolean special;
 		    break;
 		case PM_YEOMAN:
 		case PM_KNIGHT:
+		case PM_UNDEAD_YEOMAN:
+		case PM_UNDEAD_KNIGHT:
 		    if (rn2(4)) weapon = LONG_SWORD;
 		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
 		    break;
 		case PM_WARRIOR:
+		case PM_UNDEAD_WARRIOR:
 		    if (rn2(4)) weapon = MACE;
 		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
 		case PM_MONK:
 		case PM_PSION:
+		case PM_UNDEAD_MONK:
+		case PM_UNDEAD_PSION:
 		    weapon = STRANGE_OBJECT;
 		    armor = STRANGE_OBJECT;
 		    cloak = ROBE;
 		    if (rn2(2)) shield = STRANGE_OBJECT;
 		    break;
 		case PM_CHEVALIER:
+		case PM_UNDEAD_CHEVALIER:
 		    weapon = TRIDENT;
 		    break;
 		case PM_AUGURER:
+		case PM_UNDEAD_AUGURER:
 		    weapon = STRANGE_OBJECT;
 		    break;
 		case PM_POLITICIAN:
+		case PM_UNDEAD_POLITICIAN:
 		    weapon = STRANGE_OBJECT;
 		    break;
 		case PM_UNDERTAKER:
+		case PM_UNDEAD_UNDERTAKER:
 		    weapon = SCALPEL;
 		    break;
 		case PM_ZOOKEEPER:
+		case PM_UNDEAD_ZOOKEEPER:
 		    weapon = BULLWHIP;
 		    break;
 		case PM_FIREFIGHTER:
+		case PM_UNDEAD_FIREFIGHTER:
 		    weapon = AXE;
 		    break;
 		case PM_LOCKSMITH:
+		case PM_UNDEAD_LOCKSMITH:
 		    weapon = DAGGER;
 		    break;
 		case PM_ERDRICK:
 		case PM_DQ_SLIME:
+		case PM_UNDEAD_ERDRICK:
+		case PM_UNDEAD_DQ_SLIME:
 		    weapon = BATTLE_STAFF;
 		    break;
 		case PM_NINJA:
+		case PM_UNDEAD_NINJA:
 		    weapon = KATANA;
 		    break;
 		case PM_SPACEWARS_FIGHTER:
+		case PM_UNDEAD_SPACEWARS_FIGHTER:
 		    weapon = BLUE_LIGHTSABER;
 		    break;
 		case PM_CAMPERSTRIKER:
+		case PM_UNDEAD_CAMPERSTRIKER:
 		    weapon = GREEN_LIGHTSABER;
 		    break;
 		case PM_PRIEST:
 		case PM_PRIESTESS:
+		case PM_UNDEAD_PRIEST:
+		case PM_UNDEAD_PRIESTESS:
 		    if (rn2(2)) weapon = MACE;
 		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
 		    if (rn2(4)) cloak = ROBE;
@@ -541,78 +634,103 @@ register boolean special;
 		    if (rn2(2)) shield = STRANGE_OBJECT;
 		    break;
 		case PM_RANGER:
+		case PM_UNDEAD_RANGER:
 		    if (rn2(2)) weapon = ELVEN_DAGGER;
 		    break;
 		case PM_ELPH:
+		case PM_UNDEAD_ELPH:
 		    weapon = ELVEN_DAGGER;
 		    break;
 		case PM_TWELPH:
+		case PM_UNDEAD_TWELPH:
 		    weapon = DARK_ELVEN_DAGGER;
 		    break;
 		case PM_GOLDMINER:
+		case PM_UNDEAD_GOLDMINER:
 		    weapon = PICK_AXE;
 		    break;
 		case PM_MIDGET:
+		case PM_UNDEAD_MIDGET:
 		    weapon = DWARVISH_MATTOCK;
 		    break;
 		case PM_RINGSEEKER:
+		case PM_UNDEAD_RINGSEEKER:
 		    weapon = ELVEN_DAGGER;
 		    break;
 		case PM_DRUID:
+		case PM_UNDEAD_DRUID:
 		    weapon = BATTLE_STAFF;
 		    break;
 		case PM_SHAPESHIFTER:
+		case PM_UNDEAD_SHAPESHIFTER:
 		    weapon = ATHAME;
 		    break;
 		case PM_COURIER:
+		case PM_UNDEAD_COURIER:
 		    weapon = KNIFE;
 		    break;
 		case PM_ZYBORG:
+		case PM_UNDEAD_ZYBORG:
 		    weapon = RED_LIGHTSABER;
 		    break;
 		case PM_LUNATIC:
+		case PM_UNDEAD_LUNATIC:
 		    weapon = STEEL_WHIP;
 		    break;
 		case PM_PROSTITUTE:
 		case PM_KURWA:
+		case PM_UNDEAD_PROSTITUTE:
+		case PM_UNDEAD_KURWA:
 		    weapon = INKA_SHACKLE;
 		    break;
 		case PM_TRANSVESTITE:
+		case PM_UNDEAD_TRANSVESTITE:
 		    weapon = SEXY_LEATHER_PUMP;
 		    break;
 		case PM_TRANSSYLVANIAN:
+		case PM_UNDEAD_TRANSSYLVANIAN:
 		    weapon = BLOCK_HEELED_COMBAT_BOOT;
 		    break;
 		case PM_TOPMODEL:
+		case PM_UNDEAD_TOPMODEL:
 		    weapon = KNIFE;
 		    break;
 		case PM_UNBELIEVER:
+		case PM_UNDEAD_UNBELIEVER:
 		    weapon = BLACK_AESTIVALIS;
 		    break;
 		case PM_FAILED_EXISTENCE:
+		case PM_UNDEAD_FAILED_EXISTENCE:
 		    weapon = KNIFE;
 		    break;
 		case PM_ACTIVISTOR:
+		case PM_UNDEAD_ACTIVISTOR:
 		    weapon = FLY_SWATTER;
 		    break;
 		case PM_ROGUE:
+		case PM_UNDEAD_ROGUE:
 		    weapon = SHORT_SWORD;
 		    armor = LEATHER_ARMOR;
 		    break;
 		case PM_SAMURAI:
+		case PM_UNDEAD_SAMURAI:
 		    if (rn2(2)) weapon = KATANA;
 		    break;
 		case PM_TOURIST:
+		case PM_UNDEAD_TOURIST:
 		    /* Defaults are just fine */
 		    break;
 		case PM_ROCKER:
+		case PM_UNDEAD_ROCKER:
 			weapon = HEAVY_HAMMER;
-
+		    break;
 		case PM_UNDEAD_SLAYER:
+		case PM_NON_UNDEAD_SLAYER:
 		    if (rn2(2)) weapon = SILVER_SPEAR;
 		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
 		    break;
 		case PM_VALKYRIE:
+		case PM_UNDEAD_VALKYRIE:
 		    if (rn2(2)) weapon = WAR_HAMMER;
 		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
 		    break;
@@ -623,6 +741,13 @@ register boolean special;
 		case PM_POISON_MAGE:
 		case PM_NECROMANCER:
 		case PM_WIZARD:
+		case PM_UNDEAD_FLAME_MAGE:
+		case PM_UNDEAD_ACID_MAGE:
+		case PM_UNDEAD_ICE_MAGE:
+		case PM_UNDEAD_ELECTRIC_MAGE:
+		case PM_UNDEAD_POISON_MAGE:
+		case PM_UNDEAD_NECROMANCER:
+		case PM_UNDEAD_WIZARD:
 		    if (rn2(4)) weapon = rn2(2) ? QUARTERSTAFF : ATHAME;
 		    if (rn2(2)) {
 		    	armor = rn2(2) ? BLACK_DRAGON_SCALE_MAIL :
@@ -634,23 +759,29 @@ register boolean special;
 		    break;
 
 		case PM_OCCULT_MASTER:
+		case PM_UNDEAD_OCCULT_MASTER:
 		    weapon = COLLUSION_KNIFE;
 		    break;
 
 		case PM_ELEMENTALIST:
+		case PM_UNDEAD_ELEMENTALIST:
 		    weapon = FIRE_STICK;
 		    break;
 
 		case PM_CHAOS_SORCEROR:
+		case PM_UNDEAD_CHAOS_SORCEROR:
 		    weapon = IMPACT_STAFF;
 		    break;
 
 		case PM_WILD_TALENT:
+		case PM_UNDEAD_WILD_TALENT:
 		    weapon = HEAVY_IRON_BALL;
 		    break;
 
 		case PM_JEDI:
 		case PM_PADAWAN:
+		case PM_UNDEAD_JEDI:
+		case PM_UNDEAD_PADAWAN:
 		    switch(rnd(8)){
 		      case 1: weapon = RED_LIGHTSABER; break;
 		      case 2: weapon = BLUE_LIGHTSABER; break;
@@ -674,13 +805,13 @@ register boolean special;
 	    if (weapon != STRANGE_OBJECT) {
 		otmp = mksobj(weapon, TRUE, FALSE);
 		if (otmp) {
-			otmp->spe = (special ? rn1(5,4) : rn2(4));
+			otmp->spe = (special ? rn1(5,4) : (rn2(4) - rn2(7) ) );
 			if (!rn2(3)) otmp->oerodeproof = 1;
 			else if (!rn2(2)) otmp->greased = 1;
 			if (special && rn2(2))
 			    otmp = mk_artifact(otmp, A_NONE);
 			/* mplayers knew better than to overenchant Magicbane */
-			if (otmp->oartifact == ART_MAGICBANE)
+			if (otmp->oartifact == ART_MAGICBANE && otmp->spe > 0)
 			    otmp->spe = rnd(4);
 			(void) mpickobj(mtmp, otmp, TRUE);
 		}
@@ -805,7 +936,7 @@ boolean special;
 		/* if pos not found in 50 tries, don't bother to continue */
 		if(tryct > 50) return;
 
-		(void) makemon(&mons[pm], (xchar)x, (xchar)y, NO_MM_FLAGS);
+		(void) mk_mplayer(&mons[pm], (xchar)x, (xchar)y, special);
 		num--;
 	}
 }
@@ -814,16 +945,18 @@ void
 mplayer_talk(mtmp)
 register struct monst *mtmp;
 {
-	static const char *same_class_msg[4] = {
+	static const char *same_class_msg[5] = {
 		"I can't win, and neither will you!",
 		"You don't deserve to win!",
 		"Mine should be the honor, not yours!",
 		"Just give me that amulet so I can ascend, or I'll take it by force!",
-	},		  *other_class_msg[4] = {
+		"I have many more artifacts than you! You're a disgrace to your profession!",
+	},		  *other_class_msg[5] = {
 		"The low-life wants to talk, eh?",
 		"Fight, scum!",
 		"Here is what I have to say!",
 		"If I had the Vorpal Blade, I would decapitate you on the spot!",
+		"Well your profession is stupid, I'm something much better than you.",
 	};
 
 	if(mtmp->mpeaceful) return; /* will drop to humanoid talk */

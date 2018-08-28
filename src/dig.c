@@ -921,19 +921,35 @@ dig_up_grave()
 
 	/* Grave-robbing is frowned upon... */
 	exercise(A_WIS, FALSE);
+	if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN) {
+	    adjalign(-5);
+		u.ualign.sins++;
+		u.alignlim--;
+		adjalign(-10);
+	    You("disturb the honorable dead!");
+	}
+	if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN) {
+	    adjalign(-5);
+		u.ualign.sins++;
+		u.alignlim--;
+		adjalign(-10);
+	    You("disturb the honorable dead!");
+	}
 	if (Role_if(PM_ARCHEOLOGIST)) {
 	    adjalign(-sgn(u.ualign.type)*3);
 		u.ualign.sins++;
 		u.alignlim--;
 		adjalign(-5);
 	    You_feel("like a despicable grave-robber!");
-	} else if (Role_if(PM_SAMURAI)) {
+	}
+	if (Role_if(PM_SAMURAI)) {
 	    adjalign(-sgn(u.ualign.type)*5); /* stiffer penalty */
 		u.ualign.sins++;
 		u.alignlim--;
 		adjalign(-10);
 	    You("disturb the honorable dead!");
-	} else if ((u.ualign.type == A_LAWFUL) && (u.ualign.record > -10)) {
+	}
+	if ((u.ualign.type == A_LAWFUL) && (u.ualign.record > -10)) {
 	    adjalign(-sgn(u.ualign.type)*2);
 	    You("have violated the sanctity of this grave!");
 	}

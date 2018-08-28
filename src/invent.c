@@ -6783,6 +6783,8 @@ struct obj *obj;
 				pline("This is a two-handed quarterstaff made of iron. It does moderately good damage."); break;
 			case PARTISAN: 
 				pline("A balanced two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case STICKSHOE: 
+				pline("A sexy two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding. It's literally a shoe on a stick."); break;
 			case GLAIVE: 
 				pline("A powerful two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case SPETUM: 
@@ -6965,6 +6967,10 @@ struct obj *obj;
 				pline("A highly accurate two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case TRAFFIC_LIGHT:
 				pline("A dimming two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding. It does great damage but also dims you if you wield it."); break;
+			case NOOB_POLLAX:
+				pline("A long-range two-handed polearm that can be applied to hit monsters standing two or sometimes even more squares away (need to experiment to find out what range is allowed). Using it at point blank range is only useful if you're riding. It does very little damage though."); break;
+			case GREAT_POLLAX:
+				pline("A super-long-range two-handed polearm that can be applied to hit monsters standing two or sometimes even more squares away (need to experiment to find out what range is allowed). Using it at point blank range is only useful if you're riding."); break;
 			case GIANT_SCYTHE:
 				pline("A gigantic two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case THRESHER:
@@ -7051,6 +7057,8 @@ struct obj *obj;
 				pline("Apply it to hit monsters from far away, joust monsters with it while riding (and risk breaking it), but NEVER throw it or it will definitely break. This thing also requires both hands to wield."); break;
 			case ELVEN_LANCE: 
 				pline("Apply it to hit monsters from far away or joust monsters with it while riding (and risk breaking it)."); break;
+			case WOODEN_BAR: 
+				pline("Apply it to hit monsters from far away or joust monsters with it while riding (and risk breaking it). Unlike other lances, this one can even be applied to hit monsters standing three squares away, but it's more likely to be damaged in the process or cause monsters to speed up/frenzy/snatch your weapon."); break;
 			case FORCE_PIKE: 
 				pline("One of Chris_ANG's creations, this weapon is in fact a lance. Apply it to hit monsters from far away. You can also joust monsters with it while riding, but that may cause it to break."); break;
 			case PARASOL: 
@@ -10472,41 +10480,47 @@ struct obj *obj;
 #else
 				pline("You may select one of your worn pieces of armor to increase its enchantment. Most pieces of armor have a chance to evaporate if they're already enchanted to +4 or higher. Elven armors won't evaporate unless they're at least +6 though."); break;
 #endif
-			case SCR_REMOVE_CURSE: 
+			case SCR_REMOVE_CURSE:
 				pline("This scroll can uncurse some of the items in your inventory if you read it."); break;
-			case SCR_ALTER_REALITY: 
+			case SCR_ALTER_REALITY:
 				pline("The game's rules will never be the same again..."); break;
-			case SCR_TELEPORTATION: 
+			case SCR_TELEPORTATION:
 				pline("A scroll meant to be used in emergency situations that teleports you to a random empty location on the current dungeon level. Beware, some special levels inhibit teleportation!"); break;
-			case SCR_TELE_LEVEL: 
+			case SCR_TELE_LEVEL:
 				pline("This scroll will get you out of most sticky situations by warping you to another dungeon level."); break;
-			case SCR_WARPING: 
+			case SCR_WARPING:
 				pline("You will warp to any random dungeon level if you read this scroll. It may deposit you at some fairly dangerous place, too."); break;
-			case SCR_FIRE: 
+			case SCR_FIRE:
 #ifdef PHANTOM_CRASH_BUG
 				pline("Reading it will burn you and adjacent monsters a little."); break;
 #else
 				pline("The best scroll in the game. You will need this to cure the sliming condition, which is difficult to cure otherwise. It can also damage monsters standing next to you, with the side effect of burning you a little."); break;
 #endif
-			case SCR_EARTH: 
+			case SCR_EARTH:
 				pline("Summons some boulders if read. Beware, they might hit your head and damage you."); break;
-			case SCR_DESTROY_ARMOR: 
+			case SCR_RAGNAROK:
+				pline("This scroll brings an end."); break;
+			case SCR_OFFLEVEL_ITEM:
+				pline("One of the most terrifying creations of AmyBSOD, this scroll spawns a monster, transfers some of your items to it, and then lets the monster level teleport away."); break;
+			case SCR_MATERIAL_CHANGE:
+				pline("Many items' materials will be rerolled if you read this."); break;
+			case SCR_DESTROY_ARMOR:
 #ifdef PHANTOM_CRASH_BUG
 				pline("It randomly destroys a worn piece of armor when read."); break;
 #else
 				pline("A scroll that can be used if you are wearing a cursed piece of armor and want to get rid of it. You can't select the affected piece of armor yourself though; rather, the game randomly destroys one of your worn armor items."); break;
 #endif
-			case SCR_DESTROY_WEAPON: 
+			case SCR_DESTROY_WEAPON:
 				pline("Wanna get rid of your weapon? Now you can do so."); break;
-			case SCR_AMNESIA: 
+			case SCR_AMNESIA:
 				pline("You will forget some of your spells as well as the current level's layout if you read this scroll."); break;
-			case SCR_BAD_EFFECT: 
+			case SCR_BAD_EFFECT:
 				pline("Causes a randomly selected bad effect if read."); break;
-			case SCR_WARD: 
+			case SCR_WARD:
 				pline("You will become temporarily resistant to physical damage when reading this scroll."); break;
-			case SCR_WARDING: 
+			case SCR_WARDING:
 				pline("You will become temporarily resistant to spell damage when reading this scroll."); break;
-			case SCR_WONDER: 
+			case SCR_WONDER:
 				pline("Reading this scroll teaches a random spell. If it rolls one that you already know, its spell memory is increased."); break;
 			case SCR_HEALING:
 				pline("A standard healing scroll that behaves similar to healing potions in other role-playing games by restoring some lost hit points. Don't bother trying to blank, cancel or polymorph this scroll, as that doesn't work."); break;
@@ -10596,6 +10610,8 @@ struct obj *obj;
 				pline("A quirky special version of the identify scroll, this thing prompts you to enter the name or description of an object which is then identified."); break;
 			case SCR_WISHING: 
 				pline("Allows you to wish for an object."); break;
+			case SCR_ASTRALCENSION: 
+				pline("This scroll summons an astral player monster. They can be very well-armed indeed, but if you can take them out you'll be able to take all their equipment and use it for yourself!"); break;
 			case SCR_ARTIFACT_CREATION: 
 				pline("This scroll generates an artifact at your feet. You do want an artifact, right? Read it!"); break;
 			case SCR_CONSECRATION: 
@@ -15314,6 +15330,48 @@ struct obj *obj;
 					pline("Artifact specs: +10 to-hit and +14 damage to cold-susceptible monsters, +10 charisma when wielded, allows you to dig through grave walls in one turn and can be invoked for phasing, chaotic, hussy quest artifact."); break; /* no mention of the evil effect for non-hussy players, this is on purpose */
 				case ART_ULTIMATE_PICK:
 					pline("Artifact specs: +20 damage, neutral, mason quest artifact."); break;
+				case ART_RAFSCHAR_S_SUPERWEAPON:
+					pline("Artifact specs: +1 to-hit, strength and constitution, allows you to detect monsters until removed. But you also get banishmentitis and if you can't be banished, your data is deleted instead. All monsters can cause Ragnarok in melee while you wield it. And to top it off, you randomly get intrinsic nasty trap effects over time. It autocurses when wielded."); break;
+				case ART_LENG_S_KRYPTONITE:
+					pline("Artifact specs: +50 damage to elder priests. Sever that asshole's tentacles with the pretty high heel!"); break;
+				case ART_CURE_HASSIA_COURSE:
+					pline("Artifact specs: riding a steed that is equipped with this saddle will increase both your own and the steed's HP regeneration rate."); break;
+				case ART_WESTERN_FRANKISH_COURSE:
+					pline("Artifact specs: riding a steed that is equipped with this saddle gives teleportitis and levelteleportitis, plus teleport control for both."); break;
+				case ART_AMY_S_SEX_TOY:
+					pline("Artifact specs: while you're wielding it, monsters are more likely to spawn with the seducer egotype."); break;
+				case ART_ETHER_PENETRATOR:
+					pline("Artifact specs: +5 to-hit and +8 damage, bigger thrusting range, but also contaminates you faster while wielded."); break;
+				case ART_FUURKER:
+					pline("Artifact specs: bigger thrusting range, but while you wield it, the game is in evilvariant mode."); break;
+				case ART_OVERLONG_STICK:
+					pline("Artifact specs: extremely long thrusting range, but the minimum thrusting range is also increased."); break;
+				case ART_JAPANESE_WOMEN:
+					pline("Artifact specs: no minimum thrusting range, but if you wield it, you have to adhere to the samurai's code of conduct, plus your strength and constitution are capped at 12."); break;
+				case ART_PLAIDSWANDIR:
+					pline("Artifact specs: hallucination resistance when wielded, +5 to-hit and double damage, lawful. K2 suggested this artifact, and his short stubby hair can cause a wonderful scratchy velcro feeling <3<3<3"); break;
+				case ART_RIP_STRATEGY:
+					pline("Artifact specs: -5 accuracy and damage, +5 intelligence and constitution, and killing a monster heals you."); break;
+				case ART_TOOTH_OF_SHAI_HULUD:
+					pline("Artifact specs: +2 to-hit and +4 damage, warning and clairvoyance when wielded, chaotic."); break;
+				case ART_DOLORES__VIRGINITY:
+					pline("Artifact specs: autocurses, totter and hyperbluewalls when worn."); break;
+				case ART_JONADAB_S_BRAINSTORMING:
+					pline("Artifact specs: +1 to-hit and double damage to liches and major demons."); break;
+				case ART_LYNN_S_FLEECY_WISH:
+					pline("Artifact specs: half physical and spell damage when worn. Such a fleecy Lynn... <3"); break;
+				case ART_STAFF_OF_SAINT_PATRICK:
+					pline("Artifact specs: +5 to-hit and +20 damage to snakes, acts as a luckstone when wielded."); break;
+				case ART_OGRESMASHER____:
+					pline("Artifact specs: +5 to-hit and double damage to ogres, resist confusion and stun when wielded."); break;
+				case ART_BASHCRASH:
+					pline("Artifact specs: extra damage when bashing monsters with it, which is about as useless as it sounds because the damage bonus isn't very big."); break;
+				case ART_YOU_RE_STUCCO:
+					pline("Artifact specs: +8 to-hit and +10 damage, but the minimum range is bigger than the maximum range so you can never apply it successfully. Autocurses when wielded."); break;
+				case ART_LUCKY_SHARDS:
+					pline("Artifact specs: if you manage to break it by jousting, your maximum lance skill will increase by one skill level, but you'll have to find a new lance."); break;
+				case ART_ROYAL_CASINO_BETS:
+					pline("Artifact specs: applying it at a monster very occasionally increases its enchantment value, but the chances are really low."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

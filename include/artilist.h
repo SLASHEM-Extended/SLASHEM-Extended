@@ -3982,6 +3982,90 @@ A("Juupad Style", 		WHITE_DOUBLE_LIGHTSABER,
 	(SPFX_RESTR), 0, 0,
 	PHYS(1,0),	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L), 
 
+A("Rafschar's Superweapon",			QUARTERSTAFF, /* +1 to-hit, strength and constitution, detect monsters, banishmentitis (and if you can't be banished, your data is deleted), +1000 spawn frequency for AD_DATA monsters, all monsters can cause Ragnarok in melee and you occasionally get permanent nasty trap effects over time */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50000L ),
+
+A("Leng's Kryptonite",			FEMININE_PUMPS, /* +50 damage to elder priests */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Cure Hassia Course",			LEATHER_SADDLE, /* both you and your steed regenerate faster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L), 
+
+A("Western Frankish Course",			LEATHER_SADDLE, /* controlled teleportitis and levelteleportitis */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L), 
+
+A("Amy's Sex Toy",			STICKSHOE, /* 1 in 100 monsters spawn with seducer egotype */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L),
+
+A("Ether Penetrator",			GREAT_POLLAX, /* even bigger thrusting range but also contaminates you faster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(5,8),	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L), 
+
+A("Fuurker",			GARDEN_FORK, /* extra range, but while you wield it, the game is in evilvariant mode */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L), 
+
+A("Overlong Stick",			HELMET_BEARD, /* extra range, but the minimum thrusting range is also increased */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L), 
+
+A("Japanese Women",			THRESHER, /* no minimum range, but you have to follow the samurai's code of conduct and your STR and CON are capped at 14 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L), 
+
+A("Plaidswandir",		LEATHER_SABER, /* suggested by K2 */
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, NON_PM, NON_PM, 2000L ),
+
+A("Rip Strategy",		INKUTLASS, /* -5 accuracy/damage, +5 INT/CON, killing a monster with it heals you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Tooth of Shai-hulud",	CRYSKNIFE, /* clairvoyance when wielded */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_WARN), 0, 0,
+	PHYS(2,4),	NO_DFNS,	NO_CARY, 0,	A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
+A("Dolores' Virginity",	SPECIAL_SHIELD, /* totter and hyperbluewalls, autocurses when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0,	A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Jonadab's Brainstorming",	AKLYS,
+	(SPFX_RESTR|SPFX_DCLAS), 0, (S_LICH|S_DEMON),
+	PHYS(1, 0),	NO_DFNS,	NO_CARY, 0,	A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Lynn's Fleecy Wish",	CRYSTAL_PLATE_MAIL,
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_HSPDAM), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0,	A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Staff of Saint Patrick",		QUARTERSTAFF,
+	(SPFX_RESTR|SPFX_LUCK|SPFX_DCLAS), 0, S_SNAKE,
+	PHYS(5, 20),	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L), 
+
+A("Ogresmasher 2.0",		WAR_HAMMER, /* stun and confusion resistance when wielded, by jonadab */
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_OGRE,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Bashcrash",		CROSSBOW, /* by jonadab - deals extra damage when bashing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L), 
+
+A("You're Stucco",		GLAIVE, /* can never be applied successfully, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(8,10),	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L), 
+
+A("Lucky Shards",		DROVEN_LANCE, /* if you manage to break it by jousting, your maximum lance skill increases */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L), 
+
+A("Royal Casino Bets",		WOODEN_BAR, /* extremely low chance to gain enchantment when applying it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L), 
+
 /* below are randarts: they're supposed to be a random base item
  * melee weapons will become some other melee weapon, launchers will become
  * some other launcher, body armors will become some other body armor etc. --Amy */

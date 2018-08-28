@@ -934,8 +934,8 @@ register int pm;
 	}
 
 	if (dmgtype(&mons[pm], AD_RAGN) ) {
-		ragnarok();
-		if (isevilvariant) evilragnarok(level_difficulty());
+		ragnarok(FALSE);
+		if (isevilvariant) evilragnarok(FALSE,level_difficulty());
 	}
 
 	switch(pm) {

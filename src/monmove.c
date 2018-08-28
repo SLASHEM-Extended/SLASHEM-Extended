@@ -244,6 +244,16 @@ boolean digest_meal;
 		else mon->mhp++;
 	}
 
+	if (u.usteed && mon == u.usteed) {
+		struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
+
+		if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->oartifact == ART_CURE_HASSIA_COURSE) {
+			if (mon->mhp + 1 >= mon->mhpmax)
+			      mon->mhp = mon->mhpmax;
+			else mon->mhp++;
+		}
+	}
+
 	/* good riding skill gives extra regeneration to ridden monster --Amy */
 
 	if (!(PlayerCannotUseSkills)) {

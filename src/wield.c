@@ -121,6 +121,14 @@ boolean put_away;
 		pline("A terrible black aura surrounds your sickle...");
 	}
 
+	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !uwep->cursed) {
+		curse(uwep);
+	}
+	if (uwep && uwep->oartifact == ART_YOU_RE_STUCCO && !uwep->cursed) {
+		curse(uwep);
+		pline("Great. You're stucco now.");
+	}
+
 	if (uwep && uwep->oartifact == ART_CERULEAN_SMASH && !Role_if(PM_HUSSY) && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
@@ -255,6 +263,14 @@ swapweaponchoice:
 			curse(uswapwep);
 			uswapwep->hvycurse = 1;
 			pline("A terrible black aura surrounds your sickle...");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !uswapwep->cursed) {
+			curse(uswapwep);
+		}
+		if (uswapwep && uswapwep->oartifact == ART_YOU_RE_STUCCO && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Great. You're stucco now.");
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_CERULEAN_SMASH && !Role_if(PM_HUSSY) && !uswapwep->hvycurse) {

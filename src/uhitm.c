@@ -454,23 +454,35 @@ register struct monst *mtmp;
 	check_caitiff(mtmp);
 
 /*	attacking peaceful creatures is bad for the samurai's giri */
-	if (Role_if(PM_SAMURAI) && mtmp->mpeaceful &&
-	    u.ualign.record > -10) {
+	if (Role_if(PM_SAMURAI) && mtmp->mpeaceful && u.ualign.record > -10) {
 	    You("dishonorably attack the innocent!");
 		u.ualign.sins++;
 		u.alignlim--;
 	    adjalign(-5);
 	}
+
+	if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && mtmp->mpeaceful && u.ualign.record > -10) {
+	    You("dishonorably attack the innocent!");
+		u.ualign.sins++;
+		u.alignlim--;
+	    adjalign(-5);
+	}
+
+	if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && mtmp->mpeaceful && u.ualign.record > -10) {
+	    You("dishonorably attack the innocent!");
+		u.ualign.sins++;
+		u.alignlim--;
+	    adjalign(-5);
+	}
+
 /* as well as for the way of the Jedi */
-	if (Role_if(PM_JEDI) && mtmp->mpeaceful &&
-	    u.ualign.record > -10) {
+	if (Role_if(PM_JEDI) && mtmp->mpeaceful && u.ualign.record > -10) {
 	    You("violate the way of the Jedi!");
 		u.ualign.sins++;
 		u.alignlim--;
 	    adjalign(-5);
 	}
-	if (Race_if(PM_BORG) && mtmp->mpeaceful &&
-	    u.ualign.record > -10) {
+	if (Race_if(PM_BORG) && mtmp->mpeaceful && u.ualign.record > -10) {
 	    You("violate the way of the Jedi!");
 		u.ualign.sins++;
 		u.alignlim--;
@@ -632,6 +644,7 @@ register struct monst *mtmp;
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
+	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
@@ -639,6 +652,8 @@ register struct monst *mtmp;
 	if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
+	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -1502,6 +1517,9 @@ int dieroll;
 			}
 
 			if (obj && obj->spe > 0) tmp += obj->spe;
+
+			if (obj && obj->oartifact == ART_BASHCRASH && tmp > 0) tmp *= 2;
+
 			valid_weapon_attack = (tmp > 0);
 			if (flags.bash_reminder && !rn2(20)) {
 				switch (rnd(5)) {
@@ -2384,6 +2402,8 @@ int dieroll;
 		if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
 		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp += rnd(5);
 		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
+		if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+		if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 
 		if (Race_if(PM_RODNEYAN)) tmp += (1 + (u.ulevel / 3) );
 		/* If you throw using a propellor, you don't get a strength
@@ -2555,7 +2575,22 @@ int dieroll;
 		adjalign(-5);
 		u.ualign.sins++;
 		u.alignlim--;
-	    } else if ((u.ualign.type == A_LAWFUL) && !Race_if(PM_POISONER) && (u.ualign.record > -10)) {
+	    }
+	    if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && !Race_if(PM_POISONER)) {
+		You("dishonorably use a poisoned weapon!");
+		adjalign(-1);
+		adjalign(-5);
+		u.ualign.sins++;
+		u.alignlim--;
+	    }
+	    if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && !Race_if(PM_POISONER)) {
+		You("dishonorably use a poisoned weapon!");
+		adjalign(-1);
+		adjalign(-5);
+		u.ualign.sins++;
+		u.alignlim--;
+	    }
+	    if ((u.ualign.type == A_LAWFUL) && !Race_if(PM_POISONER) && (u.ualign.record > -10)) {
 		You_feel("like an evil coward for using a poisoned weapon.");
 		adjalign(-5);
 	    }
@@ -2594,6 +2629,35 @@ int dieroll;
 			 mon_nam(mon), canseemon(mon) ? exclam(tmp) : ".");
 	    if (jousting < 0) {
 		Your("%s shatters on impact!", xname(obj));
+
+		if (obj->oartifact == ART_LUCKY_SHARDS) {
+
+			if (P_MAX_SKILL(P_LANCE) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_LANCE);
+				pline("You can now learn the lance skill!");
+			} else if (P_MAX_SKILL(P_LANCE) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_LANCE);
+				pline("You can now learn the lance skill!");
+				P_MAX_SKILL(P_LANCE) = P_BASIC;
+			} else if (P_MAX_SKILL(P_LANCE) == P_BASIC) {
+				P_MAX_SKILL(P_LANCE) = P_SKILLED;
+				pline("You can now become skilled with lances!");
+			} else if (P_MAX_SKILL(P_LANCE) == P_SKILLED) {
+				P_MAX_SKILL(P_LANCE) = P_EXPERT;
+				pline("You can now become expert with lances!");
+			} else if (P_MAX_SKILL(P_LANCE) == P_EXPERT) {
+				P_MAX_SKILL(P_LANCE) = P_MASTER;
+				pline("You can now become master with lances!");
+			} else if (P_MAX_SKILL(P_LANCE) == P_MASTER) {
+				P_MAX_SKILL(P_LANCE) = P_GRAND_MASTER;
+				pline("You can now become grand master with lances!");
+			} else if (P_MAX_SKILL(P_LANCE) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_LANCE) = P_SUPREME_MASTER;
+				pline("You can now become supreme master with lances!");
+			} else pline("Sadly your knowledge of the lance skill is already maxed.");
+
+		}
+
 		/* (must be either primary or secondary weapon to get here) */
 		u.twoweap = FALSE;      /* untwoweapon() is too verbose here */
 		if (obj == uwep) uwepgone();            /* set unweapon */
@@ -4199,8 +4263,8 @@ register struct attack *mattk;
 		break;
 
 	    case AD_RAGN:
-		ragnarok();
-		if (isevilvariant && u.ulevel > 1) evilragnarok(u.ulevel);
+		ragnarok(FALSE);
+		if (isevilvariant && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
 		break;
 
 	    case AD_AGGR:
@@ -5075,8 +5139,8 @@ register struct attack *mattk;
 		break;
 
 	    case AD_RAGN:
-		ragnarok();
-		if (isevilvariant && u.ulevel > 1) evilragnarok(u.ulevel);
+		ragnarok(FALSE);
+		if (isevilvariant && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
 		break;
 
 	    case AD_AGGR:
@@ -7170,8 +7234,8 @@ uchar aatyp;
 
 	    case AD_RAGN:
 
-		ragnarok();
-		if (isevilvariant && mon->m_lev > 1) evilragnarok(mon->m_lev);
+		ragnarok(FALSE);
+		if (isevilvariant && mon->m_lev > 1) evilragnarok(FALSE,mon->m_lev);
 		break;
 
 	    case AD_AGGR:
@@ -7935,7 +7999,7 @@ uchar aatyp;
 					}
 					if(!rn2(6) && uarmg && !uwep){
 						You_feel("%s pull on your gloves!",mon_nam(mon));
-						if( rnd(40) > ACURR(A_STR)){
+						if( rnd(130) > ACURR(A_STR)){
 							Your("gloves are sucked off!");
 							optr = uarmg;
 							if (donning(optr)) cancel_don();

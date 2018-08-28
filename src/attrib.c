@@ -1878,14 +1878,18 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) tmp += 5;
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) tmp += 1;
 		if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) tmp += 5;
+		if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
+		if (uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
 
 		if (FemaleTrapThai) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
+
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
+		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
+		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
-		if (uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
 
 			 return((tmp >= 125) ? 125 : (tmp <= 3) ? 3 : tmp);
 	} else if (x == A_CHA) {
@@ -2008,15 +2012,16 @@ int x;
 		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
 		if (x == A_INT && uwep && uwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) tmp += 8;
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) tmp += 1;
+		if (x == A_INT && uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp += 5;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
+		if (uarmh && uarmh->otyp == HELM_OF_BRILLIANCE) tmp += uarmh->spe;
 
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
 
-		if (uarmh && uarmh->otyp == HELM_OF_BRILLIANCE) tmp += uarmh->spe;
 		if (uarmh && uarmh->otyp == DUNCE_CAP) return(Role_if(PM_JESTER) ? 9 : 6);
 	} else if (x == A_DEX) {
 
@@ -2033,6 +2038,8 @@ int x;
 		if (uright && uright->oartifact == ART_GUARANTEED_HIT_POWER) tmp += uright->spe;
 		if (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) tmp += 5;
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) tmp += 1;
+		if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
+		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 10;
 
 		if (FemaleTrapThai) tmp -= 2;
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
@@ -2040,7 +2047,6 @@ int x;
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
 		if (have_lowstatstone()) tmp -= 10;
-		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 10;
 
 	} else { /* A_CON */
 
@@ -2051,9 +2057,13 @@ int x;
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "rubynus helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "rubinovyy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "yoqut asosiy dubulg'a") )) tmp += 2;
 		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "thinking helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "myslyashchiy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "fikr dubulg'a") )) tmp += 1;
 		if (uarmh && uarmh->oartifact == ART_ELONA_S_SNAIL_TRAIL && Race_if(PM_ELONA_SNAIL)) tmp += 10;
+		if (x == A_INT && uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp += 5;
+		if (uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp -= 10;
+
+		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
+		if (uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 
 		if (FemaleTrapJessica) tmp -= 5;
-		if (uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp -= 10;
 
 		if (AllStatsAreLower) tmp -= 10;
 		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;

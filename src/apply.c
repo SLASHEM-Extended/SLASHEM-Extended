@@ -3474,6 +3474,17 @@ use_pole (obj)
 	max_range = 8;
 #endif
 
+	if (obj->otyp == NOOB_POLLAX || obj->otyp == GREAT_POLLAX) max_range += 5;
+	if (obj->oartifact == ART_ETHER_PENETRATOR) max_range += 5;
+	if (obj->oartifact == ART_FUURKER) max_range += 6;
+	if (obj->otyp == WOODEN_BAR) max_range += 7;
+	if (obj->oartifact == ART_JAPANESE_WOMEN) min_range -= 3;
+	if (obj->oartifact == ART_YOU_RE_STUCCO) min_range += 40; /* can never apply it successfully --Amy */
+	if (obj->oartifact == ART_OVERLONG_STICK) {
+		max_range += 12;
+		min_range += 5;
+	}
+
 	if (distu(cc.x, cc.y) > max_range) {
 	    pline(Hallucination ? "Your stick's not long enough, it seems!" : "Too far!");
 	    return (res);
@@ -3584,7 +3595,7 @@ use_pole (obj)
 	/* The effect didn't apply.  Attack the monster there. */
 	if (mtmp) {
 
-	    if ((!rn2(1000) && !obj->oartifact) || (!rn2(10000) && obj->oartifact)) {
+	    if ((!rn2(1000) && !obj->oartifact) || (!rn2(250) && obj->otyp == WOODEN_BAR) || (!rn2(10000) && obj->oartifact)) {
 		if (obj->spe < 1) {
 			uwepgone();              /* set unweapon */
 			pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
@@ -3598,7 +3609,7 @@ use_pole (obj)
 		}
 	    }
 
-	    if ((!rn2(1000) && !obj->oartifact) || (!rn2(10000) && obj->oartifact)) {
+	    if ((!rn2(1000) && !obj->oartifact) || (!rn2(250) && obj->otyp == WOODEN_BAR) || (!rn2(10000) && obj->oartifact)) {
 
 		if (obj->oeroded >= 3 || obj->oeroded2 >= 3) {
 			uwepgone();              /* set unweapon */
@@ -3612,16 +3623,16 @@ use_pole (obj)
 
 	    }
 
-	    if (!rn2(100) && !mtmp->mpeaceful && !mtmp->mtame && !mtmp->mfrenzied && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
+	    if ((!rn2(100) || (!rn2(25) && obj->otyp == WOODEN_BAR)) && !mtmp->mpeaceful && !mtmp->mtame && !mtmp->mfrenzied && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
 		mtmp->mfrenzied = 1;
 		pline("%s is frenzied!", Monnam(mtmp));
 	    }
 
-	    if (!rn2(100) && !mtmp->mpeaceful && !mtmp->mtame && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
+	    if ((!rn2(100) || (!rn2(25) && obj->otyp == WOODEN_BAR)) && !mtmp->mpeaceful && !mtmp->mtame && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
 		mon_adjust_speed(mtmp, 1, (struct obj *)0);
 	    }
 
-	    if (!rn2(200) && attacktype(mtmp->data, AT_WEAP)) {
+	    if ((!rn2(200) || (!rn2(25) && obj->otyp == WOODEN_BAR)) && attacktype(mtmp->data, AT_WEAP)) {
 		pline("%s laughs fiendishly, and snatches your weapon!", Monnam(mtmp));
 		setnotworn(obj);
 		freeinv(obj);
@@ -3644,6 +3655,34 @@ use_pole (obj)
 		    if (obj && obj->oartifact == ART_RIGHTLASH_LEFT && !rn2(100) && obj->spe < 15) {
 			obj->spe++;
 			pline("Your weapon seems sharper!");
+		    }
+
+		    if (obj && obj->oartifact == ART_ROYAL_CASINO_BETS) {
+
+			if (!rn2(1000) && obj->spe < 5) {
+				obj->spe += rnd(5);
+				if (obj->spe > 5) obj->spe = 5;
+				pline("Ding, we have a winner! Your weapon is +%d now.", obj->spe);
+			}
+			if (!rn2(10000) && obj->spe < 10) {
+				obj->spe += rnd(10);
+				if (obj->spe > 10) obj->spe = 10;
+				pline("Awesome, you scored a big win!!! Now your weapon's enchantmend was boosted to +%d!", obj->spe);
+			}
+			if (!rn2(100000) && obj->spe < 15) {
+				obj->spe += rnd(15);
+				if (obj->spe < 5) obj->spe = 5;
+				if (obj->spe > 15) obj->spe = 15;
+				pline("Way to go, %s! You're an extremely lucky individual and your weapon has an awesome +%d enchantment now!!!", plname, obj->spe);
+			}
+			if (!rn2(1000000) && obj->spe < 20) {
+				obj->spe += rnd(20);
+				if (obj->spe < 12) obj->spe = 12;
+				if (obj->spe > 20) obj->spe = 20;
+				pline("JACKPOT!!!!!!! %s, you're the new champion of the Royal Casino and as a reward we boost your weapon's enchantment all the way to %d!!! Far out, you beat the impossible odds!", plname, obj->spe);
+				change_luck(20);
+			}
+
 		    }
 
 		    if (obj && obj->oartifact == ART_HEALHEALHEALHEAL) {

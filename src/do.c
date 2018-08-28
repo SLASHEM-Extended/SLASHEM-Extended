@@ -3896,9 +3896,9 @@ rerollchaloc:
 		if (on_level(&u.uz, &fire_level))
 			create_umplayers(rn1(2, 1), TRUE);
 		if (on_level(&u.uz, &sanctum_level))
-			create_umplayers(rn1(2, 1), TRUE);
+			create_umplayers(rn1(2, 1), FALSE);
 		if (on_level(&u.uz, &valley_level))
-			create_umplayers(rn1(6, 5), TRUE); /* valley of the dead has more undead --Amy */
+			create_umplayers(rn1(6, 5), FALSE); /* valley of the dead has more undead --Amy */
 
 		if (ishaxor && on_level(&u.uz, &earth_level))
 			create_umplayers(rn1(2, 1), TRUE);
@@ -3909,9 +3909,9 @@ rerollchaloc:
 		if (ishaxor && on_level(&u.uz, &fire_level))
 			create_umplayers(rn1(2, 1), TRUE);
 		if (ishaxor && on_level(&u.uz, &sanctum_level))
-			create_umplayers(rn1(2, 1), TRUE);
+			create_umplayers(rn1(2, 1), FALSE);
 		if (ishaxor && on_level(&u.uz, &valley_level))
-			create_umplayers(rn1(6, 5), TRUE); /* valley of the dead has more undead --Amy */
+			create_umplayers(rn1(6, 5), FALSE); /* valley of the dead has more undead --Amy */
 
 	} else {
 		/* returning to previously visited level; reload it */

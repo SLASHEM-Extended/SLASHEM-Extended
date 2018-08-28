@@ -1190,6 +1190,8 @@ boolean hitsroof;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_SI_OH_WEE) dmg += 2;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) dmg += rnd(5);
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) dmg += 1;
+	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
+	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
 
 	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (u.ulevel / 3) );
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
@@ -1783,6 +1785,7 @@ int thrown;
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
+	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
@@ -1793,6 +1796,8 @@ int thrown;
 	if (uwep && uwep->oartifact == ART_ATOMIC_MISSING) tmp -= 20;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
 	if (uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
+	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 
 	if (is_grassland(u.ux, u.uy)) tmp -= rnd(5);
 

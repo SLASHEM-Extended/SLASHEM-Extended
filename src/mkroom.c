@@ -460,6 +460,9 @@ struct mkroom *sroom;
 		if (rn2(5)) specialzootype = 1 + rnd(16);
 	}
 
+	boolean aggravatemonsteron = FALSE;
+	boolean uglynastyhack = FALSE;
+
 	int sleepchance = 10;
 	if (!rn2(10)) sleepchance -= rnd(10);
 
@@ -603,6 +606,7 @@ struct mkroom *sroom;
 	if (!rn2(50) || (type == VOIDROOM) ) {
 		u.aggravation = 1;
 		reset_rndmonst(NON_PM);
+		aggravatemonsteron = TRUE;
 	}
 
 	for(sx = sroom->lx; sx <= sroom->hx; sx++)
@@ -627,8 +631,21 @@ struct mkroom *sroom;
 		if (type == CURSEDMUMMYROOM) { /* ugly hack to make the lich into an OOD monster but not the remaining stuff */
 			if (sx == tx && sy == ty) {
 				u.aggravation = 1;
+				u.heavyaggravation = 1;
+				uglynastyhack = 1;
+				DifficultyIncreased += 1;
+				HighlevelStatus += 1;
 				reset_rndmonst(NON_PM);
-			} else u.aggravation = 0;
+			} else if (!aggravatemonsteron) {
+				u.aggravation = 0;
+				u.heavyaggravation = 0;
+			} else u.heavyaggravation = 0;
+
+			if (!(sx == tx && sy == ty) && uglynastyhack) {
+				uglynastyhack = FALSE;
+				if (DifficultyIncreased > 0) DifficultyIncreased -= 1;
+				if (HighlevelStatus > 0) HighlevelStatus -= 1;
+			}
 		}
 
 		if ( (rnd(100) <= moreorless) && (type != EMPTYNEST) ) mon = makemon(

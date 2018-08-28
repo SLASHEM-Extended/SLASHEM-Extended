@@ -592,7 +592,10 @@ badeffect()
 		}
 	}
 
-	switch (rnd(415)) {
+	/* something bad is happening... it would be assholey to not interrupt the player --Amy */
+	stop_occupation();
+
+	switch (rnd(416)) {
 
 		case 1:
 		case 2:
@@ -1763,6 +1766,18 @@ badeffect()
 
 		break;
 
+		case 416:
+
+			if (!rn2(64)) {
+				ragnarok(TRUE);
+				if (isevilvariant) evilragnarok(TRUE, level_difficulty());
+			} else if (!rn2(isevilvariant ? 100 : 10000)) {
+				pline("OH MY GOD the dungeon master rolled the jackpot. You're screwed.");
+				datadeleteattack();
+			}
+
+		break;
+
 		default:
 		break;
 	}
@@ -1770,14 +1785,15 @@ badeffect()
 }
 
 void
-ragnarok()
-
+ragnarok(guaranteed)
+boolean guaranteed;
 {
 	register int x,y;
 
-	if (rn2(64)) return;
+	if (rn2(64) && !guaranteed) return;
 
 	u.aggravation = 1;
+	u.heavyaggravation = 1;
 	DifficultyIncreased += 1;
 	HighlevelStatus += 1;
 	EntireLevelMode += 1;
@@ -1820,17 +1836,23 @@ ragnarok()
 
 	}
 
+	if (!rn2(5)) create_mplayers(rnd(12), TRUE);
+
 	u.aggravation = 0;
+	u.heavyaggravation = 0;
+
+	stop_occupation();
 
 }
 
 void
-evilragnarok(wflevel)
+evilragnarok(guaranteed, wflevel)
+boolean guaranteed;
 int wflevel;
 {
 	register struct monst *mtmp, *mtmp2;
 
-	if (rn2(64)) return;
+	if (rn2(64) && !guaranteed) return;
 
 	for (mtmp = fmon; mtmp; mtmp = mtmp2) {
 		mtmp2 = mtmp->nmon;
@@ -1849,6 +1871,8 @@ int wflevel;
 		u.youaredead = 0;
 
 	}
+
+	stop_occupation();
 
 }
 
@@ -1907,6 +1931,8 @@ destroyarmorattack()
 
 	}
 
+	stop_occupation();
+
 }
 
 void
@@ -1915,6 +1941,7 @@ datadeleteattack()
 {
 
 	Your("data is deleted!");
+	stop_occupation();
 
 	switch (rnd(17)) {
 
@@ -2878,8 +2905,8 @@ dodrink()
 		else useupf(otmp, 1L);
 		return(1);
 	    } else if (!strcmp(potion_descr, "endbringer") && !rn2(64)) {
-		ragnarok();
-		if (isevilvariant) evilragnarok(level_difficulty());
+		ragnarok(TRUE);
+		if (isevilvariant) evilragnarok(TRUE,level_difficulty());
 	    } else if (!strcmp(potion_descr, "deadweight") && !rn2(10)) {
 		pline("Some sinister force causes you to wear an item!");
 		bad_equipment();

@@ -5888,6 +5888,61 @@ newbossC:
 		makewish();
 		break;
 
+	case SCR_RAGNAROK:
+		known = TRUE;
+		ragnarok(TRUE);
+		if (isevilvariant) evilragnarok(TRUE,level_difficulty());
+
+		break;
+
+	case SCR_OFFLEVEL_ITEM:
+		known = TRUE;
+		{
+			register struct monst *offmon;
+			if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
+
+				register int inventcount = inv_cnt();
+
+				if (inventcount > 0) {
+					inventcount /= 8;
+					if (inventcount < 1) inventcount = 1;
+
+					while (inv_cnt() && inventcount) {
+						char bufof[BUFSZ];
+						bufof[0] = '\0';
+						steal(offmon, bufof, TRUE);
+						inventcount--;
+					}
+
+				}
+
+				mdrop_special_objs(offmon); /* make sure it doesn't tele to an unreachable place with the book of the dead or something */
+				if (u.uevent.udemigod) break;
+				else u_teleport_monB(offmon, TRUE);
+				pline("Some of your possessions have been stolen!");
+
+			} else pline("Somehow you feel that you just averted a major crisis.");
+
+		}
+		break;
+
+	case SCR_MATERIAL_CHANGE:
+
+		randommaterials();
+		pline("Item materials have been shuffled.");
+
+		break;
+
+	case SCR_ASTRALCENSION:
+		known = TRUE;
+		pline("An aura of extreme radiance floods the dungeon...");
+		if (Blind) {
+			pline("It's so strong that you can sense it even though you're blind!");
+			make_blinded((long)u.ucreamed,TRUE);
+		}
+		create_mplayers(1, TRUE);
+		break;
+
 	case SCR_ARTIFACT_CREATION:
 		known = TRUE;
 		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);

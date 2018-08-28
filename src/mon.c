@@ -4844,6 +4844,8 @@ xkilled(mtmp, dest)
 
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 
+	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) healup(mtmp->m_lev, 0, FALSE, FALSE);
+
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_BURN_BABY_BURN) {
 		healup(mtmp->m_lev, 0, FALSE, FALSE);
 		u.uen += mtmp->m_lev;

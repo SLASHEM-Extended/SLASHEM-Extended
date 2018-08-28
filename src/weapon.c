@@ -735,9 +735,9 @@ struct monst *mon;
 	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN) bonus += 1;
 
 	    /* high heels will absolutely wreck the elder priest */
-	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == DOGSHIT_BOOT) && (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])) bonus += 50;
+	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == STICKSHOE || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == DOGSHIT_BOOT) && (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])) bonus += 50;
 
-	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == DOGSHIT_BOOT) && (attacktype(mon->data, AT_TENT))) {
+	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == STICKSHOE || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == DOGSHIT_BOOT) && (attacktype(mon->data, AT_TENT))) {
 			bonus += 2;
 			if (otmp && otmp->spe > 0) bonus += otmp->spe;
 		}
@@ -1550,9 +1550,9 @@ struct monst *mon;
 		if (objects[otmp->otyp].oc_skill == P_WHIP && uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) bonus += 10;
 
 	    /* high heels will absolutely wreck the elder priest */
-	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == DOGSHIT_BOOT) && (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])) bonus += 50;
+	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == STICKSHOE || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == DOGSHIT_BOOT) && (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])) bonus += 50;
 
-	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == DOGSHIT_BOOT) && (attacktype(mon->data, AT_TENT))) {
+	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == STICKSHOE || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == DOGSHIT_BOOT) && (attacktype(mon->data, AT_TENT))) {
 			bonus += 2;
 			if (otmp && otmp->spe > 0) bonus += otmp->spe;
 		}
@@ -1681,13 +1681,13 @@ static NEARDATA const int rwep[] =
 };
 
 static NEARDATA const int pwep[] =
-{	TRAFFIC_LIGHT, GIANT_SCYTHE, THRESHER, FORCE_PIKE, DROVEN_LANCE,
+{	GREAT_POLLAX, WOODEN_BAR, TRAFFIC_LIGHT, GIANT_SCYTHE, THRESHER, FORCE_PIKE, DROVEN_LANCE,
 	HELMET_BEARD, POKER_STICK, COURSE_LANCE, HALBERD, BARDICHE, 
 	PHYSICIAN_BAR, SPETUM, BILL_GUISARME, VOULGE, RANSEUR, GUISARME,
-	BLACK_HALBERD, GARDEN_FORK, PITCHFORK,
+	BLACK_HALBERD, GARDEN_FORK, PITCHFORK, STICKSHOE,
 	GLAIVE, LUCERN_HAMMER, BEC_DE_CORBIN, FAUCHARD, PENIS_POLE, PIKE,
 	PARTISAN, ELVEN_LANCE, SCYTHE, ELVEN_SICKLE, SICKLE, BRONZE_LANCE, LANCE,
-	PARASOL, UMBRELLA
+	NOOB_POLLAX, PARASOL, UMBRELLA
 };
 
 
@@ -4138,7 +4138,7 @@ struct obj *weapon;
 	}
 
 	/* high heel skill improves whacking damage, but using them in melee does not train the skill --Amy */
-	if (weapon && !(PlayerCannotUseSkills) && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == INKA_BOOT || weapon->otyp == STEEL_CAPPED_SANDAL || weapon->otyp == DOGSHIT_BOOT) ) {
+	if (weapon && !(PlayerCannotUseSkills) && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == STICKSHOE || weapon->otyp == INKA_BOOT || weapon->otyp == STEEL_CAPPED_SANDAL || weapon->otyp == DOGSHIT_BOOT) ) {
 
 		switch (P_SKILL(P_HIGH_HEELS)) {
 			case P_BASIC: bonus += 1; break;
@@ -4167,7 +4167,7 @@ struct obj *weapon;
 
 	}
 
-	if (RngeHighHeeling && weapon && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == INKA_BOOT || weapon->otyp == STEEL_CAPPED_SANDAL || weapon->otyp == DOGSHIT_BOOT) ) bonus += rnd(10);
+	if (RngeHighHeeling && weapon && (weapon->otyp == WEDGED_LITTLE_GIRL_SANDAL || weapon->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || weapon->otyp == BLOCK_HEELED_COMBAT_BOOT || weapon->otyp == WOODEN_GETA || weapon->otyp == LACQUERED_DANCING_SHOE || weapon->otyp == HIGH_HEELED_SANDAL || weapon->otyp == STICKSHOE || weapon->otyp == SEXY_LEATHER_PUMP || weapon->otyp == INKA_BOOT || weapon->otyp == STEEL_CAPPED_SANDAL || weapon->otyp == DOGSHIT_BOOT) ) bonus += rnd(10);
 
 	if (weapon && weapon->oartifact == ART_PUNISHMENT_FOR_YOU && !(PlayerCannotUseSkills) ) {
 

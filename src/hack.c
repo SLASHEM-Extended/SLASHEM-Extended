@@ -1049,7 +1049,7 @@ int mode;
 	if (tmpr->typ == IRONBARS) {
 	    if (!(Passes_walls || passes_bars(youmonst.data) || (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) )) {
 		if (mode == DO_MOVE) {
-			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) ) {
 				You("crash into a set of iron bars! Ouch!");
 
 				losehp(rnd(10), "walking into iron bars", KILLED_BY);
@@ -1108,7 +1108,7 @@ int mode;
 
 		if (mode == DO_MOVE && !Levitation && !Flying && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
 
-			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
 				You("crash into a farmland! Ouch!");
 
 				losehp(rnd(10), "walking into a farmland", KILLED_BY);
@@ -1133,7 +1133,7 @@ int mode;
 		if (mode != DO_MOVE && !Passes_walls && (Flying || Levitation)) return FALSE;
 		if (mode == DO_MOVE && !Passes_walls && (Flying || Levitation)) {
 
-			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
 				You("crash into a tunnel! Ouch!");
 
 				losehp(rnd(10), "walking into a tunnel", KILLED_BY);
@@ -1178,7 +1178,7 @@ int mode;
 
 		if (mode == DO_MOVE && !Passes_walls && (Flying || Levitation)) {
 
-			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
 				You("crash into a water tunnel! Ouch!");
 
 				losehp(rnd(10), "walking into a water tunnel", KILLED_BY);
@@ -1218,7 +1218,7 @@ int mode;
 		if (!(Is_stronghold(&u.uz) && is_db_wall(x,y)) && !(Passes_walls && !may_passwall(x,y) && In_sokoban(&u.uz))) {
 			if (tmpr->typ == TREE && mode == DO_MOVE) {
 
-				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
 					You("crash into a tree! Ouch!");
 
 					losehp(rnd(10), "walking into a tree", KILLED_BY);
@@ -1234,7 +1234,7 @@ int mode;
 
 			} else if (mode == DO_MOVE) {
 
-				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
 					You("crash into a wall! Ouch!");
 
 					losehp(rnd(10), "walking into a wall", KILLED_BY);
@@ -1282,13 +1282,13 @@ int mode;
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
-		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone() || u.totter || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() ) ) {
+		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || have_rmbstone() || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) ) ) {
 			    door_opened = flags.move = doopen_indir(x, y);
 			    opentry = 1;
 		    }
 		    else if (x == ux || y == uy) {
 
-			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+			if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
 				You("crash into a door! Ouch!");
 
 				losehp(rnd(10), "walking into a door", KILLED_BY);
@@ -1320,7 +1320,7 @@ int mode;
 		} else if (mode == TEST_TRAV) goto testdiag;
 		if (mode == DO_MOVE) {
 
-				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone()) {
+				if (Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) {
 					You("crash into a door! Ouch!");
 
 					losehp(rnd(10), "walking into a door", KILLED_BY);

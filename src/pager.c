@@ -18996,6 +18996,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"The painalope is already berserk.",
 	"You hear Amy say 'Bundlebundlebundle!'",
 	"Oops, you seem to have pressed the wand too hard with your fat hands... The wand of death suddenly explodes!",
+	"An aura of extreme radiance floods the dungeon...",
+	"An aura of extreme radiance floods the dungeon... It's so strong that you can sense it even though you're blind!",
+	"An aura of extreme radiance floods the dungeon... and for the first time in your life, you can see!",
+	"OH MY GOD the dungeon master rolled the jackpot. You're screwed.",
+	"OH MY GOD the dungeon master rolled the jackpot. You're screwed. This message means that your data is deleted now.",
+	"Item materials have been shuffled.",
+	"Somehow you feel that you just averted a major crisis.",
+	"Some of your possessions have been stolen!",
 
 };
 

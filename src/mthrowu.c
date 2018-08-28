@@ -8,7 +8,7 @@ STATIC_DCL int drop_throw(struct monst *, struct obj *,BOOLEAN_P,int,int);
 
 #define URETREATING(x,y) (distmin(u.ux,u.uy,x,y) > distmin(u.ux0,u.uy0,x,y))
 
-#define POLE_LIM 5	/* How far monsters can use pole-weapons */
+#define POLE_LIM 8	/* How far monsters can use pole-weapons */
 
 #ifndef OVLB
 
@@ -1046,6 +1046,8 @@ struct monst *mtmp;
 	const char *onm;
 	int chance;
 
+	int polelimit = POLE_LIM;
+
 	/* Rearranged beginning so monsters can use polearms not in a line */
 	if (mtmp->weapon_check == NEED_WEAPON || !MON_WEP(mtmp)) {
 	    mtmp->weapon_check = NEED_RANGED_WEAPON;
@@ -1060,7 +1062,14 @@ struct monst *mtmp;
 	if ((MON_WEP(mtmp) == otmp) && is_pole(otmp)) {
 	    int dam, hitv;
 
-	    if (dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > POLE_LIM ||
+		if (otmp->otyp == NOOB_POLLAX || otmp->otyp == GREAT_POLLAX) polelimit += 5;
+		if (otmp->oartifact == ART_ETHER_PENETRATOR) polelimit += 5;
+		if (otmp->oartifact == ART_FUURKER) polelimit += 6;
+		if (otmp->otyp == WOODEN_BAR) polelimit += 7;
+		if (otmp->oartifact == ART_OVERLONG_STICK) polelimit += 12;
+		/* monsters cheat and ignore the increased minimum range :P */
+
+	    if (dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > polelimit ||
 		    !couldsee(mtmp->mx, mtmp->my))
 		return;	/* Out of range, or intervening wall */
 

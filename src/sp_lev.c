@@ -3763,6 +3763,9 @@ retryrandtype:
 				level.flags.vault_is_cursed = TRUE;
 
 				u.aggravation = 1; /* make them high-level for good measure --Amy */
+				u.heavyaggravation = 1; /* make them really high-level */
+				DifficultyIncreased += 1; /* make them REALLY high-level (ugly hack) */
+				HighlevelStatus += 1; /* and make the high-level ones more likely to spawn (ugly hack #2) */
 				reset_rndmonst(NON_PM);
 
 				mtmp = makemon(mkclass(S_LICH,0),croom->lx,croom->ly,NO_MM_FLAGS);
@@ -3777,6 +3780,9 @@ retryrandtype:
 				}
 
 				u.aggravation = 0;
+				u.heavyaggravation = 0;
+				if (DifficultyIncreased > 0) DifficultyIncreased -= 1;
+				if (HighlevelStatus > 0) HighlevelStatus -= 1;
 
 			}
 

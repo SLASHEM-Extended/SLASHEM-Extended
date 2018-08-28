@@ -2681,6 +2681,16 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ VIOLET_LIGHTSABER, "fioletovyy svetovoy mech" },
 	{ WHITE_DOUBLE_LIGHTSABER, "belyy dvoynoy svetovoy mech" },
 
+	/* todo area */
+	{ SCR_ASTRALCENSION, "astralcension" },
+	{ SCR_RAGNAROK, "ragnarok" },
+	{ SCR_MATERIAL_CHANGE, "material change" },
+	{ SCR_OFFLEVEL_ITEM, "offlevel item" },
+	{ STICKSHOE, "stickshoe" },
+	{ NOOB_POLLAX, "noob pollax" },
+	{ GREAT_POLLAX, "great pollax" },
+	{ WOODEN_BAR, "wooden bar" },
+
 	{0, "" }
 };
 
@@ -4828,6 +4838,16 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ WHITE_LIGHTSABER, "oq rangli chiroqlar" },
 	{ VIOLET_LIGHTSABER, "binafsha rangli chiroqlar" },
 	{ WHITE_DOUBLE_LIGHTSABER, "oq juft nurli" },
+
+	/* todo area */
+	{ SCR_ASTRALCENSION, "astralcension" },
+	{ SCR_RAGNAROK, "ragnarok" },
+	{ SCR_MATERIAL_CHANGE, "material change" },
+	{ SCR_OFFLEVEL_ITEM, "offlevel item" },
+	{ STICKSHOE, "stickshoe" },
+	{ NOOB_POLLAX, "noob pollax" },
+	{ GREAT_POLLAX, "great pollax" },
+	{ WOODEN_BAR, "wooden bar" },
 
 	{0, "" }
 };
@@ -8024,7 +8044,7 @@ typfnd:
 	    typ = OIL_LAMP;
 
 	/* obviously don't allow wishing for scrolls of wishing --Amy */
-	if ((typ == SCR_WISHING || typ == SCR_ARTIFACT_CREATION || typ == SCR_ARTIFACT_JACKPOT || typ == SCR_RESURRECTION || typ == SCR_ACQUIREMENT || typ == SCR_ENTHRONIZATION || typ == SCR_FOUNTAIN_BUILDING)
+	if ((typ == SCR_WISHING || typ == SCR_ASTRALCENSION || typ == SCR_ARTIFACT_CREATION || typ == SCR_ARTIFACT_JACKPOT || typ == SCR_RESURRECTION || typ == SCR_ACQUIREMENT || typ == SCR_ENTHRONIZATION || typ == SCR_FOUNTAIN_BUILDING)
 #ifdef WIZARD
 				&& !wizard
 #endif

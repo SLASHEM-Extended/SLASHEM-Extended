@@ -207,6 +207,14 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_LENG_S_KRYPTONITE && (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])) {
+
+		dmg += 50;
+		pline("SPLAT! The elder priest's tentacles are crushed underneath your very lovely high heels!");
+		/* unfortunately he has enough HP that he can still survive even though he already took 50 due to the heels */
+
+	}
+
 	if (PlayerInHighHeels && attacktype(mon->data, AT_TENT)) {
 		dmg += 2;
 		if (uarmf && uarmf->spe > 0) dmg += uarmf->spe;

@@ -1715,8 +1715,8 @@ physical:
 
 	    case AD_RAGN:
 
-		ragnarok();
-		if (isevilvariant && magr->m_lev > 1) evilragnarok(magr->m_lev);
+		ragnarok(FALSE);
+		if (isevilvariant && magr->m_lev > 1) evilragnarok(FALSE,magr->m_lev);
 		break;
 
 	    case AD_AGGR:
@@ -2727,8 +2727,8 @@ int mdead;
 		break;
 
 	    case AD_RAGN:		
-		ragnarok();
-		if (isevilvariant && mdef->m_lev > 1) evilragnarok(mdef->m_lev);
+		ragnarok(FALSE);
+		if (isevilvariant && mdef->m_lev > 1) evilragnarok(FALSE,mdef->m_lev);
 		break;
 
 	    case AD_AGGR:

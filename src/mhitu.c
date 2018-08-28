@@ -4142,8 +4142,18 @@ elena37:
 	}
 
 	if (uimplant && uimplant->oartifact == ART_POTATOROK && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
-		ragnarok();
-		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(mtmp->m_lev);
+		ragnarok(FALSE);
+		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
+	}
+
+	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
+		ragnarok(FALSE);
+		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
+	}
+
+	if (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
+		ragnarok(FALSE);
+		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 	}
 
 	/* and now, the unholy satanic motherfucker from hell, aka the most evil monster in existence... --Amy
@@ -4166,8 +4176,8 @@ elena37:
 		}
 
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
-			ragnarok();
-			if (isevilvariant && mtmp->m_lev > 1) evilragnarok(mtmp->m_lev);
+			ragnarok(FALSE);
+			if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 		}
 
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
@@ -6947,8 +6957,8 @@ dopois:
 	    case AD_RAGN:
 
 		hitmsg(mtmp, mattk);
-		ragnarok();
-		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(mtmp->m_lev);
+		ragnarok(FALSE);
+		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 
 		break;
 
@@ -7466,7 +7476,7 @@ dopois:
 					}
 					if(!rn2(6) && uarmg && !uwep){
 						You_feel("%s pull on your gloves!",mon_nam(mtmp));
-						if( rnd(40) > ACURR(A_STR)){
+						if( rnd(130) > ACURR(A_STR)){
 							Your("gloves are sucked off!");
 							optr = uarmg;
 							if (donning(optr)) cancel_don();
@@ -9233,8 +9243,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 		case AD_RAGN:
 
-			ragnarok();
-			if (isevilvariant && mtmp->m_lev > 1) evilragnarok(mtmp->m_lev);
+			ragnarok(FALSE);
+			if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 			break;
 
 		case AD_DEST:
@@ -10616,7 +10626,7 @@ do_stone2:
 					}
 					if(!rn2(6) && uarmg && !uwep){
 						You_feel("a pull on your gloves!");
-						if( rnd(40) > ACURR(A_STR)){
+						if( rnd(130) > ACURR(A_STR)){
 							Your("gloves are sucked off!");
 							optr = uarmg;
 							if (donning(optr)) cancel_don();
@@ -11593,8 +11603,8 @@ common:
 	    case AD_RAGN:
 
 		mdamageu(mtmp, tmp);
-		ragnarok();
-		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(mtmp->m_lev);
+		ragnarok(TRUE);
+		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(TRUE,mtmp->m_lev);
 		break;
 
 	    case AD_DEST:
@@ -12302,7 +12312,7 @@ common:
 					}
 					if(!rn2(2) && uarmg && !uwep){
 						pline("You're having difficulties keeping your gloves on!");
-						if( rnd(40) > ACURR(A_STR)){
+						if( rnd(130) > ACURR(A_STR)){
 							Your("gloves are sucked off!");
 							optr = uarmg;
 							if (donning(optr)) cancel_don();
@@ -15153,7 +15163,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 					}
 					if(!rn2(6) && uarmg && !uwep){
 						You_feel("%s pull on your gloves!",mon_nam(mtmp));
-						if( rnd(40) > ACURR(A_STR)){
+						if( rnd(130) > ACURR(A_STR)){
 							Your("gloves are sucked off!");
 							optr = uarmg;
 							if (donning(optr)) cancel_don();
@@ -16099,8 +16109,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 			pline("%s mumbles an eldritch incantation!", Monnam(mtmp));
-			ragnarok();
-			if (isevilvariant && mtmp->m_lev > 1) evilragnarok(mtmp->m_lev);
+			ragnarok(FALSE);
+			if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 		}
 
 		break;
@@ -18591,8 +18601,8 @@ register struct attack *mattk;
 		break;
 
 	    case AD_RAGN:
-		ragnarok();
-		if (isevilvariant && u.ulevel > 1) evilragnarok(u.ulevel);
+		ragnarok(FALSE);
+		if (isevilvariant && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
 		break;
 
 	    case AD_AGGR:

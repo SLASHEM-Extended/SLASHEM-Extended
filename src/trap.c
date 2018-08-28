@@ -8695,8 +8695,8 @@ madnesseffect:
 
 			seetrap(trap);
 			pline("CLICK! You have triggered a trap!");
-			ragnarok();
-			if (isevilvariant) evilragnarok(level_difficulty());
+			ragnarok(FALSE);
+			if (isevilvariant) evilragnarok(FALSE,level_difficulty());
 
 		 break;
 

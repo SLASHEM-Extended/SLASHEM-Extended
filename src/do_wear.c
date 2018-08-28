@@ -2326,6 +2326,11 @@ Shield_on()
 			curse(uarms);
 		}
     }
+    if (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) {
+		if (!uarms->cursed) {
+			curse(uarms);
+		}
+    }
     if (uarms && uarms->oartifact == ART_CCC_CCC_CCCCCCC) {
 		if (!uarms->cursed) {
 			curse(uarms);

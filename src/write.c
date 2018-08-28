@@ -21,7 +21,6 @@ register struct obj *otmp;
 # ifdef MAIL
 	case SCR_MAIL:
 		return(2);
-/*		break; */
 # endif
 	case SCR_STANDARD_ID:
 	case SCR_WOUNDS:
@@ -42,7 +41,6 @@ register struct obj *otmp;
 	case SCR_CURE_BLINDNESS:
 	case SCR_ROOT_PASSWORD_DETECTION:
 		return(8);
-/*		break; */
 	case SCR_MANA:
 	case SCR_DESTROY_ARMOR:
 	case SCR_DESTROY_WEAPON:
@@ -57,18 +55,15 @@ register struct obj *otmp;
 	case SCR_PROOF_ARMOR:
 	case SCR_PROOF_WEAPON:
 		return(10);
-/*		break; */
 	case SCR_CONFUSE_MONSTER:
 	case SCR_PHASE_DOOR:
 		return(12);
-/*		break; */
 	case SCR_IDENTIFY:
 	case SCR_STONING:
 	case SCR_BULLSHIT:
 	case SCR_REVERSE_IDENTIFY:
 	case SCR_SCARE_MONSTER:
 		return(14);
-/*		break; */
 	case SCR_TAMING:
 	case SCR_TELEPORTATION:
 	case SCR_FLOOD:
@@ -91,7 +86,6 @@ register struct obj *otmp;
 	case SCR_UNDO_GENOCIDE:
 	case SCR_RANDOM_ENCHANTMENT:
 		return(20);
-/*		break; */
 	/* KMH, balance patch -- more useful scrolls cost more */
 	case SCR_STINKING_CLOUD:
 	case SCR_ENCHANT_ARMOR:
@@ -106,11 +100,11 @@ register struct obj *otmp;
 	case SCR_MEGALOAD:
 	case SCR_WONDER:
 	case SCR_GEOLYSIS:
+	case SCR_OFFLEVEL_ITEM:
 	case SCR_SECURE_IDENTIFY:
 	case SCR_REPAIR_ITEM:
 	case SCR_EXTRA_HEALING:
 		return(24);
-/*		break; */
 	case SCR_RESISTANCE:
 	case SCR_GENOCIDE:
 	case SCR_CURE:
@@ -123,11 +117,11 @@ register struct obj *otmp;
 	case SCR_TRAP_DISARMING:
 	case SCR_FLOOD_TIDE:
 	case SCR_EBB_TIDE:
+	case SCR_MATERIAL_CHANGE:
 	case SCR_CREATE_FACILITY:
 	case SCR_SUMMON_GHOST:
 	case SCR_GREATER_MANA_RESTORATION:
 		return(30);
-/*		break; */
 	case SCR_GAIN_MANA:
 	case SCR_LOCKOUT:
 	case SCR_WARD:
@@ -139,16 +133,19 @@ register struct obj *otmp;
 	case SCR_ITEM_GENOCIDE:
 	case SCR_POWER_HEALING:
 		return(40);
-/*		break; */
 	case SCR_CONSECRATION:
 	case SCR_BOSS_COMPANION:
 	case SCR_ANTIMAGIC:
 	case SCR_INVENTORY_ID:
 	case SCR_SKILL_UP:
 	case SCR_ALTER_REALITY:
-	case SCR_WORLD_FALL:
 		return(50);
-/*		break; */
+	case SCR_RAGNAROK:
+		return(64);
+	case SCR_WORLD_FALL:
+		return(100);
+	case SCR_ASTRALCENSION: /* more expensive than the max # of charges in a marker on purpose --Amy */
+		return(150);
 	case SCR_BLANK_PAPER:
 	case SCR_COPYING:
 	case SCR_WISHING:

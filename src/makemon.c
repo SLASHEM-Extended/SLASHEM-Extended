@@ -7608,6 +7608,7 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_JANE_S_HUGGING_BOOT) { (void) mongets(mtmp, HUGGING_BOOT); (void) mongets(mtmp, SCR_TELEPORTATION); }
 
 		if (mtmp->data == &mons[PM_SMALL_TRICKSTER]) (void) mongets(mtmp, VOULGE);
+		if (mtmp->data == &mons[PM_ULTRA_EVIL_TRAPPER]) (void) mongets(mtmp, SCR_OFFLEVEL_ITEM);
 		if (mtmp->data == &mons[PM_TRICKSTER]) (void) mongets(mtmp, FAUCHARD);
 		if (ptr == &mons[PM_TRICKSTER_CANDIDATE]) {
 			(void) mongets(mtmp, RANSEUR);
@@ -15011,6 +15012,16 @@ register int	mmflags;
 		mtmp->egotype_abomination = 1;
 	}
 
+	if (!rn2(100) && uwep && uwep->oartifact == ART_AMY_S_SEX_TOY) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_seducer = 1;
+	}
+
+	if (!rn2(100) && uswapwep && uswapwep->oartifact == ART_AMY_S_SEX_TOY) {
+		mtmp->isegotype = 1;
+		mtmp->egotype_seducer = 1;
+	}
+
 	if (!rn2(50) && uwep && uwep->oartifact == ART_ARABSTREET_SOUND) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_sounder = 1;
@@ -17186,6 +17197,8 @@ loopback:
 		if (ct > 0 && (Race_if(PM_DOPPELGANGER) && is_evilpatchmonster(ptr))) ct += 2;
 		if (ct > 0 && (Role_if(PM_ALTMER) && is_evilpatchmonster(ptr))) ct += 1;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_DATA) )) ct += 1;
+		if (ct > 0 && (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(ptr, AD_DATA) )) ct += 1000;
+		if (ct > 0 && (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(ptr, AD_DATA) )) ct += 1000;
 		if (ct > 0 && (Role_if(PM_SHAPESHIFTER) && is_evilpatchmonster(ptr))) ct += 5;
 		if (ct > 0 && (Race_if(PM_RODNEYAN) && is_evilpatchmonster(ptr))) ct += 5;
 		if (ct > 0 && (Race_if(PM_RODNEYAN) && dmgtype(ptr, AD_DATA) )) ct += 1;
@@ -17946,6 +17959,8 @@ int     spc;
 		if ((Race_if(PM_DOPPELGANGER) && is_evilpatchmonster(&mons[last]))) num += 2;
 		if ((Role_if(PM_ALTMER) && is_evilpatchmonster(&mons[last]))) num += 1;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_DATA) )) num += 1;
+		if ((uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(&mons[last], AD_DATA) )) num += 1000;
+		if ((uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(&mons[last], AD_DATA) )) num += 1000;
 		if ((Role_if(PM_SHAPESHIFTER) && is_evilpatchmonster(&mons[last]))) num += 5;
 		if ((Race_if(PM_RODNEYAN) && is_evilpatchmonster(&mons[last]))) num += 5;
 		if ((Race_if(PM_RODNEYAN) && dmgtype(&mons[last], AD_DATA) )) num += 1;
@@ -18422,6 +18437,8 @@ int     spc;
 		if ((Race_if(PM_DOPPELGANGER) && is_evilpatchmonster(&mons[first]))) num -= 2;
 		if ((Role_if(PM_ALTMER) && is_evilpatchmonster(&mons[first]))) num -= 1;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_DATA) )) num -= 1;
+		if ((uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(&mons[first], AD_DATA) )) num -= 1000;
+		if ((uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(&mons[first], AD_DATA) )) num -= 1000;
 		if ((Role_if(PM_SHAPESHIFTER) && is_evilpatchmonster(&mons[first]))) num -= 5;
 		if ((Race_if(PM_RODNEYAN) && is_evilpatchmonster(&mons[first]))) num -= 5;
 		if ((Race_if(PM_RODNEYAN) && dmgtype(&mons[first], AD_DATA) )) num -= 1;
