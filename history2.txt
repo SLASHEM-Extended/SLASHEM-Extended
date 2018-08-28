@@ -1,6 +1,6 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
-2.3.1
+2.3.1 - August 2018
 - Scrolls of world fall cost 100 ink to write with the magic marker now (was 50).
 - Ragnarok can now occasionally summon hostile player monsters in full ascension kits. Also, certain sources of Ragnarok now trigger the event always, as opposed to the previous 1 in 64 chance. Random bad effects can now be ragnarok or data delete.
 - Random bad effects, Ragnarok, data delete etc. now interrupt the player when they happen.
@@ -16,7 +16,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - If the player is so overloaded that they cannot move at all, they will frequently take damage that depends on how many weight units over the limit they are.
 - The elder priest now has additional equipment-stealing attacks.
 
-2.3.0
+2.3.0 - August 2018
 - Tentatively fixed a crash bug that could occur when the game could no longer find a punished player's ball or chain; however, the bug that they can get lost at all still remains.
 - Some traps are more common in evilvariant mode.
 - Tunneling monsters are capable of phasing through grave walls without actually digging them out.
@@ -24,17 +24,17 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Trying to perform actions without hands and failing can now cause bad effects.
 - In evilvariant mode, player characters with low dexterity will fumble intermittently.
 
-2.2.9
+2.2.9 - August 2018
 - One-turn timerun effects should dissipate when the player performs an action.
 - Exploding doors in evilvariant mode can have a variety of other detrimental effects now.
 - In evilvariant mode, a player character who is in a form without hands cannot use the rub command.
 - The randomized nasty equipment, e.g. evil plate mail, now gives more downsides when worn. Fixed nasty equipment like disenchanting boots or greyout cloaks are unchanged.
 
-2.2.8
+2.2.8 - August 2018
 - Randomly generated containers can now have rocks inside.
 - Added some new potion appearances that can cause certain monsters to be summoned when quaffed.
 
-2.2.7
+2.2.7 - July 2018
 - Graffiti underneath monsters no longer causes the tile in question to be highlighted.
 - If the player is polymorphed into a monster that can breathe psybeams, they now have psi resistance.
 - Polymorphing and implants skill can increase the damage a player does while polymorphed, and petkeeping skill can increase pet-versus-monster damage.
@@ -51,7 +51,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Added some random bad effects that can hit the player, including one that force-equips cursed equipment.
 - The "Elona's Snail Trail" artifact now works correctly if the player is a snail.
 
-2.2.6
+2.2.6 - July 2018
 - Added a bunch of new attacks that monsters can use.
 - All roles now have a "spell retention" value, which determines how many spells can be memorized before amnesia effects start erasing more spell knowledge per incident. If the player has more than twice this value of spells memorized, ones at the bottom of the list can spontaneously be removed. Melee roles have a much lower spell retention than casters.
 - Turn undead and stone to flesh can occasionally destroy corpses or statues, thereby removing the possibility of endless farming.
@@ -67,14 +67,14 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - In evilvariant mode, certain item materials (including silver and dragonhide) are subject to some types of erosion now.
 - Added a random tin preparation method.
 
-2.2.5
+2.2.5 - June 2018
 - Fixed a bug that could cause a regular staircase and a branch staircase to be on the same tile, which would always give precedence to the branch staircase when the player was trying to use it and possibly result in unwinnable games.
 - Nerfed the duration of player-versus-monster sleep spells.
 - In evilvariant mode, the first occurrence of "Elbereth" in a string that the player is trying to engrave will always misengrave.
 - In evilvariant mode, cheating in Sokoban increases divine anger.
 - New monster sounds that allow monsters to try to convert the player character or cause a variety of harmful effects.
 
-2.2.4
+2.2.4 - June 2018
 - Clearing a harmful potion by dipping it in a unicorn horn can sometimes curse and disenchant the horn, or if the horn is already cursed it will make the potion explode.
 - Fixed an oversight that allowed the player to have 0 current HP without dying when a cursed potion of gain health is quaffed.
 - Applying a polearm can scuff engravings underneath the player. Occasionally the same can happen if the player casts a spell.
@@ -103,7 +103,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - The uncurse service offered by shopkeepers works now even if the shopkeeper doesn't handle the item. Also improved the message given when using the identify service.
 - Fixed the bug where dying from quaffing a poisoned well would give a "glorkum 0 0 0" death message.
 
-2.2.3
+2.2.3 - June 2018
 - If a blind player tries to search and causes a statue trap to animate, it no longer illogically stops the searching from finding stuff on the other adjacent tiles.
 - Fixed an error where shopkeepers would sometimes not reduce the amount of money they have when giving money to the player.
 - Eating a human wraith corpse can give an experience level now.
@@ -149,7 +149,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Exploding monsters whose base types can resurrect will now be able to do so after exploding (previously they wouldn't ever leave corpses).
 - Self-hybrid player characters can't apply tools or zap wands on turns divisible by 3, and will not see monsters via warning, telepathy etc. on such turns either.
 
-2.2.2
+2.2.2 - April 2018
 - Fixed a bug where certain rings were chargeable even though their charge had no effect.
 - Some dungeon branches, especially the subquest but also Gehennom and the Yendorian Tower, will provide less loot.
 - The turn undead technique is now less effective and has a timeout. #turn will no longer work, but give a message to use the technique instead.
@@ -179,7 +179,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Made it less likely for buffer overruns to occur when the bones file ID is checked.
 - Added a new possible pentagram effect that can remove intrinsic aggravate monster.
 
-2.2.1
+2.2.1 - April 2018
 - Implants skill can allow the player to take off items from underneath cursed other items, with the skill level determining what can and can't be removed.
 - Changes to evilvariant mode: player cannot engrave while being held by a monster, reading scrolls with low intelligence can occasionally give the confused effect, falling asleep causes the player to slap to the floor and lose a few HP, and zapping a wand doesn't work if the player's hands are unusable.
 - Fixed an old segfault with roles that get random pantheons, which was introduced accidentally when the Medium role was added.
@@ -187,7 +187,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Fixed the buffer overrun that could happen if the player accesses the pokedex on a very large terminal. The entries might look weird now due to the new way of formatting, though.
 - Added lightsaber forms as new skills.
 
-2.2.0
+2.2.0 - April 2018
 - Early dungeon levels occasionally have additional chests placed randomly.
 - Being engulfed in evilvariant mode can confuse the player.
 - Gods in evilvariant mode are harder to mollify the angrier they are.
@@ -197,7 +197,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - The RNG should now be cryptographically secure when playing on a public server.
 - Skills that the player is restricted in cannot be trained by potions of training and similar effects.
 
-2.1.9
+2.1.9 - April 2018
 - Artifact gifts are livelogged.
 - The recover tool should now be able to correctly handle the increased amount of dungeon levels in the game.
 - Added the dungeon overview to the dumplog.
@@ -235,7 +235,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Shopkeeper weapon-works/appraisal services can be used on iron balls, chains and gems now.
 - Reduced the amount of items the player gets, especially later in the game.
 
-2.1.8
+2.1.8 - March 2018
 - When ash and farmland burn up, they usually turn into regular floor now; they only rarely become ash. Also, rain clouds can be boiled with fire, turning them into normal clouds.
 - Randomly generated items may occasionally be erosionproof and/or eroded.
 - Crypt, trouble zone and feminism rooms will now often spawn with a container.
@@ -277,7 +277,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Added a bunch of dungeon branches to the main Dungeons of Doom and Gehennom.
 - Bones files are named differently now, which allows them to work on all newly added subdungeons.
 
-2.1.7
+2.1.7 - February 2018
 - Reduced the generation chance of cursed graves and their rate of undead creation. Also reduced the amount of monsters seeded on certain terrain types.
 - Fixed a bug that got introduced earlier, which caused cockatrice eggs thrown by the player to crash.
 - Reduced the amount of kelp frond being generated on watery levels.
@@ -319,7 +319,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Halved the chance for listener race player characters to find random artifacts.
 - Monsters with paralysis attacks have free action.
 
-2.1.6
+2.1.6 - February 2018
 - Closed drawbridges no longer erroneously display "grayout" when farlooked.
 - Walls don't randomly spawn in undiggable locations to prevent the game from becoming nearly unwinnable.
 - Added lairs for 12 of the new demon lords.
@@ -330,7 +330,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Wand recharging has been improved to reflect the new maximum # of charges that the wands can have upon generation.
 - Added new playable races: aggravator, evilvariant, felid, levelscaler, listener, salamander, shoe.
 
-2.1.5
+2.1.5 - January 2018
 - The gang scholar role can have various negative status effects randomly fixed by their deity while not in Gehennom.
 - If the elder priest's tentacle attack destroys one of the player's pieces of equipment, he will mock the player with a scornful message.
 - If the player is wielding a quarterstaff, the penalties for wearing metallic equipment are reduced, making spells easier to cast.
@@ -346,10 +346,10 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - The nuclear chamber special room has a lower density of styx rivers and contamination traps.
 - Fixed errors with weapon attacks: Martial arts really doesn't work if the player triggered the trap that prevents skills from working, bashing with launchers or polearms no longer does excessive amounts of damage, and throwing arrows/bullets/etc. without wielding the corresponding launcher gives a message telling the player about it.
 
-2.1.4
+2.1.4 - January 2018
 - Added a few special levels for Sheol and some Jubilex lairs.
 
-2.1.3
+2.1.3 - January 2018
 - Telekinesis can no longer be used on items inside shops. This prevents a potential segfault from occurring because I don't know how to fix the segfault itself.
 - Fixed an error where failed artifact wishes would sometimes allow you to try to wish for something again.
 - Fixed a segfault that would happen when the player entered a quest filler level while under the effect of recursion. In the case of permanent recursion those levels would become permanently inaccessible due to the bug!
@@ -359,7 +359,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - The player can play in wonderland mode via OPTIONS=wonderland now. This puts the player on level 1 of the Yendorian Tower, disables level/branchporting, and the goal is to get to the portal on level 100. If the player manages to do that, they are teleported to level 1 of the Dungeons of Doom and levelporting becomes possible again.
 - There is an elder priest on the topmost Yendorian Tower level now. He is by far the most dangerous monster in the game with bisection, decapitation, ragnarok and data delete melee attacks, and of course he can tentacle to tentacle you and cast spells and stuff. He holds a unique artifact that cannot be wished for: a robe that conveys magic resistance, reflection, +5 increase damage and accuracy, and 20% better spellcasting success chances when worn. Oh, and he resurrects a few turns after being killed and eating his corpse is instantly fatal.
 
-2.1.2
+2.1.2 - December 2017
 - Rain clouds no longer are valid teleport destinations.
 - The displacement property allows the player to displace peaceful monsters. Shopkeepers and temple priests are exempt.
 - Chatting to a priest and receiving zorkmids for an ale will say "bitcoins" while hallucinating.
@@ -388,7 +388,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Tweaked the numbers for aggravate monster, kops being summoned by shoplifting etc. to make the game less insanely difficult.
 - Dungeon size increased. The main dungeon is 100 levels in length now, and the total amount of levels in the dungeon will be bigger than the 127 limit.
 
-2.1.1
+2.1.1 - November 2017
 - Greatly reduced the rate at which kop cubes and boss spawners will spawn new stuff.
 - Improved some to-hit calculations to make the game easier.
 - Some improvements to the curses interface in an attempt to make the HUD no longer inferior to tty mode.
@@ -405,7 +405,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Fixed a bug where the deafness trap would never time out correctly. The player would no longer be under the trap's effect, but sound effects would still not display because the flags.soundok flag was never set to 1 again!
 - Hitting spacebar or otherwise a wrong key at the spell direction prompt will never direct the spell at the player themselves, even if that was the previously used direction; in such a case it will zap the spell in a random direction now. Also, self-zapping with finger of death is no longer an instadeath if the player is magic resistant; it reduces d20 max HP instead.
 
-2.1.0
+2.1.0 - October 2017
 - Falling into lava without fire resistance is not an instakill anymore unless the player has very few max HP; otherwise, it will now reduce the max by half and put the player into lava, which is a delayed instadeath.
 - When under the effect of the auto destruct trap, the player can now successfully read spellbooks or dig with a pick-axe.
 - Some cloned quest levels (e.g. the Rogue quest goal level) could make the game almost impossible to win when they spawned in the regular dungeon; think sokosolver lostsoul, who cannot levelport past the level in question but also cannot phase through walls even when polymorphing into a form that can. Made sure all areas on those levels can be reached by walking.
@@ -423,7 +423,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Prostitute and kurwa roles have a chance to not be paralyzed by a claw attack. The chance of chain-paralysis when already paralyzed has been reduced in particular.
 - Added new item materials: ether, eternium and brick.
 
-2.0.9
+2.0.9 - September 2017
 - Added anoter possible negative effect to fountain quaffing.
 - A player standing on a crystal water tile was able to quaff from it, which was not intended. Fixed.
 - Hostile werecreatures have a chance of summoning more monsters in a single summon.
@@ -449,10 +449,10 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Added GM mode (Game Master mode), which is turned on with the OPTIONS=gmmode line in the options file. It allows me (Amy) to send mail to the player to spawn monsters. Also added a gmmessage option that defaults to on; if turned off, the player will not be told which monsters I'm spawning.
 - Fixed the bug where once the player's Vorpal Blade decapitates a monster, it could then be thrown to automatically decapitate monsters as long as no further melee attacks are used.
 
-2.0.8
+2.0.8 - September 2017
 - Fixed a panic bug when trying to light a stack of cursed torches (bug present in SLASH'EM too).
 
-2.0.7
+2.0.7 - September 2017
 - Fixed the long-standing bug where hallucinated appearances for tools would cause obj_is_local segfault panics (corrupting the savegame beyond repair) when the temporary hallucinated tool was a container that contained a timed object (e.g. an egg). This bug exists in SLASH'EM too.
 - Added missing descriptions for some new monster traits that were added in previous versions.
 - Shoplifting can increase the cop wanted level by an amount relative to how much the stolen merchandise cost.
@@ -463,12 +463,12 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Bundle monsters should have specific melee attack messages, but I found out they aren't being displayed since the attack types don't match. Maybe I'll add them later.
 - Switched to a different method of determining the message on a t-shirt, making them truly random. This is done by adding an extra variable to items, hence the savebreak. Any item that gets generated will have this variable set to a random number, but for now it's only relevant for shirts.
 
-2.0.6
+2.0.6 - September 2017
 - Hanging up at a pending instadeath but before the game actually declares the player dead will instakill the player upon restoring.
 - The #explore command can be used in wizard mode to switch to explore mode.
 - Angel race characters with negative alignment record have aggravate monster.
 
-2.0.5
+2.0.5 - September 2017
 - Fixed the "drop 0 gold pieces" segfault.
 - Pets whose base level is 50 or higher, as well as those generated by jonadab's random monster perlscript, have an increased chance of turning traitor. Also, pets that turn traitor can now be frenzied sometimes.
 - Fixed a bug where the addition of new terrain types caused certain interface screw traps to no longer work correctly.
@@ -485,7 +485,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Dipping spellbooks into lava will burn them away completely.
 - Finished functionality for the new special rooms and terrain types.
 
-2.0.4
+2.0.4 - August 2017
 - Improved the handling of the obj_is_local error. The underlying cause was not found, but the odds of producing a corrupted savegame should be lower now.
 - Added many new terrain types, dungeon features and special rooms that can be randomly generated over the course of the game.
 - Better display of the gamemode string in the xlogfile entry.
@@ -495,7 +495,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Stairdancing is limited: now, there's a chance that the player cannot use staircases for a couple of turns after taking one, forcing them to fight whichever monsters they were trying to cheese. Magic portals are also affected for the same reason.
 - Monster-versus-monster calming attacks are no longer guaranteed to calm the defending monster.
 
-2.0.3
+2.0.3 - August 2017
 - Fixed an error in the handling of the obj_is_local crash where the game would fail to save data to the savegame, corrupting it in the process.
 - The summon undead spell no longer produces tame undead, and the command undead spell can sometimes create traps on the current dungeon level as a negative side effect, plus monsters are more resistant to the effect and can occasionally be frenzied instead.
 - Items can be dipped into lava.
@@ -503,7 +503,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Contamination effects on HP/Pw regeneration depend on how contaminated you are.
 - Added a couple of monster attacks, and the contamination effect that works similar to weeping angels from dnethack: it gradually saps the player's wisdom in a way that cannot be restored.
 
-2.0.2
+2.0.2 - August 2017
 - Added a STUPIDRANDOMMONSTERBUG compile flag that is not defined by default, but can be turned on in case seemingly random things (e.g. monsters hitting with a poisoned attack) are causing the game to crash (seems to happen on certain Unices). It should *only* be turned on if those crashes are actually happening, since it turns off the randomized names of certain monsters.
 - Tried to fix the scroll of copying segfault that happens on public servers, not sure if it works now.
 - Monsters associated with brains can give +INT when eaten.
@@ -529,7 +529,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Occasionally, newly spawned monsters might be in the player's field of view now even if positions outside of the player's LOS were available.
 - Circumvent monsndx panic error by having the game default to spawning a PM_HUMAN.
 
-2.0.1
+2.0.1 - July 2017
 - Set the default value for the popup_dialog option to true.
 - Set the default interface to tty if both tty and curses are available.
 - Fake artifacts are resistant to bad polymorphs and nymphs' item-stealing attacks.
@@ -562,7 +562,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - If an artifact is overenchanted and would normally evaporate, it becomes +0 instead.
 - Added a bunch of dungeon level variants from GruntHack and NetHack Fourk, and harder versions of the dnethack demon lairs.
 
-2.0.0
+2.0.0 - June 2017
 - A player character causing conflict will be significantly more likely to get hit by monster attacks, which has the effect of changing it from its previous "generally a boon, unless you have pets" implementation to the two-edged sword it should always have been.
 - Blessed scrolls of remove curse are no longer guaranteed to uncurse everything in the player's main inventory; non-equipped items have a chance to resist. Also, full-inventory identify effects have lower odds per item to reveal stuff.
 - Casting the air current spell gives a luck penalty if done in Sokoban.
@@ -609,7 +609,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - No robes will give spellcasting penalties, not even the robe of weakness.
 - Added the Prostitute and Kurwa roles.
 
-1.9.8
+1.9.8 - May 2017
 - A player polymorphed into a monster with spellcasting attacks has better spellcasting success chances.
 - Fixed the bug where triggering a map amnesia trap wouldn't immediately refresh the screen.
 - Monsters in IVAN vaults always generate with aggravate monster rules.
@@ -623,13 +623,13 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Gave scrolls of root password detection to all the new demon lords.
 - If the player polymorphs one of the riders, or also if they self-polymorph for any reason, a new rider is generated somewhere on the level. This is because it's possible to get rid of them permanently by turning the polymorphed rider to stone.
 
-1.9.7
+1.9.7 - May 2017
 - Improved some of the timer-related error messages.
 - Dipping an item that can rust into a pool of water can result in destroying it if it gets rusty enough.
 - Fixed a bug where the fast metabolism trap effect could result in the player dying instantly.
 - Added a "scentful perfume" attack that can be used by monsters.
 
-1.9.5
+1.9.5 - May 2017
 - If a monster steals an item from the player, there is no longer a random chance of deleting the item. This was meant to be a fix for a segfault but in reality that segfault was caused by hallucinated objects and got fixed in version 2.0.7. Since it was stupid that your gear could just randomly be erased by nymphs, I didn't put this feature back into the game.
 - Changed some timer-related error messages to reduce the odds of crashing while trying to display the error message.
 - Added new playable races: destabilizer, green slime, loli and polyinitor.
@@ -637,7 +637,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Added a new technique: panic digging, which is available to all characters and digs out the eight surrounding squares, for use in situations where there is no way forward and the player has no other means of digging.
 - Artifacts that do extra damage do random bonus damage now. This includes ones that deal "double damage".
 
-1.9.4
+1.9.4 - April 2017
 - At the start of the game, some monster traits will be picked that are more common in that particular game.
 - Deactivated intrinsics were displayed incorrectly in the enlightenment screen. Fixed.
 - Changed the peacevision highlighting color to green, and made it so that stairs obscured by monsters, traps or other stuff will be highlighted (they used to be highlighted only when obscured by an item).
@@ -651,7 +651,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Fixed a bug where heavy caster cloaks would trash the player's spellcasting chances more than they should.
 - Low-level characters get a small to-hit bonus to make the early game less deadly.
 
-1.9.3
+1.9.3 - March 2017
 - Altars no longer disappear randomly when dropping an item whose BUC status is already known. They also don't disappear randomly when dropping potions of water or doing a water prayer.
 - Fixed the bug where centaur and dryad races didn't get the phase door technique.
 - Fixed the quirky formula that would increase the Riders' and Seven Deadly Sins' HP when they resurrect.
@@ -675,24 +675,24 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Albae monsters no longer spawn with bows, because they were too strong.
 - When the player has aggravate monster, the maximum monster level doesn't get randomly decreased.
 
-1.9.2
+1.9.2 - March 2017
 - The undefined race no longer has the scrolls of healing, mana etc. replaced with random other scroll types.
 - Allowed hybrid races to be set directly via the options file.
 - Taking a staircase can push the player back, especially in conjunction with stair traps, to make it harder to escape them or otherwise do stairdancing.
 - Free action, like most other resistances do already, now also has a chance to fail.
 - Fixed a potential segfault that could happen when trying to display the name of the player's deities as a heretic wild talent.
 
-1.9.1
+1.9.1 - February 2017
 - Fixed a bug that would suppress water/lava paranoid messages when playing as the amnesiac race and cause players to fall in with no warning.
 - When trying to cast a spell while confused, the player now prints a message to make it clear to the player that they're trying something that is likely to fail.
 - When walking into a wall, tree, set of iron bars etc., there is now a message. (Players who bitch about that can use MSGTYPE to suppress them.)
 - Got rid of the mtrapseen field, since it didn't really make sense that if a monster knew about one pit trap, it would mysteriously know about all other pit traps in the entire dungeon. The real reason was that it would cause the variable to overflow due to the large amount of traps in the game, and thus, since it's not really needed due to the aforementioned weirdness, it has been removed; monsters just have a random chance of avoiding traps instead now.
 
-1.9.0
+1.9.0 - February 2017
 - Monsters affected by certain harmful potions now display messages in the correct order. This doubles as protection against potential segfaults.
 - Added four new playable roles: Wild Talent, Occult Master, Elementalist, Chaos Sorceror.
 
-1.8.9
+1.8.9 - February 2017
 - Fixed an oversight that caused restore ability spell failures to not have the intended effect.
 - Added an extra warning message if a spell known by the player is down to 1% memory, and a message when the spell is completely forgotten.
 - Replaced the spaghetti function that selects traps for weird-looking rooms with a better function.
@@ -705,12 +705,12 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Chaotic minions summoned by angry gods can be any demons, and are no longer limited to the & glyph.
 - Maledictions uttered by Rodney, angels and the like always have a chance of dimming the player.
 
-1.8.7
+1.8.7 - January 2017
 - Removed out of depth high priests from certain dungeon levels.
 - Added the dimness status condition and the peacevision in/extrinsic.
 - Added a bunch of new materials for items.
 
-1.8.6
+1.8.6 - December 2016
 - The thunder wave spell no longer erroneously affects all monsters on the current dungeon level, but only the ones next to the player.
 - Enlightenment shows special game modes like lost soul or hippie.
 - Fixed an error that could cause vibrating squares to spawn in Sheol.
@@ -729,7 +729,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - (Almost) All damage types do something when the attack type is "explosion", and this includes polymorphed players exploding at monsters as well as monsters exploding at other monsters.
 - In each game, there is one property that the player cannot have at all, one that the player cannot have as an intrinsic, and one that the player cannot have as an extrinsic, selected randomly.
 
-1.8.5
+1.8.5 - December 2016
 - Fixed an error caused by monsters trying to cast a spell type that has no defined effect.
 - Clones of the player's nemesis have a much higher chance to spawn randomly.
 - Added a #mark command that can be used on items to make pets not drop them.
@@ -747,10 +747,10 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Having a very large amount of luckstones no longer causes the luck stat to overflow.
 - Greased items will lose their grease when they would have been dulled, and blessed items are less likely to dull.
 
-1.8.3
+1.8.3 - November 2016
 - Added 26 new playable races.
 
-1.8.2
+1.8.2 - November 2016
 - A certain maze level had empty rooms where shops should be. Added the shops.
 - Equipment can "dull" when used often, losing enchantment points.
 - The haxor race now correctly initializes starting spells based on the player's spellbooks.
@@ -762,7 +762,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Added three new spell schools: elemental, occult and chaos spells.
 - In every game, there's a bunch of skills that are harder to train, arbitrarily capped, or impossible to train altogether.
 
-1.8.1
+1.8.1 - October 2016
 - Applied a couple nerfs to the player's ranged weapons.
 - Artifact blasts are weaker if the player's experience level is very low, to reduce the risk of dying instantly.
 - If a polymorphed player lays an egg, there is now a timeout until another egg can be laid.
@@ -789,7 +789,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Monsters using items that summon more monsters will summon less monsters on average.
 - Reduced the amount of royal jelly found in beehives.
 
-1.8.0
+1.8.0 - September 2016
 - Made some armors that were supposed to be magical actually be magical.
 - Added some more dangerous types of curses than can appear on items.
 - Added a pickup_cursed option that determines whether cursed thrown items can be picked up automatically when walking over them.
@@ -798,7 +798,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Added some more things that food appraisal warns of.
 - Closed a loophole where the repair armor spell could be used to repair non-armor items too.
 
-1.7.9
+1.7.9 - August 2016
 - If the game cannot open a level file, it now tells the player that this is a fatal bug.
 - Reading a cursed spellbook paralyzes the player for a random duration now.
 - Shortened the time for which the player will be blinded by lightning.
@@ -828,7 +828,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Nerfed bad item seedings.
 - Overhauled the odds of monster equipment not being dropped when the monster dies.
 
-1.7.8
+1.7.8 - August 2016
 - Fixed some artifacts that didn't correctly get their drain life attack.
 - Tried to fix some crash bugs that occasionally happened for the minimalist race.
 - Made level difficulty more random.
@@ -839,7 +839,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Switched the badly designed dungeon regrowth algorithm for a better one.
 - Monsters don't always drop their equipment when they die.
 
-1.7.7
+1.7.7 - August 2016
 - It is again possible to escape in celestial disgrace, which was previously made impossible due to a faulty commit.
 - Greatly reduced the average amount of musable items that monsters spawn with, based on their level.
 - Iron balls and chains have a to-hit penalty when used by the player as weapons.
@@ -853,7 +853,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Zapping the polymorph or mutation spells at yourself can backfire.
 - Wand wresting happens 1 in 20 times when trying to use an empty wand (used to be 1 in 121 times).
 
-1.7.6
+1.7.6 - July 2016
 - Fixed a fallthrough bug that sometimes caused error messages to appear when the player sits on a throne.
 - Prevented artifact wands of deslexification from spawning outside of soviet mode.
 - Fixed the bug that allowed unicorn horns to restore stats that were lowered by the nexus swap effect.
@@ -869,21 +869,21 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Increased the average chance that an artifact wish succeeds.
 - The crowning gift given to the player can be a random artifact; vanilla's guaranteed artifacts are now merely relatively likely to be given.
 
-1.7.4
+1.7.4 - July 2016
 - Very rarely, a monster that spawns with equipment may receive an artifact piece of equipment as its starting inventory.
 - Allowed artifacts with SPFX_SEEK to actually grant automatic searching.
 - Fixed a bug that could cause the game to crash when the hitpoint bar tried to display things.
 - When an armor piece worn by the player gains an enchantment, the enchantment now starts working immediately (it used to require saving and loading, or taking it off and putting it back on).
 - Fixed the bug that caused errors when the amount of artifacts in the game exceeds 255, e.g. crashes that used to occur when an artifact with index number > 255 was invoked or viewed in the discoveries list.
 
-1.7.3
+1.7.3 - July 2016
 - Added new playable races: amnesiac, ironman, segfaulter, snail, sustainer, unicorn, unmagic.
 - Rodneyan race player characters deal excessive melee damage less often.
 - Hitting a monster with a weapon that doesn't affect it (e.g. if the monster needs a +X weapon to hit) no longer trains the associated weapon skill.
 - Choosing to wield "nothing" no longer consumes a turn.
 - Allowed tools to explode like wands when they're recharged too often.
 
-1.7.2
+1.7.2 - July 2016
 - All passive attack types should also work when the one being damaged by them is a monster now.
 - Sokoban maps can now be forgotten if the player gets amnesia.
 - Some changes to artifacts, e.g. they're no longer immune to certain types of item destruction.
@@ -932,7 +932,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Re-balanced some RNG results, e.g. for random monster attacks or monsters spawning with musable items, to make the most dangerous results less common.
 - The player can gain permanent boosts from achievements.
 
-1.7.1
+1.7.1 - May 2016
 - Fixed the bug where the effects of fire bolt and disintegration beam spells were swapped (sadly, players abused this for a while instead of reporting it).
 - Really fixed the bug where respawn traps weren't working correctly.
 - The hitpointbar patch was applied at this point.
@@ -953,19 +953,19 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Added monster-versus-player effects to certain pairs of high heels.
 - Added garbage strings that can appear in various places.
 
-1.7.0
+1.7.0 - May 2016
 - Amnesia can sometimes re-randomize item appearances.
 - Fixed bugs associated with levelporting on quests.
 - Nerfed some more spells.
 - Players with drain resistance are less likely to successfully resist level drain.
 - Improved charge saber formula that determines the amount of charge a player gets.
 
-1.6.9
+1.6.9 - May 2016
 - Dumplogs give more skill information now.
 - Added a description for iron shoes, which was somehow missing.
 - Fixed some trap functions that were doing the entirely wrong things.
 
-1.6.8
+1.6.8 - April 2016
 - Random appearances of armor pieces have various effects now.
 - The stone of magic resistance will gradually curse itself while in the player's inventory.
 - Added psybeams to the random breath selection.
@@ -976,13 +976,13 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Increased the minimum ascension turn limit to 50000.
 - Gems, balls and chains can now be cancelled.
 
-1.6.7
+1.6.7 - April 2016
 - Polymorphing is less likely to select uncommon monster species. Also, monsters are less likely to turn into species that are much higher in level compared to their previous form.
 
-1.6.6
+1.6.6 - April 2016
 - The player can choose to kick normally when riding a steed now.
 
-1.6.5
+1.6.5 - March 2016
 - The DQ Slime role now learns random skills upon leveling up.
 - Some changes to spellcasting, including mana cost, hunger, etc.
 - Added some effects when eating certain monster corpses.
@@ -1022,7 +1022,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Fixed erroneous item generation chances that resulted in certain items spawning way too often while others that should have been common were spawning never at all.
 - Added new playable roles: Transsylvanian and Unbeliever.
 
-1.6.4
+1.6.4 - March 2016
 - Made wands of wishing less common.
 - Tried to fix the bug with respawn traps causing the game to freeze.
 - Thrown cockatrice eggs are once again guaranteed to petrify monsters.
@@ -1036,7 +1036,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Reduced some of the loot the player can get, especially from mimic/statue rooms.
 - Sometimes, the spawn chances for items on concealing monsters or misc useful items can be lower. Also, the spawn chance for specific item types may be set to a lower value at game start.
 
-1.6.3
+1.6.3 - February 2016
 - Fixed bugs where the player could get petrified despite being stoning resistant, as well as the possibility of the game entering an infinite loop.
 - Slippery fingers will give a message when they wear off.
 - Added a failsafe that triggers when the item generation routine tries to make an invalid object class.
@@ -1046,14 +1046,14 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Giant, ogre, kobold and troll races no longer have misspelled names.
 - Prevented the player from turning off the bones option mid-game. It now has to be set in the config file.
 
-1.6.2
+1.6.2 - February 2016
 - Added an option to disable the loading of bones files.
 - Fixed the error where monsters with the resurrector egotype almost never left corpses and almost never resurrected even if they did.
 - Tension rooms can now be "themed", and have monsters that share a specific trait.
 - Fixed the error where saving the game on Friday the 13th didn't correctly adjust the luck and alignment penalties.
 - Added playable races: redditor and sinner.
 
-1.6.1
+1.6.1 - February 2016
 - Undead warning works correctly now.
 - Pets no longer eat zero-nutrition corpses.
 - Mind flayer psychic blasts can now cause a wider variety of bad effects.
@@ -1065,7 +1065,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Restored a bunch of commands that were no longer working correctly when key rebinding was introduced.
 - The missingno range can now be configured at compile time.
 
-1.6.0
+1.6.0 - February 2016
 - Fixed a 100% CPU usage problem when the terminal was lost or other things happened.
 - MSGTYPE option added.
 - Fixed the bug where monsters with shredding attacks could segfault.
@@ -1074,7 +1074,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Limited the amount of boomerangs a player can wish for.
 - The dungeon may occasionally be generated with all special levels present, or with levels and branches appearing in a wider range of random locations, or the quests being in Gehennom, or a combination of two or all three of these.
 
-1.5.9
+1.5.9 - February 2016
 - The player's pantheon is displayed in the dumplog now.
 - Made the spellbook of identify much more rare. Scrolls of standard id are also a bit less common.
 - Gems, balls and chains no longer spawn with their enchantment value known.
@@ -1082,7 +1082,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Tame monsters aren't supposed to drop their starting items.
 - Greased items can have up to 3 layers of grease.
 
-1.5.8
+1.5.8 - January 2016
 - Quest monsters (specific for the player's role) are more likely to appear outside the quest too.
 - Artifact keys can no longer be used to open chests.
 - Eating a monster with an AD_FAKE attack will now give a message.
@@ -1091,7 +1091,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Portals leading back to the main dungeon can fail to activate, thereby making portaldancing a less viable tactic.
 - Corridors are fleecy-colored now.
 
-1.5.7
+1.5.7 - January 2016
 - Branches can sometimes have random special levels in them.
 - Rooms have fleecy colors.
 - Fixed the bug where confused scrolls of lockout were able to dig out undiggable squares.
@@ -1105,12 +1105,12 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - The charging spell can occasionally backfire.
 - Eating an amulet of life saving can give a 1-UP.
 
-1.5.6
+1.5.6 - January 2016
 - Items that convey disintegration resistance are correctly disintegration resistant themselves now.
 - If you try to write a scroll/book while having enough marker charges that it could theoretically work, but not enough for it to be guaranteed, the amount of charges is reduced by a random amount instead of being set to zero unconditionally.
 - The wand of fumbling now has a more significant effect.
 
-1.5.5
+1.5.5 - January 2016
 - Monsters can occasionally use ranged weapons, breath and spit attacks at point blank.
 - Monsters will always be resistant to their own breath attacks. Those that have random breath attacks also get reflection.
 - If the player's memory of a spell gets low, there is a message reminding them.
@@ -1120,14 +1120,14 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Fixed a missingno crash.
 - Removed a couple of pet name options; if popular demand exists, they may be put back in.
 
-1.5.4
+1.5.4 - January 2016
 - Slight change to pet betrayal code.
 - Nerfed slings and boosted bows.
 - Reduced the damage a player could do when bashing with a launcher.
 - Fixed some exploits with player-summoned demons and werefoo.
 - Fixed the bug that caused dumplog generation to make part of the status line invisible, by forcing it to be redrawn.
 
-1.5.2
+1.5.2 - December 2015
 - Dumplog patch added.
 - Fixed a bug where some "You hear" messages were still displayed if the player was deaf.
 - The game will no longer unconditionally replace traps.
@@ -1140,11 +1140,11 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Fixed a panic when a bag of holding containing gold explodes.
 - Bank trap cash amount is always showed in the enlightenment screen after the game has ended.
 
-1.5.1
+1.5.1 - December 2015
 - If a monster reads a scroll of destroy armor/weapon, the player's items get saving throws now.
 - Items made of flesh or veggy can always be eaten by the player (as long as the player is not specifically prevented from eating comestibles).
 
-1.5.0
+1.5.0 - December 2015
 - Fixed a missingno crash.
 - The vibrating square message forces a --More-- now.
 - Projectiles fired by monsters no longer break unconditionally.
@@ -1155,7 +1155,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Added the menuglyph patch.
 - Fixed an error with the glyph used for grue monsters.
 
-1.4.9
+1.4.9 - November 2015
 - Completed the translations for soviet and ancient race characters.
 - If the player knows a spellbook's base item type, the book in question can be read even while blind.
 - Nerfed the create monster and summon undead spells.
@@ -1167,7 +1167,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - The pokedex as well as the descriptions for techniques can now be turned off via options.
 - Ctrl-U is a new command that removes all "I" markers for unseen monsters on the current level.
 
-1.4.8
+1.4.8 - November 2015
 - Vampires draining low-nutrition corpses should no longer behave strangely.
 - If the player is polymorphed, the top status line will now keep showing damage done.
 - Pets can no longer pick up containers that aren't empty.
@@ -1176,32 +1176,32 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Nerfed the clerical paralysis monster spell.
 - Fixed a previously introduced crash bug when the player was hallucinating.
 
-1.4.7
+1.4.7 - November 2015
 - The shopkeeper-provided identify service can fail now, just like other means of identification.
 - Fixed the issue where random walls could spawn underneath Sokoban boulders.
 - Only monsters capable of using them have a chance to spawn with cockatrice corpses/eggs now.
 - Elven and droven items can reach higher enchantment values: elven weapons and droven armor can safely reach +9, droven weapons can reach +11.
 - Changed the calculations for the RNG that decides which boss to summon.
 
-1.4.6
+1.4.6 - November 2015
 - Metallivorous and lithivorous monsters need less turns to eat items.
 - Ghosts in graveyards are more varied now.
 - Fixed the unbalanced duration of sleep rays.
 - Fixed the bug that caused toilets to spawn with gravestone inscriptions.
 - Farting monsters can now have certain bonuses that makes them even more dangerous.
 
-1.4.5
+1.4.5 - November 2015
 - All monsters with intelligence-draining attacks now have a (bigger) chance of granting intelligence bonuses when eaten.
 - Monsters can fire gray stones at the player, causing them to automatically land in the player's inventory.
 - Added a playable Druid role and scurrier race.
 
-1.4.4
+1.4.4 - November 2015
 - Ditched the restrictions that disallowed some monsters from wearing two-handed or silver weapons.
 - Fixed a critical bug that would cause items teleported by item teleporters to still be equipped by the player even though they were now outside of the player's inventory.
 - 1 in 10 games, a randomly selected color of monsters is more common.
 - In every game, one random trap type is picked that appears more often.
 
-1.4.3
+1.4.3 - October 2015
 - Falling down a staircase can cause the player to break their legs.
 - If unseen monsters use spit attacks or spells, there is a message now.
 - Made some changes that reduce the likeliness for the player to overeat.
@@ -1222,7 +1222,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Fixed the bug that would cause fear effects to fail making monsters flee.
 - Enlightenment now shows paralysis duration if the player was paralyzed.
 
-1.4.2
+1.4.2 - October 2015
 - Some to-hit bonuses that only applied to the player's melee attacks now also work for ranged weapons.
 - The Failed Existence has 50% automiss with ranged attacks now.
 - Slightly increased the player's overall to-hit.
@@ -1232,7 +1232,7 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - Wands of draining are much less likely to appear in monsters' hands.
 - If the player runs out of HP while polymorphed and returns to their natural form, their max HP is no longer reduced.
 
-1.4.1
+1.4.1 - October 2015
 - Fixed the error message flood caused by chokhmah attacks.
 - Fixed an oversight that caused peaceful monsters to use items that summon hostile monsters.
 - A player with unbreathing is no longer completely immune to passive poison attacks.
@@ -1249,6 +1249,68 @@ Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological 
 - The monster kill list no longer shows bosses as being killed when they were really still alive.
 - Some items are always generated cursed in a given game.
 - One trap type is always generated invisible in a given game.
+
+1.3.9 - September 2015
+- Increased HP and Pw gain from leveling up, and reduced the penalties for hybrid characters.
+- The sin counter increases chokhmah attack damage.
+- Added some sink effects.
+- Generated monsters are displayed even if none are killed now.
+- Fixed the error where troll permamimic mummies weren't mimicking anything.
+- Fixed a bug where werewolf players could encounter double kills.
+- Max HP reduction from too low strength is nerfed and the player now gets a message if it happens.
+- Dropping items on high altars doesn't reveal their BUC.
+- Cancellation effects no longer erroneously steal the player's intrinsics if a monster gets cancelled.
+- Fixed a bug where sanctums with high priests appeared too early.
+- Intrinsic restful sleep is harder to get rid of.
+
+1.3.8 - September 2015
+- Neutral and especially lawful characters are more likely to encounter peaceful monsters.
+- Monsters can read scrolls of amnesia now.
+- Fixed a panic that could occur at game start when a horse was missing a saddle.
+- Fixed the bug where some domestic monsters couldn't be tamed.
+- Pets no longer eat the corpses of other pets.
+- Fixed the bug that caused horner and sounder egotypes to deal no damage.
+- Fixed the segfaults caused by nexus and weeping attacks.
+- Level drain effects that affect the player are less harsh. In practice, this means the player doesn't always lose a level outright; it might require getting hit several times to lose a level now.
+- Fixed a bug where transvestites and topmodels could get deactivated intrinsics.
+- Monsters no longer waste a turn wearing their starting items.
+- Once in a while, the game may decide to make all members of a randomly chosen monster class invisible.
+- Fountains on lethe levels have lethe water.
+- Traps, monsters and objects can be invisible in a way that makes them not seen even with see invisible.
+- Monsters can wish for items, e.g. if they quaff a smoky potion and release a djinni.
+- Monsters can use summoning items, e.g. scrolls of create monster, even when they're not low on health.
+- Quest artifacts now work correctly when their ID is greater than 128.
+- Killing a monster that has a non-physical explosion on death can now cause retaliation.
+
+1.3.7 - September 2015
+- Farlooking a monster displays its base level, even if the pokedex is off.
+- The courier is protected from the head-targetting uvuudaum and sucking attacks.
+- Banishment attacks no longer segfault.
+- If the player has the Amulet, they can no longer be banished. Also, if the player is riding a monster that has the Amulet, both banishment and branchporting are no longer permitted; this fixes a loophole present in vanilla.
+- Fixed the bug where a monster reading a scroll of destroy armor could segfault if the player was wearing no armor.
+- Monsters with pline attacks will cause random lines to display sporadically while they're close to the player.
+- Light breathers are now immune to their own breath attack.
+- Spheres created by casting their respective spells no longer spawn with items.
+
+1.3.6 - September 2015
+- Items stuck in iron bars or other terrain will now display the type of terrain.
+- The player can't rename non-tame monsters. It's still possible to name monsters that don't have a specific name yet.
+
+1.3.5 - August 2015
+- Monsters that obtain the permamimic egotype after they have been generated are now capable of actually mimicking things.
+- As game time goes on, monsters become less likely to leave corpses.
+- Increased the maximum nutrition before the player is oversatiated.
+- Players gain extra nutrition from eating depending on their hunger status. Many monster corpses now give more nutrition than before.
+- Fully implemented the change where confused or stunned players are less likely to use a random direction.
+- Fixed the bug that would sometimes cause phase door to fail.
+- Higher spellcasting skills or having greater spell memory reduces spellcasting hunger.
+- Missingno race player characters polymorphed into nonmoving monsters can move now, ignoring the nonmoving restriction.
+- Reverted the change that would make water prayers fail if the player doesn't split the stacks.
+- The player can keep leveling up from experience points past XL30.
+- Water tiles no longer count as safe teleportation targets if the player is swimming or unbreathing.
+- Made some ranged attacks harder to dodge.
+- Added playable DQ Slime and Erdrick roles, and 7 new races.
+- In soviet mode, performing operations on stacks of items will always work again.
 
 (older stuff still needs to be added here)
 
