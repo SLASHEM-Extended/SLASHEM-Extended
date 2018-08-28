@@ -820,8 +820,19 @@ register struct monst *mtmp;
 	if(mdat->mlet == S_LEPRECHAUN && !mtmp->mfrozen && !mtmp->msleeping &&
 	   !mtmp->mconf && mtmp->mcansee && !rn2(7) &&
 	   (m_move(mtmp, 0) == 2 ||			    /* it died */
-	   mtmp->mx != u.ux+u.dx || mtmp->my != u.uy+u.dy)) /* it moved */
+	   mtmp->mx != u.ux+u.dx || mtmp->my != u.uy+u.dy)) { /* it moved */
+
+		if (Hallucination) pline("%s uses a pogo stick!", Monnam(mtmp));
+		else You("miss wildly and stumble forwards.");
+
+		/* evil variant by Amy: paralysis */
+		if (isevilvariant) {
+			nomul(-(rnd(5) ), "stumbling forwards and falling down", TRUE);
+			nomovemsg = "You manage to get up again.";
+		}
+
 		return(FALSE);
+	}
 
 	tmp = find_roll_to_hit(mtmp);
 	

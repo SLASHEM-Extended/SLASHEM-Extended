@@ -4252,7 +4252,8 @@ final_level()
 				     mm.x, mm.y, FALSE);
 	    }
 	} else if (u.ualign.record > 8) {	/* fervent */
-	    pline("A voice whispers: \"Thou hast been worthy of me!\"");
+	    if (Hallucination) pline("You hear Amy say \"Bundlebundlebundle!\""); /* thanks FlamingGuacamole */
+	    else pline("A voice whispers: \"Thou hast been worthy of me!\"");
 	    mm.x = u.ux;
 	    mm.y = u.uy;
 	    if (enexto(&mm, mm.x, mm.y, &mons[PM_ANGEL])) {

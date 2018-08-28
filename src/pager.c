@@ -18991,6 +18991,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"Some sinister force causes you to wear an item!"
 	"Some sinister force causes you to wear an artifact!"
 	"Some sinister force causes you to wear a pair of heels!"
+	"You miss wildly and stumble forwards.",
+	"The titan is engulfed in fury!",
+	"The painalope is already berserk.",
+	"You hear Amy say 'Bundlebundlebundle!'",
+	"Oops, you seem to have pressed the wand too hard with your fat hands... The wand of death suddenly explodes!",
 
 };
 

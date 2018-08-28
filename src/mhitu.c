@@ -5033,6 +5033,14 @@ hitmu(mtmp, mattk)
 
 	if (RngeDonors && atttyp == AD_PHYS) atttyp = AD_THIR;
 
+	if (mtmp->data == &mons[PM_BUNDLE_MONSTER] && mattk->aatyp == AT_HUGS) {
+		You("are being bundled.");
+	} else if (mtmp->data == &mons[PM_CUDDLE_MONSTER] && mattk->aatyp == AT_HUGS) {
+		You("are being cuddled.");
+	} else if (mtmp->data == &mons[PM_FLEECE_MONSTER] && mattk->aatyp == AT_HUGS) {
+		You("are being fleeced.");
+	}
+
 	switch(atttyp) {
 	    case AD_PHYS:
 		if (mattk->aatyp == AT_HUGS && !sticks(youmonst.data)) {
@@ -5048,15 +5056,6 @@ hitmu(mtmp, mattk)
 			exercise(A_STR, FALSE);
 			if (mtmp->data == &mons[PM_ROPE_GOLEM] && Breathless) {
 			    You("are being strangled.");
-			    dmg = (dmg+1) / 2;
-			} else if (mtmp->data == &mons[PM_BUNDLE_MONSTER]) {
-			    You("are being bundled.");
-			    dmg = (dmg+1) / 2;
-			} else if (mtmp->data == &mons[PM_CUDDLE_MONSTER]) {
-			    You("are being cuddled.");
-			    dmg = (dmg+1) / 2;
-			} else if (mtmp->data == &mons[PM_FLEECE_MONSTER]) {
-			    You("are being fleeced.");
 			    dmg = (dmg+1) / 2;
 			} else
 			    You("are being %s.",

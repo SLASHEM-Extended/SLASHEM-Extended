@@ -2990,14 +2990,13 @@ peffects(otmp)
 	}
 
 	/* KMH, balance patch -- this is too cruel for novices */
-#if 0
 	/* sometimes your constitution can be a little _too_ high! */
-	if ((Role_if(PM_BARBARIAN) || ACURR(A_CON) > 15) && !rn2(5)) {
+	/* edit: evil variant by Amy: nothing is too cruel :P */
+	if (isevilvariant && (Role_if(PM_BARBARIAN) || ACURR(A_CON) > 15) && !rn2(5)) {
 		pline("Strange ...");
 		nothing++;
 		return(-1);
 	}
-#endif
 
 	switch(otmp->otyp){
 	case POT_RESTORE_ABILITY:

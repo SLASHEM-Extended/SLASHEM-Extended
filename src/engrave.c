@@ -1521,6 +1521,19 @@ doengrave()
 	if (otmp == &zeroobj) writer = makeplural(body_part(FINGER));
 	else writer = xname(otmp);
 
+	/* evil variant: very strong char might cause the wand to explode (by nosomebodies) */
+	if (isevilvariant && otmp && otmp->oclass == WAND_CLASS && ((ACURR(A_STR) >= 18 && !rn2(10)) || (ACURR(A_STR) >= 68 && !rn2(4)) || (ACURR(A_STR) >= 100 && !rn2(2)) ) ) {
+		pline("Oops, you seem to have pressed the wand too hard with your fat %s...", makeplural(body_part(HAND)) );
+
+		otmp->in_use = TRUE;	/* in case losehp() is fatal */
+		pline("%s suddenly explodes!", The(xname(otmp)));
+		wand_explode(otmp, FALSE); /* KABOOM - otmp is used up */
+
+		exercise(A_STR, FALSE);
+		return(0);
+
+	}
+
 	/* There's no reason you should be able to write with a wand
 	 * while both your hands are tied up.
 	 */
