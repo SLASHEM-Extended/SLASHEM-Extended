@@ -6366,8 +6366,7 @@ boolean msg;
 			!(mdat->mlet == S_EEL && (is_waterypool(mtmp->mx, mtmp->my) || is_watertunnel(mtmp->mx, mtmp->my) || is_shiftingsand(mtmp->mx, mtmp->my) ) ))
 		mtmp->mundetected = 0;
 	if (u.usteed) {
-	    if (touch_petrifies(u.usteed->data) &&
-	    		!Stone_resistance && rnl(3)) {
+	    if (touch_petrifies(u.usteed->data) && !Stone_resistance && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) && rnl(3)) {
 	    	char buf[BUFSZ];
 
 	    	pline("You touch %s.", mon_nam(u.usteed));

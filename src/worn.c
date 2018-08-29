@@ -797,8 +797,7 @@ boolean polyspot;
 	} else if (mon == u.usteed && !can_ride(mon)) {
 	noride:
 	    You("can no longer ride %s.", mon_nam(mon));
-	    if (touch_petrifies(u.usteed->data) &&
-			!Stone_resistance && rnl(3)) {
+	    if (touch_petrifies(u.usteed->data) && !Stone_resistance && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) && rnl(3)) {
 		char buf[BUFSZ];
 
 		You("touch %s.", mon_nam(u.usteed));
