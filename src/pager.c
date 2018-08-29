@@ -19004,6 +19004,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Item materials have been shuffled.",
 	"Somehow you feel that you just averted a major crisis.",
 	"Some of your possessions have been stolen!",
+	"The lichen mounts the saddled warhorse. Suddenly the lichen speeds up tremendously and can use its weak melee attack many times in succession!",
+	"Great. You're stucco now.",
+	"Finally, it should be noted that crossbows are two-handed weapons and therefore a player using Hellfire frequently may want to avoid wearing shields so she can easily switch back and forth to melee mode.",
+	"A player using Hellfire frequently may want to avoid wearing shields so she can easily switch back and forth to melee mode. Maybe she also wants to write a thesis on how to become a gender studies PhD.",
 
 };
 
