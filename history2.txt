@@ -1,5 +1,14 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.3.2 - August 2018
+- Shopkeepers and particularly Izchak and One-Eyed Sam are now much more likely to have certain egotypes.
+- If the player is wearing a shirt, body armor, cloak and gloves and the gloves aren't fingerless, it's possible to ride petrifying steeds without turning to stone.
+- Farlooking something that has a trap and/or terrain underneath it will now display what those are, as long as the player isn't hallucinating or suffering from certain nasty traps.
+- All ; monsters (eels and other sea creatures) can always swim now, even if they don't specifically have the M1_SWIM flag.
+- The monsters and traps that have %s in their names have been renamed because they were known for causing annoying segfaults.
+- Monsters with the reviving flag (M4_REVIVE for monsters that aren't trolls or fungi) were reviving only very rarely due to an oversight, this has now been corrected.
+- Applying a polearm at a humanoid monster that avoids lining itself up with the player can sometimes cause several monsters to come out of a portal.
+
 2.3.1 - August 2018
 - Scrolls of world fall cost 100 ink to write with the magic marker now (was 50).
 - Ragnarok can now occasionally summon hostile player monsters in full ascension kits. Also, certain sources of Ragnarok now trigger the event always, as opposed to the previous 1 in 64 chance. Random bad effects can now be ragnarok or data delete.
