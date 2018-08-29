@@ -147,6 +147,118 @@ lookat(x, y, buf, monbuf)
 			((how & 7) > 4) ? ", " : "",
 			(how & 4) ? "monster detection" : "");
 	}
+
+	    if (levl[x][y].seenv && !(GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+
+			if (IS_TREE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a tree");
+			else if (IS_IRONBAR(levl[x][y].typ))
+			    sprintf(eos(buf), ", in iron bars");
+			else if (IS_GRAVEWALL(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a grave wall");
+			else if (IS_TUNNELWALL(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a tunnel");
+			else if (IS_FARMLAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a farmland");
+			else if (IS_MOUNTAIN(levl[x][y].typ))
+			    sprintf(eos(buf), ", atop a mountain"); 
+			else if (levl[x][y].typ == STONE || levl[x][y].typ == SCORR)
+			    sprintf(eos(buf), ", in stone");
+			else if (IS_WALL(levl[x][y].typ) || levl[x][y].typ == SDOOR)
+			    sprintf(eos(buf), ", in a wall");
+			else if (closed_door(x,y))
+			    sprintf(eos(buf), ", in a door");
+			else if (is_pool(x,y))
+			    sprintf(eos(buf), ", in water");
+			else if (is_styxriver(x,y))
+			    sprintf(eos(buf), ", in a styx river");
+			else if (is_watertunnel(x,y))
+			    sprintf(eos(buf), ", in a water tunnel");
+			else if (is_lava(x,y))
+			    sprintf(eos(buf), ", in molten lava");
+			else if (IS_GRAVE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a grave");
+			else if (IS_THRONE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a throne");
+			else if (IS_FOUNTAIN(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a fountain");
+			else if (IS_SINK(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a sink");
+			else if (IS_TOILET(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a toilet");
+			else if (IS_ALTAR(levl[x][y].typ))
+			    sprintf(eos(buf), ", on an altar");
+			else if (IS_DRAWBRIDGE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a drawbridge");
+			else if (IS_CRYSTALWATER(levl[x][y].typ))
+			    sprintf(eos(buf), ", in crystal water");
+			else if (IS_MOORLAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", in moorland");
+			else if (IS_URINELAKE(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a urine lake");
+			else if (IS_SHIFTINGSAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", in shifting sand");
+			else if (IS_STYXRIVER(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a styx river");
+			else if (IS_PENTAGRAM(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a pentagram");
+			else if (IS_WELL(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a well");
+			else if (IS_POISONEDWELL(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a poisoned well");
+			else if (IS_WAGON(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a wagon");
+			else if (IS_BURNINGWAGON(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a burning wagon");
+			else if (IS_WOODENTABLE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a wooden table");
+			else if (IS_CARVEDBED(levl[x][y].typ))
+			    sprintf(eos(buf), ", on an ornately carved bed");
+			else if (IS_STRAWMATTRESS(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a rude straw mattress");
+			else if (IS_SNOW(levl[x][y].typ))
+			    sprintf(eos(buf), ", in snow");
+			else if (IS_ASH(levl[x][y].typ))
+			    sprintf(eos(buf), ", in ash terrain");
+			else if (IS_SAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", in sand");
+			else if (IS_PAVEDFLOOR(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a paved floor");
+			else if (IS_HIGHWAY(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a highway");
+			else if (IS_GRASSLAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", in grassland");
+			else if (IS_NETHERMIST(levl[x][y].typ))
+			    sprintf(eos(buf), ", in nether mist");
+			else if (IS_STALACTITE(levl[x][y].typ))
+			    sprintf(eos(buf), ", underneath a stalactite");
+			else if (IS_CRYPTFLOOR(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a crypt floor");
+			else if (IS_BUBBLES(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a bubble");
+			else if (IS_RAINCLOUD(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a rain cloud");
+			else if (IS_CLOUD(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a cloud");
+			else if (is_ice(x,y))
+			    sprintf(eos(buf), ", in ice");
+			else if (levl[x][y].typ == STAIRS)
+			    sprintf(eos(buf), ", on a staircase");
+			else if (levl[x][y].typ == LADDER)
+			    sprintf(eos(buf), ", on a ladder");
+
+			if (!Hallucination) {
+				register struct trap *seethetrap;
+				register int tt;
+				if ((seethetrap = t_at(x, y)) && seethetrap && seethetrap->tseen) {
+					tt = what_trap(seethetrap->ttyp);
+					sprintf(eos(buf), ", on %s", an(defsyms[trap_to_defsym(tt)].explanation) );
+				}
+
+			}
+
+	    }
+
     } else if (u.uswallow) {
 	/* all locations when swallowed other than the hero are the monster */
 	sprintf(buf, "interior of %s",
@@ -199,6 +311,119 @@ lookat(x, y, buf, monbuf)
 			tt == SPIKED_PIT || tt == GIANT_CHASM || tt == WEB)
 		    sprintf(eos(buf), ", trapped in %s",
 			    an(defsyms[trap_to_defsym(tt)].explanation));
+	    }
+
+		/* tell player what the terrain is, as long as no nasty trap effects are active and the tile has
+		 * already been seen, because this information really should be available to the player --Amy */
+	    if (levl[x][y].seenv && !(GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+
+			if (IS_TREE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a tree");
+			else if (IS_IRONBAR(levl[x][y].typ))
+			    sprintf(eos(buf), ", in iron bars");
+			else if (IS_GRAVEWALL(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a grave wall");
+			else if (IS_TUNNELWALL(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a tunnel");
+			else if (IS_FARMLAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a farmland");
+			else if (IS_MOUNTAIN(levl[x][y].typ))
+			    sprintf(eos(buf), ", atop a mountain"); 
+			else if (levl[x][y].typ == STONE || levl[x][y].typ == SCORR)
+			    sprintf(eos(buf), ", in stone");
+			else if (IS_WALL(levl[x][y].typ) || levl[x][y].typ == SDOOR)
+			    sprintf(eos(buf), ", in a wall");
+			else if (closed_door(x,y))
+			    sprintf(eos(buf), ", in a door");
+			else if (is_pool(x,y))
+			    sprintf(eos(buf), ", in water");
+			else if (is_styxriver(x,y))
+			    sprintf(eos(buf), ", in a styx river");
+			else if (is_watertunnel(x,y))
+			    sprintf(eos(buf), ", in a water tunnel");
+			else if (is_lava(x,y))
+			    sprintf(eos(buf), ", in molten lava");
+			else if (IS_GRAVE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a grave");
+			else if (IS_THRONE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a throne");
+			else if (IS_FOUNTAIN(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a fountain");
+			else if (IS_SINK(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a sink");
+			else if (IS_TOILET(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a toilet");
+			else if (IS_ALTAR(levl[x][y].typ))
+			    sprintf(eos(buf), ", on an altar");
+			else if (IS_DRAWBRIDGE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a drawbridge");
+			else if (IS_CRYSTALWATER(levl[x][y].typ))
+			    sprintf(eos(buf), ", in crystal water");
+			else if (IS_MOORLAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", in moorland");
+			else if (IS_URINELAKE(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a urine lake");
+			else if (IS_SHIFTINGSAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", in shifting sand");
+			else if (IS_STYXRIVER(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a styx river");
+			else if (IS_PENTAGRAM(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a pentagram");
+			else if (IS_WELL(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a well");
+			else if (IS_POISONEDWELL(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a poisoned well");
+			else if (IS_WAGON(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a wagon");
+			else if (IS_BURNINGWAGON(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a burning wagon");
+			else if (IS_WOODENTABLE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a wooden table");
+			else if (IS_CARVEDBED(levl[x][y].typ))
+			    sprintf(eos(buf), ", on an ornately carved bed");
+			else if (IS_STRAWMATTRESS(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a rude straw mattress");
+			else if (IS_SNOW(levl[x][y].typ))
+			    sprintf(eos(buf), ", in snow");
+			else if (IS_ASH(levl[x][y].typ))
+			    sprintf(eos(buf), ", in ash terrain");
+			else if (IS_SAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", in sand");
+			else if (IS_PAVEDFLOOR(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a paved floor");
+			else if (IS_HIGHWAY(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a highway");
+			else if (IS_GRASSLAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", in grassland");
+			else if (IS_NETHERMIST(levl[x][y].typ))
+			    sprintf(eos(buf), ", in nether mist");
+			else if (IS_STALACTITE(levl[x][y].typ))
+			    sprintf(eos(buf), ", underneath a stalactite");
+			else if (IS_CRYPTFLOOR(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a crypt floor");
+			else if (IS_BUBBLES(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a bubble");
+			else if (IS_RAINCLOUD(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a rain cloud");
+			else if (IS_CLOUD(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a cloud");
+			else if (is_ice(x,y))
+			    sprintf(eos(buf), ", in ice");
+			else if (levl[x][y].typ == STAIRS)
+			    sprintf(eos(buf), ", on a staircase");
+			else if (levl[x][y].typ == LADDER)
+			    sprintf(eos(buf), ", on a ladder");
+
+			if (!Hallucination) {
+				register struct trap *seethetrap;
+				register int tt;
+				if ((seethetrap = t_at(x, y)) && seethetrap && seethetrap->tseen) {
+					tt = what_trap(seethetrap->ttyp);
+					sprintf(eos(buf), ", on %s", an(defsyms[trap_to_defsym(tt)].explanation) );
+				}
+
+			}
+
 	    }
 
 	    {
@@ -515,7 +740,7 @@ lookat(x, y, buf, monbuf)
 	    strcat(buf, " embedded in a wall");
 	else if (closed_door(x,y))
 	    strcat(buf, " embedded in a door");
-	else if (is_waterypool(x,y))
+	else if (is_pool(x,y))
 	    strcat(buf, " in water");
 	else if (is_styxriver(x,y))
 	    strcat(buf, " in a styx river");
@@ -523,6 +748,86 @@ lookat(x, y, buf, monbuf)
 	    strcat(buf, " in a water tunnel");
 	else if (is_lava(x,y))
 	    strcat(buf, " in molten lava");	/* [can this ever happen?] */
+	else if (IS_GRAVE(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a grave");
+	else if (IS_THRONE(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a throne");
+	else if (IS_FOUNTAIN(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a fountain");
+	else if (IS_SINK(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a sink");
+	else if (IS_TOILET(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a toilet");
+	else if (IS_ALTAR(levl[x][y].typ))
+	    sprintf(eos(buf), ", on an altar");
+	else if (IS_DRAWBRIDGE(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a drawbridge");
+	else if (IS_CRYSTALWATER(levl[x][y].typ))
+	    sprintf(eos(buf), ", in crystal water");
+	else if (IS_MOORLAND(levl[x][y].typ))
+	    sprintf(eos(buf), ", in moorland");
+	else if (IS_URINELAKE(levl[x][y].typ))
+	    sprintf(eos(buf), ", in a urine lake");
+	else if (IS_SHIFTINGSAND(levl[x][y].typ))
+	    sprintf(eos(buf), ", in shifting sand");
+	else if (IS_STYXRIVER(levl[x][y].typ))
+	    sprintf(eos(buf), ", in a styx river");
+	else if (IS_PENTAGRAM(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a pentagram");
+	else if (IS_WELL(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a well");
+	else if (IS_POISONEDWELL(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a poisoned well");
+	else if (IS_WAGON(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a wagon");
+	else if (IS_BURNINGWAGON(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a burning wagon");
+	else if (IS_WOODENTABLE(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a wooden table");
+	else if (IS_CARVEDBED(levl[x][y].typ))
+	    sprintf(eos(buf), ", on an ornately carved bed");
+	else if (IS_STRAWMATTRESS(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a rude straw mattress");
+	else if (IS_SNOW(levl[x][y].typ))
+	    sprintf(eos(buf), ", in snow");
+	else if (IS_ASH(levl[x][y].typ))
+	    sprintf(eos(buf), ", in ash terrain");
+	else if (IS_SAND(levl[x][y].typ))
+	    sprintf(eos(buf), ", in sand");
+	else if (IS_PAVEDFLOOR(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a paved floor");
+	else if (IS_HIGHWAY(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a highway");
+	else if (IS_GRASSLAND(levl[x][y].typ))
+	    sprintf(eos(buf), ", in grassland");
+	else if (IS_NETHERMIST(levl[x][y].typ))
+	    sprintf(eos(buf), ", in nether mist");
+	else if (IS_STALACTITE(levl[x][y].typ))
+	    sprintf(eos(buf), ", underneath a stalactite");
+	else if (IS_CRYPTFLOOR(levl[x][y].typ))
+	    sprintf(eos(buf), ", on a crypt floor");
+	else if (IS_BUBBLES(levl[x][y].typ))
+	    sprintf(eos(buf), ", in a bubble");
+	else if (IS_RAINCLOUD(levl[x][y].typ))
+	    sprintf(eos(buf), ", in a rain cloud");
+	else if (IS_CLOUD(levl[x][y].typ))
+	    sprintf(eos(buf), ", in a cloud");
+	else if (is_ice(x,y))
+	    sprintf(eos(buf), ", in ice");
+	else if (levl[x][y].typ == STAIRS)
+	    sprintf(eos(buf), ", on a staircase");
+	else if (levl[x][y].typ == LADDER)
+	    sprintf(eos(buf), ", on a ladder");
+
+		if (!Hallucination) {
+			register struct trap *seethetrap;
+			register int tt;
+			if ((seethetrap = t_at(x, y)) && seethetrap && seethetrap->tseen) {
+				tt = what_trap(seethetrap->ttyp);
+				sprintf(eos(buf), ", on %s", an(defsyms[trap_to_defsym(tt)].explanation) );
+			}
+			}
+
     } else if (glyph_is_trap(glyph)) {
 	int tnum = what_trap(glyph_to_trap(glyph));
 
@@ -539,11 +844,113 @@ lookat(x, y, buf, monbuf)
 	}
 
 	strcpy(buf, defsyms[trap_to_defsym(tnum)].explanation);
+
+	    if (levl[x][y].seenv && !(GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+
+			if (IS_TREE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a tree");
+			else if (IS_IRONBAR(levl[x][y].typ))
+			    sprintf(eos(buf), ", in iron bars");
+			else if (IS_GRAVEWALL(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a grave wall");
+			else if (IS_TUNNELWALL(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a tunnel");
+			else if (IS_FARMLAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a farmland");
+			else if (IS_MOUNTAIN(levl[x][y].typ))
+			    sprintf(eos(buf), ", atop a mountain"); 
+			else if (levl[x][y].typ == STONE || levl[x][y].typ == SCORR)
+			    sprintf(eos(buf), ", in stone");
+			else if (IS_WALL(levl[x][y].typ) || levl[x][y].typ == SDOOR)
+			    sprintf(eos(buf), ", in a wall");
+			else if (closed_door(x,y))
+			    sprintf(eos(buf), ", in a door");
+			else if (is_pool(x,y))
+			    sprintf(eos(buf), ", in water");
+			else if (is_styxriver(x,y))
+			    sprintf(eos(buf), ", in a styx river");
+			else if (is_watertunnel(x,y))
+			    sprintf(eos(buf), ", in a water tunnel");
+			else if (is_lava(x,y))
+			    sprintf(eos(buf), ", in molten lava");
+			else if (IS_GRAVE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a grave");
+			else if (IS_THRONE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a throne");
+			else if (IS_FOUNTAIN(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a fountain");
+			else if (IS_SINK(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a sink");
+			else if (IS_TOILET(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a toilet");
+			else if (IS_ALTAR(levl[x][y].typ))
+			    sprintf(eos(buf), ", on an altar");
+			else if (IS_DRAWBRIDGE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a drawbridge");
+			else if (IS_CRYSTALWATER(levl[x][y].typ))
+			    sprintf(eos(buf), ", in crystal water");
+			else if (IS_MOORLAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", in moorland");
+			else if (IS_URINELAKE(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a urine lake");
+			else if (IS_SHIFTINGSAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", in shifting sand");
+			else if (IS_STYXRIVER(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a styx river");
+			else if (IS_PENTAGRAM(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a pentagram");
+			else if (IS_WELL(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a well");
+			else if (IS_POISONEDWELL(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a poisoned well");
+			else if (IS_WAGON(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a wagon");
+			else if (IS_BURNINGWAGON(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a burning wagon");
+			else if (IS_WOODENTABLE(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a wooden table");
+			else if (IS_CARVEDBED(levl[x][y].typ))
+			    sprintf(eos(buf), ", on an ornately carved bed");
+			else if (IS_STRAWMATTRESS(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a rude straw mattress");
+			else if (IS_SNOW(levl[x][y].typ))
+			    sprintf(eos(buf), ", in snow");
+			else if (IS_ASH(levl[x][y].typ))
+			    sprintf(eos(buf), ", in ash terrain");
+			else if (IS_SAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", in sand");
+			else if (IS_PAVEDFLOOR(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a paved floor");
+			else if (IS_HIGHWAY(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a highway");
+			else if (IS_GRASSLAND(levl[x][y].typ))
+			    sprintf(eos(buf), ", in grassland");
+			else if (IS_NETHERMIST(levl[x][y].typ))
+			    sprintf(eos(buf), ", in nether mist");
+			else if (IS_STALACTITE(levl[x][y].typ))
+			    sprintf(eos(buf), ", underneath a stalactite");
+			else if (IS_CRYPTFLOOR(levl[x][y].typ))
+			    sprintf(eos(buf), ", on a crypt floor");
+			else if (IS_BUBBLES(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a bubble");
+			else if (IS_RAINCLOUD(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a rain cloud");
+			else if (IS_CLOUD(levl[x][y].typ))
+			    sprintf(eos(buf), ", in a cloud");
+			else if (is_ice(x,y))
+			    sprintf(eos(buf), ", in ice");
+			else if (levl[x][y].typ == STAIRS)
+			    sprintf(eos(buf), ", on a staircase");
+			else if (levl[x][y].typ == LADDER)
+			    sprintf(eos(buf), ", on a ladder");
+		}
+
+
     } else if(!glyph_is_cmap(glyph)) {
 	strcpy(buf,"unexplored area");
 /*    } else if( glyph == (GLYPH_CMAP_OFF + 44)) {
 	strcpy(buf,"grayout");*/
-    } else switch(glyph_to_cmap(glyph)) {
+    } else { switch(glyph_to_cmap(glyph)) {
     case S_altar:
 	if(!In_endgame(&u.uz))
 	    sprintf(buf, "%s altar",
@@ -586,7 +993,18 @@ lookat(x, y, buf, monbuf)
     default:
 	strcpy(buf,defsyms[glyph_to_cmap(glyph)].explanation);
 	break;
-    }
+	} /* switch end */
+
+	if (!Hallucination && levl[x][y].seenv && !(GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
+		register struct trap *seethetrap;
+		register int tt;
+		if ((seethetrap = t_at(x, y)) && seethetrap && seethetrap->tseen) {
+			tt = what_trap(seethetrap->ttyp);
+			sprintf(eos(buf), ", on %s", an(defsyms[trap_to_defsym(tt)].explanation) );
+		}
+	}
+
+    } /* else end */
 
     return ((pm && !Hallucination) ? pm : (struct permonst *) 0);
 }
@@ -988,6 +1406,118 @@ do_look(quick)
 		   Reveal the boulder too or player can get confused */
 		if (from_screen && sobj_at(BOULDER, cc.x, cc.y))
 			strcat(out_str, " co-located with a boulder");
+
+		/* guh, need to paste all the code here too... --Amy */
+		if (from_screen && levl[cc.x][cc.y].seenv && !(GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
+			if (IS_TREE(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a tree");
+			else if (IS_IRONBAR(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in iron bars");
+			else if (IS_GRAVEWALL(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in a grave wall");
+			else if (IS_TUNNELWALL(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in a tunnel");
+			else if (IS_FARMLAND(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a farmland");
+			else if (IS_MOUNTAIN(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", atop a mountain"); 
+			else if (levl[cc.x][cc.y].typ == STONE || levl[cc.x][cc.y].typ == SCORR)
+			    sprintf(eos(out_str), ", in stone");
+			else if (IS_WALL(levl[cc.x][cc.y].typ) || levl[cc.x][cc.y].typ == SDOOR)
+			    sprintf(eos(out_str), ", in a wall");
+			else if (closed_door(cc.x,cc.y))
+			    sprintf(eos(out_str), ", in a door");
+			else if (is_pool(cc.x,cc.y))
+			    sprintf(eos(out_str), ", in water");
+			else if (is_styxriver(cc.x,cc.y))
+			    sprintf(eos(out_str), ", in a styx river");
+			else if (is_watertunnel(cc.x,cc.y))
+			    sprintf(eos(out_str), ", in a water tunnel");
+			else if (is_lava(cc.x,cc.y))
+			    sprintf(eos(out_str), ", in molten lava");
+			else if (IS_GRAVE(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a grave");
+			else if (IS_THRONE(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a throne");
+			else if (IS_FOUNTAIN(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a fountain");
+			else if (IS_SINK(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a sink");
+			else if (IS_TOILET(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a toilet");
+			else if (IS_ALTAR(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on an altar");
+			else if (IS_DRAWBRIDGE(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a drawbridge");
+			else if (IS_CRYSTALWATER(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in crystal water");
+			else if (IS_MOORLAND(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in moorland");
+			else if (IS_URINELAKE(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in a urine lake");
+			else if (IS_SHIFTINGSAND(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in shifting sand");
+			else if (IS_STYXRIVER(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in a styx river");
+			else if (IS_PENTAGRAM(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a pentagram");
+			else if (IS_WELL(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a well");
+			else if (IS_POISONEDWELL(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a poisoned well");
+			else if (IS_WAGON(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a wagon");
+			else if (IS_BURNINGWAGON(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a burning wagon");
+			else if (IS_WOODENTABLE(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a wooden table");
+			else if (IS_CARVEDBED(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on an ornately carved bed");
+			else if (IS_STRAWMATTRESS(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a rude straw mattress");
+			else if (IS_SNOW(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in snow");
+			else if (IS_ASH(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in ash terrain");
+			else if (IS_SAND(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in sand");
+			else if (IS_PAVEDFLOOR(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a paved floor");
+			else if (IS_HIGHWAY(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a highway");
+			else if (IS_GRASSLAND(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in grassland");
+			else if (IS_NETHERMIST(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in nether mist");
+			else if (IS_STALACTITE(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", underneath a stalactite");
+			else if (IS_CRYPTFLOOR(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", on a crypt floor");
+			else if (IS_BUBBLES(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in a bubble");
+			else if (IS_RAINCLOUD(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in a rain cloud");
+			else if (IS_CLOUD(levl[cc.x][cc.y].typ))
+			    sprintf(eos(out_str), ", in a cloud");
+			else if (is_ice(cc.x,cc.y))
+			    sprintf(eos(out_str), ", in ice");
+			else if (levl[cc.x][cc.y].typ == STAIRS)
+			    sprintf(eos(out_str), ", on a staircase");
+			else if (levl[cc.x][cc.y].typ == LADDER)
+			    sprintf(eos(out_str), ", on a ladder");
+
+			if (!Hallucination) {
+				register struct trap *seethetrap;
+				register int tt;
+				if ((seethetrap = t_at(cc.x, cc.y)) && seethetrap && seethetrap->tseen) {
+					tt = what_trap(seethetrap->ttyp);
+					sprintf(eos(out_str), ", on %s", an(defsyms[trap_to_defsym(tt)].explanation) );
+				}
+
+			}
+
+		  } /* Amy extra code end */
+
 		break;	/* out of for loop*/
 	    }
 	}
