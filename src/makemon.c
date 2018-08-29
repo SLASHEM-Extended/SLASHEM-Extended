@@ -14840,7 +14840,7 @@ register int	mmflags;
 
 	}
 
-	if (ptr == &mons[PM__S_SECRET_CAR] || ptr == &mons[PM_OAK_SAGE] || ptr == &mons[PM__S_____NIX] || ptr == &mons[PM_TANK_WARRIOR] || ptr == &mons[PM__S_RAT_MAN] || ptr == &mons[PM__S_UFO] ) { /* supposed to be extra annoying --Amy */
+	if (ptr == &mons[PM_PERCENTS_SECRET_CAR] || ptr == &mons[PM_OAK_SAGE] || ptr == &mons[PM_PERCENTS_____NIX] || ptr == &mons[PM_TANK_WARRIOR] || ptr == &mons[PM_PERCENTS_RAT_MAN] || ptr == &mons[PM_PERCENTS_UFO] ) { /* supposed to be extra annoying --Amy */
 		mtmp->mhpmax *= 5;
 		mtmp->mhp *= 5;
 
@@ -15904,7 +15904,7 @@ register int	mmflags;
 
 		case S_GRUE:
 
-	      if (mndx == PM__S_____NIX) mtmp->msleeping = 1;
+	      if (mndx == PM_PERCENTS_____NIX) mtmp->msleeping = 1;
 			if (mndx == PM_IT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_INVISIBLE_HORROR) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_SUPER_STEALTH_ANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
@@ -16057,10 +16057,6 @@ register int	mmflags;
 	/* undead player monsters don't have titles, so I'm assigning names to them instead --Amy */
 	} else if (mndx >= PM_UNDEAD_ARCHEOLOGIST && mndx <= PM_UNDEAD_WIZARD && !(mmflags & MM_NONAME) ) {
 
-		mtmp = christen_monst(mtmp, mtmp->female ? rndplrmonnamefemale() : rndplrmonname() );
-
-	} else if (mndx == PM__S_RAT_MAN || mndx == PM__S_SECRET_CAR || mndx == PM__S_UFO || mndx == PM__S_____NIX) {
-		/* segfault things - somehow only cause crashes if playing on unix?! --Amy */
 		mtmp = christen_monst(mtmp, mtmp->female ? rndplrmonnamefemale() : rndplrmonname() );
 
 	} else if (mndx == PM_NIGHTMARE) {

@@ -17114,7 +17114,7 @@ MONSTER:'V',random,random
 # An arch-lichen in the Sanctum undead-priest restway. Evil!
 MONSTER[50%]:'F',"arch-lichen",(35,6),hostile
 
-MONSTER[10%]:'.',"%s-$$$-NIX",random,hostile
+MONSTER[10%]:'.',"percents-$$$-NIX",random,hostile
 
 MONSTER[50%]:':',"arch-newt",(19,09),hostile
 
@@ -17304,7 +17304,7 @@ MONSTER:'V',random,random
 # An arch-lichen in the Sanctum undead-priest restway. Evil!
 MONSTER[50%]:'F',"arch-lichen",(35,6),hostile
 
-MONSTER[10%]:'.',"%s-$$$-NIX",random,hostile
+MONSTER[10%]:'.',"percents-$$$-NIX",random,hostile
 
 MONSTER[50%]:':',"arch-newt",(19,09),hostile
 

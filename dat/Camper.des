@@ -630,7 +630,7 @@ MONSTER:'@',"critically injured thief",random,hostile
 MONSTER:'@',"critically injured jedi",random,hostile
 MONSTER:'O',"huge ogre thief",random,hostile
 MONSTER:'.',"nix",random,hostile
-MONSTER:'.',"%s-$$$-NIX",random,hostile
+MONSTER:'.',"percents-$$$-NIX",random,hostile
 MONSTER:'~',"ak Thief is dead!",random,hostile
 MONSTER:'~',"un in Protect mode",random,hostile
 MONSTER:'@',"Gunnhild's General Store",random,hostile

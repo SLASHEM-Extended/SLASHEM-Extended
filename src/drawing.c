@@ -454,7 +454,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "amnesia trap", C(CLR_MAGENTA)},	/* trap */
 	{'^', "bigscript trap", C(CLR_WHITE)},	/* trap */
 	{'^', "bank trap", C(CLR_BROWN)},	/* trap */
-	{'^', "Only %a%s can go there!", C(CLR_RED)},	/* trap */
+	{'^', "Only percentapercents can go there!", C(CLR_RED)},	/* trap */
 	{'^', "map trap", C(CLR_BROWN)},	/* trap */
 	{'^', "tech trap", C(CLR_YELLOW)},	/* trap */
 	{'^', "disenchantment trap", C(CLR_BRIGHT_BLUE)},	/* trap */
@@ -564,7 +564,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "spell forgetting trap", C(CLR_BRIGHT_BLUE)},	/* trap */
 	{'^', "sound effect trap", C(CLR_ORANGE)},	/* trap */
 
-	{'^', "trap %s", C(CLR_WHITE)},	/* trap */
+	{'^', "trap percents", C(CLR_WHITE)},	/* trap */
 
 	{'^', "nexus trap", C(CLR_MAGENTA)},	/* trap */
 	{'^', "leg trap", C(CLR_BROWN)},	/* trap */

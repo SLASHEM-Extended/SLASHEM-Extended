@@ -706,7 +706,7 @@ MONSTER[30%]:'F',"arch-lichen",random,hostile
 MONSTER[20%]:'F',"arch-lichen",random,hostile
 MONSTER[10%]:'F',"arch-lichen",random,hostile
 
-MONSTER[50%]:'.',"%s-$$$-NIX",random,hostile
+MONSTER[50%]:'.',"percents-$$$-NIX",random,hostile
 
 MONSTER[10%]:'&',"Frustration",random,hostile
 
