@@ -1466,6 +1466,105 @@ register struct monst *mtmp;
 	    break;
 	case MS_STENCH:
 
+		if (mtmp->data == &mons[PM_MANDARUCK] && !mtmp->mfrenzied) {
+
+			if (!mtmp->mpeaceful && !mtmp->mfrenzied) mtmp->mpeaceful = TRUE;
+
+			static const char *hint_msgs[] = {
+				"Always guard your purse from thieves.",
+				"Be wary of Jessica, she might not look like it but she'll steal your money repeatedly.",
+				"Careful when dealing with the mysterious 2! They're known to sneak into your backpack as blind passengers!",
+				"The journalist Rhea wants to open your backpack and film it at the same time, which will cause you to appear in the newspaper in a rather negative light...",
+				"Don't react to Mariya when she clicks open all the drawers of your backpack. She will seduce you if you confront her, and then make you unconscious.",
+				"If your backpack is suddenly much heavier with no warning, it means that Wendy jumped on top of it and you're dragging her weight.",
+				"There's a sexy princess called Cathlette, but she's really evil. God help you if she decides to make you a target.",
+				"Watch out for Lisa's tricks. She will divert you by talking about boring stuff.",
+				"Make sure you don't turn your back on May-Britt, or she might end up breaking your backpack's zippers!",
+			};
+			verbalize(hint_msgs[rn2(SIZE(hint_msgs))]);
+
+			break;
+		}
+
+		if (mtmp->data == &mons[PM_TEARFRAN] && !mtmp->mfrenzied) {
+
+			if (mtmp->mpeaceful) {
+				verbalize("*sob*... there are no good days in this life at all, there are only terrible ones... *sob*");
+			} else if (u.ualign.record > 0) {
+				mtmp->mpeaceful = TRUE;
+				verbalize("Oh... I see you care for me... please, protect me from harm...");
+				pline("You can see tears running down %s's cheeks, and try your best to make her feel better.", mon_nam(mtmp));
+			} else if (u.ualign.record < 0) {
+				mtmp->mfrenzied = TRUE;
+				monflee(mtmp, 100, TRUE, TRUE);
+				verbalize("*sob* *sob* You're just as evil as all the other people... please end this life of misery and agony already...");
+			} else verbalize("Oh... can I talk to you?");
+			break;
+
+		}
+
+		if (mtmp->data == &mons[PM_MELISTRIDE] && PlayerInHighHeels && !mtmp->mfrenzied) {
+			mtmp->mpeaceful = TRUE;
+			verbalize("Wow, I really like your heels, %s!", plname);
+
+			if (ACURR(A_CHA) >= 18 && !mtmp->mtame) {
+				struct monst *melistride;
+				melistride = tamedog(mtmp, (struct obj *) 0, TRUE);
+				if (melistride) mtmp = melistride;
+				if (mtmp) verbalize("You know what? I'll join you. We're in this together, after all. Let's complete our tasks in a team effort!");
+				else impossible("melistride was tamed but doesn't exist now??");
+			}
+			break;
+		}
+
+		if (mtmp->data == &mons[PM_NASTROSCHA] && (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "velvet gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "barkhatnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "baxmal qo'lqop") ) ) && !mtmp->mfrenzied) {
+			mtmp->mpeaceful = TRUE;
+			pline("With your velvet gloves, you caress %s...", mon_nam(mtmp));
+
+			if (!mtmp->mtame) {
+				struct monst *nastroscha;
+				nastroscha = tamedog(mtmp, (struct obj *) 0, TRUE);
+				if (nastroscha) mtmp = nastroscha;
+				if (!mtmp) impossible("nastroscha was tamed but doesn't exist now??");
+				else pline("Suddenly %s is absolutely in love with you!", mon_nam(mtmp));
+			} else verbalize("Ooh %s, I really like those velvety soft gloves...", plname);
+			break;
+		}
+
+		if (mtmp->data == &mons[PM_WUXTINA] && !mtmp->mcan) {
+			verbalize("Get the fuck out of here! I'm the only one who may use the analysis port now and if you want to use it too you have to stand in the fucking line!");
+
+			if (yn("Do you obey the command that the wuxtina uttered with her bitchy voice?") != 'y') {
+				pline("%s suddenly sprays her scentful perfume right into your %s.", Monnam(mtmp), body_part(FACE));
+				if (Role_if(PM_HUSSY)) {
+					You("joyously inhale %s's scentful perfume. It's very soothing.", mon_nam(mtmp));
+				} else {
+					pline("Inhaling %s's scentful perfume is not the brightest idea. But in this case you didn't have a choice...", mon_nam(mtmp));
+					badeffect();
+				}
+
+			} else {
+
+				mtmp->mcan = TRUE;
+
+				if (u.uevent.udemigod || u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || (u.usteed && mon_has_amulet(u.usteed)) ) { pline("You shudder for a moment."); (void) safe_teleds(FALSE); break;}
+				if (flags.lostsoul || flags.uberlostsoul || (flags.wonderland && !(u.wonderlandescape)) || u.uprops[STORM_HELM].extrinsic || In_bellcaves(&u.uz) || In_subquest(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) {
+				pline("For some reason you resist the banishment!"); break;}
+
+				make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+
+				if (!u.banishmentbeam) {
+					u.banishmentbeam = 1;
+					nomul(-2, "being banished", FALSE);
+				}
+				verbalize(!rn2(4) ? "Don't molest me ever again. If you do, I'll kick your hands bloodily with my dancing shoes." : !rn2(3) ? "Good riddance. Now get lost and annoy other girls instead." : !rn2(2) ? "Get lost before I start burning your arm with my candle." : "If you ever come back, I'm gonna extinguish my cigarette right in your face.");
+				if (Hallucination) pline("(She obviously likes assholes, you say to yourself.)");
+
+			}
+
+			break;
+		}
+
 		if (Role_if(PM_HUSSY)) {
 			You("joyously inhale %s's scentful perfume. It's very soothing.", mon_nam(mtmp));
 		} else {

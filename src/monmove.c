@@ -791,6 +791,12 @@ register struct monst *mtmp;
         }
     }
 
+	if (monsndx(mdat) == PM_SINGPIR && !rn2(20)) {
+		if (!(t_at(mtmp->mx, mtmp->my))) {
+			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0);
+		}
+	}
+
 	if ((mdat->msound == MS_CONVERT || mtmp->egotype_converter) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(10)) {
 
 		static const char *conversion_msgs[] = {

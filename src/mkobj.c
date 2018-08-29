@@ -2709,8 +2709,17 @@ start_corpse_timeout(body)
 		 * as food and come back.
 		 */
 		long age;
+
 		for (age = 2; age <= TAINT_AGE; age++)
 		    if (!rn2(MOLD_REVIVE_CHANCE)) {    /* mold revives */
+			action = REVIVE_MON;
+			when = age;
+			break;
+		    } else if (is_reviver(&mons[body->corpsenm]) && !rn2(MOLD_REVIVE_CHANCE)) {
+			action = REVIVE_MON;
+			when = age;
+			break;
+		    } else if (((((mtmp = get_mtraits(body, FALSE)) != (struct monst *)0) ) && mtmp->egotype_troll) && !rn2(MOLD_REVIVE_CHANCE)) {
 			action = REVIVE_MON;
 			when = age;
 			break;
@@ -3096,6 +3105,7 @@ int x, y;
 				|| (nocorpsedecay(&mons[num]))	\
 				|| (is_rider(&mons[num]))	\
 				|| (is_deadlysin(&mons[num]))	\
+				|| (is_reviver(&mons[num]))	\
 				|| (mons[num].mlet == S_FUNGUS) \
 				|| (mons[num].mlet == S_TROLL))
 

@@ -2746,6 +2746,12 @@ register int pm;
 		pline(Hallucination ? "You feel like ripping out some trees!" : "You feel stronger!");
 		break;
 
+	    case PM_KATOISEFUL:
+		pline("You'll have incessant flatulence for a while now...");
+		FemaleTrapMaurah += rnz(2000);
+		CrapEffect += rnz(50 * (monster_difficulty() + 1));
+		break;
+
 	    case PM_STEALATRICE:
 		if (u.contamination && u.contamination < 1000) {
 			decontaminate(100);

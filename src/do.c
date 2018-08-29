@@ -4411,6 +4411,12 @@ boolean moldy;
 		mtmp->egotype_covetous = 1;
 	}
 
+	if (mtmp->data == &mons[PM_MANOCTATOR]) {
+		(void) makemon(specialtensmon(333), 0, 0, NO_MM_FLAGS); /* MS_STENCH */
+		You("sense the bittersweet odor of perfume in the air...");
+		if (Role_if(PM_HUSSY)) pline("It feels quite soothing.");
+	}
+
 	chewed = !moldy && (mtmp->mhp < mtmp->mhpmax);
 	if (chewed) cname = cname_buf;	/* include "bite-covered" prefix */
 	switch (where) {

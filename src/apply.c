@@ -3640,6 +3640,23 @@ use_pole (obj)
 		return (1);
 	    }
 
+	    if ((!rn2(250) || (!rn2(10) && mtmp->data == &mons[PM_GREUVENENE] ) || (!rn2(50) && obj->otyp == WOODEN_BAR)) && humanoid(mtmp->data) && (avoid_player(mtmp->data) || mtmp->egotype_avoider) ) {
+			int aggroamount = rnd(6);
+			u.aggravation = 1;
+			u.heavyaggravation = 1;
+			reset_rndmonst(NON_PM);
+			while (aggroamount) {
+				makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);
+				aggroamount--;
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
+			pline("%s calls you out for using such devious weapons and uses countermeasures...", Monnam(mtmp));
+			pline("Several monsters come out of a portal.");
+
+	    }
+
 	    int oldhp = mtmp->mhp;
 
 	    bhitpos = cc;

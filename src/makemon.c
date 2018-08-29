@@ -7362,6 +7362,7 @@ register struct	monst	*mtmp;
 	    case S_DOG:
 
 		if (mtmp->data == &mons[PM_HELL_BRIDE]) (void) mongets(mtmp, DANCING_SHOES);
+		if (mtmp->data == &mons[PM_GREUVENENE]) (void) mongets(mtmp, SCR_LOCKOUT);
 		if (mtmp->data == &mons[PM_SUE_LYN_S_PLATEAU_BOOT]) (void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
 		if (mtmp->data == &mons[PM_CRAPDOG]) (void) mongets(mtmp, SCR_BULLSHIT);
 		if (mtmp->data == &mons[PM_ELEMENTAL_GIRL]) (void) mongets(mtmp, SOFT_SNEAKERS);
@@ -18843,6 +18844,9 @@ int type;
 		case PM_SCROLL_GOLEM: return 100;
 		case PM_READER_GOLEM: return 190;
 		case PM_SA_BRINE: return 250;
+		case PM_DANI_JELLE: return 200;
+		case PM_BUNELY: return 600;
+		case PM_MANOCTATOR: return 700;
 
 		case PM_GERMAN_CHANCELLOR: return 7500;
 

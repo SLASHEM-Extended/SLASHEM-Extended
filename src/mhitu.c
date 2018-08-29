@@ -17358,7 +17358,7 @@ struct attack *mattk;
 		return 1;
 	else
 		/* Not everyone is straight... --Amy */
-		return (!rn2(25)) ? 1 : (u.homosexual == 2) ? 1 : (pagr->mlet == S_NYMPH) ? 2 : 0;
+		return (!rn2(25)) ? 1 : (pagr == &mons[PM_FEMME]) ? 1 : (u.homosexual == 2) ? 1 : (pagr->mlet == S_NYMPH) ? 2 : 0;
 }
 
 #endif /* OVL1 */
@@ -17507,24 +17507,36 @@ register struct monst *mon;
 	else pline("%s softly caresses your fleecy bra, and gently pulls it off to reveal your breasts...", Monnam(mon));
 	}
 
+	/* yay ULTRA graphical descriptions! I should suggest them to the noxico devs :P --Amy */
+	if (mon->data == &mons[PM_FEMME]) {
+		if (!flags.female) pline("You joyously experience pure lust as %s massages your delicate nuts.", mon_nam(mon));
+		else pline("Full of joy, %s strokes your soft breasts, kneading them very tenderly.", mon_nam(mon));
+	}
+
 	/* "Remove a stupid line of dialogue. This is not an adult visual novel.  The rest of the dialogue scattered around the source files like this will be cleaned up in due time." In Soviet Russia, people are filthy heretics who don't fully appreciate the beauty of Slash'EM Extended, which causes them to pick the best features of the game and remove them. :( --Amy */
 
 	if (u.homosexual == 2 && (flags.female && mon->female)) goto skiptreason;
 	if (u.homosexual == 2 && (!flags.female && !(mon->female))) goto skiptreason;
 
-	if (rnd(ACURR(A_CHA)) < ((u.homosexual == 2) ? 9 : 3) ) { /* random chance of being betrayed by your love interest... */
+	if ((rnd(ACURR(A_CHA)) < ((u.homosexual == 2) ? 9 : 3) ) && (mon->data != &mons[PM_FEMME] || !rn2(3)) ) { /* random chance of being betrayed by your love interest... */
 
-	monsterlev = ((mon->m_lev) + 1);
-	if (monsterlev <= 0) monsterlev = 1;
+		monsterlev = ((mon->m_lev) + 1);
+		if (monsterlev <= 0) monsterlev = 1;
 
-	if (!flags.female) { pline("But %s suddenly rams her sexy knees right into your nuts! OUCH!", Monnam(mon));
-				losehp(d(3,monsterlev), "treacherous lady", KILLED_BY_AN);
-			}
-	if (flags.female) { pline("But all of a sudden, %s clenches his burly hands to a fist and violently punches your breasts! AIIIEEEEEGGGGGHHHHH!", Monnam(mon));
-				losehp(d(3,monsterlev), "filthy traitor", KILLED_BY_AN);
-			}
+		if (!flags.female) { pline("But %s suddenly rams her sexy knees right into your nuts! OUCH!", Monnam(mon));
+			losehp(d(3,monsterlev), "treacherous lady", KILLED_BY_AN);
+		}
+		if (flags.female) { pline("But all of a sudden, %s clenches his burly hands to a fist and violently punches your breasts! AIIIEEEEEGGGGGHHHHH!", Monnam(mon));
+			losehp(d(3,monsterlev), "filthy traitor", KILLED_BY_AN);
+		}
+		/* I declare the generic "his" a feature, see below :P --Amy */
 
-	return 1;
+		if (mon->data == &mons[PM_FEMME]) {
+			if (!flags.female) pline("Wow, it sure was fun having your nuts squeezed by such a tender woman. Her female knee is very sexy!", mon_nam(mon));
+			else pline("Well that was a letdown, the announcer used the wrong pronoun for the femme. But at least the pain was enjoyable!", mon_nam(mon));
+		}
+
+		return 1;
 	}
 
 skiptreason:
@@ -17534,14 +17546,19 @@ skiptreason:
 		noit_mon_nam(mon));
 	/* Well,  IT happened ... */
 	u.uconduct.celibacy++;
-	
+
+	if (mon->data == &mons[PM_FEMME]) pline("The beautiful femme showers your body with kisses while your %s are busy stroking her very sexy butt cheeks.", makeplural(body_part(HAND)));
+
 	if (u.homosexual == 2 && (flags.female && mon->female) && rn2(3)) goto enjoyable;
 	if (u.homosexual == 2 && (!flags.female && !(mon->female)) && rn2(3)) goto enjoyable;
 
-	if ((rn2(135) > ACURR(A_CHA) + ACURR(A_INT)) || (u.homosexual == 2 && flags.female && !(mon->female)) || (u.homosexual == 2 && !flags.female && mon->female) ) /*much higher chance of negative outcome now --Amy */ {
+	if (((rn2(135) > ACURR(A_CHA) + ACURR(A_INT)) || (u.homosexual == 2 && flags.female && !(mon->female)) || (u.homosexual == 2 && !flags.female && mon->female) ) && (mon->data != &mons[PM_FEMME] || !rn2(2) ) ) /*much higher chance of negative outcome now --Amy */ {
 		/* Don't bother with mspec_used here... it didn't get tired! */
 		pline("%s seems to have enjoyed it more than you...",
 			noit_Monnam(mon));
+
+		if (mon->data == &mons[PM_FEMME]) pline("You are lustfully crushed underneath the full weight of the femme's very wonderful body. Being squeezed under such a beautiful woman is pure joy!");
+
 		switch (rn2(5)) {
 			case 0: You_feel("drained of energy.");
 				u.uen = 0;
@@ -17583,6 +17600,9 @@ enjoyable:
 		mon->mspec_used = rnd(100); /* monster is worn out */
 		You("seem to have enjoyed it more than %s...",
 		    noit_mon_nam(mon));
+
+		if (mon->data == &mons[PM_FEMME]) pline("Wow. WOW! You scream out your neverending orgasm and feel so full of lust while lying on top of the incredibly sexy femme. She must be the sexiest woman you ever saw!");
+
 		switch (rn2(5)) {
 		case 0: You_feel("raised to your full potential.");
 			exercise(A_CON, TRUE);

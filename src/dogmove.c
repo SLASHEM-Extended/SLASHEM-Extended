@@ -914,6 +914,8 @@ register int after;	/* this is extra fast monster movement */
 
 			if (!u.petattackenemies) continue;
 
+			if (mtmp2->data == &mons[PM_CHAREY]) continue;
+
 		    if (mtmp->isminion) align1 = EMIN(mtmp)->min_align;
 		    else if (is_unicorn(mtmp->data))
 			align1 = sgn(mtmp->data->maligntyp);

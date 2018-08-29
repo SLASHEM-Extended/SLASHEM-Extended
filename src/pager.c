@@ -19008,6 +19008,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"Great. You're stucco now.",
 	"Finally, it should be noted that crossbows are two-handed weapons and therefore a player using Hellfire frequently may want to avoid wearing shields so she can easily switch back and forth to melee mode.",
 	"A player using Hellfire frequently may want to avoid wearing shields so she can easily switch back and forth to melee mode. Maybe she also wants to write a thesis on how to become a gender studies PhD.",
+	"The wuxtina suddenly sprays her scentful perfume right into your face.",
+	"The wuxtina suddenly sprays her scentful perfume right into your face. Eeeeeeek! The odor is unbearable! You pass out.",
+	"The wuxtina suddenly sprays her scentful perfume right into your face. Now you can no longer fight back, and that filthy smoker bitch starts burning your arm with a candle. OUCH!",
+	"You sense the bittersweet odor of perfume in the air...",
+	"The hugging topmodel calls you out for using devious weapons and uses countermeasures...",
 
 };
 

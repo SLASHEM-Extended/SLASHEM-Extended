@@ -1930,6 +1930,11 @@ int thrown;
 		pline("%s swats the projectile away!", Monnam(mon));
 	}
 
+	if (mon->data == &mons[PM_ATHLEANNIE] && rn2(15) && tmp > -20) {
+		tmp = -100;
+		pline("%s swats the projectile away!", Monnam(mon));
+	}
+
 	if (mon->data == &mons[PM_GREEN] && rn2(15) && tmp > -20) {
 		tmp = -100;
 		pline("%s uses an ECM system to divert the projectile!", Monnam(mon));
