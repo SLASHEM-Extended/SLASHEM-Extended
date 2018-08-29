@@ -15089,6 +15089,246 @@ register int	mmflags;
 
 	}
 
+	if (ptr == &mons[PM_SHOPKEEPER] || ptr == &mons[PM_BLACK_MARKETEER]) {
+
+		if (rn2(2)) {
+			mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_wallwalk = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_disenchant = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_rust = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_corrosion = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_decay = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_wither = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_grab = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_slows = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_vampire = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_wrap = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_disease = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_slime = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_engrave = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_dark = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_luck = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_arcane = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_clerical = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_armorer = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_tank = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_speedster = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_racer = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_blaster = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_gator = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_reflecting = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_farter = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_watersplasher = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_cancellator = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_shredder = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_incrementor = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_mirrorimage = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_curser = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_cullen = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_webber = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_itemporter = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_abomination = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_flickerer = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_hitter = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_piercer = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_lifesaver = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_shader = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_amnesiac = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_trapmaster = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_mastercaster = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_sinner = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_weeper = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_destructor = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_trembler = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_worldender = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_damager = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_antitype = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_statdamager = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_rogue = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_champion = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_boss = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_atomizer = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_perfumespreader = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_converter = TRUE;
+		}
+		if (!rn2(100)) {
+			mtmp->isegotype = 1;
+			mtmp->egotype_wouwouer = TRUE;
+		}
+
+	}
+
 	if (AlwaysEgotypeMonsters || u.uprops[ALWAYS_EGOTYPES].extrinsic || have_egostone()) {
 
 		mtmp->isegotype = 1;

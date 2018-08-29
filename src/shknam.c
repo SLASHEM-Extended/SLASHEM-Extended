@@ -464,10 +464,486 @@ const char * const *nlp;
 	    /* special-case minetown lighting shk */
 	    shname = "Izchak";
 	    shk->female = FALSE;
+
+		/* Amy edit: Izchak is ultra special :D */
+
+		if (rn2(25)) {
+			shk->noegodesc = shk->noegodisplay = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_wallwalk = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_disenchant = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_rust = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_corrosion = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_decay = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_wither = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_grab = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_slows = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_vampire = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_wrap = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_disease = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_slime = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_engrave = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_dark = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_luck = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_arcane = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_clerical = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_armorer = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_tank = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_speedster = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_racer = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_blaster = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_gator = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_reflecting = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_farter = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_watersplasher = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_cancellator = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_shredder = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_incrementor = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_mirrorimage = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_curser = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_cullen = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_webber = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_itemporter = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_abomination = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_flickerer = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_hitter = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_piercer = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_lifesaver = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_shader = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_amnesiac = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_trapmaster = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_mastercaster = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_sinner = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_weeper = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_destructor = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_trembler = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_worldender = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_damager = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_antitype = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_statdamager = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_rogue = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_champion = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_boss = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_atomizer = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_perfumespreader = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_converter = TRUE;
+		}
+		if (!rn2(20)) {
+			shk->isegotype = 1;
+			shk->egotype_wouwouer = TRUE;
+		}
+
 	} else if (nlp == shkblack) {
 	    /* special-case black marketeer */
 	    shname = "One-eyed Sam";
 	    shk->female = shk->data->mflags2 & M2_MALE ? FALSE : TRUE;
+
+		/* Amy edit: Sam is even more special! */
+
+		shk->noegodesc = shk->noegodisplay = TRUE;
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_wallwalk = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_disenchant = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_rust = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_corrosion = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_decay = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_wither = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_grab = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_slows = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_vampire = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_wrap = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_disease = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_slime = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_engrave = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_dark = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_luck = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_arcane = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_clerical = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_armorer = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_tank = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_speedster = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_racer = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_blaster = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_gator = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_reflecting = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_farter = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_watersplasher = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_cancellator = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_shredder = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_incrementor = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_mirrorimage = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_curser = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_cullen = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_webber = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_itemporter = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_abomination = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_flickerer = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_hitter = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_piercer = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_lifesaver = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_shader = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_amnesiac = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_trapmaster = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_mastercaster = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_sinner = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_weeper = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_destructor = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_trembler = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_worldender = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_damager = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_antitype = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_statdamager = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_rogue = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_champion = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_boss = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_atomizer = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_perfumespreader = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_converter = TRUE;
+		}
+		if (!rn2(10)) {
+			shk->isegotype = 1;
+			shk->egotype_wouwouer = TRUE;
+		}
+
 	} else {
 	    /* We want variation from game to game, without needing the save
 	       and restore support which would be necessary for randomization;
