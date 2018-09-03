@@ -1163,7 +1163,7 @@ boolean fade_scrolls;
 		target->oeroded++;
 	} else /*if (!target->oartifact)*/ {
 
-		    if (victim == &youmonst) {
+		    if (victim == &youmonst && !hard_to_destruct(target) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) ) {
 			pline("One of your items got vaporized!"),
 			remove_worn_item(target, FALSE);
 			if (target == uball) unpunish();

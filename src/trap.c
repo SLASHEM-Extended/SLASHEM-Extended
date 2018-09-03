@@ -1049,7 +1049,7 @@ struct monst *victim;
 		update_inventory();
 	    }
 	} else /*if (!otmp->oartifact)*/ {
-		    if (youdefend) {
+		    if (youdefend && !hard_to_destruct(otmp) ) {
 		    Your("%s got vaporized!", ostr);
 			remove_worn_item(otmp, FALSE);
 			if (otmp == uball) unpunish();

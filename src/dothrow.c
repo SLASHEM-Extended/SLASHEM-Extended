@@ -2404,7 +2404,7 @@ int thrown;
 
 			/* Due to segfaults and stuff when trying to make this work in other functions, I'm just deciding that
 			 * any thoroughly eroded stuff you throw will always be destroyed. --Amy */
-		    if (obj->oeroded == MAX_ERODE || obj->oeroded2 == MAX_ERODE) broken = 1;
+		    if ((obj->oeroded == MAX_ERODE || obj->oeroded2 == MAX_ERODE) && !hard_to_destruct(obj)) broken = 1;
 
 		    if (broken) {
 			if (*u.ushops)
