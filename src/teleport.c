@@ -28,6 +28,7 @@ unsigned gpflags;
 	int is_badpos = 0, pool, crystalpool;
 	struct permonst *mdat = NULL;
 	boolean ignorewater = ((gpflags & MM_IGNOREWATER) != 0);
+	boolean crystalornot = ((gpflags & MM_CRYSTALORNOT) != 0);
 	struct monst *mtmp2;
 
 	/* in many cases, we're trying to create a new monster, which
@@ -58,14 +59,18 @@ unsigned gpflags;
 		is_badpos = 1;
 
 	    mdat = mtmp->data;
-	    pool = is_waterypool(x,y);
+	    pool = (is_waterypool(x,y) && !is_crystalwater(x,y));
+
+	    if (crystalornot) pool = (is_drowningpool(x,y) && !is_crystalwater(x,y));
+
 	    crystalpool = is_crystalwater(x,y);
 	    if (mdat->mlet == S_EEL && !pool && rn2(13) && !ignorewater)
 		is_badpos = 1;
 
 		if ((mtmp == &youmonst) && (Flying || Levitation) && crystalpool) return -1;
 
-	    if (pool && !ignorewater) {
+	    if (pool && !ignorewater && !(crystalornot && (Flying || Levitation || Wwalking) ) ) {
+
 		if (mtmp == &youmonst)
 			return (HLevitation || Flying || Wwalking ||
 				    Swimming || Amphibious) ? is_badpos : -1;
@@ -85,14 +90,14 @@ unsigned gpflags;
 	    /*if ( (mtmp != &youmonst) && mtmp->egotype_wallwalk && may_passwall(x,y)) return is_badpos;*/
 	}
 	if (!ACCESSIBLE(levl[x][y].typ) ) {
-		if (!(is_waterypool(x,y) && ignorewater)) return -1;
+		if (!(is_waterypool(x,y) && (ignorewater || crystalornot))) return -1;
 	}
 
 	if (closed_door(x, y) && (!mdat || !amorphous(mdat)))
 	    return mdat && (nohands(mdat) || verysmall(mdat)) ? -1 : 1;
 	if (sobj_at(BOULDER, x, y) && (!mdat || !throws_rocks(mdat)))
 	    return mdat ? -1 : 1;
-	if (is_raincloud(x,y)) return -1;
+	if (is_raincloud(x,y) && !crystalornot) return -1;
 
 	return is_badpos;
 }
