@@ -1,6 +1,8 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.3.2 - August 2018
+- The player should no longer drown when they could survive on an adjacent tile (crystal water when not flying, or generally moorland, urine lakes, styx rivers etc.).
+- Eternium items should correctly resist all forms of item destruction now (there were still cases where they could incorrectly get destroyed).
 - Shopkeepers and particularly Izchak and One-Eyed Sam are now much more likely to have certain egotypes.
 - If the player is wearing a shirt, body armor, cloak and gloves and the gloves aren't fingerless, it's possible to ride petrifying steeds without turning to stone.
 - Farlooking something that has a trap and/or terrain underneath it will now display what those are, as long as the player isn't hallucinating or suffering from certain nasty traps.
