@@ -5051,6 +5051,8 @@ hitmu(mtmp, mattk)
 		You("are being fleeced.");
 	}
 
+	otmp = MON_WEP(mtmp);
+
 	switch(atttyp) {
 	    case AD_PHYS:
 		if (mattk->aatyp == AT_HUGS && !sticks(youmonst.data)) {
@@ -8503,6 +8505,10 @@ dopois:
 	}*/
 
 		/* weapon attacks should be done even if they don't use AD_PHYS --Amy */
+
+		/* first, set up the monster's weapon so we don't get crashes from uninitialized variables... */
+		otmp = MON_WEP(mtmp);
+
 		if( (mtmp->egotype_weaponizer || mattk->aatyp == AT_WEAP) && otmp && atttyp > AD_PHYS) {
 			int nopoison = (10/* - (otmp->owt/10)*/);
 			if (otmp->otyp == CORPSE &&
