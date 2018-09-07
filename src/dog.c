@@ -1184,8 +1184,13 @@ boolean guaranteed;
 	}
 
 	/* worst case, at least it'll be peaceful. */
-	mtmp->mpeaceful = 1;
-	mtmp->mtraitor  = 0;	/* No longer a traitor */
+	if (!mtmp->mfrenzied) {
+		mtmp->mpeaceful = 1;
+		mtmp->mtraitor  = 0;	/* No longer a traitor */
+	}
+	if (mtmp->mfrenzied) {
+		return((struct monst *)0);
+	}
 	set_malign(mtmp);
 	if(flags.moonphase == FULL_MOON && night() && rn2(6) && obj
 						&& mtmp->data->mlet == S_DOG)
@@ -1366,7 +1371,7 @@ boolean was_dead;
     if (edog && (edog->killed_by_u == 1 || edog->abuse > 2)) {
 	mtmp->mpeaceful = mtmp->mtame = 0;
 	if (edog->abuse >= 0 && edog->abuse < 10)
-	    if (!rn2(edog->abuse + 1)) mtmp->mpeaceful = 1;
+	    if (!rn2(edog->abuse + 1) && !mtmp->mfrenzied) mtmp->mpeaceful = 1;
 	if(!quietly && cansee(mtmp->mx, mtmp->my)) {
 	    if (haseyes(youmonst.data)) {
 		if (haseyes(mtmp->data))

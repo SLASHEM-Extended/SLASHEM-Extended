@@ -116,8 +116,10 @@ int distance;
 	    if (!DEADMONSTER(mtmp) && mtmp->data->mlet == S_SNAKE && mtmp->mcanmove &&
 		    distu(mtmp->mx, mtmp->my) < distance) {
 		was_peaceful = mtmp->mpeaceful;
-		mtmp->mpeaceful = 1;
-		mtmp->mavenge = 0;
+		if (!mtmp->mfrenzied) {
+			mtmp->mpeaceful = 1;
+			mtmp->mavenge = 0;
+		}
 		could_see_mon = canseemon(mtmp);
 		mtmp->mundetected = 0;
 		newsym(mtmp->mx, mtmp->my);
@@ -149,8 +151,10 @@ int distance;
 	    if (!DEADMONSTER(mtmp) && mtmp->data->mlet == S_NYMPH && mtmp->mcanmove &&
 		    distu(mtmp->mx, mtmp->my) < distance) {
 		mtmp->msleeping = 0;
-		mtmp->mpeaceful = 1;
-		mtmp->mavenge = 0;
+		if (!mtmp->mfrenzied) {
+			mtmp->mpeaceful = 1;
+			mtmp->mavenge = 0;
+		}
 		if (canseemon(mtmp))
 		    pline(
 		     "%s listens cheerfully to the music, then seems quieter.",

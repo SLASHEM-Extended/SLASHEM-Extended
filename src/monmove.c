@@ -783,7 +783,7 @@ register struct monst *mtmp;
          gdemand, currency(gdemand));
         if ((goffer = bribe(mtmp)) >= gdemand) {
             verbalize("Good.  Now beat it, scum!");
-            mtmp->mpeaceful = 1;
+            if (!mtmp->mfrenzied) mtmp->mpeaceful = 1;
             set_malign(mtmp);
         } else {
             pline("I said %ld!", gdemand);
@@ -1592,6 +1592,10 @@ register int after;
 	long flag;
 	int  omx = mtmp->mx, omy = mtmp->my;
 	struct obj *mw_tmp;
+
+	/* if a frenzied monster somehow becomes peaceful or tame, it immediately becomes hostile again (failsafe) --Amy */
+	if (mtmp->mfrenzied && mtmp->mpeaceful) mtmp->mpeaceful = 0;
+	if (mtmp->mfrenzied && mtmp->mtame) mtmp->mtame = 0;
 
 	if (mtmp->data->mlet == S_TURRET || stationary(mtmp->data) ) return(0); /* stationary turrets --Amy */
 

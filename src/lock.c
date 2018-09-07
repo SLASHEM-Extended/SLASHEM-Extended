@@ -873,7 +873,7 @@ doforce()		/* try to force a chest with your weapon */
 						else if (mtmp->butthurt < 17) pline("%s's %s butt is heavily injured and severely bleeding!", Monnam(mtmp), mtmp->female ? "sexy" : "ugly");
 						else {
 							pline("You hurt %s so badly that %s ended up crying, and is begging you to spare %s...", mon_nam(mtmp), mhe(mtmp), mhim(mtmp) );
-							mtmp->mpeaceful = 1;
+							if (!mtmp->mfrenzied) mtmp->mpeaceful = 1;
 							mtmp->butthurt = 0;
 						}
 					}

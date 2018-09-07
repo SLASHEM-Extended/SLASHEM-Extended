@@ -14534,7 +14534,7 @@ struct monst *mtmp;
 		    !mtmp->msleeping && !mtmp->mfrozen &&
 		    !mindless(mtmp->data) &&
 		    mtmp->data->mlet != S_HUMAN) {
-		mtmp->mpeaceful = 1;
+		if (!mtmp->mfrenzied) mtmp->mpeaceful = 1;
 		set_malign(mtmp);	/* reset alignment */
 		pline("%s is grateful.", Monnam(mtmp));
 	    }
@@ -14980,7 +14980,7 @@ boolean stuff;
 	    if (!ttmp->madeby_u && !mtmp->mpeaceful && mtmp->mcanmove &&
 		    !mindless(mtmp->data) &&
 		    mtmp->data->mlet != S_HUMAN && rnl(10) < 3) {
-		mtmp->mpeaceful = 1;
+		if (!mtmp->mfrenzied) mtmp->mpeaceful = 1;
 		set_malign(mtmp);		/* reset alignment */
 		pline("%s thinks it was nice of you to try.", Monnam(mtmp));
 	    }

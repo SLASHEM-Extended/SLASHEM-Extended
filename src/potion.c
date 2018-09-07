@@ -5126,7 +5126,7 @@ boolean your_fault;
 						Monnam(mon));
 			    } else
 				pline("%s looks bewildered!", Monnam(mon));
-			    mon->mpeaceful = TRUE;
+			    if (!mon->mfrenzied) mon->mpeaceful = TRUE;
 			    mon->mtame = FALSE;	
 			}
 		    }

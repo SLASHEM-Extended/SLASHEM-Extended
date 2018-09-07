@@ -2661,7 +2661,7 @@ turn_undead()
 			case S_ZOMBIE:
 			    if ((u.ulevel >= xlev) && (rnd(30) >= xlev) &&
 				    !resist(mtmp, '\0', 0, NOTELL)) {
-				if (u.ualign.type == A_CHAOTIC) {
+				if (u.ualign.type == A_CHAOTIC && !mtmp->mfrenzied) {
 				    mtmp->mpeaceful = 1;
 				    set_malign(mtmp);
 				} else { /* damn them */

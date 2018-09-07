@@ -964,7 +964,7 @@ raise_dead:
 	    mtmp2 = mtmp->nmon;		/* tamedog() changes chain */
 	    if (DEADMONSTER(mtmp)) continue;
 
-	    if ((is_undead(mtmp->data) || mtmp->egotype_undead) && cansee(mtmp->mx, mtmp->my)) {
+	    if ((is_undead(mtmp->data) || mtmp->egotype_undead) && !mtmp->mfrenzied && cansee(mtmp->mx, mtmp->my)) {
 		mtmp->mpeaceful = TRUE;
 		if(sgn(mtmp->data->maligntyp) == sgn(u.ualign.type)
 		   && distu(mtmp->mx, mtmp->my) < 4)

@@ -670,7 +670,7 @@ struct obj *obj;
 	 * be to duplicate tamedog()'s functionality here.
 	 * Yuck.  So I've merged it into the nymph code below.
 	if (((mtmp->data == &mons[PM_SUCCUBUS]) || (mtmp->data == &mons[PM_INCUBUS]))
-	     && (!mtmp->mtame) && (spotmon) && (!mtmp->mleashed)) {
+	     && (!mtmp->mtame) && (spotmon) && (!mtmp->mleashed) && !(mtmp->mfrenzied) ) {
 	       pline("%s smiles seductively at the sight of this prop!", Monnam(mtmp));
 	       mtmp->mtame = 10;
 	       mtmp->mpeaceful = 1;
@@ -971,7 +971,7 @@ struct obj *obj;
 		    pline ("%s admires herself in your mirror.", Monnam(mtmp));
 		    pline ("She takes it!");
 		} else pline ("It steals your mirror!");
-		if (obj && obj->oartifact == ART_FAIREST_IN_THE_LAND) mtmp->mpeaceful = 1;
+		if (obj && obj->oartifact == ART_FAIREST_IN_THE_LAND && !mtmp->mfrenzied) mtmp->mpeaceful = 1;
 		setnotworn(obj); /* in case mirror was wielded */
 		freeinv(obj);
 		(void) mpickobj(mtmp,obj,FALSE);

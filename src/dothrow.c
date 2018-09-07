@@ -2524,8 +2524,10 @@ register struct obj *obj;
 	static NEARDATA const char addluck[] = " gratefully";
 
 	strcpy(buf,Monnam(mon));
-	mon->mpeaceful = 1;
-	mon->mavenge = 0;
+	if (!mon->mfrenzied) {
+		mon->mpeaceful = 1;
+		mon->mavenge = 0;
+	}
 
 	/* Luck boosts used to be way too high. Thus I lowered them. --Amy */
 

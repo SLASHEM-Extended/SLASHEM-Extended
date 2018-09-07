@@ -481,7 +481,7 @@ register boolean clumsy;
 	}
 
 	if (mon->mhp > 0 && !rn2(100) && uarmf && uarmf->oartifact == ART_SHIN_KICK_OF_LOVE) {
-		if (!mon->mpeaceful && !resist(mon, RING_CLASS, 0, NOTELL)) {
+		if (!mon->mpeaceful && !mon->mfrenzied && !resist(mon, RING_CLASS, 0, NOTELL)) {
 			mon->mpeaceful = 1;
 			pline("%s loves your beautiful sandals and no longer wants to harm you!", Monnam(mon) );
 		}
@@ -757,7 +757,7 @@ register struct obj *gold;
 			else if (mtmp->data == &mons[PM_PRISON_GUARD])
 			   goldreqd = 200L;
 
-			if (goldreqd) {
+			if (goldreqd && !mtmp->mfrenzied) {
 #ifndef GOLDOBJ
 			   if (gold->quan > goldreqd +
 				(u.ugold + u.ulevel*rn2(5))/ACURR(A_CHA))

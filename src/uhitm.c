@@ -4773,7 +4773,7 @@ register struct attack *mattk;
 				!(mdef->data->mflags3 & M3_COVETOUS) &&
 				!(mdef->data->geno & G_UNIQ)) {
 		    pline("You calm %s.", mon_nam(mdef));
-		    mdef->mpeaceful = 1;
+		    if (!mdef->mfrenzied) mdef->mpeaceful = 1;
 		    mdef->mtame = 0;
 		    tmp = 0;
 		}
@@ -4979,7 +4979,7 @@ register struct attack *mattk;
 				!(mdef->data->mflags3 & M3_COVETOUS) &&
 				!(mdef->data->geno & G_UNIQ)) {
 		    pline("You calm %s.", mon_nam(mdef));
-		    mdef->mpeaceful = 1;
+		    if (!mdef->mfrenzied) mdef->mpeaceful = 1;
 		    mdef->mtame = 0;
 		}
 		break;

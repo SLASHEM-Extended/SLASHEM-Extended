@@ -6729,8 +6729,9 @@ pacify_guards()
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 	    if (DEADMONSTER(mtmp)) continue;
 	    if (mtmp->data == &mons[PM_WATCHMAN] || mtmp->data == &mons[PM_WATCH_LIEUTENANT] ||
-		mtmp->data == &mons[PM_WATCH_CAPTAIN] || mtmp->data == &mons[PM_WATCH_LEADER])
-	    mtmp->mpeaceful = 1;
+		mtmp->data == &mons[PM_WATCH_CAPTAIN] || mtmp->data == &mons[PM_WATCH_LEADER]) {
+			if (!mtmp->mfrenzied) mtmp->mpeaceful = 1;
+		}
 	}
 }
 

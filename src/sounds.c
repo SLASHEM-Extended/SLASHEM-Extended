@@ -1144,7 +1144,7 @@ register struct monst *mtmp;
 		else if (mtmp->mpeaceful) {
 			pline("%s seems to like being felt up by you.", Monnam(mtmp) );
 		}
-		else if (uarmf && uarmf->oartifact == ART_SPEAK_TO_OJ) {
+		else if (uarmf && uarmf->oartifact == ART_SPEAK_TO_OJ && !mtmp->mfrenzied) {
 			pline("%s is charmed by your stroking units.", Monnam(mtmp) );
 			mtmp->mpeaceful = 1;
 		}
@@ -1398,7 +1398,7 @@ register struct monst *mtmp;
 		else if (mtmp->mpeaceful) {
 			pline("%s seems to like being felt up by you.", Monnam(mtmp) );
 		}
-		else if (uarmf && uarmf->oartifact == ART_SPEAK_TO_OJ) {
+		else if (uarmf && uarmf->oartifact == ART_SPEAK_TO_OJ && !mtmp->mfrenzied) {
 			pline("%s is charmed by your stroking units.", Monnam(mtmp) );
 			mtmp->mpeaceful = 1;
 		}
@@ -1447,7 +1447,12 @@ register struct monst *mtmp;
 	    } else verbl_msg = "This will teach you not to disturb me!";
 	    break;
 	case MS_SHOE:
-	    if (mtmp->mtame) {
+	    if (mtmp->mfrenzied) {
+		if (u.usteed == mtmp)
+			verbl_msg = "Wear us if you want, but take us off and we'll scratch you to death and make your blood squirt in all directions.";
+		else
+			verbl_msg = "We'll scratch very bloody wounds on your legs and kill you.";
+	    } else if (mtmp->mtame) {
 		if (u.usteed == mtmp)
 			verbl_msg = "Yes! Please! Keep wearing us and we'll take you to the end of the world and beyond!";
 		else
@@ -1971,7 +1976,7 @@ register struct monst *mtmp;
                  Amonnam(mtmp), gdemand, currency(gdemand));
                 if ((goffer = bribe(mtmp)) >= gdemand) {
                     verbl_msg = "Good.  Now beat it, scum!";
-            	    mtmp->mpeaceful = 1;
+            	    if (!mtmp->mfrenzied) mtmp->mpeaceful = 1;
             	    set_malign(mtmp);
                     break;
                 } else {
@@ -2519,7 +2524,7 @@ dochat()
                  Monnam(mtmp));
                 return 0;
             }
-            mtmp->mpeaceful = 1;
+            if (!mtmp->mfrenzied) mtmp->mpeaceful = 1;
             set_malign(mtmp);
         }
         return 0;
@@ -2555,7 +2560,7 @@ dochat()
 		if (yn("Pacify this monster?") == 'y') {
 	      	pline("You attempt to pacify %s.",mon_nam(mtmp) );
 
-			if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) {
+			if (!mtmp->mfrenzied && mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) {
 		            mtmp->mpeaceful = 1;
 				return 1;
 			}
@@ -2572,7 +2577,7 @@ dochat()
 
 	}
 
-    if (Role_if(PM_LADIESMAN) && !flags.female && (mtmp->data->mlet == S_NYMPH || mtmp->data->msound == MS_NURSE || mtmp->data->msound == MS_SEDUCE || mtmp->data->msound == MS_WHORE) && !mtmp->mtame && !mtmp->mpeaceful && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
+    if (Role_if(PM_LADIESMAN) && !flags.female && (mtmp->data->mlet == S_NYMPH || mtmp->data->msound == MS_NURSE || mtmp->data->msound == MS_SEDUCE || mtmp->data->msound == MS_WHORE) && !mtmp->mtame && !mtmp->mpeaceful && mtmp->mnum != quest_info(MS_NEMESIS) && !mtmp->mfrenzied && !(mtmp->data->geno & G_UNIQ) ) {
 
 		if (yn("Seduce this pretty lady?") == 'y') {
 
@@ -2597,7 +2602,7 @@ dochat()
 	      verbalize("%s", !rn2(3) ? "By the power of His Holiness Titus Medes, I beseech thee - stop thine combat actions!" : !rn2(2) ? "Long live Martin Septim! Thou shall surrender lest I smite thee!" : "The Emperor will spare thy life if thou stoppest fighting!");
 		morehungry(100);
 
-		if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) { /* higher level monsters are less likely to be affected --Amy*/
+		if (!mtmp->mfrenzied && mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) { /* higher level monsters are less likely to be affected --Amy*/
 
             mtmp->mpeaceful = 1;
             set_malign(mtmp);
