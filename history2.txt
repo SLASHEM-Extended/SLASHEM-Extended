@@ -1,6 +1,8 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.3.2 - August 2018
+- Frenzied monsters can no longer be made peaceful or tame at all. If the player still somehow finds a way to make them peaceful, they immediately become hostile again.
+- Traps that shoot missiles now have a chance of not actually creating the ammo in question, thereby reducing the amount that the player gets.
 - Fixed an uninitialized variable bug that would cause monsters with the weaponizer egotype, but also possibly other monsters with weapon attacks, to crash or behave strangely when they don't have a weapon equipped.
 - The player should no longer drown when they could survive on an adjacent tile (crystal water when not flying, or generally moorland, urine lakes, styx rivers etc.).
 - Eternium items should correctly resist all forms of item destruction now (there were still cases where they could incorrectly get destroyed).
