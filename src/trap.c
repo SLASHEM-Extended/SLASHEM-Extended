@@ -14389,10 +14389,8 @@ struct trap *ttmp;
 	/* [ALI] Only dart traps are capable of being poisonous */
 	if (otmp) {
 		if (!timebasedlowerchance()) {
-			pline("debug");
 			obfree(otmp, (struct obj *)0);
 		} else {
-			pline("debug2");
 			if (otyp != DART)
 				otmp->opoisoned = 0;
 			otmp->quan=cnt;
