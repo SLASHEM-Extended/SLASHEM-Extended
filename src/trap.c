@@ -2116,6 +2116,8 @@ unsigned trflags;
 			else
 			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1) , otmp, "arrow")) {
 			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
 			} else {
 			    place_object(otmp, u.ux, u.uy);
 			    if (!Blind) otmp->dknown = 1;
@@ -2143,6 +2145,8 @@ unsigned trflags;
 			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
 			else
 			if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bolt")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
 			    obfree(otmp, (struct obj *)0);
 			} else {
 			    place_object(otmp, u.ux, u.uy);
@@ -2198,10 +2202,7 @@ unsigned trflags;
 			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1) , otmp, "glass arrow")) {
 			    obfree(otmp, (struct obj *)0);
 			} else {
-			    place_object(otmp, u.ux, u.uy);
-			    if (!Blind) otmp->dknown = 1;
-			    stackobj(otmp);
-			    newsym(u.ux, u.uy);
+			    obfree(otmp, (struct obj *)0);
 			}
 		}
 		break;
@@ -2226,10 +2227,7 @@ unsigned trflags;
 			if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "glass bolt")) {
 			    obfree(otmp, (struct obj *)0);
 			} else {
-			    place_object(otmp, u.ux, u.uy);
-			    if (!Blind) otmp->dknown = 1;
-			    stackobj(otmp);
-			    newsym(u.ux, u.uy);
+			    obfree(otmp, (struct obj *)0);
 			}
 		}
 		break;
@@ -2314,6 +2312,8 @@ unsigned trflags;
 			    if (otmp->opoisoned)
 				poisoned("dart", A_CON, "little dart", -10);
 			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
 			} else {
 			    place_object(otmp, u.ux, u.uy);
 			    if (!Blind) otmp->dknown = 1;
@@ -2342,6 +2342,8 @@ unsigned trflags;
 			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1), otmp, "shuriken")) {
 			    if (otmp->opoisoned)
 				poisoned("shuriken", A_CON, "shuriken", -10);
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
 			    obfree(otmp, (struct obj *)0);
 			} else {
 			    place_object(otmp, u.ux, u.uy);
@@ -6824,6 +6826,8 @@ madnesseffect:
 			otmp->owt = weight(otmp);
 
 			if (thitu(5 + rnd((monster_difficulty() / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 3) + 1), otmp, "stone")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
 			    obfree(otmp, (struct obj *)0);
 			} else {
 			    place_object(otmp, u.ux, u.uy);
@@ -14384,17 +14388,24 @@ struct trap *ttmp;
 	struct obj *otmp = mksobj(otyp, TRUE, FALSE);
 	/* [ALI] Only dart traps are capable of being poisonous */
 	if (otmp) {
-		if (otyp != DART)
-		    otmp->opoisoned = 0;
-		otmp->quan=cnt;
-		otmp->owt = weight(otmp);
-		/* Only dart traps are capable of being poisonous */
-		if (otyp != DART)
-		    otmp->opoisoned = 0;
-		place_object(otmp, ttmp->tx, ttmp->ty);
-		/* Sell your own traps only... */
-		if (ttmp->madeby_u) sellobj(otmp, ttmp->tx, ttmp->ty);
-		stackobj(otmp);
+		if (!timebasedlowerchance()) {
+			pline("debug");
+			obfree(otmp, (struct obj *)0);
+		} else {
+			pline("debug2");
+			if (otyp != DART)
+				otmp->opoisoned = 0;
+			otmp->quan=cnt;
+			otmp->owt = weight(otmp);
+			/* Only dart traps are capable of being poisonous */
+			if (otyp != DART)
+				otmp->opoisoned = 0;
+			place_object(otmp, ttmp->tx, ttmp->ty);
+			/* Sell your own traps only... */
+			if (ttmp->madeby_u) sellobj(otmp, ttmp->tx, ttmp->ty);
+			stackobj(otmp);
+		}
+	/* careful: otmp might have been freed */
 	}
 	newsym(ttmp->tx, ttmp->ty);
 	deltrap(ttmp);
@@ -15769,7 +15780,7 @@ boolean nocorpse;
 			}
 		}
 	}
-	if (obj && (!strike || d_override)) {
+	if (obj && (!strike || d_override) && timebasedlowerchance() ) {
 		place_object(obj, mon->mx, mon->my);
 		stackobj(obj);
 	} else if (obj) dealloc_obj(obj);
