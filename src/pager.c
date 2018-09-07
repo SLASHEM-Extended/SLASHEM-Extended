@@ -19543,6 +19543,15 @@ static NEARDATA const char * const fake_plines[] = {
 	"The wuxtina suddenly sprays her scentful perfume right into your face. Now you can no longer fight back, and that filthy smoker bitch starts burning your arm with a candle. OUCH!",
 	"You sense the bittersweet odor of perfume in the air...",
 	"The hugging topmodel calls you out for using devious weapons and uses countermeasures...",
+	"You hear Ludgera noises.",
+	"You hear erogenous noises.",
+	"You hear splashing noises.",
+	"You see here x - a lump of neutron degenerate matter. Its gravity crushes you into it! You die...", /* by aosdict */
+	"You use a feather on the slime.",
+	"The slime giggles.",
+	"The slime engulfs the feather.",
+	"The slime burps loudly!",
+	"You are pushed a few steps back!",
 
 };
 

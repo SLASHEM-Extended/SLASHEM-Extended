@@ -4734,6 +4734,7 @@ static const char *epitaphs[] = {
 	"'Zombie life insurance' isn't all it was cracked up to be",
 	"That's it?",
 	"Failed the death warp",
+	"he's a happy little sticky bouncing ball. maybe if i tickle him he wont attack me?",
 
 };
 
