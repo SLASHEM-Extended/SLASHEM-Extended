@@ -6,7 +6,8 @@
 
 
 /* "an uncursed greased partly eaten guardian naga hatchling [corpse]" */
-#define PREFIX	80	/* (56) */
+/* "a thoroughly greased thoroughly rusty thoroughly corroded enchanted (of contamination resistance)" */
+#define PREFIX	200	/* was 80 in vanilla, increased by Amy */
 #define SCHAR_LIM 127
 #define NUMOBUF 12
 

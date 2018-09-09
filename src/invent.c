@@ -6169,7 +6169,7 @@ boolean unpaid,showsym;
 	    ((oclass && showsym) ? strlen(ocsymformat) : 0);
 	if (len > invbufsiz) {
 	    if (invbuf) free((void *)invbuf);
-	    invbufsiz = len + 100; /* add slop to reduce incremental realloc */
+	    invbufsiz = len + 10; /* add slop to reduce incremental realloc */
 	    invbuf = (char *) alloc(invbufsiz);
 	}
 	if (unpaid)
