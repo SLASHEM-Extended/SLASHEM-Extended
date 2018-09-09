@@ -4735,6 +4735,7 @@ static const char *epitaphs[] = {
 	"That's it?",
 	"Failed the death warp",
 	"he's a happy little sticky bouncing ball. maybe if i tickle him he wont attack me?",
+	"They're after me lucky charms!",
 
 };
 
