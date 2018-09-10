@@ -979,7 +979,7 @@ register struct monst *mtmp;
 
 	}
 
-	if ((mdat->msound == MS_HCALIEN || mtmp->egotype_wouwouer) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(5)) {
+	if ((mdat->msound == MS_HCALIEN || mtmp->egotype_wouwouer) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(15)) {
 
 		static const char *hcalien_msgs[] = {
 			"Wouwou.",
