@@ -2629,8 +2629,9 @@ domove()
 	 *
 	 * Ceiling-hiding pets are skipped by this section of code, to
 	 * be caught by the normal falling-monster code.
+	 * Amy addition: displacement already allows you to displace monsters; don't call the displacing code twice
 	 */
-	if (is_safepet(mtmp) && !( (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && mtmp->mundetected)) {
+	if (is_safepet(mtmp) && !Displaced && !( (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && mtmp->mundetected)) {
 	    /* if trapped, there's a chance the pet goes wild */
 	    if (mtmp->mtrapped) {
 		if (!rn2(mtmp->mtame) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
