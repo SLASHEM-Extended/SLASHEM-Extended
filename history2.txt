@@ -1,6 +1,9 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.3.2 - August 2018
+- Nerfed the frequency with which wouwou aliens can use their taunts.
+- Fixed the bug where a player with displacement would displace pets twice.
+- Tried unsuccessfully to fix an "invalid next size (fast)" error that can happen when long item names are being displayed on terminals of specific sizes.
 - Frenzied monsters can no longer be made peaceful or tame at all. If the player still somehow finds a way to make them peaceful, they immediately become hostile again.
 - Traps that shoot missiles now have a chance of not actually creating the ammo in question, thereby reducing the amount that the player gets.
 - Fixed an uninitialized variable bug that would cause monsters with the weaponizer egotype, but also possibly other monsters with weapon attacks, to crash or behave strangely when they don't have a weapon equipped.
