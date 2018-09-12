@@ -300,7 +300,7 @@ char** argv;
     ttyDisplay->toplin = 0;
     ttyDisplay->rows = hgt;
     ttyDisplay->cols = wid;
-	if (ttyDisplay->cols >= 90 && ((ttyDisplay->cols - 90) % 16 == 0) ) ttyDisplay->cols--;
+	if (ttyDisplay->cols >= 10 && ((ttyDisplay->cols - 10) % 16 == 0) ) ttyDisplay->cols--;
     ttyDisplay->curx = ttyDisplay->cury = 0;
     ttyDisplay->inmore = ttyDisplay->inread = ttyDisplay->intr = 0;
     ttyDisplay->dismiss_more = 0;
