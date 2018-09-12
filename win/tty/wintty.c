@@ -300,6 +300,8 @@ char** argv;
     ttyDisplay->toplin = 0;
     ttyDisplay->rows = hgt;
     ttyDisplay->cols = wid;
+	if (ttyDisplay->cols == 90) ttyDisplay->cols = 89;
+	if (ttyDisplay->cols == 106) ttyDisplay->cols = 105;
     ttyDisplay->curx = ttyDisplay->cury = 0;
     ttyDisplay->inmore = ttyDisplay->inread = ttyDisplay->intr = 0;
     ttyDisplay->dismiss_more = 0;
