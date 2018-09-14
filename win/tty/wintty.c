@@ -300,7 +300,6 @@ char** argv;
     ttyDisplay->toplin = 0;
     ttyDisplay->rows = hgt;
     ttyDisplay->cols = wid;
-	if (ttyDisplay->cols >= 10 && ((ttyDisplay->cols - 10) % 16 == 0) ) ttyDisplay->cols--;
     ttyDisplay->curx = ttyDisplay->cury = 0;
     ttyDisplay->inmore = ttyDisplay->inread = ttyDisplay->intr = 0;
     ttyDisplay->dismiss_more = 0;
@@ -3086,7 +3085,8 @@ tty_end_menu(window, prompt)
 	}  
   
 	if (len > (int)ttyDisplay->cols) {
-	    curr->str[ttyDisplay->cols-2] = 0;
+            /* reduce the string by the amount len exceeds cols */
+	    curr->str[strlen(curr->str) - (len - ttyDisplay->cols)] = 0;
 	    len = ttyDisplay->cols;
 	}
 	if (len > cw->cols) cw->cols = len;
