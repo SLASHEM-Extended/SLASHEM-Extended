@@ -6149,7 +6149,7 @@ register int roll;
 
 	} else if(canspotmon(mdef) && flags.verbose) {
 		if (nearmiss || !blocker) {
-		    You("%smiss %s%s.", (nearmiss ? "just " : ""),mon_nam(mdef), (totalmiss ? " by a league" : ""));
+		    You("%smiss %s%s.", (nearmiss ? "just " : ""),mon_nam(mdef), (totalmiss ? (!rn2(6) ? " completely" : !rn2(5) ? " by a wide margin" : !rn2(4) ? " totally" : !rn2(3) ? " hopelessly" : rn2(2) ? " by more than 20 points" : " by a league") : ""));
 			/*pline("%d",(target - roll) );*/
 		} else {
         	    /* Blocker */
@@ -6159,7 +6159,7 @@ register int roll;
         		(rn2(2) ? "blocks" : "deflects"));    
 		}
 	} else {
-		You("%smiss it.", ((flags.verbose && nearmiss) ? "just " : ""));
+		You("%smiss it%s.", ((flags.verbose && nearmiss) ? "just " : ""), (totalmiss ? (!rn2(6) ? " completely" : !rn2(5) ? " by a wide margin" : !rn2(4) ? " totally" : !rn2(3) ? " hopelessly" : rn2(2) ? " by more than 20 points" : " by a league") : "") );
 	}
 	if (!mdef->msleeping && mdef->mcanmove)
 		wakeup(mdef);
