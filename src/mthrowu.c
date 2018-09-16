@@ -361,10 +361,14 @@ const char *name;	/* if null, then format `obj' */
 		if(Blind || !flags.verbose) You("are hit!");
 		else You("are hit by %s%s", onm, exclam(dam));
 
-		if (obj && objects[obj->otyp].oc_material == SILVER
-				&& hates_silver(youmonst.data)) {
+		if (obj && objects[obj->otyp].oc_material == SILVER && hates_silver(youmonst.data)) {
 			dam += rnd(20);
 			pline_The("silver sears your flesh!");
+			exercise(A_CON, FALSE);
+		}
+		if (obj && objects[obj->otyp].oc_material == COPPER && hates_copper(youmonst.data)) {
+			dam += 20;
+			pline_The("copper decomposes you!");
 			exercise(A_CON, FALSE);
 		}
 		if (obj && objects[obj->otyp].oc_material == VIVA && hates_viva(youmonst.data)) {
@@ -700,6 +704,9 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 	    }
 	    if (objects[otmp->otyp].oc_material == VIVA && hates_viva(mtmp->data)) {
 		if (verbose) pline("It is irradiated!");
+	    }
+	    if (objects[otmp->otyp].oc_material == COPPER && hates_copper(mtmp->data)) {
+		if (verbose) pline("It is decomposed!");
 	    }
 	    if (objects[otmp->otyp].oc_material == INKA && hates_inka(mtmp->data)) {
 		if (verbose) pline("It is hurt!");

@@ -1120,6 +1120,9 @@ register struct obj *obj;
 	    if (hates_silver(mon->data) &&
 		objects[obj->otyp].oc_material == SILVER)
 		return(TABU);
+	    if (hates_copper(mon->data) &&
+		objects[obj->otyp].oc_material == COPPER)
+		return(TABU);
 	    if (hates_viva(mon->data) &&
 		objects[obj->otyp].oc_material == VIVA)
 		return(TABU);

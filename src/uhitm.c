@@ -1195,6 +1195,7 @@ int dieroll;
 	boolean ispoisoned = FALSE, needpoismsg = FALSE, poiskilled = FALSE;
 	boolean silvermsg = FALSE, silverobj = FALSE;
 	boolean vivaobj = FALSE;
+	boolean copperobj = FALSE;
 	boolean inkaobj = FALSE;
 	boolean odorobj = FALSE;
 	boolean valid_weapon_attack = FALSE;
@@ -1810,12 +1811,14 @@ int dieroll;
 				if (tmp == 0) return TRUE;
 				hittxt = TRUE;
 			}
-		    if (objects[obj->otyp].oc_material == SILVER
-				&& hates_silver(mdat)) {
+		    if (objects[obj->otyp].oc_material == SILVER && hates_silver(mdat)) {
 			silvermsg = TRUE; silverobj = TRUE;
 		    }
 		    if (objects[obj->otyp].oc_material == VIVA && hates_viva(mdat)) {
 			vivaobj = TRUE;
+		    }
+		    if (objects[obj->otyp].oc_material == COPPER && hates_copper(mdat)) {
+			copperobj = TRUE;
 		    }
 		    if (objects[obj->otyp].oc_material == INKA && hates_inka(mdat)) {
 			inkaobj = TRUE;
@@ -2318,10 +2321,13 @@ int dieroll;
 			 * Things like silver wands can arrive here so
 			 * so we need another silver check.
 			 */
-			if (objects[obj->otyp].oc_material == SILVER
-						&& hates_silver(mdat)) {
+			if (objects[obj->otyp].oc_material == SILVER && hates_silver(mdat)) {
 				tmp += rnd(20);
 				silvermsg = TRUE; silverobj = TRUE;
+			}
+			if (objects[obj->otyp].oc_material == COPPER && hates_copper(mdat)) {
+				tmp += 20;
+				copperobj = TRUE;
 			}
 			if (objects[obj->otyp].oc_material == VIVA && hates_viva(mdat)) {
 				tmp += 20;
@@ -3213,6 +3219,7 @@ int dieroll;
 	if (vivaobj) pline("The irradiation severely hurts %s!", mon_nam(mon));
 	if (inkaobj) pline("The inka string hurts %s!", mon_nam(mon));
 	if (odorobj) pline("The odor beguils %s!", mon_nam(mon));
+	if (copperobj) pline("The copper decomposes %s!", mon_nam(mon));
 
 	if (needpoismsg) {
 		pline_The("poison doesn't seem to affect %s.", mon_nam(mon));
@@ -8771,7 +8778,7 @@ uchar aatyp;
 
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(itemportchance) && !stack_too_big(otmpi) ) {
+			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -9529,11 +9536,13 @@ struct attack *mattk;		/* null means we find one internally */
 	    break;
 	case AD_LAVA:
 
-	    if(!mon->mcan && is_flammable(obj) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY ) {
+burnagain:
+	    if(!mon->mcan && !stack_too_big(obj) && is_flammable(obj) && !(objects[obj->otyp].oc_material == WOOD && rn2(4)) && !(objects[obj->otyp].oc_material == LEATHER && rn2(2)) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY ) {
 
 			if (obj->oeroded < MAX_ERODE && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !((obj->blessed && !rnl(4)))) {
 				obj->oeroded++;
 				pline("%s weapon is damaged by fire!", carried(obj) ? "Your" : "A");
+				if (obj && objects[obj->otyp].oc_material == PAPER && !rn2(2)) goto burnagain;
 				}
 			else if (obj->oeroded == MAX_ERODE && !(obj->oartifact && rn2(4)) && !hard_to_destruct(obj) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && carried(obj) )
 			{
@@ -9550,7 +9559,7 @@ struct attack *mattk;		/* null means we find one internally */
 
 	case AD_WTHR:
 
-	    if(!mon->mcan && !is_unwitherable(obj) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY ) {
+	    if(!mon->mcan && !stack_too_big(obj) && !is_unwitherable(obj) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY ) {
 		/*erode_obj(obj, TRUE, FALSE);*/
 
 		if (rn2(2)) {

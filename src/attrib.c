@@ -935,6 +935,33 @@ adjattrib(ndx, incr, msgflg)
 		return FALSE;
 	}
 
+	/* Mithril items can sometimes prevent the player's stats from decreasing --Amy */
+	if (incr < 0) {
+
+		int mithrilitemcount = 0;
+
+		if (uwep && objects[uwep->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (uarm && objects[uarm->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (uarmc && objects[uarmc->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (uarmh && objects[uarmh->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (uarms && objects[uarms->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (uarmg && objects[uarmg->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (uarmf && objects[uarmf->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (uarmu && objects[uarmu->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (uamul && objects[uamul->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (uimplant && objects[uimplant->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (uleft && objects[uleft->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (uright && objects[uright->otyp].oc_material == MITHRIL) mithrilitemcount++;
+		if (ublindf && objects[ublindf->otyp].oc_material == MITHRIL) mithrilitemcount++;
+
+		if (mithrilitemcount > 0 && (mithrilitemcount >= rnd(20))) {
+			pline("Your mithril equipment prevents the stat loss!");
+			return FALSE;
+		}
+
+	}
+
 	if (incr > 0) {
 	    if ((AMAX(ndx) >= ATTRMAX(ndx)) && (ACURR(ndx) >= AMAX(ndx))) {
 		if (msgflg == 0 && flags.verbose)

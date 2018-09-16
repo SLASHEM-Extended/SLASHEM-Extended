@@ -870,8 +870,14 @@ struct monst *victim;
 
 	if (!otmp) return(FALSE);
 	if (stack_too_big(otmp)) return (FALSE);
+
 	switch(type) {
 		case 0: vulnerable = is_flammable(otmp);
+
+			/* Amy edit: leather and especially wood are hard to burn. They do burn of course, but not as good
+			 * as cloth or paper, and therefore get a saving throw versus burning */
+			if (objects[otmp->otyp].oc_material == WOOD && rn2(4)) vulnerable = FALSE;
+			if (objects[otmp->otyp].oc_material == LEATHER && rn2(2)) vulnerable = FALSE;
 			break;
 		case 1: vulnerable = is_rustprone(otmp);
 			break;
@@ -882,6 +888,8 @@ struct monst *victim;
 			is_primary = FALSE;
 			break;
 	}
+burnagain:
+
 	erosion = is_primary ? otmp->oeroded : otmp->oeroded2;
 
 	if (!print && (!vulnerable || otmp->oerodeproof /* || erosion == MAX_ERODE*/ ))
@@ -931,6 +939,10 @@ struct monst *victim;
 		    otmp->oeroded2++;
 		update_inventory();
 	    }
+
+		/* Amy edit: paper is particularly flammable and should therefore burn even faster */
+	    if (otmp && objects[otmp->otyp].oc_material == PAPER && !rn2(2)) goto burnagain;
+
 	} else if (!hard_to_destruct(otmp) && (!otmp->oartifact || !rn2(4))) {
 		    if (youdefend) {
 		    Your("%s got vaporized!", ostr);
@@ -4163,7 +4175,7 @@ rerollX:
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(itemportchance) && !stack_too_big(otmpi) ) {
+			if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -4633,7 +4645,7 @@ rerollX:
 
 				      otmpii = otmpi->nobj;
 
-					if (!rn2(itemportchance) && !stack_too_big(otmpi) ) {
+					if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 						if (otmpi->owornmask & W_ARMOR) {
 						    if (otmpi == uskin) {

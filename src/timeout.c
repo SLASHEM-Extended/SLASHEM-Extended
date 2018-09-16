@@ -1105,7 +1105,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -1158,7 +1158,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -1211,7 +1211,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -1264,7 +1264,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !stack_too_big(otmpi) ) {
+			if (!rn2(10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {

@@ -340,6 +340,7 @@
 				 ((ptr)->mlet==S_IMP && (ptr) != &mons[PM_TENGU]))
 #define is_shade(ptr)	((ptr)->mflags4 & M4_SHADE)
 #define hates_viva(ptr)		(is_golem(ptr))
+#define hates_copper(ptr)		((ptr)->mlet == S_FUNGUS)
 #define hates_inka(ptr)		(is_animal(ptr))
 #define hates_odor(ptr)		(is_animal(ptr) || humanoid(ptr))
 /* Used for conduct with corpses, tins, and digestion attacks */

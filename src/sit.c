@@ -973,6 +973,12 @@ rndcurse()			/* curse a few inventory items at random! */
 		    continue;
 		}
 
+		/* materials overhaul: gold resists curses --Amy */
+		if (objects[otmp->otyp].oc_material == GOLD && rn2(2)) {
+		    pline("%s!", Tobjnam(otmp, "resist"));
+		    continue;
+		}
+
 		if (!stack_too_big(otmp)) {
 		if(otmp->blessed)
 			unbless(otmp);

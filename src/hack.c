@@ -4216,6 +4216,64 @@ boolean tellplayer;
 		if (amount < 1) amount = 1;
 	}
 
+	/* Platinum is supposed to be a material that shields you against contamination --Amy */
+	if (uwep && objects[uwep->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum weapon prevents you from being contaminated!");
+		return;
+	}
+	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum off-hand weapon prevents you from being contaminated!");
+		return;
+	}
+	if (uarm && objects[uarm->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum armor prevents you from being contaminated!");
+		return;
+	}
+	if (uarmc && objects[uarmc->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum cloak prevents you from being contaminated!");
+		return;
+	}
+	if (uarmh && objects[uarmh->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum helmet prevents you from being contaminated!");
+		return;
+	}
+	if (uarms && objects[uarms->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum shield prevents you from being contaminated!");
+		return;
+	}
+	if (uarmg && objects[uarmg->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum pair of gauntlets prevents you from being contaminated!");
+		return;
+	}
+	if (uarmf && objects[uarmf->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum pair of boots prevents you from being contaminated!");
+		return;
+	}
+	if (uarmu && objects[uarmu->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum shirt prevents you from being contaminated!");
+		return;
+	}
+	if (uamul && objects[uamul->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum amulet prevents you from being contaminated!");
+		return;
+	}
+	if (uimplant && objects[uimplant->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum implant prevents you from being contaminated!");
+		return;
+	}
+	if (uleft && objects[uleft->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum left ring prevents you from being contaminated!");
+		return;
+	}
+	if (uright && objects[uright->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum right ring prevents you from being contaminated!");
+		return;
+	}
+	if (ublindf && objects[ublindf->otyp].oc_material == PLATINUM && !rn2(10)) {
+		if (tellplayer) pline("Your platinum blindfold prevents you from being contaminated!");
+		return;
+	}
+
 	precheckamount = u.contamination;
 
 	u.contamination += amount;

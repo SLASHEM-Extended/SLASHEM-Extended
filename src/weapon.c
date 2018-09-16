@@ -597,6 +597,8 @@ struct monst *mon;
 		bonus += rnd(4);
 	    if (objects[otyp].oc_material == SILVER && hates_silver(ptr))
 		bonus += rnd(20);
+	    if (objects[otyp].oc_material == COPPER && hates_copper(ptr))
+		bonus += 20;
 	    if (objects[otyp].oc_material == VIVA && hates_viva(ptr))
 		bonus += 20;
 	    if (objects[otyp].oc_material == INKA && hates_inka(ptr))
@@ -956,6 +958,8 @@ struct monst *mon;
 		bonus += rnd(4);
 	    if (objects[otyp].oc_material == SILVER && hates_silver(ptr))
 		bonus += rnd(20);
+	    if (objects[otyp].oc_material == COPPER && hates_copper(ptr))
+		bonus += 20;
 	    if (objects[otyp].oc_material == VIVA && hates_viva(ptr))
 		bonus += 20;
 	    if (otyp == ODOR_SHOT && hates_odor(ptr))

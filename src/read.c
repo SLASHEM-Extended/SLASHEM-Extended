@@ -3336,7 +3336,7 @@ proofarmorchoice:
 
 				      otmpii = otmpi->nobj;
 
-					if (!rn2(itemportchance) && !stack_too_big(otmpi) ) {
+					if (!rn2(itemportchance) && !(objects[otmpi->otyp].oc_material == BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 						if (otmpi->owornmask & W_ARMOR) {
 						    if (otmpi == uskin) {

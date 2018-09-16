@@ -276,6 +276,57 @@ int type;
 
 	if (xtime > 0L) {
 	    if (Sick_resistance) return;
+
+		/* Copper has fungicidal properties and therefore also sometimes kills the microorganisms that make you sick --Amy */
+		if (uarm && objects[uarm->otyp].oc_material == COPPER && !rn2(10)) {
+			pline("Your copper armor prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+		if (uarmc && objects[uarmc->otyp].oc_material == COPPER && !rn2(10)) {
+			pline("Your copper cloak prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+		if (uarmh && objects[uarmh->otyp].oc_material == COPPER && !rn2(10)) {
+			pline("Your copper helmet prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+		if (uarms && objects[uarms->otyp].oc_material == COPPER && !rn2(10)) {
+			pline("Your copper shield prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+		if (uarmg && objects[uarmg->otyp].oc_material == COPPER && !rn2(10)) {
+			pline("Your copper pair of gauntlets prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+		if (uarmf && objects[uarmf->otyp].oc_material == COPPER && !rn2(10)) {
+			pline("Your copper pair of boots prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+		if (uarmu && objects[uarmu->otyp].oc_material == COPPER && !rn2(10)) {
+			pline("Your copper shirt prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+		if (uamul && objects[uamul->otyp].oc_material == COPPER && !rn2(10)) {
+			pline("Your copper amulet prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+		if (uimplant && objects[uimplant->otyp].oc_material == COPPER && !rn2(10)) {
+			pline("Your copper implant prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+		if (uleft && objects[uleft->otyp].oc_material == COPPER && !rn2(10)) {
+			pline("Your copper left ring prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+		if (uright && objects[uright->otyp].oc_material == COPPER && !rn2(10)) {
+			pline("Your copper right ring prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+		if (ublindf && objects[ublindf->otyp].oc_material == COPPER && !rn2(10)) {
+			pline("Your copper blindfold prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+
 	    if (!old) {
 		/* newly sick */
 		You_feel(Role_if(PM_PIRATE) ? "poxy." : Role_if(PM_KORSAIR) ? "poxy." : (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ? "poxy." : "deathly sick.");

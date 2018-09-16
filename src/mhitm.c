@@ -666,6 +666,9 @@ struct monst *magr, *mdef;
 	    if (objects[obj->otyp].oc_material == VIVA && hates_viva(mdef->data) && canseemon(mdef)) {
 		    pline("%s is severely hurt by the radiation!", s_suffix(Monnam(mdef)));
 	    }
+	    if (objects[obj->otyp].oc_material == COPPER && hates_copper(mdef->data) && canseemon(mdef)) {
+		    pline("%s decomposes from the contact with copper!", s_suffix(Monnam(mdef)));
+	    }
 	    if (objects[obj->otyp].oc_material == INKA && hates_inka(mdef->data) && canseemon(mdef)) {
 		    pline("%s is hurt by the inka string!", s_suffix(Monnam(mdef)));
 	    }
@@ -1307,10 +1310,13 @@ physical:
 			}
 
                         /* WAC Weres get seared */
-                        if(otmp && objects[otmp->otyp].oc_material == SILVER &&
-                          (hates_silver(pd))) {
+                        if(otmp && objects[otmp->otyp].oc_material == SILVER && (hates_silver(pd))) {
                                 tmp += 8;
                                 if (vis) pline("The silver sears %s!", mon_nam(mdef));
+                        }
+                        if(otmp && objects[otmp->otyp].oc_material == COPPER && (hates_copper(pd))) { 
+                                tmp += 20;
+                                if (vis) pline("The copper decomposes %s!", mon_nam(mdef));
                         }
                         if(otmp && objects[otmp->otyp].oc_material == VIVA && (hates_viva(pd))) { 
                                 tmp += 20;

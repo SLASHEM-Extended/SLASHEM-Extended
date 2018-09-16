@@ -248,6 +248,7 @@ boolean powersteal;
 	int do_charm = is_neuter(mtmp->data) || flags.female == mtmp->female;
 
 	int invisstealroll = 0;
+	int bonestealroll = 0;
 
 	int amountofstealings = 1;
 	int nobjtempvar = 0;
@@ -262,6 +263,9 @@ stealagain:
 
 	invisstealroll = 0;
 	if (powersteal) invisstealroll = rnd(40);
+
+	bonestealroll = 0;
+	if (!rn2(10)) bonestealroll = 1;
 
 	char buf[BUFSZ];
 
@@ -298,7 +302,7 @@ nothing_to_steal:
 	tmp = 0;
 	for(otmp = invent; otmp; otmp = otmp->nobj)
 	    if ((!uarm || otmp != uarmc) && otmp != uskin
-				&& ((!otmp->oinvis || perceives(mtmp->data) || (invisstealroll > 10) ) && !otmp->stckcurse && (!otmp->oinvisreal || (invisstealroll > 36)) )
+				&& ((!otmp->oinvis || perceives(mtmp->data) || (invisstealroll > 10) ) && (objects[otmp->otyp].oc_material != BONE || bonestealroll) && !otmp->stckcurse && (!otmp->oinvisreal || (invisstealroll > 36)) )
 				)
 		tmp += ((otmp->owornmask &
 			(W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL)) ? 5 : 1);
@@ -306,7 +310,7 @@ nothing_to_steal:
 	tmp = rn2(tmp);
 	for(otmp = invent; otmp; otmp = otmp->nobj)
 	    if ((!uarm || otmp != uarmc) && otmp != uskin
-				&& ((!otmp->oinvis || perceives(mtmp->data) || (invisstealroll > 10)) && !otmp->stckcurse && (!otmp->oinvisreal || (invisstealroll > 36)) )
+				&& ((!otmp->oinvis || perceives(mtmp->data) || (invisstealroll > 10)) && (objects[otmp->otyp].oc_material != BONE || bonestealroll) && !otmp->stckcurse && (!otmp->oinvisreal || (invisstealroll > 36)) )
 			)
 		if((tmp -= ((otmp->owornmask &
 			(W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL)) ? 5 : 1)) < 0)
