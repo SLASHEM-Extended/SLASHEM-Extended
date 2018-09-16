@@ -1780,11 +1780,9 @@ movemon()
 
 	if (is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) {
 	    /* unwatched mimics and piercers may hide again  [MRS] */
-	    if(restrap(mtmp))   continue;
-	    if(mtmp->m_ap_type == M_AP_FURNITURE ||
-				mtmp->m_ap_type == M_AP_OBJECT)
-		    continue;
-	    if(mtmp->mundetected) continue;
+	    if(restrap(mtmp) && issoviet) continue;
+	    if((mtmp->m_ap_type == M_AP_FURNITURE || mtmp->m_ap_type == M_AP_OBJECT) && issoviet) continue;
+	    if(mtmp->mundetected && issoviet) continue;
 	}
 
 	/* continue if the monster died fighting */

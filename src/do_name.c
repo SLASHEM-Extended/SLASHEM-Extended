@@ -608,6 +608,7 @@ rndplrmonnamefemale()
  * Adjmonnam:	The poor newt	It	The poor invisible orc	The poor Fido
  * Amonnam:	A newt		It	An invisible orc	Fido
  * a_monnam:	a newt		it	an invisible orc	Fido
+ * a_noit_monnam:	a newt	(as if detected)	an invisible orc	Fido
  * m_monnam:	newt		xan	orc			Fido
  * y_monnam:	your newt     your xan	your invisible orc	Fido
  */
@@ -650,7 +651,7 @@ boolean called;
 
 	do_hallu = Hallucination && !(suppress & SUPPRESS_HALLUCINATION);
 	do_invis = mtmp->minvis && !(suppress & SUPPRESS_INVISIBLE);
-	do_it = !canspotmon(mtmp) &&
+	do_it = (!canspotmon(mtmp) || (!sensemon(mtmp) && ((is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && (mtmp->mundetected || mtmp->m_ap_type == M_AP_FURNITURE || mtmp->m_ap_type == M_AP_OBJECT)) )) &&
 	    article != ARTICLE_YOUR &&
 	    !program_state.gameover &&
 	    mtmp != u.usteed &&
@@ -1068,6 +1069,14 @@ register struct monst *mtmp;
 {
 	return x_monnam(mtmp, ARTICLE_A, (char *)0,
 		mtmp->mnamelth ? SUPPRESS_SADDLE : 0, FALSE);
+}
+
+char *
+a_noit_monnam(mtmp)
+register struct monst *mtmp;
+{
+	return x_monnam(mtmp, ARTICLE_A, (char *)0,
+		mtmp->mnamelth ? (SUPPRESS_SADDLE|SUPPRESS_IT) : SUPPRESS_IT, FALSE);
 }
 
 char *

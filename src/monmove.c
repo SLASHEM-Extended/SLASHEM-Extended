@@ -1300,6 +1300,7 @@ toofar:
 
 		tmp = m_move(mtmp, 0);
 		distfleeck(mtmp,&inrange,&nearby,&scared);	/* recalc */
+
 		switch (tmp) {
 		    case 0:	/* no movement, but it can still attack you */
 		    case 3:	/* absolutely no movement */
@@ -1597,7 +1598,7 @@ register int after;
 	if (mtmp->mfrenzied && mtmp->mpeaceful) mtmp->mpeaceful = 0;
 	if (mtmp->mfrenzied && mtmp->mtame) mtmp->mtame = 0;
 
-	if (mtmp->data->mlet == S_TURRET || stationary(mtmp->data) ) return(0); /* stationary turrets --Amy */
+	if (mtmp->data->mlet == S_TURRET || stationary(mtmp->data) || ((is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && (mtmp->mundetected || mtmp->m_ap_type == M_AP_FURNITURE || mtmp->m_ap_type == M_AP_OBJECT) ) ) return(0); /* stationary turrets --Amy */
 
 	/* mcalcmove() in mon.c allows sessile monsters to get turns. We still don't want them to move around though. --Amy */
 	if (!mtmp->data->mmove && (!mtmp->egotype_speedster) && (!mtmp->egotype_racer) ) return(0);

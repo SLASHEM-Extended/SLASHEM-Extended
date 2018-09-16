@@ -9718,7 +9718,7 @@ struct monst *mtmp;
 	    if ((mtmp->minvis && !See_invisible) || mtmp->minvisreal)
 		what = generic;
 	    else
-		what = a_monnam(mtmp);
+		what = a_noit_monnam(mtmp);
 	}
 	if (what) pline(fmt, what);
 

@@ -444,6 +444,7 @@ E char *y_monnam(struct monst *);
 E char *Adjmonnam(struct monst *,const char *);
 E char *Amonnam(struct monst *);
 E char *a_monnam(struct monst *);
+E char *a_noit_monnam(struct monst *);
 E char *distant_monnam(struct monst *,int,char *);
 E const char *rndmonnam(void);
 E const char *hcolor(const char *);
