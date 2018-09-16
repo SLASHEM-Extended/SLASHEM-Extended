@@ -4156,6 +4156,16 @@ elena37:
 		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 	}
 
+	/* bugsniper wants the BOFH to have data delete; that would be extremely unfair, so I'm restraining it to the
+	 * evil variant because after all SLEX is supposed to be a balanced game (yeah I know "ha ha", but I guess players
+	 * who consider the concept of "you can lose the game through no fault of your own" to be innately unbalanced
+	 * will not consider SLEX a balanced game. It is balanced around the fact that you can die unfairly :P) --Amy */
+	if (mtmp->data == &mons[PM_BOFH] && isevilvariant) {
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			datadeleteattack();
+		}
+	}
+
 	/* and now, the unholy satanic motherfucker from hell, aka the most evil monster in existence... --Amy
 	 * thanks Chris_ANG for creating it, you evil person :P */
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) {
