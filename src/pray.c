@@ -1541,6 +1541,29 @@ register struct obj *otmp;
 	Your("sacrifice disappears!");
     else Your("sacrifice is consumed in a %s!",
 	      u.ualign.type == A_LAWFUL ? "flash of light" : "burst of flame");
+
+    if (isevilvariant) {
+	/* It's no mistake that this happens even while hallucinating, because the things you saw while hallucinating
+	 * weren't real, there still was the usual flash of light or burst of flame and you just perceived it as something
+	 * different. So yeah, you'll still be affected --Amy */
+
+	if (u.ualign.type == A_LAWFUL) {
+		if (!Blind) pline("Everything suddenly goes dark.");
+		make_blinded(Blinded + rnz(250), FALSE);
+	} else {
+		(void) burnarmor(&youmonst);
+		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SCROLL_CLASS, AD_FIRE);
+		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 5)) destroy_item(POTION_CLASS, AD_FIRE);
+		if (!Fire_resistance) {
+			pline_The("fire burns you!");
+			losehp(rnd(2), "the burst of flame from offering a sacrifice", KILLED_BY);
+		}
+
+	}
+
+    }
+
     if (carried(otmp)) useup(otmp);
     else useupf(otmp, 1L);
     exercise(A_WIS, TRUE);
