@@ -3988,7 +3988,7 @@ register struct obj *otmp;
 
 		if (mtmp == &youmonst) {
 
-			if (Disint_resistance && rn2(100)) {
+			if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
 			    You("are not disintegrated.");
 			    break;
 	            } else if (Invulnerable || (Stoned_chiller && Stoned)) {

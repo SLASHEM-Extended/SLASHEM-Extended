@@ -9114,7 +9114,7 @@ uchar aatyp;
 		break;
 	    case AD_DISN:
 		if (!rn2(10))  {
-		if (Disint_resistance && rn2(100)) {
+		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
 		    You("are mildly shaked.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -9159,7 +9159,7 @@ uchar aatyp;
 		    mdamageu(mon, tmp);
 
 		if (!rn2(10))  {
-		if (Disint_resistance && rn2(100)) {
+		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
 		    You("are mildly shaked.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {

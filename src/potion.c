@@ -1370,7 +1370,7 @@ badeffect()
 
 		case 329:
 
-			if (!Disint_resistance || !rn2(100) ) {
+			if (!Disint_resistance || !rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu)) ) {
 				You_feel("like you're falling apart!");
 	
 				if (uarms) {

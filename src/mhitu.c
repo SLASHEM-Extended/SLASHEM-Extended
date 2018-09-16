@@ -7824,7 +7824,7 @@ dopois:
 		if (statsavingthrow) break;
 
 		if (!rn2(10))  {
-		if (Disint_resistance && rn2(100)) {
+		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu)) ) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -7869,7 +7869,7 @@ dopois:
 		if (statsavingthrow) break;
 
 		if (!rn2(10))  {
-		if (Disint_resistance && rn2(100)) {
+		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -11256,7 +11256,7 @@ do_stone2:
 		case AD_DISN:
 		    You_feel("like a drill is tearing you apart!");
 		if (!rn2(10))  {
-		if (Disint_resistance && rn2(100)) {
+		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -11303,7 +11303,7 @@ do_stone2:
 		if (!Disint_resistance) tmp *= 3;
 
 		if (!rn2(10))  {
-		if (Disint_resistance && rn2(100)) {
+		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -12838,7 +12838,7 @@ common:
 
 	    case AD_DISN: /* for jonadab's disintegrating sphere */
 
-		if (Disint_resistance && rn2(100)) {
+		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -12882,7 +12882,7 @@ common:
 	      if (!Disint_resistance) mdamageu(mtmp, (tmp * 3));
 		else mdamageu(mtmp, tmp);
 
-		if (Disint_resistance && rn2(100)) {
+		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -14250,7 +14250,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!rn2(20))  {
 		pline("%s's gaze seems to drill right into you!", Monnam(mtmp));
 		    stop_occupation();
-		if (Disint_resistance && rn2(100)) {
+		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -14303,7 +14303,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!Disint_resistance) dmg *= 3;
 		    if (dmg) mdamageu(mtmp, dmg);
 
-		if (Disint_resistance && rn2(100)) {
+		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {

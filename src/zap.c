@@ -5597,7 +5597,7 @@ boolean ordinary;
 		case SPE_DISINTEGRATION:
 		case SPE_DISINTEGRATION_BEAM:
 
-			if (Disint_resistance && rn2(100)) {
+			if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
 			    You("are not disintegrated.");
 			    break;
 	            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -7680,7 +7680,7 @@ xchar sx, sy;
 		dam = d(nd, Disint_resistance ? 3 : 6);
 		losehp(dam, "a disintegration beam", KILLED_BY);
 
-		if (Disint_resistance && rn2(100)) {
+		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
