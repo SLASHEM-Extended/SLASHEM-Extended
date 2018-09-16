@@ -1822,12 +1822,7 @@ int magic; /* 0=Physical, otherwise skill level */
 		range = temp;
 	    (void) walk_path(&uc, &cc, hurtle_step, (void *)&range);
 
-	    /* A little Sokoban guilt... */
-	    if (In_sokoban(&u.uz))
-		{change_luck(-1);
-		pline("You cheater!");
-		if (isevilvariant) u.ugangr++;
-		}
+	    /* This used to give sokoban penalties but you can't actually bypass anything so the penalty is removed --Amy */
 
 	    teleds(cc.x, cc.y, TRUE);
 

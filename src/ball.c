@@ -737,12 +737,8 @@ xchar x, y;
 	newsym(u.ux0,u.uy0);		/* clean up old position */
 	if (u.ux0 != u.ux || u.uy0 != u.uy) {
 	    spoteffects(TRUE);
-	    if (In_sokoban(&u.uz))
-		{change_luck(-1);
-		pline("You cheater!");
-		if (isevilvariant) u.ugangr++;
-		}
-		/* Sokoban guilt */
+	    /* This used to give sokoban penalties but you can't actually bypass anything so the penalty is removed --Amy */
+
 	}
     }
 }
