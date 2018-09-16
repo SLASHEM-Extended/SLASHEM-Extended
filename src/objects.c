@@ -5318,6 +5318,12 @@ SCROLL((char *)0,               "CAPLOSS TRIANGLE INSTADEATH",  P_NONE,     1,  
 SCROLL((char *)0,               "WOMAN NOISES",  P_NONE,     1,   0, 300, CLR_GRAY, 1),
 SCROLL((char *)0,               "HOLLANDS ANTJE",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
 SCROLL((char *)0,               "RUN AWAY FROM THE NAME ARABELLA REALLY FAST",  P_NONE,     1,   0, 300, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "TDTTOSTBDTECONWIALACI",  P_NONE,     1,   0, 300, CLR_BLACK, 1),
+SCROLL((char *)0,               "INVALID NEXT SIZE FAST",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "IDZ DO DIABLA BRUDNY ZDRAJCO",  P_NONE,     1,   0, 300, CLR_ORANGE, 1),
+SCROLL((char *)0,               "BINAURAL BEATS BY DRE",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
+SCROLL((char *)0,               "DEADLY BONES FILE",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "VALLEY RAL AND PLACE",  P_NONE,     1,   0, 300, CLR_RED, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),
