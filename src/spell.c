@@ -339,7 +339,7 @@ cursed_book(bp)
 	case 5:
 		pline_The("book was coated with contact poison!");
 		if (uarmg) {
-		    if (uarmg->oerodeproof || !is_corrodeable(uarmg)) {
+		    if (uarmg->oerodeproof || (uarmg->oartifact && rn2(4)) || !is_corrodeable(uarmg)) {
 			Your("gloves seem unaffected.");
 		    } else if (uarmg->oeroded2 < MAX_ERODE) {
 			if (uarmg->greased) {

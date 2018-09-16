@@ -2461,7 +2461,7 @@ register struct obj *obj;
 	if (!mdef->mcan &&
 	    (is_acid ? is_corrodeable(obj) : is_rustprone(obj)) && !stack_too_big(obj) &&
 	    (is_acid ? obj->oeroded2 : obj->oeroded) < MAX_ERODE) {
-		if (obj->greased || obj->oerodeproof || (obj->blessed && rn2(3))) {
+		if (obj->greased || (obj->oartifact && rn2(4)) || obj->oerodeproof || (obj->blessed && rn2(3))) {
 		    if (cansee(mdef->mx, mdef->my) && flags.verbose)
 			pline("%s weapon is not affected.",
 			                 s_suffix(Monnam(magr)));

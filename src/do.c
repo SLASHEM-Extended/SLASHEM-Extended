@@ -950,7 +950,7 @@ register struct obj *obj;
 
 	trycall(obj);
 
-	if (!obj->oerodeproof && is_rustprone(obj) && !hard_to_destruct(obj) && obj->oeroded == MAX_ERODE) {
+	if (!obj->oerodeproof && is_rustprone(obj) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)) && obj->oeroded == MAX_ERODE) {
 		pline("%s rusted away completely!", doname(obj));
 		useup(obj);
 		return;

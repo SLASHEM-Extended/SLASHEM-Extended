@@ -17246,7 +17246,7 @@ register struct obj *obj;
 
 	if ((is_acid ? is_corrodeable(obj) : is_rustprone(obj)) && !stack_too_big(obj) &&
 	    (is_acid ? obj->oeroded2 : obj->oeroded) < MAX_ERODE) {
-		if (obj->greased || obj->oerodeproof || (obj->blessed && rn2(3))) {
+		if (obj->greased || (obj->oartifact && rn2(4)) || obj->oerodeproof || (obj->blessed && rn2(3))) {
 		        if (vis) pline("Somehow, %s weapon is not affected.",
 						s_suffix(mon_nam(mon)));
 		    if (obj->greased && !rn2(2)) obj->greased -= 1;
