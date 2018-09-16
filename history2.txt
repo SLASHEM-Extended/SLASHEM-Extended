@@ -1,6 +1,26 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.3.3 - September 2018
+- More item materials have effects: copper deals extra damage to F or protects against sickness, platinum protects against contamination, mithril protects against attribute loss, gold is resistant to the curse items effect and bone is more resistant to stealing. Leather and especially wood are more resistant to fire while paper is super vulnerable.
+- Sleeping monsters are more likely to wake up when attacked.
+- Friday the 13th is much more dangerous; some features that are normally only active in evilvariant mode have a chance of being active on a Friday the 13th now.
+- In evilvariant mode, disintegration resistance does not protect the player's worn items.
+- Occasionally, certain types of curses on items are more common in a given game.
+- Artifacts are 75% resistant to erosion effects.
+- The prostitute and kurwa roles are less susceptible to claw attacks, but certain monsters still retain the old chance and are more common to compensate.
+- Jumping, throwing an iron ball, or throwing anything while levitating no longer count as cheating in Sokoban.
+- In evilvariant mode, the BOFH has data delete attacks.
+- Metallivores, lithivores and organivores can't eat erosionproof items.
+- Mimics and hiders can attack even when hiding now, and will not become visible when they do so.
+- The UNIX makefiles use the -O compile flag instead of -O2 now.
+- Werecreatures are more likely to infect the player if it's a new moon.
+- Fixed bugs that would place caverns on Robot Town and Sewer Plant, which could occasionally be behind undiggable walls and therefore become almost impossible to reach.
+- In evilvariant mode, sacrificing will cause the player to be affected by the burst of flame or flash of light.
+- If a player's melee attack misses by more than 20 points, there's more message variety to indicate that it was a total miss.
+- Items on bones levels are now usually degraded, and stuff inside containers is deleted to reduce the amount of free items a bones file finder gets.
+
 2.3.2 - August 2018
+- Fixed a memory corruption when the terminal size had certain dimensions and the player had an item whose inventory string was exactly one character too long.
 - Nerfed the frequency with which wouwou aliens can use their taunts.
 - Fixed the bug where a player with displacement would displace pets twice.
 - Tried unsuccessfully to fix an "invalid next size (fast)" error that can happen when long item names are being displayed on terminals of specific sizes.
