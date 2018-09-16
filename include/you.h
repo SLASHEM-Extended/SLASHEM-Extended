@@ -1014,6 +1014,11 @@ struct you {
 	int femauspices28;
 	int femauspices30;
 
+	int stickycursechance; /* extra chance for items to become sticky cursed */
+	int heavycursechance; /* extra chance for items that generate cursed to be generated heavily cursed */
+	int primecursechance; /* ditto, but prime cursed */
+	int genericcursechance; /* general extra chance that any random item is generated cursed */
+
 	int scholarturns; /* to give warnings when trying to pray */
 
 	/* KMH -- Info shared among gypsies */

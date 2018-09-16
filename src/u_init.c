@@ -8693,6 +8693,36 @@ u_init()
 	u.lavtrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
 	u.lavtrainingtimer = rnz(10000) + rnd(50000);
 
+	u.stickycursechance = 0;
+	if (!rn2(10)) {
+		u.stickycursechance = rnd(30);
+		if (!rn2(3)) u.stickycursechance += rnd(20);
+		if (!rn2(5)) u.stickycursechance += rnd(25);
+		if (!rn2(10)) u.stickycursechance += rnd(25);
+		if (u.stickycursechance > 100) u.stickycursechance = 100;
+	}
+
+	u.heavycursechance = 0;
+	u.primecursechance = 0;
+	if (!rn2(5)) {
+		u.heavycursechance = rnd(50);
+		if (!rn2(3)) u.heavycursechance += rnd(25);
+		if (!rn2(5)) u.heavycursechance += rnd(25);
+		if (u.heavycursechance > 100) u.heavycursechance = 100;
+
+		if (!rn2(20)) {
+			u.primecursechance = rnd(20);
+			if (!rn2(3)) u.primecursechance += rnd(20);
+			if (!rn2(5)) u.primecursechance += rnd(20);
+			if (!rn2(15)) u.primecursechance += rnd(20);
+			if (!rn2(50)) u.primecursechance += rnd(20);
+			if (u.primecursechance > 100) u.primecursechance = 100;
+		}
+	}
+
+	u.genericcursechance = 0;
+	if (!rn2(10)) u.genericcursechance = rnd(33);
+
 	u.drippingtread = 0;
 	u.drippingtreadtype = 0;
 	u.geolysis = 0;
@@ -28366,6 +28396,36 @@ alter_reality()
 
 	u.lavtrainingskill = !rn2(3) ? rnd(P_LIGHTSABER) : rn2(2) ? (P_ATTACK_SPELL + rn2(10)) : randomgoodcombatskill();
 	u.lavtrainingtimer = rnz(10000) + rnd(50000);
+
+	u.stickycursechance = 0;
+	if (!rn2(10)) {
+		u.stickycursechance = rnd(30);
+		if (!rn2(3)) u.stickycursechance += rnd(20);
+		if (!rn2(5)) u.stickycursechance += rnd(25);
+		if (!rn2(10)) u.stickycursechance += rnd(25);
+		if (u.stickycursechance > 100) u.stickycursechance = 100;
+	}
+
+	u.heavycursechance = 0;
+	u.primecursechance = 0;
+	if (!rn2(5)) {
+		u.heavycursechance = rnd(50);
+		if (!rn2(3)) u.heavycursechance += rnd(25);
+		if (!rn2(5)) u.heavycursechance += rnd(25);
+		if (u.heavycursechance > 100) u.heavycursechance = 100;
+
+		if (!rn2(20)) {
+			u.primecursechance = rnd(20);
+			if (!rn2(3)) u.primecursechance += rnd(20);
+			if (!rn2(5)) u.primecursechance += rnd(20);
+			if (!rn2(15)) u.primecursechance += rnd(20);
+			if (!rn2(50)) u.primecursechance += rnd(20);
+			if (u.primecursechance > 100) u.primecursechance = 100;
+		}
+	}
+
+	u.genericcursechance = 0;
+	if (!rn2(10)) u.genericcursechance = rnd(33);
 
 	u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = u.nastinator86 = u.nastinator87 = u.nastinator88 = u.nastinator89 = u.nastinator90 = u.nastinator91 = u.nastinator92 = u.nastinator93 = u.nastinator94 = u.nastinator95 = u.nastinator96 = u.nastinator97 = u.nastinator98 = u.nastinator99 = u.nastinator100 = u.nastinator101 = u.nastinator102 = u.nastinator103 = u.nastinator104 = u.nastinator105 = u.nastinator106 = u.nastinator107 = u.nastinator108 = u.nastinator109 = u.nastinator110 = u.nastinator111 = u.nastinator112 = u.nastinator113 = u.nastinator114 = u.nastinator115 = u.nastinator116 = u.nastinator117 = u.nastinator118 = u.nastinator119 = u.nastinator120 = u.nastinator121 = u.nastinator122 = u.nastinator123 = u.nastinator124 = u.nastinator125 = u.nastinator126 = u.nastinator127 = u.nastinator128 = u.nastinator129 = u.nastinator130 = u.nastinator131 = u.nastinator132 = u.nastinator133 = u.nastinator134 = u.nastinator135 = u.nastinator136 = u.nastinator137 = u.nastinator138 = u.nastinator139 = u.nastinator140 = u.nastinator141 = u.nastinator142 = u.nastinator143 = u.nastinator144 = u.nastinator145 = u.nastinator146 = u.nastinator147 = u.nastinator148 = u.nastinator149 = u.nastinator150 = u.nastinator151 = u.nastinator152 = u.nastinator153 = u.nastinator154 = u.nastinator155 = u.nastinator156 = u.nastinator157 = u.nastinator158 = u.nastinator159 = u.nastinator160 = u.nastinator161 = u.nastinator162 = u.nastinator163 = u.nastinator164 = u.nastinator165 = u.nastinator166 = u.nastinator167 = u.nastinator168 = u.nastinator169 = 0;
 

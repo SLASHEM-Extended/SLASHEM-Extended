@@ -2634,6 +2634,7 @@ int artif;
 
 	/* For a curser, every item has an 80% chance of being cursed if it would have been noncursed. --Amy */
 	if (iscurser && rn2(5)) curse_on_creation(otmp);
+	if (u.genericcursechance && (u.genericcursechance >= rnd(100)) ) curse_on_creation(otmp);
 
 	if (otyp == u.alwayscurseditem) curse_on_creation(otmp);
 	if (otyp == u.alwayscurseditem2) curse_on_creation(otmp);
@@ -2838,6 +2839,8 @@ register struct obj *otmp;
 
 	if (!rn2(100)) otmp->stckcurse = 1;
 
+	if (u.stickycursechance && (u.stickycursechance >= rnd(100)) ) otmp->stckcurse = 1;
+
 	if (otmp->cursed) {
 		if (!otmp->hvycurse && !rn2(5)) otmp->hvycurse = 1;
 		else if (otmp->hvycurse && !otmp->prmcurse && !rn2(25)) otmp->prmcurse = 1;
@@ -2891,6 +2894,8 @@ register struct obj *otmp;
 
 	if (!rn2(100)) otmp->stckcurse = 1;
 
+	if (u.stickycursechance && (u.stickycursechance >= rnd(100)) ) otmp->stckcurse = 1;
+
 	if (otmp->cursed) { /* should not happen, but oh well */
 		if (!otmp->hvycurse && !rn2(5)) otmp->hvycurse = 1;
 		else if (otmp->hvycurse && !otmp->prmcurse && !rn2(25)) otmp->prmcurse = 1;
@@ -2901,7 +2906,13 @@ register struct obj *otmp;
 		}
 	} else {
 		otmp->cursed = 1;
+
+		if (u.heavycursechance && (u.heavycursechance >= rnd(100)) ) otmp->hvycurse = 1;
+
 		if (!otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 25)) otmp->hvycurse = 1;
+
+		if (otmp->hvycurse && u.primecursechance && (u.primecursechance >= rnd(100)) ) otmp->prmcurse = 1;
+
 		if (otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(125)) otmp->prmcurse = 1;
 		if (otmp->prmcurse && !rn2(1255)) {
 			if (!rn2(3)) otmp->morgcurse = 1;
