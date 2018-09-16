@@ -17440,6 +17440,13 @@ loopback:
 		if (ct > 0 && (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(ptr, AD_DATA) )) ct += 1000;
 		if (ct > 0 && (Role_if(PM_SHAPESHIFTER) && is_evilpatchmonster(ptr))) ct += 5;
 		if (ct > 0 && (Race_if(PM_RODNEYAN) && is_evilpatchmonster(ptr))) ct += 5;
+		if (ct > 0 && flags.friday13 && is_evilpatchmonster(ptr)) ct += 25;
+		if (ct > 0 && (flags.friday13 && dmgtype(ptr, AD_STAT) )) ct += 2;
+		if (ct > 0 && (flags.friday13 && dmgtype(ptr, AD_DAMA) )) ct += 2;
+		if (ct > 0 && (flags.friday13 && dmgtype(ptr, AD_THIE) )) ct += 2;
+		if (ct > 0 && (flags.friday13 && dmgtype(ptr, AD_DATA) )) ct += 1;
+		if (ct > 0 && (flags.friday13 && dmgtype(ptr, AD_RAGN) )) ct += 20;
+		if (ct > 0 && (flags.friday13 && dmgtype(ptr, AD_DEST) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_RODNEYAN) && dmgtype(ptr, AD_DATA) )) ct += 1;
 		if (ct > 0 && (isevilvariant && dmgtype(ptr, AD_DATA) )) ct += 20;
 		if (ct > 0 && (isevilvariant && is_evilpatchmonster(ptr) )) ct += 100;
@@ -18204,6 +18211,13 @@ int     spc;
 		if ((uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(&mons[last], AD_DATA) )) num += 1000;
 		if ((Role_if(PM_SHAPESHIFTER) && is_evilpatchmonster(&mons[last]))) num += 5;
 		if ((Race_if(PM_RODNEYAN) && is_evilpatchmonster(&mons[last]))) num += 5;
+		if (flags.friday13 && is_evilpatchmonster(&mons[last])) num += 25;
+		if (flags.friday13 && dmgtype(&mons[last], AD_STAT) ) num += 2;
+		if (flags.friday13 && dmgtype(&mons[last], AD_DAMA) ) num += 2;
+		if (flags.friday13 && dmgtype(&mons[last], AD_THIE) ) num += 2;
+		if (flags.friday13 && dmgtype(&mons[last], AD_DATA) ) num += 1;
+		if (flags.friday13 && dmgtype(&mons[last], AD_RAGN) ) num += 20;
+		if (flags.friday13 && dmgtype(&mons[last], AD_DEST) ) num += 2;
 		if ((Race_if(PM_RODNEYAN) && dmgtype(&mons[last], AD_DATA) )) num += 1;
 		if ((isevilvariant && dmgtype(&mons[last], AD_DATA) )) num += 20;
 		if ((isevilvariant && is_evilpatchmonster(&mons[last]) )) num += 100;
@@ -18684,6 +18698,13 @@ int     spc;
 		if ((uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && dmgtype(&mons[first], AD_DATA) )) num -= 1000;
 		if ((Role_if(PM_SHAPESHIFTER) && is_evilpatchmonster(&mons[first]))) num -= 5;
 		if ((Race_if(PM_RODNEYAN) && is_evilpatchmonster(&mons[first]))) num -= 5;
+		if (flags.friday13 && is_evilpatchmonster(&mons[first])) num -= 25;
+		if (flags.friday13 && dmgtype(&mons[first], AD_STAT) ) num -= 2;
+		if (flags.friday13 && dmgtype(&mons[first], AD_DAMA) ) num -= 2;
+		if (flags.friday13 && dmgtype(&mons[first], AD_THIE) ) num -= 2;
+		if (flags.friday13 && dmgtype(&mons[first], AD_DATA) ) num -= 1;
+		if (flags.friday13 && dmgtype(&mons[first], AD_RAGN) ) num -= 20;
+		if (flags.friday13 && dmgtype(&mons[first], AD_DEST) ) num -= 2;
 		if ((Race_if(PM_RODNEYAN) && dmgtype(&mons[first], AD_DATA) )) num -= 1;
 		if ((isevilvariant && dmgtype(&mons[first], AD_DATA) )) num -= 20;
 		if ((isevilvariant && is_evilpatchmonster(&mons[first]) )) num -= 100;
@@ -19639,7 +19660,7 @@ struct monst *mtmp;
 	if (mtmp->malign >= 1 && rn2(5))  mtmp->malign /= 3; /*rebuilding alignment should be harder --Amy*/
 
 	if (mtmp->malign >= 1 && Role_if(PM_POLITICIAN)) mtmp->malign = 0; /* politicians don't like getting their hands dirty */
-	if (mtmp->malign >= 1 && isevilvariant) mtmp->malign = 0; /* Nethack Fourk did this INGENIOUS change :P */
+	if (mtmp->malign >= 1 && evilfriday) mtmp->malign = 0; /* Nethack Fourk did this INGENIOUS change :P */
 
 }
 

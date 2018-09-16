@@ -1892,7 +1892,7 @@ mattacku(mtmp)
 				     * moving away */
 				    flush_screen(1);
 				    sum[i] = gulpmu(mtmp, mattk);
-				    if (isevilvariant && !rn2(2)) {
+				    if (evilfriday && !rn2(2)) {
 					if(!Confusion) You("are getting confused from spinning around.");
 					make_confused(HConfusion + (mtmp->m_lev + 5), FALSE);
 				    }
@@ -1953,7 +1953,7 @@ cursesatyou:
 				     * moving away */
 				    flush_screen(1);
 				    sum[i] = gulpmu(mtmp, mattk);
-				    if (isevilvariant && !rn2(2)) {
+				    if (evilfriday && !rn2(2)) {
 					if(!Confusion) You("are getting confused from spinning around.");
 					make_confused(HConfusion + (mtmp->m_lev + 5), FALSE);
 				    }
@@ -4103,7 +4103,7 @@ elena37:
 
 	}
 
-	if (isevilvariant && mtmp->data->mlet == S_ZOMBIE) {
+	if (evilfriday && mtmp->data->mlet == S_ZOMBIE) {
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_TUCH;
@@ -4122,7 +4122,7 @@ elena37:
 		}
 	}
 
-	if (isevilvariant && mtmp->data->mlet == S_MUMMY) {
+	if (evilfriday && mtmp->data->mlet == S_MUMMY) {
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_TUCH;
@@ -4143,17 +4143,17 @@ elena37:
 
 	if (uimplant && uimplant->oartifact == ART_POTATOROK && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
 		ragnarok(FALSE);
-		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
+		if (evilfriday && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 	}
 
 	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
 		ragnarok(FALSE);
-		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
+		if (evilfriday && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 	}
 
 	if (uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON && !range2 && foundyou && !rn2(10) && (tmp > (j = rnd(20+i)))) {
 		ragnarok(FALSE);
-		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
+		if (evilfriday && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 	}
 
 	/* bugsniper wants the BOFH to have data delete; that would be extremely unfair, so I'm restraining it to the
@@ -4187,7 +4187,7 @@ elena37:
 
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
 			ragnarok(FALSE);
-			if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
+			if (evilfriday && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 		}
 
 		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
@@ -4812,7 +4812,7 @@ struct attack *mattk;
 		  (obj->greased || objects[obj->otyp].oc_name_known) ?
 			xname(obj) : cloak_simple_name(obj));
 
-	    if (obj->greased && !rn2(2)) {
+	    if (obj->greased && (!rn2(2) || (flags.friday13 && !rn2(2)))) {
 		pline_The("grease wears off.");
 		obj->greased -= 1;
 		update_inventory();
@@ -5425,7 +5425,7 @@ hitmu(mtmp, mattk)
 		    if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 30))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		    burn_away_slime();
-		    if (isevilvariant || rn2(3)) hurtarmor(AD_LAVA);
+		    if (evilfriday || rn2(3)) hurtarmor(AD_LAVA);
 		break;
 
 	    case AD_FIRE:
@@ -5788,7 +5788,7 @@ dopois:
 		}
 		if (u_slip_free(mtmp,mattk)) break;
 
-		if (uarmh && !(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "strip bandana") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "polosa bandanu") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bir ip yengil bosh kiyim") )) && rn2(8)) {
+		if (uarmh && !(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "strip bandana") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "polosa bandanu") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "bir ip yengil bosh kiyim") )) && rn2(evilfriday ? 3 : 8)) {
 		    /* not body_part(HEAD) */
 		    Your("helmet blocks the attack to your head.");
 		    break;
@@ -6856,19 +6856,19 @@ dopois:
 			rehumanize();
 			break;
 		}
-		if (isevilvariant || rn2(3)) hurtarmor(AD_RUST);
+		if (evilfriday || rn2(3)) hurtarmor(AD_RUST);
 		break;
 	    case AD_CORR:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
-		if (isevilvariant || rn2(3)) hurtarmor(AD_CORR);
+		if (evilfriday || rn2(3)) hurtarmor(AD_CORR);
 		break;
 	    case AD_WTHR:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
-		if (isevilvariant || rn2(3)) witherarmor();
+		if (evilfriday || rn2(3)) witherarmor();
 		break;
 
 	    case AD_SHRD:
@@ -6970,7 +6970,7 @@ dopois:
 
 		hitmsg(mtmp, mattk);
 		ragnarok(FALSE);
-		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
+		if (evilfriday && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 
 		break;
 
@@ -7824,7 +7824,7 @@ dopois:
 		if (statsavingthrow) break;
 
 		if (!rn2(10))  {
-		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu)) ) {
+		if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu)) ) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -7869,7 +7869,7 @@ dopois:
 		if (statsavingthrow) break;
 
 		if (!rn2(10))  {
-		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
+		if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -7922,7 +7922,7 @@ dopois:
 			rehumanize();
 			break;
 		}
-		if (isevilvariant || rn2(3)) hurtarmor(AD_DCAY);
+		if (evilfriday || rn2(3)) hurtarmor(AD_DCAY);
 		break;
 	    case AD_HEAL:
 		/* a cancelled nurse is just an ordinary monster */
@@ -9260,7 +9260,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		case AD_RAGN:
 
 			ragnarok(FALSE);
-			if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
+			if (evilfriday && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 			break;
 
 		case AD_DEST:
@@ -10337,12 +10337,12 @@ do_stone2:
 			rehumanize();
 			break;
 		}
-		if (isevilvariant || rn2(3)) hurtarmor(AD_RUST);
+		if (evilfriday || rn2(3)) hurtarmor(AD_RUST);
 		break;
 	    case AD_CORR:
 		pline("You are covered with acid!");
 		if (Stoned) fix_petrification();
-		if (isevilvariant || rn2(3)) hurtarmor(AD_CORR);
+		if (evilfriday || rn2(3)) hurtarmor(AD_CORR);
 		break;
 
 	    case AD_LAVA:
@@ -10358,7 +10358,7 @@ do_stone2:
 			burn_away_slime();
 		    } else tmp = 0;
 
-		if (isevilvariant || rn2(3)) hurtarmor(AD_LAVA);
+		if (evilfriday || rn2(3)) hurtarmor(AD_LAVA);
 		break;
 
 	    case AD_NEXU:
@@ -10563,7 +10563,7 @@ do_stone2:
 
 	    case AD_WTHR:
 		pline("You are covered with some aggressive substance!");
-		if (isevilvariant || rn2(3)) witherarmor();
+		if (evilfriday || rn2(3)) witherarmor();
 		break;
 
 	    case AD_FAKE:
@@ -10737,7 +10737,7 @@ do_stone2:
 			rehumanize();
 			break;
 		}
-		if (isevilvariant || rn2(3)) hurtarmor(AD_DCAY);
+		if (evilfriday || rn2(3)) hurtarmor(AD_DCAY);
 		break;
 	    case AD_HALU:
 		    pline("You inhale some great stuff!");
@@ -11256,7 +11256,7 @@ do_stone2:
 		case AD_DISN:
 		    You_feel("like a drill is tearing you apart!");
 		if (!rn2(10))  {
-		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
+		if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -11303,7 +11303,7 @@ do_stone2:
 		if (!Disint_resistance) tmp *= 3;
 
 		if (!rn2(10))  {
-		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
+		if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -11620,7 +11620,7 @@ common:
 
 		mdamageu(mtmp, tmp);
 		ragnarok(TRUE);
-		if (isevilvariant && mtmp->m_lev > 1) evilragnarok(TRUE,mtmp->m_lev);
+		if (evilfriday && mtmp->m_lev > 1) evilragnarok(TRUE,mtmp->m_lev);
 		break;
 
 	    case AD_DEST:
@@ -12838,7 +12838,7 @@ common:
 
 	    case AD_DISN: /* for jonadab's disintegrating sphere */
 
-		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
+		if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -12882,7 +12882,7 @@ common:
 	      if (!Disint_resistance) mdamageu(mtmp, (tmp * 3));
 		else mdamageu(mtmp, tmp);
 
-		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
+		if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -13481,7 +13481,7 @@ common:
 		
 		mdamageu(mtmp, tmp);
 
-		if (!uarmh || uarmh->otyp != DUNCE_CAP) {
+		if (uarmh->otyp != DUNCE_CAP) {
 		    Your("brain is eaten!");
 		    /* No such thing as mindless players... */
 		    if (ABASE(A_INT) <= ATTRMIN(A_INT)) {
@@ -14250,7 +14250,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!rn2(20))  {
 		pline("%s's gaze seems to drill right into you!", Monnam(mtmp));
 		    stop_occupation();
-		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
+		if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -14303,7 +14303,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!Disint_resistance) dmg *= 3;
 		    if (dmg) mdamageu(mtmp, dmg);
 
-		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
+		if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -15714,7 +15714,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 
 		    if (dmg) mdamageu(mtmp, dmg);
-		    if (isevilvariant || !rn2(5)) hurtarmor(AD_LAVA);
+		    if (evilfriday || !rn2(5)) hurtarmor(AD_LAVA);
 		}
 		break;
 
@@ -16126,7 +16126,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	      if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 			pline("%s mumbles an eldritch incantation!", Monnam(mtmp));
 			ragnarok(FALSE);
-			if (isevilvariant && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
+			if (evilfriday && mtmp->m_lev > 1) evilragnarok(FALSE,mtmp->m_lev);
 		}
 
 		break;
@@ -18638,7 +18638,7 @@ register struct attack *mattk;
 
 	    case AD_RAGN:
 		ragnarok(FALSE);
-		if (isevilvariant && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
+		if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
 		break;
 
 	    case AD_AGGR:

@@ -3791,7 +3791,7 @@ int n;	/* number of slots to lose; normally one */
 		maybe_loose_disarm = TRUE;
 	    P_SKILL(skill)--;	/* drop skill one level */
 	    /* Lost skill might have taken more than one slot; refund rest. */
-	    if (isevilvariant) pline("This is the evil variant. Your skill point is lost forever.");
+	    if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
 	    else u.weapon_slots = slots_required(skill) - 1;
 	    /* It might now be possible to advance some other pending
 	       skill by using the refunded slots, but giving a message
@@ -6026,7 +6026,7 @@ int lossamount;
 		}
 
 		while (i) {
-			if (isevilvariant) pline("This is the evil variant. Your skill point is lost forever.");
+			if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
 			else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
 			i--;
 		}
@@ -6034,7 +6034,7 @@ int lossamount;
 		/* still higher than the cap? that probably means you started with some knowledge of the skill... */
 		while (tryct2 && P_ADVANCE(pickskill) < practice_needed_to_advance_nonmax(P_SKILL(pickskill) - 1, pickskill) ) {
 			P_SKILL(pickskill)--;
-			if (isevilvariant) pline("This is the evil variant. Your skill point is lost forever.");
+			if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
 			else u.weapon_slots++;
 			tryct2--;
 		}

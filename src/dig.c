@@ -420,7 +420,7 @@ dig()
 			    if (In_sokoban(&u.uz))
 				{change_luck(-1);
 				pline("You cheater!");
-				if (isevilvariant) u.ugangr++;
+				if (evilfriday) u.ugangr++;
 				}
 
 			    if (!issoviet || !rn2(10)) lev->typ = ROOM;
@@ -1473,7 +1473,7 @@ nextiteration:
 		    if (In_sokoban(&u.uz))
 			{change_luck(-1);
 			pline("You cheater!");
-			if (isevilvariant) u.ugangr++;
+			if (evilfriday) u.ugangr++;
 			}
 		    unblock_point(zx, zy);
 		    newsym(zx, zy);
@@ -1710,7 +1710,7 @@ boolean bigrange;
 		    if (In_sokoban(&u.uz))
 			{change_luck(-1);
 			pline("You cheater!");
-			if (isevilvariant) u.ugangr++;
+			if (evilfriday) u.ugangr++;
 			}
 		    unblock_point(zx, zy);
 		    newsym(zx, zy);

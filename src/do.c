@@ -1737,12 +1737,12 @@ boolean at_stairs, falling, portal;
 	 * comment by Amy: Yes, it definitely is. That's why I don't re-enable it...
 	 * except in evilvariant mode, because that one is deliberately designed to screw you over :P */
 
-	if (Inhell && isevilvariant && up && u.uhave.amulet && !newdungeon && !portal && (dunlev(&u.uz) < dunlevs_in_dungeon(&u.uz)-3)) {
+	if (Inhell && evilfriday && up && u.uhave.amulet && !newdungeon && !portal && (dunlev(&u.uz) < dunlevs_in_dungeon(&u.uz)-3)) {
 		if (!rn2(4)) {
 			int odds = 3 + (int)u.ualign.type;          /* 2..4 */
 
 			/* Let's be ULTRA EVIL(TM) and sometimes push the player almost all the way back down!!! */
-			if (isevilvariant && !rn2(20) && dunlevs_in_dungeon(&u.uz) > (dunlev(&u.uz) + 3) ) {
+			if (evilfriday && !rn2(20) && dunlevs_in_dungeon(&u.uz) > (dunlev(&u.uz) + 3) ) {
 				odds = (dunlevs_in_dungeon(&u.uz) - (dunlev(&u.uz) + 3) );
 				if (u.ualign.type == A_CHAOTIC) odds /= 2;
 				else if (u.ualign.type == A_NEUTRAL) {

@@ -164,7 +164,7 @@ stealarm()
 			if(otmp->unpaid)
 			    subfrombill(otmp, shop_keeper(*u.ushops));
 			freeinv(otmp);
-			if (isevilvariant) pline("Something seems missing...");
+			if (evilfriday) pline("Something seems missing...");
 			else pline("%s steals %s!", Monnam(mtmp), doname(otmp));
 			(void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
 			/* Implies seduction, "you gladly hand over ..."
@@ -572,7 +572,7 @@ gotobj:
 	mtmp->mavenge = 1;
 
 	freeinv(otmp);
-	if (isevilvariant) pline("Something seems missing...");
+	if (evilfriday) pline("Something seems missing...");
 	else pline("%s stole %s.", named ? "It" : Monnam(mtmp), doname(otmp));
 
 	/* evil patch idea by jonadab - levelporting stealers
@@ -684,7 +684,7 @@ struct monst *mtmp;
 	/* mpickobj wont merge otmp because none of the above things
 	   to steal are mergable */
 	(void) mpickobj(mtmp,otmp,FALSE);	/* may merge and free otmp */
-	if (isevilvariant) pline("Something seems missing...");
+	if (evilfriday) pline("Something seems missing...");
 	else pline("%s stole %s!", Monnam(mtmp), doname(otmp));
 	if (can_teleport(mtmp->data) && !tele_restrict(mtmp))
 	    (void) rloc(mtmp, FALSE);

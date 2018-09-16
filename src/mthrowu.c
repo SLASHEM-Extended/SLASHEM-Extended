@@ -422,7 +422,7 @@ const char *name;	/* if null, then format `obj' */
 		/* evil patch: darts of disintegration can disintegrate the player
 		 * only have a 10% chance of actually doing so, because otherwise it would be really unbalanced --Amy */
 		if (obj && obj->otyp == DART_OF_DISINTEGRATION) {
-			if ((!Disint_resistance || !rn2(100) || (isevilvariant && (uarms || uarmc || uarm || uarmu)) ) && !rn2(10)) {
+			if ((!Disint_resistance || !rn2(100) || (evilfriday && (uarms || uarmc || uarm || uarmu)) ) && !rn2(10)) {
 				You_feel("like you're falling apart!");
 	
 				if (uarms) {

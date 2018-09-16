@@ -2473,7 +2473,7 @@ register struct obj	*sobj;
 
 	}
 
-	if (isevilvariant && (ABASE(A_INT) < rnd(8))) {
+	if (evilfriday && (ABASE(A_INT) < rnd(8))) {
 	    pline("Due to your stupidity, you fail to read the scroll correctly!");
 	    make_confused(HConfusion + 2, FALSE);
 	    confused = 1;
@@ -5455,7 +5455,7 @@ randenchchoice:
 	    	if (In_sokoban(&u.uz))
 			{change_luck(-1);
 			pline("You cheater!");
-			if (isevilvariant) u.ugangr++;
+			if (evilfriday) u.ugangr++;
 			}
 			/* Sokoban guilt */
 
@@ -5891,7 +5891,7 @@ newbossC:
 	case SCR_RAGNAROK:
 		known = TRUE;
 		ragnarok(TRUE);
-		if (isevilvariant) evilragnarok(TRUE,level_difficulty());
+		if (evilfriday) evilragnarok(TRUE,level_difficulty());
 
 		break;
 

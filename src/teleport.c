@@ -1373,7 +1373,7 @@ struct trap *trap;
 	}
 	if (!Blind) {
 	    You("are momentarily blinded by a flash of light.");
-		if (isevilvariant) make_blinded(Blinded+rnz(100),FALSE);
+		if (evilfriday) make_blinded(Blinded+rnz(100),FALSE);
 	} else
 	    You("are momentarily disoriented.");
 	deltrap(trap);
@@ -1396,7 +1396,7 @@ struct trap *trap;
 	}
 	if (!Blind) {
 	    You("are momentarily blinded by a flash of light.");
-		if (isevilvariant) make_blinded(Blinded+rnz(100),FALSE);
+		if (evilfriday) make_blinded(Blinded+rnz(100),FALSE);
 	} else
 	    You("are momentarily disoriented.");
 	deltrap(trap);
@@ -1847,7 +1847,7 @@ boolean give_feedback;
 {
 	coord cc;
 
-	if (isevilvariant && level.flags.noteleport) {
+	if (evilfriday && level.flags.noteleport) {
 	    if (give_feedback)
 		pline("Ha ha ha, the wand destruction patch made it so that your wand of teleportation does jack diddly on a no-teleport level. You just wasted a charge, sucker!");
 		return FALSE;

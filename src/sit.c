@@ -874,7 +874,7 @@ skillcaploss()
 	}
 
 	while (i) {
-		if (isevilvariant) pline("This is the evil variant. Your skill point is lost forever.");
+		if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
 		else u.weapon_slots++;  /* because every skill up costs one slot --Amy */
 		i--;
 	}
@@ -882,7 +882,7 @@ skillcaploss()
 	/* still higher than the cap? that probably means you started with some knowledge of the skill... */
 	if (P_SKILL(skilltoreduce) > P_MAX_SKILL(skilltoreduce)) {
 		P_SKILL(skilltoreduce) = P_MAX_SKILL(skilltoreduce);
-		if (isevilvariant) pline("This is the evil variant. Your skill point is lost forever.");
+		if (evilfriday) pline("This is the evil variant. Your skill point is lost forever.");
 		else u.weapon_slots++;
 	}
 

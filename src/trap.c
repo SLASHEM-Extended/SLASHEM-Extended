@@ -4509,7 +4509,7 @@ rerollX:
 				else if (otmpD->oartifact && rn2(20)) pline("Your body shakes violently!");
 				else if (otmpD->greased) {
 					pline("Your body shakes violently!");
-					 if (!rn2(2)) {
+					 if (!rn2(2) || (flags.friday13 && !rn2(2))) {
 						pline_The("grease wears off.");
 						otmpD->greased -= 1;
 						update_inventory();
@@ -4827,7 +4827,7 @@ rerollX:
 		seetrap(trap);
 		pline("CLICK! You have triggered a trap!");
 
-		if (!Disint_resistance || !rn2(100) || (isevilvariant && (uarms || uarmc || uarm || uarmu)) ) {
+		if (!Disint_resistance || !rn2(100) || (evilfriday && (uarms || uarmc || uarm || uarmu)) ) {
 			You_feel("like you're falling apart!");
 
 			if (uarms) {
@@ -8700,7 +8700,7 @@ madnesseffect:
 			seetrap(trap);
 			pline("CLICK! You have triggered a trap!");
 			ragnarok(FALSE);
-			if (isevilvariant) evilragnarok(FALSE,level_difficulty());
+			if (evilfriday) evilragnarok(FALSE,level_difficulty());
 
 		 break;
 
@@ -15356,7 +15356,7 @@ boolean disarm;
 	You(disarm ? "set it off!" : "trigger a trap!");
 
 	/* in the Evil Variant, those traps are always created --Amy */
-	if (!rn2(10) || isevilvariant) {
+	if (!rn2(10) || evilfriday) {
 
 		if (isok(u.ux, u.uy) && !(t_at(u.ux, u.uy)) ) {
 			ttmp = maketrap(u.ux, u.uy, randomtrap(), 100);
@@ -15643,32 +15643,32 @@ register int bodypart;
 
 	/* Grunthack door traps are evil, so they have to be evil in the Evil Variant too --Amy */
 
-	if (isevilvariant) {
+	if (evilfriday) {
 		(void) destroy_item(POTION_CLASS, AD_FIRE);
 		(void) destroy_item(SCROLL_CLASS, AD_FIRE);
 		(void) destroy_item(SPBOOK_CLASS, AD_FIRE);
 		burnarmor(&youmonst);
 	}
 
-	if (isevilvariant && !rn2(10)) {
+	if (evilfriday && !rn2(10)) {
 		pline("SCREEEEEECH!");
 		aggravate();
 	}
 
-	if (isevilvariant && !rn2(10)) {
+	if (evilfriday && !rn2(10)) {
 		pline("A static discharge shoots through your entire body!");
 		destroy_item(WAND_CLASS, AD_ELEC);
 		destroy_item(RING_CLASS, AD_ELEC);
 		destroy_item(AMULET_CLASS, AD_ELEC);
 	}
 
-	if (isevilvariant && !rn2(10)) {
+	if (evilfriday && !rn2(10)) {
 		pline("Hahaha, a water bucket falls on top of you and all your shit gets wet! LOL!");
 		water_damage(invent, FALSE, FALSE);
 		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 	}
 
-	if (isevilvariant && !rn2(10)) {
+	if (evilfriday && !rn2(10)) {
 		register struct obj *otmp3;
 		otmp3 = mksobj(BOULDER, FALSE, FALSE);
 		if (!otmp3) goto boulderdone;
@@ -15690,7 +15690,7 @@ register int bodypart;
 
 boulderdone:
 
-	if (isevilvariant && !rn2(10)) {
+	if (evilfriday && !rn2(10)) {
 		badeffect();
 		if (!rn2(5)) {
 			badeffect();
@@ -15698,7 +15698,7 @@ boulderdone:
 		}
 	}
 
-	if (!rn2(10) || isevilvariant) {
+	if (!rn2(10) || evilfriday) {
 
 		int i, j;
 

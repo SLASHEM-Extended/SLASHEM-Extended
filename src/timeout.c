@@ -665,7 +665,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && isevilvariant && !rn2(20) && (rnd(10) > ACURR(A_DEX)) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) ) {
+	if (u.umoved && evilfriday && !rn2(20) && (rnd(10) > ACURR(A_DEX)) && !(uarmf && !rn2(10) && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blue sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "siniye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ko'k shippak") ) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -2558,7 +2558,7 @@ boolean wakeup_msg;
 	stop_occupation();
 	nomul(how_long, "sleeping", TRUE);
 
-	if (isevilvariant) {
+	if (evilfriday) {
 		pline("Ouch! You crash into the %s.", surface(u.ux,u.uy));
 		losehp(rn1(3,3), "slapping to the floor", KILLED_BY);
 	}

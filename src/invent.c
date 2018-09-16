@@ -1081,6 +1081,9 @@ have_lizard()
 {
 	register struct obj *otmp;
 
+	/* this is just lame, new moons should be more dangerous. --Amy */
+	if (!issoviet) return FALSE;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_LIZARD)
 			return(TRUE);

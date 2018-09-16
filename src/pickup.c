@@ -2326,7 +2326,7 @@ struct obj *item;
     long loss = 0L;
 
 	/* In the Evil Variant, you aren't told which items have been destroyed. --Amy */
-    if (isevilvariant)
+    if (evilfriday)
 	Norep("Stuff has vanished!");
     else if (item->dknown)
 	pline("%s %s vanished!", Doname2(item), otense(item, "have"));

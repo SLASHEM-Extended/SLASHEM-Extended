@@ -875,7 +875,7 @@ boolean allowmsg;
 
 		/* "Cannibalism angers your god instead of removing telepathy." In the Evil Variant, new bad effects are added,
 		 * they don't replace old bad effects but happen in addition to them. --Amy */
-		if (isevilvariant) {
+		if (evilfriday) {
 			u.ugangr++;
 		      You("get the feeling that %s is angry...", u_gname());
 		}
@@ -936,7 +936,7 @@ register int pm;
 
 	if (dmgtype(&mons[pm], AD_RAGN) ) {
 		ragnarok(FALSE);
-		if (isevilvariant) evilragnarok(FALSE,level_difficulty());
+		if (evilfriday) evilragnarok(FALSE,level_difficulty());
 	}
 
 	switch(pm) {
@@ -3044,7 +3044,7 @@ register int pm;
 		}
 
 		/* Eating slimy or oily corpses makes your fingers slippery in unnethack because harharhar harhar har. */
-		if (isevilvariant && (amorphous(&mons[pm]) || slithy(&mons[pm]) || mons[pm].mlet == S_BLOB || mons[pm].mlet == S_JELLY || mons[pm].mlet == S_FUNGUS || mons[pm].mlet == S_WORM || mons[pm].mlet == S_PUDDING)) {
+		if (evilfriday && (amorphous(&mons[pm]) || slithy(&mons[pm]) || mons[pm].mlet == S_BLOB || mons[pm].mlet == S_JELLY || mons[pm].mlet == S_FUNGUS || mons[pm].mlet == S_WORM || mons[pm].mlet == S_PUDDING)) {
 			pline("Harharhar harhar har, you ate the wrong thing and therefore your %s are slippery now.", makeplural(body_part(HAND)));
 			incr_itimeout(&Glib, rnd(15 + level_difficulty()));
 
@@ -4113,7 +4113,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 				    s_suffix(mons[mnum].mname));
 			make_sick(sick_time, buf, TRUE, SICK_VOMITABLE);
 		}
-		if (!isevilvariant) {
+		if (!evilfriday) {
 			cpostfx(mnum);
 			if (carried(otmp)) useup(otmp);
 			else useupf(otmp, 1L);

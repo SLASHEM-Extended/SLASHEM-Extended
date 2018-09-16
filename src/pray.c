@@ -1542,7 +1542,7 @@ register struct obj *otmp;
     else Your("sacrifice is consumed in a %s!",
 	      u.ualign.type == A_LAWFUL ? "flash of light" : "burst of flame");
 
-    if (isevilvariant) {
+    if (evilfriday) {
 	/* It's no mistake that this happens even while hallucinating, because the things you saw while hallucinating
 	 * weren't real, there still was the usual flash of light or burst of flame and you just perceived it as something
 	 * different. So yeah, you'll still be affected --Amy */
@@ -2207,7 +2207,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 		/* In the Evil Variant, gods are much harder to mollify if they're very angry. There's no upper limit,
 		 * meaning that extremely angry gods might require sacrifices whose levels are higher than the
 		 * maximum possible monster level, making them impossible to mollify. Yes, this is intentional --Amy */
-		if (isevilvariant && value > 0) {
+		if (evilfriday && value > 0) {
 			value -= u.ugangr;
 			if (value < 0) value = 0;
 		}

@@ -12527,25 +12527,25 @@ selecttrap:
 			break;
 
 		    case ITEM_TELEP_TRAP:
-			if (rn2(isevilvariant ? 3 : 15) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 3 : 15) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case LAVA_TRAP:
-			if (rn2(isevilvariant ? 10 : 50) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case FLOOD_TRAP:
-			if (rn2(isevilvariant ? 2 : 20) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 20) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case DRAIN_TRAP:
-			if ((rn2(3) && !isevilvariant) && !NastyTrapNation) goto selecttrap;
+			if ((rn2(3) && !evilfriday) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case TIME_TRAP:
-			if (rn2(isevilvariant ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case FREE_HAND_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10 )) goto selecttrap;
 			break;
 		    case DISINTEGRATION_TRAP:
-			if (rn2(isevilvariant ? 5 : 20) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 5 : 20) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case UNIDENTIFY_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
@@ -12560,10 +12560,10 @@ selecttrap:
 			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 30 : 60 )) goto selecttrap;
 			break;
 		    case DEATH_TRAP:
-			if (rn2(isevilvariant ? 10 : 100) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case STONE_TO_FLESH_TRAP:
-			if (rn2(isevilvariant ? 10 : 100) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case FAINT_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 24 : 48 )) goto selecttrap;
@@ -13041,16 +13041,16 @@ selecttrap:
 			break;
 
 		    case FALLING_LOADSTONE_TRAP:
-			if ((rn2(3) && !isevilvariant) && !NastyTrapNation) goto selecttrap;
+			if ((rn2(3) && !evilfriday) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case FALLING_NASTYSTONE_TRAP:
-			if (rn2(isevilvariant ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case EVIL_ARTIFACT_TRAP:
-			if (rn2(isevilvariant ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case RODNEY_TRAP:
-			if (rn2(isevilvariant ? 10 : 100) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
 			break;
 
 		    case RECURSION_TRAP:
@@ -13060,42 +13060,42 @@ selecttrap:
 			if (rn2(50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case WARP_ZONE:
-			if (rn2(isevilvariant ? 10 : 50) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case KOP_CUBE:
-			if (rn2(isevilvariant ? 10 : 50) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case BOSS_SPAWNER:
-			if (rn2(isevilvariant ? 10 : 50) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case MIND_WIPE_TRAP:
-			if (rn2(isevilvariant ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case GATEWAY_FROM_HELL:
-			if (rn2(isevilvariant ? 2 : 20) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 20) && !NastyTrapNation) goto selecttrap;
 			break;
 
 		    case PESTILENCE_TRAP:
-			if (rn2(isevilvariant ? 5 : 20) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 5 : 20) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case FAMINE_TRAP:
-			if ((rn2(2) && !isevilvariant) && !NastyTrapNation) goto selecttrap;
+			if ((rn2(2) && !evilfriday) && !NastyTrapNation) goto selecttrap;
 			break;
 
 		    case ARTIFACT_JACKPOT_TRAP:
 			if (rn2(200)) goto selecttrap;
 			break;
 		    case SPREADING_TRAP:
-			if (rn2(isevilvariant ? 2 : 5) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case SUPERTHING_TRAP:
-			if (rn2(isevilvariant ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case CURRENT_SHAFT:
 			if (rn2(3) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case LEVITATION_TRAP:
-			if (rn2(isevilvariant ? 2 : 3) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 3) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case GOOD_ARTIFACT_TRAP:
 			if (rn2(200)) goto selecttrap;
@@ -13107,28 +13107,28 @@ selecttrap:
 			if (rn2(20) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case PET_TRAP:
-			if (rn2(isevilvariant ? 5 : 25) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 5 : 25) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case PIERCING_BEAM_TRAP:
 			if (rn2(3) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case BACK_TO_START_TRAP:
-			if (rn2(isevilvariant ? 2 : 5) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case NEMESIS_TRAP:
-			if (rn2(isevilvariant ? 10 : 50) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case STREW_TRAP:
-			if (rn2(isevilvariant ? 5 : 30) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 5 : 30) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case OUTTA_DEPTH_TRAP:
-			if (rn2(isevilvariant ? 10 : 50) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case BOON_TRAP:
 			if (rn2(200)) goto selecttrap;
 			break;
 		    case ANOXIC_PIT:
-			if ((rn2(3) && !isevilvariant) && !NastyTrapNation) goto selecttrap;
+			if ((rn2(3) && !evilfriday) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ARABELLA_SPEAKER:
 			if (rn2(10) && !NastyTrapNation) goto selecttrap;
@@ -13146,13 +13146,13 @@ selecttrap:
 			if (!Role_if(PM_FEMINIST) && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case TOXIC_VENOM_TRAP:
-			if (rn2(isevilvariant ? 2 : 7) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 7) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case INSANITY_TRAP:
-			if (rn2(isevilvariant ? 10 : 100) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case MADNESS_TRAP:
-			if (rn2(isevilvariant ? 2 : 5) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case JESSICA_TRAP:
 			if (!Role_if(PM_FEMINIST) && rn2(10) && !NastyTrapNation) goto selecttrap;
@@ -13195,71 +13195,71 @@ selecttrap:
 			break;
 
 		    case PREMATURE_DEATH_TRAP:
-			if (rn2(isevilvariant ? 10 : 200) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 200) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case RAGNAROK_TRAP:
-			if (rn2(isevilvariant ? 64 : 640) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 64 : 640) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case SEVERE_DISENCHANT_TRAP:
-			if (rn2(isevilvariant ? 2 : 5) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
 			break;
 
 		    case SIN_TRAP:
-			if (rn2(isevilvariant ? 10 : 50) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case DESTROY_ARMOR_TRAP:
-			if (rn2(isevilvariant ? 2 : 15) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 15) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case DIVINE_ANGER_TRAP:
-			if (rn2(isevilvariant ? 5 : 40) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 5 : 40) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case GENETIC_TRAP:
-			if (rn2(isevilvariant ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case MISSINGNO_TRAP:
-			if (rn2(isevilvariant ? 10 : 50) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case CANCELLATION_TRAP:
-			if (rn2(isevilvariant ? 5 : 25) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 5 : 25) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case HOSTILITY_TRAP:
-			if (rn2(isevilvariant ? 2 : 4) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 4) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case BOSS_TRAP:
-			if (rn2(isevilvariant ? 2 : 16) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 16) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case WISHING_TRAP:
 			if (rn2(500)) goto selecttrap;
 			break;
 		    case GUILLOTINE_TRAP:
-			if (rn2(isevilvariant ? 10 : 200) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 200) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case BISECTION_TRAP:
-			if (rn2(isevilvariant ? 10 : 200) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 200) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case HORDE_TRAP:
-			if (rn2(isevilvariant ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case IMMOBILITY_TRAP:
-			if (rn2(isevilvariant ? 2 : 15) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 15) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case GREEN_GLYPH:
-			if (rn2(isevilvariant ? 2 : 5) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case BLUE_GLYPH:
-			if (rn2(isevilvariant ? 4 : 10) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 4 : 10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case YELLOW_GLYPH:
-			if (rn2(isevilvariant ? 3 : 7) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 3 : 7) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ORANGE_GLYPH:
-			if (rn2(isevilvariant ? 5 : 20) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 5 : 20) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case BLACK_GLYPH:
-			if (rn2(isevilvariant ? 6 : 35) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 6 : 35) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case PURPLE_GLYPH:
-			if (rn2(isevilvariant ? 7 : 49) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 7 : 49) && !NastyTrapNation) goto selecttrap;
 			break;
 
 		}

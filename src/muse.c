@@ -1020,7 +1020,7 @@ struct obj *obj;
 
 	    if (potion_descr && !strcmp(potion_descr, "endbringer") && !rn2(64)) {
 		ragnarok(TRUE);
-		if (isevilvariant) evilragnarok(TRUE,level_difficulty());
+		if (evilfriday) evilragnarok(TRUE,level_difficulty());
 	    }
 	    if (potion_descr && !strcmp(potion_descr, "deadweight") && !rn2(10)) {
 		pline("Some sinister force causes you to wear an item!");
@@ -3988,7 +3988,7 @@ register struct obj *otmp;
 
 		if (mtmp == &youmonst) {
 
-			if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
+			if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 			    You("are not disintegrated.");
 			    break;
 	            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -5152,7 +5152,7 @@ struct monst *mtmp;
 		/* and grease will always offer protection but can wear off */
 		else if (otmp2 && otmp2->greased) {
 			pline("Your body shakes violently!");
-			 if (!rn2(2)) {
+			 if (!rn2(2) || (flags.friday13 && !rn2(2))) {
 				pline_The("grease wears off.");
 				otmp2->greased -= 1;
 				update_inventory();
@@ -5248,7 +5248,7 @@ struct monst *mtmp;
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		ragnarok(TRUE);
-		if (isevilvariant) evilragnarok(TRUE,level_difficulty());
+		if (evilfriday) evilragnarok(TRUE,level_difficulty());
 
 		return 2;
 
@@ -5736,7 +5736,7 @@ struct monst *mtmp;
 		/* and grease will always offer protection but can wear off */
 		else if (otmp2 && otmp2->greased) {
 			pline("Your fingers shake violently!");
-			 if (!rn2(2)) {
+			 if (!rn2(2) || (flags.friday13 && !rn2(2))) {
 				pline_The("grease wears off.");
 				otmp2->greased -= 1;
 				update_inventory();

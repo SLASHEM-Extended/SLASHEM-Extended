@@ -1175,7 +1175,7 @@ register struct obj *obj;
 		return;
 	}
 
-	if (isevilvariant && obj->cursed) {
+	if (evilfriday && obj->cursed) {
 		pline("Ouch! You burnt your %s!", body_part(FINGER));
 		losehp(rnd(2), "igniting a cursed light source", KILLED_BY);
 	}
@@ -1435,7 +1435,7 @@ struct obj *obj;
 		return;
 	}
 
-	if (isevilvariant && obj->cursed) {
+	if (evilfriday && obj->cursed) {
 		pline("Ouch! You burnt your %s!", body_part(FINGER));
 		losehp(rnd(2), "igniting a cursed light source", KILLED_BY);
 	}

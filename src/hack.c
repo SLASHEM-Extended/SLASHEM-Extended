@@ -735,7 +735,7 @@ moverock()
 		    if (In_sokoban(&u.uz))
 			{change_luck(-1);
 			pline("You cheater!");
-			if (isevilvariant) u.ugangr++;
+			if (evilfriday) u.ugangr++;
 			}
 			/* Sokoban guilt */
 		    break;
@@ -756,7 +756,7 @@ moverock()
 		if (In_sokoban(&u.uz))
 			{change_luck(-1);
 			pline("You cheater!");
-			if (isevilvariant) u.ugangr++;
+			if (evilfriday) u.ugangr++;
 			}
 			/* Sokoban guilt */
 		break;

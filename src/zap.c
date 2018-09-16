@@ -2418,7 +2418,7 @@ poly_obj(obj, id)
 	if (obj->otyp == BOULDER && In_sokoban(&u.uz))
 		{change_luck(-1);
 		pline("You cheater!");
-		if (isevilvariant) u.ugangr++;
+		if (evilfriday) u.ugangr++;
 		}
 	    /* Sokoban guilt */
 #ifdef WIZARD
@@ -5597,7 +5597,7 @@ boolean ordinary;
 		case SPE_DISINTEGRATION:
 		case SPE_DISINTEGRATION_BEAM:
 
-			if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
+			if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 			    You("are not disintegrated.");
 			    break;
 	            } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -5775,7 +5775,7 @@ boolean ordinary;
 
 		    int msg = !Invis && !Blind && !BInvis;
 
-		    if (isevilvariant) {
+		    if (evilfriday) {
 			incr_itimeout(&HInvis, rn1(25,25));
 			if (msg) {
 				makeknown(WAN_MAKE_INVISIBLE);
@@ -7680,7 +7680,7 @@ xchar sx, sy;
 		dam = d(nd, Disint_resistance ? 3 : 6);
 		losehp(dam, "a disintegration beam", KILLED_BY);
 
-		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
+		if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -8846,7 +8846,7 @@ register struct obj *obj;		   /* no texts here! */
 	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !flags.mon_moving)
 		{change_luck(-1);
 		pline("You cheater!");
-		if (isevilvariant) u.ugangr++;
+		if (evilfriday) u.ugangr++;
 		}
 
 	obj->otyp = ROCK;

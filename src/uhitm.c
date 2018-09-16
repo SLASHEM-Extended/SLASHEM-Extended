@@ -841,7 +841,7 @@ register struct monst *mtmp;
 		else You("miss wildly and stumble forwards.");
 
 		/* evil variant by Amy: paralysis */
-		if (isevilvariant) {
+		if (evilfriday) {
 			nomul(-(rnd(5) ), "stumbling forwards and falling down", TRUE);
 			nomovemsg = "You manage to get up again.";
 		}
@@ -3621,7 +3621,7 @@ struct attack *mattk;
 		(obj->greased || objects[obj->otyp].oc_name_known) ?
 			xname(obj) : cloak_simple_name(obj));
 
-	    if (obj->greased && !rn2(2)) {
+	    if (obj->greased && (!rn2(2) || (flags.friday13 && !rn2(2)))) {
 		pline_The("grease wears off.");
 		obj->greased -= 1;
 	    }
@@ -4264,7 +4264,7 @@ register struct attack *mattk;
 
 	    case AD_RAGN:
 		ragnarok(FALSE);
-		if (isevilvariant && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
+		if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
 		break;
 
 	    case AD_AGGR:
@@ -5140,7 +5140,7 @@ register struct attack *mattk;
 
 	    case AD_RAGN:
 		ragnarok(FALSE);
-		if (isevilvariant && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
+		if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
 		break;
 
 	    case AD_AGGR:
@@ -7235,7 +7235,7 @@ uchar aatyp;
 	    case AD_RAGN:
 
 		ragnarok(FALSE);
-		if (isevilvariant && mon->m_lev > 1) evilragnarok(FALSE,mon->m_lev);
+		if (evilfriday && mon->m_lev > 1) evilragnarok(FALSE,mon->m_lev);
 		break;
 
 	    case AD_AGGR:
@@ -9114,7 +9114,7 @@ uchar aatyp;
 		break;
 	    case AD_DISN:
 		if (!rn2(10))  {
-		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
+		if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are mildly shaked.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {
@@ -9159,7 +9159,7 @@ uchar aatyp;
 		    mdamageu(mon, tmp);
 
 		if (!rn2(10))  {
-		if (Disint_resistance && rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu))) {
+		if (Disint_resistance && rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are mildly shaked.");
 		    break;
             } else if (Invulnerable || (Stoned_chiller && Stoned)) {

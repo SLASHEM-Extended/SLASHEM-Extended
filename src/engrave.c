@@ -1522,7 +1522,7 @@ doengrave()
 	else writer = xname(otmp);
 
 	/* evil variant: very strong char might cause the wand to explode (by nosomebodies) */
-	if (isevilvariant && otmp && otmp->oclass == WAND_CLASS && ((ACURR(A_STR) >= 18 && !rn2(10)) || (ACURR(A_STR) >= 68 && !rn2(4)) || (ACURR(A_STR) >= 100 && !rn2(2)) ) ) {
+	if (evilfriday && otmp && otmp->oclass == WAND_CLASS && ((ACURR(A_STR) >= 18 && !rn2(10)) || (ACURR(A_STR) >= 68 && !rn2(4)) || (ACURR(A_STR) >= 100 && !rn2(2)) ) ) {
 		pline("Oops, you seem to have pressed the wand too hard with your fat %s...", makeplural(body_part(HAND)) );
 
 		otmp->in_use = TRUE;	/* in case losehp() is fatal */
@@ -2364,7 +2364,7 @@ doengrave()
 	    u.uconduct.literate++;
 
 	/* Evil Variant by ais523: the first Elbereth will always misengrave */
-	if (isevilvariant && strlen(ebuf) > 7) for (sp = ebuf; *sp; sp++) {
+	if (evilfriday && strlen(ebuf) > 7) for (sp = ebuf; *sp; sp++) {
 
 		if (*sp == 'e' || *sp == 'E') {
 			sp++;

@@ -861,7 +861,7 @@ badeffect()
 				else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your body shakes violently!");
 				else if (otmp2 && otmp2->greased) {
 					pline("Your body shakes violently!");
-					 if (!rn2(2)) {
+					 if (!rn2(2) || (flags.friday13 && !rn2(2))) {
 						pline_The("grease wears off.");
 						otmp2->greased -= 1;
 						update_inventory();
@@ -1370,7 +1370,7 @@ badeffect()
 
 		case 329:
 
-			if (!Disint_resistance || !rn2(100) && !(isevilvariant && (uarms || uarmc || uarm || uarmu)) ) {
+			if (!Disint_resistance || !rn2(100) && !(evilfriday && (uarms || uarmc || uarm || uarmu)) ) {
 				You_feel("like you're falling apart!");
 	
 				if (uarms) {
@@ -1635,7 +1635,7 @@ badeffect()
 				else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your fingers shake violently!");
 				else if (otmp2 && otmp2->greased) {
 					pline("Your fingers shake violently!");
-					 if (!rn2(2)) {
+					 if (!rn2(2) || (flags.friday13 && !rn2(2))) {
 						pline_The("grease wears off.");
 						otmp2->greased -= 1;
 						update_inventory();
@@ -1776,8 +1776,8 @@ badeffect()
 
 			if (!rn2(64)) {
 				ragnarok(TRUE);
-				if (isevilvariant) evilragnarok(TRUE, level_difficulty());
-			} else if (!rn2(isevilvariant ? 100 : 10000)) {
+				if (evilfriday) evilragnarok(TRUE, level_difficulty());
+			} else if (!rn2(evilfriday ? 100 : 10000)) {
 				pline("OH MY GOD the dungeon master rolled the jackpot. You're screwed.");
 				datadeleteattack();
 			}
@@ -1906,7 +1906,7 @@ destroyarmorattack()
 		else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your weapon shakes violently!");
 		else if (otmp2 && otmp2->greased) {
 			pline("Your weapon shakes violently!");
-			if (!rn2(2)) {
+			if (!rn2(2) || (flags.friday13 && !rn2(2))) {
 				pline_The("grease wears off.");
 				otmp2->greased -= 1;
 				update_inventory();
@@ -1925,7 +1925,7 @@ destroyarmorattack()
 		else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your body shakes violently!");
 		else if (otmp2 && otmp2->greased) {
 			pline("Your body shakes violently!");
-			if (!rn2(2)) {
+			if (!rn2(2) || (flags.friday13 && !rn2(2))) {
 				pline_The("grease wears off.");
 				otmp2->greased -= 1;
 				update_inventory();
@@ -2912,7 +2912,7 @@ dodrink()
 		return(1);
 	    } else if (!strcmp(potion_descr, "endbringer") && !rn2(64)) {
 		ragnarok(TRUE);
-		if (isevilvariant) evilragnarok(TRUE,level_difficulty());
+		if (evilfriday) evilragnarok(TRUE,level_difficulty());
 	    } else if (!strcmp(potion_descr, "deadweight") && !rn2(10)) {
 		pline("Some sinister force causes you to wear an item!");
 		bad_equipment();
@@ -3025,7 +3025,7 @@ peffects(otmp)
 	/* KMH, balance patch -- this is too cruel for novices */
 	/* sometimes your constitution can be a little _too_ high! */
 	/* edit: evil variant by Amy: nothing is too cruel :P */
-	if (isevilvariant && (Role_if(PM_BARBARIAN) || ACURR(A_CON) > 15) && !rn2(5)) {
+	if (evilfriday && (Role_if(PM_BARBARIAN) || ACURR(A_CON) > 15) && !rn2(5)) {
 		pline("Strange ...");
 		nothing++;
 		return(-1);
