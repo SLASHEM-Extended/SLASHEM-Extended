@@ -62,6 +62,10 @@ boolean restore;
 	struct obj *otmp;
 
 	for (otmp = ochain; otmp; otmp = otmp->nobj) {
+
+		/* prevent player from depositing a ton of stuff in a chest somewhere --Amy */
+		if (Has_contents(otmp)) delete_contents(otmp);
+
 		if (otmp->cobj)
 		    resetobjs(otmp->cobj,restore);
 
@@ -115,6 +119,12 @@ boolean restore;
 			} else if (otmp->otyp == SPE_BOOK_OF_THE_DEAD) {
 			    otmp->otyp = SPE_BLANK_PAPER;
 			    curse(otmp);
+			} else if (otmp->otyp == WAN_WISHING || otmp->otyp == WAN_ACQUIREMENT) {
+			    otmp->otyp = WAN_NOTHING;
+			} else if (otmp->otyp == MAGIC_LAMP) {
+			    otmp->otyp = TIN_OPENER;
+			} else if (otmp->otyp == SCR_WISHING || otmp->otyp == SCR_ACQUIREMENT) {
+			    otmp->otyp = SCR_AMNESIA;
 			} else if (otmp->oartifact == ART_KEY_OF_LAW ||
 				   otmp->oartifact == ART_KEY_OF_NEUTRALITY ||
 				   otmp->oartifact == ART_KEY_OF_CHAOS ||
@@ -131,6 +141,18 @@ boolean restore;
 			else if (is_lightsaber(otmp)){
 				if (otmp->lamplit)
 					end_burn(otmp, /*FALSE*/TRUE);
+			}
+			if (otmp) {
+
+				if(rn2(2)) curse(otmp);
+
+				/* still blessed? Roll for a chance to make it uncursed. --Amy */
+				if(rn2(2) && otmp->blessed) unbless(otmp);
+
+				/* degrade everything to reduce the # of free stuff the finder will get */
+				if (otmp->spe > 2) otmp->spe /= 2;
+				else if (otmp->spe > -20) otmp->spe--;
+
 			}
 		}
 	}
@@ -482,7 +504,8 @@ getbones()
 		&& !wizard
 #endif
 		) return(0);
-	if (!iflags.bones) return(0);
+	/* if you triggered a bones trap, bad luck - you can now get bones even if you disabled them :P --Amy */
+	if (!iflags.bones && !(BonesLevelChange || u.uprops[BONES_CHANGE].extrinsic || have_bonestone()) ) return(0);
 	if(no_bones_level(&u.uz)) return(0);
 	fd = open_bonesfile(&u.uz, &bonesid);
 	if (fd < 0) return(0);
