@@ -6549,7 +6549,7 @@ dopois:
 		break;
 	    case AD_WERE:
 		hitmsg(mtmp, mattk);
-		if (uncancelled && !rn2(4) && u.ulycn == NON_PM &&
+		if (uncancelled && (!rn2(4) || (phase_of_the_moon() == FULL_MOON && !rn2(3) ) ) && u.ulycn == NON_PM &&
 			!Protection_from_shape_changers &&
 			!is_were(youmonst.data) &&
 			!defends(AD_WERE,uwep)) {
