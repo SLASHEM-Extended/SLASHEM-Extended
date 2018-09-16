@@ -3477,6 +3477,7 @@ secureidchoice:
 			    xname(obj));
 		wakeup(mtmp);
 		if (!mtmp->mcanmove && !rn2(10)) {
+		    mtmp->masleep = 0;
 		    mtmp->mcanmove = 1;
 		    mtmp->mfrozen = 0;
 		}

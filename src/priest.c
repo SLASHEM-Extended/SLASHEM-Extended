@@ -473,6 +473,7 @@ register struct monst *priest;
 		pline("%s breaks out of %s reverie!",
 		      Monnam(priest), mhis(priest));
 		priest->mfrozen = priest->msleeping = 0;
+		priest->masleep = 0;
 		priest->mcanmove = 1;
 	    }
 	    priest->mpeaceful = 0;

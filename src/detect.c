@@ -799,7 +799,7 @@ int mclass;			/* monster class, 0 for all */
 		    }
 	    if (otmp && otmp->cursed &&
 		(mtmp->msleeping || !mtmp->mcanmove)) {
-		mtmp->msleeping = mtmp->mfrozen = 0;
+		mtmp->msleeping = mtmp->mfrozen = mtmp->masleep = 0;
 		mtmp->mcanmove = 1;
 		woken = TRUE;
 	    }

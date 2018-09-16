@@ -15058,6 +15058,7 @@ struct trap *ttmp;
 	} else if (mtmp->mfrozen && !rn2(mtmp->mfrozen)) {
 	    /* After such manhandling, perhaps the effect wears off */
 	    mtmp->mcanmove = 1;
+	    mtmp->masleep = 0;
 	    mtmp->mfrozen = 0;
 	    pline("%s stirs.", Monnam(mtmp));
 	}

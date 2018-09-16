@@ -1716,8 +1716,10 @@ mcalcdistress()
 	/* gradually time out temporary problems */
 	if (mtmp->mblinded && !--mtmp->mblinded)
 	    mtmp->mcansee = 1;
-	if (mtmp->mfrozen && !--mtmp->mfrozen)
+	if (mtmp->mfrozen && !--mtmp->mfrozen) {
 	    mtmp->mcanmove = 1;
+	    mtmp->masleep = 0;
+	}
 	if (mtmp->mfleetim && !--mtmp->mfleetim)
 	    mtmp->mflee = 0;
 
@@ -3316,6 +3318,7 @@ struct monst *mtmp;
 		}
 		m_useup(mtmp, lifesave);
 		mtmp->mcanmove = 1;
+		mtmp->masleep = 0;
 		mtmp->mfrozen = 0;
 		if (mtmp->mtame && !mtmp->isminion) {
 			wary_dog(mtmp, FALSE);
@@ -3341,6 +3344,7 @@ struct monst *mtmp;
 				pline("%s looks much better!", Monnam(mtmp));
 		}
 		mtmp->mcanmove = 1;
+		mtmp->masleep = 0;
 		mtmp->mfrozen = 0;
 		if (mtmp->mtame && !mtmp->isminion) {
 			wary_dog(mtmp, FALSE);

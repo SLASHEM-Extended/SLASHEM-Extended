@@ -69,6 +69,7 @@ int distance;
 		distm = distu(mtmp->mx, mtmp->my);
 		if (distm < distance) {
 		    mtmp->msleeping = 0;
+		    mtmp->masleep = 0;
 		    mtmp->mcanmove = 1;
 		    mtmp->mfrozen = 0;
 		    /* May scare some monsters */
@@ -175,6 +176,7 @@ awaken_soldiers()
 	    if (!DEADMONSTER(mtmp) &&
 			is_mercenary(mtmp->data) && mtmp->data != &mons[PM_GUARD]) {
 		mtmp->mpeaceful = mtmp->msleeping = mtmp->mfrozen = 0;
+		mtmp->masleep = 0;
 		mtmp->mcanmove = 1;
 		if (canseemon(mtmp))
 		    pline("%s is now ready for battle!", Monnam(mtmp));

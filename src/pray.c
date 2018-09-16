@@ -2669,6 +2669,7 @@ turn_undead()
 			    pline("Unfortunately, your voice falters.");
 			mtmp->mflee = 0;
 			mtmp->mfrozen = 0;
+			mtmp->masleep = 0;
 			mtmp->mcanmove = 1;
 		    } else if (!resist(mtmp, '\0', 0, TELL)) {
 			xlev = 6;

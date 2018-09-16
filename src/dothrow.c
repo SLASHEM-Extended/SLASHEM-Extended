@@ -1653,8 +1653,9 @@ boolean mon_notices;
 	/* ditto for immobilized target */
 	if (!mon->mcanmove || !mon->data->mmove) {
 	    tmp += 4;
-	    if (mon_notices && mon->data->mmove && !rn2(10)) {
+	    if (mon_notices && mon->data->mmove && !rn2(mon->masleep ? 3 : 10)) {
 		mon->mcanmove = 1;
+		mon->masleep = 0;
 		mon->mfrozen = 0;
 	    }
 	}

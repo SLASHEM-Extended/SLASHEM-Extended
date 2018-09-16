@@ -3205,6 +3205,7 @@ secureidchoice:
 			    if (!monnear(frostmon, u.ux, u.uy)) continue;
 				frostmon->mfrozen = 0;
 				frostmon->msleeping = 0;
+				frostmon->masleep = 0;
 				frostmon->mcanmove = 1;
 				frostmon->mflee = 0;
 				frostmon->mcansee = 1;

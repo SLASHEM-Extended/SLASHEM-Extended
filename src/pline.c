@@ -704,8 +704,10 @@ register struct monst *mtmp;
 	   (donning armor, for instance) as well as paralysis */
 	else if (mtmp->mfrozen)	  strcat(info, ", paralyzed");
 #else
-	else if (mtmp->mfrozen || !mtmp->mcanmove)
-				  strcat(info, ", can't move");
+	else if (mtmp->mfrozen || !mtmp->mcanmove) {
+		strcat(info, ", can't move");
+		if (mtmp->masleep) strcat(info, " (sleeping)");
+	}
 #endif
 				  /* [arbitrary reason why it isn't moving] */
 	else if (mtmp->mstrategy & STRAT_WAITMASK)
@@ -785,8 +787,10 @@ register struct monst *mtmp;
 	   (donning armor, for instance) as well as paralysis */
 	else if (mtmp->mfrozen)	  strcat(info, ", paralyzed");
 #else
-	else if (mtmp->mfrozen || !mtmp->mcanmove)
-				  strcat(info, ", can't move");
+	else if (mtmp->mfrozen || !mtmp->mcanmove) {
+		strcat(info, ", can't move");
+		if (mtmp->masleep) strcat(info, " (sleeping)");
+	}
 #endif
 				  /* [arbitrary reason why it isn't moving] */
 	else if (mtmp->mstrategy & STRAT_WAITMASK)

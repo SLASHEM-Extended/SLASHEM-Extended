@@ -107,6 +107,7 @@ struct monst {
 
 	Bitfield(mcanmove,1);	/* paralysis, similar to mblinded */
 	Bitfield(mfrozen,7);
+	Bitfield(masleep,1);	/* asleep, can spontaneously wake up */
 
 	Bitfield(msleeping,1);	/* asleep until woken */
 	Bitfield(mstun,1);	/* stunned (off balance) */

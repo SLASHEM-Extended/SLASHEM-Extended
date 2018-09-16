@@ -246,6 +246,7 @@ register struct monst *mon;
 	    mon->msleeping = 0;
 	    mon->mfrozen = 0;	/* not asleep or paralyzed */
 	    mon->mcanmove = 1;
+	    mon->masleep = 0;
 	}
 	/* regenerate by 1/4 of the lost hit points */
 	mon->mhp += (mon->mhpmax - mon->mhp) / 4;

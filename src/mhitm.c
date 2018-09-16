@@ -2408,6 +2408,7 @@ int amt, how;
 	    if (amt > 0) {	/* sleep for N turns */
 		mon->mcanmove = 0;
 		mon->mfrozen = min(amt, 127);
+		mon->masleep = 1;
 	    } else {		/* sleep until awakened */
 		mon->msleeping = 1;
 	    }

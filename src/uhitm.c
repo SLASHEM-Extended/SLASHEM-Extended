@@ -500,9 +500,10 @@ register struct monst *mtmp;
 	}
 	if(!mtmp->mcanmove) {
 		tmp += 4;
-		if(!rn2(10)) {
+		if(!rn2(mtmp->masleep ? 3 : 10)) {
 			mtmp->mcanmove = 1;
 			mtmp->mfrozen = 0;
+			mtmp->masleep = 0;
 		}
 	}
 

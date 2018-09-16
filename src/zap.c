@@ -1289,6 +1289,7 @@ coord *cc;
 		mtmp2->msleeping = 0;
 		mtmp2->mfrozen = 0;
 		mtmp2->mcanmove = 1;
+		mtmp2->masleep = 0;
 		/* most cancelled monsters return to normal,
 		   but some need to stay cancelled */
 		if (!dmgtype(mtmp2->data, AD_SEDU)

@@ -553,6 +553,7 @@ kick_steed()
 		else {
 		    u.usteed->mfrozen = 0;
 		    u.usteed->mcanmove = 1;
+		    u.usteed->masleep = 0;
 		}
 		if (u.usteed->msleeping || !u.usteed->mcanmove)
 		    pline("%s stirs.", He);

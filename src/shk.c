@@ -1130,6 +1130,7 @@ boolean verbosely;
 		      shkp->msleeping ? "wakes up" : "can move again");
 	    shkp->msleeping = 0;
 	    shkp->mfrozen = 0;
+	    shkp->masleep = 0;
 	    shkp->mcanmove = 1;
 	}
 }
