@@ -3127,7 +3127,7 @@ tty_end_menu(window, prompt)
 	}  
   
 	if (len > (int)ttyDisplay->cols) {
-	    curr->str[ttyDisplay->cols-2] = 0;
+	    curr->str[strlen(curr->str) - (len - ttyDisplay->cols)] = 0;
 	    len = ttyDisplay->cols;
 	}
 	if (len > cw->cols) cw->cols = len;

@@ -457,12 +457,14 @@ int *wid, *hgt;
 # endif
 	*wid = CO;
 	*hgt = LI;
+
 	if (!(CL = Tgetstr("cl")))	/* last thing set */
 		error("NetHack needs CL.");
 	if ((int)(tbufptr - tbuf) > (int)(sizeof tbuf))
 		error("TERMCAP entry too big...\n");
 	free((void *)tptr);
 #endif /* TERMLIB */
+
 }
 
 /* note: at present, this routine is not part of the formal window interface */
