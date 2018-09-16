@@ -1454,6 +1454,12 @@ register struct monst *mtmp;
     if (!canspotmon(mtmp))
 	map_invisible(mtmp->mx, mtmp->my);
 
+	if (ptr == &mons[PM_DONALD_TRUMP]) { /* idea by Crawldragon, actual messages by Amy */
+
+		if (issoviet) verbalize("Of course Russia was not involved in the presidential election in any way. That's just fake news.");
+		else pline("Make America GREAT again!");
+	}
+
     switch (ptr->msound) {
 	case MS_ORACLE:
 	    return doconsult(mtmp);
