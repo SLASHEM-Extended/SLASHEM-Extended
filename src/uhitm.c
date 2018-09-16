@@ -4491,7 +4491,7 @@ register struct attack *mattk;
 		    if (!Unchanging && slime_on_touch(mdef->data) ) {
 			if (!Slimed) {
 			    You("suck in some slime and don't feel very well.");
-			    Slimed = 100L;
+			    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 			}
 		    }
 		    break;
@@ -4511,7 +4511,7 @@ register struct attack *mattk;
 			if (Hallucination && rn2(10)) pline("You are already stoned.");
 			else {
 				You("start turning to stone.");
-				Stoned = 7;
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 				killer_format = KILLED_BY_AN;
 				delayed_killer = mdef->data->mname;
 			}
@@ -5299,7 +5299,7 @@ register struct attack *mattk;
 			if (Hallucination && rn2(10)) pline("You are already stoned.");
 			else {
 				You("are turning to stone.");
-				Stoned = 7;
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 				killer_format = KILLED_BY_AN;
 				delayed_killer = mdef->data->mname;
 			}
@@ -5554,7 +5554,7 @@ register struct attack *mattk;
 				sprintf(msgbuf, "%s isn't sitting well with you.",
 					The(mdef->data->mname));
 				if (!Unchanging) {
-					Slimed = 50L;
+					Slimed = Race_if(PM_EROSATOR) ? 10L : 50L;
 					flags.botl = 1;
 				}
 			    } else
@@ -6586,7 +6586,7 @@ use_weapon:
 				if (!Stoned) {
 					if (Hallucination && rn2(10)) pline("But you are already stoned.");
 					else {
-						Stoned = 7;
+						Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 						delayed_killer = "deliberately gazing at Medusa's hideous countenance";
 					}
 				}
@@ -7136,7 +7136,7 @@ uchar aatyp;
 				if (!Stoned) {
 					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 					else {
-						Stoned = 7;
+						Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 						sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
 						delayed_killer = killer_buf;
 					}
@@ -8164,7 +8164,7 @@ uchar aatyp;
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					You("start turning to stone.");
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					delayed_killer = "bashing a petrifying monster";
 				}
 			}
@@ -8210,7 +8210,7 @@ uchar aatyp;
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
 					You("start turning to stone.");
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					delayed_killer = "bashing a petrifying monster";
 				}
 			}
@@ -8438,7 +8438,7 @@ uchar aatyp;
 
 		 if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = 100L;
+		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = mon->data->mname;
@@ -8452,7 +8452,7 @@ uchar aatyp;
 
 		 if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = 20L;
+		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = mon->data->mname;

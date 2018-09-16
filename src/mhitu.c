@@ -6275,7 +6275,7 @@ dopois:
 
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
 					    if (!type_is_pname(mtmp->data)) {
@@ -6324,7 +6324,7 @@ dopois:
 
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
 					    if (!type_is_pname(mtmp->data)) {
@@ -6762,7 +6762,7 @@ dopois:
 		if (statsavingthrow) break;
 
 		if(could_seduceX(mtmp, &youmonst, mattk) == 1
-			&& !mtmp->mcan && (issoviet || rn2(2) || (uarmf && uarmf->oartifact == ART_LORSKEL_S_INTEGRITY) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bosh ketish etigi") )) ) ) /* 50% chance --Amy */
+			&& !mtmp->mcan && (issoviet || iserosator || rn2(2) || (uarmf && uarmf->oartifact == ART_LORSKEL_S_INTEGRITY) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lolita boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "botinki s lolitoy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bosh ketish etigi") )) ) ) /* 50% chance --Amy */
 		    if (doseduce(mtmp))
 			return 3;
 		break;
@@ -8435,7 +8435,7 @@ dopois:
 		    dmg = 0;
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = 100L;
+		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = mtmp->data->mname;
@@ -8453,7 +8453,7 @@ dopois:
 		    dmg = 0;
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = 20L;
+		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = mtmp->data->mname;
@@ -10084,7 +10084,7 @@ do_stone2:
 					polymon(PM_STONE_GOLEM))) {
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
 					    if (!type_is_pname(mtmp->data)) {
@@ -10124,7 +10124,7 @@ do_stone2:
 					polymon(PM_STONE_GOLEM))) {
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
 					    if (!type_is_pname(mtmp->data)) {
@@ -10787,7 +10787,7 @@ do_stone2:
 		    tmp = 0;
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = 100L;
+		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = mtmp->data->mname;
@@ -10805,7 +10805,7 @@ do_stone2:
 		    tmp = 0;
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = 20L;
+		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = mtmp->data->mname;
@@ -12917,7 +12917,7 @@ common:
 			{
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
 					    if (!type_is_pname(mtmp->data)) {
@@ -12946,7 +12946,7 @@ common:
 			{
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					delayed_killer = mtmp->data->mname;
 					if (mtmp->data->geno & G_UNIQ) {
 					    if (!type_is_pname(mtmp->data)) {
@@ -13153,7 +13153,7 @@ common:
 			    if (!Stoned && !Stone_resistance) {
 					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 					else {
-					    Stoned = 7;
+					    Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					    killer_format = KILLED_BY;
 					    delayed_killer = "their own petrifying corpse";
 					}
@@ -13587,7 +13587,7 @@ common:
 		    You("are unaffected.");
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = 100L;
+		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimy explosion";
@@ -13604,7 +13604,7 @@ common:
 		    You("are unaffected.");
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = 20L;
+		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = "slimy explosion";
@@ -13910,7 +13910,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!Stoned) {
 				if (Hallucination && rn2(10)) pline("But you are already stoned.");
 				else {
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					delayed_killer = "petrifying gaze";
 				}
 			}
@@ -13965,7 +13965,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!Stoned) {
 				if (Hallucination && rn2(10)) pline("But you are already stoned.");
 				else {
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					delayed_killer = "petrifying gaze";
 				}
 			}
@@ -14556,7 +14556,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    You("are unaffected.");
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = 100L;
+		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = mtmp->data->mname;
@@ -14577,7 +14577,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    You("are unaffected.");
 		} else if (!Slimed) {
 		    You("don't feel very well.");
-		    Slimed = 20L;
+		    Slimed = Race_if(PM_EROSATOR) ? 5L : 20L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY_AN;
 		    delayed_killer = mtmp->data->mname;
@@ -16620,7 +16620,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				if (!Stoned) {
 					if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 					else {
-						Stoned = 7;
+						Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 						sprintf(killer_buf, "being hit by a mirrored petrifying corpse");
 						delayed_killer = killer_buf;
 					}
@@ -17847,7 +17847,7 @@ enjoyable:
 
 		if (!flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) && !Slimed) {
 		    You("don't feel very well.");
-		    Slimed = 100L;
+		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		    killer_format = KILLED_BY;
 		    delayed_killer = "the blackheart plague";

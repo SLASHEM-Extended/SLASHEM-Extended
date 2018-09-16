@@ -111,7 +111,7 @@ STATIC_PTR int  CFDECLSPEC do_comp(const void *,const void *);
 STATIC_DCL void dosdoor(XCHAR_P,XCHAR_P,struct mkroom *,int);
 STATIC_DCL void join(int,int,BOOLEAN_P);
 STATIC_DCL void do_room_or_subroom(struct mkroom *,int,int,int,int,
-				       BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P);
+				       BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P,BOOLEAN_P,int);
 STATIC_DCL void makerooms(void);
 STATIC_DCL void finddpos(coord *,XCHAR_P,XCHAR_P,XCHAR_P,XCHAR_P);
 STATIC_DCL void mkinvpos(XCHAR_P,XCHAR_P,int);
@@ -343,7 +343,7 @@ sort_rooms()
 }
 
 STATIC_OVL void
-do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, canbeshaped)
+do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, canbeshaped, roommate)
     register struct mkroom *croom;
     int lowx, lowy;
     register int hix, hiy;
@@ -352,6 +352,7 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
     boolean special;
     boolean is_room;
     boolean canbeshaped;
+    int roommate;
 {
 	register int x, y;
 	struct rm *lev;
@@ -608,27 +609,40 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 	croom->nsubrooms = 0;
 	croom->sbrooms[0] = (struct mkroom *) 0;
 	if (!special) {
+
 	    for(x = lowx-1; x <= hix+1; x++)
 		for(y = lowy-1; y <= hiy+1; y += (hiy-lowy+2)) {
+		    if (roommate) continue;
 		    levl[x][y].typ = (wallifytypeB ? (wallifyBxtra ? randomwalltype() : wallifytypeB) : HWALL);
 		    levl[x][y].horizontal = 1;	/* For open/secret doors. */
 		}
 	    for(x = lowx-1; x <= hix+1; x += (hix-lowx+2))
 		for(y = lowy; y <= hiy; y++) {
+		    if (roommate) continue;
 		    levl[x][y].typ = (wallifytypeB ? (wallifyBxtra ? randomwalltype() : wallifytypeB) : VWALL);
 		    levl[x][y].horizontal = 0;	/* For open/secret doors. */
 		}
 	    for(x = lowx; x <= hix; x++) {
 		lev = &levl[x][lowy];
-		for(y = lowy; y <= hiy; y++)
+		for(y = lowy; y <= hiy; y++) {
+
+		    if (roommate && (lev->typ > ROCKWALL)) {
+			lev++;
+			continue;
+		    }
+		    if (roommate == 2) continue;
+
 		    lev++->typ = ROOM;
+
+		}
 	    }
-	    if (is_room) {
+	    if (is_room && !roommate) {
 		levl[lowx-1][lowy-1].typ = (wallifytypeB ? (wallifyBxtra ? randomwalltype() : wallifytypeB) : TLCORNER);
 		levl[hix+1][lowy-1].typ = (wallifytypeB ? (wallifyBxtra ? randomwalltype() : wallifytypeB) : TRCORNER);
 		levl[lowx-1][hiy+1].typ = (wallifytypeB ? (wallifyBxtra ? randomwalltype() : wallifytypeB) : BLCORNER);
 		levl[hix+1][hiy+1].typ = (wallifytypeB ? (wallifyBxtra ? randomwalltype() : wallifytypeB) : BRCORNER);
 	    }
+
         if (canbeshaped && (hix - lowx > 3) && (hiy - lowy > 3) && ( !((moves + u.monstertimefinish) % 327 ) || (rnd(u.shaperoomchance) < 5 ) || (isnullrace && (rnd(u.shaperoomchance) < 5 ) ) ) )  {  
             int xcmax = 0, ycmax = 0, xcut = 0, ycut = 0;  
             boolean dotl = FALSE, dotr = FALSE, dobl = FALSE, dobr = FALSE, docenter = FALSE;  
@@ -888,18 +902,19 @@ do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit, rtype, special, is_room, ca
 
 
 void
-add_room(lowx, lowy, hix, hiy, lit, rtype, special, canbeshaped)
+add_room(lowx, lowy, hix, hiy, lit, rtype, special, canbeshaped, roommate)
 register int lowx, lowy, hix, hiy;
 boolean lit;
 schar rtype;
 boolean special;
 boolean canbeshaped;
+int roommate;
 {
 	register struct mkroom *croom;
 
 	croom = &rooms[nroom];
 	do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit,
-					    rtype, special, (boolean) TRUE, canbeshaped);
+					    rtype, special, (boolean) TRUE, canbeshaped, roommate);
 	croom++;
 	croom->hx = -1;
 	nroom++;
@@ -917,7 +932,7 @@ boolean special;
 
 	croom = &subrooms[nsubroom];
 	do_room_or_subroom(croom, lowx, lowy, hix, hiy, lit,
-					    rtype, special, (boolean) FALSE, (boolean) FALSE);
+					    rtype, special, (boolean) FALSE, (boolean) FALSE, FALSE);
 	proom->sbrooms[proom->nsubrooms++] = croom;
 	croom++;
 	croom->hx = -1;
@@ -9841,7 +9856,7 @@ ghnhom4:
 		if (check_room(&vault_x, &w, &vault_y, &h, TRUE, FALSE)) {
 		    fill_vault:
 			add_room(vault_x, vault_y, vault_x+w,
-				 vault_y+h, TRUE, VAULT, FALSE, FALSE);
+				 vault_y+h, TRUE, VAULT, FALSE, FALSE, FALSE);
 			level.flags.has_vault = 1;
 			++room_threshold;
 			fill_room(&rooms[nroom - 1], FALSE);
@@ -10168,13 +10183,6 @@ gehennomxtra:
 	    if ( u_depth > 13 && !rn2(7)) mkrandrivers();
 	    if ( u_depth <= 13 && !rn2(15) && rn2(u_depth) ) mkrandrivers();
 		}
-
-	/*create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);*/
 
 		if (isaquarian && (!rn2(100) || u_depth > 1) ) mkrandrivers();
 		if (RngeRivers && (!rn2(100) || u_depth > 1) ) mkrandrivers();
@@ -11006,6 +11014,18 @@ skip0:
 		}
 
 	}
+
+	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && (depth(&u.uz) > 1 || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
+
+		mkroommateroom(0);
+		if (!rn2(5)) {
+			mkroommateroom(0);
+			while (!rn2(3)) mkroommateroom(0);
+
+		}
+
+	}
+
    }
 }
 
@@ -12246,6 +12266,22 @@ xchar x, y;	/* location */
 	 * a special level is loaded that specifies an SSTAIR location
 	 * as a favored spot for a branch.
 	 */
+
+	if (!br) { /* not making a branch means that roommate rooms can't collide with them */
+
+		if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && (depth(&u.uz) > 1 || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
+
+			mkroommateroom(0);
+			if (!rn2(5)) {
+				mkroommateroom(0);
+				while (!rn2(3)) mkroommateroom(0);
+
+			}
+
+		}
+
+	}
+
 	if (!br || made_branch) return;
 
 	if (!x) {	/* find random coordinates for branch */
@@ -12297,6 +12333,19 @@ xchar x, y;	/* location */
 	 * next call.
 	 */
 	made_branch = TRUE;
+
+	/* now that the branch exists, it can no longer happen that the stair/portal appears in an impossible place... */
+
+	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && (depth(&u.uz) > 1 || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
+
+		mkroommateroom(0);
+		if (!rn2(5)) {
+			mkroommateroom(0);
+			while (!rn2(3)) mkroommateroom(0);
+
+		}
+
+	}
 }
 
 STATIC_OVL boolean

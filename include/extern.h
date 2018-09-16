@@ -1413,7 +1413,7 @@ E int ntrminion(void);
 E int do_comp(void *,void *);
 #endif
 E void sort_rooms(void);
-E void add_room(int,int,int,int,BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P);
+E void add_room(int,int,int,int,BOOLEAN_P,SCHAR_P,BOOLEAN_P,BOOLEAN_P,int);
 E void add_subroom(struct mkroom *,int,int,int,int, BOOLEAN_P,SCHAR_P,BOOLEAN_P);
 E void makecorridors(void);
 E int randomwalltype(void);
@@ -1533,6 +1533,7 @@ E struct mkroom *search_special(SCHAR_P);
 E struct permonst * colormon(int);
 E struct permonst * specialtensmon(int);
 E struct permonst * speedymon(void);
+E void mkroommateroom(int);
 
 /* ### mon.c ### */
 

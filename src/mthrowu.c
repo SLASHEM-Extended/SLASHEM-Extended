@@ -961,7 +961,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 				else if (Stoned) pline("You are already stoned.");
 				else {
 					You("start turning to stone!");
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					delayed_killer = "thrown petrifying egg";
 				}
 			}

@@ -70,6 +70,44 @@ register struct mkroom *sroom;
 }
 
 void
+mkroommateroom(variety)
+int variety;
+/* variety: 0 = usually make floor but not always, 1 = only very rarely make floor; might add more later */
+{
+	int xlou, xreal, ylou, yreal;
+
+	boolean wallremoving = 0;
+	if (variety == 0 && rn2(5)) wallremoving = 1;
+	if (variety == 1 && !rn2(5)) wallremoving = 1;
+
+	xlou = ylou = 1;
+	xreal = 2 + rn2(10);
+	yreal = 2 + rn2(5);
+	if (!rn2(100)) xreal += rnd(40);
+	if (!rn2(100)) yreal += rnd(12);
+	if (!rn2(10)) xreal += rnd(20);
+	if (!rn2(10)) yreal += rnd(6);
+	if (xreal > 50) xreal = 50;
+	if (yreal > 10) yreal = 10;
+
+	xlou += rn2(COLNO - (xreal + 1));
+	ylou += rn2(ROWNO - (yreal + 1));
+
+	while ((xlou + xreal) > (COLNO - 1)) {
+		impossible("xlou + xreal too big");
+		xreal--;
+	}
+	while ((ylou + yreal) > (ROWNO - 1)) {
+		impossible("ylou + yreal too big");
+		yreal--;
+	}
+
+	add_room(xlou, ylou, (xlou + xreal), (ylou + yreal), rn2(2), RANDOMROOM, FALSE, FALSE, wallremoving ? 1 : 2);
+	fill_room(&rooms[nroom - 1], FALSE);
+
+}
+
+void
 mkroom(roomtype)
 /* make and stock a room of a given type */
 int	roomtype;
@@ -844,7 +882,7 @@ struct mkroom *sroom;
 			break;
 
 		    case PRISONCHAMBER:
-			if (sx == tx && sy == ty) {
+			if (sx == tx && sy == ty && levl[sx][sy].typ != STAIRS && levl[sx][sy].typ != LADDER) {
 				levl[sx][sy].typ = ALTAR;
 				levl[sx][sy].altarmask = Align2amask( A_NONE );
 			}

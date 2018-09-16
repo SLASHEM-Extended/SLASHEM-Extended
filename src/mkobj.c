@@ -1801,6 +1801,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(200)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 40 : 20)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -1887,6 +1888,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(2000)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 400 : 200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
@@ -1915,6 +1917,7 @@ int artif;
 				if (!rn2(3)) otmp->oeroded = rnd(3);
 				if (!rn2(3)) otmp->oeroded2 = rnd(3);
 			}
+			if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 			if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 			    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -1972,6 +1975,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2198,6 +2202,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(400)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 80 : 40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2227,6 +2232,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 120 : 60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2247,6 +2253,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 120 : 60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2267,6 +2274,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(200)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 40 : 20)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2299,6 +2307,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2326,6 +2335,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(160)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 320 : 160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2358,6 +2368,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(100)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 200 : 100)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2416,6 +2427,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(40)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 80 : 40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2499,6 +2511,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(1600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 320 : 160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2548,6 +2561,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2577,6 +2591,7 @@ int artif;
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
+		if (!rn2(2000)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 400 : 200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
@@ -2595,6 +2610,17 @@ int artif;
 		impossible("impossible mkobj %d, sym '%c'.", otmp->otyp,
 						objects[otmp->otyp].oc_class);
 		return (struct obj *)0;
+	}
+
+	if (iserosator) {
+		if (!rn2(3)) otmp->oeroded = rnd(3);
+		else if (!rn2(2)) otmp->oeroded2 = rnd(3);
+		else {
+			otmp->oeroded = rnd(3);
+			otmp->oeroded2 = rnd(3);
+		}
+		if (!rn2(100)) otmp->oeroded = rn2(4);
+		if (!rn2(100)) otmp->oeroded2 = rn2(4);
 	}
 
 	/* nice patch idea by Amy - sometimes have items start out with partial identification */

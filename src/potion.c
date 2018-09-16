@@ -286,6 +286,12 @@ int type;
 			      rn2(2) ? "much" : "even");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    }
+
+	    if (Race_if(PM_EROSATOR)) {
+		xtime /= 3;
+		if (xtime < 1) xtime = 1;
+	    }
+
 	    set_itimeout(&Sick, xtime);
 	    if (Sickopathy) pline("You have %d turns to live.", Sick);
 	    u.usick_type |= type;
@@ -752,7 +758,7 @@ badeffect()
 		case 102:
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 			You("don't feel very well.");
-		    Slimed = 100L;
+		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 			stop_occupation();
 		    killer_format = KILLED_BY_AN;
@@ -913,7 +919,7 @@ badeffect()
 			if (Hallucination && rn2(10)) pline("You are already stoned.");
 			else {
 				You("start turning to stone!");
-				Stoned = 7;
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 				stop_occupation();
 				delayed_killer = "bad petrification effect";
 			}
@@ -3155,7 +3161,7 @@ peffects(otmp)
 
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
-		    Slimed = 100L;
+		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		}
 		unkn++;
@@ -5327,7 +5333,7 @@ register struct obj *obj;
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
 			stop_occupation();
-		    Slimed = 100L;
+		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		}
 		break;

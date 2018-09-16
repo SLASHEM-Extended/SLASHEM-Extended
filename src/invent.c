@@ -4900,6 +4900,7 @@ long quan;		/* if non-0, print this quantity, not obj->quan */
 		(use_invlet ? obj->invlet : let),
 		(txt ? txt : doname(obj)), (dot ? "." : ""));
     }
+
     if (savequan) obj->quan = savequan;
 
     return li;

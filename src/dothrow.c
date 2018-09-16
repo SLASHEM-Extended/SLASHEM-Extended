@@ -1217,7 +1217,7 @@ boolean hitsroof;
 			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
 			else {
 				You("start turning to stone.");
-				Stoned = 7;
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 				delayed_killer = "elementary physics";
 			}
 		}

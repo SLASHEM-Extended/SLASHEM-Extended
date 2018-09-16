@@ -1324,7 +1324,7 @@ int spellnum;
 			if (Hallucination && rn2(10)) pline("Good thing you are already stoned.");
 			else {
 				You("start turning to stone!");
-				Stoned = 7;
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 				stop_occupation();
 				delayed_killer = "petrify spell";
 			}
@@ -1342,7 +1342,7 @@ int spellnum;
 		    if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 			You("don't feel very well.");
 			stop_occupation();
-		    Slimed = 100L;
+		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;}
 		dmg = 0;
 		break;

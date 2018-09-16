@@ -4303,6 +4303,19 @@ const struct Race races[] = {
 	{  3, 0,  0, 4,  5, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  4, 0 }		/* Energy */
 },
+{	"erosator", "erosator", "erosion system", "Ero",
+	{0, 0},
+	PM_EROSATOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"evilvariant", "evilvariant", "Evil Variant", "Evi",
 	{0, 0},
 	PM_EVILVARIANT, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -5225,6 +5238,19 @@ const struct Race races[] = {
 {	"rohirrim", "rohirrim", "rohan", "Roh",
 	{0, 0},
 	PM_ROHIRRIM, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"roommate", "roommate", "room sharing", "Roo",
+	{0, 0},
+	PM_ROOMMATE, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
 	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
 	MH_HUMAN, 0, MH_GNOME|MH_ORC,
@@ -6340,7 +6366,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel && flags.randomhybrids) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(27)) {
+			switch (rnd(29)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -6396,12 +6422,16 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridevilvariant = 1; break;
 				case 27:
 					flags.hybridlevelscaler = 1; break;
+				case 28:
+					flags.hybriderosator = 1; break;
+				case 29:
+					flags.hybridroommate = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(27)) {
+				switch (rnd(29)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -6483,6 +6513,12 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 27:
 						if (!(flags.hybridlevelscaler)) {flags.hybridlevelscaler = 1; flags.hybridization++; break;
+						}
+					case 28:
+						if (!(flags.hybriderosator)) {flags.hybriderosator = 1; flags.hybridization++; break;
+						}
+					case 29:
+						if (!(flags.hybridroommate)) {flags.hybridroommate = 1; flags.hybridization++; break;
 						}
 	
 				}

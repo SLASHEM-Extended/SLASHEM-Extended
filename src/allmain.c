@@ -9571,6 +9571,8 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridaggravator) sprintf(eos(xtrabuf), "aggravator ");
 	if (flags.hybridevilvariant) sprintf(eos(xtrabuf), "evilvariant ");
 	if (flags.hybridlevelscaler) sprintf(eos(xtrabuf), "levelscaler ");
+	if (flags.hybriderosator) sprintf(eos(xtrabuf), "erosator ");
+	if (flags.hybridroommate) sprintf(eos(xtrabuf), "roommate ");
 
 	if (new_game) { /* for recursion trap */
 		ustartrace = urace;

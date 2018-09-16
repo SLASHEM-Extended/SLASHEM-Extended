@@ -867,7 +867,7 @@ Cloak_on()
 	case CLOAK_OF_SLIMING:
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 			You("don't feel very well.");
-			Slimed = 100L;
+			Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 			flags.botl = 1;
 			killer_format = KILLED_BY_AN;
 			delayed_killer = "cloak of sliming";
@@ -904,7 +904,7 @@ Cloak_on()
 			pline("You start turning to stone!");
 			if (Hallucination && rn2(10)) pline("But you are already stoned.");
 			else {
-				Stoned = 7;
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 				delayed_killer = "cloak of stone";
 			}
 		}
@@ -2760,7 +2760,7 @@ Amulet_on()
 			pline("You start turning to stone!");
 			if (Hallucination && rn2(10)) pline("But you are already stoned.");
 			else {
-				Stoned = 7;
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 				stop_occupation();
 				delayed_killer = "amulet of stone";
 			}

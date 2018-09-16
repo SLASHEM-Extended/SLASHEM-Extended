@@ -511,6 +511,8 @@ bot1()
 		if (flags.hybridaggravator) sprintf(nb = eos(nb), "G");
 		if (flags.hybridevilvariant) sprintf(nb = eos(nb), "T");
 		if (flags.hybridlevelscaler) sprintf(nb = eos(nb), "s");
+		if (flags.hybriderosator) sprintf(nb = eos(nb), "e");
+		if (flags.hybridroommate) sprintf(nb = eos(nb), "r");
 	}
 
 	if (flags.showscore)

@@ -2312,7 +2312,7 @@ boolean anywhere;
 	if (!vault) {
 		smeq[nroom] = nroom;
 		add_room(xabs, yabs, xabs+wtmp-1, yabs+htmp-1,
-			 rlit, rtype, FALSE, TRUE);
+			 rlit, rtype, FALSE, TRUE, FALSE);
 	} else {
 		rooms[nroom].lx = xabs;
 		rooms[nroom].ly = yabs;
@@ -4957,12 +4957,16 @@ dlb *fd;
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 
-	/*create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);*/
+	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && (depth(&u.uz) > 1 || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
+
+		mkroommateroom(0);
+		if (!rn2(5)) {
+			mkroommateroom(0);
+			while (!rn2(3)) mkroommateroom(0);
+
+		}
+
+	}
 
 	return TRUE;
 }
@@ -5289,13 +5293,13 @@ dlb *fd;
 		    flood_fill_rm(tmpregion.x1, tmpregion.y1,
 				  nroom+ROOMOFFSET, tmpregion.rlit, TRUE);
 		    add_room(min_rx, min_ry, max_rx, max_ry,
-			     FALSE, tmpregion.rtype, TRUE, FALSE);
+			     FALSE, tmpregion.rtype, TRUE, FALSE, FALSE);
 		    troom->rlit = tmpregion.rlit;
 		    troom->irregular = TRUE;
 		} else {
 		    add_room(tmpregion.x1, tmpregion.y1,
 			     tmpregion.x2, tmpregion.y2,
-			     tmpregion.rlit, tmpregion.rtype, TRUE, FALSE);
+			     tmpregion.rlit, tmpregion.rtype, TRUE, FALSE, FALSE);
 #ifdef SPECIALIZATION
 		    topologize(troom,FALSE);		/* set roomno */
 #else
@@ -5704,12 +5708,16 @@ dlb *fd;
 	if (isaquarian && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 	if (RngeRivers && !In_endgame(&u.uz) && !Invocation_lev(&u.uz) ) mkrandrivers();
 
-	/*create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);
-	create_room(-1, -1, -1, -1, -1, -1, RANDOMROOM, TRUE, FALSE, TRUE);*/
+	if ((isroommate || !rn2(100) || (!rn2(30) && !(u.monstertimefinish % 987) ) || (!rn2(10) && !(u.monstertimefinish % 9787) ) ) && (depth(&u.uz) > 1 || !rn2(10)) && !Is_branchlev(&u.uz) && !In_endgame(&u.uz)) {
+
+		mkroommateroom(0);
+		if (!rn2(5)) {
+			mkroommateroom(0);
+			while (!rn2(3)) mkroommateroom(0);
+
+		}
+
+	}
 
     return TRUE;
 }

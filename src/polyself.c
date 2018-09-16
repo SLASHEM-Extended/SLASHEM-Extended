@@ -279,7 +279,7 @@ dead: /* we come directly here if their experience level went to 0 or less */
 	if (!Upolyd) u.polyformed = 0;
 	if (Slimed) {
 		Your("body transforms, but there is still slime on you.");
-		Slimed = 100L;
+		Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 	}
 	flags.botl = 1;
 	vision_full_recalc = 1;
@@ -1369,7 +1369,7 @@ dogaze()
 		if (!Stoned) {
 			if (Hallucination && rn2(10)) pline("But you are already stoned.");
 			else {
-				Stoned = 7;
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 				delayed_killer = "gazing at Medusa";
 			}
 		}
@@ -2201,7 +2201,7 @@ dogaze()
 			if (!Stoned) {
 				if (Hallucination && rn2(10)) pline("But you are already stoned.");
 				else {
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					delayed_killer = "deliberately meeting Medusa's gaze";
 				}
 			}

@@ -3901,7 +3901,7 @@ secureidchoice:
 		case WAN_SLIMING:
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
-		    Slimed = 100L;
+		    Slimed = Race_if(PM_EROSATOR) ? 25L : 100L;
 		    flags.botl = 1;
 		}
 
@@ -5642,7 +5642,7 @@ boolean ordinary;
 			if (!Stoned) {
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
 				else {
-					Stoned = 7;
+					Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
 					pline("You start turning to stone!");
 					sprintf(killer_buf, "their own wand of stoning");
 					delayed_killer = killer_buf;

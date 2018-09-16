@@ -285,7 +285,7 @@ join_map(bg_typ, fg_typ)
 		flood_fill_rm(i,j,nroom+ROOMOFFSET,FALSE,FALSE);
 		if(n_loc_filled > 3) {
 		    add_room(min_rx, min_ry, max_rx, max_ry,
-			     FALSE, OROOM, TRUE, FALSE);
+			     FALSE, OROOM, TRUE, FALSE, FALSE);
 		    rooms[nroom-1].irregular = TRUE;
 		    if(nroom >= (MAXNROFROOMS*2))
 			goto joinm;
