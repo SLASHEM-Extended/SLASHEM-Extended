@@ -1851,25 +1851,11 @@ meatmetal(mtmp)
 	/* Eats topmost metal object if it is there */
 	for (otmp = level.objects[mtmp->mx][mtmp->my];
 						otmp; otmp = otmp->nexthere) {
-	    if (mtmp->data == &mons[PM_RUST_MONSTER] && !is_rustprone(otmp))
-		continue;
+	    if (otmp->oerodeproof) continue; /* change by Amy - erosionproof items can't be eaten */
 	    if (is_metallic(otmp) && !obj_resists(otmp, 5, 95) &&
 		touch_artifact(otmp,mtmp)) {
-		if (mtmp->data == &mons[PM_RUST_MONSTER] && otmp->oerodeproof) {
-		    if (cansee(mtmp->mx,mtmp->my) && flags.verbose) {
-			pline("%s eats %s!",
-				Monnam(mtmp),
-				distant_name(otmp,doname));
-		    }
-		    /* The object's rustproofing is gone now */
-		    otmp->oerodeproof = 0;
-		    mtmp->mstun = 1;
-		    if (canseemon(mtmp) && flags.verbose) {
-			pline("%s spits %s out in disgust!",
-			      Monnam(mtmp), distant_name(otmp,doname));
-		    }
 		/* KMH -- Don't eat indigestible/choking objects */
-		} else if (otmp->otyp != AMULET_OF_STRANGULATION &&
+		if (otmp->otyp != AMULET_OF_STRANGULATION &&
 				otmp->otyp != RIN_SLOW_DIGESTION) {
 		    if (cansee(mtmp->mx,mtmp->my) && flags.verbose)
 			pline("%s eats %s!", Monnam(mtmp),
@@ -1953,6 +1939,7 @@ meatlithic(mtmp)
 	for (otmp = level.objects[mtmp->mx][mtmp->my];
 						otmp; otmp = otmp->nexthere) { 
 
+	    if (otmp->oerodeproof) continue; /* change by Amy - erosionproof items can't be eaten */
 	    if (is_lithic(otmp) && !obj_resists(otmp, 5, 95) &&
 		touch_artifact(otmp,mtmp)) {
 			if (otmp->otyp != AMULET_OF_STRANGULATION &&
@@ -2014,6 +2001,7 @@ meatlithic(mtmp)
 	return 0;
 }
 
+/* function for eater trap effect, allivore etc.; this can eat even erosionproof items (not a bug) --Amy */
 int
 meatanything(mtmp)
 	register struct monst *mtmp;
@@ -2160,6 +2148,7 @@ meatobj(mtmp)		/* for gelatinous cubes */
 	    otmp2 = otmp->nexthere;
 	    if (is_organic(otmp) && !obj_resists(otmp, 5, 95) &&
 		    touch_artifact(otmp,mtmp)) {
+		if (otmp->oerodeproof) continue; /* change by Amy - erosionproof items can't be eaten */
 		if (otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm]) &&
 			!resists_ston(mtmp))
 		    continue;

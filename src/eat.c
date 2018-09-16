@@ -271,18 +271,19 @@ register struct obj *obj;
 	/* Unicorn only eats stone --Amy */
 	if (Race_if(PM_PLAYER_UNICORN) && !Upolyd) return (boolean) (is_lithic(obj));
 
-	if (metallivorous(youmonst.data) && is_metallic(obj) &&
-	    (youmonst.data != &mons[PM_RUST_MONSTER] || is_rustprone(obj)))
+	/* metallivores can eat metal; rustproofing makes it impossible now --Amy */
+	if (metallivorous(youmonst.data) && is_metallic(obj) && !obj->oerodeproof)
 		return TRUE;
 
-	if (lithivorous(youmonst.data) && is_lithic(obj) )
+	/* lithivores can eat stone; erosionproofing makes it impossible now --Amy */
+	if (lithivorous(youmonst.data) && is_lithic(obj) && !obj->oerodeproof )
 		return TRUE;
 
 	/* KMH -- Taz likes organics, too! */
 	if (( (!Upolyd && Race_if(PM_JELLY) ) || (!Upolyd && Race_if(PM_WEAPON_CUBE) ) || organivorous(youmonst.data)) && is_organic(obj) &&
 		/* [g.cubes can eat containers and retain all contents
 		    as engulfed items, but poly'd player can't do that] */
-	    !Has_contents(obj))
+	    !Has_contents(obj) && !obj->oerodeproof )
 		return TRUE;
 
 	/* Koalas only eat Eucalyptus leaves */
@@ -5642,13 +5643,6 @@ struct obj *otmp;
 		if (yn_function(buf,ynchars,'n')=='n') return 1;
 		else return 2;
 	}
-	if (Upolyd && u.umonnum == PM_RUST_MONSTER &&
-	    is_metallic(otmp) && otmp->oerodeproof) {
-		sprintf(buf, "%s disgusting to you right now. %s",
-			foodsmell, eat_it_anyway);
-		if (yn_function(buf,ynchars,'n')=='n') return 1;
-		else return 2;
-	}
 
 	if (dmgtype(&mons[mnum], AD_STUN) || dmgtype(&mons[mnum], AD_HALU) || 
 		    mnum == PM_VIOLET_FUNGUS || mnum == PM_VIOLET_STALK || mnum == PM_VIOLET_SPORE || mnum == PM_VIOLET_COLONY) { 
@@ -5748,28 +5742,6 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	    /* let them eat rings */
 	    You_cant("eat %s you're wearing.", something);
 	    return 0;
-	}
-	if (is_metallic(otmp) &&
-	    u.umonnum == PM_RUST_MONSTER && otmp->oerodeproof) {
-	    	otmp->rknown = TRUE;
-		if (otmp->quan > 1L) {
-		    if(!carried(otmp))
-			(void) splitobj(otmp, otmp->quan - 1L);
-		    else
-			otmp = splitobj(otmp, 1L);
-		}
-		pline("Ulch - That %s was rustproofed!", xname(otmp));
-		/* The regurgitated object's rustproofing is gone now */
-		otmp->oerodeproof = 0;
-		make_stunned(HStun + rn2(10), TRUE);
-		You("spit %s out onto the %s.", the(xname(otmp)),
-			surface(u.ux, u.uy));
-		if (carried(otmp)) {
-			freeinv(otmp);
-			dropy(otmp);
-		}
-		stackobj(otmp);
-		return 1;
 	}
 	if (otmp->otyp == EYEBALL || otmp->otyp == SEVERED_HAND) {
 	    strcpy(qbuf,"Are you sure you want to eat that?");
