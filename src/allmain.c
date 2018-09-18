@@ -9536,6 +9536,9 @@ boolean new_game;	/* false => restoring an old game */
 		return;
 	}
 
+	/* prevent hangup cheating when special game modes haven't teleported you yet --Amy */
+	if ((flags.wonderland || flags.lostsoul || flags.uberlostsoul) && new_game) u.youaredead = 1;
+
     if (new_game || u.ualignbase[A_ORIGINAL] != u.ualignbase[A_CURRENT])
 	sprintf(eos(buf), " %s", align_str(u.ualignbase[A_ORIGINAL]));
     if (!urole.name.f &&
@@ -11478,6 +11481,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.wonderland && new_game) {
 		flags.lostsoul = flags.uberlostsoul = FALSE;
 		goto_level(&elderpriest_level, TRUE, FALSE, FALSE);
+		u.youaredead = 0;
 		pline("Welcome to Wonderland. You have to get to the bottom of the Yendorian Tower to escape.");
 		pline("If you manage to do that, you regain your ability to levelport. Good luck, and don't get near the elder priest or he will tentacle to tentacle you!");
 
@@ -11494,6 +11498,7 @@ boolean new_game;	/* false => restoring an old game */
 
 	if (flags.lostsoul && !flags.uberlostsoul && new_game) { 
 	goto_level(&medusa_level, TRUE, FALSE, FALSE); /* inspired by Tome, an Angband mod --Amy */
+	u.youaredead = 0;
 	pline("These are the halls of Mandos... err, Medusa. Good luck making your way back up!");
 	}
 
@@ -11502,6 +11507,7 @@ boolean new_game;	/* false => restoring an old game */
 		flags.lostsoul = FALSE;
 
 	goto_level((&sanctum_level - 1), TRUE, FALSE, FALSE);
+	u.youaredead = 0;
 	pline("These are the halls of Mandos... err, Gehennom. Looks nice, huh?");
 
 			        register int newlev = 74;
