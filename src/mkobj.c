@@ -1650,51 +1650,51 @@ int artif;
 	int mndx, tryct;
 	struct obj *otmp;
 
-	if (otyp == u.unobtainable) {
+	if (otyp == u.unobtainable && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable2) {
+	if (otyp == u.unobtainable2 && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable3) {
+	if (otyp == u.unobtainable3 && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable4) {
+	if (otyp == u.unobtainable4 && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable5) {
+	if (otyp == u.unobtainable5 && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable6) {
+	if (otyp == u.unobtainable6 && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable7) {
+	if (otyp == u.unobtainable7 && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable8) {
+	if (otyp == u.unobtainable8 && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable9) {
+	if (otyp == u.unobtainable9 && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainable10) {
+	if (otyp == u.unobtainable10 && !(issokosolver && otyp == BOULDER)) {
 		otyp = GOLD_PIECE;
 	}
 
-	if (otyp == u.unobtainablegeno) {
+	if (otyp == u.unobtainablegeno) { /* your fault for genociding them. No sokosolver specialties! --Amy */
 		otyp = GOLD_PIECE;
 	}
 
-	if (u.minimalism && rn2(u.minimalism)) {
+	if (u.minimalism && rn2(u.minimalism) && !(issokosolver && otyp == BOULDER)) {
 		if (otyp != GOLD_PIECE && otyp != STRANGE_OBJECT && otyp != AMULET_OF_YENDOR && otyp != CANDELABRUM_OF_INVOCATION
 #ifdef MAIL
 	&& otyp != SCR_MAIL
