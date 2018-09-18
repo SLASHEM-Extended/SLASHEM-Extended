@@ -3696,6 +3696,16 @@ register char *buf;
 	buf[++i2] = buf[++i1];
 	ilet = buf[i1];
 	while(ilet) {
+
+		if (ilet == '#') {
+
+			if(ilet2 == '#') {
+				buf[i2] = buf[++i1];
+				ilet = buf[i1];
+				continue;
+			}
+		}
+
 		if(ilet == ilet1+1) {
 			if(ilet1 == ilet2+1)
 				buf[i2 - 1] = ilet1 = '-';
