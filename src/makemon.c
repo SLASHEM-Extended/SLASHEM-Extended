@@ -14608,7 +14608,7 @@ boolean ghostly;
 	/* if it's unique, don't ever make it again */
 	if (mons[mndx].geno & G_UNIQ) mvitals[mndx].mvflags |= G_EXTINCT;
 
-	if (mvitals[mndx].born < 255 && tally && (!ghostly || (ghostly && result)))
+	if (mvitals[mndx].born < 9999999 && tally && (!ghostly || (ghostly && result)))
 		 mvitals[mndx].born++;
 	if ((int) mvitals[mndx].born >= lim && !(mons[mndx].geno & G_NOGEN) &&
 		!(mvitals[mndx].mvflags & G_EXTINCT)) {

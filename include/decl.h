@@ -421,8 +421,8 @@ E NEARDATA struct permonst upermonst;	/* init'd in decl.c,
 					 */
 
 E NEARDATA struct mvitals {
-	uchar	born;
-	uchar	died;
+	int	born;
+	int	died;
 	uchar	mvflags;
 	uchar	eaten;		/* WAC -- eaten memory */
 } mvitals[NUMMONS];
