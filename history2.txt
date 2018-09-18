@@ -1,6 +1,13 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.3.3 - September 2018
+- If the player is playing a sokosolver, boulders should always generate when they normally would, even if they're an item type that can't generate in the current game. Pairing sokosolver with minimalist should now also guarantee that all the boulders always generate.
+- Eating a chocolate or chocoegg cures totter.
+- The monster born and kill counters can go above 255.
+- Fixed the problem where certain artifact-giving mechanisms would only give unaligned artifacts if the player had at least received one other artifact from such a source or their deity.
+- The item menus no longer display long ############## strings if the player has many more than 52 items.
+- Attempting to hangup cheat in lostsoul or wonderland mode before the player character was levelported will result in a game over upon restoration.
+- The player now has death resistance when in a polymorph form that has it.
 - More item materials have effects: copper deals extra damage to F or protects against sickness, platinum protects against contamination, mithril protects against attribute loss, gold is resistant to the curse items effect and bone is more resistant to stealing. Leather and especially wood are more resistant to fire while paper is super vulnerable.
 - Sleeping monsters are more likely to wake up when attacked.
 - Friday the 13th is much more dangerous; some features that are normally only active in evilvariant mode have a chance of being active on a Friday the 13th now.
