@@ -682,6 +682,10 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		if (Role_if(PM_FEMINIST) && !rn2(5)) {
 
+			boolean havegifts = u.ugifts;
+
+			if (!havegifts) u.ugifts++;
+
 			acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
 			if (acqo) {
 			    dropy(acqo);
@@ -704,7 +708,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 			    discover_artifact(acqo->oartifact);
 
-				if (!u.ugifts) u.ugifts = 1;
+				if (!havegifts) u.ugifts--;
 				pline("An artifact appeared beneath you!");
 
 			}

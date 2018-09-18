@@ -3835,6 +3835,10 @@ register struct monst *mtmp;
 		    dropy(trophy);
 		}
 
+		boolean havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
+
 		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
 		if (trophy) {
 			dropy(trophy);
@@ -3855,7 +3859,7 @@ register struct monst *mtmp;
 				P_MAX_SKILL(get_obj_skill(trophy)) = P_SUPREME_MASTER;
 			}
 			discover_artifact(trophy->oartifact);
-			if (!u.ugifts) u.ugifts = 1;
+			if (!havegifts) u.ugifts--;
 		}
 
 		int skillimprove = randomgoodskill();
@@ -3942,6 +3946,10 @@ register struct monst *mtmp;
 		u.tiksrvzllatdown = 1;
 		pline("Congratulations, Tiksrvzllat is defeated! Your reward was dropped at your %s. Also, you gain permanent bonuses to your chance to hit, damage and spellcasting success chances.", makeplural(body_part(FOOT)));
 
+		boolean havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
+
 		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
 		if (trophy) {
 			dropy(trophy);
@@ -3962,7 +3970,6 @@ register struct monst *mtmp;
 				P_MAX_SKILL(get_obj_skill(trophy)) = P_SUPREME_MASTER;
 			}
 			discover_artifact(trophy->oartifact);
-			if (!u.ugifts) u.ugifts = 1;
 		}
 		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
 		if (trophy) {
@@ -3984,7 +3991,6 @@ register struct monst *mtmp;
 				P_MAX_SKILL(get_obj_skill(trophy)) = P_SUPREME_MASTER;
 			}
 			discover_artifact(trophy->oartifact);
-			if (!u.ugifts) u.ugifts = 1;
 		}
 		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
 		if (trophy) {
@@ -4006,7 +4012,6 @@ register struct monst *mtmp;
 				P_MAX_SKILL(get_obj_skill(trophy)) = P_SUPREME_MASTER;
 			}
 			discover_artifact(trophy->oartifact);
-			if (!u.ugifts) u.ugifts = 1;
 		}
 		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
 		if (trophy) {
@@ -4028,7 +4033,6 @@ register struct monst *mtmp;
 				P_MAX_SKILL(get_obj_skill(trophy)) = P_SUPREME_MASTER;
 			}
 			discover_artifact(trophy->oartifact);
-			if (!u.ugifts) u.ugifts = 1;
 		}
 		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
 		if (trophy) {
@@ -4050,7 +4054,7 @@ register struct monst *mtmp;
 				P_MAX_SKILL(get_obj_skill(trophy)) = P_SUPREME_MASTER;
 			}
 			discover_artifact(trophy->oartifact);
-			if (!u.ugifts) u.ugifts = 1;
+			if (!havegifts) u.ugifts--;
 		}
 
 	}

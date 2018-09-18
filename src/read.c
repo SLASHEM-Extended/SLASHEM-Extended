@@ -5757,6 +5757,10 @@ revid_end:
 
 		known = TRUE;
 
+		boolean havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
+
 		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
 		if (acqo) {
 
@@ -5834,10 +5838,10 @@ rerollX:
 
 		    discover_artifact(acqo->oartifact);
 
-			/* reading several of these will enable unaligned artifacts, which has to be done by incrementing the
+			/* this will enable unaligned artifacts, which has to be done by incrementing the
 			 * u.ugifts var; since we don't actually want this scroll to mess with your chances of getting divine
-			 * sacrifice gifts, it won't increase the variable if it's already nonzero. --Amy */
-			if (!u.ugifts) u.ugifts = 1;
+			 * sacrifice gifts, it sets the variable to zero again afterwards --Amy */
+			if (!havegifts) u.ugifts--;
 			pline("An artifact appeared beneath you!");
 		}
 		else pline("Opportunity knocked, but nobody was home.  Bummer.");
@@ -5946,6 +5950,11 @@ newbossC:
 
 	case SCR_ARTIFACT_CREATION:
 		known = TRUE;
+
+		boolean havegiftsohgod = u.ugifts;
+
+		if (!havegiftsohgod) u.ugifts++;
+
 		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
 		if (acqo) {
 		    dropy(acqo);
@@ -5969,10 +5978,7 @@ newbossC:
 
 		    discover_artifact(acqo->oartifact);
 
-			/* reading several of these will enable unaligned artifacts, which has to be done by incrementing the
-			 * u.ugifts var; since we don't actually want this scroll to mess with your chances of getting divine
-			 * sacrifice gifts, it won't increase the variable if it's already nonzero. --Amy */
-			if (!u.ugifts) u.ugifts = 1;
+			if (!havegiftsohgod) u.ugifts--;
 			pline("An artifact appeared beneath you!");
 		}
 		else pline("Opportunity knocked, but nobody was home.  Bummer.");

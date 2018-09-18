@@ -8404,6 +8404,10 @@ typfnd:
 		/* but you'll get another random artifact instead! --Amy */
 		if (!issoviet) {
 
+			boolean havegifts = u.ugifts;
+
+			if (!havegifts) u.ugifts++;
+
 			if (!rn2(3)) {
 				bad_artifact();
 				return (&zeroobj);
@@ -8412,7 +8416,7 @@ typfnd:
 			otmp = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
 			if (!otmp) return(&zeroobj);
 			otmp->owt = weight(otmp);
-			if (!u.ugifts) u.ugifts = 1;
+			if (!havegifts) u.ugifts--;
 			pline("But the RNG decided to grant you another artifact instead!");
 			return(otmp);
 		} else {

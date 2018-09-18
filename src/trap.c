@@ -3815,6 +3815,10 @@ secureidchoice:
 
 		register struct obj *acqo;
 
+		boolean havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
+
 		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
 		if (acqo) {
 
@@ -3892,10 +3896,7 @@ rerollX:
 
 		    discover_artifact(acqo->oartifact);
 
-			/* triggering several of these will enable unaligned artifacts, which has to be done by incrementing the
-			 * u.ugifts var; since we don't actually want this trap to mess with your chances of getting divine
-			 * sacrifice gifts, it won't increase the variable if it's already nonzero. --Amy */
-			if (!u.ugifts) u.ugifts = 1;
+			if (!havegifts) u.ugifts--;
 			pline("An artifact appeared beneath you!");
 		}
 		else pline("Opportunity knocked, but nobody was home.  Bummer.");
@@ -3912,6 +3913,10 @@ rerollX:
 		{
 
 		register struct obj *acqo;
+
+		boolean havegifts = u.ugifts;
+
+		if (!havegifts) u.ugifts++;
 
 		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
 		if (acqo) {
@@ -3937,10 +3942,7 @@ rerollX:
 
 		    discover_artifact(acqo->oartifact);
 
-			/* triggering several of these will enable unaligned artifacts, which has to be done by incrementing the
-			 * u.ugifts var; since we don't actually want this trap to mess with your chances of getting divine
-			 * sacrifice gifts, it won't increase the variable if it's already nonzero. --Amy */
-			if (!u.ugifts) u.ugifts = 1;
+			if (!havegifts) u.ugifts--;
 			pline("An artifact appeared beneath you!");
 		}
 		else pline("Opportunity knocked, but nobody was home.  Bummer.");
