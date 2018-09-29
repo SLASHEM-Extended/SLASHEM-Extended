@@ -702,7 +702,7 @@ struct mkroom *sroom;
 		    (type == LEVELFFROOM) ? (!rn2(100) ? &mons[PM_SHOPKEEPER] : specialtensmon(323) /* M5_JOKE */ ) :
 		    (type == ARDUOUSMOUNTAIN) ? (rn2(2) ? specialtensmon(156) /* UNCOMMON10 */ : rn2(2) ? specialtensmon(155) /* UNCOMMON7 */ : rn2(2) ? specialtensmon(154) /* UNCOMMON5 */ : rn2(2) ? specialtensmon(153) /* UNCOMMON3 */ : specialtensmon(152) /* UNCOMMON2 */ ) :
 		    (type == CURSEDMUMMYROOM) ? (sx == tx && sy == ty ? mkclass(S_LICH,0) : mkclass(S_MUMMY,0) ) :
-		    (type == RELIGIONCENTER) ? (rn2(2) ? specialtensmon(347) /* MS_CONVERT */ : specialtensmon(348) /* MS_ALIEN */ ) :
+		    (type == RELIGIONCENTER) ? (rn2(5) ? specialtensmon(347) /* MS_CONVERT */ : specialtensmon(348) /* MS_ALIEN */ ) :
 			(type == CLINIC) ? specialtensmon(218) /* AD_HEAL */ :
 			(type == TERRORHALL) ? mkclass(S_UMBER,0) :
 			(type == VARIANTROOM) ? specialtensmon(u.specialtensionmonster) :
