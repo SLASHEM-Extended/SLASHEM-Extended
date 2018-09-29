@@ -8827,6 +8827,11 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, ORCISH_HELM);
 		}
 
+	      if (ptr == &mons[PM_LASERCHAUN]) {
+			(void) mongets(mtmp, HAND_BLASTER);
+			m_initthrow(mtmp, BLASTER_BOLT, 50);
+		}
+
 	      if (ptr == &mons[PM_KNIFE_ROBBER]) {
 			(void) mongets(mtmp, KNIFE);
 			m_initthrow(mtmp, KNIFE, 8);
@@ -11387,441 +11392,441 @@ register struct	monst	*mtmp;
 
 	if (ptr == &mons[PM_EROGENOUS_KATIA]) {
 
-		mtmp->crapbonus = 50;
+		mtmp->crapbonus += 50;
 
 	}
 
 	if (ptr == &mons[PM_SIMONE]) {
 
-		mtmp->fartbonus = 2;
+		mtmp->fartbonus += 2;
 
 	}
 
 	if (ptr == &mons[PM_TURKISH_BANDIT]) {
 
-		mtmp->crapbonus = 7;
+		mtmp->crapbonus += 7;
 
 	}
 
 	if (ptr == &mons[PM_SADISTIC_ASIAN_GIRL]) {
 
-		mtmp->fartbonus = 7;
+		mtmp->fartbonus += 7;
 
 	}
 
 	if (ptr == &mons[PM_FARTING_ASIAN_GIRL]) {
 
-		mtmp->fartbonus = 7;
+		mtmp->fartbonus += 7;
 
 	}
 
 	if (ptr == &mons[PM_THICK_FARTING_GIRL]) {
 
-		mtmp->fartbonus = 9;
-		mtmp->crapbonus = 10;
+		mtmp->fartbonus += 9;
+		mtmp->crapbonus += 10;
 
 	}
 
 	if (ptr == &mons[PM_FAT_FARTING_GIRL]) {
 
-		mtmp->fartbonus = 9;
-		mtmp->crapbonus = 10;
+		mtmp->fartbonus += 9;
+		mtmp->crapbonus += 10;
 
 	}
 
 	if (ptr == &mons[PM_EVEN_FATTER_FARTING_GIRL]) {
 
-		mtmp->fartbonus = 9;
-		mtmp->crapbonus = 10;
+		mtmp->fartbonus += 9;
+		mtmp->crapbonus += 10;
 
 	}
 
 	if (ptr == &mons[PM_LOVING_ASIAN_GIRL]) {
 
-		mtmp->fartbonus = 7;
+		mtmp->fartbonus += 7;
 
 	}
 
 	if (ptr == &mons[PM_RUEA]) {
 
-		mtmp->crapbonus = 5;
+		mtmp->crapbonus += 5;
 
 	}
 
 	if (ptr == &mons[PM_SARAH]) {
 
-		mtmp->fartbonus = 4;
+		mtmp->fartbonus += 4;
 
 	}
 
 	if (ptr == &mons[PM_SUNALI]) {
 
-		mtmp->crapbonus = 5;
+		mtmp->crapbonus += 5;
 
 	}
 
 	if (ptr == &mons[PM_KATI]) {
 
-		mtmp->crapbonus = 2;
-		mtmp->fartbonus = 9;
+		mtmp->crapbonus += 2;
+		mtmp->fartbonus += 9;
 
 	}
 
 	if (ptr == &mons[PM_THAI]) {
 
-		mtmp->crapbonus = 3;
+		mtmp->crapbonus += 3;
 
 	}
 
 	if (ptr == &mons[PM_ELIF]) {
 
-		mtmp->fartbonus = 7;
+		mtmp->fartbonus += 7;
 
 	}
 
 	if (ptr == &mons[PM_SOLVEJG]) {
 
-		mtmp->fartbonus = 1;
+		mtmp->fartbonus += 1;
 
 	}
 
 	if (ptr == &mons[PM_ANTJE]) {
 
-		mtmp->crapbonus = 1;
+		mtmp->crapbonus += 1;
 
 	}
 
 	if (ptr == &mons[PM_MAURAH]) {
 
-		mtmp->crapbonus = 6;
-		mtmp->fartbonus = 3;
+		mtmp->crapbonus += 6;
+		mtmp->fartbonus += 3;
 
 	}
 
 	if (ptr == &mons[PM_KLARA]) {
 
-		mtmp->crapbonus = 10;
+		mtmp->crapbonus += 10;
 
 	}
 
 	if (ptr == &mons[PM_KERSTIN]) {
 
-		mtmp->crapbonus = 2;
-		mtmp->fartbonus = 3;
+		mtmp->crapbonus += 2;
+		mtmp->fartbonus += 3;
 
 	}
 
 	if (ptr == &mons[PM_EVELINE]) {
 
-		mtmp->crapbonus = 2;
+		mtmp->crapbonus += 2;
 
 	}
 
 	if (ptr == &mons[PM_INA]) {
 
-		mtmp->crapbonus = 3;
-		mtmp->fartbonus = 6;
+		mtmp->crapbonus += 3;
+		mtmp->fartbonus += 6;
 
 	}
 
 	if (ptr == &mons[PM_KARIN]) {
 
-		mtmp->crapbonus = 8;
+		mtmp->crapbonus += 8;
 
 	}
 
 	if (ptr == &mons[PM_SUE_LYN]) {
 
-		mtmp->crapbonus = 4;
-		mtmp->fartbonus = 9;
+		mtmp->crapbonus += 4;
+		mtmp->fartbonus += 9;
 
 	}
 
 	if (ptr == &mons[PM_MARIKE]) {
 
-		mtmp->fartbonus = 9;
+		mtmp->fartbonus += 9;
 
 	}
 
 	if (ptr == &mons[PM_KATIA]) {
 
-		mtmp->crapbonus = 20;
+		mtmp->crapbonus += 20;
 
 	}
 
 	if (ptr == &mons[PM_LUDGERA]) {
 
-		mtmp->crapbonus = 1;
+		mtmp->crapbonus += 1;
 
 	}
 
 	if (ptr == &mons[PM_MARIYA]) {
 
-		mtmp->fartbonus = 8;
+		mtmp->fartbonus += 8;
 
 	}
 
 	if (ptr == &mons[PM_SANDRA]) {
 
-		mtmp->fartbonus = 5;
+		mtmp->fartbonus += 5;
 
 	}
 
 	if (ptr == &mons[PM_MELTEM]) {
 
-		mtmp->fartbonus = 4;
+		mtmp->fartbonus += 4;
 
 	}
 
 	if (ptr == &mons[PM_TENDER_ASIAN_GIRL]) {
 
-		mtmp->fartbonus = 7;
+		mtmp->fartbonus += 7;
 
 	}
 
 	if (ptr == &mons[PM_CHINESE_GIRL]) {
 
-		mtmp->fartbonus = 7;
+		mtmp->fartbonus += 7;
 
 	}
 
 	if (ptr == &mons[PM_KOREAN_GIRL]) {
 
-		mtmp->fartbonus = 8;
+		mtmp->fartbonus += 8;
 
 	}
 
 	if (ptr == &mons[PM_TURKISH_GIRL]) {
 
-		mtmp->crapbonus = 4;
+		mtmp->crapbonus += 4;
 
 	}
 
 	if (ptr == &mons[PM_YOGA_GIRL]) {
 
-		mtmp->fartbonus = 3;
+		mtmp->fartbonus += 3;
 
 	}
 
 	if (ptr == &mons[PM_BEAUTIFUL_GIRL]) {
 
-		mtmp->fartbonus = 5;
+		mtmp->fartbonus += 5;
 
 	}
 
 	if (ptr == &mons[PM_PRETTY_ASIAN_WOMAN]) {
 
-		mtmp->fartbonus = 7;
+		mtmp->fartbonus += 7;
 
 	}
 
 	if (ptr == &mons[PM_SEXY_CHINESE_WOMAN]) {
 
-		mtmp->fartbonus = 7;
+		mtmp->fartbonus += 7;
 
 	}
 
 	if (ptr == &mons[PM_KOREAN_WOMAN]) {
 
-		mtmp->fartbonus = 6;
+		mtmp->fartbonus += 6;
 
 	}
 
 	if (ptr == &mons[PM_TURKISH_WOMAN]) {
 
-		mtmp->crapbonus = 3;
+		mtmp->crapbonus += 3;
 
 	}
 
 	if (ptr == &mons[PM_WONDERFUL_LADY]) {
 
-		mtmp->fartbonus = 6;
+		mtmp->fartbonus += 6;
 
 	}
 
 	if (ptr == &mons[PM_SEXY_ASIAN_LADY]) {
 
-		mtmp->fartbonus = 5;
+		mtmp->fartbonus += 5;
 
 	}
 
 	if (ptr == &mons[PM_CHINESE_LADY]) {
 
-		mtmp->fartbonus = 5;
+		mtmp->fartbonus += 5;
 
 	}
 
 	if (ptr == &mons[PM_KOREAN_LADY]) {
 
-		mtmp->fartbonus = 5;
+		mtmp->fartbonus += 5;
 
 	}
 
 	if (ptr == &mons[PM_TURKISH_LADY]) {
 
-		mtmp->crapbonus = 2;
+		mtmp->crapbonus += 2;
 
 	}
 
 	if (ptr == &mons[PM_WATER_GIRL]) {
 
-		mtmp->fartbonus = 6;
+		mtmp->fartbonus += 6;
 
 	}
 
 	if (ptr == &mons[PM_NATURE_GIRL]) {
 
-		mtmp->fartbonus = 7;
+		mtmp->fartbonus += 7;
 
 	}
 
 	if (ptr == &mons[PM_DEFORMED_GIRL]) {
 
-		mtmp->crapbonus = 10;
+		mtmp->crapbonus += 10;
 
 	}
 
 	if (ptr == &mons[PM_MAGICAL_GIRL]) {
 
-		mtmp->fartbonus = 5;
+		mtmp->fartbonus += 5;
 
 	}
 
 	if (ptr == &mons[PM_WATER_LADY]) {
 
-		mtmp->fartbonus = 6;
+		mtmp->fartbonus += 6;
 
 	}
 
 	if (ptr == &mons[PM_NATURE_LADY]) {
 
-		mtmp->fartbonus = 8;
+		mtmp->fartbonus += 8;
 
 	}
 
 	if (ptr == &mons[PM_ICE_LADY]) {
 
-		mtmp->fartbonus = 2;
+		mtmp->fartbonus += 2;
 
 	}
 
 	if (ptr == &mons[PM_FEMALE_HULL]) {
 
-		mtmp->crapbonus = 15;
+		mtmp->crapbonus += 15;
 
 	}
 
 	if (ptr == &mons[PM_SADISTIC_LADY]) {
 
-		mtmp->fartbonus = 5;
+		mtmp->fartbonus += 5;
 
 	}
 
 	if (ptr == &mons[PM_BDSM_LADY]) {
 
-		mtmp->fartbonus = 3;
+		mtmp->fartbonus += 3;
 
 	}
 
 	if (ptr == &mons[PM_MAGICAL_LADY]) {
 
-		mtmp->fartbonus = 7;
+		mtmp->fartbonus += 7;
 
 	}
 
 	if (ptr == &mons[PM_FREAKY_GIRL]) {
 
-		mtmp->fartbonus = 5;
+		mtmp->fartbonus += 5;
 
 	}
 
 	if (ptr == &mons[PM_SLUT]) {
 
-		mtmp->fartbonus = 4;
-		mtmp->crapbonus = 6;
+		mtmp->fartbonus += 4;
+		mtmp->crapbonus += 6;
 
 	}
 
 	if (ptr == &mons[PM_WENCH]) {
 
-		mtmp->fartbonus = 8;
-		mtmp->crapbonus = 9;
+		mtmp->fartbonus += 8;
+		mtmp->crapbonus += 9;
 
 	}
 
 	if (ptr == &mons[PM_WILD_WOMAN]) {
 
-		mtmp->fartbonus = 5;
-		mtmp->crapbonus = 2;
+		mtmp->fartbonus += 5;
+		mtmp->crapbonus += 2;
 
 	}
 
 	if (ptr == &mons[PM_WENDY_O__KOOPA]) {
 
-		mtmp->crapbonus = 5;
-		mtmp->fartbonus = 7;
+		mtmp->crapbonus += 5;
+		mtmp->fartbonus += 7;
 
 	}
 
 	if (ptr == &mons[PM_ELENA]) {
 
-		mtmp->crapbonus = 5;
-		mtmp->fartbonus = 9;
+		mtmp->crapbonus += 5;
+		mtmp->fartbonus += 9;
 
 	}
 
 	if (ptr == &mons[PM_KATHARINA]) {
 
-		mtmp->crapbonus = 6;
-		mtmp->fartbonus = 9;
+		mtmp->crapbonus += 6;
+		mtmp->fartbonus += 9;
 
 	}
 
 	if (ptr == &mons[PM_JESSICA]) {
 
-		mtmp->fartbonus = 9;
+		mtmp->fartbonus += 9;
 
 	}
 
 	if (ptr == &mons[PM_JENNIFER]) {
 
-		mtmp->crapbonus = 1;
+		mtmp->crapbonus += 1;
 
 	}
 
 	if (ptr == &mons[PM_YVONNE]) {
 
-		mtmp->crapbonus = 2;
+		mtmp->crapbonus += 2;
 
 	}
 
 	if (ptr == &mons[PM_MIRIAM]) {
 
-		mtmp->fartbonus = 2;
+		mtmp->fartbonus += 2;
 
 	}
 
 	if (ptr == &mons[PM_LISA]) {
 
-		mtmp->crapbonus = 2;
+		mtmp->crapbonus += 2;
 
 	}
 
 	if (ptr == &mons[PM_BIRGIT]) {
 
-		mtmp->fartbonus = 5;
+		mtmp->fartbonus += 5;
 
 	}
 
 	if (ptr == &mons[PM_INGE]) {
 
-		mtmp->fartbonus = 8;
+		mtmp->fartbonus += 8;
 
 	}
 
 	if (ptr == &mons[PM_MISS_SCHRACK]) {
 
-		mtmp->fartbonus = 7;
+		mtmp->fartbonus += 7;
 
 	}
 
@@ -14907,6 +14912,9 @@ register int	mmflags;
 	mtmp->mpeaceful = (mmflags & MM_ANGRY) ? FALSE : peace_minded(ptr);
 	mtmp->mtraitor  = FALSE;
 	mtmp->masleep = 0;
+
+	if (!rn2(30)) mtmp->fartbonus += rnd(9);
+	if (!rn2(30)) mtmp->crapbonus += rnd(50);
 
 	/* Everything that can hide under an object will now do so. --Amy */
       if(x && y && isok(x, y) && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) { /* low chance of getting an object even if nonhiding, too */
