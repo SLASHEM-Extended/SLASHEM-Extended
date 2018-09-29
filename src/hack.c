@@ -347,7 +347,7 @@ boolean update;  /* do newsym() */
      (void) grow_water_herbs(herb_info[herbnum].herb, -1,-1);
    else
      (void) grow_herbs(herb_info[herbnum].herb, -1,-1, showmsg, update);*/
-   if (!rn2(30))
+   if (!rn2(isfriday ? 100 : 30))
      (void) drop_ripe_treefruit(-1,-1, showmsg, update);
    /*(void) water_current(-1,-1, rn2(8), 
 			Is_waterlevel(&u.uz) ? 200 : 25, showmsg, update);*/
@@ -1377,7 +1377,7 @@ int mode;
 		Your("body is too large to fit through.");
 	    return FALSE;
 	}
-	if (invent && (inv_weight() + weight_cap() > 5000)) {
+	if (invent && ((inv_weight() + weight_cap()) > 5000)) {
 	    if (mode == DO_MOVE)
         if (!Passes_walls)
 		You("are carrying too much to get through.");
@@ -4216,6 +4216,8 @@ boolean tellplayer;
 		if (amount < 1) amount = 1;
 	}
 
+	if (isfriday && !rn2(5)) amount *= 2;
+
 	/* Platinum is supposed to be a material that shields you against contamination --Amy */
 	if (uwep && objects[uwep->otyp].oc_material == PLATINUM && !rn2(10)) {
 		if (tellplayer) pline("Your platinum weapon prevents you from being contaminated!");
@@ -4371,6 +4373,8 @@ int k_format; /* WAC k_format is an int */
 	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone()) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
+
+	if (isfriday && !rn2(50)) n += rnd(n);
 
 	/* [max] Invulnerable no dmg */
 	if (Invulnerable || (Stoned_chiller && Stoned)) {

@@ -146,7 +146,7 @@ int jumble_pack ()
 	for (obj = invent; obj; obj = nobj)
 	{
 		nobj = obj->nobj;
-		if (rn2(10))
+		if (rn2(isfriday ? 5 : 10))
 			/* Skip it */;
 		else if (flags.invlet_constant)
 			dmg += 2;
@@ -741,7 +741,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 	    if (drop_arg) drop_arg = strcpy(buf, drop_arg);
 
 	    obj = addinv(obj);
-	    if (inv_cnt() > 52
+	    if ((inv_cnt() > 52 && flags.knapsacklimit)
 		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) ) || (!obj->cursed && !is_nastygraystone(obj)) )
 			&& near_capacity() > prev_encumbr)) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
@@ -828,7 +828,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 		return obj;
 		}
 
-	    if ( inv_cnt() > 52
+	    if ( (inv_cnt() > 52 && flags.knapsacklimit)
 		    || (( (obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) ) || (!obj->cursed && !is_nastygraystone(obj)) )
 			&& near_capacity() > prev_encumbr)) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
@@ -1083,6 +1083,7 @@ have_lizard()
 
 	/* this is just lame, new moons should be more dangerous. --Amy */
 	if (!issoviet) return FALSE;
+	if (isfriday || isevilvariant) return FALSE;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == CORPSE && otmp->corpsenm == PM_LIZARD)

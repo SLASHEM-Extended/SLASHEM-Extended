@@ -1262,7 +1262,7 @@ int dieroll;
 	    if (Role_if(PM_MONK) && !Upolyd && u.ulevel/4 > objenchant)
 		objenchant = u.ulevel/4;
 	    /* if you have gloves and they have enough enchantment, you should be able to hit the monster --Amy */
-	    noeffect = objenchant < canhitmon && !(uarmg && uarmg->spe >= canhitmon) && (issoviet || rn2(3));
+	    noeffect = objenchant < canhitmon && !(uarmg && uarmg->spe >= canhitmon) && (issoviet || rn2(isfriday ? 5 : 3));
 
 	    if (martial_bonus()) {
 		if (is_shade(mdat) || mon->egotype_shader) {
@@ -1466,7 +1466,7 @@ int dieroll;
 		if (obj->oartifact == ART_ALSO_MATTE_MASK) ispoisoned = TRUE;
 		if (obj->otyp == ASBESTOS_JAVELIN) ispoisoned = TRUE;
 
-	    noeffect = objenchant < canhitmon && !ispoisoned && (issoviet || rn2(3) );
+	    noeffect = objenchant < canhitmon && !ispoisoned && (issoviet || rn2(isfriday ? 5 : 3) );
 
 	    strcpy(saved_oname, cxname(obj));
 	    if(obj->oclass == WEAPON_CLASS || is_weptool(obj) ||
@@ -3629,7 +3629,7 @@ struct attack *mattk;
 		(obj->greased || objects[obj->otyp].oc_name_known) ?
 			xname(obj) : cloak_simple_name(obj));
 
-	    if (obj->greased && (!rn2(2) || (flags.friday13 && !rn2(2)))) {
+	    if (obj->greased && (!rn2(2) || (isfriday && !rn2(2)))) {
 		pline_The("grease wears off.");
 		obj->greased -= 1;
 	    }
@@ -3839,10 +3839,10 @@ register struct attack *mattk;
 	if (hit_as_three(&youmonst))  enchantlvl = 3; 
 	if (hit_as_four(&youmonst))   enchantlvl = 4;         
 
-	if (need_one(mdef)   && enchantlvl < 1 && rn2(3)) noeffect = TRUE;
-	if (need_two(mdef)   && enchantlvl < 2 && rn2(3)) noeffect = TRUE;
-	if (need_three(mdef) && enchantlvl < 3 && rn2(3)) noeffect = TRUE;
-	if (need_four(mdef)  && enchantlvl < 4 && rn2(3)) noeffect = TRUE;
+	if (need_one(mdef)   && enchantlvl < 1 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
+	if (need_two(mdef)   && enchantlvl < 2 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
+	if (need_three(mdef) && enchantlvl < 3 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
+	if (need_four(mdef)  && enchantlvl < 4 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
 
 	if (is_demon(youmonst.data) && !rn2(23) && !uwep && !(Race_if(PM_BORG) && !Upolyd)
 		&& u.umonnum != PM_SUCCUBUS && u.umonnum != PM_INCUBUS
@@ -4284,6 +4284,7 @@ register struct attack *mattk;
 		if (!rn2(20)) {
 
 			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
@@ -5160,6 +5161,7 @@ register struct attack *mattk;
 		if (!rn2(20)) {
 
 			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
@@ -7255,6 +7257,7 @@ uchar aatyp;
 		if (!rn2(20)) {
 
 			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {

@@ -1503,6 +1503,11 @@ forget_objects(percent)
 	if (Keen_memory && rn2(20)) return;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
 
+	if (isfriday) {
+		percent *= 2;
+		if (percent > 100) percent = 100;
+	}
+
 	if (percent == 0) return;
 	if (percent <= 0 || percent > 100) {
 	    impossible("forget_objects: bad percent %d", percent);
@@ -1548,7 +1553,7 @@ forget_map(howmuch)
 
 	known = TRUE;
 	for(zx = 0; zx < COLNO; zx++) for(zy = 0; zy < ROWNO; zy++)
-	    if (howmuch & ALL_MAP || rn2(7)) {
+	    if (howmuch & ALL_MAP || isfriday || rn2(7)) {
 		/* Zonk all memory of this location. */
 		levl[zx][zy].seenv = 0;
 		levl[zx][zy].waslit = 0;
@@ -1562,6 +1567,11 @@ maprot()
 {
 	register int zx, zy;
 	register int percentage = rnd(100);
+
+	if (isfriday) {
+		percentage *= 2;
+		if (percentage > 100) percentage = 100;
+	}
 
 	if (Keen_memory && rn2(20)) {
 		percentage /= 10;
@@ -1606,6 +1616,11 @@ forget_levels(percent)
 	int indices[MAXLINFO];
 
 	if (percent == 0) return;
+
+	if (isfriday) {
+		percent *= 2;
+		if (percent > 100) percent = 100;
+	}
 
 	if (Keen_memory && rn2(20)) return;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;

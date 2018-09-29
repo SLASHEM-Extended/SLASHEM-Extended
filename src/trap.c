@@ -3216,6 +3216,7 @@ newegomon:
 				pline("Something comes out of the fountain!");
 
 				int aggroamount = rnd(6);
+				if (isfriday) aggroamount *= 2;
 				u.aggravation = 1;
 				reset_rndmonst(NON_PM);
 				while (aggroamount) {
@@ -4523,7 +4524,7 @@ rerollX:
 				else if (otmpD->oartifact && rn2(20)) pline("Your body shakes violently!");
 				else if (otmpD->greased) {
 					pline("Your body shakes violently!");
-					 if (!rn2(2) || (flags.friday13 && !rn2(2))) {
+					 if (!rn2(2) || (isfriday && !rn2(2))) {
 						pline_The("grease wears off.");
 						otmpD->greased -= 1;
 						update_inventory();
@@ -6726,6 +6727,7 @@ madnesseffect:
 
 		reset_rndmonst(NON_PM);
 		int aggroamount = rnd(6);
+		if (isfriday) aggroamount *= 2;
 
 		while (aggroamount) {
 			makemon((struct permonst *)0, u.ux, u.uy, MM_ANGRY);

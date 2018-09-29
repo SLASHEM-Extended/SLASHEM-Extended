@@ -327,6 +327,8 @@ dig()
 
 	if (Race_if(PM_DWARF) || Role_if(PM_MIDGET) )
 	    bonus *= 2;
+	if (isfriday && bonus > 1) bonus /= 2;
+
 	if (is_lightsaber(uwep))
 	    bonus -= rn2(20); /* Melting a hole takes longer */
 

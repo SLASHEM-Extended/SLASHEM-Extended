@@ -363,7 +363,7 @@ boolean dresistance;	/* level drain resistance can protect you */
 	 * not supposed to stand a chance in this game. --Amy */
 	if (!force && (u.uexp > 320) && !issoviet && u.ulevel > 1) {
 		expdrain = newuexp(u.ulevel) - newuexp(u.ulevel - 1);
-		expdrain /= 5;
+		expdrain /= (isfriday ? 3 : 5);
 		expdrain = rnz(expdrain);
 		if ((u.uexp - expdrain) > newuexp(u.ulevel - 1)) {
 			/* drain some experience, but not enough to make you lose a level */

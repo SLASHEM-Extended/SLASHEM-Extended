@@ -563,7 +563,7 @@ register struct obj *food;
 
 	exercise(A_CON, FALSE);
 
-	if (Breathless || (!Strangled && !rn2(2))) { /* much higher chance to survive --Amy */
+	if (Breathless || (!Strangled && !rn2(isfriday ? 4 : 2))) { /* much higher chance to survive --Amy */
 		/* choking by eating AoS doesn't involve stuffing yourself */
 		/* ALI - nor does other non-food nutrition (eg., life-blood) */
 		if (!food || food->otyp == AMULET_OF_STRANGULATION) {
@@ -1214,6 +1214,10 @@ register struct permonst *ptr;
 {
 
 	if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) return(FALSE);
+
+	/* if additional detrimental ones are added, make sure they don't become less likely on Friday the 13th --Amy */
+	if (isfriday && type == TELEPORT_CONTROL && rn2(5)) return FALSE;
+	if (isfriday && type != TELEPORT && type != TELEPORT_CONTROL && !rn2(3)) return FALSE;
 
 	switch (type) {
 	    case ACID_RES:

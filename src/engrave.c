@@ -1197,6 +1197,8 @@ register xchar x,y,cnt;
 			cnt = /*rn2(1 + 40/(cnt+1)) ? 0 : 1)*/rnd(cnt) ; /* nerf to semi-permanent Elbereths --Amy */
 			if (rn2(5)) cnt /= 2;
 		}
+		if (isfriday && !rn2(3)) cnt *= 2;
+
 		wipeout_text(ep->engr_txt, (int)cnt, 0);
 		while(ep->engr_txt[0] == ' ')
 			ep->engr_txt++;
@@ -1204,7 +1206,7 @@ register xchar x,y,cnt;
 	    }
 	}
 
-      if (ep && ep->engr_type == BURN && sengr_at("Elbereth", x, y) && !rn2(10000) ) {
+      if (ep && ep->engr_type == BURN && sengr_at("Elbereth", x, y) && !rn2(isfriday ? 1000 : 10000) ) {
 
 	/* Burned Elbereth engravings will no longer be truly permanent. --Amy */
 
@@ -1214,7 +1216,7 @@ register xchar x,y,cnt;
 
 	}
 
-      if (sobj_at(SCR_SCARE_MONSTER, x, y) && !rn2(issoviet ? 1000 : 50) ) {
+      if (sobj_at(SCR_SCARE_MONSTER, x, y) && !rn2(isfriday ? 10 : issoviet ? 1000 : 50) ) {
 
 	/* scare monster scrolls might randomly disappear --Amy */
 
@@ -2414,7 +2416,7 @@ doengrave()
 
 	for (sp = ebuf; *sp; sp++) {
 	    if (isspace(*sp)) continue;
-	    if ( (rn2(5) || !Role_if(PM_ARTIST)) && ((type == DUST || type == ENGR_BLOOD) && !(uwep && uwep->oartifact == ART_PINSELFLINSELING) && (ishaxor ? !rn2(40) : !rn2(30) ) ) ||
+	    if ( (rn2(5) || !Role_if(PM_ARTIST)) && ((type == DUST || type == ENGR_BLOOD || isfriday) && !(uwep && uwep->oartifact == ART_PINSELFLINSELING) && (ishaxor ? !rn2(40) : !rn2(30) ) ) || (isfriday && !rn2(30)) ||
 		    (Blind && (ishaxor ? !rn2(35) : !rn2(25)) ) || 
 			(Confusion && (ishaxor ? !rn2(30) : !rn2(20)) ) ||
 			(Burned && (ishaxor ? !rn2(32) : !rn2(22)) ) ||

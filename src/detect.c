@@ -899,7 +899,7 @@ outtrapmap:
 	/* nerf by Amy - only detect 50% of all traps, because trap detection is very powerful if you think about it... */
     u.uinwater = 0;
     for (ttmp = ftrap; ttmp; ttmp = ttmp->ntrap)
-	if (rn2(2) && (ttmp->trapdiff < rnd(150)) && (ttmp->trapdiff < rnd(150)) ) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
+	if (rn2(2) && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) ) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
 
     for (obj = fobj; obj; obj = obj->nobj)
 	if ((obj->otyp==LARGE_BOX || obj->otyp==TREASURE_CHEST || obj->otyp==CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
@@ -970,7 +970,7 @@ outtrapmap:
 	/* nerf by Amy - only detect 50% of all traps, because trap detection is very powerful if you think about it... */
     u.uinwater = 0;
     for (ttmp = ftrap; ttmp; ttmp = ttmp->ntrap)
-	if (!rn2(4) && (ttmp->trapdiff < rnd(150)) && (ttmp->trapdiff < rnd(150)) ) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
+	if (!rn2(4) && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) ) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
 
     for (obj = fobj; obj; obj = obj->nobj)
 	if ((obj->otyp==LARGE_BOX || obj->otyp==CHEST || obj->otyp==TREASURE_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
@@ -1168,6 +1168,9 @@ register int x, y;
     register struct rm *lev;
 
     if (Confusion && rn2(7)) return;
+
+    if (isfriday && !rn2(10)) return;
+
     lev = &levl[x][y];
 
     lev->seenv = SVALL;
@@ -1203,6 +1206,9 @@ register int x, y;
     register struct rm *lev;
 
     if (rn2(7)) return;
+
+    if (isfriday && !rn2(10)) return;
+
     lev = &levl[x][y];
 
     lev->seenv = SVALL;
@@ -1393,7 +1399,7 @@ void * num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if ((ttmp = t_at(zx, zy)) != 0) {
-		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP) {
+		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP) {
 			ttmp->tseen = 1;
 			newsym(zx,zy);
 			(*(int*)num)++;
@@ -1445,7 +1451,7 @@ void * num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if (!rn2(3) && (ttmp = t_at(zx, zy)) != 0) {
-		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP) {
+		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP) {
 			ttmp->tseen = 1;
 			newsym(zx,zy);
 			(*(int*)num)++;
@@ -1512,7 +1518,7 @@ void * num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if ((ttmp = t_at(zx, zy)) != 0) {
-		if (!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP) {
+		if (!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP) {
 		    ttmp->tseen = 1;
 		    newsym(zx,zy);
 		    (*(int*)num)++;
@@ -1740,7 +1746,7 @@ register int aflag;
 			}
 
 			/* finding traps is much too hard. Let's increase the chance. --Amy */
-			if ((trap = t_at(x,y)) && !trap->tseen && !trap->hiddentrap && (trap->trapdiff < rn2(100 + trapdiffbonus) ) && (trap->trapdiff < rn2(100 + trapdiffbonus + trapdiffbonus) ) && (!rnl(8-fund) || !rn2(fundxtrachange) || (!rn2(fundxtrachange) && !rn2(2)) ) ) {
+			if ((trap = t_at(x,y)) && !trap->tseen && !trap->hiddentrap && (trap->trapdiff < rn2(100 + trapdiffbonus) ) && (!isfriday || (trap->trapdiff < rn2(100 + trapdiffbonus)) ) && (trap->trapdiff < rn2(100 + trapdiffbonus + trapdiffbonus) ) && (!rnl(8-fund) || !rn2(fundxtrachange) || (!rn2(fundxtrachange) && !rn2(2)) ) ) {
 			    nomul(0, 0, FALSE);
 
 			    if (trap->ttyp == STATUE_TRAP) {
@@ -1774,9 +1780,9 @@ sokoban_detect()
 	register struct trap *ttmp;
 	register struct obj *obj;
 
-	randa = rn2(20);
-	randb = rn2(10);
-	randc = rn2(10);
+	randa = rn2(isfriday ? 8 : 20);
+	randb = rn2(isfriday ? 4 : 10);
+	randc = rn2(isfriday ? 4 : 10);
 
 	/* Map the background and boulders */
 	for (x = 1; x < COLNO; x++)

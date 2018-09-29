@@ -2837,7 +2837,7 @@ register struct obj *otmp;
 #endif
 	otmp->blessed = 0;
 
-	if (!rn2(100)) otmp->stckcurse = 1;
+	if (!rn2(isfriday ? 50 : 100)) otmp->stckcurse = 1;
 
 	if (u.stickycursechance && (u.stickycursechance >= rnd(100)) ) otmp->stckcurse = 1;
 
@@ -2851,9 +2851,9 @@ register struct obj *otmp;
 		}
 	} else {
 		otmp->cursed = 1;
-		if (!otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(35)) otmp->hvycurse = 1;
-		if (otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(225)) otmp->prmcurse = 1;
-		if (otmp->prmcurse && !rn2(6255)) {
+		if (!otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(isfriday ? 20 : 35)) otmp->hvycurse = 1;
+		if (otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(isfriday ? 100 : 225)) otmp->prmcurse = 1;
+		if (otmp->prmcurse && !rn2(isfriday ? 1000 : 6255)) {
 			if (!rn2(3)) otmp->morgcurse = 1;
 			else if (!rn2(2)) otmp->evilcurse = 1;
 			else otmp->bbrcurse = 1;
@@ -2892,7 +2892,7 @@ register struct obj *otmp;
 #endif
 	otmp->blessed = 0;
 
-	if (!rn2(100)) otmp->stckcurse = 1;
+	if (!rn2(isfriday ? 50 : 100)) otmp->stckcurse = 1;
 
 	if (u.stickycursechance && (u.stickycursechance >= rnd(100)) ) otmp->stckcurse = 1;
 
@@ -2909,12 +2909,12 @@ register struct obj *otmp;
 
 		if (u.heavycursechance && (u.heavycursechance >= rnd(100)) ) otmp->hvycurse = 1;
 
-		if (!otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : 25)) otmp->hvycurse = 1;
+		if (!otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : isfriday ? 15 : 25)) otmp->hvycurse = 1;
 
 		if (otmp->hvycurse && u.primecursechance && (u.primecursechance >= rnd(100)) ) otmp->prmcurse = 1;
 
-		if (otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(125)) otmp->prmcurse = 1;
-		if (otmp->prmcurse && !rn2(1255)) {
+		if (otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(isfriday ? 50 : 125)) otmp->prmcurse = 1;
+		if (otmp->prmcurse && !rn2(isfriday ? 500 : 1255)) {
 			if (!rn2(3)) otmp->morgcurse = 1;
 			else if (!rn2(2)) otmp->evilcurse = 1;
 			else otmp->bbrcurse = 1;
@@ -2977,7 +2977,7 @@ register int chance;
 	if(otmp->blessed || otmp->cursed) return;
 
 	if(!rn2(chance)) {
-	    if(!rn2(3)) {
+	    if(!rn2(isfriday ? 2 : 3)) {
 		curse(otmp);
 	    } else {
 		bless(otmp);
@@ -2995,7 +2995,7 @@ register int chance;
 	if(otmp->blessed || otmp->cursed) return;
 
 	if(!rn2(chance)) {
-	    if(!rn2(3)) {
+	    if(!rn2(isfriday ? 2 : 3)) {
 		curse_on_creation(otmp);
 	    } else {
 		bless(otmp);

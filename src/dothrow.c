@@ -366,6 +366,8 @@ int thrown;
 
 	if ((multishot > 3) && !fullmultishot && !(launcher && launcher->oartifact == ART_STREAMSHOOTER) && !(objects[obj->otyp].oc_skill == -P_FIREARM) && !(objects[obj->otyp].oc_skill == P_FIREARM) ) multishot = 2 + rno(multishot - 2);
 
+	if (multishot > 1 && isfriday && !rn2(3)) multishot = rnd(multishot);
+
 	m_shot.s = ammo_and_launcher(obj,uwep) ? TRUE : FALSE;
 	/* give a message if shooting more than one, or if player
 	   attempted to specify a count */
@@ -2534,11 +2536,11 @@ register struct obj *obj;
 		if(is_gem) {
 			if(is_buddy) {
 				strcat(buf,addluck);
-				if (!rn2(issoviet ? 2 : 3)) change_luck(issoviet ? 4 : rnd(4) );
+				if (!rn2(isfriday ? 10 : issoviet ? 2 : 3)) change_luck(issoviet ? 4 : rnd(4) );
 				if (issoviet) pline("Vy, bezuslovno, povezlo, potomu chto eta igra yavlyayetsya nesbalansirovannym, kak chert!");
 			} else {
 				strcat(buf,maybeluck);
-				if (!rn2(issoviet ? 3 : 5)) change_luck(issoviet ? 2 : rnd(2) );
+				if (!rn2(isfriday ? 10 : issoviet ? 3 : 5)) change_luck(issoviet ? 2 : rnd(2) );
 				if (issoviet) pline("Kto-to reshil, chto vy dolzhny poluchit' tonny udachi besplatno!");
 			}
 		} else {
@@ -2550,11 +2552,11 @@ register struct obj *obj;
 		if(is_gem) {
 			if(is_buddy) {
 				strcat(buf,addluck);
-				if (!rn2(issoviet ? 2 : 3)) change_luck(issoviet ? 2 : rnd(2) );
+				if (!rn2(isfriday ? 10 : issoviet ? 2 : 3)) change_luck(issoviet ? 2 : rnd(2) );
 				if (issoviet) pline("Vy, bezuslovno, povezlo, potomu chto eta igra yavlyayetsya nesbalansirovannym, kak chert!");
 			} else {
 				strcat(buf,maybeluck);
-				if (!rn2(issoviet ? 3 : 5)) change_luck(issoviet ? 2 : rnd(2) );
+				if (!rn2(isfriday ? 10 : issoviet ? 3 : 5)) change_luck(issoviet ? 2 : rnd(2) );
 				if (issoviet) pline("Kto-to reshil, chto vy dolzhny poluchit' tonny udachi besplatno!");
 			}
 		} else {
@@ -2566,10 +2568,10 @@ register struct obj *obj;
 		if(is_gem) {
 			if(is_buddy) {
 				strcat(buf,addluck);
-				if (!rn2(issoviet ? 2 : 3)) change_luck(1);
+				if (!rn2(isfriday ? 10 : issoviet ? 2 : 3)) change_luck(1);
 			} else {
 				strcat(buf,maybeluck);
-				if (!rn2(issoviet ? 3 : 5)) change_luck(1);
+				if (!rn2(isfriday ? 10 : issoviet ? 3 : 5)) change_luck(1);
 			}
 		} else {
 			strcat(buf,noluck);

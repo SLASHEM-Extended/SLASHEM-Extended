@@ -218,7 +218,7 @@ drinkfountain()
 		pline("The water is very nutritious!");
 	}
 
-	if (mgkftn && u.uluck >= 0 && fate >= 10) {
+	if (mgkftn && u.uluck >= 0 && (!isfriday || !rn2(2)) && fate >= 10) {
 		int i, ii, littleluck = (u.uluck < 4);
 
 		pline("Wow!  This makes you feel great!");
@@ -267,6 +267,7 @@ drinkfountain()
 			pline("Something comes out of the fountain!");
 
 			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
@@ -294,7 +295,7 @@ drinkfountain()
 
 		case 17: /* evil patch idea by Amy - give that fountain quaffer fool a long-lasting nasty trap effect */
 			pline("This tepid water is tasteless.");
-			if (!rn2(20)) {
+			if (!rn2(isfriday ? 10 : 20)) {
 
 				nastytrapdur = (Role_if(PM_GRADUATE) ? 36 : Role_if(PM_GEEK) ? 72 : 144);
 				if (!nastytrapdur) nastytrapdur = 144; /* fail safe */
@@ -421,7 +422,7 @@ drinkfountain()
 			/* evil patch idea by jonadab:
 			   fountains have a small percentage chance of killing you outright, flavored as drowning */
 
-			if (!Amphibious && !Swimming && !Breathless && !rn2(20) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) ) {
+			if (!Amphibious && !Swimming && !Breathless && !rn2(isfriday ? 10 : 20) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "fin boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plavnik sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kanatcik chizilmasin") ) ) ) {
 
 				u.youaredead = 1;
 
@@ -438,7 +439,7 @@ drinkfountain()
 
 			/* evil patch idea by jonadab: 
 			   Drinking from a fountain can cause the fountain to overflow, turning the tile into a pool. */
-			if (!rn2(10)) {
+			if (!rn2(isfriday ? 5 : 10)) {
 				levl[u.ux][u.uy].typ = POOL;
 				if (!Wwalking && !Flying && !Levitation) drown();
 			}
@@ -494,7 +495,7 @@ register struct obj *obj;
 
 	if (obj->otyp == LONG_SWORD && obj->quan == 1L
 		/* it's supposed to be rare to get the thing if you're not a knight --Amy */
-	    && u.ulevel > 4 && !rn2(Role_if(PM_KNIGHT) ? 8 : 50) && !obj->oartifact
+	    && u.ulevel > 4 && (!isfriday || !rn2(3)) && !rn2(Role_if(PM_KNIGHT) ? 8 : 50) && !obj->oartifact
 	    && !exist_artifact(LONG_SWORD, artiname(ART_EXCALIBUR))) {
 
 		if (u.ualign.type != A_LAWFUL) {
@@ -550,6 +551,7 @@ register struct obj *obj;
 			pline("Something comes out of the fountain!");
 
 			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {

@@ -176,7 +176,7 @@ use_towel(obj)
 			You("wipe off your %s.", makeplural(body_part(HAND)));
 		} else You("wipe off your %s, but there's still gunk on it.", makeplural(body_part(HAND)));
 
-		if (!rn2(100) && obj) {
+		if (!rn2(isfriday ? 50 : 100) && obj) {
 			if (obj->blessed)
 				unbless(obj);
 			else
@@ -201,7 +201,7 @@ use_towel(obj)
 			}
 		} else Your("%s still has glop on it.", body_part(FACE));
 
-		if (!rn2(100) && obj) {
+		if (!rn2(isfriday ? 50 : 100) && obj) {
 			if (obj->blessed)
 				unbless(obj);
 			else
@@ -296,6 +296,13 @@ use_stethoscope(obj)
 				!rn2(Role_if(PM_HEALER) ? 10 : Race_if(PM_HERBALIST) ? 10 : 3));
 
 	if (!rn2((obj->oartifact == ART_FISSILITY) ? 10 : 100)) {
+	    useup(obj);
+	    pline("Your stethoscope breaks!");
+		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+		}
+
+	if (isfriday && !rn2((obj->oartifact == ART_FISSILITY) ? 10 : 100)) {
 	    useup(obj);
 	    pline("Your stethoscope breaks!");
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -399,6 +406,11 @@ use_stethoscope(obj)
 		wake_nearby();
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
+		}
+
+		if (evilfriday && dmgtype(mtmp->data, AD_RUST)) {
+			erode_obj(obj, FALSE, FALSE);
+			return 0;
 		}
 
 		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
@@ -2315,6 +2327,8 @@ fixthings:
 		}
 	}
 
+	if (isfriday && chance > 1) chance /= 2;
+
 	if (chance > 18) chance = 18;
 	if (issoviet && chance > 9) chance = 9;
 
@@ -3590,7 +3604,7 @@ use_pole (obj)
 	/* The effect didn't apply.  Attack the monster there. */
 	if (mtmp) {
 
-	    if ((!rn2(1000) && !obj->oartifact) || (!rn2(250) && obj->otyp == WOODEN_BAR) || (!rn2(10000) && obj->oartifact)) {
+	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
 		if (obj->spe < 1) {
 			uwepgone();              /* set unweapon */
 			pline(Hallucination ? "You lost your stick!" : "Your weapon shatters into pieces!");
@@ -3604,7 +3618,7 @@ use_pole (obj)
 		}
 	    }
 
-	    if ((!rn2(1000) && !obj->oartifact) || (!rn2(250) && obj->otyp == WOODEN_BAR) || (!rn2(10000) && obj->oartifact)) {
+	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
 
 		if (obj->oeroded >= 3 || obj->oeroded2 >= 3) {
 			uwepgone();              /* set unweapon */
@@ -3618,16 +3632,16 @@ use_pole (obj)
 
 	    }
 
-	    if ((!rn2(100) || (!rn2(25) && obj->otyp == WOODEN_BAR)) && !mtmp->mpeaceful && !mtmp->mtame && !mtmp->mfrenzied && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
+	    if ((!rn2(isfriday ? 50 : 100) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR)) && !mtmp->mpeaceful && !mtmp->mtame && !mtmp->mfrenzied && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
 		mtmp->mfrenzied = 1;
 		pline("%s is frenzied!", Monnam(mtmp));
 	    }
 
-	    if ((!rn2(100) || (!rn2(25) && obj->otyp == WOODEN_BAR)) && !mtmp->mpeaceful && !mtmp->mtame && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
+	    if ((!rn2(isfriday ? 50 : 100) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR)) && !mtmp->mpeaceful && !mtmp->mtame && !(amorphous(mtmp->data) || notake(mtmp->data) || nolimbs(mtmp->data) ) ) {
 		mon_adjust_speed(mtmp, 1, (struct obj *)0);
 	    }
 
-	    if ((!rn2(200) || (!rn2(25) && obj->otyp == WOODEN_BAR)) && attacktype(mtmp->data, AT_WEAP)) {
+	    if ((!rn2(isfriday ? 100 : 200) || (!rn2(isfriday ? 12 : 25) && obj->otyp == WOODEN_BAR)) && attacktype(mtmp->data, AT_WEAP)) {
 		pline("%s laughs fiendishly, and snatches your weapon!", Monnam(mtmp));
 		setnotworn(obj);
 		freeinv(obj);
@@ -3635,8 +3649,9 @@ use_pole (obj)
 		return (1);
 	    }
 
-	    if ((!rn2(250) || (!rn2(10) && mtmp->data == &mons[PM_GREUVENENE] ) || (!rn2(50) && obj->otyp == WOODEN_BAR)) && humanoid(mtmp->data) && (avoid_player(mtmp->data) || mtmp->egotype_avoider) ) {
+	    if ((!rn2(isfriday ? 125 : 250) || (!rn2(10) && mtmp->data == &mons[PM_GREUVENENE] ) || (!rn2(isfriday ? 25 : 50) && obj->otyp == WOODEN_BAR)) && humanoid(mtmp->data) && (avoid_player(mtmp->data) || mtmp->egotype_avoider) ) {
 			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			u.heavyaggravation = 1;
 			reset_rndmonst(NON_PM);
@@ -4601,10 +4616,18 @@ doapply()
 		res = use_saddle(obj);
 		break;
 	case MAGIC_WHISTLE:
+
+		if (evilfriday && !rn2(100) && obj->cursed) {
+			useup(obj);
+			noartispeak = TRUE;
+			pline("Your whistle breaks apart.");
+			break; /* obj no longer exists now */
+		}
+
 		use_magic_whistle(obj);
 		/* Amy edit: because of our design philosophy that says nothing's supposed to be permanent, give a small chance
 		 * of whistles degrading on use. They will never be vaporized, but eventually they'll become cursed. */
-		if (!rn2(50)) {
+		if (!rn2(isfriday ? 20 : 50)) {
 
 			int cursingchance = 10;
 
@@ -4629,8 +4652,16 @@ doapply()
 		}
 		break;
 	case DARK_MAGIC_WHISTLE:
+
+		if (evilfriday && !rn2(100) && obj->cursed) {
+			useup(obj);
+			noartispeak = TRUE;
+			pline("Your whistle breaks apart.");
+			break; /* obj no longer exists now */
+		}
+
 		use_dark_magic_whistle(obj);
-		if (!rn2(50)) {
+		if (!rn2(isfriday ? 20 : 50)) {
 
 			int cursingchance = 10;
 
@@ -4662,8 +4693,16 @@ doapply()
 		break;
 	case TIN_WHISTLE:
 	case GRASS_WHISTLE:
+
+		if (evilfriday && !rn2(100) && obj->cursed) {
+			useup(obj);
+			noartispeak = TRUE;
+			pline("Your whistle breaks apart.");
+			break; /* obj no longer exists now */
+		}
+
 		use_whistle(obj);
-		if (!rn2(50)) {
+		if (!rn2(isfriday ? 20 : 50)) {
 			int cursingchance = 10;
 
 			if (!(PlayerCannotUseSkills)) {
@@ -4693,7 +4732,7 @@ doapply()
 		if (obj->blessed) {
 		    use_magic_whistle(obj);
 		    /* sometimes the blessing will be worn off */
-		    if (!rn2(49)) {
+		    if (!rn2(isfriday ? 15 : 49)) {
 			if (!Blind) {
 			    char buf[BUFSZ];
 

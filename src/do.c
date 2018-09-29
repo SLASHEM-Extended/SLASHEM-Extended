@@ -325,6 +325,11 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 		pline_The("altar suddenly vanishes!"); /* Yes, we're preventing altar abuse here, or trying to, at least. --Amy */
 		newsym(u.ux,u.uy);
 		return;
+	} else if (!rn2(findpriest(temple_occupied(u.urooms)) ? 500 : 100) && isfriday && !obj->bknown && !(obj && obj->otyp == POT_WATER) && !issoviet && (!Is_astralevel(&u.uz)) ) {
+		levl[u.ux][u.uy].typ = ROOM;
+		pline_The("altar suddenly vanishes!"); /* Yes, we're preventing altar abuse here, or trying to, at least. --Amy */
+		newsym(u.ux,u.uy);
+		return;
 	} else if (!rn2(10) && (!Is_astralevel(&u.uz)) && (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone() ) ) {
 		levl[u.ux][u.uy].typ = ROOM;
 		pline_The("altar suddenly vanishes!");
@@ -344,7 +349,7 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 
 	/* evil patch idea by aosdict: Moloch's altars can occasionally curse the item. */
 	
-	if (!obj->cursed && !rn2(500) && !obj->bknown && levl[u.ux][u.uy].altarmask == AM_NONE) curse(obj);
+	if (!obj->cursed && !rn2(isfriday ? 100 : 500) && !obj->bknown && levl[u.ux][u.uy].altarmask == AM_NONE) curse(obj);
 	if (!rn2(5) && !obj->bknown && (u.uprops[DESECRATION].extrinsic || Desecration || have_nonsacredstone()) ) curse(obj);
 
 	if ((obj->blessed || obj->cursed) && obj->oclass != COIN_CLASS) {
@@ -386,6 +391,9 @@ register struct obj *obj;
 
 	You("drop %s down the drain.", doname(obj));
 	obj->in_use = TRUE;	/* block free identification via interrupt */
+
+	if (isfriday && !rn2(10)) goto fridaydone;
+
 	switch(obj->otyp) {	/* effects that can be noticed without eyes */
 	    case RIN_SEARCHING:
 		You("thought your %s got lost in the sink, but there it is!",
@@ -677,6 +685,8 @@ giveback:
 		    break;
 	    }
 	}
+fridaydone:
+
 	if(ideed)
 	    trycall(obj);
 	else
@@ -708,6 +718,8 @@ register struct obj *obj;
 
 	You("drop %s down the drain.", doname(obj));
 	obj->in_use = TRUE;	/* block free identification via interrupt */
+
+	if (isfriday && !rn2(10)) goto fridaydone2;
 
 	/* I allow you to "observe" this even if you're blind --Amy */
 	switch(obj->otyp) {
@@ -948,6 +960,8 @@ register struct obj *obj;
 		break;
 	}
 
+fridaydone2:
+
 	trycall(obj);
 
 	if (!obj->oerodeproof && is_rustprone(obj) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)) && obj->oeroded == MAX_ERODE) {
@@ -964,6 +978,7 @@ register struct obj *obj;
 	} else {
 		useup(obj);
 		int aggroamount = rnd(6);
+		if (isfriday) aggroamount *= 2;
 		u.aggravation = 1;
 		reset_rndmonst(NON_PM);
 		while (aggroamount) {
@@ -4322,7 +4337,7 @@ const char *pre_msg, *post_msg;
 	if (post_msg)
 	    dfr_post_msg = strcpy((char *)alloc(strlen(post_msg)+1), post_msg);
 
-	if (portal_flag && !program_state.gameover && (!rn2(50) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone()) ) portaldeferring = TRUE; 
+	if (portal_flag && !program_state.gameover && (!rn2(isfriday ? 20 : 50) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone()) ) portaldeferring = TRUE; 
 
 }
 

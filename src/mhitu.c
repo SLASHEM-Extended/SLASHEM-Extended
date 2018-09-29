@@ -4812,7 +4812,7 @@ struct attack *mattk;
 		  (obj->greased || objects[obj->otyp].oc_name_known) ?
 			xname(obj) : cloak_simple_name(obj));
 
-	    if (obj->greased && (!rn2(2) || (flags.friday13 && !rn2(2)))) {
+	    if (obj->greased && (!rn2(2) || (isfriday && !rn2(2)))) {
 		pline_The("grease wears off.");
 		obj->greased -= 1;
 		update_inventory();
@@ -6946,6 +6946,7 @@ dopois:
 		if (!rn2(20)) {
 
 			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
@@ -9244,6 +9245,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if (!rn2(20)) {
 
 				int aggroamount = rnd(6);
+				if (isfriday) aggroamount *= 2;
 				u.aggravation = 1;
 				reset_rndmonst(NON_PM);
 				while (aggroamount) {
@@ -11602,6 +11604,7 @@ common:
 
 			int aggroamount = rnd(6);
 			if (!rn2(2)) aggroamount += rnd(25);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
@@ -16103,6 +16106,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!rn2(20)) {
 
 				int aggroamount = rnd(6);
+				if (isfriday) aggroamount *= 2;
 				u.aggravation = 1;
 				reset_rndmonst(NON_PM);
 				while (aggroamount) {
@@ -17146,6 +17150,8 @@ register int n;
 	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone()) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
+
+	if (isfriday && !rn2(50)) n += rnd(n);
 
 	if (Invulnerable || (Stoned_chiller && Stoned)) n=0;
 	if (n == 0) {
@@ -18658,6 +18664,7 @@ register struct attack *mattk;
 		if (!rn2(20)) {
 
 			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {

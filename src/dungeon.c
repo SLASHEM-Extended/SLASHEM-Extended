@@ -1207,7 +1207,7 @@ boolean	at_stairs;
 		/* Taking a down dungeon branch. */
 		goto_level(&sstairs.tolev, at_stairs, FALSE, FALSE);
 
-		if (!rn2(5)) u.stairscumslowing += rn1(5,5);
+		if (!rn2(isfriday ? 3 : 5)) u.stairscumslowing += rn1(5,5);
 
 		if ((!rn2(ishaxor ? 250 : 500)) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone() ) {
 
@@ -1247,7 +1247,7 @@ boolean	at_stairs;
 		newlevel.dlevel = u.uz.dlevel + 1;
 		goto_level(&newlevel, at_stairs, !at_stairs, FALSE);
 
-		if (!rn2(5)) u.stairscumslowing += rn1(5,5);
+		if (!rn2(isfriday ? 3 : 5)) u.stairscumslowing += rn1(5,5);
 
 		if (at_stairs && (!rn2(ishaxor ? 250 : 500) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone() ) ) {
 
@@ -1295,7 +1295,7 @@ boolean	at_stairs;
 
 			goto_level(&sstairs.tolev, at_stairs, FALSE, FALSE);
 
-			if (!rn2(5)) u.stairscumslowing += rn1(5,5);
+			if (!rn2(isfriday ? 3 : 5)) u.stairscumslowing += rn1(5,5);
 
 			if ((!rn2(ishaxor ? 50 : 100)) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone() ) {
 
@@ -1335,7 +1335,7 @@ boolean	at_stairs;
 		newlevel.dlevel = u.uz.dlevel - 1;
 		goto_level(&newlevel, at_stairs, FALSE, FALSE);
 
-		if (!rn2(5)) u.stairscumslowing += rn1(5,5);
+		if (!rn2(isfriday ? 3 : 5)) u.stairscumslowing += rn1(5,5);
 
 		if (at_stairs && (!rn2(ishaxor ? 50 : 100) || StairsProblem || u.uprops[STAIRSTRAP].extrinsic || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_stairstrapstone() ) ) {
 

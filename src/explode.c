@@ -608,6 +608,8 @@ boolean yours; /* is it your fault (for killing monsters) */
 		if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) damu *= rnd(4);
 		if (RngeFrailness) damu = damu * 2;
 
+		if (isfriday && !rn2(50)) damu += rnd(damu);
+
 		if (Invulnerable || (Stoned_chiller && Stoned)) {
 		    damu = 0;
 		    You("are unharmed!");

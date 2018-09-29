@@ -574,7 +574,7 @@ register xchar x, y;
 		objenchant = uarmf->spe;
 	else objenchant = 0;
 
-	if (objenchant < canhitmon && !Upolyd && (issoviet || !rn2(3) ) ) {
+	if (objenchant < canhitmon && !Upolyd && (issoviet || !rn2(isfriday ? 2 : 3) ) ) {
 		if (!issoviet) Your("attack doesn't seem to harm %s.",
 			mon_nam(mon));
 		else pline("Etot monstr ne mozhet byt' povrezhden, potomu chto Sovetskiy khochet nesmotrya vas.");
@@ -612,8 +612,8 @@ register xchar x, y;
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) i += 6000;
 
 	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) ) {
-		if(!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) {
-			if(martial() && !rn2(2)) goto doit;
+		if((!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) || (isfriday && !rn2(5))) {
+			if(martial() && !rn2(isfriday ? 10 : 2)) goto doit;
 			Your("clumsy kick does no damage.");
 			(void) passive(mon, FALSE, 1, AT_KICK);
 			return;
@@ -634,6 +634,8 @@ register xchar x, y;
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "calf-leather sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii iz telyach'yey kozhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzoq-charm kavushlari") )) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) clumsy = FALSE;
+
+	if (isfriday && !rn2(10)) clumsy = TRUE;
 
 doit:
 	You("kick %s.", mon_nam(mon));
@@ -1404,7 +1406,8 @@ dokick()
 				return(1);
 		    } else if (rn2(15) && !(maploc->looted & TREE_LOOTED) ) {
 
-			if (!issoviet && rn2(3)) { /* nerf by Amy, it was way too easy to accumulate tons of fruits. */
+			if ((!issoviet && rn2(3)) || (isfriday && !rn2(2)) ) {
+				/* nerf by Amy, it was way too easy to accumulate tons of fruits. */
 				pline("The tree's branches are swinging, but apparently it doesn't bear any fruits.");
 				maploc->looted |= TREE_LOOTED;
 				return(1);

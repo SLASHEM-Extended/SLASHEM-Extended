@@ -141,6 +141,7 @@ struct flag {
 	boolean gmmode;
 	boolean supergmmode;
 	boolean wonderland;
+	boolean elmstreet;
 
 #define NEW_MOON	0
 #define FULL_MOON	4

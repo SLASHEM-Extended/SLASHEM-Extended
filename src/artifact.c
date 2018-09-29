@@ -2558,6 +2558,7 @@ doinvoke()
 				case 8:
 					{
 					int aggroamount = rnd(6);
+					if (isfriday) aggroamount *= 2;
 					u.aggravation = 1;
 					reset_rndmonst(NON_PM);
 					while (aggroamount) {

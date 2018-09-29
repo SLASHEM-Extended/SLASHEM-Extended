@@ -315,6 +315,7 @@ static struct Bool_Opt
 	{"gehenna", &flags.gehenna, FALSE, DISP_IN_GAME}, 
 	{"hippie", &flags.hippie, FALSE, DISP_IN_GAME}, 
 	{"iwbtg", &flags.iwbtg, FALSE, DISP_IN_GAME}, 
+	{"elmstreet", &flags.elmstreet, FALSE, DISP_IN_GAME}, 
 	{"lostsoul", &flags.lostsoul, FALSE, DISP_IN_GAME}, 
 	{"uberlostsoul", &flags.uberlostsoul, FALSE, DISP_IN_GAME}, 
 	{"gmmode", &flags.gmmode, FALSE, DISP_IN_GAME}, 

@@ -950,6 +950,8 @@ rndcurse()			/* curse a few inventory items at random! */
 		}
 	}
 
+	if (isfriday) verymanyitems *= 2;
+
 	if (nobj) {
 	    for (cnt = rnd(verymanyitems/((!!Antimagic) + (!!Half_spell_damage) + 1));
 		 cnt > 0; cnt--)  {

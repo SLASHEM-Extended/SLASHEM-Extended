@@ -20175,6 +20175,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Sandra'. It reads: 'Well, okay, you can hurt me if you must, but please don't damage my boots!'",
 	"Incoming message for Player 1. The message is from 'Sandra'. It reads: 'My combat boots are very sad because they didn't manage to scratch up and down your legs yet.'",
 	"Incoming message for Player 1. The message is from 'Sandra'. It reads: 'I'd so like to cause bloody wounds to you...'",
+	"Your whistle breaks apart.",
 
 };
 

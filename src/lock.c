@@ -111,6 +111,7 @@ picklock()	/* try to open/close a lock */
 	}
 
 	if(rn2(100) >= xlock.chance) return(1);		/* still busy */
+	if(isfriday && (rn2(100) >= xlock.chance)) return(1);		/* still busy */
 
 	You("succeed in %s.", lock_action());
 	if (xlock.door) {
@@ -152,10 +153,10 @@ forcelock()	/* try to force a locked chest */
 
 	if(xlock.picktyp == 1) {     /* blade */
 
-	    if(rn2(1000-(int)uwep->spe) > (992-greatest_erosionX(uwep)*10) &&
+	    if(rn2(1000 - (int)uwep->spe) > ((isfriday ? 980 : 992) - (greatest_erosionX(uwep) * 10)) &&
 	       !uwep->cursed && !obj_resists(uwep, 0, 99)) {
 		/* for a +0 weapon, probability that it survives an unsuccessful
-		 * attempt to force the lock is (.992)^50 = .67
+		 * attempt to force the lock is (.992)^50 = .67 or on a friday the 13th (.980)^50 = .36
 		 */
 		pline("%sour %s broke!",
 		      (uwep->quan > 1L) ? "One of y" : "Y", xname(uwep));
@@ -168,6 +169,7 @@ forcelock()	/* try to force a locked chest */
 	    wake_nearby();	/* due to hammering on the container */
 
 	if(rn2(100) >= xlock.chance) return(1);		/* still busy */
+	if(isfriday && (rn2(100) >= xlock.chance)) return(1);		/* still busy */
 
 	You("succeed in forcing the lock.");
 
@@ -177,7 +179,7 @@ forcelock()	/* try to force a locked chest */
 
 	xlock.box->olocked = 0;
 	xlock.box->obroken = 1;
-	if((xlock.picktyp == 0 && !rn2(3)) || (xlock.picktyp == 2 && !rn2(5))) {
+	if((xlock.picktyp == 0 && !rn2(isfriday ? 2 : 3)) || (xlock.picktyp == 2 && !rn2(isfriday ? 3 : 5))) {
 	    struct monst *shkp;
 	    boolean costly;
 	    long loss = 0L;
@@ -197,7 +199,7 @@ forcelock()	/* try to force a locked chest */
 		 * avoid the possibility.
 		 */
 		if (!evades_destruction(otmp) && !Has_contents(otmp) &&
-		  (!rn2(3) || otmp->oclass == POTION_CLASS)) {
+		  (!rn2(isfriday ? 2 : 3) || otmp->oclass == POTION_CLASS)) {
 		    chest_shatter_msg(otmp);
 		    if (costly)
 		        loss += stolen_value(otmp, u.ux, u.uy,
@@ -256,6 +258,7 @@ forcedoor()      /* try to break/pry open a door */
 	}
 
 	if(rn2(100) > xlock.chance) return(1);          /* still busy */
+	if(isfriday && (rn2(100) > xlock.chance)) return(1);          /* still busy */
 
 	You("succeed in %s the door.",
 	    	(xlock.picktyp == 2 ? "melting" : xlock.picktyp == 1 ? 
@@ -430,7 +433,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    }
 		    switch(picktyp) {
 			case CREDIT_CARD:
-			    if(!rn2(20) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+			    if(!rn2(isfriday ? 10 : 20) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("credit card breaks in half!");
 				useup(pick);
 				*pickp = (struct obj *)0;
@@ -439,7 +442,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    ch = ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH);
 			    break;
 			case DATA_CHIP:
-			    if(!rn2(20) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+			    if(!rn2(isfriday ? 10 : 20) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("data chip breaks in half!");
 				useup(pick);
 				*pickp = (struct obj *)0;
@@ -449,7 +452,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    break;
 			case LOCK_PICK:
 			case HAIRCLIP:
-			    if(!rn2(Role_if(PM_LOCKSMITH) ? 60: Role_if(PM_ROGUE) ? 40 : 30) &&
+			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60: Role_if(PM_ROGUE) ? 40 : 30) &&
 			    		(!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your pick!");
 				useup(pick);
@@ -460,7 +463,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    break;
 			case SKELETON_KEY:
 			case SECRET_KEY:
-			    if(!rn2(15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+			    if(!rn2(isfriday ? 7 : 15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key didn't quite fit the lock and snapped!");
 				useup(pick);
 				*pickp = (struct obj *)0;
@@ -541,7 +544,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 
 		    switch(picktyp) {
 			case CREDIT_CARD:
-			    if(!rn2(Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_TOURIST) ? 30 : 20) &&
+			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_TOURIST) ? 30 : 20) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your card off in the door!");
 				useup(pick);
@@ -551,7 +554,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    ch = 2*ACURR(A_DEX) + 20*Role_if(PM_ROGUE) + 40*Role_if(PM_LOCKSMITH);
 			    break;
 			case DATA_CHIP:
-			    if(!rn2(Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_TOURIST) ? 30 : 20) &&
+			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_TOURIST) ? 30 : 20) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your chip off in the door!");
 				useup(pick);
@@ -562,7 +565,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    break;
 			case LOCK_PICK:
 			case HAIRCLIP:
-			    if(!rn2(Role_if(PM_LOCKSMITH) ? 60 : Role_if(PM_ROGUE) ? 40 : 30) &&
+			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60 : Role_if(PM_ROGUE) ? 40 : 30) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your pick!");
 				useup(pick);
@@ -573,7 +576,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    break;
 			case SKELETON_KEY:
 			case SECRET_KEY:
-			    if(!rn2(Role_if(PM_LOCKSMITH) ? 40 : 15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : 15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key wasn't designed for this door and broke!");
 				useup(pick);
 				*pickp = (struct obj *)0;

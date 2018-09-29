@@ -873,7 +873,7 @@ int spellnum;
 		else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your body shakes violently!");
 		else if (otmp2 && otmp2->greased) {
 			pline("Your body shakes violently!");
-			 if (!rn2(2) || (flags.friday13 && !rn2(2))) {
+			 if (!rn2(2) || (isfriday && !rn2(2))) {
 				pline_The("grease wears off.");
 				otmp2->greased -= 1;
 				update_inventory();

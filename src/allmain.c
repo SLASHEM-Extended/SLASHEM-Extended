@@ -974,7 +974,7 @@ moveloop()
 			if (uarmf && uarmf->otyp == ZIPPER_BOOTS && !EWounded_legs) EWounded_legs = 1;
 
 			/* small chance of scaring yourself if you stand on Elbereth, even if you engraved it --Amy */
-			if (sengr_at("Elbereth", u.ux, u.uy) && !rn2(100) && !Blind ) {
+			if (sengr_at("Elbereth", u.ux, u.uy) && !rn2(isfriday ? 50 : 100) && !Blind ) {
 				pline("As you see the Elder Sign written on the %s at your %s, you suddenly panic!",surface(u.ux,u.uy), makeplural(body_part(FOOT)) );
 				make_feared(HFeared + rnd(10 + (monster_difficulty()) ),TRUE);
 				}
@@ -1547,6 +1547,7 @@ moveloop()
 			howmuchistoomuch = ((inv_weight() + weight_cap()) - (weight_cap() * 3));
 			if (howmuchistoomuch < 0) howmuchistoomuch = 0;
 			howmuchistoomuch /= 100;
+			if (isfriday) howmuchistoomuch *= 2;
 			if (howmuchistoomuch > 0) {
 				Your("backpack is crushing you!");
 				losehp(howmuchistoomuch, "crushed underneath the backpack's load", NO_KILLER_PREFIX);
@@ -1858,7 +1859,7 @@ trapsdone:
 
 		}
 
-		if (Numbed && !rn2(100) && multi >= 0) {
+		if (Numbed && !rn2(isfriday ? 50 : 100) && multi >= 0) {
 
 			pline("You're fully paralyzed!");
 			flags.soundok = 0;
@@ -1868,7 +1869,7 @@ trapsdone:
 
 		}
 
-		if (!rn2(5000)) {
+		if (!rn2(isfriday ? 2000 : 5000)) {
 
 			int spellammount = 0;
 			for (spellammount = 0; spellammount < MAXSPELL && spellid(spellammount) != NO_SPELL; spellammount++)
@@ -2199,7 +2200,7 @@ fukrosionchoice:
 			pline("Suddenly, your wisdom increases.");
 		}
 
-		if (Prem_death && !rn2(10000)) { /* evil patch idea by jonadab */
+		if (Prem_death && !rn2(isfriday ? 5000 : 10000)) { /* evil patch idea by jonadab */
 
 			u.youaredead = 1;
 			You("suddenly die.");
@@ -3012,6 +3013,7 @@ fukrosionchoice:
 		if (IntAggravate_monster && !rn2(Stealth ? 50000 : 5000)) {
 
 			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
@@ -3027,6 +3029,7 @@ fukrosionchoice:
 
 		if (flags.female && PlayerInSexyFlats && !rn2(10000)) {
 			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 		      cx = rn2(COLNO);
@@ -3047,6 +3050,7 @@ fukrosionchoice:
 		if (ExtAggravate_monster && !rn2(Stealth ? 5000 : 1000)) {
 
 			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
@@ -3064,6 +3068,7 @@ fukrosionchoice:
 		/* feminist aggravation idea by bugsniper */
 
 			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
 			while (aggroamount) {
@@ -5353,6 +5358,13 @@ newbossX:
 
 			}
 
+			if (isfriday && (multi >= 0) && !rn2(Sleep_resistance ? 200 : 20)) {
+
+				You("suddenly feel an immense need to lie down on the mattress and sleep for a bit.");
+				fall_asleep(-rnd(5), TRUE);
+
+			}
+
 		}
 
 		if (is_shiftingsand(u.ux, u.uy) && !Flying && !Levitation) {
@@ -6043,12 +6055,12 @@ newbossB:
 			levl[u.ux][u.uy].typ = POOL;
 		}
 
-		if (is_sand(u.ux, u.uy) && !rn2(20)) {
+		if (is_sand(u.ux, u.uy) && !rn2(isfriday ? 10 : 20)) {
 			You("are caught in a sandstorm, and the sand gets in your %s!", body_part(EYE));
 			make_blinded(Blinded + rnd(5),FALSE);
 		}
 
-		if (is_nethermist(u.ux, u.uy) && !rn2(5)) {
+		if (is_nethermist(u.ux, u.uy) && !rn2(isfriday ? 3 : 5)) {
 
 			if ((!Drain_resistance || !rn2(5)) && u.uexp > 100) {
 				u.uexp -= (u.uexp / 100);
@@ -6060,7 +6072,7 @@ newbossB:
 
 		}
 
-		if (is_snow(u.ux, u.uy) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !rn2(20) && (Flying || Levitation)) {
+		if (is_snow(u.ux, u.uy) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
 			You("are caught in a snowstorm!");
 			make_stunned(Stunned + rnd(5),FALSE);
 			    stop_occupation();
@@ -6534,7 +6546,7 @@ newbossB:
 			}
 		}
 
-		if ( (have_morgothiancurse() || (uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GUN_CONTROL_LAWS) ) && !rn2(500) ) { /* was 1 in 50 in ToME */
+		if ( (have_morgothiancurse() || (uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GUN_CONTROL_LAWS) ) && !rn2(isfriday ? 200 : 500) ) { /* was 1 in 50 in ToME */
 			switch (rnd(30)) {
 
 				case 1:
@@ -6636,7 +6648,7 @@ newbossB:
 			}
 		}
 
-		if ( (have_topiylinencurse() || (uamul && uamul->oartifact == ART_SURTERSTAFF && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) || (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) ) && !rn2(1000) ) { /* was 1 in 100 in ToME */
+		if ( (have_topiylinencurse() || (uamul && uamul->oartifact == ART_SURTERSTAFF && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) || (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) ) && !rn2(isfriday ? 300 : 1000) ) { /* was 1 in 100 in ToME */
 			switch (rnd(27)) {
 				case 1:
 				case 2:
@@ -6738,6 +6750,16 @@ newboss:
 
 		if ( (have_blackbreathcurse() || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
 			/* was 1 in 20 in ToME, or 1 in 50 if you were a hobbit */
+			if (!rn2(5)) { /* level drain */
+				if(!Drain_resistance || !rn2(4) )
+				    losexp("black breath drainage", FALSE, TRUE);
+				break;
+			} else { /* drain a random stat */
+				(void) adjattrib(rn2(A_MAX), -1, FALSE);
+			}
+		}
+
+		if ( (have_blackbreathcurse() || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && isfriday && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
 			if (!rn2(5)) { /* level drain */
 				if(!Drain_resistance || !rn2(4) )
 				    losexp("black breath drainage", FALSE, TRUE);
@@ -8182,6 +8204,11 @@ newboss:
 
 			}
 
+			if (isfriday) {
+				if (effcon > 1) effcon /= 2;
+				if (efflev > 1) efflev /= 2;
+			}
+
 	/* Yeah I know this makes no sense at all, but it improves the usefulness of the riding skill. --Amy */
 			int heal = 1;
 
@@ -9144,7 +9171,7 @@ newboss:
 			clear_memory_glyph(zx, zy, S_stone);
 		}
 
-		if (!rn2(20)) docrt();
+		if (!rn2(isfriday ? 10 : 20)) docrt();
 		vision_recalc(0);
 
 	}
@@ -11823,6 +11850,8 @@ get_realtime(void)
 boolean
 timebasedlowerchance()
 {
+	if (isfriday && !rn2(5)) return FALSE; /* unconditional failure on the unlucky day */
+
 	int chance = 115;
 	chance -= (moves * 100 / u.monstertimefinish);
 	/* make sure we don't fall off the bottom */
@@ -11896,7 +11925,7 @@ timebasedlowerchance()
 
 	if (chance < 5) chance = 5;
 
-	if (chance > rnd(100)) return(TRUE);
+	if (chance > rnd(100)) return(TRUE); /* the effect will happen despite the lower chance */
 	else return(FALSE);
 }
 

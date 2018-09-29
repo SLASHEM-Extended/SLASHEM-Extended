@@ -159,6 +159,14 @@ register struct monst *mtmp;
 	    return 0;
 	}
 
+	if (uwep && uwep->oartifact == ART_DEMONBANE) {
+	    pline("%s looks very angry.", Amonnam(mtmp));
+	    mtmp->mpeaceful = mtmp->mtame = 0;
+	    set_malign(mtmp);
+	    newsym(mtmp->mx, mtmp->my);
+	    return 0;
+	}
+
 	/* Slight advantage given. */
 	if (is_dprince(mtmp->data) && mtmp->minvis) {
 	    mtmp->minvis = mtmp->perminvis = 0;
@@ -183,6 +191,7 @@ register struct monst *mtmp;
 	 * of course, but at least now you have to lug it with you. */
 
 	cash = rnz(15000);
+	if (isfriday) cash *= 2;
 
 	demand = (cash * (rnd(80) + 20 * Athome)) /
 	    (100 * (1 + (sgn(u.ualign.type) == sgn(mtmp->data->maligntyp))));
@@ -205,7 +214,7 @@ register struct monst *mtmp;
 	       has the Amulet, preventing monster from being satisified
 	       and removed from the game (along with said Amulet...) */
 	    if (mon_has_amulet(mtmp))
-		demand = cash + (long)rn1(1000,40);
+		demand = cash + 9999999;
 
 	    pline("%s demands %ld %s for safe passage.",
 		  Amonnam(mtmp), demand, currency(demand));
@@ -237,6 +246,9 @@ int lawful_minion(int difficulty)
    if (difficulty > 30) difficulty = 30;
    difficulty /= 3;
    if (difficulty >= 1) difficulty = rnd(difficulty);
+
+   if (rn2(2)) return (monsndx(mkclass(S_ANGEL,0)));
+
    switch (difficulty) {
       case 0: return PM_TENGU;
       case 1: return (rn2(2) ? PM_TENGU : PM_COUATL);
@@ -258,6 +270,8 @@ int neutral_minion(int difficulty)
 /* this routine returns the # of an appropriate minion,
    given a difficulty rating from 1 to 30 */
 {
+   if (rn2(2)) return (monsndx(mkclass(S_ELEMENTAL,0)));
+
    difficulty = difficulty + rn2(9) - 4;
    if (difficulty < 0) difficulty = 0;
    if (difficulty > 30) difficulty = 30;
@@ -278,6 +292,9 @@ int chaotic_minion(int difficulty)
 /*   difficulty = (int)((float)difficulty / 1.5);*/
    difficulty = (difficulty * 2) / 3;
    if (difficulty >= 1) difficulty = rnd(difficulty);
+
+   if (rn2(2)) return (monsndx(mkclass(S_DEMON,0)));
+
    switch (difficulty) {
       case 0: return PM_GREMLIN;
       case 1: return PM_DRETCH;

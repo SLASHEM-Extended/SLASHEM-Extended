@@ -16342,7 +16342,7 @@ register int	mmflags;
 		mitem = CANDELABRUM_OF_INVOCATION;
 	} else if (mndx == PM_CROESUS) {
 		mitem = TWO_HANDED_SWORD;
-	} else if (ptr->msound == MS_NEMESIS && ptr->mlet != S_NEMESE && mndx != PM_TRUE_MISSINGNO && mndx != PM_ETHEREAL_MISSINGNO && mndx != PM_STARLIT_SKY && mndx != PM_MISNAMED_STARLIT_SKY && mndx != PM_WRONG_NAMED_STARLIT_SKY && mndx != PM_ERRONEOUS_STARLIT_SKY && mndx != PM_DARK_STARLIT_SKY && mndx != PM_BLACK_STARLIT_SKY && mndx != PM_RED_STARLIT_SKY && mndx != PM_BROWN_STARLIT_SKY && mndx != PM_GREEN_STARLIT_SKY && mndx != PM_PURPLE_STARLIT_SKY && mndx != PM_YELLOW_STARLIT_SKY && mndx != PM_ORANGE_STARLIT_SKY && mndx != PM_CYAN_STARLIT_SKY && mndx != PM_VIOLET_STARLIT_SKY && mndx != PM_POLYINITOR && mndx != PM_DESTABILIZER) {
+	} else if (ptr->msound == MS_NEMESIS && ptr->mlet != S_NEMESE && mndx != PM_TRUE_MISSINGNO && mndx != PM_ETHEREAL_MISSINGNO && mndx != PM_STARLIT_SKY && mndx != PM_MISNAMED_STARLIT_SKY && mndx != PM_WRONG_NAMED_STARLIT_SKY && mndx != PM_ERRONEOUS_STARLIT_SKY && mndx != PM_DARK_STARLIT_SKY && mndx != PM_BLACK_STARLIT_SKY && mndx != PM_RED_STARLIT_SKY && mndx != PM_BROWN_STARLIT_SKY && mndx != PM_GREEN_STARLIT_SKY && mndx != PM_PURPLE_STARLIT_SKY && mndx != PM_YELLOW_STARLIT_SKY && mndx != PM_ORANGE_STARLIT_SKY && mndx != PM_CYAN_STARLIT_SKY && mndx != PM_VIOLET_STARLIT_SKY && mndx != PM_POLYINITOR && mndx != PM_DESTABILIZER && mndx >= PM_LORD_CARNARVON && mndx <= PM_UPPER_BULL) {
 		mitem = BELL_OF_OPENING; /* prevent new random nemesis monsters from dropping the bell --Amy */
 	} else if (mndx == PM_PESTILENCE) {
 		mitem = POT_SICKNESS;
@@ -17456,6 +17456,13 @@ loopback:
 		if (ct > 0 && (flags.friday13 && dmgtype(ptr, AD_DATA) )) ct += 1;
 		if (ct > 0 && (flags.friday13 && dmgtype(ptr, AD_RAGN) )) ct += 20;
 		if (ct > 0 && (flags.friday13 && dmgtype(ptr, AD_DEST) )) ct += 2;
+		if (ct > 0 && flags.elmstreet && is_evilpatchmonster(ptr)) ct += 25;
+		if (ct > 0 && (flags.elmstreet && dmgtype(ptr, AD_STAT) )) ct += 2;
+		if (ct > 0 && (flags.elmstreet && dmgtype(ptr, AD_DAMA) )) ct += 2;
+		if (ct > 0 && (flags.elmstreet && dmgtype(ptr, AD_THIE) )) ct += 2;
+		if (ct > 0 && (flags.elmstreet && dmgtype(ptr, AD_DATA) )) ct += 1;
+		if (ct > 0 && (flags.elmstreet && dmgtype(ptr, AD_RAGN) )) ct += 20;
+		if (ct > 0 && (flags.elmstreet && dmgtype(ptr, AD_DEST) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_RODNEYAN) && dmgtype(ptr, AD_DATA) )) ct += 1;
 		if (ct > 0 && (isevilvariant && dmgtype(ptr, AD_DATA) )) ct += 20;
 		if (ct > 0 && (isevilvariant && is_evilpatchmonster(ptr) )) ct += 100;
@@ -18227,6 +18234,13 @@ int     spc;
 		if (flags.friday13 && dmgtype(&mons[last], AD_DATA) ) num += 1;
 		if (flags.friday13 && dmgtype(&mons[last], AD_RAGN) ) num += 20;
 		if (flags.friday13 && dmgtype(&mons[last], AD_DEST) ) num += 2;
+		if (flags.elmstreet && is_evilpatchmonster(&mons[last])) num += 25;
+		if (flags.elmstreet && dmgtype(&mons[last], AD_STAT) ) num += 2;
+		if (flags.elmstreet && dmgtype(&mons[last], AD_DAMA) ) num += 2;
+		if (flags.elmstreet && dmgtype(&mons[last], AD_THIE) ) num += 2;
+		if (flags.elmstreet && dmgtype(&mons[last], AD_DATA) ) num += 1;
+		if (flags.elmstreet && dmgtype(&mons[last], AD_RAGN) ) num += 20;
+		if (flags.elmstreet && dmgtype(&mons[last], AD_DEST) ) num += 2;
 		if ((Race_if(PM_RODNEYAN) && dmgtype(&mons[last], AD_DATA) )) num += 1;
 		if ((isevilvariant && dmgtype(&mons[last], AD_DATA) )) num += 20;
 		if ((isevilvariant && is_evilpatchmonster(&mons[last]) )) num += 100;
@@ -18714,6 +18728,13 @@ int     spc;
 		if (flags.friday13 && dmgtype(&mons[first], AD_DATA) ) num -= 1;
 		if (flags.friday13 && dmgtype(&mons[first], AD_RAGN) ) num -= 20;
 		if (flags.friday13 && dmgtype(&mons[first], AD_DEST) ) num -= 2;
+		if (flags.elmstreet && is_evilpatchmonster(&mons[first])) num -= 25;
+		if (flags.elmstreet && dmgtype(&mons[first], AD_STAT) ) num -= 2;
+		if (flags.elmstreet && dmgtype(&mons[first], AD_DAMA) ) num -= 2;
+		if (flags.elmstreet && dmgtype(&mons[first], AD_THIE) ) num -= 2;
+		if (flags.elmstreet && dmgtype(&mons[first], AD_DATA) ) num -= 1;
+		if (flags.elmstreet && dmgtype(&mons[first], AD_RAGN) ) num -= 20;
+		if (flags.elmstreet && dmgtype(&mons[first], AD_DEST) ) num -= 2;
 		if ((Race_if(PM_RODNEYAN) && dmgtype(&mons[first], AD_DATA) )) num -= 1;
 		if ((isevilvariant && dmgtype(&mons[first], AD_DATA) )) num -= 20;
 		if ((isevilvariant && is_evilpatchmonster(&mons[first]) )) num -= 100;
