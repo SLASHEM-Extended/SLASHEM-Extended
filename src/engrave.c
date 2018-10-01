@@ -1793,7 +1793,7 @@ doengrave()
 		    case WAN_WIND:
 			if (!Blind) {
 			   sprintf(post_engr_text,
-				   "The bugs on the floor are blown away!",
+				   "The bugs on the %s are blown away!",
 				   surface(u.ux, u.uy));
 			}
 			break;

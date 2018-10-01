@@ -319,7 +319,7 @@ swapweaponchoice:
 
 		if (uswapwep && uswapwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO && !uswapwep->cursed) {
 			curse(uswapwep);
-			pline("The riding crop glows with an evil aura and forces you to terrorize innocent practicants!", body_part(HAND));
+			pline("The riding crop glows with an evil aura and forces you to terrorize innocent practicants!");
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !uswapwep->cursed) {
@@ -334,7 +334,7 @@ swapweaponchoice:
 
 		if (uswapwep && uswapwep->oartifact == ART_AMY_S_FIRST_GIRLFRIEND && !uswapwep->cursed) {
 			curse(uswapwep);
-			pline("You let out a deep sigh as the beautiful, soft girl shoe becomes cursed.", body_part(HAND));
+			pline("You let out a deep sigh as the beautiful, soft girl shoe becomes cursed.");
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_BANG_BANG && uswapwep->spe < 2) uswapwep->spe = 2;

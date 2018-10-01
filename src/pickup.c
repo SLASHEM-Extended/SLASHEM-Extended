@@ -1399,7 +1399,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 			char kbuf[BUFSZ];
 			strcpy(kbuf, "coming into contact with a petrifying object");
 
-			pline("Touching a petrifying egg is a fatal mistake.", kbuf);
+			pline("Touching a petrifying egg is a fatal mistake.");
 			instapetrify(kbuf);
 		    return -1;
 		}

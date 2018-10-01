@@ -17562,8 +17562,8 @@ register struct monst *mon;
 		/* I declare the generic "his" a feature, see below :P --Amy */
 
 		if (mon->data == &mons[PM_FEMME]) {
-			if (!flags.female) pline("Wow, it sure was fun having your nuts squeezed by such a tender woman. Her female knee is very sexy!", mon_nam(mon));
-			else pline("Well that was a letdown, the announcer used the wrong pronoun for the femme. But at least the pain was enjoyable!", mon_nam(mon));
+			if (!flags.female) pline("Wow, it sure was fun having your nuts squeezed by such a tender woman. Her female knee is very sexy!");
+			else pline("Well that was a letdown, the announcer used the wrong pronoun for the femme. But at least the pain was enjoyable!");
 		}
 
 		return 1;

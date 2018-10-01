@@ -8,7 +8,7 @@ struct trobj {
 	short trotyp;
 	schar trspe;
 	char trclass;
-	Bitfield(trquan,6);
+	int trquan;
 	Bitfield(trbless,2);
 };
 

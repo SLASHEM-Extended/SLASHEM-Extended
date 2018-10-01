@@ -5678,7 +5678,7 @@ revid_end:
 					mtmp3->mfrozen = (16 - (mondistance * 2));
 					mtmp3->mstrategy &= ~STRAT_WAITFORU;
 					mtmp3->mconf = TRUE;
-					pline("%s becomes dizzy from the smell!", Monnam(mtmp3), mtmp3->mfrozen);
+					pline("%s becomes dizzy from the smell!", Monnam(mtmp3));
 				}
 		}
 
