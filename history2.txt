@@ -1,6 +1,12 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.3.4 - September 2018
+- Rust monsters are no longer special-cased among all the metallivorous monsters.
+- Spell loss, increase technique timeout and reduce skill knowledge effects are harsher now.
+- Added an "elm street mode" that can be activated via OPTIONS=elmstreet (birth option), which causes the game to behave similarly to how it would on a Friday the 13th, and the unlucky day does a lot more than just decrease luck now. Many things that have a chance of causing negative stuff to the player now do it more often on that day, and things that have a chance of causing beneficial effects have a lower chance, making the game much harder.
+
 2.3.3 - September 2018
+- HC aliens spawn less often in religion rooms.
 - If the player is playing a sokosolver, boulders should always generate when they normally would, even if they're an item type that can't generate in the current game. Pairing sokosolver with minimalist should now also guarantee that all the boulders always generate.
 - Eating a chocolate or chocoegg cures totter.
 - The monster born and kill counters can go above 255.
