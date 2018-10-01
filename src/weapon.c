@@ -6013,6 +6013,9 @@ int lossamount;
 
 	pickskill = rnd(P_RIDING);
 
+	/* this is so that the effect is actually noticeable... --Amy */
+	if (!rn2(10)) lossamount *= (1 + rnd(9));
+
 	if ((P_ADVANCE(pickskill)) < lossamount) P_ADVANCE(pickskill) = 0;
 	else P_ADVANCE(pickskill) -= lossamount;
 
