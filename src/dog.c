@@ -1132,7 +1132,7 @@ register struct obj *obj;
 		/* KMH -- Taz likes organics, too! */
 	    if ((organivorous(mon->data) || mon->egotype_organivore) && is_organic(obj))
 		return(ACCFOOD);
-	    if ( (metallivorous(mon->data) || mon->egotype_metallivore) && is_metallic(obj) && (is_rustprone(obj) || mon->data != &mons[PM_RUST_MONSTER])) {
+	    if ( (metallivorous(mon->data) || mon->egotype_metallivore) && is_metallic(obj) ) {
 		/* Non-rustproofed ferrous based metals are preferred. */
 		return((is_rustprone(obj) && !obj->oerodeproof) ? DOGFOOD :
 			ACCFOOD);
