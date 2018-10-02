@@ -1,6 +1,13 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.3.5 - October 2018
+- Players who know both the bare-handed combat and martial arts skills can #monster to switch between the two.
+- Snail race players can #monster to dig every once in a while.
+
 2.3.4 - September 2018
+- The player's polymorphing skill makes it more likely to successfully perform actions without hands or while otherwise handicapped.
+- The destroy armor/weapon attack used by some monsters can also destroy rings, amulets and blindfold-slot tools now.
+- Wooden flutes/harps are less likely to pacify their respective target monsters.
 - Rust monsters are no longer special-cased among all the metallivorous monsters.
 - Spell loss, increase technique timeout and reduce skill knowledge effects are harsher now.
 - Added an "elm street mode" that can be activated via OPTIONS=elmstreet (birth option), which causes the game to behave similarly to how it would on a Friday the 13th, and the unlucky day does a lot more than just decrease luck now. Many things that have a chance of causing negative stuff to the player now do it more often on that day, and things that have a chance of causing beneficial effects have a lower chance, making the game much harder.
