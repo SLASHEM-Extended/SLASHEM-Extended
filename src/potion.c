@@ -1945,7 +1945,59 @@ destroyarmorattack()
 		return;
 	}
 
-	if (!rn2(4)) {
+	if (!rn2(10)) {
+
+		register int randomchoice = rnd(4);
+
+		switch (randomchoice) {
+			case 1:
+				otmp2 = uleft;
+				if (!otmp2) {
+					pline("Your left %s twitches.", body_part(FINGER));
+					return;
+				}
+				break;
+			case 2:
+				otmp2 = uright;
+				if (!otmp2) {
+					pline("Your right %s twitches.", body_part(FINGER));
+					return;
+				}
+				break;
+			case 3:
+				otmp2 = uamul;
+				if (!otmp2) {
+					pline("Your %s twitches.", body_part(NECK));
+					return;
+				}
+				break;
+			case 4:
+				otmp2 = ublindf;
+				if (!otmp2) {
+					pline("Your fore%s twitches.", body_part(HEAD));
+					return;
+				}
+				break;
+		}
+
+		if (stack_too_big(otmp2)) return; /* nothing happens, no message */
+		else if (otmp2 && otmp2->blessed && rn2(5)) pline("Your %s%s shakes violently!", randomchoice == 1 ? "left " : randomchoice == 2 ? "right " : randomchoice == 4 ? "fore" : "", randomchoice == 1 ? body_part(FINGER) : randomchoice == 2 ? body_part(FINGER) : randomchoice == 3 ? body_part(NECK) : body_part(HEAD) );
+		else if (otmp2 && (otmp2->spe > 1) && (rn2(otmp2->spe)) ) pline("Your %s%s shakes violently!", randomchoice == 1 ? "left " : randomchoice == 2 ? "right " : randomchoice == 4 ? "fore" : "", randomchoice == 1 ? body_part(FINGER) : randomchoice == 2 ? body_part(FINGER) : randomchoice == 3 ? body_part(NECK) : body_part(HEAD) );
+		else if (otmp2 && otmp2->oartifact && rn2(20)) pline("Your %s%s shakes violently!", randomchoice == 1 ? "left " : randomchoice == 2 ? "right " : randomchoice == 4 ? "fore" : "", randomchoice == 1 ? body_part(FINGER) : randomchoice == 2 ? body_part(FINGER) : randomchoice == 3 ? body_part(NECK) : body_part(HEAD) );
+		else if (otmp2 && otmp2->greased) {
+			pline("Your %s%s shakes violently!", randomchoice == 1 ? "left " : randomchoice == 2 ? "right " : randomchoice == 4 ? "fore" : "", randomchoice == 1 ? body_part(FINGER) : randomchoice == 2 ? body_part(FINGER) : randomchoice == 3 ? body_part(NECK) : body_part(HEAD) );
+			if (!rn2(2) || (isfriday && !rn2(2))) {
+				pline_The("grease wears off.");
+				otmp2->greased -= 1;
+				update_inventory();
+			}
+		} else {
+			useupall(otmp2);
+			pline("Your %s%s is destroyed.", randomchoice == 1 ? "left " : randomchoice == 2 ? "right " : "", randomchoice == 1 ? "ring" : randomchoice == 2 ? "ring" : randomchoice == 3 ? "amulet" : "blindfold or similar tool" );
+		}
+
+
+	} else if (!rn2(4)) {
 
 		otmp2 = uwep;
 		if (!otmp2) {
