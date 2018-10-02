@@ -1433,6 +1433,14 @@ dooverview_or_wiz_where()
 STATIC_PTR int
 domonability()
 {
+
+	/* snail can't equip pick-axes, so should be able to dig without one from time to time --Amy */
+	if (Race_if(PM_ELONA_SNAIL) && !u.snaildigging && yn("Do you want to fire a digging ray?")=='y' ) {
+		u.snaildigging = rnz(1000);
+		getdir((char *)0);
+		zap_dig(FALSE); /* dig only one tile, just like in Elona */
+		return TRUE;
+	}
 	if (can_breathe(youmonst.data) && yn("Do you want to use your breath attack?")=='y' ) return dobreathe();
 	else if (attacktype(youmonst.data, AT_SPIT) && yn("Do you want to use your spit attack?")=='y' ) return dospit();
 	else if (youmonst.data->mlet == S_NYMPH && yn("Do you want to remove an iron ball?")=='y' ) return doremove();
@@ -4656,6 +4664,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.snaildigging) {
+		sprintf(buf, "to wait until you can fire another digging ray.");
+	      sprintf(eos(buf), " (%d)", u.snaildigging);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.hussyperfume) {
 		sprintf(buf, "to wait until you can spread the perfume again.");
 	      sprintf(eos(buf), " (%d)", u.hussyperfume);
@@ -7761,6 +7775,12 @@ int final;
 	if (u.egglayingtimeout) {
 		sprintf(buf, "to wait until you can lay eggs again.");
 	      sprintf(eos(buf), " (%d)", u.egglayingtimeout);
+		dump(youhad, buf);
+	}
+
+	if (u.snaildigging) {
+		sprintf(buf, "to wait until you can fire another digging ray.");
+	      sprintf(eos(buf), " (%d)", u.snaildigging);
 		dump(youhad, buf);
 	}
 

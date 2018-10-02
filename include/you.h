@@ -1062,6 +1062,8 @@ struct you {
 	int hussykillturn;
 	int hussyperfume;
 
+	int snaildigging;
+
 	int acutraining;
 
 	int adpartattack;	/* what AD_PART does in the given game */

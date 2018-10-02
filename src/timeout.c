@@ -262,6 +262,12 @@ nh_timeout()
 		if (!u.egglayingtimeout) pline("You are capable of laying eggs again.");
 	}
 
+	if (u.snaildigging) {
+		u.snaildigging--;
+		if (u.snaildigging < 0) u.snaildigging = 0; /* fail safe */
+		if (!u.snaildigging) pline("You are capable of using your digging ability again.");
+	}
+
 	if (u.dragonpolymorphtime) {
 		u.dragonpolymorphtime--;
 		if (u.dragonpolymorphtime < 0) u.dragonpolymorphtime = 0; /* fail safe */
