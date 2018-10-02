@@ -446,7 +446,7 @@ int what;		/* should be a long */
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 			if (yn("But maybe you can reach the items anyway. Try it?") == 'y') {
-				if (rn2(3)) {
+				if (rn2(3) && !polyskillchance()) {
 				 	make_hallucinated(HHallucination + rnd(50),FALSE,0L);
 					pline("Oh wow! Is that your own shiny reflection you just saw?");
 					if (!rn2(20)) badeffect();
@@ -2426,7 +2426,7 @@ int held;
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("Try to open the container with another part of your body instead?") == 'y') {
-			if (rn2(3)) { 			
+			if (rn2(3) && !polyskillchance()) { 			
 				You_feel("a wrenching sensation.");
 				if (!rn2(20)) badeffect();
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");

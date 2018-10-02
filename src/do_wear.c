@@ -4199,7 +4199,7 @@ boolean noisy;
 	if (noisy) { pline_The("%s will not fit on your body.", which);
 
 		if (yn("Try to put it on anyway?") == 'y') {
-			if (rn2(2)) {
+			if (rn2(2) && !polyskillchance()) {
 			 	u.ublesscnt += rnz(5);
 				pline("Feeling uncomfortable, you decide to stop trying.");
 				TimerunBug += 1; /* ugh, ugly hack. But nomul() doesn't want to work... --Amy */
@@ -4374,7 +4374,7 @@ dowear()
 		pline("Don't even bother. Your current form can't realistically wear armor!");
 
 		if (yn("But you may try to wear something anyway. Do it?") == 'y') {
-			if (rn2(3)) {
+			if (rn2(3) && !polyskillchance()) {
 		 		make_stunned(HStun + rnd(40),FALSE);
 				pline("Damn! You just stagger around aimlessly!");
 				if (!rn2(20)) badeffect();
@@ -4487,7 +4487,7 @@ doputon()
 			You("cannot make the ring stick to your body.");
 
 			if (yn("Try to put it on anyway?") == 'y') {
-				if (rn2(3)) {
+				if (rn2(3) && !polyskillchance()) {
 					make_dimmed(HDimmed + rnd(40),FALSE);
 					pline("The only thing that happens is that you got dimmed...");
 					if (!rn2(20)) badeffect();

@@ -1500,7 +1500,7 @@ doengrave()
 		You_cant("even hold anything!");
 
 		if (yn("Do you want to try engraving anyway?") == 'y') {
-			if (rn2(3)) { 		
+			if (rn2(3) && !polyskillchance()) { 		
 				pline("You failed to engrave anything.");
 				if (!rn2(20)) badeffect();
 				return 1;

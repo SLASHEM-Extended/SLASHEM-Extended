@@ -1016,7 +1016,7 @@ doopen_indir(x, y)		/* try to open a door in direction u.dx/u.dy */
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("Try to open it with another part of your body instead?") == 'y') {
-			if (rn2(3)) {
+			if (rn2(3) && !polyskillchance()) {
 	 			make_blinded(Blinded + rnd(50),TRUE);
 				pline("Off - you just blinded yourself!");
 				if (!rn2(20)) badeffect();
@@ -1157,7 +1157,7 @@ doclose()		/* try to close a door */
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("Try to close it with another part of your body instead?") == 'y') {
-			if (rn2(3)) {
+			if (rn2(3) && !polyskillchance()) {
 	 			make_blinded(Blinded + rnd(50),TRUE);
 				pline("Something got in your face! You can't see!");
 				if (!rn2(20)) badeffect();

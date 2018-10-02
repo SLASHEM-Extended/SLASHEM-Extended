@@ -2808,6 +2808,31 @@ polyatwill()      /* Polymorph under conscious control (#youpoly) */
 	return 1;
 }
 
+/* doing stuff like putting on armor when you can't, or opening a door without hands, should have a bigger chance
+ * of success if you're highly skilled at polymorphing. This function is used in many places --Amy */
+boolean
+polyskillchance()
+{
+	register int percentualchance = 0;
+
+	if (PlayerCannotUseSkills) return FALSE;
+	else switch (P_SKILL(P_POLYMORPHING)) {
+
+      	case P_BASIC:	percentualchance = 15; break;
+      	case P_SKILLED:	percentualchance = 30; break;
+      	case P_EXPERT:	percentualchance = 45; break;
+      	case P_MASTER:	percentualchance = 60; break;
+      	case P_GRAND_MASTER:	percentualchance = 75; break;
+      	case P_SUPREME_MASTER:	percentualchance = 90; break;
+      	default: percentualchance = 0; break;
+		
+	}
+
+	if (rn2(100) < percentualchance) return TRUE;
+	else return FALSE;
+
+}
+
 static void
 merge_with_armor()
 {

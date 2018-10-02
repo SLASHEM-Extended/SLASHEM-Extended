@@ -538,7 +538,7 @@ dowield()
 		pline("Don't be ridiculous! Your current form cannot realistically wield a weapon!");
 
 		if (yn("Try anyway?") == 'y') {
-			if (rn2(3)) {
+			if (rn2(3) && !polyskillchance()) {
 		 		make_confused(HConfusion + rnd(40),FALSE);
 				pline("Uhh... that didn't seem to work.");
 				if (!rn2(20)) badeffect();
@@ -629,7 +629,7 @@ doswapweapon()
 		pline("Don't be ridiculous! Your current form cannot realistically wield a weapon!");
 
 		if (yn("Try anyway?") == 'y') {
-			if (rn2(3)) {
+			if (rn2(3) && !polyskillchance()) {
 		 		make_confused(HConfusion + rnd(40),FALSE);
 				pline("Uhh... that didn't seem to work.");
 				if (!rn2(20)) badeffect();

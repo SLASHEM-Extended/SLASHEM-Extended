@@ -2098,6 +2098,7 @@ E const char *body_part(int);
 E int poly_gender(void);
 E void ugolemeffects(int,int);
 E int polyatwill(void);
+E boolean polyskillchance(void);
 
 /* ### potion.c ### */
 

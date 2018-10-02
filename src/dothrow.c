@@ -516,7 +516,7 @@ dothrow()
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("But you can try to throw anyway. Okay?") == 'y') {
-			if (rn2(3)) {
+			if (rn2(3) && !polyskillchance()) {
 		 		morehungry(10);
 				pline("The darn thing doesn't seem to fly very far.");
 				if (!rn2(20)) badeffect();
@@ -625,7 +625,7 @@ dofire()
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("But you can try to fire anyway. Okay?") == 'y') {
-			if (rn2(3)) {
+			if (rn2(3) && !polyskillchance()) {
 	 		morehungry(10);
 			pline("The darn thing doesn't seem to fly very far.");
 			if (!rn2(20)) badeffect();
