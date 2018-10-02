@@ -1250,6 +1250,8 @@ static const short grownups[][2] = {
 	{PM_BABY_THUNDERBIRD, PM_THUNDERBIRD},
 	{PM_BABY_HYDRA, PM_HYDRA},
 
+	{PM_BABY_BROOD_WASP, PM_BROOD_WASP},
+
 	/* WAC -- added killer coin piles */
 
 	{PM_PILE_OF_COPPER_COINS, PM_PILE_OF_SILVER_COINS},
