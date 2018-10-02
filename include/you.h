@@ -1058,6 +1058,8 @@ struct you {
 
 	int bizarrotries;	/* used to nerf the bizarro orgasmatron */
 
+	boolean disablemartial;
+
 	int hussyhurtturn;
 	int hussykillturn;
 	int hussyperfume;

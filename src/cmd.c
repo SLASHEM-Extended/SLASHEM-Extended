@@ -1567,6 +1567,20 @@ domonability()
 			}
 
 		}
+		return 1;
+
+	} else if (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED && P_SKILL(P_BARE_HANDED_COMBAT) >= P_UNSKILLED) {
+
+		if (!u.disablemartial && yn("You have both the martial arts and bare-handed combat skills, which are mutually exclusive. Currently martial arts is activated. Deactivate it?") == 'y') {
+			u.disablemartial = TRUE;
+			pline("You switch to bare-handed combat.");
+			return 1;
+		}
+		else if (u.disablemartial && yn("You have both the martial arts and bare-handed combat skills, which are mutually exclusive. Currently martial arts is deactivated. Activate it?") == 'y') {
+			u.disablemartial = FALSE;
+			pline("You switch to martial arts.");
+			return 1;
+		}
 
 	} else if (Upolyd)
 		pline("Any (other) special ability you may have is purely reflexive.");

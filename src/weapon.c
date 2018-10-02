@@ -3825,7 +3825,7 @@ struct obj *obj;
 
 	if (!obj)
 		/* Not using a weapon */
-	    return (martial_bonus() ? P_MARTIAL_ARTS :
+	    return ((martial_bonus() && !u.disablemartial) ? P_MARTIAL_ARTS :
 				P_BARE_HANDED_COMBAT);
     if ( ((obj->oclass == BALL_CLASS) || (obj->oclass == CHAIN_CLASS)) /*&& Role_if(PM_CONVICT)*/)
         return objects[obj->otyp].oc_skill;
