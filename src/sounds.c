@@ -69,29 +69,41 @@ dosounds()
     hallu = Hallucination ? 1 : 0;
 
     if (level.flags.nfountains && !rn2(400)) {
-	static const char * const fountain_msg[4] = {
+	static const char * const fountain_msg[] = {
 		"bubbling water.",
 		"water falling on coins.",
 		"the splashing of a naiad.",
+		"flowing water.",
+		"a nether voice.", /* the water demon */
+		"muffled hissing.", /* the water mocassins */
 		"a soda fountain!",
+		"a vampire complaining about the architecture!", /* they don't like running water */
+		"someone offering three wishes to a lucky person!", /* water demon being generous */
+		"the moaning noises of an adventurer caught in hot sexual pleasure with a nymph!",
+		"Indiana Jones screaming for help!", /* he's terribly afraid of snakes */
+
 	};
-	You_hear(fountain_msg[rn2(3+hallu)]);
+	You_hear(fountain_msg[rn2(6+hallu*5)]);
     }
 #ifdef SINK
     if (level.flags.nsinks && !rn2(300)) {
-	static const char * const sink_msg[3] = {
+	static const char * const sink_msg[] = {
 		"a slow drip.",
 		"a gurgling noise.",
+		"a metallic plinking sound.",
 		"dishes being washed!",
+		"a neverending dripping sound that is driving you crazy!",
+		"someone getting in on the action with a hot foocubus!",
 	};
-	You_hear(sink_msg[rn2(2+hallu)]);
+	You_hear(sink_msg[rn2(3+hallu*3)]);
     }
 #endif
     if (level.flags.has_court && !rn2(200)) {
-	static const char * const throne_msg[4] = {
+	static const char * const throne_msg[] = {
 		"the tones of courtly conversation.",
 		"a sceptre pounded in judgment.",
 		"Someone shouts \"Off with %s head!\"",
+		"what sounds like a royal ceremony.",
 		"Queen Beruthiel's cats!",
 	};
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
@@ -101,7 +113,7 @@ dosounds()
 		!is_animal(mtmp->data) &&
 		mon_in_room(mtmp, COURT)) {
 		/* finding one is enough, at least for now */
-		int which = rn2(3+hallu);
+		int which = rn2(4+hallu);
 
 		if (which != 2) You_hear(throne_msg[which]);
 		else		pline(throne_msg[2], uhis());
@@ -110,7 +122,7 @@ dosounds()
 	}
     }
     if (level.flags.has_swamp && !rn2(200)) {
-	static const char * const swamp_msg[4] = {
+	static const char * const swamp_msg[] = {
 		"hear mosquitoes!",
 		"smell marsh gas!",	/* so it's a smell...*/
 		"hear Donald Duck!",
@@ -120,7 +132,7 @@ dosounds()
 	return;
     }
     if (level.flags.spooky && !rn2(200)) {
-	static const char *spooky_msg[24] = {
+	static const char *spooky_msg[] = {
 		"hear screaming in the distance!",
 		"hear a faint whisper: \"Please leave your measurements for your custom-made coffin.\"",
 		"hear a door creak ominously.",
@@ -211,7 +223,7 @@ dosounds()
 			You_hear("an angry drone.");
 			break;
 		    case 2:
-			You_hear("a repeating monotonous melody.");
+			You_hear("a repeating monotonous melody."); /* rambi rumble melody before you meet King Zing */
 			break;
 		    case 3:
 			You_hear("bees in your %sbonnet!",
@@ -356,24 +368,25 @@ dosounds()
 			"hear people talking.",
 			"hear someone drawing a weapon.",
 			"chime in on some people celebrating a party.",
+			"overhear plans for a raid.",
 			"sense that you are not alone...",
 			"hear a glass of wine breaking!",
 			"listen to a radio broadcast: For the next five days, the dungeon's estimated temperature high is 96 degrees. Now, is that in Fahrenheit or Kelvin?",
 			"know that there's a celebration being held for YOU! Where do you get this party started?",
 		};
-		You(humanhall_msg[rn2(4+hallu*4)]);
+		You(humanhall_msg[rn2(5+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_golemhall && !rn2(200)) {
 		static const char *golemhall_msg[] = {
 			"hear rattling noises.",
-			"think you saw an object move on its own.",
+			"think you saw an object move on its own.", /* golems = animate objects */
 			"feel that something weird may be just around the corner.",
 			"hear a mechanical noise.",
 			"hear the deafening noise of a metal object breaking apart!",
 			"see a warmech appearing before you! If this were a Pokemon game, it would say: A wild WARMECH appeared!",
 			"will certainly never catch a Regigigas, because your pokeball isn't good enough!",
-			"listen to the Diablo sorceror casting a summoning spell!",
+			"listen to the Diablo sorceror casting a summoning spell!", /* one of the spells is called "golem" */
 		};
 		You(golemhall_msg[rn2(4+hallu*4)]);
 		return;
@@ -382,12 +395,12 @@ dosounds()
 	    if (level.flags.has_cryptroom && !rn2(200)) {
 		static const char *cryptroom_msg[] = {
 			"smell rotting flesh.",
-			"hear shuffling noises.",
+			"hear shuffling noises.", /* grunthack zombie inspired */
 			"hear a loud moan.",
 			"inhale the stench of charnel and the things that should be dead, but aren't.",
 			"feel that you're near death!",
 			"don't have much longer to live...",
-			"listen to a tune that gets ever more dissonant...",
+			"listen to a tune that gets ever more dissonant...", /* crypt music from Robin Hood, Prince of Thieves */
 		};
 		You(cryptroom_msg[rn2(4+hallu*3)]);
 		return;
@@ -400,13 +413,15 @@ dosounds()
 			"sense several evil presences.",
 			"sense high tension.",
 			"notice an electrical feeling in the air.",
-			"have to count to three, and if you fail, you can forget about your game!",
+			"are afraid of something.",
+			"hear the voices of vaguely humanoid beings.",
+			"have to count to three, and if you fail, you can forget about your game!", /* this and the next few are from the obscure Trouble Zone game for the Nintendo Gameboy */
 			"are way in over your head!",
 			"must sort the blocks according to the numbers, and pronto!",
 			"fall asleep while the line very slowly dissolves.",
-			"listen to the military music broadcast from Radio Enclave.",
+			"listen to the military music broadcast from Radio Enclave.", /* Fallout 3 */
 		};
-		You(troublezone_msg[rn2(5+hallu*5)]);
+		You(troublezone_msg[rn2(7+hallu*5)]);
 		return;
 	    }
 
@@ -416,12 +431,14 @@ dosounds()
 			"are listening to someone practicing their sword skill.",
 			"hear a trumpet, followed by attack orders.",
 			"hear a knight discussing strategy with his subordinates.",
+			"feel that the enemies' main base camp is on this floor.",
 			"are ambushed by shadowy figures with gleaming swords!",
 			"should impale yourself on your weapon while you still can...",
 			"absolutely want a polearm, because you love polearms.",
 			"want to look for a replacement lance because your last one broke when you jousted a monster.",
+			"listen to an asian woman announcing that she'll hunt down and kill you!", /* a reference that no one will get because it's about a certain scene in one of Amy's fanfics */
 		};
-		You(weaponchamber_msg[rn2(4+hallu*4)]);
+		You(weaponchamber_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -431,32 +448,33 @@ dosounds()
 			"hear the bubbling of lava.",
 			"chime in on a pack of demons performing a satanic ritual.",
 			"sense the presence of hellish beings.",
+			"see that the ceiling has turned red-hot!", /* Oblivion gate, but you're presumably in a dungeon and not the outskirts, so instead of the sky changing colors, the ceiling does so */
 			"feel that Mehrunes Dagon will open the Great Gate of Oblivion soon!",
 			"realize that the hellspawn invasion has already begun...",
 			"sense the presence of a gate to Oblivion.",
 			"suddenly encounter the giant siege caterpillar and have 10 minutes to destroy it or everything is lost.",
 		};
-		You(hellpit_msg[rn2(4+hallu*4)]);
+		You(hellpit_msg[rn2(5+hallu*4)]);
 		return;
 	    }
 
 	    if (level.flags.has_feminismroom && !rn2(200)) {
 		static const char *feminismroom_msg[] = {
 			"hear a female voice shouting angrily.",
-			"listen to a long, squeaking sound.",
+			"listen to a long, squeaking sound.", /* farting noise */
 			"can hear the clacking noises of high heels walking on a hard floor.",
 			"hear woman noises.",
 			"overhear women discussing makeup and perfume.",
 			"hear the voice of a model asking whether her dress is looking good enough.",
-			"hear strange rumbling noises.",
-			"think you just heard very faint air current noises.",
+			"hear strange rumbling noises.", /* farting noise */
+			"think you just heard very faint air current noises.", /* farting noise */
 			"fear that some stupid woman is gonna slap you silly!",
 			"can't resist thinking of a pair of brown leather boots with black block heels, and start wanking off to the thought.",
 			"hear very beautiful farting noises!",
 			"hear your wife complaining that you're still not home yet!",
 			"suddenly hear a commercial announcement: 'Buy a 5 liter bottle of the newest drum stint reluctance perfume for only 10 euros now!'",
 			"hear a sales pitcher praising a new branded costume.",
-			"hear a seemingly neverending, disgusting sound.",
+			"hear a seemingly neverending, disgusting sound.", /* crapping noise */
 			"listen to very tender female noises.",
 		};
 		You(feminismroom_msg[rn2(8+hallu*8)]);
@@ -469,11 +487,12 @@ dosounds()
 			"hear crickets chirping.",
 			"can hear the cattle bellowing.",
 			"hear the cooing of the nightingale.",
+			"hear the 'baaaaa' sound of a sheep.",
 			"hear someone sing 'Old Mac Donald had a farm...'",
 			"can't help it but feel that something that looks normal is terribly amiss.",
-			"listen to the palomita, which is Spanish for parrot.",
+			"listen to the palomita, which is Spanish for parrot.", /* or at least the Amy always thought that's what it meant */
 		};
-		You(meadowroom_msg[rn2(4+hallu*3)]);
+		You(meadowroom_msg[rn2(5+hallu*3)]);
 		return;
 	    }
 
@@ -483,12 +502,13 @@ dosounds()
 			"shiver for a moment.",
 			"feel that someone forgot to close the door to the freezer.",
 			"feel that this is a cold place.",
+			"regret not bringing along your winter clothes for this cold atmosphere.",
 			"fear that you're gonna develop a lung inflammation.",
-			"hear someone calling you to the iceblock shooting.",
+			"hear someone calling you to the iceblock shooting.", /* reference to GNTM, where the models had to do a photo shooting in an ice chamber once */
 			"can smell the mildew on the walls.",
 			"listen to the type of ice block laughing all the time. Harharharharharharhar!",
 		};
-		You(coolingchamber_msg[rn2(4+hallu*4)]);
+		You(coolingchamber_msg[rn2(5+hallu*4)]);
 		return;
 	    }
 
@@ -496,14 +516,20 @@ dosounds()
 		static const char *voidroom_msg[] = {
 			"are struck by a sense of emptiness.",
 			"sense a black hole in the fabric of reality.",
-			"feel that a special challenge awaits you.",
+			"feel that a special challenge awaits you.", /* ToME */
 			"feel the presence of spirits from the netherworld.",
+			"hear a sucking sound.",
+			"notice that this area is disturbingly quiet.",
+			"hear the absence of nosie.", /* sic by AntiGulp, and deemed too funny to fix */
 			"hear Galadriel whispering 'It is very likely that you die on your journey, but you must go anyway...'",
 			"realize that the atmosphere does not contain oxygen! If you stay around you'll suffocate!",
 			"hear Melkor laughing at your puny attempts to reach him.",
 			"have failed to defeat Maeglin, and he reached the stairs! Everything is lost now. Gondolin will go down in a rain of fire and smoke, and all the humans are killed by blarogs and ringwraiths.",
+			"feel a ghostly touch on your nosie and inhale the scent of a rosie!",
+			"hear the sounds of the gene splicing machine!", /* Elona */
+			"listen to someone complaining about a splintered nail.", /* Harry Potter disappearing (or whatever it's called, it's actually magical teleportation) mishap */
 		};
-		You(voidroom_msg[rn2(4+hallu*4)]);
+		You(voidroom_msg[rn2(7+hallu*7)]);
 		return;
 	    }
 
@@ -511,14 +537,16 @@ dosounds()
 		static const char *hamletroom_msg[] = {
 			"have a sense of familiarity.",
 			"feel relaxed.",
-			"hear a storeclerk making a transaction.",
+			"hear a storeclerk making a transaction.", /* but there's not actually a shopkeeper around */
 			"hear the cackle of poultry.",
-			"feel like returning to your burned home... wait, is there really a reason for doing so?",
+			"listen to the joyful cries of playing children.",
+			"feel like returning to your burned home... wait, is there really a reason for doing so?", /* the hallu sounds in particular are inspired by the storyline of Castle of the Winds */
 			"hope that you don't have to master the fleeing mine...",
 			"gaze once more at the ruins of what used to be your father's farm.",
 			"suddenly feel a sharp smoky smell fill your nostrils.",
+			"hear the heavy flapping sound of a vulture's wings.",
 		};
-		You(hamletroom_msg[rn2(4+hallu*4)]);
+		You(hamletroom_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -526,19 +554,21 @@ dosounds()
 		static const char *kopstation_msg[] = {
 			"hear a loud siren.",
 			"can hear a police officer requesting reinforcement.",
-			"hear the whipping sound of a rubber hose.",
+			"hear the whipping sound of a rubber hose.", /* default keystone kop weapon */
+			"overhear the police radio and find out to your shock that you're wanted.",
 			"realize that your cop wanted level is 6, and the forces of law are coming to bust you!",
 			"are chased by a speeding police car!",
-			"feel that the safest place in existence is right in the middle of the enemies' base camp.",
+			"feel that the safest place in existence is right in the middle of the enemies' base camp.", /* a joke from one of Amy's fanfics where the robbers were discussing where to hide and one of them sarcastically suggested hiding in the cop station */
+			"hear the sound of a fucking army helicopter!", /* in GTA games, the army comes for you if your cop wanted level is maxed */
 		};
-		if (rn2(5)) You(kopstation_msg[rn2(3+hallu*3)]);
+		if (rn2(5)) You(kopstation_msg[rn2(4+hallu*4)]);
 		else verbalize("Alert! All units, apprehend %s immediately!", plname);
 		return;
 	    }
 
 	    if (level.flags.has_bossroom && !rn2(200)) {
 		static const char *bossroom_msg[] = {
-			"feel that you're in a hopeless situation.",
+			"feel that you're in a hopeless situation.", /* this and most of the others are inspired by Pokemon */
 			"are left hanging in suspense.",
 			"feel that the future is dark, and it gets even darker.",
 			"realize that the challenge of your life awaits you.",
@@ -572,14 +602,14 @@ dosounds()
 
 	    if (level.flags.has_wizardsdorm && !rn2(200)) {
 		static const char *wizardsdorm_msg[] = {
-			"hear a grating, annoying snore.",
+			"hear a grating, annoying snore.", /* the sleeping wizard */
 			"smell dragonbreath in the air.",
-			"hear a 'Klieau!' sound.",
+			"hear a 'Klieau!' sound.", /* sound that the manticore's tailspike attack supposedly makes */
 			"feel the presence of arcane energies.",
 			"listen to a spellcasting chant.",
 			"are hit by the 1st tailspike! You are hit by the 2nd tailspike! Warning: HP low! You are hit by the 3rd tailspike! You die. Do you want your possessions identified? DYWYPI? [ynq] (n) _",
-			"want to do wizard farming like in the old days, since it's more profitable than pudding farming.",
-			"listen to someone ushering his pets to attack you!",
+			"want to do wizard farming like in the old days, since it's more profitable than pudding farming.", /* in Castle of the Winds, that was actually one of the easiest ways to get lots of items */
+			"listen to someone ushering his pets to attack you!", /* the wizard ordering his manticores to kill you */
 			"suddenly see nightmare figures invading your village and murdering the townsfolk! You gotta stop them!",
 			"forgot to renew your detect monsters spell and the manticore shoots you with tailspikes from outside your line of sight.",
 		};
@@ -589,18 +619,18 @@ dosounds()
 
 	    if (level.flags.has_doomedbarracks && !rn2(200)) {
 		static const char *doomedbarracks_msg[] = {
-			"hear a sound reminiscent of a frog.",
+			"hear a sound reminiscent of a frog.", /* Doom 2, if there's monsters nearby you can often hear an ultra-annoying "Krr-kro-krrg!" sound that used to drive me fucking nuts */
 			"feel that the gate to Hell has to be closed from the other side.",
 			"realize that the aliens have built a base here.",
-			"hear someone announce 'Wonnen.", /* yeah I know it's supposed to be 'warning'... sue me :P --Amy */
+			"hear someone announce 'Wonnen.'", /* yeah I know it's supposed to be 'warning'... sue me :P --Amy */
 			"hear the teleportation sound.",
 			"hear an elevator sound.",
-			"hear a deep voice chanting the name 'Jason'...",
-			"hear someone shout 'Neau!'",
+			"hear a deep voice chanting the name 'Jason'...", /* from a Doom 2 wad */
+			"hear someone shout 'Neau!'", /* from a different Doom 2 wad */
 			"are no longer invulnerable even though you used the IDDQD code!",
 			"fell into a poisonous pit and the IDCLIP cheat doesn't seem to work! Now you'll die very slowly and painfully, you poor bastard.",
 			"encounter a little child that makes an 'Aloe!' sound! He looks deceptively similar to Commander Keen...",
-			"must run past the cyberdemon to fish the red key map out of the river while dodging the rockets. Good luck, you'll need it.",
+			"must run past the cyberdemon to fish the red key map out of the river while dodging the rockets. Good luck, you'll need it.", /* yet another Doom 2 wad */
 		};
 		You(doomedbarracks_msg[rn2(6+hallu*6)]);
 		return;
@@ -608,18 +638,20 @@ dosounds()
 
 	    if (level.flags.has_sleepingroom && !rn2(200)) {
 		static const char *sleepingroom_msg[] = {
-			"felt like you heard a faint noise, but can't make out what it is.",
+			"felt like you heard a faint noise, but can't make out what it is.", /* the moan of a sleeping monster */
 			"hear a loud yawn.",
 			"get the impression that the current atmosphere is quiet... too quiet.",
-			"feel that it's time to take revenge.",
+			"feel that it's time to take revenge.", /* inspired by Castle of the Winds, and also some of the others */
 			"know that some fell creatures are encamped in this dungeon level.",
-			"listen to a soothing melody and a chant that sounds like 'Sleep-bundle-wing!'",
+			"wonder where the denizens of the dungeon came from.",
+			"listen to a soothing melody and a chant that sounds like 'Sleep-bundle-wing!'", /* Elona sleeping music */
 			"suddenly fall asleep. (Hopefully no monster decides to feast on your exposed flesh before you wake up.)",
 			"decide to stop at nothing until the threat is removed.",
 			"overhear the patrol's orders. To your shock, they're talking about plans to KILL you!",
 			"wonder where the clothes and shield hanging over the blacksmith's forge have gone.",
+			"suddenly realize that when your hometown was destroyed, the evil overlord did so because he specifically wanted to kill YOU!",
 		};
-		You(sleepingroom_msg[rn2(5+hallu*5)]);
+		You(sleepingroom_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 
@@ -629,12 +661,14 @@ dosounds()
 			"listen to fishes splashing water around.",
 			"listen to the sound of gentle waves.",
 			"hear children having fun on the water slide.",
+			"hear the rushing noise of water.",
 			"hear a 'splash splash' noise!",
 			"hear someone announce 'The entrance to Diver's Paradise is free today! Come on over and enjoy the most beautiful terrain in this dungeon - water!'",
 			"suddenly see a swimmer in bathing shorts run past you, and my god, does he have an absolutely UGLY tattoo on his leg!",
 			"wonder why fat people are always wearing tight bathing shorts. Having to see that makes you really uncomfortable...",
+			"encounter a guy who wears almost no clothes, and as he approaches you, he suddenly pulls down his pants and starts wanking off... ewwwwwwww...",
 		};
-		You(diverparadise_msg[rn2(4+hallu*4)]);
+		You(diverparadise_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -661,7 +695,7 @@ dosounds()
 			"hear the flapping noises of a condor's wings.",
 			"seem to sink into the floor!",
 			"encounter a sweet asian girl, but as you move to greet her, she suddenly thrusts you into quicksand! You die. Do you want your possessions identified? DYWYPI? [ynq] (n) _",
-			"hear the top of the pyramid crackling and breaking off!",
+			"hear the top of the pyramid crackling and breaking off!", /* Super Mario 64 */
 			"must stand tall on all four columns without falling into the shifting sand!",
 		};
 		You(emptydesert_msg[rn2(4+hallu*4)]);
@@ -670,10 +704,10 @@ dosounds()
 
 	    if (level.flags.has_rarityroom && !rn2(200)) {
 		static const char *rarityroom_msg[] = {
-			"hear uncommon noises.",
-			"can feel the earth shaking.",
+			"hear uncommon noises.", /* the monsters in the room are rare, so the noises they make aren't heard often */
+			"can feel the earth shaking.", /* monster stomping the ground */
 			"sense a supernatural presence.",
-			"feel a conventional weirdness.",
+			"feel a conventional weirdness.", /* the monsters are actually rather mundane, but rare, so that's why it's weird that there are so many of them */
 			"know that you'll see something not meant for mortal eyes.",
 			"hear Pale Night tempting you to remove her veil and look at what's underneath...",
 			"know that you can beat the impossible odds!",
@@ -685,16 +719,17 @@ dosounds()
 
 	    if (level.flags.has_prisonchamber && !rn2(200)) {
 		static const char *prisonchamber_msg[] = {
-			"feel that you must free someone who's being held captive.",
+			"feel that you must free someone who's being held captive.", /* Castle of the Winds, level 4 of the castle where you have to free the prisoner */
 			"hear someone calling for you.",
 			"must free the prisoner unless you want him to be executed.",
 			"have a limited amount of time to save the prisoner or else he gets killed.",
+			"are already hearing drums.",
 			"were too slow and now the prisoner is dead. You failure!",
 			"really have to hurry - if you don't free the prisoner in 10 turns, he will be killed!",
 			"were so stupid and accidentally attacked the prisoner, causing him to die! Now you'll never get the reward for freeing him!",
 			"procrastinated for too long and now the prisoner is history. You failure!",
 		};
-		You(prisonchamber_msg[rn2(4+hallu*4)]);
+		You(prisonchamber_msg[rn2(5+hallu*4)]);
 		return;
 	    }
 
@@ -706,7 +741,7 @@ dosounds()
 			"hear the sounds of a nuclear facility.",
 			"feel the presence of the ether generator!",
 			"can overhear the president saying 'That was the last straw! I'll bomb that fucking country now! I just need to get the code and press the big red button!'",
-			"are in the extended hazardous course and will have to beat it without cheats, which is very difficult!",
+			"are in the extended hazardous course and will have to beat it without cheats, which is very difficult!", /* Hazardous Course 2, also known as Super Kaizo Half-Life */
 		};
 		You(nuclearchamber_msg[rn2(4+hallu*3)]);
 		return;
@@ -715,12 +750,12 @@ dosounds()
 	    if (level.flags.has_variantroom && !rn2(200)) {
 		static const char *variantroom_msg[] = {
 			"sense the presence of beings from another universe.",
-			"hear the elder priest fiercely lashing his tentacles around.",
-			"feel an earthquake-like trembling, probably caused by a migmatite horror...",
-			"hear Morgoth muttering a chant.",
-			"hear the scream of Lina Inverse's high-pitched voice.",
+			"hear the elder priest fiercely lashing his tentacles around.", /* dnethack */
+			"feel an earthquake-like trembling, probably caused by a migmatite horror...", /* steamband */
+			"hear Morgoth muttering a chant.", /* angband */
+			"hear the scream of Lina Inverse's high-pitched voice.", /* animeband */
 			"receive a stamped scroll from the mail demon! It reads: 'Muahahahaha, I kidnapped Princess Peach again. Sincerely, Bowser.'",
-			"start eating the hill giant corpse. Ulch - that meat was tainted! You die from your illness. Do you want your possessions identified? DYWYPI? [ynq] (n) _",
+			"start eating the hill giant corpse. Ulch - that meat was tainted! You die from your illness. Do you want your possessions identified? DYWYPI? [ynq] (n) _", /* Grunthack */
 			"suddenly realize that the elder priest stands right before you, and unfortunately, it's his turn now. Say goodbye to your cloak of magic resistance!",
 			"allowed your speed spell to wear off, and as a result Morgoth gets a double turn and casts mana storm twice in a row. You die.",
 			"are lucky, because you encountered Animeband's instakill monster, and it kills you! Game over!",
@@ -733,13 +768,14 @@ dosounds()
 		static const char *coinhall_msg[] = {
 			"notice the sound of clinging coins.",
 			"feel that, somewhere down here, there might be a whole lot of gold.",
-			"hear metal banging against a wall.",
+			"hear metal banging against a wall.", /* the metal is the gold, of course */
 			"hear a tingling-clinging sound.",
 			"hear Scrooge McDuck taking a bath in his money!",
-			"hear the sound of a shower and then... coins???",
+			"hear the sound of a shower and then... coins???", /* Scrooge's gold coin shower */
 			"don't know why purple rain is so popular, because gold rain is much better...",
+			"feel extremely bored! Why does the dungeon master keep sending boring chaff monsters instead of something more dangerous?", /* players have complained that coin halls are one of the most boring special rooms */
 		};
-		You(coinhall_msg[rn2(4+hallu*3)]);
+		You(coinhall_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_angelhall && !rn2(200)) {
@@ -773,8 +809,9 @@ dosounds()
 			"are sitting in an electric chair and have to survive a current of 20 watt for half an hour!",
 			"realize that a tornado has engulfed the entire dungeon and the ceiling starts to collapse...",
 			"wonder why 'astral' elementals exist, because astral is not an element.",
+			"can hear Laura chanting spells.", /* she's supposed to be a master of elemental spells */
 		};
-		You(elemhall_msg[rn2(5+hallu*6)]);
+		You(elemhall_msg[rn2(5+hallu*7)]);
 		return;
 	    }
 
@@ -782,16 +819,19 @@ dosounds()
 		static const char *evilroom_msg[] = {
 			"are very afraid for some reason.",
 			"listen to a really evil sound.",
-			"hear a very deep grunt.",
+			"hear a very deep grunt.", /* grunthack :D */
 			"sense a great danger.",
-			"hear measurers and forks.",
-			"hear someone sharpening the spoon fork.",
+			"hear measurers and forks.", /* Nethack Fourk */
+			"hear someone sharpening the spoon fork.", /* Sporkhack */
+			"somehow feel that the default rules are not valid here.",
+			"are afraid that this place will be rather unfair to you.",
+			"can tell from the sounds that the monsters on this level are spectacularly unforgiving.",
 			"know that you won't make it through this level alive...",
 			"will die, but not before you've witnessed the evil perpetrators taking your beloved toys and breaking them into pieces.",
-			"are going to get disintegrated even if you are resistant.",
-			"will never be able to kill a bugbear in less than 5 hits, and woe to you if an actually difficult monster comes, e.g. a stone golem.",
+			"are going to get disintegrated even if you are resistant.", /* Nethack Fourk */
+			"will never be able to kill a bugbear in less than 5 hits, and woe to you if an actually difficult monster comes, e.g. a stone golem.", /* Sporkhack */
 		};
-		You(evilroom_msg[rn2(6+hallu*4)]);
+		You(evilroom_msg[rn2(9+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_religioncenter && !rn2(200)) {
@@ -801,22 +841,26 @@ dosounds()
 			"listen to some gibberish talk.",
 			"hear voices chanting a prayer.",
 			"sense an evil, awful stench.",
+			"sense a cultural clash.", /* sadly, some religions do not get along very well with each other */
+			"hear someone call for the elimination of infidels.",
 			"hear a frightening 'Hola-hola!' call!",
 			"hear someone shout 'Allahu Akbar!'",
 			"have to resist the urge to vomit from the terrible smell.",
 			"must prevent the hostile overtaking or everything you hold dear will be lost.",
 			"suddenly meet someone who accuses you of being an intolerant asshole.",
+			"know that the statistics don't lie and the alien infestation is a real threat!",
+			"overhear plans for a destructive bomb notice!",
 		};
-		You(religioncenter_msg[rn2(5+hallu*5)]);
+		You(religioncenter_msg[rn2(7+hallu*7)]);
 		return;
 	    }
 	    if (level.flags.has_cursedmummyroom && !rn2(200)) {
 		static const char *cursedmummyroom_msg[] = {
 			"sense the eerie silence.",
 			"feel the presence of ancient beings.",
-			"have a primordial feeling.",
-			"are struck with awe at the sight of these structures.",
-			"hear the frightening sounds of something you do NOT, EVER, want to anger.",
+			"have a primordial feeling.", /* the lich in that room is a really ancient being */
+			"are struck with awe at the sight of these structures.", /* refers to the architecture to the mummies' tomb */
+			"hear the frightening sounds of something you do NOT, EVER, want to anger.", /* Elona big daddy */
 			"realize that you've trespassed in the tomb of an ancient pharao.",
 			"are afraid of accidentally equipping cursed items.",
 			"hear the dead walking.",
@@ -830,29 +874,37 @@ dosounds()
 			"feel that this will be rather difficult.",
 			"know that until the very end, you have to give it your best.",
 			"sense a great deal of variety.",
-			"seem to sense the weather changing.",
-			"must contest the harder part of the Adventurer Zone!",
+			"seem to sense the weather changing.", /* weather in the mountains can change fast and unexpectedly */
+			"sense the change of air pressure.",
+			"feel that the air is getting thin.",
+			"must contest the harder part of the Adventurer Zone!", /* Mushroom Kingdom Fusion */
 			"feel that in the name of Caesar, Carthage MUST be destroyed!",
-			"switch out your lamp for a climbing set.",
+			"switch out your lamp for a climbing set.", /* ToME has climbing tools for scaling mountains but sadly they use the same slot that light sources occupy */
 			"realize that your chosen character class is hard to play for the entire length of the game.",
+			"wish you had a dumbo to ride on.",
+			"wonder how a legion would deal with an icy staircase.",
 		};
-		You(arduousmountain_msg[rn2(4+hallu*4)]);
+		You(arduousmountain_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 	    if (level.flags.has_levelffroom && !rn2(200)) {
 		static const char *levelffroom_msg[] = {
 			"hear laughing sounds.",
-			"listen to dissonant beeps.",
-			"have the feeling that there will be errors.",
+			"listen to dissonant beeps.", /* supposed to be the Metroid "Beepbebeep beep BEEP beep, beep beep BEEP beep!" "music" */
+			"have the feeling that there will be errors.", /* many of these are inspired by various glitches in Castle of the Winds */
 			"hear an asynchronous sound.",
 			"realize some unexpected hard disk activity.",
+			"have to use phase door if you want to get inside.",
+			"wonder whether teleportation will work on this floor.",
 			"have the urge to click on that gray tile!",
 			"get a NTLL - Not a valid save file!",
 			"suddenly notice the superdeep type over there!",
 			"scrolled too far down and the ultrayousee ends your game. Sorry.",
 			"just lost another continue! If you keep playing that badly, you'll run out and be eliminated prematurely!",
+			"need to use clairvoyance in a very specific place or you won't be able to teleport!",
+			"suddenly remember the highscore cheat that Amy's roommate discovered!",
 		};
-		You(levelffroom_msg[rn2(5+hallu*5)]);
+		You(levelffroom_msg[rn2(7+hallu*7)]);
 		return;
 	    }
 	    if (level.flags.has_verminroom && !rn2(200)) {
@@ -862,7 +914,7 @@ dosounds()
 			"feel as if there's rats in the walls.",
 			"notice a foul stench in the air.",
 			"fell into an open sewer hole!",
-			"think that it must be raining outside, judging by the ratty smell.",
+			"think that it must be raining outside, judging by the ratty smell.", /* canal lids on the ground sometimes emit a horrific smell when it's raining... */
 			"suddenly bear witness to a huge invasion of ants, rats, cockroaches and other vermin!",
 		};
 		You(verminroom_msg[rn2(4+hallu*3)]);
@@ -874,12 +926,14 @@ dosounds()
 			"notice an overwhelming stench of urine.",
 			"hear a distorted splash.",
 			"listen to a complaining customer and a female voice saying 'Nope, you don't get your money back, sorry.'",
+			"hear a constant peeing noise.",
 			"encounter Mira, and she asks: 'Do you want to bathe in my urine? Only 20 zorkmids for one hour of pure fun!'",
 			"suddenly see the skeletons of people who died in a most painful way!",
 			"can't wrap the head around Mira's fantasies.",
-			"are certainly turned OFF bathing for now. Did Mira really pee into the basin???",
+			"are certainly turned OFF bathing for now. Did Mira really pee into the basin???", /* she did... */
+			"notice the stench of ammonia.",
 		};
-		You(miraspa_msg[rn2(4+hallu*4)]);
+		You(miraspa_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 	    if (level.flags.has_machineroom && !rn2(200)) {
@@ -888,12 +942,16 @@ dosounds()
 			"hear the grinding gears of industry.",
 			"hear busy, hectic noises.",
 			"realize that you're in the industrial district now.",
+			"hear the sound of a dump truck.",
+			"hear the track bed being gravelled.",
 			"hear the taunts of the motherfucking Glass Golem!",
 			"listen to the sound of a truck rolling over a road.",
 			"wonder how long the industrial highway is, it seems to be endless?!",
 			"hear a 'choo-choo' sound and as you turn around, you see a TRAAAAAAAAAIN! YAAAAAAAY! It's headed to Trier, so it's probably a Sueueueueueuewex? :-)",
+			"doze off into a peaceful slumber as the trains keep passing through the station once every 30 minutes.",
+			"suddenly wonder why there's so much traffic.",
 		};
-		You(machineroom_msg[rn2(4+hallu*4)]);
+		You(machineroom_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 	    if (level.flags.has_showerroom && !rn2(200)) {
@@ -904,7 +962,7 @@ dosounds()
 			"hear a thunderous rumble.",
 			"listen to the emergency service trying to repair a broken water pipe.",
 			"hear someone scream 'HELP! I can't swim! Save me please, I'm drowning!!!",
-			"realize that the sorcery adept doesn't know how to stop the water...",
+			"realize that the sorcery adept doesn't know how to stop the water...", /* some poem that I forgot the name off, maybe "the mage adept"? the poor sap wants to fill the bathtub with water by using a spell but forgot how to stop the helpers he summoned */
 			"detect a flooding on this sub level.",
 		};
 		You(showerroom_msg[rn2(4+hallu*4)]);
@@ -912,7 +970,7 @@ dosounds()
 	    }
 	    if (level.flags.has_greencrossroom && !rn2(200)) {
 		static const char *greencrossroom_msg[] = {
-			"hear some mundane talk.",
+			"hear some mundane talk.", /* most of these are Castle of the Winds-inspired */
 			"listen to the cackle of poultry.",
 			"feel like reaching the next town.",
 			"seem to be in a nice atmosphere.",
@@ -920,8 +978,9 @@ dosounds()
 			"suddenly see the hill giant lord throwing enormous rocks on the shops! And he's killing the shopkeeper with a giant club! Ack!",
 			"must be in a town that's not very easy to reach.",
 			"hacked into Arabella's chat, allowing you to monitor her talk and that of her girlfriends. And you realize that Henrietta complains about you having gotten away from her because she can't follow you now.",
+			"need to squeeze past all the statues with the ancient white dragon breathing down your neck!",
 		};
-		You(greencrossroom_msg[rn2(4+hallu*4)]);
+		You(greencrossroom_msg[rn2(4+hallu*5)]);
 		return;
 	    }
 	    if (level.flags.has_ruinedchurch && !rn2(200)) {
@@ -1179,7 +1238,7 @@ dosounds()
 		break;
 	/* and don't produce silly effects when she's clearly visible */
 	if (mtmp && (hallu || !canseemon(mtmp))) {
-	    static const char * const ora_msg[5] = {
+	    static const char * const ora_msg[] = {
 		    "a strange wind.",		/* Jupiter at Dodona */
 		    "convulsive ravings.",	/* Apollo at Delphi */
 		    "snoring snakes.",		/* AEsculapius at Epidaurus */
@@ -1194,7 +1253,7 @@ dosounds()
     }
     if (!Is_blackmarket(&u.uz) && at_dgn_entrance("One-eyed Sam's Market") &&
         !rn2(200)) {
-      static const char *blkmar_msg[4] = {
+      static const char *blkmar_msg[] = {
         "You hear someone complaining about the prices.",
         "Somebody whispers: \"Food rations? Only 900 zorkmids.\"",
         "You feel like searching for more gold.",
@@ -1206,7 +1265,7 @@ dosounds()
 	/* finding alignment quests is way too hard, so the player will get some help. --Amy */
     if ( (at_dgn_entrance("Lawful Quest") || at_dgn_entrance("Neutral Quest") || at_dgn_entrance("Chaotic Quest") ) &&
         !rn2(1000)) {
-      static const char *alignquest_msg[4] = {
+      static const char *alignquest_msg[] = {
         "You feel the presence of some sort of force.",
         "There seems to be something special about this place.",
         "You hear someone say: \"Force field activated!\"",
