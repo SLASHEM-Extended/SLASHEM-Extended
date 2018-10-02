@@ -430,7 +430,7 @@ struct obj *instr;
 	case WOODEN_FLUTE:		/* May charm snakes */
 	/* KMH, balance patch -- removed
 	case PAN_PIPE: */
-	    do_spec &= (rn2(ACURR(A_DEX)) + u.ulevel > 25);
+	    do_spec &= (rn2(ACURR(A_DEX)) + u.ulevel > (25 + rn2(40)) );
 	    pline("%s.", Tobjnam(instr, do_spec ? "trill" : "toot"));
 	    if (do_spec) charm_snakes(u.ulevel * 3);
 	    exercise(A_DEX, TRUE);
@@ -548,7 +548,7 @@ hornchoice:
 		break;
 	    } /* else FALLTHRU */
 	case WOODEN_HARP:		/* May calm Nymph */
-	    do_spec &= (rn2(ACURR(A_DEX)) + u.ulevel > 25);
+	    do_spec &= (rn2(ACURR(A_DEX)) + u.ulevel > (25 + rn2(40)) );
 	    pline("%s %s.", The(xname(instr)),
 		  do_spec ? "produces a lilting melody" : "twangs");
 	    if (do_spec) calm_nymphs(u.ulevel * 3);
