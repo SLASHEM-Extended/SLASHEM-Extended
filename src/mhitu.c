@@ -14667,9 +14667,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			Your("%s less effective.", aobjnam(obj, "seem"));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		} else if (obj && rn2(3)) wither_dmg(obj, xname(obj), rn2(4), FALSE, &youmonst);
-		}
 
             if (!rn2(3)) mdamageu(mtmp, (1 + dmgplus));
+		}
 
 		break;
 

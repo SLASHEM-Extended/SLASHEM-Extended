@@ -1781,6 +1781,7 @@ not_special:
 	if (appr == 1 && !rn2(5) && (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pink cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "bakh-rozovyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "portlash-pushti plash") ) )) appr = 0;
 
 	if (ptr == &mons[PM_ANCIENT_BIBLICAL_DRAGON]) appr = -1;
+	if (ptr == &mons[PM_BLOWSTREAM_BABY]) appr = -1;
 	if (ptr == &mons[PM_BOGUXORN]) appr = -1;
 	if (ptr == &mons[PM_POOL_EDGE_SWIMMER]) appr = -1;
 	if (ptr == &mons[PM_SOCIAL_DISORDER]) appr = -1;

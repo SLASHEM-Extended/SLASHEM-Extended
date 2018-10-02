@@ -2033,6 +2033,9 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	if (is_umplayer(ptr)) {
 		strcat(description, " Is an undead player character. Be very careful.");
 	}
+	if (shapechanger(ptr)) {
+		strcat(description, " Is a shapechanger; eating it may polymorph you.");
+	}
 	if (ptr->mflags5 & M5_SPACEWARS) {
 		strcat(description, " Origin: Castle of the Winds.");
 	}

@@ -344,6 +344,7 @@ int mndx;
 
 	switch (mndx) {
 	case PM_CHAMELEON:	mcham = CHAM_CHAMELEON; break;
+	case PM_KARMA_CHAMELEON:	mcham = CHAM_KARMA_CHAMELEON; break;
 	case PM_DOPPELGANGER:	mcham = CHAM_DOPPELGANGER; break;
 	case PM_DOPPLEZON:	mcham = CHAM_DOPPLEZON; break;
 	case PM_SANDESTIN:	mcham = CHAM_SANDESTIN; break;
@@ -352,6 +353,34 @@ int mndx;
 	case PM_WARPER:	mcham = CHAM_WARPER; break;
 	case PM_CHAOS_SHAPECHANGER:	mcham = CHAM_CHAOS_SHAPECHANGER; break;
 	case PM_PEANUT__BUTTER_AND_JELLY_SANDWICH:	mcham = CHAM_SANDWICH; break;
+	case PM_JUNOW_TRICE:	mcham = CHAM_JUNOW_TRICE; break;
+	case PM_POLY_FLAYER:	mcham = CHAM_POLY_FLAYER; break;
+	case PM_WILD_CHANGE_NYMPH:	mcham = CHAM_WILD_CHANGE_NYMPH; break;
+	case PM_VERY_POLY_NYMPH:	mcham = CHAM_VERY_POLY_NYMPH; break;
+	case PM_CORTEGEX:	mcham = CHAM_CORTEGEX; break;
+	case PM_CHANGE_EXPLODER:	mcham = CHAM_CHANGE_EXPLODER; break;
+	case PM_BAM_CHAM:	mcham = CHAM_BAM_CHAM; break;
+	case PM_LAURA_S_PARLOR_TRICK:	mcham = CHAM_LAURA_S_PARLOR_TRICK; break;
+	case PM_LAURA_S_MASTERPIECE:	mcham = CHAM_LAURA_S_MASTERPIECE; break;
+	case PM_TSCHANG_SEPHIRAH:	mcham = CHAM_TSCHANG_SEPHIRAH; break;
+	case PM_GLONK_SEPHIRAH:	mcham = CHAM_GLONK_SEPHIRAH; break;
+	case PM_KUSCHOING_SEPHIRAH:	mcham = CHAM_KUSCHOING_SEPHIRAH; break;
+	case PM_ULTRA_DESTRUCTIVE_MONSTER:	mcham = CHAM_ULTRA_DESTRUCTIVE_MONSTER; break;
+	case PM_DARN_DEMENTOR:	mcham = CHAM_DARN_DEMENTOR; break;
+	case PM_SHOEMELEON:	mcham = CHAM_SHOEMELEON; break;
+	case PM_POLYFESHNEE:	mcham = CHAM_POLYFESHNEE; break;
+	case PM_COVETOUSLEON:	mcham = CHAM_COVETOUSLEON; break;
+	case PM_WHORED_HORE:	mcham = CHAM_WHORED_HORE; break;
+	case PM_LULU_ASS:	mcham = CHAM_LULU_ASS; break;
+	case PM_TENDER_JESSE:	mcham = CHAM_TENDER_JESSE; break;
+	case PM_ELEROTIC_DREAM_WOMAN:	mcham = CHAM_ELEROTIC_DREAM_WOMAN; break;
+	case PM_MARTIIN:	mcham = CHAM_MARTIIN; break;
+	case PM_FOREPREACHER_CONVERTER:	mcham = CHAM_FOREPREACHER_CONVERTER; break;
+	case PM_RICTIM_TERRORIZER:	mcham = CHAM_RICTIM_TERRORIZER; break;
+	case PM_POLYMORPHITIC_WOLF:	mcham = CHAM_POLYMORPHITIC_WOLF; break;
+	case PM_OFFDIVER:	mcham = CHAM_OFFDIVER; break;
+	case PM_SLUMBER_HULK:	mcham = CHAM_SLUMBER_HULK; break;
+	case PM_IVEL_WUXTINA:	mcham = CHAM_IVEL_WUXTINA; break;
 	case PM_GIANT_CHAMELEON:	mcham = CHAM_GIANT_CHAMELEON; break;
 	default: mcham = CHAM_ORDINARY; break;
 	}
@@ -370,6 +399,35 @@ STATIC_VAR short cham_to_pm[] = {
 		PM_WARPER,
 		PM_CHAOS_SHAPECHANGER,
 		PM_PEANUT__BUTTER_AND_JELLY_SANDWICH,
+		PM_KARMA_CHAMELEON,
+		PM_JUNOW_TRICE,
+		PM_POLY_FLAYER,
+		PM_WILD_CHANGE_NYMPH,
+		PM_VERY_POLY_NYMPH,
+		PM_CORTEGEX,
+		PM_CHANGE_EXPLODER,
+		PM_BAM_CHAM,
+		PM_LAURA_S_PARLOR_TRICK,
+		PM_LAURA_S_MASTERPIECE,
+		PM_TSCHANG_SEPHIRAH,
+		PM_GLONK_SEPHIRAH,
+		PM_KUSCHOING_SEPHIRAH,
+		PM_ULTRA_DESTRUCTIVE_MONSTER,
+		PM_DARN_DEMENTOR,
+		PM_SHOEMELEON,
+		PM_POLYFESHNEE,
+		PM_COVETOUSLEON,
+		PM_WHORED_HORE,
+		PM_LULU_ASS,
+		PM_TENDER_JESSE,
+		PM_ELEROTIC_DREAM_WOMAN,
+		PM_MARTIIN,
+		PM_FOREPREACHER_CONVERTER,
+		PM_RICTIM_TERRORIZER,
+		PM_POLYMORPHITIC_WOLF,
+		PM_OFFDIVER,
+		PM_SLUMBER_HULK,
+		PM_IVEL_WUXTINA,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -6146,6 +6204,298 @@ sandwichchoice:
 			if (uncommon10(pm) && rn2(5)) goto sandwichchoice;
 			if (rn2(10000) && !(pm->mlet == S_BLOB || pm->mlet == S_PUDDING || pm->mlet == S_JELLY) ) goto sandwichchoice;
 		break;
+	    case CHAM_JUNOW_TRICE:
+junowchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto junowchoice;
+			if (uncommon2(pm) && !rn2(4)) goto junowchoice;
+			if (uncommon3(pm) && !rn2(3)) goto junowchoice;
+			if (uncommon5(pm) && !rn2(2)) goto junowchoice;
+			if (uncommon7(pm) && rn2(3)) goto junowchoice;
+			if (uncommon10(pm) && rn2(5)) goto junowchoice;
+			if (rn2(10000) && !(pm->mlet == S_COCKATRICE) ) goto junowchoice;
+		break;
+	    case CHAM_POLY_FLAYER:
+flayerchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto flayerchoice;
+			if (uncommon2(pm) && !rn2(4)) goto flayerchoice;
+			if (uncommon3(pm) && !rn2(3)) goto flayerchoice;
+			if (uncommon5(pm) && !rn2(2)) goto flayerchoice;
+			if (uncommon7(pm) && rn2(3)) goto flayerchoice;
+			if (uncommon10(pm) && rn2(5)) goto flayerchoice;
+			if (rn2(10000) && !(dmgtype(pm, AD_DRIN)) ) goto flayerchoice;
+		break;
+	    case CHAM_WILD_CHANGE_NYMPH:
+	    case CHAM_VERY_POLY_NYMPH:
+nymphchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto nymphchoice;
+			if (uncommon2(pm) && !rn2(4)) goto nymphchoice;
+			if (uncommon3(pm) && !rn2(3)) goto nymphchoice;
+			if (uncommon5(pm) && !rn2(2)) goto nymphchoice;
+			if (uncommon7(pm) && rn2(3)) goto nymphchoice;
+			if (uncommon10(pm) && rn2(5)) goto nymphchoice;
+			if (rn2(10000) && !(pm->mlet == S_NYMPH) ) goto nymphchoice;
+		break;
+	    case CHAM_CORTEGEX:
+vortexchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto vortexchoice;
+			if (uncommon2(pm) && !rn2(4)) goto vortexchoice;
+			if (uncommon3(pm) && !rn2(3)) goto vortexchoice;
+			if (uncommon5(pm) && !rn2(2)) goto vortexchoice;
+			if (uncommon7(pm) && rn2(3)) goto vortexchoice;
+			if (uncommon10(pm) && rn2(5)) goto vortexchoice;
+			if (rn2(10000) && !(pm->mlet == S_VORTEX) ) goto vortexchoice;
+		break;
+	    case CHAM_CHANGE_EXPLODER:
+lightchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto lightchoice;
+			if (uncommon2(pm) && !rn2(4)) goto lightchoice;
+			if (uncommon3(pm) && !rn2(3)) goto lightchoice;
+			if (uncommon5(pm) && !rn2(2)) goto lightchoice;
+			if (uncommon7(pm) && rn2(3)) goto lightchoice;
+			if (uncommon10(pm) && rn2(5)) goto lightchoice;
+			if (rn2(10000) && !(pm->mlet == S_LIGHT) ) goto lightchoice;
+		break;
+	    case CHAM_BAM_CHAM:
+dragonchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto dragonchoice;
+			if (uncommon2(pm) && !rn2(4)) goto dragonchoice;
+			if (uncommon3(pm) && !rn2(3)) goto dragonchoice;
+			if (uncommon5(pm) && !rn2(2)) goto dragonchoice;
+			if (uncommon7(pm) && rn2(3)) goto dragonchoice;
+			if (uncommon10(pm) && rn2(5)) goto dragonchoice;
+			if (rn2(10000) && !(pm->mlet == S_DRAGON) ) goto dragonchoice;
+		break;
+	    case CHAM_LAURA_S_PARLOR_TRICK:
+	    case CHAM_LAURA_S_MASTERPIECE:
+elementalchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto elementalchoice;
+			if (uncommon2(pm) && !rn2(4)) goto elementalchoice;
+			if (uncommon3(pm) && !rn2(3)) goto elementalchoice;
+			if (uncommon5(pm) && !rn2(2)) goto elementalchoice;
+			if (uncommon7(pm) && rn2(3)) goto elementalchoice;
+			if (uncommon10(pm) && rn2(5)) goto elementalchoice;
+			if (rn2(10000) && !(pm->mlet == S_ELEMENTAL) ) goto elementalchoice;
+		break;
+	    case CHAM_TSCHANG_SEPHIRAH:
+	    case CHAM_GLONK_SEPHIRAH:
+	    case CHAM_KUSCHOING_SEPHIRAH:
+kopchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto kopchoice;
+			if (uncommon2(pm) && !rn2(4)) goto kopchoice;
+			if (uncommon3(pm) && !rn2(3)) goto kopchoice;
+			if (uncommon5(pm) && !rn2(2)) goto kopchoice;
+			if (uncommon7(pm) && rn2(3)) goto kopchoice;
+			if (uncommon10(pm) && rn2(5)) goto kopchoice;
+			if (rn2(10000) && !(pm->mlet == S_KOP) ) goto kopchoice;
+		break;
+	    case CHAM_ULTRA_DESTRUCTIVE_MONSTER:
+rustmonsterchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto rustmonsterchoice;
+			if (uncommon2(pm) && !rn2(4)) goto rustmonsterchoice;
+			if (uncommon3(pm) && !rn2(3)) goto rustmonsterchoice;
+			if (uncommon5(pm) && !rn2(2)) goto rustmonsterchoice;
+			if (uncommon7(pm) && rn2(3)) goto rustmonsterchoice;
+			if (uncommon10(pm) && rn2(5)) goto rustmonsterchoice;
+			if (rn2(10000) && !(pm->mlet == S_RUSTMONST) ) goto rustmonsterchoice;
+		break;
+	    case CHAM_DARN_DEMENTOR:
+ghostchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto ghostchoice;
+			if (uncommon2(pm) && !rn2(4)) goto ghostchoice;
+			if (uncommon3(pm) && !rn2(3)) goto ghostchoice;
+			if (uncommon5(pm) && !rn2(2)) goto ghostchoice;
+			if (uncommon7(pm) && rn2(3)) goto ghostchoice;
+			if (uncommon10(pm) && rn2(5)) goto ghostchoice;
+			if (rn2(10000) && !(pm->mlet == S_GHOST) ) goto ghostchoice;
+		break;
+	    case CHAM_SHOEMELEON:
+shoechoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto shoechoice;
+			if (uncommon2(pm) && !rn2(4)) goto shoechoice;
+			if (uncommon3(pm) && !rn2(3)) goto shoechoice;
+			if (uncommon5(pm) && !rn2(2)) goto shoechoice;
+			if (uncommon7(pm) && rn2(3)) goto shoechoice;
+			if (uncommon10(pm) && rn2(5)) goto shoechoice;
+			if (rn2(10000) && !(pm->msound == MS_SHOE) ) goto shoechoice;
+		break;
+	    case CHAM_POLYFESHNEE:
+demonchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto demonchoice;
+			if (uncommon2(pm) && !rn2(4)) goto demonchoice;
+			if (uncommon3(pm) && !rn2(3)) goto demonchoice;
+			if (uncommon5(pm) && !rn2(2)) goto demonchoice;
+			if (uncommon7(pm) && rn2(3)) goto demonchoice;
+			if (uncommon10(pm) && rn2(5)) goto demonchoice;
+			if (rn2(10000) && !(is_demon(pm)) ) goto demonchoice;
+		break;
+	    case CHAM_COVETOUSLEON:
+covetouschoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto covetouschoice;
+			if (uncommon2(pm) && !rn2(4)) goto covetouschoice;
+			if (uncommon3(pm) && !rn2(3)) goto covetouschoice;
+			if (uncommon5(pm) && !rn2(2)) goto covetouschoice;
+			if (uncommon7(pm) && rn2(3)) goto covetouschoice;
+			if (uncommon10(pm) && rn2(5)) goto covetouschoice;
+			if (rn2(10000) && !(is_covetous(pm)) ) goto covetouschoice;
+		break;
+	    case CHAM_WHORED_HORE:
+whorechoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto whorechoice;
+			if (uncommon2(pm) && !rn2(4)) goto whorechoice;
+			if (uncommon3(pm) && !rn2(3)) goto whorechoice;
+			if (uncommon5(pm) && !rn2(2)) goto whorechoice;
+			if (uncommon7(pm) && rn2(3)) goto whorechoice;
+			if (uncommon10(pm) && rn2(5)) goto whorechoice;
+			if (rn2(10000) && !(pm->msound == MS_WHORE) ) goto whorechoice;
+		break;
+	    case CHAM_LULU_ASS:
+fartloudchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto fartloudchoice;
+			if (uncommon2(pm) && !rn2(4)) goto fartloudchoice;
+			if (uncommon3(pm) && !rn2(3)) goto fartloudchoice;
+			if (uncommon5(pm) && !rn2(2)) goto fartloudchoice;
+			if (uncommon7(pm) && rn2(3)) goto fartloudchoice;
+			if (uncommon10(pm) && rn2(5)) goto fartloudchoice;
+			if (rn2(10000) && !(pm->msound == MS_FART_LOUD) ) goto fartloudchoice;
+		break;
+	    case CHAM_TENDER_JESSE:
+fartquietchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto fartquietchoice;
+			if (uncommon2(pm) && !rn2(4)) goto fartquietchoice;
+			if (uncommon3(pm) && !rn2(3)) goto fartquietchoice;
+			if (uncommon5(pm) && !rn2(2)) goto fartquietchoice;
+			if (uncommon7(pm) && rn2(3)) goto fartquietchoice;
+			if (uncommon10(pm) && rn2(5)) goto fartquietchoice;
+			if (rn2(10000) && !(pm->msound == MS_FART_QUIET) ) goto fartquietchoice;
+		break;
+	    case CHAM_ELEROTIC_DREAM_WOMAN:
+fartnormalchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto fartnormalchoice;
+			if (uncommon2(pm) && !rn2(4)) goto fartnormalchoice;
+			if (uncommon3(pm) && !rn2(3)) goto fartnormalchoice;
+			if (uncommon5(pm) && !rn2(2)) goto fartnormalchoice;
+			if (uncommon7(pm) && rn2(3)) goto fartnormalchoice;
+			if (uncommon10(pm) && rn2(5)) goto fartnormalchoice;
+			if (rn2(10000) && !(pm->msound == MS_FART_NORMAL) ) goto fartnormalchoice;
+		break;
+	    case CHAM_MARTIIN:
+scentchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto scentchoice;
+			if (uncommon2(pm) && !rn2(4)) goto scentchoice;
+			if (uncommon3(pm) && !rn2(3)) goto scentchoice;
+			if (uncommon5(pm) && !rn2(2)) goto scentchoice;
+			if (uncommon7(pm) && rn2(3)) goto scentchoice;
+			if (uncommon10(pm) && rn2(5)) goto scentchoice;
+			if (rn2(10000) && !(pm->msound == MS_STENCH) ) goto scentchoice;
+		break;
+	    case CHAM_FOREPREACHER_CONVERTER:
+convertchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto convertchoice;
+			if (uncommon2(pm) && !rn2(4)) goto convertchoice;
+			if (uncommon3(pm) && !rn2(3)) goto convertchoice;
+			if (uncommon5(pm) && !rn2(2)) goto convertchoice;
+			if (uncommon7(pm) && rn2(3)) goto convertchoice;
+			if (uncommon10(pm) && rn2(5)) goto convertchoice;
+			if (rn2(10000) && !(pm->msound == MS_CONVERT) ) goto convertchoice;
+		break;
+	    case CHAM_RICTIM_TERRORIZER:
+hcalienchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto hcalienchoice;
+			if (uncommon2(pm) && !rn2(4)) goto hcalienchoice;
+			if (uncommon3(pm) && !rn2(3)) goto hcalienchoice;
+			if (uncommon5(pm) && !rn2(2)) goto hcalienchoice;
+			if (uncommon7(pm) && rn2(3)) goto hcalienchoice;
+			if (uncommon10(pm) && rn2(5)) goto hcalienchoice;
+			if (rn2(10000) && !(pm->msound == MS_HCALIEN) ) goto hcalienchoice;
+		break;
+	    case CHAM_POLYMORPHITIC_WOLF:
+spacewarschoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto spacewarschoice;
+			if (uncommon2(pm) && !rn2(4)) goto spacewarschoice;
+			if (uncommon3(pm) && !rn2(3)) goto spacewarschoice;
+			if (uncommon5(pm) && !rn2(2)) goto spacewarschoice;
+			if (uncommon7(pm) && rn2(3)) goto spacewarschoice;
+			if (uncommon10(pm) && rn2(5)) goto spacewarschoice;
+			if (rn2(10000) && !(is_cowmonster(pm)) ) goto spacewarschoice;
+		break;
+	    case CHAM_OFFDIVER:
+jokechoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto jokechoice;
+			if (uncommon2(pm) && !rn2(4)) goto jokechoice;
+			if (uncommon3(pm) && !rn2(3)) goto jokechoice;
+			if (uncommon5(pm) && !rn2(2)) goto jokechoice;
+			if (uncommon7(pm) && rn2(3)) goto jokechoice;
+			if (uncommon10(pm) && rn2(5)) goto jokechoice;
+			if (rn2(10000) && !(is_jokemonster(pm)) ) goto jokechoice;
+		break;
+	    case CHAM_SLUMBER_HULK:
+randomizedchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto randomizedchoice;
+			if (uncommon2(pm) && !rn2(4)) goto randomizedchoice;
+			if (uncommon3(pm) && !rn2(3)) goto randomizedchoice;
+			if (uncommon5(pm) && !rn2(2)) goto randomizedchoice;
+			if (uncommon7(pm) && rn2(3)) goto randomizedchoice;
+			if (uncommon10(pm) && rn2(5)) goto randomizedchoice;
+			if (rn2(10000) && !(is_randomizedmonster(pm)) ) goto randomizedchoice;
+		break;
+	    case CHAM_IVEL_WUXTINA:
+evilchoice:
+			mndx = rn2(NUMMONS);
+			pm = &mons[mndx];
+			if (rnd(pm->mlevel + 1) > (mon->m_lev + 10) ) goto evilchoice;
+			if (uncommon2(pm) && !rn2(4)) goto evilchoice;
+			if (uncommon3(pm) && !rn2(3)) goto evilchoice;
+			if (uncommon5(pm) && !rn2(2)) goto evilchoice;
+			if (uncommon7(pm) && rn2(3)) goto evilchoice;
+			if (uncommon10(pm) && rn2(5)) goto evilchoice;
+			if (rn2(10000) && !(is_evilpatchmonster(pm)) ) goto evilchoice;
+		break;
 	    case CHAM_DOPPELGANGER:
 	    case CHAM_MISSINGNO:
 	    case CHAM_TRANSFORMER:
@@ -6154,6 +6504,7 @@ sandwichchoice:
 					    PM_ARCHEOLOGIST);
 		break;
 	    case CHAM_CHAMELEON:
+	    case CHAM_KARMA_CHAMELEON:
 	    case CHAM_GIANT_CHAMELEON:
 		if (!rn2(7)) {
 chameleonchoice:
@@ -6248,8 +6599,9 @@ boolean msg;
 		/* polyok rules out all M2_PNAME and M2_WERE's;
 		   select_newcham_form might deliberately pick a player
 		   character type, so we can't arbitrarily rule out all
-		   human forms any more */
-		if (is_mplayer(mdat) || is_umplayer(mdat) || (!is_human(mdat) && monpolyok(mdat)))
+		   human forms any more
+		   Amy edit: oh my god they disallowed M2_HUMAN this is intolerable */
+		if (is_mplayer(mdat) || is_umplayer(mdat) || monpolyok(mdat))
 		    break;
 	    }
 	    if (tryct > 100) return 0;	/* Should never happen */

@@ -19164,6 +19164,7 @@ int type;
 		case PM_VENOM_ATRONACH: return 200;
 
 		case PM_SPROOK: return 90;
+		case PM_BLOWSTREAM_BABY: return 1000;
 
 		case PM_HULL_ALIEN: return 255;
 		case PM_UNICORN_GOLEM: return 400;

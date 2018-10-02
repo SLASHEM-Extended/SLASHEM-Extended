@@ -72,7 +72,7 @@ struct monst {
 	Bitfield(noegodisplay,1);	/* no egotype display --Amy */
 	Bitfield(invis_blkd,1); /* invisibility blocked */
 	Bitfield(perminvis,1);	/* intrinsic minvis value */
-	Bitfield(cham,8);	/* shape-changer */
+	int cham;	/* shape-changer; begone bitfield, we want to have no silly limitations --Amy */
 /* note: lychanthropes are handled elsewhere */
 #define CHAM_ORDINARY		0	/* not a shapechanger */
 #define CHAM_CHAMELEON		1	/* animal */
@@ -84,7 +84,36 @@ struct monst {
 #define CHAM_WARPER		7	/* humanlike */
 #define CHAM_CHAOS_SHAPECHANGER		8	/* humanlike */
 #define CHAM_SANDWICH		9	/* blob-like things */
-#define CHAM_GIANT_CHAMELEON		10	/* animal */
+#define CHAM_KARMA_CHAMELEON		10	/* animal */
+#define CHAM_JUNOW_TRICE		11	/* cockatrice */
+#define CHAM_POLY_FLAYER		12	/* mind flayer */
+#define CHAM_WILD_CHANGE_NYMPH	13	/* nymph */
+#define CHAM_VERY_POLY_NYMPH		14	/* nymph */
+#define CHAM_CORTEGEX		15	/* vortex */
+#define CHAM_CHANGE_EXPLODER		16	/* light */
+#define CHAM_BAM_CHAM		17	/* dragon */
+#define CHAM_LAURA_S_PARLOR_TRICK	18	/* elemental */
+#define CHAM_LAURA_S_MASTERPIECE	19	/* elemental */
+#define CHAM_TSCHANG_SEPHIRAH		20	/* kop */
+#define CHAM_GLONK_SEPHIRAH		21	/* kop */
+#define CHAM_KUSCHOING_SEPHIRAH	22	/* kop */
+#define CHAM_ULTRA_DESTRUCTIVE_MONSTER	23	/* rust monster */
+#define CHAM_DARN_DEMENTOR	24	/* ghost */
+#define CHAM_SHOEMELEON		25	/* shoe */
+#define CHAM_POLYFESHNEE	26	/* demon */
+#define CHAM_COVETOUSLEON	27	/* covetous */
+#define CHAM_WHORED_HORE	28	/* whore */
+#define CHAM_LULU_ASS	29	/* fart loud */
+#define CHAM_TENDER_JESSE	30	/* fart quiet */
+#define CHAM_ELEROTIC_DREAM_WOMAN	31	/* fart normal */
+#define CHAM_MARTIIN	32	/* scent */
+#define CHAM_FOREPREACHER_CONVERTER	33	/* converts */
+#define CHAM_RICTIM_TERRORIZER	34	/* hcalien */
+#define CHAM_POLYMORPHITIC_WOLF	35	/* spacewars */
+#define CHAM_OFFDIVER	36	/* joke mon */
+#define CHAM_SLUMBER_HULK	37	/* randomized monster */
+#define CHAM_IVEL_WUXTINA	38	/* evil variant */
+#define CHAM_GIANT_CHAMELEON		39	/* animal */
 #define CHAM_MAX_INDX		CHAM_GIANT_CHAMELEON
 	Bitfield(mundetected,1);	/* not seen in present hiding place */
 				/* implies one of M1_CONCEAL or M1_HIDE,

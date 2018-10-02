@@ -1773,6 +1773,28 @@ register int pm;
 		intrinsicgainorloss();
 		break;
 
+	    case PM_JUNOW_TRICE:
+		Your("intrinsics seem to change!");
+		intrinsicgainorloss();
+
+		if (!rn2(20)) {
+
+			if(!(HPolymorph & FROMOUTSIDE)) {
+				You_feel(Hallucination ?
+				    "able to take on different shapes! Yeah! Let's transform into something fun!" :
+				    "unstable.");
+				HPolymorph  |= FROMOUTSIDE;
+			}
+
+		}
+
+		if (!Unchanging) {
+		    You_feel("a change coming over you.");
+		    polyself(FALSE);
+		}
+
+		break;
+
 	    case PM_SMALL_CHICKATRICE:
 	    case PM_NEWT:
 	    case PM_ENERGY_TROVE:
@@ -2686,13 +2708,40 @@ register int pm;
 		break;
 
 	    case PM_CHAMELEON:
+	    case PM_POLYFESHNEE:
+	    case PM_FOREPREACHER_CONVERTER:
+	    case PM_MARTIIN:
+	    case PM_IVEL_WUXTINA:
+	    case PM_SLUMBER_HULK:
+	    case PM_OFFDIVER:
+	    case PM_ELEROTIC_DREAM_WOMAN:
+	    case PM_TENDER_JESSE:
+	    case PM_WHORED_HORE:
+	    case PM_SHOEMELEON:
+	    case PM_LULU_ASS:
+	    case PM_DARN_DEMENTOR:
+	    case PM_WILD_CHANGE_NYMPH:
+	    case PM_VERY_POLY_NYMPH:
+	    case PM_KARMA_CHAMELEON:
 	    case PM_DOPPELGANGER:
+	    case PM_LAURA_S_PARLOR_TRICK:
+	    case PM_LAURA_S_MASTERPIECE:
+	    case PM_CHANGE_EXPLODER:
+	    case PM_CORTEGEX:
+	    case PM_TSCHANG_SEPHIRAH:
+	    case PM_KUSCHOING_SEPHIRAH:
+	    case PM_GLONK_SEPHIRAH:
 	    case PM_DOPPLEZON:
+	    case PM_ULTRA_DESTRUCTIVE_MONSTER:
+	    case PM_BAM_CHAM:
 	    case PM_TRANSFORMER:
 	    case PM_CHAOS_SHAPECHANGER:
 	    case PM_WARPER:
+	    case PM_RICTIM_TERRORIZER:
 	    case PM_PEANUT__BUTTER_AND_JELLY_SANDWICH:
 	    case PM_SANDESTIN:
+	    case PM_POLYMORPHITIC_WOLF:
+	    case PM_COVETOUSLEON:
 	    case PM_GIANT_CHAMELEON:
 	    case PM_MEDUQUASIT:
 
@@ -2732,6 +2781,39 @@ register int pm;
 		    You("undergo a freakish metamorphosis!");
 		    polyself(FALSE);
 		}
+		break;
+
+	    case PM_POLY_FLAYER:
+
+		if (!rn2(20)) {
+
+			if(!(HPolymorph & FROMOUTSIDE)) {
+				You_feel(Hallucination ?
+				    "able to take on different shapes! Yeah! Let's transform into something fun!" :
+				    "unstable.");
+				HPolymorph  |= FROMOUTSIDE;
+			}
+
+		}
+
+		if (!Unchanging) {
+		    You_feel("a change coming over you.");
+		    polyself(FALSE);
+		}
+
+		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
+
+		if (ABASE(A_INT) < ATTRMAX(A_INT)) {
+			if (!rn2(2)) {
+				pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
+				(void) adjattrib(A_INT, 1, FALSE);
+				break;	/* don't give them telepathy, too */
+			}
+		}
+		else {
+			pline(Hallucination ? "Eek, that tasted like rotten oversalted seaweed!" : "For some reason, that tasted bland.");
+		}
+
 		break;
 
 	    case PM_BETTINA_S_COMBAT_BOOT:
@@ -2877,10 +2959,7 @@ register int pm;
 		case PM_MIND_FLAYER_TELEPATH:
 	    case PM_MIND_FLAYER: {
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;
-#if 0
-		int     temp;
-		temp = urole.attrmax[A_INT];
-#endif
+
 		if (ABASE(A_INT) < ATTRMAX(A_INT)) {
 			if (!rn2(2)) {
 				pline(Hallucination ? "Hmm, is that what human brain tastes like?" : "Yum! That was real brain food!");
