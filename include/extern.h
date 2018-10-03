@@ -2994,7 +2994,7 @@ E int skill_bonus(int);
 E void skill_init(const struct def_skill *);
 E void practice_weapon(void);
 E void xtraskillinit(void);
-E int get_obj_skill(struct obj *);
+E int get_obj_skill(struct obj *,BOOLEAN_P);
 E void skilltrainingdecrease(int);
 
 /* ### were.c ### */

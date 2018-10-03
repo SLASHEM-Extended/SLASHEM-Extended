@@ -4066,6 +4066,18 @@ A("Royal Casino Bets",		WOODEN_BAR, /* extremely low chance to gain enchantment 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L), 
 
+A("Everything Well Protected",		SOFT_CHASTITY_BELT,
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	DFNS(AD_MAGM),	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L), 
+
+A("Multicharge",		CHARGER, /* only has a 1 in 5 chance of being used up when applied */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L), 
+
+A("Suck The Mind Flayer",		INTELLIGENCE_PACK, /* increases your intelligence by 5 points */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK,	NO_DFNS,	NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L), 
+
 /* below are randarts: they're supposed to be a random base item
  * melee weapons will become some other melee weapon, launchers will become
  * some other launcher, body armors will become some other body armor etc. --Amy */

@@ -15385,6 +15385,12 @@ struct obj *obj;
 					pline("Artifact specs: if you manage to break it by jousting, your maximum lance skill will increase by one skill level, but you'll have to find a new lance."); break;
 				case ART_ROYAL_CASINO_BETS:
 					pline("Artifact specs: applying it at a monster very occasionally increases its enchantment value, but the chances are really low."); break;
+				case ART_EVERYTHING_WELL_PROTECTED:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_MULTICHARGE:
+					pline("Artifact specs: May be used several times before it's used up."); break;
+				case ART_SUCK_THE_MIND_FLAYER:
+					pline("Artifact specs: Increases your intelligence by more than the standard amount when used."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

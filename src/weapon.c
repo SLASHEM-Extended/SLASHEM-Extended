@@ -4787,8 +4787,9 @@ int type;
 }
 
 /* Try to return an associated skill for the specified object */
-int get_obj_skill(obj)
+int get_obj_skill(obj, extraskills)
 struct obj *obj;
+boolean extraskills;
 {
 	int skill;
 	
@@ -4843,6 +4844,33 @@ struct obj *obj;
 	if (obj->otyp == HOLY_WAFER) skill = P_SPIRITUALITY;
 	if (obj->otyp == SCR_CONSECRATION) skill = P_SPIRITUALITY;
 	if (obj->otyp == SCR_CREATE_ALTAR) skill = P_SPIRITUALITY;
+
+	if (extraskills == TRUE) { /* outside of char initialization, more items can unlock skills (god gifts etc.) --Amy */
+		if (obj->otyp == TIN_OPENER) skill = P_MARTIAL_ARTS;
+		if (obj->otyp == BUDO_NO_SASU) skill = P_MARTIAL_ARTS;
+		if (obj->otyp == CAN_OF_GREASE) skill = P_BARE_HANDED_COMBAT;
+		if (obj->otyp == LUBRICANT_CAN) skill = P_BARE_HANDED_COMBAT;
+		if (obj->otyp == TINNING_KIT) skill = P_TWO_HANDED_WEAPON;
+		if (obj->otyp == BINNING_KIT) skill = P_TWO_HANDED_WEAPON;
+		if (obj->otyp == CONDOME) skill = P_TWO_WEAPON_COMBAT;
+		if (obj->otyp == SOFT_CHASTITY_BELT) skill = P_TWO_WEAPON_COMBAT;
+		if (obj->otyp == MAGIC_MARKER) skill = P_TECHNIQUES;
+		if (obj->otyp == FELT_TIP_MARKER) skill = P_TECHNIQUES;
+		if (obj->otyp == MATERIAL_KIT) skill = P_MISSILE_WEAPONS;
+		if (obj->otyp == BLINDFOLD) skill = P_SHII_CHO;
+		if (obj->otyp == EYECLOSER) skill = P_MAKASHI;
+		if (obj->otyp == DRAGON_EYEPATCH) skill = P_SORESU;
+		if (obj->otyp == TOWEL) skill = P_ATARU;
+		if (obj->otyp == CHARGER) skill = P_NIMAN;
+		if (obj->otyp == MIRROR) skill = P_SHIEN;
+		if (obj->otyp == EXPENSIVE_CAMERA) skill = P_DJEM_SO;
+		if (obj->otyp == SWITCHER) skill = P_VAAPAD;
+		if (obj->otyp == PACK_OF_FLOPPIES) skill = P_WEDI;
+		if (obj->otyp == INTELLIGENCE_PACK) skill = P_JUYO;
+	}
+	/* yeah I know they make no sense, but who cares? I want god gifts to be able to unlock every skill --Amy
+	 * since some of those are part of various roles' starting inventories and I don't actually want those roles to
+	 * start with the respective skills, the extraskills check was invented */
 
 	if (obj->oclass == IMPLANT_CLASS) skill = P_IMPLANTS;
 
@@ -4900,7 +4928,7 @@ const struct def_skill *class_skill;
 
 	/* Set skill for all objects in inventory to be basic */
 	if(!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !isamerican && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
-	    skill = get_obj_skill(obj);
+	    skill = get_obj_skill(obj, FALSE);
 	    if (skill != P_NONE) {
 		if (!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
 		else P_SKILL(skill) = P_UNSKILLED;
@@ -5935,7 +5963,7 @@ xtraskillinit()
 
 	/* Set skill for all objects in inventory to be basic */
 	if (!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !isamerican && !Role_if(PM_ANACHRONOUNBINDER) && !Role_if(PM_MURDERER) ) for (obj = invent; obj; obj = obj->nobj) {
-	    skill = get_obj_skill(obj);
+	    skill = get_obj_skill(obj, FALSE);
 	    if (skill != P_NONE) {
 		if(!Role_if(PM_BINDER) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
 		else P_SKILL(skill) = P_UNSKILLED;

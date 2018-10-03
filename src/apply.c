@@ -5369,6 +5369,34 @@ materialchoice:
 			pline("Your wisdom increases.");
 		}
 
+		if (obj->oartifact == ART_SUCK_THE_MIND_FLAYER) {
+			(void) adjattrib(A_INT, 1, FALSE);
+			(void) adjattrib(A_INT, 1, FALSE);
+			(void) adjattrib(A_INT, 1, FALSE);
+			(void) adjattrib(A_INT, 1, FALSE);
+			if (Race_if(PM_SUSTAINER) && ABASE(A_WIS) < AMAX(A_WIS)) {
+				ABASE(A_WIS) += 1;
+				AMAX(A_WIS) += 1;
+				flags.botl = 1;
+			}
+			if (Race_if(PM_SUSTAINER) && ABASE(A_WIS) < AMAX(A_WIS)) {
+				ABASE(A_WIS) += 1;
+				AMAX(A_WIS) += 1;
+				flags.botl = 1;
+			}
+			if (Race_if(PM_SUSTAINER) && ABASE(A_WIS) < AMAX(A_WIS)) {
+				ABASE(A_WIS) += 1;
+				AMAX(A_WIS) += 1;
+				flags.botl = 1;
+			}
+			if (Race_if(PM_SUSTAINER) && ABASE(A_WIS) < AMAX(A_WIS)) {
+				ABASE(A_WIS) += 1;
+				AMAX(A_WIS) += 1;
+				flags.botl = 1;
+			}
+
+		}
+
 		break;
 
 	case CHARGER:
@@ -5381,9 +5409,13 @@ materialchoice:
 			}
 		}
 
-		delobj(obj);
-
-		noartispeak = TRUE;
+		if (obj->oartifact == ART_MULTICHARGE && rn2(5)) {
+			pline("You use one of the charges.");
+		} else {
+			delobj(obj);
+			noartispeak = TRUE;
+		}
+		/* obj has been freed now unless it's the multicharge artifact and you hit the 80% chance */
 
 		pline("You may charge an object.");
 chargingchoice:
