@@ -300,6 +300,7 @@ E char dump_fn[];		/* dumpfile name (dump patch) */
 #endif
 E const char *configfile;
 E NEARDATA char plname[PL_NSIZ];
+E NEARDATA char plalias[PL_NSIZ];
 E NEARDATA char dogname[];
 E NEARDATA char catname[];
 E NEARDATA char ghoulname[];

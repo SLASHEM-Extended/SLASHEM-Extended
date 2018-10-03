@@ -2148,6 +2148,8 @@ char		*tmp_levels;
 	    	flags.initrole = len;
 	} else if (match_varname(buf, "DOGNAME", 3)) {
 	    (void) strncpy(dogname, bufp, PL_PSIZ-1);
+	} else if (match_varname(buf, "PLALIAS", 3)) {
+	    (void) strncpy(plalias, bufp, PL_NSIZ-1);
 	} else if (match_varname(buf, "CATNAME", 3)) {
 	    (void) strncpy(catname, bufp, PL_PSIZ-1);
 	} else if (match_varname(buf, "RATNAME", 3)) {

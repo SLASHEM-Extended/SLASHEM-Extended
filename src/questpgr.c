@@ -231,7 +231,7 @@ char c;
 
 	switch (c) {
 
-	    case 'p':	str = plname;
+	    case 'p':	str = playeraliasname;
 			break;
 	    case 'c':	str = (flags.female && urole.name.f) ?
 	    			urole.name.f : urole.name.m;

@@ -3517,8 +3517,7 @@ register boolean newlev;
 		    break;
 		case DELPHI:
 		    if(monstinroom(&mons[PM_ORACLE], roomno))
-			verbalize("%s, %s, welcome to Delphi!",
-					Hello((struct monst *) 0), plname);
+			verbalize("%s, %s, welcome to Delphi!", Hello((struct monst *) 0), playeraliasname);
 		    if (!issoviet) wake_nearby();
 		    break;
 		case DOUGROOM:

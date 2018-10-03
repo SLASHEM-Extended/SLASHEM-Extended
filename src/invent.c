@@ -9193,7 +9193,7 @@ struct obj *obj;
 			case RIN_LEECH:
 				pline("A ring that allows you to restore a bit of mana if you kill a monster."); break;
 			case RIN_DANGER:
-				pline("This ring is inscribed 'For you specially, %s. Sincerely, Arabella.'", plname); break;
+				pline("This ring is inscribed 'For you specially, %s. Sincerely, Arabella.'", playeraliasname); break;
 
 
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
@@ -13019,7 +13019,7 @@ struct obj *obj;
 				case ART_BOOMSHINE:
 					pline("Artifact specs: Quaff this explosive drink at your own peril. It does not explode if you throw it at a monster, though."); break;
 				case ART_CURSED_PARTS:
-					pline("Artifact specs: Arabella created this potion specially for you, %s!", plname); break;
+					pline("Artifact specs: Arabella created this potion specially for you, %s!", playeraliasname); break;
 				case ART_PLANECHANGERS:
 					pline("Artifact specs: Wanna polymorph forever? Then quaff away!"); break;
 				case ART_SANDMAN_VOLUME__:

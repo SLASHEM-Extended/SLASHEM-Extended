@@ -565,7 +565,7 @@ dosounds()
 			"hear the sound of a fucking army helicopter!", /* in GTA games, the army comes for you if your cop wanted level is maxed */
 		};
 		if (rn2(5)) You(kopstation_msg[rn2(4+hallu*4)]);
-		else verbalize("Alert! All units, apprehend %s immediately!", plname);
+		else verbalize("Alert! All units, apprehend %s immediately!", playeraliasname);
 		return;
 	    }
 
@@ -1862,7 +1862,7 @@ register struct monst *mtmp;
 
 		if (mtmp->data == &mons[PM_MELISTRIDE] && PlayerInHighHeels && !mtmp->mfrenzied) {
 			mtmp->mpeaceful = TRUE;
-			verbalize("Wow, I really like your heels, %s!", plname);
+			verbalize("Wow, I really like your heels, %s!", playeraliasname);
 
 			if (ACURR(A_CHA) >= 18 && !mtmp->mtame) {
 				struct monst *melistride;
@@ -1884,7 +1884,7 @@ register struct monst *mtmp;
 				if (nastroscha) mtmp = nastroscha;
 				if (!mtmp) impossible("nastroscha was tamed but doesn't exist now??");
 				else pline("Suddenly %s is absolutely in love with you!", mon_nam(mtmp));
-			} else verbalize("Ooh %s, I really like those velvety soft gloves...", plname);
+			} else verbalize("Ooh %s, I really like those velvety soft gloves...", playeraliasname);
 			break;
 		}
 

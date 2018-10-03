@@ -108,7 +108,7 @@ int how;
 	dp[x] = (char *)0;
 
 	/* Put name on stone */
-	sprintf(buf, "%s", plname);
+	sprintf(buf, "%s", playeraliasname);
 	buf[STONE_LINE_LEN] = 0;
 	center(NAME_LINE, buf);
 

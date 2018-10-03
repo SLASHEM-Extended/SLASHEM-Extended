@@ -551,7 +551,7 @@ draw_horizontal(int x, int y, int hp, int hpmax)
 	}
 
     get_playerrank(rank);
-    sprintf(buf, "%s the %s", plname, rank);
+    sprintf(buf, "%s the %s", playeraliasname, rank);
 
     /* Use the title as HP bar (similar to hitpointbar) */
     draw_bar(TRUE, hp, hpmax, buf);
@@ -718,7 +718,7 @@ draw_horizontal_new(int x, int y, int hp, int hpmax)
     char race[BUFSZ];
     strcpy(race, urace.adj);
     race[0] = highc(race[0]);
-    wprintw(win, "%s the %s %s%s%s", plname,
+    wprintw(win, "%s the %s %s%s%s", playeraliasname,
             ((FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) ? "" :
 		 u.ualign.type == A_CHAOTIC ? "Chaotic" : u.ualign.type == A_NEUTRAL ? "Neutral" : "Lawful"),
             (Upolyd || (FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) ? "" : race, Upolyd ? "" : " ",
@@ -878,7 +878,7 @@ draw_vertical(int x, int y, int hp, int hpmax)
 
     get_playerrank(rank);
     int ranklen = strlen(rank);
-    int namelen = strlen(plname);
+    int namelen = strlen(playeraliasname);
     int maxlen = 19;
 #ifdef STATUS_COLORS
     if (!flags.hitpointbar)
@@ -895,7 +895,7 @@ draw_vertical(int x, int y, int hp, int hpmax)
         while ((ranklen + namelen) > maxlen)
             ranklen--; /* Still doesn't fit, strip rank */
     }
-    sprintf(buf, "%-*s the %-*s", namelen, plname, ranklen, rank);
+    sprintf(buf, "%-*s the %-*s", namelen, playeraliasname, ranklen, rank);
     draw_bar(TRUE, hp, hpmax, buf);
     wmove(win, y++, x);
     wprintw(win, "%s", dungeons[u.uz.dnum].dname);

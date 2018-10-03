@@ -357,6 +357,8 @@ struct toptenentry *tt;
 
   (void)fprintf(rfile, XLOG_SEP "name=%s", plname);
 
+  (void)fprintf(rfile, XLOG_SEP "alias=%s", plalias);
+
   (void)fprintf(rfile, XLOG_SEP "death=%s", tt->death);
 
 #ifdef RECORD_CONDUCT
@@ -498,7 +500,7 @@ int how;
 	t0->plgend[ROLESZ] = '\0';
 	(void) strncpy(t0->plalign, aligns[1-u.ualign.type].filecode, ROLESZ);
 	t0->plalign[ROLESZ] = '\0';
-	(void) strncpy(t0->name, plname, NAMSZ);
+	(void) strncpy(t0->name, playeraliasname, NAMSZ);
 	t0->name[NAMSZ] = '\0';
 	t0->death[0] = '\0';
 	switch (killer_format) {

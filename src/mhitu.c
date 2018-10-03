@@ -1641,11 +1641,11 @@ mattacku(mtmp)
 			    }
 			    if (is_wagon(u.ux, u.uy)) {
 	     pline("Wait, %s!  There's a %s named %s hiding under a wagon!",
-				m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", plname);
+				m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", playeraliasname);
 
 			    } else if (youmonst.data->mlet == S_EEL)
 		pline("Wait, %s!  There's a hidden %s named %s there!",
-				m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", plname);
+				m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", playeraliasname);
 			    else if (uarmh && uarmh->oartifact == ART_JANA_S_DECEPTIVE_MASK && !rn2(100)) {
 					u.youaredead = 1;
 					pline("NETHACK caused a General Protection Fault at address 0014:2035.");
@@ -1655,7 +1655,7 @@ mattacku(mtmp)
 					u.youaredead = 0;
 				} else
 	     pline("Wait, %s!  There's a %s named %s hiding under %s!",
-				m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", plname,
+				m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", playeraliasname,
 				doname(level.objects[u.ux][u.uy]));
 			    if (obj) obj->spe = save_spe;
 			} else
@@ -1669,7 +1669,7 @@ mattacku(mtmp)
 		    !range2 && foundyou && !u.uswallow) {
 		if (!youseeit) pline("It gets stuck on you.");
 		else pline("Wait, %s!  That's a %s named %s!",
-			   m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", plname);
+			   m_monnam(mtmp), !missingnoprotect ? youmonst.data->mname : "creature", playeraliasname);
 		setustuck(mtmp);
 		youmonst.m_ap_type = M_AP_NOTHING;
 		youmonst.mappearance = 0;
@@ -1687,7 +1687,7 @@ mattacku(mtmp)
 			m_monnam(mtmp),
 			mimic_obj_name(&youmonst),
 			!missingnoprotect ? an(mons[u.umonnum].mname) : "a polymorphed missingno",
-			plname);
+			playeraliasname);
 	    /*if (multi < 0) {*/	/* this should always be the case but is not, due to mimicry spell --Amy */
 		char buf[BUFSZ];
 		sprintf(buf, "You appear to be %s again.",
@@ -17734,7 +17734,7 @@ enjoyable:
 
 		if (flags.female) { pline("Uh-oh - you're pregnant!"); verbalize("Be a good mother, sweetheart!");
 		}
-		else { pline("Oh! %s is pregnant!",noit_Monnam(mon)); verbalize("Please take good care of my baby, %s!",plname);
+		else { pline("Oh! %s is pregnant!",noit_Monnam(mon)); verbalize("Please take good care of my baby, %s!",playeraliasname);
 		}
 
 		uegg = mksobj(EGG, FALSE, FALSE);
@@ -18922,7 +18922,7 @@ cloneu()
 	if (mvitals[mndx].mvflags & G_EXTINCT) return(struct monst *)0;
 	mon = makemon(youmonst.data, u.ux, u.uy, NO_MINVENT|MM_EDOG);
 	if (mon) {
-	mon = christen_monst(mon, plname);
+	mon = christen_monst(mon, playeraliasname);
 	initedog(mon);
 	mon->m_lev = youmonst.data->mlevel;
 	mon->mhpmax = u.mhmax;

@@ -1575,7 +1575,7 @@ badeffect()
 
 			forget(3);
 			{
-			if (!strncmpi(plname, "Maud", 4))
+			if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
 				pline("Suddenly, your mind turns inward on itself!");
 			else 
 				pline("Suddenly, you are overwhelmed by a feeling that urges you to think of Maud.");

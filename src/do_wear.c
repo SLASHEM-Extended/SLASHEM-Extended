@@ -309,7 +309,7 @@ Boots_on()
     if (uarmf && uarmf->oartifact == ART_ELLA_S_BLOODLUST) {
 		if (!uarmf->cursed) {
 			curse(uarmf);
-			if (!strncmpi(plname, "Ella", 5)) pline("You finally got your bloodthirsty footwear back! They immediately make sure they won't get separated from you.");
+			if (!strncmpi(plname, "Ella", 5) || !strncmpi(plalias, "Ella", 5)) pline("You finally got your bloodthirsty footwear back! They immediately make sure they won't get separated from you.");
 			else pline("You decided to pretend to be Ella? Now prove it!");
 		}
     }
@@ -367,7 +367,7 @@ Boots_on()
 
     if (uarmf && uarmf->oartifact == ART_LILAC_BEAUTY) {
 		pline("Your incredibly beautiful footwear speaks:");
-		verbalize("%s, you're not our owner. We allow you to wear us anyway, but if you ever dare to take us off, we will scratch your shins to the bone and rip your unprotected skin to shreds. Keep wearing us if you want to avoid a bloodbath!", plname);
+		verbalize("%s, you're not our owner. We allow you to wear us anyway, but if you ever dare to take us off, we will scratch your shins to the bone and rip your unprotected skin to shreds. Keep wearing us if you want to avoid a bloodbath!", playeraliasname);
     }
 
     if (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT && uarmf->spe < 0) {

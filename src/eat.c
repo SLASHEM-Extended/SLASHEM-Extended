@@ -2036,7 +2036,10 @@ register int pm;
 			/* The original skit had Creosote as the character who exploded */
 			if (!strcmpi(plname, "Croesus")
 			|| !strcmpi(plname, "Kroisos")
-			|| !strcmpi(plname, "Creosote")) {
+			|| !strcmpi(plname, "Creosote")
+			|| !strcmpi(plalias, "Croesus")
+			|| !strcmpi(plalias, "Kroisos")
+			|| !strcmpi(plalias, "Creosote")) {
 				pline("You suddenly have a flashback to that horrid restaurant!");
 				u.youaredead = 1;
 				sprintf(buf, "fatal post-tramatic dining experience");

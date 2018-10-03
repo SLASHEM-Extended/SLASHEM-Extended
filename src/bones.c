@@ -330,8 +330,7 @@ struct obj *corpse;
 		struct obj *otmp;
 
 		/* embed your possessions in your statue */
-		otmp = mk_named_object(STATUE, &mons[u.umonnum],
-				       u.ux, u.uy, plname);
+		otmp = mk_named_object(STATUE, &mons[u.umonnum], u.ux, u.uy, playeraliasname);
 
 		drop_upon_death((struct monst *)0, otmp);
 		if (!otmp) return;	/* couldn't make statue */
@@ -371,7 +370,7 @@ struct obj *corpse;
 			return;
 		}
 
-		mtmp = christen_monst(mtmp, plname);
+		mtmp = christen_monst(mtmp, playeraliasname);
 
 		drop_upon_death(mtmp, (struct obj *)0);
 		m_dowear(mtmp, TRUE);
@@ -387,7 +386,7 @@ struct obj *corpse;
 			drop_upon_death((struct monst *)0, (struct obj *)0);
 			return;
 		}
-		mtmp = christen_monst(mtmp, plname);
+		mtmp = christen_monst(mtmp, playeraliasname);
 		newsym(u.ux, u.uy);
 		Your("body rises from the dead as %s...",
 			an(mons[u.ugrave_arise].mname));

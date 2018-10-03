@@ -5402,7 +5402,7 @@ randenchchoice:
 			(!confused || sobj->cursed ? ALL_MAP : 0) );
 		if (Hallucination) /* Ommmmmm! */
 			Your("mind releases itself from mundane concerns.");
-		else if (!strncmpi(plname, "Maud", 4))
+		else if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
 			pline("As your mind turns inward on itself, you forget everything else.");
 		else if (rn2(2))
 			pline("Who was that Maud person anyway?");
@@ -5417,7 +5417,7 @@ randenchchoice:
 			(!confused || sobj->cursed ? ALL_MAP : 0) );
 		if (Hallucination) /* Ommmmmm! */
 			Your("mind releases itself from mundane concerns.");
-		else if (!strncmpi(plname, "Maud", 4))
+		else if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
 			pline("As your mind turns inward on itself, you forget everything else.");
 		else if (rn2(2))
 			pline("Who was that Maud person anyway?");

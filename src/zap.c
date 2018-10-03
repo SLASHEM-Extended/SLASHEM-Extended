@@ -4817,7 +4817,7 @@ boolean ordinary;
 		    makeknown(WAN_GOOD_NIGHT);
 		case SPE_GOOD_NIGHT:
 		    damage = d(2,12);
-		    pline("Good night, %s!", plname);
+		    pline("Good night, %s!", playeraliasname);
 		    if (u.ualign.type == A_LAWFUL) damage *= 2;
 		    if (u.ualign.type == A_CHAOTIC) damage /= 2;
 		    if (nonliving(youmonst.data)) damage /= 2;

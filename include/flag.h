@@ -143,6 +143,8 @@ struct flag {
 	boolean wonderland;
 	boolean elmstreet;
 
+	boolean askforalias; /* set this in the options file if you want to be asked what your char's name is */
+
 #define NEW_MOON	0
 #define FULL_MOON	4
 	unsigned no_of_wizards; /* 0, 1 or 2 (wizard and his shadow) */

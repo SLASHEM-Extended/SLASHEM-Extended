@@ -322,6 +322,8 @@ static struct Bool_Opt
 	{"supergmmode", &flags.supergmmode, FALSE, DISP_IN_GAME}, 
 	{"wonderland", &flags.wonderland, FALSE, DISP_IN_GAME}, 
 
+	{"askforalias", &flags.askforalias, FALSE, DISP_IN_GAME}, 
+
 	{"hybridangbander", &flags.hybridangbander, FALSE, DISP_IN_GAME}, 
 	{"hybridaquarian", &flags.hybridaquarian, FALSE, DISP_IN_GAME}, 
 	{"hybridcurser", &flags.hybridcurser, FALSE, DISP_IN_GAME}, 
@@ -475,6 +477,8 @@ static struct Comp_Opt
 						MAXOCLASSES, SET_IN_GAME },
 	{ "pilesize", "maximum number of items on floor to list automatically",
 						20, SET_IN_GAME },
+	{ "plalias",  "your alias name",
+						PL_NSIZ, DISP_IN_GAME },
 	{ "player_selection", "choose character via dialog or prompts",
 						12, DISP_IN_GAME },
 	{ "race",     "your starting race (e.g., Human, Elf)",
@@ -4005,6 +4009,8 @@ char *buf;
 	}
 	else if (!strcmp(optname, "dogname")) 
 		sprintf(buf, "%s", dogname[0] ? dogname : none );
+	else if (!strcmp(optname, "plalias")) 
+		sprintf(buf, "%s", plalias[0] ? plalias : none );
 #ifdef DUMP_LOG
 	else if (!strcmp(optname, "dumpfile"))
 		sprintf(buf, "%s", dump_fn[0] ? dump_fn: none );

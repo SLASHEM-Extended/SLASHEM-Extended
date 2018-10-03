@@ -88,7 +88,7 @@ lookat(x, y, buf, monbuf)
 		Invis ? "invisible " : "",
 		race,
 		(!missingnoprotect || !Upolyd) ? mons[u.umonnum].mname : "undefined creature",
-		plname);
+		playeraliasname);
 	/* file lookup can't distinguish between "gnomish wizard" monster
 	   and correspondingly named player character, always picking the
 	   former; force it to find the general "wizard" entry instead */
@@ -115,7 +115,7 @@ lookat(x, y, buf, monbuf)
 		Invis ? "invisible " : "",
 		race,
 		role,
-		plname);
+		playeraliasname);
 #endif
 
 

@@ -1641,6 +1641,7 @@ register int fd;
 
 #ifdef STORE_PLNAME_IN_FILE
 	mread(fd, (void *) plname, PL_NSIZ);
+	mread(fd, (void *) plalias, PL_NSIZ);
 #endif
 
 	restoring = TRUE;
@@ -1725,6 +1726,7 @@ register int fd;
 	(void) uptodate(fd, (char *)0);		/* skip version info */
 #ifdef STORE_PLNAME_IN_FILE
 	mread(fd, (void *) plname, PL_NSIZ);
+	mread(fd, (void *) plalias, PL_NSIZ);
 #endif
 	getlev(fd, 0, (xchar)0, FALSE);
 	(void) close(fd);

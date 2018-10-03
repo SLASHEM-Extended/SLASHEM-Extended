@@ -889,7 +889,7 @@ ustatusline()
 	}
 
 	pline("Status of %s (%s%s):  Level %d  HP %d(%d)  Pw %d(%d)  AC %d%s.",
-		plname,
+		playeraliasname,
 		    (u.ualign.record >= 20) ? "piously " :
 		    (u.ualign.record > 13) ? "devoutly " :
 		    (u.ualign.record > 8) ? "fervently " :

@@ -1814,8 +1814,7 @@ xchar x, y, dlev;
 		    You("removed %ld %s worth of goods!", price, currency(price));
 		    if(cansee(shkp->mx, shkp->my)) {
 			if(ESHK(shkp)->customer[0] == 0)
-			    (void) strncpy(ESHK(shkp)->customer,
-					   plname, PL_NSIZ);
+			    (void) strncpy(ESHK(shkp)->customer, plname, PL_NSIZ);
 			if(angry)
 			    pline("%s is infuriated!", Monnam(shkp));
 			else pline("\"%s, you are a thief!\"", plname);

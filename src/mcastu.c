@@ -1367,7 +1367,7 @@ int spellnum;
 		/* amnesia - evil patch idea by jonadab */
 		forget(3);
 		{
-		if (!strncmpi(plname, "Maud", 4))
+		if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
 			pline("As your mind turns inward on itself, you forget everything else.");
 		else if (rn2(2))
 			pline("Who was that Maud person anyway?");

@@ -138,7 +138,7 @@ boolean put_away;
 	if (uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
-		if (!strncmpi(plname, "Henrietta", 10)) pline("Dear Henrietta, the dogs produced plenty of heaps of shit specially for you to step into! Please make sure you don't miss any of them.");
+		if (!strncmpi(plname, "Henrietta", 10) || !strncmpi(plalias, "Henrietta", 10)) pline("Dear Henrietta, the dogs produced plenty of heaps of shit specially for you to step into! Please make sure you don't miss any of them.");
 		else pline("Apparently you want to repeat Henrietta's mistake. Oh well. Good luck avoiding all the heaps of shit now!");
 	}
 
@@ -282,7 +282,7 @@ swapweaponchoice:
 		if (uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE && !uswapwep->hvycurse) {
 			curse(uswapwep);
 			uswapwep->hvycurse = 1;
-			if (!strncmpi(plname, "Henrietta", 10)) pline("Dear Henrietta, the dogs produced plenty of heaps of shit specially for you to step into! Please make sure you don't miss any of them.");
+			if (!strncmpi(plname, "Henrietta", 10) || !strncmpi(plalias, "Henrietta", 10)) pline("Dear Henrietta, the dogs produced plenty of heaps of shit specially for you to step into! Please make sure you don't miss any of them.");
 			else pline("Apparently you want to repeat Henrietta's mistake. Oh well. Good luck avoiding all the heaps of shit now!");
 		}
 

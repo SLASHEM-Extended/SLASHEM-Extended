@@ -4312,7 +4312,7 @@ register struct obj *otmp;
 		    if (u.ualign.type == A_CHAOTIC) tmp /= 2;
 		    if (nonliving(youmonst.data)) tmp /= 2;
 		    if(Half_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
-		    pline("Good night, %s!", plname);
+		    pline("Good night, %s!", playeraliasname);
 		    losehp(tmp, "wand of good night", KILLED_BY_AN);
 		    make_blinded(Blinded+rnz(100),FALSE);
 			if (zap_oseen)

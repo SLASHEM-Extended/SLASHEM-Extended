@@ -3700,13 +3700,13 @@ use_pole (obj)
 				obj->spe += rnd(15);
 				if (obj->spe < 5) obj->spe = 5;
 				if (obj->spe > 15) obj->spe = 15;
-				pline("Way to go, %s! You're an extremely lucky individual and your weapon has an awesome +%d enchantment now!!!", plname, obj->spe);
+				pline("Way to go, %s! You're an extremely lucky individual and your weapon has an awesome +%d enchantment now!!!", playeraliasname, obj->spe);
 			}
 			if (!rn2(1000000) && obj->spe < 20) {
 				obj->spe += rnd(20);
 				if (obj->spe < 12) obj->spe = 12;
 				if (obj->spe > 20) obj->spe = 20;
-				pline("JACKPOT!!!!!!! %s, you're the new champion of the Royal Casino and as a reward we boost your weapon's enchantment all the way to %d!!! Far out, you beat the impossible odds!", plname, obj->spe);
+				pline("JACKPOT!!!!!!! %s, you're the new champion of the Royal Casino and as a reward we boost your weapon's enchantment all the way to %d!!! Far out, you beat the impossible odds!", playeraliasname, obj->spe);
 				change_luck(20);
 			}
 

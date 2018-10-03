@@ -499,7 +499,7 @@ boolean newlev;
 	    verbalize(NOTANGRY(shkp) ?
 		      "%s!  Please pay before leaving." :
 		      "%s!  Don't you leave without paying!",
-		      plname);
+		      playeraliasname);
 	    return;
 	}
 
@@ -655,7 +655,7 @@ register char *enterstring;
 
 	if (ANGRY(shkp)) {
 	    verbalize("So, %s, you dare return to %s %s?!",
-		      plname,
+		      playeraliasname,
 		      s_suffix(shkname(shkp)),
 		      shtypes[rt - SHOPBASE].name);
 	} else if (eshkp->robbed) {
@@ -663,7 +663,7 @@ register char *enterstring;
 	} else {
         if (!eshkp->pbanned || inside_shop(u.ux, u.uy))
 	    verbalize("%s, %s!  Welcome%s to %s %s!",
-		      Hello(shkp), plname,
+		      Hello(shkp), playeraliasname,
 		      eshkp->visitct++ ? " again" : "",
 		      s_suffix(shkname(shkp)),
 		      shtypes[rt - SHOPBASE].name);
@@ -2930,7 +2930,7 @@ register boolean peaceful, silent, destruction;
 	    if(!silent) {
 		if(cansee(shkp->mx, shkp->my)) {
 		    Norep("%s booms: \"%s, you are a thief!\"",
-				Monnam(shkp), plname);
+				Monnam(shkp), playeraliasname);
 		} else  Norep("You hear a scream, \"Thief!\"");
 	    }
 	    hot_pursuit(shkp);
@@ -4049,13 +4049,13 @@ register struct monst *shkp;
 		if(eshkp->following) {
 			if(strncmp(eshkp->customer, plname, PL_NSIZ)) {
 			    verbalize("%s, %s!  I was looking for %s.",
-				    Hello(shkp), plname, eshkp->customer);
+				    Hello(shkp), playeraliasname, eshkp->customer);
 				    eshkp->following = 0;
 			    return(0);
 			}
 			if(moves > followmsg+4) {
 			    verbalize("%s, %s!  Didn't you forget to pay?",
-				    Hello(shkp), plname);
+				    Hello(shkp), playeraliasname);
 			    followmsg = moves;
 			    if (!rn2(9)) {
 			      pline("%s doesn't like customers who don't pay.",
@@ -4915,11 +4915,11 @@ struct monst *shkp;
 	else if (eshk->following) {
 		if (strncmp(eshk->customer, plname, PL_NSIZ)) {
 		    verbalize("%s %s!  I was looking for %s.",
-			    Hello(shkp), plname, eshk->customer);
+			    Hello(shkp), playeraliasname, eshk->customer);
 		    eshk->following = 0;
 		} else {
 		    verbalize("%s %s!  Didn't you forget to pay?",
-			      Hello(shkp), plname);
+			      Hello(shkp), playeraliasname);
 		}
 	} else if (eshk->billct) {
 		register long total = addupbill(shkp) + eshk->debit;

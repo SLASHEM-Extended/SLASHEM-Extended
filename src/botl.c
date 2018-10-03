@@ -375,7 +375,7 @@ botl_player()
         putstr(WIN_STATUS, 0, player);
     }
 #endif
-       strcat(player, plname);
+       strcat(player, playeraliasname);
        if('a' <= player[i] && player[i] <= 'z') player[i] += 'A'-'a';
        player[10] = '\0';
     sprintf(nb = eos(player)," the ");

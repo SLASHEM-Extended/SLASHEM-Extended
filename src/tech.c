@@ -3668,7 +3668,7 @@ secureidchoice:
 		struct monst *mtmp;
 		register struct monst *mtmp2;
 		caught = 0;
-		pline("%s used Poke Ball!", plname);
+		pline("%s used Poke Ball!", playeraliasname);
 
 		    for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
 			if (!isok(u.ux + i, u.uy + j)) continue;

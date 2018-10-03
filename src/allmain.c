@@ -1557,7 +1557,7 @@ moveloop()
 
 		if (uarmc && (uarmc->oartifact == ART_INA_S_LAB_COAT) && !rn2(100) && multi >= 0) {
 
-			if (!strncmpi(plname, "Ina", 4)) {
+			if (!strncmpi(plname, "Ina", 4) || !strncmpi(plalias, "Ina", 4)) {
 			/* There is of course no corresponding real-life Ina. --Amy */
 
 			Your("terrible eating disorder causes you to faint.");
@@ -1580,7 +1580,7 @@ moveloop()
 
 		if (uarmc && (uarmc->oartifact == ART_INA_S_OVERCOAT) && !rn2(100) && multi >= 0) {
 
-			if (!strncmpi(plname, "Ina", 4)) {
+			if (!strncmpi(plname, "Ina", 4) || !strncmpi(plalias, "Ina", 4)) {
 			/* There is of course no corresponding real-life Ina. --Amy */
 
 			Your("terrible eating disorder causes you to faint.");
@@ -2045,7 +2045,7 @@ trapsdone:
 			}
 
 			if (moves > (u.nataljetrapturns + 3)) {
-				if (!strncmpi(plname, "Natalje", 8)) {
+				if (!strncmpi(plname, "Natalje", 8) || !strncmpi(plalias, "Natalje", 8)) {
 					pline("Keep dancing, Natalje...");
 				} else {
 					You("gotta keep dancing...");
@@ -2053,7 +2053,7 @@ trapsdone:
 			}
 
 			if (moves > (u.nataljetrapturns + 5)) {
-				if (!strncmpi(plname, "Natalje", 8)) {
+				if (!strncmpi(plname, "Natalje", 8) || !strncmpi(plalias, "Natalje", 8)) {
 					pline("Careful, Natalje! You gotta dance or you'll get hurt!");
 				} else {
 					You("missed the beat! Continue dancing or suffer!");
@@ -9446,6 +9446,43 @@ newgame()
 	gameDiskPrompt();
 #endif
 
+	if (flags.askforalias) {
+		char aliasbuf[2048];	/* Buffer for alias name */
+		char eliasbuf[2048];
+		int aliaslength;
+		int testx;
+aliasagain:
+		sprintf(aliasbuf,"What is your alias name?");
+		getlin(aliasbuf, eliasbuf);
+		aliaslength = strlen(eliasbuf);
+
+		if (aliaslength > 30) {
+			pline("That name is too long. Maximum 30 characters. Sorry.");
+			goto aliasagain;
+		}
+
+		for (testx = 0; testx >= 0; testx++) {
+
+			if (testx > aliaslength) break;
+			if (eliasbuf[testx]) {
+				if (eliasbuf[testx] == ' ') continue;
+				if (eliasbuf[testx] == '.') continue;
+				if (eliasbuf[testx] == ',') continue;
+				if (eliasbuf[testx] == '-') continue;
+				if (eliasbuf[testx] >= 'A' && eliasbuf[testx] <= 'Z') continue;
+				if (eliasbuf[testx] >= 'a' && eliasbuf[testx] <= 'z') continue;
+				if (eliasbuf[testx] >= '0' && eliasbuf[testx] <= '9') continue;
+				pline("You can only use spaces, alphanumeric characters or .,- characters. Sorry.");
+				goto aliasagain;
+			}
+		}
+
+		if (eliasbuf[0] && aliaslength < 31) { /* We do NOT want a buffer overflow. --Amy */
+			strcpy(plalias, eliasbuf);
+			(void) strncpy(u.aliasname, eliasbuf, sizeof(eliasbuf));
+		}
+	}
+
 	flags.ident = 1;
 
 	for (i = 0; i < NUMMONS; i++)
@@ -9570,6 +9607,15 @@ boolean new_game;	/* false => restoring an old game */
 	/* prevent hangup cheating when special game modes haven't teleported you yet --Amy */
 	if ((flags.wonderland || flags.lostsoul || flags.uberlostsoul) && new_game) u.youaredead = 1;
 
+    if (!new_game) {
+
+	/* restore the player's alias name, if existing - LENGTH MUST BE BELOW 32 OR THERE IS A BUFFER OVERRUN --Amy */
+	if (u.aliasname[0] && (strlen(u.aliasname) < 31)) {
+		strcpy(plalias, u.aliasname);
+	}
+
+    }
+
     if (new_game || u.ualignbase[A_ORIGINAL] != u.ualignbase[A_CURRENT])
 	sprintf(eos(buf), " %s", align_str(u.ualignbase[A_ORIGINAL]));
     if (!urole.name.f &&
@@ -9621,14 +9667,14 @@ boolean new_game;	/* false => restoring an old game */
 #if 0
     pline(new_game ? "%s %s, welcome to NetHack!  You are a%s %s%s %s."
 		   : "%s %s, the%s %s %s, welcome back to NetHack!",
-	  Hello((struct monst *) 0), plname, buf, xtrabuf, urace.adj,
+	  Hello((struct monst *) 0), playeraliasname, buf, xtrabuf, urace.adj,
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m);
 #endif
     if (new_game) pline("%s %s, welcome to %s!  You are a%s %s%s %s.",
-	  Hello((struct monst *) 0), plname, issoviet ? "SlashTHEM Extended" : DEF_GAME_NAME, buf, xtrabuf, urace.adj,
+	  Hello((struct monst *) 0), playeraliasname, issoviet ? "SlashTHEM Extended" : DEF_GAME_NAME, buf, xtrabuf, urace.adj,
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m);
     else pline("%s %s, the%s %s%s %s, welcome back to %s!",
-	  Hello((struct monst *) 0), plname, buf, xtrabuf, urace.adj,
+	  Hello((struct monst *) 0), playeraliasname, buf, xtrabuf, urace.adj,
 	  (currentgend && urole.name.f) ? urole.name.f : urole.name.m, 
 	  issoviet ? "SlashTHEM Extended" : DEF_GAME_NAME);
 
@@ -9644,7 +9690,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (new_game) pline("Welcome to SLASH'EM Extended! For game discussion, bug reports etc. join the #slashemextended or #em.slashem.me IRC channel on Freenode. :-) --Amy");
 #else
 	if (new_game) pline("You are playing SLASH'EM Extended on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Freenode. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!");
-	if (new_game) pline("Attention: This is a bleeding-edge beta version of SLASH'EM Extended that may have bugs and incomplete features. On the whole, it should be playable, but it will probably be replaced with a more polished version soon, and that will break saves. You can play an old version by selecting the 'SLASH'EM Extended - old version' option on the launch menu. If your savegame seems to be gone completely, get on the IRC and pester Amy, she can probably bring it back.");
+	if (new_game) pline("Message of the day: You can now give an alias name to new characters if you set the askforalias option! This can be done by adding OPTIONS=askforalias to your configuration file.");
 #endif /* PHANTOM_CRASH_BUG */
 
 #endif /* PUBLIC_SERVER */

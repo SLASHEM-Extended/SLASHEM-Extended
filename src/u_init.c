@@ -26752,6 +26752,8 @@ register struct trobj *trop;
 		trop++;
 	}
 
+	if (plalias[0]) (void) strncpy(u.aliasname, plalias, sizeof(plalias));
+
 	/*if (!strncmpi(plname, "lostsoul", 8)) { 
 	goto_level(&medusa_level, FALSE, FALSE, FALSE); inspired by Tome, an Angband mod --Amy
 	}*/

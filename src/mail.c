@@ -388,7 +388,7 @@ struct mail_info *info;
     if (!md_rush(md, stop.x, stop.y)) goto go_back;
 
     message_seen = TRUE;
-    verbalize("%s, %s!  %s.", Hello(md), plname, info->display_txt);
+    verbalize("%s, %s!  %s.", Hello(md), playeraliasname, info->display_txt);
 
 
     if (info->message_typ) {

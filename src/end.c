@@ -1264,7 +1264,7 @@ die:
 	/* D: Grab screen dump right here */
 	if (dump_fn[0]) {
 	  dump_init();
-	  sprintf(pbuf, "%s, %s %s %s %s", plname,
+	  sprintf(pbuf, "%s, %s %s %s %s", playeraliasname,
 		  aligns[1 - u.ualign.type].adj,
 		  genders[flags.female].adj,
 		  urace.adj,
@@ -1371,9 +1371,8 @@ die:
 			(flags.female && urace.femalenum != NON_PM) ?
 			urace.femalenum : urace.malenum);
 		}
-		corpse = mk_named_object(CORPSE, &mons[mnum],
-				       u.ux, u.uy, plname);
-		sprintf(pbuf, "%s, %s%s", plname,
+		corpse = mk_named_object(CORPSE, &mons[mnum], u.ux, u.uy, playeraliasname);
+		sprintf(pbuf, "%s, %s%s", playeraliasname,
 			killer_format == NO_KILLER_PREFIX ? "" :
 			killed_by_prefix[how],
 			killer_format == KILLED_BY_AN ? an(killer) : killer);
@@ -1381,7 +1380,7 @@ die:
 		/* ask player if he wants a custom epitaph */
 		if ('y' == yn("Do you want to write your own epitaph?")) {
 			getlin("What do you want your epitaph to be?",ebuf);
-			sprintf(pbuf, "Here lies %s. %s", plname, ebuf);
+			sprintf(pbuf, "Here lies %s. %s", playeraliasname, ebuf);
 		}
 #endif
 		make_grave(u.ux, u.uy, pbuf);
@@ -1516,7 +1515,7 @@ die:
 	/* since we're not removing the amulet any longer (this is by design)... had to restore celestial disgrace --Amy */
 
 //	if (!done_stopprint) {
-	    sprintf(pbuf, "%s %s the %s...", Goodbye(), plname,
+	    sprintf(pbuf, "%s %s the %s...", Goodbye(), playeraliasname,
 		   how != ASCENDED ?
 		      (const char *) ((flags.female && urole.name.f) ?
 		         urole.name.f : urole.name.m) :

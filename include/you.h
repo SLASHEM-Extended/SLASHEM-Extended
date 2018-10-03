@@ -843,6 +843,9 @@ struct you {
 	char	strandombdragonb[BUFSZ];
 	char	strandombdragonc[BUFSZ];
 
+	char	aliasname[PL_NSIZ];
+
+
 	int randomquestlevels;	/* chance to get quest levels instead of random ones */
 
 	int hangupcheat;		/* for cheating players who think hanging up is cool */
@@ -1073,6 +1076,7 @@ struct you {
 
 	int combostrike;	/* for technique */
 	boolean comboactive;
+
 
 };	/* end of `struct you' */
 

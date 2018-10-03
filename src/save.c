@@ -291,6 +291,7 @@ dosave0()
 	store_version(fd);
 #ifdef STORE_PLNAME_IN_FILE
 	bwrite(fd, (void *) plname, PL_NSIZ);
+	bwrite(fd, (void *) plalias, PL_NSIZ);
 #endif
 	ustuck_id = (u.ustuck ? u.ustuck->m_id : 0);
 	usteed_id = (u.usteed ? u.usteed->m_id : 0);
@@ -821,6 +822,7 @@ savestateinlock()
 		    store_version(fd);
 #ifdef STORE_PLNAME_IN_FILE
 		    bwrite(fd, (void *) plname, PL_NSIZ);
+		    bwrite(fd, (void *) plalias, PL_NSIZ);
 #endif
 		    ustuck_id = (u.ustuck ? u.ustuck->m_id : 0);
 		    usteed_id = (u.usteed ? u.usteed->m_id : 0);

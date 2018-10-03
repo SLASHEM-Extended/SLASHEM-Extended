@@ -4123,7 +4123,7 @@ secureidchoice:
 
 			u.youaredead = 1;
 
-			pline("%s used SELFDESTRUCT!", plname);
+			pline("%s used SELFDESTRUCT!", playeraliasname);
 
 		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 			if (!isok(u.ux + i, u.uy + j)) continue;
@@ -4155,7 +4155,7 @@ secureidchoice:
 		    struct monst *mtmp;
 
 			u.youaredead = 1;
-			pline("%s used EXPLOSION!", plname);
+			pline("%s used EXPLOSION!", playeraliasname);
 
 		    for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 			if (!isok(u.ux + i, u.uy + j)) continue;
