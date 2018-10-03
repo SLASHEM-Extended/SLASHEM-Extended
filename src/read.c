@@ -806,6 +806,13 @@ doread()
 	"I <3 Sokoban",
 	"I digested the lord of the foocubi whole! Fear my mad polyselfing skills!",
 	"Void dragons cannot disintegrate me. I disintegrate void dragons. Regularly.",
+	"esm = erotic shoe memes", /* from 4chan */
+	"there should be a variant called amyhack where all monsters are shoes, all object descriptions are fleecy, and instead of hitting things or them hitting you, you bundle them", /* by Demo */
+	"I'm Belba Loamsdown of Deephallow.", /* this and the next two by raisse */
+	"I'm Nellas Carnesir if I'm an elf.", /* sadly we cannot use î */
+	"my wallet name actually does better, Amaurea Vanimedle", /* sadly we cannot use ë */
+	"here's looking at you, bhaak ;) *äugeläugel*", /* pun because of the "Schwebäugler" <3 */
+	"it's septembernethack, a cross variant bug fixing shitshow", /* by Demo */
 
 	    };
 	    char buf[BUFSZ];

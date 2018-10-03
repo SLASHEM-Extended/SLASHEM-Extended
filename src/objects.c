@@ -5324,6 +5324,9 @@ SCROLL((char *)0,               "IDZ DO DIABLA BRUDNY ZDRAJCO",  P_NONE,     1, 
 SCROLL((char *)0,               "BINAURAL BEATS BY DRE",  P_NONE,     1,   0, 300, CLR_BROWN, 1),
 SCROLL((char *)0,               "DEADLY BONES FILE",  P_NONE,     1,   0, 300, CLR_RED, 1),
 SCROLL((char *)0,               "VALLEY RAL AND PLACE",  P_NONE,     1,   0, 300, CLR_RED, 1),
+SCROLL((char *)0,               "BOOM BITCH GET OUT DA WAY",  P_NONE,     1,   0, 300, CLR_CYAN, 1),
+SCROLL((char *)0,               "FUNGHI AND SPAGHETTI ALIO OLIO",  P_NONE,     1,   0, 300, CLR_YELLOW, 1),
+SCROLL((char *)0,               "BOJACK HORSEMAN SEASON FIVE",  P_NONE,     1,   0, 300, CLR_RED, 1),
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

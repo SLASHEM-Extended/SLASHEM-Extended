@@ -245,7 +245,7 @@ dosounds()
 	    if (DEADMONSTER(mtmp)) continue;
 	    if (is_undead(mtmp->data) &&
 		mon_in_room(mtmp, MORGUE)) {
-		switch (rn2(3+hallu*2)) {
+		switch (rn2(4+hallu*2)) {
 		    case 0:
 			You("suddenly realize it is unnaturally quiet.");
 			break;
@@ -258,10 +258,13 @@ dosounds()
 			else pline("This place seems haunted.");
 			break;
 		    case 3:
+			pline("There is an eerie feeling about this place.");
+			break;
+		    case 4:
 			pline_The("%s on your %s seems to stand up.",
 				body_part(HAIR), body_part(HEAD));
 			break;
-		    case 4:
+		    case 5:
 			pline("An enormous ghost suddenly appears before you!");
 			break;
 		}

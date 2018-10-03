@@ -20290,6 +20290,15 @@ static NEARDATA const char * const fake_plines[] = {
 	"You doze off into a peaceful slumber as the trains keep passing through the station once every 30 minutes.",
 	"You suddenly wonder why there's so much traffic.",
 	"You need to squeeze past all the statues with the ancient white dragon breathing down your neck!",
+	"pets only eat when hungry in flkmnb3%%h",
+	"You're being boiled alive!",
+	"Gotta go fast!",
+	"There is an eerie feeling about this place.",
+	"Ouch! You injured your leg!",
+	"You unlawful traitor! How dare you attack the quest nemesis, he's never done any harm to us, except that he slaughtered a dozen rangers, burned our forest and stole all our treasure. BEGONE FILTHY DEMON! We'll rather let Scorpius gain world domination than tolerate your presence!",
+	"If your boots are damaged by stepping in shit then you're wearing shitty boots.",
+	"Wear proper shoes that can withstand a walk across broken glass.",
+	"omg you attacked a peaceful centaur? WOE TO YOU, YOU FILTHY HERETIC, I, ORION, MAKE YOUR GAME *UNWINNABLE* NOW.",
 
 };
 
