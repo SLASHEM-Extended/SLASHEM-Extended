@@ -8387,7 +8387,7 @@ typfnd:
 /* there should be a chance of an artifact wish failing even if none have been created yet --Amy 
  * but since there are so many more artifacts generated now, we increase the failure chance more slowly */
 	     (otmp->oartifact && (nartifact_exist() > 12) && rn2(nartifact_exist()) > 8) ||
-		 (Role_if(PM_PIRATE) && otmp->oartifact == ART_REAVER))
+		 (Role_if(PM_PIRATE) && otmp->oartifact == ART_REAVER) || (isfriday && !rn2(5)) )
 #ifdef WIZARD
 	    && !wizard
 #endif
@@ -8408,7 +8408,7 @@ typfnd:
 
 			if (!havegifts) u.ugifts++;
 
-			if (!rn2(3)) {
+			if (!rn2(isfriday ? 2 : 3)) {
 				bad_artifact();
 				return (&zeroobj);
 			}

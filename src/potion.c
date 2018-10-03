@@ -2807,7 +2807,7 @@ dodrink()
 			morehungry(-10);
 		}
 		healup(d(2,6) + rnz(u.ulevel), 0, FALSE, FALSE);
-		if (!rn2(10)) {
+		if (!rn2(isfriday ? 5 : 10)) {
 			levl[u.ux][u.uy].typ = POISONEDWELL;
 			pline("Suddenly the well becomes poisoned...");
 		} else if (!rn2(100)) {
@@ -3140,6 +3140,11 @@ peffects(otmp)
 		unkn++;
 		if(otmp->cursed) {
 		    pline("Ulch!  This makes you feel mediocre!");
+
+		    if (evilfriday) {
+			adjattrib(rn2(A_MAX), -1, 0);
+		    }
+
 		    break;
 		} else {
 		    pline("Wow!  This makes you feel %s!",
@@ -3407,6 +3412,10 @@ peffects(otmp)
 		if(otmp->cursed) {
 			unkn++;
 			You("have an uneasy feeling...");
+			if (evilfriday) {
+				adjattrib(A_WIS, -1, 0);
+				adjattrib(A_INT, -1, 0);
+			}
 			exercise(A_WIS, FALSE);
 		} else {
 			if (otmp->blessed) {
@@ -3437,8 +3446,18 @@ peffects(otmp)
 		else incr_itimeout(&HInvis, rn1(15,31));
 		newsym(u.ux,u.uy);	/* update position */
 		if(otmp->cursed) {
-		    pline(Hallucination ? "Somehow, you get the feeling there's a stalker waiting for you around the corner." : "For some reason, you feel your presence is known.");
-		    aggravate();
+			pline(Hallucination ? "Somehow, you get the feeling there's a stalker waiting for you around the corner." : "For some reason, you feel your presence is known.");
+			aggravate();
+			if (evilfriday) {
+				if (HInvis & INTRINSIC) {
+					HInvis &= ~INTRINSIC;
+					You_feel("paranoid.");
+				}
+				if (HInvis & TIMEOUT) {
+					HInvis &= ~TIMEOUT;
+					You_feel("paranoid.");
+				}
+			}
 		}
 		break;
 	case POT_SEE_INVISIBLE:
@@ -3479,6 +3498,18 @@ peffects(otmp)
 		    You("can see through yourself, but you are visible!");
 		    unkn--;
 		}
+
+		if (otmp->cursed && otmp->otyp == POT_SEE_INVISIBLE && evilfriday) {
+			if (HSee_invisible & INTRINSIC) {
+				HSee_invisible &= ~INTRINSIC;
+				You("%s!", Hallucination ? "tawt you taw a puttie tat" : "thought you saw something");
+			}
+			if (HSee_invisible & TIMEOUT) {
+				HSee_invisible &= ~TIMEOUT;
+				You("%s!", Hallucination ? "tawt you taw a puttie tat" : "thought you saw something");
+			}
+		}
+
 		break;
 	    }
 	case POT_COFFEE:
@@ -3492,6 +3523,17 @@ peffects(otmp)
 		    u.uhunger += (otmp->odiluted ? 10 : 20) * (2 + bcsign(otmp));
 		    newuhs(FALSE);
 		   if (!otmp->cursed) HSleep_resistance += rnd(25);
+
+		if (otmp->cursed && evilfriday) {
+			if (HSleep_resistance & INTRINSIC) {
+				HSleep_resistance &= ~INTRINSIC;
+				You_feel("tired all of a sudden.");
+			}
+			if (HSleep_resistance & TIMEOUT) {
+				HSleep_resistance &= ~TIMEOUT;
+				You_feel("tired all of a sudden.");
+			}
+		}
 
 		break;
 
@@ -3507,6 +3549,17 @@ peffects(otmp)
 		    newuhs(FALSE);
 		   if (!otmp->cursed) HFire_resistance += rnd(25);
 
+		if (otmp->cursed && evilfriday) {
+			if (HFire_resistance & INTRINSIC) {
+				HFire_resistance &= ~INTRINSIC;
+				You_feel("warmer.");
+			}
+			if (HFire_resistance & TIMEOUT) {
+				HFire_resistance &= ~TIMEOUT;
+				You_feel("warmer.");
+			}
+		}
+
 		break;
 
 	case POT_OOLONG_TEA:
@@ -3520,6 +3573,17 @@ peffects(otmp)
 		    u.uhunger += (otmp->odiluted ? 20 : 40) * (2 + bcsign(otmp));
 		    newuhs(FALSE);
 		   if (!otmp->cursed) HShock_resistance += rnd(25);
+
+		if (otmp->cursed && evilfriday) {
+			if (HShock_resistance & INTRINSIC) {
+				HShock_resistance &= ~INTRINSIC;
+				You_feel("like someone has zapped you.");
+			}
+			if (HShock_resistance & TIMEOUT) {
+				HShock_resistance &= ~TIMEOUT;
+				You_feel("like someone has zapped you.");
+			}
+		}
 
 		break;
 
@@ -3535,6 +3599,17 @@ peffects(otmp)
 		    newuhs(FALSE);
 		   if (!otmp->cursed) HCold_resistance += rnd(25);
 
+		if (otmp->cursed && evilfriday) {
+			if (HCold_resistance & INTRINSIC) {
+				HCold_resistance &= ~INTRINSIC;
+				You_feel("cooler.");
+			}
+			if (HCold_resistance & TIMEOUT) {
+				HCold_resistance &= ~TIMEOUT;
+				You_feel("cooler.");
+			}
+		}
+
 		break;
 
 	case POT_GREEN_MATE:
@@ -3549,6 +3624,17 @@ peffects(otmp)
 		    newuhs(FALSE);
 		   if (!otmp->cursed) HPoison_resistance += rnd(25);
 
+		if (otmp->cursed && evilfriday) {
+			if (HPoison_resistance & INTRINSIC) {
+				HPoison_resistance &= ~INTRINSIC;
+				You_feel("a little sick!");
+			}
+			if (HPoison_resistance & TIMEOUT) {
+				HPoison_resistance &= ~TIMEOUT;
+				You_feel("a little sick!");
+			}
+		}
+
 		break;
 
 	case POT_COCOA:
@@ -3562,6 +3648,17 @@ peffects(otmp)
 		    u.uhunger += (otmp->odiluted ? 100 : 200) * (2 + bcsign(otmp));
 		    newuhs(FALSE);
 		   if (!otmp->cursed) HDisint_resistance += rnd(25);
+
+		if (otmp->cursed && evilfriday) {
+			if (HDisint_resistance & INTRINSIC) {
+				HDisint_resistance &= ~INTRINSIC;
+				You_feel("like you're going to break apart.");
+			}
+			if (HDisint_resistance & TIMEOUT) {
+				HDisint_resistance &= ~TIMEOUT;
+				You_feel("like you're going to break apart.");
+			}
+		}
 
 		break;
 
@@ -3990,12 +4087,21 @@ peffects(otmp)
 		    if (unkn) You_feel("lonely.");
 		    break;
 		}
+
+		if (otmp->cursed && evilfriday) {
+			forget(3);
+		}
+
 		if (monster_detect(otmp, 0))
 			return(1);		/* nothing detected */
 		exercise(A_WIS, TRUE);
 		break;
 	case POT_OBJECT_DETECTION:
 	case SPE_DETECT_TREASURE:
+		if (otmp->cursed && evilfriday) {
+			forget(3);
+		}
+
 		if (object_detect(otmp, 0))
 			return(1);		/* nothing detected */
 		exercise(A_WIS, TRUE);
@@ -4120,6 +4226,9 @@ peffects(otmp)
 	case POT_GAIN_ABILITY:
 		if(otmp->cursed) {
 		    pline("Ulch!  That potion tasted foul!");
+		    if (evilfriday) {
+			adjattrib(rn2(A_MAX), -1, 0);
+		    }
 		    unkn++;
 		} else if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) ) {
 		    nothing++;
@@ -4138,6 +4247,14 @@ peffects(otmp)
 		}
 		break;
 	case POT_SPEED:
+
+		if (evilfriday && otmp->cursed) {
+			u.uprops[DEAC_FAST].intrinsic += rnd(500);
+			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
+			u.inertia += rnd(500);
+			break; /* don't run the code that makes you fast */
+		}
+
 		if(Wounded_legs && !otmp->cursed
 		   && !u.usteed	/* heal_legs() would heal steeds legs */
 						) {
@@ -4167,6 +4284,9 @@ peffects(otmp)
 
 	case POT_GAIN_LEVEL:
 		if (otmp->cursed) {
+			if (evilfriday) {
+				losexp("a cursed potion of gain level", FALSE, TRUE);
+			}
 			unkn++;
 			/* they went up a level */
 			if((ledger_no(&u.uz) == 1 && u.uhave.amulet) ||
@@ -4280,6 +4400,13 @@ peffects(otmp)
 		You_feel("better.");
 		healup(d(5,6) + rnz(u.ulevel) + 5 * bcsign(otmp),
 		       otmp->blessed ? 2 : !otmp->cursed ? 1 : 0, 1+1*!!otmp->blessed, !otmp->cursed);
+
+		if (evilfriday && otmp->cursed) {
+			u.uhpmax--;
+			if (u.uhpmax < 1) u.uhpmax = 1;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+
 		exercise(A_CON, TRUE);
 		break;
 	case POT_EXTRA_HEALING:
@@ -4287,6 +4414,12 @@ peffects(otmp)
 		healup(d(6,8) + rnz(u.ulevel) + 5 * bcsign(otmp),
 		       otmp->blessed ? 5 : !otmp->cursed ? 2 : 0,
 		       !otmp->cursed, TRUE);
+		if (evilfriday && otmp->cursed) {
+			u.uhpmax -= 2;
+			if (u.uhpmax < 1) u.uhpmax = 1;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+
 		(void) make_hallucinated(0L,TRUE,0L);
 		exercise(A_CON, TRUE);
 		exercise(A_STR, TRUE);
@@ -4294,6 +4427,12 @@ peffects(otmp)
 	case POT_FULL_HEALING:
 		You_feel("completely healed.");
 		healup(400 + rnz(u.ulevel), 4+4*bcsign(otmp), !otmp->cursed, TRUE);
+		if (evilfriday && otmp->cursed) {
+			u.uhpmax -= 4;
+			if (u.uhpmax < 1) u.uhpmax = 1;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+
 		/* Restore one lost level if blessed */
 		if (otmp->blessed && u.ulevel < u.ulevelmax) {
 		    /* when multiple levels have been lost, drinking
@@ -4657,6 +4796,17 @@ peffects(otmp)
 			pline("Your memory keens.");
 		incr_itimeout(&HKeen_memory, rnd(500 + 250 * bcsign(otmp) ));
 
+		if (evilfriday && otmp->cursed) {
+			if (HKeen_memory & INTRINSIC) {
+				HKeen_memory &= ~INTRINSIC;
+				You_feel("a case of selective amnesia...");
+			}
+			if (HKeen_memory & TIMEOUT) {
+				HKeen_memory &= ~TIMEOUT;
+				You_feel("a case of selective amnesia...");
+			}
+		}
+
 		break;
 
 	case POT_NIGHT_VISION:
@@ -4666,6 +4816,17 @@ peffects(otmp)
 			pline("Your vision range increases.");
 		incr_itimeout(&HSight_bonus, rnd(500 + 250 * bcsign(otmp) ));
 		vision_full_recalc = 1;
+
+		if (evilfriday && otmp->cursed) {
+			if (HSight_bonus & INTRINSIC) {
+				HSight_bonus &= ~INTRINSIC;
+				You_feel("less perceptive!");
+			}
+			if (HSight_bonus & TIMEOUT) {
+				HSight_bonus &= ~TIMEOUT;
+				You_feel("less perceptive!");
+			}
+		}
 
 		break;
 
@@ -5196,28 +5357,28 @@ boolean your_fault;
  		    if (canseemon(mon))
 		        pline("%s pauses, then looks at you thoughtfully!", 
 					Monnam(mon));
-		    mon->m_lev--;
+		    if (mon->m_lev > 0) mon->m_lev--;
 		    break;
 		case PM_FAMINE:
 		    if (canseemon(mon))
 		        pline("%s looks unusually hungry!", Monnam(mon));
-		    mon->m_lev--;
+		    if (mon->m_lev > 0) mon->m_lev--;
 		    break;
 		case PM_PESTILENCE:
 		    if (canseemon(mon))
 		        pline("%s looks unusually well!", Monnam(mon));
-		    mon->m_lev--;
+		    if (mon->m_lev > 0) mon->m_lev--;
 		    break;
 		case PM_FRUSTRATION:
 		    if (canseemon(mon))
 		        pline("%s looks like something terrible happened to him!", Monnam(mon));
-		    mon->m_lev--;
+		    if (mon->m_lev > 0) mon->m_lev--;
 		    break;
 		default:
 		    if (mon->data->msound == MS_NEMESIS && canseemon(mon)
 				    && your_fault) {
 			pline("%s curses your ancestors!", Monnam(mon));
-		      mon->m_lev--;
+		      if (mon->m_lev > 0) mon->m_lev--;
 		      mon->mstun = TRUE;
 		    } else if (mon->isshk) {
 			angermon = FALSE;
@@ -5315,6 +5476,9 @@ register struct obj *obj;
 			Your("%s sting%s!",
 			     (numeyes == 1) ? body_part(EYE) : makeplural(body_part(EYE)),
 			     (numeyes == 1) ? "s" : "");
+		    }
+		    if (evilfriday) {
+			adjattrib(rn2(A_MAX), -1, 0);
 		    }
 		    break;
 		} else {
