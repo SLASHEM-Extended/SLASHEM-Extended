@@ -8617,6 +8617,21 @@ boolean *shopdamage;
 		    lev->typ = CORR;
 		    if (cansee(x,y)) Norep("The snow melts away.");
 		    if (cansee(x,y)) newsym(x,y);
+	    } else if (is_mattress(x,y) && !rn2(5)) {
+		    rangemod -= 3;
+		    lev->typ = CORR;
+		    if (cansee(x,y)) Norep("The mattress burns up.");
+		    if (cansee(x,y)) newsym(x,y);
+	    } else if (is_table(x,y) && !rn2(5)) {
+		    rangemod -= 3;
+		    lev->typ = CORR;
+		    if (cansee(x,y)) Norep("The table burns up.");
+		    if (cansee(x,y)) newsym(x,y);
+	    } else if (is_carvedbed(x,y) && !rn2(5)) {
+		    rangemod -= 3;
+		    lev->typ = CORR;
+		    if (cansee(x,y)) Norep("The bed burns up.");
+		    if (cansee(x,y)) newsym(x,y);
 	    } else if (is_wagon(x,y)) {
 		    const char *msgtxt = "You hear a flaming sound.";
 		    rangemod -= 3;
