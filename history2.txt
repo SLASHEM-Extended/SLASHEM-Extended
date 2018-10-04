@@ -1,6 +1,14 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.3.6 - October 2018
+- Thrones and other skill-unlocking effects can also unlock bare-handed combat and martial arts now.
+- Bad effects once again don't unconditionally interrupt the player, but the logic that determines when to interrupt the player has been improved.
+- Quaffing from fountains/sinks, or quaffing a potion of fruit juice, gives more nutrition. Clockwork automatons get more nutrition when quaffing potions of oil.
+- The player can now set an alias name for their character if the option askforalias is turned on via config file (it defaults to off).
+
 2.3.5 - October 2018
+- Mattresses, beds and tables can burn when hit with fire.
+- Every skill has at least one item associated with it that will unlock the skill if an artifact version of it is given as a gift to the player.
 - Players who know both the bare-handed combat and martial arts skills can #monster to switch between the two.
 - Snail race players can #monster to dig every once in a while.
 
