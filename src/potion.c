@@ -649,9 +649,6 @@ badeffect()
 		}
 	}
 
-	/* something bad is happening... it would be assholey to not interrupt the player --Amy */
-	stop_occupation();
-
 	switch (rnd(416)) {
 
 		case 1:

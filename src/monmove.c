@@ -1009,6 +1009,7 @@ register struct monst *mtmp;
 		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
 
 			badeffect();
+			stop_occupation();
 		    switch (rn2(17)) {
 		    case 0:
 		    case 1:
@@ -1079,6 +1080,7 @@ register struct monst *mtmp;
 
 		}
 		badeffect();
+		stop_occupation();
 	}
 
 	/* Monsters with MS_BONES can rattle. If this causes you to snap out of a longer paralysis, more power to you :D */
@@ -1182,6 +1184,7 @@ register struct monst *mtmp;
 					badeffect();
 				}
 				losehp(dmg, "psychic blast", KILLED_BY_AN);
+				stop_occupation();
 			}
 		}
 		for(m2=fmon; m2; m2 = nmon) {
@@ -1491,6 +1494,7 @@ toofar:
 
 		verbalize(superman_msgs[rn2(SIZE(superman_msgs))]);
 		badeffect();
+		stop_occupation();
 		}
 
 	    if(inrange && mtmp->data->msound == MS_PRINCIPAL && !mtmp->mpeaceful &&
