@@ -3929,6 +3929,12 @@ peffects(otmp)
 			else if (P_ADVANCE(P_WEDI) && !(P_RESTRICTED(P_WEDI)) && yn("Do you want to train the form VIII (Wedi) skill?")=='y') {
 				P_ADVANCE(P_WEDI) *= 2;
 				acquiredskill = 1; }
+			else if (P_ADVANCE(P_BARE_HANDED_COMBAT) && !(P_RESTRICTED(P_BARE_HANDED_COMBAT)) && yn("Do you want to train the bare-handed combat skill?")=='y') {
+				P_ADVANCE(P_BARE_HANDED_COMBAT) *= 2;
+				acquiredskill = 1; }
+			else if (P_ADVANCE(P_MARTIAL_ARTS) && !(P_RESTRICTED(P_MARTIAL_ARTS)) && yn("Do you want to train the martial arts skill?")=='y') {
+				P_ADVANCE(P_MARTIAL_ARTS) *= 2;
+				acquiredskill = 1; }
 			else if (yn("Do you want to train no skill at all?")=='y') {
 				acquiredskill = 1;
 			}

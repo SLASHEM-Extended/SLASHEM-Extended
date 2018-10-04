@@ -3676,6 +3676,10 @@ newegomon:
 				    unrestrict_weapon_skill(P_VAAPAD);	acquiredskill = 1; }
 			else if (P_RESTRICTED(P_WEDI) && yn("Do you want to learn the form VIII (Wedi) skill?")=='y') {
 				    unrestrict_weapon_skill(P_WEDI);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_BARE_HANDED_COMBAT) && yn("Do you want to learn the bare-handed combat skill?")=='y') {
+				    unrestrict_weapon_skill(P_BARE_HANDED_COMBAT);	acquiredskill = 1; }
+			else if (P_RESTRICTED(P_MARTIAL_ARTS) && yn("Do you want to learn the martial arts skill?")=='y') {
+				    unrestrict_weapon_skill(P_MARTIAL_ARTS);	acquiredskill = 1; }
 			else if (yn("Do you want to learn no new skill at all?")=='y') {
 				    acquiredskill = 1; }
 			}
