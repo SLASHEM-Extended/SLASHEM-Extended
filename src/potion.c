@@ -3477,7 +3477,7 @@ peffects(otmp)
 			  otmp->odiluted ? "reconstituted " : "",
 			  fruitname(TRUE));
 		if (otmp->otyp == POT_FRUIT_JUICE) {
-		    u.uhunger += (otmp->odiluted ? 5 : 10) * (2 + bcsign(otmp));
+		    u.uhunger += (otmp->odiluted ? 15 : 30) * (2 + bcsign(otmp));
 		    newuhs(FALSE);
 		    break;
 		}
@@ -4578,7 +4578,7 @@ peffects(otmp)
 			    pline("That was smooth!");
 			exercise(A_WIS, good_for_you);
 		}
-		if (Race_if(PM_CLOCKWORK_AUTOMATON)) u.uhunger += 500;
+		if (Race_if(PM_CLOCKWORK_AUTOMATON)) u.uhunger += rn1(1000,1000);
 		if (Race_if(PM_CLOCKWORK_AUTOMATON)) exercise(A_WIS, TRUE);
 		break;
 	case POT_ACID:

@@ -3246,7 +3246,7 @@ newegomon:
 
 			case 9:
 				pline_The("cool draught refreshes you.");
-				u.uhunger += rnd(10); /* don't choke on water */
+				u.uhunger += rnd(40); /* don't choke on water */
 				newuhs(FALSE);
 				break;
 			case 10:
@@ -3359,6 +3359,8 @@ newegomon:
 			case 29:
 			case 30:
 				pline("This tepid water is tasteless.");
+				u.uhunger += rnd(5); /* don't choke on water */
+				newuhs(FALSE);
 				break;
 
 		}

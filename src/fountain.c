@@ -245,7 +245,7 @@ drinkfountain()
 
 	if (fate < 10) {
 		pline_The("cool draught refreshes you.");
-		u.uhunger += rnd(10); /* don't choke on water */
+		u.uhunger += rnd(40); /* don't choke on water */
 		newuhs(FALSE);
 		if(mgkftn) return;
 	} else {
@@ -449,6 +449,10 @@ drinkfountain()
 		default:
 
 			pline("This tepid water is tasteless.");
+
+			u.uhunger += rnd(5); /* don't choke on water */
+			newuhs(FALSE);
+
 			break;
 	    }
 	}
@@ -766,14 +770,26 @@ drinksink()
 		return;
 	}
 	switch(rn2(25)) {
-		case 0: You("take a sip of very cold water.");
+		case 0:
+			You("take a sip of very cold water.");
+			u.uhunger += rnd(20); /* don't choke on water */
+			newuhs(FALSE);
 			break;
-		case 1: You("take a sip of very warm water.");
+		case 1:
+			You("take a sip of very warm water.");
+			u.uhunger += rnd(50); /* don't choke on water */
+			newuhs(FALSE);
 			break;
 		case 2: You("take a sip of scalding hot water.");
-			if (Fire_resistance)
+			if (Fire_resistance) {
 				pline("It seems quite tasty.");
-			else losehp(rnd(6), "sipping boiling water", KILLED_BY);
+				u.uhunger += rnd(50); /* don't choke on water */
+				newuhs(FALSE);
+			} else losehp(rnd(6), "sipping boiling water", KILLED_BY);
+
+			u.uhunger += rnd(10); /* don't choke on water */
+			newuhs(FALSE);
+
 			break;
 		case 3: if (mvitals[PM_SEWER_RAT].mvflags & G_GONE)
 				pline_The("sink seems quite dirty.");
@@ -834,10 +850,8 @@ drinksink()
 			/* KMH, balance patch -- new intrinsic */
 			pline("This water contains toxic wastes!");
 			if (!Unchanging) {
-			if (!Unchanging) {
 				You("undergo a freakish metamorphosis!");
 				polyself(FALSE);
-			}
 			}
 			break;
 		/* more odd messages --JJB */
@@ -886,6 +900,8 @@ drinksink()
 			}
 		default: You("take a sip of %s water.",
 			rn2(3) ? (rn2(2) ? "cold" : "warm") : "hot");
+			u.uhunger += rnd(40); /* don't choke on water */
+			newuhs(FALSE);
 	}
 }
 
@@ -896,7 +912,7 @@ drinktoilet()
 		floating_above("toilet");
 		return;
 	}
-	if ((youmonst.data->mlet == S_DOG) && (rn2(5))){
+	if ((youmonst.data->mlet == S_DOG) && (rn2(5)) ) {
 		pline("The toilet water is quite refreshing!");
 		u.uhunger += 10;
 		return;
