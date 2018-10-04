@@ -786,7 +786,7 @@ aligntyp resp_god;
 			break;
 
 	    default:	gods_angry(resp_god);
-			if (!rn2(5)) god_zaps_you(resp_god); /* lower instadeath chance --Amy */
+			if (!rn2(evilfriday ? 3 : 5)) god_zaps_you(resp_god); /* lower instadeath chance --Amy */
 			else god_summons_minions(resp_god);
 			break;
 	}
@@ -1806,7 +1806,7 @@ dosacrifice()
 			dmon->mpeaceful = (rn2(2) ? TRUE : FALSE); /* making things a bit more dangerous for chaotics --Amy */
 			if (dmon && dmon->mpeaceful && !rn2(500) ) dmon = tamedog(dmon, (struct obj *) 0, TRUE);
 			} else {
-			switch (rn2(12)) {
+			switch (rn2(14)) {
 			  case 0:
 			  case 5:
 			  case 6:
@@ -1846,6 +1846,15 @@ dosacrifice()
 				 if (!rn2(4)) makewish();
 				 else othergreateffect();
 				 if (dmon && !rn2(200) ) dmon = tamedog(dmon, (struct obj *) 0, TRUE);
+			  case 13:
+				 pline("He forces you to wear an artifact!");
+				 bad_artifact();
+				 break;
+			  case 14:
+				 pline("He forces you to wear an artifact!");
+			       dmon->mpeaceful = FALSE;
+				 bad_artifact();
+				 break;
 			  break;
 		       }
 		    }
@@ -2089,6 +2098,8 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 				if (!rn2(128)) summon_minion(altaralign, FALSE);
 				if (!rn2(256)) summon_minion(altaralign, FALSE);
 				if (!rn2(512)) summon_minion(altaralign, FALSE);
+		    } else {
+			    pline("%s's voice penetrates your mind from the distance: 'Oh it's just %s, I don't care, I'm on the phone'.", a_gname(), playeraliasname); /* thanks Lorskel, it's about time that I actually implement this --Amy */
 		    }
 		    u.ublesscnt = 0;  /* WAC You deserve this ... */
 		    exercise(A_WIS, TRUE);

@@ -3078,7 +3078,12 @@ proofarmorchoice:
 		}
 
 		if (sobj->cursed) {
-		    pline_The("scroll disintegrates.");
+			pline_The("scroll disintegrates.");
+			if (evilfriday) {
+				You_feel("as if you need some help.");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+				rndcurse();
+			}
 		} else {
 
 			/* Scroll of remove curse will completely decontaminate you --Amy */
@@ -5623,6 +5628,11 @@ randenchchoice:
 			      You("get the feeling that %s is angry...", u_gname());
 			}
 			break;
+		}
+
+		if (evilfriday && sobj->cursed) {
+			u.ugangr++;
+		      You("get the feeling that %s is angry...", u_gname());
 		}
 
 		if(sobj->blessed) {
