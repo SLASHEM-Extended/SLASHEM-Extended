@@ -156,6 +156,7 @@ take_gold()
 		You_feel("a strange sensation.");
 	} else {
 		You("notice you have no gold!");
+		u.bankcashamount += u.ugold; /* even if you don't have the bank trap effect --Amy */
 		u.ugold = 0;
 		flags.botl = 1;
 	}
@@ -271,8 +272,10 @@ dosit()
 	    Your("%s gets wet.", humanoid(youmonst.data) ? "rump" : "underside");
 	} else if(IS_TOILET(typ)) {
 	    You(sit_message, defsyms[S_toilet].explanation);
-	    if ((!Sick) && (u.uhs > 0)) You("don't have to go...");
+	    if ((!Sick || !issoviet) && (u.uhs > 0)) You("don't have to go...");
 	    else {
+			if (issoviet && u.uhs > 0) pline("Vy der'mo vedro, vy delayete svoye der'mo iz vozdukha? Nel'zya dazhe der'mo, kak i vy!");
+
 			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
 				You("produce very erotic noises.");
 				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1);

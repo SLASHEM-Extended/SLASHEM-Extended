@@ -921,6 +921,7 @@ struct obj *book2;
 	if(arti_cursed && issoviet) { /* Nyah-nyah! --Amy */
 	    pline_The("invocation fails!");
 	    pline("At least one of your artifacts is cursed...");
+	    pline("Teper' vy bol'she ne mozhete pobezhdat' v igre, vy sovershenno glupyy igrok. Vy nikogda ne smozhete podnyat' proklyatiye, i on nikogda ne budet rabotat', poka kniga proklyata kha-kha-kha-kha-kha-kha BWAR KHAR KHAR!");
 	} else if(arti1_primed && arti2_primed) {
 	    unsigned soon = (unsigned) d(2,6);	/* time til next intervene() */
 
@@ -3299,6 +3300,12 @@ secureidchoice:
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 			}
 
+			/* make good shit, after all you pay with max health for this spell */
+			u.aggravation = 1;
+			if (!rn2(3)) u.heavyaggravation = 1;
+			if (!rn2(20)) DifficultyIncreased += 1;
+			if (!rn2(20)) HighlevelStatus += 1;
+
 			register struct monst *elemental;
 			elemental = makemon(mkclass(S_ELEMENTAL,0), u.ux, u.uy, MM_NOSPECIALS);
 			if (elemental) {
@@ -3317,6 +3324,11 @@ secureidchoice:
 			    }
 
 			}
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
+			if (DifficultyIncreased > 0) DifficultyIncreased--;
+			if (HighlevelStatus > 0) HighlevelStatus--;
+
 		}
 
 		break;
@@ -3346,6 +3358,12 @@ secureidchoice:
 
 			int ammount = 1;
 			if (spell_damage_bonus(spellid(spell)) > 0) ammount += spell_damage_bonus(spellid(spell));
+
+			/* make good shit, after all you pay with max health and pw for this spell */
+			u.aggravation = 1;
+			if (!rn2(2)) u.heavyaggravation = 1;
+			if (!rn2(7)) DifficultyIncreased += 1;
+			if (!rn2(7)) HighlevelStatus += 1;
 
 			register struct monst *vortex;
 			while (ammount > 0) {
@@ -3377,6 +3395,12 @@ secureidchoice:
 				}
 				ammount--;
 			}
+
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
+			if (DifficultyIncreased > 0) DifficultyIncreased--;
+			if (HighlevelStatus > 0) HighlevelStatus--;
+
 		}
 
 		break;
@@ -6483,7 +6507,7 @@ losespells()
 	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
 		continue;
 	if (n) {
-		nzap = rn2(50) ? 1 : (rnd(n) + confused);
+		nzap = rn2(isfriday ? 20 : 50) ? 1 : (rnd(n) + confused);
 
 		if (n > urole.spelrete) {
 			int retention = urole.spelrete;

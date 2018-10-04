@@ -4745,6 +4745,7 @@ static const char *epitaphs[] = {
 	"what's next, Gehennom instakills you again if you're not fire resistant despite there being very little fire/lava at all?",
 	"did this terra guy make it so that there's no land on the stupid plane of stupidity at all??? are you going to autodie when going there without magical breathing? WTF",
 	"goddamn it what did terra do to the water plane??? I wizmode-levported to it, instantly drowned due to being in water, came back to life because wizmode and was teleported into a different water square where it now loops on 'Die? (y/n)' with no way out",
+	"It's probably not a good time for a picnic...",
 
 };
 

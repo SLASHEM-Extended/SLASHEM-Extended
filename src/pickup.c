@@ -1468,7 +1468,7 @@ boolean telekinesis;	/* not picking it up directly by hand */
 	    obj = splitobj(obj, count);
 
 	if (TooHeavyEffect || u.uprops[TOO_HEAVY_EFFECT].extrinsic || have_tooheavystone()) {
-		IncreasedGravity += 50;
+		if (IncreasedGravity < 10000000) IncreasedGravity += 50;
 	}
 
 	obj = pick_obj(obj);

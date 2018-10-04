@@ -813,6 +813,7 @@ doread()
 	"my wallet name actually does better, Amaurea Vanimedle", /* sadly we cannot use ë */
 	"here's looking at you, bhaak ;) *äugeläugel*", /* pun because of the "Schwebäugler" <3 */
 	"it's septembernethack, a cross variant bug fixing shitshow", /* by Demo */
+	"But I want my own house and not a girl!",
 
 	    };
 	    char buf[BUFSZ];

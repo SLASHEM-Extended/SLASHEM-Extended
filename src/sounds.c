@@ -977,13 +977,16 @@ dosounds()
 			"listen to the cackle of poultry.",
 			"feel like reaching the next town.",
 			"seem to be in a nice atmosphere.",
+			"listen to the villagers' conversations.",
 			"inhale the sharp smell of burning thatch!",
 			"suddenly see the hill giant lord throwing enormous rocks on the shops! And he's killing the shopkeeper with a giant club! Ack!",
 			"must be in a town that's not very easy to reach.",
 			"hacked into Arabella's chat, allowing you to monitor her talk and that of her girlfriends. And you realize that Henrietta complains about you having gotten away from her because she can't follow you now.",
 			"need to squeeze past all the statues with the ancient white dragon breathing down your neck!",
+			"have 100 turns left to find the secret entrance to an otherwise unreachable dungeon level before the hidden warp portal dissipates.",
+			"somehow feel that the secret advice hussies can't get you for now.",
 		};
-		You(greencrossroom_msg[rn2(4+hallu*5)]);
+		You(greencrossroom_msg[rn2(5+hallu*7)]);
 		return;
 	    }
 	    if (level.flags.has_ruinedchurch && !rn2(200)) {
@@ -1008,11 +1011,20 @@ dosounds()
 			"hear the familiar melody of Mario Kart 64.",
 			"listen to the typical Electronic Arts games slogan.",
 			"seem to catch earshot of a dragon shout from Skyrim.",
+			"encounter a tiny lag that indicates monsters being spawned.",
+			"have to click OK on the shareware notice.",
 			"hear a speedrunner curse at Super Kaizo Mario because the game is too damn hard!",
 			"suddenly feel that you're really playing GTA! A cop car appears! The cop wields a shotgun! The cop fires a shotgun shell!--More--",
 			"lost your last hitpoint and jump out of the picture!",
+			"suddenly feel like just standing there and letting a sexy prostitute kick you in the nuts repeatedly.",
+			"want to be expenditure-feasted by the sharp claws!",
+			"absolutely long to have a succubus slowly and very painfully scratch you with her erotic blade!",
+			"feel that the developer inserted even the most impossible bugs into the game that a normal mortal could never conceive!",
+			"feel that the colors are very fleece-bouffant!",
+			"hear someone say 'Die-Far-ben-sind-sehr-flau-schel-bau-schig!'",
+			"push buttons and your stupid PC responds by making annoying 'DIE-DIE-DOE' sounds instead of executing your commands!",
 		};
-		You(gamecorner_msg[rn2(6+hallu*3)]);
+		You(gamecorner_msg[rn2(8+hallu*10)]);
 		return;
 	    }
 	    if (level.flags.has_illusionroom && !rn2(200)) {
@@ -1021,12 +1033,16 @@ dosounds()
 			"feel that things aren't necessarily really there just because you can see them.",
 			"are sure that some strange presences are on this floor.",
 			"need to stay alert for anything out of the ordinary.",
+			"have an everchanging feeling.",
+			"feel slightly irritated and annoyed at something.",
 			"notice that your weapon has no effect! Get a shield!",
 			"can't think about difficult things or your brain will asplode!",
 			"forgot that you were suffering from amnesia! Oh no!",
 			"decide that you'd rather not and we'll just pretend that you did so you can move on.",
+			"hope that one of the gods can help you out of your predicament...",
+			"should stop thinking of eldritch abominations all the time or you'll end up permanently confused!",
 		};
-		You(illusionroom_msg[rn2(4+hallu*4)]);
+		You(illusionroom_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 
@@ -1259,10 +1275,12 @@ dosounds()
       static const char *blkmar_msg[] = {
         "You hear someone complaining about the prices.",
         "Somebody whispers: \"Food rations? Only 900 zorkmids.\"",
+	  "Somebody whispers: \"For one million zorkmids you can buy the legendary one-of-a-kind Excalibur!\"",
         "You feel like searching for more gold.",
         "Somebody whispers: \"Dawg, I got quality shit around here.\"",
+	  "Somebody whispers: \"I have that old playboy magazine issue that has naked pics of several dozen celebrities. I'll sell it to you for 10000 zorkmids.\"",
       };
-      pline(blkmar_msg[rn2(2+hallu*2)]);
+      pline(blkmar_msg[rn2(3+hallu*3)]);
     }
 
 	/* finding alignment quests is way too hard, so the player will get some help. --Amy */
@@ -1271,10 +1289,14 @@ dosounds()
       static const char *alignquest_msg[] = {
         "You feel the presence of some sort of force.",
         "There seems to be something special about this place.",
+	  "You detect the presence of an alignment quest portal!",
+	  "You hear an evil figure taunting you to step through the magic portal!"
         "You hear someone say: \"Force field activated!\"",
         "You hear someone say: \"Warp panel test sequence is starting in three... two... one...\"",
+	  "You see Diablo 2, the boss from the game with the same name, and he's holding your mother hostage!",
+	  "You know that on the flipside they have a cat AND a dog!",
       };
-      pline(alignquest_msg[rn2(2+hallu*2)]);
+      pline(alignquest_msg[rn2(4+hallu*4)]);
     }
 
 }
@@ -2239,6 +2261,9 @@ register struct monst *mtmp;
 		    break;
 		case PM_UNBELIEVER:
 		    verbl_msg = "Gods are nonexistant. People should stop believing in them.";
+		    break;
+		case PM_HUSSY:
+		    verbl_msg = "Anna is gonna finish off that Walt bumbler.";
 		    break;
 		case PM_POKEMON:
 		    verbl_msg = "Little strawberry me baby!";

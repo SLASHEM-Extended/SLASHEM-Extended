@@ -2801,6 +2801,8 @@ static NEARDATA const char * const soviettaunts[] = {
 "V sovetskom rezhime zaklinaniye 'Volshebnaya raketa' snova ul'tra moshchno. Potomu chto igrovoy balans nikogda ne byl bol'shoy chast'yu filosofii dizayna v Sovetskom Soyuze.",
 "Kto-to schitayet, chto eto sovershenno zdorovo, yesli vashi luchi smerti prodolzhayut propuskat' volshebnika yada. Lovkost' bonus shans popast'? Ili luchshe udarit', yesli vash uroven' vyshe? Net, eto nikomu ne nuzhno! Slesh ikh takoy dryannoy variant, ya chestno udivlen, chto kto-to igrayet yego voobshche.",
 "V svoyem stremlenii vernut' vse obratno k urovnyam vanili sovetskiy tip ledyanogo bloka sdelal eto tak, chto molniya snova oslepit vas kazhdyy raz, a prodolzhitel'nost' slepoty slishkom velika.",
+"Vy mozhete vzyat' der'mo, dazhe yesli vy nichego ne yeli tol'ko potomu, chto vy bol'ny, chto ne imeyet nikakogo smysla, no ey, eto sovetskaya rossiya dlya vas, predstavlennaya tipom ledyanogo bloka.",
+"Yesli kakoy-libo iz instrumentov obrashcheniya slishkom sil'no proklinayet, vy mozhete takzhe udalit' personazha i brosit' novyy, potomu chto teper' oni ne dolzhny byt' proklyaty ili oni nikogda ne budut rabotat'. Potomu chto tip ledyanogo bloka khochet, chtoby igra byla pogranichnoy.",
 };
 
 static NEARDATA const char * const hussylines[] = {
@@ -20299,6 +20301,31 @@ static NEARDATA const char * const fake_plines[] = {
 	"If your boots are damaged by stepping in shit then you're wearing shitty boots.",
 	"Wear proper shoes that can withstand a walk across broken glass.",
 	"omg you attacked a peaceful centaur? WOE TO YOU, YOU FILTHY HERETIC, I, ORION, MAKE YOUR GAME *UNWINNABLE* NOW.",
+	"You have an everchanging feeling.",
+	"You feel slightly irritated and annoyed at something.",
+	"You hope that one of the gods can help you out of your predicament...",
+	"You should stop thinking of eldritch abominations all the time or you'll end up permanently confused!",
+	"You encounter a tiny lag that indicates monsters being spawned.",
+	"You have to click OK on the shareware notice.",
+	"You suddenly feel like just standing there and letting a sexy prostitute kick you in the nuts repeatedly.",
+	"You want to be expenditure-feasted by the sharp claws!",
+	"You absolutely long to have a succubus slowly and very painfully scratch you with her erotic blade!",
+	"You feel that the developer inserted even the most impossible bugs into the game that a normal mortal could never conceive!",
+	"You feel that the colors are very fleece-bouffant!",
+	"You hear someone say 'Die-Far-ben-sind-sehr-flau-schel-bau-schig!'",
+	"You push buttons and your stupid PC responds by making annoying 'DIE-DIE-DOE' sounds instead of executing your commands!",
+	"You listen to the villagers' conversations.",
+	"You have 100 turns left to find the secret entrance to an otherwise unreachable dungeon level before the hidden warp portal dissipates.",
+	"You somehow feel that the secret advice hussies can't get you for now.",
+	"You detect the presence of an alignment quest portal!",
+	"You hear an evil figure taunting you to step through the magic portal!",
+	"You see Diablo 2, the boss from the game with the same name, and he's holding your mother hostage!",
+	"You know that on the flipside they have a cat AND a dog!",
+	"Somebody whispers: \"For one million zorkmids you can buy the legendary one-of-a-kind Excalibur!\"",
+	"Somebody whispers: \"I have that old playboy magazine issue that has naked pics of several dozen celebrities. I'll sell it to you for 10000 zorkmids.\"",
+	"You rub the block of lard all over your body.",
+	"You apply lard to the axle bearing. The wheels of the ancient machine room lurch into motion! The engineer gets angry! 'You there!' You hear a zap!",
+	"You can only buy a rundown shack where the heating and the furnace do not go.",
 
 };
 
