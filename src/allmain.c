@@ -9446,11 +9446,26 @@ newgame()
 	gameDiskPrompt();
 #endif
 
+	flags.ident = 1;
+
+	for (i = 0; i < NUMMONS; i++)
+		mvitals[i].mvflags = mons[i].geno & G_NOCORPSE;
+
+	init_objects();		/* must be before u_init() */
+
+	randommaterials();	/* only done here - do not call this during a running game! --Amy */
+
+	flags.pantheon = -1;	/* role_init() will reset this */
+	role_init();		/* must be before init_dungeons(), u_init(),
+				 * and init_artifacts() */
+
 	if (flags.askforalias) {
 		char aliasbuf[2048];	/* Buffer for alias name */
 		char eliasbuf[2048];
 		int aliaslength;
 		int testx;
+
+		pline("Your character: %s %s %s %s", aligns[1 - u.ualign.type].adj, genders[flags.female].adj, urace.adj, (flags.female && urole.name.f) ? urole.name.f : urole.name.m);
 aliasagain:
 		sprintf(aliasbuf,"What is your alias name?");
 		getlin(aliasbuf, eliasbuf);
@@ -9482,19 +9497,6 @@ aliasagain:
 			(void) strncpy(u.aliasname, eliasbuf, sizeof(eliasbuf));
 		}
 	}
-
-	flags.ident = 1;
-
-	for (i = 0; i < NUMMONS; i++)
-		mvitals[i].mvflags = mons[i].geno & G_NOCORPSE;
-
-	init_objects();		/* must be before u_init() */
-
-	randommaterials();	/* only done here - do not call this during a running game! --Amy */
-
-	flags.pantheon = -1;	/* role_init() will reset this */
-	role_init();		/* must be before init_dungeons(), u_init(),
-				 * and init_artifacts() */
 
 	init_dungeons();	/* must be before u_init() to avoid rndmonst()
 				 * creating odd monsters for any tins and eggs
