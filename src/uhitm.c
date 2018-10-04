@@ -889,6 +889,7 @@ register struct monst *mon;
 int mattack;			/* Which weapons you attacked with -ALI */
 register int *mhit;
 struct attack *uattk;
+int dieroll;
 {
 	register boolean malive = TRUE;
 
@@ -4812,8 +4813,8 @@ register struct attack *mattk;
 		break;
 
 	    case AD_FAKE:
-		pline(fauxmessage());
-		if (!rn2(3)) pline(fauxmessage());
+		pline("%s", fauxmessage());
+		if (!rn2(3)) pline("%s", fauxmessage());
 
 		break;
 
@@ -5632,8 +5633,8 @@ register struct attack *mattk;
 		}
 		goto common;
 	    case AD_FAKE:
-		pline(fauxmessage());
-		if (!rn2(3)) pline(fauxmessage());
+		pline("%s", fauxmessage());
+		if (!rn2(3)) pline("%s", fauxmessage());
 		goto common;
 	    case AD_WEBS:
 		(void) maketrap(mdef->mx, mdef->my, WEB, 0);
@@ -8437,8 +8438,8 @@ uchar aatyp;
 
 	    case AD_FAKE:
 		{
-			pline(fauxmessage());
-			if (!rn2(3)) pline(fauxmessage());
+			pline("%s", fauxmessage());
+			if (!rn2(3)) pline("%s", fauxmessage());
 		}
 		break;
 

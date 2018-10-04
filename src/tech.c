@@ -1844,7 +1844,8 @@ dotechwiz()
 	}
 	pline("The timeout on all your techniques has been set to zero.");
 
-	dotech();
+	return dotech();
+
 }
 
 void
@@ -2843,7 +2844,7 @@ secureidchoice:
 		    healup(techlevX(tech_no) * 4, 0, FALSE, FALSE);
 		    t_timeout = rnz(3000);
 		} else
-		    pline(nothing_happens);
+		    pline("%s", nothing_happens);
 		break;
             case T_KIII:
 		You("scream \"KIIILLL!\"");
@@ -3234,7 +3235,7 @@ secureidchoice:
 		break;
             case T_REVIVE:
 		if (u.uswallow) {
-		    You(no_elbow_room);
+		    You("%s", no_elbow_room);
 		    return 0;
 		}
             	num = 100 - techlevX(tech_no); /* WAC make this depend on mon? */
@@ -4353,7 +4354,7 @@ resettechdone:
 			cc.x = u.ux;
 			cc.y = u.uy;
 			if (getpos(&cc, TRUE, "the desired position") < 0) {
-			    pline(Never_mind);
+			    pline("%s", Never_mind);
 			    return 0;
 			}
 			if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
@@ -5190,7 +5191,7 @@ incarnationfinish:
 
 			for (j = 0; j <= 5; j++) {
 				if (j >= 5) {
-					pline(thats_enough_tries);
+					pline("%s", thats_enough_tries);
 					goto revid_end;
 				}
 				getlin("What do you want to identify?", buf);

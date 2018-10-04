@@ -392,9 +392,9 @@ botl_player()
 		    k++;
 		}
 
-	sprintf(eos(nb), mbot);
+	sprintf(eos(nb), "%s", mbot);
 	} else
-	sprintf(eos(nb), rank());
+	sprintf(eos(nb), "%s", rank());
     return player;
 }
 
@@ -475,8 +475,8 @@ bot1()
 	sprintf(nb = eos(nb),
 		"Dx%-1d Co%-1d In%-1d Wi%-1d Ch%-1d ",
 		ACURR(A_DEX), ACURR(A_CON), ACURR(A_INT), ACURR(A_WIS), ACURR(A_CHA));
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), urole.filecode); /* fully disclosing what character you're playing */
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), urace.filecode); /* abbreviated so the line doesn't roll over --Amy */
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), "%s", urole.filecode); /* fully disclosing what character you're playing */
+	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), "%s",  urace.filecode); /* abbreviated so the line doesn't roll over --Amy */
 	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), flags.female ? "Fem" : "Mal"); /* allowing you to always know what you are */
 	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "Cha" :
 			(u.ualign.type == A_NEUTRAL) ? "Neu" : "Law");

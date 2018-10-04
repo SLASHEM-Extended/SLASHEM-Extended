@@ -4118,7 +4118,7 @@ secureidchoice:
 			cc.x = u.ux;
 			cc.y = u.uy;
 			if (getpos(&cc, TRUE, "the desired position") < 0) {
-			    pline(Never_mind);
+			    pline("%s", Never_mind);
 			    return;
 			}
 			if (!cansee(cc.x, cc.y) || distu(cc.x, cc.y) >= 32) {
@@ -4478,7 +4478,7 @@ dozap()
 	}
 
 	/* zappable addition done by GAN 11/03/86 */
-	if(!zappable(obj)) {pline(nothing_happens);
+	if(!zappable(obj)) {pline("%s", nothing_happens);
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
 
@@ -4758,7 +4758,7 @@ boolean ordinary;
 		      if (!resists_blnd(&youmonst)) {
 				You(are_blinded_by_the_flash);
 				make_blinded(Blinded + 25, FALSE);
-				if (!Blind) Your(vision_clears);
+				if (!Blind) Your("%s", vision_clears);
 		      }
 			break;
 		case SPE_MANA_BOLT:
@@ -5166,7 +5166,7 @@ boolean ordinary;
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
-			    if (!Blind) Your(vision_clears);
+			    if (!Blind) Your("%s", vision_clears);
 		    }
 		    break;
 
@@ -5188,7 +5188,7 @@ boolean ordinary;
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
-			    if (!Blind) Your(vision_clears);
+			    if (!Blind) Your("%s", vision_clears);
 		    }
 			if (!rn2(3) && multi >= 0) nomul(-rnd(10), "paralyzed by a thunder self-zap", TRUE);
 			if (!rn2(2)) make_numbed(HNumbed + rnz(150), TRUE);
@@ -5287,7 +5287,7 @@ boolean ordinary;
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
-			    if (!Blind) Your(vision_clears);
+			    if (!Blind) Your("%s", vision_clears);
 		    }
 
 		    if (Fire_resistance) {
@@ -5343,7 +5343,7 @@ boolean ordinary;
 		    if (!resists_blnd(&youmonst)) {
 			    You(are_blinded_by_the_flash);
 			    make_blinded((long)rnd(40),FALSE);
-			    if (!Blind) Your(vision_clears);
+			    if (!Blind) Your("%s", vision_clears);
 		    }
 
 			if (!rn2(3) && multi >= 0) nomul(-rnd(10), "paralyzed by a thunder self-zap", TRUE);
@@ -6087,7 +6087,7 @@ boolean ordinary;
 			You(are_blinded_by_the_flash);
 			make_blinded((long)damage, FALSE);
 			makeknown(obj->otyp);
-			if (!Blind) Your(vision_clears);
+			if (!Blind) Your("%s", vision_clears);
 		    }
 		    damage = 0;	/* reset */
 		    break;
@@ -6502,7 +6502,7 @@ struct obj *obj;	/* wand or spell */
 	case SPE_STONE_TO_FLESH:
 	    if (Is_airlevel(&u.uz) || Is_waterlevel(&u.uz) ||
 		     Underwater || (Is_qstart(&u.uz) && u.dz < 0)) {
-		pline(nothing_happens);
+		pline("%s", nothing_happens);
 	    } else if (u.dz < 0) {	/* we should do more... */
 		pline("Blood drips on your %s.", body_part(FACE));
 	    } else if (u.dz > 0 && !OBJ_AT(u.ux, u.uy)) {
@@ -6513,7 +6513,7 @@ struct obj *obj;	/* wand or spell */
 		e = engr_at(u.ux, u.uy);
 		if (!(e && e->engr_type == ENGRAVE)) {
 		    if (is_waterypool(u.ux, u.uy) || is_ice(u.ux, u.uy))
-			pline(nothing_happens);
+			pline("%s", nothing_happens);
 		    else
 			pline("Blood %ss %s your %s.",
 			      is_lava(u.ux, u.uy) ? "boil" : "pool",
@@ -8414,7 +8414,7 @@ sigilcontroldirection:
 		You(are_blinded_by_the_flash);
 		if (!issoviet) make_blinded((long)d(nd,2),FALSE);
 		else make_blinded((long)d(nd,5),FALSE);
-		if (!Blind) Your(vision_clears);
+		if (!Blind) Your("%s", vision_clears);
 	    }
 	    stop_occupation();
 	    nomul(0, 0, FALSE);
@@ -8590,28 +8590,28 @@ boolean *shopdamage;
 		    lev->typ = LAVAPOOL;
 		    if (cansee(x,y)) msgtxt = "The ash floor melts and turns into lava.";
 		    if (cansee(x,y)) newsym(x,y);
-		    Norep(msgtxt);
+		    Norep("%s", msgtxt);
 	    } else if (is_farmland(x,y)) {
 		    const char *msgtxt = "You hear a burning sound.";
 		    rangemod -= 3;
 		    lev->typ = rn2(10) ? CORR : ASH;
 		    if (cansee(x,y)) msgtxt = "The farmland burns up!";
 		    if (cansee(x,y)) newsym(x,y);
-		    Norep(msgtxt);
+		    Norep("%s", msgtxt);
 	    } else if (is_raincloud(x,y) && !rn2(5)) {
 		    const char *msgtxt = "You hear a sizzling sound.";
 		    rangemod -= 3;
 		    lev->typ = CLOUD;
 		    if (cansee(x,y)) msgtxt = "The rain cloud boils!";
 		    if (cansee(x,y)) newsym(x,y);
-		    Norep(msgtxt);
+		    Norep("%s", msgtxt);
 	    } else if (is_grassland(x,y)) {
 		    const char *msgtxt = "You hear a burning sound.";
 		    rangemod -= 3;
 		    lev->typ = rn2(25) ? CORR : ASH;
 		    if (cansee(x,y)) msgtxt = "The grass burns up!";
 		    if (cansee(x,y)) newsym(x,y);
-		    Norep(msgtxt);
+		    Norep("%s", msgtxt);
 	    } else if (is_snow(x,y)) {
 		    rangemod -= 3;
 		    lev->typ = CORR;
@@ -8638,7 +8638,7 @@ boolean *shopdamage;
 		    lev->typ = BURNINGWAGON;
 		    if (cansee(x,y)) msgtxt = "The wagon bursts into flames!";
 		    if (cansee(x,y)) newsym(x,y);
-		    Norep(msgtxt);
+		    Norep("%s", msgtxt);
 	    } else if(is_ice(x, y)) {
 		melt_ice(x, y);
 	    } else if(is_pool(x,y)) {
@@ -8654,7 +8654,7 @@ boolean *shopdamage;
 		    if (ttmp) ttmp->tseen = 1;
 		    if (cansee(x,y)) msgtxt = "The water evaporates.";
 		}
-		Norep(msgtxt);
+		Norep("%s", msgtxt);
 		if (lev->typ == ROOM) newsym(x,y);
 	    } else if(IS_FOUNTAIN(lev->typ)) {
 		    if (cansee(x,y))
@@ -8815,12 +8815,12 @@ boolean *shopdamage;
 		    lev->doormask = new_doormask;
 		    unblock_point(x, y);	/* vision */
 		    if (cansee(x, y)) {
-			pline(see_txt);
+			pline("%s", see_txt);
 			newsym(x, y);
 		    } else if (sense_txt) {
-			You(sense_txt);
+			You("%s", sense_txt);
 		    } else if (hear_txt) {
-			if (flags.soundok) You_hear(hear_txt);
+			if (flags.soundok) You_hear("%s", hear_txt);
 		    }
 		    if (picking_at(x, y)) {
 			stop_occupation();
@@ -9333,7 +9333,7 @@ retry:
 	if (!otmp) {
 	    pline("Nothing fitting that description exists in the game.");
 	    if (++tries < 5) goto retry;
-	    pline(thats_enough_tries);
+	    pline("%s", thats_enough_tries);
 	    /*otmp = readobjnam((char *)0, (struct obj *)0, TRUE);
 	    if (!otmp)*/ return;	/* for safety; should never happen */
 	} else if (otmp == &nothing) {

@@ -499,7 +499,7 @@ register struct obj *food;
 	} else if(!rn2(4)) {
 		if (!Blind) pline("Everything suddenly goes dark.");
 		make_blinded(Blinded+d(2,10),FALSE);
-		if (!Blind) Your(vision_clears);
+		if (!Blind) Your("%s", vision_clears);
 	} else if(!rn2(8)) {
 		if (Hallucination) You_feel("like your body is trying to fall asleep!");
 		else You_feel("numb.");
@@ -770,7 +770,7 @@ boolean message;
 	occupation = 0; /* do this early, so newuhs() knows we're done */
 	newuhs(FALSE);
 	if (nomovemsg) {
-		if (message) pline(nomovemsg);
+		if (message) pline("%s", nomovemsg);
 		nomovemsg = 0;
 	} else if (message)
 		You("finish %s %s.", victual.piece->odrained ? "draining" :
@@ -3098,8 +3098,8 @@ register int pm;
 
 	/* eating anything that spouts fake messages will give another one --Amy */
 		if (dmgtype(ptr, AD_FAKE)) {
-			pline(fauxmessage());
-			if (!rn2(3)) pline(fauxmessage());
+			pline("%s", fauxmessage());
+			if (!rn2(3)) pline("%s", fauxmessage());
 		}
 
 	/* AD_HEAL monsters are rare; let's make them give one extra max HP --Amy */
@@ -3410,7 +3410,7 @@ gluttonous()
 	} else if(!rn2(4)) {
 		if (!Blind) pline("Everything suddenly goes dark.");
 		make_blinded(Blinded+d(2,10),FALSE);
-		if (!Blind) Your(vision_clears);
+		if (!Blind) Your("%s", vision_clears);
 	} else if(!rn2(8)) {
 		if (Hallucination) You_feel("like your body is trying to fall asleep!");
 		else You_feel("numb.");
@@ -3500,7 +3500,7 @@ violated_vegetarian()
 	} else if(!rn2(4)) {
 		if (!Blind) pline("Everything suddenly goes dark.");
 		make_blinded(Blinded+d(2,10),FALSE);
-		if (!Blind) Your(vision_clears);
+		if (!Blind) Your("%s", vision_clears);
 	} else if(!rn2(8)) {
 		if (Hallucination) You_feel("like your body is trying to fall asleep!");
 		else You_feel("numb.");
@@ -3999,7 +3999,7 @@ struct obj *obj;
 	} else if(!rn2(4)) {
 		if (!Blind) pline("Everything suddenly goes dark.");
 		make_blinded(Blinded+d(2,10),FALSE);
-		if (!Blind) Your(vision_clears);
+		if (!Blind) Your("%s", vision_clears);
 	} else if(!rn2(8)) {
 		if (Hallucination) You_feel("like your body is trying to fall asleep!");
 		else You_feel("numb.");

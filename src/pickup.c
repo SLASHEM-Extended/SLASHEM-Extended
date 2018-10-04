@@ -2003,6 +2003,8 @@ int put_into_container(struct obj *container, struct obj *obj)
 	current_container = container;
 	in_container_(obj,FALSE);
 	current_container = t;
+
+	/* control reaches end of non-void function, but is this one even used anywhere?! --Amy */
 }
 
 

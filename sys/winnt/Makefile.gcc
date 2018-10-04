@@ -219,6 +219,10 @@ LFLAGS =
 CFLAGS += -DWIN32CON
 endif
 
+# extra warnings
+#CFLAGS += -Wformat
+#CFLAGS += -Wformat-security
+
 # The pkg-config executable
 PKG_CONFIG = $(MW32GTK)/bin/pkg-config
 # A semi-colon seperated list of directories to add to the path when

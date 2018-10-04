@@ -1654,7 +1654,7 @@ offer_oracle (mtmp, otmp)
 
 	/* Make sure it's a corpse */
     if (otmp->otyp != CORPSE) {
-		pline(nothing_happens);
+		pline("%s", nothing_happens);
 		return (1);
 	}
 
@@ -2015,7 +2015,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
     } /* fake Amulet */
 
     if (value == 0) {
-	pline(nothing_happens);
+	pline("%s", nothing_happens);
 	return (1);
     }
 

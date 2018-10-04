@@ -1544,7 +1544,7 @@ domonability()
 				mtmp3->mfrozen = (rnd(16 - (mondistance * 2)));
 				mtmp3->mstrategy &= ~STRAT_WAITFORU;
 				mtmp3->mconf = TRUE;
-				pline("%s becomes dizzy from the scent!", Monnam(mtmp3), mtmp3->mfrozen);
+				pline("%s becomes dizzy from the scent!", Monnam(mtmp3));
 			}
 		}
 		u.hussyperfume = rnz(4000);
@@ -2159,7 +2159,7 @@ wiz_level_change()
     else ret = sscanf(buf, "%d", &newlevel);
 
     if (ret != 1) {
-	pline(Never_mind);
+	pline("%s", Never_mind);
 	return 0;
     }
     if (newlevel == u.ulevel) {
@@ -8754,7 +8754,7 @@ minimal_enlightenment()
 
 		sprintf(eos(statline), ".");
 
-		pline(statline);
+		pline("%s", statline);
 
 	/*"You are %s, a %s %s %s%s%s%s%s%s%s%s %s. Current status effects: %s%s%s%s.", , Levitation ? "levitation " : "", Confusion ? (HeavyConfusion ? "xtraconfusion " : "confusion ") : "", );
 */
@@ -10847,7 +10847,7 @@ coord *cc;
 {
 	xchar new_x, new_y;
 	if (!getdir(prompt)) {
-		pline(Never_mind);
+		pline("%s", Never_mind);
 		return 0;
 	}
 	new_x = x + u.dx;
@@ -10856,7 +10856,7 @@ coord *cc;
 		cc->x = new_x;
 		cc->y = new_y;
 	} else {
-		if (emsg) pline(emsg);
+		if (emsg) pline("%s", emsg);
 		return 0;
 	}
 	return 1;
@@ -11198,7 +11198,7 @@ parse()
 		    if (multi > 9) {
 			clear_nhwindow(WIN_MESSAGE);
 			sprintf(in_line, "Count: %d", multi);
-			pline(in_line);
+			pline("%s", in_line);
 			mark_synch();
 		    }
 		    last_multi = multi;

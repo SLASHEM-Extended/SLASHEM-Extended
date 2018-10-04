@@ -496,7 +496,7 @@ dig()
 		    feel_location(dpx, dpy);
 		else
 		    newsym(dpx, dpy);
-		if(digtxt && !digging.quiet) pline(digtxt); /* after newsym */
+		if(digtxt && !digging.quiet) pline("%s", digtxt); /* after newsym */
 		if(dmgtxt)
 		    pay_for_damage(dmgtxt, FALSE);
 
@@ -743,7 +743,7 @@ int ttyp;
 			schedule_goto(&newlevel, FALSE, TRUE, FALSE,
 			  You_fall, (char *)0);
 		    } else {
-			pline(You_fall);
+			pline("%s", You_fall);
 		    goto_level(&newlevel, FALSE, TRUE, FALSE);
 		    /* messages for arriving in special rooms */
 		    spoteffects(FALSE);

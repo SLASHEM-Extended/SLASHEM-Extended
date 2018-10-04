@@ -20388,31 +20388,31 @@ gangscholarmessage()
 		case 1:
 			sprintf(buf, "%s %s", hussynames[rn2(SIZE(hussynames))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
 			sprintf(eos(buf), "'");
-			sprintf(eos(buf), gangscholartaunt());
+			sprintf(eos(buf), "%s", gangscholartaunt());
 			sprintf(eos(buf), "'");
-			pline(buf);
+			pline("%s", buf);
 			break;
 		case 2:
 			if (!rn2(5)) sprintf(buf, "%s %s", banggangguys[rn2(SIZE(banggangguys))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
 			else sprintf(buf, "%s %s", bangganggirls[rn2(SIZE(bangganggirls))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
 			sprintf(eos(buf), "'");
-			sprintf(eos(buf), gangscholartaunt2());
+			sprintf(eos(buf), "%s", gangscholartaunt2());
 			sprintf(eos(buf), "'");
-			pline(buf);
+			pline("%s", buf);
 			break;
 		case 3:
 			sprintf(buf, "%s %s", bangganggirls[rn2(SIZE(bangganggirls))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
 			sprintf(eos(buf), "'");
-			sprintf(eos(buf), gangscholartaunt3());
+			sprintf(eos(buf), "%s", gangscholartaunt3());
 			sprintf(eos(buf), "'");
-			pline(buf);
+			pline("%s", buf);
 			break;
 		case 4:
 			sprintf(buf, "%s %s", hussynames[rn2(SIZE(hussynames))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
 			sprintf(eos(buf), "'");
 			sprintf(eos(buf), gangscholartaunt_specific(), rnd(100));
 			sprintf(eos(buf), "'");
-			pline(buf);
+			pline("%s", buf);
 			break;
 		case 5:
 			if (!rn2(5)) sprintf(buf, "%s %s", banggangguys[rn2(SIZE(banggangguys))], gangscholarverbs[rn2(SIZE(gangscholarverbs))]);
@@ -20420,7 +20420,7 @@ gangscholarmessage()
 			sprintf(eos(buf), "'");
 			sprintf(eos(buf), gangscholartaunt_specific2(), rnd(100));
 			sprintf(eos(buf), "'");
-			pline(buf);
+			pline("%s", buf);
 			break;
 
 	}

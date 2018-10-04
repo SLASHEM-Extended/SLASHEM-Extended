@@ -64,7 +64,7 @@ use_camera(obj)
 	if(!getdir((char *)0)) return(0);
 
 	if (obj->spe <= 0) {
-		pline(nothing_happens);
+		pline("%s", nothing_happens);
 		return (1);
 	}
 	if (obj->oartifact == ART_LIGHTS__CAMERA__ACTION) {
@@ -1100,7 +1100,7 @@ struct obj **optr;
 		if (!obj->cursed && !rn2(10))
 		    (void) openit();
 		else
-		    pline(nothing_happens);
+		    pline("%s", nothing_happens);
 
 	    } else if (obj->cursed && (!invoking || !rn2(2)) ) {
 		coord mm;
@@ -1136,7 +1136,7 @@ struct obj **optr;
 		 * it's *only* meant to make sure you won't run out as easily during the ritual! */
 		if (!rn2(10)) res += openit();
 		switch (res) {
-		  case 0:  pline(nothing_happens); break;
+		  case 0:  pline("%s", nothing_happens); break;
 		  case 1:  pline("%s opens...", Something);
 			   learno = TRUE; break;
 		  default: pline("Things open around you...");
@@ -1149,8 +1149,8 @@ struct obj **optr;
 #endif
 		if (!rn2(10)) {
 			if (findit() != 0) learno = TRUE;
-			else pline(nothing_happens);
-		} else pline(nothing_happens);
+			else pline("%s", nothing_happens);
+		} else pline("%s", nothing_happens);
 	    }
 
 	}	/* charged BofO */
@@ -1645,12 +1645,12 @@ dorub()
 		update_inventory();
 	    } else if (rn2(2) && !Blind)
 		You("see a puff of smoke.");
-	    else pline(nothing_happens);
+	    else pline("%s", nothing_happens);
 	} else if (obj->otyp == BRASS_LANTERN) {
 	    /* message from Adventure */
 	    pline("Rubbing the electric lamp is not particularly rewarding.");
 	    pline("Anyway, nothing exciting happens.");
-	} else pline(nothing_happens);
+	} else pline("%s", nothing_happens);
 	return 1;
 }
 
@@ -2276,7 +2276,7 @@ degradeagain:
 
 fixthings:
 	if (trouble_count == 0) {
-	    if (!(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HEALENERATION)) pline(nothing_happens);
+	    if (!(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HEALENERATION)) pline("%s", nothing_happens);
 	    return 0;
 	} else if (trouble_count > 1) {		/* shuffle */
 	    int i, j, k;
@@ -2421,6 +2421,9 @@ fixthings:
 #undef attr2trbl
 #undef prop_trouble
 #undef attr_trouble
+
+	/* the function has to return something; 0 means the horn is still there */
+	return 0;
 }
 
 /*
@@ -3245,7 +3248,7 @@ struct obj *obj;
 		You("wrap your bullwhip around %s on the %s.",
 		    an(singular(otmp, xname)), surface(u.ux, u.uy));
 		if (rnl(6 - proficient) || pickup_object(otmp, Race_if(PM_LEVITATOR) ? otmp->quan : 1L, TRUE) < 1)
-		    pline(msg_slipsfree);
+		    pline("%s", msg_slipsfree);
 		return 1;
 	    }
 	}
@@ -3286,7 +3289,7 @@ struct obj *obj;
 		wrapped_what = strcpy(buf, mon_nam(mtmp));
 	    } else if (proficient) {
 		if (attack(mtmp)) return 1;
-		else pline(msg_snap);
+		else pline("%s", msg_snap);
 	    }
 	}
 	if (!wrapped_what) {
@@ -3308,10 +3311,10 @@ struct obj *obj;
 		    vision_full_recalc = 1;
 		}
 	    } else {
-		pline(msg_slipsfree);
+		pline("%s", msg_slipsfree);
 	    }
 	    if (mtmp) wakeup(mtmp);
-	} else pline(msg_snap);
+	} else pline("%s", msg_snap);
 
     } else if (mtmp) {
 	if (!canspotmon(mtmp) &&
@@ -3396,7 +3399,7 @@ struct obj *obj;
 		    break;
 		}
 	    } else {
-		pline(msg_slipsfree);
+		pline("%s", msg_slipsfree);
 	    }
 	    wakeup(mtmp);
 	} else {
@@ -3406,7 +3409,7 @@ struct obj *obj;
 	    else You("flick your bullwhip towards %s.", mon_nam(mtmp));
 	    if (proficient) {
 		if (attack(mtmp)) return 1;
-		else pline(msg_snap);
+		else pline("%s", msg_snap);
 	    }
 	}
 
@@ -3415,7 +3418,7 @@ struct obj *obj;
 	    You("snap your whip through thin air.");
 
     } else {
-	pline(msg_snap);
+	pline("%s", msg_snap);
 
     }
     return 1;
@@ -3728,7 +3731,7 @@ use_pole (obj)
 	    }
 	} else
 	    /* Now you know that nothing is there... */
-	    pline(nothing_happens);
+	    pline("%s", nothing_happens);
 	return (1);
 }
 
@@ -3890,7 +3893,7 @@ use_grapple (obj)
 	    }
 	    break;
 	}
-	pline(nothing_happens);
+	pline("%s", nothing_happens);
 	return (1);
 }
 
@@ -4969,7 +4972,7 @@ doapply()
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				You_feel("better.");
 				flags.botl = TRUE;
-			    } else pline(nothing_happens);
+			    } else pline("%s", nothing_happens);
 			} else if (!rn2(3))
 			    pline("Nothing seems to happen.");
 			else if (!Sick)
@@ -5044,7 +5047,7 @@ doapply()
 				use_skill(P_DEVICES,1);
 			}
 		} else
-		    pline(nothing_happens);
+		    pline("%s", nothing_happens);
 		break;
 	case LAND_MINE:
 	case BEARTRAP:

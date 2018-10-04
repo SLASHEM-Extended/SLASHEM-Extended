@@ -263,7 +263,7 @@ elena4:
 				if (!rn2(3) && !(Role_if(PM_COURIER)) ) {
 					if (!Blind) pline("Everything suddenly goes dark.");
 					make_blinded(Blinded+monsterlev,FALSE);
-					if (!Blind) Your(vision_clears);
+					if (!Blind) Your("%s", vision_clears);
 				}
 				if (!rn2(3) && !(Role_if(PM_COURIER)) ) make_stunned(HStun + monsterlev, TRUE);
 				if (!rn2(3) && !(Role_if(PM_COURIER)) ) pushplayer();
@@ -5522,7 +5522,7 @@ hitmu(mtmp, mattk)
 		if (can_blnd(mtmp, &youmonst, mattk->aatyp, (struct obj*)0) && !rn2(3) ) {
 		    if (!Blind) pline("%s blinds you!", Monnam(mtmp));
 		    make_blinded(Blinded+(long)dmg,FALSE);
-		    if (!Blind) Your(vision_clears);
+		    if (!Blind) Your("%s", vision_clears);
 		}
 		/*dmg = 0;*/ /* why??? --Amy */
 		break;
@@ -7583,8 +7583,8 @@ dopois:
 
 	    case AD_FAKE:
 		hitmsg(mtmp, mattk);
-		pline(fauxmessage());
-		if (!rn2(3)) pline(fauxmessage());
+		pline("%s", fauxmessage());
+		if (!rn2(3)) pline("%s", fauxmessage());
 		break;
 
 	    case AD_NEXU:
@@ -10577,8 +10577,8 @@ do_stone2:
 		break;
 
 	    case AD_FAKE:
-		pline(fauxmessage());
-		if (!rn2(3)) pline(fauxmessage());
+		pline("%s", fauxmessage());
+		if (!rn2(3)) pline("%s", fauxmessage());
 		break;
 
 	    case AD_AMNE:
@@ -11082,7 +11082,7 @@ do_stone2:
 			if(!Blind) {
 			    You_cant("see in here!");
 			    make_blinded((long)tmp,FALSE);
-			    if (!Blind) Your(vision_clears);
+			    if (!Blind) Your("%s", vision_clears);
 			} else
 			    /* keep him blind until disgorged */
 				/* Amy edit - but also add the actual damage */
@@ -12772,7 +12772,7 @@ common:
 		    if (mon_visible(mtmp) || (rnd(tmp /= 2) > u.ulevel)) {
 			You("are blinded by a blast of light!");
 			make_blinded((long)tmp, FALSE);
-			if (!Blind) Your(vision_clears);
+			if (!Blind) Your("%s", vision_clears);
 		    } else if (flags.verbose)
 			You("get the impression it was not terribly bright.");
 		}
@@ -13039,8 +13039,8 @@ common:
 		break;
 
 	    case AD_FAKE:
-		pline(fauxmessage());
-		if (!rn2(3)) pline(fauxmessage());
+		pline("%s", fauxmessage());
+		if (!rn2(3)) pline("%s", fauxmessage());
 	      mdamageu(mtmp, tmp);
 		break;
 
@@ -14732,8 +14732,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_FAKE:
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee)
  		{
-			pline(fauxmessage());
-			if (!rn2(3)) pline(fauxmessage());
+			pline("%s", fauxmessage());
+			if (!rn2(3)) pline("%s", fauxmessage());
 		}
 		break;
 
@@ -15423,7 +15423,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    /* not blind at this point implies you're wearing
 		       the Eyes of the Overworld; make them block this
 		       particular stun attack too */
-		    if (!Blind) Your(vision_clears);
+		    if (!Blind) Your("%s", vision_clears);
 		    else make_stunned((long)d(1,3),TRUE);
 		}
 		break;
@@ -18778,8 +18778,8 @@ register struct attack *mattk;
 		}
 		break;
 	    case AD_FAKE:
-		pline(fauxmessage());
-		if (!rn2(3)) pline(fauxmessage());
+		pline("%s", fauxmessage());
+		if (!rn2(3)) pline("%s", fauxmessage());
 		break;
 	    case AD_WEBS:
 		(void) maketrap(mtmp->mx, mtmp->my, WEB, 0);

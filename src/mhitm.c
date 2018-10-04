@@ -1856,8 +1856,8 @@ physical:
 		break;
 
 	    case AD_FAKE:
-		pline(fauxmessage());
-		if (!rn2(3)) pline(fauxmessage());
+		pline("%s", fauxmessage());
+		if (!rn2(3)) pline("%s", fauxmessage());
 
 		break;
 
@@ -2847,8 +2847,8 @@ int mdead;
 		}
 		break;
 	    case AD_FAKE:
-		pline(fauxmessage());
-		if (!rn2(3)) pline(fauxmessage());
+		pline("%s", fauxmessage());
+		if (!rn2(3)) pline("%s", fauxmessage());
 		break;
 	    case AD_WEBS:
 		(void) maketrap(magr->mx, magr->my, WEB, 0);

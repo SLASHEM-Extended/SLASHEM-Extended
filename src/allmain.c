@@ -1621,7 +1621,7 @@ moveloop()
 		}
 
 		if (issoviet && !rn2(1000)) { /* mocking messages :-P --Amy */
-			pline(soviettaunt());
+			pline("%s", soviettaunt());
 		}
 
 		if (Role_if(PM_GANG_SCHOLAR) && !rn2(1000)) {
@@ -1629,18 +1629,18 @@ moveloop()
 		}
 
 		if (RngeLoudspeakers && !rn2(100)) {
-			pline(fauxmessage());
-			if (!rn2(3)) pline(fauxmessage());
+			pline("%s", fauxmessage());
+			if (!rn2(3)) pline("%s", fauxmessage());
 		}
 
 		for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) { /* this function is probably expensive... --Amy */
 			if (ttmp && ttmp->ttyp == LOUDSPEAKER && !rn2(100) ) {
-				pline(fauxmessage());
-				if (!rn2(3)) pline(fauxmessage());
+				pline("%s", fauxmessage());
+				if (!rn2(3)) pline("%s", fauxmessage());
 			}
 			if (ttmp && ttmp->ttyp == ARABELLA_SPEAKER && !rn2(50) ) {
-				pline(fauxmessage());
-				if (!rn2(3)) pline(fauxmessage());
+				pline("%s", fauxmessage());
+				if (!rn2(3)) pline("%s", fauxmessage());
 			}
 
 			if (ttmp && ttmp->ttyp == KOP_CUBE && !rn2(2000) && !(m_at(ttmp->tx, ttmp->ty)) ) {
@@ -8723,8 +8723,8 @@ newboss:
 
 			/* more faux messages */
 			if ((Role_if(PM_SPACEWARS_FIGHTER) && !rn2(200) && Is_nemesis(&u.uz) ) || (Role_if(PM_CAMPERSTRIKER) && !rn2(200) && In_quest(&u.uz)) ) {
-				pline(fauxmessage());
-				if (!rn2(3)) pline(fauxmessage());
+				pline("%s", fauxmessage());
+				if (!rn2(3)) pline("%s", fauxmessage());
 			}
 
 			if (u.stairscumslowing) {
@@ -9144,11 +9144,11 @@ newboss:
 	}
 
 	if (SpellColorRed && !rn2(10)) {
-		pline(generate_garbage_string());
+		pline("%s", generate_garbage_string());
 	}
 
 	if (uarmh && uarmh->oartifact == ART_UBB_RUPTURE && !rn2(10)) {
-		pline(generate_garbage_string());
+		pline("%s", generate_garbage_string());
 	}
 
 	if (EvencoreEffect || u.uprops[EVC_EFFECT].extrinsic || have_evcstone()) {

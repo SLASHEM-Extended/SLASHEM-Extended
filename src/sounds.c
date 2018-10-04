@@ -83,7 +83,7 @@ dosounds()
 		"Indiana Jones screaming for help!", /* he's terribly afraid of snakes */
 
 	};
-	You_hear(fountain_msg[rn2(6+hallu*5)]);
+	You_hear("%s", fountain_msg[rn2(6+hallu*5)]);
     }
 #ifdef SINK
     if (level.flags.nsinks && !rn2(300)) {
@@ -95,7 +95,7 @@ dosounds()
 		"a neverending dripping sound that is driving you crazy!",
 		"someone getting in on the action with a hot foocubus!",
 	};
-	You_hear(sink_msg[rn2(3+hallu*3)]);
+	You_hear("%s", sink_msg[rn2(3+hallu*3)]);
     }
 #endif
     if (level.flags.has_court && !rn2(200)) {
@@ -115,7 +115,7 @@ dosounds()
 		/* finding one is enough, at least for now */
 		int which = rn2(4+hallu);
 
-		if (which != 2) You_hear(throne_msg[which]);
+		if (which != 2) You_hear("%s", throne_msg[which]);
 		else		pline(throne_msg[2], uhis());
 		return;
 	    }
@@ -128,7 +128,7 @@ dosounds()
 		"hear Donald Duck!",
 		"inhale a vile stench that reminds you of what kissing a frog is probably like!",
 	};
-	You(swamp_msg[rn2(2+hallu*2)]);
+	You("%s", swamp_msg[rn2(2+hallu*2)]);
 	return;
     }
     if (level.flags.spooky && !rn2(200)) {
@@ -158,7 +158,7 @@ dosounds()
 		"hear someone praising your valor!",
 		"hear someone singing: \"Jingle bells, jingle bells...\"",
 	};
-	You(spooky_msg[rn2(15+hallu*9)]);
+	You("%s", spooky_msg[rn2(15+hallu*9)]);
 	return;
     }
     if (level.flags.has_vault && !rn2(200)) {
@@ -292,7 +292,7 @@ dosounds()
 		mon_in_room(mtmp, BARRACKS) &&
 		/* sleeping implies not-yet-disturbed (usually) */
 		(mtmp->msleeping || ++count > 5)) {
-		You_hear(barracks_msg[rn2(3+hallu*2)]);
+		You_hear("%s", barracks_msg[rn2(3+hallu*2)]);
 		return;
 	    }
 	}
@@ -306,7 +306,7 @@ dosounds()
 			"seem to hear Doctor Frankenstein.",
 			"hear someone scream 'NOOOOOO! Get away from my teeth! Dentists are TERRIBLE people!!!'",
 		};
-		You(hospital_msg[rn2(4+hallu*2)]);
+		You("%s", hospital_msg[rn2(4+hallu*2)]);
 		return;
 	    }
 	    if (level.flags.has_nymphhall && !rn2(200)) {
@@ -321,7 +321,7 @@ dosounds()
 			"seem mesmerized.",
 			"feel like giving all your possessions to a beautiful woman.",
 		};
-		You(nymphhall_msg[rn2(5+hallu*4)]);
+		You("%s", nymphhall_msg[rn2(5+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_lemurepit && !rn2(2000)) { /* from unnethack, deliberately made rare */
@@ -336,7 +336,7 @@ dosounds()
 			"the crack of your mistress's whip!",
 			"a weeping willow!",
 		};
-		You_hear(lemurepit_msg[rn2(6+hallu*3)]);
+		You_hear("%s", lemurepit_msg[rn2(6+hallu*3)]);
 		return;
 	    }
 	    if (level.flags.has_spiderhall && !rn2(200)) {
@@ -349,7 +349,7 @@ dosounds()
 			"have to fight Arich, the old cheater, while listening to a dramatic music that is unfortunately too quiet.",
 			"must get past Barbos' Barrier!",
 		};
-		You(spiderhall_msg[rn2(3+hallu*4)]);
+		You("%s", spiderhall_msg[rn2(3+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_trollhall && !rn2(200)) {
@@ -362,7 +362,7 @@ dosounds()
 			"hear some usenetter spouting radical bullshit!",
 			"can't seem to find the plonking switch!",
 		};
-		You(trollhall_msg[rn2(3+hallu*4)]);
+		You("%s", trollhall_msg[rn2(3+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_humanhall && !rn2(200)) {
@@ -377,7 +377,7 @@ dosounds()
 			"listen to a radio broadcast: For the next five days, the dungeon's estimated temperature high is 96 degrees. Now, is that in Fahrenheit or Kelvin?",
 			"know that there's a celebration being held for YOU! Where do you get this party started?",
 		};
-		You(humanhall_msg[rn2(5+hallu*4)]);
+		You("%s", humanhall_msg[rn2(5+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_golemhall && !rn2(200)) {
@@ -391,7 +391,7 @@ dosounds()
 			"will certainly never catch a Regigigas, because your pokeball isn't good enough!",
 			"listen to the Diablo sorceror casting a summoning spell!", /* one of the spells is called "golem" */
 		};
-		You(golemhall_msg[rn2(4+hallu*4)]);
+		You("%s", golemhall_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 
@@ -405,7 +405,7 @@ dosounds()
 			"don't have much longer to live...",
 			"listen to a tune that gets ever more dissonant...", /* crypt music from Robin Hood, Prince of Thieves */
 		};
-		You(cryptroom_msg[rn2(4+hallu*3)]);
+		You("%s", cryptroom_msg[rn2(4+hallu*3)]);
 		return;
 	    }
 
@@ -424,7 +424,7 @@ dosounds()
 			"fall asleep while the line very slowly dissolves.",
 			"listen to the military music broadcast from Radio Enclave.", /* Fallout 3 */
 		};
-		You(troublezone_msg[rn2(7+hallu*5)]);
+		You("%s", troublezone_msg[rn2(7+hallu*5)]);
 		return;
 	    }
 
@@ -441,7 +441,7 @@ dosounds()
 			"want to look for a replacement lance because your last one broke when you jousted a monster.",
 			"listen to an asian woman announcing that she'll hunt down and kill you!", /* a reference that no one will get because it's about a certain scene in one of Amy's fanfics */
 		};
-		You(weaponchamber_msg[rn2(5+hallu*5)]);
+		You("%s", weaponchamber_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -457,7 +457,7 @@ dosounds()
 			"sense the presence of a gate to Oblivion.",
 			"suddenly encounter the giant siege caterpillar and have 10 minutes to destroy it or everything is lost.",
 		};
-		You(hellpit_msg[rn2(5+hallu*4)]);
+		You("%s", hellpit_msg[rn2(5+hallu*4)]);
 		return;
 	    }
 
@@ -480,7 +480,7 @@ dosounds()
 			"hear a seemingly neverending, disgusting sound.", /* crapping noise */
 			"listen to very tender female noises.",
 		};
-		You(feminismroom_msg[rn2(8+hallu*8)]);
+		You("%s", feminismroom_msg[rn2(8+hallu*8)]);
 		return;
 	    }
 
@@ -495,7 +495,7 @@ dosounds()
 			"can't help it but feel that something that looks normal is terribly amiss.",
 			"listen to the palomita, which is Spanish for parrot.", /* or at least the Amy always thought that's what it meant */
 		};
-		You(meadowroom_msg[rn2(5+hallu*3)]);
+		You("%s", meadowroom_msg[rn2(5+hallu*3)]);
 		return;
 	    }
 
@@ -511,7 +511,7 @@ dosounds()
 			"can smell the mildew on the walls.",
 			"listen to the type of ice block laughing all the time. Harharharharharharhar!",
 		};
-		You(coolingchamber_msg[rn2(5+hallu*4)]);
+		You("%s", coolingchamber_msg[rn2(5+hallu*4)]);
 		return;
 	    }
 
@@ -532,7 +532,7 @@ dosounds()
 			"hear the sounds of the gene splicing machine!", /* Elona */
 			"listen to someone complaining about a splintered nail.", /* Harry Potter disappearing (or whatever it's called, it's actually magical teleportation) mishap */
 		};
-		You(voidroom_msg[rn2(7+hallu*7)]);
+		You("%s", voidroom_msg[rn2(7+hallu*7)]);
 		return;
 	    }
 
@@ -549,7 +549,7 @@ dosounds()
 			"suddenly feel a sharp smoky smell fill your nostrils.",
 			"hear the heavy flapping sound of a vulture's wings.",
 		};
-		You(hamletroom_msg[rn2(5+hallu*5)]);
+		You("%s", hamletroom_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -564,7 +564,7 @@ dosounds()
 			"feel that the safest place in existence is right in the middle of the enemies' base camp.", /* a joke from one of Amy's fanfics where the robbers were discussing where to hide and one of them sarcastically suggested hiding in the cop station */
 			"hear the sound of a fucking army helicopter!", /* in GTA games, the army comes for you if your cop wanted level is maxed */
 		};
-		if (rn2(5)) You(kopstation_msg[rn2(4+hallu*4)]);
+		if (rn2(5)) You("%s", kopstation_msg[rn2(4+hallu*4)]);
 		else verbalize("Alert! All units, apprehend %s immediately!", playeraliasname);
 		return;
 	    }
@@ -584,7 +584,7 @@ dosounds()
 			"are challenged by Clair, the dragon pokemon trainer, whose name in the German version is 'Schwaermelbueschelsandra' and who will kick your butt with her unbeatable Kingdra!",
 			"encounter a wild Suicune, which is even a *legendary* pokemon and since you don't have a master ball, catching it comes all down to luck!",
 		};
-		You(bossroom_msg[rn2(6+hallu*6)]);
+		You("%s", bossroom_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 
@@ -599,7 +599,7 @@ dosounds()
 			"are invited to a game of Dungeons & Dragons by the game master!",
 			"listen to some gamers rolling dice.",
 		};
-		You(rngcenter_msg[rn2(4+hallu*4)]);
+		You("%s", rngcenter_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 
@@ -616,7 +616,7 @@ dosounds()
 			"suddenly see nightmare figures invading your village and murdering the townsfolk! You gotta stop them!",
 			"forgot to renew your detect monsters spell and the manticore shoots you with tailspikes from outside your line of sight.",
 		};
-		You(wizardsdorm_msg[rn2(5+hallu*5)]);
+		You("%s", wizardsdorm_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -635,7 +635,7 @@ dosounds()
 			"encounter a little child that makes an 'Aloe!' sound! He looks deceptively similar to Commander Keen...",
 			"must run past the cyberdemon to fish the red key map out of the river while dodging the rockets. Good luck, you'll need it.", /* yet another Doom 2 wad */
 		};
-		You(doomedbarracks_msg[rn2(6+hallu*6)]);
+		You("%s", doomedbarracks_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 
@@ -654,7 +654,7 @@ dosounds()
 			"wonder where the clothes and shield hanging over the blacksmith's forge have gone.",
 			"suddenly realize that when your hometown was destroyed, the evil overlord did so because he specifically wanted to kill YOU!",
 		};
-		You(sleepingroom_msg[rn2(6+hallu*6)]);
+		You("%s", sleepingroom_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 
@@ -671,7 +671,7 @@ dosounds()
 			"wonder why fat people are always wearing tight bathing shorts. Having to see that makes you really uncomfortable...",
 			"encounter a guy who wears almost no clothes, and as he approaches you, he suddenly pulls down his pants and starts wanking off... ewwwwwwww...",
 		};
-		You(diverparadise_msg[rn2(5+hallu*5)]);
+		You("%s", diverparadise_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -686,7 +686,7 @@ dosounds()
 			"hear an announcement: 'WARNING: The tiger's cage has been broken! There might be a tiger on the loose!'",
 			"feel like getting a pet spidermonkey or gorilla.",
 		};
-		You(menagerie_msg[rn2(4+hallu*4)]);
+		You("%s", menagerie_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 
@@ -701,7 +701,7 @@ dosounds()
 			"hear the top of the pyramid crackling and breaking off!", /* Super Mario 64 */
 			"must stand tall on all four columns without falling into the shifting sand!",
 		};
-		You(emptydesert_msg[rn2(4+hallu*4)]);
+		You("%s", emptydesert_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 
@@ -716,7 +716,7 @@ dosounds()
 			"know that you can beat the impossible odds!",
 			"listen to someone scream 'YES! I won in the lottery! I'm a millionaire now!!!'",
 		};
-		You(rarityroom_msg[rn2(4+hallu*4)]);
+		You("%s", rarityroom_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 
@@ -732,7 +732,7 @@ dosounds()
 			"were so stupid and accidentally attacked the prisoner, causing him to die! Now you'll never get the reward for freeing him!",
 			"procrastinated for too long and now the prisoner is history. You failure!",
 		};
-		You(prisonchamber_msg[rn2(5+hallu*4)]);
+		You("%s", prisonchamber_msg[rn2(5+hallu*4)]);
 		return;
 	    }
 
@@ -746,7 +746,7 @@ dosounds()
 			"can overhear the president saying 'That was the last straw! I'll bomb that fucking country now! I just need to get the code and press the big red button!'",
 			"are in the extended hazardous course and will have to beat it without cheats, which is very difficult!", /* Hazardous Course 2, also known as Super Kaizo Half-Life */
 		};
-		You(nuclearchamber_msg[rn2(4+hallu*3)]);
+		You("%s", nuclearchamber_msg[rn2(4+hallu*3)]);
 		return;
 	    }
 
@@ -763,7 +763,7 @@ dosounds()
 			"allowed your speed spell to wear off, and as a result Morgoth gets a double turn and casts mana storm twice in a row. You die.",
 			"are lucky, because you encountered Animeband's instakill monster, and it kills you! Game over!",
 		};
-		You(variantroom_msg[rn2(5+hallu*5)]);
+		You("%s", variantroom_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -778,7 +778,7 @@ dosounds()
 			"don't know why purple rain is so popular, because gold rain is much better...",
 			"feel extremely bored! Why does the dungeon master keep sending boring chaff monsters instead of something more dangerous?", /* players have complained that coin halls are one of the most boring special rooms */
 		};
-		You(coinhall_msg[rn2(4+hallu*4)]);
+		You("%s", coinhall_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_angelhall && !rn2(200)) {
@@ -796,7 +796,7 @@ dosounds()
 			"begin to shed tears of joy without even realizing it.",
 			"feel the angel's beauty taking your breath away...",
 		};
-		You(angelhall_msg[rn2(6+hallu*6)]);
+		You("%s", angelhall_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 	    if (level.flags.has_elemhall && !rn2(200)) {
@@ -814,7 +814,7 @@ dosounds()
 			"wonder why 'astral' elementals exist, because astral is not an element.",
 			"can hear Laura chanting spells.", /* she's supposed to be a master of elemental spells */
 		};
-		You(elemhall_msg[rn2(5+hallu*7)]);
+		You("%s", elemhall_msg[rn2(5+hallu*7)]);
 		return;
 	    }
 
@@ -834,7 +834,7 @@ dosounds()
 			"are going to get disintegrated even if you are resistant.", /* Nethack Fourk */
 			"will never be able to kill a bugbear in less than 5 hits, and woe to you if an actually difficult monster comes, e.g. a stone golem.", /* Sporkhack */
 		};
-		You(evilroom_msg[rn2(9+hallu*4)]);
+		You("%s", evilroom_msg[rn2(9+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_religioncenter && !rn2(200)) {
@@ -854,7 +854,7 @@ dosounds()
 			"know that the statistics don't lie and the alien infestation is a real threat!",
 			"overhear plans for a destructive bomb notice!",
 		};
-		You(religioncenter_msg[rn2(7+hallu*7)]);
+		You("%s", religioncenter_msg[rn2(7+hallu*7)]);
 		return;
 	    }
 	    if (level.flags.has_cursedmummyroom && !rn2(200)) {
@@ -869,7 +869,7 @@ dosounds()
 			"hear the dead walking.",
 			"hear the dead potatoes walking. And the dissolved undead potatoes, returned potatoes and whatever other kind of potatoes as well.",
 		};
-		You(cursedmummyroom_msg[rn2(4+hallu*5)]);
+		You("%s", cursedmummyroom_msg[rn2(4+hallu*5)]);
 		return;
 	    }
 	    if (level.flags.has_arduousmountain && !rn2(200)) {
@@ -887,7 +887,7 @@ dosounds()
 			"wish you had a dumbo to ride on.",
 			"wonder how a legion would deal with an icy staircase.",
 		};
-		You(arduousmountain_msg[rn2(6+hallu*6)]);
+		You("%s", arduousmountain_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 	    if (level.flags.has_levelffroom && !rn2(200)) {
@@ -907,7 +907,7 @@ dosounds()
 			"need to use clairvoyance in a very specific place or you won't be able to teleport!",
 			"suddenly remember the highscore cheat that Amy's roommate discovered!",
 		};
-		You(levelffroom_msg[rn2(7+hallu*7)]);
+		You("%s", levelffroom_msg[rn2(7+hallu*7)]);
 		return;
 	    }
 	    if (level.flags.has_verminroom && !rn2(200)) {
@@ -920,7 +920,7 @@ dosounds()
 			"think that it must be raining outside, judging by the ratty smell.", /* canal lids on the ground sometimes emit a horrific smell when it's raining... */
 			"suddenly bear witness to a huge invasion of ants, rats, cockroaches and other vermin!",
 		};
-		You(verminroom_msg[rn2(4+hallu*3)]);
+		You("%s", verminroom_msg[rn2(4+hallu*3)]);
 		return;
 	    }
 	    if (level.flags.has_miraspa && !rn2(200)) {
@@ -936,7 +936,7 @@ dosounds()
 			"are certainly turned OFF bathing for now. Did Mira really pee into the basin???", /* she did... */
 			"notice the stench of ammonia.",
 		};
-		You(miraspa_msg[rn2(5+hallu*5)]);
+		You("%s", miraspa_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 	    if (level.flags.has_machineroom && !rn2(200)) {
@@ -954,7 +954,7 @@ dosounds()
 			"doze off into a peaceful slumber as the trains keep passing through the station once every 30 minutes.",
 			"suddenly wonder why there's so much traffic.",
 		};
-		You(machineroom_msg[rn2(6+hallu*6)]);
+		You("%s", machineroom_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 	    if (level.flags.has_showerroom && !rn2(200)) {
@@ -968,7 +968,7 @@ dosounds()
 			"realize that the sorcery adept doesn't know how to stop the water...", /* some poem that I forgot the name off, maybe "the mage adept"? the poor sap wants to fill the bathtub with water by using a spell but forgot how to stop the helpers he summoned */
 			"detect a flooding on this sub level.",
 		};
-		You(showerroom_msg[rn2(4+hallu*4)]);
+		You("%s", showerroom_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_greencrossroom && !rn2(200)) {
@@ -986,7 +986,7 @@ dosounds()
 			"have 100 turns left to find the secret entrance to an otherwise unreachable dungeon level before the hidden warp portal dissipates.",
 			"somehow feel that the secret advice hussies can't get you for now.",
 		};
-		You(greencrossroom_msg[rn2(5+hallu*7)]);
+		You("%s", greencrossroom_msg[rn2(5+hallu*7)]);
 		return;
 	    }
 	    if (level.flags.has_ruinedchurch && !rn2(200)) {
@@ -1000,7 +1000,7 @@ dosounds()
 			"remember the bible saying that you should do unto others what you want others to do unto you.",
 			"know that practice makes perfect. Yeah, yeah.",
 		};
-		You(ruinedchurch_msg[rn2(4+hallu*4)]);
+		You("%s", ruinedchurch_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_gamecorner && !rn2(200)) {
@@ -1024,7 +1024,7 @@ dosounds()
 			"hear someone say 'Die-Far-ben-sind-sehr-flau-schel-bau-schig!'",
 			"push buttons and your stupid PC responds by making annoying 'DIE-DIE-DOE' sounds instead of executing your commands!",
 		};
-		You(gamecorner_msg[rn2(8+hallu*10)]);
+		You("%s", gamecorner_msg[rn2(8+hallu*10)]);
 		return;
 	    }
 	    if (level.flags.has_illusionroom && !rn2(200)) {
@@ -1042,7 +1042,7 @@ dosounds()
 			"hope that one of the gods can help you out of your predicament...",
 			"should stop thinking of eldritch abominations all the time or you'll end up permanently confused!",
 		};
-		You(illusionroom_msg[rn2(6+hallu*6)]);
+		You("%s", illusionroom_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 
@@ -1061,7 +1061,7 @@ dosounds()
 			"listen to someone flat a notice on you!",
 			"hear the all-too-familiar telltale sound of an incoming airstrike! RUN! TAKE COVER!",
 		};
-		You(terrorhall_msg[rn2(6+hallu*6)]);
+		You("%s", terrorhall_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 
@@ -1107,7 +1107,7 @@ dosounds()
 			"listen to Katrin saying 'Please let me stick my soft chewing gum on your skin! Then I can very slowly and extremely painfully take it off again, ripping off your skin in the process.'",
 			"listen to Jana saying 'Even if you find me, I'll just teleport away and prevent you from defeating me! And your skill certainly isn't good enough to reach Sven, so you won't be fulfilling the alternate victory condition either!'",
 		};
-		You(insideroom_msg[rn2(12+hallu*27)]);
+		You("%s", insideroom_msg[rn2(12+hallu*27)]);
 		return;
 	    }
 
@@ -1124,7 +1124,7 @@ dosounds()
 			"return to your weapon camp, but to your dismay Arabella has looted almost everything, leaving only a single wand of magic missile for you.",
 			"get the dreaded 'Can't write to save file' error. Bullshit.",
 		};
-		You(riverroom_msg[rn2(5+hallu*5)]);
+		You("%s", riverroom_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -1141,7 +1141,7 @@ dosounds()
 			"fear that a fucking crash bug is going to eat your savegame file!", /* yes, Adom does that sometimes */
 			"fear that some anti-cheat mechanism is going to curse all of your items even though you clearly didn't cheat at all!", /* and yes, that's another annoying fact of Adom that makes me glad I'm playing Nethack instead --Amy */
 		};
-		You(tenshall_msg[rn2(3+hallu*7)]);
+		You("%s", tenshall_msg[rn2(3+hallu*7)]);
 		return;
 	    }
     if (level.flags.has_zoo && !rn2(200)) {
@@ -1157,7 +1157,7 @@ dosounds()
 	    if (DEADMONSTER(mtmp)) continue;
 	    if ((mtmp->msleeping || is_animal(mtmp->data)) &&
 		    mon_in_room(mtmp, ZOO)) {
-		You_hear(zoo_msg[rn2(4+hallu*2)]);
+		You_hear("%s", zoo_msg[rn2(4+hallu*2)]);
 		return;
 	    }
 	}
@@ -1175,7 +1175,7 @@ dosounds()
 		    "the chime of a cash register.",
 		    "Neiman and Marcus arguing!",
 	    };
-	    if (rn2(50)) You_hear(shop_msg[rn2(2+hallu)]);
+	    if (rn2(50)) You_hear("%s", shop_msg[rn2(2+hallu)]);
 	    else { /* sporkhack; I know they don't always fit, but oh well --Amy */
 		static const char * const shop_sporkmsg[] = {
 			"Any %s would love these!  Finest quality!",
@@ -1266,7 +1266,7 @@ dosounds()
 	    };
 	    /* KMH -- Give funny messages on Groundhog Day */
 	    if (flags.groundhogday) hallu = 1;
-	    You_hear(ora_msg[rn2(3+hallu*2)]);
+	    You_hear("%s", ora_msg[rn2(3+hallu*2)]);
 	}
 	return;
     }
@@ -1280,7 +1280,7 @@ dosounds()
         "Somebody whispers: \"Dawg, I got quality shit around here.\"",
 	  "Somebody whispers: \"I have that old playboy magazine issue that has naked pics of several dozen celebrities. I'll sell it to you for 10000 zorkmids.\"",
       };
-      pline(blkmar_msg[rn2(3+hallu*3)]);
+      pline("%s", blkmar_msg[rn2(3+hallu*3)]);
     }
 
 	/* finding alignment quests is way too hard, so the player will get some help. --Amy */
@@ -1296,7 +1296,7 @@ dosounds()
 	  "You see Diablo 2, the boss from the game with the same name, and he's holding your mother hostage!",
 	  "You know that on the flipside they have a cat AND a dog!",
       };
-      pline(alignquest_msg[rn2(4+hallu*4)]);
+      pline("%s", alignquest_msg[rn2(4+hallu*4)]);
     }
 
 }
@@ -1860,7 +1860,7 @@ register struct monst *mtmp;
 				"Watch out for Lisa's tricks. She will divert you by talking about boring stuff.",
 				"Make sure you don't turn your back on May-Britt, or she might end up breaking your backpack's zippers!",
 			};
-			verbalize(hint_msgs[rn2(SIZE(hint_msgs))]);
+			verbalize("%s", hint_msgs[rn2(SIZE(hint_msgs))]);
 
 			break;
 		}
@@ -2085,7 +2085,7 @@ register struct monst *mtmp;
 				"Bir Yahudi dini semboluenue giydigi icin saldiriya ugrarsa, kendi hatasidir. Biz mueslueman bir kafa bezi giymek icin bize saldiran kimseyi asla kabul etmeyecegiz, cuenkue biz kafir topuklularimizla bir asyali tekmelemizi dogrudan kafir somunlarina yerlestirecegiz.",
 				"Siz kafirsiniz, Allah'a doenmelisiniz cuenkue o zaman cennette doksan dokuz genc kadin var! Eger yapmazsan, cehennemin kirmizi seytanlari acimasizca iskence edecek!",
 			};
-			verbalize(conversion_msgs[rn2(SIZE(conversion_msgs))]);
+			verbalize("%s", conversion_msgs[rn2(SIZE(conversion_msgs))]);
 
 		}
 
@@ -2144,7 +2144,7 @@ register struct monst *mtmp;
 			"Wowou.",
 			"Wwwouu.",
 		};
-		verbalize(hcalien_msgs[rn2(SIZE(hcalien_msgs))]);
+		verbalize("%s", hcalien_msgs[rn2(SIZE(hcalien_msgs))]);
 
 		badeffect();
 
@@ -2543,7 +2543,7 @@ register struct monst *mtmp;
 		} else if (mtmp->data == &mons[PM_EDDIE]) {
 			verbalize("I'm feeling just great, guys!");
 		} else {
-			verbalize(da_msgs[rn2(SIZE(da_msgs))]);
+			verbalize("%s", da_msgs[rn2(SIZE(da_msgs))]);
 		}
 	    }
 	    break;
@@ -2561,7 +2561,7 @@ register struct monst *mtmp;
 			"Do the world a favour---jump out of the 20th story of the Uni-Center!",
 		};
 
-		verbalize(pupil_msgs[rn2(SIZE(pupil_msgs))]);
+		verbalize("%s", pupil_msgs[rn2(SIZE(pupil_msgs))]);
 		}
 		break;
 
@@ -2618,7 +2618,7 @@ register struct monst *mtmp;
 			"You disgust me.",
 		};
 
-		if (!mtmp->mpeaceful) verbalize(whore_msgs[rn2(SIZE(whore_msgs))]);
+		if (!mtmp->mpeaceful) verbalize("%s", whore_msgs[rn2(SIZE(whore_msgs))]);
 		}
 		break;
 
@@ -2646,7 +2646,7 @@ register struct monst *mtmp;
 			"ATTAAAAAAAAAAAAACK!",
 		};
 
-		verbalize(superman_msgs[rn2(SIZE(superman_msgs))]);
+		verbalize("%s", superman_msgs[rn2(SIZE(superman_msgs))]);
 		badeffect();
 		}
 		break;
@@ -2691,7 +2691,7 @@ register struct monst *mtmp;
 			"Back when pupils where real pupils and teachers were real teachers, everything was better!",
 		};
 
-		verbalize(teacher_msgs[rn2(SIZE(teacher_msgs))]);
+		verbalize("%s", teacher_msgs[rn2(SIZE(teacher_msgs))]);
 
 		}
 		break;
@@ -2706,7 +2706,7 @@ register struct monst *mtmp;
 		"We'll do that in groups of one person!",
 		};
 
-		verbalize(principal_msgs[rn2(SIZE(principal_msgs))]);
+		verbalize("%s", principal_msgs[rn2(SIZE(principal_msgs))]);
 		}
 		break;
 
@@ -2717,7 +2717,7 @@ register struct monst *mtmp;
     }
 
     if (pline_msg) pline("%s %s", Monnam(mtmp), pline_msg);
-    else if (verbl_msg) verbalize(verbl_msg);
+    else if (verbl_msg) verbalize("%s", verbl_msg);
     return(1);
 }
 

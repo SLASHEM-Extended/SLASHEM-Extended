@@ -1605,7 +1605,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    dont_fall = "are jerked back by your pet!";
 	}
 	if (dont_fall) {
-	    You(dont_fall);
+	    You("%s", dont_fall);
 	    /* hero didn't fall through, but any objects here might */
 	    impact_drop((struct obj *)0, u.ux, u.uy, 0);
 	    if (!td) {
@@ -1678,7 +1678,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    dont_fall = "are jerked back by your pet!";
 	}
 	if (dont_fall) {
-	    You(dont_fall);
+	    You("%s", dont_fall);
 	    /* hero didn't fall through, but any objects here might */
 	    impact_drop((struct obj *)0, u.ux, u.uy, 0);
 	    if (!td) {
@@ -1747,7 +1747,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	    dont_fall = "are jerked back by your pet!";
 	}
 	if (dont_fall) {
-	    You(dont_fall);
+	    You("%s", dont_fall);
 	    /* hero didn't fall through, but any objects here might */
 	    impact_drop((struct obj *)0, u.ux, u.uy, 0);
 	    if (!td) {
@@ -4385,7 +4385,7 @@ rerollX:
 				break;
 			}
 
-			for(nexusmon = fmon; nexusmon; nexusmon->nmon) {
+			for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
 				if (nexusmon) break;
 			}
 
@@ -6377,8 +6377,8 @@ madnesseffect:
 			    message = "spin high speed accidentally!";
 			    message2 = "You stagger...";
 			}
-			You(message);
-			pline(message2);
+			You("%s", message);
+			pline("%s", message2);
 			if (i < 6) pushplayer();
 		    make_stunned(HStun + rn1(12, 5), FALSE);
 		}
@@ -7076,15 +7076,15 @@ madnesseffect:
 
 		 case LOUDSPEAKER: /* fake message */
 			{
-				pline(fauxmessage());
-				if (!rn2(3)) pline(fauxmessage());
+				pline("%s", fauxmessage());
+				if (!rn2(3)) pline("%s", fauxmessage());
 			}
 		 break;
 
 		 case ARABELLA_SPEAKER: /* fake message */
 			{
-				pline(fauxmessage());
-				if (!rn2(3)) pline(fauxmessage());
+				pline("%s", fauxmessage());
+				if (!rn2(3)) pline("%s", fauxmessage());
 			}
 		 break;
 
@@ -12418,14 +12418,14 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 
 		case LOUDSPEAKER:
 			{
-				pline(fauxmessage());
-				if (!rn2(3)) pline(fauxmessage());
+				pline("%s", fauxmessage());
+				if (!rn2(3)) pline("%s", fauxmessage());
 			}
 			break;
 		case ARABELLA_SPEAKER:
 			{
-				pline(fauxmessage());
-				if (!rn2(3)) pline(fauxmessage());
+				pline("%s", fauxmessage());
+				if (!rn2(3)) pline("%s", fauxmessage());
 			}
 			break;
 		case MAGIC_TRAP:
@@ -13250,7 +13250,7 @@ domagictrap()
 	  if (!resists_blnd(&youmonst)) {
 		You("are momentarily blinded by a flash of light!");
 		make_blinded((long)rn1(5,10),FALSE);
-		if (!Blind) Your(vision_clears);
+		if (!Blind) Your("%s", vision_clears);
 	  } else if (!Blind) {
 		You("see a flash of light!");
 	  }  else

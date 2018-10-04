@@ -1784,6 +1784,8 @@ boolean ask;
 #ifdef DUMP_LOG
 {
   do_vanquished(defquery, ask, FALSE);
+
+	/* potentially unsafe because this function should return something... --Amy */
 }
 
 void

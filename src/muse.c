@@ -694,7 +694,7 @@ struct obj *obj;
 		    m_useup(mon, obj);
 		    mtmp = makemon(&mons[PM_GHOST], cc.x, cc.y, NO_MM_FLAGS);
 		    if (!mtmp) {
-			if (vis) pline(empty);
+			if (vis) pline("%s", empty);
 		    } else {
 			if (vis) {
 			    pline("As %s opens the bottle, an enormous %s emerges!",
@@ -717,7 +717,7 @@ struct obj *obj;
 		m_useup(mon, obj);
 		mtmp = makemon(&mons[PM_DJINNI], cc.x, cc.y, NO_MM_FLAGS);
 		if (!mtmp) {
-		    if (vis) pline(empty);
+		    if (vis) pline("%s", empty);
 		} else {
 		    if (vis)
 			pline("In a cloud of smoke, %s emerges!",
@@ -774,7 +774,7 @@ struct obj *obj;
 		m_useup(mon, obj);
 		mtmp = makemon(&mons[PM_DAO], cc.x, cc.y, NO_MM_FLAGS);
 		if (!mtmp) {
-		    if (vis) pline(empty);
+		    if (vis) pline("%s", empty);
 		} else {
 		    if (vis)
 			pline("In a cloud of smoke, %s emerges!",
@@ -827,7 +827,7 @@ struct obj *obj;
 		m_useup(mon, obj);
 		mtmp = makemon(&mons[PM_EFREETI], cc.x, cc.y, NO_MM_FLAGS);
 		if (!mtmp) {
-		    if (vis) pline(empty);
+		    if (vis) pline("%s", empty);
 		} else {
 		    if (vis)
 			pline("In a cloud of smoke, %s emerges!",
@@ -880,7 +880,7 @@ struct obj *obj;
 		m_useup(mon, obj);
 		mtmp = makemon(&mons[PM_MARID], cc.x, cc.y, NO_MM_FLAGS);
 		if (!mtmp) {
-		    if (vis) pline(empty);
+		    if (vis) pline("%s", empty);
 		} else {
 		    if (vis)
 			pline("In a cloud of smoke, %s emerges!",
@@ -933,7 +933,7 @@ struct obj *obj;
 		m_useup(mon, obj);
 		mtmp = makemon(&mons[PM_WINE_GHOST], cc.x, cc.y, NO_MM_FLAGS);
 		if (!mtmp) {
-		    if (vis) pline(empty);
+		    if (vis) pline("%s", empty);
 		} else {
 		    if (vis)
 			pline("In a cloud of smoke, %s emerges!",
@@ -984,7 +984,7 @@ struct obj *obj;
 		m_useup(mon, obj);
 		mtmp = makemon(mkclass(S_DEMON,0), cc.x, cc.y, MM_ANGRY);
 		if (!mtmp) {
-		    if (vis) pline(empty);
+		    if (vis) pline("%s", empty);
 		} else {
 		    if (vis)
 			pline("In a cloud of smoke, %s emerges!", a_monnam(mtmp));
@@ -997,7 +997,7 @@ struct obj *obj;
 		m_useup(mon, obj);
 		mtmp = makemon(mkclass(S_ELEMENTAL,0), cc.x, cc.y, MM_ANGRY);
 		if (!mtmp) {
-		    if (vis) pline(empty);
+		    if (vis) pline("%s", empty);
 		} else {
 		    if (vis)
 			pline("In a cloud of smoke, %s emerges!", a_monnam(mtmp));
@@ -1010,7 +1010,7 @@ struct obj *obj;
 		m_useup(mon, obj);
 		mtmp = makemon(mkclass(S_ANGEL,0), cc.x, cc.y, MM_ANGRY);
 		if (!mtmp) {
-		    if (vis) pline(empty);
+		    if (vis) pline("%s", empty);
 		} else {
 		    if (vis)
 			pline("In a cloud of smoke, %s emerges!", a_monnam(mtmp));
@@ -5287,8 +5287,8 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
-		pline(fauxmessage());
-		if (!rn2(3)) pline(fauxmessage());
+		pline("%s", fauxmessage());
+		if (!rn2(3)) pline("%s", fauxmessage());
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 

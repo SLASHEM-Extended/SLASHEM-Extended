@@ -1476,6 +1476,9 @@ makegreatitem() /* select the ID number of an item that might be very useful for
 
 	}
 
+	/* appease the compiler --Amy */
+	return SCR_IDENTIFY;
+
 }
 
 /*

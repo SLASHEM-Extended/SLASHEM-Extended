@@ -3428,7 +3428,7 @@ struct monst *mtmp;
 	int visible;
 	char buf[BUFSZ];
 
-	sprintf(buf, Monnam(mtmp));
+	sprintf(buf, "%s", Monnam(mtmp));
 
 	/* If there is a timer == monster was poly'ed */
 	if (stop_timer(UNPOLY_MON, (void *) mtmp)) {
@@ -6545,7 +6545,7 @@ chameleonchoice:
 				You("cannot polymorph %s into that.", mon_nam(mon));
 			else break;
 		} while(++tries < 5);
-		if (tries==5) pline(thats_enough_tries);
+		if (tries==5) pline("%s", thats_enough_tries);
 	}
 #endif /*WIZARD*/
 	if (mndx == NON_PM) {

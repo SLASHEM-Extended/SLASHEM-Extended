@@ -2018,7 +2018,7 @@ boolean atme;
 	}
 
 	if (SpellColorPink) {
-		pline(fauxmessage());
+		pline("%s", fauxmessage());
 	}
 
 	if (SpellColorGreen) {
@@ -4309,8 +4309,8 @@ secureidchoice:
 
 	case SPE_MESSAGE:
 
-		pline(fauxmessage());
-		if (!rn2(3)) pline(fauxmessage());
+		pline("%s", fauxmessage());
+		if (!rn2(3)) pline("%s", fauxmessage());
 
 		break;
 
@@ -4646,7 +4646,7 @@ secureidchoice:
 		cc.x = u.ux;
 		cc.y = u.uy;
 		if (getpos(&cc, TRUE, "the desired position") < 0) {
-		    pline(Never_mind);
+		    pline("%s", Never_mind);
 		    obfree(pseudo, (struct obj *)0);
 		    return 0;
 		}
@@ -4886,7 +4886,7 @@ secureidchoice:
 	case SPE_BLIND_SELF:
 		if (!Blind && !u.usleep) pline("It suddenly gets dark.");
 		make_blinded(Blinded + rnd(25), FALSE);
-		if (!Blind && !u.usleep) Your(vision_clears);
+		if (!Blind && !u.usleep) Your("%s", vision_clears);
 		break;
 
 	case SPE_AIR_CURRENT:
@@ -5470,7 +5470,7 @@ totemsummonchoice:
 				break;
 			}
 
-			for(nexusmon = fmon; nexusmon; nexusmon->nmon) {
+			for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
 				if (nexusmon) break;
 			}
 
@@ -5635,109 +5635,109 @@ totemsummonchoice:
 		break;
 	case SPE_JUMPING:
 		if (!jump(max(role_skill,1)))
-			pline(nothing_happens);
+			pline("%s", nothing_happens);
 		break;
 	case SPE_RESIST_POISON:
 		if(!(HPoison_resistance & INTRINSIC)) {
 			You_feel("healthy ..... for the moment at least.");
 			incr_itimeout(&HPoison_resistance, Poison_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ANTI_DISINTEGRATION:
 		if(!(HDisint_resistance & INTRINSIC)) {
 			You_feel("quite firm for a while.");
 			incr_itimeout(&HDisint_resistance, Disint_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_MAGICTORCH:
 		if(!(HSight_bonus & INTRINSIC)) {
 			You("can see in the dark!");
 			incr_itimeout(&HSight_bonus, rn1(20, 10) +
 				spell_damage_bonus(spellid(spell))*20);
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_DISPLACEMENT:
 		if(!(HDisplaced & INTRINSIC)) {
 			pline("Your image is displaced!");
 			incr_itimeout(&HDisplaced, Displaced ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(200, 100) + spell_damage_bonus(spellid(spell))*20));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_TRUE_SIGHT:
 		if(!(HSee_invisible & INTRINSIC)) {
 			pline("You can see invisible things!");
 			incr_itimeout(&HSee_invisible, See_invisible ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(50, 25) + spell_damage_bonus(spellid(spell))*5));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_CONFLICT:
 		if(!(HConflict & INTRINSIC)) {
 			pline("You start generating conflict!");
 			incr_itimeout(&HConflict, Conflict ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(20, 10) + spell_damage_bonus(spellid(spell))*3));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ESP:
 		if(!(HTelepat & INTRINSIC)) {
 			You_feel("a strange mental acuity.");
 			incr_itimeout(&HTelepat, Blind_telepat ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_RADAR:
 		if(!(HWarning & INTRINSIC)) {
 			pline("You turn on your radar.");
 			incr_itimeout(&HWarning, Warning ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_REGENERATION:
 		if(!(HRegeneration & INTRINSIC)) {
 			pline("You direct your internal energy to closing your wounds.");
 			incr_itimeout(&HRegeneration, Regeneration ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_SEARCHING:
 		if(!(HSearching & INTRINSIC)) {
 			pline("You start searching.");
 			incr_itimeout(&HSearching, Searching ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_FREE_ACTION:
 		if(!(HFree_action & INTRINSIC)) {
 			pline("You are resistant to paralysis.");
 			incr_itimeout(&HFree_action, Free_action ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_STEALTH:
 		if(!(HStealth & INTRINSIC)) {
 			pline("You start moving silently.");
 			incr_itimeout(&HStealth, Stealth ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_INFRAVISION:
 		if(!(HInfravision & INTRINSIC)) {
 			pline("Your %s are suddenly very sensitive!", makeplural(body_part(EYE)));
 			incr_itimeout(&HInfravision, Infravision ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_BOTOX_RESIST:
 		if(!(HSick_resistance & INTRINSIC)) {
 			You_feel("resistant to sickness.");
 			incr_itimeout(&HSick_resistance, Sick_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_DRAGON_BLOOD:
 		if(!(HDrain_resistance & INTRINSIC)) {
 			You_feel("resistant to level drainage.");
 			incr_itimeout(&HDrain_resistance, Drain_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ANTI_MAGIC_FIELD:
 		if(!(HAntimagic & INTRINSIC)) {
 			You_feel("resistant to magic.");
 			incr_itimeout(&HAntimagic, Antimagic ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 
 	case SPE_NO_EFFECT:
 
-		pline(nothing_happens);
+		pline("%s", nothing_happens);
 
 		break;
 
@@ -5913,13 +5913,13 @@ totemsummonchoice:
 		if(!(HAcid_resistance & INTRINSIC)) {
 			You("are resistant to acid now. Your items, however, are not.");
 			incr_itimeout(&HAcid_resistance, Acid_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_RESIST_PETRIFICATION:
 		if(!(HStone_resistance & INTRINSIC)) {
 			You_feel("more limber. Let's eat some cockatrice meat!");
 			incr_itimeout(&HStone_resistance, Stone_resistance ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*4));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_RESIST_SLEEP:
 		if(!(HSleep_resistance & INTRINSIC)) {
@@ -5928,19 +5928,19 @@ totemsummonchoice:
 			else
 				You("no longer feel tired.");
 			incr_itimeout(&HSleep_resistance, Sleep_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_FLYING:
 		if(!(HFlying & INTRINSIC)) {
 			You("start flying!");
 			incr_itimeout(&HFlying, Flying ? (rnd(4) + spell_damage_bonus(spellid(spell))) : (rn1(20, 25) + spell_damage_bonus(spellid(spell))*20));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ENDURE_COLD:
 		if(!(HCold_resistance & INTRINSIC)) {
 			You_feel("warmer.");
 			incr_itimeout(&HCold_resistance, Cold_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_ENDURE_HEAT:
 		if(!(HFire_resistance & INTRINSIC)) {
@@ -5949,7 +5949,7 @@ totemsummonchoice:
 			else
 				You_feel("colder.");
 			incr_itimeout(&HFire_resistance, Fire_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 	case SPE_INSULATE:
 		if(!(HShock_resistance & INTRINSIC)) {
@@ -5958,21 +5958,21 @@ totemsummonchoice:
 			else
 				You("are not at all shocked by this feeling.");
 			incr_itimeout(&HShock_resistance, Shock_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 
 	case SPE_HOLD_AIR:
 		if(!(HMagical_breathing & INTRINSIC)) {
 			You("hold your breath.");
 			incr_itimeout(&HMagical_breathing, Amphibious ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 
 	case SPE_SWIMMING:
 		if(!(HSwimming & INTRINSIC)) {
 			You("grow water wings.");
 			incr_itimeout(&HSwimming, Amphibious ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-		} else pline(nothing_happens);	/* Already have as intrinsic */
+		} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 		break;
 
 	case SPE_RESIST_RANDOM_ELEMENT:
@@ -5984,7 +5984,7 @@ totemsummonchoice:
 					else
 						You("are not at all shocked by this feeling.");
 					incr_itimeout(&HShock_resistance, Shock_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-				} else pline(nothing_happens);	/* Already have as intrinsic */
+				} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 				break;
 			case 2:
 				if(!(HFire_resistance & INTRINSIC)) {
@@ -5993,13 +5993,13 @@ totemsummonchoice:
 					else
 						You_feel("colder.");
 					incr_itimeout(&HFire_resistance, Fire_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-				} else pline(nothing_happens);	/* Already have as intrinsic */
+				} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 				break;
 			case 3:
 				if(!(HCold_resistance & INTRINSIC)) {
 					You_feel("warmer.");
 					incr_itimeout(&HCold_resistance, Cold_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-				} else pline(nothing_happens);	/* Already have as intrinsic */
+				} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 				break;
 			case 4:
 				if(!(HSleep_resistance & INTRINSIC)) {
@@ -6008,37 +6008,37 @@ totemsummonchoice:
 					else
 						You("no longer feel tired.");
 					incr_itimeout(&HSleep_resistance, Sleep_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-				} else pline(nothing_happens);	/* Already have as intrinsic */
+				} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 				break;
 			case 5:
 				if(!(HStone_resistance & INTRINSIC)) {
 					You_feel("more limber. Let's eat some cockatrice meat!");
 					incr_itimeout(&HStone_resistance, Stone_resistance ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*4));
-				} else pline(nothing_happens);	/* Already have as intrinsic */
+				} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 				break;
 			case 6:
 				if(!(HAcid_resistance & INTRINSIC)) {
 					You("are resistant to acid now. Your items, however, are not.");
 					incr_itimeout(&HAcid_resistance, Acid_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-				} else pline(nothing_happens);	/* Already have as intrinsic */
+				} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 				break;
 			case 7:
 				if(!(HSick_resistance & INTRINSIC)) {
 					You_feel("resistant to sickness.");
 					incr_itimeout(&HSick_resistance, Sick_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-				} else pline(nothing_happens);	/* Already have as intrinsic */
+				} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 				break;
 			case 8:
 				if(!(HPoison_resistance & INTRINSIC)) {
 					You_feel("healthy ..... for the moment at least.");
 					incr_itimeout(&HPoison_resistance, Poison_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-				} else pline(nothing_happens);	/* Already have as intrinsic */
+				} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 				break;
 			case 9:
 				if(!(HDisint_resistance & INTRINSIC)) {
 					You_feel("quite firm for a while.");
 					incr_itimeout(&HDisint_resistance, Disint_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
-				} else pline(nothing_happens);	/* Already have as intrinsic */
+				} else pline("%s", nothing_happens);	/* Already have as intrinsic */
 				break;
 		}
 
@@ -7398,7 +7398,7 @@ wonderspell()
 	char splname[BUFSZ];
 	int i;
 
-	sprintf(splname, OBJ_NAME(objects[randomspell]) );
+	sprintf(splname, "%s", OBJ_NAME(objects[randomspell]) );
 
 	for (i = 0; i < MAXSPELL; i++)  {
 		if (spellid(i) == randomspell)  {

@@ -36,7 +36,7 @@ stoned_dialogue()
 	register long i = (Stoned & TIMEOUT);
 
 	if (i > 0L && i <= SIZE(stoned_texts))
-		pline(stoned_texts[SIZE(stoned_texts) - i]);
+		pline("%s", stoned_texts[SIZE(stoned_texts) - i]);
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	if (i == 7L)
 		HFast = 0L;
@@ -83,7 +83,7 @@ vomiting_dialogue()
 
 	if ((((Vomiting & TIMEOUT) % 3L) == 2) && (i >= 0)
 	    && (i < SIZE(vomiting_texts)))
-		You(vomiting_texts[SIZE(vomiting_texts) - i - 1]);
+		You("%s", vomiting_texts[SIZE(vomiting_texts) - i - 1]);
 
 	switch ((int) i) {
 	case 0:
@@ -132,7 +132,7 @@ choke_dialogue()
 		    pline(str, hcolor(NH_BLUE));
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */ }
 		else
-		    pline(str);
+		    pline("%s", str);
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    }
 	}
@@ -165,7 +165,7 @@ slime_dialogue()
 		    pline(str, an(Hallucination ? rndmonnam() : "green slime"));
 			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    } else
-		pline(str);
+		pline("%s", str);
 		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
 	if (i == 3L) {	/* limbs becoming oozy */

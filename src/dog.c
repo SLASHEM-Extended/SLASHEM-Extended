@@ -116,6 +116,10 @@ pet_type()
 		}
 	else
 	    return (rn2(2) ? PM_KITTEN : PM_LITTLE_DOG);
+
+	/* the compiler doesn't want this last return to be only in the else block...
+	 * we shouldn't have a valueless return here, but better safe than sorry --Amy */
+	return (rn2(2) ? PM_KITTEN : PM_LITTLE_DOG);
 }
 
 struct monst *

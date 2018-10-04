@@ -1629,6 +1629,9 @@ randnastyenchantment()
 			case 171: return UNFAIR_ATTACK_BUG;
 	}
 
+	/* appease compiler, we should never end up here */
+	return AUTOMORE_BUG;
+
 }
 
 int

@@ -922,7 +922,7 @@ register struct monst *mtmp;
 			"Siz kafirsiniz, Allah'a doenmelisiniz cuenkue o zaman cennette doksan dokuz genc kadin var! Eger yapmazsan, cehennemin kirmizi seytanlari acimasizca iskence edecek!",
 			};
 
-		verbalize(conversion_msgs[rn2(SIZE(conversion_msgs))]);
+		verbalize("%s", conversion_msgs[rn2(SIZE(conversion_msgs))]);
 
 		armpro = magic_negation(&youmonst);
 		armprolimit = 75;
@@ -989,7 +989,7 @@ register struct monst *mtmp;
 			"Wowou.",
 			"Wwwouu.",
 		};
-		verbalize(hcalien_msgs[rn2(SIZE(hcalien_msgs))]);
+		verbalize("%s", hcalien_msgs[rn2(SIZE(hcalien_msgs))]);
 
 		armpro = magic_negation(&youmonst);
 		armprolimit = 75;
@@ -1360,14 +1360,14 @@ toofar:
 
 	    if(inrange && dmgtype(mtmp->data, AD_FAKE) && !mtmp->mpeaceful && !rn2(20))
 		{
-			pline(fauxmessage());
-			if (!rn2(3)) pline(fauxmessage());
+			pline("%s", fauxmessage());
+			if (!rn2(3)) pline("%s", fauxmessage());
 		}
 
 	    if(inrange && mtmp->egotype_faker && !mtmp->mpeaceful && !rn2(20))
 		{
-			pline(fauxmessage());
-			if (!rn2(3)) pline(fauxmessage());
+			pline("%s", fauxmessage());
+			if (!rn2(3)) pline("%s", fauxmessage());
 		}
 
 	    if(inrange && mtmp->data->msound == MS_BOSS && !mtmp->mpeaceful && !rn2(10))
@@ -1395,7 +1395,7 @@ toofar:
 			"Do the world a favour---jump out of the 20th story of the Uni-Center!",
 		};
 
-		verbalize(pupil_msgs[rn2(SIZE(pupil_msgs))]);
+		verbalize("%s", pupil_msgs[rn2(SIZE(pupil_msgs))]);
 		}
 
 	    if(inrange && mtmp->data->msound == MS_WHORE && !mtmp->mpeaceful &&
@@ -1445,7 +1445,7 @@ toofar:
 			"You disgust me.",
 		};
 
-		verbalize(whore_msgs[rn2(SIZE(whore_msgs))]);
+		verbalize("%s", whore_msgs[rn2(SIZE(whore_msgs))]);
 
 		armpro = magic_negation(&youmonst);
 		armprolimit = 75;
@@ -1492,7 +1492,7 @@ toofar:
 			"ATTAAAAAAAAAAAAACK!",
 		};
 
-		verbalize(superman_msgs[rn2(SIZE(superman_msgs))]);
+		verbalize("%s", superman_msgs[rn2(SIZE(superman_msgs))]);
 		badeffect();
 		stop_occupation();
 		}
@@ -1508,7 +1508,7 @@ toofar:
 		"We'll do that in groups of one person!",
 		};
 
-		verbalize(principal_msgs[rn2(SIZE(principal_msgs))]);
+		verbalize("%s", principal_msgs[rn2(SIZE(principal_msgs))]);
 		}
 
 	    if(inrange && mtmp->data->msound == MS_TEACHER && !mtmp->mpeaceful &&
@@ -1553,7 +1553,7 @@ toofar:
 			"Back when pupils where real pupils and teachers were real teachers, everything was better!",
 		};
 
-		verbalize(teacher_msgs[rn2(SIZE(teacher_msgs))]);
+		verbalize("%s", teacher_msgs[rn2(SIZE(teacher_msgs))]);
 
 		}
 

@@ -1558,7 +1558,7 @@ proceed:
 		    else strcat(sbuf,
 			   "for gold picked up and the use of merchandise.");
 		} else strcat(sbuf, "for the use of merchandise.");
-		pline(sbuf);
+		pline("%s", sbuf);
 #ifndef GOLDOBJ
 		if (u.ugold + eshkp->credit < dtmp) {
 		    pline("But you don't%s have enough gold%s.",
@@ -5732,7 +5732,7 @@ struct monst *shkp;
     if (service > 0)
 	verbalize(we_offer);
     else
-	pline(Never_mind);
+	pline("%s", Never_mind);
 
     switch(service) {
 	case 0:

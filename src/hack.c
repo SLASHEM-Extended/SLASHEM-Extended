@@ -899,7 +899,7 @@ still_chewing(x,y)
     unblock_point(x, y);	/* vision */
 	if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
     newsym(x, y);
-    if (digtxt) You(digtxt);	/* after newsym */
+    if (digtxt) You("%s", digtxt);	/* after newsym */
     if (dmgtxt) pay_for_damage(dmgtxt, FALSE);
     (void) memset((void *)&digging, 0, sizeof digging);
     return 0;
@@ -2849,9 +2849,9 @@ struct monst *mon;
 	if (!Hallucination && mon->mhp <= mon->mhpmax / 6) { 
 	    sprintf(buf,"almost "); 
 	    strcat(buf, nonliving(mon->data) ? "destroyed" : "dead"); 
-	} else { 
+	} else {
 	    if (Hallucination) { 
-		sprintf(buf,hallu_adverb[rn2(SIZE(hallu_adverb))]); 
+		sprintf(buf, "%s", hallu_adverb[rn2(SIZE(hallu_adverb))]); 
 		strcat(buf," "); 
 	    } 
 	    else if (mon->mhp <= mon->mhpmax / 4) 
@@ -4142,7 +4142,7 @@ const char *msg_override;
 	(void) memset(multi_txt, 0, BUFSZ);
 	if (msg_override) nomovemsg = msg_override;
 	else if (!nomovemsg) nomovemsg = You_can_move_again;
-	if (*nomovemsg) pline(nomovemsg);
+	if (*nomovemsg) pline("%s", nomovemsg);
 	nomovemsg = 0;
 	u.usleep = 0;
 	if (afternmv) (*afternmv)();
@@ -4590,7 +4590,7 @@ const char *str;
 {
     if(near_capacity() >= EXT_ENCUMBER) {
 	if(str)
-	    pline(str);
+	    pline("%s", str);
 	else
 	    You_cant("do that while carrying so much stuff.");
 

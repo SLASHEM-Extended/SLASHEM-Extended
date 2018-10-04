@@ -728,7 +728,7 @@ badeffect()
 		case 60:
 		if (!Blind) pline("Everything suddenly goes dark.");
 		make_blinded(Blinded+rnz(100),FALSE);
-		if (!Blind) Your(vision_clears);
+		if (!Blind) Your("%s", vision_clears);
 		break;
 
 		case 61:
@@ -3700,8 +3700,8 @@ peffects(otmp)
 		u.uhp = u.uhpmax;
 		} break;
 	case POT_MEHOHO_BURUSASAN_G:
-		pline(fauxmessage());
-		if (!rn2(3)) pline(fauxmessage());
+		pline("%s", fauxmessage());
+		if (!rn2(3)) pline("%s", fauxmessage());
 		if (otmp->cursed || !rn2(3)) {
 			adjattrib(A_CON,-1,-1);
 		}
@@ -4860,8 +4860,8 @@ peffects(otmp)
 				
 	case POT_TERCES_DLU:
 
-		pline(fauxmessage());
-		if (!rn2(3)) pline(fauxmessage());
+		pline("%s", fauxmessage());
+		if (!rn2(3)) pline("%s", fauxmessage());
 
 		break;
 
@@ -4974,7 +4974,7 @@ register const char *txt;
 		You("have a %s feeling for a moment, then it passes.",
 		Hallucination ? "normal" : "strange");
 	else
-		pline(txt);
+		pline("%s", txt);
 
 	if(!obj)	/* e.g., crystal ball finds no traps */
 		return;
@@ -5646,7 +5646,7 @@ register struct obj *obj;
 		    pline("It suddenly gets dark.");
 		}
 		make_blinded(itimeout_incr(Blinded, rnd(20)), FALSE);
-		if (!Blind && !u.usleep) Your(vision_clears);
+		if (!Blind && !u.usleep) Your("%s", vision_clears);
 		break;
 	case POT_WATER:
 		if(u.umonnum == PM_GREMLIN) {
@@ -7183,7 +7183,7 @@ dodip()
 		    obj == uball || obj == uskin ||
 		    obj_resists( (obj->otyp == POT_POLYMORPH || obj->otyp == POT_MUTATION) ?
 				potion : obj, 5, 95)) {
-		pline(nothing_happens);
+		pline("%s", nothing_happens);
 	    } else {
 	    	boolean was_wep = FALSE, was_swapwep = FALSE, was_quiver = FALSE;
 		short save_otyp = obj->otyp;

@@ -766,7 +766,7 @@ init_dungeons()
 	    interject_assistance(1, INTERJECT_PANIC, (void *)tbuf,
 				 (void *)fqn_prefix[DATAPREFIX]);
 #endif
-	    panic(tbuf);
+	    panic("%s", tbuf);
 	}
 
 	/* validate the data's version against the program's version */

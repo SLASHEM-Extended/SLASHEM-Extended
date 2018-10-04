@@ -261,6 +261,8 @@ walkableterrain()
 		case 14: return RAINCLOUD;
 	}
 
+	/* compiler doesn't like it if control can reach end of a non-void function --Amy */
+	return ICE;
 
 }
 
@@ -11509,7 +11511,7 @@ mineralize()
 		if ((levl[x][y].typ == STYXRIVER && !rn2((ishaxor && !issuxxor) ? 15 : (issuxxor && !ishaxor) ? 60 : 30)) )
 	    	    makemon(mkclass(S_FLYFISH,0), x, y, MM_ADJACENTOK);
 		if ((levl[x][y].typ == STYXRIVER && !rn2((ishaxor && !issuxxor) ? 15 : (issuxxor && !ishaxor) ? 60 : 30)) )
-	    	    makemon(specialtensmon(337), x, y, MM_ADJACENTOK); /* AD_CONT
+	    	    makemon(specialtensmon(337), x, y, MM_ADJACENTOK); /* AD_CONT */
 		if ((levl[x][y].typ == PENTAGRAM && !rn2((ishaxor && !issuxxor) ? 10 : (issuxxor && !ishaxor) ? 40 : 20)) )
 	    	    makemon(specialtensmon(313), x, y, MM_ADJACENTOK); /* AD_CAST */
 		if ((levl[x][y].typ == WELL && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
@@ -11549,7 +11551,7 @@ mineralize()
 		if ((levl[x][y].typ == CRYPTFLOOR && !rn2(10)) )
 			(void) maketrap(x, y, randomtrap(), 100);
 		if ((levl[x][y].typ == BUBBLES && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
-	    	    makemon(specialtensmon(203), x, y, MM_ADJACENTOK); /* AD_STUN
+	    	    makemon(specialtensmon(203), x, y, MM_ADJACENTOK); /* AD_STUN */
 		if ((levl[x][y].typ == RAINCLOUD && !rn2((ishaxor && !issuxxor) ? 50 : (issuxxor && !ishaxor) ? 200 : 100)) )
 	    	    makemon(mkclass(S_EEL,0), x, y, MM_ADJACENTOK);
 

@@ -657,7 +657,7 @@ generate_garbage_string()
 				tmpstr[0] = ' ';
 		}
 
-		sprintf(eos(string), tmpstr);
+		sprintf(eos(string), "%s", tmpstr);
 	}
 
 	return string;

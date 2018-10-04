@@ -315,7 +315,7 @@ boolean forcecontrol;
 			!isvamp && !Race_if(PM_DOPPELGANGER) && !Role_if(PM_SHAPESHIFTER) && !Race_if(PM_HEMI_DOPPELGANGER)) {
 		if ( (rn2(12) > ACURR(A_CON) || !rn2(50)) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_MOULD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_MISSINGNO) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) ) {
 
-		You(shudder_for_moment);
+		You("%s", shudder_for_moment);
 		losehp(rnd(30), "system shock", KILLED_BY_AN);
 		exercise(A_CON, FALSE);
 		return;
@@ -427,7 +427,7 @@ boolean forcecontrol;
 			else break;
 		} while(++tries < 5);
 
-		if (tries==5) pline(thats_enough_tries);
+		if (tries==5) pline("%s", thats_enough_tries);
 		/* allow skin merging, even when polymorph is controlled */
 		if (draconian &&
 		    (mntmp == armor_to_dragon(uarm->otyp) || tries == 5))
@@ -487,7 +487,7 @@ boolean forcecontrol;
 
 			else break;
 		} while(++tries < 5);
-		if (tries==5) pline(thats_enough_tries);
+		if (tries==5) pline("%s", thats_enough_tries);
 		/* allow skin merging, even when polymorph is controlled */
 		if (draconian &&
 		    (mntmp == armor_to_dragon(uarm->otyp) || tries == 5))
