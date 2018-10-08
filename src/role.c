@@ -4692,6 +4692,21 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
 },
+{	"extravator", "extravator", "extra aggravation", "Ext",
+	{0, 0},
+	PM_EXTRAVATOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 20, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"fawn", "fawn", "fawning", "Faw",
 	{0, 0},
 	PM_FAWN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -6963,7 +6978,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel && flags.randomhybrids) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(29)) {
+			switch (rnd(30)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -7023,12 +7038,14 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybriderosator = 1; break;
 				case 29:
 					flags.hybridroommate = 1; break;
+				case 30:
+					flags.hybridextravator = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(29)) {
+				switch (rnd(30)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -7116,6 +7133,9 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 29:
 						if (!(flags.hybridroommate)) {flags.hybridroommate = 1; flags.hybridization++; break;
+						}
+					case 30:
+						if (!(flags.hybridextravator)) {flags.hybridextravator = 1; flags.hybridization++; break;
 						}
 	
 				}

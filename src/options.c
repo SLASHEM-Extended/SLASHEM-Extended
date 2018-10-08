@@ -353,6 +353,7 @@ static struct Bool_Opt
 	{"hybridlevelscaler", &flags.hybridlevelscaler, FALSE, DISP_IN_GAME}, 
 	{"hybriderosator", &flags.hybriderosator, FALSE, DISP_IN_GAME}, 
 	{"hybridroommate", &flags.hybridroommate, FALSE, DISP_IN_GAME}, 
+	{"hybridextravator", &flags.hybridextravator, FALSE, DISP_IN_GAME}, 
 
 	{"randomhybrids", &flags.randomhybrids, TRUE, DISP_IN_GAME},
 
@@ -1635,6 +1636,9 @@ boolean tinitial, tfrom_file;
 		flags.hybridization++;
 	}
 	if (match_optname(opts, "hybridroommate", 14, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridextravator", 16, FALSE)) {
 		flags.hybridization++;
 	}
 
