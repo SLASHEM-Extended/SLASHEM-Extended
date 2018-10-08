@@ -1298,9 +1298,7 @@ exerper()
 		if(Sick || Vomiting)     exercise(A_CON, FALSE);
 		if( (Confusion && !Conf_resist) || Hallucination || (Dimmed && !rn2(3)) || (Feared && !rn2(5)) )		exercise(A_WIS, FALSE);
 		if( (Numbed && !rn2(3)) || Frozen || (Burned && !rn2(2)) )		exercise(A_CON, FALSE);
-		if((Wounded_legs 
-		    && !u.usteed
-			    ) || Fumbling || (HStun && !Stun_resist) )	exercise(A_DEX, FALSE);
+		if((Wounded_legs && !u.usteed ) || Fumbling || (HStun && !Stun_resist) )	exercise(A_DEX, FALSE);
 	}
 }
 

@@ -1566,9 +1566,9 @@ mattacku(mtmp)
 		if (mtmp == u.usteed)
 			/* Your steed won't attack you */
 			return (0);
-		/* Orcs like to steal and eat horses and the like */
-		if (!rn2(is_orc(mtmp->data) ? 2 : 4) &&
-				distu(mtmp->mx, mtmp->my) <= 2) {
+		/* Orcs like to steal and eat horses and the like
+		 * Amy edit: wtf. replace that with just a generic chance that your steed is attacked */
+		if (will_hit_steed() && distu(mtmp->mx, mtmp->my) <= 2) {
 			/* Attack your steed instead */
 			i = mattackm(mtmp, u.usteed);
 			if ((i & MM_AGR_DIED))
@@ -6203,9 +6203,8 @@ dopois:
 		 * still _can_ attack you when you're flying or mounted.
 		 * [FIXME: why can't a flying attacker overcome this?]
 		 */
-		  if (
-			(u.usteed && !is_flyer(mtmp->data) && rn2(3) ) ||
-				    Levitation || (Flying && !is_flyer(mtmp->data)) ) {
+		  if ((u.usteed && !is_flyer(mtmp->data) && rn2(3) ) ||
+			Levitation || (Flying && !is_flyer(mtmp->data)) ) {
 		    pline("%s tries to reach your %s %s!", Monnam(mtmp),
 			  sidestr, body_part(LEG));
 		    dmg = 0;

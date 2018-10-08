@@ -8805,6 +8805,8 @@ u_init()
 	u.bizarrotries = 0;
 	u.comboactive = 0;
 
+	u.steedhitchance = 25;
+
 	u.urmaxlvl = 1; /* will go up if an asgardian race player levels up */
 	u.urmaxlvlB = 1; /* will go up if a cyborg role player levels up */
 	u.urmaxlvlC = 1; /* will go up if a binder role player levels up */

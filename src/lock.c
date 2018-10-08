@@ -1223,14 +1223,11 @@ doclose()		/* try to close a door */
 
 	if(door->doormask == D_ISOPEN) {
 	    if(verysmall(youmonst.data) && !Race_if(PM_TRANSFORMER) 
-		&& !u.usteed
-		) {
+		&& !u.usteed ) {
 		 pline("You're too small to push the door closed.");
 		 return(0);
 	    }
-	    if (
-		 u.usteed ||
-		rn2(25) < (ACURRSTR+ACURR(A_DEX)+ACURR(A_CON))/3) {
+	    if (u.usteed || rn2(25) < (ACURRSTR+ACURR(A_DEX)+ACURR(A_CON))/3) {
 		pline_The("door closes.");
 		door->doormask = D_CLOSED;
 		if (Blind)

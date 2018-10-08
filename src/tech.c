@@ -5237,10 +5237,86 @@ revid_end:
 			t_timeout = rnz(200);
 			break;
 		}
-		if (P_SKILL(P_PETKEEPING) < P_SKILLED) {
+		if (P_SKILL(P_PETKEEPING) < P_SKILLED && P_SKILL(P_RIDING) < P_SKILLED) {
 			pline("Unfortunately, no one seems to follow any directives you're giving.");
 			t_timeout = rnz(200);
 			break;
+		}
+
+		if (P_SKILL(P_RIDING) >= P_SKILLED) {
+
+			pline("Currently your steed has %d%% chance of being targetted by monsters.", u.steedhitchance);
+			if (yn("Change it?") == 'y') {
+
+				int lowerbound, higherbound;
+				lowerbound = 25;
+				higherbound = 25;
+
+				switch (P_SKILL(P_RIDING)) {
+					case P_SKILLED:
+						lowerbound = 20;
+						higherbound = 33;
+						break;
+					case P_EXPERT:
+						lowerbound = 10;
+						higherbound = 50;
+						break;
+					case P_MASTER:
+						lowerbound = 5;
+						higherbound = 75;
+						break;
+					case P_GRAND_MASTER:
+						lowerbound = 3;
+						higherbound = 90;
+						break;
+					case P_SUPREME_MASTER:
+						lowerbound = 1;
+						higherbound = 100;
+						break;
+					default:
+						lowerbound = 25;
+						higherbound = 25;
+						break;
+				}
+
+				pline("You can set the chance to values between %d%% and %d%% (inclusive).", lowerbound, higherbound);
+				if (lowerbound <= 1 && yn("Set the chance to 1%%?") == 'y') {
+					u.steedhitchance = 1;
+					pline("The chance that attacks target your steed is 1%% now.");
+				} else if (lowerbound <= 3 && yn("Set the chance to 3%%?") == 'y') {
+					u.steedhitchance = 3;
+					pline("The chance that attacks target your steed is 3%% now.");
+				} else if (lowerbound <= 5 && yn("Set the chance to 5%%?") == 'y') {
+					u.steedhitchance = 5;
+					pline("The chance that attacks target your steed is 5%% now.");
+				} else if (lowerbound <= 10 && yn("Set the chance to 10%%?") == 'y') {
+					u.steedhitchance = 10;
+					pline("The chance that attacks target your steed is 10%% now.");
+				} else if (lowerbound <= 20 && yn("Set the chance to 20%%?") == 'y') {
+					u.steedhitchance = 20;
+					pline("The chance that attacks target your steed is 20%% now.");
+				} else if (yn("Set the chance to 25%%?") == 'y') {
+					u.steedhitchance = 25;
+					pline("The chance that attacks target your steed is 25%% now.");
+				} else if (higherbound >= 33 && yn("Set the chance to 33%%?") == 'y') {
+					u.steedhitchance = 33;
+					pline("The chance that attacks target your steed is 33%% now.");
+				} else if (higherbound >= 50 && yn("Set the chance to 50%%?") == 'y') {
+					u.steedhitchance = 50;
+					pline("The chance that attacks target your steed is 50%% now.");
+				} else if (higherbound >= 75 && yn("Set the chance to 75%%?") == 'y') {
+					u.steedhitchance = 75;
+					pline("The chance that attacks target your steed is 75%% now.");
+				} else if (higherbound >= 90 && yn("Set the chance to 90%%?") == 'y') {
+					u.steedhitchance = 90;
+					pline("The chance that attacks target your steed is 90%% now.");
+				} else if (higherbound >= 100 && yn("Set the chance to 100%%?") == 'y') {
+					u.steedhitchance = 100;
+					pline("The chance that attacks target your steed is 100%% now.");
+				} else pline("The chance that attacks target your steed remains %d%%.", u.steedhitchance);
+
+			}
+
 		}
 
 		if (P_SKILL(P_PETKEEPING) >= P_SKILLED) {

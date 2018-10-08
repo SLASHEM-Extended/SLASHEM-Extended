@@ -1480,8 +1480,7 @@ int dieroll;
 		    /* or strike with a missile in your hand... */
 		    (!thrown && (is_missile(obj) || is_ammo(obj))) ||
 		    /* or use a pole at short range and not mounted... */
-		    (!thrown &&
-		     !u.usteed &&
+		    (!thrown && !u.usteed &&
 		     is_pole(obj)) ||
 		    /* lightsaber that isn't lit ;) */
 		    (is_lightsaber(obj) && !obj->lamplit) ||

@@ -214,9 +214,7 @@ in_trouble()
 	if (Blinded > 1 && haseyes(youmonst.data)) return(TROUBLE_BLIND);
 	for(i=0; i<A_MAX; i++)
 	    if(ABASE(i) < AMAX(i)) return(TROUBLE_POISONED);
-	if(Wounded_legs
-		    && !u.usteed
-				) return (TROUBLE_WOUNDED_LEGS);
+	if(Wounded_legs && !u.usteed) return (TROUBLE_WOUNDED_LEGS);
 	if(u.uhs >= HUNGRY) return(TROUBLE_HUNGRY);
 	if(HStun) return (TROUBLE_STUNNED);
 	if(HConfusion) return (TROUBLE_CONFUSED);

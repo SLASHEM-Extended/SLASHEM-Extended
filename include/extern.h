@@ -2586,6 +2586,7 @@ E void kick_steed(void);
 E void dismount_steed(int);
 E void place_monster(struct monst *,int,int);
 E boolean mayfalloffsteed(void);
+E boolean will_hit_steed(void);
 
 /* ### tech.c ### */
 

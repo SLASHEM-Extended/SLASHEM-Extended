@@ -4080,9 +4080,7 @@ rerollchaloc:
 
 	initrack();
 
-	if ((mtmp = m_at(u.ux, u.uy)) != 0
-		&& mtmp != u.usteed
-		) {
+	if ((mtmp = m_at(u.ux, u.uy)) != 0 && mtmp != u.usteed) {
 	    /* There's a monster at your target destination; it might be one
 	       which accompanied you--see mon_arrive(dogmove.c)--or perhaps
 	       it was already here.  Randomly move you to an adjacent spot

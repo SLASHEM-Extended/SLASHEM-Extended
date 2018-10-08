@@ -1571,9 +1571,7 @@ physical:
 		    if (vis) strcpy(mdef_Monnam, Monnam(mdef));
 		    mdef->mstrategy &= ~STRAT_WAITFORU;
 		    (void) rloc(mdef, FALSE);
-		    if (vis && !canspotmon(mdef)
-		    	&& mdef != u.usteed
-		    	)
+		    if (vis && !canspotmon(mdef) && mdef != u.usteed )
 			pline("%s suddenly disappears!", mdef_Monnam);
 		}
 		break;

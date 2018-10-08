@@ -5239,9 +5239,7 @@ boolean guaranteed;
 	}
 
 	if ((guaranteed || !rn2(10)) && Fumbling) enl_msg("You fumble", "", "d", "");
-	if ((guaranteed || !rn2(10)) && (Wounded_legs
-	    && !u.usteed
-			  )) {
+	if ((guaranteed || !rn2(10)) && (Wounded_legs && !u.usteed)) {
 		sprintf(buf, "wounded %s", makeplural(body_part(LEG)));
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", HWounded_legs);
 		you_have(buf);
@@ -8348,9 +8346,7 @@ int final;
 	}
 
 	if (Fumbling) dump("  ", "You fumbled");
-	if (Wounded_legs
-	    && !u.usteed
-			  ) {
+	if (Wounded_legs && !u.usteed ) {
 		sprintf(buf, "wounded %s", makeplural(body_part(LEG)));
 	      sprintf(eos(buf), " (%d)", HWounded_legs);
 		dump(youhad, buf);

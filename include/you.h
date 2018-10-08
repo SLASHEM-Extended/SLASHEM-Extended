@@ -1079,6 +1079,8 @@ struct you {
 	int combostrike;	/* for technique */
 	boolean comboactive;
 
+	int steedhitchance;	/* default 25%, can be changed via directive */
+
 
 };	/* end of `struct you' */
 

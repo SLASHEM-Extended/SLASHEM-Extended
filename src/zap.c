@@ -5862,9 +5862,8 @@ boolean ordinary;
 
 		makeknown(WAN_HASTE_MONSTER);
 
-		if(Wounded_legs
-		   && !u.usteed	/* heal_legs() would heal steeds legs */
-						) {
+		if(Wounded_legs && !u.usteed	/* heal_legs() would heal steeds legs */
+		) {
 			heal_legs();
 			break;
 		}
@@ -5962,9 +5961,8 @@ boolean ordinary;
 				makeknown(obj->otyp);
 			    }
 			} else {
-				if(Wounded_legs
-				   && !u.usteed	/* heal_legs() would heal steeds legs */
-					) {
+				if(Wounded_legs && !u.usteed	/* heal_legs() would heal steeds legs */
+				) {
 					heal_legs();
 					break;
 				}
@@ -8249,7 +8247,7 @@ sigilcontroldirection:
 	    }
 	} else if (sx == u.ux && sy == u.uy && range >= 0) {
 	    nomul(0, 0, FALSE);
-	    if (u.usteed && !rn2(3) && !mon_reflects(u.usteed, (char *)0)) {
+	    if (u.usteed && will_hit_steed() && !mon_reflects(u.usteed, (char *)0)) {
 		    mon = u.usteed;
 		    goto buzzmonst;
 	    } else

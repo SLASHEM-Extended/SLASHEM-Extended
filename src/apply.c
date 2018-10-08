@@ -3235,9 +3235,7 @@ struct obj *obj;
 	    kick_steed();
 	    return 1;
 	}
-	if (Levitation || Flying
-			|| u.usteed
-		) {
+	if (Levitation || Flying || u.usteed) {
 	    /* Have a shot at snaring something on the floor */
 	    otmp = level.objects[u.ux][u.uy];
 	    if (otmp && otmp->otyp == CORPSE && otmp->corpsenm == PM_HORSE) {

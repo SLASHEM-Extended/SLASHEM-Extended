@@ -574,9 +574,7 @@ moverock()
 		    map_invisible(rx, ry);
 		}
 		if (flags.verbose)
-		    pline("Perhaps that's why %s cannot move it.",
-				u.usteed ? y_monnam(u.usteed) :
-				"you");
+		    pline("Perhaps that's why %s cannot move it.", u.usteed ? y_monnam(u.usteed) : "you");
 		goto cannot_push;
 	    }
 
@@ -743,9 +741,7 @@ moverock()
 		break;
 	    }
 
-	    if (
-		!u.usteed &&
-		(((!invent || inv_weight() <= -1500) &&
+	    if (!u.usteed && (((!invent || inv_weight() <= -1500) &&
 		 (!u.dx || !u.dy || (IS_ROCK(levl[u.ux][sy].typ)
 				     && IS_ROCK(levl[sx][u.uy].typ))))
 		|| verysmall(youmonst.data))) {
@@ -2168,8 +2164,7 @@ domove()
 			You("%s to the edge of the pit.",
 				(In_sokoban(&u.uz) && Levitation) ?
 				"struggle against the air currents and float" :
-				u.usteed ? "ride" :
-				"crawl");
+				u.usteed ? "ride" : "crawl");
 			fill_pit(u.ux, u.uy);
 			vision_full_recalc = 1;	/* vision limits change */
 		    } else if (flags.verbose) {

@@ -4258,9 +4258,8 @@ peffects(otmp)
 			break; /* don't run the code that makes you fast */
 		}
 
-		if(Wounded_legs && !otmp->cursed
-		   && !u.usteed	/* heal_legs() would heal steeds legs */
-						) {
+		if(Wounded_legs && !otmp->cursed && !u.usteed	/* heal_legs() would heal steeds legs */
+		) {
 			heal_legs();
 			unkn++;
 			break;

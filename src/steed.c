@@ -784,4 +784,12 @@ int x, y;
     level.monsters[x][y] = mon;
 }
 
+/* will something hit your steed instead of you? --Amy */
+boolean
+will_hit_steed()
+{
+	if (rn2(100) < u.steedhitchance) return TRUE;
+	else return FALSE;
+}
+
 /*steed.c*/

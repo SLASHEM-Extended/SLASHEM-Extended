@@ -2124,7 +2124,7 @@ unsigned trflags;
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			otmp->opoisoned = 0;
-			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
 			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1) , otmp, "arrow")) {
 			    obfree(otmp, (struct obj *)0);
@@ -2154,7 +2154,7 @@ unsigned trflags;
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			otmp->opoisoned = 0;
-			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
 			if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bolt")) {
 			    obfree(otmp, (struct obj *)0);
@@ -2184,7 +2184,7 @@ unsigned trflags;
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			otmp->opoisoned = 0;
-			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
 			if (thitu(8 + rnd(monster_difficulty() + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "bullet")) {
 			    obfree(otmp, (struct obj *)0);
@@ -2209,7 +2209,7 @@ unsigned trflags;
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			otmp->opoisoned = 0;
-			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
 			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1) , otmp, "glass arrow")) {
 			    obfree(otmp, (struct obj *)0);
@@ -2234,7 +2234,7 @@ unsigned trflags;
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			otmp->opoisoned = 0;
-			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
 			if (thitu(8 + rnd((monster_difficulty() * 2 / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() * 2 / 3) + 1) , otmp, "glass bolt")) {
 			    obfree(otmp, (struct obj *)0);
@@ -2318,7 +2318,7 @@ unsigned trflags;
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			if (!rn2(6)) otmp->opoisoned = 1;
-			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
 			if (thitu(7 + rnd((monster_difficulty() / 3) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 3) + 1), otmp, "little dart")) {
 			    if (otmp->opoisoned)
@@ -2349,7 +2349,7 @@ unsigned trflags;
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
 			if (!rn2(6)) otmp->opoisoned = 1;
-			if (u.usteed && !rn2(2) && steedintrap(trap, otmp)) /* nothing */;
+			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
 			if (thitu(8 + rnd((monster_difficulty() / 2) + 1), dmgval(otmp, &youmonst) + rnd((monster_difficulty() / 2) + 1), otmp, "shuriken")) {
 			    if (otmp->opoisoned)
@@ -2563,9 +2563,7 @@ unsigned trflags;
 			    A_Your[trap->madeby_u]);
 		    break;
 		}
-		if(
-		   !u.usteed &&
-		   youmonst.data->msize <= MZ_SMALL) {
+		if(!u.usteed && youmonst.data->msize <= MZ_SMALL) {
 		    pline("%s bear trap closes harmlessly over you.",
 			    A_Your[trap->madeby_u]);
 		    break;
@@ -6264,8 +6262,7 @@ madnesseffect:
 			break;
 		}
 
-		if (u.usteed &&
-			(Is_blackmarket(&trap->dst) || Is_blackmarket(&u.uz)))
+		if (u.usteed && (Is_blackmarket(&trap->dst) || Is_blackmarket(&u.uz)))
 		    pline("%s seems to shimmer for a moment.",
 			  Monnam(u.usteed));
 		else
@@ -12787,8 +12784,7 @@ float_up()
 		You("gain control over your movements.");
 	else
 		You("start to float in the air!");
-	if (u.usteed && !is_floater(u.usteed->data) &&
-						!is_flyer(u.usteed->data) && (!u.usteed->egotype_flying) ) {
+	if (u.usteed && !is_floater(u.usteed->data) && !is_flyer(u.usteed->data) && (!u.usteed->egotype_flying) ) {
 	    if (Lev_at_will)
 	    	pline("%s magically floats up!", Monnam(u.usteed));
 	    else {

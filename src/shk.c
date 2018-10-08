@@ -4096,9 +4096,7 @@ register struct monst *shkp;
 	    if ((Is_blackmarket(&u.uz) && u.umonnum>0 &&
 		 mons[u.umonnum].mlet != S_HUMAN) ||
                 /* WAC Let you out if you're stuck inside */                
-                (!Is_blackmarket(&u.uz) && (Invis 
-			|| u.usteed
-			                          ) && !inside_shop(u.ux, u.uy)))
+                (!Is_blackmarket(&u.uz) && (Invis || u.usteed) && !inside_shop(u.ux, u.uy)))
 		{
 		    avoid = FALSE;
 		} else {
@@ -5188,8 +5186,7 @@ register xchar x, y;
 	if(shkp->mx == sx && shkp->my == sy
 		&& shkp->mcanmove && !shkp->msleeping
 		&& (x == sx-1 || x == sx+1 || y == sy-1 || y == sy+1)
-		&& (Invis || carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(BRONZE_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK)
-			|| u.usteed
+		&& (Invis || carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(BRONZE_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || u.usteed
 	  )) {
 		pline("%s%s blocks your way!", shkname(shkp),
 				Invis ? " senses your motion and" : "");

@@ -37,9 +37,7 @@ unsigned gpflags;
 	 * which could be co-located and thus get restricted a bit too much.
 	 * oh well.
 	 */
-	if (mtmp != &youmonst && x == u.ux && y == u.uy
-			&& (!u.usteed || mtmp != u.usteed)
-			)
+	if (mtmp != &youmonst && x == u.ux && y == u.uy && (!u.usteed || mtmp != u.usteed) )
 	    is_badpos = 1;
 
 	if (mtmp) {
@@ -791,9 +789,7 @@ tele()
 	    } else {
 		    char buf[BUFSZ];
 		    if (u.usteed) sprintf(buf," and %s", mon_nam(u.usteed));
-		    pline("To what position do you%s want to be teleported?",
-				u.usteed ? buf :
-			   "");
+		    pline("To what position do you%s want to be teleported?", u.usteed ? buf : "");
 		    cc.x = u.ux;
 		    cc.y = u.uy;
 		    if (getpos(&cc, TRUE, "the desired position") < 0)
@@ -975,9 +971,7 @@ level_tele()
 	char buf[BUFSZ];
 	boolean force_dest = FALSE;
 
-	if ((u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz))
-			|| (u.usteed && mon_has_amulet(u.usteed))
-	   )
+	if ((u.uhave.amulet || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || NoReturnEffect || u.uprops[NORETURN].extrinsic || have_noreturnstone() || In_endgame(&u.uz) || In_sokoban(&u.uz) || (Role_if(PM_CAMPERSTRIKER) && In_quest(&u.uz)) || (u.usteed && mon_has_amulet(u.usteed)) )
 #ifdef WIZARD
 						&& !wizard
 #endif

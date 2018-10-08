@@ -3230,8 +3230,7 @@ slip_or_trip()
 		You("trip over %s.", what);
 	    }
 	} else if (rn2(3) && is_ice(u.ux, u.uy)) {
-	    pline("%s %s%s on the ice.",
-		u.usteed ? upstart(x_monnam(u.usteed,
+	    pline("%s %s%s on the ice.", u.usteed ? upstart(x_monnam(u.usteed,
 				u.usteed->mnamelth ? ARTICLE_NONE : ARTICLE_THE,
 				(char *)0, SUPPRESS_SADDLE, FALSE)) :
 		"You", rn2(2) ? "slip" : "slide", on_foot ? "" : "s");
