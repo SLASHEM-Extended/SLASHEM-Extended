@@ -1445,7 +1445,7 @@ undo_lockfloodP(x, y, roomcnt)
 int x, y;
 void * roomcnt;
 {
-	if (levl[x][y].typ < STONE || levl[x][y].typ > DBWALL)
+	if (levl[x][y].typ < STONE || levl[x][y].typ > ROCKWALL)
 		return;
 	if ((levl[x][y].wall_info & W_NONDIGGABLE) != 0)
 		return;

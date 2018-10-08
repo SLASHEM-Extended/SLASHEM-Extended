@@ -3032,7 +3032,7 @@ secureidchoice:
 			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
 			    nextmon = nexusmon->nmon; /* trap might kill mon */
 			    if (DEADMONSTER(nexusmon)) continue;
-				if (levl[nexusmon->mx][nexusmon->my].typ >= STONE && levl[nexusmon->mx][nexusmon->my].typ <= DBWALL) {
+				if (levl[nexusmon->mx][nexusmon->my].typ >= STONE && levl[nexusmon->mx][nexusmon->my].typ <= ROCKWALL) {
 					if ((levl[nexusmon->mx][nexusmon->my].wall_info & W_NONDIGGABLE) == 0 && !(*in_rooms(nexusmon->mx,nexusmon->my,SHOPBASE))) {
 						levl[nexusmon->mx][nexusmon->my].typ = CORR;
 						unblock_point(nexusmon->mx,nexusmon->my);
