@@ -640,7 +640,8 @@ struct you {
 
 	boolean artifactprotection;	/* because NHTNG's protection code is faulty */
 
-	/* Extra nastiness - currently only nastinator race, but might add more functionality someday --Amy */
+	/* Extra nastiness - currently only nastinator race, but might add more functionality someday --Amy
+	 * timerun (keyword for my grepping) */
 	boolean nastinator01;
 	boolean nastinator02;
 	boolean nastinator03;
@@ -810,6 +811,66 @@ struct you {
 	boolean nastinator167;
 	boolean nastinator168;
 	boolean nastinator169;
+	boolean nastinator170;
+	boolean nastinator171;
+	boolean nastinator172;
+	boolean nastinator173;
+	boolean nastinator174;
+	boolean nastinator175;
+	boolean nastinator176;
+	boolean nastinator177;
+	boolean nastinator178;
+	boolean nastinator179;
+	boolean nastinator180;
+	boolean nastinator181;
+	boolean nastinator182;
+	boolean nastinator183;
+	boolean nastinator184;
+	boolean nastinator185;
+	boolean nastinator186;
+	boolean nastinator187;
+	boolean nastinator188;
+	boolean nastinator189;
+	boolean nastinator190;
+	boolean nastinator191;
+	boolean nastinator192;
+	boolean nastinator193;
+	boolean nastinator194;
+	boolean nastinator195;
+	boolean nastinator196;
+	boolean nastinator197;
+	boolean nastinator198;
+	boolean nastinator199;
+	boolean nastinator200;
+	boolean nastinator201;
+	boolean nastinator202;
+	boolean nastinator203;
+	boolean nastinator204;
+	boolean nastinator205;
+	boolean nastinator206;
+	boolean nastinator207;
+	boolean nastinator208;
+	boolean nastinator209;
+	boolean nastinator210;
+	boolean nastinator211;
+	boolean nastinator212;
+	boolean nastinator213;
+	boolean nastinator214;
+	boolean nastinator215;
+	boolean nastinator216;
+	boolean nastinator217;
+	boolean nastinator218;
+	boolean nastinator219;
+	boolean nastinator220;
+	boolean nastinator221;
+	boolean nastinator222;
+	boolean nastinator223;
+	boolean nastinator224;
+	boolean nastinator225;
+	boolean nastinator226;
+	boolean nastinator227;
+	boolean nastinator228;
+	boolean nastinator229;
 
 	char	starlit1[BUFSZ];
 	char	starlit2[BUFSZ];

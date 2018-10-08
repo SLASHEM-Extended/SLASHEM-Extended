@@ -671,7 +671,7 @@ struct obj *instr;
     }
 
     if (instr->oartifact == ART_KILLER_PIANO) {
-		switch (rnd(169)) {
+		switch (rnd(229)) {
 
 			case 1: 
 			    SpeedBug |= FROMOUTSIDE; break;
@@ -1011,6 +1011,126 @@ struct obj *instr;
 				    AutomoreBug |= FROMOUTSIDE; break;
 				case 169:
 				    UnfairAttackBug |= FROMOUTSIDE; break;
+				case 170:
+				    OrangeSpells |= FROMOUTSIDE; break;
+				case 171:
+				    VioletSpells |= FROMOUTSIDE; break;
+				case 172:
+				    LongingEffect |= FROMOUTSIDE; break;
+				case 173:
+				    CursedParts |= FROMOUTSIDE; break;
+				case 174:
+				    Quaversal |= FROMOUTSIDE; break;
+				case 175:
+				    AppearanceShuffling |= FROMOUTSIDE; break;
+				case 176:
+				    BrownSpells |= FROMOUTSIDE; break;
+				case 177:
+				    Choicelessness |= FROMOUTSIDE; break;
+				case 178:
+				    Goldspells |= FROMOUTSIDE; break;
+				case 179:
+				    Deprovement |= FROMOUTSIDE; break;
+				case 180:
+				    InitializationFail |= FROMOUTSIDE; break;
+				case 181:
+				    GushlushEffect |= FROMOUTSIDE; break;
+				case 182:
+				    SoiltypeEffect |= FROMOUTSIDE; break;
+				case 183:
+				    DangerousTerrains |= FROMOUTSIDE; break;
+				case 184:
+				    FalloutEffect |= FROMOUTSIDE; break;
+				case 185:
+				    MojibakeEffect |= FROMOUTSIDE; break;
+				case 186:
+				    GravationEffect |= FROMOUTSIDE; break;
+				case 187:
+				    UncalledEffect |= FROMOUTSIDE; break;
+				case 188:
+				    ExplodingDiceEffect |= FROMOUTSIDE; break;
+				case 189:
+				    PermacurseEffect |= FROMOUTSIDE; break;
+				case 190:
+				    ShroudedIdentity |= FROMOUTSIDE; break;
+				case 191:
+				    FeelerGauges |= FROMOUTSIDE; break;
+				case 192:
+				    LongScrewup |= FROMOUTSIDE; break;
+				case 193:
+				    WingYellowChange |= FROMOUTSIDE; break;
+				case 194:
+				    LifeSavingBug |= FROMOUTSIDE; break;
+				case 195:
+				    CurseuseEffect |= FROMOUTSIDE; break;
+				case 196:
+				    CutNutritionEffect |= FROMOUTSIDE; break;
+				case 197:
+				    SkillLossEffect |= FROMOUTSIDE; break;
+				case 198:
+				    AutopilotEffect |= FROMOUTSIDE; break;
+				case 199:
+				    MysteriousForceActive |= FROMOUTSIDE; break;
+				case 200:
+				    MonsterGlyphChange |= FROMOUTSIDE; break;
+				case 201:
+				    ChangingDirectives |= FROMOUTSIDE; break;
+				case 202:
+				    ContainerKaboom |= FROMOUTSIDE; break;
+				case 203:
+				    StealDegrading |= FROMOUTSIDE; break;
+				case 204:
+				    LeftInventoryBug |= FROMOUTSIDE; break;
+				case 205:
+				    FluctuatingSpeed |= FROMOUTSIDE; break;
+				case 206:
+				    TarmuStrokingNora |= FROMOUTSIDE; break;
+				case 207:
+				    FailureEffects |= FROMOUTSIDE; break;
+				case 208:
+				    BrightCyanSpells |= FROMOUTSIDE; break;
+				case 209:
+				    FrequentationSpawns |= FROMOUTSIDE; break;
+				case 210:
+				    PetAIScrewed |= FROMOUTSIDE; break;
+				case 211:
+				    SatanEffect |= FROMOUTSIDE; break;
+				case 212:
+				    RememberanceEffect |= FROMOUTSIDE; break;
+				case 213:
+				    PokelieEffect |= FROMOUTSIDE; break;
+				case 214:
+				    AlwaysAutopickup |= FROMOUTSIDE; break;
+				case 215:
+				    DywypiProblem |= FROMOUTSIDE; break;
+				case 216:
+				    SilverSpells |= FROMOUTSIDE; break;
+				case 217:
+				    MetalSpells |= FROMOUTSIDE; break;
+				case 218:
+				    PlatinumSpells |= FROMOUTSIDE; break;
+				case 219:
+				    ManlerEffect |= FROMOUTSIDE; break;
+				case 220:
+				    DoorningEffect |= FROMOUTSIDE; break;
+				case 221:
+				    NownsibleEffect |= FROMOUTSIDE; break;
+				case 222:
+				    ElmStreetEffect |= FROMOUTSIDE; break;
+				case 223:
+				    MonnoiseEffect |= FROMOUTSIDE; break;
+				case 224:
+				    RangCallEffect |= FROMOUTSIDE; break;
+				case 225:
+				    RecurringSpellLoss |= FROMOUTSIDE; break;
+				case 226:
+				    AntitrainingEffect |= FROMOUTSIDE; break;
+				case 227:
+				    TechoutBug |= FROMOUTSIDE; break;
+				case 228:
+				    StatDecay |= FROMOUTSIDE; break;
+				case 229:
+				    Movemork |= FROMOUTSIDE; break;
 		}
 
     }

@@ -5274,6 +5274,126 @@ eatspecial() /* called after eating non-food */
 				    AutomoreBug |= FROMOUTSIDE; break;
 			case UNFAIR_ATTACK_STONE:
 				    UnfairAttackBug |= FROMOUTSIDE; break;
+			case ORANGE_SPELL_STONE:
+			    OrangeSpells |= FROMOUTSIDE; break;
+			case VIOLET_SPELL_STONE:
+			    VioletSpells |= FROMOUTSIDE; break;
+			case LONGING_STONE:
+			    LongingEffect |= FROMOUTSIDE; break;
+			case CURSED_PART_STONE:
+			    CursedParts |= FROMOUTSIDE; break;
+			case QUAVERSAL_STONE:
+			    Quaversal |= FROMOUTSIDE; break;
+			case APPEARANCE_SHUFFLING_STONE:
+			    AppearanceShuffling |= FROMOUTSIDE; break;
+			case BROWN_SPELL_STONE:
+			    BrownSpells |= FROMOUTSIDE; break;
+			case CHOICELESS_STONE:
+			    Choicelessness |= FROMOUTSIDE; break;
+			case GOLDSPELL_STONE:
+			    Goldspells |= FROMOUTSIDE; break;
+			case DEPROVEMENT_STONE:
+			    Deprovement |= FROMOUTSIDE; break;
+			case INITIALIZATION_STONE:
+			    InitializationFail |= FROMOUTSIDE; break;
+			case GUSHLUSH_STONE:
+			    GushlushEffect |= FROMOUTSIDE; break;
+			case SOILTYPE_STONE:
+			    SoiltypeEffect |= FROMOUTSIDE; break;
+			case DANGEROUS_TERRAIN_STONE:
+			    DangerousTerrains |= FROMOUTSIDE; break;
+			case FALLOUT_STONE:
+			    FalloutEffect |= FROMOUTSIDE; break;
+			case MOJIBAKE_STONE:
+			    MojibakeEffect |= FROMOUTSIDE; break;
+			case GRAVATION_STONE:
+			    GravationEffect |= FROMOUTSIDE; break;
+			case UNCALLED_STONE:
+			    UncalledEffect |= FROMOUTSIDE; break;
+			case EXPLODING_DICE_STONE:
+			    ExplodingDiceEffect |= FROMOUTSIDE; break;
+			case PERMACURSE_STONE:
+			    PermacurseEffect |= FROMOUTSIDE; break;
+			case SHROUDED_IDENTITY_STONE:
+			    ShroudedIdentity |= FROMOUTSIDE; break;
+			case FEELER_GAUGE_STONE:
+			    FeelerGauges |= FROMOUTSIDE; break;
+			case LONG_SCREWUP_STONE:
+			    LongScrewup |= FROMOUTSIDE; break;
+			case WING_YELLOW_STONE:
+			    WingYellowChange |= FROMOUTSIDE; break;
+			case LIFE_SAVING_STONE:
+			    LifeSavingBug |= FROMOUTSIDE; break;
+			case CURSEUSE_STONE:
+			    CurseuseEffect |= FROMOUTSIDE; break;
+			case CUT_NUTRITION_STONE:
+			    CutNutritionEffect |= FROMOUTSIDE; break;
+			case SKILL_LOSS_STONE:
+			    SkillLossEffect |= FROMOUTSIDE; break;
+			case AUTOPILOT_STONE:
+			    AutopilotEffect |= FROMOUTSIDE; break;
+			case FORCE_STONE:
+			    MysteriousForceActive |= FROMOUTSIDE; break;
+			case MONSTER_GLYPH_STONE:
+			    MonsterGlyphChange |= FROMOUTSIDE; break;
+			case CHANGING_DIRECTIVE_STONE:
+			    ChangingDirectives |= FROMOUTSIDE; break;
+			case CONTAINER_KABOOM_STONE:
+			    ContainerKaboom |= FROMOUTSIDE; break;
+			case STEAL_DEGRADE_STONE:
+			    StealDegrading |= FROMOUTSIDE; break;
+			case LEFT_INVENTORY_STONE:
+			    LeftInventoryBug |= FROMOUTSIDE; break;
+			case FLUCTUATING_SPEED_STONE:
+			    FluctuatingSpeed |= FROMOUTSIDE; break;
+			case TARMUSTROKINGNORA_STONE:
+			    TarmuStrokingNora |= FROMOUTSIDE; break;
+			case FAILURE_STONE:
+			    FailureEffects |= FROMOUTSIDE; break;
+			case BRIGHT_CYAN_SPELL_STONE:
+			    BrightCyanSpells |= FROMOUTSIDE; break;
+			case FREQUENTATION_SPAWN_STONE:
+			    FrequentationSpawns |= FROMOUTSIDE; break;
+			case PET_AI_STONE:
+			    PetAIScrewed |= FROMOUTSIDE; break;
+			case SATAN_STONE:
+			    SatanEffect |= FROMOUTSIDE; break;
+			case REMEMBERANCE_STONE:
+			    RememberanceEffect |= FROMOUTSIDE; break;
+			case POKELIE_STONE:
+			    PokelieEffect |= FROMOUTSIDE; break;
+			case AUTOPICKUP_STONE:
+			    AlwaysAutopickup |= FROMOUTSIDE; break;
+			case DYWYPI_STONE:
+			    DywypiProblem |= FROMOUTSIDE; break;
+			case SILVER_SPELL_STONE:
+			    SilverSpells |= FROMOUTSIDE; break;
+			case METAL_SPELL_STONE:
+			    MetalSpells |= FROMOUTSIDE; break;
+			case PLATINUM_SPELL_STONE:
+			    PlatinumSpells |= FROMOUTSIDE; break;
+			case MANLER_STONE:
+			    ManlerEffect |= FROMOUTSIDE; break;
+			case DOORNING_STONE:
+			    DoorningEffect |= FROMOUTSIDE; break;
+			case NOWNSIBLE_STONE:
+			    NownsibleEffect |= FROMOUTSIDE; break;
+			case ELM_STREET_STONE:
+			    ElmStreetEffect |= FROMOUTSIDE; break;
+			case MONNOISE_STONE:
+			    MonnoiseEffect |= FROMOUTSIDE; break;
+			case RANG_CALL_STONE:
+			    RangCallEffect |= FROMOUTSIDE; break;
+			case RECURRING_SPELL_LOSS_STONE:
+			    RecurringSpellLoss |= FROMOUTSIDE; break;
+			case ANTI_TRAINING_STONE:
+			    AntitrainingEffect |= FROMOUTSIDE; break;
+			case TECHOUT_STONE:
+			    TechoutBug |= FROMOUTSIDE; break;
+			case STAT_DECAY_STONE:
+			    StatDecay |= FROMOUTSIDE; break;
+			case MOVEMORK_STONE:
+			    Movemork |= FROMOUTSIDE; break;
 
 		}
 	}

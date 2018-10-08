@@ -3620,6 +3620,816 @@ have_unfairattackstone()
 	return(FALSE);
 }
 
+boolean
+have_orangespellstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ORANGE_SPELL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator170) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 10) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_violetspellstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == VIOLET_SPELL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator171) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 11) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_longingstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LONGING_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator172) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_cursedpartstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CURSED_PART_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator173) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_quaversalstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == QUAVERSAL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator174) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 9) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_appearanceshufflingstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == APPEARANCE_SHUFFLING_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator175) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_brownspellstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BROWN_SPELL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator176) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 12) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_choicelessstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CHOICELESS_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator177) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_goldspellstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == GOLDSPELL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator178) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_deprovementstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DEPROVEMENT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator179) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 6) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_initializationstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == INITIALIZATION_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator180) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_gushlushstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == GUSHLUSH_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator181) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 7) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_soiltypestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SOILTYPE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator182) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_dangerousterrainstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DANGEROUS_TERRAIN_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator183) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_falloutstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == FALLOUT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator184) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_mojibakestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MOJIBAKE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator185) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 8) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_gravationstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == GRAVATION_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator186) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_uncalledstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == UNCALLED_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator187) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_explodingdicestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == EXPLODING_DICE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator188) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 7) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_permacursestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == PERMACURSE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator189) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 7) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_shroudedidentitystone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SHROUDED_IDENTITY_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator190) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 6) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_feelergaugesstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == FEELER_GAUGE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator191) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_longscrewupstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LONG_SCREWUP_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator192) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_wingyellowstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == WING_YELLOW_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator193) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 8) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_lifesavingstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LIFE_SAVING_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator194) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_curseusestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CURSEUSE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator195) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 7) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_cutnutritionstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CUT_NUTRITION_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator196) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_skilllossstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SKILL_LOSS_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator197) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_autopilotstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == AUTOPILOT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator198) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_forcestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == FORCE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator199) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_monsterglyphstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MONSTER_GLYPH_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator200) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_changingdirectivestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CHANGING_DIRECTIVE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator201) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_containerkaboomstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CONTAINER_KABOOM_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator202) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_stealdegradestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STEAL_DEGRADE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator203) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 8) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_leftinventorystone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LEFT_INVENTORY_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator204) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_fluctuatingspeedstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == FLUCTUATING_SPEED_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator205) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_tarmustrokingnorastone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TARMUSTROKINGNORA_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator206) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_failurestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == FAILURE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator207) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 8) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_brightcyanspellstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BRIGHT_CYAN_SPELL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator208) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 13) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_frequentationspawnstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == FREQUENTATION_SPAWN_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator209) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_petaistone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == PET_AI_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator210) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_satanstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SATAN_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator211) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 7) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_rememberancestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == REMEMBERANCE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator212) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 7) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_pokeliestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == POKELIE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator213) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 7) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_autopickupstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == AUTOPICKUP_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator214) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_dywypistone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DYWYPI_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator215) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_silverspellstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SILVER_SPELL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator216) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 14) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_metalspellstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == METAL_SPELL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator217) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 15) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_platinumspellstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == PLATINUM_SPELL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator218) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 16) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_manlerstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MANLER_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator219) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 8) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_doorningstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == DOORNING_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator220) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_nownsiblestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == NOWNSIBLE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator221) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 8) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_elmstreetstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ELM_STREET_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator222) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_monnoisestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MONNOISE_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator223) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 8) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_rangcallstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == RANG_CALL_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator224) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 9) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_recurringspelllossstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == RECURRING_SPELL_LOSS_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator225) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 9) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_antitrainingstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ANTI_TRAINING_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator226) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 10) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_techoutstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TECHOUT_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator227) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 11) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_statdecaystone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STAT_DECAY_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator228) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 10) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_movemorkstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MOVEMORK_STONE)
+			return(TRUE);
+		}
+	if (u.nastinator229) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 8) return TRUE;
+	return(FALSE);
+}
+
 struct obj *
 o_on(id, objchn)
 unsigned int id;
@@ -11908,6 +12718,128 @@ struct obj *obj;
 				pline("A stone that curses itself and causes rare traps to be more common."); break;
 			case WAKEUP_CALL_STONE:
 				pline("A stone that curses itself and causes peaceful monsters to spontaneously become hostile."); break;
+
+			case ORANGE_SPELL_STONE:
+			    pline("A stone that curses itself and causes orange spells."); break;
+			case VIOLET_SPELL_STONE:
+			    pline("A stone that curses itself and causes violet spells."); break;
+			case LONGING_STONE:
+			    pline("A stone that curses itself and causes sexy messages."); break;
+			case CURSED_PART_STONE:
+			    pline("A stone that curses itself and causes cursed parts to fill up your inventory."); break;
+			case QUAVERSAL_STONE:
+			    pline("A stone that curses itself and causes everything to go black unless you stand on specific tiles."); break;
+			case APPEARANCE_SHUFFLING_STONE:
+			    pline("A stone that curses itself and causes randomized item appearances to re-shuffle periodically."); break;
+			case BROWN_SPELL_STONE:
+			    pline("A stone that curses itself and causes brown spells."); break;
+			case CHOICELESS_STONE:
+			    pline("A stone that curses itself and causes you to be unable to choose directions."); break;
+			case GOLDSPELL_STONE:
+			    pline("A stone that curses itself and causes you to be unable to select which spell you want to cast."); break;
+			case DEPROVEMENT_STONE:
+			    pline("A stone that curses itself and causes you to not get extra max HP and Pw upon leveling up."); break;
+			case INITIALIZATION_STONE:
+			    pline("A stone that curses itself and causes item selection prompts to not work."); break;
+			case GUSHLUSH_STONE:
+			    pline("A stone that curses itself and causes certain calculations to work as if you were experience level 1."); break;
+			case SOILTYPE_STONE:
+			    pline("A stone that curses itself and causes you to trigger ground-based traps even when flying or levitating."); break;
+			case DANGEROUS_TERRAIN_STONE:
+			    pline("A stone that curses itself and causes confusion or stun if you're adjacent to dangerous terrain."); break;
+			case FALLOUT_STONE:
+			    pline("A stone that curses itself and causes your contamination to increase over time."); break;
+			case MOJIBAKE_STONE:
+			    pline("A stone that curses itself and causes some glyphs to be random."); break;
+			case GRAVATION_STONE:
+			    pline("A stone that curses itself and causes monsters to spawn with aggravate monster rules."); break;
+			case UNCALLED_STONE:
+			    pline("A stone that curses itself and causes you to be unable to name items or monsters."); break;
+			case EXPLODING_DICE_STONE:
+			    pline("A stone that curses itself and causes monster attacks to calculate their damage with exploding dice."); break;
+			case PERMACURSE_STONE:
+			    pline("A stone that curses itself and causes remove curse, cancellation and holy water to not lift curses."); break;
+			case SHROUDED_IDENTITY_STONE:
+			    pline("A stone that curses itself and causes items to be very hard to identify."); break;
+			case FEELER_GAUGE_STONE:
+			    pline("A stone that curses itself and causes monsters to zoom in on your position at all times."); break;
+			case LONG_SCREWUP_STONE:
+			    pline("A stone that curses itself and causes nasty trap effects to take much longer to time out."); break;
+			case WING_YELLOW_STONE:
+			    pline("A stone that curses itself and causes the activation of a special tileset."); break;
+			case LIFE_SAVING_STONE:
+			    pline("A stone that curses itself and causes monsters to occasionally lifesave when killed."); break;
+			case CURSEUSE_STONE:
+			    pline("A stone that curses itself and causes consumables you use to curse themselves."); break;
+			case CUT_NUTRITION_STONE:
+			    pline("A stone that curses itself and causes you to gain much less nutrition."); break;
+			case SKILL_LOSS_STONE:
+			    pline("A stone that curses itself and causes all of your skills to gradually lose training."); break;
+			case AUTOPILOT_STONE:
+			    pline("A stone that curses itself and causes autopilot."); break;
+			case FORCE_STONE:
+			    pline("A stone that curses itself and causes the reappearance of the dreaded mysterious force."); break;
+			case MONSTER_GLYPH_STONE:
+			    pline("A stone that curses itself and causes monsters to display as hallucination glyphs."); break;
+			case CHANGING_DIRECTIVE_STONE:
+			    pline("A stone that curses itself and causes pet directives to change randomly."); break;
+			case CONTAINER_KABOOM_STONE:
+			    pline("A stone that curses itself and causes bad stuff when you handle a container."); break;
+			case STEAL_DEGRADE_STONE:
+			    pline("A stone that curses itself and causes your items to be degraded if a monster manages to steal them."); break;
+			case LEFT_INVENTORY_STONE:
+			    pline("A stone that curses itself and causes items that leave your inventory to unidentify themselves."); break;
+			case FLUCTUATING_SPEED_STONE:
+			    pline("A stone that curses itself and causes your speed to fluctuate between extremely fast and agonizingly slow."); break;
+			case TARMUSTROKINGNORA_STONE:
+			    pline("A stone that curses itself and causes the search command to occasionally create new traps."); break;
+			case FAILURE_STONE:
+			    pline("A stone that curses itself and causes harmless messages to become dangerous."); break;
+			case BRIGHT_CYAN_SPELL_STONE:
+			    pline("A stone that curses itself and causes bright cyan spells."); break;
+			case FREQUENTATION_SPAWN_STONE:
+			    pline("A stone that curses itself and causes a specific monster trait to spawn more often."); break;
+			case PET_AI_STONE:
+			    pline("A stone that curses itself and causes your pets to be stupid."); break;
+			case SATAN_STONE:
+			    pline("A stone that curses itself and causes you to lose a turn if you change dungeon levels."); break;
+			case REMEMBERANCE_STONE:
+			    pline("A stone that curses itself and causes spells with low spell memory to be harder to cast."); break;
+			case POKELIE_STONE:
+			    pline("A stone that curses itself and causes the pokedex to lie to you."); break;
+			case AUTOPICKUP_STONE:
+			    pline("A stone that curses itself and causes you to autopickup all items you move over."); break;
+			case DYWYPI_STONE:
+			    pline("A stone that curses itself and causes a perilous prompt when you lifesave."); break;
+			case SILVER_SPELL_STONE:
+			    pline("A stone that curses itself and causes silver spells."); break;
+			case METAL_SPELL_STONE:
+			    pline("A stone that curses itself and causes metal spells."); break;
+			case PLATINUM_SPELL_STONE:
+			    pline("A stone that curses itself and causes platinum spells."); break;
+			case MANLER_STONE:
+			    pline("A stone that curses itself and causes a manler to chase you."); break;
+			case DOORNING_STONE:
+			    pline("A stone that curses itself and causes doors to be dangerous."); break;
+			case NOWNSIBLE_STONE:
+			    pline("A stone that curses itself and causes traps to become invisible when triggered."); break;
+			case ELM_STREET_STONE:
+			    pline("A stone that curses itself and causes the game to behave as if it were Friday the 13th."); break;
+			case MONNOISE_STONE:
+			    pline("A stone that curses itself and causes monsters to make noises."); break;
+			case RANG_CALL_STONE:
+			    pline("A stone that curses itself and causes bosses to increase your sanity."); break;
+			case RECURRING_SPELL_LOSS_STONE:
+			    pline("A stone that curses itself and causes your spells to occasionally lose spell memory."); break;
+			case ANTI_TRAINING_STONE:
+			    pline("A stone that curses itself and causes the occasional loss of skill training."); break;
+			case TECHOUT_STONE:
+			    pline("A stone that curses itself and causes your techniques to occasionally receive higher timeouts."); break;
+			case STAT_DECAY_STONE:
+			    pline("A stone that curses itself and causes your stats to decay over time."); break;
+			case MOVEMORK_STONE:
+			    pline("A stone that curses itself and causes monsters to be generated with movement energy."); break;
+
 			case GRAYOUT_STONE:
 				pline("A stone that curses itself and causes grayout."); break;
 			case GRAY_CENTER_STONE:

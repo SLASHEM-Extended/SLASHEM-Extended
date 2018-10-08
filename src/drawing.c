@@ -720,6 +720,79 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "skillcap trap", C(CLR_MAGENTA)},	/* trap */
 	{'^', "permanent stat damage trap", C(CLR_BRIGHT_BLUE)},	/* trap */
 
+	{'^', "orange spell trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "violet spell trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "trap of longing", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "cursed part trap", C(CLR_CYAN)},	/* trap */
+	{'^', "quaversal trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "appearance shuffling trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "brown spell trap", C(CLR_BROWN)},	/* trap */
+	{'^', "choiceless trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "goldspell trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "deprovement trap", C(CLR_BLACK)},	/* trap */
+	{'^', "initialization trap", C(CLR_WHITE)},	/* trap */
+	{'^', "gushlush trap", C(CLR_GREEN)},	/* trap */
+	{'^', "soiltype trap", C(CLR_BROWN)},	/* trap */
+	{'^', "dangerous terrain trap", C(CLR_RED)},	/* trap */
+	{'^', "fallout trap", C(CLR_CYAN)},	/* trap */
+	{'^', "mojibake trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "gravation trap", C(CLR_BLACK)},	/* trap */
+	{'^', "uncalled trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "exploding dice trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "permacurse trap", C(CLR_BLACK)},	/* trap */
+	{'^', "shrouded identity trap", C(CLR_GRAY)},	/* trap */
+	{'^', "feeler gauges trap", C(CLR_RED)},	/* trap */
+	{'^', "long screwup trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "wing yellow changer", C(CLR_YELLOW)},	/* trap */
+	{'^', "life saving trap", C(CLR_BLACK)},	/* trap */
+	{'^', "curseuse trap", C(CLR_BLACK)},	/* trap */
+	{'^', "cut nutrition trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "skill loss trap", C(CLR_BROWN)},	/* trap */
+	{'^', "autopilot trap", C(CLR_CYAN)},	/* trap */
+	{'^', "force trap", C(CLR_CYAN)},	/* trap */
+	{'^', "monster glyph trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
+	{'^', "changing directive trap", C(CLR_WHITE)},	/* trap */
+	{'^', "container kaboom trap", C(CLR_RED)},	/* trap */
+	{'^', "steal degrade trap", C(CLR_GRAY)},	/* trap */
+	{'^', "left inventory trap", C(CLR_WHITE)},	/* trap */
+	{'^', "fluctuating speed trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "tarmustrokingnora trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "failure trap", C(CLR_GREEN)},	/* trap */
+	{'^', "bright cyan spell trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "frequentation spawn trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "pet AI trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "satan trap", C(CLR_RED)},	/* trap */
+	{'^', "rememberance trap", C(CLR_BROWN)},	/* trap */
+	{'^', "pokelie trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "autopickup trap", C(CLR_BLACK)},	/* trap */
+	{'^', "dywypi trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "silver spell trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "metal spell trap", C(CLR_CYAN)},	/* trap */
+	{'^', "platinum spell trap", C(CLR_BLACK)},	/* trap */
+	{'^', "manler trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "doorning trap", C(CLR_BROWN)},	/* trap */
+	{'^', "nownsible trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "elm street trap", C(CLR_GREEN)},	/* trap */
+	{'^', "monster noise trap", C(CLR_RED)},	/* trap */
+	{'^', "rang call trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "recurring spell loss trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "antitraining trap", C(CLR_BROWN)},	/* trap */
+	{'^', "techout trap", C(CLR_BROWN)},	/* trap */
+	{'^', "stat decay trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "movemork trap", C(CLR_GREEN)},	/* trap */
+
+	{'^', "hybrid trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "shapechange trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "meltem trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "miguc trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "directive trap", C(CLR_WHITE)},	/* trap */
+	{'^', "satatue trap", C(CLR_GRAY)},	/* trap */
+	{'^', "farting web", C(CLR_MAGENTA)},	/* trap */
+	{'^', "cataclysm trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "data delete trap", C(CLR_BLACK)},	/* trap */
+	{'^', "elder tentacling trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "footerer trap", C(CLR_GREEN)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1268,6 +1341,79 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_skillcap_trap),
 	g_FILLER(S_permanent_stat_damage_trap),
 
+	g_FILLER(S_orange_spell_trap),
+	g_FILLER(S_violet_spell_trap),
+	g_FILLER(S_trap_of_longing),
+	g_FILLER(S_cursed_part_trap),
+	g_FILLER(S_quaversal_trap),
+	g_FILLER(S_appearance_shuffling_trap),
+	g_FILLER(S_brown_spell_trap),
+	g_FILLER(S_choiceless_trap),
+	g_FILLER(S_goldspell_trap),
+	g_FILLER(S_deprovement_trap),
+	g_FILLER(S_initialization_trap),
+	g_FILLER(S_gushlush_trap),
+	g_FILLER(S_soiltype_trap),
+	g_FILLER(S_dangerous_terrain_trap),
+	g_FILLER(S_fallout_trap),
+	g_FILLER(S_mojibake_trap),
+	g_FILLER(S_gravation_trap),
+	g_FILLER(S_uncalled_trap),
+	g_FILLER(S_exploding_dice_trap),
+	g_FILLER(S_permacurse_trap),
+	g_FILLER(S_shrouded_identity_trap),
+	g_FILLER(S_feeler_gauges_trap),
+	g_FILLER(S_long_screwup_trap),
+	g_FILLER(S_wing_yellow_changer),
+	g_FILLER(S_life_saving_trap),
+	g_FILLER(S_curseuse_trap),
+	g_FILLER(S_cut_nutrition_trap),
+	g_FILLER(S_skill_loss_trap),
+	g_FILLER(S_autopilot_trap),
+	g_FILLER(S_force_trap),
+	g_FILLER(S_monster_glyph_trap),
+	g_FILLER(S_changing_directive_trap),
+	g_FILLER(S_container_kaboom_trap),
+	g_FILLER(S_steal_degrade_trap),
+	g_FILLER(S_left_inventory_trap),
+	g_FILLER(S_fluctuating_speed_trap),
+	g_FILLER(S_tarmustrokingnora_trap),
+	g_FILLER(S_failure_trap),
+	g_FILLER(S_bright_cyan_spell_trap),
+	g_FILLER(S_frequentation_spawn_trap),
+	g_FILLER(S_pet_ai_trap),
+	g_FILLER(S_satan_trap),
+	g_FILLER(S_rememberance_trap),
+	g_FILLER(S_pokelie_trap),
+	g_FILLER(S_autopickup_trap),
+	g_FILLER(S_dywypi_trap),
+	g_FILLER(S_silver_spell_trap),
+	g_FILLER(S_metal_spell_trap),
+	g_FILLER(S_platinum_spell_trap),
+	g_FILLER(S_manler_trap),
+	g_FILLER(S_doorning_trap),
+	g_FILLER(S_nownsible_trap),
+	g_FILLER(S_elm_street_trap),
+	g_FILLER(S_monnoise_trap),
+	g_FILLER(S_rang_call_trap),
+	g_FILLER(S_recurring_spell_loss_trap),
+	g_FILLER(S_antitraining_trap),
+	g_FILLER(S_techout_trap),
+	g_FILLER(S_stat_decay_trap),
+	g_FILLER(S_movemork_trap),
+
+	g_FILLER(S_hybrid_trap),
+	g_FILLER(S_shapechange_trap),
+	g_FILLER(S_meltem_trap),
+	g_FILLER(S_miguc_trap),
+	g_FILLER(S_directive_trap),
+	g_FILLER(S_satatue_trap),
+	g_FILLER(S_farting_web),
+	g_FILLER(S_cataclysm_trap),
+	g_FILLER(S_data_delete_trap),
+	g_FILLER(S_elder_tentacling_trap),
+	g_FILLER(S_footerer_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -1804,6 +1950,79 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_skillcap_trap),
 	g_FILLER(S_permanent_stat_damage_trap),
 
+	g_FILLER(S_orange_spell_trap),
+	g_FILLER(S_violet_spell_trap),
+	g_FILLER(S_trap_of_longing),
+	g_FILLER(S_cursed_part_trap),
+	g_FILLER(S_quaversal_trap),
+	g_FILLER(S_appearance_shuffling_trap),
+	g_FILLER(S_brown_spell_trap),
+	g_FILLER(S_choiceless_trap),
+	g_FILLER(S_goldspell_trap),
+	g_FILLER(S_deprovement_trap),
+	g_FILLER(S_initialization_trap),
+	g_FILLER(S_gushlush_trap),
+	g_FILLER(S_soiltype_trap),
+	g_FILLER(S_dangerous_terrain_trap),
+	g_FILLER(S_fallout_trap),
+	g_FILLER(S_mojibake_trap),
+	g_FILLER(S_gravation_trap),
+	g_FILLER(S_uncalled_trap),
+	g_FILLER(S_exploding_dice_trap),
+	g_FILLER(S_permacurse_trap),
+	g_FILLER(S_shrouded_identity_trap),
+	g_FILLER(S_feeler_gauges_trap),
+	g_FILLER(S_long_screwup_trap),
+	g_FILLER(S_wing_yellow_changer),
+	g_FILLER(S_life_saving_trap),
+	g_FILLER(S_curseuse_trap),
+	g_FILLER(S_cut_nutrition_trap),
+	g_FILLER(S_skill_loss_trap),
+	g_FILLER(S_autopilot_trap),
+	g_FILLER(S_force_trap),
+	g_FILLER(S_monster_glyph_trap),
+	g_FILLER(S_changing_directive_trap),
+	g_FILLER(S_container_kaboom_trap),
+	g_FILLER(S_steal_degrade_trap),
+	g_FILLER(S_left_inventory_trap),
+	g_FILLER(S_fluctuating_speed_trap),
+	g_FILLER(S_tarmustrokingnora_trap),
+	g_FILLER(S_failure_trap),
+	g_FILLER(S_bright_cyan_spell_trap),
+	g_FILLER(S_frequentation_spawn_trap),
+	g_FILLER(S_pet_ai_trap),
+	g_FILLER(S_satan_trap),
+	g_FILLER(S_rememberance_trap),
+	g_FILLER(S_pokelie_trap),
+	g_FILLER(S_autopickup_trap),
+	g_FILLER(S_dywypi_trap),
+	g_FILLER(S_silver_spell_trap),
+	g_FILLER(S_metal_spell_trap),
+	g_FILLER(S_platinum_spell_trap),
+	g_FILLER(S_manler_trap),
+	g_FILLER(S_doorning_trap),
+	g_FILLER(S_nownsible_trap),
+	g_FILLER(S_elm_street_trap),
+	g_FILLER(S_monnoise_trap),
+	g_FILLER(S_rang_call_trap),
+	g_FILLER(S_recurring_spell_loss_trap),
+	g_FILLER(S_antitraining_trap),
+	g_FILLER(S_techout_trap),
+	g_FILLER(S_stat_decay_trap),
+	g_FILLER(S_movemork_trap),
+
+	g_FILLER(S_hybrid_trap),
+	g_FILLER(S_shapechange_trap),
+	g_FILLER(S_meltem_trap),
+	g_FILLER(S_miguc_trap),
+	g_FILLER(S_directive_trap),
+	g_FILLER(S_satatue_trap),
+	g_FILLER(S_farting_web),
+	g_FILLER(S_cataclysm_trap),
+	g_FILLER(S_data_delete_trap),
+	g_FILLER(S_elder_tentacling_trap),
+	g_FILLER(S_footerer_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -2338,6 +2557,79 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_skill_reduction_trap),
 	g_FILLER(S_skillcap_trap),
 	g_FILLER(S_permanent_stat_damage_trap),
+
+	g_FILLER(S_orange_spell_trap),
+	g_FILLER(S_violet_spell_trap),
+	g_FILLER(S_trap_of_longing),
+	g_FILLER(S_cursed_part_trap),
+	g_FILLER(S_quaversal_trap),
+	g_FILLER(S_appearance_shuffling_trap),
+	g_FILLER(S_brown_spell_trap),
+	g_FILLER(S_choiceless_trap),
+	g_FILLER(S_goldspell_trap),
+	g_FILLER(S_deprovement_trap),
+	g_FILLER(S_initialization_trap),
+	g_FILLER(S_gushlush_trap),
+	g_FILLER(S_soiltype_trap),
+	g_FILLER(S_dangerous_terrain_trap),
+	g_FILLER(S_fallout_trap),
+	g_FILLER(S_mojibake_trap),
+	g_FILLER(S_gravation_trap),
+	g_FILLER(S_uncalled_trap),
+	g_FILLER(S_exploding_dice_trap),
+	g_FILLER(S_permacurse_trap),
+	g_FILLER(S_shrouded_identity_trap),
+	g_FILLER(S_feeler_gauges_trap),
+	g_FILLER(S_long_screwup_trap),
+	g_FILLER(S_wing_yellow_changer),
+	g_FILLER(S_life_saving_trap),
+	g_FILLER(S_curseuse_trap),
+	g_FILLER(S_cut_nutrition_trap),
+	g_FILLER(S_skill_loss_trap),
+	g_FILLER(S_autopilot_trap),
+	g_FILLER(S_force_trap),
+	g_FILLER(S_monster_glyph_trap),
+	g_FILLER(S_changing_directive_trap),
+	g_FILLER(S_container_kaboom_trap),
+	g_FILLER(S_steal_degrade_trap),
+	g_FILLER(S_left_inventory_trap),
+	g_FILLER(S_fluctuating_speed_trap),
+	g_FILLER(S_tarmustrokingnora_trap),
+	g_FILLER(S_failure_trap),
+	g_FILLER(S_bright_cyan_spell_trap),
+	g_FILLER(S_frequentation_spawn_trap),
+	g_FILLER(S_pet_ai_trap),
+	g_FILLER(S_satan_trap),
+	g_FILLER(S_rememberance_trap),
+	g_FILLER(S_pokelie_trap),
+	g_FILLER(S_autopickup_trap),
+	g_FILLER(S_dywypi_trap),
+	g_FILLER(S_silver_spell_trap),
+	g_FILLER(S_metal_spell_trap),
+	g_FILLER(S_platinum_spell_trap),
+	g_FILLER(S_manler_trap),
+	g_FILLER(S_doorning_trap),
+	g_FILLER(S_nownsible_trap),
+	g_FILLER(S_elm_street_trap),
+	g_FILLER(S_monnoise_trap),
+	g_FILLER(S_rang_call_trap),
+	g_FILLER(S_recurring_spell_loss_trap),
+	g_FILLER(S_antitraining_trap),
+	g_FILLER(S_techout_trap),
+	g_FILLER(S_stat_decay_trap),
+	g_FILLER(S_movemork_trap),
+
+	g_FILLER(S_hybrid_trap),
+	g_FILLER(S_shapechange_trap),
+	g_FILLER(S_meltem_trap),
+	g_FILLER(S_miguc_trap),
+	g_FILLER(S_directive_trap),
+	g_FILLER(S_satatue_trap),
+	g_FILLER(S_farting_web),
+	g_FILLER(S_cataclysm_trap),
+	g_FILLER(S_data_delete_trap),
+	g_FILLER(S_elder_tentacling_trap),
+	g_FILLER(S_footerer_trap),
 
 	g_FILLER(S_timerun_trap),
 	g_FILLER(S_vbeam),
@@ -3048,6 +3340,79 @@ boolean is_rlevel;
 	    showsyms[S_skill_reduction_trap] = 0x04;
 	    showsyms[S_skillcap_trap] = 0x04;
 	    showsyms[S_permanent_stat_damage_trap] = 0x04;
+
+	    showsyms[S_orange_spell_trap] = 0x04;
+	    showsyms[S_violet_spell_trap] = 0x04;
+	    showsyms[S_trap_of_longing] = 0x04;
+	    showsyms[S_cursed_part_trap] = 0x04;
+	    showsyms[S_quaversal_trap] = 0x04;
+	    showsyms[S_appearance_shuffling_trap] = 0x04;
+	    showsyms[S_brown_spell_trap] = 0x04;
+	    showsyms[S_choiceless_trap] = 0x04;
+	    showsyms[S_goldspell_trap] = 0x04;
+	    showsyms[S_deprovement_trap] = 0x04;
+	    showsyms[S_initialization_trap] = 0x04;
+	    showsyms[S_gushlush_trap] = 0x04;
+	    showsyms[S_soiltype_trap] = 0x04;
+	    showsyms[S_dangerous_terrain_trap] = 0x04;
+	    showsyms[S_fallout_trap] = 0x04;
+	    showsyms[S_mojibake_trap] = 0x04;
+	    showsyms[S_gravation_trap] = 0x04;
+	    showsyms[S_uncalled_trap] = 0x04;
+	    showsyms[S_exploding_dice_trap] = 0x04;
+	    showsyms[S_permacurse_trap] = 0x04;
+	    showsyms[S_shrouded_identity_trap] = 0x04;
+	    showsyms[S_feeler_gauges_trap] = 0x04;
+	    showsyms[S_long_screwup_trap] = 0x04;
+	    showsyms[S_wing_yellow_changer] = 0x04;
+	    showsyms[S_life_saving_trap] = 0x04;
+	    showsyms[S_curseuse_trap] = 0x04;
+	    showsyms[S_cut_nutrition_trap] = 0x04;
+	    showsyms[S_skill_loss_trap] = 0x04;
+	    showsyms[S_autopilot_trap] = 0x04;
+	    showsyms[S_force_trap] = 0x04;
+	    showsyms[S_monster_glyph_trap] = 0x04;
+	    showsyms[S_changing_directive_trap] = 0x04;
+	    showsyms[S_container_kaboom_trap] = 0x04;
+	    showsyms[S_steal_degrade_trap] = 0x04;
+	    showsyms[S_left_inventory_trap] = 0x04;
+	    showsyms[S_fluctuating_speed_trap] = 0x04;
+	    showsyms[S_tarmustrokingnora_trap] = 0x04;
+	    showsyms[S_failure_trap] = 0x04;
+	    showsyms[S_bright_cyan_spell_trap] = 0x04;
+	    showsyms[S_frequentation_spawn_trap] = 0x04;
+	    showsyms[S_pet_ai_trap] = 0x04;
+	    showsyms[S_satan_trap] = 0x04;
+	    showsyms[S_rememberance_trap] = 0x04;
+	    showsyms[S_pokelie_trap] = 0x04;
+	    showsyms[S_autopickup_trap] = 0x04;
+	    showsyms[S_dywypi_trap] = 0x04;
+	    showsyms[S_silver_spell_trap] = 0x04;
+	    showsyms[S_metal_spell_trap] = 0x04;
+	    showsyms[S_platinum_spell_trap] = 0x04;
+	    showsyms[S_manler_trap] = 0x04;
+	    showsyms[S_doorning_trap] = 0x04;
+	    showsyms[S_nownsible_trap] = 0x04;
+	    showsyms[S_elm_street_trap] = 0x04;
+	    showsyms[S_monnoise_trap] = 0x04;
+	    showsyms[S_rang_call_trap] = 0x04;
+	    showsyms[S_recurring_spell_loss_trap] = 0x04;
+	    showsyms[S_antitraining_trap] = 0x04;
+	    showsyms[S_techout_trap] = 0x04;
+	    showsyms[S_stat_decay_trap] = 0x04;
+	    showsyms[S_movemork_trap] = 0x04;
+
+	    showsyms[S_hybrid_trap] = 0x04;
+	    showsyms[S_shapechange_trap] = 0x04;
+	    showsyms[S_meltem_trap] = 0x04;
+	    showsyms[S_miguc_trap] = 0x04;
+	    showsyms[S_directive_trap] = 0x04;
+	    showsyms[S_satatue_trap] = 0x04;
+	    showsyms[S_farting_web] = 0x04;
+	    showsyms[S_cataclysm_trap] = 0x04;
+	    showsyms[S_data_delete_trap] = 0x04;
+	    showsyms[S_elder_tentacling_trap] = 0x04;
+	    showsyms[S_footerer_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif

@@ -2215,9 +2215,9 @@ fukrosionchoice:
 
 		if (iswindinhabitant && !rn2(1000)) {
 
-			u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = u.nastinator86 = u.nastinator87 = u.nastinator88 = u.nastinator89 = u.nastinator90 = u.nastinator91 = u.nastinator92 = u.nastinator93 = u.nastinator94 = u.nastinator95 = u.nastinator96 = u.nastinator97 = u.nastinator98 = u.nastinator99 = u.nastinator100 = u.nastinator101 = u.nastinator102 = u.nastinator103 = u.nastinator104 = u.nastinator105 = u.nastinator106 = u.nastinator107 = u.nastinator108 = u.nastinator109 = u.nastinator110 = u.nastinator111 = u.nastinator112 = u.nastinator113 = u.nastinator114 = u.nastinator115 = u.nastinator116 = u.nastinator117 = u.nastinator118 = u.nastinator119 = u.nastinator120 = u.nastinator121 = u.nastinator122 = u.nastinator123 = u.nastinator124 = u.nastinator125 = u.nastinator126 = u.nastinator127 = u.nastinator128 = u.nastinator129 = u.nastinator130 = u.nastinator131 = u.nastinator132 = u.nastinator133 = u.nastinator134 = u.nastinator135 = u.nastinator136 = u.nastinator137 = u.nastinator138 = u.nastinator139 = u.nastinator140 = u.nastinator141 = u.nastinator142 = u.nastinator143 = u.nastinator144 = u.nastinator145 = u.nastinator146 = u.nastinator147 = u.nastinator148 = u.nastinator149 = u.nastinator150 = u.nastinator151 = u.nastinator152 = u.nastinator153 = u.nastinator154 = u.nastinator155 = u.nastinator156 = u.nastinator157 = u.nastinator158 = u.nastinator159 = u.nastinator160 = u.nastinator161 = u.nastinator162 = u.nastinator163 = u.nastinator164 = u.nastinator165 = u.nastinator166 = u.nastinator167 = u.nastinator168 = u.nastinator169 = 0;
+			u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = u.nastinator86 = u.nastinator87 = u.nastinator88 = u.nastinator89 = u.nastinator90 = u.nastinator91 = u.nastinator92 = u.nastinator93 = u.nastinator94 = u.nastinator95 = u.nastinator96 = u.nastinator97 = u.nastinator98 = u.nastinator99 = u.nastinator100 = u.nastinator101 = u.nastinator102 = u.nastinator103 = u.nastinator104 = u.nastinator105 = u.nastinator106 = u.nastinator107 = u.nastinator108 = u.nastinator109 = u.nastinator110 = u.nastinator111 = u.nastinator112 = u.nastinator113 = u.nastinator114 = u.nastinator115 = u.nastinator116 = u.nastinator117 = u.nastinator118 = u.nastinator119 = u.nastinator120 = u.nastinator121 = u.nastinator122 = u.nastinator123 = u.nastinator124 = u.nastinator125 = u.nastinator126 = u.nastinator127 = u.nastinator128 = u.nastinator129 = u.nastinator130 = u.nastinator131 = u.nastinator132 = u.nastinator133 = u.nastinator134 = u.nastinator135 = u.nastinator136 = u.nastinator137 = u.nastinator138 = u.nastinator139 = u.nastinator140 = u.nastinator141 = u.nastinator142 = u.nastinator143 = u.nastinator144 = u.nastinator145 = u.nastinator146 = u.nastinator147 = u.nastinator148 = u.nastinator149 = u.nastinator150 = u.nastinator151 = u.nastinator152 = u.nastinator153 = u.nastinator154 = u.nastinator155 = u.nastinator156 = u.nastinator157 = u.nastinator158 = u.nastinator159 = u.nastinator160 = u.nastinator161 = u.nastinator162 = u.nastinator163 = u.nastinator164 = u.nastinator165 = u.nastinator166 = u.nastinator167 = u.nastinator168 = u.nastinator169 = u.nastinator170 = u.nastinator171 = u.nastinator172 = u.nastinator173 = u.nastinator174 = u.nastinator175 = u.nastinator176 = u.nastinator177 = u.nastinator178 = u.nastinator179 = u.nastinator180 = u.nastinator181 = u.nastinator182 = u.nastinator183 = u.nastinator184 = u.nastinator185 = u.nastinator186 = u.nastinator187 = u.nastinator188 = u.nastinator189 = u.nastinator190 = u.nastinator191 = u.nastinator192 = u.nastinator193 = u.nastinator194 = u.nastinator195 = u.nastinator196 = u.nastinator197 = u.nastinator198 = u.nastinator199 = u.nastinator200 = u.nastinator201 = u.nastinator202 = u.nastinator203 = u.nastinator204 = u.nastinator205 = u.nastinator206 = u.nastinator207 = u.nastinator208 = u.nastinator209 = u.nastinator210 = u.nastinator211 = u.nastinator212 = u.nastinator213 = u.nastinator214 = u.nastinator215 = u.nastinator216 = u.nastinator217 = u.nastinator218 = u.nastinator219 = u.nastinator220 = u.nastinator221 = u.nastinator222 = u.nastinator223 = u.nastinator224 = u.nastinator225 = u.nastinator226 = u.nastinator227 = u.nastinator228 = u.nastinator229 = 0;
 
-		switch (rnd(169)) {
+		switch (rnd(229)) {
 
 			case 1: u.nastinator01 = 1; break;
 			case 2: u.nastinator02 = 1; break;
@@ -2388,12 +2388,72 @@ fukrosionchoice:
 			case 167: u.nastinator167 = 1; break;
 			case 168: u.nastinator168 = 1; break;
 			case 169: u.nastinator169 = 1; break;
+			case 170: u.nastinator170 = 1; break;
+			case 171: u.nastinator171 = 1; break;
+			case 172: u.nastinator172 = 1; break;
+			case 173: u.nastinator173 = 1; break;
+			case 174: u.nastinator174 = 1; break;
+			case 175: u.nastinator175 = 1; break;
+			case 176: u.nastinator176 = 1; break;
+			case 177: u.nastinator177 = 1; break;
+			case 178: u.nastinator178 = 1; break;
+			case 179: u.nastinator179 = 1; break;
+			case 180: u.nastinator180 = 1; break;
+			case 181: u.nastinator181 = 1; break;
+			case 182: u.nastinator182 = 1; break;
+			case 183: u.nastinator183 = 1; break;
+			case 184: u.nastinator184 = 1; break;
+			case 185: u.nastinator185 = 1; break;
+			case 186: u.nastinator186 = 1; break;
+			case 187: u.nastinator187 = 1; break;
+			case 188: u.nastinator188 = 1; break;
+			case 189: u.nastinator189 = 1; break;
+			case 190: u.nastinator190 = 1; break;
+			case 191: u.nastinator191 = 1; break;
+			case 192: u.nastinator192 = 1; break;
+			case 193: u.nastinator193 = 1; break;
+			case 194: u.nastinator194 = 1; break;
+			case 195: u.nastinator195 = 1; break;
+			case 196: u.nastinator196 = 1; break;
+			case 197: u.nastinator197 = 1; break;
+			case 198: u.nastinator198 = 1; break;
+			case 199: u.nastinator199 = 1; break;
+			case 200: u.nastinator200 = 1; break;
+			case 201: u.nastinator201 = 1; break;
+			case 202: u.nastinator202 = 1; break;
+			case 203: u.nastinator203 = 1; break;
+			case 204: u.nastinator204 = 1; break;
+			case 205: u.nastinator205 = 1; break;
+			case 206: u.nastinator206 = 1; break;
+			case 207: u.nastinator207 = 1; break;
+			case 208: u.nastinator208 = 1; break;
+			case 209: u.nastinator209 = 1; break;
+			case 210: u.nastinator210 = 1; break;
+			case 211: u.nastinator211 = 1; break;
+			case 212: u.nastinator212 = 1; break;
+			case 213: u.nastinator213 = 1; break;
+			case 214: u.nastinator214 = 1; break;
+			case 215: u.nastinator215 = 1; break;
+			case 216: u.nastinator216 = 1; break;
+			case 217: u.nastinator217 = 1; break;
+			case 218: u.nastinator218 = 1; break;
+			case 219: u.nastinator219 = 1; break;
+			case 220: u.nastinator220 = 1; break;
+			case 221: u.nastinator221 = 1; break;
+			case 222: u.nastinator222 = 1; break;
+			case 223: u.nastinator223 = 1; break;
+			case 224: u.nastinator224 = 1; break;
+			case 225: u.nastinator225 = 1; break;
+			case 226: u.nastinator226 = 1; break;
+			case 227: u.nastinator227 = 1; break;
+			case 228: u.nastinator228 = 1; break;
+			case 229: u.nastinator229 = 1; break;
 
 		}
 
 		while (!rn2(3)) {
 
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: u.nastinator01 = 1; break;
 				case 2: u.nastinator02 = 1; break;
@@ -2564,6 +2624,66 @@ fukrosionchoice:
 			case 167: u.nastinator167 = 1; break;
 			case 168: u.nastinator168 = 1; break;
 			case 169: u.nastinator169 = 1; break;
+			case 170: u.nastinator170 = 1; break;
+			case 171: u.nastinator171 = 1; break;
+			case 172: u.nastinator172 = 1; break;
+			case 173: u.nastinator173 = 1; break;
+			case 174: u.nastinator174 = 1; break;
+			case 175: u.nastinator175 = 1; break;
+			case 176: u.nastinator176 = 1; break;
+			case 177: u.nastinator177 = 1; break;
+			case 178: u.nastinator178 = 1; break;
+			case 179: u.nastinator179 = 1; break;
+			case 180: u.nastinator180 = 1; break;
+			case 181: u.nastinator181 = 1; break;
+			case 182: u.nastinator182 = 1; break;
+			case 183: u.nastinator183 = 1; break;
+			case 184: u.nastinator184 = 1; break;
+			case 185: u.nastinator185 = 1; break;
+			case 186: u.nastinator186 = 1; break;
+			case 187: u.nastinator187 = 1; break;
+			case 188: u.nastinator188 = 1; break;
+			case 189: u.nastinator189 = 1; break;
+			case 190: u.nastinator190 = 1; break;
+			case 191: u.nastinator191 = 1; break;
+			case 192: u.nastinator192 = 1; break;
+			case 193: u.nastinator193 = 1; break;
+			case 194: u.nastinator194 = 1; break;
+			case 195: u.nastinator195 = 1; break;
+			case 196: u.nastinator196 = 1; break;
+			case 197: u.nastinator197 = 1; break;
+			case 198: u.nastinator198 = 1; break;
+			case 199: u.nastinator199 = 1; break;
+			case 200: u.nastinator200 = 1; break;
+			case 201: u.nastinator201 = 1; break;
+			case 202: u.nastinator202 = 1; break;
+			case 203: u.nastinator203 = 1; break;
+			case 204: u.nastinator204 = 1; break;
+			case 205: u.nastinator205 = 1; break;
+			case 206: u.nastinator206 = 1; break;
+			case 207: u.nastinator207 = 1; break;
+			case 208: u.nastinator208 = 1; break;
+			case 209: u.nastinator209 = 1; break;
+			case 210: u.nastinator210 = 1; break;
+			case 211: u.nastinator211 = 1; break;
+			case 212: u.nastinator212 = 1; break;
+			case 213: u.nastinator213 = 1; break;
+			case 214: u.nastinator214 = 1; break;
+			case 215: u.nastinator215 = 1; break;
+			case 216: u.nastinator216 = 1; break;
+			case 217: u.nastinator217 = 1; break;
+			case 218: u.nastinator218 = 1; break;
+			case 219: u.nastinator219 = 1; break;
+			case 220: u.nastinator220 = 1; break;
+			case 221: u.nastinator221 = 1; break;
+			case 222: u.nastinator222 = 1; break;
+			case 223: u.nastinator223 = 1; break;
+			case 224: u.nastinator224 = 1; break;
+			case 225: u.nastinator225 = 1; break;
+			case 226: u.nastinator226 = 1; break;
+			case 227: u.nastinator227 = 1; break;
+			case 228: u.nastinator228 = 1; break;
+			case 229: u.nastinator229 = 1; break;
 
 			}
 
@@ -2571,7 +2691,7 @@ fukrosionchoice:
 
 	if (isnastinator) {
 
-		switch (rnd(169)) {
+		switch (rnd(229)) {
 
 			case 1: u.nastinator01 = 1; break;
 			case 2: u.nastinator02 = 1; break;
@@ -2742,12 +2862,72 @@ fukrosionchoice:
 			case 167: u.nastinator167 = 1; break;
 			case 168: u.nastinator168 = 1; break;
 			case 169: u.nastinator169 = 1; break;
+			case 170: u.nastinator170 = 1; break;
+			case 171: u.nastinator171 = 1; break;
+			case 172: u.nastinator172 = 1; break;
+			case 173: u.nastinator173 = 1; break;
+			case 174: u.nastinator174 = 1; break;
+			case 175: u.nastinator175 = 1; break;
+			case 176: u.nastinator176 = 1; break;
+			case 177: u.nastinator177 = 1; break;
+			case 178: u.nastinator178 = 1; break;
+			case 179: u.nastinator179 = 1; break;
+			case 180: u.nastinator180 = 1; break;
+			case 181: u.nastinator181 = 1; break;
+			case 182: u.nastinator182 = 1; break;
+			case 183: u.nastinator183 = 1; break;
+			case 184: u.nastinator184 = 1; break;
+			case 185: u.nastinator185 = 1; break;
+			case 186: u.nastinator186 = 1; break;
+			case 187: u.nastinator187 = 1; break;
+			case 188: u.nastinator188 = 1; break;
+			case 189: u.nastinator189 = 1; break;
+			case 190: u.nastinator190 = 1; break;
+			case 191: u.nastinator191 = 1; break;
+			case 192: u.nastinator192 = 1; break;
+			case 193: u.nastinator193 = 1; break;
+			case 194: u.nastinator194 = 1; break;
+			case 195: u.nastinator195 = 1; break;
+			case 196: u.nastinator196 = 1; break;
+			case 197: u.nastinator197 = 1; break;
+			case 198: u.nastinator198 = 1; break;
+			case 199: u.nastinator199 = 1; break;
+			case 200: u.nastinator200 = 1; break;
+			case 201: u.nastinator201 = 1; break;
+			case 202: u.nastinator202 = 1; break;
+			case 203: u.nastinator203 = 1; break;
+			case 204: u.nastinator204 = 1; break;
+			case 205: u.nastinator205 = 1; break;
+			case 206: u.nastinator206 = 1; break;
+			case 207: u.nastinator207 = 1; break;
+			case 208: u.nastinator208 = 1; break;
+			case 209: u.nastinator209 = 1; break;
+			case 210: u.nastinator210 = 1; break;
+			case 211: u.nastinator211 = 1; break;
+			case 212: u.nastinator212 = 1; break;
+			case 213: u.nastinator213 = 1; break;
+			case 214: u.nastinator214 = 1; break;
+			case 215: u.nastinator215 = 1; break;
+			case 216: u.nastinator216 = 1; break;
+			case 217: u.nastinator217 = 1; break;
+			case 218: u.nastinator218 = 1; break;
+			case 219: u.nastinator219 = 1; break;
+			case 220: u.nastinator220 = 1; break;
+			case 221: u.nastinator221 = 1; break;
+			case 222: u.nastinator222 = 1; break;
+			case 223: u.nastinator223 = 1; break;
+			case 224: u.nastinator224 = 1; break;
+			case 225: u.nastinator225 = 1; break;
+			case 226: u.nastinator226 = 1; break;
+			case 227: u.nastinator227 = 1; break;
+			case 228: u.nastinator228 = 1; break;
+			case 229: u.nastinator229 = 1; break;
 
 		}
 
 		while ((rnd(7)) < 3) {
 
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: u.nastinator01 = 1; break;
 				case 2: u.nastinator02 = 1; break;
@@ -2918,6 +3098,66 @@ fukrosionchoice:
 			case 167: u.nastinator167 = 1; break;
 			case 168: u.nastinator168 = 1; break;
 			case 169: u.nastinator169 = 1; break;
+			case 170: u.nastinator170 = 1; break;
+			case 171: u.nastinator171 = 1; break;
+			case 172: u.nastinator172 = 1; break;
+			case 173: u.nastinator173 = 1; break;
+			case 174: u.nastinator174 = 1; break;
+			case 175: u.nastinator175 = 1; break;
+			case 176: u.nastinator176 = 1; break;
+			case 177: u.nastinator177 = 1; break;
+			case 178: u.nastinator178 = 1; break;
+			case 179: u.nastinator179 = 1; break;
+			case 180: u.nastinator180 = 1; break;
+			case 181: u.nastinator181 = 1; break;
+			case 182: u.nastinator182 = 1; break;
+			case 183: u.nastinator183 = 1; break;
+			case 184: u.nastinator184 = 1; break;
+			case 185: u.nastinator185 = 1; break;
+			case 186: u.nastinator186 = 1; break;
+			case 187: u.nastinator187 = 1; break;
+			case 188: u.nastinator188 = 1; break;
+			case 189: u.nastinator189 = 1; break;
+			case 190: u.nastinator190 = 1; break;
+			case 191: u.nastinator191 = 1; break;
+			case 192: u.nastinator192 = 1; break;
+			case 193: u.nastinator193 = 1; break;
+			case 194: u.nastinator194 = 1; break;
+			case 195: u.nastinator195 = 1; break;
+			case 196: u.nastinator196 = 1; break;
+			case 197: u.nastinator197 = 1; break;
+			case 198: u.nastinator198 = 1; break;
+			case 199: u.nastinator199 = 1; break;
+			case 200: u.nastinator200 = 1; break;
+			case 201: u.nastinator201 = 1; break;
+			case 202: u.nastinator202 = 1; break;
+			case 203: u.nastinator203 = 1; break;
+			case 204: u.nastinator204 = 1; break;
+			case 205: u.nastinator205 = 1; break;
+			case 206: u.nastinator206 = 1; break;
+			case 207: u.nastinator207 = 1; break;
+			case 208: u.nastinator208 = 1; break;
+			case 209: u.nastinator209 = 1; break;
+			case 210: u.nastinator210 = 1; break;
+			case 211: u.nastinator211 = 1; break;
+			case 212: u.nastinator212 = 1; break;
+			case 213: u.nastinator213 = 1; break;
+			case 214: u.nastinator214 = 1; break;
+			case 215: u.nastinator215 = 1; break;
+			case 216: u.nastinator216 = 1; break;
+			case 217: u.nastinator217 = 1; break;
+			case 218: u.nastinator218 = 1; break;
+			case 219: u.nastinator219 = 1; break;
+			case 220: u.nastinator220 = 1; break;
+			case 221: u.nastinator221 = 1; break;
+			case 222: u.nastinator222 = 1; break;
+			case 223: u.nastinator223 = 1; break;
+			case 224: u.nastinator224 = 1; break;
+			case 225: u.nastinator225 = 1; break;
+			case 226: u.nastinator226 = 1; break;
+			case 227: u.nastinator227 = 1; break;
+			case 228: u.nastinator228 = 1; break;
+			case 229: u.nastinator229 = 1; break;
 
 			}
 
@@ -3300,7 +3540,7 @@ newbossA:
 
 		if (!rn2(2000) && EvilPatchEffect) {
 			
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -3640,13 +3880,135 @@ newbossA:
 				    AutomoreBug |= FROMOUTSIDE; break;
 				case 169:
 				    UnfairAttackBug |= FROMOUTSIDE; break;
+				case 170:
+				    OrangeSpells |= FROMOUTSIDE; break;
+				case 171:
+				    VioletSpells |= FROMOUTSIDE; break;
+				case 172:
+				    LongingEffect |= FROMOUTSIDE; break;
+				case 173:
+				    CursedParts |= FROMOUTSIDE; break;
+				case 174:
+				    Quaversal |= FROMOUTSIDE; break;
+				case 175:
+				    AppearanceShuffling |= FROMOUTSIDE; break;
+				case 176:
+				    BrownSpells |= FROMOUTSIDE; break;
+				case 177:
+				    Choicelessness |= FROMOUTSIDE; break;
+				case 178:
+				    Goldspells |= FROMOUTSIDE; break;
+				case 179:
+				    Deprovement |= FROMOUTSIDE; break;
+				case 180:
+				    InitializationFail |= FROMOUTSIDE; break;
+				case 181:
+				    GushlushEffect |= FROMOUTSIDE; break;
+				case 182:
+				    SoiltypeEffect |= FROMOUTSIDE; break;
+				case 183:
+				    DangerousTerrains |= FROMOUTSIDE; break;
+				case 184:
+				    FalloutEffect |= FROMOUTSIDE; break;
+				case 185:
+				    MojibakeEffect |= FROMOUTSIDE; break;
+				case 186:
+				    GravationEffect |= FROMOUTSIDE; break;
+				case 187:
+				    UncalledEffect |= FROMOUTSIDE; break;
+				case 188:
+				    ExplodingDiceEffect |= FROMOUTSIDE; break;
+				case 189:
+				    PermacurseEffect |= FROMOUTSIDE; break;
+				case 190:
+				    ShroudedIdentity |= FROMOUTSIDE; break;
+				case 191:
+				    FeelerGauges |= FROMOUTSIDE; break;
+				case 192:
+				    LongScrewup |= FROMOUTSIDE; break;
+				case 193:
+				    WingYellowChange |= FROMOUTSIDE; break;
+				case 194:
+				    LifeSavingBug |= FROMOUTSIDE; break;
+				case 195:
+				    CurseuseEffect |= FROMOUTSIDE; break;
+				case 196:
+				    CutNutritionEffect |= FROMOUTSIDE; break;
+				case 197:
+				    SkillLossEffect |= FROMOUTSIDE; break;
+				case 198:
+				    AutopilotEffect |= FROMOUTSIDE; break;
+				case 199:
+				    MysteriousForceActive |= FROMOUTSIDE; break;
+				case 200:
+				    MonsterGlyphChange |= FROMOUTSIDE; break;
+				case 201:
+				    ChangingDirectives |= FROMOUTSIDE; break;
+				case 202:
+				    ContainerKaboom |= FROMOUTSIDE; break;
+				case 203:
+				    StealDegrading |= FROMOUTSIDE; break;
+				case 204:
+				    LeftInventoryBug |= FROMOUTSIDE; break;
+				case 205:
+				    FluctuatingSpeed |= FROMOUTSIDE; break;
+				case 206:
+				    TarmuStrokingNora |= FROMOUTSIDE; break;
+				case 207:
+				    FailureEffects |= FROMOUTSIDE; break;
+				case 208:
+				    BrightCyanSpells |= FROMOUTSIDE; break;
+				case 209:
+				    FrequentationSpawns |= FROMOUTSIDE; break;
+				case 210:
+				    PetAIScrewed |= FROMOUTSIDE; break;
+				case 211:
+				    SatanEffect |= FROMOUTSIDE; break;
+				case 212:
+				    RememberanceEffect |= FROMOUTSIDE; break;
+				case 213:
+				    PokelieEffect |= FROMOUTSIDE; break;
+				case 214:
+				    AlwaysAutopickup |= FROMOUTSIDE; break;
+				case 215:
+				    DywypiProblem |= FROMOUTSIDE; break;
+				case 216:
+				    SilverSpells |= FROMOUTSIDE; break;
+				case 217:
+				    MetalSpells |= FROMOUTSIDE; break;
+				case 218:
+				    PlatinumSpells |= FROMOUTSIDE; break;
+				case 219:
+				    ManlerEffect |= FROMOUTSIDE; break;
+				case 220:
+				    DoorningEffect |= FROMOUTSIDE; break;
+				case 221:
+				    NownsibleEffect |= FROMOUTSIDE; break;
+				case 222:
+				    ElmStreetEffect |= FROMOUTSIDE; break;
+				case 223:
+				    MonnoiseEffect |= FROMOUTSIDE; break;
+				case 224:
+				    RangCallEffect |= FROMOUTSIDE; break;
+				case 225:
+				    RecurringSpellLoss |= FROMOUTSIDE; break;
+				case 226:
+				    AntitrainingEffect |= FROMOUTSIDE; break;
+				case 227:
+				    TechoutBug |= FROMOUTSIDE; break;
+				case 228:
+				    StatDecay |= FROMOUTSIDE; break;
+				case 229:
+				    Movemork |= FROMOUTSIDE; break;
+
+
 			}
 
 		}
 
 		if (!rn2(2000) && uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) {
 			
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -3986,13 +4348,133 @@ newbossA:
 				    AutomoreBug |= FROMOUTSIDE; break;
 				case 169:
 				    UnfairAttackBug |= FROMOUTSIDE; break;
+				case 170:
+				    OrangeSpells |= FROMOUTSIDE; break;
+				case 171:
+				    VioletSpells |= FROMOUTSIDE; break;
+				case 172:
+				    LongingEffect |= FROMOUTSIDE; break;
+				case 173:
+				    CursedParts |= FROMOUTSIDE; break;
+				case 174:
+				    Quaversal |= FROMOUTSIDE; break;
+				case 175:
+				    AppearanceShuffling |= FROMOUTSIDE; break;
+				case 176:
+				    BrownSpells |= FROMOUTSIDE; break;
+				case 177:
+				    Choicelessness |= FROMOUTSIDE; break;
+				case 178:
+				    Goldspells |= FROMOUTSIDE; break;
+				case 179:
+				    Deprovement |= FROMOUTSIDE; break;
+				case 180:
+				    InitializationFail |= FROMOUTSIDE; break;
+				case 181:
+				    GushlushEffect |= FROMOUTSIDE; break;
+				case 182:
+				    SoiltypeEffect |= FROMOUTSIDE; break;
+				case 183:
+				    DangerousTerrains |= FROMOUTSIDE; break;
+				case 184:
+				    FalloutEffect |= FROMOUTSIDE; break;
+				case 185:
+				    MojibakeEffect |= FROMOUTSIDE; break;
+				case 186:
+				    GravationEffect |= FROMOUTSIDE; break;
+				case 187:
+				    UncalledEffect |= FROMOUTSIDE; break;
+				case 188:
+				    ExplodingDiceEffect |= FROMOUTSIDE; break;
+				case 189:
+				    PermacurseEffect |= FROMOUTSIDE; break;
+				case 190:
+				    ShroudedIdentity |= FROMOUTSIDE; break;
+				case 191:
+				    FeelerGauges |= FROMOUTSIDE; break;
+				case 192:
+				    LongScrewup |= FROMOUTSIDE; break;
+				case 193:
+				    WingYellowChange |= FROMOUTSIDE; break;
+				case 194:
+				    LifeSavingBug |= FROMOUTSIDE; break;
+				case 195:
+				    CurseuseEffect |= FROMOUTSIDE; break;
+				case 196:
+				    CutNutritionEffect |= FROMOUTSIDE; break;
+				case 197:
+				    SkillLossEffect |= FROMOUTSIDE; break;
+				case 198:
+				    AutopilotEffect |= FROMOUTSIDE; break;
+				case 199:
+				    MysteriousForceActive |= FROMOUTSIDE; break;
+				case 200:
+				    MonsterGlyphChange |= FROMOUTSIDE; break;
+				case 201:
+				    ChangingDirectives |= FROMOUTSIDE; break;
+				case 202:
+				    ContainerKaboom |= FROMOUTSIDE; break;
+				case 203:
+				    StealDegrading |= FROMOUTSIDE; break;
+				case 204:
+				    LeftInventoryBug |= FROMOUTSIDE; break;
+				case 205:
+				    FluctuatingSpeed |= FROMOUTSIDE; break;
+				case 206:
+				    TarmuStrokingNora |= FROMOUTSIDE; break;
+				case 207:
+				    FailureEffects |= FROMOUTSIDE; break;
+				case 208:
+				    BrightCyanSpells |= FROMOUTSIDE; break;
+				case 209:
+				    FrequentationSpawns |= FROMOUTSIDE; break;
+				case 210:
+				    PetAIScrewed |= FROMOUTSIDE; break;
+				case 211:
+				    SatanEffect |= FROMOUTSIDE; break;
+				case 212:
+				    RememberanceEffect |= FROMOUTSIDE; break;
+				case 213:
+				    PokelieEffect |= FROMOUTSIDE; break;
+				case 214:
+				    AlwaysAutopickup |= FROMOUTSIDE; break;
+				case 215:
+				    DywypiProblem |= FROMOUTSIDE; break;
+				case 216:
+				    SilverSpells |= FROMOUTSIDE; break;
+				case 217:
+				    MetalSpells |= FROMOUTSIDE; break;
+				case 218:
+				    PlatinumSpells |= FROMOUTSIDE; break;
+				case 219:
+				    ManlerEffect |= FROMOUTSIDE; break;
+				case 220:
+				    DoorningEffect |= FROMOUTSIDE; break;
+				case 221:
+				    NownsibleEffect |= FROMOUTSIDE; break;
+				case 222:
+				    ElmStreetEffect |= FROMOUTSIDE; break;
+				case 223:
+				    MonnoiseEffect |= FROMOUTSIDE; break;
+				case 224:
+				    RangCallEffect |= FROMOUTSIDE; break;
+				case 225:
+				    RecurringSpellLoss |= FROMOUTSIDE; break;
+				case 226:
+				    AntitrainingEffect |= FROMOUTSIDE; break;
+				case 227:
+				    TechoutBug |= FROMOUTSIDE; break;
+				case 228:
+				    StatDecay |= FROMOUTSIDE; break;
+				case 229:
+				    Movemork |= FROMOUTSIDE; break;
 			}
 
 		}
 
 		if (!rn2(2000) && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) {
 
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -4332,13 +4814,133 @@ newbossA:
 				    AutomoreBug |= FROMOUTSIDE; break;
 				case 169:
 				    UnfairAttackBug |= FROMOUTSIDE; break;
+				case 170:
+				    OrangeSpells |= FROMOUTSIDE; break;
+				case 171:
+				    VioletSpells |= FROMOUTSIDE; break;
+				case 172:
+				    LongingEffect |= FROMOUTSIDE; break;
+				case 173:
+				    CursedParts |= FROMOUTSIDE; break;
+				case 174:
+				    Quaversal |= FROMOUTSIDE; break;
+				case 175:
+				    AppearanceShuffling |= FROMOUTSIDE; break;
+				case 176:
+				    BrownSpells |= FROMOUTSIDE; break;
+				case 177:
+				    Choicelessness |= FROMOUTSIDE; break;
+				case 178:
+				    Goldspells |= FROMOUTSIDE; break;
+				case 179:
+				    Deprovement |= FROMOUTSIDE; break;
+				case 180:
+				    InitializationFail |= FROMOUTSIDE; break;
+				case 181:
+				    GushlushEffect |= FROMOUTSIDE; break;
+				case 182:
+				    SoiltypeEffect |= FROMOUTSIDE; break;
+				case 183:
+				    DangerousTerrains |= FROMOUTSIDE; break;
+				case 184:
+				    FalloutEffect |= FROMOUTSIDE; break;
+				case 185:
+				    MojibakeEffect |= FROMOUTSIDE; break;
+				case 186:
+				    GravationEffect |= FROMOUTSIDE; break;
+				case 187:
+				    UncalledEffect |= FROMOUTSIDE; break;
+				case 188:
+				    ExplodingDiceEffect |= FROMOUTSIDE; break;
+				case 189:
+				    PermacurseEffect |= FROMOUTSIDE; break;
+				case 190:
+				    ShroudedIdentity |= FROMOUTSIDE; break;
+				case 191:
+				    FeelerGauges |= FROMOUTSIDE; break;
+				case 192:
+				    LongScrewup |= FROMOUTSIDE; break;
+				case 193:
+				    WingYellowChange |= FROMOUTSIDE; break;
+				case 194:
+				    LifeSavingBug |= FROMOUTSIDE; break;
+				case 195:
+				    CurseuseEffect |= FROMOUTSIDE; break;
+				case 196:
+				    CutNutritionEffect |= FROMOUTSIDE; break;
+				case 197:
+				    SkillLossEffect |= FROMOUTSIDE; break;
+				case 198:
+				    AutopilotEffect |= FROMOUTSIDE; break;
+				case 199:
+				    MysteriousForceActive |= FROMOUTSIDE; break;
+				case 200:
+				    MonsterGlyphChange |= FROMOUTSIDE; break;
+				case 201:
+				    ChangingDirectives |= FROMOUTSIDE; break;
+				case 202:
+				    ContainerKaboom |= FROMOUTSIDE; break;
+				case 203:
+				    StealDegrading |= FROMOUTSIDE; break;
+				case 204:
+				    LeftInventoryBug |= FROMOUTSIDE; break;
+				case 205:
+				    FluctuatingSpeed |= FROMOUTSIDE; break;
+				case 206:
+				    TarmuStrokingNora |= FROMOUTSIDE; break;
+				case 207:
+				    FailureEffects |= FROMOUTSIDE; break;
+				case 208:
+				    BrightCyanSpells |= FROMOUTSIDE; break;
+				case 209:
+				    FrequentationSpawns |= FROMOUTSIDE; break;
+				case 210:
+				    PetAIScrewed |= FROMOUTSIDE; break;
+				case 211:
+				    SatanEffect |= FROMOUTSIDE; break;
+				case 212:
+				    RememberanceEffect |= FROMOUTSIDE; break;
+				case 213:
+				    PokelieEffect |= FROMOUTSIDE; break;
+				case 214:
+				    AlwaysAutopickup |= FROMOUTSIDE; break;
+				case 215:
+				    DywypiProblem |= FROMOUTSIDE; break;
+				case 216:
+				    SilverSpells |= FROMOUTSIDE; break;
+				case 217:
+				    MetalSpells |= FROMOUTSIDE; break;
+				case 218:
+				    PlatinumSpells |= FROMOUTSIDE; break;
+				case 219:
+				    ManlerEffect |= FROMOUTSIDE; break;
+				case 220:
+				    DoorningEffect |= FROMOUTSIDE; break;
+				case 221:
+				    NownsibleEffect |= FROMOUTSIDE; break;
+				case 222:
+				    ElmStreetEffect |= FROMOUTSIDE; break;
+				case 223:
+				    MonnoiseEffect |= FROMOUTSIDE; break;
+				case 224:
+				    RangCallEffect |= FROMOUTSIDE; break;
+				case 225:
+				    RecurringSpellLoss |= FROMOUTSIDE; break;
+				case 226:
+				    AntitrainingEffect |= FROMOUTSIDE; break;
+				case 227:
+				    TechoutBug |= FROMOUTSIDE; break;
+				case 228:
+				    StatDecay |= FROMOUTSIDE; break;
+				case 229:
+				    Movemork |= FROMOUTSIDE; break;
 			}
 
 		}
 
 		if (!rn2(2000) && u.uprops[EVIL_PATCH_EFFECT].extrinsic) {
 			
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -4678,13 +5280,133 @@ newbossA:
 				    AutomoreBug |= FROMOUTSIDE; break;
 				case 169:
 				    UnfairAttackBug |= FROMOUTSIDE; break;
+				case 170:
+				    OrangeSpells |= FROMOUTSIDE; break;
+				case 171:
+				    VioletSpells |= FROMOUTSIDE; break;
+				case 172:
+				    LongingEffect |= FROMOUTSIDE; break;
+				case 173:
+				    CursedParts |= FROMOUTSIDE; break;
+				case 174:
+				    Quaversal |= FROMOUTSIDE; break;
+				case 175:
+				    AppearanceShuffling |= FROMOUTSIDE; break;
+				case 176:
+				    BrownSpells |= FROMOUTSIDE; break;
+				case 177:
+				    Choicelessness |= FROMOUTSIDE; break;
+				case 178:
+				    Goldspells |= FROMOUTSIDE; break;
+				case 179:
+				    Deprovement |= FROMOUTSIDE; break;
+				case 180:
+				    InitializationFail |= FROMOUTSIDE; break;
+				case 181:
+				    GushlushEffect |= FROMOUTSIDE; break;
+				case 182:
+				    SoiltypeEffect |= FROMOUTSIDE; break;
+				case 183:
+				    DangerousTerrains |= FROMOUTSIDE; break;
+				case 184:
+				    FalloutEffect |= FROMOUTSIDE; break;
+				case 185:
+				    MojibakeEffect |= FROMOUTSIDE; break;
+				case 186:
+				    GravationEffect |= FROMOUTSIDE; break;
+				case 187:
+				    UncalledEffect |= FROMOUTSIDE; break;
+				case 188:
+				    ExplodingDiceEffect |= FROMOUTSIDE; break;
+				case 189:
+				    PermacurseEffect |= FROMOUTSIDE; break;
+				case 190:
+				    ShroudedIdentity |= FROMOUTSIDE; break;
+				case 191:
+				    FeelerGauges |= FROMOUTSIDE; break;
+				case 192:
+				    LongScrewup |= FROMOUTSIDE; break;
+				case 193:
+				    WingYellowChange |= FROMOUTSIDE; break;
+				case 194:
+				    LifeSavingBug |= FROMOUTSIDE; break;
+				case 195:
+				    CurseuseEffect |= FROMOUTSIDE; break;
+				case 196:
+				    CutNutritionEffect |= FROMOUTSIDE; break;
+				case 197:
+				    SkillLossEffect |= FROMOUTSIDE; break;
+				case 198:
+				    AutopilotEffect |= FROMOUTSIDE; break;
+				case 199:
+				    MysteriousForceActive |= FROMOUTSIDE; break;
+				case 200:
+				    MonsterGlyphChange |= FROMOUTSIDE; break;
+				case 201:
+				    ChangingDirectives |= FROMOUTSIDE; break;
+				case 202:
+				    ContainerKaboom |= FROMOUTSIDE; break;
+				case 203:
+				    StealDegrading |= FROMOUTSIDE; break;
+				case 204:
+				    LeftInventoryBug |= FROMOUTSIDE; break;
+				case 205:
+				    FluctuatingSpeed |= FROMOUTSIDE; break;
+				case 206:
+				    TarmuStrokingNora |= FROMOUTSIDE; break;
+				case 207:
+				    FailureEffects |= FROMOUTSIDE; break;
+				case 208:
+				    BrightCyanSpells |= FROMOUTSIDE; break;
+				case 209:
+				    FrequentationSpawns |= FROMOUTSIDE; break;
+				case 210:
+				    PetAIScrewed |= FROMOUTSIDE; break;
+				case 211:
+				    SatanEffect |= FROMOUTSIDE; break;
+				case 212:
+				    RememberanceEffect |= FROMOUTSIDE; break;
+				case 213:
+				    PokelieEffect |= FROMOUTSIDE; break;
+				case 214:
+				    AlwaysAutopickup |= FROMOUTSIDE; break;
+				case 215:
+				    DywypiProblem |= FROMOUTSIDE; break;
+				case 216:
+				    SilverSpells |= FROMOUTSIDE; break;
+				case 217:
+				    MetalSpells |= FROMOUTSIDE; break;
+				case 218:
+				    PlatinumSpells |= FROMOUTSIDE; break;
+				case 219:
+				    ManlerEffect |= FROMOUTSIDE; break;
+				case 220:
+				    DoorningEffect |= FROMOUTSIDE; break;
+				case 221:
+				    NownsibleEffect |= FROMOUTSIDE; break;
+				case 222:
+				    ElmStreetEffect |= FROMOUTSIDE; break;
+				case 223:
+				    MonnoiseEffect |= FROMOUTSIDE; break;
+				case 224:
+				    RangCallEffect |= FROMOUTSIDE; break;
+				case 225:
+				    RecurringSpellLoss |= FROMOUTSIDE; break;
+				case 226:
+				    AntitrainingEffect |= FROMOUTSIDE; break;
+				case 227:
+				    TechoutBug |= FROMOUTSIDE; break;
+				case 228:
+				    StatDecay |= FROMOUTSIDE; break;
+				case 229:
+				    Movemork |= FROMOUTSIDE; break;
 			}
 
 		}
 
 		if (!rn2(2000) && have_evilpatchstone()) {
 			
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -5024,6 +5746,126 @@ newbossA:
 				    AutomoreBug |= FROMOUTSIDE; break;
 				case 169:
 				    UnfairAttackBug |= FROMOUTSIDE; break;
+				case 170:
+				    OrangeSpells |= FROMOUTSIDE; break;
+				case 171:
+				    VioletSpells |= FROMOUTSIDE; break;
+				case 172:
+				    LongingEffect |= FROMOUTSIDE; break;
+				case 173:
+				    CursedParts |= FROMOUTSIDE; break;
+				case 174:
+				    Quaversal |= FROMOUTSIDE; break;
+				case 175:
+				    AppearanceShuffling |= FROMOUTSIDE; break;
+				case 176:
+				    BrownSpells |= FROMOUTSIDE; break;
+				case 177:
+				    Choicelessness |= FROMOUTSIDE; break;
+				case 178:
+				    Goldspells |= FROMOUTSIDE; break;
+				case 179:
+				    Deprovement |= FROMOUTSIDE; break;
+				case 180:
+				    InitializationFail |= FROMOUTSIDE; break;
+				case 181:
+				    GushlushEffect |= FROMOUTSIDE; break;
+				case 182:
+				    SoiltypeEffect |= FROMOUTSIDE; break;
+				case 183:
+				    DangerousTerrains |= FROMOUTSIDE; break;
+				case 184:
+				    FalloutEffect |= FROMOUTSIDE; break;
+				case 185:
+				    MojibakeEffect |= FROMOUTSIDE; break;
+				case 186:
+				    GravationEffect |= FROMOUTSIDE; break;
+				case 187:
+				    UncalledEffect |= FROMOUTSIDE; break;
+				case 188:
+				    ExplodingDiceEffect |= FROMOUTSIDE; break;
+				case 189:
+				    PermacurseEffect |= FROMOUTSIDE; break;
+				case 190:
+				    ShroudedIdentity |= FROMOUTSIDE; break;
+				case 191:
+				    FeelerGauges |= FROMOUTSIDE; break;
+				case 192:
+				    LongScrewup |= FROMOUTSIDE; break;
+				case 193:
+				    WingYellowChange |= FROMOUTSIDE; break;
+				case 194:
+				    LifeSavingBug |= FROMOUTSIDE; break;
+				case 195:
+				    CurseuseEffect |= FROMOUTSIDE; break;
+				case 196:
+				    CutNutritionEffect |= FROMOUTSIDE; break;
+				case 197:
+				    SkillLossEffect |= FROMOUTSIDE; break;
+				case 198:
+				    AutopilotEffect |= FROMOUTSIDE; break;
+				case 199:
+				    MysteriousForceActive |= FROMOUTSIDE; break;
+				case 200:
+				    MonsterGlyphChange |= FROMOUTSIDE; break;
+				case 201:
+				    ChangingDirectives |= FROMOUTSIDE; break;
+				case 202:
+				    ContainerKaboom |= FROMOUTSIDE; break;
+				case 203:
+				    StealDegrading |= FROMOUTSIDE; break;
+				case 204:
+				    LeftInventoryBug |= FROMOUTSIDE; break;
+				case 205:
+				    FluctuatingSpeed |= FROMOUTSIDE; break;
+				case 206:
+				    TarmuStrokingNora |= FROMOUTSIDE; break;
+				case 207:
+				    FailureEffects |= FROMOUTSIDE; break;
+				case 208:
+				    BrightCyanSpells |= FROMOUTSIDE; break;
+				case 209:
+				    FrequentationSpawns |= FROMOUTSIDE; break;
+				case 210:
+				    PetAIScrewed |= FROMOUTSIDE; break;
+				case 211:
+				    SatanEffect |= FROMOUTSIDE; break;
+				case 212:
+				    RememberanceEffect |= FROMOUTSIDE; break;
+				case 213:
+				    PokelieEffect |= FROMOUTSIDE; break;
+				case 214:
+				    AlwaysAutopickup |= FROMOUTSIDE; break;
+				case 215:
+				    DywypiProblem |= FROMOUTSIDE; break;
+				case 216:
+				    SilverSpells |= FROMOUTSIDE; break;
+				case 217:
+				    MetalSpells |= FROMOUTSIDE; break;
+				case 218:
+				    PlatinumSpells |= FROMOUTSIDE; break;
+				case 219:
+				    ManlerEffect |= FROMOUTSIDE; break;
+				case 220:
+				    DoorningEffect |= FROMOUTSIDE; break;
+				case 221:
+				    NownsibleEffect |= FROMOUTSIDE; break;
+				case 222:
+				    ElmStreetEffect |= FROMOUTSIDE; break;
+				case 223:
+				    MonnoiseEffect |= FROMOUTSIDE; break;
+				case 224:
+				    RangCallEffect |= FROMOUTSIDE; break;
+				case 225:
+				    RecurringSpellLoss |= FROMOUTSIDE; break;
+				case 226:
+				    AntitrainingEffect |= FROMOUTSIDE; break;
+				case 227:
+				    TechoutBug |= FROMOUTSIDE; break;
+				case 228:
+				    StatDecay |= FROMOUTSIDE; break;
+				case 229:
+				    Movemork |= FROMOUTSIDE; break;
 			}
 
 		}
