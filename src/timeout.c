@@ -1818,7 +1818,7 @@ nh_timeout()
 
 	    if(u.uluck > baseluck && (nostone || time_luck < 0 || !rn2(10) )) /* now luck will also time out if you do have a luckstone; it just times out more slowly --Amy */
 		u.uluck--;
-	    else if(u.uluck < baseluck && (nostone || time_luck > 0 || !rn2(10) ))
+	    else if(u.uluck < baseluck && (!isfriday || !rn2(2)) && (nostone || time_luck > 0 || !rn2(10) ))
 		u.uluck++;
 	}
 
