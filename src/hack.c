@@ -2181,6 +2181,13 @@ domove()
 				"You've fallen, and you can't get up." :
 				"You are still in a pit." );
 		    }
+
+			if (FemaleTrapNatalje) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
 		      traphere = t_at(u.ux,u.uy);
 		      if (u.utrap && traphere && traphere->ttyp == SHIT_PIT) {
 				pline("You splotch into a heap of dog shit!");
@@ -2246,14 +2253,21 @@ domove()
 			    drain_en(rnz(monster_difficulty() + 1));
 			}
 
-		} else if (u.utraptype == TT_LAVA) {
+		} else if (u.utraptype == TT_LAVA) { /* WHO THE HELL MADE THIS INTO A NOREP GAAAAAAH --Amy */
+
+			if (FemaleTrapNatalje) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
 		    if(flags.verbose) {
 			predicament = "stuck in the lava";
 			if (u.usteed)
-			    Norep("%s is %s.", upstart(y_monnam(u.usteed)),
+			    pline("%s is %s.", upstart(y_monnam(u.usteed)),
 				  predicament);
 			else
-			Norep("You are %s.", predicament);
+			pline("You are %s.", predicament);
 		    }
 		    if(!is_lava(x,y)) {
 			u.utrap--;
@@ -2273,6 +2287,13 @@ domove()
 			pline("Sting cuts through the web!");
 			return;
 		    }
+
+			if (FemaleTrapNatalje) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
 		    if(--u.utrap) {
 			if(flags.verbose) {
 			    predicament = "stuck to the web";
@@ -2290,6 +2311,13 @@ domove()
 			You("disentangle yourself.");
 		    }
 		} else if (u.utraptype == TT_GLUE) {
+
+			if (FemaleTrapNatalje) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
 		    if(--u.utrap) {
 			if(flags.verbose) {
 			    predicament = "held in place by the glue";
@@ -2307,6 +2335,13 @@ domove()
 			You("finally get the sticky glue off.");
 		    }
 		} else if (u.utraptype == TT_INFLOOR) {
+
+			if (FemaleTrapNatalje) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
 		    if(--u.utrap) {
 			if(flags.verbose) {
 			    predicament = "stuck in the";
@@ -2326,6 +2361,13 @@ domove()
 			You("finally wiggle free.");
 		    }
 		} else {
+
+			if (FemaleTrapNatalje) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
 		    if(flags.verbose) {
 			predicament = "caught in a bear trap";
 			if (u.usteed)

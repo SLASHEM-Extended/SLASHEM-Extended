@@ -2020,6 +2020,8 @@ trapsdone:
 				u.nataljetrapy = u.uy;
 				pline("Oh no! You were standing still for too long, and are horribly scarred by a bunch of female painted asian toenails. Your sexy high heels are also damaged.");
 
+				stop_occupation();
+
 				if (ABASE(A_CHA) > 3) (void) adjattrib(A_CHA, -1, TRUE);
 				else {
 				    if (Upolyd) {
