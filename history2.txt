@@ -1,6 +1,17 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.3.7 - October 2018
+- Added a new playable hybrid race: extravator.
+
 2.3.6 - October 2018
+- Shoe race players can ride other shoes, even when they're not tame.
+- Added a new directive that players can use with sufficient riding skill.
+- Some effects that were supposed to be able to dig out rock walls couldn't do so, this has been corrected.
+- Each role and race now has "natural limits" for their attributes. Trying to increase a base stat beyond the limit has a chance of failure depending on how far over the limit you're trying to go.
+- Fake artifacts can no longer be stacked with regular items or other fake artifacts.
+- Eating a hidden cockatrice corpse now does something.
+- The Gauntlet Key is indestructible now.
+- Made the effects of the natalje trap less harsh.
 - Thrones and other skill-unlocking effects can also unlock bare-handed combat and martial arts now.
 - Bad effects once again don't unconditionally interrupt the player, but the logic that determines when to interrupt the player has been improved.
 - Quaffing from fountains/sinks, or quaffing a potion of fruit juice, gives more nutrition. Clockwork automatons get more nutrition when quaffing potions of oil.
