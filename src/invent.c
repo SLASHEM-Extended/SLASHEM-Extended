@@ -5903,6 +5903,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	if (obj->oxlth || otmp->oxlth) return FALSE;
 
 	if(obj->oartifact != otmp->oartifact) return FALSE;
+	if(obj->fakeartifact != otmp->fakeartifact) return FALSE;
 
 	if(obj->known == otmp->known || (otmp->known) ||
 		!objects[otmp->otyp].oc_uses_known) {
