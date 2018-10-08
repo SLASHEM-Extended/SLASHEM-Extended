@@ -2593,6 +2593,7 @@ register int pm;
 	    case PM_PAIN_MASTER:
 	    case PM_PAIN_MISTER:
 	    case PM_COCKTAUR:
+	    case PM_HIDDEN_COCKATRICE:
 	    case PM_MIMIC_CHICKEN:
 	    case PM_PETRO_MIMIC:
 	    case PM_PETRO_PERMAMIMIC:
