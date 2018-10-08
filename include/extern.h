@@ -126,6 +126,7 @@ E void adjalign(int);
 /* KMH, balance patch -- new function */
 E void recalc_health(void);
 E int recalc_mana(void);
+E boolean attr_will_go_up(int, BOOLEAN_P);
 
 /* ### ball.c ### */
 

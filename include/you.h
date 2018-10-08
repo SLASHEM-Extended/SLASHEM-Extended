@@ -121,6 +121,7 @@ struct Role {
 	/*** Attributes (from attrib.c and exper.c) ***/
 	xchar attrbase[A_MAX];	/* lowest initial attributes */
 	xchar attrdist[A_MAX];	/* distribution of initial attributes */
+	xchar attrlimt[A_MAX];	/* going over the limit is hard --Amy */
 	struct RoleAdvance hpadv; /* hit point advancement */
 	struct RoleAdvance enadv; /* energy advancement */
 	xchar xlev;		/* cutoff experience level */
@@ -185,6 +186,7 @@ struct Race {
 	/*** Attributes ***/
 	xchar attrmin[A_MAX];	/* minimum allowable attribute */
 	xchar attrmax[A_MAX];	/* maximum allowable attribute */
+	xchar attrtrs[A_MAX];	/* going over the limit is hard --Amy */
 	struct RoleAdvance hpadv; /* hit point advancement */
 	struct RoleAdvance enadv; /* energy advancement */
 #if 0	/* DEFERRED */
