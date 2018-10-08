@@ -2039,6 +2039,7 @@ boolean invobj;
 		   obj->otyp == CANDELABRUM_OF_INVOCATION ||
 		   obj->otyp == BELL_OF_OPENING ||
 		   obj->oartifact == ART_KEY_OF_LAW ||
+		   obj->oartifact == ART_GAUNTLET_KEY ||
 		   obj->oartifact == ART_KEY_OF_NEUTRALITY ||
 		   obj->oartifact == ART_KEY_OF_CHAOS ||
 		   obj->otyp == SPE_BOOK_OF_THE_DEAD) {

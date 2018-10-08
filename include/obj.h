@@ -157,6 +157,7 @@ struct obj {
 			(otmp)->otyp == CANDELABRUM_OF_INVOCATION || \
 			(otmp)->otyp == BELL_OF_OPENING || \
 			(otmp)->otyp == SPE_BOOK_OF_THE_DEAD || \
+			(otmp)->oartifact == ART_GAUNTLET_KEY || \
 			(otmp)->oartifact == ART_KEY_OF_LAW || \
 			(otmp)->oartifact == ART_KEY_OF_NEUTRALITY || \
 			(otmp)->oartifact == ART_KEY_OF_CHAOS)
