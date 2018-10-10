@@ -556,7 +556,9 @@
 #define STAT_DECAY 511
 #define MOVEMORKING 512
 
-#define SECOND_CHANCE		513
+#define FEMTRAP_MELTEM 513
+
+#define SECOND_CHANCE		514
 #define LAST_PROP		(SECOND_CHANCE)
 
 /*** Where the properties come from ***/

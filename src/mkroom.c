@@ -1100,7 +1100,7 @@ struct mkroom *sroom;
 			    (void) mksobj_at(STATUE, sx, sy, TRUE, FALSE);
 
 			if(!rn2(10) && !t_at(sx, sy))
-				(void) maketrap(sx, sy, STATUE_TRAP, 100);
+				(void) maketrap(sx, sy, rn2(50) ? STATUE_TRAP : SATATUE_TRAP, 100);
 
 			if(!rn2(10)) {
 				struct obj *enchantedgear;

@@ -13302,7 +13302,7 @@ selecttrap:
 			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case CATACLYSM_TRAP:
-			if (rn2(evilfriday ? 50 : 1000) && !NastyTrapNation) goto selecttrap;
+			if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case DATA_DELETE_TRAP:
 			if (rn2(evilfriday ? 1000 : 10000)) goto selecttrap;

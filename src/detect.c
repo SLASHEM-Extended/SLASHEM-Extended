@@ -1399,7 +1399,7 @@ void * num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if ((ttmp = t_at(zx, zy)) != 0) {
-		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP) {
+		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP && ttmp->ttyp != SATATUE_TRAP) {
 			ttmp->tseen = 1;
 			newsym(zx,zy);
 			(*(int*)num)++;
@@ -1451,7 +1451,7 @@ void * num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if (!rn2(3) && (ttmp = t_at(zx, zy)) != 0) {
-		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP) {
+		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP && ttmp->ttyp != SATATUE_TRAP) {
 			ttmp->tseen = 1;
 			newsym(zx,zy);
 			(*(int*)num)++;
@@ -1518,7 +1518,7 @@ void * num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if ((ttmp = t_at(zx, zy)) != 0) {
-		if (!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP) {
+		if (!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP && ttmp->ttyp != SATATUE_TRAP) {
 		    ttmp->tseen = 1;
 		    newsym(zx,zy);
 		    (*(int*)num)++;
@@ -1749,7 +1749,7 @@ register int aflag;
 			if ((trap = t_at(x,y)) && !trap->tseen && !trap->hiddentrap && (trap->trapdiff < rn2(100 + trapdiffbonus) ) && (!isfriday || (trap->trapdiff < rn2(100 + trapdiffbonus)) ) && (trap->trapdiff < rn2(100 + trapdiffbonus + trapdiffbonus) ) && (!rnl(8-fund) || !rn2(fundxtrachange) || (!rn2(fundxtrachange) && !rn2(2)) ) ) {
 			    nomul(0, 0, FALSE);
 
-			    if (trap->ttyp == STATUE_TRAP) {
+			    if (trap->ttyp == STATUE_TRAP || trap->ttyp == SATATUE_TRAP) {
  				mtmp = activate_statue_trap(trap, x, y, FALSE);
  				if (mtmp != (struct monst *)0) {
 				    exercise(A_WIS, TRUE);

@@ -494,6 +494,7 @@
 #define FemaleTrapJeanetta	u.uprops[FEMTRAP_JEANETTA].intrinsic
 #define FemaleTrapYvonne	u.uprops[FEMTRAP_YVONNE].intrinsic
 #define FemaleTrapMaurah	u.uprops[FEMTRAP_MAURAH].intrinsic
+#define FemaleTrapMeltem	u.uprops[FEMTRAP_MELTEM].intrinsic
 
 #define RngeIrregularity		(u.uprops[RNGE_IRREGULARITY].intrinsic || u.uprops[RNGE_IRREGULARITY].extrinsic)
 #define RngeInternetAccess		(u.uprops[RNGE_INTERNET_ACCESS].intrinsic || u.uprops[RNGE_INTERNET_ACCESS].extrinsic)

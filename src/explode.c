@@ -772,7 +772,7 @@ struct obj *obj;			/* only scatter this obj        */
 		} else {
 		    struct trap *trap;
 
-		    if ((trap = t_at(sx,sy)) && trap->ttyp == STATUE_TRAP)
+		    if ((trap = t_at(sx,sy)) && (trap->ttyp == STATUE_TRAP || trap->ttyp == SATATUE_TRAP))
 			    deltrap(trap);
 		    pline("%s.", Tobjnam(otmp, "crumble"));
 		    (void) break_statue(otmp);

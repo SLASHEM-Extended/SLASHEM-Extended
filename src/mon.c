@@ -3788,6 +3788,8 @@ register struct monst *mtmp;
 					rtrap = rnd(TRAPNUM-1);
 					if (rtrap == MAGIC_PORTAL) rtrap = ROCKTRAP;
 					if (rtrap == WISHING_TRAP) rtrap = BLINDNESS_TRAP;
+					if (rtrap == ELDER_TENTACLING_TRAP) rtrap = FIRE_TRAP;
+					if (rtrap == DATA_DELETE_TRAP) rtrap = RUST_TRAP;
 					if (rtrap == ARTIFACT_JACKPOT_TRAP) rtrap = MAGIC_TRAP;
 					if (rtrap == GOOD_ARTIFACT_TRAP) rtrap = WEB;
 					if (rtrap == BOON_TRAP) rtrap = MAGIC_BEAM_TRAP;

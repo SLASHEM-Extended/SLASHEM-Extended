@@ -3262,7 +3262,7 @@ bhitpile(obj,fhito,tx,ty)
 	   because that last call might end up operating on our `next_obj'
 	   (below), rather than on the current object, if it happens to
 	   encounter a statue which mustn't become animated. */
-	if (t && t->ttyp == STATUE_TRAP &&
+	if (t && (t->ttyp == STATUE_TRAP || t->ttyp == SATATUE_TRAP) &&
 	    activate_statue_trap(t, tx, ty, TRUE) && obj->otyp == WAN_STRIKING)
 	    makeknown(obj->otyp);
     }
@@ -8901,7 +8901,7 @@ register struct obj *obj;
 	struct trap *trap = t_at(obj->ox, obj->oy);
 	struct obj *item;
 
-	if (trap && trap->ttyp == STATUE_TRAP &&
+	if (trap && (trap->ttyp == STATUE_TRAP || trap->ttyp == SATATUE_TRAP) &&
 		activate_statue_trap(trap, obj->ox, obj->oy, TRUE))
 	    return FALSE;
 	/* drop any objects contained inside the statue */

@@ -1142,6 +1142,9 @@ struct you {
 
 	int steedhitchance;	/* default 25%, can be changed via directive */
 
+	int footererlevel;
+
+	int ragnaroktimer;
 
 };	/* end of `struct you' */
 

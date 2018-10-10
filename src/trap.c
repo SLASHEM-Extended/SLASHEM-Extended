@@ -1150,6 +1150,8 @@ register int x, y, typ, replacechance;
 		typ = u.frequenttrap;
 		if (typ == MAGIC_PORTAL) typ = ROCKTRAP;
 		if (typ == WISHING_TRAP) typ = BLINDNESS_TRAP;
+		if (typ == ELDER_TENTACLING_TRAP) typ = FIRE_TRAP;
+		if (typ == DATA_DELETE_TRAP) typ = RUST_TRAP;
 		if (typ == ARTIFACT_JACKPOT_TRAP) typ = MAGIC_TRAP;
 		if (typ == GOOD_ARTIFACT_TRAP) typ = WEB;
 		if (typ == BOON_TRAP) typ = MAGIC_BEAM_TRAP;
@@ -1163,7 +1165,7 @@ register int x, y, typ, replacechance;
 		
 	} else if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && !rn2(u.traprandomizing)) {
 		typ = rnd(TRAPNUM-1);
-		while (typ == MAGIC_PORTAL || typ == ACTIVE_SUPERSCROLLER_TRAP || typ == WISHING_TRAP || typ == ARTIFACT_JACKPOT_TRAP || typ == GOOD_ARTIFACT_TRAP || typ == BOON_TRAP) typ = rnd(TRAPNUM-1);
+		while (typ == MAGIC_PORTAL || typ == ACTIVE_SUPERSCROLLER_TRAP || typ == WISHING_TRAP || typ == DATA_DELETE_TRAP || typ == ELDER_TENTACLING_TRAP || typ == ARTIFACT_JACKPOT_TRAP || typ == GOOD_ARTIFACT_TRAP || typ == BOON_TRAP) typ = rnd(TRAPNUM-1);
 	}
 
 	if ((ttmp = t_at(x,y)) != 0) {
@@ -1171,7 +1173,7 @@ register int x, y, typ, replacechance;
 	    oldplace = TRUE;
 	    if (u.utrap && (x == u.ux) && (y == u.uy) &&
 	      ((u.utraptype == TT_BEARTRAP && typ != BEAR_TRAP && typ != LEG_TRAP) ||
-	      (u.utraptype == TT_WEB && typ != WEB) ||
+	      (u.utraptype == TT_WEB && typ != WEB && typ != FARTING_WEB) ||
 	      (u.utraptype == TT_PIT && typ != PIT && typ != SPIKED_PIT && typ != GIANT_CHASM && typ != SHIT_PIT && typ != MANA_PIT && typ != ANOXIC_PIT && typ != ACID_PIT)))
 		    u.utrap = 0;
 	} else {
@@ -1240,6 +1242,66 @@ register int x, y, typ, replacechance;
 		break;
 	      }
 
+	    case SATATUE_TRAP:	    /* inspired by ais523: more dangerous monster for the statue trap */
+	      { struct monst *mtmp;
+		struct obj *otmp, *statue;
+		int sessileattempts;
+		int sessilemnum;
+
+		u.aggravation = 1;
+		if (!rn2(2)) u.heavyaggravation = 1;
+		reset_rndmonst(NON_PM);
+
+		statue = mkcorpstat(STATUE, (struct monst *)0,
+					&mons[rndmonnum()], x, y, FALSE);
+		mtmp = makemon(&mons[statue->corpsenm], 0, 0, NO_MM_FLAGS);
+		if (!mtmp) break; /* should never happen */
+		while(mtmp->minvent) {
+		    otmp = mtmp->minvent;
+		    otmp->owornmask = 0;
+		    obj_extract_self(otmp);
+		    (void) add_to_container(statue, otmp);
+		}
+		statue->owt = weight(statue);
+		if (!rn2(5)) statue->oinvis = 1; /* player needs see invisible to detect this thing --Amy */
+		if (!rn2(500)) {statue->oinvis = 1; statue->oinvisreal = 1;} /* not detectable at all */
+
+	/* "Stop Fungi/Objects from hiding statue traps. It's a bit of a balance issue and created clutter, and had a good chance of spawning out of depth monsters." In Soviet Russia, people want to be able to see that statue of a slimy vortex in advance. They don't like games being difficult, and they don't want any nasty surprises, so they make sure that statue traps are never obscured by anything. I wonder if the next thing they'll do is to remove all the other traps because you can't see them in advance, or even make sure all of them are visible before you trigger them, too? Completely missing the point of traps, but oh well... --Amy */
+
+		else if (!rn2(10) && !issoviet) (void) mkobj_at(COIN_CLASS, x, y, TRUE); /* hidden underneath a zorkmid */
+		else if (!rn2(10) && !issoviet) (void) mksobj_at(BOULDER, x, y, TRUE, FALSE); /* hidden underneath a boulder */
+		else if (!rn2(10) && !issoviet) (void) mkobj_at(timebasedlowerchance() ? 0 : COIN_CLASS, x, y, TRUE); /* hidden underneath a random item */
+		else if (!rn2(12) && !issoviet) (void) makemon( mkclass(S_MIMIC,0), x, y, NO_MM_FLAGS); /* hidden beneath a mimic */
+		else if (!rn2(7) && !issoviet) {
+				for (sessileattempts = 0; sessileattempts < 20; sessileattempts++) {
+					sessilemnum = pm_mkclass(S_FUNGUS, 0);
+					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 20;
+					}
+		if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], x, y, NO_MM_FLAGS); /* hidden beneath a fungus */
+		}
+		else if (!rn2(10) && !issoviet) {
+				for (sessileattempts = 0; sessileattempts < 10; sessileattempts++) {
+					sessilemnum = pm_mkclass(S_JELLY, 0);
+					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 10;
+					}
+		if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], x, y, NO_MM_FLAGS); /* hidden beneath a jelly */
+		}
+		else if (!rn2(15) && !issoviet) {
+				for (sessileattempts = 0; sessileattempts < 100; sessileattempts++) {
+					sessilemnum = rndmonnum();
+					if (sessilemnum != -1 && is_nonmoving(&mons[sessilemnum]) ) sessileattempts = 100;
+					}
+		if (sessilemnum != -1) (void) makemon( &mons[sessilemnum], x, y, NO_MM_FLAGS); /* hidden beneath a monster */
+		}
+
+		mongone(mtmp);
+
+		u.aggravation = 0;
+		u.heavyaggravation = 0;
+
+		break;
+	      }
+
 	    case HEEL_TRAP:
 		{
 
@@ -1249,6 +1311,7 @@ register int x, y, typ, replacechance;
 	      }
 
 	    case FART_TRAP:
+	    case FARTING_WEB:
 		{
 
 		ttmp->launch_otyp = rn2(SIZE(farttrapnames));
@@ -8768,67 +8831,251 @@ madnesseffect:
 
 		 case HYBRID_TRAP:
 
-			pline("Under construction.");
+			pline("CLICK! You have triggered a trap!");
+			deltrap(trap);
+			changehybridization(0); /* random, either give or remove one */
 
 		 break;
 
 		 case SHAPECHANGE_TRAP:
 
-			pline("Under construction.");
+			{
+			coord cc;
+
+			pline("You stepped on a trigger!");
+			deltrap(trap);
+
+			randsp = rnd(9);
+
+			monstercolor = 342; /* M4_SHAPESHIFT */
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(monstercolor), 0, 0, NO_MM_FLAGS);
+			}
+
+			pline("Something seems to be changing shape.");
+
+			u.aggravation = 0;
+
+			}
 
 		 break;
 
 		 case MELTEM_TRAP:
 
-			pline("Under construction.");
+			if (FemaleTrapMeltem) break;
+			seetrap(trap);
+
+			pline("Whoops... you seem to have stumbled into a trap that was set by Meltem.");
+			pline("All the girls want to use their sexy butt cheeks as weapons now!");
+
+			FemaleTrapMeltem = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapMeltem += 100;
+			if (!rn2(3)) FemaleTrapMeltem += rnz(500);
 
 		 break;
 
 		 case MIGUC_TRAP:
+			/* evil patch idea, inspired by ais523 IIRC? spawn monster and paralyze player --Amy */
 
-			pline("Under construction.");
+			pline("Oh no, you stepped on a miguc trap!");
+			seetrap(trap);
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			(void) makemon((struct permonst *) 0, u.ux, u.uy, NO_MM_FLAGS);
+			nomul(-(rnz(5) ), "paralyzed by a miguc trap", TRUE);
+
+			u.aggravation = 0;
 
 		 break;
 
 		 case DIRECTIVE_TRAP:
 
-			pline("Under construction.");
+			pline("You stepped on a trigger!");
+			deltrap(trap);
+
+			switch (rnd(5)) {
+
+				case 1:
+					if (u.petcollectitems) {
+						u.petcollectitems = 0;
+						pline("Your pets can no longer pick up items.");
+					} else {
+						u.petcollectitems = 1;
+						pline("Your pets can pick up items now.");
+					}
+					break;
+				case 2:
+					if (u.petattackenemies) {
+						u.petattackenemies = 0;
+						pline("Your pets can no longer attack monsters.");
+					} else {
+						u.petattackenemies = 1;
+						pline("Your pets can attack monsters now.");
+					}
+					break;
+				case 3:
+					if (u.petcaneat) {
+						u.petcaneat = 0;
+						pline("Your pets can no longer eat food off the ground.");
+					} else {
+						u.petcaneat = 1;
+						pline("Your pets can eat food off the ground now.");
+					}
+					break;
+				case 4:
+					if (u.petcanfollow) {
+						u.petcanfollow = 0;
+						pline("Your pets can no longer try to follow you.");
+					} else {
+						u.petcanfollow = 1;
+						pline("Your pets can try to follow you now.");
+					}
+					break;
+				case 5:
+					u.steedhitchance = rn2(101);
+					pline("The chance that attacks target your steed is %d%% now.", u.steedhitchance);
+					break;
+
+			}
 
 		 break;
 
 		 case SATATUE_TRAP:
 
-			pline("Under construction.");
+			activate_statue_trap(trap, u.ux, u.uy, FALSE);
 
 		 break;
 
 		 case FARTING_WEB:
 
-			pline("Under construction.");
+		seetrap(trap);
+		if (amorphous(youmonst.data) || is_whirly(youmonst.data) ||
+				unsolid(youmonst.data) || acidic(youmonst.data) || u.umonnum == PM_GELATINOUS_CUBE ||
+			u.umonnum == PM_FIRE_ELEMENTAL) { /* bugfix --Amy */
+		    if (acidic(youmonst.data) || u.umonnum == PM_GELATINOUS_CUBE ||
+			u.umonnum == PM_FIRE_ELEMENTAL) {
+			if (webmsgok)
+			    You("%s %s farting web!",
+				(u.umonnum == PM_FIRE_ELEMENTAL) ? "burn" : "dissolve",
+				a_your[trap->madeby_u]);
+			deltrap(trap);
+			newsym(u.ux,u.uy);
+			break;
+		    }
+		    if (webmsgok) You("flow through %s farting web.",
+			    a_your[trap->madeby_u]);
+		    break;
+		}
+		if (webmaker(youmonst.data) || Race_if(PM_SPIDERMAN) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "spider boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "pauk sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "o'rgimchak chizilmasin") ) ) ) {
+		    if (webmsgok)
+		    	pline(trap->madeby_u ? "You take a walk on your web."
+					 : "There is a farting web here.");
+		    break;
+		}
+		if (webmsgok) {
+		   char verbbuf[BUFSZ];
+		   verbbuf[0] = '\0';
+		   if (u.usteed)
+		   	sprintf(verbbuf,"lead %s",
+				x_monnam(u.usteed,
+					 u.usteed->mnamelth ? ARTICLE_NONE : ARTICLE_THE,
+				 	 "poor", SUPPRESS_SADDLE, FALSE));
+		   else
+			
+		    sprintf(verbbuf, "%s", Levitation ? (const char *)"float" :
+		      		locomotion(youmonst.data, "stumble"));
+		    You("%s into %s farting web!",
+			verbbuf, a_your[trap->madeby_u]);
+
+			pline("The web was apparently set by %s, who can now freely fart into your face.", farttrapnames[trap->launch_otyp]);
+		}
+		u.utraptype = TT_WEB;
+
+		/* Time stuck in the web depends on your/steed strength.
+		 * Amy note: unlike regular webs, this one still traps you, not the steed */
+
+		{
+		    register int str = ACURR(A_STR);
+
+		    if (str <= 3) u.utrap = rn1(6,6);
+		    else if (str < 6) u.utrap = rn1(6,4);
+		    else if (str < 9) u.utrap = rn1(4,4);
+		    else if (str < 12) u.utrap = rn1(4,2);
+		    else if (str < 15) u.utrap = rn1(2,2);
+		    else if (str < 18) u.utrap = rnd(2);
+		    else if (str < 69) u.utrap = 1;
+		    else {
+			u.utrap = 0;
+			if (webmsgok)
+				You("tear through %s farting web!", a_your[trap->madeby_u]);
+			deltrap(trap);
+			newsym(u.ux,u.uy);	/* get rid of trap symbol */
+		    }
+		}
 
 		 break;
 
 		 case CATACLYSM_TRAP:
 
-			pline("Under construction.");
+			if (u.ragnaroktimer) break; /* don't reveal or do anything for that matter */
+
+			pline("CLICK! You have triggered a trap!");
+			deltrap(trap);
+			u.ragnaroktimer = rnz(100000);
+			pline("Ragnarok is drawing near...");
 
 		 break;
 
 		 case DATA_DELETE_TRAP:
 
-			pline("Under construction.");
+			pline("CLICK! You have triggered a trap!");
+			deltrap(trap);
+			datadeleteattack();
 
 		 break;
 
 		 case ELDER_TENTACLING_TRAP:
 
-			pline("Under construction.");
+			{
+			register struct monst *elderpriest;
+
+			pline("CLICK! You have triggered a trap!");
+			deltrap(trap);
+
+			if (elderpriest = makemon(&mons[PM_DNETHACK_ELDER_PRIEST_TM_], u.ux, u.uy, MM_ANGRY)) {
+				pline("The most dangerous monster in existence was just generated next to you, which means you're in big trouble.");
+			} else {
+				pline("You feel an immense sense of relief as you realize that the trap must have failed to trigger.");
+			}
+
+			}
 
 		 break;
 
 		 case FOOTERER_TRAP:
 
-			pline("Under construction.");
+			if (u.footererlevel) break; /* don't reveal or do anything for that matter */
+
+			pline("CLICK! You have triggered a trap!");
+			deltrap(trap);
+
+			u.footererlevel = rnd(100);
+			while (u.footererlevel == depth(&u.uz)) u.footererlevel = rnd(100);
+
+			pline("The footerers are waiting for you on some level...");
 
 		 break;
 
@@ -13651,6 +13898,7 @@ long hmask, emask;     /* might cancel timeout */
 	if(trap)
 		switch(trap->ttyp) {
 		case STATUE_TRAP:
+		case SATATUE_TRAP:
 			break;
 		case HOLE:
 		case TRAPDOOR:
@@ -15109,7 +15357,7 @@ struct trap *ttmp;
 	int chance = 3;
 
 	/* Only spiders know how to deal with webs reliably */
-	if (ttmp->ttyp == WEB && !webmaker(youmonst.data) && !Race_if(PM_SPIDERMAN) )
+	if ((ttmp->ttyp == WEB || ttmp->ttyp == FARTING_WEB) && !webmaker(youmonst.data) && !Race_if(PM_SPIDERMAN) )
 	 	chance = 30;
 	if (ttmp->ttyp == ACTIVE_SUPERSCROLLER_TRAP) chance = 20;
 	if (ttmp->ttyp == HEEL_TRAP) chance = 10;
@@ -15203,7 +15451,7 @@ boolean force_failure;
 	struct monst *mtmp = m_at(ttmp->tx,ttmp->ty);
 	int ttype = ttmp->ttyp;
 	boolean under_u = (!u.dx && !u.dy);
-	boolean holdingtrap = (ttype == BEAR_TRAP || ttype == WEB);
+	boolean holdingtrap = (ttype == BEAR_TRAP || ttype == WEB || ttype == FARTING_WEB);
 
 	if (tech_inuse(T_TELEKINESIS) && !force_failure)
 		return 2;
@@ -15250,7 +15498,7 @@ boolean force_failure;
 			if (ttype == BEAR_TRAP) {
 			    if (mtmp->mtame) abuse_dog(mtmp);
 			    if ((mtmp->mhp -= rnd(4)) <= 0) killed(mtmp);
-			} else if (ttype == WEB) {
+			} else if (ttype == WEB || ttype == FARTING_WEB) {
 			    if (!webmaker(youmonst.data)) {
 				struct trap *ttmp2 = maketrap(u.ux, u.uy, WEB, 0);
 				if (ttmp2) {
@@ -15898,6 +16146,7 @@ boolean force;
 		switch(ttmp->ttyp) {
 			case BEAR_TRAP:
 			case WEB:
+			case FARTING_WEB:
 				return disarm_holdingtrap(ttmp);
 			case LANDMINE:
 				return disarm_landmine(ttmp);
@@ -16555,6 +16804,34 @@ unconscious()
 }
 
 static const char lava_killer[] = "molten lava";
+
+void
+fartingweb()
+{
+	register struct trap *ttmp = t_at(u.ux, u.uy);
+	if (!ttmp) return;
+	if (ttmp->ttyp != FARTING_WEB) return;
+
+	if (ttmp->launch_otyp < 12) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "tender" : "soft");
+	else if (ttmp->launch_otyp < 31) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
+	else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "disgusting" : "loud");
+
+	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+		pline("The farting gas destroys your footwear instantly.");
+	      useup(uarmf);
+	}
+
+	if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+		pline("Eek! You can't stand farting gas!");
+		badeffect();
+		badeffect();
+		badeffect();
+		badeffect();
+	}
+
+	badeffect();
+
+}
 
 boolean
 lava_effects()

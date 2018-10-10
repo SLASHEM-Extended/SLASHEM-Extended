@@ -670,6 +670,45 @@ register struct monst *mtmp;
 	}
 	if (mdat->msound == MS_SHRIEK && !um_dist(mtmp->mx, mtmp->my, 1))
 	    m_respond(mtmp);
+
+	if (FemaleTrapMeltem && mtmp->female && humanoid(mdat) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
+		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+			pline("The farting gas destroys your footwear instantly.");
+		      useup(uarmf);
+		}
+		if (mtmp->butthurt) mtmp->butthurt--;
+		if (mtmp->butthurt) mtmp->butthurt--;
+		if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+			pline("Eek! You can't stand farting gas!");
+			badeffect();
+			badeffect();
+			badeffect();
+			badeffect();
+		}
+		badeffect();
+
+		while (FemaleTrapElena && !rn2(3)) {
+			pline("You long for more!");
+			pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+			if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+				pline("The farting gas destroys your footwear instantly.");
+			      useup(uarmf);
+			}
+			if (mtmp->butthurt) mtmp->butthurt--;
+			if (mtmp->butthurt) mtmp->butthurt--;
+			if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+				pline("Eek! You can't stand farting gas!");
+				badeffect();
+				badeffect();
+				badeffect();
+				badeffect();
+			}
+			badeffect();
+		}
+
+	}
+
 	if (mdat->msound == MS_FART_QUIET && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && !um_dist(mtmp->mx, mtmp->my, fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
 		while (FemaleTrapElena && !rn2(3)) {

@@ -1407,7 +1407,7 @@ selecttrap:
 		if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 		break;
 	    case CATACLYSM_TRAP:
-		if (rn2(evilfriday ? 50 : 1000) && !NastyTrapNation) goto selecttrap;
+		if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
 		break;
 	    case DATA_DELETE_TRAP:
 		if (rn2(evilfriday ? 1000 : 10000)) goto selecttrap;
@@ -1918,7 +1918,7 @@ selecttrap2:
 
 		if (rtrap == HYBRID_TRAP && rn2(500) && !NastyTrapNation) goto selecttrap2;
 		if (rtrap == SHAPECHANGE_TRAP && rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap2;
-		if (rtrap == CATACLYSM_TRAP && rn2(evilfriday ? 50 : 1000) && !NastyTrapNation) goto selecttrap2;
+		if (rtrap == CATACLYSM_TRAP && rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap2;
 		if (rtrap == DATA_DELETE_TRAP && rn2(evilfriday ? 1000 : 10000)) goto selecttrap2;
 		if (rtrap == ELDER_TENTACLING_TRAP && rn2(evilfriday ? 100 : 1000)) goto selecttrap2;
 		if (rtrap == FOOTERER_TRAP && rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap2;

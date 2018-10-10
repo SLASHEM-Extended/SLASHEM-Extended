@@ -232,6 +232,17 @@ nh_timeout()
 	if (u.chokhmahdamage && !rn2(10000) && !(uarmc && uarmc->otyp == CLOAK_OF_ESCALATION) ) u.chokhmahdamage--;
 	if (u.chokhmahdamage < 0) u.chokhmahdamage = 0; /* fail safe */
 
+	if (u.ragnaroktimer > 0) {
+		u.ragnaroktimer--;
+		if (u.ragnaroktimer < 1) {
+			u.ragnaroktimer = 3; /* FILTHY HANGUP CHEATER */
+			pline("UH-OH! The end of the world is happening!");
+			ragnarok(TRUE);
+			if (evilfriday) evilragnarok(TRUE,level_difficulty());
+			u.ragnaroktimer = 0; /* okay so you didn't hang up */
+		}
+	}
+
 	if (u.inertia && rn2(10)) {
 		u.inertia--;
 		if (!u.inertia) You_feel("less slow.");
@@ -2010,6 +2021,12 @@ nh_timeout()
 		 case FEMTRAP_MAURAH:
 
 			pline("Your butt is no longer as sexy as before, and will no longer fart unless you tell it to do so.");
+
+		 break;
+
+		 case FEMTRAP_MELTEM:
+
+			pline("The girls exhausted their farting gas.");
 
 		 break;
 

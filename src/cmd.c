@@ -4775,6 +4775,18 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.ragnaroktimer) {
+		sprintf(buf, "going to experience Ragnarok.");
+	      if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", u.ragnaroktimer);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && u.footererlevel) {
+		sprintf(buf, "going to encounter the footerers.");
+	      if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (level %d)", u.footererlevel);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && FemaleTrapFemmy) {
 		sprintf(buf, "possessed by the ghost of Femmy.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", FemaleTrapFemmy);
@@ -4874,6 +4886,12 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && FemaleTrapMaurah) {
 		sprintf(buf, "possessed by the ghost of Maurah.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", FemaleTrapMaurah);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemaleTrapMeltem) {
+		sprintf(buf, "possessed by the ghost of Meltem.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%d)", FemaleTrapMeltem);
 		you_are(buf);
 	}
 
@@ -8248,6 +8266,18 @@ int final;
 		dump(youhad, buf);
 	}
 
+	if (u.ragnaroktimer) {
+		sprintf(buf, "going to experience Ragnarok.");
+	      sprintf(eos(buf), " (%d)", u.ragnaroktimer);
+		dump(youwere, buf);
+	}
+
+	if (u.footererlevel) {
+		sprintf(buf, "going to encounter the footerers.");
+	      sprintf(eos(buf), " (level %d)", u.footererlevel);
+		dump(youwere, buf);
+	}
+
 	if (FemaleTrapFemmy) {
 		sprintf(buf, "possessed by the ghost of Femmy.");
 	      sprintf(eos(buf), " (%d)", FemaleTrapFemmy);
@@ -8347,6 +8377,12 @@ int final;
 	if (FemaleTrapMaurah) {
 		sprintf(buf, "possessed by the ghost of Maurah.");
 	      sprintf(eos(buf), " (%d)", FemaleTrapMaurah);
+		dump(youwere, buf);
+	}
+
+	if (FemaleTrapMeltem) {
+		sprintf(buf, "possessed by the ghost of Meltem.");
+	      sprintf(eos(buf), " (%d)", FemaleTrapMeltem);
 		dump(youwere, buf);
 	}
 

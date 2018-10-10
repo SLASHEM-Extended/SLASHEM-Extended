@@ -2431,6 +2431,7 @@ E char *root_plselection_prompt(char *, int, int, int, int, int);
 E void recursioneffect(void);
 E void greenslimetransformation(void);
 E void bindertransformation(void);
+E void changehybridization(int);
 
 /* ### rumors.c ### */
 

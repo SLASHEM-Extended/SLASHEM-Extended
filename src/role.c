@@ -7280,6 +7280,520 @@ int rolenum, racenum, gendnum, pickhow;
     return ROLE_NONE;
 }
 
+/* change player's hybridization: 0 = random, 1 = always remove, 2 = always give one --Amy
+ * special case: if you have none and it's type 0, you always get one. The other extreme, where you have all the
+ * hybridizations, is so rare that I decide to not specialcase it :P */
+void
+changehybridization(type)
+int type;
+{
+	int tryct = 0;
+
+	if (type == 1 || (type == 0 && rn2(2) && flags.hybridization) ) {
+
+		while (tryct++ < 1000) {
+
+			switch (rnd(30)) {
+
+			case 1:
+				if (flags.hybridangbander) {
+					tryct = 1000;
+					flags.hybridangbander = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the angbander hybrid race.");
+				}
+				break;
+			case 2:
+				if (flags.hybridaquarian) {
+					tryct = 1000;
+					flags.hybridaquarian = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the aquarian hybrid race.");
+				}
+				break;
+			case 3:
+				if (flags.hybridcurser) {
+					tryct = 1000;
+					flags.hybridcurser = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the curser hybrid race.");
+				}
+				break;
+			case 4:
+				if (flags.hybridhaxor) {
+					tryct = 1000;
+					flags.hybridhaxor = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the haxor hybrid race.");
+				}
+				break;
+			case 5:
+				if (flags.hybridhomicider) {
+					tryct = 1000;
+					flags.hybridhomicider = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the homicider hybrid race.");
+				}
+				break;
+			case 6:
+				if (flags.hybridsuxxor) {
+					tryct = 1000;
+					flags.hybridsuxxor = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the suxxor hybrid race.");
+				}
+				break;
+			case 7:
+				if (flags.hybridwarper) {
+					tryct = 1000;
+					flags.hybridwarper = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the warper hybrid race.");
+				}
+				break;
+			case 8:
+				if (flags.hybridrandomizer) {
+					tryct = 1000;
+					flags.hybridrandomizer = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the randomizer hybrid race.");
+				}
+				break;
+			case 9:
+				if (flags.hybridnullrace) {
+					tryct = 1000;
+					flags.hybridnullrace = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the null hybrid race.");
+				}
+				break;
+			case 10:
+				if (flags.hybridmazewalker) {
+					tryct = 1000;
+					flags.hybridmazewalker = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the mazewalker hybrid race.");
+				}
+				break;
+			case 11:
+				if (flags.hybridsoviet) {
+					tryct = 1000;
+					flags.hybridsoviet = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the soviet hybrid race.");
+				}
+				break;
+			case 12:
+				if (flags.hybridxrace) {
+					tryct = 1000;
+					flags.hybridxrace = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the x-race hybrid race.");
+				}
+				break;
+			case 13:
+				if (flags.hybridheretic) {
+					tryct = 1000;
+					flags.hybridheretic = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the heretic hybrid race.");
+				}
+				break;
+			case 14:
+				if (flags.hybridsokosolver) {
+					tryct = 1000;
+					flags.hybridsokosolver = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the sokosolver hybrid race.");
+				}
+				break;
+			case 15:
+				if (flags.hybridspecialist) {
+					tryct = 1000;
+					flags.hybridspecialist = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the specialist hybrid race.");
+				}
+				break;
+			case 16:
+				if (flags.hybridamerican) {
+					tryct = 1000;
+					flags.hybridamerican = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the american hybrid race.");
+				}
+				break;
+			case 17:
+				if (flags.hybridminimalist) {
+					tryct = 1000;
+					flags.hybridminimalist = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the minimalist hybrid race.");
+				}
+				break;
+			case 18:
+				if (flags.hybridnastinator) {
+					tryct = 1000;
+					flags.hybridnastinator = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the nastinator hybrid race.");
+				}
+				break;
+			case 19:
+				if (flags.hybridrougelike) {
+					tryct = 1000;
+					flags.hybridrougelike = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the rougelike hybrid race.");
+				}
+				break;
+			case 20:
+				if (flags.hybridsegfaulter) {
+					tryct = 1000;
+					flags.hybridsegfaulter = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the segfaulter hybrid race. Yay. No more crashes!");
+				}
+				break;
+			case 21:
+				if (flags.hybridironman) {
+					tryct = 1000;
+					flags.hybridironman = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the ironman hybrid race.");
+				}
+				break;
+			case 22:
+				if (flags.hybridamnesiac) {
+					tryct = 1000;
+					flags.hybridamnesiac = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the amnesiac hybrid race.");
+				}
+				break;
+			case 23:
+				if (flags.hybridproblematic) {
+					tryct = 1000;
+					flags.hybridproblematic = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the problematic hybrid race.");
+				}
+				break;
+			case 24:
+				if (flags.hybridwindinhabitant) {
+					tryct = 1000;
+					flags.hybridwindinhabitant = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the wind inhabitant hybrid race.");
+				}
+				break;
+			case 25:
+				if (flags.hybridaggravator) {
+					tryct = 1000;
+					flags.hybridaggravator = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the aggravator hybrid race.");
+				}
+				break;
+			case 26:
+				if (flags.hybridevilvariant) {
+					tryct = 1000;
+					flags.hybridevilvariant = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the evilvariant hybrid race.");
+				}
+				break;
+			case 27:
+				if (flags.hybridlevelscaler) {
+					tryct = 1000;
+					flags.hybridlevelscaler = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the levelscaler hybrid race.");
+				}
+				break;
+			case 28:
+				if (flags.hybriderosator) {
+					tryct = 1000;
+					flags.hybriderosator = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the erosator hybrid race.");
+				}
+				break;
+			case 29:
+				if (flags.hybridroommate) {
+					tryct = 1000;
+					flags.hybridroommate = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the roommate hybrid race.");
+				}
+				break;
+			case 30:
+				if (flags.hybridextravator) {
+					tryct = 1000;
+					flags.hybridextravator = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the extravator hybrid race.");
+				}
+				break;
+
+			}
+
+		}
+
+	} else {
+
+		while (tryct++ < 1000) {
+
+			switch (rnd(30)) {
+
+			case 1:
+				if (!flags.hybridangbander) {
+					tryct = 1000;
+					flags.hybridangbander = TRUE;
+					flags.hybridization++;
+					pline("You now have the angbander hybrid race.");
+				}
+				break;
+			case 2:
+				if (!flags.hybridaquarian) {
+					tryct = 1000;
+					flags.hybridaquarian = TRUE;
+					flags.hybridization++;
+					pline("You now have the aquarian hybrid race.");
+				}
+				break;
+			case 3:
+				if (!flags.hybridcurser) {
+					tryct = 1000;
+					flags.hybridcurser = TRUE;
+					flags.hybridization++;
+					pline("You now have the curser hybrid race.");
+				}
+				break;
+			case 4:
+				if (!flags.hybridhaxor) {
+					tryct = 1000;
+					flags.hybridhaxor = TRUE;
+					flags.hybridization++;
+					pline("You now have the haxor hybrid race.");
+				}
+				break;
+			case 5:
+				if (!flags.hybridhomicider) {
+					tryct = 1000;
+					flags.hybridhomicider = TRUE;
+					flags.hybridization++;
+					pline("You now have the homicider hybrid race.");
+				}
+				break;
+			case 6:
+				if (!flags.hybridsuxxor) {
+					tryct = 1000;
+					flags.hybridsuxxor = TRUE;
+					flags.hybridization++;
+					pline("You now have the suxxor hybrid race.");
+				}
+				break;
+			case 7:
+				if (!flags.hybridwarper) {
+					tryct = 1000;
+					flags.hybridwarper = TRUE;
+					flags.hybridization++;
+					pline("You now have the warper hybrid race.");
+				}
+				break;
+			case 8:
+				if (!flags.hybridrandomizer) {
+					tryct = 1000;
+					flags.hybridrandomizer = TRUE;
+					flags.hybridization++;
+					pline("You now have the randomizer hybrid race.");
+				}
+				break;
+			case 9:
+				if (!flags.hybridnullrace) {
+					tryct = 1000;
+					flags.hybridnullrace = TRUE;
+					flags.hybridization++;
+					pline("You now have the null hybrid race.");
+				}
+				break;
+			case 10:
+				if (!flags.hybridmazewalker) {
+					tryct = 1000;
+					flags.hybridmazewalker = TRUE;
+					flags.hybridization++;
+					pline("You now have the mazewalker hybrid race.");
+				}
+				break;
+			case 11:
+				if (!flags.hybridsoviet) {
+					tryct = 1000;
+					flags.hybridsoviet = TRUE;
+					flags.hybridization++;
+					pline("You now have the soviet hybrid race.");
+				}
+				break;
+			case 12:
+				if (!flags.hybridxrace) {
+					tryct = 1000;
+					flags.hybridxrace = TRUE;
+					flags.hybridization++;
+					pline("You now have the x-race hybrid race.");
+				}
+				break;
+			case 13:
+				if (!flags.hybridheretic) {
+					tryct = 1000;
+					flags.hybridheretic = TRUE;
+					flags.hybridization++;
+					pline("You now have the heretic hybrid race.");
+				}
+				break;
+			case 14:
+				if (!flags.hybridsokosolver) {
+					tryct = 1000;
+					flags.hybridsokosolver = TRUE;
+					flags.hybridization++;
+					pline("You now have the sokosolver hybrid race.");
+				}
+				break;
+			case 15:
+				if (!flags.hybridspecialist) {
+					tryct = 1000;
+					flags.hybridspecialist = TRUE;
+					flags.hybridization++;
+					pline("You now have the specialist hybrid race.");
+				}
+				break;
+			case 16:
+				if (!flags.hybridamerican) {
+					tryct = 1000;
+					flags.hybridamerican = TRUE;
+					flags.hybridization++;
+					pline("You now have the american hybrid race.");
+				}
+				break;
+			case 17:
+				if (!flags.hybridminimalist) {
+					tryct = 1000;
+					flags.hybridminimalist = TRUE;
+					flags.hybridization++;
+					pline("You now have the minimalist hybrid race.");
+				}
+				break;
+			case 18:
+				if (!flags.hybridnastinator) {
+					tryct = 1000;
+					flags.hybridnastinator = TRUE;
+					flags.hybridization++;
+					pline("You now have the nastinator hybrid race.");
+				}
+				break;
+			case 19:
+				if (!flags.hybridrougelike) {
+					tryct = 1000;
+					flags.hybridrougelike = TRUE;
+					flags.hybridization++;
+					pline("You now have the rougelike hybrid race.");
+				}
+				break;
+			case 20:
+				if (!flags.hybridsegfaulter) {
+					tryct = 1000;
+					flags.hybridsegfaulter = TRUE;
+					flags.hybridization++;
+					pline("You now have the segfaulter hybrid race. Oh no, the game's gonna crash!");
+				}
+				break;
+			case 21:
+				if (!flags.hybridironman) {
+					tryct = 1000;
+					flags.hybridironman = TRUE;
+					flags.hybridization++;
+					pline("You now have the ironman hybrid race.");
+				}
+				break;
+			case 22:
+				if (!flags.hybridamnesiac) {
+					tryct = 1000;
+					flags.hybridamnesiac = TRUE;
+					flags.hybridization++;
+					pline("You now have the amnesiac hybrid race.");
+				}
+				break;
+			case 23:
+				if (!flags.hybridproblematic) {
+					tryct = 1000;
+					flags.hybridproblematic = TRUE;
+					flags.hybridization++;
+					pline("You now have the problematic hybrid race.");
+				}
+				break;
+			case 24:
+				if (!flags.hybridwindinhabitant) {
+					tryct = 1000;
+					flags.hybridwindinhabitant = TRUE;
+					flags.hybridization++;
+					pline("You now have the wind inhabitant hybrid race.");
+				}
+				break;
+			case 25:
+				if (!flags.hybridaggravator) {
+					tryct = 1000;
+					flags.hybridaggravator = TRUE;
+					flags.hybridization++;
+					pline("You now have the aggravator hybrid race.");
+				}
+				break;
+			case 26:
+				if (!flags.hybridevilvariant) {
+					tryct = 1000;
+					flags.hybridevilvariant = TRUE;
+					flags.hybridization++;
+					pline("You now have the evilvariant hybrid race.");
+				}
+				break;
+			case 27:
+				if (!flags.hybridlevelscaler) {
+					tryct = 1000;
+					flags.hybridlevelscaler = TRUE;
+					flags.hybridization++;
+					pline("You now have the levelscaler hybrid race.");
+				}
+				break;
+			case 28:
+				if (!flags.hybriderosator) {
+					tryct = 1000;
+					flags.hybriderosator = TRUE;
+					flags.hybridization++;
+					pline("You now have the erosator hybrid race.");
+				}
+				break;
+			case 29:
+				if (!flags.hybridroommate) {
+					tryct = 1000;
+					flags.hybridroommate = TRUE;
+					flags.hybridization++;
+					pline("You now have the roommate hybrid race.");
+				}
+				break;
+			case 30:
+				if (!flags.hybridextravator) {
+					tryct = 1000;
+					flags.hybridextravator = TRUE;
+					flags.hybridization++;
+					pline("You now have the extravator hybrid race.");
+				}
+				break;
+
+			}
+
+		}
+
+	}
+}
+
 void
 recursioneffect()
 {

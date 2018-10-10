@@ -7376,6 +7376,9 @@ u_init()
 	u.bankcashamount = 0;
 	u.bankcashlimit = 0;
 
+	u.ragnaroktimer = 0; /* if nonzero, ragnarok will happen */
+	u.footererlevel = 0; /* if nonzero, entering the level with that number spawns mean bastards */
+
 	u.temprecursion = 0;
 	u.temprecursiontime = 0;
 	u.oldrecursionrole = -1;
@@ -8452,7 +8455,7 @@ u_init()
 	u.invisotrap = rnd(TRAPNUM-1);
 
 	u.frequenttrap = rnd(TRAPNUM-1);
-	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
+	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == DATA_DELETE_TRAP || u.frequenttrap == ELDER_TENTACLING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
 	u.freqtrapbonus = rnz(3) * rne(3);
 
 	u.traprandomizing = rnd(1000);
@@ -28424,7 +28427,7 @@ alter_reality()
 	u.invisotrap = rnd(TRAPNUM-1);
 
 	u.frequenttrap = rnd(TRAPNUM-1);
-	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
+	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == DATA_DELETE_TRAP || u.frequenttrap == ELDER_TENTACLING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
 	u.freqtrapbonus = rnz(3) * rne(3);
 
 	u.traprandomizing = rnd(1000);

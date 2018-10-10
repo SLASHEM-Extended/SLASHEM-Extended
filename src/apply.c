@@ -249,7 +249,7 @@ int rx, ry, *resp;
 		ttmp = t_at(rx, ry);
 		pline("%s appears to be in %s health for a statue.",
 		      The(mons[otmp->corpsenm].mname),
-		      (ttmp && ttmp->ttyp == STATUE_TRAP) ?
+		      (ttmp && (ttmp->ttyp == STATUE_TRAP || ttmp->ttyp == SATATUE_TRAP)) ?
 			"extraordinary" : "excellent");
 	    }
 	    return TRUE;

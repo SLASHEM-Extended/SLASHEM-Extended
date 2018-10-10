@@ -2202,6 +2202,37 @@ fukrosionchoice:
 			pline("Suddenly, your wisdom increases.");
 		}
 
+		if (u.footererlevel && u.footererlevel == depth(&u.uz)) {
+
+			pline("The footerers were waiting for you here, and will attack now.");
+
+			u.aggravation = 1;
+			u.heavyaggravation = 1;
+			DifficultyIncreased += 1;
+			HighlevelStatus += 1;
+
+			randsp = (rn2(50) + 11);
+			if (!rn2(10)) randsp *= 2;
+			if (!rn2(100)) randsp *= 3;
+			if (!rn2(1000)) randsp *= 5;
+			if (!rn2(10000)) randsp *= 10;
+			monstercolor = rnd(359);
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(monstercolor), 0, 0, MM_ANGRY);
+			}
+
+			u.footererlevel = 0;
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
+			if (DifficultyIncreased > 0) DifficultyIncreased -= 1;
+			if (HighlevelStatus > 0) HighlevelStatus -= 1;
+
+		}
+
 		if (Prem_death && !rn2(isfriday ? 5000 : 10000)) { /* evil patch idea by jonadab */
 
 			u.youaredead = 1;
@@ -7061,6 +7092,8 @@ newbossB:
 					hussytraptype = rnd(TRAPNUM-1);
 					if (hussytraptype == MAGIC_PORTAL) hussytraptype = ROCKTRAP;
 					if (hussytraptype == WISHING_TRAP) hussytraptype = BLINDNESS_TRAP;
+					if (hussytraptype == ELDER_TENTACLING_TRAP) hussytraptype = FIRE_TRAP;
+					if (hussytraptype == DATA_DELETE_TRAP) hussytraptype = RUST_TRAP;
 					if (hussytraptype == ARTIFACT_JACKPOT_TRAP) hussytraptype = MAGIC_TRAP;
 					if (hussytraptype == GOOD_ARTIFACT_TRAP) hussytraptype = WEB;
 					if (hussytraptype == BOON_TRAP) hussytraptype = MAGIC_BEAM_TRAP;
@@ -8852,10 +8885,16 @@ newboss:
 		    !(moves % 15) && !rn2(2))
 			do_vicinity_map();
 
+		/* farting webs place you at the mercy of whoever is the farting girl */
+		if (u.utrap && (ttmp = t_at(u.ux, u.uy)) && ttmp && ttmp->ttyp == FARTING_WEB) {
+			fartingweb();
+		}		
+
 		if (u.utrap && (ttmp = t_at(u.ux, u.uy)) && ttmp && ttmp->ttyp == ANOXIC_PIT && !Breathless) {
 			pline("The air in the anoxic pit does not contain oxygen! You can't breathe!");
 			losehp(u.ulevel * 3, "being stuck in an anoxic pit", KILLED_BY);
 		}
+
 		/* jonadab invented the anoxic pit, and later changed the name to hypoxic pit for whatever reason, which
 		 * sounds much less badass than anoxic pit. I (Amy) learned Ancient Greek in school, so I know what those names
 		 * mean. Anoxic means "does not contain oxygen AT ALL", and will therefore suffocate you very quickly, while
