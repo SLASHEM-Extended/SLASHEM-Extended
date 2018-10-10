@@ -8539,7 +8539,7 @@ typfnd:
 				return (&zeroobj);
 			}
 
-			otmp = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+			otmp = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 			if (!otmp) return(&zeroobj);
 			otmp->owt = weight(otmp);
 			if (!havegifts) u.ugifts--;

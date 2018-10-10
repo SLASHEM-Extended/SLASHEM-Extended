@@ -447,6 +447,45 @@ const char *name;
 	return obj;
 }
 
+struct obj *
+onameX(obj, name)
+struct obj *obj;
+const char *name;
+{
+	int lth;
+	char buf[PL_PSIZ];
+
+	lth = *name ? (int)(strlen(name) + 1) : 0;
+	if (lth > PL_PSIZ) {
+		lth = PL_PSIZ;
+		name = strncpy(buf, name, PL_PSIZ - 1);
+		buf[PL_PSIZ - 1] = '\0';
+	}
+	/* This function allows the artifact to be created again if it already exists.
+	 * Still, trying to create an artifact shouldn't de-artifact
+	 * it (e.g. Excalibur from prayer). In this case the object
+	 * will retain its current name. */
+	if (obj->oartifact)
+		return obj;
+
+	if (lth == obj->onamelth) {
+		/* no need to replace entire object */
+		if (lth) strcpy(ONAME(obj), name);
+	} else {
+		obj = realloc_obj(obj, obj->oxlth,
+			      (void *)obj->oextra, lth, name);
+	}
+	if (lth) artifact_exists(obj, name, TRUE);
+	if (obj->oartifact) {
+	    /* can't dual-wield with artifact as secondary weapon */
+	    if (obj == uswapwep) untwoweapon();
+	    /* activate warning if you've just named your weapon "Sting" */
+	    if (obj == uwep) set_artifact_intrinsic(obj, TRUE, W_WEP);
+	}
+	if (carried(obj)) update_inventory();
+	return obj;
+}
+
 static NEARDATA const char callable[] = {
 	SCROLL_CLASS, POTION_CLASS, WAND_CLASS, RING_CLASS, AMULET_CLASS, IMPLANT_CLASS,
 	GEM_CLASS, SPBOOK_CLASS, ARMOR_CLASS, TOOL_CLASS, 0 };

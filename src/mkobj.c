@@ -1755,10 +1755,10 @@ int artif;
 		if (otmp->otyp == LASER_BEAM) otmp->quan += rnd(50);
 		if (otmp->otyp == SHOTGUN_SHELL) otmp->quan += rnd(20);
 		if (otmp->otyp == ROCKET) otmp->quan += rnd(5);
-		if (otmp->otyp == CROSSBOW_BOLT) otmp->quan += rnd(10);
+		if (otmp->otyp == CROSSBOW_BOLT) otmp->quan += rnd(25);
 		if (otmp->otyp == DROVEN_BOLT) otmp->quan += rnd(75);
 		if (otmp->otyp == DROVEN_ARROW) otmp->quan += rnd(75);
-		if (otmp->otyp == KOKKEN || otmp->otyp == MINERAL_BOLT || otmp->otyp == FLEECE_BOLT || otmp->otyp == PIN_BOLT) otmp->quan += rnd(25);
+		if (otmp->otyp == KOKKEN || otmp->otyp == MINERAL_BOLT || otmp->otyp == FLEECE_BOLT || otmp->otyp == PIN_BOLT) otmp->quan += rnd(50);
 		if (otmp->otyp == PAPER_ARROW || otmp->otyp == FORBIDDEN_ARROW || otmp->otyp == GOLDEN_ARROW || otmp->otyp == ANCIENT_ARROW || otmp->otyp == BRONZE_ARROW) otmp->quan += rnd(15);
 		if (otmp->otyp == YA) otmp->quan += rnd(20);
 		if (otmp->otyp == FLIMSY_DART) otmp->quan += rnd(30);
@@ -1807,7 +1807,7 @@ int artif;
 		if (!rn2(200)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 40 : 20)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 50)) {
@@ -1893,7 +1893,7 @@ int artif;
 		}
 		if (!rn2(2000)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 400 : 200)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(500)) {
@@ -1923,7 +1923,7 @@ int artif;
 			if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 			if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
-			    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+			    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 				if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 			}
 			else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
@@ -1981,7 +1981,7 @@ int artif;
 		if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
@@ -2208,7 +2208,7 @@ int artif;
 		if (!rn2(400)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 80 : 40)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if ((artif && !rn2(100)) || (otmp->spe && is_weptool(otmp) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 20)) ) {
@@ -2238,7 +2238,7 @@ int artif;
 		if (!rn2(600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 120 : 60)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(140)) {
@@ -2259,7 +2259,7 @@ int artif;
 		if (!rn2(600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 120 : 60)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(140)) {
@@ -2280,7 +2280,7 @@ int artif;
 		if (!rn2(200)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 40 : 20)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(50)) {
@@ -2313,7 +2313,7 @@ int artif;
 		if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
@@ -2341,7 +2341,7 @@ int artif;
 		if (!rn2(160)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 320 : 160)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(400)) {
@@ -2374,7 +2374,7 @@ int artif;
 		if (!rn2(100)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 200 : 100)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(250)) {
@@ -2433,7 +2433,7 @@ int artif;
 		if (!rn2(40)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 80 : 40)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 100)) {
@@ -2517,7 +2517,7 @@ int artif;
 		if (!rn2(1600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 320 : 160)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(500)) {
@@ -2567,7 +2567,7 @@ int artif;
 		if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(125)) {
@@ -2597,7 +2597,7 @@ int artif;
 		if (!rn2(2000)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 400 : 200)) {
-		    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if (Race_if(PM_LISTENER) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(500)) {
@@ -2659,7 +2659,7 @@ int artif;
 
 	/* unique objects may have an associated artifact entry */
 	if (objects[otyp].oc_unique && !otmp->oartifact)
-	    otmp = mk_artifact(otmp, (aligntyp)A_NONE);
+	    otmp = mk_artifact(otmp, (aligntyp)A_NONE, FALSE);
 	otmp->owt = weight(otmp);
 	return(otmp);
 }

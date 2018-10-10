@@ -3262,7 +3262,7 @@ bhitpile(obj,fhito,tx,ty)
 	   because that last call might end up operating on our `next_obj'
 	   (below), rather than on the current object, if it happens to
 	   encounter a statue which mustn't become animated. */
-	if (t && t->ttyp == STATUE_TRAP &&
+	if (t && (t->ttyp == STATUE_TRAP || t->ttyp == SATATUE_TRAP) &&
 	    activate_statue_trap(t, tx, ty, TRUE) && obj->otyp == WAN_STRIKING)
 	    makeknown(obj->otyp);
     }
@@ -5862,9 +5862,8 @@ boolean ordinary;
 
 		makeknown(WAN_HASTE_MONSTER);
 
-		if(Wounded_legs
-		   && !u.usteed	/* heal_legs() would heal steeds legs */
-						) {
+		if(Wounded_legs && !u.usteed	/* heal_legs() would heal steeds legs */
+		) {
 			heal_legs();
 			break;
 		}
@@ -5962,9 +5961,8 @@ boolean ordinary;
 				makeknown(obj->otyp);
 			    }
 			} else {
-				if(Wounded_legs
-				   && !u.usteed	/* heal_legs() would heal steeds legs */
-					) {
+				if(Wounded_legs && !u.usteed	/* heal_legs() would heal steeds legs */
+				) {
 					heal_legs();
 					break;
 				}
@@ -7233,7 +7231,7 @@ struct obj **obj_p;			/* object tossed/used */
 		}
 	    }
 	    if(weapon == ZAPPED_WAND && obj->otyp == WAN_OPENING) {
-		if (rn2(2) && (typ >= STONE) && (typ <= DBWALL) && !(*in_rooms(bhitpos.x,bhitpos.y,SHOPBASE)) && ((levl[bhitpos.x][bhitpos.y].wall_info & W_NONDIGGABLE) == 0) ) {
+		if (rn2(2) && (typ >= STONE) && (typ <= ROCKWALL) && !(*in_rooms(bhitpos.x,bhitpos.y,SHOPBASE)) && ((levl[bhitpos.x][bhitpos.y].wall_info & W_NONDIGGABLE) == 0) ) {
 			levl[bhitpos.x][bhitpos.y].typ = CORR;
 			unblock_point(bhitpos.x,bhitpos.y);
 			if (!(levl[bhitpos.x][bhitpos.y].wall_info & W_HARDGROWTH)) levl[bhitpos.x][bhitpos.y].wall_info |= W_EASYGROWTH;
@@ -8249,7 +8247,7 @@ sigilcontroldirection:
 	    }
 	} else if (sx == u.ux && sy == u.uy && range >= 0) {
 	    nomul(0, 0, FALSE);
-	    if (u.usteed && !rn2(3) && !mon_reflects(u.usteed, (char *)0)) {
+	    if (u.usteed && will_hit_steed() && !mon_reflects(u.usteed, (char *)0)) {
 		    mon = u.usteed;
 		    goto buzzmonst;
 	    } else
@@ -8903,7 +8901,7 @@ register struct obj *obj;
 	struct trap *trap = t_at(obj->ox, obj->oy);
 	struct obj *item;
 
-	if (trap && trap->ttyp == STATUE_TRAP &&
+	if (trap && (trap->ttyp == STATUE_TRAP || trap->ttyp == SATATUE_TRAP) &&
 		activate_statue_trap(trap, obj->ox, obj->oy, TRUE))
 	    return FALSE;
 	/* drop any objects contained inside the statue */
@@ -9435,7 +9433,7 @@ othergreateffect()
 
 		if (!havegifts) u.ugifts++;
 
-		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 		if (acqo) {
 		    dropy(acqo);
 			if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {

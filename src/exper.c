@@ -686,7 +686,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 			if (!havegifts) u.ugifts++;
 
-			acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+			acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 			if (acqo) {
 			    dropy(acqo);
 				if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {
@@ -746,6 +746,26 @@ boolean incr;	/* true iff via incremental experience growth */
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, your magical effects will always be very low-level.");
 						else pline("Your auspices say: 4 6");
 						break;
+					case 7:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, you will no longer be able to uncurse your items via scrolls of remove curse, holy water or cancellation.");
+						else pline("Your auspices say: 4 7");
+						break;
+					case 8:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, the 'never mind' or 'nothing happens' messages will cause bad effects.");
+						else pline("Your auspices say: 4 8");
+						break;
+					case 9:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, you will repeatedly lose spell memory.");
+						else pline("Your auspices say: 4 9");
+						break;
+					case 10:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, your skill training will occasionally be reduced.");
+						else pline("Your auspices say: 4 10");
+						break;
+					case 11:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, your techniques will occasionally receive increased timeouts.");
+						else pline("Your auspices say: 4 11");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 5) {
@@ -778,6 +798,10 @@ boolean incr;	/* true iff via incremental experience growth */
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, menus will be fleecy-colored.");
 						else pline("Your auspices say: 6 7");
 						break;
+					case 8:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 6, you start seeing mojibake glyphs.");
+						else pline("Your auspices say: 6 8");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 7) {
@@ -805,6 +829,14 @@ boolean incr;	/* true iff via incremental experience growth */
 					case 6:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, walls will become hyper blue.");
 						else pline("Your auspices say: 8 6");
+						break;
+					case 7:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, the pokedex will lie to you.");
+						else pline("Your auspices say: 8 7");
+						break;
+					case 8:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 8, monsters will make noises.");
+						else pline("Your auspices say: 8 8");
 						break;
 				}
 
@@ -846,6 +878,34 @@ boolean incr;	/* true iff via incremental experience growth */
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become yellow.");
 						else pline("Your auspices say: 11 9");
 						break;
+					case 10:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become orange.");
+						else pline("Your auspices say: 11 10");
+						break;
+					case 11:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become violet.");
+						else pline("Your auspices say: 11 11");
+						break;
+					case 12:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become brown.");
+						else pline("Your auspices say: 11 12");
+						break;
+					case 13:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become bright cyan.");
+						else pline("Your auspices say: 11 13");
+						break;
+					case 14:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become silver.");
+						else pline("Your auspices say: 11 14");
+						break;
+					case 15:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become metal.");
+						else pline("Your auspices say: 11 15");
+						break;
+					case 16:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 11, your spells will become platinum.");
+						else pline("Your auspices say: 11 16");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 12) {
@@ -869,6 +929,18 @@ boolean incr;	/* true iff via incremental experience growth */
 					case 5:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 13, covetous monsters start using their AI in a smarter way.");
 						else pline("Your auspices say: 13 5");
+						break;
+					case 6:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 13, identifying items becomes much more difficult.");
+						else pline("Your auspices say: 13 6");
+						break;
+					case 7:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 13, Satan will cause you to lose a turn when entering a new level.");
+						else pline("Your auspices say: 13 7");
+						break;
+					case 8:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 13, monsters are generated with movement energy.");
+						else pline("Your auspices say: 13 8");
 						break;
 				}
 
@@ -898,6 +970,14 @@ boolean incr;	/* true iff via incremental experience growth */
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, blessed items that you pick up will instantly become cursed.");
 						else pline("Your auspices say: 15 6");
 						break;
+					case 7:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, using consumables will curse them first.");
+						else pline("Your auspices say: 15 7");
+						break;
+					case 8:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, items that monsters steal from you will be degraded.");
+						else pline("Your auspices say: 15 8");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 16) {
@@ -925,6 +1005,10 @@ boolean incr;	/* true iff via incremental experience growth */
 					case 6:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, the minimum level for newly spawned monsters will start scaling with the actual level difficulty.");
 						else pline("Your auspices say: 17 6");
+						break;
+					case 7:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, monster attacks use exploding dice to determine their damage.");
+						else pline("Your auspices say: 17 7");
 						break;
 				}
 
@@ -958,6 +1042,10 @@ boolean incr;	/* true iff via incremental experience growth */
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, I markers become invisible and will cost a turn if you bump into them.");
 						else pline("Your auspices say: 20 7");
 						break;
+					case 8:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 20, you are subjected to the wing yellow changer.");
+						else pline("Your auspices say: 20 8");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 21) {
@@ -986,6 +1074,14 @@ boolean incr;	/* true iff via incremental experience growth */
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, empty dungeon floor tiles will quickly turn into walls.");
 						else pline("Your auspices say: 22 6");
 						break;
+					case 7:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, spells with low spell memory are difficult to cast.");
+						else pline("Your auspices say: 22 7");
+						break;
+					case 8:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, any trap you trigger will become invisible.");
+						else pline("Your auspices say: 22 8");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 24) {
@@ -1009,6 +1105,18 @@ boolean incr;	/* true iff via incremental experience growth */
 					case 5:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, you will no longer be able to determine what monsters are.");
 						else pline("Your auspices say: 25 5");
+						break;
+					case 6:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, leveling up no longer increases your maximum HP and Pw.");
+						else pline("Your auspices say: 25 6");
+						break;
+					case 7:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, some calculations will work as if your level were 1.");
+						else pline("Your auspices say: 25 7");
+						break;
+					case 8:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 25, a manler will start chasing you.");
+						else pline("Your auspices say: 25 8");
 						break;
 				}
 
@@ -1046,6 +1154,10 @@ boolean incr;	/* true iff via incremental experience growth */
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, monsters will be able to use unfair attacks.");
 						else pline("Your auspices say: 28 8");
 						break;
+					case 9:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, the presence of bosses causes a horrible call to ring in your head.");
+						else pline("Your auspices say: 28 9");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 29) {
@@ -1082,6 +1194,14 @@ boolean incr;	/* true iff via incremental experience growth */
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 30, bumping into monsters will cost a turn unless you use a certain prefix.");
 						else pline("Your auspices say: 30 7");
 						break;
+					case 9:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 30, you won't see anything unless you stand on specific tiles.");
+						else pline("Your auspices say: 30 9");
+						break;
+					case 10:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 30, your stats will slowly decay.");
+						else pline("Your auspices say: 30 10");
+						break;
 				}
 
 			}
@@ -1107,7 +1227,7 @@ boolean incr;	/* true iff via incremental experience growth */
 		if (isproblematic && !rn2(3)) {
 			/* no xlvl check - if you get drained repeatedly, your loss! I'm really mean :D --Amy */
 
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -1447,6 +1567,126 @@ boolean incr;	/* true iff via incremental experience growth */
 				    AutomoreBug |= FROMOUTSIDE; break;
 				case 169:
 				    UnfairAttackBug |= FROMOUTSIDE; break;
+				case 170:
+				    OrangeSpells |= FROMOUTSIDE; break;
+				case 171:
+				    VioletSpells |= FROMOUTSIDE; break;
+				case 172:
+				    LongingEffect |= FROMOUTSIDE; break;
+				case 173:
+				    CursedParts |= FROMOUTSIDE; break;
+				case 174:
+				    Quaversal |= FROMOUTSIDE; break;
+				case 175:
+				    AppearanceShuffling |= FROMOUTSIDE; break;
+				case 176:
+				    BrownSpells |= FROMOUTSIDE; break;
+				case 177:
+				    Choicelessness |= FROMOUTSIDE; break;
+				case 178:
+				    Goldspells |= FROMOUTSIDE; break;
+				case 179:
+				    Deprovement |= FROMOUTSIDE; break;
+				case 180:
+				    InitializationFail |= FROMOUTSIDE; break;
+				case 181:
+				    GushlushEffect |= FROMOUTSIDE; break;
+				case 182:
+				    SoiltypeEffect |= FROMOUTSIDE; break;
+				case 183:
+				    DangerousTerrains |= FROMOUTSIDE; break;
+				case 184:
+				    FalloutEffect |= FROMOUTSIDE; break;
+				case 185:
+				    MojibakeEffect |= FROMOUTSIDE; break;
+				case 186:
+				    GravationEffect |= FROMOUTSIDE; break;
+				case 187:
+				    UncalledEffect |= FROMOUTSIDE; break;
+				case 188:
+				    ExplodingDiceEffect |= FROMOUTSIDE; break;
+				case 189:
+				    PermacurseEffect |= FROMOUTSIDE; break;
+				case 190:
+				    ShroudedIdentity |= FROMOUTSIDE; break;
+				case 191:
+				    FeelerGauges |= FROMOUTSIDE; break;
+				case 192:
+				    LongScrewup |= FROMOUTSIDE; break;
+				case 193:
+				    WingYellowChange |= FROMOUTSIDE; break;
+				case 194:
+				    LifeSavingBug |= FROMOUTSIDE; break;
+				case 195:
+				    CurseuseEffect |= FROMOUTSIDE; break;
+				case 196:
+				    CutNutritionEffect |= FROMOUTSIDE; break;
+				case 197:
+				    SkillLossEffect |= FROMOUTSIDE; break;
+				case 198:
+				    AutopilotEffect |= FROMOUTSIDE; break;
+				case 199:
+				    MysteriousForceActive |= FROMOUTSIDE; break;
+				case 200:
+				    MonsterGlyphChange |= FROMOUTSIDE; break;
+				case 201:
+				    ChangingDirectives |= FROMOUTSIDE; break;
+				case 202:
+				    ContainerKaboom |= FROMOUTSIDE; break;
+				case 203:
+				    StealDegrading |= FROMOUTSIDE; break;
+				case 204:
+				    LeftInventoryBug |= FROMOUTSIDE; break;
+				case 205:
+				    FluctuatingSpeed |= FROMOUTSIDE; break;
+				case 206:
+				    TarmuStrokingNora |= FROMOUTSIDE; break;
+				case 207:
+				    FailureEffects |= FROMOUTSIDE; break;
+				case 208:
+				    BrightCyanSpells |= FROMOUTSIDE; break;
+				case 209:
+				    FrequentationSpawns |= FROMOUTSIDE; break;
+				case 210:
+				    PetAIScrewed |= FROMOUTSIDE; break;
+				case 211:
+				    SatanEffect |= FROMOUTSIDE; break;
+				case 212:
+				    RememberanceEffect |= FROMOUTSIDE; break;
+				case 213:
+				    PokelieEffect |= FROMOUTSIDE; break;
+				case 214:
+				    AlwaysAutopickup |= FROMOUTSIDE; break;
+				case 215:
+				    DywypiProblem |= FROMOUTSIDE; break;
+				case 216:
+				    SilverSpells |= FROMOUTSIDE; break;
+				case 217:
+				    MetalSpells |= FROMOUTSIDE; break;
+				case 218:
+				    PlatinumSpells |= FROMOUTSIDE; break;
+				case 219:
+				    ManlerEffect |= FROMOUTSIDE; break;
+				case 220:
+				    DoorningEffect |= FROMOUTSIDE; break;
+				case 221:
+				    NownsibleEffect |= FROMOUTSIDE; break;
+				case 222:
+				    ElmStreetEffect |= FROMOUTSIDE; break;
+				case 223:
+				    MonnoiseEffect |= FROMOUTSIDE; break;
+				case 224:
+				    RangCallEffect |= FROMOUTSIDE; break;
+				case 225:
+				    RecurringSpellLoss |= FROMOUTSIDE; break;
+				case 226:
+				    AntitrainingEffect |= FROMOUTSIDE; break;
+				case 227:
+				    TechoutBug |= FROMOUTSIDE; break;
+				case 228:
+				    StatDecay |= FROMOUTSIDE; break;
+				case 229:
+				    Movemork |= FROMOUTSIDE; break;
 			}
 
 		}

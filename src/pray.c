@@ -214,9 +214,7 @@ in_trouble()
 	if (Blinded > 1 && haseyes(youmonst.data)) return(TROUBLE_BLIND);
 	for(i=0; i<A_MAX; i++)
 	    if(ABASE(i) < AMAX(i)) return(TROUBLE_POISONED);
-	if(Wounded_legs
-		    && !u.usteed
-				) return (TROUBLE_WOUNDED_LEGS);
+	if(Wounded_legs && !u.usteed) return (TROUBLE_WOUNDED_LEGS);
 	if(u.uhs >= HUNGRY) return(TROUBLE_HUNGRY);
 	if(HStun) return (TROUBLE_STUNNED);
 	if(HConfusion) return (TROUBLE_CONFUSED);
@@ -869,7 +867,7 @@ gcrownu()
 	 * supposed to be guaranteed an awesome item! Randomness and variety ftw! --Amy */
 	/* In Soviet Russia, communism dictates that everyone gets the Stormbringer because the type of ice block said so. */
 
-		obj = mk_artifact((struct obj *)0, a_align(u.ux,u.uy));
+		obj = mk_artifact((struct obj *)0, a_align(u.ux,u.uy), TRUE);
 		if (obj) {
 		    if (obj->spe < 3) obj->spe = 3;
 		    if (!rn2(2)) obj->spe += rnd(3);
@@ -2276,7 +2274,7 @@ verbalize("In return for thy service, I grant thee a dacha by the Black Sea!");
 	    /* The chance goes down as the number of artifacts goes up */
 	    if (u.ulevel > 2 && u.uluck >= 0 &&
 		!rn2(Role_if(PM_GANG_SCHOLAR) ? (2 + (u.ugifts) + (nartifacts)) : (10 + (5 * u.ugifts) + (nartifacts)))) { /* modified chance --Amy */
-		otmp = mk_artifact((struct obj *)0, a_align(u.ux,u.uy));
+		otmp = mk_artifact((struct obj *)0, a_align(u.ux,u.uy), TRUE);
 		if (otmp) {
 		    if (otmp->spe < 0) otmp->spe = 0;
 		    if (otmp->cursed) uncurse(otmp);

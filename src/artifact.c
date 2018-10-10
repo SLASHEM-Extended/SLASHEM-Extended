@@ -702,9 +702,10 @@ int artinum;
    for the 1st, ``obj = mk_artifact((struct obj *)0, some_alignment);''.
  */
 struct obj *
-mk_artifact(otmp, alignment)
+mk_artifact(otmp, alignment, existingagain)
 struct obj *otmp;	/* existing object; ignored if alignment specified */
 aligntyp alignment;	/* target alignment, or A_NONE */
+boolean existingagain;	/* if TRUE, existing ones can be generated again */
 {
 	const struct artifact *a;
 	int n, m;
@@ -733,7 +734,7 @@ aligntyp alignment;	/* target alignment, or A_NONE */
 	    if ((!by_align ? a->otyp == o_typ :
 		    (a->alignment == alignment ||
 			(a->alignment == A_NONE && u.ugifts > 0))) &&
-		(!(a->spfx & SPFX_NOGEN) || unique) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !artiexist[m]) {
+		(!(a->spfx & SPFX_NOGEN) || unique) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!artiexist[m] || (existingagain && !(a->spfx & SPFX_ONLYONE) ) )) {
 		/*
 		 * [ALI] The determination of whether an artifact is
 		 * hostile to the player is a little more complex in
@@ -781,7 +782,10 @@ aligntyp alignment;	/* target alignment, or A_NONE */
 
 	    /* make an appropriate object if necessary, then christen it */
 make_artif: if (by_align) otmp = mksobj((int)a->otyp, TRUE, FALSE);
-	    otmp = oname(otmp, a->name);
+
+	    if (existingagain && !(a->spfx & SPFX_ONLYONE)) otmp = onameX(otmp, a->name);
+	    else otmp = oname(otmp, a->name);
+
 	    otmp->oartifact = m;
 		/* usually mark artifact as existing... but not always :D --Amy */
 	    if (rn2(100)) artiexist[m] = TRUE;
@@ -792,7 +796,8 @@ make_artif: if (by_align) otmp = mksobj((int)a->otyp, TRUE, FALSE);
 	return otmp;
 }
 
-/* Make an evil artifact and automatically equip it for the player --Amy */
+/* Make an evil artifact and automatically equip it for the player --Amy
+ * This can also always spawn another copy of an existing one (not a bug) */
 void
 bad_artifact()
 {
@@ -803,7 +808,7 @@ bad_artifact()
 
 	/* gather eligible artifacts */
 	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
-	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !artiexist[m]) {
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
 
 		    eligible[n++] = m;
 	    }
@@ -817,7 +822,7 @@ bad_artifact()
 
 		if (!otmp) return;
 
-	    otmp = oname(otmp, a->name);
+		otmp = onameX(otmp, a->name);
 
 		if (!otmp) return;
 
@@ -934,7 +939,8 @@ bad_artifact()
 
 }
 
-/* The same bad artifact effect, but if there is a skill for the generated item, have a chance of learning it --Amy */
+/* The same bad artifact effect, but if there is a skill for the generated item, have a chance of learning it --Amy
+ * Again, this can create a copy of an already existing one */
 void
 bad_artifact_xtra()
 {
@@ -945,7 +951,7 @@ bad_artifact_xtra()
 
 	/* gather eligible artifacts */
 	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
-	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !artiexist[m]) {
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
 
 		    eligible[n++] = m;
 	    }
@@ -959,7 +965,7 @@ bad_artifact_xtra()
 
 		if (!otmp) return;
 
-	    otmp = oname(otmp, a->name);
+		otmp = onameX(otmp, a->name);
 
 		if (!otmp) return;
 
@@ -2519,7 +2525,7 @@ doinvoke()
 
 					if (!havegifts) u.ugifts++;
 
-					acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+					acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 					if (acqo) {
 					    dropy(acqo);
 						if (P_MAX_SKILL(get_obj_skill(acqo, TRUE)) == P_ISRESTRICTED) {

@@ -2775,6 +2775,78 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != HIGHLEVEL_TRAP
 				&& ttmp->ttyp != SPELL_FORGETTING_TRAP
 				&& ttmp->ttyp != SOUND_EFFECT_TRAP
+				&& ttmp->ttyp != ORANGE_SPELL_TRAP
+				&& ttmp->ttyp != VIOLET_SPELL_TRAP
+				&& ttmp->ttyp != TRAP_OF_LONGING
+				&& ttmp->ttyp != CURSED_PART_TRAP
+				&& ttmp->ttyp != QUAVERSAL_TRAP
+				&& ttmp->ttyp != APPEARANCE_SHUFFLING_TRAP
+				&& ttmp->ttyp != BROWN_SPELL_TRAP
+				&& ttmp->ttyp != CHOICELESS_TRAP
+				&& ttmp->ttyp != GOLDSPELL_TRAP
+				&& ttmp->ttyp != DEPROVEMENT_TRAP
+				&& ttmp->ttyp != INITIALIZATION_TRAP
+				&& ttmp->ttyp != GUSHLUSH_TRAP
+				&& ttmp->ttyp != SOILTYPE_TRAP
+				&& ttmp->ttyp != DANGEROUS_TERRAIN_TRAP
+				&& ttmp->ttyp != FALLOUT_TRAP
+				&& ttmp->ttyp != MOJIBAKE_TRAP
+				&& ttmp->ttyp != GRAVATION_TRAP
+				&& ttmp->ttyp != UNCALLED_TRAP
+				&& ttmp->ttyp != EXPLODING_DICE_TRAP
+				&& ttmp->ttyp != PERMACURSE_TRAP
+				&& ttmp->ttyp != SHROUDED_IDENTITY_TRAP
+				&& ttmp->ttyp != FEELER_GAUGES_TRAP
+				&& ttmp->ttyp != LONG_SCREWUP_TRAP
+				&& ttmp->ttyp != WING_YELLOW_CHANGER
+				&& ttmp->ttyp != LIFE_SAVING_TRAP
+				&& ttmp->ttyp != CURSEUSE_TRAP
+				&& ttmp->ttyp != CUT_NUTRITION_TRAP
+				&& ttmp->ttyp != SKILL_LOSS_TRAP
+				&& ttmp->ttyp != AUTOPILOT_TRAP
+				&& ttmp->ttyp != FORCE_TRAP
+				&& ttmp->ttyp != MONSTER_GLYPH_TRAP
+				&& ttmp->ttyp != CHANGING_DIRECTIVE_TRAP
+				&& ttmp->ttyp != CONTAINER_KABOOM_TRAP
+				&& ttmp->ttyp != STEAL_DEGRADE_TRAP
+				&& ttmp->ttyp != LEFT_INVENTORY_TRAP
+				&& ttmp->ttyp != FLUCTUATING_SPEED_TRAP
+				&& ttmp->ttyp != TARMUSTROKINGNORA_TRAP
+				&& ttmp->ttyp != FAILURE_TRAP
+				&& ttmp->ttyp != BRIGHT_CYAN_SPELL_TRAP
+				&& ttmp->ttyp != FREQUENTATION_SPAWN_TRAP
+				&& ttmp->ttyp != PET_AI_TRAP
+				&& ttmp->ttyp != SATAN_TRAP
+				&& ttmp->ttyp != REMEMBERANCE_TRAP
+				&& ttmp->ttyp != POKELIE_TRAP
+				&& ttmp->ttyp != AUTOPICKUP_TRAP
+				&& ttmp->ttyp != DYWYPI_TRAP
+				&& ttmp->ttyp != SILVER_SPELL_TRAP
+				&& ttmp->ttyp != METAL_SPELL_TRAP
+				&& ttmp->ttyp != PLATINUM_SPELL_TRAP
+				&& ttmp->ttyp != MANLER_TRAP
+				&& ttmp->ttyp != DOORNING_TRAP
+				&& ttmp->ttyp != NOWNSIBLE_TRAP
+				&& ttmp->ttyp != ELM_STREET_TRAP
+				&& ttmp->ttyp != MONNOISE_TRAP
+				&& ttmp->ttyp != RANG_CALL_TRAP
+				&& ttmp->ttyp != RECURRING_SPELL_LOSS_TRAP
+				&& ttmp->ttyp != ANTITRAINING_TRAP
+				&& ttmp->ttyp != TECHOUT_TRAP
+				&& ttmp->ttyp != STAT_DECAY_TRAP
+				&& ttmp->ttyp != MOVEMORK_TRAP
+
+				&& ttmp->ttyp != HYBRID_TRAP
+				&& ttmp->ttyp != SHAPECHANGE_TRAP
+				&& ttmp->ttyp != MELTEM_TRAP
+				&& ttmp->ttyp != MIGUC_TRAP
+				&& ttmp->ttyp != DIRECTIVE_TRAP
+				&& ttmp->ttyp != SATATUE_TRAP
+				&& ttmp->ttyp != FARTING_WEB
+				&& ttmp->ttyp != CATACLYSM_TRAP
+				&& ttmp->ttyp != DATA_DELETE_TRAP
+				&& ttmp->ttyp != ELDER_TENTACLING_TRAP
+				&& ttmp->ttyp != FOOTERER_TRAP
 
 				&& ttmp->ttyp != LOOTCUT_TRAP
 				&& ttmp->ttyp != MONSTER_SPEED_TRAP
@@ -3716,6 +3788,8 @@ register struct monst *mtmp;
 					rtrap = rnd(TRAPNUM-1);
 					if (rtrap == MAGIC_PORTAL) rtrap = ROCKTRAP;
 					if (rtrap == WISHING_TRAP) rtrap = BLINDNESS_TRAP;
+					if (rtrap == ELDER_TENTACLING_TRAP) rtrap = FIRE_TRAP;
+					if (rtrap == DATA_DELETE_TRAP) rtrap = RUST_TRAP;
 					if (rtrap == ARTIFACT_JACKPOT_TRAP) rtrap = MAGIC_TRAP;
 					if (rtrap == GOOD_ARTIFACT_TRAP) rtrap = WEB;
 					if (rtrap == BOON_TRAP) rtrap = MAGIC_BEAM_TRAP;
@@ -3897,7 +3971,7 @@ register struct monst *mtmp;
 
 		if (!havegifts) u.ugifts++;
 
-		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 		if (trophy) {
 			dropy(trophy);
 			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
@@ -4008,7 +4082,7 @@ register struct monst *mtmp;
 
 		if (!havegifts) u.ugifts++;
 
-		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 		if (trophy) {
 			dropy(trophy);
 			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
@@ -4029,7 +4103,7 @@ register struct monst *mtmp;
 			}
 			discover_artifact(trophy->oartifact);
 		}
-		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 		if (trophy) {
 			dropy(trophy);
 			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
@@ -4050,7 +4124,7 @@ register struct monst *mtmp;
 			}
 			discover_artifact(trophy->oartifact);
 		}
-		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 		if (trophy) {
 			dropy(trophy);
 			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
@@ -4071,7 +4145,7 @@ register struct monst *mtmp;
 			}
 			discover_artifact(trophy->oartifact);
 		}
-		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 		if (trophy) {
 			dropy(trophy);
 			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {
@@ -4092,7 +4166,7 @@ register struct monst *mtmp;
 			}
 			discover_artifact(trophy->oartifact);
 		}
-		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		trophy = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 		if (trophy) {
 			dropy(trophy);
 			if (P_MAX_SKILL(get_obj_skill(trophy, TRUE)) == P_ISRESTRICTED) {

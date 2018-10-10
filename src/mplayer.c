@@ -214,7 +214,7 @@ short typ;
 		else if (obj->spe < 0 && !rn2(3)) obj->spe -= rne(2);
 
 		/* Come on, this isn't vanilla. Artifact armors are a thing. --Amy */
-		if (rn2(2)) obj = mk_artifact(obj, A_NONE);
+		if (rn2(2)) obj = mk_artifact(obj, A_NONE, TRUE);
 
 		(void) mpickobj(mon, obj, TRUE);
 	}
@@ -814,7 +814,7 @@ register boolean special;
 			if (!rn2(3)) otmp->oerodeproof = 1;
 			else if (!rn2(2)) otmp->greased = 1;
 			if (special && rn2(2))
-			    otmp = mk_artifact(otmp, A_NONE);
+			    otmp = mk_artifact(otmp, A_NONE, TRUE);
 			/* mplayers knew better than to overenchant Magicbane */
 			if (otmp->oartifact == ART_MAGICBANE && otmp->spe > 0)
 			    otmp->spe = rnd(4);

@@ -5794,7 +5794,7 @@ revid_end:
 
 		if (!havegifts) u.ugifts++;
 
-		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 		if (acqo) {
 
 		switch (acqo->oclass) {
@@ -5988,7 +5988,7 @@ newbossC:
 
 		if (!havegiftsohgod) u.ugifts++;
 
-		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL);
+		acqo = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 		if (acqo) {
 		    dropy(acqo);
 

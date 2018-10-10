@@ -66,7 +66,7 @@ E void init_artifacts1(void);
 E void save_artifacts(int);
 E void restore_artifacts(int);
 E const char *artiname(int);
-E struct obj *mk_artifact(struct obj *,ALIGNTYP_P);
+E struct obj *mk_artifact(struct obj *,ALIGNTYP_P,BOOLEAN_P);
 E void bad_artifact(void);
 E void bad_artifact_xtra(void);
 E const char *artifact_name(const char *,int *);
@@ -126,6 +126,7 @@ E void adjalign(int);
 /* KMH, balance patch -- new function */
 E void recalc_health(void);
 E int recalc_mana(void);
+E boolean attr_will_go_up(int, BOOLEAN_P);
 
 /* ### ball.c ### */
 
@@ -428,6 +429,7 @@ E int getpos(coord *,BOOLEAN_P,const char *);
 E struct monst *christen_monst(struct monst *,const char *);
 E int do_mname(void);
 E struct obj *oname(struct obj *,const char *);
+E struct obj *onameX(struct obj *,const char *);
 E int ddocall(void);
 E void docall(struct obj *);
 E const char *rndghostname(void);
@@ -1094,6 +1096,67 @@ E boolean have_highlevelstone(void);
 E boolean have_spellforgettingstone(void);
 E boolean have_soundeffectstone(void);
 E boolean have_timerunstone(void);
+
+E boolean have_orangespellstone(void);
+E boolean have_violetspellstone(void);
+E boolean have_longingstone(void);
+E boolean have_cursedpartstone(void);
+E boolean have_quaversalstone(void);
+E boolean have_appearanceshufflingstone(void);
+E boolean have_brownspellstone(void);
+E boolean have_choicelessstone(void);
+E boolean have_goldspellstone(void);
+E boolean have_deprovementstone(void);
+E boolean have_initializationstone(void);
+E boolean have_gushlushstone(void);
+E boolean have_soiltypestone(void);
+E boolean have_dangerousterrainstone(void);
+E boolean have_falloutstone(void);
+E boolean have_mojibakestone(void);
+E boolean have_gravationstone(void);
+E boolean have_uncalledstone(void);
+E boolean have_explodingdicestone(void);
+E boolean have_permacursestone(void);
+E boolean have_shroudedidentitystone(void);
+E boolean have_feelergaugesstone(void);
+E boolean have_longscrewupstone(void);
+E boolean have_wingyellowstone(void);
+E boolean have_lifesavingstone(void);
+E boolean have_curseusestone(void);
+E boolean have_cutnutritionstone(void);
+E boolean have_skilllossstone(void);
+E boolean have_autopilotstone(void);
+E boolean have_forcestone(void);
+E boolean have_monsterglyphstone(void);
+E boolean have_changingdirectivestone(void);
+E boolean have_containerkaboomstone(void);
+E boolean have_stealdegradestone(void);
+E boolean have_leftinventorystone(void);
+E boolean have_fluctuatingspeedstone(void);
+E boolean have_tarmustrokingnorastone(void);
+E boolean have_failurestone(void);
+E boolean have_brightcyanspellstone(void);
+E boolean have_frequentationspawnstone(void);
+E boolean have_petaistone(void);
+E boolean have_satanstone(void);
+E boolean have_rememberancestone(void);
+E boolean have_pokeliestone(void);
+E boolean have_autopickupstone(void);
+E boolean have_dywypistone(void);
+E boolean have_silverspellstone(void);
+E boolean have_metalspellstone(void);
+E boolean have_platinumspellstone(void);
+E boolean have_manlerstone(void);
+E boolean have_doorningstone(void);
+E boolean have_nownsiblestone(void);
+E boolean have_elmstreetstone(void);
+E boolean have_monnoisestone(void);
+E boolean have_rangcallstone(void);
+E boolean have_recurringspelllossstone(void);
+E boolean have_antitrainingstone(void);
+E boolean have_techoutstone(void);
+E boolean have_statdecaystone(void);
+E boolean have_movemorkstone(void);
 
 E boolean have_lootcutstone(void);
 E boolean have_monsterspeedstone(void);
@@ -2369,6 +2432,7 @@ E char *root_plselection_prompt(char *, int, int, int, int, int);
 E void recursioneffect(void);
 E void greenslimetransformation(void);
 E void bindertransformation(void);
+E void changehybridization(int);
 
 /* ### rumors.c ### */
 
@@ -2585,6 +2649,7 @@ E void kick_steed(void);
 E void dismount_steed(int);
 E void place_monster(struct monst *,int,int);
 E boolean mayfalloffsteed(void);
+E boolean will_hit_steed(void);
 
 /* ### tech.c ### */
 
