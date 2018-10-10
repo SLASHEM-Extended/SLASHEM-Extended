@@ -249,7 +249,7 @@ int rx, ry, *resp;
 		ttmp = t_at(rx, ry);
 		pline("%s appears to be in %s health for a statue.",
 		      The(mons[otmp->corpsenm].mname),
-		      (ttmp && ttmp->ttyp == STATUE_TRAP) ?
+		      (ttmp && (ttmp->ttyp == STATUE_TRAP || ttmp->ttyp == SATATUE_TRAP)) ?
 			"extraordinary" : "excellent");
 	    }
 	    return TRUE;
@@ -3235,9 +3235,7 @@ struct obj *obj;
 	    kick_steed();
 	    return 1;
 	}
-	if (Levitation || Flying
-			|| u.usteed
-		) {
+	if (Levitation || Flying || u.usteed) {
 	    /* Have a shot at snaring something on the floor */
 	    otmp = level.objects[u.ux][u.uy];
 	    if (otmp && otmp->otyp == CORPSE && otmp->corpsenm == PM_HORSE) {
@@ -5126,6 +5124,67 @@ doapply()
 	case ITEM_TELEPORTING_STONE:
 	case NASTY_STONE:
 
+	case ORANGE_SPELL_STONE:
+	case VIOLET_SPELL_STONE:
+	case LONGING_STONE:
+	case CURSED_PART_STONE:
+	case QUAVERSAL_STONE:
+	case APPEARANCE_SHUFFLING_STONE:
+	case BROWN_SPELL_STONE:
+	case CHOICELESS_STONE:
+	case GOLDSPELL_STONE:
+	case DEPROVEMENT_STONE:
+	case INITIALIZATION_STONE:
+	case GUSHLUSH_STONE:
+	case SOILTYPE_STONE:
+	case DANGEROUS_TERRAIN_STONE:
+	case FALLOUT_STONE:
+	case MOJIBAKE_STONE:
+	case GRAVATION_STONE:
+	case UNCALLED_STONE:
+	case EXPLODING_DICE_STONE:
+	case PERMACURSE_STONE:
+	case SHROUDED_IDENTITY_STONE:
+	case FEELER_GAUGE_STONE:
+	case LONG_SCREWUP_STONE:
+	case WING_YELLOW_STONE:
+	case LIFE_SAVING_STONE:
+	case CURSEUSE_STONE:
+	case CUT_NUTRITION_STONE:
+	case SKILL_LOSS_STONE:
+	case AUTOPILOT_STONE:
+	case FORCE_STONE:
+	case MONSTER_GLYPH_STONE:
+	case CHANGING_DIRECTIVE_STONE:
+	case CONTAINER_KABOOM_STONE:
+	case STEAL_DEGRADE_STONE:
+	case LEFT_INVENTORY_STONE:
+	case FLUCTUATING_SPEED_STONE:
+	case TARMUSTROKINGNORA_STONE:
+	case FAILURE_STONE:
+	case BRIGHT_CYAN_SPELL_STONE:
+	case FREQUENTATION_SPAWN_STONE:
+	case PET_AI_STONE:
+	case SATAN_STONE:
+	case REMEMBERANCE_STONE:
+	case POKELIE_STONE:
+	case AUTOPICKUP_STONE:
+	case DYWYPI_STONE:
+	case SILVER_SPELL_STONE:
+	case METAL_SPELL_STONE:
+	case PLATINUM_SPELL_STONE:
+	case MANLER_STONE:
+	case DOORNING_STONE:
+	case NOWNSIBLE_STONE:
+	case ELM_STREET_STONE:
+	case MONNOISE_STONE:
+	case RANG_CALL_STONE:
+	case RECURRING_SPELL_LOSS_STONE:
+	case ANTI_TRAINING_STONE:
+	case TECHOUT_STONE:
+	case STAT_DECAY_STONE:
+	case MOVEMORK_STONE:
+
 	case METABOLIC_STONE:
 	case STONE_OF_NO_RETURN:
 	case EGOSTONE:
@@ -5668,6 +5727,66 @@ chargingchoice:
 		SpellForgetting = 0L;
 		SoundEffectBug = 0L;
 		TimerunBug = 0L;
+		OrangeSpells = 0L;
+		VioletSpells = 0L;
+		LongingEffect = 0L;
+		CursedParts = 0L;
+		Quaversal = 0L;
+		AppearanceShuffling = 0L;
+		BrownSpells = 0L;
+		Choicelessness = 0L;
+		Goldspells = 0L;
+		Deprovement = 0L;
+		InitializationFail = 0L;
+		GushlushEffect = 0L;
+		SoiltypeEffect = 0L;
+		DangerousTerrains = 0L;
+		FalloutEffect = 0L;
+		MojibakeEffect = 0L;
+		GravationEffect = 0L;
+		UncalledEffect = 0L;
+		ExplodingDiceEffect = 0L;
+		PermacurseEffect = 0L;
+		ShroudedIdentity = 0L;
+		FeelerGauges = 0L;
+		LongScrewup = 0L;
+		WingYellowChange = 0L;
+		LifeSavingBug = 0L;
+		CurseuseEffect = 0L;
+		CutNutritionEffect = 0L;
+		SkillLossEffect = 0L;
+		AutopilotEffect = 0L;
+		MysteriousForceActive = 0L;
+		MonsterGlyphChange = 0L;
+		ChangingDirectives = 0L;
+		ContainerKaboom = 0L;
+		StealDegrading = 0L;
+		LeftInventoryBug = 0L;
+		FluctuatingSpeed = 0L;
+		TarmuStrokingNora = 0L;
+		FailureEffects = 0L;
+		BrightCyanSpells = 0L;
+		FrequentationSpawns = 0L;
+		PetAIScrewed = 0L;
+		SatanEffect = 0L;
+		RememberanceEffect = 0L;
+		PokelieEffect = 0L;
+		AlwaysAutopickup = 0L;
+		DywypiProblem = 0L;
+		SilverSpells = 0L;
+		MetalSpells = 0L;
+		PlatinumSpells = 0L;
+		ManlerEffect = 0L;
+		DoorningEffect = 0L;
+		NownsibleEffect = 0L;
+		ElmStreetEffect = 0L;
+		MonnoiseEffect = 0L;
+		RangCallEffect = 0L;
+		RecurringSpellLoss = 0L;
+		AntitrainingEffect = 0L;
+		TechoutBug = 0L;
+		StatDecay = 0L;
+		Movemork = 0L;
 
 		break;
 	case GOD_O_METER:
