@@ -54,6 +54,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  16, 20, 16, 16, 15, 14 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
@@ -83,6 +85,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 25, 25, 10, 10, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 14, 14, 18, 16, 20 },
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 3,  1, 0 },	/* Hit points */
 	{ 20, 0,  0, 4,  0, 4 },12,	/* Energy */
@@ -113,6 +117,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 30, 10, 10, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  12, 25, 18, 15, 14, 16 },
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 4,  2, 0 },	/* Hit points */
 	{ 40, 0,  0, 12,  0, 15 },12,	/* Energy */
@@ -141,6 +147,8 @@ const struct Role roles[] = {
 	/*{  10,  8,  7, 10, 17,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15,  8, 25, 14, 18 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 16, 15, 25, 17, 22 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 5,  4, 0 },	/* Hit points */
 	{ 10, 0,  0, 2,  0, 3 },11,	/* Energy */
@@ -167,6 +175,8 @@ const struct Role roles[] = {
 	/* {  10, 10,  7, 10,  7,  7 }, */
 	{   3,  3,  3,  3,  3,  3 },
 	{  17, 18, 17, 13, 19, 16 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 14, 14, 18, 20, 12 },
 	/* Init   Lower  Higher */
 	{ 11, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  2, 0,  0, 2,  0, 2 },14,	/* Energy */
@@ -193,6 +203,8 @@ const struct Role roles[] = {
 	/* Str Int Wis Dex Con Cha */
 	{   3,  3,  3,  3,  3,  3 },
 	{  17, 18, 17, 13, 19, 16 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  4, 0,  0, 2,  0, 3 },12,	/* Energy */
@@ -224,6 +236,8 @@ const struct Role roles[] = {
 /*	{   7, 10, 10,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 20, 10, 20, 10 }, /* This must add up to 100 or it won't work right (attrib.c uses this code). Again, thanks to CK for pointing it out. --Amy */
+	/* new limit values for the six attributes by Amy */
+	{  18, 16, 17, 20, 16, 18 },
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 10, 0,  0, 1,  0, 1 },14,	/* Energy */
@@ -252,6 +266,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  6,  7,  7, 10 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  12, 20, 20, 20, 12, 16 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 15, 15, 20, 16, 19 },
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 8,  0, 0 },	/* Hit points */
 	{ 12, 0,  0, 1,  0, 1 },14,	/* Energy */
@@ -282,6 +298,8 @@ const struct Role roles[] = {
 	/*{   7,  7,  7, 10,  7,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 15, 5, 30, 15, 5 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 18, 14, 21, 16, 19 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },11,	/* Energy */
@@ -312,6 +330,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  8,  8,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{   5, 30, 30,  5,  5, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  10, 22, 25, 17, 13, 16 },
 	/* Init   Lower  Higher */
 	{ 9, 0,  0, 0,  1, 0 },	/* Hit points */
 	{ 18, 4,  0, 4,  0, 8 },10,	/* Energy */
@@ -343,6 +363,8 @@ const struct Role roles[] = {
 	/*{  16,  7,  7, 15, 16,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30,  6,  7, 20, 30,  7 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(22), 8, 8, 16, 20, 8 },
 	/* Init   Lower  Higher */
 	{ 20, 0,  0,10,  2, 0 },	/* Hit points */
 	{  5, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -371,6 +393,8 @@ const struct Role roles[] = {
 	/*{   7,  7,  7, 10,  6, 10 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 10, 15, 25, 10, 30 },
+	/* new limit values for the six attributes by Amy */
+	{  14, 18, 18, 18, 15, 22 },
 	/* Init   Lower  Higher */
 	{ 11, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  4, 3,  0, 1,  0, 2 },10,	/* Energy */
@@ -400,6 +424,8 @@ const struct Role roles[] = {
 	/*{  6,  6,  6,  6,  6,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  16,  17,  17, 17, 16,  17 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{ 11, 0,  0, 10,  2, 0 },	/* Hit points */
 	{  5, 0,  1, 0,  1, 0 },15,	/* Energy */
@@ -428,6 +454,8 @@ const struct Role roles[] = {
 	/*{  6,  6,  6,  6,  6,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  12,  20,  24, 8, 10,  26 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 20, 18, 20, 18 },
 	/* Init   Lower  Higher */
 	{ 20, 0,  0, 16,  12, 0 },	/* Hit points */
 	{  8, 0,  4, 0,  4, 0 },15,	/* Energy */
@@ -457,6 +485,8 @@ const struct Role roles[] = {
 	/*{  16,  7,  7, 15, 16,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30,  6,  7, 20, 30,  7 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 12, 14, 18, 18, 12 },
 	/* Init   Lower  Higher */
 	{ 20, 0,  0,10,  2, 0 },	/* Hit points */
 	{  5, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -486,6 +516,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 15, 15, 30, 10, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 19, 20, 24, 13, 20 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  8, 0,  0, 2,  0, 2 },12,	/* Energy */
@@ -514,6 +546,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 5, 15, 15, 30, 5 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 12, 10, 19, 18, 18 },
 	/* Init   Lower  Higher */
 	{  10, 0,  0, 5,  0, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -540,6 +574,8 @@ const struct Role roles[] = {
 	/* Str Int Wis Dex Con Cha */
 	{   3,  3,  3,  3,  3,  3 },
 	{  17, 17, 16, 17, 17, 16 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 4,  1, 0 },	/* Hit points */
 	{ 7, 2,  0, 1,  0, 1 },10,	/* Energy */
@@ -571,6 +607,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7,  8,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30,  6,  7, 20, 30,  7 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 8, 10, 17, 21, 6 },
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  2, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -598,6 +636,8 @@ const struct Role roles[] = {
 	/* Str Int Wis Dex Con Cha */
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 15, 10, 25, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 20, 16, 14, 14, 13 },
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 1,  10, 0 },	/* Hit points */
 	{ 17, 4,  0, 6,  0, 1 }, 16,	/* Energy */
@@ -627,6 +667,8 @@ const struct Role roles[] = {
 	/*{   7,  7, 10,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 10, 30, 15, 20, 5 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 16, 18, 17, 17, 18 },
 	/* Init   Lower  Higher */
 	{ 20, 0,  0, 9,  1, 0 },	/* Hit points */
 	{ 17, 3,  0, 2,  0, 2 },10,	/* Energy */
@@ -656,6 +698,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 12, 12, 20, 18, 18 },
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -685,6 +729,8 @@ const struct Role roles[] = {
 	/*{   7,  7,  7, 10,  7,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 10, 10, 30, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(10), 16, 14, 19, 16, 19 },
 	/* Init   Lower  Higher */
 	{ 9, 0,  0, 3,  1, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },11,	/* Energy */
@@ -714,6 +760,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(20), 14, 10, 14, 16, 10 },
 	/* Init   Lower  Higher */
 	{  10, 0,  0, 5,  0, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -742,6 +790,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 14, 8, 18, 19, 18 },
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -770,6 +820,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  16, 20, 12, 16, 14, 8 },
 	/* Init   Lower  Higher */
 	{ 17, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
@@ -799,6 +851,8 @@ const struct Role roles[] = {
 	/*{   8,  7, 7,  8,  8,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15, 10, 20, 25, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(60), 18, 17, 19, 16, 19 },
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },12,	/* Energy */
@@ -827,6 +881,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 20, 10, 30, 10, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 20, 18, 21, 16, 20 },
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
@@ -855,6 +911,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 4, 3, 30, 30, 3 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 13, 12, 16, 20, 12 },
 	/* Init   Lower  Higher */
 	{  15, 0,  0, 10,  0, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },15,	/* Energy */
@@ -885,6 +943,8 @@ const struct Role roles[] = {
 	/*{   7,  7,  7, 10,  7,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 10, 10, 30, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 20, 18, 16, 12 },
 	/* Init   Lower  Higher */
 	{  5, 0,  0, 2,  8, 0 },	/* Hit points */
 	{  1, 0,  0, 2,  0, 8 },15,	/* Energy */
@@ -913,6 +973,8 @@ const struct Role roles[] = {
 	/*{  10,  8,  7, 10, 17,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15,  8, 25, 14, 18 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 18, 16, 14, 10, 16 },
 	/* Init   Lower  Higher */
 	{ 8, 0,  0, 1,  1, 0 },	/* Hit points */
 	{ 12, 0,  0, 3,  0, 4 },11,	/* Energy */
@@ -941,6 +1003,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 14, 16, 15, 18, 12 },
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -971,6 +1035,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  25, 15, 15, 20, 20, 5 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 17, 14, 18, 16, 16 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  8, 0,  0, 2,  0, 2 },12,	/* Energy */
@@ -999,6 +1065,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  16, 20, 16, 16, 15, 14 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
@@ -1028,6 +1096,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{   5, 25, 20, 25, 15, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 18, 18, 18, 16, 17 },
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 4,  2, 0 },	/* Hit points */
 	{ 20, 5,  0, 3,  0, 1 },13,	/* Energy */
@@ -1061,6 +1131,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 10, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 19, 19, 24, 16, 20 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  8, 0,  0, 2,  0, 2 },12,	/* Energy */
@@ -1090,6 +1162,8 @@ const struct Role roles[] = {
 	/*{   7,  7,  7, 10,  7,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 10, 10, 30, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 16, 17, 17, 18, 16 },
 	/* Init   Lower  Higher */
 	{  7, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  2, 0,  0, 2,  0, 1 },16,	/* Energy */
@@ -1118,6 +1192,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 25, 15, 15, 10, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  12, 16, 16, 21, 14, 25 },
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  8, 0,  0, 1,  0, 2 },12,	/* Energy */
@@ -1146,6 +1222,8 @@ const struct Role roles[] = {
 	/*{  13,  7, 14,  8, 10, 17 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  5,  5,  5, 60, 5, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  17, 16, 12, 25, 16, 22 },
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  2, 0 },	/* Hit points */
 	{ 10, 4,  0, 1,  0, 2 },10,	/* Energy */
@@ -1174,6 +1252,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20,  5,  5, 20, 20, 30 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 12, 14, 19, 18, 21 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 4,  4, 0 },	/* Hit points */
 	{ 10, 0,  0, 7,  0, 0 }, 15,	/* Energy */
@@ -1202,6 +1282,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15, 10, 25, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 15, 16, 21, 18, 19 },
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 9,  2, 0 },	/* Hit points */
 	{ 13, 2,  0, 2,  0, 2 },12,	/* Energy */
@@ -1230,6 +1312,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  25, 10, 10, 20, 25, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 16, 21, 18, 19, 19 },
 	/* Init   Lower  Higher */
 	{ 13, 0,  0, 10,  4, 0 },	/* Hit points */
 	{ 4,  0,  0, 1,  0, 1 },16,	/* Energy */
@@ -1259,6 +1343,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(21), 17, 19, 18, 19, 20 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
@@ -1291,6 +1377,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  15, 20, 18, 14, 14, 16 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
@@ -1320,6 +1408,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  16, 16, 17, 17, 16, 16 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 20, 16, 18, 16, 15 },
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 2,  2, 0 },	/* Hit points */
 	{ 30, 0,  0, 10,  0, 5 }, 16,	/* Energy */
@@ -1348,6 +1438,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 12,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  22,  22, 15, 15, 22,  4 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 14, 16, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{ 20, 0,  0, 8,  2, 0 },	/* Hit points */
 	{  2, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -1376,6 +1468,8 @@ const struct Role roles[] = {
 	/*{  10, 10, 10,  8,  9, 7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  8, 20, 20, 40, 7, 5 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 17, 15, 22, 20, 19 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 20, 4,  0, 1,  0, 2 },20,	/* Energy */
@@ -1404,6 +1498,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  15, 15, 15, 15, 25, 15 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 5,  5, 0 },	/* Hit points */
 	{ 7, 0,  0, 3,  0, 3 }, 14,	/* Energy */
@@ -1432,6 +1528,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 14, 10, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -1463,6 +1561,8 @@ const struct Role roles[] = {
 	/*{  10, 10, 10,  8,  9, 7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 15, 15, 10, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(70), 19, 17, 19, 14, 16 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 20, 4,  0, 1,  0, 2 },20,	/* Energy */
@@ -1491,6 +1591,8 @@ const struct Role roles[] = {
 	/*{   8,  7, 7,  8,  8,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15, 10, 20, 25, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 16, 12, 18, 20, 17 },
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 8,  4, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },12,	/* Energy */
@@ -1519,6 +1621,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  25,  5, 15, 25, 25,  5 },
+	/* new limit values for the six attributes by Amy */
+	{  14, 17, 12, 15,  8, 18 },
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  8, 0,  0, 1,  0, 2 },12,	/* Energy */
@@ -1547,6 +1651,8 @@ const struct Role roles[] = {
 /*	{   7, 10, 10,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 20, 10, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 20, 20, 18, 16, 14 },
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 4,  1, 0 },	/* Hit points */
 	{ 6, 0,  0, 1,  0, 1 },14,	/* Energy */
@@ -1576,6 +1682,8 @@ const struct Role roles[] = {
 	/*{  10, 10, 10,  8,  9, 7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 15, 15, 10, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(70), 19, 17, 19, 14, 16 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 20, 4,  0, 1,  0, 2 },20,	/* Energy */
@@ -1604,6 +1712,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 16, 12, 20, 18, 16 },
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -1636,6 +1746,8 @@ const struct Role roles[] = {
 	/*{   7,  7, 13,  7, 11, 16 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  15, 20, 20, 15, 25, 5 },
+	/* new limit values for the six attributes by Amy */
+	{  12, 18, 21, 20, 14, 20 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 20, 4,  0, 1,  0, 2 },20,	/* Energy */
@@ -1664,6 +1776,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  15, 15, 10, 15, 25, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 12, 20, 19, 22 },
 	/* Init   Lower  Higher */
 	{ 10, 0, 0, 5,  4, 0 },	/* Hit points */
 	{  6, 0, 0, 3,  0, 4 }, 12,	/* Energy */
@@ -1695,6 +1809,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  15, 20, 18, 14, 14, 16 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
@@ -1725,6 +1841,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  17, 20, 22, 19, 15, 18 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
@@ -1754,6 +1872,8 @@ const struct Role roles[] = {
 	/*{  10,  7, 14, 12, 10, 14 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 15, 15, 10, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 20, 20, 18, 20 },
 	/* Init   Lower  Higher */
 	{ 20, 4,  0, 8,  2, 4 },	/* Hit points */
 	{  5, 4,  0, 1,  0, 4 },10,	/* Energy */
@@ -1783,6 +1903,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  13, 20, 13, 14, 20, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 14, 12, 20, 16, 19 },
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -1811,6 +1933,8 @@ const struct Role roles[] = {
 	/*{  13,  7, 14,  8, 10, 17 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  15, 15, 15, 15, 20, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 16, 19, 18, 18, 17 },
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 4,  4, 0 },	/* Hit points */
 	{ 7, 5,  0, 3,  0, 2 },18,	/* Energy */
@@ -1841,6 +1965,8 @@ const struct Role roles[] = {
 	/*{  13,  7, 14,  8, 10, 17 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 15, 15, 10, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 15, 17, 16, 19, 19 },
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  2, 0 },	/* Hit points */
 	{ 10, 4,  0, 1,  0, 2 },10,	/* Energy */
@@ -1869,6 +1995,8 @@ const struct Role roles[] = {
 	/*{   8,  7, 7,  8,  8,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15, 10, 20, 25, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 16, 18, 19, 19 },
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },12,	/* Energy */
@@ -1897,6 +2025,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15, 5, 15, 20, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 19, 18, 25 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  7, 0,  0, 2,  0, 2 },12,	/* Energy */
@@ -1925,6 +2055,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  12, 30, 4, 12, 12, 30 },
+	/* new limit values for the six attributes by Amy */
+	{  16, 16, 18, 18, 14, 25 },
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  8, 0,  0, 1,  0, 2 },12,	/* Energy */
@@ -1954,6 +2086,8 @@ const struct Role roles[] = {
 	/*{  10, 10, 10,  8,  9, 7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 30, 10, 10, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 19, 20, 18, 16, 20 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 20, 4,  0, 1,  0, 2 },20,	/* Energy */
@@ -1983,6 +2117,8 @@ const struct Role roles[] = {
 	/*{   7,  7,  7, 10,  7,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 10, 10, 30, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 24, 18, 18 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },11,	/* Energy */
@@ -2011,6 +2147,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 16, 14, 18, 20, 14 },
 	/* Init   Lower  Higher */
 	{  18, 0,  0, 8,  6, 0 },	/* Hit points */
 	{  5, 0,  0, 3,  0, 3 },10,	/* Energy */
@@ -2039,6 +2177,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  12, 12, 30, 4, 12, 30 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(30), 20, 16, 14, 12, 20 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
@@ -2067,6 +2207,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 15, 15, 20, 15, 5 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(21), 12, 14, 19, 20, 16 },
 	/* Init   Lower  Higher */
 	{ 14, 0, 0, 6,  3, 0 },	/* Hit points */
 	{  1, 0, 0, 2,  0, 2 }, 15,	/* Energy */
@@ -2096,6 +2238,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  4, 28, 30, 4, 4, 30 },
+	/* new limit values for the six attributes by Amy */
+	{  17, 20, 25, 19, 16, 19 },
 	/* Init   Lower  Higher */
 	{  9, 0,  0, 4,  1, 0 },	/* Hit points */
 	{ 25, 4,  0, 5,  0, 7 }, 8,	/* Energy */
@@ -2123,6 +2267,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 12,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  25,  9,  9, 20, 30,  7 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 16, 19, 16, 20, 13 },
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 7,  2, 0 },	/* Hit points */
 	{  2, 0,  0, 2,  0, 3 },10,	/* Energy */
@@ -2155,6 +2301,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  8,  8,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  25, 10, 20, 20, 15, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 14, 20, 18, 14, 18 },
 	/* Init   Lower  Higher */
 	{ 17, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  8, 2,  0, 2,  0, 2 },10,	/* Energy */
@@ -2183,6 +2331,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 12, 12, 20, 18, 18 },
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -2213,6 +2363,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 10, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(20), 18, 18, 20, 18, 19 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  8, 0,  0, 2,  0, 2 },12,	/* Energy */
@@ -2241,6 +2393,8 @@ const struct Role roles[] = {
 	/*{  6,  6,  6,  6,  6,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  16,  17,  17, 17, 16,  17 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{ 11, 0,  0, 10,  2, 0 },	/* Hit points */
 	{  5, 0,  1, 0,  1, 0 },15,	/* Energy */
@@ -2272,6 +2426,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  14, 18, 17, 14, 12, 10 },
 	/* Init   Lower  Higher */
 	{ 17, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
@@ -2301,6 +2457,8 @@ const struct Role roles[] = {
 	/*{  10,  8,  7, 10, 17,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 10,  8, 30, 14,  8 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 17, 19, 20, 18, 19 },
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  7, 0,  0, 1,  0, 1 },11,	/* Energy */
@@ -2329,6 +2487,8 @@ const struct Role roles[] = {
 	/*{   10,10,  7, 10,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 18, 10, 20, 15, 17 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 16, 19, 18, 17, 22 },
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  2, 2,  0, 2,  0, 2 },10,	/* Energy */
@@ -2357,6 +2517,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 35, 20, 15, 15,  5 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 19, 18, 19, 14, 19 },
 	/* Init   Lower  Higher */
 	{ 9,  0, 0, 4,  1, 0 },	/* Hit points */
 	{ 16, 0, 0, 5,  0, 3 }, 10,	/* Energy */
@@ -2384,6 +2546,8 @@ const struct Role roles[] = {
 	/* Str Int Wis Dex Con Cha */
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 30, 10, 10, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(10), 19, 15, 19, 17, 16 },
 	/* Init   Lower  Higher */
 	{  6, 0,  0, 2,  2, 0 },	/* Hit points */
 	{ 30, 5,  0, 6,  0, 8 }, 8,	/* Energy */
@@ -2413,6 +2577,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 16, 14, 19, 19, 19 },
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -2443,6 +2609,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  50, 10, 10, 10, 10, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 10, 10, 25, 25, 6 },
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 5,  1, 0 },	/* Hit points */
 	{ 10, 0,  0, 2,  0, 2 },12,	/* Energy */
@@ -2472,6 +2640,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  17, 17, 16, 19, 15, 18 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
@@ -2501,6 +2671,8 @@ const struct Role roles[] = {
 	/*{   7,  7, 10,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{   5, 15, 20, 15, 25, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 18, 19, 15, 17, 19 },
 	/* Init   Lower  Higher */
 	{ 20, 0,  0, 9,  1, 0 },	/* Hit points */
 	{ 17, 3,  0, 2,  0, 2 },10,	/* Energy */
@@ -2530,6 +2702,8 @@ const struct Role roles[] = {
 	/*{   7,  7,  7, 10,  7,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  12, 12, 12, 30, 4, 30 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 17, 16, 25, 16, 18 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },11,	/* Energy */
@@ -2559,6 +2733,8 @@ const struct Role roles[] = {
 	/*{   8,  7, 7,  8,  8,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15, 10, 20, 25, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 16, 18, 19, 19 },
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  1, 0,  0, 1,  0, 1 },12,	/* Energy */
@@ -2587,6 +2763,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  18, 18, 19, 18, 20, 19 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 15, 3,  0, 2,  0, 3 },12,	/* Energy */
@@ -2616,6 +2794,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 10, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 19, 19, 19, 19, 20 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
@@ -2644,6 +2824,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  6,  7,  7, 10 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  15, 10, 10,  5, 10, 50 },
+	/* new limit values for the six attributes by Amy */
+	{  16, 16, 18, 16, 16, 20 },
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 6,  0, 0 },	/* Hit points */
 	{ 10, 0,  0, 1,  0, 1 },14,	/* Energy */
@@ -2675,6 +2857,8 @@ const struct Role roles[] = {
 	/*{   7,  7, 10,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  15, 10, 30, 15, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  17, 18, 22, 14, 15, 19 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 17, 3,  0, 2,  0, 2 },10,	/* Energy */
@@ -2703,6 +2887,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15, 5, 15, 20, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 19, 18, 25 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  7, 0,  0, 2,  0, 2 },12,	/* Energy */
@@ -2735,6 +2921,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  8,  8,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{   5, 30, 30,  5,  5, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  14, 20, 25, 18, 12, 18 },
 	/* Init   Lower  Higher */
 	{ 5, 0,  0, 0,  0, 0 },	/* Hit points */
 	{ 20, 4,  0, 4,  0, 8 },10,	/* Energy */
@@ -2785,6 +2973,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 10, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 18, 16, 25, 16, 19 },
 	/* Init   Lower  Higher */
 	{ 18, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
@@ -2813,6 +3003,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 10, 20, 10, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  16, 20, 20, 20, 14, 16 },
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 6,  1, 0 },	/* Hit points */
 	{ 15, 4,  0, 2,  0, 2 },12,	/* Energy */
@@ -2841,6 +3033,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 14, 17, 18, 19, 19 },
 	/* Init   Lower  Higher */
 	{  12, 0,  0, 8,  0, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -2872,6 +3066,8 @@ const struct Role roles[] = {
 	/*{   7,  7,  7, 10,  7,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 10, 10, 30, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 18, 15, 25, 17, 20 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  3, 0,  0, 1,  0, 1 },11,	/* Energy */
@@ -2901,6 +3097,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 30, 10, 10, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  13, 22, 25, 17, 13, 19 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 25, 3,  0, 2,  0, 3 },12,	/* Energy */
@@ -2930,6 +3128,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  8,  8,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  25, 10, 20, 20, 15, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 17, 18, 19, 18, 16 },
 	/* Init   Lower  Higher */
 	{ 17, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  8, 2,  0, 2,  0, 2 },10,	/* Energy */
@@ -2961,6 +3161,8 @@ const struct Role roles[] = {
 	/*{  10,  8,  7, 10, 17,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30, 10,  8, 30, 14,  8 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 16, 18, 17, 18, 18 },
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  7, 0,  0, 1,  0, 1 },11,	/* Energy */
@@ -2990,6 +3192,8 @@ const struct Role roles[] = {
 	/*{  10, 10, 10,  8,  9, 7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 20, 10, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 19, 18, 19, 14, 19 },
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 3,  1, 0 },	/* Hit points */
 	{ 20, 5,  0, 1,  0, 2 },20,	/* Energy */
@@ -3018,6 +3222,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 25, 25, 10, 10, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  16, 17, 15, 14, 10, 12 },
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 3,  1, 0 },	/* Hit points */
 	{ 20, 0,  0, 4,  0, 4 },12,	/* Energy */
@@ -3047,6 +3253,8 @@ const struct Role roles[] = {
 /*	{   7, 10, 10,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  15, 5, 15, 30, 30, 5 }, 
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 16, 8, 19, 20, 19 },
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 10, 0,  0, 1,  0, 1 },14,	/* Energy */
@@ -3073,6 +3281,8 @@ const struct Role roles[] = {
 	/* Str Int Wis Dex Con Cha */
 	{   3,  3,  3,  3,  3,  3 },
 	{  17, 17, 16, 17, 17, 16 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  2, 0 },	/* Hit points */
 	{ 10, 4,  0, 1,  0, 2 },10,	/* Energy */
@@ -3101,6 +3311,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  6,  7,  7, 10 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{   5, 5, 15, 15, 30, 30 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 19, 16, 19 },
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 8,  0, 0 },	/* Hit points */
 	{ 12, 0,  0, 1,  0, 1 },14,	/* Energy */
@@ -3131,6 +3343,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  17, 17, 17, 17, 16, 16 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 19, 16, 18, 17, 20 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 4,  4, 0 },	/* Hit points */
 	{ 10, 0,  0, 4,  0, 4 },12,	/* Energy */
@@ -3159,6 +3373,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 25, 15, 15, 10, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  12, 16, 16, 21, 14, 25 },
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  8, 0,  0, 1,  0, 2 },12,	/* Energy */
@@ -3189,6 +3405,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  6,  7,  7, 10 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  15, 10, 10, 15, 30, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(20), 16, 15, 18, 14, 22 },
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 8,  0, 0 },	/* Hit points */
 	{ 12, 0,  0, 1,  0, 1 },14,	/* Energy */
@@ -3217,6 +3435,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  15, 15,  5, 30, 10, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(40), 18, 16, 19, 15, 18 },
 	/* Init   Lower  Higher */
 	{ 8,  0,  0, 1,  7, 0 },	/* Hit points */
 	{ 35, 0,  0, 1,  0, 1 }, 20,	/* Energy */
@@ -3245,6 +3465,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 10, 10, 20, 20, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 16, 14, 19, 16, 22 },
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
@@ -3274,6 +3496,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 10, 10, 20, 20, 20 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 16, 14, 19, 16, 22 },
 	/* Init   Lower  Higher */
 	{ 14, 0,  0, 6,  1, 0 },	/* Hit points */
 	{  4, 0,  0, 1,  0, 1 },12,	/* Energy */
@@ -3306,6 +3530,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 20, 20, 10, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  17, 19, 19, 23, 15, 19 },
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 4,  1, 0 },	/* Hit points */
 	{ 12, 0,  0, 4,  0, 3 },12,	/* Energy */
@@ -3334,6 +3560,8 @@ const struct Role roles[] = {
 	/*{  16,  7,  7, 15, 16,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30,  5,  5, 25, 30,  5 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 19, 19, 17, 20, 18 },
 	/* Init   Lower  Higher */
 	{ 24, 0,  0,12,  4, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 },10,	/* Energy */
@@ -3365,6 +3593,8 @@ const struct Role roles[] = {
 	/*{  13,  7, 14,  8, 10, 10 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15, 15, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 15, 17, 14, 18, 16 },
 	/* Init   Lower  Higher */
 	{ 22, 0,  0, 8,  2, 0 },	/* Hit points */
 	{ 16, 4,  0, 1,  0, 2 },10,	/* Energy */
@@ -3394,6 +3624,8 @@ const struct Role roles[] = {
 	/*{  13,  7, 14,  8, 10, 10 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15, 15, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 16, 17, 18, 17, 17 },
 	/* Init   Lower  Higher */
 	{ 22, 0,  0, 8,  2, 0 },	/* Hit points */
 	{ 16, 4,  0, 1,  0, 2 },10,	/* Energy */
@@ -3424,6 +3656,8 @@ const struct Role roles[] = {
 	/*{  13,  7, 14,  8, 10, 10 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15, 15, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{    18, 19, 18, 19, 17, 18 },
 	/* Init   Lower  Higher */
 	{ 11, 0,  0, 4,  1, 0 },	/* Hit points */
 	{  8, 2,  0, 0,  0, 1 },10,	/* Energy */
@@ -3454,6 +3688,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 12,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  30,  6,  7, 20, 30,  7 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 15, 15, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{ 20, 0,  0, 8,  2, 0 },	/* Hit points */
 	{  2, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -3483,6 +3719,8 @@ const struct Role roles[] = {
 	/*{  13,  7, 14,  8, 10, 10 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  15, 19, 19, 19, 13, 15 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(30), 16, 18, 16, 15, 19 },
 	/* Init   Lower  Higher */
 	{ 20, 0,  0, 6,  2, 0 },	/* Hit points */
 	{ 10, 4,  0, 2,  0, 3 },10,	/* Energy */
@@ -3512,6 +3750,8 @@ const struct Role roles[] = {
 	/*{  18,  7, 11, 10, 12, 14 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  35, 10, 14, 13, 22, 6 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 14, 14, 18, 18, 16 },
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 15,  5, 0 },	/* Hit points */
 	{ 10, 0,  0, 1,  0, 1 },10,	/* Energy */
@@ -3540,6 +3780,8 @@ const struct Role roles[] = {
 	/*{  6,  6,  6,  6,  6,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  16,  17,  17, 17, 16,  17 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  8, 0,  4, 0,  4, 0 }, 12,	/* Energy */
@@ -3571,6 +3813,8 @@ const struct Role roles[] = {
 	/*{   7, 10,  7,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  10, 30, 10, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{    12, 22, 19, 16, 14, 16 },
 	/* Init   Lower  Higher */
 	{ 15, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 25, 3,  0, 2,  0, 3 },12,	/* Energy */
@@ -3603,6 +3847,8 @@ const struct Role roles[] = {
 	/*{  12,  7, 10, 12, 12,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 15, 15, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 14, 16, 16, 19, 18 },
 	/* Init   Lower  Higher */
 	{ 19, 0,  0, 8,  2, 0 },	/* Hit points */
 	{  3, 4,  0, 1,  0, 2 },10,	/* Energy */
@@ -3632,6 +3878,8 @@ const struct Role roles[] = {
 	/*{  13, 13, 13,  9, 13,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  12, 30, 4, 12, 12, 30 },
+	/* new limit values for the six attributes by Amy */
+	{    16, 18, 18, 20, 16, 25 },
 	/* Init   Lower  Higher */
 	{ 12, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  8, 0,  0, 1,  0, 2 },12,	/* Energy */
@@ -3661,6 +3909,8 @@ const struct Role roles[] = {
 /*	{   7, 10, 10,  7,  7,  7 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  20, 20, 20, 10, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(30), 16, 17, 18, 17, 15 },
 	/* Init   Lower  Higher */
 	{ 16, 0,  0, 8,  1, 0 },	/* Hit points */
 	{ 10, 0,  0, 1,  0, 1 },14,	/* Energy */
@@ -3689,6 +3939,8 @@ const struct Role roles[] = {
 	/*{  10,  7,  7,  7, 13,  6 },*/
 	{   3,  3,  3,  3,  3,  3 },
 	{  18, 18, 18, 18, 18, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  20, 0,  0, 5,  2, 0 },	/* Hit points */
 	{  4, 2,  0, 4,  0, 4 },10,	/* Energy */
@@ -3716,6 +3968,8 @@ struct Role urole =
 	/* Str Int Wis Dex Con Cha */
 	{   7,  7,  7,  7,  7,  7 },
 	{  20, 15, 15, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 25, 25, 25, 25, 25 },
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  2, 0,  0, 2,  0, 3 },14,	/* Energy */
@@ -3735,6 +3989,8 @@ struct Role ustartrole =
 	/* Str Int Wis Dex Con Cha */
 	{   7,  7,  7,  7,  7,  7 },
 	{  20, 15, 15, 20, 20, 10 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 25, 25, 25, 25, 25 },
 	/* Init   Lower  Higher */
 	{ 10, 0,  0, 8,  1, 0 },	/* Hit points */
 	{  2, 0,  0, 2,  0, 3 },14,	/* Energy */
@@ -3752,6 +4008,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 25, 25, 25, 25, 25 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -3765,6 +4023,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 20, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -3777,6 +4037,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 18, 18, 19, 22, 14 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  5, 0,  4, 0,  4, 0 }		/* Energy */
@@ -3790,6 +4052,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 20, 14, 20, 12, 25 },
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 6,  4, 0 },	/* Hit points */
 	{  8, 0,  6, 0,  4, 0 }		/* Energy */
@@ -3803,6 +4067,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 18, 16, 18, 12, 10 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -3816,6 +4082,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(60), 16, 16, 16, 16, 12 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -3829,6 +4097,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 20, 16 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  3, 0 }		/* Energy */
@@ -3842,6 +4112,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 20, 18, 18, 19 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  3, 0 }		/* Energy */
@@ -3855,6 +4127,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 19, 20, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  3, 0 }		/* Energy */
@@ -3868,6 +4142,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 20, 15 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  4, 0 }		/* Energy */
@@ -3881,6 +4157,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 20, 20, 20, 20, 20 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  3, 0 }		/* Energy */
@@ -3894,6 +4172,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 18, 18, 18, 14, 25 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  2, 0 },	/* Hit points */
 	{  2, 0,  4, 0,  4, 0 }		/* Energy */
@@ -3907,6 +4187,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 20 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -3920,6 +4202,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 18, 16, 20, 18, 10 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  3, 0 }		/* Energy */
@@ -3933,6 +4217,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
@@ -3946,6 +4232,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -3959,6 +4247,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 18, 18, 22, 18, 20 },
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 3,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  3, 0 }		/* Energy */
@@ -3972,6 +4262,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 14, 14, 15, 18, 12 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 0,  1, 0 },	/* Hit points */
 	{  1, 0,  0, 0,  1, 0 }		/* Energy */
@@ -3985,6 +4277,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{     18,     25, 25, 18, 12, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  5, 0,  4, 0,  4, 0 }		/* Energy */
@@ -3998,6 +4292,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 16, 16, 15, 22, 15 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4011,6 +4307,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(21), 16, 18, 20, 18, 16 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  3, 0 }		/* Energy */
@@ -4023,6 +4321,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20),  16, 16, 20, 14, 16 },
 	/* Init   Lower  Higher */
 	{  2, 0,  1, 0,  0, 1 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -4035,6 +4335,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{   3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  3, 0,  3, 0,  3, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  3, 0 },	/* Energy */
@@ -4048,6 +4350,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{      18,    18, 18, 18, 16, 10 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  3, 0 }		/* Energy */
@@ -4061,6 +4365,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 18, 18, 18, 18, 12 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  4, 0 }		/* Energy */
@@ -4074,6 +4380,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 19, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -4087,6 +4395,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 20, 18, 16, 20 },
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -4099,6 +4409,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 19, 14, 18, 18,  3 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
@@ -4111,6 +4423,8 @@ const struct Race races[] = {
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{     18,    20, 20, 18, 16, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  0, 0 },	/* Hit points */
 	{  7, 0,  3, 0,  3, 0 }		/* Energy */
@@ -4123,6 +4437,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(21), 18, 18, 18, 20, 14 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
@@ -4136,6 +4452,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 25, 25, 25, 25, 25 },
 	/* Init   Lower  Higher */
 	{  6, 0,  0, 8,  12, 0 },	/* Hit points */
 	{  5, 0,  9, 0,  13, 0 }		/* Energy */
@@ -4149,6 +4467,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(22), 18, 20, 20, 21, 16 },
 	/* Init   Lower  Higher */
 	{  5, 0,  0, 5,  3, 0 },	/* Hit points */
 	{  3, 0,  5, 0,  5, 0 }		/* Energy */
@@ -4162,6 +4482,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 14, 14, 15, 25, 12 },
 	/* Init   Lower  Higher */
 	{  10, 0,  0, 10,  10, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -4174,6 +4496,8 @@ const struct Race races[] = {
 	/*  Str    Int Wis Dex Con Cha */
 	{   3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 20, 18, 8, 14 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  4, 0,  2, 1,  2, 0 }		/* Energy */
@@ -4186,6 +4510,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 20, 20, 20, 15 },
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  7, 0,  5, 0,  5, 0 }		/* Energy */
@@ -4199,6 +4525,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(23), 18, 20, 16, 22, 18 },
 	/* Init   Lower  Higher */
 	{  6, 0,  0, 6,  2, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  2, 0 }		/* Energy */
@@ -4211,6 +4539,8 @@ const struct Race races[] = {
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  18,    20, 20, 18, 16, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  7, 0,  3, 0,  3, 0 }		/* Energy */
@@ -4224,6 +4554,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{     16,     18, 18, 22, 14, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -4236,6 +4568,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 10, 18, 13 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -4249,6 +4583,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  3, 0 },	/* Hit points */
 	{  3, 0,  4, 0,  4, 0 }		/* Energy */
@@ -4261,6 +4597,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 16, 16, 20, 20, 16 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -4274,6 +4612,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 15 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  3, 0 }		/* Energy */
@@ -4286,6 +4626,8 @@ const struct Race races[] = {
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  18,    20, 20, 18, 16, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  8, 0,  3, 0,  3, 0 }		/* Energy */
@@ -4299,6 +4641,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 16, 18, 14, 24,  6 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 4,  5, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  4, 0 }		/* Energy */
@@ -4312,6 +4656,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 25 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4325,6 +4671,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4338,6 +4686,23 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"extravator", "extravator", "extra aggravation", "Ext",
+	{0, 0},
+	PM_EXTRAVATOR, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 20, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4351,6 +4716,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(20), 20, 20, 24, 12, 22 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
@@ -4364,6 +4731,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 18, 16, 25, 18, 16 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  2, 0,  1, 0,  0, 0 }		/* Energy */
@@ -4377,6 +4746,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(60), 18, 18, 19, 18, 15 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  2, 0,  1, 0,  1, 0 }		/* Energy */
@@ -4389,6 +4760,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 18, 18, 18, 16, 10 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  3, 0 }		/* Energy */
@@ -4402,6 +4775,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 16, 18, 18, 18, 12 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4414,6 +4789,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 6 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 4,  8, 0 },	/* Hit points */
 	{  5, 0,  5, 0,  5, 0 }		/* Energy */
@@ -4427,6 +4804,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 15, 15, 14, 24, 18 },
 	/* Init   Lower  Higher */
 	{  5, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -4439,6 +4818,8 @@ const struct Race races[] = {
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50),19, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  0, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4452,6 +4833,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 20, 18, 16, 20 },
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -4464,6 +4847,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{      18,    16, 12, 18, 15,  5 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
 	{  5, 0,  4, 0,  3, 0 }		/* Energy */
@@ -4477,6 +4862,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 18, 20, 18, 16 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  3, 0 }		/* Energy */
@@ -4490,6 +4877,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  5, 0,  0, 7,  9, 0 },	/* Hit points */
 	{  5, 0,  7, 0,  9, 0 }		/* Energy */
@@ -4503,6 +4892,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
@@ -4515,6 +4906,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 19, 19, 19, 19, 16 },
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  7, 0,  5, 0,  5, 0 }		/* Energy */
@@ -4528,6 +4921,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 20, 20 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  4, 0 }		/* Energy */
@@ -4541,6 +4936,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{      15,    18, 18, 18, 14, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -4554,6 +4951,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 17 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  5, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  5, 0 }		/* Energy */
@@ -4566,6 +4965,8 @@ const struct Race races[] = {
 	/*  Str    Int Wis Dex Con Cha */
 	{   3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  18,     16, 18, 18, 20, 20 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  4, 0,  2, 1,  2, 0 }		/* Energy */
@@ -4579,6 +4980,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 20, 20, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -4591,6 +4994,8 @@ const struct Race races[] = {
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{    18,    20, 20, 20, 15, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  8, 0,  3, 0,  3, 0 }		/* Energy */
@@ -4604,6 +5009,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4617,6 +5024,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 25, 20, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4630,6 +5039,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(80), 15, 15, 18, 20, 16 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -4643,6 +5054,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{     16,     16, 16, 18, 12, 14 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -4656,6 +5069,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(90), 18, 18, 18, 17, 20 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  5, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  5, 0 }		/* Energy */
@@ -4669,6 +5084,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  0, 2 },	/* Hit points */
 	{  0, 0,  10, 0, 10, 0 },		/* Energy */
@@ -4681,6 +5098,8 @@ const struct Race races[] = {
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 22, 18, 20, 24 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 2,  3, 0 },	/* Hit points */
 	{  4, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4694,6 +5113,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 20, 16, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4707,6 +5128,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 20, 19 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 5,  5, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4719,6 +5142,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{     18,     20, 21, 18, 16, 12 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 4,  8, 0 },	/* Hit points */
 	{  5, 0,  5, 0,  5, 0 }		/* Energy */
@@ -4732,6 +5157,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 22, 18, 17 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 3,  3, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4745,6 +5172,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 17, 17, 18, 19, 16 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  3, 0,  2, 0,  1, 0 }		/* Energy */
@@ -4758,6 +5187,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 19, 20, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -4771,6 +5202,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{     18,     18, 18, 25, 16, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  3, 0 }		/* Energy */
@@ -4784,6 +5217,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4797,6 +5232,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 20, 20, 24, 18, 20 },
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 6,  4, 0 },	/* Hit points */
 	{  8, 0,  6, 0,  4, 0 }		/* Energy */
@@ -4810,6 +5247,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(22), 20, 20, 14, 18, 10 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -4823,6 +5262,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 19, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4836,6 +5277,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 18, 18, 19, 20, 16 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 2,  3, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  2, 0 }		/* Energy */
@@ -4849,6 +5292,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 18, 18, 18, 14, 22 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4861,6 +5306,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 15, 15, 20, 19, 15 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  5, 0,  4, 0,  4, 0 }		/* Energy */
@@ -4874,6 +5321,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 19, 18, 20, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
@@ -4887,6 +5336,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -4900,6 +5351,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 18, 18, 20, 14, 16 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 4,  5, 0 },	/* Hit points */
 	{  3, 0,  4, 0,  5, 0 }		/* Energy */
@@ -4913,6 +5366,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 20, 18 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  3, 0 }		/* Energy */
@@ -4925,6 +5380,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(23), 17, 23,  9, 11,  4 },
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 6,  7, 0 },	/* Hit points */
 	{  6, 0,  6, 0,  6, 0 }		/* Energy */
@@ -4938,6 +5395,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 10, 10, 20, 19, 13 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -4951,6 +5410,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 16, 16, 16, 20, 16 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -4963,6 +5424,8 @@ const struct Race races[] = {
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{       17, 21, 21, 19, 14, 19 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  6, 0,  2, 0,  1, 0 }		/* Energy */
@@ -4975,6 +5438,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 16, 16, 12 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
@@ -4988,6 +5453,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 16, 16, 18, 18, 11 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5001,6 +5468,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 20, 20, 19, 20, 14 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  1, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  3, 0 }		/* Energy */
@@ -5014,6 +5483,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
@@ -5027,6 +5498,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 22, 18, 20 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  4, 0,  4, 0 }		/* Energy */
@@ -5040,6 +5513,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 17, 17, 17, 19, 17 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  3, 0,  2, 0,  1, 0 }		/* Energy */
@@ -5053,6 +5528,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -5066,6 +5543,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 25, 14, 25 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  3, 0 }		/* Energy */
@@ -5079,6 +5558,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 20, 14, 10 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5092,6 +5573,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 12, 12, 16, 24,  8 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 3,  3, 0 },	/* Hit points */
 	{  3, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5104,6 +5587,8 @@ const struct Race races[] = {
 	/*  Str    Int Wis Dex Con Cha */
 	{   3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50),16, 16, 18, 18, 16 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  0, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5116,6 +5601,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 12, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  0, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5129,6 +5616,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 14 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5142,6 +5631,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 20, 16 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5154,6 +5645,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(21), 19, 19, 19, 21, 14 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
@@ -5167,6 +5660,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5180,6 +5675,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 16, 18, 16, 21, 14 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  8, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5193,6 +5690,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  3, 0 }		/* Energy */
@@ -5206,6 +5705,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 20, 18, 18 },
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5219,6 +5720,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 14, 12, 18, 22, 18 },
 	/* Init   Lower  Higher */
 	{  10, 0,  0, 6,  4, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -5231,6 +5734,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(21), 25, 20, 18, 16, 18 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  7, 0,  7, 0,  7, 0 }		/* Energy */
@@ -5244,6 +5749,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 16, 16, 18, 20, 19 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5257,6 +5764,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 20 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5270,6 +5779,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 20, 17, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5283,6 +5794,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 18, 18, 16, 19, 16 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 3,  4, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5296,6 +5809,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(20), 22, 22, 25, 12, 25 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  6, 0 },	/* Hit points */
 	{  4, 0,  6, 0,  9, 0 }		/* Energy */
@@ -5308,6 +5823,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{     15,     18, 18, 20, 14, 18 },
 	/* Init   Lower  Higher */
       {  1, 0,  0, 1,  1, 0 },	/* Hit points */
       {  1, 0,  2, 0,  2, 0 } 	/* Energy */
@@ -5320,6 +5837,8 @@ const struct Race races[] = {
 	/*  Str    Int Wis Dex Con Cha */
 	{    3,     3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{   18,    20, 20, 18, 16, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  6, 0,  3, 0,  3, 0 }		/* Energy */
@@ -5333,6 +5852,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5346,6 +5867,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 19, 18, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5359,6 +5882,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 18, 18, 19, 18, 25 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 5,  6, 0 },	/* Hit points */
 	{  3, 0,  4, 0,  7, 0 }		/* Energy */
@@ -5372,6 +5897,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 24, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5385,6 +5912,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 16, 16, 18, 21, 10 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5398,6 +5927,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -5411,6 +5942,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{     18,     18, 18, 18, 20, 18 },
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 4,  0, 0 },	/* Hit points */
 	{  8, 0,  4, 0,  0, 0 }		/* Energy */
@@ -5424,6 +5957,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 18, 18, 20, 18, 14 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  2, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5437,6 +5972,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 19, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5450,6 +5987,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ 16, 16, 16, 16, 16, 16 },	/* in Soviet Russia, races don't automatically have a max of 25 for every attribute */
+	/* new limit values for the six attributes by Amy */
+	{     15,     15, 15, 15, 15, 15 }, /* intentionally sucky :P */
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -5463,6 +6002,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5476,6 +6017,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 20, 16, 19 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 2,  3, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5489,6 +6032,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(30), 18, 18, 18, 12, 16 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5502,6 +6047,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{      18,    18, 20, 20, 12, 19 },
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  4, 0,  5, 0,  5, 0 }		/* Energy */
@@ -5515,6 +6062,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 19, 19, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5528,6 +6077,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 25, 25, 25, 25, 25 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5541,6 +6092,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  6, 0,  0, 6,  6, 0 },	/* Hit points */
 	{  6, 0,  6, 0,  6, 0 }		/* Energy */
@@ -5551,9 +6104,12 @@ const struct Race races[] = {
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
 	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
 	MH_HUMAN, 0, 0,
-	/* Str Int Wis Dex Con Cha */
-	{3, 3, 3, 3, 3, 3},
+	/*   Str    Int Wis Dex Con Cha */
+	{    3,      3,  3,  3,  3,  3},
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 20, 20, 18, 24 },
+	/* Init   Lower  Higher */
 	{2, 0, 1, 1, 1, 1},        /* Hit points */
 	{2, 0, 3, 0, 2, 2} /* Energy */
 },
@@ -5566,6 +6122,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 19, 19, 18, 20, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  3, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5579,6 +6137,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 18, 18, 18, 19, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5591,6 +6151,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 20, 17, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
@@ -5604,6 +6166,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 22, 18, 18 },
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 8,  10, 0 },	/* Hit points */
 	{  10, 0,  8, 0,  8, 0 }		/* Energy */
@@ -5617,6 +6181,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(22), 12, 12, 15, 24,  8 },
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -5630,6 +6196,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5643,6 +6211,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 25, 18 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 4,  5, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  4, 0 }		/* Energy */
@@ -5655,6 +6225,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 20, 18, 20, 14 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  7, 0,  7, 0,  7, 0 }		/* Energy */
@@ -5668,6 +6240,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5680,6 +6254,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 18, 18, 18, 20, 13 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 4,  4, 0 },	/* Hit points */
 	{  7, 0,  7, 0,  7, 0 }		/* Energy */
@@ -5693,6 +6269,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 16, 16, 20, 15, 24 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5706,6 +6284,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 16, 16, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5718,6 +6298,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 16 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  3, 0 }		/* Energy */
@@ -5730,6 +6312,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 18, 18, 20, 20, 20 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  5, 0,  4, 0,  4, 0 }		/* Energy */
@@ -5743,6 +6327,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 19, 16, 19, 18, 24 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5756,6 +6342,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 25 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5769,6 +6357,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 19, 19, 17 },
 	/* Init   Lower  Higher */
 	{  4, 0,  0, 3,  4, 0 },	/* Hit points */
 	{  4, 0,  3, 0,  4, 0 }		/* Energy */
@@ -5781,6 +6371,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
@@ -5794,6 +6386,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5807,6 +6401,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(50), 20, 20, 18, 16, 15 },
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  8, 0,  8, 0,  8, 0 }		/* Energy */
@@ -5819,6 +6415,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 18, 18, 18, 18, 12 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
@@ -5832,6 +6430,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20), 20, 20, 18, 20, 18 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5845,6 +6445,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(19), 17, 17, 17, 19, 18 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  2, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5857,6 +6459,8 @@ const struct Race races[] = {
 	/*  Str    Int Wis Dex Con Cha */
 	{   3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  16,     16, 16, 16, 16, 14 },
 	/* Init   Lower  Higher */
 	{  1, 0,  0, 1,  0, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
@@ -5870,6 +6474,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 15, 14, 18, 20, 18 },
 	/* Init   Lower  Higher */
 	{  8, 0,  0, 4,  3, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
@@ -5883,6 +6489,8 @@ const struct Race races[] = {
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 25, 25, 25, 25, 25 },
+	/* new limit values for the six attributes by Amy */
+	{  16,     18, 18, 20, 14, 20 },
 	/* Init   Lower  Higher */
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  2, 0,  3, 0,  3, 0 }		/* Energy */
@@ -5902,6 +6510,8 @@ struct Race urace =
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR18(100), 18, 18, 18, 18, 18 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 25, 25, 25, 25, 25 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -5914,6 +6524,8 @@ struct Race ustartrace =
 	/*    Str     Int Wis Dex Con Cha */
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR18(100), 18, 18, 18, 18, 18 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(25), 25, 25, 25, 25, 25 },
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
@@ -6366,7 +6978,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel && flags.randomhybrids) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(29)) {
+			switch (rnd(30)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -6426,12 +7038,14 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybriderosator = 1; break;
 				case 29:
 					flags.hybridroommate = 1; break;
+				case 30:
+					flags.hybridextravator = 1; break;
 
 			}
 
 			while ((rnd(7)) < 3) {
 
-				switch (rnd(29)) {
+				switch (rnd(30)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -6519,6 +7133,9 @@ int rolenum, gendnum, alignnum, pickhow;
 						}
 					case 29:
 						if (!(flags.hybridroommate)) {flags.hybridroommate = 1; flags.hybridization++; break;
+						}
+					case 30:
+						if (!(flags.hybridextravator)) {flags.hybridextravator = 1; flags.hybridization++; break;
 						}
 	
 				}
@@ -6661,6 +7278,520 @@ int rolenum, racenum, gendnum, pickhow;
 	}
     }
     return ROLE_NONE;
+}
+
+/* change player's hybridization: 0 = random, 1 = always remove, 2 = always give one --Amy
+ * special case: if you have none and it's type 0, you always get one. The other extreme, where you have all the
+ * hybridizations, is so rare that I decide to not specialcase it :P */
+void
+changehybridization(type)
+int type;
+{
+	int tryct = 0;
+
+	if (type == 1 || (type == 0 && rn2(2) && flags.hybridization) ) {
+
+		while (tryct++ < 1000) {
+
+			switch (rnd(30)) {
+
+			case 1:
+				if (flags.hybridangbander) {
+					tryct = 1000;
+					flags.hybridangbander = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the angbander hybrid race.");
+				}
+				break;
+			case 2:
+				if (flags.hybridaquarian) {
+					tryct = 1000;
+					flags.hybridaquarian = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the aquarian hybrid race.");
+				}
+				break;
+			case 3:
+				if (flags.hybridcurser) {
+					tryct = 1000;
+					flags.hybridcurser = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the curser hybrid race.");
+				}
+				break;
+			case 4:
+				if (flags.hybridhaxor) {
+					tryct = 1000;
+					flags.hybridhaxor = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the haxor hybrid race.");
+				}
+				break;
+			case 5:
+				if (flags.hybridhomicider) {
+					tryct = 1000;
+					flags.hybridhomicider = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the homicider hybrid race.");
+				}
+				break;
+			case 6:
+				if (flags.hybridsuxxor) {
+					tryct = 1000;
+					flags.hybridsuxxor = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the suxxor hybrid race.");
+				}
+				break;
+			case 7:
+				if (flags.hybridwarper) {
+					tryct = 1000;
+					flags.hybridwarper = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the warper hybrid race.");
+				}
+				break;
+			case 8:
+				if (flags.hybridrandomizer) {
+					tryct = 1000;
+					flags.hybridrandomizer = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the randomizer hybrid race.");
+				}
+				break;
+			case 9:
+				if (flags.hybridnullrace) {
+					tryct = 1000;
+					flags.hybridnullrace = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the null hybrid race.");
+				}
+				break;
+			case 10:
+				if (flags.hybridmazewalker) {
+					tryct = 1000;
+					flags.hybridmazewalker = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the mazewalker hybrid race.");
+				}
+				break;
+			case 11:
+				if (flags.hybridsoviet) {
+					tryct = 1000;
+					flags.hybridsoviet = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the soviet hybrid race.");
+				}
+				break;
+			case 12:
+				if (flags.hybridxrace) {
+					tryct = 1000;
+					flags.hybridxrace = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the x-race hybrid race.");
+				}
+				break;
+			case 13:
+				if (flags.hybridheretic) {
+					tryct = 1000;
+					flags.hybridheretic = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the heretic hybrid race.");
+				}
+				break;
+			case 14:
+				if (flags.hybridsokosolver) {
+					tryct = 1000;
+					flags.hybridsokosolver = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the sokosolver hybrid race.");
+				}
+				break;
+			case 15:
+				if (flags.hybridspecialist) {
+					tryct = 1000;
+					flags.hybridspecialist = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the specialist hybrid race.");
+				}
+				break;
+			case 16:
+				if (flags.hybridamerican) {
+					tryct = 1000;
+					flags.hybridamerican = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the american hybrid race.");
+				}
+				break;
+			case 17:
+				if (flags.hybridminimalist) {
+					tryct = 1000;
+					flags.hybridminimalist = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the minimalist hybrid race.");
+				}
+				break;
+			case 18:
+				if (flags.hybridnastinator) {
+					tryct = 1000;
+					flags.hybridnastinator = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the nastinator hybrid race.");
+				}
+				break;
+			case 19:
+				if (flags.hybridrougelike) {
+					tryct = 1000;
+					flags.hybridrougelike = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the rougelike hybrid race.");
+				}
+				break;
+			case 20:
+				if (flags.hybridsegfaulter) {
+					tryct = 1000;
+					flags.hybridsegfaulter = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the segfaulter hybrid race. Yay. No more crashes!");
+				}
+				break;
+			case 21:
+				if (flags.hybridironman) {
+					tryct = 1000;
+					flags.hybridironman = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the ironman hybrid race.");
+				}
+				break;
+			case 22:
+				if (flags.hybridamnesiac) {
+					tryct = 1000;
+					flags.hybridamnesiac = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the amnesiac hybrid race.");
+				}
+				break;
+			case 23:
+				if (flags.hybridproblematic) {
+					tryct = 1000;
+					flags.hybridproblematic = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the problematic hybrid race.");
+				}
+				break;
+			case 24:
+				if (flags.hybridwindinhabitant) {
+					tryct = 1000;
+					flags.hybridwindinhabitant = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the wind inhabitant hybrid race.");
+				}
+				break;
+			case 25:
+				if (flags.hybridaggravator) {
+					tryct = 1000;
+					flags.hybridaggravator = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the aggravator hybrid race.");
+				}
+				break;
+			case 26:
+				if (flags.hybridevilvariant) {
+					tryct = 1000;
+					flags.hybridevilvariant = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the evilvariant hybrid race.");
+				}
+				break;
+			case 27:
+				if (flags.hybridlevelscaler) {
+					tryct = 1000;
+					flags.hybridlevelscaler = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the levelscaler hybrid race.");
+				}
+				break;
+			case 28:
+				if (flags.hybriderosator) {
+					tryct = 1000;
+					flags.hybriderosator = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the erosator hybrid race.");
+				}
+				break;
+			case 29:
+				if (flags.hybridroommate) {
+					tryct = 1000;
+					flags.hybridroommate = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the roommate hybrid race.");
+				}
+				break;
+			case 30:
+				if (flags.hybridextravator) {
+					tryct = 1000;
+					flags.hybridextravator = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the extravator hybrid race.");
+				}
+				break;
+
+			}
+
+		}
+
+	} else {
+
+		while (tryct++ < 1000) {
+
+			switch (rnd(30)) {
+
+			case 1:
+				if (!flags.hybridangbander) {
+					tryct = 1000;
+					flags.hybridangbander = TRUE;
+					flags.hybridization++;
+					pline("You now have the angbander hybrid race.");
+				}
+				break;
+			case 2:
+				if (!flags.hybridaquarian) {
+					tryct = 1000;
+					flags.hybridaquarian = TRUE;
+					flags.hybridization++;
+					pline("You now have the aquarian hybrid race.");
+				}
+				break;
+			case 3:
+				if (!flags.hybridcurser) {
+					tryct = 1000;
+					flags.hybridcurser = TRUE;
+					flags.hybridization++;
+					pline("You now have the curser hybrid race.");
+				}
+				break;
+			case 4:
+				if (!flags.hybridhaxor) {
+					tryct = 1000;
+					flags.hybridhaxor = TRUE;
+					flags.hybridization++;
+					pline("You now have the haxor hybrid race.");
+				}
+				break;
+			case 5:
+				if (!flags.hybridhomicider) {
+					tryct = 1000;
+					flags.hybridhomicider = TRUE;
+					flags.hybridization++;
+					pline("You now have the homicider hybrid race.");
+				}
+				break;
+			case 6:
+				if (!flags.hybridsuxxor) {
+					tryct = 1000;
+					flags.hybridsuxxor = TRUE;
+					flags.hybridization++;
+					pline("You now have the suxxor hybrid race.");
+				}
+				break;
+			case 7:
+				if (!flags.hybridwarper) {
+					tryct = 1000;
+					flags.hybridwarper = TRUE;
+					flags.hybridization++;
+					pline("You now have the warper hybrid race.");
+				}
+				break;
+			case 8:
+				if (!flags.hybridrandomizer) {
+					tryct = 1000;
+					flags.hybridrandomizer = TRUE;
+					flags.hybridization++;
+					pline("You now have the randomizer hybrid race.");
+				}
+				break;
+			case 9:
+				if (!flags.hybridnullrace) {
+					tryct = 1000;
+					flags.hybridnullrace = TRUE;
+					flags.hybridization++;
+					pline("You now have the null hybrid race.");
+				}
+				break;
+			case 10:
+				if (!flags.hybridmazewalker) {
+					tryct = 1000;
+					flags.hybridmazewalker = TRUE;
+					flags.hybridization++;
+					pline("You now have the mazewalker hybrid race.");
+				}
+				break;
+			case 11:
+				if (!flags.hybridsoviet) {
+					tryct = 1000;
+					flags.hybridsoviet = TRUE;
+					flags.hybridization++;
+					pline("You now have the soviet hybrid race.");
+				}
+				break;
+			case 12:
+				if (!flags.hybridxrace) {
+					tryct = 1000;
+					flags.hybridxrace = TRUE;
+					flags.hybridization++;
+					pline("You now have the x-race hybrid race.");
+				}
+				break;
+			case 13:
+				if (!flags.hybridheretic) {
+					tryct = 1000;
+					flags.hybridheretic = TRUE;
+					flags.hybridization++;
+					pline("You now have the heretic hybrid race.");
+				}
+				break;
+			case 14:
+				if (!flags.hybridsokosolver) {
+					tryct = 1000;
+					flags.hybridsokosolver = TRUE;
+					flags.hybridization++;
+					pline("You now have the sokosolver hybrid race.");
+				}
+				break;
+			case 15:
+				if (!flags.hybridspecialist) {
+					tryct = 1000;
+					flags.hybridspecialist = TRUE;
+					flags.hybridization++;
+					pline("You now have the specialist hybrid race.");
+				}
+				break;
+			case 16:
+				if (!flags.hybridamerican) {
+					tryct = 1000;
+					flags.hybridamerican = TRUE;
+					flags.hybridization++;
+					pline("You now have the american hybrid race.");
+				}
+				break;
+			case 17:
+				if (!flags.hybridminimalist) {
+					tryct = 1000;
+					flags.hybridminimalist = TRUE;
+					flags.hybridization++;
+					pline("You now have the minimalist hybrid race.");
+				}
+				break;
+			case 18:
+				if (!flags.hybridnastinator) {
+					tryct = 1000;
+					flags.hybridnastinator = TRUE;
+					flags.hybridization++;
+					pline("You now have the nastinator hybrid race.");
+				}
+				break;
+			case 19:
+				if (!flags.hybridrougelike) {
+					tryct = 1000;
+					flags.hybridrougelike = TRUE;
+					flags.hybridization++;
+					pline("You now have the rougelike hybrid race.");
+				}
+				break;
+			case 20:
+				if (!flags.hybridsegfaulter) {
+					tryct = 1000;
+					flags.hybridsegfaulter = TRUE;
+					flags.hybridization++;
+					pline("You now have the segfaulter hybrid race. Oh no, the game's gonna crash!");
+				}
+				break;
+			case 21:
+				if (!flags.hybridironman) {
+					tryct = 1000;
+					flags.hybridironman = TRUE;
+					flags.hybridization++;
+					pline("You now have the ironman hybrid race.");
+				}
+				break;
+			case 22:
+				if (!flags.hybridamnesiac) {
+					tryct = 1000;
+					flags.hybridamnesiac = TRUE;
+					flags.hybridization++;
+					pline("You now have the amnesiac hybrid race.");
+				}
+				break;
+			case 23:
+				if (!flags.hybridproblematic) {
+					tryct = 1000;
+					flags.hybridproblematic = TRUE;
+					flags.hybridization++;
+					pline("You now have the problematic hybrid race.");
+				}
+				break;
+			case 24:
+				if (!flags.hybridwindinhabitant) {
+					tryct = 1000;
+					flags.hybridwindinhabitant = TRUE;
+					flags.hybridization++;
+					pline("You now have the wind inhabitant hybrid race.");
+				}
+				break;
+			case 25:
+				if (!flags.hybridaggravator) {
+					tryct = 1000;
+					flags.hybridaggravator = TRUE;
+					flags.hybridization++;
+					pline("You now have the aggravator hybrid race.");
+				}
+				break;
+			case 26:
+				if (!flags.hybridevilvariant) {
+					tryct = 1000;
+					flags.hybridevilvariant = TRUE;
+					flags.hybridization++;
+					pline("You now have the evilvariant hybrid race.");
+				}
+				break;
+			case 27:
+				if (!flags.hybridlevelscaler) {
+					tryct = 1000;
+					flags.hybridlevelscaler = TRUE;
+					flags.hybridization++;
+					pline("You now have the levelscaler hybrid race.");
+				}
+				break;
+			case 28:
+				if (!flags.hybriderosator) {
+					tryct = 1000;
+					flags.hybriderosator = TRUE;
+					flags.hybridization++;
+					pline("You now have the erosator hybrid race.");
+				}
+				break;
+			case 29:
+				if (!flags.hybridroommate) {
+					tryct = 1000;
+					flags.hybridroommate = TRUE;
+					flags.hybridization++;
+					pline("You now have the roommate hybrid race.");
+				}
+				break;
+			case 30:
+				if (!flags.hybridextravator) {
+					tryct = 1000;
+					flags.hybridextravator = TRUE;
+					flags.hybridization++;
+					pline("You now have the extravator hybrid race.");
+				}
+				break;
+
+			}
+
+		}
+
+	}
 }
 
 void

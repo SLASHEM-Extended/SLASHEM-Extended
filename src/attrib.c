@@ -971,6 +971,9 @@ adjattrib(ndx, incr, msgflg)
 		return FALSE;
 	    }
 
+		/* you won't always get the increase if the attribute is already rather high --Amy */
+	    if (!attr_will_go_up(ndx, TRUE)) return FALSE;
+
 	    ABASE(ndx) += incr;
 	    if(ABASE(ndx) > AMAX(ndx)) {
 		incr = ABASE(ndx) - AMAX(ndx);
@@ -1295,9 +1298,7 @@ exerper()
 		if(Sick || Vomiting)     exercise(A_CON, FALSE);
 		if( (Confusion && !Conf_resist) || Hallucination || (Dimmed && !rn2(3)) || (Feared && !rn2(5)) )		exercise(A_WIS, FALSE);
 		if( (Numbed && !rn2(3)) || Frozen || (Burned && !rn2(2)) )		exercise(A_CON, FALSE);
-		if((Wounded_legs 
-		    && !u.usteed
-			    ) || Fumbling || (HStun && !Stun_resist) )	exercise(A_DEX, FALSE);
+		if((Wounded_legs && !u.usteed ) || Fumbling || (HStun && !Stun_resist) )	exercise(A_DEX, FALSE);
 	}
 }
 
@@ -1480,6 +1481,14 @@ init_attr(np)
 		tryct++;
 		continue;
 	    }
+
+	    if (!attr_will_go_up(i, FALSE)) { /* aww --Amy */
+
+		np--;
+		tryct = 0;
+		continue;
+	    }
+
 	    tryct = 0;
 	    if (ABASE(i) < 16 || (!rn2(ABASE(i) - 14) ) ) { /* very high initial attributes are more rare --Amy */
 		    ABASE(i)++;
@@ -2178,6 +2187,160 @@ int
 uhpmax()
 {
 	return (Upolyd ? u.mhmax : u.uhpmax);
+}
+
+/* Will you get an attribute increase for the target attribute? --Amy */
+boolean
+attr_will_go_up(targetattr, displaymessage)
+int targetattr; /* the attribute that wants to increase */
+boolean displaymessage;
+{
+	int theminimum, themaximum, rolemaximum, racemaximum, actuallimit, yourbasestat, finalchance;
+
+	/* The actual limit is calculated based on both the role and race limit. */
+	rolemaximum = urole.attrlimt[targetattr];
+	racemaximum = urace.attrtrs[targetattr];
+
+	/* Are they both the same? Great! In that case the calculation is easy. */
+	if (rolemaximum == racemaximum) theminimum = themaximum = rolemaximum;
+
+	/* Otherwise, set the bounds */
+	else if (rolemaximum > racemaximum) {
+		themaximum = rolemaximum;
+		theminimum = racemaximum;
+	} else if (rolemaximum < racemaximum) {
+		themaximum = racemaximum;
+		theminimum = rolemaximum;
+	}
+
+	/* fail safe */
+	if (theminimum > themaximum) {
+		impossible("Minimum is greater than maximum (%d, %d)", theminimum, themaximum);
+		themaximum = theminimum;
+	}
+
+	/* now we calculate the actual limit, which may be different every time we're called */
+	while (themaximum > theminimum) {
+
+		/* strength has to be special-cased because of the 18/** stuff *groan* --Amy */
+		if (targetattr == A_STR) {
+
+			/* in 4 out of 5 cases, the maximum is reduced */
+			if (rn2(5)) {
+				if (themaximum < STR18(1) || themaximum > STR18(100)) themaximum--;
+				else themaximum -= 10;
+			/* otherwise the minimum is increased */
+			} else {
+				if (theminimum < 18 || theminimum > STR18(99)) theminimum++;
+				else theminimum += 10;
+			}
+		} else {
+			if (rn2(5)) themaximum--;
+			else theminimum++;
+		}
+
+	}
+
+	/* the values must be equal now; if not, throw an error message and return */
+	if (theminimum != themaximum) {
+		impossible("calculation failed (%d, %d)", theminimum, themaximum);
+		return TRUE;
+	}
+
+	/* male dark seducers and golden saints suck */
+	if ((Race_if(PM_MAZKE) || Race_if(PM_AUREAL)) && !flags.female) {
+		if (targetattr == A_STR && themaximum > 18 && themaximum < STR19(19)) themaximum -= 10;
+		else themaximum--;
+	}
+
+	/* now we know our actual limit */
+	actuallimit = themaximum;
+
+	/* some adjustments based on gender and alignment */
+	if (flags.female && (targetattr == A_INT || targetattr == A_WIS || targetattr == A_CHA) ) actuallimit++;
+	else if (targetattr == A_STR || targetattr == A_CON || targetattr == A_DEX) {
+		if (targetattr == A_STR && actuallimit >= 18 && actuallimit < STR18(100)) actuallimit += 10;
+		else actuallimit++;
+	}
+	/* This is not sexist, after all I didn't pull a D&D "women can't have more than 16 strength" or something. --Amy
+	 * Every gender gets the same # of "improved" stats and it's still possible to go beyond the maximum, it's just a
+	 * little more difficult and it's important for gameplay as you shouldn't be able to max out everything easily */
+
+	if (u.ualign.type == A_CHAOTIC && (targetattr == A_CON || targetattr == A_DEX)) actuallimit++;
+	else if (u.ualign.type == A_NEUTRAL && (targetattr == A_CHA || targetattr == A_WIS)) actuallimit++;
+	else if (u.ualign.type == A_LAWFUL && (targetattr == A_STR || targetattr == A_INT)) {
+		if (targetattr == A_STR && actuallimit >= 18 && actuallimit < STR18(100)) actuallimit += 10;
+		else actuallimit++;
+	}
+
+	/* set up the value to compare it to */
+	yourbasestat = ABASE(targetattr);
+	/* you're trying to increase the stat, so we add one */
+	if (targetattr == A_STR && yourbasestat >= 18 && yourbasestat < STR18(100)) {
+		yourbasestat += 10;
+		if (yourbasestat > STR19(19)) yourbasestat = STR19(19);
+	}
+	else yourbasestat++;
+
+	/* calculate the finalchance value, which is the 1 in X chance that you get the increase */
+	finalchance = 1;
+
+	while (yourbasestat > actuallimit) {
+		if (targetattr == A_STR) {
+			if (actuallimit < 18 || actuallimit > STR18(99)) {
+				finalchance++;
+				actuallimit++;
+			} else {
+				finalchance++;
+				actuallimit += 10;
+			}
+		} else {
+			finalchance++;
+			actuallimit++;
+		}
+	}
+
+	/* now that we finally have the actual chance, let's see whether you get lucky! */
+
+	if (finalchance < 1) {
+		impossible("finalchance is not positive (%d)", finalchance);
+		finalchance = 1;
+	}
+
+	if (finalchance == 1) return TRUE;
+	else if (!rn2(finalchance)) return TRUE;
+	else {
+		if (displaymessage) {
+			switch (targetattr) {
+
+				case A_STR:
+					pline("Your strength develops.");
+					break;
+				case A_DEX:
+					pline("Your dexterity develops.");
+					break;
+				case A_CHA:
+					pline("Your charisma develops.");
+					break;
+				case A_WIS:
+					pline("Your wisdom develops.");
+					break;
+				case A_INT:
+					pline("Your intelligence develops.");
+					break;
+				case A_CON:
+					pline("Your constitution develops.");
+					break;
+				default:
+					impossible("weird attribute for increase check (%d)", targetattr);
+					break;
+
+			}
+		}
+
+		return FALSE;
+	}
+
 }
 
 /*attrib.c*/

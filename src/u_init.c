@@ -7376,6 +7376,9 @@ u_init()
 	u.bankcashamount = 0;
 	u.bankcashlimit = 0;
 
+	u.ragnaroktimer = 0; /* if nonzero, ragnarok will happen */
+	u.footererlevel = 0; /* if nonzero, entering the level with that number spawns mean bastards */
+
 	u.temprecursion = 0;
 	u.temprecursiontime = 0;
 	u.oldrecursionrole = -1;
@@ -8159,22 +8162,22 @@ u_init()
 		if (!rn2(100)) u.minimalism += rnz(5);
 	}
 
-	u.femauspices4 = rnd(6);
-	u.femauspices6 = rnd(7);
-	u.femauspices8 = rnd(6);
-	u.femauspices11 = rnd(9);
-	u.femauspices13 = rnd(5);
-	u.femauspices15 = rnd(6);
-	u.femauspices17 = rnd(6);
-	u.femauspices20 = rnd(7);
-	u.femauspices22 = rnd(6);
-	u.femauspices25 = rnd(5);
-	u.femauspices28 = rnd(8);
-	u.femauspices30 = rnd(8);
+	u.femauspices4 = rnd(11);
+	u.femauspices6 = rnd(8);
+	u.femauspices8 = rnd(8);
+	u.femauspices11 = rnd(16);
+	u.femauspices13 = rnd(8);
+	u.femauspices15 = rnd(8);
+	u.femauspices17 = rnd(7);
+	u.femauspices20 = rnd(8);
+	u.femauspices22 = rnd(8);
+	u.femauspices25 = rnd(8);
+	u.femauspices28 = rnd(9);
+	u.femauspices30 = rnd(10);
 
 	u.adpartattack = rn2(AD_ENDS);
 	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);
-	u.adrunsattack = rnd(169); /* timerun etc. */
+	u.adrunsattack = rnd(229); /* timerun etc. */
 
 	u.scholarturns = 0;
 
@@ -8452,7 +8455,7 @@ u_init()
 	u.invisotrap = rnd(TRAPNUM-1);
 
 	u.frequenttrap = rnd(TRAPNUM-1);
-	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
+	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == DATA_DELETE_TRAP || u.frequenttrap == ELDER_TENTACLING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
 	u.freqtrapbonus = rnz(3) * rne(3);
 
 	u.traprandomizing = rnd(1000);
@@ -8805,6 +8808,8 @@ u_init()
 	u.bizarrotries = 0;
 	u.comboactive = 0;
 
+	u.steedhitchance = 25;
+
 	u.urmaxlvl = 1; /* will go up if an asgardian race player levels up */
 	u.urmaxlvlB = 1; /* will go up if a cyborg role player levels up */
 	u.urmaxlvlC = 1; /* will go up if a binder role player levels up */
@@ -8875,11 +8880,11 @@ u_init()
 	u.fumbleduration = 0;
 	u.antimagicshell = 0;
 
-	u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = u.nastinator86 = u.nastinator87 = u.nastinator88 = u.nastinator89 = u.nastinator90 = u.nastinator91 = u.nastinator92 = u.nastinator93 = u.nastinator94 = u.nastinator95 = u.nastinator96 = u.nastinator97 = u.nastinator98 = u.nastinator99 = u.nastinator100 = u.nastinator101 = u.nastinator102 = u.nastinator103 = u.nastinator104 = u.nastinator105 = u.nastinator106 = u.nastinator107 = u.nastinator108 = u.nastinator109 = u.nastinator110 = u.nastinator111 = u.nastinator112 = u.nastinator113 = u.nastinator114 = u.nastinator115 = u.nastinator116 = u.nastinator117 = u.nastinator118 = u.nastinator119 = u.nastinator120 = u.nastinator121 = u.nastinator122 = u.nastinator123 = u.nastinator124 = u.nastinator125 = u.nastinator126 = u.nastinator127 = u.nastinator128 = u.nastinator129 = u.nastinator130 = u.nastinator131 = u.nastinator132 = u.nastinator133 = u.nastinator134 = u.nastinator135 = u.nastinator136 = u.nastinator137 = u.nastinator138 = u.nastinator139 = u.nastinator140 = u.nastinator141 = u.nastinator142 = u.nastinator143 = u.nastinator144 = u.nastinator145 = u.nastinator146 = u.nastinator147 = u.nastinator148 = u.nastinator149 = u.nastinator150 = u.nastinator151 = u.nastinator152 = u.nastinator153 = u.nastinator154 = u.nastinator155 = u.nastinator156 = u.nastinator157 = u.nastinator158 = u.nastinator159 = u.nastinator160 = u.nastinator161 = u.nastinator162 = u.nastinator163 = u.nastinator164 = u.nastinator165 = u.nastinator166 = u.nastinator167 = u.nastinator168 = u.nastinator169 = 0;
+	u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = u.nastinator86 = u.nastinator87 = u.nastinator88 = u.nastinator89 = u.nastinator90 = u.nastinator91 = u.nastinator92 = u.nastinator93 = u.nastinator94 = u.nastinator95 = u.nastinator96 = u.nastinator97 = u.nastinator98 = u.nastinator99 = u.nastinator100 = u.nastinator101 = u.nastinator102 = u.nastinator103 = u.nastinator104 = u.nastinator105 = u.nastinator106 = u.nastinator107 = u.nastinator108 = u.nastinator109 = u.nastinator110 = u.nastinator111 = u.nastinator112 = u.nastinator113 = u.nastinator114 = u.nastinator115 = u.nastinator116 = u.nastinator117 = u.nastinator118 = u.nastinator119 = u.nastinator120 = u.nastinator121 = u.nastinator122 = u.nastinator123 = u.nastinator124 = u.nastinator125 = u.nastinator126 = u.nastinator127 = u.nastinator128 = u.nastinator129 = u.nastinator130 = u.nastinator131 = u.nastinator132 = u.nastinator133 = u.nastinator134 = u.nastinator135 = u.nastinator136 = u.nastinator137 = u.nastinator138 = u.nastinator139 = u.nastinator140 = u.nastinator141 = u.nastinator142 = u.nastinator143 = u.nastinator144 = u.nastinator145 = u.nastinator146 = u.nastinator147 = u.nastinator148 = u.nastinator149 = u.nastinator150 = u.nastinator151 = u.nastinator152 = u.nastinator153 = u.nastinator154 = u.nastinator155 = u.nastinator156 = u.nastinator157 = u.nastinator158 = u.nastinator159 = u.nastinator160 = u.nastinator161 = u.nastinator162 = u.nastinator163 = u.nastinator164 = u.nastinator165 = u.nastinator166 = u.nastinator167 = u.nastinator168 = u.nastinator169 = u.nastinator170 = u.nastinator171 = u.nastinator172 = u.nastinator173 = u.nastinator174 = u.nastinator175 = u.nastinator176 = u.nastinator177 = u.nastinator178 = u.nastinator179 = u.nastinator180 = u.nastinator181 = u.nastinator182 = u.nastinator183 = u.nastinator184 = u.nastinator185 = u.nastinator186 = u.nastinator187 = u.nastinator188 = u.nastinator189 = u.nastinator190 = u.nastinator191 = u.nastinator192 = u.nastinator193 = u.nastinator194 = u.nastinator195 = u.nastinator196 = u.nastinator197 = u.nastinator198 = u.nastinator199 = u.nastinator200 = u.nastinator201 = u.nastinator202 = u.nastinator203 = u.nastinator204 = u.nastinator205 = u.nastinator206 = u.nastinator207 = u.nastinator208 = u.nastinator209 = u.nastinator210 = u.nastinator211 = u.nastinator212 = u.nastinator213 = u.nastinator214 = u.nastinator215 = u.nastinator216 = u.nastinator217 = u.nastinator218 = u.nastinator219 = u.nastinator220 = u.nastinator221 = u.nastinator222 = u.nastinator223 = u.nastinator224 = u.nastinator225 = u.nastinator226 = u.nastinator227 = u.nastinator228 = u.nastinator229 = 0;
 
 	if (isnastinator) { /* harder than hard race - starts with uncurable nasty trap effects --Amy */
 
-		switch (rnd(169)) {
+		switch (rnd(229)) {
 
 			case 1: u.nastinator01 = 1; break;
 			case 2: u.nastinator02 = 1; break;
@@ -9050,11 +9055,71 @@ u_init()
 			case 167: u.nastinator167 = 1; break;
 			case 168: u.nastinator168 = 1; break;
 			case 169: u.nastinator169 = 1; break;
+			case 170: u.nastinator170 = 1; break;
+			case 171: u.nastinator171 = 1; break;
+			case 172: u.nastinator172 = 1; break;
+			case 173: u.nastinator173 = 1; break;
+			case 174: u.nastinator174 = 1; break;
+			case 175: u.nastinator175 = 1; break;
+			case 176: u.nastinator176 = 1; break;
+			case 177: u.nastinator177 = 1; break;
+			case 178: u.nastinator178 = 1; break;
+			case 179: u.nastinator179 = 1; break;
+			case 180: u.nastinator180 = 1; break;
+			case 181: u.nastinator181 = 1; break;
+			case 182: u.nastinator182 = 1; break;
+			case 183: u.nastinator183 = 1; break;
+			case 184: u.nastinator184 = 1; break;
+			case 185: u.nastinator185 = 1; break;
+			case 186: u.nastinator186 = 1; break;
+			case 187: u.nastinator187 = 1; break;
+			case 188: u.nastinator188 = 1; break;
+			case 189: u.nastinator189 = 1; break;
+			case 190: u.nastinator190 = 1; break;
+			case 191: u.nastinator191 = 1; break;
+			case 192: u.nastinator192 = 1; break;
+			case 193: u.nastinator193 = 1; break;
+			case 194: u.nastinator194 = 1; break;
+			case 195: u.nastinator195 = 1; break;
+			case 196: u.nastinator196 = 1; break;
+			case 197: u.nastinator197 = 1; break;
+			case 198: u.nastinator198 = 1; break;
+			case 199: u.nastinator199 = 1; break;
+			case 200: u.nastinator200 = 1; break;
+			case 201: u.nastinator201 = 1; break;
+			case 202: u.nastinator202 = 1; break;
+			case 203: u.nastinator203 = 1; break;
+			case 204: u.nastinator204 = 1; break;
+			case 205: u.nastinator205 = 1; break;
+			case 206: u.nastinator206 = 1; break;
+			case 207: u.nastinator207 = 1; break;
+			case 208: u.nastinator208 = 1; break;
+			case 209: u.nastinator209 = 1; break;
+			case 210: u.nastinator210 = 1; break;
+			case 211: u.nastinator211 = 1; break;
+			case 212: u.nastinator212 = 1; break;
+			case 213: u.nastinator213 = 1; break;
+			case 214: u.nastinator214 = 1; break;
+			case 215: u.nastinator215 = 1; break;
+			case 216: u.nastinator216 = 1; break;
+			case 217: u.nastinator217 = 1; break;
+			case 218: u.nastinator218 = 1; break;
+			case 219: u.nastinator219 = 1; break;
+			case 220: u.nastinator220 = 1; break;
+			case 221: u.nastinator221 = 1; break;
+			case 222: u.nastinator222 = 1; break;
+			case 223: u.nastinator223 = 1; break;
+			case 224: u.nastinator224 = 1; break;
+			case 225: u.nastinator225 = 1; break;
+			case 226: u.nastinator226 = 1; break;
+			case 227: u.nastinator227 = 1; break;
+			case 228: u.nastinator228 = 1; break;
+			case 229: u.nastinator229 = 1; break;
 		}
 
 		while ((rnd(7)) < 3) {
 
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: u.nastinator01 = 1; break;
 				case 2: u.nastinator02 = 1; break;
@@ -9225,6 +9290,66 @@ u_init()
 			case 167: u.nastinator167 = 1; break;
 			case 168: u.nastinator168 = 1; break;
 			case 169: u.nastinator169 = 1; break;
+			case 170: u.nastinator170 = 1; break;
+			case 171: u.nastinator171 = 1; break;
+			case 172: u.nastinator172 = 1; break;
+			case 173: u.nastinator173 = 1; break;
+			case 174: u.nastinator174 = 1; break;
+			case 175: u.nastinator175 = 1; break;
+			case 176: u.nastinator176 = 1; break;
+			case 177: u.nastinator177 = 1; break;
+			case 178: u.nastinator178 = 1; break;
+			case 179: u.nastinator179 = 1; break;
+			case 180: u.nastinator180 = 1; break;
+			case 181: u.nastinator181 = 1; break;
+			case 182: u.nastinator182 = 1; break;
+			case 183: u.nastinator183 = 1; break;
+			case 184: u.nastinator184 = 1; break;
+			case 185: u.nastinator185 = 1; break;
+			case 186: u.nastinator186 = 1; break;
+			case 187: u.nastinator187 = 1; break;
+			case 188: u.nastinator188 = 1; break;
+			case 189: u.nastinator189 = 1; break;
+			case 190: u.nastinator190 = 1; break;
+			case 191: u.nastinator191 = 1; break;
+			case 192: u.nastinator192 = 1; break;
+			case 193: u.nastinator193 = 1; break;
+			case 194: u.nastinator194 = 1; break;
+			case 195: u.nastinator195 = 1; break;
+			case 196: u.nastinator196 = 1; break;
+			case 197: u.nastinator197 = 1; break;
+			case 198: u.nastinator198 = 1; break;
+			case 199: u.nastinator199 = 1; break;
+			case 200: u.nastinator200 = 1; break;
+			case 201: u.nastinator201 = 1; break;
+			case 202: u.nastinator202 = 1; break;
+			case 203: u.nastinator203 = 1; break;
+			case 204: u.nastinator204 = 1; break;
+			case 205: u.nastinator205 = 1; break;
+			case 206: u.nastinator206 = 1; break;
+			case 207: u.nastinator207 = 1; break;
+			case 208: u.nastinator208 = 1; break;
+			case 209: u.nastinator209 = 1; break;
+			case 210: u.nastinator210 = 1; break;
+			case 211: u.nastinator211 = 1; break;
+			case 212: u.nastinator212 = 1; break;
+			case 213: u.nastinator213 = 1; break;
+			case 214: u.nastinator214 = 1; break;
+			case 215: u.nastinator215 = 1; break;
+			case 216: u.nastinator216 = 1; break;
+			case 217: u.nastinator217 = 1; break;
+			case 218: u.nastinator218 = 1; break;
+			case 219: u.nastinator219 = 1; break;
+			case 220: u.nastinator220 = 1; break;
+			case 221: u.nastinator221 = 1; break;
+			case 222: u.nastinator222 = 1; break;
+			case 223: u.nastinator223 = 1; break;
+			case 224: u.nastinator224 = 1; break;
+			case 225: u.nastinator225 = 1; break;
+			case 226: u.nastinator226 = 1; break;
+			case 227: u.nastinator227 = 1; break;
+			case 228: u.nastinator228 = 1; break;
+			case 229: u.nastinator229 = 1; break;
 			}
 
 		}
@@ -9232,7 +9357,7 @@ u_init()
 
 	if (iswindinhabitant) { /* similar to nastinator, but they will be re-initialized sometimes --Amy */
 
-		switch (rnd(169)) {
+		switch (rnd(229)) {
 
 			case 1: u.nastinator01 = 1; break;
 			case 2: u.nastinator02 = 1; break;
@@ -9403,11 +9528,71 @@ u_init()
 			case 167: u.nastinator167 = 1; break;
 			case 168: u.nastinator168 = 1; break;
 			case 169: u.nastinator169 = 1; break;
+			case 170: u.nastinator170 = 1; break;
+			case 171: u.nastinator171 = 1; break;
+			case 172: u.nastinator172 = 1; break;
+			case 173: u.nastinator173 = 1; break;
+			case 174: u.nastinator174 = 1; break;
+			case 175: u.nastinator175 = 1; break;
+			case 176: u.nastinator176 = 1; break;
+			case 177: u.nastinator177 = 1; break;
+			case 178: u.nastinator178 = 1; break;
+			case 179: u.nastinator179 = 1; break;
+			case 180: u.nastinator180 = 1; break;
+			case 181: u.nastinator181 = 1; break;
+			case 182: u.nastinator182 = 1; break;
+			case 183: u.nastinator183 = 1; break;
+			case 184: u.nastinator184 = 1; break;
+			case 185: u.nastinator185 = 1; break;
+			case 186: u.nastinator186 = 1; break;
+			case 187: u.nastinator187 = 1; break;
+			case 188: u.nastinator188 = 1; break;
+			case 189: u.nastinator189 = 1; break;
+			case 190: u.nastinator190 = 1; break;
+			case 191: u.nastinator191 = 1; break;
+			case 192: u.nastinator192 = 1; break;
+			case 193: u.nastinator193 = 1; break;
+			case 194: u.nastinator194 = 1; break;
+			case 195: u.nastinator195 = 1; break;
+			case 196: u.nastinator196 = 1; break;
+			case 197: u.nastinator197 = 1; break;
+			case 198: u.nastinator198 = 1; break;
+			case 199: u.nastinator199 = 1; break;
+			case 200: u.nastinator200 = 1; break;
+			case 201: u.nastinator201 = 1; break;
+			case 202: u.nastinator202 = 1; break;
+			case 203: u.nastinator203 = 1; break;
+			case 204: u.nastinator204 = 1; break;
+			case 205: u.nastinator205 = 1; break;
+			case 206: u.nastinator206 = 1; break;
+			case 207: u.nastinator207 = 1; break;
+			case 208: u.nastinator208 = 1; break;
+			case 209: u.nastinator209 = 1; break;
+			case 210: u.nastinator210 = 1; break;
+			case 211: u.nastinator211 = 1; break;
+			case 212: u.nastinator212 = 1; break;
+			case 213: u.nastinator213 = 1; break;
+			case 214: u.nastinator214 = 1; break;
+			case 215: u.nastinator215 = 1; break;
+			case 216: u.nastinator216 = 1; break;
+			case 217: u.nastinator217 = 1; break;
+			case 218: u.nastinator218 = 1; break;
+			case 219: u.nastinator219 = 1; break;
+			case 220: u.nastinator220 = 1; break;
+			case 221: u.nastinator221 = 1; break;
+			case 222: u.nastinator222 = 1; break;
+			case 223: u.nastinator223 = 1; break;
+			case 224: u.nastinator224 = 1; break;
+			case 225: u.nastinator225 = 1; break;
+			case 226: u.nastinator226 = 1; break;
+			case 227: u.nastinator227 = 1; break;
+			case 228: u.nastinator228 = 1; break;
+			case 229: u.nastinator229 = 1; break;
 		}
 
 		while (!rn2(3)) {
 
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: u.nastinator01 = 1; break;
 				case 2: u.nastinator02 = 1; break;
@@ -9578,6 +9763,66 @@ u_init()
 			case 167: u.nastinator167 = 1; break;
 			case 168: u.nastinator168 = 1; break;
 			case 169: u.nastinator169 = 1; break;
+			case 170: u.nastinator170 = 1; break;
+			case 171: u.nastinator171 = 1; break;
+			case 172: u.nastinator172 = 1; break;
+			case 173: u.nastinator173 = 1; break;
+			case 174: u.nastinator174 = 1; break;
+			case 175: u.nastinator175 = 1; break;
+			case 176: u.nastinator176 = 1; break;
+			case 177: u.nastinator177 = 1; break;
+			case 178: u.nastinator178 = 1; break;
+			case 179: u.nastinator179 = 1; break;
+			case 180: u.nastinator180 = 1; break;
+			case 181: u.nastinator181 = 1; break;
+			case 182: u.nastinator182 = 1; break;
+			case 183: u.nastinator183 = 1; break;
+			case 184: u.nastinator184 = 1; break;
+			case 185: u.nastinator185 = 1; break;
+			case 186: u.nastinator186 = 1; break;
+			case 187: u.nastinator187 = 1; break;
+			case 188: u.nastinator188 = 1; break;
+			case 189: u.nastinator189 = 1; break;
+			case 190: u.nastinator190 = 1; break;
+			case 191: u.nastinator191 = 1; break;
+			case 192: u.nastinator192 = 1; break;
+			case 193: u.nastinator193 = 1; break;
+			case 194: u.nastinator194 = 1; break;
+			case 195: u.nastinator195 = 1; break;
+			case 196: u.nastinator196 = 1; break;
+			case 197: u.nastinator197 = 1; break;
+			case 198: u.nastinator198 = 1; break;
+			case 199: u.nastinator199 = 1; break;
+			case 200: u.nastinator200 = 1; break;
+			case 201: u.nastinator201 = 1; break;
+			case 202: u.nastinator202 = 1; break;
+			case 203: u.nastinator203 = 1; break;
+			case 204: u.nastinator204 = 1; break;
+			case 205: u.nastinator205 = 1; break;
+			case 206: u.nastinator206 = 1; break;
+			case 207: u.nastinator207 = 1; break;
+			case 208: u.nastinator208 = 1; break;
+			case 209: u.nastinator209 = 1; break;
+			case 210: u.nastinator210 = 1; break;
+			case 211: u.nastinator211 = 1; break;
+			case 212: u.nastinator212 = 1; break;
+			case 213: u.nastinator213 = 1; break;
+			case 214: u.nastinator214 = 1; break;
+			case 215: u.nastinator215 = 1; break;
+			case 216: u.nastinator216 = 1; break;
+			case 217: u.nastinator217 = 1; break;
+			case 218: u.nastinator218 = 1; break;
+			case 219: u.nastinator219 = 1; break;
+			case 220: u.nastinator220 = 1; break;
+			case 221: u.nastinator221 = 1; break;
+			case 222: u.nastinator222 = 1; break;
+			case 223: u.nastinator223 = 1; break;
+			case 224: u.nastinator224 = 1; break;
+			case 225: u.nastinator225 = 1; break;
+			case 226: u.nastinator226 = 1; break;
+			case 227: u.nastinator227 = 1; break;
+			case 228: u.nastinator228 = 1; break;
+			case 229: u.nastinator229 = 1; break;
 			}
 
 		}
@@ -27893,22 +28138,22 @@ alter_reality()
 		if (!rn2(100)) u.minimalism += rnz(5);
 	}
 
-	u.femauspices4 = rnd(6);
-	u.femauspices6 = rnd(7);
-	u.femauspices8 = rnd(6);
-	u.femauspices11 = rnd(9);
-	u.femauspices13 = rnd(5);
-	u.femauspices15 = rnd(6);
-	u.femauspices17 = rnd(6);
-	u.femauspices20 = rnd(7);
-	u.femauspices22 = rnd(6);
-	u.femauspices25 = rnd(5);
-	u.femauspices28 = rnd(8);
-	u.femauspices30 = rnd(8);
+	u.femauspices4 = rnd(11);
+	u.femauspices6 = rnd(8);
+	u.femauspices8 = rnd(8);
+	u.femauspices11 = rnd(16);
+	u.femauspices13 = rnd(8);
+	u.femauspices15 = rnd(8);
+	u.femauspices17 = rnd(7);
+	u.femauspices20 = rnd(8);
+	u.femauspices22 = rnd(8);
+	u.femauspices25 = rnd(8);
+	u.femauspices28 = rnd(9);
+	u.femauspices30 = rnd(10);
 
 	u.adpartattack = rn2(AD_ENDS);
 	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);
-	u.adrunsattack = rnd(169); /* timerun etc. */
+	u.adrunsattack = rnd(229); /* timerun etc. */
 
 	u.unobtainable = -1;
 	while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == STRANGE_OBJECT) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable].oc_prob < 1) ) u.unobtainable = rn2(NUM_OBJECTS);
@@ -28182,7 +28427,7 @@ alter_reality()
 	u.invisotrap = rnd(TRAPNUM-1);
 
 	u.frequenttrap = rnd(TRAPNUM-1);
-	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
+	while (u.frequenttrap == MAGIC_PORTAL || u.frequenttrap == ACTIVE_SUPERSCROLLER_TRAP || u.frequenttrap == WISHING_TRAP || u.frequenttrap == DATA_DELETE_TRAP || u.frequenttrap == ELDER_TENTACLING_TRAP || u.frequenttrap == ARTIFACT_JACKPOT_TRAP || u.frequenttrap == GOOD_ARTIFACT_TRAP || u.frequenttrap == BOON_TRAP) u.frequenttrap = rnd(TRAPNUM-1);
 	u.freqtrapbonus = rnz(3) * rne(3);
 
 	u.traprandomizing = rnd(1000);
@@ -28429,11 +28674,11 @@ alter_reality()
 	u.genericcursechance = 0;
 	if (!rn2(10)) u.genericcursechance = rnd(33);
 
-	u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = u.nastinator86 = u.nastinator87 = u.nastinator88 = u.nastinator89 = u.nastinator90 = u.nastinator91 = u.nastinator92 = u.nastinator93 = u.nastinator94 = u.nastinator95 = u.nastinator96 = u.nastinator97 = u.nastinator98 = u.nastinator99 = u.nastinator100 = u.nastinator101 = u.nastinator102 = u.nastinator103 = u.nastinator104 = u.nastinator105 = u.nastinator106 = u.nastinator107 = u.nastinator108 = u.nastinator109 = u.nastinator110 = u.nastinator111 = u.nastinator112 = u.nastinator113 = u.nastinator114 = u.nastinator115 = u.nastinator116 = u.nastinator117 = u.nastinator118 = u.nastinator119 = u.nastinator120 = u.nastinator121 = u.nastinator122 = u.nastinator123 = u.nastinator124 = u.nastinator125 = u.nastinator126 = u.nastinator127 = u.nastinator128 = u.nastinator129 = u.nastinator130 = u.nastinator131 = u.nastinator132 = u.nastinator133 = u.nastinator134 = u.nastinator135 = u.nastinator136 = u.nastinator137 = u.nastinator138 = u.nastinator139 = u.nastinator140 = u.nastinator141 = u.nastinator142 = u.nastinator143 = u.nastinator144 = u.nastinator145 = u.nastinator146 = u.nastinator147 = u.nastinator148 = u.nastinator149 = u.nastinator150 = u.nastinator151 = u.nastinator152 = u.nastinator153 = u.nastinator154 = u.nastinator155 = u.nastinator156 = u.nastinator157 = u.nastinator158 = u.nastinator159 = u.nastinator160 = u.nastinator161 = u.nastinator162 = u.nastinator163 = u.nastinator164 = u.nastinator165 = u.nastinator166 = u.nastinator167 = u.nastinator168 = u.nastinator169 = 0;
+	u.nastinator01 = u.nastinator02 = u.nastinator03 = u.nastinator04 = u.nastinator05 = u.nastinator06 = u.nastinator07 = u.nastinator08 = u.nastinator09 = u.nastinator10 = u.nastinator11 = u.nastinator12 = u.nastinator13 = u.nastinator14 = u.nastinator15 = u.nastinator16 = u.nastinator17 = u.nastinator18 = u.nastinator19 = u.nastinator20 = u.nastinator21 = u.nastinator22 = u.nastinator23 = u.nastinator24 = u.nastinator25 = u.nastinator26 = u.nastinator27 = u.nastinator28 = u.nastinator29 = u.nastinator30 = u.nastinator31 = u.nastinator32 = u.nastinator33 = u.nastinator34 = u.nastinator35 = u.nastinator36 = u.nastinator37 = u.nastinator38 = u.nastinator39 = u.nastinator40 = u.nastinator41 = u.nastinator42 = u.nastinator43 = u.nastinator44 = u.nastinator45 = u.nastinator46 = u.nastinator47 = u.nastinator48 = u.nastinator49 = u.nastinator50 = u.nastinator51 = u.nastinator52 = u.nastinator53 = u.nastinator54 = u.nastinator55 = u.nastinator56 = u.nastinator57 = u.nastinator58 = u.nastinator59 = u.nastinator60 = u.nastinator61 = u.nastinator62 = u.nastinator63 = u.nastinator64 = u.nastinator65 = u.nastinator66 = u.nastinator67 = u.nastinator68 = u.nastinator69 = u.nastinator70 = u.nastinator71 = u.nastinator72 = u.nastinator73 = u.nastinator74 = u.nastinator75 = u.nastinator76 = u.nastinator77 = u.nastinator78 = u.nastinator79 = u.nastinator80 = u.nastinator81 = u.nastinator82 = u.nastinator83 = u.nastinator84 = u.nastinator85 = u.nastinator86 = u.nastinator87 = u.nastinator88 = u.nastinator89 = u.nastinator90 = u.nastinator91 = u.nastinator92 = u.nastinator93 = u.nastinator94 = u.nastinator95 = u.nastinator96 = u.nastinator97 = u.nastinator98 = u.nastinator99 = u.nastinator100 = u.nastinator101 = u.nastinator102 = u.nastinator103 = u.nastinator104 = u.nastinator105 = u.nastinator106 = u.nastinator107 = u.nastinator108 = u.nastinator109 = u.nastinator110 = u.nastinator111 = u.nastinator112 = u.nastinator113 = u.nastinator114 = u.nastinator115 = u.nastinator116 = u.nastinator117 = u.nastinator118 = u.nastinator119 = u.nastinator120 = u.nastinator121 = u.nastinator122 = u.nastinator123 = u.nastinator124 = u.nastinator125 = u.nastinator126 = u.nastinator127 = u.nastinator128 = u.nastinator129 = u.nastinator130 = u.nastinator131 = u.nastinator132 = u.nastinator133 = u.nastinator134 = u.nastinator135 = u.nastinator136 = u.nastinator137 = u.nastinator138 = u.nastinator139 = u.nastinator140 = u.nastinator141 = u.nastinator142 = u.nastinator143 = u.nastinator144 = u.nastinator145 = u.nastinator146 = u.nastinator147 = u.nastinator148 = u.nastinator149 = u.nastinator150 = u.nastinator151 = u.nastinator152 = u.nastinator153 = u.nastinator154 = u.nastinator155 = u.nastinator156 = u.nastinator157 = u.nastinator158 = u.nastinator159 = u.nastinator160 = u.nastinator161 = u.nastinator162 = u.nastinator163 = u.nastinator164 = u.nastinator165 = u.nastinator166 = u.nastinator167 = u.nastinator168 = u.nastinator169 = u.nastinator170 = u.nastinator171 = u.nastinator172 = u.nastinator173 = u.nastinator174 = u.nastinator175 = u.nastinator176 = u.nastinator177 = u.nastinator178 = u.nastinator179 = u.nastinator180 = u.nastinator181 = u.nastinator182 = u.nastinator183 = u.nastinator184 = u.nastinator185 = u.nastinator186 = u.nastinator187 = u.nastinator188 = u.nastinator189 = u.nastinator190 = u.nastinator191 = u.nastinator192 = u.nastinator193 = u.nastinator194 = u.nastinator195 = u.nastinator196 = u.nastinator197 = u.nastinator198 = u.nastinator199 = u.nastinator200 = u.nastinator201 = u.nastinator202 = u.nastinator203 = u.nastinator204 = u.nastinator205 = u.nastinator206 = u.nastinator207 = u.nastinator208 = u.nastinator209 = u.nastinator210 = u.nastinator211 = u.nastinator212 = u.nastinator213 = u.nastinator214 = u.nastinator215 = u.nastinator216 = u.nastinator217 = u.nastinator218 = u.nastinator219 = u.nastinator220 = u.nastinator221 = u.nastinator222 = u.nastinator223 = u.nastinator224 = u.nastinator225 = u.nastinator226 = u.nastinator227 = u.nastinator228 = u.nastinator229 = 0;
 
 	if (isnastinator) { /* harder than hard race - starts with uncurable nasty trap effects --Amy */
 
-		switch (rnd(169)) {
+		switch (rnd(229)) {
 
 			case 1: u.nastinator01 = 1; break;
 			case 2: u.nastinator02 = 1; break;
@@ -28604,11 +28849,71 @@ alter_reality()
 			case 167: u.nastinator167 = 1; break;
 			case 168: u.nastinator168 = 1; break;
 			case 169: u.nastinator169 = 1; break;
+			case 170: u.nastinator170 = 1; break;
+			case 171: u.nastinator171 = 1; break;
+			case 172: u.nastinator172 = 1; break;
+			case 173: u.nastinator173 = 1; break;
+			case 174: u.nastinator174 = 1; break;
+			case 175: u.nastinator175 = 1; break;
+			case 176: u.nastinator176 = 1; break;
+			case 177: u.nastinator177 = 1; break;
+			case 178: u.nastinator178 = 1; break;
+			case 179: u.nastinator179 = 1; break;
+			case 180: u.nastinator180 = 1; break;
+			case 181: u.nastinator181 = 1; break;
+			case 182: u.nastinator182 = 1; break;
+			case 183: u.nastinator183 = 1; break;
+			case 184: u.nastinator184 = 1; break;
+			case 185: u.nastinator185 = 1; break;
+			case 186: u.nastinator186 = 1; break;
+			case 187: u.nastinator187 = 1; break;
+			case 188: u.nastinator188 = 1; break;
+			case 189: u.nastinator189 = 1; break;
+			case 190: u.nastinator190 = 1; break;
+			case 191: u.nastinator191 = 1; break;
+			case 192: u.nastinator192 = 1; break;
+			case 193: u.nastinator193 = 1; break;
+			case 194: u.nastinator194 = 1; break;
+			case 195: u.nastinator195 = 1; break;
+			case 196: u.nastinator196 = 1; break;
+			case 197: u.nastinator197 = 1; break;
+			case 198: u.nastinator198 = 1; break;
+			case 199: u.nastinator199 = 1; break;
+			case 200: u.nastinator200 = 1; break;
+			case 201: u.nastinator201 = 1; break;
+			case 202: u.nastinator202 = 1; break;
+			case 203: u.nastinator203 = 1; break;
+			case 204: u.nastinator204 = 1; break;
+			case 205: u.nastinator205 = 1; break;
+			case 206: u.nastinator206 = 1; break;
+			case 207: u.nastinator207 = 1; break;
+			case 208: u.nastinator208 = 1; break;
+			case 209: u.nastinator209 = 1; break;
+			case 210: u.nastinator210 = 1; break;
+			case 211: u.nastinator211 = 1; break;
+			case 212: u.nastinator212 = 1; break;
+			case 213: u.nastinator213 = 1; break;
+			case 214: u.nastinator214 = 1; break;
+			case 215: u.nastinator215 = 1; break;
+			case 216: u.nastinator216 = 1; break;
+			case 217: u.nastinator217 = 1; break;
+			case 218: u.nastinator218 = 1; break;
+			case 219: u.nastinator219 = 1; break;
+			case 220: u.nastinator220 = 1; break;
+			case 221: u.nastinator221 = 1; break;
+			case 222: u.nastinator222 = 1; break;
+			case 223: u.nastinator223 = 1; break;
+			case 224: u.nastinator224 = 1; break;
+			case 225: u.nastinator225 = 1; break;
+			case 226: u.nastinator226 = 1; break;
+			case 227: u.nastinator227 = 1; break;
+			case 228: u.nastinator228 = 1; break;
+			case 229: u.nastinator229 = 1; break;
 		}
 
 		while ((rnd(7)) < 3) {
 
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: u.nastinator01 = 1; break;
 				case 2: u.nastinator02 = 1; break;
@@ -28779,6 +29084,66 @@ alter_reality()
 			case 167: u.nastinator167 = 1; break;
 			case 168: u.nastinator168 = 1; break;
 			case 169: u.nastinator169 = 1; break;
+			case 170: u.nastinator170 = 1; break;
+			case 171: u.nastinator171 = 1; break;
+			case 172: u.nastinator172 = 1; break;
+			case 173: u.nastinator173 = 1; break;
+			case 174: u.nastinator174 = 1; break;
+			case 175: u.nastinator175 = 1; break;
+			case 176: u.nastinator176 = 1; break;
+			case 177: u.nastinator177 = 1; break;
+			case 178: u.nastinator178 = 1; break;
+			case 179: u.nastinator179 = 1; break;
+			case 180: u.nastinator180 = 1; break;
+			case 181: u.nastinator181 = 1; break;
+			case 182: u.nastinator182 = 1; break;
+			case 183: u.nastinator183 = 1; break;
+			case 184: u.nastinator184 = 1; break;
+			case 185: u.nastinator185 = 1; break;
+			case 186: u.nastinator186 = 1; break;
+			case 187: u.nastinator187 = 1; break;
+			case 188: u.nastinator188 = 1; break;
+			case 189: u.nastinator189 = 1; break;
+			case 190: u.nastinator190 = 1; break;
+			case 191: u.nastinator191 = 1; break;
+			case 192: u.nastinator192 = 1; break;
+			case 193: u.nastinator193 = 1; break;
+			case 194: u.nastinator194 = 1; break;
+			case 195: u.nastinator195 = 1; break;
+			case 196: u.nastinator196 = 1; break;
+			case 197: u.nastinator197 = 1; break;
+			case 198: u.nastinator198 = 1; break;
+			case 199: u.nastinator199 = 1; break;
+			case 200: u.nastinator200 = 1; break;
+			case 201: u.nastinator201 = 1; break;
+			case 202: u.nastinator202 = 1; break;
+			case 203: u.nastinator203 = 1; break;
+			case 204: u.nastinator204 = 1; break;
+			case 205: u.nastinator205 = 1; break;
+			case 206: u.nastinator206 = 1; break;
+			case 207: u.nastinator207 = 1; break;
+			case 208: u.nastinator208 = 1; break;
+			case 209: u.nastinator209 = 1; break;
+			case 210: u.nastinator210 = 1; break;
+			case 211: u.nastinator211 = 1; break;
+			case 212: u.nastinator212 = 1; break;
+			case 213: u.nastinator213 = 1; break;
+			case 214: u.nastinator214 = 1; break;
+			case 215: u.nastinator215 = 1; break;
+			case 216: u.nastinator216 = 1; break;
+			case 217: u.nastinator217 = 1; break;
+			case 218: u.nastinator218 = 1; break;
+			case 219: u.nastinator219 = 1; break;
+			case 220: u.nastinator220 = 1; break;
+			case 221: u.nastinator221 = 1; break;
+			case 222: u.nastinator222 = 1; break;
+			case 223: u.nastinator223 = 1; break;
+			case 224: u.nastinator224 = 1; break;
+			case 225: u.nastinator225 = 1; break;
+			case 226: u.nastinator226 = 1; break;
+			case 227: u.nastinator227 = 1; break;
+			case 228: u.nastinator228 = 1; break;
+			case 229: u.nastinator229 = 1; break;
 			}
 
 		}
@@ -28786,7 +29151,7 @@ alter_reality()
 
 	if (iswindinhabitant) { /* similar to nastinator, but they will be re-initialized sometimes --Amy */
 
-		switch (rnd(169)) {
+		switch (rnd(229)) {
 
 			case 1: u.nastinator01 = 1; break;
 			case 2: u.nastinator02 = 1; break;
@@ -28957,11 +29322,71 @@ alter_reality()
 			case 167: u.nastinator167 = 1; break;
 			case 168: u.nastinator168 = 1; break;
 			case 169: u.nastinator169 = 1; break;
+			case 170: u.nastinator170 = 1; break;
+			case 171: u.nastinator171 = 1; break;
+			case 172: u.nastinator172 = 1; break;
+			case 173: u.nastinator173 = 1; break;
+			case 174: u.nastinator174 = 1; break;
+			case 175: u.nastinator175 = 1; break;
+			case 176: u.nastinator176 = 1; break;
+			case 177: u.nastinator177 = 1; break;
+			case 178: u.nastinator178 = 1; break;
+			case 179: u.nastinator179 = 1; break;
+			case 180: u.nastinator180 = 1; break;
+			case 181: u.nastinator181 = 1; break;
+			case 182: u.nastinator182 = 1; break;
+			case 183: u.nastinator183 = 1; break;
+			case 184: u.nastinator184 = 1; break;
+			case 185: u.nastinator185 = 1; break;
+			case 186: u.nastinator186 = 1; break;
+			case 187: u.nastinator187 = 1; break;
+			case 188: u.nastinator188 = 1; break;
+			case 189: u.nastinator189 = 1; break;
+			case 190: u.nastinator190 = 1; break;
+			case 191: u.nastinator191 = 1; break;
+			case 192: u.nastinator192 = 1; break;
+			case 193: u.nastinator193 = 1; break;
+			case 194: u.nastinator194 = 1; break;
+			case 195: u.nastinator195 = 1; break;
+			case 196: u.nastinator196 = 1; break;
+			case 197: u.nastinator197 = 1; break;
+			case 198: u.nastinator198 = 1; break;
+			case 199: u.nastinator199 = 1; break;
+			case 200: u.nastinator200 = 1; break;
+			case 201: u.nastinator201 = 1; break;
+			case 202: u.nastinator202 = 1; break;
+			case 203: u.nastinator203 = 1; break;
+			case 204: u.nastinator204 = 1; break;
+			case 205: u.nastinator205 = 1; break;
+			case 206: u.nastinator206 = 1; break;
+			case 207: u.nastinator207 = 1; break;
+			case 208: u.nastinator208 = 1; break;
+			case 209: u.nastinator209 = 1; break;
+			case 210: u.nastinator210 = 1; break;
+			case 211: u.nastinator211 = 1; break;
+			case 212: u.nastinator212 = 1; break;
+			case 213: u.nastinator213 = 1; break;
+			case 214: u.nastinator214 = 1; break;
+			case 215: u.nastinator215 = 1; break;
+			case 216: u.nastinator216 = 1; break;
+			case 217: u.nastinator217 = 1; break;
+			case 218: u.nastinator218 = 1; break;
+			case 219: u.nastinator219 = 1; break;
+			case 220: u.nastinator220 = 1; break;
+			case 221: u.nastinator221 = 1; break;
+			case 222: u.nastinator222 = 1; break;
+			case 223: u.nastinator223 = 1; break;
+			case 224: u.nastinator224 = 1; break;
+			case 225: u.nastinator225 = 1; break;
+			case 226: u.nastinator226 = 1; break;
+			case 227: u.nastinator227 = 1; break;
+			case 228: u.nastinator228 = 1; break;
+			case 229: u.nastinator229 = 1; break;
 		}
 
 		while (!rn2(3)) {
 
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: u.nastinator01 = 1; break;
 				case 2: u.nastinator02 = 1; break;
@@ -29132,6 +29557,66 @@ alter_reality()
 			case 167: u.nastinator167 = 1; break;
 			case 168: u.nastinator168 = 1; break;
 			case 169: u.nastinator169 = 1; break;
+			case 170: u.nastinator170 = 1; break;
+			case 171: u.nastinator171 = 1; break;
+			case 172: u.nastinator172 = 1; break;
+			case 173: u.nastinator173 = 1; break;
+			case 174: u.nastinator174 = 1; break;
+			case 175: u.nastinator175 = 1; break;
+			case 176: u.nastinator176 = 1; break;
+			case 177: u.nastinator177 = 1; break;
+			case 178: u.nastinator178 = 1; break;
+			case 179: u.nastinator179 = 1; break;
+			case 180: u.nastinator180 = 1; break;
+			case 181: u.nastinator181 = 1; break;
+			case 182: u.nastinator182 = 1; break;
+			case 183: u.nastinator183 = 1; break;
+			case 184: u.nastinator184 = 1; break;
+			case 185: u.nastinator185 = 1; break;
+			case 186: u.nastinator186 = 1; break;
+			case 187: u.nastinator187 = 1; break;
+			case 188: u.nastinator188 = 1; break;
+			case 189: u.nastinator189 = 1; break;
+			case 190: u.nastinator190 = 1; break;
+			case 191: u.nastinator191 = 1; break;
+			case 192: u.nastinator192 = 1; break;
+			case 193: u.nastinator193 = 1; break;
+			case 194: u.nastinator194 = 1; break;
+			case 195: u.nastinator195 = 1; break;
+			case 196: u.nastinator196 = 1; break;
+			case 197: u.nastinator197 = 1; break;
+			case 198: u.nastinator198 = 1; break;
+			case 199: u.nastinator199 = 1; break;
+			case 200: u.nastinator200 = 1; break;
+			case 201: u.nastinator201 = 1; break;
+			case 202: u.nastinator202 = 1; break;
+			case 203: u.nastinator203 = 1; break;
+			case 204: u.nastinator204 = 1; break;
+			case 205: u.nastinator205 = 1; break;
+			case 206: u.nastinator206 = 1; break;
+			case 207: u.nastinator207 = 1; break;
+			case 208: u.nastinator208 = 1; break;
+			case 209: u.nastinator209 = 1; break;
+			case 210: u.nastinator210 = 1; break;
+			case 211: u.nastinator211 = 1; break;
+			case 212: u.nastinator212 = 1; break;
+			case 213: u.nastinator213 = 1; break;
+			case 214: u.nastinator214 = 1; break;
+			case 215: u.nastinator215 = 1; break;
+			case 216: u.nastinator216 = 1; break;
+			case 217: u.nastinator217 = 1; break;
+			case 218: u.nastinator218 = 1; break;
+			case 219: u.nastinator219 = 1; break;
+			case 220: u.nastinator220 = 1; break;
+			case 221: u.nastinator221 = 1; break;
+			case 222: u.nastinator222 = 1; break;
+			case 223: u.nastinator223 = 1; break;
+			case 224: u.nastinator224 = 1; break;
+			case 225: u.nastinator225 = 1; break;
+			case 226: u.nastinator226 = 1; break;
+			case 227: u.nastinator227 = 1; break;
+			case 228: u.nastinator228 = 1; break;
+			case 229: u.nastinator229 = 1; break;
 			}
 
 		}

@@ -1099,7 +1099,7 @@ randenchantment()
 		case 113:
 		case 114:
 		case 115:
-			switch (rnd(171)) {
+			switch (rnd(231)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -1273,6 +1273,66 @@ randenchantment()
 			case 169: return MELEE_PREFIX_BUG;
 			case 170: return AUTOMORE_BUG;
 			case 171: return UNFAIR_ATTACK_BUG;
+			case 172: return ORANGE_SPELLS;
+			case 173: return VIOLET_SPELLS;
+			case 174: return LONGING_EFFECT;
+			case 175: return CURSED_PARTS;
+			case 176: return QUAVERSAL;
+			case 177: return APPEARANCE_SHUFFLING;
+			case 178: return BROWN_SPELLS;
+			case 179: return CHOICELESSNESS;
+			case 180: return GOLDSPELLS;
+			case 181: return DEPROVEMENT;
+			case 182: return INITIALIZATION_FAIL;
+			case 183: return GUSHLUSH;
+			case 184: return SOILTYPE;
+			case 185: return DANGEROUS_TERRAINS;
+			case 186: return FALLOUT_EFFECT;
+			case 187: return MOJIBAKE;
+			case 188: return GRAVATION;
+			case 189: return UNCALLED_EFFECT;
+			case 190: return EXPLODING_DICE;
+			case 191: return PERMACURSE_EFFECT;
+			case 192: return SHROUDED_IDENTITY;
+			case 193: return FEELER_GAUGES;
+			case 194: return LONG_SCREWUP;
+			case 195: return WING_YELLOW_GLYPHS;
+			case 196: return LIFE_SAVING_BUG;
+			case 197: return CURSEUSE_EFFECT;
+			case 198: return CUT_NUTRITION;
+			case 199: return SKILL_LOSS_EFFECT;
+			case 200: return AUTOPILOT_EFFECT;
+			case 201: return MYSTERIOUS_FORCE_EFFECT;
+			case 202: return MONSTER_GLYPH_BUG;
+			case 203: return CHANGING_DIRECTIVES;
+			case 204: return CONTAINER_KABOOM;
+			case 205: return STEAL_DEGRADING;
+			case 206: return LEFT_INVENTORY;
+			case 207: return FLUCTUATING_SPEED;
+			case 208: return TARMU_STROKING_NORA;
+			case 209: return FAILURE_EFFECTS;
+			case 210: return BRIGHT_CYAN_SPELLS;
+			case 211: return FREQUENTATION_SPAWNS;
+			case 212: return PET_AI_SCREWED;
+			case 213: return SATAN_EFFECT;
+			case 214: return REMEMBERANCE_EFFECT;
+			case 215: return POKELIE_EFFECT;
+			case 216: return AUTOPICKUP_ALWAYS;
+			case 217: return DYWYPI_PROBLEM;
+			case 218: return SILVER_SPELLS;
+			case 219: return METAL_SPELLS;
+			case 220: return PLATINUM_SPELLS;
+			case 221: return MANLER_EFFECT;
+			case 222: return DOORNING_EFFECT;
+			case 223: return NOWNSIBLE_EFFECT;
+			case 224: return ELM_STREET_EFFECT;
+			case 225: return MONNOISE_EFFECT;
+			case 226: return RANG_CALL_EFFECT;
+			case 227: return RECURRING_SPELL_LOSS;
+			case 228: return ANTI_TRAINING_EFFECT;
+			case 229: return TECHOUT_BUG;
+			case 230: return STAT_DECAY;
+			case 231: return MOVEMORKING;
 
 			}
 		case 116:
@@ -1454,7 +1514,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(171)) {
+	switch (rnd(231)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -1627,6 +1687,66 @@ randnastyenchantment()
 			case 169: return MELEE_PREFIX_BUG;
 			case 170: return AUTOMORE_BUG;
 			case 171: return UNFAIR_ATTACK_BUG;
+			case 172: return ORANGE_SPELLS;
+			case 173: return VIOLET_SPELLS;
+			case 174: return LONGING_EFFECT;
+			case 175: return CURSED_PARTS;
+			case 176: return QUAVERSAL;
+			case 177: return APPEARANCE_SHUFFLING;
+			case 178: return BROWN_SPELLS;
+			case 179: return CHOICELESSNESS;
+			case 180: return GOLDSPELLS;
+			case 181: return DEPROVEMENT;
+			case 182: return INITIALIZATION_FAIL;
+			case 183: return GUSHLUSH;
+			case 184: return SOILTYPE;
+			case 185: return DANGEROUS_TERRAINS;
+			case 186: return FALLOUT_EFFECT;
+			case 187: return MOJIBAKE;
+			case 188: return GRAVATION;
+			case 189: return UNCALLED_EFFECT;
+			case 190: return EXPLODING_DICE;
+			case 191: return PERMACURSE_EFFECT;
+			case 192: return SHROUDED_IDENTITY;
+			case 193: return FEELER_GAUGES;
+			case 194: return LONG_SCREWUP;
+			case 195: return WING_YELLOW_GLYPHS;
+			case 196: return LIFE_SAVING_BUG;
+			case 197: return CURSEUSE_EFFECT;
+			case 198: return CUT_NUTRITION;
+			case 199: return SKILL_LOSS_EFFECT;
+			case 200: return AUTOPILOT_EFFECT;
+			case 201: return MYSTERIOUS_FORCE_EFFECT;
+			case 202: return MONSTER_GLYPH_BUG;
+			case 203: return CHANGING_DIRECTIVES;
+			case 204: return CONTAINER_KABOOM;
+			case 205: return STEAL_DEGRADING;
+			case 206: return LEFT_INVENTORY;
+			case 207: return FLUCTUATING_SPEED;
+			case 208: return TARMU_STROKING_NORA;
+			case 209: return FAILURE_EFFECTS;
+			case 210: return BRIGHT_CYAN_SPELLS;
+			case 211: return FREQUENTATION_SPAWNS;
+			case 212: return PET_AI_SCREWED;
+			case 213: return SATAN_EFFECT;
+			case 214: return REMEMBERANCE_EFFECT;
+			case 215: return POKELIE_EFFECT;
+			case 216: return AUTOPICKUP_ALWAYS;
+			case 217: return DYWYPI_PROBLEM;
+			case 218: return SILVER_SPELLS;
+			case 219: return METAL_SPELLS;
+			case 220: return PLATINUM_SPELLS;
+			case 221: return MANLER_EFFECT;
+			case 222: return DOORNING_EFFECT;
+			case 223: return NOWNSIBLE_EFFECT;
+			case 224: return ELM_STREET_EFFECT;
+			case 225: return MONNOISE_EFFECT;
+			case 226: return RANG_CALL_EFFECT;
+			case 227: return RECURRING_SPELL_LOSS;
+			case 228: return ANTI_TRAINING_EFFECT;
+			case 229: return TECHOUT_BUG;
+			case 230: return STAT_DECAY;
+			case 231: return MOVEMORKING;
 	}
 
 	/* appease compiler, we should never end up here */
@@ -1781,7 +1901,7 @@ randominsidetrap()
 	else if (!rn2(50)) return ARABELLA_SPEAKER;
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(171)) {
+	else switch (rnd(231)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -1954,6 +2074,66 @@ randominsidetrap()
 		case 169: return MELEE_PREFIX_TRAP;
 		case 170: return AUTOMORE_TRAP;
 		case 171: return UNFAIR_ATTACK_TRAP;
+		case 172: return ORANGE_SPELL_TRAP;
+		case 173: return VIOLET_SPELL_TRAP;
+		case 174: return TRAP_OF_LONGING;
+		case 175: return CURSED_PART_TRAP;
+		case 176: return QUAVERSAL_TRAP;
+		case 177: return APPEARANCE_SHUFFLING_TRAP;
+		case 178: return BROWN_SPELL_TRAP;
+		case 179: return CHOICELESS_TRAP;
+		case 180: return GOLDSPELL_TRAP;
+		case 181: return DEPROVEMENT_TRAP;
+		case 182: return INITIALIZATION_TRAP;
+		case 183: return GUSHLUSH_TRAP;
+		case 184: return SOILTYPE_TRAP;
+		case 185: return DANGEROUS_TERRAIN_TRAP;
+		case 186: return FALLOUT_TRAP;
+		case 187: return MOJIBAKE_TRAP;
+		case 188: return GRAVATION_TRAP;
+		case 189: return UNCALLED_TRAP;
+		case 190: return EXPLODING_DICE_TRAP;
+		case 191: return PERMACURSE_TRAP;
+		case 192: return SHROUDED_IDENTITY_TRAP;
+		case 193: return FEELER_GAUGES_TRAP;
+		case 194: return LONG_SCREWUP_TRAP;
+		case 195: return WING_YELLOW_CHANGER;
+		case 196: return LIFE_SAVING_TRAP;
+		case 197: return CURSEUSE_TRAP;
+		case 198: return CUT_NUTRITION_TRAP;
+		case 199: return SKILL_LOSS_TRAP;
+		case 200: return AUTOPILOT_TRAP;
+		case 201: return FORCE_TRAP;
+		case 202: return MONSTER_GLYPH_TRAP;
+		case 203: return CHANGING_DIRECTIVE_TRAP;
+		case 204: return CONTAINER_KABOOM_TRAP;
+		case 205: return STEAL_DEGRADE_TRAP;
+		case 206: return LEFT_INVENTORY_TRAP;
+		case 207: return FLUCTUATING_SPEED_TRAP;
+		case 208: return TARMUSTROKINGNORA_TRAP;
+		case 209: return FAILURE_TRAP;
+		case 210: return BRIGHT_CYAN_SPELL_TRAP;
+		case 211: return FREQUENTATION_SPAWN_TRAP;
+		case 212: return PET_AI_TRAP;
+		case 213: return SATAN_TRAP;
+		case 214: return REMEMBERANCE_TRAP;
+		case 215: return POKELIE_TRAP;
+		case 216: return AUTOPICKUP_TRAP;
+		case 217: return DYWYPI_TRAP;
+		case 218: return SILVER_SPELL_TRAP;
+		case 219: return METAL_SPELL_TRAP;
+		case 220: return PLATINUM_SPELL_TRAP;
+		case 221: return MANLER_TRAP;
+		case 222: return DOORNING_TRAP;
+		case 223: return NOWNSIBLE_TRAP;
+		case 224: return ELM_STREET_TRAP;
+		case 225: return MONNOISE_TRAP;
+		case 226: return RANG_CALL_TRAP;
+		case 227: return RECURRING_SPELL_LOSS_TRAP;
+		case 228: return ANTITRAINING_TRAP;
+		case 229: return TECHOUT_TRAP;
+		case 230: return STAT_DECAY_TRAP;
+		case 231: return MOVEMORK_TRAP;
 
 	}
 
@@ -2679,7 +2859,7 @@ randomnastytrapeffect(duration, blackngvar)
 int duration, blackngvar;
 {
 
-		switch (rnd(169)) {
+		switch (rnd(229)) {
 
 			case 1: RMBLoss += rnz(duration); break;
 			case 2: NoDropProblem += rnz(duration); break;
@@ -2879,6 +3059,66 @@ int duration, blackngvar;
 			case 167: MeleePrefixBug += rnz(duration); break;
 			case 168: AutomoreBug += rnz(duration); break;
 			case 169: UnfairAttackBug += rnz(duration); break;
+			case 170: OrangeSpells += rnz(duration); break;
+			case 171: VioletSpells += rnz(duration); break;
+			case 172: LongingEffect += rnz(duration); break;
+			case 173: CursedParts += rnz(duration); break;
+			case 174: Quaversal += rnz(duration); break;
+			case 175: AppearanceShuffling += rnz(duration); break;
+			case 176: BrownSpells += rnz(duration); break;
+			case 177: Choicelessness += rnz(duration); break;
+			case 178: Goldspells += rnz(duration); break;
+			case 179: Deprovement += rnz(duration); break;
+			case 180: InitializationFail += rnz(duration); break;
+			case 181: GushlushEffect += rnz(duration); break;
+			case 182: SoiltypeEffect += rnz(duration); break;
+			case 183: DangerousTerrains += rnz(duration); break;
+			case 184: FalloutEffect += rnz(duration); break;
+			case 185: MojibakeEffect += rnz(duration); break;
+			case 186: GravationEffect += rnz(duration); break;
+			case 187: UncalledEffect += rnz(duration); break;
+			case 188: ExplodingDiceEffect += rnz(duration); break;
+			case 189: PermacurseEffect += rnz(duration); break;
+			case 190: ShroudedIdentity += rnz(duration); break;
+			case 191: FeelerGauges += rnz(duration); break;
+			case 192: LongScrewup += rnz(duration); break;
+			case 193: WingYellowChange += rnz(duration); break;
+			case 194: LifeSavingBug += rnz(duration); break;
+			case 195: CurseuseEffect += rnz(duration); break;
+			case 196: CutNutritionEffect += rnz(duration); break;
+			case 197: SkillLossEffect += rnz(duration); break;
+			case 198: AutopilotEffect += rnz(duration); break;
+			case 199: MysteriousForceActive += rnz(duration); break;
+			case 200: MonsterGlyphChange += rnz(duration); break;
+			case 201: ChangingDirectives += rnz(duration); break;
+			case 202: ContainerKaboom += rnz(duration); break;
+			case 203: StealDegrading += rnz(duration); break;
+			case 204: LeftInventoryBug += rnz(duration); break;
+			case 205: FluctuatingSpeed += rnz(duration); break;
+			case 206: TarmuStrokingNora += rnz(duration); break;
+			case 207: FailureEffects += rnz(duration); break;
+			case 208: BrightCyanSpells += rnz(duration); break;
+			case 209: FrequentationSpawns += rnz(duration); break;
+			case 210: PetAIScrewed += rnz(duration); break;
+			case 211: SatanEffect += rnz(duration); break;
+			case 212: RememberanceEffect += rnz(duration); break;
+			case 213: PokelieEffect += rnz(duration); break;
+			case 214: AlwaysAutopickup += rnz(duration); break;
+			case 215: DywypiProblem += rnz(duration); break;
+			case 216: SilverSpells += rnz(duration); break;
+			case 217: MetalSpells += rnz(duration); break;
+			case 218: PlatinumSpells += rnz(duration); break;
+			case 219: ManlerEffect += rnz(duration); break;
+			case 220: DoorningEffect += rnz(duration); break;
+			case 221: NownsibleEffect += rnz(duration); break;
+			case 222: ElmStreetEffect += rnz(duration); break;
+			case 223: MonnoiseEffect += rnz(duration); break;
+			case 224: RangCallEffect += rnz(duration); break;
+			case 225: RecurringSpellLoss += rnz(duration); break;
+			case 226: AntitrainingEffect += rnz(duration); break;
+			case 227: TechoutBug += rnz(duration); break;
+			case 228: StatDecay += rnz(duration); break;
+			case 229: Movemork += rnz(duration); break;
 
 		}
 
