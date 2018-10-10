@@ -6471,6 +6471,9 @@ do_it:
 		move_bc(0, 0, uball->ox, uball->oy, uchain->ox, uchain->oy);
 	}
 
+	/* angel's increased sight doesn't work well in magical darkness... (bullshit downside :P) --Amy */
+	if (!on && Race_if(PM_HUMANOID_ANGEL)) WeakSight += rnz(10 * (monster_difficulty() + 1));
+
 	vision_full_recalc = 1;	/* delayed vision recalculation */
 }
 
@@ -6481,17 +6484,14 @@ register boolean on;
 	char is_lit;	/* value is irrelevant; we use its address
 			   as a `not null' flag for set_lit() */
 
-		if (rn2(10)) {
+	if (rn2(10)) {
+		do_clear_area(u.ux,u.uy, 7, set_lit, (void *)(on ? &is_lit : (char *)0));
+	} else {
+		do_clear_areaX(u.ux,u.uy, 7, set_lit, (void *)(on ? &is_lit : (char *)0));
+	}
 
-	    do_clear_area(u.ux,u.uy, 7,
-		set_lit, (void *)(on ? &is_lit : (char *)0));
-		}
-		else {
-
-	    do_clear_areaX(u.ux,u.uy, 7,
-		set_lit, (void *)(on ? &is_lit : (char *)0));
-		}
-
+	/* angel's increased sight doesn't work well in magical darkness... (bullshit downside :P) --Amy */
+	if (!on && Race_if(PM_HUMANOID_ANGEL)) WeakSight += rnz(10 * (monster_difficulty() + 1));
 
 	/*
 	 *  If we are not blind, then force a redraw on all positions in sight
