@@ -1174,7 +1174,7 @@ dokick()
 
 	if (no_kick) {
 		/* ignore direction typed before player notices kick failed */
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);	/* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);	/* --More-- */
 		return 0;
 	}
 

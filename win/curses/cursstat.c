@@ -525,7 +525,7 @@ static void
 draw_horizontal(int x, int y, int hp, int hpmax)
 {
 
-	if (youmonst.data && (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0)) ) ) return;
+	if (youmonst.data && DisplayDoesNotGo) return;
 
     if (!iflags.classic_status) {
         /* Draw new-style statusbar */
@@ -539,7 +539,7 @@ draw_horizontal(int x, int y, int hp, int hpmax)
     /* Line 1 */
     wmove(win, y, x);
 
-	if (youmonst.data && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )) {
+	if (youmonst.data && FlimmeringStrips) {
 		attr_t flickertextA;
 		int flickercolor = rn2(CLR_MAX);
 		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
@@ -564,13 +564,13 @@ draw_horizontal(int x, int y, int hp, int hpmax)
     print_statdiff(" Wi", &prevwis, ACURR(A_WIS), STAT_OTHER);
     print_statdiff(" Ch", &prevcha, ACURR(A_CHA), STAT_OTHER);
 
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) wprintw(win, " ");
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) wprintw(win, urole.filecode);
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) wprintw(win, urace.filecode);
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) wprintw(win, flags.female ? "Fem" : "Mal");
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) wprintw(win, (u.ualign.type == A_CHAOTIC) ? "Cha" : (u.ualign.type == A_NEUTRAL) ? "Neu" : "Law");
+	if (!TheInfoIsFucked) wprintw(win, " ");
+	if (!TheInfoIsFucked) wprintw(win, urole.filecode);
+	if (!TheInfoIsFucked) wprintw(win, urace.filecode);
+	if (!TheInfoIsFucked) wprintw(win, flags.female ? "Fem" : "Mal");
+	if (!TheInfoIsFucked) wprintw(win, (u.ualign.type == A_CHAOTIC) ? "Cha" : (u.ualign.type == A_NEUTRAL) ? "Neu" : "Law");
 
-	if (flags.hybridization && !(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) ) {
+	if (flags.hybridization && !TheInfoIsFucked) {
 		wprintw(win, "+");
 		if (flags.hybridcurser) wprintw(win, "C");
 		if (flags.hybridhaxor) wprintw(win, "H");
@@ -609,7 +609,7 @@ linetwo:
     y++;
     wmove(win, y, x);
 
-	if (youmonst.data && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )) {
+	if (youmonst.data && FlimmeringStrips) {
 		attr_t flickertextB;
 		int flickercolor = rn2(CLR_MAX);
 		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
@@ -681,7 +681,7 @@ linetwo:
     }
 
 #ifdef SHOW_WEIGHT
-	if (flags.showweight && youmonst.data && !(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone()))
+	if (flags.showweight && youmonst.data && !WeightDisplayIsArbitrary)
 		wprintw(win, " Wt%ld/%ld", (long)(inv_weight()+weight_cap()), (long)weight_cap());
 #endif
 
@@ -698,12 +698,12 @@ draw_horizontal_new(int x, int y, int hp, int hpmax)
     char rank[BUFSZ];
     WINDOW *win = curses_get_nhwin(STATUS_WIN);
 
-	if (youmonst.data && (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0)) ) ) return;
+	if (youmonst.data && DisplayDoesNotGo) return;
 
     /* Line 1 */
     wmove(win, y, x);
 
-	if (youmonst.data && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )) {
+	if (youmonst.data && FlimmeringStrips) {
 		attr_t flickertextA;
 		int flickercolor = rn2(CLR_MAX);
 		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
@@ -719,9 +719,9 @@ draw_horizontal_new(int x, int y, int hp, int hpmax)
     strcpy(race, urace.adj);
     race[0] = highc(race[0]);
     wprintw(win, "%s the %s %s%s%s", playeraliasname,
-            ((FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) ? "" :
+            (TheInfoIsFucked ? "" :
 		 u.ualign.type == A_CHAOTIC ? "Chaotic" : u.ualign.type == A_NEUTRAL ? "Neutral" : "Lawful"),
-            (Upolyd || (FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) ? "" : race, Upolyd ? "" : " ",
+            (Upolyd || TheInfoIsFucked) ? "" : race, Upolyd ? "" : " ",
             rank);
 
 linetwonew:
@@ -730,7 +730,7 @@ linetwonew:
     y++;
     wmove(win, y, x);
 
-	if (youmonst.data && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )) {
+	if (youmonst.data && FlimmeringStrips) {
 		attr_t flickertextB;
 		int flickercolor = rn2(CLR_MAX);
 		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
@@ -852,7 +852,7 @@ linetwonew:
 static void
 draw_vertical(int x, int y, int hp, int hpmax)
 {
-	if (youmonst.data && (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0)) ) ) return;
+	if (youmonst.data && DisplayDoesNotGo) return;
 
     char buf[BUFSZ];
     char rank[BUFSZ];
@@ -864,7 +864,7 @@ draw_vertical(int x, int y, int hp, int hpmax)
     /* Print title and dungeon branch */
     wmove(win, y++, x);
 
-	if (youmonst.data && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )) {
+	if (youmonst.data && FlimmeringStrips) {
 		attr_t flickertextA;
 		int flickercolor = rn2(CLR_MAX);
 		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);
@@ -905,7 +905,7 @@ linetwovert:
     y++; /* Blank line inbetween */
     wmove(win, y++, x);
 
-	if (youmonst.data && (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )) {
+	if (youmonst.data && FlimmeringStrips) {
 		attr_t flickertextB;
 		int flickercolor = rn2(CLR_MAX);
 		while (flickercolor == NO_COLOR) flickercolor = rn2(CLR_MAX);

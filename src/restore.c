@@ -1749,7 +1749,7 @@ register int fd;
 	 * Side effect of this is that you don't see this message until after the
 	 * all the levels are loaded
 	 */
-	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) ) {You("return to level %d in %s%s.",
+	if (!DisplayDoesNotGoAtAll) {You("return to level %d in %s%s.",
 		depth(&u.uz), dungeons[u.uz.dnum].dname,
 		flags.debug ? " while in debug mode" :
 		flags.explore ? " while in explore mode" : "");

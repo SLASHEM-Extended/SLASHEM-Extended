@@ -185,9 +185,9 @@ dosit()
 
 	register struct obj *otmp;
 
-	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
+	if (MenuIsBugged) {
 	pline("The sit command is currently unavailable!");
-	if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}
 

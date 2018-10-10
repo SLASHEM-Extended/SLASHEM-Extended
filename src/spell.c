@@ -1465,8 +1465,24 @@ getspell(spell_no)
 		    You("don't know that spell.");
 	    }
 	}
-	return dospellmenu( (SpellColorPink) ? "Your spells are pink." : (SpellColorRed) ? "Your spells are red." : (SpellColorGreen) ? "Your spells are green." : (SpellColorCyan) ? "Your spells are cyan." : (SpellColorBlue) ? "Your spells are blue." : (SpellColorWhite) ? "Your spells are white." : (SpellColorBlack) ? "Your spells are black." : (SpellColorGray) ? "Your spells are completely gray." : (SpellColorYellow) ? "Your spells are yellow." : "Choose which spell to cast",
-			   SPELLMENU_CAST, spell_no);
+	if (SpellColorPink) return dospellmenu("Your spells are pink.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorBrightCyan) return dospellmenu("Your spells are bright cyan.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorCyan) return dospellmenu("Your spells are cyan.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorBlack) return dospellmenu("Your spells are black.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorOrange) return dospellmenu("Your spells are orange.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorRed) return dospellmenu("Your spells are red.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorPlatinum) return dospellmenu("Your spells are platinum.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorSilver) return dospellmenu("Your spells are silver.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorMetal) return dospellmenu("Your spells are metal.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorGreen) return dospellmenu("Your spells are green.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorBlue) return dospellmenu("Your spells are blue.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorGray) return dospellmenu("Your spells are completely gray.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorBrown) return dospellmenu("Your spells are brown.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorWhite) return dospellmenu("Your spells are white.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorViolet) return dospellmenu("Your spells are violet.", SPELLMENU_CAST, spell_no);
+	else if (SpellColorYellow) return dospellmenu("Your spells are yellow.", SPELLMENU_CAST, spell_no);
+	else return dospellmenu("Choose which spell to cast", SPELLMENU_CAST, spell_no);
+
 }
 
 /* the 'Z' command -- cast a spell */
@@ -1478,7 +1494,7 @@ docast()
 	if (u.antimagicshell || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 
@@ -1835,31 +1851,31 @@ boolean atme;
 
 	if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD && spellid(spell) != SPE_SATISFY_HUNGER) {
 		You("are too hungry to cast that spell.");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	} else if (ACURR(A_STR) < 4)  {
 		You("lack the strength to cast spells.");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	} else if(check_capacity(
 		"Your concentration falters while carrying so much stuff.")) {
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return (1);
 	} else if (!freehandX()) {
 		Your("arms are not free to cast!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
 	} else if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) {
 		pline("You're muted!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
 	} else if (tech_inuse(T_SILENT_OCEAN)) {
 		pline("The silent ocean prevents you from spellcasting.");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
 	} else if (isevilvariant && (Strangled || is_silent(youmonst.data) || !has_head(youmonst.data) || youmonst.data->msound == MS_BUZZ || youmonst.data->msound == MS_BURBLE || youmonst.data->msound == MS_GURGLE)) {
 		pline("You're unable to chant any magical formula!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
 	}
 
@@ -1915,7 +1931,7 @@ boolean atme;
 	if (energy > u.uen)  {
 		if (role_skill >= P_SKILLED) You("don't have enough energy to cast that spell.");
 		else You("don't have enough energy to cast that spell. The required amount was %d.",energy);
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		/* WAC/ALI Experts can override with HP/hunger loss */
 		if ((role_skill >= P_SKILLED) && (u.uhpmax > (energy / 5)) && (yn("Continue? Doing so may damage your maximum health.") == 'y')) {
 			energy -= u.uen;
@@ -2053,7 +2069,7 @@ boolean atme;
 	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && spellid(spell) != SPE_CURE_RANDOM_STATUS && (confusionchance < rnd(100)) && rn2(Conf_resist ? 2 : 10) ) || (rnd(100) > chance)) {
 		if (!issoviet) pline("You fail to cast the spell correctly.");
 		else pline("HA HA HA HA HA, tip bloka l'da sdelal vy ne zaklinaniye!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		if (!rn2(100)) { /* evil patch idea by Amy: failure effect */
 			pline("In fact, you cast the spell incorrectly in a way that causes bad stuff to happen...");
 			badeffect();
@@ -2074,7 +2090,7 @@ boolean atme;
 		int tremblechance = (u.tremblingamount * 5 / 2);
 		if (rn2(100) < rnd(tremblechance)) {
 			You("screw up while casting the spell...");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 			if (!rn2(10)) {
 				pline("In fact, you screwed up so badly that bad stuff happens...");
@@ -2100,7 +2116,7 @@ boolean atme;
 	/* And if the amulet drained it below zero, set it to zero and just make the spell fail now. */
 	if (u.uhave.amulet && u.amuletcompletelyimbued && u.uen < 0) {
 		pline("You are exhausted, and fail to cast the spell due to the amulet draining all your energy away.");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		u.uen = 0;
 		return(1);
 	}
@@ -2138,7 +2154,7 @@ boolean atme;
 	pseudo = mksobj(spellid(spell), FALSE, 2);
 	if (!pseudo) {
 		pline("The spell failed spontaneously!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(1);
 	}
 	if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = spellid(spell); /* minimalist fix */
@@ -3032,7 +3048,7 @@ secureidchoice:
 			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
 			    nextmon = nexusmon->nmon; /* trap might kill mon */
 			    if (DEADMONSTER(nexusmon)) continue;
-				if (levl[nexusmon->mx][nexusmon->my].typ >= STONE && levl[nexusmon->mx][nexusmon->my].typ <= DBWALL) {
+				if (levl[nexusmon->mx][nexusmon->my].typ >= STONE && levl[nexusmon->mx][nexusmon->my].typ <= ROCKWALL) {
 					if ((levl[nexusmon->mx][nexusmon->my].wall_info & W_NONDIGGABLE) == 0 && !(*in_rooms(nexusmon->mx,nexusmon->my,SHOPBASE))) {
 						levl[nexusmon->mx][nexusmon->my].typ = CORR;
 						unblock_point(nexusmon->mx,nexusmon->my);
@@ -3757,6 +3773,66 @@ secureidchoice:
 		SpellForgetting = 0L;
 		SoundEffectBug = 0L;
 		TimerunBug = 0L;
+		OrangeSpells = 0L;
+		VioletSpells = 0L;
+		LongingEffect = 0L;
+		CursedParts = 0L;
+		Quaversal = 0L;
+		AppearanceShuffling = 0L;
+		BrownSpells = 0L;
+		Choicelessness = 0L;
+		Goldspells = 0L;
+		Deprovement = 0L;
+		InitializationFail = 0L;
+		GushlushEffect = 0L;
+		SoiltypeEffect = 0L;
+		DangerousTerrains = 0L;
+		FalloutEffect = 0L;
+		MojibakeEffect = 0L;
+		GravationEffect = 0L;
+		UncalledEffect = 0L;
+		ExplodingDiceEffect = 0L;
+		PermacurseEffect = 0L;
+		ShroudedIdentity = 0L;
+		FeelerGauges = 0L;
+		LongScrewup = 0L;
+		WingYellowChange = 0L;
+		LifeSavingBug = 0L;
+		CurseuseEffect = 0L;
+		CutNutritionEffect = 0L;
+		SkillLossEffect = 0L;
+		AutopilotEffect = 0L;
+		MysteriousForceActive = 0L;
+		MonsterGlyphChange = 0L;
+		ChangingDirectives = 0L;
+		ContainerKaboom = 0L;
+		StealDegrading = 0L;
+		LeftInventoryBug = 0L;
+		FluctuatingSpeed = 0L;
+		TarmuStrokingNora = 0L;
+		FailureEffects = 0L;
+		BrightCyanSpells = 0L;
+		FrequentationSpawns = 0L;
+		PetAIScrewed = 0L;
+		SatanEffect = 0L;
+		RememberanceEffect = 0L;
+		PokelieEffect = 0L;
+		AlwaysAutopickup = 0L;
+		DywypiProblem = 0L;
+		SilverSpells = 0L;
+		MetalSpells = 0L;
+		PlatinumSpells = 0L;
+		ManlerEffect = 0L;
+		DoorningEffect = 0L;
+		NownsibleEffect = 0L;
+		ElmStreetEffect = 0L;
+		MonnoiseEffect = 0L;
+		RangCallEffect = 0L;
+		RecurringSpellLoss = 0L;
+		AntitrainingEffect = 0L;
+		TechoutBug = 0L;
+		StatDecay = 0L;
+		Movemork = 0L;
 
 		pline("But then the green light goes out again and the red one lights up...");
 
@@ -3776,7 +3852,7 @@ secureidchoice:
 		pline("Okay, if that's really what you want... you feel corrupted.");
 		if (Hallucination) pline("At least this isn't ADOM, where having too many corruptions would instakill you!");
 
-		switch (rnd(169)) {
+		switch (rnd(229)) {
 
 			case 1: 
 			    SpeedBug |= FROMOUTSIDE; break;
@@ -4116,6 +4192,126 @@ secureidchoice:
 				    AutomoreBug |= FROMOUTSIDE; break;
 				case 169:
 				    UnfairAttackBug |= FROMOUTSIDE; break;
+				case 170:
+				    OrangeSpells |= FROMOUTSIDE; break;
+				case 171:
+				    VioletSpells |= FROMOUTSIDE; break;
+				case 172:
+				    LongingEffect |= FROMOUTSIDE; break;
+				case 173:
+				    CursedParts |= FROMOUTSIDE; break;
+				case 174:
+				    Quaversal |= FROMOUTSIDE; break;
+				case 175:
+				    AppearanceShuffling |= FROMOUTSIDE; break;
+				case 176:
+				    BrownSpells |= FROMOUTSIDE; break;
+				case 177:
+				    Choicelessness |= FROMOUTSIDE; break;
+				case 178:
+				    Goldspells |= FROMOUTSIDE; break;
+				case 179:
+				    Deprovement |= FROMOUTSIDE; break;
+				case 180:
+				    InitializationFail |= FROMOUTSIDE; break;
+				case 181:
+				    GushlushEffect |= FROMOUTSIDE; break;
+				case 182:
+				    SoiltypeEffect |= FROMOUTSIDE; break;
+				case 183:
+				    DangerousTerrains |= FROMOUTSIDE; break;
+				case 184:
+				    FalloutEffect |= FROMOUTSIDE; break;
+				case 185:
+				    MojibakeEffect |= FROMOUTSIDE; break;
+				case 186:
+				    GravationEffect |= FROMOUTSIDE; break;
+				case 187:
+				    UncalledEffect |= FROMOUTSIDE; break;
+				case 188:
+				    ExplodingDiceEffect |= FROMOUTSIDE; break;
+				case 189:
+				    PermacurseEffect |= FROMOUTSIDE; break;
+				case 190:
+				    ShroudedIdentity |= FROMOUTSIDE; break;
+				case 191:
+				    FeelerGauges |= FROMOUTSIDE; break;
+				case 192:
+				    LongScrewup |= FROMOUTSIDE; break;
+				case 193:
+				    WingYellowChange |= FROMOUTSIDE; break;
+				case 194:
+				    LifeSavingBug |= FROMOUTSIDE; break;
+				case 195:
+				    CurseuseEffect |= FROMOUTSIDE; break;
+				case 196:
+				    CutNutritionEffect |= FROMOUTSIDE; break;
+				case 197:
+				    SkillLossEffect |= FROMOUTSIDE; break;
+				case 198:
+				    AutopilotEffect |= FROMOUTSIDE; break;
+				case 199:
+				    MysteriousForceActive |= FROMOUTSIDE; break;
+				case 200:
+				    MonsterGlyphChange |= FROMOUTSIDE; break;
+				case 201:
+				    ChangingDirectives |= FROMOUTSIDE; break;
+				case 202:
+				    ContainerKaboom |= FROMOUTSIDE; break;
+				case 203:
+				    StealDegrading |= FROMOUTSIDE; break;
+				case 204:
+				    LeftInventoryBug |= FROMOUTSIDE; break;
+				case 205:
+				    FluctuatingSpeed |= FROMOUTSIDE; break;
+				case 206:
+				    TarmuStrokingNora |= FROMOUTSIDE; break;
+				case 207:
+				    FailureEffects |= FROMOUTSIDE; break;
+				case 208:
+				    BrightCyanSpells |= FROMOUTSIDE; break;
+				case 209:
+				    FrequentationSpawns |= FROMOUTSIDE; break;
+				case 210:
+				    PetAIScrewed |= FROMOUTSIDE; break;
+				case 211:
+				    SatanEffect |= FROMOUTSIDE; break;
+				case 212:
+				    RememberanceEffect |= FROMOUTSIDE; break;
+				case 213:
+				    PokelieEffect |= FROMOUTSIDE; break;
+				case 214:
+				    AlwaysAutopickup |= FROMOUTSIDE; break;
+				case 215:
+				    DywypiProblem |= FROMOUTSIDE; break;
+				case 216:
+				    SilverSpells |= FROMOUTSIDE; break;
+				case 217:
+				    MetalSpells |= FROMOUTSIDE; break;
+				case 218:
+				    PlatinumSpells |= FROMOUTSIDE; break;
+				case 219:
+				    ManlerEffect |= FROMOUTSIDE; break;
+				case 220:
+				    DoorningEffect |= FROMOUTSIDE; break;
+				case 221:
+				    NownsibleEffect |= FROMOUTSIDE; break;
+				case 222:
+				    ElmStreetEffect |= FROMOUTSIDE; break;
+				case 223:
+				    MonnoiseEffect |= FROMOUTSIDE; break;
+				case 224:
+				    RangCallEffect |= FROMOUTSIDE; break;
+				case 225:
+				    RecurringSpellLoss |= FROMOUTSIDE; break;
+				case 226:
+				    AntitrainingEffect |= FROMOUTSIDE; break;
+				case 227:
+				    TechoutBug |= FROMOUTSIDE; break;
+				case 228:
+				    StatDecay |= FROMOUTSIDE; break;
+				case 229:
+				    Movemork |= FROMOUTSIDE; break;
 		}
 
 		break;
@@ -6617,11 +6813,30 @@ dovspell()
 	int splnum, othnum;
 	struct spell spl_tmp;
 
+	char spellcolorbuf[BUFSZ];
+
+	if (SpellColorPink) sprintf(spellcolorbuf, "Your spells are pink.");
+	else if (SpellColorBrightCyan) sprintf(spellcolorbuf, "Your spells are bright cyan.");
+	else if (SpellColorCyan) sprintf(spellcolorbuf, "Your spells are cyan.");
+	else if (SpellColorBlack) sprintf(spellcolorbuf, "Your spells are black.");
+	else if (SpellColorOrange) sprintf(spellcolorbuf, "Your spells are orange.");
+	else if (SpellColorRed) sprintf(spellcolorbuf, "Your spells are red.");
+	else if (SpellColorPlatinum) sprintf(spellcolorbuf, "Your spells are platinum.");
+	else if (SpellColorSilver) sprintf(spellcolorbuf, "Your spells are silver.");
+	else if (SpellColorMetal) sprintf(spellcolorbuf, "Your spells are metal.");
+	else if (SpellColorGreen) sprintf(spellcolorbuf, "Your spells are green.");
+	else if (SpellColorBlue) sprintf(spellcolorbuf, "Your spells are blue.");
+	else if (SpellColorGray) sprintf(spellcolorbuf, "Your spells are completely gray.");
+	else if (SpellColorBrown) sprintf(spellcolorbuf, "Your spells are brown.");
+	else if (SpellColorWhite) sprintf(spellcolorbuf, "Your spells are white.");
+	else if (SpellColorViolet) sprintf(spellcolorbuf, "Your spells are violet.");
+	else if (SpellColorYellow) sprintf(spellcolorbuf, "Your spells are yellow.");
+	else sprintf(spellcolorbuf, "Currently known spells");
+
 	if (spellid(0) == NO_SPELL)
 	    You("don't know any spells right now.");
 	else {
-	    while (dospellmenu( (SpellColorPink) ? "Your spells are pink." : (SpellColorRed) ? "Your spells are red." : (SpellColorGreen) ? "Your spells are green." : (SpellColorCyan) ? "Your spells are cyan." : (SpellColorBlue) ? "Your spells are blue." : (SpellColorWhite) ? "Your spells are white." : (SpellColorBlack) ? "Your spells are black." : (SpellColorGray) ? "Your spells are completely gray." : (SpellColorYellow ) ? "Your spells are yellow." : "Currently known spells",
-			       SPELLMENU_VIEW, &splnum)) {
+	    while (dospellmenu( spellcolorbuf, SPELLMENU_VIEW, &splnum)) {
 		sprintf(qbuf, "Reordering spells; swap '%s' with",
 			(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) ? "spell" : spellname(splnum));
 		if (!dospellmenu(qbuf, splnum, &othnum)) break;

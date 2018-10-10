@@ -443,14 +443,14 @@ int what;		/* should be a long */
 		if (notake(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		    if (!autopickup) {
 			You("are physically incapable of picking anything up.");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 			if (yn("But maybe you can reach the items anyway. Try it?") == 'y') {
 				if (rn2(3) && !polyskillchance()) {
 				 	make_hallucinated(HHallucination + rnd(50),FALSE,0L);
 					pline("Oh wow! Is that your own shiny reflection you just saw?");
 					if (!rn2(20)) badeffect();
-					if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+					if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 					return 1;
 				}
 			}
@@ -472,7 +472,7 @@ int what;		/* should be a long */
 		objchain = level.objects[u.ux][u.uy];
 		traverse_how = BY_NEXTHERE;
 	} else {pline(Hallucination ? "There's something embedded here, but you can't dislodge it..." : "You can't take items out of a monster's interior!"); 
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return (0); /* otherwise the player could snatch worn amulets of life saving or similar stuff! --Amy */
 
 	}			/*{
@@ -740,8 +740,8 @@ boolean (*allow)(OBJ_P);/* allow function */
 	anything any;
 	boolean printed_type_name;
 
-	if ( (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone() ) && !program_state.gameover) {pline("Not enough memory to create inventory window");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (InventoryDoesNotGo && !program_state.gameover) {pline("Not enough memory to create inventory window");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}	
 
@@ -1594,22 +1594,22 @@ int x, y;
 		else
 			You("cannot reach the %s.", surface(x, y));
 
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	} else if (is_waterypool(x, y) || is_watertunnel(x,y) || is_lava(x, y)) {
 		/* at present, can't loot in water even when Underwater */
 		You("cannot loot things that are deep in the %s.",
 		    is_lava(x, y) ? "lava" : "water");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	} else if (nolimbs(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		pline("Without limbs, you cannot loot anything.");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	} else if (!freehandX()) {
 		pline("Without a free %s, you cannot loot anything.",
 			body_part(HAND));
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	}
 	return TRUE;
@@ -1634,9 +1634,9 @@ int
 doloot()	/* loot a container on the floor or loot saddle from mon. */
 {
 
-	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
+	if (MenuIsBugged) {
 	pline("The loot command is currently unavailable!");
-	if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}
 
@@ -2039,6 +2039,7 @@ boolean invobj;
 		   obj->otyp == CANDELABRUM_OF_INVOCATION ||
 		   obj->otyp == BELL_OF_OPENING ||
 		   obj->oartifact == ART_KEY_OF_LAW ||
+		   obj->oartifact == ART_GAUNTLET_KEY ||
 		   obj->oartifact == ART_KEY_OF_NEUTRALITY ||
 		   obj->oartifact == ART_KEY_OF_CHAOS ||
 		   obj->otyp == SPE_BOOK_OF_THE_DEAD) {
@@ -2425,14 +2426,14 @@ int held;
 	emptymsg[0] = '\0';
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 		You("have no hands!");	/* not `body_part(HAND)' */
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("Try to open the container with another part of your body instead?") == 'y') {
 			if (rn2(3) && !polyskillchance()) { 			
 				You_feel("a wrenching sensation.");
 				if (!rn2(20)) badeffect();
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net nikakoy zashchity. Tam net nikakoy nadezhdy. Yedinstvennoye, chto yest'? Uverennost' v tom, chto vy, igrok, budet umeret' uzhasnoy i muchitel'noy smert'yu." : "SCHRING!");
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				flags.soundok = 0;
 				nomul(-rnd(10), "wrenched in a container", TRUE);
 				nomovemsg = "You are conscious again.";
@@ -2444,7 +2445,7 @@ int held;
 
 	} else if (!freehandX()) {
 		You("have no free %s.", body_part(HAND));
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 	if (obj->olocked) {

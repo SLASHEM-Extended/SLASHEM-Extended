@@ -77,7 +77,7 @@ getlin_hook_proc hook;
 		    ttyDisplay->intr--;
 		    *bufp = 0;
 		}
-		if(c == '\020' && !(MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone() || BigscriptEffect || (uarmh && uarmh->oartifact == ART_YOU_SEE_HERE_AN_ARTIFACT) || u.uprops[BIGSCRIPT].extrinsic || have_bigscriptstone() || MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_LLLLLLLLLLLLLM) || have_memorylossstone() || SpellColorRed || u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FILTHY_PRESS) || MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() || RotThirteen || u.uprops[ROT_THIRTEEN].extrinsic || have_rotthirteenstone()) ) { /* ctrl-P */
+		if(c == '\020' && !MenuIsBugged && !YouHaveBigscript && !LLMMessages && !SpellColorRed && !PlayerHearsMessages  && !MessagesSuppressed && !RotThirteenCipher) { /* ctrl-P */
 		    if (iflags.prevmsg_window != 's') {
 				int sav = ttyDisplay->inread;
 				ttyDisplay->inread = 0;

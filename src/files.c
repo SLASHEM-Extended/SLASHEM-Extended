@@ -685,7 +685,7 @@ touch_whereis()
    */
 
 	/* certain nasty traps obscure the information - so we want to hide it from whereis too! --Amy */
-	if (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && (moves % 10 == 0) ) || FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone() ) {
+	if (DisplayDoesNotGo || TheInfoIsFucked) {
 		delete_whereis();
 		return;
 	}

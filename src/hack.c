@@ -574,9 +574,7 @@ moverock()
 		    map_invisible(rx, ry);
 		}
 		if (flags.verbose)
-		    pline("Perhaps that's why %s cannot move it.",
-				u.usteed ? y_monnam(u.usteed) :
-				"you");
+		    pline("Perhaps that's why %s cannot move it.", u.usteed ? y_monnam(u.usteed) : "you");
 		goto cannot_push;
 	    }
 
@@ -743,9 +741,7 @@ moverock()
 		break;
 	    }
 
-	    if (
-		!u.usteed &&
-		(((!invent || inv_weight() <= -1500) &&
+	    if (!u.usteed && (((!invent || inv_weight() <= -1500) &&
 		 (!u.dx || !u.dy || (IS_ROCK(levl[u.ux][sy].typ)
 				     && IS_ROCK(levl[sx][u.uy].typ))))
 		|| verysmall(youmonst.data))) {
@@ -1099,7 +1095,7 @@ int mode;
 			/* success! */
 			if (!(u.usteed)) {
 				You("successfully climb the mountain.");
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 		}
 
@@ -1163,7 +1159,7 @@ int mode;
 			return FALSE;
 		} else {
 			You("dig out the grave wall.");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			tmpr->typ = CORR;
 			if (!rn2(20) && isok(ux+dx, uy+dy)) {
 				maketrap(ux+dx, uy+dy, randomtrap(), 100 );
@@ -2168,8 +2164,7 @@ domove()
 			You("%s to the edge of the pit.",
 				(In_sokoban(&u.uz) && Levitation) ?
 				"struggle against the air currents and float" :
-				u.usteed ? "ride" :
-				"crawl");
+				u.usteed ? "ride" : "crawl");
 			fill_pit(u.ux, u.uy);
 			vision_full_recalc = 1;	/* vision limits change */
 		    } else if (flags.verbose) {
@@ -2181,6 +2176,13 @@ domove()
 				"You've fallen, and you can't get up." :
 				"You are still in a pit." );
 		    }
+
+			if (FemaleTrapNatalje) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
 		      traphere = t_at(u.ux,u.uy);
 		      if (u.utrap && traphere && traphere->ttyp == SHIT_PIT) {
 				pline("You splotch into a heap of dog shit!");
@@ -2246,14 +2248,21 @@ domove()
 			    drain_en(rnz(monster_difficulty() + 1));
 			}
 
-		} else if (u.utraptype == TT_LAVA) {
+		} else if (u.utraptype == TT_LAVA) { /* WHO THE HELL MADE THIS INTO A NOREP GAAAAAAH --Amy */
+
+			if (FemaleTrapNatalje) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
 		    if(flags.verbose) {
 			predicament = "stuck in the lava";
 			if (u.usteed)
-			    Norep("%s is %s.", upstart(y_monnam(u.usteed)),
+			    pline("%s is %s.", upstart(y_monnam(u.usteed)),
 				  predicament);
 			else
-			Norep("You are %s.", predicament);
+			pline("You are %s.", predicament);
 		    }
 		    if(!is_lava(x,y)) {
 			u.utrap--;
@@ -2273,6 +2282,13 @@ domove()
 			pline("Sting cuts through the web!");
 			return;
 		    }
+
+			if (FemaleTrapNatalje) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
 		    if(--u.utrap) {
 			if(flags.verbose) {
 			    predicament = "stuck to the web";
@@ -2290,6 +2306,13 @@ domove()
 			You("disentangle yourself.");
 		    }
 		} else if (u.utraptype == TT_GLUE) {
+
+			if (FemaleTrapNatalje) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
 		    if(--u.utrap) {
 			if(flags.verbose) {
 			    predicament = "held in place by the glue";
@@ -2307,6 +2330,13 @@ domove()
 			You("finally get the sticky glue off.");
 		    }
 		} else if (u.utraptype == TT_INFLOOR) {
+
+			if (FemaleTrapNatalje) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
 		    if(--u.utrap) {
 			if(flags.verbose) {
 			    predicament = "stuck in the";
@@ -2326,6 +2356,13 @@ domove()
 			You("finally wiggle free.");
 		    }
 		} else {
+
+			if (FemaleTrapNatalje) {
+				u.nataljetrapturns = moves;
+				u.nataljetrapx = u.ux;
+				u.nataljetrapy = u.uy;
+			}
+
 		    if(flags.verbose) {
 			predicament = "caught in a bear trap";
 			if (u.usteed)
@@ -2779,7 +2816,7 @@ invocation_message()
 	    nomul(0, 0, FALSE);		/* stop running or travelling */
 	    if (Hallucination) {
 		pline("You're picking up good vibrations!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    } else {
 	    if (u.usteed) sprintf(buf, "beneath %s", y_monnam(u.usteed));
 	    else
@@ -2787,7 +2824,7 @@ invocation_message()
 	    else sprintf(buf, "under your %s", makeplural(body_part(FOOT)));
 
 	    You_feel("a strange vibration %s.", buf);
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    }
 	    if (otmp && otmp->spe == 7 && otmp->lamplit)
 		pline("%s %s!", The(xname(otmp)),
@@ -4402,7 +4439,7 @@ int k_format; /* WAC k_format is an int */
 		    maybe_wail();
 
 #ifdef SHOW_DMG                
-		if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) && n > 0) { 
+		if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayDoesNotGoAtAll && n > 0) { 
 			pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
 		}
 #endif
@@ -4428,7 +4465,7 @@ int k_format; /* WAC k_format is an int */
 	}
 
 #ifdef SHOW_DMG                
-	if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) && n > 0) { 
+	if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayDoesNotGoAtAll && n > 0) { 
 
 		pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
 		if (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
@@ -4594,7 +4631,7 @@ const char *str;
 	else
 	    You_cant("do that while carrying so much stuff.");
 
-	if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 	return 1;
     }

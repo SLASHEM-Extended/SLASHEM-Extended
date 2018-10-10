@@ -88,14 +88,14 @@ use_saddle(otmp)
 	/* Can you use it? */
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		You("have no hands!");	/* not `body_part(HAND)' */
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("Try to use the saddle with another part of your body instead?") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 	 			make_blinded(Blinded + rnd(50),TRUE);
 				pline("You got something in your face!");
 				if (!rn2(20)) badeffect();
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				return 1;
 			}
 		}
@@ -103,7 +103,7 @@ use_saddle(otmp)
 
 	} else if (!freehandX()) {
 		You("have no free %s.", body_part(HAND));
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 
@@ -237,9 +237,9 @@ boolean
 can_ride(mtmp)
 	struct monst *mtmp;
 {
-	if (!issoviet) return (mtmp->mtame || mtmp->egotype_steed);
+	if (!issoviet) return (mtmp->mtame || mtmp->egotype_steed || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE) );
 
-	return ((mtmp->mtame || mtmp->egotype_steed) && humanoid(youmonst.data) &&
+	return ((mtmp->mtame || mtmp->egotype_steed || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) && humanoid(youmonst.data) &&
 			!verysmall(youmonst.data) && !bigmonst(youmonst.data) &&
 			(!Underwater || is_swimmer(mtmp->data)) );
 
@@ -380,7 +380,7 @@ mount_steed(mtmp, force)
 	    sprintf(kbuf, "attempting to ride %s", an(mtmp->data->mname));
 	    instapetrify(kbuf);
 	}
-	if (!(mtmp->mtame || mtmp->egotype_steed) || mtmp->isminion) {
+	if (!(mtmp->mtame || mtmp->egotype_steed || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) || mtmp->isminion) {
 	    pline("I think %s would mind.", mon_nam(mtmp));
 	    return (FALSE);
 	}
@@ -782,6 +782,14 @@ int x, y;
     }
     mon->mx = x, mon->my = y;
     level.monsters[x][y] = mon;
+}
+
+/* will something hit your steed instead of you? --Amy */
+boolean
+will_hit_steed()
+{
+	if (rn2(100) < u.steedhitchance) return TRUE;
+	else return FALSE;
 }
 
 /*steed.c*/

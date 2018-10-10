@@ -1321,12 +1321,12 @@ dogaze()
 
 	if (Blind) {
 		You("can't see a thing!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 	if (u.uen < 20) {
 		You("lack the energy to use your special gaze! Gaze attacks cost 20 mana!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 	pline("Where do you wish to look?");
@@ -1402,7 +1402,7 @@ dobreathe()
 
 	if (Strangled) {
 	    You_cant("breathe.  Sorry.");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return(0);
 	}
 
@@ -1429,7 +1429,7 @@ dobreathe()
 
 	if (u.uen < energy) {
 	    You("don't have enough energy to breathe! You need at least %d mana!",energy);
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return(0);
 	}
 
@@ -1463,7 +1463,7 @@ dospit()
 
 	if (u.uen < 5) {
 		You("lack the energy to spit - need at least 5 mana!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);
 	}
 
@@ -1800,6 +1800,18 @@ dospinweb()
 		case SKILLCAP_TRAP:
 		case PERMANENT_STAT_DAMAGE_TRAP:
 
+		case HYBRID_TRAP:
+		case SHAPECHANGE_TRAP:
+		case MELTEM_TRAP:
+		case MIGUC_TRAP:
+		case DIRECTIVE_TRAP:
+		case SATATUE_TRAP:
+		case FARTING_WEB:
+		case CATACLYSM_TRAP:
+		case DATA_DELETE_TRAP:
+		case ELDER_TENTACLING_TRAP:
+		case FOOTERER_TRAP:
+
 			You("have triggered a trap!");
 			dotrap(ttmp, 0);
 			return(1);
@@ -1865,6 +1877,66 @@ dospinweb()
 		case LOCKING_TRAP:
 		case AIR_TRAP:
 		case TERRAIN_TRAP:
+		case ORANGE_SPELL_TRAP:
+		case VIOLET_SPELL_TRAP:
+		case TRAP_OF_LONGING:
+		case CURSED_PART_TRAP:
+		case QUAVERSAL_TRAP:
+		case APPEARANCE_SHUFFLING_TRAP:
+		case BROWN_SPELL_TRAP:
+		case CHOICELESS_TRAP:
+		case GOLDSPELL_TRAP:
+		case DEPROVEMENT_TRAP:
+		case INITIALIZATION_TRAP:
+		case GUSHLUSH_TRAP:
+		case SOILTYPE_TRAP:
+		case DANGEROUS_TERRAIN_TRAP:
+		case FALLOUT_TRAP:
+		case MOJIBAKE_TRAP:
+		case GRAVATION_TRAP:
+		case UNCALLED_TRAP:
+		case EXPLODING_DICE_TRAP:
+		case PERMACURSE_TRAP:
+		case SHROUDED_IDENTITY_TRAP:
+		case FEELER_GAUGES_TRAP:
+		case LONG_SCREWUP_TRAP:
+		case WING_YELLOW_CHANGER:
+		case LIFE_SAVING_TRAP:
+		case CURSEUSE_TRAP:
+		case CUT_NUTRITION_TRAP:
+		case SKILL_LOSS_TRAP:
+		case AUTOPILOT_TRAP:
+		case FORCE_TRAP:
+		case MONSTER_GLYPH_TRAP:
+		case CHANGING_DIRECTIVE_TRAP:
+		case CONTAINER_KABOOM_TRAP:
+		case STEAL_DEGRADE_TRAP:
+		case LEFT_INVENTORY_TRAP:
+		case FLUCTUATING_SPEED_TRAP:
+		case TARMUSTROKINGNORA_TRAP:
+		case FAILURE_TRAP:
+		case BRIGHT_CYAN_SPELL_TRAP:
+		case FREQUENTATION_SPAWN_TRAP:
+		case PET_AI_TRAP:
+		case SATAN_TRAP:
+		case REMEMBERANCE_TRAP:
+		case POKELIE_TRAP:
+		case AUTOPICKUP_TRAP:
+		case DYWYPI_TRAP:
+		case SILVER_SPELL_TRAP:
+		case METAL_SPELL_TRAP:
+		case PLATINUM_SPELL_TRAP:
+		case MANLER_TRAP:
+		case DOORNING_TRAP:
+		case NOWNSIBLE_TRAP:
+		case ELM_STREET_TRAP:
+		case MONNOISE_TRAP:
+		case RANG_CALL_TRAP:
+		case RECURRING_SPELL_LOSS_TRAP:
+		case ANTITRAINING_TRAP:
+		case TECHOUT_TRAP:
+		case STAT_DECAY_TRAP:
+		case MOVEMORK_TRAP:
 
 		case LOOTCUT_TRAP:
 		case MONSTER_SPEED_TRAP:

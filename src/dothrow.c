@@ -516,14 +516,14 @@ dothrow()
 
 	if (notake(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    You("are physically incapable of throwing anything.");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("But you can try to throw anyway. Okay?") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 		 		morehungry(10);
 				pline("The darn thing doesn't seem to fly very far.");
 				if (!rn2(20)) badeffect();
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				return 1;
 			}
 		}
@@ -625,14 +625,14 @@ dofire()
 
 	if (notake(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    You("are physically incapable of doing that.");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (yn("But you can try to fire anyway. Okay?") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 	 		morehungry(10);
 			pline("The darn thing doesn't seem to fly very far.");
 			if (!rn2(20)) badeffect();
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			return 1;
 			}
 		}

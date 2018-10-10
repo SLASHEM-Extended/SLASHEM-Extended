@@ -179,7 +179,7 @@ boolean barehanded;
 		} else
 		pline("Wait!  There's %s there you can't see!",
 			something);
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		map_invisible(u.ux+u.dx, u.uy+u.dy);
 		/* if it was an invisible mimic, treat it as if we stumbled
 		 * onto a visible mimic
@@ -4688,7 +4688,7 @@ register struct attack *mattk;
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		}
 
@@ -5565,7 +5565,7 @@ register struct attack *mattk;
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		}
 		tmp /= 20;
@@ -7825,7 +7825,7 @@ uchar aatyp;
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		}
 
@@ -9398,7 +9398,7 @@ uchar aatyp;
 			if (malive && !u.ustuck && !sticks(youmonst.data)) {
 				setustuck(mon);
 				pline("%s sticks to you!", Monnam(mon));
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
 	      case AD_SGLD:
@@ -9547,7 +9547,7 @@ uchar aatyp;
 				setustuck(mon);
 				pline("%s grabs you!", Monnam(mon));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
 		    case 7:
@@ -10055,7 +10055,7 @@ uchar aatyp;
 		if (malive) {
 			setustuck(mon);
 			pline("%s sticks to you!", Monnam(mon));
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
 		if(Shock_resistance && rn2(10)) {

@@ -143,7 +143,7 @@ curses_block(boolean require_tab)
 #if defined(WIN32)
 && !program_state.exiting
 #endif
-	&& (AutomoreBug || u.uprops[AUTOMORE_BUG].extrinsic || have_automorestone()) ) return 0;
+	&& AutomaticMorePrompt ) return 0;
 
     curses_get_window_size(MESSAGE_WIN, &height, &width);
     curses_toggle_color_attr(win, MORECOLOR, NONE, ON);
@@ -187,7 +187,7 @@ curses_more()
 #if defined(WIN32)
 && !program_state.exiting
 #endif
-	&& (AutomoreBug || u.uprops[AUTOMORE_BUG].extrinsic || have_automorestone()) ) return 0;
+	&& AutomaticMorePrompt ) return 0;
 
     return curses_block(FALSE);
 }
@@ -402,7 +402,7 @@ curses_message_win_getline(const char *prompt, char *answer, int buffer)
     tmpbuf = alloc(strlen(prompt) + buffer + 2);
     maxlines = buffer / width * 2;
 
-	if ( (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FILTHY_PRESS) ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
+	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -418,7 +418,7 @@ curses_message_win_getline(const char *prompt, char *answer, int buffer)
 
 	) prompt = generate_garbage_string();
 
-	if (youmonst.data && (MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_LLLLLLLLLLLLLM) || have_memorylossstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+	if (youmonst.data && LLMMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -426,7 +426,7 @@ curses_message_win_getline(const char *prompt, char *answer, int buffer)
 
 	) prompt = "Warning: Low Local Memory. Freeing description strings.";
 
-	if ( (MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+	if (MessagesSuppressed && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
 #if defined(WIN32)
 && !program_state.exiting
 #endif

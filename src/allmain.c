@@ -3297,7 +3297,7 @@ fukrosionchoice:
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
 		if (flags.female && PlayerInSexyFlats && !rn2(10000)) {
@@ -3334,7 +3334,7 @@ fukrosionchoice:
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
 		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(Stealth ? 50000 : 5000)) {
@@ -3371,7 +3371,7 @@ newbossF:
 			} /* while (aggroamount) */
 
 			pline("Several angry females come out of a portal.");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		}
 
@@ -6576,7 +6576,7 @@ newbossZ:
 		if ((In_bellcaves(&u.uz) || In_deadground(&u.uz) || In_ordered(&u.uz) || In_forging(&u.uz) || (In_netherrealm(&u.uz) && !u.netherrealmcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz))) ) && !rn2(1000)) {
 
 			pline("Suddenly, a void jumpgate appears and transports you away!");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		      (void) safe_teleds(FALSE);
 		}
 
@@ -8355,7 +8355,7 @@ newboss:
 			if (Race_if(PM_DESTABILIZER) || Race_if(PM_POLYINITOR)) {
 				init_uasmon();
 				You("mutate, and your body changes...");
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 		}
 
@@ -8930,7 +8930,7 @@ newboss:
 			    u.youaredead = 0;
 			} else if(didmove && !u.umoved) {
 			    /*Norep*/pline(Hallucination ? "Your body is dissolving... maybe the Grim Reaper is waiting for you?" : "You sink deeper into the lava.");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    u.utrap += rnd(4);
 			}
 		    }
@@ -9620,7 +9620,7 @@ newboss:
 			    xchar old_ux = u.ux, old_uy = u.uy;
 				You(Hallucination ? "open a warp gate!" : "suddenly get teleported!");
 			    tele();
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    if (u.ux != old_ux || u.uy != old_uy) {
 				if (!next_to_u()) {
 				    check_leash(old_ux, old_uy);
@@ -9850,7 +9850,7 @@ newboss:
 					You(Hallucination ? "open a warp gate!" : "suddenly get teleported!");
 					HTeleport_control++;
 					tele();
-					if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+					if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 					if (u.ux != old_ux || u.uy != old_uy) {
 					if (!next_to_u()) {
 						check_leash(old_ux, old_uy);
@@ -10012,7 +10012,7 @@ newboss:
 		if (Hallucination) pline("The Grim Reaper was waiting to take you away, too.");
 	}
 
-	if (LatencyBugEffect || u.uprops[LATENCY_BUG].extrinsic || have_latencystone()) {
+	if (TheGameLaaaaags) {
 
 		int lagamount = rno(10);
 		if (!rn2(10)) lagamount += rnd(10);
@@ -10484,7 +10484,7 @@ boolean new_game;	/* false => restoring an old game */
      */
     *buf = '\0';
 
-	if (FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) {
+	if (TheInfoIsFucked) {
 		pline("You've forgotten who you are, but you are back.");
 		return;
 	}

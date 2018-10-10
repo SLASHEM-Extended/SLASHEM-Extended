@@ -1238,7 +1238,7 @@ do_look(quick)
 		pline("Please move the cursor to %s.",
 		       what_is_an_unknown_object);
 	    else {
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		pline("Pick an object."); }
 
 	    ans = getpos(&cc, quick, what_is_an_unknown_object);
@@ -20326,6 +20326,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"You rub the block of lard all over your body.",
 	"You apply lard to the axle bearing. The wheels of the ancient machine room lurch into motion! The engineer gets angry! 'You there!' You hear a zap!",
 	"You can only buy a rundown shack where the heating and the furnace do not go.",
+	"Something seems to be changing shape.",
+	"You hear erotic Thai noises.",
+	"All the girls want to use their sexy butt cheeks as weapons now!",
+	"The girls exhausted their farting gas.",
+	"The most dangerous monster in existence was just generated next to you, which means you're in big trouble.",
+	"You feel an immense sense of relief as you realize that the trap must have failed to trigger.",
+	"The footerers are waiting for you on some level...",
+	"The footerers were waiting for you here, and will attack now.",
 
 };
 

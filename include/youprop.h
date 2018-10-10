@@ -23,24 +23,78 @@
 
 #define maybe_polyd(if_so,if_not)	(Upolyd ? (if_so) : (if_not))
 
-#define SpellColorPink	(PinkSpells || u.uprops[PINK_SPELLS].extrinsic || have_pinkspellstone())
-#define SpellColorCyan	(!(SpellColorPink) && (CyanSpells || u.uprops[CYAN_SPELLS].extrinsic || have_cyanspellstone()))
-#define SpellColorBlack	(!(SpellColorPink) && !(SpellColorCyan) && (BlackSpells || u.uprops[BLACK_SPELLS].extrinsic || have_blackspellstone()))
-#define SpellColorRed	(!(SpellColorPink) && !(SpellColorCyan) && !(SpellColorBlack) && (RedSpells || u.uprops[RED_SPELLS].extrinsic || have_redspellstone()))
-#define SpellColorGreen	(!(SpellColorPink) && !(SpellColorCyan) && !(SpellColorBlack) && !(SpellColorRed) && (GreenSpells || u.uprops[GREEN_SPELLS].extrinsic || have_greenspellstone()))
-#define SpellColorBlue	(!(SpellColorPink) && !(SpellColorCyan) && !(SpellColorBlack) && !(SpellColorRed) && !(SpellColorGreen) && (BlueSpells || u.uprops[BLUE_SPELLS].extrinsic || have_bluespellstone()))
-#define SpellColorGray	(!(SpellColorPink) && !(SpellColorCyan) && !(SpellColorBlack) && !(SpellColorRed) && !(SpellColorGreen) && !(SpellColorBlue) && (CompleteGraySpells || u.uprops[COMPLETE_GRAY_SPELLS].extrinsic || have_greyoutstone()))
-#define SpellColorWhite	(!(SpellColorPink) && !(SpellColorCyan) && !(SpellColorBlack) && !(SpellColorRed) && !(SpellColorGreen) && !(SpellColorBlue) && !(SpellColorGray) && (WhiteSpells || u.uprops[WHITE_SPELLS].extrinsic || have_whitespellstone()))
-#define SpellColorYellow	(!(SpellColorPink) && !(SpellColorCyan) && !(SpellColorBlack) && !(SpellColorRed) && !(SpellColorGreen) && !(SpellColorBlue) && !(SpellColorGray) && !(SpellColorWhite) && (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || (uamul && uamul->oartifact == ART_DIKKIN_S_DRAGON_TEETH && !(Role_if(PM_BARD) && Race_if(PM_KOBOLT) ) ) || (uwep && uwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (uwep && uwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || have_yellowspellstone()))
+#define CanHavePinkSpells (PinkSpells || u.uprops[PINK_SPELLS].extrinsic || have_pinkspellstone())
+#define CanHaveBrightCyanSpells (BrightCyanSpells || u.uprops[BRIGHT_CYAN_SPELLS].extrinsic || have_brightcyanspellstone())
+#define CanHaveCyanSpells (CyanSpells || u.uprops[CYAN_SPELLS].extrinsic || have_cyanspellstone())
+#define CanHaveBlackSpells (BlackSpells || u.uprops[BLACK_SPELLS].extrinsic || have_blackspellstone())
+#define CanHaveOrangeSpells (OrangeSpells || u.uprops[ORANGE_SPELLS].extrinsic || have_orangespellstone())
+#define CanHaveRedSpells (RedSpells || u.uprops[RED_SPELLS].extrinsic || have_redspellstone())
+#define CanHavePlatinumSpells (PlatinumSpells || u.uprops[PLATINUM_SPELLS].extrinsic || have_platinumspellstone())
+#define CanHaveSilverSpells (SilverSpells || u.uprops[SILVER_SPELLS].extrinsic || have_silverspellstone())
+#define CanHaveMetalSpells (MetalSpells || u.uprops[METAL_SPELLS].extrinsic || have_metalspellstone())
+#define CanHaveGreenSpells (GreenSpells || u.uprops[GREEN_SPELLS].extrinsic || have_greenspellstone())
+#define CanHaveBlueSpells (BlueSpells || u.uprops[BLUE_SPELLS].extrinsic || have_bluespellstone())
+#define CanHaveGraySpells (CompleteGraySpells || u.uprops[COMPLETE_GRAY_SPELLS].extrinsic || have_greyoutstone())
+#define CanHaveBrownSpells (BrownSpells || u.uprops[BROWN_SPELLS].extrinsic || have_brownspellstone())
+#define CanHaveWhiteSpells (WhiteSpells || u.uprops[WHITE_SPELLS].extrinsic || have_whitespellstone())
+#define CanHaveVioletSpells (VioletSpells || u.uprops[VIOLET_SPELLS].extrinsic || have_violetspellstone())
+#define CanHaveYellowSpells (YellowSpells || u.uprops[YELLOW_SPELLS].extrinsic || have_yellowspellstone() || (uamul && uamul->oartifact == ART_DIKKIN_S_DRAGON_TEETH && !(Role_if(PM_BARD) && Race_if(PM_KOBOLT) ) ) || (uwep && uwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIKKIN_S_DEADLIGHT) || (uwep && uwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_DIKKIN_S_FAVORITE_SPELL))
+
+#define SpellColorPink	(CanHavePinkSpells)
+#define SpellColorBrightCyan	(!CanHavePinkSpells && CanHaveBrightCyanSpells)
+#define SpellColorCyan	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && CanHaveCyanSpells)
+#define SpellColorBlack	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && CanHaveBlackSpells)
+#define SpellColorOrange	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && !CanHaveBlackSpells && CanHaveOrangeSpells)
+#define SpellColorRed	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && !CanHaveBlackSpells && !CanHaveOrangeSpells && CanHaveRedSpells)
+#define SpellColorPlatinum	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && !CanHaveBlackSpells && !CanHaveOrangeSpells && !CanHaveRedSpells && CanHavePlatinumSpells)
+#define SpellColorSilver	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && !CanHaveBlackSpells && !CanHaveOrangeSpells && !CanHaveRedSpells && !CanHavePlatinumSpells && CanHaveSilverSpells)
+#define SpellColorMetal	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && !CanHaveBlackSpells && !CanHaveOrangeSpells && !CanHaveRedSpells && !CanHavePlatinumSpells && !CanHaveSilverSpells && CanHaveMetalSpells)
+#define SpellColorGreen	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && !CanHaveBlackSpells && !CanHaveOrangeSpells && !CanHaveRedSpells && !CanHavePlatinumSpells && !CanHaveSilverSpells && !CanHaveMetalSpells && CanHaveGreenSpells)
+#define SpellColorBlue	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && !CanHaveBlackSpells && !CanHaveOrangeSpells && !CanHaveRedSpells && !CanHavePlatinumSpells && !CanHaveSilverSpells && !CanHaveMetalSpells && !CanHaveGreenSpells && CanHaveBlueSpells)
+#define SpellColorGray	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && !CanHaveBlackSpells && !CanHaveOrangeSpells && !CanHaveRedSpells && !CanHavePlatinumSpells && !CanHaveSilverSpells && !CanHaveMetalSpells && !CanHaveGreenSpells && !CanHaveBlueSpells && CanHaveGraySpells)
+#define SpellColorBrown	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && !CanHaveBlackSpells && !CanHaveOrangeSpells && !CanHaveRedSpells && !CanHavePlatinumSpells && !CanHaveSilverSpells && !CanHaveMetalSpells && !CanHaveGreenSpells && !CanHaveBlueSpells && !CanHaveGraySpells && CanHaveBrownSpells)
+#define SpellColorWhite	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && !CanHaveBlackSpells && !CanHaveOrangeSpells && !CanHaveRedSpells && !CanHavePlatinumSpells && !CanHaveSilverSpells && !CanHaveMetalSpells && !CanHaveGreenSpells && !CanHaveBlueSpells && !CanHaveGraySpells && !CanHaveBrownSpells && CanHaveWhiteSpells)
+#define SpellColorViolet	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && !CanHaveBlackSpells && !CanHaveOrangeSpells && !CanHaveRedSpells && !CanHavePlatinumSpells && !CanHaveSilverSpells && !CanHaveMetalSpells && !CanHaveGreenSpells && !CanHaveBlueSpells && !CanHaveGraySpells && !CanHaveBrownSpells && !CanHaveWhiteSpells && CanHaveVioletSpells)
+#define SpellColorYellow	(!CanHavePinkSpells && !CanHaveBrightCyanSpells && !CanHaveCyanSpells && !CanHaveBlackSpells && !CanHaveOrangeSpells && !CanHaveRedSpells && !CanHavePlatinumSpells && !CanHaveSilverSpells && !CanHaveMetalSpells && !CanHaveGreenSpells && !CanHaveBlueSpells && !CanHaveGraySpells && !CanHaveBrownSpells && !CanHaveWhiteSpells && !CanHaveVioletSpells && CanHaveYellowSpells)
 
 #define EnglandMode	(RngeEngland || (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "long-range cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "dlinnyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "uzoq masofaga plash") )) || (uarmu && uarmu->oartifact == ART_BEAM_MULTIPLIER) || (uwep && uwep->oartifact == ART_MINOLONG_ELBOW) || (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "english gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "angliyskiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ingliz tili qo'lqop") )) )
 
 #define NastyTrapNation		(NastynationBug || u.uprops[NASTY_NATION_BUG].extrinsic || have_multitrappingstone())
 #define PlayerUninformation	(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY))
 
+#define PlayerHearsMessages	(u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FILTHY_PRESS) )
+
+#define LLMMessages	(MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_LLLLLLLLLLLLLM) || have_memorylossstone() )
+
+#define MessagesSuppressed	(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )
+
+#define FleeceyScripts	(FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone() || (uarmh && uarmh->oartifact == ART_TELEVISION_WONDER) )
+
+#define InventoryDoesNotGo	(InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone())
+
+#define AutomaticMorePrompt	(AutomoreBug || u.uprops[AUTOMORE_BUG].extrinsic || have_automorestone())
+
+#define DisplayDoesNotGo	(DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0)) )
+#define DisplayDoesNotGoAtAll	(DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) )
+/* special case in dungeon.c and restore.c!!! */
+
+#define FlimmeringStrips	(FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) )
+
+#define TheInfoIsFucked	(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())
+
 #define FingerlessGloves	(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "fingerless gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "mitenki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "kam qo'lqop barmoq") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "silk fingerlings") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "shelkovyye mal'ki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ipak va ling, barmoqlar") ))
 
 #define PlayerHearsSoundEffects	(SoundEffectBug || u.uprops[SOUND_EFFECT_BUG].extrinsic || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone())
+
+#define WeightDisplayIsArbitrary	(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone())
+
+#define MenuIsBugged	(MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone())
+
+#define YouHaveBigscript	(BigscriptEffect || (uarmh && uarmh->oartifact == ART_YOU_SEE_HERE_AN_ARTIFACT) || u.uprops[BIGSCRIPT].extrinsic || have_bigscriptstone() )
+
+#define RotThirteenCipher	(RotThirteen || u.uprops[ROT_THIRTEEN].extrinsic || have_rotthirteenstone() )
+
+#define TheGameLaaaaags	(LatencyBugEffect || u.uprops[LATENCY_BUG].extrinsic || have_latencystone())
 
 #define PlayerCannotUseSkills	(AllSkillsUnskilled || u.uprops[SKILL_DEACTIVATED].extrinsic || (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT) || have_unskilledstone())
 
@@ -315,6 +369,67 @@
 #define SoundEffectBug		u.uprops[SOUND_EFFECT_BUG].intrinsic
 #define TimerunBug		u.uprops[TIMERUN_BUG].intrinsic
 
+#define OrangeSpells		u.uprops[ORANGE_SPELLS].intrinsic
+#define VioletSpells		u.uprops[VIOLET_SPELLS].intrinsic
+#define LongingEffect		u.uprops[LONGING_EFFECT].intrinsic
+#define CursedParts		u.uprops[CURSED_PARTS].intrinsic
+#define Quaversal		u.uprops[QUAVERSAL].intrinsic
+#define AppearanceShuffling		u.uprops[APPEARANCE_SHUFFLING].intrinsic
+#define BrownSpells		u.uprops[BROWN_SPELLS].intrinsic
+#define Choicelessness		u.uprops[CHOICELESSNESS].intrinsic
+#define Goldspells		u.uprops[GOLDSPELLS].intrinsic
+#define Deprovement		u.uprops[DEPROVEMENT].intrinsic
+#define InitializationFail		u.uprops[INITIALIZATION_FAIL].intrinsic
+#define GushlushEffect		u.uprops[GUSHLUSH].intrinsic
+#define SoiltypeEffect		u.uprops[SOILTYPE].intrinsic
+#define DangerousTerrains		u.uprops[DANGEROUS_TERRAINS].intrinsic
+#define FalloutEffect		u.uprops[FALLOUT_EFFECT].intrinsic
+#define MojibakeEffect		u.uprops[MOJIBAKE].intrinsic
+#define GravationEffect		u.uprops[GRAVATION].intrinsic
+#define UncalledEffect		u.uprops[UNCALLED_EFFECT].intrinsic
+#define ExplodingDiceEffect		u.uprops[EXPLODING_DICE].intrinsic
+#define PermacurseEffect		u.uprops[PERMACURSE_EFFECT].intrinsic
+#define ShroudedIdentity		u.uprops[SHROUDED_IDENTITY].intrinsic
+#define FeelerGauges		u.uprops[FEELER_GAUGES].intrinsic
+#define LongScrewup		u.uprops[LONG_SCREWUP].intrinsic
+#define WingYellowChange		u.uprops[WING_YELLOW_GLYPHS].intrinsic
+#define LifeSavingBug		u.uprops[LIFE_SAVING_BUG].intrinsic
+#define CurseuseEffect		u.uprops[CURSEUSE_EFFECT].intrinsic
+#define CutNutritionEffect		u.uprops[CUT_NUTRITION].intrinsic
+#define SkillLossEffect		u.uprops[SKILL_LOSS_EFFECT].intrinsic
+#define AutopilotEffect		u.uprops[AUTOPILOT_EFFECT].intrinsic
+#define MysteriousForceActive		u.uprops[MYSTERIOUS_FORCE_EFFECT].intrinsic
+#define MonsterGlyphChange		u.uprops[MONSTER_GLYPH_BUG].intrinsic
+#define ChangingDirectives		u.uprops[CHANGING_DIRECTIVES].intrinsic
+#define ContainerKaboom		u.uprops[CONTAINER_KABOOM].intrinsic
+#define StealDegrading		u.uprops[STEAL_DEGRADING].intrinsic
+#define LeftInventoryBug		u.uprops[LEFT_INVENTORY].intrinsic
+#define FluctuatingSpeed		u.uprops[FLUCTUATING_SPEED].intrinsic
+#define TarmuStrokingNora		u.uprops[TARMU_STROKING_NORA].intrinsic
+#define FailureEffects		u.uprops[FAILURE_EFFECTS].intrinsic
+#define BrightCyanSpells		u.uprops[BRIGHT_CYAN_SPELLS].intrinsic
+#define FrequentationSpawns		u.uprops[FREQUENTATION_SPAWNS].intrinsic
+#define PetAIScrewed		u.uprops[PET_AI_SCREWED].intrinsic
+#define SatanEffect		u.uprops[SATAN_EFFECT].intrinsic
+#define RememberanceEffect		u.uprops[REMEMBERANCE_EFFECT].intrinsic
+#define PokelieEffect		u.uprops[POKELIE_EFFECT].intrinsic
+#define AlwaysAutopickup		u.uprops[AUTOPICKUP_ALWAYS].intrinsic
+#define DywypiProblem		u.uprops[DYWYPI_PROBLEM].intrinsic
+#define SilverSpells		u.uprops[SILVER_SPELLS].intrinsic
+#define MetalSpells		u.uprops[METAL_SPELLS].intrinsic
+#define PlatinumSpells		u.uprops[PLATINUM_SPELLS].intrinsic
+#define ManlerEffect		u.uprops[MANLER_EFFECT].intrinsic
+#define DoorningEffect		u.uprops[DOORNING_EFFECT].intrinsic
+#define NownsibleEffect		u.uprops[NOWNSIBLE_EFFECT].intrinsic
+#define ElmStreetEffect		u.uprops[ELM_STREET_EFFECT].intrinsic
+#define MonnoiseEffect		u.uprops[MONNOISE_EFFECT].intrinsic
+#define RangCallEffect		u.uprops[RANG_CALL_EFFECT].intrinsic
+#define RecurringSpellLoss		u.uprops[RECURRING_SPELL_LOSS].intrinsic
+#define AntitrainingEffect		u.uprops[ANTI_TRAINING_EFFECT].intrinsic
+#define TechoutBug		u.uprops[TECHOUT_BUG].intrinsic
+#define StatDecay		u.uprops[STAT_DECAY].intrinsic
+#define Movemork		u.uprops[MOVEMORKING].intrinsic
+
 #define LootcutBug		u.uprops[LOOTCUT_BUG].intrinsic
 #define MonsterSpeedBug		u.uprops[MONSTER_SPEED_BUG].intrinsic
 #define ScalingBug		u.uprops[SCALING_BUG].intrinsic
@@ -409,6 +524,7 @@
 #define FemaleTrapJeanetta	u.uprops[FEMTRAP_JEANETTA].intrinsic
 #define FemaleTrapYvonne	u.uprops[FEMTRAP_YVONNE].intrinsic
 #define FemaleTrapMaurah	u.uprops[FEMTRAP_MAURAH].intrinsic
+#define FemaleTrapMeltem	u.uprops[FEMTRAP_MELTEM].intrinsic
 
 #define RngeIrregularity		(u.uprops[RNGE_IRREGULARITY].intrinsic || u.uprops[RNGE_IRREGULARITY].extrinsic)
 #define RngeInternetAccess		(u.uprops[RNGE_INTERNET_ACCESS].intrinsic || u.uprops[RNGE_INTERNET_ACCESS].extrinsic)

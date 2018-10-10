@@ -427,7 +427,7 @@ bot1()
 	register char *nb;
 	register int i,j;
 
-	if (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) ) {
+	if (FlimmeringStrips) {
 
 		strcpy(newbot1, " ");
 	     	add_flicker_textA(generate_garbage_string(), newbot1);
@@ -475,14 +475,14 @@ bot1()
 	sprintf(nb = eos(nb),
 		"Dx%-1d Co%-1d In%-1d Wi%-1d Ch%-1d ",
 		ACURR(A_DEX), ACURR(A_CON), ACURR(A_INT), ACURR(A_WIS), ACURR(A_CHA));
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), "%s", urole.filecode); /* fully disclosing what character you're playing */
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), "%s",  urace.filecode); /* abbreviated so the line doesn't roll over --Amy */
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), flags.female ? "Fem" : "Mal"); /* allowing you to always know what you are */
-	if (!(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())) sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "Cha" :
+	if (!TheInfoIsFucked) sprintf(nb = eos(nb), "%s", urole.filecode); /* fully disclosing what character you're playing */
+	if (!TheInfoIsFucked) sprintf(nb = eos(nb), "%s",  urace.filecode); /* abbreviated so the line doesn't roll over --Amy */
+	if (!TheInfoIsFucked) sprintf(nb = eos(nb), flags.female ? "Fem" : "Mal"); /* allowing you to always know what you are */
+	if (!TheInfoIsFucked) sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "Cha" :
 			(u.ualign.type == A_NEUTRAL) ? "Neu" : "Law");
 
 	/* abbreviate hybridizations since we don't have infinite space on the status line --Amy */
-	if (flags.hybridization && !(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone()) ) {sprintf(nb = eos(nb), "+");
+	if (flags.hybridization && !TheInfoIsFucked) {sprintf(nb = eos(nb), "+");
 		if (flags.hybridcurser) sprintf(nb = eos(nb), "C");
 		if (flags.hybridhaxor) sprintf(nb = eos(nb), "H");
 		if (flags.hybridangbander) sprintf(nb = eos(nb), "A");
@@ -513,6 +513,7 @@ bot1()
 		if (flags.hybridlevelscaler) sprintf(nb = eos(nb), "s");
 		if (flags.hybriderosator) sprintf(nb = eos(nb), "e");
 		if (flags.hybridroommate) sprintf(nb = eos(nb), "r");
+		if (flags.hybridextravator) sprintf(nb = eos(nb), "g");
 	}
 
 	if (flags.showscore)
@@ -735,7 +736,7 @@ bot2str(char *newbot2)
 	hp = Upolyd ? u.mh : u.uhp;
 	hpmax = Upolyd ? u.mhmax : u.uhpmax;
 
-	if (FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) ) {
+	if (FlimmeringStrips) {
 		nb = newbot2;
 		strcpy(newbot2, " ");
 	     	add_flicker_text(generate_garbage_string(), newbot2);
@@ -808,7 +809,7 @@ bot2str(char *newbot2)
 		sprintf(nb = eos(nb), " Exp%u", u.ulevel);
 
 #ifdef SHOW_WEIGHT
-	if (flags.showweight && !(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone()) && bot2_abbrev < 3)
+	if (flags.showweight && !WeightDisplayIsArbitrary && bot2_abbrev < 3)
 		sprintf(nb = eos(nb), " Wt%ld/%ld", (long)(inv_weight()+weight_cap()),
 				(long)weight_cap());
 #endif
@@ -1191,7 +1192,7 @@ boolean reconfig;
     if (flags.showexp)
 	*rv++ = reconfig ? "experience" : (sprintf(expr, "%ld", u.uexp), expr);
 #ifdef SHOW_WEIGHT
-    if (flags.showweight && !(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone())) {
+    if (flags.showweight && !WeightDisplayIsArbitrary) {
 	*rv++ = reconfig ? "weight" : (sprintf(iweight,
 		"%ld", (long)(inv_weight() + weight_cap())), iweight);
 	*rv++ = reconfig ? "capacity" : (sprintf(capacity,
@@ -1254,8 +1255,8 @@ bot()
 	else {
 	if (StuckAnnouncement || u.uprops[STUCK_ANNOUNCEMENT_BUG].extrinsic || have_stuckannouncementstone()) return;
 
-	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0) ) ) bot1();
-	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0) ) ) bot2();
+	if (!DisplayDoesNotGo) bot1();
+	if (!DisplayDoesNotGo) bot2();
 	}
 	flags.botl = flags.botlx = 0;
 }
@@ -1276,8 +1277,8 @@ botreal()
 	if (raw_handler)
 		bot_raw(FALSE);
 	else {
-	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0) ) ) bot1();
-	if (!DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && !(moves % 10 == 0) ) ) bot2();
+	if (!DisplayDoesNotGo) bot1();
+	if (!DisplayDoesNotGo) bot2();
 	}
 	flags.botl = flags.botlx = 0;
 }

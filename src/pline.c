@@ -101,7 +101,7 @@ pline VA_DECL(const char *, line)
 
 	if (!line || !*line) return;
 
-	if ( (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FILTHY_PRESS) ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
+	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -117,7 +117,7 @@ pline VA_DECL(const char *, line)
 
 ) line = generate_garbage_string();
 
-	if ( (MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_LLLLLLLLLLLLLM) || have_memorylossstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+	if (LLMMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
 
 /* buildfix by EternalEye: sinfo.exiting only exists on win32 */
 #if defined(WIN32)
@@ -126,7 +126,7 @@ pline VA_DECL(const char *, line)
 
 ) line = "Warning: Low Local Memory. Freeing description strings.";
 
-	if ( (MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+	if (MessagesSuppressed && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
 #if defined(WIN32)
 && !program_state.exiting
 #endif
@@ -137,7 +137,7 @@ pline VA_DECL(const char *, line)
 	    line = pbuf;
 	}
 
-        if ( (RotThirteen || u.uprops[ROT_THIRTEEN].extrinsic || have_rotthirteenstone() ) && (strlen(line)<(BUFSZ-5)) &&(!program_state.in_impossible) ) {
+        if (RotThirteenCipher && (strlen(line)<(BUFSZ-5)) &&(!program_state.in_impossible) ) {
 
 		line = replace(line,"a","N");
 		line = replace(line,"b","O");
@@ -166,7 +166,7 @@ pline VA_DECL(const char *, line)
 		line = replace(line,"y","L");
 		line = replace(line,"z","M");
 
-	  }  else if ( (BigscriptEffect || (uarmh && uarmh->oartifact == ART_YOU_SEE_HERE_AN_ARTIFACT) || u.uprops[BIGSCRIPT].extrinsic || have_bigscriptstone() ) && (strlen(line)<(BUFSZ-5)) &&(!program_state.in_impossible) ) {
+	  }  else if (YouHaveBigscript && (strlen(line)<(BUFSZ-5)) &&(!program_state.in_impossible) ) {
 
 		line = replace(line,"a","A");
 		line = replace(line,"b","B");
@@ -321,7 +321,7 @@ pline VA_DECL(const char *, line)
 	}
 
 	strncpy(prevmsg, line, BUFSZ);
-	if (typ == MSGTYP_STOP && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE); /* --more-- */
+	if (typ == MSGTYP_STOP && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE); /* --more-- */
 }
 
 /*VARARGS1*/
@@ -584,8 +584,9 @@ hybrid_str()
 	if (flags.hybridlevelscaler) sprintf(eos(string), "levelscaler ");
 	if (flags.hybriderosator) sprintf(eos(string), "erosator ");
 	if (flags.hybridroommate) sprintf(eos(string), "roommate ");
+	if (flags.hybridextravator) sprintf(eos(string), "extravator ");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant) && !(flags.hybridaggravator) && !(flags.hybridevilvariant) && !(flags.hybridlevelscaler) && !(flags.hybriderosator) && !(flags.hybridroommate)) sprintf(eos(string), "none ");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant) && !(flags.hybridaggravator) && !(flags.hybridevilvariant) && !(flags.hybridlevelscaler) && !(flags.hybriderosator) && !(flags.hybridroommate) && !(flags.hybridextravator)) sprintf(eos(string), "none ");
 
     return (string);
 }
@@ -624,8 +625,9 @@ hybrid_strcode()
 	if (flags.hybridlevelscaler) sprintf(eos(string), "Lvl");
 	if (flags.hybriderosator) sprintf(eos(string), "Ero");
 	if (flags.hybridroommate) sprintf(eos(string), "Roo");
+	if (flags.hybridextravator) sprintf(eos(string), "Ext");
 
-	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant) && !(flags.hybridaggravator) && !(flags.hybridevilvariant) && !(flags.hybridlevelscaler) && !(flags.hybriderosator) && !(flags.hybridroommate)) sprintf(eos(string), "none");
+	if (!(flags.hybridangbander) && !(flags.hybridaquarian) && !(flags.hybridcurser) && !(flags.hybridhaxor) && !(flags.hybridhomicider) && !(flags.hybridsuxxor) && !(flags.hybridwarper) && !(flags.hybridrandomizer) && !(flags.hybridnullrace) && !(flags.hybridmazewalker) && !(flags.hybridsoviet) && !(flags.hybridxrace) && !(flags.hybridheretic) && !(flags.hybridsokosolver) && !(flags.hybridspecialist) && !(flags.hybridamerican) && !(flags.hybridminimalist) && !(flags.hybridnastinator) && !(flags.hybridrougelike) && !(flags.hybridsegfaulter) && !(flags.hybridironman) && !(flags.hybridamnesiac) && !(flags.hybridproblematic) && !(flags.hybridwindinhabitant) && !(flags.hybridaggravator) && !(flags.hybridevilvariant) && !(flags.hybridlevelscaler) && !(flags.hybriderosator) && !(flags.hybridroommate) && !(flags.hybridextravator)) sprintf(eos(string), "none");
 
     return (string);
 }

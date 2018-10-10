@@ -492,7 +492,7 @@ curses_update_inventory(void)
 
     if (restoring) return;
 
-    if (youmonst.data && (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone()) && !program_state.gameover) {
+    if (youmonst.data && InventoryDoesNotGo && !program_state.gameover) {
 
 	return;
     }

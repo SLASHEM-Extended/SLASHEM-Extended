@@ -34,9 +34,9 @@ tty_doprev_message()
     winid prevmsg_win;
     int i;
 
-	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
+	if (MenuIsBugged) {
 	pline("The previous message command is currently unavailable!");
-	if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}
 
@@ -237,7 +237,7 @@ more()
 && !program_state.exiting
 #endif
 
-	&& (AutomoreBug || u.uprops[AUTOMORE_BUG].extrinsic || have_automorestone()) ) return;
+	&& AutomaticMorePrompt) return;
 
     if(ttyDisplay->toplin) {
 	tty_curs(BASE_WINDOW, cw->curx+1, cw->cury);
@@ -432,7 +432,7 @@ char def;
 
 	do {	/* loop until we get valid input */
 	    q = lowc(readchar());
-	    if (q == '\020' && !(MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone() || BigscriptEffect || (uarmh && uarmh->oartifact == ART_YOU_SEE_HERE_AN_ARTIFACT) || u.uprops[BIGSCRIPT].extrinsic || have_bigscriptstone() || MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_LLLLLLLLLLLLLM) || have_memorylossstone() || SpellColorRed || u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FILTHY_PRESS) || MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() || RotThirteen || u.uprops[ROT_THIRTEEN].extrinsic || have_rotthirteenstone()) ) { /* ctrl-P */
+	    if (q == '\020' && !MenuIsBugged && !YouHaveBigscript && !LLMMessages && !SpellColorRed && !PlayerHearsMessages && !MessagesSuppressed && !RotThirteenCipher) { /* ctrl-P */
 		if (iflags.prevmsg_window != 's') {
 		    int sav = ttyDisplay->inread;
 		    ttyDisplay->inread = 0;

@@ -1089,7 +1089,7 @@ int how;
 
 	}
 
-	if ( (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) && how < GENOCIDED) {
+	if (MenuIsBugged && how < GENOCIDED) {
 		pline("But wait! You still have the menu bug!");
 
 		if (yn_function("Come back to life?", ynchars, 'y') == 'y' ) {
@@ -1458,7 +1458,7 @@ die:
 	      killer_format = 0;
 	      vision_reset();
 	      return;
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		(void)doredraw();
 	    }
 	}
@@ -2022,7 +2022,7 @@ mk_dgl_extrainfo()
     char new_fn[512];
 
 	/* certain nasty traps obscure the information - so we want to hide it from whereis too! --Amy */
-	if (DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT && (moves % 10 == 0) ) || FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone() ) {
+	if (DisplayDoesNotGo || TheInfoIsFucked) {
 		return;
 	}
 

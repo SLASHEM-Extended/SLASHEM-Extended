@@ -41,7 +41,7 @@ dodrop()
 	if (NoDropProblem || u.uprops[DROP_BUG].extrinsic || have_dropbugstone() ) {
 
 		pline("For some reason, you cannot drop items!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 
 	}
@@ -988,7 +988,7 @@ fridaydone2:
 		}
 		u.aggravation = 0;
 		pline("Something comes out of the toilet!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
 
 }
@@ -1238,7 +1238,7 @@ doddrop()
 	if (NoDropProblem || u.uprops[DROP_BUG].extrinsic || have_dropbugstone() ) {
 
 		pline("For some reason, you cannot drop items!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 
 	}
@@ -4080,9 +4080,7 @@ rerollchaloc:
 
 	initrack();
 
-	if ((mtmp = m_at(u.ux, u.uy)) != 0
-		&& mtmp != u.usteed
-		) {
+	if ((mtmp = m_at(u.ux, u.uy)) != 0 && mtmp != u.usteed) {
 	    /* There's a monster at your target destination; it might be one
 	       which accompanied you--see mon_arrive(dogmove.c)--or perhaps
 	       it was already here.  Randomly move you to an adjacent spot
@@ -4644,9 +4642,9 @@ int
 dowipe()
 {
 
-	if (MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone()) {
+	if (MenuIsBugged) {
 	pline("The wipe command is currently unavailable!");
-	if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return 0;
 	}
 

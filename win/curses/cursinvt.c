@@ -17,7 +17,7 @@ curses_update_inv(void)
     if (!win) {
         /* It's not. Re-initialize the main windows if the
            option was enabled. */
-        if (!restoring && flags.perm_invent && !(youmonst.data && (InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone()) && !program_state.gameover)) {
+        if (!restoring && flags.perm_invent && !(youmonst.data && InventoryDoesNotGo && !program_state.gameover)) {
             curses_create_main_windows();
             curses_last_messages();
             doredraw();
@@ -93,7 +93,7 @@ curses_add_inv(int y, int glyph, CHAR_P accelerator, attr_t attr,
 
 #ifdef MENU_COLOR
 
-    if (youmonst.data && (FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone() || (uarmh && uarmh->oartifact == ART_TELEVISION_WONDER) )) {
+    if (youmonst.data && FleeceyScripts) {
 		int fleececolor = rn2(CLR_MAX);
 		while (fleececolor == NO_COLOR) fleececolor = rn2(CLR_MAX);
             attr |= curses_color_attr(fleececolor, 0);

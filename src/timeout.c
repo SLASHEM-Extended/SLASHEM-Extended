@@ -37,7 +37,7 @@ stoned_dialogue()
 
 	if (i > 0L && i <= SIZE(stoned_texts))
 		pline("%s", stoned_texts[SIZE(stoned_texts) - i]);
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	if (i == 7L)
 		HFast = 0L;
 	if (i == 1L) {
@@ -126,14 +126,14 @@ choke_dialogue()
 		pline(choke_texts2[SIZE(choke_texts2) - i], body_part(NECK));
 	    else {
 		const char *str = choke_texts[SIZE(choke_texts)-i];
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (index(str, '%')) {
 		    pline(str, hcolor(NH_BLUE));
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */ }
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */ }
 		else
 		    pline("%s", str);
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    }
 	}
 	exercise(A_STR, FALSE);
@@ -160,13 +160,13 @@ slime_dialogue()
 		if (i == 4L) {	/* "you are turning green" */
 		    if (!Blind)	/* [what if you're already green?] */
 			pline(str, hcolor(NH_GREEN));
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		} else
 		    pline(str, an(Hallucination ? rndmonnam() : "green slime"));
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    } else
 		pline("%s", str);
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
 	if (i == 3L) {	/* limbs becoming oozy */
 	    HFast = 0L;	/* lose intrinsic speed */
@@ -231,6 +231,17 @@ nh_timeout()
 	if (u.tremblingamount < 0) u.tremblingamount = 0; /* fail safe */
 	if (u.chokhmahdamage && !rn2(10000) && !(uarmc && uarmc->otyp == CLOAK_OF_ESCALATION) ) u.chokhmahdamage--;
 	if (u.chokhmahdamage < 0) u.chokhmahdamage = 0; /* fail safe */
+
+	if (u.ragnaroktimer > 0) {
+		u.ragnaroktimer--;
+		if (u.ragnaroktimer < 1) {
+			u.ragnaroktimer = 3; /* FILTHY HANGUP CHEATER */
+			pline("UH-OH! The end of the world is happening!");
+			ragnarok(TRUE);
+			if (evilfriday) evilragnarok(TRUE,level_difficulty());
+			u.ragnaroktimer = 0; /* okay so you didn't hang up */
+		}
+	}
 
 	if (u.inertia && rn2(10)) {
 		u.inertia--;
@@ -575,7 +586,7 @@ nh_timeout()
 			}
 		    }
 		    pline("Uh-oh, you trip with your cone heels%s", numdroppeditems ? " and some of your possessions fall out of your knapsack!" : "! But you barely manage to avoid dropping your possessions.");
-		    if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		    if (numdroppeditems) scatter(u.ux,u.uy,10,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,0);
 
@@ -1818,7 +1829,7 @@ nh_timeout()
 
 	    if(u.uluck > baseluck && (nostone || time_luck < 0 || !rn2(10) )) /* now luck will also time out if you do have a luckstone; it just times out more slowly --Amy */
 		u.uluck--;
-	    else if(u.uluck < baseluck && (nostone || time_luck > 0 || !rn2(10) ))
+	    else if(u.uluck < baseluck && (!isfriday || !rn2(2)) && (nostone || time_luck > 0 || !rn2(10) ))
 		u.uluck++;
 	}
 
@@ -2010,6 +2021,12 @@ nh_timeout()
 		 case FEMTRAP_MAURAH:
 
 			pline("Your butt is no longer as sexy as before, and will no longer fart unless you tell it to do so.");
+
+		 break;
+
+		 case FEMTRAP_MELTEM:
+
+			pline("The girls exhausted their farting gas.");
 
 		 break;
 
@@ -3230,8 +3247,7 @@ slip_or_trip()
 		You("trip over %s.", what);
 	    }
 	} else if (rn2(3) && is_ice(u.ux, u.uy)) {
-	    pline("%s %s%s on the ice.",
-		u.usteed ? upstart(x_monnam(u.usteed,
+	    pline("%s %s%s on the ice.", u.usteed ? upstart(x_monnam(u.usteed,
 				u.usteed->mnamelth ? ARTICLE_NONE : ARTICLE_THE,
 				(char *)0, SUPPRESS_SADDLE, FALSE)) :
 		"You", rn2(2) ? "slip" : "slide", on_foot ? "" : "s");

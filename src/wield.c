@@ -109,8 +109,7 @@ boolean put_away;
 	if (obj) {
 		unweapon = (obj->oclass == WEAPON_CLASS) ?
 				is_launcher(obj) || is_ammo(obj) ||
-				is_missile(obj) || (is_pole(obj)
-				&& !u.usteed
+				is_missile(obj) || (is_pole(obj) && !u.usteed
 				) : !is_weptool(obj);
 	} else
 		unweapon = TRUE;	/* for "bare hands" message */
@@ -550,7 +549,7 @@ dowield()
 	}
 
 	if (Race_if(PM_HUMAN_WRAITH) && (u.uhpmax < 2 || u.uhp < 2) ) {pline("You don't have enough health to wield weapons!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 
@@ -640,7 +639,7 @@ doswapweapon()
 	}
 
 	if (Race_if(PM_HUMAN_WRAITH) && (u.uhpmax < 2 || u.uhp < 2) ) {pline("You don't have enough health to wield weapons!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
 
@@ -788,7 +787,7 @@ const char *verb;	/* "rub",&c */
 	You_cant("%s %s %s while wearing %s.",
 		 verb, shk_your(yourbuf, obj), what,
 		 more_than_1 ? "them" : "it");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
     if (welded(uwep)) {
@@ -803,37 +802,37 @@ const char *verb;	/* "rub",&c */
 	} else {
 	    You_cant("do that.");
 	}
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
     if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	You_cant("hold %s strongly enough.", more_than_1 ? "them" : "it");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
     /* check shield */
 
 	if (bimanual(obj) && Race_if(PM_LICH_WARRIOR) && !Upolyd ) {
 	    pline("As a lich, you cannot wield a two-handed weapon.");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	}
 
 	if (!is_launcher(obj) && Race_if(PM_ELONA_SNAIL) && !Upolyd ) {
 	    pline("As a snail, you can only wield launchers.");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	}
 
     if (uarms && bimanual(obj)) {
 	You("cannot %s a two-handed %s while wearing a shield.",
 	    verb, (obj->oclass == WEAPON_CLASS) ? "weapon" : "tool");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return FALSE;
     }
 
 	if (Race_if(PM_HUMAN_WRAITH) && (u.uhpmax < 2 || u.uhp < 2) ) {pline("You don't have enough health to wield tools!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return FALSE;
 	}
 

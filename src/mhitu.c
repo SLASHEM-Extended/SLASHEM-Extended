@@ -1566,9 +1566,9 @@ mattacku(mtmp)
 		if (mtmp == u.usteed)
 			/* Your steed won't attack you */
 			return (0);
-		/* Orcs like to steal and eat horses and the like */
-		if (!rn2(is_orc(mtmp->data) ? 2 : 4) &&
-				distu(mtmp->mx, mtmp->my) <= 2) {
+		/* Orcs like to steal and eat horses and the like
+		 * Amy edit: wtf. replace that with just a generic chance that your steed is attacked */
+		if (will_hit_steed() && distu(mtmp->mx, mtmp->my) <= 2) {
 			/* Attack your steed instead */
 			i = mattackm(mtmp, u.usteed);
 			if ((i & MM_AGR_DIED))
@@ -5377,7 +5377,7 @@ hitmu(mtmp, mattk)
 		    setustuck(mtmp);
 		    pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-		    if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		    You("get zapped!");
 		    if (Shock_resistance && rn2(20)) {
@@ -6096,7 +6096,7 @@ dopois:
 				setustuck(mtmp);
 				pline("%s grabs you!", Monnam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
 		    case 7:
@@ -6203,9 +6203,8 @@ dopois:
 		 * still _can_ attack you when you're flying or mounted.
 		 * [FIXME: why can't a flying attacker overcome this?]
 		 */
-		  if (
-			(u.usteed && !is_flyer(mtmp->data) && rn2(3) ) ||
-				    Levitation || (Flying && !is_flyer(mtmp->data)) ) {
+		  if ((u.usteed && !is_flyer(mtmp->data) && rn2(3) ) ||
+			Levitation || (Flying && !is_flyer(mtmp->data)) ) {
 		    pline("%s tries to reach your %s %s!", Monnam(mtmp),
 			  sidestr, body_part(LEG));
 		    dmg = 0;
@@ -6366,7 +6365,7 @@ dopois:
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 		break;
 	    case AD_WRAP:
@@ -6384,7 +6383,7 @@ dopois:
 			} else {
 			    pline("%s swings itself around you!",
 				  Monnam(mtmp));
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			    setustuck(mtmp);
 			}
 		    } else if(u.ustuck == mtmp) {
@@ -6520,7 +6519,7 @@ dopois:
 
 				}
 				else {
-					if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+					if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 					You("scream "); verbalize("HAHAHAHAHAHAHAAAAAAAA!"); /* Super Mario 64 */
 					u.uhpmax -= rnd(10);
 					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -6957,7 +6956,7 @@ dopois:
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		}
 
@@ -6996,7 +6995,7 @@ dopois:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 169) midentity -= 169;
+			while (midentity > 229) midentity -= 229;
 
 			switch (midentity) {
 
@@ -7197,6 +7196,66 @@ dopois:
 				case 167: MeleePrefixBug += rnz( (dmg + 2) * rnd(10) ); break;
 				case 168: AutomoreBug += rnz( (dmg + 2) * rnd(10) ); break;
 				case 169: UnfairAttackBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 170: OrangeSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 171: VioletSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 172: LongingEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 173: CursedParts += rnz( (dmg + 2) * rnd(10) ); break;
+				case 174: Quaversal += rnz( (dmg + 2) * rnd(10) ); break;
+				case 175: AppearanceShuffling += rnz( (dmg + 2) * rnd(10) ); break;
+				case 176: BrownSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 177: Choicelessness += rnz( (dmg + 2) * rnd(10) ); break;
+				case 178: Goldspells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 179: Deprovement += rnz( (dmg + 2) * rnd(10) ); break;
+				case 180: InitializationFail += rnz( (dmg + 2) * rnd(10) ); break;
+				case 181: GushlushEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 182: SoiltypeEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 183: DangerousTerrains += rnz( (dmg + 2) * rnd(10) ); break;
+				case 184: FalloutEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 185: MojibakeEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 186: GravationEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 187: UncalledEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 188: ExplodingDiceEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 189: PermacurseEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 190: ShroudedIdentity += rnz( (dmg + 2) * rnd(10) ); break;
+				case 191: FeelerGauges += rnz( (dmg + 2) * rnd(10) ); break;
+				case 192: LongScrewup += rnz( (dmg + 2) * rnd(10) ); break;
+				case 193: WingYellowChange += rnz( (dmg + 2) * rnd(10) ); break;
+				case 194: LifeSavingBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 195: CurseuseEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 196: CutNutritionEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 197: SkillLossEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 198: AutopilotEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 199: MysteriousForceActive += rnz( (dmg + 2) * rnd(10) ); break;
+				case 200: MonsterGlyphChange += rnz( (dmg + 2) * rnd(10) ); break;
+				case 201: ChangingDirectives += rnz( (dmg + 2) * rnd(10) ); break;
+				case 202: ContainerKaboom += rnz( (dmg + 2) * rnd(10) ); break;
+				case 203: StealDegrading += rnz( (dmg + 2) * rnd(10) ); break;
+				case 204: LeftInventoryBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 205: FluctuatingSpeed += rnz( (dmg + 2) * rnd(10) ); break;
+				case 206: TarmuStrokingNora += rnz( (dmg + 2) * rnd(10) ); break;
+				case 207: FailureEffects += rnz( (dmg + 2) * rnd(10) ); break;
+				case 208: BrightCyanSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 209: FrequentationSpawns += rnz( (dmg + 2) * rnd(10) ); break;
+				case 210: PetAIScrewed += rnz( (dmg + 2) * rnd(10) ); break;
+				case 211: SatanEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 212: RememberanceEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 213: PokelieEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 214: AlwaysAutopickup += rnz( (dmg + 2) * rnd(10) ); break;
+				case 215: DywypiProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 216: SilverSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 217: MetalSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 218: PlatinumSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 219: ManlerEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 220: DoorningEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 221: NownsibleEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 222: ElmStreetEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 223: MonnoiseEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 224: RangCallEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 225: RecurringSpellLoss += rnz( (dmg + 2) * rnd(10) ); break;
+				case 226: AntitrainingEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 227: TechoutBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 228: StatDecay += rnz( (dmg + 2) * rnd(10) ); break;
+				case 229: Movemork += rnz( (dmg + 2) * rnd(10) ); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
 			}
@@ -7411,6 +7470,66 @@ dopois:
 				case 167: MeleePrefixBug += rnz( (dmg + 2) * rnd(10) ); break;
 				case 168: AutomoreBug += rnz( (dmg + 2) * rnd(10) ); break;
 				case 169: UnfairAttackBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 170: OrangeSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 171: VioletSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 172: LongingEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 173: CursedParts += rnz( (dmg + 2) * rnd(10) ); break;
+				case 174: Quaversal += rnz( (dmg + 2) * rnd(10) ); break;
+				case 175: AppearanceShuffling += rnz( (dmg + 2) * rnd(10) ); break;
+				case 176: BrownSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 177: Choicelessness += rnz( (dmg + 2) * rnd(10) ); break;
+				case 178: Goldspells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 179: Deprovement += rnz( (dmg + 2) * rnd(10) ); break;
+				case 180: InitializationFail += rnz( (dmg + 2) * rnd(10) ); break;
+				case 181: GushlushEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 182: SoiltypeEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 183: DangerousTerrains += rnz( (dmg + 2) * rnd(10) ); break;
+				case 184: FalloutEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 185: MojibakeEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 186: GravationEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 187: UncalledEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 188: ExplodingDiceEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 189: PermacurseEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 190: ShroudedIdentity += rnz( (dmg + 2) * rnd(10) ); break;
+				case 191: FeelerGauges += rnz( (dmg + 2) * rnd(10) ); break;
+				case 192: LongScrewup += rnz( (dmg + 2) * rnd(10) ); break;
+				case 193: WingYellowChange += rnz( (dmg + 2) * rnd(10) ); break;
+				case 194: LifeSavingBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 195: CurseuseEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 196: CutNutritionEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 197: SkillLossEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 198: AutopilotEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 199: MysteriousForceActive += rnz( (dmg + 2) * rnd(10) ); break;
+				case 200: MonsterGlyphChange += rnz( (dmg + 2) * rnd(10) ); break;
+				case 201: ChangingDirectives += rnz( (dmg + 2) * rnd(10) ); break;
+				case 202: ContainerKaboom += rnz( (dmg + 2) * rnd(10) ); break;
+				case 203: StealDegrading += rnz( (dmg + 2) * rnd(10) ); break;
+				case 204: LeftInventoryBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 205: FluctuatingSpeed += rnz( (dmg + 2) * rnd(10) ); break;
+				case 206: TarmuStrokingNora += rnz( (dmg + 2) * rnd(10) ); break;
+				case 207: FailureEffects += rnz( (dmg + 2) * rnd(10) ); break;
+				case 208: BrightCyanSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 209: FrequentationSpawns += rnz( (dmg + 2) * rnd(10) ); break;
+				case 210: PetAIScrewed += rnz( (dmg + 2) * rnd(10) ); break;
+				case 211: SatanEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 212: RememberanceEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 213: PokelieEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 214: AlwaysAutopickup += rnz( (dmg + 2) * rnd(10) ); break;
+				case 215: DywypiProblem += rnz( (dmg + 2) * rnd(10) ); break;
+				case 216: SilverSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 217: MetalSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 218: PlatinumSpells += rnz( (dmg + 2) * rnd(10) ); break;
+				case 219: ManlerEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 220: DoorningEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 221: NownsibleEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 222: ElmStreetEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 223: MonnoiseEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 224: RangCallEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 225: RecurringSpellLoss += rnz( (dmg + 2) * rnd(10) ); break;
+				case 226: AntitrainingEffect += rnz( (dmg + 2) * rnd(10) ); break;
+				case 227: TechoutBug += rnz( (dmg + 2) * rnd(10) ); break;
+				case 228: StatDecay += rnz( (dmg + 2) * rnd(10) ); break;
+				case 229: Movemork += rnz( (dmg + 2) * rnd(10) ); break;
 
 				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
@@ -9256,7 +9375,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				}
 				u.aggravation = 0;
 				pline("Several monsters come out of a portal.");
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 			}
 
@@ -9283,7 +9402,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 169) midentity -= 169;
+			while (midentity > 229) midentity -= 229;
 
 			switch (midentity) {
 
@@ -9484,6 +9603,66 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				case 167: MeleePrefixBug += rnz( (tmp + 2) * rnd(10) ); break;
 				case 168: AutomoreBug += rnz( (tmp + 2) * rnd(10) ); break;
 				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 170: OrangeSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 171: VioletSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 172: LongingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 173: CursedParts += rnz( (tmp + 2) * rnd(10) ); break;
+				case 174: Quaversal += rnz( (tmp + 2) * rnd(10) ); break;
+				case 175: AppearanceShuffling += rnz( (tmp + 2) * rnd(10) ); break;
+				case 176: BrownSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 177: Choicelessness += rnz( (tmp + 2) * rnd(10) ); break;
+				case 178: Goldspells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 179: Deprovement += rnz( (tmp + 2) * rnd(10) ); break;
+				case 180: InitializationFail += rnz( (tmp + 2) * rnd(10) ); break;
+				case 181: GushlushEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 182: SoiltypeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 183: DangerousTerrains += rnz( (tmp + 2) * rnd(10) ); break;
+				case 184: FalloutEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 185: MojibakeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 186: GravationEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 187: UncalledEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 188: ExplodingDiceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 189: PermacurseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 190: ShroudedIdentity += rnz( (tmp + 2) * rnd(10) ); break;
+				case 191: FeelerGauges += rnz( (tmp + 2) * rnd(10) ); break;
+				case 192: LongScrewup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 193: WingYellowChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 194: LifeSavingBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 195: CurseuseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 196: CutNutritionEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 197: SkillLossEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 198: AutopilotEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 199: MysteriousForceActive += rnz( (tmp + 2) * rnd(10) ); break;
+				case 200: MonsterGlyphChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 201: ChangingDirectives += rnz( (tmp + 2) * rnd(10) ); break;
+				case 202: ContainerKaboom += rnz( (tmp + 2) * rnd(10) ); break;
+				case 203: StealDegrading += rnz( (tmp + 2) * rnd(10) ); break;
+				case 204: LeftInventoryBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 205: FluctuatingSpeed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 206: TarmuStrokingNora += rnz( (tmp + 2) * rnd(10) ); break;
+				case 207: FailureEffects += rnz( (tmp + 2) * rnd(10) ); break;
+				case 208: BrightCyanSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 209: FrequentationSpawns += rnz( (tmp + 2) * rnd(10) ); break;
+				case 210: PetAIScrewed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 211: SatanEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 212: RememberanceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 213: PokelieEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 214: AlwaysAutopickup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 215: DywypiProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 216: SilverSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 217: MetalSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 218: PlatinumSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 219: ManlerEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 220: DoorningEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 221: NownsibleEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 222: ElmStreetEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 223: MonnoiseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 224: RangCallEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 225: RecurringSpellLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 226: AntitrainingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 227: TechoutBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 228: StatDecay += rnz( (tmp + 2) * rnd(10) ); break;
+				case 229: Movemork += rnz( (tmp + 2) * rnd(10) ); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
 			}
@@ -9694,6 +9873,66 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				case 167: MeleePrefixBug += rnz( (tmp + 2) * rnd(10) ); break;
 				case 168: AutomoreBug += rnz( (tmp + 2) * rnd(10) ); break;
 				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 170: OrangeSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 171: VioletSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 172: LongingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 173: CursedParts += rnz( (tmp + 2) * rnd(10) ); break;
+				case 174: Quaversal += rnz( (tmp + 2) * rnd(10) ); break;
+				case 175: AppearanceShuffling += rnz( (tmp + 2) * rnd(10) ); break;
+				case 176: BrownSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 177: Choicelessness += rnz( (tmp + 2) * rnd(10) ); break;
+				case 178: Goldspells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 179: Deprovement += rnz( (tmp + 2) * rnd(10) ); break;
+				case 180: InitializationFail += rnz( (tmp + 2) * rnd(10) ); break;
+				case 181: GushlushEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 182: SoiltypeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 183: DangerousTerrains += rnz( (tmp + 2) * rnd(10) ); break;
+				case 184: FalloutEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 185: MojibakeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 186: GravationEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 187: UncalledEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 188: ExplodingDiceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 189: PermacurseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 190: ShroudedIdentity += rnz( (tmp + 2) * rnd(10) ); break;
+				case 191: FeelerGauges += rnz( (tmp + 2) * rnd(10) ); break;
+				case 192: LongScrewup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 193: WingYellowChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 194: LifeSavingBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 195: CurseuseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 196: CutNutritionEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 197: SkillLossEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 198: AutopilotEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 199: MysteriousForceActive += rnz( (tmp + 2) * rnd(10) ); break;
+				case 200: MonsterGlyphChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 201: ChangingDirectives += rnz( (tmp + 2) * rnd(10) ); break;
+				case 202: ContainerKaboom += rnz( (tmp + 2) * rnd(10) ); break;
+				case 203: StealDegrading += rnz( (tmp + 2) * rnd(10) ); break;
+				case 204: LeftInventoryBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 205: FluctuatingSpeed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 206: TarmuStrokingNora += rnz( (tmp + 2) * rnd(10) ); break;
+				case 207: FailureEffects += rnz( (tmp + 2) * rnd(10) ); break;
+				case 208: BrightCyanSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 209: FrequentationSpawns += rnz( (tmp + 2) * rnd(10) ); break;
+				case 210: PetAIScrewed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 211: SatanEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 212: RememberanceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 213: PokelieEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 214: AlwaysAutopickup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 215: DywypiProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 216: SilverSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 217: MetalSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 218: PlatinumSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 219: ManlerEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 220: DoorningEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 221: NownsibleEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 222: ElmStreetEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 223: MonnoiseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 224: RangCallEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 225: RecurringSpellLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 226: AntitrainingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 227: TechoutBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 228: StatDecay += rnz( (tmp + 2) * rnd(10) ); break;
+				case 229: Movemork += rnz( (tmp + 2) * rnd(10) ); break;
 
 				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
@@ -9862,7 +10101,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 				setustuck(mtmp);
 				pline("%s grabs you!", Monnam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
 		    case 7:
@@ -10170,7 +10409,7 @@ do_stone2:
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 		break;
 	    case AD_SGLD:
@@ -11116,7 +11355,7 @@ do_stone2:
 		    setustuck(mtmp);
 		    pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-		    if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		    break;
 
@@ -11508,7 +11747,7 @@ boolean ufound;
 		setustuck(mtmp);
 		pline("%s grabs you!", Monnam(mtmp));
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-		if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		if (isevilvariant || !rn2(issoviet ? 6 : 33))
 			destroy_item(WAND_CLASS, AD_ELEC);
 		if (isevilvariant || !rn2(issoviet ? 6 : 33))
@@ -11615,7 +11854,7 @@ common:
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		}
 
@@ -11645,7 +11884,7 @@ common:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 169) midentity -= 169;
+			while (midentity > 229) midentity -= 229;
 
 			switch (midentity) {
 
@@ -11846,6 +12085,66 @@ common:
 				case 167: MeleePrefixBug += rnz( (tmp + 2) * rnd(100) ); break;
 				case 168: AutomoreBug += rnz( (tmp + 2) * rnd(100) ); break;
 				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 170: OrangeSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 171: VioletSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 172: LongingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 173: CursedParts += rnz( (tmp + 2) * rnd(10) ); break;
+				case 174: Quaversal += rnz( (tmp + 2) * rnd(10) ); break;
+				case 175: AppearanceShuffling += rnz( (tmp + 2) * rnd(10) ); break;
+				case 176: BrownSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 177: Choicelessness += rnz( (tmp + 2) * rnd(10) ); break;
+				case 178: Goldspells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 179: Deprovement += rnz( (tmp + 2) * rnd(10) ); break;
+				case 180: InitializationFail += rnz( (tmp + 2) * rnd(10) ); break;
+				case 181: GushlushEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 182: SoiltypeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 183: DangerousTerrains += rnz( (tmp + 2) * rnd(10) ); break;
+				case 184: FalloutEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 185: MojibakeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 186: GravationEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 187: UncalledEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 188: ExplodingDiceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 189: PermacurseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 190: ShroudedIdentity += rnz( (tmp + 2) * rnd(10) ); break;
+				case 191: FeelerGauges += rnz( (tmp + 2) * rnd(10) ); break;
+				case 192: LongScrewup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 193: WingYellowChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 194: LifeSavingBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 195: CurseuseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 196: CutNutritionEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 197: SkillLossEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 198: AutopilotEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 199: MysteriousForceActive += rnz( (tmp + 2) * rnd(10) ); break;
+				case 200: MonsterGlyphChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 201: ChangingDirectives += rnz( (tmp + 2) * rnd(10) ); break;
+				case 202: ContainerKaboom += rnz( (tmp + 2) * rnd(10) ); break;
+				case 203: StealDegrading += rnz( (tmp + 2) * rnd(10) ); break;
+				case 204: LeftInventoryBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 205: FluctuatingSpeed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 206: TarmuStrokingNora += rnz( (tmp + 2) * rnd(10) ); break;
+				case 207: FailureEffects += rnz( (tmp + 2) * rnd(10) ); break;
+				case 208: BrightCyanSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 209: FrequentationSpawns += rnz( (tmp + 2) * rnd(10) ); break;
+				case 210: PetAIScrewed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 211: SatanEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 212: RememberanceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 213: PokelieEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 214: AlwaysAutopickup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 215: DywypiProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 216: SilverSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 217: MetalSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 218: PlatinumSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 219: ManlerEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 220: DoorningEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 221: NownsibleEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 222: ElmStreetEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 223: MonnoiseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 224: RangCallEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 225: RecurringSpellLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 226: AntitrainingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 227: TechoutBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 228: StatDecay += rnz( (tmp + 2) * rnd(10) ); break;
+				case 229: Movemork += rnz( (tmp + 2) * rnd(10) ); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
 			}
@@ -12056,6 +12355,66 @@ common:
 				case 167: MeleePrefixBug += rnz( (tmp + 2) * rnd(10) ); break;
 				case 168: AutomoreBug += rnz( (tmp + 2) * rnd(10) ); break;
 				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 170: OrangeSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 171: VioletSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 172: LongingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 173: CursedParts += rnz( (tmp + 2) * rnd(10) ); break;
+				case 174: Quaversal += rnz( (tmp + 2) * rnd(10) ); break;
+				case 175: AppearanceShuffling += rnz( (tmp + 2) * rnd(10) ); break;
+				case 176: BrownSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 177: Choicelessness += rnz( (tmp + 2) * rnd(10) ); break;
+				case 178: Goldspells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 179: Deprovement += rnz( (tmp + 2) * rnd(10) ); break;
+				case 180: InitializationFail += rnz( (tmp + 2) * rnd(10) ); break;
+				case 181: GushlushEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 182: SoiltypeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 183: DangerousTerrains += rnz( (tmp + 2) * rnd(10) ); break;
+				case 184: FalloutEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 185: MojibakeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 186: GravationEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 187: UncalledEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 188: ExplodingDiceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 189: PermacurseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 190: ShroudedIdentity += rnz( (tmp + 2) * rnd(10) ); break;
+				case 191: FeelerGauges += rnz( (tmp + 2) * rnd(10) ); break;
+				case 192: LongScrewup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 193: WingYellowChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 194: LifeSavingBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 195: CurseuseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 196: CutNutritionEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 197: SkillLossEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 198: AutopilotEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 199: MysteriousForceActive += rnz( (tmp + 2) * rnd(10) ); break;
+				case 200: MonsterGlyphChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 201: ChangingDirectives += rnz( (tmp + 2) * rnd(10) ); break;
+				case 202: ContainerKaboom += rnz( (tmp + 2) * rnd(10) ); break;
+				case 203: StealDegrading += rnz( (tmp + 2) * rnd(10) ); break;
+				case 204: LeftInventoryBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 205: FluctuatingSpeed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 206: TarmuStrokingNora += rnz( (tmp + 2) * rnd(10) ); break;
+				case 207: FailureEffects += rnz( (tmp + 2) * rnd(10) ); break;
+				case 208: BrightCyanSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 209: FrequentationSpawns += rnz( (tmp + 2) * rnd(10) ); break;
+				case 210: PetAIScrewed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 211: SatanEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 212: RememberanceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 213: PokelieEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 214: AlwaysAutopickup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 215: DywypiProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 216: SilverSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 217: MetalSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 218: PlatinumSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 219: ManlerEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 220: DoorningEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 221: NownsibleEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 222: ElmStreetEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 223: MonnoiseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 224: RangCallEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 225: RecurringSpellLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 226: AntitrainingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 227: TechoutBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 228: StatDecay += rnz( (tmp + 2) * rnd(10) ); break;
+				case 229: Movemork += rnz( (tmp + 2) * rnd(10) ); break;
 
 				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
@@ -14406,7 +14765,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!u.ustuck && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s gazes to hold you in place!", Monnam(mtmp));
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 		}
 		break;
@@ -14814,7 +15173,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				setustuck(mtmp);
 				pline("%s grabs you!", Monnam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			}
 			break;
 		    case 7:
@@ -15834,7 +16193,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    setustuck(mtmp);
 		    pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
-		    if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		    if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		    if (Shock_resistance && rn2(20)) {
 			pline_The("gaze doesn't shock you!");
@@ -16117,7 +16476,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				}
 				u.aggravation = 0;
 				pline("Several monsters come out of a portal.");
-				if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 			}
 		}
@@ -16160,7 +16519,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 169) midentity -= 169;
+			while (midentity > 229) midentity -= 229;
 
 			switch (midentity) {
 
@@ -16361,6 +16720,66 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				case 167: MeleePrefixBug += rnz( (dmgplus + 2) * rnd(10) ); break;
 				case 168: AutomoreBug += rnz( (dmgplus + 2) * rnd(10) ); break;
 				case 169: UnfairAttackBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 170: OrangeSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 171: VioletSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 172: LongingEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 173: CursedParts += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 174: Quaversal += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 175: AppearanceShuffling += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 176: BrownSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 177: Choicelessness += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 178: Goldspells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 179: Deprovement += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 180: InitializationFail += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 181: GushlushEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 182: SoiltypeEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 183: DangerousTerrains += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 184: FalloutEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 185: MojibakeEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 186: GravationEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 187: UncalledEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 188: ExplodingDiceEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 189: PermacurseEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 190: ShroudedIdentity += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 191: FeelerGauges += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 192: LongScrewup += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 193: WingYellowChange += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 194: LifeSavingBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 195: CurseuseEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 196: CutNutritionEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 197: SkillLossEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 198: AutopilotEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 199: MysteriousForceActive += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 200: MonsterGlyphChange += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 201: ChangingDirectives += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 202: ContainerKaboom += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 203: StealDegrading += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 204: LeftInventoryBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 205: FluctuatingSpeed += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 206: TarmuStrokingNora += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 207: FailureEffects += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 208: BrightCyanSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 209: FrequentationSpawns += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 210: PetAIScrewed += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 211: SatanEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 212: RememberanceEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 213: PokelieEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 214: AlwaysAutopickup += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 215: DywypiProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 216: SilverSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 217: MetalSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 218: PlatinumSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 219: ManlerEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 220: DoorningEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 221: NownsibleEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 222: ElmStreetEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 223: MonnoiseEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 224: RangCallEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 225: RecurringSpellLoss += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 226: AntitrainingEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 227: TechoutBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 228: StatDecay += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 229: Movemork += rnz( (dmgplus + 2) * rnd(10) ); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
 			}
@@ -16574,6 +16993,66 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 				case 167: MeleePrefixBug += rnz( (dmgplus + 2) * rnd(10) ); break;
 				case 168: AutomoreBug += rnz( (dmgplus + 2) * rnd(10) ); break;
 				case 169: UnfairAttackBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 170: OrangeSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 171: VioletSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 172: LongingEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 173: CursedParts += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 174: Quaversal += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 175: AppearanceShuffling += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 176: BrownSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 177: Choicelessness += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 178: Goldspells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 179: Deprovement += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 180: InitializationFail += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 181: GushlushEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 182: SoiltypeEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 183: DangerousTerrains += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 184: FalloutEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 185: MojibakeEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 186: GravationEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 187: UncalledEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 188: ExplodingDiceEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 189: PermacurseEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 190: ShroudedIdentity += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 191: FeelerGauges += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 192: LongScrewup += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 193: WingYellowChange += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 194: LifeSavingBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 195: CurseuseEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 196: CutNutritionEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 197: SkillLossEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 198: AutopilotEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 199: MysteriousForceActive += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 200: MonsterGlyphChange += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 201: ChangingDirectives += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 202: ContainerKaboom += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 203: StealDegrading += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 204: LeftInventoryBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 205: FluctuatingSpeed += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 206: TarmuStrokingNora += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 207: FailureEffects += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 208: BrightCyanSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 209: FrequentationSpawns += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 210: PetAIScrewed += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 211: SatanEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 212: RememberanceEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 213: PokelieEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 214: AlwaysAutopickup += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 215: DywypiProblem += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 216: SilverSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 217: MetalSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 218: PlatinumSpells += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 219: ManlerEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 220: DoorningEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 221: NownsibleEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 222: ElmStreetEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 223: MonnoiseEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 224: RangCallEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 225: RecurringSpellLoss += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 226: AntitrainingEffect += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 227: TechoutBug += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 228: StatDecay += rnz( (dmgplus + 2) * rnd(10) ); break;
+				case 229: Movemork += rnz( (dmgplus + 2) * rnd(10) ); break;
 
 				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
@@ -17221,7 +17700,7 @@ register int n;
 	}
 
 #ifdef SHOW_DMG
-	if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayLoss && !u.uprops[DISPLAY_LOST].extrinsic && !have_displaystone() && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) ) {
+	if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayDoesNotGoAtAll ) {
 
 		pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
 		if (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
@@ -18675,7 +19154,7 @@ register struct attack *mattk;
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
-			if (flags.moreforced && !(MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() )) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		}
 

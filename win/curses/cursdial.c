@@ -83,7 +83,7 @@ curses_line_input_dialog(const char *prompt, char *answer, int buffer)
     int prompt_height = 1;
     int height = prompt_height;
 
-	if ( (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FILTHY_PRESS) ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
+	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -99,7 +99,7 @@ curses_line_input_dialog(const char *prompt, char *answer, int buffer)
 
 	) prompt = generate_garbage_string();
 
-	if (youmonst.data && (MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_LLLLLLLLLLLLLM) || have_memorylossstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+	if (youmonst.data && LLMMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -107,7 +107,7 @@ curses_line_input_dialog(const char *prompt, char *answer, int buffer)
 
 	) prompt = "Warning: Low Local Memory. Freeing description strings.";
 
-	if ( (MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+	if (MessagesSuppressed && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
 #if defined(WIN32)
 && !program_state.exiting
 #endif
@@ -186,7 +186,7 @@ curses_character_input_dialog(const char *prompt, const char *choices,
     boolean any_choice = FALSE;
     boolean accept_count = FALSE;
 
-	if ( (u.uprops[RANDOM_MESSAGES].extrinsic || RandomMessages || have_messagestone() || (uwep && uwep->oartifact == ART_FILTHY_PRESS) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_FILTHY_PRESS) ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
+	if (PlayerHearsMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && rn2(3)
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -202,7 +202,7 @@ curses_character_input_dialog(const char *prompt, const char *choices,
 
 	) prompt = generate_garbage_string();
 
-	if (youmonst.data && (MemoryLoss || u.uprops[MEMORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_LLLLLLLLLLLLLM) || have_memorylossstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
+	if (youmonst.data && LLMMessages && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover
 
 #if defined(WIN32)
 && !program_state.exiting
@@ -210,7 +210,7 @@ curses_character_input_dialog(const char *prompt, const char *choices,
 
 	) prompt = "Warning: Low Local Memory. Freeing description strings.";
 
-	if ( (MessageSuppression || u.uprops[MESSAGE_SUPPRESSION_BUG].extrinsic || have_messagesuppressionstone() ) && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
+	if (MessagesSuppressed && !program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover 
 #if defined(WIN32)
 && !program_state.exiting
 #endif
@@ -1069,7 +1069,7 @@ menu_display_page(nhmenu *menu, WINDOW * win, int page_num)
             start_col += 2;
         }
 #ifdef MENU_COLOR
-	  if (youmonst.data && (FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone() || (uarmh && uarmh->oartifact == ART_TELEVISION_WONDER) )) {
+	  if (youmonst.data && FleeceyScripts) {
 		int fleececolor = rn2(CLR_MAX);
 		while (fleececolor == NO_COLOR) fleececolor = rn2(CLR_MAX);
 		curses_toggle_color_attr(win, fleececolor, NONE, ON);

@@ -863,7 +863,7 @@ tty_delay_output()
 	register int i;
 #endif
 #ifdef TIMED_DELAY
-	if (flags.sparkle || (youmonst.data && (LatencyBugEffect || u.uprops[LATENCY_BUG].extrinsic || have_latencystone()) ) ) {
+	if (flags.sparkle || (youmonst.data && TheGameLaaaaags) ) {
 		(void) fflush(stdout);
 		msleep(50);		/* sleep for 50 milliseconds */
 		return;
