@@ -750,7 +750,7 @@ register struct monst *mtmp;
 	 */
 	/* Intelligent chaotic weapons (Stormbringer) want blood */
 	if (is_safepet(mtmp) && !flags.forcefight) {
-	    if ((!uwep || (uwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_PATRICIA_S_FEMININITY && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
+	    if (( (!uwep && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone())) || (uwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_PATRICIA_S_FEMININITY && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
 		&& (!u.twoweap || !uswapwep 
 		   || (uswapwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_PATRICIA_S_FEMININITY && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
 		/* there are some additional considerations: this won't work
@@ -1480,9 +1480,7 @@ int dieroll;
 		    /* or strike with a missile in your hand... */
 		    (!thrown && (is_missile(obj) || is_ammo(obj))) ||
 		    /* or use a pole at short range and not mounted... */
-		    (!thrown &&
-		     !u.usteed &&
-		     is_pole(obj)) ||
+		    (!thrown && !u.usteed && is_pole(obj)) ||
 		    /* lightsaber that isn't lit ;) */
 		    (is_lightsaber(obj) && !obj->lamplit) ||
 		    /* or throw a missile without the proper bow... */
@@ -1502,7 +1500,7 @@ int dieroll;
 
 		/* Bashing with bows, darts, ranseurs or inactive lightsabers might not be completely useless... --Amy */
 
-		    if ((is_launcher(obj) || is_missile(obj) || is_pole(obj) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown)		{
+		    if ((is_launcher(obj) || is_missile(obj) || (is_pole(obj) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown)		{
 
 			if (!(PlayerCannotUseSkills) && !rn2(2)) {
 
@@ -2467,10 +2465,10 @@ int dieroll;
 	    wep = PROJECTILE(obj) ? launcher : obj;
 
 		/* bashing with launchers or other "bad" weapons shouldn't give insane bonuses --Amy */
-		if (wep && !((is_launcher(wep) || is_missile(wep) || is_pole(wep) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
+		if (wep && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
 
-	    if (!thrown) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
-	    if (thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
+		if (wep && !thrown && !((is_launcher(wep) || is_missile(wep) || (is_pole(wep) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
+		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
 
 		if (wep && wep->otyp == COLLUSION_KNIFE) {
 			pline("Collusion!");
@@ -3822,18 +3820,18 @@ int dieroll;
 				case 440: pline("%s's internet connection drops due to a netsplit.", Monnam(mon)); break;
 				case 441: pline("The admin realized that %s is a bot, and bots aren't allowed on this server. So %s is banned from the game now and can't come back.", mon_nam(mon), mon_nam(mon)); break;
 				case 442: pline("You somehow manage to break %s's %s so badly with your soft yellow suede sneakers that it loses several gallons of %s and dies.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BLOOD)); break;
-				case 443: pline("You stop playing like an idiot and finally kill the annoying %s.", mon_nam(mon)); break;
-				case 444: pline("You swat the pesky %s gnat with your fly swatter.", mon_nam(mon)); break;
+				case 443: pline("You stop playing like an idiot and finally kill the annoying %s.", l_monnam(mon)); break;
+				case 444: pline("You swat the pesky %s gnat with your fly swatter.", l_monnam(mon)); break;
 				case 445: pline("%s decides to be nice today, and teleports itself away to spare you the hassle of having to fight it.", Monnam(mon)); break;
 				case 446: pline("%s says 'All right, %s, I know you'd stand no chance against me in a serious fight but I'm feeling generous, so I'm letting you win this time.'", Monnam(mon), playeraliasname); break;
 				case 447: pline("%s was suddenly summoned by another SLEX player on this server and therefore has to leave your game to join the other one instead!", Monnam(mon)); break;
 				case 448: pline("%s hissed off - one less.", Monnam(mon)); break;
 				case 449: pline("%s is hit by the timeout bug and quits the game.", Monnam(mon)); break;
 				case 450: pline("%s tries to laugh fiendishly in an attempt to mock you, but you quickly throw a knife and hit %s right in that ugly %s of %s.", Monnam(mon), mhim(mon), mbodypart(mon, FACE), mhis(mon)); break;
-				case 451: pline("You murderer, you killed the beautiful %s!", mon_nam(mon)); break;
-				case 452: pline("You decide that all beauty must fade, and therefore ruin the wonderful %s. You sick bastard.", mon_nam(mon)); break;
+				case 451: pline("You murderer, you killed the beautiful %s!", l_monnam(mon)); break;
+				case 452: pline("You decide that all beauty must fade, and therefore ruin the wonderful %s. You sick bastard.", l_monnam(mon)); break;
 				case 453: pline("You asshole! %s just wanted to live a peaceful life and now you killed it in cold blood! Hopefully you'll die of a heart attack!", Monnam(mon)); break;
-				case 454: pline("You vow to genocide the entire %s race as you kill this particular specimen.", mon_nam(mon)); break;
+				case 454: pline("You vow to genocide the entire %s race as you kill this particular specimen.", l_monnam(mon)); break;
 				case 455: pline("%s has an appointment with Doctor Ben Dovah!", Monnam(mon)); break;
 				case 456: pline("You manage to win the 'Beat up %s' game! But in order to win the SLEX game, you need to defeat many other opponents as well!", mon_nam(mon)); break;
 				case 457: pline("%s is defeated now... but don't get too cocky, for the next enemy may be a %s.", Monnam(mon), rndmonnam()); break;
@@ -7415,7 +7413,7 @@ uchar aatyp;
 		if (!rn2(5)) {
 			pline("Nasty!");
 
-			switch (rnd(169)) {
+			switch (rnd(229)) {
 
 				case 1: RMBLoss += rnz( (tmp + 2) * rnd(100) ); break;
 				case 2: NoDropProblem += rnz( (tmp + 2) * rnd(100) ); break;
@@ -7614,6 +7612,66 @@ uchar aatyp;
 				case 167: MeleePrefixBug += rnz( (tmp + 2) * rnd(100) ); break;
 				case 168: AutomoreBug += rnz( (tmp + 2) * rnd(100) ); break;
 				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(100) ); break;
+				case 170: OrangeSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 171: VioletSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 172: LongingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 173: CursedParts += rnz( (tmp + 2) * rnd(10) ); break;
+				case 174: Quaversal += rnz( (tmp + 2) * rnd(10) ); break;
+				case 175: AppearanceShuffling += rnz( (tmp + 2) * rnd(10) ); break;
+				case 176: BrownSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 177: Choicelessness += rnz( (tmp + 2) * rnd(10) ); break;
+				case 178: Goldspells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 179: Deprovement += rnz( (tmp + 2) * rnd(10) ); break;
+				case 180: InitializationFail += rnz( (tmp + 2) * rnd(10) ); break;
+				case 181: GushlushEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 182: SoiltypeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 183: DangerousTerrains += rnz( (tmp + 2) * rnd(10) ); break;
+				case 184: FalloutEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 185: MojibakeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 186: GravationEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 187: UncalledEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 188: ExplodingDiceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 189: PermacurseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 190: ShroudedIdentity += rnz( (tmp + 2) * rnd(10) ); break;
+				case 191: FeelerGauges += rnz( (tmp + 2) * rnd(10) ); break;
+				case 192: LongScrewup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 193: WingYellowChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 194: LifeSavingBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 195: CurseuseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 196: CutNutritionEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 197: SkillLossEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 198: AutopilotEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 199: MysteriousForceActive += rnz( (tmp + 2) * rnd(10) ); break;
+				case 200: MonsterGlyphChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 201: ChangingDirectives += rnz( (tmp + 2) * rnd(10) ); break;
+				case 202: ContainerKaboom += rnz( (tmp + 2) * rnd(10) ); break;
+				case 203: StealDegrading += rnz( (tmp + 2) * rnd(10) ); break;
+				case 204: LeftInventoryBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 205: FluctuatingSpeed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 206: TarmuStrokingNora += rnz( (tmp + 2) * rnd(10) ); break;
+				case 207: FailureEffects += rnz( (tmp + 2) * rnd(10) ); break;
+				case 208: BrightCyanSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 209: FrequentationSpawns += rnz( (tmp + 2) * rnd(10) ); break;
+				case 210: PetAIScrewed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 211: SatanEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 212: RememberanceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 213: PokelieEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 214: AlwaysAutopickup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 215: DywypiProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 216: SilverSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 217: MetalSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 218: PlatinumSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 219: ManlerEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 220: DoorningEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 221: NownsibleEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 222: ElmStreetEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 223: MonnoiseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 224: RangCallEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 225: RecurringSpellLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 226: AntitrainingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 227: TechoutBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 228: StatDecay += rnz( (tmp + 2) * rnd(10) ); break;
+				case 229: Movemork += rnz( (tmp + 2) * rnd(10) ); break;
 			}
 
 		}
@@ -7788,7 +7846,7 @@ uchar aatyp;
 		{
 			register int midentity = mon->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 169) midentity -= 169;
+			while (midentity > 229) midentity -= 229;
 
 			switch (midentity) {
 
@@ -7989,6 +8047,66 @@ uchar aatyp;
 				case 167: MeleePrefixBug += rnz( (tmp + 2) * rnd(10) ); break;
 				case 168: AutomoreBug += rnz( (tmp + 2) * rnd(10) ); break;
 				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 170: OrangeSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 171: VioletSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 172: LongingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 173: CursedParts += rnz( (tmp + 2) * rnd(10) ); break;
+				case 174: Quaversal += rnz( (tmp + 2) * rnd(10) ); break;
+				case 175: AppearanceShuffling += rnz( (tmp + 2) * rnd(10) ); break;
+				case 176: BrownSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 177: Choicelessness += rnz( (tmp + 2) * rnd(10) ); break;
+				case 178: Goldspells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 179: Deprovement += rnz( (tmp + 2) * rnd(10) ); break;
+				case 180: InitializationFail += rnz( (tmp + 2) * rnd(10) ); break;
+				case 181: GushlushEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 182: SoiltypeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 183: DangerousTerrains += rnz( (tmp + 2) * rnd(10) ); break;
+				case 184: FalloutEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 185: MojibakeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 186: GravationEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 187: UncalledEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 188: ExplodingDiceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 189: PermacurseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 190: ShroudedIdentity += rnz( (tmp + 2) * rnd(10) ); break;
+				case 191: FeelerGauges += rnz( (tmp + 2) * rnd(10) ); break;
+				case 192: LongScrewup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 193: WingYellowChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 194: LifeSavingBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 195: CurseuseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 196: CutNutritionEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 197: SkillLossEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 198: AutopilotEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 199: MysteriousForceActive += rnz( (tmp + 2) * rnd(10) ); break;
+				case 200: MonsterGlyphChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 201: ChangingDirectives += rnz( (tmp + 2) * rnd(10) ); break;
+				case 202: ContainerKaboom += rnz( (tmp + 2) * rnd(10) ); break;
+				case 203: StealDegrading += rnz( (tmp + 2) * rnd(10) ); break;
+				case 204: LeftInventoryBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 205: FluctuatingSpeed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 206: TarmuStrokingNora += rnz( (tmp + 2) * rnd(10) ); break;
+				case 207: FailureEffects += rnz( (tmp + 2) * rnd(10) ); break;
+				case 208: BrightCyanSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 209: FrequentationSpawns += rnz( (tmp + 2) * rnd(10) ); break;
+				case 210: PetAIScrewed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 211: SatanEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 212: RememberanceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 213: PokelieEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 214: AlwaysAutopickup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 215: DywypiProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 216: SilverSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 217: MetalSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 218: PlatinumSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 219: ManlerEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 220: DoorningEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 221: NownsibleEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 222: ElmStreetEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 223: MonnoiseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 224: RangCallEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 225: RecurringSpellLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 226: AntitrainingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 227: TechoutBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 228: StatDecay += rnz( (tmp + 2) * rnd(10) ); break;
+				case 229: Movemork += rnz( (tmp + 2) * rnd(10) ); break;
 
 				default: impossible("AD_MINA called with invalid value %d", midentity); break;
 			}
@@ -8199,6 +8317,66 @@ uchar aatyp;
 				case 167: MeleePrefixBug += rnz( (tmp + 2) * rnd(10) ); break;
 				case 168: AutomoreBug += rnz( (tmp + 2) * rnd(10) ); break;
 				case 169: UnfairAttackBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 170: OrangeSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 171: VioletSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 172: LongingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 173: CursedParts += rnz( (tmp + 2) * rnd(10) ); break;
+				case 174: Quaversal += rnz( (tmp + 2) * rnd(10) ); break;
+				case 175: AppearanceShuffling += rnz( (tmp + 2) * rnd(10) ); break;
+				case 176: BrownSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 177: Choicelessness += rnz( (tmp + 2) * rnd(10) ); break;
+				case 178: Goldspells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 179: Deprovement += rnz( (tmp + 2) * rnd(10) ); break;
+				case 180: InitializationFail += rnz( (tmp + 2) * rnd(10) ); break;
+				case 181: GushlushEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 182: SoiltypeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 183: DangerousTerrains += rnz( (tmp + 2) * rnd(10) ); break;
+				case 184: FalloutEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 185: MojibakeEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 186: GravationEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 187: UncalledEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 188: ExplodingDiceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 189: PermacurseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 190: ShroudedIdentity += rnz( (tmp + 2) * rnd(10) ); break;
+				case 191: FeelerGauges += rnz( (tmp + 2) * rnd(10) ); break;
+				case 192: LongScrewup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 193: WingYellowChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 194: LifeSavingBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 195: CurseuseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 196: CutNutritionEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 197: SkillLossEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 198: AutopilotEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 199: MysteriousForceActive += rnz( (tmp + 2) * rnd(10) ); break;
+				case 200: MonsterGlyphChange += rnz( (tmp + 2) * rnd(10) ); break;
+				case 201: ChangingDirectives += rnz( (tmp + 2) * rnd(10) ); break;
+				case 202: ContainerKaboom += rnz( (tmp + 2) * rnd(10) ); break;
+				case 203: StealDegrading += rnz( (tmp + 2) * rnd(10) ); break;
+				case 204: LeftInventoryBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 205: FluctuatingSpeed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 206: TarmuStrokingNora += rnz( (tmp + 2) * rnd(10) ); break;
+				case 207: FailureEffects += rnz( (tmp + 2) * rnd(10) ); break;
+				case 208: BrightCyanSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 209: FrequentationSpawns += rnz( (tmp + 2) * rnd(10) ); break;
+				case 210: PetAIScrewed += rnz( (tmp + 2) * rnd(10) ); break;
+				case 211: SatanEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 212: RememberanceEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 213: PokelieEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 214: AlwaysAutopickup += rnz( (tmp + 2) * rnd(10) ); break;
+				case 215: DywypiProblem += rnz( (tmp + 2) * rnd(10) ); break;
+				case 216: SilverSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 217: MetalSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 218: PlatinumSpells += rnz( (tmp + 2) * rnd(10) ); break;
+				case 219: ManlerEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 220: DoorningEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 221: NownsibleEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 222: ElmStreetEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 223: MonnoiseEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 224: RangCallEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 225: RecurringSpellLoss += rnz( (tmp + 2) * rnd(10) ); break;
+				case 226: AntitrainingEffect += rnz( (tmp + 2) * rnd(10) ); break;
+				case 227: TechoutBug += rnz( (tmp + 2) * rnd(10) ); break;
+				case 228: StatDecay += rnz( (tmp + 2) * rnd(10) ); break;
+				case 229: Movemork += rnz( (tmp + 2) * rnd(10) ); break;
 
 				default: impossible("AD_RUNS called with invalid value %d", u.adrunsattack); break;
 			}
@@ -10039,7 +10217,7 @@ struct attack *mattk;		/* null means we find one internally */
 	case AD_LAVA:
 
 burnagain:
-	    if(!mon->mcan && !stack_too_big(obj) && is_flammable(obj) && !(objects[obj->otyp].oc_material == WOOD && rn2(4)) && !(objects[obj->otyp].oc_material == LEATHER && rn2(2)) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY ) {
+	    if(!mon->mcan && !stack_too_big(obj) && is_flammable(obj) && !(objects[obj->otyp].oc_material == WOOD && rn2(4)) && !(objects[obj->otyp].oc_material == LEATHER && rn2(2)) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY ) {
 
 			if (obj->oeroded < MAX_ERODE && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !((obj->blessed && !rnl(4)))) {
 				obj->oeroded++;
@@ -10061,7 +10239,7 @@ burnagain:
 
 	case AD_WTHR:
 
-	    if(!mon->mcan && !stack_too_big(obj) && !is_unwitherable(obj) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY ) {
+	    if(!mon->mcan && !stack_too_big(obj) && !is_unwitherable(obj) && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY ) {
 		/*erode_obj(obj, TRUE, FALSE);*/
 
 		if (rn2(2)) {
@@ -10127,7 +10305,7 @@ burnagain:
 		    }
 	    	}
 
-		else if(obj->otyp != SPE_BOOK_OF_THE_DEAD && !is_unwitherable(obj) && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY ) {
+		else if(obj->otyp != SPE_BOOK_OF_THE_DEAD && !is_unwitherable(obj) && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY ) {
 
 		if (rn2(2)) {
 				if (obj->oeroded < MAX_ERODE && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !((obj->blessed && !rnl(4)))) 

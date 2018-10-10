@@ -1959,7 +1959,10 @@ register struct monst *mtmp;
 		    return otmp;
 	}
 
-	if(is_giant(mtmp->data))	/* giants just love to use clubs */
+	/* Amy edit: clubs are such weak weapons, why the hell would giants use those...
+	 * In Soviet Russia, legendary beings always wield the crappiest weapons available even if there's tons of
+	 * better alternatives, because the communist government bans them from using anything else. */
+	if(issoviet && is_giant(mtmp->data))	/* giants just love to use clubs */
 	    Oselect(CLUB);
 
 	/* only strong monsters can wield big (esp. long) weapons */
@@ -4248,6 +4251,7 @@ struct obj *weapon;
 	if ((Race_if(PM_GNOME) || Role_if(PM_GOLDMINER)) && weapon && (weapon->otyp == AKLYS || weapon->otyp == CROSSBOW || weapon->otyp == CROSSBOW_BOLT) ) bonus += 1;
 	if ((Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER)) && weapon && (weapon->otyp == SLING || weapon->otyp == INKA_SLING || weapon->otyp == METAL_SLING || weapon_type(weapon) == -P_SLING) ) bonus += 1;
 	if ((Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER)) && weapon && weapon->otyp == CATAPULT) bonus += 2;
+	if (Race_if(PM_INKA) && weapon && (weapon->otyp == INKA_BLADE || weapon->otyp == INKUTLASS || weapon->otyp == NATURAL_STICK || weapon->otyp == VERMIN_SWATTER || weapon->otyp == INKA_BOOT || weapon->otyp == INKA_SPEAR || weapon->otyp == INKA_STINGER || weapon->otyp == INKA_SHACKLE )) bonus += 2;
 
     return bonus;
 }

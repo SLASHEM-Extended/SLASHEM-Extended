@@ -305,6 +305,7 @@ found:
 	/* we're really going to write now, so calculate cost
 	 */
 	actualcost = rn1(basecost/2,basecost/2);
+	if (isfriday && !rn2(10)) actualcost *= 2;
 
 	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
