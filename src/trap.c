@@ -1117,7 +1117,7 @@ struct monst *victim;
 	    else if (vismon)
 		pline("%s's %s %s", Monnam(victim), aobjnam(otmp,"are"), txt);
 	}
-	if (!rn2(2) && !stack_too_big(otmp) ) {
+	if ((!rn2(2) || (isfriday && !rn2(2)) ) && !stack_too_big(otmp) ) {
 	    otmp->greased -= 1;
 	    if (carried(otmp)) {
 		pline_The("grease dissolves.");
@@ -2012,7 +2012,7 @@ unsigned trflags;
 	if (trap && RngeDenastification) pline("A %s has been sprung.", defsyms[trap_to_defsym(ttype)].explanation);
 
 	/* Traps are 50% more likely to fail for a pickpocket */
-	if (!In_sokoban(&u.uz) && Role_if(PM_PICKPOCKET) && rn2(2)) return;
+	if (!In_sokoban(&u.uz) && Role_if(PM_PICKPOCKET) && ttype != MAGIC_PORTAL && rn2(2)) return;
 
 	/* Players could deduce the position of a nasty trap by running in a corridor. This would probably come into effect
 	 * rarely, but the fact that it was possible at all was unintentional, so I'm closing this loophole just to cover
@@ -2629,7 +2629,7 @@ unsigned trflags;
 		    break;
 		}
 
-		if(Sleep_resistance || breathless(youmonst.data)) {
+		if((Sleep_resistance && rn2(20)) || breathless(youmonst.data)) {
 		    You("are enveloped in a cloud of gas!");
 		    break;
 		}
@@ -15124,6 +15124,7 @@ struct trap *ttmp;
 	if (Numbed) chance++;
 	if (Stunned) chance += 2;
 	if (Feared) chance += 2;
+	if (isfriday) chance++;
 	if (Fumbling) chance *= 2;
 	/* Your own traps are better known than others. */
 	if (ttmp && ttmp->madeby_u) chance--;
