@@ -1,6 +1,13 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.3.7 - October 2018
+- The gun, ammo and banging shops no longer spawn tons of artifacts.
+- Randomly generated artifacts can also be ones that already exist.
+- Angel race player characters will get temporary weak sight when hit by a darkness attack.
+- The inka race is better at using inka weapons.
+- Crossbow ammo spawns in bigger stacks.
+- Pickpockets always trigger magic portals.
+- Sleep resistance no longer offers full immunity from sleep gas traps.
 - Added a new playable hybrid race: extravator.
 
 2.3.6 - October 2018
