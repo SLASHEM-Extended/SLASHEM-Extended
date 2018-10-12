@@ -12,7 +12,7 @@ extern const struct shclass shtypes[];
 
 #else
 
-STATIC_DCL void mkshobj_at(const struct shclass *,int,int);
+STATIC_DCL void mkshobj_at(const struct shclass *,int,int,BOOLEAN_P);
 STATIC_DCL void nameshk(struct monst *,const char * const *);
 STATIC_DCL int  shkinit(const struct shclass *,struct mkroom *);
 
@@ -411,10 +411,11 @@ init_shop_selection()
 #endif /*0*/
 
 STATIC_OVL void
-mkshobj_at(shp, sx, sy)
+mkshobj_at(shp, sx, sy, artif)
 /* make an object of the appropriate type for a shop square */
 const struct shclass *shp;
 int sx, sy;
+boolean artif;
 {
 	struct monst *mtmp;
 	int atype;
@@ -431,18 +432,18 @@ int sx, sy;
 	} else {
 	    atype = get_shop_item(shp - shtypes);
 	    if (atype < 0)
-		(void) mksobj_at(-atype, sx, sy, TRUE, TRUE);
+		(void) mksobj_at(-atype, sx, sy, TRUE, artif);
 	    else
-		(void) mkobj_at(atype, sx, sy, TRUE);
+		(void) mkobj_at(atype, sx, sy, artif);
 	}
 
 	if (ishaxor && (rn2(100) >= depth(&u.uz)) ) {
 
 	    atype = get_shop_item(shp - shtypes);
 	    if (atype < 0)
-		(void) mksobj_at(-atype, sx, sy, TRUE, TRUE);
+		(void) mksobj_at(-atype, sx, sy, TRUE, artif);
 	    else
-		(void) mkobj_at(atype, sx, sy, TRUE);
+		(void) mkobj_at(atype, sx, sy, artif);
 
 	}
 
@@ -1207,7 +1208,13 @@ register struct mkroom *sroom;
 		      (sx == sroom->hx && doors[sh].x == sx+1) ||
 		      (sy == sroom->ly && doors[sh].y == sy-1) ||
 		      (sy == sroom->hy && doors[sh].y == sy+1)) continue;
-	    if (rn2(10)) mkshobj_at(shp, sx, sy);
+	    if (rn2(10)) {
+
+			/* shops that stock very specific items shouldn't have hundreds of artifacts... --Amy */
+			if (sroom->rtype == GUNSHOP || sroom->rtype == BANGSHOP || sroom->rtype == AMMOSHOP) 
+				mkshobj_at(shp, sx, sy, FALSE);
+			else mkshobj_at(shp, sx, sy, TRUE);
+	    }
 	}
 
     /*
