@@ -6393,6 +6393,9 @@ register int num;
 {
 	if (Full_nutrient && num == 1 && rn2(2) && u.uhunger < 2500) num = 0;
 	if (Full_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
+
+	if (num < 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone()) ) num /= 3;
+
 	u.uhunger -= num;
 	newuhs(TRUE);
 }
@@ -6407,6 +6410,8 @@ register int num;
 #ifdef DEBUG
 	debugpline("lesshungry(%d)", num);
 #endif
+	if (num > 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone()) ) num /= 3;
+
 	u.uhunger += num;
 	if(u.uhunger >= 5000) {
 	    if (!iseating || victual.canchoke) {

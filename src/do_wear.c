@@ -5692,6 +5692,8 @@ int retry;
 	    all_worn_categories = TRUE;
     }
 
+	if (InitializationFail || u.uprops[INITIALIZATION_FAIL].extrinsic || have_initializationstone()) return 0;
+
     n = query_objlist("What do you want to take off?", invent,
 			SIGNAL_NOMENU|USE_INVLET|INVORDER_SORT,
 			&pick_list, PICK_ANY,

@@ -386,6 +386,10 @@ unmap_object(x, y)
     register struct obj   *obj;						\
     register struct trap  *trap;					\
 									\
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {	\
+	show_glyph(x, y, cmap_to_glyph(S_stone));	\
+	return;	\
+	}	\
 	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0))  ) {	\
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
@@ -404,6 +408,14 @@ unmap_object(x, y)
 	}								\
 	if (SpellColorBlue && !rn2(10)) { 	\
 	show_glyph(x, y, cmap_to_glyph(S_room));			\
+	return;								\
+	}								\
+	if (SpellColorOrange && (distu(x,y) > 100)) { 	\
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
+	return;								\
+	}								\
+	if (SpellColorBrown && (distu(x,y) % 3 == 0)) { 	\
+	show_glyph(x, y, cmap_to_glyph(S_pile_of_shit));			\
 	return;								\
 	}								\
 									\
@@ -452,6 +464,10 @@ int memory_glyph(x, y)
 {
 #ifdef DISPLAY_LAYERS
 
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	return cmap_to_glyph(S_stone);
+	}
+
 	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
 	return cmap_to_glyph(S_grayglyph);
 	}
@@ -468,6 +484,14 @@ int memory_glyph(x, y)
 
 	if (SpellColorBlue && !rn2(10)) {
 	return cmap_to_glyph(S_room);
+	}
+
+	if (SpellColorOrange && (distu(x,y) > 100)) {
+	return cmap_to_glyph(S_grayglyph);
+	}
+
+	if (SpellColorBrown && (distu(x,y) % 3 == 0)) {
+	return cmap_to_glyph(S_pile_of_shit);
 	}
 
     if (levl[x][y].mem_invis && !(UnderlayerBug || u.uprops[UNDERLAYER_BUG].extrinsic || have_underlaidstone()) )
@@ -954,6 +978,11 @@ newsym(x,y)
 
     if (in_mklev) return;
 
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
+
 	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
@@ -969,10 +998,23 @@ newsym(x,y)
 	return;
 	}
 
-	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) { show_glyph(x, y, cmap_to_glyph(S_stone)); return;}
+	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
 
 	if (SpellColorBlue && !rn2(10)) {
 	show_glyph(x, y, cmap_to_glyph(S_room));
+	return;
+	}
+
+	if (SpellColorOrange && (distu(x,y) > 100)) {
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
+	if (SpellColorBrown && (distu(x,y) % 3 == 0)) {
+	show_glyph(x, y, cmap_to_glyph(S_pile_of_shit));
 	return;
 	}
 
@@ -1234,6 +1276,11 @@ newsymX(x,y)
 
     if (in_mklev) return;
 
+	if ((Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone()) && isok(u.ux, u.uy) && !(levl[u.ux][u.uy].wall_info & W_QUASAROK)) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
+
 	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone()) && ((moves % 15 == 0) || ((moves + 1) % 15 == 0) || ((moves + 2) % 15 == 0) || ((moves + 3) % 15 == 0) || ((moves + 4) % 15 == 0)) ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
@@ -1249,10 +1296,23 @@ newsymX(x,y)
 	return;
 	}
 
-	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) { show_glyph(x, y, cmap_to_glyph(S_stone)); return;}
+	if ( (QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() ) && !(levl[x][y].wall_info & W_QUASAROK) ) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
 
 	if (SpellColorBlue && !rn2(10)) {
 	show_glyph(x, y, cmap_to_glyph(S_room));
+	return;
+	}
+
+	if (SpellColorOrange && (distu(x,y) > 100)) {
+	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
+	return;
+	}
+
+	if (SpellColorBrown && (distu(x,y) % 3 == 0)) {
+	show_glyph(x, y, cmap_to_glyph(S_pile_of_shit));
 	return;
 	}
 

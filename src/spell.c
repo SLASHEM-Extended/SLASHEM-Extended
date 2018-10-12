@@ -53,7 +53,7 @@ STATIC_DCL boolean confused_book(struct obj *);
 STATIC_DCL void deadbook(struct obj *);
 STATIC_PTR int learn(void);
 STATIC_DCL void do_reset_learn(void);
-STATIC_DCL boolean getspell(int *);
+STATIC_DCL boolean getspell(int *, BOOLEAN_P);
 STATIC_DCL boolean dospellmenu(const char *,int,int *);
 STATIC_DCL int percent_success(int);
 STATIC_DCL void cast_protection(void);
@@ -1423,16 +1423,45 @@ age_spells()
  * parameter.  Otherwise return FALSE.
  */
 STATIC_OVL boolean
-getspell(spell_no)
+getspell(spell_no, goldspellpossible)
 	int *spell_no;
+	boolean goldspellpossible;
 {
-	int nspells, idx;
+	int nspells, idx, n, thisone, choicenumber;
 	char ilet, lets[BUFSZ], qbuf[QBUFSZ];
 
 	if (spellid(0) == NO_SPELL)  {
 	    You("don't know any spells right now.");
 	    return FALSE;
 	}
+
+	if ((Goldspells || u.uprops[GOLDSPELLS].extrinsic || have_goldspellstone()) && goldspellpossible) {
+
+		for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+			continue;
+		if (n) {
+			thisone = -1;
+			choicenumber = 0;
+			for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+				if (!choicenumber || (!rn2(choicenumber + 1)) ) {
+					thisone = n;
+				}
+				choicenumber++;
+			}
+
+			if (choicenumber > 0 && thisone >= 0) {
+				pline("You cast %s.", spellname(thisone));
+				spelleffects(thisone, FALSE);
+				TimerunBug += 1; /* ugh, ugly hack --Amy */
+				return FALSE;
+			}
+		}
+		/* we somehow didn't choose a spell */
+		pline("You fail to cast a spell.");
+		TimerunBug += 1; /* ugh, ugly hack --Amy */
+		return FALSE;
+	}
+
 	if (flags.menu_style == MENU_TRADITIONAL) {
 	    /* we know there is at least 1 known spell */
 	    for (nspells = 1; nspells < MAXSPELL
@@ -1498,7 +1527,7 @@ docast()
 		return 0;
 	}
 
-	if (getspell(&spell_no)) {
+	if (getspell(&spell_no, TRUE)) {
 
 		/* Spellbinder allows you to cast several spells in one turn, but not the same spell twice --Amy */
 
@@ -2033,9 +2062,19 @@ boolean atme;
 
 	}
 
+	if (SpellColorBrown && !(t_at(u.ux, u.uy)) ) {
+		register struct trap *shittrap;
+		shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0);
+		if (shittrap && !(shittrap->hiddentrap)) {
+			shittrap->tseen = 1;
+		}
+	}
+
 	if (SpellColorPink) {
 		pline("%s", fauxmessage());
 	}
+
+	if (SpellColorViolet) pushplayer();
 
 	if (SpellColorGreen) {
 		register int zx, zy;
@@ -2081,7 +2120,12 @@ boolean atme;
 
 		/* Higher spellcasting skills mean failure takes less mana. --Amy */
 
-		u.uen -= ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
+		register int confusedcost = ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
+
+		u.uen -= confusedcost;
+
+		if (SpellColorOrange) losehp(confusedcost, "casting an orange spell while confused", KILLED_BY);
+
 		flags.botl = 1;
 		return(1);
 	}
@@ -2097,7 +2141,12 @@ boolean atme;
 				badeffect();
 			}
 
-			u.uen -= ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
+			register int confusedcost = ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
+
+			u.uen -= confusedcost;
+
+			if (SpellColorOrange) losehp(confusedcost, "casting an orange spell while trembling", KILLED_BY);
+
 			flags.botl = 1;
 			return(1);
 		}
@@ -2113,6 +2162,9 @@ boolean atme;
 	}
 
 	u.uen -= energy;
+
+	if (SpellColorOrange) losehp(energy, "casting an orange spell with too little health", KILLED_BY);
+
 	/* And if the amulet drained it below zero, set it to zero and just make the spell fail now. */
 	if (u.uhave.amulet && u.amuletcompletelyimbued && u.uen < 0) {
 		pline("You are exhausted, and fail to cast the spell due to the amulet draining all your energy away.");
@@ -2317,6 +2369,11 @@ magicalenergychoice:
 			pushplayer();
 			pline("The winds hurt you!");
 			losehp(rnd(10), "winds", KILLED_BY);
+			if (In_sokoban(&u.uz)) {
+				change_luck(-1);
+				pline("You cheater!");
+				if (evilfriday) u.ugangr++;
+			}
 		}
 		if (pseudo->otyp == SPE_CHAOS_BOLT) {
 			if (!rn2(3)) {
@@ -7557,7 +7614,7 @@ studyspell()
 	/*Vars are for studying spells 'W', 'F', 'I', 'N'*/
 	int spell_no;
 
-	if (getspell(&spell_no)) {
+	if (getspell(&spell_no, FALSE)) {
 		if (spellknow(spell_no) <= 0) {
 			You("are unable to focus your memory of the spell.");
 			return (FALSE);

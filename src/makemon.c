@@ -17071,6 +17071,7 @@ loopback:
 		if (ct > 0 && (ptr->mlet == urole.enemy2sym)) ct += 2;
 
 		if (ct > 0 && (ptr->mcolor == u.frequentcolor)) ct += u.freqcolorbonus;
+		if (ct > 0 && (ptr->mcolor == CLR_MAGENTA || ptr->mcolor == CLR_BRIGHT_MAGENTA) && SpellColorViolet) ct += 20;
 
 		if (ct > 0 && (In_gehennom(&u.uz) && is_demon(ptr))) ct += 10;
 		if (ct > 0 && (In_gehennom(&u.uz) && dmgtype(ptr, AD_FIRE) )) ct += 1;
@@ -17882,6 +17883,7 @@ int     spc;
 		if (last == u.frequentspecies19) num += u.freqspeciesbonus19;
 		if (last == u.frequentspecies20) num += u.freqspeciesbonus20;
 		if (mons[last].mcolor == u.frequentcolor) num += u.freqcolorbonus;
+		if ((mons[last].mcolor == CLR_MAGENTA || mons[last].mcolor == CLR_BRIGHT_MAGENTA) && SpellColorViolet) num += 20;
 
 		if ((In_gehennom(&u.uz) && is_demon(&mons[last]))) num += 10;
 		if ((In_gehennom(&u.uz) && dmgtype(&mons[last], AD_FIRE) )) num += 1;
@@ -18376,6 +18378,7 @@ int     spc;
 		if (first == u.frequentspecies19) num -= u.freqspeciesbonus19;
 		if (first == u.frequentspecies20) num -= u.freqspeciesbonus20;
 		if (mons[first].mcolor == u.frequentcolor) num -= u.freqcolorbonus;
+		if ((mons[first].mcolor == CLR_MAGENTA || mons[first].mcolor == CLR_BRIGHT_MAGENTA) && SpellColorViolet) num -= 20;
 
 		if ((In_gehennom(&u.uz) && is_demon(&mons[first]))) num -= 10;
 		if ((In_gehennom(&u.uz) && dmgtype(&mons[first], AD_FIRE) )) num -= 1;

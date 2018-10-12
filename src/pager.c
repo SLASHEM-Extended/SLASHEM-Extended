@@ -148,7 +148,7 @@ lookat(x, y, buf, monbuf)
 			(how & 4) ? "monster detection" : "");
 	}
 
-	    if (levl[x][y].seenv && !(GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
 
 			if (IS_TREE(levl[x][y].typ))
 			    sprintf(eos(buf), ", on a tree");
@@ -315,7 +315,7 @@ lookat(x, y, buf, monbuf)
 
 		/* tell player what the terrain is, as long as no nasty trap effects are active and the tile has
 		 * already been seen, because this information really should be available to the player --Amy */
-	    if (levl[x][y].seenv && !(GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
 
 			if (IS_TREE(levl[x][y].typ))
 			    sprintf(eos(buf), ", on a tree");
@@ -845,7 +845,7 @@ lookat(x, y, buf, monbuf)
 
 	strcpy(buf, defsyms[trap_to_defsym(tnum)].explanation);
 
-	    if (levl[x][y].seenv && !(GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
+	    if (levl[x][y].seenv && !(SpellColorOrange || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH)) ) {
 
 			if (IS_TREE(levl[x][y].typ))
 			    sprintf(eos(buf), ", on a tree");
@@ -995,7 +995,7 @@ lookat(x, y, buf, monbuf)
 	break;
 	} /* switch end */
 
-	if (!Hallucination && levl[x][y].seenv && !(GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
+	if (!Hallucination && levl[x][y].seenv && !(SpellColorOrange || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
 		register struct trap *seethetrap;
 		register int tt;
 		if ((seethetrap = t_at(x, y)) && seethetrap && seethetrap->tseen) {
@@ -1408,7 +1408,7 @@ do_look(quick)
 			strcat(out_str, " co-located with a boulder");
 
 		/* guh, need to paste all the code here too... --Amy */
-		if (from_screen && levl[cc.x][cc.y].seenv && !(GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
+		if (from_screen && levl[cc.x][cc.y].seenv && !(SpellColorOrange || SpellColorBrown || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || SpellColorBlue || KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone() || StarlitBug || u.uprops[STARLIT_BUG].extrinsic || have_starlitskystone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH))) {
 			if (IS_TREE(levl[cc.x][cc.y].typ))
 			    sprintf(eos(out_str), ", on a tree");
 			else if (IS_IRONBAR(levl[cc.x][cc.y].typ))
@@ -2666,6 +2666,10 @@ dohistory()
 	return 0;
 }
 
+static const char * const longinggirls[] = {
+"Sabrina", "Sabine", "Larissa", "Jil", "Sally", "Elke", "Ina", "Birgit", "Arabella", "Anastasia", "Henrietta", "Katrin", "Jana", "Inge", "Vera", "Sarah", "Iris", "Mariya", "Wendy", "Katia", "Tanja", "Vanessa", "Anne", "Lena", "Jeanetta", "Melissa", "Madeleine", "Anita", "Nina", "Natascha", "Natalje", "Ronja", "Roswitha", "Sing", "Johanetta", "Julia", "Yvonne", "Magdalena", "Eveline", "Bea", "Corina", "Elif", "Nadja", "Sunali", "Solvejg", "Thai", "Meltem", "Susanne", "Rita", "Kati", "Mailie", "Klara", "Sandra", "Antonia", "Chaska", "Ludgera", "Laura", "Eva", "Maurah", "Sophie", "Marian", "Patricia", "Kerstin", "Hanh", "Antje", "Jennifer", "Karin", "Nicole", "Bettina", "Heike", "Dora", "Maite", "Ruth", "Verena", "Lou", "Danielle", "Ann Kathrin", "Conny", "Lisa", "Anja", "Yasaman", "Almut", "Ksenia", "Miriam", "Elena", "Katharina", "Helen", "Victoria", "Simone", "Nataliya", "Kristin", "Nelly", "Rejda", "Nora", "Jasieen", "Marike", "Charlotte", "Friederike", "Sophia", "Sue Lyn", "Juen", "Ruea", "Gudrun", "Ella", "Manuela", "Greta", "Jane", "Eliane", "Fenja", "Alexia", "Annemarie", "Mandarina", "Ariane", "Carina", "Denise", "Kira", "Nadine", "Franzi", "Amelie", "Annika", "Barbara", "Bianca", "Carmen", "Hilda", "Julietta", "Petra", "Sonja", "Teresa", "Rosy",
+};
+
 static const char * const hussynames[] = {
 "Sabrina", "Sandra", "Ludgera", "Jil", "Sofia", "Arabella", "Anastasia", "Henrietta", "Katrin", "Jana", "Anna", "Elena", "Katharina", "Mariya", "Wendy", "Tanja", "Vanessa", "Jeanetta", "Madeleine", "Anita", "Nina", "Natalje", "Sing", "Bianca", "Julietta", "Teresa", "Rosy", "Greneuvenia", "Arvogenia", "Miesieenia", 
 };
@@ -2678,6 +2682,27 @@ static const char * const bangganggirls[] = {
 
 static const char * const gangscholarverbs[] = {
 "laughs: ", "sneers: ", "bickers: ", "chortles: ", "giggles: ", "hisses: ", "shouts: ", "screams: ", "says: ", "grins: ", "bellows: ", "thunders: ", "booms: ", "snickers: ", "announces: ", "whispers: ", "barks: ", "snarls: ", "mutters: ", "threatens: ", "tells: ", "boasts: ", "messages: ", "grumbles: ", "states: ", "yells: ", "speaks: ", "gloats: ", "growls: ", "remarks: ",
+};
+
+static NEARDATA const char * const longinglines[] = {
+"You just can't stop thinking about the sexy %s.",
+"%s has such sexy butt cheeks... mmmmmmmm!",
+"You'd loooooove to stroke %s's sexy footwear...",
+"Did you see that %s has totally cute high heels on her feet?",
+"You absolutely want to inhale the smell of %s's worn socks!",
+"Your ultimate dream is to hug %s and shower her with kisses.",
+"%s is a really wonderful lady and you want to marry her!",
+"Your hands absolutely want to feel up %s.",
+"You'd love to get the chance to caress %s's butt cheeks.",
+"You just want to heart and kiss %s.",
+"Being whipped by the tender %s would be pure lust...",
+"You spontaneously come just from thinking about %s.",
+"You close your eyes and think of %s.",
+"In your fantasy, you and %s are a happy couple and you're constantly in her arms.",
+"Do you agree with me that %s is a very sexy woman?",
+"You know that %s can produce very beautiful farting noises.",
+"You absolutely love it if %s makes air current noises.",
+"The clacking sounds of %s's high heels are so sexy that just thinking about them makes you wet.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {
@@ -20357,6 +20382,12 @@ soviettaunt()
 }
 
 const char *
+longingmessage()
+{
+	return (longinglines[rn2(SIZE(longinglines))]);
+}
+
+const char *
 gangscholartaunt()
 {
 	return (hussylines[rn2(SIZE(hussylines))]);
@@ -20384,6 +20415,14 @@ const char *
 gangscholartaunt_specific2()
 {
 	return (bangganglines_specific[rn2(SIZE(bangganglines_specific))]);
+}
+
+void
+longingtrapeffect()
+{
+	char buf[BUFSZ];
+	pline(longingmessage(), longinggirls[rn2(SIZE(longinggirls))]);
+
 }
 
 void

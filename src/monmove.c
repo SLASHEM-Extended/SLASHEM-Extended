@@ -624,6 +624,11 @@ register struct monst *mtmp;
 		}
 	}
 
+	if ((mtmp->data->geno & G_UNIQ) && !rn2(20) && (RangCallEffect || u.uprops[RANG_CALL_EFFECT].extrinsic || have_rangcallstone())) {
+		pline("A horrible call rang in your head...");
+		/* this will increase sanity one day */
+	}
+
 	if (mdat == &mons[PM_BUNDLE_MONSTER] && !rn2(10) && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) ) {
 		You_hear("'bundlebundlebundle!!'");
 	}
@@ -2017,6 +2022,8 @@ not_special:
 		if (avoid && (info[i] & NOTONL)) continue;
 		nx = poss[i].x;
 		ny = poss[i].y;
+
+		if (FeelerGauges || u.uprops[FEELER_GAUGES].extrinsic || have_feelergaugesstone() ) appr = 1;
 
 		if (appr != 0) {
 		    mtrk = &mtmp->mtrack[0];

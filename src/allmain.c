@@ -1386,6 +1386,13 @@ moveloop()
 		    if (u.uhunger >= 9000) moveamt -= (moveamt / 5);
 		    if (u.uhunger >= 10000) moveamt -= (moveamt / 5);
 
+			/* fluctuating speed - sadly jonadab never fully disclosed how that bug worked in fourk... */
+		    if ((FluctuatingSpeed || u.uprops[FLUCTUATING_SPEED].extrinsic || have_fluctuatingspeedstone()) && moveamt > 0) {
+			moveamt *= ((moves % 50) + 1);
+			moveamt /= 12;
+			if (moveamt < 1) moveamt = 1;
+		    }
+
 		    youmonst.movement += moveamt;
 		    if (youmonst.movement < 0) youmonst.movement = 0;
 		    settrack();
@@ -1490,6 +1497,18 @@ moveloop()
 		    } /* for loop */
 
 		}
+
+		if (CursedParts && !rn2(500)) bad_equipment();
+
+		if (u.uprops[CURSED_PARTS].extrinsic && !rn2(500)) bad_equipment();
+
+		if (have_cursedpartstone() && !rn2(500)) bad_equipment();
+
+		if (AppearanceShuffling && !rn2(2000)) initobjectsamnesia();;
+
+		if (u.uprops[APPEARANCE_SHUFFLING].extrinsic && !rn2(2000)) initobjectsamnesia();;
+
+		if (have_appearanceshufflingstone() && !rn2(2000)) initobjectsamnesia();;
 
 		if (FaintActive && !rn2(100) && multi >= 0) {
 
@@ -1626,6 +1645,10 @@ moveloop()
 
 		if (Role_if(PM_GANG_SCHOLAR) && !rn2(1000)) {
 			gangscholarmessage();
+		}
+
+		if ((LongingEffect || u.uprops[LONGING_EFFECT].extrinsic || have_longingstone()) && !rn2(50)) {
+			longingtrapeffect();
 		}
 
 		if (RngeLoudspeakers && !rn2(100)) {
@@ -7072,6 +7095,25 @@ newbossB:
 
 				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, SHIT_TRAP, 0);
+					break;
+					}
+			}
+		}
+
+		if (SpellColorBrown && !rn2(500) ) {
+			int tryct = 0;
+			int x, y;
+			register struct trap *shittrap;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (x && y && isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					shittrap = maketrap(x, y, SHIT_TRAP, 0);
+					if (shittrap && !(shittrap->hiddentrap)) {
+						shittrap->tseen = 1;
+					}
 					break;
 					}
 			}

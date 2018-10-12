@@ -560,7 +560,8 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	if (u.ulevel < MAXULEV) {
 
-	if (!ishomicider || rn2(2)) {	/* homicider only gains hp/pw 50% of the time --Amy */
+	if ((!ishomicider || rn2(2)) && !(Deprovement || u.uprops[DEPROVEMENT].extrinsic || have_deprovementstone())
+) {	/* homicider only gains hp/pw 50% of the time --Amy */
 	/* a.k.a. "bullshit downside that every fun new race gets" (term coined by Khor) */
 
 	num = newhp();
@@ -620,7 +621,8 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	} else { /* u.ulevel > MAXULEV */
 
-	if (!ishomicider || rn2(2)) {	/* homicider only gains hp/pw 50% of the time --Amy */
+	if ((!ishomicider || rn2(2)) && !(Deprovement || u.uprops[DEPROVEMENT].extrinsic || have_deprovementstone())
+) {	/* homicider only gains hp/pw 50% of the time --Amy */
 	/* a.k.a. "bullshit downside that every fun new race gets" (term coined by Khor) */
 
 	num = newhp();
@@ -4088,7 +4090,7 @@ boolean incr;	/* true iff via incremental experience growth */
 
 		}
 
-		if (Race_if(PM_PLAYER_SLIME) && Role_if(PM_DQ_SLIME) && (u.ulevel > u.urmaxlvlI) ) {
+		if (Race_if(PM_PLAYER_SLIME) && !(Deprovement || u.uprops[DEPROVEMENT].extrinsic || have_deprovementstone()) && Role_if(PM_DQ_SLIME) && (u.ulevel > u.urmaxlvlI) ) {
 
 		u.urmaxlvlI = u.ulevel;
 

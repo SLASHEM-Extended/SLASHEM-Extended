@@ -1319,7 +1319,7 @@ int retry;
 	    otmp2 = otmp->nobj;
 	    n_dropped += drop(otmp);
 	}
-    } else {
+    } else if (!(InitializationFail || u.uprops[INITIALIZATION_FAIL].extrinsic || have_initializationstone())) {
 	/* should coordinate with perm invent, maybe not show worn items */
 	n = query_objlist("What would you like to drop?", invent,
 			USE_INVLET|INVORDER_SORT, &pick_list,
@@ -1752,7 +1752,7 @@ boolean at_stairs, falling, portal;
 	 * comment by Amy: Yes, it definitely is. That's why I don't re-enable it...
 	 * except in evilvariant mode, because that one is deliberately designed to screw you over :P */
 
-	if (Inhell && evilfriday && up && u.uhave.amulet && !newdungeon && !portal && (dunlev(&u.uz) < dunlevs_in_dungeon(&u.uz)-3)) {
+	if ( ((Inhell && evilfriday && u.uhave.amulet) || (MysteriousForceActive || u.uprops[MYSTERIOUS_FORCE_EFFECT].extrinsic || have_forcestone())) && up && !newdungeon && !portal && (dunlev(&u.uz) < dunlevs_in_dungeon(&u.uz)-3)) {
 		if (!rn2(4)) {
 			int odds = 3 + (int)u.ualign.type;          /* 2..4 */
 
@@ -4168,6 +4168,10 @@ rerollchaloc:
 		mesg = buf;
 	    }
 	    if (mesg) pline("%s", mesg);
+	}
+
+	if (SatanEffect || u.uprops[SATAN_EFFECT].extrinsic || have_satanstone()) {
+		nomul(-2, "paralyzed by Satan", TRUE);
 	}
 
 #ifdef REINCARNATION

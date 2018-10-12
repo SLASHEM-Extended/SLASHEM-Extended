@@ -5470,6 +5470,11 @@ struct obj *otmp;
 		return;
 	}
 
+	if (rn2(10) && (ShroudedIdentity || u.uprops[SHROUDED_IDENTITY].extrinsic || have_shroudedidentitystone()) ) {
+		pline("The item's identity remains shrouded.");
+		return;
+	}
+
 	if (otmp->oclass == SCROLL_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idscrollpenalty) > 100) pline("The scroll resisted your identification attempt!");
 	else if (otmp->oclass == POTION_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && rnd(u.idpotionpenalty) > 3) pline("The potion resisted your identification attempt!");
 	else if (otmp->oclass == RING_CLASS && !(otmp->oartifact) && !(otmp->fakeartifact) && (!(otmp->owornmask & W_RING) || ((rnd(u.idringpenalty) > 4) && (rnd(u.idringpenalty) > 4)) ) && rnd(u.idringpenalty) > 4) pline("The ring resisted your identification attempt!");
@@ -5498,6 +5503,11 @@ struct obj *otmp;
 
 	if (!rn2(3) && RngeIgnorance) {
 		pline("You are too ignorant, and therefore the identification attempt fails.");
+		return;
+	}
+
+	if (rn2(10) && (ShroudedIdentity || u.uprops[SHROUDED_IDENTITY].extrinsic || have_shroudedidentitystone()) ) {
+		pline("The item's identity remains shrouded.");
 		return;
 	}
 
@@ -5554,6 +5564,8 @@ int id_limit;
 	sprintf(buf, "What would you like to identify %s?",
 		first ? "first" : "next");
 identifydialogue:
+	if (InitializationFail || u.uprops[INITIALIZATION_FAIL].extrinsic || have_initializationstone()) return;
+
 	n = query_objlist(buf, invent, SIGNAL_NOMENU|USE_INVLET|INVORDER_SORT,
 		&pick_list, PICK_ANY, not_fully_identified);
 

@@ -2028,8 +2028,10 @@ E const char *gangscholartaunt2(void);
 E const char *gangscholartaunt3(void);
 E const char *gangscholartaunt_specific(void);
 E const char *gangscholartaunt_specific2(void);
+E const char *longingmessage(void);
 
 E void gangscholarmessage(void);
+E void longingtrapeffect(void);
 
 /* ### pcmain.c ### */
 

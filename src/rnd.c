@@ -2858,6 +2858,7 @@ void
 randomnastytrapeffect(duration, blackngvar)
 int duration, blackngvar;
 {
+		if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) duration *= 20;
 
 		switch (rnd(229)) {
 
@@ -3081,7 +3082,7 @@ int duration, blackngvar;
 			case 189: PermacurseEffect += rnz(duration); break;
 			case 190: ShroudedIdentity += rnz(duration); break;
 			case 191: FeelerGauges += rnz(duration); break;
-			case 192: LongScrewup += rnz(duration); break;
+			case 192: LongScrewup += rnz(duration * 20); break;
 			case 193: WingYellowChange += rnz(duration); break;
 			case 194: LifeSavingBug += rnz(duration); break;
 			case 195: CurseuseEffect += rnz(duration); break;

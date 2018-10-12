@@ -1590,10 +1590,11 @@ register int x, y, typ, replacechance;
 	}
 	ttmp->hiddentrap = 0;
 	if (!rn2(!(u.monstertimefinish % 13336) ? 3 : !(u.monstertimefinish % 1336) ? 10 : !(u.monstertimefinish % 136) ? 30 : 100)) ttmp->hiddentrap = 1;
-	if (u.uprops[INVIS_TRAPS_EFFECT].extrinsic || InvisibleTrapsEffect || have_invisostone() ) ttmp->hiddentrap = 1;
+	if (NownsibleEffect || u.uprops[NOWNSIBLE_EFFECT].extrinsic || have_nownsiblestone() ) ttmp->hiddentrap = 1;
 
 	if (ttmp->ttyp == u.invisotrap) ttmp->hiddentrap = 1;
 	if (ttmp->ttyp == INVISIBLE_TRAP) ttmp->hiddentrap = 1;
+	if (ttmp->ttyp == NOWNSIBLE_TRAP) ttmp->hiddentrap = 1;
 	if (ttmp->ttyp == KOP_CUBE) ttmp->hiddentrap = 1;
 	if (ttmp->ttyp == BOSS_SPAWNER) ttmp->hiddentrap = 1;
 
@@ -1629,7 +1630,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	register int newlevel = dunlev(&u.uz);
 
 	/* KMH -- You can't escape the Sokoban level traps */
-	if(Blind && Levitation && !In_sokoban(&u.uz)) return;
+	if(Blind && Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) && !In_sokoban(&u.uz)) return;
 
 	do {
 	    newlevel++;
@@ -1653,12 +1654,11 @@ boolean td;	/* td == TRUE : trap door or hole */
 
 	if (In_sokoban(&u.uz) && Can_fall_thru(&u.uz))
 	    ;	/* KMH -- You can't escape the Sokoban level traps */
-	else if(Levitation || u.ustuck || !Can_fall_thru(&u.uz)
+	else if((Levitation || u.ustuck || !Can_fall_thru(&u.uz)
 	   || Flying || is_clinger(youmonst.data)
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)
-	   || (Inhell && !u.uevent.invoked &&
-					newlevel == dunlevs_in_dungeon(&u.uz))
-		) {
+	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)))
+		&& !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
 		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)            
 		pline("But thanks to your trusty whip ...");
 	    dont_fall = "don't fall in.";
@@ -1702,7 +1702,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	register int newlevel = dunlev(&u.uz);
 
 	/* KMH -- You can't escape the Sokoban level traps */
-	if(Blind && Levitation && !In_sokoban(&u.uz)) return;
+	if(Blind && Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) && !In_sokoban(&u.uz)) return;
 
 	do {
 	    newlevel++;
@@ -1726,12 +1726,11 @@ boolean td;	/* td == TRUE : trap door or hole */
 
 	if (In_sokoban(&u.uz) && Can_fall_thru(&u.uz))
 	    ;	/* KMH -- You can't escape the Sokoban level traps */
-	else if(Levitation || u.ustuck || !Can_fall_thru(&u.uz)
+	else if((Levitation || u.ustuck || !Can_fall_thru(&u.uz)
 	   || Flying || is_clinger(youmonst.data)
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)
-	   || (Inhell && !u.uevent.invoked &&
-					newlevel == dunlevs_in_dungeon(&u.uz))
-		) {
+	   || (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)))
+		&& !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
 		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp == BULLWHIP)            
 		pline("But thanks to your trusty whip ...");
 	    dont_fall = "don't fall in.";
@@ -2063,6 +2062,8 @@ unsigned trflags;
 	nastytrapdur = (Role_if(PM_GRADUATE) ? 12 : Role_if(PM_GEEK) ? 25 : 50);
 	if (!nastytrapdur) nastytrapdur = 50; /* fail safe */
 
+	if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) nastytrapdur *= 20;
+
 	femmytrapdur = (Role_if(PM_LADIESMAN) ? 5 : Role_if(PM_SEXYMATE) ? 10 : 20);
 	if (!rn2(2)) femmytrapdur /= 2;
 	if (!rn2(5)) femmytrapdur /= 3;
@@ -2103,7 +2104,7 @@ unsigned trflags;
 	    	defsyms[trap_to_defsym(ttype)].explanation);
 	    /* then proceed to normal trap effect */
 	} else if (already_seen) {
-	    if ((Levitation || Flying) &&
+	    if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) &&
 		    (ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == HOLE ||
 		    ttype == BEAR_TRAP)) {
 		You("%s over %s %s.",
@@ -2581,7 +2582,7 @@ unsigned trflags;
 		break;
 
 	    case SQKY_BOARD:	    /* stepped on a squeaky board */
-		if (Levitation || Flying) {
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
 		    if (!Blind) {
 			seetrap(trap);
 			if (Hallucination)
@@ -2618,7 +2619,7 @@ unsigned trflags;
 		break;
 
 	    case BEAR_TRAP:
-		if(Levitation || Flying) break;
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) break;
 		seetrap(trap);
 		if(amorphous(youmonst.data) || is_whirly(youmonst.data) ||
 						    unsolid(youmonst.data)) {
@@ -2765,7 +2766,7 @@ unsigned trflags;
 
 	    case ACID_POOL:
 
-		if (Levitation || Flying) break; /* this trap is ground-based */
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) break; /* this trap is ground-based */
 
 		seetrap(trap);
 
@@ -2797,7 +2798,7 @@ unsigned trflags;
 
 	    case WATER_POOL:
 
-		if (Levitation || Flying) break; /* this trap is ground-based */
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) break; /* this trap is ground-based */
 
 		seetrap(trap);
 
@@ -4198,7 +4199,7 @@ rerollX:
 
 	    case QUICKSAND_TRAP:
 
-		if (Levitation || Flying) {
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
 
 			if (rn2(10)) break;
 			else pline("You are pulled downwards...");
@@ -5275,7 +5276,7 @@ rerollX:
 
 	    case SHIT_TRAP:
 
-		if ((Levitation || Flying || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !FemaleTrapAnastasia && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chang'i poshnalar") )) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qo'tos botlarni") ) ) ) { /* ground-based trap, obviously */
+		if ((Levitation || Flying || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) && !SpellColorBrown && !FemaleTrapAnastasia && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ski heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "lyzhnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chang'i poshnalar") )) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(u.twoweap && uswapwep && uswapwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "hugging boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obnimat'sya sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "havola etdi chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buffalo boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buyvolovyye sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "qo'tos botlarni") ) ) ) { /* ground-based trap, obviously */
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s on the ground below you.",
@@ -5297,7 +5298,7 @@ rerollX:
 	    case ANOXIC_PIT:
 	    case ACID_PIT:
 		/* KMH -- You can't escape the Sokoban level traps */
-		if (!In_sokoban(&u.uz) && (Levitation || Flying)) break;
+		if (!In_sokoban(&u.uz) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) && (Levitation || Flying)) break;
 
 		if (ttype == SHIT_PIT && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yellow sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zheltyye krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sariq shippak") ))) break;
 
@@ -6213,7 +6214,7 @@ madnesseffect:
 	    case LANDMINE: {
 		unsigned steed_mid = 0;
 		struct obj *saddle = 0;
-		if (Levitation || Flying) {
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s in a pile of soil below you.",
@@ -6350,7 +6351,7 @@ madnesseffect:
 		if (thick_skinned(youmonst.data) || (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) {
 			pline("But it breaks off against your body.");
 			deltrap(trap);
-		} else if (Levitation) {
+		} else if (Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) {
 			pline("The spear isn't long enough to reach you.");
 		} else if (unsolid(youmonst.data)) {
 			pline("It passes right through you!");
@@ -6397,7 +6398,7 @@ madnesseffect:
 		break;
 
 	    case TURN_TABLE:
-		if (Levitation || Flying || unsolid(youmonst.data)) break;
+		if ( ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) || unsolid(youmonst.data)) break;
 
 		i = rn2(15);
 		if (trap->once && i < 1) {
@@ -6608,7 +6609,7 @@ madnesseffect:
 		break;
 
 	    case BANANA_TRAP:
-		if (Levitation || Flying) break ;
+		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) break;
 		trap->once = 1;
 		seetrap(trap);
 
@@ -8529,7 +8530,7 @@ madnesseffect:
 
 			if (LongScrewup) break;
 
-			LongScrewup = rnz(nastytrapdur * (monster_difficulty() + 1));
+			LongScrewup = rnz(nastytrapdur * 20 * (monster_difficulty() + 1));
 
 		 break;
 

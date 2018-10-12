@@ -1311,6 +1311,7 @@ unsigned *ospecial;
 		}
 		if ((Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) ) && (offset >= S_vwall && offset <= S_hcdoor) && !(offset >= S_rockwall && offset <= S_tunnelwall)) color = CLR_BRIGHT_BLUE;
 		if ((Hyperbluewalls || u.uprops[HYPERBLUEWALL_BUG].extrinsic || have_hyperbluestone() || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY)) && (offset == S_dungwall)) color = CLR_BRIGHT_BLUE;
+		if (SpellColorOrange && offset == S_grayglyph) color = CLR_ORANGE;
 		if ((KnowledgeBug || u.uprops[KNOWLEDGE_BUG].extrinsic || have_trapknowledgestone()) && (offset == S_grayglyph)) color = rnd(15);
 		if (Hallucination) color = rnd(15);
 		if ((uarmc && OBJ_DESCR(objects[uarmc->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fleeceling cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "pushistyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "serjunrangli plash") )) && !rn2(5) ) color = rnd(15);

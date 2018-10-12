@@ -11621,7 +11621,13 @@ const char *s;
 	char dirsym;
 	/* WAC add dirsymbols to generic prompt */
 	char buf[BUFSZ];
-        
+
+	if (Choicelessness || u.uprops[CHOICELESSNESS].extrinsic || have_choicelessstone()) {
+		u.dx = u.dy = u.dz = 0;
+		confdir();
+		return 1;
+	}
+
 	sprintf(buf, "In what direction? [%s]",
                 (iflags.num_pad ? ndir : sdir));
 
