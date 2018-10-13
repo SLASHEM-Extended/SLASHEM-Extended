@@ -923,9 +923,11 @@ STATIC_DCL void postadjabil(long *);
 boolean
 adjattrib(ndx, incr, msgflg)
 	int	ndx, incr;
-	int	msgflg;	    /* 2 => no message at all, 1 => no message */
-			    /* except encumber, zero => message, and */
-{			    /* negative => conditional (msg if change made) */
+	int	msgflg;
+
+/* 3 => no message at all and no development message, 2 => no message at all (but development can be given),
+ * 1 => no message except encumber, zero => message, and negative => conditional (msg if change made) */
+{
 	if (Fixed_abil || Race_if(PM_SUSTAINER) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || !incr) return FALSE;
 
 	if ((ndx == A_INT || ndx == A_WIS)
@@ -972,7 +974,7 @@ adjattrib(ndx, incr, msgflg)
 	    }
 
 		/* you won't always get the increase if the attribute is already rather high --Amy */
-	    if (!attr_will_go_up(ndx, TRUE)) return FALSE;
+	    if (!attr_will_go_up(ndx, msgflg <= 2 ? TRUE : FALSE)) return FALSE;
 
 	    ABASE(ndx) += incr;
 	    if(ABASE(ndx) > AMAX(ndx)) {
