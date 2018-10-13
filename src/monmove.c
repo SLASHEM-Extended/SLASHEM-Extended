@@ -626,7 +626,7 @@ register struct monst *mtmp;
 
 	if ((mtmp->data->geno & G_UNIQ) && !rn2(20) && (RangCallEffect || u.uprops[RANG_CALL_EFFECT].extrinsic || have_rangcallstone())) {
 		pline("A horrible call rang in your head...");
-		/* this will increase sanity one day */
+		increasesanity(1);
 	}
 
 	if (mdat == &mons[PM_BUNDLE_MONSTER] && !rn2(10) && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) ) {
@@ -693,6 +693,8 @@ register struct monst *mtmp;
 		}
 		badeffect();
 
+		if (!rn2(20)) increasesanity(1);
+
 		while (FemaleTrapElena && !rn2(3)) {
 			pline("You long for more!");
 			pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
@@ -710,6 +712,9 @@ register struct monst *mtmp;
 				badeffect();
 			}
 			badeffect();
+
+			if (!rn2(20)) increasesanity(1);
+
 		}
 
 	}
@@ -741,6 +746,7 @@ register struct monst *mtmp;
 		pline("Using %s %s butt, %s produces tender noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
 		u.ucreamed += rnd(20);
 		make_blinded(Blinded + (long)u.ucreamed, FALSE);
+		if (!rn2(5)) increasesanity(rnd(10));
 
 	}
 	if (mdat->msound == MS_FART_NORMAL && mtmp->crapbonus && (rn2(1000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
@@ -748,6 +754,7 @@ register struct monst *mtmp;
 		pline("Using %s %s butt, %s produces beautiful noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
 		u.ucreamed += rnd(50);
 		make_blinded(Blinded + (long)u.ucreamed, FALSE);
+		if (!rn2(5)) increasesanity(rnd(10));
 
 	}
 	if (mdat->msound == MS_FART_LOUD && mtmp->crapbonus && (rn2(400) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
@@ -755,6 +762,7 @@ register struct monst *mtmp;
 		pline("Using %s %s butt, %s produces disgusting noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
 		u.ucreamed += rnd(100);
 		make_blinded(Blinded + (long)u.ucreamed, FALSE);
+		if (!rn2(5)) increasesanity(rnd(10));
 
 	}
 
@@ -1086,7 +1094,7 @@ register struct monst *mtmp;
 		    case 16: make_dimmed(HDimmed + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
 			    break;
 		    }
-
+			if (!rn2(20)) increasesanity(rnd(10));
 		}
 
 	}
@@ -1228,6 +1236,8 @@ register struct monst *mtmp;
 					badeffect();
 				}
 				losehp(dmg, "psychic blast", KILLED_BY_AN);
+				if (!rn2(25)) increasesanity(1);
+
 				stop_occupation();
 			}
 		}

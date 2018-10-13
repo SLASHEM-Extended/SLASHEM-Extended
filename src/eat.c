@@ -3060,6 +3060,12 @@ register int pm;
 		  }
 		}
 
+	/* insanity monsters should not be eaten... --Amy */
+		if (dmgtype(ptr, AD_INSA)) {
+			pline("It tasted really, really strange.");
+			increasesanity(rnz(100));
+		}
+
 	/* skill cap reducing monsters very rarely grant something good too --Amy */
 		if (dmgtype(ptr, AD_SKIL) && (ptr->mlevel > rn2(Race_if(PM_ILLITHID) ? 210 : 70) && rn2(2) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() )  ) ) {
 

@@ -1571,6 +1571,8 @@ register struct monst *mtmp;
       else nomul(-rnz(3 + mtmp->crapbonus), "listening to disgusting crapping noises", TRUE);
       nomovemsg = "At last, you get yourself together, ready to move on.";
 
+	if (!rn2(10)) increasesanity(1);
+
     }
 
     if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && uarmc && uarmc->oartifact == ART_TOILET_NOISES && multi >= 0 && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemaleTrapKatharina) && ((mtmp->data->msound != MS_FART_QUIET) && (mtmp->data->msound != MS_FART_NORMAL) && (mtmp->data->msound != MS_FART_LOUD) ) ) {
@@ -1583,6 +1585,7 @@ register struct monst *mtmp;
 	pline("Because you are stupid, you stop to listen.");
 	nomul(-rnz(3 + mtmp->crapbonus), "listening to crapping noises", TRUE);
       nomovemsg = "At last, you get yourself together, ready to move on.";
+	if (!rn2(10)) increasesanity(1);
     }
 
     /* Gremlin multiplying won't go on forever since the hit points
@@ -5878,6 +5881,7 @@ register struct monst *mtmp;
 			badeffect();
 		}
 		badeffect();
+		if (!rn2(20)) increasesanity(1);
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
@@ -5895,6 +5899,7 @@ register struct monst *mtmp;
 			badeffect();
 		}
 		badeffect();
+		if (!rn2(20)) increasesanity(1);
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
@@ -5911,6 +5916,7 @@ register struct monst *mtmp;
 			badeffect();
 		}
 		badeffect();
+		if (!rn2(20)) increasesanity(1);
     }
     if (mtmp->egotype_farter) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), !rn2(6) ? "disgusting" : !rn2(5) ? "loud" : !rn2(4) ? "tender" : !rn2(3) ? "soft" : !rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
@@ -5926,6 +5932,7 @@ register struct monst *mtmp;
 			badeffect();
 		}
 		badeffect();
+		if (!rn2(20)) increasesanity(1);
     }
 
     if(mtmp->data->msound == MS_SOUND || mtmp->egotype_sounder) {

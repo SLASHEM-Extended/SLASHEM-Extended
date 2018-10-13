@@ -8484,6 +8484,8 @@ u_init()
 	u.egglayingtimeout = 0;
 	u.dragonpolymorphtime = 0;
 
+	u.usanity = 0;
+
 	u.impossibleproperty = randomdisableproperty();
 	u.nonextrinsicproperty = randomdisableproperty();
 	u.nonintrinsicproperty = randomdisableproperty();

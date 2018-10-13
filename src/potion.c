@@ -2743,6 +2743,36 @@ newbadheeltry:
 
 }
 
+/* sanity - yes it's not a bug that you start at 0 sanity and gradually become more sane :P --Amy */
+void
+increasesanity(snamount)
+int snamount;
+{
+	if (Upolyd && dmgtype(youmonst.data, AD_SPC2) && rn2(5)) return;
+	if (Upolyd && dmgtype(youmonst.data, AD_INSA) && rn2(100)) return;
+
+	u.usanity += snamount;
+	if (snamount < 10) pline("Your sanity increases.");
+	else if (snamount < 100) pline("Your sanity increases greatly.");
+	else if (snamount < 1000) pline("Your sanity increases tremendously.");
+	else pline("Your sanity increases gigantically.");
+
+	if (u.usanity > 900) {
+		if (u.usanity <= 9000) You("begin to view the world as the terrible place it really is.");
+		/* there should be some effect here but hell if I remember what it was supposed to be! */
+	}
+
+	if (u.usanity > 9000) {
+		You("realize in shock that this dungeon is a truly atrocious place.");
+		flags.soundok = 0;
+		nomul(-(rnd(5) ), "paralyzed by sanity", TRUE);
+		nomovemsg = "You regain consciousness.";
+	}
+
+	if (rn2(10) && (u.usanity > rn2(1000)) ) badeffect();
+
+}
+
 int
 dodrink()
 {

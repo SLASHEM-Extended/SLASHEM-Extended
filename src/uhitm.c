@@ -8764,6 +8764,8 @@ uchar aatyp;
 			if (!rn2(200)) {
 				badeffect();
 			}
+			if (!rn2(5)) increasesanity(1);
+
 			mdamageu(mon, tmp);
 
 		break;
@@ -9708,6 +9710,7 @@ uchar aatyp;
 		    make_feared(HFeared + (long)tmp, TRUE);
 		    make_stunned(HStun + (long)tmp, TRUE);
 		    make_confused(HConfusion + (long)tmp, TRUE);
+		    increasesanity(1);
 		break;
 	      case AD_BURN:
 		    make_burned(HBurned + (long)tmp, TRUE);

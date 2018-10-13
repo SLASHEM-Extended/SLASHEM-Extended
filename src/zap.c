@@ -4959,6 +4959,7 @@ boolean ordinary;
 			if (!rn2(200)) {
 				badeffect();
 			}
+			if (!rn2(5)) increasesanity(1);
 
         	    break;
 		case WAN_PSYBEAM:
@@ -5015,6 +5016,7 @@ boolean ordinary;
 			if (!rn2(200)) {
 				badeffect();
 			}
+			if (!rn2(5)) increasesanity(1);
 
 		   break;
 
@@ -5078,6 +5080,7 @@ boolean ordinary;
 			if (!rn2(200)) {
 				badeffect();
 			}
+			if (!rn2(5)) increasesanity(1);
 
 		   break;
 
@@ -7842,6 +7845,7 @@ xchar sx, sy;
 		if (!rn2(200)) {
 			badeffect();
 		}
+		if (!rn2(5)) increasesanity(1);
 
 		}
 

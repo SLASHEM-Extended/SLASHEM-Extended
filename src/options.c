@@ -279,6 +279,7 @@ static struct Bool_Opt
 	{"showmc", &flags.showmc, FALSE, SET_IN_GAME},
 	{"showmovement", &flags.showmovement, FALSE, SET_IN_GAME},
 	{"showlongstats", &flags.showlongstats, FALSE, SET_IN_GAME},
+	{"showsanity", &flags.showsanity, FALSE, SET_IN_GAME},
 
 	{"silent", &flags.silent, TRUE, SET_IN_GAME},
 	{"softkeyboard", &iflags.wc2_softkeyboard, FALSE, SET_IN_FILE},
@@ -3061,6 +3062,7 @@ goodfruit:
 #endif
 			 || (boolopt[i].addr) == &flags.showmc
 			 || (boolopt[i].addr) == &flags.showmovement
+			 || (boolopt[i].addr) == &flags.showsanity
 			 || (boolopt[i].addr) == &flags.showlongstats
 
 			    )

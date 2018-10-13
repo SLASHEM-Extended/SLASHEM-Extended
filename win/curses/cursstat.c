@@ -667,6 +667,8 @@ linetwo:
 	if (flags.showmovement && youmonst.data)
 		wprintw(win, " Mov%d", youmonst.data->mmove);
 
+	if (flags.showsanity && youmonst.data)
+		wprintw(win, " Sn%d", u.usanity);
 
     print_statdiff(" AC:", &prevac, u.uac, STAT_AC);
 

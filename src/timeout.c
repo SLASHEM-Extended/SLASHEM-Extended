@@ -229,6 +229,11 @@ nh_timeout()
 	if (u.negativeprotection < 0) u.negativeprotection = 0; /* fail safe */
 	if (u.tremblingamount && !rn2(1000)) u.tremblingamount--;
 	if (u.tremblingamount < 0) u.tremblingamount = 0; /* fail safe */
+	if (u.usanity && !rn2(1000)) {
+		u.usanity--;
+		if (flags.showsanity) flags.botl = 1;
+	}
+	if (u.usanity < 0) u.usanity = 0; /* fail safe */
 	if (u.chokhmahdamage && !rn2(10000) && !(uarmc && uarmc->otyp == CLOAK_OF_ESCALATION) ) u.chokhmahdamage--;
 	if (u.chokhmahdamage < 0) u.chokhmahdamage = 0; /* fail safe */
 

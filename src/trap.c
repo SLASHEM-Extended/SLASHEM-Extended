@@ -2334,6 +2334,8 @@ unsigned trflags;
 
 		badeffect();
 
+		if (!rn2(20)) increasesanity(1);
+
 		break;
 
 	    case MAGIC_BEAM_TRAP:
@@ -16831,6 +16833,8 @@ fartingweb()
 	}
 
 	badeffect();
+
+	if (!rn2(20)) increasesanity(1);
 
 }
 

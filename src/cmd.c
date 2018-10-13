@@ -3218,6 +3218,10 @@ boolean guaranteed;
 	}
 #endif
 
+	if (guaranteed || !rn2(10)) {sprintf(buf, " %d", u.usanity);
+		enl_msg("Your sanity ", "is", "was", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && u.negativeprotection) {sprintf(buf, " %d", u.negativeprotection);
 		enl_msg("Your protection was reduced. The amount ", "is", "was", buf);
 	}
@@ -6724,6 +6728,9 @@ int final;
 
 	sprintf(buf, " %d", AEXE(A_CON));
 	dump("  Constitution training was", buf);
+
+	sprintf(buf, " %d", u.usanity);
+	dump("  Your sanity was", buf);
 
 	if (u.negativeprotection) {
 		sprintf(buf, " %d", u.negativeprotection);

@@ -1146,6 +1146,8 @@ struct you {
 
 	int ragnaroktimer;
 
+	int usanity;
+
 };	/* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)

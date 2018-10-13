@@ -800,6 +800,9 @@ bot2str(char *newbot2)
 	if (flags.showmovement)
 		sprintf(nb = eos(nb), " Mov%d", youmonst.data->mmove);
 
+	if (flags.showsanity)
+		sprintf(nb = eos(nb), " Sn%d", u.usanity);
+
 	if (Upolyd)
 		sprintf(nb = eos(nb), " HD%d", ((u.ulycn == u.umonnum) ? 
 						u.ulevel : mons[u.umonnum].mlevel));

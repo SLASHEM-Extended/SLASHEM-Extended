@@ -2180,6 +2180,7 @@ register struct monst *mtmp;
 	    case 16: make_dimmed(HDimmed + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
 		    break;
 	    }
+		if (!rn2(20)) increasesanity(rnd(10));
 
 	    break;
 

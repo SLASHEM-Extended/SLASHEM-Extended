@@ -8189,6 +8189,7 @@ dopois:
 			if (!rn2(200)) {
 				badeffect();
 			}
+			if (!rn2(5)) increasesanity(1);
 
 		}
 		break;
@@ -8250,6 +8251,7 @@ dopois:
 		    if(Confusion) You("are getting even more confused.");
 		    else You("are getting confused.");
 		    make_confused(HConfusion + dmg, FALSE);
+		    increasesanity(1);
 		}
 		break;
 
@@ -9093,6 +9095,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if (!rn2(200)) {
 				badeffect();
 			}
+			if (!rn2(5)) increasesanity(1);
 
 			break;
 
@@ -10021,6 +10024,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if(Confusion) You("are getting even more confused.");
 			else You("are getting confused.");
 			make_confused(HConfusion + tmp, FALSE);
+			increasesanity(1);
 			break;
 
 	      case AD_SLOW:
@@ -13970,6 +13974,7 @@ common:
 			if (!rn2(200)) {
 				badeffect();
 			}
+			if (!rn2(5)) increasesanity(rnd(100));
 
 		}
 
@@ -14142,6 +14147,7 @@ common:
 			if(Confusion) You("are getting even more confused.");
 			else You("are getting confused.");
 			make_confused(HConfusion + tmp, FALSE);
+			increasesanity(rnd(100));
 		}
 		break;
 
@@ -14612,6 +14618,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!rn2(200)) {
 				badeffect();
 			}
+			if (!rn2(5)) increasesanity(1);
 
 		}
 		break;
@@ -15783,6 +15790,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    if(Confusion) You("are getting even more confused.");
 		    else You("are getting confused.");
 		    make_confused(HConfusion + insanity, FALSE);
+		    increasesanity(1);
 		}
 		break;
 

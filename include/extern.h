@@ -2202,6 +2202,7 @@ E struct monst *split_mon(struct monst *,struct monst *);
 E const char *bottlename(void);
 E void bad_equipment(void);
 E void bad_equipment_heel(void);
+E void increasesanity(int);
 
 /* ### pray.c ### */
 
