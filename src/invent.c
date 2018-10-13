@@ -8842,6 +8842,23 @@ struct obj *obj;
 			case CLOAK_OF_NAKEDNESS:
 				pline("This cloak causes nakedness and grants 3 points of magic cancellation. If someone else than you wears it, it also grants incredibly good armor class to the wearer, nyah-nyah!"); break;
 
+			case BROWN_SHIT_CLOAK:
+				pline("This cloak causes brown spells. It grants moderately good armor class and 3 points of magic cancellation."); break;
+			case ANTICALL_CLOAK:
+				pline("This cloak prevents you from calling stuff. It grants good armor class and medium magic cancellation."); break;
+			case YELLOW_WING:
+				pline("This cloak activates a special tileset that makes it difficult to tell what is going on. It grants good armor class and 4 points of magic cancellation."); break;
+			case ELESDE_CLOAK:
+				pline("This cloak causes monsters to be displayed as hallucination glyphs. It grants good armor class and 3 points of magic cancellation."); break;
+			case CLOAK_OF_GRAVATION:
+				pline("This cloak causes monsters to spawn with aggravation rules. It grants moderately good armor class and no magic cancellation."); break;
+			case CLOAK_OF_NONFOLLOWING:
+				pline("This cloak causes pets to never follow you. It grants low armor class and 3 points of magic cancellation."); break;
+			case SPELL_RETAIN_CLOAK:
+				pline("This cloak makes spells hard to cast if they have low spell memory. It grants moderate armor class and 3 points of magic cancellation."); break;
+			case CLOAK_OF_FAST_DECAY:
+				pline("This cloak causes your stats to be damaged permanently over time. It grants extremely good armor class and no magic cancellation."); break;
+
 			case WHITE_SPELL_CLOAK:
 				pline("This cloak causes white spells. It grants good armor class and 3 points of magic cancellation."); break;
 			case GREYOUT_CLOAK:
@@ -9197,6 +9214,30 @@ struct obj *obj;
 				pline("While wearing this helmet, monsters that would usually be uncommon by a certain frequency will instead be common, so they spawn more often. It has moderate AC and 3 points of magic cancellation."); break;
 			case SOUND_EFFECT_HELMET:
 				pline("A helmet that causes sound effects in written form. It has no AC and no magic cancellation."); break;
+
+			case QUAVERSAL_HELMET:
+				pline("A helmet that causes you to see nothing unless you're standing on specific tiles. It has extremely good AC and 8 points of magic cancellation."); break;
+			case HELM_OF_SHUFFLING:
+				pline("A helmet that causes randomized item appearances to occasionally reshuffle. It has good AC and 4 points of magic cancellation."); break;
+			case GOLDSPELL_HELMET:
+				pline("A helmet that causes you to be unable to select which spell you want to cast. It has very good AC and no magic cancellation."); break;
+			case AIRHEAD_CAP:
+				pline("A helmet that causes you to become confused while next to dangerous terrain. It has moderately good AC and medium magic cancellation."); break;
+			case FALLOUT_HELMET:
+				pline("A helmet that causes your contamination to increase over time. It has good AC and 6 points of magic cancellation."); break;
+			case IDENTIFY_CURD_HELMET:
+				pline("A helmet that causes items to be very difficult to identify. It has good AC and 3 points of magic cancellation."); break;
+			case BAEAEAEP_SPY_HELMET:
+				pline("A helmet that causes monsters to come straight for you even if they can't see you. It has mediocre AC and no magic cancellation."); break;
+			case CRUNCHER_HELMET:
+				pline("A helmet that causes you to only receive one third of the usual amount of nutrition. It has moderately good AC and medium magic cancellation."); break;
+			case DISTORTED_GRIMACE:
+				pline("A helmet that causes a manler to chase you. It has moderately good AC and 3 points of magic cancellation."); break;
+			case ELM_ET:
+				pline("A helmet that causes the game to behave as if it were Friday the 13th. It has very good AC and 4 points of magic cancellation."); break;
+			case SANEMAKER_HELMET:
+				pline("A helmet that causes your sanity to go up if a boss is on the same level as you. It has good AC and no magic cancellation."); break;
+
 			case HELM_OF_BAD_ALIGNMENT:
 				pline("This helmet causes alignment failures. It has good AC and 3 points of magic cancellation."); break;
 			case SOUNDPROOF_HELMET:
@@ -9356,6 +9397,23 @@ struct obj *obj;
 				pline("This pair of gloves can turn your positively enchanted items into negatively enchanted ones. They provide good AC and no magic cancellation."); break;
 			case FUCKUP_MELEE_GAUNTLETS:
 				pline("This pair of gloves fucks up your melee attacks, unless you prefix them. They provide very good AC and no magic cancellation."); break;
+
+			case ORANGE_SPELL_GLOVES:
+				pline("This pair of gloves causes orange spells. They provide good AC and medium magic cancellation."); break;
+			case MOJIBAKE_GLOVES:
+				pline("This pair of gloves causes some glyphs to look like random garbage. They provide moderately good AC and 5 points of magic cancellation."); break;
+			case DIXPLOSION_GLOVES:
+				pline("This pair of gloves lets monsters use exploding dice for calculating the amount of damage they do. They provide very good AC and no magic cancellation."); break;
+			case LEFT_APPENDAGE_GLOVES:
+				pline("This pair of gloves unidentifies items that leave your inventory. They provide low AC and no magic cancellation."); break;
+			case POKELIE_GLOVES:
+				pline("This pair of gloves causes the pokedex to lie to you. They provide almost no AC and low magic cancellation."); break;
+			case ALLPICKING_GLOVES:
+				pline("This pair of gloves makes it so that you always pick up items you move over. They provide moderately good AC and no magic cancellation."); break;
+			case SILVER_SPELL_GLOVES:
+				pline("This pair of gloves causes silver spells. They provide moderately good AC and 3 points of magic cancellation."); break;
+			case SPELLDRAIN_GLOVES:
+				pline("This pair of gloves causes you to periodically lose spell memory. They provide good AC and medium magic cancellation."); break;
 
 			case GAUNTLETS_OF_POWER:
 				pline("A powerful pair of gauntlets that increases the wearer's strength."); break;
@@ -9546,6 +9604,43 @@ struct obj *obj;
 				pline("This footwear is high-heeled (stilettos, in fact) and causes red spells. They provide excellent AC and 5 points of magic cancellation."); break;
 			case DESTRUCTIVE_HEELS:
 				pline("This footwear is high-heeled and causes random destruction of your inventory items because the cone heels absolutely want to destroy your stuff. They provide good AC and 7 points of magic cancellation."); break;
+
+			case VIOLET_BEAUTY_HEELS:
+				pline("This footwear has very cute cone heels and causes violet spells. They provide relatively good AC and no magic cancellation."); break;
+			case LONG_POINTY_HEELS:
+				pline("This footwear causes the game to bombard you with sexy messages and counts as stiletto heels. They provide low AC and no magic cancellation."); break;
+			case SELF_WILLED_HEELS:
+				pline("This footwear prevents you from picking a direction if there is a direction prompt, because the block heels sometimes want to walk in different directions. They provide extremely good AC and 7 points of magic cancellation."); break;
+			case SOIL_CLINGING_BOOTS:
+				pline("This footwear causes you to activate ground-based traps even if you fly. They provide moderate AC and low magic cancellation."); break;
+			case PERMANENTLY_BLACK_SHOES:
+				pline("This footwear makes it impossible to remove curses with conventional methods. They provide good AC and 7 points of magic cancellation."); break;
+			case AUTOSCOOTER_HEELS:
+				pline("This footwear is cone-heeled and causes you to have autopilot if you're too contaminated. They provide rather good AC and 7 points of magic cancellation."); break;
+			case FORCEFUL_BOOTS:
+				pline("This footwear reactivates the dirty mysterious force that everyone hates. They provide low AC and low magic cancellation."); break;
+			case BUM_BUM_BOOTS:
+				pline("This footwear causes bad effects whenever you open a container, and because platform heels aren't their own type in this game they count as wedge heels. They provide very good AC and no magic cancellation."); break;
+			case SADISTIC_BOOTS:
+				pline("This footwear makes it so that whenever a monster steals an item from you, the item in question is cursed and disenchanted. They provide low AC and low magic cancellation."); break;
+			case FLUCKERING_BOOTS:
+				pline("This footwear causes your speed to go from 1 to 50 depending on the current turn. They provide good AC and 7 points of magic cancellation."); break;
+			case SPRAP_BOOTS:
+				pline("This footwear creates new traps if you use the search command. They provide good AC and no magic cancellation."); break;
+			case FAILED_ATTEMPT_BOOTS:
+				pline("This footwear makes the 'never mind' and 'nothing happens' messages dangerous. They provide moderate AC and low magic cancellation."); break;
+			case BRIGHT_CYAN_BEAUTIES:
+				pline("This footwear is very sexy despite being flat, and causes bright cyan spells. They provide good AC and 3 points of magic cancellation."); break;
+			case SIA_BOOTS:
+				pline("This footwear gives the satanic effect of paralyzing you for one turn whenever you change dungeon levels. They provide low AC and 3 points of magic cancellation."); break;
+			case PLATINUM_SPELL_BOOTS:
+				pline("This footwear causes platinum spells. They provide moderate AC and medium magic cancellation."); break;
+			case INVIS_WALKERS:
+				pline("This footwear makes every trap invisible that they step on. They provide very good AC and no magic cancellation."); break;
+			case NOISY_BOOTS:
+				pline("This footwear allows monsters to make noises. They provide moderately good AC and no magic cancellation."); break;
+			case MORK_BOOTS:
+				pline("This footwear allows monsters to get a turn when they spawn. They provide moderate AC and medium magic cancellation."); break;
 
 			case BOSS_BOOTS:
 				pline("This footwear causes boss monsters to spawn more often. They provide low AC and low magic cancellation."); break;
@@ -9899,6 +9994,21 @@ struct obj *obj;
 				pline("This ring can cause blessed items to instantly become cursed."); break;
 			case RIN_ILLITERACY:
 				pline("This ring sometimes causes scrolls to disintegrate while you're trying to pick them up."); break;
+			case RIN_WIMPINESS:
+				pline("This ring makes some calculations assume that you're always experience level 1."); break;
+			case RIN_USING_HAZARD:
+				pline("This ring curses items that you want to use."); break;
+			case RIN_EXERTION_LOSS:
+				pline("This ring degrades your skills."); break;
+			case RIN_PETCAT:
+				pline("This ring will continuously change the directives for your pet, causing it to act strangely."); break;
+			case RIN_POSSESSION_IDENTIFICATION:
+				pline("This ring gives you a DYWYPI prompt when you're about to lifesave, and giving the wrong answer ends the game even if you would have lived."); break;
+			case RIN_DAYSHIFT:
+				pline("This ring causes bad stuff to happen whenever you step on a door square."); break;
+			case RIN_DECONSTRUCTION:
+				pline("This ring can undo your skill training."); break;
+
 			case RIN_LOW_STATS:
 				pline("This ring greatly lowers all of your stats."); break;
 			case RIN_FAILED_TRAINING:
@@ -10515,6 +10625,24 @@ struct obj *obj;
 				pline("This amulet makes it much more likely that you find bones files, provided some exist at all. If you die while wearing it and are on an eligible level, you will always leave a bones file too."); break;
 			case AMULET_OF_SPELL_FORGETTING:
 				pline("This amulet makes your spells lose memory 10 times faster."); break;
+
+			case AMULET_OF_ITEM_INSECURITY:
+				pline("This amulet causes random cursed items to suddenly replace your normal equipment."); break;
+			case AMULET_OF_STOPPED_EVOLUTION:
+				pline("This amulet prevents you from gaining hit points or mana from leveling up."); break;
+			case AMULET_OF_INITIALIZATION_FAILU:
+				pline("This amulet prevents you from getting certain prompts."); break;
+			case AMULET_OF_REAL_SCREWERY:
+				pline("This amulet increases the timeout for all nasty traps by a factor 20."); break;
+			case AMULET_OF_ENEMY_SAVING:
+				pline("This amulet allows enemies to sometimes come back to life if you kill them."); break;
+			case AMULET_OF_INCREASED_FREQUENCY:
+				pline("This amulet causes a certain monster trait to spawn more often."); break;
+			case AMULET_OF_SPELL_METAL:
+				pline("This amulet causes metal spells."); break;
+			case AMULET_OF_TECHOUT:
+				pline("This amulet occasionally increases the timeouts of your techniques."); break;
+
 			case AMULET_OF_ANTI_TELEPORTATION:
 				pline("This amulet blocks all of your attempts to self-teleport."); break;
 			case AMULET_OF_ITEM_TELEPORTATION:

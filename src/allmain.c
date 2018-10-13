@@ -11500,6 +11500,54 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "etheric cloak")) OBJ_DESCR(objects[i]) = "efirnyy plashch";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brick helmet")) OBJ_DESCR(objects[i]) = "kirpichnyy shlem";
 
+		/* todo area */
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "rifling power cloak")) OBJ_DESCR(objects[i]) = "naplechnyy shchit sily";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cursed called cloak")) OBJ_DESCR(objects[i]) = "proklyatyy pod nazvaniyem plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "failuncap cloak")) OBJ_DESCR(objects[i]) = "mantiya s provalom";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "unostentatious cloak")) OBJ_DESCR(objects[i]) = "nenavyazchivyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fourchan cloak")) OBJ_DESCR(objects[i]) = "chetyrekhchasovoy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "erudite cloak")) OBJ_DESCR(objects[i]) = "erudirovannyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "inalish cloak")) OBJ_DESCR(objects[i]) = "glupyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "zombified cloak")) OBJ_DESCR(objects[i]) = "zombirovannyy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "transversal helmet")) OBJ_DESCR(objects[i]) = "poperechnyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "grunter helmet")) OBJ_DESCR(objects[i]) = "shturmovoy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "precious helmet")) OBJ_DESCR(objects[i]) = "dragotsennyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cloudy helmet")) OBJ_DESCR(objects[i]) = "oblachnyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "post-nuclear helmet")) OBJ_DESCR(objects[i]) = "post-yadernyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "speechpipe helmet")) OBJ_DESCR(objects[i]) = "rechevoy trubnyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "failuncap helmet")) OBJ_DESCR(objects[i]) = "shlem s provalom";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "breath control helmet")) OBJ_DESCR(objects[i]) = "shlem upravleniya dykhaniyem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gas mask")) OBJ_DESCR(objects[i]) = "protivogaz";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cold-blooded helmet")) OBJ_DESCR(objects[i]) = "khladnokrovnyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sages helmet")) OBJ_DESCR(objects[i]) = "mudryy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cuddly gloves")) OBJ_DESCR(objects[i]) = "priyatnyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "multilinguitis gloves")) OBJ_DESCR(objects[i]) = "perchatki mul'tilingvita";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "demolition gloves")) OBJ_DESCR(objects[i]) = "perchatki dlya snosa";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "failuncap gloves")) OBJ_DESCR(objects[i]) = "perchatki s perforatsiyey";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "rayductnay gloves")) OBJ_DESCR(objects[i]) = "ruchnyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flower gloves")) OBJ_DESCR(objects[i]) = "tsvetochnyye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gameble gloves")) OBJ_DESCR(objects[i]) = "geymperskiye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bise gloves")) OBJ_DESCR(objects[i]) = "bi sebe perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "orgasm pumps")) OBJ_DESCR(objects[i]) = "nasosy dlya orgazma";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "worn-out sneakers")) OBJ_DESCR(objects[i]) = "iznoshennyye krossovki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "imaginary heels")) OBJ_DESCR(objects[i]) = "voobrazhayemyye kabluki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "noble sandals")) OBJ_DESCR(objects[i]) = "blagorodnyye sandalii";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "failuncap shoes")) OBJ_DESCR(objects[i]) = "s provalom obuv'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flipflops")) OBJ_DESCR(objects[i]) = "shlepki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "rumble boots")) OBJ_DESCR(objects[i]) = "gul botinki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high iron boots")) OBJ_DESCR(objects[i]) = "vysokiye zheleznyye botinki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "doctor claw boots")) OBJ_DESCR(objects[i]) = "kolgotki dlya sapog";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "spooky boots")) OBJ_DESCR(objects[i]) = "zhutkiy botinok";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feelgood heels")) OBJ_DESCR(objects[i]) = "chuvstvennyye kabluki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gentle sneakers")) OBJ_DESCR(objects[i]) = "nezhnyy krossovki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "plof heels")) OBJ_DESCR(objects[i]) = "ploskiye kabluki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "princess pumps")) OBJ_DESCR(objects[i]) = "nasosy printsessy";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ballet heels")) OBJ_DESCR(objects[i]) = "baletnyye kabluki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "steel toed boots")) OBJ_DESCR(objects[i]) = "stal'nyye kosolapyy sapogi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "marji shoes")) OBJ_DESCR(objects[i]) = "obuv' marzhi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mary janes")) OBJ_DESCR(objects[i]) = "meri dzheyn";
+
 	}
 	}
 
@@ -12382,6 +12430,54 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brick cloak")) OBJ_DESCR(objects[i]) = "g'isht plashi";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "etheric cloak")) OBJ_DESCR(objects[i]) = "eterik plash";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "brick helmet")) OBJ_DESCR(objects[i]) = "g'isht kaskasi";
+
+		/* todo area */
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "rifling power cloak")) OBJ_DESCR(objects[i]) = "miltig'idan tortib, kuch-quvvat plashi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cursed called cloak")) OBJ_DESCR(objects[i]) = "la'natlangan la'nati";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "failuncap cloak")) OBJ_DESCR(objects[i]) = "noto'g'ri plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "unostentatious cloak")) OBJ_DESCR(objects[i]) = "nostandart plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "fourchan cloak")) OBJ_DESCR(objects[i]) = "to'rtburchak plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "erudite cloak")) OBJ_DESCR(objects[i]) = "eduit plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "inalish cloak")) OBJ_DESCR(objects[i]) = "ichki plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "zombified cloak")) OBJ_DESCR(objects[i]) = "zombi plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "transversal helmet")) OBJ_DESCR(objects[i]) = "ko'ndalangiga tushgan dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "grunter helmet")) OBJ_DESCR(objects[i]) = "go'shtli dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "precious helmet")) OBJ_DESCR(objects[i]) = "qimmatli dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cloudy helmet")) OBJ_DESCR(objects[i]) = "bulutli dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "post-nuclear helmet")) OBJ_DESCR(objects[i]) = "atom yadrosi zarbasi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "speechpipe helmet")) OBJ_DESCR(objects[i]) = "nutq kaskasi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "failuncap helmet")) OBJ_DESCR(objects[i]) = "noto'g'ri zarbdan";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "breath control helmet")) OBJ_DESCR(objects[i]) = "nafasni boshqarish dubulg'asi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gas mask")) OBJ_DESCR(objects[i]) = "gaz niqobi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cold-blooded helmet")) OBJ_DESCR(objects[i]) = "sovuq qonli dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sages helmet")) OBJ_DESCR(objects[i]) = "do'stlar dubulg'asi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cuddly gloves")) OBJ_DESCR(objects[i]) = "jingalak qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "multilinguitis gloves")) OBJ_DESCR(objects[i]) = "ko'p tilli qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "demolition gloves")) OBJ_DESCR(objects[i]) = "buzilgan qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "failuncap gloves")) OBJ_DESCR(objects[i]) = "noto'g'ri qo'lqop";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "rayductnay gloves")) OBJ_DESCR(objects[i]) = "nurli qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flower gloves")) OBJ_DESCR(objects[i]) = "gul qo'lqoplari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gameble gloves")) OBJ_DESCR(objects[i]) = "o'yinchoq qo'lqoplari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bise gloves")) OBJ_DESCR(objects[i]) = "bosh o'pish sportchisi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "orgasm pumps")) OBJ_DESCR(objects[i]) = "orgazm nasoslari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "worn-out sneakers")) OBJ_DESCR(objects[i]) = "eskirib qolgan sport poyafzali";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "imaginary heels")) OBJ_DESCR(objects[i]) = "xayoliy to'pi";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "noble sandals")) OBJ_DESCR(objects[i]) = "oqlangan sandallar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "failuncap shoes")) OBJ_DESCR(objects[i]) = "poyafzal poyafzallari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "flipflops")) OBJ_DESCR(objects[i]) = "sohil shippaklari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "rumble boots")) OBJ_DESCR(objects[i]) = "yirtqich chiziqlar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high iron boots")) OBJ_DESCR(objects[i]) = "yuqori temir chiziqlar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "doctor claw boots")) OBJ_DESCR(objects[i]) = "shifokor chiziqlari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "spooky boots")) OBJ_DESCR(objects[i]) = "jingalak botinkalar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "feelgood heels")) OBJ_DESCR(objects[i]) = "his-tuyg'ulari baland";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "gentle sneakers")) OBJ_DESCR(objects[i]) = "nozik poyafzallar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "plof heels")) OBJ_DESCR(objects[i]) = "buzilgan yurish ovozi to'piqlari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "princess pumps")) OBJ_DESCR(objects[i]) = "malika nasoslari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ballet heels")) OBJ_DESCR(objects[i]) = "balet poshnali";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "steel toed boots")) OBJ_DESCR(objects[i]) = "po'latdan yasalgan poyafzal";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "marji shoes")) OBJ_DESCR(objects[i]) = "oz maryam poyafzallari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mary janes")) OBJ_DESCR(objects[i]) = "meri janes";
 
 	}
 	}

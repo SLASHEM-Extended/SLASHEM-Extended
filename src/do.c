@@ -519,6 +519,44 @@ giveback:
 		case RIN_ILLITERACY:
 		    pline("The sink seems to be breaking apart at the seams.");
 		    break;
+
+		case RIN_WIMPINESS:
+		    pline("Somehow the sink seems powerless.");
+		    break;
+		case RIN_USING_HAZARD:
+		    pline("Suddenly you dread using the sink.");
+		    break;
+		case RIN_EXERTION_LOSS:
+		    pline("The water flow just doesn't seem to get any speed!");
+		    break;
+		case RIN_PETCAT:
+		    pline("The water is flowing in completely random directions!");
+		    break;
+		case RIN_POSSESSION_IDENTIFICATION:
+		    if (evilfriday) {
+				char qbuf[QBUFSZ];
+				char possid = 0;
+				sprintf(qbuf, "Do you want your possessions identified? DYWYPI?");
+				possid = yn_function(qbuf, ynqchars, 'y');
+				if (possid != 'n') {
+					u.youaredead = 1;
+					pline("Okay. Game over. If you wanted to go on playing, better hope you have an amulet of life saving because otherwise we're done here.");
+					killer_format = KILLED_BY;
+					killer = "wanting their possessions identified";
+					done(DIED);
+					u.youaredead = 0;
+				}
+				break;
+		    }
+		    pline("Do you want your possessions identified? DYWYPI? [ynq] (n) _");
+		    break;
+		case RIN_DAYSHIFT:
+		    pline(night() ? "Suddenly the sink seems very dark." : "The sink is shining brightly.");
+		    break;
+		case RIN_DECONSTRUCTION:
+		    pline("A screw is knocked loose from the sink.");
+		    break;
+
 	      case RIN_SICKNESS_RESISTANCE:
 		    pline("The sink looks clean and neat for a moment.");
 		    break;
@@ -930,6 +968,31 @@ register struct obj *obj;
 	case AMULET_OF_SPELL_FORGETTING:
 		pline_The("toilet seems very non-magical.");
 		break;
+	case AMULET_OF_ITEM_INSECURITY:
+		pline_The("toilet looks like a castle for a moment.");
+		break;
+	case AMULET_OF_STOPPED_EVOLUTION:
+		pline_The("toilet seems to stop generating water");
+		break;
+	case AMULET_OF_INITIALIZATION_FAILU:
+		pline_The("toilet flusing button momentarily vanishes");
+		break;
+	case AMULET_OF_REAL_SCREWERY:
+		pline_The("toilet suddenly seems shitty!");
+		break;
+	case AMULET_OF_ENEMY_SAVING:
+		pline_The("toilet water's amulet seems to glow...");
+		break;
+	case AMULET_OF_INCREASED_FREQUENCY:
+		pline_The("toilet flushing sound can be heard several times at once!");
+		break;
+	case AMULET_OF_SPELL_METAL:
+		pline_The("porcelain toilet looks metallic for a moment.");
+		break;
+	case AMULET_OF_TECHOUT:
+		pline_The("toilet looks primitive.");
+		break;
+
 	case AMULET_OF_HOSTILITY:
 		pline_The("toilet suddenly threatens to attack you!");
 		break;
