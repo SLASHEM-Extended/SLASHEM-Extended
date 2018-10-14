@@ -1236,7 +1236,7 @@ register struct monst *mtmp;
 					badeffect();
 				}
 				losehp(dmg, "psychic blast", KILLED_BY_AN);
-				if (!rn2(25)) increasesanity(1);
+				if (!rn2(25)) increasesanity(rnz(5));
 
 				stop_occupation();
 			}
@@ -1548,6 +1548,7 @@ toofar:
 
 		verbalize("%s", superman_msgs[rn2(SIZE(superman_msgs))]);
 		badeffect();
+		increasesanity(rnz(50));
 		stop_occupation();
 		}
 

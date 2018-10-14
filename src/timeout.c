@@ -229,7 +229,7 @@ nh_timeout()
 	if (u.negativeprotection < 0) u.negativeprotection = 0; /* fail safe */
 	if (u.tremblingamount && !rn2(1000)) u.tremblingamount--;
 	if (u.tremblingamount < 0) u.tremblingamount = 0; /* fail safe */
-	if (u.usanity && !rn2(1000)) {
+	if (u.usanity && !isevilvariant && !rn2(isfriday ? 2500 : 1000)) {
 		u.usanity--;
 		if (flags.showsanity) flags.botl = 1;
 	}

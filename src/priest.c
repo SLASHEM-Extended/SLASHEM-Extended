@@ -279,7 +279,7 @@ priestname(mon, pname)
 register struct monst *mon;
 char *pname;		/* caller-supplied output buffer */
 {
-	const char *what = Hallucination ? rndmonnam() : mon->data->mname;
+	const char *what = Hallucination ? rndmonnam() : (u.usanity > 900 && (u.usanity > rn2(10000)) && rn2(10) ) ? rndmonnam() : mon->data->mname;
 
 	strcpy(pname, "the ");
 	if (mon->minvis) strcat(pname, "invisible ");

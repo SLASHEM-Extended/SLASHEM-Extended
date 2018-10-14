@@ -908,6 +908,7 @@ E boolean check_capacity(const char *);
 E int inv_cnt(void);
 E void contaminate(int, BOOLEAN_P);
 E void decontaminate(int);
+E void reducesanity(int);
 #ifdef GOLDOBJ
 E long money_cnt(struct obj *);
 #endif

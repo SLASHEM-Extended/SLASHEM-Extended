@@ -1870,6 +1870,8 @@ newbossS:
 			}
 
 		}
+
+		/* put things that don't have anything to do with traps below the trapsdone mark --Amy */
 trapsdone:
 
 		if (have_faintingstone() && !rn2(100) && multi >= 0) {
@@ -1891,6 +1893,9 @@ trapsdone:
 			afternmv = unfaintX;
 
 		}
+
+		/* in evilvariant mode you always have at least 100 sanity --Amy */
+		if (isevilvariant && u.usanity < 100) u.usanity += 100;
 
 		if (!rn2(isfriday ? 2000 : 5000)) {
 

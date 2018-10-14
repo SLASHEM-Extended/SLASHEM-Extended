@@ -770,6 +770,9 @@ boolean called;
 	if (do_hallu) {
 	    strcat(buf, rndmonnam());
 	    name_at_start = FALSE;
+	} else if (u.usanity > 900 && (u.usanity > rn2(10000)) && rn2(10) ) {
+	    strcat(buf, rndmonnam());
+	    name_at_start = FALSE;
 	} else if (mtmp->mnamelth) {
 	    char *name = NAME(mtmp);
 

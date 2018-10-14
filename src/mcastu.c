@@ -623,7 +623,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		if (!rn2(200)) {
 			badeffect();
 		}
-		if (!rn2(5)) increasesanity(1);
+		if (!rn2(5)) increasesanity(rnz(5));
 
 		break;
 	    case AD_DISN:

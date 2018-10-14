@@ -1692,6 +1692,8 @@ int howmuch;
 		decontaminate(100);
 	}
 
+	reducesanity(100);
+
 	if (Punished) u.bc_felt = 0;	/* forget felt ball&chain */
 
 	forget_map(howmuch);

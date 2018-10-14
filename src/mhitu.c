@@ -8189,7 +8189,7 @@ dopois:
 			if (!rn2(200)) {
 				badeffect();
 			}
-			if (!rn2(5)) increasesanity(1);
+			if (!rn2(5)) increasesanity(rnz(5));
 
 		}
 		break;
@@ -9095,7 +9095,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if (!rn2(200)) {
 				badeffect();
 			}
-			if (!rn2(5)) increasesanity(1);
+			if (!rn2(5)) increasesanity(rnz(5));
 
 			break;
 
@@ -14618,7 +14618,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			if (!rn2(200)) {
 				badeffect();
 			}
-			if (!rn2(5)) increasesanity(1);
+			if (!rn2(5)) increasesanity(rnz(5));
 
 		}
 		break;

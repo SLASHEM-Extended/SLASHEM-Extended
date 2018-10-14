@@ -4359,6 +4359,21 @@ register int amount;
 }
 
 void
+reducesanity(amount)
+register int amount;
+{
+	if (!(u.usanity)) return;
+
+	u.usanity -= amount;
+	if (u.usanity < 0) u.usanity = 0;
+	if (u.usanity == 0) pline("Your sanity was cured completely.");
+	else if (amount < 10) pline("Your sanity was reduced.");
+	else if (amount < 100) pline("Your sanity was reduced greatly.");
+	else if (amount < 1000) pline("Your sanity was reduced enormously.");
+	else pline("Your sanity was reduced by a really huge amount but is still not cured.");
+}
+
+void
 losehp(n, knam, k_format)
 register int n;
 register const char *knam;

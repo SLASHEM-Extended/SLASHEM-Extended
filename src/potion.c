@@ -2751,6 +2751,8 @@ int snamount;
 	if (Upolyd && dmgtype(youmonst.data, AD_SPC2) && rn2(5)) return;
 	if (Upolyd && dmgtype(youmonst.data, AD_INSA) && rn2(100)) return;
 
+	if (Race_if(PM_HUMANOID_ANGEL)) snamount *= 2;
+
 	u.usanity += snamount;
 	if (snamount < 10) pline("Your sanity increases.");
 	else if (snamount < 100) pline("Your sanity increases greatly.");
