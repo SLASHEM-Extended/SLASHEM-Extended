@@ -8441,7 +8441,7 @@ struct obj *obj;
 			pline("A cloak that allows you to move over water or lava without falling in. Careful: other ground-based hazards can still affect you!");
 
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "rifling power cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "naplechnyy shchit sily") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "miltig'idan tortib, kuch-quvvat plashi"))))
-			pline("While wearing this cloak, your rifles have a multishot bonus.");
+			pline("While wearing this cloak, your rifles have a multishot bonus. It works for the regular rifle as well as the hunting rifle, sniper rifle and process card.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "cursed called cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "proklyatyy pod nazvaniyem plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "la'natlangan la'nati"))))
 			pline("A cloak that causes items to be generated cursed more often while you wear it, and may also very occasionally cause your items to become cursed.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "failuncap cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "mantiya s provalom") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "noto'g'ri plash"))))
@@ -8499,7 +8499,7 @@ struct obj *obj;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "gentle sneakers") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nezhnyy krossovki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nozik poyafzallar"))))
 			pline("Occasionally, kicking a monster with this pair of sexy flat sneakers can disarm it.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "buzilgan yurish ovozi to'piqlari"))))
-			pline("They count as block heels, and while wearing them, stun and paralysis may sometimes time out more quickly. But if anyone kicks you, the heels may be damaged.");
+			pline("They count as block heels, and while wearing them, stun and paralysis may sometimes time out more quickly. They may also deal extra damage if you kick a monster. But if anyone kicks you, the heels may be damaged.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "malika nasoslari"))))
 			pline("A pair of cone-heeled pumps that greatly increases your charisma and makes royal monsters spawn peaceful more often, but monsters with lash, sting or scratch attacks are spawned more often and deal more damage to you while wearing them.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && ( (!strcmp(OBJ_DESCR(objects[obj->otyp]), "ballet heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "baletnyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "balet poshnali"))))

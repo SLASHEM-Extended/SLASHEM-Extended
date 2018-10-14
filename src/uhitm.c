@@ -660,6 +660,8 @@ register struct monst *mtmp;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
 	if (uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
 
+	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) tmp += 1;
+
 	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
 
 	if (Race_if(PM_PLAYER_SKELETON)) tmp -= u.ulevel; /* sorry */
@@ -2412,6 +2414,8 @@ int dieroll;
 		if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
 		if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 		if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+
+		if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) tmp += 1;
 
 		if (Race_if(PM_RODNEYAN)) tmp += (1 + (u.ulevel / 3) );
 		/* If you throw using a propellor, you don't get a strength

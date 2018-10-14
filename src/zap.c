@@ -7166,7 +7166,8 @@ struct obj **obj_p;			/* object tossed/used */
 			}
 			if (weapon != INVIS_BEAM) {
 			    (*fhitm)(mtmp, obj);
-			    if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) range -= 1;
+				if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")) ) range -= 0;
+			    else if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLANK_PAPER) range -= 1;
 			    else if (tech_inuse(T_BEAMSWORD) && obj->otyp == SPE_BLANK_PAPER) range -= 1;
 			    else range -= 3;
 			}
@@ -7196,7 +7197,7 @@ struct obj **obj_p;			/* object tossed/used */
 	    }
 	    if(fhito) {
 		if(bhitpile(obj,fhito,bhitpos.x,bhitpos.y))
-		    range--;
+		    if (!(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")) )) range--;
 	    } else {
 		if(weapon == KICKED_WEAPON &&
 		      ((obj->oclass == COIN_CLASS &&
@@ -8245,7 +8246,7 @@ sigilcontroldirection:
 			    slept_monst(mon);
 		    }
 		}
-		range -= 2;
+		if (!(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")) ) ) range -= 2;
 	    } else {
 		miss(fltxt,mon);
 	    }
@@ -8256,7 +8257,8 @@ sigilcontroldirection:
 		    goto buzzmonst;
 	    } else
 	    if ((zap_hit_player((int) u.uac, 0)) || (Conflict && (zap_hit_player((int) u.uac, 0)) ) ) {
-		range -= 2;
+
+		if (!(uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "rayductnay gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "ruchnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "nurli qo'lqoplar")))) range -= 2;
 		pline("%s hits you!", The(fltxt));
 		if (Reflecting && rn2(20) && abs(type) != ZT_SPELL(ZT_FIRE)) {
 		    if (!Blind) {

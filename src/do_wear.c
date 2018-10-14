@@ -2039,6 +2039,20 @@ Gloves_on()
 
 	}
 
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gameble gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "geymperskiye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "o'yinchoq qo'lqoplari")) ) {
+
+		if (rn2(2)) {
+			pline("Your gloves feel warm.");
+			bless(uarmg);
+			if (uarmg->spe < 20) uarmg->spe++;
+		} else {
+			pline("Your gloves feel cold.");
+			curse(uarmg);
+			if (uarmg->spe > -20) uarmg->spe--;
+		}
+
+	}
+
     if (uarmg && uarmg->oartifact == ART_AFK_MEANS_ASS_FUCKER) {
 	      if (!uarmg->cursed) {
 			curse(uarmg);
@@ -5150,6 +5164,7 @@ find_ac()
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) uac -= 10;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) uac -= 5;
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) uac -= 20;
+	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) uac -= 1;
 
 	if (Numbed) uac += 5;
 

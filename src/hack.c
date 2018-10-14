@@ -4144,6 +4144,11 @@ nomul(nval, txt, discountpossible)
 		nval /= 100;
 	}
 
+	if (discountpossible && (nval < -2) && !rn2(10) && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzilgan yurish ovozi to'piqlari")) ) {
+		nval /= 5;
+		if (nval > -2) nval = -2;
+	}
+
 	/* Discount action will halve paralysis duration, but some paralysis sources ignore it --Amy */
 	if (Discount_action && discountpossible && (nval < -1)) nval /= 2;
 	multi = nval;
@@ -4411,6 +4416,12 @@ int k_format; /* WAC k_format is an int */
 		}
 		n *= dmgreductor;
 		n /= 100;
+		if (n < 1) n = 1;
+	}
+
+	if (n > 0 && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "marji shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obuv' marzhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oz maryam poyafzallari")) ) {
+		n *= 9;
+		n /= 10;
 		if (n < 1) n = 1;
 	}
 

@@ -1106,6 +1106,8 @@ boolean fade_scrolls;
 
 	if (OBJ_DESCR(objects[target->otyp]) && ( !strcmp(OBJ_DESCR(objects[target->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[target->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[target->otyp]), "yangi qo'lqop") ) && rn2(4) ) return;
 
+	if (OBJ_DESCR(objects[target->otyp]) && ( !strcmp(OBJ_DESCR(objects[target->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[target->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[target->otyp]), "xayoliy to'pi") ) ) return;
+
 	if (OBJ_DESCR(objects[target->otyp]) && ( !strcmp(OBJ_DESCR(objects[target->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[target->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[target->otyp]), "shol plash") ) ) return;
 
 	if (uarmf && !rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) return;

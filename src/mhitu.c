@@ -112,7 +112,7 @@ on the first floor, especially when you're playing as something with drain resis
 
 			}
 
-			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") )) && !rn2(3)) {
+			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "velcro sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sandalii na lipuchkakh") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "cirt kavushlari") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "noble sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "blagorodnyye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oqlangan sandallar") )) && !rn2(3)) {
 
 				pline("%s claws sensitive parts of your body!", Monnam(mtmp));
 
@@ -182,6 +182,15 @@ on the first floor, especially when you're playing as something with drain resis
 				pline("%s uses her cute little boots to scrape a bit of skin off your %s!", Monnam(mtmp), body_part(LEG));
 				u.legscratching++;
 				losehp(rno(u.legscratching + 1), "being scratched by Jeanetta's little boots", KILLED_BY);
+			}
+
+			if (uarmf && !rn2(3) && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzilgan yurish ovozi to'piqlari")) ) {
+				pline("*plof*");
+				if (uarmf->spe > -21) uarmf->spe--;
+				else {
+					useup(uarmf);
+					pline("Your plof heels are destroyed by the filthy %s.", l_monnam(mtmp));
+				}
 			}
 
 			if (!flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 10 : (u.ualign.type == A_NEUTRAL) ? 7 : 5) ) { 
@@ -1041,6 +1050,17 @@ elena23:
 
 			}
 
+			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) ) && !rn2(15)) {
+
+				pline("%s deeply stings you for being such a spoiled princess.", Monnam(mtmp));
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+
+				if (Upolyd) {u.mhmax -= rnd(monsterlev); if (u.mh > u.mhmax) u.mh = u.mhmax;}
+				else {u.uhpmax -= rnd(monsterlev); if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
+
+			}
+
 			break;
 		case AT_BUTT:
 			pline("%s butts you!", Monnam(mtmp));
@@ -1090,6 +1110,19 @@ elena23:
 
 			}
 
+			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) ) && !rn2(15)) {
+
+				pline("%s angrily cuts up your unprotected princess skin.", Monnam(mtmp));
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				monsterlev = rnd(monsterlev);
+				losehp((monsterlev), "scratching attack", KILLED_BY_AN);
+
+				if (Upolyd) {u.mhmax -= monsterlev/2; if (u.mh > u.mhmax) u.mh = u.mhmax;}
+				else {u.uhpmax -= monsterlev/2; if (u.uhp > u.uhpmax) u.uhp = u.uhpmax; }
+
+			}
+
 			break;
 		case AT_LASH:
 			pline("%s lashes you!", Monnam(mtmp));
@@ -1105,6 +1138,17 @@ elena23:
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("Your %s spins in confusion.", body_part(HEAD));
 			make_confused(HConfusion + monsterlev, FALSE);
+			}
+
+			if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) ) && !rn2(15)) {
+
+				pline("%s lashes you because you're such a spoiled princess.", Monnam(mtmp));
+
+				monsterlev = ((mtmp->m_lev) + 1);
+				if (monsterlev <= 0) monsterlev = 1;
+				pline("Your %s spins in confusion.", body_part(HEAD));
+				make_confused(HConfusion + monsterlev, FALSE);
+
 			}
 
 			if (!rn2(200)) pushplayer();
@@ -1871,7 +1915,7 @@ mattacku(mtmp)
 					!touch_petrifies(youmonst.data))) || (mtmp->egotype_hugger && !rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
 			    if (foundyou) {
 				if ((tmp > (j = rnd(20+i))) || (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "korean sandals") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "koreyskiye sandalii") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "janubiy koreyaning kavushlari") ) && !rn2(3) ) ) {
-				    if (mattk->aatyp != AT_KICK ||
+				    if ( (mattk->aatyp != AT_KICK || !rn2(5)) ||
 					    (!thick_skinned(youmonst.data) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
 					sum[i] = hitmu(mtmp, mattk);
 				} else
@@ -5785,7 +5829,7 @@ dopois:
 	    case AD_DRIN:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
-		if (defends(AD_DRIN, uwep) || !has_head(youmonst.data) || Role_if(PM_COURIER)) {
+		if (defends(AD_DRIN, uwep) || !has_head(youmonst.data) || Role_if(PM_COURIER) || (rn2(8) && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "mary janes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "meri dzheyn") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "meri janes")) ) ) {
 		    You("don't seem harmed.");
 		    /* Not clear what to do for green slimes */
 		    break;
@@ -6203,32 +6247,29 @@ dopois:
 		 * still _can_ attack you when you're flying or mounted.
 		 * [FIXME: why can't a flying attacker overcome this?]
 		 */
-		  if ((u.usteed && !is_flyer(mtmp->data) && rn2(3) ) ||
+		  if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "high iron boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "vysokiye zheleznyye botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yuqori temir chiziqlar")) ) {
+		    pline("%s tries futilely to sting through your high iron boots!", Monnam(mtmp));
+		    dmg = 0; 
+		  } else if ((u.usteed && !is_flyer(mtmp->data) && rn2(3) ) || 
 			Levitation || (Flying && !is_flyer(mtmp->data)) ) {
-		    pline("%s tries to reach your %s %s!", Monnam(mtmp),
-			  sidestr, body_part(LEG));
+		    pline("%s tries to reach your %s %s!", Monnam(mtmp), sidestr, body_part(LEG));
 		    dmg = 0;
 		  } else if (mtmp->mcan) {
-		    pline("%s nuzzles against your %s %s!", Monnam(mtmp),
-			  sidestr, body_part(LEG));
+		    pline("%s nuzzles against your %s %s!", Monnam(mtmp), sidestr, body_part(LEG));
 		    dmg = 0;
 		  } else {
 		    if (uarmf) {
-			if (rn2(2) && (uarmf->otyp == LOW_BOOTS ||
-					     uarmf->otyp == IRON_SHOES))
+			if (rn2(2) && (uarmf->otyp == LOW_BOOTS || uarmf->otyp == IRON_SHOES))
 			    pline("%s scratches the exposed part of your %s %s!",
 				Monnam(mtmp), sidestr, body_part(LEG));
 			else if (!rn2(5))
-			    pline("%s scratches through your %s boot!",
-				Monnam(mtmp), sidestr);
+			    pline("%s scratches through your %s boot!", Monnam(mtmp), sidestr);
 			else {
-			    pline("%s scratches your %s boot!", Monnam(mtmp),
-				sidestr);
+			    pline("%s scratches your %s boot!", Monnam(mtmp), sidestr);
 			    dmg = 0;
 			    break;
 			}
-		    } else pline("%s scratches your %s %s!", Monnam(mtmp),
-			  sidestr, body_part(LEG));
+		    } else pline("%s scratches your %s %s!", Monnam(mtmp), sidestr, body_part(LEG));
 		    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
 		    exercise(A_STR, FALSE);
 		    exercise(A_DEX, FALSE);
@@ -17646,6 +17687,12 @@ register int n;
 		}
 		n *= dmgreductor;
 		n /= 100;
+		if (n < 1) n = 1;
+	}
+
+	if (n > 0 && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "marji shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obuv' marzhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oz maryam poyafzallari")) ) {
+		n *= 9;
+		n /= 10;
 		if (n < 1) n = 1;
 	}
 

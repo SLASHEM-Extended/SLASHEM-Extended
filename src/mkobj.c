@@ -2916,6 +2916,8 @@ register struct obj *otmp;
 
 		if (u.heavycursechance && (u.heavycursechance >= rnd(100)) ) otmp->hvycurse = 1;
 
+		if (!rn2(10) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "cursed called cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "proklyatyy pod nazvaniyem plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "la'natlangan la'nati") )) otmp->hvycurse = 1;
+
 		if (!otmp->hvycurse && !otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(Role_if(PM_CAMPERSTRIKER) ? 5 : isfriday ? 15 : 25)) otmp->hvycurse = 1;
 
 		if (otmp->hvycurse && u.primecursechance && (u.primecursechance >= rnd(100)) ) otmp->prmcurse = 1;
@@ -3003,6 +3005,8 @@ register int chance;
 
 	if(!rn2(chance)) {
 	    if(!rn2(isfriday ? 2 : 3)) {
+		curse_on_creation(otmp);
+	    } else if (!rn2(5) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "cursed called cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "proklyatyy pod nazvaniyem plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "la'natlangan la'nati") )) {
 		curse_on_creation(otmp);
 	    } else {
 		bless(otmp);

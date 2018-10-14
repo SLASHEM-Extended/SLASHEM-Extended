@@ -595,6 +595,12 @@ boolean yours; /* is it your fault (for killing monsters) */
 			if (damu < 1) damu = 1;
 		}
 
+		if (damu > 0 && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "marji shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "obuv' marzhi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "oz maryam poyafzallari")) ) {
+			damu *= 9;
+			damu /= 10;
+			if (damu < 1) damu = 1;
+		}
+
 		/* very early on, low-level characters should be more survivable
 		 * this can certainly be exploited in some way; if players start exploiting it I'll have to fix it
 		 * but it should fix the annoying problem where you often instadie to a trap while your max HP are bad --Amy */

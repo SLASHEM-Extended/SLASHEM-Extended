@@ -207,6 +207,8 @@ int thrown;
 
 	    if (launcher && launcher->otyp == CATAPULT) multishot += rnd(5);
 
+	    if (launcher && (launcher->otyp == RIFLE || launcher->otyp == SNIPER_RIFLE || launcher->otyp == HUNTING_RIFLE || launcher->otyp == PROCESS_CARD) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "rifling power cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "naplechnyy shchit sily") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "miltig'idan tortib, kuch-quvvat plashi")) ) multishot += rnd(2);
+
 	    if (launcher && launcher->otyp == HYDRA_BOW) multishot += 2;
 	    if (launcher && launcher->otyp == WILDHILD_BOW) multishot += 2;
 
@@ -1195,6 +1197,8 @@ boolean hitsroof;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
 	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
 
+	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) dmg += 1;
+
 	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (u.ulevel / 3) );
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
 	if (Half_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
@@ -1801,6 +1805,8 @@ int thrown;
 	if (uimplant && uimplant->oartifact == ART_SOME_LITTLE_AID) tmp += 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
+
+	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) tmp += 1;
 
 	if (is_grassland(u.ux, u.uy)) tmp -= rnd(5);
 

@@ -1062,6 +1062,9 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too. */
 				moveamt /= 2;
 
+			if (uarmf && !rn2(6) && (moveamt > 1) && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ballet heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "baletnyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "balet poshnali")))
+				moveamt /= 2;
+
 			/* nasty equipment generally makes you slower because it needs a guaranteed downside, even if the
 			 * randomized nastytrap effect is something relatively benign - this equipment is supposed to be
 			 * nasty and something that you don't wanna wear casually! --Amy */
@@ -1884,6 +1887,30 @@ trapsdone:
 
 		}
 
+		if (!rn2(2500) && uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "demolition gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki dlya snosa") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "buzilgan qo'lqoplar")) ) {
+			struct obj *dynamite;
+			dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE);
+			if (dynamite) {
+				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+				else {
+					dynamite->quan = 1;
+					dropy(dynamite);
+					attach_bomb_blow_timeout(dynamite, 0, 0);
+				}
+			}
+
+		}
+
+		if (!rn2(2500) && uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "bise gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "bi sebe perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "bosh o'pish sportchisi")) ) {
+			pline("Suddenly, your gauntlets kiss you!");
+
+			if ((rnd(ABASE(A_CHA)) < 11) && ABASE(A_CHA) < 18) {
+				(void) adjattrib(A_CHA, 1, -1);
+			}
+
+			nomul(-5, "being kissed by the bise gauntlets", FALSE);
+		}
+
 		if (Numbed && !rn2(isfriday ? 50 : 100) && multi >= 0) {
 
 			pline("You're fully paralyzed!");
@@ -1891,6 +1918,55 @@ trapsdone:
 			nomul(-2, "fully paralyzed", FALSE);
 			nomovemsg = 0;
 			afternmv = unfaintX;
+
+		}
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+			if (!rn2(1000) && !Breathless) {
+				pline("You're gasping for air!");
+				losehp(rnz(u.ulevel + 5), "breath control fetishism", KILLED_BY);
+				stop_occupation();
+
+				if (!rn2(3)) {
+					switch (rn2(5)) {
+						case 0: You_feel("raised to your full potential.");
+							exercise(A_CON, TRUE);
+							u.uen = (u.uenmax += rnd(5));
+							break;
+						case 1: You_feel("good enough to do it again.");
+							(void) adjattrib(A_CON, 1, TRUE);
+							exercise(A_CON, TRUE);
+							flags.botl = 1;
+							break;
+						case 2: You("will always remember the feeling of near suffocation...");
+							(void) adjattrib(A_WIS, 1, TRUE);
+							exercise(A_WIS, TRUE);
+							flags.botl = 1;
+							break;
+						case 3: pline("That was a very educational experience.");
+							pluslvl(FALSE);
+							exercise(A_WIS, TRUE);
+							break;
+						case 4: You_feel("restored to health!");
+							u.uhp = u.uhpmax;
+							if (Upolyd) u.mh = u.mhmax;
+							exercise(A_STR, TRUE);
+							flags.botl = 1;
+							break;
+						}
+
+				}
+			}
+		}
+
+		if (!rn2(10000) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "cursed called cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "proklyatyy pod nazvaniyem plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "la'natlangan la'nati") )) {
+
+			register struct obj *cclld;
+
+			for(cclld = invent; cclld; cclld = cclld->nobj) {
+				if (!rn2(20) && !stack_too_big(cclld))
+					curse(cclld);
+			}
 
 		}
 
@@ -1999,6 +2075,7 @@ trapsdone:
 
 			pline("Suddenly, you produce beautiful farting noises with your sexy butt.");
 			badeffect();
+			stop_occupation();
 
 		}
 
@@ -3277,6 +3354,10 @@ fukrosionchoice:
 
 		}
 
+		if (u.umoved && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "rumble boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "gul botinki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "yirtqich chiziqlar")) )) {
+			wake_nearby();
+		}
+
 		if (u.umoved && u.twoweap && uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE && !rn2(10)) {
 
 			doshittrap((struct obj *)0);
@@ -3325,6 +3406,23 @@ fukrosionchoice:
 			}
 			u.aggravation = 0;
 			pline("Several monsters come out of a portal.");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		}
+
+		if (!rn2(5000) && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "spooky boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "zhutkiy botinok") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "jingalak botinkalar")) ) {
+			int aggroamount = rnd(4);
+			if (isfriday) aggroamount *= 2;
+			u.aggravation = 1;
+			u.heavyaggravation = 1;
+			while (aggroamount) {
+
+				makemon(mkclass(S_GHOST,0), u.ux, u.uy, MM_ANGRY);
+				aggroamount--;
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
+			pline("Several ghosts come out of a portal.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
@@ -7216,6 +7314,13 @@ newbossB:
 			}
 			if (sexyflatchance > rn2(100)) make_dimmed(0L,TRUE);
 
+		}
+
+		if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzilgan yurish ovozi to'piqlari")) ) {
+			if (HStun > 2 && !rn2(5)) {
+				HStun -= rnd(20);
+				if (HStun < 2) HStun = 2;
+			}
 		}
 
 		/* Gang Scholar gods are really nice: unless you're in Gehennom, they will occasionally fix status effects

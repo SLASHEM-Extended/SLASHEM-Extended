@@ -348,6 +348,8 @@ struct monst {
 
 	Bitfield(wastame,1);	/* for re-taming technique */
 
+	Bitfield(sagesvisible,1);	/* for seeing the monster via sages helmet */
+
 	struct obj *mw;
 	long misc_worn_check;
 	xchar weapon_check;

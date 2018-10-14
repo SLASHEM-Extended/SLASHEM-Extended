@@ -1481,6 +1481,13 @@ domonability()
 				badeffect();
 			}
 			badeffect();
+
+			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+				badeffect();
+				badeffect();
+			}
+
 			return 1;
 		}
 	} else if ((youmonst.data->msound == MS_FART_NORMAL || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_NORMAL)) && yn("Do you want to fart?")=='y' ) {
@@ -1502,6 +1509,13 @@ domonability()
 				badeffect();
 			}
 			badeffect();
+
+			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+				badeffect();
+				badeffect();
+			}
+
 			return 1;
 		}
 	} else if ((youmonst.data->msound == MS_FART_LOUD || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_LOUD)) && yn("Do you want to fart?")=='y' ) {
@@ -1523,6 +1537,13 @@ domonability()
 				badeffect();
 			}
 			badeffect();
+
+			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+				badeffect();
+				badeffect();
+			}
+
 			return 1;
 		}
 	} else if (Role_if(PM_HUSSY) && !u.hussyperfume && ((!Upolyd && flags.female) || (Upolyd && youmonst.data->msound == MS_STENCH)) && yn("Do you want to spread your scentful perfume?") == 'y') {

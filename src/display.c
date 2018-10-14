@@ -1099,6 +1099,7 @@ newsym(x,y)
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
@@ -1184,6 +1185,7 @@ newsym(x,y)
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
@@ -1397,6 +1399,7 @@ newsymX(x,y)
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
@@ -1482,6 +1485,7 @@ newsymX(x,y)
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||

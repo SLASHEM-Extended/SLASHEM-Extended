@@ -897,6 +897,8 @@ burnagain:
 
 	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "yangi qo'lqop") ) && rn2(4) ) vulnerable = FALSE;
 
+	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "xayoliy to'pi") ) ) vulnerable = FALSE;
+
 	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "shol plash") ) ) vulnerable = FALSE;
 
 	if (uarmf && rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) vulnerable = FALSE;
@@ -1014,6 +1016,8 @@ struct monst *victim;
 	erosion = is_primary ? otmp->oeroded : otmp->oeroded2;
 
 	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "yangi qo'lqop") ) && rn2(4) ) vulnerable = FALSE;
+
+	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "xayoliy to'pi") ) ) vulnerable = FALSE;
 
 	if (OBJ_DESCR(objects[otmp->otyp]) && ( !strcmp(OBJ_DESCR(objects[otmp->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[otmp->otyp]), "shol plash") ) ) vulnerable = FALSE;
 
@@ -2333,6 +2337,12 @@ unsigned trflags;
 		}
 
 		badeffect();
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+			badeffect();
+			badeffect();
+		}
 
 		if (!rn2(20)) increasesanity(1);
 
@@ -14526,6 +14536,8 @@ register boolean force, here;
 
 		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(4) ) continue;
 
+		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xayoliy to'pi") ) ) continue;
+
 		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shol plash") ) ) continue;
 
 		if ((obj->where != OBJ_FLOOR) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "scuba helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "podvodnoye shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "tueplue zarbdan") ) ) continue;
@@ -14851,6 +14863,8 @@ register boolean force, here;
 
 		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(2) ) continue;
 
+		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xayoliy to'pi") ) ) continue;
+
 		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shol plash") ) ) continue;
 
 		/* important quest items are immune */
@@ -14905,6 +14919,8 @@ register boolean force, here;
 		if (rn2(10)) continue;
 
 		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "brand-new gloves") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "sovershenno novyye perchatki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "yangi qo'lqop") ) && rn2(2) ) continue;
+
+		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "imaginary heels") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "voobrazhayemyye kabluki") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "xayoliy to'pi") ) ) continue;
 
 		if (OBJ_DESCR(objects[obj->otyp]) && ( !strcmp(OBJ_DESCR(objects[obj->otyp]), "withered cloak") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "uvyadshiye plashch") || !strcmp(OBJ_DESCR(objects[obj->otyp]), "shol plash") ) ) continue;
 
@@ -16833,6 +16849,12 @@ fartingweb()
 	}
 
 	badeffect();
+
+	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+		pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+		badeffect();
+		badeffect();
+	}
 
 	if (!rn2(20)) increasesanity(1);
 

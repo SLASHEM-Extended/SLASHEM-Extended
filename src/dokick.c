@@ -167,11 +167,18 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && !rn2(3) && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plof heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "ploskiye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "buzilgan yurish ovozi to'piqlari")) ) {
+		pline("*plof*");
+		dmg += rnd(15);
+	}
+
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "battle boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "bitvy sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "urush chizilmasin") ) ) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_EVELINE_S_LOVELIES) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) dmg += 10;
 	if (uarmc && uarmc->oartifact == ART_CONNY_S_COMBAT_COAT) dmg += 5;
+
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "steel toed boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "stal'nyye kosolapyy sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "po'latdan yasalgan poyafzal")) ) dmg++;
 
 	if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS && !rn2(20)) dmg += 10000; /* instant death */
 
@@ -307,6 +314,33 @@ register boolean clumsy;
 			    if (mintrap(mon) == 2) trapkilled = TRUE;
 			}
 		}
+	} else if (mon->mhp > 0 && mon != u.ustuck && !mon->mtrapped && rn2(10) && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "doctor claw boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "kolgotki dlya sapog") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "shifokor chiziqlari")) ) {
+
+		switch (rnd(4)) {
+			case 1:
+				verbalize("Aaa-err!"); break;
+			case 2:
+				verbalize("Waa-aii!"); break;
+			case 3:
+				verbalize("Haa-waii!"); break;
+			case 4:
+				verbalize("Kamehameha!"); break;
+		}
+
+		/* see if the monster has a place to move into */
+		mdx = mon->mx + u.dx;
+		mdy = mon->my + u.dy;
+		if(goodpos(mdx, mdy, mon, 0)) {
+			pline("%s reels from the blow.", Monnam(mon));
+			if (m_in_out_region(mon, mdx, mdy)) {
+			    remove_monster(mon->mx, mon->my);
+			    newsym(mon->mx, mon->my);
+			    place_monster(mon, mdx, mdy);
+			    newsym(mon->mx, mon->my);
+			    set_apparxy(mon);
+			    if (mintrap(mon) == 2) trapkilled = TRUE;
+			}
+		}
 	}
 
 	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "platform boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plato sapogi") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "platosi chizilmasin") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "plateau boots") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "sapogi na platforme") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "platformalar chizilmasin") ) && !rn2(3) ) {
@@ -330,6 +364,31 @@ register boolean clumsy;
 				monwepon->spe = 0;
 				pline("%s's weapon loses all of its enchantment!", Monnam(mon));
 			}
+		}
+
+	}
+
+	if (!rn2(10) && MON_WEP(mon) && uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "gentle sneakers") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nezhnyy krossovki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nozik poyafzallar")) ) {
+		register struct obj *monwepon;
+		monwepon = MON_WEP(mon);
+		if (monwepon) {
+			obj_extract_self(monwepon);
+			possibly_unwield(mon, FALSE);
+			setmnotwielded(mon, monwepon);
+
+		}
+
+		if (monwepon && monwepon->mstartinventB && !(monwepon->oartifact) && !(monwepon->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !stack_too_big(monwepon) ) {
+			You("vaporize %s %s!", s_suffix(mon_nam(mon)), xname(monwepon));
+			delobj(monwepon);
+		} else {
+			You("knock %s %s to the %s!", s_suffix(mon_nam(mon)), xname(monwepon), surface(u.ux, u.uy));
+			if (monwepon->otyp == CRYSKNIFE && (!monwepon->oerodeproof || !rn2(10))) {
+				monwepon->otyp = WORM_TOOTH;
+				monwepon->oerodeproof = 0;
+			}
+			place_object(monwepon, u.ux, u.uy);
+			stackobj(monwepon);
 		}
 
 	}

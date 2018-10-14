@@ -913,6 +913,11 @@ rndcurse()			/* curse a few inventory items at random! */
 	    return;
 	}
 
+	if (!rn2(5) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) ) {
+		pline("A malignant aura surrounds you but is absorbed by the sages helmet!");
+		return;
+	}
+
 	if (Versus_curses && rn2(20)) { /* curse resistance, by Chris_ANG */
 		pline("A malignant aura surrounds you but is absorbed by your magical shield!");
 	    return;

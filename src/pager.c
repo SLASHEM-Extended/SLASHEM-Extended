@@ -507,6 +507,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) )
 		    ways_seen++;
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mtmp->minvis && mtmp->sagesvisible )
+		    ways_seen++;
 		if (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mtmp->data, AT_BREA))
 		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mtmp->data) )
@@ -662,6 +664,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) ) {
 			strcat(monbuf, "pokemon vision");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "sages helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "mudryy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "do'stlar dubulg'asi")) && mtmp->minvis && mtmp->sagesvisible ) {
+			strcat(monbuf, "sages helmet");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mtmp->data, AT_BREA)) {
@@ -20359,6 +20365,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel an immense sense of relief as you realize that the trap must have failed to trigger.",
 	"The footerers are waiting for you on some level...",
 	"The footerers were waiting for you here, and will attack now.",
+	"Your breath control helmet keeps pumping the farting gas into your nose...",
+	"Suddenly, your gauntlets kiss you!",
 
 };
 

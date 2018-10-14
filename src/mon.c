@@ -5881,6 +5881,13 @@ register struct monst *mtmp;
 			badeffect();
 		}
 		badeffect();
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+			badeffect();
+			badeffect();
+		}
+
 		if (!rn2(20)) increasesanity(1);
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL) {
@@ -5899,6 +5906,13 @@ register struct monst *mtmp;
 			badeffect();
 		}
 		badeffect();
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+			badeffect();
+			badeffect();
+		}
+
 		if (!rn2(20)) increasesanity(1);
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD) {
@@ -5916,6 +5930,13 @@ register struct monst *mtmp;
 			badeffect();
 		}
 		badeffect();
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+			badeffect();
+			badeffect();
+		}
+
 		if (!rn2(20)) increasesanity(1);
     }
     if (mtmp->egotype_farter) {
@@ -5932,6 +5953,13 @@ register struct monst *mtmp;
 			badeffect();
 		}
 		badeffect();
+
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+			badeffect();
+			badeffect();
+		}
+
 		if (!rn2(20)) increasesanity(1);
     }
 

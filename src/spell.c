@@ -7550,6 +7550,16 @@ int spell;
 
 	/* artifacts and other items that boost the chance after "hard" penalties are applied go here --Amy */
 
+	if (uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "failuncap cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "mantiya s provalom") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "noto'g'ri plash")) ) chance += 5;
+
+	if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "failuncap helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem s provalom") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "noto'g'ri zarbdan")) ) chance += 5;
+
+	if (uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "failuncap gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki s perforatsiyey") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "noto'g'ri qo'lqop")) ) chance += 5;
+
+	if (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "failuncap shoes") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "s provalom obuv'") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "poyafzal poyafzallari")) ) chance += 5;
+
+	if (Role_if(PM_OTAKU) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "fourchan cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "chetyrekhchasovoy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "to'rtburchak plash"))) chance += 5;
+
 	if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) chance += 20;
 
 	/* REALLY clamp chance now */

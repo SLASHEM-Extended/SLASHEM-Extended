@@ -327,6 +327,11 @@ int type;
 			return;
 		}
 
+		if (rn2(4) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "inalish cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "glupyy plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "ichki plash")) ) {
+			pline("Your inalish cloak prevents you from becoming %ssick!", old ? "even more " : "");
+			return;
+		}
+
 	    if (!old) {
 		/* newly sick */
 		You_feel(Role_if(PM_PIRATE) ? "poxy." : Role_if(PM_KORSAIR) ? "poxy." : (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ? "poxy." : "deathly sick.");

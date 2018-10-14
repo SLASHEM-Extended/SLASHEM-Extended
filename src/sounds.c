@@ -1919,7 +1919,12 @@ register struct monst *mtmp;
 					You("joyously inhale %s's scentful perfume. It's very soothing.", mon_nam(mtmp));
 				} else {
 					pline("Inhaling %s's scentful perfume is not the brightest idea. But in this case you didn't have a choice...", mon_nam(mtmp));
-					badeffect();
+
+					if (rn2(10) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gas mask") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "protivogaz") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gaz niqobi")) ) {
+						pline("But the gas mask protects you from the effects.");
+					} else {
+						badeffect();
+					}
 				}
 
 			} else {
@@ -1948,7 +1953,12 @@ register struct monst *mtmp;
 			You("joyously inhale %s's scentful perfume. It's very soothing.", mon_nam(mtmp));
 		} else {
 			pline("Inhaling %s's scentful perfume is not the brightest idea.", mon_nam(mtmp));
-			badeffect();
+
+			if (rn2(10) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gas mask") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "protivogaz") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gaz niqobi")) ) {
+				pline("But the gas mask protects you from the effects.");
+			} else {
+				badeffect();
+			}
 		}
 
 	    break;

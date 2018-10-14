@@ -548,7 +548,7 @@ nh_timeout()
 		    }
 
 		}
-		if (PlayerInConeHeels && !rn2(500)) {
+		if (PlayerInConeHeels && !rn2(500) && !(uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "feelgood heels") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "chuvstvennyye kabluki") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "his-tuyg'ulari baland")) ) ) {
 			/* This is the one that will make players 'female dog' at me. Because it's evil. --Amy */
 
 			register struct obj *otmpi, *otmpii;

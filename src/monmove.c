@@ -693,6 +693,12 @@ register struct monst *mtmp;
 		}
 		badeffect();
 
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+			badeffect();
+			badeffect();
+		}
+
 		if (!rn2(20)) increasesanity(1);
 
 		while (FemaleTrapElena && !rn2(3)) {
@@ -712,6 +718,12 @@ register struct monst *mtmp;
 				badeffect();
 			}
 			badeffect();
+
+			if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "breath control helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shlem upravleniya dykhaniyem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "nafasni boshqarish dubulg'asi")) ) {
+				pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+				badeffect();
+				badeffect();
+			}
 
 			if (!rn2(20)) increasesanity(1);
 
@@ -1131,8 +1143,14 @@ register struct monst *mtmp;
 				break;
 
 		}
-		badeffect();
-		stop_occupation();
+
+		if (rn2(10) && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gas mask") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "protivogaz") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "gaz niqobi")) ) {
+			pline("But the gas mask protects you from the effects.");
+		} else {
+
+			badeffect();
+			stop_occupation();
+		}
 	}
 
 	/* Monsters with MS_BONES can rattle. If this causes you to snap out of a longer paralysis, more power to you :D */

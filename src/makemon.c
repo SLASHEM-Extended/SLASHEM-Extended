@@ -14929,6 +14929,8 @@ register int	mmflags;
 	if (!rn2(30)) mtmp->fartbonus += rnd(9);
 	if (!rn2(30)) mtmp->crapbonus += rnd(50);
 
+	mtmp->sagesvisible = !rn2(10);
+
 	/* Everything that can hide under an object will now do so. --Amy */
       if(x && y && isok(x, y) && !issoviet && allow_special && (hides_under(ptr) || !rn2(100) ) ) { /* low chance of getting an object even if nonhiding, too */
 
@@ -16551,6 +16553,11 @@ register int	mmflags;
 		return((struct monst *)0);
 	}
 
+	if (!rn2(25) && mtmp->data->mlet == S_BAD_FOOD && uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "flower gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "tsvetochnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gul qo'lqoplari")) ) {
+		(void) tamedog(mtmp, (struct obj *)0, FALSE);
+		return((struct monst *)0);
+	}
+
 	if (!rn2(4) && uarmf && uarmf->oartifact == ART_SPEAK_TO_OJ && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD)) {
 		(void) tamedog(mtmp, (struct obj *)0, FALSE);
 		return((struct monst *)0);
@@ -17487,6 +17494,10 @@ loopback:
 		if (ct > 0 && (Role_if(PM_COURIER) && dmgtype(ptr, AD_IDAM) )) ct += 1;
 		if (ct > 0 && (Role_if(PM_MURDERER) && dmgtype(ptr, AD_STAT) )) ct += 2;
 		if (ct > 0 && (Role_if(PM_NUCLEAR_PHYSICIST) && dmgtype(ptr, AD_PAIN) )) ct += 1;
+		if (ct > 0 && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(ptr, AT_SCRA) )) ct += 2;
+		if (ct > 0 && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(ptr, AT_LASH) )) ct += 2;
+		if (ct > 0 && (uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(ptr, AT_STNG) )) ct += 2;
+		if (ct > 0 && uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "grunter helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shturmovoy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "go'shtli dubulg'a")) && dmgtype(ptr, AD_DISE) ) ct += 5;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_IDAM) )) ct += 2;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_ANTI) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_PSION) && dmgtype(ptr, AD_TECH) )) ct += 2;
@@ -18266,6 +18277,10 @@ int     spc;
 		if ((Role_if(PM_COURIER) && dmgtype(&mons[last], AD_IDAM) )) num += 1;
 		if ((Role_if(PM_MURDERER) && dmgtype(&mons[last], AD_STAT) )) num += 2;
 		if ((Role_if(PM_NUCLEAR_PHYSICIST) && dmgtype(&mons[last], AD_PAIN) )) num += 1;
+		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(&mons[last], AT_SCRA) )) num += 2;
+		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(&mons[last], AT_LASH) )) num += 2;
+		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(&mons[last], AT_STNG) )) num += 2;
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "grunter helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shturmovoy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "go'shtli dubulg'a")) && dmgtype(&mons[last], AD_DISE) ) num += 5;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_IDAM) )) num += 2;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_ANTI) )) num += 5;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[last], AD_TECH) )) num += 2;
@@ -18761,6 +18776,10 @@ int     spc;
 		if ((Role_if(PM_COURIER) && dmgtype(&mons[first], AD_IDAM) )) num -= 1;
 		if ((Role_if(PM_MURDERER) && dmgtype(&mons[first], AD_STAT) )) num -= 2;
 		if ((Role_if(PM_NUCLEAR_PHYSICIST) && dmgtype(&mons[first], AD_PAIN) )) num -= 1;
+		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(&mons[first], AT_SCRA) )) num -= 2;
+		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(&mons[first], AT_LASH) )) num -= 2;
+		if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) && attacktype(&mons[first], AT_STNG) )) num -= 2;
+		if (uarmh && OBJ_DESCR(objects[uarmh->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmh->otyp]), "grunter helmet") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "shturmovoy shlem") || !strcmp(OBJ_DESCR(objects[uarmh->otyp]), "go'shtli dubulg'a")) && dmgtype(&mons[first], AD_DISE) ) num -= 5;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_IDAM) )) num -= 2;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_ANTI) )) num -= 5;
 		if ((Role_if(PM_PSION) && dmgtype(&mons[first], AD_TECH) )) num -= 2;
@@ -19537,6 +19556,8 @@ register struct permonst *ptr;
 
 	if (is_pokemon(ptr) && rn2(5) && uarmc && OBJ_DESCR(objects[uarmc->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmc->otyp]), "poke mongo cloak") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "sovat' mongo plashch") || !strcmp(OBJ_DESCR(objects[uarmc->otyp]), "soktudun mongo plash") ) ) return TRUE;
 
+	if (!rn2(5) && ptr->mlet == S_BAD_FOOD && uarmg && OBJ_DESCR(objects[uarmg->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmg->otyp]), "flower gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "tsvetochnyye perchatki") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "gul qo'lqoplari")) ) return TRUE;
+
 	if (ptr->mlet == S_LICH && uarmg && uarmg->oartifact == ART_BLACKY_S_BACK_WITHOUT_L) return TRUE;
 
 	if (ptr->mlet == S_KOP && Race_if(PM_KOP) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;
@@ -19595,6 +19616,9 @@ register struct permonst *ptr;
 
 	if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "princess gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki printsessy") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "malika qo'lqop") )) && (is_lord(ptr) && !rn2(5)) ) return TRUE;
 	if ((uarmg && OBJ_DESCR(objects[uarmg->otyp]) && ( !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "princess gloves") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "perchatki printsessy") || !strcmp(OBJ_DESCR(objects[uarmg->otyp]), "malika qo'lqop") )) && (is_prince(ptr) && !rn2(2)) ) return TRUE;
+
+	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) ) && (is_lord(ptr) && rn2(2)) ) return TRUE;
+	if ((uarmf && OBJ_DESCR(objects[uarmf->otyp]) && (!strcmp(OBJ_DESCR(objects[uarmf->otyp]), "princess pumps") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "nasosy printsessy") || !strcmp(OBJ_DESCR(objects[uarmf->otyp]), "malika nasoslari")) ) && (is_prince(ptr) && rn2(5)) ) return TRUE;
 
 	if (always_hostile(ptr)) return FALSE;
 	if (ptr->msound == MS_LEADER || ptr->msound == MS_GUARDIAN)
